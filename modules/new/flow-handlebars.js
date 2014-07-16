@@ -574,7 +574,7 @@
 	 * @param {string}
 	 * @return {string}
 	 */
-	FlowHandlebars.prototype.moderationAction = function( actions, moderationState ) {
+	FlowHandlebars.prototype.moderationAction = function ( actions, moderationState ) {
 		return actions[moderationState] ? actions[moderationState].url : '';
 	};
 
@@ -582,12 +582,13 @@
 	 * Return localized action string for the provided moderation state. If the user
 	 * cannot put the post into the specified state a blank string is returned.
 	 *
-	 * @param {Object}
+	 * @param {string}
+	 * @param {string}
 	 * @param {string}
 	 * @return {string}
 	 */
-	FlowHandlebars.prototype.moderationActionText = function( actions, moderationState ) {
-		return actions[moderationState] ? actions[moderationState].title : '';
+	FlowHandlebars.prototype.moderationMessage = function ( prefix, moderationState, type ) {
+		return mw.msg( prefix + moderationState + type );
 	};
 
 	/**
@@ -650,8 +651,8 @@
 	Handlebars.registerHelper( 'linkWithReturnTo', FlowHandlebars.prototype.linkWithReturnTo );
 	Handlebars.registerHelper( 'escapeContent', FlowHandlebars.prototype.escapeContent );
 	Handlebars.registerHelper( 'tooltip', FlowHandlebars.prototype.tooltip );
-	Handlebars.registerHelper( 'moderationActionText', FlowHandlebars.prototype.moderationActionText );
 	Handlebars.registerHelper( 'moderationAction', FlowHandlebars.prototype.moderationAction );
+	Handlebars.registerHelper( 'moderationMessage', FlowHandlebars.prototype.moderationMessage );
 	Handlebars.registerHelper( 'ifCond', FlowHandlebars.prototype.ifCond );
 	Handlebars.registerHelper( 'plaintextSnippet', FlowHandlebars.prototype.plaintextSnippet );
 	Handlebars.registerHelper( 'debug', FlowHandlebars.prototype.debug );

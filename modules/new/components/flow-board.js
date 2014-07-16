@@ -1,4 +1,4 @@
-/*!
+/*
  * Contains the FlowBoardComponent and related functionality.
  */
 
@@ -1469,7 +1469,9 @@
 			var html, $container, $form,
 				$this = $( this ),
 				board = FlowBoardComponent.prototype.getInstanceByElement( $this ),
+				// hide, delete, suppress
 				role = $this.data( 'role' ),
+				type = $this.closest( '.flow-post-main' ).length ? 'post' : 'topic',
 				template = $this.data( 'template' ),
 				params = {
 					editToken: mw.user.tokens.get( 'editToken' ), // might be unnecessary
@@ -1477,7 +1479,8 @@
 						moderationState: role
 					},
 					actions: {}
-				};
+				},
+				titleText = mw.msg( 'flow-moderation-title-' + role + '-' + type );
 
 			event.preventDefault();
 
@@ -1494,7 +1497,7 @@
 			// this one doesn't work on mobile, among other problems.
 			mw.loader.using( 'jquery.ui.dialog' , function() {
 				$container.dialog( {
-					'title': $this.attr( 'title' ),
+					'title': titleText,
 					'modal': true
 				} )
 				// the $.fn.dialog function attaches the dialog to .body, but we
