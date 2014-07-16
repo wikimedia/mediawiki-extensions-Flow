@@ -34,6 +34,24 @@
       "revId": "2f2534737f4b759489c3da27846005d4a9322d2c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_2643e316",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-07-16T01:07:39Z",
+      "side": 1,
+      "message": "Actually this is fine, keep the summary in the old way",
+      "parentUuid": "8e28a382_1048215f",
+      "revId": "2f2534737f4b759489c3da27846005d4a9322d2c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
