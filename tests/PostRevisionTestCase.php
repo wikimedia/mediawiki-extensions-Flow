@@ -53,7 +53,7 @@ class PostRevisionTestCase extends FlowTestCase {
 			}
 		}
 
-		Container::get( 'storage.workflow' )->remove( $this->workflow );
+		// Container::get( 'storage.workflow' )->remove( $this->workflow );
 
 		// Needed because not all cases do the reset in setUp yet
 		Container::reset();
@@ -141,7 +141,7 @@ class PostRevisionTestCase extends FlowTestCase {
 			'workflow_last_update_timestamp' => wfTimestampNow(),
 		);
 		$this->workflow = Workflow::fromStorageRow( $row );
-		Container::get( 'storage' )->put( $this->workflow );
+		//Container::get( 'storage' )->put( $this->workflow );
 	}
 
 	/**

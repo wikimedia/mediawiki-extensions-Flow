@@ -63,6 +63,11 @@ class AbuseFilterTest extends PostRevisionTestCase {
 			$wgFlowAbuseFilterEmergencyDisableCount,
 			$wgFlowAbuseFilterEmergencyDisableAge;
 
+		// Needed because abuse filter tries to read the title out and then
+		// set it back.  If we never provide one it tries to set a null title
+		// and bails.
+		\RequestContext::getMain()->setTitle( Title::newMainPage() );
+
 		$user = User::newFromName( 'UTSysop' );
 
 		$this->spamFilter = new AbuseFilter( $user, $wgFlowAbuseFilterGroup );
