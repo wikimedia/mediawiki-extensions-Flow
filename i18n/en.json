@@ -157,7 +157,7 @@
     "flow-rev-message-reply-recentchanges": "$1",
     "flow-rev-message-reply-contributions": "",
     "flow-rev-message-reply-irc": "$2 {{GENDER:$2|commented}} on \"$4\" ($5)",
-    "flow-rev-message-reply-bundle": "<strong>$1 {{PLdURAL:$1|comitent|comments}}</strong> {{PLURAL:$1|was|were}} added",
+    "flow-rev-message-reply-bundle": "<strong>$1 {{PLURAL:$1|comment|comments}}</strong> {{PLURAL:$1|was|were}} added",
     "flow-rev-message-new-post": "$1 {{GENDER:$2|created}} the topic \"[$3 $4]\"",
     "flow-rev-message-new-post-recentchanges": "$1",
     "flow-rev-message-new-post-contributions": "",
