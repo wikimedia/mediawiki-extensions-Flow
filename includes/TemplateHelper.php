@@ -158,6 +158,7 @@ class TemplateHelper {
 					'ifCond' => 'Flow\TemplateHelper::ifCond',
 					'tooltip' => 'Flow\TemplateHelper::tooltip',
 					'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
+					'doOnce' => 'Flow\TemplateHelper::doOnce',
 				),
 			)
 		);
@@ -899,5 +900,40 @@ class TemplateHelper {
 			global $wgLang;
 			return $wgLang->truncate( trim( $content ), 200 );
 		}
+	}
+
+	/**
+	 * Combines all arguments as a string key, and tests if that particular key has been used before this runtime.
+	 * If not, processes the given template contents one time.
+	 * @param string [ $args, ... ]
+	 * @param array $options
+	 * @return string
+	 * @throws Exception\FlowException
+	 */
+	static public function doOnce( /* $args, ..., */ $options ) {
+		static $doneOnce = array();
+		$args = func_get_args();
+		$options = array_pop($args);
+
+		// Make a string key from all the arguments given
+		$key = implode( $args );
+
+		if ( !isset( $doneOnce[ $key ] ) ) {
+			$doneOnce[ $key ] = true;
+			$fn = $options['fn'];
+			if ( !$fn instanceof Closure ) {
+				throw new FlowException( 'Expected callback to be Closure instance' );
+			}
+			return $fn();
+		} elseif ( isset( $options['inv'] ) ) {
+			$inverse = $options['inv'];
+			if ( !$inverse instanceof Closure ) {
+				throw new FlowException( 'Expected inverse callback to be Closure instance' );
+			}
+
+			return $inverse();
+		}
+
+		return '';
 	}
 }

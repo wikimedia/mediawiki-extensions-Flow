@@ -8,9 +8,10 @@
 
 	var _tplcache = {},
 		_timestamp = {
-		list: [],
-		currentIndex: 0
-	};
+			list: [],
+			currentIndex: 0
+		},
+		doOnceCache = {};
 
 
 	/**
@@ -31,6 +32,8 @@
 	 * @returns {Function}
 	 */
 	FlowHandlebars.prototype.getTemplate = function ( templateName ) {
+		doOnceCache = {}; // reset the doOnce cache
+
 		if ( _tplcache[ templateName ] ) {
 			// Return cached compiled template
 			return _tplcache[ templateName ];
@@ -634,6 +637,28 @@
 		mw.flow.debug( '[Handlebars] debug', arguments );
 	};
 
+	/**
+	 * Combines all arguments as a string key, and tests if that particular key has been used before this runtime.
+	 * If not, processes the given template contents one time.
+	 * @param {...*} [args]
+	 * @param {Object} [options]
+	 * @return {String}
+	 */
+	FlowHandlebars.prototype.doOnce = function ( /* args, ..., options */ ) {
+		var doneObj = doOnceCache,
+			args = Array.prototype.slice.call( arguments ),
+			options = args.pop(),
+			// Make a string key from all the arguments given
+			key = args.join();
+
+		if ( !doneObj[ key ] ) {
+			doneObj[ key ] = true;
+			return options.fn( this );
+		}
+
+		return options.inverse( this );
+	}
+
 	// Register helpers
 	Handlebars.registerHelper( 'l10n', FlowHandlebars.prototype.l10n );
 	Handlebars.registerHelper( 'l10nParse', FlowHandlebars.prototype.l10nParse );
@@ -655,5 +680,6 @@
 	Handlebars.registerHelper( 'ifCond', FlowHandlebars.prototype.ifCond );
 	Handlebars.registerHelper( 'plaintextSnippet', FlowHandlebars.prototype.plaintextSnippet );
 	Handlebars.registerHelper( 'debug', FlowHandlebars.prototype.debug );
+	Handlebars.registerHelper( 'doOnce', FlowHandlebars.prototype.doOnce );
 
 }( jQuery ) );
