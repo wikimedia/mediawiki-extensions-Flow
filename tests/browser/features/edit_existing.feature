@@ -7,7 +7,7 @@ Feature: Edit existing title
     Given I am logged in
         And I am on Flow page
         And I have created a Flow topic
-        And the page renders in 2 seconds
+        And the page has re-rendered
 
   Scenario: Edit an existing title
     When I click the Edit title action

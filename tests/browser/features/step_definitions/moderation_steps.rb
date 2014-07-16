@@ -30,7 +30,7 @@ When(/^I click Delete topic$/) do
 end
 
 Then(/^the top post should be marked as deleted$/) do
-  step 'the page renders in 5 seconds'
+  step 'the page has re-rendered'
   on(FlowPage).flow_first_topic_moderation_msg.should match( 'This topic was deleted' )
 end
 
@@ -43,7 +43,7 @@ When(/^I click Suppress topic$/) do
 end
 
 Then(/^the top post should be marked as suppressed$/) do
-  step 'the page renders in 5 seconds'
+  step 'the page has re-rendered'
   on(FlowPage).flow_first_topic_moderation_msg.should match( 'This topic was suppressed' )
 end
 

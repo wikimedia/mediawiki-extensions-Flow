@@ -21,7 +21,7 @@ Feature: Topic collapsing
   Scenario: Small topics view
     Given I am on Flow page
     When I switch from Topics and posts view to Small topics view
-      And the page renders in 1 seconds
+      And the page has re-rendered
     Then I should see the title of the first non-moderated topic
       And I should not see who started the first non-moderated topic
       And I should not see the comments of the first non-moderated topic
@@ -29,7 +29,7 @@ Feature: Topic collapsing
   Scenario: Topics only view
     Given I am on Flow page
     When I switch from Topics and posts view to Topics only view
-      And the page renders in 1 seconds
+      And the page has re-rendered
     Then I should see the title of the first non-moderated topic
       And I should see who started the first non-moderated topic
       And I should not see the comments of the first non-moderated topic
@@ -39,7 +39,7 @@ Feature: Topic collapsing
     # Complete mode cycle
     When I switch from Topics and posts view to Topics only view
       And I switch from Topics only view to Topics and posts view
-      And the page renders in 1 seconds
+      And the page has re-rendered
     Then I should see the title of the first non-moderated topic
       And I should see who started the first non-moderated topic
       And I should see the comments of the first non-moderated topic

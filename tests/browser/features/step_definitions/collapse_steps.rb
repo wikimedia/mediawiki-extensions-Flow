@@ -66,7 +66,3 @@ end
 When(/^I click the first moderated topic$/) do
   on(FlowPage).first_moderated_topic_title_element.click
 end
-
-When(/^the page renders in (.+) seconds$/) do |seconds|
-  sleep seconds.to_i
-end
