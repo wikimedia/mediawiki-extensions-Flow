@@ -50,7 +50,7 @@ messagecheck: remotes
 lint: jshint phplint checkless messagecheck
 
 phplint:
-	@find ./ -type f -iname '*.php' -print0 | xargs -0 -P 12 -L 1 php -l
+	@find ./ -type f -iname '*.php' -print0 | xargs -0 -P 12 -L 1 ${PHP} -l
 
 nodecheck:
 	@which npm > /dev/null && npm install \

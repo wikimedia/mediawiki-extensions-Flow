@@ -23,7 +23,9 @@ class OccupationListener implements LifecycleHandler {
 	}
 
 	public function onAfterLoad( $object, array $old ) {
-		$this->ensureOccupation( $object );
+		if ( $object->getType() === $this->defaultType ) {
+			$this->ensureOccupation( $object );
+		}
 	}
 
 	function onAfterInsert( $object, array $new ) {
@@ -31,11 +33,8 @@ class OccupationListener implements LifecycleHandler {
 	}
 
 	protected function ensureOccupation( Workflow $workflow ) {
-		if ( $workflow->getType() === $this->defaultType ) {
-			$article = new Article( $workflow->getArticleTitle() );
-
-			$this->occupationController->ensureFlowRevision( $article, $workflow );
-		}
+		$article = new Article( $workflow->getArticleTitle() );
+		$this->occupationController->ensureFlowRevision( $article, $workflow );
 	}
 
 	function onAfterUpdate( $object, array $old, array $new ) {
