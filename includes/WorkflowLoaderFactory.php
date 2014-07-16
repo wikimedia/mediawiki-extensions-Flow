@@ -87,11 +87,11 @@ class WorkflowLoaderFactory {
 	 * @throws InvalidDataException
 	 */
 	protected function loadWorkflow( \Title $title ) {
-		global $wgUser, $wgFlowDefaultWorkflow;
+		global $wgUser;
 		$storage = $this->storage->getStorage( 'Workflow' );
 
 		$found = $storage->find( array(
-			'workflow_type' => $wgFlowDefaultWorkflow,
+			'workflow_type' => $this->defaultWorkflowName,
 			'workflow_wiki' => $title->isLocal() ? wfWikiId() : $title->getTransWikiID(),
 			'workflow_namespace' => $title->getNamespace(),
 			'workflow_title_text' => $title->getDBkey(),
@@ -99,7 +99,7 @@ class WorkflowLoaderFactory {
 		if ( $found ) {
 			$workflow = reset( $found );
 		} else {
-			$workflow = Workflow::create( $wgFlowDefaultWorkflow, $wgUser, $title );
+			$workflow = Workflow::create( $this->defaultWorkflowName, $wgUser, $title );
 		}
 
 		return $workflow;
