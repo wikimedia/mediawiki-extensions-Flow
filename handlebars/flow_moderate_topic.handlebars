@@ -1,7 +1,8 @@
 <form method="POST" action="{{moderationAction actions @root.submitted.moderationState}}">
 	{{> flow_errors}}
 	<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
-	<textarea name="topic_reason">
+	<textarea name="topic_reason"
+	          placeholder="{{moderationMessage "flow-moderation-placeholder-" @root.submitted.moderationState "-topic"}}">
 		{{~#if @root.submitted.reason~}}
 			{{~@root.submitted.reason~}}
 		{{~/if~}}
@@ -10,7 +11,7 @@
 		<button class="flow-ui-button flow-ui-constructive"
 				data-flow-interactive-handler="apiRequest"
 				data-flow-api-handler="moderateTopic">
-			{{~moderationActionText actions @root.submitted.moderationState~}}
+			{{~moderationMessage "flow-moderation-confirm-" @root.submitted.moderationState "-topic"~}}
 		</button>
 		<a class="flow-ui-button flow-ui-destructive flow-ui-quiet"
 		   href="{{links.topic.url}}"

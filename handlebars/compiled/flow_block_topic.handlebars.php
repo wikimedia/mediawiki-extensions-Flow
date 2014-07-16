@@ -161,7 +161,7 @@
 						   title="'.htmlentities(((is_array($in['actions']['unhide']) && isset($in['actions']['unhide']['title'])) ? $in['actions']['unhide']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 						   data-flow-interactive-handler="moderationDialog"
 						   data-template="flow_moderate_topic"
-						   data-role="restore">
+						   data-role="unhide">
 							<span class="wikiglyph wikiglyph-flag"></span>
 							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-unhide-topic'),Array()), 'encq').'
 						</a>
@@ -187,7 +187,7 @@
 						   title="'.htmlentities(((is_array($in['actions']['undelete']) && isset($in['actions']['undelete']['title'])) ? $in['actions']['undelete']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 						   data-flow-interactive-handler="moderationDialog"
 						   data-template="flow_moderate_topic"
-						   data-role="restore">
+						   data-role="undelete">
 							<span class="wikiglyph wikiglyph-trash"></span>
 							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-undelete-topic'),Array()), 'encq').'
 						</a>
@@ -213,7 +213,7 @@
 						   title="'.htmlentities(((is_array($in['actions']['unsuppress']) && isset($in['actions']['unsuppress']['title'])) ? $in['actions']['unsuppress']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 						   data-flow-interactive-handler="moderationDialog"
 						   data-template="flow_moderate_topic"
-						   data-role="restore">
+						   data-role="unsuppress">
 							<span class="wikiglyph wikiglyph-block"></span>
 							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-unsuppress-topic'),Array()), 'encq').'
 						</a>
