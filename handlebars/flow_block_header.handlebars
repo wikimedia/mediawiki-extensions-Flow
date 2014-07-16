@@ -1,4 +1,5 @@
 <div class="flow-board-header">
+	{{> flow_errors}}
 	<div class="flow-board-header-detail-view">
 		{{#if revision.content}}
 			{{escapeContent revision.content.format revision.content.content}}
