@@ -143,12 +143,15 @@ class TopicListBlock extends AbstractBlock {
 
 		$storage = $this->storage;
 
-		$storage->put( $this->topicWorkflow );
 		$storage->put( $this->topicListEntry );
 		$storage->put( $this->topicPost );
 		if ( $this->firstPost !== null ) {
 			$storage->put( $this->firstPost );
 		}
+		// must be last because this will trigger OccupationController::ensureFlowRevision
+		// to create the page within topic namespace, that will try and render, so the above
+		// stuff needs to be in cache at least.
+		$storage->put( $this->topicWorkflow );
 
 		$this->notificationController->notifyNewTopic( array(
 			'board-workflow' => $this->workflow,
