@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_320b1d28",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 49
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-07-16T15:25:40Z",
+      "side": 1,
+      "message": "This change was not propagated to the template, causing summary content to be escaped",
+      "revId": "3b2eaa4875b8455a11047772c3b9fec20c2e756b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
