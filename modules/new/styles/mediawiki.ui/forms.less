@@ -10,6 +10,7 @@
 .client-nojs {
 	.flow-ui-form {
 		// Hide destructive actions in no-JavaScript mode.
+		// @todo Don't hide these
 		.flow-ui-destructive {
 			display: none;
 		}
@@ -34,41 +35,64 @@
 // </form>
 //
 // Styleguide 4.1.
-.mw-ui-input {
-	.box-sizing(border-box);
-	width: 100%;
-	padding: .3em .3em .3em .6em;
-	display: block;
-	color: inherit;
-	font-family: inherit;
-	font-size: inherit;
-	line-height: inherit;
-	// Transition for box-shadow @winter
-	.transition(~"border linear .2s, box-shadow linear .2s");
+.flow-component { // specificity to override mw-ui-input in Core; @todo remove when possible
+	.mw-ui-input {
+		.box-sizing(border-box);
+		width: 100%;
+		padding: .3em .3em .3em .6em;
+		display: block;
+		color: inherit;
+		font-family: inherit;
+		font-size: inherit;
+		line-height: inherit;
+		// Transition for box-shadow @winter
+		.transition(~"border linear .2s, box-shadow linear .2s");
 
-	// Placeholder text styling must be set individually for each browser @winter
-	&::-webkit-input-placeholder { // webkit
-		.field-placeholder-styling;
-	}
-	&::-moz-placeholder { // FF 4-18
-		.field-placeholder-styling;
-	}
-	&:-moz-placeholder { // FF >= 19
-		.field-placeholder-styling;
-	}
-	&:-ms-input-placeholder { // IE >= 10
-		.field-placeholder-styling;
+		// Placeholder text styling must be set individually for each browser @winter
+		&::-webkit-input-placeholder { // webkit
+			.field-placeholder-styling;
+		}
+		&::-moz-placeholder { // FF 4-18
+			.field-placeholder-styling;
+		}
+		&:-moz-placeholder { // FF >= 19
+			.field-placeholder-styling;
+		}
+		&:-ms-input-placeholder { // IE >= 10
+			.field-placeholder-styling;
+		}
+
+		&:focus {
+			border-color: @colorGrayDark;
+			box-shadow: inset .45em 0 0 #5088f7;
+			-moz-box-shadow: inset .45em 0 0 #5088f7;
+			-webkit-box-shadow: inset .45em 0 0 #5088f7;
+		}
 	}
 
-	&:focus {
-		box-shadow: inset .45em 0 0 #5088f7;
-		-moz-box-shadow: inset .45em 0 0 #5088f7;
-		-webkit-box-shadow: inset .45em 0 0 #5088f7;
+	// @todo: document
+	.mw-ui-input-large {
+		// Attach these two inputs together to make them seem like one congruous input
+		margin-top: 0;
+		margin-bottom: 0;
 	}
-}
 
-textarea.mw-ui-input {
-	min-height: 8em;
+	textarea.mw-ui-input-large {
+		padding-left: @topicIndent;
+		border-top-width: 0;
+	}
+
+	// Make the new topic input mimic new topic text
+	input.mw-ui-input-large {
+		padding-left: .75em;
+		font-size: 1.75em;
+		font-weight: bold;
+		line-height: 1.25em;
+	}
+
+	textarea.mw-ui-input {
+		min-height: 8em;
+	}
 }
 
 // Make all text fields 100% wide by default
@@ -89,11 +113,6 @@ textarea.mw-ui-input {
 		margin: 0;
 	}
 }
-
-.mw-ui-input:focus {
-	border-color: @colorGrayDark;
-}
-
 
 .mw-ui-field-icon {
 	display: none;
@@ -281,24 +300,4 @@ Does not support IE7 nor IE8.
 			content: "\e067";
 		}
 	}
-}
-
-// @todo: document
-.mw-ui-input-large {
-	// Attach these two inputs together to make them seem like one congruous input
-	margin-top: 0;
-	margin-bottom: 0;
-}
-
-textarea.mw-ui-input-large {
-	padding-left: @topicIndent;
-	border-top-width: 0;
-}
-
-// Make the new topic input mimic new topic text
-input.mw-ui-input-large {
-	padding-left: .75em;
-	font-size: 1.75em;
-	font-weight: bold;
-	line-height: 1.25em;
 }
