@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_48a9558c",
+        "filename": "modules/new/styles/board/topic/post.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-07-16T22:03:05Z",
+      "side": 1,
+      "message": "Nice css trick, :)",
+      "revId": "5d489901aea4125601a1aa7932542bcb731a7761",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
