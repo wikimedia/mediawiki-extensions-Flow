@@ -1,0 +1,293 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_f73d84b9",
+        "filename": "handlebars/flow_topic_titlebar_summary.handlebars",
+        "patchSetId": 50
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-07-16T20:31:16Z",
+      "side": 1,
+      "message": "This looks unrelated.",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_974c0045",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 50
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-07-16T20:31:16Z",
+      "side": 1,
+      "message": "These qqq messages need to be updated.",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_170ff0e5",
+        "filename": "includes/Actions/Action.php",
+        "patchSetId": 50
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-07-16T20:31:16Z",
+      "side": 1,
+      "message": "Does nothing, as subpages are not enabled in that namespace.",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_37b9cce6",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 50
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-07-16T20:31:16Z",
+      "side": 1,
+      "message": "I see what you\u0027re doing here (if you do anything that triggers a notification, then you should subscribe to the topic), but this code just seems really misplaced.",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_17b370fe",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 50
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-07-16T20:31:16Z",
+      "side": 1,
+      "message": "The change from format to contentFormat is a breaking change — have all the callers that rely on \u0027format\u0027 been updated?",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_77b3d4e8",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 50
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-07-16T20:31:16Z",
+      "side": 1,
+      "message": "I can see that this case is handled correctly in the template, but I did have to check it to be sure. Might be worth explaining here what the template does.",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_97c76067",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 50
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-07-16T20:31:16Z",
+      "side": 1,
+      "message": "Duplicated",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_1afef766",
+        "filename": "includes/Notifications/Formatter.php",
+        "patchSetId": 50
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-07-16T20:31:16Z",
+      "side": 1,
+      "message": "I feel like this should be / already is abstracted.",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_7a017b70",
+        "filename": "includes/Notifications/Formatter.php",
+        "patchSetId": 50
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-07-16T20:31:16Z",
+      "side": 1,
+      "message": "Duplicated",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_7a305b53",
+        "filename": "includes/WatchedTopicItems.php",
+        "patchSetId": 50
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-07-16T20:31:16Z",
+      "side": 1,
+      "message": "I would call it $id so we know it isn\u0027t actually a Title object.",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_9ae9c7a9",
+        "filename": "includes/WatchedTopicItems.php",
+        "patchSetId": 50
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-07-16T20:31:16Z",
+      "side": 1,
+      "message": "Faster to use Title::makeTitle( NS_TOPIC, $title )",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_ba4da3e2",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 50
+      },
+      "lineNbr": 650,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-07-16T20:31:16Z",
+      "side": 1,
+      "message": "Is this related?",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_7a7e1be3",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 50
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-07-16T20:31:16Z",
+      "side": 1,
+      "message": "$( this)? info.$target? info.$target.parent()? This is all a bit confusing. Maybe we can standardise a bit and also comment on which elements exactly are being referred to.",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_7a65fb40",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 50
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-07-16T20:31:16Z",
+      "side": 1,
+      "message": "I guess this works.",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_bae12399",
+        "filename": "modules/new/styles/board/topic/watchlist.less",
+        "patchSetId": 50
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-07-16T20:31:16Z",
+      "side": 1,
+      "message": "????",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_7aebbb77",
+        "filename": "modules/new/styles/board/topic/watchlist.less",
+        "patchSetId": 50
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-07-16T20:31:16Z",
+      "side": 1,
+      "message": "???",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_5aeebf87",
+        "filename": "modules/new/styles/board/topic/watchlist.less",
+        "patchSetId": 50
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-07-16T20:31:16Z",
+      "side": 1,
+      "message": "???",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}

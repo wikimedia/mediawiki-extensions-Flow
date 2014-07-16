@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_1ae83776",
+        "filename": "modules/new/styles/mediawiki.ui/tooltips.less",
+        "patchSetId": 50
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-07-16T20:31:16Z",
+      "side": 0,
+      "message": "Why did we do this?",
+      "revId": "f391478af45ed44af3e07e4ddadaa283e8d9a2b9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
