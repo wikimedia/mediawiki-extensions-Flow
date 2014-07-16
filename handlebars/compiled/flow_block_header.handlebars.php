@@ -10,6 +10,7 @@
             'debug' => $debugopt,
         ),
         'helpers' => Array(            'l10n' => 'Flow\TemplateHelper::l10n',
+            'html' => 'Flow\TemplateHelper::htmlHelper',
             'escapeContent' => 'Flow\TemplateHelper::escapeContent',
 ),
         'blockhelpers' => Array(),
@@ -19,6 +20,18 @@
 
     );
     return '<div class="flow-board-header">
+	<div class="flow-error-container">
+'.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['errors'])) ? $cx['scopes'][0]['errors'] : null))) ? '
+	<div class="flow-errors errorbox">
+		<ul>
+			'.LCRun3::sec($cx, ((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['errors'])) ? $cx['scopes'][0]['errors'] : null), $in, true, function($cx, $in) {return '
+				<li>'.LCRun3::ch($cx, 'html', Array(Array(((is_array($in) && isset($in['message'])) ? $in['message'] : null)),Array()), 'encq').'</li>
+			';}).'
+		</ul>
+	</div>
+' : '').'
+</div>
+
 	<div class="flow-board-header-detail-view">
 		'.((LCRun3::ifvar($cx, ((is_array($in['revision']) && isset($in['revision']['content'])) ? $in['revision']['content'] : null))) ? '
 			'.LCRun3::ch($cx, 'escapeContent', Array(Array(((is_array($in['revision']['content']) && isset($in['revision']['content']['format'])) ? $in['revision']['content']['format'] : null),((is_array($in['revision']['content']) && isset($in['revision']['content']['content'])) ? $in['revision']['content']['content'] : null)),Array()), 'encq').'
