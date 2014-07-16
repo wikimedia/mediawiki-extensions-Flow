@@ -574,20 +574,19 @@
 	 * @param {string}
 	 * @return {string}
 	 */
-	FlowHandlebars.prototype.moderationAction = function( actions, moderationState ) {
+	FlowHandlebars.prototype.moderationAction = function ( actions, moderationState ) {
 		return actions[moderationState] ? actions[moderationState].url : '';
 	};
 
 	/**
-	 * Return localized action string for the provided moderation state. If the user
-	 * cannot put the post into the specified state a blank string is returned.
+	 * Concatenate all unnamed handlebars arguments
 	 *
-	 * @param {Object}
-	 * @param {string}
 	 * @return {string}
 	 */
-	FlowHandlebars.prototype.moderationActionText = function( actions, moderationState ) {
-		return actions[moderationState] ? actions[moderationState].title : '';
+	FlowHandlebars.prototype.concat = function () {
+		// handlebars puts an options argument at the end of
+		// user supplied parameters, pop that off
+		return Array.prototype.slice.call( arguments, 0, -1 ).join( '' );
 	};
 
 	/**
@@ -650,8 +649,8 @@
 	Handlebars.registerHelper( 'linkWithReturnTo', FlowHandlebars.prototype.linkWithReturnTo );
 	Handlebars.registerHelper( 'escapeContent', FlowHandlebars.prototype.escapeContent );
 	Handlebars.registerHelper( 'tooltip', FlowHandlebars.prototype.tooltip );
-	Handlebars.registerHelper( 'moderationActionText', FlowHandlebars.prototype.moderationActionText );
 	Handlebars.registerHelper( 'moderationAction', FlowHandlebars.prototype.moderationAction );
+	Handlebars.registerHelper( 'concat', FlowHandlebars.prototype.concat );
 	Handlebars.registerHelper( 'ifCond', FlowHandlebars.prototype.ifCond );
 	Handlebars.registerHelper( 'plaintextSnippet', FlowHandlebars.prototype.plaintextSnippet );
 	Handlebars.registerHelper( 'debug', FlowHandlebars.prototype.debug );

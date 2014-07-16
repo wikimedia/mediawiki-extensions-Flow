@@ -299,8 +299,6 @@ class TopicBlock extends AbstractBlock {
 		// an action name. e.x. restore-post, restore-topic, suppress-topic, etc.
 		$action = $moderationState . ( $post->isTopicTitle() ? "-topic" : "-post" );
 
-		// 'restore' isn't an actual state, it returns a post to unmoderated status
-
 		if ( $moderationState === 'restore' ) {
 			$newState = AbstractRevision::MODERATED_NONE;
 		} else {
