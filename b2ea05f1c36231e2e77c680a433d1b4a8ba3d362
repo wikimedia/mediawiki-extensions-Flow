@@ -172,6 +172,24 @@
     },
     {
       "key": {
+        "uuid": "8e28a382_fdd2052b",
+        "filename": "includes/WatchedTopicItems.php",
+        "patchSetId": 50
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-16T20:56:13Z",
+      "side": 1,
+      "message": "It seems likely to receive the same id over and over again, perhaps array_unique the $titles array",
+      "parentUuid": "8e28a382_7a305b53",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e28a382_9ae9c7a9",
         "filename": "includes/WatchedTopicItems.php",
         "patchSetId": 50
@@ -200,6 +218,24 @@
       "writtenOn": "2014-07-16T20:31:16Z",
       "side": 1,
       "message": "Is this related?",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_5d90f94d",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 50
+      },
+      "lineNbr": 650,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-16T20:56:13Z",
+      "side": 1,
+      "message": "looks like a bad rebase",
+      "parentUuid": "8e28a382_ba4da3e2",
       "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
