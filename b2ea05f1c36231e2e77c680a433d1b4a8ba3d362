@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e28a382_5d68f918",
+        "filename": "handlebars/flow_topic_titlebar_summary.handlebars",
+        "patchSetId": 50
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-07-16T21:27:08Z",
+      "side": 1,
+      "message": "Somehow this change was made in one of the 51 patches",
+      "parentUuid": "8e28a382_f73d84b9",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e28a382_974c0045",
         "filename": "i18n/qqq.json",
         "patchSetId": 50
@@ -81,6 +99,24 @@
       "writtenOn": "2014-07-16T20:31:16Z",
       "side": 1,
       "message": "The change from format to contentFormat is a breaking change — have all the callers that rely on \u0027format\u0027 been updated?",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_9d4d41ca",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 50
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-07-16T21:27:08Z",
+      "side": 1,
+      "message": "I checked the template and it has been updated",
+      "parentUuid": "8e28a382_17b370fe",
       "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -155,6 +191,24 @@
     },
     {
       "key": {
+        "uuid": "8e28a382_1dd151d0",
+        "filename": "includes/Notifications/Formatter.php",
+        "patchSetId": 50
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-07-16T21:27:08Z",
+      "side": 1,
+      "message": "This is actually in two functions, gerrit makes it look like in one function, :)",
+      "parentUuid": "8e28a382_7a017b70",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e28a382_7a305b53",
         "filename": "includes/WatchedTopicItems.php",
         "patchSetId": 50
@@ -207,6 +261,24 @@
     },
     {
       "key": {
+        "uuid": "8e28a382_bdf8fd46",
+        "filename": "includes/WatchedTopicItems.php",
+        "patchSetId": 50
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-07-16T21:27:08Z",
+      "side": 1,
+      "message": "makeTitle() is expecting the title coming from the database.  In this case, makeTitle()-\u003egetDBKey() would return the title with the first letter lower-cased, we would need to use ucfirst()",
+      "parentUuid": "8e28a382_9ae9c7a9",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e28a382_ba4da3e2",
         "filename": "modules/new/components/flow-board.js",
         "patchSetId": 50
@@ -242,6 +314,24 @@
     },
     {
       "key": {
+        "uuid": "8e28a382_9df30169",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 50
+      },
+      "lineNbr": 650,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-07-16T21:27:08Z",
+      "side": 1,
+      "message": "$form is removed below and no longer needed",
+      "parentUuid": "8e28a382_5d90f94d",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e28a382_7a7e1be3",
         "filename": "modules/new/components/flow-board.js",
         "patchSetId": 50
@@ -253,6 +343,24 @@
       "writtenOn": "2014-07-16T20:31:16Z",
       "side": 1,
       "message": "$( this)? info.$target? info.$target.parent()? This is all a bit confusing. Maybe we can standardise a bit and also comment on which elements exactly are being referred to.",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_bd8fddd0",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 50
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-07-16T21:27:08Z",
+      "side": 1,
+      "message": "This is part of the frontend-rewrite architecture: $( this ) is referring to the element triggered by data-flow-api-handler, $target is the target specified by data-flow-api-target",
+      "parentUuid": "8e28a382_7a7e1be3",
       "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
