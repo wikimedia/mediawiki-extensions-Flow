@@ -537,7 +537,8 @@
 				$target = info.$target, $topicTitleBar,
 				topicId, revisionId,
 				self = this,
-				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				flowId = $( self ).closest( '.flow-topic-titlebar' ).parent().data( 'flow-id' );
 
 			if ( info.status === 'done' ) {
 				// We couldn't make close-open-topic to return topic data after a successful
@@ -555,7 +556,9 @@
 				flowBoard.API.apiCall( {
 					action: 'flow',
 					submodule: 'view-topic',
-					workflow: $( self ).closest( '.flow-topic-titlebar' ).parent().data( 'flow-id' )
+					workflow: flowId,
+					// Flow topic title, in Topic:<topicId> format (2600 is topic namespace id)
+					page: mw.Title.newFromText( flowId, 2600 ).getPrefixedDb()
 				} ).done( function( result ) {
 					// FIXME: Why doesn't the API return this?
 					result = result.flow['view-topic'].result.topic;
