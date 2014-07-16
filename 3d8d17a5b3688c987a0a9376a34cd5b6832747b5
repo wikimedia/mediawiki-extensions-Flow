@@ -16,6 +16,24 @@
       "revId": "3d8d17a5b3688c987a0a9376a34cd5b6832747b5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_57045880",
+        "filename": "i18n/en.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-07-16T19:00:25Z",
+      "side": 1,
+      "message": "Ops, it\u0027s my fault in here.  I didn\u0027t review the i18n because I saw the +1 from Siebrand earlier but I didn\u0027t realize the i18n was changed in the newer patch.",
+      "parentUuid": "8e28a382_d7cde88a",
+      "revId": "3d8d17a5b3688c987a0a9376a34cd5b6832747b5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
