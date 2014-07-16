@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_23e50aa0",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-07-16T23:29:47Z",
+      "side": 1,
+      "message": "This relies on the fact that bot users have \u0027nominornewtalk\u0027 right, but this setting could be overwritten by a wiki.  How about creating a flow-bot role?",
+      "revId": "1d666ca65e951a72336752c984c019416f1f6245",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
