@@ -52,6 +52,24 @@
       "revId": "f391478af45ed44af3e07e4ddadaa283e8d9a2b9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_e86481e3",
+        "filename": "modules/new/styles/mediawiki.ui/tooltips.less",
+        "patchSetId": 50
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-07-16T21:39:25Z",
+      "side": 0,
+      "message": "This patch is the first usage of the tooltip. I suppose it could be done in a separate patch, but it\u0027s pretty much irrelevant.",
+      "parentUuid": "8e28a382_2854c900",
+      "revId": "f391478af45ed44af3e07e4ddadaa283e8d9a2b9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }

@@ -455,6 +455,24 @@
     },
     {
       "key": {
+        "uuid": "8e28a382_a85e7915",
+        "filename": "modules/new/styles/board/topic/watchlist.less",
+        "patchSetId": 50
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-07-16T21:39:25Z",
+      "side": 1,
+      "message": "You\u0027re right. I\u0027ll put the patch for this in Core ASAP so we can start using it.",
+      "parentUuid": "8e28a382_a830b9e5",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e28a382_7aebbb77",
         "filename": "modules/new/styles/board/topic/watchlist.less",
         "patchSetId": 50
