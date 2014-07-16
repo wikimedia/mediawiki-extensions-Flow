@@ -14,7 +14,7 @@
             'html' => 'Flow\TemplateHelper::htmlHelper',
             'post' => 'Flow\TemplateHelper::post',
             'moderationAction' => 'Flow\TemplateHelper::moderationAction',
-            'moderationActionText' => 'Flow\TemplateHelper::moderationActionText',
+            'concat' => 'Flow\TemplateHelper::concat',
             'escapeContent' => 'Flow\TemplateHelper::escapeContent',
 ),
         'blockhelpers' => Array(),
@@ -42,11 +42,12 @@
 </div>
 
 	<input type="hidden" name="wpEditToken" value="'.htmlentities(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['editToken'])) ? $cx['scopes'][0]['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
-	<textarea name="topic_reason">'.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['reason'])) ? $cx['scopes'][0]['submitted']['reason'] : null))) ? ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['reason'])) ? $cx['scopes'][0]['submitted']['reason'] : null), ENT_QUOTES, 'UTF-8').'' : '').'</textarea>
+	<textarea name="topic_reason"
+	          placeholder="'.LCRun3::ch($cx, 'l10n', Array(Array(LCRun3::ch($cx, 'concat', Array(Array('flow-moderation-placeholder-',((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['moderationState'])) ? $cx['scopes'][0]['submitted']['moderationState'] : null),'-post'),Array()), 'raw')),Array()), 'encq').'">'.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['reason'])) ? $cx['scopes'][0]['submitted']['reason'] : null))) ? ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['reason'])) ? $cx['scopes'][0]['submitted']['reason'] : null), ENT_QUOTES, 'UTF-8').'' : '').'</textarea>
 	<div class="flow-form-actions flow-form-collapsible">
 		<button data-flow-interactive-handler="apiRequest"
 		        data-flow-api-handler="moderatePost"
-		        class="flow-ui-button flow-ui-constructive">'.LCRun3::ch($cx, 'moderationActionText', Array(Array(((is_array($in) && isset($in['actions'])) ? $in['actions'] : null),((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['moderationState'])) ? $cx['scopes'][0]['submitted']['moderationState'] : null)),Array()), 'encq').'</button>
+		        class="flow-ui-button flow-ui-constructive">'.LCRun3::ch($cx, 'l10n', Array(Array(LCRun3::ch($cx, 'concat', Array(Array('flow-moderation-confirm-',((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['moderationState'])) ? $cx['scopes'][0]['submitted']['moderationState'] : null),'-post'),Array()), 'raw')),Array()), 'encq').'</button>
 		<a data-flow-interactive-handler="cancelForm" class="flow-ui-button flow-ui-destructive flow-ui-quiet" href="'.htmlentities(((is_array($in['links']['topic']) && isset($in['links']['topic']['url'])) ? $in['links']['topic']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</a>
 	</div>
 </form>
@@ -172,7 +173,7 @@
 				   title="'.htmlentities(((is_array($in['actions']['unhide']) && isset($in['actions']['unhide']['title'])) ? $in['actions']['unhide']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 				   data-flow-interactive-handler="moderationDialog"
 				   data-template="flow_moderate_post"
-				   data-role="restore">
+				   data-role="unhide">
 					<span class="wikiglyph wikiglyph-flag"></span>
 					'.LCRun3::ch($cx, 'l10n', Array(Array('flow-post-action-unhide-post'),Array()), 'encq').'
 				</a>
@@ -198,7 +199,7 @@
 				   title="'.htmlentities(((is_array($in['actions']['undelete']) && isset($in['actions']['undelete']['title'])) ? $in['actions']['undelete']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 				   data-flow-interactive-handler="moderationDialog"
 				   data-template="flow_moderate_post"
-				   data-role="restore">
+				   data-role="undelete">
 					<span class="wikiglyph wikiglyph-eye-lid"></span>
 					'.LCRun3::ch($cx, 'l10n', Array(Array('flow-post-action-undelete-post'),Array()), 'encq').'
 				</a>
@@ -224,7 +225,7 @@
 				   title="'.htmlentities(((is_array($in['actions']['unsuppress']) && isset($in['actions']['unsuppress']['title'])) ? $in['actions']['unsuppress']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 				   data-flow-interactive-handler="moderationDialog"
 				   data-template="flow_moderate_post"
-				   data-role="restore">
+				   data-role="unsuppress">
 					<span class="wikiglyph wikiglyph-eye-lid"></span>
 					'.LCRun3::ch($cx, 'l10n', Array(Array('flow-post-action-unsuppress-post'),Array()), 'encq').'
 				</a>

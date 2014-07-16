@@ -145,7 +145,7 @@ class TemplateHelper {
 					'l10nParse' => 'Flow\TemplateHelper::l10nParse',
 					'diffRevision' => 'Flow\TemplateHelper::diffRevision',
 					'moderationAction' => 'Flow\TemplateHelper::moderationAction',
-					'moderationActionText' => 'Flow\TemplateHelper::moderationActionText',
+					'concat' => 'Flow\TemplateHelper::concat',
 					'user' => 'Flow\TemplateHelper::user',
 					'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
 					'escapeContent' => 'Flow\TemplateHelper::escapeContent',
@@ -709,16 +709,12 @@ class TemplateHelper {
 	}
 
 	/**
-	 * @param array $args Expects array $actions, string $moderationState
+	 * @param array $args Expects one or more strings to join
 	 * @param array $named No named arguments expected
-	 * @return string
+	 * @return string all unnamed arguments joined together
 	 */
-	static public function moderationActionText( array $args, array $named ) {
-		if ( count( $args ) !== 2 ) {
-			throw new WrongNumberArgumentsException( $args, 'two' );
-		}
-		list( $actions, $moderationState ) = $args;
-		return isset( $actions[$moderationState] ) ? $actions[$moderationState]['title'] : '';
+	static public function concat( array $args, array $named ) {
+		return implode( '', $args );
 	}
 
 	/**
