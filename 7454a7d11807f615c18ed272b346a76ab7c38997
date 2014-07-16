@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_baf80347",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 51
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-16T20:36:38Z",
+      "side": 1,
+      "message": "this should use User::isAnon",
+      "revId": "7454a7d11807f615c18ed272b346a76ab7c38997",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_3a9c1312",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 51
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-16T20:36:38Z",
+      "side": 1,
+      "message": "You want Workflow::getOriginalTitle here, ArticleTitle is often in the Topic namespace",
+      "revId": "7454a7d11807f615c18ed272b346a76ab7c38997",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_ba8fe3d0",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 51
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-16T20:36:38Z",
+      "side": 1,
+      "message": "duplicate condition",
+      "revId": "7454a7d11807f615c18ed272b346a76ab7c38997",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
