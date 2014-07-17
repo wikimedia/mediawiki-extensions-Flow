@@ -1,29 +1,31 @@
 <div class="flow-board">
 	{{!-- There is only one post, but the output format matches multi-post output --}}
 
-	{{#eachPost @root roots}}
-		<form class="flow-reply-form" method="POST" action="{{actions.reply.url}}">
-			<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
-			<input type="hidden" name="topic_replyTo" value="{{postId}}" />
-			{{> flow_errors}}
+	{{#each roots}}
+		{{#eachPost @root this}}
+			<form class="flow-reply-form" method="POST" action="{{actions.reply.url}}">
+				<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
+				<input type="hidden" name="topic_replyTo" value="{{postId}}" />
+				{{> flow_errors}}
 
-			<textarea id="flow-post-{{postId}}-form-content"
-				      data-flow-preview-template="flow_post"
-				      name="topic_content"
-				      class="mw-ui-input"
-				      type="text"
-				      placeholder="{{l10n "flow-reply-topic-title-placeholder" (plaintextSnippet content.format content.content)}}"
-				      data-role="content">
-				{{~#ifEquals @root.submitted.postId postId~}}
-					{{~@root.submitted.content~}}
-				{{~/ifEquals~}}
-			</textarea>
+				<textarea id="flow-post-{{postId}}-form-content"
+				          data-flow-preview-template="flow_post"
+				          name="topic_content"
+				          class="mw-ui-input"
+				          type="text"
+				          placeholder="{{l10n "flow-reply-topic-title-placeholder" (plaintextSnippet content.format content.content)}}"
+				          data-role="content">
+					{{~#ifEquals @root.submitted.postId postId~}}
+						{{~@root.submitted.content~}}
+					{{~/ifEquals~}}
+				</textarea>
 
-			<div class="flow-form-actions flow-form-collapsible">
-				<button data-role="submit" class="flow-ui-button flow-ui-constructive">{{l10n "Reply" author}}</button>
-				{{> flow_form_buttons }}
-				<small class="flow-terms-of-use plainlinks">{{l10nParse "flow-terms-of-use-reply"}}</small>
-			</div>
-		</form>
-	{{/eachPost}}
+				<div class="flow-form-actions flow-form-collapsible">
+					<button data-role="submit" class="flow-ui-button flow-ui-constructive">{{l10n "Reply" author}}</button>
+					{{> flow_form_buttons }}
+					<small class="flow-terms-of-use plainlinks">{{l10nParse "flow-terms-of-use-reply"}}</small>
+				</div>
+			</form>
+		{{/eachPost}}
+	{{/each}}
 </div>

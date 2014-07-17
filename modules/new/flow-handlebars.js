@@ -428,36 +428,15 @@
 	 * @returns {String}
 	 * @todo support multiple postIds in an array
 	 */
-	FlowHandlebars.prototype.eachPost = function ( context, postIds, options ) {
-		var i, postId, revId, revision,
-			html = '';
-
-		if (!options.fn) {
-			mw.flow.debug( '[eachPost] Bad template usage, must have content' );
-			return '';
-		}
-
-		if (!$.isArray( postIds ) ) {
-			postIds = [postIds];
-		}
-
-		for ( i = 0; i < postIds.length; i++ ) {
-			postId = postIds[i];
-			revId = ( context.posts && context.posts[postId] && context.posts[postId][0] );
+	FlowHandlebars.prototype.eachPost = function ( context, postId, options ) {
+		var revId = ( context.posts && context.posts[postId] && context.posts[postId][0] ),
 			revision = ( context.revisions && context.revisions[revId] ) || { content: null };
 
-			if ( revision.content === null ) {
-				mw.flow.debug( '[eachPost] Failed to find revision object', [postId, revId] );
-				html += FlowHandlebars.prototype.processTemplate(
-					"flow_post_not_found",
-					{ postId: postId }
-				);
-			} else {
-				html += options.fn( revision );
-			}
+		if ( revision.content === null ) {
+			mw.flow.debug( '[eachPost] Failed to find revision object', arguments );
 		}
 
-		return html;
+		return options.fn ? options.fn( revision ) : revision;
 	};
 
 	/**

@@ -26,8 +26,9 @@
     );
     return '<div class="flow-board">
 	'.'
-	'.LCRun3::hbch($cx, 'eachPost', Array(Array($cx['scopes'][0],((is_array($in) && isset($in['roots'])) ? $in['roots'] : null)),Array()), $in, function($cx, $in) {return '
-		<form method="POST" action="'.LCRun3::ch($cx, 'moderationAction', Array(Array(((is_array($in) && isset($in['actions'])) ? $in['actions'] : null),((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['moderationState'])) ? $cx['scopes'][0]['submitted']['moderationState'] : null)),Array()), 'encq').'">
+	'.LCRun3::sec($cx, ((is_array($in) && isset($in['roots'])) ? $in['roots'] : null), $in, true, function($cx, $in) {return '
+		'.LCRun3::hbch($cx, 'eachPost', Array(Array($cx['scopes'][0],$in),Array()), $in, function($cx, $in) {return '
+			<form method="POST" action="'.LCRun3::ch($cx, 'moderationAction', Array(Array(((is_array($in) && isset($in['actions'])) ? $in['actions'] : null),((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['moderationState'])) ? $cx['scopes'][0]['submitted']['moderationState'] : null)),Array()), 'encq').'">
 	<div class="flow-error-container">
 '.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['errors'])) ? $cx['scopes'][0]['errors'] : null))) ? '
 	<div class="flow-errors errorbox">
@@ -50,7 +51,7 @@
 	</div>
 </form>
 
-		'.LCRun3::wi($cx, ((is_array($in) && isset($in['revision'])) ? $in['revision'] : null), $in, function($cx, $in) {return '
+			'.LCRun3::wi($cx, ((is_array($in) && isset($in['revision'])) ? $in['revision'] : null), $in, function($cx, $in) {return '
 	<div id="flow-post-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
 			 class="flow-post'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? ' flow-post-moderated' : '').'"
 			 data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
@@ -247,9 +248,11 @@
 		'.'
 		'.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? '
 			<div class="flow-replies">
-	'.LCRun3::hbch($cx, 'eachPost', Array(Array(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['rootBlock'])) ? $cx['scopes'][0]['rootBlock'] : null),((is_array($in) && isset($in['replies'])) ? $in['replies'] : null)),Array()), $in, function($cx, $in) {return '
-		<!-- eachPost nested replies -->
-		'.LCRun3::ch($cx, 'post', Array(Array(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['rootBlock'])) ? $cx['scopes'][0]['rootBlock'] : null),$in),Array()), 'encq').'
+	'.LCRun3::sec($cx, ((is_array($in) && isset($in['replies'])) ? $in['replies'] : null), $in, true, function($cx, $in) {return '
+		'.LCRun3::hbch($cx, 'eachPost', Array(Array(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['rootBlock'])) ? $cx['scopes'][0]['rootBlock'] : null),$in),Array()), $in, function($cx, $in) {return '
+			<!-- eachPost nested replies -->
+			'.LCRun3::ch($cx, 'post', Array(Array(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['rootBlock'])) ? $cx['scopes'][0]['rootBlock'] : null),$in),Array()), 'encq').'
+		';}).'
 	';}).'
 </div>
 
@@ -257,6 +260,7 @@
 	</div>
 ';}).'
 
+		';}).'
 	';}).'
 </div>
 ';

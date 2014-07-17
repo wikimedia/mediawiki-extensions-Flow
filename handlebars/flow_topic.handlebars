@@ -2,10 +2,12 @@
 	{{>flow_topic_titlebar}}
 
 	{{#if @root.posts}}
-		{{#eachPost @root replies}}
-			<!-- eachPost topic -->
-			{{post @root this}}
-		{{/eachPost}}
+		{{#each replies}}
+			{{#eachPost @root this}}
+				<!-- eachPost topic -->
+				{{post @root this}}
+			{{/eachPost}}
+		{{/each}}
 	{{/if}}
 
 	{{#unless isPreview}}
