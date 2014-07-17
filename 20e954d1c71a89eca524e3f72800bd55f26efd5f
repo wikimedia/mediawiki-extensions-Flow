@@ -34,6 +34,24 @@
       "revId": "20e954d1c71a89eca524e3f72800bd55f26efd5f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_a580d78e",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-17T20:47:27Z",
+      "side": 1,
+      "message": "Well one way to do this that would be more verbose but therefore imo more readable and use generic helpers like ifCond\n\n{{#ifCond moderationState equals hide}}\n placeholder\u003d\"{{i10n \"flow-moderation-placeholder-hide\" \"-post\"}}\"\u003e\n{{/ifCond}}",
+      "parentUuid": "8e28a382_259f4708",
+      "revId": "20e954d1c71a89eca524e3f72800bd55f26efd5f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
