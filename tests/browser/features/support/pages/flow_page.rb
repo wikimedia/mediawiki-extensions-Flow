@@ -195,4 +195,19 @@ class FlowPage
   div(:small_spinner, class: "mw-spinner mw-spinner-small mw-spinner-inline")
 
   button(:edit_header_save, text: "Save header")
+
+  ## Watch and unwatch links
+  div(:first_topic_watchlist_container, class:"flow-topic-watchlist", index:0)
+
+  a(:first_topic_watch_link) do |page|
+    page.first_topic_watchlist_container_element.link_element
+  end
+
+  a(:first_topic_unwatch_link) do |page|
+    page.first_topic_watchlist_container_element.link_element( class: 'flow-ui-active' )
+  end
+
+  a(:first_topic_watchlist_loading_link) do |page|
+    page.first_topic_watchlist_container_element.link_element( class: 'flow-api-inprogress' )
+  end
 end
