@@ -503,12 +503,12 @@ class TopicBlock extends AbstractBlock {
 			return false;
 
 		case 'moderate-topic':
-			return true;
-
 		case 'view-topic':
 			return true;
+
 		case 'view-post':
 			return false;
+
 		case 'view':
 			return !isset( $options['postId'] ) && !isset( $options['revId'] );
 		}
@@ -574,24 +574,12 @@ class TopicBlock extends AbstractBlock {
 			}
 		}
 
-		$row = Container::get( 'query.singlepost' )->getResult( UUID::create( $postId ) );
-		$serializer = $this->getRevisionFormatter();
-		if ( isset( $options['contentFormat'] ) ) {
-			$serializer->setContentFormat( $options['contentFormat'] );
-		}
-		$serialized = $serializer->formatApi( $row, \RequestContext::getMain() );
-		if ( !$serialized ) {
-			return null;
-		}
+		$renderedTopic = $this->renderTopicAPI( $templating, $options );
 
-		return array(
-			'roots' => array( $serialized['postId'] ),
-			'posts' => array(
-				$serialized['postId'] => array( $serialized['revisionId'] ),
-			),
-			'revisions' => array(
-				$serialized['revisionId'] => $serialized,
-			)
+		$postIdText = $postId->getAlphadecimal();
+
+		return $renderedTopic + array(
+			'postId' => $postIdText,
 		);
 	}
 

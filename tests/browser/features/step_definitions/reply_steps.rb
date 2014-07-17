@@ -14,3 +14,18 @@ Then(/^the top post's first reply contains the text "(.+)"$/) do |text|
     page.first_reply_body.should match(text)
   end
 end
+
+Given(/^I am not watching my new Flow topic$/) do
+  on(FlowPage) do |page|
+    page.first_topic_unwatch_link_element.should be_visible
+    page.first_topic_unwatch_link_element.click
+    page.wait_until { page.first_topic_unwatch_link_element.visible? === false }
+    page.wait_until {page.first_topic_watchlist_loading_link_element.visible? === false}
+  end
+end
+
+Then(/^I should see an unwatch link on the topic$/) do
+  on(FlowPage) do |page|
+    page.first_topic_unwatch_link_element.should be_visible
+  end
+end
