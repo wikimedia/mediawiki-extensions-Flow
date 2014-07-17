@@ -1,4 +1,5 @@
 MW_INSTALL_PATH ?= ../..
+MEDIAWIKI_LOAD_URL ?= http://localhost:8080/w/load.php
 
 # Flow files to analyze
 ANALYZE=container.php Flow.php Resources.php includes/
@@ -62,6 +63,10 @@ jshint: nodecheck
 checkless:
 	@${PHP} ../../maintenance/checkLess.php
 
+csscss: gems
+	echo "Generating CSS file..."
+	php scripts/generatecss.php ${MEDIAWIKI_LOAD_URL} /tmp/foo.css
+	csscss -v /tmp/foo.css --num 2 --no-match-shorthand --ignore-properties=display,position,top,bottom,left,right
 ###
 # Testing
 ###
@@ -99,6 +104,9 @@ compile-lightncandy:
 ###
 # Update this repository
 ###
+gems:
+	bundle install
+
 master:
 	git fetch
 	@echo Here is what is new on origin/master:
