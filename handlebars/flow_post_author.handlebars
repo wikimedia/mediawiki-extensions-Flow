@@ -1,4 +1,12 @@
-{{#unless isPreview}}
+{{#if isPreview}}
+	<span class="flow-author"><a href="#" class="mw-userlink">
+		{{#if name}}
+			{{~name~}}
+		{{else}}
+			{{~l10n "flow-anonymous"}}
+		{{/if}}
+	</a></span>
+{{else}}
 	<span class="flow-author">
 		{{#if links}}
 			{{#if name}}
@@ -16,12 +24,4 @@
 			<span class="mw-usertoollinks">(<a href="{{links.talk.url}}" class="{{#unless links.talk.exists}}new {{/unless}} flow-ui-tooltip-target" title="{{links.talk.title}}">{{l10n "talkpagelinktext"}}</a>{{#if links.block}} | <a class="{{#unless links.block.exists}}new {{/unless}} flow-ui-tooltip-target" href="{{links.block.url}}" title="{{links.block.title}}">{{l10n "blocklink"}}</a>{{/if}})</span>
 		{{/if}}
 	</span>
-{{else}}
-	<span class="flow-author"><a href="#" class="mw-userlink">
-		{{#if name}}
-			{{~name~}}
-		{{else}}
-			{{~l10n "flow-anonymous"}}
-		{{/if}}
-	</a></span>
-{{/unless}}
+{{/if}}
