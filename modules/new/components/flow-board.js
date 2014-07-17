@@ -1,4 +1,4 @@
-/*!
+/*
  * Contains the FlowBoardComponent and related functionality.
  */
 
