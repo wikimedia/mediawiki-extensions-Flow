@@ -91,7 +91,7 @@
     "flow-topic-action-undelete-topic": "Undelete topic",
     "flow-topic-action-unsuppress-topic": "Unsuppress topic",
     "flow-topic-action-restore-topic": "Restore topic",
-    "flow-topic-notification-subscribe-title": "This topic has been added to your watchlist!",
+    "flow-topic-notification-subscribe-title": "This topic has been added to your watchlist.",
     "flow-topic-notification-subscribe-description": "You will receive notifications on all activities on this topic.",
     "flow-error-http": "An error occurred while contacting the server.",
     "flow-error-other": "An unexpected error occurred.",
