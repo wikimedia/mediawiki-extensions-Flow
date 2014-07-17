@@ -385,7 +385,7 @@ class TemplateHelper {
 	 */
 	static public function ifEquals( $left, $right, $options ) {
 		/** @var callable $inverse */
-		$inverse = isset( $options['inv'] ) ? $options['inv'] : null;
+		$inverse = isset( $options['inverse'] ) ? $options['inverse'] : null;
 		/** @var callable $fn */
 		$fn = $options['fn'];
 
@@ -436,7 +436,7 @@ class TemplateHelper {
 	 */
 	static public function eachPost( $context, $postIds, $options ) {
 		/** @var callable $inverse */
-		$inverse = isset( $options['inv'] ) ? $options['inv'] : null;
+		$inverse = isset( $options['inverse'] ) ? $options['inverse'] : null;
 		/** @var callable $fn */
 		$fn = $options['fn'];
 
@@ -848,8 +848,8 @@ class TemplateHelper {
 				}
 
 				return $fn();
-			} elseif ( isset( $options['inv'] ) ) {
-				$inverse = $options['inv'];
+			} elseif ( isset( $options['inverse'] ) ) {
+				$inverse = $options['inverse'];
 				if ( !$inverse instanceof Closure ) {
 					throw new FlowException( 'Expected inverse callback to be Closure instance' );
 				}
