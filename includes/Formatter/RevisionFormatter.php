@@ -209,7 +209,7 @@ class RevisionFormatter {
 				$this->permissions->isAllowed( $row->summary, 'view' )
 			) {
 				$res['summary']['content'] = $this->templating->getContent( $row->summary, $this->contentFormat );
-				$res['summary']['contentFormat'] = $this->contentFormat;
+				$res['summary']['format'] = $this->contentFormat;
 				$res['summary']['revId'] = $row->summary->getRevisionId()->getAlphadecimal();
 			}
 
