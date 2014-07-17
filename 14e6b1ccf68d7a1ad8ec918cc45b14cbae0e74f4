@@ -34,6 +34,24 @@
       "revId": "14e6b1ccf68d7a1ad8ec918cc45b14cbae0e74f4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_c5ff63a6",
+        "filename": "modules/new/styles/mediawiki.ui/forms.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-17T19:56:04Z",
+      "side": 1,
+      "message": "Agreed. Submit a patch into core as a RL module mediawiki.ui.inputs and let\u0027s get it merged?",
+      "parentUuid": "8e28a382_af9e7864",
+      "revId": "14e6b1ccf68d7a1ad8ec918cc45b14cbae0e74f4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
