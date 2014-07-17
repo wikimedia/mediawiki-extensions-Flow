@@ -275,15 +275,25 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onSkinTemplateNavigation( SkinTemplate &$template, &$links ) {
-		global $wgFlowCoreActionWhitelist;
+		global $wgFlowCoreActionWhitelist,
+			$wgMFPageActions;
 
 		$title = $template->getTitle();
 
 		// if Flow is enabled on this talk page, overrule talk page red link
 		if ( self::$occupationController->isTalkpageOccupied( $title ) ) {
+			// Turn off page actions in MobileFrontend.
+			// FIXME: Find more elegant standard way of doing this.
+			$wgMFPageActions = array();
+
 			$skname = $template->getSkinName();
 
 			$selected = $template->getRequest()->getVal( 'action' ) == 'history';
+
+			// watch star links are inside the board itself
+			unset( $links['actions']['watch'] );
+			unset( $links['actions']['unwatch'] );
+
 			$links['views'] = array( array(
 				'class' => $selected ? 'selected' : '',
 				'text' => wfMessageFallback( "$skname-view-history", "history_short" )->text(),
