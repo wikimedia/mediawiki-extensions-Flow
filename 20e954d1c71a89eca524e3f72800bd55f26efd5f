@@ -70,6 +70,24 @@
       "revId": "20e954d1c71a89eca524e3f72800bd55f26efd5f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_cac76f49",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-07-17T21:41:37Z",
+      "side": 1,
+      "message": "Let\u0027s add a switch helper! :)",
+      "parentUuid": "8e28a382_aace6384",
+      "revId": "20e954d1c71a89eca524e3f72800bd55f26efd5f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
