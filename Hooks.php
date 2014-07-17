@@ -291,10 +291,8 @@ class FlowHooks {
 			$selected = $template->getRequest()->getVal( 'action' ) == 'history';
 
 			// watch star links are inside the board itself
-			if ( $title->getNamespace() === NS_TOPIC ) {
-				unset( $links['actions']['watch'] );
-				unset( $links['actions']['unwatch'] );
-			}
+			unset( $links['actions']['watch'] );
+			unset( $links['actions']['unwatch'] );
 
 			$links['views'] = array( array(
 				'class' => $selected ? 'selected' : '',
