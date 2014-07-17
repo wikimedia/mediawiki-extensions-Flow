@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_0f9a2c75",
+        "filename": "modules/new/styles/mediawiki.ui/forms.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-17T18:01:08Z",
+      "side": 1,
+      "message": "What specifically are we overriding in core. Is it all of these values?\n\nOr can we limit the specificity to certain rules to make upstreaming clearer (i\u0027d prefer this)",
+      "revId": "14e6b1ccf68d7a1ad8ec918cc45b14cbae0e74f4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
