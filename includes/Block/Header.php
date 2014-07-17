@@ -87,7 +87,7 @@ class HeaderBlock extends AbstractBlock {
 			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			return;
 		}
-		if ( empty( $this->submitted['content'] ) ) {
+		if ( !isset( $this->submitted['content'] ) ) {
 			$this->addError( 'content', wfMessage( 'flow-error-missing-header-content' ) );
 		}
 
