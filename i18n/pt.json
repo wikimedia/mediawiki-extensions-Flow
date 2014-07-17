@@ -295,6 +295,7 @@
 	"flow-started-ago": "Iniciado há $1",
 	"flow-edited-ago": "Editado há $1",
 	"flow-load-more": "Carregar mais",
+	"flow-no-more-fwd": "Não existem tópicos antigos",
 	"flow-add-topic": "Adicionar tópico",
 	"flow-newest-topics": "Tópicos mais recentes",
 	"flow-recent-topics": "Últimos tópicos ativos",

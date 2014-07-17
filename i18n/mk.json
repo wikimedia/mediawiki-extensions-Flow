@@ -83,6 +83,8 @@
 	"flow-topic-action-undelete-topic": "Обнови тема",
 	"flow-topic-action-unsuppress-topic": "Отпритај тема",
 	"flow-topic-action-restore-topic": "Поврати тема",
+	"flow-topic-notification-subscribe-title": "Темата е додадена во вашите набљудувања!",
+	"flow-topic-notification-subscribe-description": "Ќе добивате известувања за сите активности на оваа тема.",
 	"flow-error-http": "Се јави грешка при поврзувањето со опслужувачот.",
 	"flow-error-other": "Се појави неочекувана грешка.",
 	"flow-error-external": "Се појави грешка.<br />Објаснувањето гласи: $1",

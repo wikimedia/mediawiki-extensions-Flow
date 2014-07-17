@@ -83,6 +83,8 @@
 	"flow-topic-action-undelete-topic": "Thema wiederherstellen",
 	"flow-topic-action-unsuppress-topic": "Thema nicht mehr unterdrücken",
 	"flow-topic-action-restore-topic": "Thema wiederherstellen",
+	"flow-topic-notification-subscribe-title": "Dieses Thema wurde deiner Beobachtungsliste hinzugefügt!",
+	"flow-topic-notification-subscribe-description": "Du erhältst Benachrichtigungen zu allen Aktivitäten dieses Themas.",
 	"flow-error-http": "Beim Kontaktieren des Servers ist ein Fehler aufgetreten.",
 	"flow-error-other": "Ein unerwarteter Fehler ist aufgetreten.",
 	"flow-error-external": "Es ist ein Fehler aufgetreten.<br />Die empfangene Fehlermeldung lautete: $1",

@@ -47,3 +47,8 @@ $specialPageAliases['mk'] = array(
 $specialPageAliases['ml'] = array(
 	'Flow' => array( 'പ്രവാഹം' ),
 );
+
+/** Swedish (svenska) */
+$specialPageAliases['sv'] = array(
+	'Flow' => array( 'Flöde' ),
+);
