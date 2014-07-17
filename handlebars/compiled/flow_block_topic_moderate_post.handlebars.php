@@ -63,15 +63,24 @@
 				'.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? '
 	<span class="flow-author">
 		'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['links'])) ? $in['links'] : null))) ? '
-			<a href="'.htmlentities(((is_array($in['links']['contribs']) && isset($in['links']['contribs']['url'])) ? $in['links']['contribs']['url'] : null), ENT_QUOTES, 'UTF-8').'"
-			   title="'.htmlentities(((is_array($in['links']['contribs']) && isset($in['links']['contribs']['title'])) ? $in['links']['contribs']['title'] : null), ENT_QUOTES, 'UTF-8').'"
-			   class="'.((!LCRun3::ifvar($cx, ((is_array($in['links']['contribs']) && isset($in['links']['contribs']['exists'])) ? $in['links']['contribs']['exists'] : null))) ? 'new ' : '').'mw-userlink flow-ui-tooltip-target">
+			'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['contribs'])) ? $in['links']['contribs'] : null))) ? '
+				<a href="'.htmlentities(((is_array($in['links']['contribs']) && isset($in['links']['contribs']['url'])) ? $in['links']['contribs']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+				   title="'.htmlentities(((is_array($in['links']['contribs']) && isset($in['links']['contribs']['title'])) ? $in['links']['contribs']['title'] : null), ENT_QUOTES, 'UTF-8').'"
+				   class="'.((!LCRun3::ifvar($cx, ((is_array($in['links']['contribs']) && isset($in['links']['contribs']['exists'])) ? $in['links']['contribs']['exists'] : null))) ? 'new ' : '').'mw-userlink flow-ui-tooltip-target">
+			' : '').'
 				'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['name'])) ? $in['name'] : null))) ? '
 					'.htmlentities(((is_array($in) && isset($in['name'])) ? $in['name'] : null), ENT_QUOTES, 'UTF-8').'' : '
 					'.LCRun3::ch($cx, 'l10n', Array(Array('flow-anonymous'),Array()), 'encq').'
 				').'
-			</a>
-			<span class="mw-usertoollinks">(<a href="'.htmlentities(((is_array($in['links']['talk']) && isset($in['links']['talk']['url'])) ? $in['links']['talk']['url'] : null), ENT_QUOTES, 'UTF-8').'" class="'.((!LCRun3::ifvar($cx, ((is_array($in['links']['talk']) && isset($in['links']['talk']['exists'])) ? $in['links']['talk']['exists'] : null))) ? 'new ' : '').' flow-ui-tooltip-target" title="'.htmlentities(((is_array($in['links']['talk']) && isset($in['links']['talk']['title'])) ? $in['links']['talk']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.LCRun3::ch($cx, 'l10n', Array(Array('talkpagelinktext'),Array()), 'encq').'</a>'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['block'])) ? $in['links']['block'] : null))) ? ' | <a class="'.((!LCRun3::ifvar($cx, ((is_array($in['links']['block']) && isset($in['links']['block']['exists'])) ? $in['links']['block']['exists'] : null))) ? 'new ' : '').' flow-ui-tooltip-target" href="'.htmlentities(((is_array($in['links']['block']) && isset($in['links']['block']['url'])) ? $in['links']['block']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['block']) && isset($in['links']['block']['title'])) ? $in['links']['block']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.LCRun3::ch($cx, 'l10n', Array(Array('blocklink'),Array()), 'encq').'</a>' : '').')</span>
+			'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['contribs'])) ? $in['links']['contribs'] : null))) ? '
+				</a>
+			' : '').'
+			<span class="mw-usertoollinks">'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['talk'])) ? $in['links']['talk'] : null))) ? '<span><a href="'.htmlentities(((is_array($in['links']['talk']) && isset($in['links']['talk']['url'])) ? $in['links']['talk']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+					    class="'.((!LCRun3::ifvar($cx, ((is_array($in['links']['talk']) && isset($in['links']['talk']['exists'])) ? $in['links']['talk']['exists'] : null))) ? 'new ' : '').' flow-ui-tooltip-target"
+					    title="'.htmlentities(((is_array($in['links']['talk']) && isset($in['links']['talk']['title'])) ? $in['links']['talk']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.LCRun3::ch($cx, 'l10n', Array(Array('talkpagelinktext'),Array()), 'encq').'</a></span>' : '').''.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['block'])) ? $in['links']['block'] : null))) ? '<span><a class="'.((!LCRun3::ifvar($cx, ((is_array($in['links']['block']) && isset($in['links']['block']['exists'])) ? $in['links']['block']['exists'] : null))) ? 'new ' : '').'
+					   flow-ui-tooltip-target"
+					   href="'.htmlentities(((is_array($in['links']['block']) && isset($in['links']['block']['url'])) ? $in['links']['block']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+					   title="'.htmlentities(((is_array($in['links']['block']) && isset($in['links']['block']['title'])) ? $in['links']['block']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.LCRun3::ch($cx, 'l10n', Array(Array('blocklink'),Array()), 'encq').'</a></span>' : '').'</span>
 		' : '').'
 	</span>
 ' : '

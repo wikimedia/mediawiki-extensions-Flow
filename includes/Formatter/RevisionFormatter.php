@@ -264,21 +264,40 @@ class RevisionFormatter {
 		if ( isset( $this->userLinks[$name] ) ) {
 			return $this->userLinks[$name];
 		}
+
+		$userContribsTitle = $talkPageTitle = null;
 		$userTitle = \Title::newFromText( $name, NS_USER );
-		$talkPageTitle = $userTitle->getTalkPage();
+		if ( $userTitle ) {
+			$talkPageTitle = $userTitle->getTalkPage();
+		}
+		if ( !$userData['id'] ) {
+			$userContribsTitle = \SpecialPage::getTitleFor( 'Contributions', $name );
+		}
+
 		$blockTitle = \SpecialPage::getTitleFor( 'Block', $name );
-		$links = array(
-			"contribs" => array(
+
+		$links = array();
+		if ( $userContribsTitle ) {
+			$links['contribs'] = array(
+				'url' => $userContribsTitle->getLocalUrl(),
+				'title' => $userContribsTitle->getText(),
+				'exists' => true
+			);
+		} elseif ( $userTitle ) {
+			$links['contribs'] = array(
 				'url' => $userTitle->getLocalUrl(),
 				'title' => $userTitle->getText(),
-				'exists' => $userTitle->exists(),
-			),
-			"talk" => array(
+				'exists' => $userTitle->exists()
+			);
+		}
+
+		if ( $talkPageTitle ) {
+			$links['talk'] = array(
 				'url' => $talkPageTitle->getLocalUrl(),
 				'title' => $talkPageTitle->getPrefixedText(),
-				'exists' => $talkPageTitle->exists(),
-			),
-		);
+				'exists' => $talkPageTitle->exists()
+			);
+		}
 		// is this right permissions? typically this would
 		// be sourced from Linker::userToolLinks, but that
 		// only undertands html strings.
@@ -288,7 +307,7 @@ class RevisionFormatter {
 				"block" => array(
 					'url' => $blockTitle->getLocalUrl(),
 					'title' => wfMessage( 'blocklink' ),
-					'exists' => $blockTitle->exists(), // this should always exist
+					'exists' => true
 				),
 			);
 		}
@@ -303,6 +322,7 @@ class RevisionFormatter {
 			'wiki' => $userWiki,
 			'gender' => 'unknown',
 			'links' => array(),
+			'id' => $userId
 		);
 		// Only works for the local wiki
 		if ( wfWikiId() === $userWiki ) {
