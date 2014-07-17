@@ -52,6 +52,24 @@
       "revId": "20e954d1c71a89eca524e3f72800bd55f26efd5f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_aace6384",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-17T21:38:14Z",
+      "side": 1,
+      "message": "Expanded your proposing the following:\n\n  {{#ifCond moderationState \"equals\" \"hide\"}}\n      placeholder\u003d\"{{i10n \"flow-moderation-placeholder-hide-post\"}}\n  {{else}}\n    {{#ifCond moderationState \"equals\" \"unhide\"}}\n      placeholder\u003d\"{{l10n \"flow-moderation-placeholder-unhide-post\"}}\n    {{else}}\n      {{#ifCond moderationState \"equals\" \"delete\"}}\n        placeholder\u003d\"{{l10n \"flow-moderation-placeholder-delete-post\"}}\n      {{else}}\n        {{#ifCond moderationSTate \"equals\" \"undelete\"}}\n          placeholder\u003d\"{{l10n \"flow-moderation-placeholder-undelete-post\"}}\n        {{else}}\n          {{#ifCond moderateState \"equals\" \"suppress\"}}\n            placeholder\u003d\"{{l10n \"flow-moderation-placeholder-suppress-post\"}}\n          {{else}}\n            {{#ifCond moderationState \"equals\" \"unsuppress\"}}\n              placeholder\u003d\"{{l10n \"flow-moderation-placeholder-unsuppress-post\"}}\n            {{/ifCond}}\n          {{/ifCond}}\n        {{/ifCond}}\n      {{/ifCond}}\n    {{/ifCond}}\n  {{/ifCond}}\n\nwhich looks like a nightmare, i\u0027m not going to be doing that.",
+      "parentUuid": "8e28a382_a580d78e",
+      "revId": "20e954d1c71a89eca524e3f72800bd55f26efd5f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
