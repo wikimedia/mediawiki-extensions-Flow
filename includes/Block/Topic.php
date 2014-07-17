@@ -500,12 +500,12 @@ class TopicBlock extends AbstractBlock {
 			return false;
 
 		case 'moderate-topic':
-			return true;
-
 		case 'view-topic':
 			return true;
+
 		case 'view-post':
 			return false;
+
 		case 'view':
 			return !isset( $options['postId'] ) && !isset( $options['revId'] );
 		}
@@ -571,24 +571,28 @@ class TopicBlock extends AbstractBlock {
 			}
 		}
 
-		$row = Container::get( 'query.singlepost' )->getResult( UUID::create( $postId ) );
-		$serializer = $this->getRevisionFormatter();
-		if ( isset( $options['contentFormat'] ) ) {
-			$serializer->setContentFormat( $options['contentFormat'] );
-		}
-		$serialized = $serializer->formatApi( $row, \RequestContext::getMain() );
-		if ( !$serialized ) {
-			return null;
+		$renderedTopic = $this->renderTopicAPI( $templating, $options );
+
+		$workflowIdText = $this->workflow->getId()->getAlphadecimal();
+		$postIdText = $postId->getAlphadecimal();
+
+		$titlePost = $renderedTopic['posts'][$workflowIdText];
+		$post = $renderedTopic['posts'][$postIdText];
+
+		$revisions = array();
+
+		foreach( array_merge( (array) $titlePost, (array) $post ) as $revision ) {
+			$revisions[$revision] = $renderedTopic['revisions'][$revision];
 		}
 
 		return array(
-			'roots' => array( $serialized['postId'] ),
+			'roots' => $renderedTopic['roots'],
+			'postId' => $postIdText,
 			'posts' => array(
-				$serialized['postId'] => array( $serialized['revisionId'] ),
+				$workflowIdText => $titlePost,
+				$postIdText => $post,
 			),
-			'revisions' => array(
-				$serialized['revisionId'] => $serialized,
-			)
+			'revisions' => $revisions,
 		);
 	}
 
