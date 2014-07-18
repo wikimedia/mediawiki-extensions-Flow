@@ -18,8 +18,20 @@ class ReferenceClarifier {
 	}
 
 	public function getWhatLinksHereProps( $row, $from, $to ) {
+		$ids = array();
 		$props = array();
 		$references = $this->getWikiReferences( $from, $to );
+
+		// Collect referenced workflow ids and load them so we can generate
+		// links to their pages
+		foreach( $references as $reference ) {
+			$id = $reference->getWorkflowId();
+			$ids[$id->getAlphadecimal()] = $id;
+		}
+
+		// Dont need to do anything with them, they are automatically
+		// passed into url generator when loaded.
+		$this->storage->get( 'Workflow', $ids );
 
 		// Messages that can be used here:
 		// * flow-whatlinkshere-header
