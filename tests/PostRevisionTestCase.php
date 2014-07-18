@@ -117,10 +117,12 @@ class PostRevisionTestCase extends FlowTestCase {
 
 	/**
 	 * Populate a fake workflow in the unittest database
+	 *
+	 * @return Workflow
 	 */
 	protected function generateWorkflowForPost() {
 		if ( $this->workflow ) {
-			return;
+			return $this->workflow;
 		}
 		list( $userId, $userIp ) = PostRevision::userFields( User::newFromName( 'UTSysop' ) );
 
@@ -139,6 +141,8 @@ class PostRevisionTestCase extends FlowTestCase {
 			'workflow_last_update_timestamp' => wfTimestampNow(),
 		);
 		$this->workflow = Workflow::fromStorageRow( $row );
+
+		return $this->workflow;
 	}
 
 	/**

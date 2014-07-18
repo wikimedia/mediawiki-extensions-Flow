@@ -87,6 +87,7 @@ $wgAutoloadClasses['Flow\OccupationController'] = $dir . 'includes/TalkpageManag
 $wgAutoloadClasses['Flow\TalkpageManager'] = $dir . 'includes/TalkpageManager.php';
 $wgAutoloadClasses['Flow\NotificationFormatter'] = $dir . 'includes/Notifications/Formatter.php';
 $wgAutoloadClasses['Flow\NotificationController'] = $dir . 'includes/Notifications/Controller.php';
+$wgAutoloadClasses['Flow\NotificationsUserLocator'] = $dir . 'includes/Notifications/UserLocator.php';
 $wgAutoloadClasses['Flow\SpamFilter\Controller'] = $dir . 'includes/SpamFilter/Controller.php';
 $wgAutoloadClasses['Flow\SpamFilter\SpamFilter'] = $dir . 'includes/SpamFilter/SpamFilter.php';
 $wgAutoloadClasses['Flow\SpamFilter\SpamRegex'] = $dir . 'includes/SpamFilter/SpamRegex.php';
