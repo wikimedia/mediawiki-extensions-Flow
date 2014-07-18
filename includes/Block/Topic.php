@@ -118,7 +118,7 @@ class TopicBlock extends AbstractBlock {
 				$topicTitle->isClosed()
 				&& (
 					$this->action !== 'close-open-topic'
-					|| $this->submitted['moderationState'] !== 'restore'
+					|| $this->submitted['moderationState'] !== 'reopen'
 				)
 			) {
 				$this->addError( 'moderate', wfMessage( 'flow-error-topic-is-closed' ) );
@@ -289,7 +289,7 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		// these all just mean set to no moderation, it returns a post to unmoderated status
-		$allowedRestoreAliases = array( 'restore', 'unhide', 'undelete', 'unsuppress' );
+		$allowedRestoreAliases = array( 'restore', 'reopen', 'unhide', 'undelete', 'unsuppress' );
 		if ( in_array( $moderationState, $allowedRestoreAliases ) ) {
 			$moderationState = 'restore';
 		}
