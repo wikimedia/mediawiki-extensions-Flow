@@ -9,6 +9,7 @@ $notificationTemplate = array(
 
 $notifications = array(
 	'flow-new-topic' => array(
+		'user-locators' => array( 'watching-event-title', 'talk-page-owner' ),
 		'primary-link' => array(
 			'message' => 'flow-notification-link-text-view-topic',
 			'destination' => 'flow-topic'
@@ -26,6 +27,7 @@ $notifications = array(
 		'payload' => array( 'comment-text' ),
 	) + $notificationTemplate,
 	'flow-post-reply' => array(
+		'user-locators' => array( 'watching-event-title', 'talk-page-owner' ),
 		'primary-link' => array(
 			'message' => 'flow-notification-link-text-view-post',
 			'destination' => 'flow-post'
