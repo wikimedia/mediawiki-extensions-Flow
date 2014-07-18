@@ -1229,12 +1229,19 @@
 					// We also remove flow-topic-collapsed.  That is set on the
 					// server for moderated posts, but an explicit user action
 					// overrides that.
-					$topic.removeClass( 'flow-topic-collapsed' ).toggleClass( 'flow-topic-expanded' );
-
+					if ( $topic.is( '.flow-topic-expanded' ) ) {
+						$topic.addClass( 'flow-topic-collapsed' ).removeClass( 'flow-topic-expanded' );
+					} else {
+						$topic.removeClass( 'flow-topic-collapsed' ).addClass( 'flow-topic-expanded' );
+					}
 				} else {
 					// .flow-board-collapsed-full; Board default is expanded;
 					// topic can be overridden to collapsed, or not.
-					$topic.toggleClass( 'flow-topic-collapsed' );
+					if ( $topic.is( '.flow-topic-collapsed' ) ) {
+						$topic.removeClass( 'flow-topic-collapsed' ).addClass( 'flow-topic-expanded' );
+					} else {
+						$topic.addClass( 'flow-topic-collapsed' ).removeClass( 'flow-topic-expanded' );
+					}
 				}
 
 				topicId = $topic.data('flow-id');
