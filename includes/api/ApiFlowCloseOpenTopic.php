@@ -20,7 +20,7 @@ class ApiFlowCloseOpenTopic extends ApiFlowBasePost {
 		return array(
 			'moderationState' => array(
 				ApiBase::PARAM_REQUIRED => true,
-				ApiBase::PARAM_TYPE => array( AbstractRevision::MODERATED_CLOSED, 'restore' ),
+				ApiBase::PARAM_TYPE => array( AbstractRevision::MODERATED_CLOSED, 'reopen' ),
 			),
 			'summary' => array(
 				ApiBase::PARAM_REQUIRED => true,
