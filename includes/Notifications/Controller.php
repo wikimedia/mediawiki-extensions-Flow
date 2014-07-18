@@ -12,7 +12,6 @@ use EchoEvent;
 use Language;
 use Title;
 use User;
-use WatchedItem;
 
 class NotificationController {
 	/**
@@ -176,6 +175,8 @@ class NotificationController {
 		$topicWorkflow = $params['topic-workflow'];
 		if ( !$topicWorkflow instanceof Workflow ) {
 			throw new FlowException( 'Expected Workflow but received ' . get_class( $topicWorkflow ) );
+		} elseif ( $topicWorkflow->isNew() ) {
+			throw new FlowException( "Topic workflow is new, so topic ID is meaningless" );
 		}
 		$topicTitle = $params['topic-title'];
 		if ( !$topicTitle instanceof PostRevision ) {
@@ -426,15 +427,6 @@ class NotificationController {
 				}
 			}
 			break;
-		case 'flow-new-topic':
-			$title = $event->getTitle();
-			if ( $title->getNamespace() == NS_USER_TALK ) {
-				$user = User::newFromName( $title->getText() );
-				if ( $user ) {
-					$users[] = $user;
-				}
-			}
-			break;
 		case 'flow-topic-renamed':
 			$users += self::getCreatorsFromPostIDs( array( $extra['topic-workflow'] ) );
 			break;
@@ -442,30 +434,6 @@ class NotificationController {
 			$topicId = $extra['topic-workflow'];
 			if ( $topicId instanceof UUID ) {
 				$topicId = $topicId->getAlphadecimal();
-			}
-			$title = Title::newFromText( $topicId, NS_TOPIC );
-			if ( $title ) {
-				// @todo
-				// * This could be a problemtic query if the watchlist volume is huge
-				// * Turn on job queue to process echo notifications
-				// * Encapsulate this into somewhere
-				$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
-				$res = $dbr->select(
-					array( 'watchlist' ),
-					array( 'wl_user' ),
-					array(
-						'wl_namespace' => NS_TOPIC,
-						'wl_title' => $title->getDBkey()
-					),
-					__METHOD__
-				);
-				if ( $res ) {
-					foreach ( $res as $row ) {
-						$users[$row->wl_user] = User::newFromId( $row->wl_user );
-					}
-				}
-				// Owner of talk page should always get a reply notification
-				$users += self::getTalkPageOwner( $topicId );
 			}
 			break;
 		case 'flow-post-edited':
@@ -531,29 +499,5 @@ class NotificationController {
 		}
 
 		return $users;
-	}
-
-	/**
-	 * Get the owner of the page if the workflow belongs to a talk page
-	 *
-	 * @param string|UUID topic workflow id
-	 * @param array
-	 */
-	protected static function getTalkPageOwner( $topicId ) {
-		$talkUser = array();
-		// Owner of talk page should always get a reply notification
-		$workflow = Container::get( 'storage' )
-				->getStorage( 'Workflow' )
-				->get( UUID::create( $topicId ) );
-		if ( $workflow ) {
-			$title = $workflow->getOwnerTitle();
-			if ( $title->isTalkPage() ) {
-				$user = User::newFromName( $title->getDBkey() );
-				if ( $user && $user->getId() ) {
-					$talkUser[$user->getId()] = $user;
-				}
-			}
-		}
-		return $talkUser;
 	}
 }
