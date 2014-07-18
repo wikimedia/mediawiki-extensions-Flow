@@ -9,8 +9,7 @@
             'mustlok' => false,
             'debug' => $debugopt,
         ),
-        'helpers' => Array(            'l10n' => 'Flow\TemplateHelper::l10n',
-            'escapeContent' => 'Flow\TemplateHelper::escapeContent',
+        'helpers' => Array(            'escapeContent' => 'Flow\TemplateHelper::escapeContent',
 ),
         'blockhelpers' => Array(),
         'hbhelpers' => Array(),
@@ -23,7 +22,7 @@
 		'.((LCRun3::ifvar($cx, ((is_array($in['revision']['content']) && isset($in['revision']['content']['content'])) ? $in['revision']['content']['content'] : null))) ? '
 			'.LCRun3::ch($cx, 'escapeContent', Array(Array(((is_array($in['revision']['content']) && isset($in['revision']['content']['format'])) ? $in['revision']['content']['format'] : null),((is_array($in['revision']['content']) && isset($in['revision']['content']['content'])) ? $in['revision']['content']['content'] : null)),Array()), 'encq').'
 		' : '
-			<p>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-header-empty'),Array()), 'encq').'</p>
+			&nbsp;
 		').'
 
 		'.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? '

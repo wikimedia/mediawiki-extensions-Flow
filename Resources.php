@@ -77,7 +77,6 @@ $wgResourceModules += array(
 		'messages' => array(
 			'flow-anon-warning',
 			'flow-cancel',
-			'flow-header-empty',
 			'flow-edit-header-placeholder',
 			'flow-edit-header-submit',
 			'flow-edit-title-submit',
