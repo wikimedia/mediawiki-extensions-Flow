@@ -29,3 +29,10 @@ end
 Then(/^the highlighted comment should contain the text for the 3rd comment$/) do
   on(FlowPage).highlighted_post.should match @saved_random
 end
+
+When(/^I go to an old style permalink to my topic$/) do
+  on(FlowPage) do |curPage|
+    workflowId = curPage.flow_first_topic_element.attribute( 'data-flow-id' )
+    visit(FlowOldPermalinkPage, :using_params => {:workflow_id => workflowId})
+  end
+end
