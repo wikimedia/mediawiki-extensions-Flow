@@ -30,7 +30,6 @@
 
 
 
-.flow-moderated-topic-title,
 .flow-topic-title {
 	padding: 0;
 	border-bottom: none;
@@ -41,6 +40,15 @@
 	word-break: break-word;
 	word-wrap: break-word;
 	overflow: visible;
+}
+
+.flow-moderated-topic-title {
+	margin-bottom: .33em;
+	overflow: hidden;
+	color: @colorTextLight;
+	font-weight: bold;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 // Override default Vector heading styles
