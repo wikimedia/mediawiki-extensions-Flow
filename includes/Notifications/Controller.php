@@ -175,6 +175,8 @@ class NotificationController {
 		$topicWorkflow = $params['topic-workflow'];
 		if ( !$topicWorkflow instanceof Workflow ) {
 			throw new FlowException( 'Expected Workflow but received ' . get_class( $topicWorkflow ) );
+		} elseif ( $topicWorkflow->isNew() ) {
+			throw new FlowException( "Topic workflow is new, so topic ID is meaningless" );
 		}
 		$topicTitle = $params['topic-title'];
 		if ( !$topicTitle instanceof PostRevision ) {
@@ -425,15 +427,6 @@ class NotificationController {
 				}
 			}
 			break;
-		case 'flow-new-topic':
-			$title = $event->getTitle();
-			if ( $title->getNamespace() == NS_USER_TALK ) {
-				$user = User::newFromName( $title->getText() );
-				if ( $user ) {
-					$users[] = $user;
-				}
-			}
-			break;
 		case 'flow-topic-renamed':
 			$users += self::getCreatorsFromPostIDs( array( $extra['topic-workflow'] ) );
 			break;
@@ -441,30 +434,6 @@ class NotificationController {
 			$topicId = $extra['topic-workflow'];
 			if ( $topicId instanceof UUID ) {
 				$topicId = $topicId->getAlphadecimal();
-			}
-			$title = Title::newFromText( $topicId, NS_TOPIC );
-			if ( $title ) {
-				// @todo
-				// * This could be a problemtic query if the watchlist volume is huge
-				// * Turn on job queue to process echo notifications
-				// * Encapsulate this into somewhere
-				$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
-				$res = $dbr->select(
-					array( 'watchlist' ),
-					array( 'wl_user' ),
-					array(
-						'wl_namespace' => NS_TOPIC,
-						'wl_title' => $title->getDBkey()
-					),
-					__METHOD__
-				);
-				if ( $res ) {
-					foreach ( $res as $row ) {
-						$users[$row->wl_user] = User::newFromId( $row->wl_user );
-					}
-				}
-				// Owner of talk page should always get a reply notification
-				$users += self::getTalkPageOwner( $topicId );
 			}
 			break;
 		case 'flow-post-edited':
