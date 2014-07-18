@@ -7,6 +7,7 @@ use Article;
 use ErrorPageError;
 use Flow\Container;
 use Flow\Exception\FlowException;
+use Flow\Exception\InvalidInputException;
 use Flow\Model\UUID;
 use Flow\View;
 use IContextSource;
@@ -84,6 +85,20 @@ class FlowAction extends Action {
 			}
 
 			$view->show( $loader, $action );
+		} catch ( InvalidInputException $e ) {
+			if ( $workflowId ) {
+				// Probably wrong title, redirect to correct one
+				$storage = $container['storage'];
+				$workflow = $storage->get( 'Workflow', $workflowId );
+				$redirTitle = $workflow->getArticleTitle();
+				$query = array( 'workflow' => $workflowId->getAlphadecimal() );
+				$redirUrl = $redirTitle->getLocalUrl( $query );
+
+				$output->redirect( $redirUrl );
+			} else {
+				$e->setOutput( $output );
+				throw $e;
+			}
 		} catch( FlowException $e ) {
 			$e->setOutput( $output );
 			throw $e;
