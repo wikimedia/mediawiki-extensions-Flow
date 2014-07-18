@@ -19,11 +19,10 @@
     );
     return '<div class="flow-board-header">
 	<div class="flow-board-header-detail-view">
-		'.((LCRun3::ifvar($cx, ((is_array($in['revision']['content']) && isset($in['revision']['content']['content'])) ? $in['revision']['content']['content'] : null))) ? '
+		'.((LCRun3::ifvar($cx, ((is_array($in['revision']) && isset($in['revision']['content'])) ? $in['revision']['content'] : null))) ? '
 			'.LCRun3::ch($cx, 'escapeContent', Array(Array(((is_array($in['revision']['content']) && isset($in['revision']['content']['format'])) ? $in['revision']['content']['format'] : null),((is_array($in['revision']['content']) && isset($in['revision']['content']['content'])) ? $in['revision']['content']['content'] : null)),Array()), 'encq').'
-		' : '
-			&nbsp;
-		').'
+		' : '').'
+		&nbsp;
 
 		'.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? '
 			<div class="flow-board-header-nav">

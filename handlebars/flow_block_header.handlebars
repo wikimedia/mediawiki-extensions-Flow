@@ -1,10 +1,9 @@
 <div class="flow-board-header">
 	<div class="flow-board-header-detail-view">
-		{{#if revision.content.content}}
+		{{#if revision.content}}
 			{{escapeContent revision.content.format revision.content.content}}
-		{{else}}
-			&nbsp;
 		{{/if}}
+		&nbsp;
 
 		{{#unless isPreview}}
 			<div class="flow-board-header-nav">
