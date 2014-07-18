@@ -3,7 +3,7 @@
 @import 'flow.helpers';
 
 // Visually mark moderated comments and posts
-.flow-topic-moderated {
+.flow-topic-moderatestate-close {
 	color: @colorTextLight;
 
 	.flow-topic-titlebar {
@@ -13,6 +13,19 @@
 
 	&.flow-topic-collapsed .flow-author {
 		display: none;
+	}
+}
+
+.flow-topic-moderatestate-hide {
+	&.flow-topic-collapsed {
+		.flow-topic-title,
+		.flow-author,
+		.flow-topic-meta {
+			display: none;
+		}
+		.flow-moderated-topic-title {
+			margin-bottom: 0;
+		}
 	}
 }
 

@@ -3,12 +3,14 @@
 @import 'flow.helpers';
 @import 'flow.variables';
 
-.flow-topic-summary-container {
-	.flow-topic-summary {
-		border-top: 1px dotted @colorGrayLight;
-		margin-top: .33em;
-		p {
-			font-style: italic;
+.flow-topic-summary {
+	border-top: 1px dotted @colorGrayLight;
+	margin-top: .33em;
+
+	div#content & > p {
+		font-style: italic;
+		&:last-of-type {
+			margin-bottom: 0;
 		}
 	}
 }
