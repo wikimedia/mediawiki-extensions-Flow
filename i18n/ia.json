@@ -11,7 +11,6 @@
 	"logentry-suppress-flow-restore-post": "$1 {{GENDER:$2|deleva}} un [$4 message] in [[$3]]",
 	"flow-user-moderated": "Usator moderate",
 	"flow-edit-header-link": "Modificar titulo",
-	"flow-header-empty": "Iste pagina de discussion actualmente non ha titulo.",
 	"flow-suppress-usertext": "<em>Nomine de usator supprimite</em>",
 	"flow-post-actions": "Actiones",
 	"flow-topic-actions": "Actiones",
