@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_aa2ad88c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-07-18T20:38:44Z",
+      "side": 1,
+      "message": "But \u0027restore\u0027 is still an allowed alias?  Maybe say \"rename/aliasing\"",
+      "revId": "5ca3ad15da4833c96574bf0fb7c90111c0a3d097",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_ca43e465",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-07-18T20:38:44Z",
+      "side": 1,
+      "message": "It\u0027s a little weird to have the alias \u0027restore\u0027 change the moderation state to... \u0027restore\u0027.",
+      "revId": "5ca3ad15da4833c96574bf0fb7c90111c0a3d097",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
