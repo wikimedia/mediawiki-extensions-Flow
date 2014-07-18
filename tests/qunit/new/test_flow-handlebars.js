@@ -84,6 +84,13 @@ QUnit.test( 'Handlebars.prototype.ifAnonymous', 2, function() {
 	strictEqual( this.handlebarsProto.ifAnonymous( this.opts ), 'nope', 'User should be logged in on second call.' );
 } );
 
+QUnit.test( 'Handlebars.prototype.concat', 2, function() {
+	strictEqual( this.handlebarsProto.concat( 'a', 'b', 'c', this.opts ), 'abc', 'Check concat working fine.' );
+	strictEqual( this.handlebarsProto.concat( this.opts ), '', 'Without arguments.' );
+} );
+
+Array.prototype.slice.call( ['a', 'b', 'c', {}], 0, -1 ).join( '' )
+
 QUnit.test( 'Handlebars.prototype.progressiveEnhancement', 1, function() {
 	var opts = $.extend( { hash: { insertionType: 'insert', target: 'abc', sectionId: 'def' } }, this.opts );
 
