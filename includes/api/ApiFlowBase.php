@@ -114,7 +114,8 @@ abstract class ApiFlowBase extends ApiBase {
 			AbstractRevision::MODERATED_DELETED,
 			AbstractRevision::MODERATED_HIDDEN,
 			AbstractRevision::MODERATED_SUPPRESSED,
-			'restore', // @todo Does this need a constant?
+			// aliases for AbstractRevision::MODERATED_NONE
+			'restore', 'unhide', 'undelete', 'unsuppress',
 		);
 	}
 

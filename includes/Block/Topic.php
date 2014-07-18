@@ -288,12 +288,15 @@ class TopicBlock extends AbstractBlock {
 			$moderationState = 'suppress';
 		}
 
+		// these all just mean set to no moderation, it returns a post to unmoderated status
+		$allowedRestoreAliases = array( 'restore', 'unhide', 'undelete', 'unsuppress' );
+		if ( in_array( $moderationState, $allowedRestoreAliases ) ) {
+			$moderationState = 'restore';
+		}
 		// By allowing the moderationState to be sourced from $this->submitted['moderationState']
 		// we no longer have a unique action name for use with the permissions system.  This rebuilds
 		// an action name. e.x. restore-post, restore-topic, suppress-topic, etc.
 		$action = $moderationState . ( $post->isTopicTitle() ? "-topic" : "-post" );
-
-		// 'restore' isn't an actual state, it returns a post to unmoderated status
 
 		if ( $moderationState === 'restore' ) {
 			$newState = AbstractRevision::MODERATED_NONE;
