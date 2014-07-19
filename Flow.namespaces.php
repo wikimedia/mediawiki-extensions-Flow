@@ -17,3 +17,12 @@ $namespaceNames['en'] = array(
 	NS_TOPIC =>  'Topic',
 );
 
+/** Hebrew */
+$namespaceNames['he'] = array(
+	NS_TOPIC =>  'נושא',
+);
+
+/** Russian */
+$namespaceNames['ru'] = array(
+	NS_TOPIC =>  'Тема',
+);
