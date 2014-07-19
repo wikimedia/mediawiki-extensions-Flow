@@ -53,6 +53,9 @@ end
 When(/^I create a (.+) in Flow new topic$/) do |flow_title|
   @automated_test_marker = " browsertest edit"
   on(FlowPage) do |page|
+    page.wait_until(20) do
+      page.new_topic_body_element.visible? != true
+    end
     topic_string = flow_title + @random_string + @automated_test_marker
     page.new_topic_title_element.when_present.click
     page.new_topic_title_element.when_present.send_keys(topic_string)
@@ -103,7 +106,7 @@ end
 Then(/^the preview and cancel buttons have disappeared$/) do
   on(FlowPage) do |page|
     page.wait_until(20) do
-      page.preview_button_element.visible? != true
+      page.preview_button_element.visible? != true &&
       page.cancel_button_element.visible? != true
     end
   end
