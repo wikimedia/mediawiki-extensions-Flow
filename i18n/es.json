@@ -21,7 +21,7 @@
 		]
 	},
 	"flow-desc": "Sistema de gestión de flujo de trabajo",
-	"flow-talk-taken-over": "Esta página de discusión ha sido tomada por un [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal tablero de flujo].",
+	"flow-talk-taken-over": "Esta página de discusión está usando [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow].",
 	"flow-talk-username": "Gestor de páginas de discusión de Flow",
 	"log-name-flow": "Registro de actividad de flujo",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|borró}} una [$4 publicación] en [[$3]]",
@@ -97,6 +97,7 @@
 	"flow-topic-action-undelete-topic": "Restaurar tema",
 	"flow-topic-action-unsuppress-topic": "Desactivar supresión del tema",
 	"flow-topic-action-restore-topic": "Restaurar el tema",
+	"flow-topic-notification-subscribe-title": "Esta tema se ha agregado a tu lista de seguimiento.",
 	"flow-error-http": "Ha ocurrido un error mientras se contactaba al servidor.",
 	"flow-error-other": "Ha ocurrido un error inesperado.",
 	"flow-error-external": "Se ha producido un error.<br />El mensaje de error recibido es: $1",
