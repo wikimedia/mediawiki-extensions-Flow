@@ -115,7 +115,7 @@ class TopicSummaryBlock extends AbstractBlock {
 		$root = $this->findTopicTitle();
 		if (
 			$root->getModerationState() == AbstractRevision::MODERATED_CLOSED &&
-			$state == 'restore' )
+			$state == 'reopen' )
 		{
 			return true;
 		}
