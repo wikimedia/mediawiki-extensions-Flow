@@ -9,7 +9,7 @@
 			"Fúlvio"
 		]
 	},
-	"flow-desc": "Sistema de gerência do fluxo de trabalho",
+	"flow-desc": "Sistema de gestão do fluxo de trabalho",
 	"flow-talk-taken-over": "Esta página de discussão usa o [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow].",
 	"flow-talk-username": "Gestor de páginas de discussão do Flow",
 	"log-name-flow": "Registo de actividade do Flow",
@@ -87,6 +87,7 @@
 	"flow-topic-action-unsuppress-topic": "Tópico não suprimido",
 	"flow-topic-action-restore-topic": "Restaurar tópico",
 	"flow-topic-notification-subscribe-title": "Este tópico foi adicionado à sua lista de vigiados.",
+	"flow-topic-notification-subscribe-description": "Irá receber notificações sobre todas as atividades neste tópico.",
 	"flow-error-http": "Ocorreu um erro ao contactar o servidor.",
 	"flow-error-other": "Ocorreu um erro inesperado.",
 	"flow-error-external": "Ocorreu um erro.<br />A mensagem de erro recebida é a seguinte: $1",
