@@ -21,3 +21,9 @@ Feature: Actions menu Permalink
       And I click Permalink from the 3rd comment Post Actions menu
     Then I see only one topic on the page
       And the highlighted comment should contain the text for the 3rd comment
+
+    Scenario: Old style topic permalink
+      Given I have created a Flow topic with title "Permalinktest"
+      When I go to an old style permalink to my topic
+      Then I see only one topic on the page
+        And the top post should have a heading which contains "Permalinktest"
