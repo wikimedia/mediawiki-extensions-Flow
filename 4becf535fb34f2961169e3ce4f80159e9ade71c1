@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_134c6e79",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-22T18:24:44Z",
+      "side": 1,
+      "message": "Please check this isset - Echo might change how it is marked up.\n\nAlso anyway we can avoid creating this dependency, looks like a bad code smell and hints that we are doing something wrong in the Echo code.",
+      "revId": "4becf535fb34f2961169e3ce4f80159e9ade71c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_933f3eb1",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-22T18:24:44Z",
+      "side": 1,
+      "message": "Put this in a function and add QUnit tests, to show what you are using the regex for.",
+      "revId": "4becf535fb34f2961169e3ce4f80159e9ade71c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
