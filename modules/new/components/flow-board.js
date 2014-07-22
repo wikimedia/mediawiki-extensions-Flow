@@ -14,7 +14,9 @@
 	 */
 	function FlowBoardComponent( $container ) {
 		// Parent FlowComponent constructor
-		var parentReturn = this.parent.apply( this, arguments );
+		var match, $target,
+			parentReturn = this.parent.apply( this, arguments );
+
 		delete this.parent;
 		if ( parentReturn && parentReturn.constructor ) {
 			// If the parent returned an instantiated class (cached), return that
@@ -31,16 +33,53 @@
 		}
 
 		// Handle URL parameters
-		if ( window.location.hash && /^\#flow-post-[a-z0-9]+$/.test( window.location.hash ) ) {
-			$container.find( window.location.hash )
-				// @todo: Add class in PHP so it works for non-JavaScript users.
-				.addClass( 'flow-post-highlighted' )
-				.conditionalScrollIntoView();
+		if ( window.location.hash ) {
+			match = /^(#flow-post-[a-z0-9]{16})(?:\/(newer))?$/.exec( window.location.hash );
+			if ( match ) {
+				$target = flowHighlightPost( $container, match[1], match[2] );
+				// do nothing if already scrolled for cases when javascript loads slowly
+				if ( $target.length && $( window ).scrollTop() === 0 ) {
+					$target.conditionalScrollIntoView();
+				}
+			}
 		}
 	}
 
 	// Register this FlowComponent
 	mw.flow.registerComponent( 'board', FlowBoardComponent );
+
+
+	/**
+	 * Helper receives
+	 * @param {jQuery}
+	 * @param {string}
+	 * @param {string}
+	 * @return {jQuery}
+	 */
+	function flowHighlightPost( $container, targetSelector, option ) {
+		var $target = $container.find( targetSelector ),
+			uid = $target.data( 'flow-id' );
+
+		// reset existing highlights
+		$container.find( '.flow-post-highlighted' ).removeClass( 'flow-post-highlighted' );
+
+		if ( option === 'newer' ) {
+			$target.addClass( 'flow-post-highlight-newer' );
+			if ( uid ) {
+				$container.find( '.flow-post' ).each( function( idx, el ) {
+					var $el = $( el ),
+						id = $el.data( 'flow-id' );
+					if ( id && id > uid ) {
+						$el.addClass( 'flow-post-highlight-newer' );
+					}
+				} );
+			}
+		} else {
+			$target.addClass( 'flow-post-highlighted' );
+		}
+
+		return $target;
+	}
 
 	/**
 	 * Sets up the board and base properties on this class.
