@@ -663,9 +663,21 @@ class FlowHooks {
 	}
 
 	public static function onWhatLinksHereProps( $row, $title, $target, &$props ) {
-		$newProps = Flow\Container::get( 'reference.clarifier' )->getWhatLinksHereProps( $row, $title, $target );
+		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
+		try {
+			$newProps = Flow\Container::get( 'reference.clarifier' )->getWhatLinksHereProps( $row, $title, $target );
 
-		$props = array_merge( $props, $newProps );
+			$props = array_merge( $props, $newProps );
+		} catch ( Exception $e ) {
+			wfDebugLog( 'Flow', sprintf(
+				'%s: Failed formatting WhatLinksHere for %s to %s',
+				__METHOD__,
+				$title->getFullText(),
+				$target->getFullText()
+			) );
+			\MWExceptionHandler::logException( $e );
+		}
+		restore_error_handler();
 
 		return true;
 	}
