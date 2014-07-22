@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_7b3ca8bb",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-22T22:46:11Z",
+      "side": 1,
+      "message": "eww .. do we have to?\n\nif we have to i would simplify with\n\n    return $this-\u003erenderTopicApi( $templating, $options ) + array(\n        \u0027postId\u0027 \u003d\u003e $postId-\u003egetAlphadecimal()\n    );",
+      "revId": "d7fbef49e336e1ca6df88159b92104fd714f3aaf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
