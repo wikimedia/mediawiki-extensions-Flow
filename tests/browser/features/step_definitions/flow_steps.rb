@@ -2,6 +2,12 @@ Given(/^I am on Flow page$/) do
   visit FlowPage
 end
 
+Given(/^The Flow page is fully loaded$/ ) do
+  on(FlowPage).wait_until do
+    page.new_topic_body_element.visible? != true
+  end
+end
+
 Then(/^I am on my user page$/) do
   # Get the title of the page without '_' characters
   text = 'User:' + ENV["MEDIAWIKI_USER"].sub(/_/, ' ')
@@ -15,6 +21,7 @@ end
 # @todo: Rewrite to use more generic step below
 Given(/^I have created a Flow topic$/) do
   step "I am on Flow page"
+  step "The Flow page is fully loaded"
   step "I create a Title of Flow Topic in Flow new topic"
   step "I create a Body of Flow Topic into Flow body"
   step "I click New topic save"
@@ -103,7 +110,7 @@ end
 Then(/^the preview and cancel buttons have disappeared$/) do
   on(FlowPage) do |page|
     page.wait_until(20) do
-      page.preview_button_element.visible? != true
+      page.preview_button_element.visible? != true &&
       page.cancel_button_element.visible? != true
     end
   end
