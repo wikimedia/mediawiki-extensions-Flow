@@ -308,7 +308,10 @@ $wgResourceModules += array(
 			'mediawiki.jqueryMsg',
 			'jquery.json',
 			'jquery.conditionalScroll',
+			'mediawiki.api',
+			'mediawiki.Title',
 			'mediawiki.user',
+			'mediawiki.util',
 		),
 		'messages' => array(
 			'flow-error-http',
