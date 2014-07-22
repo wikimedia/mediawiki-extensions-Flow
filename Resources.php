@@ -215,7 +215,7 @@ $wgResourceModules += array(
 		'styles' => array(
 			'new/styles/mediawiki.ui/tooltips.less',
 		),
-	),
+	) + $mobile,
 	'ext.flow.icons.styles' => $flowResourceTemplate + array(
 		'styles' => array(
 			'new/styles/icons.less',
