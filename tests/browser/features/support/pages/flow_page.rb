@@ -174,7 +174,8 @@ class FlowPage
   textarea(:new_topic_body, name: "topiclist_content")
   button(:new_topic_cancel, css: ".flow-newtopic-form .mw-ui-destructive")
   button(:new_topic_preview, css: ".flow-newtopic-form .mw-ui-progressive")
-  button(:new_topic_save, css: ".flow-newtopic-form .mw-ui-constructive")
+  # FIXME: Remove flow-ui-constructive reference when cache has cleared
+  button(:new_topic_save, css: ".flow-newtopic-form .mw-ui-constructive, .flow-newtopic-form .flow-ui-constructive")
 
   # Replying
   # TODO (mattflaschen, 2014-06-24): Should distinguish between
