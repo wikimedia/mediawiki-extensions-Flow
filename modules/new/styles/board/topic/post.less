@@ -3,6 +3,13 @@
 @import 'flow.helpers';
 @import 'flow.variables';
 
+// Helpers
+.minimalPostHighlight( @negativeMargin, @highlightedIndent: 0.2em ) {
+	margin-left: 0 - @negativeMargin - @topicIndent;
+	padding-left: @topicIndent + @negativeMargin - @highlightedIndent;
+	border-left: solid @highlightedIndent @colorHighlightNewer;
+}
+
 // Comments
 form.flow-post {
 	margin-left: @topicIndent - (@textareaPadding * 2);
@@ -45,6 +52,17 @@ form.flow-post {
 			 padding-left: @highlightedIndent;
 			 border-left: solid @highlightedIndent @colorHighlight;
 		}
+	}
+
+	// Highlights all posts newer than a specific post
+	&.flow-post-highlight-newer > .flow-post-main .flow-post-content {
+		.minimalPostHighlight( 0.7em );
+	}
+	.flow-post.flow-post-highlight-newer > .flow-post-main .flow-post-content {
+		.minimalPostHighlight( 0.3em );
+	}
+	.flow-post .flow-post.flow-post-highlight-newer > .flow-post-main .flow-post-content {
+		.minimalPostHighlight( 0.4em );
 	}
 
 	// Content of comments
@@ -120,5 +138,22 @@ form.flow-post {
 			line-height: inherit;
 			font-size: inherit;
 		}
+
+		&.flow-post-highlight-newer > .flow-post-main .flow-post-content {
+			.minimalPostHighlight( 1.3em );
+		}
+		.flow-post.flow-post-highlight-newer > .flow-post-main .flow-post-content {
+			.minimalPostHighlight( 1.1em );
+		}
+		.flow-post .flow-post.flow-post-highlight-newer > .flow-post-main .flow-post-content {
+			.minimalPostHighlight( 1.1em );
+		}
+	}
+}
+
+// What to do? vector changes this width on us with screen-hd.less with this query
+@media all and (min-width: 982px) {
+	.flow-post.flow-post-highlight-newer > .flow-post-main .flow-post-content {
+		.minimalPostHighlight( 1.8em );
 	}
 }

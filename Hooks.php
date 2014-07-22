@@ -72,6 +72,8 @@ class FlowHooks {
 	 * from $wgExtensionFunctions
 	 */
 	public static function initFlowExtension() {
+		global $wgResourceModules;
+
 		// Depends on Mantle extension
 		if ( !class_exists( 'MantleHooks' ) ) {
 			throw new FlowException( 'Flow requires the Mantle MediaWiki extension.' );
@@ -79,9 +81,13 @@ class FlowHooks {
 		// needed to determine if a page is occupied by flow
 		self::getOccupationController();
 
-		// necessary to render flow notifications
 		if ( class_exists( 'EchoNotifier' ) ) {
+			// necessary to render flow notifications
 			NotificationController::setup();
+			if ( isset( $wgResourceModules['ext.echo.overlay'] ) ) {
+				// Inject flow javascript with the echo overlay
+				$wgResourceModules['ext.echo.overlay']['dependencies'][] = 'ext.flow.echo';
+			}
 		}
 
 		// necessary to provide flow options in abuse filter on-wiki pages
