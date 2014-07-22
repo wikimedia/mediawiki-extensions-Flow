@@ -17,7 +17,7 @@ class ReferenceClarifier {
 		$this->referenceCache = array();
 	}
 
-	public function getWhatLinksHereProps( $row, $from, $to ) {
+	public function getWhatLinksHereProps( $row, Title $from, Title $to ) {
 		$ids = array();
 		$props = array();
 		$references = $this->getWikiReferences( $from, $to );
@@ -26,6 +26,7 @@ class ReferenceClarifier {
 		// links to their pages
 		foreach( $references as $reference ) {
 			$id = $reference->getWorkflowId();
+			// utilize array key to de-duplicate
 			$ids[$id->getAlphadecimal()] = $id;
 		}
 
