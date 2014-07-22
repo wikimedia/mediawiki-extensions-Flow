@@ -57,6 +57,7 @@
 	"flow-topic-action-summarize-topic": "Resuméieren",
 	"flow-topic-action-resummarize-topic": "Resumé vun der Ännerung",
 	"flow-topic-action-restore-topic": "Thema restauréieren",
+	"flow-topic-notification-subscribe-title": "Dëst Thema gouf op Är Iwwerwaachungslëscht derbäigesat.",
 	"flow-error-other": "En onerwaarte Feeler ass geschitt.",
 	"flow-error-external": "Et ass e Feeler geschitt.<br />De Feelermessage war:$1</ small>",
 	"flow-error-edit-restricted": "Dir däerft dës Matdeelung net änneren.",
