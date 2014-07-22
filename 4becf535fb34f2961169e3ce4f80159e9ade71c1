@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e28a382_338f6a7a",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-22T20:08:12Z",
+      "side": 1,
+      "message": "Done.\n\nAs for the dependency,  imo this is the cleanest method available to ensure any time the echo overlay is loaded that our code is also loaded.  A specific hook just for this occurance could be added, but that seemed like overkill.",
+      "parentUuid": "8e28a382_134c6e79",
+      "revId": "4becf535fb34f2961169e3ce4f80159e9ade71c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e28a382_933f3eb1",
         "filename": "modules/new/components/flow-board.js",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-07-22T18:24:44Z",
       "side": 1,
       "message": "Put this in a function and add QUnit tests, to show what you are using the regex for.",
+      "revId": "4becf535fb34f2961169e3ce4f80159e9ade71c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_93d97efa",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-22T20:08:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e28a382_933f3eb1",
       "revId": "4becf535fb34f2961169e3ce4f80159e9ade71c1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
