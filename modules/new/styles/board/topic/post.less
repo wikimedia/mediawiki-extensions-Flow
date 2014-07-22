@@ -3,6 +3,14 @@
 @import 'flow.helpers';
 @import 'flow.variables';
 
+@highlightedIndent: 0.2em;
+
+// Helpers
+.minimalPostHighlight( @negativeMargin ) {
+	margin-left: 0 - @negativeMargin - @topicIndent;
+	padding-left: @topicIndent + @negativeMargin - @highlightedIndent;
+}
+
 // Comments
 form.flow-post {
 	margin-left: @topicIndent - (@textareaPadding * 2);
@@ -45,6 +53,18 @@ form.flow-post {
 			 padding-left: @highlightedIndent;
 			 border-left: solid @highlightedIndent @colorHighlight;
 		}
+	}
+
+	// Highlights all posts newer than a specific post
+	&.flow-post-highlight-newer > .flow-post-main .flow-post-content {
+		border-left: solid @highlightedIndent @colorHighlightNewer;
+		.minimalPostHighlight( 0.7em );
+	}
+	.flow-post.flow-post-highlight-newer > .flow-post-main .flow-post-content {
+		.minimalPostHighlight( 0.3em );
+	}
+	.flow-post .flow-post.flow-post-highlight-newer > .flow-post-main .flow-post-content {
+		.minimalPostHighlight( 0.4em );
 	}
 
 	// Content of comments
@@ -120,5 +140,30 @@ form.flow-post {
 			line-height: inherit;
 			font-size: inherit;
 		}
+
+		&.flow-post-highlight-newer > .flow-post-main .flow-post-content {
+			.minimalPostHighlight( 1.3em );
+		}
+		.flow-post.flow-post-highlight-newer > .flow-post-main .flow-post-content {
+			.minimalPostHighlight( 1.1em );
+		}
+		.flow-post .flow-post.flow-post-highlight-newer > .flow-post-main .flow-post-content {
+			.minimalPostHighlight( 1.1em );
+		}
+	}
+}
+
+// What to do? vector changes this width on us from screen-hd.less with:
+//
+// @media screen and (min-width: 982px)
+// div#content {
+//   margin-left: 11em;
+//   padding: 1.25em 1.5em 1.5em 1.5em;
+// }
+//
+// The standard padding for narrower screens is 1em all around.
+@media all and (min-width: 982px) {
+	.flow-post.flow-post-highlight-newer > .flow-post-main .flow-post-content {
+		.minimalPostHighlight( 1.8em );
 	}
 }

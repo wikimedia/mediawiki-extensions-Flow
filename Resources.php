@@ -318,6 +318,11 @@ $wgResourceModules += array(
 			'flow-error-fetch-after-open-close',
 		)
 	) + $mobile,
+	'ext.flow.echo' => $flowResourceTemplate + array(
+		'scripts' => array(
+			'new/echo.js',
+		),
+	),
 	'ext.flow.vendor.storer' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'new/vendor/Storer.js',
