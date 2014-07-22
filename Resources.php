@@ -284,12 +284,12 @@ $wgResourceModules += array(
 		'dependencies' => array(
 			'ext.mantle.handlebars',
 		),
-	),
+	) + $mobile,
 	'ext.flow.new.history' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'new/flow-history.js',
 		),
-	),
+	) + $mobile,
 	'ext.flow.new' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'new/mw-ui.enhance.js',
@@ -313,23 +313,23 @@ $wgResourceModules += array(
 		'messages' => array(
 			'flow-error-http',
 		)
-	),
+	) + $mobile,
 	'ext.flow.vendor.storer' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'new/vendor/Storer.js',
 		),
-	),
+	) + $mobile,
 	'ext.flow.vendor.jquery.ba-throttle-debounce' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'new/vendor/jquery.ba-throttle-debounce.js',
 		),
-	),
+	) + $mobile,
 );
 
-$wgHooks['ResourceLoaderRegisterModules'][] = function( $resourceLoader ) use ( $flowResourceTemplate ) {
+$wgHooks['ResourceLoaderRegisterModules'][] = function( $resourceLoader ) use ( $flowResourceTemplate, $mobile ) {
 	if ( $resourceLoader->getModule( 'jquery.conditionalScroll' ) === null ) {
 		$resourceLoader->register( 'jquery.conditionalScroll', $flowResourceTemplate + array(
 			'scripts' => 'jquery.conditionalScroll.js',
-		) );
+		)  + $mobile );
 	}
 };
