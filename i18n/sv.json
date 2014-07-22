@@ -86,7 +86,7 @@
 	"flow-topic-action-unsuppress-topic": "Avcensurera ämne",
 	"flow-topic-action-restore-topic": "Återställ ämne",
 	"flow-topic-notification-subscribe-title": "Detta ämne har lagts till på din bevakningslista!",
-	"flow-topic-notification-subscribe-description": "Du kommer få meddelande om alla aktiviteter på detta ämne.",
+	"flow-topic-notification-subscribe-description": "Du kommer få meddelande om alla aktiviteter rörande detta ämne.",
 	"flow-error-http": "Ett fel uppstod när servern kontaktades.",
 	"flow-error-other": "Ett oväntat fel uppstod.",
 	"flow-error-external": "Ett fel uppstod.<br />Felmeddelandet var: $1",
