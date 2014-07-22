@@ -304,6 +304,7 @@ $wgResourceModules += array(
 			'jquery.json',
 			'jquery.conditionalScroll',
 			'mediawiki.api',
+			'mediawiki.Uri',
 			'mediawiki.Title',
 			'mediawiki.user',
 			'mediawiki.util',

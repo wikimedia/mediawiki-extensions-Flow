@@ -36,6 +36,7 @@ class NotificationFormatter extends EchoBasicFormatter {
 			}
 		} elseif ( $param === 'topic-permalink' ) {
 			$anchor = $this->getUrlGenerator()->workflowLink( $event->getTitle(), $extra['topic-workflow'] );
+			$anchor->query['fromnotif'] = 1;
 			$message->params( $anchor->getFullUrl() );
 		} elseif ( $param == 'flow-title' ) {
 			$title = $event->getTitle();
@@ -84,6 +85,9 @@ class NotificationFormatter extends EchoBasicFormatter {
 				}
 			}
 		}
+
+		$anchor->query['fromnotif'] = 1;
+
 		return $anchor;
 	}
 
@@ -130,6 +134,7 @@ class NotificationFormatter extends EchoBasicFormatter {
 		}
 
 		if ( $anchor ) {
+			$anchor->query['fromnotif'] = 1;
 			return array( $anchor->title, $anchor->query );
 		} else {
 			return array( null, array() );
