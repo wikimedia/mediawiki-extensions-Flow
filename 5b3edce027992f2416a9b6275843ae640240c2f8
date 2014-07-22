@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_a740b80a",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 2020,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-07-22T11:11:27Z",
+      "side": 1,
+      "message": "Wouldn\u0027t this just keep loading topics if the combined height of all the topics is less than 1000px, on every single scroll?",
+      "revId": "5b3edce027992f2416a9b6275843ae640240c2f8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_274cc842",
+        "filename": "modules/new/styles/js.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-07-22T11:11:27Z",
+      "side": 1,
+      "message": "Might not work quite as intended without overflow: hidden; in older browsers.",
+      "revId": "5b3edce027992f2416a9b6275843ae640240c2f8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
