@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_e7dec043",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 1770,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-07-22T11:20:31Z",
+      "side": 1,
+      "message": "I really don\u0027t like the way this is done, but given that it\u0027s already there, it\u0027s fine. Should be fixed in the future though.",
+      "revId": "6017ed7bc00b1c47d4ce6c5406575d8e12394a75",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_671bf020",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 1780,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-07-22T11:20:31Z",
+      "side": 1,
+      "message": "Can you make this FlowBoardComponent.UI.findUpward( $node, \u0027.flow-error-container\u0027 ) and then $( .get(0) ) or .filter( \u0027:first\u0027 ) ? They\u0027re a lot faster. Same applies above.",
+      "revId": "6017ed7bc00b1c47d4ce6c5406575d8e12394a75",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_072b0c30",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 1792,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-07-22T11:20:31Z",
+      "side": 1,
+      "message": "Doesn\u0027t need to be in FlowBoardComponent.UI, since it\u0027s just a helper FOR a UI method.",
+      "revId": "6017ed7bc00b1c47d4ce6c5406575d8e12394a75",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
