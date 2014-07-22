@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_9b9cf4b9",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 1921,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-22T22:51:44Z",
+      "side": 1,
+      "message": "This code makes me super uncomfortable.\nYou are adding this code on the basis to reuse from core, but then you add code to change cores behaviour. I think we are better off reusing the code used elsewhere in the Flow board for this purpose.\n\nwe need a skin api!!",
+      "revId": "705dca22e407ced098ab765cca8206a242b159f7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_1b89247a",
+        "filename": "tests/browser/features/support/env.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-22T22:51:44Z",
+      "side": 1,
+      "message": "No....",
+      "revId": "705dca22e407ced098ab765cca8206a242b159f7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
