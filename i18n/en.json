@@ -137,6 +137,7 @@
     "flow-error-no-index": "Failed to find an index to perform data search.",
     "flow-error-no-render": "The specified action was not recognized.",
     "flow-error-no-commit": "The specified action could not be saved.",
+    "flow-error-fetch-after-open-close": "An error was encountered when requesting the new data. The open/close operation succeeded just fine, though. The error message was: $1",
     "flow-edit-header-placeholder": "Describe this Flow board",
     "flow-edit-header-submit": "Save header",
     "flow-edit-header-submit-overwrite": "Overwrite header",
