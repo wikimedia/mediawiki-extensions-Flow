@@ -61,7 +61,7 @@ $wgResourceModules += array(
 			"flow_load_more.handlebars",
 			"flow_no_more.handlebars",
 			"flow_tooltip.handlebars",
-			"flow_tooltip_topic_subscription.handlebars",
+			"flow_tooltip_subscribed.handlebars",
 			"flow_topic.handlebars",
 			"flow_topic_titlebar.handlebars",
 			"flow_topic_titlebar_close.handlebars",
@@ -159,6 +159,8 @@ $wgResourceModules += array(
 			// Tooltip
 			'flow-topic-notification-subscribe-title',
 			'flow-topic-notification-subscribe-description',
+			'flow-board-notification-subscribe-title',
+			'flow-board-notification-subscribe-description',
 			// Moderation
 			'flow-moderation-title-unhide-post',
 			'flow-moderation-title-undelete-post',

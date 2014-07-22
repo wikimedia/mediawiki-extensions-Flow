@@ -832,18 +832,7 @@
 			if ( info.status === 'done' && data && data.watch && data.watch[0] ) {
 				if ( data.watch[0].watched !== undefined ) {
 					// Successful watch: show tooltip
-					mw.tooltip.show(
-						$tooltipTarget,
-						$( flowBoard.TemplateEngine.processTemplateGetFragment( 'flow_tooltip_topic_subscription', { unsubscribe: false } ) ).children(),
-						{
-							tooltipPointing: 'left'
-						}
-					);
-
-					// Hide after 5s
-					setTimeout( function () {
-						mw.tooltip.hide( $tooltipTarget );
-					}, 5000 );
+					flowBoard.UI.showSubscribedTooltip( $tooltipTarget, 'topic' );
 
 					unwatchUrl = url.replace( 'watch', 'unwatch' );
 					watchUrl = url;
@@ -1927,6 +1916,20 @@
 					$.throttle( 50, FlowBoardComponent.UI.events.onWindowScroll )
 				)
 				.trigger( 'scroll.flow' );
+
+			// Bind to the core watch link
+			mw.hook( 'wikipage.watch.complete' ).add( function( $watchLink, doneAction, suppressNotify ) {
+				var pageNamespace = mw.config.get( 'wgNamespaceNumber' ),
+					topicNamespace = mw.config.get( 'wgNamespaceIds' ).topic,
+					watchedPageType = (pageNamespace === topicNamespace) ? 'topic' : 'board';
+
+					if ( doneAction !== 'watch' ) {
+						return;
+					}
+
+					FlowBoardComponent.UI.showSubscribedTooltip( $watchLink, watchedPageType, 'up' );
+					suppressNotify();
+			} );
 		};
 
 		/**
@@ -2088,6 +2091,39 @@
 			if ( isFullView === isInverted ) {
 				$topic.toggleClass( 'flow-topic-collapsed-invert' );
 			}
+		};
+
+		/**
+		 * Shows a tooltip telling the user that they have subscribed
+		 * to this topic|board
+		 * @param  {jQuery} $tooltipTarget Element to attach tooltip to.
+		 * @param  {string} type           'topic' or 'board'
+		 * @param  {string} dir            Direction to point the pointer. 'left' or 'up'
+		 */
+		FlowBoardComponent.UI.showSubscribedTooltip = function( $tooltipTarget, type, dir ) {
+			dir = dir || 'left';
+
+			mw.tooltip.show(
+				$tooltipTarget,
+				// tooltipTarget will not always be part of a FlowBoardComponent
+				$( mw.flow.TemplateEngine.processTemplateGetFragment(
+						'flow_tooltip_subscribed',
+						{
+							unsubscribe: false,
+							type: type,
+							direction: dir
+						}
+					)
+				).children(),
+				{
+					tooltipPointing: dir
+				}
+			);
+
+			// Hide after 5s
+			setTimeout( function () {
+				mw.tooltip.hide( $tooltipTarget );
+			}, 5000 );
 		};
 
 
