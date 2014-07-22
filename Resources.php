@@ -321,6 +321,11 @@ $wgResourceModules += array(
 			'mw-ui-unsubmitted-confirm',
 		)
 	) + $mobile,
+	'ext.flow.echo' => $flowResourceTemplate + array(
+		'scripts' => array(
+			'new/echo.js',
+		),
+	),
 	'ext.flow.vendor.storer' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'new/vendor/Storer.js',
