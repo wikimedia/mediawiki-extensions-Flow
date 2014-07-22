@@ -17,7 +17,7 @@ class ReferenceClarifier {
 		$this->referenceCache = array();
 	}
 
-	public function getWhatLinksHereProps( $row, $from, $to ) {
+	public function getWhatLinksHereProps( $row, Title $from, Title $to ) {
 		$props = array();
 		$references = $this->getWikiReferences( $from, $to );
 
