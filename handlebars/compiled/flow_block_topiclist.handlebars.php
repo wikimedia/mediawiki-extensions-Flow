@@ -57,7 +57,7 @@
 		<div class="flow-menu flow-menu-inverted">
 			<div class="flow-menu-js-drop"><a href="javascript:void(0);" class="flow-board-filter-menu-activator"></a></div>
 			'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['board-sort'])) ? $in['links']['board-sort'] : null))) ? '
-				<ul class="mw-ui-button mw-ui-button-container">
+				<ul class="mw-ui-button mw-ui-button-container flow-list">
 					<li><a href="'.htmlentities(((is_array($in['links']['board-sort']) && isset($in['links']['board-sort']['updated'])) ? $in['links']['board-sort']['updated'] : null), ENT_QUOTES, 'UTF-8').'"'.LCRun3::hbch($cx, 'ifEquals', Array(Array(((is_array($in) && isset($in['sortby'])) ? $in['sortby'] : null),'updated'),Array()), $in, function($cx, $in) {return 'class="flow-board-navigator-link-highlight"';}).'
 					       data-flow-interactive-handler="apiRequest"
 					       data-flow-api-target="< .flow-component"
@@ -74,7 +74,7 @@
 
 
 <div class="flow-board">
-	<ul class="flow-topic-navigation" style="display:none;">
+	<ul class="flow-topic-navigation flow-list" style="display:none;">
 	'.''.'
 </ul>
 
@@ -194,7 +194,7 @@
 		' : '').'
 		<div class="flow-menu">
 			<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
-			<ul class="mw-ui-button-container">
+			<ul class="mw-ui-button-container flow-list">
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['edit'])) ? $in['actions']['edit'] : null))) ? '
 					<li>
 						<a class="mw-ui-button mw-ui-quiet"

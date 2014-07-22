@@ -99,7 +99,7 @@
 		' : '').'
 		<div class="flow-menu">
 			<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
-			<ul class="mw-ui-button-container">
+			<ul class="mw-ui-button-container flow-list">
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['edit'])) ? $in['actions']['edit'] : null))) ? '
 					<li>
 						<a class="mw-ui-button mw-ui-quiet"
