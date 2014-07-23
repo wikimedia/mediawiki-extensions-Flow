@@ -868,7 +868,7 @@ class TemplateHelper {
 		return (
 			self::processTemplate( 'flow_tooltip', array(
 				'positionClass' => $params['positionClass'] ? 'flow-ui-tooltip-' . $params['positionClass'] : null,
-				'contextClass' => $params['contextClass'] ? 'mw-ui-' . $params['contextClass'] : null,
+				'contextClass' => $params['contextClass'] ? 'flow-ui-' . $params['contextClass'] : null,
 				'extraClass' => $params['extraClass'] ?: '',
 				'blockClass' => $params['isBlock'] ? 'flow-ui-tooltip-block' : null,
 				'content' => $fn(),

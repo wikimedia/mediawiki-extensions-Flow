@@ -218,11 +218,11 @@
 
 			// Try to inherit tooltipContext from the target's classes
 			if ( !optionsUnreferenced.tooltipContext ) {
-				if ( $target.hasClass( 'mw-ui-progressive' ) ) {
+				if ( $target.hasClass( 'flow-ui-progressive' ) ) {
 					optionsUnreferenced.tooltipContext = 'progressive';
-				} else if ( $target.hasClass( 'mw-ui-constructive' ) ) {
+				} else if ( $target.hasClass( 'flow-ui-constructive' ) ) {
 					optionsUnreferenced.tooltipContext = 'constructive';
-				} else if ( $target.hasClass( 'mw-ui-destructive' ) ) {
+				} else if ( $target.hasClass( 'flow-ui-destructive' ) ) {
 					optionsUnreferenced.tooltipContext = 'destructive';
 				}
 			}
@@ -242,8 +242,8 @@
 
 			// Tooltip style context
 			if ( optionsUnreferenced.tooltipContext ) {
-				$tooltip.removeClass( 'mw-ui-progressive mw-ui-constructive mw-ui-destructive' );
-				$tooltip.addClass( 'mw-ui-' + optionsUnreferenced.tooltipContext );
+				$tooltip.removeClass( 'flow-ui-progressive flow-ui-constructive flow-ui-destructive' );
+				$tooltip.addClass( 'flow-ui-' + optionsUnreferenced.tooltipContext );
 			}
 
 			// Tooltip size (small, large)
