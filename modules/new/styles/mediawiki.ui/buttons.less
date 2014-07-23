@@ -1,0 +1,41 @@
+@import 'flow.colors';
+
+// Helpers
+.helper-flow-ui-anchor-quiet( @mainColor ) {
+	color: @colorTextLight;
+	text-decoration: none;
+
+	a&:hover {
+		color: @mainColor;
+	}
+	a&:focus, a&:active {
+		color: darken( @mainColor, @colorDarkenPercentage );
+	}
+}
+
+// Styles
+
+// Quiet Constructive and active
+//
+// The mw-ui-constructive-quiet or mw-ui-constructive-active classes are supported in IE 7 and above
+// They can be added to any anchor elements.
+// Quiet elements will only reveal themselves as constructive during a hover or active state.
+// Active elements will always reveal themselves as constructive.
+// Currently in draft status and subject to change.
+//
+// Markup:
+// <a href='#' class="mw-ui-constructive-quiet">quiet constructive</div>
+// <a href='#'class="mw-ui-constructive-active">active constructive</div>
+//
+// Styleguide ?.?.
+.mw-ui-constructive-quiet {
+	&[class] {
+		.helper-flow-ui-anchor-quiet( @colorConstructive );
+	}
+}
+.mw-ui-constructive-active {
+	// Omit IE6 from all other rules
+	&[class] {
+		color: @colorConstructive;
+	}
+}

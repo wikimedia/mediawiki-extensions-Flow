@@ -209,7 +209,7 @@ class FlowPage
   end
 
   a(:first_topic_unwatch_link) do |page|
-    page.first_topic_watchlist_container_element.link_element( class: 'flow-ui-active' )
+    page.first_topic_watchlist_container_element.link_element( class: 'mw-ui-constructive-active' )
   end
 
   a(:first_topic_watchlist_loading_link) do |page|
