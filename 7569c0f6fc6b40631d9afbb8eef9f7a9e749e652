@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_55dad051",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 1374,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-23T20:13:50Z",
+      "side": 1,
+      "message": "I\u0027d recommend using $.each instead of /for key in / / hasOwnProperty\nhttp://jsperf.com/jquery-each-vs-for-in-with-hasownproperty\n\nWill submit a follow up.",
+      "revId": "7569c0f6fc6b40631d9afbb8eef9f7a9e749e652",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
