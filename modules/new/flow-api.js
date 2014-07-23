@@ -136,8 +136,6 @@ window.mw = window.mw || {}; // mw-less testing
 		return queryMap;
 	}
 
-	FlowAPI.prototype.flowTransformMap = flowApiTransformMap;
-
 	/**
 	 * Sets the fixed defaultSubmodule for this API instance.
 	 * @param {String} defaultSubmodule
@@ -149,13 +147,39 @@ window.mw = window.mw || {}; // mw-less testing
 	FlowAPI.prototype.setDefaultSubmodule = flowApiSetDefaultSubmodule;
 
 	/**
-	 * With a url (a://b.c/d?e=f&g#h) will return an object of key-value pairs ({e:'f', g:''}).
-	 * @param {String|Element} url
+	 * Overrides (values of) queryMap with a provided override, which can come
+	 * in the form of an object (which the queryMap will be extended with) or as
+	 * a function (whose return value will replace queryMap)
+	 *
 	 * @param {Object} [queryMap]
 	 * @param {Function|Object} [override]
 	 * @returns {Object}
 	 */
-	function flowApiGetQueryMap( url, queryMap, override ) {
+	function flowOverrideQueryMap( queryMap, override ) {
+		if ( override ) {
+			switch ( typeof override ) {
+				// If given an override object, extend our queryMap with it
+				case 'object':
+					$.extend( queryMap, override );
+					break;
+				// If given an override function, call it and make it return the new queryMap
+				case 'function':
+					queryMap = override( queryMap );
+					break;
+			}
+		}
+
+		return queryMap;
+	}
+
+	/**
+	 * With a url (a://b.c/d?e=f&g#h) will return an object of key-value pairs ({e:'f', g:''}).
+	 * @param {String|Element} url
+	 * @param {Object} [queryMap]
+	 * @param {Array<(Function|Object)>} [overrides]
+	 * @returns {Object}
+	 */
+	function flowApiGetQueryMap( url, queryMap, overrides ) {
 		var query,
 			queries, i = 0, split,
 			$node, $form, formData;
@@ -179,7 +203,7 @@ window.mw = window.mw || {}; // mw-less testing
 
 				// Build the queryMap manually from a serialized form
 				for ( i = 0; i < formData.length; i++ ) {
-					// skip wpEditToken, its handle independantly
+					// skip wpEditToken, its handle independently
 					if ( formData[ i ].name !== 'wpEditToken' ) {
 						queryMap[ formData[ i ].name ] = formData[ i ].value;
 					}
@@ -228,22 +252,13 @@ window.mw = window.mw || {}; // mw-less testing
 		// Default action is flow
 		queryMap.action = queryMap.action || 'flow';
 
+		// Override the automatically generated queryMap
+		for ( i in overrides ) {
+			queryMap = flowOverrideQueryMap( queryMap, overrides[i] );
+		}
+
 		// Use the API map to transform this data if necessary, eg.
 		queryMap = flowApiTransformMap( queryMap );
-
-		// Use override, if any
-		if ( override ) {
-			switch ( typeof override ) {
-				// If given an override object, extend our queryMap with it
-				case 'object':
-					$.extend( queryMap, override );
-					break;
-				// If given an override function, call it and make it return the new queryMap
-				case 'function':
-					queryMap = override( queryMap );
-					break;
-			}
-		}
 
 		return queryMap;
 	}
@@ -255,17 +270,17 @@ window.mw = window.mw || {}; // mw-less testing
 	 * With button, its name=value is serialized in. If button is an Event, it will attempt to find the clicked button.
 	 * Additional params can be set with data-flow-api-params on both the clicked button or the form.
 	 * @param {Event|Element} [button]
-	 * @param {Object|Function} [override]
+	 * @param {Array<(Function|Object)>} [overrides]
 	 * @return {$.Deferred}
 	 */
-	function flowApiRequestFromForm( button, override ) {
+	function flowApiRequestFromForm( button, overrides ) {
 		var $deferred = $.Deferred(),
 			$button = $( button ),
 			method = $button.closest( 'form' ).attr( 'method' ) || 'GET',
 			queryMap;
 
 		// Parse the form action to get the rest of the queryMap
-		if ( !( queryMap = this.getQueryMap( button, null, override ) ) ) {
+		if ( !( queryMap = this.getQueryMap( button, null, overrides ) ) ) {
 			return $deferred.rejectWith( { error: 'Invalid form action' } );
 		}
 
@@ -283,17 +298,17 @@ window.mw = window.mw || {}; // mw-less testing
 	 * Using a given anchor, parses its URL and sends it as a GET (default) or POST depending on data-flow-api-method.
 	 * Additional params can be set with data-flow-api-params.
 	 * @param {Element} anchor
-	 * @param {Object|Function} [override]
+	 * @param {Array<(Function|Object)>} [overrides]
 	 * @return {$.Deferred}
 	 */
-	function flowApiRequestFromAnchor( anchor, override ) {
+	function flowApiRequestFromAnchor( anchor, overrides ) {
 		var $anchor = $( anchor ),
 			$deferred = $.Deferred(),
 			queryMap,
 			method = $anchor.data( 'flow-api-method' ) || 'GET';
 
 		// Build the query map from this anchor's HREF
-		if ( !( queryMap = this.getQueryMap( anchor.href, null, override ) ) ) {
+		if ( !( queryMap = this.getQueryMap( anchor.href, null, overrides ) ) ) {
 			mw.flow.debug( '[FlowAPI] requestFromAnchor error: invalid href', arguments );
 			return $deferred.rejectWith( { error: 'Invalid href' } );
 		}
@@ -307,10 +322,10 @@ window.mw = window.mw || {}; // mw-less testing
 	/**
 	 * Automatically calls requestFromAnchor or requestFromForm depending on the type of node given.
 	 * @param {Element} node
-	 * @param {Object|Function} [override]
+	 * @param {Array<(Function|Object)>} [overrides]
 	 * @return {$.Deferred|bool}
 	 */
-	function flowApiRequestFromNode( node, override ) {
+	function flowApiRequestFromNode( node, overrides ) {
 		var $node = $( node );
 
 		if ( $node.is( 'a' ) ) {
@@ -330,15 +345,15 @@ window.mw = window.mw || {}; // mw-less testing
 	 * @param {jQuery|Element} $node
 	 * @param {Object} [queryMap]
 	 * @param {String} [startNewMethod] If given: starts, stores, and returns a new API call
-	 * @param {Object|Function} [override]
+	 * @param {Array<(Function|Object)>} [overrides]
 	 * @return {undefined|$.Deferred}
 	 */
-	function flowApiAbortOldRequestFromNode( $node, queryMap, startNewMethod, override ) {
+	function flowApiAbortOldRequestFromNode( $node, queryMap, startNewMethod, overrides ) {
 		$node = $( $node );
 
 		if ( !queryMap ) {
 			// Get the queryMap automatically if one wasn't given
-			if ( !( queryMap = this.getQueryMap( $node, null, override ) ) ) {
+			if ( !( queryMap = this.getQueryMap( $node, null, overrides ) ) ) {
 				mw.flow.debug( '[FlowAPI] abortOldRequestFromNode failed to find a queryMap', arguments );
 				return;
 			}
