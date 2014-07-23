@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_cc64fd13",
+        "filename": "modules/new/flow-api.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-23T16:48:21Z",
+      "side": 1,
+      "message": "overrides is marked as an Array, you only want to use this type of iteration on objects.  For array you want:\n\n  for ( i \u003d 0; i \u003c x.length; i++ ) { ... }",
+      "revId": "10fe27f6c6bf0d13ec818c1ea06f6da0f11d5666",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
