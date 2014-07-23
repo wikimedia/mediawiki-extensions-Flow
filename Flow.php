@@ -44,7 +44,6 @@ $wgExtensionCredits['other'][] = array(
 define( 'RC_FLOW', 142 ); // soon to be obsolete, random number chosen
 define( 'NS_TOPIC', 2600 );
 
-$wgExtraNamespaces[NS_TOPIC] = "Topic";
 $wgNamespacesWithSubpages[NS_TOPIC] = false;
 $wgNamespaceContentModels[NS_TOPIC] = 'flow-board';
 
@@ -324,6 +323,7 @@ $wgHooks['ArticleAfterFetchContentObject'][] = 'Flow\Content\Content::onFetchCon
 $wgHooks['MessageCache::get'][] = 'FlowHooks::onMessageCacheGet';
 $wgHooks['WatchArticle'][] = 'FlowHooks::onWatchArticle';
 $wgHooks['UnwatchArticle'][] = 'FlowHooks::onWatchArticle';
+$wgHooks['CanonicalNamespaces'][] = 'FlowHooks::onCanonicalNamespaces';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';

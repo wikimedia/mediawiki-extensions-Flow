@@ -768,4 +768,12 @@ class FlowHooks {
 		return true;
 	}
 
+	/**
+	 * Adds the topic namespace.
+	 */
+	public static function onCanonicalNamespaces( &$list ) {
+		$list[NS_TOPIC] = 'Topic';
+		return true;
+	}
+
 }
