@@ -180,6 +180,16 @@
 			return mw.flow.editor.editors[$node.data( 'flow-editor' )];
 		},
 
+		/**
+		 * Returns true if the given $node has an associated editor instance.
+		 *
+		 * @param {jQuery} $node
+		 * @return {bool}
+		 */
+		exists: function ( $node ) {
+			return mw.flow.editor.editors.hasOwnProperty( $node.data( 'flow-editor' ) );
+		},
+
 		focus: function( $node ) {
 			var editor = mw.flow.editor.getEditor( $node );
 

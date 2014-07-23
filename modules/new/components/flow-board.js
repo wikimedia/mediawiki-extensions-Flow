@@ -113,6 +113,9 @@
 		// Bind the global event handlers (only happens once per page load, on window/body)
 		FlowBoardComponent.UI.bindGlobalHandlers();
 
+		// Initialize editors, turning them from textareas into editor objects
+		FlowBoardComponent.UI.initializeEditors( $container );
+
 		// Restore the last state
 		this.HistoryEngine.restoreLastState();
 
@@ -199,6 +202,39 @@
 				vppostId: $( this ).closest( '.flow-post' ).data( 'flow-id' ),
 				vpcontentFormat: "wikitext"
 			};
+		};
+
+		/**
+		 * Textareas are turned into editor objects, so we can't rely on
+		 * textareas to properly return the real content we're looking for (the
+		 * real editor can be anything, depending on the type of editor)
+		 *
+		 * @param {Event} event
+		 * @return {Object}
+		 */
+		FlowBoardComponent.UI.events.globalApiPreHandlers.prepareEditor = function ( event ) {
+			var $textareas = $( this ).closest( 'form' ).find( 'textarea' ),
+				override = {};
+
+			$textareas.each( function() {
+				var $editor = $( this );
+
+				// Doublecheck that this textarea is actually an editor instance
+				// (the editor may have added a textarea itself...)
+				if ( mw.flow.editor.exists( $editor ) ) {
+					override[$editor.attr( 'name' )] = mw.flow.editor.getContent( $editor );
+				}
+
+				// @todo: we have to make sure we get rid of all unwanted data
+				// in the form (whatever "editor instance" may have added)
+				// because we'll $form.serializeArray() to get the content.
+				// This is currently not an issue since we only have "none"
+				// editor type, which just uses the existing textarea. Someday,
+				// however, we may have VE (or wikieditor or ...) which could
+				// add its own nodes, which may be picked up by serializeArray()
+			} );
+
+			return override;
 		};
 
 		/**
@@ -1715,9 +1751,16 @@
 			// Store state
 			$form.data( 'flow-state', 'hidden' );
 
-			// Compress all textareas to inputs if needed
 			$form.find( 'textarea' ).each( function () {
-				FlowBoardComponent.UI.Forms.compressTextarea( $( this ) );
+				var $editor = $( this );
+
+				// Kill editor instances
+				if ( mw.flow.editor.exists( $editor ) ) {
+					mw.flow.editor.destroy( $editor );
+				}
+
+				// Compress all textareas to inputs if needed
+				FlowBoardComponent.UI.Forms.compressTextarea( $editor );
 			} );
 
 			if ( initialState === 'collapsed' ) {
@@ -1753,6 +1796,9 @@
 			$form.find( 'input' ).each( function () {
 				FlowBoardComponent.UI.Forms.expandInput( $( this ) );
 			} );
+
+			// Initialize editors, turning them from textareas into editor objects
+			FlowBoardComponent.UI.initializeEditors( $form );
 
 			// Store state
 			$form.data( 'flow-state', 'visible' );
@@ -1922,6 +1968,31 @@
 					$.throttle( 50, FlowBoardComponent.UI.events.onWindowScroll )
 				)
 				.trigger( 'scroll.flow' );
+		};
+
+		/**
+		 * Initialize all editors, turning them from textareas into editor objects.
+		 *
+		 * @param jQuery $container
+		 */
+		FlowBoardComponent.UI.initializeEditors = function ( $container ) {
+			var $editors = $container.find( 'textarea' );
+
+			$editors.each( function() {
+				var $editor = $( this );
+
+				// All editors already have their content in wikitext-format
+				// (mostly because we need to prefill them server-side so that
+				// JS-less users can interact)
+				mw.flow.editor.load( $editor, $editor.val(), 'wikitext' );
+
+				// Kill editor instance when the form it's in is cancelled
+				flowBoardComponentAddCancelCallback( $editor.closest( 'form' ), function() {
+					if ( mw.flow.editor.exists( $editor ) ) {
+						mw.flow.editor.destroy( $editor );
+					}
+				} );
+			} );
 		};
 
 		/**
