@@ -3,7 +3,7 @@ Given(/^I am on Flow page$/) do
 end
 
 Given(/^The Flow page is fully loaded$/ ) do
-  on(FlowPage).wait_until do
+  on(FlowPage).wait_until do |page|
     page.new_topic_body_element.visible? != true
   end
 end
