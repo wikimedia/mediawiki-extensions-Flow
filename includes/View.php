@@ -45,6 +45,7 @@ class View extends ContextSource {
 		$styles = array(
 			'mediawiki.ui',
 			'mediawiki.ui.button',
+			'ext.flow.mediawiki.ui.activeQuiet',
 			'ext.flow.styles',
 			'ext.flow.mediawiki.ui.tooltips',
 			'ext.flow.mediawiki.ui.form',
