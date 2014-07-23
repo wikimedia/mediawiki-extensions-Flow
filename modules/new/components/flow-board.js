@@ -1964,7 +1964,7 @@
 			$board
 				.off( '.FlowBoardComponent' )
 				.on(
-					'focus.FlowBoardComponent',
+					'click.FlowBoardComponent focus.FlowBoardComponent',
 					'input.mw-ui-input, textarea',
 					FlowBoardComponent.UI.events.onFocusField
 				);
