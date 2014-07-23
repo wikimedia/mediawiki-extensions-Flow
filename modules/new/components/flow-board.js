@@ -208,28 +208,25 @@
 		 * @return {Object}
 		 */
 		FlowBoardComponent.UI.events.apiPreHandlers.prepareEditConflict = function ( event ) {
-			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
-				$form = $( this ).closest( 'form' ),
-				queryMap = flowBoard.API.getQueryMap( $form ),
-				prevRevisionId = $form.data( 'flow-prev-revision' ),
-				preTransform = {
-					submodule: queryMap.submodule,
-					flow_prev_revision: prevRevisionId
-				};
+			var $form = $( this ).closest( 'form' ),
+				prevRevisionId = $form.data( 'flow-prev-revision' );
+
+			if ( !prevRevisionId ) {
+				return {};
+			}
 
 			// Get rid of the temp-saved new revision ID
 			$form.removeData( 'flow-prev-revision' );
 
 			/*
-			 * preTransform contains the prev_revision in "generic" form. Each
-			 * Flow API has its own unique prefix, though, so we'll transform
-			 * prev_revision parameter into something like epprev_revision (for
-			 * edit post) and merge it with the original query map.
+			 * This is prev_revision in "generic" form. Each Flow API has its
+			 * own unique prefix, which (in FlowAPI.prototype.getQueryMap) will
+			 * be properly applied for the respective API call; e.g.
+			 * epprev_revision (for edit post)
 			 */
-			return $.extend(
-				queryMap,
-				flowBoard.API.flowTransformMap( preTransform )
-			);
+			return {
+				flow_prev_revision: prevRevisionId
+			};
 		};
 
 		/**
@@ -1339,6 +1336,7 @@
 				handlerName = dataParams.flowApiHandler,
 				$target,
 				preHandlerReturn,
+				preHandlerReturns = [],
 				info = {
 					$target: null,
 					status: null
@@ -1369,6 +1367,9 @@
 			$target.addClass( 'flow-api-inprogress' );
 			$this.addClass( 'flow-api-inprogress' );
 
+			// Let generic pre-handler take care of edit conflicts
+			preHandlerReturns.push( FlowBoardComponent.UI.events.apiPreHandlers.prepareEditConflict.apply( _this, arguments ) );
+
 			// Use the pre-callback to find out if we should process this
 			if ( FlowBoardComponent.UI.events.apiPreHandlers[ handlerName ] ) {
 				// apiPreHandlers can return FALSE to prevent processing,
@@ -1376,13 +1377,14 @@
 				// or OBJECT to add param overrides to the API
 				// or FUNCTION to modify API params
 				preHandlerReturn = FlowBoardComponent.UI.events.apiPreHandlers[ handlerName ].apply( _this, args );
+				preHandlerReturns.push( preHandlerReturn );
 
 				if ( preHandlerReturn === false || preHandlerReturn._abort === true ) {
 					// Callback returned false
 					flowBoard.debug( 'apiPreHandler returned false', handlerName, args );
 
 					// Abort any old request in flight; this is normally done automatically by requestFromNode
-					flowBoard.API.abortOldRequestFromNode( this, null, null, preHandlerReturn );
+					flowBoard.API.abortOldRequestFromNode( this, null, null, preHandlerReturns );
 
 					// @todo support for multiple indicators on same target
 					$target.removeClass( 'flow-api-inprogress' );
@@ -1390,13 +1392,10 @@
 
 					return;
 				}
-			} else if ( $this.closest( 'form' ).data( 'flow-prev-revision' ) ) {
-				// Let a generic pre-handler take care of edit conflicts
-				preHandlerReturn = FlowBoardComponent.UI.events.apiPreHandlers.prepareEditConflict.apply( _this, arguments );
 			}
 
 			// Make the request
-			$deferred = flowBoard.API.requestFromNode( this, preHandlerReturn );
+			$deferred = flowBoard.API.requestFromNode( this, preHandlerReturns );
 			if ( !$deferred ) {
 				mw.flow.debug( '[FlowAPI] [interactiveHandlers] apiRequest element is not anchor or form element' );
 				$deferred = $.Deferred();
