@@ -204,6 +204,12 @@ $wgResourceModules += array(
 			'new/styles/mediawiki.ui/buttons.less',
 		),
 	),
+	// @todo: upstream to mediawiki.ui
+	'ext.flow.mediawiki.ui.buttons.active' => $flowResourceTemplate + array(
+		'styles' => array(
+			'new/styles/mediawiki.ui/button-active.less',
+		),
+	),
 	// @todo: upstream to mediawiki ui
 	'ext.flow.mediawiki.ui.form' => $flowResourceTemplate + array(
 		'styles' => array(
