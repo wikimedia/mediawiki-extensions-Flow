@@ -353,5 +353,6 @@
 	"flow-preview-warning": "Refers to {{msg-mw|Flow-preview-return-edit-post}} (Keep editing).",
 	"flow-preview-return-edit-post": "Used as text for a button that hides previewed text and returns to the editing view",
 	"flow-anonymous": "{{Identical|Anonymous}}",
-	"flow-embedding-unsupported": "Error message displayed if a user tries to transclude a Flow page."
+	"flow-embedding-unsupported": "Error message displayed if a user tries to transclude a Flow page.",
+	"mw-ui-unsubmitted-confirm": "You have unsubmitted changes on this page. Are you sure you want to navigate away and lose your work?"
 }
