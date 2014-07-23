@@ -5,12 +5,12 @@ Feature: Topic collapsing
     Given I am logged in
       And I am on Flow page
 
-      And I create a Non-Moderated Topic in Flow new topic
-      And I create a Initial post of Non-Moderated Topic into Flow body
+      And I type "Non-Moderated Topic" into the new topic title field
+      And I type "Initial post of Non-Moderated Topic" into the new topic content field
       And I click New topic save
 
-      And I create a Hidden Topic in Flow new topic
-      And I create a Initial post of Hidden Topic into Flow body
+      And I type "Hidden Topic" into the new topic title field
+      And I type "Initial post of Hidden Topic" into the new topic content field
       And I click New topic save
       And I click the Topic Actions link
       And I click the Hide topic button

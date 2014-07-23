@@ -1,5 +1,7 @@
 Given(/^I am on Flow page$/) do
   visit FlowPage
+  step "The Flow page is fully loaded"
+  step "page has no ResourceLoader errors"
 end
 
 Given(/^The Flow page is fully loaded$/ ) do
@@ -18,18 +20,13 @@ end
 
 # @todo: Rewrite to use more generic step below
 Given(/^I have created a Flow topic$/) do
-  step "I am on Flow page"
-  step "The Flow page is fully loaded"
-  step "I create a Title of Flow Topic in Flow new topic"
-  step "I create a Body of Flow Topic into Flow body"
-  step "I click New topic save"
-  step 'the top post should have a heading which contains "Title of Flow Topic"'
+  step "I have created a Flow topic with title \"Title of Flow topic\""
 end
 
 Given(/^I have created a Flow topic with title "(.+)"$/) do |title|
   step "I am on Flow page"
-  step "I create a " + title + " in Flow new topic"
-  step "I create a " + title + " body text into Flow body"
+  step "I type \"" + title + "\" into the new topic title field"
+  step "I type \"" + title + "\" into the new topic content field"
   step "I click New topic save"
   step 'the top post should have a heading which contains "' + title + '"'
 end
@@ -55,16 +52,17 @@ When(/^I click the Topic Actions link$/) do
   on(FlowPage).topic_actions_link_element.when_present.click
 end
 
-When(/^I create a (.+) in Flow new topic$/) do |flow_title|
+When(/^I type "(.+)" into the new topic title field$/) do |flow_title|
   @automated_test_marker = " browsertest edit"
   on(FlowPage) do |page|
     topic_string = flow_title + @random_string + @automated_test_marker
     page.new_topic_title_element.when_present.click
+    page.new_topic_title_element.when_present.focus
     page.new_topic_title_element.when_present.send_keys(topic_string)
   end
 end
 
-When(/^I create a (.+) into Flow body$/) do |flow_body|
+When(/^I type "(.+)" into the new topic content field$/) do |flow_body|
   body_string = flow_body + @random_string + @automated_test_marker
   on(FlowPage).new_topic_body_element.when_present.send_keys(body_string)
 end
