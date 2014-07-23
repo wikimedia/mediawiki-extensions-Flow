@@ -68,7 +68,7 @@
 		 * we want to ignore that last case (hence the collapsing)
 		 */
 		$( this ).height( 0 );
-		scrollHeight = this.scrollHeight;
+		scrollHeight = this.scrollHeight - padding;
 		$( this ).height( height );
 
 		/*

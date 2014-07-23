@@ -1,6 +1,7 @@
 ( function ( $, mw ) {
 	'use strict';
 
+	mw.flow = mw.flow || {}; // create mw.flow globally
 	mw.flow.editors = {};
 	mw.flow.editor = {
 		/**
@@ -11,7 +12,7 @@
 		editor: null,
 
 		/**
-		 * Array of ve target instances.
+		 * Array of target instances.
 		 *
 		 * The first entry is null to make sure that the reference saved to a data-
 		 * attribute is never index 0; a 0-value will make :data(flow-editor)
@@ -30,7 +31,7 @@
 			var editorList = mw.config.get( 'wgFlowEditorList' ),
 				editor;
 
-			if ( ! editorIndex ) {
+			if ( !editorIndex ) {
 				editorIndex = 0;
 			}
 
@@ -41,7 +42,7 @@
 			}
 
 			mw.loader.using( 'ext.flow.editors.' + editor, function () {
-				// Some editors only work sometimes
+				// Some editors only work under certain circumstances
 				if (
 					$.isFunction( mw.flow.editors[editor].isSupported ) &&
 					!mw.flow.editors[editor].isSupported()

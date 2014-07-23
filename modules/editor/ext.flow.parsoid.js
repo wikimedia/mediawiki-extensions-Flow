@@ -1,6 +1,7 @@
 ( function ( $, mw ) {
 	'use strict';
 
+	mw.flow = mw.flow || {}; // create mw.flow globally
 	mw.flow.parsoid = {
 		/**
 		 * @param {string} from Input format: html|wikitext
