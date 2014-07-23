@@ -130,6 +130,7 @@
 	"flow-error-no-index": "מציאת מפתח לביצוע חיפוש נתונים נכשלה.",
 	"flow-error-no-render": "הפעולה שצוינה אינה מוכרת.",
 	"flow-error-no-commit": "לא היה אפשר לשמור את הפעולה שצוינה.",
+	"flow-error-fetch-after-open-close": "אירעה שגיאה בעת בקשת נתונים חדשים. עם זאת, פעולת פתיחה/סגירה עבדה נכון. הודעת השגיאה היא: $1",
 	"flow-edit-header-placeholder": "נא לתאר את לוח הזרימה הזה",
 	"flow-edit-header-submit": "שמירת התיאור",
 	"flow-edit-header-submit-overwrite": "דריסת התיאור",

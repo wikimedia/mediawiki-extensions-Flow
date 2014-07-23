@@ -128,6 +128,7 @@
 	"flow-error-no-index": "Es konnte kein Index zum Ausführen der Datensuche gefunden werden.",
 	"flow-error-no-render": "Die angegebene Aktion wurde nicht erkannt.",
 	"flow-error-no-commit": "Die angegebene Aktion konnte nicht gespeichert werden.",
+	"flow-error-fetch-after-open-close": "Beim Anfordern der neuen Daten ist ein Fehler aufgetreten. Die Öffnen-/Schließen-Operation war jedoch erfolgreich. Die Fehlernachricht lautete: $1",
 	"flow-edit-header-placeholder": "Dieses Flow-Board beschreiben",
 	"flow-edit-header-submit": "Überschrift speichern",
 	"flow-edit-header-submit-overwrite": "Überschrift überschreiben",

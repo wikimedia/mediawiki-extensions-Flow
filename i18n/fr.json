@@ -142,6 +142,7 @@
 	"flow-error-no-index": "Impossible de trouver un index pour effectuer la recherche de données.",
 	"flow-error-no-render": "L’action spécifiée n’a pas été reconnue.",
 	"flow-error-no-commit": "L’action spécifiée n’a pas pu être enregistrée.",
+	"flow-error-fetch-after-open-close": "Une erreur s’est produite lors de la demande des nouvelles données. L’opération d’ouverture/fermeture s’est cependant bien exécutée. Le message d’erreur est : $1",
 	"flow-edit-header-placeholder": "Décrire ce tableau de flux",
 	"flow-edit-header-submit": "Enregistrer l’entête",
 	"flow-edit-header-submit-overwrite": "Écraser l’entête",

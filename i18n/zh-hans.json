@@ -140,6 +140,7 @@
 	"flow-error-no-index": "未能找到索引来执行数据搜索。",
 	"flow-error-no-render": "无法识别指定操作。",
 	"flow-error-no-commit": "无法保存指定操作。",
+	"flow-error-fetch-after-open-close": "请求新数据时遇到错误，尽管打开/关闭操作已成功。错误消息：$1",
 	"flow-edit-header-placeholder": "描述此Flow板块",
 	"flow-edit-header-submit": "保存页眉",
 	"flow-edit-header-submit-overwrite": "覆盖页眉",
