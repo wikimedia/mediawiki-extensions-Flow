@@ -8,7 +8,7 @@ Feature: Headers
 
   Scenario: No header on a new board
     Given I am on a new board
-    Then The header should say "This talk page currently has no header"
+    Then The header should say " "
 
   Scenario: Edit header on a new board
     Given I am on a new board

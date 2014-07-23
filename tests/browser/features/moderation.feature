@@ -1,5 +1,5 @@
 @chrome @firefox @internet_explorer_10 @login
-Feature: Headers
+Feature: Moderation
 
   Assumes Flow is enabled for the User_talk namespace.
 
@@ -8,7 +8,7 @@ Feature: Headers
         And I am on Flow page
 
   Scenario: Deleting a topic
-      And I create a Flow topic with title "Deletemeifyoudare"
+    Given I have created a Flow topic with title "Deletemeifyoudare"
     When I click the Topic Actions link
         And I click the Delete topic button
         And I see a dialog box
@@ -17,7 +17,7 @@ Feature: Headers
     Then the top post should be marked as deleted
 
   Scenario: Suppressing a topic
-      And I create a Flow topic with title "Suppressmeifyoudare"
+    Given I have created a Flow topic with title "Suppressmeifyoudare"
     When I click the Topic Actions link
         And I click the Suppress topic button
         And I see a dialog box
@@ -26,7 +26,7 @@ Feature: Headers
     Then the top post should be marked as suppressed
 
   Scenario: Cancelling a dialog without text
-      And I create a Flow topic with title "Testing cancel deletion of topic"
+    Given I have created a Flow topic with title "Testing cancel deletion of topic"
     When I click the Topic Actions link
         And I click the Delete topic button
         And I see a dialog box
@@ -34,7 +34,7 @@ Feature: Headers
     Then I do not see the dialog box
 
   Scenario: Cancelling a dialog with text
-      And I create a Flow topic with title "Testing cancel deletion of topic"
+    Given I have created a Flow topic with title "Testing cancel deletion of topic"
     When I click the Topic Actions link
         And I click the Delete topic button
         And I see a dialog box
