@@ -3,7 +3,7 @@
 		{{#if actions.reply}}
 			<a href="{{actions.reply.url}}"
 			   title="{{actions.reply.title}}"
-			   class="mw-ui-button mw-ui-progressive mw-ui-quiet flow-ui-inline"
+			   class="mw-ui-progressive-quiet"
 			   data-flow-interactive-handler="activateReplyPost">
 				{{~actions.reply.title~}}
 			</a>
@@ -15,7 +15,7 @@
 			   data-flow-api-handler="activateEditPost"
 			   data-flow-api-target="< .flow-post-main"
 			   data-flow-interactive-handler="apiRequest"
-			   class="mw-ui-button mw-ui-progressive mw-ui-quiet flow-ui-inline">
+			   class="mw-ui-progressive-quiet">
 				{{l10n "flow-post-action-edit-post"}}
 			</a>
 		{{/if}}
@@ -25,7 +25,7 @@
 				progressive enhancement happens in the Thank extension
 				based on the mw-thanks-flow-thank-link class
 			--}}
-			<a class="mw-ui-button mw-ui-constructive mw-ui-quiet mw-thanks-flow-thank-link flow-ui-inline"
+			<a class="mw-ui-constructive-quiet mw-thanks-flow-thank-link"
 			   href="{{actions.thank.url}}"
 			   title="{{actions.thank.title}}">
 				{{~actions.thank.title~}}
@@ -35,7 +35,7 @@
 	{{#if previousRevisionId}}
 		{{#if links.diff-prev}}
 			<a href="{{links.diff-prev.url}}"
-			    class="mw-ui-button mw-ui-progressive mw-ui-quiet flow-ui-inline"
+			    class="mw-ui-progressive-quiet"
 			    title="{{links.diff-prev.title}}">
 		{{/if}}
 			{{uuidTimestamp revisionId "edited_ago"}}
