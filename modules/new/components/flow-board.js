@@ -1434,7 +1434,7 @@
 						 * revision id so we can re-submit an edit against the
 						 * current id later.
 						 */
-						if ( result.error.prev_revision ) {
+						if ( result.error && result.error.prev_revision ) {
 							$form.data( 'flow-prev-revision', result.error.prev_revision.revision_id );
 						}
 
