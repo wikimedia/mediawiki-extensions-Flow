@@ -1,10 +1,3 @@
-Given(/^I create a Flow topic with title "(.*?)"$/) do |arg1|
-  step 'I create a ' + arg1 + ' in Flow new topic'
-  step 'I create a Body of Flow Topic into Flow body'
-  step 'I click New topic save'
-  step 'the top post should have a heading which contains "' + arg1 + '"'
-end
-
 # TODO (mattflaschen, 2014-06-25): Have the below actions (e.g. 'I
 # click Delete topic') wait for the dialog box to be non-visible
 # afterwards (to confirm API call finished), rather than use

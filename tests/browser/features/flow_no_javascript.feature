@@ -2,8 +2,8 @@
 Feature: Basic site for legacy devices
 
   Background:
-    Given I am viewing the site in without JavaScript
-      And I am on Flow page
+    Given I am viewing the site without JavaScript
+      And I am on a Flow page without JavaScript
 
   Scenario: I can see form to post a new topic without JavaScript
     Then I see the form to post a new topic
