@@ -135,14 +135,14 @@
 			   data-flow-api-handler="activateEditPost"
 			   data-flow-api-target="< .flow-post-main"
 			   data-flow-interactive-handler="apiRequest"
-			   class="mw-ui-button mw-ui-quiet flow-ui-inline">
+			   class="mw-ui-button mw-ui-progressive mw-ui-quiet flow-ui-inline">
 				'.LCRun3::ch($cx, 'l10n', Array(Array('flow-post-action-edit-post'),Array()), 'encq').'
 			</a>
 		' : '').'
 		'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['thank'])) ? $in['actions']['thank'] : null))) ? '
 			&#8226;
 			'.'
-			<a class="mw-ui-button mw-ui-quiet mw-thanks-flow-thank-link flow-ui-inline"
+			<a class="mw-ui-button mw-ui-constructive mw-ui-quiet mw-thanks-flow-thank-link flow-ui-inline"
 			   href="'.htmlentities(((is_array($in['actions']['thank']) && isset($in['actions']['thank']['url'])) ? $in['actions']['thank']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 			   title="'.htmlentities(((is_array($in['actions']['thank']) && isset($in['actions']['thank']['title'])) ? $in['actions']['thank']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.htmlentities(((is_array($in['actions']['thank']) && isset($in['actions']['thank']['title'])) ? $in['actions']['thank']['title'] : null), ENT_QUOTES, 'UTF-8').'</a>
 		' : '').'
