@@ -3,8 +3,8 @@ Feature: Create new topic anonymous
 
   Scenario: Add new Flow topic
     Given I am on Flow page
-    When I create a Title of Flow Topic in Flow new topic
-      And I create a Body of Flow Topic into Flow body
+    When I type "Title of Flow Topic" into the new topic title field
+      And I type "Body of Flow Topic" into the new topic content field
       And I click New topic save
     Then the top post should have a heading which contains "Title of Flow Topic"
       And the top post should have content which contains "Body of Flow Topic"

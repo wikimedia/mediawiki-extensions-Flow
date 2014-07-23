@@ -1,5 +1,5 @@
 @chrome @firefox @internet_explorer_10 @login
-Feature: Headers
+Feature: Reply moderation
 
   Assumes Flow is enabled for the User_talk namespace.
 
@@ -8,7 +8,7 @@ Feature: Headers
         And I am on Flow page
 
   Scenario: Hiding a comment
-      And I create a Flow topic with title "Hide comment test"
+    Given I have created a Flow topic with title "Hide comment test"
       And I add 3 comments to the Topic
     When I click the Post Actions link on the 3rd comment on the topic
         And I click Hide comment button

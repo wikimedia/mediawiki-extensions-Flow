@@ -1,9 +1,7 @@
 Given(/^I am on a Flow page with a deleted post with heading "(.*?)"$/) do |arg1|
   step 'I am logged in'
   step 'I am on Flow page'
-  step 'I create a ' + arg1 + ' in Flow new topic'
-  step 'I create a Body of Flow Topic into Flow body'
-  step 'I click New topic save'
+  step 'I have created a Flow topic with title "' + arg1 + '"'
   step 'the top post should have a heading which contains "' + arg1 + '"'
   step 'I click the Topic Actions link'
   step 'I click the Delete topic button'
@@ -16,13 +14,6 @@ end
 Given(/^I am anonymous$/) do
   on(FlowPage).logout_element.click
   visit FlowPage
-end
-
-Given(/^I create a Flow topic with title "(.*?)"$/) do |arg1|
-  step 'I create a ' + arg1 + ' in Flow new topic'
-  step 'I create a Body of Flow Topic into Flow body'
-  step 'I click New topic save'
-  step 'the top post should have a heading which contains "' + arg1 + '"'
 end
 
 # TODO (mattflaschen, 2014-06-25): Have the below actions (e.g. 'I
