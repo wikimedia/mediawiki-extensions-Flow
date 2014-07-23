@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_72e962a6",
+        "filename": "Resources.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-23T18:51:55Z",
+      "side": 1,
+      "message": "Just a check...\nIf you use this it tells me you\u0027ve tested it in the mobile skin in MobileFrontend\n\nWhen I visit the Flow board in mobile nothing seems to blow up so that\u0027s good.\n\nIs this luck or did you actually test it? :)",
+      "revId": "1888fec138b6431ac6eb3d58cf72528361969cb2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_32e19acc",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-23T18:51:55Z",
+      "side": 1,
+      "message": "Eeek don\u0027t use in in that way.\nin also matches prototype functions for example this returns true:\n\u0027indexOf\u0027 in [\u0027foo\u0027]",
+      "revId": "1888fec138b6431ac6eb3d58cf72528361969cb2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
