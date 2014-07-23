@@ -3,9 +3,7 @@ Given(/^I am on Flow page$/) do
 end
 
 Given(/^The Flow page is fully loaded$/ ) do
-  on(FlowPage).wait_until do |page|
-    page.new_topic_body_element.visible? != true
-  end
+  on(FlowPage).new_topic_body_element.when_not_visible
 end
 
 Then(/^I am on my user page$/) do
