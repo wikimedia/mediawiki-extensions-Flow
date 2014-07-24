@@ -315,6 +315,7 @@ $wgResourceModules += array(
 			'mediawiki.util',
 		),
 		'messages' => array(
+			'flow-error-external',
 			'flow-error-http',
 			'flow-error-fetch-after-open-close',
 		)

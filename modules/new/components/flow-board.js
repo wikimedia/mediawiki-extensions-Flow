@@ -625,7 +625,7 @@
 				 * fetching the new data to be displayed.
 				 */
 				FlowBoardComponent.UI.removeError( $target );
-				var errorMsg = result.error ? result.error.info : mw.msg( 'flow-error-http' );
+				var errorMsg = apiErrorMessage( code, result );
 				errorMsg = mw.msg( 'flow-error-fetch-after-open-close', errorMsg );
 				FlowBoardComponent.UI.showError( $target, errorMsg );
 			} );
@@ -1361,6 +1361,26 @@
 		};
 
 		/**
+		 * Utility to get error message for API result.
+		 *
+		 * @param string code
+		 * @param Object result
+		 * @returns string
+		 */
+		function apiErrorMessage( code, result ) {
+			if ( result.error && result.error.info ) {
+				return result.error.info;
+			} else {
+				if ( code === 'http' ) {
+					// XXX: some network errors have English info in result.exception and result.textStatus.
+					return mw.msg( 'flow-error-http' );
+				} else {
+					return  mw.msg( 'flow-error-external', code );
+				}
+			}
+		}
+
+		/**
 		 * Triggers an API request based on URL and form data, and triggers the callbacks based on flow-api-handler.
 		 * @example <a data-flow-interactive-handler="apiRequest" data-flow-api-handler="loadMore" data-flow-api-target="< .flow-component div" href="...">...</a>
 		 * @param {Event} event
@@ -1486,7 +1506,7 @@
 						 * same format. If the request failed without a specific
 						 * error message, just fall back to some default error.
 						 */
-						errorMsg = result.error ? result.error.info : mw.msg( 'flow-error-http' );
+						errorMsg = apiErrorMessage( code, result );
 						FlowBoardComponent.UI.showError( info.$target, errorMsg );
 
 						FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, args );
