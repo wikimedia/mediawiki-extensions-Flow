@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_421e89c5",
+        "filename": "modules/new/mw-ui.enhance.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-24T18:35:42Z",
+      "side": 1,
+      "message": "I\u0027m not convinced we should care about existing onbeforeunload handlers (are there any existing ones?)... \nAlthough more future proof, I worry it\u0027s not needed right now so shouldn\u0027t be in the code.\n\nAlso depending on code load order, if some other code loads after and does the same thing, that confirm message takes precedence over Flow\u0027s.\n\nIf this becomes important I\u0027d rather mediawiki provide an interface for this which tracks this sort of thing.",
+      "revId": "fea8d56160df3c401722bc0e1d4d3135318fbf42",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
