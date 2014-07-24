@@ -1043,18 +1043,19 @@
 		////////////////////
 
 		/**
-		 * When a topic wrapper is generated or found on initial load...
+		 * Loads the last collapser states from sessionStorage and either expands or collapses based on
+		 * what the user last did with a given element.
 		 * @param {jQuery} $topic
 		 */
-		FlowBoardComponent.UI.events.loadHandlers.topicElement = function ( $topic ) {
+		FlowBoardComponent.UI.events.loadHandlers.collapserState = function ( $topic ) {
 			// Get last collapse state from sessionStorage
 			var stateForTopic, classForTopic,
-				states = mw.flow.StorageEngine.sessionStorage.getItem( 'topicCollapserStates' ) || {},
+				states = mw.flow.StorageEngine.sessionStorage.getItem( 'collapserStates' ) || {},
 				topicId = $topic.data('flow-id'),
 				STORAGE_TO_CLASS = {
 					// Conserve space in browser storage
-					'+': 'flow-topic-expanded',
-					'-': 'flow-topic-collapsed'
+					'+': 'flow-element-expanded',
+					'-': 'flow-element-collapsed'
 				};
 
 			stateForTopic =	states[ topicId ];
@@ -1063,10 +1064,10 @@
 
 				classForTopic = STORAGE_TO_CLASS[stateForTopic];
 
-				if ( classForTopic === 'flow-topic-expanded' ) {
-					// Remove flow-topic-collapsed first (can be set on server for moderated), so it
+				if ( classForTopic === 'flow-element-expanded' ) {
+					// Remove flow-element-collapsed first (can be set on server for moderated), so it
 					// doesn't clash.
-					$topic.removeClass( 'flow-topic-collapsed' );
+					$topic.removeClass( 'flow-element-collapsed' );
 				}
 
 				$topic.addClass( classForTopic );
@@ -1202,7 +1203,7 @@
 		 * Calls FlowBoardComponent.UI.collapserState to set and render the new Collapser state.
 		 * @param {Event} event
 		 */
-		FlowBoardComponent.UI.events.interactiveHandlers.collapserToggle = function ( event ) {
+		FlowBoardComponent.UI.events.interactiveHandlers.collapserGroupToggle = function ( event ) {
 			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
 
 			FlowBoardComponent.UI.collapserState( flowBoard, this.href.match( /[a-z]+$/ )[0] );
@@ -1214,49 +1215,49 @@
 		 * Sets the visibility class based on the user toggle action.
 		 * @param {Event} event
 		 */
-		FlowBoardComponent.UI.events.interactiveHandlers.topicCollapserToggle = function ( event ) {
+		FlowBoardComponent.UI.events.interactiveHandlers.collapserCollapsibleToggle = function ( event ) {
 			var $target = $( event.target ),
-				$topic, topicId, states,
+				topicId, states,
 				$component = $( this ).closest( '.flow-component' );
 
 			// Make sure we didn't click on any interactive elements
 			if ( $target.not( '.flow-menu-js-drop' ) && !$target.closest( 'a, button, input, textarea, select, ul, ol' ).length ) {
-				$topic = $( this ).closest( '.flow-topic' );
+				$target = $( this ).closest( '.flow-post-main, .flow-topic' ); // @todo genericize this
 				if ( $component.is( '.flow-board-collapsed-compact, .flow-board-collapsed-topics' ) ) {
 					// Board default is collapsed; topic can be overridden to
 					// expanded, or not.
 
-					// We also remove flow-topic-collapsed.  That is set on the
+					// We also remove flow-element-collapsed.  That is set on the
 					// server for moderated posts, but an explicit user action
 					// overrides that.
-					if ( $topic.is( '.flow-topic-expanded' ) ) {
-						$topic.addClass( 'flow-topic-collapsed' ).removeClass( 'flow-topic-expanded' );
+					if ( $target.is( '.flow-element-expanded' ) ) {
+						$target.addClass( 'flow-element-collapsed' ).removeClass( 'flow-element-expanded' );
 					} else {
-						$topic.removeClass( 'flow-topic-collapsed' ).addClass( 'flow-topic-expanded' );
+						$target.removeClass( 'flow-element-collapsed' ).addClass( 'flow-element-expanded' );
 					}
 				} else {
 					// .flow-board-collapsed-full; Board default is expanded;
 					// topic can be overridden to collapsed, or not.
-					if ( $topic.is( '.flow-topic-collapsed' ) ) {
-						$topic.removeClass( 'flow-topic-collapsed' ).addClass( 'flow-topic-expanded' );
+					if ( $target.is( '.flow-element-collapsed' ) ) {
+						$target.removeClass( 'flow-element-collapsed' ).addClass( 'flow-element-expanded' );
 					} else {
-						$topic.addClass( 'flow-topic-collapsed' ).removeClass( 'flow-topic-expanded' );
+						$target.addClass( 'flow-element-collapsed' ).removeClass( 'flow-element-expanded' );
 					}
 				}
 
-				topicId = $topic.data('flow-id');
+				topicId = $target.data('flow-id');
 
 				// Save in sessionStorage
-				states = mw.flow.StorageEngine.sessionStorage.getItem( 'topicCollapserStates' ) || {};
+				states = mw.flow.StorageEngine.sessionStorage.getItem( 'collapserStates' ) || {};
 				// Opposite of STORAGE_TO_CLASS
-				if ( $topic.hasClass( 'flow-topic-expanded' ) ) {
+				if ( $target.hasClass( 'flow-element-expanded' ) ) {
 					states[ topicId ] = '+';
-				} else if ( $topic.hasClass( 'flow-topic-collapsed' ) ) {
+				} else if ( $target.hasClass( 'flow-element-collapsed' ) ) {
 					states[ topicId ] = '-';
 				} else {
 					delete states[ topicId ];
 				}
-				mw.flow.StorageEngine.sessionStorage.setItem( 'topicCollapserStates', states );
+				mw.flow.StorageEngine.sessionStorage.setItem( 'collapserStates', states );
 
 				event.preventDefault();
 				this.blur();
@@ -2049,19 +2050,20 @@
 		FlowBoardComponent.UI.collapserState = function ( flowBoard, newState ) {
 			if ( !newState ) {
 				// Get last
-				newState = mw.flow.StorageEngine.localStorage.getItem( 'collapserState' ) || 'full';
+				newState = mw.flow.StorageEngine.localStorage.getItem( 'collapserState' ) || 'full'; // @todo genericize this
 			} else {
 				// Save
-				mw.flow.StorageEngine.localStorage.setItem( 'collapserState', newState );
-				flowBoard.$board.find( '.flow-topic-expanded, .flow-topic-collapsed' )
+				mw.flow.StorageEngine.localStorage.setItem( 'collapserState', newState ); // @todo genericize this
+				flowBoard.$board.find( '.flow-element-expanded, .flow-element-collapsed' )
 					// If moderated topics are currently collapsed, leave them that way
-					.not( '.flow-topic-moderated.flow-topic-collapsed' )
-					.removeClass( 'flow-topic-expanded flow-topic-collapsed' );
+					.not( '.flow-element-moderated.flow-element-collapsed' )
+					.removeClass( 'flow-element-expanded flow-element-collapsed' );
 
 				// Remove individual topic states
-				mw.flow.StorageEngine.sessionStorage.removeItem( 'topicCollapserStates' );
+				mw.flow.StorageEngine.sessionStorage.removeItem( 'collapserStates' );
 			}
 
+			// @todo genericize this
 			flowBoard.$container
 				.removeClass( 'flow-board-collapsed-full flow-board-collapsed-topics flow-board-collapsed-compact' )
 				.addClass( 'flow-board-collapsed-' + newState );
@@ -2079,12 +2081,12 @@
 
 			$component = $topic.closest( '.flow-component' );
 			isFullView = $component.hasClass( 'flow-board-collapsed-full' );
-			isInverted = $topic.hasClass( 'flow-topic-collapsed-invert' );
+			isInverted = $topic.hasClass( 'flow-element-collapsed-invert' );
 
 			// Either full view and inverted (invisible)
 			// or compacted view and not inverted (invisible)
 			if ( isFullView === isInverted ) {
-				$topic.toggleClass( 'flow-topic-collapsed-invert' );
+				$topic.toggleClass( 'flow-element-collapsed-invert' );
 			}
 		};
 

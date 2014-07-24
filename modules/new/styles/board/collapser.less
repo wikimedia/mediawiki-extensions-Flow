@@ -15,18 +15,32 @@
 // Overrides to the default expand/collapse state.  Only set when
 // necessary and removed when the page-level state changes
 // div is used to add specificity.
-
-div.flow-topic-expanded {
+div.flow-element-expanded {
+	// topic hidden
 	.flow-post,
 	.flow-reply-form {
 		display: block;
 	}
+
+	// post hidden
+	.flow-post & .flow-moderated-post-content {
+		display: none;
+	}
 }
 
-div.flow-topic-collapsed {
+div.flow-element-collapsed {
+	// topic hidden
 	.flow-post,
 	.flow-reply-form {
 		display: none;
+	}
+
+	// post hidden
+	.flow-post & {
+		.flow-post-content,
+		.flow-post-meta {
+			display: none;
+		}
 	}
 }
 
@@ -44,10 +58,9 @@ div.flow-topic-collapsed {
 	.flow-topic {
 		padding-bottom: 0;
 
-		// Needs additional specificity to override `div#content h2`
-		div#bodyContent & h2.flow-topic-title,
+		h2.flow-topic-title,
 		.flow-moderated-topic-title {
-			margin-bottom: 0;
+			margin-bottom: 0 !important; // Needs additional specificity to override `div#content h2`
 		}
 
 		.flow-topic-titlebar {

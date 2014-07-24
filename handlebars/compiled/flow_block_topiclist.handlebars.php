@@ -38,9 +38,9 @@
 	'.'
 	<div class="flow-board-navigation-inner">
 		'.LCRun3::hbch($cx, 'progressiveEnhancement', Array(Array(),Array('insertionType'=>'insertion','sectionId'=>'flow-board-collapsers')), $in, function($cx, $in) {return '
-			<a href="#collapser/full"    data-flow-interactive-handler="collapserToggle" class="flow-board-collapser-compact flow-board-navigator-right flow-board-navigator-cap"><span class="wikiglyph wikiglyph-stripe-compact flow-ui-tooltip-target" title="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-toggle-topics-posts'),Array()), 'encq').'"></span></a>
-<a href="#collapser/compact" data-flow-interactive-handler="collapserToggle" class="flow-board-collapser-topics flow-board-navigator-right flow-board-navigator-cap"><span class="wikiglyph wikiglyph-stripe-toc flow-ui-tooltip-target" title="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-toggle-small-topics'),Array()), 'encq').'"></span></a>
-<a href="#collapser/topics"  data-flow-interactive-handler="collapserToggle" class="flow-board-collapser-full flow-board-navigator-right flow-board-navigator-cap"><span class="wikiglyph wikiglyph-stripe-expanded flow-ui-tooltip-target" title="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-toggle-topics'),Array()), 'encq').'"></span></a>
+			<a href="#topics/full"    data-flow-interactive-handler="collapserGroupToggle" class="flow-board-collapser-compact flow-board-navigator-right flow-board-navigator-cap"><span class="wikiglyph wikiglyph-stripe-compact flow-ui-tooltip-target" title="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-toggle-topics-posts'),Array()), 'encq').'"></span></a>
+<a href="#topics/compact" data-flow-interactive-handler="collapserGroupToggle" class="flow-board-collapser-topics flow-board-navigator-right flow-board-navigator-cap"><span class="wikiglyph wikiglyph-stripe-toc flow-ui-tooltip-target" title="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-toggle-small-topics'),Array()), 'encq').'"></span></a>
+<a href="#topics/topics"  data-flow-interactive-handler="collapserGroupToggle" class="flow-board-collapser-full flow-board-navigator-right flow-board-navigator-cap"><span class="wikiglyph wikiglyph-stripe-expanded flow-ui-tooltip-target" title="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-toggle-topics'),Array()), 'encq').'"></span></a>
 
 		';}).'
 
@@ -130,8 +130,12 @@
 		'.LCRun3::sec($cx, ((is_array($in) && isset($in['roots'])) ? $in['roots'] : null), $in, true, function($cx, $in) {return '
 	'.'
 	'.LCRun3::hbch($cx, 'eachPost', Array(Array($cx['scopes'][0],$in),Array()), $in, function($cx, $in) {return '
-		<div class="flow-topic '.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? 'flow-load-interactive' : '').' '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null))) ? 'flow-topic-moderatestate-'.htmlentities(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null), ENT_QUOTES, 'UTF-8').'' : '').' '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? 'flow-topic-moderated flow-topic-collapsed' : '').'" id="flow-topic-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'" data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'" data-flow-load-handler="topicElement">
-	<div class="flow-topic-titlebar flow-click-interactive" data-flow-interactive-handler="topicCollapserToggle" tabindex="0">
+		<div class="flow-topic flow-element-collapsible '.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? 'flow-load-interactive' : '').' '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null))) ? 'flow-topic-moderatestate-'.htmlentities(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null), ENT_QUOTES, 'UTF-8').'' : '').' '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? 'flow-topic-moderated flow-element-collapsed' : '').'"
+     id="flow-topic-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
+     data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
+     data-flow-load-handler="collapserState"
+     data-flow-collapser-set="topics">
+	<div class="flow-topic-titlebar flow-click-interactive" data-flow-interactive-handler="collapserCollapsibleToggle" tabindex="0">
 	<h2 class="flow-topic-title" data-title="'.LCRun3::ch($cx, 'plaintextSnippet', Array(Array(((is_array($in['content']) && isset($in['content']['format'])) ? $in['content']['format'] : null),((is_array($in['content']) && isset($in['content']['content'])) ? $in['content']['content'] : null)),Array()), 'encq').'">'.LCRun3::ch($cx, 'escapeContent', Array(Array(((is_array($in['content']) && isset($in['content']['format'])) ? $in['content']['format'] : null),((is_array($in['content']) && isset($in['content']['content'])) ? $in['content']['content'] : null)),Array()), 'encq').'</h2>
 '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? '
 	<div class="flow-moderated-topic-title"><span

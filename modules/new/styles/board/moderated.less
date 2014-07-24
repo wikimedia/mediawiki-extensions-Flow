@@ -9,18 +9,18 @@
 	color: @colorTextLight;
 
 	.flow-topic-titlebar {
-		background-color: white;
+		background-color: @colorWhite;
 		border: solid 1px @colorGrayLight;
 	}
 
-	&.flow-topic-collapsed .flow-author {
+	&.flow-element-collapsed .flow-author {
 		display: none;
 	}
 }
 
 // Hidden simply collapse partially
 .flow-topic-moderatestate-hide {
-	&.flow-topic-collapsed {
+	&.flow-element-collapsed {
 		.flow-topic-title,
 		.flow-author,
 		.flow-topic-meta {
@@ -32,6 +32,15 @@
 	}
 }
 
+// Entire moderated post element
 .flow-post-moderated {
-	color: @colorTextLight;
+	.flow-post-main,
+	.flow-author a {
+		color: @colorTextLight;
+	}
+}
+
+// Status of post
+.flow-moderated-post-content {
+	cursor: pointer;
 }

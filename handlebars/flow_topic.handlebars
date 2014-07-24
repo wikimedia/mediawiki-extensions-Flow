@@ -1,4 +1,8 @@
-<div class="flow-topic {{#unless isPreview}}flow-load-interactive{{/unless}} {{#if moderateState}}flow-topic-moderatestate-{{moderateState}}{{/if}} {{#if isModerated}}flow-topic-moderated flow-topic-collapsed{{/if}}" id="flow-topic-{{postId}}" data-flow-id="{{postId}}" data-flow-load-handler="topicElement">
+<div class="flow-topic flow-element-collapsible {{#unless isPreview}}flow-load-interactive{{/unless}} {{#if moderateState}}flow-topic-moderatestate-{{moderateState}}{{/if}} {{#if isModerated}}flow-topic-moderated flow-element-collapsed{{/if}}"
+     id="flow-topic-{{postId}}"
+     data-flow-id="{{postId}}"
+     data-flow-load-handler="collapserState"
+     data-flow-collapser-set="topics">
 	{{>flow_topic_titlebar}}
 
 	{{#if @root.posts}}
