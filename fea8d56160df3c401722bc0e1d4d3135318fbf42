@@ -16,6 +16,24 @@
       "revId": "fea8d56160df3c401722bc0e1d4d3135318fbf42",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_5d254ea8",
+        "filename": "modules/new/mw-ui.enhance.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-07-24T19:00:19Z",
+      "side": 1,
+      "message": "I don\u0027t know who is using which other plugin which may do this. Therefore, I make an effort to not remove any old handlers for no reason when it\u0027s as simple as a tiny 3 line addition.\n\nSure, another JS file might not be as considerate as this one in checking for previous handlers, but it *is* the de-facto standard operating procedure.\n\nI\u0027ll leave it as-is.",
+      "parentUuid": "8e28a382_421e89c5",
+      "revId": "fea8d56160df3c401722bc0e1d4d3135318fbf42",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
