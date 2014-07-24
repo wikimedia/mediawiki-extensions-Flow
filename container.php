@@ -390,10 +390,15 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 
 	$handlers = array(
 		new Flow\Log\PostModerationLogger( $c['logger'] ),
-		new Flow\Data\PostRevisionRecentChanges(
-			$c['flow_actions'],
-			$c['repository.username'],
-			$wgContLang
+		// The recent changes handler is wrapped to defer the insert callbacks
+		// because it needs to be able to load the related workflow.  This allows
+		// the new workflow/post to be commited in either order
+		new Flow\Data\DeferredInsertLifecycleHandler(
+			new Flow\Data\PostRevisionRecentChanges(
+				$c['flow_actions'],
+				$c['repository.username'],
+				$wgContLang
+			)
 		),
 		$c['storage.board_history.index'],
 		new Flow\Data\UserNameListener(
