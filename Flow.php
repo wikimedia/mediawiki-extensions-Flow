@@ -128,6 +128,7 @@ $wgAutoloadClasses['Flow\Data\ManagerGroup'] = $dir . 'includes/Data/ManagerGrou
 $wgAutoloadClasses['Flow\Data\ObjectLocator'] = $dir . 'includes/Data/ObjectLocator.php';
 $wgAutoloadClasses['Flow\Data\ObjectManager'] = $dir . 'includes/Data/ObjectManager.php';
 $wgAutoloadClasses['Flow\Data\LifecycleHandler'] = $dir . 'includes/Data/LifecycleHandler.php';
+$wgAutoloadClasses['Flow\Data\DeferredInsertLifecycleHandler'] = $dir . 'includes/Data/DeferredInsertLifecycleHandler.php';
 $wgAutoloadClasses['Flow\Data\Index'] = $dir . 'includes/Data/Index.php';
 $wgAutoloadClasses['Flow\Data\FeatureIndex'] = $dir . 'includes/Data/FeatureIndex.php';
 $wgAutoloadClasses['Flow\Data\UniqueFeatureIndex'] = $dir . 'includes/Data/UniqueFeatureIndex.php';
