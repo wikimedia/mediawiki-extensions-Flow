@@ -263,6 +263,7 @@
 	"flow-special-type": "Tipo",
 	"flow-special-type-workflow": "Flujo de trabajo",
 	"flow-special-uuid": "UUID",
+	"flow-spam-confirmedit-form": "Confirma que eres un humano resolviendo el siguiente captha: $1",
 	"flow-anonymous": "Anónimo",
 	"flow-embedding-unsupported": "Las discusiones todavía no pueden ser incrustadas."
 }

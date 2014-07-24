@@ -5,7 +5,8 @@
 			"EagerLin",
 			"Liuxinyu970226",
 			"Mywood",
-			"Impersonator 1"
+			"Impersonator 1",
+			"LNDDYL"
 		]
 	},
 	"flow-desc": "工作流作業系統",
@@ -22,7 +23,6 @@
 	"logentry-suppress-flow-restore-topic": "$1已於[[$3]]{{GENDER:$2|刪除}}一個[$4 主題]",
 	"flow-user-moderated": "被限制用戶",
 	"flow-edit-header-link": "編輯頁頂",
-	"flow-header-empty": "此討論頁當前並無頁頂。",
 	"flow-post-moderated-toggle-hide-show": "顯示由 $2 {{GENDER:$1|隱藏}}的評論",
 	"flow-post-moderated-toggle-delete-show": "顯示由 $2 {{GENDER:$1|刪除}}的評論",
 	"flow-post-moderated-toggle-suppress-show": "顯示由 $2 {{GENDER:$1|封鎖}}的評論",
@@ -69,7 +69,7 @@
 	"flow-post-action-undelete-post": "取消刪除",
 	"flow-post-action-unhide-post": "取消隱藏",
 	"flow-topic-action-view": "固定連結",
-	"flow-topic-action-watchlist": "監視列表",
+	"flow-topic-action-watchlist": "監視清單",
 	"flow-topic-action-edit-title": "編輯標題",
 	"flow-topic-action-history": "歷史記錄",
 	"flow-topic-action-hide-topic": "隱藏主題",
@@ -149,7 +149,7 @@
 	"flow-moderation-title-hide-topic": "隱藏主題?",
 	"flow-moderation-title-undelete-topic": "取消刪除主題?",
 	"flow-moderation-title-unhide-topic": "取消隱藏主題?",
-	"flow-moderation-intro-delete-topic": "請{{GENDER:$3|說明}}為何您要刪除此主題。",
+	"flow-moderation-placeholder-delete-topic": "請{{GENDER:$3|說明}}為何您要刪除此主題。",
 	"flow-terms-of-use-new-topic": "通過點擊「{{int:flow-newtopic-save}}」，您同意此wiki之使用條款。",
 	"flow-terms-of-use-reply": "通過點擊「{{int:flow-reply-submit}}」，您同意此wiki之使用條款。",
 	"flow-terms-of-use-edit": "通過保存您的更改，您同意此wiki之使用條款。",
