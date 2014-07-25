@@ -1,4 +1,4 @@
-Given(/^I am on Flow page$/) do
+Given(/^I am on (?:a )?Flow (?:page|board)$/) do
   visit FlowPage
 end
 

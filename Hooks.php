@@ -322,6 +322,41 @@ class FlowHooks {
 		return true;
 	}
 
+
+	/**
+	 * Adds watch star to header
+	 * @param  SkinTemplate $skin
+	 * @param  QuickTemplate $tpl
+	 * @return bool true
+	 */
+	public static function onSkinTemplateBeforeExec( SkinTemplate &$skin, QuickTemplate &$tpl ) {
+		$title = $skin->getTitle();
+
+		if ( self::$occupationController->isTalkpageOccupied( $title ) ) {
+			$lightncandy = Container::get( 'lightncandy' );
+			$watchTemplate = $lightncandy->getTemplate( 'flow_board_watch_link' );
+			$input = array(
+				'isWatched' => false,
+				'isAlwaysWatched' => false,
+				'links' => array(
+					'watch-board' => array(
+						'url' => $title->getLocalUrl( 'action=watch' ),
+					),
+					'unwatch-board' => array(
+						'url' => $title->getLocalUrl( 'action=unwatch' ),
+					),
+				),
+			);
+			$watchHtml = $watchTemplate( $input );
+
+			$originalHtml = $tpl->get( 'prebodyhtml' );
+			$newHtml = str_replace( '</h1>', "\n{$watchHtml}\n</h1>", $originalHtml );
+			$tpl->set( 'prebodyhtml', $newHtml );
+		}
+
+		return true;
+	}
+
 	/**
 	 * Interact with the mobile skin's default modules on Flow enabled pages
 	 *

@@ -1,0 +1,23 @@
+{{#if watchable}}
+	<div class="flow-board-watch-link flow-watch-link">
+		{{#if isAlwaysWatched}}
+			<span class="flow-ui-quiet flow-ui-constructive flow-ui-active">
+				{{~null~}}<span class="wikiglyph wikiglyph-star"></span>{{~null~}}
+			</span>
+		{{else}}
+			<a href="{{#if isWatched}}{{links.unwatch-board.url}}{{else}}{{links.watch-board.url}}{{/if}}"
+			   class="flow-ui-quiet flow-ui-constructive 
+			   {{#if isWatched~}}
+			   	flow-watch-link-unwatch flow-ui-active
+			   {{~else~}}
+			   	flow-watch-link-watch
+			   {{~/if~}}"
+			   data-flow-api-handler="watchItem"
+			   data-flow-api-target="< .flow-topic-watchlist"
+			   data-flow-api-method="POST">
+				{{~null~}}<span class="wikiglyph wikiglyph-star"></span>{{~null~}}
+				{{~null~}}<span class="wikiglyph wikiglyph-unstar"></span>{{~null~}}
+			</a>
+		{{/if}}
+	</div>
+{{/if}}

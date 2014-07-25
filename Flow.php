@@ -301,6 +301,7 @@ $wgHooks['UnitTestsList'][] = 'FlowHooks::getUnitTests';
 $wgHooks['OldChangesListRecentChangesLine'][] = 'FlowHooks::onOldChangesListRecentChangesLine';
 $wgHooks['ChangesListInitRows'][] = 'FlowHooks::onChangesListInitRows';
 $wgHooks['SkinTemplateNavigation::Universal'][] = 'FlowHooks::onSkinTemplateNavigation';
+// $wgHooks['SkinTemplateOutputPageBeforeExec'][] = 'FlowHooks::onSkinTemplateBeforeExec';
 $wgHooks['Article::MissingArticleConditions'][] = 'FlowHooks::onMissingArticleConditions';
 $wgHooks['SpecialWatchlistGetNonRevisionTypes'][] = 'FlowHooks::onSpecialWatchlistGetNonRevisionTypes';
 $wgHooks['UserGetReservedNames'][] = 'FlowHooks::onUserGetReservedNames';
