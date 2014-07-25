@@ -43,6 +43,7 @@ $wgResourceModules += array(
 			"flow_board.handlebars",
 			"flow_board_collapsers_subcomponent.handlebars",
 			"flow_board_navigation.handlebars",
+			'flow_board_watch_link.handlebars',
 			"flow_edit_post.handlebars",
 			"flow_edit_topic_title.handlebars",
 			"flow_errors.handlebars",
@@ -61,7 +62,7 @@ $wgResourceModules += array(
 			"flow_load_more.handlebars",
 			"flow_no_more.handlebars",
 			"flow_tooltip.handlebars",
-			"flow_tooltip_topic_subscription.handlebars",
+			"flow_tooltip_subscribed.handlebars",
 			"flow_topic.handlebars",
 			"flow_topic_titlebar.handlebars",
 			"flow_topic_titlebar_close.handlebars",
@@ -159,6 +160,8 @@ $wgResourceModules += array(
 			// Tooltip
 			'flow-topic-notification-subscribe-title',
 			'flow-topic-notification-subscribe-description',
+			'flow-board-notification-subscribe-title',
+			'flow-board-notification-subscribe-description',
 			// Moderation
 			'flow-moderation-title-unhide-post',
 			'flow-moderation-title-undelete-post',
