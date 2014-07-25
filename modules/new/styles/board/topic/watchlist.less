@@ -3,17 +3,20 @@
 @import 'flow.helpers';
 @import 'flow.variables';
 
-.flow-topic-watchlist {
+.flow-watch-link {
 	position: absolute;
 	top: 0;
 	right: 0;
+
+	&.flow-board-watch-link {
+		font-size: 75%;
+	}
 
 	a {
 		display: inline-block;
 		*display: inline;
 		zoom: 1;
 		padding: .25em .5em;
-		font-size: 2em;
 
 		&.flow-ui-active {
 			// Active mode shows the full star
@@ -54,6 +57,12 @@
 				zoom: 1;
 			}
 		}
+	}
+}
+
+.flow-topic-watchlist {
+	a {
+		font-size: 1.8em;
 	}
 }
 

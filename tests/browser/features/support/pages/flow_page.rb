@@ -204,10 +204,24 @@ class FlowPage
   end
 
   a(:first_topic_unwatch_link) do |page|
-    page.first_topic_watchlist_container_element.link_element( class: 'flow-ui-active' )
+    page.first_topic_watchlist_container_element.link_element( class: 'flow-watch-link-watch' )
   end
 
   a(:first_topic_watchlist_loading_link) do |page|
     page.first_topic_watchlist_container_element.link_element( class: 'flow-api-inprogress' )
+  end
+
+  a(:board_watchlist_container, class:"flow-board-watch-link")
+
+  a(:board_watch_link) do |page|
+    page.board_watchlist_container_element.link_element( class: 'flow-watch-link-watch' )
+  end
+
+  a(:board_unwatch_link) do |page|
+    page.board_watchlist_container_element.link_element( class: 'flow-watch-link-unwatch' )
+  end
+
+  a(:board_watch_loading_link) do |page|
+    page.board_watchlist_container_element.link_element( class: 'flow-api-inprogress' )
   end
 end
