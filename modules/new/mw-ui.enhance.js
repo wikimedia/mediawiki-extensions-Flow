@@ -413,8 +413,8 @@
 			.on( 'mouseleave.mw-ui-enhance blur.mw-ui-enhance click.mw-ui-enhance', '.flow-ui-tooltip-target', onMwUiTooltipBlur );
 	} );
 
-	/*
-	 Ask a user to confirm navigating away from a page when they have entered unsubmitted changes to a form.
+	/**
+	 * Ask a user to confirm navigating away from a page when they have entered unsubmitted changes to a form.
 	 */
 	var _oldOnBeforeUnload = window.onbeforeunload;
 	window.onbeforeunload = function () {
