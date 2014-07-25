@@ -3,17 +3,24 @@
 @import 'flow.helpers';
 @import 'flow.variables';
 
-.flow-topic-watchlist {
+.flow-watch-link {
 	position: absolute;
 	top: 0;
 	right: 0;
+
+	&.flow-board-watch-link {
+		font-size: 1.5em;
+		// 1em for the size of the watch star,
+		// 0.25em for the margin-bottom on the h1
+		// 0.5em for the #contentSub
+		top: -1.75em;
+	}
 
 	a {
 		display: inline-block;
 		*display: inline;
 		zoom: 1;
 		padding: .25em .5em;
-		font-size: 2em;
 
 		&.flow-ui-active {
 			// Active mode shows the full star
@@ -57,10 +64,20 @@
 	}
 }
 
+.flow-topic-watchlist {
+	a {
+		font-size: 1.8em;
+	}
+}
+
 @media all and (min-width: @wgFlowDeviceWidthTablet) {
 	.flow-topic-watchlist {
 		a {
 			font-size: inherit;
 		}
 	}
+}
+
+.content {
+	position: relative;
 }
