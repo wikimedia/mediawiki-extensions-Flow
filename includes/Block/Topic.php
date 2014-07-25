@@ -496,15 +496,15 @@ class TopicBlock extends AbstractBlock {
 
 	protected function shouldRenderTopicAPI( array $options ) {
 		switch( $this->action ) {
+		// Any actions require rerendering the whole topic
 		case 'edit-post':
 		case 'moderate-post':
 		case 'restore-post':
 		case 'reply':
-			return false;
-
 		case 'moderate-topic':
 			return true;
 
+		// View actions
 		case 'view-topic':
 			return true;
 		case 'view-post':

@@ -675,7 +675,7 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.submitEditPost = function( info, data, jqxhr ) {
-			var html, revision, result;
+			var result;
 
 			if ( info.status !== 'done' ) {
 				// Error will be displayed by default & edit conflict handled, nothing else to wrap up
@@ -683,11 +683,8 @@
 			}
 
 			result = data.flow['edit-post'].result.topic;
-			revision = result.revisions[result.posts[result.roots[0]]];
-			html = mw.flow.TemplateEngine.processTemplate( 'flow_post', { revision: revision } );
 
-			// @todo this function should not be looking for an element within a template
-			$( this ).closest( 'form' ).replaceWith( $( html ).find( '.flow-post-main' ) );
+			flowBoardComponentRefreshTopic( info.$target, result );
 		};
 
 		/**
@@ -806,28 +803,21 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.submitReply = function ( info, data, jqxhr ) {
-			var postId, post,
-				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
-				$form = $( this ).closest( 'form' );
+			var $form = $( this ).closest( 'form' );
 
 			if ( info.status !== 'done' ) {
 				// Error will be displayed by default, nothing else to wrap up
 				return;
 			}
 
-			postId = data.flow.reply.result.topic.roots[0];
-			post = flowBoard.TemplateEngine.processTemplateGetFragment(
-				'flow_post',
-				{ revision: data.flow.reply.result.topic.revisions[postId] }
-			);
-
-			$form.before( post );
-
 			// Clear contents to not trigger the "are you sure you want to
 			// discard your text" warning
 			$form.find( 'textarea, :text' ).each( function() {
 				$( this ).val( this.defaultValue );
 			} );
+
+			flowBoardComponentRefreshTopic( info.$target, data.flow.reply.result.topic );
+
 			// Trigger a click on cancel to have it destroy the form the way it should
 			$form.find( 'button, input, a' ).filter( '[data-flow-interactive-handler="cancelForm"]' ).trigger( 'click' );
 		};
@@ -1028,11 +1018,13 @@
 				}
 
 				var result = data.flow[action].result.topic,
-					$form = $( this ).closest( 'form' );
+					$form = $( this ).closest( 'form' ),
+					id = result.postId ? result.postId : result.roots[0];
 
 				successCallback(
 					$form.data( 'flow-dialog-owner' ),
-					result.revisions[result.posts[result.roots[0]]]
+					result.revisions[result.posts[id]],
+					result
 				);
 
 				// @todo cancel dialog
@@ -1061,15 +1053,8 @@
 
 		FlowBoardComponent.UI.events.apiHandlers.moderatePost = genModerateHandler(
 			'moderate-post',
-			function ( $target, revision ) {
-				var html = mw.flow.TemplateEngine.processTemplate( 'flow_post', { revision: revision } ),
-					$replacement = $( html );
-
-				$target
-					.closest( '.flow-post' )
-					.replaceWith( $replacement );
-
-				FlowBoardComponent.UI.makeContentInteractive( $replacement );
+			function ( $target, revision, apiResult ) {
+				flowBoardComponentRefreshTopic( $target, apiResult );
 			}
 		);
 
@@ -2236,6 +2221,24 @@
 				return true;
 			}
 			return false;
+		}
+
+		/**
+		 * Refreshes the titlebar of a topic given an API response.
+		 * @param  {jQuery} $targetElement An element in the topic.
+		 * @param  {Object} apiResult      Plain object containing the API response to build from.
+		 */
+		function flowBoardComponentRefreshTopic( $targetElement, apiResult ) {
+			var $topic = $targetElement.closest( '.flow-topic' ),
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $targetElement ),
+				$newTopic = $( flowBoard.TemplateEngine.processTemplateGetFragment(
+					'flow_topiclist_loop',
+					apiResult
+				) ).children();
+
+			$topic.replaceWith( $newTopic );
+
+			FlowBoardComponent.UI.makeContentInteractive( $newTopic );
 		}
 	}() );
 }( jQuery, mediaWiki ) );
