@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_d52b6091",
+        "filename": "modules/new/styles/board/topic/post.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-25T21:00:00Z",
+      "side": 1,
+      "message": "The border-left property never changes. We\u0027ll need to refactor this in future so we use a generic class name, so only 2 css rule applies this - media query and non-media query (not 6 as in current form).\n\nCan we do that now, or at least add a FIXME?",
+      "revId": "cb47c7e34f8c64c1bc53e026f6110bd5e0cdafd6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_1515684d",
+        "filename": "modules/new/styles/board/topic/post.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-25T21:00:00Z",
+      "side": 1,
+      "message": "Can you elaborate this rule? What css file is interfering?\nWe shouldn\u0027t need this additional media query.\n\nIs this animations.less in Vector?\n\n(Also would be great to use variables for the value 1.8em if necessary to link it to the source)",
+      "revId": "cb47c7e34f8c64c1bc53e026f6110bd5e0cdafd6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
