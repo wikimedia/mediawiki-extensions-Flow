@@ -307,7 +307,7 @@
 		 * @param {Event} event
 		 * @returns {Function}
 		 */
-		FlowBoardComponent.UI.events.apiPreHandlers.watchTopic = function ( event ) {
+		FlowBoardComponent.UI.events.apiPreHandlers.watchItem = function ( event ) {
 			return function ( queryMap ) {
 				var params = {
 					action: 'watch',
@@ -862,56 +862,61 @@
 		 * @param {Object} data
 		 * @param {jqXHR} jqxhr
 		 */
-		FlowBoardComponent.UI.events.apiHandlers.watchTopic = function ( info, data, jqxhr ) {
-			var $target = info.$target,
-				$tooltipTarget = $target.parent(),
+		FlowBoardComponent.UI.events.apiHandlers.watchItem = function ( info, data, jqxhr ) {
+			var $target = $( this ),
+				$tooltipTarget = $target.closest( '.flow-watch-link' ),
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $tooltipTarget ),
 				isWatched = false,
 				url = $( this ).prop( 'href' ),
-				watchUrl, unwatchUrl;
+				watchUrl, unwatchUrl,
+				watchType, watchLinkTemplate,
+				links,
+				$newLink;
+
+			if ( $tooltipTarget.is( '.flow-topic-watchlist' ) ) {
+				watchType = 'topic';
+				watchLinkTemplate = 'flow_topic_titlebar_watch';
+			} else if ( $tooltipTarget.is( '.flow-board-watch-link' ) ) {
+				watchType = 'board';
+				watchLinkTemplate = 'flow_board_watch_link';
+			}
 
 			if ( info.status === 'done' && data && data.watch && data.watch[0] ) {
+				links = {};
+
 				if ( data.watch[0].watched !== undefined ) {
-					// Successful watch: show tooltip
-					mw.tooltip.show(
-						$tooltipTarget,
-						$( flowBoard.TemplateEngine.processTemplateGetFragment( 'flow_tooltip_topic_subscription', { unsubscribe: false } ) ).children(),
-						{
-							tooltipPointing: 'left'
-						}
-					);
-
-					// Hide after 5s
-					setTimeout( function () {
-						mw.tooltip.hide( $tooltipTarget );
-					}, 5000 );
-
 					unwatchUrl = url.replace( 'watch', 'unwatch' );
 					watchUrl = url;
 					isWatched = true;
 				} else {
-					// Successful unwatch: remove old tooltip if still visible
-					mw.tooltip.hide( $tooltipTarget );
-
 					watchUrl = url.replace( 'unwatch', 'watch' );
 					unwatchUrl = url;
 				}
+				links['unwatch-'+watchType] = { url : unwatchUrl };
+				links['watch-'+watchType] = { url : watchUrl };
 
 				// Render new icon
-				$target.replaceWith(
-					$(
+				// This will hide any tooltips if present
+				$newLink = $(
 						flowBoard.TemplateEngine.processTemplateGetFragment(
-							'flow_topic_titlebar_watch',
+							watchLinkTemplate,
 							{
 								isWatched: isWatched,
-								links: {
-									'unwatch-topic': { url: unwatchUrl },
-									'watch-topic': { url: watchUrl }
-								}
+								'links' : links,
+								'watchable' : true
 							}
 						)
-					).children()
-				);
+					).children();
+				$tooltipTarget.replaceWith( $newLink );
+
+				if ( data.watch[0].watched !== undefined ) {
+					// Successful watch: show tooltip
+					FlowBoardComponent.UI.showSubscribedTooltip( $newLink, watchType );
+
+					unwatchUrl = url.replace( 'watch', 'unwatch' );
+					watchUrl = url;
+					isWatched = true;
+				}
 			} else {
 				// Failed
 				// @todo error message
@@ -2216,6 +2221,39 @@
 			if ( isFullView === isInverted ) {
 				$topic.toggleClass( 'flow-element-collapsed-invert' );
 			}
+		};
+
+		/**
+		 * Shows a tooltip telling the user that they have subscribed
+		 * to this topic|board
+		 * @param  {jQuery} $tooltipTarget Element to attach tooltip to.
+		 * @param  {string} type           'topic' or 'board'
+		 * @param  {string} dir            Direction to point the pointer. 'left' or 'up'
+		 */
+		FlowBoardComponent.UI.showSubscribedTooltip = function( $tooltipTarget, type, dir ) {
+			dir = dir || 'left';
+
+			mw.tooltip.show(
+				$tooltipTarget,
+				// tooltipTarget will not always be part of a FlowBoardComponent
+				$( mw.flow.TemplateEngine.processTemplateGetFragment(
+						'flow_tooltip_subscribed',
+						{
+							unsubscribe: false,
+							type: type,
+							direction: dir
+						}
+					)
+				).children(),
+				{
+					tooltipPointing: dir
+				}
+			);
+
+			// Hide after 5s
+			setTimeout( function () {
+				mw.tooltip.hide( $tooltipTarget );
+			}, 5000 );
 		};
 
 

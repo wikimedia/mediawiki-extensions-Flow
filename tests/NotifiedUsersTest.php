@@ -59,7 +59,7 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 		foreach( $events as $event ) {
 			$users = array_merge(
 				$users,
-				iterator_to_array( EchoNotificationController::getUsersToNotifyForEvent( $event ) )
+				EchoNotificationController::getUsersToNotifyForEvent( $event )
 			);
 		}
 

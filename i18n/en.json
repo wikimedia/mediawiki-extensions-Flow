@@ -92,6 +92,8 @@
     "flow-topic-action-restore-topic": "Restore topic",
     "flow-topic-notification-subscribe-title": "This topic has been added to your watchlist.",
     "flow-topic-notification-subscribe-description": "You will receive notifications on all activities on this topic.",
+    "flow-board-notification-subscribe-title": "This board has been added to your watchlist.",
+    "flow-board-notification-subscribe-description": "You will receive notifications when new topics are added to this board.",
     "flow-error-http": "An error occurred while contacting the server.",
     "flow-error-other": "An unexpected error occurred.",
     "flow-error-external": "An error occurred.<br />The error message received was: $1",
