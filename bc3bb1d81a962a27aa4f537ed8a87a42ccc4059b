@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_fc82b596",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 2112,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-25T16:51:53Z",
+      "side": 1,
+      "message": "could probably $window instead of 3x $( window )",
+      "revId": "bc3bb1d81a962a27aa4f537ed8a87a42ccc4059b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
