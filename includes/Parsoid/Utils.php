@@ -254,7 +254,7 @@ abstract class Utils {
 	 * @return Title|null
 	 */
 	public static function createRelativeTitle( $text, Title $title ) {
-		if ( $text && $text[0] === '/' ) {
+		if ( $text && ( $text[0] === '/' || $text[0] === '#' ) ) {
 			return Title::newFromText( $title->getDBkey() . $text, $title->getNamespace() );
 		} else {
 			return Title::newFromText( $text );
