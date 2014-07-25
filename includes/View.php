@@ -105,8 +105,19 @@ class View extends ContextSource {
 		wfProfileIn( __CLASS__ . '-serialize' );
 		// @todo This and API should use same code
 		$apiResponse = array(
+			'title' => $title->getPrefixedText(),
 			'workflow' => $workflow->isNew() ? '' : $workflow->getId()->getAlphadecimal(),
 			'blocks' => array(),
+			'isWatched' => $user->isWatched( $title ),
+			'watchable' => !$user->isAnon(),
+			'links' => array(
+				'watch-board' => array(
+					'url' => $title->getLocalUrl( 'action=watch' ),
+				),
+				'unwatch-board' => array(
+					'url' => $title->getLocalUrl( 'action=unwatch' ),
+				),
+			),
 		);
 
 		$parameters = $loader->extractBlockParameters( $request, $blocks );
@@ -115,7 +126,7 @@ class View extends ContextSource {
 			if ( $wasPosted ? $block->canSubmit( $action ) : $block->canRender( $action ) ) {
 				$apiResponse['blocks'][] = $block->renderAPI( $this->templating, $parameters[$block->getName()] )
 								+ array(
-									'title' => $title->getPrefixedText(),
+									'title' => $apiResponse['title'],
 									'block-action-template' => $block->getTemplate( $action ),
 									'editToken' => $editToken,
 								);
