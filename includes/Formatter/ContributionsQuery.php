@@ -93,13 +93,13 @@ class ContributionsQuery extends AbstractQuery {
 		if ( $pager->contribs == 'newbie' ) {
 			list( $minUserId, $excludeUserIds ) = $this->getNewbieConditionInfo( $pager );
 
+			$conditions['rev_user_wiki'] = wfWikiId();
 			$conditions[] = 'rev_user_id > '. (int)$minUserId;
 			if ( $excludeUserIds ) {
 				// better safe than sorry - make sure everything's an int
 				$excludeUserIds = array_map( 'intval', $excludeUserIds );
 				$conditions[] = 'rev_user_id NOT IN ( ' . implode( ',', $excludeUserIds ) .' )';
 				$conditions['rev_user_ip'] = null;
-				$conditions['rev_user_wiki'] = wfWikiId();
 			}
 		} else {
 			$uid = User::idFromName( $pager->target );
