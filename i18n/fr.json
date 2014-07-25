@@ -330,5 +330,6 @@
 	"flow-preview-warning": "Vous êtes en train de regarder un aperçu. Soumettez le formulaire pour terminer de le publier, ou cliquez sur « {{int:flow-preview-return-edit-post}} » pour continuer à écrire.",
 	"flow-preview-return-edit-post": "Continuer la modification",
 	"flow-anonymous": "Anonyme",
-	"flow-embedding-unsupported": "Les discussions ne peuvent pas encore être incorporées."
+	"flow-embedding-unsupported": "Les discussions ne peuvent pas encore être incorporées.",
+	"mw-ui-unsubmitted-confirm": "Vous avez des modifications non enregistrées sur cette page. Êtes-vous sûr de vouloir la quitter et perdre ainsi votre travail ?"
 }

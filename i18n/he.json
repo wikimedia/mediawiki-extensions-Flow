@@ -318,5 +318,6 @@
 	"flow-preview-warning": "זוהי תצוגה מקדימה. יש לשלוח את הטופס כדי לסיים לפרסם את זה או ללחוץ על \"{{int:flow-preview-return-edit-post}}\" כדי להמשיך לכתוב.",
 	"flow-preview-return-edit-post": "להמשיך לערוך",
 	"flow-anonymous": "אלמוני",
-	"flow-embedding-unsupported": "בינתיים אין אפשרות להטמיע דיונים."
+	"flow-embedding-unsupported": "בינתיים אין אפשרות להטמיע דיונים.",
+	"mw-ui-unsubmitted-confirm": "עשית בדף הזה שינויים ולא שלחת אותם. האם ברצונך לצאת מכאן ולעבד את עבודתך?"
 }

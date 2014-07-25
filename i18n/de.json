@@ -316,5 +316,6 @@
 	"flow-preview-warning": "Du siehst eine Vorschau. Sende das Formular ab, um diesen Beitrag abzuschließen oder klicke auf „{{int:flow-preview-return-edit-post}}“, um mit dem Schreiben fortzufahren.",
 	"flow-preview-return-edit-post": "Weiter bearbeiten",
 	"flow-anonymous": "Anonym",
-	"flow-embedding-unsupported": "Diskussionen können noch nicht eingebettet werden."
+	"flow-embedding-unsupported": "Diskussionen können noch nicht eingebettet werden.",
+	"mw-ui-unsubmitted-confirm": "Du hast auf dieser Seite ungespeicherte Änderungen. Bist du sicher, dass du diese Seite verlassen möchtest und die Arbeit verloren gehen soll?"
 }
