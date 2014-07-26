@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_82c5830f",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-26T00:09:21Z",
+      "side": 1,
+      "message": "This is pretty much the exact code is in SpecialWatchlist - we should update core so that it exposes this function and you can use it.\nSee I9ef4650ed8fe856f024ba9f042850739e4794746\n\nAt very least make a comment that notes this for future.\nSee  I9ef4650ed8fe856f024ba9f042850739e4794746\n\n$rc-\u003enumberofWatchingusers \u003d $dbr-\u003eselectField( \u0027watchlist\u0027,\n\t\t\t\t\t\u0027COUNT(*)\u0027,\n\t\t\t\t\tarray(\n\t\t\t\t\t\t\u0027wl_namespace\u0027 \u003d\u003e $obj-\u003erc_namespace,\n\t\t\t\t\t\t\u0027wl_title\u0027 \u003d\u003e $obj-\u003erc_title,\n\t\t\t\t\t),\n\t\t\t\t\t__METHOD__ );",
+      "revId": "1ab2f7f842b3ff917a820bcdcbb4f3c36ea01fe6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_22e7efa8",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-26T00:09:21Z",
+      "side": 1,
+      "message": "Isn\u0027t this information private? Thus shouldn\u0027t the function be private?",
+      "revId": "1ab2f7f842b3ff917a820bcdcbb4f3c36ea01fe6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
