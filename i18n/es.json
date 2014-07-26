@@ -265,5 +265,6 @@
 	"flow-special-uuid": "UUID",
 	"flow-spam-confirmedit-form": "Confirma que eres un humano resolviendo el siguiente captha: $1",
 	"flow-anonymous": "Anónimo",
-	"flow-embedding-unsupported": "Las discusiones todavía no pueden ser incrustadas."
+	"flow-embedding-unsupported": "Las discusiones todavía no pueden ser incrustadas.",
+	"mw-ui-unsubmitted-confirm": "Tienes cambios no enviados en esta página. ¿Estás seguro que deseas salir y perder tu trabajo?"
 }

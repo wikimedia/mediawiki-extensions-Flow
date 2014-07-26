@@ -120,7 +120,7 @@
 	"flow-notification-reply-email-batch-body": "$1 {{GENDER:$1|已回覆}}您的留言於 $2 的 \"$3\"",
 	"flow-notification-reply-email-batch-bundle-body": "$1 與另外 $4 {{PLURAL:$5|個人|個人}} {{GENDER:$1|已回覆}} 您的留言於 $2 的 \"$3\"",
 	"echo-category-title-flow-discussion": "流量",
-	"echo-pref-tooltip-flow-discussion": "通知我，當有與我相關的動作發生在討論版時",
+	"echo-pref-tooltip-flow-discussion": "通知我，當有與我相關的動作發生在Flow時。",
 	"flow-link-post": "發佈",
 	"flow-link-topic": "主題",
 	"flow-link-history": "歷史",
