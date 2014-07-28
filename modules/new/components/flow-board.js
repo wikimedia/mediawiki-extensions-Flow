@@ -2146,6 +2146,7 @@
 				flowBoard.$board.find( '.flow-element-expanded, .flow-element-collapsed' )
 					// If moderated topics are currently collapsed, leave them that way
 					.not( '.flow-element-moderated.flow-element-collapsed' )
+					.not( '.flow-topic-moderated' )
 					.removeClass( 'flow-element-expanded flow-element-collapsed' );
 
 				// Remove individual topic states
