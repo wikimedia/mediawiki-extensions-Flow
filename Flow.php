@@ -163,6 +163,7 @@ $wgAutoloadClasses['Flow\Data\ShallowCompactor'] = $dir . 'includes/Data/Shallow
 $wgAutoloadClasses['Flow\Data\Merger'] = $dir . 'includes/Data/Merger.php';
 $wgAutoloadClasses['Flow\Data\RawSql'] = $dir . 'includes/Data/RawSql.php';
 $wgAutoloadClasses['Flow\Data\UrlGenerationListener'] = $dir . 'includes/Data/UrlGenerationListener.php';
+$wgAutoloadClasses['Flow\Data\WatchTopicListener'] = $dir . 'includes/Data/WatchTopicListener.php';
 $wgAutoloadClasses['Flow\Log\Logger'] = $dir . 'includes/Log/Logger.php';
 $wgAutoloadClasses['Flow\Log\Formatter'] = $dir . 'includes/Log/Formatter.php';
 $wgAutoloadClasses['Flow\Log\PostModerationLogger'] = $dir . 'includes/Log/PostModerationLogger.php';

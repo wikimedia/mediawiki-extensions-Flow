@@ -208,7 +208,6 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		$this->setNotification( 'flow-topic-renamed' );
-		$this->notificationController->subscribeToWorkflow( $this->user, $this->workflow );
 	}
 
 	protected function validateReply() {
@@ -235,7 +234,6 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		$this->setNotification( 'flow-post-reply', array( 'reply-to' => $post ) );
-		$this->notificationController->subscribeToWorkflow( $this->user, $this->workflow );
 	}
 
 	protected function validateModerateTopic() {
@@ -383,7 +381,6 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		$this->setNotification( 'flow-post-edited' );
-		$this->notificationController->subscribeToWorkflow( $this->user, $this->workflow );
 	}
 
 	public function commit() {
