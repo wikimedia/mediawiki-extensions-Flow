@@ -194,6 +194,12 @@ class TreeRepository {
 		}
 
 		$cacheResult = $this->cache->getMulti( array_values( $cacheKeys ) );
+		// Memcached BagOStuff only returns found keys, but the redis bag
+		// returns false for found keys.
+		$cacheResult = array_filter(
+			$cacheResult,
+			function( $val ) { return $val !== false; }
+		);
 
 		foreach( $descendants as $descendant ) {
 			if ( isset( $cacheResult[$cacheKeys[$descendant->getAlphadecimal()]] ) ) {
