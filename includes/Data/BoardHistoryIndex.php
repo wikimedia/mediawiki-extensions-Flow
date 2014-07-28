@@ -39,7 +39,7 @@ class BoardHistoryIndex extends TopKIndex {
 	 * @param Header|PostRevision $object
 	 * @param string[] $new
 	 */
-	public function onAfterInsert( $object, array $new ) {
+	public function onAfterInsert( $object, array $new, array $metadata ) {
 		if ( $object instanceof Header ) {
 			$new['topic_list_id'] = $new['rev_type_id'];
 			parent::onAfterInsert( $object, $new );
@@ -62,7 +62,7 @@ class BoardHistoryIndex extends TopKIndex {
 	 * @param string[] $old
 	 * @param string[] $new
 	 */
-	public function onAfterUpdate( $object, array $old, array $new ) {
+	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
 		if ( $object instanceof Header ) {
 			$new['topic_list_id'] = $old['topic_list_id'] = $new['rev_type_id'];
 			parent::onAfterUpdate( $object, $old, $new );
@@ -84,7 +84,7 @@ class BoardHistoryIndex extends TopKIndex {
 	 * @param Header|PostRevision $object
 	 * @param string[] $old
 	 */
-	public function onAfterRemove( $object, array $old ) {
+	public function onAfterRemove( $object, array $old, array $metadata ) {
 		if ( $object instanceof Header ) {
 			$old['topic_list_id'] = $old['rev_type_id'];
 			parent::onAfterRemove( $object, $old );

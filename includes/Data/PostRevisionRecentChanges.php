@@ -34,7 +34,7 @@ class PostRevisionRecentChanges extends RecentChanges {
 	 * @param PostRevision $object
 	 * @param string[] $row
 	 */
-	public function onAfterInsert( $object, array $row ) {
+	public function onAfterInsert( $object, array $row, array $metadata ) {
 		// The workflow id is the same as the root's post id
 		$workflowId = $object->getRootPost()->getPostId();
 		// These are likely already in the in-process cache
