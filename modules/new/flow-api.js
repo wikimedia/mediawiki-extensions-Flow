@@ -185,6 +185,7 @@ window.mw = window.mw || {}; // mw-less testing
 			$node, $form, formData;
 
 		queryMap = queryMap || {};
+		overrides = overrides || [];
 
 		// If URL is an Element...
 		if ( typeof url !== 'string' ) {
