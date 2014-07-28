@@ -174,30 +174,32 @@ class BoardContent extends \AbstractContent {
 		$parserOutput = new ParserOutput();
 		$parserOutput->updateCacheExpiry( 0 );
 
-		// Set up a derivative context (which inherits the current request)
-		// to hold the output modules + text
-		$childContext = new DerivativeContext( RequestContext::getMain() );
-		$childContext->setOutput( new OutputPage( $childContext ) );
-		$childContext->setRequest( new FauxRequest );
+		if ( $generateHtml ) {
+			// Set up a derivative context (which inherits the current request)
+			// to hold the output modules + text
+			$childContext = new DerivativeContext( RequestContext::getMain() );
+			$childContext->setOutput( new OutputPage( $childContext ) );
+			$childContext->setRequest( new FauxRequest );
 
-		// Create a View set up to output to our derivative context
-		$view = new View(
-			Container::get('templating'), // Should this also use the output page? I think it's okay
-			Container::get('url_generator'),
-			Container::get('lightncandy'),
-			$childContext->getOutput()
-		);
+			// Create a View set up to output to our derivative context
+			$view = new View(
+				Container::get('templating'), // Should this also use the output page? I think it's okay
+				Container::get('url_generator'),
+				Container::get('lightncandy'),
+				$childContext->getOutput()
+			);
 
-		// Load workflow and run View.
-		$loader = Container::get('factory.loader.workflow')
-			->createWorkflowLoader( $title, $this->getWorkflowId() );
-		$view->show( $loader, 'view' );
+			// Load workflow and run View.
+			$loader = Container::get('factory.loader.workflow')
+				->createWorkflowLoader( $title, $this->getWorkflowId() );
+			$view->show( $loader, 'view' );
 
-		// Extract data from derivative context
-		$parserOutput->setText( $childContext->getOutput()->getHTML() );
-		$parserOutput->addModules( $childContext->getOutput()->getModules() );
-		$parserOutput->addModuleStyles( $childContext->getOutput()->getModuleStyles() );
-		$parserOutput->addModuleScripts( $childContext->getOutput()->getModuleScripts() );
+			// Extract data from derivative context
+			$parserOutput->setText( $childContext->getOutput()->getHTML() );
+			$parserOutput->addModules( $childContext->getOutput()->getModules() );
+			$parserOutput->addModuleStyles( $childContext->getOutput()->getModuleStyles() );
+			$parserOutput->addModuleScripts( $childContext->getOutput()->getModuleScripts() );
+		}
 
 		Container::get( 'reference.updater.links-tables' )
 			->mutateParserOutput( $title, $parserOutput );
