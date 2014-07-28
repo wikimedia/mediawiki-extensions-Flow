@@ -90,13 +90,13 @@ class TalkpageManager implements OccupationController {
 				! $revision->getContent()->getWorkflowId()
 			)
 		) {
-			$content = new BoardContent( 'flow-board', $workflow );
-			$page->doEditContent( $content, $comment, EDIT_FORCE_BOT | EDIT_SUPPRESS_RC );
-
-			$user = $this->getTalkpageManager();
-
-			$status = $page->doEditContent( $content, $comment, EDIT_FORCE_BOT | EDIT_SUPPRESS_RC,
-				false, $user );
+			$status = $page->doEditContent(
+				new BoardContent( 'flow-board', $workflow ),
+				$comment,
+				EDIT_FORCE_BOT | EDIT_SUPPRESS_RC,
+				false,
+				$this->getTalkpageManager()
+			);
 
 			if ( $status->isGood() && isset( $status->value['revision'] ) ) {
 				$doing = false;
