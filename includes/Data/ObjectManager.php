@@ -23,11 +23,11 @@ class ObjectManager extends ObjectLocator {
 		$this->loaded = new SplObjectStorage;
 	}
 
-	public function put( $object ) {
+	public function put( $object, array $metadata = array() ) {
 		$this->multiPut( array( $object ) );
 	}
 
-	public function multiPut( array $objects ) {
+	public function multiPut( array $objects, array $metadata = array() ) {
 		$updateObjects = array();
 		$insertObjects = array();
 
@@ -40,11 +40,11 @@ class ObjectManager extends ObjectLocator {
 		}
 
 		if ( count( $updateObjects ) ) {
-			$this->update( $updateObjects );
+			$this->update( $updateObjects, $metadata );
 		}
 
 		if ( count( $insertObjects ) ) {
-			$this->insert( $insertObjects );
+			$this->insert( $insertObjects, $metadata );
 		}
 	}
 
@@ -64,7 +64,7 @@ class ObjectManager extends ObjectLocator {
 		}
 	}
 
-	protected function insert( array $objects ) {
+	protected function insert( array $objects, array $metadata = array() ) {
 		$section = new \ProfileSection( __METHOD__ );
 		$rows = array_map( array( $this->mapper, 'toStorageRow' ), $objects );
 		$storedRows = $this->storage->insert( $rows );
@@ -83,7 +83,7 @@ class ObjectManager extends ObjectLocator {
 			$this->mapper->fromStorageRow( $stored, $object );
 
 			foreach ( $this->lifecycleHandlers as $handler ) {
-				$handler->onAfterInsert( $object, $stored );
+				$handler->onAfterInsert( $object, $stored, $metadata );
 			}
 
 			$this->loaded[$object] = $stored;
@@ -105,17 +105,17 @@ class ObjectManager extends ObjectLocator {
 		}
 		$this->storage->update( $old, $new );
 		foreach ( $this->lifecycleHandlers as $handler ) {
-			$handler->onAfterUpdate( $object, $old, $new );
+			$handler->onAfterUpdate( $object, $old, $new, $metadata );
 		}
 		$this->loaded[$object] = $new;
 	}
 
-	public function remove( $object ) {
+	public function remove( $object, array $metadata = array() ) {
 		$section = new \ProfileSection( __METHOD__ );
 		$old = $this->loaded[$object];
 		$this->storage->remove( $old );
 		foreach ( $this->lifecycleHandlers as $handler ) {
-			$handler->onAfterRemove( $object, $old );
+			$handler->onAfterRemove( $object, $old, $metadata );
 		}
 		unset( $this->loaded[$object] );
 	}

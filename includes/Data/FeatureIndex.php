@@ -177,7 +177,7 @@ abstract class FeatureIndex implements Index {
 		return 0;
 	}
 
-	public function onAfterInsert( $object, array $new ) {
+	public function onAfterInsert( $object, array $new, array $metadata ) {
 		$indexed = ObjectManager::splitFromRow( $new , $this->indexed );
 		// is un-indexable a bail-worthy occasion? Probably not but makes debugging easier
 		if ( !$indexed ) {
@@ -191,7 +191,7 @@ abstract class FeatureIndex implements Index {
 		}
 	}
 
-	public function onAfterUpdate( $object, array $old, array $new ) {
+	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
 		$oldIndexed = ObjectManager::splitFromRow( $old, $this->indexed );
 		$newIndexed = ObjectManager::splitFromRow( $new, $this->indexed );
 		if ( !$oldIndexed ) {
@@ -216,7 +216,7 @@ abstract class FeatureIndex implements Index {
 		}
 	}
 
-	public function onAfterRemove( $object, array $old ) {
+	public function onAfterRemove( $object, array $old, array $metadata ) {
 		$indexed = ObjectManager::splitFromRow( $old, $this->indexed );
 		if ( !$indexed ) {
 			throw new DataModelException( 'Unindexable row: ' .FormatJson::encode( $old ), 'process-data' );

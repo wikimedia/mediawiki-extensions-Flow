@@ -142,16 +142,19 @@ class TopicListBlock extends AbstractBlock {
 		}
 
 		$storage = $this->storage;
+		$metadata = array(
+			'workflow' => $this->topicWorkflow,
+		);
 
-		$storage->put( $this->topicListEntry );
-		$storage->put( $this->topicPost );
+		$storage->put( $this->topicListEntry, $metadata );
+		$storage->put( $this->topicPost, $metadata );
 		if ( $this->firstPost !== null ) {
-			$storage->put( $this->firstPost );
+			$storage->put( $this->firstPost, $metadata );
 		}
 		// must be last because this will trigger OccupationController::ensureFlowRevision
 		// to create the page within topic namespace, that will try and render, so the above
 		// stuff needs to be in cache at least.
-		$storage->put( $this->topicWorkflow );
+		$storage->put( $this->topicWorkflow, $metadata );
 
 		$this->notificationController->subscribeToWorkflow( $this->user, $this->topicWorkflow );
 		$this->notificationController->notifyNewTopic( array(
