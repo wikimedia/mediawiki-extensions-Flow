@@ -27,13 +27,13 @@ class TopicHistoryIndex extends TopKIndex {
 	 * @param PostRevision $object
 	 * @param string[] $new
 	 */
-	public function onAfterInsert( $object, array $new ) {
+	public function onAfterInsert( $object, array $new, array $metadata ) {
 		if ( $object instanceof PostRevision ) {
 			$new['topic_root_id'] = $object->getRootPost()->getPostId()->getAlphadecimal();
-			parent::onAfterInsert( $object, $new );
+			parent::onAfterInsert( $object, $new, $metadata );
 		} elseif ( $object instanceof PostSummary ) {
 			$new['topic_root_id'] = $object->getCollection()->getWorkflowId()->getAlphadecimal();
-			parent::onAfterInsert( $object, $new );
+			parent::onAfterInsert( $object, $new, $metadata );
 		}
 	}
 
@@ -42,13 +42,13 @@ class TopicHistoryIndex extends TopKIndex {
 	 * @param string[] $old
 	 * @param string[] $new
 	 */
-	public function onAfterUpdate( $object, array $old, array $new ) {
+	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
 		if ( $object instanceof PostRevision ) {
 			$old['topic_root_id'] = $new['topic_root_id'] = $object->getRootPost()->getPostId()->getAlphadecimal();
-			parent::onAfterUpdate( $object, $old, $new );
+			parent::onAfterUpdate( $object, $old, $new, $metadata );
 		} elseif ( $object instanceof PostSummary ) {
 			$old['topic_root_id'] = $new['topic_root_id'] = $object->getCollection()->getWorkflowId()->getAlphadecimal();
-			parent::onAfterUpdate( $object, $old, $new );
+			parent::onAfterUpdate( $object, $old, $new, $metadata );
 		}
 	}
 
@@ -56,13 +56,13 @@ class TopicHistoryIndex extends TopKIndex {
 	 * @param PostRevision $object
 	 * @param string[] $old
 	 */
-	public function onAfterRemove( $object, array $old ) {
+	public function onAfterRemove( $object, array $old, array $metadata ) {
 		if ( $object instanceof PostRevision ) {
 			$old['topic_root_id'] = $object->getRootPost()->getPostId()->getAlphadecimal();
-			parent::onAfterRemove( $object, $old );
+			parent::onAfterRemove( $object, $old, $metadata );
 		} elseif ( $object instanceof PostSummary ) {
 			$old['topic_root_id'] = $object->getCollection()->getWorkflowId()->getAlphadecimal();
-			parent::onAfterRemove( $object, $old );
+			parent::onAfterRemove( $object, $old, $metadata );
 		}
 	}
 
