@@ -44,6 +44,12 @@ class MultiGetList {
 			// Falls through to query only backend
 			wfDebugLog( 'Flow', __METHOD__ . ': Failure querying memcache' );
 		} else {
+			// Memcached BagOStuff only returns found keys, but the redis bag
+			// returns false for found keys.
+			$multiRes = array_filter(
+				$multiRes,
+				function( $val ) { return $val !== false; }
+			);
 			foreach ( $multiRes as $key => $value ) {
 				$idx = $cacheKeys[$key];
 				if ( $idx instanceof UUID ) {
