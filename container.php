@@ -408,6 +408,10 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 		// using TreeRepository for extra information and stuffing it into topic_root while indexing
 		$c['storage.topic_history.index'],
 		$c['reference.recorder'],
+		new Flow\Data\WatchTopicListener( $c['user'], $c['watched_items'], array(
+			// list of revision types that trigger watching the workflow
+			'new-topic', 'reply', 'edit', 'edit-title'
+		) ),
 	);
 } );
 $c['storage.post.mapper'] = $c->share( function( $c ) {
