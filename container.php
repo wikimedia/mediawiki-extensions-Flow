@@ -389,7 +389,8 @@ $c['storage.topic_list'] = $c->share( function( $c ) {
 // Individual post within a topic workflow
 $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 	global $wgContLang;
-	return array(
+
+	$handlers = array(
 		new Flow\Log\PostModerationLogger( $c['logger'] ),
 		new Flow\Data\PostRevisionRecentChanges( $c['flow_actions'], $c['repository.username'], $c['storage'], $c['repository.tree'], $wgContLang ),
 		$c['storage.board_history.index'],
@@ -409,6 +410,17 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 		$c['storage.topic_history.index'],
 		$c['reference.recorder'],
 	);
+
+	// Anonymous users cant watch pages
+	$user = $c['user'];
+	if ( !$user->isAnon() ) {
+		$handlers[] = new Flow\Data\WatchTopicListener( $user, $c['watched_items'], array(
+			// list of revision types that trigger watching the workflow
+			'new-topic', 'reply', 'edit', 'edit-title'
+		) );
+	}
+
+	return $handlers;
 } );
 $c['storage.post.mapper'] = $c->share( function( $c ) {
 	return CachingObjectMapper::model( 'Flow\\Model\\PostRevision', array( 'rev_id' ) );

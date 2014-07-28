@@ -14,10 +14,20 @@ class WatchedTopicItems {
 
 	protected $user;
 	protected $watchListDb;
+	protected $overrides = array();
 
 	public function __construct( User $user, DatabaseBase $watchListDb ) {
 		$this->user = $user;
 		$this->watchListDb = $watchListDb;
+	}
+
+	/**
+	 * Helps prevent reading our own writes.  If we have explicitly
+	 * watched this title in this request set it here instead of
+	 * querying a slave and possibly not noticing due to slave lag.
+	 */
+	public function addOverrideWatched( Title $title ) {
+		$this->overrides[$title->getNamespace()][$title->getDBkey()] = true;
 	}
 
 	/**
@@ -34,7 +44,13 @@ class WatchedTopicItems {
 		foreach ( $titles as $key => $id ) {
 			$obj = Title::makeTitleSafe( NS_TOPIC, $id );
 			if ( $obj ) {
-				$titles[$key] = $obj->getDBkey();
+				$key = $obj->getDBkey();
+				if ( isset( $this->overrides[$obj->getNamespace()][$key] ) ) {
+					$result[$key] = true;
+					unset( $titles[$key] );
+				} else {
+					$titles[$key] = $obj->getDBkey();
+				}
 			} else {
 				unset( $titles[$key] );
 			}
