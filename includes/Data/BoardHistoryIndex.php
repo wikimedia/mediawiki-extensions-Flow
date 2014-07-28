@@ -39,10 +39,10 @@ class BoardHistoryIndex extends TopKIndex {
 	 * @param Header|PostRevision $object
 	 * @param string[] $new
 	 */
-	public function onAfterInsert( $object, array $new ) {
+	public function onAfterInsert( $object, array $new, array $metadata ) {
 		if ( $object instanceof Header ) {
 			$new['topic_list_id'] = $new['rev_type_id'];
-			parent::onAfterInsert( $object, $new );
+			parent::onAfterInsert( $object, $new, $metadata );
 		} elseif ( $object instanceof PostRevision || $object instanceof PostSummary ) {
 			if ( $object instanceof PostRevision ) {
 				$postRevision = $object;
@@ -52,7 +52,7 @@ class BoardHistoryIndex extends TopKIndex {
 			$topicListId = $this->findTopicListId( $postRevision );
 			if ( $topicListId ) {
 				$new['topic_list_id'] = $topicListId;
-				parent::onAfterInsert( $object, $new );
+				parent::onAfterInsert( $object, $new, $metadata );
 			}
 		}
 	}
@@ -62,10 +62,10 @@ class BoardHistoryIndex extends TopKIndex {
 	 * @param string[] $old
 	 * @param string[] $new
 	 */
-	public function onAfterUpdate( $object, array $old, array $new ) {
+	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
 		if ( $object instanceof Header ) {
 			$new['topic_list_id'] = $old['topic_list_id'] = $new['rev_type_id'];
-			parent::onAfterUpdate( $object, $old, $new );
+			parent::onAfterUpdate( $object, $old, $new, $metadata );
 		} elseif ( $object instanceof PostRevision || $object instanceof PostSummary ) {
 			if ( $object instanceof PostRevision ) {
 				$postRevision = $object;
@@ -75,7 +75,7 @@ class BoardHistoryIndex extends TopKIndex {
 			$topicListId = $this->findTopicListId( $postRevision );
 			if ( $topicListId ) {
 				$new['topic_list_id'] = $old['topic_list_id'] = $topicListId;
-				parent::onAfterUpdate( $object, $old, $new );
+				parent::onAfterUpdate( $object, $old, $new, $metadata );
 			}
 		}
 	}
@@ -84,15 +84,15 @@ class BoardHistoryIndex extends TopKIndex {
 	 * @param Header|PostRevision $object
 	 * @param string[] $old
 	 */
-	public function onAfterRemove( $object, array $old ) {
+	public function onAfterRemove( $object, array $old, array $metadata ) {
 		if ( $object instanceof Header ) {
 			$old['topic_list_id'] = $old['rev_type_id'];
-			parent::onAfterRemove( $object, $old );
+			parent::onAfterRemove( $object, $old, $metadata );
 		} elseif ( $object instanceof PostRevision || $object instanceof PostSummary ) {
 			$topicListId = $this->findTopicListId( $object );
 			if ( $topicListId ) {
 				$old['topic_list_id'] = $topicListId;
-				parent::onAfterRemove( $object, $old );
+				parent::onAfterRemove( $object, $old, $metadata );
 			}
 		}
 	}

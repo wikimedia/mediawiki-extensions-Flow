@@ -28,7 +28,7 @@ class HeaderRecentChanges extends RecentChanges {
 	 * @param Header $object
 	 * @param string[] $row
 	 */
-	public function onAfterInsert( $object, array $row ) {
+	public function onAfterInsert( $object, array $row, array $metadata ) {
 		$workflowId = $object->getWorkflowId();
 		$workflow = $this->storage->get( 'Workflow', $workflowId );
 		if ( !$workflow ) {

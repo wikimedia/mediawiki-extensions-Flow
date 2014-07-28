@@ -27,7 +27,7 @@ class PostSummaryRecentChanges extends RecentChanges {
 	 * @param PostSummary $object
 	 * @param string[] $row
 	 */
-	public function onAfterInsert( $object, array $row ) {
+	public function onAfterInsert( $object, array $row, array $metadata ) {
 		$workflowId = $object->getCollection()->getWorkflowId();
 		$workflow = $this->storage->get( 'Workflow', $workflowId );
 		if ( !$workflow ) {

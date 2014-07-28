@@ -211,7 +211,9 @@ class TopicSummaryBlock extends AbstractBlock {
 			throw new FailCommitException( 'Attempt to save summary on null revision', 'fail-commit' );
 		}
 
-		$this->storage->put( $this->nextRevision );
+		$this->storage->put( $this->nextRevision, array(
+			'workflow' => $this->workflow,
+		) );
 		// Reload the $this->formatterRow for renderAPI() after save
 		$this->formatterRow = new FormatterRow();
 		$this->formatterRow->revision = $this->nextRevision;
@@ -233,9 +235,6 @@ class TopicSummaryBlock extends AbstractBlock {
 	public function commit() {
 		switch( $this->action ) {
 			case 'edit-topic-summary':
-				return $this->saveTopicSummary();
-			break;
-
 			case 'close-open-topic':
 				return $this->saveTopicSummary();
 			break;
