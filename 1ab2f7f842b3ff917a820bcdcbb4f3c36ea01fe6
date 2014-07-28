@@ -33,6 +33,24 @@
       "revId": "1ab2f7f842b3ff917a820bcdcbb4f3c36ea01fe6",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_3f46e125",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-07-28T12:28:54Z",
+      "side": 1,
+      "message": "Not sure what you mean. The function is protected.",
+      "parentUuid": "8e28a382_22e7efa8",
+      "revId": "1ab2f7f842b3ff917a820bcdcbb4f3c36ea01fe6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
