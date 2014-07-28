@@ -2141,10 +2141,11 @@
 			} else {
 				// Save
 				mw.flow.StorageEngine.localStorage.setItem( 'collapserState', newState ); // @todo genericize this
-				flowBoard.$board.find( '.flow-element-expanded, .flow-element-collapsed' )
+				flowBoard.$board.find( '.flow-element-expanded, .flow-element-collapsed' ).
 					// If moderated topics are currently collapsed, leave them that way
-					.not( '.flow-element-moderated.flow-element-collapsed' )
-					.removeClass( 'flow-element-expanded flow-element-collapsed' );
+					not( '.flow-element-moderated.flow-element-collapsed' ).
+					not( '.flow-topic-moderated' ).
+					removeClass( 'flow-element-expanded flow-element-collapsed' );
 
 				// Remove individual topic states
 				mw.flow.StorageEngine.sessionStorage.removeItem( 'collapserStates' );

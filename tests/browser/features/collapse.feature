@@ -71,7 +71,6 @@ Feature: Topic collapsing
       And I should see who started the first non-moderated topic
       And I should see the comments of the first non-moderated topic
 
-  @wip
   Scenario: For a moderated post, a mode cycle with no user override keeps it hidden
     Given I am on Flow page
     Then I should see a moderated message on the first moderated topic
@@ -97,7 +96,6 @@ Feature: Topic collapsing
       And I should not see who started the first moderated topic
       And I should not see the comments of the first moderated topic
 
-  @wip
   Scenario: For a moderated post, switching modes does not forget a user-set close override
     Given I am on Flow page
     # First, erase the server-set close override
