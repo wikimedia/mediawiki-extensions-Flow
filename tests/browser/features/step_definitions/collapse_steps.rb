@@ -47,8 +47,16 @@ Then(/^I should (.*) the comments of the first non-moderated topic$/) do |visibi
   visibility_to_should(on(FlowPage).first_non_moderated_topic_post_content_element, visibility_str)
 end
 
+When(/^I click the first moderated topic$/) do
+  on(FlowPage).first_moderated_topic_titlebar_element.click
+end
+
 When(/^I click the first non-moderated topic$/) do
   on(FlowPage).first_non_moderated_topic_title_element.click
+end
+
+Then(/^I should (.*) a moderated message on the first moderated topic$/) do |visibility_str|
+  visibility_to_should(on(FlowPage).first_moderated_message_element, visibility_str)
 end
 
 Then(/^I should (.*) the title of the first moderated topic$/) do |visibility_str|
@@ -61,8 +69,4 @@ end
 
 Then(/^I should (.*) the comments of the first moderated topic$/) do |visibility_str|
   visibility_to_should(on(FlowPage).first_moderated_topic_post_content_element, visibility_str)
-end
-
-When(/^I click the first moderated topic$/) do
-  on(FlowPage).first_moderated_topic_title_element.click
 end
