@@ -15,3 +15,11 @@ Feature: Replying
       And I am not watching my new Flow topic
     When I reply with comment "I want to watch this title"
     Then I should see an unwatch link on the topic
+
+  Scenario: Canceling reply leaves usable form
+    Given I have created a Flow topic with title "Reply watch test"
+      And I start a reply with comment "my form lies over the ocean"
+      And I click the Preview button
+      And I click the Cancel button and confirm the dialog
+      And I start a reply with comment "bring back my form to me"
+     Then I should see the topic reply form

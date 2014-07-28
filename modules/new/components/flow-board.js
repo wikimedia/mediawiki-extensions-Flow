@@ -1764,6 +1764,15 @@
 			// Store state
 			$form.data( 'flow-state', 'hidden' );
 
+			// If any preview is visible cancel it
+			// Must be done before compressing text areas because
+			// the preview may have manipulated them.
+			if ( $form.find( '.flow-preview-warning' ).length ) {
+				flowBoardComponentResetPreview(
+					$form.find( 'button[data-role="cancel"]' )
+				);
+			}
+
 			$form.find( 'textarea' ).each( function () {
 				var $editor = $( this );
 
@@ -1775,13 +1784,6 @@
 				// Compress all textareas to inputs if needed
 				FlowBoardComponent.UI.Forms.compressTextarea( $editor );
 			} );
-
-			// If any preview is visible cancel it
-			if ( $form.find( '.flow-preview-warning' ).length ) {
-				flowBoardComponentResetPreview(
-					$form.find( 'button[data-role="cancel"]' )
-				);
-			}
 
 			if ( initialState === 'collapsed' ) {
 				// Hide its actions
