@@ -37,12 +37,12 @@ abstract class RecentChanges implements LifecycleHandler {
 		$this->usernames = $usernames;
 	}
 
-	public function onAfterUpdate( $object, array $old, array $new ) {
+	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
 		// Moderation.  Doesn't need to log anything because all moderation also inserts
 		// a new null revision to track who and when.
 	}
 
-	public function onAfterRemove( $object, array $old ) {
+	public function onAfterRemove( $object, array $old, array $metadata ) {
 		// Deletion. Not kinda-sorta deleted, like 100% GONE. Should never happen.
 	}
 

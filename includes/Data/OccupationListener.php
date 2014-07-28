@@ -28,7 +28,7 @@ class OccupationListener implements LifecycleHandler {
 		}
 	}
 
-	public function onAfterInsert( $object, array $new ) {
+	public function onAfterInsert( $object, array $new, array $metadata ) {
 		$this->ensureOccupation( $object );
 	}
 
@@ -37,11 +37,11 @@ class OccupationListener implements LifecycleHandler {
 		$this->occupationController->ensureFlowRevision( $article, $workflow );
 	}
 
-	public function onAfterUpdate( $object, array $old, array $new ) {
+	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
 		// Nothing
 	}
 
-	public function onAfterRemove( $object, array $old ) {
+	public function onAfterRemove( $object, array $old, array $metadata ) {
 		// Nothing
 	}
 }

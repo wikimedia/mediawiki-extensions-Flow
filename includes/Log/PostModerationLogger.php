@@ -21,7 +21,7 @@ class PostModerationLogger implements LifecycleHandler {
 	 * @param PostRevision $object
 	 * @param array $row
 	 */
-	function onAfterInsert( $object, array $row ) {
+	function onAfterInsert( $object, array $row, array $metadata ) {
 		if ( $object instanceof PostRevision ) {
 			$this->log( $object );
 		}
@@ -31,11 +31,11 @@ class PostModerationLogger implements LifecycleHandler {
 		 // You don't need to see my identification
 	}
 
-	function onAfterUpdate( $object, array $old, array $new ) {
+	function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
 		// These aren't the droids you're looking for
 	}
 
-	function onAfterRemove( $object, array $old ) {
+	function onAfterRemove( $object, array $old, array $metadata ) {
 		// Move along
 	}
 
