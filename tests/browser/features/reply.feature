@@ -10,6 +10,7 @@ Feature: Replying
       And I reply with comment "Boom boom shake shake the room"
     Then the top post's first reply contains the text "Boom boom shake shake the room"
 
+  @wip
   Scenario: Replying updates watched state
     Given I have created a Flow topic with title "Reply watch test"
       And I am not watching my new Flow topic

@@ -22,9 +22,9 @@ class FlowPage
   div(:flow_topics, class: "flow-topics")
 
   # Collapse button
-  a(:topics_and_posts_view, href: "#collapser/full")
-  a(:small_topics_view, href: "#collapser/compact")
-  a(:topics_only_view, href: "#collapser/topics")
+  a(:topics_and_posts_view, href: "#topics/full")
+  a(:small_topics_view, href: "#topics/compact")
+  a(:topics_only_view, href: "#topics/topics")
 
   # Dialogs
   div(:dialog, css: ".ui-dialog")
@@ -68,7 +68,11 @@ class FlowPage
   div(:first_moderated_topic, css: '.flow-topic.flow-topic-moderated', index: 0)
 
   div(:first_moderated_topic_titlebar) do |page|
-    page.first_moderated_topic_element.div_element(class: 'flow-topic-titlebar')
+    page.first_moderated_topic_element.div_element(css: '.flow-topic-titlebar')
+  end
+
+  div(:first_moderated_message) do |page|
+    page.first_moderated_topic_titlebar_element.div_element(css: '.flow-moderated-topic-title')
   end
 
   h2(:first_moderated_topic_title) do |page|
