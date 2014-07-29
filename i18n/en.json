@@ -329,7 +329,7 @@
     "flow-add-topic": "Add Topic ",
     "flow-newest-topics": "Newest topics",
     "flow-recent-topics": "Recently active topics",
-    "flow-sorting-tooltip": "You are currently reading the newest topics first. Click for more sorting options.",
+    "flow-sorting-tooltip": "{{GENDER:$1|You}} are currently reading the newest topics first. Click for more sorting options.",
     "flow-toggle-small-topics": "Switch to small topics view",
     "flow-toggle-topics": "Switch to topics only view",
     "flow-toggle-topics-posts": "Switch to topics and posts view",
