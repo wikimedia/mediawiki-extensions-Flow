@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_5c08902a",
+        "filename": "handlebars/flow_load_more.handlebars",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-29T01:24:39Z",
+      "side": 1,
+      "message": "With this error container inside flow-ui-fallback-element any error loading the next page will not be displayed to the user",
+      "revId": "487e8d84bddd45196774200f00eae5d3f61ab634",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
