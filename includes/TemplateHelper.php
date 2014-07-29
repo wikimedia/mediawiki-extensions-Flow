@@ -219,11 +219,11 @@ class TemplateHelper {
 			break;
 
 		case 'started_with_participants':
-			$topicPost = $args[0];
+			$topicTitle = $args[0];
 			$message = wfMessage(
 				'flow-topic-participants-second-try',
-				$topicPost['creator']['name'],
-				$topicPost['author_count'] - 1
+				$topicTitle['creator']['name'],
+				$topicTitle['author_count'] - 1
 			);
 			break;
 
@@ -237,10 +237,10 @@ class TemplateHelper {
 			break;
 
 		case 'comment_count':
-			$topicPost = $args[0];
+			$topicTitle = $args[0];
 			$message = wfMessage(
 				'flow-topic-comment-count',
-				$topicPost['reply_count']
+				$topicTitle['reply_count']
 			);
 			break;
 
