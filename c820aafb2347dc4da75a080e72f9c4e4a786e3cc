@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e28a382_c1ba576c",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 860,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-07-29T01:04:39Z",
+      "side": 1,
+      "message": "what about it?",
+      "parentUuid": "8e28a382_17e9c90f",
+      "revId": "c820aafb2347dc4da75a080e72f9c4e4a786e3cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e28a382_f7e51d33",
         "filename": "modules/new/components/flow-board.js",
         "patchSetId": 3
