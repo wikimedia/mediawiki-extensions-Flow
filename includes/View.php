@@ -46,6 +46,7 @@ class View extends ContextSource {
 			'mediawiki.ui',
 			'mediawiki.ui.button',
 			'ext.flow.styles',
+			'ext.flow.mediawiki.ui.buttons',
 			'ext.flow.mediawiki.ui.tooltips',
 			'ext.flow.mediawiki.ui.form',
 			'ext.flow.icons.styles',
