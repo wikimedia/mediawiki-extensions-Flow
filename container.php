@@ -387,7 +387,8 @@ $c['storage.topic_list'] = $c->share( function( $c ) {
 // Individual post within a topic workflow
 $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 	global $wgContLang;
-	return array(
+	$user = $c['user'];
+	$handlers = array(
 		new Flow\Log\PostModerationLogger( $c['logger'] ),
 		new Flow\Data\PostRevisionRecentChanges(
 			$c['flow_actions'],
@@ -410,7 +411,18 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 		// using TreeRepository for extra information and stuffing it into topic_root while indexing
 		$c['storage.topic_history.index'],
 		$c['reference.recorder'],
+		new Flow\Data\NotificationListener( $user, $c['controller.notification'] ),
 	);
+
+	// Anonymous users cant watch pages
+	if ( !$user->isAnon() ) {
+		$handlers[] = new Flow\Data\WatchTopicListener( $user, $c['watched_items'], array(
+			// list of revision types that trigger watching the workflow
+			'new-topic', 'reply', 'edit', 'edit-title'
+		) );
+	}
+
+	return $handlers;
 } );
 $c['storage.post.mapper'] = $c->share( function( $c ) {
 	return CachingObjectMapper::model( 'Flow\\Model\\PostRevision', array( 'rev_id' ) );
@@ -582,7 +594,6 @@ $c['submission_handler'] = $c->share( function( $c ) {
 $c['factory.block'] = $c->share( function( $c ) {
 	return new Flow\BlockFactory(
 		$c['storage'],
-		$c['controller.notification'],
 		$c['loader.root_post']
 	);
 } );
