@@ -422,6 +422,24 @@ abstract class AbstractRevision {
 		return $this->userWiki;
 	}
 
+	protected function getUserInternal( $userId, $userIp, $userWiki ) {
+		if ( $userWiki !== wfWikiId() ) {
+			throw new CrossWikiException( 'Can only retrieve same-wiki users' );
+		}
+
+		if ( $userId ) {
+			return User::newFromId( $userId );
+		} elseif ( !$userIp ) {
+			throw new FlowException( 'Either $userId or $userIp must be set' );
+		} else {
+			User::newFromName( $userIp, /* $validate = */ false );
+		}
+	}
+
+	public function getUser() {
+		return $this->getUserInternal( $this->userId, $this->userIp, $this->userWiki );
+	}
+
 	/**
 	 * Should only be used for setting the initial content.  To set subsequent content
 	 * use self::setNextContent
