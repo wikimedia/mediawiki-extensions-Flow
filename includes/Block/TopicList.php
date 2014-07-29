@@ -10,7 +10,6 @@ use Flow\Model\PostRevision;
 use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use Flow\NotificationController;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\Exception\FailCommitException;
@@ -60,14 +59,6 @@ class TopicListBlock extends AbstractBlock {
 	 * @var RevisionActionPermissions
 	 */
 	protected $permissions;
-
-	public function __construct(
-		Workflow $workflow,
-		ManagerGroup $storage,
-		NotificationController $notificationController
-	) {
-		parent::__construct( $workflow, $storage, $notificationController );
-	}
 
 	public function init( $action, $user ) {
 		parent::init( $action, $user );
@@ -134,7 +125,7 @@ class TopicListBlock extends AbstractBlock {
 
 	/**
 	 * Create a new topic attached to the current topic list and write it
-	 * out to storage. Additionally generates notifications.
+	 * out to storage.
 	 */
 	public function commit() {
 		if ( $this->action !== 'new-topic' ) {
@@ -144,25 +135,22 @@ class TopicListBlock extends AbstractBlock {
 		$storage = $this->storage;
 		$metadata = array(
 			'workflow' => $this->topicWorkflow,
+			'board-workflow' => $this->workflow,
+			'topic-title' => $this->topicTitle,
+			'first-post' => $this->firstPost,
 		);
 
 		$storage->put( $this->topicListEntry, $metadata );
 		$storage->put( $this->topicTitle, $metadata );
 		if ( $this->firstPost !== null ) {
-			$storage->put( $this->firstPost, $metadata );
+			$storage->put( $this->firstPost, $metadata + array(
+				'reply-to' => $this->topicTitle
+			) );
 		}
 		// must be last because this will trigger OccupationController::ensureFlowRevision
 		// to create the page within topic namespace, that will try and render, so the above
 		// stuff needs to be in cache at least.
 		$storage->put( $this->topicWorkflow, $metadata );
-
-		$this->notificationController->notifyNewTopic( array(
-			'board-workflow' => $this->workflow,
-			'topic-workflow' => $this->topicWorkflow,
-			'topic-title' => $this->topicTitle,
-			'first-post' => $this->firstPost,
-			'user' => $this->user,
-		) );
 
 		$output = array(
 			'created-topic-id' => $this->topicWorkflow->getId(),
