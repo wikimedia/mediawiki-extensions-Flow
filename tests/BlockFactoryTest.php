@@ -51,15 +51,11 @@ class BlockFactoryTest extends FlowTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		// phpunit mocker fails to generate the correct method definition for
-		// NotificationController::getDefaultNotifiedUsers, just use the real one
-		$notificationController = new NotificationController( $wgLang );
-
 		$rootPostLoader = $this->getMockBuilder( '\Flow\Data\RootPostLoader' )
 			->disableOriginalConstructor()
 			->getMock();
 
-		return new BlockFactory( $storage, $notificationController, $rootPostLoader );
+		return new BlockFactory( $storage, $rootPostLoader );
 	}
 
 	protected function mockWorkflow( $type ) {
