@@ -46,12 +46,13 @@ class TopicBlock extends AbstractBlock {
 	/**
 	 * @var array
 	 */
-	protected $notification;
+	protected $requestedPost = array();
 
 	/**
-	 * @var array
+	 * @var array Map of data to be passed on as
+	 *  commit metadata for event handlers
 	 */
-	protected $requestedPost = array();
+	protected $extraCommitMetadata = array();
 
 	protected $supportedPostActions = array(
 		// Standard editing
@@ -92,8 +93,8 @@ class TopicBlock extends AbstractBlock {
 	 */
 	protected $permissions;
 
-	public function __construct( Workflow $workflow, ManagerGroup $storage, NotificationController $notificationController, $root ) {
-		parent::__construct( $workflow, $storage, $notificationController );
+	public function __construct( Workflow $workflow, ManagerGroup $storage, $root ) {
+		parent::__construct( $workflow, $storage );
 		if ( $root instanceof PostRevision ) {
 			$this->root = $root;
 		} elseif ( $root instanceof RootPostLoader ) {
@@ -206,8 +207,6 @@ class TopicBlock extends AbstractBlock {
 		if ( !$this->checkSpamFilters( $topicTitle, $this->newRevision ) ) {
 			return;
 		}
-
-		$this->setNotification( 'flow-topic-renamed' );
 	}
 
 	protected function validateReply() {
@@ -233,7 +232,7 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 
-		$this->setNotification( 'flow-post-reply', array( 'reply-to' => $post ) );
+		$this->extraCommitMetadata['reply-to'] = $post;
 	}
 
 	protected function validateModerateTopic() {
@@ -379,8 +378,6 @@ class TopicBlock extends AbstractBlock {
 		if ( !$this->checkSpamFilters( $post, $this->newRevision ) ) {
 			return;
 		}
-
-		$this->setNotification( 'flow-post-edited' );
 	}
 
 	public function commit() {
@@ -398,9 +395,12 @@ class TopicBlock extends AbstractBlock {
 				throw new FailCommitException( 'Attempt to save null revision', 'fail-commit' );
 			}
 
-			$metadata = array(
-				'workflow' => $this->workflow,
-			);
+			$metadata = $this->extraCommitMetadata;
+			$metadata['workflow'] = $this->workflow;
+			// $this->topicTitle has already been loaded before in case
+			// we've just edited it, so when editing the title, this will
+			// be its previous revision
+			$metadata['topic-title'] = $this->loadTopicTitle();
 
 			$this->storage->put( $this->newRevision, $metadata );
 			$this->storage->put( $this->workflow, $metadata );
@@ -412,16 +412,6 @@ class TopicBlock extends AbstractBlock {
 				$newRevision->getChildren();
 			} catch ( \MWException $e ) {
 				$newRevision->setChildren( array() );
-			}
-
-			if ( is_array( $this->notification ) ) {
-				$this->notification['params']['revision'] = $this->newRevision;
-				// $this->topicTitle has already been loaded before in case
-				// we've just edited it, so when editing the title, this will
-				// be its previous revision (which is what we want - new
-				// revision is in ['params']['revision'])
-				$this->notification['params']['topic-title'] = $this->loadTopicTitle();
-				$this->notificationController->notifyPostChange( $this->notification['type'], $this->notification['params'] );
 			}
 
 			return array(

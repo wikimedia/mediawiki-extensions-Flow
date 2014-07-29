@@ -412,6 +412,7 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 			// list of revision types that trigger watching the workflow
 			'new-topic', 'reply', 'edit', 'edit-title'
 		) ),
+		new Flow\Data\NotificationListener( $c['user'], $c['controller.notification'] ),
 	);
 } );
 $c['storage.post.mapper'] = $c->share( function( $c ) {
@@ -584,7 +585,6 @@ $c['submission_handler'] = $c->share( function( $c ) {
 $c['factory.block'] = $c->share( function( $c ) {
 	return new Flow\BlockFactory(
 		$c['storage'],
-		$c['controller.notification'],
 		$c['loader.root_post']
 	);
 } );
