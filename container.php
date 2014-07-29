@@ -387,7 +387,6 @@ $c['storage.topic_list'] = $c->share( function( $c ) {
 // Individual post within a topic workflow
 $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 	global $wgContLang;
-
 	$handlers = array(
 		new Flow\Log\PostModerationLogger( $c['logger'] ),
 		// The recent changes handler is wrapped to defer the insert callbacks
@@ -416,6 +415,7 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 		// using TreeRepository for extra information and stuffing it into topic_root while indexing
 		$c['storage.topic_history.index'],
 		$c['reference.recorder'],
+		new Flow\Data\NotificationListener( $c['controller.notification'] ),
 	);
 
 	// Anonymous users cant watch pages
@@ -601,7 +601,6 @@ $c['submission_handler'] = $c->share( function( $c ) {
 $c['factory.block'] = $c->share( function( $c ) {
 	return new Flow\BlockFactory(
 		$c['storage'],
-		$c['controller.notification'],
 		$c['loader.root_post']
 	);
 } );
