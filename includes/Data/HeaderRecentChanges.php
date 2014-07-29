@@ -2,6 +2,7 @@
 
 namespace Flow\Data;
 
+use Flow\Exception\FlowException;
 use Flow\FlowActions;
 use Flow\Model\Header;
 use Flow\Parsoid\Utils;
@@ -9,18 +10,12 @@ use Language;
 
 class HeaderRecentChanges extends RecentChanges {
 	/**
-	 * @var ManagerGroup
-	 */
-	protected $storage;
-
-	/**
 	 * @var Language Content Language
 	 */
 	protected $contLang;
 
-	public function __construct( FlowActions $actions, UserNameBatch $usernames, ManagerGroup $storage, Language $contLang ) {
+	public function __construct( FlowActions $actions, UserNameBatch $usernames, Language $contLang ) {
 		parent::__construct( $actions, $usernames );
-		$this->storage = $storage;
 		$this->contLang = $contLang;
 	}
 
@@ -29,12 +24,8 @@ class HeaderRecentChanges extends RecentChanges {
 	 * @param string[] $row
 	 */
 	public function onAfterInsert( $object, array $row, array $metadata ) {
-		$workflowId = $object->getWorkflowId();
-		$workflow = $this->storage->get( 'Workflow', $workflowId );
-		if ( !$workflow ) {
-			// unless in unit test, write to log
-			wfDebugLog( 'Flow', __METHOD__ . ": could not locate workflow for header " . $object->getRevisionId()->getAlphadecimal() );
-			return;
+		if ( !isset( $metadata['workflow'] ) ) {
+			throw new FlowException( 'Missing required metadata: workflow' );
 		}
 
 		$this->insert(
@@ -42,7 +33,7 @@ class HeaderRecentChanges extends RecentChanges {
 			'header',
 			'Header',
 			$row,
-			$workflow,
+			$metadata['workflow'],
 			array(
 				'content' => Utils::htmlToPlaintext(
 					$object->getContent(),

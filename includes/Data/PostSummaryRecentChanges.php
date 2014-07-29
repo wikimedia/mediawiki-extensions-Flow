@@ -8,18 +8,12 @@ use Language;
 
 class PostSummaryRecentChanges extends RecentChanges {
 	/**
-	 * @var ManagerGroup
-	 */
-	protected $storage;
-
-	/**
 	 * @var Language Content Language
 	 */
 	protected $contLang;
 
-	public function __construct( FlowActions $actions, UserNameBatch $usernames, ManagerGroup $storage, Language $contLang ) {
+	public function __construct( FlowActions $actions, UserNameBatch $usernames, Language $contLang ) {
 		parent::__construct( $actions, $usernames );
-		$this->storage = $storage;
 		$this->contLang = $contLang;
 	}
 
@@ -28,12 +22,8 @@ class PostSummaryRecentChanges extends RecentChanges {
 	 * @param string[] $row
 	 */
 	public function onAfterInsert( $object, array $row, array $metadata ) {
-		$workflowId = $object->getCollection()->getWorkflowId();
-		$workflow = $this->storage->get( 'Workflow', $workflowId );
-		if ( !$workflow ) {
-			// unless in unit test, write to log
-			wfDebugLog( 'Flow', __METHOD__ . ": could not locate workflow for post summary " . $object->getRevisionId()->getAlphadecimal() );
-			return;
+		if ( !isset( $metadata['workflow'] ) ) {
+			throw new FlowException( 'Missing required metadata: workflow' );
 		}
 
 		$this->insert(
@@ -41,7 +31,7 @@ class PostSummaryRecentChanges extends RecentChanges {
 			'topicsummary',
 			'PostSummary',
 			$row,
-			$workflow,
+			$metadata['workflow'],
 			array(
 				'content' => $this->contLang->truncate( $object->getContent(), self::TRUNCATE_LENGTH ),
 				'rev_type_id' => $object->getCollectionId()->getAlphadecimal()
