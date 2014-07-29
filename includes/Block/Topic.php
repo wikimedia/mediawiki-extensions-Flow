@@ -400,7 +400,17 @@ class TopicBlock extends AbstractBlock {
 
 			$metadata = array(
 				'workflow' => $this->workflow,
+				'topic-title' => $this->loadTopicTitle(),
 			);
+			if ( !$metadata['topic-title'] ) {
+				// permissions failure, should never have gotten this far
+				throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
+			}
+			if ( $this->newRevision->getPostId()->equals( $metadata['topic-title']->getPostId() ) ) {
+				// When performing actions against the topic-title self::loadTopicTitle
+				// returns the previous revision.
+				$metadata['topic-title'] = $this->newRevision;
+			}
 
 			$this->storage->put( $this->newRevision, $metadata );
 			$this->storage->put( $this->workflow, $metadata );
