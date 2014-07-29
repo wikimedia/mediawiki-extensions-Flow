@@ -4,7 +4,8 @@ namespace Flow\Tests;
 
 use Flow\Container;
 use Flow\Data\ObjectManager;
-use Flow\Data\RecentChanges as RecentChangesHandler;
+use Flow\Data\RecentChanges as RecentChangesListener;
+use Flow\Data\NotificationListener;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
@@ -34,6 +35,7 @@ class PostRevisionTestCase extends FlowTestCase {
 	protected function setUp() {
 		parent::setUp();
 		Container::reset();
+		//$this->clearExtraLifecycleHandlers();
 		$this->generateWorkflowForPost();
 		$this->revision = $this->generateObject();
 	}
@@ -177,16 +179,19 @@ class PostRevisionTestCase extends FlowTestCase {
 		$this->revisions[] = $revision;
 	}
 
-	protected function clearRecentChangesLifecycleHandlers() {
-		// Recent changes logging is outside the scope of this test, and
-		// causes interaction issues
+	protected function clearExtraLifecycleHandlers() {
 		$c = Container::getContainer();
 		foreach ( array( 'header', 'post' ) as $kind ) {
 			$key = "storage.$kind.lifecycle-handlers";
 			$c[$key] = array_filter(
 				$c[$key],
 				function( $handler ) {
-					return !$handler instanceof RecentChangesHandler;
+					// Recent changes logging is outside the scope of this test, and
+					// causes interaction issues
+					return !$handler instanceof RecentChangesListener
+						// putting together the right metadata for a commit is beyond the
+						// scope of these tests
+						&& !$handler instanceof NotificationListener;
 				}
 			);
 		}
