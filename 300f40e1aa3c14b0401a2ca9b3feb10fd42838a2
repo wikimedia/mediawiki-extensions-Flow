@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_aa283fdd",
+        "filename": "i18n/en.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-07-29T18:07:36Z",
+      "side": 1,
+      "message": "I think {{GENDER:|You}} might have sufficed here, and code changes were not needed; that is assuming standard MediaWiki PHP and JavaScript i18n is being used.It looks like this is an omission in https://www.mediawiki.org/wiki/Manual:Messages_API.",
+      "revId": "300f40e1aa3c14b0401a2ca9b3feb10fd42838a2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
