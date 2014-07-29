@@ -15,6 +15,7 @@
             'html' => 'Flow\TemplateHelper::htmlHelper',
             'post' => 'Flow\TemplateHelper::post',
             'l10nParse' => 'Flow\TemplateHelper::l10nParse',
+            'user' => 'Flow\TemplateHelper::user',
             'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
             'escapeContent' => 'Flow\TemplateHelper::escapeContent',
             'plaintextSnippet' => 'Flow\TemplateHelper::plaintextSnippet',
@@ -45,7 +46,7 @@
 		';}).'
 
 		'.'
-		<a href="javascript:void(0);" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" data-tooltip-pointing="down" title="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-sorting-tooltip'),Array()), 'encq').'" data-flow-interactive-handler="boardFilterMenuToggle">'.LCRun3::hbch($cx, 'ifEquals', Array(Array(((is_array($in) && isset($in['sortby'])) ? $in['sortby'] : null),'updated'),Array()), $in, function($cx, $in) {return '
+		<a href="javascript:void(0);" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" data-tooltip-pointing="down" title="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-sorting-tooltip',LCRun3::ch($cx, 'user', Array(Array(((is_array($in) && isset($in['name'])) ? $in['name'] : null)),Array()), 'raw')),Array()), 'encq').'" data-flow-interactive-handler="boardFilterMenuToggle">'.LCRun3::hbch($cx, 'ifEquals', Array(Array(((is_array($in) && isset($in['sortby'])) ? $in['sortby'] : null),'updated'),Array()), $in, function($cx, $in) {return '
 				'.LCRun3::ch($cx, 'l10n', Array(Array('flow-recent-topics'),Array()), 'encq').'
 			';}, function($cx, $in) {return '
 				'.LCRun3::ch($cx, 'l10n', Array(Array('flow-newest-topics'),Array()), 'encq').'
