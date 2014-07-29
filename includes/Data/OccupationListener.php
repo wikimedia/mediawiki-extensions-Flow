@@ -6,6 +6,10 @@ use Article;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
 
+/**
+ * Ensures that a given workflow is occupied.  This will be unnecssary
+ * once we deprecate the OccupationController white list.
+ */
 class OccupationListener implements LifecycleHandler {
 	/** @var OccupationController **/
 	protected $occupationController;

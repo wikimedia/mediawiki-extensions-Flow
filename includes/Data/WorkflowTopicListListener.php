@@ -4,6 +4,12 @@ namespace Flow\Data;
 
 use Flow\Model\TopicListEntry;
 
+/**
+ * Every time an action is performed against something within a workflow
+ * the workflow's last_update_timestamp is updated as well.  This listener
+ * passes that updated timestamp along to the topic list last updated index
+ * so that it can reorder any lists this workflow is in.
+ */
 class WorkflowTopicListListener implements LifecycleHandler {
 
 	/**

@@ -3,6 +3,12 @@
 namespace Flow\Data;
 
 /**
+ * Simplest possible implementation of ObjectMapper delgates
+ * execution to closures passed in the constructor.
+ *
+ * This can be used to keep the mapping logic in static methods
+ * within the model as so:
+ *
  * $userMapper = new BasicObjectMapper(
  *     array( 'User', 'toStorageRow' ),
  *     array( 'User', 'fromStorageRow' ),

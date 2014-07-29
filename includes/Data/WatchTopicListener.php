@@ -8,6 +8,10 @@ use Flow\WatchedTopicItems;
 use User;
 use WatchedItem;
 
+/**
+ * Auto-watch topics when the user performs one of the actions specified
+ * in the constructor.
+ */
 class WatchTopicListener {
 
 	/**

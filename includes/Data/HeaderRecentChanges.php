@@ -7,6 +7,9 @@ use Flow\Model\Header;
 use Flow\Parsoid\Utils;
 use Language;
 
+/**
+ * Create mediawiki recent change rows for newly created Header revisions
+ */
 class HeaderRecentChanges extends RecentChanges {
 	/**
 	 * @var ManagerGroup
