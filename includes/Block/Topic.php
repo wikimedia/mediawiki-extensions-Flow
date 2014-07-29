@@ -113,16 +113,19 @@ class TopicBlock extends AbstractBlock {
 	protected function validate() {
 		// If the topic is closed, the only allowed action is to reopen it
 		$topicTitle = $this->loadTopicTitle();
-		if ( $topicTitle ) {
-			if (
-				$topicTitle->isClosed()
-				&& (
-					$this->action !== 'close-open-topic'
-					|| $this->submitted['moderationState'] !== 'reopen'
-				)
-			) {
-				$this->addError( 'moderate', wfMessage( 'flow-error-topic-is-closed' ) );
-			}
+		if ( !$topicTitle ) {
+			// permissions issue, self::loadTopicTitle should have added appropriate
+			// error messages already.
+			return;
+		}
+		if (
+			$topicTitle->isClosed()
+			&& (
+				$this->action !== 'close-open-topic'
+				|| $this->submitted['moderationState'] !== 'reopen'
+			)
+		) {
+			$this->addError( 'moderate', wfMessage( 'flow-error-topic-is-closed' ) );
 		}
 
 		switch( $this->action ) {
@@ -182,7 +185,7 @@ class TopicBlock extends AbstractBlock {
 		}
 		$topicTitle = $this->loadTopicTitle();
 		if ( !$topicTitle ) {
-			throw new InvalidInputException( 'No revision associated with workflow?', 'missing-revision' );
+			return;
 		}
 		if ( !$this->permissions->isAllowed( $topicTitle, 'edit-title' ) ) {
 			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
@@ -434,6 +437,11 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	public function renderAPI( Templating $templating, array $options ) {
+		$topic = $this->loadTopicTitle( $this->action === 'history' ? 'history' : 'view' );
+		if ( !$topic ) {
+			throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
+		}
+
 		// there's probably some OO way to turn this stack of if/else into
 		// something nicer. Consider better ways before extending this with
 		// more conditionals
@@ -476,7 +484,6 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		$output['type'] = $this->getName();
-		$topic = $this->loadTopicTitle();
 		$output['topicTitle'] = $templating->getContent( $topic, 'wikitext' );
 
 		if ( $this->wasSubmitted() ) {
@@ -655,11 +662,15 @@ class TopicBlock extends AbstractBlock {
 		return null;
 	}
 
-	// Loads only the title, as opposed to loadRootPost which gets the entire tree of posts.
-	public function loadTopicTitle() {
+	/**
+	 * @param string $action Permissions action to require to return revision
+	 * @return AbstratRevision|null
+	 */
+	public function loadTopicTitle( $action = 'view' ) {
 		if ( $this->workflow->isNew() ) {
 			throw new InvalidDataException( 'New workflows do not have any related content', 'missing-topic-title' );
 		}
+
 		if ( $this->topicTitle === null ) {
 			$found = $this->storage->find(
 				'PostRevision',
@@ -676,12 +687,13 @@ class TopicBlock extends AbstractBlock {
 			$this->topicTitle->setChildren( array() );
 			$this->topicTitle->setDepth( 0 );
 			$this->topicTitle->setRootPost( $this->topicTitle );
-
-			if ( !$this->permissions->isAllowed( $this->topicTitle, 'view' ) ) {
-				$this->topicTitle = null;
-				$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
-			}
 		}
+
+		if ( !$this->permissions->isAllowed( $this->topicTitle, $action ) ) {
+			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
+			return null;
+		}
+
 		return $this->topicTitle;
 	}
 
