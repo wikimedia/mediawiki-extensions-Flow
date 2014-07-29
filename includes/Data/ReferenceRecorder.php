@@ -21,7 +21,7 @@ class ReferenceRecorder implements LifecycleHandler {
 		// Nuthin
 	}
 
-	function onAfterInsert( $revision, array $new ) {
+	function onAfterInsert( $revision, array $new, array $metadata ) {
 		$workflowId = $revision->getCollection()->getWorkflowId();
 		$workflow = $this->storage->get( 'Workflow', $workflowId );
 
@@ -123,11 +123,11 @@ class ReferenceRecorder implements LifecycleHandler {
 		return array( $addReferences, $removeReferences );
 	}
 
-	function onAfterUpdate( $object, array $old, array $new ) {
+	function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
 		// Nuthin
 	}
 
-	function onAfterRemove( $object, array $old ) {
+	function onAfterRemove( $object, array $old, array $metadata ) {
 		// Nuthin
 	}
 }

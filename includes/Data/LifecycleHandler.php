@@ -8,7 +8,7 @@ namespace Flow\Data;
  */
 interface LifecycleHandler {
 	function onAfterLoad( $object, array $old );
-	function onAfterInsert( $object, array $new );
-	function onAfterUpdate( $object, array $old, array $new );
-	function onAfterRemove( $object, array $old );
+	function onAfterInsert( $object, array $new, array $metadata );
+	function onAfterUpdate( $object, array $old, array $new, array $metadata );
+	function onAfterRemove( $object, array $old, array $metadata );
 }

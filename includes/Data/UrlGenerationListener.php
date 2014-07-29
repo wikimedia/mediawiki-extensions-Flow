@@ -28,17 +28,17 @@ class UrlGenerationListener implements LifecycleHandler {
 		}
 	}
 
-	public function onAfterInsert( $object, array $new ) {
+	public function onAfterInsert( $object, array $new, array $metadata ) {
 		if ( $object instanceof Workflow ) {
 			$this->urlGenerator->withWorkflow( $object );
 		}
 	}
 
-	public function onAfterUpdate( $object, array $old, array $new ) {
+	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
 		// Nothing
 	}
 
-	public function onAfterRemove( $object, array $old ) {
+	public function onAfterRemove( $object, array $old, array $metadata ) {
 		// Nothing
 	}
 }

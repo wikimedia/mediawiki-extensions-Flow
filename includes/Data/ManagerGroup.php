@@ -7,7 +7,7 @@ use Flow\Exception\DataModelException;
 
 /**
  * A little glue code to allow passing around and manipulating multiple
- * ObjectManagers more convenient.
+ * ObjectManagers more conveniently.
  */
 class ManagerGroup {
 	public function __construct( Container $container, array $classMap ) {
@@ -28,12 +28,12 @@ class ManagerGroup {
 		return $this->container[$this->classMap[$className]];
 	}
 
-	public function put( $object ) {
-		$this->getStorage( get_class( $object ) )->put( $object );
+	public function put( $object, array $metadata ) {
+		$this->getStorage( get_class( $object ) )->put( $object, $metadata );
 	}
 
 
-	protected function multiMethod( $method, $objects ) {
+	protected function multiMethod( $method, $objects, array $metadata ) {
 		$itemsByClass = array();
 
 		foreach( $objects as $object ) {
@@ -41,16 +41,16 @@ class ManagerGroup {
 		}
 
 		foreach( $itemsByClass as $class => $myObjects ) {
-			$this->getStorage( $class )->$method( $myObjects );
+			$this->getStorage( $class )->$method( $myObjects, $metadata );
 		}
 	}
 
-	public function multiPut( $objects ) {
-		$this->multiMethod( 'multiPut', $objects );
+	public function multiPut( $objects, array $metadata = array() ) {
+		$this->multiMethod( 'multiPut', $objects, $metadata );
 	}
 
-	public function multiRemove( $objects ) {
-		$this->multiMethod( 'multiRemove', $objects );
+	public function multiRemove( $objects, array $metadata = array() ) {
+		$this->multiMethod( 'multiRemove', $objects, $metadata );
 	}
 
 	protected function call( $method, $args ) {

@@ -40,17 +40,17 @@ class WorkflowTopicListListener implements LifecycleHandler {
 		}
 	}
 
-	public function onAfterInsert( $object, array $new ) {
+	public function onAfterInsert( $object, array $new, array $metadata ) {
 		$entry = $this->getTopicListEntry( $new['workflow_id'] );
 		if ( $entry ) {
 			$row = array(
 					'workflow_last_update_timestamp' => $new['workflow_last_update_timestamp']
 				) + TopicListEntry::toStorageRow( $entry );
-			$this->topicListLastUpdatedIndex->onAfterInsert( $entry, $row );
+			$this->topicListLastUpdatedIndex->onAfterInsert( $entry, $row, $metadata );
 		}
 	}
 
-	public function onAfterUpdate( $object, array $old, array $new ) {
+	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
 		$entry = $this->getTopicListEntry( $new['workflow_id'] );
 		if ( $entry ) {
 			$row = TopicListEntry::toStorageRow( $entry );
@@ -61,12 +61,12 @@ class WorkflowTopicListListener implements LifecycleHandler {
 				) + $row,
 				array(
 					'workflow_last_update_timestamp' => $new['workflow_last_update_timestamp']
-				) + $row
+				) + $row,
+				$metadata
 			);
 		}
 	}
 
 	public function onAfterLoad( $object, array $row ) {}
-	public function onAfterRemove( $object, array $old ) {}
-
+	public function onAfterRemove( $object, array $old, array $metadata ) {}
 }

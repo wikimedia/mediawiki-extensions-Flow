@@ -401,8 +401,12 @@ class TopicBlock extends AbstractBlock {
 				throw new FailCommitException( 'Attempt to save null revision', 'fail-commit' );
 			}
 
-			$this->storage->put( $this->newRevision );
-			$this->storage->put( $this->workflow );
+			$metadata = array(
+				'workflow' => $this->workflow,
+			);
+
+			$this->storage->put( $this->newRevision, $metadata );
+			$this->storage->put( $this->workflow, $metadata );
 			$newRevision = $this->newRevision;
 
 			// If no context was loaded render the post in isolation
