@@ -18,11 +18,9 @@ class BlockFactory {
 
 	public function __construct(
 		ManagerGroup $storage,
-		NotificationController $notificationController,
 		RootPostLoader $rootPostLoader
 	) {
 		$this->storage = $storage;
-		$this->notificationController = $notificationController;
 		$this->rootPostLoader = $rootPostLoader;
 	}
 
@@ -36,16 +34,16 @@ class BlockFactory {
 		switch( $workflow->getType() ) {
 			case 'discussion':
 				$blocks = array(
-					new HeaderBlock( $workflow, $this->storage, $this->notificationController ),
-					new TopicListBlock( $workflow, $this->storage, $this->notificationController ),
-					new BoardHistoryBlock( $workflow, $this->storage, $this->notificationController ),
+					new HeaderBlock( $workflow, $this->storage ),
+					new TopicListBlock( $workflow, $this->storage ),
+					new BoardHistoryBlock( $workflow, $this->storage ),
 				);
 				break;
 
 			case 'topic':
 				$blocks = array(
-					new TopicBlock( $workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
-					new TopicSummaryBlock( $workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
+					new TopicBlock( $workflow, $this->storage, $this->rootPostLoader ),
+					new TopicSummaryBlock( $workflow, $this->storage, $this->rootPostLoader ),
 				);
 				break;
 

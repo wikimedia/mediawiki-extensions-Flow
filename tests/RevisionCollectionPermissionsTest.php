@@ -57,9 +57,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		// RecentChanges logging can cause issues here because not everything
-		// is configured, just skip it.
-		$this->clearRecentChangesLifecycleHandlers();
+		$this->clearExtraLifecycleHandlers();
 
 		// We don't want local config getting in the way of testing whether or
 		// not our permissions implementation works well.

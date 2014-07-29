@@ -18,7 +18,7 @@ class PostCollectionTest extends PostRevisionTestCase {
 		parent::setUp();
 
 		// recent changes isn't fully setup here, just skip it
-		$this->clearRecentChangesLifecycleHandlers();
+		$this->clearExtraLifecycleHandlers();
 
 		// generate a post with multiple revisions
 		$revision = $this->generateObject( array(
