@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_a53bd0c2",
+        "filename": "includes/Data/HeaderRecentChanges.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-07-29T18:30:26Z",
+      "side": 1,
+      "message": "$workflow is not used anymore,  the same for $this-\u003estorage",
+      "revId": "6d2a114f4c7de980477f1ddbbb97e860818ad8f4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
