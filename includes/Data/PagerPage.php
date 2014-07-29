@@ -2,6 +2,9 @@
 
 namespace Flow\Data;
 
+/**
+ * Represents a single page of data loaded via Flow\Data\Pager
+ */
 class PagerPage {
 	function __construct( $results, $pagingLinkOptions, $pager ) {
 		$this->results = $results;

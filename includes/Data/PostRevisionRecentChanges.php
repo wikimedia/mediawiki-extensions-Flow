@@ -7,6 +7,9 @@ use Flow\Model\PostRevision;
 use Flow\Repository\TreeRepository;
 use Language;
 
+/**
+ * Insert mw recentchange rows for newly inserted PostRevision instances
+ */
 class PostRevisionRecentChanges extends RecentChanges {
 	/**
 	 * @var ManagerGroup

@@ -4,6 +4,9 @@ namespace Flow\Data;
 
 use Flow\Exception\InvalidInputException;
 
+/**
+ * Fetches paginated results from the OM provided in constructor
+ */
 class Pager {
 	/**
 	 * @var ObjectManager

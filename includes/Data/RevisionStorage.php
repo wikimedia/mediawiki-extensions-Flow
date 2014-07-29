@@ -9,6 +9,9 @@ use Flow\Exception\DataModelException;
 use Flow\Model\UUID;
 use MWException;
 
+/**
+ * Abstract storage implementation for models extending from AbstractRevision
+ */
 abstract class RevisionStorage extends DbStorage {
 
 	/**

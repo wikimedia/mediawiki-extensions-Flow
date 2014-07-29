@@ -4,6 +4,11 @@ namespace Flow\Data;
 
 use Flow\Model\UUID;
 
+/**
+ * Rows with the same primary key always return the same object
+ * from self::fromStorageRow.  This means that if two parts of the
+ * code both load revision 123 they will receive the same object.
+ */
 class CachingObjectMapper implements ObjectMapper {
 	protected $toStorageRow;
 

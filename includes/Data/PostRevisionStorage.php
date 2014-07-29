@@ -7,6 +7,9 @@ use Flow\DbFactory;
 use Flow\Repository\TreeRepository;
 use Flow\Exception\DataModelException;
 
+/**
+ * SQL storage and query for PostRevision instances
+ */
 class PostRevisionStorage extends RevisionStorage {
 
 	public function __construct( DbFactory $dbFactory, $externalStore, TreeRepository $treeRepo ) {

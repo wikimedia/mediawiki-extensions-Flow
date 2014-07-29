@@ -4,6 +4,11 @@ namespace Flow\Data;
 
 use Flow\Exception\DataModelException;
 
+/**
+ * Query-only storage implementation merges PostRevision and
+ * PostSummary instances to provide a full list of revisions for
+ * a topics history.
+ */
 class TopicHistoryStorage implements ObjectStorage {
 
 	protected $postRevisionStorage;

@@ -1,12 +1,12 @@
 <?php
-/**
- * Provide usernames filtered by per-wiki ipblocks. Batches together
- * database requests for multiple usernames when possible.
- */
 namespace Flow\Data;
 
 use Flow\DbFactory;
 
+/**
+ * Provide usernames filtered by per-wiki ipblocks. Batches together
+ * database requests for multiple usernames when possible.
+ */
 class OneStepUserNameQuery implements UserNameQuery {
 	public function __construct( DbFactory $dbFactory ) {
 		$this->dbFactory = $dbFactory;

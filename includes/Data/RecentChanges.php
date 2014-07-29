@@ -9,6 +9,12 @@ use Flow\Model\Workflow;
 use RecentChange;
 use Closure;
 
+/**
+ * Abstract class for inserting mw recentchange rows for flow AbstractRevision
+ * instances.  Each revision type must extend this class implemnting the
+ * self::onAfterInsert method which calls self::insert.  Those handlers must then
+ * be attached to the appropriate ObjectManager.
+ */
 abstract class RecentChanges implements LifecycleHandler {
 
 	// Value used in rc_source field of recentchanges to identify flow specific changes

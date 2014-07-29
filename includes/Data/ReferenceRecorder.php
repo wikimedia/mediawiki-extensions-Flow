@@ -8,20 +8,25 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Parsoid\ReferenceExtractor;
 
+/**
+ * Listens for new revisions to be inserted.  Calculates the difference in
+ * references(URLs, images, etc) between this new version and the previous
+ * revision. Uses calculated difference to update links tables to match the new revision.
+ */
 class ReferenceRecorder implements LifecycleHandler {
 	protected $referenceExtractor, $storage, $linksTableUpdater;
 
-	function __construct( ReferenceExtractor $referenceExtractor, LinksTableUpdater $linksTableUpdater, ManagerGroup $storage ) {
+	public function __construct( ReferenceExtractor $referenceExtractor, LinksTableUpdater $linksTableUpdater, ManagerGroup $storage ) {
 		$this->referenceExtractor = $referenceExtractor;
 		$this->linksTableUpdater = $linksTableUpdater;
 		$this->storage = $storage;
 	}
 
-	function onAfterLoad( $object, array $old ) {
+	public function onAfterLoad( $object, array $old ) {
 		// Nuthin
 	}
 
-	function onAfterInsert( $revision, array $new, array $metadata ) {
+	public function onAfterInsert( $revision, array $new, array $metadata ) {
 		$workflowId = $revision->getCollection()->getWorkflowId();
 		$workflow = $this->storage->get( 'Workflow', $workflowId );
 
@@ -123,11 +128,11 @@ class ReferenceRecorder implements LifecycleHandler {
 		return array( $addReferences, $removeReferences );
 	}
 
-	function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
+	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
 		// Nuthin
 	}
 
-	function onAfterRemove( $object, array $old, array $metadata ) {
+	public function onAfterRemove( $object, array $old, array $metadata ) {
 		// Nuthin
 	}
 }
