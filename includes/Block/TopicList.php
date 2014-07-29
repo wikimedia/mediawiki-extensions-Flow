@@ -159,7 +159,7 @@ class TopicListBlock extends AbstractBlock {
 		$this->notificationController->notifyNewTopic( array(
 			'board-workflow' => $this->workflow,
 			'topic-workflow' => $this->topicWorkflow,
-			'title-post' => $this->topicPost,
+			'topic-title' => $this->topicPost,
 			'first-post' => $this->firstPost,
 			'user' => $this->user,
 		) );

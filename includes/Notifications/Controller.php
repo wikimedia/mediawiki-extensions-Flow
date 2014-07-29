@@ -160,7 +160,7 @@ class NotificationController {
 	 * @param  array $params Associative array of parameters, all required:
 	 * * board-workflow: Workflow object for the Flow board.
 	 * * topic-workflow: Workflow object for the new Topic.
-	 * * title-post: PostRevision object for the "topic post", containing the
+	 * * topic-title: PostRevision object for the "topic post", containing the
 	 *    title.
 	 * * first-post: PostRevision object for the first post, or null when no first post.
 	 * * user: The User who created the topic.
@@ -177,7 +177,7 @@ class NotificationController {
 		if ( !$topicWorkflow instanceof Workflow ) {
 			throw new FlowException( 'Expected Workflow but received ' . get_class( $topicWorkflow ) );
 		}
-		$topicPost = $params['title-post'];
+		$topicPost = $params['topic-title'];
 		if ( !$topicPost instanceof PostRevision ) {
 			throw new FlowException( 'Expected PostRevision but received ' . get_class( $topicPost ) );
 		}
