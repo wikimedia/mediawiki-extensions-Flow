@@ -144,6 +144,7 @@ class TopicListBlock extends AbstractBlock {
 		$storage = $this->storage;
 		$metadata = array(
 			'workflow' => $this->topicWorkflow,
+			'topic-title' => $this->topicPost,
 		);
 
 		$storage->put( $this->topicListEntry, $metadata );
