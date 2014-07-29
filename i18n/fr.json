@@ -310,7 +310,7 @@
 	"flow-add-topic": "Ajouter un sujet",
 	"flow-newest-topics": "Sujets les plus récents",
 	"flow-recent-topics": "Sujets récemment actifs",
-	"flow-sorting-tooltip": "Vous êtes en train de lire les plus récents sujets d’abord. Cliquez pour plus d’options de tri.",
+	"flow-sorting-tooltip": "Vous lisez sujets les plus récents d’abord. Cliquez pour plus d’options de tri.",
 	"flow-toggle-small-topics": "Basculer en affichage de sujets en petit",
 	"flow-toggle-topics": "Basculer en affichage de sujets seulement",
 	"flow-toggle-topics-posts": "Basculer en affichage de sujets et messages",
