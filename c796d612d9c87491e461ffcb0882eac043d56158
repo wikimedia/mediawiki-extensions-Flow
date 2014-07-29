@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_dcd120fd",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 2148,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-29T03:24:49Z",
+      "side": 1,
+      "message": "the rest of the file puts the dots at the begining",
+      "revId": "c796d612d9c87491e461ffcb0882eac043d56158",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
