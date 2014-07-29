@@ -160,7 +160,7 @@ class NotificationController {
 	 * @param  array $params Associative array of parameters, all required:
 	 * * board-workflow: Workflow object for the Flow board.
 	 * * topic-workflow: Workflow object for the new Topic.
-	 * * title-post: PostRevision object for the "topic post", containing the
+	 * * topic-title: PostRevision object for the "topic post", containing the
 	 *    title.
 	 * * first-post: PostRevision object for the first post, or null when no first post.
 	 * * user: The User who created the topic.
@@ -177,9 +177,9 @@ class NotificationController {
 		if ( !$topicWorkflow instanceof Workflow ) {
 			throw new FlowException( 'Expected Workflow but received ' . get_class( $topicWorkflow ) );
 		}
-		$topicPost = $params['title-post'];
-		if ( !$topicPost instanceof PostRevision ) {
-			throw new FlowException( 'Expected PostRevision but received ' . get_class( $topicPost ) );
+		$topicTitle = $params['topic-title'];
+		if ( !$topicTitle instanceof PostRevision ) {
+			throw new FlowException( 'Expected PostRevision but received ' . get_class( $topicTitle ) );
 		}
 		$firstPost = $params['first-post'];
 		if ( $firstPost !== null && !$firstPost instanceof PostRevision ) {
@@ -198,7 +198,7 @@ class NotificationController {
 				'board-workflow' => $boardWorkflow->getId(),
 				'topic-workflow' => $topicWorkflow->getId(),
 				'post-id' => $firstPost ? $firstPost->getRevisionId() : null,
-				'topic-title' => Utils::htmlToPlaintext( $topicPost->getContent(), 200, $this->language ),
+				'topic-title' => Utils::htmlToPlaintext( $topicTitle->getContent(), 200, $this->language ),
 				'content' => $firstPost
 					? Utils::htmlToPlaintext( $firstPost->getContent(), 200, $this->language )
 					: null,
@@ -210,7 +210,7 @@ class NotificationController {
 				'title' => $boardWorkflow->getArticleTitle(),
 				'user' => $user,
 				'post' => $firstPost,
-				'topic-title' => $topicPost,
+				'topic-title' => $topicTitle,
 				'topic-workflow' => $topicWorkflow,
 			) )
 		);

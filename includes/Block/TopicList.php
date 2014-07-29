@@ -49,7 +49,7 @@ class TopicListBlock extends AbstractBlock {
 	/**
 	 * @var PostRevision|null
 	 */
-	protected $topicPost;
+	protected $topicTitle;
 
 	/**
 	 * @var PostRevision|null
@@ -95,9 +95,9 @@ class TopicListBlock extends AbstractBlock {
 		}
 
 		// creates Workflow, Revision & TopicListEntry objects to be inserted into storage
-		list( $this->topicWorkflow, $this->topicListEntry, $this->topicPost, $this->firstPost ) = $this->create();
+		list( $this->topicWorkflow, $this->topicListEntry, $this->topicTitle, $this->firstPost ) = $this->create();
 
-		if ( !$this->checkSpamFilters( null, $this->topicPost ) ) {
+		if ( !$this->checkSpamFilters( null, $this->topicTitle ) ) {
 			return;
 		}
 		if ( $this->firstPost && !$this->checkSpamFilters( null, $this->firstPost ) ) {
@@ -109,27 +109,27 @@ class TopicListBlock extends AbstractBlock {
 	 * Creates the objects about to be inserted into storage:
 	 * * $this->topicWorkflow
 	 * * $this->topicListEntry
-	 * * $this->topicPost
+	 * * $this->topicTitle
 	 * * $this->firstPost
 	 *
 	 * @throws \MWException
 	 * @throws \Flow\Exception\FailCommitException
-	 * @return array Array of [$topicWorkflow, $topicListEntry, $topicPost, $firstPost]
+	 * @return array Array of [$topicWorkflow, $topicListEntry, $topicTitle, $firstPost]
 	 */
 	protected function create() {
 		$title = $this->workflow->getArticleTitle();
 		$topicWorkflow = Workflow::create( 'topic', $this->user, $title );
 		$topicListEntry = TopicListEntry::create( $this->workflow, $topicWorkflow );
-		$topicPost = PostRevision::create( $topicWorkflow, $this->submitted['topic'] );
+		$topicTitle = PostRevision::create( $topicWorkflow, $this->submitted['topic'] );
 
 		$firstPost = null;
 		if ( !empty( $this->submitted['content'] ) ) {
-			$firstPost = $topicPost->reply( $topicWorkflow, $this->user, $this->submitted['content'] );
-			$topicPost->setChildren( array( $firstPost ) );
+			$firstPost = $topicTitle->reply( $topicWorkflow, $this->user, $this->submitted['content'] );
+			$topicTitle->setChildren( array( $firstPost ) );
 		}
 
 
-		return array( $topicWorkflow, $topicListEntry, $topicPost, $firstPost );
+		return array( $topicWorkflow, $topicListEntry, $topicTitle, $firstPost );
 	}
 
 	/**
@@ -147,7 +147,7 @@ class TopicListBlock extends AbstractBlock {
 		);
 
 		$storage->put( $this->topicListEntry, $metadata );
-		$storage->put( $this->topicPost, $metadata );
+		$storage->put( $this->topicTitle, $metadata );
 		if ( $this->firstPost !== null ) {
 			$storage->put( $this->firstPost, $metadata );
 		}
@@ -159,7 +159,7 @@ class TopicListBlock extends AbstractBlock {
 		$this->notificationController->notifyNewTopic( array(
 			'board-workflow' => $this->workflow,
 			'topic-workflow' => $this->topicWorkflow,
-			'title-post' => $this->topicPost,
+			'topic-title' => $this->topicTitle,
 			'first-post' => $this->firstPost,
 			'user' => $this->user,
 		) );
