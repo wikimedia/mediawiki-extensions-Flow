@@ -198,12 +198,6 @@ $wgResourceModules += array(
 			'flow-moderation-confirm-suppress-topic',
 		),
 	),
-	// @todo: replace with mediawiki ui buttons
-	'ext.flow.mediawiki.ui.buttons' => $flowResourceTemplate + array(
-		'styles' => array(
-			'new/styles/mediawiki.ui/buttons.less',
-		),
-	),
 	// @todo: upstream to mediawiki ui
 	'ext.flow.mediawiki.ui.form' => $flowResourceTemplate + array(
 		'styles' => array(
@@ -256,7 +250,7 @@ $wgResourceModules += array(
 	// @todo: Remove when cache clears
 	'ext.flow.new.styles' => $flowResourceTemplate + array(
 		'styles' => array(
-			'new/styles/mediawiki.ui/buttons.less',
+			'new/styles/mediawiki.ui/_buttons.less',
 			'new/styles/mediawiki.ui/forms.less',
 			'new/styles/mediawiki.ui/tooltips.less',
 			'new/styles/icons.less',
