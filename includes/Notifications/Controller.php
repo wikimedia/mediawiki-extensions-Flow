@@ -556,27 +556,4 @@ class NotificationController {
 		}
 		return $talkUser;
 	}
-
-	/**
-	 * @todo - This is not a good place to put auto-subscription, but I am not sure
-	 * yet where the best place to put this
-	 */
-	public function subscribeToWorkflow( User $user, Workflow $workflow ) {
-		// Only topic is subscribable for now
-		if ( $user->isAnon() || $workflow->getType() !== 'topic' ) {
-			return;
-		}
-		$title = $workflow->getArticleTitle();
-		// There is really nothing to do if UUID is reported as invalid title text,
-		// maybe just log it
-		if ( !$title ) {
-			return;
-		}
-		$watchedItem = WatchedItem::fromUserTitle(
-			$user,
-			$title
-		);
-		$watchedItem->addWatch();
-	}
-
 }
