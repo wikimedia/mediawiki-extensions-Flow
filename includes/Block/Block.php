@@ -5,7 +5,6 @@ namespace Flow\Block;
 use Flow\Exception\InvalidInputException;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use Flow\NotificationController;
 use Flow\Data\ManagerGroup;
 use Flow\SpamFilter\Controller as SpamFilterController;
 use Flow\Templating;
@@ -82,12 +81,9 @@ abstract class AbstractBlock implements Block {
 	 */
 	protected $templates = array();
 
-	protected $notificationController;
-
-	public function __construct( Workflow $workflow, ManagerGroup $storage, NotificationController $notificationController ) {
+	public function __construct( Workflow $workflow, ManagerGroup $storage ) {
 		$this->workflow = $workflow;
 		$this->storage = $storage;
-		$this->notificationController = $notificationController;
 	}
 
 	abstract protected function validate();

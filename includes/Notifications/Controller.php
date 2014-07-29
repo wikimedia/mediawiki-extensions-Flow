@@ -80,9 +80,6 @@ class NotificationController {
 			return array();
 		}
 
-		$title = $data['title'];
-		$user = $data['user'];
-
 		$extraData = array();
 
 		$revision = $data['revision'];
@@ -97,6 +94,9 @@ class NotificationController {
 		if ( !$topicWorkflow instanceof Workflow ) {
 			throw new FlowException( 'Expected Workflow but received ' . get_class( $topicWorkflow ) );
 		}
+
+		$title = $data['title'];
+		$user = $data['revision']->getUser();
 
 		$extraData['revision-id'] = $revision->getRevisionId();
 		$extraData['post-id'] = $revision->getPostId();
@@ -185,7 +185,7 @@ class NotificationController {
 		if ( $firstPost !== null && !$firstPost instanceof PostRevision ) {
 			throw new FlowException( 'Expected PostRevision but received ' . get_class( $firstPost ) );
 		}
-		$user = $params['user'];
+		$user = $topicTitle->getUser();
 		$boardWorkflow = $params['board-workflow'];
 		if ( !$boardWorkflow instanceof Workflow ) {
 			throw new FlowException( 'Expected Workflow but received ' . get_class( $boardWorkflow ) );
