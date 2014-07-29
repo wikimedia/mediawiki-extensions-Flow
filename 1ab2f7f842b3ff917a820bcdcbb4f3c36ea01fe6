@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e28a382_dc56c02c",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-07-29T05:09:15Z",
+      "side": 1,
+      "message": "It\u0027s not quite the same code (one gets the count, the other gets the actual users) – what sort of abstraction would you propose for making them share code?",
+      "parentUuid": "8e28a382_82c5830f",
+      "revId": "1ab2f7f842b3ff917a820bcdcbb4f3c36ea01fe6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e28a382_22e7efa8",
         "filename": "includes/Notifications/Controller.php",
         "patchSetId": 14
