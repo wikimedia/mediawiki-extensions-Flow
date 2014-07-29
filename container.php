@@ -231,7 +231,6 @@ $c['storage.header.lifecycle-handlers'] = $c->share( function( $c ) {
 		new Flow\Data\HeaderRecentChanges(
 			$c['flow_actions'],
 			$c['repository.username'],
-			$c['storage'],
 			$wgContLang
 		),
 		$c['storage.board_history.index'],
@@ -291,7 +290,6 @@ $c['storage.post.summary.lifecycle-handlers'] = $c->share( function( $c ) {
 		new Flow\Data\PostSummaryRecentChanges(
 			$c['flow_actions'],
 			$c['repository.username'],
-			$c['storage'],
 			$wgContLang
 		),
 		new Flow\Data\UserNameListener(
@@ -393,7 +391,11 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 	$user = $c['user'];
 	$handlers = array(
 		new Flow\Log\PostModerationLogger( $c['logger'] ),
-		new Flow\Data\PostRevisionRecentChanges( $c['flow_actions'], $c['repository.username'], $c['storage'], $c['repository.tree'], $wgContLang ),
+		new Flow\Data\PostRevisionRecentChanges(
+			$c['flow_actions'],
+			$c['repository.username'],
+			$wgContLang
+		),
 		$c['storage.board_history.index'],
 		new Flow\Data\UserNameListener(
 			$c['repository.username'],
