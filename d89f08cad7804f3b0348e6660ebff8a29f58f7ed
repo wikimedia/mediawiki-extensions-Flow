@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_388edbd5",
+        "filename": "Resources.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-30T23:24:51Z",
+      "side": 1,
+      "message": "NO!",
+      "revId": "d89f08cad7804f3b0348e6660ebff8a29f58f7ed",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
