@@ -144,7 +144,7 @@
 ' : '').'
 <span class="flow-author">'.LCRun3::ch($cx, 'l10n', Array(Array('started_with_participants',$in),Array()), 'encq').'</span>
 <div class="flow-topic-meta">
-	<a class="mw-ui-button mw-ui-progressive  mw-ui-quiet flow-ui-inline"
+	<a class="mw-ui-progressive mw-ui-quiet"
 		 data-flow-interactive-handler="activateForm"
 		 href="#flow-post-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'-form-content">'.LCRun3::ch($cx, 'l10n', Array(Array('Reply',((is_array($in) && isset($in['author'])) ? $in['author'] : null)),Array()), 'encq').'</a>
 	&bull; '.LCRun3::ch($cx, 'l10n', Array(Array('comment_count',$in),Array()), 'encq').' &bull;
