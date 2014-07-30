@@ -5,7 +5,7 @@
 		</span>
 	{{else}}
 		<a href="{{#if isWatched}}{{links.unwatch-topic.url}}{{else}}{{links.watch-topic.url}}{{/if}}"
-		   class="flow-ui-quiet flow-ui-constructive {{#if isWatched}}flow-ui-active{{/if}}"
+		   class="mw-ui-quiet mw-ui-constructive {{#if isWatched}}mw-ui-active{{/if}}"
 		   data-flow-api-handler="watchTopic"
 		   data-flow-api-target="< .flow-topic-watchlist"
 		   data-flow-api-method="POST">
