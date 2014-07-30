@@ -308,6 +308,8 @@ $wgResourceModules += array(
 			'mediawiki.Title',
 			'mediawiki.user',
 			'mediawiki.util',
+			'mediawiki.ui.anchor',
+			'mediawiki.ui.button',
 		),
 		'messages' => array(
 			'flow-error-external',
