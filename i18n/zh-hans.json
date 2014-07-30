@@ -308,7 +308,7 @@
 	"flow-add-topic": "添加话题",
 	"flow-newest-topics": "最新话题",
 	"flow-recent-topics": "当前活跃话题",
-	"flow-sorting-tooltip": "您在首次阅读最新主题。点此获取更多排序选项。",
+	"flow-sorting-tooltip": "{{GENDER:$1|您}}在首次阅读最新主题。点此获取更多排序选项。",
 	"flow-toggle-small-topics": "切换为小主题视图",
 	"flow-toggle-topics": "切换为仅主题视图",
 	"flow-toggle-topics-posts": "切换为主题和帖子视图",
