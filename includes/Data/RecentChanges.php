@@ -2,6 +2,7 @@
 
 namespace Flow\Data;
 
+use DeferredUpdates;
 use Flow\Container;
 use Flow\FlowActions;
 use Flow\Model\AbstractRevision;
@@ -120,7 +121,14 @@ abstract class RecentChanges implements LifecycleHandler {
 			$feeds[$name]['original_formatter'] = $feeds[$name]['formatter'];
 			$feeds[$name]['formatter'] = Container::get( 'formatter.irclineurl' );
 		}
-		$rc->notifyRCFeeds( $feeds );
+		// Defer to end of request when all flow objects have been commited,
+		// this is causing an exception when creating a new topic, the workflow
+		// is not ready yet
+		DeferredUpdates::addCallableUpdate(
+			function() use( $rc, $feeds ) {
+				$rc->notifyRCFeeds( $feeds );
+			}
+		);
 	}
 
 	/**
