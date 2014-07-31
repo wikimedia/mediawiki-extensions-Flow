@@ -1,11 +1,11 @@
 <div class="flow-topic-watchlist">
 	{{#if isAlwaysWatched}}
-		<span class="mw-ui-quiet mw-ui-constructive mw-ui-active">
+		<span class="mw-ui-constructive">
 			{{~null~}}<span class="wikiglyph wikiglyph-star"></span>{{~null~}}
 		</span>
 	{{else}}
 		<a href="{{#if isWatched}}{{links.unwatch-topic.url}}{{else}}{{links.watch-topic.url}}{{/if}}"
-		   class="mw-ui-quiet mw-ui-constructive {{#if isWatched}}mw-ui-active{{/if}}"
+		   class="mw-ui-constructive {{#unless isWatched}}mw-ui-quiet{{/unless}}"
 		   data-flow-api-handler="watchTopic"
 		   data-flow-api-target="< .flow-topic-watchlist"
 		   data-flow-api-method="POST">
