@@ -3,6 +3,7 @@
 $notificationTemplate = array(
 	'category' => 'flow-discussion',
 	'group' => 'other',
+	'section' => 'message',
 	'formatter-class' => 'Flow\NotificationFormatter',
 	'icon' => 'flow-discussion',
 );
