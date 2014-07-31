@@ -131,6 +131,7 @@
 	"flow-error-no-index": "Impossibile trovare un indice per eseguire la ricerca di dati.",
 	"flow-error-no-render": "L'azione indicata non è stata riconosciuta.",
 	"flow-error-no-commit": "L'azione specificata non può essere salvata.",
+	"flow-error-fetch-after-open-close": "Si è verificato un errore durante la richiesta di nuovi dati. L'operazione di apertura/chiusura però è andata a buon fine. Il messaggio di errore è: $1",
 	"flow-edit-header-placeholder": "Descrivi questa bacheca Flow",
 	"flow-edit-header-submit": "Salva intestazione",
 	"flow-edit-header-submit-overwrite": "Sovrascrivi intestazione",
@@ -318,5 +319,6 @@
 	"flow-preview-warning": "Stai vedendo un'anteprima. Salva il modulo per completare l'invio, o clicca su \"{{int:flow-preview-return-edit-post}}\" per continuare a scrivere.",
 	"flow-preview-return-edit-post": "Continua a modificare",
 	"flow-anonymous": "Anonimo",
-	"flow-embedding-unsupported": "Gli argomenti non possono essere incorporati, ancora."
+	"flow-embedding-unsupported": "Gli argomenti non possono essere incorporati, ancora.",
+	"mw-ui-unsubmitted-confirm": "Ci sono modifiche non salvate su questa pagina. Sei sicuro di vole uscire e perderle?"
 }
