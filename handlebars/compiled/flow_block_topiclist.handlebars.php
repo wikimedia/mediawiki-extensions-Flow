@@ -444,7 +444,7 @@
 		   data-flow-load-handler="loadMore"
 		   href="'.htmlentities(((is_array($in['links']['pagination']['fwd']) && isset($in['links']['pagination']['fwd']['url'])) ? $in['links']['pagination']['fwd']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 		   title="'.htmlentities(((is_array($in['links']['pagination']['fwd']) && isset($in['links']['pagination']['fwd']['title'])) ? $in['links']['pagination']['fwd']['title'] : null), ENT_QUOTES, 'UTF-8').'"
-		   class="mw-ui-button mw-ui-progressive flow-load-interactive"><span class="wikiglyph wikiglyph-article"></span> '.LCRun3::ch($cx, 'l10n', Array(Array('flow-load-more'),Array()), 'encq').'</a>
+		   class="mw-ui-button mw-ui-progressive flow-load-interactive flow-ui-fallback-element"><span class="wikiglyph wikiglyph-article"></span> '.LCRun3::ch($cx, 'l10n', Array(Array('flow-load-more'),Array()), 'encq').'</a>
 	</div>
 ' : '').'
 
