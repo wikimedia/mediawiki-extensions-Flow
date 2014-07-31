@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_1a39ccef",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-07-31T23:01:23Z",
+      "side": 1,
+      "message": "I think this need to stay as \u0027reopen\u0027, urlgenerator is using \u0027reopen\u0027 to generate the link",
+      "revId": "abb2174d413a16c3bdb4e78e255c7ec33253c3fd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
