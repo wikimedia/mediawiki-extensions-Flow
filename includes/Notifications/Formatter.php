@@ -189,7 +189,7 @@ class NotificationFormatter extends EchoBasicFormatter {
 	 * @param \EchoEvent
 	 * @param \User
 	 */
-	protected function formatCommentText( $event, $user ) {
+	protected function formatCommentText( EchoEvent $event, $user ) {
 		if ( $this->bundleData['raw-data-count'] > 1 ) {
 			return '';
 		} else {
