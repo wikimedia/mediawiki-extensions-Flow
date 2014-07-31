@@ -6,7 +6,9 @@ use Flow\Exception\FlowException;
 use Flow\Model\UUID;
 use Flow\Parsoid\Utils;
 use EchoBasicFormatter;
+use EchoEvent;
 use Title;
+use User;
 
 // could be renamed later if we have more formatters
 class NotificationFormatter extends EchoBasicFormatter {
@@ -60,9 +62,13 @@ class NotificationFormatter extends EchoBasicFormatter {
 	 * @param \User
 	 * @return Anchor|boolean
 	 */
-	protected function getPostLinkAnchor( $event, $user ) {
+	protected function getPostLinkAnchor( EchoEvent $event, User $user ) {
 		$urlGenerator = $this->getUrlGenerator();
 		$workflowId = $event->getExtraParam( 'topic-workflow' );
+		if ( !$workflowId instanceof UUID ) {
+			throw new FlowException( 'No topic-workflow available for event ' . $event->getId() );
+		}
+
 		// Get topic title
 		$title  = Title::makeTitleSafe( NS_TOPIC, $workflowId->getAlphadecimal() );
 		$anchor = false;
