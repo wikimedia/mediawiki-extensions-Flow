@@ -169,7 +169,13 @@ class NotificationFormatter extends EchoBasicFormatter {
 	protected function getFirstUnreadPostId( $event, $user ) {
 		$data = $this->getBundleLastRawData( $event, $user );
 		if ( $data ) {
-			$extra = $data->event_extra;
+			// Remove the check once the corresponding Echo patch is
+			// merged, $data should be always an instance of EchoEvent
+			if ( $data instanceof \EchoEvent ) {
+				$extra = $data->getExtra();
+			} else {
+				$extra = $data->event_extra;
+			}
 			if ( isset( $extra['post-id'] ) ) {
 				return $extra['post-id'];
 			}
