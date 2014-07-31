@@ -16,6 +16,24 @@
       "revId": "abb2174d413a16c3bdb4e78e255c7ec33253c3fd",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_35581928",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-31T23:18:20Z",
+      "side": 1,
+      "message": "dunno why i changed that, your right it should stay reopen",
+      "parentUuid": "8e28a382_1a39ccef",
+      "revId": "abb2174d413a16c3bdb4e78e255c7ec33253c3fd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
