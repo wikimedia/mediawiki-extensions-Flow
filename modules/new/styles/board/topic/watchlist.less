@@ -15,44 +15,21 @@
 		padding: .25em .5em;
 		font-size: 2em;
 
-		&.mw-ui-active {
-			// Active mode shows the full star
-			.wikiglyph-unstar {
+		&.mw-ui-quiet {
+			// Quiet mode shows the outline star
+			.wikiglyph-star {
 				display: none;
 			}
-			.wikiglyph-star {
+			.wikiglyph-unstar {
 				display: inline-block;
 				*display: inline;
 				zoom: 1;
 			}
-
-			// Invert on hover when already subscribed
-			&:hover {
-				.wikiglyph-unstar {
-					display: inline-block;
-					*display: inline;
-					zoom: 1;
-				}
-				.wikiglyph-star {
-					display: none;
-				}
-			}
 		}
 
-		// Inactive mode shows the star outline
-		.wikiglyph-star {
+		// Regular mode shows the full star
+		.wikiglyph-unstar {
 			display: none;
-		}
-		// Invert on hover
-		&:hover {
-			.wikiglyph-unstar {
-				display: none;
-			}
-			.wikiglyph-star {
-				display: inline-block;
-				*display: inline;
-				zoom: 1;
-			}
 		}
 	}
 }
