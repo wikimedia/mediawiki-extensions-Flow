@@ -296,7 +296,7 @@
 	"flow-add-topic": "Thema hinzufügen",
 	"flow-newest-topics": "Neueste Themen",
 	"flow-recent-topics": "Zuletzt aktive Themen",
-	"flow-sorting-tooltip": "{{GENDER:$1|Du}} liest derzeit zuerst die neuesten Themen. Klicke für weitere Sortierungsoptionen.",
+	"flow-sorting-tooltip": "{{GENDER:|Du}} liest derzeit zuerst die neuesten Themen. Klicke für weitere Sortierungsoptionen.",
 	"flow-toggle-small-topics": "Zur Kleine-Themen-Ansicht wechseln",
 	"flow-toggle-topics": "Zur Nur-Themen-Ansicht wechseln",
 	"flow-toggle-topics-posts": "Zur Themen-und-Beiträge-Ansicht wechseln",

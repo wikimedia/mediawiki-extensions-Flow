@@ -300,7 +300,7 @@
 	"flow-add-topic": "Adicionar tópico",
 	"flow-newest-topics": "Tópicos mais recentes",
 	"flow-recent-topics": "Últimos tópicos ativos",
-	"flow-sorting-tooltip": "Atualmente, {{GENDER:$1|está}} a ler os novos tópicos em primeiro lugar. Clique para mais opções de ordenação.",
+	"flow-sorting-tooltip": "Atualmente, {{GENDER:|está}} a ler os novos tópicos em primeiro lugar. Clique para mais opções de ordenação.",
 	"flow-toggle-small-topics": "Alterar para modo de tópicos pequenos",
 	"flow-toggle-topics": "Alternar para modo apenas de tópicos",
 	"flow-toggle-topics-posts": "Alterar para modo de tópicos e mensagens",

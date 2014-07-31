@@ -130,6 +130,7 @@
 	"flow-error-no-index": "Không tìm thấy chỉ mục để tìm kiếm dữ liệu.",
 	"flow-error-no-render": "Không hiểu tác vụ được định rõ.",
 	"flow-error-no-commit": "Không thể lưu tác vụ được chỉ định.",
+	"flow-error-fetch-after-open-close": "Đã xuất hiện lỗi khi yêu cầu dữ liệu mới. Tuy nhiên, chủ đề đã được đóng/mở thành công. Thông báo lỗi: $1",
 	"flow-edit-header-placeholder": "Miêu tả bảng Flow này",
 	"flow-edit-header-submit": "Lưu đầu đề",
 	"flow-edit-header-submit-overwrite": "Ghi đè đầu đề",
@@ -297,7 +298,7 @@
 	"flow-add-topic": "Thêm chủ đề",
 	"flow-newest-topics": "Các chủ đề mới nhất",
 	"flow-recent-topics": "Các chủ đề có hoạt động gần đây",
-	"flow-sorting-tooltip": "Bạn đang xem các chủ đề mới nhất ở trên. Nhấn chuột để thay đổi kiểu sắp xếp.",
+	"flow-sorting-tooltip": "{{GENDER:$1}}Bạn đang xem các chủ đề mới nhất ở trên. Nhấn chuột để thay đổi kiểu sắp xếp.",
 	"flow-toggle-small-topics": "Chuyển qua chế độ chủ đề nhỏ",
 	"flow-toggle-topics": "Chuyển qua chế độ chỉ có chủ đề",
 	"flow-toggle-topics-posts": "Chuyển qua chế độ chủ đề và bài đăng",
@@ -317,5 +318,6 @@
 	"flow-preview-warning": "Bạn đang xem một bản xem trước. Lưu biểu mẫu để hoàn thành việc đăng bài, hoặc bấm “{{int:flow-preview-return-edit-post}}” để tiếp tục viết.",
 	"flow-preview-return-edit-post": "Sửa tiếp",
 	"flow-anonymous": "Vô danh",
-	"flow-embedding-unsupported": "Chưa có thể nhúng thảo luận vào trang khác."
+	"flow-embedding-unsupported": "Chưa có thể nhúng thảo luận vào trang khác.",
+	"mw-ui-unsubmitted-confirm": "Bạn có thay đổi chưa được lưu trên trang này. Bạn có chắc chắn muốn rời trang và mất các thay đổi của bạn?"
 }
