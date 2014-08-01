@@ -51,6 +51,10 @@ When(/^I click New topic save$/) do
   end
 end
 
+Then(/^the Save New Topic button should be disabled$/) do
+  on(FlowPage).new_topic_save_element.attribute('disabled').should be true
+end
+
 When(/^I click the Topic Actions link$/) do
   on(FlowPage).topic_actions_link_element.when_present.click
 end
