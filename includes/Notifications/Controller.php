@@ -537,6 +537,7 @@ class NotificationController {
 	 *
 	 * @param string|UUID topic workflow id
 	 * @param array
+	 * @return array Map from userid to User object
 	 */
 	protected static function getTalkPageOwner( $topicId ) {
 		$talkUser = array();
