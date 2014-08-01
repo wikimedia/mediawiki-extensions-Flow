@@ -97,7 +97,7 @@ class FlowAction extends Action {
 				) {
 					$redirTitle = $workflow->getArticleTitle();
 					$query = array( 'workflow' => $workflowId->getAlphadecimal() );
-					$redirUrl = $redirTitle->getLocalUrl( $query );
+					$redirUrl = $redirTitle->getLinkURL( $query );
 
 					$output->redirect( $redirUrl );
 					return;

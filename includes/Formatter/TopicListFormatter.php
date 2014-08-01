@@ -46,8 +46,8 @@ class TopicListFormatter {
 		);
 		$title = $listWorkflow->getArticleTitle();
 		$saveSortBy = true;
-		$res['links']['board-sort']['updated'] = $this->urlGenerator->boardLink( $title, 'updated', $saveSortBy )->getLocalURL();
-		$res['links']['board-sort']['newest']  = $this->urlGenerator->boardLink( $title, 'newest', $saveSortBy )->getLocalURL();
+		$res['links']['board-sort']['updated'] = $this->urlGenerator->boardLink( $title, 'updated', $saveSortBy )->getLinkURL();
+		$res['links']['board-sort']['newest']  = $this->urlGenerator->boardLink( $title, 'newest', $saveSortBy )->getLinkURL();
 
 		return $res;
 	}
