@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_5015f3e7",
+        "filename": "includes/Data/NotificationListener.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-08-01T04:08:34Z",
+      "side": 1,
+      "message": "$metadata + array( \u0027user\u0027 \u003d\u003e $this-\u003euser )?",
+      "revId": "c04a4706e627046358811ff62f03cb057fcbe4d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_10dbeb55",
+        "filename": "includes/Data/NotificationListener.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-08-01T04:08:34Z",
+      "side": 1,
+      "message": "Following the logic here is a bit tortured. Perhaps you could extract this out into a method.",
+      "revId": "c04a4706e627046358811ff62f03cb057fcbe4d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_10c2cb5d",
+        "filename": "tests/PostRevisionTestCase.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-08-01T04:08:34Z",
+      "side": 1,
+      "message": "Spacing and parens might make this a bit clearer – I spent a minute or two wondering why it had to be both a RecentChangesListener and a NotificationListener",
+      "revId": "c04a4706e627046358811ff62f03cb057fcbe4d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
