@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_4379a8c1",
+        "filename": "i18n/en.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-08-01T17:25:58Z",
+      "side": 1,
+      "message": "Will this change in terminology (subscribing vs. watching) be made across core and MediaWiki extensions? Who\u0027ll be doing that? Has this been discussed? Or will this be a terminology change in a single place that could lead to confusion on terminology and meaning?",
+      "revId": "e120783ddb41fe2c0b83fd52288f0471147d0218",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
