@@ -55,7 +55,7 @@
 	"flow-system-usertext": "Stub username to be displayed when a post's information could not be loaded due to technical issues.",
 	"flow-stub-post-content": "Stub post content to be displayed when the real post could not be loaded due to technical issues.",
 	"flow-newtopic-title-placeholder": "Used as placeholder for the \"Subject/Title for topic\" textarea.\n{{Identical|New topic}}",
-	"flow-newtopic-content-placeholder": "Used as placeholder for the \"Content\" textarea.",
+	"flow-newtopic-content-placeholder": "Used as placeholder for the \"Content\" textarea.\nParameters:\n* $1 - The prefixed name of the current page.",
 	"flow-newtopic-header": "Unused at this time.",
 	"flow-newtopic-save": "Used as label for the Submit button.\n\nAlso used in:\n* {{msg-mw|Flow-terms-of-use-new-topic}}\n* {{msg-mw|Wikimedia-flow-terms-of-use-new-topic}}",
 	"flow-newtopic-start-placeholder": "Used as placeholder for the \"Topic\" textarea.",
