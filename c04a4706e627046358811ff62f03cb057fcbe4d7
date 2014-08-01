@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e28a382_4f0d4938",
+        "filename": "includes/Data/NotificationListener.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-01T21:55:42Z",
+      "side": 1,
+      "message": "instead i added an AbstractRevision::getUser method and had the notification controller key off the user creating the revision rather than passing it around separately",
+      "parentUuid": "8e28a382_5015f3e7",
+      "revId": "c04a4706e627046358811ff62f03cb057fcbe4d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e28a382_10dbeb55",
         "filename": "includes/Data/NotificationListener.php",
         "patchSetId": 7
