@@ -3,7 +3,6 @@
 namespace Flow\Block;
 
 use Flow\Container;
-use Flow\Exception\FlowException;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidInputException;
 use Flow\Formatter\FormatterRow;
