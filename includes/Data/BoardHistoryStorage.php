@@ -5,9 +5,13 @@ namespace Flow\Data;
 use Flow\Model\UUID;
 use Flow\Exception\DataModelException;
 
+/**
+ * SQL backing for BoardHistoryIndex fetches revisions related
+ * to a specific TopicList(board workflow)
+ */
 class BoardHistoryStorage extends DbStorage {
 
-	function find( array $attributes, array $options = array() ) {
+	public function find( array $attributes, array $options = array() ) {
 		$multi = $this->findMulti( $attributes, $options );
 		if ( $multi ) {
 			return reset( $multi );
@@ -15,7 +19,7 @@ class BoardHistoryStorage extends DbStorage {
 		return null;
 	}
 
-	function findMulti( array $queries, array $options = array() ) {
+	public function findMulti( array $queries, array $options = array() ) {
 		if ( count( $queries ) > 1 ) {
 			throw new DataModelException( __METHOD__ . ' expects only one value in $queries', 'process-data' );
 		}
@@ -27,7 +31,7 @@ class BoardHistoryStorage extends DbStorage {
 		return RevisionStorage::mergeExternalContent( array( $merged ) );
 	}
 
-	function findHeaderHistory( array $queries, array $options = array() ) {
+	protected function findHeaderHistory( array $queries, array $options = array() ) {
 		$queries = $this->preprocessSqlArray( reset( $queries ) );
 
 		$res = $this->dbFactory->getDB( DB_SLAVE )->select(
@@ -49,7 +53,7 @@ class BoardHistoryStorage extends DbStorage {
 		return $retval;
 	}
 
-	function findTopicSummaryHistory( array $queries, array $options = array() ) {
+	protected function findTopicSummaryHistory( array $queries, array $options = array() ) {
 		$queries = $this->preprocessSqlArray( reset( $queries ) );
 
 		$res = $this->dbFactory->getDB( DB_SLAVE )->select(
@@ -75,7 +79,7 @@ class BoardHistoryStorage extends DbStorage {
 		return $retval;
 	}
 
-	function findTopicListHistory( array $queries, array $options = array() ) {
+	protected function findTopicListHistory( array $queries, array $options = array() ) {
 		$queries = $this->preprocessSqlArray( reset( $queries ) );
 
 		$res = $this->dbFactory->getDB( DB_SLAVE )->select(

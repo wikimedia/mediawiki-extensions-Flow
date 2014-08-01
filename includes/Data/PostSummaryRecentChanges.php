@@ -6,6 +6,9 @@ use Flow\FlowActions;
 use Flow\Model\PostSummary;
 use Language;
 
+/**
+ * Create mw recentchange rows for PostSummary instances
+ */
 class PostSummaryRecentChanges extends RecentChanges {
 	/**
 	 * @var Language Content Language

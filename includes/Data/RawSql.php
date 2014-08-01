@@ -2,6 +2,11 @@
 
 namespace Flow\Data;
 
+/**
+ * Value class wraps sql to be passed into queries.  Values
+ * that are not wrapped in the RawSql class are escaped to
+ * plain strings.
+ */
 class RawSql {
 	function __construct( $sql ) {
 		$this->sql = $sql;

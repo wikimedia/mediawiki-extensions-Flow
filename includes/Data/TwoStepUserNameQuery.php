@@ -8,6 +8,14 @@ namespace Flow\Data;
 use Flow\DbFactory;
 use Flow\Exception\FlowException;
 
+/**
+ * Helper query for UserNameBatch fetches requested userIds
+ * from the wiki with two independant queries.  There is
+ * a different implementation that does this in one query
+ * with a join.
+ *
+ * @todo Is TwoStep usefull? shouldn't we always use the join?
+ */
 class TwoStepUserNameQuery implements UserNameQuery {
 	public function __construct( DbFactory $dbFactory ) {
 		$this->dbFactory = $dbFactory;

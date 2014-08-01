@@ -7,6 +7,9 @@ use Flow\FlowActions;
 use Flow\Model\PostRevision;
 use Language;
 
+/**
+ * Insert mw recentchange rows for newly inserted PostRevision instances
+ */
 class PostRevisionRecentChanges extends RecentChanges {
 	/**
 	 * @var Language

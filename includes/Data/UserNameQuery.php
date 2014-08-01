@@ -5,6 +5,10 @@
  */
 namespace Flow\Data;
 
+/**
+ * Classes implementing the interface can lookup
+ * user names based on wiki + id
+ */
 Interface UserNameQuery {
 	/**
 	 * @param string $wiki wiki id

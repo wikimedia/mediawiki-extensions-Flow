@@ -9,6 +9,10 @@ use Flow\Model\PostRevision;
 use Flow\Model\TopicListEntry;
 use Flow\Exception\DataModelException;
 
+/**
+ * Keeps a list of revision ids relevant to the board history bucketed
+ * by the owning TopicList id (board workflow)
+ */
 class BoardHistoryIndex extends TopKIndex {
 
 	public function __construct( BufferedCache $cache, BoardHistoryStorage $storage, $prefix, array $indexed, array $options = array() ) {
