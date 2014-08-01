@@ -16,6 +16,24 @@
       "revId": "9696174171a0135e56bfdc8e75d1d1726af35573",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_f4328c5a",
+        "filename": "handlebars/flow_moderate_post.handlebars",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-08-01T21:09:24Z",
+      "side": 1,
+      "message": "Agreed...",
+      "parentUuid": "8e28a382_29eafd04",
+      "revId": "9696174171a0135e56bfdc8e75d1d1726af35573",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
