@@ -94,6 +94,15 @@ class TopicListBlock extends AbstractBlock {
 			return;
 		}
 
+		if (
+			! isset( $this->submitted['topic'] ) ||
+			! is_string( $this->submitted['topic'] ) ||
+			trim( $this->submitted['content'] === '' )
+		) {
+			$this->addError( 'content', wfMessage( 'flow-error-missing-content' ) );
+			return;
+		}
+
 		// creates Workflow, Revision & TopicListEntry objects to be inserted into storage
 		list( $this->topicWorkflow, $this->topicListEntry, $this->topicTitle, $this->firstPost ) = $this->create();
 

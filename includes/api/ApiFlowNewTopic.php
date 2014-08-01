@@ -24,7 +24,7 @@ class ApiFlowNewTopic extends ApiFlowBasePost {
 				ApiBase::PARAM_REQUIRED => true,
 			),
 			'content' => array(
-				ApiBase::PARAM_REQUIRED => false,
+				ApiBase::PARAM_REQUIRED => true,
 			),
 		);
 	}

@@ -114,6 +114,7 @@ class View extends ContextSource {
 			if ( $wasPosted ? $block->canSubmit( $action ) : $block->canRender( $action ) ) {
 				$apiResponse['blocks'][] = $block->renderAPI( $this->templating, $parameters[$block->getName()] )
 								+ array(
+									'title' => $title->getPrefixedText(),
 									'block-action-template' => $block->getTemplate( $action ),
 									'editToken' => $editToken,
 								);

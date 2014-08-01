@@ -51,7 +51,7 @@
     "flow-system-usertext": "{{SITENAME}}",
     "flow-stub-post-content": "''Due to a technical error, this post could not be retrieved.''",
     "flow-newtopic-title-placeholder": "New topic",
-    "flow-newtopic-content-placeholder": "Add some details if you'd like",
+    "flow-newtopic-content-placeholder": "Post a new message to $1",
     "flow-newtopic-header": "Add a new topic",
     "flow-newtopic-save": "Add topic",
     "flow-newtopic-start-placeholder": "Start a new topic",
