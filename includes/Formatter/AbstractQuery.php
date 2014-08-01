@@ -156,7 +156,7 @@ abstract class AbstractQuery {
 				$queries[] = array( 'rev_type_id' => $uuid );
 			}
 
-			/** @var AbstractRevision[] $found */
+			/** @var AbstractRevision[][] $found */
 			$found = $this->storage->findMulti( $revisionType,
 				$queries,
 				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )

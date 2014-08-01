@@ -42,11 +42,16 @@ class FlowAction extends Action {
 		$this->showForAction( $this->getName(), $childContext->getOutput() );
 	}
 
-	public function showForAction( $action, $output = false ) {
+	/**
+	 * @param string $action
+	 * @param OutputPage|false $output
+	 * @return
+	 */
+	public function showForAction( $action, OutputPage $output = null ) {
 		$container = Container::getContainer();
 		$occupationController = $container['occupation_controller'];
 
-		if ( $output === false ) {
+		if ( $output === null ) {
 			$output = $this->context->getOutput();
 		}
 
