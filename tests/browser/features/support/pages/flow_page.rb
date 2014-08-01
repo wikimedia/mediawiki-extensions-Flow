@@ -218,4 +218,7 @@ class FlowPage < WikiPage
   a(:first_topic_watchlist_loading_link) do |page|
     page.first_topic_watchlist_container_element.link_element( class: 'flow-api-inprogress' )
   end
+
+  ## All links on the page
+  links( :all_links, css: '.flow-component a' )
 end
