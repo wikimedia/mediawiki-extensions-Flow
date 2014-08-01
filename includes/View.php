@@ -68,7 +68,7 @@ class View extends ContextSource {
 		// @todo Patch core to either deprecate /w/index.php?title= and issue redirects, or
 		//   include the <base href="..."> directly from core
 		$out->prependHTML( Html::element( 'base', array(
-			'href' => $title->getLocalURL()
+			'href' => $title->getLinkURL()
 		) ) );
 
 		$request = $this->getRequest();

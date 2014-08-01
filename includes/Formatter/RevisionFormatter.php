@@ -279,13 +279,13 @@ class RevisionFormatter {
 		$links = array();
 		if ( $userContribsTitle ) {
 			$links['contribs'] = array(
-				'url' => $userContribsTitle->getLocalUrl(),
+				'url' => $userContribsTitle->getLinkURL(),
 				'title' => $userContribsTitle->getText(),
 				'exists' => true
 			);
 		} elseif ( $userTitle ) {
 			$links['contribs'] = array(
-				'url' => $userTitle->getLocalUrl(),
+				'url' => $userTitle->getLinkURL(),
 				'title' => $userTitle->getText(),
 				'exists' => $userTitle->exists()
 			);
@@ -293,7 +293,7 @@ class RevisionFormatter {
 
 		if ( $talkPageTitle ) {
 			$links['talk'] = array(
-				'url' => $talkPageTitle->getLocalUrl(),
+				'url' => $talkPageTitle->getLinkURL(),
 				'title' => $talkPageTitle->getPrefixedText(),
 				'exists' => $talkPageTitle->exists()
 			);
@@ -305,7 +305,7 @@ class RevisionFormatter {
 			// only is the user has blocking rights
 			$links += array(
 				"block" => array(
-					'url' => $blockTitle->getLocalUrl(),
+					'url' => $blockTitle->getLinkURL(),
 					'title' => wfMessage( 'blocklink' ),
 					'exists' => true
 				),
