@@ -254,7 +254,7 @@
 	"flow-topic-comment-count": "$1 {{PLURAL:$1|comentario|comentarios}}",
 	"flow-load-more": "Cargar más",
 	"flow-newest-topics": "Temas más recientes",
-	"flow-sorting-tooltip": "{{GENDER:$1|Estás}} leyendo los temas más recientes primero. Haz clic para ver más opciones de clasificación.",
+	"flow-sorting-tooltip": "{{GENDER:|Estás}} leyendo los temas más recientes primero. Haz clic para ver más opciones de clasificación.",
 	"flow-terms-of-use-summarize": "Al hacer clic en \"{{int:flow-summarize-topic-submit}}\", aceptas los términos de uso de este wiki.",
 	"flow-terms-of-use-close-topic": "Al hacer clic en \"{{int:flow-close-topic-submit}}\", aceptas los términos de uso de este wiki.",
 	"flow-terms-of-use-reopen-topic": "Al hacer clic en \"{{int:flow-reopen-topic-submit}}\", aceptas los términos de uso de este wiki.",

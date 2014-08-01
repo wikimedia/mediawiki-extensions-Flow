@@ -64,6 +64,8 @@
 	"flow-moderation-confirm-hide-topic": "Къайлаяккха",
 	"flow-moderation-confirm-undelete-topic": "МеттахӀоттае",
 	"flow-moderation-confirm-unhide-topic": "Гайта",
+	"flow-topic-first-heading": "$1 чура хьедар",
 	"flow-topic-comment-count": "$1 {{PLURAL:$1|къамел|къамелаш}}",
+	"flow-recent-topics": "Дукху хан йоцуш жигара хьедарш",
 	"flow-spam-confirmedit-form": "Хьой адам делахь сурт тӀера йоза язде: $1"
 }
