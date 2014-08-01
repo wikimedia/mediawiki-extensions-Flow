@@ -164,3 +164,13 @@ end
 When(/^I click the Suppress topic button$/) do
   on(FlowPage).topic_suppress_button_element.when_present.click
 end
+
+Then(/^I should not see any links with absolute URLs$/) do
+  ## Make sure we *have* selected some links
+  on(FlowPage).all_links_elements.count.should be > 0
+
+  on(FlowPage).all_links_elements.each do |link|
+    # Cannot match on .attribute( 'href' ) because it resolves URLs
+    link.html.should_not match( /href\=\"([\w:]*)\/\/.*\"/ )
+  end
+end
