@@ -106,7 +106,7 @@
 		<textarea name="topiclist_content"
 			data-flow-preview-template="flow_post"
 			class="mw-ui-input flow-form-collapsible mw-ui-input-large"
-			placeholder="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-newtopic-content-placeholder'),Array()), 'encq').'" data-role="content"></textarea>
+			placeholder="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-newtopic-content-placeholder',((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['title'])) ? $cx['scopes'][0]['title'] : null)),Array()), 'encq').'" data-role="content" required></textarea>
 
 		<div class="flow-form-actions flow-form-collapsible">
 			<button data-role="submit" data-flow-api-handler="newTopic"
