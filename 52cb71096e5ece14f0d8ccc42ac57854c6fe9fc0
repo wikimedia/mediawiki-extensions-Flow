@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_c9925956",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-01T19:44:29Z",
+      "side": 1,
+      "message": "this condition is already applied on line 83",
+      "revId": "52cb71096e5ece14f0d8ccc42ac57854c6fe9fc0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_697ec5ae",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-01T19:44:29Z",
+      "side": 1,
+      "message": "sic, line 83",
+      "revId": "52cb71096e5ece14f0d8ccc42ac57854c6fe9fc0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
