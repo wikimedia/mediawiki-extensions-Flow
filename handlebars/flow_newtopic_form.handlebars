@@ -14,7 +14,7 @@
 		<textarea name="topiclist_content"
 			data-flow-preview-template="flow_post"
 			class="mw-ui-input flow-form-collapsible mw-ui-input-large"
-			placeholder="{{l10n "flow-newtopic-content-placeholder"}}" data-role="content"></textarea>
+			placeholder="{{l10n "flow-newtopic-content-placeholder" @root.title}}" data-role="content" required></textarea>
 
 		<div class="flow-form-actions flow-form-collapsible">
 			<button data-role="submit" data-flow-api-handler="newTopic"
