@@ -29,7 +29,7 @@ class TopicFormatter {
 
 	public function formatApi( Workflow $listWorkflow, array $found, IContextSource $ctx ) {
 		$section = new \ProfileSection( __METHOD__ );
-		$revisions = $posts = $replies = array();
+		$roots = $revisions = $posts = $replies = array();
 		foreach( $found as $formatterRow ) {
 			$serialized = $this->serializer->formatApi( $formatterRow, $ctx );
 			if ( !$serialized ) {

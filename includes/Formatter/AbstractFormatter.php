@@ -205,6 +205,8 @@ abstract class AbstractFormatter {
 			$anchor = $input['topic-history'];
 		} elseif ( isset( $input['board-history'] ) ) {
 			$anchor = $input['board-history'];
+		} else {
+			$anchor = null;
 		}
 
 		if ( $anchor ) {
