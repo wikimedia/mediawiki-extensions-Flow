@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "8e28a382_540e003f",
+        "filename": "includes/Data/NotificationListener.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-01T21:54:27Z",
+      "side": 1,
+      "message": "as requested, this is now NotificationListener::notifyPostChange and the three conditions above call it",
+      "parentUuid": "8e28a382_10dbeb55",
+      "revId": "c04a4706e627046358811ff62f03cb057fcbe4d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e28a382_10c2cb5d",
         "filename": "tests/PostRevisionTestCase.php",
         "patchSetId": 7
