@@ -33,3 +33,8 @@ Feature: Create new topic logged in
     Then I should see a Hide topic button
       And I should see a Delete topic button
       And I should see a Suppress topic button
+
+  @wip
+  Scenario: No Absolute links
+    Given I am on Flow page
+    Then I should not see any links with absolute URLs
