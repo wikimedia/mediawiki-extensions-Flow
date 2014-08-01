@@ -50,13 +50,13 @@ class WorkflowLoaderFactory {
 	}
 
 	/**
-	 * @param string $pageTitle
+	 * @param Title $pageTitle
 	 * @param UUID|string|null $workflowId
 	 * @return WorkflowLoader
 	 * @throws InvalidInputException
 	 * @throws CrossWikiException
 	 */
-	public function createWorkflowLoader( $pageTitle, $workflowId = null ) {
+	public function createWorkflowLoader( Title $pageTitle, $workflowId = null ) {
 		if ( $pageTitle === null ) {
 			throw new InvalidInputException( 'Invalid article requested', 'invalid-title' );
 		}
