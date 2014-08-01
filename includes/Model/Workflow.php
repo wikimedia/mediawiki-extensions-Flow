@@ -2,12 +2,13 @@
 
 namespace Flow\Model;
 
-use MWTimestamp;
-use Title;
-use User;
 use Flow\Exception\CrossWikiException;
 use Flow\Exception\DataModelException;
 use Flow\Exception\InvalidInputException;
+use MapCacheLRU;
+use MWTimestamp;
+use Title;
+use User;
 
 class Workflow {
 
@@ -228,7 +229,7 @@ class Workflow {
 			throw new CrossWikiException( 'Interwiki to ' . $wiki . ' not implemented ', 'default' );
 		}
 		if ( self::$titleCache === null ) {
-			self::$titleCache = new \MapCacheLRU( 50 );
+			self::$titleCache = new MapCacheLRU( 50 );
 		}
 
 		$key = implode( '|', array( $wiki, $namespace, $titleText ) );
