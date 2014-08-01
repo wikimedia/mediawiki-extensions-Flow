@@ -147,10 +147,11 @@
         class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
 
 '.LCRun3::hbch($cx, 'progressiveEnhancement', Array(Array(),Array('insertionType'=>'insertion','sectionId'=>'flow-cancel-button')), $in, function($cx, $in) {return '
-	<button data-flow-interactive-handler="cancelForm" data-role="cancel"
-	class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
+	<button data-flow-interactive-handler="cancelForm"
+	        data-role="cancel"
+	        type="reset"
+	        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
 ';}).'
-
 			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-terms-of-use-new-topic'),Array()), 'encq').'</small>
 		</div>
 	</form>
@@ -456,9 +457,10 @@
 
 		<div class="flow-form-actions flow-form-collapsible">
 			<button data-role="submit"
-				class="mw-ui-button mw-ui-constructive"
-				data-flow-interactive-handler="apiRequest"
-				data-flow-api-handler="submitReply">'.LCRun3::ch($cx, 'l10n', Array(Array('Reply',((is_array($in) && isset($in['author'])) ? $in['author'] : null)),Array()), 'encq').'</button>
+			        class="mw-ui-button mw-ui-constructive"
+			        data-flow-interactive-handler="apiRequest"
+			        data-flow-api-handler="submitReply"
+			        data-flow-api-target="< .flow-topic">'.LCRun3::ch($cx, 'l10n', Array(Array('Reply',((is_array($in) && isset($in['author'])) ? $in['author'] : null)),Array()), 'encq').'</button>
 			<button data-flow-api-handler="preview"
         data-flow-api-target="< form textarea"
         name="preview"
@@ -466,10 +468,11 @@
         class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
 
 '.LCRun3::hbch($cx, 'progressiveEnhancement', Array(Array(),Array('insertionType'=>'insertion','sectionId'=>'flow-cancel-button')), $in, function($cx, $in) {return '
-	<button data-flow-interactive-handler="cancelForm" data-role="cancel"
-	class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
+	<button data-flow-interactive-handler="cancelForm"
+	        data-role="cancel"
+	        type="reset"
+	        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
 ';}).'
-
 			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-terms-of-use-reply'),Array()), 'encq').'</small>
 		</div>
 	</form>
