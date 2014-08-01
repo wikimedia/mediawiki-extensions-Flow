@@ -26,6 +26,11 @@ class RevisionViewFormatter {
 	 * @return array
 	 */
 	public function formatApi( FormatterRow $row, IContextSource $ctx ) {
+		if ( !$row instanceof RevisionViewRow ) {
+			wfDebugLog( 'Flow', __METHOD__ . ': Can only process RevisionViewRow instances, recieved: '
+				. get_class( $row )
+			);
+		}
 		$res = $this->serializer->formatApi( $row, $ctx );
 		$res['rev_view_links'] = $this->buildLinks( $row );
 		$res['human_timestamp'] = $this->getHumanTimestamp( $res['timestamp'] );
