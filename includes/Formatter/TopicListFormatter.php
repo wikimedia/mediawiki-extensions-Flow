@@ -36,6 +36,7 @@ class TopicListFormatter {
 		PagerPage $page,
 		IContextSource $ctx
 	) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$section = new \ProfileSection( __METHOD__ );
 		$res = $this->buildResult( $listWorkflow, $workflows, $found, $ctx ) +
 			$this->buildEmptyResult( $listWorkflow );

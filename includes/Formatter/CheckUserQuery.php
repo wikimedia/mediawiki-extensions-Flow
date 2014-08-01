@@ -32,6 +32,7 @@ class CheckUserQuery extends AbstractQuery {
 				continue;
 			}
 
+			/** @noinspection PhpUnusedLocalVariableInspection */
 			list( $workflowId, $revisionId, $postId ) = $ids;
 
 			/*
