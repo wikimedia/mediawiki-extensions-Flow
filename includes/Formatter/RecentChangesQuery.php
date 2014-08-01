@@ -9,7 +9,6 @@ use Flow\FlowActions;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use RecentChange;
-use User;
 
 class RecentChangesQuery extends AbstractQuery {
 
