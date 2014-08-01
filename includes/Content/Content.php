@@ -5,7 +5,6 @@ namespace Flow\Content;
 use Article;
 use ContentHandler;
 use Flow\Container;
-use Revision;
 use Title;
 
 abstract class Content {

@@ -12,7 +12,6 @@ use EchoEvent;
 use Language;
 use Title;
 use User;
-use WatchedItem;
 
 class NotificationController {
 	/**
