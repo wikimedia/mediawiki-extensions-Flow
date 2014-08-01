@@ -76,7 +76,7 @@ class Anchor {
 		return Html::element(
 			'a',
 			array(
-				'href' => $this->getLocalUrl(),
+				'href' => $this->getLinkURL(),
 				'title' => $text,
 			),
 			$content === null ? $text : $content
@@ -85,7 +85,7 @@ class Anchor {
 
 	public function toArray() {
 		return array(
-			'url' => $this->getLocalUrl(),
+			'url' => $this->getLinkURL(),
 			'title' => $this->message->text()
 		);
 	}
