@@ -2,6 +2,7 @@
 
 namespace Flow\Content;
 
+use Flow\Exception\FlowException;
 use Article;
 use ContentHandler;
 use Flow\Container;

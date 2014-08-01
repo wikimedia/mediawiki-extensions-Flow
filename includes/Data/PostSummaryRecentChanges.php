@@ -2,6 +2,7 @@
 
 namespace Flow\Data;
 
+use Flow\Exception\FlowException;
 use Flow\FlowActions;
 use Flow\Model\PostSummary;
 use Language;
