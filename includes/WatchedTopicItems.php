@@ -32,6 +32,7 @@ class WatchedTopicItems {
 
 	/**
 	 * @param string[] array of UUID string
+	 * @return array
 	 */
 	public function getWatchStatus( array $titles ) {
 		$titles = array_unique( $titles );

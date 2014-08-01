@@ -59,6 +59,7 @@ class TalkpageManager implements OccupationController {
 	 *
 	 * @param \Article $article
 	 * @param Workflow $workflow
+	 * @return Revision|null
 	 * @throws InvalidInputException
 	 */
 	public function ensureFlowRevision( Article $article, Workflow $workflow ) {
@@ -70,7 +71,7 @@ class TalkpageManager implements OccupationController {
 		// Break loops (because doEditContent requires rendering, which will load the workflow, which will call this function)
 		static $doing = false;
 		if ( $doing ) {
-			return false;
+			return null;
 		}
 		$doing = true;
 
@@ -104,7 +105,7 @@ class TalkpageManager implements OccupationController {
 		}
 
 		$doing = false;
-		return false;
+		return null;
 	}
 
 	/**
