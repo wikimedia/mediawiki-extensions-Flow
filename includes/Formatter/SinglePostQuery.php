@@ -12,6 +12,7 @@ class SinglePostQuery extends AbstractQuery {
 	 * @throws FlowException
 	 */
 	public function getResult( UUID $postId ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$section = new \ProfileSection( __METHOD__ );
 		$found = $this->storage->find(
 			'PostRevision',

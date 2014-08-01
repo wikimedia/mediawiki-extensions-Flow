@@ -14,6 +14,7 @@ class TopicHistoryQuery  extends AbstractQuery {
 	 * @throws InvalidDataException
 	 */
 	public function getResults( UUID $postId ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$section = new \ProfileSection( __METHOD__ );
 		$history = $this->storage->find(
 			'TopicHistoryEntry',

@@ -42,7 +42,7 @@ class WatchedTopicItems {
 		}
 
 		$queryTitles = array();
-		foreach ( $titles as $key => $id ) {
+		foreach ( $titles as $id ) {
 			$obj = Title::makeTitleSafe( NS_TOPIC, $id );
 			if ( $obj ) {
 				$key = $obj->getDBkey();

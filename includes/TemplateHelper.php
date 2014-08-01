@@ -115,6 +115,7 @@ class TemplateHelper {
 		/** @var callable $renderer */
 		$renderer = require $filenames['compiled'];
 		return $this->renderers[$templateName] = function( $args, array $scopes = array() ) use ( $templateName, $renderer ) {
+			/** @noinspection PhpUnusedLocalVariableInspection */
 			$section = new \ProfileSection( __CLASS__ . " $templateName" );
 			return $renderer( $args, $scopes );
 		};
@@ -535,7 +536,6 @@ class TemplateHelper {
 			throw new WrongNumberArgumentsException( $args, 'one', 'two' );
 		}
 		$revision = $args[0];
-		$key = isset( $args[1] ) ? $args[1] : 'timeAndDate';
 		$raw = false;
 		$formattedTime = $revision['dateFormats']['timeAndDate'];
 		$linkKeys = array( 'header-revision', 'topic-revision', 'post-revision' );
