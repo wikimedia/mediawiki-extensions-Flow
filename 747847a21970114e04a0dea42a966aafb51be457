@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_81b785f1",
+        "filename": "includes/Content/Content.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-08-02T03:18:14Z",
+      "side": 1,
+      "message": "But there\u0027s no mRevision in WikiPage, while there is a protected one in class Article. Maybe you mean mLastRevision?",
+      "revId": "747847a21970114e04a0dea42a966aafb51be457",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_61ba59db",
+        "filename": "includes/Content/Content.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-08-02T03:18:14Z",
+      "side": 1,
+      "message": "Again, there\u0027s no mContentObject in class WikiPage, while there is a protected one in class Article.",
+      "revId": "747847a21970114e04a0dea42a966aafb51be457",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
