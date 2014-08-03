@@ -183,17 +183,4 @@ class NotificationFormatter extends EchoBasicFormatter {
 
 		return false;
 	}
-
-	/**
-	 * We don't show the text snippet for Flow bundled notification
-	 * @param \EchoEvent
-	 * @param \User
-	 */
-	protected function formatCommentText( EchoEvent $event, $user ) {
-		if ( $this->bundleData['raw-data-count'] > 1 ) {
-			return '';
-		} else {
-			return parent::formatCommentText( $event, $user );
-		}
-	}
 }
