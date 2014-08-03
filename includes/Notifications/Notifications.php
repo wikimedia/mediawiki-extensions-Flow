@@ -24,7 +24,6 @@ $notifications = array(
 		'email-subject-params' => array( 'agent', 'title' ),
 		'email-body-batch-message' => 'flow-notification-newtopic-email-batch-body',
 		'email-body-batch-params' => array( 'agent', 'subject', 'title' ),
-		'payload' => array( 'comment-text' ),
 	) + $notificationTemplate,
 	'flow-post-reply' => array(
 		'primary-link' => array(
@@ -49,7 +48,6 @@ $notifications = array(
 		'email-body-batch-params' => array( 'agent', 'subject', 'title' ),
 		'email-body-batch-bundle-message' => 'flow-notification-reply-email-batch-bundle-body',
 		'email-body-batch-bundle-params' => array( 'agent', 'subject', 'title', 'agent-other-display', 'agent-other-count' ),
-		'payload' => array( 'comment-text' ),
 	) + $notificationTemplate,
 	'flow-post-edited' => array(
 		'primary-link' => array(

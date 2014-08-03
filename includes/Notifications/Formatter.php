@@ -18,7 +18,8 @@ class NotificationFormatter extends EchoBasicFormatter {
 		$extra = $event->getExtra();
 		if ( $param === 'subject' ) {
 			if ( isset( $extra['topic-title'] ) && $extra['topic-title'] ) {
-				$this->processParamEscaped( $message, trim( $extra['topic-title'] ) );
+				global $wgLang;
+				$this->processParamEscaped( $message, $wgLang->truncate( trim( $extra['topic-title'] ), 50 ) );
 			} else {
 				$message->params( '' );
 			}
@@ -182,18 +183,5 @@ class NotificationFormatter extends EchoBasicFormatter {
 		}
 
 		return false;
-	}
-
-	/**
-	 * We don't show the text snippet for Flow bundled notification
-	 * @param \EchoEvent
-	 * @param \User
-	 */
-	protected function formatCommentText( EchoEvent $event, $user ) {
-		if ( $this->bundleData['raw-data-count'] > 1 ) {
-			return '';
-		} else {
-			return parent::formatCommentText( $event, $user );
-		}
 	}
 }
