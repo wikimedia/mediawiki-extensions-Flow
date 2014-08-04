@@ -1,6 +1,6 @@
 <h2 class="flow-topic-title" data-title="{{plaintextSnippet content.format content.content}}">{{escapeContent content.format content.content}}</h2>
 {{#if isModerated}}
-	<div class="flow-moderated-topic-title flow-ui-text-truncated"><span
+	<div class="flow-moderated-topic-title mw-ui-text-truncated"><span
 		class="wikiglyph {{#ifEquals moderateState "close"}}wikiglyph-stop{{/ifEquals}}{{#ifEquals moderateState "hide"}}wikiglyph-flag{{/ifEquals}}{{#ifEquals moderateState "delete"}}wikiglyph-trash{{/ifEquals}}"></span>
 		{{l10n "post_moderation_state" moderateState replyToId moderator.name~}}
 	</div>
