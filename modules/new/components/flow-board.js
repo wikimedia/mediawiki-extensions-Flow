@@ -2209,9 +2209,9 @@
 			$heading = $container.find( '.flow-topic-title' );
 			// In compact mode also truncate the text.
 			if ( newState === 'compact' ) {
-				$heading.addClass( 'flow-ui-text-truncated' );
+				$heading.addClass( 'mw-ui-text-truncated' );
 			} else {
-				$heading.removeClass( 'flow-ui-text-truncated' );
+				$heading.removeClass( 'mw-ui-text-truncated' );
 			}
 		};
 
