@@ -6,7 +6,6 @@ use Flow\Content\BoardContent;
 use Flow\Exception\InvalidInputException;
 use Flow\Model\Workflow;
 use Article;
-use ContentHandler;
 use Revision;
 use Title;
 use User;
@@ -59,7 +58,7 @@ class TalkpageManager implements OccupationController {
 	 * to make sure a page actually exists ;)
 	 *
 	 * @param \Article $article
-	 * @param Flow\Data\Workflow $workflow
+	 * @param \Flow\Data\Workflow $workflow
 	 * @throws InvalidInputException
 	 */
 	public function ensureFlowRevision( Article $article, Workflow $workflow ) {

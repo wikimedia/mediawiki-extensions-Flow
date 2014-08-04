@@ -2,6 +2,7 @@
 
 namespace Flow\Content;
 
+use Flow\Container;
 use Flow\Model\UUID;
 use FormatJson;
 use MWException;
@@ -88,7 +89,7 @@ class BoardContentHandler extends \ContentHandler {
 	 * @return array Always an empty array.
 	 */
 	public function getActionOverrides() {
-		$container = \Flow\Container::getContainer();
+		$container = Container::getContainer();
 		$actions = $container['flow_actions'];
 		$output = array();
 

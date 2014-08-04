@@ -3,7 +3,6 @@
 namespace Flow\Formatter;
 
 use IContextSource;
-use Linker;
 
 class CheckUser extends AbstractFormatter {
 	protected function getHistoryType() {

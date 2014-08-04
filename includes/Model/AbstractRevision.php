@@ -3,11 +3,9 @@
 namespace Flow\Model;
 
 use Flow\Collection\AbstractCollection;
-use Flow\Container;
 use Flow\Exception\DataModelException;
 use Flow\Exception\PermissionException;
 use Flow\Parsoid\Utils;
-use Flow\RevisionActionPermissions;
 use Title;
 use User;
 
