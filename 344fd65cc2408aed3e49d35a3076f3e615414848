@@ -16,6 +16,24 @@
       "revId": "344fd65cc2408aed3e49d35a3076f3e615414848",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_57ab946c",
+        "filename": "includes/Notifications/Formatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-08-04T19:36:07Z",
+      "side": 1,
+      "message": "Also truncation should happen in the css not in the html.",
+      "parentUuid": "8e28a382_ab25b7aa",
+      "revId": "344fd65cc2408aed3e49d35a3076f3e615414848",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
