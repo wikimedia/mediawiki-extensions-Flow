@@ -212,7 +212,7 @@ class FlowPage < WikiPage
   end
 
   a(:first_topic_unwatch_link) do |page|
-    page.first_topic_watchlist_container_element.link_element( css: '.mw-ui-constructive' )
+    page.first_topic_watchlist_container_element.link_element( css: '.mw-ui-constructive:not(.mw-ui-quiet)' )
   end
 
   a(:first_topic_watchlist_loading_link) do |page|
