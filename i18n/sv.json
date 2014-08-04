@@ -131,6 +131,7 @@
 	"flow-error-no-index": "Det gick inte att hitta ett index för att utföra datasökning.",
 	"flow-error-no-render": "Den angivna åtgärden kunde kändes inte igen.",
 	"flow-error-no-commit": "Den angivna åtgärden kunde inte sparas.",
+	"flow-error-fetch-after-open-close": "Ett fel uppstod när den nya data begärdes. Öppna/stäng-åtgärden genomfördes dock utan problem. Felmeddelandet var: $1",
 	"flow-edit-header-placeholder": "Beskriva detta flödesforum",
 	"flow-edit-header-submit": "Spara sidhuvud",
 	"flow-edit-header-submit-overwrite": "Skriv över sidhuvudet",
@@ -298,7 +299,7 @@
 	"flow-add-topic": "Lägg till ämne",
 	"flow-newest-topics": "Nyaste ämnen",
 	"flow-recent-topics": "Senaste aktiva ämnen",
-	"flow-sorting-tooltip": "Du läser just nu det nyaste ämnet först. Klicka för fler sorteringsalternativ.",
+	"flow-sorting-tooltip": "{{GENDER:|Du}} läser just nu det nyaste ämnet först. Klicka för fler sorteringsalternativ.",
 	"flow-toggle-small-topics": "Byt till liten ämnesvy",
 	"flow-toggle-topics": "Byt till enbart ämnesvy",
 	"flow-toggle-topics-posts": "Byt till ämnes- och inläggsvy",
@@ -318,5 +319,6 @@
 	"flow-preview-warning": "Du ser en förhandsvisning. Skicka in formuläret för publicera detta, eller klicka på \"{{int:flow-preview-return-edit-post}}\" för att fortsätta skriva.",
 	"flow-preview-return-edit-post": "Fortsätt redigera",
 	"flow-anonymous": "Anonym",
-	"flow-embedding-unsupported": "Diskussioner kan ännu inte bäddas in."
+	"flow-embedding-unsupported": "Diskussioner kan ännu inte bäddas in.",
+	"mw-ui-unsubmitted-confirm": "Du har osparade ändringar på denna sida. Är du säker du vill lämna sidan och förlora ändringarna?"
 }
