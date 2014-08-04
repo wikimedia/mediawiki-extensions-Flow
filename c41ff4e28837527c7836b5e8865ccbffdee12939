@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_1c8893c8",
+        "filename": "includes/Actions/Action.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-08-04T17:57:31Z",
+      "side": 1,
+      "message": "This is now incorrect no? Since you say it can be false but it is predefined as null",
+      "revId": "c41ff4e28837527c7836b5e8865ccbffdee12939",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
