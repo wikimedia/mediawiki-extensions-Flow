@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_ab25b7aa",
+        "filename": "includes/Notifications/Formatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-08-04T09:06:24Z",
+      "side": 1,
+      "message": "By doing this, you also truncate the topic titles for languages with multi-byte characters to 25 characters. Please find a way to truncate based on characters, and not on bytes, because it\u0027s bad i18n. Potentially, it can also cause truncation in the middle of a multi-byte character instead of at the end of a character, although that\u0027s fixed in truncate().\n\nIn essence, it\u0027s a bit sad that Language::truncate does truncation based on bytes, and not on characters.",
+      "revId": "344fd65cc2408aed3e49d35a3076f3e615414848",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
