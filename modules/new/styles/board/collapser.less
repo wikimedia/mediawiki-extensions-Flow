@@ -60,6 +60,7 @@ div.flow-element-collapsed {
 
 		h2.flow-topic-title,
 		.flow-moderated-topic-title {
+			.truncated-text();
 			margin-bottom: 0 !important; // Needs additional specificity to override `div#content h2`
 		}
 
@@ -77,10 +78,10 @@ div.flow-element-collapsed {
 		}
 	}
 
-	.flow-topic-expanded {
-		.flow-topic-title {
-			overflow: visible;
-			white-space: normal;
+	.flow-element-expanded {
+		h2.flow-topic-title,
+		.flow-moderated-topic-title {
+			.truncated-text(true);
 		}
 	}
 
