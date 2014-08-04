@@ -58,7 +58,7 @@ class TalkpageManager implements OccupationController {
 	 * to make sure a page actually exists ;)
 	 *
 	 * @param \Article $article
-	 * @param \Flow\Data\Workflow $workflow
+	 * @param Workflow $workflow
 	 * @throws InvalidInputException
 	 */
 	public function ensureFlowRevision( Article $article, Workflow $workflow ) {

@@ -3,6 +3,7 @@
 namespace Flow;
 
 use Flow\Exception\FlowException;
+use Flow\Exception\WrongNumberArgumentsException;
 use Flow\Model\UUID;
 use Flow\Parsoid\Utils;
 use Closure;
@@ -827,9 +828,10 @@ class TemplateHelper {
 
 	/**
 	 * Only perform action when conditions match
-	 * @param string value
-	 * @param string operator e.g. 'or'
-	 * @param string value2 to compare with
+	 * @param string $value
+	 * @param string $operator e.g. 'or'
+	 * @param string $value2 to compare with
+	 * @param array $options lightncandy hbhelper options
 	 * @return mixed result of callback
 	 * @throws FlowException Fails when callbacks are not Closure instances
 	 * @param array @options
