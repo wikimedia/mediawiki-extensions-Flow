@@ -2175,6 +2175,9 @@
 		 * @param {String} [newState]
 		 */
 		FlowBoardComponent.UI.collapserState = function ( flowBoard, newState ) {
+			var $heading,
+				$container = flowBoard.$container;
+
 			if ( !newState ) {
 				// Get last
 				newState = mw.flow.StorageEngine.localStorage.getItem( 'collapserState' ) || 'full'; // @todo genericize this
@@ -2192,9 +2195,17 @@
 			}
 
 			// @todo genericize this
-			flowBoard.$container
+			$container
 				.removeClass( 'flow-board-collapsed-full flow-board-collapsed-topics flow-board-collapsed-compact' )
 				.addClass( 'flow-board-collapsed-' + newState );
+
+			$heading = $container.find( '.flow-topic-title' );
+			// In compact mode also truncate the text.
+			if ( newState === 'compact' ) {
+				$heading.addClass( 'flow-ui-text-truncated' );
+			} else {
+				$heading.removeClass( 'flow-ui-text-truncated' );
+			}
 		};
 
 		/**

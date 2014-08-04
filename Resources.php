@@ -199,6 +199,12 @@ $wgResourceModules += array(
 		),
 	),
 	// @todo: upstream to mediawiki ui
+	'ext.flow.mediawiki.ui.text' => $flowResourceTemplate + array(
+		'styles' => array(
+			'new/styles/mediawiki.ui/text.less',
+		),
+	) + $mobile,
+	// @todo: upstream to mediawiki ui
 	'ext.flow.mediawiki.ui.form' => $flowResourceTemplate + array(
 		'styles' => array(
 			'new/styles/mediawiki.ui/forms.less',
