@@ -43,10 +43,10 @@ class View extends ContextSource {
 
 		$out = $this->getOutput();
 		$styles = array(
-			'mediawiki.ui',
 			'mediawiki.ui.anchor',
 			'mediawiki.ui.button',
 			'mediawiki.ui.input',
+			'mediawiki.ui.utilities',
 			'ext.flow.styles',
 			'ext.flow.mediawiki.ui.tooltips',
 			'ext.flow.mediawiki.ui.form',
