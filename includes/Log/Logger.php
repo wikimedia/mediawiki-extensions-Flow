@@ -67,6 +67,8 @@ class Logger {
 		$workflow = Container::get( 'storage.workflow' )->get( $workflowId );
 		if ( $workflow ) {
 			$title = $workflow->getArticleTitle();
+		} else {
+			$title = false;
 		}
 		$error = false;
 		if ( !$title ) {

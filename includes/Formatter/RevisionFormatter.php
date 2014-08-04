@@ -500,7 +500,7 @@ class RevisionFormatter {
 				break;
 
 			case 'restore-topic':
-				$moderateAction = null;
+				$moderateAction = $flowAction = null;
 				switch ( $revision->getModerationState() ) {
 				case AbstractRevision::MODERATED_CLOSED:
 					$moderateAction = 'reopen';
@@ -522,7 +522,7 @@ class RevisionFormatter {
 				if ( !$postId ) {
 					throw new FlowException( "$type called without \$postId" );
 				}
-				$moderateAction = null;
+				$moderateAction = $flowAction = null;
 				switch( $revision->getModerationState() ) {
 				case AbstractRevision::MODERATED_HIDDEN:
 				case AbstractRevision::MODERATED_DELETED:
