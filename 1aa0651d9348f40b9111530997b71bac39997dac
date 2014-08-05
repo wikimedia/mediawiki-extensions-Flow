@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_c3c0df80",
+        "filename": "includes/Formatter/RevisionViewFormatter.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-08-05T19:19:35Z",
+      "side": 1,
+      "message": "Why not correct the typehint to RevisionViewRow?",
+      "revId": "1aa0651d9348f40b9111530997b71bac39997dac",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
