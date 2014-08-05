@@ -160,6 +160,7 @@
 	"flow-add-topic": "Thema derbäisetzen",
 	"flow-newest-topics": "Neisten Themen",
 	"flow-recent-topics": "Rezent aktiv Themen",
+	"flow-sorting-tooltip": "{{GENDER:|Dir}} liest elo déi neist Theme fir d'éischt. Klickt fir méi Zortéierungsoptiounen.",
 	"flow-whatlinkshere-post": "vun engem [$1 Message]",
 	"flow-special-type": "Typ",
 	"flow-special-uuid": "UUID",
