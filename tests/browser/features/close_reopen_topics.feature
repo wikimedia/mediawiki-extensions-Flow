@@ -1,9 +1,10 @@
-@chrome @clean @ee-prototype.wmflabs.org @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10 @login @test2.wikipedia.org
+@chrome @clean @ee-prototype.wmflabs.org @en.wikipedia.beta.wmflabs.org @firefox @login @test2.wikipedia.org
 Feature: Close and open topics
 
   Background:
       Given I am logged in
 
+  @internet_explorer_10
   Scenario: Closing a topic and then changing your mind
     Given I am on Flow page
         And I have created a Flow topic
@@ -14,6 +15,7 @@ Feature: Close and open topics
     Then the top post is an open discussion
         And I do not see the close/reopen form
 
+  @internet_explorer_10
   Scenario: Closing a topic
     Given I am on Flow page
         And I have created a Flow topic
