@@ -16,6 +16,24 @@
       "revId": "e120783ddb41fe2c0b83fd52288f0471147d0218",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_c2f6925a",
+        "filename": "i18n/en.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-08-06T18:45:06Z",
+      "side": 1,
+      "message": "According to Danny Horn:\n\n@jonrobson1 Yeah, this is new terminology that applies to this feature only. We\u0027re not making a change sitewide from watching to subscribing -- article and talk pages etc will still be using watching/watchlist.\n\nThe big difference between subscribing to a topic and watching a talk page is that you can subscribe to some topics on a Flow board and not others, and you\u0027ll get notifications for those individual topics. Watchlist is page-level only.\n\n(If there is an issue with this I\u0027d suggest bringing it up on the Flow mediawiki discussion board or the mailing list or come chat with us in irc)",
+      "parentUuid": "8e28a382_4379a8c1",
+      "revId": "e120783ddb41fe2c0b83fd52288f0471147d0218",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
