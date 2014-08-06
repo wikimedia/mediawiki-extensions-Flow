@@ -27,12 +27,30 @@
 		cursor: wait !important;
 	}
 
-		// A preview version of a given block
+	// A preview version of a given block
 	.flow-preview {
 		cursor: help;
 	}
 
 	.flow-preview-target-hidden {
 		display: none !important;
+	}
+
+	// With JS, hide .flow-nojs & display .flow-js elements
+	.flow-nojs {
+		display: none;
+	}
+	.flow-js {
+		display: block;
+	}
+}
+
+.client-nojs {
+	// Without JS, hide .flow-js & display .flow-nojs elements
+	.flow-nojs {
+		display: block;
+	}
+	.flow-js {
+		display: none;
 	}
 }

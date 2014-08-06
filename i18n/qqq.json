@@ -59,6 +59,7 @@
 	"flow-newtopic-header": "Unused at this time.",
 	"flow-newtopic-save": "Used as label for the Submit button.\n\nAlso used in:\n* {{msg-mw|Flow-terms-of-use-new-topic}}\n* {{msg-mw|Wikimedia-flow-terms-of-use-new-topic}}",
 	"flow-newtopic-start-placeholder": "Used as placeholder for the \"Topic\" textarea.",
+	"flow-newtopic-first-heading": "First heading on the page with the form to create a new topic. Parameters:\n* $1 - the title of the page where a new topic will be created on",
 	"flow-summarize-topic-placeholder": "Used as placeholder for summarizing topic textarea.",
 	"flow-reply-topic-placeholder": "Used as placeholder for the \"reply to this topic\" textarea. Parameters:\n* $1 - username of the logged in user, can be used for GENDER\n* $2 - topic title",
 	"flow-reply-topic-title-placeholder": "Used as placeholder for the content textarea when replying. Parameters:\n* $1 - Topic title\n{{Identical|Reply to}}",

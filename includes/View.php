@@ -121,6 +121,12 @@ class View extends ContextSource {
 			}
 		}
 
+		// Please note that all blocks can set page title, which may cause them
+		// to override one another's titles
+		foreach ( $blocks as $block ) {
+			$block->setPageTitle( $this->templating, $this->getOutput() );
+		}
+
 		if ( count( $apiResponse['blocks'] ) === 0 ) {
 			throw new InvalidActionException( "No blocks accepted action: $action" );
 		}
@@ -133,8 +139,6 @@ class View extends ContextSource {
 			}
 		} );
 		wfProfileOut( __CLASS__ . '-serialize' );
-
-		$this->setPageTitle( $workflow, $apiResponse );
 
 		// Update newtalk and watchlist notification status on view action of any workflow
 		// since the normal page view that resets notification status is not accessiable
@@ -156,24 +160,6 @@ class View extends ContextSource {
 		$template = $this->lightncandy->getTemplate( 'flow_board' );
 		$out->addHTML( $template( $apiResponse ) );
 		wfProfileOut( __CLASS__ . '-render' );
-	}
-
-	/**
-	 * Set the title for the page, either the Flow board or the topic.
-	 *
-	 * @todo Provide more informative page title for actions other than view,
-	 *       e.g. "Hide post in <TITLE>", "Reopen <TITLE>", etc.
-	 */
-	protected function setPageTitle( Workflow $workflow, array $apiResponse ) {
-		$out = $this->getOutput();
-		if ( $workflow->getType() === 'topic' ) {
-			$title = $workflow->getOwnerTitle();
-			$out->setPageTitle( $this->msg( 'flow-topic-first-heading', $title->getPrefixedText() ) );
-			$out->setHtmlTitle( $apiResponse['blocks'][0]['topicTitle'] );
-			$out->setSubtitle( '&lt; ' . Linker::link( $title ) );
-		} else {
-			$out->setPageTitle( $workflow->getArticleTitle()->getFullText() );
-		}
 	}
 
 	protected function redirect( Workflow $workflow ) {

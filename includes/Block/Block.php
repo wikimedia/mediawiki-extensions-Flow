@@ -282,4 +282,19 @@ abstract class AbstractBlock implements Block {
 			unset( $this->requiresWikitext[$key] );
 		}
 	}
+
+	/**
+	 * @param Templating $templating
+	 * @param \OutputPage $out
+	 */
+	public function setPageTitle( Templating $templating, \OutputPage $out ) {
+		if ( $out->getPageTitle() ) {
+			// Don't override page title if another block has already set it.
+			// If this should *really* be done, the specific block extending
+			// this AbstractBlock should just implement this itself ;)
+			return;
+		}
+
+		$out->setPageTitle( $this->workflow->getArticleTitle()->getFullText() );
+	}
 }

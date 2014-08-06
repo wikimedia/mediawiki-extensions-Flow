@@ -30,9 +30,7 @@ class TopicListBlock extends AbstractBlock {
 	// @Todo - fill in the template names
 	protected $templates = array(
 		'view' => '',
-		// since new-topic is only listed in post this is always
-		// to render submission errors
-		'new-topic' => '',
+		'new-topic' => 'newtopic',
 	);
 
 	/**
@@ -303,5 +301,21 @@ class TopicListBlock extends AbstractBlock {
 
 		return $pager->getPage();
 	}
-}
 
+	/**
+	 * @param Templating $templating
+	 * @param \OutputPage $out
+	 */
+	public function setPageTitle( Templating $templating, \OutputPage $out ) {
+		if ( $this->action !== 'new-topic' ) {
+			// Only new-topic should override page title, rest should default
+			return parent::setPageTitle( $templating, $out );
+		}
+
+		$title = $this->workflow->getOwnerTitle();
+		$message = $out->msg( 'flow-newtopic-first-heading', $title->getPrefixedText() );
+		$out->setPageTitle( $message );
+		$out->setHtmlTitle( $message );
+		$out->setSubtitle( '&lt; ' . \Linker::link( $title ) );
+	}
+}

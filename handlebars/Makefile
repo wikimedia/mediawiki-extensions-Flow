@@ -11,7 +11,7 @@ POST_SUBTEMPLATES=flow_post.handlebars \
 		flow_post_meta_actions.handlebars \
 		flow_post_replies.handlebars
 
-TOPIC_SUBTEMPLATES= flow_topic.handlebars \
+TOPIC_SUBTEMPLATES=flow_topic.handlebars \
 		flow_topic_titlebar.handlebars \
 		flow_topic_titlebar_content.handlebars \
 		flow_topic_titlebar_close.handlebars \
@@ -29,6 +29,7 @@ all: compiled/flow_block_header.handlebars.php \
 		compiled/flow_block_header_diff_view.handlebars.php \
 		compiled/flow_board_collapsers_subcomponent.handlebars.php \
 		compiled/flow_block_topiclist.handlebars.php \
+		compiled/flow_block_topiclist_newtopic.handlebars.php \
 		compiled/flow_block_topic.handlebars.php \
 		compiled/flow_block_topic_history.handlebars.php \
 		compiled/flow_block_topic_single_view.handlebars.php \
@@ -99,6 +100,13 @@ compiled/flow_block_topiclist.handlebars.php: \
 		flow_tooltip.handlebars \
 		$(TOPIC_SUBTEMPLATES)
 	$(COMPILE) flow_block_topiclist
+
+compiled/flow_block_topiclist_newtopic.handlebars.php: \
+		flow_newtopic_form.handlebars \
+		flow_anon_warning.handlebars \
+		flow_tooltip.handlebars \
+		$(TOPIC_SUBTEMPLATES)
+	$(COMPILE) flow_block_topiclist_newtopic
 
 compiled/flow_block_topic.handlebars.php: \
 		flow_block_topic.handlebars \
