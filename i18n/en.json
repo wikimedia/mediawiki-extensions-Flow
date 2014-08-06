@@ -55,6 +55,7 @@
     "flow-newtopic-header": "Add a new topic",
     "flow-newtopic-save": "Add topic",
     "flow-newtopic-start-placeholder": "Start a new topic",
+    "flow-newtopic-first-heading": "Start a new topic on $1",
     "flow-summarize-topic-placeholder": "Please summarize this discussion",
     "flow-reply-topic-placeholder": "{{GENDER:$1|Comment}} on \"$2\"",
     "flow-reply-topic-title-placeholder": "Reply to \"$1\"",

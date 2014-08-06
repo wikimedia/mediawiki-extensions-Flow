@@ -78,7 +78,15 @@
 	'.''.'
 </ul>
 
-	'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['newtopic'])) ? $in['actions']['newtopic'] : null))) ? '
+
+	'.'
+	<div class="flow-newtopic-container">
+		<div class="flow-nojs">
+			<a href="'.htmlentities(((is_array($in['links']) && isset($in['links']['newtopic'])) ? $in['links']['newtopic'] : null), ENT_QUOTES, 'UTF-8').'">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-newtopic-start-placeholder'),Array()), 'encq').'</a>
+		</div>
+
+		<div class="flow-js">
+			'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['newtopic'])) ? $in['actions']['newtopic'] : null))) ? '
 	<form action="'.htmlentities(((is_array($in['actions']['newtopic']) && isset($in['actions']['newtopic']['url'])) ? $in['actions']['newtopic']['url'] : null), ENT_QUOTES, 'UTF-8').'" method="POST" class="flow-newtopic-form" data-flow-initial-state="collapsed">
 		<div class="flow-error-container">
 '.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['errors'])) ? $cx['scopes'][0]['errors'] : null))) ? '
@@ -125,6 +133,8 @@
 	</form>
 ' : '').'
 
+		</div>
+	</div>
 
 	<div class="flow-topics">
 		'.LCRun3::sec($cx, ((is_array($in) && isset($in['roots'])) ? $in['roots'] : null), $in, true, function($cx, $in) {return '

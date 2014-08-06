@@ -493,7 +493,6 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		$output['type'] = $this->getName();
-		$output['topicTitle'] = $templating->getContent( $topic, 'wikitext' );
 
 		if ( $this->wasSubmitted() ) {
 			// Failed actions, like reply, end up here
@@ -774,5 +773,24 @@ class TopicBlock extends AbstractBlock {
 					'user' => $this->user,
 				)
 			);
+	}
+
+	/**
+	 * @param Templating $templating
+	 * @param \OutputPage $out
+	 *
+	 * @todo Provide more informative page title for actions other than view,
+     *       e.g. "Hide post in <TITLE>", "Reopen <TITLE>", etc.
+	 */
+	public function setPageTitle( Templating $templating, \OutputPage $out ) {
+		$topic = $this->loadTopicTitle( $this->action === 'history' ? 'history' : 'view' );
+		if ( !$topic ) {
+			throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
+		}
+
+		$title = $this->workflow->getOwnerTitle();
+		$out->setPageTitle( $out->msg( 'flow-topic-first-heading', $title->getPrefixedText() ) );
+		$out->setHtmlTitle( $templating->getContent( $topic, 'wikitext' ) );
+		$out->setSubtitle( '&lt; ' . \Linker::link( $title ) );
 	}
 }

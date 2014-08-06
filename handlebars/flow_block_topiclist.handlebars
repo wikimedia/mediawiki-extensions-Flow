@@ -2,7 +2,17 @@
 
 <div class="flow-board">
 	{{> flow_topic_navigation}}
-	{{> flow_newtopic_form}}
+
+	{{! new-topic form should only be displayed when run with JS, otherwise link to designated page }}
+	<div class="flow-newtopic-container">
+		<div class="flow-nojs">
+			<a href="{{links.newtopic}}">{{l10n "flow-newtopic-start-placeholder"}}</a>
+		</div>
+
+		<div class="flow-js">
+			{{> flow_newtopic_form}}
+		</div>
+	</div>
 
 	<div class="flow-topics">
 		{{> flow_topiclist_loop}}

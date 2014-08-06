@@ -266,7 +266,6 @@ class TopicSummaryBlock extends AbstractBlock {
 				'errors' => array(),
 			);
 		}
-		$output['topicTitle'] = $templating->getContent( $this->findTopicTitle(), 'wikitext' );
 
 		switch ( $this->action ) {
 			case 'view-topic-summary':
@@ -336,5 +335,17 @@ class TopicSummaryBlock extends AbstractBlock {
 
 	public function getName() {
 		return 'topicsummary';
+	}
+
+	/**
+	 * @param Templating $templating
+	 * @param \OutputPage $out
+	 */
+	public function setPageTitle( Templating $templating, \OutputPage $out ) {
+		$topic = $this->findTopicTitle();
+		$title = $this->workflow->getOwnerTitle();
+		$out->setPageTitle( $out->msg( 'flow-topic-first-heading', $title->getPrefixedText() ) );
+		$out->setHtmlTitle( $templating->getContent( $topic, 'wikitext' ) );
+		$out->setSubtitle( '&lt; ' . \Linker::link( $title ) );
 	}
 }
