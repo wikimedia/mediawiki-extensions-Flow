@@ -28,6 +28,7 @@ Feature: Close and open topics
         And I expand the top post
         And the topic summary of the first topic is "This is a bikeshed"
 
+  # Close-then-reopen doesn't work in IE, it caches the API response (bug 69160).
   Scenario: Opening a topic
     Given I am on Flow page
         And I have created a Flow topic
