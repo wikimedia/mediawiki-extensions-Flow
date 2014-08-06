@@ -97,6 +97,11 @@ $namespaceNames['sl'] = array(
 	NS_TOPIC =>  'Tema',
 );
 
+/** Swedish */
+$namespaceNames['sv'] = array(
+	NS_TOPIC =>  'Ämne',
+);
+
 /** Ukrainian */
 $namespaceNames['uk'] = array(
 	NS_TOPIC =>  'Тема',
