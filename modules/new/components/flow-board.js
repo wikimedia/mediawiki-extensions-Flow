@@ -762,19 +762,19 @@
 				templateParams.title = $titleField.val();
 			}
 
-			// Render this template with the preview data
+			// Render the preview warning
 			$previewContainer = $( flowBoard.TemplateEngine.processTemplateGetFragment(
-				previewTemplate,
-				templateParams
+				'flow_preview_warning'
 			) ).children();
 
 			// @todo Perhaps this should be done in each template, and not here?
 			$previewContainer.addClass( 'flow-preview' );
 
-			// Render the preview warning
+			// Render this template with the preview data
 			$previewContainer = $previewContainer.add(
 				$( flowBoard.TemplateEngine.processTemplateGetFragment(
-					'flow_preview_warning'
+					previewTemplate,
+					templateParams
 				) ).children()
 			);
 
