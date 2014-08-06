@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_39e3569d",
+        "filename": "tests/browser/features/close_reopen_topics.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-08-06T03:19:34Z",
+      "side": 1,
+      "message": "I couldn\u0027t find documentation for WMF\u0027s use of these annotations, but http://www.ibm.com/developerworks/opensource/library/a-automating-ria/ says \"You can use different annotation tags at the top of your feature files to group tests.\" so I suspect this won\u0027t work.",
+      "revId": "5d571456075d63fcfd5f9c9246536edf05126069",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
