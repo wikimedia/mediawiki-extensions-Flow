@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_7aee5e88",
+        "filename": "includes/Notifications/Notifications.php",
+        "patchSetId": 23
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-07T14:48:52Z",
+      "side": 1,
+      "message": "I\u0027m not sure about this.\n\nI have a vague recollection that we would only show new topics when people watchlist a page; not replies to topics on that page. It\u0027s unclear from the Trello card if that is still the case, so this point may be moot.\n\nAlso: if we *do* want to send notifications for all replies to topics on a page a user is subscribed to, it is pointless to subscribe/unsubscribe on topic level if we are already watching the entire page (because if a person is not subscribed to the topic, he\u0027ll still get the notification because he\u0027s subscribed to the talk page)\n\n-\n\nI assume locateUsersWatchingTitle for flow-post-reply may be operating under the assumtion that this event\u0027s title is the *topic* page. However, Topic.php\u0027s setNotification() sets workflow-\u003egetOwnerTitle(), which is the talk board.\n\nThoughts?",
+      "revId": "d7477890a2cd56946044867b89992c70c14d2f62",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
