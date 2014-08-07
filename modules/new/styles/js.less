@@ -46,6 +46,11 @@
 }
 
 .client-nojs {
+	// No cancel buttons without JS: they need JS to break down the form
+	button[data-role=cancel] {
+		display: none;
+	}
+
 	// Without JS, hide .flow-js & display .flow-nojs elements
 	.flow-nojs {
 		display: block;
