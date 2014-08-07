@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_45ccde66",
+        "filename": "modules/new/styles/board/menu.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-08-07T19:35:13Z",
+      "side": 0,
+      "message": "We have talked about this various times on irc and I thought we were on the same page.\n\nThe user experience on edit title, summarize and all the moderation actions is currently terrible and we should not be promoting it in the UI.\n\nYou agreed we would hide this during a meeting with Danny and May and myself.\n\n http://localhost:8080/w/index.php?title\u003dTopic:Rzxrf46ph7a7aubb\u0026action\u003dedit-topic-summary for instance doesn\u0027t explain what summarize means at all.\n\nPlease break this out into another patch and make the user experiences of these pages acceptable before doing this.",
+      "revId": "5de876bf081f88b90ec9e487c1c9b9c708f05e09",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
