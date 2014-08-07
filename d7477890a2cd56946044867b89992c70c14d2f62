@@ -16,6 +16,24 @@
       "revId": "d7477890a2cd56946044867b89992c70c14d2f62",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_0515b6e9",
+        "filename": "includes/Notifications/Notifications.php",
+        "patchSetId": 23
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-07T19:19:48Z",
+      "side": 1,
+      "message": "As discussed per email, this is indeed not what it\u0027s supposed to do.\n\nInstead of sending a reply notification for users subscribed to the *board*, we should send it to those subscribed to a *topic*. However, when subscribing to a board, you should auto-subscribe to all new topics as well.",
+      "parentUuid": "8e28a382_7aee5e88",
+      "revId": "d7477890a2cd56946044867b89992c70c14d2f62",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
