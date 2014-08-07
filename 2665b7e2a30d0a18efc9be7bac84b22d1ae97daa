@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_a4d38b63",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 22
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-07T14:08:51Z",
+      "side": 1,
+      "message": "Looks like this entire case statement is dead code? All is does is fetch $topicId, which isn\u0027t used?",
+      "revId": "2665b7e2a30d0a18efc9be7bac84b22d1ae97daa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_89dd4a1a",
+        "filename": "tests/PostRevisionTestCase.php",
+        "patchSetId": 22
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-07T14:08:51Z",
+      "side": 1,
+      "message": "@return Workflow",
+      "revId": "2665b7e2a30d0a18efc9be7bac84b22d1ae97daa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
