@@ -15,6 +15,7 @@
 ),
         'blockhelpers' => Array(),
         'hbhelpers' => Array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
+            'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
 ),
         'scopes' => Array($in),
         'sp_vars' => Array(),
@@ -47,10 +48,13 @@
 		        data-flow-api-handler="submitTopicTitle"
 		        data-flow-api-target="< .flow-topic"
 		        class="mw-ui-button mw-ui-constructive">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-edit-title-submit'),Array()), 'encq').'</button>
-		<button data-role="cancel"
-		        data-flow-interactive-handler="cancelForm"
-		        class="mw-ui-button mw-ui-destructive mw-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
-		<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-terms-of-use-edit'),Array()), 'encq').'</small>
+
+		'.LCRun3::hbch($cx, 'progressiveEnhancement', Array(Array(),Array('insertionType'=>'insertion','sectionId'=>'flow-cancel-button')), $in, function($cx, $in) {return '
+			<button data-role="cancel"
+					data-flow-interactive-handler="cancelForm"
+					class="mw-ui-button mw-ui-destructive mw-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
+			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-terms-of-use-edit'),Array()), 'encq').'</small>
+		';}).'
 	</div>
 </form>
 
