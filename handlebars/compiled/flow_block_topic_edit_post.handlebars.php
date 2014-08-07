@@ -18,6 +18,7 @@
         'hbhelpers' => Array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
             'ifAnonymous' => 'Flow\TemplateHelper::ifAnonymous',
             'tooltip' => 'Flow\TemplateHelper::tooltip',
+            'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
 ),
         'scopes' => Array($in),
         'sp_vars' => Array(),
@@ -44,8 +45,21 @@
 	<input type="hidden" name="wpEditToken" value="'.htmlentities(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['editToken'])) ? $cx['scopes'][0]['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
 	<input type="hidden" name="topic_prev_revision" value="'.htmlentities(((is_array($in) && isset($in['revisionId'])) ? $in['revisionId'] : null), ENT_QUOTES, 'UTF-8').'" />
 	'.LCRun3::hbch($cx, 'ifAnonymous', Array(Array(),Array()), $in, function($cx, $in) {return '
-		'.LCRun3::hbch($cx, 'tooltip', Array(Array(),Array('positionClass'=>'down','contextClass'=>'progressive','extraClass'=>'flow-anon-warning flow-form-collapsible','isBlock'=>true)), $in, function($cx, $in) {return '
-	'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-anon-warning',LCRun3::ch($cx, 'linkWithReturnTo', Array(Array('Special:UserLogin'),Array()), 'raw'),LCRun3::ch($cx, 'linkWithReturnTo', Array(Array('Special:UserLogin/signup'),Array()), 'raw')),Array()), 'encq').'';}).'
+		<div class="flow-anon-warning">
+	<div class="flow-anon-warning-mobile">
+		'.'
+		'.LCRun3::hbch($cx, 'tooltip', Array(Array(),Array('positionClass'=>'down','contextClass'=>'progressive','extraClass'=>'flow-form-collapsible','isBlock'=>true)), $in, function($cx, $in) {return '
+			'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-anon-warning',LCRun3::ch($cx, 'linkWithReturnTo', Array(Array('Special:UserLogin'),Array()), 'raw'),LCRun3::ch($cx, 'linkWithReturnTo', Array(Array('Special:UserLogin/signup'),Array()), 'raw')),Array()), 'encq').'';}).'
+	</div>
+
+	'.'
+	'.LCRun3::hbch($cx, 'progressiveEnhancement', Array(Array(),Array('insertionType'=>'insertion')), $in, function($cx, $in) {return '
+		<div class="flow-anon-warning-desktop">
+			'.LCRun3::hbch($cx, 'tooltip', Array(Array(),Array('positionClass'=>'left','contextClass'=>'progressive','extraClass'=>'flow-form-collapsible','isBlock'=>true)), $in, function($cx, $in) {return '
+				'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-anon-warning',LCRun3::ch($cx, 'linkWithReturnTo', Array(Array('Special:UserLogin'),Array()), 'raw'),LCRun3::ch($cx, 'linkWithReturnTo', Array(Array('Special:UserLogin/signup'),Array()), 'raw')),Array()), 'encq').'';}).'
+		</div>
+	';}).'
+</div>
 	';}).'
 
 	<textarea name="topic_content" class="mw-ui-input flow-form-collapsible"
@@ -60,8 +74,11 @@
         name="preview"
         data-role="action"
         class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
-<button data-flow-interactive-handler="cancelForm" data-role="cancel"
+
+'.LCRun3::hbch($cx, 'progressiveEnhancement', Array(Array(),Array('insertionType'=>'insertion','sectionId'=>'flow-cancel-button')), $in, function($cx, $in) {return '
+	<button data-flow-interactive-handler="cancelForm" data-role="cancel"
 	class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
+';}).'
 
 		<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-terms-of-use-edit'),Array()), 'encq').'</small>
 	</div>

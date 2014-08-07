@@ -45,7 +45,12 @@
 		';}).'
 
 		'.'
-		<a href="javascript:void(0);" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" data-tooltip-pointing="down" title="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-sorting-tooltip'),Array()), 'encq').'" data-flow-interactive-handler="boardFilterMenuToggle">'.LCRun3::hbch($cx, 'ifEquals', Array(Array(((is_array($in) && isset($in['sortby'])) ? $in['sortby'] : null),'updated'),Array()), $in, function($cx, $in) {return '
+		<a href="javascript:void(0);"
+		   class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target"
+		   data-tooltip-pointing="down"
+		   title="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-sorting-tooltip'),Array()), 'encq').'"
+		   data-flow-interactive-handler="menuToggle"
+		   data-flow-menu-target="< .flow-board-navigation .flow-menu">'.LCRun3::hbch($cx, 'ifEquals', Array(Array(((is_array($in) && isset($in['sortby'])) ? $in['sortby'] : null),'updated'),Array()), $in, function($cx, $in) {return '
 				'.LCRun3::ch($cx, 'l10n', Array(Array('flow-recent-topics'),Array()), 'encq').'
 			';}, function($cx, $in) {return '
 				'.LCRun3::ch($cx, 'l10n', Array(Array('flow-newest-topics'),Array()), 'encq').'
@@ -55,14 +60,16 @@
 	</div>
 	<div class="flow-board-filter-menu">
 		<div class="flow-menu flow-menu-inverted">
-			<div class="flow-menu-js-drop"><a href="javascript:void(0);" class="flow-board-filter-menu-activator"></a></div>
+			<div class="flow-menu-js-drop flow-menu-js-drop-hidden"><a href="javascript:void(0);" class="flow-board-filter-menu-activator"></a></div>
 			'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['board-sort'])) ? $in['links']['board-sort'] : null))) ? '
-				<ul class="mw-ui-button mw-ui-button-container flow-list">
-					<li><a href="'.htmlentities(((is_array($in['links']['board-sort']) && isset($in['links']['board-sort']['updated'])) ? $in['links']['board-sort']['updated'] : null), ENT_QUOTES, 'UTF-8').'"'.LCRun3::hbch($cx, 'ifEquals', Array(Array(((is_array($in) && isset($in['sortby'])) ? $in['sortby'] : null),'updated'),Array()), $in, function($cx, $in) {return 'class="flow-board-navigator-link-highlight"';}).'
+				<ul class="mw-ui-button-container flow-list">
+					<li><a class="mw-ui-button mw-ui-quiet '.LCRun3::hbch($cx, 'ifEquals', Array(Array(((is_array($in) && isset($in['sortby'])) ? $in['sortby'] : null),'updated'),Array()), $in, function($cx, $in) {return 'flow-board-navigator-link-highlight';}).'"
+					       href="'.htmlentities(((is_array($in['links']['board-sort']) && isset($in['links']['board-sort']['updated'])) ? $in['links']['board-sort']['updated'] : null), ENT_QUOTES, 'UTF-8').'"
 					       data-flow-interactive-handler="apiRequest"
 					       data-flow-api-target="< .flow-component"
 					       data-flow-api-handler="board"><span class="wikiglyph wikiglyph-clock"></span> '.LCRun3::ch($cx, 'l10n', Array(Array('flow-recent-topics'),Array()), 'encq').'</a></li>
-					<li><a href="'.htmlentities(((is_array($in['links']['board-sort']) && isset($in['links']['board-sort']['newest'])) ? $in['links']['board-sort']['newest'] : null), ENT_QUOTES, 'UTF-8').'"'.LCRun3::hbch($cx, 'ifEquals', Array(Array(((is_array($in) && isset($in['sortby'])) ? $in['sortby'] : null),''),Array()), $in, function($cx, $in) {return 'class="flow-board-navigator-link-highlight"';}).'
+					<li><a class="mw-ui-button mw-ui-quiet '.LCRun3::hbch($cx, 'ifEquals', Array(Array(((is_array($in) && isset($in['sortby'])) ? $in['sortby'] : null),''),Array()), $in, function($cx, $in) {return 'flow-board-navigator-link-highlight';}).'"
+					       href="'.htmlentities(((is_array($in['links']['board-sort']) && isset($in['links']['board-sort']['newest'])) ? $in['links']['board-sort']['newest'] : null), ENT_QUOTES, 'UTF-8').'"
 					       data-flow-interactive-handler="apiRequest"
 					       data-flow-api-target="< .flow-component"
 					       data-flow-api-handler="board"><span class="wikiglyph wikiglyph-star-circle"></span> '.LCRun3::ch($cx, 'l10n', Array(Array('flow-newest-topics'),Array()), 'encq').'</a></li>
