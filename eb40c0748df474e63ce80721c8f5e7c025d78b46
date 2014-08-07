@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_027a4ce7",
+        "filename": "modules/new/styles/js.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-08-07T17:45:22Z",
+      "side": 1,
+      "message": "Don\u0027t use attribute selectors. These won\u0027t work in older browsers which is what this css targets...",
+      "revId": "eb40c0748df474e63ce80721c8f5e7c025d78b46",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
