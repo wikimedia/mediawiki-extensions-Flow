@@ -1320,20 +1320,6 @@
 		};
 
 		/**
-		 * Secondary handler so that the board filter menu link opens up the board filter dropdown menu,
-		 * which is in fact hidden slightly away from it.
-		 * @param {Event} event
-		 */
-		FlowBoardComponent.UI.events.interactiveHandlers.boardFilterMenuToggle = function ( event ) {
-			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
-
-			flowBoard.$boardNavigation.find( '.flow-board-filter-menu' )
-				.find( '.flow-board-filter-menu-activator' ).click().end();
-
-			event.preventDefault();
-		};
-
-		/**
 		 * Shows the form for editing a topic title, it's not already showing
 		 *
 		 * @param {Event} event
@@ -1701,6 +1687,27 @@
 		};
 
 		/**
+		 * Allows you to open a flow-menu from a secondary click handler elsewhere.
+		 * Uses data-flow-menu-target="< foo .flow-menu"
+		 * @param {Event} event
+		 */
+		FlowBoardComponent.UI.events.interactiveHandlers.menuToggle = function ( event ) {
+			var $this = $( this ),
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $this ),
+				target = $this.data( 'flowMenuTarget' ),
+				$target = jQueryFindWithParent( $this, target );
+
+			event.preventDefault();
+
+			if ( !$target || !$target.length ) {
+				flowBoard.debug( 'Could not find openFlowMenu target', arguments );
+				return;
+			}
+
+			$target.find( '.flow-menu-js-drop' ).trigger( 'click' );
+		};
+
+		/**
 		 * On click, focus, and blur of hover menu events, decides whether or not to hide or show the expanded menu
 		 * @param {Event} event
 		 */
@@ -1713,13 +1720,13 @@
 				if ( $this.closest( '.flow-menu-js-drop' ).length ) {
 					$menu.toggleClass( 'focus' );
 
-					// This trick lets us wait for a blur event locally instead on body, to later hide the menu
+					// This trick lets us wait for a blur event from A instead on body, to later hide the menu on outside click
 					if ( $menu.hasClass( 'focus' ) ) {
 						$menu.find( '.flow-menu-js-drop' ).find( 'a' ).focus();
 					}
 				}
 			} else if ( event.type === 'focusin' ) {
-				// If we are focused on a menu item, open the whole menu
+				// If we are focused on a menu item (eg. tabbed in), open the whole menu
 				$menu.addClass( 'focus' );
 			} else if ( event.type === 'focusout' && !$menu.find( 'a' ).filter( ':focus' ).length ) {
 				// If we lost focus, make sure no other element in this menu has focus, and then hide the menu
