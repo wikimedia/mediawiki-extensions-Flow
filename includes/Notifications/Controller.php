@@ -201,6 +201,7 @@ class NotificationController {
 				'content' => $firstPost
 					? Utils::htmlToPlaintext( $firstPost->getContent(), 200, $this->language )
 					: null,
+				'target-page' => $params['target-page']
 			)
 		) );
 
@@ -274,6 +275,7 @@ class NotificationController {
 					'reply-to' => isset( $data['reply-to'] ) ? $data['reply-to'] : null
 				),
 				'agent' => $user,
+				'target-page' => $params['target-page']
 			) );
 		}
 
