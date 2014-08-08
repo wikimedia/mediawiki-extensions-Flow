@@ -100,6 +100,7 @@ class NotificationController {
 		$extraData['revision-id'] = $revision->getRevisionId();
 		$extraData['post-id'] = $revision->getPostId();
 		$extraData['topic-workflow'] = $topicWorkflow->getId();
+		$extraData['target-page'] = $data['target-page'];
 
 		$newPost = null;
 		switch( $eventName ) {
@@ -201,6 +202,7 @@ class NotificationController {
 				'content' => $firstPost
 					? Utils::htmlToPlaintext( $firstPost->getContent(), 200, $this->language )
 					: null,
+				'target-page' => $params['target-page']
 			)
 		) );
 
@@ -274,6 +276,7 @@ class NotificationController {
 					'reply-to' => isset( $data['reply-to'] ) ? $data['reply-to'] : null
 				),
 				'agent' => $user,
+				'target-page' => $data['target-page']
 			) );
 		}
 

@@ -771,6 +771,7 @@ class TopicBlock extends AbstractBlock {
 					// title is just Topic:UUID and we can get that from workflowid
 					'title' => $this->workflow->getOwnerTitle(),
 					'user' => $this->user,
+					'target-page' => $this->workflow->getArticleTitle()->getArticleID(),
 				)
 			);
 	}
