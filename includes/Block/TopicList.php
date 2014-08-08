@@ -160,6 +160,8 @@ class TopicListBlock extends AbstractBlock {
 			'topic-title' => $this->topicTitle,
 			'first-post' => $this->firstPost,
 			'user' => $this->user,
+			// @Todo there may be db replication delay in here
+			'target-page' => $this->topicWorkflow->getArticleTitle()->getArticleID(),
 		) );
 
 		$output = array(
