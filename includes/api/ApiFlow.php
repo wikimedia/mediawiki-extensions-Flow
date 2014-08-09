@@ -51,18 +51,24 @@ class ApiFlow extends ApiBase {
 		if ( !$wasPosted && $module->mustBePosted() ) {
 			$this->dieUsageMsg( array( 'mustbeposted', $params['submodule'] ) );
 		}
-		$salt = $module->getTokenSalt();
-		if ( $salt !== false ) {
+
+		if ( $module->needsToken() ) {
 			if ( !isset( $params['token'] ) ) {
 				$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 			}
 
-			if ( !$this->getUser()->matchEditToken(
-				$params['token'],
-				$salt,
-				$this->getRequest() )
-			) {
-				$this->dieUsageMsg( 'sessionfailure' );
+			if ( is_callable( $module, 'validateToken' ) ) {
+				if ( !$module->validateToken( $params['token'], $params ) ) {
+					$this->dieUsageMsg( 'sessionfailure' );
+				}
+			} else {
+				if ( !$this->getUser()->matchEditToken(
+					$params['token'],
+					$module->getTokenSalt(),
+					$this->getRequest() )
+				) {
+					$this->dieUsageMsg( 'sessionfailure' );
+				}
 			}
 		}
 
