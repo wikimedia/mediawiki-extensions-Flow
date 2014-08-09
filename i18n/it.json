@@ -299,7 +299,7 @@
 	"flow-add-topic": "Aggiungi argomento",
 	"flow-newest-topics": "Argomenti più recenti",
 	"flow-recent-topics": "Ultimi argomenti attivi",
-	"flow-sorting-tooltip": "{{GENDER:$1|Stai}} attualmente leggendo gli argomenti più recenti. Fai clic per ulteriori opzioni di ordinamento.",
+	"flow-sorting-tooltip": "{{GENDER:|Stai}} attualmente leggendo gli argomenti più recenti. Fai clic per ulteriori opzioni di ordinamento.",
 	"flow-toggle-small-topics": "Passa alla vista ridotta",
 	"flow-toggle-topics": "Passa alla vista degli argomenti",
 	"flow-toggle-topics-posts": "Passa alla vista degli argomenti e dei messaggi",

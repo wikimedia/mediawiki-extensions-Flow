@@ -16,7 +16,8 @@
 			"Scoopfinder",
 			"SnowedEarth",
 			"Orikrin1998",
-			"Wyz"
+			"Wyz",
+			"Crochet.david"
 		]
 	},
 	"flow-desc": "Système de gestion du flux de travail",
@@ -97,8 +98,8 @@
 	"flow-topic-action-undelete-topic": "Rétablir le sujet",
 	"flow-topic-action-unsuppress-topic": "Rétablir le sujet",
 	"flow-topic-action-restore-topic": "Rétablir le sujet",
-	"flow-topic-notification-subscribe-title": "Ce sujet a été ajouté à votre liste de suivi.",
-	"flow-topic-notification-subscribe-description": "Vous recevrez des notifications sur toutes les activités concernant ce sujet.",
+	"flow-topic-notification-subscribe-title": "Vous êtes abonné à ce sujet.",
+	"flow-topic-notification-subscribe-description": "Vous recevrez des notifications quand des gens répondront à ce sujet.",
 	"flow-error-http": "Une erreur s’est produite en communiquant avec le serveur.",
 	"flow-error-other": "Une erreur inattendue s’est produite.",
 	"flow-error-external": "Une erreur s’est produite.<br />Le message d’erreur reçu était : $1",

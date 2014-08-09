@@ -8,7 +8,8 @@
 			"Vuh",
 			"Woytecr",
 			"Alan ffm",
-			"Wiochman"
+			"Wiochman",
+			"Ty221"
 		]
 	},
 	"flow-edit-header-link": "Edytuj nagłówek",
@@ -36,6 +37,8 @@
 	"flow-topic-action-close-topic": "Zamknij temat",
 	"flow-topic-action-summarize-topic": "Podsumuj",
 	"flow-topic-action-resummarize-topic": "Opis zmian",
+	"flow-topic-notification-subscribe-title": "Obserwujesz ten wątek.",
+	"flow-topic-notification-subscribe-description": "Będziesz otrzymywał odpowiedzi, kiedy inni odpowiedzą do tego wątku.",
 	"flow-error-close-moderated-post": "Nie można zamknąć moderowanego posta.",
 	"flow-error-prev-revision-mismatch": "Inny użytkownik kilka sekund temu edytował ten post. Na pewno chcesz nadpisać jego zmiany?",
 	"flow-error-default": "Wystąpił błąd.",
