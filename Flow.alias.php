@@ -48,6 +48,11 @@ $specialPageAliases['ml'] = array(
 	'Flow' => array( 'പ്രവാഹം' ),
 );
 
+/** Portuguese (português) */
+$specialPageAliases['pt'] = array(
+	'Flow' => array( 'Fluência', 'Fluencia' ),
+);
+
 /** Swedish (svenska) */
 $specialPageAliases['sv'] = array(
 	'Flow' => array( 'Flöde' ),
