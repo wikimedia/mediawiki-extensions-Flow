@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_21b2d4e4",
+        "filename": "includes/View.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-08-10T02:18:56Z",
+      "side": 1,
+      "message": "FIXME this needs to be replaced with an actual check.",
+      "revId": "abb7353adc59c26043cd185ae5be3a911440b8d4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
