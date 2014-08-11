@@ -21,6 +21,7 @@
 	"flow-newtopic-header": "Dodaj nowy temat",
 	"flow-newtopic-save": "Dodaj temat",
 	"flow-newtopic-start-placeholder": "Rozpocznij nowy temat",
+	"flow-newtopic-first-heading": "Rozpocznij nowy wątek w $1",
 	"flow-post-action-post-history": "Historia",
 	"flow-post-action-delete-post": "Usuń",
 	"flow-post-action-hide-post": "Ukryj",

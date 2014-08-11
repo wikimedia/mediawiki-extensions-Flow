@@ -50,6 +50,7 @@
 	"flow-newtopic-header": "הוספת נושא חדש",
 	"flow-newtopic-save": "הוספת נושא",
 	"flow-newtopic-start-placeholder": "התחלת נושא חדש",
+	"flow-newtopic-first-heading": "התחלת נושא חדש בדף $1",
 	"flow-summarize-topic-placeholder": "נא לסכם את הדיון",
 	"flow-reply-topic-placeholder": "{{GENDER:$1|הגב|הגיבי|להגיב}} על \"$2\"",
 	"flow-reply-topic-title-placeholder": "תשובה לנושא \"$1\"",

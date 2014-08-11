@@ -5,6 +5,8 @@
 		]
 	},
 	"flow-preview": "પૂર્વદર્શન",
+	"flow-newtopic-first-heading": "$1 પર નવો વિષય શરુ કરો",
 	"flow-topic-notification-subscribe-title": "તમે આ વિષયને સબસ્ક્રાઇબ કર્યો છે.",
+	"flow-topic-notification-subscribe-description": "લોકો જ્યારે આ વિષયનો જવાબ આપશે ત્યારે તમને સંદેશો આવશે.",
 	"flow-notification-link-text-view-topic": "વિષય જુઓ"
 }

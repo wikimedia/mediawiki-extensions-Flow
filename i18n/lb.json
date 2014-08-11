@@ -34,6 +34,7 @@
 	"flow-newtopic-header": "En neit Thema derbäisetzen",
 	"flow-newtopic-save": "Thema derbäisetzen",
 	"flow-newtopic-start-placeholder": "En neit Thema ufänken",
+	"flow-newtopic-first-heading": "En neit Thema op $1 ufänken",
 	"flow-summarize-topic-placeholder": "Resuméiert dës Diskussioun w.e.g.",
 	"flow-reply-topic-placeholder": "\"$2\" {{GENDER:$1|kommentéieren}}",
 	"flow-reply-topic-title-placeholder": "Op \"$1\" äntwerten",

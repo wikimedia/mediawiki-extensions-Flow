@@ -48,6 +48,7 @@
 	"flow-newtopic-header": "Додај нова тема",
 	"flow-newtopic-save": "Додај тема",
 	"flow-newtopic-start-placeholder": "Почнете нова тема",
+	"flow-newtopic-first-heading": "Започнете нова тема на $1",
 	"flow-summarize-topic-placeholder": "Дајте краток опис на разговорот",
 	"flow-reply-topic-placeholder": "{{GENDER:$1|Коментирај}} на „$2“",
 	"flow-reply-topic-title-placeholder": "Одговори на „$1“",
