@@ -22,7 +22,6 @@ class NotificationListener implements LifecycleHandler {
 			return;
 		}
 		$type = null;
-		$params = array();
 		switch( $row['rev_change_type'] ) {
 		// Actually new-topic @todo rename
 		case 'new-post':
