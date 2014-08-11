@@ -421,11 +421,11 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 	// Anonymous users cant watch pages
 	$user = $c['user'];
 	if ( !$user->isAnon() ) {
-		$handlers[] = new Flow\Data\WatchTopicListener( $user, $c['watched_items'], array(
-			// list of revision types that trigger watching the workflow
-			// NOTE: currently `new-post` isn't listed because there is always a reply
-			//  created along with the new-post so its just duplicated work.
-			'reply', 'edit', 'edit-title'
+		$handlers[] = new Flow\Data\WatchTopicListener( $c['watched_items'], array(
+			'reply' => $user,
+			'edit' => $user,
+			'edit-title' => $user,
+			'new-post' => array( 'Flow\\Data\\WatchTopicListener', 'getUsersWatchingBoard' ),
 		) );
 	}
 
