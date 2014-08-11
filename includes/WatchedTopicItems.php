@@ -8,7 +8,7 @@ use Title;
 use User;
 
 /**
- * Is there a core object for retriving multiple watchlist items?
+ * Is there a core object for retrieving multiple watchlist items?
  */
 class WatchedTopicItems {
 
@@ -76,5 +76,19 @@ class WatchedTopicItems {
 			$result[strtolower( $row->wl_title )] = true;
 		}
 		return $result;
+	}
+
+	/**
+	 * @return User
+	 */
+	public function getUser() {
+		return $this->user;
+	}
+
+	/**
+	 * @return DatabaseBase
+	 */
+	public function getWatchlistDb() {
+		return $this->watchListDb;
 	}
 }
