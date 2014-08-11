@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Praveenp",
-			"Suresh.balasubra"
+			"Suresh.balasubra",
+			"Hamnashafeer"
 		]
 	},
 	"flow-desc": "പ്രവൃത്തി കൈകാര്യ സൗകര്യം",
@@ -19,7 +20,6 @@
 	"logentry-suppress-flow-restore-topic": "[[$3]] താളിലെ  ഒരു [$4 വിഷയം] $1 {{GENDER:$2|മായ്ച്ചു}}",
 	"flow-user-moderated": "നിയന്ത്രിത ഉപയോക്താവ്",
 	"flow-edit-header-link": "തലക്കെട്ട് തിരുത്തുക",
-	"flow-header-empty": "ഈ താളിന് ഇപ്പോൾ തലക്കെട്ട് ഇല്ല.",
 	"flow-post-moderated-toggle-hide-show": "$2 {{GENDER:$1|മറച്ച}} അഭിപ്രായം പ്രദർശിപ്പിക്കുക",
 	"flow-post-moderated-toggle-delete-show": "$2 {{GENDER:$1|മായ്ച്ച}} അഭിപ്രായം പ്രദർശിപ്പിക്കുക",
 	"flow-post-moderated-toggle-suppress-show": "$2 {{GENDER:$1|ഒതുക്കിയ}} അഭിപ്രായം പ്രദർശിപ്പിക്കുക",
@@ -49,6 +49,7 @@
 	"flow-newtopic-header": "പുതിയ വിഷയം ചേർക്കുക",
 	"flow-newtopic-save": "വിഷയം ചേർക്കുക",
 	"flow-newtopic-start-placeholder": "പുതിയ വിഷയം തുടങ്ങുക",
+	"flow-newtopic-first-heading": "$1 നെ കുറിച്ചു  പുതിയ വിഷയം തുടങ്ങുക.",
 	"flow-summarize-topic-placeholder": "ദയവായി ഈ ചർച്ച സംഗ്രഹിക്കുക",
 	"flow-reply-topic-placeholder": "\"$2\" എന്ന വിഷയത്തിൽ അഭിപ്രായം {{GENDER:$1|ചേർക്കുക}}",
 	"flow-reply-topic-title-placeholder": "\"$1\" എന്നതിനു മറുപടിയിടുക",
@@ -141,7 +142,6 @@
 	"flow-link-post": "കുറിപ്പ്",
 	"flow-link-topic": "വിഷയം",
 	"flow-link-history": "നാൾവഴി",
-	"flow-moderation-reason-placeholder": "താങ്കളുടെ കാരണം ഇവിടെ ചേർക്കുക",
 	"flow-moderation-title-suppress-post": "കുറിപ്പ് ഒതുക്കണോ?",
 	"flow-moderation-title-delete-post": "കുറിപ്പ് മായ്ക്കണോ?",
 	"flow-moderation-title-hide-post": "കുറിപ്പ് മറയ്ക്കണോ?",
@@ -169,12 +169,12 @@
 	"flow-moderation-title-unsuppress-topic": "വിഷയം ഒതുക്കിയത് ഒഴിവാക്കണോ?",
 	"flow-moderation-title-undelete-topic": "വിഷയം പുനഃസ്ഥാപിക്കണോ?",
 	"flow-moderation-title-unhide-topic": "വിഷയം മറച്ചത് ഒഴിവാക്കണോ?",
-	"flow-moderation-intro-suppress-topic": "എന്തുകൊണ്ടാണ് ഈ വിഷയം ഒതുക്കേണ്ടതെന്ന്  {{GENDER:$3|വിശദീകരിക്കുക}}.",
-	"flow-moderation-intro-delete-topic": "എന്തുകൊണ്ടാണ് ഈ വിഷയം മായ്ക്കുന്നതെന്ന്  {{GENDER:$3|വിശദീകരിക്കുക}}.",
-	"flow-moderation-intro-hide-topic": "എന്തുകൊണ്ടാണ് ഈ വിഷയം മറയ്ക്കുന്നതെന്ന്  {{GENDER:$3|വിശദീകരിക്കുക}}.",
-	"flow-moderation-intro-unsuppress-topic": "എന്തുകൊണ്ടാണ് ഈ വിഷയത്തിന്റെ  ഒതുക്കൽ ഒഴിവാക്കേണ്ടതെന്ന് ദയവായി {{GENDER:$3|വിശദീകരിക്കുക}}.",
-	"flow-moderation-intro-undelete-topic": "എന്തുകൊണ്ടാണ് ഈ വിഷയം പുനഃസ്ഥാപിക്കേണ്ടതെന്ന് ദയവായി {{GENDER:$3|വിശദീകരിക്കുക}}.",
-	"flow-moderation-intro-unhide-topic": "എന്തുകൊണ്ടാണ് ഈ വിഷയത്തിന്റെ  മറയ്ക്കൽ ഒഴിവാക്കേണ്ടതെന്ന് ദയവായി {{GENDER:$3|വിശദീകരിക്കുക}}.",
+	"flow-moderation-placeholder-suppress-topic": "എന്തുകൊണ്ടാണ് ഈ വിഷയം ഒതുക്കേണ്ടതെന്ന്  {{GENDER:$3|വിശദീകരിക്കുക}}.",
+	"flow-moderation-placeholder-delete-topic": "എന്തുകൊണ്ടാണ് ഈ വിഷയം മായ്ക്കുന്നതെന്ന്  {{GENDER:$3|വിശദീകരിക്കുക}}.",
+	"flow-moderation-placeholder-hide-topic": "എന്തുകൊണ്ടാണ് ഈ വിഷയം മറയ്ക്കുന്നതെന്ന്  {{GENDER:$3|വിശദീകരിക്കുക}}.",
+	"flow-moderation-placeholder-unsuppress-topic": "എന്തുകൊണ്ടാണ് ഈ വിഷയത്തിന്റെ  ഒതുക്കൽ ഒഴിവാക്കേണ്ടതെന്ന് ദയവായി {{GENDER:$3|വിശദീകരിക്കുക}}.",
+	"flow-moderation-placeholder-undelete-topic": "എന്തുകൊണ്ടാണ് ഈ വിഷയം പുനഃസ്ഥാപിക്കേണ്ടതെന്ന് ദയവായി {{GENDER:$3|വിശദീകരിക്കുക}}.",
+	"flow-moderation-placeholder-unhide-topic": "എന്തുകൊണ്ടാണ് ഈ വിഷയത്തിന്റെ  മറയ്ക്കൽ ഒഴിവാക്കേണ്ടതെന്ന് ദയവായി {{GENDER:$3|വിശദീകരിക്കുക}}.",
 	"flow-topic-permalink-warning": "ഈ വിഷയം തുടങ്ങിയത് [$2 $1] എന്നതിൽ ആണ്",
 	"flow-compare-revisions-revision-header": "{{GENDER:$2|$2}}, $1-നു ചെയ്ത പതിപ്പ്",
 	"flow-topic-collapsed-one-line": "ചെറിയ ദൃശ്യരൂപം",

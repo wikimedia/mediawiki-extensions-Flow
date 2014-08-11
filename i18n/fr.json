@@ -63,6 +63,7 @@
 	"flow-newtopic-header": "Ajouter un nouveau sujet",
 	"flow-newtopic-save": "Ajouter sujet",
 	"flow-newtopic-start-placeholder": "Commencer un nouveau sujet",
+	"flow-newtopic-first-heading": "Démarrer un nouveau sujet sur $1",
 	"flow-summarize-topic-placeholder": "Veuillez résumer cette discussion",
 	"flow-reply-topic-placeholder": "{{GENDER:$1|Commenter}} « $2 »",
 	"flow-reply-topic-title-placeholder": "Répondre à « $1 »",
