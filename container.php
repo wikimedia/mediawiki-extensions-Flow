@@ -410,6 +410,18 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 				'tree_orig_user_id' => 'tree_orig_user_wiki'
 			)
 		),
+		// Auto-subscribe users to the topic after performing specific actions
+		new Flow\Data\WatchTopicListener(
+			$c['watched_items'],
+			array(
+				// Anonymous users can't watch pages
+				'reply' => $c['user']->isAnon() ? array() : array( $c['user'] ),
+				'edit' => $c['user']->isAnon() ? array() : array( $c['user'] ),
+				'edit-title' => $c['user']->isAnon() ? array() : array( $c['user'] ),
+				// More complex: callback will return array of users watching the board
+				'new-post' => array( 'Flow\\Data\\WatchTopicListener', 'getUsersWatchingBoard' ),
+			)
+		),
 		$c['collection.cache'],
 		// topic history -- to keep a history by topic we have to know what topic every post
 		// belongs to, not just its parent. TopicHistoryIndex is a slight tweak to TopKIndex
@@ -417,17 +429,6 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 		$c['storage.topic_history.index'],
 		$c['reference.recorder'],
 	);
-
-	// Anonymous users cant watch pages
-	$user = $c['user'];
-	if ( !$user->isAnon() ) {
-		$handlers[] = new Flow\Data\WatchTopicListener( $user, $c['watched_items'], array(
-			// list of revision types that trigger watching the workflow
-			// NOTE: currently `new-post` isn't listed because there is always a reply
-			//  created along with the new-post so its just duplicated work.
-			'reply', 'edit', 'edit-title'
-		) );
-	}
 
 	return $handlers;
 } );

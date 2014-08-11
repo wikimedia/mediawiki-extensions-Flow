@@ -175,7 +175,13 @@ class PostRevisionTestCase extends FlowTestCase {
 	 * @param PostRevision $revision
 	 */
 	protected function store( PostRevision $revision ) {
-		$this->getStorage()->put( $revision );
+		$this->getStorage()->put(
+			$revision,
+			array(
+				'workflow' => $this->generateWorkflowForPost(),
+				// @todo: Topic.php also adds 'topic-title'
+			)
+		);
 
 		// save for removal at end of tests
 		$this->revisions[] = $revision;
