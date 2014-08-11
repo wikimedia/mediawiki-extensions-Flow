@@ -165,8 +165,11 @@ $wgAutoloadClasses['Flow\Data\ShallowCompactor'] = $dir . 'includes/Data/Shallow
 $wgAutoloadClasses['Flow\Data\Merger'] = $dir . 'includes/Data/Merger.php';
 $wgAutoloadClasses['Flow\Data\RawSql'] = $dir . 'includes/Data/RawSql.php';
 $wgAutoloadClasses['Flow\Data\UrlGenerationListener'] = $dir . 'includes/Data/UrlGenerationListener.php';
-$wgAutoloadClasses['Flow\Data\WatchTopicListener'] = $dir . 'includes/Data/WatchTopicListener.php';
+$wgAutoloadClasses['Flow\Data\AbstractTopicInsertListener'] = $dir . 'includes/Data/WatchTopicListener.php';
+$wgAutoloadClasses['Flow\Data\ImmediateWatchTopicListener'] = $dir . 'includes/Data/WatchTopicListener.php';
+$wgAutoloadClasses['Flow\Data\DelayedWatchTopicListener'] = $dir . 'includes/Data/WatchTopicListener.php';
 $wgAutoloadClasses['Flow\Data\NotificationListener'] = $dir . 'includes/Data/NotificationListener.php';
+$wgAutoloadClasses['Flow\Jobs\WatchTitle'] = $dir . 'includes/Jobs/WatchTitle.php';
 $wgAutoloadClasses['Flow\Log\Logger'] = $dir . 'includes/Log/Logger.php';
 $wgAutoloadClasses['Flow\Log\Formatter'] = $dir . 'includes/Log/Formatter.php';
 $wgAutoloadClasses['Flow\Log\PostModerationLogger'] = $dir . 'includes/Log/PostModerationLogger.php';
@@ -370,6 +373,8 @@ $wgAutoloadClasses['Flow\Exception\WrongNumberArgumentsException'] = $dir . 'inc
 $wgResourceLoaderLESSImportPaths = array_merge( $wgResourceLoaderLESSImportPaths, array(
 	$dir . "modules/new/styles/flow.less/",
 ) );
+
+$wgJobClasses['Flow\Jobs\WatchTitle'] = 'Flow\Jobs\WatchTitle';
 
 // Configuration
 
