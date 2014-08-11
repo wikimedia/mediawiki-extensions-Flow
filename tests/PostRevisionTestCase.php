@@ -175,7 +175,7 @@ class PostRevisionTestCase extends FlowTestCase {
 	 * @param PostRevision $revision
 	 */
 	protected function store( PostRevision $revision ) {
-		$this->getStorage()->put( $revision );
+		$this->getStorage()->put( $revision, array( /* no passing any metadata right now */ ) );
 
 		// save for removal at end of tests
 		$this->revisions[] = $revision;
