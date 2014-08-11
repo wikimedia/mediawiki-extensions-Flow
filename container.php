@@ -386,6 +386,10 @@ $c['storage.topic_list'] = $c->share( function( $c ) {
 // Individual post within a topic workflow
 $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 	global $wgContLang;
+
+	/** @var \User $user */
+	$user = $c['user'];
+
 	$handlers = array(
 		new Flow\Log\PostModerationLogger( $c['logger'] ),
 		// The recent changes handler is wrapped to defer the insert callbacks
@@ -408,6 +412,10 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 				'tree_orig_user_id' => 'tree_orig_user_wiki'
 			)
 		),
+		// Auto-subscribe users to the topic after performing specific actions
+		new Flow\Data\ImmediateWatchTopicListener( $c['watched_items'] ),
+		// Auto-subscribe users to the topic - delayed (in a job) to insert whole batches
+		new Flow\Data\DelayedWatchTopicListener(),
 		$c['collection.cache'],
 		// topic history -- to keep a history by topic we have to know what topic every post
 		// belongs to, not just its parent. TopicHistoryIndex is a slight tweak to TopKIndex
@@ -416,17 +424,6 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 		$c['reference.recorder'],
 		new Flow\Data\NotificationListener( $c['controller.notification'] ),
 	);
-
-	// Anonymous users cant watch pages
-	$user = $c['user'];
-	if ( !$user->isAnon() ) {
-		$handlers[] = new Flow\Data\WatchTopicListener( $user, $c['watched_items'], array(
-			// list of revision types that trigger watching the workflow
-			// NOTE: currently `new-post` isn't listed because there is always a reply
-			//  created along with the new-post so its just duplicated work.
-			'reply', 'edit', 'edit-title'
-		) );
-	}
 
 	return $handlers;
 } );
