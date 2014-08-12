@@ -851,10 +851,10 @@
 				$( this ).val( this.defaultValue );
 			} );
 
-			flowBoardComponentRefreshTopic( info.$target, data.flow.reply.result.topic );
-
 			// Trigger a click on cancel to have it destroy the form the way it should
 			$form.find( 'button, input, a' ).filter( '[data-flow-interactive-handler="cancelForm"]' ).trigger( 'click' );
+
+			flowBoardComponentRefreshTopic( info.$target, data.flow.reply.result.topic );
 		};
 
 		/**
