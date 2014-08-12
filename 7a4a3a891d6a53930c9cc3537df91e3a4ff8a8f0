@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_69679723",
+        "filename": "modules/new/styles/board/collapser.less",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-08-12T17:54:38Z",
+      "side": 1,
+      "message": "I don\u0027t like this one bit. There must be a better way of getting the above to apply conditionally...?",
+      "revId": "7a4a3a891d6a53930c9cc3537df91e3a4ff8a8f0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
