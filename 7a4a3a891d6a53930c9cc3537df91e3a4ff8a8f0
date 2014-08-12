@@ -16,6 +16,24 @@
       "revId": "7a4a3a891d6a53930c9cc3537df91e3a4ff8a8f0",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_6fbe77fc",
+        "filename": "modules/new/styles/board/collapser.less",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-08-12T20:01:02Z",
+      "side": 1,
+      "message": "Not really. We only know when an item is expanded. It doesn\u0027t have a collapsed class applied, because we assume it\u0027s collapsed in this parent state. I\u0027m open to suggestions.",
+      "parentUuid": "8e28a382_69679723",
+      "revId": "7a4a3a891d6a53930c9cc3537df91e3a4ff8a8f0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
