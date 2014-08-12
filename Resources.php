@@ -285,6 +285,7 @@ $wgResourceModules += array(
 			'mediawiki.jqueryMsg',
 			'jquery.json',
 			'jquery.conditionalScroll',
+			'jquery.findWithParent',
 			'mediawiki.api',
 			'mediawiki.Uri',
 			'mediawiki.Title',
@@ -333,6 +334,11 @@ $wgHooks['ResourceLoaderRegisterModules'][] = function( $resourceLoader ) use ( 
 	if ( $resourceLoader->getModule( 'jquery.conditionalScroll' ) === null ) {
 		$resourceLoader->register( 'jquery.conditionalScroll', $flowResourceTemplate + array(
 			'scripts' => 'jquery.conditionalScroll.js',
+		)  + $mobile );
+	}
+	if ( $resourceLoader->getModule( 'jquery.findWithParent' ) === null ) {
+		$resourceLoader->register( 'jquery.findWithParent', $flowResourceTemplate + array(
+			'scripts' => 'jquery.findWithParent.js',
 		)  + $mobile );
 	}
 };
