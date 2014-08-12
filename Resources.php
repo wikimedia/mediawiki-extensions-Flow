@@ -285,6 +285,7 @@ $wgResourceModules += array(
 			'mediawiki.jqueryMsg',
 			'jquery.json',
 			'jquery.conditionalScroll',
+			'ext.flow.jquery.findWithParent',
 			'mediawiki.api',
 			'mediawiki.Uri',
 			'mediawiki.Title',
@@ -325,6 +326,11 @@ $wgResourceModules += array(
 	'ext.flow.parsoid' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'editor/ext.flow.parsoid.js',
+		),
+	) + $mobile,
+	'ext.flow.jquery.findWithParent' => $flowResourceTemplate + array(
+		'scripts' => array(
+			'jquery.findWithParent.js',
 		),
 	) + $mobile,
 );
