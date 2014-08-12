@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_60be8cd3",
+        "filename": "tests/browser/features/reply.feature",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2014-08-12T07:35:01Z",
+      "side": 1,
+      "message": "This commit should be reverted.\n\nAs far as I know, @wip cucumber tag has no special meaning. If you do not want this test to run for a specific site and/or browser, just remove site/browser cucumber tag.\n\nThe test still fails:\n\nhttps://integration.wikimedia.org/ci/view/BrowserTests/job/browsertests-Flow-en.wikipedia.beta.wmflabs.org-linux-firefox-sauce/lastCompletedBuild/testReport/(root)/Replying/Canceling_reply_leaves_usable_form/",
+      "revId": "cf1a4788a359b27cf01eb1be5622c2fd41c2b8bb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
