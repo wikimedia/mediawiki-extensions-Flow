@@ -21,14 +21,12 @@ Feature: Create new topic logged in
       And the block author link is visible
 
   Scenario: Post Actions
-    Given I am on Flow page
     When I click the Post Actions link
     Then I should see a Hide button
       And I should see a Delete button
       And I should see a Suppress button
 
   Scenario: Topic Actions
-    Given I am on Flow page
     When I click the Topic Actions link
     Then I should see a Hide topic button
       And I should see a Delete topic button
