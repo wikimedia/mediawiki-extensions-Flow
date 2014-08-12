@@ -16,6 +16,24 @@
       "revId": "abb7353adc59c26043cd185ae5be3a911440b8d4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_c632f8ee",
+        "filename": "includes/View.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-12T14:01:21Z",
+      "side": 1,
+      "message": "Agreed.\n\nHowever: I don\u0027t think we need isAlwaysWatched, actually.\nI gather that isAlwaysWatched is to always send users notifications for stuff that happens on one\u0027s own talk page?\n\nSidenote: I actually removed this in (not yet merged) patch: https://gerrit.wikimedia.org/r/#/c/147520/22..24/includes/Notifications/Notifications.php\nIf we still want that, we\u0027ll have to put that line back.\n\nIIRC, users are already automatically subscribed to their own talk page? Why is it that we feel like we need to force them to always be *subscribed* to their own talk page?",
+      "parentUuid": "8e28a382_21b2d4e4",
+      "revId": "abb7353adc59c26043cd185ae5be3a911440b8d4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
