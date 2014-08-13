@@ -54,8 +54,8 @@ abstract class Content {
 			$newRev = $occupationController->ensureFlowRevision( $article, $loader->getWorkflow() );
 
 			if ( $newRev ) {
-				$article->mRevision = $newRev;
-				$article->mContentObject = $newRev->getContent();
+				$article->getPage()->mRevision = $newRev;
+				$article->getPage()->mContentObject = $newRev->getContent();
 				$contentObject = $newRev->getContent();
 			}
 		}
