@@ -2,8 +2,8 @@
 Feature: Create new topic logged in
 
   It requires the cldr extension, a "Flow QA" page, and a "Selenium user" who has
-  permission to Delete (usually 'sysop'/administrator user right) and to Suppress
-  (usually the 'oversight' user right).
+  permission to flow-delete (usually 'sysop'/administrator user right), to
+  flow-suppress (usually the 'oversight' user right), and to block (usually 'sysop').
   If the Selenium_user's Flow editor is VisualEditor, then the flow_page
   definitions have to change.
 
