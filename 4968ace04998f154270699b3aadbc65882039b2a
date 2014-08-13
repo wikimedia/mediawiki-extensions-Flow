@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_ca1b1620",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-13T14:14:11Z",
+      "side": 1,
+      "message": "Method can be removed now?",
+      "revId": "4968ace04998f154270699b3aadbc65882039b2a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
