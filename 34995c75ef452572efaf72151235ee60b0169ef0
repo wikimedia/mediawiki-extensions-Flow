@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_9d267a10",
+        "filename": "Resources.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-08-13T15:51:48Z",
+      "side": 1,
+      "message": "Why are we doing it this way? I\u0027m not understanding the conditional (nor why the one above does the same). Please add a comment to explain the rationale to the coders who will come after you or add it unconditionally.",
+      "revId": "34995c75ef452572efaf72151235ee60b0169ef0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
