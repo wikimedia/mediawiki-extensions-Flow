@@ -34,6 +34,24 @@
       "revId": "d7477890a2cd56946044867b89992c70c14d2f62",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_112711b3",
+        "filename": "includes/Notifications/Notifications.php",
+        "patchSetId": 23
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-13T20:27:53Z",
+      "side": 1,
+      "message": "If i understand correctly, flow-post-reply should always be fired against the Topic:Rxi4ouha2sdf pages, so locateUsersWatchingTitle should notify everyone watching the topic?  There probably something I\u0027m just not seeing here.   If flow-post-reply is being fired against the parent board thats probably a separate bug to fix?",
+      "parentUuid": "8e28a382_0515b6e9",
+      "revId": "d7477890a2cd56946044867b89992c70c14d2f62",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
