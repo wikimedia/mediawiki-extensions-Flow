@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_60ea019e",
+        "filename": "container.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-13T17:30:07Z",
+      "side": 1,
+      "message": "its not a big deal, but since $c is an object rather than a proper array, would prefer somewhere:\n\n    $user \u003d $c[\u0027user\u0027];",
+      "revId": "36cf1e0d8a3f5919f84d5e53f151b1d7107c395e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_e014b1a2",
+        "filename": "container.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-13T17:30:07Z",
+      "side": 1,
+      "message": "I\u0027m not sure its a good idea to do this directly from here,  anything using getUsersWatchingBoard should be inside the job queue.\n\nAt an overall level, what if we did the immediate user subscription as we did before, and just push a job into the queue on new-post that does the users watching board?",
+      "revId": "36cf1e0d8a3f5919f84d5e53f151b1d7107c395e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
