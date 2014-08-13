@@ -16,6 +16,24 @@
       "revId": "34995c75ef452572efaf72151235ee60b0169ef0",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_5d77f2fd",
+        "filename": "Resources.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-13T15:58:28Z",
+      "side": 1,
+      "message": "Because there were attempts to move (the original one) to core. If/when it would land, we didn\u0027t want to register 2 similar modules.\n\nI don\u0027t think the attempt to move the first one to core made it, so for now that conditional is probably not needed.",
+      "parentUuid": "8e28a382_9d267a10",
+      "revId": "34995c75ef452572efaf72151235ee60b0169ef0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
