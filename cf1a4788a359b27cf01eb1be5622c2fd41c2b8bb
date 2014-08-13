@@ -34,6 +34,24 @@
       "revId": "cf1a4788a359b27cf01eb1be5622c2fd41c2b8bb",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_ca467626",
+        "filename": "tests/browser/features/reply.feature",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2014-08-13T13:46:34Z",
+      "side": 1,
+      "message": "You should have waited at least one day before merging it. I have cleaned up my gerrit backlog, in the future I hope to keep gerrit at \"inbox zero\". :)",
+      "parentUuid": "8e28a382_9abc431c",
+      "revId": "cf1a4788a359b27cf01eb1be5622c2fd41c2b8bb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
