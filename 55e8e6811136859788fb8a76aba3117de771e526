@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_166ca704",
+        "filename": "includes/Notifications/UserLocator.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-13T20:20:52Z",
+      "side": 1,
+      "message": "It seems to me that the event is just being fired against the wrong title?\n\nThe flow-new-topic IMO should be the only event against the board, all the rest of the events should be triggered against Topic:xyz.  In that case this class should be removed and instead the event creation should be fixed.",
+      "revId": "55e8e6811136859788fb8a76aba3117de771e526",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
