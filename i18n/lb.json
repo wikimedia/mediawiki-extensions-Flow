@@ -30,7 +30,7 @@
 	"flow-last-modified-by": "Fir d'lescht {{GENDER:$1|geännert}} vum $1",
 	"flow-stub-post-content": "\"Duerch en technesche Feeler konnt dës Matdeelung net ofgeruff ginn.\"",
 	"flow-newtopic-title-placeholder": "Neit Thema",
-	"flow-newtopic-content-placeholder": "Setzt e puer Detailer derbäi, wann Dir wëllt",
+	"flow-newtopic-content-placeholder": "En neie Message iwwer \"$1\" schécken",
 	"flow-newtopic-header": "En neit Thema derbäisetzen",
 	"flow-newtopic-save": "Thema derbäisetzen",
 	"flow-newtopic-start-placeholder": "En neit Thema ufänken",

@@ -44,7 +44,7 @@
 	"flow-last-modified-by": "Последно {{GENDER:$1|изменето}} од $1",
 	"flow-stub-post-content": "''Објавата не може да се добие поради техничка грешка.''",
 	"flow-newtopic-title-placeholder": "Нова тема",
-	"flow-newtopic-content-placeholder": "Додајте подробности, ако сакате",
+	"flow-newtopic-content-placeholder": "Напишете нова порака на „$1“",
 	"flow-newtopic-header": "Додај нова тема",
 	"flow-newtopic-save": "Додај тема",
 	"flow-newtopic-start-placeholder": "Почнете нова тема",

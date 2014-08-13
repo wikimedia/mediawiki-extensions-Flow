@@ -59,7 +59,7 @@
 	"flow-last-modified-by": "{{GENDER:$1|Modifié}} en dernier par $1",
 	"flow-stub-post-content": "« En raison d’une erreur technique, ce message n’a pas pu être récupéré. »",
 	"flow-newtopic-title-placeholder": "Nouveau sujet",
-	"flow-newtopic-content-placeholder": "Ajouter des détails si vous le voulez",
+	"flow-newtopic-content-placeholder": "Envoyer un nouveau message sur « $1 »",
 	"flow-newtopic-header": "Ajouter un nouveau sujet",
 	"flow-newtopic-save": "Ajouter sujet",
 	"flow-newtopic-start-placeholder": "Commencer un nouveau sujet",

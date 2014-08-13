@@ -44,7 +44,7 @@
 	"flow-last-modified-by": "Zuletzt {{GENDER:$1|geändert}} von $1",
 	"flow-stub-post-content": "''Aufgrund eines technischen Fehlers konnte dieser Beitrag nicht abgerufen werden.''",
 	"flow-newtopic-title-placeholder": "Neues Thema",
-	"flow-newtopic-content-placeholder": "Gib hier Einzelheiten ein, wenn du möchtest.",
+	"flow-newtopic-content-placeholder": "Eine neue Nachricht zu „$1“ posten",
 	"flow-newtopic-header": "Ein neues Thema hinzufügen",
 	"flow-newtopic-save": "Thema hinzufügen",
 	"flow-newtopic-start-placeholder": "Ein neues Thema starten",
