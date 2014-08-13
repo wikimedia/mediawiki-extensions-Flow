@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_acab421a",
+        "filename": "Resources.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-08-13T22:08:53Z",
+      "side": 1,
+      "message": "Call it ext.flow.jquery.findWithParent \n\nYou also need to define the module with the JS",
+      "revId": "ccff5f86691896081f7edb59e075301b02b5667c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}

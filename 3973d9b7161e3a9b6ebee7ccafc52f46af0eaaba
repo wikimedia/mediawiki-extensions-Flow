@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_8ca8861e",
+        "filename": "Resources.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-08-13T22:08:53Z",
+      "side": 0,
+      "message": "Please do this in a separate patchset if this has landed in core...",
+      "revId": "3973d9b7161e3a9b6ebee7ccafc52f46af0eaaba",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
