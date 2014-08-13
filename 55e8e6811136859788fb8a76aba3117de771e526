@@ -16,6 +16,24 @@
       "revId": "55e8e6811136859788fb8a76aba3117de771e526",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_519fd962",
+        "filename": "includes/Notifications/UserLocator.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-08-13T20:49:11Z",
+      "side": 1,
+      "message": "I think this is mainly for old data compatibility. If we delete this class and update event title, we would need to add back-compatibility support to existing flow event in the formatter.  Or we just delete all the old flow notifications, :)",
+      "parentUuid": "8e28a382_166ca704",
+      "revId": "55e8e6811136859788fb8a76aba3117de771e526",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
