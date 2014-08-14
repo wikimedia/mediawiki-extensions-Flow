@@ -1,0 +1,8 @@
+Verified+2: jenkins-bot
+Code-Review+2: Jdlrobson <jrobson@wikimedia.org>
+Code-Review-1: Matthias Mullie <mmullie@wikimedia.org>
+Submitted-by: jenkins-bot
+Submitted-at: Thu, 14 Aug 2014 20:17:14 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/151537
+Project: mediawiki/extensions/Flow
+Branch: refs/heads/master
