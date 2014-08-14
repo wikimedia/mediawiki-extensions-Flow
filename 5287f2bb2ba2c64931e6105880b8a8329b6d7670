@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e28a382_7bb86be2",
+        "filename": "includes/Formatter/TopicListFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-14T20:30:09Z",
+      "side": 1,
+      "message": "unfortunatly we cant,  we have to support php5.3 and the short array syntax doesn\u0027t exist until 5.4",
+      "parentUuid": "8e28a382_9b3677ae",
+      "revId": "5287f2bb2ba2c64931e6105880b8a8329b6d7670",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e28a382_3bf543c8",
         "filename": "includes/Formatter/TopicListFormatter.php",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "8e28a382_7b862b1a",
+        "filename": "includes/Formatter/TopicListFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-14T20:30:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e28a382_3bf543c8",
+      "revId": "5287f2bb2ba2c64931e6105880b8a8329b6d7670",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e28a382_5b400f0a",
         "filename": "includes/Formatter/TopicListFormatter.php",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2014-08-14T20:22:23Z",
       "side": 1,
       "message": "Slightly confusing to treat this numeric array as a hash, would a conventional for( $i++ ) be any clearer?",
+      "revId": "5287f2bb2ba2c64931e6105880b8a8329b6d7670",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_5b892f26",
+        "filename": "includes/Formatter/TopicListFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-14T20:30:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e28a382_5b400f0a",
       "revId": "5287f2bb2ba2c64931e6105880b8a8329b6d7670",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -81,6 +135,24 @@
       "writtenOn": "2014-08-14T20:22:23Z",
       "side": 1,
       "message": "Would array_splice( $list, $key, 1 ) be any clearer? It would save the array_values() later.",
+      "revId": "5287f2bb2ba2c64931e6105880b8a8329b6d7670",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_fba21ba3",
+        "filename": "includes/Formatter/TopicListFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-14T20:30:09Z",
+      "side": 1,
+      "message": "with the adjustment to only append valid values to $list this becomes unnecessary",
+      "parentUuid": "8e28a382_3b478324",
       "revId": "5287f2bb2ba2c64931e6105880b8a8329b6d7670",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
