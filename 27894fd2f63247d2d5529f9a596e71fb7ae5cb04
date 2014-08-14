@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_efa81976",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-14T14:05:34Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be inside \u0027extra\u0027?",
+      "revId": "27894fd2f63247d2d5529f9a596e71fb7ae5cb04",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
