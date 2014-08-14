@@ -34,6 +34,24 @@
       "revId": "55e8e6811136859788fb8a76aba3117de771e526",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_8c4c037b",
+        "filename": "includes/Notifications/UserLocator.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-14T08:57:12Z",
+      "side": 1,
+      "message": "Like Benny said. I originally wanted to update \u0027title\u0027 to point to Topic:xyz.\n\nBut we have existing notifications with the (incorrect) title already.\n\n\u0027title\u0027 is also currently used as title/subject/body param, so that too would have to change.\n\nAlthough I\u0027d also rather see \u0027title\u0027 be the one we actually mean, it currently isn\u0027t. Changing it would make this patch more complicated \u0026 deployment harder (coordinate maintenance script to update \u0027title\u0027)",
+      "parentUuid": "8e28a382_519fd962",
+      "revId": "55e8e6811136859788fb8a76aba3117de771e526",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
