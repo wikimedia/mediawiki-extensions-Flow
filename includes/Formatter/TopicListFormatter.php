@@ -93,21 +93,20 @@ class TopicListFormatter {
 		}
 
 		$list = array();
-
 		if ( $workflows ) {
 			$orig = $workflows;
 			$workflows = array();
 			foreach ( $orig as $workflow ) {
-				$list[] = $alpha = $workflow->getId()->getAlphadecimal();
-				$workflows[$alpha] = $workflow;
+				$alpha = $workflow->getId()->getAlphadecimal();
+				if ( isset( $posts[$alpha] ) ) {
+					$list[] = $alpha;
+					$workflows[$alpha] = $workflow;
+				} else {
+					wfDebugLog( 'Flow', __METHOD__ . ": No matching root post for workflow $alpha" );
+				}
 			}
 
-			foreach ( $list as $key => $alpha ) {
-				// Remove workflow without a post
-				if ( !isset( $posts[$alpha] ) ) {
-					unset( $list[$key] );
-					continue;
-				}
+			foreach ( $list as $alpha ) {
 				// Metadata that requires everything to be serialied first
 				$metadata = $this->generateTopicMetadata( $posts, $revisions, $workflows, $alpha );
 				foreach ( $posts[$alpha] as $revId ) {
@@ -118,6 +117,7 @@ class TopicListFormatter {
 
 		return array(
 			'workflowId' => $listWorkflow->getId()->getAlphadecimal(),
+			// array_values must be used to ensure 0-indexed array
 			'roots' => $list,
 			'posts' => $posts,
 			'revisions' => $revisions,
