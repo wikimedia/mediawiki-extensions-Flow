@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_9b3677ae",
+        "filename": "includes/Formatter/TopicListFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-08-14T20:22:23Z",
+      "side": 1,
+      "message": "Would it be clearer if this was $list \u003d [];, does that hint at the way you\u0027re using a list?\n\nWe should use the HHVM objects :)",
+      "revId": "5287f2bb2ba2c64931e6105880b8a8329b6d7670",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_3bf543c8",
+        "filename": "includes/Formatter/TopicListFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-08-14T20:22:23Z",
+      "side": 1,
+      "message": "Could we move the check isset $posts[$alpha] below here, so we don\u0027t add workflows to $list only to remove later?",
+      "revId": "5287f2bb2ba2c64931e6105880b8a8329b6d7670",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_5b400f0a",
+        "filename": "includes/Formatter/TopicListFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-08-14T20:22:23Z",
+      "side": 1,
+      "message": "Slightly confusing to treat this numeric array as a hash, would a conventional for( $i++ ) be any clearer?",
+      "revId": "5287f2bb2ba2c64931e6105880b8a8329b6d7670",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_3b1c2318",
+        "filename": "includes/Formatter/TopicListFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-08-14T20:22:23Z",
+      "side": 1,
+      "message": "Would it help to log the offset $key as well?",
+      "revId": "5287f2bb2ba2c64931e6105880b8a8329b6d7670",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_3b478324",
+        "filename": "includes/Formatter/TopicListFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-08-14T20:22:23Z",
+      "side": 1,
+      "message": "Would array_splice( $list, $key, 1 ) be any clearer? It would save the array_values() later.",
+      "revId": "5287f2bb2ba2c64931e6105880b8a8329b6d7670",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
