@@ -25,7 +25,7 @@ class RevisionViewFormatter {
 	 * @param IContextSource $ctx
 	 * @return array
 	 */
-	public function formatApi( FormatterRow $row, IContextSource $ctx ) {
+	public function formatApi( RevisionViewRow $row, IContextSource $ctx ) {
 		$res = $this->serializer->formatApi( $row, $ctx );
 		$res['rev_view_links'] = $this->buildLinks( $row );
 		$res['human_timestamp'] = $this->getHumanTimestamp( $res['timestamp'] );
