@@ -105,6 +105,7 @@ class TopicListFormatter {
 			foreach ( $list as $key => $alpha ) {
 				// Remove workflow without a post
 				if ( !isset( $posts[$alpha] ) ) {
+					wfDebugLog( 'Flow', __METHOD__ . ": No matching post for root $alpha" );
 					unset( $list[$key] );
 					continue;
 				}
@@ -118,7 +119,8 @@ class TopicListFormatter {
 
 		return array(
 			'workflowId' => $listWorkflow->getId()->getAlphadecimal(),
-			'roots' => $list,
+			// array_values must be used to ensure 0-indexed array
+			'roots' => array_values( $list ),
 			'posts' => $posts,
 			'revisions' => $revisions,
 			'links' => array(
