@@ -120,10 +120,17 @@ class ApiFlow extends ApiBase {
 	}
 
 	public function getAllowedParams() {
+		$mainParams = $this->getMain()->getAllowedParams();
+		if ( $mainParams['action'][ApiBase::PARAM_TYPE] === 'submodule' ) {
+			$submodulesType = 'submodule';
+		} else {
+			$submodulesType = $this->moduleManager->getNames( 'submodule' );
+		}
+
 		return array(
 			'submodule' => array(
 				ApiBase::PARAM_REQUIRED => true,
-				ApiBase::PARAM_TYPE => $this->moduleManager->getNames( 'submodule' ),
+				ApiBase::PARAM_TYPE => $submodulesType,
 			),
 			'workflow' => null,
 			'page' => null,
