@@ -36,7 +36,7 @@
 	"flow-show-change": "Показать изменения",
 	"flow-last-modified-by": "Последний раз {{GENDER:$1|изменено}} участником $1",
 	"flow-newtopic-title-placeholder": "Новая тема",
-	"flow-newtopic-content-placeholder": "Добавьте, если хотите, какие-нибудь подробности",
+	"flow-newtopic-content-placeholder": "Разместите новое сообщение на «$1»",
 	"flow-newtopic-header": "Добавить новую тему",
 	"flow-newtopic-save": "Добавить тему",
 	"flow-newtopic-start-placeholder": "Начать новое обсуждение",
