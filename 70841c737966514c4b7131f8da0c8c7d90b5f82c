@@ -16,6 +16,24 @@
       "revId": "70841c737966514c4b7131f8da0c8c7d90b5f82c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_261763f5",
+        "filename": "includes/Data/WatchTopicListener.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-15T12:00:26Z",
+      "side": 1,
+      "message": "True, but if we defer checking watchlist to a job, we can\u0027t know if \"current user\" should be subscribed (when he starts new topic on a page he watches)\n\nIf we move all of this to a job, it\u0027s likely to be executed after the new post was re-rendered and to him it\u0027ll look like he\u0027s not subscribed to the topic (until that job is run)\n\nUnless I\u0027m missing something - are watchlisted titles for $wgUser already fetched anyway?",
+      "parentUuid": "8e28a382_6de78ea8",
+      "revId": "70841c737966514c4b7131f8da0c8c7d90b5f82c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
