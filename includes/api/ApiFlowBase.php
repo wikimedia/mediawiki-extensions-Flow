@@ -164,4 +164,8 @@ abstract class ApiFlowBase extends ApiBase {
 	public function getTokenSalt() {
 		return '';
 	}
+
+	public function getParentModule() {
+		return $this->apiFlow;
+	}
 }
