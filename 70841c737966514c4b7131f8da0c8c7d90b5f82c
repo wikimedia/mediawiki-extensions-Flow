@@ -34,6 +34,24 @@
       "revId": "70841c737966514c4b7131f8da0c8c7d90b5f82c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_57f57bc6",
+        "filename": "includes/Data/WatchTopicListener.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-15T20:25:44Z",
+      "side": 1,
+      "message": "What i was thinking is that something like this seems simpler and more straight forward: https://gist.github.com/ebernhardson/221b53d9f31cadc6ea24",
+      "parentUuid": "8e28a382_261763f5",
+      "revId": "70841c737966514c4b7131f8da0c8c7d90b5f82c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
