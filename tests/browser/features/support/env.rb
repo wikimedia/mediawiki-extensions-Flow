@@ -1,3 +1,4 @@
+require "mediawiki_api"
 require "mediawiki_selenium"
 
 if ( ENV['PAGE_WAIT_TIMEOUT'] ) then
