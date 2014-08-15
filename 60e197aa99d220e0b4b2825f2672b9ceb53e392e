@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_d4ef26f5",
+        "filename": "tests/browser/features/step_definitions/thank_steps.rb",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-08-15T23:35:23Z",
+      "side": 1,
+      "message": "env.rb has the require so you don\u0027t need it here.",
+      "revId": "60e197aa99d220e0b4b2825f2672b9ceb53e392e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_949d1e6c",
+        "filename": "tests/browser/features/step_definitions/thank_steps.rb",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-08-15T23:35:23Z",
+      "side": 1,
+      "message": "This seems unused.",
+      "revId": "60e197aa99d220e0b4b2825f2672b9ceb53e392e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_9462bea1",
+        "filename": "tests/browser/features/step_definitions/thank_steps.rb",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-08-15T23:35:23Z",
+      "side": 1,
+      "message": "later: it would be good to make these lines their own function, and eventually get that function to detect the user exists and report other errors.",
+      "revId": "60e197aa99d220e0b4b2825f2672b9ceb53e392e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
