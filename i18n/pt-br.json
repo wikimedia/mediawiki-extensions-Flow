@@ -2,9 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Helder.wiki",
-			"Tuliouel"
+			"Tuliouel",
+			"Rodrigo codignoli"
 		]
 	},
 	"flow-desc": "Sistema de Gerenciamento do Fluxo de Trabalho",
+	"flow-newtopic-content-placeholder": "Publicar nova mensagem para \"$1\"",
+	"flow-newtopic-first-heading": "Iniciar um novo tópico em $1",
+	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 \"$2\"]</span><br />$1 {{GENDER:$1|respondeu}} em \"$4\".",
+	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 \"$2\"]</span><br />$1 e $5 {{PLURAL:$6|outro|outros}} {{GENDER:$1|responderam}} em \"$3\".",
 	"flow-link-post": "publicar"
 }

@@ -10,8 +10,14 @@
 	"flow-post-moderated-toggle-delete-show": "Εμφάνιση σχολίου {{GENDER:$1|διαγραφή}} $2",
 	"flow-topic-actions": "Ενέργειες",
 	"flow-preview": "Προεπισκόπηση",
+	"flow-newtopic-content-placeholder": "Δημοσιεύστε ένα νέο μήνυμα στην \"$1\"",
+	"flow-newtopic-first-heading": "Ξεκινήσετε ένα νέο θέμα στην $1",
 	"flow-post-action-post-history": "Ιστορικό",
 	"flow-post-action-edit-post": "Επεξεργασία",
+	"flow-topic-notification-subscribe-title": "Έχετε εγγραφεί σε αυτό το θέμα.",
+	"flow-topic-notification-subscribe-description": "Θα λαμβάνετε ειδοποιήσεις όταν άνθρωποι απαντούν σε αυτό το θέμα.",
 	"flow-history-last4": "Τελευταίες 4 ώρες",
-	"flow-history-day": "Σήμερα"
+	"flow-history-day": "Σήμερα",
+	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />{{GENDER:$1|Ο|Η}} $1 απάντησε στην '''$4'''.",
+	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />{{GENDER:$1|Ο|Η}} $1 και $5 {{PLURAL:$6|άλλος|άλλοι}} απάντησαν στην '''$3'''."
 }

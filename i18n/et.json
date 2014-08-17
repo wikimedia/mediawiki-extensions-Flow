@@ -2,10 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Pikne",
-			"Lyrixn"
+			"Lyrixn",
+			"Boxmein"
 		]
 	},
 	"flow-cancel": "Loobu",
 	"flow-preview": "Eelvaade",
+	"flow-newtopic-content-placeholder": "Postita uus sõnum leheküljele \"$1\"",
+	"flow-newtopic-first-heading": "Alusta uut teemat lehel $1",
 	"flow-workflow": "töövoog"
 }

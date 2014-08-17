@@ -59,7 +59,7 @@
 	"flow-last-modified-by": "Última modificación por $1",
 	"flow-stub-post-content": "''No se pudo recuperar esta publicación a causa de un error técnico.''",
 	"flow-newtopic-title-placeholder": "Tema nuevo",
-	"flow-newtopic-content-placeholder": "Si quieres, añade detalles",
+	"flow-newtopic-content-placeholder": "Publicar un mensaje nuevo en «$1»",
 	"flow-newtopic-header": "Añadir un nuevo tema",
 	"flow-newtopic-save": "Añadir tema",
 	"flow-newtopic-start-placeholder": "Iniciar un tema nuevo",
