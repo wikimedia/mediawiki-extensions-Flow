@@ -35,14 +35,19 @@ class BufferedCache {
 	 * @return array
 	 */
 	public function getMulti( array $keys ) {
+		$res = $this->cache->getMulti( $keys );
+		// While most of the BagOStuff implementations return an empty array on not
+		// found from getMulti the memcached bag returns false
+		if ( $res === false ) {
+			return array();
+		}
 		// The memcached BagOStuff returns only existing keys,
 		// but the redis BagOStuff puts a false for all keys
 		// it doesn't find.  Resolve that inconsistency here
 		// by filtering all false values.
-		return array_filter(
-			$this->cache->getMulti( $keys ),
-			function( $value ) { return $value !== false; }
-		);
+		return array_filter( $res, function( $value ) {
+			return $value !== false;
+		} );
 	}
 
 	/**
