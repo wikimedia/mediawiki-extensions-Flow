@@ -178,9 +178,13 @@ class FlowHooks {
 		return true;
 	}
 
+	/**
+	 * Loads RecentChanges list metadata into a temporary cache for later use.
+	 * @param ChangesList $changesList
+	 * @param array       $rows
+	 */
 	public static function onChangesListInitRows( \ChangesList $changesList, $rows ) {
-		if ( !$changesList instanceof \OldChangesList ) {
-			// We currently only handle the OldChangesList
+		if ( !( $changesList instanceof \OldChangesList || $changesList instanceof \EnhancedChangesList ) ) {
 			return;
 		}
 
@@ -193,7 +197,51 @@ class FlowHooks {
 		restore_error_handler();
 	}
 
+	/**
+	 * Updates the given Flow topic line in an enhanced changes list (grouped RecentChanges).
+	 *
+	 * @param IContextSource $changesList
+	 * @param string         $articlelink
+	 * @param string         $s
+	 * @param array          $rc
+	 * @param bool           $unpatrolled
+	 * @param bool           $isWatchlist
+	 * @return bool
+	 */
+	public static function onChangesListInsertArticleLink( \IContextSource &$changesList, &$articlelink, &$s, &$rc, $unpatrolled, $isWatchlist ) {
+		if ( !( $changesList instanceof \EnhancedChangesList ) ) {
+			// This method is only to update EnhancedChangesList.
+			// onOldChangesListRecentChangesLine allows updating OldChangesList, and supports adding wrapper classes.
+			return;
+		}
+		$classes = null; // avoid pass-by-reference error
+		return self::processRecentChangesLine( $changesList, $articlelink, $rc, $classes, $isWatchlist, true );
+	}
+
+	/**
+	 * Updates a Flow line in the old changes list (standard RecentChanges).
+	 * @param ChangesList  $changesList
+	 * @param string       $s
+	 * @param RecentChange $rc
+	 * @param array        $classes
+	 * @return bool
+	 */
 	public static function onOldChangesListRecentChangesLine( \ChangesList &$changesList, &$s, \RecentChange $rc, &$classes = array() ) {
+		return self::processRecentChangesLine( $changesList, $s, $rc, $classes );
+	}
+
+	/**
+	 * Does the actual work for onOldChangesListRecentChangesLine and onChangesListInsertArticleLink hooks.
+	 * Either updates an entire line with meta info (old changes), or simply updates the link to the topic (enhanced).
+	 * @param IContextSource $changesList
+	 * @param string         $s
+	 * @param RecentChange   $rc
+	 * @param null           $classes
+	 * @param null           $isWatchlist
+	 * @param bool           $topicOnly
+	 * @return bool
+	 */
+	protected static function processRecentChangesLine( \IContextSource &$changesList, &$s, \RecentChange $rc, &$classes = null, $isWatchlist = null, $topicOnly = false ) {
 		$source = $rc->getAttribute( 'rc_source' );
 		if ( $source === null ) {
 			$rcType = (int) $rc->getAttribute( 'rc_type' );
@@ -207,13 +255,16 @@ class FlowHooks {
 		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
 		try {
 			$query = Container::get( 'query.recentchanges' );
-			$isWatchlist = $query->isWatchlist( $classes );
+
+			$isWatchlist = is_array( $classes ) ? $query->isWatchlist( $classes ) : $isWatchlist;
+
 			// @todo: create hook to allow batch-loading this data
 			$row = $query->getResult( $changesList, $rc, $isWatchlist );
 			if ( $row === false ) {
 				return false;
 			}
-			$line = Container::get( 'formatter.recentchanges' )->format( $row, $changesList );
+
+			$line = Container::get( 'formatter.recentchanges' )->format( $row, $changesList, $topicOnly );
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting rc ' . $rc->getAttribute( 'rc_id' ) . ' ' . $e );
 			\MWExceptionHandler::logException( $e );
@@ -226,7 +277,11 @@ class FlowHooks {
 			return false;
 		}
 
-		$classes[] = 'flow-recentchanges-line';
+		if ( is_array( $classes ) ) {
+			// Add the flow class to <li>
+			$classes[] = 'flow-recentchanges-line';
+		}
+		// Update the line markup
 		$s = $line;
 
 		return true;

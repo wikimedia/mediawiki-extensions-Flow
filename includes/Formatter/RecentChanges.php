@@ -15,9 +15,10 @@ class RecentChanges extends AbstractFormatter {
 	/**
 	 * @param RecentChangesRow $row
 	 * @param IContextSource $ctx
+	 * @param bool $linkOnly
 	 * @return string|bool Output line, or false on failure
 	 */
-	public function format( RecentChangesRow $row, IContextSource $ctx ) {
+	public function format( RecentChangesRow $row, IContextSource $ctx, $linkOnly = false ) {
 		if ( !$this->permissions->isAllowed( $row->revision, 'recentchanges' ) ) {
 			return false;
 		}
@@ -33,6 +34,10 @@ class RecentChanges extends AbstractFormatter {
 			'old' => $row->recentChange->getAttribute( 'rc_old_len' ),
 			'new' => $row->recentChange->getAttribute( 'rc_new_len' ),
 		);
+
+		if ( $linkOnly ) {
+			return $this->getTitleLink( $data, $row, $ctx );
+		}
 
 		// The ' . . ' text between elements
 		$separator = $this->changeSeparator();
