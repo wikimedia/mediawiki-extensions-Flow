@@ -284,7 +284,7 @@ $wgResourceModules += array(
 			'ext.flow.vendor.jquery.ba-throttle-debounce',
 			'mediawiki.jqueryMsg',
 			'jquery.json',
-			'jquery.conditionalScroll',
+			'ext.flow.jquery.conditionalScroll',
 			'ext.flow.jquery.findWithParent',
 			'mediawiki.api',
 			'mediawiki.Uri',
@@ -328,17 +328,14 @@ $wgResourceModules += array(
 			'editor/ext.flow.parsoid.js',
 		),
 	) + $mobile,
+	'ext.flow.jquery.conditionalScroll' => $flowResourceTemplate + array(
+		'scripts' => array(
+			'jquery.conditionalScroll.js',
+		),
+	) + $mobile,
 	'ext.flow.jquery.findWithParent' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'jquery.findWithParent.js',
 		),
 	) + $mobile,
 );
-
-$wgHooks['ResourceLoaderRegisterModules'][] = function( $resourceLoader ) use ( $flowResourceTemplate, $mobile ) {
-	if ( $resourceLoader->getModule( 'jquery.conditionalScroll' ) === null ) {
-		$resourceLoader->register( 'jquery.conditionalScroll', $flowResourceTemplate + array(
-			'scripts' => 'jquery.conditionalScroll.js',
-		)  + $mobile );
-	}
-};
