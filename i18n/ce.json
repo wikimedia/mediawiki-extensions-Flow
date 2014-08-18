@@ -14,6 +14,7 @@
 	"flow-show-change": "Гайта хийцам",
 	"flow-last-modified-by": "ТӀехьара бина {{GENDER:$1|хийцам}} цу $1",
 	"flow-newtopic-title-placeholder": "Керла тема",
+	"flow-newtopic-content-placeholder": "ДӀбазбе керла хаам «$1» чохь",
 	"flow-reply-submit": "{{GENDER:$1|Жоп}}",
 	"flow-reply-link": "{{GENDER:$1|Жоп}}",
 	"flow-thank-link": "{{GENDER:$1|Баркалла аьлла}}",
