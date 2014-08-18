@@ -52,6 +52,24 @@
       "revId": "70841c737966514c4b7131f8da0c8c7d90b5f82c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_0d3a3133",
+        "filename": "includes/Data/WatchTopicListener.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-18T18:56:50Z",
+      "side": 1,
+      "message": "That still won\u0027t make \"subscribe current user if he watchlists this page\" any faster. Although that one can be subscribed anyway.\n\nI originally also considered making separate listeners, but didn\u0027t really like it too much - I don\u0027t want to create too much handlers for similar stuff; I\u0027d rather have them \"configurable\" somewhere.\n\nI\u0027m about to submit soething new with 2 listeners \"delayed\" \u0026 \"immediate\" - let me know what you think ;)",
+      "parentUuid": "8e28a382_57f57bc6",
+      "revId": "70841c737966514c4b7131f8da0c8c7d90b5f82c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
