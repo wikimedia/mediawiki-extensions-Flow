@@ -28,12 +28,21 @@ class DbFactory {
 	protected $cluster;
 
 	/**
+	 * @var bool When true only DB_MASTER will be returned
+	 */
+	protected $forceMaster = false;
+
+	/**
 	 * @var string|boolean $wiki Wiki ID, or false for the current wiki
 	 * @var string|boolean $cluster External storage cluster, or false for core
 	 */
 	public function __construct( $wiki = false, $cluster = false ) {
 		$this->wiki = $wiki;
 		$this->cluster = $cluster;
+	}
+
+	public function forceMaster() {
+		$this->forceMaster = true;
 	}
 
 	/**
@@ -43,7 +52,7 @@ class DbFactory {
 	 * @return \DatabaseBase
 	 */
 	public function getDB( $db, $groups = array() ) {
-		return $this->getLB()->getConnection( $db, $groups, $this->wiki );
+		return $this->getLB()->getConnection( $this->forceMaster ? DB_MASTER : $db, $groups, $this->wiki );
 	}
 
 	/**
@@ -67,7 +76,7 @@ class DbFactory {
 	 * @return \DatabaseBase
 	 */
 	public function getWikiDB( $db, $groups = array(), $wiki = false ) {
-		return wfGetDB( $db, $groups, $wiki );
+		return wfGetDB( $this->forceMaster ? DB_MASTER : $db, $groups, $wiki );
 	}
 
 	/**
