@@ -271,9 +271,7 @@ class RevisionFormatter {
 		if ( $userTitle ) {
 			$talkPageTitle = $userTitle->getTalkPage();
 		}
-		if ( !$userData['id'] ) {
-			$userContribsTitle = \SpecialPage::getTitleFor( 'Contributions', $name );
-		}
+		$userContribsTitle = \SpecialPage::getTitleFor( 'Contributions', $name );
 
 		$blockTitle = \SpecialPage::getTitleFor( 'Block', $name );
 
