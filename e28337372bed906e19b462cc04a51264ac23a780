@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_7042ac40",
+        "filename": "Resources.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-08-18T20:15:40Z",
+      "side": 1,
+      "message": "Inconsistent whitespace. I\u0027ll clean up and merge.",
+      "revId": "e28337372bed906e19b462cc04a51264ac23a780",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
