@@ -216,25 +216,10 @@ class RevisionFormatter {
 
 			// Only non-anon users can watch/unwatch a flow topic
 			// isWatched - the topic is watched by current user
-			// isAlwaysWatched - the topic is always watched by the current user, can't unwatch
 			// watchable - the user could watch the topic, eg, anon-user can't watch a topic
 			if ( !$ctx->getUser()->isAnon() ) {
 				// default topic is not watched and topic is not always watched
-				$res['isWatched'] = false;
-				$res['isAlwaysWatched'] = false;
-
-				if ( $row->isWatched ) {
-					$res['isWatched'] = true;
-				}
-				$title = $row->workflow->getOwnerTitle();
-				if (
-					$title->isTalkPage() &&
-					$title->equals( $ctx->getUser()->getTalkPage() )
-				) {
-					// user's own talk page is always watched
-					$res['isWatched'] = true;
-					$res['isAlwaysWatched'] = true;
-				}
+				$res['isWatched'] = (bool) $row->isWatched;
 				$res['watchable'] = true;
 			} else {
 				$res['watchable'] = false;
