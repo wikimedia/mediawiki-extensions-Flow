@@ -47,6 +47,9 @@ class SubmissionHandler {
 		$success = true;
 		$interestedBlocks = array();
 
+		// since this is a submit force dbFactory to always return master
+		$this->dbFactory->forceMaster();
+
 		foreach ( $blocks as $block ) {
 			// This is just a check whether the block understands the action,
 			// Doesn't consider permissions
@@ -121,7 +124,7 @@ class SubmissionHandler {
 
 	/**
 	 * Helper function extracts parameters from a WebRequest.
-	 s
+	 *
 	 * @param WebRequest $request
 	 * @param AbstractBlock[] $blocks
 	 * @return array
