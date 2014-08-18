@@ -1,44 +1,34 @@
-{{#if isPreview}}
-	<span class="flow-author"><a href="#" class="mw-userlink">
-		{{#if name}}
-			{{~name~}}
-		{{else}}
-			{{~l10n "flow-anonymous"}}
+<span class="flow-author">
+	{{#if links}}
+		{{#if links.contribs}}
+			<a href="{{links.contribs.url}}"
+			   {{#unless name}}title="{{links.contribs.title}}"{{/unless}}
+			   class="{{#unless links.contribs.exists}}new {{/unless}}mw-userlink flow-ui-tooltip-target">
 		{{/if}}
-	</a></span>
-{{else}}
-	<span class="flow-author">
-		{{#if links}}
-			{{#if links.contribs}}
-				<a href="{{links.contribs.url}}"
-				   {{#unless name}}title="{{links.contribs.title}}"{{/unless}}
-				   class="{{#unless links.contribs.exists}}new {{/unless}}mw-userlink flow-ui-tooltip-target">
+			{{#if name}}
+				{{~name~}}
+			{{else}}
+				{{~l10n "flow-anonymous"}}
 			{{/if}}
-				{{#if name}}
-					{{~name~}}
-				{{else}}
-					{{~l10n "flow-anonymous"}}
-				{{/if}}
-			{{#if links.contribs}}
-				</a>
-			{{/if}}
-			<span class="mw-usertoollinks">
-				{{~#if links.talk~}}
-					<span><a href="{{links.talk.url}}"
-					    class="{{#unless links.talk.exists}}new {{/unless}} flow-ui-tooltip-target"
-					    title="{{links.talk.title}}">
-					    	{{~l10n "talkpagelinktext"~}}
-					</a></span>
-				{{~/if~}}
-				{{~#if links.block~}}
-					<span><a class="{{#unless links.block.exists}}new {{/unless}}
-					   flow-ui-tooltip-target"
-					   href="{{links.block.url}}"
-					   title="{{links.block.title}}">
-					   	{{~l10n "blocklink"~}}
-					</a></span>
-				{{~/if~}}
-			</span>
+		{{#if links.contribs}}
+			</a>
 		{{/if}}
-	</span>
-{{/if}}
+		<span class="mw-usertoollinks">
+			{{~#if links.talk~}}
+				<span><a href="{{links.talk.url}}"
+				    class="{{#unless links.talk.exists}}new {{/unless}} flow-ui-tooltip-target"
+				    title="{{links.talk.title}}">
+				    	{{~l10n "talkpagelinktext"~}}
+				</a></span>
+			{{~/if~}}
+			{{~#if links.block~}}
+				<span><a class="{{#unless links.block.exists}}new {{/unless}}
+				   flow-ui-tooltip-target"
+				   href="{{links.block.url}}"
+				   title="{{links.block.title}}">
+				   	{{~l10n "blocklink"~}}
+				</a></span>
+			{{~/if~}}
+		</span>
+	{{/if}}
+</span>
