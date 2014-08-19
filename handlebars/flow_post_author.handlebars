@@ -1,9 +1,9 @@
 <span class="flow-author">
 	{{#if links}}
-		{{#if links.contribs}}
-			<a href="{{links.contribs.url}}"
-			   {{#unless name}}title="{{links.contribs.title}}"{{/unless}}
-			   class="{{#unless links.contribs.exists}}new {{/unless}}mw-userlink">
+		{{#if links.userpage}}
+			<a href="{{links.userpage.url}}"
+			   {{#unless name}}title="{{links.userpage.title}}"{{/unless}}
+			   class="{{#unless links.userpage.exists}}new {{/unless}}mw-userlink">
 		{{/if}}
 			{{#if name}}
 				{{~name~}}
