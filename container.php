@@ -422,7 +422,12 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 		// using TreeRepository for extra information and stuffing it into topic_root while indexing
 		$c['storage.topic_history.index'],
 		$c['reference.recorder'],
-		new Flow\Data\NotificationListener( $c['controller.notification'] ),
+		// Defer notifications triggering till end of request so we could get
+		// article_id in the case of a new topic, this will need support of
+		// adding deferred update when running deferred update
+		new Flow\Data\DeferredInsertLifecycleHandler(
+			new Flow\Data\NotificationListener( $c['controller.notification'] )
+		)
 	);
 
 	return $handlers;
