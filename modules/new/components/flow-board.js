@@ -736,6 +736,7 @@
 				$previewContainer,
 				templateParams,
 				$target = info.$target,
+				username = mw.user.getName(),
 				previewTemplate = $target.data( 'flow-preview-template' ),
 				contentNode = $target.data( 'flow-preview-node' ) || 'content';
 
@@ -745,8 +746,16 @@
 			}
 
 			templateParams = {
-				author: {
-					name: mw.user.getName() || flowBoard.TemplateEngine.l10n('flow-anonymous')
+				postId: Math.random(),
+				creator: {
+					links: {
+						contribs: {
+							url: mw.util.getUrl( 'Special:Contributions/' + username ),
+							exists: true,
+							title: username
+						}
+					},
+					name: username || flowBoard.TemplateEngine.l10n( 'flow-anonymous' )
 				},
 				isPreview: true
 			};
