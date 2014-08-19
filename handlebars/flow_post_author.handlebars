@@ -21,6 +21,13 @@
 				    	{{~l10n "talkpagelinktext"~}}
 				</a></span>
 			{{~/if~}}
+			{{~#if links.contribs~}}
+				<span>
+					<a href="{{links.contribs.url}}" title="{{links.contribs.title}}">
+						{{~l10n "contributions"~}}
+					</a>
+				</span>
+			{{~/if~}}
 			{{~#if links.block~}}
 				<span><a class="{{#unless links.block.exists}}new {{/unless}}"
 				   href="{{links.block.url}}"

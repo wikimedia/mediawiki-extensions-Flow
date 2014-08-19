@@ -149,6 +149,7 @@ $wgResourceModules += array(
 			'flow-anonymous',
 			// Core messages needed
 			'blocklink',
+			'contributions',
 			// Terms of use
 			'flow-terms-of-use-new-topic',
 			'flow-terms-of-use-reply',

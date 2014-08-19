@@ -251,31 +251,22 @@ class RevisionFormatter {
 			return $this->userLinks[$name];
 		}
 
-		$userContribsTitle = $talkPageTitle = null;
+		$talkPageTitle = null;
 		$userTitle = \Title::newFromText( $name, NS_USER );
 		if ( $userTitle ) {
 			$talkPageTitle = $userTitle->getTalkPage();
 		}
-		if ( !$userData['id'] ) {
-			$userContribsTitle = \SpecialPage::getTitleFor( 'Contributions', $name );
-		}
 
 		$blockTitle = \SpecialPage::getTitleFor( 'Block', $name );
 
-		$links = array();
-		if ( $userContribsTitle ) {
-			$links['contribs'] = array(
+		$userContribsTitle = \SpecialPage::getTitleFor( 'Contributions', $name );
+		$links = array(
+			'contribs' => array(
 				'url' => $userContribsTitle->getLinkURL(),
 				'title' => $userContribsTitle->getText(),
-				'exists' => true
-			);
-		} elseif ( $userTitle ) {
-			$links['contribs'] = array(
-				'url' => $userTitle->getLinkURL(),
-				'title' => $userTitle->getText(),
-				'exists' => $userTitle->exists()
-			);
-		}
+				'exists' => true,
+			),
+		);
 
 		if ( $talkPageTitle ) {
 			$links['talk'] = array(
