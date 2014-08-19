@@ -49,7 +49,7 @@
 		        data-flow-api-target="< .flow-topic"
 		        class="mw-ui-button mw-ui-constructive">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-edit-title-submit'),Array()), 'encq').'</button>
 
-		'.LCRun3::hbch($cx, 'progressiveEnhancement', Array(Array(),Array('insertionType'=>'insertion','sectionId'=>'flow-cancel-button')), $in, function($cx, $in) {return '
+		'.LCRun3::hbch($cx, 'progressiveEnhancement', Array(Array(),Array()), $in, function($cx, $in) {return '
 			<button data-role="cancel"
 			        type="reset"
 			        data-flow-interactive-handler="cancelForm"

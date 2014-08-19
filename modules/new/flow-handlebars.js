@@ -27,10 +27,15 @@
 
 	/**
 	 * Returns a given template function. If template is missing, the template function is noop with mw.flow.debug.
-	 * @param {String} templateName
+	 * @param {String|Function} templateName
 	 * @returns {Function}
 	 */
 	FlowHandlebars.prototype.getTemplate = function ( templateName ) {
+		// If a template is already being passed, use it
+		if ( typeof templateName === 'function' ) {
+			return templateName;
+		}
+
 		if ( _tplcache[ templateName ] ) {
 			// Return cached compiled template
 			return _tplcache[ templateName ];
@@ -103,10 +108,45 @@
 	 */
 	FlowHandlebars.prototype.processProgressiveEnhancement = function ( target ) {
 		$( target ).find( 'script' ).filter( '[type="text/x-handlebars-template-progressive-enhancement"]' ).each( function () {
-			$( this )
-				.replaceWith(
-					$( Handlebars.compile( this.innerHTML )() )
-				);
+			var $this = $( this ),
+				data = $this.data(),
+				target = $.trim( data.target ),
+				$target = $this,
+				content;
+
+			// Find new target, if not the script tag itself
+			if ( target ) {
+				$target = $this.findWithParent( target );
+
+				if ( !$target.length ) {
+					mw.flow.debug( "[processProgressiveEnhancement] Failed to find target", arguments );
+					return;
+				}
+			}
+
+			// Render content
+			content = Handlebars.compile( this.innerHTML )();
+
+			// Inject the content
+			switch ( data.type ) {
+				case 'content':
+					console.log('content', data, $target[0], content)
+					$target.empty().append( content );
+					break;
+
+				case 'insert':
+					console.log('inserting', data, $target[0], content)
+					$target.before( content );
+					break;
+
+				case 'replace':
+				default:
+					console.log('replacing', data, $target[0], content)
+					$target.replaceWith( content );
+			}
+
+			// Remove script tag
+			$this.remove();
 		} );
 	};
 
@@ -473,9 +513,8 @@
 	 *
 	 * Option keys:
 	 * * type=String (replace, content, insert)
-	 * * target=String (jQuery selector; needed for replace and content)
-	 * * data-object=Object (data to be used to render the template; usually the keyword "this")
-	 * * data-json=String ()
+	 * * target=String (jQuery selector; needed for replace and content -- defaults to self)
+	 * * id=String
 	 * @example {{#progressiveEnhancement type="content"}}{{> ok}}{{/progressiveEnhancement}}
 	 * @param {Object} options
 	 * @return {String}
@@ -484,13 +523,18 @@
 	FlowHandlebars.prototype.progressiveEnhancement = function ( options ) {
 		var hash = options.hash;
 
+		if ( !hash.type ) {
+			hash.type = 'insert';
+		}
+
 		return FlowHandlebars.prototype.html(
 			'<scr' + 'ipt' +
-			' type="text/x-handlebars-template-progressive-enhancement"' +
-			' data-target="' + hash.target +'"' +
-			' data-type="' + hash.insertionType + '"' +
-			' id="' + hash.sectionId + '">' +
-			options.fn( this ) +
+				' type="text/x-handlebars-template-progressive-enhancement"' +
+				' data-type="' + hash.type + '"' +
+				( hash.target ? ' data-target="' + hash.target +'"' : '' ) +
+				( hash.id ? ' id="' + hash.id + '"' : '' ) +
+			'>' +
+				options.fn( this ) +
 			'</scr' + 'ipt>'
 		);
 	};

@@ -24,7 +24,7 @@
         data-role="action"
         class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
 
-'.LCRun3::hbch($cx, 'progressiveEnhancement', Array(Array(),Array('insertionType'=>'insertion','sectionId'=>'flow-cancel-button')), $in, function($cx, $in) {return '
+'.LCRun3::hbch($cx, 'progressiveEnhancement', Array(Array(),Array()), $in, function($cx, $in) {return '
 	<button data-flow-interactive-handler="cancelForm"
 	        data-role="cancel"
 	        type="reset"
