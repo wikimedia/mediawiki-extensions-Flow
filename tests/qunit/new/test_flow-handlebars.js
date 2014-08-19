@@ -89,19 +89,65 @@ QUnit.test( 'Handlebars.prototype.concat', 2, function() {
 	strictEqual( this.handlebarsProto.concat( this.opts ), '', 'Without arguments.' );
 } );
 
-QUnit.test( 'Handlebars.prototype.progressiveEnhancement', 1, function() {
-	var opts = $.extend( { hash: { insertionType: 'insert', target: 'abc', sectionId: 'def' } }, this.opts );
+QUnit.test( 'Handlebars.prototype.progressiveEnhancement', 5, function() {
+	var opts = $.extend( { hash: { type: 'insert', target: 'abc', id: 'def' } }, this.opts ),
+		$div = $( document.createElement( 'div' ) );
 
+	// Render script tag
 	strictEqual(
 		this.handlebarsProto.progressiveEnhancement( opts ).string,
 		'<scr' + 'ipt' +
 			' type="text/x-handlebars-template-progressive-enhancement"' +
+			' data-type="' + opts.hash.type + '"' +
 			' data-target="' + opts.hash.target +'"' +
-			' data-type="' + opts.hash.insertionType + '"' +
-			' id="' + opts.hash.sectionId + '">' +
+			' id="' + opts.hash.id + '">' +
 			'ok' +
 			'</scr' + 'ipt>',
 		'Should output exact replica of script tag.'
+	);
+
+	// Replace itself: no target (default to self), no type (default to insert)
+	$div.empty().append( this.handlebarsProto.processTemplateGetFragment(
+		Handlebars.compile( "{{#progressiveEnhancement}}hello{{/progressiveEnhancement}}" )
+	) );
+	strictEqual(
+		$div.html(),
+		'hello',
+		'progressiveEnhancement should be processed in template string.'
+	);
+
+	// Replace a target entirely: target + type=replace
+	$div.empty().append( this.handlebarsProto.processTemplateGetFragment(
+		Handlebars.compile( '{{#progressiveEnhancement target="~ .pgetest" type="replace"}}hello{{/progressiveEnhancement}}<div class="pgetest">foo</div>' )
+	) );
+	strictEqual(
+		$div.html(),
+		'hello',
+		'progressiveEnhancement should replace target node.'
+	);
+
+	// Insert before a target: target + type=insert
+	$div.empty().append(
+		this.handlebarsProto.processTemplateGetFragment(
+			Handlebars.compile( '{{#progressiveEnhancement target="~ .pgetest" type="insert"}}hello{{/progressiveEnhancement}}<div class="pgetest">foo</div>' )
+		)
+	);
+	strictEqual(
+		$div.html(),
+		'hello<div class="pgetest">foo</div>',
+		'progressiveEnhancement should insert before target.'
+	);
+
+	// Replace target's content: target + type=content
+	$div.empty().append(
+		this.handlebarsProto.processTemplateGetFragment(
+			Handlebars.compile( '{{#progressiveEnhancement target="~ .pgetest" type="content"}}hello{{/progressiveEnhancement}}<div class="pgetest">foo</div>' )
+		)
+	);
+	strictEqual(
+		$div.html(),
+		'<div class="pgetest">hello</div>',
+		'progressiveEnhancement should replace target content.'
 	);
 } );
 

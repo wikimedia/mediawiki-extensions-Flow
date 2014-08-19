@@ -606,22 +606,26 @@ class TemplateHelper {
 	 * Creates a special script tag to be processed client-side. This contains extra template HTML, which allows
 	 * the front-end to "progressively enhance" the page with more content which isn't needed in a non-JS state.
 	 *
+	 * @see FlowHandlebars.prototype.progressiveEnhancement in flow-handlebars.js for more details.
 	 * @param array $options
 	 * @return array
 	 */
 	static public function progressiveEnhancement( array $options ) {
 		$fn = $options['fn'];
 		$input = $options['hash'];
-		$insertionType = htmlspecialchars( $input['insertionType'] );
-		$sectionId = htmlspecialchars( $input['sectionId'] );
+		$insertionType = empty( $input['type'] ) ? 'insert' : htmlspecialchars( $input['type'] );
+		$target = empty( $input['target'] ) ? '' : htmlspecialchars( $input['target'] );
+		$sectionId = empty( $input['id'] ) ? '' : 'id="' . htmlspecialchars( $input['id'] ) . '"';
 
 		return self::html(
-			'<script name="handlebars-template-progressive-enhancement"
-				type="text/x-handlebars-template-progressive-enhancement"
-				data-type="' . $insertionType . '"
-				id="' . $sectionId . '">'
-			. $fn()
-			.'</script>'
+			'<script name="handlebars-template-progressive-enhancement"' .
+				' type="text/x-handlebars-template-progressive-enhancement"' .
+				' data-type="' . $insertionType . '"' .
+				' ' . $target .
+				' ' . $sectionId .
+			'>' .
+				$fn() .
+			'</script>'
 		);
 	}
 
