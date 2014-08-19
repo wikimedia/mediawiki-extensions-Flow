@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_9442a50f",
+        "filename": "handlebars/flow_post_author.handlebars",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-19T17:10:04Z",
+      "side": 1,
+      "message": "one more indent",
+      "revId": "45a2bc71ec4e0764e229a8872af8af22d177505b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_941745f3",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-19T17:10:04Z",
+      "side": 1,
+      "message": "this condition is now unreachable.  SpecialPage::getTitleFor either returns a Title or throws an exception.\n\nI\u0027m not sure why this was previously set to give User:Foobar as the contributions link.",
+      "revId": "45a2bc71ec4e0764e229a8872af8af22d177505b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
