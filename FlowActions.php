@@ -144,6 +144,9 @@ $wgFlowActions = array(
 			'class' => 'flow-history-edit-title',
 		),
 		'handler-class' => 'Flow\Actions\EditTitleAction',
+		'watch' => array(
+			'immediate' => array( 'Flow\\Data\\ImmediateWatchTopicListener', 'getCurrentUser' ),
+		),
 	),
 
 	// Normal posts are the 'reply' type.
@@ -168,6 +171,11 @@ $wgFlowActions = array(
 			'class' => 'flow-history-new-post',
 		),
 		'handler-class' => 'Flow\Actions\NewTopicAction',
+		'watch' => array(
+			'immediate' => array( 'Flow\\Data\\ImmediateWatchTopicListener', 'getCurrentUser' ),
+			// More complex: callback will return array of users watching the board
+			'delayed' => array( 'Flow\\Data\\DelayedWatchTopicListener', 'getUsersWatchingBoard' ),
+		),
 	),
 
 	'edit-post' => array(
@@ -194,6 +202,9 @@ $wgFlowActions = array(
 			'class' => 'flow-history-edit-post',
 		),
 		'handler-class' => 'Flow\Actions\EditPostAction',
+		'watch' => array(
+			'immediate' => array( 'Flow\\Data\\ImmediateWatchTopicListener', 'getCurrentUser' ),
+		),
 	),
 
 	'hide-post' => array(
@@ -531,6 +542,9 @@ $wgFlowActions = array(
 			),
 		),
 		'handler-class' => 'Flow\Actions\ReplyAction',
+		'watch' => array(
+			'immediate' => array( 'Flow\\Data\\ImmediateWatchTopicListener', 'getCurrentUser' ),
+		),
 	),
 
 	'history' => array(
