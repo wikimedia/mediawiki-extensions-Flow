@@ -614,7 +614,7 @@ class TemplateHelper {
 		$fn = $options['fn'];
 		$input = $options['hash'];
 		$insertionType = empty( $input['type'] ) ? 'insert' : htmlspecialchars( $input['type'] );
-		$target = empty( $input['target'] ) ? '' : htmlspecialchars( $input['target'] );
+		$target = empty( $input['target'] ) ? '' : 'data-target="' . htmlspecialchars( $input['target'] ) . '"';
 		$sectionId = empty( $input['id'] ) ? '' : 'id="' . htmlspecialchars( $input['id'] ) . '"';
 
 		return self::html(
