@@ -152,7 +152,11 @@ class PostRevision extends AbstractRevision {
 	 */
 	static public function fromStorageRow( array $row, $obj = null ) {
 		if ( $row['rev_id'] !== $row['tree_rev_id'] ) {
-			throw new DataModelException( 'tree revision doesn\'t match provided revision', 'process-data' );
+			throw new DataModelException(
+				'tree revision doesn\'t match provided revision: '
+					. $row['tree_rev_id'] . ' != ' . $row['rev_id'],
+				'process-data'
+			);
 		}
 		/** @var $obj PostRevision */
 		$obj = parent::fromStorageRow( $row, $obj );
