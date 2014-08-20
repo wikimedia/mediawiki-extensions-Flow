@@ -14,9 +14,10 @@ QUnit.module( 'ext.flow: FlowBoardComponent', {
 	}
 } );
 
-QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.preview', 4, function( assert ) {
+QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.preview', 6, function( assert ) {
 	var $container = $( '<div>' ),
 		$form = $( '<form>' ).appendTo( $container ),
+		$input = $( '<input value="HEADING">' ).appendTo( $form ),
 		$textarea = $( '<textarea data-flow-preview-template="flow_post">text</textarea>' ).appendTo( $form ),
 		$btn = $( '<button name="preview">' ).
 			appendTo( $form ),
@@ -38,11 +39,13 @@ QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.preview', 4, function( ass
 	// check all is well.
 	assert.strictEqual( $container.find( '.flow-preview-warning' ).length, 1, 'There is a preview warning.' );
 	assert.strictEqual( $textarea.hasClass( 'flow-preview-target-hidden' ), true, 'Textarea is hidden.' );
+	assert.strictEqual( $input.hasClass( 'flow-preview-target-hidden' ), true, 'Input is hidden.' );
 
 	// now cancel the form
 	this.FlowBoardComponent.UI.events.interactiveHandlers.cancelForm.call( $btn, new $.Event() );
 	assert.strictEqual( $container.find( '.flow-preview-warning' ).length, 0, 'There is no preview warning.' );
 	assert.strictEqual( $textarea.hasClass( 'flow-preview-target-hidden' ), false, 'Textarea is no longer hidden.' );
+	assert.strictEqual( $input.hasClass( 'flow-preview-target-hidden' ), false, 'Input is no longer hidden.' );
 } );
 
 } ( jQuery ) );

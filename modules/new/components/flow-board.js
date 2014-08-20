@@ -700,7 +700,8 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.preview = function( info, data, jqxhr ) {
-			var $button = $( this ),
+			var revision, creator,
+				$button = $( this ),
 				$form = $button.closest( 'form' ),
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $form ),
 				$titleField = $form.find( 'input' ).filter( '[data-role=title]' ),
@@ -708,6 +709,7 @@
 				templateParams,
 				$target = info.$target,
 				username = mw.user.getName(),
+				id = Math.random(),
 				previewTemplate = $target.data( 'flow-preview-template' ),
 				contentNode = $target.data( 'flow-preview-node' ) || 'content';
 
@@ -716,31 +718,44 @@
 				return;
 			}
 
-			templateParams = {
-				postId: Math.random(),
-				creator: {
-					links: {
-						contribs: {
-							url: mw.util.getUrl( 'Special:Contributions/' + username ),
-							exists: true,
-							title: username
-						}
-					},
-					name: username || flowBoard.TemplateEngine.l10n( 'flow-anonymous' )
+			creator = {
+				links: {
+					contribs: {
+						url: mw.util.getUrl( 'Special:Contributions/' + username ),
+						exists: true,
+						title: username
+					}
 				},
+				name: username || flowBoard.TemplateEngine.l10n( 'flow-anonymous' )
+			};
+
+			revision = {
+				postId: id,
+				creator: creator,
+				replies: [ id ],
 				isPreview: true
 			};
-			templateParams[contentNode] = {
+			revision[contentNode] = {
 				content: data['flow-parsoid-utils'].content,
 				format: data['flow-parsoid-utils'].format
 			};
 
-			// @todo don't do these. it's a catch-all for the templates which expect a revision key, and those that don't.
-			templateParams.revision = templateParams;
-
-			if ( $titleField.length ) {
-				templateParams.title = $titleField.val();
-			}
+			templateParams = {
+				content: {
+					content: $titleField.val() || '',
+					format: 'content'
+				},
+				creator: creator,
+				posts: {},
+				// @todo don't do these. it's a catch-all for the templates which expect a revision key, and those that don't.
+				revision: revision,
+				reply_count: 1,
+				last_updated: +new Date(),
+				replies: [ id ],
+				revisions: {}
+			};
+			templateParams.posts[id] = { 0: id };
+			templateParams.revisions[id] = revision;
 
 			// Render the preview warning
 			$previewContainer = $( flowBoard.TemplateEngine.processTemplateGetFragment(
@@ -758,10 +773,13 @@
 				) ).children()
 			);
 
-			// Hide the original textarea
+			// Hide any input fields
+			$form.find( 'input, textarea' )
+				.addClass( 'flow-preview-target-hidden' );
+
+			// Insert the new preview before the form
 			$target
-				.addClass( 'flow-preview-target-hidden' )
-			// Insert the new preview
+				.parent( 'form' )
 				.before( $previewContainer );
 
 			// On cancel, make the preview get removed and reset the form back to its original state
@@ -2267,7 +2285,8 @@
 		 * @return {bool} true if success
 		 */
 		function flowBoardComponentResetPreview( $cancelButton, $target ) {
-			var $button = $cancelButton.closest( 'form' ).find( '[name=preview]' ),
+			var $form = $cancelButton.closest( 'form' ),
+				$button = $form.find( '[name=preview]' ),
 				oldData = $button.data( 'flow-return-to-edit' );
 
 			if ( oldData ) {
@@ -2280,8 +2299,8 @@
 					$target = !$target || !$target.length ? $button : $target;
 				}
 
-				// Show the target again
-				$target.removeClass( 'flow-preview-target-hidden' ).focus();
+				// Show the inputs again
+				$form.find( '.flow-preview-target-hidden' ).removeClass( 'flow-preview-target-hidden' ).focus();
 
 				// Remove the preview
 				oldData.$nodes.remove();
