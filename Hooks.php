@@ -829,4 +829,22 @@ class FlowHooks {
 		return true;
 	}
 
+	/**
+	 * Moving a Flow page is not yet supported; make sure it can't be done.
+	 *
+	 * @param Title $oldTitle
+	 * @param Title $newTitle
+	 * @param User $user
+	 * @param string|null $error Null coming in; assign (textual) error message when failing
+	 * @param string $reason
+	 * @return bool
+	 */
+	public static function onAbortMove( $oldTitle, $newTitle, $user, &$error, $reason ) {
+		if ( self::$occupationController->isTalkpageOccupied( $oldTitle ) ) {
+			$error = wfMessage( 'flow-error-move' )->escaped();
+			return false;
+		}
+
+		return true;
+	}
 }
