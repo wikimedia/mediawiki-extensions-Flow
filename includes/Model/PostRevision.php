@@ -20,19 +20,9 @@ class PostRevision extends AbstractRevision {
 	// must not change between revisions of same post
 
 	/**
-	 * @var integer
+	 * @var UserTuple
 	 */
-	protected $origUserId;
-
-	/**
-	 * @var string|null
-	 */
-	protected $origUserIp;
-
-	/**
-	 * @var string
-	 */
-	protected $origUserWiki;
+	protected $origUser;
 
 	/**
 	 * @var UUID|null
@@ -93,12 +83,8 @@ class PostRevision extends AbstractRevision {
 	 * @return PostRevision
 	 */
 	static public function create( Workflow $topic, $content ) {
-		if ( $topic->getUserId() ) {
-			$user = User::newFromId( $topic->getUserId() );
-		} else {
-			$user = User::newFromName( $topic->getUserIp(), false );
-		}
-
+		// @todo pass tuple instead?
+		$user = $topic->getUserTuple()->createUser();
 		$obj = static::newFromId( $topic->getId(), $user, $content );
 
 		$obj->changeType = 'new-post';
@@ -133,10 +119,8 @@ class PostRevision extends AbstractRevision {
 		$obj->revId = UUID::create();
 		$obj->postId = $uuid;
 
-		list( $userId, $userIp, $userWiki ) = self::userFields( $user );
-		$obj->origUserId = $obj->userId = (int)$userId;
-		$obj->origUserIp = $obj->userIp = $userIp;
-		$obj->origUserWiki = $obj->userWiki = $userWiki;
+		$obj->user = UserTuple::newFromUser( $user );
+		$obj->origUser = $obj->user;
 
 		$obj->setReplyToId( null ); // not a reply to anything
 		$obj->prevRevision = null; // no parent revision
@@ -164,14 +148,10 @@ class PostRevision extends AbstractRevision {
 
 		$obj->replyToId = UUID::create( $row['tree_parent_id'] );
 		$obj->postId = UUID::create( $row['rev_type_id'] );
-		$obj->origUserId = (int)$row['tree_orig_user_id'];
-		if ( isset( $row['tree_orig_user_ip'] ) ) {
-			$obj->origUserIp = $row['tree_orig_user_ip'];
-		// BC for tree_orig_user_text field
-		} elseif ( isset( $row['tree_orig_user_text'] ) && $obj->origUserId === 0 ) {
-			$obj->origUserIp = $row['tree_orig_user_text'];
+		$obj->origUser = UserTuple::newFromArray( $row, 'tree_orig_user_' );
+		if ( !$obj->origUser ) {
+			throw new DataModelException( 'Could not create UserTuple for tree_orig_user_' );
 		}
-		$obj->origUserWiki = isset( $row['tree_orig_user_wiki'] ) ? $row['tree_orig_user_wiki'] : '';
 		return $obj;
 	}
 
@@ -185,9 +165,9 @@ class PostRevision extends AbstractRevision {
 			'tree_rev_descendant_id' => $rev->postId->getAlphadecimal(),
 			'tree_rev_id' => $rev->revId->getAlphadecimal(),
 			// rest of tree_ is denormalized data about first post revision
-			'tree_orig_user_id' => $rev->origUserId,
-			'tree_orig_user_ip' => $rev->origUserIp,
-			'tree_orig_user_wiki' => $rev->origUserWiki,
+			'tree_orig_user_id' => $rev->origUser->id,
+			'tree_orig_user_ip' => $rev->origUser->ip,
+			'tree_orig_user_wiki' => $rev->origUser->wiki,
 		);
 	}
 
@@ -202,10 +182,8 @@ class PostRevision extends AbstractRevision {
 		$reply = new self;
 		// No great reason to create two uuid's,  a post and its first revision can share a uuid
 		$reply->revId = $reply->postId = UUID::create();
-		list( $reply->userId, $reply->userIp, $reply->userWiki ) = self::userFields( $user );
-		$reply->origUserId = $reply->userId;
-		$reply->origUserIp = $reply->userIp;
-		$reply->origUserWiki = wfWikiId();
+		$reply->user = UserTuple::newFromUser( $user );
+		$reply->origUser = $reply->user;
 		$reply->replyToId = $this->postId;
 		$reply->setContent( $content, $workflow->getArticleTitle() );
 		$reply->changeType = $changeType;
@@ -224,16 +202,26 @@ class PostRevision extends AbstractRevision {
 	}
 
 	/**
+	 * @return UserTuple
+	 */
+	public function getCreatorTuple() {
+		return $this->origUser;
+	}
+
+	/**
 	 * Get the user ID of the user who created this post.
 	 *
 	 * @return integer The user ID
 	 */
 	public function getCreatorId() {
-		return $this->origUserId;
+		return $this->origUser->id;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getCreatorWiki() {
-		return $this->origUserWiki;
+		return $this->origUser->wiki;
 	}
 
 	/**
@@ -243,7 +231,7 @@ class PostRevision extends AbstractRevision {
 	 * @return string|null String if an creator is anon, or null if not.
 	 */
 	public function getCreatorIp() {
-		return $this->origUserIp;
+		return $this->origUser->ip;
 	}
 
 	/**

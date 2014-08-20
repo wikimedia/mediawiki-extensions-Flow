@@ -28,7 +28,7 @@ class Header extends AbstractRevision {
 		$obj = new self;
 		$obj->revId = UUID::create();
 		$obj->workflowId = $workflow->getId();
-		list( $obj->userId, $obj->userIp, $obj->userWiki ) = self::userFields( $user );
+		$obj->user = UserTuple::newFromUser( $user );
 		$obj->prevRevision = null; // no prior revision
 		$obj->setContent( $content, $workflow->getArticleTitle() );
 		$obj->changeType = $changeType;

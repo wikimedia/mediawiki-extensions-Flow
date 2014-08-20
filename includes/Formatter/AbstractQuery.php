@@ -199,6 +199,7 @@ abstract class AbstractQuery {
 		$row->previousRevision = $this->getPreviousRevision( $revision );
 		$row->currentRevision = $this->getCurrentRevision( $revision );
 		$row->workflow = $workflow;
+
 		// some core classes that process this row before our formatter
 		// require a specific field to handle pagination
 		if ( property_exists( $row, $indexField ) ) {
