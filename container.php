@@ -396,6 +396,7 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 		// because it needs to be able to load the related workflow.  This allows
 		// the new workflow/post to be commited in either order
 		new Flow\Data\DeferredInsertLifecycleHandler(
+			$c['deferred_queue'],
 			new Flow\Data\PostRevisionRecentChanges(
 				$c['flow_actions'],
 				$c['repository.username'],
@@ -587,11 +588,16 @@ $c['loader.root_post'] = $c->share( function( $c ) {
 	);
 } );
 
+$c['deferred_queue'] = $c->share( function( $c ) {
+	return new SplQueue;
+} );
+
 $c['submission_handler'] = $c->share( function( $c ) {
 	return new Flow\SubmissionHandler(
 		$c['storage'],
 		$c['db.factory'],
-		$c['memcache.buffered']
+		$c['memcache.buffered'],
+		$c['deferred_queue']
 	);
 } );
 $c['factory.block'] = $c->share( function( $c ) {
