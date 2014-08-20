@@ -332,6 +332,7 @@ $wgHooks['MessageCache::get'][] = 'FlowHooks::onMessageCacheGet';
 $wgHooks['WatchArticle'][] = 'FlowHooks::onWatchArticle';
 $wgHooks['UnwatchArticle'][] = 'FlowHooks::onWatchArticle';
 $wgHooks['CanonicalNamespaces'][] = 'FlowHooks::onCanonicalNamespaces';
+$wgHooks['AbortMove'][] = 'FlowHooks::onAbortMove';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
