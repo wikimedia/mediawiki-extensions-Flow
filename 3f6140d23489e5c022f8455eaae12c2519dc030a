@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_36d89157",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-20T07:45:57Z",
+      "side": 1,
+      "message": "Looking at the JS alternative, this should be \"data-target\u003d...\"",
+      "revId": "3f6140d23489e5c022f8455eaae12c2519dc030a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
