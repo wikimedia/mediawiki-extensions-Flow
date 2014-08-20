@@ -2,17 +2,12 @@
 	{{> flow_errors}}
 
 	<a href="{{#if isWatched}}{{links.unwatch-topic.url}}{{else}}{{links.watch-topic.url}}{{/if}}"
-	   class="mw-ui-anchor mw-ui-constructive {{#unless isWatched}}mw-ui-quiet{{/unless}}
-	   {{#if isWatched~}}
-		flow-watch-link-unwatch
-	   {{~else~}}
-		flow-watch-link-watch
-	   {{~/if~}}"
+	   class="mw-ui-anchor mw-ui-constructive {{#unless isWatched}}mw-ui-quiet{{/unless}}"
 	   data-flow-api-handler="watchItem"
 	   data-flow-api-handler="watchTopic"
 	   data-flow-api-target="< .flow-topic-watchlist"
 	   data-flow-api-method="POST">
-		{{~null~}}<span class="wikiglyph wikiglyph-star"></span>{{~null~}}
-		{{~null~}}<span class="wikiglyph wikiglyph-unstar"></span>{{~null~}}
+		{{~#if isWatched}}<span class="wikiglyph wikiglyph-star"></span>
+		{{~else}}<span class="wikiglyph wikiglyph-unstar"></span>{{/if~}}
 	</a>
 </div>
