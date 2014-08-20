@@ -266,6 +266,11 @@ class RevisionFormatter {
 				'title' => $userContribsTitle->getText(),
 				'exists' => true,
 			),
+			'userpage' => array(
+				'url' => $userTitle->getLinkURL(),
+				'title' => $userTitle->getText(),
+				'exists' => $userTitle->exists(),
+			)
 		);
 
 		if ( $talkPageTitle ) {
