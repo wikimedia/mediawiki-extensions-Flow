@@ -100,7 +100,6 @@ class IRCLineUrlFormatter extends AbstractFormatter implements RCFeedFormatter {
 
 	protected function mockRevision( RecentChange $rc, array $change ) {
 		// the exact revision type doesn't currently matter
-		// but when it does
 		switch( $change['revision_type'] ) {
 		case 'PostRevision':
 			$class = 'Flow\\Model\\PostRevision';
@@ -108,7 +107,9 @@ class IRCLineUrlFormatter extends AbstractFormatter implements RCFeedFormatter {
 				'rev_type_id' => $change['post'],
 				'tree_rev_id' => $change['revision'],
 				// unknown values
-				'tree_orig_user_id' => null,
+				'tree_orig_user_wiki' => wfWikiId(),
+				'tree_orig_user_id' => 0,
+				'tree_orig_user_ip' => null,
 				'tree_parent_id' => null,
 			);
 			break;
@@ -132,12 +133,14 @@ class IRCLineUrlFormatter extends AbstractFormatter implements RCFeedFormatter {
 			'rev_change_type' => $change['action'],
 			'rev_parent_id' => $change['prev_revision'],
 			// unknown values
+			'rev_user_wiki' => wfWikiId(),
+			'rev_user_id' => 0,
+			'rev_user_ip' => null,
 			'rev_mod_timestamp' => null,
 			'rev_mod_user_id' => null,
 			'rev_mod_state' => null,
 			'rev_content' => null,
 			'rev_flags' => null,
-			'rev_user_id' => null,
 		) );
 	}
 
@@ -152,7 +155,9 @@ class IRCLineUrlFormatter extends AbstractFormatter implements RCFeedFormatter {
 			'workflow_last_update_timestamp' => null,
 			'workflow_definition_id' => null,
 			'workflow_lock_state' => null,
-			'workflow_user_id' => null,
+			'workflow_user_wiki' => wfWikiId(),
+			'workflow_user_id' => 0,
+			'workflow_user_ip' => null,
 		) );
 	}
 }
