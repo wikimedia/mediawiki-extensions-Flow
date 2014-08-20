@@ -94,7 +94,7 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 				$post = $storage->get( $uuid );
 				if ( $post ) {
 					echo "Processing post $alpha\n";
-					$recorder->onAfterInsert( $post, array() );
+					$recorder->onAfterInsert( $post, array(), array( 'workflow' => $post->getCollection()->getWorkflow() ) );
 				}
 			}
 		}
