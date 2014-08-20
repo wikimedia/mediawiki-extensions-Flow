@@ -52,7 +52,7 @@ window.mw = window.mw || {}; // mw-less testing
 			method = method ? method.toUpperCase() : 'GET';
 
 			var $deferred = $.Deferred(),
-				mwApi = new mw.Api();
+				mwApi = new mw.Api( { ajax: { cache: false } } );
 
 			if ( !params.action ) {
 				mw.flow.debug( '[FlowAPI] apiCall error: missing action string', arguments );
