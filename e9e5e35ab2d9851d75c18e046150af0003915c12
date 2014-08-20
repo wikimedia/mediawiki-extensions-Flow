@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_5bf585b4",
+        "filename": "handlebars/flow_topic_titlebar_watch.handlebars",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-20T14:33:16Z",
+      "side": 0,
+      "message": "These classes seem to be used (only) in browser tests. We should probably update those as well.",
+      "revId": "e9e5e35ab2d9851d75c18e046150af0003915c12",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
