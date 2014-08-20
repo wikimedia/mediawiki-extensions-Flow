@@ -47,7 +47,6 @@ define( 'NS_TOPIC', 2600 );
 $wgNamespacesWithSubpages[NS_TOPIC] = false;
 $wgNamespaceContentModels[NS_TOPIC] = 'flow-board';
 
-// Autoload
 $dir = __DIR__ . '/';
 require $dir . 'Resources.php';
 
