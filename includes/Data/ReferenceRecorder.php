@@ -27,12 +27,10 @@ class ReferenceRecorder implements LifecycleHandler {
 	}
 
 	public function onAfterInsert( $revision, array $new, array $metadata ) {
-		$workflowId = $revision->getCollection()->getWorkflowId();
-		$workflow = $this->storage->get( 'Workflow', $workflowId );
-
-		if ( ! $workflow ) {
+		if ( !isset( $metadata['workflow'] )) {
 			return;
 		}
+		$workflow = $metadata['workflow'];
 
 		// Topic title is plain text, there is no reference to extract
 		if ( $revision->getRevisionType() === 'post' && $revision->isTopicTitle() ) {

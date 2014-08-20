@@ -21,6 +21,11 @@ use Title;
  */
 class LinksTableTest extends PostRevisionTestCase {
 	/**
+	 * @var array
+	 */
+	protected $tablesUsed = array( 'flow_ext_ref', 'flow_wiki_ref', 'flow_revision', 'flow_tree_revision', 'flow_workflow' );
+
+	/**
 	 * @var ManagerGroup
 	 */
 	protected $storage;
@@ -152,6 +157,27 @@ class LinksTableTest extends PostRevisionTestCase {
 		$expectedReferences = $this->expandReferences( $this->workflow, $revision, $expectedReferences );
 
 		$foundReferences = $this->recorder->getReferencesFromRevisionContent( $this->workflow, $revision );
+
+		$this->assertReferenceListsEqual( $expectedReferences, $foundReferences );
+	}
+
+	/**
+	 * @dataProvider provideGetReferencesFromRevisionContent
+	 */
+	public function testGetReferencesAfterRevisionInsert( $content, $expectedReferences ) {
+		$content = Utils::convert( 'wikitext', 'html', $content, $this->workflow->getOwnerTitle() );
+		$revision = $this->generatePost( array( 'rev_content' => $content ) );
+
+		// Save to storage to test if ReferenceRecorder listener picks this up
+		$this->store( $revision );
+
+		$expectedReferences = $this->expandReferences( $this->workflow, $revision, $expectedReferences );
+
+		// References will be stored as linked from Topic:<id>
+		$title = Title::newFromText( $revision->getPostId()->getAlphadecimal(), NS_TOPIC );
+
+		// Retrieve references from storage
+		$foundReferences = $this->updater->getReferencesForTitle( $title );
 
 		$this->assertReferenceListsEqual( $expectedReferences, $foundReferences );
 	}
