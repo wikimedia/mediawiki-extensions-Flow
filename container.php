@@ -975,4 +975,45 @@ $c['reference.recorder'] = $c->share( function( $c ) {
 		);
 } );
 
+// serialization
+$c['serializer.types'] = $c->share( function( $c ) {
+	return array(
+		// basic types
+		'bool' => new Flow\Serializer\Type\BooleanType,
+		'text' => new Flow\Serializer\Type\PropertyType,
+
+		// data model converters
+		'uuid' => new Flow\Serializer\Type\UuidType,
+		'dateFormats' => new Flow\Serializer\Type\DateFormatsType(
+			$c['user'],
+			\RequestContext::getMain()->getLanguage()
+		),
+		'user' => new Flow\Serializer\Type\UserType,
+		'title' => new Flow\Serializer\Type\TitleType,
+		'revision' => new Flow\Serializer\Type\RevisionType,
+
+		// specialty types
+		'revisionProperties' => new Flow\Serializer\Type\RevisionPropertiesType,
+		'revisionLinks' => new Flow\Serializer\Type\RevisionLinksType,
+		'revisionActions' => new Flow\Serializer\Type\RevisionActionsType,
+		'content' => new Flow\Serializer\Type\RevisionContentType( $c['templating'] ),
+
+		// cached lookups
+		'userNameLookup' => new Flow\Serializer\Type\UserNameLookupType(
+			$c['repository.username']
+		),
+		'userGenderLookup' => new Flow\Serializer\Type\GenderLookupType(
+			GenderCache::singleton()
+		),
+	);
+} );
+$c['serializer.factory'] = $c->share( function( $c ) {
+	return new Flow\Serializer\SerializerFactory( $c['serializer.types'] );
+} );
+
+// example serializer
+$c['serializer.revision'] = $c->share( function( $c ) {
+	$c['serializer.factory']->create( 'revision', 'revision' )->getSerializer();
+} );
+
 return $c;
