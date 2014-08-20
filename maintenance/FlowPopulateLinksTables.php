@@ -59,7 +59,12 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 				$header = $storage->get( $uuid );
 				if ( $header ) {
 					echo "Processing header $alpha\n";
-					$recorder->onAfterInsert( $header, array() );
+					$recorder->onAfterInsert(
+						$header, array(),
+						array(
+							'workflow' => $header->getCollection()->getWorkflow()
+						)
+					);
 				}
 			}
 			$dbf->waitForSlaves();
@@ -94,7 +99,12 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 				$post = $storage->get( $uuid );
 				if ( $post ) {
 					echo "Processing post $alpha\n";
-					$recorder->onAfterInsert( $post, array() );
+					$recorder->onAfterInsert(
+						$post, array(),
+						array(
+							'workflow' => $post->getCollection()->getWorkflow()
+						)
+					);
 				}
 			}
 		}
