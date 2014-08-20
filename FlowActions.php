@@ -242,7 +242,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
 		),
 		'button-method' => 'POST',
-		'links' => array( 'topic', 'post', 'post-history', 'topic-revision', 'watch-topic', 'unwatch-topic' ),
+		'links' => array( 'topic', 'post', 'topic-history', 'post-history', 'topic-revision', 'watch-topic', 'unwatch-topic' ),
 		'actions' => array( 'reply', 'thank', 'edit-title', 'restore-topic', 'hide-topic', 'delete-topic', 'suppress-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-hid-topic',
