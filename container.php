@@ -227,10 +227,15 @@ $c['storage.board_history'] = $c->share( function( $c ) {
 $c['storage.header.lifecycle-handlers'] = $c->share( function( $c ) {
 	global $wgContLang;
 	return array(
-		new Flow\Data\HeaderRecentChanges(
-			$c['flow_actions'],
-			$c['repository.username'],
-			$wgContLang
+		// Recent change listeners go out to external services and
+		// as such must only be run after the transaction is commited.
+		new Flow\Data\DeferredInsertLifecycleHandler(
+			$c['deferred_queue'],
+			new Flow\Data\HeaderRecentChanges(
+				$c['flow_actions'],
+				$c['repository.username'],
+				$wgContLang
+			)
 		),
 		$c['storage.board_history.index'],
 		new Flow\Data\UserNameListener(
@@ -286,10 +291,15 @@ $c['storage.post.summary.lifecycle-handlers'] = $c->share( function( $c ) {
 
 	return array(
 		$c['storage.board_history.index'],
-		new Flow\Data\PostSummaryRecentChanges(
-			$c['flow_actions'],
-			$c['repository.username'],
-			$wgContLang
+		// Recent change listeners go out to external services and
+		// as such must only be run after the transaction is commited.
+		new Flow\Data\DeferredInsertLifecycleHandler(
+			$c['deferred_queue'],
+			new Flow\Data\PostSummaryRecentChanges(
+				$c['flow_actions'],
+				$c['repository.username'],
+				$wgContLang
+			)
 		),
 		new Flow\Data\UserNameListener(
 			$c['repository.username'],
@@ -388,9 +398,8 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 	global $wgContLang;
 	$handlers = array(
 		new Flow\Log\PostModerationLogger( $c['logger'] ),
-		// The recent changes handler is wrapped to defer the insert callbacks
-		// because it needs to be able to load the related workflow.  This allows
-		// the new workflow/post to be commited in either order
+		// Recent change listeners go out to external services and
+		// as such must only be run after the transaction is commited.
 		new Flow\Data\DeferredInsertLifecycleHandler(
 			$c['deferred_queue'],
 			new Flow\Data\PostRevisionRecentChanges(
