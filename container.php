@@ -397,9 +397,6 @@ $c['storage.topic_list'] = $c->share( function( $c ) {
 $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 	global $wgContLang;
 
-	/** @var \User $user */
-	$user = $c['user'];
-
 	$handlers = array(
 		new Flow\Log\PostModerationLogger( $c['logger'] ),
 		// Recent change listeners go out to external services and
