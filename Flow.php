@@ -122,6 +122,34 @@ $wgAutoloadClasses['Flow\Collection\PostCollection'] = $dir . 'includes/Collecti
 $wgAutoloadClasses['Flow\Collection\HeaderCollection'] = $dir . 'includes/Collection/HeaderCollection.php';
 $wgAutoloadClasses['Flow\Collection\PostSummaryCollection'] = $dir . 'includes/Collection/PostSummaryCollection.php';
 
+// Serialization
+$wgAutoloadClasses['Flow\Serializer\PriorityQueue'] = $dir . 'includes/Serializer/PriorityQueue.php';
+$wgAutoloadClasses['Flow\Serializer\SerializerBuilder'] = $dir . 'includes/Serializer/SerializerBuilder.php';
+$wgAutoloadClasses['Flow\Serializer\SerializerConfigBuilder'] = $dir . 'includes/Serializer/SerializerConfigBuilder.php';
+$wgAutoloadClasses['Flow\Serializer\SerializerFactory'] = $dir .'includes/Serializer/SerializerFactory.php';
+$wgAutoloadClasses['Flow\Serializer\SerializerPriority'] = $dir . 'includes/Serializer/SerializerPriority.php';
+$wgAutoloadClasses['Flow\Serializer\SerializerTypeInterface'] = $dir . 'includes/Serializer/SerializerTypeInterface.php';
+$wgAutoloadClasses['Flow\Serializer\TransformerInterface'] = $dir . 'includes/Serializer/TransformerInterface.php';
+$wgAutoloadClasses['Flow\Serializer\Transformer\AbstractTransformer'] = $dir . 'includes/Serializer/Transformer/AbstractTransformer.php';
+$wgAutoloadClasses['Flow\Serializer\Transformer\ExtendGroupTransformer'] = $dir . 'includes/Serializer/Transformer/ExtendGroupTransformer.php';
+$wgAutoloadClasses['Flow\Serializer\Transformer\GroupTransformer'] = $dir . 'includes/Serializer/Transformer/GroupTransformer.php';
+$wgAutoloadClasses['Flow\Serializer\Transformer\PropertyPathTransformer'] = $dir . 'includes/Serializer/Transformer/PropertyPathTransformer.php';
+$wgAutoloadClasses['Flow\Serializer\Transformer\SequentialTransformer'] = $dir . 'includes/Serializer/Transformer/SequentialTransformer.php';
+$wgAutoloadClasses['Flow\Serializer\Type\AbstractSerializerType'] = $dir . 'includes/Serializer/Type/AbstractSerializerType.php';
+$wgAutoloadClasses['Flow\Serializer\Type\BooleanType'] = $dir . 'includes/Serializer/Type/BooleanType.php';
+$wgAutoloadClasses['Flow\Serializer\Type\DateFormatsType'] = $dir . 'includes/Serializer/Type/DateFormatsType.php';
+$wgAutoloadClasses['Flow\Serializer\Type\GenderLookupType'] = $dir . 'includes/Serializer/Type/GenderLookupType.php';
+$wgAutoloadClasses['Flow\Serializer\Type\PropertyType'] = $dir . 'includes/Serializer/Type/PropertyType.php';
+$wgAutoloadClasses['Flow\Serializer\Type\RevisionActionType'] = $dir . 'includes/Serializer/Type/RevisionActionType.php';
+$wgAutoloadClasses['Flow\Serializer\Type\RevisionContentType'] = $dir . 'includes/Serializer/Type/RevisionContentType.php';
+$wgAutoloadClasses['Flow\Serializer\Type\RevisionLinksType'] = $dir . 'includes/Serializer/Type/RevisionLinksType.php';
+$wgAutoloadClasses['Flow\Serializer\Type\RevisionPropertiesType'] = $dir . 'includes/Serializer/Type/RevisionPropertiesType.php';
+$wgAutoloadClasses['Flow\Serializer\Type\RevisionType'] = $dir . 'includes/Serializer/Type/RevisionType.php';
+$wgAutoloadClasses['Flow\Serializer\Type\TitleType'] = $dir . 'includes/Serializer/Type/TitleType.php';
+$wgAutoloadClasses['Flow\Serializer\Type\UserType'] = $dir . 'includes/Serializer/Type/UserType.php';
+$wgAutoloadClasses['Flow\Serializer\Type\UsernameLookupType'] = $dir . 'includes/Serializer/Type/UsernameLookupType.php';
+$wgAutoloadClasses['Flow\Serializer\Type\UuidType'] = $dir . 'includes/Serializer/Type/UuidType.php';
+
 // Classes that deal with database interaction between database and the models
 $wgAutoloadClasses['Flow\Repository\TreeRepository'] = $dir . 'includes/Repository/TreeRepository.php';
 $wgAutoloadClasses['Flow\Repository\MultiGetList'] = $dir . 'includes/Repository/MultiGetList.php';
