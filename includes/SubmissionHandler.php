@@ -8,6 +8,8 @@ use Flow\Data\BufferedCache;
 use Flow\Data\ManagerGroup;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidActionException;
+use DeferredUpdates;
+use SplQueue;
 use WebRequest;
 
 class SubmissionHandler {
@@ -27,10 +29,21 @@ class SubmissionHandler {
 	 */
 	protected $bufferedCache;
 
-	public function __construct( ManagerGroup $storage, DbFactory $dbFactory, BufferedCache $bufferedCache ) {
+	/**
+	 * @var SplQueue Updates to add to DeferredUpdates post-commit
+	 */
+	protected $deferredQueue;
+
+	public function __construct(
+		ManagerGroup $storage,
+		DbFactory $dbFactory,
+		BufferedCache $bufferedCache,
+		SplQueue $deferredQueue
+	) {
 		$this->storage = $storage;
 		$this->dbFactory = $dbFactory;
 		$this->bufferedCache = $bufferedCache;
+		$this->deferredQueue = $deferredQueue;
 	}
 
 	/**
@@ -104,6 +117,9 @@ class SubmissionHandler {
 			}
 			$dbw->commit();
 		} catch ( \Exception $e ) {
+			while( !$this->deferredQueue->isEmpty() ) {
+				$this->deferredQueue->pop();
+			}
 			$dbw->rollback();
 			$cache->rollback();
 			throw $e;
@@ -114,6 +130,10 @@ class SubmissionHandler {
 		} catch ( \Exception $e ) {
 			wfWarn( __METHOD__ . ': Commited to database but failed applying to cache' );
 			\MWExceptionHandler::logException( $e );
+		}
+
+		while( !$this->deferredQueue->isEmpty() ) {
+			DeferredUpdates::addCallableUpdate( $this->deferredQueue->dequeue() );
 		}
 
 		return $results;

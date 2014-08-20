@@ -2,16 +2,17 @@
 
 namespace Flow\Data;
 
-use DeferredUpdates;
+use SplQueue;
 
 class DeferredInsertLifecycleHandler implements LifecycleHandler {
-	public function __construct( LifecycleHandler $nested ) {
+	public function __construct( SplQueue $queue, LifecycleHandler $nested ) {
+		$this->queue = $queue;
 		$this->nested = $nested;
 	}
 
 	public function onAfterInsert( $object, array $new, array $metadata ) {
 		$nested = $this->nested;
-		DeferredUpdates::addCallableUpdate( function() use ( $nested, $object, $new, $metadata ) {
+		$this->queue->enqueue( function() use ( $nested, $object, $new, $metadata ) {
 			$nested->onAfterInsert( $object, $new, $metadata );
 		} );
 	}
