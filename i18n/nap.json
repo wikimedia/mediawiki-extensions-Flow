@@ -1,11 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Chelin"
+			"Chelin",
+			"C.R."
 		]
 	},
 	"flow-show-change": "Vere 'e cagnamiente",
+	"flow-newtopic-content-placeholder": "Scrive na mmasciata nova a \"$1\"",
 	"flow-post-action-post-history": "Cronologgia",
 	"flow-post-action-edit-post": "Càgna",
+	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|rispunnette}} ncopp'a '''$4'''.",
+	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 e $5 {{PLURAL:$6|ato|ati}} {{GENDER:$1|rispunnettero}} ncopp'a '''$3'''.",
 	"flow-topic-first-heading": "Chiàcchiera ncopp'â $1"
 }
