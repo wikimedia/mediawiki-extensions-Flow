@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_bbfd896b",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-20T14:56:40Z",
+      "side": 1,
+      "message": "For anonymous users, this\u0027ll link to [[User:127.0.0.1]].\n\nNot sure what to do instead, though. Just plain text, I guess?",
+      "revId": "82923e774733e3e86349f02187f8953d727f694c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
