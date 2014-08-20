@@ -16,6 +16,23 @@
       "revId": "0f499bae76c1a40daacd9b57baa083ecc104f378",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_5ea69351",
+        "filename": "i18n/en.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-20T18:02:24Z",
+      "side": 1,
+      "message": "What about discussion board?",
+      "revId": "0f499bae76c1a40daacd9b57baa083ecc104f378",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
