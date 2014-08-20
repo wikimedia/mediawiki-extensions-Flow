@@ -894,7 +894,7 @@
 
 			if ( data.watch[0].watched !== undefined ) {
 				// Successful watch: show tooltip
-				FlowBoardComponent.UI.showSubscribedTooltip( $newLink, watchType );
+				FlowBoardComponent.UI.showSubscribedTooltip( $newLink.find( '.wikiglyph' ), watchType );
 			}
 		};
 
