@@ -173,6 +173,7 @@ $wgAutoloadClasses['Flow\\Model\\TopicListEntry'] = __DIR__ . '/includes/Model/T
 $wgAutoloadClasses['Flow\\Model\\AbstractRevision'] = __DIR__ . '/includes/Model/AbstractRevision.php';
 $wgAutoloadClasses['Flow\\Model\\UUID'] = __DIR__ . '/includes/Model/UUID.php';
 $wgAutoloadClasses['Flow\\Model\\PostSummary'] = __DIR__ . '/includes/Model/PostSummary.php';
+$wgAutoloadClasses['Flow\\Model\\UserTuple'] = __DIR__ . '/includes/Model/UserTuple.php';
 $wgAutoloadClasses['Flow\\Collection\\LocalCacheAbstractCollection'] = __DIR__ . '/includes/Collection/LocalCacheAbstractCollection.php';
 $wgAutoloadClasses['Flow\\Collection\\HeaderCollection'] = __DIR__ . '/includes/Collection/HeaderCollection.php';
 $wgAutoloadClasses['Flow\\Collection\\PostSummaryCollection'] = __DIR__ . '/includes/Collection/PostSummaryCollection.php';

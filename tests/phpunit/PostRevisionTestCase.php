@@ -9,6 +9,7 @@ use Flow\Data\RecentChanges as RecentChangesListener;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
+use Flow\Model\UserTuple;
 use Flow\Model\UUID;
 use User;
 
@@ -81,38 +82,38 @@ class PostRevisionTestCase extends FlowTestCase {
 		$uuidRevision = UUID::create();
 
 		$user = User::newFromName( 'UTSysop' );
-		list( $userId, $userIp ) = PostRevision::userFields( $user );
+		$tuple = UserTuple::newFromUser( $user );
 
 		return $row + array(
 			// flow_revision
 			'rev_id' => $uuidRevision->getBinary(),
 			'rev_type' => 'post',
 			'rev_type_id' => $this->workflow->getId()->getBinary(),
-			'rev_user_id' => $userId,
-			'rev_user_ip' => $userIp,
+			'rev_user_wiki' => $tuple->wiki,
+			'rev_user_id' => $tuple->id,
+			'rev_user_ip' => $tuple->ip,
 			'rev_parent_id' => null,
 			'rev_flags' => 'html',
 			'rev_content' => 'test content',
 			'rev_change_type' => 'new-post',
 			'rev_mod_state' => AbstractRevision::MODERATED_NONE,
+			'rev_mod_user_wiki' => null,
 			'rev_mod_user_id' => null,
 			'rev_mod_user_ip' => null,
 			'rev_mod_timestamp' => null,
 			'rev_mod_reason' => null,
 			'rev_last_edit_id' => null,
+			'rev_edit_user_wiki' => null,
 			'rev_edit_user_id' => null,
 			'rev_edit_user_ip' => null,
-			'rev_user_wiki' => wfWikiId(),
-			'rev_mod_user_wiki' => null,
-			'rev_edit_user_wiki' => null,
 
 			// flow_tree_revision
 			'tree_rev_descendant_id' => $this->workflow->getId()->getBinary(),
 			'tree_rev_id' => $uuidRevision->getBinary(),
-			'tree_orig_user_id' => $userId,
-			'tree_orig_user_ip' => $userIp,
+			'tree_orig_user_wiki' => $tuple->wiki,
+			'tree_orig_user_id' => $tuple->id,
+			'tree_orig_user_ip' => $tuple->ip,
 			'tree_parent_id' => null,
-			'tree_orig_user_wiki' => wfWikiId(),
 		);
 	}
 
@@ -125,7 +126,7 @@ class PostRevisionTestCase extends FlowTestCase {
 		if ( $this->workflow ) {
 			return $this->workflow;
 		}
-		list( $userId, $userIp ) = PostRevision::userFields( User::newFromName( 'UTSysop' ) );
+		$tuple = UserTuple::newFromUser( User::newFromName( 'UTSysop' ) );
 
 		$row = array(
 			'workflow_id' => UUID::create()->getBinary(),
@@ -136,8 +137,9 @@ class PostRevisionTestCase extends FlowTestCase {
 			'workflow_page_id' => 1,
 			'workflow_namespace' => NS_USER_TALK,
 			'workflow_title_text' => 'Test',
-			'workflow_user_id' => $userId,
-			'workflow_user_ip' => $userIp,
+			'workflow_user_wiki' => $tuple->wiki,
+			'workflow_user_id' => $tuple->id,
+			'workflow_user_ip' => $tuple->ip,
 			'workflow_lock_state' => 0,
 			'workflow_last_update_timestamp' => wfTimestampNow(),
 		);

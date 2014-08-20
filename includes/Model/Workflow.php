@@ -58,19 +58,9 @@ class Workflow {
 	protected $titleText;
 
 	/**
-	 * @var integer
+	 * @var UserTuple
 	 */
-	protected $userId;
-
-	/**
-	 * @var string|null
-	 */
-	protected $userIp;
-
-	/**
-	 * @var string
-	 */
-	protected $userWiki;
+	protected $user;
 
 	/**
 	 * lock state is a list of state updates, the final state
@@ -117,17 +107,12 @@ class Workflow {
 		$obj->pageId = $row['workflow_page_id'];
 		$obj->namespace = (int) $row['workflow_namespace'];
 		$obj->titleText = $row['workflow_title_text'];
-		$obj->userId = $row['workflow_user_id'];
-		if ( array_key_exists( 'workflow_user_ip', $row ) ) {
-			$obj->userIp = $row['workflow_user_ip'];
-		// BC for workflow_user_text field
-		} elseif ( isset( $row['workflow_user_text'] ) && $obj->userId === 0 ) {
-			$obj->userIp = $row['workflow_user_text'];
+		$obj->user = UserTuple::newFromArray( $row, 'workflow_user_' );
+		if ( !$obj->user ) {
+			throw new DataModelException( 'Could not create UserTuple for workflow_user_' );
 		}
-		$obj->userWiki = isset( $row['workflow_user_wiki'] ) ? $row['workflow_user_wiki'] : '';
 		$obj->lockState = $row['workflow_lock_state'];
 		$obj->lastModified = $row['workflow_last_update_timestamp'];
-
 
 		return $obj;
 	}
@@ -144,9 +129,9 @@ class Workflow {
 			'workflow_page_id' => $obj->pageId,
 			'workflow_namespace' => $obj->namespace,
 			'workflow_title_text' => $obj->titleText,
-			'workflow_user_id' => $obj->userId,
-			'workflow_user_ip' => $obj->userIp,
-			'workflow_user_wiki' => $obj->userWiki,
+			'workflow_user_wiki' => $obj->user->wiki,
+			'workflow_user_id' => $obj->user->id,
+			'workflow_user_ip' => $obj->user->ip,
 			'workflow_lock_state' => $obj->lockState,
 			'workflow_last_update_timestamp' => $obj->lastModified,
 			// not used, but set it to empty string so it doesn't fail in strict mode
@@ -181,7 +166,7 @@ class Workflow {
 		$obj->pageId = $title->getArticleID();
 		$obj->namespace = $title->getNamespace();
 		$obj->titleText = $title->getDBkey();
-		list( $obj->userId, $obj->userIp, $obj->userWiki ) = AbstractRevision::userFields( $user );
+		$obj->user = UserTuple::newFromUser( $user );
 		$obj->lockState = 0;
 		$obj->updateLastModified();
 
@@ -266,19 +251,24 @@ class Workflow {
 	public function isNew() { return (bool) $this->isNew; }
 
 	/**
+	 * @return UserTuple
+	 */
+	public function getUserTuple() { return $this->user; }
+
+	/**
 	 * @return integer
 	 */
-	public function getUserId() { return $this->userId; }
+	public function getUserId() { return $this->user->id; }
 
 	/**
 	 * @return string|null
 	 */
-	public function getUserIp() { return $this->userIp; }
+	public function getUserIp() { return $this->user->ip; }
 
 	/**
 	 * @return string
 	 */
-	public function getUserWiki() { return $this->userWiki; }
+	public function getUserWiki() { return $this->user->wiki; }
 
 	/**
 	 * @return string
