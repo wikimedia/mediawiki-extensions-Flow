@@ -2318,4 +2318,7 @@
 			FlowBoardComponent.UI.makeContentInteractive( $newTopic );
 		}
 	}() );
+
+	// Surface for testing purposes
+	mw.flow._FlowBoardComponent = FlowBoardComponent;
 }( jQuery, mediaWiki ) );
