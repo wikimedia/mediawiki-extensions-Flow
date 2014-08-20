@@ -37,20 +37,9 @@ abstract class AbstractRevision {
 	protected $revId;
 
 	/**
-	 * @var integer The user id that created this revision
+	 * @var UserTuple
 	 */
-	protected $userId;
-
-	/**
-	 * @var string|null The ip address of the user that created this revision,
-	 *     only when $userId = 0
-	 */
-	protected $userIp;
-
-	/**
-	 * @var string|null The wiki of the user that created this revision
-	 */
-	protected $userWiki;
+	protected $user;
 
 	/**
 	 * Array of flags strictly related to the content. Flags are reset when
@@ -118,21 +107,9 @@ abstract class AbstractRevision {
 	protected $moderationTimestamp;
 
 	/**
-	 * @var integer|null The user id that moderated this revision. Null when
-	 *     this revision has never been moderated.
+	 * @var UserTuple|null
 	 */
-	protected $moderatedByUserId;
-
-	/**
-	 * @var string|null The ip address of the user that moderated this revision,
-	 *     only when $moderatedByUserId = 0
-	 */
-	protected $moderatedByUserIp;
-
-	/**
-	 * @var string|null The wiki of the user that moderated this revision
-	 */
-	protected $moderatedByUserWiki;
+	protected $moderatedBy;
 
 	/**
 	 * @var string|null
@@ -145,21 +122,9 @@ abstract class AbstractRevision {
 	protected $lastEditId;
 
 	/**
-	 * @var integer|null The user id that most recently changed the content.
+	 * @var UserTuple|null
 	 */
-	protected $lastEditUserId;
-
-	/**
-	 * @var string|null The ip address that most recently changed the content,
-	 *     only when $lastEditUserId = 0
-	 */
-	protected $lastEditUserIp;
-
-
-	/**
-	 * @var string|null The wiki of the user that most recently changed the content
-	 */
-	protected $lastEditUserWiki;
+	protected $lastEditUser;
 
 	/**
 	 * @param string[] $row
@@ -175,14 +140,10 @@ abstract class AbstractRevision {
 			throw new DataModelException( 'wrong object type', 'process-data' );
 		}
 		$obj->revId = UUID::create( $row['rev_id'] );
-		$obj->userId = $row['rev_user_id'];
-		if ( isset( $row['rev_user_ip'] ) ) {
-			$obj->userIp = $row['rev_user_ip'];
-		// BC for rev_user_text field
-		} elseif ( isset( $row['rev_user_text'] ) && $obj->userId === 0 ) {
-			$obj->userIp = $row['rev_user_text'];
+		$obj->user = UserTuple::newFromArray( $row, 'rev_user_' );
+		if ( $obj->user === null ) {
+			throw new DataModelException( 'Could not load UserTuple for rev_user_' );
 		}
-		$obj->userWiki = isset( $row['rev_user_wiki'] ) ? $row['rev_user_wiki'] : '';
 		$obj->prevRevision = UUID::create( $row['rev_parent_id'] );
 		$obj->changeType = $row['rev_change_type'];
 	 	$obj->flags = array_filter( explode( ',', $row['rev_flags'] ) );
@@ -192,14 +153,7 @@ abstract class AbstractRevision {
 		$obj->decompressedContent = null;
 
 		$obj->moderationState = $row['rev_mod_state'];
-		$obj->moderatedByUserId = $row['rev_mod_user_id'];
-		if ( isset( $row['rev_mod_user_ip'] ) ) {
-			$obj->moderatedByUserIp = $row['rev_mod_user_ip'];
-		// BC for rev_mod_user_text field
-		} elseif ( isset( $row['rev_mod_user_text'] ) && $obj->moderatedByUserId === 0 ) {
-			$obj->moderatedByUserIp = $row['rev_mod_user_text'];
-		}
-		$obj->moderatedByUserWiki = isset( $row['rev_mod_user_wiki'] ) ? $row['rev_mod_user_wiki'] : null;
+		$obj->moderatedBy = UserTuple::newFromArray( $row, 'rev_mod_user_' );
 		$obj->moderationTimestamp = $row['rev_mod_timestamp'];
 		$obj->moderatedReason = isset( $row['rev_mod_reason'] ) ? $row['rev_mod_reason'] : null;
 
@@ -212,15 +166,7 @@ abstract class AbstractRevision {
 
 		// isset required because there is a possible db migration, cached data will not have it
 		$obj->lastEditId = isset( $row['rev_last_edit_id'] ) ? UUID::create( $row['rev_last_edit_id'] ) : null;
-		$obj->lastEditUserId = isset( $row['rev_edit_user_id'] ) ? $row['rev_edit_user_id'] : null;
-		if ( isset( $row['rev_edit_user_ip'] ) ) {
-			$obj->lastEditUserIp = $row['rev_edit_user_ip'];
-		// BC for rev_edit_user_text field
-		} elseif ( isset( $row['rev_edit_user_text'] ) && $obj->lastEditUserId === 0 ) {
-			$obj->lastEditUserIp = $row['rev_edit_user_text'];
-		}
-		$obj->lastEditUserIp = isset( $row['rev_edit_user_ip'] ) ? $row['rev_edit_user_ip'] : null;
-		$obj->lastEditUserWiki = isset( $row['rev_edit_user_wiki'] ) ? $row['rev_edit_user_wiki'] : null;
+		$obj->lastEditUser = UserTuple::newFromArray( $row, 'rev_edit_user_' );
 
 		return $obj;
 	}
@@ -232,9 +178,9 @@ abstract class AbstractRevision {
 	static public function toStorageRow( $obj ) {
 		return array(
 			'rev_id' => $obj->revId->getAlphadecimal(),
-			'rev_user_id' => $obj->userId,
-			'rev_user_ip' => $obj->userIp,
-			'rev_user_wiki' => $obj->userWiki,
+			'rev_user_id' => $obj->user->id,
+			'rev_user_ip' => $obj->user->ip,
+			'rev_user_wiki' => $obj->user->wiki,
 			'rev_parent_id' => $obj->prevRevision ? $obj->prevRevision->getAlphadecimal() : null,
 			'rev_change_type' => $obj->changeType,
 			'rev_type' => $obj->getRevisionType(),
@@ -245,16 +191,16 @@ abstract class AbstractRevision {
 			'rev_flags' => implode( ',', $obj->flags ),
 
 			'rev_mod_state' => $obj->moderationState,
-			'rev_mod_user_id' => $obj->moderatedByUserId,
-			'rev_mod_user_ip' => $obj->moderatedByUserIp,
-			'rev_mod_user_wiki' => $obj->moderatedByUserWiki,
+			'rev_mod_user_id' => $obj->moderatedBy ? $obj->moderatedBy->id : null,
+			'rev_mod_user_ip' => $obj->moderatedBy ? $obj->moderatedBy->ip : null,
+			'rev_mod_user_wiki' => $obj->moderatedBy ? $obj->moderatedBy->wiki : null,
 			'rev_mod_timestamp' => $obj->moderationTimestamp,
 			'rev_mod_reason' => $obj->moderatedReason,
 
 			'rev_last_edit_id' => $obj->lastEditId ? $obj->lastEditId->getAlphadecimal() : null,
-			'rev_edit_user_id' => $obj->lastEditUserId,
-			'rev_edit_user_ip' => $obj->lastEditUserIp,
-			'rev_edit_user_wiki' => $obj->lastEditUserWiki,
+			'rev_edit_user_id' => $obj->lastEditUser ? $obj->lastEditUser->id : null,
+			'rev_edit_user_ip' => $obj->lastEditUser ? $obj->lastEditUser->ip : null,
+			'rev_edit_user_wiki' => $obj->lastEditUser ? $obj->lastEditUser->wiki : null,
 		);
 	}
 
@@ -273,7 +219,7 @@ abstract class AbstractRevision {
 		}
 		$obj = clone $this;
 		$obj->revId = UUID::create();
-		list( $obj->userId, $obj->userIp, $obj->userWiki ) = self::userFields( $user );
+		$obj->user = UserTuple::newFromUser( $user );
 		$obj->prevRevision = $this->revId;
 		$obj->changeType = '';
 		return $obj;
@@ -316,15 +262,10 @@ abstract class AbstractRevision {
 		$obj->moderationState = $state;
 
 		if ( $state === self::MODERATED_NONE ) {
-			$obj->moderatedByUserId = null;
-			$obj->moderatedByUserIp = null;
-			$obj->moderatedByUserWiki = null;
+			$obj->moderatedBy = null;
 			$obj->moderationTimestamp = null;
 		} else {
-			list( $userId, $userIp, $userWiki ) = self::userFields( $user );
-			$obj->moderatedByUserId = $userId;
-			$obj->moderatedByUserIp = $userIp;
-			$obj->moderatedByUserWiki = $userWiki;
+			$obj->moderatedBy = UserTuple::newFromUser( $user );
 			$obj->moderationTimestamp = wfTimestampNow();
 		}
 
@@ -407,39 +348,35 @@ abstract class AbstractRevision {
 	}
 
 	/**
+	 * @return UserTuple
+	 */
+	public function getUserTuple() {
+		return $this->user;
+	}
+
+	/**
 	 * @return integer
 	 */
 	public function getUserId() {
-		return $this->userId;
+		return $this->user->id;
 	}
 
 	/**
 	 * @return string|null
 	 */
 	public function getUserIp() {
-		return $this->userIp;
+		return $this->user->ip;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getUserWiki() {
-		return $this->userWiki;
-	}
-
-	protected function getUserInternal( $userId, $userIp, $userWiki ) {
-		if ( $userWiki !== wfWikiId() ) {
-			throw new CrossWikiException( 'Can only retrieve same-wiki users' );
-		}
-
-		if ( $userId ) {
-			return User::newFromId( $userId );
-		} elseif ( !$userIp ) {
-			throw new FlowException( 'Either $userId or $userIp must be set' );
-		} else {
-			return User::newFromName( $userIp, /* $validate = */ false );
-		}
+		return $this->user->wiki;
 	}
 
 	public function getUser() {
-		return $this->getUserInternal( $this->userId, $this->userIp, $this->userWiki );
+		$this->user->createUser();
 	}
 
 	/**
@@ -498,7 +435,7 @@ abstract class AbstractRevision {
 			$this->content = null;
 			$this->setContent( $content );
 			$this->lastEditId = $this->getRevisionId();
-			list( $this->lastEditUserId, $this->lastEditUserIp, $this->lastEditUserWiki ) = self::userFields( $user );
+			$this->lastEditUser = UserTuple::newFromUser( $user );
 		}
 	}
 
@@ -649,57 +586,49 @@ abstract class AbstractRevision {
 	 * @return integer
 	 */
 	public function getLastContentEditUserId() {
-		return $this->lastEditUserId;
+		return $this->lastEditUser ? $this->lastEditUser->id : null;
 	}
 
 	/**
 	 * @return string|null
 	 */
 	public function getLastContentEditUserIp() {
-		return $this->lastEditUserIp;
+		return $this->lastEditUser ? $this->lastEditUser->ip : null;
 	}
 
 	/**
 	 * @return string|null
 	 */
 	public function getLastContentEditUserWiki() {
-		return $this->lastEditUserWiki;
+		return $this->lastEditUser ? $this->lastEditUser->wiki : null;
+	}
+
+	/**
+	 * @return UserTuple
+	 */
+	public function getModeratedByTuple() {
+		return $this->moderatedBy;
 	}
 
 	/**
 	 * @return integer|null
 	 */
 	public function getModeratedByUserId() {
-		return $this->moderatedByUserId;
+		return $this->moderatedBy ? $this->moderatedBy->id : null;
 	}
 
 	/**
 	 * @return string|null
 	 */
 	public function getModeratedByUserIp() {
-		return $this->moderatedByUserIp;
-	}
-
-	public function getModeratedByUserWiki() {
-		return $this->moderatedByUserWiki;
+		return $this->moderatedBy ? $this->moderatedBy->ip : null;
 	}
 
 	/**
-	 * Return a (userId, userIp, wikiId) tuple for the given
-	 * user object.  userIp is null for userId != 0
-	 *
-	 * @param User $user
-	 * @return array
+	 * @return string|null
 	 */
-	static public function userFields( $user ) {
-		if ( $user->isAnon() ) {
-			$userId = 0;
-			$userIp = $user->getName();
-		} else {
-			$userId = (int)$user->getId();
-			$userIp = null;
-		}
-		return array( $userId, $userIp, wfWikiId() );
+	public function getModeratedByUserWiki() {
+		return $this->moderatedBy ? $this->moderatedBy->wiki : null;
 	}
 
 	/**
