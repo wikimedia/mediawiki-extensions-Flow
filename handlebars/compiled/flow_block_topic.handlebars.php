@@ -117,12 +117,12 @@
 	   data-flow-api-handler="watchItem"
 	   data-flow-api-handler="watchTopic"
 	   data-flow-api-target="< .flow-topic-watchlist"
-	   data-flow-api-method="POST">'.htmlentities(((is_array($in) && isset($in['null'])) ? $in['null'] : null), ENT_QUOTES, 'UTF-8').'<span class="wikiglyph wikiglyph-star"></span>'.htmlentities(((is_array($in) && isset($in['null'])) ? $in['null'] : null), ENT_QUOTES, 'UTF-8').''.htmlentities(((is_array($in) && isset($in['null'])) ? $in['null'] : null), ENT_QUOTES, 'UTF-8').'<span class="wikiglyph wikiglyph-unstar"></span>'.htmlentities(((is_array($in) && isset($in['null'])) ? $in['null'] : null), ENT_QUOTES, 'UTF-8').'</a>
+	   data-flow-api-method="POST">'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isWatched'])) ? $in['isWatched'] : null))) ? '<span class="wikiglyph wikiglyph-star">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-unwatch'),Array()), 'encq').'</span>' : '<span class="wikiglyph wikiglyph-unstar">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-watch'),Array()), 'encq').'</span>').'</a>
 </div>
 
 		' : '').'
 		<div class="flow-menu">
-			<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
+			<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-actions'),Array()), 'encq').'</span></a></div>
 			<ul class="mw-ui-button-container flow-list">
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['edit'])) ? $in['actions']['edit'] : null))) ? '
 					<li>

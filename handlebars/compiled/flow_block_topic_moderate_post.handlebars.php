@@ -164,6 +164,16 @@
 			<a href="'.htmlentities(((is_array($in['links']['userpage']) && isset($in['links']['userpage']['url'])) ? $in['links']['userpage']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 			   '.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['name'])) ? $in['name'] : null))) ? 'title="'.htmlentities(((is_array($in['links']['userpage']) && isset($in['links']['userpage']['title'])) ? $in['links']['userpage']['title'] : null), ENT_QUOTES, 'UTF-8').'"' : '').'
 			   class="'.((!LCRun3::ifvar($cx, ((is_array($in['links']['userpage']) && isset($in['links']['userpage']['exists'])) ? $in['links']['userpage']['exists'] : null))) ? 'new ' : '').'mw-userlink">
+<<<<<<< HEAD
+=======
+		' : '').'
+			'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['name'])) ? $in['name'] : null))) ? '
+				'.htmlentities(((is_array($in) && isset($in['name'])) ? $in['name'] : null), ENT_QUOTES, 'UTF-8').'' : '
+				'.LCRun3::ch($cx, 'l10n', Array(Array('flow-anonymous'),Array()), 'encq').'
+			').'
+		'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['contribs'])) ? $in['links']['contribs'] : null))) ? '
+			</a>
+>>>>>>> 05c76de... Update wikiglyph to support inline text for screen readers on icons
 		' : '').'
 		'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['name'])) ? $in['name'] : null))) ? ''.htmlentities(((is_array($in) && isset($in['name'])) ? $in['name'] : null), ENT_QUOTES, 'UTF-8').'' : ''.LCRun3::ch($cx, 'l10n', Array(Array('flow-anonymous'),Array()), 'encq').'
 		').''.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['userpage'])) ? $in['links']['userpage'] : null))) ? '</a>' : '').'<span class="mw-usertoollinks">'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['talk'])) ? $in['links']['talk'] : null))) ? '<span><a href="'.htmlentities(((is_array($in['links']['talk']) && isset($in['links']['talk']['url'])) ? $in['links']['talk']['url'] : null), ENT_QUOTES, 'UTF-8').'"
@@ -228,8 +238,13 @@
 	'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null),'flow-time-ago',((is_array($in) && isset($in['0'])) ? $in['0'] : null),((is_array($in) && isset($in['timestamp_readable'])) ? $in['timestamp_readable'] : null)),Array()), 'encq').'
 </div>
 
+<<<<<<< HEAD
 		<div class="flow-menu">
 	<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
+=======
+				<div class="flow-menu">
+	<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-actions'),Array()), 'encq').'</span></a></div>
+>>>>>>> 05c76de... Update wikiglyph to support inline text for screen readers on icons
 	<ul class="mw-ui-button-container flow-list">
 		'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['post'])) ? $in['links']['post'] : null))) ? '
 			<li>

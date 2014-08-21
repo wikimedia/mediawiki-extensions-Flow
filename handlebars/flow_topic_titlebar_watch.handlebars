@@ -12,7 +12,7 @@
 	   data-flow-api-handler="watchTopic"
 	   data-flow-api-target="< .flow-topic-watchlist"
 	   data-flow-api-method="POST">
-		{{~null~}}<span class="wikiglyph wikiglyph-star"></span>{{~null~}}
-		{{~null~}}<span class="wikiglyph wikiglyph-unstar"></span>{{~null~}}
+		{{~#if isWatched}}<span class="wikiglyph wikiglyph-star">{{l10n "flow-unwatch"}}</span>
+		{{~else}}<span class="wikiglyph wikiglyph-unstar">{{l10n "flow-watch"}}</span>{{/if~}}
 	</a>
 </div>

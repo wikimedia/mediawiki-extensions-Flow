@@ -196,7 +196,7 @@
 </div>
 
 		<div class="flow-menu">
-	<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
+	<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-actions'),Array()), 'encq').'</span></a></div>
 	<ul class="mw-ui-button-container flow-list">
 		'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['post'])) ? $in['links']['post'] : null))) ? '
 			<li>
@@ -389,7 +389,7 @@
 </div>
 
 		<div class="flow-menu">
-	<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
+	<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-actions'),Array()), 'encq').'</span></a></div>
 	<ul class="mw-ui-button-container flow-list">
 		'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['post'])) ? $in['links']['post'] : null))) ? '
 			<li>
