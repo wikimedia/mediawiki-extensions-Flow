@@ -69,6 +69,11 @@ abstract class AbstractTopicInsertListener {
 			return array();
 		}
 
+		// Null will be returned if nothing is defined for this changeType
+		if ( !$users ) {
+			return array();
+		}
+
 		// Some actions may have more complex logic to determine watching users
 		if ( is_callable( $users ) ) {
 			$users = call_user_func_array( $users, $params );
