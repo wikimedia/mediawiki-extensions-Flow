@@ -110,6 +110,7 @@ class View extends ContextSource {
 			'blocks' => array(),
 			'isWatched' => $user->isWatched( $title ),
 			'watchable' => !$user->isAnon(),
+			'isBoardPage' => $workflow->getType() === 'discussion',
 			'links' => array(
 				'watch-board' => array(
 					'url' => $title->getLocalUrl( 'action=watch' ),
