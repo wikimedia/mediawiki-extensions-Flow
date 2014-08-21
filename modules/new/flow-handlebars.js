@@ -192,31 +192,40 @@
 					return mw.message( str ).params( [ name ] );
 				},
 
-				"_time": function ( seconds_ago ) {
-					var str = ' second',
-						new_time = seconds_ago;
+				"time": function ( msgKeyPrefix, secondsAgo ) {
+					var suffix = 'second',
+						new_time = secondsAgo;
 
-					if ( seconds_ago >= 604800 ) {
-						new_time = seconds_ago / 604800;
-						str = ' week';
-					} else if ( seconds_ago >= 86400 ) {
-						new_time = seconds_ago / 86400;
-						str = ' day';
-					} else if ( seconds_ago >= 3600 ) {
-						new_time = seconds_ago / 3600;
-						str = ' hour';
-					} else if ( seconds_ago >= 60 ) {
-						new_time = seconds_ago / 60;
-						str = ' minute';
+					if ( secondsAgo >= 604800 ) {
+						new_time = secondsAgo / 604800;
+						suffix = 'week';
+					} else if ( secondsAgo >= 86400 ) {
+						new_time = secondsAgo / 86400;
+						suffix = 'day';
+					} else if ( secondsAgo >= 3600 ) {
+						new_time = secondsAgo / 3600;
+						suffix = 'hour';
+					} else if ( secondsAgo >= 60 ) {
+						new_time = secondsAgo / 60;
+						suffix = 'minute';
 					}
 
-					return Math.floor( new_time ) + str + ( new_time < 1 || new_time >= 2 ? 's' : '' );
+					return mw.msg.call( this, msgKeyPrefix + suffix, Math.floor( new_time ) );
 				},
 
-				"time_ago": function ( seconds_ago ) { return this._time( seconds_ago ) + " ago"; },
-				"active_ago": function ( seconds_ago ) { return "Active " + this.time_ago( seconds_ago ); },
-				"started_ago": function ( seconds_ago ) { return "Started " + this.time_ago( seconds_ago ); },
-				"edited_ago": function ( seconds_ago ) { return "Edited " + this.time_ago( seconds_ago ); },
+				// FIXME: Kill the above 4 in favour of the generic time helper parameter
+				"time_ago": function ( secondsAgo ) {
+					return this.time( 'flow-time-ago-', secondsAgo );
+				},
+				"active_ago": function ( secondsAgo ) {
+					return this.time( 'flow-active-ago-', secondsAgo );
+				},
+				"started_ago": function ( secondsAgo ) {
+					return this.time( 'flow-started-ago-', secondsAgo );
+				},
+				"edited_ago": function ( secondsAgo ) {
+					return this.time( 'flow-edited-ago-', secondsAgo );
+				},
 
 				"datetime": function ( timestamp ) {
 					return ( new Date( timestamp ) ).toLocaleString();
