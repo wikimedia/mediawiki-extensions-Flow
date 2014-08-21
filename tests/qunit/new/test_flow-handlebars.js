@@ -151,7 +151,7 @@ QUnit.test( 'Handlebars.prototype.progressiveEnhancement', 5, function() {
 	);
 } );
 
-QUnit.test( 'FlowHandlebars.prototype.l10n', 8, function( assert ) {
+QUnit.test( 'FlowHandlebars.prototype.l10n', 11, function( assert ) {
 	assert.strictEqual( this.handlebarsProto.l10n( 'time_ago', 2 ), '2 seconds ago', 'Check seconds.' );
 	assert.strictEqual( this.handlebarsProto.l10n( 'time_ago', 120 ), '2 minutes ago', 'Check minutes.' );
 	assert.strictEqual( this.handlebarsProto.l10n( 'time_ago',  60 * 60 * 2 ), '2 hours ago', 'Check hour.' );
@@ -160,6 +160,10 @@ QUnit.test( 'FlowHandlebars.prototype.l10n', 8, function( assert ) {
 	assert.strictEqual( this.handlebarsProto.l10n( 'active_ago', 60 * 60 * 24 * 7 * 2 ), 'Active 2 weeks ago', 'Check week.' );
 	assert.strictEqual( this.handlebarsProto.l10n( 'started_ago', 60 * 60 * 24 * 7 * 2 ), 'Started 2 weeks ago', 'Check week.' );
 	assert.strictEqual( this.handlebarsProto.l10n( 'edited_ago', 60 * 60 * 24 * 7 * 2 ), 'Edited 2 weeks ago', 'Check week.' );
+
+	assert.strictEqual( this.handlebarsProto.l10n( 'active_ago', 1 ), 'Active 1 second ago', 'Check non-plural.' );
+	assert.strictEqual( this.handlebarsProto.l10n( 'started_ago', 60 * 60 * 24 * 7 * 1 ), 'Started 1 week ago', 'Check non-plural' );
+	assert.strictEqual( this.handlebarsProto.l10n( 'edited_ago', 60 * 60 * 24 * 1 ), 'Edited 1 day ago', 'Check non-plural' );
 } );
 
 } ( jQuery ) );
