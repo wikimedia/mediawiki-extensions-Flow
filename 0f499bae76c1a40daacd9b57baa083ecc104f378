@@ -33,6 +33,24 @@
       "revId": "0f499bae76c1a40daacd9b57baa083ecc104f378",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_e6d3e2d5",
+        "filename": "i18n/en.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-08-21T15:01:25Z",
+      "side": 1,
+      "message": "Much better.",
+      "parentUuid": "8e28a382_5ea69351",
+      "revId": "0f499bae76c1a40daacd9b57baa083ecc104f378",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
