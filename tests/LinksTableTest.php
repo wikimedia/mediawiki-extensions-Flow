@@ -12,10 +12,8 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Parsoid\ReferenceExtractor;
 use Flow\Parsoid\Utils;
-use LinksUpdate;
 use ParserOutput;
 use Title;
-use User;
 
 /**
  * @group Flow
@@ -51,41 +49,27 @@ class LinksTableTest extends PostRevisionTestCase {
 
 		// Check for Parsoid
 		try {
-			Utils::convert( 'html', 'wikitext', 'Foo', self::getTestTitle() );
+			Utils::convert( 'html', 'wikitext', 'Foo', $this->workflow->getOwnerTitle() );
 		} catch ( WikitextException $excep ) {
 			$this->markTestSkipped( 'Parsoid not enabled' );
 		}
+
+		// These tests don't provide sufficient data to properly run all listeners
+		$this->clearExtraLifecycleHandlers();
 	}
 
-	protected function generateTopic( $overrides ) {
+	protected function generatePost( $overrides ) {
 		$parentRevision = $this->generateObject();
 
 		$revision = $this->generateObject( $overrides + array(
-			'rev_parent_id' => $parentRevision->getRevisionId(),
+			'tree_parent_id' => $parentRevision->getRevisionId(),
 		) );
-
-		$parentRevision->setChildren( array( $revision ) );
 
 		return $revision;
 	}
 
-	protected static function getTestWorkflow( Title $testTitle ) {
-		static $workflow = false;
-
-		if ( ! $workflow ) {
-			global $wgFlowDefaultWorkflow;
-			$workflow = Workflow::create( $wgFlowDefaultWorkflow, self::getTestUser(), $testTitle );
-		}
-
-		return $workflow;
-	}
-
 	protected static function getTestTitle() {
 		return Title::newFromText( 'UTPage' );
-	}
-
-	protected static function getTestUser() {
-		return User::newFromName( 'Test user' );
 	}
 
 	public static function provideGetReferencesFromRevisionContent() {
@@ -162,13 +146,12 @@ class LinksTableTest extends PostRevisionTestCase {
 	 * @dataProvider provideGetReferencesFromRevisionContent
 	 */
 	public function testGetReferencesFromRevisionContent( $content, $expectedReferences ) {
-		$content = Utils::convert( 'wikitext', 'html', $content, self::getTestTitle() );
-		$revision = $this->generateTopic( array( 'rev_content' => $content ) );
-		$workflow = self::getTestWorkflow( self::getTestTitle() );
+		$content = Utils::convert( 'wikitext', 'html', $content, $this->workflow->getOwnerTitle() );
+		$revision = $this->generatePost( array( 'rev_content' => $content ) );
 
-		$expectedReferences = $this->expandReferences( $workflow, $revision, $expectedReferences );
+		$expectedReferences = $this->expandReferences( $this->workflow, $revision, $expectedReferences );
 
-		$foundReferences = $this->recorder->getReferencesFromRevisionContent( $workflow, $revision );
+		$foundReferences = $this->recorder->getReferencesFromRevisionContent( $this->workflow, $revision );
 
 		$this->assertReferenceListsEqual( $expectedReferences, $foundReferences );
 	}
@@ -329,7 +312,8 @@ class LinksTableTest extends PostRevisionTestCase {
 				),
 				array(
 					'getLinks' => array(
-						NS_MAIN => array( 'UTPage/Subpage' => 0, )
+						// NS_MAIN is the namespace of static::getTestTitle()
+						NS_MAIN => array( static::getTestTitle()->getDBkey() . '/Subpage' => 0, )
 					),
 				),
 			),
@@ -341,6 +325,23 @@ class LinksTableTest extends PostRevisionTestCase {
 	 */
 	public function testMutateParserOutput( $references, $expectedItems ) {
 		list( $workflow, $revision, $title ) = $this->getBlandTestObjects();
+
+		/*
+		 * Because the data provider is static, we can't access $this->workflow
+		 * in there. Once of the things being tested is a subpage link.
+		 * Thus, we would have to provide the correct namespace & title for
+		 * $this->workflow->getArticleTitle(), under which the subpage will be
+		 * created.
+		 * Let's work around this by overwriting $workflow->title to a "known"
+		 * value, so that we can hardcode that into the expected return value in
+		 * the static provider.
+		 */
+		$title = static::getTestTitle();
+		$reflectionWorkflow = new \ReflectionObject( $workflow );
+		$reflectionProperty = $reflectionWorkflow->getProperty( 'title' );
+		$reflectionProperty->setAccessible( true );
+		$reflectionProperty->setValue( $workflow, $title );
+
 		$references = $this->expandReferences( $workflow, $revision, $references );
 		$parserOutput = new \ParserOutput;
 
@@ -349,7 +350,7 @@ class LinksTableTest extends PostRevisionTestCase {
 			$parserOutput->$fieldName = array();
 		}
 
-		$this->updater->mutateParserOutput( self::getTestTitle(), $parserOutput, $references );
+		$this->updater->mutateParserOutput( $title, $parserOutput, $references );
 
 		foreach( $expectedItems as $method => $content ) {
 			$this->assertEquals( $content, $parserOutput->$method(), $method );
@@ -358,9 +359,9 @@ class LinksTableTest extends PostRevisionTestCase {
 
 	protected function getBlandTestObjects() {
 		return array(
-			/* workflow = */ self::getTestWorkflow( self::getTestTitle() ),
-			/* revision = */ $this->generateObject(),
-			/* title = */ self::getTestTitle(),
+			/* workflow = */ $this->workflow,
+			/* revision = */ $this->revision,
+			/* title = */ $this->workflow->getArticleTitle(),
 		);
 	}
 
@@ -433,22 +434,21 @@ class LinksTableTest extends PostRevisionTestCase {
 		);
 	}
 
+	protected function flattenReferenceList( $input ) {
+		$list = array();
+
+		foreach( $input as $reference ) {
+			$list[$reference->getUniqueIdentifier()] = $reference;
+		}
+
+		ksort( $list );
+		return array_keys( $list );
+	}
+
 	protected function assertReferenceListsEqual( $input1, $input2 ) {
-		$list1 = array();
-		$list2 = array();
+		$list1 = $this->flattenReferenceList( $input1 );
+		$list2 = $this->flattenReferenceList( $input2 );
 
-		foreach( $input1 as $reference ) {
-			$list1[$reference->getUniqueIdentifier()] = $reference;
-		}
-
-		ksort( $list1 );
-
-		foreach( $input2 as $reference ) {
-			$list2[$reference->getUniqueIdentifier()] = $reference;
-		}
-
-		ksort( $list2 );
-
-		$this->assertEquals( array_keys( $list1 ), array_keys( $list2 ) );
+		$this->assertEquals( $list1, $list2 );
 	}
 }
