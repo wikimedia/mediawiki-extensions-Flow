@@ -425,15 +425,21 @@
 				return;
 			}
 
-			// Render topiclist template
-			$target.before(
-				$tmp = $( flowBoard.TemplateEngine.processTemplateGetFragment(
-					'flow_topiclist_loop',
-					data.flow[ 'view-topiclist' ].result.topiclist
-				) ).children()
-			);
-			// Run loadHandlers
-			FlowBoardComponent.UI.makeContentInteractive( $tmp );
+			// See bug 61097, Catch any random javascript error from
+			// parsoid so they don't break and stop the page
+			try {
+				// Render topiclist template
+				$target.before(
+					$tmp = $( flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_topiclist_loop',
+						data.flow[ 'view-topiclist' ].result.topiclist
+					) ).children()
+				);
+				// Run loadHandlers
+				FlowBoardComponent.UI.makeContentInteractive( $tmp );
+			} catch( e ) {
+				// nothing to do, just silently ignore the external error
+			}
 
 			// Render load more template
 			if ( data.flow[ 'view-topiclist'].result.topiclist.links.pagination.fwd ) {
