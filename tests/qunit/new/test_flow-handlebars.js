@@ -151,4 +151,15 @@ QUnit.test( 'Handlebars.prototype.progressiveEnhancement', 5, function() {
 	);
 } );
 
+QUnit.test( 'FlowHandlebars.prototype.l10n', 8, function( assert ) {
+	assert.strictEqual( this.handlebarsProto.l10n( 'time_ago', 2 ), '2 seconds ago', 'Check seconds.' );
+	assert.strictEqual( this.handlebarsProto.l10n( 'time_ago', 120 ), '2 minutes ago', 'Check minutes.' );
+	assert.strictEqual( this.handlebarsProto.l10n( 'time_ago',  60 * 60 * 2 ), '2 hours ago', 'Check hour.' );
+	assert.strictEqual( this.handlebarsProto.l10n( 'time_ago', 60 * 60 * 24 * 2 ), '2 days ago', 'Check day.' );
+	assert.strictEqual( this.handlebarsProto.l10n( 'time_ago', 60 * 60 * 24 * 7 * 2 ), '2 weeks ago', 'Check week.' );
+	assert.strictEqual( this.handlebarsProto.l10n( 'active_ago', 60 * 60 * 24 * 7 * 2 ), 'Active 2 weeks ago', 'Check week.' );
+	assert.strictEqual( this.handlebarsProto.l10n( 'started_ago', 60 * 60 * 24 * 7 * 2 ), 'Started 2 weeks ago', 'Check week.' );
+	assert.strictEqual( this.handlebarsProto.l10n( 'edited_ago', 60 * 60 * 24 * 7 * 2 ), 'Edited 2 weeks ago', 'Check week.' );
+} );
+
 } ( jQuery ) );
