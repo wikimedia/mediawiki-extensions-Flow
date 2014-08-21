@@ -195,8 +195,13 @@
 	'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null),'flow-time-ago',((is_array($in) && isset($in['0'])) ? $in['0'] : null),((is_array($in) && isset($in['timestamp_readable'])) ? $in['timestamp_readable'] : null)),Array()), 'encq').'
 </div>
 
+<<<<<<< HEAD
 		<div class="flow-menu">
 	<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
+=======
+				<div class="flow-menu">
+	<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-actions'),Array()), 'encq').'</span></a></div>
+>>>>>>> 05c76de... Update wikiglyph to support inline text for screen readers on icons
 	<ul class="mw-ui-button-container flow-list">
 		'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['post'])) ? $in['links']['post'] : null))) ? '
 			<li>

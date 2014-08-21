@@ -53,6 +53,24 @@
 	' : '').'
 </div>
 
+<<<<<<< HEAD
+=======
+		'.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? '
+			<div class="flow-board-header-nav">
+				'.((LCRun3::ifvar($cx, ((is_array($in['revision']['actions']) && isset($in['revision']['actions']['edit'])) ? $in['revision']['actions']['edit'] : null))) ? '
+					<a href="'.htmlentities(((is_array($in['revision']['actions']['edit']) && isset($in['revision']['actions']['edit']['url'])) ? $in['revision']['actions']['edit']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+						data-flow-api-handler="activateEditHeader"
+						data-flow-api-target="< .flow-board-header"
+						data-flow-interactive-handler="apiRequest"
+						class="mw-ui-button mw-ui-progressive  mw-ui-quiet flow-board-header-icon flow-ui-tooltip-target"
+						title="'.htmlentities(((is_array($in['revision']['actions']['edit']) && isset($in['revision']['actions']['edit']['title'])) ? $in['revision']['actions']['edit']['title'] : null), ENT_QUOTES, 'UTF-8').'">
+							<span class="wikiglyph wikiglyph-pencil">'.htmlentities(((is_array($in['revision']['actions']['edit']) && isset($in['revision']['actions']['edit']['title'])) ? $in['revision']['actions']['edit']['title'] : null), ENT_QUOTES, 'UTF-8').'</span>
+					</a>
+				' : '').'
+			</div>
+		' : '').'
+	</div>
+>>>>>>> 05c76de... Update wikiglyph to support inline text for screen readers on icons
 </div>
 ';
 }
