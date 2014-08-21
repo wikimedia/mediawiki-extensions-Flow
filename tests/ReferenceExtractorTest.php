@@ -103,6 +103,18 @@ class ReferenceExtractorTestCase extends MediaWikiTestCase {
 					),
 				)
 			),
+
+			array(
+				'Non-existant File',
+				'[[File:Some/Files/Really/Should_Not_Ex/ist.png]]',
+				array(
+					array(
+						'refType' => 'file',
+						'targetType' => 'wiki',
+						'target' => 'File:Some/Files/Really/Should_Not_Ex/ist.png',
+					),
+				)
+			)
 		);
 	}
 
@@ -116,6 +128,6 @@ class ReferenceExtractorTestCase extends MediaWikiTestCase {
 
 		$references = $referenceExtractor->extractReferences( $html );
 
-		$this->assertEquals( $references, $expectedOutput, $html );
+		$this->assertEquals( $expectedOutput, $references, $html );
 	}
 }
