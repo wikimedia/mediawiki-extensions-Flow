@@ -141,7 +141,7 @@ class NotificationFormatter extends EchoBasicFormatter {
 
 		if ( $anchor ) {
 			$anchor->query['fromnotif'] = 1;
-			return array( $anchor->title, $anchor->query );
+			return array( $anchor->resolveTitle(), $anchor->query );
 		} else {
 			return array( null, array() );
 		}

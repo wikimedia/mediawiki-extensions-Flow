@@ -93,7 +93,7 @@ class Anchor {
 	/**
 	 * @return Title
 	 */
-	protected function resolveTitle() {
+	public function resolveTitle() {
 		$title = $this->title;
 		if ( $this->fragment !== null ) {
 			$title = clone $title;
