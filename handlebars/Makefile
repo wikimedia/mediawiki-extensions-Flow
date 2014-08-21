@@ -49,7 +49,6 @@ all: compiled/flow_block_header.handlebars.php \
 		compiled/flow_board_watch_link.handlebars.php \
 		compiled/flow_form_buttons.handlebars.php \
 		compiled/flow_post.handlebars.php \
-		compiled/flow_topic_titlebar_watch.handlebars.php \
 		compiled/flow_tooltip.handlebars.php \
 		compiled/timestamp.handlebars.php
 
