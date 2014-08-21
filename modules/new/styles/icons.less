@@ -23,286 +23,305 @@
 	height: .7em;
 	font-size: 1.6em;
 	line-height: .7em;
+	white-space: nowrap;
+
+	&:not(_) { // blocks incompatible browsers
+		// hide screen reader inline text
+		width: 1em;
+		&:first-line {
+			font-size: 0;
+			line-height: 0;
+		}
+
+		// render icon, using a newline hack to remove the first blank line
+		&:after {
+			white-space: pre-line;
+			display: inline-block;
+			vertical-align: bottom;
+			margin-bottom: -.7em;
+			height: 100%;
+		}
+	}
 }
 
 
 /* UI ELEMENTS e000-023
 */
 
-.wikiglyph-magnifying-glass:before {
-	content: "\e000";
+.wikiglyph-magnifying-glass:after {
+	content: "\a\e000";
 }
-.wikiglyph-arrow-left:before {
-	content: "\e001";
+.wikiglyph-arrow-left:after {
+	content: "\a\e001";
 }
-.wikiglyph-tick:before {
-	content: "\e002";
+.wikiglyph-tick:after {
+	content: "\a\e002";
 }
-.wikiglyph-x:before {
-	content: "\e003";
+.wikiglyph-x:after {
+	content: "\a\e003";
 }
-.wikiglyph-x-circle:before {
-	content: "\e004";
+.wikiglyph-x-circle:after {
+	content: "\a\e004";
 }
-.wikiglyph-unstar:before {
-	content: "\e005";
+.wikiglyph-unstar:after {
+	content: "\a\e005";
 }
-.wikiglyph-star:before {
-	content: "\e006";
+.wikiglyph-star:after {
+	content: "\a\e006";
 }
-.wikiglyph-star-list:before {
-	content: "\e007";
+.wikiglyph-star-list:after {
+	content: "\a\e007";
 }
-.wikiglyph-sun:before {
-	content: "\e008";
+.wikiglyph-sun:after {
+	content: "\a\e008";
 }
-.wikiglyph-funnel:before {
-	content: "\e009";
+.wikiglyph-funnel:after {
+	content: "\a\e009";
 }
-.wikiglyph-eye:before {
-	content: "\e010";
+.wikiglyph-eye:after {
+	content: "\a\e010";
 }
-.wikiglyph-eye-lid:before {
-	content: "\e011";
+.wikiglyph-eye-lid:after {
+	content: "\a\e011";
 }
-.wikiglyph-bookmark:before {
-	content: "\e012";
+.wikiglyph-bookmark:after {
+	content: "\a\e012";
 }
-.wikiglyph-printer:before {
-	content: "\e013";
+.wikiglyph-printer:after {
+	content: "\a\e013";
 }
-.wikiglyph-puzzle:before {
-	content: "\e014";
+.wikiglyph-puzzle:after {
+	content: "\a\e014";
 }
-.wikiglyph-clock:before {
-	content: "\e015";
+.wikiglyph-clock:after {
+	content: "\a\e015";
 }
-.wikiglyph-dice:before {
-	content: "\e016";
+.wikiglyph-dice:after {
+	content: "\a\e016";
 }
-.wikiglyph-move:before {
-	content: "\e017";
+.wikiglyph-move:after {
+	content: "\a\e017";
 }
-.wikiglyph-gear:before {
-	content: "\e018";
+.wikiglyph-gear:after {
+	content: "\a\e018";
 }
-.wikiglyph-ellipsis:before {
-	content: "\e019";
+.wikiglyph-ellipsis:after {
+	content: "\a\e019";
 }
-.wikiglyph-envelope:before {
-	content: "\e020";
+.wikiglyph-envelope:after {
+	content: "\a\e020";
 }
-.wikiglyph-pin:before {
-	content: "\e021";
+.wikiglyph-pin:after {
+	content: "\a\e021";
 }
-.wikiglyph-share:before {
-	content: "\e022";
+.wikiglyph-share:after {
+	content: "\a\e022";
 }
-.wikiglyph-download:before {
-	content: "\e023";
+.wikiglyph-download:after {
+	content: "\a\e023";
 }
-.wikiglyph-bell:before {
-	content: "\e025";
+.wikiglyph-bell:after {
+	content: "\a\e025";
 }
-.wikiglyph-bell-ring:before {
-	content: "\e026";
+.wikiglyph-bell-ring:after {
+	content: "\a\e026";
 }
-.wikiglyph-caret-left:before {
-	content: "\e027";
+.wikiglyph-caret-left:after {
+	content: "\a\e027";
 }
-.wikiglyph-caret-down:before {
-	content: "\e028";
+.wikiglyph-caret-down:after {
+	content: "\a\e028";
 }
 
 
 /* EXPERIMENTS e300-301
 */
-.wikiglyph-star-circle:before {
-	content: "\e300";
+.wikiglyph-star-circle:after {
+	content: "\a\e300";
 }
-.wikiglyph-rocket:before {
-	content: "\e301";
+.wikiglyph-rocket:after {
+	content: "\a\e301";
 }
 
 
 /* STRIPES e040-043
 */
-.wikiglyph-stripe-compact:before {
-	content: "\e040";
+.wikiglyph-stripe-compact:after {
+	content: "\a\e040";
 }
-.wikiglyph-stripe-toc:before {
-	content: "\e041";
+.wikiglyph-stripe-toc:after {
+	content: "\a\e041";
 }
-.wikiglyph-stripe-expanded:before {
-	content: "\e042";
+.wikiglyph-stripe-expanded:after {
+	content: "\a\e042";
 }
 
 
 /* WIKIPEDIA LOGO e400-401
 */
 
-.wikiglyph-w:before {
-	content: "\e400";
+.wikiglyph-w:after {
+	content: "\a\e400";
 }
 
 
 /* UI MODERATION ELEMENTS e500-508
 */
 
-.wikiglyph-article:before {
-	content: "\e100";
+.wikiglyph-article:after {
+	content: "\a\e100";
 }
-.wikiglyph-article-check:before {
-	content: "\e101";
+.wikiglyph-article-check:after {
+	content: "\a\e101";
 }
-.wikiglyph-article-search:before {
-	content: "\e102";
+.wikiglyph-article-search:after {
+	content: "\a\e102";
 }
 
-.wikiglyph-trash:before {
-	content: "\e500";
+.wikiglyph-trash:after {
+	content: "\a\e500";
 }
-.wikiglyph-trash-slash:before {
-	content: "\e501";
+.wikiglyph-trash-slash:after {
+	content: "\a\e501";
 }
-.wikiglyph-block:before {
-	content: "\e502";
+.wikiglyph-block:after {
+	content: "\a\e502";
 }
-.wikiglyph-block-slash:before {
-	content: "\e503";
+.wikiglyph-block-slash:after {
+	content: "\a\e503";
 }
-.wikiglyph-flag:before {
-	content: "\e504";
+.wikiglyph-flag:after {
+	content: "\a\e504";
 }
-.wikiglyph-flag-slash:before {
-	content: "\e505";
+.wikiglyph-flag-slash:after {
+	content: "\a\e505";
 }
-.wikiglyph-play:before {
-	content: "\e506";
+.wikiglyph-play:after {
+	content: "\a\e506";
 }
-.wikiglyph-stop:before {
-	content: "\e507";
+.wikiglyph-stop:after {
+	content: "\a\e507";
 }
-.wikiglyph-lock:before {
-	content: "\e508";
+.wikiglyph-lock:after {
+	content: "\a\e508";
 }
 
 
 /* USER e600-602
 */
-.wikiglyph-user-bust:before {
-	content: "\e600";
+.wikiglyph-user-bust:after {
+	content: "\a\e600";
 }
-.wikiglyph-user-smile:before {
-	content: "\e601";
+.wikiglyph-user-smile:after {
+	content: "\a\e601";
 }
-.wikiglyph-user-sleep:before {
-	content: "\e602";
+.wikiglyph-user-sleep:after {
+	content: "\a\e602";
 }
 
 
 /* TRANSLATION e700
 */
-.wikiglyph-translate:before {
-	content: "\e700";
+.wikiglyph-translate:after {
+	content: "\a\e700";
 }
 
 
 /* CONTRIBUTION e800-845
 */
-.wikiglyph-pencil:before {
-	content: "\e800";
+.wikiglyph-pencil:after {
+	content: "\a\e800";
 }
-.wikiglyph-pencil-revert-full:before {
-	content: "\e801";
+.wikiglyph-pencil-revert-full:after {
+	content: "\a\e801";
 }
-.wikiglyph-pencil-revert-pt1:before {
-	content: "\e802";
+.wikiglyph-pencil-revert-pt1:after {
+	content: "\a\e802";
 }
-.wikiglyph-pencil-revert-pt2:before {
-	content: "\e803";
+.wikiglyph-pencil-revert-pt2:after {
+	content: "\a\e803";
 }
-.wikiglyph-pencil-lock-full:before {
-	content: "\e804";
+.wikiglyph-pencil-lock-full:after {
+	content: "\a\e804";
 }
-.wikiglyph-pencil-lock-pt1:before {
-	content: "\e805";
+.wikiglyph-pencil-lock-pt1:after {
+	content: "\a\e805";
 }
-.wikiglyph-pencil-lock-pt2:before {
-	content: "\e806";
+.wikiglyph-pencil-lock-pt2:after {
+	content: "\a\e806";
 }
-.wikiglyph-speech-bubble:before {
-	content: "\e810";
+.wikiglyph-speech-bubble:after {
+	content: "\a\e810";
 }
-.wikiglyph-speech-bubbles:before {
-	content: "\e811";
+.wikiglyph-speech-bubbles:after {
+	content: "\a\e811";
 }
-.wikiglyph-speech-bubble-add:before {
-	content: "\e812";
+.wikiglyph-speech-bubble-add:after {
+	content: "\a\e812";
 }
-.wikiglyph-speech-bubble-smile:before {
-	content: "\e813";
+.wikiglyph-speech-bubble-smile:after {
+	content: "\a\e813";
 }
-.wikiglyph-link:before {
-	content: "\e820";
+.wikiglyph-link:after {
+	content: "\a\e820";
 }
-.wikiglyph-quotes:before {
-	content: "\e830";
+.wikiglyph-quotes:after {
+	content: "\a\e830";
 }
-.wikiglyph-quotes-add:before {
-	content: "\e831";
+.wikiglyph-quotes-add:after {
+	content: "\a\e831";
 }
-.wikiglyph-image:before {
-	content: "\e840";
+.wikiglyph-image:after {
+	content: "\a\e840";
 }
-.wikiglyph-image-lock-full:before {
-	content: "\e841";
+.wikiglyph-image-lock-full:after {
+	content: "\a\e841";
 }
-.wikiglyph-image-lock-pt1:before {
-	content: "\e842";
+.wikiglyph-image-lock-pt1:after {
+	content: "\a\e842";
 }
-.wikiglyph-image-lock-pt2:before {
-	content: "\e843";
+.wikiglyph-image-lock-pt2:after {
+	content: "\a\e843";
 }
-.wikiglyph-image-add-full:before {
-	content: "\e844";
+.wikiglyph-image-add-full:after {
+	content: "\a\e844";
 }
-.wikiglyph-image-add-pt1:before {
-	content: "\e845";
+.wikiglyph-image-add-pt1:after {
+	content: "\a\e845";
 }
-.wikiglyph-image-add-pt2:before {
-	content: "\e846";
+.wikiglyph-image-add-pt2:after {
+	content: "\a\e846";
 }
-.wikiglyph-image-main-placeholder:before {
-	content: "\e847";
+.wikiglyph-image-main-placeholder:after {
+	content: "\a\e847";
 }
-.wikiglyph-folder:before {
-	content: "\e848";
+.wikiglyph-folder:after {
+	content: "\a\e848";
 }
-.wikiglyph-folder-main-placeholder:before {
-	content: "\e849";
+.wikiglyph-folder-main-placeholder:after {
+	content: "\a\e849";
 }
 
-.wikiglyph-cc:before {
-	content: "\e870";
+.wikiglyph-cc:after {
+	content: "\a\e870";
 }
-.wikiglyph-book:before {
-	content: "\e871";
+.wikiglyph-book:after {
+	content: "\a\e871";
 }
-.wikiglyph-journal:before {
-	content: "\e872";
+.wikiglyph-journal:after {
+	content: "\a\e872";
 }
-.wikiglyph-web:before {
-	content: "\e873";
+.wikiglyph-web:after {
+	content: "\a\e873";
 }
-.wikiglyph-news:before {
-	content: "\e874";
+.wikiglyph-news:after {
+	content: "\a\e874";
 }
 /* WIKI-X e900+
 */
-.wikiglyph-wikitrail:before {
-	content: "\e900";
+.wikiglyph-wikitrail:after {
+	content: "\a\e900";
 }
-.wikiglyph-wikicommons:before {
-	content: "\e901";
+.wikiglyph-wikicommons:after {
+	content: "\a\e901";
 }

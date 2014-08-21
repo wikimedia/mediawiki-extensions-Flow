@@ -9,7 +9,8 @@
             'mustlok' => false,
             'debug' => $debugopt,
         ),
-        'helpers' => Array(            'html' => 'Flow\TemplateHelper::htmlHelper',
+        'helpers' => Array(            'l10n' => 'Flow\TemplateHelper::l10n',
+            'html' => 'Flow\TemplateHelper::htmlHelper',
 ),
         'blockhelpers' => Array(),
         'hbhelpers' => Array(),
@@ -37,7 +38,7 @@
 		   '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isWatched'])) ? $in['isWatched'] : null))) ? 'flow-watch-link-unwatch' : 'mw-ui-quiet flow-watch-link-watch').'"
 		   data-flow-api-handler="watchItem"
 		   data-flow-api-target="< .flow-topic-watchlist"
-		   data-flow-api-method="POST">'.htmlentities(((is_array($in) && isset($in['null'])) ? $in['null'] : null), ENT_QUOTES, 'UTF-8').'<span class="wikiglyph wikiglyph-star"></span>'.htmlentities(((is_array($in) && isset($in['null'])) ? $in['null'] : null), ENT_QUOTES, 'UTF-8').''.htmlentities(((is_array($in) && isset($in['null'])) ? $in['null'] : null), ENT_QUOTES, 'UTF-8').'<span class="wikiglyph wikiglyph-unstar"></span>'.htmlentities(((is_array($in) && isset($in['null'])) ? $in['null'] : null), ENT_QUOTES, 'UTF-8').'</a>
+		   data-flow-api-method="POST">'.htmlentities(((is_array($in) && isset($in['null'])) ? $in['null'] : null), ENT_QUOTES, 'UTF-8').'<span class="wikiglyph wikiglyph-star">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-unwatch'),Array()), 'encq').'</span>'.htmlentities(((is_array($in) && isset($in['null'])) ? $in['null'] : null), ENT_QUOTES, 'UTF-8').''.htmlentities(((is_array($in) && isset($in['null'])) ? $in['null'] : null), ENT_QUOTES, 'UTF-8').'<span class="wikiglyph wikiglyph-unstar">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-watch'),Array()), 'encq').'</span>'.htmlentities(((is_array($in) && isset($in['null'])) ? $in['null'] : null), ENT_QUOTES, 'UTF-8').'</a>
 	</div>
 ' : '').'
 ';

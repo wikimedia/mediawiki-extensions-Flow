@@ -3,7 +3,7 @@
 	<div class="flow-error-container">
 		{{!-- placeholder for javascript injected errors --}}
 	</div>
-	{{!-- <a href="{{links.search.url}}" title="{{links.search.title}}" class="flow-board-navigator-last"><span class="wikiglyph wikiglyph-magnifying-glass flow-ui-tooltip-target" title="Search"></span></a> --}}
+	{{!-- <a href="{{links.search.url}}" title="{{links.search.title}}" class="flow-board-navigator-last"><span class="wikiglyph wikiglyph-magnifying-glass flow-ui-tooltip-target" title="Search">{{links.search.title}}</span></a> --}}
 	<div class="flow-board-navigation-inner">
 		{{#progressiveEnhancement}}
 			{{> flow_board_collapsers_subcomponent}}
@@ -21,7 +21,7 @@
 			{{else}}
 				{{l10n "flow-newest-topics"}}
 			{{/ifEquals}}
-			<span class="wikiglyph wikiglyph-caret-down"></span>
+			<span class="wikiglyph wikiglyph-caret-down">{{l10n "flow-sort"}}</span>
 		</a>
 	</div>
 	<div class="flow-board-filter-menu">
