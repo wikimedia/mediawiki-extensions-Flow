@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e322bf2_01f5b8c7",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-21T15:52:43Z",
+      "side": 1,
+      "message": "This somehow breaks \"cancel\" on a sub-level reply.\n\nWhen clicking \"reply\" under an existing post, then previewing whatever you enter there, then clicking \"cancel\", the edit form should be removed completely.\n\n(it works fine when cancelling a topic or topic-level post preview)",
+      "revId": "c1aa23adb5137df25706ae442ce671cf0da0293c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_a1fb84b9",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 2299,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-21T15:52:43Z",
+      "side": 1,
+      "message": "Unrelated to this patch.\n\nThroughout this function, $target does nothing (and we should probably clean that up \u0026 get rid of it as function argument, if it\u0027s unused)",
+      "revId": "c1aa23adb5137df25706ae442ce671cf0da0293c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
