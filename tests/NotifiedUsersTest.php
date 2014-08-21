@@ -63,10 +63,10 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 	protected function assertNotifiedUser( array $events, User $notifiedUser, User $notNotifiedUser ) {
 		$users = array();
 		foreach( $events as $event ) {
-			$users = array_merge(
-				$users,
-				EchoNotificationController::getUsersToNotifyForEvent( $event )
-			);
+			$iterator = EchoNotificationController::getUsersToNotifyForEvent( $event );
+			foreach( $iterator as $user ) {
+				$users[] = $user;
+			}
 		}
 
 		// convert user objects back into user ids to simplify assertion
