@@ -2,6 +2,8 @@
 namespace Flow\Tests;
 
 use Flow\Container;
+use Flow\Model\PostRevision;
+use Flow\Model\Workflow;
 use Flow\NotificationController;
 use EchoNotificationController;
 use User;
@@ -22,21 +24,20 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 			$this->markTestSkipped();
 			return;
 		}
-		extract( $data );
 
-		WatchedItem::fromUserTitle( $user, $topicWorkflow->getArticleTitle() )->addWatch();
+		WatchedItem::fromUserTitle( $data['user'], $data['topicWorkflow']->getArticleTitle() )->addWatch();
 
-		$events = $notificationController->notifyPostChange( 'flow-post-reply',
+		$events = $data['notificationController']->notifyPostChange( 'flow-post-reply',
 			array(
-				'topic-workflow' => $topicWorkflow,
-				'title' => $boardWorkflow->getOwnerTitle(),
-				'user' => $agent,
-				'reply-to' => $topic,
-				'topic-title' => $topic,
-				'revision' => $post,
+				'topic-workflow' => $data['topicWorkflow'],
+				'title' => $data['boardWorkflow']->getOwnerTitle(),
+				'user' => $data['agent'],
+				'reply-to' => $data['topic'],
+				'topic-title' => $data['topic'],
+				'revision' => $data['post'],
 			) );
 
-		$this->assertNotifiedUser( $events, $user, $agent );
+		$this->assertNotifiedUser( $events, $data['user'], $data['agent'] );
 	}
 
 	public function testWatchingBoard() {
@@ -45,19 +46,18 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 			$this->markTestSkipped();
 			return;
 		}
-		extract( $data );
 
-		WatchedItem::fromUserTitle( $user, $boardWorkflow->getArticleTitle() )->addWatch();
+		WatchedItem::fromUserTitle( $data['user'], $data['boardWorkflow']->getArticleTitle() )->addWatch();
 
-		$events = $notificationController->notifyNewTopic( array(
-			'board-workflow' => $boardWorkflow,
-			'topic-workflow' => $topicWorkflow,
-			'topic-title' => $topic,
-			'first-post' => $post,
-			'user' => $agent,
+		$events = $data['notificationController']->notifyNewTopic( array(
+			'board-workflow' => $data['boardWorkflow'],
+			'topic-workflow' => $data['topicWorkflow'],
+			'topic-title' => $data['topic'],
+			'first-post' => $data['post'],
+			'user' => $data['agent'],
 		) );
 
-		$this->assertNotifiedUser( $events, $user, $agent );
+		$this->assertNotifiedUser( $events, $data['user'], $data['agent'] );
 	}
 
 	protected function assertNotifiedUser( array $events, User $notifiedUser, User $notNotifiedUser ) {
@@ -76,6 +76,20 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 		$this->assertNotContains( $notNotifiedUser->getId(), $users );
 	}
 
+	/**
+	 * @return bool|array
+	 * {
+	 *     False on failure, or array with these keys:
+	 *
+	 *     @type Workflow $boardWorkflow
+	 *     @type Workflow $topicWorkflow
+	 *     @type PostRevision $post
+	 *     @type PostRevision $topic
+	 *     @type User $user
+	 *     @type User $agent
+	 *     @type NotificationController $notificationController
+	 * }
+	 */
 	protected function getTestData() {
 		$this->generateWorkflowForPost();
 		$topicWorkflow = $this->workflow;
@@ -111,14 +125,14 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 			->createWorkflowLoader( $topicWorkflow->getOwnerTitle() )
 			->getWorkflow();
 
-		return compact( array(
-				'boardWorkflow',
-				'topicWorkflow',
-				'post',
-				'topic',
-				'user',
-				'agent',
-				'notificationController',
-			) );
+		return array(
+			'boardWorkflow' => $boardWorkflow,
+			'topicWorkflow' => $topicWorkflow,
+			'post' => $post,
+			'topic' => $topic,
+			'user' => $user,
+			'agent' => $agent,
+			'notificationController' => $notificationController,
+		);
 	}
 }
