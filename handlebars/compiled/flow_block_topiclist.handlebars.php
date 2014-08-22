@@ -81,11 +81,6 @@
 
 
 <div class="flow-board">
-	<ul class="flow-topic-navigation flow-list" style="display:none;">
-	'.''.'
-</ul>
-
-
 	'.'
 	<div class="flow-newtopic-container">
 		<div class="flow-nojs">

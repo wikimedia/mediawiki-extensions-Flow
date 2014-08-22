@@ -165,9 +165,6 @@
 		var parameters = Array.prototype.slice.call( arguments, 1 ),
 			strings = ( {
 				"Reply": "Reply", // TODO: pass in and parse $author['gender']
-				"Topics_n": function ( count, options ) {
-					return "Topics (" + count + ")";
-				},
 
 				// @todo - use real i18n message keys instead of cancatenation
 				"started_with_participants": function ( context, options ) {
@@ -176,9 +173,6 @@
 						", with " + ( context.author_count - 1 ) + " other participant" +
 							( context.author_count > 2 ? 's' : '' )
 						) : '' );
-				},
-				"topic_count_sidebar": function ( context, options ) {
-					return "Showing " + context.topics.length + " of " + context.topic_count + " topics attached to this page";
 				},
 				"comment_count": function ( context, options ) {
 						return context.reply_count + " comment" + ( !context.reply_count || context.reply_count > 1 ? 's' : '' );
