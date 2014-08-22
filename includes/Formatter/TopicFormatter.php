@@ -94,7 +94,7 @@ class TopicFormatter {
 		do {
 			$data = $stack->pop();
 			$replies++;
-			$authors[] = $data['author']['wiki'] . "\t" . $data['author']['name'];
+			$authors[] = $data['author']['name'];
 			foreach ( $data['replies'] as $postId ) {
 				$stack->push( $revisions[$posts[$postId][0]] );
 			}
@@ -102,9 +102,14 @@ class TopicFormatter {
 
 		$workflow = isset( $workflows[$postAlphaId] ) ? $workflows[$postAlphaId] : null;
 
+		$authors = array_unique( $authors );
+		$authorCount = count( $authors );
+		$lastAuthor = end( $authors );
 		return array(
 			'reply_count' => $replies,
-			'author_count' => count( array_unique( $authors ) ),
+			'unnamed_author_count' => $lastAuthor === $authors[0] ? $authorCount - 1 : $authorCount - 2,
+			'last_author_name' => $lastAuthor,
+			'author_count' => $authorCount,
 			// ms timestamp
 			'last_updated' => $workflow ? $workflow->getLastModifiedObj()->getTimestamp() * 1000 : null,
 		);
