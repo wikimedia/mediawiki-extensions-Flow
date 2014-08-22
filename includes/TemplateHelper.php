@@ -222,40 +222,19 @@ class TemplateHelper {
 			);
 			break;
 
-		case '_time': // ???
-			break;
-
-		case 'timeago':
-			$ts = new \MWTimestamp( $args[0] );
-			return $ts->getHumanTimestamp();
-
-		case 'active_ago':
-			$ts = new \MWTimestamp( $args[0] );
-			$message = wfMessage(
-				'flow-active-ago',
-				$ts->getHumanTimestamp()
-			);
-			break;
-
-		case 'started_ago':
-			$ts = new \MWTimestamp( $args[0] );
-			$message = wfMessage(
-				'flow-started-ago',
-				$ts->getHumanTimestamp()
-			);
-			break;
-
-		case 'edited_ago':
-			$ts = new \MWTimestamp( $args[0] );
-			$message = wfMessage(
-				'flow-edited-ago',
-				$ts->getHumanTimestamp()
-			);
+		case 'time':
+			// This one is not really used right now. The parsing of
+			// "x time ago" is done client-side (see its radically different
+			// implementation of the "timestamp" helper, which is the only place
+			// these l10n's are used)
 			break;
 
 		case 'datetime':
-			$ts = new \MWTimestamp( $args[0] );
-			return $ts->getHumanTimestamp();
+			// This one is not really used right now. The parsing of
+			// "x time ago" is done client-side (see its radically different
+			// implementation of the "timestamp" helper, which is the only place
+			// these l10n's are used)
+			break;
 		}
 
 		if ( $message ) {
