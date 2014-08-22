@@ -215,23 +215,6 @@ class TemplateHelper {
 			$message = wfMessage( $str, $moderator );
 			break;
 
-		case 'started_with_participants':
-			$topicTitle = $args[0];
-			$message = wfMessage(
-				'flow-topic-participants-second-try',
-				$topicTitle['creator']['name'],
-				$topicTitle['author_count'] - 1
-			);
-			break;
-
-		case 'comment_count':
-			$topicTitle = $args[0];
-			$message = wfMessage(
-				'flow-topic-comment-count',
-				$topicTitle['reply_count']
-			);
-			break;
-
 		case 'time':
 			$message = wfMessage(
 				$args[0],
