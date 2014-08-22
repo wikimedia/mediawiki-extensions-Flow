@@ -67,7 +67,6 @@ $wgResourceModules += array(
 			"flow_topic_titlebar.handlebars",
 			"flow_topic_titlebar_close.handlebars",
 			"flow_topic_titlebar_watch.handlebars",
-			"flow_topic_navigation.handlebars",
 			"flow_topic_titlebar_content.handlebars",
 			"flow_topic_titlebar_summary.handlebars",
 			"flow_topiclist_loop.handlebars",
