@@ -2,11 +2,11 @@
 
 namespace Flow\Formatter;
 
-use Flow\Anchor;
 use Flow\Collection\PostCollection;
 use Flow\Data\UserNameBatch;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
+use Flow\Model\Anchor;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\UUID;

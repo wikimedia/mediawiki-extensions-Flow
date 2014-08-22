@@ -1,6 +1,6 @@
 <?php
 
-use Flow\Anchor;
+use Flow\Model\Anchor;
 use Flow\Model\UUID;
 
 /**

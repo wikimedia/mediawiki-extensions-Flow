@@ -1,6 +1,6 @@
 <?php
 
-namespace Flow;
+namespace Flow\Model;
 
 use Html;
 use Message;
