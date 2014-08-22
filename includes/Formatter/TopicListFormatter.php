@@ -158,9 +158,11 @@ class TopicListFormatter {
 
 		$workflow = isset( $workflows[$postAlphaId] ) ? $workflows[$postAlphaId] : null;
 
+		$authorCount = count( array_unique( $authors ) );
 		return array(
 			'reply_count' => $replies,
-			'author_count' => count( array_unique( $authors ) ),
+			'unnamed_author_count' => $authorCount - 1,
+			'author_count' => $authorCount,
 			// ms timestamp
 			'last_updated' => $workflow ? $workflow->getLastModifiedObj()->getTimestamp() * 1000 : null,
 		);
