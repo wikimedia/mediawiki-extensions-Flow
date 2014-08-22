@@ -829,6 +829,43 @@ $c['reference.extractor'] = $c->share( function( $c ) {
 						'target' => $imageName,
 					);
 				},
+			/*
+			 * Parsoid currently returns images that don't exist like:
+			 * <meta typeof="mw:Placeholder" data-parsoid='{"src":"[[File:Image.png|25px]]","optList":[{"ck":"width","ak":"25px"}],"dsr":[0,23,null,null]}'>
+			 *
+			 * Links to those should also be registered, but since they're
+			 * different nodes than what we expect above, we'll have to deal
+			 * with them ourselves. This may change some day, as Parsoids
+			 * codebase has a FIXME "Handle missing images properly!!"
+			 */
+			'//*[starts-with(@typeof, "mw:Placeholder")]' =>
+				function( $element ) {
+					$data = FormatJson::decode( $element->getAttribute( 'data-parsoid' ), true );
+					if ( !isset( $data['src'] ) ) {
+						return null;
+					}
+
+					/*
+					 * Parsoid only gives us the raw source to play with. Run it
+					 * through Parser to make sure we're dealing with an image
+					 * and get the image name.
+					 */
+					global $wgParser;
+					$output = $wgParser->parse( $data['src'], Title::newFromText( 'Main Page' ), new \ParserOptions );
+
+					$file = $output->getImages();
+					if ( !$file ) {
+						return null;
+					}
+					// $file looks like array( 'Foo.jpg' => 1 )
+					$image = Title::newFromText( key( $file ), NS_FILE );
+
+					return array(
+						'refType' => 'file',
+						'targetType' => 'wiki',
+						'target' => $image->getPrefixedDBkey(),
+					);
+				},
 			'//a[@rel="mw:WikiLink"][not(@typeof)]' =>
 				function( $element ) {
 					$parsoidData = FormatJson::decode( $element->getAttribute( 'data-parsoid' ), true );
