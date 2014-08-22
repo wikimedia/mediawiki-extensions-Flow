@@ -203,20 +203,6 @@
 					return mw.msg.call( this, msgKeyPrefix + suffix, Math.floor( new_time ) );
 				},
 
-				// FIXME: Kill the above 4 in favour of the generic time helper parameter
-				"time_ago": function ( secondsAgo ) {
-					return this.time( 'flow-time-ago', secondsAgo );
-				},
-				"active_ago": function ( secondsAgo ) {
-					return this.time( 'flow-active-ago', secondsAgo );
-				},
-				"started_ago": function ( secondsAgo ) {
-					return this.time( 'flow-started-ago', secondsAgo );
-				},
-				"edited_ago": function ( secondsAgo ) {
-					return this.time( 'flow-edited-ago', secondsAgo );
-				},
-
 				"datetime": function ( timestamp ) {
 					return ( new Date( timestamp ) ).toLocaleString();
 				}
@@ -268,9 +254,10 @@
 
 	/**
 	 * Parses the timestamp out of a base-36 UUID, and calls timestamp with it.
-	 * @example {{uuidTimestamp id "started_ago"}}
+	 * @example {{uuidTimestamp id "flow-message-x-"}}
 	 * @param {String} uuid id
-	 * @param {String} str
+	 * @param {String} str a message key prefix  which when combined with 'second', 'minute', 'hour',
+	 *                 'week' matches an i18n message
 	 * @param {bool} [timeAgoOnly]
 	 * @returns {String}
 	 */
@@ -284,9 +271,10 @@
 
 	/**
 	 * Generates markup for an "nnn sssss ago" and date/time string.
-	 * @example {{timestamp start_time "started_ago"}}
+	 * @example {{timestamp start_time "flow-message-x-"}}
 	 * @param {int} timestamp milliseconds
-	 * @param {String} str
+	 * @param {String} str a message key prefix which when combined with 'second', 'minute', 'hour',
+	 *                 'week' matches an i18n message
 	 * @param {bool} [timeAgoOnly]
 	 * @returns {String|undefined}
 	 */
@@ -301,7 +289,7 @@
 
 		if ( seconds_ago < 2419200 ) {
 			// Return "n ago" for only dates less than 4 weeks ago
-			time_ago = FlowHandlebars.prototype.l10n( str, seconds_ago );
+			time_ago = FlowHandlebars.prototype.l10n( 'time', str, seconds_ago );
 
 			if ( timeAgoOnly === true ) {
 				// timeAgoOnly: return only this text

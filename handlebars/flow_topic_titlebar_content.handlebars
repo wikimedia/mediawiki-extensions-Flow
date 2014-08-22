@@ -20,9 +20,9 @@
 	{{l10n "flow-topic-comments" reply_count}} &bull;
 
 	{{#if last_updated}}
-		<!--span class="wikiglyph wikiglyph-speech-bubbles"></span--> {{timestamp last_updated "active_ago"}}
+		<!--span class="wikiglyph wikiglyph-speech-bubbles"></span--> {{timestamp last_updated "flow-active-ago"}}
 	{{else}}
-		<!--span class="wikiglyph wikiglyph-speech-bubble"></span--> {{uuidTimestamp postId "started_ago"}}
+		<!--span class="wikiglyph wikiglyph-speech-bubble"></span--> {{uuidTimestamp postId "flow-started-ago"}}
 	{{/if}}
 </div>
 <span class="flow-reply-count"><span class="wikiglyph wikiglyph-speech-bubble"></span><span class="flow-reply-count-number">{{reply_count}}</span></span>
