@@ -799,91 +799,11 @@ $c['logger'] = $c->share( function( $c ) {
 $c['reference.extractor'] = $c->share( function( $c ) {
 	return new Flow\Parsoid\ReferenceExtractor(
 		array(
-			'//*[starts-with(@typeof, "mw:Image")]' =>
-				function( $element ) {
-					$imgNode = $element->getElementsByTagName( 'img' )->item( 0 );
-					$data = FormatJson::decode( $imgNode->getAttribute( 'data-parsoid' ), true );
-					$imageName = $data['sa']['resource'];
-
-					return array(
-						'refType' => 'file',
-						'targetType' => 'wiki',
-						'target' => $imageName,
-					);
-				},
-			/*
-			 * Parsoid currently returns images that don't exist like:
-			 * <meta typeof="mw:Placeholder" data-parsoid='{"src":"[[File:Image.png|25px]]","optList":[{"ck":"width","ak":"25px"}],"dsr":[0,23,null,null]}'>
-			 *
-			 * Links to those should also be registered, but since they're
-			 * different nodes than what we expect above, we'll have to deal
-			 * with them ourselves. This may change some day, as Parsoids
-			 * codebase has a FIXME "Handle missing images properly!!"
-			 */
-			'//*[starts-with(@typeof, "mw:Placeholder")]' =>
-				function( $element ) {
-					$data = FormatJson::decode( $element->getAttribute( 'data-parsoid' ), true );
-					if ( !isset( $data['src'] ) ) {
-						return null;
-					}
-
-					/*
-					 * Parsoid only gives us the raw source to play with. Run it
-					 * through Parser to make sure we're dealing with an image
-					 * and get the image name.
-					 */
-					global $wgParser;
-					$output = $wgParser->parse( $data['src'], Title::newFromText( 'Main Page' ), new \ParserOptions );
-
-					$file = $output->getImages();
-					if ( !$file ) {
-						return null;
-					}
-					// $file looks like array( 'Foo.jpg' => 1 )
-					$image = Title::newFromText( key( $file ), NS_FILE );
-
-					return array(
-						'refType' => 'file',
-						'targetType' => 'wiki',
-						'target' => $image->getPrefixedDBkey(),
-					);
-				},
-			'//a[@rel="mw:WikiLink"][not(@typeof)]' =>
-				function( $element ) {
-					$parsoidData = FormatJson::decode( $element->getAttribute( 'data-parsoid' ), true );
-					$linkTarget = $parsoidData['sa']['href'];
-
-					return array(
-						'refType' => 'link',
-						'targetType' => 'wiki',
-						'target' => $linkTarget,
-					);
-				},
-			'//a[@rel="mw:ExtLink"]' =>
-				function( $element ) {
-					$href = urldecode( $element->getAttribute( 'href' ) );
-
-					return array(
-						'refType' => 'link',
-						'targetType' => 'url',
-						'target' => $href,
-					);
-				},
-			'//*[@typeof="mw:Transclusion"]' =>
-				function( $element ) {
-					$data = json_decode( $element->getAttribute( 'data-mw' ) );
-					$templateTarget = Title::newFromText( $data->parts[0]->template->target->wt, NS_TEMPLATE );
-
-					if ( !$templateTarget ) {
-						return null;
-					}
-
-					return array(
-						'refType' => 'template',
-						'targetType' => 'wiki',
-						'target' => $templateTarget->getPrefixedText(),
-					);
-				},
+			new Flow\Parsoid\Extractor\ImageExtractor,
+			new Flow\Parsoid\Extractor\PlaceholderExtractor,
+			new Flow\Parsoid\Extractor\WikiLinkExtractor,
+			new Flow\Parsoid\Extractor\ExtLinkExtractor,
+			new Flow\Parsoid\Extractor\TransclusionExtractor,
 		)
 	);
 } );

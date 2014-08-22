@@ -6,11 +6,11 @@ use Flow\Exception\InvalidInputException;
 use Title;
 
 abstract class Reference {
+	const TYPE_LINK = 'link';
+
 	protected $workflowId, $title, $objectType, $objectId, $type;
 
-	protected $validTypes = array(
-		'link',
-	);
+	protected $validTypes = array( self::TYPE_LINK );
 
 	/**
 	 * Standard constructor. Called from subclasses only
@@ -115,6 +115,9 @@ abstract class Reference {
 }
 
 class WikiReference extends Reference {
+	const TYPE_FILE = 'file';
+	const TYPE_TEMPLATE = 'template';
+
 	protected $target;
 
 	/**
@@ -130,8 +133,8 @@ class WikiReference extends Reference {
 
 		$this->validTypes = array_merge( $this->validTypes,
 			array(
-				'file',
-				'template',
+				self::TYPE_FILE,
+				self::TYPE_TEMPLATE,
 			)
 		);
 
