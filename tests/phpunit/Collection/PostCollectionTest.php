@@ -1,8 +1,9 @@
 <?php
 
-namespace Flow\Tests;
+namespace Flow\Tests\Collection;
 
 use Flow\Collection\PostCollection;
+use Flow\Tests\PostRevisionTestCase;
 
 /**
  * @group Flow

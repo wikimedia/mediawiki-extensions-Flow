@@ -1,9 +1,10 @@
 <?php
 
-namespace Flow\Tests;
+namespace Flow\Tests\SpamFilter;
 
-use Flow\SpamFilter\SpamBlacklist;
 use Flow\Model\PostRevision;
+use Flow\SpamFilter\SpamBlacklist;
+use Flow\Tests\PostRevisionTestCase;
 use Title;
 
 /**

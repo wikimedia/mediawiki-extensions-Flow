@@ -1,13 +1,14 @@
 <?php
 
-namespace Flow\Tests;
+namespace Flow\Tests\Formatter;
 
 use Flow\Container;
 use Flow\Formatter\FormatterRow;
 use Flow\Formatter\RevisionFormatter;
 use Flow\Model\UUID;
-use Title;
+use Flow\Tests\FlowTestCase;
 use Flow\UrlGenerator;
+use Title;
 
 /**
  * @group Flow

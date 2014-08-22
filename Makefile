@@ -71,7 +71,7 @@ csscss: gems
 # Testing
 ###
 phpunit:
-	cd ${MW_INSTALL_PATH}/tests/phpunit && php phpunit.php --configuration ${MW_INSTALL_PATH}/extensions/Flow/tests/flow.suite.xml --group=Flow
+	cd ${MW_INSTALL_PATH}/tests/phpunit && ${PHP} phpunit.php --configuration ${MW_INSTALL_PATH}/extensions/Flow/tests/phpunit/flow.suite.xml --group=Flow
 
 qunit:
 	@scripts/qunit.sh

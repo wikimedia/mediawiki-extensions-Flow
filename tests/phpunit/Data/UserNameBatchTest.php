@@ -1,9 +1,10 @@
 <?php
 
-namespace Flow\Tests;
+namespace Flow\Tests\Data;
 
 use Flow\Data\UserNameBatch;
 use Flow\Data\UserNameQuery;
+use Flow\Tests\FlowTestCase;
 
 /**
  * @group Database

@@ -4,11 +4,11 @@ namespace Flow\Tests;
 
 use Flow\Container;
 use Flow\FlowActions;
-use Flow\Model\PostRevision;
 use Flow\Model\AbstractRevision;
+use Flow\Model\PostRevision;
 use Flow\RevisionActionPermissions;
-use User;
 use Block;
+use User;
 
 /**
  * @group Database

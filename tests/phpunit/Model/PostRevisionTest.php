@@ -1,9 +1,10 @@
 <?php
 
-namespace Flow\Tests;
+namespace Flow\Tests\Model;
 
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
+use Flow\Tests\PostRevisionTestCase;
 
 /**
  * @group Flow

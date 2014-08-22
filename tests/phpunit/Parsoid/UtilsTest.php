@@ -1,8 +1,9 @@
 <?php
 
-namespace Flow\Tests;
+namespace Flow\Tests\Parsoid;
 
 use Flow\Parsoid\Utils;
+use Flow\Tests\FlowTestCase;
 
 /**
  * @group Flow

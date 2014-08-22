@@ -1,8 +1,9 @@
 <?php
 
-namespace Flow\Tests;
+namespace Flow\Tests\Model;
 
 use Flow\Model\UUID;
+use Flow\Tests\FlowTestCase;
 
 /**
  * @group Flow

@@ -4,7 +4,7 @@ namespace Flow\Tests;
 
 use Flow\Container;
 use Flow\Model\UUID;
-use \Title;
+use Title;
 
 /**
  * @group Flow
