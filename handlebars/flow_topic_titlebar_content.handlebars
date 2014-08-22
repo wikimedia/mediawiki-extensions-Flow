@@ -5,8 +5,9 @@
 		{{l10n "post_moderation_state" moderateState replyToId moderator.name~}}
 	</div>
 {{/if}}
-<span class="flow-author">{{l10n "started_with_participants" this}}</span>
+<span class="flow-author">{{l10n "flow-topic-participants-js" author_count unnamed_author_count creator.name}}</span>
 <div class="flow-topic-meta">
+<<<<<<< HEAD
 	{{#if actions.reply}}
 		<a href="#flow-post-{{postId}}-form-content"
 		   title="{{actions.reply.title}}"
@@ -19,6 +20,12 @@
 
 	{{l10n "comment_count" this}} &bull;
 
+=======
+	<a class="mw-ui-progressive mw-ui-quiet"
+		 data-flow-interactive-handler="activateForm"
+		 href="#flow-post-{{postId}}-form-content">{{l10n "Reply" author}}</a>
+	&bull; {{l10n "flow-topic-comment-count" reply_count}} &bull;
+>>>>>>> 57a995d... i18n: Allow translation of participants and comment_count
 	{{#if last_updated}}
 		<!--span class="wikiglyph wikiglyph-speech-bubbles"></span--> {{timestamp last_updated "flow-active-ago"}}
 	{{else}}

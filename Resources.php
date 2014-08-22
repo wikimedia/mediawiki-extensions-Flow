@@ -108,6 +108,9 @@ $wgResourceModules += array(
 			'flow-toggle-small-topics',
 			'flow-toggle-topics',
 			'flow-toggle-topics-posts',
+			// FIXME: Use flow-topic-participants when bug 69993 is resolved.
+			'flow-topic-participants-js',
+			'flow-topic-comment-count',
 			'flow-topic-action-hide-topic',
 			'flow-topic-action-close-topic',
 			'flow-topic-action-delete-topic',
