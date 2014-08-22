@@ -205,15 +205,6 @@ class TemplateHelper {
 			$message = wfMessage( $str, $moderator );
 			break;
 
-		case 'started_with_participants':
-			$topicTitle = $args[0];
-			$message = wfMessage(
-				'flow-topic-participants-second-try',
-				$topicTitle['creator']['name'],
-				$topicTitle['author_count'] - 1
-			);
-			break;
-
 		case 'time':
 			// This one is not used right now. The parsing of
 			// "x time ago" is done client-side (see its radically different
