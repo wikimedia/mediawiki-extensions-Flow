@@ -8,9 +8,9 @@ use Flow\Data\ReferenceRecorder;
 use Flow\Exception\WikitextException;
 use Flow\LinksTableUpdater;
 use Flow\Model\AbstractRevision;
-use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Parsoid\ReferenceExtractor;
+use Flow\Parsoid\ReferenceFactory;
 use Flow\Parsoid\Utils;
 use ParserOutput;
 use Title;
@@ -83,7 +83,7 @@ class LinksTableTest extends PostRevisionTestCase {
 				'[[Foo]]',
 				array(
 					array(
-						'targetType' => 'wiki',
+						'factoryMethod' => 'createWikiReference',
 						'refType' => 'link',
 						'value' => 'Foo',
 					),
@@ -93,7 +93,7 @@ class LinksTableTest extends PostRevisionTestCase {
 				'[http://www.google.com Foo]',
 				array(
 					array(
-						'targetType' => 'url',
+						'factoryMethod' => 'createUrlReference',
 						'refType' => 'link',
 						'value' => 'http://www.google.com',
 					),
@@ -103,7 +103,7 @@ class LinksTableTest extends PostRevisionTestCase {
 				'[[File:Foo.jpg]]',
 				array(
 					array(
-						'targetType' => 'wiki',
+						'factoryMethod' => 'createWikiReference',
 						'refType' => 'file',
 						'value' => 'File:Foo.jpg',
 					),
@@ -113,7 +113,7 @@ class LinksTableTest extends PostRevisionTestCase {
 				'{{Foo}}',
 				array(
 					array(
-						'targetType' => 'wiki',
+						'factoryMethod' => 'createWikiReference',
 						'refType' => 'template',
 						'value' => 'Template:Foo',
 					),
@@ -123,22 +123,22 @@ class LinksTableTest extends PostRevisionTestCase {
 				'{{Foo}} [[Foo]] [[File:Foo.jpg]] {{Foo}} [[Bar]]',
 				array(
 					array(
-						'targetType' => 'wiki',
+						'factoryMethod' => 'createWikiReference',
 						'refType' => 'template',
 						'value' => 'Template:Foo',
 					),
 					array(
-						'targetType' => 'wiki',
+						'factoryMethod' => 'createWikiReference',
 						'refType' => 'link',
 						'value' => 'Foo',
 					),
 					array(
-						'targetType' => 'wiki',
+						'factoryMethod' => 'createWikiReference',
 						'refType' => 'file',
 						'value' => 'File:Foo.jpg',
 					),
 					array(
-						'targetType' => 'wiki',
+						'factoryMethod' => 'createWikiReference',
 						'refType' => 'link',
 						'value' => 'Bar',
 					),
@@ -187,22 +187,22 @@ class LinksTableTest extends PostRevisionTestCase {
 			array( /* list of arguments */
 				array( /* list of references */
 					array( /* list of parameters */
-						'targetType' => 'wiki',
+						'factoryMethod' => 'createWikiReference',
 						'refType' => 'template',
 						'value' => 'Template:Foo',
 					),
 					array(
-						'targetType' => 'wiki',
+						'factoryMethod' => 'createWikiReference',
 						'refType' => 'link',
 						'value' => 'Foo',
 					),
 					array(
-						'targetType' => 'wiki',
+						'factoryMethod' => 'createWikiReference',
 						'refType' => 'file',
 						'value' => 'File:Foo.jpg',
 					),
 					array(
-						'targetType' => 'wiki',
+						'factoryMethod' => 'createWikiReference',
 						'refType' => 'link',
 						'value' => 'Bar',
 					),
@@ -393,22 +393,10 @@ class LinksTableTest extends PostRevisionTestCase {
 
 	protected function expandReferences( Workflow $workflow, AbstractRevision $revision, array $references ) {
 		$referenceObjs = array();
+		$factory = new ReferenceFactory( $workflow, $revision->getRevisionType(), $revision->getCollectionId() );
 
 		foreach( $references as $ref ) {
-			$srcObjId = $revision->getCollectionId();
-			if ( isset( $foreign ) ) {
-				// From some random place
-				$srcObjId = UUID::create();
-			}
-
-			$referenceObjs[] = $this->extractor->instantiateReference(
-				$workflow,
-				$revision->getRevisionType(),
-				$srcObjId,
-				$ref['targetType'],
-				$ref['refType'],
-				$ref['value']
-			);
+			$referenceObjs[] = $factory->{$ref['factoryMethod']}( $ref['refType'], $ref['value'] );
 		}
 
 		return $referenceObjs;
@@ -417,45 +405,44 @@ class LinksTableTest extends PostRevisionTestCase {
 	protected static function getSampleReferences() {
 		return array(
 			'fooLink' => array(
-				'targetType' => 'wiki',
+				'factoryMethod' => 'createWikiReference',
 				'refType' => 'link',
 				'value' => 'Foo',
 			),
 			'subpageLink' => array(
-				'targetType' => 'wiki',
+				'factoryMethod' => 'createWikiReference',
 				'refType' => 'link',
 				'value' => '/Subpage',
 			),
 			'fooLink2' => array(
-				'targetType' => 'wiki',
+				'factoryMethod' => 'createWikiReference',
 				'refType' => 'link',
 				'value' => 'foo',
 			),
 			'barLink' => array(
-				'targetType' => 'wiki',
+				'factoryMethod' => 'createWikiReference',
 				'refType' => 'link',
 				'value' => 'Bar',
 			),
 			'fooTemplate' => array(
-				'targetType' => 'wiki',
+				'factoryMethod' => 'createWikiReference',
 				'refType' => 'template',
 				'value' => 'Template:Foo',
 			),
 			'googleLink' => array(
-				'targetType' => 'url',
+				'factoryMethod' => 'createUrlReference',
 				'refType' => 'link',
 				'value' => 'http://www.google.com'
 			),
 			'fooImage' => array(
-				'targetType' => 'wiki',
+				'factoryMethod' => 'createWikiReference',
 				'refType' => 'file',
 				'value' => 'File:Foo.jpg',
 			),
 			'foreignFoo' => array(
-				'targetType' => 'wiki',
+				'factoryMethod' => 'createWikiReference',
 				'refType' => 'link',
 				'value' => 'Foo',
-				'foreign' => true,
 			),
 		);
 	}

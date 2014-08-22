@@ -75,7 +75,6 @@ $wgAutoloadClasses['Flow\Parsoid\ContentFixer'] = $dir . 'includes/Parsoid/Conte
 $wgAutoloadClasses['Flow\Parsoid\Redlinker'] = $dir . 'includes/Parsoid/Redlinker.php';
 $wgAutoloadClasses['Flow\Parsoid\BadImageRemover'] = $dir . 'includes/Parsoid/BadImageRemover.php';
 $wgAutoloadClasses['Flow\BaseUrlGenerator'] = $dir . 'includes/BaseUrlGenerator.php';
-$wgAutoloadClasses['Flow\Parsoid\ReferenceExtractor'] = $dir . 'includes/Parsoid/ReferenceExtractor.php';
 $wgAutoloadClasses['Flow\UrlGenerator'] = $dir . 'includes/UrlGenerator.php';
 $wgAutoloadClasses['Flow\View'] = $dir . 'includes/View.php';
 $wgAutoloadClasses['Flow\BlockFactory'] = $dir . 'includes/BlockFactory.php';
@@ -235,6 +234,14 @@ $wgAutoloadClasses['Flow\Model\Reference'] = "$dir/includes/Model/Reference.php"
 $wgAutoloadClasses['Flow\Model\WikiReference'] = "$dir/includes/Model/Reference.php";
 $wgAutoloadClasses['Flow\Model\URLReference'] = "$dir/includes/Model/Reference.php";
 $wgAutoloadClasses['Flow\Data\ReferenceRecorder'] = "$dir/includes/Data/ReferenceRecorder.php";
+$wgAutoloadClasses['Flow\Parsoid\ReferenceExtractor'] = $dir . 'includes/Parsoid/ReferenceExtractor.php';
+$wgAutoloadClasses['Flow\Parsoid\ReferenceFactory'] = $dir . 'includes/Parsoid/ReferenceFactory.php';
+$wgAutoloadClasses['Flow\Parsoid\ExtractorInterface'] = $dir . 'includes/Parsoid/ExtractorInterface.php';
+$wgAutoloadClasses['Flow\Parsoid\Extractor\ExtLinkExtractor'] = $dir . 'includes/Parsoid/Extractor/ExtLinkExtractor.php';
+$wgAutoloadClasses['Flow\Parsoid\Extractor\ImageExtractor'] = $dir . 'includes/Parsoid/Extractor/ImageExtractor.php';
+$wgAutoloadClasses['Flow\Parsoid\Extractor\PlaceholderExtractor'] = $dir . 'includes/Parsoid/Extractor/PlaceholderExtractor.php';
+$wgAutoloadClasses['Flow\Parsoid\Extractor\TransclusionExtractor'] = $dir . 'includes/Parsoid/Extractor/TransclusionExtractor.php';
+$wgAutoloadClasses['Flow\Parsoid\Extractor\WikiLinkExtractor']  = $dir . 'includes/Parsoid/Extractor/WikiLinkExtractor.php';
 
 // Watchlist
 $wgAutoloadClasses['Flow\WatchedTopicItems'] = "$dir/includes/WatchedTopicItems.php";

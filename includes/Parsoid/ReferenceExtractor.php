@@ -15,86 +15,55 @@ use MWException;
  * from Parsoid HTML.
  */
 class ReferenceExtractor {
-	protected $handlers;
+	/**
+	 * @var Extractor\ExtractorInterface[]
+	 */
+	protected $extractors;
 
-	public function __construct( $handlers ) {
-		$this->handlers = $handlers;
+	/**
+	 * @param Extractor\ExtractorInterface[] $extractors
+	 */
+	public function __construct( $extractors ) {
+		$this->extractors = $extractors;
 	}
 
+	/**
+	 * @param Workflow $workflow
+	 * @param string $objectType
+	 * @param UUID $objectId
+	 * @param string $text
+	 * @return array
+	 */
 	public function getReferences( Workflow $workflow, $objectType, UUID $objectId, $text ) {
-		$referenceList = $this->extractReferences( $text );
-		$references = array();
-
-		foreach( $referenceList as $ref ) {
-			if ( !$ref ) {
-				continue;
-			}
-
-			$reference = $this->instantiateReference(
-				$workflow,
-				$objectType,
-				$objectId,
-				$ref['targetType'],
-				$ref['refType'],
-				$ref['target']
-			);
-			if ( $reference ) {
-				$references[] = $reference;
-			}
-		}
-
-		return $references;
+		return $this->extractReferences(
+			new ReferenceFactory( $workflow, $objectType, $objectId ),
+			$text
+		);
 	}
 
-	public function extractReferences( $text ) {
+	protected function extractReferences( ReferenceFactory $factory, $text ) {
 		$dom = Utils::createDOM( '<?xml encoding="utf-8" ?>' . $text );
 
 		$output = array();
 
 		$xpath = new DOMXPath( $dom );
 
-		foreach( $this->handlers as $query => $handler ) {
-			$elements = $xpath->query( $query );
+		foreach( $this->extractors as $extractor ) {
+			$elements = $xpath->query( $extractor->getXPath() );
 
 			if ( ! $elements ) {
-				throw new MWException( "No results for $query" );
+				$class = get_class( $extractor );
+				throw new MWException( "Malformed xpath from $class: $query" );
 			}
 
 			foreach( $elements as $element ) {
-				$output[] = $handler( $element );
+				$ref = $extractor->perform( $factory, $element );
+				if ( $ref !== null ) {
+					$output[] = $ref;
+				}
 			}
 		}
 
 		return $output;
-	}
-
-	public function instantiateReference( Workflow $workflow, $objectType, UUID $objectId, $targetType, $refType, $value ) {
-		if ( $targetType === 'url' ) {
-			return new URLReference(
-				$workflow->getId(),
-				$workflow->getArticleTitle(),
-				$objectType,
-				$objectId,
-				$refType,
-				$value
-			);
-		} elseif ( $targetType === 'wiki' ) {
-			$title = Utils::createRelativeTitle( $value, $workflow->getArticleTitle() );
-
-			if ( $title === null ) {
-				return null;
-			}
-
-			return new WikiReference(
-				$workflow->getId(),
-				$workflow->getArticleTitle(),
-				$objectType,
-				$objectId,
-				$refType,
-				$title
-			);
-		} else {
-			throw new InvalidInputException( "Invalid type" );
-		}
 	}
 }
