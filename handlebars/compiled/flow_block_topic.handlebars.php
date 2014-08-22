@@ -48,7 +48,7 @@
 		class="wikiglyph '.LCRun3::hbch($cx, 'ifEquals', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'close'),Array()), $in, function($cx, $in) {return 'wikiglyph-stop';}).''.LCRun3::hbch($cx, 'ifEquals', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'hide'),Array()), $in, function($cx, $in) {return 'wikiglyph-flag';}).''.LCRun3::hbch($cx, 'ifEquals', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'delete'),Array()), $in, function($cx, $in) {return 'wikiglyph-trash';}).'"></span>
 		'.LCRun3::ch($cx, 'l10n', Array(Array('post_moderation_state',((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),((is_array($in) && isset($in['replyToId'])) ? $in['replyToId'] : null),((is_array($in['moderator']) && isset($in['moderator']['name'])) ? $in['moderator']['name'] : null)),Array()), 'encq').'</div>
 ' : '').'
-<span class="flow-author">'.LCRun3::ch($cx, 'l10n', Array(Array('started_with_participants',$in),Array()), 'encq').'</span>
+<span class="flow-author">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-participants-js',((is_array($in) && isset($in['author_count'])) ? $in['author_count'] : null),((is_array($in) && isset($in['unnamed_author_count'])) ? $in['unnamed_author_count'] : null),((is_array($in['creator']) && isset($in['creator']['name'])) ? $in['creator']['name'] : null)),Array()), 'encq').'</span>
 <div class="flow-topic-meta">
 	'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['reply'])) ? $in['actions']['reply'] : null))) ? '
 		<a href="#flow-post-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'-form-content"
@@ -58,12 +58,11 @@
 		&bull;
 	' : '').'
 
-	'.LCRun3::ch($cx, 'l10n', Array(Array('comment_count',$in),Array()), 'encq').' &bull;
-
+	'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-comment-count',((is_array($in) && isset($in['reply_count'])) ? $in['reply_count'] : null)),Array()), 'encq').' &bull;
 	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['last_updated'])) ? $in['last_updated'] : null))) ? '
-		<!--span class="wikiglyph wikiglyph-speech-bubbles"></span--> '.LCRun3::ch($cx, 'timestamp', Array(Array(((is_array($in) && isset($in['last_updated'])) ? $in['last_updated'] : null),'active_ago'),Array()), 'encq').'
+		<!--span class="wikiglyph wikiglyph-speech-bubbles"></span--> '.LCRun3::ch($cx, 'timestamp', Array(Array(((is_array($in) && isset($in['last_updated'])) ? $in['last_updated'] : null),'flow-active-ago'),Array()), 'encq').'
 	' : '
-		<!--span class="wikiglyph wikiglyph-speech-bubble"></span--> '.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null),'started_ago'),Array()), 'encq').'
+		<!--span class="wikiglyph wikiglyph-speech-bubble"></span--> '.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null),'flow-started-ago'),Array()), 'encq').'
 	').'
 </div>
 <span class="flow-reply-count"><span class="wikiglyph wikiglyph-speech-bubble"></span><span class="flow-reply-count-number">'.htmlentities(((is_array($in) && isset($in['reply_count'])) ? $in['reply_count'] : null), ENT_QUOTES, 'UTF-8').'</span></span>

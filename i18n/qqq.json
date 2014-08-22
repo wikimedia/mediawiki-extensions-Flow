@@ -377,5 +377,6 @@
 	"flow-time-ago-hour": "A statement described the time passed since an event. Parameters\n * $1 - hours that have passed since event.",
 	"flow-time-ago-minute": "A statement described the time passed since an event. Parameters\n * $1 - minutes that have passed since event.",
 	"flow-time-ago-second": "A statement described the time passed since an event. Parameters\n * $1 - seconds that have passed since event.",
-	"flow-time-ago-week": "A statement described the time passed since an event. Parameters\n * $1 - weeks that have passed since event."
+	"flow-time-ago-week": "A statement described the time passed since an event. Parameters\n * $1 - weeks that have passed since event.",
+	"flow-topic-participants-js": "A simplified version of {{msg-mw|flow-topic-participants}} which exists whilst bug 69993 is open. Parameters:\\n* $1 - number of participants in topic\\n* $2 - number of participants excluding the named user given in $3.\\n* $3 - The name of the creator"
 }
