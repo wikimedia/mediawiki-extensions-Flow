@@ -108,6 +108,8 @@ $wgResourceModules += array(
 			'flow-toggle-small-topics',
 			'flow-toggle-topics',
 			'flow-toggle-topics-posts',
+			'flow-topic-participants',
+			'flow-topic-comment-count',
 			'flow-topic-action-hide-topic',
 			'flow-topic-action-close-topic',
 			'flow-topic-action-delete-topic',
