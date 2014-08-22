@@ -79,12 +79,11 @@ class RevisionViewFormatter {
 			),
 			'title' => wfMessage( 'hist' )
 		);
+
+		$boardTitle = $row->workflow->getOwnerTitle();
 		$links['board'] = array(
-			'url' => $this->urlGenerator->generateUrl(
-				$row->workflow,
-				'view'
-			),
-			'title' => $row->workflow->getArticleTitle()
+			'url' => $this->urlGenerator->boardLink( $boardTitle )->getFullURL(),
+			'title' => $boardTitle
 		);
 		if ( $row->revision instanceof PostRevision || $row->revision instanceof PostSummary ) {
 			$links['root'] = array(
