@@ -169,19 +169,19 @@
 					return "Topics (" + count + ")";
 				},
 
-				// @todo - use real i18n message keys instead of cancatenation
 				"started_with_participants": function ( context, options ) {
-					return context.creator.name + " started this topic" +
-						( context.author_count > 1 ? (
-						", with " + ( context.author_count - 1 ) + " other participant" +
-							( context.author_count > 2 ? 's' : '' )
-						) : '' );
+					return mw.msg( 'flow-topic-participants',
+						context.author_count,
+						context.author_count - 3,
+						context.creator.name
+						// Note other parameters currently unused
+					);
 				},
 				"topic_count_sidebar": function ( context, options ) {
 					return "Showing " + context.topics.length + " of " + context.topic_count + " topics attached to this page";
 				},
 				"comment_count": function ( context, options ) {
-						return context.reply_count + " comment" + ( !context.reply_count || context.reply_count > 1 ? 's' : '' );
+					return mw.msg( 'flow-topic-comment-count', context.reply_count );
 				},
 				"post_moderation_state": function( type, replyToId, name ) {
 					var str;
