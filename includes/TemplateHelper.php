@@ -222,33 +222,9 @@ class TemplateHelper {
 			);
 			break;
 
-		case '_time': // ???
-			break;
-
-		case 'timeago':
-			$ts = new \MWTimestamp( $args[0] );
-			return $ts->getHumanTimestamp();
-
-		case 'active_ago':
-			$ts = new \MWTimestamp( $args[0] );
+		case 'time':
 			$message = wfMessage(
-				'flow-active-ago',
-				$ts->getHumanTimestamp()
-			);
-			break;
-
-		case 'started_ago':
-			$ts = new \MWTimestamp( $args[0] );
-			$message = wfMessage(
-				'flow-started-ago',
-				$ts->getHumanTimestamp()
-			);
-			break;
-
-		case 'edited_ago':
-			$ts = new \MWTimestamp( $args[0] );
-			$message = wfMessage(
-				'flow-edited-ago',
+				$args[0],
 				$ts->getHumanTimestamp()
 			);
 			break;
