@@ -370,5 +370,6 @@
     "flow-time-ago-hour": "$1 {{PLURAL:$1|hour|hours}} ago",
     "flow-time-ago-minute": "$1 {{PLURAL:$1|minute|minutes}} ago",
     "flow-time-ago-second": "$1 {{PLURAL:$1|second|seconds}} ago",
-    "flow-time-ago-week": "$1 {{PLURAL:$1|week|weeks}} ago"
+    "flow-time-ago-week": "$1 {{PLURAL:$1|week|weeks}} ago",
+    "flow-topic-participants-js": "{{PLURAL:$1|$3 started this topic|{{GENDER:$3|$3}} and $2 {{PLURAL:$2|other|others}}|0=No participation yet}}"
 }

@@ -164,17 +164,6 @@
 	function flowMessages( str ) {
 		var parameters = Array.prototype.slice.call( arguments, 1 ),
 			strings = ( {
-				// @todo - use real i18n message keys instead of cancatenation
-				"started_with_participants": function ( context, options ) {
-					return context.creator.name + " started this topic" +
-						( context.author_count > 1 ? (
-						", with " + ( context.author_count - 1 ) + " other participant" +
-							( context.author_count > 2 ? 's' : '' )
-						) : '' );
-				},
-				"comment_count": function ( context, options ) {
-						return context.reply_count + " comment" + ( !context.reply_count || context.reply_count > 1 ? 's' : '' );
-				},
 				"post_moderation_state": function( type, replyToId, name ) {
 					var str;
 					if ( !replyToId ) {
