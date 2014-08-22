@@ -330,7 +330,6 @@
     "flow-started-ago-minute": "Started $1 {{PLURAL:$1|minute|minutes}} ago",
     "flow-started-ago-second": "Started $1 {{PLURAL:$1|second|seconds}} ago",
     "flow-started-ago-week": "Started $1 {{PLURAL:$1|week|weeks}} ago",
-    "flow-edited-ago": "Edited $1",
     "flow-edited-ago-day": "Edited $1 {{PLURAL:$1|day|days}} ago",
     "flow-edited-ago-hour": "Edited $1 {{PLURAL:$1|hour|hours}} ago",
     "flow-edited-ago-minute": "Edited $1 {{PLURAL:$1|minute|minutes}} ago",
