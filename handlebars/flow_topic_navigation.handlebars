@@ -8,9 +8,9 @@
 					{{math @index "+" "1"}}. {{escapeContent content.format content.content}}
 					<span class="flow-topic-navigator-meta">
 						{{#if last_updated}}
-							{{timestamp last_updated "active_ago"}}
+							{{timestamp last_updated "flow-active-ago-"}}
 						{{else}}
-							{{uuidTimestamp postId "started_ago"}}
+							{{uuidTimestamp postId "flow-started-ago-"}}
 						{{/if}}
 					</span>
 				</a>
