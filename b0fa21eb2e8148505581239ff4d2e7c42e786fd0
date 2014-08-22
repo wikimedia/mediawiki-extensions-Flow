@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e322bf2_e1d3c203",
+        "filename": "container.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-22T20:34:07Z",
+      "side": 1,
+      "message": "these masses of implementation really don\u0027t belong in container.php.  I\u0027ve submitted a followup https://gerrit.wikimedia.org/r/155805 to move these to a more appropriate place",
+      "revId": "b0fa21eb2e8148505581239ff4d2e7c42e786fd0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
