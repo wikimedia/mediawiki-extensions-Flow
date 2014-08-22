@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e322bf2_a2c37f09",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-22T14:35:59Z",
+      "side": 1,
+      "message": "Update this example as well",
+      "revId": "96e5d54b02459bd23c7b86836b494db263f38dae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_8269a31f",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-22T14:35:59Z",
+      "side": 1,
+      "message": "Update this example as well",
+      "revId": "96e5d54b02459bd23c7b86836b494db263f38dae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
