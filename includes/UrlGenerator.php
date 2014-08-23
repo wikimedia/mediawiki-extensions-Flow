@@ -3,6 +3,7 @@
 namespace Flow;
 
 use Flow\Model\AbstractRevision;
+use Flow\Model\Anchor;
 use Flow\Model\UUID;
 use SpecialPage;
 use Title;

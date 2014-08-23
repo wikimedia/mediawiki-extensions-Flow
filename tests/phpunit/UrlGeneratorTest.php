@@ -48,7 +48,7 @@ class UrlGeneratorTest extends FlowTestCase {
 	 */
 	public function testBoardLink( Title $title, $sortBy = null, $saveSortBy = false ) {
 		$anchor = $this->urlGenerator->boardLink( $title, $sortBy, $saveSortBy );
-		$this->assertInstanceOf( '\Flow\Anchor', $anchor );
+		$this->assertInstanceOf( '\Flow\Model\Anchor', $anchor );
 
 		$link = $anchor->getFullURL();
 		$option = parse_url( $link );
@@ -89,7 +89,7 @@ class UrlGeneratorTest extends FlowTestCase {
 	 */
 	public function testWatchTopicLink( Title $title, $workflowId ) {
 		$anchor = $this->urlGenerator->watchTopicLink( $title, $workflowId );
-		$this->assertInstanceOf( '\Flow\Anchor', $anchor );
+		$this->assertInstanceOf( '\Flow\Model\Anchor', $anchor );
 
 		$link = $anchor->getFullURL();
 		$option = parse_url( $link );
@@ -103,7 +103,7 @@ class UrlGeneratorTest extends FlowTestCase {
 	 */
 	public function testUnwatchTopicLink( Title $title, $workflowId ) {
 		$anchor = $this->urlGenerator->unwatchTopicLink( $title, $workflowId );
-		$this->assertInstanceOf( '\Flow\Anchor', $anchor );
+		$this->assertInstanceOf( '\Flow\Model\Anchor', $anchor );
 
 		$link = $anchor->getFullURL();
 		$option = parse_url( $link );

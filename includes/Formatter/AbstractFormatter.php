@@ -2,8 +2,8 @@
 
 namespace Flow\Formatter;
 
-use Flow\Anchor;
 use Flow\Container;
+use Flow\Model\Anchor;
 use Flow\Model\PostRevision;
 use Flow\RevisionActionPermissions;
 use Html;

@@ -2,8 +2,8 @@
 
 namespace Flow\Formatter;
 
-use Flow\Anchor;
 use Flow\Data\PagerPage;
+use Flow\Model\Anchor;
 use Flow\Model\Workflow;
 use Flow\Templating;
 use Flow\UrlGenerator;

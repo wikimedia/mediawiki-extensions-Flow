@@ -74,7 +74,6 @@ $wgAutoloadClasses['Flow\Parsoid\Controller'] = $dir . 'includes/Parsoid/Control
 $wgAutoloadClasses['Flow\Parsoid\ContentFixer'] = $dir . 'includes/Parsoid/ContentFixer.php';
 $wgAutoloadClasses['Flow\Parsoid\Redlinker'] = $dir . 'includes/Parsoid/Redlinker.php';
 $wgAutoloadClasses['Flow\Parsoid\BadImageRemover'] = $dir . 'includes/Parsoid/BadImageRemover.php';
-$wgAutoloadClasses['Flow\Anchor'] = $dir . 'includes/Anchor.php';
 $wgAutoloadClasses['Flow\BaseUrlGenerator'] = $dir . 'includes/BaseUrlGenerator.php';
 $wgAutoloadClasses['Flow\Parsoid\ReferenceExtractor'] = $dir . 'includes/Parsoid/ReferenceExtractor.php';
 $wgAutoloadClasses['Flow\UrlGenerator'] = $dir . 'includes/UrlGenerator.php';
@@ -106,6 +105,7 @@ $wgAutoloadClasses['Flow\Content\BoardContentHandler'] = "$dir/includes/Content/
 $wgAutoloadClasses['Flow\Data\OccupationListener'] = "$dir/includes/Data/OccupationListener.php";
 
 // Classes that model our data
+$wgAutoloadClasses['Flow\Model\Anchor'] = $dir . 'includes/Model/Anchor.php';
 $wgAutoloadClasses['Flow\Model\Metadata'] = $dir . 'includes/Model/Metadata.php';
 $wgAutoloadClasses['Flow\Model\AbstractRevision'] = $dir . 'includes/Model/AbstractRevision.php';
 $wgAutoloadClasses['Flow\Model\PostRevision'] = $dir . 'includes/Model/PostRevision.php';

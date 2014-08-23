@@ -3,6 +3,7 @@
 namespace Flow;
 
 use Flow\Exception\InvalidActionException;
+use Flow\Model\Anchor;
 use Flow\Model\Workflow;
 use Html;
 use IContextSource;
