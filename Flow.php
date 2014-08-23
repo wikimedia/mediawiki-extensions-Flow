@@ -264,8 +264,8 @@ $wgAutoloadClasses['Flow\Actions\ModerateTopicAction'] = $dir . 'includes/Action
 $wgAutoloadClasses['Flow\Actions\ModeratePostAction'] = $dir . 'includes/Actions/ModeratePostAction.php';
 
 // phpunit helper
-$wgAutoloadClasses['Flow\Tests\FlowTestCase'] = $dir . 'tests/FlowTestCase.php';
-$wgAutoloadClasses['Flow\Tests\PostRevisionTestCase'] = $dir . 'tests/PostRevisionTestCase.php';
+$wgAutoloadClasses['Flow\Tests\FlowTestCase'] = $dir . 'tests/phpunit/FlowTestCase.php';
+$wgAutoloadClasses['Flow\Tests\PostRevisionTestCase'] = $dir . 'tests/phpunit/PostRevisionTestCase.php';
 
 // API modules
 $wgAutoloadClasses['ApiQueryFlow'] = "$dir/includes/api/ApiQueryFlow.php";

@@ -1,8 +1,9 @@
 <?php
 
-namespace Flow;
+namespace Flow\Tests;
 
 use Lightncandy;
+use Flow\TemplateHelper;
 
 /**
  * @group Flow

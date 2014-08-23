@@ -174,7 +174,13 @@ class FlowHooks {
 	 * @return bool true in all cases
 	 */
 	static function getUnitTests( &$files ) {
-		$files = array_merge( $files, glob( __DIR__ . '/tests/*Test.php' ) );
+		$it = new \RecursiveDirectoryIterator( __DIR__ . '/tests/phpunit' );
+		$it = new \RecursiveIteratorIterator( $it );
+		foreach ( $it as $path => $file ) {
+			if ( substr( $path, -8 ) === 'Test.php' ) {
+				$files[] = $path;
+			}
+		}
 		return true;
 	}
 

@@ -1,6 +1,8 @@
 <?php
 
-namespace Flow\Tests;
+namespace Flow\Tests\Data;
+
+use Flow\Tests\FlowTestCase;
 
 /**
  * @group Flow

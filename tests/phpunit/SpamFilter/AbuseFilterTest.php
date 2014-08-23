@@ -1,9 +1,10 @@
 <?php
 
-namespace Flow\Tests;
+namespace Flow\Tests\SpamFilter;
 
-use Flow\SpamFilter\AbuseFilter;
 use Flow\Model\PostRevision;
+use Flow\SpamFilter\AbuseFilter;
+use Flow\Tests\PostRevisionTestCase;
 use Title;
 use User;
 

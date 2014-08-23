@@ -1,14 +1,15 @@
 <?php
 
-namespace Flow\Tests;
+namespace Flow\Tests\Collection;
 
 use Flow\Container;
 use Flow\FlowActions;
 use Flow\Model\PostRevision;
 use Flow\Model\AbstractRevision;
 use Flow\RevisionActionPermissions;
-use User;
+use Flow\Tests\PostRevisionTestCase;
 use Block;
+use User;
 
 /**
  * @group Database

@@ -1,12 +1,13 @@
 <?php
 
-namespace Flow\Tests;
+namespace Flow\Tests\Data;
 
 use Flow\Container;
 use Flow\Data\BufferedCache;
-use Flow\Data\UniqueFeatureIndex;
-use Flow\Data\TopKIndex;
 use Flow\Data\FeatureIndex;
+use Flow\Data\TopKIndex;
+use Flow\Data\UniqueFeatureIndex;
+use Flow\Tests\FlowTestCase;
 
 /**
  * @group Flow

@@ -1,10 +1,11 @@
 <?php
 
-namespace Flow\Tests;
+namespace Flow\Tests\Repository;
 
 use Flow\Data\BufferedCache;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
+use Flow\Tests\FlowTestCase;
 use ReflectionClass;
 
 /**

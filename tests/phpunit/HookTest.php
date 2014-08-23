@@ -9,7 +9,7 @@ use RecentChange;
 /**
  * @group Flow
  */
-class HookTest extends \MediaWikiTestCase {
+class HookTest extends FlowTestCase {
 	static public function onIRCLineURLProvider() {
 		// specific uuid's dont mean anything, just repeatability
 		$workflowAlpha = 'rs2l7n89pmch81qy';

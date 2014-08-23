@@ -1,11 +1,12 @@
 <?php
 
-namespace Flow\Tests;
+namespace Flow\Tests\Data;
 
 use Closure;
 use ReflectionClass;
 use Flow\Data\UserNameBatch;
 use Flow\Data\UserNameListener;
+use Flow\Tests\FlowTestCase;
 
 /**
  * @group Database

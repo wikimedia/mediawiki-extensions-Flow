@@ -1,17 +1,18 @@
 <?php
 
-namespace Flow;
+namespace Flow\Tests\Parsoid;
 
-use MediaWikiTestCase;
+use Flow\Container;
 use Flow\Exception\WikitextException;
 use Flow\Parsoid\Utils;
+use Flow\Tests\FlowTestCase;
 use Title;
 
 /**
  * @group Database
  * @group Flow
  */
-class ReferenceExtractorTestCase extends MediaWikiTestCase {
+class ReferenceExtractorTestCase extends FlowTestCase {
 	public function setUp() {
 		parent::setUp();
 

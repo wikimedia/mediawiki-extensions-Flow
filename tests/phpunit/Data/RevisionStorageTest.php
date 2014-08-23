@@ -1,8 +1,9 @@
 <?php
 
-namespace Flow\Tests;
+namespace Flow\Tests\Data;
 
 use Flow\Data\PostRevisionStorage;
+use Flow\Tests\FlowTestCase;
 
 /**
  * @group Flow
