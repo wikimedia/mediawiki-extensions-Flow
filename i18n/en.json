@@ -356,6 +356,7 @@
     "flow-topic-participants-second-try": "{{PLURAL:$2|0=$1 {{GENDER:$1|started}} this topic|1=$1 {{GENDER:$1|started}} this topic and there was one other participant|$1 {{GENDER:$1|started}} this topic and there were $2 other participants}}",
     "flow-topic-permalink-warning": "This topic was started on [$2 $1]",
     "flow-topic-permalink-warning-user-board": "This topic was started on [$2 {{GENDER:$1|$1}}'s board]",
+    "flow-topic-reply": "Reply",
     "flow-user-moderated": "Moderated user",
     "flow-whatlinkshere-header": "from the [$1 header]",
     "flow-whatlinkshere-post": "from a [$1 post]",

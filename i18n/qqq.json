@@ -360,6 +360,7 @@
 	"flow-topic-participants-second-try": "Message to display the amount of participants in this topic (and potentially a couple of names).\n\nParameters:\n* $1 - The username that created the topic.\n* $2 - The number of participants in the topic in addition to the topic creator.",
 	"flow-topic-permalink-warning": "Displayed at the top of a page when a person has clicked on a permanent link to a topic.\n\nParameters:\n* $1 - display text for a link to the board that the topic comes from\n* $2 - URL for a link to the board that the topic comes from\nSee also:\n* {{msg-mw|Flow-topic-permalink-warning-user-board}}",
 	"flow-topic-permalink-warning-user-board": "Displayed at the top of a page when a person has clicked on a permanent link to a topic from a user's board.\n\nParameters:\n* $1 - the user's name. Supports GENDER.\n* $2 - URL for a link to the board that the topic comes from\nSee also:\n* {{msg-mw|Flow-topic-permalink-warning}}",
+	"flow-topic-reply": "Reply to topic button label.",
 	"flow-user-moderated": "Name to display when the current user is not allowed to see the users name due to moderation",
 	"flow-whatlinkshere-header": "Displayed in parentheses on [[Special:WhatLinksHere]] for an entry that relates to a Flow Board header.\n\nParameters:\n* $1 - a URL to the header\nSee also:\n* {{msg-mw|Flow-whatlinkshere-post}}",
 	"flow-whatlinkshere-post": "Displayed in parentheses on [[Special:WhatLinksHere]] for an entry that relates to a Flow post.\n\nParameters:\n* $1 - a URL to the post\nSee also:\n* {{msg-mw|Flow-whatlinkshere-header}}",
