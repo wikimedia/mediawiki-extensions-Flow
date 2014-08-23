@@ -686,7 +686,7 @@ $c['formatter.irclineurl'] = $c->share( function( $c ) {
 } );
 
 $c['formatter.checkuser'] = $c->share( function( $c ) {
-	return new Flow\Formatter\CheckUser(
+	return new Flow\Formatter\CheckUserFormatter(
 		$c['permissions'],
 		$c['formatter.revision']
 	);

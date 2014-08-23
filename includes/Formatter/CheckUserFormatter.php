@@ -4,7 +4,7 @@ namespace Flow\Formatter;
 
 use IContextSource;
 
-class CheckUser extends AbstractFormatter {
+class CheckUserFormatter extends AbstractFormatter {
 	protected function getHistoryType() {
 		return 'checkuser';
 	}

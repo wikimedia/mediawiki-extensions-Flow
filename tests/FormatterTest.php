@@ -70,7 +70,7 @@ class FormatterTest extends FlowTestCase {
 		// Code uses wfWarn as a louder wfDebugLog in error conditions.
 		// but phpunit considers a warning a fail.
 		wfSuppressWarnings();
-		$links = $this->createFormatter( 'Flow\Formatter\CheckUser' )->format( $row, $ctx );
+		$links = $this->createFormatter( 'Flow\Formatter\CheckUserFormatter' )->format( $row, $ctx );
 		wfRestoreWarnings();
 		$test( $this, $message, $links );
 	}
