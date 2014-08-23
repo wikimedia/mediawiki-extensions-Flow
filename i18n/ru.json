@@ -9,7 +9,8 @@
 			"Tucvbif",
 			"Meshkov.a",
 			"Agilight",
-			"HarpyWar"
+			"HarpyWar",
+			"Nirovulf"
 		]
 	},
 	"flow-desc": "Система управления потоками работ",
@@ -63,6 +64,8 @@
 	"flow-topic-action-unhide-topic": "Отобразить тему",
 	"flow-topic-action-undelete-topic": "Восстановить тему",
 	"flow-topic-action-restore-topic": "Восстановить тему",
+	"flow-topic-notification-subscribe-description": "Вы будете получать уведомления обо всех действиях по этой теме.",
+	"flow-board-notification-subscribe-description": "Вы будете автоматически подписаны на все новые темы, созданные на этом форуме.",
 	"flow-error-http": "Произошла ошибка при обращении к серверу.",
 	"flow-error-other": "Произошла непредвиденная ошибка.",
 	"flow-error-external": "Произошла ошибка.<br />Было получено следующее сообщение об ошибке: $1",
@@ -81,6 +84,7 @@
 	"flow-error-insufficient-permission": "Недостаточно прав для доступа к содержимому.",
 	"flow-error-fail-load-data": "Не удалось загрузить запрошенные данные.",
 	"flow-error-no-commit": "Настройка не может быть сохранена.",
+	"flow-error-move": "Перемещение доски обсуждений в настоящее время не поддерживается.",
 	"flow-edit-header-submit": "Сохранить заголовок",
 	"flow-edit-header-submit-overwrite": "Перезаписать заголовок",
 	"flow-summarize-topic-submit": "Суммировать",
