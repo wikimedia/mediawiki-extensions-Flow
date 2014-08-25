@@ -33,6 +33,57 @@
       "revId": "8b2feeb2fa5a56e7bbffa87c0a8d1234a1c491e4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_19c2ba88",
+        "filename": "handlebars/flow_block_topic_reply.handlebars",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-25T12:17:19Z",
+      "side": 1,
+      "message": "use {{actions.reply.title}}",
+      "revId": "8b2feeb2fa5a56e7bbffa87c0a8d1234a1c491e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_39de9671",
+        "filename": "handlebars/flow_topic_titlebar_content.handlebars",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-25T12:17:19Z",
+      "side": 1,
+      "message": "I think we can just use {{actions.reply}} here (similar to posts)",
+      "revId": "8b2feeb2fa5a56e7bbffa87c0a8d1234a1c491e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_f9e7ee39",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-25T12:17:19Z",
+      "side": 1,
+      "message": "Don\u0027t need this anymore, now that all {{l10n \"Reply\"}} occurrences have been updated?",
+      "revId": "8b2feeb2fa5a56e7bbffa87c0a8d1234a1c491e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
