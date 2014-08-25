@@ -125,7 +125,7 @@
 			}
 
 			// Render content
-			content = Handlebars.compile( this.innerHTML )();
+			content = Handlebars.compile( this.innerHTML.replace( '</progressivescript>', '</script>' ) )();
 
 			// Inject the content
 			switch ( data.type ) {
@@ -524,7 +524,7 @@
 				( hash.target ? ' data-target="' + hash.target +'"' : '' ) +
 				( hash.id ? ' id="' + hash.id + '"' : '' ) +
 			'>' +
-				options.fn( this ) +
+				options.fn( this ).replace( '</script>', '</progressivescript>' ) +
 			'</scr' + 'ipt>'
 		);
 	};
@@ -651,11 +651,11 @@
 		if ( contentFormat === 'html' ) {
 			retval = $( content ).text();
 		} else {
-			// @todo handle wikitext -> plaintext
+			// @todo handle wikitext -> plaintext?
 			retval = content;
 		}
 
-		return retval.trim().substr( 0, 200 );
+		return retval ? retval.trim().substr( 0, 200 ) : '';
 	};
 
 	/**

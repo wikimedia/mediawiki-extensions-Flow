@@ -13,6 +13,10 @@ class TopicFormatter {
 		$this->serializer = $serializer;
 	}
 
+	public function setContentFormat( $contentFormat, UUID $revisionId = null ) {
+		$this->serializer->setContentFormat( $contentFormat, $revisionId );
+	}
+
 	public function getEmptyResult( Workflow $workflow ) {
 		return array(
 			'workflowId' => $workflow->getId()->getAlphadecimal(),
