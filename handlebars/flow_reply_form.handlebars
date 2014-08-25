@@ -1,6 +1,6 @@
 {{#if actions.reply}}
-	<form class="flow-post flow-reply-form" data-flow-initial-state="collapsed" method="POST" action="{{actions.reply.url}}">
-	    <input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
+	<form class="flow-post flow-reply-form" method="POST" action="{{actions.reply.url}}" id="flow-reply-{{postId}}">
+	    <input type="hidden" name="wpEditToken" value="{{@root.rootBlock.editToken}}" />
 		<input type="hidden" name="topic_replyTo" value="{{postId}}" />
 		{{> flow_errors }}
 
@@ -12,17 +12,16 @@
 				name="topic_content"
 				required
 				data-flow-preview-template="flow_post"
-				data-flow-expandable="true"
 				class="mw-ui-input"
 				type="text"
 				placeholder="{{l10n "flow-reply-topic-title-placeholder" (plaintextSnippet content.format content.content)}}"
 				data-role="content">
-			{{~#ifEquals @root.submitted.postId postId~}}
-				{{~@root.submitted.content~}}
+			{{~#ifEquals @root.rootBlock.submitted.postId postId~}}
+				{{~@root.rootBlock.submitted.content~}}
 			{{~/ifEquals~}}
 		</textarea>
 
-		<div class="flow-form-actions flow-form-collapsible">
+		<div class="flow-form-actions">
 			<button data-role="submit"
 			        class="mw-ui-button mw-ui-constructive"
 			        data-flow-interactive-handler="apiRequest"
