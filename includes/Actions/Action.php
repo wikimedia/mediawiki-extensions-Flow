@@ -35,6 +35,9 @@ class FlowAction extends Action {
 		$this->showForAction( $this->getName() );
 	}
 
+	/**
+	 * @FIXME - Is this method executed from anywhere?
+	 */
 	public function execute() {
 		$childContext = new DerivativeContext( RequestContext::getMain() );
 		$childContext->setOutput( new OutputPage( $childContext ) );
