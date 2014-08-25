@@ -60,18 +60,21 @@
 							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-close-topic'),Array()), 'encq').'
 						').'
 				</button>
-				<button data-flow-api-handler="preview"
-        data-flow-api-target="< form textarea"
-        name="preview"
-        data-role="action"
-        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
+				'.LCRun3::hbch($cx, 'progressiveEnhancement', Array(Array(),Array()), $in, function($cx, $in) {return '
+	<button data-flow-api-handler="preview"
+	        data-flow-api-target="< form textarea"
+	        name="preview"
+	        data-role="action"
+	        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right"
+	>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
 
-'.LCRun3::hbch($cx, 'progressiveEnhancement', Array(Array(),Array()), $in, function($cx, $in) {return '
 	<button data-flow-interactive-handler="cancelForm"
 	        data-role="cancel"
 	        type="reset"
-	        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
+	        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right"
+	>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
 ';}).'
+
 				<small class="flow-terms-of-use plainlinks">
 					'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? '
 						'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-terms-of-use-reopen-topic'),Array()), 'encq').'
