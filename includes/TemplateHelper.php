@@ -175,6 +175,10 @@ class TemplateHelper {
 	static public function processTemplate( $templateName, $args, array $scopes = array() ) {
 		// Undesirable, but lightncandy helpers have to be static methods
 		$template = Container::get( 'lightncandy' )->getTemplate( $templateName );
+		// ugly hack...remove someday
+		if ( !array_key_exists( 'rootBlock', $args ) ) {
+			$args['rootBlock'] = $args;
+		}
 		return call_user_func( $template, $args, $scopes );
 	}
 
@@ -593,15 +597,16 @@ class TemplateHelper {
 		$target = empty( $input['target'] ) ? '' : 'data-target="' . htmlspecialchars( $input['target'] ) . '"';
 		$sectionId = empty( $input['id'] ) ? '' : 'id="' . htmlspecialchars( $input['id'] ) . '"';
 
+
 		return self::html(
 			'<script name="handlebars-template-progressive-enhancement"' .
 				' type="text/x-handlebars-template-progressive-enhancement"' .
 				' data-type="' . $insertionType . '"' .
 				' ' . $target .
 				' ' . $sectionId .
-			'>' .
-				$fn() .
-			'</script>'
+			'>/*<![CDATA[*/' .
+				str_replace( '</script>', '</progressivescript>', $fn() ) .
+			'/*]]>*/</script>'
 		);
 	}
 

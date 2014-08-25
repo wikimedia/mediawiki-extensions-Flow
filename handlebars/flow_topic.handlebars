@@ -1,8 +1,12 @@
-<div class="flow-topic flow-element-collapsible {{#unless isPreview}}flow-load-interactive{{/unless}} {{#if moderateState}}flow-topic-moderatestate-{{moderateState}}{{/if}} {{#if isModerated}}flow-topic-moderated flow-element-collapsed{{/if}}"
+<div class="flow-topic flow-element-collapsible
+            {{#unless isPreview}}flow-load-interactive{{/unless}}
+            {{#if moderateState}}flow-topic-moderatestate-{{moderateState}}{{/if}}
+            {{#if isModerated}}flow-topic-moderated flow-element-collapsed{{/if}}"
      id="flow-topic-{{postId}}"
      data-flow-id="{{postId}}"
      data-flow-load-handler="collapserState"
-     data-flow-collapser-set="topics">
+     data-flow-collapser-set="topics"
+>
 	{{>flow_topic_titlebar}}
 
 	{{#if @root.posts}}
@@ -15,6 +19,20 @@
 	{{/if}}
 
 	{{#unless isPreview}}
-		{{> flow_reply_form}}
+		{{#if actions.reply}}
+			{{#ifEquals @root.submitted.postId postId}}
+				{{> flow_reply_form}}
+			{{else}}
+				{{#progressiveEnhancement type="replace" target="~ a"}}
+					{{> flow_reply_form}}
+				{{/progressiveEnhancement}}
+				<a href="{{actions.reply.url}}"
+				   title="{{actions.reply.title}}"
+				   class="mw-ui-input flow-post"
+				>
+					{{~l10n "flow-reply-topic-title-placeholder" (plaintextSnippet content.format content.content)~}}
+				</a>
+			{{/ifEquals}}
+		{{/if}}
 	{{/unless}}
 </div>
