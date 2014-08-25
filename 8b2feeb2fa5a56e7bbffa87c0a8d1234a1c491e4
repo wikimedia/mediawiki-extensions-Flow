@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "4e322bf2_8a488a8d",
+        "filename": "handlebars/compiled/flow_block_topiclist.handlebars.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-08-25T18:09:36Z",
+      "side": 1,
+      "message": "I guess it\u0027s how the compiler works...",
+      "parentUuid": "4e322bf2_de7d38e6",
+      "revId": "8b2feeb2fa5a56e7bbffa87c0a8d1234a1c491e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e322bf2_19c2ba88",
         "filename": "handlebars/flow_block_topic_reply.handlebars",
         "patchSetId": 1
