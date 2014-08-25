@@ -5,7 +5,7 @@
 		{{l10n "post_moderation_state" moderateState replyToId moderator.name~}}
 	</div>
 {{/if}}
-<span class="flow-author">{{l10n "started_with_participants" this}}</span>
+<span class="flow-author">{{l10n "flow-topic-participants-list" creator.name author_count}}</span>
 <div class="flow-topic-meta">
 	{{#if actions.reply}}
 		<a href="#flow-post-{{postId}}-form-content"

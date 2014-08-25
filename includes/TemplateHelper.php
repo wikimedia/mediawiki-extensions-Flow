@@ -215,15 +215,6 @@ class TemplateHelper {
 			$message = wfMessage( 'flow-topic-count', count( $topiclist['roots'] ) );
 			break;
 
-		case 'started_with_participants':
-			$topicTitle = $args[0];
-			$message = wfMessage(
-				'flow-topic-participants-second-try',
-				$topicTitle['creator']['name'],
-				$topicTitle['author_count'] - 1
-			);
-			break;
-
 		case 'topic_count_sidebar':
 			$topiclist = $args[0];
 			$message = wfMessage(

@@ -169,13 +169,6 @@
 				},
 
 				// @todo - use real i18n message keys instead of cancatenation
-				"started_with_participants": function ( context, options ) {
-					return context.creator.name + " started this topic" +
-						( context.author_count > 1 ? (
-						", with " + ( context.author_count - 1 ) + " other participant" +
-							( context.author_count > 2 ? 's' : '' )
-						) : '' );
-				},
 				"topic_count_sidebar": function ( context, options ) {
 					return "Showing " + context.topics.length + " of " + context.topic_count + " topics attached to this page";
 				},
