@@ -2,7 +2,7 @@
 	{{> flow_errors}}
 
 	<a href="{{#if isWatched}}{{links.unwatch-topic.url}}{{else}}{{links.watch-topic.url}}{{/if}}"
-	   class="mw-ui-constructive {{#unless isWatched}}mw-ui-quiet{{/unless}}
+	   class="mw-ui-anchor mw-ui-constructive {{#unless isWatched}}mw-ui-quiet{{/unless}}
 	   {{#if isWatched~}}
 		flow-watch-link-unwatch
 	   {{~else~}}
