@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4e322bf2_f938079d",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 872,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-08-25T23:20:47Z",
+      "side": 1,
+      "message": "This is done in core, a better way would be for core to add a key to each link like \u0027talk-link\u0027, \u0027block-link\u0027 etc\n\nI think this is fine, whoever changes $tools should understand the risk of affecting the hooks.  We could add browser testing to catch this as well.",
+      "parentUuid": "4e322bf2_8f71bcdf",
+      "revId": "07e4fcb65f83e983af3f37454d33e65c770583bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e322bf2_0f85cc9f",
         "filename": "Hooks.php",
         "patchSetId": 1
@@ -30,6 +48,23 @@
       "writtenOn": "2014-08-25T17:02:00Z",
       "side": 1,
       "message": "This comment is a little confusing (even after looking at that patch). Please clarify in a way that I don\u0027t need to view the patch.\n\nIt seems since $link is optional this comment should really read something like:\nIf no @link given, simply leave after removing the talk link.",
+      "revId": "07e4fcb65f83e983af3f37454d33e65c770583bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_d922eb4f",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-08-25T23:20:47Z",
+      "side": 1,
+      "message": "This should be wrapped this inside a try catch block. getLastRevision() would just throw an exception if no revision is found, this shouldn\u0027t bork special:EditWatchList",
       "revId": "07e4fcb65f83e983af3f37454d33e65c770583bd",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
