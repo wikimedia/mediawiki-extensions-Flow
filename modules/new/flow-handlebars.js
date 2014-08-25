@@ -164,7 +164,6 @@
 	function flowMessages( str ) {
 		var parameters = Array.prototype.slice.call( arguments, 1 ),
 			strings = ( {
-				"Reply": "Reply", // TODO: pass in and parse $author['gender']
 				"Topics_n": function ( count, options ) {
 					return "Topics (" + count + ")";
 				},
