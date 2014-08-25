@@ -51,7 +51,7 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 			'workflow' => $workflow->isNew() ? '' : $workflow->getId()->getAlphadecimal(),
 		);
 
-		$parameters = $loader->extractBlockParameters( $request, $blocksToCommit );
+		$parameters = $loader->extractBlockParameters( $action, $request, $blocksToCommit );
 		foreach( $blocksToCommit as $block ) {
 			// Always return parsed text to client after successful submission?
 			// @Todo - hacky, maybe have contentformat in the request to overwrite

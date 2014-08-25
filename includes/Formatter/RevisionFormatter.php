@@ -64,9 +64,14 @@ class RevisionFormatter {
 	protected $allowedContentFormats = array( 'html', 'wikitext' );
 
 	/**
-	 * @var string
+	 * @var string Default content format for revision output
 	 */
 	protected $contentFormat = 'html';
+
+	/**
+	 * @var array Map from alphadeicmal revision id to content format ovverride
+	 */
+	protected $revisionContentFormat = array();
 
 	/**
 	 * @var int
@@ -112,11 +117,17 @@ class RevisionFormatter {
 		$this->includeProperties = (bool)$shouldInclude;
 	}
 
-	public function setContentFormat( $format ) {
+	public function setContentFormat( $format, UUID $revisionId = null ) {
 		if ( false === array_search( $format, $this->allowedContentFormats ) ) {
 			throw new FlowException( "Unknown content format: $format" );
 		}
-		$this->contentFormat = $format;
+		if ( $revisionId === null ) {
+			// set default content format
+			$this->contentFormat = $format;
+		} else {
+			// set per-revision content format
+			$this->revisionContentFormats[$revisionId->getAlphadecimal()] = $format;
+		}
 	}
 
 	/**
@@ -181,9 +192,7 @@ class RevisionFormatter {
 		if ( $isContentAllowed ) {
 
 			// topic titles are always forced to plain text
-			$contentFormat = ( $row->revision instanceof PostRevision && $row->revision->isTopicTitle() )
-				? 'plaintext'
-				: $this->contentFormat;
+			$contentFormat = $this->decideContentFormat( $row->revision );
 
 			$res += array(
 				// @todo better name?
@@ -416,7 +425,12 @@ class RevisionFormatter {
 					$replyToRevision = PostCollection::newFromId( $replyToId )->getLastRevision();
 				}
 
-				$links['reply'] = $this->urlGenerator->replyAction( $title, $workflowId, $replyToId );
+				$links['reply'] = $this->urlGenerator->replyAction(
+					$title,
+					$workflowId,
+					$replyToId,
+					$revision->isTopicTitle()
+				);
 				break;
 
 			case 'edit-header':
@@ -842,4 +856,21 @@ class RevisionFormatter {
 		}
 		return $this->messages[$key];
 	}
+
+	/**
+	 * @param AbstractRevision $revision
+	 * @return string
+	 */
+	protected function decideContentFormat( AbstractRevision $revision ) {
+		if ( $row->revision instanceof PostRevision && $row->revision->isTopicTitle() ) {
+			return 'plaintext';
+		}
+		$alpha = $revision->getRevisionId()->getAlphadecimal();
+		if ( isset( $this->revisionContentFormat[$alpha] ) ) {
+			return $this->revisionContentFormat[$alpha];
+		}
+
+		return $this->contentFormat;
+	}
+
 }
