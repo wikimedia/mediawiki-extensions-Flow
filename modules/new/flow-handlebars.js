@@ -673,11 +673,11 @@
 		if ( contentFormat === 'html' ) {
 			retval = $( content ).text();
 		} else {
-			// @todo handle wikitext -> plaintext
+			// @todo handle wikitext -> plaintext?
 			retval = content;
 		}
 
-		return retval.trim().substr( 0, 200 );
+		return retval ? retval.trim().substr( 0, 200 ) : '';
 	};
 
 	/**
