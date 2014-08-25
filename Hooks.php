@@ -1,5 +1,6 @@
 <?php
 
+use Flow\Collection\PostCollection;
 use Flow\Container;
 use Flow\Exception\FlowException;
 use Flow\Formatter\CheckUserQuery;
@@ -850,6 +851,49 @@ class FlowHooks {
 			$error = wfMessage( 'flow-error-move' )->escaped();
 			return false;
 		}
+
+		return true;
+	}
+
+	/**
+	 * @param array $tools Extra links
+	 * @param Title $title
+	 * @param bool $redirect Whether the page is a redirect
+	 * @param Skin $skin
+	 * @param string $link
+	 * @return bool
+	 */
+	public static function onWatchlistEditorBuildRemoveLine( &$tools, $title, $redirect, $skin, &$link = '' ) {
+		if ( $title->getNamespace() !== NS_TOPIC ) {
+			// Leave all non Flow topics alone!
+			return true;
+		}
+
+		// First element in $tools array is link to talk page; no applicable for Flow topics
+		unset( $tools[0] );
+
+		if ( !$link ) {
+			/*
+			 * https://gerrit.wikimedia.org/r/#/c/156118/ adds argument $link.
+			 * Prior to that patch, it was impossible to change the link, so
+			 * let's quit early if it doesn't exist.
+			 */
+			return true;
+		}
+
+		// Find the title text of this specific topic
+		$uuid = UUID::create( $title->getDBKey() );
+		$collection = PostCollection::newFromId( $uuid );
+		try {
+			$revision = $collection->getLastRevision();
+		} catch ( \Exception $e ) {
+			wfWarn( __METHOD__ . ': Failed to locate revision for: ' . $title->getDBKey() );
+			return true;
+		}
+
+		// Titles are never parsed, so request as wikitext
+		$content = $revision->getContent( 'wikitext' );
+		$link = Linker::link( $title, htmlspecialchars( $content ) );
 
 		return true;
 	}
