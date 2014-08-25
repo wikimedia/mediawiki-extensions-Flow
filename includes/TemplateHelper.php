@@ -175,6 +175,11 @@ class TemplateHelper {
 	static public function processTemplate( $templateName, $args, array $scopes = array() ) {
 		// Undesirable, but lightncandy helpers have to be static methods
 		$template = Container::get( 'lightncandy' )->getTemplate( $templateName );
+		// @todo ugly hack...remove someday.  Requires switching to newest version
+		// of lightncandy which supports recursive partial templates.
+		if ( !array_key_exists( 'rootBlock', $args ) ) {
+			$args['rootBlock'] = $args;
+		}
 		return call_user_func( $template, $args, $scopes );
 	}
 
