@@ -695,6 +695,9 @@
 			}
 
 			result = data.flow['edit-post'].result.topic;
+			// clear out submitted data, otherwise it would re-trigger an edit
+			// form in the refreshed topic
+			result.submitted = {};
 
 			flowBoardComponentRefreshTopic( info.$target, result );
 		};
@@ -999,30 +1002,26 @@
 		FlowBoardComponent.UI.events.apiHandlers.activateEditPost = function ( info, data, jqxhr ) {
 			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
 				$post = info.$target,
-				$rendered;
+				$rendered,
+				rootBlock;
 
 			if ( info.status !== 'done' ) {
 				// Error will be displayed by default, nothing else to wrap up
 				return;
 			}
 
-			// Change "topic" to "topic_edit_post" so that it loads up flow_block_topic_edit_post
-			data.flow['view-post'].result.topic.type = 'topic_edit_post';
-
+			// The API returns with the entire topic, but we only want to render the edit form
+			// for a singular post
+			rootBlock = data.flow['view-post'].result.topic;
 			$rendered = $(
 				flowBoard.TemplateEngine.processTemplateGetFragment(
-					'flow_block_loop',
-					{ blocks: data.flow['view-post'].result }
+					'flow_edit_post_ajax',
+					{
+						revision: rootBlock.revisions[rootBlock.posts[rootBlock.roots[0]]],
+						rootBlock: rootBlock
+					}
 				)
 			).children();
-
-			// @todo: I'm rendering flow_block_topic_edit_post.handlebars to
-			// also render errors. It also wraps a div.flow-board around
-			// what I want, so I'll discard that parent. This should be
-			// cleaned up some day. Figure this out once we figured out how
-			// we'll handle errors (for one, those rendered errors won't be
-			// removed when the form is destroyed)
-			$rendered = $rendered.children();
 
 			// Set the cancel callback on this form so that it returns to the post
 			flowBoardComponentAddCancelCallback(

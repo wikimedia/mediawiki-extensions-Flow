@@ -75,9 +75,9 @@ class TopicBlock extends AbstractBlock {
 	protected $templates = array(
 		'single-view' => 'single_view',
 		'view' => '',
-		'reply' => 'reply',
+		'reply' => '',
 		'history' => 'history',
-		'edit-post' => 'edit_post',
+		'edit-post' => '',
 		'edit-title' => 'edit_title',
 		'compare-post-revisions' => 'diff_view',
 		'moderate-topic' => 'moderate_topic',
@@ -547,6 +547,17 @@ class TopicBlock extends AbstractBlock {
 				return $serializer->buildEmptyResult( $this->workflow );
 			}
 			$workflowId = $this->workflow->getId();
+		}
+
+		if ( !empty( $this->submitted['revId'] ) &&
+			false !== array_search( $this->action, $this->requiresWikitext )
+		) {
+			// In the topic level responses we only want to force a single revision
+			// to wikitext, not the entire thing.
+			$uuid = UUID::create( $this->submitted['revId'] );
+			if ( $uuid ) {
+				$serializer->setContentFormat( 'wikitext', $uuid );
+			}
 		}
 
 		return $serializer->formatApi(
