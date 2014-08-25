@@ -198,11 +198,6 @@ class TemplateHelper {
 			$message = wfMessage( 'flow-reply-submit', $author['gender'] );
 			break;
 
-		case 'Moderate': // @todo: Unused?
-			$type = $args[0];
-			$str = "flow-post-action-$type-post";
-			break;
-
 		case 'post_moderation_state':
 			$type = $args[0];
 			$replyToId = $args[1];
