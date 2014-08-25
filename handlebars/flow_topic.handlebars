@@ -15,6 +15,17 @@
 	{{/if}}
 
 	{{#unless isPreview}}
-		{{> flow_reply_form}}
+		{{#ifEquals @root.submitted.postId postId}}
+			{{> flow_reply_form}}
+		{{else}}
+			{{#if actions.reply}}
+				<a href="{{actions.reply.url}}"
+				   title="{{actions.reply.title}}"
+				   class="mw-ui-progressive mw-ui-quiet"
+				   data-flow-interactive-handler="activateReplyPost">
+					{{~actions.reply.title~}}
+				</a>
+			{{/if}}
+		{{/ifEquals}}
 	{{/unless}}
 </div>
