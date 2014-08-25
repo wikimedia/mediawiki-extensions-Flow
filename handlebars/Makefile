@@ -6,10 +6,13 @@
 COMPILE=php5 ../maintenance/compileLightncandy.php
 
 POST_SUBTEMPLATES=flow_post.handlebars \
+		flow_post_inner.handlebars \
+		flow_edit_post.handlebars \
 		flow_post_actions.handlebars \
 		flow_post_author.handlebars \
 		flow_post_meta_actions.handlebars \
-		flow_post_replies.handlebars
+		flow_post_replies.handlebars \
+		flow_reply_form.handlebars
 
 TOPIC_SUBTEMPLATES=flow_topic.handlebars \
 		flow_topic_titlebar.handlebars \
@@ -35,8 +38,6 @@ all: compiled/flow_block_header.handlebars.php \
 		compiled/flow_block_topic_single_view.handlebars.php \
 		compiled/flow_block_topic_diff_view.handlebars.php \
 		compiled/flow_block_topic_close.handlebars.php \
-		compiled/flow_block_topic_reply.handlebars.php \
-		compiled/flow_block_topic_edit_post.handlebars.php \
 		compiled/flow_block_topic_edit_title.handlebars.php \
 		compiled/flow_block_topic_moderate_topic.handlebars.php \
 		compiled/flow_block_topic_moderate_post.handlebars.php \
@@ -134,22 +135,6 @@ compiled/flow_block_topic_close.handlebars.php: \
 compiled/flow_topic_titlebar_close.handlebars.php: \
 		flow_block_topic_titlebar_close.handlebars
 	$(COMPILE) flow_block_topic_close
-
-compiled/flow_block_topic_reply.handlebars.php: \
-		flow_block_topic_reply.handlebars \
-		flow_errors.handlebars \
-		flow_reply_form.handlebars \
-		flow_anon_warning.handlebars \
-		flow_tooltip.handlebars
-	$(COMPILE) flow_block_topic_reply
-
-compiled/flow_block_topic_edit_post.handlebars.php: \
-		flow_block_topic_edit_post.handlebars \
-		flow_errors.handlebars \
-		flow_edit_post.handlebars \
-		flow_anon_warning.handlebars \
-		flow_tooltip.handlebars
-	$(COMPILE) flow_block_topic_edit_post
 
 compiled/flow_block_topic_edit_title.handlebars.php: \
 		flow_block_topic_edit_title.handlebars \
