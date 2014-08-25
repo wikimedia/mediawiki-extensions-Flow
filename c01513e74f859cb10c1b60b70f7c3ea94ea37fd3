@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e322bf2_198d1337",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 912,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-08-25T23:52:33Z",
+      "side": 1,
+      "message": "I think this should be:\n$uuid \u003d UUID::create( strtolower( $uuid ) );\n$queries[] \u003d array( \u0027rev_type_id\u0027 \u003d\u003e $uuid );",
+      "revId": "c01513e74f859cb10c1b60b70f7c3ea94ea37fd3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_191753aa",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-08-25T23:52:33Z",
+      "side": 1,
+      "message": "This is fine but it assumes a cache mechanism is present in order for this to work as expected.  Since \u0026$watchlistInfo is passed by reference, I am actually expecting we update its value and use the new value for rendering.",
+      "revId": "c01513e74f859cb10c1b60b70f7c3ea94ea37fd3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
