@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e322bf2_f9580e5b",
+        "filename": "includes/Parsoid/ReferenceExtractor.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-25T13:01:35Z",
+      "side": 0,
+      "message": "This method is used in LinksTableTest.php",
+      "revId": "55169e02fe1a91984937625df893c13f2b795c18",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
