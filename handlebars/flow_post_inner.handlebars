@@ -1,0 +1,30 @@
+<div
+	{{#if isModerated}}
+		class="flow-post-main flow-click-interactive flow-element-collapsible flow-element-collapsed"
+		data-flow-load-handler="collapserState"
+		data-flow-interactive-handler="collapserCollapsibleToggle"
+		tabindex="0"
+	{{else}}
+		class="flow-post-main"
+	{{/if}}
+>
+	{{> flow_errors}}
+
+	{{#with creator}}
+		{{> flow_post_author}}
+	{{/with}}
+
+	{{#if isModerated}}
+		<div class="flow-moderated-post-content">{{l10n "post_moderation_state" moderateState replyToId moderator.name}}</div>
+	{{/if}}
+
+	<div class="flow-post-content">
+		{{escapeContent content.format content.content}}
+	</div>
+
+	{{!-- This stuff is not needed in preview mode --}}
+	{{#unless isPreview}}
+		{{> flow_post_meta_actions}}
+		{{> flow_post_actions}}
+	{{/unless}}
+</div>
