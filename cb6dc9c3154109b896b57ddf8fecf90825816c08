@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4e322bf2_b4dccb4c",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-25T13:45:42Z",
+      "side": 1,
+      "message": "Fix at https://gerrit.wikimedia.org/r/#/c/156096/",
+      "parentUuid": "4e322bf2_14ff1fa9",
+      "revId": "cb6dc9c3154109b896b57ddf8fecf90825816c08",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e322bf2_b42deb43",
         "filename": "modules/new/flow-handlebars.js",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-08-25T13:43:27Z",
       "side": 1,
       "message": "More hardcoded text.",
+      "revId": "cb6dc9c3154109b896b57ddf8fecf90825816c08",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_94e1cffd",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-25T13:45:42Z",
+      "side": 1,
+      "message": "Fix at https://gerrit.wikimedia.org/r/#/c/155670/ (for all of the below)",
+      "parentUuid": "4e322bf2_b42deb43",
       "revId": "cb6dc9c3154109b896b57ddf8fecf90825816c08",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
