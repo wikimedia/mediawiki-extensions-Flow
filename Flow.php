@@ -257,6 +257,7 @@ $wgAutoloadClasses['Flow\Actions\EditPostAction'] = $dir . 'includes/Actions/Edi
 $wgAutoloadClasses['Flow\Actions\CloseTopicAction'] = $dir . 'includes/Actions/CloseTopicAction.php';
 $wgAutoloadClasses['Flow\Actions\RestorePostAction'] = $dir . 'includes/Actions/RestorePostAction.php';
 $wgAutoloadClasses['Flow\Actions\RestoreTopicAction'] = $dir . 'includes/Actions/RestoreTopicAction.php';
+$wgAutoloadClasses['Flow\Actions\EditAction'] = $dir . 'includes/Actions/EditAction.php';
 $wgAutoloadClasses['Flow\Actions\ViewAction'] = $dir . 'includes/Actions/ViewAction.php';
 $wgAutoloadClasses['Flow\Actions\ReplyAction'] = $dir . 'includes/Actions/ReplyAction.php';
 $wgAutoloadClasses['Flow\Actions\HistoryAction'] = $dir . 'includes/Actions/HistoryAction.php';
