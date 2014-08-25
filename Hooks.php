@@ -927,4 +927,38 @@ class FlowHooks {
 
 		return true;
 	}
+
+	/**
+	 * @param array $watchlistInfo Watchlisted pages
+	 * @return bool
+	 */
+	public static function onWatchlistEditorBeforeFormRender( &$watchlistInfo ) {
+		if ( !isset( $watchlistInfo[NS_TOPIC] ) ) {
+			// No topics watchlisted
+			return true;
+		}
+
+		$ids = array_keys( $watchlistInfo[NS_TOPIC] );
+
+		// build array of queries to be executed all at once
+		$queries = array();
+		foreach( $ids as $id ) {
+			$uuid = UUID::create( strtolower( $id ) );
+			$queries[] = array( 'rev_type_id' => $uuid );
+		}
+
+		/*
+		 * Now, finally find all requested topics - this will be stored in
+		 * local cache so subsequent calls (in onWatchlistEditorBuildRemoveLine)
+		 * will just find these in memory, instead of doing a bunch of network
+		 * requests.
+		 */
+		Container::get( 'storage' )->findMulti(
+			'PostRevision',
+			$queries,
+			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+		);
+
+		return true;
+	}
 }
