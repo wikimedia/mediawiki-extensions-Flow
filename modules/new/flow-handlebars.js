@@ -165,13 +165,6 @@
 		var parameters = Array.prototype.slice.call( arguments, 1 ),
 			strings = ( {
 				// @todo - use real i18n message keys instead of cancatenation
-				"started_with_participants": function ( context, options ) {
-					return context.creator.name + " started this topic" +
-						( context.author_count > 1 ? (
-						", with " + ( context.author_count - 1 ) + " other participant" +
-							( context.author_count > 2 ? 's' : '' )
-						) : '' );
-				},
 				"post_moderation_state": function( type, replyToId, name ) {
 					var str;
 					if ( !replyToId ) {
