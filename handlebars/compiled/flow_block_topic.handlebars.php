@@ -58,7 +58,7 @@
 		&bull;
 	' : '').'
 
-	'.LCRun3::ch($cx, 'l10n', Array(Array('comment_count',$in),Array()), 'encq').' &bull;
+	'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-comments',((is_array($in) && isset($in['reply_count'])) ? $in['reply_count'] : null)),Array()), 'encq').' &bull;
 
 	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['last_updated'])) ? $in['last_updated'] : null))) ? '
 		<!--span class="wikiglyph wikiglyph-speech-bubbles"></span--> '.LCRun3::ch($cx, 'timestamp', Array(Array(((is_array($in) && isset($in['last_updated'])) ? $in['last_updated'] : null),'active_ago'),Array()), 'encq').'
