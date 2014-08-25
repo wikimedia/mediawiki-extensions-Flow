@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e322bf2_d486376a",
+        "filename": "includes/Formatter/RevisionViewFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-25T13:17:01Z",
+      "side": 1,
+      "message": "should be lowercase B in *b*oardLink",
+      "revId": "bef87f674ebe34bbb94f4a08cfe2459f2cce729d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
