@@ -1,5 +1,6 @@
 <?php
 
+use Flow\Collection\PostCollection;
 use Flow\Container;
 use Flow\Exception\FlowException;
 use Flow\Formatter\CheckUserQuery;
@@ -875,6 +876,54 @@ class FlowHooks {
 			$urls,
 			$workflow->getOwnerTitle()->getSquidURLs()
 		);
+
+		return true;
+	}
+
+	/**
+	 * @param array $tools Extra links
+	 * @param Title $title
+	 * @param bool $redirect Whether the page is a redirect
+	 * @param Skin $skin
+	 * @param string $link
+	 * @return bool
+	 */
+	public static function onWatchlistEditorBuildRemoveLine( &$tools, $title, $redirect, $skin, &$link = '' ) {
+		if ( $title->getNamespace() !== NS_TOPIC ) {
+			// Leave all non Flow topics alone!
+			return true;
+		}
+
+		/*
+		 * Link to talk page is no applicable for Flow topics
+		 * Note that key 'talk' doesn't exist prior to
+		 * https://gerrit.wikimedia.org/r/#/c/156522/, so on old MW's, the link
+		 * to talk page will still be present.
+		 */
+		unset( $tools['talk'] );
+
+		if ( !$link ) {
+			/*
+			 * https://gerrit.wikimedia.org/r/#/c/156118/ adds argument $link.
+			 * Prior to that patch, it was impossible to change the link, so
+			 * let's quit early if it doesn't exist.
+			 */
+			return true;
+		}
+
+		// Find the title text of this specific topic
+		$uuid = UUID::create( $title->getDBKey() );
+		$collection = PostCollection::newFromId( $uuid );
+		try {
+			$revision = $collection->getLastRevision();
+		} catch ( \Exception $e ) {
+			wfWarn( __METHOD__ . ': Failed to locate revision for: ' . $title->getDBKey() );
+			return true;
+		}
+
+		// Titles are never parsed, so request as wikitext
+		$content = $revision->getContent( 'wikitext' );
+		$link = Linker::link( $title, htmlspecialchars( $content ) );
 
 		return true;
 	}

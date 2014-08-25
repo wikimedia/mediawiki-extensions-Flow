@@ -342,6 +342,7 @@ $wgHooks['UnwatchArticle'][] = 'FlowHooks::onWatchArticle';
 $wgHooks['CanonicalNamespaces'][] = 'FlowHooks::onCanonicalNamespaces';
 $wgHooks['AbortMove'][] = 'FlowHooks::onAbortMove';
 $wgHooks['TitleSquidURLs'][] = 'FlowHooks::onTitleSquidURLs';
+$wgHooks['WatchlistEditorBuildRemoveLine'][] = 'FlowHooks::onWatchlistEditorBuildRemoveLine';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
