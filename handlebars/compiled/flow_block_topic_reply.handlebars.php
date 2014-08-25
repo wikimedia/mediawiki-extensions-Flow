@@ -53,7 +53,7 @@
 				          data-role="content">'.LCRun3::hbch($cx, 'ifEquals', Array(Array(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['postId'])) ? $cx['scopes'][0]['submitted']['postId'] : null),((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)),Array()), $in, function($cx, $in) {return ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'';}).'</textarea>
 
 				<div class="flow-form-actions flow-form-collapsible">
-					<button data-role="submit" class="mw-ui-button mw-ui-constructive mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', Array(Array('Reply',((is_array($in) && isset($in['author'])) ? $in['author'] : null)),Array()), 'encq').'</button>
+					<button data-role="submit" class="mw-ui-button mw-ui-constructive mw-ui-flush-right">'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['title'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'</button>
 					<button data-flow-api-handler="preview"
         data-flow-api-target="< form textarea"
         name="preview"

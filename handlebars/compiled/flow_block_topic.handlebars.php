@@ -50,10 +50,16 @@
 ' : '').'
 <span class="flow-author">'.LCRun3::ch($cx, 'l10n', Array(Array('started_with_participants',$in),Array()), 'encq').'</span>
 <div class="flow-topic-meta">
-	<a class="mw-ui-progressive mw-ui-quiet"
-		 data-flow-interactive-handler="activateForm"
-		 href="#flow-post-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'-form-content">'.LCRun3::ch($cx, 'l10n', Array(Array('Reply',((is_array($in) && isset($in['author'])) ? $in['author'] : null)),Array()), 'encq').'</a>
-	&bull; '.LCRun3::ch($cx, 'l10n', Array(Array('comment_count',$in),Array()), 'encq').' &bull;
+	'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['reply'])) ? $in['actions']['reply'] : null))) ? '
+		<a href="#flow-post-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'-form-content"
+		   title="'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['title'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'"
+		   class="mw-ui-progressive mw-ui-quiet"
+		   data-flow-interactive-handler="activateForm">'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['title'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'</a>
+		&bull;
+	' : '').'
+
+	'.LCRun3::ch($cx, 'l10n', Array(Array('comment_count',$in),Array()), 'encq').' &bull;
+
 	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['last_updated'])) ? $in['last_updated'] : null))) ? '
 		<!--span class="wikiglyph wikiglyph-speech-bubbles"></span--> '.LCRun3::ch($cx, 'timestamp', Array(Array(((is_array($in) && isset($in['last_updated'])) ? $in['last_updated'] : null),'active_ago'),Array()), 'encq').'
 	' : '
@@ -344,7 +350,7 @@
 			        class="mw-ui-button mw-ui-constructive"
 			        data-flow-interactive-handler="apiRequest"
 			        data-flow-api-handler="submitReply"
-			        data-flow-api-target="< .flow-topic">'.LCRun3::ch($cx, 'l10n', Array(Array('Reply',((is_array($in) && isset($in['author'])) ? $in['author'] : null)),Array()), 'encq').'</button>
+			        data-flow-api-target="< .flow-topic">'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['title'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'</button>
 			<button data-flow-api-handler="preview"
         data-flow-api-target="< form textarea"
         name="preview"

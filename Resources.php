@@ -300,6 +300,7 @@ $wgResourceModules += array(
 			'flow-error-http',
 			'flow-error-fetch-after-open-close',
 			'mw-ui-unsubmitted-confirm',
+			'flow-reply-link',
 		)
 	) + $mobile,
 	'ext.flow.vendor.storer' => $flowResourceTemplate + array(

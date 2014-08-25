@@ -164,8 +164,6 @@
 	function flowMessages( str ) {
 		var parameters = Array.prototype.slice.call( arguments, 1 ),
 			strings = ( {
-				"Reply": "Reply", // TODO: pass in and parse $author['gender']
-
 				// @todo - use real i18n message keys instead of cancatenation
 				"started_with_participants": function ( context, options ) {
 					return context.creator.name + " started this topic" +

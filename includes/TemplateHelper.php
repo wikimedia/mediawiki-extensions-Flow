@@ -193,11 +193,6 @@ class TemplateHelper {
 		$str = array_shift( $args );
 
 		switch( $str ) {
-		case 'Reply':
-			$author = $args[0];
-			$message = wfMessage( 'flow-reply-submit', $author['gender'] );
-			break;
-
 		case 'post_moderation_state':
 			$type = $args[0];
 			$replyToId = $args[1];

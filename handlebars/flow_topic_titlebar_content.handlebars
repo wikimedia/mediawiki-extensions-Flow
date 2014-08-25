@@ -7,10 +7,18 @@
 {{/if}}
 <span class="flow-author">{{l10n "started_with_participants" this}}</span>
 <div class="flow-topic-meta">
-	<a class="mw-ui-progressive mw-ui-quiet"
-		 data-flow-interactive-handler="activateForm"
-		 href="#flow-post-{{postId}}-form-content">{{l10n "Reply" author}}</a>
-	&bull; {{l10n "comment_count" this}} &bull;
+	{{#if actions.reply}}
+		<a href="#flow-post-{{postId}}-form-content"
+		   title="{{actions.reply.title}}"
+		   class="mw-ui-progressive mw-ui-quiet"
+		   data-flow-interactive-handler="activateForm">
+			{{~actions.reply.title~}}
+		</a>
+		&bull;
+	{{/if}}
+
+	{{l10n "comment_count" this}} &bull;
+
 	{{#if last_updated}}
 		<!--span class="wikiglyph wikiglyph-speech-bubbles"></span--> {{timestamp last_updated "active_ago"}}
 	{{else}}
