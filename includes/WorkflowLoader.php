@@ -59,7 +59,7 @@ class WorkflowLoader {
 		return $this->submissionHandler->commit( $workflow, $blocks );
 	}
 
-	public function extractBlockParameters( WebRequest $request, array $blocks ) {
-		return $this->submissionHandler->extractBlockParameters( $request, $blocks );
+	public function extractBlockParameters( $action, WebRequest $request, array $blocks ) {
+		return $this->submissionHandler->extractBlockParameters( $action, $request, $blocks );
 	}
 }
