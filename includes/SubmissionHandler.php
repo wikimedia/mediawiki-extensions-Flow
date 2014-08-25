@@ -90,7 +90,7 @@ class SubmissionHandler {
 			return array();
 		}
 
-		$params = $this->extractBlockParameters( $request, $blocks );
+		$params = $this->extractBlockParameters( $action, $request, $blocks );
 		foreach ( $interestedBlocks as $block ) {
 			$data = $params[$block->getName()];
 			$success &= $block->onSubmit( $action, $user, $data );
@@ -149,7 +149,7 @@ class SubmissionHandler {
 	 * @param AbstractBlock[] $blocks
 	 * @return array
 	 */
-	public function extractBlockParameters( WebRequest $request, array $blocks ) {
+	public function extractBlockParameters( $action, WebRequest $request, array $blocks ) {
 		$result = array();
 		// BC for old parameters enclosed in square brackets
 		foreach ( $blocks as $block ) {
@@ -160,10 +160,10 @@ class SubmissionHandler {
 		if ( isset( $result['topiclist'] ) && !$result['topiclist'] ) {
 			$result['topiclist'] = $request->getArray( 'topic_list', array() );
 		}
-		// between urls only allowing [-_.] as unencoded special chars and
-		// php mangling all of those into '_', we have to split on '_'
-		$globalData = array();
+		$globalData = array( 'action' => $action );
 		foreach ( $request->getValues() as $name => $value ) {
+			// between urls only allowing [-_.] as unencoded special chars and
+			// php mangling all of those into '_', we have to split on '_'
 			if ( false !== strpos( $name, '_' ) ) {
 				list( $block, $var ) = explode( '_', $name, 2 );
 				// flow_xxx is global data for all blocks

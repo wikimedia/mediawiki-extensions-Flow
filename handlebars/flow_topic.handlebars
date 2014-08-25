@@ -15,6 +15,17 @@
 	{{/if}}
 
 	{{#unless isPreview}}
-		{{> flow_reply_form}}
+		{{#ifEquals @root.submitted.postId postId}}
+			{{> flow_reply_form}}
+		{{else}}
+			{{#if actions.reply}}
+				<a href="{{actions.reply.url}}"
+				   title="{{actions.reply.title}}"
+				   class="mw-ui-input flow-topic-reply"
+				>
+					{{~l10n "flow-reply-topic-title-placeholder" (plaintextSnippet content.format content.content)~}}
+				</a>
+			{{/if}}
+		{{/ifEquals}}
 	{{/unless}}
 </div>
