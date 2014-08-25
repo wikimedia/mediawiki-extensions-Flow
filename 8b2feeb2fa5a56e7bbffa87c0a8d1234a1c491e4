@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e322bf2_fe20f4f3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-08-25T10:19:24Z",
+      "side": 1,
+      "message": "too -\u003e to",
+      "revId": "8b2feeb2fa5a56e7bbffa87c0a8d1234a1c491e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_de7d38e6",
+        "filename": "handlebars/compiled/flow_block_topiclist.handlebars.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-08-25T10:19:24Z",
+      "side": 1,
+      "message": "Why is this PHP4-ism present in the compiled files?",
+      "revId": "8b2feeb2fa5a56e7bbffa87c0a8d1234a1c491e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
