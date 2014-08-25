@@ -18,10 +18,6 @@ $notifications = array(
 			'message' => 'flow-notification-link-text-view-topic',
 			'destination' => 'flow-topic'
 		),
-		'secondary-link' => array(
-			'message' => 'flow-notification-link-text-view-board',
-			'destination' => 'flow-board'
-		),
 		'title-message' => 'flow-notification-newtopic',
 		'title-params' => array( 'agent', 'flow-title', 'title', 'subject', 'topic-permalink' ),
 		'email-subject-message' => 'flow-notification-newtopic-email-subject',
@@ -36,10 +32,6 @@ $notifications = array(
 		'primary-link' => array(
 			'message' => 'flow-notification-link-text-view-post',
 			'destination' => 'flow-post'
-		),
-		'secondary-link' => array(
-			'message' => 'flow-notification-link-text-view-board',
-			'destination' => 'flow-board'
 		),
 		'title-message' => 'flow-notification-reply',
 		'title-params' => array( 'agent', 'subject', 'flow-title', 'title', 'post-permalink' ),
@@ -61,10 +53,6 @@ $notifications = array(
 			'message' => 'flow-notification-link-text-view-post',
 			'destination' => 'flow-post'
 		),
-		'secondary-link' => array(
-			'message' => 'flow-notification-link-text-view-board',
-			'destination' => 'flow-board'
-		),
 		'title-message' => 'flow-notification-edit',
 		'title-params' => array( 'agent', 'subject', 'flow-title', 'title', 'post-permalink' ),
 		'bundle' => array(
@@ -85,10 +73,6 @@ $notifications = array(
 			'message' => 'flow-notification-link-text-view-post',
 			'destination' => 'flow-post'
 		),
-		'secondary-link' => array(
-			'message' => 'flow-notification-link-text-view-board',
-			'destination' => 'flow-board'
-		),
 		'title-message' => 'flow-notification-rename',
 		'title-params' => array( 'agent', 'topic-permalink', 'old-subject', 'new-subject', 'flow-title', 'title' ),
 		'email-subject-message' => 'flow-notification-rename-email-subject',
@@ -100,10 +84,6 @@ $notifications = array(
 		'primary-link' => array(
 			'message' => 'notification-link-text-view-mention',
 			'destination' => 'flow-post'
-		),
-		'secondary-link' => array(
-			'message' => 'flow-notification-link-text-view-board',
-			'destination' => 'flow-board'
 		),
 		'category' => 'mention',
 		'title-message' => 'flow-notification-mention',

@@ -121,12 +121,6 @@ class NotificationFormatter extends EchoBasicFormatter {
 				$anchor = $this->getPostLinkAnchor( $event, $user );
 				break;
 
-			case 'flow-board':
-				if ( $title ) {
-					$anchor = $urlGenerator->boardLink( $title );
-				}
-				break;
-
 			case 'flow-topic':
 				$workflowId = $event->getExtraParam( 'topic-workflow' );
 				// Get topic title
