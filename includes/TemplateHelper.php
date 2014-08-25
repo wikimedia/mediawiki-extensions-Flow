@@ -233,14 +233,6 @@ class TemplateHelper {
 			);
 			break;
 
-		case 'comment_count':
-			$topicTitle = $args[0];
-			$message = wfMessage(
-				'flow-topic-comment-count',
-				$topicTitle['reply_count']
-			);
-			break;
-
 		case '_time': // ???
 			break;
 

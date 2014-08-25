@@ -179,9 +179,6 @@
 				"topic_count_sidebar": function ( context, options ) {
 					return "Showing " + context.topics.length + " of " + context.topic_count + " topics attached to this page";
 				},
-				"comment_count": function ( context, options ) {
-						return context.reply_count + " comment" + ( !context.reply_count || context.reply_count > 1 ? 's' : '' );
-				},
 				"post_moderation_state": function( type, replyToId, name ) {
 					var str;
 					if ( !replyToId ) {
