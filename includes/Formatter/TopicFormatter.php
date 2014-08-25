@@ -2,6 +2,7 @@
 
 namespace Flow\Formatter;
 
+use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\UrlGenerator;
 use IContextSource;
@@ -11,6 +12,10 @@ class TopicFormatter {
 	public function __construct( UrlGenerator $urlGenerator, RevisionFormatter $serializer ) {
 		$this->urlGenerator = $urlGenerator;
 		$this->serializer = $serializer;
+	}
+
+	public function setContentFormat( $contentFormat, UUID $revisionId = null ) {
+		$this->serializer->setContentFormat( $contentFormat, $revisionId );
 	}
 
 	public function getEmptyResult( Workflow $workflow ) {

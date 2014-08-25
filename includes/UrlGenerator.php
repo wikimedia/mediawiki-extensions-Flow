@@ -25,25 +25,6 @@ class UrlGenerator extends BaseUrlGenerator {
 	}
 
 	/**
-	 * Reply to an individual post in a topic workflow.
-	 *
-	 * @param Title|null $title
-	 * @param UUID $workflowId
-	 * @param UUID $postId
-	 * @return Anchor
-	 */
-	public function replyPostLink( Title $title = null, UUID $workflowId, UUID $postId ) {
-		return new Anchor(
-			wfMessage( 'flow-post-action-reply' ),
-			$this->resolveTitle( $title, $workflowId ),
-			array(
-				'topic_replyTo' => $postId->getAlphadecimal(),
-				'action' => 'reply',
-			)
-		);
-	}
-
-	/**.
 	 * Edit the header at the specified workflow.
 	 *
 	 * @param Title|null $title
@@ -73,16 +54,6 @@ class UrlGenerator extends BaseUrlGenerator {
 		);
 	}
 
-	public function editPostLink( Title $title = null, UUID $workflowId, UUID $postId ) {
-		return new Anchor(
-			wfMessage( 'flow-edit-post' ),
-			$this->resolveTitle( $title, $workflowId ),
-			array(
-				'action' => 'edit-post',
-				'topic_postId' => $postId->getAlphadecimal(),
-			)
-		);
-	}
 	/**
 	 * View a specific revision of a header workflow.
 	 *
@@ -374,16 +345,32 @@ class UrlGenerator extends BaseUrlGenerator {
 		);
 	}
 
-	public function replyAction( Title $title = null, UUID $workflowId, UUID $postId ) {
+	/**
+	 * Reply to an individual post in a topic workflow.
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param UUID $postId
+	 * @param bool $isTopLevelReply
+	 * @return Anchor
+	 */
+	public function replyAction(
+		Title $title = null,
+		UUID $workflowId,
+		UUID $postId,
+		$isTopLevelReply
+	) {
 		return new Anchor(
 			wfMessage( 'flow-reply-link' ),
 			$this->resolveTitle( $title, $workflowId ),
 			array(
 				'action' => 'reply',
-				'topic_postId' => $postId->getAlphadecimal()
-			)
+				'topic_postId' => $postId->getAlphadecimal(),
+			),
+			( $isTopLevelReply ? '#flow-reply-' : '#flow-post-' ) . $postId->getAlphadecimal()
 		);
 	}
+
 
 	/**
 	 * Edit the specified topic summary
@@ -528,7 +515,9 @@ class UrlGenerator extends BaseUrlGenerator {
 				'topic_postId' => $postId->getAlphadecimal(),
 				// @todo not necessary?
 				'topic_revId' => $revId->getAlphadecimal(),
-			)
+			),
+			'#flow-post-' . $postId->getAlphadecimal()
+
 		);
 	}
 
