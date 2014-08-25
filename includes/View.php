@@ -122,7 +122,7 @@ class View extends ContextSource {
 			),
 		);
 
-		$parameters = $loader->extractBlockParameters( $request, $blocks );
+		$parameters = $loader->extractBlockParameters( $action, $request, $blocks );
 		$editToken = $user->getEditToken();
 		foreach ( $blocks as $block ) {
 			if ( $wasPosted ? $block->canSubmit( $action ) : $block->canRender( $action ) ) {
