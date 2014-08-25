@@ -164,14 +164,6 @@
 	function flowMessages( str ) {
 		var parameters = Array.prototype.slice.call( arguments, 1 ),
 			strings = ( {
-				"Topics_n": function ( count, options ) {
-					return "Topics (" + count + ")";
-				},
-
-				// @todo - use real i18n message keys instead of cancatenation
-				"topic_count_sidebar": function ( context, options ) {
-					return "Showing " + context.topics.length + " of " + context.topic_count + " topics attached to this page";
-				},
 				"post_moderation_state": function( type, replyToId, name ) {
 					var str;
 					if ( !replyToId ) {

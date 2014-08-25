@@ -1,6 +1,6 @@
 <ul class="flow-topic-navigation flow-list" style="display:none;">
 	{{!-- @todo reimplement this after Sprint B --}}{{!--
-	<li class="flow-topic-navigation-heading"><h5>{{l10n "Topics_n" this}}</h5></li>
+	<li class="flow-topic-navigation-heading"><h5>{{l10n "Topics_n" this}}</h5></li> <!-- @todo: Topics_n doesn't exist -->
 	{{#each roots}}
 		{{#eachPost @root this}}
 			<li class="flow-topic-navigator-wrap">
@@ -18,7 +18,7 @@
 		{{/eachPost}}
 	{{/each}}
 	<li class="flow-topic-navigation-footer">
-		{{l10n "topic_count_sidebar" this}}
+		{{l10n "topic_count_sidebar" this}} <!-- @todo: topic_count_sidebar doesn't exist -->
 		{{#if links.pagination.fwd}}
 			<a href="{{links.pagination.fwd.url}}" title="{{links.pagination.fwd.title}}" class="mw-ui-button mw-ui-progressive mw-ui-quiet"><span class="wikiglyph wikiglyph-article"></span> {{l10n "flow-load-more"}}</a>
 		{{else}}

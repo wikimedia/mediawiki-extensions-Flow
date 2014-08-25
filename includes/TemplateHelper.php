@@ -193,11 +193,6 @@ class TemplateHelper {
 		$str = array_shift( $args );
 
 		switch( $str ) {
-		case 'Moderate': // @todo: Unused?
-			$type = $args[0];
-			$str = "flow-post-action-$type-post";
-			break;
-
 		case 'post_moderation_state':
 			$type = $args[0];
 			$replyToId = $args[1];
@@ -208,20 +203,6 @@ class TemplateHelper {
 				$str = "flow-$type-post-content";
 			}
 			$message = wfMessage( $str, $moderator );
-			break;
-
-		case 'Topics_n':
-			$topiclist = $args[0];
-			$message = wfMessage( 'flow-topic-count', count( $topiclist['roots'] ) );
-			break;
-
-		case 'topic_count_sidebar':
-			$topiclist = $args[0];
-			$message = wfMessage(
-				'flow-topic-count-sidebar',
-				count( $topiclist['roots'] ),
-				'???' //$topiclist['topic_count']
-			);
 			break;
 
 		case '_time': // ???
