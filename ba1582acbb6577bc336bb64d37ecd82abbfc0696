@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e322bf2_264ae3c8",
+        "filename": "includes/Actions/EditAction.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-08-26T23:10:30Z",
+      "side": 1,
+      "message": "Can we throw an exception or something instead of a totally random redirect?",
+      "revId": "ba1582acbb6577bc336bb64d37ecd82abbfc0696",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
