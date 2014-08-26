@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4e322bf2_aafe9f33",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 912,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-26T13:37:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e322bf2_198d1337",
+      "revId": "c01513e74f859cb10c1b60b70f7c3ea94ea37fd3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e322bf2_191753aa",
         "filename": "Hooks.php",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-08-25T23:52:33Z",
       "side": 1,
       "message": "This is fine but it assumes a cache mechanism is present in order for this to work as expected.  Since \u0026$watchlistInfo is passed by reference, I am actually expecting we update its value and use the new value for rendering.",
+      "revId": "c01513e74f859cb10c1b60b70f7c3ea94ea37fd3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_45ba8c1f",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-26T13:37:54Z",
+      "side": 1,
+      "message": "I\u0027m in doubt here. With the current patch to core to add this hook (https://gerrit.wikimedia.org/r/#/c/156119/), it isn\u0027t possible.\n\nI just made it pass-by-ref since I can imagine it might some day be useful for someone to add/delete pages.\n\nI\u0027m not sure how I feel about allowing more details (in this case PostRevision objects) to be passed along to core code or other hook subscribers that expects it to be a certain way. And since we already have \"the solution\" ourselves (our LocalBufferedCache) I thought that\u0027d be best.\n\nBut you\u0027re right that it\u0027s not guaranteed that LocalBufferedCache will indeed be used. It is right now, but who knows. Not sure what to best do here :p",
+      "parentUuid": "4e322bf2_191753aa",
       "revId": "c01513e74f859cb10c1b60b70f7c3ea94ea37fd3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
