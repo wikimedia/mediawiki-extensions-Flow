@@ -16,6 +16,24 @@
       "revId": "cb6dc9c3154109b896b57ddf8fecf90825816c08",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_5aa94620",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-26T17:54:13Z",
+      "side": 0,
+      "message": "I did actually mean to remove this; I don\u0027t think it\u0027s used anymore (or I missed where it still is) :p",
+      "parentUuid": "4e322bf2_ca4e929b",
+      "revId": "cb6dc9c3154109b896b57ddf8fecf90825816c08",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
