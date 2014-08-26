@@ -327,7 +327,6 @@
 	"flow-topic-participants-second-try": "Message to display the amount of participants in this topic (and potentially a couple of names).\n\nParameters:\n* $1 - The username that created the topic.\n* $2 - The number of participants in the topic in addition to the topic creator.",
 	"flow-topic-count-sidebar": "Message displayed at the bottom of the sidebar showing the number of topics current displayed and the total available.",
 	"flow-topic-count": "Message displayed at the top of the sidebar showing the number of topics loaded on the page\n{{Identical|Topic}}",
-	"flow-topic-comment-count": "Message displayed in the topic title bar to indicate the number of replies within the topic. Parameters:\n* $1 - The number of comments within the topic.\n{{Identical|Comment}}",
 	"flow-active-ago": "Message displayed in the topic title bar to indicate how long ago the topic was last changed. Parameters:\n* $1 - Humanized time ago from CLDR. ex: 17 hours ago\n{{Identical|Active}}",
 	"flow-started-ago": "Message displayed in the topic title bar to indicate how long ago the topic was created. Parameters:\n* $1 - Humanized time ago from CLDR. ex: 17 hours ago\n{{Identical|Started}}",
 	"flow-started-ago-day": "A statement described the time passed since a topic was started. Parameters\n * $1 - days that have passed since event.",
