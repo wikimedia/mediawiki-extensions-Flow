@@ -610,7 +610,8 @@ class TemplateHelper {
 				' ' . $target .
 				' ' . $sectionId .
 			'>' .
-				$fn() .
+				// Replace the nested script tag with a placeholder tag for recursive progressiveEnhancement
+				str_replace( '</script>', '</flowprogressivescript>', $fn() ) .
 			'</script>'
 		);
 	}
