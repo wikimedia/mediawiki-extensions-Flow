@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "4e322bf2_0a6a5312",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 872,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-26T12:50:37Z",
+      "side": 1,
+      "message": "I considered adding a key (in core), but that in turn could affect existing subscribers.\n\nHowever, AFAICT, no other WMF extensions actually subscribe to this hook. If you feel strongly about it, we could probably change that in core.",
+      "parentUuid": "4e322bf2_f938079d",
+      "revId": "07e4fcb65f83e983af3f37454d33e65c770583bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e322bf2_0f85cc9f",
         "filename": "Hooks.php",
         "patchSetId": 1
@@ -54,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "4e322bf2_cad20bd5",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 876,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-26T12:50:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e322bf2_0f85cc9f",
+      "revId": "07e4fcb65f83e983af3f37454d33e65c770583bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e322bf2_d922eb4f",
         "filename": "Hooks.php",
         "patchSetId": 1
@@ -65,6 +101,24 @@
       "writtenOn": "2014-08-25T23:20:47Z",
       "side": 1,
       "message": "This should be wrapped this inside a try catch block. getLastRevision() would just throw an exception if no revision is found, this shouldn\u0027t bork special:EditWatchList",
+      "revId": "07e4fcb65f83e983af3f37454d33e65c770583bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_aad7bfc3",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-26T12:50:37Z",
+      "side": 1,
+      "message": "You\u0027re right. I mistakenly assumed it would return null/false, but didn\u0027t doublecheck!",
+      "parentUuid": "4e322bf2_d922eb4f",
       "revId": "07e4fcb65f83e983af3f37454d33e65c770583bd",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
