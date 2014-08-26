@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e322bf2_377a1320",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-26T16:05:11Z",
+      "side": 1,
+      "message": "$ts doesn\u0027t exist here.\n\n\nAlso: this will use messages \"flow-time ago\", \"flow-started-ago\", \"flow-edited-ago\", \"flow-active-ago\".\n\n* flow-time-ago doesn\u0027t exist\n* the 3 others try to inject the result of getHumanTimestamp() as parameter into a string. This is not properly i18n-able (in some language, \"active\" may for example have to be somewhere in between the words \"3 days ago\")\n\nAnyway; on PHP side, we\u0027re not even calling this time \u0026 datetime; I guess we better remove them for now? (I\u0027m about to push a follow-up that will do just that)",
+      "revId": "3f43c0b6dc59da431bdcd85ae75d1d0dbe0e9783",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
