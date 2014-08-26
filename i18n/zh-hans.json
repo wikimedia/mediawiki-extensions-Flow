@@ -204,7 +204,6 @@
 	"flow-notification-rename": "<span class=\"plainlinks\">[$2 $3]</span>的标题已被$1在[[$5|$6]]{{GENDER:$1|更改}}为“$4”。",
 	"flow-notification-mention": "$1于“$4”在{{GENDER:$1|他|她|他们}}的“$3”的<span class=\"plainlinks\">[$2 帖子]</span>中提到了您。",
 	"flow-notification-link-text-view-post": "浏览帖子",
-	"flow-notification-link-text-view-board": "查看讨论版",
 	"flow-notification-link-text-view-topic": "查看主题",
 	"flow-notification-reply-email-subject": "$1{{GENDER:$1|回复了}}一个帖子",
 	"flow-notification-reply-email-batch-body": "$1在“$3”{{GENDER:$1|回复了}}“$2”",

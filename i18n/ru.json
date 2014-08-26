@@ -111,7 +111,6 @@
 	"flow-paging-rev": "Более новые темы",
 	"flow-paging-fwd": "Более старые темы",
 	"flow-notification-link-text-view-post": "Посмотреть сообщение",
-	"flow-notification-link-text-view-board": "Просмотреть форум",
 	"flow-notification-link-text-view-topic": "Посмотреть тему",
 	"flow-notification-reply-email-subject": "$1 ответил{{GENDER:$1||а}} в теме",
 	"flow-notification-reply-email-batch-body": "$1 ответил{{GENDER:$1||а}} в теме «$2» на странице «$3»",

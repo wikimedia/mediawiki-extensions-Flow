@@ -10,6 +10,7 @@
 	"flow-newtopic-first-heading": "$1-এ নতুন প্রসঙ্গ শুরু করুন",
 	"flow-post-action-post-history": "ইতিহাস",
 	"flow-post-action-edit-post": "সম্পাদনা",
+	"flow-board-notification-subscribe-title": "আপনি এই আলোচনা বোর্ডে সদস্যতা নিয়েছে!",
 	"flow-moderation-confirmation-suppress-post": "আপনার পোস্টটি সফলভাবে গোপন করা হয়েছে। \nপোস্টটির উপর প্রতিক্রিয়া {{GENDER:$1|প্রকাশের}} $1 মাধ্যমে বিবেচনা করুন।",
 	"flow-moderation-confirmation-delete-post": "আপনার পোস্টটি সফলভাবে মুছে ফেলা হয়েছে। \nপোস্টটির উপর প্রতিক্রিয়া {{GENDER:$1|প্রকাশের}} $1 মাধ্যমে বিবেচনা করুন।",
 	"flow-moderation-confirmation-hide-post": "আপনার পোস্টটি সফলভাবে লুকানো হয়েছে। \nপোস্টটির উপর প্রতিক্রিয়া {{GENDER:$1|প্রকাশের}} $1 মাধ্যমে বিবেচনা করুন।",

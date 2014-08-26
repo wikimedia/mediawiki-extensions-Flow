@@ -154,7 +154,6 @@
 	"flow-notification-reply": "$1{{GENDER:$1|已回覆}}您於「$4」的「$2」之<span class=\"plainlinks\">[$5 留言]</span>。",
 	"flow-notification-reply-bundle": "$1 與另外 $5 {{PLURAL:$6|個人|個人}}已{{GENDER:$1|回覆}}您的 [$4 留言] 於 $2 的 \"$3\"。",
 	"flow-notification-link-text-view-post": "檢視留言",
-	"flow-notification-link-text-view-board": "檢視留言板",
 	"flow-notification-link-text-view-topic": "檢視主題",
 	"flow-notification-reply-email-subject": "$1 {{GENDER:$1|已回覆}}主題",
 	"flow-notification-reply-email-batch-body": "$1 {{GENDER:$1|已回覆}}在 \"$3\" 中的 \"$2\" 主題",

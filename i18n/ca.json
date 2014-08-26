@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Fitoschido"
+			"Fitoschido",
+			"Hiperpobla"
 		]
 	},
 	"flow-newtopic-content-placeholder": "Envia un missatge nou a «$1»",
 	"flow-topic-notification-subscribe-title": "S’ha afegit aquest tema a la vostra llista de seguiment.",
-	"flow-topic-notification-subscribe-description": "Rebreu notificacions per a totes les activitats sobre aquest tema."
+	"flow-topic-notification-subscribe-description": "Rebreu notificacions per a totes les activitats sobre aquest tema.",
+	"flow-board-notification-subscribe-title": "Esteu subscrits amb aquesta discussió!"
 }
