@@ -1558,20 +1558,13 @@
 				topicTitle = $post.closest( '.flow-topic' ).find( '.flow-topic-title' ).text(),
 				replyToContent = $post.find( '.flow-post-content' ).text() || topicTitle,
 				author = $.trim( $post.find( '.flow-author:first .mw-userlink' ).text() ),
-				initialContent, $form;
+				$form;
 
 			// Check if reply form has already been opened
 			if ( $post.data( 'flow-replying' ) ) {
 				return;
 			}
 			$post.data( 'flow-replying', true );
-
-			// if we have a real username, turn it into "[[User]]" (otherwise, just "127.0.0.1")
-			if ( !mw.util.isIPv4Address( author , true ) && !mw.util.isIPv6Address( author , true ) ) {
-				initialContent = '[[' + mw.Title.newFromText( author, 2 ).getPrefixedText() + '|' + author + ']]: ';
-			} else {
-				initialContent = author + ': ';
-			}
 
 			$form = $( flowBoard.TemplateEngine.processTemplateGetFragment(
 				'flow_reply_form',
@@ -1595,7 +1588,7 @@
 					submitted: {
 						postId: postId,
 						// prefill content
-						content: initialContent
+						content: ''
 					}
 				}
 			) ).children();
