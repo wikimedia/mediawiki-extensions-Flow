@@ -108,6 +108,7 @@ $wgResourceModules += array(
 			'flow-toggle-small-topics',
 			'flow-toggle-topics',
 			'flow-toggle-topics-posts',
+			'flow-topic-comments',
 			'flow-topic-action-hide-topic',
 			'flow-topic-action-close-topic',
 			'flow-topic-action-delete-topic',
@@ -323,7 +324,6 @@ $wgResourceModules += array(
 			'flow-error-fetch-after-open-close',
 			'mw-ui-unsubmitted-confirm',
 			'flow-reply-link',
-			'flow-topic-comments',
 		)
 	) + $mobile,
 	'ext.flow.vendor.storer' => $flowResourceTemplate + array(
