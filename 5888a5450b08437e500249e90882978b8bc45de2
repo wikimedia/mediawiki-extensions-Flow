@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e322bf2_4624cf07",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-08-27T02:26:25Z",
+      "side": 1,
+      "message": "Flesh this out a bit:\n\nConverts all LiquidThreads threads in the DB to Flow topics, creating a post from each reply and a topic summary from the thread summary. The new items have UUIDs corresponding to their original timestamps. Also ensures Flow on each article.\n\nChanges fake UUID generation to reduce risk of collisions.",
+      "revId": "5888a5450b08437e500249e90882978b8bc45de2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_41f83946",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-08-27T02:26:25Z",
+      "side": 1,
+      "message": "Really? If the timestamp is to the second, seems quite unlikely that multiple LQT items will have the same timestamp.",
+      "revId": "5888a5450b08437e500249e90882978b8bc45de2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
