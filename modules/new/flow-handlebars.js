@@ -107,12 +107,12 @@
 	 * @todo Lacks args, lacks functionality, full support. (see also FlowHandlebars.prototype.progressiveEnhancement)
 	 */
 	FlowHandlebars.prototype.processProgressiveEnhancement = function ( target ) {
-		$( target ).find( 'script' ).filter( '[type="text/x-handlebars-template-progressive-enhancement"]' ).each( function () {
+		$( target ).find( 'script' ).addBack( 'script' ).filter( '[type="text/x-handlebars-template-progressive-enhancement"]' ).each( function () {
 			var $this = $( this ),
 				data = $this.data(),
 				target = $.trim( data.target ),
 				$target = $this,
-				content;
+				content, $prevTarg, $nextTarg;
 
 			// Find new target, if not the script tag itself
 			if ( target ) {
@@ -125,23 +125,43 @@
 			}
 
 			// Render content
-			content = Handlebars.compile( this.innerHTML )();
+			content = Handlebars.compile(
+				// Replace the nested flowprogressivescript tag with a real script tag for recursive progressiveEnhancement
+				this.innerHTML.replace( /<\/flowprogressivescript>/g, '</script>' )
+			)();
 
 			// Inject the content
 			switch ( data.type ) {
 				case 'content':
+					// Insert
 					$target.empty().append( content );
+					// Get all new nodes
+					$target = $target.children();
 					break;
 
 				case 'insert':
+					// Store sibling before adding new content
+					$prevTarg = $target.prev();
+					// Insert
 					$target.before( content );
+					// Get all new nodes
+					$target = $target.prevUntil( $prevTarg );
 					break;
 
 				case 'replace':
 					/* falls through */
 				default:
+					// Store siblings before adding new content
+					$prevTarg = $target.prev();
+					$nextTarg = $target.next();
+					// Insert
 					$target.replaceWith( content );
+					// Get all new nodes
+					$target = $prevTarg.nextUntil( $nextTarg );
 			}
+
+			// $target now contains all the new elements inserted; let's recursively do progressiveEnhancement if needed
+			FlowHandlebars.prototype.processProgressiveEnhancement( $target );
 
 			// Remove script tag
 			$this.remove();
