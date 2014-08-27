@@ -639,6 +639,8 @@
 	FlowHandlebars.prototype.ifCond = function ( value, operator, value2, options ) {
 		if ( operator === 'or' ) {
 			return value || value2 ? options.fn( this ) : options.inverse( this );
+		} else if ( operator === '!==' ) {
+			return value !== value2 ? options.fn( this ) : options.inverse( this );
 		} else {
 			return '';
 		}
