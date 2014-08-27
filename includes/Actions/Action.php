@@ -35,13 +35,6 @@ class FlowAction extends Action {
 		$this->showForAction( $this->getName() );
 	}
 
-	public function execute() {
-		$childContext = new DerivativeContext( RequestContext::getMain() );
-		$childContext->setOutput( new OutputPage( $childContext ) );
-
-		$this->showForAction( $this->getName(), $childContext->getOutput() );
-	}
-
 	/**
 	 * @param string $action
 	 * @param OutputPage|null $output

@@ -100,6 +100,9 @@ class BoardContentHandler extends \ContentHandler {
 			}
 		}
 
+		// Flow has its own handlling for action=edit
+		$output['edit'] = 'Flow\Actions\EditAction';
+
 		return $output;
 	}
 }
