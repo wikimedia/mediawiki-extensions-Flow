@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e322bf2_f6a00240",
+        "filename": "includes/api/ApiFlowBase.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2014-08-27T19:30:22Z",
+      "side": 1,
+      "message": "Just a general hint for coding style, but for simpler implementation perhaps use \u0027x\u0027 instead of \u0027y\u0027 in patterns like \"x \u003d\u003d y ? y : z\" patterns. Here it\u0027d be $paramName instead of \u0027token\u0027, to avoid duplication?",
+      "revId": "d4b27fe4b0e3f517eb5ba519a5f5fb7181a1d015",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
