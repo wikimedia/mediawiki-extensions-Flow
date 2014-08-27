@@ -132,6 +132,10 @@ Then(/^the top post should have content which contains "(.+)"$/) do |text|
   on(FlowPage).flow_first_topic_body.should match(text)
 end
 
+Then(/^the content of the top post should be visible$/) do
+  on(FlowPage).flow_first_topic_body_element.when_present.should be_visible
+end
+
 Then(/^I should see a Delete button$/) do
   on(FlowPage).delete_button_element.should be_visible
 end
