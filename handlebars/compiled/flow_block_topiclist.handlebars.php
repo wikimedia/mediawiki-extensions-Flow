@@ -23,6 +23,7 @@
         'hbhelpers' => Array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
             'ifEquals' => 'Flow\TemplateHelper::ifEquals',
             'ifAnonymous' => 'Flow\TemplateHelper::ifAnonymous',
+            'ifCond' => 'Flow\TemplateHelper::ifCond',
             'tooltip' => 'Flow\TemplateHelper::tooltip',
             'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
 ),
@@ -165,7 +166,9 @@
 		<div class="flow-topic flow-element-collapsible
             '.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? 'flow-load-interactive' : '').'
             '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null))) ? 'flow-topic-moderatestate-'.htmlentities(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null), ENT_QUOTES, 'UTF-8').'' : '').'
-            '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? 'flow-topic-moderated flow-element-collapsed' : '').'"
+            '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? 'flow-topic-moderated
+							'.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'close'),Array('"!'=>((is_array($in) && isset($in['="'])) ? $in['="'] : null))), $in, function($cx, $in) {return 'flow-element-collapsed';}).'
+						' : '').'"
      id="flow-topic-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
      data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
      data-flow-load-handler="collapserState"
