@@ -4,7 +4,8 @@
 	{{! new-topic form should only be displayed when run with JS, otherwise link to designated page }}
 	<div class="flow-newtopic-container">
 		<div class="flow-nojs">
-			<a href="{{links.newtopic}}">{{l10n "flow-newtopic-start-placeholder"}}</a>
+			<a class="mw-ui-input mw-ui-input-large flow-ui-input-replacement-anchor"
+				href="{{links.newtopic}}">{{l10n "flow-newtopic-start-placeholder"}}</a>
 		</div>
 
 		<div class="flow-js">
