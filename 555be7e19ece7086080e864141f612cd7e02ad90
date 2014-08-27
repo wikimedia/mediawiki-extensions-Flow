@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e322bf2_d6ace634",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 1576,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2014-08-27T19:31:52Z",
+      "side": 1,
+      "message": "disclaimer: I know nothing about flow. But passing this as parameter looks suspicious. Is it a parameter that is required but should be optional? Or should the information be communicated through some other method?",
+      "revId": "555be7e19ece7086080e864141f612cd7e02ad90",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
