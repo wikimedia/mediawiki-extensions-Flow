@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e322bf2_17238855",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-27T23:08:37Z",
+      "side": 1,
+      "message": "i\u0027m not particular comfortable with these methods,  it gives the impression that its ok to just go changing an existing revisions ID.\n\nOverall, for something thats pretty much a \u0027one shot\u0027 deal like LQT-\u003eFlow, i would prefer to see some reflection used to replace these rather than extending the model classes in such a way that they advertise abilities they shouldn\u0027t have.",
+      "revId": "04531178be40ea470e1f0330e5b191a80f8fb356",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_f727dc5d",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-27T23:08:37Z",
+      "side": 1,
+      "message": "sic, reflection",
+      "revId": "04531178be40ea470e1f0330e5b191a80f8fb356",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_f7e6bc12",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-27T23:08:37Z",
+      "side": 1,
+      "message": "this just feels massively more complicated than necessary.  Added aaron as a reviewer since he wrote the core UUID code, perhaps he has an idea or two to reuse whats already there.",
+      "revId": "04531178be40ea470e1f0330e5b191a80f8fb356",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_b7e834de",
+        "filename": "includes/Model/Workflow.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-27T23:08:37Z",
+      "side": 1,
+      "message": "sic, reflection",
+      "revId": "04531178be40ea470e1f0330e5b191a80f8fb356",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_77f2ccce",
+        "filename": "maintenance/convertLqt.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-27T23:08:37Z",
+      "side": 1,
+      "message": "can these be instance properties initialized by the constructor rather than static method variables?",
+      "revId": "04531178be40ea470e1f0330e5b191a80f8fb356",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_57bfd0cd",
+        "filename": "maintenance/convertLqt.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-27T23:08:37Z",
+      "side": 1,
+      "message": "Definitions no longer exist",
+      "revId": "04531178be40ea470e1f0330e5b191a80f8fb356",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_37c44468",
+        "filename": "maintenance/convertLqt.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-27T23:08:37Z",
+      "side": 1,
+      "message": "rather than $topicDefinition we now just pass the string \u0027topic\u0027(although perhaps those should be constants?  for another patch)",
+      "revId": "04531178be40ea470e1f0330e5b191a80f8fb356",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_97f538b8",
+        "filename": "maintenance/convertLqt.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-27T23:08:37Z",
+      "side": 1,
+      "message": "can we help the readability by moving this nested block of code into a new method?",
+      "revId": "04531178be40ea470e1f0330e5b191a80f8fb356",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_f7bd9cd2",
+        "filename": "maintenance/convertLqt.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-27T23:08:37Z",
+      "side": 1,
+      "message": "sic, definitions are dead :)",
+      "revId": "04531178be40ea470e1f0330e5b191a80f8fb356",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
