@@ -155,7 +155,6 @@ class TemplateHelper {
 				),
 				'hbhelpers' => array(
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
-					'ifEquals' => 'Flow\TemplateHelper::ifEquals',
 					'ifAnonymous' => 'Flow\TemplateHelper::ifAnonymous',
 					'ifCond' => 'Flow\TemplateHelper::ifCond',
 					'tooltip' => 'Flow\TemplateHelper::tooltip',
@@ -312,36 +311,6 @@ class TemplateHelper {
 	 */
 	static public function htmlHelper( array $args, array $named ) {
 		return self::html( isset( $args[0] ) ? $args[0] : 'undefined' );
-	}
-
-	/**
-	 * Unstrict comparison if.
-	 * @example {{#ifEquals one two}}...{{/ifEquals}}
-	 * @param mixed $left
-	 * @param mixed $right
-	 * @param array $options
-	 * @return string|null
-	 * @throws FlowException Fails when callbacks are not Closure instances
-	 */
-	static public function ifEquals( $left, $right, $options ) {
-		/** @var callable $inverse */
-		$inverse = isset( $options['inverse'] ) ? $options['inverse'] : null;
-		/** @var callable $fn */
-		$fn = $options['fn'];
-
-		if ( $left == $right ) {
-			if ( !$fn instanceof Closure ) {
-				throw new FlowException( 'Invalid callback, expected Closure' );
-			}
-			return $fn();
-		} elseif ( $inverse ) {
-			if ( !$inverse instanceof Closure ) {
-				throw new FlowException( 'Invalid inverse callback, expected Closure' );
-			}
-			return $inverse();
-		}
-
-		return null;
 	}
 
 	/**
@@ -782,12 +751,19 @@ class TemplateHelper {
 	static public function ifCond( $value, $operator, $value2, $options ) {
 		$doInverse = false;
 		$doCallback = false;
+
 		// Perform operator
 		$fn = $options['fn'];
 
 		if ( $operator === 'or' ) {
 			if ( $value || $value2 ) {
 				$doCallback = true;
+			} else {
+				$doInverse = true;
+			}
+		} elseif ( $operator === '===' ) {
+			if ( $value === $value2 ) {
+				return $fn();
 			} else {
 				$doInverse = true;
 			}

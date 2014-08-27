@@ -16,7 +16,7 @@
 ),
         'blockhelpers' => Array(),
         'hbhelpers' => Array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
-            'ifEquals' => 'Flow\TemplateHelper::ifEquals',
+            'ifCond' => 'Flow\TemplateHelper::ifCond',
             'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
 ),
         'scopes' => Array($in),
@@ -50,7 +50,7 @@
 				          class="mw-ui-input"
 				          type="text"
 				          placeholder="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-reply-topic-title-placeholder',LCRun3::ch($cx, 'plaintextSnippet', Array(Array(((is_array($in['content']) && isset($in['content']['format'])) ? $in['content']['format'] : null),((is_array($in['content']) && isset($in['content']['content'])) ? $in['content']['content'] : null)),Array()), 'raw')),Array()), 'encq').'"
-				          data-role="content">'.LCRun3::hbch($cx, 'ifEquals', Array(Array(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['postId'])) ? $cx['scopes'][0]['submitted']['postId'] : null),((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)),Array()), $in, function($cx, $in) {return ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'';}).'</textarea>
+				          data-role="content">'.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['postId'])) ? $cx['scopes'][0]['submitted']['postId'] : null),((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)),Array('\''=>((is_array($in) && isset($in['==\''])) ? $in['==\''] : null))), $in, function($cx, $in) {return ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'';}).'</textarea>
 
 				<div class="flow-form-actions flow-form-collapsible">
 					<button data-role="submit" class="mw-ui-button mw-ui-constructive mw-ui-flush-right">'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['title'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'</button>

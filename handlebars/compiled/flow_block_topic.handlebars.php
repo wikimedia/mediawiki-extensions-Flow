@@ -21,8 +21,8 @@
 ),
         'blockhelpers' => Array(),
         'hbhelpers' => Array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
-            'ifEquals' => 'Flow\TemplateHelper::ifEquals',
             'ifAnonymous' => 'Flow\TemplateHelper::ifAnonymous',
+            'ifCond' => 'Flow\TemplateHelper::ifCond',
             'tooltip' => 'Flow\TemplateHelper::tooltip',
             'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
 ),
@@ -36,7 +36,10 @@
 		'.LCRun3::sec($cx, ((is_array($in) && isset($in['roots'])) ? $in['roots'] : null), $in, true, function($cx, $in) {return '
 	'.'
 	'.LCRun3::hbch($cx, 'eachPost', Array(Array($cx['scopes'][0],$in),Array()), $in, function($cx, $in) {return '
-		<div class="flow-topic flow-element-collapsible '.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? 'flow-load-interactive' : '').' '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null))) ? 'flow-topic-moderatestate-'.htmlentities(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null), ENT_QUOTES, 'UTF-8').'' : '').' '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? 'flow-topic-moderated flow-element-collapsed' : '').'"
+		<div class="flow-topic flow-element-collapsible '.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? 'flow-load-interactive' : '').' '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null))) ? 'flow-topic-moderatestate-'.htmlentities(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null), ENT_QUOTES, 'UTF-8').'' : '').'
+	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? 'flow-topic-moderated
+		'.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),((is_array($in) && isset($in['\'close\''])) ? $in['\'close\''] : null)),Array('\'!'=>((is_array($in) && isset($in['=\''])) ? $in['=\''] : null))), $in, function($cx, $in) {return 'flow-element-collapsed';}).'
+	' : '').'"
      id="flow-topic-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
      data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
      data-flow-load-handler="collapserState"
@@ -45,7 +48,7 @@
 	<h2 class="flow-topic-title" data-title="'.LCRun3::ch($cx, 'plaintextSnippet', Array(Array(((is_array($in['content']) && isset($in['content']['format'])) ? $in['content']['format'] : null),((is_array($in['content']) && isset($in['content']['content'])) ? $in['content']['content'] : null)),Array()), 'encq').'">'.LCRun3::ch($cx, 'escapeContent', Array(Array(((is_array($in['content']) && isset($in['content']['format'])) ? $in['content']['format'] : null),((is_array($in['content']) && isset($in['content']['content'])) ? $in['content']['content'] : null)),Array()), 'encq').'</h2>
 '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? '
 	<div class="flow-moderated-topic-title flow-ui-text-truncated"><span
-		class="wikiglyph '.LCRun3::hbch($cx, 'ifEquals', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'close'),Array()), $in, function($cx, $in) {return 'wikiglyph-stop';}).''.LCRun3::hbch($cx, 'ifEquals', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'hide'),Array()), $in, function($cx, $in) {return 'wikiglyph-flag';}).''.LCRun3::hbch($cx, 'ifEquals', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'delete'),Array()), $in, function($cx, $in) {return 'wikiglyph-trash';}).'"></span>
+		class="wikiglyph '.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'close'),Array('\''=>((is_array($in) && isset($in['==\''])) ? $in['==\''] : null))), $in, function($cx, $in) {return 'wikiglyph-stop';}).''.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'hide'),Array('\''=>((is_array($in) && isset($in['==\''])) ? $in['==\''] : null))), $in, function($cx, $in) {return 'wikiglyph-flag';}).''.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'delete'),Array('\''=>((is_array($in) && isset($in['==\''])) ? $in['==\''] : null))), $in, function($cx, $in) {return 'wikiglyph-trash';}).'"></span>
 		'.LCRun3::ch($cx, 'l10n', Array(Array('post_moderation_state',((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),((is_array($in) && isset($in['replyToId'])) ? $in['replyToId'] : null),((is_array($in['moderator']) && isset($in['moderator']['name'])) ? $in['moderator']['name'] : null)),Array()), 'encq').'</div>
 ' : '').'
 <div class="flow-topic-meta">
@@ -342,7 +345,7 @@
 				class="mw-ui-input"
 				type="text"
 				placeholder="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-reply-topic-title-placeholder',LCRun3::ch($cx, 'plaintextSnippet', Array(Array(((is_array($in['content']) && isset($in['content']['format'])) ? $in['content']['format'] : null),((is_array($in['content']) && isset($in['content']['content'])) ? $in['content']['content'] : null)),Array()), 'raw')),Array()), 'encq').'"
-				data-role="content">'.LCRun3::hbch($cx, 'ifEquals', Array(Array(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['postId'])) ? $cx['scopes'][0]['submitted']['postId'] : null),((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)),Array()), $in, function($cx, $in) {return ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'';}).'</textarea>
+				data-role="content">'.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['postId'])) ? $cx['scopes'][0]['submitted']['postId'] : null),((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)),Array('\''=>((is_array($in) && isset($in['==\''])) ? $in['==\''] : null))), $in, function($cx, $in) {return ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'';}).'</textarea>
 
 		<div class="flow-form-actions flow-form-collapsible">
 			<button data-role="submit"
