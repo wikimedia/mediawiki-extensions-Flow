@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e322bf2_42bef861",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-27T13:20:14Z",
+      "side": 1,
+      "message": "Also remove this one here",
+      "revId": "a8c33efadd8f9c12d486b13c05aece78cb60d4e7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_a28fdcd0",
+        "filename": "includes/Formatter/TopicFormatter.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-27T13:20:14Z",
+      "side": 1,
+      "message": "This should probably not be \"author\", but \"creator\".\nAuthor is the person responsible for a single revision, creator the one that started the post.\n\nFor a moderated or edited revision, author could be different from the person that actually posted the comment. In this case, I guess we\u0027re looking to show the people that have actually submitted comments.",
+      "revId": "a8c33efadd8f9c12d486b13c05aece78cb60d4e7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
