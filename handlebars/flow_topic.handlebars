@@ -20,7 +20,7 @@
 
 	{{#unless isPreview}}
 		{{#if actions.reply}}
-			{{#ifEquals @root.submitted.postId postId}}
+			{{#ifCond @root.submitted.postId "===" postId}}
 				{{> flow_reply_form}}
 			{{else}}
 				{{#progressiveEnhancement type="replace" target="~ a"}}
@@ -32,7 +32,7 @@
 				>
 					{{~l10n "flow-reply-topic-title-placeholder" (plaintextSnippet content.format content.content)~}}
 				</a>
-			{{/ifEquals}}
+			{{/ifCond}}
 		{{/if}}
 	{{/unless}}
 </div>
