@@ -151,6 +151,20 @@ abstract class ApiFlowBase extends ApiBase {
 		}
 	}
 
+	/**
+	 * Override prefix on CSRF token so the same code can be reused for
+	 * all modules.  This is a *TEMPORARY* hack please remove as soon as
+	 * unprefixed tokens are working correctly again (bug 70099).
+	 *
+	 * @param string $paramName
+	 * @return string
+	 */
+	public function encodeParamName( $paramName ) {
+		return $paramName === 'token'
+			? $paramName
+			: parent::encodeParamName( $paramName );
+	}
+
 	public function getHelpUrls() {
 		return array(
 			'https://www.mediawiki.org/wiki/Extension:Flow/API#' . $this->getAction(),
