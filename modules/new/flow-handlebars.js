@@ -411,22 +411,6 @@
 
 	/**
 	 *
-	 * @example {{#ifEquals one two}}
-	 * @param {*} left
-	 * @param {*} right
-	 * @param {Object} options
-	 * @returns {String}
-	 */
-	FlowHandlebars.prototype.ifEquals = function ( left, right, options ) {
-		/* jshint -W116 */
-		if ( left == right ) {
-			return options.fn( this );
-		}
-		return options.inverse ? options.inverse( this ) : false;
-	};
-
-	/**
-	 *
 	 * @example {{block this}}
 	 * @param {Object} context
 	 * @param {Object} options
@@ -642,6 +626,8 @@
 	FlowHandlebars.prototype.ifCond = function ( value, operator, value2, options ) {
 		if ( operator === 'or' ) {
 			return value || value2 ? options.fn( this ) : options.inverse( this );
+		} else if ( operator === '===' ) {
+			return value === value2 ? options.fn( this ) : options.inverse( this );
 		} else if ( operator === '!==' ) {
 			return value !== value2 ? options.fn( this ) : options.inverse( this );
 		} else {
@@ -684,7 +670,6 @@
 	Handlebars.registerHelper( 'uuidTimestamp', FlowHandlebars.prototype.uuidTimestamp );
 	Handlebars.registerHelper( 'timestamp', FlowHandlebars.prototype.timestamp );
 	Handlebars.registerHelper( 'html', FlowHandlebars.prototype.html );
-	Handlebars.registerHelper( 'ifEquals', FlowHandlebars.prototype.ifEquals );
 	Handlebars.registerHelper( 'block', FlowHandlebars.prototype.workflowBlock );
 	Handlebars.registerHelper( 'post', FlowHandlebars.prototype.postBlock );
 	Handlebars.registerHelper( 'eachPost', FlowHandlebars.prototype.eachPost );
