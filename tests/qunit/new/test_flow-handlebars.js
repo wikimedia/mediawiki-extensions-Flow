@@ -72,11 +72,13 @@ QUnit.test( 'Handlebars.prototype.ifEquals', 2, function( assert ) {
 	assert.strictEqual( this.handlebarsProto.ifEquals( 'foo', 'foo', this.opts ), 'ok', 'equal' );
 } );
 
-QUnit.test( 'Handlebars.prototype.ifCond', 4, function() {
+QUnit.test( 'Handlebars.prototype.ifCond', 6, function() {
 	strictEqual( mw.flow.FlowHandlebars.prototype.ifCond( true, 'or', false, this.opts ), 'ok', 'true || false' );
 	strictEqual( mw.flow.FlowHandlebars.prototype.ifCond( true, 'or', true, this.opts ), 'ok', 'true || true' );
 	strictEqual( mw.flow.FlowHandlebars.prototype.ifCond( false, 'or', false, this.opts ), 'nope', 'false || false' );
 	strictEqual( mw.flow.FlowHandlebars.prototype.ifCond( false, 'monkeypunch', this.opts ), '', 'Unknown operator' );
+	strictEqual( mw.flow.FlowHandlebars.prototype.ifCond( 'foo', 'notEqualTo', 'foo', this.opts ), 'nope' );
+	strictEqual( mw.flow.FlowHandlebars.prototype.ifCond( 'foo', 'notEqualTo', 'bar', this.opts ), 'ok' );
 } );
 
 QUnit.test( 'Handlebars.prototype.ifAnonymous', 2, function() {
