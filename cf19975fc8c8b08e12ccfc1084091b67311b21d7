@@ -16,6 +16,24 @@
       "revId": "cf19975fc8c8b08e12ccfc1084091b67311b21d7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e322bf2_824e203b",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 878,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-27T10:12:06Z",
+      "side": 1,
+      "message": "How do you mean? Comment changed from:\n\n    // Prior to https://gerrit.wikimedia.org/r/#/c/156118/, $link didn\u0027t exist\n\nto:\n\n    /*\n     * https://gerrit.wikimedia.org/r/#/c/156118/ adds argument $link.\n     * Prior to that patch, it was impossible to change the link, so\n     * let\u0027s quit early if it doesn\u0027t exist.\n     */\n\nNot sure how I can better comment why exactly I\u0027m returning here already?",
+      "parentUuid": "4e322bf2_a1211d9c",
+      "revId": "cf19975fc8c8b08e12ccfc1084091b67311b21d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
