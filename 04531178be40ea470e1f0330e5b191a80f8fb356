@@ -53,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "4e322bf2_f78c7c01",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-08-27T23:46:52Z",
+      "side": 1,
+      "message": "Idea from aaron:\n\n16:32 \u003c AaronSchulz\u003e ebernhardson: getTimestampedID88() already lets the time/clock seq. be injected, and you can detect any rare duplicates on INSERT (fudging the milliseconds as needed to work around), maybe you could just extend UIDGenerator as a hack\n\nIdea from me:\n\naaron\u0027s idea sounds much cleaner than this currently is. If its\ntoo hard to catch the duplicates on insert failure you might be able to get away with rotating the $this-\u003enodeId32 in your extended classes?",
+      "parentUuid": "4e322bf2_f7e6bc12",
+      "revId": "04531178be40ea470e1f0330e5b191a80f8fb356",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e322bf2_b7e834de",
         "filename": "includes/Model/Workflow.php",
         "patchSetId": 6
