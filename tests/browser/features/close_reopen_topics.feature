@@ -25,8 +25,8 @@ Feature: Close and open topics
         And I submit the close/reopen topic form
         And the page has re-rendered
     Then the top post is a closed discussion
-        And I expand the top post
         And the topic summary of the first topic is "This is a bikeshed"
+        And the content of the top post should be visible
 
   # Close-then-reopen doesn't work in IE, it caches the API response (bug 69160).
   Scenario: Opening a topic
@@ -39,5 +39,5 @@ Feature: Close and open topics
         And I submit the close/reopen topic form
         And the page has re-rendered
     Then the top post is an open discussion
-        And I expand the top post
         And the topic summary of the first topic is "Fun discussion"
+        And the content of the top post should be visible
