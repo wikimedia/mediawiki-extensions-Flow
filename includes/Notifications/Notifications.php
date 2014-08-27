@@ -38,7 +38,7 @@ $notifications = array(
 		'title-params' => array( 'agent', 'subject', 'flow-title', 'title', 'post-permalink' ),
 		'bundle' => array(
 			'web' => true,
-			'email' => false
+			'email' => true,
 		),
 		'bundle-message' => 'flow-notification-reply-bundle',
 		'bundle-params' => array( 'agent', 'subject', 'title', 'post-permalink', 'agent-other-display', 'agent-other-count' ),
@@ -58,7 +58,7 @@ $notifications = array(
 		'title-params' => array( 'agent', 'subject', 'flow-title', 'title', 'post-permalink' ),
 		'bundle' => array(
 			'web' => true,
-			'email' => false
+			'email' => true,
 		),
 		'bundle-message' => 'flow-notification-edit-bundle',
 		'bundle-params' => array( 'agent', 'subject', 'title', 'post-permalink', 'agent-other-display', 'agent-other-count' ),
