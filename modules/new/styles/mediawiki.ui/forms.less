@@ -10,6 +10,15 @@
 .flow-ui-input-replacement-anchor {
 	display: block;
 	margin: 1em 0 0 .9em;
+
+	// FIXME: It's a shame we have to duplicate css in mw-ui-input. Need saner way going forward. mw-ui-textarea ?
+	&.mw-ui-input-large {
+		margin: 0;
+		font-size: 1.75em;
+		font-style: italic;
+		line-height: 1.25em;
+		color: @colorTextLight;
+	}
 }
 
 .client-nojs {
