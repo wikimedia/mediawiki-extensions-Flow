@@ -17,9 +17,9 @@
 				type="text"
 				placeholder="{{l10n "flow-reply-topic-title-placeholder" (plaintextSnippet content.format content.content)}}"
 				data-role="content">
-			{{~#ifEquals @root.submitted.postId postId~}}
+			{{~#ifCond @root.submitted.postId 'equalTo' postId~}}
 				{{~@root.submitted.content~}}
-			{{~/ifEquals~}}
+			{{~/ifCond~}}
 		</textarea>
 
 		<div class="flow-form-actions flow-form-collapsible">
