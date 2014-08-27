@@ -780,25 +780,37 @@ class TemplateHelper {
 	 * @param array @options
 	 */
 	static public function ifCond( $value, $operator, $value2, $options ) {
+		$doInverse = false;
+		$doCallback = false;
 		// Perform operator
+		$fn = $options['fn'];
+
 		if ( $operator === 'or' ) {
 			if ( $value || $value2 ) {
-				$fn = $options['fn'];
-				if ( !$fn instanceof Closure ) {
-					throw new FlowException( 'Expected callback to be Closure instance' );
-				}
-
-				return $fn();
-			} elseif ( isset( $options['inverse'] ) ) {
-				$inverse = $options['inverse'];
-				if ( !$inverse instanceof Closure ) {
-					throw new FlowException( 'Expected inverse callback to be Closure instance' );
-				}
-
-				return $inverse();
+				$doCallback = true;
+			} else {
+				$doInverse = true;
+			}
+		} elseif ( $operator === '!==' ) {
+			if ( $value !== $value2 ) {
+				$doCallback = true;
+			} else {
+				$doInverse = true;
 			}
 		}
 
+		if ( $doCallback ) {
+			if ( !$fn instanceof Closure ) {
+				throw new FlowException( 'Expected callback to be Closure instance' );
+			}
+			return $fn();
+		} else if ( $doInverse && isset( $options['inverse'] ) ) {
+			$inverse = $options['inverse'];
+			if ( !$inverse instanceof Closure ) {
+				throw new FlowException( 'Expected inverse callback to be Closure instance' );
+			}
+			return $inverse();
+		}
 		return '';
 	}
 
