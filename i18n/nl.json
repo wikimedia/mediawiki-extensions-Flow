@@ -259,6 +259,12 @@
 	"flow-terms-of-use-reply": "Door te klikken op \"{{int:flow-reply-submit}}\", gaat u akkoord met de gebruiksvoorwaarden van deze wiki.",
 	"flow-terms-of-use-edit": "Door deze wijzigingen op te slaan, gaat u akkoord met de gebruiksvoorwaarden van deze wiki.",
 	"flow-started-ago": "$1 begonnen",
+	"flow-started-ago-hour": "$1 {{PLURAL:$1|uur}} geleden begonnen",
+	"flow-edited-ago-day": "$1 {{PLURAL:$1|dag|dagen}} geleden bewerkt",
 	"flow-newest-topics": "Nieuwste onderwerpen",
-	"flow-spam-confirmedit-form": "Bevestig alstublieft dat u een mens bent door onderstaande captcha op te lossen: $1"
+	"flow-spam-confirmedit-form": "Bevestig alstublieft dat u een mens bent door onderstaande captcha op te lossen: $1",
+	"flow-time-ago-day": "$1 {{PLURAL:$1|dag|dagen}} geleden",
+	"flow-time-ago-hour": "$1 {{PLURAL:$1|uur}} geleden",
+	"flow-time-ago-second": "$1 {{PLURAL:$1|seconde|seconden}} geleden",
+	"flow-time-ago-week": "$1 {{PLURAL:$1|week|weken}} geleden"
 }

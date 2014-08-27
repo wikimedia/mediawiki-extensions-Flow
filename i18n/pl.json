@@ -84,5 +84,20 @@
 	"flow-terms-of-use-new-topic": "Klikając na \"{{int:flow-newtopic-save}}\", zgadzasz się na zasady użytkowania tej wiki.",
 	"flow-terms-of-use-reply": "Klikając na \"{{int:flow-reply-submit}}\", zgadzasz się na warunki użytkowania tej wiki.",
 	"flow-terms-of-use-edit": "Zapisując zmiany, zgadzasz się na warunki użytkowania tej wiki.",
-	"flow-terms-of-use-summarize": "Klikając na \"{{int:flow-summarize-topic-submit}}\", zgadzasz się na zasady użytkowania tej wiki."
+	"flow-started-ago-day": "Rozpoczęto {{PLURAL:$1|wczoraj|$1 dni temu}}",
+	"flow-started-ago-hour": "Rozpoczęto {{PLURAL:$1|przed godziną|$1 godziny temu|$1 godzin temu}}",
+	"flow-started-ago-minute": "Rozpoczęto {{PLURAL:$1|przed minutą|$1 minuty temu|$1 minut temu}}",
+	"flow-started-ago-second": "Rozpoczęto {{PLURAL:$1|przed sekundą|$1 sekundy temu|$1 sekund temu}}",
+	"flow-started-ago-week": "Rozpoczęto {{PLURAL:$1|tydzień|$1 tygodnie|$1 tygodni}} temu",
+	"flow-edited-ago-day": "Edytowano {{PLURAL:$1|wczoraj|$1 dni temu}}",
+	"flow-edited-ago-hour": "Edytowano {{PLURAL:$1|przed godziną|$1 godziny temu|$1 godzin temu}}",
+	"flow-edited-ago-minute": "Edytowano {{PLURAL:$1|przed minutą|$1 minuty temu|$1 minut temu}}",
+	"flow-edited-ago-second": "Edytowano {{PLURAL:$1|przed sekundą|$1 sekundy temu|$1 sekund temu}}",
+	"flow-edited-ago-week": "Edytowano {{PLURAL:$1|tydzień|$1 tygodnie|$1 tygodni}} temu",
+	"flow-terms-of-use-summarize": "Klikając na \"{{int:flow-summarize-topic-submit}}\", zgadzasz się na zasady użytkowania tej wiki.",
+	"flow-time-ago-day": "{{PLURAL:$1|wczoraj|$1 dni temu}}",
+	"flow-time-ago-hour": "{{PLURAL:$1|przed godziną|$1 godziny temu|$1 godzin temu}}",
+	"flow-time-ago-minute": "{{PLURAL:$1|przed minutą|$1 minuty temu|$1 minut temu}}",
+	"flow-time-ago-second": "{{PLURAL:$1|przed sekundą|$1 sekundy temu|$1 sekund temu}}",
+	"flow-time-ago-week": "{{PLURAL:$1|tydzień|$1 tygodnie|$1 tygodni}} temu"
 }
