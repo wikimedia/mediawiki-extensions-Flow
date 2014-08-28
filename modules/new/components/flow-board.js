@@ -1183,35 +1183,39 @@
 				$target = hash ? $( hash ) : false;
 
 			// If this element is leading to another element on the page, find it.
-			if ( $target && $target.length ) {
-				$el = $( hash[0] );
-				$form = $el.closest( 'form' );
-
-				if ( $el.length && $form.length ) {
-					// Is this a hidden form or invisible field? Make it visible.
-					FlowBoardComponent.UI.Forms.showForm( $form );
-
-					if ( ! $form.is( ':visible' ) ) {
-						FlowBoardComponent.UI.expandTopicIfNecessary( $form.closest( '.flow-topic' ) );
-					}
-
-					// Is this a form field? Scroll to the form instead of jumping.
-					$form.conditionalScrollIntoView().queue( function ( next ) {
-						var $el = $( hash[0] );
-
-						// After scroll, focus onto the form field itself
-						if ( $el.is( 'textarea, :text' ) ) {
-							$el.focus();
-						}
-
-						// jQuery.dequeue
-						next();
-					});
-
-					// OK, we're done here. Don't use the hard link.
-					event.preventDefault();
-				}
+			if ( !$target || !$target.length ) {
+				return;
 			}
+
+			$el = $( hash[0] );
+			$form = $el.closest( 'form' );
+
+			if ( !$el.length || !$form.length ) {
+				return;
+			}
+
+			// Is this a hidden form or invisible field? Make it visible.
+			FlowBoardComponent.UI.Forms.showForm( $form );
+
+			if ( ! $form.is( ':visible' ) ) {
+				FlowBoardComponent.UI.expandTopicIfNecessary( $form.closest( '.flow-topic' ) );
+			}
+
+			// Is this a form field? Scroll to the form instead of jumping.
+			$form.conditionalScrollIntoView().queue( function ( next ) {
+				var $el = $( hash[0] );
+
+				// After scroll, focus onto the form field itself
+				if ( $el.is( 'textarea, :text' ) ) {
+					$el.focus();
+				}
+
+				// jQuery.dequeue
+				next();
+			});
+
+			// OK, we're done here. Don't use the hard link.
+			event.preventDefault();
 		};
 
 		/**
