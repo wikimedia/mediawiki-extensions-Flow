@@ -919,6 +919,7 @@
 						{
 							isWatched: isWatched,
 							links: links,
+							isBoardPage: watchType === 'board' ? true : false,
 							watchable: true
 						}
 					)
