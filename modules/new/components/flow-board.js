@@ -435,6 +435,7 @@
 						data.flow[ 'view-topiclist' ].result.topiclist
 					) ).children()
 				);
+
 				// Run loadHandlers
 				FlowBoardComponent.UI.makeContentInteractive( $tmp );
 			} catch( e ) {
@@ -463,6 +464,14 @@
 
 			// Remove the old load button (necessary if the above load_more template returns nothing)
 			$target.remove();
+
+			/*
+			 * Fire infinite scroll check again - if no (or few) topics were
+			 * added (e.g. because they're moderated), we should immediately
+			 * fetch more instead of waiting for the user to scroll again (when
+			 * there's no reason to scroll)
+			 */
+			FlowBoardComponent.UI.infiniteScrollCheck();
 		};
 
 		/**
