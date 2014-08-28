@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_11e98c7b",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-28T15:41:00Z",
+      "side": 1,
+      "message": "!\u003d is not equal\n!\u003d\u003d is not identical",
+      "revId": "9bb27652bc371d48dc98063f019cf903ed79919f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
