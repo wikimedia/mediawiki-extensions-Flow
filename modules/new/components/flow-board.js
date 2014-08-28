@@ -591,6 +591,7 @@
 			var revision,
 				$target = info.$target, $topicTitleBar,
 				topicId, revisionId,
+				$topic = $target.parents( '.flow-topic' ),
 				self = this,
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
 				flowId = $( self ).closest( '.flow-topic-titlebar' ).parent().data( 'flow-id' );
@@ -625,11 +626,12 @@
 				revisionId = result.posts[topicId];
 				revision = result.revisions[revisionId];
 
-				// FIXME: Api should be returning moderation state. Why not?
-				revision.isModerated = revision.moderateState === 'close';
-
-				// FIXME: Hackily remove the moderated class (avoids re-rendering entire post)
-				$target.parents( '.flow-topic' ).removeClass( 'flow-topic-moderated' );
+				if ( !revision.isModerated ) {
+					$topic.removeClass( 'flow-topic-moderated flow-topic-moderatestate-close' );
+				} else {
+					$topic.addClass( 'flow-topic-moderated' ).
+						addClass( 'flow-topic-moderatestate-close' );
+				}
 
 				// Update view of the title bar
 				$topicTitleBar = $(
