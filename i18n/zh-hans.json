@@ -186,7 +186,6 @@
 	"flow-history-week": "上周",
 	"flow-history-pages-topic": "显示于[$1 “$2”板]",
 	"flow-history-pages-post": "出现在[$1 $2]",
-	"flow-topic-participants": "{{PLURAL:$1|$3发起了此话题|{{GENDER:$3|$3}}、{{GENDER:$4|$4}}、{{GENDER:$5|$5}}和其他$2位用户|0=尚无人参与|2={{GENDER:$3|$3}}和{{GENDER:$4|$4}}|3={{GENDER:$3|$3}}、{{GENDER:$4|$4}}和{{GENDER:$5|$5}}}}",
 	"flow-topic-comments": "{{PLURAL:$1|$1个评论|0={{GENDER:$2|抢沙发}}！}}",
 	"flow-comment-restored": "还原的评论",
 	"flow-comment-deleted": "删除的评论",

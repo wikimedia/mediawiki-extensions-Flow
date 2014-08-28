@@ -174,7 +174,6 @@
 	"flow-history-week": "Минатата седмица",
 	"flow-history-pages-topic": "Фигурира на [$1 таблата „$2“]",
 	"flow-history-pages-post": "Фигурира на [$1 $2]",
-	"flow-topic-participants": "{{PLURAL:$1|Темава ја започна $3|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} и {{PLURAL:$2|уште еден|$2 други}}|0=Досега никој не учествувал|2={{GENDER:$3|$3}} и {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} и {{GENDER:$5|$5}}}}",
 	"flow-topic-comments": "{{PLURAL:$1|$1 коментар|$1 коментари|0={{GENDER:$2|Бидете први}} со коментар!}}",
 	"flow-comment-restored": "Повратен коментар",
 	"flow-comment-deleted": "Избришан коментар",

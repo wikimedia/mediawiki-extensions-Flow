@@ -174,7 +174,6 @@
 	"flow-history-week": "Letzte Woche",
 	"flow-history-pages-topic": "Erscheint auf dem [$1 Board „$2“]",
 	"flow-history-pages-post": "Erscheint auf [$1 $2]",
-	"flow-topic-participants": "{{PLURAL:$1|$3 startete dieses Thema|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} und $2 {{PLURAL:$2|ein anderer|andere}}|0=Noch keine Teilnehmer|2={{GENDER:$3|$3}} und {{GENDER:$4|$4}}}}",
 	"flow-topic-comments": "{{PLURAL:$1|Ein Kommentar|$1 Kommentare|0=Sei {{GENDER:$2|der|die|der}} erste!}}",
 	"flow-comment-restored": "Kommentar wiederhergestellt",
 	"flow-comment-deleted": "Kommentar gelöscht",

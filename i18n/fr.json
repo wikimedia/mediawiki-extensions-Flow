@@ -192,7 +192,6 @@
 	"flow-history-week": "Semaine dernière",
 	"flow-history-pages-topic": "Apparaît sur le [$1 forum « $2 »]",
 	"flow-history-pages-post": "Apparaît sur [$1 $2]",
-	"flow-topic-participants": "{{PLURAL:$1|$3 a démarré ce sujet|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} et {{PLURAL:$2|autre|autres}}|0=Il n'y a aucune participation pour le moment|2={{GENDER:$3|$3}} et {{GENDER:$4|$4}}}}",
 	"flow-topic-comments": "{{PLURAL:$1|$1 commentaire|$1 commentaires|0={{GENDER:$2|Soyez le premier|Soyez la première}} à laisser un message !}}",
 	"flow-comment-restored": "Message rétabli",
 	"flow-comment-deleted": "Message supprimé",

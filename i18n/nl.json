@@ -160,7 +160,6 @@
 	"flow-history-week": "Afgelopen week",
 	"flow-history-pages-topic": "Komt voor op het [$1 prikbord \"$2\"]",
 	"flow-history-pages-post": "Komt voor op [$1 $2]",
-	"flow-topic-participants": "{{PLURAL:$1|$3 is dit onderwerp begonnen|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} en {{PLURAL:$2|een andere gebruiker|andere gebruikers}}|0=Nog geen deelnemers|2={{GENDER:$3|$3}} en {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} en {{GENDER:$5|$5}}}}",
 	"flow-topic-comments": "{{PLURAL:$1|0={{GENDER:$2|Reageer}} als eerste!|Eén reactie|$1 reacties}}",
 	"flow-comment-restored": "Teruggeplaatste reactie",
 	"flow-comment-deleted": "Verwijderde reactie",

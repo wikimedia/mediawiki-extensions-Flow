@@ -187,7 +187,6 @@
 	"flow-history-week": "Semana pasada",
 	"flow-history-pages-topic": "Aparece en el [$1 tablón «$2»]",
 	"flow-history-pages-post": "Aparece en [$1 $2]",
-	"flow-topic-participants": "{{PLURAL:$1|$3 iniciaron este tema|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} y $2 {{PLURAL:$2|otro|otros}}|0=Sin participación todavía|2={{GENDER:$3|$3}} y {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} y {{GENDER:$5|$5}}}}",
 	"flow-topic-comments": "{{PLURAL:$1|$1 comentario|$1 comentarios|0={{GENDER:$2|¡Sé el primero}} en comentar!}}",
 	"flow-comment-restored": "Comentario restaurado",
 	"flow-comment-deleted": "Comentario eliminado",

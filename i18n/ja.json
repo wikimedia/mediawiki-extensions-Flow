@@ -140,7 +140,6 @@
 	"flow-history-week": "過去 1 週間",
 	"flow-history-pages-topic": "[$1 掲示板「$2」]に出現",
 	"flow-history-pages-post": "[$1 $2]に出現",
-	"flow-topic-participants": "{{PLURAL:$1|$3 がこの話題を開始|{{GENDER:$3|$3}}、{{GENDER:$4|$4}}、{{GENDER:$5|$5}} と他 $2 {{PLURAL:$2|人}}|0=まだ誰も参加していません|2={{GENDER:$3|$3}} と {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}、{{GENDER:$4|$4}}、{{GENDER:$5|$5}}}}",
 	"flow-topic-comments": "{{PLURAL:$1|$1 件のコメント|0=最初のコメントを{{GENDER:$2|書きましょう}}!}}",
 	"flow-comment-restored": "コメントを復元",
 	"flow-comment-deleted": "コメントを削除",
