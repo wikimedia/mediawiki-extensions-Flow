@@ -853,4 +853,29 @@ class FlowHooks {
 
 		return true;
 	}
+
+	/**
+	 * @param Title $title
+	 * @param string[] $urls
+	 * @return bool
+	 */
+	public static function onTitleSquidURLs( Title $title, array &$urls ) {
+		if ( $title->getNamespace() !== NS_TOPIC ) {
+			return true;
+		}
+		$uuid = UUID::create( $title->getDbKey() );
+		if ( !$uuid ) {
+			return true;
+		}
+		$workflow = Container::get( 'storage' )->get( 'Workflow', $uuid );
+		if ( !$workflow ) {
+			return true;
+		}
+		$urls = array_merge(
+			$urls,
+			$workflow->getOwnerTitle()->getSquidURLs()
+		);
+
+		return true;
+	}
 }
