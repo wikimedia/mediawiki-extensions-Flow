@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_319b681d",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-08-28T15:43:21Z",
+      "side": 1,
+      "message": "need to add equalTo here as well",
+      "revId": "0bc8311825d1b7623cd7db35dcef8c65b4926475",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
