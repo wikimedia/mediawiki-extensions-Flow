@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_7d9bf51b",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-08-29T18:53:13Z",
+      "side": 1,
+      "message": "While we are on this, could we move $target down along with other initialized variables?",
+      "revId": "fa3698785d0de4b48aed12bb77732557a21ef9a1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_dd8b09c3",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-08-29T18:53:13Z",
+      "side": 1,
+      "message": "maybe just removeClass( \u0027classA classB\u0027)? Not sure the preferred way, this seems better",
+      "revId": "fa3698785d0de4b48aed12bb77732557a21ef9a1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
