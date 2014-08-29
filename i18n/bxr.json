@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Elvonudinium"
+		]
+	},
+	"flow-started-ago-day": "$1 {{PLURAL:$1|үдэр}} урда эхилһэн",
+	"flow-started-ago-hour": "$1 {{PLURAL:$1|саг}} урда эхилһэн",
+	"flow-started-ago-minute": "$1 {{PLURAL:$1|минута}} урда эхилһэн",
+	"flow-started-ago-second": "$1 {{PLURAL:$1|секунда}} урда эхилһэн",
+	"flow-started-ago-week": "$1 {{PLURAL:$1|долоо хоног}} урда эхилһэн",
+	"flow-edited-ago-day": "$1 {{PLURAL:$1|үдэр}} урда заһабарилагдаһан",
+	"flow-edited-ago-hour": "$1 {{PLURAL:$1|саг}} урда заһабарилагдаһан",
+	"flow-edited-ago-minute": "$1 {{PLURAL:$1|минута}} урда заһабарилагдаһан",
+	"flow-edited-ago-second": "$1 {{PLURAL:$1|секунда}} урда заһабарилагдаһан",
+	"flow-edited-ago-week": "$1 {{PLURAL:$1|долоо хоног}} урда заһабарилагдаһан",
+	"flow-active-ago-day": "$1 {{PLURAL:$1|үдэр}} урда эдэбхитэй байгаа",
+	"flow-active-ago-hour": "$1 {{PLURAL:$1|саг}} урда эдэбхитэй байгаа",
+	"flow-active-ago-minute": "$1 {{PLURAL:$1|минута}} урда эдэбхитэй байгаа",
+	"flow-active-ago-second": "$1 {{PLURAL:$1|секунда}} урда эдэбхитэй байгаа",
+	"flow-active-ago-week": "$1 {{PLURAL:$1|долоо хоног}} урда эдэбхитэй байгаа",
+	"flow-time-ago-day": "$1 {{PLURAL:$1|үдэр}} урда",
+	"flow-time-ago-hour": "$1 {{PLURAL:$1|саг}} урда",
+	"flow-time-ago-minute": "$1 {{PLURAL:$1|минута}} урда",
+	"flow-time-ago-second": "$1 {{PLURAL:$1|секунда}} урда",
+	"flow-time-ago-week": "$1 {{PLURAL:$1|долоо хоног}} урда"
+}

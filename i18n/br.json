@@ -37,7 +37,7 @@
 	"flow-post-action-hide-post": "Kuzhat",
 	"flow-post-action-edit-post": "Aozañ",
 	"flow-post-action-edit-post-submit": "Enrollañ ar c'hemmoù",
-	"flow-post-action-restore-post": "Assevel ar gemennadenn",
+	"flow-post-action-restore-post": "Assevel",
 	"flow-topic-action-view": "Peurliamm",
 	"flow-topic-action-watchlist": "Roll evezhiañ",
 	"flow-topic-action-edit-title": "Kemmañ an titl",
@@ -75,7 +75,6 @@
 	"flow-comment-moderated": "Evezhiadenn habaskaet",
 	"flow-last-modified": "Kemm diwezhañ war-dro $1",
 	"flow-notification-link-text-view-post": "Gwelet ar gemennadenn",
-	"flow-notification-link-text-view-board": "Gwelet an daolenn",
 	"flow-notification-reply-email-subject": "$1 {{GENDER:$1|en deus|he deus}} respontet d'ho kemennadenn",
 	"flow-notification-reply-email-batch-body": "$1 {{GENDER:$1|en deus|he deus}} respontet d'ho kemennadenn e-barzh $2 war \"$3\"",
 	"flow-notification-mention-email-subject": "$1 {{GENDER:$1|en deus|he deus}} meneget ac'hanoc'h war $2",
@@ -100,5 +99,10 @@
 	"flow-topic-collapsed-one-line": "Gwel bihan",
 	"flow-topic-complete": "Gwel klok",
 	"flow-load-more": "Kargañ muioc'h",
-	"flow-anonymous": "Dizanv"
+	"flow-special-type": "Seurt",
+	"flow-preview-return-edit-post": "Kenderc'hel da aozañ",
+	"flow-anonymous": "Dizanv",
+	"flow-embedding-unsupported": "An divizoù ne c'hallont ket bezañ enframmet c'hoazh.",
+	"flow-time-ago-second": "$1 {{PLURAL:$1|eilenn}} zo",
+	"flow-time-ago-week": "$1 {{PLURAL:$1|sizhun}} zo"
 }
