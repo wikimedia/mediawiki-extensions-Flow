@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_fdd6c5f5",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-08-29T18:36:40Z",
+      "side": 1,
+      "message": "Same argument as last patch on naming, identicalTo vs equalTo",
+      "revId": "6e1cd1a2811edf4f6fff6389b133f8e11274f6eb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
