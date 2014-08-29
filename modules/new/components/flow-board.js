@@ -735,6 +735,16 @@
 
 			creator = {
 				links: {
+					userpage: {
+						url: mw.util.getUrl( 'User:' + username ),
+						// FIXME: Assume, as we don't know at this point...
+						exists: true
+					},
+					talk: {
+						url: mw.util.getUrl( 'User talk:' + username ),
+						// FIXME: Assume, as we don't know at this point...
+						exists: true
+					},
 					contribs: {
 						url: mw.util.getUrl( 'Special:Contributions/' + username ),
 						exists: true,
