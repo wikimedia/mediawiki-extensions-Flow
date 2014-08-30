@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Leli Forte"
+		]
+	},
+	"flow-newtopic-content-placeholder": "Ikteb messaġġ ġdid fuq \"$1\"",
+	"flow-started-ago-hour": "Inbeda $1 {{PLURAL:$1|siegħa|sigħat}} ilu",
+	"flow-edited-ago-day": "Editjat $1 {{PLURAL:$1|jum|jiem}} ilu",
+	"flow-active-ago-week": "Kien attiv $1 {{PLURAL:$1|ġimgħa|ġimgħat}} ilu",
+	"flow-time-ago-day": "$1 {{PLURAL:$1|jum|jiem}} ilu",
+	"flow-time-ago-hour": "$1 {{PLURAL:$1|siegħa|sigħat}} ilu",
+	"flow-time-ago-second": "$1 {{PLURAL:$1|sekonda|sekondi}} ilu"
+}
