@@ -125,7 +125,7 @@
 	"flow-error-not-a-post": "Error message when a topic title is attempted to be saved as post (most likely a code issue - shouldn't happen).",
 	"flow-error-missing-header-content": "Error message when the header is submitted without content.\n{{Related|Flow-error-missing}}",
 	"flow-error-missing-prev-revision-identifier": "Error message when the identifier for the previous header revision is missing.",
-	"flow-error-prev-revision-mismatch": "Error message when the provided previous revision identifier does not match the last stored revision.",
+	"flow-error-prev-revision-mismatch": "Error message when the provided previous revision identifier does not match the last stored revision.\n\nParameters:\n* $1 - Revision ID that was provided.\n* $2 = Revision ID that was expected (the current most recent store revision).\n* $3 - Username of the user attempting to save the revision, can be used for GENDER support.",
 	"flow-error-prev-revision-does-not-exist": "Error message when the provided previous revision identifier could not be found.",
 	"flow-error-default": "General error message for flow.",
 	"flow-error-invalid-input": "Error message when invalid input is provided.",
