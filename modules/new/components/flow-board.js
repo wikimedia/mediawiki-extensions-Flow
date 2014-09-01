@@ -300,8 +300,8 @@
 		 * @return {Function} Callback to modify the API request
 		 */
 		FlowBoardComponent.UI.events.apiPreHandlers.preview = function ( event ) {
-			var $this = $( this ),
-				callback;
+			var callback,
+				$this = $( this );
 
 			callback = function ( queryMap ) {
 				var content = null;
@@ -390,8 +390,8 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.board = function ( info, data, jqxhr ) {
-			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
-				$rendered;
+			var $rendered,
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
 
 			if ( info.status !== 'done' ) {
 				// Error will be displayed by default, nothing else to wrap up
@@ -416,9 +416,9 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.loadMore = function ( info, data, jqxhr ) {
-			var $target = $( this ).closest( '.flow-load-more' ),
-				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $target ),
-				$tmp;
+			var $tmp,
+				$target = $( this ).closest( '.flow-load-more' ),
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $target );
 
 			if ( info.status !== 'done' ) {
 				// Error will be displayed by default, nothing else to wrap up
@@ -481,9 +481,9 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.activateEditHeader = function ( info, data, jqxhr ) {
-			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
-				$oldBoardNodes,
-				$rendered;
+			var $rendered,
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$oldBoardNodes;
 
 			if ( info.status !== 'done' ) {
 				// Error will be displayed by default & edit conflict handled, nothing else to wrap up
@@ -516,8 +516,8 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.submitHeader = function ( info, data, jqxhr ) {
-			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
-				$rendered;
+			var $rendered,
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
 
 			if ( info.status !== 'done' ) {
 				// Error will be displayed by default & edit conflict handled, nothing else to wrap up
@@ -588,9 +588,8 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.closeOpenTopic = function ( info, data ) {
-			var revision,
+			var revision, topicId, revisionId,
 				$target = info.$target, $topicTitleBar,
-				topicId, revisionId,
 				self = this,
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
 				flowId = $( self ).closest( '.flow-topic-titlebar' ).parent().data( 'flow-id' );
@@ -719,12 +718,12 @@
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.preview = function( info, data, jqxhr ) {
 			var revision, creator,
+				$previewContainer,
+				templateParams,
 				$button = $( this ),
 				$form = $button.closest( 'form' ),
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $form ),
 				$titleField = $form.find( 'input' ).filter( '[data-role=title]' ),
-				$previewContainer,
-				templateParams,
 				$target = info.$target,
 				username = mw.user.getName(),
 				id = Math.random(),
@@ -890,15 +889,14 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.watchItem = function ( info, data, jqxhr ) {
-			var $target = $( this ),
+			var watchUrl, unwatchUrl,
+				watchType, watchLinkTemplate, $newLink,
+				$target = $( this ),
 				$tooltipTarget = $target.closest( '.flow-watch-link' ),
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $tooltipTarget ),
 				isWatched = false,
 				url = $( this ).prop( 'href' ),
-				watchUrl, unwatchUrl,
-				watchType, watchLinkTemplate,
-				links = {},
-				$newLink;
+				links = {};
 
 			if ( info.status !== 'done' ) {
 				// Error will be displayed by default, nothing else to wrap up
@@ -1020,10 +1018,9 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.activateEditPost = function ( info, data, jqxhr ) {
-			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
-				$post = info.$target,
-				$rendered,
-				rootBlock;
+			var $rendered, rootBlock,
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$post = info.$target;
 
 			if ( info.status !== 'done' ) {
 				// Error will be displayed by default, nothing else to wrap up
@@ -1297,8 +1294,8 @@
 		 * @param {Event} event
 		 */
 		FlowBoardComponent.UI.events.interactiveHandlers.collapserCollapsibleToggle = function ( event ) {
-			var $target = $( event.target ),
-				topicId, states,
+			var topicId, states,
+				$target = $( event.target ),
 				$component = $( this ).closest( '.flow-component' );
 
 			// Make sure we didn't click on any interactive elements
@@ -1351,11 +1348,10 @@
 		 * @param {Event} event
 		 */
 		FlowBoardComponent.UI.events.interactiveHandlers.editTopicTitle = function( event ) {
-			var $link = $( this ),
+			var $title, flowBoard, $form, cancelCallback, linkParams,
+				$link = $( this ),
 				$topic = $link.closest( '.flow-topic' ),
-				$topicTitleBar = $topic
-					.children( '.flow-topic-titlebar' ),
-				$title, flowBoard, $form, cancelCallback, linkParams;
+				$topicTitleBar = $topic.children( '.flow-topic-titlebar' );
 
 			$form = $topicTitleBar.find( 'form' );
 
@@ -1427,13 +1423,13 @@
 		 */
 		FlowBoardComponent.UI.events.interactiveHandlers.apiRequest = function ( event ) {
 			var $deferred,
+				$target,
+				preHandlerReturn,
 				_this = this,
 				$this = $( this ),
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $this ),
 				dataParams = $this.data(),
 				handlerName = dataParams.flowApiHandler,
-				$target,
-				preHandlerReturn,
 				preHandlerReturns = [],
 				info = {
 					$target: null,
@@ -1523,9 +1519,10 @@
 						FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, args );
 					} )
 					.fail( function ( code, result ) {
-						var args = Array.prototype.slice.call( arguments, 0 ),
-							$form = $this.closest( 'form' ),
-							errorMsg;
+						var errorMsg,
+							args = Array.prototype.slice.call( arguments, 0 ),
+							$form = $this.closest( 'form' );
+
 						info.status = 'fail';
 						args.unshift( info );
 
@@ -1560,14 +1557,14 @@
 		FlowBoardComponent.UI.events.interactiveHandlers.activateReplyPost = function ( event ) {
 			event.preventDefault();
 
-			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+			var $form,
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
 				$post = $( this ).closest( '.flow-post' ),
 				$targetPost = $( this ).closest( '.flow-post:not([data-flow-post-max-depth])' ),
 				postId = $targetPost.data( 'flow-id' ),
 				topicTitle = $post.closest( '.flow-topic' ).find( '.flow-topic-title' ).text(),
 				replyToContent = $post.find( '.flow-post-content' ).text() || topicTitle,
-				author = $.trim( $post.find( '.flow-author:first .mw-userlink' ).text() ),
-				$form;
+				author = $.trim( $post.find( '.flow-author:first .mw-userlink' ).text() );
 
 			// Check if reply form has already been opened
 			if ( $post.data( 'flow-replying' ) ) {
@@ -2235,9 +2232,7 @@
 		 * @param  {Element|jQuery} topic The (single) topic element to show
 		 */
 		FlowBoardComponent.UI.expandTopicIfNecessary = function( topic ) {
-			var $component,
-				isFullView,
-				isInverted,
+			var $component, isFullView, isInverted,
 				$topic = $( topic );
 
 			$component = $topic.closest( '.flow-component' );
