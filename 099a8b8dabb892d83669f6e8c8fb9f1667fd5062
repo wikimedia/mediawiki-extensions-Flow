@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_d8f2e002",
+        "filename": "handlebars/flow_topic.handlebars",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-02T22:38:37Z",
+      "side": 1,
+      "message": "Strings in lightncandy are always enclosed with \"\" and not \u0027\u0027",
+      "revId": "099a8b8dabb892d83669f6e8c8fb9f1667fd5062",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
