@@ -16,6 +16,24 @@
       "revId": "984bc8c10021ffa46f51ca9d154cbe6232a37f9d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_23341ea7",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 17
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-02T18:04:57Z",
+      "side": 1,
+      "message": "by \"newest version\" i mean master(which is also whats in our vendor/ dir).  Its not supported in the latest release.\n\nAdditionally we have never run a \"released\" version of lightncandy.  We vary between \u0027master\u0027 and \u0027master+bugfixes\u0027 as we upstream bug fixes.",
+      "parentUuid": "2e2fb78d_929afebb",
+      "revId": "984bc8c10021ffa46f51ca9d154cbe6232a37f9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
