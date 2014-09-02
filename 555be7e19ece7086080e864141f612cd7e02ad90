@@ -16,6 +16,24 @@
       "revId": "555be7e19ece7086080e864141f612cd7e02ad90",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_23177eaa",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 1576,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-09-02T18:50:13Z",
+      "side": 1,
+      "message": "This template is used by both server \u0026 client side rendering.  \u0027content\u0027 is used to pre-fill the form for cases like validation failure.  In this case, it seems we could just remove the entire \u0027submitted\u0027 key since this is just creating a new form without an pre-filled content",
+      "parentUuid": "4e322bf2_d6ace634",
+      "revId": "555be7e19ece7086080e864141f612cd7e02ad90",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
