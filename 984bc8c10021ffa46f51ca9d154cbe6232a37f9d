@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_929afebb",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 17
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-09-02T05:37:59Z",
+      "side": 1,
+      "message": "Let\u0027s make this todo a bit more clear.\ne.g.\n@todo remove when using Lightncandy version X.Y",
+      "revId": "984bc8c10021ffa46f51ca9d154cbe6232a37f9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
