@@ -1043,6 +1043,7 @@
 			);
 
 			$post.replaceWith( $rendered );
+			$rendered.find( 'textarea' ).conditionalScrollIntoView().focus();
 		};
 
 		/**
