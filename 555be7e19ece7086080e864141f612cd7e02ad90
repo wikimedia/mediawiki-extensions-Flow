@@ -34,6 +34,24 @@
       "revId": "555be7e19ece7086080e864141f612cd7e02ad90",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_5e301de5",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 1576,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-02T20:19:34Z",
+      "side": 1,
+      "message": "this parameter is optional, functionality is the same with it there or not.",
+      "parentUuid": "2e2fb78d_23177eaa",
+      "revId": "555be7e19ece7086080e864141f612cd7e02ad90",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
