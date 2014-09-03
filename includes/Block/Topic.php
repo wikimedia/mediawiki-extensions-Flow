@@ -199,7 +199,7 @@ class TopicBlock extends AbstractBlock {
 			// handing user back to specific dialog indicating race condition
 			$this->addError(
 				'prev_revision',
-				wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $topicTitle->getRevisionId()->getAlphadecimal() ),
+				wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $topicTitle->getRevisionId()->getAlphadecimal(), $this->user->getName() ),
 				array( 'revision_id' => $topicTitle->getRevisionId()->getAlphadecimal() ) // save current revision ID
 			);
 			return;
@@ -370,7 +370,7 @@ class TopicBlock extends AbstractBlock {
 			// handing user back to specific dialog indicating race condition
 			$this->addError(
 				'prev_revision',
-				wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $post->getRevisionId()->getAlphadecimal() ),
+				wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $post->getRevisionId()->getAlphadecimal(), $this->user->getName() ),
 				array( 'revision_id' => $post->getRevisionId()->getAlphadecimal() ) // save current revision ID
 			);
 			return;

@@ -165,7 +165,8 @@ class TopicSummaryBlock extends AbstractBlock {
 					'prev_revision',
 					wfMessage( 'flow-error-prev-revision-mismatch' )->params(
 						$this->submitted['prev_revision'],
-						$this->topicSummary->getRevisionId()->getAlphadecimal()
+						$this->topicSummary->getRevisionId()->getAlphadecimal(),
+						$this->user->getName()
 					),
 					array( 'revision_id' => $this->topicSummary->getRevisionId()->getAlphadecimal() )
 				);
