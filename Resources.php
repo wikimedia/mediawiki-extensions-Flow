@@ -286,6 +286,8 @@ $wgResourceModules += array(
 		),
 		'dependencies' => array(
 			'ext.mantle.handlebars',
+			// the timestamp helper uses the timestamp template
+			'ext.flow.templating',
 		),
 	) + $mobile,
 	'ext.flow.new.history' => $flowResourceTemplate + array(
