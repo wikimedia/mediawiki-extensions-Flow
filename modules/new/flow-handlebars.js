@@ -271,14 +271,15 @@
 	 * @param {String} str a message key prefix  which when combined with 'second', 'minute', 'hour',
 	 *                 'week' matches an i18n message
 	 * @param {bool} [timeAgoOnly]
+	 * @param {String} [fallback] fallback string displayed when timestamp hovered over
 	 * @returns {String}
 	 */
-	FlowHandlebars.prototype.uuidTimestamp = function ( uuid, str, timeAgoOnly ) {
+	FlowHandlebars.prototype.uuidTimestamp = function ( uuid, str, timeAgoOnly, fallback ) {
 		var timestamp = parseInt( uuid, 36 ).toString( 2 ); // base-36 to base-10 to base-2
 		timestamp = Array( 88 + 1 - timestamp.length ).join( '0' ) + timestamp; // left pad 0 to 88 chars
 		timestamp = parseInt( timestamp.substr( 0, 46 ), 2 ); // first 46 chars base-2 to base-10
 
-		return FlowHandlebars.prototype.timestamp( timestamp, str, timeAgoOnly );
+		return FlowHandlebars.prototype.timestamp( timestamp, str, timeAgoOnly, fallback );
 	};
 
 	/**
@@ -288,9 +289,10 @@
 	 * @param {String} str a message key prefix which when combined with 'second', 'minute', 'hour',
 	 *                 'week' matches an i18n message
 	 * @param {bool} [timeAgoOnly]
+	 * @param {str} fallback string displayed when timestamp hovered over and for posts older than a month
 	 * @returns {String|undefined}
 	 */
-	FlowHandlebars.prototype.timestamp = function ( timestamp, str, timeAgoOnly ) {
+	FlowHandlebars.prototype.timestamp = function ( timestamp, str, timeAgoOnly, fallback ) {
 		if ( isNaN( timestamp ) || !str ) {
 			mw.flow.debug( '[timestamp] Invalid arguments', arguments);
 			return;
@@ -309,7 +311,7 @@
 			}
 		} else if ( timeAgoOnly === true ) {
 			// timeAgoOnly: return nothing
-			return;
+			return fallback;
 		}
 
 		// Generate a GUID for this element to find it later
@@ -324,7 +326,7 @@
 				'timestamp',
 				{
 					time_iso: timestamp,
-					time_readable: FlowHandlebars.prototype.l10n( 'datetime', timestamp ),
+					time_readable: fallback || FlowHandlebars.prototype.l10n( 'datetime', timestamp ),
 					time_ago: time_ago,
 					guid: guid
 				}
