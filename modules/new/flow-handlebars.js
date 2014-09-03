@@ -288,9 +288,10 @@
 	 * @param {String} str a message key prefix which when combined with 'second', 'minute', 'hour',
 	 *                 'week' matches an i18n message
 	 * @param {bool} [timeAgoOnly]
+	 * @param {str} fallback string to revert to for posts older than a month
 	 * @returns {String|undefined}
 	 */
-	FlowHandlebars.prototype.timestamp = function ( timestamp, str, timeAgoOnly ) {
+	FlowHandlebars.prototype.timestamp = function ( timestamp, str, timeAgoOnly, fallback ) {
 		if ( isNaN( timestamp ) || !str ) {
 			mw.flow.debug( '[timestamp] Invalid arguments', arguments);
 			return;
@@ -299,6 +300,7 @@
 		var time_ago, guid,
 			seconds_ago = ( +new Date() - timestamp ) / 1000;
 
+		time_readable = fallback;
 		if ( seconds_ago < 2419200 ) {
 			// Return "n ago" for only dates less than 4 weeks ago
 			time_ago = FlowHandlebars.prototype.l10n( 'time', str, seconds_ago );
@@ -309,7 +311,7 @@
 			}
 		} else if ( timeAgoOnly === true ) {
 			// timeAgoOnly: return nothing
-			return;
+			return fallback;
 		}
 
 		// Generate a GUID for this element to find it later
@@ -324,7 +326,7 @@
 				'timestamp',
 				{
 					time_iso: timestamp,
-					time_readable: FlowHandlebars.prototype.l10n( 'datetime', timestamp ),
+					time_readable: fallback || FlowHandlebars.prototype.l10n( 'datetime', timestamp ),
 					time_ago: time_ago,
 					guid: guid
 				}
