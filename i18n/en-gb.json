@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Shirayuki"
+			"Shirayuki",
+			"Mdann52"
 		]
 	},
 	"flow-summarize-topic-placeholder": "Please summarise this discussion",
 	"flow-topic-action-summarize-topic": "Summarise",
-	"flow-summarize-topic-submit": "Summarise"
+	"flow-summarize-topic-submit": "Summarise",
+	"flow-notification-mention-email-batch-body": "$1 {{GENDER:$1|mentioned}} {{GENDER:$4|you}} in {{GENDER:$1|his|her|their}} post in \"$2\" on \"$3\""
 }

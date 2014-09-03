@@ -108,9 +108,13 @@
 	"flow-topic-complete": "Gwel klok",
 	"flow-load-more": "Kargañ muioc'h",
 	"flow-special-type": "Seurt",
+	"flow-special-uuid": "UUID",
 	"flow-preview-return-edit-post": "Kenderc'hel da aozañ",
 	"flow-anonymous": "Dizanv",
 	"flow-embedding-unsupported": "An divizoù ne c'hallont ket bezañ enframmet c'hoazh.",
+	"flow-time-ago-day": "$1 {{PLURAL:$1|deiz}} zo",
+	"flow-time-ago-hour": "$1 {{PLURAL:$1|eur}} zo",
+	"flow-time-ago-minute": "$1 {{PLURAL:$1|vunutenn|munut}} zo",
 	"flow-time-ago-second": "$1 {{PLURAL:$1|eilenn}} zo",
 	"flow-time-ago-week": "$1 {{PLURAL:$1|sizhun}} zo"
 }
