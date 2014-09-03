@@ -136,10 +136,12 @@ class RevisionFormatter {
 	 * @return array|false
 	 */
 	public function formatApi( FormatterRow $row, IContextSource $ctx ) {
+		$language = $ctx->getLanguage();
+		$user = $ctx->getUser();
 		// @todo the only permissions currently checked in this class are prev-revision
 		// mostly permissions is used for the actions,  figure out how permissions should
 		// fit into this class either used more or not at all.
-		if ( $ctx->getUser()->getName() !== $this->permissions->getUser()->getName() ) {
+		if ( $user->getName() !== $this->permissions->getUser()->getName() ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Formatting for wrong user' );
 			return false;
 		}
@@ -154,10 +156,12 @@ class RevisionFormatter {
 		}
 
 		$moderatedRevision = $this->templating->getModeratedRevision( $row->revision );
+		$ts = $row->revision->getRevisionId()->getTimestampObj();
 		$res = array(
 			'workflowId' => $row->workflow->getId()->getAlphadecimal(),
 			'revisionId' => $row->revision->getRevisionId()->getAlphadecimal(),
-			'timestamp' => $row->revision->getRevisionId()->getTimestampObj()->getTimestamp( TS_MW ),
+			'timestamp' => $ts->getTimestamp( TS_MW ),
+			'timestamp_readable' => $language->userTimeAndDate( $ts, $user ),
 			'changeType' => $row->revision->getChangeType(),
 			'dateFormats' => $this->getDateFormats( $row->revision, $ctx ),
 			'properties' => $this->buildProperties( $row->workflow->getId(), $row->revision, $ctx ),

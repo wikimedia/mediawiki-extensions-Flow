@@ -194,9 +194,9 @@
 	'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-comments',((is_array($in) && isset($in['reply_count'])) ? $in['reply_count'] : null)),Array()), 'encq').' &bull;
 
 	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['last_updated'])) ? $in['last_updated'] : null))) ? '
-		<!--span class="wikiglyph wikiglyph-speech-bubbles"></span--> '.LCRun3::ch($cx, 'timestamp', Array(Array(((is_array($in) && isset($in['last_updated'])) ? $in['last_updated'] : null),'flow-active-ago'),Array()), 'encq').'
+		'.LCRun3::ch($cx, 'timestamp', Array(Array(((is_array($in) && isset($in['last_updated'])) ? $in['last_updated'] : null),'flow-active-ago',false,((is_array($in) && isset($in['last_updated_readable'])) ? $in['last_updated_readable'] : null)),Array()), 'encq').'
 	' : '
-		<!--span class="wikiglyph wikiglyph-speech-bubble"></span--> '.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null),'flow-started-ago'),Array()), 'encq').'
+		'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null),'flow-started-ago',((is_array($in) && isset($in['0'])) ? $in['0'] : null)),Array()), 'encq').'
 	').'
 </div>
 <span class="flow-reply-count"><span class="wikiglyph wikiglyph-speech-bubble"></span><span class="flow-reply-count-number">'.htmlentities(((is_array($in) && isset($in['reply_count'])) ? $in['reply_count'] : null), ENT_QUOTES, 'UTF-8').'</span></span>
