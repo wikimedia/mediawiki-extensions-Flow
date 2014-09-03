@@ -421,8 +421,6 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 		),
 		// Auto-subscribe users to the topic after performing specific actions
 		new Flow\Data\ImmediateWatchTopicListener( $c['watched_items'] ),
-		// Auto-subscribe users to the topic - delayed (in a job) to insert whole batches
-		new Flow\Data\DelayedWatchTopicListener(),
 		$c['collection.cache'],
 		// topic history -- to keep a history by topic we have to know what topic every post
 		// belongs to, not just its parent. TopicHistoryIndex is a slight tweak to TopKIndex
