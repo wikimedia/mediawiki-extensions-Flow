@@ -2271,7 +2271,8 @@
 						{
 							unsubscribe: false,
 							type: type,
-							direction: dir
+							direction: dir,
+							username: mw.user.getName()
 						}
 					)
 				).children(),
