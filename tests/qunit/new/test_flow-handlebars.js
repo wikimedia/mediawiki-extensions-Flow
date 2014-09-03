@@ -151,18 +151,21 @@ QUnit.test( 'Handlebars.prototype.progressiveEnhancement', 5, function() {
 	);
 } );
 
-QUnit.test( 'FlowHandlebars.prototype.timestamp', 2, function( assert ) {
+QUnit.test( 'FlowHandlebars.prototype.timestamp', 3, function( assert ) {
 	var
 		minutesAgo = new Date().getTime() - ( 1000 * 5 * 60 ),
 		agesAgo = 1008878534140,
 		$res = $( '<div>' ).
 			html( this.handlebarsProto.timestamp( minutesAgo, 'flow-started-ago', true, 'fallback' ) ),
 		$res2 = $( '<div>' ).
-			html( this.handlebarsProto.timestamp( agesAgo, 'flow-started-ago', true, 'fallback' ) );
+			html( this.handlebarsProto.timestamp( agesAgo, 'flow-started-ago', true, 'fallback' ) ),
+		$res3 = $( '<div>' ).
+			html( this.handlebarsProto.timestamp( minutesAgo, 'flow-started-ago', false, 'fallback' ) );
 
 	assert.strictEqual( $res.text(), mw.msg( 'flow-started-ago-minute', 5 ), 'Check right message was used.' );
 	assert.strictEqual( $res2.text(), 'fallback',
-		'Used fallback text as this was significantly old! Caution: this test may fail if you invent a time travel machine and have travelled to December 2001.' );	
+		'Used fallback text as this was significantly old! Caution: this test may fail if you invent a time travel machine and have travelled to December 2001.' );
+	assert.strictEqual( $res.find( 'time' ).length, 1, 'Time tag rendered' );
 } );
 
 QUnit.test( 'FlowHandlebars.prototype.l10n', 11, function( assert ) {
