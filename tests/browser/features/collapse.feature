@@ -31,7 +31,6 @@ Feature: Topic collapsing
     When I switch from Topics and posts view to Topics only view
       And the page has re-rendered
     Then I should see the title of the first non-moderated topic
-      And I should see who started the first non-moderated topic
       And I should not see the comments of the first non-moderated topic
 
   Scenario: Topics and posts view
@@ -41,7 +40,6 @@ Feature: Topic collapsing
       And I switch from Topics only view to Topics and posts view
       And the page has re-rendered
     Then I should see the title of the first non-moderated topic
-      And I should see who started the first non-moderated topic
       And I should see the comments of the first non-moderated topic
 
   Scenario: For a non-moderated post, collapse override is forgotten every time the mode is switched
@@ -52,7 +50,6 @@ Feature: Topic collapsing
     # the override, since the override matches the new default state.
     # However, it doesn't hurt to assert it.
     Then I should see the title of the first non-moderated topic
-      And I should see who started the first non-moderated topic
       And I should not see the comments of the first non-moderated topic
 
     When I click the first non-moderated topic
@@ -68,32 +65,27 @@ Feature: Topic collapsing
       And I click the first non-moderated topic
       And I switch from Small topics view to Topics and posts view
     Then I should see the title of the first non-moderated topic
-      And I should see who started the first non-moderated topic
       And I should see the comments of the first non-moderated topic
 
   Scenario: For a moderated post, a mode cycle with no user override keeps it hidden
     Given I am on Flow page
     Then I should see a moderated message on the first moderated topic
       And I should not see the title of the first moderated topic
-      And I should not see who started the first moderated topic
       And I should not see the comments of the first moderated topic
 
     When I switch from Topics and posts view to Topics only view
     Then I should see a moderated message on the first moderated topic
       And I should not see the title of the first moderated topic
-      And I should not see who started the first moderated topic
       And I should not see the comments of the first moderated topic
 
     When I switch from Topics only view to Small topics view
     Then I should see a moderated message on the first moderated topic
       And I should not see the title of the first moderated topic
-      And I should not see who started the first moderated topic
       And I should not see the comments of the first moderated topic
 
     When I switch from Small topics view to Topics and posts view
     Then I should see a moderated message on the first moderated topic
       And I should not see the title of the first moderated topic
-      And I should not see who started the first moderated topic
       And I should not see the comments of the first moderated topic
 
   Scenario: For a moderated post, switching modes does not forget a user-set close override
@@ -101,14 +93,12 @@ Feature: Topic collapsing
     # First, erase the server-set close override
     When I click the first moderated topic
     Then I should see the title of the first moderated topic
-      And I should see who started the first moderated topic
       And I should see the comments of the first moderated topic
 
     # Now, put a user-set close override
     When I click the first moderated topic
     Then I should see a moderated message on the first moderated topic
       And I should not see the title of the first moderated topic
-      And I should not see who started the first moderated topic
       And I should not see the comments of the first moderated topic
 
     # Complete mode cycle
@@ -116,5 +106,4 @@ Feature: Topic collapsing
       And I switch from Topics only view to Topics and posts view
     Then I should see a moderated message on the first moderated topic
       And I should not see the title of the first moderated topic
-      And I should not see who started the first moderated topic
       And I should not see the comments of the first moderated topic
