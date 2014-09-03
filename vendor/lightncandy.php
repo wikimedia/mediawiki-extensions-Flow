@@ -1060,6 +1060,7 @@ $libstr
      * @expect Array(false, Array(Array('a'), Array('q=[b c'))) when input Array(0,0,0,0,0,0,'a [q=[b c]'), Array('flags' => Array('advar' => 1, 'this' => 1, 'namev' => 1))
      * @expect Array(false, Array(Array('a'), 'q' => Array('[b'), Array('c]'))) when input Array(0,0,0,0,0,0,'a q=[b c]'), Array('flags' => Array('advar' => 0, 'this' => 1, 'namev' => 1))
      * @expect Array(false, Array(Array('a'), 'q' => Array('"b c"'))) when input Array(0,0,0,0,0,0,'a q="b c"'), Array('flags' => Array('advar' => 1, 'this' => 1, 'namev' => 1))
+	 * @expect array(false, array(array('"!=="'))) when input array(0,0,0,0,0,0,'"!=="'), array('flags' => array('namev' => 1))
      */
     protected static function parseTokenArgs(&$token, &$context) {
         trim($token[self::POS_INNERTAG]);
@@ -1127,8 +1128,8 @@ $libstr
         $ret = Array();
         $i = 0;
         foreach ($vars as $idx => $var) {
-            // Skip advanced processing for subexpressions
-            if (preg_match('/^\(.+\)$/', $var)) {
+            // Skip advanced processing for subexpressions and quoted strings
+            if (preg_match('/^\(.+\)$/', $var) || preg_match('/^".*"$/', $var)) {
                 $ret[$i] = Array($var);
                 $i++;
                 continue;
