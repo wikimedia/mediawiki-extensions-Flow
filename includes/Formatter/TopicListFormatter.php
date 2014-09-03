@@ -143,6 +143,8 @@ class TopicListFormatter {
 	}
 
 	protected function generateTopicMetadata( array $posts, array $revisions, array $workflows, $postAlphaId ) {
+		global $wgUser, $wgLang;
+
 		$replies = -1;
 		$authors = array();
 		$stack = new \SplStack;
@@ -157,11 +159,12 @@ class TopicListFormatter {
 		} while( !$stack->isEmpty() );
 
 		$workflow = isset( $workflows[$postAlphaId] ) ? $workflows[$postAlphaId] : null;
-
+		$ts = $workflow ? $workflow->getLastModifiedObj()->getTimestamp() : 0;
 		return array(
 			'reply_count' => $replies,
+			'last_updated_readable' => $wgLang->userTimeAndDate( $ts, $wgUser ),
 			// ms timestamp
-			'last_updated' => $workflow ? $workflow->getLastModifiedObj()->getTimestamp() * 1000 : null,
+			'last_updated' => $ts * 1000,
 		);
 	}
 }

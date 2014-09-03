@@ -38,11 +38,11 @@
 			    class="mw-ui-progressive mw-ui-quiet"
 			    title="{{links.diff-prev.title}}">
 		{{/if}}
-			{{uuidTimestamp revisionId "flow-edited-ago"}}
+			{{uuidTimestamp revisionId "flow-edited-ago" 0 "foo"}}
 		{{#if links.diff-prev}}
 			</a>
 		{{/if}}
 		&#8226;
 	{{/if}}
-	{{uuidTimestamp postId "flow-time-ago"}}
+	Y{{uuidTimestamp postId "flow-time-ago" 0 "foo2"}}
 </div>

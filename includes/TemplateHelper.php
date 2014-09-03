@@ -1,5 +1,4 @@
 <?php
-
 namespace Flow;
 
 use Flow\Exception\FlowException;
@@ -262,10 +261,12 @@ class TemplateHelper {
 	 * @return string
 	 */
 	static public function timestampHelper( array $args, array $named ) {
-		if ( count( $args ) !== 2 ) {
+		if ( count( $args ) < 2 ) {
 			throw new WrongNumberArgumentsException( $args, 'two' );
 		}
-		return self::timestamp( $args[0], $args[1], isset( $args[2] ) ? $args[2] : false );
+		return self::timestamp( $args[0], $args[1],
+			isset( $args[2] ) ? $args[2] : false,
+			isset( $args[3] ) ? $args[3] : false );
 	}
 
 	/**
