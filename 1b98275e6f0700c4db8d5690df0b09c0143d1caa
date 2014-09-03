@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_82c6234d",
+        "filename": "tests/qunit/new/test_flow-handlebars.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-03T20:02:40Z",
+      "side": 1,
+      "message": "There is no \u003ctime\u003e element because $res was created with timeAgoOnly \u003d true.   When this is set the timestamp partial is never loaded, and afaict the timestamp partial is the only source of \u003ctime\u003e elements.\n\ngrepping through the templates i dont see any direct usage of this timestamp helper, only via the uuidTimestamp helper and the time auto-update. I don\u0027t see any calls to uuidTimestamp helper setting timeAgoOnly.  \n\nPerhaps we can kill that argument and just have the auto-update timestamp helper use .text() method against the returned data?",
+      "revId": "1b98275e6f0700c4db8d5690df0b09c0143d1caa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
