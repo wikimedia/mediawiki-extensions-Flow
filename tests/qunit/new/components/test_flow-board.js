@@ -45,4 +45,31 @@ QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.preview', 6, function( ass
 	assert.strictEqual( $input.hasClass( 'flow-preview-target-hidden' ), false, 'Input is no longer hidden.' );
 } );
 
+QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.preview (summary)', 3, function( assert ) {
+	var $container = this.$el,
+		$form = $( '<form>' ).appendTo( $container ),
+		$textarea = $( '<textarea data-flow-preview-template="flow_topic_titlebar_summary" data-flow-preview-node="summary">text</textarea>' ).appendTo( $form ),
+		$btn = $( '<button name="preview">' ).
+			appendTo( $form ),
+		info = {
+			$target: $textarea,
+			status: 'done'
+		},
+		data = {
+			'flow-parsoid-utils': {
+				format: 'html',
+				content: 'hello'
+			}
+		};
+
+	this.UI.events.apiHandlers.preview.call( $btn, info, data );
+
+	// check all is well.
+	assert.strictEqual( $container.find( '.flow-preview-warning' ).length, 1,
+		'There is a preview warning.' );
+	assert.strictEqual( $container.find( '.flow-topic-summary' ).length, 1, 'Summary visible.' );
+	assert.strictEqual( $.trim( $container.find( '.flow-topic-summary' ).text() ),
+		'hello', 'Check content of summary.' );
+} );
+
 } ( jQuery ) );
