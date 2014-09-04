@@ -22,7 +22,7 @@
 	so the rendering will proceed without error, we also need this to show
 	the error of unsuccessful form submission
 -->
-<div class="flow-close-topic-error">
+<div class="flow-lock-topic-error">
 	<div class="flow-error-container">
 '.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['errors'])) ? $cx['scopes'][0]['errors'] : null))) ? '
 	<div class="flow-errors errorbox">
