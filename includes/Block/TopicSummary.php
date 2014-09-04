@@ -46,7 +46,7 @@ class TopicSummaryBlock extends AbstractBlock {
 	/**
 	 * @var string[]
 	 */
-	protected $supportedPostActions = array( 'edit-topic-summary', 'close-open-topic' );
+	protected $supportedPostActions = array( 'edit-topic-summary', 'lock-topic' );
 
 	/**
 	 * @var string[]
@@ -63,7 +63,7 @@ class TopicSummaryBlock extends AbstractBlock {
 		'view-topic-summary' => 'single_view',
 		'compare-postsummary-revisions' => 'diff_view',
 		'edit-topic-summary' => 'edit',
-		'close-open-topic' => 'close',
+		'lock-topic' => 'lock',
 	);
 
 	/**
@@ -91,8 +91,8 @@ class TopicSummaryBlock extends AbstractBlock {
 				$this->validateTopicSummary();
 			break;
 
-			case 'close-open-topic':
-				if ( !$this->isCloseOpenTopic() ) {
+			case 'lock-topic':
+				if ( !$this->isLockTopic() ) {
 					$this->addError( 'moderate', wfMessage( 'flow-error-invalid-moderation-state' ) );
 					return;
 				}
@@ -107,15 +107,15 @@ class TopicSummaryBlock extends AbstractBlock {
 	/**
 	 * Check if this is closing/restoring a topic
 	 */
-	protected function isCloseOpenTopic() {
+	protected function isLockTopic() {
 		$state = isset( $this->submitted['moderationState'] ) ? $this->submitted['moderationState'] : '';
-		if ( $state == AbstractRevision::MODERATED_CLOSED ) {
+		if ( $state == AbstractRevision::MODERATED_LOCKED ) {
 			return true;
 		}
 		$root = $this->findTopicTitle();
 		if (
-			$root->getModerationState() == AbstractRevision::MODERATED_CLOSED &&
-			$state == 'reopen' )
+			$root->getModerationState() == AbstractRevision::MODERATED_LOCKED &&
+			$state == 'unlock' )
 		{
 			return true;
 		}
@@ -236,7 +236,7 @@ class TopicSummaryBlock extends AbstractBlock {
 	public function commit() {
 		switch( $this->action ) {
 			case 'edit-topic-summary':
-			case 'close-open-topic':
+			case 'lock-topic':
 				return $this->saveTopicSummary();
 			break;
 

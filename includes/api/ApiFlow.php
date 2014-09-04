@@ -19,7 +19,7 @@ class ApiFlow extends ApiBase {
 		'moderate-post' => 'ApiFlowModeratePost',
 		'moderate-topic' => 'ApiFlowModerateTopic',
 		'edit-title' => 'ApiFlowEditTitle',
-		'close-open-topic' => 'ApiFlowCloseOpenTopic',
+		'lock-topic' => 'ApiFlowLockTopic',
 
 		// GET
 		// action 'view' exists in Topic.php & TopicList.php, for topic, post &

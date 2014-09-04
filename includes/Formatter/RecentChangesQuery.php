@@ -175,7 +175,7 @@ class RecentChangesQuery extends AbstractQuery {
 			case 'suppress-topic':
 			case 'restore-post':
 			case 'restore-topic':
-			case 'close-topic':
+			case 'lock-topic':
 				// moderation actions are always shown when visible to the user
 				return false;
 
