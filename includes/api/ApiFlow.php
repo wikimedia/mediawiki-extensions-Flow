@@ -106,7 +106,7 @@ class ApiFlow extends ApiBase {
 	 */
 	protected function getPage( $params ) {
 		if ( isset( $params['page'] ) ) {
-			$page = Title::newFromText( $params['page'] );
+			$page = Title::newFromText( urldecode( $params['page'] ) );
 			if ( !$page ) {
 				$this->dieUsage( 'Invalid page provided', 'invalid-page' );
 			}
