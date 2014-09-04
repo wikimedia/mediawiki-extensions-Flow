@@ -306,7 +306,6 @@ $wgResourceModules += array(
 			'ext.flow.templating', // ResourceLoader templating
 			'ext.flow.new.handlebars', // prototype-based for progressiveEnhancement
 			'ext.flow.new.history',
-			'ext.flow.editor',
 			'ext.flow.vendor.storer',
 			'ext.flow.vendor.jquery.ba-throttle-debounce',
 			'mediawiki.jqueryMsg',
