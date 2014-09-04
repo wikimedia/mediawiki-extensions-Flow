@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_7044184b",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-09-04T12:36:23Z",
+      "side": 1,
+      "message": "Move this below templateParams.revisions[id] \u003d revision; \n\n- we already have 2 other customisations.",
+      "revId": "969ebabecefbcbe199f6d97f91d19305c60b5fc7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_307690a0",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-09-04T12:36:23Z",
+      "side": 1,
+      "message": "Ergg this is very messy.\n\nIf contentNode is \u0027content\u0027 we will set it twice. :-/",
+      "revId": "969ebabecefbcbe199f6d97f91d19305c60b5fc7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
