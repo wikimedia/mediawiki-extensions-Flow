@@ -130,6 +130,13 @@ class NotificationFormatter extends EchoBasicFormatter {
 				}
 				break;
 
+			case 'flow-new-topics':
+				$title  = $event->getTitle();
+				if ( $title ) {
+					$anchor = $urlGenerator->boardLink( $title, 'newest' );
+				}
+				break;
+
 			default:
 				return parent::getLinkParams( $event, $user, $destination );
 		}
