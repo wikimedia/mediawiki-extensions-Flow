@@ -5,14 +5,7 @@
 			   {{#unless name}}title="{{links.userpage.title}}"{{/unless}}
 			   class="{{#unless links.userpage.exists}}new {{/unless}}mw-userlink">
 		{{/if}}
-			{{#if name}}
-				{{~name~}}
-			{{else}}
-				{{~l10n "flow-anonymous"}}
-			{{/if}}
-		{{#if links.contribs}}
-			</a>
-		{{/if}}
+		{{#if name}}{{~name~}}{{else}}{{~l10n "flow-anonymous"}}{{/if}}{{#if links.contribs}}</a>{{/if}}
 		<span class="mw-usertoollinks">
 			{{~#if links.talk~}}
 				<span><a href="{{links.talk.url}}"
@@ -24,7 +17,7 @@
 			{{~#if links.contribs~}}
 				<span>
 					<a href="{{links.contribs.url}}" title="{{links.contribs.title}}">
-						{{~l10n "contributions"~}}
+						{{~l10n "contribslink"~}}
 					</a>
 				</span>
 			{{~/if~}}
