@@ -85,7 +85,7 @@ class SubmissionHandler {
 
 		// Check mediawiki core permissions for title protection, blocked
 		// status, etc.
-		if ( !$workflow->getArticleTitle()->userCan( 'edit', $user ) ) {
+		if ( !$workflow->userCan( 'edit', $user ) ) {
 			reset( $interestedBlocks )->addError( 'block', wfMessage( 'blockedtitle' ) );
 			return array();
 		}
