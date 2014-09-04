@@ -23,7 +23,7 @@
     return '<div class="flow-topic-summary-container">
 	<div class="flow-topic-summary">
 		<form class="flow-edit-form" data-flow-initial-state="collapsed" method="POST"
-			  action="'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? ''.htmlentities(((is_array($in['actions']['reopen']) && isset($in['actions']['reopen']['url'])) ? $in['actions']['reopen']['url'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities(((is_array($in['actions']['close']) && isset($in['actions']['close']['url'])) ? $in['actions']['close']['url'] : null), ENT_QUOTES, 'UTF-8').'').'">
+			  action="'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? ''.htmlentities(((is_array($in['actions']['unlock']) && isset($in['actions']['unlock']['url'])) ? $in['actions']['unlock']['url'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities(((is_array($in['actions']['lock']) && isset($in['actions']['lock']['url'])) ? $in['actions']['lock']['url'] : null), ENT_QUOTES, 'UTF-8').'').'">
 			<div class="flow-error-container">
 '.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['errors'])) ? $cx['scopes'][0]['errors'] : null))) ? '
 	<div class="flow-errors errorbox">
@@ -53,11 +53,11 @@
 					class="mw-ui-button mw-ui-constructive"
 					data-flow-interactive-handler="apiRequest"
 					data-flow-api-target="< .flow-topic-titlebar"
-					data-flow-api-handler="closeOpenTopic">
+					data-flow-api-handler="lockTopic">
 						'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? '
-							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-reopen-topic'),Array()), 'encq').'
+							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-unlock-topic'),Array()), 'encq').'
 						' : '
-							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-close-topic'),Array()), 'encq').'
+							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-lock-topic'),Array()), 'encq').'
 						').'
 				</button>
 				'.LCRun3::hbch($cx, 'progressiveEnhancement', Array(Array(),Array()), $in, function($cx, $in) {return '
@@ -77,9 +77,9 @@
 
 				<small class="flow-terms-of-use plainlinks">
 					'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? '
-						'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-terms-of-use-reopen-topic'),Array()), 'encq').'
+						'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-terms-of-use-unlock-topic'),Array()), 'encq').'
 					' : '
-						'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-terms-of-use-close-topic'),Array()), 'encq').'
+						'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-terms-of-use-lock-topic'),Array()), 'encq').'
 					').'
 				</small>
 			</div>

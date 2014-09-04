@@ -85,7 +85,7 @@ QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.preview', 2, function( ass
 		$titleBar = $( '<div class="flow-topic-titlebar">' ).appendTo( $topic ),
 		info = { status: 'done', $target: $titleBar };
 
-	this.UI.events.apiHandlers.closeOpenTopic.call( $titleBar, info );
+	this.UI.events.apiHandlers.lockTopic.call( $titleBar, info );
 	assert.strictEqual( $topic.hasClass( 'flow-topic-moderated' ), false, 'No longer has the moderated state.' );
 	assert.strictEqual( $topic.hasClass( 'flow-topic-moderatestate-close' ), false, 'No longer has the moderated close state.' );
 } );
@@ -97,7 +97,7 @@ QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.preview', 2, function( ass
 		$titleBar = $( '<div class="flow-topic-titlebar">' ).appendTo( $topic ),
 		info = { status: 'done', $target: $titleBar };
 
-	this.UI.events.apiHandlers.closeOpenTopic.call( $titleBar, info );
+	this.UI.events.apiHandlers.lockTopic.call( $titleBar, info );
 	assert.strictEqual( $topic.hasClass( 'flow-topic-moderated' ), true, 'Has the moderated state.' );
 	assert.strictEqual( $topic.hasClass( 'flow-topic-moderatestate-close' ), true, 'Has the moderated close state.' );
 } );
