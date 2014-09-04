@@ -32,7 +32,7 @@ QUnit.module( 'ext.flow: FlowBoardComponent', {
 											format: 'html',
 											content: 'Hi'
 										},
-										changeType: "close-topic",
+										changeType: "lock-topic",
 										isModerated: false
 									}
 								}
@@ -80,14 +80,14 @@ QUnit.module( 'ext.flow: FlowBoardComponent', {
 QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.preview', 2, function( assert ) {
 	var
 		$topic = $( '<div class="flow-topic" data-flow-id="s18cjkj1bs3rkt13">' ).
-			addClass( 'flow-topic-moderatestate-close flow-topic-moderated' ).
+			addClass( 'flow-topic-moderatestate-lock flow-topic-moderated' ).
 			appendTo( this.$el ),
 		$titleBar = $( '<div class="flow-topic-titlebar">' ).appendTo( $topic ),
 		info = { status: 'done', $target: $titleBar };
 
-	this.UI.events.apiHandlers.closeOpenTopic.call( $titleBar, info );
+	this.UI.events.apiHandlers.lockTopic.call( $titleBar, info );
 	assert.strictEqual( $topic.hasClass( 'flow-topic-moderated' ), false, 'No longer has the moderated state.' );
-	assert.strictEqual( $topic.hasClass( 'flow-topic-moderatestate-close' ), false, 'No longer has the moderated close state.' );
+	assert.strictEqual( $topic.hasClass( 'flow-topic-moderatestate-lock' ), false, 'No longer has the moderated lock state.' );
 } );
 
 QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.preview', 2, function( assert ) {
@@ -97,9 +97,9 @@ QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.preview', 2, function( ass
 		$titleBar = $( '<div class="flow-topic-titlebar">' ).appendTo( $topic ),
 		info = { status: 'done', $target: $titleBar };
 
-	this.UI.events.apiHandlers.closeOpenTopic.call( $titleBar, info );
+	this.UI.events.apiHandlers.lockTopic.call( $titleBar, info );
 	assert.strictEqual( $topic.hasClass( 'flow-topic-moderated' ), true, 'Has the moderated state.' );
-	assert.strictEqual( $topic.hasClass( 'flow-topic-moderatestate-close' ), true, 'Has the moderated close state.' );
+	assert.strictEqual( $topic.hasClass( 'flow-topic-moderatestate-lock' ), true, 'Has the moderated lock state.' );
 } );
 
 QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.preview', 3, function( assert ) {

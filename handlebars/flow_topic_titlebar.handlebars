@@ -40,16 +40,6 @@
 						</a>
 					</li>
 				{{/if}}
-				{{#if actions.lock}}
-					<li>
-						<a class="mw-ui-button mw-ui-progressive  mw-ui-quiet"
-						   href="{{actions.lock.url}}"
-						   title="{{actions.lock.title}}">
-							<span class="wikiglyph wikiglyph-lock"></span>
-							{{l10n "TODO-lock"}}
-						</a>
-					</li>
-				{{/if}}
 				{{#if actions.summarize}}
 					<li>
 						<a class="mw-ui-button mw-ui-progressive mw-ui-quiet"
@@ -145,31 +135,31 @@
 						</a>
 					</li>
 				{{/if}}
-				{{#if actions.close}}
+				{{#if actions.lock}}
 					<li class="flow-menu-moderation-action">
 						<a class="mw-ui-button mw-ui-destructive mw-ui-quiet"
 						   data-flow-interactive-handler="apiRequest"
-						   data-flow-api-handler="activateCloseOpenTopic"
+						   data-flow-api-handler="activateLockTopic"
 						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
 						   data-flow-id="{{postId}}"
-						   href="{{actions.close.url}}"
-						   title="{{actions.close.title}}">
+						   href="{{actions.lock.url}}"
+						   title="{{actions.lock.title}}">
 							<span class="wikiglyph wikiglyph-stop"></span>
-							{{l10n "flow-topic-action-close-topic"}}
+							{{l10n "flow-topic-action-lock-topic"}}
 						</a>
 					</li>
 				{{/if}}
-				{{#if actions.reopen}}
+				{{#if actions.unlock}}
 					<li class="flow-menu-moderation-action">
 						<a class="mw-ui-button mw-ui-destructive mw-ui-quiet"
 						   data-flow-interactive-handler="apiRequest"
-						   data-flow-api-handler="activateCloseOpenTopic"
+						   data-flow-api-handler="activateLockTopic"
 						   data-flow-id="{{postId}}"
 						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
-						   href="{{actions.reopen.url}}"
-						   title="{{actions.reopen.title}}">
+						   href="{{actions.unlock.url}}"
+						   title="{{actions.unlock.title}}">
 							<span class="wikiglyph wikiglyph-stop"></span>
-							{{l10n "flow-topic-action-reopen-topic"}}
+							{{l10n "flow-topic-action-unlock-topic"}}
 						</a>
 					</li>
 				{{/if}}

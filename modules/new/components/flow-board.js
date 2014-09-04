@@ -377,14 +377,14 @@
 		};
 
 		/**
-		 * Before activating close/reopen edit form, sends an overrideObject
+		 * Before activating lock/unlock edit form, sends an overrideObject
 		 * to the API to modify the request params.
 		 * @param {Event} event
 		 * @return {Object}
 		 */
-		FlowBoardComponent.UI.events.apiPreHandlers.activateCloseOpenTopic = function ( event ) {
+		FlowBoardComponent.UI.events.apiPreHandlers.activateLockTopic = function ( event ) {
 			return {
-				// href submodule is close-open-topic
+				// href submodule is lock-topic
 				submodule: 'view-post',
 				// href does not have this param
 				vpcontentFormat: 'wikitext',
@@ -550,13 +550,13 @@
 		};
 
 		/**
-		 * Renders the editable close/open text area with the given API response.
-		 * Allows a user to close or reopen an entire topic.
+		 * Renders the editable lock/unlock text area with the given API response.
+		 * Allows a user to lock or unlock an entire topic.
 		 * @param {Object} info
 		 * @param {Object} data
 		 * @param {jqXHR} jqxhr
 		 */
-		FlowBoardComponent.UI.events.apiHandlers.activateCloseOpenTopic = function ( info, data ) {
+		FlowBoardComponent.UI.events.apiHandlers.activateLockTopic = function ( info, data ) {
 			var result, revision, postId, revisionId,
 				$target = info.$target,
 				$old = $target,
@@ -577,7 +577,7 @@
 
 			// Enable the editable summary
 			$target = $( flowBoard.TemplateEngine.processTemplateGetFragment(
-				'flow_topic_titlebar_close', revision
+				'flow_topic_titlebar_lock', revision
 			) ).children();
 
 			// Ensure that on a cancel the form gets destroyed.
@@ -595,13 +595,13 @@
 		};
 
 		/**
-		 * After submit of the close/open topic form, process the new summary data and re-render
+		 * After submit of the lock/unlock topic form, process the new summary data and re-render
 		 * the title bar.
 		 * @param {String} status
 		 * @param {Object} data
 		 * @param {jqXHR} jqxhr
 		 */
-		FlowBoardComponent.UI.events.apiHandlers.closeOpenTopic = function ( info, data ) {
+		FlowBoardComponent.UI.events.apiHandlers.lockTopic = function ( info, data ) {
 			var revision, topicId, revisionId, $topicTitleBar,
 				$target = info.$target,
 				$topic = $target.parents( '.flow-topic' ),
@@ -614,12 +614,12 @@
 				return;
 			}
 
-			// We couldn't make close-open-topic to return topic data after a successful
-			// post submission because close-open-topic is used for no-js support as well.
+			// We couldn't make lock-topic to return topic data after a successful
+			// post submission because lock-topic is used for no-js support as well.
 			// If we make it return topic data, that means it has to return wikitext format
 			// for edit form in no-js mode.  This is a performance problem for wikitext
 			// conversion since topic data returns all children data as well.  So we need to
-			// make close-open-topic return a single post for topic then fire
+			// make lock-topic return a single post for topic then fire
 			// another request to topic data in html format
 			//
 			// @todo the html could json encode the parameters including topics, the js
@@ -641,9 +641,9 @@
 
 				if ( revision.isModerated ) {
 					$topic.addClass( 'flow-topic-moderated' ).
-						addClass( 'flow-topic-moderatestate-close' );
+						addClass( 'flow-topic-moderatestate-lock' );
 				} else {
-					$topic.removeClass( 'flow-topic-moderated flow-topic-moderatestate-close' );
+					$topic.removeClass( 'flow-topic-moderated flow-topic-moderatestate-lock' );
 				}
 
 				// Update view of the title bar
@@ -657,12 +657,12 @@
 				FlowBoardComponent.UI.makeContentInteractive( $topicTitleBar );
 			} ).fail( function( code, result ) {
 				/*
-				 * At this point, the open/close actually worked, but failed
+				 * At this point, the lock/unlock actually worked, but failed
 				 * fetching the new data to be displayed.
 				 */
 				FlowBoardComponent.UI.removeError( $target );
 				var errorMsg = apiErrorMessage( code, result );
-				errorMsg = mw.msg( 'flow-error-fetch-after-open-close', errorMsg );
+				errorMsg = mw.msg( 'flow-error-fetch-after-open-lock', errorMsg );
 				FlowBoardComponent.UI.showError( $target, errorMsg );
 			} );
 		};
