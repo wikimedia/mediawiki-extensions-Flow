@@ -15,9 +15,34 @@ use User;
 class NotificationFormatter extends EchoBasicFormatter {
 	protected $urlGenerator;
 
+	/**
+	 * {@inheritDoc}
+	 */
+	protected function getRawBundleData( $event, $user, $type ) {
+		global $wgEchoNotifications;
+
+		$data = parent::getRawBundleData( $event, $user, $type );
+
+		if (
+			count( $data ) > 1 &&
+			isset( $wgEchoNotifications[$type]['bundle-type'] ) &&
+			$wgEchoNotifications[$type]['bundle-type'] === 'agent'
+		) {
+			$this->bundleData['use-bundle'] = true;
+		}
+
+		return $data;
+	}
+
 	protected function processParam( $event, $param, $message, $user ) {
 		$extra = $event->getExtra();
-		if ( $param === 'subject' ) {
+		if ( $param === 'event-count' ) {
+			if ( isset( $this->bundleData['raw-data-count'] ) ) {
+				$message->numParams( $this->bundleData['raw-data-count'] );
+			} else {
+				$message->params( '' );
+			}
+		} elseif ( $param === 'subject' ) {
 			if ( isset( $extra['topic-title'] ) && $extra['topic-title'] ) {
 				$this->processParamEscaped( $message, trim( $extra['topic-title'] ) );
 			} else {
@@ -127,6 +152,13 @@ class NotificationFormatter extends EchoBasicFormatter {
 				$title  = Title::makeTitleSafe( NS_TOPIC, $workflowId->getAlphadecimal() );
 				if ( $title && $workflowId ) {
 					$anchor = $urlGenerator->topicLink( $title, $workflowId );
+				}
+				break;
+
+			case 'flow-new-topics':
+				$title  = $event->getTitle();
+				if ( $title ) {
+					$anchor = $urlGenerator->boardLink( $title, 'newest' );
 				}
 				break;
 
