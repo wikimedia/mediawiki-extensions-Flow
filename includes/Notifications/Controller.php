@@ -381,6 +381,14 @@ class NotificationController {
 	 */
 	public static function onEchoGetBundleRules( $event, &$bundleString ) {
 		switch ( $event->getType() ) {
+			case 'flow-new-topic':
+				$extra = $event->getExtra();
+				$board = $extra['board-workflow'];
+				if ( $board instanceof UUID ) {
+					$bundleString = $event->getType() . '-' . $board->getAlphadecimal();
+				}
+			break;
+
 			case 'flow-post-reply':
 			case 'flow-post-edited':
 				$extra = $event->getExtra();

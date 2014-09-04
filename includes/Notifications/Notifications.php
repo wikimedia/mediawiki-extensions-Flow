@@ -21,6 +21,12 @@ $notifications = array(
 		),
 		'title-message' => 'flow-notification-newtopic',
 		'title-params' => array( 'agent', 'flow-title', 'title', 'subject', 'topic-permalink' ),
+		'bundle' => array(
+			'web' => true,
+			'email' => true,
+		),
+		'bundle-message' => 'flow-notification-newtopic-bundle',
+		'bundle-params' => array( 'agent-other-count', 'title' ),
 		'email-subject-message' => 'flow-notification-newtopic-email-subject',
 		'email-subject-params' => array( 'agent', 'title' ),
 		'email-body-batch-message' => 'flow-notification-newtopic-email-batch-body',
