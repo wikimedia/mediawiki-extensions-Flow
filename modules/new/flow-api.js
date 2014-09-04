@@ -180,8 +180,10 @@ window.mw = window.mw || {}; // mw-less testing
 	 * @returns {Object}
 	 */
 	function flowApiGetQueryMap( url, queryMap, overrides ) {
-		var query,
-			queries, i = 0, split,
+		var uri,
+			queryKey,
+			queryValue,
+			i = 0,
 			$node, $form, formData;
 
 		queryMap = queryMap || {};
@@ -227,24 +229,22 @@ window.mw = window.mw || {}; // mw-less testing
 		}
 
 		// Parse the URL query params
-		query = url.split( '#' )[ 0 ].split( '?' ).slice( 1 ).join( '?' );
-		if ( query ) {
-			for ( i = 0, queries = query.split( /&(?:amp;)?/gi ); i < queries.length; i++ ) {
-				split = queries[ i ].split( '=' );
+		uri = new mw.Uri( url );
 
-				if ( split[ 0 ] === 'action' ) {
-					// Submodule is the action
-					split[ 0 ] = 'submodule';
-				}
-				if ( split[ 0 ] === 'title' ) {
-					// Server is using page
-					split[ 0 ] = 'page';
-				}
+		for ( queryKey in uri.query ) {
+			queryValue = uri.query[queryKey];
+			if ( queryKey === 'action' ) {
+				// Submodule is the action
+				queryKey = 'submodule';
+			}
+			if ( queryKey === 'title' ) {
+				// Server is using page
+				queryKey = 'page';
+			}
 
-				// Only add this to the query map if it didn't already exist, eg. in a form input
-				if ( !queryMap[ split[ 0 ] ] ) {
-					queryMap[ split[ 0 ] ] = split.slice( 1 ).join( '=' ); // if extra = are present
-				}
+			// Only add this to the query map if it didn't already exist, eg. in a form input
+			if ( !queryMap[ queryKey ] ) {
+				queryMap[ queryKey ] = queryValue; // if extra = are present
 			}
 		}
 
