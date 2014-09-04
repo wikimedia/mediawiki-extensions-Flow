@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_3bc9d129",
+        "filename": "handlebars/flow_topic.handlebars",
+        "patchSetId": 19
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-04T16:08:45Z",
+      "side": 1,
+      "message": "This should work in theory. Something\u0027s wrong when parsing this via JS, though.\n\nTry triggering new topics to be rendered when not logged in (post new topic/reply; load more): the below link will not be replaced.\n\nI have not yet figured out why exactly (and how to fix it)\n\nIt seems to be related to having nested progressiveEnhancement scripts: when removing the progressiveEnhancement tags in flow_form_buttons.handlebard, this one actually works fine.\n\nI have yet to look into why it\u0027s only happening when not logged in.",
+      "revId": "a8291e3f8031b7cfb527f94e7756d68a009910dc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
