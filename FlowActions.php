@@ -77,14 +77,14 @@ $wgFlowActions = array(
 		'rc_insert' => true,
 		'permissions' => array(
 			PostSummary::MODERATED_NONE => '',
-			PostSummary::MODERATED_CLOSED => array( 'flow-hide', 'flow-close', 'flow-delete', 'flow-suppress' ),
+			PostSummary::MODERATED_LOCKED => array( 'flow-hide', 'flow-lock', 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_SUPPRESSED => array( 'flow-suppress' ),
 		),
 		'button-method' => 'GET',
 		'links' => array( 'topic', 'topic-history', 'watch-topic', 'unwatch-topic' ),
-		'actions' => array( 'edit-topic-summary', 'close-topic', 'restore-topic' ),
+		'actions' => array( 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-create-topic-summary',
 			'i18n-params' => array(
@@ -102,14 +102,14 @@ $wgFlowActions = array(
 		'rc_insert' => true,
 		'permissions' => array(
 			PostSummary::MODERATED_NONE => '',
-			PostSummary::MODERATED_CLOSED => array( 'flow-hide', 'flow-close', 'flow-delete', 'flow-suppress' ),
+			PostSummary::MODERATED_LOCKED => array( 'flow-hide', 'flow-lock', 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_SUPPRESSED => array( 'flow-suppress' ),
 		),
 		'button-method' => 'GET',
 		'links' => array( 'topic', 'topic-history', 'diff-post-summary', 'watch-topic', 'unwatch-topic' ),
-		'actions' => array( 'edit-topic-summary', 'close-topic', 'restore-topic' ),
+		'actions' => array( 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-topic-summary',
 			'i18n-params' => array(
@@ -131,7 +131,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'GET',
 		'links' => array( 'topic', 'topic-history', 'diff-post', 'topic-revision', 'watch-topic', 'unwatch-topic' ),
-		'actions' => array( 'reply', 'thank', 'edit-title', 'lock-topic', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'close-topic', 'restore-topic' ),
+		'actions' => array( 'reply', 'thank', 'edit-title', 'lock-topic', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-title',
 			'i18n-params' => array(
@@ -159,7 +159,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'POST',
 		'links' => array( 'topic-history', 'topic', 'post', 'topic-revision', 'watch-topic', 'unwatch-topic' ),
-		'actions' => array( 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'close-topic', 'restore-topic' ),
+		'actions' => array( 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-new-post',
 			'i18n-params' => array(
@@ -291,7 +291,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'POST',
 		'links' => array( 'topic', 'topic-history', 'topic-revision', 'watch-topic', 'unwatch-topic' ),
-		'actions' => array( 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'close-topic', 'restore-topic' ),
+		'actions' => array( 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-deleted-topic',
 			'i18n-params' => array(
@@ -343,7 +343,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'POST',
 		'links' => array( 'topic', 'topic-history', 'topic-revision', 'watch-topic', 'unwatch-topic' ),
-		'actions' => array( 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'close-topic', 'restore-topic' ),
+		'actions' => array( 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-suppressed-topic',
 			'i18n-params' => array(
@@ -358,19 +358,19 @@ $wgFlowActions = array(
 		),
 	),
 
-	'close-topic' => array(
+	'lock-topic' => array(
 		'performs-writes' => true,
-		'log_type' => 'close',
+		'log_type' => 'lock',
 		'rc_insert' => true,
 		'permissions' => array(
-			// Only non-moderated topic can be closed
-			PostRevision::MODERATED_NONE => array( 'flow-hide', 'flow-close', 'flow-delete', 'flow-suppress' ),
+			// Only non-moderated topic can be locked
+			PostRevision::MODERATED_NONE => array( 'flow-hide', 'flow-lock', 'flow-delete', 'flow-suppress' ),
 		),
 		'button-method' => 'GET',
 		'links' => array( 'topic', 'topic-history', 'watch-topic', 'unwatch-topic' ),
 		'actions' => array( 'edit-topic-summary', 'restore-topic' ),
 		'history' => array(
-			'i18n-message' => 'flow-rev-message-closed-topic',
+			'i18n-message' => 'flow-rev-message-locked-topic',
 			'i18n-params' => array(
 				'user-links',
 				'user-text',
@@ -379,9 +379,9 @@ $wgFlowActions = array(
 				'moderated-reason',
 				'topic-of-post',
 			),
-			'class' => 'flow-history-closed-topic',
+			'class' => 'flow-history-locked-topic',
 		),
-		'handler-class' => 'Flow\Actions\CloseTopicAction',
+		'handler-class' => 'Flow\Actions\LockTopicAction',
 	),
 
 	'restore-post' => array(
@@ -466,14 +466,14 @@ $wgFlowActions = array(
 				return true;
 			},
 		'permissions' => array(
-			PostRevision::MODERATED_CLOSED => array( 'flow-hide', 'flow-close', 'flow-delete', 'flow-suppress' ),
+			PostRevision::MODERATED_LOCKED => array( 'flow-hide', 'flow-lock', 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
 		'button-method' => 'POST',
 		'links' => array( 'topic', 'topic-history', 'topic-revision', 'watch-topic', 'unwatch-topic' ),
-		'actions' => array( 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'close-topic', 'restore-topic' ),
+		'actions' => array( 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-restored-topic',
 			'i18n-params' => array(
@@ -500,7 +500,7 @@ $wgFlowActions = array(
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',
 			PostRevision::MODERATED_HIDDEN => '', // visible for everyone (but will initially be collapsed)
-			PostRevision::MODERATED_CLOSED => '',
+			PostRevision::MODERATED_LOCKED => '',
 			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
@@ -520,7 +520,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'GET',
 		'links' => array( 'topic-history', 'topic', 'post', 'post-revision', 'watch-topic', 'unwatch-topic' ),
-		'actions' => array( 'reply', 'thank', 'edit-post', 'hide-post', 'delete-post', 'suppress-post', 'edit-topic-summary', 'close-topic', 'restore-topic' ),
+		'actions' => array( 'reply', 'thank', 'edit-post', 'hide-post', 'delete-post', 'suppress-post', 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-reply',
 			'i18n-params' => array(
@@ -605,7 +605,7 @@ $wgFlowActions = array(
 				return '';
 			},
 			PostRevision::MODERATED_HIDDEN => '',
-			PostRevision::MODERATED_CLOSED => '',
+			PostRevision::MODERATED_LOCKED => '',
 			PostRevision::MODERATED_DELETED => '',
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
@@ -622,7 +622,7 @@ $wgFlowActions = array(
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',
 			PostRevision::MODERATED_HIDDEN => '',
-			PostRevision::MODERATED_CLOSED => '',
+			PostRevision::MODERATED_LOCKED => '',
 			PostRevision::MODERATED_DELETED => '',
 			PostRevision::MODERATED_SUPPRESSED => '',
 		),
@@ -630,9 +630,6 @@ $wgFlowActions = array(
 
 	// Actions not tied to a particular revision change_type
 	// or just move these to a different file
-	'close-open-topic' => array(
-		'handler-class' => 'Flow\Actions\CloseTopicAction',
-	),
 	'compare-header-revisions' => array(
 		'handler-class' => 'Flow\Actions\CompareHeaderRevisionsAction',
 	),
@@ -708,4 +705,8 @@ $wgFlowActions = array(
 
 	// The new-topic type used to be called new-post
 	'new-post' => 'new-topic',
+
+	// BC for lock-topic, which used to be called differently
+	'close-topic' => 'lock-topic',
+	'close-open-topic' => 'lock-topic',
 );

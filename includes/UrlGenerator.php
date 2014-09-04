@@ -388,19 +388,19 @@ class UrlGenerator extends BaseUrlGenerator {
 	}
 
 	/**
-	 * Close the specified topic
+	 * Lock the specified topic
 	 *
 	 * @param Title|null $title
 	 * @param UUID $workflowId
 	 * @return Anchor
 	 */
-	public function closeTopicAction( Title $title = null, UUID $workflowId ) {
+	public function lockTopicAction( Title $title = null, UUID $workflowId ) {
 		return new Anchor(
-			wfMessage( 'flow-topic-action-close-topic' ),
+			wfMessage( 'flow-topic-action-lock-topic' ),
 			$this->resolveTitle( $title, $workflowId ),
 			array(
-				'action' => 'close-open-topic',
-				'flow_moderationState' => 'close',
+				'action' => 'lock-topic',
+				'flow_moderationState' => AbstractRevision::MODERATED_LOCKED,
 			)
 		);
 	}
