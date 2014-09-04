@@ -52,6 +52,24 @@
       "revId": "a8291e3f8031b7cfb527f94e7756d68a009910dc",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_166b8cb6",
+        "filename": "handlebars/flow_topic.handlebars",
+        "patchSetId": 19
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-04T17:00:31Z",
+      "side": 1,
+      "message": "We had a missing \u0027g\u0027 flag on a regular expression.  This caused only the first progressive enhancement of a fragment to be evaluated rather than all of them.\n\nhttps://gerrit.wikimedia.org/r/158411",
+      "parentUuid": "2e2fb78d_1be5f59f",
+      "revId": "a8291e3f8031b7cfb527f94e7756d68a009910dc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
