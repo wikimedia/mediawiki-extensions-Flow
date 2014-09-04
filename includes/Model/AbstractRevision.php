@@ -14,7 +14,7 @@ abstract class AbstractRevision {
 	const MODERATED_HIDDEN = 'hide';
 	const MODERATED_DELETED = 'delete';
 	const MODERATED_SUPPRESSED = 'suppress';
-	const MODERATED_CLOSED = 'close';
+	const MODERATED_LOCKED = 'lock';
 
 	/**
 	 * List of available permission levels.
@@ -26,7 +26,7 @@ abstract class AbstractRevision {
 		self::MODERATED_HIDDEN,
 		self::MODERATED_DELETED,
 		self::MODERATED_SUPPRESSED,
-		self::MODERATED_CLOSED,
+		self::MODERATED_LOCKED,
 	);
 
 	/**
@@ -201,10 +201,12 @@ abstract class AbstractRevision {
 		$obj->moderationTimestamp = $row['rev_mod_timestamp'];
 		$obj->moderatedReason = isset( $row['rev_mod_reason'] ) ? $row['rev_mod_reason'] : null;
 
-		// Backwards compatibility
-		if ( $obj->moderationState == 'censor' ) {
-			$obj->moderationState = self::MODERATED_SUPPRESSED;
-		}
+		// BC: 'suppress' used to be called 'censor' & 'lock' was 'close'
+		$bc = array(
+			'censor' => AbstractRevision::MODERATED_SUPPRESSED,
+			'close' => AbstractRevision::MODERATED_LOCKED,
+		);
+		$obj->moderationState = str_replace( array_keys( $bc ), array_values( $bc ), $obj->moderationState );
 
 		// isset required because there is a possible db migration, cached data will not have it
 		$obj->lastEditId = isset( $row['rev_last_edit_id'] ) ? UUID::create( $row['rev_last_edit_id'] ) : null;
@@ -583,8 +585,8 @@ abstract class AbstractRevision {
 	/**
 	 * @return boolean
 	 */
-	public function isClosed() {
-		return $this->moderationState === self::MODERATED_CLOSED;
+	public function isLocked() {
+		return $this->moderationState === self::MODERATED_LOCKED;
 	}
 
 	/**

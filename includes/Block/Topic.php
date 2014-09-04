@@ -59,8 +59,8 @@ class TopicBlock extends AbstractBlock {
 		// Moderation
 		'moderate-topic',
 		'moderate-post',
-		// Close or open topic
-		'close-open-topic',
+		// lock or unlock topic
+		'lock-topic',
 		// Other stuff
 		'edit-title',
 	);
@@ -68,7 +68,7 @@ class TopicBlock extends AbstractBlock {
 	protected $supportedGetActions = array(
 		'reply', 'view', 'history', 'edit-post', 'edit-title', 'compare-post-revisions', 'single-view',
 		'view-topic', 'view-post',
-		'moderate-topic', 'moderate-post', 'close-open-topic',
+		'moderate-topic', 'moderate-post', 'lock-topic',
 	);
 
 	// @Todo - fill in the template names
@@ -82,10 +82,10 @@ class TopicBlock extends AbstractBlock {
 		'compare-post-revisions' => 'diff_view',
 		'moderate-topic' => 'moderate_topic',
 		'moderate-post' => 'moderate_post',
-		'close-open-topic' => 'close',
+		'lock-topic' => 'lock',
 	);
 
-	protected $requiresWikitext = array( 'edit-post', 'edit-title', 'close-open-topic' );
+	protected $requiresWikitext = array( 'edit-post', 'edit-title', 'lock-topic' );
 
 	/**
 	 * @var RevisionActionPermissions $permissions Allows or denies actions to be performed
@@ -111,21 +111,22 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	protected function validate() {
-		// If the topic is closed, the only allowed action is to reopen it
 		$topicTitle = $this->loadTopicTitle();
 		if ( !$topicTitle ) {
 			// permissions issue, self::loadTopicTitle should have added appropriate
 			// error messages already.
 			return;
 		}
+
+		// If the topic is locked, the only allowed action is to unlock it
 		if (
-			$topicTitle->isClosed()
+			$topicTitle->isLocked()
 			&& (
-				$this->action !== 'close-open-topic'
-				|| $this->submitted['moderationState'] !== 'reopen'
+				$this->action !== 'lock-topic'
+				|| !in_array( $this->submitted['moderationState'], array( 'unlock', /* BC for unlock: */ 'reopen' ) )
 			)
 		) {
-			$this->addError( 'moderate', wfMessage( 'flow-error-topic-is-closed' ) );
+			$this->addError( 'moderate', wfMessage( 'flow-error-topic-is-locked' ) );
 		}
 
 		switch( $this->action ) {
@@ -138,7 +139,7 @@ class TopicBlock extends AbstractBlock {
 			break;
 
 		case 'moderate-topic':
-		case 'close-open-topic':
+		case 'lock-topic':
 			$this->validateModerateTopic();
 			break;
 
@@ -265,8 +266,11 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	protected function doModerate( PostRevision $post ) {
-		if ( $this->submitted['moderationState'] === 'close' && $post->isModerated() ) {
-			$this->addError( 'moderate', wfMessage( 'flow-error-close-moderated-post' ) );
+		if (
+			$this->submitted['moderationState'] === AbstractRevision::MODERATED_LOCKED
+			&& $post->isModerated()
+		) {
+			$this->addError( 'moderate', wfMessage( 'flow-error-lock-moderated-post' ) );
 			return;
 		}
 
@@ -282,13 +286,20 @@ class TopicBlock extends AbstractBlock {
 			$this->addError( 'moderate', wfMessage( 'flow-error-invalid-moderation-state' ) );
 			return;
 		}
-		// BC: 'suppress' used to be called 'censor'
-		if ( $moderationState == 'censor' ) {
-			$moderationState = 'suppress';
-		}
+
+		/*
+		 * BC: 'suppress' used to be called 'censor', 'lock' was 'close' &
+		 * 'unlock' was 'reopen'
+		 */
+		$bc = array(
+			'censor' => AbstractRevision::MODERATED_SUPPRESSED,
+			'close' => AbstractRevision::MODERATED_LOCKED,
+			'reopen' => 'un' . AbstractRevision::MODERATED_LOCKED
+		);
+		$moderationState = str_replace( array_keys( $bc ), array_values( $bc ), $moderationState );
 
 		// these all just mean set to no moderation, it returns a post to unmoderated status
-		$allowedRestoreAliases = array( 'reopen', 'unhide', 'undelete', 'unsuppress' );
+		$allowedRestoreAliases = array( 'unlock', 'unhide', 'undelete', 'unsuppress', /* BC for unlock: */ 'reopen' );
 		if ( in_array( $moderationState, $allowedRestoreAliases ) ) {
 			$moderationState = 'restore';
 		}
@@ -388,7 +399,7 @@ class TopicBlock extends AbstractBlock {
 		switch( $this->action ) {
 		case 'reply':
 		case 'moderate-topic':
-		case 'close-open-topic':
+		case 'lock-topic':
 		case 'restore-post':
 		case 'moderate-post':
 		case 'edit-title':
@@ -457,7 +468,7 @@ class TopicBlock extends AbstractBlock {
 				throw new InvalidInputException( 'A revision must be provided', 'invalid-input' );
 			}
 			$output = $this->renderSingleViewAPI( $revId );
-		} elseif ( $this->action === 'close-open-topic' ) {
+		} elseif ( $this->action === 'lock-topic' ) {
 			// Treat topic as a post, only the post + summary are needed
 			$result = $this->renderPostAPI( $templating, $options, $this->workflow->getId() );
 			$topicId = $result['roots'][0];
@@ -768,7 +779,7 @@ class TopicBlock extends AbstractBlock {
 	 * @param \OutputPage $out
 	 *
 	 * @todo Provide more informative page title for actions other than view,
-     *       e.g. "Hide post in <TITLE>", "Reopen <TITLE>", etc.
+     *       e.g. "Hide post in <TITLE>", "Unlock <TITLE>", etc.
 	 */
 	public function setPageTitle( Templating $templating, \OutputPage $out ) {
 		$topic = $this->loadTopicTitle( $this->action === 'history' ? 'history' : 'view' );

@@ -108,18 +108,18 @@ class FlowPage < WikiPage
   a(:edit_title_button) do |page|
     page.topic_actions_menu_element.link_element(text: "Edit title")
   end
-  a(:topic_close_button) do |page|
-    page.topic_actions_menu_element.link_element(title: "Close topic")
+  a(:topic_lock_button) do |page|
+    page.topic_actions_menu_element.link_element(title: "Lock topic")
   end
-  a(:topic_reopen_button) do |page|
-    page.topic_actions_menu_element.link_element(title: "Reopen topic")
+  a(:topic_unlock_button) do |page|
+    page.topic_actions_menu_element.link_element(title: "Unlock topic")
   end
 
-  ## Close topic workflow
-  form(:topic_close_form, css: ".flow-edit-form")
-  textarea(:topic_close_form_reason, css: ".flow-edit-form textarea")
-  button(:topic_close_form_close_button, css: ".flow-edit-form .mw-ui-constructive")
-  button(:topic_close_form_cancel_button, css: ".flow-edit-form .mw-ui-destructive")
+  ## Lock topic workflow
+  form(:topic_lock_form, css: ".flow-edit-form")
+  textarea(:topic_lock_form_reason, css: ".flow-edit-form textarea")
+  button(:topic_lock_form_lock_button, css: ".flow-edit-form .mw-ui-constructive")
+  button(:topic_lock_form_cancel_button, css: ".flow-edit-form .mw-ui-destructive")
 
   ### Editing title of first topic
   text_field(:title_edit, css: ".flow-topic-titlebar form .mw-ui-input", index: 0)
