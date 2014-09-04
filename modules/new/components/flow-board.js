@@ -89,7 +89,8 @@
 			$boardNavigation = $container.filter( '.flow-board-navigation' ),
 			$topicNavigation = $container.filter( '.flow-topic-navigation' ),
 			$board = $container.filter( '.flow-board' ),
-			$retObj = $();
+			$retObj = $(),
+			editorTimer;
 		// ...then check at the second level...
 		$header = $header.length ? $header : $container.find( '.flow-board-header' );
 		$boardNavigation = $boardNavigation.length ? $boardNavigation : $container.find( '.flow-board-navigation' );
@@ -149,7 +150,21 @@
 		FlowBoardComponent.UI.bindGlobalHandlers();
 
 		// Initialize editors, turning them from textareas into editor objects
-		FlowBoardComponent.UI.initializeEditors( $container );
+		if ( typeof this.editorTimer === 'undefined' ) {
+			/*
+			 * When this method is first run, all page elements are initialized.
+			 * We probably don't need editor immediately, so defer loading it
+			 * to speed up the rest of the work that needs to be done.
+			 */
+			this.editorTimer = setTimeout( FlowBoardComponent.UI.initializeEditors.bind( this, $container ), 20000 );
+		} else {
+			/*
+			 * Subsequent calls here (e.g. when rendering the edit header form)
+			 * should immediately initialize the editors!
+			 */
+			clearTimeout( this.editorTimer );
+			FlowBoardComponent.UI.initializeEditors( $container );
+		}
 
 		// Restore the last state
 		this.HistoryEngine.restoreLastState();
@@ -227,7 +242,7 @@
 
 				// Doublecheck that this textarea is actually an editor instance
 				// (the editor may have added a textarea itself...)
-				if ( mw.flow.editor.exists( $editor ) ) {
+				if ( mw.flow.editor && mw.flow.editor.exists( $editor ) ) {
 					override[$editor.attr( 'name' )] = mw.flow.editor.getContent( $editor );
 				}
 
@@ -1834,7 +1849,7 @@
 				var $editor = $( this );
 
 				// Kill editor instances
-				if ( mw.flow.editor.exists( $editor ) ) {
+				if ( mw.flow.editor && mw.flow.editor.exists( $editor ) ) {
 					mw.flow.editor.destroy( $editor );
 				}
 
@@ -2055,21 +2070,23 @@
 		 * @param jQuery $container
 		 */
 		FlowBoardComponent.UI.initializeEditors = function ( $container ) {
-			var $editors = $container.find( 'textarea' );
+			mw.loader.using( 'ext.flow.editor', function() {
+				var $editors = $container.find( 'textarea' );
 
-			$editors.each( function() {
-				var $editor = $( this );
+				$editors.each( function() {
+					var $editor = $( this );
 
-				// All editors already have their content in wikitext-format
-				// (mostly because we need to prefill them server-side so that
-				// JS-less users can interact)
-				mw.flow.editor.load( $editor, $editor.val(), 'wikitext' );
+					// All editors already have their content in wikitext-format
+					// (mostly because we need to prefill them server-side so that
+					// JS-less users can interact)
+					mw.flow.editor.load( $editor, $editor.val(), 'wikitext' );
 
-				// Kill editor instance when the form it's in is cancelled
-				flowBoardComponentAddCancelCallback( $editor.closest( 'form' ), function() {
-					if ( mw.flow.editor.exists( $editor ) ) {
-						mw.flow.editor.destroy( $editor );
-					}
+					// Kill editor instance when the form it's in is cancelled
+					flowBoardComponentAddCancelCallback( $editor.closest( 'form' ), function() {
+						if ( mw.flow.editor.exists( $editor ) ) {
+							mw.flow.editor.destroy( $editor );
+						}
+					} );
 				} );
 			} );
 		};
