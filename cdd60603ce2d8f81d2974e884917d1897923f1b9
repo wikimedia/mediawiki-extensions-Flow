@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_1540265a",
+        "filename": "handlebars/flow_post_author.handlebars",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-09-04T12:07:06Z",
+      "side": 1,
+      "message": "This is much less readable. Can\u0027t we achieve using just ~ ?",
+      "revId": "cdd60603ce2d8f81d2974e884917d1897923f1b9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
