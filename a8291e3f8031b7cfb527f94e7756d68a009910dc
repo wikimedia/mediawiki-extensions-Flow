@@ -16,6 +16,24 @@
       "revId": "a8291e3f8031b7cfb527f94e7756d68a009910dc",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_dbd76dc3",
+        "filename": "handlebars/flow_topic.handlebars",
+        "patchSetId": 19
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-04T16:15:10Z",
+      "side": 1,
+      "message": "Hmm, this is probably due to something using TemplateEngine.processTemplate instead of TemplateEngine.processTemplateGetFragment\n\nGetFragment should be the one to call in 99% of circumstances, but we use the plain call in a few places for unknown reasons.  Going to swap them arround and see if it helps",
+      "parentUuid": "2e2fb78d_3bc9d129",
+      "revId": "a8291e3f8031b7cfb527f94e7756d68a009910dc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
