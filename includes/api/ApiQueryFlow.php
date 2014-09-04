@@ -22,7 +22,7 @@ class ApiQueryFlow extends ApiQueryBase {
 		$params = $this->extractRequestParams();
 		$passedParams = FormatJson::decode( $params['params'], true );
 
-		$pageTitle = Title::newFromText( $params['page'] );
+		$pageTitle = Title::newFromText( urldecode( $params['page'] ) );
 		$id = $params['workflow'] ? UUID::create( $params['workflow'] ) : null;
 
 		$this->loader = $this->container['factory.loader.workflow']
