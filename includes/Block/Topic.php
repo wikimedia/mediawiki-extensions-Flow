@@ -11,6 +11,7 @@ use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\PermissionException;
+use Flow\Formatter\FormatterRow;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
@@ -445,7 +446,7 @@ class TopicBlock extends AbstractBlock {
 			// single post history or full topic?
 			if ( isset( $options['postId'] ) ) {
 				// singular post history
-				$output = $this->renderPostHistoryAPI( $templating, $options );
+				$output = $this->renderPostHistoryAPI( $templating, $options, UUID::create( $options['postId'] ) );
 			} else {
 				// post history for full topic
 				$output = $this->renderTopicHistoryAPI( $templating, $options );
@@ -626,6 +627,23 @@ class TopicBlock extends AbstractBlock {
 			throw new FlowException( 'No topic history can exist for non-existant topic' );
 		}
 		$found = Container::get( 'query.topic.history' )->getResults( $this->workflow->getId() );
+		return $this->processHistoryResult( $found, $options );
+	}
+
+	protected function renderPostHistoryAPI( Templating $templating, array $options, UUID $postId ) {
+		if ( $this->workflow->isNew() ) {
+			throw new FlowException( 'No post history can exist for non-existant topic' );
+		}
+		$found = Container::get( 'query.post.history' )->getResults( $postId );
+		return $this->processHistoryResult( $found, $options );
+	}
+
+	/**
+	 * Process the history result for either topic or post
+	 * @param FormatterRow
+	 * @param array
+	 */
+	protected function processHistoryResult( $found, $options ) {
 		$serializer = $this->getRevisionFormatter();
 		if ( isset( $options['contentFormat'] ) ) {
 			$serializer->setContentFormat( $options['contentFormat'] );
@@ -645,10 +663,6 @@ class TopicBlock extends AbstractBlock {
 		return array(
 			'revisions' => $result
 		);
-	}
-
-	protected function renderPostHistoryAPI( Templating $templating, array $options ) {
-		throw new FlowException( 'Not implemented yet' );
 	}
 
 	/**
