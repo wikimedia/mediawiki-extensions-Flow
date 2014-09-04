@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_30f33009",
+        "filename": "i18n/en.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-09-04T12:43:07Z",
+      "side": 1,
+      "message": "Can\u0027t we add css rule to mw-echo-title-heading to make the text bold?\nSeems messy as this will generate \u003cspan\u003e\u003cb\u003eTitle\u003c/b\u003e\u003c/span\u003e",
+      "revId": "8c780cb4165187e2c3ecf68fa04449bef0135803",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
