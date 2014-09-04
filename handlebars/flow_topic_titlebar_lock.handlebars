@@ -3,9 +3,9 @@
 		<form class="flow-edit-form" data-flow-initial-state="collapsed" method="POST"
 			  action="
 				{{~#if isModerated~}}
-					{{~actions.reopen.url~}}
+					{{~actions.unlock.url~}}
 				{{~else~}}
-					{{~actions.close.url~}}
+					{{~actions.lock.url~}}
 				{{~/if~}}">
 			{{> flow_errors }}
 			<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
@@ -36,19 +36,19 @@
 					class="mw-ui-button mw-ui-constructive"
 					data-flow-interactive-handler="apiRequest"
 					data-flow-api-target="< .flow-topic-titlebar"
-					data-flow-api-handler="closeOpenTopic">
+					data-flow-api-handler="lockTopic">
 						{{#if isModerated}}
-							{{l10n "flow-topic-action-reopen-topic"}}
+							{{l10n "flow-topic-action-unlock-topic"}}
 						{{else}}
-							{{l10n "flow-topic-action-close-topic"}}
+							{{l10n "flow-topic-action-lock-topic"}}
 						{{/if}}
 				</button>
 				{{> flow_form_buttons }}
 				<small class="flow-terms-of-use plainlinks">
 					{{#if isModerated}}
-						{{l10nParse "flow-terms-of-use-reopen-topic"}}
+						{{l10nParse "flow-terms-of-use-unlock-topic"}}
 					{{else}}
-						{{l10nParse "flow-terms-of-use-close-topic"}}
+						{{l10nParse "flow-terms-of-use-lock-topic"}}
 					{{/if}}
 				</small>
 			</div>
