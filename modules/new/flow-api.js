@@ -243,7 +243,7 @@ window.mw = window.mw || {}; // mw-less testing
 
 				// Only add this to the query map if it didn't already exist, eg. in a form input
 				if ( !queryMap[ split[ 0 ] ] ) {
-					queryMap[ split[ 0 ] ] = split.slice( 1 ).join( '=' ); // if extra = are present
+					queryMap[ split[ 0 ] ] = decodeURIComponent( split.slice( 1 ).join( '=' ) ); // if extra = are present
 				}
 			}
 		}
