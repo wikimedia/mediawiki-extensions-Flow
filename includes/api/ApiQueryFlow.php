@@ -22,7 +22,9 @@ class ApiQueryFlow extends ApiQueryBase {
 		$params = $this->extractRequestParams();
 		$passedParams = FormatJson::decode( $params['params'], true );
 
-		$pageTitle = Title::newFromText( $params['page'] );
+		// urldecode is temporary hack to fix double-encoding from
+		// the javascript frontend
+		$pageTitle = Title::newFromText( urldecode( $params['page'] ) );
 		$id = $params['workflow'] ? UUID::create( $params['workflow'] ) : null;
 
 		$this->loader = $this->container['factory.loader.workflow']
