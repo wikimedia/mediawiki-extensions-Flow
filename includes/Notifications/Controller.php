@@ -444,13 +444,7 @@ class NotificationController {
 				break;
 			}
 
-			$ids = array( $postId );
-			$topic = $extra['topic-workflow'];
-
-			if ( $topic instanceof UUID && !$topic->equals( $postId ) ) {
-				$ids[] = $topic;
-			}
-			$users += self::getCreatorsFromPostIDs( $ids );
+			$users += self::getCreatorsFromPostIDs( array( $postId ) );
 			break;
 		default:
 			// Do nothing
