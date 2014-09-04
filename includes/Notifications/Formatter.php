@@ -130,6 +130,13 @@ class NotificationFormatter extends EchoBasicFormatter {
 				}
 				break;
 
+			case 'flow-new-topics':
+				$title  = $event->getTitle();
+				if ( $title ) {
+					$anchor = $urlGenerator->boardLink( $title, 'newest' );
+				}
+				break;
+
 			default:
 				return parent::getLinkParams( $event, $user, $destination );
 		}
@@ -177,5 +184,44 @@ class NotificationFormatter extends EchoBasicFormatter {
 		}
 
 		return false;
+	}
+}
+
+/**
+ * @FIXME - Move bundle iterator logic into a centralized place in Echo and
+ * introduce bundle type param like 'agent', 'page', 'event' so child formatter
+ * only needs to specify what iterator to use
+ */
+class NewTopicFormatter extends NotificationFormatter {
+
+	/**
+	 * New Topic user 'event' as the iterator
+	 */
+	protected function generateBundleData( $event, $user, $type ) {
+		$data = $this->getRawBundleData( $event, $user, $type );
+
+		if ( !$data ) {
+			return;
+		}
+
+		$this->bundleData['event-count'] = count( $data );
+		$this->bundleData['use-bundle']  = $this->bundleData['event-count'] > 1;
+	}
+
+	/**
+	 * @param $event EchoEvent
+	 * @param $param string
+	 * @param $message Message
+	 * @param $user User
+	 */
+	protected function processParam( $event, $param, $message, $user ) {
+		switch ( $param ) {
+			case 'event-count':
+				$message->numParams( $this->bundleData['event-count'] );
+				break;
+			default:
+				parent::processParam( $event, $param, $message, $user );
+				break;
+		}
 	}
 }
