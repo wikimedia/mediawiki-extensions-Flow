@@ -11,6 +11,7 @@
 	"flow-post-action-edit-post": "Càgna",
 	"flow-topic-notification-subscribe-title": "Chest'argomento è stat'azzeccato ô proprio elenco d'osservate speciale.",
 	"flow-board-notification-subscribe-title": "Mo' te sì scritto dint'a sta bacheca 'e discussione!",
+	"flow-error-other": "All'intrasatta s'è verificato n'errore.",
 	"flow-error-move": "Rimpizzanno na bacheca 'e discussione ca nun è cchiù supportata.",
 	"flow-edit-header-placeholder": "Descrive sta bacheca 'e discussione",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|rispunnette}} ncopp'a '''$4'''.",
