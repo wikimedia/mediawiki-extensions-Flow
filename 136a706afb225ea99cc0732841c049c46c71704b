@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_af9fb654",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-05T16:22:56Z",
+      "side": 1,
+      "message": "just a style note, but if you have an else statement prefer to test for positive rather than negative conditions.",
+      "revId": "136a706afb225ea99cc0732841c049c46c71704b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
