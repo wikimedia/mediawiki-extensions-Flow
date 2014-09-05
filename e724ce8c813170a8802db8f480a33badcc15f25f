@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2e2fb78d_d9b77080",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-09-05T09:34:05Z",
+      "side": 1,
+      "message": "I\u0027ll add a note to change this in future (original patch used isEqualTo but Benny and Matthias had objections.",
+      "parentUuid": "2e2fb78d_9e40aea9",
+      "revId": "e724ce8c813170a8802db8f480a33badcc15f25f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e2fb78d_be436ab5",
         "filename": "includes/TemplateHelper.php",
         "patchSetId": 7
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "2e2fb78d_79a63c52",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-09-05T09:34:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e2fb78d_be436ab5",
+      "revId": "e724ce8c813170a8802db8f480a33badcc15f25f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e2fb78d_fe39f23e",
         "filename": "includes/TemplateHelper.php",
         "patchSetId": 7
@@ -47,6 +83,24 @@
       "writtenOn": "2014-09-05T02:19:05Z",
       "side": 1,
       "message": "$inverse is undefined",
+      "revId": "e724ce8c813170a8802db8f480a33badcc15f25f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_59a3803f",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 788,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-09-05T09:34:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e2fb78d_fe39f23e",
       "revId": "e724ce8c813170a8802db8f480a33badcc15f25f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
