@@ -22,8 +22,8 @@
 ),
         'blockhelpers' => Array(),
         'hbhelpers' => Array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
-            'ifEquals' => 'Flow\TemplateHelper::ifEquals',
             'ifAnonymous' => 'Flow\TemplateHelper::ifAnonymous',
+            'ifCond' => 'Flow\TemplateHelper::ifCond',
             'tooltip' => 'Flow\TemplateHelper::tooltip',
             'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
 ),
@@ -69,8 +69,8 @@
 	     '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isMaxThreadingDepth'])) ? $in['isMaxThreadingDepth'] : null))) ? '
 	         data-flow-post-max-depth="1"
 	     ' : '').'>
-		'.LCRun3::hbch($cx, 'ifEquals', Array(Array(((is_array($cx['scopes'][0]['rootBlock']['submitted']) && isset($cx['scopes'][0]['rootBlock']['submitted']['action'])) ? $cx['scopes'][0]['rootBlock']['submitted']['action'] : null),'edit-post'),Array()), $in, function($cx, $in) {return '
-			'.LCRun3::hbch($cx, 'ifEquals', Array(Array(((is_array($cx['scopes'][0]['rootBlock']['submitted']) && isset($cx['scopes'][0]['rootBlock']['submitted']['postId'])) ? $cx['scopes'][0]['rootBlock']['submitted']['postId'] : null),((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)),Array()), $in, function($cx, $in) {return '
+		'.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($cx['scopes'][0]['rootBlock']['submitted']) && isset($cx['scopes'][0]['rootBlock']['submitted']['action'])) ? $cx['scopes'][0]['rootBlock']['submitted']['action'] : null),'edit-post'),Array('"'=>((is_array($in) && isset($in['=="'])) ? $in['=="'] : null))), $in, function($cx, $in) {return '
+			'.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($cx['scopes'][0]['rootBlock']['submitted']) && isset($cx['scopes'][0]['rootBlock']['submitted']['postId'])) ? $cx['scopes'][0]['rootBlock']['submitted']['postId'] : null),((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)),Array('"'=>((is_array($in) && isset($in['=="'])) ? $in['=="'] : null))), $in, function($cx, $in) {return '
 				<form class="flow-edit-post-form"
       method="POST"
       action="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['url'])) ? $in['actions']['edit']['url'] : null), ENT_QUOTES, 'UTF-8').'"
@@ -553,8 +553,8 @@
 			'.LCRun3::ch($cx, 'post', Array(Array(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['rootBlock'])) ? $cx['scopes'][0]['rootBlock'] : null),$in),Array()), 'encq').'
 		';}).'
 	';}).'
-	'.LCRun3::hbch($cx, 'ifEquals', Array(Array(((is_array($cx['scopes'][0]['rootBlock']['submitted']) && isset($cx['scopes'][0]['rootBlock']['submitted']['postId'])) ? $cx['scopes'][0]['rootBlock']['submitted']['postId'] : null),((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)),Array()), $in, function($cx, $in) {return '
-		'.LCRun3::hbch($cx, 'ifEquals', Array(Array(((is_array($cx['scopes'][0]['rootBlock']['submitted']) && isset($cx['scopes'][0]['rootBlock']['submitted']['action'])) ? $cx['scopes'][0]['rootBlock']['submitted']['action'] : null),'reply'),Array()), $in, function($cx, $in) {return '
+	'.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($cx['scopes'][0]['rootBlock']['submitted']) && isset($cx['scopes'][0]['rootBlock']['submitted']['postId'])) ? $cx['scopes'][0]['rootBlock']['submitted']['postId'] : null),((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)),Array('"'=>((is_array($in) && isset($in['=="'])) ? $in['=="'] : null))), $in, function($cx, $in) {return '
+		'.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($cx['scopes'][0]['rootBlock']['submitted']) && isset($cx['scopes'][0]['rootBlock']['submitted']['action'])) ? $cx['scopes'][0]['rootBlock']['submitted']['action'] : null),'reply'),Array('"'=>((is_array($in) && isset($in['=="'])) ? $in['=="'] : null))), $in, function($cx, $in) {return '
 			'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['reply'])) ? $in['actions']['reply'] : null))) ? '
 	<form class="flow-post flow-reply-form"
 	      method="POST"
@@ -603,7 +603,7 @@
 				class="mw-ui-input"
 				type="text"
 				placeholder="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-reply-topic-title-placeholder',LCRun3::ch($cx, 'plaintextSnippet', Array(Array(((is_array($in['content']) && isset($in['content']['format'])) ? $in['content']['format'] : null),((is_array($in['content']) && isset($in['content']['content'])) ? $in['content']['content'] : null)),Array()), 'raw')),Array()), 'encq').'"
-				data-role="content">'.LCRun3::hbch($cx, 'ifEquals', Array(Array(((is_array($cx['scopes'][0]['rootBlock']['submitted']) && isset($cx['scopes'][0]['rootBlock']['submitted']['postId'])) ? $cx['scopes'][0]['rootBlock']['submitted']['postId'] : null),((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)),Array()), $in, function($cx, $in) {return ''.htmlentities(((is_array($cx['scopes'][0]['rootBlock']['submitted']) && isset($cx['scopes'][0]['rootBlock']['submitted']['content'])) ? $cx['scopes'][0]['rootBlock']['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'';}).'</textarea>
+				data-role="content">'.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['postId'])) ? $cx['scopes'][0]['submitted']['postId'] : null),((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)),Array('"'=>((is_array($in) && isset($in['=="'])) ? $in['=="'] : null))), $in, function($cx, $in) {return ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'';}).'</textarea>
 
 		<div class="flow-form-actions flow-form-collapsible">
 			<button data-role="submit"
