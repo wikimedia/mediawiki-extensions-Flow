@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_9e40aea9",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-05T02:19:05Z",
+      "side": 1,
+      "message": "It feels like either this should be || or the other two should have word names.",
+      "revId": "e724ce8c813170a8802db8f480a33badcc15f25f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_be436ab5",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-05T02:19:05Z",
+      "side": 1,
+      "message": "$doCallback and $doInverse are always paired, it could be clearer as:\n\n    if ( $operator \u003d\u003d\u003d \u0027or\u0027 ) {\n        $doCallback \u003d $value || $value2;\n    } elseif ( $operator \u003d\u003d\u003d \u0027\u003d\u003d\u003d\u0027 ) {\n        $doCallback \u003d $value \u003d\u003d\u003d $value2;\n    } elseif ( $operator \u003d\u003d\u003d \u0027!\u003d\u003d\u0027 ) {\n        $doCallback \u003d $value !\u003d\u003d $value2;\n    } else {\n        return \u0027\u0027;\n    }\n\n   if ( $doCallback ) {\n        ...\n    } elseif ( isset( $options[\u0027inverse\u0027] ) ) {\n        ...\n    } else {\n        return \u0027\u0027;\n    }",
+      "revId": "e724ce8c813170a8802db8f480a33badcc15f25f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_fe39f23e",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 788,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-05T02:19:05Z",
+      "side": 1,
+      "message": "$inverse is undefined",
+      "revId": "e724ce8c813170a8802db8f480a33badcc15f25f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
