@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_af1c5619",
+        "filename": "handlebars/flow_topic_titlebar_content.handlebars",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-05T15:56:01Z",
+      "side": 1,
+      "message": "we should consistently use false or 0, but not both",
+      "revId": "9df53d679cc967b1ec63b10a4f56fe0b29503d05",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_afeb36da",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-05T15:56:01Z",
+      "side": 1,
+      "message": "should instead be using $ctx-\u003egetLanguage()",
+      "revId": "9df53d679cc967b1ec63b10a4f56fe0b29503d05",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_0fddaa47",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-05T15:56:01Z",
+      "side": 1,
+      "message": "howabout instead adjust $this-\u003egetDateFormats() to accept a UUID and re-use it here so we have consistent date output?",
+      "revId": "9df53d679cc967b1ec63b10a4f56fe0b29503d05",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_efe13efc",
+        "filename": "includes/Formatter/TopicListFormatter.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-05T15:56:01Z",
+      "side": 1,
+      "message": "You should never need to pull random variables in via globals.  The calling method should pass an IContextSource into here if you need the user/language.",
+      "revId": "9df53d679cc967b1ec63b10a4f56fe0b29503d05",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_6fcc2e8d",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-05T15:56:01Z",
+      "side": 1,
+      "message": "one argument per line please\n\n    return self::timestamp(\n        $args[0],\n        $args[1],\n        ....\n    );",
+      "revId": "9df53d679cc967b1ec63b10a4f56fe0b29503d05",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_cfbd62d3",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-05T15:56:01Z",
+      "side": 1,
+      "message": "closing ); goes on its own line",
+      "revId": "9df53d679cc967b1ec63b10a4f56fe0b29503d05",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_4fc9727a",
+        "filename": "tests/qunit/new/test_flow-handlebars.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-05T15:56:01Z",
+      "side": 1,
+      "message": "red bar of doom!!!!",
+      "revId": "9df53d679cc967b1ec63b10a4f56fe0b29503d05",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
