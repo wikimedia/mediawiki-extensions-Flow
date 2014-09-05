@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_43927301",
+        "filename": "modules/new/flow-api.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-05T00:12:56Z",
+      "side": 1,
+      "message": "I think instead up here we should be doing something more like\n\n    var uri \u003d new mw.Uri( url );\n    if ( uri.query.length ) {\n        ...\n    }\n\nThe current solution leaves open the possibility for split[ 0 ] to possibly be encoded(although we don\u0027t use any non-ascii keys).  If we use mw.Uri the decoding is handled correctly behind the scenes.",
+      "revId": "d12a69e1ae9d83e7c9788ee9a13a70e5dff6292c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
