@@ -737,6 +737,7 @@
 			var revision, creator,
 				$button = $( this ),
 				$form = $button.closest( 'form' ),
+				$cancelButton = $form.find('.mw-ui-button[data-role="cancel"]'),
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $form ),
 				$titleField = $form.find( 'input' ).filter( '[data-role=title]' ),
 				$previewContainer,
@@ -832,18 +833,18 @@
 				.parent( 'form' )
 				.before( $previewContainer );
 
-			// On cancel, make the preview get removed and reset the form back to its original state
-			flowBoardComponentAddCancelCallback( $form, function () {
-				flowBoardComponentResetPreview( $button );
-			} );
-
+			// Hide cancel button on preview screen
+			$cancelButton.hide();
 			// Assign the reset-preview information for later use
 			$button
 				.data( 'flow-return-to-edit', {
 					text: $button.text(),
 					$nodes: $previewContainer
 				} )
-				.text( flowBoard.TemplateEngine.l10n('flow-preview-return-edit-post') );
+				.text( flowBoard.TemplateEngine.l10n('flow-preview-return-edit-post') )
+				.click( function() {
+					$cancelButton.show();
+				} );
 		};
 
 		/**

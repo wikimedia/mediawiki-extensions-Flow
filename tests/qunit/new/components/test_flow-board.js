@@ -128,10 +128,11 @@ QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.preview', 6, function( ass
 	assert.strictEqual( $input.hasClass( 'flow-preview-target-hidden' ), true, 'Input is hidden.' );
 
 	// now cancel the form
-	this.UI.events.interactiveHandlers.cancelForm.call( $btn, new $.Event() );
-	assert.strictEqual( $container.find( '.flow-preview-warning' ).length, 0, 'There is no preview warning.' );
-	assert.strictEqual( $textarea.hasClass( 'flow-preview-target-hidden' ), false, 'Textarea is no longer hidden.' );
-	assert.strictEqual( $input.hasClass( 'flow-preview-target-hidden' ), false, 'Input is no longer hidden.' );
+	// no more cancel button on preview
+	//this.UI.events.interactiveHandlers.cancelForm.call( $btn, new $.Event() );
+	//assert.strictEqual( $container.find( '.flow-preview-warning' ).length, 0, 'There is no preview warning.' );
+	//assert.strictEqual( $textarea.hasClass( 'flow-preview-target-hidden' ), false, 'Textarea is no longer hidden.' );
+	//assert.strictEqual( $input.hasClass( 'flow-preview-target-hidden' ), false, 'Input is no longer hidden.' );
 } );
 
 QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.preview (summary)', 3, function( assert ) {
