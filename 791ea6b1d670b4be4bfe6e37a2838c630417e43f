@@ -16,6 +16,24 @@
       "revId": "791ea6b1d670b4be4bfe6e37a2838c630417e43f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_5eeb66a0",
+        "filename": "handlebars/flow_post_author.handlebars",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-05T02:12:59Z",
+      "side": 1,
+      "message": "followup patch: https://gerrit.wikimedia.org/r/158574",
+      "parentUuid": "2e2fb78d_feac5286",
+      "revId": "791ea6b1d670b4be4bfe6e37a2838c630417e43f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
