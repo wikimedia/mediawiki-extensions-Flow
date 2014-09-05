@@ -5,13 +5,13 @@ Feature: Replying
     Given I am logged in
       And I am on Flow page
 
-  @en.wikipedia.beta.wmflabs.org @test2.wikipedia.org
+  @en.wikipedia.beta.wmflabs.org @phantomjs @test2.wikipedia.org
   Scenario: I can reply
     Given I have created a Flow topic with title "Reply test"
       And I reply with comment "Boom boom shake shake the room"
     Then the top post's first reply contains the text "Boom boom shake shake the room"
 
-  @en.wikipedia.beta.wmflabs.org @test2.wikipedia.org
+  @en.wikipedia.beta.wmflabs.org @phantomjs @test2.wikipedia.org
   Scenario: Replying updates watched state
     Given I have created a Flow topic with title "Reply watch test"
       And I am not watching my new Flow topic

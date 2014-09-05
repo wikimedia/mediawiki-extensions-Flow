@@ -1,4 +1,4 @@
-@chrome @clean @ee-prototype.wmflabs.org @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10 @login @test2.wikipedia.org
+@chrome @clean @ee-prototype.wmflabs.org @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10 @login @phantomjs @test2.wikipedia.org
 Feature: Check the interface for anonymous users
 
   Scenario: Anon does not see block or actions
