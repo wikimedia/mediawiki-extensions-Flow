@@ -63,10 +63,6 @@ Then(/^I should (.*) the title of the first moderated topic$/) do |visibility_st
   visibility_to_should(on(FlowPage).first_moderated_topic_title_element, visibility_str)
 end
 
-Then(/^I should (.*) who started the first moderated topic$/) do |visibility_str|
-  visibility_to_should(on(FlowPage).first_moderated_topic_starter_element, visibility_str)
-end
-
 Then(/^I should (.*) the comments of the first moderated topic$/) do |visibility_str|
   visibility_to_should(on(FlowPage).first_moderated_topic_post_content_element, visibility_str)
 end
