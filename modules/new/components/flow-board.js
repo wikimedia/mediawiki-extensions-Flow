@@ -593,6 +593,9 @@
 
 			FlowBoardComponent.UI.makeContentInteractive( $target );
 
+			// Update to show it is closed
+			$target.parents( '.flow-topic' ).toggleClass( 'flow-topic-moderatestate-close' );
+
 			// Focus on first form field
 			$target.find( 'input, textarea' ).filter( ':visible:first' ).focus();
 		};

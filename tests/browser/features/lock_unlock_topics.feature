@@ -4,6 +4,15 @@ Feature: Lock and unlock topics
   Background:
       Given I am logged in
 
+  @wip
+  Scenario: Closed topics have no reply links
+    Given I am on Flow page
+        And I have created a Flow topic
+        And the top post has been closed
+    When I expand the top post
+    Then the original message for the top post has no reply link
+      And the original message for the top post has no edit link
+
   @internet_explorer_10
   Scenario: Locking a topic and then changing your mind
     Given I am on Flow page
