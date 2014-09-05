@@ -1468,7 +1468,7 @@
 			// Let generic pre-handler take care of edit conflicts
 			// @todo use oojs or mf events system?
 			$.each( FlowBoardComponent.UI.events.globalApiPreHandlers, function( key ) {
-				preHandlerReturns.push( FlowBoardComponent.UI.events.globalApiPreHandlers[key].apply( _this, arguments ) );
+				preHandlerReturns.push( FlowBoardComponent.UI.events.globalApiPreHandlers[key].apply( _this, args ) );
 			} );
 
 			// Use the pre-callback to find out if we should process this
