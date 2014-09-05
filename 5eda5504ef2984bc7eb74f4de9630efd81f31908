@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_9ede6e6f",
+        "filename": "modules/new/flow-api.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-05T01:16:48Z",
+      "side": 1,
+      "message": "the comment can go to, it was related to the .join( \u0027\u003d\u0027 )",
+      "revId": "5eda5504ef2984bc7eb74f4de9630efd81f31908",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
