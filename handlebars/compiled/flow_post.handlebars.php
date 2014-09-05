@@ -164,7 +164,6 @@
 			   data-flow-interactive-handler="activateReplyPost">'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['title'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'</a>
 		' : '').'
 		'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['edit'])) ? $in['actions']['edit'] : null))) ? '
-			&#8226;
 			<a href="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['url'])) ? $in['actions']['edit']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 			   title="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['title'])) ? $in['actions']['edit']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 			   data-flow-api-handler="activateEditPost"
@@ -175,7 +174,6 @@
 			</a>
 		' : '').'
 		'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['thank'])) ? $in['actions']['thank'] : null))) ? '
-			&#8226;
 			'.'
 			<a class="mw-ui-anchor mw-ui-constructive mw-ui-quiet mw-thanks-flow-thank-link"
 			   href="'.htmlentities(((is_array($in['actions']['thank']) && isset($in['actions']['thank']['url'])) ? $in['actions']['thank']['url'] : null), ENT_QUOTES, 'UTF-8').'"
@@ -192,7 +190,6 @@
 		'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['diff-prev'])) ? $in['links']['diff-prev'] : null))) ? '
 			</a>
 		' : '').'
-		&#8226;
 	' : '').'
 	'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null),'flow-time-ago'),Array()), 'encq').'
 </div>
@@ -369,7 +366,6 @@
 			   data-flow-interactive-handler="activateReplyPost">'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['title'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'</a>
 		' : '').'
 		'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['edit'])) ? $in['actions']['edit'] : null))) ? '
-			&#8226;
 			<a href="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['url'])) ? $in['actions']['edit']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 			   title="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['title'])) ? $in['actions']['edit']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 			   data-flow-api-handler="activateEditPost"
@@ -380,7 +376,6 @@
 			</a>
 		' : '').'
 		'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['thank'])) ? $in['actions']['thank'] : null))) ? '
-			&#8226;
 			'.'
 			<a class="mw-ui-anchor mw-ui-constructive mw-ui-quiet mw-thanks-flow-thank-link"
 			   href="'.htmlentities(((is_array($in['actions']['thank']) && isset($in['actions']['thank']['url'])) ? $in['actions']['thank']['url'] : null), ENT_QUOTES, 'UTF-8').'"
@@ -397,7 +392,6 @@
 		'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['diff-prev'])) ? $in['links']['diff-prev'] : null))) ? '
 			</a>
 		' : '').'
-		&#8226;
 	' : '').'
 	'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null),'flow-time-ago'),Array()), 'encq').'
 </div>
