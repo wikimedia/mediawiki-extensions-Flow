@@ -777,12 +777,18 @@
 				replies: [ id ],
 				isPreview: true
 			};
+			templateParams = {};
+
+			// This is for most previews which expect a "revision" key
 			revision[contentNode] = {
 				content: data['flow-parsoid-utils'].content,
 				format: data['flow-parsoid-utils'].format
 			};
+			// This fixes summarize which expects a key "summary"
+			templateParams[contentNode] = revision[contentNode];
 
-			templateParams = {
+			$.extend( templateParams, {
+				// This fixes titlebar which expects a key "content" for title
 				content: {
 					content: $titleField.val() || '',
 					format: 'content'
@@ -795,7 +801,7 @@
 				last_updated: +new Date(),
 				replies: [ id ],
 				revisions: {}
-			};
+			} );
 			templateParams.posts[id] = { 0: id };
 			templateParams.revisions[id] = revision;
 
