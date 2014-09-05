@@ -49,6 +49,13 @@ class FlowPage < WikiPage
   div(:flow_first_topic_summary) do |page|
     page.flow_first_topic_element.div_element(css: ".flow-topic-summary")
   end
+  div(:flow_first_topic_original_post, css: ".flow-post", index: 0)
+  a(:flow_first_topic_original_post_edit) do |page|
+    page.flow_first_topic_original_post_element.link_element(text: "Edit")
+  end
+  a(:flow_first_topic_original_post_reply) do |page|
+    page.flow_first_topic_original_post_element.link_element(text: "Reply")
+  end
 
   ### Hover over username behaviour
   span(:usertools, css: '.mw-usertoollinks')
