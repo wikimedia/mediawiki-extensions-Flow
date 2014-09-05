@@ -102,7 +102,7 @@ QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.preview', 2, function( ass
 	assert.strictEqual( $topic.hasClass( 'flow-topic-moderatestate-close' ), true, 'Has the moderated close state.' );
 } );
 
-QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.preview', 6, function( assert ) {
+QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.preview', 3, function( assert ) {
 	var $container = this.$el,
 		$form = $( '<form>' ).appendTo( $container ),
 		$input = $( '<input value="HEADING">' ).appendTo( $form ),
@@ -126,12 +126,6 @@ QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.preview', 6, function( ass
 	assert.strictEqual( $container.find( '.flow-preview-warning' ).length, 1, 'There is a preview warning.' );
 	assert.strictEqual( $textarea.hasClass( 'flow-preview-target-hidden' ), true, 'Textarea is hidden.' );
 	assert.strictEqual( $input.hasClass( 'flow-preview-target-hidden' ), true, 'Input is hidden.' );
-
-	// now cancel the form
-	this.UI.events.interactiveHandlers.cancelForm.call( $btn, new $.Event() );
-	assert.strictEqual( $container.find( '.flow-preview-warning' ).length, 0, 'There is no preview warning.' );
-	assert.strictEqual( $textarea.hasClass( 'flow-preview-target-hidden' ), false, 'Textarea is no longer hidden.' );
-	assert.strictEqual( $input.hasClass( 'flow-preview-target-hidden' ), false, 'Input is no longer hidden.' );
 } );
 
 QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.preview (summary)', 3, function( assert ) {
