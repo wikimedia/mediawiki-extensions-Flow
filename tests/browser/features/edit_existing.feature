@@ -15,6 +15,7 @@ Feature: Edit existing title
       And I should be able to save the new title
       And the top post should have a heading which contains "Title edited"
 
+  @phantomjs
   Scenario: Edit existing post
     When I click Edit post
     Then I should be able to edit the post field with Post edited
