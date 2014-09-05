@@ -158,6 +158,12 @@ class FlowPage < WikiPage
   div(:first_reply_body) do |page|
     page.first_reply_element.div_element(css: '.flow-post-content')
   end
+  a(:first_reply_edit) do |page|
+    page.first_reply_element.link_element(title: 'Edit')
+  end
+  a(:first_reply_reply) do |page|
+    page.first_reply_element.link_element(title: 'Reply')
+  end
 
   #### 3rd reply
   # @todo: Should be index: 2, but sadly no way to distinguish replies from original post

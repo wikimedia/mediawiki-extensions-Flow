@@ -54,3 +54,11 @@ Then(/^I do not see the close\/reopen form$/) do
   on(FlowPage).topic_close_form_element.when_not_present
 end
 
+Then(/^the first reply to the top post has no reply link$/) do
+  on(FlowPage).first_reply_edit_element.should_not be_visible
+end
+
+Then(/^the first reply to the top post has no edit link$/) do
+  on(FlowPage).first_reply_reply_element.should_not be_visible
+end
+

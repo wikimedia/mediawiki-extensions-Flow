@@ -4,6 +4,15 @@ Feature: Close and open topics
   Background:
       Given I am logged in
 
+  @wip
+  Scenario: Closed topics have no reply links
+    Given I am on Flow page
+        And I have created a Flow topic
+        And the top post has been closed
+    When I expand the top post
+    Then the first reply to the top post has no reply link
+      And the first reply to the top post has no edit link
+
   @internet_explorer_10
   Scenario: Closing a topic and then changing your mind
     Given I am on Flow page
@@ -41,3 +50,5 @@ Feature: Close and open topics
     Then the top post is an open discussion
         And I expand the top post
         And the topic summary of the first topic is "Fun discussion"
+
+  # Close-then-reopen doesn't work in IE, it caches the API response (bug 69160).

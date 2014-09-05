@@ -8,6 +8,13 @@
 .flow-topic-moderatestate-delete {
 	color: @colorTextLight;
 
+	// Progressive post actions should not be possible
+	.flow-post-meta-actions {
+		.mw-ui-progressive {
+				display: none;
+			}
+	}
+
 	.flow-topic-titlebar {
 		background-color: @colorWhite;
 		border: solid 1px @colorGrayLight;
