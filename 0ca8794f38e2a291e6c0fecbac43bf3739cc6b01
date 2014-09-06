@@ -16,6 +16,24 @@
       "revId": "0ca8794f38e2a291e6c0fecbac43bf3739cc6b01",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_17437c16",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-09-06T00:05:19Z",
+      "side": 1,
+      "message": "Removed in a follow-up patch",
+      "parentUuid": "2e2fb78d_efe49ea5",
+      "revId": "0ca8794f38e2a291e6c0fecbac43bf3739cc6b01",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
