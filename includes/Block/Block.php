@@ -33,11 +33,10 @@ interface Block {
 	 * Render the API output of this Block.
 	 * Templating is provided for convenience
 	 *
-	 * @param Templating $templating
 	 * @param array $options
 	 * @return array
 	 */
-	function renderAPI( Templating $templating, array $options );
+	function renderAPI( array $options );
 
 	/**
 	 * @return string Unique name among all blocks on an object
@@ -90,7 +89,6 @@ abstract class AbstractBlock implements Block {
 	// These methods exist in the Block interface and as such cannot be abstract
 	// until php 5.3.9, but MediaWiki requires PHP version 5.3.2 or later (and
 	// some of our test machines are on 5.3.3).
-	//abstract public function renderAPI( Templating $templating, array $options );
 	//abstract public function commit();
 
 	public function init( $action, $user ) {

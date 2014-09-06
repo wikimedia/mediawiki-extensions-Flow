@@ -10,7 +10,6 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 		$action = $this->getAction();
 		$user = $this->getUser();
 		$container = $this->getContainer();
-		$templating = $container['templating'];
 		$passedParams = $loader->extractBlockParameters( $action, $this->getModifiedRequest(), $blocks );
 
 		$output[$action] = array(
@@ -28,7 +27,7 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 					$blockParams = $passedParams[$block->getName()];
 				}
 
-				$output[$action]['result'][$block->getName()] = $block->renderAPI( $templating, $blockParams );
+				$output[$action]['result'][$block->getName()] = $block->renderAPI( $blockParams );
 			}
 		}
 

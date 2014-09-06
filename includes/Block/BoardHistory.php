@@ -40,7 +40,7 @@ class BoardHistoryBlock extends AbstractBlock {
 		throw new DataModelException( __CLASS__ . ' should not invoke commit()', 'process-data' );
 	}
 
-	public function renderAPI( Templating $templating, array $options ) {
+	public function renderAPI( array $options ) {
 		if ( $this->workflow->isNew() ) {
 			return array(
 				'type' => $this->getName(),

@@ -169,7 +169,7 @@ class HeaderBlock extends AbstractBlock {
 		}
 	}
 
-	public function renderAPI( Templating $templating, array $options ) {
+	public function renderAPI( array $options ) {
 		$output = array(
 			'type' => $this->getName(),
 			'editToken' => $this->getEditToken(),
