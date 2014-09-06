@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_57622438",
+        "filename": "i18n/en.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-09-06T00:37:23Z",
+      "side": 1,
+      "message": "Need a bundle copy for email subject and body as well",
+      "revId": "22e70edb3faad6b5c756516b1dcb9f9080e3dba5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
