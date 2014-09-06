@@ -350,5 +350,20 @@ class Workflow {
 		$state = end( $this->lockState );
 		return $state['state'] === self::STATE_LOCKED;
 	}
+
+	/**
+	 * @param string $permission
+	 * @param User $user
+	 * @return bool
+	 */
+	public function userCan( $permission, $user ) {
+		$title = $this->getArticleTitle();
+		$allowed = $title->userCan( 'edit', $user );
+		if ( $allowed && $this->type === 'topic' ) {
+			$allowed = $this->getOwnerTitle()->userCan( 'edit', $user );
+		}
+
+		return $allowed;
+	}
 }
 
