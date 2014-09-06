@@ -433,7 +433,7 @@ class TopicBlock extends AbstractBlock {
 		}
 	}
 
-	public function renderAPI( Templating $templating, array $options ) {
+	public function renderAPI( array $options ) {
 		$topic = $this->loadTopicTitle( $this->action === 'history' ? 'history' : 'view' );
 		if ( !$topic ) {
 			throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
@@ -446,10 +446,10 @@ class TopicBlock extends AbstractBlock {
 			// single post history or full topic?
 			if ( isset( $options['postId'] ) ) {
 				// singular post history
-				$output = $this->renderPostHistoryAPI( $templating, $options, UUID::create( $options['postId'] ) );
+				$output = $this->renderPostHistoryAPI( $options, UUID::create( $options['postId'] ) );
 			} else {
 				// post history for full topic
-				$output = $this->renderTopicHistoryAPI( $templating, $options );
+				$output = $this->renderTopicHistoryAPI( $options );
 			}
 		} elseif ( $this->action === 'single-view' ) {
 			if ( isset( $options['revId'] ) ) {
@@ -460,7 +460,7 @@ class TopicBlock extends AbstractBlock {
 			$output = $this->renderSingleViewAPI( $revId );
 		} elseif ( $this->action === 'close-open-topic' ) {
 			// Treat topic as a post, only the post + summary are needed
-			$result = $this->renderPostAPI( $templating, $options, $this->workflow->getId() );
+			$result = $this->renderPostAPI( $options, $this->workflow->getId() );
 			$topicId = $result['roots'][0];
 			$revisionId = $result['posts'][$topicId][0];
 			$output = $result['revisions'][$revisionId];
@@ -468,11 +468,11 @@ class TopicBlock extends AbstractBlock {
 			$output = $this->renderDiffViewAPI( $options );
 		} elseif ( $this->shouldRenderTopicAPI( $options ) ) {
 			// view full topic
-			$output = $this->renderTopicAPI( $templating, $options );
+			$output = $this->renderTopicAPI( $options );
 		} else {
 			// view single post, possibly specific revision
 			// @todo this isn't valid for the topic title
-			$output = $this->renderPostAPI( $templating, $options );
+			$output = $this->renderPostAPI( $options );
 		}
 
 		if ( $output === null ) {
@@ -541,7 +541,7 @@ class TopicBlock extends AbstractBlock {
 		return $output;
 	}
 
-	protected function renderTopicAPI( Templating $templating, array $options, $workflowId = '' ) {
+	protected function renderTopicAPI( array $options, $workflowId = '' ) {
 		$serializer = Container::get( 'formatter.topic' );
 		if ( !$workflowId ) {
 			if ( $this->workflow->isNew() ) {
@@ -576,7 +576,7 @@ class TopicBlock extends AbstractBlock {
 	 * To generate forms with validation errors in the non-javascript renders we
 	 * need to add something to this output, but not sure what yet
 	 */
-	protected function renderPostAPI( Templating $templating, array $options, $postId = '' ) {
+	protected function renderPostAPI( array $options, $postId = '' ) {
 		if ( $this->workflow->isNew() ) {
 			throw new FlowException( 'No posts can exist for non-existent topic' );
 		}
@@ -622,7 +622,7 @@ class TopicBlock extends AbstractBlock {
 		return $serializer;
 	}
 
-	protected function renderTopicHistoryAPI( Templating $templating, array $options ) {
+	protected function renderTopicHistoryAPI( array $options ) {
 		if ( $this->workflow->isNew() ) {
 			throw new FlowException( 'No topic history can exist for non-existant topic' );
 		}
@@ -630,7 +630,7 @@ class TopicBlock extends AbstractBlock {
 		return $this->processHistoryResult( $found, $options );
 	}
 
-	protected function renderPostHistoryAPI( Templating $templating, array $options, UUID $postId ) {
+	protected function renderPostHistoryAPI( array $options, UUID $postId ) {
 		if ( $this->workflow->isNew() ) {
 			throw new FlowException( 'No post history can exist for non-existant topic' );
 		}
