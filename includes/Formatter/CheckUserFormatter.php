@@ -37,7 +37,14 @@ class CheckUserFormatter extends AbstractFormatter {
 			return null;
 		}
 
-		$data = array( 'links' => $links, 'properties' => $properties );
+		$data = array(
+			'links' => array(
+				$this->getDiffAnchor( $links, $ctx ),
+				$this->getHistAnchor( $links, $ctx ),
+			),
+			'properties' => $properties
+		);
+
 		return array(
 			'links' => $this->formatAnchorsAsPipeList( $data['links'], $ctx ),
 			'title' => $this->changeSeparator() . $this->getTitleLink( $data, $row, $ctx ),
