@@ -260,6 +260,7 @@
 	"flow-anon-warning": "No has iniciado sesión. Para recibir atribución con tu nombre en lugar de su dirección IP, puedes [$1 iniciar sesión] o [$2 crear una cuenta].",
 	"flow-cancel-warning": "Has escrito texto en este formulario. ¿Estás seguro de que quieres descartarlo?",
 	"flow-topic-count": "Temas ($1)",
+	"flow-active-ago": "Activo $1",
 	"flow-started-ago": "Comenzado $1",
 	"flow-started-ago-day": "Iniciado hace $1 {{PLURAL:$1|día|días}}",
 	"flow-started-ago-hour": "Iniciado hace $1 {{PLURAL:$1|hora|horas}}",
