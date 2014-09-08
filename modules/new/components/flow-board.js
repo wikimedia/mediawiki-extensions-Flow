@@ -3,6 +3,9 @@
  */
 
 ( function ( $, mw ) {
+	var namespaces = mw.config.get( 'wgNamespaceIds' ),
+		inTopicNamespace = mw.config.get( 'wgNamespaceNumber' ) === namespaces.topic;
+
 	/**
 	 * Constructor class for instantiating a new Flow board. Returns a FlowBoardComponent object.
 	 * Accepts one or more container elements in $container. If multiple, returns an array of FlowBoardComponents.
@@ -1307,7 +1310,12 @@
 		FlowBoardComponent.UI.events.interactiveHandlers.collapserGroupToggle = function ( event ) {
 			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
 
-			FlowBoardComponent.UI.collapserState( flowBoard, this.href.match( /[a-z]+$/ )[0] );
+			// Topic pages do not have collapse states
+			if ( inTopicNamespace ) {
+				return;
+			} else {
+				FlowBoardComponent.UI.collapserState( flowBoard, this.href.match( /[a-z]+$/ )[0] );
+			}
 
 			event.preventDefault();
 		};
@@ -1319,11 +1327,17 @@
 		FlowBoardComponent.UI.events.interactiveHandlers.collapserCollapsibleToggle = function ( event ) {
 			var topicId, states,
 				$target = $( event.target ),
-				$component = $( this ).closest( '.flow-component' );
+				$component = $( this ).closest( '.flow-component' ),
+				isNotClickableElement = $target.not( '.flow-menu-js-drop' ) &&
+					!$target.closest( 'a, button, input, textarea, select, ul, ol' ).length;
 
+			// Topic pages do not have collapse states
+			if ( inTopicNamespace ) {
+				return;
 			// Make sure we didn't click on any interactive elements
-			if ( $target.not( '.flow-menu-js-drop' ) && !$target.closest( 'a, button, input, textarea, select, ul, ol' ).length ) {
+			} else if ( isNotClickableElement ) {
 				$target = $( this ).closest( '.flow-post-main, .flow-topic' ); // @todo genericize this
+
 				if ( $component.is( '.flow-board-collapsed-compact, .flow-board-collapsed-topics' ) ) {
 					// Board default is collapsed; topic can be overridden to
 					// expanded, or not.
@@ -2222,7 +2236,10 @@
 			var $heading,
 				$container = flowBoard.$container;
 
-			if ( !newState ) {
+			// Topic pages do not have collapse states
+			if ( inTopicNamespace ) {
+				return;
+			} else if ( !newState ) {
 				// Get last
 				newState = mw.flow.StorageEngine.localStorage.getItem( 'collapserState' ) || 'full'; // @todo genericize this
 			} else {
@@ -2250,6 +2267,9 @@
 			} else {
 				$heading.removeClass( 'flow-ui-text-truncated' );
 			}
+
+			// Mark them as active to allow specific styling for active elements
+			$container.find( '.flow-element-collapsible' ).addClass( 'flow-element-collapsible-active' );
 		};
 
 		/**
