@@ -189,6 +189,7 @@ $wgAutoloadClasses['Flow\Formatter\SinglePostQuery'] = $dir . 'includes/Formatte
 $wgAutoloadClasses['Flow\Formatter\PostSummaryQuery'] = $dir . 'includes/Formatter/PostSummaryQuery.php';
 $wgAutoloadClasses['Flow\Formatter\TopicListQuery'] = $dir . 'includes/Formatter/TopicListQuery.php';
 $wgAutoloadClasses['Flow\Formatter\TopicHistoryQuery'] = $dir . 'includes/Formatter/TopicHistoryQuery.php';
+$wgAutoloadClasses['Flow\Formatter\PostHistoryQuery'] = $dir . 'includes/Formatter/PostHistoryQuery.php';
 $wgAutoloadClasses['Flow\Formatter\TopicRow'] = $dir . 'includes/Formatter/TopicRow.php';
 $wgAutoloadClasses['Flow\Formatter\IRCLineUrlFormatter'] = $dir . 'includes/Formatter/IRCLineUrlFormatter.php';
 $wgAutoloadClasses['Flow\Formatter\RevisionViewFormatter'] = $dir . 'includes/Formatter/RevisionViewFormatter.php';
