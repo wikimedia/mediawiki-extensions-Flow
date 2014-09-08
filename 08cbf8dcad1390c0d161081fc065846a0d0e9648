@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_3b9bfa69",
+        "filename": "i18n/en.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-09-08T14:36:38Z",
+      "side": 1,
+      "message": "Inconsistent indentation character (tab here, vs. spaces for other lines). Please change all to leading tab, or change this line to leading spaces.",
+      "revId": "08cbf8dcad1390c0d161081fc065846a0d0e9648",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
