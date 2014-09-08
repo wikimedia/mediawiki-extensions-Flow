@@ -358,9 +358,9 @@ class Workflow {
 	 */
 	public function userCan( $permission, $user ) {
 		$title = $this->getArticleTitle();
-		$allowed = $title->userCan( 'edit', $user );
+		$allowed = $title->userCan( $permission, $user );
 		if ( $allowed && $this->type === 'topic' ) {
-			$allowed = $this->getOwnerTitle()->userCan( 'edit', $user );
+			$allowed = $this->getOwnerTitle()->userCan( $permission, $user );
 		}
 
 		return $allowed;
