@@ -207,16 +207,6 @@ class NotificationController {
 			)
 		) );
 
-		$events = array_merge( $events,
-			$this->notifyNewPost( array(
-				'title' => $boardWorkflow->getArticleTitle(),
-				'user' => $user,
-				'post' => $firstPost,
-				'topic-title' => $topicTitle,
-				'topic-workflow' => $topicWorkflow,
-			) )
-		);
-
 		return $events;
 	}
 
