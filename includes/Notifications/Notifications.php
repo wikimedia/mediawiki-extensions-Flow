@@ -86,7 +86,6 @@ $notifications = array(
 			'message' => 'notification-link-text-view-mention',
 			'destination' => 'flow-post'
 		),
-		'category' => 'mention',
 		'title-message' => 'flow-notification-mention',
 		'title-params' => array( 'agent', 'post-permalink', 'subject', 'title', 'user' ),
 		'email-subject-message' => 'flow-notification-mention-email-subject',
