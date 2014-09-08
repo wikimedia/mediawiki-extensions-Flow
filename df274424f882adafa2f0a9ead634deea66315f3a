@@ -16,6 +16,24 @@
       "revId": "df274424f882adafa2f0a9ead634deea66315f3a",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_b1370bab",
+        "filename": "tests/browser/features/reply.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-09-08T20:47:34Z",
+      "side": 1,
+      "message": "The old test was testing cancel from the preview form, we never had simple cancelling reply.\n\nThe new test does Reply preview, keep editing, then cancel. It\u0027s more elaborate than two separate tests but I think one test that does more is still progress. I\u0027ll add a todo.",
+      "parentUuid": "2e2fb78d_e08dc337",
+      "revId": "df274424f882adafa2f0a9ead634deea66315f3a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
