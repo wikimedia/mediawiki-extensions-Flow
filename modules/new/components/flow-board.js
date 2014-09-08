@@ -3,6 +3,9 @@
  */
 
 ( function ( $, mw ) {
+	var namespaces = mw.config.get( 'wgNamespaceIds' ),
+		inTopicNamespace = mw.config.get( 'wgNamespaceNumber' ) === namespaces.topic;
+
 	/**
 	 * Constructor class for instantiating a new Flow board. Returns a FlowBoardComponent object.
 	 * Accepts one or more container elements in $container. If multiple, returns an array of FlowBoardComponents.
@@ -1319,11 +1322,13 @@
 		FlowBoardComponent.UI.events.interactiveHandlers.collapserCollapsibleToggle = function ( event ) {
 			var topicId, states,
 				$target = $( event.target ),
-				$component = $( this ).closest( '.flow-component' );
+				$component = $( this ).closest( '.flow-component' ),
+				isNotClickableElement = $target.not( '.flow-menu-js-drop' ) &&
+					!$target.closest( 'a, button, input, textarea, select, ul, ol' ).length;
 
-			// Make sure we didn't click on any interactive elements
-			if ( $target.not( '.flow-menu-js-drop' ) && !$target.closest( 'a, button, input, textarea, select, ul, ol' ).length ) {
+			if ( isNotClickableElement ) {
 				$target = $( this ).closest( '.flow-post-main, .flow-topic' ); // @todo genericize this
+
 				if ( $component.is( '.flow-board-collapsed-compact, .flow-board-collapsed-topics' ) ) {
 					// Board default is collapsed; topic can be overridden to
 					// expanded, or not.
@@ -2250,6 +2255,9 @@
 			} else {
 				$heading.removeClass( 'flow-ui-text-truncated' );
 			}
+
+			// Mark them as active to allow specific styling for active elements
+			$container.find( '.flow-element-collapsible' ).addClass( 'flow-element-collapsible-active' );
 		};
 
 		/**
@@ -2361,6 +2369,13 @@
 			$topic.replaceWith( $newTopic );
 
 			FlowBoardComponent.UI.makeContentInteractive( $newTopic );
+		}
+
+		if ( inTopicNamespace ) {
+			// Topic pages do not have collapse states
+			FlowBoardComponent.UI.events.interactiveHandlers.collapserGroupToggle = $.noop();
+			FlowBoardComponent.UI.events.interactiveHandlers.collapserCollapsibleToggle = $.noop();
+			FlowBoardComponent.UI.collapserState = $.noop();
 		}
 	}() );
 }( jQuery, mediaWiki ) );
