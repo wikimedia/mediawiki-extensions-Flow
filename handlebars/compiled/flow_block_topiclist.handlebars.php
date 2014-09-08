@@ -62,17 +62,19 @@
 		<div class="flow-menu flow-menu-inverted">
 			<div class="flow-menu-js-drop flow-menu-js-drop-hidden"><a href="javascript:void(0);" class="flow-board-filter-menu-activator"></a></div>
 			'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['board-sort'])) ? $in['links']['board-sort'] : null))) ? '
-				<ul class="mw-ui-button-container flow-list">
-					<li><a class="mw-ui-button mw-ui-quiet '.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['sortby'])) ? $in['sortby'] : null),'===','updated'),Array()), $in, function($cx, $in) {return 'flow-board-navigator-link-highlight';}).'"
+				<ul class="mw-ui-button-container flow-list">'.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['sortby'])) ? $in['sortby'] : null),'!==','updated'),Array()), $in, function($cx, $in) {return '
+					<li><a class="mw-ui-button mw-ui-quiet"
 					       href="'.htmlentities(((is_array($in['links']['board-sort']) && isset($in['links']['board-sort']['updated'])) ? $in['links']['board-sort']['updated'] : null), ENT_QUOTES, 'UTF-8').'"
 					       data-flow-interactive-handler="apiRequest"
 					       data-flow-api-target="< .flow-component"
 					       data-flow-api-handler="board"><span class="wikiglyph wikiglyph-clock"></span> '.LCRun3::ch($cx, 'l10n', Array(Array('flow-recent-topics'),Array()), 'encq').'</a></li>
-					<li><a class="mw-ui-button mw-ui-quiet '.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['sortby'])) ? $in['sortby'] : null),'===',''),Array()), $in, function($cx, $in) {return 'flow-board-navigator-link-highlight';}).'"
+					';}, function($cx, $in) {return '
+					<li><a class="mw-ui-button mw-ui-quiet"
 					       href="'.htmlentities(((is_array($in['links']['board-sort']) && isset($in['links']['board-sort']['newest'])) ? $in['links']['board-sort']['newest'] : null), ENT_QUOTES, 'UTF-8').'"
 					       data-flow-interactive-handler="apiRequest"
 					       data-flow-api-target="< .flow-component"
 					       data-flow-api-handler="board"><span class="wikiglyph wikiglyph-star-circle"></span> '.LCRun3::ch($cx, 'l10n', Array(Array('flow-newest-topics'),Array()), 'encq').'</a></li>
+					';}).'
 				</ul>
 			' : '').'
 		</div>
