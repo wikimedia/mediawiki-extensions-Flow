@@ -16,6 +16,23 @@
       "revId": "08cbf8dcad1390c0d161081fc065846a0d0e9648",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_d165f742",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-08T18:54:04Z",
+      "side": 1,
+      "message": "Perhaps document that 250 ($maxRawBundleData) is max?",
+      "revId": "08cbf8dcad1390c0d161081fc065846a0d0e9648",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
