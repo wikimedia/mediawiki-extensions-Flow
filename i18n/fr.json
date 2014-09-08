@@ -206,7 +206,7 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 et $5 {{PLURAL:$6|autre a|autres ont}} {{GENDER:$1|répondu}} sur '''$3'''.",
 	"flow-notification-edit": "$1 {{GENDER:$1|a modifié}} un <span class=\"plainlinks\">[$5 message]</span> sur « $2 », lié à [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 et $5 {{PLURAL:$6|autre|autres}} {{GENDER:$1|ont modifié}} un <span class=\"plainlinks\">[$4 message]</span> sur « $2 », lié à « $3 ».",
-	"flow-notification-newtopic": "$1 {{GENDER:$1|a créé}} une \n<span class=\"plainlinks\">[$5 nouvelle discussion]</span> sur '''$3'''.",
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1 {{GENDER:$1|a créé}} une \n<span class=\"plainlinks\">[$5 nouvelle discussion]</span> sur '''$3'''.",
 	"flow-notification-rename": "$1 {{GENDER:$1|a modifié}} le titre de <span class=\"plainlinks\">[$2 $3]</span> en « $4 » sur [[$5|$6]].",
 	"flow-notification-mention": "$1 {{GENDER:$5|vous}} {{GENDER:$1|a mentionné|a mentionnée|ont mentionné}} dans {{GENDER:$1|son|son|leur}} <span class=\"plainlinks\">[$2 message]</span> sur « $3 », lié à « $4 »",
 	"flow-notification-link-text-view-post": "Afficher le message",

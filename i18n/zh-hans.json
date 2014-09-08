@@ -199,7 +199,7 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1和$5位{{PLURAL:$6|其他}}用户回答了'''$3'''。",
 	"flow-notification-edit": "$1编辑了一个在[[$3|$4]]内“$2”的<span class=\"plainlinks\">[$5 评论]</span>。",
 	"flow-notification-edit-bundle": "$1和$5名{{PLURAL:$6|其他}}用户于“$2”在“$3”{{GENDER:$1|编辑了}}一个<span class=\"plainlinks\">[$4 帖子]</span>。",
-	"flow-notification-newtopic": "$1在'''$3'''{{GENDER:$1|创建了}}一个<span class=\"plainlinks\">[$5 新话题]</span>。",
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1在'''$3'''{{GENDER:$1|创建了}}一个<span class=\"plainlinks\">[$5 新话题]</span>。",
 	"flow-notification-rename": "<span class=\"plainlinks\">[$2 $3]</span>的标题已被$1在[[$5|$6]]{{GENDER:$1|更改}}为“$4”。",
 	"flow-notification-mention": "$1于“$4”在{{GENDER:$1|他|她|他们}}的“$3”的<span class=\"plainlinks\">[$2 帖子]</span>中提到了{{GENDER:$5|您}}。",
 	"flow-notification-link-text-view-post": "浏览帖子",

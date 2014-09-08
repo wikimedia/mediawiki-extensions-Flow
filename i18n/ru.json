@@ -196,7 +196,7 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 и $5 {{PLURAL:$6|другой|других}} {{GENDER:$1|ответил|ответила}} на странице '''$3'''.",
 	"flow-notification-edit": "$1 {{GENDER:$1|отредактировал|отредактировала}} <span class=\"plainlinks\">[$5 сообщение]</span> в теме «$2» на странице [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 и $5 {{PLURAL:$6|другой|других}} {{GENDER:$1|отредактировал|отредактировала}} <span class=\"plainlinks\">[$4 сообщение]</span> в теме «$2» на странице «$3».",
-	"flow-notification-newtopic": "$1 {{GENDER:$1|создал|создала}} <span class=\"plainlinks\">[$5 новую тему]</span> на странице '''$3'''.",
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1 {{GENDER:$1|создал|создала}} <span class=\"plainlinks\">[$5 новую тему]</span> на странице '''$3'''.",
 	"flow-notification-rename": "$1 {{GENDER:$1|изменил|изменила}} заголовок темы <span class=\"plainlinks\">[$2 $3]</span> на «$4» на странице [[$5|$6]].",
 	"flow-notification-mention": "$1 упомянул{{GENDER:$1||а}} {{GENDER:$5|вас}} в {{GENDER:$1|своём}} <span class=\"plainlinks\">[$2 сообщении]</span> в теме «$3» на странице «$4».",
 	"flow-notification-link-text-view-post": "Посмотреть сообщение",

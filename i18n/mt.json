@@ -5,7 +5,7 @@
 		]
 	},
 	"flow-newtopic-content-placeholder": "Ikteb messaġġ ġdid fuq \"$1\"",
-	"flow-notification-newtopic": "$1 {{GENDER:$1|ħalaq|ħalqet}} <span class=\"plainlinks\">[$5 suġġett ġdid]</span> fuq '''$3'''.",
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1 {{GENDER:$1|ħalaq|ħalqet}} <span class=\"plainlinks\">[$5 suġġett ġdid]</span> fuq '''$3'''.",
 	"flow-started-ago-day": "Beda $1 {{PLURAL:$1|jum|jiem}} ilu",
 	"flow-started-ago-hour": "Inbeda $1 {{PLURAL:$1|siegħa|sigħat}} ilu",
 	"flow-started-ago-minute": "Beda $1 {{PLURAL:$1|minuta|minuti}} ilu",

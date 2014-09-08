@@ -153,6 +153,7 @@
 	"flow-workflow": "工作流程",
 	"flow-notification-reply": "$1{{GENDER:$1|已回覆}}您於「$4」的「$2」之<span class=\"plainlinks\">[$5 留言]</span>。",
 	"flow-notification-reply-bundle": "$1 與另外 $5 {{PLURAL:$6|個人|個人}}已{{GENDER:$1|回覆}}您的 [$4 留言] 於 $2 的 \"$3\"。",
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1 於 '''$3''' {{GENDER:$1|建立了}}一個<span class=\"plainlinks\">[$5 新話題]</span>。",
 	"flow-notification-link-text-view-post": "檢視留言",
 	"flow-notification-link-text-view-topic": "檢視主題",
 	"flow-notification-reply-email-subject": "$1 {{GENDER:$1|已回覆}}主題",
