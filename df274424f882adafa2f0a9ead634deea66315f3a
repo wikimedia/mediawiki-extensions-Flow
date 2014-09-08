@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_e08dc337",
+        "filename": "tests/browser/features/reply.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-09-08T11:06:46Z",
+      "side": 1,
+      "message": "I\u0027m confused...\nThis is a different test now?\n\nThe new test seems to test canceling from the reply form\nThe only test tested what happens when you hit cancel in preview mode.\n\nShould probably have an additional test for canceling after clicking keep editing.",
+      "revId": "df274424f882adafa2f0a9ead634deea66315f3a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
