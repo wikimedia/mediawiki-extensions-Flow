@@ -13,11 +13,10 @@ $flowResourceTemplate = array(
 $flowTemplatingResourceTemplate = $flowResourceTemplate + array(
 	'localTemplateBasePath' => __DIR__ . '/handlebars',
 	'class' => 'ResourceLoaderTemplateModule',
-	'targets' => array( 'mobile', 'desktop' ),
 );
 
 $wgResourceModules += array(
-	'ext.flow.templating' => $flowTemplatingResourceTemplate + array(
+	'ext.flow.templating' => $flowTemplatingResourceTemplate + $mobile + array(
 		'class' => 'ResourceLoaderTemplateModule',
 		'dependencies' => 'ext.mantle.handlebars',
 		'localTemplateBasePath' => $dir . 'handlebars',
@@ -62,8 +61,6 @@ $wgResourceModules += array(
 			"form_element.handlebars",
 			"flow_load_more.handlebars",
 			"flow_no_more.handlebars",
-			"flow_tooltip.handlebars",
-			"flow_tooltip_subscribed.handlebars",
 			"flow_topic.handlebars",
 			"flow_topic_titlebar.handlebars",
 			"flow_topic_titlebar_lock.handlebars",
@@ -159,11 +156,6 @@ $wgResourceModules += array(
 			'flow-terms-of-use-lock-topic',
 			'flow-terms-of-use-unlock-topic',
 			'flow-no-more-fwd',
-			// Tooltip
-			'flow-topic-notification-subscribe-title',
-			'flow-topic-notification-subscribe-description',
-			'flow-board-notification-subscribe-title',
-			'flow-board-notification-subscribe-description',
 			// Moderation
 			'flow-moderation-title-unhide-post',
 			'flow-moderation-title-undelete-post',
@@ -326,6 +318,41 @@ $wgResourceModules += array(
 			'flow-reply-link',
 		)
 	) + $mobile,
+	'ext.flow.ui.tooltips' => $flowTemplatingResourceTemplate + $mobile + array(
+		'dependencies' => 'ext.flow.new',
+		'messages' => array(
+			'flow-topic-notification-subscribe-title',
+			'flow-board-notification-subscribe-title',
+		),
+	),
+	// FIXME: Standardisation needed. There shouldn't be desktop specific tooltips
+	'ext.flow.ui.tooltips.desktop' => $flowTemplatingResourceTemplate + array(
+		'targets' => array( 'desktop' ),
+		'dependencies' => 'ext.flow.ui.tooltips',
+		'messages' => array(
+			'flow-topic-notification-subscribe-description',
+			'flow-board-notification-subscribe-description',
+		),
+		'scripts' => array(
+			'new/components/UI/tooltips-desktop.js'
+		),
+		'templates' => array(
+			'flow_tooltip.handlebars',
+			'flow_tooltip_subscribed.handlebars',
+		),
+	),
+	// FIXME: Standardisation needed. There shouldn't be mobile specific tooltips
+	'ext.flow.ui.tooltips.mobile' => $flowTemplatingResourceTemplate + array(
+		'targets' => array( 'mobile' ),
+		'dependencies' => array(
+			'ext.flow.ui.tooltips',
+			// FIXME: Shouldn't be dependencies on MobileFrontend modules here. Move to Mantle.
+			'mobile.stable.common',
+		),
+		'scripts' => array(
+			'new/components/UI/tooltips-mobile.js'
+		),
+	),
 	'ext.flow.vendor.storer' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'new/vendor/Storer.js',
