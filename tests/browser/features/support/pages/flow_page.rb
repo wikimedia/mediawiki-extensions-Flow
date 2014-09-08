@@ -193,7 +193,8 @@ class FlowPage < WikiPage
   button(:new_reply_cancel, css: ".flow-reply-form .mw-ui-destructive")
   button(:new_reply_preview, css: ".flow-reply-form .mw-ui-progressive")
   button(:new_reply_save, css: ".flow-reply-form .mw-ui-constructive")
-  div(:new_reply_preview_warning, css: ".flow-reply-form .flow-preview-warning")
+  button(:keep_editing, text: "Keep editing")
+  div(:preview_warning, css: ".flow-preview-warning")
 
   # Editing post workflow
   text_area(:post_edit, css: ".flow-edit-post-form textarea")
