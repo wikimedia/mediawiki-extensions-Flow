@@ -57,7 +57,14 @@ class View extends ContextSource {
 			'ext.flow.board.topic.styles'
 		);
 		$out->addModuleStyles( $styles );
-		$out->addModules( array( 'ext.flow.new' ) );
+		$out->addModules(
+			array(
+				'ext.flow.new',
+				// Note only one of the tooltips code will be loaded based on the current target
+				'ext.flow.ui.tooltips.desktop',
+				'ext.flow.ui.tooltips.mobile',
+			)
+		);
 
 		// Allow other extensions to add modules
 		wfRunHooks( 'FlowAddModules', array( $out ) );
