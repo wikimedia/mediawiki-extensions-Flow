@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_974ab55d",
+        "filename": "handlebars/flow_board_navigation.handlebars",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-09T23:20:25Z",
+      "side": 1,
+      "message": "it feels picky, but could we swap the two conditions?  Always prefer positive conditionals over negative unless there is a clarity issue",
+      "revId": "2bf152c662037bc863031f700874f335ff097c9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
