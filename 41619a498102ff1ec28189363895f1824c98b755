@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_a447c64f",
+        "filename": "FlowActions.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-09T12:16:24Z",
+      "side": 1,
+      "message": "Add \u0027close-topic\u0027 \u003d\u003e \u0027lock-topic\u0027 here for B/C (for old close-topic rev_change_type values in DB)",
+      "revId": "41619a498102ff1ec28189363895f1824c98b755",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_6471dea6",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-09T12:16:24Z",
+      "side": 1,
+      "message": "Also add open/close here, for those whose JS isn\u0027t refreshed immediately? (and we could probably safely remove censor BC by now)\n\nAlthough API probably will fail as well, since it won\u0027t recognize the close submodule being requested, if user still has cached JS",
+      "revId": "41619a498102ff1ec28189363895f1824c98b755",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
