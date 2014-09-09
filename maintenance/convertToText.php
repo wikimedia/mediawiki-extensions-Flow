@@ -162,7 +162,7 @@ class ConvertToText extends Maintenance {
 		$d = $wgContLang->timeanddate( $ts, false, false ) . " ($tzMsg)";
 
 		if ( $user ) {
-			return $wgParser->getUserSig( $user ) . ' ' . $d;
+			return $wgParser->getUserSig( $user, false, false ) . ' ' . $d;
 		} else {
 			return "[Unknown user] $d";
 		}
