@@ -609,6 +609,15 @@ class FlowHooks {
 	 */
 	public static function onAbortEmailNotification( $editor, $title ) {
 		if ( self::$occupationController->isTalkpageOccupied( $title ) ) {
+			// Since we are aborting the notification we need to manually update the watchlist
+			$dbw = wfGetDB( DB_MASTER );
+			EmailNotification::updateWatchlist(
+				$dbw,
+				wfTimestampNow(),
+				EmailNotification::getWatchers( $dbw, $editor, $title ),
+				$title
+			);
+
 			return false;
 		}
 
