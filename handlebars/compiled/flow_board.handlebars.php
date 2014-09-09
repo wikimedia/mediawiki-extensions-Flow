@@ -18,7 +18,7 @@
         'sp_vars' => Array(),
 
     );
-    return '<div class="flow-component" data-flow-component="board" data-flow-id="'.htmlentities(((is_array($in) && isset($in['workflow'])) ? $in['workflow'] : null), ENT_QUOTES, 'UTF-8').'">
+    return '<div class="flow-component flow-board-container" data-flow-component="board" data-flow-id="'.htmlentities(((is_array($in) && isset($in['workflow'])) ? $in['workflow'] : null), ENT_QUOTES, 'UTF-8').'">
 	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['watchable'])) ? $in['watchable'] : null))) ? '
 	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isBoardPage'])) ? $in['isBoardPage'] : null))) ? '
 		<div class="flow-board-watch-link flow-watch-link">

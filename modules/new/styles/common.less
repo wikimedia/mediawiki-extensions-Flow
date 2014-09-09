@@ -4,6 +4,10 @@
 @import 'flow.variables';
 
 .flow-component {
+	&.flow-board-container {
+		// needed to reliably position .flow-board-watch-link absolutely
+		position: relative;
+	}
 
 	.flow-list {
 		list-style: none;
