@@ -279,22 +279,27 @@ abstract class AbstractFormatter {
 	 * @return string HTML linking to topic & board
 	 */
 	protected function getTitleLink( array $data, FormatterRow $row, IContextSource $ctx ) {
-		if ( isset( $data['links']['topic'] ) && $row->revision instanceof PostRevision ) {
-			/** @var \Flow\Anchor $topic */
-			$topic = $data['links']['topic'];
+		$ownerLink = Linker::link(
+			$row->workflow->getOwnerTitle(),
+			null,
+			array( 'class' => 'mw-title' )
+		);
 
-			// generated link has generic link text, should be actual topic title
-			$root = $row->revision->getRootPost();
-			if ( $root ) {
-				$topic->setMessage( Container::get( 'templating' )->getContent( $root, 'wikitext' ) );
-			}
-
-			return $ctx->msg( 'flow-rc-topic-of-board' )->rawParams(
-				$topic->toHtml(),
-				Linker::link( $row->workflow->getOwnerTitle() )
-			)->escaped();
-		} else {
-			return Linker::link( $row->workflow->getOwnerTitle() );
+		if ( !isset( $data['links']['topic'] ) || !$row->revision instanceof PostRevision ) {
+			return $ownerLink;
 		}
+		/** @var \Flow\Anchor $topic */
+		$topic = $data['links']['topic'];
+
+		// generated link has generic link text, should be actual topic title
+		$root = $row->revision->getRootPost();
+		if ( $root ) {
+			$topic->setMessage( Container::get( 'templating' )->getContent( $root, 'wikitext' ) );
+		}
+
+		return $ctx->msg( 'flow-rc-topic-of-board' )->rawParams(
+			$topic->toHtml(),
+			$ownerLink
+		)->escaped();
 	}
 }
