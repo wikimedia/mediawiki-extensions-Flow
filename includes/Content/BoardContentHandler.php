@@ -13,7 +13,7 @@ class BoardContentHandler extends \ContentHandler {
 			throw new MWException( __CLASS__." initialised for invalid content model" );
 		}
 
-		parent::__construct( 'flow-board', array( 'json' ) );
+		parent::__construct( 'flow-board', array( CONTENT_FORMAT_JSON ) );
 	}
 
 	/**
