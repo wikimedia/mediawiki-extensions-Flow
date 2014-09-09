@@ -84,6 +84,7 @@ $wgAutoloadClasses['Flow\WorkflowLoaderFactory'] = $dir . 'includes/WorkflowLoad
 $wgAutoloadClasses['Flow\OccupationController'] = $dir . 'includes/TalkpageManager.php';
 $wgAutoloadClasses['Flow\TalkpageManager'] = $dir . 'includes/TalkpageManager.php';
 $wgAutoloadClasses['Flow\NotificationFormatter'] = $dir . 'includes/Notifications/Formatter.php';
+$wgAutoloadClasses['Flow\NewTopicFormatter'] = $dir . 'includes/Notifications/Formatter.php';
 $wgAutoloadClasses['Flow\NotificationController'] = $dir . 'includes/Notifications/Controller.php';
 $wgAutoloadClasses['Flow\NotificationsUserLocator'] = $dir . 'includes/Notifications/UserLocator.php';
 $wgAutoloadClasses['Flow\SpamFilter\Controller'] = $dir . 'includes/SpamFilter/Controller.php';
@@ -166,9 +167,7 @@ $wgAutoloadClasses['Flow\Data\RawSql'] = $dir . 'includes/Data/RawSql.php';
 $wgAutoloadClasses['Flow\Data\UrlGenerationListener'] = $dir . 'includes/Data/UrlGenerationListener.php';
 $wgAutoloadClasses['Flow\Data\AbstractTopicInsertListener'] = $dir . 'includes/Data/WatchTopicListener.php';
 $wgAutoloadClasses['Flow\Data\ImmediateWatchTopicListener'] = $dir . 'includes/Data/WatchTopicListener.php';
-$wgAutoloadClasses['Flow\Data\DelayedWatchTopicListener'] = $dir . 'includes/Data/WatchTopicListener.php';
 $wgAutoloadClasses['Flow\Data\NotificationListener'] = $dir . 'includes/Data/NotificationListener.php';
-$wgAutoloadClasses['Flow\Jobs\WatchTitle'] = $dir . 'includes/Jobs/WatchTitle.php';
 $wgAutoloadClasses['Flow\Log\Logger'] = $dir . 'includes/Log/Logger.php';
 $wgAutoloadClasses['Flow\Log\Formatter'] = $dir . 'includes/Log/Formatter.php';
 $wgAutoloadClasses['Flow\Log\PostModerationLogger'] = $dir . 'includes/Log/PostModerationLogger.php';
@@ -342,6 +341,8 @@ $wgHooks['UnwatchArticle'][] = 'FlowHooks::onWatchArticle';
 $wgHooks['CanonicalNamespaces'][] = 'FlowHooks::onCanonicalNamespaces';
 $wgHooks['AbortMove'][] = 'FlowHooks::onAbortMove';
 $wgHooks['TitleSquidURLs'][] = 'FlowHooks::onTitleSquidURLs';
+$wgHooks['WatchlistEditorBuildRemoveLine'][] = 'FlowHooks::onWatchlistEditorBuildRemoveLine';
+$wgHooks['WatchlistEditorBeforeFormRender'][] = 'FlowHooks::onWatchlistEditorBeforeFormRender';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';

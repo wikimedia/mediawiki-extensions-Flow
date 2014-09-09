@@ -173,8 +173,6 @@ $wgFlowActions = array(
 		'handler-class' => 'Flow\Actions\NewTopicAction',
 		'watch' => array(
 			'immediate' => array( 'Flow\\Data\\ImmediateWatchTopicListener', 'getCurrentUser' ),
-			// More complex: callback will return array of users watching the board
-			'delayed' => array( 'Flow\\Data\\DelayedWatchTopicListener', 'getUsersWatchingBoard' ),
 		),
 	),
 

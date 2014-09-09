@@ -79,6 +79,19 @@ class BoardContentHandler extends \ContentHandler {
 	}
 
 	/**
+	 * Don't let people turn random pages into
+	 * Flow ones until we want them to.
+	 *
+	 * @param \Title $title
+	 * @return bool
+	 */
+	public function canBeUsedOn( \Title $title ) {
+		/** @var \Flow\TalkpageManager $manager */
+		$manager = Container::get( 'occupation_controller' );
+		return $manager->isTalkpageOccupied( $title );
+	}
+
+	/**
 	 * Returns overrides for action handlers.
 	 * Classes listed here will be used instead of the default one when
 	 * (and only when) $wgActions[$action] === true. This allows subclasses

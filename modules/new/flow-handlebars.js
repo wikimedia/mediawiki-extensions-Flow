@@ -517,7 +517,10 @@
 	 * @todo Implement support for full functionality, perhaps revisit the implementation.
 	 */
 	FlowHandlebars.prototype.progressiveEnhancement = function ( options ) {
-		var hash = options.hash;
+		var hash = options.hash,
+			// Replace nested script tag with placeholder tag for
+			// recursive progresiveEnhancement
+			inner = options.fn( this ).replace( '</scr' + 'ipt>', '</flowprogressivescript>', 'g' );
 
 		if ( !hash.type ) {
 			hash.type = 'insert';
@@ -530,7 +533,7 @@
 				( hash.target ? ' data-target="' + hash.target +'"' : '' ) +
 				( hash.id ? ' id="' + hash.id + '"' : '' ) +
 			'>' +
-				options.fn( this ) +
+				inner +
 			'</scr' + 'ipt>'
 		);
 	};
@@ -657,11 +660,11 @@
 		if ( contentFormat === 'html' ) {
 			retval = $( content ).text();
 		} else {
-			// @todo handle wikitext -> plaintext
+			// @todo handle wikitext -> plaintext?
 			retval = content;
 		}
 
-		return retval.trim().substr( 0, 200 );
+		return retval ? retval.trim().substr( 0, 200 ) : '';
 	};
 
 	/**

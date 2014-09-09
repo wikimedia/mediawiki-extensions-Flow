@@ -2,5 +2,9 @@
 host=gerrit.wikimedia.org
 port=29418
 project=mediawiki/extensions/Flow.git
+<<<<<<< HEAD   (7aeef9 Cascade protection from board to topic)
 defaultbranch=wmf/1.24wmf19
+=======
+defaultbranch=wmf/1.24wmf20
+>>>>>>> BRANCH (90f2c8 Don't let people turn random pages into Flow pages)
 defaultrebase=0

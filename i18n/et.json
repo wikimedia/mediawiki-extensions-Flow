@@ -10,5 +10,7 @@
 	"flow-preview": "Eelvaade",
 	"flow-newtopic-content-placeholder": "Postita uus sõnum leheküljele \"$1\"",
 	"flow-newtopic-first-heading": "Alusta uut teemat lehel $1",
-	"flow-workflow": "töövoog"
+	"flow-workflow": "töövoog",
+	"flow-time-ago-day": "{{PLURAL:$1|ühe|$1}} päeva eest",
+	"flow-time-ago-hour": "{{PLURAL:$1|ühe|$1}} tunni eest"
 }

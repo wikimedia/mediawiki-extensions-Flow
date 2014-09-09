@@ -11,20 +11,30 @@ $notificationTemplate = array(
 
 $notifications = array(
 	'flow-new-topic' => array(
+		'formatter-class' => 'Flow\NewTopicFormatter',
 		'user-locators' => array(
 			'EchoUserLocator::locateUsersWatchingTitle',
 			'EchoUserLocator::locateTalkPageOwner'
 		),
 		'primary-link' => array(
 			'message' => 'flow-notification-link-text-view-topic',
-			'destination' => 'flow-topic'
+			'destination' => 'flow-new-topics'
 		),
 		'title-message' => 'flow-notification-newtopic',
 		'title-params' => array( 'agent', 'flow-title', 'title', 'subject', 'topic-permalink' ),
+		'bundle' => array(
+			'web' => true,
+			'email' => true,
+		),
+		'bundle-type' => 'event',
+		'bundle-message' => 'flow-notification-newtopic-bundle',
+		'bundle-params' => array( 'event-count', 'title' ),
 		'email-subject-message' => 'flow-notification-newtopic-email-subject',
 		'email-subject-params' => array( 'agent', 'title' ),
 		'email-body-batch-message' => 'flow-notification-newtopic-email-batch-body',
 		'email-body-batch-params' => array( 'agent', 'subject', 'title' ),
+		'email-body-batch-bundle-message' => 'flow-notification-newtopic-bundle',
+		'email-body-batch-bundle-params' => array( 'event-count', 'title' ),
 	) + $notificationTemplate,
 	'flow-post-reply' => array(
 		'user-locators' => array(
@@ -86,12 +96,11 @@ $notifications = array(
 			'message' => 'notification-link-text-view-mention',
 			'destination' => 'flow-post'
 		),
-		'category' => 'mention',
 		'title-message' => 'flow-notification-mention',
-		'title-params' => array( 'agent', 'post-permalink', 'subject', 'title' ),
+		'title-params' => array( 'agent', 'post-permalink', 'subject', 'title', 'user' ),
 		'email-subject-message' => 'flow-notification-mention-email-subject',
-		'email-subject-params' => array( 'agent', 'flow-title' ),
+		'email-subject-params' => array( 'agent', 'flow-title', 'user' ),
 		'email-body-batch-message' => 'flow-notification-mention-email-batch-body',
-		'email-body-batch-params' => array( 'agent', 'subject', 'title' ),
+		'email-body-batch-params' => array( 'agent', 'subject', 'title', 'user' ),
 	) + $notificationTemplate,
 );

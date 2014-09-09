@@ -2,12 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"Claw eg",
-			"مشعل الحربي"
+			"مشعل الحربي",
+			"Ms.Rainbow"
 		]
 	},
 	"flow-post-actions": "الإجراءات",
 	"flow-topic-actions": "الإجراءات",
 	"flow-error-http": "حدث خطأ أثناء الاتصال بالخادم.",
 	"flow-error-external": "حدث خطأ.<br />رسالة الخطأ المتلقاة هي: $1",
+	"flow-notification-mention": "$1 {{GENDER:$1|المشار إليه}} {{GENDER:$5|هو أنت}} في {{GENDER:$1}} <span class=\"plainlinks\">[$2 رسالة]</span> في\"$3\" في \"$4\".",
+	"flow-notification-mention-email-batch-body": "$1 {{GENDER:$1|المشار إليه}} {{GENDER:$4|هو أنت}} في {{GENDER:$1}}\nرسالته في \"$2\" في \"$3\"",
 	"flow-topic-permalink-warning": "بدأ هذا الموضوع في [$2  $1]"
 }
