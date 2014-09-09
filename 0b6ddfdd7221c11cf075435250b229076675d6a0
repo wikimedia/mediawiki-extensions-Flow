@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_b4a12f38",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-09T23:12:18Z",
+      "side": 1,
+      "message": "since isTopicNamespace is a top level value, could we consolidate this?\n\ne.g. instead of\n\n    if ( inTopicNamespace ) {\n        return;\n    }\n\nIn actions that shouldn\u0027t happen, what if instead at the bottom of this file we had\n\n    if ( inTopicNamespace ) {\n        FlowBoardComponent.UI.events.interactiveHandlers.collapserGroupToggle \u003d function() {};\n        FlowBoardComponent.UI.events.interactiveHandlers.collapserCollapsibleToggle \u003d function() {};\n        ...\n    }\n\nSeems it would keep the related code closer to each other and easier to change in the future?",
+      "revId": "0b6ddfdd7221c11cf075435250b229076675d6a0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
