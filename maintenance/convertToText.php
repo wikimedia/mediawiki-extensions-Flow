@@ -32,7 +32,7 @@ class ConvertToText extends Maintenance {
 		$topics = array();
 		$headerContent = '';
 
-		$headerData = $this->flowApi( $this->pageTitle, 'header-view', array( 'vhcontentFormat' => 'wikitext' ), 'header' );
+		$headerData = $this->flowApi( $this->pageTitle, 'view-header', array( 'vhcontentFormat' => 'wikitext' ), 'header' );
 
 		$headerRevision = $headerData['header']['revision'];
 		if ( isset( $headerRevision['content'] ) ) {
@@ -41,7 +41,7 @@ class ConvertToText extends Maintenance {
 
 		while( $continue ) {
 			$continue = false;
-			$flowData = $this->flowApi( $this->pageTitle, 'topiclist-view', $pagerParams, 'topiclist' );
+			$flowData = $this->flowApi( $this->pageTitle, 'view-topiclist', $pagerParams, 'topiclist' );
 
 			$topicListBlock = $flowData['topiclist'];
 
@@ -49,7 +49,7 @@ class ConvertToText extends Maintenance {
 				$revisionId = reset( $topicListBlock['posts'][$rootPostId] );
 				$revision = $topicListBlock['revisions'][$revisionId];
 
-				$topicOutput = '==' . $revision['content'] . '==' . "\n";
+				$topicOutput = '==' . $revision['content']['content'] . '==' . "\n";
 				$topicOutput .= $this->processPostCollection( $topicListBlock, $revision['replies'] );
 
 				$topics[] = $topicOutput;
@@ -113,8 +113,8 @@ class ConvertToText extends Maintenance {
 			$user = User::newFromName( $revision['author']['name'], false );
 			$postId = Flow\Model\UUID::create( $postId );
 
-			$content = $revision['content'];
-			$contentFormat = $revision['contentFormat'];
+			$content = $revision['content']['content'];
+			$contentFormat = $revision['content']['format'];
 
 			if ( $contentFormat !== 'wikitext' ) {
 				$content = Utils::convert( $contentFormat, 'wikitext', $content, $this->pageTitle );
