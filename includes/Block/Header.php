@@ -114,7 +114,7 @@ class HeaderBlock extends AbstractBlock {
 			// handing user back to specific dialog indicating race condition
 			$this->addError(
 				'prev_revision',
-				wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $this->header->getRevisionId()->getAlphadecimal() ),
+				wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $this->header->getRevisionId()->getAlphadecimal(), $this->user->getName() ),
 				array( 'revision_id' => $this->header->getRevisionId()->getAlphadecimal() ) // save current revision ID
 			);
 		}
