@@ -421,7 +421,7 @@ $wgFlowExternalStore = false;
 // running, as it'll be necessary to convert HTML to wikitext for the basic editor.
 // (n.b. to use VisualEditor, you'll definitely need Parsoid, so if you do support VE,
 // might as well set this to HTML right away)
-$wgFlowContentFormat = 'wikitext'; // possible values: wikitext|html
+$wgFlowContentFormat = 'html'; // possible values: html|wikitext XXX bug 70148 with wikitext
 
 // Flow Parsoid config
 // If null, VE's defaults (if available) will be used
