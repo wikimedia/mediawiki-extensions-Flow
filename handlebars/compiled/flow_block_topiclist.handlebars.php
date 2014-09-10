@@ -177,7 +177,7 @@
 	<h2 class="flow-topic-title" data-title="'.LCRun3::ch($cx, 'plaintextSnippet', Array(Array(((is_array($in['content']) && isset($in['content']['format'])) ? $in['content']['format'] : null),((is_array($in['content']) && isset($in['content']['content'])) ? $in['content']['content'] : null)),Array()), 'encq').'">'.LCRun3::ch($cx, 'escapeContent', Array(Array(((is_array($in['content']) && isset($in['content']['format'])) ? $in['content']['format'] : null),((is_array($in['content']) && isset($in['content']['content'])) ? $in['content']['content'] : null)),Array()), 'encq').'</h2>
 '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? '
 	<div class="flow-moderated-topic-title flow-ui-text-truncated"><span
-		class="wikiglyph '.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'===','lock'),Array()), $in, function($cx, $in) {return 'wikiglyph-stop';}).''.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'===','hide'),Array()), $in, function($cx, $in) {return 'wikiglyph-flag';}).''.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'===','delete'),Array()), $in, function($cx, $in) {return 'wikiglyph-trash';}).'"></span>
+		class="wikiglyph '.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'===','lock'),Array()), $in, function($cx, $in) {return 'wikiglyph-lock';}).''.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'===','hide'),Array()), $in, function($cx, $in) {return 'wikiglyph-flag';}).''.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'===','delete'),Array()), $in, function($cx, $in) {return 'wikiglyph-trash';}).'"></span>
 		'.LCRun3::ch($cx, 'l10n', Array(Array('post_moderation_state',((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),((is_array($in) && isset($in['replyToId'])) ? $in['replyToId'] : null),((is_array($in['moderator']) && isset($in['moderator']['name'])) ? $in['moderator']['name'] : null)),Array()), 'encq').'</div>
 ' : '').'
 <div class="flow-topic-meta">
@@ -386,7 +386,7 @@
 						   data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
 						   href="'.htmlentities(((is_array($in['actions']['lock']) && isset($in['actions']['lock']['url'])) ? $in['actions']['lock']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['lock']) && isset($in['actions']['lock']['title'])) ? $in['actions']['lock']['title'] : null), ENT_QUOTES, 'UTF-8').'">
-							<span class="wikiglyph wikiglyph-stop"></span>
+							<span class="wikiglyph wikiglyph-lock"></span>
 							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-lock-topic'),Array()), 'encq').'
 						</a>
 					</li>
@@ -400,7 +400,7 @@
 						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
 						   href="'.htmlentities(((is_array($in['actions']['unlock']) && isset($in['actions']['unlock']['url'])) ? $in['actions']['unlock']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['unlock']) && isset($in['actions']['unlock']['title'])) ? $in['actions']['unlock']['title'] : null), ENT_QUOTES, 'UTF-8').'">
-							<span class="wikiglyph wikiglyph-stop"></span>
+							<span class="wikiglyph wikiglyph-unlock"></span>
 							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-unlock-topic'),Array()), 'encq').'
 						</a>
 					</li>
