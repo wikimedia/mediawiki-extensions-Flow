@@ -78,7 +78,7 @@ class ObjectLocator {
 			$index = $this->getIndexFor( $keys, $options );
 			$res = $index->findMulti( $queries, $options );
 		} catch ( NoIndexException $e ) {
-			wfDebugLog( 'Flow', __METHOD__ . ': ' . $e->getMessage() );
+			wfDebugLog( 'FlowDebug', __METHOD__ . ': ' . $e->getMessage() );
 			$res = $this->storage->findMulti( $queries, $this->convertToDbOptions( $options ) );
 		}
 
@@ -145,7 +145,7 @@ class ObjectLocator {
 			$res = $index->foundMulti( $queries, $options );
 			return $res;
 		} catch ( NoIndexException $e ) {
-			wfDebugLog( 'Flow', __METHOD__ . ': ' . $e->getMessage() );
+			wfDebugLog( 'FlowDebug', __METHOD__ . ': ' . $e->getMessage() );
 		}
 
 		return false;
