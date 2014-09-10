@@ -244,8 +244,6 @@
 	"flow-edited-ago-second": "$1{{PLURAL:$1|秒}}前に編集",
 	"flow-edited-ago-week": "$1{{PLURAL:$1|週間}}前に編集",
 	"flow-terms-of-use-summarize": "「{{int:flow-summarize-topic-submit}}」をクリックすると、このウィキの利用規約に同意したと見なされます。",
-	"flow-terms-of-use-close-topic": "「{{int:flow-close-topic-submit}}」をクリックすると、このウィキの利用規約に同意したと見なされます。",
-	"flow-terms-of-use-reopen-topic": "「{{int:flow-reopen-topic-submit}}」をクリックすると、このウィキの利用規約に同意したと見なされます。",
 	"flow-whatlinkshere-post": "[$1 投稿]から",
 	"flow-whatlinkshere-header": "[$1 ヘッダー]から",
 	"flow": "Flow",
