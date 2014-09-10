@@ -17,6 +17,9 @@ class OccupationListener implements LifecycleHandler {
 	/** @var string **/
 	protected $defaultType;
 
+	/** @var bool **/
+	protected $enabled = true;
+
 	/**
 	 * @param OccupationController $occupationController The OccupationController to occupy the page with.
 	 * @param string               $defaultType          The workflow type to look for
@@ -24,6 +27,14 @@ class OccupationListener implements LifecycleHandler {
 	public function __construct( OccupationController $occupationController, $defaultType ) {
 		$this->occupationController = $occupationController;
 		$this->defaultType = $defaultType;
+	}
+
+	/**
+	 * Disable the occupation listener.  Required if you want to load contributions
+	 * or other flow history from pages that were enabled but are not anymore.
+	 */
+	public function disable() {
+		$this->enabled = false;
 	}
 
 	public function onAfterLoad( $object, array $old ) {
@@ -37,8 +48,12 @@ class OccupationListener implements LifecycleHandler {
 	}
 
 	protected function ensureOccupation( Workflow $workflow ) {
-		$article = new Article( $workflow->getArticleTitle() );
-		$this->occupationController->ensureFlowRevision( $article, $workflow );
+		if ( $this->enabled ) {
+			$this->occupationController->ensureFlowRevision(
+				new Article( $workflow->getArticleTitle() ),
+				$workflow
+			);
+		}
 	}
 
 	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {

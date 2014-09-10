@@ -559,6 +559,9 @@ class FlowHooks {
 
 		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
 		try {
+			// Contributions may be on pages outside the set of currently
+			// enabled pages so we must disable to occupation listener
+			Container::get( 'listener.occupation' )->disable();
 			$results = Container::get( 'query.contributions' )->getResults( $pager, $offset, $limit, $descending );
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Failed contributions query' );
