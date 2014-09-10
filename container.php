@@ -149,8 +149,8 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 		$pk,
 		// This is actually a unique index, but it wants the shallow functionality.
 		new TopKIndex(
-			$cache, $storage, 'flow_workflow:title',
-			array( 'workflow_wiki', 'workflow_namespace', 'workflow_title_text'),
+			$cache, $storage, 'flow_workflow:title:v2:',
+			array( 'workflow_wiki', 'workflow_namespace', 'workflow_title_text', 'workflow_type' ),
 			array( 'shallow' => $pk, 'limit' => 1, 'sort' => 'workflow_id' )
 		),
 	);
