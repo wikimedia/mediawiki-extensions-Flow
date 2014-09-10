@@ -229,7 +229,16 @@ class Templating {
 	 * @return string HTML if requested, otherwise plain text
 	 */
 	public function getContent( AbstractRevision $revision, $format = 'html' ) {
-		if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
+		$allowed = $this->permissions->isAllowed( $revision, 'view' );
+		// Post's require view access to the topic title as well
+		if ( $allowed && $revision instanceof PostRevision && !$revision->isTopicTitle() ) {
+			$allowed = $this->permissions->isAllowed(
+				$revision->getRootPost(),
+				'view'
+			);
+		}
+
+		if ( $allowed ) {
 			// html format
 			if ( $format === 'html' ) {
 				// Parsoid doesn't render redlinks & doesn't strip bad images
