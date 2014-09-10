@@ -453,10 +453,6 @@ class RevisionFormatter {
 					->editPostAction( $title, $workflowId, $postId, $revId );
 				break;
 
-			case 'lock':
-				// @todo
-				break;
-
 			case 'hide-post':
 				if ( !$postId ) {
 					throw new FlowException( "$type called without \$postId" );
@@ -486,20 +482,20 @@ class RevisionFormatter {
 				$links['suppress'] = $this->urlGenerator->suppressPostAction( $title, $workflowId, $postId );
 				break;
 
-			case 'close-topic':
-				// close topic link is only available to topic workflow
+			case 'lock-topic':
+				// lock topic link is only available to topic workflow
 				if( !in_array( $workflow->getType(), array( 'topic', 'topicsummary' ) ) ) {
 					continue;
 				}
-				$links['close'] = $this->urlGenerator->closeTopicAction( $title, $workflowId );
+				$links['lock'] = $this->urlGenerator->lockTopicAction( $title, $workflowId );
 				break;
 
 			case 'restore-topic':
 				$moderateAction = $flowAction = null;
 				switch ( $revision->getModerationState() ) {
-				case AbstractRevision::MODERATED_CLOSED:
-					$moderateAction = 'reopen';
-					$flowAction = 'close-open-topic';
+				case AbstractRevision::MODERATED_LOCKED:
+					$moderateAction = 'unlock';
+					$flowAction = 'lock-topic';
 					break;
 				case AbstractRevision::MODERATED_HIDDEN:
 				case AbstractRevision::MODERATED_DELETED:

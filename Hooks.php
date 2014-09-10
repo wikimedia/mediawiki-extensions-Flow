@@ -649,8 +649,8 @@ class FlowHooks {
 			'flow-terms-of-use-reply' => null,
 			'flow-terms-of-use-edit' => null,
 			'flow-terms-of-use-summarize' => null,
-			'flow-terms-of-use-close-topic' => null,
-			'flow-terms-of-use-reopen-topic' => null
+			'flow-terms-of-use-lock-topic' => null,
+			'flow-terms-of-use-unlock-topic' => null
 		);
 
 		if ( !array_key_exists( $key, $terms ) ) {
