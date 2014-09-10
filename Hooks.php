@@ -199,6 +199,9 @@ class FlowHooks {
 		try {
 			Container::get( 'query.recentchanges' )->loadMetadataBatch( $rows );
 		} catch ( Exception $e ) {
+			if ( $e instanceof FlowException ) {
+				$e->forceLogging();
+			}
 			\MWExceptionHandler::logException( $e );
 		}
 		restore_error_handler();
@@ -274,6 +277,9 @@ class FlowHooks {
 			$line = Container::get( 'formatter.recentchanges' )->format( $row, $changesList, $topicOnly );
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting rc ' . $rc->getAttribute( 'rc_id' ) . ' ' . $e );
+			if ( $e instanceof FlowException ) {
+				$e->forceLogging();
+			}
 			\MWExceptionHandler::logException( $e );
 			restore_error_handler();
 			return false;
@@ -313,6 +319,9 @@ class FlowHooks {
 			}
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting cu ' . $cucId . ' ' . $e );
+			if ( $e instanceof FlowException ) {
+				$e->forceLogging();
+			}
 			\MWExceptionHandler::logException( $e );
 		}
 		restore_error_handler();
@@ -508,6 +517,9 @@ class FlowHooks {
 		try {
 			$line = Container::get( 'formatter.contributions' )->format( $row, $pager );
 		} catch ( Exception $e ) {
+			if ( $e instanceof FlowException ) {
+				$e->forceLogging();
+			}
 			MWExceptionHandler::logException( $e );
 			$line = false;
 		}
@@ -562,6 +574,9 @@ class FlowHooks {
 			$results = Container::get( 'query.contributions' )->getResults( $pager, $offset, $limit, $descending );
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Failed contributions query' );
+			if ( $e instanceof FlowException ) {
+				$e->forceLogging();
+			}
 			\MWExceptionHandler::logException( $e );
 			$results = false;
 		}
@@ -711,6 +726,9 @@ class FlowHooks {
 			$result = Container::get( 'formatter.irclineurl' )->format( $rc );
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Failed formatting rc ' . $rc->getAttribute( 'rc_id' ) );
+			if ( $e instanceof FlowException ) {
+				$e->forceLogging();
+			}
 			\MWExceptionHandler::logException( $e );
 		}
 		restore_error_handler();
@@ -736,6 +754,9 @@ class FlowHooks {
 				$title->getFullText(),
 				$target->getFullText()
 			) );
+			if ( $e instanceof FlowException ) {
+				$e->forceLogging();
+			}
 			\MWExceptionHandler::logException( $e );
 		}
 		restore_error_handler();

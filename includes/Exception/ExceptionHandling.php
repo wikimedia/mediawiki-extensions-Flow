@@ -24,6 +24,12 @@ class FlowException extends MWException {
 	protected $output;
 
 	/**
+	 * Always return true from self::isLoggable when set to true
+	 * @var bool
+	 */
+	protected $forceLog = false;
+
+	/**
 	 * @param string - The message from exception, used for debugging error
 	 * @param string - The error code used to display error message
 	 */
@@ -33,6 +39,10 @@ class FlowException extends MWException {
 		$this->code = $code;
 		// Set output object to the global $wgOut object by default
 		$this->output = $wgOut;
+	}
+
+	public function forceLogging() {
+		$this->forceLog = true;
 	}
 
 	/**
@@ -156,10 +166,10 @@ class InvalidInputException extends FlowException {
 	}
 
 	/**
-	 * Do not log exception resulting from input error
+	 * Do not log exception resulting from input error unless forced;
 	 */
 	function isLoggable() {
-		return false;
+		return $this->forceLog;
 	}
 }
 
@@ -197,10 +207,10 @@ class InvalidActionException extends FlowException {
 	}
 
 	/**
-	 * Do not log exception resulting from input error
+	 * Do not log exception resulting from input error unless forced.
 	 */
 	function isLoggable() {
-		return false;
+		return $this->forceLog;
 	}
 }
 
