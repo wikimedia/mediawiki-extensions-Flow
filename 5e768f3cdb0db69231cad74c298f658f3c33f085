@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_d36e03c4",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-09-11T19:01:06Z",
+      "side": 1,
+      "message": "Probably make user_id the array key, a user may be mentioned multiple times in the same post",
+      "revId": "5e768f3cdb0db69231cad74c298f658f3c33f085",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
