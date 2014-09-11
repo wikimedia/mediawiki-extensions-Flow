@@ -93,6 +93,7 @@ $wgAutoloadClasses['Flow\SpamFilter\SpamRegex'] = $dir . 'includes/SpamFilter/Sp
 $wgAutoloadClasses['Flow\SpamFilter\SpamBlacklist'] = $dir . 'includes/SpamFilter/SpamBlacklist.php';
 $wgAutoloadClasses['Flow\SpamFilter\AbuseFilter'] = $dir . 'includes/SpamFilter/AbuseFilter.php';
 $wgAutoloadClasses['Flow\SpamFilter\ConfirmEdit'] = $dir . 'includes/SpamFilter/ConfirmEdit.php';
+$wgAutoloadClasses['Flow\SpamFilter\ContentLengthFilter'] = $dir . 'includes/SpamFilter/ContentLengthFilter.php';
 $wgAutoloadClasses['Flow\FlowActions'] = $dir . 'includes/FlowActions.php';
 $wgAutoloadClasses['Flow\RevisionActionPermissions'] = $dir . 'includes/RevisionActionPermissions.php';
 $wgAutoloadClasses['Flow\ReferenceClarifier'] = $dir . 'includes/ReferenceClarifier.php';
