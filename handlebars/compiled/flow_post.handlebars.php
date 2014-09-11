@@ -210,16 +210,6 @@
 				</a>
 			</li>
 		' : '').'
-		'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['lock'])) ? $in['actions']['lock'] : null))) ? '
-			<li>
-				<a class="mw-ui-button mw-ui-progressive mw-ui-quiet"
-				   href="'.htmlentities(((is_array($in['actions']['lock']) && isset($in['actions']['lock']['url'])) ? $in['actions']['lock']['url'] : null), ENT_QUOTES, 'UTF-8').'"
-				   title="'.htmlentities(((is_array($in['actions']['lock']) && isset($in['actions']['lock']['title'])) ? $in['actions']['lock']['title'] : null), ENT_QUOTES, 'UTF-8').'">
-					<span class="wikiglyph wikiglyph-eye-lock"></span>
-					'.LCRun3::ch($cx, 'l10n', Array(Array('TODO-Lock'),Array()), 'encq').'
-				</a>
-			</li>
-		' : '').'
 		'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['hide'])) ? $in['actions']['hide'] : null))) ? '
 			<li class="flow-menu-moderation-action">
 				<a class="mw-ui-button mw-ui-quiet"
@@ -412,16 +402,6 @@
 				   title="'.htmlentities(((is_array($in['links']['post']) && isset($in['links']['post']['title'])) ? $in['links']['post']['title'] : null), ENT_QUOTES, 'UTF-8').'">
 					<span class="wikiglyph wikiglyph-link"></span>
 					'.LCRun3::ch($cx, 'l10n', Array(Array('flow-post-action-view'),Array()), 'encq').'
-				</a>
-			</li>
-		' : '').'
-		'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['lock'])) ? $in['actions']['lock'] : null))) ? '
-			<li>
-				<a class="mw-ui-button mw-ui-progressive mw-ui-quiet"
-				   href="'.htmlentities(((is_array($in['actions']['lock']) && isset($in['actions']['lock']['url'])) ? $in['actions']['lock']['url'] : null), ENT_QUOTES, 'UTF-8').'"
-				   title="'.htmlentities(((is_array($in['actions']['lock']) && isset($in['actions']['lock']['title'])) ? $in['actions']['lock']['title'] : null), ENT_QUOTES, 'UTF-8').'">
-					<span class="wikiglyph wikiglyph-eye-lock"></span>
-					'.LCRun3::ch($cx, 'l10n', Array(Array('TODO-Lock'),Array()), 'encq').'
 				</a>
 			</li>
 		' : '').'
