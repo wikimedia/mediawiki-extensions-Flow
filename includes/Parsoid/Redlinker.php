@@ -132,6 +132,9 @@ class Redlinker implements ContentFixer {
 	 * Linker class build the link HTML (which will take redlinks into account.)
 	 * It will then substitute original link HTML for the one Linker generated.
 	 *
+	 * This replaces both existing and non-existant anchors because the relative links
+	 * output by parsoid are not usable when output within a subpage.
+	 *
 	 * @param string $content
 	 * @param Title $title Title to resolve relative links against
 	 * @return string
@@ -157,8 +160,8 @@ class Redlinker implements ContentFixer {
 		$self = $this;
 		self::forEachLink( $dom, function( DOMNode $linkNode, array $parsoid ) use ( $self, $dom, $title ) {
 			$title = Utils::createRelativeTitle( $parsoid['sa']['href'], $title );
-			// Don't process invalid or existing links
-			if ( $title === null || $title->exists() ) {
+			// Don't process invalid links
+			if ( $title === null ) {
 				return;
 			}
 
