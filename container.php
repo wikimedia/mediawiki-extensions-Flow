@@ -654,12 +654,17 @@ $c['controller.confirmedit'] = $c->share( function( $c ) {
 	return new Flow\SpamFilter\ConfirmEdit;
 } );
 
+$c['controller.contentlength'] = $c->share( function( $c ) {
+	return new Flow\SpamFilter\ContentLengthFilter;
+} );
+
 $c['controller.spamfilter'] = $c->share( function( $c ) {
 	return new Flow\SpamFilter\Controller(
 		$c['controller.spamregex'],
 		$c['controller.spamblacklist'],
 		$c['controller.abusefilter'],
-		$c['controller.confirmedit']
+		$c['controller.confirmedit'],
+		$c['controller.contentlength']
 	);
 } );
 
