@@ -43,6 +43,20 @@
 				flowHighlightPost( $container, window.location.hash );
 			}
 		}
+
+		/*
+		 * We want the default behavior of watch/unwatch for page. However, we
+		 * do want to show our own tooltip after this has happened.
+		 * First, we'll attach an event to the watchlist star to override the
+		 * mw.notify that will be fired. Next, we bind to an event that is fired
+		 * after successfully watching/unwatching a page, to show our own
+		 * notification instead.
+		 */
+		$( '#ca-watch a, #ca-unwatch a' )
+			.off( '.FlowBoardComponent' )
+			.on( 'click.FlowBoardComponent', FlowBoardComponent.UI.events.interactiveHandlers.hideNotify )
+		.closest( 'li' )
+			.on( 'watchpage.mw', FlowBoardComponent.UI.events.interactiveHandlers.showWatchTooltip );
 	}
 
 	// Register this FlowComponent
@@ -932,9 +946,6 @@
 			if ( $tooltipTarget.is( '.flow-topic-watchlist' ) ) {
 				watchType = 'topic';
 				watchLinkTemplate = 'flow_topic_titlebar_watch';
-			} else if ( $tooltipTarget.is( '.flow-board-watch-link' ) ) {
-				watchType = 'board';
-				watchLinkTemplate = 'flow_board_watch_link';
 			}
 
 			if ( data.watch[0].watched !== undefined ) {
@@ -956,7 +967,6 @@
 						{
 							isWatched: isWatched,
 							links: links,
-							isBoardPage: watchType === 'board' ? true : false,
 							watchable: true
 						}
 					)
@@ -1214,6 +1224,36 @@
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI event interactive handlers
 		////////////////////
+
+		/**
+		 * mediawiki.page.watch.ajax fires an event with the new watchlist
+		 * status once it has been updated. If it's just been watched, we want
+		 * to display our tooltip.
+		 *
+		 * @param {Event} event
+		 * @param string type
+		 */
+		FlowBoardComponent.UI.events.interactiveHandlers.showWatchTooltip = function( event, type ) {
+			if ( type === 'watch' ) {
+				FlowBoardComponent.UI.showSubscribedTooltip( $( event.target ), 'board', 'bottom' );
+			}
+		};
+
+		/**
+		 * mediawiki.page.watch.ajax shows a notification when it has updated
+		 * the watch status of a page. We want to show our own tooltip though,
+		 * so let's just override mw.notify for this 1 time (to ignore the
+		 * default tooltip message), then restore it.
+		 *
+		 * @param {Event} event
+		 */
+		FlowBoardComponent.UI.events.interactiveHandlers.hideNotify = function( event ) {
+			var old = mw.notify;
+
+			mw.notify = function() {
+				mw.notify = old;
+			};
+		};
 
 		/**
 		 * The activateForm handler will expand, scroll to, and then focus onto a form (target = field).
