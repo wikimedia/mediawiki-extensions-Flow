@@ -243,10 +243,6 @@ class NotificationController {
 		$events = array();
 
 		$mentionedUsers = $newRevision ? $this->getMentionedUsers( $newRevision, $title ) : array();
-		// Notify only a portion of the mentioned users.
-		// For starters, this could be a spam vector, but we also don't want to
-		// store too much data into event_extra params, so cap that data
-		$mentionedUsers = array_slice( $mentionedUsers, 0, 100, true );
 
 		if ( !$topicRevision instanceof PostRevision ) {
 			throw new FlowException( 'Expected PostRevision but received: ' . get_class( $topicRevision ) );
@@ -354,8 +350,15 @@ class NotificationController {
 		$users = array();
 		foreach ( $links[NS_USER] as $dbk => $page_id ) {
 			$user = User::newFromName( $dbk );
-			if ( $user ) {
-				$users[] = $user;
+			if ( !$user || $user->isAnon() ) {
+				continue;
+			}
+
+			$users[$user->getId()] = $user;
+			// If more than 20 users are being notified this is probably a spam/attack vector.
+			// Don't send any mention notifications
+			if ( count( $users ) > 20 ) {
+				return array();
 			}
 		}
 
