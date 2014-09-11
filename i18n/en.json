@@ -225,7 +225,7 @@
     "flow-notification-mention": "$1 {{GENDER:$1|mentioned}} {{GENDER:$5|you}} in {{GENDER:$1|his|her|their}} <span class=\"plainlinks\">[$2 post]</span> in \"$3\" on \"$4\".",
     "flow-notification-link-text-view-post": "View post",
     "flow-notification-link-text-view-topic": "View topic",
-    "flow-notification-reply-email-subject": "$1 {{GENDER:$1|responded}} to a topic",
+    "flow-notification-reply-email-subject": "$2 on $3",
     "flow-notification-reply-email-batch-body": "$1 {{GENDER:$1|responded}} to \"$2\" on \"$3\"",
     "flow-notification-reply-email-batch-bundle-body": "$1 and $4 {{PLURAL:$5|other|others}} {{GENDER:$1|responded}} to \"$2\" on \"$3\"",
     "flow-notification-mention-email-subject": "$1 {{GENDER:$1|mentioned}} {{GENDER:$3|you}} on \"$2\"",
