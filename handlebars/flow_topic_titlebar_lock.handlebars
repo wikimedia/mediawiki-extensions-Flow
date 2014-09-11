@@ -9,7 +9,7 @@
 				{{~/if~}}">
 			{{> flow_errors }}
 			<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
-			{{#if summary.revId}}
+			{{#if summary}}
 				<input type="hidden" name="flow_prev_revision" value="{{summary.revId}}" />
 			{{/if}}
 			<textarea name="flow_summary"

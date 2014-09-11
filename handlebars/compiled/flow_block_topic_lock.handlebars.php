@@ -37,7 +37,7 @@
 </div>
 
 			<input type="hidden" name="wpEditToken" value="'.htmlentities(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['editToken'])) ? $cx['scopes'][0]['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
-			'.((LCRun3::ifvar($cx, ((is_array($in['summary']) && isset($in['summary']['revId'])) ? $in['summary']['revId'] : null))) ? '
+			'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['summary'])) ? $in['summary'] : null))) ? '
 				<input type="hidden" name="flow_prev_revision" value="'.htmlentities(((is_array($in['summary']) && isset($in['summary']['revId'])) ? $in['summary']['revId'] : null), ENT_QUOTES, 'UTF-8').'" />
 			' : '').'
 			<textarea name="flow_summary"
