@@ -42,7 +42,6 @@ $wgResourceModules += array(
 			"flow_board.handlebars",
 			"flow_board_collapsers_subcomponent.handlebars",
 			"flow_board_navigation.handlebars",
-			'flow_board_watch_link.handlebars',
 			"flow_edit_post.handlebars",
 			"flow_edit_post_ajax.handlebars",
 			"flow_edit_topic_title.handlebars",

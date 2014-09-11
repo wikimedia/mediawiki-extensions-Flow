@@ -43,10 +43,39 @@
 				flowHighlightPost( $container, window.location.hash );
 			}
 		}
+
+		overrideWatchlistNotification();
 	}
 
 	// Register this FlowComponent
 	mw.flow.registerComponent( 'board', FlowBoardComponent );
+
+	/**
+	 * We want the default behavior of watch/unwatch for page. However, we
+	 * do want to show our own tooltip after this has happened.
+	 * We'll override mw.notify, which is fired after successfully
+	 * (un)watchlisting, to stop the notification from being displayed.
+	 * If the action we just intercepted was after succesful watching, we'll
+	 * want to show our own tooltip instead.
+	 */
+	function overrideWatchlistNotification() {
+		var _notify = mw.notify;
+		mw.notify = function( message, options ) {
+			if ( options.tag === 'watch-self' ) {
+				var $star = $( '#ca-watch' );
+				// we only want to display our own message when we just watched
+				// the board, not unwatch (in which case the element would be
+				// #ca-unwatch)
+				if ( $star.length ) {
+					FlowBoardComponent.UI.showSubscribedTooltip( $star, 'board', 'bottom' );
+				}
+
+				// let all other notification types fall back to default mw.notify
+			} else {
+				_notify.apply( this, arguments );
+			}
+		};
+	}
 
 	/**
 	 * Helper receives
@@ -917,9 +946,6 @@
 			if ( $tooltipTarget.is( '.flow-topic-watchlist' ) ) {
 				watchType = 'topic';
 				watchLinkTemplate = 'flow_topic_titlebar_watch';
-			} else if ( $tooltipTarget.is( '.flow-board-watch-link' ) ) {
-				watchType = 'board';
-				watchLinkTemplate = 'flow_board_watch_link';
 			}
 
 			if ( data.watch[0].watched !== undefined ) {
@@ -941,7 +967,6 @@
 						{
 							isWatched: isWatched,
 							links: links,
-							isBoardPage: watchType === 'board' ? true : false,
 							watchable: true
 						}
 					)
