@@ -47,7 +47,6 @@ all: compiled/flow_block_header.handlebars.php \
 		compiled/flow_block_topicsummary_single_view.handlebars.php \
 		compiled/flow_block_topicsummary_diff_view.handlebars.php \
 		compiled/flow_board.handlebars.php \
-		compiled/flow_board_watch_link.handlebars.php \
 		compiled/flow_form_buttons.handlebars.php \
 		compiled/flow_post.handlebars.php \
 		compiled/flow_tooltip.handlebars.php \
@@ -167,13 +166,8 @@ compiled/flow_block_board-history.handlebars.php: \
 
 compiled/flow_board.handlebars.php: \
 		flow_board.handlebars \
-		flow_block_loop.handlebars \
-		flow_board_watch_link.handlebars
+		flow_block_loop.handlebars
 	$(COMPILE) flow_board
-
-compiled/flow_board_watch_link.handlebars.php: \
-		flow_board_watch_link.handlebars
-	$(COMPILE) flow_board_watch_link
 
 compiled/flow_form_buttons.handlebars.php: \
 		flow_form_buttons.handlebars
