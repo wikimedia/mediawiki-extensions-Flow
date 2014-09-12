@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_ff041982",
+        "filename": "modules/new/components/UI/tooltips-desktop.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-09-12T20:49:43Z",
+      "side": 1,
+      "message": "I really dislike this, and it sets a terrible precedent for the rest of our code. We\u0027re going to have to find an alternative.",
+      "revId": "356b74926a9928eb76ba9a00f6f1370ef1866e5f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_dffb9d75",
+        "filename": "modules/new/components/UI/tooltips-mobile.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-09-12T20:49:43Z",
+      "side": 1,
+      "message": "Same problem as desktop file.",
+      "revId": "356b74926a9928eb76ba9a00f6f1370ef1866e5f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
