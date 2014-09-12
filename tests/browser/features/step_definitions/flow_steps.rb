@@ -10,7 +10,7 @@ end
 
 Then(/^I am on my user page$/) do
   # Get the title of the page without '_' characters
-  text = 'User:' + ENV["MEDIAWIKI_USER"].sub(/_/, ' ')
+  text = 'User:' + ENV["MEDIAWIKI_USER"].gsub(/_/, ' ')
   on(UserPage).page_title_element.text.should == text
 end
 
