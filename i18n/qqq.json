@@ -80,6 +80,7 @@
 	"flow-post-interaction-separator": "{{optional}}",
 	"flow-post-edited": "Text displayed to notify the user a post has been modified. Parameters:\n* $1 - username that created the most recent revision of the post\n* $2 - humanized timestamp, relative to now, of when the edit occurred; rendered by MWTimestamp::getHumanTimestamp",
 	"flow-post-action-view": "Used as text for the link which is used to view.\n{{Identical|Permalink}}",
+	"flow-post-action-view-source": "Used as text for the link which is used to view wikitext source.\n{{Identical|View Source}}",
 	"flow-post-action-post-history": "Used as text for the link which is used to view post-history of the topic.\n{{Identical|History}}",
 	"flow-post-action-suppress-post": "Used as a link in a dropdown menu to suppress a post.\n\nFor meaning of \"suppress\" see [[Thread:Support/About MediaWiki:Flow-post-action-suppress-post/qqq]] and [[Thread:Support/About MediaWiki:Flow-suppress-post-content/sv]].\n{{Related|Flow-action}}\n{{Identical|Suppress}}",
 	"flow-post-action-delete-post": "Used as a link in a dropdown menu to delete a post.\n{{Related|Flow-action}}\n{{Identical|Delete}}",
