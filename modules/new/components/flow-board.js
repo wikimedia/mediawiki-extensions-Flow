@@ -203,6 +203,37 @@
 		////////////////////
 
 		/**
+		 * Extracts the necessary api parameters to round trip a posts html
+		 * back into wikitext
+		 * @param {Event} event
+		 * @return {Object
+		 */
+		FlowBoardComponent.UI.events.apiPreHandlers.viewSource = function () {
+			var $this = $( this ),
+				$parent = $this.closest( $this.data( 'parent-selector' ) ),
+				$target = $parent.find( $this.data( 'target-selector' ) ).clone();
+
+			if ( !$target.length ) {
+				// @todo abort?
+			}
+
+			// we need to make an off-page clone of $target so we can undo redlinking.
+			// The anchors that were changed via redlinking don't roundtrip properly
+			$target.find( 'a[data-flow-orig-href]' ).each( function( idx, el ) {
+				var $el = $( el );
+				$el.attr( 'href', $el.data( 'flow-orig-href' ) );
+			} );
+
+			return {
+				action: 'flow-parsoid-utils',
+				from: 'html',
+				to: 'wikitext',
+				content: $target.html(),
+				title: mw.config.get( 'wgTitle' )
+			};
+		};
+
+		/**
 		 * Before activating header, sends an overrideObject to the API to modify the request params.
 		 * @param {Event} event
 		 * @return {Object}
@@ -399,6 +430,30 @@
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI api callback handlers
 		////////////////////
+
+		/**
+		 * On completion of html->wikitext roundtrip pull up a dialog with
+		 * the wikitext source
+		 * @param {Object} info (status:done|fail, $target: jQuery)
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.viewSource = function ( info, data, jqxhr ) {
+			var board = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$container = $( '<pre>' ).text( data['flow-parsoid-utils'].content );
+
+			mw.loader.using( 'jquery.ui.dialog' , function() {
+				$container.dialog( {
+					'modal': true
+				} )
+				// the $.fn.dialog function attaches the dialog to .body, but we
+				// need to move it inside the main container so user interactions
+				// go to the correct handlers.
+				.parent()
+					.detach()
+					.appendTo( board.$container );
+			} );
+		};
 
 		/**
 		 * On complete board reprocessing through view-topiclist (eg. change topic sort order), re-render any given blocks.

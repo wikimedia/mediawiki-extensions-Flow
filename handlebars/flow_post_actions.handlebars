@@ -1,6 +1,15 @@
 <div class="flow-menu">
 	<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
 	<ul class="mw-ui-button-container flow-list">
+		<li class="flow-js">
+			<a class="mw-ui-button mw-ui-quiet"
+			   href="#"
+			   data-flow-api-handler="viewSource"
+			   data-parent-selector=".flow-post-main"
+			   data-target-selector=".flow-post-content">
+				{{l10n "flow-post-action-view-source"}}
+			</a>
+		</li>
 		{{#if links.post}}
 			<li>
 				<a class="mw-ui-button mw-ui-quiet"
