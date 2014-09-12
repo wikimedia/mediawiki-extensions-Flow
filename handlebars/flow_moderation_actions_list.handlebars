@@ -63,6 +63,16 @@
 
 {{~#ifCond moderationType "===" "post"~}}
 	{{!-- Post only --}}
+	<li class="flow-js">
+		<a class="mw-ui-button mw-ui-quiet"
+		   href="#"
+		   data-flow-api-handler="viewSource"
+		   data-parent-selector=".flow-post-main"
+		   data-target-selector=".flow-post-content">
+			{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-magnifying-glass"></span> {{/if~}}
+			{{l10n "flow-post-action-view-source"}}
+		</a>
+	</li>
 	{{~#if links.post~}}
 		<li>
 			{{~null~}}

@@ -112,6 +112,7 @@ $wgResourceModules += array(
 			'flow-post-action-unhide-post',
 			'flow-post-action-post-history',
 			'flow-post-action-view',
+			'flow-post-action-view-source',
 			'flow-post-action-suppress-post',
 			'flow-post-action-unsuppress-post',
 			'flow-post-action-restore-post',

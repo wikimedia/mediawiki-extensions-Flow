@@ -92,6 +92,37 @@
 	};
 
 	/**
+	 * Extracts the necessary api parameters to convert a posts html back into
+	 * wikitext
+	 * @param {Event} event
+	 * @return {Object}
+	 */
+	FlowBoardComponentApiEventsMixin.UI.events.globalApiPreHandlers.viewSource = function () {
+		var $this = $( this ),
+			$parent = $this.closest( $this.data( 'parent-selector' ) ),
+			$target= $parent.find( $this.data( 'target-selector' ) ).clone();
+
+		if ( !$target.length ) {
+			return false;
+		}
+
+		// we need to make an off-page clone of $target so we can undo redlinking.
+		// The anchors that were changed via redlinking don't roundtrip properly
+		$target.find( 'a[data-flow-orig-href]' ).each( function( idx, el ) {
+			var $el = $( el );
+			$el.attr( 'href', $el.data( 'flow-orig-href' ) );
+		} );
+
+		return {
+			action: 'flow-parsoid-utils',
+			from: 'html',
+			to: 'wikitext',
+			content: $.trim( $target.html() ),
+			title: mw.config.get( 'wgTitle' )
+		};
+	};
+
+	/**
 	 * Before activating header, sends an overrideObject to the API to modify the request params.
 	 * @param {Event} event
 	 * @return {Object}
@@ -246,6 +277,19 @@
 	//
 	// api callback handlers
 	//
+
+	/**
+	 * On completion of html->wikitext conversion pull up a dialog with
+	 * the wikitext source
+	 * @param {Object} info (status:done|fail, $target: jQuery)
+	 * @param {Object} data
+	 * @param {jqXHR} jqxhr
+	 */
+	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.viewSource = function ( info, data, jqxhr ) {
+		mw.Modal( {
+			open: $( '<pre>' ).text( $.trim( data['flow-parsoid-utils'].content ) )
+		} );
+	};
 
 	/**
 	 * On complete board reprocessing through view-topiclist (eg. change topic sort order), re-render any given blocks.
