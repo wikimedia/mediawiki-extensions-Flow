@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_9f119561",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-09-12T21:49:49Z",
+      "side": 1,
+      "message": "This is hacky.\nIn fact this makes the watch star disappear after being clicked for me.\n\nTrevor is working on componentizing this which should make it easier to change. Would be worth checking with Danny if we can live without this change for a while until this happens.\n\nThis might be a less hacky approach here (albeit it is still hacky):\n\n\t\t_notify \u003d mw.notify;\n\t\tmw.notify \u003d function( a, b ) {\n\t\t\tif ( b.tag \u003d\u003d\u003d \u0027watch-self\u0027 ) {\n\t\t\t\tFlowBoardComponent.UI.showSubscribedTooltip( $( \u0027#ca-watch,#ca-unwatch\u0027 ), \u0027board\u0027, \u0027bottom\u0027 );\n\t\t\t} else {\n\t\t\t\t_notify.apply( this, arguments );\n\t\t\t}\n\t\t};",
+      "revId": "f6dfdf3467725e22ac561602c5cd8465cd208099",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_a2b43a34",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 1230,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-09-12T21:49:49Z",
+      "side": 1,
+      "message": "Not sure about the need for these...",
+      "revId": "f6dfdf3467725e22ac561602c5cd8465cd208099",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
