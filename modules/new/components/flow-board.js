@@ -2373,9 +2373,9 @@
 
 		if ( inTopicNamespace ) {
 			// Topic pages do not have collapse states
-			FlowBoardComponent.UI.events.interactiveHandlers.collapserGroupToggle = $.noop();
-			FlowBoardComponent.UI.events.interactiveHandlers.collapserCollapsibleToggle = $.noop();
-			FlowBoardComponent.UI.collapserState = $.noop();
+			FlowBoardComponent.UI.events.interactiveHandlers.collapserGroupToggle = $.noop;
+			FlowBoardComponent.UI.events.interactiveHandlers.collapserCollapsibleToggle = $.noop;
+			FlowBoardComponent.UI.collapserState = $.noop;
 		}
 	}() );
 }( jQuery, mediaWiki ) );
