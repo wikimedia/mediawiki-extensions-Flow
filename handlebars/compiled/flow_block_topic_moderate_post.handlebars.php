@@ -233,6 +233,15 @@
 		<div class="flow-menu">
 	<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
 	<ul class="mw-ui-button-container flow-list">
+			<li>
+				<a class="mw-ui-button mw-ui-quiet"
+				   href="#"
+				   data-flow-api-handler="viewSource"
+				   data-parent-selector=".flow-post-main"
+				   data-target-selector=".flow-post-content">
+					'.LCRun3::ch($cx, 'l10n', Array(Array('flow-post-action-view-source'),Array()), 'encq').'
+				</a>
+			</li>
 		'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['post'])) ? $in['links']['post'] : null))) ? '
 			<li>
 				<a class="mw-ui-button mw-ui-quiet"
@@ -428,6 +437,15 @@
 		<div class="flow-menu">
 	<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
 	<ul class="mw-ui-button-container flow-list">
+			<li>
+				<a class="mw-ui-button mw-ui-quiet"
+				   href="#"
+				   data-flow-api-handler="viewSource"
+				   data-parent-selector=".flow-post-main"
+				   data-target-selector=".flow-post-content">
+					'.LCRun3::ch($cx, 'l10n', Array(Array('flow-post-action-view-source'),Array()), 'encq').'
+				</a>
+			</li>
 		'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['post'])) ? $in['links']['post'] : null))) ? '
 			<li>
 				<a class="mw-ui-button mw-ui-quiet"
