@@ -1680,7 +1680,10 @@
 				// go to the correct handlers.
 				.parent()
 					.detach()
-					.appendTo( board.$container );
+					.appendTo( board.$container )
+					.end()
+				.find( 'textarea' )
+					.focus();
 			} );
 		};
 
