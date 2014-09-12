@@ -132,6 +132,7 @@
 	"flow-error-no-render": "Die angegebene Aktion wurde nicht erkannt.",
 	"flow-error-no-commit": "Die angegebene Aktion konnte nicht gespeichert werden.",
 	"flow-error-fetch-after-lock": "Beim Anfordern der neuen Daten ist ein Fehler aufgetreten. Die Sperren-/Freigeben-Operation war jedoch erfolgreich. Die Fehlernachricht war: $1",
+	"flow-error-content-too-long": "Der Inhalt ist zu groß. Der Inhalt nach der Expandierung ist beschränkt auf {{PLURAL:$1|ein Byte|$1 Bytes}}.",
 	"flow-error-move": "Das Verschieben eines Diskussions-Boards wird derzeit nicht unterstützt.",
 	"flow-edit-header-placeholder": "Dieses Diskussions-Board beschreiben",
 	"flow-edit-header-submit": "Kopfbereich speichern",
