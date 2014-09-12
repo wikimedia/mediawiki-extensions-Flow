@@ -254,12 +254,11 @@ class TopicSummaryBlock extends AbstractBlock {
 	/**
 	 * Render the data for API request
 	 *
-	 * @param Templating $templating
 	 * @param array $options
 	 * @return array
 	 * @throws InvalidInputException
 	 */
-	public function renderAPI( Templating $templating, array $options ) {
+	public function renderAPI( array $options ) {
 		$output = array( 'type' => $this->getName() );
 
 		if ( $this->wasSubmitted() ) {

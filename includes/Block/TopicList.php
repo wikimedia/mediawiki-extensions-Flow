@@ -164,7 +164,7 @@ class TopicListBlock extends AbstractBlock {
 		return $output;
 	}
 
-	public function renderAPI( Templating $templating, array $options ) {
+	public function renderAPI( array $options ) {
 		$serializer = Container::get( 'formatter.topiclist' );
 		$response = array(
 			'submitted' => $this->wasSubmitted() ? $this->submitted : $options,
