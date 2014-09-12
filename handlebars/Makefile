@@ -54,7 +54,9 @@ all: compiled/flow_block_header.handlebars.php \
 		compiled/timestamp.handlebars.php
 
 compiled/flow_block_header.handlebars.php: \
-		flow_block_header.handlebars
+		flow_block_header.handlebars \
+		flow_header_detail.handlebars \
+		flow_errors.handlebars
 	$(COMPILE) flow_block_header
 
 compiled/flow_block_header_edit.handlebars.php: \

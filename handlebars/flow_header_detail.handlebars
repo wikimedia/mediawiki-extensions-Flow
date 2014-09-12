@@ -1,0 +1,21 @@
+<div class="flow-board-header-detail-view">
+	{{#if revision.content}}
+		{{escapeContent revision.content.format revision.content.content}}
+	{{/if}}
+	&nbsp;
+
+	{{#unless isPreview}}
+		<div class="flow-board-header-nav">
+			{{#if revision.actions.edit}}
+				<a href="{{revision.actions.edit.url}}"
+					data-flow-api-handler="activateEditHeader"
+					data-flow-api-target="< .flow-board-header"
+					data-flow-interactive-handler="apiRequest"
+					class="mw-ui-button mw-ui-progressive  mw-ui-quiet flow-board-header-icon flow-ui-tooltip-target"
+					title="{{revision.actions.edit.title}}">
+						<span class="wikiglyph wikiglyph-pencil"></span>
+				</a>
+			{{/if}}
+		</div>
+	{{/unless}}
+</div>
