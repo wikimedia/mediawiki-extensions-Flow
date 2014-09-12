@@ -53,7 +53,8 @@
 	          data-flow-expandable="true"
 	          class="mw-ui-input"
 	          data-role="content"
-	          placeholder="'.LCRun3::ch($cx, 'l10n', Array(Array(LCRun3::ch($cx, 'concat', Array(Array('flow-moderation-placeholder-',((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['moderationState'])) ? $cx['scopes'][0]['submitted']['moderationState'] : null),'-topic'),Array()), 'raw')),Array()), 'encq').'">'.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['reason'])) ? $cx['scopes'][0]['submitted']['reason'] : null))) ? ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['reason'])) ? $cx['scopes'][0]['submitted']['reason'] : null), ENT_QUOTES, 'UTF-8').'' : '').'</textarea>
+	          placeholder="'.LCRun3::ch($cx, 'l10n', Array(Array(LCRun3::ch($cx, 'concat', Array(Array('flow-moderation-placeholder-',((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['moderationState'])) ? $cx['scopes'][0]['submitted']['moderationState'] : null),'-topic'),Array()), 'raw')),Array()), 'encq').'"
+	          autofocus>'.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['reason'])) ? $cx['scopes'][0]['submitted']['reason'] : null))) ? ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['reason'])) ? $cx['scopes'][0]['submitted']['reason'] : null), ENT_QUOTES, 'UTF-8').'' : '').'</textarea>
 	<div class="flow-form-actions flow-form-collapsible">
 		<button class="mw-ui-button mw-ui-constructive"
 		        data-flow-interactive-handler="apiRequest"
@@ -235,6 +236,15 @@
 		<div class="flow-menu">
 	<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
 	<ul class="mw-ui-button-container flow-list">
+		<li class="flow-js">
+			<a class="mw-ui-button mw-ui-quiet"
+			   href="#"
+			   data-flow-api-handler="viewSource"
+			   data-parent-selector=".flow-post-main"
+			   data-target-selector=".flow-post-content">
+				'.LCRun3::ch($cx, 'l10n', Array(Array('flow-post-action-view-source'),Array()), 'encq').'
+			</a>
+		</li>
 		'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['post'])) ? $in['links']['post'] : null))) ? '
 			<li>
 				<a class="mw-ui-button mw-ui-quiet"
@@ -428,6 +438,15 @@
 		<div class="flow-menu">
 	<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
 	<ul class="mw-ui-button-container flow-list">
+		<li class="flow-js">
+			<a class="mw-ui-button mw-ui-quiet"
+			   href="#"
+			   data-flow-api-handler="viewSource"
+			   data-parent-selector=".flow-post-main"
+			   data-target-selector=".flow-post-content">
+				'.LCRun3::ch($cx, 'l10n', Array(Array('flow-post-action-view-source'),Array()), 'encq').'
+			</a>
+		</li>
 		'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['post'])) ? $in['links']['post'] : null))) ? '
 			<li>
 				<a class="mw-ui-button mw-ui-quiet"
