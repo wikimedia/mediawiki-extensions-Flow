@@ -136,6 +136,7 @@
 	"flow-error-no-render": "A ação especificada não foi reconhecida.",
 	"flow-error-no-commit": "Não foi possível gravar a ação especificada.",
 	"flow-error-fetch-after-lock": "Foi encontrado um erro ao solicitar novos dados. Ainda assim, a operação de bloquear/desbloquear foi bem sucedida. A mensagem de erro foi: $1",
+	"flow-error-content-too-long": "O conteúdo é muito grande. Após a expansão, o conteúdo é limitado a $1 {{PLURAL:$1|byte|bytes}}.",
 	"flow-error-move": "Mover um espaço de discussão não é permitido atualmente.",
 	"flow-edit-header-placeholder": "Descreva este espaço de discussão",
 	"flow-edit-header-submit": "Gravar cabeçalho",
