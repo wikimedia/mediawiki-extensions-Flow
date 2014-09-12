@@ -167,6 +167,9 @@ class Redlinker implements ContentFixer {
 			foreach ( $linkNode->attributes as $attribute ) {
 				$attributes[$attribute->name] = $attribute->value;
 			}
+			if ( isset( $attributes['href'] ) ) {
+				$attributes['data-flow-orig-href'] = $attributes['href'];
+			}
 			// let MW build link HTML based on Parsoid data
 			$html = Linker::link( $title, Redlinker::getInnerHtml( $linkNode ), $attributes );
 			// create new DOM from this MW-built link
