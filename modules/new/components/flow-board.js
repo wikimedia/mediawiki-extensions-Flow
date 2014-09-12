@@ -1673,7 +1673,7 @@
 			mw.loader.using( 'jquery.ui.dialog' , function() {
 				$container.dialog( {
 					'title': titleText,
-					'modal': true
+					'modal': mw.config.get('skin') !== 'monobook' // hack to prevent monobook from showing modal bg
 				} )
 				// the $.fn.dialog function attaches the dialog to .body, but we
 				// need to move it inside the main container so user interactions
