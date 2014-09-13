@@ -57,7 +57,7 @@ interface Index extends LifecycleHandler {
 	function getLimit();
 
 	/**
-	 * @return string Sorting order, either 'ASC' or 'DESC'
+	 * @return array|false Sorting order, either 'ASC' or 'DESC'
 	 */
 	function getSort();
 

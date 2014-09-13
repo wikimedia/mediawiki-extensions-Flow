@@ -236,6 +236,7 @@ class TemplateHelper {
 	 * @param array $args Expects string $uuid, string $str, bool $timeAgoOnly = false
 	 * @param array $named No named arguments expected
 	 * @return null|string
+	 * @throws WrongNumberArgumentsException
 	 */
 	static public function uuidTimestamp( array $args, array $named ) {
 		if ( count( $args ) < 2 ) {
@@ -259,6 +260,7 @@ class TemplateHelper {
 	 * @param array $args Expects string $timestamp, string $str, bool $timeAgoOnly = false
 	 * @param array $named No named arguments expected
 	 * @return string
+	 * @throws WrongNumberArgumentsException
 	 */
 	static public function timestampHelper( array $args, array $named ) {
 		if ( count( $args ) < 2 ) {
@@ -316,7 +318,8 @@ class TemplateHelper {
 	}
 
 	/**
-	 * @param array $args Expects string $html, to be output unescaped.
+	 * @param array $args Expects one string argument to be output unescaped.
+	 * @param array $named unused
 	 * @return array (html, 'raw')
 	 */
 	static public function htmlHelper( array $args, array $named ) {
@@ -327,6 +330,7 @@ class TemplateHelper {
 	 * @param array $args Expects one array $block
 	 * @param array $named No named arguments expected
 	 * @return array
+	 * @throws WrongNumberArgumentsException
 	 */
 	static public function block( array $args, array $named ) {
 		if ( !isset( $args[0] ) ) {
@@ -398,6 +402,7 @@ class TemplateHelper {
 	 * @param array $named No named arguments expected
 	 * @return float|int
 	 * @throws Exception\FlowException
+	 * @throws WrongNumberArgumentsException
 	 */
 	static public function math( array $args, array $named ) {
 		if ( count( $args ) !== 3 ) {
@@ -432,6 +437,7 @@ class TemplateHelper {
 	 * @param array $args Expects array $rootBlock, array $revision
 	 * @param array $named No named arguments expected
 	 * @return array
+	 * @throws WrongNumberArgumentsException
 	 */
 	static public function post( array $args, array $named ) {
 		if ( count( $args ) !== 2 ) {
@@ -448,6 +454,7 @@ class TemplateHelper {
 	 * @param array $args Expects array $revision, string $key = 'timeAndDate'
 	 * @param array $named No named arguments expected
 	 * @return array
+	 * @throws WrongNumberArgumentsException
 	 */
 	static public function historyTimestamp( array $args, array $named ) {
 		if ( !$args ) {
@@ -493,6 +500,7 @@ class TemplateHelper {
 	 * @param array $args Expects array $revision
 	 * @param array $named No named arguments expected
 	 * @return array
+	 * @throws WrongNumberArgumentsException
 	 */
 	static public function historyDescription( array $args, array $named ) {
 		if ( count( $args ) !== 1 ) {
@@ -510,6 +518,7 @@ class TemplateHelper {
 	 * @param array $args Expects string $old, string $new
 	 * @param array $named No named arguments expected
 	 * @return array
+	 * @throws WrongNumberArgumentsException
 	 */
 	static public function showCharacterDifference( array $args, array $named ) {
 		if ( count( $args ) !== 2 ) {
@@ -548,8 +557,8 @@ class TemplateHelper {
 	}
 
 	/**
-	 * @param string $str
-	 *
+	 * @param array $args one or more arguments, i18n key and parameters
+	 * @param array $named unused
 	 * @return array
 	 */
 	static public function l10nParse( array $args, array $named ) {
@@ -569,6 +578,7 @@ class TemplateHelper {
 	 *	   string $newLink Url pointing to `new` content
 	 * @param array $named No named arguments expected
 	 * @return array HTML wrapped in array to prevent lightncandy from escaping
+	 * @throws WrongNumberArgumentsException
 	 */
 	static public function diffRevision( array $args, array $named ) {
 		if ( count( $args ) !== 7 ) {
@@ -599,6 +609,7 @@ class TemplateHelper {
 	 * @param array $args Expects string $timestamp, string $user, string $link
 	 * @param array $named No named arguments expected
 	 * @return string
+	 * @throws WrongNumberArgumentsException
 	 */
 	static public function generateDiffViewTitle( array $args, array $named ) {
 		if ( count( $args ) !== 3 ) {
@@ -622,6 +633,7 @@ class TemplateHelper {
 	 * @param array $args Expects array $actions, string $moderationState
 	 * @param array $named No named arguments expected
 	 * @return string
+	 * @throws WrongNumberArgumentsException
 	 */
 	static public function moderationAction( array $args, array $named ) {
 		if ( count( $args ) !== 2 ) {
@@ -713,6 +725,7 @@ class TemplateHelper {
 	 * @param array $args Expects string $title
 	 * @param array $named No named arguments expected
 	 * @return string modified url
+	 * @throws WrongNumberArgumentsException
 	 */
 	static public function linkWithReturnTo( array $args, array $named ) {
 		if ( count( $args ) !== 1 ) {
@@ -739,6 +752,7 @@ class TemplateHelper {
 	 * @param array $args Expects string $contentType, string $content
 	 * @param array $named No named arguments expected
 	 * @return string
+	 * @throws WrongNumberArgumentsException
 	 */
 	static public function escapeContent( array $args, array $named ) {
 		if ( count( $args ) !== 2 ) {
@@ -822,6 +836,7 @@ class TemplateHelper {
 	 * @param array $args Expects string $contentFormat, string $content
 	 * @param array $named No named arguments expected
 	 * @return string plaintext
+	 * @throws WrongNumberArgumentsException
 	 */
 	static public function plaintextSnippet( array $args, array $named ) {
 		if ( count( $args ) !== 2 ) {

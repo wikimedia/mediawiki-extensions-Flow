@@ -4,8 +4,10 @@ namespace Flow;
 
 use DataUpdate;
 use Flow\Data\ManagerGroup;
+use Flow\Model\Reference;
 use Flow\Model\URLReference;
 use Flow\Model\WikiReference;
+use Flow\Model\Workflow;
 use LinkBatch;
 use LinkCache;
 use ParserOutput;
@@ -24,7 +26,7 @@ class LinksTableUpdater {
 		$this->storage = $storage;
 	}
 
-	public function doUpdate( $workflow ) {
+	public function doUpdate( Workflow $workflow ) {
 		$title = $workflow->getArticleTitle();
 		$page = WikiPage::factory( $title );
 		$content = $page->getContent();
@@ -37,13 +39,20 @@ class LinksTableUpdater {
 		DataUpdate::runUpdates( $updates );
 	}
 
+	/**
+	 * @param Title $title
+	 * @param ParserOutput $parserOutput
+	 * @param Reference[]|bool $references
+	 */
 	public function mutateParserOutput( Title $title, ParserOutput $parserOutput, $references = false ) {
 		if ( $references === false ) {
 			$references = $this->getReferencesForTitle( $title );
 		}
 
 		$linkBatch = new LinkBatch();
+		/** @var Title[] $internalLinks */
 		$internalLinks = array();
+		/** @var Title[] $templates */
 		$templates = array();
 
 		foreach( $references as $reference ) {
@@ -93,7 +102,7 @@ class LinksTableUpdater {
 		}
 	}
 
-	public function getReferencesForTitle( $title ) {
+	public function getReferencesForTitle( Title $title ) {
 		$wikiReferences = $this->storage->find(
 			'WikiReference',
 			array(

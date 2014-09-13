@@ -7,6 +7,7 @@ use Flow\Container;
 use Flow\FlowActions;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
+use Flow\Model\Workflow;
 use ManualLogEntry;
 use Title;
 use User;
@@ -64,6 +65,7 @@ class Logger {
 		$logType = $this->getLogType( $post, $action );
 
 		// reasonably likely this is already loaded in-process and just returns that object
+		/** @var Workflow $workflow */
 		$workflow = Container::get( 'storage.workflow' )->get( $workflowId );
 		if ( $workflow ) {
 			$title = $workflow->getArticleTitle();

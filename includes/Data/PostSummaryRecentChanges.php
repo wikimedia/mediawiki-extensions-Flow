@@ -24,6 +24,8 @@ class PostSummaryRecentChanges extends RecentChanges {
 	/**
 	 * @param PostSummary $object
 	 * @param string[] $row
+	 * @param array $metadata
+	 * @throws FlowException
 	 */
 	public function onAfterInsert( $object, array $row, array $metadata ) {
 		if ( !isset( $metadata['workflow'] ) ) {

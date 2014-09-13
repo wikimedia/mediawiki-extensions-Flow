@@ -95,7 +95,7 @@ class NotificationController {
 		}
 
 		$title = $data['title'];
-		$user = $data['revision']->getUser();
+		$user = $revision->getUser();
 
 		$extraData['revision-id'] = $revision->getRevisionId();
 		$extraData['post-id'] = $revision->getPostId();
@@ -500,6 +500,7 @@ class NotificationController {
 	protected static function getTalkPageOwner( $topicId ) {
 		$talkUser = array();
 		// Owner of talk page should always get a reply notification
+		/** @var Workflow|null $workflow */
 		$workflow = Container::get( 'storage' )
 				->getStorage( 'Workflow' )
 				->get( UUID::create( $topicId ) );

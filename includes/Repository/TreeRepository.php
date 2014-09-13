@@ -51,7 +51,7 @@ class TreeRepository {
 
 	/**
 	 * @param DbFactory $dbFactory Factory to source connection objects from
-	 * @param BagOStuff $cache
+	 * @param BufferedCache $cache
 	 */
 	public function __construct( DbFactory $dbFactory, BufferedCache $cache ) {
 		$this->dbFactory = $dbFactory;

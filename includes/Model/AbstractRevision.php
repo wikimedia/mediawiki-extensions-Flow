@@ -3,7 +3,9 @@
 namespace Flow\Model;
 
 use Flow\Collection\AbstractCollection;
+use Flow\Exception\CrossWikiException;
 use Flow\Exception\DataModelException;
+use Flow\Exception\FlowException;
 use Flow\Exception\PermissionException;
 use Flow\Parsoid\Utils;
 use Title;

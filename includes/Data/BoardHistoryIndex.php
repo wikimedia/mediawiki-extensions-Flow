@@ -42,6 +42,7 @@ class BoardHistoryIndex extends TopKIndex {
 	/**
 	 * @param Header|PostRevision $object
 	 * @param string[] $new
+	 * @param array $metadata
 	 */
 	public function onAfterInsert( $object, array $new, array $metadata ) {
 		if ( $object instanceof Header ) {
@@ -65,6 +66,7 @@ class BoardHistoryIndex extends TopKIndex {
 	 * @param Header|PostRevision $object
 	 * @param string[] $old
 	 * @param string[] $new
+	 * @param array $metadata
 	 */
 	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
 		if ( $object instanceof Header ) {
@@ -87,6 +89,7 @@ class BoardHistoryIndex extends TopKIndex {
 	/**
 	 * @param Header|PostRevision $object
 	 * @param string[] $old
+	 * @param array $metadata
 	 */
 	public function onAfterRemove( $object, array $old, array $metadata ) {
 		if ( $object instanceof Header ) {
@@ -107,14 +110,14 @@ class BoardHistoryIndex extends TopKIndex {
 	 * @param PostRevision $object
 	 * @return string|boolean False when object is not root post or topic is not found
 	 */
-	protected function findTopicListId( $object ) {
+	protected function findTopicListId( PostRevision $object ) {
 		$found = Container::get( 'storage' )->find(
 			'TopicListEntry',
 			array( 'topic_id' => $object->getRootPost()->getPostId() )
 		);
 
 		if ( $found ) {
-			/** @var TopicListEntry $var */
+			/** @var TopicListEntry $topicListEntry */
 			$topicListEntry = reset( $found );
 			return $topicListEntry->getListId()->getAlphadecimal();
 		} else {

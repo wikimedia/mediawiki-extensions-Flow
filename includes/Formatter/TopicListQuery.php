@@ -23,6 +23,7 @@ class TopicListQuery extends AbstractQuery {
 	 * @param ManagerGroup $storage
 	 * @param TreeRepository $treeRepository
 	 * @param RevisionActionPermissions $permissions
+	 * @param WatchedTopicItems $watchedTopicItems
 	 */
 	public function __construct( ManagerGroup $storage, TreeRepository $treeRepository, RevisionActionPermissions $permissions, WatchedTopicItems $watchedTopicItems ) {
 		parent::__construct( $storage, $treeRepository );
@@ -133,7 +134,7 @@ class TopicListQuery extends AbstractQuery {
 
 		// re-index by alphadecimal id
 		return array_combine(
-			array_map( function( $x ) { return $x->getAlphadecimal(); }, $postIds ),
+			array_map( function( UUID $x ) { return $x->getAlphadecimal(); }, $postIds ),
 			$postIds
 		);
 	}
