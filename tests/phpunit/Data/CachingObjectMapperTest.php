@@ -2,7 +2,7 @@
 
 namespace Flow\Tests\Data;
 
-use Flow\Data\CachingObjectMapper;
+use Flow\Data\Mapper\CachingObjectMapper;
 use Flow\Tests\FlowTestCase;
 
 /**

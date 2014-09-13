@@ -5,7 +5,7 @@ namespace Flow\Formatter;
 use BagOStuff;
 use ContribsPager;
 use Flow\Container;
-use Flow\Data\RevisionStorage;
+use Flow\Data\Storage\RevisionStorage;
 use Flow\DbFactory;
 use Flow\Data\ManagerGroup;
 use Flow\Model\UUID;

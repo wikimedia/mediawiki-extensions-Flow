@@ -10,9 +10,9 @@ use Flow\Block\TopicSummaryBlock;
 use Flow\Block\BoardHistoryBlock;
 use Flow\Model\Workflow;
 use Flow\Data\ManagerGroup;
-use Flow\Data\RootPostLoader;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\InvalidDataException;
+use Flow\Repository\RootPostLoader;
 
 class BlockFactory {
 

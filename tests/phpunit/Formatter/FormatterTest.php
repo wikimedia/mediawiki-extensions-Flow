@@ -129,7 +129,7 @@ class FormatterTest extends FlowTestCase {
 			->method( 'getUrlGenerator' )
 			->will( $this->returnValue( $urlGenerator ) );
 
-		$usernames = $this->getMockBuilder( 'Flow\Data\UserNameBatch' )
+		$usernames = $this->getMockBuilder( 'Flow\Repository\UserNameBatch' )
 			->disableOriginalConstructor()
 			->getMock();
 

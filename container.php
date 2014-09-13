@@ -46,7 +46,7 @@ $c['url_generator'] = $c->share( function( $c ) {
 // listener is attached to storage.workflow, it
 // notifies the url generator about all loaded workflows.
 $c['listener.url_generator'] = $c->share( function( $c ) {
-	return new Flow\Data\UrlGenerationListener(
+	return new Flow\Data\Listener\UrlGenerationListener(
 		$c['url_generator']
 	);
 } );
@@ -101,21 +101,21 @@ $c['templating'] = $c->share( function( $c ) {
 } );
 
 // New Storage Impl
-use Flow\Data\LocalBufferedCache;
-use Flow\Data\BasicObjectMapper;
-use Flow\Data\CachingObjectMapper;
-use Flow\Data\BasicDbStorage;
-use Flow\Data\TopicListStorage;
-use Flow\Data\TopicListLastUpdatedStorage;
-use Flow\Data\PostRevisionStorage;
-use Flow\Data\HeaderRevisionStorage;
-use Flow\Data\PostSummaryRevisionStorage;
-use Flow\Data\TopicHistoryStorage;
-use Flow\Data\UniqueFeatureIndex;
-use Flow\Data\TopKIndex;
-use Flow\Data\TopicHistoryIndex;
-use Flow\Data\BoardHistoryStorage;
-use Flow\Data\BoardHistoryIndex;
+use Flow\Data\Utils\LocalBufferedCache;
+use Flow\Data\Mapper\BasicObjectMapper;
+use Flow\Data\Mapper\CachingObjectMapper;
+use Flow\Data\Storage\BasicDbStorage;
+use Flow\Data\Storage\TopicListStorage;
+use Flow\Data\Storage\TopicListLastUpdatedStorage;
+use Flow\Data\Storage\PostRevisionStorage;
+use Flow\Data\Storage\HeaderRevisionStorage;
+use Flow\Data\Storage\PostSummaryRevisionStorage;
+use Flow\Data\Storage\TopicHistoryStorage;
+use Flow\Data\Index\UniqueFeatureIndex;
+use Flow\Data\Index\TopKIndex;
+use Flow\Data\Index\TopicHistoryIndex;
+use Flow\Data\Storage\BoardHistoryStorage;
+use Flow\Data\Index\BoardHistoryIndex;
 use Flow\Data\ObjectManager;
 use Flow\Data\ObjectLocator;
 use Flow\Model\Header;
@@ -128,7 +128,7 @@ $c['memcache.buffered'] = $c->share( function( $c ) {
 } );
 // Batched username loader
 $c['repository.username'] = $c->share( function( $c ) {
-	return new Flow\Data\UserNameBatch( new Flow\Data\TwoStepUserNameQuery( $c['db.factory'] ) );
+	return new Flow\Repository\UserNameBatch( new Flow\Repository\UserName\TwoStepUserNameQuery( $c['db.factory'] ) );
 } );
 $c['collection.cache'] = $c->share( function( $c ) {
 	return new Flow\Collection\CollectionCache();
@@ -155,11 +155,11 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 		),
 	);
 	$lifecycle = array(
-		new Flow\Data\UserNameListener(
+		new Flow\Data\Listener\UserNameListener(
 			$c['repository.username'],
 			array( 'workflow_user_id' => 'workflow_user_wiki' )
 		),
-		new Flow\Data\WorkflowTopicListListener( $c['storage.topic_list'], $c['topic_list.last_updated.index'] ),
+		new Flow\Data\Listener\WorkflowTopicListListener( $c['storage.topic_list'], $c['topic_list.last_updated.index'] ),
 		$c['listener.occupation'],
 		$c['listener.url_generator']
 		// $c['storage.user_subs.user_index']
@@ -171,7 +171,7 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 $c['listener.occupation'] = $c->share( function( $c ) {
 	global $wgFlowDefaultWorkflow;
 
-	return new Flow\Data\OccupationListener(
+	return new Flow\Data\Listener\OccupationListener(
 		$c['occupation_controller'],
 		$wgFlowDefaultWorkflow
 	);
@@ -229,16 +229,16 @@ $c['storage.header.lifecycle-handlers'] = $c->share( function( $c ) {
 	return array(
 		// Recent change listeners go out to external services and
 		// as such must only be run after the transaction is commited.
-		new Flow\Data\DeferredInsertLifecycleHandler(
+		new Flow\Data\Listener\DeferredInsertLifecycleHandler(
 			$c['deferred_queue'],
-			new Flow\Data\HeaderRecentChanges(
+			new Flow\Data\RecentChanges\HeaderRecentChanges(
 				$c['flow_actions'],
 				$c['repository.username'],
 				$wgContLang
 			)
 		),
 		$c['storage.board_history.index'],
-		new Flow\Data\UserNameListener(
+		new Flow\Data\Listener\UserNameListener(
 			$c['repository.username'],
 			array(
 				'rev_user_id' => 'rev_user_wiki',
@@ -293,15 +293,15 @@ $c['storage.post.summary.lifecycle-handlers'] = $c->share( function( $c ) {
 		$c['storage.board_history.index'],
 		// Recent change listeners go out to external services and
 		// as such must only be run after the transaction is commited.
-		new Flow\Data\DeferredInsertLifecycleHandler(
+		new Flow\Data\Listener\DeferredInsertLifecycleHandler(
 			$c['deferred_queue'],
-			new Flow\Data\PostSummaryRecentChanges(
+			new Flow\Data\RecentChanges\PostSummaryRecentChanges(
 				$c['flow_actions'],
 				$c['repository.username'],
 				$wgContLang
 			)
 		),
-		new Flow\Data\UserNameListener(
+		new Flow\Data\Listener\UserNameListener(
 			$c['repository.username'],
 			array(
 				'rev_user_id' => 'rev_user_wiki',
@@ -401,16 +401,16 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 		new Flow\Log\PostModerationLogger( $c['logger'] ),
 		// Recent change listeners go out to external services and
 		// as such must only be run after the transaction is commited.
-		new Flow\Data\DeferredInsertLifecycleHandler(
+		new Flow\Data\Listener\DeferredInsertLifecycleHandler(
 			$c['deferred_queue'],
-			new Flow\Data\PostRevisionRecentChanges(
+			new Flow\Data\RecentChanges\PostRevisionRecentChanges(
 				$c['flow_actions'],
 				$c['repository.username'],
 				$wgContLang
 			)
 		),
 		$c['storage.board_history.index'],
-		new Flow\Data\UserNameListener(
+		new Flow\Data\Listener\UserNameListener(
 			$c['repository.username'],
 			array(
 				'rev_user_id' => 'rev_user_wiki',
@@ -420,7 +420,7 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 			)
 		),
 		// Auto-subscribe users to the topic after performing specific actions
-		new Flow\Data\ImmediateWatchTopicListener( $c['watched_items'] ),
+		new Flow\Data\Listener\ImmediateWatchTopicListener( $c['watched_items'] ),
 		$c['collection.cache'],
 		// topic history -- to keep a history by topic we have to know what topic every post
 		// belongs to, not just its parent. TopicHistoryIndex is a slight tweak to TopKIndex
@@ -430,9 +430,9 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 		// Defer notifications triggering till end of request so we could get
 		// article_id in the case of a new topic, this will need support of
 		// adding deferred update when running deferred update
-		new Flow\Data\DeferredInsertLifecycleHandler(
+		new Flow\Data\Listener\DeferredInsertLifecycleHandler(
 			$c['deferred_queue'],
-			new Flow\Data\NotificationListener( $c['controller.notification'] )
+			new Flow\Data\Listener\NotificationListener( $c['controller.notification'] )
 		)
 	);
 
@@ -592,7 +592,7 @@ $c['storage'] = $c->share( function( $c ) {
 	);
 } );
 $c['loader.root_post'] = $c->share( function( $c ) {
-	return new \Flow\Data\RootPostLoader(
+	return new \Flow\Repository\RootPostLoader(
 		$c['storage'],
 		$c['repository.tree']
 	);
@@ -836,7 +836,7 @@ $c['reference.extractor'] = $c->share( function( $c ) {
 } );
 
 $c['storage.reference.wiki'] = $c->share( function( $c ) {
-	$mapper = Flow\Data\BasicObjectMapper::model( 'Flow\Model\WikiReference' );
+	$mapper = Flow\Data\Mapper\BasicObjectMapper::model( 'Flow\Model\WikiReference' );
 
 	$cache = $c['memcache.buffered'];
 
@@ -889,7 +889,7 @@ $c['storage.reference.wiki'] = $c->share( function( $c ) {
 
 // TODO duplicated
 $c['storage.reference.url'] = $c->share( function( $c ) {
-	$mapper = Flow\Data\BasicObjectMapper::model( 'Flow\Model\URLReference' );
+	$mapper = Flow\Data\Mapper\BasicObjectMapper::model( 'Flow\Model\URLReference' );
 
 	$cache = $c['memcache.buffered'];
 
@@ -949,7 +949,7 @@ $c['reference.clarifier'] = $c->share( function( $c ) {
 } );
 
 $c['reference.recorder'] = $c->share( function( $c ) {
-	return new Flow\Data\ReferenceRecorder(
+	return new Flow\Data\Listener\ReferenceRecorder(
 			$c['reference.extractor'],
 			$c['reference.updater.links-tables'],
 			$c['storage']
