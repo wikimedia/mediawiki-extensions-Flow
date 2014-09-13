@@ -3,6 +3,8 @@
 namespace Flow;
 
 use Flow\Data\ManagerGroup;
+use Flow\Model\Reference;
+use Flow\Model\WikiReference;
 use Flow\Exception\CrossWikiException;
 use Flow\Model\UUID;
 use Title;
@@ -53,7 +55,12 @@ class ReferenceClarifier {
 		return $props;
 	}
 
-	public function getWikiReferences( Title $from, Title $to, $type = null ) {
+	/**
+	 * @param Title $from
+	 * @param Title $to
+	 * @return WikiReference[]
+	 */
+	public function getWikiReferences( Title $from, Title $to ) {
 		if ( ! isset( $this->referenceCache[$from->getPrefixedDBkey()] ) ) {
 			$this->loadReferencesForPage( $from );
 		}
@@ -61,9 +68,9 @@ class ReferenceClarifier {
 		$fromT = $from->getPrefixedDBkey();
 		$toT = 'title:' . $to->getPrefixedDBkey();
 
-		return isset( $this->referenceCache[$fromT][$toT] ) ?
-			$this->referenceCache[$fromT][$toT] :
-			array();
+		return isset( $this->referenceCache[$fromT][$toT] )
+			? $this->referenceCache[$fromT][$toT]
+			: array();
 	}
 
 	protected function getObjectLink( UUID $workflow, $objectType, UUID $objectId ) {
@@ -80,6 +87,7 @@ class ReferenceClarifier {
 	}
 
 	protected function loadReferencesForPage( Title $from ) {
+		/** @var Reference[] $allReferences */
 		$allReferences = array();
 
 		foreach( array( 'WikiReference', 'URLReference' ) as $refType ) {

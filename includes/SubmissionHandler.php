@@ -3,6 +3,7 @@
 namespace Flow;
 
 use Flow\Block\AbstractBlock;
+use Flow\Block\Block;
 use Flow\Model\Workflow;
 use Flow\Data\BufferedCache;
 use Flow\Data\ManagerGroup;
@@ -58,6 +59,7 @@ class SubmissionHandler {
 	 */
 	public function handleSubmit( Workflow $workflow, $action, array $blocks, $user, WebRequest $request ) {
 		$success = true;
+		/** @var Block[] $interestedBlocks */
 		$interestedBlocks = array();
 
 		// since this is a submit force dbFactory to always return master
@@ -145,6 +147,7 @@ class SubmissionHandler {
 	/**
 	 * Helper function extracts parameters from a WebRequest.
 	 *
+	 * @param string $action
 	 * @param WebRequest $request
 	 * @param AbstractBlock[] $blocks
 	 * @return array

@@ -324,8 +324,8 @@ class UrlGenerator extends BaseUrlGenerator {
 	 * Makes the assumption the title is flow-enabled.
 	 *
 	 * @param Title $title
-	 * @param string $sortBy
-	 * @param string $saveSortBy
+	 * @param string|null $sortBy
+	 * @param bool $saveSortBy
 	 * @return Anchor
 	 */
 	public function boardLink( Title $title, $sortBy = null, $saveSortBy = false ) {
@@ -430,6 +430,7 @@ class UrlGenerator extends BaseUrlGenerator {
 	 *
 	 * @param Title|null $title
 	 * @param UUID $workflowId
+	 * @param UUID $postId
 	 * @param string $moderationAction
 	 * @param string $flowAction
 	 * @return Anchor

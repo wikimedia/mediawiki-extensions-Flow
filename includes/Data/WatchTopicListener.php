@@ -4,11 +4,9 @@ namespace Flow\Data;
 
 use Flow\Container;
 use Flow\FlowActions;
-use Flow\Jobs\WatchTitle;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\WatchedTopicItems;
-use JobQueueGroup;
 use Title;
 use User;
 use WatchedItem;
@@ -34,14 +32,18 @@ abstract class AbstractTopicInsertListener {
 			wfWarn( __METHOD__ . ': Missing required metadata: workflow' );
 			return;
 		}
+		$workflow = $metadata['workflow'];
+		if ( !$workflow instanceof Workflow ) {
+			throw new InvalidDataException( 'Workflow metadata is not Workflow instance' );
+		}
 
-		if ( $metadata['workflow']->getType() !== 'topic' ) {
-			wfWarn( __METHOD__ . ': Expected "topic" workflow but received "' . $metadata['workflow']->getType() . '"' );
+		if ( $workflow->getType() !== 'topic' ) {
+			wfWarn( __METHOD__ . ': Expected "topic" workflow but received "' . $workflow->getType() . '"' );
 			return;
 		}
 
 		/** @var $title Title */
-		$title = $metadata['workflow']->getArticleTitle();
+		$title = $workflow->getArticleTitle();
 		if ( !$title ) {
 			return;
 		}
@@ -55,7 +57,7 @@ abstract class AbstractTopicInsertListener {
 	 * @param string $changeType
 	 * @param string $watchType Key of the corresponding 'watch' array in FlowActions.php
 	 * @param array $params Params to feed to callback function that will return
-	 *                      an array of users to subscribe
+	 *					  an array of users to subscribe
 	 * @return User[]
 	 */
 	public static function getUsersToSubscribe( $changeType, $watchType, array $params = array() ) {
@@ -128,4 +130,3 @@ class ImmediateWatchTopicListener extends AbstractTopicInsertListener {
 		return array( $watchedTopicItems->getUser() );
 	}
 }
-

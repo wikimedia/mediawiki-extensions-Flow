@@ -7,6 +7,7 @@ use Flow\Exception\InvalidInputException;
 use Flow\Exception\PermissionException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
+use Flow\RevisionActionPermissions;
 
 abstract class RevisionViewQuery extends AbstractQuery {
 
@@ -51,9 +52,8 @@ abstract class RevisionViewQuery extends AbstractQuery {
 
 	/**
 	 * Get the data for rendering revisions diff view
-	 * @param string
-	 * @param UUID
-	 * @param UUID
+	 * @param UUID $curId
+	 * @param UUID|null $prevId
 	 * @return RevisionViewRow
 	 * @throws InvalidInputException
 	 * @throws PermissionException
@@ -86,6 +86,7 @@ abstract class RevisionViewQuery extends AbstractQuery {
 			$newRev = $prev;
 		}
 
+		/** @var RevisionActionPermissions $permission */
 		$permission = Container::get( 'permissions' );
 		// Todo - Check the permission before invoking this function?
 		if ( !$permission->isAllowed( $oldRev, 'view' ) || !$permission->isAllowed( $newRev, 'view' ) ) {

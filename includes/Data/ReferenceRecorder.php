@@ -14,7 +14,20 @@ use Flow\Parsoid\ReferenceExtractor;
  * revision. Uses calculated difference to update links tables to match the new revision.
  */
 class ReferenceRecorder implements LifecycleHandler {
-	protected $referenceExtractor, $storage, $linksTableUpdater;
+	/**
+	 * @var ReferenceExtractor
+	 */
+	protected $referenceExtractor;
+
+	/**
+	 * @var MangerGroup
+	 */
+	protected $storage;
+
+	/**
+	 * @var LinksTableUpdater
+	 */
+	protected $linksTableUpdater;
 
 	public function __construct( ReferenceExtractor $referenceExtractor, LinksTableUpdater $linksTableUpdater, ManagerGroup $storage ) {
 		$this->referenceExtractor = $referenceExtractor;
@@ -30,10 +43,13 @@ class ReferenceRecorder implements LifecycleHandler {
 		if ( !isset( $metadata['workflow'] )) {
 			return;
 		}
+		if ( !$revision instanceof AbstractRevision ) {
+			throw new InvalidDataException( 'ReferenceRecorder can only attach to AbstractRevision storage');
+		}
 		$workflow = $metadata['workflow'];
 
 		// Topic title is plain text, there is no reference to extract
-		if ( $revision->getRevisionType() === 'post' && $revision->isTopicTitle() ) {
+		if ( $revision instanceof PostRevision && $revision->isTopicTitle() ) {
 			return;
 		}
 
@@ -51,7 +67,8 @@ class ReferenceRecorder implements LifecycleHandler {
 
 	/**
 	 * Pulls references from a revision's content
-	 * @param  Workflow         $workflow The Workflow that the revision is attached to.
+	 *
+	 * @param  Workflow $workflow The Workflow that the revision is attached to.
 	 * @param  AbstractRevision $revision The Revision to pull references from.
 	 * @return array Array of References.
 	 */
@@ -68,9 +85,10 @@ class ReferenceRecorder implements LifecycleHandler {
 
 	/**
 	 * Retrieves references that are already stored in the database for a given revision
+	 *
 	 * @param  string $revType The value returned from Revision::getRevisionType() for the revision.
-	 * @param  UUID   $objectId   The revision's Object ID.
-	 * @return array           Array of References.
+	 * @param  UUID $objectId   The revision's Object ID.
+	 * @return array Array of References.
 	 */
 	public function getExistingReferences( $revType, UUID $objectId ) {
 		$prevWikiReferences = $this->storage->find( 'WikiReference', array(
@@ -90,9 +108,10 @@ class ReferenceRecorder implements LifecycleHandler {
 	 * Compares two arrays of references
 	 *
 	 * Would be protected if not for testing.
-	 * @param  array  $old The old references.
-	 * @param  array  $new The new references.
-	 * @return array       Array with two elements: added and removed references.
+	 *
+	 * @param  Reference[] $old The old references.
+	 * @param  Reference[] $new The new references.
+	 * @return array Array with two elements: added and removed references.
 	 */
 	public function referencesDifference( array $old, array $new ) {
 		$newReferences = array();

@@ -3,6 +3,7 @@
 namespace Flow\Content;
 
 use Flow\Exception\FlowException;
+use Flow\WorkflowLoader;
 use Article;
 use ContentHandler;
 use Flow\Container;
@@ -48,6 +49,7 @@ abstract class Content {
 		$title = $article->getTitle();
 
 		if ( $occupationController->isTalkpageOccupied( $title ) ) {
+			/** @var WorkflowLoader $loader */
 			$loader = Container::get('factory.loader.workflow')
 				->createWorkflowLoader( $title );
 

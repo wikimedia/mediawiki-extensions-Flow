@@ -111,7 +111,14 @@ class Anchor {
 			$this->message = $message;
 		} else {
 			// wrap non-messages into a message class
-			$this->message = new RawMessage( '$1', array( $message ) );
+			$this->message = new RawMessage(
+				'$1',
+				// rawParam + htmlspecialchars ensures this wont be treated as wikitext
+				// if the message gets parsed and that its still safe for html output.
+				// NOTE: This can result in double encoding, prefer to use explicit messages
+				// instead of this fallback.
+				array( Message::rawParam( htmlspecialchars( $message ) ) )
+			);
 		}
 	}
 }

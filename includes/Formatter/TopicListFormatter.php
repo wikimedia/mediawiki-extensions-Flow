@@ -75,6 +75,13 @@ class TopicListFormatter {
 		return $res;
 	}
 
+	/**
+	 * @param Workflow $listWorkflow
+	 * @param Workflow[] $workflows
+	 * @param FormatterRow[] $found
+	 * @param IContextSource $ctx
+	 * @return array
+	 */
 	protected function buildResult( Workflow $listWorkflow, array $workflows, array $found, IContextSource $ctx ) {
 		$revisions = $posts = $replies = array();
 		foreach( $found as $formatterRow ) {
@@ -159,6 +166,7 @@ class TopicListFormatter {
 			}
 		} while( !$stack->isEmpty() );
 
+		/** @var Workflow|null $workflow */
 		$workflow = isset( $workflows[$postAlphaId] ) ? $workflows[$postAlphaId] : null;
 		$ts = $workflow ? $workflow->getLastModifiedObj()->getTimestamp() : 0;
 		return array(
