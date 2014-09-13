@@ -2,8 +2,8 @@
 
 namespace Flow\Tests;
 
-use Flow\Data\PagerPage;
-use Flow\Data\Pager;
+use Flow\Data\Pager\PagerPage;
+use Flow\Data\Pager\Pager;
 use Flow\Model\UUID;
 
 /**
@@ -93,7 +93,7 @@ class PagerTest extends FlowTestCase {
 	 * Mock TopKIndex
 	 */
 	protected function mockIndex( $sort ) {
-		$index = $this->getMockBuilder( 'Flow\Data\TopKIndex' )
+		$index = $this->getMockBuilder( 'Flow\Data\Index\TopKIndex' )
 			->disableOriginalConstructor()
 			->getMock();
 		$index->expects( $this->any() )

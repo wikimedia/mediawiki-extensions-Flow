@@ -51,7 +51,7 @@ class BlockFactoryTest extends FlowTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		$rootPostLoader = $this->getMockBuilder( '\Flow\Data\RootPostLoader' )
+		$rootPostLoader = $this->getMockBuilder( '\Flow\Repository\RootPostLoader' )
 			->disableOriginalConstructor()
 			->getMock();
 

@@ -3,7 +3,6 @@
 namespace Flow\Data;
 
 use Flow\Model\UUID;
-use FormatJson;
 use SplObjectStorage;
 use Flow\Exception\DataModelException;
 

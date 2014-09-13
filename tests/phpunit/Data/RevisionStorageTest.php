@@ -2,7 +2,7 @@
 
 namespace Flow\Tests\Data;
 
-use Flow\Data\PostRevisionStorage;
+use Flow\Data\Storage\PostRevisionStorage;
 use Flow\Tests\FlowTestCase;
 
 /**

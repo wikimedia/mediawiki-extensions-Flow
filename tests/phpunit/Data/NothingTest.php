@@ -2,7 +2,7 @@
 
 namespace Flow\Tests\Data;
 
-use Flow\Data\SortArrayByKeys;
+use Flow\Data\Utils\SortArrayByKeys;
 use Flow\Tests\FlowTestCase;
 
 /**

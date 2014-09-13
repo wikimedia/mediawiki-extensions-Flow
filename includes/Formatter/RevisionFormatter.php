@@ -3,7 +3,7 @@
 namespace Flow\Formatter;
 
 use Flow\Collection\PostCollection;
-use Flow\Data\UserNameBatch;
+use Flow\Repository\UserNameBatch;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Anchor;

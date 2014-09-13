@@ -4,7 +4,7 @@ namespace Flow\Tests;
 
 use Flow\Container;
 use Flow\Data\ManagerGroup;
-use Flow\Data\ReferenceRecorder;
+use Flow\Data\Listener\ReferenceRecorder;
 use Flow\Exception\WikitextException;
 use Flow\LinksTableUpdater;
 use Flow\Model\AbstractRevision;
