@@ -11,11 +11,21 @@ use Flow\Exception\DataModelException;
  */
 class TopicHistoryStorage implements ObjectStorage {
 
+	/**
+	 * @var ObjectStorage
+	 */
 	protected $postRevisionStorage;
 
+	/**
+	 * @var ObjectStorage
+	 */
 	protected $postSummaryStorage;
 
-	public function __construct( $postRevisionStorage, $postSummaryStorage ) {
+	/**
+	 * @param ObjectStorage $postRevisionStorage
+	 * @param ObjectStorage $postSummaryStorage
+	 */
+	public function __construct( ObjectStorage $postRevisionStorage, ObjectStorage $postSummaryStorage ) {
 		$this->postRevisionStorage = $postRevisionStorage;
 		$this->postSummaryStorage = $postSummaryStorage;
 	}
@@ -73,5 +83,4 @@ class TopicHistoryStorage implements ObjectStorage {
 	public function getIterator() {
 		throw new DataModelException( 'Not Implemented', 'process-data' );
 	}
-
 }

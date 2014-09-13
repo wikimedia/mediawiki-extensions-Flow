@@ -24,6 +24,8 @@ class PostRevisionRecentChanges extends RecentChanges {
 	/**
 	 * @param PostRevision $object
 	 * @param string[] $row
+	 * @param array $metadata
+	 * @throws FlowException
 	 */
 	public function onAfterInsert( $object, array $row, array $metadata ) {
 		if ( !isset( $metadata['workflow'] ) ) {

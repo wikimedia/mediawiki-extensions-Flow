@@ -10,11 +10,9 @@ use Flow\Exception\FlowException;
 use Flow\Exception\InvalidInputException;
 use Flow\Model\UUID;
 use Flow\View;
-use DerivativeContext;
 use IContextSource;
 use OutputPage;
 use Page;
-use RequestContext;
 use Title;
 use WebRequest;
 use WikiPage;
@@ -38,7 +36,8 @@ class FlowAction extends Action {
 	/**
 	 * @param string $action
 	 * @param OutputPage|null $output
-	 * @return
+	 * @throws ErrorPageError
+	 * @throws FlowException
 	 */
 	public function showForAction( $action, OutputPage $output = null ) {
 		$container = Container::getContainer();

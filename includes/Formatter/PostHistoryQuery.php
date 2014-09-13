@@ -2,6 +2,8 @@
 
 namespace Flow\Formatter;
 
+use Flow\Exception\FlowException;
+use Flow\Exception\InvalidDataException;
 use Flow\Model\UUID;
 
 class PostHistoryQuery extends AbstractQuery {

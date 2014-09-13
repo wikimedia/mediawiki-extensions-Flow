@@ -53,7 +53,7 @@ abstract class AbstractQuery {
 	/**
 	 * Array of collection ids mapping to their most recent revision ids.
 	 *
-	 * @var array
+	 * @var UUID[]
 	 */
 	protected $currentRevisionsCache = array();
 
@@ -156,14 +156,14 @@ abstract class AbstractQuery {
 				$queries[] = array( 'rev_type_id' => $uuid );
 			}
 
-			/** @var AbstractRevision[][] $found */
 			$found = $this->storage->findMulti( $revisionType,
 				$queries,
 				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
 			);
 
-			foreach ( $found as $rev ) {
-				$rev = reset( $rev );
+			/** @var AbstractRevision[] $result */
+			foreach ( $found as $result ) {
+				$rev = reset( $result );
 				$this->currentRevisionsCache[$rev->getCollectionId()->getAlphadecimal()] = $rev->getRevisionId();
 				$revisions[$rev->getRevisionId()->getAlphadecimal()] = $rev;
 			}

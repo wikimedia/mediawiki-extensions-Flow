@@ -51,6 +51,13 @@ class WorkflowLoader {
 		return $this->blockFactory->createBlocks( $this->workflow );
 	}
 
+	/**
+	 * @param $action
+	 * @param array $blocks
+	 * @param $user
+	 * @param WebRequest $request
+	 * @return Block\AbstractBlock[]
+	 */
 	public function handleSubmit( $action, array $blocks, $user, WebRequest $request ) {
 		return $this->submissionHandler->handleSubmit( $this->workflow, $action, $blocks, $user, $request );
 	}

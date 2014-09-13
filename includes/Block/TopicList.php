@@ -3,7 +3,6 @@
 namespace Flow\Block;
 
 use Flow\Container;
-use Flow\Data\ManagerGroup;
 use Flow\Data\Pager;
 use Flow\Data\PagerPage;
 use Flow\Model\PostRevision;
@@ -303,7 +302,8 @@ class TopicListBlock extends AbstractBlock {
 	public function setPageTitle( Templating $templating, \OutputPage $out ) {
 		if ( $this->action !== 'new-topic' ) {
 			// Only new-topic should override page title, rest should default
-			return parent::setPageTitle( $templating, $out );
+			parent::setPageTitle( $templating, $out );
+			return;
 		}
 
 		$title = $this->workflow->getOwnerTitle();
