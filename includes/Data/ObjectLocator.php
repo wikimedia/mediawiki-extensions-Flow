@@ -238,7 +238,7 @@ class ObjectLocator {
 			}
 		}
 
-		if ( $queries && $this->mapper instanceof CachingObjectMapper ) {
+		if ( $queries && $this->mapper instanceof Core\CachingObjectMapper ) {
 			return false;
 		}
 

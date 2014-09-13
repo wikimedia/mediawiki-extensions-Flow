@@ -3,7 +3,7 @@
 namespace Flow\Formatter;
 
 use Flow\Data\ManagerGroup;
-use Flow\Data\RecentChanges;
+use Flow\Data\RecentChanges\RecentChanges;
 use Flow\Exception\FlowException;
 use Flow\FlowActions;
 use Flow\Model\UUID;
