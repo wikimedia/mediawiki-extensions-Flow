@@ -20,6 +20,7 @@ class PostModerationLogger implements LifecycleHandler {
 	/**
 	 * @param PostRevision $object
 	 * @param array $row
+	 * @param array $metadata
 	 */
 	function onAfterInsert( $object, array $row, array $metadata ) {
 		if ( $object instanceof PostRevision ) {

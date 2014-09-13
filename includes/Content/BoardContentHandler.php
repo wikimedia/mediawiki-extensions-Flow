@@ -4,6 +4,7 @@ namespace Flow\Content;
 
 use Flow\Container;
 use Flow\Model\UUID;
+use Content;
 use FormatJson;
 use MWException;
 
@@ -32,11 +33,11 @@ class BoardContentHandler extends \ContentHandler {
 	 * @since 1.21
 	 *
 	 * @param Content $content The Content object to serialize
-	 * @param string $format The desired serialization format
-	 *
+	 * @param string|null $format The desired serialization format
 	 * @return string Serialized form of the content
+	 * @throws MWException
 	 */
-	public function serializeContent( \Content $content, $format = null ) {
+	public function serializeContent( Content $content, $format = null ) {
 		if ( ! $content instanceof BoardContent ) {
 			throw new MWException( "Expected a BoardContent object, got a " . get_class( $content ) );
 		}

@@ -8,6 +8,7 @@ use Flow\Model\UUID;
 use Flow\Parsoid\Utils;
 use EchoBasicFormatter;
 use EchoEvent;
+use Message;
 use Title;
 use User;
 
@@ -60,9 +61,10 @@ class NotificationFormatter extends EchoBasicFormatter {
 
 	/**
 	 * Helper method for generating a link to post notification
-	 * @param \EchoEvent
-	 * @param \User
+	 * @param EchoEvent $event
+	 * @param User $user
 	 * @return Anchor|boolean
+	 * @throws FlowException
 	 */
 	protected function getPostLinkAnchor( EchoEvent $event, User $user ) {
 		$urlGenerator = $this->getUrlGenerator();
@@ -109,7 +111,6 @@ class NotificationFormatter extends EchoBasicFormatter {
 	 */
 	protected function getLinkParams( $event, $user, $destination ) {
 		$anchor = null;
-		$title  = $event->getTitle();
 
 		// Unfortunately this is not a Flow code path, so we have to reach
 		//  into global state.

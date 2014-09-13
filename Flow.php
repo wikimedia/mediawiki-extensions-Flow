@@ -387,8 +387,6 @@ $wgResourceLoaderLESSImportPaths = array_merge( $wgResourceLoaderLESSImportPaths
 	$dir . "modules/new/styles/flow.less/",
 ) );
 
-$wgJobClasses['Flow\Jobs\WatchTitle'] = 'Flow\Jobs\WatchTitle';
-
 // Configuration
 
 // URL for more information about the Flow notification system

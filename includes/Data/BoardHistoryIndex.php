@@ -42,6 +42,7 @@ class BoardHistoryIndex extends TopKIndex {
 	/**
 	 * @param Header|PostRevision $object
 	 * @param string[] $new
+	 * @param array $metadata
 	 */
 	public function onAfterInsert( $object, array $new, array $metadata ) {
 		if ( $object instanceof Header ) {
@@ -65,6 +66,7 @@ class BoardHistoryIndex extends TopKIndex {
 	 * @param Header|PostRevision $object
 	 * @param string[] $old
 	 * @param string[] $new
+	 * @param array $metadata
 	 */
 	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
 		if ( $object instanceof Header ) {
@@ -87,6 +89,7 @@ class BoardHistoryIndex extends TopKIndex {
 	/**
 	 * @param Header|PostRevision $object
 	 * @param string[] $old
+	 * @param array $metadata
 	 */
 	public function onAfterRemove( $object, array $old, array $metadata ) {
 		if ( $object instanceof Header ) {

@@ -8,7 +8,6 @@ use Flow\Exception\InvalidInputException;
 use Flow\Formatter\FormatterRow;
 use Flow\Model\Header;
 use Flow\RevisionActionPermissions;
-use Flow\Templating;
 
 class HeaderBlock extends AbstractBlock {
 

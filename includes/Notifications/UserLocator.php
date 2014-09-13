@@ -6,6 +6,7 @@ use EchoEvent;
 use EchoUserLocator;
 use Flow\Model\UUID;
 use Title;
+use User;
 
 class NotificationsUserLocator extends EchoUserLocator {
 	/**

@@ -21,7 +21,7 @@ class RevisionViewFormatter {
 	}
 
 	/**
-	 * @param FormatterRow $row
+	 * @param RevisionViewRow $row
 	 * @param IContextSource $ctx
 	 * @return array
 	 */

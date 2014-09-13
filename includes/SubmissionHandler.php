@@ -145,6 +145,7 @@ class SubmissionHandler {
 	/**
 	 * Helper function extracts parameters from a WebRequest.
 	 *
+	 * @param string $action
 	 * @param WebRequest $request
 	 * @param AbstractBlock[] $blocks
 	 * @return array

@@ -19,9 +19,19 @@ class Pager {
 	protected $index;
 
 	/**
-	 * @var integer
+	 * @var array Results sorted by the values in this array
 	 */
-	protected $defaultLimit = 5;
+	protected $sort;
+
+	/**
+	 * @var array Map of column name to column value for equality query
+	 */
+	protected $query;
+
+	/**
+	 * @var array Options effecting the result such as `sort`, `order`, and `pager-limit`
+	 */
+	protected $options;
 
 	public function __construct( ObjectManager $storage, array $query, array $options ) {
 		// not sure i like this
@@ -66,27 +76,6 @@ class Pager {
 		} else {
 			return $this->processPage( $direction, $offset, $pageLimit, $results );
 		}
-	}
-
-	/**
-	 * @return integer
-	 */
-	public function getDefaultLimit() {
-		return $this->defaultLimit;
-	}
-
-	/**
-	 * @param integer $newLimit
-	 */
-	public function setDefaultLimit( $newLimit ) {
-		$this->defaultLimit = $newLimit;
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function getDefaultDirection() {
-		return 'fwd';
 	}
 
 	/**

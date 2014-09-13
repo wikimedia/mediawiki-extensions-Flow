@@ -156,6 +156,7 @@ class Workflow {
 	}
 
 	/**
+	 * @param string $type
 	 * @param User $user
 	 * @param Title $title
 	 * @return Workflow

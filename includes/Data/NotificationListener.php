@@ -4,7 +4,6 @@ namespace Flow\Data;
 
 use Flow\Model\AbstractRevision;
 use Flow\NotificationController;
-use User;
 
 class NotificationListener implements LifecycleHandler {
 

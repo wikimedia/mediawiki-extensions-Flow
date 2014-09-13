@@ -25,6 +25,8 @@ class HeaderRecentChanges extends RecentChanges {
 	/**
 	 * @param Header $object
 	 * @param string[] $row
+	 * @param array $metadata
+	 * @throws FlowException
 	 */
 	public function onAfterInsert( $object, array $row, array $metadata ) {
 		if ( !isset( $metadata['workflow'] ) ) {
