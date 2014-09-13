@@ -33,7 +33,7 @@ class CheckUserFormatter extends AbstractFormatter {
 		$links = $this->serializer->buildLinks( $row );
 		$properties = $this->serializer->buildProperties( $row->workflow->getId(), $row->revision, $ctx );
 		if ( $links === null ) {
-			wfDebugLog( 'Flow', __METHOD__ . ': No links were generated for revision ' . $row->revision->getAlphadecimal() );
+			wfDebugLog( 'Flow', __METHOD__ . ': No links were generated for revision ' . $row->revision->getRevisionId()->getAlphadecimal() );
 			return null;
 		}
 

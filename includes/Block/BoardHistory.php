@@ -4,7 +4,6 @@ namespace Flow\Block;
 
 use Flow\RevisionActionPermissions;
 use Flow\Container;
-use Flow\Templating;
 use Flow\Exception\DataModelException;
 
 class BoardHistoryBlock extends AbstractBlock {

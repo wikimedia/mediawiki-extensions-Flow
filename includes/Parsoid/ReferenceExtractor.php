@@ -3,10 +3,7 @@
 namespace Flow\Parsoid;
 
 use DOMXPath;
-use Flow\Exception\InvalidInputException;
-use Flow\Model\URLReference;
 use Flow\Model\UUID;
-use Flow\Model\WikiReference;
 use Flow\Model\Workflow;
 use MWException;
 
@@ -16,12 +13,12 @@ use MWException;
  */
 class ReferenceExtractor {
 	/**
-	 * @var Extractor\ExtractorInterface[]
+	 * @var ExtractorInterface[]
 	 */
 	protected $extractors;
 
 	/**
-	 * @param Extractor\ExtractorInterface[] $extractors
+	 * @param ExtractorInterface[] $extractors
 	 */
 	public function __construct( $extractors ) {
 		$this->extractors = $extractors;
@@ -53,7 +50,7 @@ class ReferenceExtractor {
 
 			if ( ! $elements ) {
 				$class = get_class( $extractor );
-				throw new MWException( "Malformed xpath from $class: $query" );
+				throw new MWException( "Malformed xpath from $class: " . $extractor->getXPath() );
 			}
 
 			foreach( $elements as $element ) {

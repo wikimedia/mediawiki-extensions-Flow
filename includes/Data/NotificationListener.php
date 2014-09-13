@@ -4,7 +4,6 @@ namespace Flow\Data;
 
 use Flow\Model\AbstractRevision;
 use Flow\NotificationController;
-use User;
 
 class NotificationListener implements LifecycleHandler {
 
@@ -52,10 +51,14 @@ class NotificationListener implements LifecycleHandler {
 	}
 
 	protected function notifyPostChange( $type, $object, $metadata, array $params = array() ) {
+		$workflow = $metadata['workflow'];
+		if ( !$workflow instanceof Workflow ) {
+			throw new InvalidDataException( "Workflow metadata is not a Workflow" );
+		}
 		$this->notificationController->notifyPostChange( $type, $params + array(
 			'revision' => $object,
-			'title' => $metadata['workflow']->getOwnerTitle(),
-			'topic-workflow' => $metadata['workflow'],
+			'title' => $workflow->getOwnerTitle(),
+			'topic-workflow' => $workflow,
 			'topic-title' => $metadata['topic-title'],
 		) );
 	}

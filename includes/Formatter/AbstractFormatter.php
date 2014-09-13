@@ -288,7 +288,7 @@ abstract class AbstractFormatter {
 		if ( !isset( $data['links']['topic'] ) || !$row->revision instanceof PostRevision ) {
 			return $ownerLink;
 		}
-		/** @var \Flow\Anchor $topic */
+		/** @var Anchor $topic */
 		$topic = $data['links']['topic'];
 
 		// generated link has generic link text, should be actual topic title

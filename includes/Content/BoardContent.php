@@ -8,6 +8,7 @@ use Flow\Container;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\View;
+use Flow\WorkflowLoader;
 use MWException;
 use OutputPage;
 use ParserOptions;
@@ -190,6 +191,7 @@ class BoardContent extends \AbstractContent {
 			);
 
 			// Load workflow and run View.
+			/** @var WorkflowLoader $loader */
 			$loader = Container::get('factory.loader.workflow')
 				->createWorkflowLoader( $title, $this->getWorkflowId() );
 			$view->show( $loader, 'view' );

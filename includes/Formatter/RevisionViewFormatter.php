@@ -21,7 +21,7 @@ class RevisionViewFormatter {
 	}
 
 	/**
-	 * @param FormatterRow $row
+	 * @param RevisionViewRow $row
 	 * @param IContextSource $ctx
 	 * @return array
 	 */
@@ -130,7 +130,7 @@ class RevisionDiffViewFormatter {
 	/**
 	 * Diff would format against two revisions
 	 */
-	public function formatApi( FormatterRow $newRow, FormatterRow $oldRow, IContextSource $ctx ) {
+	public function formatApi( RevisionViewRow $newRow, RevisionViewRow $oldRow, IContextSource $ctx ) {
 		$oldRes = $this->revisionViewFormatter->formatApi( $oldRow, $ctx );
 		$newRes = $this->revisionViewFormatter->formatApi( $newRow, $ctx );
 

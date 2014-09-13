@@ -80,9 +80,12 @@ class BadImageRemover implements ContentFixer {
 		$linkNodes = $xpath->query( '//img[@data-parsoid]' );
 
 		foreach ( $linkNodes as $linkNode ) {
-			$parsoid = $linkNode->getAttribute( 'data-parsoid' );
-			$parsoid = FormatJson::decode( $parsoid, true );
-			if ( isset( $parsoid['sa']['resource'] ) ) {
+			$attribute = $linkNode->attributes->getNamedItem( 'data-parsoid' );
+			if ( $attribute === null ) {
+				continue;
+			}
+			$parsoid = FormatJson::decode( $attribute->nodeValue, true );
+	   		if ( isset( $parsoid['sa']['resource'] ) ) {
 				$callback( $linkNode, $parsoid );
 			}
 		}
