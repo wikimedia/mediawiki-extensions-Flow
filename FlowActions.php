@@ -288,6 +288,7 @@ $wgFlowActions = array(
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => array( 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_HIDDEN => array( 'flow-delete', 'flow-suppress' ),
+			PostRevision::MODERATED_CLOSED => array( 'flow-delete', 'flow-suppress' ),
 		),
 		'button-method' => 'POST',
 		'links' => array( 'topic', 'topic-history', 'topic-revision', 'watch-topic', 'unwatch-topic' ),
@@ -340,6 +341,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => 'flow-suppress',
 			PostRevision::MODERATED_HIDDEN => 'flow-suppress',
 			PostRevision::MODERATED_DELETED => 'flow-suppress',
+			PostRevision::MODERATED_CLOSED => 'flow-suppress',
 		),
 		'button-method' => 'POST',
 		'links' => array( 'topic', 'topic-history', 'topic-revision', 'watch-topic', 'unwatch-topic' ),
