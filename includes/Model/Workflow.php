@@ -58,6 +58,11 @@ class Workflow {
 	protected $titleText;
 
 	/**
+	 * @var string dbKey half of the Topic:Something_Something article title
+	 */
+	protected $articleTitleText;
+
+	/**
 	 * @var UserTuple
 	 */
 	protected $user;
@@ -186,12 +191,22 @@ class Workflow {
 		// evil hax
 		if ( $this->type === 'topic' ) {
 			$namespace = NS_TOPIC;
-			$titleText = $this->id->getAlphadecimal();
+			$titleText = $this->articleTitleText;
 		} else {
 			$namespace = $this->namespace;
 			$titleText = $this->titleText;
 		}
 		return $this->title = self::getFromTitleCache( $this->wiki, $namespace, $titleText );
+	}
+
+	public function setArticleTitle( Title $title ) {
+		if ( $this->type !== 'topic' ) {
+			throw new DataModelException( 'Invalid method call, only valid for topic workflows' );
+		}
+		if ( $title->getNamespace() !== NS_TOPIC ) {
+			throw new InvalidInputException( 'Replacement article title must be in NS_TOPIC' );
+		}
+		$this->articleTitleText = $title->getDBkey();
 	}
 
 	/**

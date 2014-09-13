@@ -2,7 +2,7 @@
 
 namespace Flow;
 
-use Flow\Data\MultiDimArray;
+use Flow\Data\Utils\MultiDimArray;
 
 class FlowActions {
 	/**

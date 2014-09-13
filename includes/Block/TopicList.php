@@ -3,8 +3,8 @@
 namespace Flow\Block;
 
 use Flow\Container;
-use Flow\Data\Pager;
-use Flow\Data\PagerPage;
+use Flow\Data\Pager\Pager;
+use Flow\Data\Pager\PagerPage;
 use Flow\Model\PostRevision;
 use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;

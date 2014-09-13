@@ -4,7 +4,6 @@ namespace Flow\Block;
 
 use Flow\Container;
 use Flow\Data\ManagerGroup;
-use Flow\Data\RootPostLoader;
 use Flow\Exception\FailCommitException;
 use Flow\Exception\FlowException;
 use Flow\Exception\InvalidActionException;
@@ -17,6 +16,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Parsoid\Utils;
+use Flow\Repository\RootPostLoader;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 
