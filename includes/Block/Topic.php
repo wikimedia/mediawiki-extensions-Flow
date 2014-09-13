@@ -16,7 +16,6 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use Flow\NotificationController;
 use Flow\Parsoid\Utils;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
@@ -651,8 +650,10 @@ class TopicBlock extends AbstractBlock {
 
 	/**
 	 * Process the history result for either topic or post
-	 * @param FormatterRow
-	 * @param array
+	 *
+	 * @param FormatterRow $found
+	 * @param array $options
+	 * @return array
 	 */
 	protected function processHistoryResult( $found, $options ) {
 		$serializer = $this->getRevisionFormatter();

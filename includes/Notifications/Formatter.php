@@ -109,7 +109,6 @@ class NotificationFormatter extends EchoBasicFormatter {
 	 */
 	protected function getLinkParams( $event, $user, $destination ) {
 		$anchor = null;
-		$title  = $event->getTitle();
 
 		// Unfortunately this is not a Flow code path, so we have to reach
 		//  into global state.

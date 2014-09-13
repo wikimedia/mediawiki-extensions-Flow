@@ -7,7 +7,6 @@ use Flow\Model\Anchor;
 use Flow\Model\Workflow;
 use Html;
 use IContextSource;
-use Linker;
 use Message;
 use ContextSource;
 

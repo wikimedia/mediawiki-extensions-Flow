@@ -8,7 +8,6 @@ use Flow\Jobs\WatchTitle;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\WatchedTopicItems;
-use JobQueueGroup;
 use Title;
 use User;
 use WatchedItem;
