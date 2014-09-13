@@ -4,8 +4,8 @@ namespace Flow\Tests\Data;
 
 use Closure;
 use ReflectionClass;
-use Flow\Data\UserNameBatch;
-use Flow\Data\UserNameListener;
+use Flow\Repository\UserNameBatch;
+use Flow\Data\Listener\UserNameListener;
 use Flow\Tests\FlowTestCase;
 
 /**
@@ -28,7 +28,7 @@ class UserNameListenerTest extends FlowTestCase {
 	 * @dataProvider onAfterLoadDataProvider
 	 */
 	public function testOnAfterLoad( array $row, array $key, $expectedWiki, $defaultWiki = null ) {
-		$batch = new UserNameBatch( $this->getMock( '\Flow\Data\UsernameQuery' ) );
+		$batch = new UserNameBatch( $this->getMock( '\Flow\Repository\UserName\UserNameQuery' ) );
 		$listener = new UserNameListener( $batch, $key, $defaultWiki );
 		$listener->onAfterLoad( (object)$row, $row );
 

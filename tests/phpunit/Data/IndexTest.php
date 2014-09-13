@@ -4,9 +4,9 @@ namespace Flow\Tests\Data;
 
 use Flow\Container;
 use Flow\Data\BufferedCache;
-use Flow\Data\FeatureIndex;
-use Flow\Data\TopKIndex;
-use Flow\Data\UniqueFeatureIndex;
+use Flow\Data\Index\FeatureIndex;
+use Flow\Data\Index\TopKIndex;
+use Flow\Data\Index\UniqueFeatureIndex;
 use Flow\Tests\FlowTestCase;
 
 /**
