@@ -102,6 +102,12 @@ compile-lightncandy:
 	+make -C handlebars all
 
 ###
+# Compile class autoloader for $wgAutoloadClasses
+###
+autoload:
+	@${PHP} scripts/gen-autoload.php
+
+###
 # Update this repository
 ###
 gems:
