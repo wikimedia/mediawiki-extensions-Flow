@@ -164,8 +164,58 @@
 	 */
 	FlowComponent.prototype.getInstanceByElement = function ( $el ) {
 		var $container = $el.closest( '.flow-component' ),
-			id = $container.data( 'flow-id' );
+			id;
+
+		// This element isn't _within_ any actual component; was it spawned _by_ a component?
+		if ( !$container.length ) {
+			// Find any parents of this element with the flowSpawnedBy data attribute
+			$container = $el.parents().addBack().filter( function () {
+				return $( this ).data( 'flowSpawnedBy' );
+			} ).last()
+				// Get the flowSpawnedBy node
+				.data( 'flowSpawnedBy' )
+				// and then return the closest flow-component of it
+				.closest( '.flow-component' );
+		}
+
+		// Still no parent component. Crap out!
+		if ( !$container.length ) {
+			mw.flow.debug( 'Failed to getInstanceByElement: no $container.length', arguments );
+			return false;
+		}
+
+		id = $container.data( 'flow-id' );
 
 		return this.constructor._instanceRegistry[ this.constructor._instanceRegistryById[ id ] ] || false;
 	};
+
+	/**
+	 * Sets the FlowComponent's $container element as the data-flow-spawned-by attribute on $el.
+	 * Fires ALL events from within $el onto $eventTarget, albeit with the whole event intact.
+	 * This allows us to listen for events from outside of FlowComponent's nodes, but still trigger them within.
+	 * @param {jQuery} $el
+	 * @param {jQuery} [$eventTarget]
+	 * @returns {jQuery}
+	 */
+	FlowComponent.prototype.assignSpawnedNode = function ( $el, $eventTarget ) {
+		// Target defaults to .flow-component
+		$eventTarget = $eventTarget || this.$container;
+
+		// Assign flowSpawnedBy data attribute
+		$el.data( 'flowSpawnedBy', $eventTarget );
+
+		// Forward all events (except mouse movement) to $eventTarget
+		$el.on(
+			'blur change click dblclick error focus focusin focusout hover keydown keypress keyup load mousedown mouseup resize scroll select submit',
+			'*',
+			{ flowSpawnedBy: this.$container, flowSpawnedFrom: $el },
+			function ( event, eventData ) {
+				$eventTarget.trigger(
+					event,
+					eventData
+				);
+			}
+		);
+	};
+
 }( jQuery, mediaWiki, mediaWiki.flow.vendor.initStorer ) );
