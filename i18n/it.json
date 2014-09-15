@@ -5,7 +5,8 @@
 			"Beta16",
 			"Gianfranco",
 			"Maria victoria",
-			"Rosh"
+			"Rosh",
+			"FRacco"
 		]
 	},
 	"flow-desc": "Sistema di gestione del flusso di lavoro",
@@ -134,7 +135,7 @@
 	"flow-error-no-index": "Impossibile trovare un indice per eseguire la ricerca di dati.",
 	"flow-error-no-render": "L'azione indicata non è stata riconosciuta.",
 	"flow-error-no-commit": "L'azione specificata non può essere salvata.",
-	"flow-error-fetch-after-lock": "Si è verificato un errore durante la richiesta di nuovi dati. L'operazione di blocco/sblocco però è andata a buon fine. Il messaggio di errore è: $1",
+	"flow-error-fetch-after-lock": "Si è verificato un errore durante la richiesta di nuovi dati. L'operazione di blocco/sblocco è comunque andata a buon fine. Il messaggio di errore è: $1",
 	"flow-error-move": "Lo spostamento di una bacheca di discussione non è attualmente supportato.",
 	"flow-edit-header-placeholder": "Descrivi questa bacheca di discussione",
 	"flow-edit-header-submit": "Salva intestazione",

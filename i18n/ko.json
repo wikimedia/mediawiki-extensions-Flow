@@ -9,7 +9,8 @@
 			"Yjs5497",
 			"아라",
 			"관인생략",
-			"Keysuck"
+			"Keysuck",
+			"Revi"
 		]
 	},
 	"flow-desc": "워크플로우 관리 시스템",
@@ -265,7 +266,7 @@
 	"flow-terms-of-use-new-topic": "\"{{int:flow-newtopic-save}}\"을 클릭하면 이 위키의 이용 약관에 동의한 것이 됩니다.",
 	"flow-terms-of-use-reply": "\"{{int:flow-newtopic-save}}\"을 클릭하면 이 위키의 이용 약관에 동의한 것이 됩니다.",
 	"flow-terms-of-use-edit": "바뀐 내용을 저장하면 이 위키의 이용 약관에 동의한 것이 됩니다.",
-	"flow-anon-warning": "로그인되어 있지 않습니다. IP 주소 대신에 당신의 이름으로 표시되려면, [$1 로그인]하거나 [$2 계정을 만들] 수 있습니다.",
+	"flow-anon-warning": "로그인하고 있지 않습니다. IP 주소 대신에 당신의 이름으로 표시되려면, [$1 로그인]하거나 [$2 계정을 만들] 수 있습니다.",
 	"flow-terms-of-use-summarize": "\"{{int:flow-summarize-topic-submit}}\"을 누름으로써, 당신은 이 위키의 이용 약관에 동의하는 것입니다.",
 	"flow-whatlinkshere-post": "[$1 게시글]에서",
 	"flow-whatlinkshere-header": "[$1 머리말]에서",
