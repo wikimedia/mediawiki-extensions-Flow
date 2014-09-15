@@ -318,6 +318,10 @@ class PermissionsTest extends PostRevisionTestCase {
 				'tree_orig_user_id' => $this->unconfirmedUser()->getId(),
 				'tree_parent_id' => $this->topic()->getPostId()->getBinary()
 			), array(), 1 );
+			$this->post->setRootPost( $this->generateObject( array(
+				'tree_orig_user_id' => $this->unconfirmedUser()->getId(),
+				'tree_parent_id' => $this->topic()->getPostId()->getBinary()
+			), array(), 1 ) );
 		}
 
 		return $this->post;
