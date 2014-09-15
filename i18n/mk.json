@@ -195,7 +195,7 @@
 	"flow-notification-mention": "$1 {{GENDER:$5|вр}} спомна во {{GENDER:$1|неговата|нејзината|неговата}} <span class=\"plainlinks\">[$2 објава]</span>  во „$3“ на „$4“",
 	"flow-notification-link-text-view-post": "Погл. објавата",
 	"flow-notification-link-text-view-topic": "Погл. темата",
-	"flow-notification-reply-email-subject": "$1 {{GENDER:$1|одговори}} на тема",
+	"flow-notification-reply-email-subject": "$2 на $3",
 	"flow-notification-reply-email-batch-body": "$1 {{GENDER:$1|одговори}} на „$2“ на „$3“",
 	"flow-notification-reply-email-batch-bundle-body": "$1 и уште {{PLURAL:$5|еден друг|$4 други}} {{GENDER:$1|одговорија}} на „$2“ на „$3“",
 	"flow-notification-mention-email-subject": "$1 {{GENDER:$3|ве}} {{GENDER:$1|спомна}} на „$2“",

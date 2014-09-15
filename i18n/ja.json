@@ -8,7 +8,7 @@
 		]
 	},
 	"flow-desc": "ワークフロー管理システム",
-	"flow-talk-taken-over": "このトークページは、[https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow 掲示板]に引き継がれました。",
+	"flow-talk-taken-over": "このトークページでは [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow] を使用しています。",
 	"log-name-flow": "Flow活動記録",
 	"logentry-delete-flow-delete-post": "$1 が [[$3]] の[$4 投稿]を{{GENDER:$2|削除}}",
 	"logentry-delete-flow-restore-post": "$1 が [[$3]] の[$4 投稿]を{{GENDER:$2|復元}}",
@@ -243,6 +243,9 @@
 	"flow-edited-ago-minute": "$1{{PLURAL:$1|分}}前に編集",
 	"flow-edited-ago-second": "$1{{PLURAL:$1|秒}}前に編集",
 	"flow-edited-ago-week": "$1{{PLURAL:$1|週間}}前に編集",
+	"flow-recent-topics": "最近活発な話題",
+	"flow-toggle-topics": "話題のみの表示に切り替える",
+	"flow-toggle-topics-posts": "話題と投稿の表示に切り替える",
 	"flow-terms-of-use-summarize": "「{{int:flow-summarize-topic-submit}}」をクリックすると、このウィキの利用規約に同意したと見なされます。",
 	"flow-whatlinkshere-post": "[$1 投稿]から",
 	"flow-whatlinkshere-header": "[$1 ヘッダー]から",

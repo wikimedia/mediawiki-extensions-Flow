@@ -182,7 +182,7 @@
 	"flow-notification-mention": "$1 heeft {{GENDER:$5|u}} genoemd in {{GENDER:$1|zijn|haar|zijn/haar}} <span class=\"plainlinks\">[$2 bericht]</span> in \"$3\" op \"$4\".",
 	"flow-notification-link-text-view-post": "Bericht bekijken",
 	"flow-notification-link-text-view-topic": "Onderwerp bekijken",
-	"flow-notification-reply-email-subject": "$1 {{GENDER:$1|heeft}} gereageerd op uw bericht",
+	"flow-notification-reply-email-subject": "$2 op $3",
 	"flow-notification-reply-email-batch-body": "$1 {{GENDER:$1|heeft}} gereageerd op uw bericht in \"$2\" op \"$3\"",
 	"flow-notification-reply-email-batch-bundle-body": "$1 en {{PLURAL:$5|iemand anders|$4 anderen}} {{GENDER:$1|hebben}} gereageerd op uw bericht in \"$2\" op \"$3\"",
 	"flow-notification-mention-email-subject": "$1 {{GENDER:$1|heeft}} {{GENDER:$3|u}} genoemd op \"$2\"",

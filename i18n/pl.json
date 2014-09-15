@@ -49,6 +49,7 @@
 	"flow-topic-notification-subscribe-description": "Będziesz otrzymywać powiadomienia, kiedy inni odpowiedzą w tym temacie.",
 	"flow-error-prev-revision-mismatch": "Inny użytkownik kilka sekund temu edytował ten post. Na pewno chcesz nadpisać jego zmiany?",
 	"flow-error-default": "Wystąpił błąd.",
+	"flow-error-content-too-long": "Treść jest zbyt duża. Po rozbudowie treść jest ograniczona do $1 {{PLURAL:$1|bajta|bajtów}}.",
 	"flow-edit-header-submit": "Zapisz nagłówek",
 	"flow-edit-header-submit-overwrite": "Nadpisz nagłówek",
 	"flow-summarize-topic-submit": "Podsumuj",
