@@ -54,3 +54,11 @@ Then(/^I do not see the lock\/unlock form$/) do
   on(FlowPage).topic_lock_form_element.when_not_present
 end
 
+Then(/^the original message for the top post has no reply link$/) do
+  on(FlowPage).flow_first_topic_original_post_reply_element.should_not exist
+end
+
+Then(/the original message for the top post has no edit link$/) do
+  on(FlowPage).flow_first_topic_original_post_edit_element.should_not exist
+end
+

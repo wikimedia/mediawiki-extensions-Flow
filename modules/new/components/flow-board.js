@@ -605,12 +605,11 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.lockTopic = function ( info, data ) {
-			var revision, topicId, revisionId, $topicTitleBar,
+			var $replacement,
 				$target = info.$target,
-				$topic = $target.parents( '.flow-topic' ),
-				self = this,
-				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
-				flowId = $( self ).closest( '.flow-topic-titlebar' ).parent().data( 'flow-id' );
+				$this = $( this ),
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $this ),
+				flowId = $this.closest( '.flow-topic' ).data( 'flow-id' );
 
 			if ( info.status !== 'done' ) {
 				// Error will be displayed by default & edit conflict handled, nothing else to wrap up
@@ -636,28 +635,14 @@
 				// Flow topic title, in Topic:<topicId> format (2600 is topic namespace id)
 				page: mw.Title.newFromText( flowId, 2600 ).getPrefixedDb()
 			} ).done( function( result ) {
-				// FIXME: Why doesn't the API return this?
-				result = result.flow['view-topic'].result.topic;
-				topicId = result.roots[0];
-				revisionId = result.posts[topicId];
-				revision = result.revisions[revisionId];
+				// Update view of the full topic
+				$replacement = $( flowBoard.TemplateEngine.processTemplateGetFragment(
+					'flow_topiclist_loop',
+					result.flow['view-topic'].result.topic
+				) ).children();
 
-				if ( revision.isModerated ) {
-					$topic.addClass( 'flow-topic-moderated' ).
-						addClass( 'flow-topic-moderatestate-lock' );
-				} else {
-					$topic.removeClass( 'flow-topic-moderated flow-topic-moderatestate-lock' );
-				}
-
-				// Update view of the title bar
-				$topicTitleBar = $(
-					flowBoard.TemplateEngine.processTemplateGetFragment(
-						'flow_topic_titlebar',
-						revision
-					)
-				).children();
-				$target.replaceWith( $topicTitleBar );
-				FlowBoardComponent.UI.makeContentInteractive( $topicTitleBar );
+				$target.replaceWith( $replacement );
+				FlowBoardComponent.UI.makeContentInteractive( $replacement );
 			} ).fail( function( code, result ) {
 				/*
 				 * At this point, the lock/unlock actually worked, but failed
