@@ -91,6 +91,7 @@ class AbuseFilterTest extends PostRevisionTestCase {
 		foreach ( $this->tablesUsed as $table ) {
 			$this->db->delete( $table, '*', __METHOD__ );
 		}
+		parent::tearDown();
 	}
 
 	/**

@@ -90,5 +90,6 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 		// sure they're ignored
 		$msgCache = \MessageCache::singleton();
 		$msgCache->disable();
+		parent::tearDown();
 	}
 }
