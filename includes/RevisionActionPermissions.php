@@ -5,6 +5,7 @@ namespace Flow;
 use Flow\Collection\CollectionCache;
 use Flow\Exception\InvalidDataException;
 use Flow\Model\AbstractRevision;
+use Flow\Model\PostRevision;
 use Closure;
 use User;
 
@@ -59,6 +60,10 @@ class RevisionActionPermissions {
 		$section = new \ProfileSection( __METHOD__ );
 		$allowed = $this->isRevisionAllowed( $revision, $action );
 
+		if ( $allowed && $revision instanceof PostRevision ) {
+			$allowed = $this->isRootAllowed( $revision, $action );
+		}
+
 		// if there was no revision object, it's pointless to find last revision
 		// if we already fail, no need in checking most recent revision status
 		if ( $allowed && $revision !== null  ) {
@@ -105,6 +110,41 @@ class RevisionActionPermissions {
 	}
 
 	/**
+	 * Check if a user is allowed to perform a certain action, against the latest
+	 * root(topic) post related to the provided revision.  This is required for
+	 * things like preventing replys to locked topics.
+	 *
+	 * @param PostRevision $revision
+	 * @param string $action
+	 * @return bool
+	 */
+	protected function isRootAllowed( PostRevision $revision, $action ) {
+		// If the revision is a root then it is already checked and this
+		// does not apply.
+		if ( $revision->isTopicTitle() ) {
+			return true;
+		}
+		// If the `root-permissions` key is not set then it is allowed
+		if ( !$this->actions->hasValue( $action, 'root-permissions' ) ) {
+			return true;
+		}
+
+		$root = $revision->getRootPost();
+		$permission = $this->getPermission( $root, $action, 'root-permissions' );
+
+		// If `root-permissions` is defined but not for the current state
+		// then action is denied
+		if ( $permission === null ) {
+			return false;
+		}
+
+		return call_user_func_array(
+			array( $this->user, 'isAllowedAny' ),
+			(array) $permission
+		);
+	}
+
+	/**
 	 * Check if a user is allowed to perform a certain action, only against 1
 	 * specific revision (whereas the default isAllowed() will check if the
 	 * given $action is allowed for both given and the most current revision)
@@ -143,13 +183,13 @@ class RevisionActionPermissions {
 	 * @param string $action
 	 * @return Closure|string
 	 */
-	public function getPermission( AbstractRevision $revision = null, $action ) {
+	public function getPermission( AbstractRevision $revision = null, $action, $type = 'permissions' ) {
 		// $revision may be null if the revision has yet to be created
 		$moderationState = AbstractRevision::MODERATED_NONE;
 		if ( $revision !== null ) {
 			$moderationState = $revision->getModerationState();
 		}
-		$permission = $this->actions->getValue( $action, 'permissions', $moderationState );
+		$permission = $this->actions->getValue( $action, $type, $moderationState );
 
 		// Some permissions may be more complex to be defined as simple array
 		// values, in which case they're a Closure (which will accept
