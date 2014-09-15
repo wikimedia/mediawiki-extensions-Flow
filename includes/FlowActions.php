@@ -25,6 +25,15 @@ class FlowActions {
 		return array_keys( $this->actions->all() );
 	}
 
+	public function hasValue( $action, $type = null /* [, $option = null [, ...]] */ ) {
+		$arguments = func_get_args();
+		try {
+			return isset( $this->actions[$arguments] );
+		} catch ( \OutOfBoundsException $e ) {
+			return false;
+		}
+	}
+
 	/**
 	 * @param string $action
 	 * @param string[optional] $type
