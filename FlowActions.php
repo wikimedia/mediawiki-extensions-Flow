@@ -186,6 +186,9 @@ $wgFlowActions = array(
 					return $post->isCreator( $permissions->getUser() ) ? '' : 'flow-edit-post';
 				}
 		),
+		'root-permissions' => array(
+			PostRevision::MODERATED_NONE => '',
+		),
 		'button-method' => 'GET',
 		'links' => array( 'post-history', 'topic', 'post', 'diff-post', 'post-revision' ),
 		'actions' => array( 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
@@ -214,6 +217,13 @@ $wgFlowActions = array(
 			// of the post to perform the action against. The value is a string or array
 			// of user rights that can allow this action.
 			PostRevision::MODERATED_NONE => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
+		),
+		'root-permissions' => array(
+			// Can only hide within an unmoderated or hidden topic. This doesn't check for a specific
+			// permissions because thats already done above in 'permissions', this just ensures the
+			// topic is in an appropriate state.
+			PostRevision::MODERATED_NONE => '',
+			PostRevision::MODERATED_HIDDEN => '',
 		),
 		'button-method' => 'POST',
 		'links' => array( 'topic', 'post', 'post-history', 'post-revision' ),
@@ -516,6 +526,9 @@ $wgFlowActions = array(
 		'log_type' => false,
 		'rc_insert' => true,
 		'permissions' => array(
+			PostRevision::MODERATED_NONE => '',
+		),
+		'root-permissions' => array(
 			PostRevision::MODERATED_NONE => '',
 		),
 		'button-method' => 'GET',
