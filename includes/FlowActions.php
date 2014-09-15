@@ -8,7 +8,7 @@ class FlowActions {
 	/**
 	 * @var MultiDimArray
 	 */
-	protected $actions = array();
+	protected $actions;
 
 	/**
 	 * @param array $actions
@@ -23,6 +23,23 @@ class FlowActions {
 	 */
 	public function getActions() {
 		return array_keys( $this->actions->all() );
+	}
+
+	/**
+	 * @param string $action
+	 * @param string[optional] $type
+	 * @param string[optional] $option Function can be overloaded in case the
+	 * desired value is nested deeper
+	 * @return bool True when the requested parameter exists and is not null
+	 */
+	public function hasValue( $action, $type = null /* [, $option = null [, ...]] */ ) {
+		$arguments = func_get_args();
+		try {
+			return isset( $this->actions[$arguments] );
+		} catch ( \OutOfBoundsException $e ) {
+			// NOTE: doesn't currently support BC aliases, seems reasonable for now
+			return false;
+		}
 	}
 
 	/**

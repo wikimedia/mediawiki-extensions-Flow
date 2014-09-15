@@ -139,6 +139,20 @@ form.flow-post {
 .flow-post-meta-actions {
 	float: left;
 	text-transform: capitalize;
+	a {
+		&::after {
+			content: "\2022";
+			padding: 0 8px;
+			text-decoration: none;
+			display: inline-block;
+			color: @colorGrayDark;
+		}
+		&:last-child {
+			&::after {
+				content: "";
+			}
+		}
+	}
 }
 
 // MEDIA QUERIES
