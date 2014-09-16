@@ -164,8 +164,139 @@
 	 */
 	FlowComponent.prototype.getInstanceByElement = function ( $el ) {
 		var $container = $el.closest( '.flow-component' ),
-			id = $container.data( 'flow-id' );
+			id;
+
+		// This element isn't _within_ any actual component; was it spawned _by_ a component?
+		if ( !$container.length ) {
+			// Find any parents of this element with the flowSpawnedBy data attribute
+			$container = $el.parents().addBack().filter( function () {
+				return $( this ).data( 'flowSpawnedBy' );
+			} ).last()
+				// Get the flowSpawnedBy node
+				.data( 'flowSpawnedBy' );
+			// and then return the closest flow-component of it
+			$container = $container ? $container.closest( '.flow-component' ) : $();
+		}
+
+		// Still no parent component. Crap out!
+		if ( !$container.length ) {
+			mw.flow.debug( 'Failed to getInstanceByElement: no $container.length', arguments );
+			return false;
+		}
+
+		id = $container.data( 'flow-id' );
 
 		return this.constructor._instanceRegistry[ this.constructor._instanceRegistryById[ id ] ] || false;
 	};
+
+	/**
+	 * Sets the FlowComponent's $container element as the data-flow-spawned-by attribute on $el.
+	 * Fires ALL events from within $el onto $eventTarget, albeit with the whole event intact.
+	 * This allows us to listen for events from outside of FlowComponent's nodes, but still trigger them within.
+	 * @param {jQuery} $el
+	 * @param {jQuery} [$eventTarget]
+	 */
+	FlowComponent.prototype.assignSpawnedNode = function ( $el, $eventTarget ) {
+		// Target defaults to .flow-component
+		$eventTarget = $eventTarget || this.$container;
+
+		// Assign flowSpawnedBy data attribute
+		$el.data( 'flowSpawnedBy', $eventTarget );
+
+		// Forward all events (except mouse movement) to $eventTarget
+		$el.on(
+			'blur change click dblclick error focus focusin focusout hover keydown keypress keyup load mousedown mouseup resize scroll select submit',
+			'*',
+			{ flowSpawnedBy: this.$container, flowSpawnedFrom: $el },
+			function ( event ) {
+				// Let's forward these events in an unusual way, similar to how jQuery propagates events...
+				// First, only take the very first, top-level event, as the rest of the propagation is handled elsewhere
+				if ( event.target === this ) {
+					// Get all the parent nodes of our target,
+					// but do not include any nodes we will already be bubbling up to (eg. body)
+					var $nodes = $eventTarget.parents().addBack().not( $( this ).parents().addBack() ),
+						i = $nodes.length;
+
+					// For every node between $eventTarget and window that was not filtered out above...
+					while ( i-- ) {
+						// Trigger a bubbling event on each one, with the correct context
+						_eventForwardDispatch.call( $nodes[i], event, $el[0] );
+					}
+				}
+			}
+		);
+	};
+
+	/**
+	 * This method is mostly cloned from jQuery.event.dispatch, except that it has been modified to use container
+	 * as its base for finding event handlers (via jQuery.event.handlers). This allows us to trigger events on said
+	 * container (and its parents, bubbling up), as if the event originated from within it.
+	 * jQuery itself doesn't allow for this, as the context (this & event.currentTarget) become the actual element you
+	 * are triggering an event on, instead of the element which matched the selector.
+	 *
+	 * @example _eventForwardDispatch.call( Element, Event, Element );
+	 *
+	 * @param {jQuery.Event} event
+	 * @param {Element} container
+	 * @returns {*}
+	 * @private
+	 */
+	function _eventForwardDispatch( event, container ) {
+		// Make a writable jQuery.Event from the native event object
+		event = jQuery.event.fix( event );
+
+		var i, ret, handleObj, matched, j,
+			handlerQueue = [],
+			args = Array.prototype.slice.call( arguments ),
+			handlers = ( jQuery._data( this, "events" ) || {} )[ event.type ] || [],
+			special = jQuery.event.special[ event.type ] || {};
+
+		// Use the fix-ed jQuery.Event rather than the (read-only) native event
+		args[0] = event;
+		event.delegateTarget = this;
+
+		// Call the preDispatch hook for the mapped type, and let it bail if desired
+		if ( special.preDispatch && special.preDispatch.call( this, event ) === false ) {
+			return;
+		}
+
+		// Determine handlers
+		// The important modification: we use container instead of this as the context
+		handlerQueue = jQuery.event.handlers.call( container, event, handlers );
+
+		// Run delegates first; they may want to stop propagation beneath us
+		i = 0;
+		while ( (matched = handlerQueue[ i++ ]) && !event.isPropagationStopped() ) {
+			event.currentTarget = matched.elem;
+
+			j = 0;
+			while ( (handleObj = matched.handlers[ j++ ]) && !event.isImmediatePropagationStopped() ) {
+				// Triggered event must either 1) have no namespace, or
+				// 2) have namespace(s) a subset or equal to those in the bound event (both can have no namespace).
+				if ( !event.namespace_re || event.namespace_re.test( handleObj.namespace ) ) {
+
+					event.handleObj = handleObj;
+					event.data = handleObj.data;
+
+					ret = ( (jQuery.event.special[ handleObj.origType ] || {}).handle || handleObj.handler )
+						.apply( matched.elem, args );
+
+					if ( ret !== undefined ) {
+						if ( (event.result = ret) === false ) {
+							event.preventDefault();
+							event.stopPropagation();
+						}
+					}
+				}
+			}
+		}
+
+		// Call the postDispatch hook for the mapped type
+		if ( special.postDispatch ) {
+			special.postDispatch.call( this, event );
+		}
+
+		return event.result;
+	}
+
 }( jQuery, mediaWiki, mediaWiki.flow.vendor.initStorer ) );
