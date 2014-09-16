@@ -178,4 +178,8 @@ abstract class ApiFlowBase extends ApiBase {
 	public function getTokenSalt() {
 		return '';
 	}
+
+	public function getParent() {
+		return $this->apiFlow;
+	}
 }
