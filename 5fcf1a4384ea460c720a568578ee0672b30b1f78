@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_9573a413",
+        "filename": "includes/FlowActions.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-16T12:31:39Z",
+      "side": 1,
+      "message": "Needs phpdoc",
+      "revId": "5fcf1a4384ea460c720a568578ee0672b30b1f78",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_15c6941a",
+        "filename": "includes/RevisionActionPermissions.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-16T12:31:39Z",
+      "side": 1,
+      "message": "Just get rid of the confusing \"it is already checked and\" part :p\n\nThe \u0027permissions\u0027 values can be different than \u0027root-permissions\u0027 values, so \"this is already checked\" is incorrect. They just don\u0027t apply on topic titles.",
+      "revId": "5fcf1a4384ea460c720a568578ee0672b30b1f78",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
