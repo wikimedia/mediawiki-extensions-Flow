@@ -318,7 +318,7 @@
 	"flow-whatlinkshere-post": "од [$1 објава]",
 	"flow-whatlinkshere-header": "од [$1 заглавието]",
 	"flow": "Тек",
-	"flow-special-desc": "Оваа специјална страница пренасочува кон работниот тек или објава на „Тек“ со зададен UUID.",
+	"flow-special-desc": "Оваа службена страница пренасочува кон работниот тек или објава на „Тек“ со зададен UUID.",
 	"flow-special-type": "Тип",
 	"flow-special-type-post": "Објава",
 	"flow-special-type-workflow": "Работен тек",

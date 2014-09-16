@@ -10,7 +10,8 @@
 			"Alan ffm",
 			"Wiochman",
 			"Ty221",
-			"WTM"
+			"WTM",
+			"Tar Lócesilion"
 		]
 	},
 	"flow-edit-header-link": "Edytuj nagłówek",
@@ -116,6 +117,7 @@
 	"flow-toggle-topics-posts": "Przełącz się na widok nagłówków i wpisów",
 	"flow-terms-of-use-summarize": "Klikając na \"{{int:flow-summarize-topic-submit}}\", zgadzasz się na zasady użytkowania tej wiki.",
 	"flow-preview-warning": "Widzisz teraz podgląd. Wyślij formularz, aby opublikować swój wpis albo kliknij \"{{int:flow-preview-return-edit-post}}\", aby kontynuować pisanie.",
+	"flow-preview-return-edit-post": "Wróć do edytowania",
 	"flow-active-ago-day": "Aktywny {{PLURAL:$1|wczoraj|$1 dni temu}}",
 	"flow-active-ago-hour": "Aktywny {{PLURAL:$1|przed godziną|$1 godziny temu|$1 godzin temu}}",
 	"flow-active-ago-minute": "Aktywny {{PLURAL:$1|przed minutą|$1 minuty temu|$1 minut temu}}",

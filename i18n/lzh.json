@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jason924tw"
+		]
+	},
+	"flow-post-action-post-history": "誌",
+	"flow-topic-action-history": "誌",
+	"flow-board-history": "「$1」誌",
+	"flow-link-history": "誌"
+}

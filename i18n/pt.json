@@ -199,7 +199,7 @@
 	"flow-notification-mention": "$1 {{GENDER:$5|mencionou-o|mencionou-a}} {{GENDER:$1|na sua}} <span class=\"plainlinks\">[$2 mensagem]</span> em \"$3\" de \"$4\".",
 	"flow-notification-link-text-view-post": "Ver mensagem",
 	"flow-notification-link-text-view-topic": "Ver tópico",
-	"flow-notification-reply-email-subject": "$1 {{GENDER:$1|respondeu}} a um tópico",
+	"flow-notification-reply-email-subject": "$2 em $3",
 	"flow-notification-reply-email-batch-body": "$1 {{GENDER:$1|respondeu}} a \"$2\" em \"$3\"",
 	"flow-notification-reply-email-batch-bundle-body": "$1 e $4 {{PLURAL:$5|outro|outros}} {{GENDER:$1|responderam}} à sua mensagem a \"$2\" em \"$3\"",
 	"flow-notification-mention-email-subject": "$1 {{GENDER:$1|mencionou-{{GENDER:$3|o|a|o(a)}}}} em \"$2\"",

@@ -199,7 +199,7 @@
 	"flow-notification-mention": "$1 {{GENDER:$1|nämnde}} {{GENDER:$5|dig}} i {{GENDER:$1|hans|hennes|sitt}} <span class=\"plainlinks\">[$2 inlägg]</span> i \"$3\" på \"$4\".",
 	"flow-notification-link-text-view-post": "Visa inlägg",
 	"flow-notification-link-text-view-topic": "Visa ämne",
-	"flow-notification-reply-email-subject": "$1 {{GENDER:$1|svarade}} på ett ämne",
+	"flow-notification-reply-email-subject": "$2 på $3",
 	"flow-notification-reply-email-batch-body": "$1 {{GENDER:$1|svarade}} på \"$2\" på \"$3\"",
 	"flow-notification-reply-email-batch-bundle-body": "$1 och $4 {{PLURAL:$5|annan|andra}} {{GENDER:$1|svarade}} på \"$2\" på \"$3\"",
 	"flow-notification-mention-email-subject": "$1 {{GENDER:$1|omnämnde}} {{GENDER:$3|dig}} på \"$2\"",
