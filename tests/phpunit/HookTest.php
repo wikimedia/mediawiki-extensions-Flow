@@ -2,7 +2,7 @@
 
 namespace Flow\Tests;
 
-use Flow\Data\RecentChanges;
+use Flow\Data\RecentChanges\RecentChanges;
 use FlowHooks;
 use RecentChange;
 
