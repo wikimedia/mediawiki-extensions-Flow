@@ -94,7 +94,7 @@
     "flow-topic-notification-subscribe-title": "This topic has been added to your watchlist.",
     "flow-topic-notification-subscribe-description": "You will receive notifications on all activities on this topic.",
     "flow-board-notification-subscribe-title": "You're subscribed to this discussion board!",
-    "flow-board-notification-subscribe-description": "You will be automatically subscribed to all new topics created on this board.",
+    "flow-board-notification-subscribe-description": "You will get a notification when a new topic is created on this board.",
     "flow-error-http": "An error occurred while contacting the server.",
     "flow-error-other": "An unexpected error occurred.",
     "flow-error-external": "An error occurred.<br />The error message received was: $1",
