@@ -35,7 +35,7 @@ Feature: Lock and unlock topics
         And the page has re-rendered
     Then the top post is a locked discussion
         And the topic summary of the first topic is "This is a bikeshed"
-        And the content of the top post should be visible
+        And the content of the top post should not be visible
 
   # Close-then-unlock doesn't work in IE, it caches the API response (bug 69160).
   Scenario: Opening a topic
