@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_64fd2bae",
+        "filename": "includes/Model/UserTuple.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-16T15:16:03Z",
+      "side": 1,
+      "message": "PHPDoc",
+      "revId": "428bb0d2db0cd65115a9726520344513fa314f24",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_84f497cb",
+        "filename": "includes/Model/UserTuple.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-16T15:16:03Z",
+      "side": 1,
+      "message": "PHPdoc",
+      "revId": "428bb0d2db0cd65115a9726520344513fa314f24",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_242ba330",
+        "filename": "includes/Model/UserTuple.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-16T15:16:03Z",
+      "side": 1,
+      "message": "Cast to int",
+      "revId": "428bb0d2db0cd65115a9726520344513fa314f24",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_44fa2fb7",
+        "filename": "includes/Model/UserTuple.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-16T15:16:03Z",
+      "side": 1,
+      "message": "PHPDoc",
+      "revId": "428bb0d2db0cd65115a9726520344513fa314f24",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_0430a798",
+        "filename": "includes/Model/UserTuple.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-16T15:16:03Z",
+      "side": 1,
+      "message": "PHPDoc",
+      "revId": "428bb0d2db0cd65115a9726520344513fa314f24",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_a4ed53f0",
+        "filename": "includes/Model/UserTuple.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-16T15:16:03Z",
+      "side": 1,
+      "message": "FlowException not used",
+      "revId": "428bb0d2db0cd65115a9726520344513fa314f24",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
