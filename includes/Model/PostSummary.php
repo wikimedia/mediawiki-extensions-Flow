@@ -17,8 +17,7 @@ class PostSummary extends AbstractSummary {
 	static public function create( PostRevision $post, User $user, $content, $changeType ) {
 		$obj = new self;
 		$obj->revId = UUID::create();
-		list( $obj->userId, $obj->userIp, $obj->userWiki ) = self::userFields( $user );
-
+		$obj->user = UserTuple::newFromUser( $user );
 		$obj->prevRevision = null;
 		$obj->changeType = $changeType;
 		$obj->summaryTargetId = $post->getPostId();
