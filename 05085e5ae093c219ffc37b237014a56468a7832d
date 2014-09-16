@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_b519008b",
+        "filename": "i18n/en.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-09-16T13:20:25Z",
+      "side": 1,
+      "message": "Source should be lower case.",
+      "revId": "05085e5ae093c219ffc37b237014a56468a7832d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
