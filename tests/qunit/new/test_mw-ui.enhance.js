@@ -44,4 +44,85 @@
 		$( 'body' ).attr( 'title', '' );
 	} );
 
+	QUnit.test( 'mw-ui-modal', 4, function( assert ) {
+		var modal, $node;
+
+		assert.ok( mw.tooltip, 'mw.Modal exists' );
+
+		// Instantiation
+		modal = mw.Modal();
+		assert.strictEqual( modal.constructor, mw.Modal,
+			'mw.Modal() returns mw.Modal instance' );
+
+		modal = new mw.Modal();
+		assert.strictEqual( modal.constructor, mw.Modal,
+			'new mw.Modal() returns mw.Modal instance' );
+
+		modal = mw.Modal( 'namefoo' );
+		assert.strictEqual( modal.getName(), 'namefoo',
+			'Modal sets name to "namefoo"' );
+
+		// Title
+		assert.strictEqual( modal.getNode().find( modal.headingSelector ).css( 'display' ), 'none',
+			'Modal heading should be hidden with no title' );
+
+		modal = mw.Modal( { title: 'titlefoo' } );
+		assert.strictEqual( modal.getNode().find( modal.headingSelector ).text().indexOf( 'titlefoo' ) > -1, true,
+			'Modal instantiation sets title to "titlefoo"' );
+
+		modal.setTitle( 'titlebaz' );
+		assert.strictEqual( modal.getNode().find( modal.headingSelector ).text().indexOf( 'titlebaz' ) > -1, true,
+			'Modal setTitle to "titlebaz"' );
+
+		// Content at instantiation
+		modal = mw.Modal( { open: 'contentfoo' } );
+		assert.strictEqual( modal.getContent().text(), 'contentfoo',
+			'Modal instantiation sets content to "contentfoo"' );
+		$node = modal.getNode();
+		assert.strictEqual( $node.closest( 'body' ).length, 1,
+			'Modal instantiation adds modal to body' );
+
+		// Close
+		modal.close();
+		assert.strictEqual( $node.closest( 'body' ).length, 0,
+			'Modal close removes it from page' );
+		$node = null;
+
+		// Content after instantiation
+		modal = mw.Modal();
+
+		modal.open( 'contentfoo' );
+		assert.strictEqual( modal.getContentNode().html(), 'contentfoo',
+			'Modal open string' );
+
+		modal.open( '<h1>contentfoo</h1>' );
+		assert.strictEqual( modal.getContentNode().html(), '<h1>contentfoo</h1>',
+			'Modal open html string' );
+
+		modal.open( $( '<h2>contentfoo</h2>' ) );
+		assert.strictEqual( modal.getContentNode().html(), '<h2>contentfoo</h2>',
+			'Modal open jQuery' );
+
+		// @todo content Array
+		// @todo content Object
+
+		// Get nodes
+		assert.strictEqual( modal.getNode().length, 1,
+			'getNode has length' );
+		assert.strictEqual( modal.getContentNode().length, 1,
+			'getContentNode has length' );
+
+		modal.close(); // kill the test modal
+
+		// @todo setInteractiveHandler
+		// @todo addSteps
+		// @todo setStep
+		// @todo getSteps
+		// @todo prevOrClose
+		// @todo nextOrSubmit
+		// @todo prev
+		// @todo next
+		// @todo go
+	} );
+
 } ( jQuery ) );
