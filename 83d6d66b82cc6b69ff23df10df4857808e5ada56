@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_0478a789",
+        "filename": "includes/Content/BoardContentHandler.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-16T15:01:45Z",
+      "side": 1,
+      "message": "Cannot use Content as Content because the name is already in use",
+      "revId": "83d6d66b82cc6b69ff23df10df4857808e5ada56",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_e47ebb66",
+        "filename": "includes/Data/NotificationListener.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-16T15:01:45Z",
+      "side": 1,
+      "message": "Workflow is not used",
+      "revId": "83d6d66b82cc6b69ff23df10df4857808e5ada56",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_048e6782",
+        "filename": "includes/Data/NotificationListener.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-16T15:01:45Z",
+      "side": 1,
+      "message": "InvalidDataException is not used",
+      "revId": "83d6d66b82cc6b69ff23df10df4857808e5ada56",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_849937c9",
+        "filename": "includes/Data/WatchTopicListener.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-16T15:01:45Z",
+      "side": 1,
+      "message": "InvalidDataException is not used",
+      "revId": "83d6d66b82cc6b69ff23df10df4857808e5ada56",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_70284695",
+        "filename": "includes/Data/WatchTopicListener.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-16T15:01:45Z",
+      "side": 1,
+      "message": "Why was this changed? I\u0027d rather indent with spaces here so it\u0027ll always align (or indent a fixed amount of characters)",
+      "revId": "83d6d66b82cc6b69ff23df10df4857808e5ada56",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2fb78d_44146f44",
+        "filename": "includes/Parsoid/BadImageRemover.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-16T15:01:45Z",
+      "side": 1,
+      "message": "Some incorrect whitespace in here",
+      "revId": "83d6d66b82cc6b69ff23df10df4857808e5ada56",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
