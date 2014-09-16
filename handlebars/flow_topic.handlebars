@@ -2,7 +2,7 @@
             {{#unless isPreview}}flow-load-interactive{{/unless}}
             {{#if moderateState}}flow-topic-moderatestate-{{moderateState}}{{/if}}
             {{#if isModerated}}flow-topic-moderated
-              {{#ifCond moderateState "!==" "close"}}flow-element-collapsed{{/ifCond}}
+              {{#ifCond moderateState "!==" "lock"}}flow-element-collapsed{{/ifCond}}
             {{/if}}"
      id="flow-topic-{{postId}}"
      data-flow-id="{{postId}}"
