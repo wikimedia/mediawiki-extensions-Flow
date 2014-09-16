@@ -5,7 +5,7 @@ namespace Flow\Tests;
 use Flow\Container;
 use Flow\Data\NotificationListener;
 use Flow\Data\ObjectManager;
-use Flow\Data\RecentChanges as RecentChangesListener;
+use Flow\Data\RecentChanges\RecentChanges as RecentChangesListener;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
