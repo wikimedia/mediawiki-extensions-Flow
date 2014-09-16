@@ -1323,15 +1323,14 @@
 		FlowBoardComponent.UI.events.interactiveHandlers.collapserCollapsibleToggle = function ( event ) {
 			var topicId, states,
 				$target = $( event.target ),
-				$this = $( this ),
-				board = FlowBoardComponent.prototype.getInstanceByElement( $this ),
+				$component = $( this ).closest( '.flow-component' ),
 				isNotClickableElement = $target.not( '.flow-menu-js-drop' ) &&
 					!$target.closest( 'a, button, input, textarea, select, ul, ol' ).length;
 
 			if ( isNotClickableElement ) {
 				$target = $( this ).closest( '.flow-post-main, .flow-topic' ); // @todo genericize this
 
-				if ( board.$container.is( '.flow-board-collapsed-compact, .flow-board-collapsed-topics' ) ) {
+				if ( $component.is( '.flow-board-collapsed-compact, .flow-board-collapsed-topics' ) ) {
 					// Board default is collapsed; topic can be overridden to
 					// expanded, or not.
 
@@ -1643,7 +1642,7 @@
 		 * @param {Event} event
 		 */
 		FlowBoardComponent.UI.events.interactiveHandlers.moderationDialog = function ( event ) {
-			var $content, $form,
+			var html, $container, $form,
 				$this = $( this ),
 				board = FlowBoardComponent.prototype.getInstanceByElement( $this ),
 				// hide, delete, suppress
@@ -1662,29 +1661,27 @@
 			event.preventDefault();
 
 			params.actions[role] = { url: $this.attr( 'href' ), title: $this.attr( 'title' ) };
+			html = mw.flow.TemplateEngine.processTemplate( template, params );
 
-			// Put the contents in a div, because we might have many root-level nodes.
-			// This single div approach prevents $content.dialog from opening a dialog for each root-level node.
-			$content = $( '<div>' ).append(
-				$( mw.flow.TemplateEngine.processTemplateGetFragment( template, params ) )
-					.children()
-			);
-
-			// Event forwarding
-			board.assignSpawnedNode( $content );
-
-			$form = $content.find( 'form' ).data( 'flow-dialog-owner', $this );
+			$container = $( '<div>' ).html( html );
+			$form = $container.find( 'form' ).data( 'flow-dialog-owner', $this );
 			flowBoardComponentAddCancelCallback( $form, function () {
-				$content.parent().remove();
+				$container.parent().remove();
 			} );
 
 			// @todo Migrate to a simpler non-jquery.ui dialog box
 			// this one doesn't work on mobile, among other problems.
 			mw.loader.using( 'jquery.ui.dialog' , function() {
-				$content.dialog( {
+				$container.dialog( {
 					'title': titleText,
 					'modal': mw.config.get( 'skin' ) !== 'monobook' // hack to prevent monobook from showing modal bg
-				} );
+				} )
+				// the $.fn.dialog function attaches the dialog to .body, but we
+				// need to move it inside the main container so user interactions
+				// go to the correct handlers.
+				.parent()
+					.detach()
+					.appendTo( board.$container );
 			} );
 		};
 
@@ -2029,56 +2026,32 @@
 			// Load the collapser state from localStorage
 			FlowBoardComponent.UI.collapserState( flowBoard );
 
-			// This method returns a callback which checks if the target matches selector
-			function _getEventCallback( selector, callback ) {
-				var _lastEvent;
-
-				return function ( event ) {
-					if ( _lastEvent !== event && $( event.target ).is( selector ) ) {
-						// This is a weird thing where some events (notably focusin) are triggered twice
-						// We can prevent this by storing the event for 50ms, and deleting it afterwards
-						_lastEvent = event;
-						setTimeout( function () {
-							if ( _lastEvent === event ) {
-								_lastEvent = event = null;
-							}
-						}, 50 );
-
-						// Trigger the callback
-						callback.apply( event.target, arguments );
-					}
-				};
-			}
-
 			// Container handlers
-			// Note: we bind these and check selectors IN the event, because jQuery's selector handler does not merely
-			// compare if the element matches, but rather makes sure the element is WITHIN $container as well.
 			$container
 				.off( '.FlowBoardComponent' )
 				.on(
 					'click.FlowBoardComponent keypress.FlowBoardComponent',
-					_getEventCallback(
-						'a, input, button, .flow-click-interactive',
-						FlowBoardComponent.UI.events.onClickInteractive
-					)
+					'a, input, button, .flow-click-interactive',
+					FlowBoardComponent.UI.events.onClickInteractive
+				)
+				.on( // @todo REMOVE. This is just to stop from following empty links in demo.
+					'click.FlowBoardComponent',
+					"a[href='#']",
+					function () { event.preventDefault(); }
 				)
 				.on(
 					'click.FlowBoardComponent focusin.FlowBoardComponent focusout.FlowBoardComponent',
-					_getEventCallback(
-						'.flow-menu',
-						FlowBoardComponent.UI.events.onToggleHoverMenu
-					)
+					'.flow-menu',
+					FlowBoardComponent.UI.events.onToggleHoverMenu
 				);
 
 			// Board handlers
 			$board
 				.off( '.FlowBoardComponent' )
 				.on(
-					'focusin.FlowBoardComponent',
-					_getEventCallback(
-						'input.mw-ui-input, textarea',
-						FlowBoardComponent.UI.events.onFocusField
-					)
+					'focus.FlowBoardComponent',
+					'input.mw-ui-input, textarea',
+					FlowBoardComponent.UI.events.onFocusField
 				);
 		};
 
@@ -2293,10 +2266,12 @@
 		 * @param  {Element|jQuery} topic The (single) topic element to show
 		 */
 		FlowBoardComponent.UI.expandTopicIfNecessary = function( topic ) {
-			var $topic = $( topic ),
-				board = FlowBoardComponent.prototype.getInstanceByElement( $topic ),
-				isFullView = board.$container.hasClass( 'flow-board-collapsed-full' ),
-				isInverted = $topic.hasClass( 'flow-element-collapsed-invert' );
+			var $component, isFullView, isInverted,
+				$topic = $( topic );
+
+			$component = $topic.closest( '.flow-component' );
+			isFullView = $component.hasClass( 'flow-board-collapsed-full' );
+			isInverted = $topic.hasClass( 'flow-element-collapsed-invert' );
 
 			// Either full view and inverted (invisible)
 			// or compacted view and not inverted (invisible)
