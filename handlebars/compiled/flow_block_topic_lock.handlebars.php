@@ -52,7 +52,7 @@
 					data-role="submit"
 					class="mw-ui-button mw-ui-constructive"
 					data-flow-interactive-handler="apiRequest"
-					data-flow-api-target="< .flow-topic-titlebar"
+					data-flow-api-target="< .flow-topic"
 					data-flow-api-handler="lockTopic">
 						'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? '
 							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-unlock-topic'),Array()), 'encq').'
