@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_d5f80c7c",
+        "filename": "modules/new/mw-ui.enhance.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-16T12:19:55Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we be using handlebars here instead?",
+      "revId": "5791b53624edb60b04bf6c6a7c46eb52e5cfcb18",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
