@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_d5aa4c68",
+        "filename": "modules/new/flow-components.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-16T12:15:38Z",
+      "side": 1,
+      "message": "this function doesn\u0027t return anything",
+      "revId": "09d9ad1f3fe3bde319d3be8ec49f19123523645d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
