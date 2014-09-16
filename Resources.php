@@ -223,7 +223,8 @@ $wgResourceModules += array(
 	) + $mobile,
 	'ext.flow.icons.styles' => $flowResourceTemplate + array(
 		'styles' => array(
-			'new/styles/icons.less',
+			'wikiglyph/wikiglyphs.css',
+			'wikiglyph/flow-override.less',
 		),
 	) + $mobile,
 	'ext.flow.styles' => $flowResourceTemplate + array(
