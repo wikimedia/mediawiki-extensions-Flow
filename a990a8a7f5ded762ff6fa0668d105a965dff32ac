@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_10dc621b",
+        "filename": "includes/Exception/ExceptionHandling.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-16T14:12:39Z",
+      "side": 1,
+      "message": "Can we not just return true?\n\nAFAICT, this is only used in MWExceptionHandler::logException.\nWhen calling that method, I would assume an exception would get logged (otherwise, just don\u0027t call that method)",
+      "revId": "a990a8a7f5ded762ff6fa0668d105a965dff32ac",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
