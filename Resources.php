@@ -47,6 +47,7 @@ $wgResourceModules += array(
 			"flow_edit_post_ajax.handlebars",
 			"flow_edit_topic_title.handlebars",
 			"flow_errors.handlebars",
+			"flow_header_detail.handlebars",
 			"flow_moderate_post.handlebars",
 			"flow_moderate_topic.handlebars",
 			"flow_newtopic_form.handlebars",

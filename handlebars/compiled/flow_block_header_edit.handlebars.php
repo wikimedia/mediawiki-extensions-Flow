@@ -40,7 +40,7 @@
 				<input type="hidden" name="header_prev_revision" value="'.htmlentities(((is_array($in['revision']) && isset($in['revision']['revisionId'])) ? $in['revision']['revisionId'] : null), ENT_QUOTES, 'UTF-8').'" />
 			' : '').'
 			<textarea name="header_content" class="mw-ui-input"
-				data-flow-preview-template="flow_block_header"
+				data-flow-preview-template="flow_header_detail"
 				placeholder="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-edit-header-placeholder'),Array()), 'encq').'" data-role="content">'.((LCRun3::ifvar($cx, ((is_array($in['submitted']) && isset($in['submitted']['content'])) ? $in['submitted']['content'] : null))) ? ''.htmlentities(((is_array($in['submitted']) && isset($in['submitted']['content'])) ? $in['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities(((is_array($in['revision']['content']) && isset($in['revision']['content']['content'])) ? $in['revision']['content']['content'] : null), ENT_QUOTES, 'UTF-8').'').'</textarea>
 			<div class="flow-form-actions flow-form-collapsible">
 				<button data-role="submit"
