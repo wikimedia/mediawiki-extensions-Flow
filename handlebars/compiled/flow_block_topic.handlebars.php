@@ -30,7 +30,7 @@
         'sp_vars' => Array(),
 
     );
-    return '<div class="flow-board">
+    return '<div class="flow-board flow-disable-collapse">
 	<div class="flow-topics">
 		'.'
 		'.LCRun3::sec($cx, ((is_array($in) && isset($in['roots'])) ? $in['roots'] : null), $in, true, function($cx, $in) {return '
