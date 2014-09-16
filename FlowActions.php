@@ -6,7 +6,7 @@ use Flow\Model\PostSummary;
 use Flow\Model\Header;
 use Flow\RevisionActionPermissions;
 use Flow\Log\Logger;
-use Flow\Data\RecentChanges;
+use Flow\Data\RecentChanges\RecentChanges;
 
 /**
  * Flow actions: key => value map with key being the action name.
