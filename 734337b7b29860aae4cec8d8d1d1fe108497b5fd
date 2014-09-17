@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee62ffec_c96a317e",
+        "filename": "modules/new/mw-ui.enhance.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-09-17T22:06:40Z",
+      "side": 1,
+      "message": "I really really really would encourage you to use OOJS here, at least make use of OO.Class",
+      "revId": "734337b7b29860aae4cec8d8d1d1fe108497b5fd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
