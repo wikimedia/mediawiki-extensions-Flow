@@ -9,6 +9,7 @@ use Flow\Parsoid\Utils;
 use Closure;
 use HTML;
 use LightnCandy;
+use Message;
 use RequestContext;
 use Title;
 
