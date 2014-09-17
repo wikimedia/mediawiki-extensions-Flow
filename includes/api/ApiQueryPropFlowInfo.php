@@ -23,10 +23,8 @@ class ApiQueryPropFlowInfo extends ApiQueryBase {
 	 * @return array
 	 */
 	protected function getPageInfo( Title $title ) {
-		/** @var \Flow\TalkpageManager $manager */
-		$manager = Container::get( 'occupation_controller' );
 		$result = array( 'flow' => array() );
-		if ( $manager->isTalkpageOccupied( $title ) ) {
+		if ( $title->getContentModel() === 'flow-board' ) {
 			$result['flow']['enabled'] = '';
 		}
 
