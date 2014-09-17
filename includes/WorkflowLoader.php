@@ -58,15 +58,11 @@ class WorkflowLoader {
 	 * @param WebRequest $request
 	 * @return Block\AbstractBlock[]
 	 */
-	public function handleSubmit( $action, array $blocks, $user, WebRequest $request ) {
-		return $this->submissionHandler->handleSubmit( $this->workflow, $action, $blocks, $user, $request );
+	public function handleSubmit( $action, array $blocks, $user, array $params ) {
+		return $this->submissionHandler->handleSubmit( $this->workflow, $action, $blocks, $user, $params );
 	}
 
 	public function commit( Workflow $workflow, array $blocks ) {
 		return $this->submissionHandler->commit( $workflow, $blocks );
-	}
-
-	public function extractBlockParameters( $action, WebRequest $request, array $blocks ) {
-		return $this->submissionHandler->extractBlockParameters( $action, $request, $blocks );
 	}
 }

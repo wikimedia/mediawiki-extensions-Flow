@@ -10,8 +10,8 @@ class ApiFlowEditHeader extends ApiFlowBasePost {
 	 * Taken from ext.flow.base.js
 	 * @return array
 	 */
-	protected function getBlockNames() {
-		return array( 'header' );
+	protected function getBlockParams() {
+		return array( 'header' => $this->extractRequestParams() );
 	}
 
 	protected function getAction() {

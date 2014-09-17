@@ -83,30 +83,6 @@ abstract class ApiFlowBase extends ApiBase {
 	}
 
 	/**
-	 * The block names for an actions.  An action may invoke multiple blocks
-	 * @return array
-	 */
-	abstract protected function getBlockNames();
-
-	/**
-	 * @return DerivativeRequest
-	 */
-	protected function getModifiedRequest() {
-		$extracted = $this->extractRequestParams();
-		// @fixme this is terrible, but we'll fix the interface later
-		$params = array();
-		foreach ( $this->getBlockNames() as $block ) {
-			$params[$block] = $extracted;
-		}
-
-		return new DerivativeRequest(
-			$this->getRequest(),
-			$params,
-			$this->getRequest()->wasPosted() // Note that we also enforce this at the API level.
-		);
-	}
-
-	/**
 	 * @return array
 	 */
 	protected function getModerationStates() {
