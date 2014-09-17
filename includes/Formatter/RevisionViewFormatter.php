@@ -21,11 +21,11 @@ class RevisionViewFormatter {
 	}
 
 	/**
-	 * @param RevisionViewRow $row
+	 * @param FormatterRow $row
 	 * @param IContextSource $ctx
 	 * @return array
 	 */
-	public function formatApi( RevisionViewRow $row, IContextSource $ctx ) {
+	public function formatApi( FormatterRow $row, IContextSource $ctx ) {
 		$res = $this->serializer->formatApi( $row, $ctx );
 		$res['rev_view_links'] = $this->buildLinks( $row );
 		$res['human_timestamp'] = $this->getHumanTimestamp( $res['timestamp'] );
@@ -51,67 +51,47 @@ class RevisionViewFormatter {
 
 	/**
 	 * Generate the links for single and diff vie actions
-	 * @param RevisionViewRow $row
+	 * @param FormatterRow $row
 	 * @return array
 	 */
-	public function buildLinks( RevisionViewRow $row ) {
-		if ( $row->revision->getPrevRevisionId() !== null ) {
-			$links['diff'] = array(
-				'url' => $this->urlGenerator->generateUrl(
-					$row->workflow,
-					$row->diffAction,
-					array(
-						'workflow' => $row->workflow->getId()->getAlphadecimal(),
-						$row->blockName . '_newRevision' => $row->revision->getRevisionId()->getAlphadecimal(),
-					)
-				),
-				'title' => wfMessage( 'diff' )
+	public function buildLinks( FormatterRow $row ) {
+		$workflowId = $row->workflow->getId();
+
+		$boardTitle = $row->workflow->getOwnerTitle();
+		$title = $row->workflow->getArticleTitle();
+		$links = array(
+			'hist' => $this->urlGenerator->boardHistoryLink( $title ),
+			'board' => $this->urlGenerator->boardLink( $boardTitle ),
+			'single-view' => $this->urlGenerator->postRevisionLink(
+				$title,
+				$workflowId,
+				$row->revision->getPostId(),
+				$row->revision->getRevisionId()
+			),
+		);
+		$links['single-view']->setMessage( $title->getPrefixedText() );
+
+		if ( $row->revision instanceof PostRevision || $row->revision instanceof PostSummary ) {
+			$links['root'] = $this->urlGenerator->topicLink(
+				$row->workflow->getArticleTitle(),
+				$workflowId
 			);
+			$links['root']->setMessage( $title->getPrefixedText() );
+		}
+
+		if ( $row->revision->getPrevRevisionId() !== null ) {
+			$links['diff'] = $this->urlGenerator->diffLink(
+				$row->revision,
+				null,
+				$workflowId
+			);
+			$links['diff']->setMessage( wfMessage( 'diff' ) );
 		} else {
 			$links['diff'] = array(
 				'url' => '',
 				'title' => ''
 			);
 		}
-		$links['hist'] = array(
-			'url' => $this->urlGenerator->generateUrl(
-				$row->workflow,
-				'history',
-				array(
-					'workflow' => $row->workflow->getId()->getAlphadecimal()
-				)
-			),
-			'title' => wfMessage( 'hist' )
-		);
-
-		$boardTitle = $row->workflow->getOwnerTitle();
-		$links['board'] = array(
-			'url' => $this->urlGenerator->boardLink( $boardTitle )->getFullURL(),
-			'title' => $boardTitle
-		);
-		if ( $row->revision instanceof PostRevision || $row->revision instanceof PostSummary ) {
-			$links['root'] = array(
-				'url' => $this->urlGenerator->generateUrl(
-					$row->workflow,
-					'view',
-					array(
-						'workflow' => $row->workflow->getId()->getAlphadecimal()
-					)
-				),
-				'title' => $row->workflow->getArticleTitle()
-			);
-		}
-		$links['single-view'] = array(
-				'url' => $this->urlGenerator->generateUrl(
-					$row->workflow,
-					'single-view',
-					array(
-						'topic[postId]' => $row->revision->getCollectionId()->getAlphadecimal(),
-						'topic[revId]' => $row->revision->getRevisionId()->getAlphadecimal()
-					)
-				),
-				'title' => $row->workflow->getArticleTitle()
-			);
 
 		return $links;
 	}
@@ -134,7 +114,7 @@ class RevisionDiffViewFormatter {
 	/**
 	 * Diff would format against two revisions
 	 */
-	public function formatApi( RevisionViewRow $newRow, RevisionViewRow $oldRow, IContextSource $ctx ) {
+	public function formatApi( FormatterRow $newRow, FormatterRow $oldRow, IContextSource $ctx ) {
 		$oldRes = $this->revisionViewFormatter->formatApi( $oldRow, $ctx );
 		$newRes = $this->revisionViewFormatter->formatApi( $newRow, $ctx );
 

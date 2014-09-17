@@ -19,20 +19,9 @@ abstract class RevisionViewQuery extends AbstractQuery {
 	abstract protected function createRevision( $revId );
 
 	/**
-	 * Get the block name for current revision query
-	 * @return string
-	 */
-	abstract protected function getBlockName();
-
-	/**
-	 * Get the diff link action for current revision type
-	 */
-	abstract protected function getDiffAction();
-
-	/**
 	 * Get the data for rendering single revision view
 	 * @param string
-	 * @return RevisionViewRow
+	 * @return FormatterRow
 	 * @throws InvalidInputException
 	 */
 	public function getSingleViewResult( $revId ) {
@@ -44,17 +33,14 @@ abstract class RevisionViewQuery extends AbstractQuery {
 			throw new InvalidInputException( 'Could not find revision: ' . $revId, 'missing-revision' );
 		}
 		$this->loadMetadataBatch( array( $rev ) );
-		$row = new RevisionViewRow();
-		$row->blockName = $this->getBlockName();
-		$row->diffAction = $this->getDiffAction();
-		return $this->buildResult( $rev, null, $row );
+		return $this->buildResult( $rev, null );
 	}
 
 	/**
 	 * Get the data for rendering revisions diff view
 	 * @param UUID $curId
 	 * @param UUID|null $prevId
-	 * @return RevisionViewRow
+	 * @return FormatterRow
 	 * @throws InvalidInputException
 	 * @throws PermissionException
 	 */
@@ -94,17 +80,11 @@ abstract class RevisionViewQuery extends AbstractQuery {
 		}
 
 		$this->loadMetadataBatch( array( $oldRev, $newRev ) );
-		$row = new RevisionViewRow();
-		$row->blockName = $this->getBlockName();
-		$row->diffAction = $this->getDiffAction();
-		$row = $this->buildResult( $newRev, null, $row );
 
-		$old = new RevisionViewRow();
-		$old->blockName = $this->getBlockName();
-		$old->diffAction = $this->getDiffAction();
-		$old = $this->buildResult( $oldRev, null, $old );
-
-		return array( $row, $old );
+		return array(
+			$this->buildResult( $newRev, null ),
+			$this->buildResult( $oldRev, null ),
+		);
 	}
 
 	public function isComparable( AbstractRevision $cur, AbstractRevision $prev ) {
@@ -130,21 +110,6 @@ class HeaderViewQuery extends RevisionViewQuery {
 			$revId
 		);
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	protected function getBlockName() {
-		return 'header';
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	protected function getDiffAction() {
-		return 'compare-header-revisions';
-	}
-
 }
 
 class PostViewQuery extends RevisionViewQuery {
@@ -160,20 +125,6 @@ class PostViewQuery extends RevisionViewQuery {
 			'PostRevision',
 			$revId
 		);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	protected function getBlockName() {
-		return 'topic';
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	protected function getDiffAction() {
-		return 'compare-post-revisions';
 	}
 }
 
@@ -191,19 +142,4 @@ class PostSummaryViewQuery extends RevisionViewQuery {
 			$revId
 		);
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	protected function getBlockName() {
-		return 'topicsummary';
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	protected function getDiffAction() {
-		return 'compare-postsummary-revisions';
-	}
-
 }
