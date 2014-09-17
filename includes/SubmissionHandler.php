@@ -97,6 +97,15 @@ class SubmissionHandler {
 			return array();
 		}
 
+		// Check for permission to change a titles content model
+		if (
+			$workflow->getOwnerTitle()->getContentModel() !== 'flow-board' &&
+			! $context->getUser()->isAllowed( 'flow-create-board' )
+		) {
+			reset( $interestedBlocks )->addError( 'block', wfMessage( 'flow-error-create-board' ) );
+			return array();
+		}
+
 		$success = true;
 		foreach ( $interestedBlocks as $block ) {
 			$name = $block->getName();
@@ -144,6 +153,10 @@ class SubmissionHandler {
 
 		while( !$this->deferredQueue->isEmpty() ) {
 			DeferredUpdates::addCallableUpdate( $this->deferredQueue->dequeue() );
+		}
+
+		if ( $workflow->getOwnerTitle()->getContentModel() !== 'flow-board' ) {
+			Container::get( 'activator' )->activate( $workflow );
 		}
 
 		return $results;

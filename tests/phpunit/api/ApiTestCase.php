@@ -13,17 +13,6 @@ use User;
  * @group medium
  */
 abstract class ApiTestCase extends BaseApiTestCase {
-	protected function setUp() {
-		$this->setMwGlobals( 'wgFlowOccupyPages', array(
-			// For testing use; shared with browser tests
-			'Talk:Flow QA',
-
-			// Don't do any write operations on this.  It's intentionally left
-			// blank for testing read operations on unused (but occupied) pages.
-			'Talk:Intentionally blank',
-		) );
-		parent::setUp();
-	}
 
 	protected function getEditToken( $user = null, $token = 'edittoken' ) {
 		$tokens = $this->getTokenList( $user ?: self::$users['sysop'] );

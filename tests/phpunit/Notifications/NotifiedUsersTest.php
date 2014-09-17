@@ -7,6 +7,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
 use EchoNotificationController;
+use Title;
 use User;
 use WatchedItem;
 
@@ -106,17 +107,7 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 
 		$notificationController = Container::get( 'controller.notification' );
 
-		// The data of this global varaible is loaded into occupationListener
-		// even before the test starts, so modifying this global in setUP()
-		// won't have any effect on the occupationListener.  The trick is to
-		// fake the workflow to have a title in the global varaible
-		global $wgFlowOccupyPages;
-
-		$page = reset( $wgFlowOccupyPages );
-		if ( !$page ) {
-			return false;
-		}
-		$title = \Title::newFromText( $page );
+		$title = Title::newFromText( 'Talk:Flow QA' );
 		if ( !$title ) {
 			return false;
 		}

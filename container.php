@@ -195,7 +195,6 @@ $c['storage.workflow.listeners.topiclist'] = $c->share( function( $c ) {
 } );
 $c['storage.workflow.listeners'] = function( $c ) {
 	return array(
-		$c['listener.occupation'],
 		$c['listener.url_generator']
 	);
 };
@@ -219,15 +218,6 @@ $c['listener.recentchanges'] = $c->share( function( $c ) {
 			new Flow\Data\Utils\RecentChangeFactory,
 			$c['formatter.irclineurl']
 		)
-	);
-} );
-$c['listener.occupation'] = $c->share( function( $c ) {
-	global $wgFlowDefaultWorkflow;
-
-	return new Flow\Data\Listener\OccupationListener(
-		$c['occupation_controller'],
-		$c['deferred_queue'],
-		$wgFlowDefaultWorkflow
 	);
 } );
 
@@ -762,10 +752,6 @@ $c['factory.loader.workflow'] = $c->share( function( $c ) {
 		$wgFlowDefaultWorkflow
 	);
 } );
-// Initialized in FlowHooks to faciliate only loading the flow container
-// when flow is specifically requested to run. Extension initialization
-// must always happen before calling flow code.
-$c['occupation_controller'] = FlowHooks::getOccupationController();
 
 $c['controller.notification'] = $c->share( function( $c ) {
 	global $wgContLang;
@@ -1136,6 +1122,17 @@ $c['importer'] = $c->share( function( $c ) {
 		$c['factory.loader.workflow'],
 		$c['memcache.buffered'],
 		$c['db.factory']
+	);
+} );
+
+$c['occupation'] = $c->share( function( $c ) {
+	return new \HashBagOStuff();
+} );
+
+$c['activator'] = $c->share( function( $c ) {
+	return new Flow\PageActivator(
+		$c['storage.workflow'],
+		$c['occupation']
 	);
 } );
 
