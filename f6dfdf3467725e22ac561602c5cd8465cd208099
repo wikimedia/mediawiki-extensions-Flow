@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2e2fb78d_13e222d0",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-17T15:04:57Z",
+      "side": 1,
+      "message": "The thing is that mw.notify is being called both after watch \u0026 unwatch, with no way to discern between both.\nAnd we only want to display the message after watching (not unwatching), which is why I subscribe to that other hook, which does have those details.\n\nAnyway, I can just check for #ca-watch, ignoring #ca-unwatch.",
+      "parentUuid": "2e2fb78d_9f119561",
+      "revId": "f6dfdf3467725e22ac561602c5cd8465cd208099",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e2fb78d_a2b43a34",
         "filename": "modules/new/components/flow-board.js",
         "patchSetId": 1
