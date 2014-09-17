@@ -75,10 +75,6 @@ class Templating {
 		return $this->urlGenerator;
 	}
 
-	public function generateUrl( $workflow, $action = 'view', array $query = array() ) {
-		return $this->getUrlGenerator()->generateUrl( $workflow, $action, $query );
-	}
-
 	public function userToolLinks( $userId, $userText ) {
 		static $cache = array();
 		if ( isset( $cache[$userId][$userText] ) ) {
