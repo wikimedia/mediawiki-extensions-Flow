@@ -121,10 +121,7 @@ class FormatterTest extends FlowTestCase {
 		$templating = $this->getMockBuilder( 'Flow\Templating' )
 			->disableOriginalConstructor()
 			->getMock();
-		$occupier = $this->getMockBuilder( 'Flow\OccupationController' )
-			->disableOriginalConstructor()
-			->getMock();
-		$urlGenerator = new UrlGenerator( $occupier );
+		$urlGenerator = new UrlGenerator;
 		$templating->expects( $this->any() )
 			->method( 'getUrlGenerator' )
 			->will( $this->returnValue( $urlGenerator ) );

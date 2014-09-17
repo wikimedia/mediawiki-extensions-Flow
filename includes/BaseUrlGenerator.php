@@ -16,11 +16,6 @@ use Title;
  */
 abstract class BaseUrlGenerator {
 	/**
-	 * @var OccupationController
-	 */
-	protected $occupationController;
-
-	/**
 	 * @var ObjectManager Workflow storage
 	 */
 	protected $storage;
@@ -29,13 +24,6 @@ abstract class BaseUrlGenerator {
 	 * @var Workflow[] Cached array of already loaded workflows
 	 */
 	protected $workflows = array();
-
-	/**
-	 * @param OccupationController $occupationController
-	 */
-	public function __construct( OccupationController $occupationController ) {
-		$this->occupationController = $occupationController;
-	}
 
 	/**
 	 * @param Workflow $workflow
