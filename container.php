@@ -39,9 +39,7 @@ $c['repository.tree'] = $c->share( function( $c ) {
 } );
 
 $c['url_generator'] = $c->share( function( $c ) {
-	return new Flow\UrlGenerator(
-		$c['occupation_controller']
-	);
+	return new Flow\UrlGenerator;
 } );
 // listener is attached to storage.workflow, it
 // notifies the url generator about all loaded workflows.
@@ -160,21 +158,11 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 			array( 'workflow_user_id' => 'workflow_user_wiki' )
 		),
 		new Flow\Data\Listener\WorkflowTopicListListener( $c['storage.topic_list'], $c['topic_list.last_updated.index'] ),
-		$c['listener.occupation'],
 		$c['listener.url_generator']
 		// $c['storage.user_subs.user_index']
 	);
 
 	return new ObjectManager( $mapper, $storage, $indexes, $lifecycle );
-} );
-
-$c['listener.occupation'] = $c->share( function( $c ) {
-	global $wgFlowDefaultWorkflow;
-
-	return new Flow\Data\Listener\OccupationListener(
-		$c['occupation_controller'],
-		$wgFlowDefaultWorkflow
-	);
 } );
 
 $c['storage.board_history.backing'] = $c->share( function( $c ) {
@@ -627,11 +615,6 @@ $c['factory.loader.workflow'] = $c->share( function( $c ) {
 	);
 } );
 
-// Initialized in FlowHooks to faciliate only loading the flow container
-// when flow is specifically requested to run. Extension initialization
-// must always happen before calling flow code.
-$c['occupation_controller'] = FlowHooks::getOccupationController();
-
 $c['controller.notification'] = $c->share( function( $c ) {
 	global $wgContLang;
 	return new Flow\NotificationController( $wgContLang );
@@ -954,6 +937,10 @@ $c['reference.recorder'] = $c->share( function( $c ) {
 			$c['reference.updater.links-tables'],
 			$c['storage']
 		);
+} );
+
+$c['occupation'] = $c->share( function( $c ) {
+	return new \HashBagOStuff;
 } );
 
 return $c;
