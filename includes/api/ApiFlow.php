@@ -88,17 +88,15 @@ class ApiFlow extends ApiBase {
 	 * @return Title
 	 */
 	protected function getPage( $params ) {
-		$page = Title::newFromText( $params['page'] );
-		if ( !$page ) {
+		$title = Title::newFromText( $params['page'] );
+		if ( !$title ) {
 			$this->dieUsage( 'Invalid page provided', 'invalid-page' );
 		}
-		/** @var Flow\TalkpageManager $controller */
-		$controller = Container::get( 'occupation_controller' );
-		if ( !$controller->isTalkpageOccupied( $page ) ) {
+		if ( $title->exists() && $title->getContentModel() !== 'flow-board' ) {
 			$this->dieUsage( 'Page provided does not have Flow enabled', 'invalid-page' );
 		}
 
-		return $page;
+		return $title;
 	}
 
 	public function getAllowedParams() {

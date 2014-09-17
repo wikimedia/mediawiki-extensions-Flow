@@ -52,7 +52,6 @@ class FlowAction extends Action {
 	 */
 	public function showForAction( $action, OutputPage $output = null ) {
 		$container = Container::getContainer();
-		$occupationController = \FlowHooks::getOccupationController();
 
 		if ( $output === null ) {
 			$output = $this->context->getOutput();
@@ -64,7 +63,7 @@ class FlowAction extends Action {
 		}
 
 		$title = $this->page->getTitle();
-		if ( ! $occupationController->isTalkpageOccupied( $title ) ) {
+		if ( $title->getContentModel() !== 'flow-board' ) {
 			throw new ErrorPageError( 'nosuchaction', 'flow-action-unsupported' );
 		}
 
@@ -94,11 +93,6 @@ class FlowAction extends Action {
 			if ( $title->getNamespace() === NS_TOPIC && $loader->getWorkflow()->getType() !== 'topic' ) {
 				// @todo better error handling
 				throw new FlowException( 'Invalid title: uuid is not a topic' );
-			}
-
-			if ( !$loader->getWorkflow()->isNew() ) {
-				// Workflow currently exists, make sure a revision also exists
-				$occupationController->ensureFlowRevision( $this->page, $loader->getWorkflow() );
 			}
 
 			$view->show( $loader, $action );

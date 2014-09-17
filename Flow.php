@@ -53,6 +53,7 @@ $wgAPIPropModules['flowinfo'] = 'ApiQueryPropFlowInfo';
 // Special:Flow
 $wgExtensionMessagesFiles['FlowAlias'] = $dir . 'Flow.alias.php';
 $wgSpecialPages['Flow'] = 'Flow\SpecialFlow';
+$wgSpecialPages['FlowActivation'] = 'Flow\SpecialFlowActivation';
 $wgSpecialPageGroups['Flow'] = 'redirects';
 
 // Housekeeping hooks
@@ -79,9 +80,7 @@ $wgHooks['IRCLineURL'][] = 'FlowHooks::onIRCLineURL';
 $wgHooks['FlowAddModules'][] = 'Flow\Parsoid\Utils::onFlowAddModules';
 $wgHooks['WhatLinksHereProps'][] = 'FlowHooks::onWhatLinksHereProps';
 $wgHooks['ResourceLoaderTestModules'][] = 'FlowHooks::onResourceLoaderTestModules';
-$wgHooks['ContentHandlerDefaultModelFor'][] = 'Flow\Content\Content::onGetDefaultModel';
 $wgHooks['ShowMissingArticle'][] = 'Flow\Content\Content::onShowMissingArticle';
-$wgHooks['ArticleAfterFetchContentObject'][] = 'Flow\Content\Content::onFetchContentObject';
 $wgHooks['MessageCache::get'][] = 'FlowHooks::onMessageCacheGet';
 $wgHooks['WatchArticle'][] = 'FlowHooks::onWatchArticle';
 $wgHooks['UnwatchArticle'][] = 'FlowHooks::onWatchArticle';
@@ -118,6 +117,7 @@ $wgFlowGroupPermissions['user']['flow-lock'] = true;
 $wgFlowGroupPermissions['sysop']['flow-lock'] = true;
 $wgFlowGroupPermissions['sysop']['flow-delete'] = true;
 $wgFlowGroupPermissions['sysop']['flow-edit-post'] = true;
+$wgFlowGroupPermissions['sysop']['flow-create-board'] = true;
 $wgFlowGroupPermissions['oversight']['flow-suppress'] = true;
 $wgGroupPermissions = array_merge_recursive( $wgGroupPermissions, $wgFlowGroupPermissions );
 
@@ -186,12 +186,6 @@ $wgDefaultUserOptions['echo-subscriptions-email-flow-discussion'] = false;
 
 // Maximum number of users that can be mentioned in one comment
 $wgFlowMaxMentionCount = 100;
-
-// Pages to occupy is an array of normalised page names, e.g. array( 'User talk:Zomg' ).
-$wgFlowOccupyPages = array();
-
-// Namespaces to occupy is an array of NS_* constants, e.g. array( NS_USER_TALK ).
-$wgFlowOccupyNamespaces = array();
 
 // Max threading depth
 $wgFlowMaxThreadingDepth = 3;

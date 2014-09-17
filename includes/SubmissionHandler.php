@@ -97,6 +97,15 @@ class SubmissionHandler {
 			return array();
 		}
 
+		// Check for permission to change a titles content model
+		if (
+			$workflow->getArticleTitle()->getContentModel() !== 'flow-board' &&
+			! $context->getUser()->isAllowed( 'flow-create-board' )
+		) {
+			reset( $interestedBlocks )->addError( 'block', wfMessage( 'flow-error-create-board' ) );
+			return array();
+		}
+
 		$success = true;
 		foreach ( $interestedBlocks as $block ) {
 			$name = $block->getName();

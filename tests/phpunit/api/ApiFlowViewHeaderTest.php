@@ -4,6 +4,7 @@ namespace Flow\Tests\Api;
 
 use Flow\Container;
 use FlowHooks;
+use Title;
 use User;
 
 /**
@@ -32,6 +33,11 @@ class ApiFlowViewHeaderTest extends ApiTestCase {
 		$this->assertEmpty( $revision['links'], $debug );
 		$this->assertEquals( array( 'edit' ), array_keys( $revision['actions'] ), $debug );
 		$this->assertArrayNotHasKey( 'content', $revision );
+		$this->assertEquals(
+			'flow-board',
+			Title::newFromText( 'Talk:Flow_QA' )->getContentModel(),
+			'Appropriate content model must be set after performing header edit to blank page'
+		);
 	}
 
 	public function testViewHeader() {

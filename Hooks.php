@@ -5,17 +5,11 @@ use Flow\Container;
 use Flow\Exception\FlowException;
 use Flow\Formatter\CheckUserQuery;
 use Flow\NotificationController;
-use Flow\OccupationController;
 use Flow\SpamFilter\AbuseFilter;
 use Flow\TalkpageManager;
 use Flow\WorkflowLoaderFactory;
 
 class FlowHooks {
-	/**
-	 * @var OccupationController Initialized during extension intialization
-	 */
-	protected static $occupationController;
-
 	/**
 	 * @var AbuseFilter Initialized during extension initialization
 	 */
@@ -25,30 +19,7 @@ class FlowHooks {
 	 * Initialized during extension initialization rather than
 	 * in container so that non-flow pages don't load the container.
 	 *
-	 * @return OccupationController
-	 */
-	public static function getOccupationController() {
-		if ( self::$occupationController === null ) {
-			global $wgFlowOccupyNamespaces,
-				$wgFlowOccupyPages;
-
-			// NS_TOPIC is always occupied
-			$namespaces = $wgFlowOccupyNamespaces;
-			$namespaces[] = NS_TOPIC;
-
-			self::$occupationController = new TalkpageManager(
-				array_unique( $namespaces ),
-				$wgFlowOccupyPages
-			);
-		}
-		return self::$occupationController;
-	}
-
-	/**
-	 * Initialized during extension initialization rather than
-	 * in container so that non-flow pages don't load the container.
-	 *
-	 * @return AbuseFilter
+	 * @return AbuseFilter|null when disabled
 	 */
 	public static function getAbuseFilter() {
 		if ( self::$abuseFilter === null ) {
@@ -77,8 +48,6 @@ class FlowHooks {
 		if ( !class_exists( 'MantleHooks' ) ) {
 			throw new FlowException( 'Flow requires the Mantle MediaWiki extension.' );
 		}
-		// needed to determine if a page is occupied by flow
-		self::getOccupationController();
 
 		// necessary to render flow notifications
 		if ( class_exists( 'EchoNotifier' ) ) {
@@ -103,7 +72,6 @@ class FlowHooks {
 	 */
 	public static function resetFlowExtension() {
 		self::$abuseFilter = null;
-		self::$occupationController = null;
 	}
 
 	/**
@@ -392,7 +360,7 @@ class FlowHooks {
 		$title = $template->getTitle();
 
 		// if Flow is enabled on this talk page, overrule talk page red link
-		if ( self::$occupationController->isTalkpageOccupied( $title ) ) {
+		if ( $title->getContentModel() === 'flow-board' ) {
 			// Turn off page actions in MobileFrontend.
 			// FIXME: Find more elegant standard way of doing this.
 			$wgMFPageActions = array();
@@ -443,13 +411,13 @@ class FlowHooks {
 	public static function onSkinMinervaDefaultModules( Skin $skin, array &$modules ) {
 		// Disable toggling on occupied talk pages in mobile
 		$title = $skin->getTitle();
-		if ( self::$occupationController->isTalkpageOccupied( $title ) ) {
+		if ( $title->getContentModel() === 'flow-board' ) {
 			$modules['toggling'] = array();
 		}
 		// Turn off default mobile talk overlay for these pages
 		if ( $title->canTalk() ) {
 			$talkPage = $title->getTalkPage();
-			if ( self::$occupationController->isTalkpageOccupied( $talkPage ) ) {
+			if ( $talkPage->getContentModel() === 'flow-board' ) {
 				// TODO: Insert lightweight JavaScript that opens flow via ajax
 				$modules['talk'] = array();
 			}
@@ -603,40 +571,17 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onContributionsQuery( &$data, $pager, $offset, $limit, $descending ) {
-		global $wgFlowOccupyNamespaces, $wgFlowOccupyPages;
 
 		// Flow has nothing to do with the tag filter, so ignore tag searches
 		if ( $pager->tagFilter != false ) {
 			return true;
 		}
 
-		// Ignore when looking in a specific namespace where there is no Flow
-		if ( $pager->namespace !== '' ) {
-			// Flow enabled on entire namespace(s)
-			$namespaces = array_flip( $wgFlowOccupyNamespaces );
-
-			// Flow enabled on specific pages - get those namespaces
-			foreach ( $wgFlowOccupyPages as $page ) {
-				$title = Title::newFromText( $page );
-				$namespaces[$title->getNamespace()] = 1;
-			}
-
-			if ( !isset( $namespaces[$pager->namespace] ) ) {
-				return true;
-			}
-		}
-
 		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
 		try {
-			// Contributions may be on pages outside the set of currently
-			// enabled pages so we must disable to occupation listener
-			/** @var Flow\Data\Listener\OccupationListener $listener */
-			$listener = Container::get( 'listener.occupation' );
-			$listener->setEnabled( false );
 			/** @var Flow\Formatter\ContributionsQuery $query */
 			$query = Container::get( 'query.contributions' );
 			$results = $query->getResults( $pager, $offset, $limit, $descending );
-			$listener->setEnabled( true );
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Failed contributions query' );
 			MWExceptionHandler::logException( $e );
@@ -685,10 +630,9 @@ class FlowHooks {
 	 * @return bool false to abort email notification
 	 */
 	public static function onAbortEmailNotification( $editor, $title ) {
-		if ( self::$occupationController->isTalkpageOccupied( $title ) ) {
+		if ( $title->getContentModel() === 'flow-board' ) {
 			// Since we are aborting the notification we need to manually update the watchlist
 			EmailNotification::updateWatchlistTimestamp( $editor, $title, wfTimestampNow() );
-
 			return false;
 		}
 
@@ -696,7 +640,7 @@ class FlowHooks {
 	}
 
 	public static function onInfoAction( IContextSource $ctx, &$pageinfo ) {
-		if ( !self::$occupationController->isTalkpageOccupied( $ctx->getTitle() ) ) {
+		if ( $ctx->getTitle()->getContentModel() === 'flow-board' ) {
 			return true;
 		}
 
@@ -923,7 +867,7 @@ class FlowHooks {
 	}
 
 	public static function onMovePageIsValidMove( Title $oldTitle, Title $newTitle, Status $status ) {
-		if ( self::$occupationController->isTalkpageOccupied( $oldTitle ) ) {
+		if ( $oldTitle->getContentModel() === 'flow-board' ) {
 			$status->fatal( 'flow-error-move' );
 			return false;
 		}
@@ -1105,7 +1049,7 @@ class FlowHooks {
 	 * Gives precedence to Flow over LQT.
 	 */
 	public static function onIsLiquidThreadsPage( Title $title, &$isLqtPage ) {
-		if ( $isLqtPage && self::$occupationController->isTalkpageOccupied( $title ) ) {
+		if ( $isLqtPage && $title->getContentModel() === 'flow-board' ) {
 			$isLqtPage = false;
 		}
 

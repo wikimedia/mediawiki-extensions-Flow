@@ -91,15 +91,17 @@ class BoardContentHandler extends \ContentHandler {
 
 	/**
 	 * Don't let people turn random pages into
-	 * Flow ones until we want them to.
+	 * Flow ones until we want them to. This array
+	 * is populated from SpecialFlowActivation during the
+	 * request when its valid to create.
 	 *
 	 * @param \Title $title
 	 * @return bool
 	 */
 	public function canBeUsedOn( \Title $title ) {
-		/** @var \Flow\TalkpageManager $manager */
-		$manager = Container::get( 'occupation_controller' );
-		return $manager->isTalkpageOccupied( $title );
+		/** @var \HashBagOStuff $occupation */
+		$occupation = Container::get( 'occupation' );
+		return (bool)$occupation->get( (string)$title );
 	}
 
 	/**
