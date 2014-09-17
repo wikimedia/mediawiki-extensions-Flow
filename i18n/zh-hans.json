@@ -176,7 +176,6 @@
 	"flow-rev-message-deleted-topic": "$1{{GENDER:$2|删除}}“$6”的一个[$4 话题]（<em>$5</em>）",
 	"flow-rev-message-suppressed-topic": "$1{{GENDER:$2|锁定}}了[$4 主题]“$6”（<em>$5</em>）。",
 	"flow-rev-message-locked-topic": "$1{{GENDER:$2|锁定}}了[$4 主题]$6（<em>$5</em>）",
-	"flow-rev-message-locked-topic-irc": "$2{{GENDER:$2|锁定}}了主题$6（$5）",
 	"flow-rev-message-restored-topic": "$1{{GENDER:$2|还原}}“$6”的一个[$4 话题]（<em>$5</em>）",
 	"flow-rc-topic-of-board": "$2上的$1",
 	"flow-board-history": "“$1”的历史",

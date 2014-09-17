@@ -91,7 +91,7 @@
 	"flow-topic-notification-subscribe-title": "Эта тема добавлена в ваш список наблюдения.",
 	"flow-topic-notification-subscribe-description": "Вы будете получать уведомления обо всех действиях в этой теме.",
 	"flow-board-notification-subscribe-title": "Вы подписались на эту доску обсуждений!",
-	"flow-board-notification-subscribe-description": "Вы будете автоматически подписаны на все новые темы, созданные в этом обсуждении.",
+	"flow-board-notification-subscribe-description": "Вы получите уведомление, когда в этом обсуждении появится новая тема.",
 	"flow-error-http": "Произошла ошибка при обращении к серверу.",
 	"flow-error-other": "Произошла непредвиденная ошибка.",
 	"flow-error-external": "Произошла ошибка.<br />Было получено следующее сообщение об ошибке: $1",

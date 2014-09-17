@@ -179,7 +179,6 @@
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|a supprimé}} la [$4 discussion] « $6 » (<em>$5</em>).",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|a masqué}} la [$4 discussion] « $6 » (<em>$5</em>).",
 	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|a verrouillé}} la [$4 discussion] $6 (<em>$5</em>)",
-	"flow-rev-message-locked-topic-irc": "$2 {{GENDER:$2|a verrouillé}} la discusion $6 ($5)",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|a restauré}} la [$4 discussion] « $6 » (<em>$5</em>).",
 	"flow-rc-topic-of-board": "$1 sur $2",
 	"flow-board-history": "Historique de « $1 »",

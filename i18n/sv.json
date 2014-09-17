@@ -168,7 +168,6 @@
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|tog bort}} [$4 ämnet] på \"$6\" (<em>$5</em>).",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|censurerade}} [$4 ämnet] på \"$6\" (<em>$5</em>).",
 	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|låste}} [$4 ämnet] $6 (<em>$5</em>)",
-	"flow-rev-message-locked-topic-irc": "$2 {{GENDER:$2|låste}} ämnet $6 ($5)",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|återställde}} [$4 ämnet] på \"$6\" (<em>$5</em>).",
 	"flow-rc-topic-of-board": "$1 på $2",
 	"flow-board-history": "\"$1\" historik",

@@ -124,7 +124,6 @@
 	"flow-edit-post-submit": "送出變更",
 	"flow-edit-post-submit-overwrite": "覆寫變更",
 	"flow-rev-message-edit-post": "$1{{GENDER:$2|編輯}}於「$4」之[$3 評論]",
-	"flow-rev-message-locked-topic-irc": "$2 {{GENDER:$2|鎖定}}主題 $6（$5）",
 	"flow-rc-topic-of-board": "於$2之$1",
 	"flow-board-history": "「$1」歷史",
 	"flow-board-history-empty": "此留言板目前沒有歷史記錄。",
