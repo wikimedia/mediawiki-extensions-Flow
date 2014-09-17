@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2fb78d_6d1187fb",
+        "filename": "includes/View.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-17T07:31:47Z",
+      "side": 1,
+      "message": "It\u0027s a static; should be self::\n\nAlthough we\u0027re now doing this twice in the same method - we should probably only do it once",
+      "revId": "d90153308e87e2fb6135f22e265fdc5797aa586d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
