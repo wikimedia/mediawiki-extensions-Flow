@@ -10,8 +10,8 @@ class ApiFlowViewPost extends ApiFlowBaseGet {
 	 *
 	 * @return array
 	 */
-	protected function getBlockNames() {
-		return array( 'topic' );
+	protected function getBlockParams() {
+		return array( 'topic' => $this->extractRequestParams() );
 	}
 
 	protected function getAction() {

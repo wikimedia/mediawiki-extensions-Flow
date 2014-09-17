@@ -8,8 +8,13 @@ class ApiFlowLockTopic extends ApiFlowBasePost {
 		parent::__construct( $api, $modName, 'cot' );
 	}
 
-	protected function getBlockNames() {
-		return array( 'topic', 'topicsummary' );
+	protected function getBlockParams() {
+		$params = $this->extractRequestParams();
+
+		return array(
+			'topic' => $params,
+			'topicsummary' => $params,
+		);
 	}
 
 	protected function getAction() {

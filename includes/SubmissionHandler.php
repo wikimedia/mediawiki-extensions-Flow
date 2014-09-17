@@ -52,12 +52,12 @@ class SubmissionHandler {
 	 * @param string $action
 	 * @param AbstractBlock[] $blocks
 	 * @param \User $user
-	 * @param WebRequest $request
+	 * @param array $params
 	 * @return AbstractBlock[]
 	 * @throws InvalidActionException
 	 * @throws InvalidDataException
 	 */
-	public function handleSubmit( Workflow $workflow, $action, array $blocks, $user, WebRequest $request ) {
+	public function handleSubmit( Workflow $workflow, $action, array $blocks, $user, array $params ) {
 		$success = true;
 		/** @var Block[] $interestedBlocks */
 		$interestedBlocks = array();
@@ -92,9 +92,9 @@ class SubmissionHandler {
 			return array();
 		}
 
-		$params = $this->extractBlockParameters( $action, $request, $blocks );
 		foreach ( $interestedBlocks as $block ) {
-			$data = $params[$block->getName()];
+			$name = $block->getName();
+			$data = isset( $params[$name] ) ? $params[$name] : array();
 			$success &= $block->onSubmit( $action, $user, $data );
 		}
 
@@ -142,46 +142,5 @@ class SubmissionHandler {
 		}
 
 		return $results;
-	}
-
-	/**
-	 * Helper function extracts parameters from a WebRequest.
-	 *
-	 * @param string $action
-	 * @param WebRequest $request
-	 * @param AbstractBlock[] $blocks
-	 * @return array
-	 */
-	public function extractBlockParameters( $action, WebRequest $request, array $blocks ) {
-		$result = array();
-		// BC for old parameters enclosed in square brackets
-		foreach ( $blocks as $block ) {
-			$name = $block->getName();
-			$result[$name] = $request->getArray( $name, array() );
-		}
-		// BC for topic_list renamed to topiclist
-		if ( isset( $result['topiclist'] ) && !$result['topiclist'] ) {
-			$result['topiclist'] = $request->getArray( 'topic_list', array() );
-		}
-		$globalData = array( 'action' => $action );
-		foreach ( $request->getValues() as $name => $value ) {
-			// between urls only allowing [-_.] as unencoded special chars and
-			// php mangling all of those into '_', we have to split on '_'
-			if ( false !== strpos( $name, '_' ) ) {
-				list( $block, $var ) = explode( '_', $name, 2 );
-				// flow_xxx is global data for all blocks
-				if ( $block === 'flow' ) {
-					$globalData[$var] = $value;
-				} else {
-					$result[$block][$var] = $value;
-				}
-			}
-		}
-
-		foreach ( $blocks as $block ) {
-			$result[$block->getName()] += $globalData;
-		}
-
-		return $result;
 	}
 }
