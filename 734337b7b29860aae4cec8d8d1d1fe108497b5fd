@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ee62ffec_e9f4d5cd",
+        "filename": "modules/new/mw-ui.enhance.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-09-17T22:11:07Z",
+      "side": 1,
+      "message": "Yes, that is scheduled for the next version of this. This is interim to get rid of jQUI.\n\nThe next version will fix all the @todos, one of which is to implement OOJS.",
+      "parentUuid": "ee62ffec_c96a317e",
+      "revId": "734337b7b29860aae4cec8d8d1d1fe108497b5fd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee62ffec_896439b0",
         "filename": "modules/new/mw-ui.enhance.js",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2014-09-17T22:07:42Z",
       "side": 1,
       "message": "Please also put this in a separate file rather than using mw-ui-enhance as a dumping ground for code.",
+      "revId": "734337b7b29860aae4cec8d8d1d1fe108497b5fd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee62ffec_89fb19ba",
+        "filename": "modules/new/mw-ui.enhance.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-09-17T22:11:07Z",
+      "side": 1,
+      "message": "Will do. Do you have any concerns other than the two listed above?",
+      "parentUuid": "ee62ffec_896439b0",
       "revId": "734337b7b29860aae4cec8d8d1d1fe108497b5fd",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
