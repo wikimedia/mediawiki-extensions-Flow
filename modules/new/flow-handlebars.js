@@ -176,7 +176,7 @@
 	 */
 	function flowNormalizeL10nParameters( parameters ) {
 		return $.map( parameters, function ( arg ) {
-			return arg ? arg.raw || arg : '';
+			return arg ? ( arg.raw || arg.plaintext || arg ) : '';
 		} );
 	}
 
