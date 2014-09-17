@@ -28,18 +28,20 @@ div.flow-element-expanded {
 	}
 }
 
-div.flow-element-collapsed {
-	// topic hidden
-	.flow-post,
-	.flow-reply-form {
-		display: none;
-	}
-
-	// post hidden
-	.flow-post & {
-		.flow-post-content,
-		.flow-post-meta {
+.flow-board:not(.flow-disable-collapse) {
+	div.flow-element-collapsed {
+		// topic hidden
+		.flow-post,
+		.flow-reply-form {
 			display: none;
+		}
+
+		// post hidden
+		.flow-post & {
+			.flow-post-content,
+			.flow-post-meta {
+				display: none;
+			}
 		}
 	}
 }
