@@ -2,8 +2,12 @@
 
 namespace Flow;
 
+use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Anchor;
+use Flow\Model\Header;
+use Flow\Model\PostRevision;
+use Flow\Model\PostSummary;
 use Flow\Model\UUID;
 use SpecialPage;
 use Title;
@@ -191,6 +195,25 @@ class UrlGenerator extends BaseUrlGenerator {
 			$title,
 			array( 'action' => 'history' )
 		);
+	}
+
+	/**
+	 * @param AbstractRevision $revision
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param UUID $oldRevId
+	 * @return Anchor
+	 */
+	public function diffLink( AbstractRevision $revision, Title $title = null, UUID $workflowId, UUID $oldRevId = null ) {
+		if ( $revision instanceof PostRevision ) {
+			return $this->diffPostLink( $title, $workflowId, $revision->getRevisionId(), $oldRevId );
+		} elseif ( $revision instanceof Header ) {
+			return $this->diffHeaderLink( $title, $workflowId, $revision->getRevisionId(), $oldRevId );
+		} elseif ( $revision instanceof PostSummary ) {
+			return $this->diffSummaryLink( $title, $workflowId, $revision->getRevisionId(), $oldRevId );
+		} else {
+			throw new FlowException( 'Unknown revision type: ' . get_class( $revision ) );
+		}
 	}
 
 	/**

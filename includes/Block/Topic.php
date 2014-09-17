@@ -518,7 +518,7 @@ class TopicBlock extends AbstractBlock {
 		case 'moderate-topic':
 			return true;
 
-		// View actions
+	 	// View actions
 		case 'view-topic':
 			return true;
 		case 'view-post':
