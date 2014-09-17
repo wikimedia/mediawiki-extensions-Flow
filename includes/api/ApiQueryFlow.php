@@ -76,7 +76,6 @@ class ApiQueryFlow extends ApiQueryBase {
 			'has been superseded by submodules of action=flow.';
 	}
 
-
 	public function getParamDescription() {
 		return array(
 			'workflow' => 'Hex-encoded ID of the workflow to query',

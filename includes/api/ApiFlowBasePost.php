@@ -19,8 +19,8 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 		}
 		$result = $this->getResult();
 
-		$request = $this->getModifiedRequest();
-		$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $request );
+		$params = $this->getBlockParams();
+		$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $params );
 
 		// See if any of the blocks generated an error (in which case the
 		// request will terminate with an the error message)
@@ -51,13 +51,12 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 			'workflow' => $workflow->isNew() ? '' : $workflow->getId()->getAlphadecimal(),
 		);
 
-		$parameters = $loader->extractBlockParameters( $action, $request, $blocksToCommit );
 		foreach( $blocksToCommit as $block ) {
 			// Always return parsed text to client after successful submission?
 			// @Todo - hacky, maybe have contentformat in the request to overwrite
 			// requiredWikitext
 			$block->unsetRequiresWikitext( $action );
-			$output[$action]['result'][$block->getName()] = $block->renderAPI( $parameters[$block->getName()] );
+			$output[$action]['result'][$block->getName()] = $block->renderAPI( $params[$block->getName()] );
 		}
 
 		// required until php5.4 which has the JsonSerializable interface

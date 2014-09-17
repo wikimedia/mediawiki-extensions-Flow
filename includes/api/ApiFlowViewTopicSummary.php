@@ -9,8 +9,8 @@ class ApiFlowViewTopicSummary extends ApiFlowBaseGet {
 	 * Taken from ext.flow.base.js
 	 * @return array
 	 */
-	protected function getBlockNames() {
-		return array( 'topicsummary' );
+	protected function getBlockParams() {
+		return array( 'topicsummary' => $this->extractRequestParams() );
 	}
 
 	protected function getAction() {

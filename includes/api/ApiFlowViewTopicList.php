@@ -10,8 +10,8 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 	 *
 	 * @return array
 	 */
-	protected function getBlockNames() {
-		return array( 'topiclist' );
+	protected function getBlockParams() {
+		return array( 'topiclist' => $this->extractRequestParams() );
 	}
 
 	protected function getAction() {

@@ -2,13 +2,16 @@
 
 namespace Flow;
 
+use Flow\Block\AbstractBlock;
 use Flow\Exception\InvalidActionException;
 use Flow\Model\Anchor;
 use Flow\Model\Workflow;
+use ContextSource;
 use Html;
 use IContextSource;
 use Message;
-use ContextSource;
+use WebRequest;
+
 
 class View extends ContextSource {
 	/**
@@ -81,10 +84,12 @@ class View extends ContextSource {
 		}
 		wfProfileOut( __CLASS__ . '-init' );
 
+		$parameters = $this->extractBlockParameters( $action, $request, $blocks );
+
 		$wasPosted = $request->wasPosted();
 		if ( $wasPosted ) {
 			wfProfileIn( __CLASS__ . '-submit' );
-			$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $request );
+			$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $parameters );
 			if ( $blocksToCommit ) {
 				if ( !$user->matchEditToken( $request->getVal( 'wpEditToken' ) ) ) {
 					// only render the failed blocks
@@ -121,7 +126,6 @@ class View extends ContextSource {
 			),
 		);
 
-		$parameters = $loader->extractBlockParameters( $action, $request, $blocks );
 		$editToken = $user->getEditToken();
 		foreach ( $blocks as $block ) {
 			if ( $wasPosted ? $block->canSubmit( $action ) : $block->canRender( $action ) ) {
@@ -181,5 +185,46 @@ class View extends ContextSource {
 			$workflow->getId()
 		);
 		$this->getOutput()->redirect( $link->getFullURL() );
+	}
+
+	/**
+	 * Helper function extracts parameters from a WebRequest.
+	 *
+	 * @param string $action
+	 * @param WebRequest $request
+	 * @param AbstractBlock[] $blocks
+	 * @return array
+	 */
+	public function extractBlockParameters( $action, WebRequest $request, array $blocks ) {
+		$result = array();
+		// BC for old parameters enclosed in square brackets
+		foreach ( $blocks as $block ) {
+			$name = $block->getName();
+			$result[$name] = $request->getArray( $name, array() );
+		}
+		// BC for topic_list renamed to topiclist
+		if ( isset( $result['topiclist'] ) && !$result['topiclist'] ) {
+			$result['topiclist'] = $request->getArray( 'topic_list', array() );
+		}
+		$globalData = array( 'action' => $action );
+		foreach ( $request->getValues() as $name => $value ) {
+			// between urls only allowing [-_.] as unencoded special chars and
+			// php mangling all of those into '_', we have to split on '_'
+			if ( false !== strpos( $name, '_' ) ) {
+				list( $block, $var ) = explode( '_', $name, 2 );
+				// flow_xxx is global data for all blocks
+				if ( $block === 'flow' ) {
+					$globalData[$var] = $value;
+				} else {
+					$result[$block][$var] = $value;
+				}
+			}
+		}
+
+		foreach ( $blocks as $block ) {
+			$result[$block->getName()] += $globalData;
+		}
+
+		return $result;
 	}
 }
