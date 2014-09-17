@@ -427,7 +427,7 @@ class RevisionFormatter {
 
 			case 'reply':
 				if ( !$postId ) {
-					throw new FlowException( "$type called without \$postId" );
+					throw new FlowException( "$type called without \$postId in action $action" );
 				}
 
 				/*
@@ -783,16 +783,13 @@ class RevisionFormatter {
 			$content = $this->templating->getContent( $revision, 'html' );
 			// strip html tags and decode to plaintext
 			$content = Utils::htmlToPlaintext( $content, 140, $ctx->getLanguage() );
-			// The message keys this will be used with include links so will use Message::parse
-			// we don't want anything in this plaintext to be mistakenly taken as wikitext so
-			// encode for html output and mark raw to prevent Message from evaluating as wikitext
-			return Message::rawParam( htmlspecialchars( $content ) );
+			return Message::plaintextParam( $content );
 
 		case 'wikitext':
 			$content = $this->templating->getContent( $revision, 'wikitext' );
 			// This must be escaped and marked raw to prevent special chars in
 			// content, like $1, from changing the i18n result
-			return Message::rawParam( htmlspecialchars( $content ) );
+			return Message::plaintextParam( $content );
 
 		// This is potentially two networked round trips, much too expensive for
 		// the rendering loop
@@ -809,7 +806,7 @@ class RevisionFormatter {
 			}
 
 			$content = $this->templating->getContent( $previousRevision, 'wikitext' );
-			return Message::rawParam( htmlspecialchars( $content ) );
+			return Message::plaintextParam( $content );
 
 		case 'workflow-url':
 			return $this->urlGenerator
@@ -826,7 +823,7 @@ class RevisionFormatter {
 
 		case 'moderated-reason':
 			// don-t parse wikitext in the moderation reason
-			return Message::rawParam( htmlspecialchars( $revision->getModeratedReason() ) );
+			return Message::plaintextParam( $revision->getModeratedReason() );
 
 		case 'topic-of-post':
 			if ( !$revision instanceof PostRevision ) {
@@ -835,7 +832,7 @@ class RevisionFormatter {
 			$root = $revision->getRootPost();
 			$content = $this->templating->getContent( $root, 'wikitext' );
 
-			return Message::rawParam( htmlspecialchars( $content ) );
+			return Message::plaintextParam( $content );
 
 		case 'post-of-summary':
 			if ( !$revision instanceof PostSummary ) {
