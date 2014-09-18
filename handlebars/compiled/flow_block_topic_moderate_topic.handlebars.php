@@ -51,16 +51,15 @@
 	<input type="hidden" name="wpEditToken" value="'.htmlentities(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['editToken'])) ? $cx['scopes'][0]['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
 	<textarea name="topic_reason"
 	          required
-	          data-flow-preview-template="flow_post"
 	          data-flow-expandable="true"
 	          class="mw-ui-input"
-	          type="text"
 	          data-role="content"
 	          placeholder="'.LCRun3::ch($cx, 'l10n', Array(Array(LCRun3::ch($cx, 'concat', Array(Array('flow-moderation-placeholder-',((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['moderationState'])) ? $cx['scopes'][0]['submitted']['moderationState'] : null),'-topic'),Array()), 'raw')),Array()), 'encq').'">'.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['reason'])) ? $cx['scopes'][0]['submitted']['reason'] : null))) ? ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['reason'])) ? $cx['scopes'][0]['submitted']['reason'] : null), ENT_QUOTES, 'UTF-8').'' : '').'</textarea>
 	<div class="flow-form-actions flow-form-collapsible">
 		<button class="mw-ui-button mw-ui-constructive"
-				data-flow-interactive-handler="apiRequest"
-				data-flow-api-handler="moderateTopic">'.LCRun3::ch($cx, 'l10n', Array(Array(LCRun3::ch($cx, 'concat', Array(Array('flow-moderation-confirm-',((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['moderationState'])) ? $cx['scopes'][0]['submitted']['moderationState'] : null),'-topic'),Array()), 'raw')),Array()), 'encq').'</button>
+		        data-flow-interactive-handler="apiRequest"
+		        data-flow-api-handler="moderateTopic"
+		        data-role="submit">'.LCRun3::ch($cx, 'l10n', Array(Array(LCRun3::ch($cx, 'concat', Array(Array('flow-moderation-confirm-',((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['moderationState'])) ? $cx['scopes'][0]['submitted']['moderationState'] : null),'-topic'),Array()), 'raw')),Array()), 'encq').'</button>
 		<a class="mw-ui-button mw-ui-quiet mw-ui-destructive"
 		   href="'.htmlentities(((is_array($in['links']['topic']) && isset($in['links']['topic']['url'])) ? $in['links']['topic']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 		   title="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'"
@@ -172,7 +171,7 @@
 			   class="'.((!LCRun3::ifvar($cx, ((is_array($in['links']['userpage']) && isset($in['links']['userpage']['exists'])) ? $in['links']['userpage']['exists'] : null))) ? 'new ' : '').'mw-userlink">
 		' : '').'
 		'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['name'])) ? $in['name'] : null))) ? ''.htmlentities(((is_array($in) && isset($in['name'])) ? $in['name'] : null), ENT_QUOTES, 'UTF-8').'' : ''.LCRun3::ch($cx, 'l10n', Array(Array('flow-anonymous'),Array()), 'encq').'
-		').''.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['userpage'])) ? $in['links']['userpage'] : null))) ? '</a>' : '').'<span class="mw-usertoollinks">'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['talk'])) ? $in['links']['talk'] : null))) ? '<span><a href="'.htmlentities(((is_array($in['links']['talk']) && isset($in['links']['talk']['url'])) ? $in['links']['talk']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+		').''.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['userpage'])) ? $in['links']['userpage'] : null))) ? '</a>' : '').'<span class="mw-usertoollinks flow-pipelist">'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['talk'])) ? $in['links']['talk'] : null))) ? '<span><a href="'.htmlentities(((is_array($in['links']['talk']) && isset($in['links']['talk']['url'])) ? $in['links']['talk']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 				    class="'.((!LCRun3::ifvar($cx, ((is_array($in['links']['talk']) && isset($in['links']['talk']['exists'])) ? $in['links']['talk']['exists'] : null))) ? 'new ' : '').'"
 				    title="'.htmlentities(((is_array($in['links']['talk']) && isset($in['links']['talk']['title'])) ? $in['links']['talk']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.LCRun3::ch($cx, 'l10n', Array(Array('talkpagelinktext'),Array()), 'encq').'</a></span>' : '').''.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['contribs'])) ? $in['links']['contribs'] : null))) ? '<span>
 					<a href="'.htmlentities(((is_array($in['links']['contribs']) && isset($in['links']['contribs']['url'])) ? $in['links']['contribs']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['contribs']) && isset($in['links']['contribs']['title'])) ? $in['links']['contribs']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.LCRun3::ch($cx, 'l10n', Array(Array('contribslink'),Array()), 'encq').'</a>
@@ -365,7 +364,7 @@
 			   class="'.((!LCRun3::ifvar($cx, ((is_array($in['links']['userpage']) && isset($in['links']['userpage']['exists'])) ? $in['links']['userpage']['exists'] : null))) ? 'new ' : '').'mw-userlink">
 		' : '').'
 		'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['name'])) ? $in['name'] : null))) ? ''.htmlentities(((is_array($in) && isset($in['name'])) ? $in['name'] : null), ENT_QUOTES, 'UTF-8').'' : ''.LCRun3::ch($cx, 'l10n', Array(Array('flow-anonymous'),Array()), 'encq').'
-		').''.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['userpage'])) ? $in['links']['userpage'] : null))) ? '</a>' : '').'<span class="mw-usertoollinks">'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['talk'])) ? $in['links']['talk'] : null))) ? '<span><a href="'.htmlentities(((is_array($in['links']['talk']) && isset($in['links']['talk']['url'])) ? $in['links']['talk']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+		').''.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['userpage'])) ? $in['links']['userpage'] : null))) ? '</a>' : '').'<span class="mw-usertoollinks flow-pipelist">'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['talk'])) ? $in['links']['talk'] : null))) ? '<span><a href="'.htmlentities(((is_array($in['links']['talk']) && isset($in['links']['talk']['url'])) ? $in['links']['talk']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 				    class="'.((!LCRun3::ifvar($cx, ((is_array($in['links']['talk']) && isset($in['links']['talk']['exists'])) ? $in['links']['talk']['exists'] : null))) ? 'new ' : '').'"
 				    title="'.htmlentities(((is_array($in['links']['talk']) && isset($in['links']['talk']['title'])) ? $in['links']['talk']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.LCRun3::ch($cx, 'l10n', Array(Array('talkpagelinktext'),Array()), 'encq').'</a></span>' : '').''.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['contribs'])) ? $in['links']['contribs'] : null))) ? '<span>
 					<a href="'.htmlentities(((is_array($in['links']['contribs']) && isset($in['links']['contribs']['url'])) ? $in['links']['contribs']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['contribs']) && isset($in['links']['contribs']['title'])) ? $in['links']['contribs']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.LCRun3::ch($cx, 'l10n', Array(Array('contribslink'),Array()), 'encq').'</a>
