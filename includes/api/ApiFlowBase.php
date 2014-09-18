@@ -41,6 +41,17 @@ abstract class ApiFlowBase extends ApiBase {
 	}
 
 	/**
+	 * Returns true if the submodule required the page parameter to be set.
+	 * Most submodules will need to be passed the page the API request is for.
+	 * For some (e.g. search), this is not needed at all.
+	 *
+	 * @return bool
+	 */
+	public function needsPage() {
+		return true;
+	}
+
+	/**
 	 * @param Title $page
 	 */
 	public function setPage( Title $page ) {
@@ -83,16 +94,25 @@ abstract class ApiFlowBase extends ApiBase {
 	}
 
 	/**
+	 * @param bool $addAliases
 	 * @return string[]
 	 */
-	protected function getModerationStates() {
-		return array(
+	protected function getModerationStates( $addAliases = true ) {
+		$states = array(
+			AbstractRevision::MODERATED_NONE,
 			AbstractRevision::MODERATED_DELETED,
 			AbstractRevision::MODERATED_HIDDEN,
 			AbstractRevision::MODERATED_SUPPRESSED,
-			// aliases for AbstractRevision::MODERATED_NONE
-			'restore', 'unhide', 'undelete', 'unsuppress',
 		);
+
+		if ( $addAliases ) {
+			// aliases for AbstractRevision::MODERATED_NONE
+			$states = array_merge( $states, array(
+				'restore', 'unhide', 'undelete', 'unsuppress',
+			) );
+		}
+
+		return $states;
 	}
 
 	/**
