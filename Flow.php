@@ -258,15 +258,39 @@ $wgFlowCacheVersion = '4.5';
 // ElasticSearch servers
 $wgFlowSearchServers = array( 'localhost' );
 
-// How many times to attempt connecting to a given server
-// If you're behind LVS and everything looks like one server,
-// you may want to reattempt 2 or 3 times.
-$wgFlowSearchConnectionAttempts = 1;
-
-// Client side timeout for maintanance operations.  We can't disable the timeout
-// all together so we set it to one hour for really long running operations
-// like optimize.
-$wgFlowSearchMaintenanceTimeout = 3600;
+// Flow search config setting - akin to CirrusSearch
+// See CirrusSearch.php for documentation for these params, which have similar
+// variable names (s/FlowSearch/CirrusSearch/)
+$wgFlowSearchConnectionAttempts = 1; // $wgCirrusSearchConnectionAttempts
+$wgFlowSearchBannedPlugins = array(); // $wgCirrusSearchBannedPlugins
+$wgFlowSearchOptimizeIndexForExperimentalHighlighter = false; // $wgCirrusSearchOptimizeIndexForExperimentalHighlighter
+$wgFlowSearchMaxShardsPerNode = array(); // $wgCirrusSearchMaxShardsPerNode
+$wgFlowSearchRefreshInterval = 1; // $wgCirrusSearchRefreshInterval
+$wgFlowSearchMaintenanceTimeout = 3600; // $wgCirrusSearchMaintenanceTimeout
+$wgFlowSearchReplicas = '0-2'; // $wgCirrusSearchReplicas
+$wgFlowSearchShardCount = array( 'content' => 4, 'general' => 4 ); // $wgCirrusSearchShardCount // @todo: different for Flow
+$wgFlowSearchMergeSettings = array(
+	'content' => array(
+		// Aggressive settings to try to keep the content index more optimized
+		// because it is searched more frequently.
+		'max_merge_at_once' => 5,
+		'segments_per_tier' => 5,
+		'reclaim_deletes_weight' => 3.0,
+		'max_merged_segment' => '25g',
+	),
+	'general' => array(
+		// The Elasticsearch defaults for this less frequently searched index.
+		'max_merge_at_once' => 10,
+		'segments_per_tier' => 10,
+		'reclaim_deletes_weight' => 2.0,
+		'max_merged_segment' => '5g',
+	),
+); // $wgCirrusSearchMergeSettings // @todo: different for Flow
+$wgFlowSearchIndexAllocation = array(
+	'include' => array(),
+	'exclude' => array(),
+	'require' => array(),
+); // $wgCirrusSearchIndexAllocation
 
 // Custom group name for AbuseFilter
 // Acceptable values:
