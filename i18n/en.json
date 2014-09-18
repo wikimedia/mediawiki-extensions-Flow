@@ -162,6 +162,7 @@
 	"flow-error-fetch-after-lock": "An error was encountered when requesting the new data. The lock/unlock operation succeeded just fine, though. The error message was: $1",
 	"flow-error-content-too-long": "The content is too large. Content after expansion is limited to $1 {{PLURAL:$1|byte|bytes}}.",
 	"flow-error-move": "Moving a discussion board is currently not supported.",
+	"flow-error-search": "We could not complete your search due to a temporary problem. Please try again later.",
 	"flow-edit-header-placeholder": "Describe this discussion board",
 	"flow-edit-header-submit": "Save header",
 	"flow-edit-header-submit-overwrite": "Overwrite header",
