@@ -3,6 +3,7 @@
 use Flow\Container;
 use Flow\Model\UUID;
 use Flow\Search\Connection;
+use Flow\Search\Updater;
 
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
@@ -34,7 +35,7 @@ class FlowForceSearchIndex extends Maintenance {
 		global $wgFlowSearchMaintenanceTimeout;
 
 		// Set the timeout for maintenance actions
-		Connection::setTimeout( $wgFlowSearchMaintenanceTimeout );
+		Connection::getSingleton()->setTimeout2( $wgFlowSearchMaintenanceTimeout );
 
 		$fromId = $this->getOption( 'fromId', null );
 		$fromId = $fromId ? UUID::create( $fromId ) : null;
@@ -49,6 +50,7 @@ class FlowForceSearchIndex extends Maintenance {
 			$options['LIMIT'] = $limit;
 		}
 
+		/** @var Updater[] $updaters */
 		$updaters = Container::get( 'searchindex.updaters' );
 		foreach ( $updaters as $updater ) {
 			$conditions = $updater->buildQueryConditions( $fromId, $toId, $namespace );
