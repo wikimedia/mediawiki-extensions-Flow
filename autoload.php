@@ -208,6 +208,7 @@ $wgAutoloadClasses['Flow\\Repository\\UserName\\UserNameQuery'] = __DIR__ . '/in
 $wgAutoloadClasses['Flow\\RevisionActionPermissions'] = __DIR__ . '/includes/RevisionActionPermissions.php';
 $wgAutoloadClasses['Flow\\Search\\Connection'] = __DIR__ . '/includes/Search/Connection.php';
 $wgAutoloadClasses['Flow\\Search\\HeaderUpdater'] = __DIR__ . '/includes/Search/HeaderUpdater.php';
+$wgAutoloadClasses['Flow\\Search\\MappingConfigBuilder'] = __DIR__ . '/includes/Search/MappingConfigBuilder.php';
 $wgAutoloadClasses['Flow\\Search\\SearchEngine'] = __DIR__ . '/includes/Search/SearchEngine.php';
 $wgAutoloadClasses['Flow\\Search\\Searcher'] = __DIR__ . '/includes/Search/Searcher.php';
 $wgAutoloadClasses['Flow\\Search\\TopicUpdater'] = __DIR__ . '/includes/Search/TopicUpdater.php';
