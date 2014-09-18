@@ -167,6 +167,7 @@
 	"flow-error-invalid-topic-uuid": "The requested page title was invalid. Pages in the Topic namespace are automatically created by Flow.",
 	"flow-error-unknown-workflow-id-title": "Unknown topic",
 	"flow-error-unknown-workflow-id": "The requested topic does not exist.",
+	"flow-error-search": "We could not complete your search due to a temporary problem. Please try again later.",
 	"flow-edit-header-placeholder": "Describe this discussion board",
 	"flow-edit-header-submit": "Save header",
 	"flow-edit-header-submit-overwrite": "Overwrite header",
