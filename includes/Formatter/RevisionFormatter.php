@@ -249,6 +249,18 @@ class RevisionFormatter {
 				$row->revision->getCreatorId(),
 				$row->revision->getCreatorIp()
 			);
+
+			// Always output this along with topic titles so they
+			// have a safe parameter to use within l10n for content
+			// output.
+			if ( $row->revision->isTopicTitle() && !isset( $res['properties']['topic-of-post'] ) ) {
+				$res['properties']['topic-of-post'] = $this->processParam(
+					'topic-of-post',
+					$row->revision,
+					$row->workflow->getId(),
+					$ctx
+				);
+			}
 		}
 
 		return $res;

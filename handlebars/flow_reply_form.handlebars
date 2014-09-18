@@ -20,7 +20,7 @@
 				data-flow-expandable="true"
 				class="mw-ui-input"
 				type="text"
-				placeholder="{{l10n "flow-reply-topic-title-placeholder" (plaintextSnippet content.format content.content)}}"
+				placeholder="{{l10n "flow-reply-topic-title-placeholder" properties.topic-of-post}}"
 				data-role="content">
 			{{~#if @root.submitted~}}
 				{{~#ifCond @root.submitted.postId "===" postId~}}
