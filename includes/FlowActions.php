@@ -37,9 +37,26 @@ class FlowActions {
 		try {
 			return isset( $this->actions[$arguments] );
 		} catch ( \OutOfBoundsException $e ) {
-			// NOTE: doesn't currently support BC aliases, seems reasonable for now
-			return false;
+			// Do nothing; the whole remainder of this method is fail-case.
 		}
+
+		/*
+		 * If no value is found, check if the action is not actually referencing
+		 * another action (for BC reasons), then try fetching the requested data
+		 * from that action.
+		 */
+		try {
+			$referencedAction = $this->actions[$action];
+			if ( is_string( $referencedAction ) && $referencedAction != $action ) {
+				// Replace action name in arguments.
+				$arguments[0] = $referencedAction;
+				return isset( $this->actions[$arguments] );
+			}
+		} catch ( \OutOfBoundsException $e ) {
+			// Do nothing; the whole remainder of this method is fail-case.
+		}
+
+		return false;
 	}
 
 	/**
