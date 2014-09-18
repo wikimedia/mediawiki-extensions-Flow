@@ -91,7 +91,7 @@ abstract class Updater {
 		$profiler = new ProfileSection( __METHOD__ );
 
 		if ( $clientSideTimeout !== null ) {
-			Connection::setTimeout( $clientSideTimeout );
+			Connection::getSingleton()->setTimeout2( $clientSideTimeout );
 		}
 
 		$documents = $this->buildDocumentsForRevisions( $revisions );
@@ -109,7 +109,7 @@ abstract class Updater {
 
 		try {
 			// addDocuments (notice plural) is the bulk api
-			$bulk = new \Elastica\Bulk( Connection::getClient() );
+			$bulk = new \Elastica\Bulk( Connection::getSingleton()->getClient2() );
 			if ( $shardTimeout ) {
 				$bulk->setShardTimeout( $shardTimeout );
 			}
