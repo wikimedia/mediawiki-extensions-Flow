@@ -88,10 +88,10 @@ class AbuseFilterTest extends PostRevisionTestCase {
 	}
 
 	protected function tearDown() {
+		parent::tearDown();
 		foreach ( $this->tablesUsed as $table ) {
 			$this->db->delete( $table, '*', __METHOD__ );
 		}
-		parent::tearDown();
 	}
 
 	/**
