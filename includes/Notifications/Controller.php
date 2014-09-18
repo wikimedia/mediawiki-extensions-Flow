@@ -202,8 +202,10 @@ class NotificationController {
 				'content' => $firstPost
 					? Utils::htmlToPlaintext( $firstPost->getContent(), 200, $this->language )
 					: null,
-				// Force a read from master database since this is a new page
-				'target-page' => $topicWorkflow->getArticleTitle()->getArticleID( Title::GAID_FOR_UPDATE )
+				'target-page' => array(
+					// Force a read from master database since this could be a new page
+					$topicWorkflow->getOwnerTitle()->getArticleID( Title::GAID_FOR_UPDATE )
+				),
 			)
 		) );
 
