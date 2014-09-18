@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee62ffec_d2c41a97",
+        "filename": "handlebars/flow_reply_form.handlebars",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-18T07:32:31Z",
+      "side": 1,
+      "message": "FlowBoardComponent.UI.events.interactiveHandlers.activateReplyPost calls this template with proper \u0027content\u0027 params, not properties.topic-of-post. Results in \"Reply to $1\".",
+      "revId": "2943a34775216a64b1d68b47698ad66802b3c6dd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
