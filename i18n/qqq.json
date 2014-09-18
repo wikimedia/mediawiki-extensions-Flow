@@ -172,6 +172,7 @@
 	"flow-error-invalid-topic-uuid": "Body of page displayed when the user requests a page within the Topic namespace that is not a valid UUID",
 	"flow-error-unknown-workflow-id-title": "Title displayed at top of page and in browser title bar when the user requests a page within the Topic namespace that is not a known topic",
 	"flow-error-unknown-workflow-id": "Body of page displayed when the user requests a page within the Topic namespace that is not a known topic",
+	"flow-error-search": "Error message shown to the users when we have an issue communicating with our search backend.",
 	"flow-edit-header-placeholder": "Used as placeholder when editing the header of a Flow board",
 	"flow-edit-header-submit": "Used as label for the Submit button.",
 	"flow-edit-header-submit-overwrite": "Used as label for the Submit button, when submitting will overwrite a more recent change.",
