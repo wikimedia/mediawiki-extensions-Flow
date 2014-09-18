@@ -74,11 +74,17 @@ class FlowForceSearchIndex extends Maintenance {
 				$this->output( "Indexed $total $updaterType document(s)\n" );
 
 				// prepare for next batch, starting at the next id
-				$prevFromId = $fromId;
+				// prevFromId will default to first Flow commit date - there can
+				// be no data before that
+				$prevFromId = $fromId ?: UUID::getComparisonUUID( '20130710230511' );
 				$fromId = $this->getNextFromId( $updater, $revisions );
 
 				// make sure we don't get stuck in an infinite loop
-				if ( $fromId === $prevFromId ) {
+				$diff = $prevFromId->getTimestampObj()->diff( $fromId->getTimestampObj() );
+				// invert will be 1 if the diff is a negative time period from
+				// $timestamp to $result, which means that the new $timestamp is more
+				// recent than our current $result
+				if ( $diff->invert ) {
 					$this->error(
 						'Got stuck in an infinite loop.
 						workflow_last_update_timestamp is likely incorrect for

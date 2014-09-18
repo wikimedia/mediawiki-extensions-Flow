@@ -262,6 +262,7 @@ $wgAutoloadClasses += array(
 	'Flow\\RevisionActionPermissions' => __DIR__ . '/includes/RevisionActionPermissions.php',
 	'Flow\\Search\\Connection' => __DIR__ . '/includes/Search/Connection.php',
 	'Flow\\Search\\HeaderUpdater' => __DIR__ . '/includes/Search/HeaderUpdater.php',
+	'Flow\\Search\\Maintenance\\MappingConfigBuilder' => __DIR__ . '/includes/Search/maintenance/MappingConfigBuilder.php',
 	'Flow\\Search\\SearchEngine' => __DIR__ . '/includes/Search/SearchEngine.php',
 	'Flow\\Search\\Searcher' => __DIR__ . '/includes/Search/Searcher.php',
 	'Flow\\Search\\TopicUpdater' => __DIR__ . '/includes/Search/TopicUpdater.php',
