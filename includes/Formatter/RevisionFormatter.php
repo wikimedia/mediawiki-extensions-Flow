@@ -723,7 +723,7 @@ class RevisionFormatter {
 		$params = $actions->getValue( $changeType, 'history', 'i18n-params' );
 		if ( !$params ) {
 			// should we have a sigil for i18n with no parameters?
-			wfDebugLog( 'Flow', __METHOD__ . ": No i18n params for changeTyp4 $changeType on " . $revision->getRevisionId()->getAlphadecimal() );
+			wfDebugLog( 'Flow', __METHOD__ . ": No i18n params for changeType $changeType on " . $revision->getRevisionId()->getAlphadecimal() );
 			return array();
 		}
 
