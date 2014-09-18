@@ -57,6 +57,19 @@
 	font-size: .875em;
 }
 
+// Decorate as a pipelist, ex: ( foo | bar | baz )
+.flow-pipelist {
+	&:not(:empty):before {
+		content: ' (';
+	}
+	span ~ span:before {
+		content: ' | ';
+	}
+	&:not(:empty):after {
+		content: ') ';
+	}
+}
+
 @media all and (min-width: @wgFlowDeviceWidthTablet) {
 	.flow-topic-meta {
 		font-size: 1em;
