@@ -329,6 +329,35 @@ $wgFlowCacheTime = 60 * 60 * 24 * 3;
 // Flow code; WMF sometimes overrides this globally in wmf-config/CommonSettings.php
 $wgFlowCacheVersion = '4.5';
 
+// ElasticSearch servers
+$wgFlowSearchServers = array( 'localhost' );
+
+// Flow search config setting - akin to CirrusSearch
+// See CirrusSearch.php for documentation for these params, which have similar
+// variable names (s/FlowSearch/CirrusSearch/)
+$wgFlowSearchConnectionAttempts = 1; // see $wgCirrusSearchConnectionAttempts
+$wgFlowSearchBannedPlugins = array(); // see $wgCirrusSearchBannedPlugins
+$wgFlowSearchOptimizeIndexForExperimentalHighlighter = false; // see $wgCirrusSearchOptimizeIndexForExperimentalHighlighter
+$wgFlowSearchMaxShardsPerNode = array(); // see $wgCirrusSearchMaxShardsPerNode
+$wgFlowSearchRefreshInterval = 1; // see $wgCirrusSearchRefreshInterval
+$wgFlowSearchMaintenanceTimeout = 3600; // see $wgCirrusSearchMaintenanceTimeout
+$wgFlowSearchReplicas = '0-2'; // see $wgCirrusSearchReplicas
+$wgFlowSearchShardCount = array( 'flow' => 4 ); // see $wgCirrusSearchShardCount
+$wgFlowSearchCacheWarmers = array(); // see $wgCirrusSearchCacheWarmers
+$wgFlowSearchMergeSettings = array(
+	'flow' => array(
+		'max_merge_at_once' => 10,
+		'segments_per_tier' => 10,
+		'reclaim_deletes_weight' => 2.0,
+		'max_merged_segment' => '5g',
+	),
+); // see $wgCirrusSearchMergeSettings
+$wgFlowSearchIndexAllocation = array(
+	'include' => array(),
+	'exclude' => array(),
+	'require' => array(),
+); // see $wgCirrusSearchIndexAllocation
+
 // Custom group name for AbuseFilter
 // Acceptable values:
 // * a specific value for flow-specific filters
