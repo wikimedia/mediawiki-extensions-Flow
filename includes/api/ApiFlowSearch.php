@@ -61,6 +61,14 @@ class ApiFlowSearch extends ApiFlowBaseGet {
 		// result can be null, if nothing was found
 		$results = $result === null ? array() : $result->getResults();
 
+/*
+		// @todo: this shows highlights; needs better integration, just test code for now ;)
+		foreach ( $results as $result ) {
+			var_dump($result->getHighlights());
+		}
+		exit;
+*/
+
 		$rows = $this->query->getResults( $results );
 		$results = array(
 			'total' => $result->getTotalHits(),
