@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee62ffec_f2639ed8",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-18T07:09:31Z",
+      "side": 1,
+      "message": "Now there will also be a message after unwatch.\n\nFor topic watching, we don\u0027t show a message after unwatching, I though we wouldn\u0027t want that here too. So I\u0027m not sure if letting the mw.notify after unwatch go through is intended.\n\nAnyway, noone probably even cares about that, so I\u0027ll merge it. At least we\u0027re being slightly more consistent with watching regular pages! :)",
+      "revId": "ca005665a51a9eb64de5a8be4619bce26c4b7816",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee62ffec_7270cea3",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 2300,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-18T07:09:31Z",
+      "side": 1,
+      "message": "we don\u0027t need type here?",
+      "revId": "ca005665a51a9eb64de5a8be4619bce26c4b7816",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
