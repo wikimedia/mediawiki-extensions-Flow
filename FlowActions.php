@@ -145,7 +145,7 @@ $wgFlowActions = array(
 		),
 		'handler-class' => 'Flow\Actions\EditTitleAction',
 		'watch' => array(
-			'immediate' => array( 'Flow\\Data\\ImmediateWatchTopicListener', 'getCurrentUser' ),
+			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
 		),
 	),
 
@@ -172,7 +172,7 @@ $wgFlowActions = array(
 		),
 		'handler-class' => 'Flow\Actions\NewTopicAction',
 		'watch' => array(
-			'immediate' => array( 'Flow\\Data\\ImmediateWatchTopicListener', 'getCurrentUser' ),
+			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
 		),
 	),
 
@@ -204,7 +204,7 @@ $wgFlowActions = array(
 		),
 		'handler-class' => 'Flow\Actions\EditPostAction',
 		'watch' => array(
-			'immediate' => array( 'Flow\\Data\\ImmediateWatchTopicListener', 'getCurrentUser' ),
+			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
 		),
 	),
 
@@ -556,7 +556,7 @@ $wgFlowActions = array(
 		),
 		'handler-class' => 'Flow\Actions\ReplyAction',
 		'watch' => array(
-			'immediate' => array( 'Flow\\Data\\ImmediateWatchTopicListener', 'getCurrentUser' ),
+			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
 		),
 	),
 
