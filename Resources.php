@@ -205,6 +205,12 @@ $wgResourceModules += array(
 		),
 	),
 	// @todo: upstream to mediawiki ui
+	'ext.flow.mediawiki.ui.modal' => $flowResourceTemplate + array(
+		'styles' => array(
+			'new/styles/mediawiki.ui/modal.less',
+		),
+	) + $mobile,
+	// @todo: upstream to mediawiki ui
 	'ext.flow.mediawiki.ui.text' => $flowResourceTemplate + array(
 		'styles' => array(
 			'new/styles/mediawiki.ui/text.less',
@@ -300,6 +306,7 @@ $wgResourceModules += array(
 	'ext.flow.new' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'new/mw-ui.enhance.js',
+			'new/mw-ui.modal.js',
 			'new/flow-api.js',
 			'new/flow-components.js',
 			// flow-component must come before actual components

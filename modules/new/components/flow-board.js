@@ -389,7 +389,7 @@
 		FlowBoardComponent.UI.events.apiPreHandlers.activateSummarizeTopic = function ( event, info ) {
 			if ( info.$target.find( 'form' ).length ) {
 				// Form already open; cancel the old form
-				info.$target.find( 'form' ).find( 'button, input, a' ).filter( '[data-flow-interactive-handler="cancelForm"]' ).trigger( 'click' );
+				flowBoardComponentCancelForm( info.$target );
 				return false;
 			}
 
@@ -903,14 +903,7 @@
 				return;
 			}
 
-			// Clear contents to not trigger the "are you sure you want to
-			// discard your text" warning
-			$form.find( 'textarea, :text' ).each( function() {
-				$( this ).val( this.defaultValue );
-			} );
-
-			// Trigger a click on cancel to have it destroy the form the way it should
-			$form.find( 'button, input, a' ).filter( '[data-flow-interactive-handler="cancelForm"]' ).trigger( 'click' );
+			flowBoardComponentCancelForm( $form );
 
 			// Target should be flow-topic
 			flowBoardComponentRefreshTopic( info.$target, data.flow.reply.result.topic );
@@ -1087,7 +1080,7 @@
 		 * @param {string} Action to expect in api response
 		 * @param {Function} Method to call on api success
 		 */
-		function genModerateHandler( action, successCallback ) {
+		function _genModerateHandler( action, successCallback ) {
 			/**
 			 * After submit of a moderation form, process the response.
 			 *
@@ -1111,12 +1104,11 @@
 					result
 				);
 
-				// @todo cancel dialog
-				$form.parent().remove();
+				flowBoardComponentCancelForm( $form );
 			};
 		}
 
-		FlowBoardComponent.UI.events.apiHandlers.moderateTopic = genModerateHandler(
+		FlowBoardComponent.UI.events.apiHandlers.moderateTopic = _genModerateHandler(
 			'moderate-topic',
 			function ( $target, revision ) {
 				var html = mw.flow.TemplateEngine.processTemplate( 'flow_topic', revision ),
@@ -1135,7 +1127,7 @@
 			}
 		);
 
-		FlowBoardComponent.UI.events.apiHandlers.moderatePost = genModerateHandler(
+		FlowBoardComponent.UI.events.apiHandlers.moderatePost = _genModerateHandler(
 			'moderate-post',
 			function ( $target, revision, apiResult ) {
 				flowBoardComponentRefreshTopic( $target, apiResult );
@@ -1270,7 +1262,8 @@
 		 * @param {Event} event
 		 */
 		FlowBoardComponent.UI.events.interactiveHandlers.cancelForm = function ( event ) {
-			var $form = $( this ).closest( 'form' ),
+			var target = this,
+				$form = $( this ).closest( 'form' ),
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $form ),
 				$fields = $form.find( 'textarea, :text' ),
 				changedFieldCount = 0;
@@ -1300,9 +1293,9 @@
 
 				// Trigger the cancel callback
 				if ( $form.data( 'flow-cancel-callback' ) ) {
-					$.each($form.data( 'flow-cancel-callback' ), function ( idx, fn ) {
-						fn();
-					});
+					$.each( $form.data( 'flow-cancel-callback' ), function ( idx, fn ) {
+						fn.call( target, event );
+					} );
 				}
 			}
 		};
@@ -1646,7 +1639,7 @@
 		 * @param {Event} event
 		 */
 		FlowBoardComponent.UI.events.interactiveHandlers.moderationDialog = function ( event ) {
-			var $content, $form,
+			var $form,
 				$this = $( this ),
 				board = FlowBoardComponent.prototype.getInstanceByElement( $this ),
 				// hide, delete, suppress
@@ -1660,36 +1653,46 @@
 					},
 					actions: {}
 				},
-				titleText = mw.msg( 'flow-moderation-title-' + role + '-' + type );
+				titleText = mw.msg( 'flow-moderation-title-' + role + '-' + type ),
+				modal;
 
 			event.preventDefault();
 
 			params.actions[role] = { url: $this.attr( 'href' ), title: $this.attr( 'title' ) };
 
-			// Put the contents in a div, because we might have many root-level nodes.
-			// This single div approach prevents $content.dialog from opening a dialog for each root-level node.
-			$content = $( '<div>' ).append(
-				$( mw.flow.TemplateEngine.processTemplateGetFragment( template, params ) )
-					.children()
-			);
+			// Render the modal itself with mw-ui-modal
+			modal = mw.Modal( {
+				title: titleText,
+				open:  $( mw.flow.TemplateEngine.processTemplateGetFragment( template, params ) ).children()
+			} );
 
-			// Event forwarding
-			board.assignSpawnedNode( $content );
+			// Run loadHandlers
+			FlowBoardComponent.UI.makeContentInteractive( modal.getContentNode() );
 
-			$form = $content.find( 'form' ).data( 'flow-dialog-owner', $this );
+			// Set flowDialogOwner for API callback @todo find a better way of doing this with mw.Modal
+			$form = modal.getContentNode().find( 'form' ).data( 'flow-dialog-owner', $this );
+			// Bind the cancel callback on the form
 			flowBoardComponentAddCancelCallback( $form, function () {
-				$content.parent().remove();
+				mw.Modal.close( this );
 			} );
 
-			// @todo Migrate to a simpler non-jquery.ui dialog box
-			// this one doesn't work on mobile, among other problems.
-			mw.loader.using( 'jquery.ui.dialog' , function() {
-				$content.dialog( {
-					'title': titleText,
-					'modal': mw.config.get( 'skin' ) !== 'monobook' // hack to prevent monobook from showing modal bg
-				} );
-			} );
+			// @todo remove this data-flow handler forwarder when data-mwui handlers are implemented
+			// Have the events begin bubbling up from $board
+			board.assignSpawnedNode( modal.getNode(), board.$board );
+
+			modal = null; // avoid permanent reference
 		};
+
+		// @todo remove these data-flow handler forwarder callbacks when data-mwui handlers are implemented
+		$( [ 'close', 'prevOrClose', 'nextOrSubmit', 'prev', 'next' ] ).each( function ( i, fn ) {
+			// Assigns each handler with the prefix 'modal', eg. 'close' becomes 'modalClose'
+			FlowBoardComponent.UI.events.interactiveHandlers[ 'modal' + fn.charAt(0).toUpperCase() + fn.substr( 1 ) ] = function ( event ) {
+				event.preventDefault();
+
+				// eg. call mw.Modal.close( this );
+				mw.Modal[ fn ]( this );
+			};
+		} );
 
 
 		////////////////////////////////////////////////////////////
@@ -1806,9 +1809,11 @@
 		 */
 		FlowBoardComponent.UI.Forms.expandInput = function ( $input, target ) {
 			var textarea = $.data( $input[0], 'flow-compressed' ),
+				$textarea = $( textarea ),
 				focused = $input.is( ':focus' );
 
-			if ( textarea ) {
+			// Prevent double-focusing
+			if ( textarea && ( $input.is( ':visible' ) || !$textarea.is( ':visible' ) ) ) {
 				// Swap the nodes
 				$input.replaceWith( textarea );
 
@@ -1820,7 +1825,7 @@
 				// @todo find out why this is happening ^
 				if ( focused || $input[0] === target ) {
 					// Swap focus!
-					$( textarea ).focus()
+					$textarea.focus()
 						.closest( 'form' ).conditionalScrollIntoView();
 				}
 			}
@@ -2393,6 +2398,26 @@
 			FlowBoardComponent.UI.events.interactiveHandlers.collapserGroupToggle = $.noop;
 			FlowBoardComponent.UI.events.interactiveHandlers.collapserCollapsibleToggle = $.noop;
 			FlowBoardComponent.UI.collapserState = $.noop;
+		}
+
+		/**
+		 * If a form has a cancelForm handler, we clear the form and trigger it. This allows easy cleanup
+		 * and triggering of form events after successful API calls.
+		 * @param {jQuery} $form
+		 */
+		function flowBoardComponentCancelForm( $form ) {
+			var $button = $form.find( 'button, input, a' ).filter( '[data-flow-interactive-handler="cancelForm"]' );
+
+			if ( $button.length ) {
+				// Clear contents to not trigger the "are you sure you want to
+				// discard your text" warning
+				$form.find( 'textarea, :text' ).each( function() {
+					$( this ).val( this.defaultValue );
+				} );
+
+				// Trigger a click on cancel to have it destroy the form the way it should
+				$button.trigger( 'click' );
+			}
 		}
 	}() );
 }( jQuery, mediaWiki ) );
