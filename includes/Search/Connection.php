@@ -60,7 +60,7 @@ class Connection extends \ElasticaConnection {
 	 * @return SearchableInterface
 	 */
 	public static function getRevisionType( $name, $type = false ) {
-		$index = static::getIndex( $name, static::FLOW_INDEX_TYPE );
+		$index = static::getSingleton()->getIndex2( $name, static::FLOW_INDEX_TYPE );
 
 		if ( $type ) {
 			$index = $index->getType( $type );
