@@ -30,6 +30,7 @@ class ApiFlow extends ApiBase {
 		'view-topic' => 'ApiFlowViewTopic',
 		'view-header' => 'ApiFlowViewHeader',
 		'view-topic-summary' => 'ApiFlowViewTopicSummary',
+		'search' => 'ApiFlowSearch',
 	);
 
 	public function __construct( $main, $action ) {
