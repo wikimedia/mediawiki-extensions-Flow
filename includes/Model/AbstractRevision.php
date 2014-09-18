@@ -375,8 +375,11 @@ abstract class AbstractRevision {
 		return $this->user->wiki;
 	}
 
+	/**
+	 * @return User
+	 */
 	public function getUser() {
-		$this->user->createUser();
+		return $this->user->createUser();
 	}
 
 	/**
