@@ -83,16 +83,25 @@ abstract class ApiFlowBase extends ApiBase {
 	}
 
 	/**
+	 * @param bool $addAliases
 	 * @return string[]
 	 */
-	protected function getModerationStates() {
-		return array(
+	protected function getModerationStates( $addAliases = true ) {
+		$states = array(
+			AbstractRevision::MODERATED_NONE,
 			AbstractRevision::MODERATED_DELETED,
 			AbstractRevision::MODERATED_HIDDEN,
 			AbstractRevision::MODERATED_SUPPRESSED,
-			// aliases for AbstractRevision::MODERATED_NONE
-			'restore', 'unhide', 'undelete', 'unsuppress',
 		);
+
+		if ( $addAliases ) {
+			// aliases for AbstractRevision::MODERATED_NONE
+			$states = array_merge( $states, array(
+				'restore', 'unhide', 'undelete', 'unsuppress',
+			) );
+		}
+
+		return $states;
 	}
 
 	/**
