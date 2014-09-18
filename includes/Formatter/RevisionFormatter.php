@@ -746,7 +746,7 @@ class RevisionFormatter {
 	 *  with Message::parse
 	 * @throws FlowException
 	 */
-	protected function processParam( $param, /* AbstractRevision|array */ $revision, UUID $workflowId, IContextSource $ctx ) {
+	public function processParam( $param, /* AbstractRevision|array */ $revision, UUID $workflowId, IContextSource $ctx ) {
 		switch ( $param ) {
 		case 'creator-text':
 			if ( $revision instanceof PostRevision ) {

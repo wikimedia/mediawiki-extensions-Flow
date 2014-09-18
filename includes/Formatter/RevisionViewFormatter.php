@@ -30,17 +30,21 @@ class RevisionViewFormatter {
 		$res['rev_view_links'] = $this->buildLinks( $row );
 		$res['human_timestamp'] = $this->getHumanTimestamp( $res['timestamp'] );
 		if ( $row->revision instanceof PostRevision ) {
-			if ( $row->revision->isTopicTitle() ) {
-				$res['isTopicTitle'] = true;
-			} else {
-				$res['isTopicTitle'] = false;
-			}
-			$root = $row->revision->getRootPost();
-			$res['root']['content'] = $this->templating->getContent( $root, 'wikitext' );
+			$res['isTopicTitle'] = $row->revision->isTopicTitle();
+			$res['properties']['topic-of-post'] = $this->serializer->processParam(
+				'topic-of-post',
+				$row->revision,
+				$row->workflow->getId(),
+				$ctx
+			);
 		}
 		if ( $row->revision instanceof PostSummary ) {
-			$root = $row->revision->getCollection()->getPost()->getLastRevision();
-			$res['root']['content'] = $this->templating->getContent( $root, 'wikitext' );
+			$res['properties']['post-of-summary'] = $this->serializer->processParam(
+				'post-of-summary',
+				$row->revision,
+				$row->workflow->getId(),
+				$ctx
+			);
 		}
 		return $res;
 	}
