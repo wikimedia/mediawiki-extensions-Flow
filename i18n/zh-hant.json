@@ -77,6 +77,8 @@
 	"flow-topic-action-history": "歷史記錄",
 	"flow-topic-action-hide-topic": "隱藏主題",
 	"flow-topic-action-delete-topic": "刪除主題",
+	"flow-topic-action-lock-topic": "鎖定主題",
+	"flow-topic-action-unlock-topic": "解鎖主題",
 	"flow-topic-action-summarize-topic": "摘要",
 	"flow-topic-action-resummarize-topic": "編輯摘要",
 	"flow-topic-action-suppress-topic": "封鎖主題",

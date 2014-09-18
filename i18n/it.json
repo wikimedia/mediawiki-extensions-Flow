@@ -90,7 +90,7 @@
 	"flow-topic-notification-subscribe-title": "Questo argomento è stato aggiunto alla propria lista degli osservati speciali.",
 	"flow-topic-notification-subscribe-description": "Riceverai notifiche per tutte le attività su questo argomento.",
 	"flow-board-notification-subscribe-title": "Ti sei iscritto a questa bacheca di discussione!",
-	"flow-board-notification-subscribe-description": "Sarai automaticamente iscritto a tutti i nuovi argomenti creati su questa bacheca.",
+	"flow-board-notification-subscribe-description": "Riceverai una notifica quando un nuovo argomento verrà creato su questa bacheca.",
 	"flow-error-http": "Si è verificato un errore durante la comunicazione con il server.",
 	"flow-error-other": "Si è verificato un errore imprevisto.",
 	"flow-error-external": "Si è verificato un errore.<br />Il messaggio di errore ricevuto è: $1",
