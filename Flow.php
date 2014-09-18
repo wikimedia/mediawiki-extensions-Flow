@@ -285,6 +285,19 @@ $wgFlowCacheTime = 60 * 60 * 24 * 3;
 // Flow code; WMF sometimes overrides this globally in wmf-config/CommonSettings.php
 $wgFlowCacheVersion = '4.5';
 
+// ElasticSearch servers
+$wgFlowSearchServers = array( 'localhost' );
+
+// How many times to attempt connecting to a given server
+// If you're behind LVS and everything looks like one server,
+// you may want to reattempt 2 or 3 times.
+$wgFlowSearchConnectionAttempts = 1;
+
+// Client side timeout for maintanance operations.  We can't disable the timeout
+// all together so we set it to one hour for really long running operations
+// like optimize.
+$wgFlowSearchMaintenanceTimeout = 3600;
+
 // Custom group name for AbuseFilter
 // Acceptable values:
 // * a specific value for flow-specific filters

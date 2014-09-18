@@ -946,6 +946,7 @@ $c['query.board-history'] = function( $c ) {
 		$c['repository.tree']
 	);
 };
+
 // The RevisionFormatter holds internal state like
 // contentType of output and if it should include history
 // properties.  To prevent different code using the formatter
@@ -978,6 +979,19 @@ $c['formatter.topic'] = function( $c ) {
 		$c['formatter.revision']
 	);
 };
+$c['query.search'] = function( $c ) {
+	return new Flow\Formatter\SearchQuery(
+		$c['storage'],
+		$c['repository.tree']
+	);
+};
+$c['searchindex.updaters'] = function( $c ) {
+	return array(
+		'topic' => new \Flow\Search\TopicUpdater( $c['db.factory'], $c['loader.root_post'] ),
+		'header' => new \Flow\Search\HeaderUpdater( $c['db.factory'] )
+	);
+};
+
 $c['logger.moderation'] = function( $c ) {
 	return new Flow\Log\ModerationLogger(
 		$c['flow_actions']
