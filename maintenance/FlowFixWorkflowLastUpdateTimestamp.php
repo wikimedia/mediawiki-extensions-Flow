@@ -58,7 +58,8 @@ class FlowFixWorkflowLastUpdateTimestamp extends Maintenance {
 			// recursively get the last update timestamp from all of the topic's
 			// children
 			$matches = false;
-			$updates = array();
+			$uuids = array();
+			$timestamps = array();
 			foreach ( $workflows as $workflow ) {
 				$matches = true;
 				$uuid = UUID::create( $workflow->workflow_id );
@@ -66,11 +67,12 @@ class FlowFixWorkflowLastUpdateTimestamp extends Maintenance {
 
 				$timestamp = $topicUpdater->getUpdateTimestamp( $root )->getTimestamp( TS_MW );
 				if ( $timestamp != $workflow->workflow_last_update_timestamp ) {
-					$updates[$uuid->getAlphadecimal()] = $this->updateWorkflow( $uuid, $timestamp );
+					$uuids[$uuid->getAlphadecimal()] = $uuid;
+					$timestamps[$uuid->getAlphadecimal()] = $timestamp;
 				}
 
 				// update query conditions for next batch
-				$next = (int) $uuid->getTimestamp( TS_UNIX ) + 1;
+				$next = wfTimestamp( TS_UNIX, $workflow->workflow_last_update_timestamp ) + 1;
 				$next = wfTimestamp( TS_MW, $next );
 				$dbr = $this->dbFactory->getDB( DB_SLAVE );
 				$conditions = array( 'workflow_last_update_timestamp > ' . $dbr->addQuotes( $next ) );
@@ -81,20 +83,28 @@ class FlowFixWorkflowLastUpdateTimestamp extends Maintenance {
 				break;
 			}
 
-			if ( $updates ) {
-				$this->output( 'Fixing workflows: ' . implode( ', ', array_keys( $updates ) ) . "\n" );
-				$this->storage->multiPut( $updates );
+			if ( $uuids ) {
+				$this->updateWorkflows( $uuids, $timestamps );
 				$this->dbFactory->waitForSlaves();
 			}
 		}
 	}
 
-	protected function updateWorkflow( UUID $uuid, $timestamp ) {
-		/** @var Workflow $workflow */
-		$workflow = $this->storage->get( $uuid );
-		$workflow->updateLastModified( UUID::getComparisonUUID( $timestamp ) );
+	/**
+	 * @param UUID[] $uuids
+	 * @param string[] $timestamps
+	 */
+	protected function updateWorkflows( array $uuids, array $timestamps ) {
+		/** @var Workflow[] $workflows */
+		$workflows = $this->storage->getMulti( $uuids );
+		foreach ( $workflows as $workflow ) {
+			$timestamp = $timestamps[$workflow->getId()->getAlphadecimal()];
+			$workflow->updateLastModified( UUID::getComparisonUUID( $timestamp ) );
+		}
 
-		return $workflow;
+		$this->storage->multiPut( $workflows );
+
+		$this->output( 'Fixed workflows: ' . implode( ', ', array_keys( $uuids ) ) . "\n" );
 	}
 }
 
