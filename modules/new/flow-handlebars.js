@@ -124,11 +124,8 @@
 				}
 			}
 
-			// Render content
-			content = Handlebars.compile(
-				// Replace the nested flowprogressivescript tag with a real script tag for recursive progressiveEnhancement
-				this.innerHTML.replace( /<\/flowprogressivescript>/g, '</script>' )
-			)();
+			// Replace the nested flowprogressivescript tag with a real script tag for recursive progressiveEnhancement
+			content = this.innerHTML.replace( /<\/flowprogressivescript>/g, '</script>' );
 
 			// Inject the content
 			switch ( data.type ) {
