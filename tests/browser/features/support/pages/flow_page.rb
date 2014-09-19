@@ -42,7 +42,7 @@ class FlowPage < WikiPage
   ## First topic
   div(:flow_first_topic, css: ".flow-topic", index: 0)
   h2(:flow_first_topic_heading, css: ".flow-topic h2", index: 0)
-  div(:flow_first_topic_body, css: ".flow-post-content", index: 0)
+  div(:flow_first_post_body, css: ".flow-post-content", index: 0)
   div(:flow_first_topic_moderation_msg) do |page|
     page.flow_first_topic_element.div_element(css: '.flow-moderated-topic-title', index: 0)
   end

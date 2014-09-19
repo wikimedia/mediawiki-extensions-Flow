@@ -13,7 +13,7 @@ Feature: Edit existing title
     When I click the Edit title action
     Then I should be able to edit the title field with Title edited
       And I should be able to save the new title
-      And the top post should have a heading which contains "Title edited"
+      And the top topic should have a heading which contains "Title edited"
 
   @phantomjs
   Scenario: Edit existing post

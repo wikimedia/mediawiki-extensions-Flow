@@ -1,14 +1,14 @@
-Given(/^I am on a Flow page with a deleted post with heading "(.*?)"$/) do |arg1|
+Given(/^I am on a Flow page with a deleted topic with title "(.*?)"$/) do |arg1|
   step 'I am logged in'
   step 'I am on Flow page'
   step 'I have created a Flow topic with title "' + arg1 + '"'
-  step 'the top post should have a heading which contains "' + arg1 + '"'
+  step 'the top topic should have a title which contains "' + arg1 + '"'
   step 'I click the Topic Actions link'
   step 'I click the Delete topic button'
   step 'I see a dialog box'
   step 'I give reason for deletion as being "DeletedPost"'
   step 'I click Delete topic'
-  step 'the top post should be marked as deleted'
+  step 'the top topic should be marked as deleted'
 end
 
 Given(/^I am anonymous$/) do
@@ -40,7 +40,7 @@ When(/^I click Delete topic$/) do
   on(FlowPage).dialog_submit_element.when_present.click
 end
 
-Then(/^the top post should be marked as deleted$/) do
+Then(/^the top topic should be marked as deleted$/) do
   step 'the page has re-rendered'
   on(FlowPage).flow_first_topic_moderation_msg.should match( 'This topic was deleted' )
 end
@@ -53,7 +53,7 @@ When(/^I click Suppress topic$/) do
   on(FlowPage).dialog_submit_element.when_present.click
 end
 
-Then(/^the top post should be marked as suppressed$/) do
+Then(/^the top topic should be marked as suppressed$/) do
   step 'the page has re-rendered'
   on(FlowPage).flow_first_topic_moderation_msg.should match( 'This topic was suppressed' )
 end
