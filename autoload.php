@@ -69,6 +69,7 @@ $wgAutoloadClasses['Flow\\Data\\Compactor'] = __DIR__ . '/includes/Data/Compacto
 $wgAutoloadClasses['Flow\\Data\\Compactor\\FeatureCompactor'] = __DIR__ . '/includes/Data/Compactor/FeatureCompactor.php';
 $wgAutoloadClasses['Flow\\Data\\Compactor\\ShallowCompactor'] = __DIR__ . '/includes/Data/Compactor/ShallowCompactor.php';
 $wgAutoloadClasses['Flow\\Data\\Index'] = __DIR__ . '/includes/Data/Index.php';
+$wgAutoloadClasses['Flow\\Data\\IndexFactory'] = __DIR__ . '/includes/Data/IndexFactory.php';
 $wgAutoloadClasses['Flow\\Data\\Index\\BoardHistoryIndex'] = __DIR__ . '/includes/Data/Index/BoardHistoryIndex.php';
 $wgAutoloadClasses['Flow\\Data\\Index\\FeatureIndex'] = __DIR__ . '/includes/Data/Index/FeatureIndex.php';
 $wgAutoloadClasses['Flow\\Data\\Index\\TopKIndex'] = __DIR__ . '/includes/Data/Index/TopKIndex.php';

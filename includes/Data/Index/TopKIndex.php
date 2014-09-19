@@ -18,12 +18,12 @@ class TopKIndex extends FeatureIndex {
 	 */
 	protected $options = array();
 
-	public function __construct( BufferedCache $cache, ObjectStorage $storage, $prefix, array $indexed, array $options = array() ) {
+	public function __construct( BufferedCache $cache, ObjectStorage $storage, $cacheVersion, $prefix, array $indexed, array $options = array() ) {
 		if ( empty( $options['sort'] ) ) {
 			throw new InvalidInputException( 'TopKIndex must be sorted', 'invalid-input' );
 		}
 
-		parent::__construct( $cache, $storage, $prefix, $indexed );
+		parent::__construct( $cache, $storage, $cacheVersion, $prefix, $indexed );
 
 		$this->options = $options + array(
 			'limit' => 500,

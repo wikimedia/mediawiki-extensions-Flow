@@ -7,7 +7,6 @@ use Flow\Data\ObjectManager;
 use Flow\DbFactory;
 use Flow\Model\UUID;
 use BagOStuff;
-use Flow\Container;
 use Flow\Exception\DataModelException;
 
 /*
@@ -50,12 +49,19 @@ class TreeRepository {
 	protected $cache;
 
 	/**
+	 * @var string
+	 */
+	protected $cacheVersion;
+
+	/**
 	 * @param DbFactory $dbFactory Factory to source connection objects from
 	 * @param BufferedCache $cache
+	 * @param string $cacheVersion;
 	 */
-	public function __construct( DbFactory $dbFactory, BufferedCache $cache ) {
+	public function __construct( DbFactory $dbFactory, BufferedCache $cache, $cacheVersion ) {
 		$this->dbFactory = $dbFactory;
 		$this->cache = $cache;
+		$this->cacheVersion = $cacheVersion;
 	}
 
 	/**
@@ -65,7 +71,7 @@ class TreeRepository {
 	 * @return string
 	 */
 	protected function cacheKey( $type, UUID $uuid ) {
-		return wfForeignMemcKey( 'flow', '', 'tree', $type, $uuid->getAlphadecimal(), Container::get( 'cache.version' ) );
+		return wfForeignMemcKey( 'flow', '', 'tree', $type, $uuid->getAlphadecimal(), $this->cacheVersion );
 	}
 
 	/**
@@ -359,7 +365,7 @@ class TreeRepository {
 	 * @return array map from root id to its descendant list
 	 */
 	public function fetchSubtreeNodeList( array $roots ) {
-		$list = new MultiGetList( $this->cache );
+		$list = new MultiGetList( $this->cache, $this->cacheVersion );
 		$res = $list->get(
 			array( 'tree', 'subtree' ),
 			$roots,
@@ -408,7 +414,7 @@ class TreeRepository {
 	 * nodes are not represented in the result set.
 	 */
 	public function fetchParentMap( array $nodes ) {
-		$list = new MultiGetList( $this->cache );
+		$list = new MultiGetList( $this->cache, $this->cacheVersion );
 		return $list->get(
 			array( 'tree', 'parent' ),
 			$nodes,
