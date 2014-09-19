@@ -116,9 +116,8 @@ $wgContentHandlers['flow-board'] = 'Flow\Content\BoardContentHandler';
 // directly - tests will fail otherwise, since they'll be based on a different
 // permissions config than what's assumed to test.
 $wgFlowGroupPermissions = array();
-$wgFlowGroupPermissions['user']['flow-hide'] = true;
+$wgFlowGroupPermissions['*']['flow-hide'] = true;
 $wgFlowGroupPermissions['user']['flow-lock'] = true;
-$wgFlowGroupPermissions['sysop']['flow-hide'] = true;
 $wgFlowGroupPermissions['sysop']['flow-lock'] = true;
 $wgFlowGroupPermissions['sysop']['flow-delete'] = true;
 $wgFlowGroupPermissions['sysop']['flow-edit-post'] = true;
