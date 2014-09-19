@@ -25,7 +25,7 @@ class TreeRepositoryTest extends FlowTestCase {
 	public function testSuccessfulInsert() {
 		global $wgFlowCacheTime;
 		$cache = new BufferedCache( new \HashBagOStuff(),  $wgFlowCacheTime );
-		$treeRepository = new TreeRepository( $this->mockDbFactory( true ), $cache );
+		$treeRepository = new TreeRepository( $this->mockDbFactory( true ), $cache, '' );
 		$this->assertTrue( $treeRepository->insert( $this->descendant, $this->ancestor ) );
 
 		$reflection = new ReflectionClass( '\Flow\Repository\TreeRepository' );
@@ -46,7 +46,7 @@ class TreeRepositoryTest extends FlowTestCase {
 		// otherwise the exception would skip the cache result test
 		$cache = new BufferedCache( new \HashBagOStuff(), $wgFlowCacheTime );
 		try {
-			$treeRepository = new TreeRepository( $this->mockDbFactory( false ), $cache );
+			$treeRepository = new TreeRepository( $this->mockDbFactory( false ), $cache, '' );
 			$this->assertNull( $treeRepository->insert( $this->descendant, $this->ancestor ) );
 		} catch ( \Exception $e ) {
 			$reflection = new ReflectionClass( '\Flow\Repository\TreeRepository' );

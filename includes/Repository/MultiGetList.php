@@ -4,7 +4,6 @@ namespace Flow\Repository;
 
 use Flow\Data\BufferedCache;
 use Flow\Model\UUID;
-use Flow\Container;
 use Flow\Exception\InvalidInputException;
 
 class MultiGetList {
@@ -15,10 +14,17 @@ class MultiGetList {
 	protected $cache;
 
 	/**
-	 * @param BufferedCache $cache
+	 * @var string
 	 */
-	public function __construct( BufferedCache $cache ) {
+	protected $cacheVesion;
+
+	/**
+	 * @param BufferedCache $cache
+	 * @param string $cacheVersion
+	 */
+	public function __construct( BufferedCache $cache, $cacheVersion ) {
 		$this->cache = $cache;
+		$this->cacheVersion = $cacheVersion;
 	}
 
 	public function get( $key, array $ids, $loadCallback ) {
@@ -32,7 +38,7 @@ class MultiGetList {
 			} else {
 				$cacheId = $id;
 			}
-			$cacheKeys[wfForeignMemcKey( 'flow', '', $key, $cacheId, Container::get( 'cache.version' ) )] = $id;
+			$cacheKeys[wfForeignMemcKey( 'flow', '', $key, $cacheId, $this->cacheVersion )] = $id;
 		}
 		return $this->getByKey( $cacheKeys, $loadCallback );
 	}

@@ -34,7 +34,8 @@ $c['repository.tree'] = $c->share( function( $c ) {
 	global $wgFlowCacheTime;
 	return new Flow\Repository\TreeRepository(
 		$c['db.factory'],
-		$c['memcache.buffered']
+		$c['memcache.buffered'],
+		$c['cache.version']
 	);
 } );
 
@@ -100,7 +101,7 @@ $c['templating'] = $c->share( function( $c ) {
 	);
 } );
 
-// New Storage Impl
+// Storage Impl
 use Flow\Data\Utils\LocalBufferedCache;
 use Flow\Data\Mapper\BasicObjectMapper;
 use Flow\Data\Mapper\CachingObjectMapper;
@@ -111,11 +112,7 @@ use Flow\Data\Storage\PostRevisionStorage;
 use Flow\Data\Storage\HeaderRevisionStorage;
 use Flow\Data\Storage\PostSummaryRevisionStorage;
 use Flow\Data\Storage\TopicHistoryStorage;
-use Flow\Data\Index\UniqueFeatureIndex;
-use Flow\Data\Index\TopKIndex;
-use Flow\Data\Index\TopicHistoryIndex;
 use Flow\Data\Storage\BoardHistoryStorage;
-use Flow\Data\Index\BoardHistoryIndex;
 use Flow\Data\ObjectManager;
 use Flow\Data\ObjectLocator;
 use Flow\Model\Header;
@@ -126,6 +123,9 @@ $c['memcache.buffered'] = $c->share( function( $c ) {
 	global $wgFlowCacheTime;
 	return new LocalBufferedCache( $c['memcache'], $wgFlowCacheTime );
 } );
+$c['factory.storage.index'] = function( $c ) {
+	return new Flow\Data\IndexFactory( $c['memcache.buffered'], $c['cache.version'] );
+};
 // Batched username loader
 $c['repository.username'] = $c->share( function( $c ) {
 	return new Flow\Repository\UserNameBatch( new Flow\Repository\UserName\TwoStepUserNameQuery( $c['db.factory'] ) );
@@ -144,12 +144,13 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 		// pk
 		$primaryKey
 	);
-	$pk = new UniqueFeatureIndex( $cache, $storage, 'flow_workflow:v2:pk', $primaryKey );
+	$factory = $c['factory.storage.index']->withStorage( $storage );
+	$pk = $factory->createUniqueFeatureIndex( 'flow_workflow:v2:pk', $primaryKey );
 	$indexes = array(
 		$pk,
 		// This is actually a unique index, but it wants the shallow functionality.
-		new TopKIndex(
-			$cache, $storage, 'flow_workflow:title:v2:',
+		$factory->createTopKIndex(
+			'flow_workflow:title:v2:',
 			array( 'workflow_wiki', 'workflow_namespace', 'workflow_title_text', 'workflow_type' ),
 			array( 'shallow' => $pk, 'limit' => 1, 'sort' => 'workflow_id' )
 		),
@@ -159,7 +160,10 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 			$c['repository.username'],
 			array( 'workflow_user_id' => 'workflow_user_wiki' )
 		),
-		new Flow\Data\Listener\WorkflowTopicListListener( $c['storage.topic_list'], $c['topic_list.last_updated.index'] ),
+		new Flow\Data\Listener\WorkflowTopicListListener(
+			$c['storage.topic_list'],
+			$c['topic_list.last_updated.index']
+		),
 		$c['listener.occupation'],
 		$c['listener.url_generator']
 	);
@@ -181,13 +185,17 @@ $c['storage.board_history.backing'] = $c->share( function( $c ) {
 } );
 
 $c['storage.board_history.index'] = $c->share( function( $c ) {
-	return new BoardHistoryIndex( $c['memcache.buffered'], $c['storage.board_history.backing'], 'flow_revision:topic_list_history',
-		array( 'topic_list_id' ),
-		array(
-			'limit' => 500,
-			'sort' => 'rev_id',
-			'order' => 'DESC'
-	) );
+	return $c['factory.storage.index']
+		->withStorage( $c['storage.board_history.backing'] )
+		->createBoardHistoryIndex(
+			'flow_revision:topic_list_history',
+			array( 'topic_list_id' ),
+			array(
+				'limit' => 500,
+				'sort' => 'rev_id',
+				'order' => 'DESC'
+			)
+		);
 } );
 
 $c['storage.board_history'] = $c->share( function( $c ) {
@@ -256,25 +264,24 @@ $c['storage.header'] = $c->share( function( $c ) {
 
 	$cache = $c['memcache.buffered'];
 	$storage = new HeaderRevisionStorage( $c['db.factory'], $wgFlowExternalStore );
+	$factory = $c['factory.storage.index']->withStorage( $storage );
 
-	$pk = new UniqueFeatureIndex(
-		$cache, $storage,
-		'flow_header:v2:pk', array( 'rev_id' )
-	);
-	$workflowIndexOptions = array(
-		'sort' => 'rev_id',
-		'order' => 'DESC',
-		'shallow' => $pk,
-		'create' => function( array $row ) {
-			return $row['rev_parent_id'] === null;
-		},
-	);
+	$pk = $factory->createUniqueFeatureIndex( 'flow_header:v2:pk', array( 'rev_id' ) );
+
 	$indexes = array(
 		$pk,
-		new TopKIndex(
-			$cache, $storage,
-			'flow_header:workflow', array( 'rev_type_id' ),
-			array( 'limit' => 100 ) + $workflowIndexOptions
+		$factory->createTopKIndex(
+			'flow_header:workflow',
+			array( 'rev_type_id' ),
+			array(
+				'sort' => 'rev_id',
+				'order' => 'DESC',
+				'shallow' => $pk,
+				'create' => function( array $row ) {
+					return $row['rev_parent_id'] === null;
+				},
+				'limit' => 100,
+			)
 		),
 	);
 
@@ -320,24 +327,26 @@ $c['storage.post.summary'] = $c->share( function( $c ) {
 
 	$cache = $c['memcache.buffered'];
 	$storage = new PostSummaryRevisionStorage( $c['db.factory'], $wgFlowExternalStore );
-	$pk = new UniqueFeatureIndex(
-		$cache, $storage,
-		'flow_post_summary:v2:pk', array( 'rev_id' )
+	$factory = $c['factory.storage.index']->withStorage( $storage );
+	$pk = $factory->createUniqueFeatureIndex(
+		'flow_post_summary:v2:pk',
+		array( 'rev_id' )
 	);
-	$workflowIndexOptions = array(
-		'sort' => 'rev_id',
-		'order' => 'DESC',
-		'shallow' => $pk,
-		'create' => function( array $row ) {
-			return $row['rev_parent_id'] === null;
-		},
-	);
+
 	$indexes = array(
 		$pk,
-		new TopKIndex(
-			$cache, $storage,
-			'flow_post_summary:workflow', array( 'rev_type_id' ),
-			array( 'limit' => 100 ) + $workflowIndexOptions
+		$factory->createTopKIndex(
+			'flow_post_summary:workflow',
+			array( 'rev_type_id' ),
+			array(
+				'sort' => 'rev_id',
+				'order' => 'DESC',
+				'shallow' => $pk,
+				'create' => function( array $row ) {
+					return $row['rev_parent_id'] === null;
+				},
+				'limit' => 100,
+			)
 		),
 	);
 
@@ -345,21 +354,26 @@ $c['storage.post.summary'] = $c->share( function( $c ) {
 } );
 
 $c['topic_list.last_updated.index'] = $c->share( function( $c ) {
-	$primaryKey = array( 'topic_list_id', 'topic_id' );
-	$cache = $c['memcache.buffered'];
-	return new TopKIndex(
-		$cache, new TopicListLastUpdatedStorage(
-			// factory and table
-			$c['db.factory'], 'flow_topic_list',
+	return $c['factory.storage.index']
+		->withStorage( new TopicListLastUpdatedStorage(
+			// factory
+			$c['db.factory'],
+			// table
+			'flow_topic_list',
 			// pk
-			$primaryKey
-		),
-		'flow_topic_list_last_updated:list', array( 'topic_list_id' ),
-		array(
-			'sort' => 'workflow_last_update_timestamp',
-			'order' => 'desc'
-		)
-	);
+			array( 'topic_list_id', 'topic_id' )
+		) )
+		->createTopKIndex(
+			// cache key prefix
+			'flow_topic_list_last_updated:list',
+			// indexed columns
+			array( 'topic_list_id' ),
+			// options
+			array(
+				'sort' => 'workflow_last_update_timestamp',
+				'order' => 'desc'
+			)
+		);
 } );
 
 // List of topic workflows and their owning discussion workflow
@@ -377,16 +391,17 @@ $c['storage.topic_list'] = $c->share( function( $c ) {
 		// pk
 		$primaryKey
 	);
+	$factory = $c['factory.storage.index']->withStorage( $storage );
 	$indexes = array(
-		new TopKIndex(
-			$cache, $storage,
-			'flow_topic_list:list', array( 'topic_list_id' ),
+		$factory->createTopKIndex(
+			'flow_topic_list:list',
+			array( 'topic_list_id' ),
 			array( 'sort' => 'topic_id' )
 		),
 		$c['topic_list.last_updated.index'],
-		new UniqueFeatureIndex(
-			$cache, $storage,
-			'flow_topic_list:topic', array( 'topic_id' )
+		$factory->createUniqueFeatureIndex(
+			'flow_topic_list:topic',
+			array( 'topic_id' )
 		),
 	);
 
@@ -446,11 +461,13 @@ $c['storage.post'] = $c->share( function( $c ) {
 	$cache = $c['memcache.buffered'];
 	$treeRepo = $c['repository.tree'];
 	$storage = new PostRevisionStorage( $c['db.factory'], $wgFlowExternalStore, $treeRepo );
-	$pk = new UniqueFeatureIndex( $cache, $storage, 'flow_revision:v4:pk', array( 'rev_id' ) );
+	$factory = $c['factory.storage.index']->withStorage( $storage );
+	$pk = $factory->createUniqueFeatureIndex( 'flow_revision:v4:pk', array( 'rev_id' ) );
 	$indexes = array(
 		$pk,
 		// revision history
-		new TopKIndex( $cache, $storage, 'flow_revision:descendant',
+		$factory->createTopKIndex(
+			'flow_revision:descendant',
 			array( 'rev_type_id' ),
 			array(
 				'limit' => 100,
@@ -461,7 +478,8 @@ $c['storage.post'] = $c->share( function( $c ) {
 					// return true to create instead of merge index
 					return $row['rev_parent_id'] === null;
 				},
-		) ),
+			)
+		),
 	);
 
 	return new ObjectManager( $c['storage.post.mapper'], $storage, $indexes, $c['storage.post.lifecycle-handlers'] );
@@ -469,8 +487,17 @@ $c['storage.post'] = $c->share( function( $c ) {
 
 $c['storage.topic_history.index'] = $c->share( function( $c ) {
 	$cache = $c['memcache.buffered'];
-	$pk = new UniqueFeatureIndex( $cache, $c['storage.topic_history.backing'], 'flow_revision:v4:pk', array( 'rev_id' ) );
-	return new TopicHistoryIndex( $cache, $c['storage.topic_history.backing'], $c['repository.tree'], 'flow_revision:topic',
+	$factory = $c['factory.storage.index']
+		->withStorage( $c['storage.topic_history.backing'] );
+
+	$pk = $factory->createUniqueFeatureIndex(
+		'flow_revision:v4:pk',
+		array( 'rev_id' )
+	);
+
+	return $factory->createTopicHistoryIndex(
+		$c['repository.tree'],
+		'flow_revision:topic',
 		array( 'topic_root_id' ),
 		array(
 			'limit' => 500,
@@ -486,7 +513,8 @@ $c['storage.topic_history.index'] = $c->share( function( $c ) {
 				// then this is a brand new topic title
 				return $row['tree_parent_id'] === null && $row['rev_parent_id'] === null;
 			},
-	) );
+		)
+	);
 } );
 
 $c['storage.topic_history.backing'] = $c->share( function( $c ) {
@@ -739,7 +767,8 @@ $c['query.contributions'] = $c->share( function( $c ) {
 		$c['storage'],
 		$c['repository.tree'],
 		$c['memcache'],
-		$c['db.factory']
+		$c['db.factory'],
+		$c['cache.version']
 	);
 } );
 $c['formatter.contributions'] = $c->share( function( $c ) {
@@ -819,10 +848,10 @@ $c['storage.reference.wiki'] = $c->share( function( $c ) {
 		)
 	);
 
+	$factory = $c['factory.storage.index']->withStorage( $storage );
+
 	$indexes = array(
-		new TopKIndex(
-			$cache,
-			$storage,
+		$factory->createTopKIndex(
 			'flow_ref:wiki:by-source',
 			array(
 				'ref_src_namespace',
@@ -833,9 +862,7 @@ $c['storage.reference.wiki'] = $c->share( function( $c ) {
 				'sort' => 'ref_src_object_id',
 			)
 		),
-		new TopKIndex(
-			$cache,
-			$storage,
+		$factory->createTopKIndex(
 			'flow_ref:wiki:by-revision:v2',
 			array(
 				'ref_src_object_type',
@@ -872,10 +899,9 @@ $c['storage.reference.url'] = $c->share( function( $c ) {
 		)
 	);
 
+	$factory = $c['factory.storage.index']->withStorage( $storage );
 	$indexes = array(
-		new TopKIndex(
-			$cache,
-			$storage,
+		$factory->createTopKIndex(
 			'flow_ref:url:by-source',
 			array(
 				'ref_src_namespace',
@@ -886,9 +912,7 @@ $c['storage.reference.url'] = $c->share( function( $c ) {
 				'sort' => 'ref_src_object_id',
 			)
 		),
-		new TopKIndex(
-			$cache,
-			$storage,
+		$factory->createTopKIndex(
 			'flow_ref:url:by-revision:v2',
 			array(
 				'ref_src_object_type',

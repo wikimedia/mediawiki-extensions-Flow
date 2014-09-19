@@ -17,11 +17,11 @@ use Flow\Model\TopicListEntry;
  */
 class BoardHistoryIndex extends TopKIndex {
 
-	public function __construct( BufferedCache $cache, BoardHistoryStorage $storage, $prefix, array $indexed, array $options = array() ) {
+	public function __construct( BufferedCache $cache, BoardHistoryStorage $storage, $cacheVersion, $prefix, array $indexed, array $options = array() ) {
 		if ( $indexed !== array( 'topic_list_id' ) ) {
 			throw new DataModelException( __CLASS__ . ' is hardcoded to only index topic_list_id: ' . print_r( $indexed, true ), 'process-data' );
 		}
-		parent::__construct( $cache, $storage, $prefix, $indexed, $options );
+		parent::__construct( $cache, $storage, $cacheVersion, $prefix, $indexed, $options );
 	}
 
 	public function findMulti( array $queries, array $options = array() ) {

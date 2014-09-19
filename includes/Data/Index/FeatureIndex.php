@@ -2,7 +2,6 @@
 
 namespace Flow\Data\Index;
 
-use Flow\Container;
 use Flow\Data\BufferedCache;
 use Flow\Data\Compactor\FeatureCompactor;
 use Flow\Data\Compactor\ShallowCompactor;
@@ -40,7 +39,13 @@ abstract class FeatureIndex implements Index {
 	 * @param string        $prefix
 	 * @param array         $indexedColumns List of columns to index,
 	 */
-	public function __construct( BufferedCache $cache, ObjectStorage $storage, $prefix, array $indexedColumns ) {
+	public function __construct(
+		BufferedCache $cache,
+		ObjectStorage $storage,
+		$cacheVersion,
+		$prefix,
+		array $indexedColumns
+	) {
 		$this->cache = $cache;
 		$this->storage = $storage;
 		$this->prefix = $prefix;
@@ -50,6 +55,7 @@ abstract class FeatureIndex implements Index {
 		// fields in same order
 		sort( $indexedColumns );
 		$this->indexedOrdered = $indexedColumns;
+		$this->cacheVersion = $cacheVersion;
 	}
 
 	/**
@@ -508,7 +514,13 @@ abstract class FeatureIndex implements Index {
 		// which would lead to differences in cache key if we don't force that
 		sort( $attributes );
 
-		return wfForeignMemcKey( self::cachedDbId(), '', $this->prefix, implode( ':', $attributes ), Container::get( 'cache.version' ) );
+		return wfForeignMemcKey(
+			self::cachedDbId(),
+			'',
+			$this->prefix,
+			implode( ':', $attributes ),
+			$this->cacheVersion
+		);
 	}
 
 	/**

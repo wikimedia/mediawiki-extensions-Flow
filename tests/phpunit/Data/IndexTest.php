@@ -17,6 +17,7 @@ class IndexTest extends FlowTestCase {
 	public function testShallow() {
 		global $wgFlowCacheTime;
 
+		$v = '$cacheVersion$';
 		$bag = new \HashBagOStuff;
 		$cache = new BufferedCache( $bag, $wgFlowCacheTime );
 
@@ -25,12 +26,12 @@ class IndexTest extends FlowTestCase {
 		$storage = $this->getMock( 'Flow\\Data\\ObjectStorage' );
 
 		$unique = new UniqueFeatureIndex(
-			$cache, $storage, 'unique',
+			$cache, $storage, $v, 'unique',
 			array( 'id' )
 		);
 
 		$secondary = new TopKIndex(
-			$cache, $storage, 'secondary',
+			$cache, $storage, $v, 'secondary',
 			array( 'name' ), // keys indexed in this array
 			array(
 				'shallow' => $unique,
@@ -39,7 +40,6 @@ class IndexTest extends FlowTestCase {
 		);
 
 		$db = FeatureIndex::cachedDbId();
-		$v = Container::get( 'cache.version' );
 		$bag->set( "$db:unique:1:$v", array( array( 'id' => 1, 'name' => 'foo', 'other' => 'ppp' ) ) );
 		$bag->set( "$db:unique:2:$v", array( array( 'id' => 2, 'name' => 'foo', 'other' => 'qqq' ) ) );
 		$bag->set( "$db:unique:3:$v", array( array( 'id' => 3, 'name' => 'baz', 'other' => 'lll' ) ) );
@@ -62,17 +62,18 @@ class IndexTest extends FlowTestCase {
 	public function testCompositeShallow() {
 		global $wgFlowCacheTime;
 
+		$v = '$cacheVersion$';
 		$bag = new \HashBagOStuff;
 		$cache = new BufferedCache( $bag, $wgFlowCacheTime );
 		$storage = $this->getMock( 'Flow\\Data\\ObjectStorage' );
 
 		$unique = new UniqueFeatureIndex(
-			$cache, $storage, 'unique',
+			$cache, $storage, $v, 'unique',
 			array( 'id', 'ot' )
 		);
 
 		$secondary = new TopKIndex(
-			$cache, $storage, 'secondary',
+			$cache, $storage, $v, 'secondary',
 			array( 'name' ), // keys indexed in this array
 			array(
 				'shallow' => $unique,
@@ -83,7 +84,6 @@ class IndexTest extends FlowTestCase {
 		// remember: unique index still stores an array of results to be consistent with other indexes
 		// even though, due to uniqueness, there is only one value per set of keys
 		$db = FeatureIndex::cachedDbId();
-		$v = Container::get( 'cache.version' );
 		$bag->set( "$db:unique:1:9:$v", array( array( 'id' => 1, 'ot' => 9, 'name' => 'foo' ) ) );
 		$bag->set( "$db:unique:1:8:$v", array( array( 'id' => 1, 'ot' => 8, 'name' => 'foo' ) ) );
 		$bag->set( "$db:unique:3:7:$v", array( array( 'id' => 3, 'ot' => 7, 'name' => 'baz' ) ) );
