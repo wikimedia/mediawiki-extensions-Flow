@@ -90,7 +90,7 @@
 	"flow-topic-notification-subscribe-title": "Detta ämne har lagts till i din bevakningslista.",
 	"flow-topic-notification-subscribe-description": "Du kommer få meddelande om alla aktiviteter på detta ämne.",
 	"flow-board-notification-subscribe-title": "Du är prenumererar på detta diskussionsforum!",
-	"flow-board-notification-subscribe-description": "Du kommer automatiskt prenumerera på alla nya ämnen som skapas på detta forum.",
+	"flow-board-notification-subscribe-description": "Du kommer att få ett meddelande när ett nytt ämne skapas på detta forum.",
 	"flow-error-http": "Ett fel uppstod när servern kontaktades.",
 	"flow-error-other": "Ett oväntat fel uppstod.",
 	"flow-error-external": "Ett fel uppstod.<br />Felmeddelandet var: $1",
