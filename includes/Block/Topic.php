@@ -19,6 +19,7 @@ use Flow\Parsoid\Utils;
 use Flow\Repository\RootPostLoader;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
+use Message;
 
 class TopicBlock extends AbstractBlock {
 
@@ -806,7 +807,12 @@ class TopicBlock extends AbstractBlock {
 
 		$title = $this->workflow->getOwnerTitle();
 		$out->setPageTitle( $out->msg( 'flow-topic-first-heading', $title->getPrefixedText() ) );
-		$out->setHtmlTitle( $templating->getContent( $topic, 'wikitext' ) );
+		$out->setHtmlTitle( $out->msg( 'flow-topic-html-title', array(
+			// This must be a rawParam to not expand {{foo}} in the title, it must
+			// not be htmlspecialchar'd because OutputPage::setHtmlTitle handles that.
+			Message::rawParam( $templating->getContent( $topic, 'wikitext' ) ),
+			$title->getPrefixedText()
+		) ) );
 		$out->setSubtitle( '&lt; ' . \Linker::link( $title ) );
 	}
 }
