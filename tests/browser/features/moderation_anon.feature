@@ -1,7 +1,7 @@
 @chrome @firefox @internet_explorer_10 @login
-Feature: Headers
+Feature: Moderation visibility
 
-  Assumes Flow is enabled for the User_talk namespace.
+  Assumes MEDIAWIKI_USER has flow-delete right
 
   Scenario: Deleted topics not shown to anonymous users
     Given I am on a Flow page with a deleted post with heading "DeleteAnonymousTest"
