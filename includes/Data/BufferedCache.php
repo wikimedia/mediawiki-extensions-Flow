@@ -9,17 +9,35 @@ use Flow\Exception\DataModelException;
  * Wraps the write methods of memcache into a buffer which can be flushed
  */
 class BufferedCache {
+	/**
+	 * @var BagOStuff
+	 */
 	protected $cache;
+
+	/**
+	 * @var array
+	 */
 	protected $buffer;
+
+	/**
+	 * @var integer
+	 */
 	protected $exptime;
+
+	/**
+	 * @var string Cache version
+	 */
+	protected $version;
 
 	/**
 	 * @param BagOStuff $cache The cache implementation to back this buffer with
 	 * @param integer $exptime The default length of time to cache data. 0 for LRU.
+	 * @param string $version String appended to all keys to achieve global cache versioning.
 	 */
-	public function __construct( BagOStuff $cache, $exptime ) {
+	public function __construct( BagOStuff $cache, $exptime, $version = '' ) {
 		$this->cache = $cache;
 		$this->exptime = $exptime;
+		$this->version = $version === '' ? '' : ':' . $version;
 	}
 
 	/**
@@ -27,7 +45,7 @@ class BufferedCache {
 	 * @return mixed
 	 */
 	public function get( $key ) {
-		return $this->cache->get( $key );
+		return $this->cache->get( $this->resolveKey( $key ) );
 	}
 
 	/**
@@ -35,7 +53,7 @@ class BufferedCache {
 	 * @return array
 	 */
 	public function getMulti( array $keys ) {
-		$res = $this->cache->getMulti( $keys );
+		$res = $this->cache->getMulti( $this->resolveKeys( $keys ) );
 		// While most of the BagOStuff implementations return an empty array on not
 		// found from getMulti the memcached bag returns false
 		if ( $res === false ) {
@@ -45,9 +63,9 @@ class BufferedCache {
 		// but the redis BagOStuff puts a false for all keys
 		// it doesn't find.  Resolve that inconsistency here
 		// by filtering all false values.
-		return array_filter( $res, function( $value ) {
+		return $this->stripKeyVersions( array_filter( $res, function( $value ) {
 			return $value !== false;
-		} );
+		} ) );
 	}
 
 	/**
@@ -55,6 +73,7 @@ class BufferedCache {
 	 * @param mixed $value
 	 */
 	public function add( $key, $value ) {
+		$key = $this->resolveKey( $key );
 		if ( $this->buffer === null ) {
 			$this->cache->add( $key, $value, $this->exptime );
 		} else {
@@ -70,6 +89,7 @@ class BufferedCache {
 	 * @param mixed $value
 	 */
 	public function set( $key, $value ) {
+		$key = $this->resolveKey( $key );
 		if ( $this->buffer === null ) {
 			$this->cache->set( $key, $value, $this->exptime );
 		} else {
@@ -85,6 +105,7 @@ class BufferedCache {
 	 * @param integer $time
 	 */
 	public function delete( $key, $time = 0 ) {
+		$key = $this->resolveKey( $key );
 		if ( $this->buffer === null ) {
 			$this->cache->delete( $key, $time );
 		} else {
@@ -131,6 +152,7 @@ class BufferedCache {
 			return $success;
 		};
 
+		$key = $this->resolveKey( $key );
 		if ( $this->buffer === null ) {
 			return $merge( $key, $callback, $this->exptime, $attempts );
 		} else {
@@ -178,5 +200,45 @@ class BufferedCache {
 			throw new DataModelException( 'No transaction in progress', 'process-data' );
 		}
 		$this->buffer = null;
+	}
+
+	/**
+	 * @param string $key Cache key to attach version to
+	 * @return string Versioned cache key
+	 */
+	protected function resolveKey( $key ) {
+		return $key . $this->version;
+	}
+
+	/**
+	 * @param string[] $keys Cache keys to attach version to
+	 * @return string[] Versioned cache keys
+	 */
+	protected function resolveKeys( array $keys ) {
+		foreach ( $keys as $idx => $key ) {
+			$keys[$idx] .= $this->version;
+		}
+		return $keys;
+	}
+
+	/**
+	 * @param string $key
+	 * @return string
+	 */
+	protected function stripKeyVersion( $key ) {
+		return substr( $key, 0, -strlen( $this->version ) );
+	}
+
+	/**
+	 * @param mixed[] Array indexed by versioned cache keys
+	 * @return mixed[] Array indexed by cache keys with version stripped
+	 */
+	protected function stripKeyVersions( array $input ) {
+		$len = -strlen( $this->version );
+		$result = array();
+		foreach ( $input as $key => $value ) {
+			$result[substr( $key, 0, $len )] = $value;
+		}
+		return $result;
 	}
 }

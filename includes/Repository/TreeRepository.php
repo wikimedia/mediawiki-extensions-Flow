@@ -7,7 +7,6 @@ use Flow\Data\ObjectManager;
 use Flow\DbFactory;
 use Flow\Model\UUID;
 use BagOStuff;
-use Flow\Container;
 use Flow\Exception\DataModelException;
 
 /*
@@ -65,7 +64,7 @@ class TreeRepository {
 	 * @return string
 	 */
 	protected function cacheKey( $type, UUID $uuid ) {
-		return wfForeignMemcKey( 'flow', '', 'tree', $type, $uuid->getAlphadecimal(), Container::get( 'cache.version' ) );
+		return wfForeignMemcKey( 'flow', '', 'tree', $type, $uuid->getAlphadecimal() );
 	}
 
 	/**

@@ -15,7 +15,6 @@ if ( $GLOBALS['wgFlowUseMemcache'] ) {
 } else {
 	$c['memcache'] = new \HashBagOStuff;
 }
-$c['cache.version'] = $GLOBALS['wgFlowCacheVersion'];
 
 // Flow config
 $c['flow_actions'] = $c->share( function( $c ) {
@@ -123,9 +122,10 @@ use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 
 $c['memcache.buffered'] = $c->share( function( $c ) {
-	global $wgFlowCacheTime;
-	return new LocalBufferedCache( $c['memcache'], $wgFlowCacheTime );
+	global $wgFlowCacheTime, $wgFlowCacheVersion;
+	return new LocalBufferedCache( $c['memcache'], $wgFlowCacheTime, $wgFlowCacheVersion );
 } );
+
 // Batched username loader
 $c['repository.username'] = $c->share( function( $c ) {
 	return new Flow\Repository\UserNameBatch( new Flow\Repository\UserName\TwoStepUserNameQuery( $c['db.factory'] ) );

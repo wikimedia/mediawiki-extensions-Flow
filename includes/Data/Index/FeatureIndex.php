@@ -2,7 +2,6 @@
 
 namespace Flow\Data\Index;
 
-use Flow\Container;
 use Flow\Data\BufferedCache;
 use Flow\Data\Compactor\FeatureCompactor;
 use Flow\Data\Compactor\ShallowCompactor;
@@ -508,7 +507,12 @@ abstract class FeatureIndex implements Index {
 		// which would lead to differences in cache key if we don't force that
 		sort( $attributes );
 
-		return wfForeignMemcKey( self::cachedDbId(), '', $this->prefix, implode( ':', $attributes ), Container::get( 'cache.version' ) );
+		return wfForeignMemcKey(
+			self::cachedDbId(),
+			'',
+			$this->prefix,
+			implode( ':', $attributes )
+		);
 	}
 
 	/**

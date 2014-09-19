@@ -74,13 +74,13 @@ class LocalBufferedCache extends BufferedCache {
 	// need to make sure that no code relies on the new dangling local cache value
 	public function add( $key, $value ) {
 		if ( $this->buffer === null ) {
-			if ( $this->cache->add( $key, $value, $this->exptime ) ) {
+			if ( $this->cache->add( $this->resolveKey( $key ), $value, $this->exptime ) ) {
 				$this->internal[$key] = $value;
 			}
 		} else {
 			$this->buffer[] = array(
 				'command' => array( $this->cache, __FUNCTION__ ),
-				'arguments' => array( $key, $value, $this->exptime ),
+				'arguments' => array( $this->resolveKey( $key ), $value, $this->exptime ),
 			);
 			// speculative ... could cause a ton of bugs due to normal assumptions
 			// how to do this reasonably?
