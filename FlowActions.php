@@ -376,7 +376,7 @@ $wgFlowActions = array(
 		'rc_insert' => true,
 		'permissions' => array(
 			// Only non-moderated topic can be locked
-			PostRevision::MODERATED_NONE => array( 'flow-hide', 'flow-lock', 'flow-delete', 'flow-suppress' ),
+			PostRevision::MODERATED_NONE => array( 'flow-lock', 'flow-delete', 'flow-suppress' ),
 		),
 		'button-method' => 'GET',
 		'links' => array( 'topic', 'topic-history', 'watch-topic', 'unwatch-topic' ),
