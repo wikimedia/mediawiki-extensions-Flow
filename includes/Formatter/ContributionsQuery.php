@@ -4,7 +4,6 @@ namespace Flow\Formatter;
 
 use BagOStuff;
 use ContribsPager;
-use Flow\Container;
 use Flow\Data\Storage\RevisionStorage;
 use Flow\DbFactory;
 use Flow\Data\ManagerGroup;
@@ -253,7 +252,7 @@ class ContributionsQuery extends AbstractQuery {
 	protected function getNewbieConditionInfo( ContribsPager $pager ) {
 		// unlike most of Flow, this one doesn't use wfForeignMemcKey; needs
 		// to be wiki-specific
-		$key = wfMemcKey( 'flow', '', 'maxUserId', Container::get( 'cache.version' ) );
+		$key = wfMemcKey( 'flow', '', 'maxUserId' );
 		$max = $this->cache->get( $key );
 		if ( $max === false ) {
 			// max user id not present in cache; fetch from db & save to cache for 1h
