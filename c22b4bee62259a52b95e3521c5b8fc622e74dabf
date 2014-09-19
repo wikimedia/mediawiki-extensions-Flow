@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee62ffec_06402ba7",
+        "filename": "tests/browser/features/step_definitions/moderation_steps.rb",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-09-19T03:07:00Z",
+      "side": 1,
+      "message": "This matches the \"I reply with comment\" step definition. It changes the input field into a textarea.\n\nIt\u0027s a bug that the input focus isn\u0027t already in the input element.",
+      "revId": "c22b4bee62259a52b95e3521c5b8fc622e74dabf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee62ffec_e64cf7e6",
+        "filename": "tests/browser/features/support/pages/flow_page.rb",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-09-19T03:07:00Z",
+      "side": 1,
+      "message": "Flow uses this for other input fields that change when focused.  The problem is webdriver/selenium/watir/cheezy complains \"Locating textareas with \u0027#text_field\u0027 is deprecated. Please, use \u0027#textarea\u0027 method instead.\"",
+      "revId": "c22b4bee62259a52b95e3521c5b8fc622e74dabf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
