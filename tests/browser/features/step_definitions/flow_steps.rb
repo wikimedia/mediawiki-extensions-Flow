@@ -28,7 +28,7 @@ Given(/^I have created a Flow topic with title "(.+)"$/) do |title|
   step "I type \"" + title + "\" into the new topic title field"
   step "I type \"" + title + "\" into the new topic content field"
   step "I click New topic save"
-  step 'the top post should have a heading which contains "' + title + '"'
+  step 'the top topic should have a heading which contains "' + title + '"'
 end
 
 Given(/^the author link is visible$/) do
@@ -117,11 +117,11 @@ Then(/^the preview and cancel buttons have disappeared$/) do
   end
 end
 
-Then(/^the top post should not have a heading which contains "(.+)"$/) do |text|
+Then(/^the top topic should not have a heading which contains "(.+)"$/) do |text|
   on(FlowPage).flow_first_topic_heading.should_not match(text)
 end
 
-Then(/^the top post should have a heading which contains "(.+)"$/) do |text|
+Then(/^the top topic should have a heading which contains "(.+)"$/) do |text|
   # Ensure the page has re-rendered, give 5 seconds to give enough time for new posts to be saved
   step 'the page has re-rendered'
   on(FlowPage).flow_first_topic_heading.should match(text)
@@ -129,15 +129,15 @@ end
 
 Then(/^the top post should have content which contains "(.+)"$/) do |text|
   step 'the preview and cancel buttons have disappeared'
-  on(FlowPage).flow_first_topic_body.should match(text)
+  on(FlowPage).flow_first_post_body.should match(text)
 end
 
 Then(/^the content of the top post should be visible$/) do
-  on(FlowPage).flow_first_topic_body_element.when_present.should be_visible
+  on(FlowPage).flow_first_post_body_element.when_present.should be_visible
 end
 
 Then(/^the content of the top post should not be visible$/) do
-  on(FlowPage).flow_first_topic_body_element.should_not be_visible
+  on(FlowPage).flow_first_post_body_element.should_not be_visible
 end
 
 Then(/^I should see a Delete button$/) do

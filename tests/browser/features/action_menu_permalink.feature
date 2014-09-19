@@ -11,7 +11,7 @@ Feature: Actions menu Permalink
       And I click Permalink from the Actions menu
       And the page has re-rendered
     Then I see only one topic on the page
-      And the top post should have a heading which contains "Permalinktest"
+      And the top topic should have a heading which contains "Permalinktest"
 
   Scenario: Actions menu Permalink
     Given I have created a Flow topic with title "PermalinkReplyTest"
@@ -28,4 +28,4 @@ Feature: Actions menu Permalink
       When I go to an old style permalink to my topic
         And the page has re-rendered
       Then I see only one topic on the page
-        And the top post should have a heading which contains "Permalinktest"
+        And the top topic should have a heading which contains "Permalinktest"

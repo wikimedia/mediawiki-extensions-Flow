@@ -12,5 +12,5 @@ Feature: Creating a new topic
     When I type "Anonymous user topic creation test" into the new topic title field
       And I type "Anon test." into the new topic content field
       And I click New topic save
-    Then the top post should have a heading which contains "Anonymous user topic creation test"
+    Then the top topic should have a heading which contains "Anonymous user topic creation test"
       And the top post should have content which contains "Anon test."
