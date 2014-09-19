@@ -162,7 +162,6 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 		new Flow\Data\Listener\WorkflowTopicListListener( $c['storage.topic_list'], $c['topic_list.last_updated.index'] ),
 		$c['listener.occupation'],
 		$c['listener.url_generator']
-		// $c['storage.user_subs.user_index']
 	);
 
 	return new ObjectManager( $mapper, $storage, $indexes, $lifecycle );
@@ -527,39 +526,6 @@ $c['storage.topic_history'] = $c->share( function( $c ) {
 } );
 
 
-// Storage implementation for user subscriptions, separate from storage.user_subs so it
-// can be used in storage.user_subs.user_index as well.
-$c['storage.user_subs.backing'] = $c->share( function( $c ) {
-	return new BasicDbStorage(
-		// factory and table
-		$c['db.factory'], 'flow_user_sub',
-		// pk
-		array( 'subscrip_user_id', 'subscrip_workflow_id' )
-	);
-} );
-// Needs to be separate from storage.user_subs so it can be attached to Workflow updates
-// Limits users to 2000 subscriptions
-// TODO: Can't use TopKIndex, needs to be custom. so it stores the right data
-// TODO: Storage wont work either, it
-$c['storage.user_subs.user_index'] = $c->share( function( $c ) {
-	$cache = $c['memcache.buffered'];
-	$storage = $c['storage.user_subs.backing'];
-	return new TopKIndex(
-		$cache, $storage, 'flow_user_sub:user', array( 'subscrip_user_id' ),
-		array( 'limit' => 2000, 'sort' => 'subscrip_last_updated' )
-	);
-} );
-// User subscriptions are triggered by updates on workflow objects.
-$c['storage.user_subs'] = $c->share( function( $c ) {
-	$mapper = BasicObjectMapper::model( 'Flow\\Model\\UserSubscription' );
-	$storage = $c['storage.user_subs.backing'];
-	$indexes = array(
-		// no reason to index workflow_id, it subscription updates need to happen
-		// in a background job anyways.
-		$c['storage.user_subs.user_index']
-	);
-	return new ObjectLocator( $mapper, $storage, $indexes );
-} );
 $c['storage'] = $c->share( function( $c ) {
 	return new \Flow\Data\ManagerGroup(
 		$c,
