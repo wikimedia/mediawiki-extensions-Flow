@@ -25,6 +25,7 @@ When(/^I see a dialog box$/) do
 end
 
 When(/^I give reason for hiding as being "(.*?)"$/) do |arg1|
+   on(FlowPage).dialog_input_element.when_present.click
    on(FlowPage).dialog_input_element.when_present.send_keys( arg1 )
 end
 

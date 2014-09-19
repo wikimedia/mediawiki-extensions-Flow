@@ -30,10 +30,11 @@ class FlowPage < WikiPage
   a(:topics_only_view, href: "#topics/topics")
 
   # Dialogs
-  div(:dialog, css: ".ui-dialog")
-  textarea(:dialog_input, css: ".ui-dialog textarea")
-  button(:dialog_cancel, css: ".ui-dialog .mw-ui-destructive")
-  button(:dialog_submit, css: ".ui-dialog .mw-ui-constructive")
+  div(:dialog, css: ".flow-ui-modal")
+  # Is an input when not focused, textarea when focused
+  text_field(:dialog_input, css: ".flow-ui-modal .mw-ui-input")
+  button(:dialog_cancel, css: ".flow-ui-modal .mw-ui-destructive")
+  button(:dialog_submit, css: ".flow-ui-modal .mw-ui-constructive")
 
   # Posts
   ## Highlighted post
