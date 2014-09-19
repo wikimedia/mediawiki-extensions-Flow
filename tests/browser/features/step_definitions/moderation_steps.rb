@@ -25,7 +25,10 @@ When(/^I see a dialog box$/) do
 end
 
 When(/^I give reason for hiding as being "(.*?)"$/) do |arg1|
-   on(FlowPage).dialog_input_element.when_present.send_keys( arg1 )
+  on(FlowPage) do |page|
+    page.dialog_input_expand_element.when_present.click
+    page.dialog_input_element.when_present.send_keys( arg1 )
+  end
 end
 
 When(/^I click Hide topic$/) do
@@ -33,7 +36,10 @@ When(/^I click Hide topic$/) do
 end
 
 When(/^I give reason for deletion as being "(.*?)"$/) do |arg1|
-   on(FlowPage).dialog_input_element.when_present.send_keys( arg1 )
+  on(FlowPage) do |page|
+    page.dialog_input_expand_element.when_present.click
+    page.dialog_input_element.when_present.send_keys( arg1 )
+  end
 end
 
 When(/^I click Delete topic$/) do
@@ -46,7 +52,10 @@ Then(/^the top post should be marked as deleted$/) do
 end
 
 When(/^I give reason for suppression as being "(.*?)"$/) do |arg1|
-  on(FlowPage).dialog_input_element.when_present.send_keys( arg1 )
+  on(FlowPage) do |page|
+    page.dialog_input_expand_element.when_present.click
+    page.dialog_input_element.when_present.send_keys( arg1 )
+  end
 end
 
 When(/^I click Suppress topic$/) do
