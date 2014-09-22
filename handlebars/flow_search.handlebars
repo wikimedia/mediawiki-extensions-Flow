@@ -1,0 +1,15 @@
+<ul>
+	{{#each search}}
+	<li>
+		{{#if links.topic }}
+		<a href="{{links.topic.url}}">
+			{{escapeContent content.format content.content}}
+		</a>
+		{{else}}
+		<a href="{{links.workflow.url}}">
+			@todo: this is some header
+		</a>
+		{{/if}}
+	</li>
+	{{/each}}
+<ul>
