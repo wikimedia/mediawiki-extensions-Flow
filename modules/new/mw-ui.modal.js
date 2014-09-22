@@ -15,11 +15,10 @@
 	 * Settings keys:
 	 * - open (same arguments as open method)
 	 * - title String
-	 * - closable Boolean (defaults to true; if false, close button, ESC, and background clicks do not close it)
+	 * - clickOutClose Boolean (defaults to true; if false, ESC and background clicks do not close it)
 	 *
 	 * @todo Implement multi-step
 	 * @todo Implement data-mwui handlers
-	 * @todo Implement closable
 	 * @todo Implement OOJS & events
 	 *
 	 * @example modal = mw.Modal();
@@ -41,10 +40,13 @@
 			settings = name;
 			name = null;
 		}
-		settings = settings || {};
+		settings = $.extend( { clickOutClose: true }, settings || {} );
 
 		// Set name
 		this.name = name;
+
+		// Set clickOutClose
+		this.clickOutClose = !!settings.clickOutClose;
 
 		// Set title
 		this.setTitle( settings.title );
@@ -235,7 +237,7 @@
 			$node.on( 'click', function ( event ) {
 				// If we are clicking on the modal itself, it's the outside area, so close it;
 				// make sure we aren't clicking INSIDE the modal content!
-				if ( this === $node[ 0 ] && event.target === $node[ 0 ] ) {
+				if ( this.clickOutClose && this === $node[ 0 ] && event.target === $node[ 0 ] ) {
 					self.close();
 				}
 			} );
