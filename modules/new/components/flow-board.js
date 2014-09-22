@@ -1663,7 +1663,8 @@
 			// Render the modal itself with mw-ui-modal
 			modal = mw.Modal( {
 				title: titleText,
-				open:  $( mw.flow.TemplateEngine.processTemplateGetFragment( template, params ) ).children()
+				open:  $( mw.flow.TemplateEngine.processTemplateGetFragment( template, params ) ).children(),
+				clickOutClose: false
 			} );
 
 			// Run loadHandlers
