@@ -165,18 +165,18 @@ QUnit.test( 'FlowHandlebars.prototype.timestamp', 2, function( assert ) {
 } );
 
 QUnit.test( 'FlowHandlebars.prototype.l10n', 11, function( assert ) {
-	assert.strictEqual( this.handlebarsProto.l10n( 'time', 'flow-time-ago', 2 ), '2 seconds ago', 'Check seconds.' );
-	assert.strictEqual( this.handlebarsProto.l10n( 'time', 'flow-time-ago', 120 ), '2 minutes ago', 'Check minutes.' );
-	assert.strictEqual( this.handlebarsProto.l10n( 'time', 'flow-time-ago',  60 * 60 * 2 ), '2 hours ago', 'Check hour.' );
-	assert.strictEqual( this.handlebarsProto.l10n( 'time', 'flow-time-ago', 60 * 60 * 24 * 2 ), '2 days ago', 'Check day.' );
-	assert.strictEqual( this.handlebarsProto.l10n( 'time', 'flow-time-ago', 60 * 60 * 24 * 7 * 2 ), '2 weeks ago', 'Check week.' );
-	assert.strictEqual( this.handlebarsProto.l10n( 'time', 'flow-active-ago', 60 * 60 * 24 * 7 * 2 ), 'Active 2 weeks ago', 'Check week.' );
-	assert.strictEqual( this.handlebarsProto.l10n( 'time', 'flow-started-ago', 60 * 60 * 24 * 7 * 2 ), 'Started 2 weeks ago', 'Check week.' );
-	assert.strictEqual( this.handlebarsProto.l10n( 'time', 'flow-edited-ago', 60 * 60 * 24 * 7 * 2 ), 'Edited 2 weeks ago', 'Check week.' );
+	assert.strictEqual( this.handlebarsProto.l10n( 'time', 'flow-time-ago', 2, this.opts ), '2 seconds ago', 'Check seconds.' );
+	assert.strictEqual( this.handlebarsProto.l10n( 'time', 'flow-time-ago', 120, this.opts ), '2 minutes ago', 'Check minutes.' );
+	assert.strictEqual( this.handlebarsProto.l10n( 'time', 'flow-time-ago',  60 * 60 * 2, this.opts ), '2 hours ago', 'Check hour.' );
+	assert.strictEqual( this.handlebarsProto.l10n( 'time', 'flow-time-ago', 60 * 60 * 24 * 2, this.opts ), '2 days ago', 'Check day.' );
+	assert.strictEqual( this.handlebarsProto.l10n( 'time', 'flow-time-ago', 60 * 60 * 24 * 7 * 2, this.opts ), '2 weeks ago', 'Check week.' );
+	assert.strictEqual( this.handlebarsProto.l10n( 'time', 'flow-active-ago', 60 * 60 * 24 * 7 * 2, this.opts ), 'Active 2 weeks ago', 'Check week.' );
+	assert.strictEqual( this.handlebarsProto.l10n( 'time', 'flow-started-ago', 60 * 60 * 24 * 7 * 2, this.opts ), 'Started 2 weeks ago', 'Check week.' );
+	assert.strictEqual( this.handlebarsProto.l10n( 'time', 'flow-edited-ago', 60 * 60 * 24 * 7 * 2, this.opts ), 'Edited 2 weeks ago', 'Check week.' );
 
-	assert.strictEqual( this.handlebarsProto.l10n( 'time', 'flow-active-ago', 1 ), 'Active 1 second ago', 'Check non-plural.' );
-	assert.strictEqual( this.handlebarsProto.l10n( 'time', 'flow-started-ago', 60 * 60 * 24 * 7 * 1 ), 'Started 1 week ago', 'Check non-plural' );
-	assert.strictEqual( this.handlebarsProto.l10n( 'time', 'flow-edited-ago', 60 * 60 * 24 * 1 ), 'Edited 1 day ago', 'Check non-plural' );
+	assert.strictEqual( this.handlebarsProto.l10n( 'time', 'flow-active-ago', 1, this.opts ), 'Active 1 second ago', 'Check non-plural.' );
+	assert.strictEqual( this.handlebarsProto.l10n( 'time', 'flow-started-ago', 60 * 60 * 24 * 7 * 1, this.opts ), 'Started 1 week ago', 'Check non-plural' );
+	assert.strictEqual( this.handlebarsProto.l10n( 'time', 'flow-edited-ago', 60 * 60 * 24 * 1, this.opts ), 'Edited 1 day ago', 'Check non-plural' );
 } );
 
 } ( jQuery ) );
