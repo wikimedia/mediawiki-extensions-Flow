@@ -11,6 +11,7 @@ $specialPageAliases = array();
 /** English (English) */
 $specialPageAliases['en'] = array(
 	'Flow' => array( 'Flow' ),
+	'FlowSearch' => array( 'FlowSearch' ),
 );
 
 /** Arabic (العربية) */
