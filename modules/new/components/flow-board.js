@@ -1144,6 +1144,11 @@
 		 * @param {jQuery} $topic
 		 */
 		FlowBoardComponent.UI.events.loadHandlers.collapserState = function ( $topic ) {
+			// Don't apply to titlebars in the topic namespace
+			if ( inTopicNamespace && $( this ).closest( '.flow-post' ).length === 0 ) {
+				return;
+			}
+
 			// Get last collapse state from sessionStorage
 			var stateForTopic, classForTopic,
 				states = mw.flow.StorageEngine.sessionStorage.getItem( 'collapserStates' ) || {},
@@ -1305,6 +1310,11 @@
 		 * @param {Event} event
 		 */
 		FlowBoardComponent.UI.events.interactiveHandlers.collapserGroupToggle = function ( event ) {
+			// Don't apply to titlebars in the topic namespace
+			if ( inTopicNamespace && $( this ).closest( '.flow-post' ).length === 0 ) {
+				return;
+			}
+
 			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
 
 			FlowBoardComponent.UI.collapserState( flowBoard, this.href.match( /[a-z]+$/ )[0] );
@@ -1323,6 +1333,11 @@
 				board = FlowBoardComponent.prototype.getInstanceByElement( $this ),
 				isNotClickableElement = $target.not( '.flow-menu-js-drop' ) &&
 					!$target.closest( 'a, button, input, textarea, select, ul, ol' ).length;
+
+			// Don't apply to titlebars in the topic namespace
+			if ( inTopicNamespace && $this.closest( '.flow-post' ).length === 0 ) {
+				return;
+			}
 
 			if ( isNotClickableElement ) {
 				$target = $( this ).closest( '.flow-post-main, .flow-topic' ); // @todo genericize this
@@ -2391,13 +2406,6 @@
 			$topic.replaceWith( $newTopic );
 
 			FlowBoardComponent.UI.makeContentInteractive( $newTopic );
-		}
-
-		if ( inTopicNamespace ) {
-			// Topic pages do not have collapse states
-			FlowBoardComponent.UI.events.interactiveHandlers.collapserGroupToggle = $.noop;
-			FlowBoardComponent.UI.events.interactiveHandlers.collapserCollapsibleToggle = $.noop;
-			FlowBoardComponent.UI.collapserState = $.noop;
 		}
 
 		/**
