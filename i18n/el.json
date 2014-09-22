@@ -16,6 +16,7 @@
 	"flow-post-action-edit-post": "Επεξεργασία",
 	"flow-topic-notification-subscribe-title": "Αυτό το θέμα έχει προστεθεί στη λίστα παρακολούθησης σας.",
 	"flow-topic-notification-subscribe-description": "Θα λαμβάνετε ειδοποιήσεις για όλες τις δραστηριότητες σχετικά με αυτό το θέμα.",
+	"flow-board-notification-subscribe-description": "Θα λάβετε μια ειδοποίηση όταν υπάρχει ένα νέο θέμα που έχει δημιουργηθεί σε αυτόν τον πίνακα.",
 	"flow-history-last4": "Τελευταίες 4 ώρες",
 	"flow-history-day": "Σήμερα",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />{{GENDER:$1|Ο|Η}} $1 απάντησε στην '''$4'''.",
