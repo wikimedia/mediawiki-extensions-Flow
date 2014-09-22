@@ -23,7 +23,7 @@
 	"flow-post-action-edit-post-submit": "Сачувај измене",
 	"flow-topic-action-edit-title": "Уреди наслов",
 	"flow-topic-action-history": "Историја",
-	"flow-error-no-commit": "Наведена радња није могла бити сачувана.",
+	"flow-error-no-commit": "Наведену радњу није могуће сачувати.",
 	"flow-edit-post-submit": "Сачувај",
 	"flow-rc-topic-of-board": "$1 на $2",
 	"flow-history-day": "Данас",

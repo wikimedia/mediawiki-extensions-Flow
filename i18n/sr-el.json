@@ -4,5 +4,11 @@
 			"Milicevic01"
 		]
 	},
-	"flow-preview": "Pretpregled"
+	"flow-hide-post-content": "Ovaj komentar je {{GENDER:$1|sakrio|sakrila}} $1",
+	"flow-hide-title-content": "Ovu temu je {{GENDER:$1|sakrio|sakrila}} $1",
+	"flow-delete-post-content": "Ovaj komentar je {{GENDER:$1|obrisao|obrisala}} $1",
+	"flow-preview": "Pretpregled",
+	"flow-post-action-edit-post-submit": "Sačuvaj izmene",
+	"flow-error-no-commit": "Navedenu radnju nije moguće sačuvati.",
+	"flow-rc-topic-of-board": "$1 na $2"
 }
