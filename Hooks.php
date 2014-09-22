@@ -799,7 +799,7 @@ class FlowHooks {
 
 		// find test files for every RL module
 		foreach ( $wgResourceModules as $key => $module ) {
-			if ( substr( $key, 0, 9 ) === 'ext.flow.' && isset( $module['scripts'] ) ) {
+			if ( preg_match( '/ext.flow(?:\.|$)/', $key ) && isset( $module['scripts'] ) ) {
 				$testFiles = array();
 
 				$scripts = (array) $module['scripts'];
