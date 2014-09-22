@@ -11,3 +11,7 @@ Then(/^the 3rd comment should be marked as hidden$/) do
   on(FlowPage).third_reply_element.class_name.should match /flow-post-moderated/
   on(FlowPage).third_reply_moderation_msg.should match( 'This comment was hidden' )
 end
+
+Then (/^the content of the 3rd comment should not be visible$/) do
+  on(FlowPage).third_reply_content_element.should_not be_visible
+end

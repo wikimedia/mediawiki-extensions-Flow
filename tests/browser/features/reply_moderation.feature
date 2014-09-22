@@ -1,7 +1,5 @@
-@chrome @firefox @internet_explorer_10 @login
+@chrome @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10 @login @test2.wikipedia.org
 Feature: Reply moderation
-
-  Assumes Flow is enabled for the User_talk namespace.
 
   Background:
     Given I am logged in
@@ -16,3 +14,4 @@ Feature: Reply moderation
         And I give reason for hiding as being "Shhhh!"
         And I click the Hide button in the dialog
     Then the 3rd comment should be marked as hidden
+        And the content of the 3rd comment should not be visible

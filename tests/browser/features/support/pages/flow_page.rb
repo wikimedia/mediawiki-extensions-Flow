@@ -174,6 +174,9 @@ class FlowPage < WikiPage
   div(:third_reply_moderation_msg) do |page|
     page.third_reply_element.div_element(css: '.flow-moderated-post-content', index: 0)
   end
+  div(:third_reply_content) do |page|
+    page.third_reply_element.div_element(css: '.flow-post-content', index: 0)
+  end
 
   a(:third_post_actions_link, css: ".flow-topic .flow-post .flow-menu-js-drop a", index: 3)
   ul(:third_post_actions_menu, css: ".flow-topic .flow-post .flow-menu ul", index: 3)
