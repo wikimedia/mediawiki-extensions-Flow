@@ -17,7 +17,7 @@
         'sp_vars' => Array(),
 
     );
-    return '<div class="flow-component" data-flow-component="board" data-flow-id="'.htmlentities(((is_array($in) && isset($in['workflow'])) ? $in['workflow'] : null), ENT_QUOTES, 'UTF-8').'">
+    return '<div class="flow-component" data-flow-component="'.htmlentities(((is_array($in) && isset($in['component'])) ? $in['component'] : null), ENT_QUOTES, 'UTF-8').'" data-flow-id="'.htmlentities(((is_array($in) && isset($in['workflow'])) ? $in['workflow'] : null), ENT_QUOTES, 'UTF-8').'">
 	'.LCRun3::sec($cx, ((is_array($in) && isset($in['blocks'])) ? $in['blocks'] : null), $in, true, function($cx, $in) {return '
 	'.LCRun3::ch($cx, 'block', Array(Array($in),Array()), 'encq').'
 ';}).'
