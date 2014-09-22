@@ -220,6 +220,7 @@ $wgAutoloadClasses['Flow\\SpamFilter\\SpamBlacklist'] = __DIR__ . '/includes/Spa
 $wgAutoloadClasses['Flow\\SpamFilter\\SpamFilter'] = __DIR__ . '/includes/SpamFilter/SpamFilter.php';
 $wgAutoloadClasses['Flow\\SpamFilter\\SpamRegex'] = __DIR__ . '/includes/SpamFilter/SpamRegex.php';
 $wgAutoloadClasses['Flow\\SpecialFlow'] = __DIR__ . '/includes/SpecialFlow.php';
+$wgAutoloadClasses['Flow\\SpecialFlowSearch'] = __DIR__ . '/includes/SpecialFlowSearch.php';
 $wgAutoloadClasses['Flow\\SubmissionHandler'] = __DIR__ . '/includes/SubmissionHandler.php';
 $wgAutoloadClasses['Flow\\TalkpageManager'] = __DIR__ . '/includes/TalkpageManager.php';
 $wgAutoloadClasses['Flow\\TemplateHelper'] = __DIR__ . '/includes/TemplateHelper.php';
