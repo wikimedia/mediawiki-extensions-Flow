@@ -54,6 +54,7 @@ all: compiled/flow_block_loop.handlebars.php \
 		compiled/flow_block_topicsummary_diff_view.handlebars.php \
 		compiled/flow_form_buttons.handlebars.php \
 		compiled/flow_post.handlebars.php \
+		compiled/flow_search.handlebars.php \
 		compiled/flow_tooltip.handlebars.php \
 		compiled/timestamp.handlebars.php
 
@@ -176,6 +177,10 @@ compiled/flow_form_buttons.handlebars.php: \
 compiled/flow_post.handlebars.php: \
 		$(POST_SUBTEMPLATES)
 	$(COMPILE) flow_post
+
+compiled/flow_search.handlebars.php: \
+		flow_search.handlebars
+	$(COMPILE) flow_search
 
 compiled/flow_tooltip.handlebars.php: \
 		flow_tooltip.handlebars

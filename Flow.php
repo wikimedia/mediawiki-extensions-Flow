@@ -51,10 +51,15 @@ $wgAPIModules['flow-parsoid-utils'] = 'ApiParsoidUtilsFlow';
 $wgAPIModules['flow'] = 'ApiFlow';
 $wgAPIPropModules['flowinfo'] = 'ApiQueryPropFlowInfo';
 
-// Special:Flow
 $wgExtensionMessagesFiles['FlowAlias'] = $dir . 'Flow.alias.php';
+
+// Special:Flow
 $wgSpecialPages['Flow'] = 'Flow\SpecialFlow';
 $wgSpecialPageGroups['Flow'] = 'redirects';
+
+// Special:FlowSearch
+$wgSpecialPages['FlowSearch'] = 'Flow\SpecialFlowSearch';
+$wgSpecialPageGroups['FlowSearch'] = 'other';
 
 // Housekeeping hooks
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'FlowHooks::getSchemaUpdates';
