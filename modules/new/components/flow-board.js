@@ -4,7 +4,10 @@
 
 ( function ( $, mw ) {
 	var namespaces = mw.config.get( 'wgNamespaceIds' ),
-		inTopicNamespace = mw.config.get( 'wgNamespaceNumber' ) === namespaces.topic;
+		inTopicNamespace = mw.config.get( 'wgNamespaceNumber' ) === namespaces.topic,
+		inTopicTitleInTopicNamespace = function ( $el ) {
+			return inTopicNamespace && $el.closest( '.flow-post' ).length === 0;
+		};
 
 	/**
 	 * Constructor class for instantiating a new Flow board. Returns a FlowBoardComponent object.
@@ -1152,6 +1155,11 @@
 		 * @param {jQuery} $topic
 		 */
 		FlowBoardComponent.UI.events.loadHandlers.collapserState = function ( $topic ) {
+			// Don't apply to titlebars in the topic namespace
+			if ( inTopicTitleInTopicNamespace( $( this ) ) ) {
+				return;
+			}
+
 			// Get last collapse state from sessionStorage
 			var stateForTopic, classForTopic,
 				states = mw.flow.StorageEngine.sessionStorage.getItem( 'collapserStates' ) || {},
@@ -1312,6 +1320,11 @@
 		 * @param {Event} event
 		 */
 		FlowBoardComponent.UI.events.interactiveHandlers.collapserGroupToggle = function ( event ) {
+			// Don't apply to titlebars in the topic namespace
+			if ( inTopicTitleInTopicNamespace( $( this ) ) ) {
+				return;
+			}
+
 			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
 
 			FlowBoardComponent.UI.collapserState( flowBoard, this.href.match( /[a-z]+$/ )[0] );
@@ -1330,6 +1343,11 @@
 				board = FlowBoardComponent.prototype.getInstanceByElement( $this ),
 				isNotClickableElement = $target.not( '.flow-menu-js-drop' ) &&
 					!$target.closest( 'a, button, input, textarea, select, ul, ol' ).length;
+
+			// Don't apply to titlebars in the topic namespace
+			if ( inTopicTitleInTopicNamespace( $this ) ) {
+				return;
+			}
 
 			if ( isNotClickableElement ) {
 				$target = $( this ).closest( '.flow-post-main, .flow-topic' ); // @todo genericize this
@@ -2386,13 +2404,6 @@
 			$topic.replaceWith( $newTopic );
 
 			FlowBoardComponent.UI.makeContentInteractive( $newTopic );
-		}
-
-		if ( inTopicNamespace ) {
-			// Topic pages do not have collapse states
-			FlowBoardComponent.UI.events.interactiveHandlers.collapserGroupToggle = $.noop;
-			FlowBoardComponent.UI.events.interactiveHandlers.collapserCollapsibleToggle = $.noop;
-			FlowBoardComponent.UI.collapserState = $.noop;
 		}
 	}() );
 }( jQuery, mediaWiki ) );
