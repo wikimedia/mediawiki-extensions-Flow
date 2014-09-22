@@ -143,10 +143,8 @@
 		// Drop it into the page
 		$node.appendTo( 'body' );
 
-		// Show the tick box if we have a type|data-role=submit button available to assign it to; hide it otherwise
-		$node.find( this.nextSelector )[
-			$contentNode.find( 'a, input, button' ).filter( ':visible' ).filter( '[type=submit], [data-role=submit]' ).length ? 'show' : 'hide'
-			]();
+		// Hide the tick box @todo implement multi-step and event handling / form binding
+		$node.find( this.nextSelector ).hide();
 
 		// If something in here did not auto-focus, let's focus something
 		$fields = $node.find( 'textarea, input, select' ).filter( ':visible' );
