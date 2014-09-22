@@ -45,8 +45,8 @@ class NotificationController {
 
 		$wgEchoNotificationIcons['flow-discussion'] = array(
 			'path' => array(
-				'ltr' => 'Flow/modules/new/notification/icon/Talk-ltr.png',
-				'rtl' => 'Flow/modules/new/notification/icon/Talk-rtl.png'
+				'ltr' => 'Flow/modules/notification/icon/Talk-ltr.png',
+				'rtl' => 'Flow/modules/notification/icon/Talk-rtl.png'
 			)
 		);
 
