@@ -129,7 +129,7 @@
 			<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
 			<ul class="mw-ui-button-container flow-list">
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['edit'])) ? $in['actions']['edit'] : null))) ? '
-					<li>
+					<li class="flow-menu-edit-action">
 						<a class="mw-ui-button mw-ui-quiet"
 						   href="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['url'])) ? $in['actions']['edit']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['title'])) ? $in['actions']['edit']['title'] : null), ENT_QUOTES, 'UTF-8').'"
@@ -161,7 +161,7 @@
 					</li>
 				' : '').'
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['summarize'])) ? $in['actions']['summarize'] : null))) ? '
-					<li>
+					<li class="flow-menu-edit-action">
 						<a class="mw-ui-button mw-ui-progressive mw-ui-quiet"
 						   data-flow-interactive-handler="apiRequest"
 						   data-flow-api-handler="activateSummarizeTopic"
@@ -357,20 +357,20 @@
 			        data-flow-interactive-handler="apiRequest"
 			        data-flow-api-handler="submitReply"
 			        data-flow-api-target="< .flow-topic">'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['title'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'</button>
-			'.LCRun3::hbch($cx, 'progressiveEnhancement', Array(Array(),Array()), $in, function($cx, $in) {return '
+			'.'
 	<button data-flow-api-handler="preview"
 	        data-flow-api-target="< form textarea"
 	        name="preview"
 	        data-role="action"
-	        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right"
+	        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-js"
 	>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
 
 	<button data-flow-interactive-handler="cancelForm"
 	        data-role="cancel"
 	        type="reset"
-	        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right"
+	        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
 	>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
-';}).'
+'.'
 
 			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-terms-of-use-reply'),Array()), 'encq').'</small>
 		</div>
@@ -435,20 +435,20 @@
 			        data-flow-interactive-handler="apiRequest"
 			        data-flow-api-handler="submitReply"
 			        data-flow-api-target="< .flow-topic">'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['title'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'</button>
-			'.LCRun3::hbch($cx, 'progressiveEnhancement', Array(Array(),Array()), $in, function($cx, $in) {return '
+			'.'
 	<button data-flow-api-handler="preview"
 	        data-flow-api-target="< form textarea"
 	        name="preview"
 	        data-role="action"
-	        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right"
+	        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-js"
 	>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
 
 	<button data-flow-interactive-handler="cancelForm"
 	        data-role="cancel"
 	        type="reset"
-	        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right"
+	        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
 	>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
-';}).'
+'.'
 
 			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-terms-of-use-reply'),Array()), 'encq').'</small>
 		</div>

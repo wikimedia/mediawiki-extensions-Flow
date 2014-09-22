@@ -125,7 +125,7 @@ $wgGroupPermissions = array_merge_recursive( $wgGroupPermissions, $wgFlowGroupPe
 
 // Register Flow import paths
 $wgResourceLoaderLESSImportPaths = array_merge( $wgResourceLoaderLESSImportPaths, array(
-	$dir . "modules/new/styles/flow.less/",
+	$dir . "modules/styles/flow.less/",
 ) );
 
 // Configuration
