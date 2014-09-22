@@ -80,20 +80,20 @@
 	<div class="flow-form-actions flow-form-collapsible">
 		<button class="mw-ui-button mw-ui-constructive"
 		        data-flow-api-handler="submitEditPost">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-post-action-edit-post-submit'),Array()), 'encq').'</button>
-		'.LCRun3::hbch($cx, 'progressiveEnhancement', Array(Array(),Array()), $in, function($cx, $in) {return '
+		'.'
 	<button data-flow-api-handler="preview"
 	        data-flow-api-target="< form textarea"
 	        name="preview"
 	        data-role="action"
-	        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right"
+	        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-js"
 	>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
 
 	<button data-flow-interactive-handler="cancelForm"
 	        data-role="cancel"
 	        type="reset"
-	        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right"
+	        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
 	>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
-';}).'
+'.'
 
 		<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-terms-of-use-edit'),Array()), 'encq').'</small>
 	</div>
@@ -553,20 +553,20 @@
 			        data-flow-interactive-handler="apiRequest"
 			        data-flow-api-handler="submitReply"
 			        data-flow-api-target="< .flow-topic">'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['title'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'</button>
-			'.LCRun3::hbch($cx, 'progressiveEnhancement', Array(Array(),Array()), $in, function($cx, $in) {return '
+			'.'
 	<button data-flow-api-handler="preview"
 	        data-flow-api-target="< form textarea"
 	        name="preview"
 	        data-role="action"
-	        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right"
+	        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-js"
 	>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
 
 	<button data-flow-interactive-handler="cancelForm"
 	        data-role="cancel"
 	        type="reset"
-	        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right"
+	        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
 	>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
-';}).'
+'.'
 
 			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-terms-of-use-reply'),Array()), 'encq').'</small>
 		</div>
