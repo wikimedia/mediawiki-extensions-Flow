@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee62ffec_cbafa590",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 1148,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-09-22T21:18:04Z",
+      "side": 1,
+      "message": "This should be a utility, e.g. isTitlebarOnTopicPage()",
+      "revId": "7ebfb31bee8bedc5c65582e3f6cb2b037251725a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
