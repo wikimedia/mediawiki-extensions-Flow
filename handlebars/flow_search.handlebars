@@ -1,0 +1,21 @@
+<ul>
+	<p>Total results: {{search.total}}</p>
+
+	{{#each search.rows}}
+	<li>
+		{{#if links.topic }}
+		<a href="{{links.topic.url}}">
+			{{#if content }}
+				{{escapeContent content.format content.content}}
+			{{else}}
+				@todo: no content available (probably moderated) - how do we deal with this?
+			{{/if}}
+		</a>
+		{{else}}
+		<a href="{{links.workflow.url}}">
+			@todo: this is some header
+		</a>
+		{{/if}}
+	</li>
+	{{/each}}
+<ul>
