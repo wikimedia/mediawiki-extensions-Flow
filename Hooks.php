@@ -922,10 +922,10 @@ class FlowHooks {
 			return true;
 		}
 
-		// Find the title text of this specific topic
-		$uuid = UUID::create( $title->getDBKey() );
-		$collection = PostCollection::newFromId( $uuid );
 		try {
+			// Find the title text of this specific topic
+			$uuid = UUID::create( $title->getDBKey() );
+			$collection = PostCollection::newFromId( $uuid );
 			$revision = $collection->getLastRevision();
 		} catch ( \Exception $e ) {
 			wfWarn( __METHOD__ . ': Failed to locate revision for: ' . $title->getDBKey() );
