@@ -61,7 +61,7 @@ class View extends ContextSource {
 			'ext.flow.board.topic.styles'
 		);
 		$out->addModuleStyles( $styles );
-		$out->addModules( array( 'ext.flow.new' ) );
+		$out->addModules( array( 'ext.flow' ) );
 
 		// Allow other extensions to add modules
 		wfRunHooks( 'FlowAddModules', array( $out ) );
@@ -176,8 +176,27 @@ class View extends ContextSource {
 		// Render with lightncandy. The exact template to render
 		// will likely need to vary, but not yet.
 		wfProfileIn( __CLASS__ . '-render' );
-		$template = $this->lightncandy->getTemplate( 'flow_board' );
-		$out->addHTML( $template( $apiResponse ) );
+
+		// Render the flow-component wrapper
+		if ( !empty( $apiResponse['blocks'] ) ) {
+			$renderedBlocks = array();
+
+			foreach ( $apiResponse['blocks'] as $block ) {
+				$flowComponent = 'board';
+
+				// Don't re-render a block type twice in one page
+				if ( isset( $renderedBlocks[$flowComponent] ) ) {
+					continue;
+				}
+				$renderedBlocks[$flowComponent] = true;
+
+				// Render this template
+				$apiResponse['component'] = $flowComponent;
+				$template = $this->lightncandy->getTemplate( 'flow_component' );
+				$out->addHTML( $template( $apiResponse ) );
+			}
+		}
+
 		wfProfileOut( __CLASS__ . '-render' );
 	}
 
