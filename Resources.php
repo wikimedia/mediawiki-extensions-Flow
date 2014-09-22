@@ -39,9 +39,9 @@ $wgResourceModules += array(
 			"flow_block_topicsummary_diff_view.handlebars",
 			"flow_block_topicsummary_edit.handlebars",
 			"flow_block_topicsummary_single_view.handlebars",
-			"flow_board.handlebars",
 			"flow_board_collapsers_subcomponent.handlebars",
 			"flow_board_navigation.handlebars",
+			"flow_component.handlebars",
 			"flow_edit_post.handlebars",
 			"flow_edit_post_ajax.handlebars",
 			"flow_edit_topic_title.handlebars",
@@ -214,25 +214,25 @@ $wgResourceModules += array(
 	// @todo: upstream to mediawiki ui
 	'ext.flow.mediawiki.ui.modal' => $flowResourceTemplate + array(
 		'styles' => array(
-			'new/styles/mediawiki.ui/modal.less',
+			'styles/mediawiki.ui/modal.less',
 		),
 	) + $mobile,
 	// @todo: upstream to mediawiki ui
 	'ext.flow.mediawiki.ui.text' => $flowResourceTemplate + array(
 		'styles' => array(
-			'new/styles/mediawiki.ui/text.less',
+			'styles/mediawiki.ui/text.less',
 		),
 	) + $mobile,
 	// @todo: upstream to mediawiki ui
 	'ext.flow.mediawiki.ui.form' => $flowResourceTemplate + array(
 		'styles' => array(
-			'new/styles/mediawiki.ui/forms.less',
+			'styles/mediawiki.ui/forms.less',
 		),
 	) + $mobile,
 	// @todo: upstream to mediawiki ui
 	'ext.flow.mediawiki.ui.tooltips' => $flowResourceTemplate + array(
 		'styles' => array(
-			'new/styles/mediawiki.ui/tooltips.less',
+			'styles/mediawiki.ui/tooltips.less',
 		),
 	) + $mobile,
 	'ext.flow.icons.styles' => $flowResourceTemplate + array(
@@ -243,39 +243,39 @@ $wgResourceModules += array(
 	) + $mobile,
 	'ext.flow.styles' => $flowResourceTemplate + array(
 		'styles' => array(
-			'new/styles/common.less',
-			'new/styles/errors.less',
+			'styles/common.less',
+			'styles/errors.less',
 		),
 	) + $mobile,
 	'ext.flow.board.styles' => $flowResourceTemplate + array(
 		'styles' => array(
-			'new/styles/board/collapser.less',
-			'new/styles/board/header.less',
-			'new/styles/board/menu.less',
-			'new/styles/board/navigation.less',
-			'new/styles/board/moderated.less',
-			'new/styles/board/timestamps.less',
-			'new/styles/board/replycount.less',
-			'new/styles/js.less',
-			'new/styles/board/content-preview.less',
-			'new/styles/board/form-actions.less',
-			'new/styles/board/terms-of-use.less',
+			'styles/board/collapser.less',
+			'styles/board/header.less',
+			'styles/board/menu.less',
+			'styles/board/navigation.less',
+			'styles/board/moderated.less',
+			'styles/board/timestamps.less',
+			'styles/board/replycount.less',
+			'styles/js.less',
+			'styles/board/content-preview.less',
+			'styles/board/form-actions.less',
+			'styles/board/terms-of-use.less',
 		),
 	) + $mobile,
 	'ext.flow.board.topic.styles' => $flowResourceTemplate + array(
 		'styles' => array(
-			'new/styles/board/topic/navigation.less',
-			'new/styles/board/topic/navigator.less',
-			'new/styles/board/topic/titlebar.less',
-			'new/styles/board/topic/meta.less',
-			'new/styles/board/topic/post.less',
-			'new/styles/board/topic/summary.less',
-			'new/styles/board/topic/watchlist.less',
+			'styles/board/topic/navigation.less',
+			'styles/board/topic/navigator.less',
+			'styles/board/topic/titlebar.less',
+			'styles/board/topic/meta.less',
+			'styles/board/topic/post.less',
+			'styles/board/topic/summary.less',
+			'styles/board/topic/watchlist.less',
 		),
 	) + $mobile,
 	'ext.flow.new.handlebars' => $flowResourceTemplate + array(
 		'scripts' => array(
-			'new/flow-handlebars.js',
+			'engine/misc/flow-handlebars.js',
 		),
 		'messages' => array(
 			'flow-time-ago-second',
@@ -307,20 +307,38 @@ $wgResourceModules += array(
 	) + $mobile,
 	'ext.flow.new.history' => $flowResourceTemplate + array(
 		'scripts' => array(
-			'new/flow-history.js',
+			'engine/misc/flow-history.js',
 		),
 	) + $mobile,
 	'ext.flow.new' => $flowResourceTemplate + array(
-		'scripts' => array(
-			'new/mw-ui.enhance.js',
-			'new/mw-ui.modal.js',
-			'new/flow-api.js',
-			'new/flow-components.js',
-			// flow-component must come before actual components
-			'new/components/flow-board.js',
-			'new/flow.js',
+		'scripts' => array( // Component order is important
+			// MW UI
+			'engine/misc/mw-ui.enhance.js',
+			'engine/misc/mw-ui.modal.js',
+			// FlowAPI
+			'engine/misc/flow-api.js',
+			// Component registry
+			'engine/components/flow-registry.js',
+			// FlowComponent must come before actual components
+			'engine/components/flow-component.js',
+			'engine/components/common/flow-component-engines.js',
+			'engine/components/common/flow-component-events.js',
+			// Base class for both FlowBoardComponent and FlowBoardHistoryComponent
+			'engine/components/board/base/flow-boardandhistory-base.js',
+			// FlowBoardComponent
+			'engine/components/board/flow-board.js',
+			'engine/components/board/base/flow-board-api-events.js',
+			'engine/components/board/base/flow-board-interactive-events.js',
+			'engine/components/board/base/flow-board-load-events.js',
+			'engine/components/board/base/flow-board-misc.js',
+			'engine/components/board/base/flow-board-scroll-events.js',
+			// FlowBoardHistoryComponent
+			'engine/components/board/flow-boardHistory.js',
+			// This must be the last file loaded
+			'flow.js',
 		),
 		'dependencies' => array(
+			'oojs',
 			'ext.flow.templating', // ResourceLoader templating
 			'ext.flow.new.handlebars', // prototype-based for progressiveEnhancement
 			'ext.flow.new.history',
@@ -345,12 +363,12 @@ $wgResourceModules += array(
 	) + $mobile,
 	'ext.flow.vendor.storer' => $flowResourceTemplate + array(
 		'scripts' => array(
-			'new/vendor/Storer.js',
+			'vendor/Storer.js',
 		),
 	) + $mobile,
 	'ext.flow.vendor.jquery.ba-throttle-debounce' => $flowResourceTemplate + array(
 		'scripts' => array(
-			'new/vendor/jquery.ba-throttle-debounce.js',
+			'vendor/jquery.ba-throttle-debounce.js',
 		),
 	) + $mobile,
 	'ext.flow.editor' => $flowResourceTemplate + array(
@@ -374,12 +392,12 @@ $wgResourceModules += array(
 	) + $mobile,
 	'ext.flow.jquery.conditionalScroll' => $flowResourceTemplate + array(
 		'scripts' => array(
-			'jquery.conditionalScroll.js',
+			'engine/misc/jquery.conditionalScroll.js',
 		),
 	) + $mobile,
 	'ext.flow.jquery.findWithParent' => $flowResourceTemplate + array(
 		'scripts' => array(
-			'jquery.findWithParent.js',
+			'engine/misc/jquery.findWithParent.js',
 		),
 	) + $mobile,
 );

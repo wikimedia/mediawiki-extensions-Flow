@@ -87,3 +87,24 @@
 		line-height: 1.4em;
 	}
 }
+
+.flow-history-moderation-menu {
+	display: inline;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+
+	li {
+		display: inline;
+	}
+
+	.flow-history-moderation-action:first-of-type:before {
+		content: '(';
+	}
+	.flow-history-moderation-action + .flow-history-moderation-action:before {
+		content: ' | ';
+	}
+	.flow-history-moderation-action:last-of-type:after {
+		content: ')';
+	}
+}
