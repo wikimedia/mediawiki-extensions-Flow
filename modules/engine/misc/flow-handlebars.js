@@ -119,7 +119,7 @@
 				$target = $this.findWithParent( target );
 
 				if ( !$target.length ) {
-					mw.flow.debug( "[processProgressiveEnhancement] Failed to find target", arguments );
+					mw.flow.debug( "[processProgressiveEnhancement] Failed to find target", target, arguments );
 					return;
 				}
 			}

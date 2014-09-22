@@ -46,7 +46,7 @@ all: compiled/flow_block_header.handlebars.php \
 		compiled/flow_block_topicsummary_edit.handlebars.php \
 		compiled/flow_block_topicsummary_single_view.handlebars.php \
 		compiled/flow_block_topicsummary_diff_view.handlebars.php \
-		compiled/flow_board.handlebars.php \
+		compiled/flow_component.handlebars.php \
 		compiled/flow_form_buttons.handlebars.php \
 		compiled/flow_post.handlebars.php \
 		compiled/flow_tooltip.handlebars.php \
@@ -164,10 +164,10 @@ compiled/flow_block_board-history.handlebars.php: \
 		flow_block_board-history.handlebars
 	$(COMPILE) flow_block_board-history
 
-compiled/flow_board.handlebars.php: \
-		flow_board.handlebars \
+compiled/flow_component.handlebars.php: \
+		flow_component.handlebars \
 		flow_block_loop.handlebars
-	$(COMPILE) flow_board
+	$(COMPILE) flow_component
 
 compiled/flow_form_buttons.handlebars.php: \
 		flow_form_buttons.handlebars
