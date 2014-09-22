@@ -24,16 +24,22 @@ When(/^I see a dialog box$/) do
   on(FlowPage).dialog_element.when_present.should be_visible
 end
 
-When(/^I give reason for hiding as being "(.*?)"$/) do |arg1|
-   on(FlowPage).dialog_input_element.when_present.send_keys( arg1 )
+When(/^I give reason for hiding as being "(.*?)"$/) do |hide_reason|
+  on(FlowPage) do |page|
+    page.dialog_input_expand_element.when_present.click
+    page.dialog_input_element.when_present.send_keys(hide_reason)
+  end
 end
 
 When(/^I click Hide topic$/) do
   on(FlowPage).dialog_submit_element.when_present.click
 end
 
-When(/^I give reason for deletion as being "(.*?)"$/) do |arg1|
-   on(FlowPage).dialog_input_element.when_present.send_keys( arg1 )
+When(/^I give reason for deletion as being "(.*?)"$/) do |delete_reason|
+  on(FlowPage) do |page|
+    page.dialog_input_expand_element.when_present.click
+    page.dialog_input_element.when_present.send_keys(delete_reason)
+  end
 end
 
 When(/^I click Delete topic$/) do
@@ -45,8 +51,11 @@ Then(/^the top post should be marked as deleted$/) do
   on(FlowPage).flow_first_topic_moderation_msg.should match( 'This topic was deleted' )
 end
 
-When(/^I give reason for suppression as being "(.*?)"$/) do |arg1|
-  on(FlowPage).dialog_input_element.when_present.send_keys( arg1 )
+When(/^I give reason for suppression as being "(.*?)"$/) do |suppress_reason|
+  on(FlowPage) do |page|
+    page.dialog_input_expand_element.when_present.click
+    page.dialog_input_element.when_present.send_keys(suppress_reason)
+  end
 end
 
 When(/^I click Suppress topic$/) do

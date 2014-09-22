@@ -30,10 +30,12 @@ class FlowPage < WikiPage
   a(:topics_only_view, href: "#topics/topics")
 
   # Dialogs
-  div(:dialog, css: ".ui-dialog")
-  textarea(:dialog_input, css: ".ui-dialog textarea")
-  button(:dialog_cancel, css: ".ui-dialog .mw-ui-destructive")
-  button(:dialog_submit, css: ".ui-dialog .mw-ui-constructive")
+  div(:dialog, css: ".flow-ui-modal")
+  # Is an input when not focused, textarea when focused
+  button(:dialog_input_expand, css: "input.mw-ui-input:nth-child(3)")
+  textarea(:dialog_input, name: "topic_reason")
+  button(:dialog_cancel, css: ".flow-ui-modal .mw-ui-destructive")
+  button(:dialog_submit, css: ".flow-ui-modal .mw-ui-constructive")
 
   # Posts
   ## Highlighted post
@@ -129,7 +131,7 @@ class FlowPage < WikiPage
   button(:topic_lock_form_cancel_button, css: ".flow-edit-form .mw-ui-destructive")
 
   ### Editing title of first topic
-  text_field(:title_edit, css: ".flow-topic-titlebar form .mw-ui-input", index: 0)
+  textarea(:title_edit, css: ".flow-topic-titlebar form .mw-ui-input", index: 0)
   button(:change_title_save, css: ".flow-topic-titlebar form .mw-ui-constructive")
 
   ### Post meta actions
