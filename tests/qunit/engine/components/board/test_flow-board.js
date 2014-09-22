@@ -7,10 +7,12 @@ QUnit.test( 'Check Flow is running', 1, function() {
 
 QUnit.module( 'ext.flow: FlowBoardComponent', {
 	setup: function() {
-		var stub;
+		var stub, events;
+
 		this.$el = $( '<div class="flow-component" data-flow-component="board">' );
 		this.component = mw.flow.initComponent( this.$el );
 		stub = this.sandbox.stub( this.component.API, 'apiCall' );
+
 		stub.withArgs( {
 			action: 'flow',
 			submodule: 'view-topic',
@@ -74,7 +76,18 @@ QUnit.module( 'ext.flow: FlowBoardComponent', {
 				}
 			} )
 		);
-		this.UI = this.component.constructor.UI;
+
+		events = this.component.UI.events;
+		this.triggerEvent = function ( handlerType, callbackName, context, args ) {
+			var returns = [];
+			args = Array.prototype.slice.call( arguments, 3 );
+
+			$.each( events[ handlerType ][ callbackName ], function ( i, callbackFn ) {
+				returns.push( callbackFn.apply( context, args ) );
+			} );
+
+			return returns;
+		};
 	}
 } );
 
@@ -86,7 +99,7 @@ QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.lockTopic - perform unlock
 		$titleBar = $( '<div class="flow-topic-titlebar">' ).appendTo( $topic ),
 		info = { status: 'done', $target: $topic };
 
-	this.UI.events.apiHandlers.lockTopic.call( $titleBar, info );
+	this.triggerEvent( 'apiHandlers', 'lockTopic', $titleBar, info );
 	$topic = this.$el.children( '.flow-topic' );
 	assert.strictEqual( $topic.hasClass( 'flow-topic-moderated' ), false, 'No longer has the moderated state.' );
 	assert.strictEqual( $topic.hasClass( 'flow-topic-moderatestate-lock' ), false, 'No longer has the moderated lock state.' );
@@ -99,7 +112,7 @@ QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.lockTopic - perform lock',
 		$titleBar = $( '<div class="flow-topic-titlebar">' ).appendTo( $topic ),
 		info = { status: 'done', $target: $topic };
 
-	this.UI.events.apiHandlers.lockTopic.call( $titleBar, info );
+	this.triggerEvent( 'apiHandlers', 'lockTopic', $titleBar, info );
 	$topic = this.$el.children( '.flow-topic' );
 	assert.strictEqual( $topic.hasClass( 'flow-topic-moderated' ), true, 'Has the moderated state.' );
 	assert.strictEqual( $topic.hasClass( 'flow-topic-moderatestate-lock' ), true, 'Has the moderated lock state.' );
@@ -123,7 +136,7 @@ QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.preview', 3, function( ass
 			}
 		};
 
-	this.UI.events.apiHandlers.preview.call( $btn, info, data );
+	this.triggerEvent( 'apiHandlers', 'preview', $btn, info, data );
 
 	// check all is well.
 	assert.strictEqual( $container.find( '.flow-preview-warning' ).length, 1, 'There is a preview warning.' );
@@ -148,7 +161,7 @@ QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.preview (summary)', 3, fun
 			}
 		};
 
-	this.UI.events.apiHandlers.preview.call( $btn, info, data );
+	this.triggerEvent( 'apiHandlers', 'preview', $btn, info, data );
 
 	// check all is well.
 	assert.strictEqual( $container.find( '.flow-preview-warning' ).length, 1,
