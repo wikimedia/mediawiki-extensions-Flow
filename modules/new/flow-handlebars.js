@@ -181,9 +181,8 @@
 	 * @param Object... [parameters] Parameters to pass as Message parameters or custom function
 	 *   parameters
 	 */
-	function flowMessages( str ) {
-		var parameters = Array.prototype.slice.call( arguments, 1 ),
-			strings = ( {
+	function flowMessages( str, parameters ) {
+		var strings = ( {
 				"post_moderation_state": function( type, replyToId, name ) {
 					var str;
 					if ( !replyToId ) {
@@ -243,11 +242,13 @@
 	 * @param {Object} [options]
 	 * @returns {String}
 	 */
-	FlowHandlebars.prototype.l10n = function ( str, args, options ) {
-		var res = flowMessages.apply( mw, arguments ).text();
+	FlowHandlebars.prototype.l10n = function ( str /*, args..., options */ ) {
+		// chop off str and options leaving just args
+		var args = Array.prototype.slice.call( arguments, 1, -1 ),
+			res = flowMessages.call( mw, str, args ).text();
 
 		if ( !res ) {
-			mw.flow.debug( "[l10n] Empty String", arguments );
+			mw.flow.debug( "[l10n] Empty String", args );
 			return "(l10n:" + str + ")";
 		}
 
@@ -258,7 +259,9 @@
 	 * HTML-safe version of l10n.
 	 * @returns {String|Handlebars.SafeString}
 	 */
-	FlowHandlebars.prototype.l10nParse = function ( str, args, options ) {
+	FlowHandlebars.prototype.l10nParse = function ( str /*, args..., options */ ) {
+		var args = Array.prototype.slice.call( arguments, 1, -1 );
+
 		return FlowHandlebars.prototype.html(
 			mw.message( str ).params( args ).parse()
 		);
@@ -303,7 +306,7 @@
 
 		if ( seconds_ago < 2419200 ) {
 			// Return "n ago" for only dates less than 4 weeks ago
-			time_ago = FlowHandlebars.prototype.l10n( 'time', str, seconds_ago );
+			time_ago = FlowHandlebars.prototype.l10n( 'time', str, seconds_ago, {} );
 
 			if ( timeAgoOnly === true ) {
 				// timeAgoOnly: return only this text
@@ -326,7 +329,7 @@
 				'timestamp',
 				{
 					time_iso: timestamp,
-					time_readable: fallback || FlowHandlebars.prototype.l10n( 'datetime', timestamp ),
+					time_readable: fallback || FlowHandlebars.prototype.l10n( 'datetime', timestamp, {} ),
 					time_ago: time_ago,
 					guid: guid
 				}
