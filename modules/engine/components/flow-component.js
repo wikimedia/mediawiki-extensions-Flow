@@ -1,81 +1,23 @@
 /*!
- * Implements basic Flow UI JavaScript functionality.
+ * Contains base FlowComponent class.
  */
 
 ( function ( $, mw, initStorer ) {
-	var _componentRegistry = {};
-
-	window.mw = window.mw || {}; // mw-less testing
-	mw.flow = mw.flow || {}; // create mw.flow globally
-
-	/**
-	 * Instantiate one or more new FlowComponents.
-	 * Uses data-flow-component to find the right class, and returns that new instance.
-	 * @param {jQuery} $container
-	 * @returns {FlowComponent|bool}
-	 * @constructor
-	 */
-	function initFlowComponent( $container ) {
-		var a, i, componentName;
-
-		if ( !$container || !$container.length ) {
-			// No containers found
-			mw.flow.debug( 'Will not instantiate: no $container.length', arguments );
-			return false;
-		} else if ( $container.length > 1 ) {
-			// Too many elements; instantiate them all
-			for ( a = [], i = $container.length; i--; ) {
-				a.push(initFlowComponent( $( $container[ i ] ) ));
-			}
-			return a;
-		}
-
-		// Find out which component this is
-		componentName = $container.data( 'flow-component' );
-		if ( _componentRegistry[ componentName ] ) {
-			// Run progressive enhancements if any are needed by this container
-			mw.flow.TemplateEngine.processProgressiveEnhancement( $container );
-			// Return the new instance of that FlowComponent
-			return new _componentRegistry[ componentName ]( $container );
-		}
-
-		// Don't know what kind of component this is.
-		mw.flow.debug( 'Unknown FlowComponent: ', componentName, arguments );
-		return false;
-	}
-	mw.flow.initComponent = initFlowComponent;
-
-	/**
-	 * Registers a given FlowComponent into the component registry, and also extends the class with FlowComponent.
-	 * @param {String} name
-	 * @param {Function} constructor
-	 */
-	mw.flow.registerComponent = ( function () {
-		return function ( name, constructorClass ) {
-			// Inherit FlowComponent
-			constructorClass.prototype = new FlowComponent;
-			// Keep the original constructor class
-			constructorClass.prototype.constructor = constructorClass;
-			/** @lends FlowComponent.prototype */ // Super weird thing below for jsdoc purposes
-			( { parent: ( constructorClass.prototype.parent = FlowComponent ) } ); // jshint ignore:line
-			// Create the instance registry for this component
-			constructorClass._instanceRegistry = [];
-			constructorClass._instanceRegistryById = {};
-			_componentRegistry[ name ] = constructorClass;
-		};
-	}() );
+	var _totalInstanceCount = 0;
 
 	/**
 	 * Inherited base class. Stores the instance in the class's instance registry.
 	 * @param {jQuery} [$container]
 	 * @returns {FlowComponent|bool}
-	 * @extends EventEmitter
+	 * @extends FlowComponentEventsMixin
+	 * @extends FlowComponentEnginesMixin
 	 * @constructor
 	 */
 	function FlowComponent( $container ) {
-		if ( !arguments.length ) {
-			return this; // funky constructor inheritance
-		}
+		var parent = this.constructor.parent;
+
+		// Run progressive enhancements if any are needed by this container
+		mw.flow.TemplateEngine.processProgressiveEnhancement( $container );
 
 		// Store the container for later use
 		this.$container = $container;
@@ -84,67 +26,58 @@
 		this.id = $container.data( 'flow-id' );
 		if ( !this.id ) {
 			// Generate an ID for this component
-			this.id = 'flow-generated-' + FlowComponent._totalInstanceCount;
+			this.id = 'flow-generated-' + _totalInstanceCount;
 			$container.data( 'flow-id', this.id );
+			// @todo throw an exception here instead of generating an id?
 		} else if ( this.getInstanceByElement( $container ) ) {
 			// Check if this board was already instantiated, and return that instead
 			return this.getInstanceByElement( $container );
 		}
 
-		// Give this board its own API instance
-		this.API = new mw.flow.FlowAPI( FlowComponent.prototype.StorageEngine, this.id );
+		// Give this board its own API instance @todo do this with OOjs
+		this.API = new mw.flow.FlowAPI( FlowComponent.static.StorageEngine, this.id );
 
 		// Keep this in the registry to find it by other means
-		this.constructor._instanceRegistryById[ this.id ] = this.constructor._instanceRegistry.push( this ) - 1;
-		FlowComponent._totalInstanceCount++;
+		while ( parent ) {
+			parent._instanceRegistryById[this.id] = parent._instanceRegistry.push( this ) - 1;
+			parent = parent.parent; // and add it to every instance registry
+		}
+		_totalInstanceCount++;
 	}
+	OO.initClass( FlowComponent );
 
-	FlowComponent._totalInstanceCount = 0;
-
-	/**
-	 * Contains Storer.js's (fallback) storage engines.
-	 * @type {{ cookieStorage: Storer.cookieStorage, memoryStorage: Storer.memoryStorage, sessionStorage: Storer.sessionStorage, localStorage: Storer.localStorage }}
-	 */
-	mw.flow.StorageEngine = FlowComponent.prototype.StorageEngine = {};
-	mw.flow.StorageEngine = FlowComponent.prototype.StorageEngine = initStorer( function ( Storer ) {
-		// Callback (for older IE browsers; sets userData in place of localStorage on DOMReady)
-		mw.flow.StorageEngine.cookieStorage  = FlowComponent.prototype.StorageEngine.cookieStorage  = Storer.cookieStorage;
-		mw.flow.StorageEngine.memoryStorage  = FlowComponent.prototype.StorageEngine.memoryStorage  = Storer.memoryStorage;
-		mw.flow.StorageEngine.sessionStorage = FlowComponent.prototype.StorageEngine.sessionStorage = Storer.sessionStorage;
-		mw.flow.StorageEngine.localStorage   = FlowComponent.prototype.StorageEngine.localStorage   = Storer.localStorage;
-	}, { 'prefix': '_WMFLOW_' } );
-
-	/**
-	 * Contains the Flow templating engine translation class (in case we change templating engines).
-	 * @type {FlowHandlebars}
-	 */
-	mw.flow.TemplateEngine = FlowComponent.prototype.TemplateEngine = new mw.flow.FlowHandlebars( FlowComponent.prototype.StorageEngine );
-
-	/**
-	 * Contains the Flow history state manager.
-	 * @type {FlowHistoryStateManager}
-	 */
-	mw.flow.HistoryEngine = FlowComponent.prototype.HistoryEngine = new mw.flow.FlowHistoryStateManager( FlowComponent.prototype.StorageEngine );
-
-	/**
-	 * Contains the Flow history state manager.
-	 * @type {FlowHistoryStateManager}
-	 */
-	mw.flow.API = new mw.flow.FlowAPI( FlowComponent.prototype.StorageEngine );
+	//
+	// PROTOTYPE METHODS
+	//
 
 	/**
 	 * Takes any length of arguments, and passes it off to console.log.
 	 * Only renders if window.flow_debug OR localStorage.flow_debug == true OR user is Admin or (WMF).
+	 * @param {Boolean} [isError=true]
 	 * @param {...*} args
 	 */
-	mw.flow.debug = FlowComponent.prototype.debug = function ( args ) {
+	mw.flow.debug = FlowComponent.prototype.debug = function ( isError, args ) {
 		if ( window.console && (
-				window.flow_debug ||
-				( window.localStorage && localStorage.getItem( 'flow_debug' ) ) ||
-				( mw.user && !mw.user.isAnon() && mw.user.getName().match( /(^Admin$)|\(WMF\)/ ) )
-			) ) {
-			args = Array.prototype.slice.apply( arguments );
+			window.flow_debug ||
+			( window.localStorage && localStorage.getItem( 'flow_debug' ) ) ||
+			( mw.user && !mw.user.isAnon() && mw.user.getName().match( /(^Admin$)|\(WMF\)/ ) )
+		) ) {
+			args = Array.prototype.slice.call( arguments, 0 );
+
+			if ( typeof isError === 'boolean' ) {
+				args.shift();
+			} else {
+				isError = true;
+			}
+
 			args.unshift( '[FLOW] ' );
+
+			if ( isError && console.error ) {
+				// If console.error is supported, send that, because it gives a stack trace
+				return console.error.apply( console, args );
+			}
+
+			// Otherwise, use console.log
 			console.log.apply( console, args );
 		}
 	};
@@ -154,7 +87,8 @@
 	 * @returns {FlowComponent[]}
 	 */
 	FlowComponent.prototype.getInstances = function () {
-		return this.constructor._instanceRegistry;
+		// Use the correct context (instance vs prototype)
+		return ( this.constructor.parent || this )._instanceRegistry;
 	};
 
 	/**
@@ -164,12 +98,14 @@
 	 */
 	FlowComponent.prototype.getInstanceByElement = function ( $el ) {
 		var $container = $el.closest( '.flow-component' ),
+			context = this.constructor.parent || this, // Use the correct context (instance vs prototype)
 			id;
 
 		// This element isn't _within_ any actual component; was it spawned _by_ a component?
 		if ( !$container.length ) {
 			// Find any parents of this element with the flowSpawnedBy data attribute
 			$container = $el.parents().addBack().filter( function () {
+				console.log('finding', $( this ).data( 'flowSpawnedBy' ))
 				return $( this ).data( 'flowSpawnedBy' );
 			} ).last()
 				// Get the flowSpawnedBy node
@@ -186,7 +122,7 @@
 
 		id = $container.data( 'flow-id' );
 
-		return this.constructor._instanceRegistry[ this.constructor._instanceRegistryById[ id ] ] || false;
+		return context._instanceRegistry[ context._instanceRegistryById[ id ] ] || false;
 	};
 
 	/**
@@ -199,6 +135,8 @@
 	FlowComponent.prototype.assignSpawnedNode = function ( $el, $eventTarget ) {
 		// Target defaults to .flow-component
 		$eventTarget = $eventTarget || this.$container;
+
+		console.log('assigning', $el)
 
 		// Assign flowSpawnedBy data attribute
 		$el.data( 'flowSpawnedBy', $eventTarget );
@@ -227,6 +165,10 @@
 		);
 	};
 
+	//
+	// PRIVATE FUNCTIONS
+	//
+
 	/**
 	 * This method is mostly cloned from jQuery.event.dispatch, except that it has been modified to use container
 	 * as its base for finding event handlers (via jQuery.event.handlers). This allows us to trigger events on said
@@ -247,7 +189,7 @@
 
 		var i, ret, handleObj, matched, j,
 			handlerQueue = [],
-			args = Array.prototype.slice.call( arguments ),
+			args = Array.prototype.slice.call( arguments, 0 ),
 			handlers = ( jQuery._data( this, "events" ) || {} )[ event.type ] || [],
 			special = jQuery.event.special[ event.type ] || {};
 
@@ -266,11 +208,11 @@
 
 		// Run delegates first; they may want to stop propagation beneath us
 		i = 0;
-		while ( (matched = handlerQueue[ i++ ]) && !event.isPropagationStopped() ) {
+		while ( ( matched = handlerQueue[ i++ ] ) && !event.isPropagationStopped() ) {
 			event.currentTarget = matched.elem;
 
 			j = 0;
-			while ( (handleObj = matched.handlers[ j++ ]) && !event.isImmediatePropagationStopped() ) {
+			while ( ( handleObj = matched.handlers[ j++ ] ) && !event.isImmediatePropagationStopped() ) {
 				// Triggered event must either 1) have no namespace, or
 				// 2) have namespace(s) a subset or equal to those in the bound event (both can have no namespace).
 				if ( !event.namespace_re || event.namespace_re.test( handleObj.namespace ) ) {
@@ -278,11 +220,11 @@
 					event.handleObj = handleObj;
 					event.data = handleObj.data;
 
-					ret = ( (jQuery.event.special[ handleObj.origType ] || {}).handle || handleObj.handler )
+					ret = ( ( jQuery.event.special[ handleObj.origType ] || {} ).handle || handleObj.handler )
 						.apply( matched.elem, args );
 
 					if ( ret !== undefined ) {
-						if ( (event.result = ret) === false ) {
+						if ( ( event.result = ret ) === false ) {
 							event.preventDefault();
 							event.stopPropagation();
 						}
@@ -299,4 +241,5 @@
 		return event.result;
 	}
 
+	mw.flow.registerComponent( 'component', FlowComponent );
 }( jQuery, mediaWiki, mediaWiki.flow.vendor.initStorer ) );

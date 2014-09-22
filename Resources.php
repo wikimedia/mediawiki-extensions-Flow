@@ -39,9 +39,9 @@ $wgResourceModules += array(
 			"flow_block_topicsummary_diff_view.handlebars",
 			"flow_block_topicsummary_edit.handlebars",
 			"flow_block_topicsummary_single_view.handlebars",
-			"flow_board.handlebars",
 			"flow_board_collapsers_subcomponent.handlebars",
 			"flow_board_navigation.handlebars",
+			"flow_component.handlebars",
 			"flow_edit_post.handlebars",
 			"flow_edit_post_ajax.handlebars",
 			"flow_edit_topic_title.handlebars",
@@ -275,7 +275,7 @@ $wgResourceModules += array(
 	) + $mobile,
 	'ext.flow.new.handlebars' => $flowResourceTemplate + array(
 		'scripts' => array(
-			'new/flow-handlebars.js',
+			'engine/misc/flow-handlebars.js',
 		),
 		'messages' => array(
 			'flow-time-ago-second',
@@ -307,20 +307,38 @@ $wgResourceModules += array(
 	) + $mobile,
 	'ext.flow.new.history' => $flowResourceTemplate + array(
 		'scripts' => array(
-			'new/flow-history.js',
+			'engine/misc/flow-history.js',
 		),
 	) + $mobile,
 	'ext.flow.new' => $flowResourceTemplate + array(
-		'scripts' => array(
-			'new/mw-ui.enhance.js',
-			'new/mw-ui.modal.js',
-			'new/flow-api.js',
-			'new/flow-components.js',
-			// flow-component must come before actual components
-			'new/components/flow-board.js',
+		'scripts' => array( // Component order is important
+			// MW UI
+			'engine/misc/mw-ui.enhance.js',
+			'engine/misc/mw-ui.modal.js',
+			// FlowAPI
+			'engine/misc/flow-api.js',
+			// Component registry
+			'engine/components/flow-registry.js',
+			// FlowComponent must come before actual components
+			'engine/components/flow-component.js',
+			'engine/components/common/flow-component-engines.js',
+			'engine/components/common/flow-component-events.js',
+			// Base class for both FlowBoardComponent and FlowBoardHistoryComponent
+			'engine/components/board/base/flow-boardandhistory-base.js',
+			// FlowBoardComponent
+			'engine/components/board/flow-board.js',
+			'engine/components/board/base/flow-board-api-events.js',
+			'engine/components/board/base/flow-board-interactive-events.js',
+			'engine/components/board/base/flow-board-load-events.js',
+			'engine/components/board/base/flow-board-misc.js',
+			'engine/components/board/base/flow-board-scroll-events.js',
+			// FlowBoardHistoryComponent
+			'engine/components/board/flow-boardHistory.js',
+			// This must be the last file loaded
 			'new/flow.js',
 		),
 		'dependencies' => array(
+			'oojs',
 			'ext.flow.templating', // ResourceLoader templating
 			'ext.flow.new.handlebars', // prototype-based for progressiveEnhancement
 			'ext.flow.new.history',
@@ -374,12 +392,12 @@ $wgResourceModules += array(
 	) + $mobile,
 	'ext.flow.jquery.conditionalScroll' => $flowResourceTemplate + array(
 		'scripts' => array(
-			'jquery.conditionalScroll.js',
+			'engine/misc/jquery.conditionalScroll.js',
 		),
 	) + $mobile,
 	'ext.flow.jquery.findWithParent' => $flowResourceTemplate + array(
 		'scripts' => array(
-			'jquery.findWithParent.js',
+			'engine/misc/jquery.findWithParent.js',
 		),
 	) + $mobile,
 );
