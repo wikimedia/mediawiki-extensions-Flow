@@ -21,7 +21,7 @@ $notifications = array(
 			'destination' => 'flow-new-topics'
 		),
 		'title-message' => 'flow-notification-newtopic',
-		'title-params' => array( 'agent', 'flow-title', 'title', 'subject', 'topic-permalink' ),
+		'title-params' => array( 'agent', 'flow-title', 'title', 'subject' ),
 		'bundle' => array(
 			'web' => true,
 			'email' => true,
