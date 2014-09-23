@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee62ffec_19ee3720",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-09-23T00:41:20Z",
+      "side": 1,
+      "message": "Why does this need an empty object as the last param?",
+      "revId": "82ffa8899bf1cfeb8e118bde590b5bc0d1ad9687",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
