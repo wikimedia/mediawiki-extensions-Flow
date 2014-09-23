@@ -165,6 +165,21 @@
 		} );
 	};
 
+	/**
+	 * Parameters could be Message::rawParam (in PHP) object, which will
+	 * translate into a { raw: "string" } object in JS.
+	 * @todo: this does not exactly match the behavior in PHP yet (no parse,
+	 * no escape), but at least it won't print an [Object object] param.
+	 *
+	 * @param {Array} parameters
+	 * @return {Array}
+	 */
+	function flowNormalizeL10nParameters( parameters ) {
+		return $.map( parameters, function ( arg ) {
+			return arg ? arg.raw || arg : '';
+		} );
+	}
+
 	// @todo remove and replace with mw.message || $.noop
 	/**
 	 * Checks for a helper function based on a key.
@@ -179,7 +194,7 @@
 	 *   parameters
 	 */
 	function flowMessages( str ) {
-		var parameters = Array.prototype.slice.call( arguments, 1 ),
+		var parameters = flowNormalizeL10nParameters( Array.prototype.slice.call( arguments, 1 ) ),
 			strings = ( {
 				"post_moderation_state": function( type, replyToId, name ) {
 					var str;
@@ -222,7 +237,7 @@
 			return mw.message( str ).params( parameters );
 		}
 
-		if ( Object.prototype.toString.call( result ) === '[object Function]' ) {
+		if ( $.isFunction( result ) ) {
 			// Callable; return the result of callback(arguments)
 			result = result.apply( strings, parameters );
 		}
@@ -257,7 +272,7 @@
 	 */
 	FlowHandlebars.prototype.l10nParse = function ( str, args, options ) {
 		return FlowHandlebars.prototype.html(
-			mw.message( str ).params( args ).parse()
+			mw.message( str ).params( flowNormalizeL10nParameters( args ) ).parse()
 		);
 	};
 
