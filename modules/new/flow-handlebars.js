@@ -218,6 +218,14 @@
 			} ),
 			result = strings[ str ];
 
+		// Parameters could be Message::rawParam (in PHP) object, which will
+		// translate into a { raw: "string" } object in JS.
+		// @todo: this does not exactly match the behavior in PHP yet (no parse,
+		// no escape), but at least it won't print an [Object object] param.
+		parameters = parameters.map( function ( arg ) {
+			return arg.raw || arg;
+		} );
+
 		if ( !result ) {
 			return mw.message( str ).params( parameters );
 		}
