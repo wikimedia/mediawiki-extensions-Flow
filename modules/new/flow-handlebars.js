@@ -666,7 +666,7 @@
 			retval = content;
 		}
 
-		return retval ? retval.trim().substr( 0, 200 ) : '';
+		return retval ? $.trim( retval ).substr( 0, 200 ) : '';
 	};
 
 	/**
