@@ -49,7 +49,7 @@
 	"flow-lock-title-content": "Cette discussion a été {{GENDER:$1|verrouillée}} par $1",
 	"flow-hide-header-content": "{{GENDER:$1|Caché}} par $2",
 	"flow-delete-post-content": "Ce commentaire a été {{GENDER:$1|supprimé}} par $1",
-	"flow-delete-title-content": "Le sujet a été {{GENDER:$1|masqué}} par $1",
+	"flow-delete-title-content": "Le sujet a été {{GENDER:$1|supprimé}} par $1",
 	"flow-delete-header-content": "{{GENDER:$1|Supprimé}} par $2",
 	"flow-suppress-post-content": "Ce commentaire a été {{GENDER:$1|masqué}} par $1",
 	"flow-suppress-title-content": "Le sujet a été {{GENDER:$1|masqué}} par $1",
