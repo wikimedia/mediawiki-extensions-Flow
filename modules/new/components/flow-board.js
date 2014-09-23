@@ -1632,7 +1632,7 @@
 					},
 					// text for flow-reply-topic-title-placeholder placeholder
 					properties: {
-						'topic-of-post': replyToContent.substr( 0, 200 ).trim()
+						'topic-of-post': replyToContent.trim().substr( 0, 200 )
 					}
 				}
 			) ).children();
