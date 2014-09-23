@@ -1607,7 +1607,7 @@
 				$targetPost = $( this ).closest( '.flow-post:not([data-flow-post-max-depth])' ),
 				postId = $targetPost.data( 'flow-id' ),
 				topicTitle = $post.closest( '.flow-topic' ).find( '.flow-topic-title' ).text(),
-				replyToContent = $post.find( '.flow-post-content' ).text() || topicTitle,
+				replyToContent = $post.find( '.flow-post-content:first' ).text() || topicTitle,
 				author = $.trim( $post.find( '.flow-author:first .mw-userlink' ).text() );
 
 			// Check if reply form has already been opened
