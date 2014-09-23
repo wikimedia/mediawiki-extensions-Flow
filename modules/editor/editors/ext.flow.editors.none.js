@@ -49,9 +49,10 @@
 	 * @param {int} [animationTime] Time in milliseconds to animate to new height.
 	 */
 	mw.flow.editors.none.prototype.autoExpand = function( animationTime ) {
-		var height = $( this ).height(),
-			padding = $( this ).outerHeight() - $( this ).height(),
-			scrollHeight;
+		var scrollHeight, $form, formBottom, windowBottom, maxHeightIncrease,
+			$this = $( this ),
+			height = $this.height(),
+			padding = $this.outerHeight() - $this.height() + 5;
 
 		// if not specified, default animation time = 50
 		if ( typeof animationTime !== 'number' ) {
@@ -67,16 +68,34 @@
 		 * Since we're looking to also shrink the textarea when content shrinks,
 		 * we want to ignore that last case (hence the collapsing)
 		 */
-		$( this ).height( 0 );
-		scrollHeight = this.scrollHeight - padding;
-		$( this ).height( height );
+		$this.height( 0 );
+		scrollHeight = this.scrollHeight;
+		$this.height( height );
 
 		/*
 		 * Only animate height change if there actually is a change; we don't
 		 * want every keystroke firing a 50ms animation.
 		 */
-		if ( scrollHeight !== $( this ).height() ) {
-			$( this ).animate( { height: scrollHeight + padding }, animationTime );
+		if ( scrollHeight === $this.data( 'flow-prev-scroll-height' ) ) {
+			// no change
+			return;
+		}
+		$this.data( 'flow-prev-scroll-height', scrollHeight );
+
+		$form = $this.closest( 'form' );
+		formBottom = $form.offset().top + $form.outerHeight( true );
+		windowBottom = $( window ).scrollTop() + $( window ).height();
+		// additional padding of 20px so the targeted form has breathing room
+		maxHeightIncrease = windowBottom - formBottom - 20;
+
+		if ( scrollHeight - height - padding >= maxHeightIncrease ) {
+			// If we can't expand ensure overflow-y is set to auto
+			$this.css( 'overflow-y', 'auto' );
+		} else if ( scrollHeight !== $this.height() ) {
+			$this.css( {
+				height: scrollHeight,
+				'overflow-y': 'hidden'
+			} );
 		}
 	};
 
