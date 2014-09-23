@@ -1588,7 +1588,7 @@
 						 * error message, just fall back to some default error.
 						 */
 						errorMsg = apiErrorMessage( code, result );
-						FlowBoardComponent.UI.showError( info.$target, errorMsg );
+						FlowBoardComponent.UI.showError( $this, errorMsg );
 
 						FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, args );
 					} );
@@ -1955,8 +1955,6 @@
 
 			flowFindUpward( $node, '.flow-content-preview' ).hide();
 			flowFindUpward( $node, '.flow-error-container' ).filter( ':first' ).replaceWith( html );
-
-			mw.log.warn( msg );
 		};
 
 		/**
