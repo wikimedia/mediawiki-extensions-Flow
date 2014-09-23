@@ -50,6 +50,7 @@ class View extends ContextSource {
 			'mediawiki.ui.anchor',
 			'mediawiki.ui.button',
 			'mediawiki.ui.input',
+			'mediawiki.ui.text',
 			'ext.flow.styles',
 			'ext.flow.mediawiki.ui.tooltips',
 			'ext.flow.mediawiki.ui.form',
