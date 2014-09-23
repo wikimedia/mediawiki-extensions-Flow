@@ -16,6 +16,24 @@
       "revId": "82ffa8899bf1cfeb8e118bde590b5bc0d1ad9687",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee62ffec_b9bdebd3",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-23T01:17:22Z",
+      "side": 1,
+      "message": "The l10n function slices its arguments and throws away the last argument.  This is because it is a handlebars helper and handlebars always passes an options object as the last variable.\n\nA cleaner solution would be to refactor, but l10n as used here to do time translation is going away anyways.\n\nLonger expanation:\n\nThe signature for all handlebar helpers is:\n\n  function( args..., options );\n\nMeaning there are a variable number of arguments and the final argument is an options object.\n\nBecause of this the l10n function is now essentially\n\n   var l10n \u003d function( str /*, args..., options */ ) {\n       var args \u003d Array.prototype.slice.call( arguments, 1, -1 );\n\n        ...\n    }\n\nThe above takes argument 0 into str and arguments 1 through n-1 into args.  The final variable options is unused.  The other calls to l10n need to pass a {} so it can be ignored.",
+      "parentUuid": "ee62ffec_19ee3720",
+      "revId": "82ffa8899bf1cfeb8e118bde590b5bc0d1ad9687",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
