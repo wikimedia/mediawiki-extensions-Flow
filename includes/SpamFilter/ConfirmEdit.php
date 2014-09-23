@@ -41,11 +41,34 @@ class ConfirmEdit implements SpamFilter {
 				$wgOut->getScriptsForBottomQueue( false ) .
 				$html;
 
+			$html = $this->safeHtml( $html );
+
 			$msg = wfMessage( 'flow-spam-confirmedit-form' )->rawParams( $html );
 			return Status::newFatal( $msg );
 		}
 
 		return Status::newGood();
+	}
+
+	/**
+	 * TL;DR: this will replace document.write calls.
+	 *
+	 * We've captured CSS & JS stuff as well, to ensure the captcha functions
+	 * well. However, that JS part has a document.write() part to launch the
+	 * resourceloader scripts.
+	 * Because there's no proper spec for document.write, browsers implement
+	 * this differently. In FireFox, when the page has already loaded, this
+	 * implicitly does a document.open() call, which will (in our JS) then
+	 * trigger a new, blank page to be loaded (or rather, we'll get the "are
+	 * you sure you want to leave this page" prompt)
+	 *
+	 * @see http://stackoverflow.com/questions/25398005/why-document-write-behaves-differently-in-firefox-and-chrome
+	 *
+	 * @param string $html
+	 * @return string
+	 */
+	public function safeHtml( $html ) {
+		return str_replace( 'document.write', 'document.body.innerHTML += ', $html );
 	}
 
 	/**
