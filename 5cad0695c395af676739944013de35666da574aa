@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee62ffec_6eb3224d",
+        "filename": "modules/new/styles/icons.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-09-23T16:37:38Z",
+      "side": 1,
+      "message": "How does this file differ from modules/wikiglyph/wikiglyph.css ? Where does it get added?",
+      "revId": "5cad0695c395af676739944013de35666da574aa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
