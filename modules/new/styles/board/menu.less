@@ -3,14 +3,6 @@
 @import 'flow.colors';
 @import 'flow.helpers';
 
-// @todo: Temporary measure to simplify UI on browsers not running JavaScript
-.client-nojs {
-	.flow-board-navigation,
-	.flow-menu {
-		display: none;
-	}
-}
-
 // @todo document flow-menu
 .flow-menu {
 	top: 0;
@@ -46,103 +38,110 @@ div.flow-menu-inverted {
 	left: 0;
 }
 
-.client-js {
-	// Use child selector to block IE6; it doesn't support :hover
-	div > .flow-menu {
-		bottom: auto;
-		display: block;
-		border: none;
+// Use child selector to block IE6; it doesn't support :hover
+div > .flow-menu {
+	bottom: auto;
+	display: block;
+	border: none;
 
-		&.flow-menu-inverted {
-			right: auto;
-			left: 0;
+	&.flow-menu-inverted {
+		right: auto;
+		left: 0;
 
-			.flow-menu-js-drop {
-				text-align: left;
-			}
-		}
-
-		&:hover,
-		&.focus {
-			z-index: 2;
-
-			ul {
-				display: block;
-			}
-
-			.flow-menu-js-drop a {
-				outline: none;
-				border-color: transparent;
-				background: transparent;
-				background: rgba(0,0,0,0.05);
-
-				.caret {
-					border-top-color: #000;
-				}
-			}
-		}
-
-		ul {
-			display: none;
-			font-size: 1em;
-			box-shadow: 0 1px 2px @colorGrayLight;
-			background: #fff;
-			border-radius: 2px;
-		}
-
-		li {
-			display: block;
-			cursor: default;
-
-			// @todo move these outside of menu.less or genericize it
-			&.flow-menu-moderation-action {
-				border-top: 1px solid @colorGrayLight;
-			}
-			// Only show the grey top border in the first moderation action
-			&.flow-menu-moderation-action ~ .flow-menu-moderation-action {
-				border-top: 0px;
-			}
-		}
-
-		// This is the menu opener handler; it contains an anchor which triggers the menu in touch devices, without JS
 		.flow-menu-js-drop {
-			display: block;
-			text-align: right;
-			text-indent: 0;
-			cursor: pointer;
-
-			a {
-				display: inline-block;
-				padding: 0 .5em;
-				border: 1px solid @colorGrayLight;
-				border-radius: 3px;
-				border-width: 0;
-				color: @colorTextLight;
-			}
-		}
-
-		// This is a hidden menu trigger; used when the menu is opened from a secondary handler via menuToggle
-		.flow-menu-js-drop-hidden {
-			position: absolute;
-			left: -999em;
-			height: 0;
+			text-align: left;
 		}
 	}
 
-	// @todo move this
-	div.flow-post > .flow-menu {
-		.flow-menu-js-drop {
-			a {
-				border-color: @colorGrayLightest;
-				border-width: 0;
+	&:hover,
+	&.focus {
+		z-index: 2;
+
+		ul {
+			display: block;
+		}
+
+		.flow-menu-js-drop a {
+			outline: none;
+			border-color: transparent;
+			background: transparent;
+			background: rgba(0,0,0,0.05);
+
+			.caret {
+				border-top-color: #000;
 			}
+		}
+	}
+
+	ul {
+		display: none;
+		font-size: 1em;
+		box-shadow: 0 1px 2px @colorGrayLight;
+		background: #fff;
+		border-radius: 2px;
+	}
+
+	li {
+		display: block;
+		cursor: default;
+
+		// @todo move these outside of menu.less or genericize it
+		&.flow-menu-moderation-action {
+			border-top: 1px solid @colorGrayLight;
+		}
+		// Only show the grey top border in the first moderation action
+		&.flow-menu-moderation-action ~ .flow-menu-moderation-action {
+			border-top: 0px;
+		}
+
+		// Hide moderation and edit actions in menu when JS is not working
+		.client-nojs & {
+			&.flow-menu-moderation-action,
+			&.flow-menu-edit-action {
+				// @todo improve the UX on those no-JS pages
+				display: none;
+			}
+		}
+	}
+
+	// This is the menu opener handler; it contains an anchor which triggers the menu in touch devices, without JS
+	.flow-menu-js-drop {
+		display: block;
+		text-align: right;
+		text-indent: 0;
+		cursor: pointer;
+
+		a {
+			display: inline-block;
+			padding: 0 .5em;
+			border: 1px solid @colorGrayLight;
+			border-radius: 3px;
+			border-width: 0;
+			color: @colorTextLight;
+		}
+	}
+
+	// This is a hidden menu trigger; used when the menu is opened from a secondary handler via menuToggle
+	.flow-menu-js-drop-hidden {
+		position: absolute;
+		left: -999em;
+		height: 0;
+	}
+}
+
+// @todo move this
+div.flow-post > .flow-menu {
+	.flow-menu-js-drop {
+		a {
+			border-color: @colorGrayLightest;
+			border-width: 0;
 		}
 	}
 }
 
 @media all and (min-width: @wgFlowDeviceWidthTablet) {
 	// On desktop, the flow-menu is no longer inline
-	.client-js .flow-menu {
+	.flow-menu {
 		position: absolute;
 	}
 }
