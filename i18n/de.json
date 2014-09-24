@@ -288,6 +288,7 @@
 	"flow-anon-warning": "Du bist nicht angemeldet. Um eine Zuordnung mit deinem Namen anstatt deiner IP-Adresse zu erhalten, kannst du dich [$1 anmelden] oder [$2 ein Benutzerkonto erstellen].",
 	"flow-cancel-warning": "Du hast Text in dieses Formular eingegeben. Bist du sicher, dass du ihn verwerfen möchtest?",
 	"flow-topic-first-heading": "Thema auf $1",
+	"flow-topic-html-title": "$1 auf $2",
 	"flow-topic-count-sidebar": "$1 von $2 an diese Seite angehängte Themen werden angezeigt",
 	"flow-topic-count": "Themen ($1)",
 	"flow-active-ago": "Aktiv $1",
