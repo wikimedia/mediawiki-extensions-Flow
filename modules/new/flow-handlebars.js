@@ -518,7 +518,7 @@
 		var hash = options.hash,
 			// Replace nested script tag with placeholder tag for
 			// recursive progresiveEnhancement
-			inner = options.fn( this ).replace( '</scr' + 'ipt>', '</flowprogressivescript>', 'g' );
+			inner = options.fn( this ).replace( /<\/script>/g, '</flowprogressivescript>' );
 
 		if ( !hash.type ) {
 			hash.type = 'insert';
