@@ -1670,7 +1670,6 @@
 					},
 					actions: {}
 				},
-				titleText = mw.msg( 'flow-moderation-title-' + role + '-' + type ),
 				modal;
 
 			event.preventDefault();
@@ -1679,7 +1678,6 @@
 
 			// Render the modal itself with mw-ui-modal
 			modal = mw.Modal( {
-				title: titleText,
 				open:  $( mw.flow.TemplateEngine.processTemplateGetFragment( template, params ) ).children(),
 				clickOutClose: false
 			} );
