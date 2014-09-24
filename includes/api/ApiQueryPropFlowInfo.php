@@ -5,7 +5,7 @@ use \Flow\Container;
 class ApiQueryPropFlowInfo extends ApiQueryBase {
 
 	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'fi' );
+		parent::__construct( $query, $moduleName, 'fli' );
 	}
 
 	public function execute() {
