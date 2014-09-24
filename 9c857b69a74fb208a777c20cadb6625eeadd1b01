@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "ee62ffec_27b8a4c2",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-24T17:46:01Z",
+      "side": 1,
+      "message": "If possible, I\u0027d prrfer not to have any assumptions about other Flow DOM in here.",
+      "revId": "9c857b69a74fb208a777c20cadb6625eeadd1b01",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee62ffec_2739c49f",
         "filename": "modules/editor/editors/ext.flow.editors.none.js",
         "patchSetId": 2
