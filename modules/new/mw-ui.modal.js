@@ -152,12 +152,12 @@
 			// Try to focus on an autofocus field
 			$fields = $fields.filter( '[autofocus]' );
 			if ( $fields.length ) {
-				$fields.focus();
+				$fields.trigger( 'focus' );
 			} else {
 				// Try to focus on ANY input
 				$fields = $fields.end().filter( ':first' );
 				if ( $fields.length ) {
-					$fields.focus();
+					$fields.trigger( 'focus' );
 				} else {
 					// Give focus to the wrapper itself
 					$node.focus();

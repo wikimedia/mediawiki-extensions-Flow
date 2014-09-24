@@ -1893,8 +1893,12 @@
 					mw.flow.editor.destroy( $editor );
 				}
 
-				// Compress all textareas to inputs if needed
-				FlowBoardComponent.UI.Forms.compressTextarea( $editor );
+				// Drop the new input in place if:
+				// the textarea isn't already focused
+				// and the textarea doesn't have text typed into it
+				if ( !$editor.is( ':focus' ) && this.value === this.defaultValue ) {
+					FlowBoardComponent.UI.Forms.compressTextarea( $editor );
+				}
 			} );
 
 			if ( initialState === 'collapsed' ) {
@@ -2033,8 +2037,12 @@
 					// Store the new input as data on the old textarea
 					$.data( $this[0], 'flow-expanded', $input[0] );
 
-					// Drop the new input in place
-					FlowBoardComponent.UI.Forms.compressTextarea( $this );
+					// Drop the new input in place if:
+					// the textarea isn't already focused
+					// and the textarea doesn't have text typed into it
+					if ( !$this.is( ':focus' ) && this.value === this.defaultValue ) {
+						FlowBoardComponent.UI.Forms.compressTextarea( $this );
+					}
 				} );
 
 				FlowBoardComponent.UI.Forms.hideForm( $this );
