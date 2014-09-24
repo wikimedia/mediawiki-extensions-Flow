@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee62ffec_2739c49f",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-09-24T17:22:07Z",
+      "side": 1,
+      "message": "Is this necessary? Shouldn\u0027t overflow-y: auto just work all the time, since it doesn\u0027t show a scrollbar until the content within has gone past the allowable height?",
+      "revId": "9c857b69a74fb208a777c20cadb6625eeadd1b01",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
