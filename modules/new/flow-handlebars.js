@@ -124,8 +124,19 @@
 				}
 			}
 
-			// Replace the nested flowprogressivescript tag with a real script tag for recursive progressiveEnhancement
-			content = this.innerHTML.replace( /<\/flowprogressivescript>/g, '</script>' );
+			/*
+			 * We want to turn the parent <flowprogressivescript> tags into
+			 * proper <script> tags again. To do so, we'll first uniquefy all
+			 * tags. Then we can reliably extract the outermost tags and turn
+			 * them into <script> tags. After that, we'll restore the rest of
+			 * the (nested) <flowprogressivescript> tags again.
+			 */
+			content = this.innerHTML;
+			content = uniquefyNestedTags( content, 'flowprogressivescript' );
+			content = content.replace( /<flowprogressivescript([0-9]+)(\\s?.*?)>(.*?)<\/flowprogressivescript\1>/g, function( match, p1, p2, p3, offset, str ) {
+				return '<scr' + 'ipt' + p2 + '>' + p3 + '</scr' + 'ipt>';
+			} );
+			content = unifyNestedTags( content, 'flowprogressivescript' );
 
 			// Inject the content
 			switch ( data.type ) {
@@ -178,6 +189,106 @@
 		return $.map( parameters, function ( arg ) {
 			return arg ? arg.raw || arg : '';
 		} );
+	}
+
+	/**
+	 * In content with nested tags of the same kind, it can be hard to
+	 * find exactly which closing tag belongs to which opening tag,
+	 * making it hard to extract specific parts from the content.
+	 * This method will properly match opening & closing tags & make
+	 * them unique (by adding a different number behind all tag names)
+	 *
+	 * Example input content:
+	 * <flowprogressivescript>
+	 *     abc
+	 *     <flowprogressivescript>
+	 *         def
+	 *         <flowprogressivescript>
+	 *             ghi
+	 *         </flowprogressivescript>
+	 *         jkl
+	 *     </flowprogressivescript>
+	 *     mno
+	 * </flowprogressivescript>
+	 * pqr
+	 * <flowprogressivescript>
+	 *     stu
+	 * </flowprogressivescript>
+	 *
+	 * For tag = flowprogressivescript, this will be turned into:
+	 * <flowprogressivescript4>
+	 *     abc
+	 *     <flowprogressivescript3>
+	 *         def
+	 *         <flowprogressivescript1>
+	 *             ghi
+	 *         </flowprogressivescript1>
+	 *         jkl
+	 *     </flowprogressivescript3>
+	 *     mno
+	 * </flowprogressivescript4>
+	 * pqr
+	 * <flowprogressivescript2>
+	 *     stu
+	 * </flowprogressivescript2>
+	 *
+	 * @param {String} content
+	 * @param {String} tag
+	 * @param {int} [count]
+	 * @returns {String}
+	 */
+	function uniquefyNestedTags( content, tag, count ) {
+		var
+			/*
+			 * Finds end tags, along with everything that comes before it.
+			 * For a first run of the JSDoc example, match would be:
+			 * * <flowprogressivescript>abc<flowprogressivescript>def<flowprogressivescript>ghi</flowprogressivescript>
+			 * * jkl</flowprogressivescript>
+			 * * mno</flowprogressivescript>
+			 * * pqr<flowprogressivescript>stu</flowprogressivescript>
+			 */
+			toClosing = new RegExp( '.*?<\/' + tag + '>', 'g' ),
+			/*
+			 * Based on the results from toClosing, this will find the opening
+			 * tag preceding the closing tag that was found and (if exists)
+			 * replaces it with a numbered equivalent, like:
+			 * * <flowprogressivescript>ghi</flowprogressivescript>
+			 * * <flowprogressivescript>stu</flowprogressivescript>
+			 */
+			openToClosing = new RegExp( '<' + tag + '(\\s?.*?)>(?!.*<' + tag + '.*?>)(.*)<\/' + tag + '>' ),
+			replacement;
+
+		// Default value for count = 0
+		count = count || 0;
+
+		replacement = content.replace( toClosing, function( match, offset, str ) {
+			return match.replace( openToClosing, function ( match, p1, p2, offset, str ) {
+				count++;
+				return '<' + tag + count + p1 + '>' + p2 + '</' + tag + count + '>';
+			} );
+		} );
+
+		// If we actually had replacements, keep going to find if
+		// there's parent nodes that still need the same treatment.
+		if ( replacement !== content ) {
+			replacement = uniquefyNestedTags( replacement, tag, count );
+		}
+
+		return replacement;
+	}
+
+	/**
+	 * This method will do the reverse of uniquefyNestedTags: it will
+	 * turn tags that have been made unique into their proper real
+	 * equivalent again.
+	 *
+	 * @param {String} content
+	 * @param {String} tag
+	 * @returns {String}
+	 */
+	function unifyNestedTags( content, tag ) {
+		var regex = new RegExp( '<(\/)?' + tag + '[0-9]+(\\s?.*?)>', 'g' );
+		return content.replace( regex, '<$1' + tag + '$2>' );
 	}
 
 	// @todo remove and replace with mw.message || $.noop
@@ -517,8 +628,10 @@
 	FlowHandlebars.prototype.progressiveEnhancement = function ( options ) {
 		var hash = options.hash,
 			// Replace nested script tag with placeholder tag for
-			// recursive progresiveEnhancement
-			inner = options.fn( this ).replace( /<\/script>/g, '</flowprogressivescript>' );
+			// recursive progressiveEnhancement
+			inner = options.fn( this )
+				.replace( /<script(\\s?.*?)>/g, '<flowprogressivescript$1>' )
+				.replace( /<\/script>/g, '</flowprogressivescript>' );
 
 		if ( !hash.type ) {
 			hash.type = 'insert';

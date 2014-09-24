@@ -543,6 +543,11 @@ class TemplateHelper {
 		$target = empty( $input['target'] ) ? '' : 'data-target="' . htmlspecialchars( $input['target'] ) . '"';
 		$sectionId = empty( $input['id'] ) ? '' : 'id="' . htmlspecialchars( $input['id'] ) . '"';
 
+		$fn = $fn();
+		// Replace the nested script tag with a placeholder tag for recursive progressiveEnhancement
+		$fn = preg_replace( '/<script(\\s?.*?)>/', '<flowprogressivescript$1>', $fn );
+		$fn = str_replace( '</script>', '</flowprogressivescript>', $fn );
+
 		return self::html(
 			'<script name="handlebars-template-progressive-enhancement"' .
 				' type="text/x-handlebars-template-progressive-enhancement"' .
@@ -550,8 +555,7 @@ class TemplateHelper {
 				' ' . $target .
 				' ' . $sectionId .
 			'>' .
-				// Replace the nested script tag with a placeholder tag for recursive progressiveEnhancement
-				str_replace( '</script>', '</flowprogressivescript>', $fn() ) .
+				$fn .
 			'</script>'
 		);
 	}
