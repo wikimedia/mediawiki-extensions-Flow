@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ee62ffec_3cb316ea",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-24T23:00:06Z",
+      "side": 1,
+      "message": "$this.data doesn\u0027t make any assumptions, beyond that you will call autoExpand with the same `this` multiple times.  Perhaps this comment was supposed to be a couple lines down on L86?\n\nIf you meant L86 i\u0027ve now changed that to just $this.closest( \u0027form\u0027 ),  Since this method expands the height of textarea\u0027s it should be a safe assumption there is a parent form somewhere.",
+      "parentUuid": "ee62ffec_27b8a4c2",
+      "revId": "9c857b69a74fb208a777c20cadb6625eeadd1b01",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee62ffec_2739c49f",
         "filename": "modules/editor/editors/ext.flow.editors.none.js",
         "patchSetId": 2
