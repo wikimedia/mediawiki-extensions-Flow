@@ -70,15 +70,15 @@ form.flow-post {
 
 	.flow-post {
 		&.flow-post-highlight-newer {
-			> .flow-post-content {
-				.minimalPostHighlight( 0.3em );
+			> .flow-post-main .flow-post-content {
+				.minimalPostHighlight( -0.1em );
 			}
 		}
 
 		.flow-post {
 			&.flow-post-highlight-newer {
 				> .flow-post-main .flow-post-content {
-					.minimalPostHighlight( 0.4em );
+					.minimalPostHighlight( -0.1em );
 				}
 			}
 		}
@@ -120,11 +120,6 @@ form.flow-post {
 		&:hover .mw-usertoollinks {
 			opacity: 1;
 		}
-	}
-
-	.flow-post {
-		padding: 0 .5em;
-		border-left-width: 1px;
 	}
 }
 
@@ -171,10 +166,10 @@ form.flow-post {
 			.minimalPostHighlight( 1.3em );
 		}
 		.flow-post.flow-post-highlight-newer > .flow-post-main .flow-post-content {
-			.minimalPostHighlight( 1.1em );
+			.minimalPostHighlight( 0.7em );
 		}
 		.flow-post .flow-post.flow-post-highlight-newer > .flow-post-main .flow-post-content {
-			.minimalPostHighlight( 1.1em );
+			.minimalPostHighlight( 0.7em );
 		}
 	}
 }
