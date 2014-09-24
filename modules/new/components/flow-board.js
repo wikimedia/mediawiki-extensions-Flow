@@ -1661,7 +1661,6 @@
 				board = FlowBoardComponent.prototype.getInstanceByElement( $this ),
 				// hide, delete, suppress
 				role = $this.data( 'role' ),
-				type = $this.closest( '.flow-post-main' ).length ? 'post' : 'topic',
 				template = $this.data( 'template' ),
 				params = {
 					editToken: mw.user.tokens.get( 'editToken' ), // might be unnecessary
@@ -1670,7 +1669,6 @@
 					},
 					actions: {}
 				},
-				titleText = mw.msg( 'flow-moderation-title-' + role + '-' + type ),
 				modal;
 
 			event.preventDefault();
@@ -1679,7 +1677,6 @@
 
 			// Render the modal itself with mw-ui-modal
 			modal = mw.Modal( {
-				title: titleText,
 				open:  $( mw.flow.TemplateEngine.processTemplateGetFragment( template, params ) ).children(),
 				disableCloseOnOutsideClick: true
 			} );
