@@ -6,7 +6,8 @@
 	          data-flow-expandable="true"
 	          class="mw-ui-input"
 	          data-role="content"
-	          placeholder="{{l10n (concat "flow-moderation-placeholder-" @root.submitted.moderationState "-post")}}">
+	          placeholder="{{l10n (concat "flow-moderation-placeholder-" @root.submitted.moderationState "-post")}}"
+	          autofocus>
 		{{~#if @root.submitted.reason~}}
 			{{~@root.submitted.reason~}}
 		{{~/if~}}
