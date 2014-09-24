@@ -16,6 +16,24 @@
       "revId": "9c857b69a74fb208a777c20cadb6625eeadd1b01",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee62ffec_27ab0488",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-24T17:36:46Z",
+      "side": 1,
+      "message": "unfortunately it seems necessary on my chrome 37.0, although there may be a different way to hack arround it.  Basically chrome expands the content inside the textbox and displays that to screen before the javascript is called.  This javacsript then runs and expands the box giving a bit of a shivering effect.",
+      "parentUuid": "ee62ffec_2739c49f",
+      "revId": "9c857b69a74fb208a777c20cadb6625eeadd1b01",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
