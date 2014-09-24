@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee62ffec_87ee30b0",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-09-24T17:50:06Z",
+      "side": 1,
+      "message": "If the script tag contains a selector with GT (data-foo\u003d\"bar \u003e baz\"), this will screw up.",
+      "revId": "9f22c835091bc9d58b229fa34f4459c92ea88b10",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
