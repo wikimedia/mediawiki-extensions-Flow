@@ -15,14 +15,16 @@
 }
 
 // Hidden simply collapse partially
-.flow-topic-moderatestate-hide {
-	&.flow-element-collapsed {
-		.flow-topic-title,
-		.flow-topic-meta {
-			display: none;
-		}
-		.flow-moderated-topic-title {
-			margin-bottom: 0;
+.flow-board:not(.flow-disable-topic-collapse) {
+	.flow-topic-moderatestate-hide {
+		&.flow-element-collapsed {
+			.flow-topic-title,
+			.flow-topic-meta {
+				display: none;
+			}
+			.flow-moderated-topic-title {
+				margin-bottom: 0;
+			}
 		}
 	}
 }
