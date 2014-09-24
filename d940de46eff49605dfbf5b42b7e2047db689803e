@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee62ffec_a26122d2",
+        "filename": "modules/new/mw-ui.modal.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-24T18:24:23Z",
+      "side": 1,
+      "message": "The `this`variable is the dom node \u0027click\u0027 triggered on, not the modal. probably need a self variable?",
+      "revId": "d940de46eff49605dfbf5b42b7e2047db689803e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
