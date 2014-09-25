@@ -8,7 +8,7 @@ use Flow\Model\Reference;
 /**
  * Find and create References for DOM elements within parsoid HTML
  */
-interface ExtractorInterface {
+interface Extractor {
 	/**
 	 * XPath selector that finds elements to be processed with self::perform
 	 *
