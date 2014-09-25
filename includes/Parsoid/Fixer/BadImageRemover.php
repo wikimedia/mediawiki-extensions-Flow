@@ -1,11 +1,13 @@
 <?php
 
-namespace Flow\Parsoid;
+namespace Flow\Parsoid\Fixer;
 
 use Closure;
 use DOMDocument;
 use DOMNode;
 use Flow\Model\PostRevision;
+use Flow\Parsoid\Fixer;
+use Flow\Parsoid\Utils;
 use Title;
 
 /**
@@ -15,13 +17,13 @@ use Title;
  * defined by wfIsBadImage().
  *
  * Usage:
-
+ *
  *	$badImageRemover = new BadImageRemover();
  *
  *	// Before outputting content
  *	$content = $badImageRemover->apply( $foo->getContent(), $title );
  */
-class BadImageRemover implements ContentFixer {
+class BadImageRemover implements Fixer {
 	/**
 	 * @var callable
 	 */
