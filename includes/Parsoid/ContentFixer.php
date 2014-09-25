@@ -2,6 +2,7 @@
 
 namespace Flow\Parsoid;
 
+use DOMDocument;
 use Flow\Model\PostRevision;
 use Title;
 
@@ -11,7 +12,7 @@ interface ContentFixer {
 	 * @param Title $title
 	 * @return string
 	 */
-	public function apply( $content, Title $title );
+	public function apply( DOMDocument $dom, Title $title );
 
 	/**
 	 * @param PostRevision $post
