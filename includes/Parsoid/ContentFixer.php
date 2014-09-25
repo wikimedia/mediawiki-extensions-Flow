@@ -2,6 +2,7 @@
 
 namespace Flow\Parsoid;
 
+use DOMXPath;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
@@ -73,8 +74,18 @@ class ContentFixer {
 		 * magic'd into <head> rather than kept with the content.
 		 */
 		$dom = Utils::createDOM( '<?xml encoding="utf-8"?><body>' . $content . '</body>' );
-		foreach ( $this->contentFixers as $contentFixer ) {
-			$contentFixer->apply( $dom, $title );
+		$xpath = new DOMXPath( $dom );
+		foreach ( $this->contentFixers as $i => $contentFixer ) {
+			$found = $xpath->query( $contentFixer->getXPath() );
+			if ( !$found ) {
+				wfDebugLog( 'Flow', __METHOD__ . ': Invalid XPath from ' . get_class( $contentFixer ) . ' of: ' . $contentFixer->getXPath() );
+				unset( $this->contentFixers[$i] );
+				continue;
+			}
+
+			foreach ( $found as $node ) {
+				$contentFixer->apply( $node, $title );
+			}
 		}
 
 		return Utils::getInnerHtml( $dom->getElementsByTagName( 'body' )->item( 0 ) );
@@ -99,11 +110,42 @@ class ContentFixer {
 			return;
 		}
 		$this->registered[$revisionId] = true;
+		$identifier = $revision->registerRecursive( array( $this, 'recursive' ), array(), __METHOD__ );
+		$this->identifiers[$identifier] = $revision;
+	}
 
-		foreach ( $this->contentFixers as $i => $contentFixer ) {
-			$identifier = $revision->registerRecursive( array( $contentFixer, 'recursive' ), array(), __METHOD__ );
-			$this->identifiers[$i][$identifier] = $revision;
+	/**
+	 * @param PostRevision $post
+	 * @param array $result
+	 * @return array
+	 */
+	public function recursive( PostRevision $post, $result ) {
+		$content = $post->getContent( 'html' );
+		$dom = Utils::createDOM( '<?xml encoding="utf-8"?><body>' . $content . '</body>' );
+		$xpath = new DOMXPath( $dom );
+		foreach ( $this->contentFixers as $contentFixer ) {
+			if ( !$contentFixer->isRecursive( $post ) ) {
+				continue;
+			}
+
+			$found = $xpath->query( $contentFixer->getXPath() );
+			if ( !$found ) {
+				wfDebugLog( 'Flow', __METHOD__ . ': Invalid XPath from ' . get_class( $contentFixer ) . ' of: ' . $contentFixer->getXPath() );
+				unset( $this->contentFixers[$i] );
+				continue;
+			}
+
+			foreach ( $found as $node ) {
+				$contentFixer->recursive( $node );
+			}
 		}
+
+		/**
+		 * $result wil not be used; we'll register this callback multiple
+		 * times and will want to gather overlapping results, so they'll be
+		 * stored in the individual fixers
+		 */
+		return array( array(), true );
 	}
 
 	/**
@@ -116,27 +158,25 @@ class ContentFixer {
 			return;
 		}
 
-		foreach ( $this->contentFixers as $i => $contentFixer ) {
-			$results = array();
-
-			foreach ( $this->identifiers[$i] as $identifier => $revision ) {
-				/** @var PostRevision $revision */
-
-				/*
-				 * Adding additional content fixers will not cause the recursive
-				 * function to be run more - all content fixers will be resolved
-				 * at once, the next content fixer fetching his results will
-				 * just have them fed from the revision object's inner cache.
-				 */
-				$revisionId = $revision->getRevisionId()->getAlphadecimal();
-				$results[$revisionId] = $revision->getRecursiveResult( $identifier );
-			}
+		foreach ( $this->identifiers as $identifier => $revision ) {
+			/** @var PostRevision $revision */
 
 			/*
-			 * Notify content fixer with all recursive results, so it can do
-			 * whatever needs to be done (like batch-loading stuff)
+			 * Adding additional content fixers will not cause the recursive
+			 * function to be run more - all content fixers will be resolved
+			 * at once, the next content fixer fetching his results will
+			 * just have them fed from the revision object's inner cache.
 			 */
-			$contentFixer->resolve( $results );
+			$revisionId = $revision->getRevisionId()->getAlphadecimal();
+			$revision->getRecursiveResult( $identifier );
+		}
+
+		/*
+		 * Notify content fixer we have finished recursive processing, so it
+		 * can do whatever needs to be done (like batch-loading stuff)
+		 */
+		foreach ( $this->contentFixers as $contentFixer ) {
+			$contentFixer->resolve();
 		}
 	}
 }

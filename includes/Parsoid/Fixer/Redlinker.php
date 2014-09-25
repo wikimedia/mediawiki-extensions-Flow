@@ -7,9 +7,9 @@ use Closure;
 use DOMDocument;
 use DOMElement;
 use DOMNode;
+use Flow\Model\PostRevision;
 use Flow\Parsoid\Fixer;
 use Flow\Parsoid\Utils;
-use Flow\Model\PostRevision;
 use LinkBatch;
 use Linker;
 use Title;
@@ -62,70 +62,48 @@ class Redlinker implements Fixer {
 	}
 
 	/**
-	 * @param PostRevision $post
-	 * @param array $result
-	 * @return array Return array in the format of [result, continue]
+	 * @return string
 	 */
-	public function recursive( PostRevision $post, $result ) {
-		// topic titles don't contain html
-		if ( $post->isFormatted() ) {
-			$this->collectLinks( $post->getContent( 'html' ) );
-		}
-
-		/*
-		 * $result will not be used; we'll register this callback multiple
-		 * times and will want to gather overlapping results, so they'll
-		 * be stored in $this->batch
-		 */
-		return array( array(), true );
+	public function getXPath() {
+		return '//a[@rel="mw:WikiLink"]';
 	}
 
-	/**
-	 * Execute pending batched title lookup.
-	 *
-	 * @param array $result
-	 */
-	public function resolve( $result ) {
-		// $result is not used here. The recursive function has saved the "real"
-		// data in $this->batch.
 
-		if ( !$this->batch->isEmpty() ) {
-			$this->batch->execute();
-			$this->batch->setArray( array() );
-		}
+	public function isRecursive( PostRevision $post ) {
+		return $post->isFormatted();
 	}
 
 	/**
 	 * Collect referenced Title's from html content and add to LinkBatch
 	 *
-	 * @param string $content html to check for titles
+	 * @param DOMNode $node html to check for titles
 	 */
-	public function collectLinks( $content ) {
-		if ( !$content ) {
+	public function recursive( DOMNode $node ) {
+		if ( !$node instanceof DOMElement ) {
 			return;
 		}
-		/*
-		 * Workaround because DOMDocument can't guess charset.
-		 * Content should be utf-8. Alternative "workarounds" would be to
-		 * provide the charset in $response, as either:
-		 * * <?xml encoding="utf-8" ?>
-		 * * <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		 * * mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' );
-		 */
-		$dom = Utils::createDOM( '<?xml encoding="utf-8" ?>' . $content );
 
-		// find links in DOM
-		$batch = $this->batch;
-		$callback = function( DOMNode $linkNode, $href ) use( $batch ) {
-			// @todo Get proper title in here.  doesn't matter currently due to
-			// the html from parsoid using '../../' style of relative
-			// that don't strictly require the title its relative from.
-			$title = Utils::createRelativeTitle( $href, Title::newMainPage() );
-			if ( $title !== null ) {
-				$batch->addObj( $title );
-			}
-		};
-		self::forEachLink( $dom, $callback );
+		$href = $node->getAttribute( 'href' );
+		if ( $href === '' ) {
+			return;
+		}
+		// @todo Get proper title in here.  doesn't matter currently due to
+		// the html from parsoid using '../../' style of relative
+		// that don't strictly require the title its relative from.
+		$title = Utils::createRelativeTitle( $href, Title::newMainPage() );
+		if ( $title !== null ) {
+			$this->batch->addObj( $title );
+		}
+	}
+
+	/**
+	 * Execute pending batched title lookup.
+	 */
+	public function resolve() {
+		if ( !$this->batch->isEmpty() ) {
+			$this->batch->execute();
+			$this->batch->setArray( array() );
+		}
 	}
 
 	/**
@@ -141,73 +119,40 @@ class Redlinker implements Fixer {
 	 *
 	 * @param DOMDocument $dom
 	 * @param Title $title Title to resolve relative links against
-	 * @return string
 	 */
-	public function apply( DOMDocument $dom, Title $title ) {
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$section = new \ProfileSection( __METHOD__ );
-
-		$this->resolve( null );
-
-		$self = $this;
-		self::forEachLink( $dom, function( DOMNode $linkNode, $href ) use ( $self, $dom, $title ) {
-			$title = Utils::createRelativeTitle( $href, $title );
-			// Don't process invalid links
-			if ( $title === null ) {
-				return;
-			}
-
-			// gather existing link attributes
-			$attributes = array();
-			foreach ( $linkNode->attributes as $attribute ) {
-				$attributes[$attribute->name] = $attribute->value;
-			}
-			// let MW build link HTML based on Parsoid data
-			$html = Linker::link( $title, Redlinker::getInnerHtml( $linkNode ), $attributes );
-			// create new DOM from this MW-built link
-			$replacementNode = Utils::createDOM( '<?xml encoding="utf-8"?>' . $html )->getElementsByTagName( 'a' )->item( 0 );
-			// import MW-built link node into content DOM
-			$replacementNode = $dom->importNode( $replacementNode, true );
-			// replace Parsoid link with MW-built link
-			$linkNode->parentNode->replaceChild( $replacementNode, $linkNode );
-		} );
-	}
-
-	/**
-	 * Helper method executes a callback on every anchor that has both
-	 * an href attribute and rel="mw:WikiLink"
-	 *
-	 * @param DOMDocument $dom
-	 * @param Closure $callback Receives (DOMElement, array)
-	 */
-	static public function forEachLink( DOMDocument $dom, Closure $callback ) {
-		$xpath = new \DOMXPath( $dom );
-		$linkNodes = $xpath->query( '//a[@rel="mw:WikiLink"]' );
-
-		/** @var DOMElement $linkNode */
-		foreach ( $linkNodes as $linkNode ) {
-			$href = $linkNode->getAttribute( 'href' );
-			if ( $href !== '' ) {
-				$callback( $linkNode, $href );
-			}
+	public function apply( DOMNode $node, Title $title ) {
+		if ( !$node instanceof DOMElement ) {
+			return;
 		}
-	}
 
-	/**
-	 * Helper method retrieves the html of the nodes children
-	 *
-	 * @param DOMNode $node
-	 * @return string html of the nodes children
-	 */
-	static public function getInnerHtml( DOMNode $node = null ) {
-		$html = array();
-		if ( $node ) {
-			$dom = $node->ownerDocument;
-			foreach ( $node->childNodes as $child ) {
-				$html[] = $dom->saveHTML( $child );
-			}
+		$href = $node->getAttribute( 'href' );
+		if ( $href === '' ) {
+			return;
 		}
-		return implode( '', $html );
+
+		$title = Utils::createRelativeTitle( $href, $title );
+		if ( $title === null ) {
+			return;
+		}
+
+		// finish any batch loading
+		$this->resolve();
+
+		// gather existing link attributes
+		$attributes = array();
+		foreach ( $node->attributes as $attribute ) {
+			$attributes[$attribute->name] = $attribute->value;
+		}
+		// let MW build link HTML based on Parsoid data
+		$html = Linker::link( $title, Utils::getInnerHtml( $node ), $attributes );
+		// create new DOM from this MW-built link
+		$replacementNode = Utils::createDOM( '<?xml encoding="utf-8"?>' . $html )
+			->getElementsByTagName( 'a' )
+			->item( 0 );
+		// import MW-built link node into content DOM
+		$replacementNode = $node->ownerDocument->importNode( $replacementNode, true );
+		// replace Parsoid link with MW-built link
+		$node->parentNode->replaceChild( $replacementNode, $node );
 	}
 }
 
