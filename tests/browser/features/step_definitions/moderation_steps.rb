@@ -26,7 +26,6 @@ end
 
 When(/^I give reason for hiding as being "(.*?)"$/) do |hide_reason|
   on(FlowPage) do |page|
-    page.dialog_input_expand_element.when_present.click
     page.dialog_input_element.when_present.send_keys(hide_reason)
   end
 end
