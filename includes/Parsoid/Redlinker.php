@@ -137,28 +137,16 @@ class Redlinker implements ContentFixer {
 	 * This replaces both existing and non-existant anchors because the relative links
 	 * output by parsoid are not usable when output within a subpage.
 	 *
-	 * @param string $content
+	 * @param DOMDocument $dom
 	 * @param Title $title Title to resolve relative links against
 	 * @return string
 	 */
-	public function apply( $content, Title $title ) {
-		if ( !$content ) {
-			return '';
-		}
+	public function apply( DOMDocument $dom, Title $title ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$section = new \ProfileSection( __METHOD__ );
 
 		$this->resolve( null );
 
-		/*
-		 * Workaround because DOMDocument can't guess charset.
-		 * Content should be utf-8. Alternative "workarounds" would be to
-		 * provide the charset in $response, as either:
-		 * * <?xml encoding="utf-8" ?>
-		 * * <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		 * * mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' );
-		 */
-		$dom = Utils::createDOM( '<?xml encoding="utf-8"?>' . $content );
 		$self = $this;
 		self::forEachLink( $dom, function( DOMNode $linkNode, $href ) use ( $self, $dom, $title ) {
 			$title = Utils::createRelativeTitle( $href, $title );
@@ -181,17 +169,6 @@ class Redlinker implements ContentFixer {
 			// replace Parsoid link with MW-built link
 			$linkNode->parentNode->replaceChild( $replacementNode, $linkNode );
 		} );
-
-		$body = $dom->getElementsByTagName( 'body' )->item( 0 );
-
-		if ( $body ) {
-			$res = self::getInnerHtml( $body );
-		} else {
-			wfDebugLog( 'Flow', __METHOD__ . ' : Source content ' . md5( $content ) . ' resulted in no body' );
-			$res = '';
-		}
-
-		return $res;
 	}
 
 	/**

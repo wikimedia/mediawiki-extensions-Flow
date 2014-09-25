@@ -61,11 +61,23 @@ class Controller {
 		// resolve all registered recursive callbacks
 		$this->resolveRecursive();
 
+		/*
+		* Workaround because DOMDocument can't guess charset.
+		* Content should be utf-8. Alternative "workarounds" would be to
+		* provide the charset in $response, as either:
+		* * <?xml encoding="utf-8" ?>
+		* * <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		* * mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' );
+		*
+		* The body tag is required otherwise <meta> tags at the top are
+		* magic'd into <head> rather than kept with the content.
+		*/
+		$dom = Utils::createDOM( '<?xml encoding="utf-8"?><body>' . $content . '</body>' );
 		foreach ( $this->contentFixers as $contentFixer ) {
-			$content = $contentFixer->apply( $content, $title );
+			$contentFixer->apply( $dom, $title );
 		}
 
-		return $content;
+		return Utils::getInnerHtml( $dom->getElementsByTagName( 'body' )->item( 0 ) );
 	}
 
 	/**

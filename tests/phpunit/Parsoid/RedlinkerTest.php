@@ -4,8 +4,10 @@ namespace Flow\Tests\Parsoid;
 
 use Flow\Model\UUID;
 use Flow\Parsoid\Redlinker;
+use Flow\Parsoid\Utils;
 use Flow\Tests\PostRevisionTestCase;
 use FormatJson;
+use Html;
 use Title;
 
 /**
@@ -55,13 +57,15 @@ class RedlinkerTest extends PostRevisionTestCase {
 	 * @dataProvider redLinkProvider
 	 */
 	public function testAppliesRedLinks( $message, $anchor, $expect ) {
+		$dom = Utils::createDOM( '<?xml encoding="utf-8"?><body>' . $anchor . '</body>' );
 		$redlink = new Redlinker( $this->getMock( 'LinkBatch' ) );
-		$result = $redlink->apply( $anchor, Title::newMainPage() );
+		$redlink->apply( $dom, Title::newMainPage() );
+		$result = Utils::getInnerHtml( $dom );
 		$this->assertContains( $expect, $result, $message );
 	}
 
 	public function testRegistersPost() {
-		$anchor = \Html::element( 'a', array(
+		$anchor = Html::element( 'a', array(
 			'rel' => 'mw:WikiLink',
 			'href' => './Main_Page',
 		), 'Main Page' );
@@ -89,7 +93,7 @@ class RedlinkerTest extends PostRevisionTestCase {
 	}
 
 	public function testCollectsLinks() {
-		$anchor = \Html::element( 'a', array(
+		$anchor = Html::element( 'a', array(
 			'rel' => 'mw:WikiLink',
 			'href' => './Main_Page',
 		), 'Main Page' );
