@@ -254,11 +254,40 @@ abstract class Utils {
 	 * @return Title|null
 	 */
 	public static function createRelativeTitle( $text, Title $title ) {
+		if ( preg_match( '|^\.\.?/|', $text ) ) {
+			// currently parsoid always uses enough ../ or ./ to go
+			// back to the root, a bit of a kludge but just assume we
+			// can strip and will end up with a non-relative text.
+			$text = self::stripLeadingDirectoryTraversal( $text );
+		}
+
 		if ( $text && ( $text[0] === '/' || $text[0] === '#' ) ) {
 			return Title::newFromText( $title->getDBkey() . $text, $title->getNamespace() );
-		} else {
-			return Title::newFromText( $text );
 		}
+
+		return Title::newFromText( $text );
+	}
+
+	/**
+	 * @param string $text
+	 * @return string
+	 */
+	protected static function stripLeadingDirectoryTraversal( $text ) {
+		while ( $text && strlen( $text ) >= 3 ) {
+			if ( $text[0] === '.' ) {
+				if ( $text[1] === '/' ) {
+					$text = substr( $text, 2 );
+					continue;
+				} elseif ( $text[1] === '.' && $text[2] === '/' ) {
+					$text = substr( $text, 3 );
+					continue;
+				}
+			}
+			// end while statement
+			break;
+		}
+
+		return $text;
 	}
 }
 
