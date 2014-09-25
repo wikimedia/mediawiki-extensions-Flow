@@ -23,9 +23,16 @@ class ImageExtractor implements ExtractorInterface {
 	 * {@inheritDoc}
 	 */
 	public function perform( ReferenceFactory $factory, DOMElement $element ) {
-		$imgNode = $element->getElementsByTagName( 'img' )->item( 0 );
-		$data = FormatJson::decode( $imgNode->getAttribute( 'data-parsoid' ), true );
+		foreach ( $element->getElementsByTagName( 'img' ) as $item ) {
+			$resource = $item->getAttribute( 'resource' );
+			if ( $resource !== '' ) {
+				return $factory->createWikiReference(
+					WikiReference::TYPE_FILE,
+					$resource
+				);
+			}
+		}
 
-		return $factory->createWikiReference( WikiReference::TYPE_FILE, $data['sa']['resource'] );
+		return null;
 	}
 }

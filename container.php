@@ -67,7 +67,7 @@ $c['redlinker'] = $c->share( function( $c ) {
 } );
 
 $c['bad_image_remover'] = $c->share( function( $c ) {
-	return new Flow\Parsoid\BadImageRemover();
+	return new Flow\Parsoid\BadImageRemover( 'wfIsBadImage' );
 } );
 
 $c['content_fixer'] = $c->share( function( $c ) {
