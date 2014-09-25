@@ -2,6 +2,8 @@
 
 namespace Flow;
 
+use Flow\Exception\CatchableFatalErrorException;
+
 /**
  * Catches E_RECOVERABLE_ERROR and converts into exceptions
  * instead of fataling.
