@@ -4,6 +4,8 @@ namespace Flow\Tests\Parsoid;
 
 use Flow\Container;
 use Flow\Exception\WikitextException;
+use Flow\Model\UUID;
+use Flow\Parsoid\ReferenceFactory;
 use Flow\Parsoid\Utils;
 use Flow\Tests\FlowTestCase;
 use ReflectionMethod;
@@ -32,27 +34,33 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 				// source wiki text
 				'[[My page]]',
 				// expected factory method
-				'createWikiReference',
-				// expected factory arguments
-				array( 'link', 'My page' ),
+				'Flow\Model\WikiReference',
+				// expected type
+				'link',
+				// expected target
+				'title:My_page',
 			),
 			array(
 				'Link with URL encoding issues',
 				// source wiki text
 				'[[User talk:Werdna?]]',
 				// expected factory method
-				'createWikiReference',
-				// expected factory arguments
-				array( 'link', 'User talk:Werdna?' ),
+				'Flow\Model\WikiReference',
+				// expected type
+				'link',
+				// expected target
+				'title:User_talk:Werdna?',
 			),
 			array(
 				'Subpage link',
 				// source wiki text
 				'[[/Subpage]]',
 				// expected factory method
-				'createWikiReference',
-				// expected factory arguments
-				array( 'link', '/Subpage' ),
+				'Flow\Model\WikiReference',
+				// expected type
+				'link',
+				// expected target
+				'title:Talk:UTPage/Subpage',
 				// ???
 				'Talk:UTPage',
 			),
@@ -61,36 +69,55 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 				// source wiki text
 				'[http://www.google.com Google]',
 				// expected factory method
-				'createUrlReference',
-				// exepcted factory arguments
-				array( 'link', 'http://www.google.com' ),
+				'Flow\Model\UrlReference',
+				// expected type
+				'link',
+				// expected target
+				'url:http://www.google.com',
 			),
 			array(
 				'File',
 				// source wiki text
 				'[[File:Image.png]]',
 				// expected factory method
-				'createWikiReference',
-				// expected factory arguments
-				array( 'file', 'File:Image.png' ),
+				'Flow\Model\WikiReference',
+				// expected type
+				'file',
+				// expected target
+				'title:File:Image.png',
 			),
 			array(
 				'File with parameters',
 				// source wiki text
 				'[[File:Image.png|25px]]',
 				// expected factory method
-				'createWikiReference',
-				// expected factory arguments
-				array( 'file', 'File:Image.png' ),
+				'Flow\Model\WikiReference',
+				// expected type
+				'file',
+				// expected target
+				'title:File:Image.png',
+			),
+			array(
+				'File with encoding issues',
+				// source wiki text
+				'[[File:Image?.png]]',
+				// expected class
+				'Flow\Model\WikiReference',
+				// expected type
+				'file',
+				// expected target
+				'title:File:Image?.png',
 			),
 			array(
 				'Template',
 				// source wiki text
 				'{{Foo}}',
 				// expected factory method
-				'createWikiReference',
-				// expected factory arguments
-				array( 'template', 'Template:Foo' ),
+				'Flow\Model\WikiReference',
+				// expected type
+				'template',
+				// expected target
+				'title:Template:Foo',
 			),
 
 			array(
@@ -98,9 +125,11 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 				// source wiki text
 				'[[File:Some/Files/Really/Should_Not_Ex/ist.png]]',
 				// expected factory method
-				'createWikiReference',
-				// expected factory arguments
-				array( 'file', 'File:Some/Files/Really/Should_Not_Ex/ist.png' ),
+				'Flow\Model\WikiReference',
+				// expected type
+				'file',
+				// expected target
+				'title:File:Some/Files/Really/Should_Not_Ex/ist.png',
 			)
 		);
 	}
@@ -108,23 +137,38 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 	/**
 	 * @dataProvider referenceExtractorProvider
 	 */
-	public function testReferenceExtractor( $description, $wikitext, $expectedMethod, $expectedArguments, $page = 'UTPage' ) {
+	public function testReferenceExtractor(
+		$description,
+		$wikitext,
+		$expectedClass,
+		$expectedType,
+		$expectedTarget,
+		$page = 'UTPage'
+	) {
 		$referenceExtractor = Container::get( 'reference.extractor' );
 
-		$html = Utils::convert( 'wt', 'html', $wikitext, Title::newFromText( $page ) );
-		$factory = $this->getMockBuilder( 'Flow\Parsoid\ReferenceFactory' )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$factory->expects( $this->once() )
-			->method( $expectedMethod )
-			->will( $this->returnValue( true ) )
-			->getMatcher()
-			->parametersMatcher = new \PHPUnit_Framework_MockObject_Matcher_Parameters( $expectedArguments );
+		$workflow = $this->getMock( 'Flow\Model\Workflow' );
+		$workflow->expects( $this->any() )
+			->method( 'getId' )
+			->will( $this->returnValue( UUID::create() ) );
+		$workflow->expects( $this->any() )
+			->method( 'getArticleTitle' )
+			->will( $this->returnValue( Title::newMainPage() ) );
+		$factory = new ReferenceFactory( $workflow, 'foo', UUID::create() );
 
 		$reflMethod = new ReflectionMethod( $referenceExtractor, 'extractReferences' );
 		$reflMethod->setAccessible( true );
-		$result = $reflMethod->invoke( $referenceExtractor, $factory, $html );
+
+		$result = $reflMethod->invoke(
+			$referenceExtractor,
+			$factory,
+			Utils::convert( 'wt', 'html', $wikitext, Title::newFromText( $page ) )
+		);
 		$this->assertCount( 1, $result );
+
+		$result = reset( $result );
+		$this->assertInstanceOf( $expectedClass, $result, $description );
+		$this->assertEquals( $expectedType, $result->getType(), $description );
+		$this->assertEquals( $expectedTarget, $result->getTargetIdentifier(), $description );
 	}
 }
