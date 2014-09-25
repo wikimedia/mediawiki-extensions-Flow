@@ -61,11 +61,10 @@ class RedlinkerTest extends PostRevisionTestCase {
 	}
 
 	public function testRegistersPost() {
-		$saHref = 'Main_Page';
 		$anchor = \Html::element( 'a', array(
 			'rel' => 'mw:WikiLink',
-			'data-parsoid' => FormatJson::encode( array( 'sa' => array( 'href' => $saHref ) ) ),
-		), $saHref );
+			'href' => './Main_Page',
+		), 'Main Page' );
 
 		$post = $this->generateObject( array(
 			// pretend not to be topic title (they're not parsed, so ignored)
@@ -80,7 +79,7 @@ class RedlinkerTest extends PostRevisionTestCase {
 			->method( 'addObj' )
 			->with( new MethodReturnsConstraint(
 				'getDBkey',
-				$this->matches( $saHref )
+				$this->matches( 'Main_Page' )
 			) );
 
 		$redlinker = new Redlinker( $batch );
@@ -90,18 +89,17 @@ class RedlinkerTest extends PostRevisionTestCase {
 	}
 
 	public function testCollectsLinks() {
-		$saHref = 'Main_Page';
 		$anchor = \Html::element( 'a', array(
 			'rel' => 'mw:WikiLink',
-			'data-parsoid' => FormatJson::encode( array( 'sa' => array( 'href' => $saHref ) ) ),
-		), $saHref );
+			'href' => './Main_Page',
+		), 'Main Page' );
 
 		$batch = $this->getMock( 'LinkBatch' );
 		$batch->expects( $this->once() )
 			->method( 'addObj' )
 			->with( new MethodReturnsConstraint(
 				'getDBkey',
-				$this->matches( $saHref )
+				$this->matches( 'Main_Page' )
 			) );
 
 		$redlinker = new Redlinker( $batch );
