@@ -308,6 +308,7 @@
 	"flow-anon-warning": "Vous n’êtes pas connecté(e). Pour que vos modifications soient associées à votre nom d'utilisateur plutôt qu'à votre adresse IP, vous pouvez [$1 vous connecter] ou [$2 créer un compte].",
 	"flow-cancel-warning": "Vous avez saisi du texte dans ce formulaire. Confirmez-vous l'abandon de la saisie ?",
 	"flow-topic-first-heading": "Discussion sur $1",
+	"flow-topic-html-title": "$1 sur $2",
 	"flow-topic-count-sidebar": "Affichage de $1 sur $2 discussions attachées à cette page",
 	"flow-topic-count": "Discussions ($1)",
 	"flow-active-ago": "Actif $1",

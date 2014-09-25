@@ -251,6 +251,7 @@
 	"flow-terms-of-use-reply": "通過點擊「{{int:flow-reply-submit}}」，您同意此wiki之使用條款。",
 	"flow-terms-of-use-edit": "通過保存您的更改，您同意此wiki之使用條款。",
 	"flow-topic-first-heading": "於 $1 的主題",
+	"flow-topic-html-title": "$1 於 $2",
 	"flow-topic-count": "主題 ($1)",
 	"flow-active-ago": "活動於 $1",
 	"flow-started-ago": "已發起於 $1",

@@ -263,6 +263,7 @@
 	"flow-terms-of-use-new-topic": "Door op \"{{int:flow-newtopic-save}}\" te klikken gaat u akkoord met de gebruiksvoorwaarden van deze wiki.",
 	"flow-terms-of-use-reply": "Door te klikken op \"{{int:flow-reply-submit}}\", gaat u akkoord met de gebruiksvoorwaarden van deze wiki.",
 	"flow-terms-of-use-edit": "Door deze wijzigingen op te slaan, gaat u akkoord met de gebruiksvoorwaarden van deze wiki.",
+	"flow-topic-html-title": "$1 op $2",
 	"flow-topic-count": "Onderwerpen ($1)",
 	"flow-started-ago": "$1 begonnen",
 	"flow-started-ago-hour": "$1 {{PLURAL:$1|uur}} geleden begonnen",

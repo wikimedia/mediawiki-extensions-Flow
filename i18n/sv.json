@@ -292,6 +292,7 @@
 	"flow-anon-warning": "Du är inte inloggad. För att få erkännande med ditt namn istället för din IP-adress kan du [$1 logga in] eller [$2 skapa ett konto].",
 	"flow-cancel-warning": "Du har skrivit in text i denna formulär. Är du säker på att du vill överge den?",
 	"flow-topic-first-heading": "Ämne på $1",
+	"flow-topic-html-title": "$1 på $2",
 	"flow-topic-count-sidebar": "Visar $1 av $2 ämnen kopplade till denna sida",
 	"flow-topic-count": "Ämnen ($1)",
 	"flow-active-ago": "Aktiv $1",
