@@ -2,6 +2,8 @@
 
 namespace Flow\Parsoid;
 
+use DOMDocument;
+use DOMNode;
 use Language;
 use OutputPage;
 use Title;
@@ -185,12 +187,12 @@ abstract class Utils {
 	 *
 	 * @param string $content
 	 * @param array[optional] $ignoreErrorCodes
-	 * @return \DOMDocument
+	 * @return DOMDocument
 	 * @throws WikitextException
 	 * @see http://www.xmlsoft.org/html/libxml-xmlerror.html
 	 */
 	public static function createDOM( $content, $ignoreErrorCodes = array( 513, 801 ) ) {
-		$dom = new \DOMDocument();
+		$dom = new DOMDocument();
 
 		// Otherwise the parser may attempt to load the dtd from an external source.
 		// See: https://www.mediawiki.org/wiki/XML_External_Entity_Processing
@@ -242,6 +244,23 @@ abstract class Utils {
 			$out->addModules( 'mediawiki.skinning.content.parsoid' );
 		}
 		return true;
+	}
+
+	/**
+	 * Retrieves the html of the nodes children.
+	 *
+	 * @param DOMNode|null $node
+	 * @return string html of the nodes children
+	 */
+	public static function getInnerHtml( DOMNode $node = null ) {
+		$html = array();
+		if ( $node ) {
+			$dom = $node instanceof DOMDocument ? $node : $node->ownerDocument;
+			foreach ( $node->childNodes as $child ) {
+				$html[] = $dom->saveHTML( $child );
+			}
+		}
+		return implode( '', $html );
 	}
 
 	/**

@@ -40,29 +40,13 @@ class BadImageRemover implements ContentFixer {
 	 * Receives an html string. It find all images and run them through
 	 * wfIsBadImage() to determine if the image can be shown.
 	 *
-	 * @param string $content
+	 * @param DOMDocument $dom
 	 * @param Title $title
-	 * @return string
 	 */
-	public function apply( $content, Title $title ) {
-		if ( !$content ) {
-			return '';
-		}
+	public function apply( DOMDocument $dom, Title $title ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$section = new \ProfileSection( __METHOD__ );
 
-		/*
-		 * Workaround because DOMDocument can't guess charset.
-		 * Content should be utf-8. Alternative "workarounds" would be to
-		 * provide the charset in $response, as either:
-		 * * <?xml encoding="utf-8" ?>
-		 * * <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		 * * mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' );
-		 *
-		 * The body tag is required otherwise <meta> tags at the top are
-		 * magic'd into <head> rather than kept with the content.
-		 */
-		$dom = Utils::createDOM( '<?xml encoding="utf-8"?><body>' . $content . '</body>' );
 		$isFiltered = $this->isFiltered;
 		self::forEachImage( $dom, function( DOMNode $linkNode, $resource ) use ( $isFiltered, $dom, $title ) {
 			$image = Utils::createRelativeTitle( $resource, $title );
@@ -80,17 +64,6 @@ class BadImageRemover implements ContentFixer {
 				}
 			}
 		} );
-
-		$body = $dom->getElementsByTagName( 'body' )->item( 0 );
-
-		if ( $body ) {
-			$res = self::getInnerHtml( $body );
-		} else {
-			wfDebugLog( 'Flow', __METHOD__ . ' : Source content ' . md5( $content ) . ' resulted in no body' );
-			$res = '';
-		}
-
-		return $res;
 	}
 
 	/**
@@ -111,23 +84,6 @@ class BadImageRemover implements ContentFixer {
 				$callback( $linkNode, $resource );
 			}
 		}
-	}
-
-	/**
-	 * Helper method retrieves the html of the nodes children
-	 *
-	 * @param DOMNode $node
-	 * @return string html of the nodes children
-	 */
-	static public function getInnerHtml( DOMNode $node = null ) {
-		$html = array();
-		if ( $node ) {
-			$dom = $node->ownerDocument;
-			foreach ( $node->childNodes as $child ) {
-				$html[] = $dom->saveHTML( $child );
-			}
-		}
-		return implode( '', $html );
 	}
 
 	/**
