@@ -1,13 +1,15 @@
 <?php
 
-namespace Flow\Parsoid;
+namespace Flow\Parsoid\Fixer;
 
-use Flow\Model\PostRevision;
 use ArrayObject;
 use Closure;
 use DOMDocument;
 use DOMElement;
 use DOMNode;
+use Flow\Parsoid\Fixer;
+use Flow\Parsoid\Utils;
+use Flow\Model\PostRevision;
 use LinkBatch;
 use Linker;
 use Title;
@@ -45,7 +47,7 @@ use Title;
  *	// Before outputting content
  *	$content = $redlinker->apply( $foo->getContent(), Title::newMainPage() );
  */
-class Redlinker implements ContentFixer {
+class Redlinker implements Fixer {
 	/**
 	 * @var LinkBatch
 	 */
