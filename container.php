@@ -63,15 +63,15 @@ $c['link_batch'] = $c->share( function() {
 } );
 
 $c['redlinker'] = $c->share( function( $c ) {
-	return new Flow\Parsoid\Redlinker( $c['link_batch'] );
+	return new Flow\Parsoid\Fixer\Redlinker( $c['link_batch'] );
 } );
 
 $c['bad_image_remover'] = $c->share( function( $c ) {
-	return new Flow\Parsoid\BadImageRemover( 'wfIsBadImage' );
+	return new Flow\Parsoid\Fixer\BadImageRemover( 'wfIsBadImage' );
 } );
 
 $c['content_fixer'] = $c->share( function( $c ) {
-	return new Flow\Parsoid\Controller(
+	return new Flow\Parsoid\ContentFixer(
 		$c['redlinker'],
 		$c['bad_image_remover']
 	);

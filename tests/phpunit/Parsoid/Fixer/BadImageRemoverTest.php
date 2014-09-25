@@ -2,7 +2,8 @@
 
 namespace Flow\Tests\Parsoid;
 
-use Flow\Parsoid\BadImageRemover;
+use Flow\Parsoid\Fixer\BadImageRemover;
+use Flow\Parsoid\ContentFixer;
 use Flow\Parsoid\Utils;
 use Title;
 
@@ -50,10 +51,8 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 	 * @dataProvider imageRemovalProvider
 	 */
 	public function testImageRemoval( $message, $expect, $content, $badImageFilter ) {
-		$fixer = new BadImageRemover( $badImageFilter );
-		$dom = Utils::createDOM( '<?xml encoding="utf-8"?><body>' . $content . '</body>' );
-		$fixer->apply( $dom, Title::newMainPage() );
-		$result = Utils::getInnerHtml( $dom->getElementsByTagName( 'body' )->item( 0 ) );
-		$this->assertEquals( $expect, trim( $result ), $message );
+		$fixer = new ContentFixer( new BadImageRemover( $badImageFilter ) );
+		$result = $fixer->apply( $content, Title::newMainPage() );
+		$this->assertEquals( $expect, $result, $message );
 	}
 }

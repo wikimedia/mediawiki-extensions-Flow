@@ -6,7 +6,7 @@ use Flow\Repository\UserNameBatch;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
-use Flow\Parsoid\Controller as ContentFixer;
+use Flow\Parsoid\ContentFixer;
 use OutputPage;
 // These don't really belong here
 use Linker;
