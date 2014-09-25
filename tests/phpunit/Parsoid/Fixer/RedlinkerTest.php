@@ -3,6 +3,7 @@
 namespace Flow\Tests\Parsoid\Fixer;
 
 use Flow\Model\UUID;
+use Flow\Parsoid\ContentFixer;
 use Flow\Parsoid\Fixer\Redlinker;
 use Flow\Parsoid\Utils;
 use Flow\Tests\PostRevisionTestCase;
@@ -56,10 +57,8 @@ class RedlinkerTest extends PostRevisionTestCase {
 	 * @dataProvider redLinkProvider
 	 */
 	public function testAppliesRedLinks( $message, $anchor, $expect ) {
-		$dom = Utils::createDOM( '<?xml encoding="utf-8"?><body>' . $anchor . '</body>' );
-		$redlink = new Redlinker( $this->getMock( 'LinkBatch' ) );
-		$redlink->apply( $dom, Title::newMainPage() );
-		$result = Utils::getInnerHtml( $dom );
+		$fixer = new ContentFixer( new Redlinker( $this->getMock( 'LinkBatch' ) ) );
+		$result = $fixer->apply( $anchor, Title::newMainPage() );
 		$this->assertContains( $expect, $result, $message );
 	}
 
@@ -85,10 +84,9 @@ class RedlinkerTest extends PostRevisionTestCase {
 				$this->matches( 'Main_Page' )
 			) );
 
-		$redlinker = new Redlinker( $batch );
-		$identifier = $post->registerRecursive( array( $redlinker, 'recursive' ), array() );
-		$post->getRecursiveResult( $identifier );
-		$redlinker->resolve( array() );
+		$fixer = new ContentFixer( new Redlinker( $batch ) );
+		$fixer->registerRecursive( $post );
+		$fixer->resolveRecursive();
 	}
 
 	public function testCollectsLinks() {
@@ -105,8 +103,10 @@ class RedlinkerTest extends PostRevisionTestCase {
 				$this->matches( 'Main_Page' )
 			) );
 
-		$redlinker = new Redlinker( $batch );
-		$redlinker->collectLinks( $anchor );
+		$dom = Utils::createDOM( '<?xml encoding="utf-8"?>' . $anchor );
+		$redlink =  new Redlinker( $batch );
+		$redlink->recursive( $dom->getElementsByTagName( 'a' )->item( 0 ) );
+		$redlink->resolve();
 	}
 }
 

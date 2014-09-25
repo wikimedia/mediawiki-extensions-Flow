@@ -2,8 +2,7 @@
 
 namespace Flow\Parsoid\Fixer;
 
-use Closure;
-use DOMDocument;
+use DOMElement;
 use DOMNode;
 use Flow\Model\PostRevision;
 use Flow\Parsoid\Fixer;
@@ -17,7 +16,7 @@ use Title;
  * defined by wfIsBadImage().
  *
  * Usage:
- *
+
  *	$badImageRemover = new BadImageRemover();
  *
  *	// Before outputting content
@@ -39,72 +38,72 @@ class BadImageRemover implements Fixer {
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getXPath() {
+		return '//span[@typeof="mw:Image"]//img[@resource]';
+	}
+
+	/**
 	 * Receives an html string. It find all images and run them through
 	 * wfIsBadImage() to determine if the image can be shown.
 	 *
-	 * @param DOMDocument $dom
+	 * @param DOMNode $node
 	 * @param Title $title
+	 * @throws \MWException
 	 */
-	public function apply( DOMDocument $dom, Title $title ) {
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$section = new \ProfileSection( __METHOD__ );
-
-		$isFiltered = $this->isFiltered;
-		self::forEachImage( $dom, function( DOMNode $linkNode, $resource ) use ( $isFiltered, $dom, $title ) {
-			$image = Utils::createRelativeTitle( $resource, $title );
-			if ( !$image ) {
-				wfDebugLog( 'Flow', __METHOD__ . ': Could not construct title for node: ' . $dom->saveXML( $linkNode ) );
-			} elseif ( call_user_func( $isFiltered, $image->getDBkey(), $title ) ) {
-
-				// Move up the DOM and remove the typeof="mw:Image" node
-				$nodeToRemove = $linkNode->parentNode;
-				while( $nodeToRemove && $nodeToRemove->getAttribute( 'typeof' ) !== 'mw:Image' ) {
-					$nodeToRemove = $nodeToRemove->parentNode;
-				}
-				if ( $nodeToRemove ) {
-					$nodeToRemove->parentNode->removeChild( $nodeToRemove );
-				}
-			}
-		} );
-	}
-
-	/**
-	 * Helper method executes a callback on every img with a resource
-	 * attribute inside a span with the typeof="mw:Image" attribute.
-	 *
-	 * @param DOMDocument $dom
-	 * @param Closure $callback Receives (DOMNode, string)
-	 */
-	static public function forEachImage( DOMDocument $dom, Closure $callback ) {
-		$xpath = new \DOMXPath( $dom );
-		$linkNodes = $xpath->query( '//span[@typeof="mw:Image"]//img[@resource]' );
-
-		/** @var DOMElement $linkNode */
-		foreach ( $linkNodes as $linkNode ) {
-			$resource = $linkNode->getAttribute( 'resource' );
-			if ( $resource !== '' ) {
-				$callback( $linkNode, $resource );
-			}
+	public function apply( DOMNode $node, Title $title ) {
+		if ( !$node instanceof DOMElement ) {
+			return;
 		}
+
+		$resource = $node->getAttribute( 'resource' );
+		if ( $resource === '' ) {
+			return;
+		}
+
+		$image = Utils::createRelativeTitle( $resource, $title );
+		if ( !$image ) {
+			wfDebugLog( 'Flow', __METHOD__ . ': Could not construct title for node: ' . $node->ownerDocument->saveXML( $node ) );
+			return;
+		}
+
+		if ( !call_user_func( $this->isFiltered, $image->getDBkey(), $title ) ) {
+			return;
+		}
+
+		// Move up the DOM and remove the typeof="mw:Image" node
+		$nodeToRemove = $node->parentNode;
+		while( $nodeToRemove && $nodeToRemove->getAttribute( 'typeof' ) !== 'mw:Image' ) {
+			$nodeToRemove = $nodeToRemove->parentNode;
+		}
+		if ( !$nodeToRemove ) {
+			throw new \MWException( 'Did not find parent mw:Image to remove' );
+		}
+		$nodeToRemove->parentNode->removeChild( $nodeToRemove );
 	}
 
 	/**
-	 * Recursing doesn't make sense here, nothing to batch-load.
-	 *
 	 * @param PostRevision $post
-	 * @param array $result
-	 * @return array Return array in the format of [result, continue]
+	 * @return bool
 	 */
-	public function recursive( PostRevision $post, $result ) {
-		return array( array(), false );
+	public function isRecursive( PostRevision $post ) {
+		return false;
 	}
 
 	/**
 	 * Recursing doesn't make sense here, nothing to batch-load.
 	 *
-	 * @param array $result
+	 * @param DOMNode $node
 	 */
-	public function resolve( $result ) {
+	public function recursive( DOMNode $node ) {
+		// nothing to do
+	}
+
+	/**
+	 * Recursing doesn't make sense here, nothing to batch-load.
+	 */
+	public function resolve() {
 		// nothing to do
 	}
 }
