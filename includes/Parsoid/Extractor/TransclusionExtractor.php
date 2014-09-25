@@ -4,7 +4,7 @@ namespace Flow\Parsoid\Extractor;
 
 use DOMElement;
 use Flow\Model\WikiReference;
-use Flow\Parsoid\ExtractorInterface;
+use Flow\Parsoid\Extractor;
 use Flow\Parsoid\ReferenceFactory;
 use FormatJson;
 use Title;
@@ -12,7 +12,7 @@ use Title;
 /**
  * Finds and creates References for transclusions in parsoid HTML
  */
-class TransclusionExtractor implements ExtractorInterface {
+class TransclusionExtractor implements Extractor {
 	/**
 	 * {@inheritDoc}
 	 */

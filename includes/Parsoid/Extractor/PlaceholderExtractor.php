@@ -4,7 +4,7 @@ namespace Flow\Parsoid\Extractor;
 
 use DOMElement;
 use Flow\Model\WikiReference;
-use Flow\Parsoid\ExtractorInterface;
+use Flow\Parsoid\Extractor;
 use Flow\Parsoid\ReferenceFactory;
 use FormatJson;
 use ParserOptions;
@@ -19,7 +19,7 @@ use Title;
  * with them ourselves. This may change some day, as Parsoids
  * codebase has a FIXME "Handle missing images properly!!"
  */
-class PlaceholderExtractor implements ExtractorInterface {
+class PlaceholderExtractor implements Extractor {
 	/**
 	 * {@inheritDoc}
 	 */
