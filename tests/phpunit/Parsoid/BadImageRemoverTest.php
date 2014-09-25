@@ -51,7 +51,9 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 	 */
 	public function testImageRemoval( $message, $expect, $content, $badImageFilter ) {
 		$fixer = new BadImageRemover( $badImageFilter );
-		$result = $fixer->apply( $content, Title::newMainPage() );
+		$dom = Utils::createDOM( '<?xml encoding="utf-8"?><body>' . $content . '</body>' );
+		$fixer->apply( $dom, Title::newMainPage() );
+		$result = Utils::getInnerHtml( $dom->getElementsByTagName( 'body' )->item( 0 ) );
 		$this->assertEquals( $expect, trim( $result ), $message );
 	}
 }
