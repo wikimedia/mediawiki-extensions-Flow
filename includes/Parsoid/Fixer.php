@@ -2,30 +2,31 @@
 
 namespace Flow\Parsoid;
 
-use DOMDocument;
+use DOMNode;
 use Flow\Model\PostRevision;
 use Title;
 
 interface Fixer {
 	/**
-	 * @param DOMDocument $dom
+	 * @param DOMNode $node
 	 * @param Title $title
-	 * @return string
 	 */
-	public function apply( DOMDocument $dom, Title $title );
+	public function apply( DOMNode $node, Title $title );
 
 	/**
 	 * @param PostRevision $post
-	 * @param array $result
-	 * @return array Return array in the format of [result, continue]
+	 * @return bool Return true when the provided post should be
+	 *  handled with self::recursive
 	 */
-	public function recursive( PostRevision $post, $result );
+	public function isRecursive( PostRevision $post );
 
 	/**
-	 * Returns the end-result of the recursive function, allowing the
-	 * implementing class to process that.
-	 *
-	 * @param mixed $result
+	 * @param DOMNode $node
 	 */
-	public function resolve( $result );
+	public function recursive( DOMNode $node );
+
+	/**
+	 * Run any post-recursive cleanups.
+	 */
+	public function resolve();
 }
