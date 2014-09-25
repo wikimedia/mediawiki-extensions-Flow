@@ -4,13 +4,13 @@ namespace Flow\Parsoid\Extractor;
 
 use DOMElement;
 use Flow\Model\WikiReference;
-use Flow\Parsoid\ExtractorInterface;
+use Flow\Parsoid\Extractor;
 use Flow\Parsoid\ReferenceFactory;
 
 /**
  * Finds and creates References for images in parsoid HTML
  */
-class ImageExtractor implements ExtractorInterface {
+class ImageExtractor implements Extractor {
 	/**
 	 * {@inheritDoc}
 	 */
