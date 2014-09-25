@@ -1,12 +1,11 @@
 <?php
 
-namespace Flow\Tests\Parsoid;
+namespace Flow\Tests\Parsoid\Fixer;
 
 use Flow\Model\UUID;
-use Flow\Parsoid\Redlinker;
+use Flow\Parsoid\Fixer\Redlinker;
 use Flow\Parsoid\Utils;
 use Flow\Tests\PostRevisionTestCase;
-use FormatJson;
 use Html;
 use Title;
 
