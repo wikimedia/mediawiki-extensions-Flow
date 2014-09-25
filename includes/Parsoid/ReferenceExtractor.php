@@ -13,12 +13,12 @@ use MWException;
  */
 class ReferenceExtractor {
 	/**
-	 * @var ExtractorInterface[]
+	 * @var Extractor[]
 	 */
 	protected $extractors;
 
 	/**
-	 * @param ExtractorInterface[] $extractors
+	 * @param Extractor[] $extractors
 	 */
 	public function __construct( $extractors ) {
 		$this->extractors = $extractors;

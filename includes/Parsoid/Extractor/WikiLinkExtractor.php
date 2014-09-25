@@ -4,13 +4,13 @@ namespace Flow\Parsoid\Extractor;
 
 use DOMElement;
 use Flow\Model\Reference;
-use Flow\Parsoid\ExtractorInterface;
+use Flow\Parsoid\Extractor;
 use Flow\Parsoid\ReferenceFactory;
 
 /**
  * Finds and creates References for internal wiki links in parsoid HTML
  */
-class WikiLinkExtractor implements ExtractorInterface {
+class WikiLinkExtractor implements Extractor {
 	/**
 	 * {@inheritDoc}
 	 */

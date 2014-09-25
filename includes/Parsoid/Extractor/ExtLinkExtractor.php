@@ -4,13 +4,13 @@ namespace Flow\Parsoid\Extractor;
 
 use DOMElement;
 use Flow\Model\Reference;
-use Flow\Parsoid\ExtractorInterface;
+use Flow\Parsoid\Extractor;
 use Flow\Parsoid\ReferenceFactory;
 
 /**
  * Finds and creates References for external links in parsoid HTML
  */
-class ExtLinkExtractor implements ExtractorInterface {
+class ExtLinkExtractor implements Extractor {
 	/**
 	 * {@inheritDoc}
 	 */
