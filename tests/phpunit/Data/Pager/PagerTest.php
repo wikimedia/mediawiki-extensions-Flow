@@ -46,9 +46,7 @@ class PagerTest extends \MediaWikiTestCase {
 		$pager = new Pager(
 			$this->mockObjectManager( $found ),
 			array( 'otherthing' => 42 ),
-			$options + array(
-				'pager-limit' => Pager::DEFAULT_LIMIT,
-			)
+			$options
 		);
 		$page = $pager->getPage();
 		$this->assertInstanceOf( 'Flow\Data\Pager\PagerPage', $page, $message );
@@ -134,9 +132,7 @@ class PagerTest extends \MediaWikiTestCase {
 		$pager = new Pager(
 			$this->mockObjectManager( $found ),
 			array( 'otherthing' => 42 ),
-			$options + array(
-				'pager-limit' => Pager::DEFAULT_LIMIT,
-			)
+			$options
 		);
 		$page = $pager->getPage();
 		$this->assertInstanceOf( 'Flow\Data\Pager\PagerPage', $page, $message );
@@ -228,9 +224,7 @@ class PagerTest extends \MediaWikiTestCase {
 		$pager = new Pager(
 			$om,
 			array( 'otherthing' => 42 ),
-			$options + array(
-				'pager-limit' => Pager::DEFAULT_LIMIT,
-			)
+			$options
 		);
 		$page = $pager->getPage();
 
