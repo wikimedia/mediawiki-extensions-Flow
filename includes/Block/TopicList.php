@@ -292,7 +292,32 @@ class TopicListBlock extends AbstractBlock {
 			$findOptions
 		);
 
-		return $pager->getPage();
+		$postStorage = $this->storage->getStorage( 'PostRevision' );
+		return $pager->getPage( function( array $found ) use ( $postStorage ) {
+			$queries = array();
+			foreach ( $found as $entry ) {
+				$queries[] = array( 'rev_type_id' => $entry->getId() );
+			}
+			$posts = $postStorage->findMulti( $queries, array(
+				'sort' => 'rev_id',
+				'order' => 'DESC',
+				'limit' => 1,
+			) );
+			$allowed = array();
+			foreach ( $posts as $queryResult ) {
+				$post = reset( $queryResult );
+				if ( !$post->isModerated() || $post->isLocked() ) {
+					$allowed[$post->getPostId()->getAlphadecimal()] = true;
+				}
+			}
+			foreach ( $found as $idx => $entry ) {
+				if ( !isset( $allowed[$entry->getId()->getAlphadecimal()] ) ) {
+					unset( $found[$idx] );
+				}
+			}
+
+			return $found;
+		} );
 	}
 
 	/**

@@ -22,6 +22,8 @@ class PagerTest extends \MediaWikiTestCase {
 				array(),
 				// query options,
 				array(),
+				// filter
+				null
 			),
 
 			array(
@@ -29,9 +31,48 @@ class PagerTest extends \MediaWikiTestCase {
 				// expect
 				array( $objs['A'], $objs['B'] ),
 				// find results
-				array( $objs['A'], $objs['B'] ),
+				array(
+					array( $objs['A'], $objs['B'] ),
+				),
 				// query options
 				array( 'pager-limit' => 10 ),
+				// filter
+				null
+			),
+
+			array(
+				'Applies filter',
+				// expect
+				array( $objs['A'] ),
+				// find results
+				array(
+					array( $objs['A'], $objs['B'] )
+				),
+				// query options
+				array( 'pager-limit' => 10 ),
+				// filter
+				function( $found ) {
+					return array_filter( $found, function( $obj ) { return $obj->foo !== 'B'; } );
+				},
+			),
+
+			array(
+				'Repeats query when filtered',
+				// expect
+				array( $objs['A'], $objs['D'] ),
+				// find results
+				array(
+					 array( $objs['A'], $objs['B'], $objs['C'] ),
+					 array( $objs['D'], $objs['E'] ),
+				),
+				// query options
+				array( 'pager-limit' => 2 ),
+				// query filter
+				function( $found ) {
+					return array_filter( $found, function( $obj ) {
+						return $obj->foo !== 'B' && $obj->foo !== 'C';
+					} );
+				}
 			),
 		);
 	}
@@ -39,13 +80,14 @@ class PagerTest extends \MediaWikiTestCase {
 	/**
 	 * @dataProvider getPageResultsProvider
 	 */
-	public function testGetPageResults( $message, $expect, $found, array $options ) {
+	public function testGetPageResults( $message, $expect, $found, array $options, $filter ) {
+
 		$pager = new Pager(
 			$this->mockObjectManager( $found ),
 			array( 'otherthing' => 42 ),
 			$options
 		);
-		$page = $pager->getPage();
+		$page = $pager->getPage( $filter );
 		$this->assertInstanceOf( 'Flow\Data\Pager\PagerPage', $page, $message );
 		$this->assertEquals( $expect, $page->getResults(), $message );
 	}
@@ -66,6 +108,8 @@ class PagerTest extends \MediaWikiTestCase {
 				array(),
 				// pager options
 				array(),
+				// filter
+				null
 			),
 
 			array(
@@ -73,9 +117,13 @@ class PagerTest extends \MediaWikiTestCase {
 				// expect
 				array(),
 				// find results
-				array( $objs['A'], $objs['B'] ),
+				array(
+					array( $objs['A'], $objs['B'] ),
+				),
 				// pager options
 				array( 'pager-limit' => 2 ),
+				// filter
+				null
 			),
 
 			array(
@@ -89,13 +137,40 @@ class PagerTest extends \MediaWikiTestCase {
 					),
 				),
 				// find results
-				array( $objs['A'], $objs['B'], $objs['C'] ),
+				array(
+					array( $objs['A'], $objs['B'], $objs['C'] ),
+				),
 				// pager options
 				array( 'pager-limit' => 2 ),
+				// filter
+				null
 			),
 
 			array(
-				'Reverse pagination when pager-offset is present in options',
+				'Forward pagination when multi-query filtered',
+				// expect
+				array(
+					'fwd' => array(
+						'offset-dir' => 'fwd',
+						'limit' => 2,
+						'offset' => 'serialized-D',
+					),
+				),
+				// find results
+				array(
+					array( $objs['A'], $objs['B'], $objs['C'] ),
+					array( $objs['D'], $objs['E'] ),
+				),
+				// pager options
+				array( 'pager-limit' => 2 ),
+				// filter
+				function( $obj ) {
+					return $obj->foo > 'B';
+				},
+			),
+
+			array(
+				'Reverse pagination when offset-id is present in options',
 				// expect
 				array(
 					'rev' => array(
@@ -110,13 +185,17 @@ class PagerTest extends \MediaWikiTestCase {
 					),
 				),
 				// find results
-				array( $objs['B'], $objs['C'], $objs['D'] ),
+				array(
+					array( $objs['B'], $objs['C'], $objs['D'] ),
+				),
 				// pager options
 				array(
 					'pager-limit' => 2,
 					'pager-offset' => 'serialized-A',
 					'pager-dir' => 'fwd',
 				),
+				// filter
+				null,
 			),
 
 		);
@@ -125,13 +204,13 @@ class PagerTest extends \MediaWikiTestCase {
 	/**
 	 * @dataProvider getPagingLinkOptionsProvider
 	 */
-	public function testGetPagingLinkOptions( $message, $expect, $found, array $options ) {
+	public function testGetPagingLinkOptions( $message, $expect, $found, array $options, $filter ) {
 		$pager = new Pager(
 			$this->mockObjectManager( $found ),
 			array( 'otherthing' => 42 ),
 			$options
 		);
-		$page = $pager->getPage();
+		$page = $pager->getPage( $filter );
 		$this->assertInstanceOf( 'Flow\Data\Pager\PagerPage', $page, $message );
 		$this->assertEquals( $expect, $page->getPagingLinksOptions(), $message );
 	}
@@ -191,7 +270,7 @@ class PagerTest extends \MediaWikiTestCase {
 			array(
 				'offset-id defaults to null',
 				// expect
-				array( 'offset-key' => null ),
+				array( 'offset-id' => null ),
 				// pager options
 				array()
 			),
@@ -199,7 +278,7 @@ class PagerTest extends \MediaWikiTestCase {
 			array(
 				'initial offset-id is set by providing pager-offset',
 				// expect
-				array( 'offset-key' => 'echo and flow' ),
+				array( 'offset-id' => 'echo and flow' ),
 				// pager options
 				array( 'pager-offset' => 'echo and flow' ),
 			),
@@ -253,7 +332,10 @@ class PagerTest extends \MediaWikiTestCase {
 		if ( $found ) {
 			$om->expects( $this->any() )
 				->method( 'find' )
-				->will( $this->returnValue( $found ) );
+				->will( call_user_func_array(
+					array( $this, 'onConsecutiveCalls' ),
+					array_map( array( $this, 'returnValue' ), $found )
+				) );
 		}
 
 		return $om;
