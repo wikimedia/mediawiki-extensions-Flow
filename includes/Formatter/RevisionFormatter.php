@@ -190,7 +190,9 @@ class RevisionFormatter {
 				$moderatedRevision->getModeratedByUserId(),
 				$moderatedRevision->getModeratedByUserIp()
 			);
+			// @todo why moderate instead of moderated or something else?
 			$res['moderateState'] = $moderatedRevision->getModerationState();
+			$res['moderateReason'] = $moderatedRevision->getModeratedReason();
 		}
 
 		if ( $isContentAllowed ) {

@@ -1,10 +1,4 @@
 <h2 class="flow-topic-title" data-title="{{plaintextSnippet content.format content.content}}">{{escapeContent content.format content.content}}</h2>
-{{#if isModerated}}
-	<div class="flow-moderated-topic-title flow-ui-text-truncated"><span
-		class="wikiglyph {{#ifCond moderateState "===" "lock"}}wikiglyph-lock{{/ifCond}}{{#ifCond moderateState "===" "hide"}}wikiglyph-flag{{/ifCond}}{{#ifCond moderateState "===" "delete"}}wikiglyph-trash{{/ifCond}}"></span>
-		{{l10n "post_moderation_state" moderateState replyToId moderator.name~}}
-	</div>
-{{/if}}
 <div class="flow-topic-meta">
 	{{#if actions.reply}}
 		<a href="{{actions.reply.url}}"
@@ -24,6 +18,16 @@
 		{{uuidTimestamp postId "flow-started-ago" false}}
 	{{/if}}
 </div>
+{{#if isModerated}}
+	<div class="flow-moderated-topic-title flow-ui-text-truncated">
+		{{~noop~}}{{> flow_topic_moderation_flag}}
+		{{l10n "post_moderation_state" moderateState replyToId moderator.name~}}
+	</div>
+	<div class="flow-moderated-topic-reason">
+		{{l10n "flow-topic-moderated-reason-prefix"}}
+		{{moderateReason}}
+	</div>
+{{/if}}
 <span class="flow-reply-count"><span class="wikiglyph wikiglyph-speech-bubble"></span><span class="flow-reply-count-number">{{reply_count}}</span></span>
 
 {{> flow_topic_titlebar_summary}}
