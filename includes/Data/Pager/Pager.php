@@ -84,9 +84,10 @@ class Pager {
 	}
 
 	/**
+	 * @param callable $filter
 	 * @return PagerPage
 	 */
-	public function getPage() {
+	public function getPage( $filter = null ) {
 		$options = $this->options + array(
 			// We need one item of leeway to determine if there are more items
 			'limit' => $this->options['pager-limit'] + 1,
@@ -94,15 +95,37 @@ class Pager {
 			'offset-key' => $this->options['pager-offset'],
 			'offset-elastic' => true,
 		);
+		$offset = $this->options['pager-offset'];
+		$results = array();
 
-		// Retrieve results
-		$results = $this->storage->find( $this->query, $options );
+		do {
+			// Retrieve results
+			$found = $this->storage->find( $this->query, array(
+				'offset-id' => $offset,
+			) + $options );
 
-		// null or empty array
-		if ( !$results ) {
-			return new PagerPage( array(), array(), $this );
-		} else {
+			if ( !$found ) {
+				// nothing found
+				break;
+			}
+			$results = array_merge(
+				$results,
+				$filter ? array_filter( $found, $filter ) : $found
+			);
+
+			if ( count( $found ) !== $this->options['pager-limit'] + 1 ) {
+				// last page 
+				break;
+			}
+
+			// setup offset for next query
+			$offset = $this->storage->serializeOffset( end( $found ), $this->sort );
+		} while( count( $results ) < $this->options['pager-limit'] );
+
+		if ( $results ) {
 			return $this->processPage( $results );
+		} else {
+			return new PagerPage( array(), array(), $this );
 		}
 	}
 
@@ -116,9 +139,9 @@ class Pager {
 
 		// Retrieve paging links
 		if ( $this->options['pager-dir'] === 'fwd' ) {
-			if ( count( $results ) == $this->options['pager-limit'] + 1 ) {
-				// We got one extra, another page exists
-				array_pop( $results ); // Discard last item
+			if ( count( $results ) > $this->options['pager-limit'] ) {
+				// We got extra, another page exists
+				$results = array_slice( $results, 0, $this->options['pager-limit'] );
 				$pagingLinks['fwd'] = $this->makePagingLink(
 					'fwd',
 					end( $results ),
@@ -135,8 +158,8 @@ class Pager {
 			}
 		} elseif ( $this->options['pager-dir'] === 'rev' ) {
 			if ( count( $results ) == $this->options['pager-limit'] + 1 ) {
-				array_shift( $results );
-
+				// We got extra, another page exists
+				$results = array_slice( $results, -$this->options['pager-limit'] );
 				$pagingLinks['rev'] = $this->makePagingLink(
 					'rev',
 					reset( $results ),
@@ -154,6 +177,7 @@ class Pager {
 		} else {
 			throw new InvalidInputException( "Unrecognised direction " . $this->options['pager-dir'], 'invalid-input' );
 		}
+
 		return new PagerPage( $results, $pagingLinks, $this );
 	}
 
