@@ -1,0 +1,43 @@
+<div class="flow-topic flow-topic-moderated">
+	<div class="flow-topic-titlebar">
+		<div class="flow-moderated-topic-title flow-ui-text-truncated">
+			{{~noop~}}{{> flow_topic_moderation_flag}}
+			<span>{{~l10n (concat 'flow-moderation-success-' moderateState '-topic')~}}</span>
+			<div class="flow-topic-titlebar-undo">
+				{{#if actions.unhide}}
+					<a class="mw-ui-anchor mw-ui-progressive mw-ui-quiet"
+					  href="{{actions.unhide.url}}"
+					  title="{{actions.unhide.title}}"
+					  data-flow-interactive-handler="moderationDialog"
+					  data-template="flow_moderate_topic"
+					  data-role="unhide"
+					>
+						{{~l10n 'flow-topic-action-undo-moderation'~}}
+					</a>
+				{{/if}}
+				{{#if actions.undelete}}
+					<a class="mw-ui-anchor mw-ui-progressive mw-ui-quiet"
+					  href="{{actions.undelete.url}}"
+					  title="{{actions.undelete.title}}"
+					  data-flow-interactive-handler="moderationDialog"
+					  data-template="flow_moderate_topic"
+					  data-role="undelete"
+					>
+						{{~l10n 'flow-topic-action-undo-moderation'~}}
+					</a>
+				{{/if}}
+				{{#if actions.unsuppress}}
+					<a class="mw-ui-anchor mw-ui-progressive mw-ui-quiet"
+					  href="{{actions.unsuppress.url}}"
+					  title="{{actions.unsuppress.title}}"
+					  data-flow-interactive-handler="moderationDialog"
+					  data-template="flow_moderate_topic"
+					  data-role="unsuppress"
+					>
+						{{~l10n 'flow-topic-action-undo-moderation'~}}
+					</a>
+				{{/if}}
+			</div>
+		</div>
+	</div>
+</div>
