@@ -10,7 +10,10 @@ use Flow\Exception\InvalidInputException;
  * Fetches paginated results from the OM provided in constructor
  */
 class Pager {
+	private static $VALID_DIRECTIONS = array( 'fwd', 'rev' );
+	const DEFAULT_DIRECTION = 'fwd';
 	const DEFAULT_LIMIT = 1;
+	const MAX_LIMIT = 500;
 
 	/**
 	 * @var ObjectManager
@@ -40,34 +43,55 @@ class Pager {
 	public function __construct( ObjectManager $storage, array $query, array $options ) {
 		// not sure i like this
 		$this->storage = $storage;
-		$indexOption = array( 'limit' => $options['pager-limit'] );
-		if ( isset( $options['sort'] ) && isset( $options['order'] ) ) {
-			$indexOption['sort'] = array( $options['sort'] );
-			$indexOption['order'] = $options['order'];
+		$this->query = $query;
+		$this->options = $options + array(
+			'pager-offset' => null,
+			'pager-limit' => self::DEFAULT_LIMIT,
+			'pager-dir' => self::DEFAULT_DIRECTION,
+		);
+
+		$this->options['pager-limit'] = intval( $this->options['pager-limit'] );
+		if ( ! ( $this->options['pager-limit'] > 0 && $this->options['pager-limit'] < self::MAX_LIMIT ) ) {
+			$this->options['pager-limit'] = self::DEFAULT_LIMIT;
+		}
+
+		if ( !in_array( $this->options['pager-dir'], self::$VALID_DIRECTIONS ) ) {
+			$this->options['pager-dir'] = self::DEFAULT_DIRECTION;
+		}
+
+		$indexOptions = array(
+			'limit' => $this->options['pager-limit']
+		);
+		if ( isset( $this->options['sort'], $this->options['order'] ) ) {
+			$indexOptions += array(
+				'sort' => array( $this->options['sort'] ),
+				'order' => $this->options['order'],
+			);
 		}
 		$this->sort = $storage->getIndexFor(
 			array_keys( $query ),
-			$indexOption
+			$indexOptions
 		)->getSort();
-		$this->query = $query;
-		$this->options = $options;
+
+		$useId = false;
+		foreach ( $this->sort as $val ) {
+			if ( substr( $val, -3 ) === '_id' ) {
+				$useId = true;
+			}
+			break;
+		}
+		$this->offsetKey = $useId ? 'offset-id' : 'offset';
 	}
 
 	/**
 	 * @return PagerPage
 	 */
 	public function getPage() {
-		$direction = $this->getDirection( $this->options );
-		$offset = $this->getOffset( $this->options );
-		$pageLimit = $this->getLimit( $this->options );
-
-		// We need one item of leeway to determine if there are more items
-		$queryLimit = $pageLimit + 1;
-
 		$options = $this->options + array(
-			'limit' => $queryLimit,
-			'offset-dir' => $direction,
-			'offset-key' => $offset,
+			// We need one item of leeway to determine if there are more items
+			'limit' => $this->options['pager-limit'] + 1,
+			'offset-dir' => $this->options['pager-dir'],
+			'offset-key' => $this->options['pager-offset'],
 			'offset-elastic' => true,
 		);
 
@@ -78,68 +102,57 @@ class Pager {
 		if ( !$results ) {
 			return new PagerPage( array(), array(), $this );
 		} else {
-			return $this->processPage( $direction, $offset, $pageLimit, $results );
+			return $this->processPage( $results );
 		}
 	}
 
 	/**
-	 * @param string $dir
-	 * @return boolean
-	 */
-	protected function validateDirection( $dir ) {
-		return in_array( $dir, array( 'fwd', 'rev' ), true );
-	}
-
-	/**
-	 * @param string $direction
-	 * @param integer $offset
-	 * @param integer $pageLimit
 	 * @param array $results
 	 * @return PagerPage
 	 * @throws InvalidInputException
 	 */
-	protected function processPage( $direction, $offset, $pageLimit, $results ) {
+	protected function processPage( $results ) {
 		$pagingLinks = array();
 
 		// Retrieve paging links
-		if ( $direction === 'fwd' ) {
-			if ( count( $results ) == $pageLimit + 1 ) {
+		if ( $this->options['pager-dir'] === 'fwd' ) {
+			if ( count( $results ) == $this->options['pager-limit'] + 1 ) {
 				// We got one extra, another page exists
 				array_pop( $results ); // Discard last item
 				$pagingLinks['fwd'] = $this->makePagingLink(
 					'fwd',
 					end( $results ),
-					$pageLimit
+					$this->options['pager-limit']
 				);
 			}
 
-			if ( $offset !== null ) {
+			if ( $this->options['pager-offset'] !== null ) {
 				$pagingLinks['rev'] = $this->makePagingLink(
 					'rev',
 					reset( $results ),
-					$pageLimit
+					$this->options['pager-limit']
 				);
 			}
-		} elseif ( $direction === 'rev' ) {
-			if ( count( $results ) == $pageLimit + 1 ) {
+		} elseif ( $this->options['pager-dir'] === 'rev' ) {
+			if ( count( $results ) == $this->options['pager-limit'] + 1 ) {
 				array_shift( $results );
 
 				$pagingLinks['rev'] = $this->makePagingLink(
 					'rev',
 					reset( $results ),
-					$pageLimit
+					$this->options['pager-limit']
 				);
 			}
 
-			if ( $offset !== null ) {
+			if ( $this->options['pager-offset'] !== null ) {
 				$pagingLinks['fwd'] = $this->makePagingLink(
 					'fwd',
 					end( $results ),
-					$pageLimit
+					$this->options['pager-limit']
 				);
 			}
 		} else {
-			throw new InvalidInputException( "Unrecognised direction $direction", 'invalid-input' );
+			throw new InvalidInputException( "Unrecognised direction " . $this->options['pager-dir'], 'invalid-input' );
 		}
 		return new PagerPage( $results, $pagingLinks, $this );
 	}
@@ -155,72 +168,11 @@ class Pager {
 		$return = array(
 			'offset-dir' => $direction,
 			'limit' => $pageLimit,
+			$this->offsetKey => $this->storage->serializeOffset( $object, $this->sort ),
 		);
-		$useId = false;
-		foreach ( $this->sort as $val ) {
-			if ( substr( $val, -3 ) === '_id' ) {
-				$useId = true;
-			}
-			break;
-		}
-		if ( $useId ) {
-			$return['offset-id'] = $offset;
-		} else {
-			$return['offset'] = $offset;
-		}
 		if ( isset( $this->options['sortby'] ) ) {
 			$return['sortby'] = $this->options['sortby'];
 		}
 		return $return;
-	}
-
-	/**
-	 * @param array $options
-	 * @return string
-	 */
-	protected function getDirection( $options ) {
-		$direction = 'fwd';
-		if ( isset( $options['pager-dir'] ) ) {
-			if ( $this->validateDirection( $options['pager-dir'] ) ) {
-				$direction = $options['pager-dir'];
-			}
-		}
-
-		return $direction;
-	}
-
-	/**
-	 * @return integer
-	 */
-	protected function getMaxLimit() {
-		return 500;
-	}
-
-	/**
-	 * @param array $options
-	 * @return integer
-	 */
-	protected function getLimit( $options ) {
-		if ( isset( $options['pager-limit'] ) ) {
-			$requestedLimit = intval( $options['pager-limit'] );
-
-			if ( $requestedLimit > 0 && $requestedLimit < $this->getMaxLimit() ) {
-				return $requestedLimit;
-			}
-		}
-
-		return self::DEFAULT_LIMIT;
-	}
-
-	/**
-	 * @param array $options
-	 * @return string
-	 */
-	protected function getOffset( $options ) {
-		if ( isset( $options['pager-offset'] ) ) {
-			return $options['pager-offset'];
-		}
-
-		return null;
 	}
 }
