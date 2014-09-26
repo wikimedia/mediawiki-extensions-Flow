@@ -14,6 +14,7 @@ class Pager {
 	const DEFAULT_DIRECTION = 'fwd';
 	const DEFAULT_LIMIT = 1;
 	const MAX_LIMIT = 500;
+	const MAX_QUERIES = 5;
 
 	/**
 	 * @var ObjectManager
@@ -97,8 +98,14 @@ class Pager {
 		);
 		$offset = $this->options['pager-offset'];
 		$results = array();
+		$queries = 0;
 
 		do {
+			if ( $queries === 3 ) {
+				// if we hit a third query ask for more items
+				$options['limit'] = min( self::MAX_LIMIT, $options['limit'] * 3 );
+			}
+
 			// Retrieve results
 			$found = $this->storage->find( $this->query, array(
 				'offset-id' => $offset,
@@ -110,17 +117,24 @@ class Pager {
 			}
 			$results = array_merge(
 				$results,
-				$filter ? array_filter( $found, $filter ) : $found
+				$filter ? call_user_func( $filter, $found ) : $found
 			);
 
 			if ( count( $found ) !== $this->options['pager-limit'] + 1 ) {
-				// last page 
+				// last page
 				break;
 			}
 
 			// setup offset for next query
 			$offset = $this->storage->serializeOffset( end( $found ), $this->sort );
-		} while( count( $results ) < $this->options['pager-limit'] );
+
+		} while ( count( $results ) < $this->options['pager-limit'] && ++$queries < self::MAX_QUERIES );
+
+		if ( $queries >= self::MAX_QUERIES ) {
+			$count = count( $results );
+			$limit = $this->options['pager-limit'];
+			wfDebugLog( 'Flow', __METHOD__ . "Reached maximum of $queries queries with $count results of $limit requested with query of " . json_encode( $this->query ) . ' and options ' . json_encode( $options ) );
+		}
 
 		if ( $results ) {
 			return $this->processPage( $results );

@@ -1113,20 +1113,18 @@
 
 		FlowBoardComponent.UI.events.apiHandlers.moderateTopic = _genModerateHandler(
 			'moderate-topic',
-			function ( $target, revision ) {
-				var html = mw.flow.TemplateEngine.processTemplate( 'flow_topic', revision ),
-					$replacement = $( html ),
-					$titlebar = $replacement.find( '.flow-topic-titlebar' );
+			function ( $target, revision, apiResult ) {
+				if ( revision.isModerated ) {
+					var $replacement = $( mw.flow.TemplateEngine.processTemplate(
+						revision.isModerated ? 'flow_moderate_topic_success' : 'flow_topic',
+						revision
+					) );
 
-				$target
-					.closest( '.flow-topic' )
-					.attr( 'class', $replacement.attr( 'class' ) );
-
-				$target
-					.closest( '.flow-topic-titlebar' )
-					.replaceWith( $titlebar );
-
-				FlowBoardComponent.UI.makeContentInteractive( $titlebar );
+					$target.closest( '.flow-topic' ).replaceWith( $replacement );
+					FlowBoardComponent.UI.makeContentInteractive( $replacement );
+				} else {
+					flowBoardComponentRefreshTopic( $target, apiResult );
+				}
 			}
 		);
 
@@ -1660,6 +1658,7 @@
 				$this = $( this ),
 				board = FlowBoardComponent.prototype.getInstanceByElement( $this ),
 				// hide, delete, suppress
+				// @todo this could just be detected from the url
 				role = $this.data( 'role' ),
 				template = $this.data( 'template' ),
 				params = {

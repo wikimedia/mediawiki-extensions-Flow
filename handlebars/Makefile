@@ -17,6 +17,7 @@ POST_SUBTEMPLATES=flow_post.handlebars \
 TOPIC_SUBTEMPLATES=flow_topic.handlebars \
 		flow_topic_titlebar.handlebars \
 		flow_topic_titlebar_content.handlebars \
+		flow_topic_moderation_flag.handlebars \
 		flow_topic_titlebar_lock.handlebars \
 		flow_topic_titlebar_summary.handlebars \
 		flow_topic_titlebar_watch.handlebars \
