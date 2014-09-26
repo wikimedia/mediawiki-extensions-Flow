@@ -177,11 +177,6 @@
 >
 	<div class="flow-topic-titlebar flow-click-interactive" data-flow-interactive-handler="collapserCollapsibleToggle" tabindex="0">
 	<h2 class="flow-topic-title" data-title="'.LCRun3::ch($cx, 'plaintextSnippet', Array(Array(((is_array($in['content']) && isset($in['content']['format'])) ? $in['content']['format'] : null),((is_array($in['content']) && isset($in['content']['content'])) ? $in['content']['content'] : null)),Array()), 'encq').'">'.LCRun3::ch($cx, 'escapeContent', Array(Array(((is_array($in['content']) && isset($in['content']['format'])) ? $in['content']['format'] : null),((is_array($in['content']) && isset($in['content']['content'])) ? $in['content']['content'] : null)),Array()), 'encq').'</h2>
-'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? '
-	<div class="flow-moderated-topic-title flow-ui-text-truncated"><span
-		class="wikiglyph '.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'===','lock'),Array()), $in, function($cx, $in) {return 'wikiglyph-lock';}).''.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'===','hide'),Array()), $in, function($cx, $in) {return 'wikiglyph-flag';}).''.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'===','delete'),Array()), $in, function($cx, $in) {return 'wikiglyph-trash';}).'"></span>
-		'.LCRun3::ch($cx, 'l10n', Array(Array('post_moderation_state',((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),((is_array($in) && isset($in['replyToId'])) ? $in['replyToId'] : null),((is_array($in['moderator']) && isset($in['moderator']['name'])) ? $in['moderator']['name'] : null)),Array()), 'encq').'</div>
-' : '').'
 <div class="flow-topic-meta">
 	'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['reply'])) ? $in['actions']['reply'] : null))) ? '
 		<a href="'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['url'])) ? $in['actions']['reply']['url'] : null), ENT_QUOTES, 'UTF-8').'"
@@ -199,6 +194,15 @@
 		'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null),'flow-started-ago',false),Array()), 'encq').'
 	').'
 </div>
+'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? '
+	<div class="flow-moderated-topic-title flow-ui-text-truncated">'.htmlentities(((is_array($in) && isset($in['noop'])) ? $in['noop'] : null), ENT_QUOTES, 'UTF-8').'<span class="wikiglyph'.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'===','lock'),Array()), $in, function($cx, $in) {return ' wikiglyph-lock';}).''.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'===','hide'),Array()), $in, function($cx, $in) {return ' wikiglyph-flag';}).''.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'===','delete'),Array()), $in, function($cx, $in) {return ' wikiglyph-trash';}).'"></span>
+
+		'.LCRun3::ch($cx, 'l10n', Array(Array('post_moderation_state',((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),((is_array($in) && isset($in['replyToId'])) ? $in['replyToId'] : null),((is_array($in['moderator']) && isset($in['moderator']['name'])) ? $in['moderator']['name'] : null)),Array()), 'encq').'</div>
+	<div class="flow-moderated-topic-reason">
+		'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-moderated-reason-prefix'),Array()), 'encq').'
+		'.htmlentities(((is_array($in) && isset($in['moderateReason'])) ? $in['moderateReason'] : null), ENT_QUOTES, 'UTF-8').'
+	</div>
+' : '').'
 <span class="flow-reply-count"><span class="wikiglyph wikiglyph-speech-bubble"></span><span class="flow-reply-count-number">'.htmlentities(((is_array($in) && isset($in['reply_count'])) ? $in['reply_count'] : null), ENT_QUOTES, 'UTF-8').'</span></span>
 
 <div class="flow-topic-summary-container">
