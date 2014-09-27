@@ -14,6 +14,7 @@
 	"flow-post-action-post-history": "Sejarah",
 	"flow-post-action-edit-post": "Sunting",
 	"flow-topic-action-history": "Sejarah",
+	"flow-error-content-too-long": "Kandungan terlalu besar. Kandungan selepas peluasan terhad kepada $1 bait.",
 	"flow-notification-reply": "$1 telah {{GENDER:$1|membalas}} <span class=\"plainlinks\">[$5 kiriman]</span> anda di \"$2\" pada \"$4\".",
 	"flow-notification-reply-bundle": "$1 dan $5 {{PLURAL:$6|orang lain}} telah {{GENDER:$1|membalas}} <span class=\"plainlinks\">[$4 kiriman]</span> anda di \"$2\" pada \"$3\".",
 	"flow-notification-edit": "$1 telah {{GENDER:$1|menyunting}} suatu <span class=\"plainlinks\">[$5 kiriman]</span> di \"$2\" pada [[$3|$4]].",
@@ -21,6 +22,7 @@
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1 telah {{GENDER:$1|membuka}} <span class=\"plainlinks\">[$5 topik baru]</span> pada [[$2|$3]]: $4.",
 	"flow-notification-rename": "$1 telah {{GENDER:$1|menukar}} tajuk <span class=\"plainlinks\">[$2 $3]</span> kepada \"$4\" pada [[$5|$6]].",
 	"flow-notification-mention": "$1 telah {{GENDER:$1|menyebut}} nama anda di <span class=\"plainlinks\">[$2 kirimannya]</span> di \"$3\" pada \"$4\".",
+	"flow-notification-reply-email-subject": "$2 di $3",
 	"flow-notification-reply-email-batch-body": "$1 telah {{GENDER:$1|membalas}} kiriman anda di \"$2\" pada \"$3\"",
 	"flow-notification-reply-email-batch-bundle-body": "$1 dan $4 {{PLURAL:$5|orang lain}} telah {{GENDER:$1|membalas}} kiriman anda di \"$2\" pada \"$3\"",
 	"flow-notification-mention-email-subject": "$1 telah {{GENDER:$1|menyebut}} nama anda di \"$2\"",
@@ -30,5 +32,6 @@
 	"flow-moderation-confirmation-delete-topic": "Topik ini berjaya dihapuskan.\nApa kata anda {{GENDER:$2|memaklum balas}} $1 mengenai topik ini?",
 	"flow-topic-collapsed-one-line": "Paparan kecil",
 	"flow-topic-collapsed-full": "Paparan terlipat",
-	"flow-topic-complete": "Paparan penuh"
+	"flow-topic-complete": "Paparan penuh",
+	"flow-topic-html-title": "$1 di $2"
 }
