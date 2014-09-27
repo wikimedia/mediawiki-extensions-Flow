@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ee62ffec_869ce013",
+        "filename": "container.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-27T02:37:00Z",
+      "side": 1,
+      "message": "This was so i could write tests that pass their own filter, made the test cases cleaner to move this outside the class. I\u0027ve now added \u0027wfIsBadImage\u0027 as the default argument here.",
+      "parentUuid": "ee62ffec_6b9f7507",
+      "revId": "1d7c7855d29e990e0a6b6a4e71d8e738555ebf3a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee62ffec_8b9ce913",
         "filename": "includes/Parsoid/Utils.php",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2014-09-26T12:36:25Z",
       "side": 1,
       "message": "Instead of all of this \u0026 the below function, we could just immediately do:\n\n    $text \u003d preg_replace( \u0027/^(\\.\\.?\\/)+/\u0027, \u0027\u0027, $text );",
+      "revId": "1d7c7855d29e990e0a6b6a4e71d8e738555ebf3a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce57fb0e_0821679a",
+        "filename": "includes/Parsoid/Utils.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-09-27T02:37:00Z",
+      "side": 1,
+      "message": "I suppose we can, i had started writing something that actually resolved the ../../././../../ against the title, but it turned out much easier to just strip it.  \n\nWith this simplified to not caring i think we can strip it down to a preg_replace",
+      "parentUuid": "ee62ffec_8b9ce913",
       "revId": "1d7c7855d29e990e0a6b6a4e71d8e738555ebf3a",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
