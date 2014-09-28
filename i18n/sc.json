@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Taxandru"
+		]
+	},
+	"flow-edited-ago-minute": "Cambiadu $1 {{PLURAL:$1|minutu|minutos}} a como",
+	"flow-time-ago-minute": "$1 {{PLURAL:$1|minutu|minutos}} a como"
+}

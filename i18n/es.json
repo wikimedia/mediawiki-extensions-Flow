@@ -256,6 +256,7 @@
 	"flow-terms-of-use-edit": "Al guardar los cambios aceptas los términos de uso de este wiki.",
 	"flow-anon-warning": "No has iniciado sesión. Para recibir atribución con tu nombre en lugar de su dirección IP, puedes [$1 iniciar sesión] o [$2 crear una cuenta].",
 	"flow-cancel-warning": "Has escrito texto en este formulario. ¿Estás seguro de que quieres descartarlo?",
+	"flow-topic-html-title": "$1 en $2",
 	"flow-topic-count": "Temas ($1)",
 	"flow-active-ago": "Activo $1",
 	"flow-started-ago": "Comenzado $1",

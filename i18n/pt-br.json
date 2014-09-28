@@ -7,7 +7,8 @@
 			"!Silent",
 			"Dianakc",
 			"OTAVIO1981",
-			"Teles"
+			"Teles",
+			"Jefersonmoraes"
 		]
 	},
 	"flow-desc": "Sistema de gerenciamento do fluxo de trabalho",
@@ -158,6 +159,7 @@
 	"flow-moderation-confirm-hide-post": "Ocultar",
 	"flow-moderation-confirm-delete-topic": "Excluir",
 	"flow-moderation-confirm-hide-topic": "Ocultar",
+	"flow-topic-html-title": "1 $ em $ 2",
 	"flow-add-topic": "Adicionar tópico",
 	"flow-special-type": "Tipo",
 	"flow-special-type-post": "Publicação",
