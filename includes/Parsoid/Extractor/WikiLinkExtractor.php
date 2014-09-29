@@ -6,7 +6,6 @@ use DOMElement;
 use Flow\Model\Reference;
 use Flow\Parsoid\ExtractorInterface;
 use Flow\Parsoid\ReferenceFactory;
-use FormatJson;
 
 /**
  * Finds and creates References for internal wiki links in parsoid HTML
@@ -23,8 +22,14 @@ class WikiLinkExtractor implements ExtractorInterface {
 	 * {@inheritDoc}
 	 */
 	public function perform( ReferenceFactory $factory, DOMElement $element ) {
-		$parsoidData = FormatJson::decode( $element->getAttribute( 'data-parsoid' ), true );
+		$href = $element->getAttribute( 'href' );
+		if ( $href === '' ) {
+			return null;
+		}
 
-		return $factory->createWikiReference( Reference::TYPE_LINK, $parsoidData['sa']['href'] );
+		return $factory->createWikiReference(
+			Reference::TYPE_LINK,
+			urldecode( $href )
+		);
 	}
 }

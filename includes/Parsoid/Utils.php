@@ -254,11 +254,16 @@ abstract class Utils {
 	 * @return Title|null
 	 */
 	public static function createRelativeTitle( $text, Title $title ) {
+		// currently parsoid always uses enough ../ or ./ to go
+		// back to the root, a bit of a kludge but just assume we
+		// can strip and will end up with a non-relative text.
+		$text = preg_replace( '|(\.\.?/)+|', '', $text );
+
 		if ( $text && ( $text[0] === '/' || $text[0] === '#' ) ) {
 			return Title::newFromText( $title->getDBkey() . $text, $title->getNamespace() );
-		} else {
-			return Title::newFromText( $text );
 		}
+
+		return Title::newFromText( $text );
 	}
 }
 

@@ -11,7 +11,6 @@ use DOMNode;
 use LinkBatch;
 use Linker;
 use Title;
-use FormatJson;
 
 /**
  * Parsoid ignores red links. With good reason: redlinks should only be
@@ -115,8 +114,11 @@ class Redlinker implements ContentFixer {
 
 		// find links in DOM
 		$batch = $this->batch;
-		$callback = function( DOMNode $linkNode, array $parsoid ) use( $batch ) {
-			$title = Title::newFromText( $parsoid['sa']['href'] );
+		$callback = function( DOMNode $linkNode, $href ) use( $batch ) {
+			// @todo Get proper title in here.  doesn't matter currently due to
+			// the html from parsoid using '../../' style of relative
+			// that don't strictly require the title its relative from.
+			$title = Utils::createRelativeTitle( $href, Title::newMainPage() );
 			if ( $title !== null ) {
 				$batch->addObj( $title );
 			}
@@ -158,8 +160,8 @@ class Redlinker implements ContentFixer {
 		 */
 		$dom = Utils::createDOM( '<?xml encoding="utf-8"?>' . $content );
 		$self = $this;
-		self::forEachLink( $dom, function( DOMNode $linkNode, array $parsoid ) use ( $self, $dom, $title ) {
-			$title = Utils::createRelativeTitle( $parsoid['sa']['href'], $title );
+		self::forEachLink( $dom, function( DOMNode $linkNode, $href ) use ( $self, $dom, $title ) {
+			$title = Utils::createRelativeTitle( $href, $title );
 			// Don't process invalid links
 			if ( $title === null ) {
 				return;
@@ -188,30 +190,26 @@ class Redlinker implements ContentFixer {
 			wfDebugLog( 'Flow', __METHOD__ . ' : Source content ' . md5( $content ) . ' resulted in no body' );
 			$res = '';
 		}
+
 		return $res;
 	}
 
 	/**
-	 * Helper method executes a callback on every anchor that contains
-	 * an ['sa']['href'] value in data-parsoid
+	 * Helper method executes a callback on every anchor that has both
+	 * an href attribute and rel="mw:WikiLink"
 	 *
 	 * @param DOMDocument $dom
 	 * @param Closure $callback Receives (DOMElement, array)
 	 */
 	static public function forEachLink( DOMDocument $dom, Closure $callback ) {
 		$xpath = new \DOMXPath( $dom );
-		$linkNodes = $xpath->query( '//a[@rel="mw:WikiLink"][@data-parsoid]' );
+		$linkNodes = $xpath->query( '//a[@rel="mw:WikiLink"]' );
 
+		/** @var DOMElement $linkNode */
 		foreach ( $linkNodes as $linkNode ) {
-			// $linkNodes can contain any DOMNode, not just DOMElement's
-			if ( $linkNode instanceof DOMElement ) {
-				$parsoid = $linkNode->getAttribute( 'data-parsoid' );
-				$parsoid = FormatJson::decode( $parsoid, true );
-				if ( isset( $parsoid['sa']['href'] ) ) {
-					$callback( $linkNode, $parsoid );
-				}
-			} else {
-				wfDebugLog( 'Flow', __METHOD__ . ': Expected DOMElement but received: ' . get_class( $linkNode ) );
+			$href = $linkNode->getAttribute( 'href' );
+			if ( $href !== '' ) {
+				$callback( $linkNode, $href );
 			}
 		}
 	}
