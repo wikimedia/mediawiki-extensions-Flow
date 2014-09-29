@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce8c5bf9_bdd638f5",
+        "filename": "i18n/en.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-09-29T13:40:11Z",
+      "side": 1,
+      "message": "Replace \"Flow discussions\" by \"discussion boards\"?",
+      "revId": "18157cfc865a85ec1cf338afcec6945acbf4cd26",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
