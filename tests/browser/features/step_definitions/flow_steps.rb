@@ -28,11 +28,14 @@ Given(/^I have created a Flow topic with title "(.+)"$/) do |title|
   step "I type \"" + title + "\" into the new topic title field"
   step "I type \"" + title + "\" into the new topic content field"
   step "I click New topic save"
-  step 'the top post should have a heading which contains "' + title + '"'
 end
 
 Given(/^the author link is visible$/) do
     on(FlowPage).author_link_element.when_present.should be_visible
+end
+
+When(/^I am viewing Topic page$/) do
+  on(FlowPage).wait_until { @browser.url =~ /Topic/ }
 end
 
 When(/^I click the Post Actions link$/) do
@@ -122,9 +125,7 @@ Then(/^the top post should not have a heading which contains "(.+)"$/) do |text|
 end
 
 Then(/^the top post should have a heading which contains "(.+)"$/) do |text|
-  # Ensure the page has re-rendered, give 5 seconds to give enough time for new posts to be saved
-  step 'the page has re-rendered'
-  on(FlowPage).flow_first_topic_heading.should match(text)
+  on(FlowPage).flow_first_topic_heading_element.when_present.should match(text)
 end
 
 Then(/^the top post should have content which contains "(.+)"$/) do |text|

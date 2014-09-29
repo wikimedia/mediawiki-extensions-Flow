@@ -20,7 +20,6 @@ Feature: Lock and unlock topics
     When I click the Topic Actions link
         And I click the Lock topic button
         And I cancel the lock/unlock topic form
-        And the page has re-rendered
     Then the top post is an open discussion
         And I do not see the lock/unlock form
 
@@ -32,7 +31,6 @@ Feature: Lock and unlock topics
         And I click the Lock topic button
         And I type "This is a bikeshed" as the reason
         And I submit the lock/unlock topic form
-        And the page has re-rendered
     Then the top post is a locked discussion
         And the topic summary of the first topic is "This is a bikeshed"
         And the content of the top post should be visible
@@ -46,7 +44,6 @@ Feature: Lock and unlock topics
         And I click the Unlock topic button
     When I type "Fun discussion" as the reason
         And I submit the lock/unlock topic form
-        And the page has re-rendered
     Then the top post is an open discussion
         And the topic summary of the first topic is "Fun discussion"
         And the content of the top post should be visible

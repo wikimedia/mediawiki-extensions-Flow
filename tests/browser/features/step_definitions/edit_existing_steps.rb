@@ -25,8 +25,7 @@ end
 
 Then(/^I should be able to save the new post/) do
   on(FlowPage).change_post_save_element.when_present.click
-  # Ensure the save successfully goes through
-  step 'the page has re-rendered'
+  on(FlowPage).change_post_save_element.when_not_present
 end
 
 Then(/^I should be able to save the new title$/) do

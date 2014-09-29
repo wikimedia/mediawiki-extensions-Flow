@@ -7,5 +7,5 @@ Feature: Topic pages
       And I switch from Topics and posts view to Small topics view
     When I click the Topic Actions link
       And I click Permalink from the Actions menu
-      And the page has re-rendered
+      And I am viewing Topic page
     Then the content of the top post should be visible
