@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce8c5bf9_f158675b",
+        "filename": "i18n/en.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-09-29T20:16:59Z",
+      "side": 1,
+      "message": "* Please add message documentation when adding messages. See https://www.mediawiki.org/wiki/I18n#Message_documentation for details.\n* Indentation character (tab) is inconsistent with already used indentation character (space). Please convert the whole to to use tabs (preferred), or use spaces here and in the other lines that were added.",
+      "revId": "8492910898b37c5b876d685f7235e755bae3e947",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
