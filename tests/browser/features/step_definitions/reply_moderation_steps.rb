@@ -4,12 +4,15 @@ end
 
 When(/^I click the Hide button in the dialog$/) do
   on(FlowPage).dialog_submit_element.click
+  on(FlowPage).dialog_submit_element.when_not_present
 end
 
 Then(/^the 3rd comment should be marked as hidden$/) do
-  step 'the page has re-rendered'
-  on(FlowPage).third_reply_element.class_name.should match /flow-post-moderated/
-  on(FlowPage).third_reply_moderation_msg.should match( 'This comment was hidden' )
+  on(FlowPage) do |page|
+    page.third_reply_element.when_present
+    page.third_reply_element.class_name.should match /flow-post-moderated/
+    page.third_reply_moderation_msg.should match( 'This comment was hidden' )
+  end
 end
 
 Then (/^the content of the 3rd comment should not be visible$/) do
