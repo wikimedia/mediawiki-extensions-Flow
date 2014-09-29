@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce8c5bf9_fd4280b1",
+        "filename": "includes/Parsoid/ContentFixer.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-29T13:54:48Z",
+      "side": 1,
+      "message": "PHPDoc out of date",
+      "revId": "5a3d73f3cf286c69a42c33e8145606183aa80201",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_1d964450",
+        "filename": "includes/Parsoid/ContentFixer.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-29T13:54:48Z",
+      "side": 1,
+      "message": "Since we\u0027re relying on this method, it should be defined in the interface",
+      "revId": "5a3d73f3cf286c69a42c33e8145606183aa80201",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_9daa5481",
+        "filename": "includes/Parsoid/ContentFixer.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-29T13:54:48Z",
+      "side": 1,
+      "message": "$i doesn\u0027t exist",
+      "revId": "5a3d73f3cf286c69a42c33e8145606183aa80201",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_3daf8893",
+        "filename": "includes/Parsoid/ContentFixer.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-29T13:54:48Z",
+      "side": 1,
+      "message": "unused $revisionId",
+      "revId": "5a3d73f3cf286c69a42c33e8145606183aa80201",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_bdbf18a7",
+        "filename": "includes/Parsoid/Fixer/BadImageRemover.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-29T13:54:48Z",
+      "side": 1,
+      "message": "No longer needed",
+      "revId": "5a3d73f3cf286c69a42c33e8145606183aa80201",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_9d91f454",
+        "filename": "includes/Parsoid/Fixer/BadImageRemover.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-29T13:54:48Z",
+      "side": 1,
+      "message": "PHPDoc out of date",
+      "revId": "5a3d73f3cf286c69a42c33e8145606183aa80201",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_3d86a819",
+        "filename": "includes/Parsoid/Fixer/BadImageRemover.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-29T13:54:48Z",
+      "side": 1,
+      "message": "Missing from PHPDoc",
+      "revId": "5a3d73f3cf286c69a42c33e8145606183aa80201",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_9d349448",
+        "filename": "includes/Parsoid/Fixer/BadImageRemover.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-29T13:54:48Z",
+      "side": 1,
+      "message": "PHPDoc out of date",
+      "revId": "5a3d73f3cf286c69a42c33e8145606183aa80201",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_1dc3a43e",
+        "filename": "includes/Parsoid/Fixer/Redlinker.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-29T13:54:48Z",
+      "side": 1,
+      "message": "No longer needed",
+      "revId": "5a3d73f3cf286c69a42c33e8145606183aa80201",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_5db12cdb",
+        "filename": "includes/Parsoid/Fixer/Redlinker.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-29T13:54:48Z",
+      "side": 1,
+      "message": "PHPDoc \u0026 example code no longer applicable",
+      "revId": "5a3d73f3cf286c69a42c33e8145606183aa80201",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_7d8c303b",
+        "filename": "includes/Parsoid/Fixer/Redlinker.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-29T13:54:48Z",
+      "side": 1,
+      "message": "PHPDoc out of date",
+      "revId": "5a3d73f3cf286c69a42c33e8145606183aa80201",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
