@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce8c5bf9_9128fb33",
+        "filename": "includes/Formatter/AbstractQuery.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-09-29T19:50:31Z",
+      "side": 1,
+      "message": "I think we want to wfDebugLog( \u0027Flow\u0027, ...) this to our own log.  The exception would log the request (e.g. \"mw1037 mediawikiwiki: [3476013e] /wiki/Talk:HHVM/About\" ) causing it, can we reuse code to write the same info to the \u0027Flow\u0027 log?\n\nIs there extra info we can log about the failure to help diagnose the root cause?",
+      "revId": "1a3db0e38e5e961d13f08d49fc45e08239807ab0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_3119ef27",
+        "filename": "includes/Formatter/AbstractQuery.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-09-29T19:50:31Z",
+      "side": 1,
+      "message": "Likewise, wfDebugLog( \u0027Flow\u0027, ... ) here?",
+      "revId": "1a3db0e38e5e961d13f08d49fc45e08239807ab0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
