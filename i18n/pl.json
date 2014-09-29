@@ -11,7 +11,8 @@
 			"Wiochman",
 			"Ty221",
 			"WTM",
-			"Tar Lócesilion"
+			"Tar Lócesilion",
+			"Darellur"
 		]
 	},
 	"flow-edit-header-link": "Edytuj nagłówek",
@@ -98,6 +99,7 @@
 	"flow-terms-of-use-new-topic": "Klikając na \"{{int:flow-newtopic-save}}\", zgadzasz się na zasady użytkowania tej wiki.",
 	"flow-terms-of-use-reply": "Klikając na \"{{int:flow-reply-submit}}\", zgadzasz się na warunki użytkowania tej wiki.",
 	"flow-terms-of-use-edit": "Zapisując zmiany, zgadzasz się na warunki użytkowania tej wiki.",
+	"flow-topic-html-title": "$1 na $2",
 	"flow-started-ago-day": "Rozpoczęto {{PLURAL:$1|wczoraj|$1 dni temu}}",
 	"flow-started-ago-hour": "Rozpoczęto {{PLURAL:$1|przed godziną|$1 godziny temu|$1 godzin temu}}",
 	"flow-started-ago-minute": "Rozpoczęto {{PLURAL:$1|przed minutą|$1 minuty temu|$1 minut temu}}",

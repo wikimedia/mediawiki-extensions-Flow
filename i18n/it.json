@@ -290,6 +290,7 @@
 	"flow-anon-warning": "Non hai effettuato l'accesso. Per ricevere l'attribuzione con il tuo nome, anziché con l'indirizzo IP, puoi [$1 accedere] o [$2 creare un'utenza].",
 	"flow-cancel-warning": "Hai inserito del testo in questo modulo. Sei sicuro di volerlo ignorare?",
 	"flow-topic-first-heading": "Argomento su $1",
+	"flow-topic-html-title": "$1 su $2",
 	"flow-topic-count-sidebar": "Mostrati $1 di $2 argomenti collegati a questa pagina",
 	"flow-topic-count": "Argomenti ($1)",
 	"flow-active-ago": "Attiva $1",
