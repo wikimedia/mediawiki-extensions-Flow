@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce8c5bf9_1db0843d",
+        "filename": "includes/Parsoid/BadImageRemover.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-29T11:56:44Z",
+      "side": 1,
+      "message": "PHPdoc needs update",
+      "revId": "330996312655f7be7309d14c89ba7919b945f1e3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_ddb9bc2a",
+        "filename": "includes/Parsoid/BadImageRemover.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-29T11:56:44Z",
+      "side": 1,
+      "message": "No longer returns",
+      "revId": "330996312655f7be7309d14c89ba7919b945f1e3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_fdb28047",
+        "filename": "includes/Parsoid/ContentFixer.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-29T11:56:44Z",
+      "side": 1,
+      "message": "PHPDoc needs update",
+      "revId": "330996312655f7be7309d14c89ba7919b945f1e3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_bdbcf81b",
+        "filename": "includes/Parsoid/ContentFixer.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-29T11:56:44Z",
+      "side": 1,
+      "message": "No longer returns",
+      "revId": "330996312655f7be7309d14c89ba7919b945f1e3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_7d86706c",
+        "filename": "includes/Parsoid/Redlinker.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-29T11:56:44Z",
+      "side": 1,
+      "message": "No longer returns",
+      "revId": "330996312655f7be7309d14c89ba7919b945f1e3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
