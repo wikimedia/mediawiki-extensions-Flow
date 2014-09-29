@@ -28,11 +28,14 @@ Given(/^I have created a Flow topic with title "(.+)"$/) do |title|
   step "I type \"" + title + "\" into the new topic title field"
   step "I type \"" + title + "\" into the new topic content field"
   step "I click New topic save"
-  step 'the top post should have a heading which contains "' + title + '"'
 end
 
 Given(/^the author link is visible$/) do
     on(FlowPage).author_link_element.when_present.should be_visible
+end
+
+When(/^I am viewing Topic page$/) do
+  on(FlowPage).wait_until { @browser.url =~ /Topic/ }
 end
 
 When(/^I click the Post Actions link$/) do
