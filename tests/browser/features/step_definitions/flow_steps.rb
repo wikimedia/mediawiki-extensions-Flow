@@ -28,7 +28,6 @@ Given(/^I have created a Flow topic with title "(.+)"$/) do |title|
   step "I type \"" + title + "\" into the new topic title field"
   step "I type \"" + title + "\" into the new topic content field"
   step "I click New topic save"
-  step 'the top post should have a heading which contains "' + title + '"'
 end
 
 Given(/^the author link is visible$/) do
