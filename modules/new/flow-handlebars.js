@@ -532,7 +532,7 @@
 			'<scr' + 'ipt' +
 				' type="text/x-handlebars-template-progressive-enhancement"' +
 				' data-type="' + hash.type + '"' +
-				( hash.target ? ' data-target="' + hash.target +'"' : '' ) +
+				( hash.target ? ' data-target="' + hash.target + '"' : '' ) +
 				( hash.id ? ' id="' + hash.id + '"' : '' ) +
 			'>' +
 				inner +
