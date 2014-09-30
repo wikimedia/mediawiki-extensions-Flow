@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce8c5bf9_3b29c99a",
+        "filename": "tests/browser/features/step_definitions/flow_steps.rb",
+        "patchSetId": 9
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2014-09-30T09:34:10Z",
+      "side": 1,
+      "message": "The above block (4 lines) should work just fine as one liner (not tested):\n\n on(FlowPage).flow_first_topic_heading_element.when_present.should match(text)",
+      "revId": "0bd9c59ccfbebfde937c754b1b8ef3b2cda3852e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_5b260dcb",
+        "filename": "tests/browser/features/step_definitions/lock_unlock_topics_steps.rb",
+        "patchSetId": 9
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2014-09-30T09:34:10Z",
+      "side": 1,
+      "message": "The above two lines do not look properly indented to me.",
+      "revId": "0bd9c59ccfbebfde937c754b1b8ef3b2cda3852e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_fb328105",
+        "filename": "tests/browser/features/step_definitions/moderation_steps.rb",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2014-09-30T09:34:10Z",
+      "side": 1,
+      "message": "The above two lines should work just fine as just one line (not tested):\n\n on(FlowPage).flow_first_topic_moderation_msg.when_present.should match( \u0027This topic was deleted\u0027 )",
+      "revId": "0bd9c59ccfbebfde937c754b1b8ef3b2cda3852e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_1b3085fb",
+        "filename": "tests/browser/features/step_definitions/moderation_steps.rb",
+        "patchSetId": 9
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2014-09-30T09:34:10Z",
+      "side": 1,
+      "message": "The same as above.",
+      "revId": "0bd9c59ccfbebfde937c754b1b8ef3b2cda3852e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_bb1cf97d",
+        "filename": "tests/browser/features/step_definitions/reply_moderation_steps.rb",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2014-09-30T09:34:10Z",
+      "side": 1,
+      "message": "I am not sure what #click returns, but if it returns the page element, then the above two lines could be simplified:\n\n on(FlowPage).dialog_submit_element.click.when_not_present\n\nIf #click does not return the page element, then the above two lines should use a block:\n\n on(FlowPage) do |page|\n   page.dialog_submit_element.click\n   page.dialog_submit_element.when_not_present\n end",
+      "revId": "0bd9c59ccfbebfde937c754b1b8ef3b2cda3852e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_db21bdad",
+        "filename": "tests/browser/features/step_definitions/reply_moderation_steps.rb",
+        "patchSetId": 9
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2014-09-30T09:34:10Z",
+      "side": 1,
+      "message": "The above two lines should work fine like this (not tested):\n\npage.third_reply_element.when_present.class_name.should match /flow-post-moderated/",
+      "revId": "0bd9c59ccfbebfde937c754b1b8ef3b2cda3852e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
