@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce8c5bf9_6c5479ca",
+        "filename": "tests/browser/features/step_definitions/reply_moderation_steps.rb",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2014-09-30T15:42:37Z",
+      "side": 1,
+      "message": "Uh oh. I am not sure this is valid ruby (..) but looks like ruby syntax check did not fail. :)",
+      "revId": "734e00a1ae14c51eac0a7a2397c22991a21f3ef3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
