@@ -320,7 +320,6 @@ $wgResourceModules += array(
 			'ext.flow.vendor.storer',
 			'ext.flow.vendor.jquery.ba-throttle-debounce',
 			'mediawiki.jqueryMsg',
-			'jquery.json',
 			'ext.flow.jquery.conditionalScroll',
 			'ext.flow.jquery.findWithParent',
 			'mediawiki.api',
