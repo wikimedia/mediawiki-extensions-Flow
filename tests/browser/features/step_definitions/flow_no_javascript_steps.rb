@@ -1,6 +1,4 @@
-Given(/^I am viewing the site without JavaScript$/) do
-  # Using IE5 user agent which is currently blocked by ResourceLoader
-  user_agent = "Mozilla/4.0 (compatible; MSIE 5.5b1; Mac_PowerPC)"
+Given(/^I am using user agent "(.+)"$/) do |user_agent|
   @user_agent = user_agent
   @browser = browser(test_name(@scenario), {user_agent: user_agent})
   $session_id = @browser.driver.instance_variable_get(:@bridge).session_id
@@ -11,7 +9,7 @@ Given(/^I am on a Flow page without JavaScript$/ ) do
 end
 
 Then(/^I see the form to post a new topic$/) do
-  on(FlowPage).new_topic_form_element.should be_visible
+  on(FlowPage).new_topic_form_element.when_present.should be_visible
 end
 
 Then(/^the post new topic form has an add topic button$/) do

@@ -2,7 +2,7 @@
 Feature: Basic site for legacy devices
 
   Background:
-    Given I am viewing the site without JavaScript
+    Given I am using user agent "Mozilla/4.0 (compatible; MSIE 5.5b1; Mac_PowerPC)"
       And I am on a Flow page without JavaScript
 
   Scenario: I can see form to post a new topic without JavaScript
