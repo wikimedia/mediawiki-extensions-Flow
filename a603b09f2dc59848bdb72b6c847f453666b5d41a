@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce8c5bf9_5cc60050",
+        "filename": "Gruntfile.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2014-09-30T21:53:43Z",
+      "side": 1,
+      "message": "This is not used.",
+      "revId": "a603b09f2dc59848bdb72b6c847f453666b5d41a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_fc05947d",
+        "filename": "Gruntfile.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2014-09-30T21:53:43Z",
+      "side": 1,
+      "message": "Needs a jscsrc file.",
+      "revId": "a603b09f2dc59848bdb72b6c847f453666b5d41a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_7ccae44b",
+        "filename": "Gruntfile.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2014-09-30T21:53:43Z",
+      "side": 1,
+      "message": "Needs a csslintrc file. Does Flow use CSS? Or only Less?",
+      "revId": "a603b09f2dc59848bdb72b6c847f453666b5d41a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
