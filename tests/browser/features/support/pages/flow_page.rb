@@ -56,6 +56,7 @@ class FlowPage < WikiPage
   a(:flow_first_topic_original_post_reply) do |page|
     page.flow_first_topic_original_post_element.link_element(text: "Reply")
   end
+  div(:flow_second_topic_heading, css: ".flow-topic", index: 1)
 
   ### Hover over username behaviour
   span(:usertools, css: '.mw-usertoollinks')
