@@ -169,7 +169,7 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 و $5 {{PLURAL:$6|نفر دیگر|نفر دیگر}} روی '''$3''' {{GENDER:$1|پاسخ داده‌اند}}.",
 	"flow-notification-edit": "$1 {{GENDER:$1|ویرایش شده}} یک <span class=\"plainlinks\">[$5 post]</span> در \"$2\" در [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 و $5 {{PLURAL:$6|دیگر|دیگران}} {{GENDER:$1|ویرایش شده}} یک <span class=\"plainlinks\">[$4 post]</span> در \"$2\" در \"$3\".",
-	"flow-notification-newtopic": "$1 یک <span class=\"plainlinks\">[$5 مبحث تازه]</span> در '''$3''' {{GENDER:$1|ایجاد کرد}}.",
+	"flow-notification-newtopic": "$1 یک  مبحث تازه در '''$3''' {{GENDER:$1|ایجاد کرد}}.",
 	"flow-notification-rename": "$1 {{GENDER:$1|تغیر یافته}} به عنوان <span class=\"plainlinks\">[$2 $3]</span> به \"$4\" در [[$5|$6]].",
 	"flow-notification-mention": "$1 به {{GENDER:$5|شما}} در <span class=\"plainlinks\">[$2 ارسال]</span> {{GENDER:$1|خودش|خودش|خودشان}} در «$3» در «$4» {{GENDER:$1|اشاره کرد}}.",
 	"flow-notification-link-text-view-post": "نمایش ارسال",
