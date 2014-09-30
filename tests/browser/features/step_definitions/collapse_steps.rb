@@ -1,4 +1,19 @@
-# In order
+def visibility_to_should(el, visibility_str)
+  if visibility_str == 'see'
+    expect(el).to be_visible
+  elsif visibility_str == 'not see'
+    expect(el).not_to be_visible
+  end
+end
+
+When(/^I click the first moderated topic$/) do
+  on(FlowPage).first_moderated_topic_titlebar_element.click
+end
+
+When(/^I click the first non-moderated topic$/) do
+  on(FlowPage).first_non_moderated_topic_title_element.click
+end
+
 COLLAPSE_STRING_TO_INDEX = {
   "Topics and posts" => 0,
   "Topics only" => 1,
@@ -27,12 +42,20 @@ When(/^I switch from (.*) view to (.*) view$/) do |start_mode, end_mode|
   end
 end
 
-def visibility_to_should(el, visibility_str)
-  if visibility_str === 'see'
-    el.should be_visible
-  elsif visibility_str === 'not see'
-    el.should_not be_visible
-  end
+Then(/^I should (.*) a moderated message on the first moderated topic$/) do |visibility_str|
+  visibility_to_should(on(FlowPage).first_moderated_message_element, visibility_str)
+end
+
+Then(/^I should (.*) the comments of the first moderated topic$/) do |visibility_str|
+  visibility_to_should(on(FlowPage).first_moderated_topic_post_content_element, visibility_str)
+end
+
+Then(/^I should (.*) the comments of the first non-moderated topic$/) do |visibility_str|
+  visibility_to_should(on(FlowPage).first_non_moderated_topic_post_content_element, visibility_str)
+end
+
+Then(/^I should (.*) the title of the first moderated topic$/) do |visibility_str|
+  visibility_to_should(on(FlowPage).first_moderated_topic_title_element, visibility_str)
 end
 
 Then(/^I should (.*) the title of the first non-moderated topic$/) do |visibility_str|
@@ -41,28 +64,4 @@ end
 
 Then(/^I should (.*) who started the first non-moderated topic$/) do |visibility_str|
   visibility_to_should(on(FlowPage).first_non_moderated_topic_starter_element, visibility_str)
-end
-
-Then(/^I should (.*) the comments of the first non-moderated topic$/) do |visibility_str|
-  visibility_to_should(on(FlowPage).first_non_moderated_topic_post_content_element, visibility_str)
-end
-
-When(/^I click the first moderated topic$/) do
-  on(FlowPage).first_moderated_topic_titlebar_element.click
-end
-
-When(/^I click the first non-moderated topic$/) do
-  on(FlowPage).first_non_moderated_topic_title_element.click
-end
-
-Then(/^I should (.*) a moderated message on the first moderated topic$/) do |visibility_str|
-  visibility_to_should(on(FlowPage).first_moderated_message_element, visibility_str)
-end
-
-Then(/^I should (.*) the title of the first moderated topic$/) do |visibility_str|
-  visibility_to_should(on(FlowPage).first_moderated_topic_title_element, visibility_str)
-end
-
-Then(/^I should (.*) the comments of the first moderated topic$/) do |visibility_str|
-  visibility_to_should(on(FlowPage).first_moderated_topic_post_content_element, visibility_str)
 end
