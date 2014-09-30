@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce8c5bf9_9986da17",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1087
+      },
+      "writtenOn": "2014-09-30T20:37:24Z",
+      "side": 1,
+      "message": "Unrelated change",
+      "revId": "c5c0e15ff94c815144966ee00b7d0d90336aa2df",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_598052f9",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1087
+      },
+      "writtenOn": "2014-09-30T20:37:24Z",
+      "side": 1,
+      "message": "Unrelated change?",
+      "revId": "c5c0e15ff94c815144966ee00b7d0d90336aa2df",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}

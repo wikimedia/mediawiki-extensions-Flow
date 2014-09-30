@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce8c5bf9_197aca1f",
+        "filename": "includes/Model/Anchor.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1087
+      },
+      "writtenOn": "2014-09-30T20:37:24Z",
+      "side": 0,
+      "message": "Now that the double encoding problem is gone, is there anywhere left that uses explicit messages still that doesn\u0027t need to? (Or is using explicit messages still better in some way?)",
+      "revId": "9d35d4276ba156415d2ac1a849828b910932308e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
