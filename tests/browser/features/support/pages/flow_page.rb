@@ -186,6 +186,18 @@ class FlowPage < WikiPage
     page.third_post_actions_menu_element.link_element(text: "Hide")
   end
 
+  # No javascript elements
+  button(:no_javascript_add_topic, text: "Add topic")
+  div(:no_javascript_page_content_body, class: "flow-post-content")
+  div(:no_javascript_page_content_title, class: "flow-topic-titlebar flow-click-interactive")
+  div(:no_javascript_page_flow_topics, class: "flow-topics")
+  button(:no_javascript_reply, text: "Reply")
+  text_area(:no_javascript_reply_form, name: "topic_content")
+  a(:no_javascript_start_reply, href: /action=reply/)
+  a(:no_javascript_start_topic, href: /action=new-topic/)
+  text_field(:no_javascript_topic_body_text, name: "topiclist_content")
+  text_field(:no_javascript_topic_title_text, name: "topiclist_topic")
+
   # New topic creation
   form(:new_topic_form, css: ".flow-newtopic-form")
   text_field(:new_topic_title, name: "topiclist_topic")
@@ -194,6 +206,7 @@ class FlowPage < WikiPage
   button(:new_topic_preview, css: ".flow-newtopic-form .mw-ui-progressive")
   # FIXME: Remove flow-ui-constructive reference when cache has cleared
   button(:new_topic_save, css: ".flow-newtopic-form .mw-ui-constructive, .flow-newtopic-form .flow-ui-constructive")
+
 
   # Replying
   # TODO (mattflaschen, 2014-06-24): Should distinguish between
