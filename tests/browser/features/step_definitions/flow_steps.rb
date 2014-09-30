@@ -125,7 +125,10 @@ Then(/^the top post should not have a heading which contains "(.+)"$/) do |text|
 end
 
 Then(/^the top post should have a heading which contains "(.+)"$/) do |text|
-  on(FlowPage).flow_first_topic_heading_element.when_present.should match(text)
+  on(FlowPage) do |page|
+    page.flow_first_topic_heading_element.when_present
+    page.flow_first_topic_heading.should match(text)
+  end
 end
 
 Then(/^the top post should have content which contains "(.+)"$/) do |text|
