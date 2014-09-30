@@ -33,5 +33,5 @@ Then(/^I should be able to save the new title$/) do
 end
 
 Then(/^the saved post should contain (.+)$/) do |edited_post|
-  on(FlowPage).flow_first_topic_body.should match(edited_post + @random_string)
+  expect(on(FlowPage).flow_first_topic_body).to match(edited_post + @random_string)
 end
