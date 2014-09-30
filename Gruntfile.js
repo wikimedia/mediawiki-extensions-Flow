@@ -1,62 +1,25 @@
 /*!
  * Grunt file
  *
- * @package VisualEditor
+ * @package Flow
  */
 
 /*jshint node:true */
 module.exports = function ( grunt ) {
-	var modules = grunt.file.readJSON( 'lib/ve/build/modules.json' );
-
 	grunt.loadNpmTasks( 'grunt-contrib-csslint' );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
 	grunt.loadNpmTasks( 'grunt-jscs' );
-	grunt.loadTasks( 'lib/ve/build/tasks' );
-	grunt.loadTasks( 'build/tasks' );
 
 	grunt.initConfig( {
 		pkg: grunt.file.readJSON( 'package.json' ),
-		jsduckcatconfig: {
-			main: {
-				target: '.docs/categories.json',
-				from: [
-					'.docs/mw-categories.json',
-					{
-						file: 'lib/ve/.docs/categories.json',
-						aggregate: {
-							'VisualEditor (core)': [
-								'General',
-								'Initialization',
-								'DataModel',
-								'ContentEditable',
-								'User Interface',
-								'Tests'
-							]
-						},
-						include: [ 'UnicodeJS', 'OOJS UI', 'Upstream' ]
-					}
-				]
-			}
-		},
-		buildloader: {
-			egiframe: {
-				targetFile: '.docs/eg-iframe.html',
-				template: '.docs/eg-iframe.html.template',
-				modules: modules,
-				load: [ 'visualEditor.desktop.standalone' ],
-				pathPrefix: 'lib/ve/',
-				indent: '\t\t'
-			}
-		},
 		jshint: {
 			options: {
 				jshintrc: true
 			},
 			all: [
 				'*.js',
-				'{.docs,build}/**/*.js',
 				'modules/**/*.js'
 			]
 		},
@@ -70,7 +33,7 @@ module.exports = function ( grunt ) {
 			all: 'modules/*/**/*.css'
 		},
 		banana: {
-			all: 'modules/ve-{mw,wmf}/i18n/'
+			all: 'i18n/'
 		},
 		watch: {
 			files: [
@@ -98,9 +61,8 @@ module.exports = function ( grunt ) {
 		} );
 	} );
 
-	grunt.registerTask( 'build', [ 'jsduckcatconfig', 'buildloader' ] );
 	grunt.registerTask( 'lint', [ 'jshint', 'jscs', 'csslint', 'banana' ] );
-	grunt.registerTask( 'test', [ 'build', 'lint' ] );
+	grunt.registerTask( 'test', [ 'lint' ] );
 	grunt.registerTask( 'test-ci', [ 'git-status' ] );
 	grunt.registerTask( 'default', 'test' );
 
