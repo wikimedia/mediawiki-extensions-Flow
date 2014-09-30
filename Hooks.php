@@ -954,8 +954,13 @@ class FlowHooks {
 		// build array of queries to be executed all at once
 		$queries = array();
 		foreach( $ids as $id ) {
-			$uuid = UUID::create( strtolower( $id ) );
-			$queries[] = array( 'rev_type_id' => $uuid );
+			try {
+				$uuid = UUID::create( strtolower( $id ) );
+				$queries[] = array( 'rev_type_id' => $uuid );
+			} catch ( \Exception $e ) {
+				// invalid id
+				unset( $watchlistInfo[NS_TOPIC][$id] );
+			}
 		}
 
 		/*
