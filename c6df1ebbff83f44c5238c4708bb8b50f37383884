@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce8c5bf9_81ae66e3",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-09-30T13:43:02Z",
+      "side": 1,
+      "message": "return false;\n\nThis will cancel the API request.",
+      "revId": "c6df1ebbff83f44c5238c4708bb8b50f37383884",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
