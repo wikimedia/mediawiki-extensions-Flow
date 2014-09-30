@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce8c5bf9_c191ce53",
+        "filename": "handlebars/flow_post_actions.handlebars",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-09-30T14:09:11Z",
+      "side": 1,
+      "message": "Needs icon",
+      "revId": "5fcdc939da5f26b43bd3d2406351f04bd1c56b1d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
