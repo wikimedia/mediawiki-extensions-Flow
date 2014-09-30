@@ -38,7 +38,7 @@ class ConfirmEdit implements SpamFilter {
 			// let's extract those and respond them along with the form HTML
 			global $wgOut;
 			$html = $wgOut->buildCssLinks() .
-				$wgOut->getScriptsForBottomQueue( false ) .
+				$wgOut->getScriptsForBottomQueue( true ) .
 				$html;
 
 			$msg = wfMessage( 'flow-spam-confirmedit-form' )->rawParams( $html );
