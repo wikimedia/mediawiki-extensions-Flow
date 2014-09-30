@@ -1,13 +1,8 @@
-Given(/^the page has re-rendered$/) do
-  sleep 10
-end
-
 Given(/^the top post has been locked$/) do
   step 'I click the Topic Actions link'
   step 'I click the Lock topic button'
   step 'I type "This is a bikeshed" as the reason'
   step 'I submit the lock/unlock topic form'
-  step 'the page has re-rendered'
 end
 
 Given(/^I click the Lock topic button$/) do
@@ -31,7 +26,10 @@ When(/^I cancel the lock\/unlock topic form$/) do
 end
 
 When(/^I submit the lock\/unlock topic form$/) do
-  on(FlowPage).topic_lock_form_lock_button_element.when_present.click
+  on(FlowPage) do |page|
+    page.topic_lock_form_lock_button_element.when_present.click
+    page.topic_lock_form_lock_button_element.when_not_present
+  end
 end
 
 Then(/^the top post is a locked discussion$/) do
