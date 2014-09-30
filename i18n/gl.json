@@ -70,7 +70,7 @@
 	"flow-notification-reply-bundle": "$1 e {{PLURAL:$6|outra persoa|outras $5 persoas}} {{GENDER:$1|responderon}} á súa <span class=\"plainlinks\">[$4 mensaxe]</span> de \"$2\" en \"$3\".",
 	"flow-notification-edit": "$1 {{GENDER:$1|editou}} a <span class=\"plainlinks\">[$5 mensaxe]</span> de \"$2\" en \"[[$3|$4]]\".",
 	"flow-notification-edit-bundle": "$1 e {{PLURAL:$6|outra persoa|outras $5 persoas}} {{GENDER:$1|responderon}} á <span class=\"plainlinks\">[$4 mensaxe]</span> de \"$2\" en \"$3\".",
-	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1 {{GENDER:$1|creou}} un <span class=\"plainlinks\">[$5 novo fío]</span> en \"[[$2|$3]]\"",
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1 {{GENDER:$1|creou}} un  novo fío] en '''$3'''",
 	"flow-notification-rename": "$1 {{GENDER:$1|cambiou}} o título de \"<span class=\"plainlinks\">[$2 $3]</span>\" a \"$4\" en \"[[$5|$6]]\".",
 	"flow-notification-mention": "$1 {{GENDER:$1|fíxolle unha mención}} na {{GENDER:$1|súa}} <span class=\"plainlinks\">[$2 mensaxe]</span> de \"$3\" en \"$4\".",
 	"flow-notification-link-text-view-post": "Ver a mensaxe",

@@ -188,7 +188,7 @@
 	"flow-notification-reply-bundle": "$1 та $5 {{PLURAL:$6|інший|інші|інших}} {{GENDER:$1|відповіли}} на <span class=\"plainlinks\">[$4 $2]</span> на «$3».",
 	"flow-notification-edit": "$1  {{GENDER:$1|відредагував|відредагувала}}  <span class=\"plainlinks\">[повідомлення $5]</span> у $2 на [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 та $5 {{PLURAL:$6|інший|інші|інших}} {{GENDER:$1|відредагував|відредагувала}} <span class=\"plainlinks\">[$4 допис]</span> у $2 на \"$3\".",
-	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1  {{GENDER:$1|створив|створила}} <span class=\"plainlinks\">[нову тему $5]</span> на [[$2|$3]]: $4.",
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1  {{GENDER:$1|створив|створила}} нову тему на $3: $4.",
 	"flow-notification-rename": "$1  {{GENDER:$1|змінив|змінила}} назву <span class=\"plainlinks\">[$2 $3]</span> на \"$4\" у [[$5|$6]]",
 	"flow-notification-mention": "$1 {{GENDER:$1|згадав|згадала|згадали}} вас у {{GENDER:$1|своєму|своєму|своєму}}  <span class=\"plainlinks\">[$2 дописі]</span> у \"$3\" на \"$4\"",
 	"flow-notification-link-text-view-post": "Переглянути допис",
