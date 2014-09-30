@@ -187,6 +187,14 @@ class FlowPage < WikiPage
   end
 
   # New topic creation
+  button(:add_topic_no_javascript, text: "Add topic")
+  button(:reply_no_javascript, text: "Reply")
+  #no_javascript_save_topic
+  text_field(:no_javascript_topic_title_text, name: "topiclist_topic")
+  text_field(:no_javascript_topic_body_text, name: "topiclist_content")
+  div(:no_javascript_page_content_title, class: "flow-topic-titlebar flow-click-interactive")
+  div(:no_javascript_page_content_body, class: "flow-post-content")
+  div(:no_javascript_page_flow_topics, class: "flow-topics")
   form(:new_topic_form, css: ".flow-newtopic-form")
   text_field(:new_topic_title, name: "topiclist_topic")
   textarea(:new_topic_body, name: "topiclist_content")
@@ -194,6 +202,8 @@ class FlowPage < WikiPage
   button(:new_topic_preview, css: ".flow-newtopic-form .mw-ui-progressive")
   # FIXME: Remove flow-ui-constructive reference when cache has cleared
   button(:new_topic_save, css: ".flow-newtopic-form .mw-ui-constructive, .flow-newtopic-form .flow-ui-constructive")
+  a(:no_javascript_start_topic, href: /action=new-topic/)
+  a(:no_javascript_start_reply, href: /action=reply/)
 
   # Replying
   # TODO (mattflaschen, 2014-06-24): Should distinguish between
@@ -206,6 +216,7 @@ class FlowPage < WikiPage
   button(:new_reply_save, css: ".flow-reply-form .mw-ui-constructive")
   button(:keep_editing, text: "Keep editing")
   div(:preview_warning, css: ".flow-preview-warning")
+  text_area(:no_javascript_reply_form, name: "topic_content")
 
   # Editing post workflow
   text_area(:post_edit, css: ".flow-edit-post-form textarea")
