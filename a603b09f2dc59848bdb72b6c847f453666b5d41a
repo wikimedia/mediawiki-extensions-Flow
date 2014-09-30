@@ -50,6 +50,23 @@
       "revId": "a603b09f2dc59848bdb72b6c847f453666b5d41a",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_fc34b448",
+        "filename": "package.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2014-09-30T21:54:19Z",
+      "side": 1,
+      "message": "This should\u0027ve been devDependencies, but it\u0027s redundant now.",
+      "revId": "a603b09f2dc59848bdb72b6c847f453666b5d41a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
