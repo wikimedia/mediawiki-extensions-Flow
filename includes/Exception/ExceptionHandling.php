@@ -220,6 +220,14 @@ class PermissionException extends FlowException {
 	protected function getErrorCodeList() {
 		return array ( 'insufficient-permission' );
 	}
+
+	/**
+	 * Do not log exception resulting from user requesting
+	 * disallowed content.
+	 */
+	function isLoggable() {
+		return false;
+	}
 }
 
 /**
