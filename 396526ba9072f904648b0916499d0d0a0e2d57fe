@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce8c5bf9_83f743f2",
+        "filename": "includes/Data/Pager/Pager.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-01T15:28:47Z",
+      "side": 1,
+      "message": "I think this needs to be more clear that $filter needs to return an array, what arguments it takes, and what it is expected to do.",
+      "revId": "396526ba9072f904648b0916499d0d0a0e2d57fe",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
