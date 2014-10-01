@@ -14,3 +14,10 @@ Feature: Creating a new topic
       And I click New topic save
     Then the top post should have a heading which contains "Anonymous user topic creation test"
       And the top post should have content which contains "Anon test."
+    When I click the Topic Actions link
+      And I click Permalink from the Actions menu
+      And the page has re-rendered
+      And I am viewing Topic page
+    Then I see only one topic on the page
+      And the top post should have a heading which contains "Anon test."
+
