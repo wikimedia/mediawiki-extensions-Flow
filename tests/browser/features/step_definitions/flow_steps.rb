@@ -12,10 +12,14 @@ Then(/^I am on my user page$/) do
   # Get the title of the page without '_' characters
   text = 'User:' + ENV["MEDIAWIKI_USER"].gsub(/_/, ' ')
   on(UserPage).page_title_element.text.should == text
+  # TODO: do we need "Page is fully loaded" here?
+  step "page has no ResourceLoader errors"
 end
 
 Given(/^I am on a new board$/) do
   visit NewFlowPage
+  step "The Flow page is fully loaded"
+  step "page has no ResourceLoader errors"
 end
 
 # @todo: Rewrite to use more generic step below
@@ -36,6 +40,7 @@ end
 
 When(/^I am viewing Topic page$/) do
   on(FlowPage).wait_until { @browser.url =~ /Topic/ }
+  step "page has no ResourceLoader errors"
 end
 
 When(/^I click the Post Actions link$/) do
