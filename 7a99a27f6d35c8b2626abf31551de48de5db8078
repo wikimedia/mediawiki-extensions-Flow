@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce8c5bf9_42ee12b3",
+        "filename": "tests/browser/features/flow_no_javascript.feature",
+        "patchSetId": 6
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-01T23:01:19Z",
+      "side": 1,
+      "message": "I don\u0027t understand how this works.  It\u0027s an old rare IE on Mac version, but I think it ran JavaScript.",
+      "revId": "7a99a27f6d35c8b2626abf31551de48de5db8078",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_c2954237",
+        "filename": "tests/browser/features/step_definitions/flow_no_javascript_steps.rb",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-01T23:01:19Z",
+      "side": 1,
+      "message": "Why did you change the logic here from should be_visible to click?",
+      "revId": "7a99a27f6d35c8b2626abf31551de48de5db8078",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_62779636",
+        "filename": "tests/browser/features/step_definitions/flow_no_javascript_steps.rb",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-01T23:01:19Z",
+      "side": 1,
+      "message": "Likewise, why did you change the logic here from should be_visible to click?",
+      "revId": "7a99a27f6d35c8b2626abf31551de48de5db8078",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_a2c35e3c",
+        "filename": "tests/browser/features/support/pages/flow_page.rb",
+        "patchSetId": 6
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-01T23:01:19Z",
+      "side": 1,
+      "message": "new_reply_save button uses classes to identify Reply, why the inconsistency?  Which is better?",
+      "revId": "7a99a27f6d35c8b2626abf31551de48de5db8078",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_c2ac6287",
+        "filename": "tests/browser/features/support/pages/flow_page.rb",
+        "patchSetId": 6
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-01T23:01:19Z",
+      "side": 1,
+      "message": "Why duplicate \"New topic creation\" items, e.g. new_topic_body duplicated as no_javascript_topic_body_text ?  It\u0027s more verbose",
+      "revId": "7a99a27f6d35c8b2626abf31551de48de5db8078",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
