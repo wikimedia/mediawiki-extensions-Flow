@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ce8c5bf9_c216a25a",
+        "filename": "tests/browser/features/flow_no_javascript.feature",
+        "patchSetId": 6
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 77
+      },
+      "writtenOn": "2014-10-01T23:24:34Z",
+      "side": 1,
+      "message": "I just found this string already existing in this test. It can be anything I guess, but it seems to do the right thing.",
+      "parentUuid": "ce8c5bf9_42ee12b3",
+      "revId": "7a99a27f6d35c8b2626abf31551de48de5db8078",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce8c5bf9_c2954237",
         "filename": "tests/browser/features/step_definitions/flow_no_javascript_steps.rb",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2014-10-01T23:01:19Z",
       "side": 1,
       "message": "Why did you change the logic here from should be_visible to click?",
+      "revId": "7a99a27f6d35c8b2626abf31551de48de5db8078",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_420a922a",
+        "filename": "tests/browser/features/step_definitions/flow_no_javascript_steps.rb",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 77
+      },
+      "writtenOn": "2014-10-01T23:24:34Z",
+      "side": 1,
+      "message": "I would guess that at one point someone thought this interface would look different than it does.  As of right now, the user needs to click the \u003ca\u003e tag to continue editing",
+      "parentUuid": "ce8c5bf9_c2954237",
       "revId": "7a99a27f6d35c8b2626abf31551de48de5db8078",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "ce8c5bf9_05fc9407",
+        "filename": "tests/browser/features/step_definitions/flow_no_javascript_steps.rb",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 77
+      },
+      "writtenOn": "2014-10-01T23:24:34Z",
+      "side": 1,
+      "message": "I would guess that at one point someone thought this interface would look different than it does.  As of right now, the user needs to click the \u003ca\u003e tag to continue editing",
+      "parentUuid": "ce8c5bf9_62779636",
+      "revId": "7a99a27f6d35c8b2626abf31551de48de5db8078",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce8c5bf9_a2c35e3c",
         "filename": "tests/browser/features/support/pages/flow_page.rb",
         "patchSetId": 6
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "ce8c5bf9_c51c6c6d",
+        "filename": "tests/browser/features/support/pages/flow_page.rb",
+        "patchSetId": 6
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 77
+      },
+      "writtenOn": "2014-10-01T23:24:34Z",
+      "side": 1,
+      "message": "I wanted to make clear that we were clicking a button with a particular text in the context of no-javascript. If the no-javascript context and the with-javascript context diverge, then the test remains readable.",
+      "parentUuid": "ce8c5bf9_a2c35e3c",
+      "revId": "7a99a27f6d35c8b2626abf31551de48de5db8078",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce8c5bf9_c2ac6287",
         "filename": "tests/browser/features/support/pages/flow_page.rb",
         "patchSetId": 6
@@ -81,6 +153,24 @@
       "writtenOn": "2014-10-01T23:01:19Z",
       "side": 1,
       "message": "Why duplicate \"New topic creation\" items, e.g. new_topic_body duplicated as no_javascript_topic_body_text ?  It\u0027s more verbose",
+      "revId": "7a99a27f6d35c8b2626abf31551de48de5db8078",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_45305ce5",
+        "filename": "tests/browser/features/support/pages/flow_page.rb",
+        "patchSetId": 6
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 77
+      },
+      "writtenOn": "2014-10-01T23:24:34Z",
+      "side": 1,
+      "message": "As above, I wanted to make clear that we dealing with particulare text in the context of no-javascript. If the no-javascript context and the with-javascript context diverge, then the test remains readable.",
+      "parentUuid": "ce8c5bf9_c2ac6287",
       "revId": "7a99a27f6d35c8b2626abf31551de48de5db8078",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
