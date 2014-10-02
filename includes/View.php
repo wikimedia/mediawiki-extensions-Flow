@@ -178,6 +178,10 @@ class View extends ContextSource {
 		$template = $this->lightncandy->getTemplate( 'flow_board' );
 		$out->addHTML( $template( $apiResponse ) );
 		wfProfileOut( __CLASS__ . '-render' );
+
+		// Before we're going to output anything and end this request, commit
+		// all buffered data to cache.
+		Container::get( 'memcache.buffered' )->commit();
 	}
 
 	protected function redirect( Workflow $workflow ) {
