@@ -85,14 +85,8 @@ Feature: Topic collapsing
       And I should not see the title of the first moderated topic
       And I should not see the comments of the first moderated topic
 
-  Scenario: For a moderated post, switching modes does not forget a user-set close override
-    Given I am on Flow page
-    # First, erase the server-set close override
-    When I click the first moderated topic
-    Then I should see the title of the first moderated topic
-      And I should see the comments of the first moderated topic
-
-    # Now, put a user-set close override
+  @wip
+  Scenario: For a moderated post, clicking it does nothing, switching modes has no effect, and it vanishes upon reload.
     When I click the first moderated topic
     Then I should see a moderated message on the first moderated topic
       And I should not see the title of the first moderated topic
@@ -104,3 +98,5 @@ Feature: Topic collapsing
     Then I should see a moderated message on the first moderated topic
       And I should not see the title of the first moderated topic
       And I should not see the comments of the first moderated topic
+    When I am on Flow page
+    Then I should not see any moderated topics
