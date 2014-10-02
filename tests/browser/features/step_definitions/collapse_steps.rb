@@ -29,9 +29,9 @@ end
 
 def visibility_to_should(el, visibility_str)
   if visibility_str == 'see'
-    el.should be_visible
+    expect(el).to be_visible
   elsif visibility_str == 'not see'
-    el.should_not be_visible
+    expect(el).not_to be_visible
   end
 end
 
