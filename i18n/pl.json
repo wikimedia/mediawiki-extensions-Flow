@@ -16,6 +16,7 @@
 		]
 	},
 	"flow-edit-header-link": "Edytuj nagłówek",
+	"flow-topic-moderated-reason-prefix": "Powód:",
 	"flow-cancel": "Anuluj",
 	"flow-preview": "Podgląd",
 	"flow-show-change": "Pokaż zmiany",
@@ -47,6 +48,7 @@
 	"flow-topic-action-delete-topic": "Usuń wątek",
 	"flow-topic-action-summarize-topic": "Podsumuj",
 	"flow-topic-action-resummarize-topic": "Opis zmian",
+	"flow-topic-action-undo-moderation": "Cofnij",
 	"flow-topic-notification-subscribe-title": "Ten temat został dodany do Twojej listy obserwowanych.",
 	"flow-topic-notification-subscribe-description": "Będziesz otrzymywać powiadomienia, kiedy inni odpowiedzą w tym temacie.",
 	"flow-error-prev-revision-mismatch": "Inny użytkownik kilka sekund temu edytował ten post. Na pewno chcesz nadpisać jego zmiany?",

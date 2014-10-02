@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ahdan"
+		]
+	},
+	"flow-topic-moderated-reason-prefix": "Alasan:",
+	"flow-topic-action-undo-moderation": "Batal",
+	"flow-moderation-confirmation-suppress-topic": "Topik ini telah dipadamkan",
+	"flow-moderation-confirmation-delete-topic": "Topik ini telah dihapus",
+	"flow-moderation-confirmation-hide-topic": "Topik ini telah disembunyikan"
+}
