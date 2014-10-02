@@ -114,6 +114,7 @@ class SubmissionHandler {
 		try {
 			$dbw->begin();
 			$cache->begin();
+			// Cache "transaction" will have begun already, right when the object was created
 			// @todo doesn't feel right to have this here
 			$this->storage->getStorage( 'Workflow' )->put( $workflow );
 			$results = array();
@@ -121,6 +122,7 @@ class SubmissionHandler {
 				$results[$block->getName()] = $block->commit();
 			}
 			$dbw->commit();
+			$cache->commit();
 		} catch ( \Exception $e ) {
 			while( !$this->deferredQueue->isEmpty() ) {
 				$this->deferredQueue->dequeue();
@@ -128,13 +130,6 @@ class SubmissionHandler {
 			$dbw->rollback();
 			$cache->rollback();
 			throw $e;
-		}
-
-		try {
-			$cache->commit();
-		} catch ( \Exception $e ) {
-			wfWarn( __METHOD__ . ': Commited to database but failed applying to cache' );
-			\MWExceptionHandler::logException( $e );
 		}
 
 		while( !$this->deferredQueue->isEmpty() ) {

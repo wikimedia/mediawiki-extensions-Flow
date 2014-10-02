@@ -3,180 +3,112 @@
 namespace Flow\Data;
 
 use BagOStuff;
-use Flow\Exception\DataModelException;
 
 /**
- * Wraps the write methods of memcache into a buffer which can be flushed
+ * This class will emulate a BagOStuff, but with a fixed expiry time for all
+ * writes. All methods will be passed on to the BagOStuff in constructor.
+ * Preserves any BagOStuff semantics for the most common methods.
  */
 class BufferedCache {
+	/**
+	 * @var BagOStuff
+	 */
 	protected $cache;
-	protected $buffer;
-	protected $exptime;
+
+	/**
+	 * @var int
+	 */
+	protected $exptime = 0;
 
 	/**
 	 * @param BagOStuff $cache The cache implementation to back this buffer with
-	 * @param integer $exptime The default length of time to cache data. 0 for LRU.
+	 * @param int $exptime The default length of time to cache data. 0 for LRU.
 	 */
-	public function __construct( BagOStuff $cache, $exptime ) {
-		$this->cache = $cache;
+	public function __construct( BagOStuff $cache, $exptime = 0 ) {
 		$this->exptime = $exptime;
+		$this->cache = $cache;
 	}
 
 	/**
-	 * @param string $key The cache key to fetch
+	 * @param string $key
+	 * @param null $casToken
 	 * @return mixed
 	 */
-	public function get( $key ) {
-		return $this->cache->get( $key );
+	public function get( $key, &$casToken = null ) {
+		return $this->cache->get( $key, $casToken );
 	}
 
 	/**
-	 * @param array $keys List of cache key strings to fetch
+	 * @param array $keys
 	 * @return array
 	 */
 	public function getMulti( array $keys ) {
-		$res = $this->cache->getMulti( $keys );
-		// While most of the BagOStuff implementations return an empty array on not
-		// found from getMulti the memcached bag returns false
-		if ( $res === false ) {
-			return array();
-		}
-		// The memcached BagOStuff returns only existing keys,
-		// but the redis BagOStuff puts a false for all keys
-		// it doesn't find.  Resolve that inconsistency here
-		// by filtering all false values.
-		return array_filter( $res, function( $value ) {
-			return $value !== false;
-		} );
+		return $this->cache->getMulti( $keys );
 	}
 
 	/**
 	 * @param string $key
 	 * @param mixed $value
-	 */
-	public function add( $key, $value ) {
-		if ( $this->buffer === null ) {
-			$this->cache->add( $key, $value, $this->exptime );
-		} else {
-			$this->buffer[] = array(
-				'command' => array( $this->cache, __FUNCTION__ ),
-				'arguments' => array( $key, $value, $this->exptime ),
-			);
-		}
-	}
-
-	/**
-	 * @param string $key
-	 * @param mixed $value
+	 * @return bool
 	 */
 	public function set( $key, $value ) {
-		if ( $this->buffer === null ) {
-			$this->cache->set( $key, $value, $this->exptime );
-		} else {
-			$this->buffer[] = array(
-				'command' => array( $this->cache, __FUNCTION__ ),
-				'arguments' => array( $key, $value, $this->exptime ),
-			);
-		}
+		return $this->cache->set( $key, $value, $this->exptime );
+	}
+
+	/**
+	 * @param array $data
+	 * @return bool
+	 */
+	public function setMulti( array $data ) {
+		return $this->cache->setMulti( $data, $this->exptime );
 	}
 
 	/**
 	 * @param string $key
-	 * @param integer $time
+	 * @param mixed $value
+	 * @return bool
+	 */
+	public function add( $key, $value ) {
+		return $this->cache->add( $key, $value, $this->exptime );
+	}
+
+	/**
+	 * @param mixed $casToken
+	 * @param string $key
+	 * @param mixed $value
+	 * @return bool
+	 */
+	public function cas( $casToken, $key, $value ) {
+		return $this->cache->cas( $casToken, $key, $value, $this->exptime );
+	}
+
+	/**
+	 * @param string $key
+	 * @param int $time
+	 * @return bool
 	 */
 	public function delete( $key, $time = 0 ) {
-		if ( $this->buffer === null ) {
-			$this->cache->delete( $key, $time );
-		} else {
-			$this->buffer[] = array(
-				'command' => array( $this->cache, __FUNCTION__ ),
-				'arguments' => compact( 'key', 'time' ),
-			);
-		}
+		return $this->cache->delete( $key, $time );
 	}
 
 	/**
 	 * @param string $key
-	 * @param \Closure $callback
+	 * @param callable $callback
 	 * @param int $attempts
 	 * @return bool
 	 */
 	public function merge( $key, \Closure $callback, $attempts = 10 ) {
-		/**
-		 * Merge will CAS values, which could potentially fail (if, due to
-		 * concurrent writes, cache has changed since)
-		 * There will be multiple $attempts, but it may still fail.
-		 * To reliable update the data in cache, we'll have to delete the cache
-		 * if the CAS did not get through.
-		 *
-		 * Because we may be buffering the cache operation, I'll wrap both the
-		 * CAS (merge) and the fallback delete into a closure. It can either be
-		 * executed immediately (no buffer) or, if buffered, be committed via
-		 * call_user_func_array.
-		 *
-		 * @param string $key
-		 * @param \Closure $callback
-		 * @param int $exptime
-		 * @param int $attempts
-		 */
-		$cache = $this->cache;
-		$merge = function ( $key, \Closure $callback, $exptime, $attempts ) use( $cache ) {
-			$success = $cache->merge( $key, $callback, $exptime, $attempts );
-
-			// if we failed to CAS new data, kill the cached value so it'll be
-			// re-fetched from DB
-			if ( !$success ) {
-				$cache->delete( $key );
-			}
-			return $success;
-		};
-
-		if ( $this->buffer === null ) {
-			return $merge( $key, $callback, $this->exptime, $attempts );
-		} else {
-			$this->buffer[] = array(
-				'command' => $merge,
-				'arguments' => array( $key, $callback, $this->exptime, $attempts ),
-			);
-			return true;
-		}
+		return $this->cache->merge( $key, $callback, $this->exptime, $attempts );
 	}
 
 	/**
-	 * Begin buffering cache commands
+	 * Catches all other method calls & passes them on to the real cache.
 	 *
-	 * @throws \MWException When buffering is already enabled.
+	 * @param string $name
+	 * @param array $arguments
+	 * @return mixed
 	 */
-	public function begin() {
-		if ( $this->buffer === null ) {
-			$this->buffer = array();
-		} else {
-			throw new DataModelException( 'Transaction already in progress', 'process-data' );
-		}
-	}
-
-	/**
-	 * Write out all buffered commands to the cache
-	 *
-	 * @throws \MWException When no buffer has been enabled
-	 */
-	public function commit() {
-		if ( $this->buffer === null ) {
-			throw new \MWException( 'No transaction in progress' );
-		}
-		foreach ( $this->buffer as $row ) {
-			call_user_func_array(
-				$row['command'],
-				$row['arguments']
-			);
-		}
-		$this->buffer = null;
-	}
-
-	public function rollback() {
-		if ( $this->buffer === null ) {
-			throw new DataModelException( 'No transaction in progress', 'process-data' );
-		}
-		$this->buffer = null;
+	public function __call( $name, array $arguments ) {
+		return call_user_func_array( array( $this->cache, $name ), $arguments );
 	}
 }

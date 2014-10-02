@@ -101,7 +101,7 @@ $c['templating'] = $c->share( function( $c ) {
 } );
 
 // New Storage Impl
-use Flow\Data\Utils\LocalBufferedCache;
+use Flow\Data\BufferedCache;
 use Flow\Data\Mapper\BasicObjectMapper;
 use Flow\Data\Mapper\CachingObjectMapper;
 use Flow\Data\Storage\BasicDbStorage;
@@ -124,7 +124,11 @@ use Flow\Model\PostSummary;
 
 $c['memcache.buffered'] = $c->share( function( $c ) {
 	global $wgFlowCacheTime;
-	return new LocalBufferedCache( $c['memcache'], $wgFlowCacheTime );
+
+	// This is the real buffered cached that will allow transactional-like cache
+	$bufferedCache = new Flow\Data\BagOStuff\LocalBufferedBagOStuff( $c['memcache'] );
+	// This is Flow's wrapper around it, to have a fixed cache expiry time
+	return new BufferedCache( $bufferedCache, $wgFlowCacheTime );
 } );
 // Batched username loader
 $c['repository.username'] = $c->share( function( $c ) {
