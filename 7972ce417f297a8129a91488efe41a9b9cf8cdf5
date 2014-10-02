@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce8c5bf9_267bdbec",
+        "filename": "tests/browser/features/collapse.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-02T22:47:32Z",
+      "side": 1,
+      "message": "This reloads the page, so all moderated topics are gone, so could test that here\n\n    Then I do not see any moderated topics\n\n(or we can test it in a moderation.feature)",
+      "revId": "7972ce417f297a8129a91488efe41a9b9cf8cdf5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_c3d221d5",
+        "filename": "tests/browser/features/collapse.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-02T22:47:32Z",
+      "side": 1,
+      "message": "Again this reloads the page...",
+      "revId": "7972ce417f297a8129a91488efe41a9b9cf8cdf5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_83d419c0",
+        "filename": "tests/browser/features/collapse.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-02T22:47:32Z",
+      "side": 1,
+      "message": "... so there should be no moderated topics, so really this is all just \"click a topic\".",
+      "revId": "7972ce417f297a8129a91488efe41a9b9cf8cdf5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_e622d3a1",
+        "filename": "tests/browser/features/collapse.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-02T22:47:32Z",
+      "side": 1,
+      "message": "\"moderated post\" is different from a moderated topic, so the description is wrong.  The actual Scenario is\n\n    Scenario: After reloading a page, no moderated posts appear in any collapse mode.\n\n(I\u0027m not sure this test has much value any more, why not \"The Reply dialog/the board history/a picture of the Taj Majal doesn\u0027t appear when you cycle through collapsing\")\n\n(We need a test that a hidden post has an undo until the page is reloaded, and not for other users. Could do it before the \"Given I am on Flow page\" reloads the page, but the obvious place for that test is in moderation.feature and moderation_anon.feature)",
+      "revId": "7972ce417f297a8129a91488efe41a9b9cf8cdf5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_c68c6f02",
+        "filename": "tests/browser/features/collapse.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-02T22:47:32Z",
+      "side": 1,
+      "message": "Way too much test detail, I think this should be in a step\n\n  I do not see any moderated topics\n\nand the step_definition should do the right thing.\n\nand as I propose above we should just do this on each step of the collapse cycle tests above, and delete this scenario.",
+      "revId": "7972ce417f297a8129a91488efe41a9b9cf8cdf5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
