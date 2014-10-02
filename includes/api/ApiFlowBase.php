@@ -158,4 +158,14 @@ abstract class ApiFlowBase extends ApiBase {
 	public function getParent() {
 		return $this->apiFlow;
 	}
+
+	/**
+	 * This is called after execute() is finished, at which point we'll want to
+	 * commit data to cache.
+	 */
+	public function profileOut() {
+		parent::profileOut();
+
+		Container::get( 'memcache.buffered' )->commit();
+	}
 }
