@@ -28,9 +28,9 @@ When(/^I switch from (.*) view to (.*) view$/) do |start_mode, end_mode|
 end
 
 def visibility_to_should(el, visibility_str)
-  if visibility_str === 'see'
+  if visibility_str == 'see'
     el.should be_visible
-  elsif visibility_str === 'not see'
+  elsif visibility_str == 'not see'
     el.should_not be_visible
   end
 end
