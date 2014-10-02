@@ -77,7 +77,7 @@ $wgFlowActions = array(
 		'rc_insert' => true,
 		'permissions' => array(
 			PostSummary::MODERATED_NONE => '',
-			PostSummary::MODERATED_LOCKED => array( 'flow-hide', 'flow-lock', 'flow-delete', 'flow-suppress' ),
+			PostSummary::MODERATED_LOCKED => array( 'flow-lock', 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_SUPPRESSED => array( 'flow-suppress' ),
@@ -102,7 +102,7 @@ $wgFlowActions = array(
 		'rc_insert' => true,
 		'permissions' => array(
 			PostSummary::MODERATED_NONE => '',
-			PostSummary::MODERATED_LOCKED => array( 'flow-hide', 'flow-lock', 'flow-delete', 'flow-suppress' ),
+			PostSummary::MODERATED_LOCKED => array( 'flow-lock', 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_SUPPRESSED => array( 'flow-suppress' ),
@@ -478,7 +478,7 @@ $wgFlowActions = array(
 				return true;
 			},
 		'permissions' => array(
-			PostRevision::MODERATED_LOCKED => array( 'flow-hide', 'flow-lock', 'flow-delete', 'flow-suppress' ),
+			PostRevision::MODERATED_LOCKED => array( 'flow-lock', 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
