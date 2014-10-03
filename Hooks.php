@@ -93,6 +93,15 @@ class FlowHooks {
 	}
 
 	/**
+	 * Reset anything that happened in self::initFlowExtension for
+	 * unit tests
+	 */
+	public static function resetFlowExtension() {
+		self::$abuseFilter = null;
+		self::$occupationController = null;
+	}
+
+	/**
 	 * Hook: LoadExtensionSchemaUpdates
 	 *
 	 * @param $updater DatabaseUpdater object
