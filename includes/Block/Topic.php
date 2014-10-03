@@ -106,11 +106,6 @@ class TopicBlock extends AbstractBlock {
 		}
 	}
 
-	public function init( $action, $user ) {
-		parent::init( $action, $user );
-		$this->permissions = new RevisionActionPermissions( Container::get( 'flow_actions' ), $user );
-	}
-
 	protected function validate() {
 		$topicTitle = $this->loadTopicTitle();
 		if ( !$topicTitle ) {
@@ -201,13 +196,21 @@ class TopicBlock extends AbstractBlock {
 			// handing user back to specific dialog indicating race condition
 			$this->addError(
 				'prev_revision',
-				wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $topicTitle->getRevisionId()->getAlphadecimal(), $this->user->getName() ),
+				wfMessage( 'flow-error-prev-revision-mismatch' )->params(
+					$this->submitted['prev_revision'],
+					$topicTitle->getRevisionId()->getAlphadecimal(),
+					$this->context->getUser()->getName()
+				),
 				array( 'revision_id' => $topicTitle->getRevisionId()->getAlphadecimal() ) // save current revision ID
 			);
 			return;
 		}
 
-		$this->newRevision = $topicTitle->newNextRevision( $this->user, $this->submitted['content'], 'edit-title' );
+		$this->newRevision = $topicTitle->newNextRevision(
+			$this->context->getUser(),
+			$this->submitted['content'],
+			'edit-title'
+		);
 		if ( !$this->checkSpamFilters( $topicTitle, $this->newRevision ) ) {
 			return;
 		}
@@ -231,7 +234,11 @@ class TopicBlock extends AbstractBlock {
 			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			return;
 		}
-		$this->newRevision = $post->reply( $this->workflow, $this->user, $this->submitted['content'] );
+		$this->newRevision = $post->reply(
+			$this->workflow,
+			$this->context->getUser(),
+			$this->submitted['content']
+		);
 		if ( !$this->checkSpamFilters( null, $this->newRevision ) ) {
 			return;
 		}
@@ -331,7 +338,7 @@ class TopicBlock extends AbstractBlock {
 
 		$reason = $this->submitted['reason'];
 
-		$this->newRevision = $post->moderate( $this->user, $newState, $action, $reason );
+		$this->newRevision = $post->moderate( $this->context->getUser(), $newState, $action, $reason );
 		if ( !$this->newRevision ) {
 			$this->addError( 'moderate', wfMessage( 'flow-error-not-allowed' ) );
 			return;
@@ -360,20 +367,32 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 		if ( $post->getRevisionId()->getAlphadecimal() !== $this->submitted['prev_revision'] ) {
-			// This is a reasonably effective way to ensure prev revision matches, but for guarantees against race
-			// conditions there also exists a unique index on rev_prev_revision in mysql, meaning if someone else inserts against the
-			// parent we and the submitter think is the latest, our insert will fail.
-			// TODO: Catch whatever exception happens there, make sure the most recent revision is the one in the cache before
-			// handing user back to specific dialog indicating race condition
+			// This is a reasonably effective way to ensure prev revision
+			// matches, but for guarantees against race conditions there
+			// also exists a unique index on rev_prev_revision in mysql,
+			// meaning if someone else inserts against the parent we and
+			// the submitter think is the latest, our insert will fail.
+			//
+			// TODO: Catch whatever exception happens there, make sure the
+			// most recent revision is the one in the cache before handing
+			// user back to specific dialog indicating race condition
 			$this->addError(
 				'prev_revision',
-				wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $post->getRevisionId()->getAlphadecimal(), $this->user->getName() ),
+				wfMessage( 'flow-error-prev-revision-mismatch' )->params(
+					$this->submitted['prev_revision'],
+					$post->getRevisionId()->getAlphadecimal(),
+					$this->context->getUser()->getName()
+				),
 				array( 'revision_id' => $post->getRevisionId()->getAlphadecimal() ) // save current revision ID
 			);
 			return;
 		}
 
-		$this->newRevision = $post->newNextRevision( $this->user, $this->submitted['content'], 'edit-post' );
+		$this->newRevision = $post->newNextRevision(
+			$this->context->getUser(),
+			$this->submitted['content'],
+			'edit-post'
+		);
 		if ( !$this->checkSpamFilters( $post, $this->newRevision ) ) {
 			return;
 		}
@@ -526,14 +545,17 @@ class TopicBlock extends AbstractBlock {
 			$oldRevision = $options['newRevision'];
 		}
 		list( $new, $old ) = Container::get( 'query.post.view' )->getDiffViewResult( $options['newRevision'], $oldRevision );
-		$output['revision'] = Container::get( 'formatter.revision.diff.view' )->formatApi( $new, $old, \RequestContext::getMain() );
+		$output['revision'] = Container::get( 'formatter.revision.diff.view' )
+			->formatApi( $new, $old, $this->context );
 		return $output;
 	}
 
 	// @Todo - duplicated logic in other single view block
 	protected function renderSingleViewAPI( $revId ) {
 		$row = Container::get( 'query.post.view' )->getSingleViewResult( $revId );
-		$output['revision'] = Container::get( 'formatter.revisionview' )->formatApi( $row, \RequestContext::getMain() );
+		$output['revision'] = Container::get( 'formatter.revisionview' )
+			->formatApi( $row, $this->context );
+
 		return $output;
 	}
 
@@ -563,7 +585,7 @@ class TopicBlock extends AbstractBlock {
 		return $serializer->formatApi(
 			$this->workflow,
 			Container::get( 'query.topiclist' )->getResults( array( $workflowId ) ),
-			\RequestContext::getMain()
+			$this->context
 		);
 	}
 
@@ -593,7 +615,7 @@ class TopicBlock extends AbstractBlock {
 		if ( isset( $options['contentFormat'] ) ) {
 			$serializer->setContentFormat( $options['contentFormat'] );
 		}
-		$serialized = $serializer->formatApi( $row, \RequestContext::getMain() );
+		$serialized = $serializer->formatApi( $row, $this->context );
 		if ( !$serialized ) {
 			return null;
 		}
@@ -647,11 +669,10 @@ class TopicBlock extends AbstractBlock {
 			$serializer->setContentFormat( $options['contentFormat'] );
 		}
 		$serializer->setIncludeHistoryProperties( true );
-		$ctx = \RequestContext::getMain();
 
 		$result = array();
 		foreach ( $found as $row ) {
-			$serialized = $serializer->formatApi( $row, $ctx );
+			$serialized = $serializer->formatApi( $row, $this->context );
 			// if the user is not allowed to see this row it will return empty
 			if ( $serialized ) {
 				$result[$serialized['revisionId']] = $serialized;
