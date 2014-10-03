@@ -4,6 +4,7 @@ namespace Flow;
 
 use Flow\Block\AbstractBlock;
 use Flow\Model\Workflow;
+use IContextSource;
 use WebRequest;
 
 class WorkflowLoader {
@@ -52,14 +53,15 @@ class WorkflowLoader {
 	}
 
 	/**
-	 * @param $action
+	 * @param IContextSource $context
 	 * @param array $blocks
-	 * @param $user
-	 * @param WebRequest $request
+	 * @param string $action
+	 * @param array $parameters
 	 * @return Block\AbstractBlock[]
 	 */
-	public function handleSubmit( $action, array $blocks, $user, array $params ) {
-		return $this->submissionHandler->handleSubmit( $this->workflow, $action, $blocks, $user, $params );
+	public function handleSubmit( IContextSource $context, array $blocks, $action, array $parameters ) {
+		return $this->submissionHandler
+			->handleSubmit( $this->workflow, $context, $blocks, $action, $parameters );
 	}
 
 	public function commit( Workflow $workflow, array $blocks ) {

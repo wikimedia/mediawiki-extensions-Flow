@@ -13,6 +13,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Templating;
 use Flow\RevisionActionPermissions;
+use IContextSource;
 use Message;
 
 class TopicSummaryBlock extends AbstractBlock {
@@ -71,9 +72,8 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * @param string
 	 * @param User
 	 */
-	public function init( $action, $user ) {
-		parent::init( $action, $user );
-		$this->permissions = new RevisionActionPermissions( Container::get( 'flow_actions' ), $user );
+	public function init( IContextSource $context, $action ) {
+		parent::init( $context, $action );
 
 		if ( !$this->workflow->isNew() ) {
 			$this->formatterRow = Container::get( 'query.postsummary' )->getResult( $this->workflow->getId() );
@@ -156,7 +156,12 @@ class TopicSummaryBlock extends AbstractBlock {
 				return;
 			}
 
-			$this->nextRevision = PostSummary::create( $this->findTopicTitle(), $this->user, $this->submitted['summary'], 'create-topic-summary' );
+			$this->nextRevision = PostSummary::create(
+				$this->findTopicTitle(),
+				$this->context->getUser(),
+				$this->submitted['summary'],
+				'create-topic-summary'
+			);
 		// Edit topic summary
 		} else {
 			if ( !$this->permissions->isAllowed( $this->topicSummary, 'edit-topic-summary' ) ) {
@@ -173,14 +178,18 @@ class TopicSummaryBlock extends AbstractBlock {
 					wfMessage( 'flow-error-prev-revision-mismatch' )->params(
 						$this->submitted['prev_revision'],
 						$this->topicSummary->getRevisionId()->getAlphadecimal(),
-						$this->user->getName()
+						$this->context->getUser()->getName()
 					),
 					array( 'revision_id' => $this->topicSummary->getRevisionId()->getAlphadecimal() )
 				);
 				return;
 			}
 
-			$this->nextRevision = $this->topicSummary->newNextRevision( $this->user, $this->submitted['summary'], 'edit-topic-summary' );
+			$this->nextRevision = $this->topicSummary->newNextRevision(
+				$this->context->getUser(),
+				$this->submitted['summary'],
+				'edit-topic-summary'
+			);
 		}
 
 		if ( !$this->checkSpamFilters( $this->topicSummary, $this->nextRevision ) ) {
@@ -279,7 +288,7 @@ class TopicSummaryBlock extends AbstractBlock {
 				// @Todo - duplicated logic in other single view block
 				if ( isset( $options['revId'] ) && $options['revId'] ) {
 					$row = Container::get( 'query.postsummary.view' )->getSingleViewResult( $options['revId'] );
-					$output['revision'] = Container::get( 'formatter.revisionview' )->formatApi( $row, \RequestContext::getMain() );
+					$output['revision'] = Container::get( 'formatter.revisionview' )->formatApi( $row, $this->context );
 				} else {
 					if ( isset( $options['contentFormat'] ) && $options['contentFormat'] === 'wikitext' ) {
 						$this->requiresWikitext[] = 'view-topic-summary';
@@ -300,7 +309,7 @@ class TopicSummaryBlock extends AbstractBlock {
 					$oldRevision = $options['newRevision'];
 				}
 				list( $new, $old ) = Container::get( 'query.postsummary.view' )->getDiffViewResult( $options['newRevision'], $oldRevision );
-				$output['revision'] = Container::get( 'formatter.revision.diff.view' )->formatApi( $new, $old, \RequestContext::getMain() );
+				$output['revision'] = Container::get( 'formatter.revision.diff.view' )->formatApi( $new, $old, $this->context );
 				break;
 		}
 
@@ -316,7 +325,8 @@ class TopicSummaryBlock extends AbstractBlock {
 		}
 		if ( $this->formatterRow ) {
 			$output['revision'] = $formatter->formatApi(
-				$this->formatterRow, \RequestContext::getMain()
+				$this->formatterRow,
+				$this->context
 			);
 		} else {
 			$urlGenerator = Container::get( 'url_generator' );
