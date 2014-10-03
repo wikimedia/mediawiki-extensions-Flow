@@ -17,66 +17,43 @@ Feature: Topic collapsing
   Scenario: Small topics view
     Given I am on Flow page
     When I switch from Topics and posts view to Small topics view
-    Then I should see the title of the first non-moderated topic
-      And I should not see who started the first non-moderated topic
-      And I should not see the comments of the first non-moderated topic
+    Then I should see the title of the first topic
+      And I should not see the comments of the first topic
 
   Scenario: Topics only view
     Given I am on Flow page
     When I switch from Topics and posts view to Topics only view
-    Then I should see the title of the first non-moderated topic
-      And I should not see the comments of the first non-moderated topic
+    Then I should see the title of the first topic
+      And I should not see the comments of the first topic
 
   Scenario: Topics and posts view
     Given I am on Flow page
     # Complete mode cycle
     When I switch from Topics and posts view to Topics only view
       And I switch from Topics only view to Topics and posts view
-    Then I should see the title of the first non-moderated topic
-      And I should see the comments of the first non-moderated topic
+    Then I should see the title of the first topic
+      And I should see the comments of the first topic
 
-  Scenario: For a non-moderated post, collapse override is forgotten every time the mode is switched
+  Scenario: Collapse override on a topic is forgotten every time the mode is switched
     Given I am on Flow page
-    When I click the first non-moderated topic
+    When I click the first topic
       And I switch from Topics and posts view to Topics only view
     # This "Then" would be the same regardless of whether it forgot
     # the override, since the override matches the new default state.
     # However, it doesn't hurt to assert it.
-    Then I should see the title of the first non-moderated topic
-      And I should not see the comments of the first non-moderated topic
+    Then I should see the title of the first topic
+      And I should not see the comments of the first topic
 
-    When I click the first non-moderated topic
+    When I click the first topic
       And I switch from Topics only view to Small topics view
-    Then I should see the title of the first non-moderated topic
-      And I should not see who started the first non-moderated topic
-      And I should not see the comments of the first non-moderated topic
+    Then I should see the title of the first topic
+      And I should not see the comments of the first topic
 
     # Click it twice in a row, to test the new default state (everything
     # shows) still takes effect even though the user explicitly opened
     # and re-closed it on small topics view
-    When I click the first non-moderated topic
-      And I click the first non-moderated topic
+    When I click the first topic
+      And I click the first topic
       And I switch from Small topics view to Topics and posts view
-    Then I should see the title of the first non-moderated topic
-      And I should see the comments of the first non-moderated topic
-
-  Scenario: For a moderated post, a mode cycle with no user override keeps it hidden
-    Given I am on Flow page
-    Then I should not see a moderated message on the first moderated topic
-      And I should not see the title of the first moderated topic
-      And I should not see the comments of the first moderated topic
-
-    When I switch from Topics and posts view to Topics only view
-    Then I should not see a moderated message on the first moderated topic
-
-    When I switch from Topics only view to Small topics view
-    Then I should not see a moderated message on the first moderated topic
-
-    When I switch from Small topics view to Topics and posts view
-    Then I should not see a moderated message on the first moderated topic
-
-
-    # Complete mode cycle
-    When I switch from Topics and posts view to Topics only view
-      And I switch from Topics only view to Topics and posts view
-    Then I should not see a moderated message on the first moderated topic
+    Then I should see the title of the first topic
+      And I should see the comments of the first topic
