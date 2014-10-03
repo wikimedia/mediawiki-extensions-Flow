@@ -332,23 +332,8 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		if ( empty( $this->submitted['reason'] ) ) {
-			// If a summary is provided instead, parse the content and truncate it
-			if ( !empty( $this->submitted['summary'] ) ) {
-				// @todo there might be a better wikitext->plaintext method
-				$this->submitted['reason'] = Utils::htmlToPlaintext(
-					Utils::convert(
-						'wikitext',
-						'html',
-						$this->submitted['summary'],
-						$this->workflow->getArticleTitle()
-					),
-					255
-				);
-			}
-			if ( empty( $this->submitted['reason'] ) ) {
-				$this->addError( 'moderate', wfMessage( 'flow-error-invalid-moderation-reason' ) );
-				return;
-			}
+			$this->addError( 'moderate', wfMessage( 'flow-error-invalid-moderation-reason' ) );
+			return;
 		}
 
 		$reason = $this->submitted['reason'];
