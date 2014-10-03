@@ -172,6 +172,7 @@ $c['listener.occupation'] = $c->share( function( $c ) {
 
 	return new Flow\Data\Listener\OccupationListener(
 		$c['occupation_controller'],
+		$c['deferred_queue'],
 		$wgFlowDefaultWorkflow
 	);
 } );
@@ -564,6 +565,8 @@ $c['loader.root_post'] = $c->share( function( $c ) {
 	);
 } );
 
+// Queue of callbacks to run by DeferredUpdates, but only
+// on successfull commit
 $c['deferred_queue'] = $c->share( function( $c ) {
 	return new SplQueue;
 } );
