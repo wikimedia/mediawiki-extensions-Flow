@@ -12,9 +12,9 @@ use Flow\Formatter\FormatterRow;
 use Flow\Model\Header;
 use Flow\RevisionActionPermissions;
 use Flow\UrlGenerator;
+use IContextSource;
 
 class HeaderBlock extends AbstractBlock {
-
 	/**
 	 * @var Header|null
 	 */
@@ -60,10 +60,8 @@ class HeaderBlock extends AbstractBlock {
 	 */
 	protected $permissions;
 
-	public function init( $action, $user ) {
-		parent::init( $action, $user );
-
-		$this->permissions = new RevisionActionPermissions( Container::get( 'flow_actions' ), $user );
+	public function init( IContextSource $context, $action ) {
+		parent::init( $context, $action );
 
 		// Basic initialisation done -- now, load data if applicable
 		if ( $this->workflow->isNew() ) {
@@ -85,7 +83,9 @@ class HeaderBlock extends AbstractBlock {
 
 	protected function validate() {
 		// @todo some sort of restriction along the lines of article protection
-		if ( !$this->user->isAllowed( 'edit' ) ) {
+		// @todo this is superseeded by SubmissionHandler::onSubmit checking
+		// 	Title::userCan() ?
+		if ( !$this->context->getUser()->isAllowed( 'edit' ) ) {
 			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			return;
 		}
@@ -117,13 +117,21 @@ class HeaderBlock extends AbstractBlock {
 			// handing user back to specific dialog indicating race condition
 			$this->addError(
 				'prev_revision',
-				wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $this->header->getRevisionId()->getAlphadecimal(), $this->user->getName() ),
+				wfMessage( 'flow-error-prev-revision-mismatch' )->params(
+					$this->submitted['prev_revision'],
+					$this->header->getRevisionId()->getAlphadecimal(),
+					$this->context->getUser()->getName()
+				),
 				array( 'revision_id' => $this->header->getRevisionId()->getAlphadecimal() ) // save current revision ID
 			);
 		}
 
 		// this isn't really part of validate, but we want the error-rendering template to see the users edited header
-		$this->newRevision = $this->header->newNextRevision( $this->user, $this->submitted['content'], 'edit-header' );
+		$this->newRevision = $this->header->newNextRevision(
+			$this->context->getUser(),
+			$this->submitted['content'],
+			'edit-header'
+		);
 
 		if ( !$this->checkSpamFilters( $this->header, $this->newRevision ) ) {
 			return;
@@ -144,7 +152,12 @@ class HeaderBlock extends AbstractBlock {
 			return;
 		}
 
-		$this->newRevision = Header::create( $this->workflow, $this->user, $this->submitted['content'], 'create-header' );
+		$this->newRevision = Header::create(
+			$this->workflow,
+			$this->context->getUser(),
+			$this->submitted['content'],
+			'create-header'
+		);
 
 		if ( !$this->checkSpamFilters( null, $this->newRevision ) ) {
 			return;
@@ -229,7 +242,7 @@ class HeaderBlock extends AbstractBlock {
 		list( $new, $old ) = $query->getDiffViewResult( $options['newRevision'], $oldRevision );
 		/** @var RevisionDiffViewFormatter $formatter */
 		$formatter = Container::get( 'formatter.revision.diff.view' );
-		$output['revision'] = $formatter->formatApi( $new, $old, \RequestContext::getMain() );
+		$output['revision'] = $formatter->formatApi( $new, $old, $this->context );
 		return $output;
 	}
 
@@ -240,7 +253,7 @@ class HeaderBlock extends AbstractBlock {
 		$row = $query->getSingleViewResult( $revId );
 		/** @var RevisionViewFormatter $formatter */
 		$formatter = Container::get( 'formatter.revisionview' );
-		$output['revision'] = $formatter->formatApi( $row, \RequestContext::getMain() );
+		$output['revision'] = $formatter->formatApi( $row, $this->context );
 		return $output;
 	}
 
@@ -259,7 +272,6 @@ class HeaderBlock extends AbstractBlock {
 				),
 			);
 		} else {
-			$ctx = \RequestContext::getMain();
 			$row = new FormatterRow;
 			$row->workflow = $this->workflow;
 			$row->revision = $this->header;
@@ -270,7 +282,7 @@ class HeaderBlock extends AbstractBlock {
 				$serializer->setContentFormat( 'wikitext' );
 			}
 
-			$output['revision'] = $serializer->formatApi( $row, $ctx );
+			$output['revision'] = $serializer->formatApi( $row, $this->context );
 		}
 		return $output;
 	}

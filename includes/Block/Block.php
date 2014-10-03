@@ -9,20 +9,24 @@ use Flow\FlowActions;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use Flow\RevisionActionPermissions;
 use Flow\SpamFilter\Controller as SpamFilterController;
 use Flow\Templating;
-use User;
+use IContextSource;
 
 interface Block {
+	/**
+	 * @param IContextSource $context
+	 */
+	function init( IContextSource $context, $action );
+
 	/**
 	 * Perform validation of data model
 	 *
 	 * @param string $action
-	 * @param User $user
-	 * @param array $data
 	 * @return boolean True if data model is valid
 	 */
-	function onSubmit( $action, User $user, array $data );
+	function onSubmit( array $data );
 
 	/**
 	 * Write updates to storage
@@ -51,14 +55,26 @@ interface Block {
 
 abstract class AbstractBlock implements Block {
 
+	/** @var Workflow */
 	protected $workflow;
+	/** @var ManagerGroup */
 	protected $storage;
 
-	/** @var User $user */
-	protected $user;
+	/** @var IContextSource */
+	protected $context;
+	/** @var array|null */
 	protected $submitted = null;
+	/** @var array */
 	protected $errors = array();
+
+	/**
+	 * @var string|null The commitable action being submitted, or null
+	 *  for read-only actions.
+	 */
 	protected $action;
+
+	/** @var RevisionActionPermissions */
+	protected $permissions;
 
 	/**
 	 * A list of supported post actions
@@ -72,6 +88,7 @@ abstract class AbstractBlock implements Block {
 	 */
 	protected $supportedGetActions = array();
 
+	/** @var array */
 	protected $requiresWikitext = array();
 
 	/**
@@ -85,15 +102,33 @@ abstract class AbstractBlock implements Block {
 		$this->storage = $storage;
 	}
 
+	/**
+	 * Called by $this->onSubmit to populate $this->errors based
+	 * on $this->action and $this->submitted.
+	 */
 	abstract protected function validate();
-	// These methods exist in the Block interface and as such cannot be abstract
+
+	// This method exists in the Block interface and as such cannot be abstract
 	// until php 5.3.9, but MediaWiki requires PHP version 5.3.2 or later (and
 	// some of our test machines are on 5.3.3).
 	//abstract public function commit();
 
-	public function init( $action, $user ) {
-		$this->action = $this->getActionName( $action );
-		$this->user = $user;
+	/**
+	 * @var IContextSource $context
+	 * @var string $action
+	 */
+	public function init( IContextSource $context, $action ) {
+		$this->context = $context;
+		$this->action = $action;
+		// @todo not guaranteed that $this->permissions->getUser() === $context->getUser();
+		$this->permissions = Container::get( 'permissions' );
+	}
+
+	/**
+	 * @return IContextSource
+	 */
+	public function getContext() {
+		return $this->context;
 	}
 
 	/**
@@ -142,16 +177,19 @@ abstract class AbstractBlock implements Block {
 		return $this->templates[$action];
 	}
 
-	public function onSubmit( $action, User $user, array $data ) {
+	/**
+	 * @param array $data
+	 * @return bool|null true when accepted, false when not accepted.
+	 *  null when this action does not support submission.
+	 */
+	public function onSubmit( array $data ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$section = new \ProfileSection( __METHOD__ );
-		if ( !$this->canSubmit( $action ) ) {
+		if ( !$this->canSubmit( $this->action ) ) {
 			return null;
 		}
 
-		$this->user = $user;
 		$this->submitted = $data;
-
 		$this->validate();
 
 		return !$this->hasErrors();
@@ -269,7 +307,7 @@ abstract class AbstractBlock implements Block {
 	}
 
 	public function getEditToken() {
-		return $this->user->getEditToken();
+		return $this->context->getUser()->getEditToken();
 	}
 
 	public function unsetRequiresWikitext( $action ) {

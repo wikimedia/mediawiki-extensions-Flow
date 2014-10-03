@@ -2,14 +2,15 @@
 
 namespace Flow;
 
+use DeferredUpdates;
 use Flow\Block\AbstractBlock;
 use Flow\Block\Block;
-use Flow\Model\Workflow;
 use Flow\Data\BufferedCache;
 use Flow\Data\ManagerGroup;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidActionException;
-use DeferredUpdates;
+use Flow\Model\Workflow;
+use IContextSource;
 use SplQueue;
 
 class SubmissionHandler {
@@ -48,26 +49,31 @@ class SubmissionHandler {
 
 	/**
 	 * @param Workflow $workflow
-	 * @param string $action
+	 * @param IContextSource $context
 	 * @param AbstractBlock[] $blocks
-	 * @param \User $user
-	 * @param array $params
+	 * @param string $action
+	 * @param array $parameters
 	 * @return AbstractBlock[]
 	 * @throws InvalidActionException
 	 * @throws InvalidDataException
 	 */
-	public function handleSubmit( Workflow $workflow, $action, array $blocks, $user, array $params ) {
-		$success = true;
-		/** @var Block[] $interestedBlocks */
-		$interestedBlocks = array();
-
+	public function handleSubmit(
+		Workflow $workflow,
+		IContextSource $context,
+		array $blocks,
+		$action,
+		array $parameters
+	) {
 		// since this is a submit force dbFactory to always return master
 		$this->dbFactory->forceMaster();
 
+		/** @var Block[] $interestedBlocks */
+		$interestedBlocks = array();
 		foreach ( $blocks as $block ) {
 			// This is just a check whether the block understands the action,
 			// Doesn't consider permissions
 			if ( $block->canSubmit( $action ) ) {
+				$block->init( $context, $action );
 				$interestedBlocks[] = $block;
 			}
 		}
@@ -86,15 +92,16 @@ class SubmissionHandler {
 
 		// Check mediawiki core permissions for title protection, blocked
 		// status, etc.
-		if ( !$workflow->userCan( 'edit', $user ) ) {
+		if ( !$workflow->userCan( 'edit', $context->getUser() ) ) {
 			reset( $interestedBlocks )->addError( 'block', wfMessage( 'blockedtitle' ) );
 			return array();
 		}
 
+		$success = true;
 		foreach ( $interestedBlocks as $block ) {
 			$name = $block->getName();
-			$data = isset( $params[$name] ) ? $params[$name] : array();
-			$success &= $block->onSubmit( $action, $user, $data );
+			$data = isset( $parameters[$name] ) ? $parameters[$name] : array();
+			$success &= $block->onSubmit( $data );
 		}
 
 		return $success ? $interestedBlocks : array();

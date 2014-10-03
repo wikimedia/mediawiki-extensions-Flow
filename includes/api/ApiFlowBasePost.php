@@ -12,14 +12,14 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 		$action = $this->getAction();
 		$user = $this->getUser();
 
-		/** @var AbstractBlock $block */
-		foreach ( $blocks as $block ) {
-			$block->init( $action, $user );
-		}
 		$result = $this->getResult();
-
 		$params = $this->getBlockParams();
-		$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $params );
+		$blocksToCommit = $loader->handleSubmit(
+			$this->getContext(),
+			$blocks,
+			$action,
+			$params
+		);
 
 		// See if any of the blocks generated an error (in which case the
 		// request will terminate with an the error message)

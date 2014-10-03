@@ -2,30 +2,18 @@
 
 namespace Flow\Block;
 
-use Flow\RevisionActionPermissions;
 use Flow\Container;
 use Flow\Formatter\BoardHistoryQuery;
 use Flow\Formatter\RevisionFormatter;
 use Flow\Exception\DataModelException;
 
 class BoardHistoryBlock extends AbstractBlock {
-
-	/**
-	 * @var RevisionActionPermissions $permissions Allows or denies actions to be performed
-	 */
-	protected $permissions;
-
 	protected $supportedGetActions = array( 'history' );
 
 	// @Todo - fill in the template names
 	protected $templates = array(
 		'history' => '',
 	);
-
-	public function init( $action, $user ) {
-		parent::init( $action, $user );
-		$this->permissions = new RevisionActionPermissions( Container::get( 'flow_actions' ), $user );
-	}
 
 	/**
 	 * Board history is read-only block which should not invoke write action
@@ -57,11 +45,10 @@ class BoardHistoryBlock extends AbstractBlock {
 		/** @var RevisionFormatter $formatter */
 		$formatter = Container::get( 'formatter.revision' );
 		$formatter->setIncludeHistoryProperties( true );
-		$ctx = \RequestContext::getMain();
 
 		$revisions = array();
 		foreach ( $history as $row ) {
-			$serialized = $formatter->formatApi( $row, $ctx );
+			$serialized = $formatter->formatApi( $row, $this->context );
 			if ( $serialized ) {
 				$revisions[$serialized['revisionId']] = $serialized;
 			}

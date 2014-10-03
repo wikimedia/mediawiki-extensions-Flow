@@ -11,7 +11,6 @@ use Flow\Model\PostRevision;
 use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\Exception\FailCommitException;
 
@@ -53,16 +52,6 @@ class TopicListBlock extends AbstractBlock {
 	 */
 	protected $firstPost;
 
-	/**
-	 * @var RevisionActionPermissions
-	 */
-	protected $permissions;
-
-	public function init( $action, $user ) {
-		parent::init( $action, $user );
-		$this->permissions = new RevisionActionPermissions( Container::get( 'flow_actions' ), $user );
-	}
-
 	protected function validate() {
 		// for now, new topic is considered a new post; perhaps some day topic creation should get it's own permissions?
 		if ( !$this->permissions->isAllowed( null, 'new-post' ) ) {
@@ -83,9 +72,7 @@ class TopicListBlock extends AbstractBlock {
 			return;
 		}
 
-		if (
-			trim( $this->submitted['content'] === '' )
-		) {
+		if ( trim( $this->submitted['content'] ) === '' ) {
 			$this->addError( 'content', wfMessage( 'flow-error-missing-content' ) );
 			return;
 		}
@@ -114,13 +101,14 @@ class TopicListBlock extends AbstractBlock {
 	 */
 	protected function create() {
 		$title = $this->workflow->getArticleTitle();
-		$topicWorkflow = Workflow::create( 'topic', $this->user, $title );
+		$user = $this->context->getUser();
+		$topicWorkflow = Workflow::create( 'topic', $user, $title );
 		$topicListEntry = TopicListEntry::create( $this->workflow, $topicWorkflow );
 		$topicTitle = PostRevision::create( $topicWorkflow, $this->submitted['topic'] );
 
 		$firstPost = null;
 		if ( !empty( $this->submitted['content'] ) ) {
-			$firstPost = $topicTitle->reply( $topicWorkflow, $this->user, $this->submitted['content'] );
+			$firstPost = $topicTitle->reply( $topicWorkflow, $user, $this->submitted['content'] );
 			$topicTitle->setChildren( array( $firstPost ) );
 		}
 
@@ -177,7 +165,6 @@ class TopicListBlock extends AbstractBlock {
 			return $response + $serializer->buildEmptyResult( $this->workflow );
 		}
 
-		$ctx = \RequestContext::getMain();
 		// @todo remove the 'api' => true, its always api
 		$findOptions = $this->getFindOptions( $options + array( 'api' => true ) );
 		$page = $this->getPage( $findOptions );
@@ -204,7 +191,7 @@ class TopicListBlock extends AbstractBlock {
 			return $id->getAlphadecimal();
 		}, $workflowIds ) ) );
 
-		return $response + $serializer->formatApi( $this->workflow, $workflows, $found, $page, $ctx );
+		return $response + $serializer->formatApi( $this->workflow, $workflows, $found, $page, $this->context );
 	}
 
 	public function getName() {
@@ -248,7 +235,7 @@ class TopicListBlock extends AbstractBlock {
 		// Only support sortby = updated now, fall back to creation time by default otherwise.
 		// To clear the sortby user preference, pass sortby with an empty value
 		$sortByOption = '';
-		$user = $this->user;
+		$user = $this->context->getUser();
 		if ( isset( $requestOptions['sortby'] ) ) {
 			if ( $requestOptions['sortby'] === 'updated' ) {
 				$sortByOption = 'updated';

@@ -81,9 +81,6 @@ class View extends ContextSource {
 		$user = $this->getUser();
 
 		$blocks = $loader->createBlocks();
-		foreach ( $blocks as $block ) {
-			$block->init( $action, $user );
-		}
 		wfProfileOut( __CLASS__ . '-init' );
 
 		$parameters = $this->extractBlockParameters( $action, $request, $blocks );
@@ -91,7 +88,7 @@ class View extends ContextSource {
 		$wasPosted = $request->wasPosted();
 		if ( $wasPosted ) {
 			wfProfileIn( __CLASS__ . '-submit' );
-			$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $parameters );
+			$blocksToCommit = $loader->handleSubmit( $this, $blocks, $action, $parameters );
 			if ( $blocksToCommit ) {
 				if ( !$user->matchEditToken( $request->getVal( 'wpEditToken' ) ) ) {
 					// only render the failed blocks
@@ -107,6 +104,10 @@ class View extends ContextSource {
 				}
 			}
 			wfProfileOut( __CLASS__ . '-submit' );
+		} else {
+			foreach ( $blocks as $block ) {
+				$block->init( $this, $action );
+			}
 		}
 
 		wfProfileIn( __CLASS__ . '-serialize' );
