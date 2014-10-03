@@ -37,28 +37,25 @@
 </div>
 
 			<input type="hidden" name="wpEditToken" value="'.htmlentities(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['editToken'])) ? $cx['scopes'][0]['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
-			'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['summary'])) ? $in['summary'] : null))) ? '
-				<input type="hidden" name="flow_prev_revision" value="'.htmlentities(((is_array($in['summary']) && isset($in['summary']['revId'])) ? $in['summary']['revId'] : null), ENT_QUOTES, 'UTF-8').'" />
-			' : '').'
-			<textarea name="flow_summary"
-				  class="mw-ui-input"
-				  type="text"
-				  required
-				  data-flow-preview-node="summary"
-				  data-flow-preview-template="flow_topic_titlebar_summary">'.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null))) ? ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['summary'])) ? $in['summary'] : null))) ? ''.'
-						'.htmlentities(((is_array($in['summary']) && isset($in['summary']['content'])) ? $in['summary']['content'] : null), ENT_QUOTES, 'UTF-8').'' : '').'').'</textarea>
+			<textarea name="flow_reason"
+				      class="mw-ui-input"
+				      type="text"
+				      required
+				      data-flow-preview-node="moderateReason"
+				      data-flow-preview-template="flow_topic_titlebar"
+			>'.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['reason'])) ? $cx['scopes'][0]['submitted']['reason'] : null))) ? ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['reason'])) ? $cx['scopes'][0]['submitted']['reason'] : null), ENT_QUOTES, 'UTF-8').'' : '').'</textarea>
 			<div class="flow-form-actions flow-form-collapsible">
-				<button
-					data-role="submit"
-					class="mw-ui-button mw-ui-constructive"
-					data-flow-interactive-handler="apiRequest"
-					data-flow-api-target="< .flow-topic"
-					data-flow-api-handler="lockTopic">
-						'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? '
-							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-unlock-topic'),Array()), 'encq').'
-						' : '
-							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-lock-topic'),Array()), 'encq').'
-						').'
+				<button data-role="submit"
+				        class="mw-ui-button mw-ui-constructive"
+				        data-flow-interactive-handler="apiRequest"
+				        data-flow-api-target="< .flow-topic"
+				        data-flow-api-handler="lockTopic"
+				>
+					'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? '
+						'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-unlock-topic'),Array()), 'encq').'
+					' : '
+						'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-lock-topic'),Array()), 'encq').'
+					').'
 				</button>
 				'.LCRun3::hbch($cx, 'progressiveEnhancement', Array(Array(),Array()), $in, function($cx, $in) {return '
 	<button data-flow-api-handler="preview"

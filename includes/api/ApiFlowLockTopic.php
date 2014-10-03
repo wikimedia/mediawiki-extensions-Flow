@@ -10,10 +10,8 @@ class ApiFlowLockTopic extends ApiFlowBasePost {
 
 	protected function getBlockParams() {
 		$params = $this->extractRequestParams();
-
 		return array(
 			'topic' => $params,
-			'topicsummary' => $params,
 		);
 	}
 
@@ -30,18 +28,17 @@ class ApiFlowLockTopic extends ApiFlowBasePost {
 					'close', 'reopen' // BC: now replaced by lock & unlock
 				),
 			),
-			'summary' => array(
+			'reason' => array(
 				ApiBase::PARAM_REQUIRED => true,
+				ApiBase::PARAM_TYPE => 'string',
 			),
-			'prev_revision' => null,
 		);
 	}
 
 	public function getParamDescription() {
 		return array(
-			'moderationState' => 'What level to moderate at',
-			'summary' => 'Summary for closing/reopening topic',
-			'prev_revision' => 'Revision id of the current topic summary revision to check for edit conflicts. Null for a new topic summary revision',
+			'moderationState' => "State to put topic in, either locked or unlocked",
+			'reason' => 'Reason for locking or unlocking the topic',
 		);
 	}
 
@@ -51,7 +48,7 @@ class ApiFlowLockTopic extends ApiFlowBasePost {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=lock-topic&cotmoderationState=lock&cotsummary=Ahhhh&cotprev_revision=xjs&workflow=',
+			'api.php?action=flow&submodule=lock-topic&cotmoderationState=lock&cotsummary=Ahhhh&workflow=',
 		);
 	}
 }
