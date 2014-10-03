@@ -70,6 +70,23 @@
     },
     {
       "key": {
+        "uuid": "ce8c5bf9_d9be90d1",
+        "filename": "tests/browser/features/collapse.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-03T00:26:41Z",
+      "side": 1,
+      "message": "doesn\u0027t work if there are locked topics, because they\u0027re flow-topic-moderated page elements yet by design they remain visible.",
+      "revId": "7972ce417f297a8129a91488efe41a9b9cf8cdf5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce8c5bf9_c68c6f02",
         "filename": "tests/browser/features/collapse.feature",
         "patchSetId": 1
