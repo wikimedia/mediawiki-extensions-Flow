@@ -86,11 +86,11 @@ class HeaderBlock extends AbstractBlock {
 		// @todo this is superseeded by SubmissionHandler::onSubmit checking
 		// 	Title::userCan() ?
 		if ( !$this->context->getUser()->isAllowed( 'edit' ) ) {
-			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
+			$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
 			return;
 		}
 		if ( !isset( $this->submitted['content'] ) ) {
-			$this->addError( 'content', wfMessage( 'flow-error-missing-header-content' ) );
+			$this->addError( 'content', $this->context->msg( 'flow-error-missing-header-content' ) );
 		}
 
 		if ( $this->header ) {
@@ -103,12 +103,12 @@ class HeaderBlock extends AbstractBlock {
 
 	protected function validateNextRevision() {
 		if ( !$this->permissions->isAllowed( $this->header, 'edit-header' ) ) {
-			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
+			$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
 			return;
 		}
 
 		if ( empty( $this->submitted['prev_revision'] ) ) {
-			$this->addError( 'prev_revision', wfMessage( 'flow-error-missing-prev-revision-identifier' ) );
+			$this->addError( 'prev_revision', $this->context->msg( 'flow-error-missing-prev-revision-identifier' ) );
 		} elseif ( $this->header->getRevisionId()->getAlphadecimal() !== $this->submitted['prev_revision'] ) {
 			// This is a reasonably effective way to ensure prev revision matches, but for guarantees against race
 			// conditions there also exists a unique index on rev_prev_revision in mysql, meaning if someone else inserts against the
@@ -117,7 +117,7 @@ class HeaderBlock extends AbstractBlock {
 			// handing user back to specific dialog indicating race condition
 			$this->addError(
 				'prev_revision',
-				wfMessage( 'flow-error-prev-revision-mismatch' )->params(
+				$this->context->msg( 'flow-error-prev-revision-mismatch' )->params(
 					$this->submitted['prev_revision'],
 					$this->header->getRevisionId()->getAlphadecimal(),
 					$this->context->getUser()->getName()
@@ -141,14 +141,14 @@ class HeaderBlock extends AbstractBlock {
 
 	protected function validateFirstRevision() {
 		if ( !$this->permissions->isAllowed( null, 'create-header' ) ) {
-			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
+			$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
 			return;
 		}
 		if ( isset( $this->submitted['prev_revision'] ) && $this->submitted['prev_revision'] ) {
 			// User submitted a previous revision, but we couldn't find one.  This is likely
 			// an internal error and not a user error, consider better handling
 			// is this even worth checking?
-			$this->addError( 'prev_revision', wfMessage( 'flow-error-prev-revision-does-not-exist' ) );
+			$this->addError( 'prev_revision', $this->context->msg( 'flow-error-prev-revision-does-not-exist' ) );
 			return;
 		}
 

@@ -97,7 +97,7 @@ class TopicSummaryBlock extends AbstractBlock {
 	 */
 	protected function validateTopicSummary() {
 		if ( !isset( $this->submitted['summary'] ) || !is_string( $this->submitted['summary'] ) ) {
-			$this->addError( 'content', wfMessage( 'flow-error-missing-summary' ) );
+			$this->addError( 'content', $this->context->msg( 'flow-error-missing-summary' ) );
 			return;
 		}
 
@@ -108,12 +108,12 @@ class TopicSummaryBlock extends AbstractBlock {
 		// Create topic summary
 		if ( !$this->topicSummary ) {
 			if ( !$this->permissions->isAllowed( null, 'create-topic-summary' ) ) {
-				$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
+				$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
 				return;
 			}
 			// new summary should not have a previous revision
 			if ( !empty( $this->submitted['prev_revision'] ) ) {
-				$this->addError( 'prev_revision', wfMessage( 'flow-error-prev-revision-does-not-exist' ) );
+				$this->addError( 'prev_revision', $this->context->msg( 'flow-error-prev-revision-does-not-exist' ) );
 				return;
 			}
 
@@ -126,17 +126,17 @@ class TopicSummaryBlock extends AbstractBlock {
 		// Edit topic summary
 		} else {
 			if ( !$this->permissions->isAllowed( $this->topicSummary, 'edit-topic-summary' ) ) {
-				$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
+				$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
 				return;
 			}
 			// Check the previous revision to catch possible edit conflict
 			if ( empty( $this->submitted['prev_revision'] ) ) {
-				$this->addError( 'prev_revision', wfMessage( 'flow-error-missing-prev-revision-identifier' ) );
+				$this->addError( 'prev_revision', $this->context->msg( 'flow-error-missing-prev-revision-identifier' ) );
 				return;
 			} elseif ( $this->topicSummary->getRevisionId()->getAlphadecimal() !== $this->submitted['prev_revision'] ) {
 				$this->addError(
 					'prev_revision',
-					wfMessage( 'flow-error-prev-revision-mismatch' )->params(
+					$this->context->msg( 'flow-error-prev-revision-mismatch' )->params(
 						$this->submitted['prev_revision'],
 						$this->topicSummary->getRevisionId()->getAlphadecimal(),
 						$this->context->getUser()->getName()
