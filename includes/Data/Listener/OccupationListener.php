@@ -3,6 +3,7 @@
 namespace Flow\Data\Listener;
 
 use Article;
+use DeferredUpdates;
 use Flow\Data\LifecycleHandler;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
