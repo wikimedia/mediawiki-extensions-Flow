@@ -72,7 +72,7 @@
 		'.LCRun3::ch($cx, 'l10n', Array(Array('post_moderation_state',((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),((is_array($in) && isset($in['replyToId'])) ? $in['replyToId'] : null),((is_array($in['moderator']) && isset($in['moderator']['name'])) ? $in['moderator']['name'] : null)),Array()), 'encq').'</div>
 	<div class="flow-moderated-topic-reason">
 		'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-moderated-reason-prefix'),Array()), 'encq').'
-		'.htmlentities(((is_array($in) && isset($in['moderateReason'])) ? $in['moderateReason'] : null), ENT_QUOTES, 'UTF-8').'
+		'.LCRun3::ch($cx, 'escapeContent', Array(Array(((is_array($in['moderateReason']) && isset($in['moderateReason']['format'])) ? $in['moderateReason']['format'] : null),((is_array($in['moderateReason']) && isset($in['moderateReason']['content'])) ? $in['moderateReason']['content'] : null)),Array()), 'encq').'
 	</div>
 ' : '').'
 <span class="flow-reply-count"><span class="wikiglyph wikiglyph-speech-bubble"></span><span class="flow-reply-count-number">'.htmlentities(((is_array($in) && isset($in['reply_count'])) ? $in['reply_count'] : null), ENT_QUOTES, 'UTF-8').'</span></span>
