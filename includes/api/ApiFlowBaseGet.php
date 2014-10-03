@@ -7,8 +7,8 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 	public function execute() {
 		$loader = $this->getLoader();
 		$blocks = $loader->createBlocks();
+		$context = $this->getContext();
 		$action = $this->getAction();
-		$user = $this->getUser();
 		$container = $this->getContainer();
 		$passedParams = $this->getBlockParams();
 
@@ -19,7 +19,7 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 
 		/** @var AbstractBlock $block */
 		foreach( $blocks as $block ) {
-			$block->init( $action, $user );
+			$block->init( $context, $action );
 
 			if ( $block->canRender( $action ) ) {
 				$blockParams = array();
