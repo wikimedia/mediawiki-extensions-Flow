@@ -75,3 +75,7 @@ end
 Then(/^I confirm$/) do
   on(FlowPage).confirm(true){}
 end
+
+Then(/^I should not see hidden, deleted, or suppressed topics$/) do
+  expect( on(FlowPage).moderated_topic_hidden_deleted_suppressed).not_to be_visible
+end
