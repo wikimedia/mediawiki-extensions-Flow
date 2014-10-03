@@ -51,7 +51,8 @@ class ApiFlowLockTopicTest extends \ApiTestCase {
 		$this->assertEquals( 'lock-topic', $result['changeType'] );
 		$this->assertTrue( $result['isModerated'] );
 		$this->assertArrayHasKey( 'unlock', $result['actions'] );
-		$this->assertEquals( 'fiddle faddle', $result['moderateReason'] );
+		$this->assertEquals( 'fiddle faddle', $result['moderateReason']['content'] );
+		$this->assertEquals( 'plaintext', $result['moderateReason']['format'] );
 	}
 
 	public function testUnlockTopic() {
