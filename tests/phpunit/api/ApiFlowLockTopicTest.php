@@ -43,16 +43,22 @@ class ApiFlowLockTopicTest extends \ApiTestCase {
 			'action' => 'flow',
 			'submodule' => 'lock-topic',
 			'cotmoderationState' => 'lock',
-			'cotsummary' => 'fiddle faddle',
+			'cotreason' => 'fiddle faddle',
 			'cotprev_revision' => null,
 		) );
 
 		$result = $data[0]['flow']['lock-topic']['result']['topic'];
+		$this->assertArrayHasKey( 'errors', $result );
 		$this->assertCount( 0, $result['errors'] );
+		$this->assertArrayHasKey( 'workflowId', $result );
 		$this->assertEquals( $workflowId, $result['workflowId'] );
+		$this->assertArrayHasKey( 'changeType', $result );
 		$this->assertEquals( 'lock-topic', $result['changeType'] );
+		$this->assertArrayHasKey( 'isModerated', $result );
 		$this->assertTrue( $result['isModerated'] );
+		$this->assertArrayHasKey( 'actions', $result );
 		$this->assertArrayHasKey( 'unlock', $result['actions'] );
+		$this->assertArrayHasKey( 'moderateReason', $result );
 		$this->assertEquals( 'fiddle faddle', $result['moderateReason']['content'] );
 		$this->assertEquals( 'plaintext', $result['moderateReason']['format'] );
 	}
@@ -65,8 +71,7 @@ class ApiFlowLockTopicTest extends \ApiTestCase {
 			'action' => 'flow',
 			'submodule' => 'lock-topic',
 			'cotmoderationState' => 'lock',
-			'cotsummary' => 'fiddle faddle',
-			'cotprev_revision' => null,
+			'cotreason' => 'fiddle faddle',
 		) );
 		$result = $data[0]['flow']['lock-topic']['result']['topic'];
 		$this->assertCount( 0, $result['errors'] );
@@ -77,21 +82,21 @@ class ApiFlowLockTopicTest extends \ApiTestCase {
 			'action' => 'flow',
 			'submodule' => 'lock-topic',
 			'cotmoderationState' => 'unlock',
-			'cotsummary' => 'Ether',
-			'cotprev_revision' => $result['summary']['revId'],
+			'cotreason' => 'Ether',
 		) );
 
 		$result = $data[0]['flow']['lock-topic']['result']['topic'];
+		$this->assertArrayHasKey( 'errors', $result );
 		$this->assertCount( 0, $result['errors'] );
+		$this->assertArrayHasKey( 'changeType', $result );
 		$this->assertEquals( 'restore-topic', $result['changeType'] );
+		$this->assertArrayHasKey( 'isModerated', $result );
 		$this->assertFalse( $result['isModerated'] );
+		$this->assertArrayHasKey( 'actions', $result );
 		$this->assertArrayHasKey( 'lock', $result['actions'] );
-		$this->assertEquals(
-			'Ether',
-			// trim/strip_tags because we dont care what the wikitext parser
-			// wrapped this with
-			trim( strip_tags( $result['summary']['content'] ) )
-		);
+		// Is this intentional? We don't display it by default
+		// but perhaps it should still be in the api output.
+		$this->assertArrayNotHasKey( 'moderateReason', $result );
 	}
 
 	protected function createTopic() {
