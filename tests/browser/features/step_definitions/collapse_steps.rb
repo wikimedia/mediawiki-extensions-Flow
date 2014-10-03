@@ -6,12 +6,14 @@ def visibility_to_should(el, visibility_str)
   end
 end
 
+# TODO belongs in moderation_steps
 When(/^I click the first moderated topic$/) do
   on(FlowPage).first_moderated_topic_titlebar_element.click
 end
 
-When(/^I click the first non-moderated topic$/) do
-  on(FlowPage).first_non_moderated_topic_title_element.click
+When(/^I click the first topic$/) do
+  # Careful, the title might some day do something special.
+  on(FlowPage).flow_first_topic_heading_element.click
 end
 
 COLLAPSE_STRING_TO_INDEX = {
@@ -50,18 +52,14 @@ Then(/^I should (.*) the comments of the first moderated topic$/) do |visibility
   visibility_to_should(on(FlowPage).first_moderated_topic_post_content_element, visibility_str)
 end
 
-Then(/^I should (.*) the comments of the first non-moderated topic$/) do |visibility_str|
-  visibility_to_should(on(FlowPage).first_non_moderated_topic_post_content_element, visibility_str)
+Then(/^I should (.*) the comments of the first topic$/) do |visibility_str|
+  visibility_to_should(on(FlowPage).flow_first_topic_body_element, visibility_str)
 end
 
 Then(/^I should (.*) the title of the first moderated topic$/) do |visibility_str|
   visibility_to_should(on(FlowPage).first_moderated_topic_title_element, visibility_str)
 end
 
-Then(/^I should (.*) the title of the first non-moderated topic$/) do |visibility_str|
-  visibility_to_should(on(FlowPage).first_non_moderated_topic_title_element, visibility_str)
-end
-
-Then(/^I should (.*) who started the first non-moderated topic$/) do |visibility_str|
-  visibility_to_should(on(FlowPage).first_non_moderated_topic_starter_element, visibility_str)
+Then(/^I should (.*) the title of the first topic$/) do |visibility_str|
+  visibility_to_should(on(FlowPage).flow_first_topic_heading_element, visibility_str)
 end
