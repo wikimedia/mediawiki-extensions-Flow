@@ -7,6 +7,7 @@ use DeferredUpdates;
 use Flow\Data\LifecycleHandler;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
+use SplQueue;
 
 /**
  * Ensures that a given workflow is occupied.  This will be unnecssary
@@ -16,6 +17,9 @@ class OccupationListener implements LifecycleHandler {
 	/** @var OccupationController **/
 	protected $occupationController;
 
+	/** @var SplQueue */
+	protected $deferredQueue;
+
 	/** @var string **/
 	protected $defaultType;
 
@@ -24,10 +28,16 @@ class OccupationListener implements LifecycleHandler {
 
 	/**
 	 * @param OccupationController $occupationController The OccupationController to occupy the page with.
+	 * @param SplQueue             $deferredQueue        Queue of callbacks to run only if commit succedes
 	 * @param string               $defaultType          The workflow type to look for
 	 */
-	public function __construct( OccupationController $occupationController, $defaultType ) {
+	public function __construct(
+		OccupationController $occupationController,
+		SplQueue $deferredQueue,
+		$defaultType
+	) {
 		$this->occupationController = $occupationController;
+		$this->deferredQueue = $deferredQueue;
 		$this->defaultType = $defaultType;
 	}
 
@@ -53,10 +63,13 @@ class OccupationListener implements LifecycleHandler {
 
 	protected function ensureOccupation( Workflow $workflow ) {
 		if ( $this->enabled ) {
-			$this->occupationController->ensureFlowRevision(
-				new Article( $workflow->getArticleTitle() ),
-				$workflow
-			);
+			$controller = $this->occupationController;
+			$this->deferredQueue->push( function() use ( $controller, $workflow ) {
+				$controller->ensureFlowRevision(
+					new Article( $workflow->getArticleTitle() ),
+					$workflow
+				);
+			} );
 		}
 	}
 
