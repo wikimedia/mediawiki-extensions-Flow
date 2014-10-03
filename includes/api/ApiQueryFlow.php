@@ -31,7 +31,7 @@ class ApiQueryFlow extends ApiQueryBase {
 			'workflow' => $this->loader->getWorkflow()->getId()->getAlphadecimal()
 		);
 		foreach( $this->loader->createBlocks() as $block ) {
-			$block->init( $params['action'], $this->getUser() );
+			$block->init( $this->getContext(), $params['action'] );
 
 			$blockParams = array();
 			if ( isset( $passedParams[$block->getName()] ) ) {
