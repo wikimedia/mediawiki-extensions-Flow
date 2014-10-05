@@ -36,6 +36,7 @@
 	"flow-post-moderated-toggle-hide-hide": "Reactie {{GENDER:$1|verborgen}} door $2 verbergen",
 	"flow-post-moderated-toggle-delete-hide": "Reactie {{GENDER:$1|verwijderd}} door $2 verbergen",
 	"flow-post-moderated-toggle-suppress-hide": "Reactie {{GENDER:$1|onderdrukt}} door $2 verbergen",
+	"flow-topic-moderated-reason-prefix": "Reden:",
 	"flow-hide-post-content": "Deze opmerking is {{GENDER:$1|verborgen}} door $1",
 	"flow-hide-title-content": "Dit onderwerp is {{GENDER:$1|verborgen}} door $1",
 	"flow-lock-title-content": "Dit onderwerp is {{GENDER:$1|vergrendeld}} door $1",

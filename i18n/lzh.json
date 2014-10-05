@@ -1,11 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Jason924tw"
+			"Jason924tw",
+			"StephDC"
 		]
 	},
+	"flow-topic-moderated-reason-prefix": "因：",
 	"flow-post-action-post-history": "誌",
 	"flow-topic-action-history": "誌",
+	"flow-topic-action-undo-moderation": "撤",
 	"flow-board-history": "「$1」誌",
-	"flow-link-history": "誌"
+	"flow-link-history": "誌",
+	"flow-topic-html-title": "$1於$2"
 }

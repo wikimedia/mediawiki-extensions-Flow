@@ -7,7 +7,8 @@
 			"Omidh",
 			"Reza1615",
 			"درفش کاویانی",
-			"Alirezaaa"
+			"Alirezaaa",
+			"Hosseinblue"
 		]
 	},
 	"flow-desc": "سامانهٔ مدیریت گردش کار",
@@ -81,6 +82,7 @@
 	"flow-topic-action-undelete-topic": "احیاء عنوان",
 	"flow-topic-action-unsuppress-topic": "از مخفی‌بودن در آوردن عنوان",
 	"flow-topic-action-restore-topic": "بازگرداندن موضوع",
+	"flow-topic-action-undo-moderation": "واگردانی",
 	"flow-topic-notification-subscribe-title": "این مبحث به فهرست پیگیری‌تان افزوده شده است.",
 	"flow-topic-notification-subscribe-description": "شما برای همه فعالیت‌ها در این مبحث اطلاعیه دریافت خواهید کرد.",
 	"flow-board-notification-subscribe-title": "شما به این بحث اشتراک دارید!",
@@ -97,7 +99,7 @@
 	"flow-error-invalid-replyto": "«پاسخ» پارامتر نامعتبر بود. پست تعیین‌شده نتوانست پیدا شود.",
 	"flow-error-delete-failure": "حذف کردن این مورد ناموفق بود.",
 	"flow-error-hide-failure": "پنهان‌کردن این مورد ناموفق بود.",
-	"flow-error-missing-postId": "هیچ \"شناسهٔ پستی\" پارامتری عرضه نشد. این پارامتر نیازمند به کنترل یک پست است.",
+	"flow-error-missing-postId": "هیچ «شناسهٔ پستی» پارامتری عرضه نشد. این پارامتر نیازمند به کنترل یک پست است.",
 	"flow-error-invalid-postId": "\"شناسهٔ پستی\" پارامتر نامعتبر بود. پست تعیین شدهٔ ($1) نتوانست پیدا شود.",
 	"flow-error-restore-failure": "بازگردانی این مورد ناموفق بود.",
 	"flow-error-invalid-moderation-state": "یک ارزش نامعتبر برای وضعیت کنترل، ارائه شد.",
