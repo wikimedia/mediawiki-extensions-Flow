@@ -13,13 +13,14 @@ use Flow\Data\RecentChanges\RecentChanges;
  * The value consists of an array of these below keys (and appropriate values):
  * * performs-writes: Must be boolean true for any action that writes to the wiki.
  *     actions with this set will additionally require the core 'edit' permission.
- * * log_type: the Special:Log filter to save actions to.
+ * * log_type: the Special:Log filter to save actions to; false means 'not logged'.
  * * rc_insert: whether or not to insert the write action into RC table.
  * * permissions: array of permissions, where each key is the existing post
- *   state and value is the action required to execute the action.
- * * button-method: used in PostActionMenu, to generate GET (a) or POST (form)
- *   links for the action.
- * * links: the set of links to generate and return in api responses
+ *     state and the value is the right required to execute the action.  A blank
+ *     value means anyone can take the action.  However, an omitted key means
+ *     no one can perform the action described by that key.
+ * * links: the set of read links to generate and return in API responses
+ * * actions: the set of write links to generate and return in API responses
  * * history: all history-related information:
  *   * i18n-message: the i18n message key for this change type
  *   * i18n-params: array of i18n parameters for the provided message (see
@@ -37,7 +38,6 @@ $wgFlowActions = array(
 		'permissions' => array(
 			Header::MODERATED_NONE => '',
 		),
-		'button-method' => 'POST',
 		'links' => array( 'board-history', 'workflow', 'header-revision' ),
 		'actions' => array( 'edit-header' ),
 		'history' => array(
@@ -57,7 +57,6 @@ $wgFlowActions = array(
 		'permissions' => array(
 			Header::MODERATED_NONE => '',
 		),
-		'button-method' => 'POST',
 		'links' => array( 'board-history', 'diff-header', 'workflow', 'header-revision' ),
 		'actions' => array( 'edit-header' ),
 		'history' => array(
@@ -82,7 +81,6 @@ $wgFlowActions = array(
 			PostSummary::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_SUPPRESSED => array( 'flow-suppress' ),
 		),
-		'button-method' => 'GET',
 		'links' => array( 'topic', 'topic-history', 'watch-topic', 'unwatch-topic' ),
 		'actions' => array( 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
 		'history' => array(
@@ -107,7 +105,6 @@ $wgFlowActions = array(
 			PostSummary::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_SUPPRESSED => array( 'flow-suppress' ),
 		),
-		'button-method' => 'GET',
 		'links' => array( 'topic', 'topic-history', 'diff-post-summary', 'watch-topic', 'unwatch-topic' ),
 		'actions' => array( 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
 		'history' => array(
@@ -129,7 +126,6 @@ $wgFlowActions = array(
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',
 		),
-		'button-method' => 'GET',
 		'links' => array( 'topic', 'topic-history', 'diff-post', 'topic-revision', 'watch-topic', 'unwatch-topic' ),
 		'actions' => array( 'reply', 'thank', 'edit-title', 'lock-topic', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
 		'history' => array(
@@ -157,7 +153,6 @@ $wgFlowActions = array(
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',
 		),
-		'button-method' => 'POST',
 		'links' => array( 'topic-history', 'topic', 'post', 'topic-revision', 'watch-topic', 'unwatch-topic' ),
 		'actions' => array( 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
 		'history' => array(
@@ -189,7 +184,6 @@ $wgFlowActions = array(
 		'root-permissions' => array(
 			PostRevision::MODERATED_NONE => '',
 		),
-		'button-method' => 'GET',
 		'links' => array( 'post-history', 'topic', 'post', 'diff-post', 'post-revision' ),
 		'actions' => array( 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
 		'history' => array(
@@ -225,7 +219,6 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => '',
 			PostRevision::MODERATED_HIDDEN => '',
 		),
-		'button-method' => 'POST',
 		'links' => array( 'topic', 'post', 'post-history', 'post-revision' ),
 		'actions' => array( 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
 		'history' => array(
@@ -249,7 +242,6 @@ $wgFlowActions = array(
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
 		),
-		'button-method' => 'POST',
 		'links' => array( 'topic', 'post', 'topic-history', 'post-history', 'topic-revision', 'watch-topic', 'unwatch-topic' ),
 		'actions' => array( 'reply', 'thank', 'edit-title', 'restore-topic', 'hide-topic', 'delete-topic', 'suppress-topic' ),
 		'history' => array(
@@ -274,7 +266,6 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => array( 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_HIDDEN => array( 'flow-delete', 'flow-suppress' ),
 		),
-		'button-method' => 'POST',
 		'links' => array( 'topic', 'post', 'post-history', 'post-revision', 'watch-topic', 'unwatch-topic' ),
 		'actions' => array( 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
 		'history' => array(
@@ -300,7 +291,6 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_HIDDEN => array( 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_LOCKED => array( 'flow-delete', 'flow-suppress' ),
 		),
-		'button-method' => 'POST',
 		'links' => array( 'topic', 'topic-history', 'topic-revision', 'watch-topic', 'unwatch-topic' ),
 		'actions' => array( 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
 		'history' => array(
@@ -326,7 +316,6 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_HIDDEN => 'flow-suppress',
 			PostRevision::MODERATED_DELETED => 'flow-suppress',
 		),
-		'button-method' => 'POST',
 		'links' => array( 'topic', 'post', 'topic-history', 'post-revision' ),
 		'actions' => array( 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
 		'history' => array(
@@ -353,7 +342,6 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_DELETED => 'flow-suppress',
 			PostRevision::MODERATED_LOCKED => 'flow-suppress',
 		),
-		'button-method' => 'POST',
 		'links' => array( 'topic', 'topic-history', 'topic-revision', 'watch-topic', 'unwatch-topic' ),
 		'actions' => array( 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
 		'history' => array(
@@ -378,7 +366,6 @@ $wgFlowActions = array(
 			// Only non-moderated topic can be locked
 			PostRevision::MODERATED_NONE => array( 'flow-lock', 'flow-delete', 'flow-suppress' ),
 		),
-		'button-method' => 'GET',
 		'links' => array( 'topic', 'topic-history', 'watch-topic', 'unwatch-topic' ),
 		'actions' => array( 'edit-topic-summary', 'restore-topic' ),
 		'history' => array(
@@ -428,7 +415,6 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
-		'button-method' => 'POST',
 		'links' => array( 'topic', 'post', 'post-history', 'post-revision' ),
 		'actions' => array( 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
 		'history' => array(
@@ -483,7 +469,6 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
-		'button-method' => 'POST',
 		'links' => array( 'topic', 'topic-history', 'topic-revision', 'watch-topic', 'unwatch-topic' ),
 		'actions' => array( 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
 		'history' => array(
@@ -516,7 +501,6 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
-		'button-method' => 'GET',
 		'links' => array(), // @todo
 		'actions' => array(), // view is not a recorded change type, no actions will be requested
 		'history' => array(), // views don't generate history
@@ -533,7 +517,6 @@ $wgFlowActions = array(
 		'root-permissions' => array(
 			PostRevision::MODERATED_NONE => '',
 		),
-		'button-method' => 'GET',
 		'links' => array( 'topic-history', 'topic', 'post', 'post-revision', 'watch-topic', 'unwatch-topic' ),
 		'actions' => array( 'reply', 'thank', 'edit-post', 'hide-post', 'delete-post', 'suppress-post', 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
 		'history' => array(
@@ -624,7 +607,6 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_DELETED => '',
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
-		'button-method' => 'GET',
 		'history' => array(), // views don't generate history
 		'handler-class' => 'Flow\Actions\HistoryAction',
 	),
