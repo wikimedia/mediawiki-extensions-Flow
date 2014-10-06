@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce8c5bf9_28eabd70",
+        "filename": "includes/Data/BagOStuff/BufferedBagOStuff.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-06T08:52:52Z",
+      "side": 1,
+      "message": "$values has some data at this point",
+      "revId": "ebc0cc0945aa9643eb44c4932c585fa3b0b72447",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_08b9f9e5",
+        "filename": "includes/Data/BagOStuff/BufferedBagOStuff.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-06T08:52:52Z",
+      "side": 1,
+      "message": "can be removed, happens in self::clearLocal",
+      "revId": "ebc0cc0945aa9643eb44c4932c585fa3b0b72447",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_28be3dcf",
+        "filename": "includes/Data/BagOStuff/BufferedBagOStuff.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-06T08:52:52Z",
+      "side": 1,
+      "message": "should we set this-\u003etransaction \u003d false; here?",
+      "revId": "ebc0cc0945aa9643eb44c4932c585fa3b0b72447",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_68c44569",
+        "filename": "includes/Data/BagOStuff/BufferedBagOStuff.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-06T08:52:52Z",
+      "side": 1,
+      "message": "can be removed, happens in self::clearLocal",
+      "revId": "ebc0cc0945aa9643eb44c4932c585fa3b0b72447",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_e8e855df",
+        "filename": "includes/View.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-06T08:52:52Z",
+      "side": 1,
+      "message": "pass this into the constructor",
+      "revId": "ebc0cc0945aa9643eb44c4932c585fa3b0b72447",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_689765f0",
+        "filename": "includes/api/ApiFlowBase.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-06T08:52:52Z",
+      "side": 1,
+      "message": "this feels like an odd place, but i\u0027m not sure where else to put it atm",
+      "revId": "ebc0cc0945aa9643eb44c4932c585fa3b0b72447",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce8c5bf9_a8a32d3e",
+        "filename": "includes/SubmissionHandler.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-06T08:52:52Z",
+      "side": 0,
+      "message": "i suppose my worry is that before we knew commit would be called by looking at this one function.  With the commit moved elsewhere we have to assume it will hit the right code paths, and that the request can\u0027t end without calling commit. \n\nI\u0027m not certain that moving the boundaries of the cache write buffering is going to help, but I\u0027m also not sure where our current cache bug is coming from.  This seems like it might catch our current bug, but i wonder if it will open a new one where sometimes new writes don\u0027t get written out to cache and exist only in the db.",
+      "revId": "d15a4e5252ceb05354738751880c62f8e25a8f38",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
