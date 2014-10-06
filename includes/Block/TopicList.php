@@ -274,13 +274,8 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	/**
-	 * @todo
-	 *
-	 * when this returns deleted topics they dont get displayed to most
-	 * users, which means they will have less topics loaded than they expected.
-	 * Not as noticible with inf scroll, but exploitable to force blank page loads.
-	 *
-	 * One possible solution would be to filter the query at the storage level.
+	 * Gets a set of workflow IDs
+	 * This filters result to only include unmoderated and locked topics.
 	 *
 	 * @param array $findOptions
 	 * @return PagerPage
