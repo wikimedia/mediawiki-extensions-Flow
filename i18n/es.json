@@ -198,7 +198,7 @@
 	"flow-notification-reply-bundle": "$1 y $5 {{PLURAL:$6|otro|otros}} {{GENDER:$1|respondieron}} a <span class=\"plainlinks\">[$4 $2]</span> en «$3».",
 	"flow-notification-edit": "$1 {{GENDER:$1|editó}} una <span class=\"plainlinks\">[$5 publicación]</span> en «$2» el [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 y {{PLURAL:$6|$5 más|otros $5}} {{GENDER:$1|editaron}} una <span class=\"plainlinks\">[$4 publicación]</span> en \"$2\" el \"$3\".",
-	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1 {{GENDER:$1|creó}} un  tema nuevo en '''$3'''.",
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1 {{GENDER:$1|creó}} un tema nuevo en '''$3'''.",
 	"flow-notification-newtopic-bundle": "{{PLURAL:$1|$1|250=250+}} {{PLURAL:$1|tema nuevo|temas nuevos}} en '''$2'''",
 	"flow-notification-rename": "$1 cambió el título de <span class=\"plainlinks\">[$2 $3]</span> a «$4» en [[$5|$6]].",
 	"flow-notification-mention": "$1 {{GENDER:$5|te}} {{GENDER:$1|mencionó}} en {{GENDER:$1|su}} <span class=\"plainlinks\">[$2 publicación]</span> en «$3» en «$4».",
