@@ -16,6 +16,24 @@
       "revId": "d15a4e5252ceb05354738751880c62f8e25a8f38",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_632ea640",
+        "filename": "includes/SubmissionHandler.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-06T10:16:35Z",
+      "side": 0,
+      "message": "Well, I\u0027ve had the same doubts. Here\u0027s where the complex new writes should happen.\n\nIn theory: before \u0026 after this, whatever is written to cache should be what we already have in DB and/or cache somewhere already.\n\nSo assuming we can do a proper cache rollback (or invalidation, in case of this patch), we should not have to move those begin \u0026 commit boundaries.\n\nI think the issues we\u0027ve been seing likely happened because we had no proper \"rollback\", if only last cache write failed, everything before still happened, and there may be mismatches between what\u0027s in different cache keys.\n\n--\n\nThat said, I thought it felt safer to move begin \u0026 commit near begin \u0026 end of a request, since we have so much code automatically caching stuff. But I too don\u0027t think we really *need* it anywhere else but here.\n\nAnyway, do we move begin \u0026 commit back in here? I have no strong opinion on either keeping it here or moving them to request boundaries, both have up and downsides.",
+      "parentUuid": "ce8c5bf9_a8a32d3e",
+      "revId": "d15a4e5252ceb05354738751880c62f8e25a8f38",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }

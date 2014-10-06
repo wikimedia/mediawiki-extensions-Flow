@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ce8c5bf9_6339c69e",
+        "filename": "includes/Data/BagOStuff/BufferedBagOStuff.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-06T10:16:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce8c5bf9_28eabd70",
+      "revId": "ebc0cc0945aa9643eb44c4932c585fa3b0b72447",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce8c5bf9_08b9f9e5",
         "filename": "includes/Data/BagOStuff/BufferedBagOStuff.php",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2014-10-06T08:52:52Z",
       "side": 1,
       "message": "can be removed, happens in self::clearLocal",
+      "revId": "ebc0cc0945aa9643eb44c4932c585fa3b0b72447",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_4334c2a7",
+        "filename": "includes/Data/BagOStuff/BufferedBagOStuff.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-06T10:16:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce8c5bf9_08b9f9e5",
       "revId": "ebc0cc0945aa9643eb44c4932c585fa3b0b72447",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "ce8c5bf9_a3bfcef5",
+        "filename": "includes/Data/BagOStuff/BufferedBagOStuff.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-06T10:16:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce8c5bf9_28be3dcf",
+      "revId": "ebc0cc0945aa9643eb44c4932c585fa3b0b72447",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce8c5bf9_68c44569",
         "filename": "includes/Data/BagOStuff/BufferedBagOStuff.php",
         "patchSetId": 5
@@ -64,6 +118,24 @@
       "writtenOn": "2014-10-06T08:52:52Z",
       "side": 1,
       "message": "can be removed, happens in self::clearLocal",
+      "revId": "ebc0cc0945aa9643eb44c4932c585fa3b0b72447",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_83c2ca86",
+        "filename": "includes/Data/BagOStuff/BufferedBagOStuff.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-06T10:16:35Z",
+      "side": 1,
+      "message": "I\u0027m going to keep this one since LocalBuffered... (the one that also keeps get() data) shouldn\u0027t clear bag() on clearLocal(), but *should* still be cleared on rollback().\n\nThis makes it possible to overwrite clearLocal, but not rollback.",
+      "parentUuid": "ce8c5bf9_68c44569",
       "revId": "ebc0cc0945aa9643eb44c4932c585fa3b0b72447",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
