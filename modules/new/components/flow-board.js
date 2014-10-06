@@ -6,7 +6,7 @@
 	var namespaces = mw.config.get( 'wgNamespaceIds' ),
 		inTopicNamespace = mw.config.get( 'wgNamespaceNumber' ) === namespaces.topic,
 		inTopicTitleInTopicNamespace = function ( $el ) {
-			return inTopicNamespace && $el.closest( '.flow-post' ).length === 0;
+			return inTopicNamespace && ( !$el || $el.closest( '.flow-post' ).length === 0 );
 		};
 
 	/**
@@ -2260,6 +2260,10 @@
 		FlowBoardComponent.UI.collapserState = function ( flowBoard, newState ) {
 			var $heading,
 				$container = flowBoard.$container;
+
+			if ( inTopicTitleInTopicNamespace() ) {
+				return;
+			}
 
 			if ( !newState ) {
 				// Get last
