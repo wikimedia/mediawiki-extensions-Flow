@@ -9,7 +9,7 @@
 			<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
 			<ul class="mw-ui-button-container flow-list">
 				{{#if actions.edit}}
-					<li>
+					<li class="flow-menu-edit-action">
 						<a class="mw-ui-button mw-ui-quiet"
 						   href="{{actions.edit.url}}"
 						   title="{{actions.edit.title}}"
@@ -41,7 +41,7 @@
 					</li>
 				{{/if}}
 				{{#if actions.summarize}}
-					<li>
+					<li class="flow-menu-edit-action">
 						<a class="mw-ui-button mw-ui-progressive mw-ui-quiet"
 						   data-flow-interactive-handler="apiRequest"
 						   data-flow-api-handler="activateSummarizeTopic"
