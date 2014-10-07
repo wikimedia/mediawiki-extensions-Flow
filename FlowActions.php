@@ -29,6 +29,11 @@ use Flow\Data\RecentChanges\RecentChanges;
  *   * bundle: array with, again, all of the above information if multiple types
  *     should be bundled (then the bundle i18n & class will be used to generate
  *     the list-item; clicking on it will reveal the individual history entries)
+ * * watch: Used by the WatchTopicListener to auto-subscribe users to topics. Only
+ *   value value currently is immediate.
+ *   * immediate: watchlist the title in the current process
+ * * rc_title: Either 'article' or 'owner' to select between Workflow::getArticleTitle
+ *     or Workflow::getOwnerTitle being used as the related recentchanges entry on insert
  */
 $wgFlowActions = array(
 	'create-header' => array(
@@ -150,6 +155,7 @@ $wgFlowActions = array(
 		'performs-writes' => true,
 		'log_type' => false,
 		'rc_insert' => true,
+		'rc_title' => 'owner',
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',
 		),

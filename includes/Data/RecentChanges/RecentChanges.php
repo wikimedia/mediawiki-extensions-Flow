@@ -39,10 +39,12 @@ abstract class RecentChanges implements LifecycleHandler {
 	/**
 	 * @param FlowActions $actions
 	 * @param UserNameBatch $usernames
+	 * @param RecentChangeFactory $rcFactory Creates mw RecentChange instances
 	 */
-	public function __construct( FlowActions $actions, UserNameBatch $usernames ) {
+	public function __construct( FlowActions $actions, UserNameBatch $usernames, RecentChangeFactory $rcFactory ) {
 		$this->actions = $actions;
 		$this->usernames = $usernames;
+		$this->rcFactory = $rcFactory;
 	}
 
 	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
@@ -76,7 +78,8 @@ abstract class RecentChanges implements LifecycleHandler {
 			return;
 		}
 
-		$title = $workflow->getArticleTitle();
+		$title = $this->getRcTitle( $workflow, $revision->getChangeType() );
+
 		$collection = $revision->getCollection();
 
 		// get content of both this & the current revision
@@ -120,7 +123,7 @@ abstract class RecentChanges implements LifecycleHandler {
 			'rc_deleted' => 0,
 		);
 
-		$rc = RecentChange::newFromRow( (object)$attribs );
+		$rc = $this->rcFactory->newFromRow( (object)$attribs );
 		$rc->save( /* $noudp = */ true );  // Insert into db
 		$feeds = $wgRCFeeds;
 		// Override the IRC formatter with our own formatter
@@ -129,6 +132,14 @@ abstract class RecentChanges implements LifecycleHandler {
 			$feeds[$name]['formatter'] = Container::get( 'formatter.irclineurl' );
 		}
 		$rc->notifyRCFeeds( $feeds );
+	}
+
+	public function getRcTitle( Workflow $workflow, $action ) {
+		if ( $this->actions->getValue( $action, 'rc_title' ) === 'owner' ) {
+			return $workflow->getOwnerTitle();
+		} else {
+			return $workflow->getArticleTitle();
+		}
 	}
 
 	/**
