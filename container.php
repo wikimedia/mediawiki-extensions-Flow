@@ -237,6 +237,7 @@ $c['storage.header.lifecycle-handlers'] = $c->share( function( $c ) {
 			new Flow\Data\RecentChanges\HeaderRecentChanges(
 				$c['flow_actions'],
 				$c['repository.username'],
+				new Flow\Data\RecentChanges\RecentChangeFactory,
 				$wgContLang
 			)
 		),
@@ -301,6 +302,7 @@ $c['storage.post.summary.lifecycle-handlers'] = $c->share( function( $c ) {
 			new Flow\Data\RecentChanges\PostSummaryRecentChanges(
 				$c['flow_actions'],
 				$c['repository.username'],
+				new Flow\Data\RecentChanges\RecentChangeFactory,
 				$wgContLang
 			)
 		),
@@ -409,6 +411,7 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 			new Flow\Data\RecentChanges\PostRevisionRecentChanges(
 				$c['flow_actions'],
 				$c['repository.username'],
+				new Flow\Data\RecentChanges\RecentChangeFactory,
 				$wgContLang
 			)
 		),
@@ -596,7 +599,6 @@ $c['factory.loader.workflow'] = $c->share( function( $c ) {
 		$wgFlowDefaultWorkflow
 	);
 } );
-
 // Initialized in FlowHooks to faciliate only loading the flow container
 // when flow is specifically requested to run. Extension initialization
 // must always happen before calling flow code.

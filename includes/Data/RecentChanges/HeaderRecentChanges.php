@@ -18,8 +18,13 @@ class HeaderRecentChanges extends RecentChanges {
 	 */
 	protected $contLang;
 
-	public function __construct( FlowActions $actions, UserNameBatch $usernames, Language $contLang ) {
-		parent::__construct( $actions, $usernames );
+	public function __construct(
+		FlowActions $actions,
+		UserNameBatch $usernames,
+		RecentChangeFactory $rcFactory,
+		Language $contLang
+	) {
+		parent::__construct( $actions, $usernames, $rcFactory );
 		$this->contLang = $contLang;
 	}
 
