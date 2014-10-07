@@ -95,7 +95,7 @@ class Pager {
 			// We need one item of leeway to determine if there are more items
 			'limit' => $numRequested,
 			'offset-dir' => $this->options['pager-dir'],
-			'offset-key' => $this->options['pager-offset'],
+			'offset-id' => $this->options['pager-offset'],
 			'offset-elastic' => true,
 		);
 		$offset = $this->options['pager-offset'];
@@ -173,7 +173,7 @@ class Pager {
 				);
 			}
 		} elseif ( $this->options['pager-dir'] === 'rev' ) {
-			if ( count( $results ) == $this->options['pager-limit'] + 1 ) {
+			if ( count( $results ) > $this->options['pager-limit'] ) {
 				// We got extra, another page exists
 				$results = array_slice( $results, -$this->options['pager-limit'] );
 				$pagingLinks['rev'] = $this->makePagingLink(
