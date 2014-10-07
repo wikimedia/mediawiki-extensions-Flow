@@ -76,7 +76,10 @@ abstract class RecentChanges implements LifecycleHandler {
 			return;
 		}
 
-		$title = $workflow->getArticleTitle();
+		$title = ( $revision instanceof PostRevision && $revision->isTopicTitle() )
+			? $workflow->getOwnerTitle()
+			: $workflow->getArticleTitle();
+
 		$collection = $revision->getCollection();
 
 		// get content of both this & the current revision
