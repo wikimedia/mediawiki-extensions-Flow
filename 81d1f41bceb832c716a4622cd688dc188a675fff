@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce8c5bf9_580ca5f0",
+        "filename": "includes/Formatter/AbstractQuery.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-07T03:58:00Z",
+      "side": 1,
+      "message": "this is an unusual condition, we should probably still log that it happened even if we don\u0027t throw an exception.  \n\n(Tangential, but related, would be nice if the $wgDebugToolbar could make certain classes of logging much more visible. Hitting this conditional is almost certainly an error, but i\u0027m willing to err on the side of falling back and logging instead of throwing an exception and complaining loudly)",
+      "revId": "81d1f41bceb832c716a4622cd688dc188a675fff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_780f29e5",
+        "filename": "includes/Formatter/AbstractQuery.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-07T03:58:00Z",
+      "side": 1,
+      "message": "sic, logging",
+      "revId": "81d1f41bceb832c716a4622cd688dc188a675fff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
