@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce8c5bf9_186ffd90",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 2264,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-07T03:43:21Z",
+      "side": 1,
+      "message": "it seems this should just be inTopicNamespace? the inTopicTitleInTopicNamespace seems to be an indicator that a specific element is a part of the topic title template output",
+      "revId": "9b48bd23fd0de70e4c3b63ee8e8a64c08b901651",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
