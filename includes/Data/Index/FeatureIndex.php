@@ -85,6 +85,14 @@ abstract class FeatureIndex implements Index {
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getOrder() {
+		$order = isset( $this->options['order'] ) ? $this->options['order'] : 'DESC';
+		return strtoupper( $order );
+	}
+
+	/**
 	 * @param array $rows
 	 * @param array $options
 	 * @return array [offset, limit]
@@ -92,14 +100,14 @@ abstract class FeatureIndex implements Index {
 	protected function getOffsetLimit( $rows, $options ) {
 		$limit = isset( $options['limit'] ) ? $options['limit'] : $this->getLimit();
 
-		if ( !isset( $options['offset-key'] ) ) {
+		if ( !isset( $options['offset-id'] ) ) {
 			$offset = isset( $options['offset'] ) ? $options['offset'] : 0;
 			return array( $offset, $limit );
 		}
 
-		$offsetKey = $options['offset-key'];
-		if ( $offsetKey instanceof UUID ) {
-			$offsetKey = $offsetKey->getAlphadecimal();
+		$offsetId = $options['offset-id'];
+		if ( $offsetId instanceof UUID ) {
+			$offsetId = $offsetId->getAlphadecimal();
 		}
 
 		$dir = 'fwd';
@@ -110,7 +118,7 @@ abstract class FeatureIndex implements Index {
 			$dir = 'rev';
 		}
 
-		$offset = $this->getOffsetFromKey( $rows, $offsetKey );
+		$offset = $this->getOffsetFromKey( $rows, $offsetId );
 
 		if ( $dir === 'fwd' ) {
 			$startPos = $offset + 1;
@@ -143,8 +151,10 @@ abstract class FeatureIndex implements Index {
 	protected function getOffsetFromKey( $rows, $offsetKey ) {
 		$rowIndex = 0;
 		foreach ( $rows as $row ) {
+			$nextInOrder = $this->getOrder() === 'DESC' ? -1 : 1;
+
 			$comparisonValue = $this->compareRowToOffset( $row, $offsetKey );
-			if ( $comparisonValue <= 0 ) {
+			if ( $comparisonValue === 0 || $comparisonValue === $nextInOrder ) {
 				return $rowIndex;
 			}
 			$rowIndex++;
