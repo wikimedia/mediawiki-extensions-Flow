@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ce8c5bf9_581105b0",
+        "filename": "includes/Data/BagOStuff/BufferedBagOStuff.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-07T06:42:38Z",
+      "side": 1,
+      "message": "I\u0027ll have to keep it here.\n\nThe patch in core works only because it\u0027s on HashBagOStuff, which never has to rebuild objects based on the cached data (it always just keeps the real objects in memory).\n\nWhat I\u0027m doing here is fetching a value from real cache. If that value was an object, it will have been serialized somehow and will be reconstructed, so it will never be the exact same object, even though they have the exact same data (see https://gerrit.wikimedia.org/r/#/c/107380/)\n\nOr to put it in code, since I feel I can\u0027t properly voice my thoughts in text:\n\n// $objectA will be serialized to go the memcache/redis/...\n$realCache-\u003eset( \u0027key\u0027, $objectA );\n\n// the value will be unserialized when retrieving from memcache/redis/...\n$objectB \u003d $realCache-\u003eget( \u0027key\u0027 );\n\n// both are the exact same data, but not the same object\n$objectB !\u003d\u003d $objectA;\n\nThat\u0027s why I\u0027ll still need serialize here (and we\u0027ll still need it in RedisBagOStuff etc)",
+      "parentUuid": "ce8c5bf9_9801cd73",
+      "revId": "e5c1e0a9f3ba249a13deef579d5a3e260ada2e78",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce8c5bf9_d8cc358f",
         "filename": "includes/Data/BagOStuff/BufferedBagOStuff.php",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2014-10-07T05:48:21Z",
       "side": 1,
       "message": "the time() call is superflous, can probably just pass any small non-zero value like 1?",
+      "revId": "e5c1e0a9f3ba249a13deef579d5a3e260ada2e78",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_58fb4577",
+        "filename": "includes/Data/BagOStuff/BufferedBagOStuff.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-07T06:42:38Z",
+      "side": 1,
+      "message": "1 is a time in the future, so the key will not \"expire\" for another second (so for at least the rest of this request)\n\n-1 should work, but I wasn\u0027t certain if all BagOStuff\u0027s properly handle relative time - at quick glance they do.",
+      "parentUuid": "ce8c5bf9_d8cc358f",
       "revId": "e5c1e0a9f3ba249a13deef579d5a3e260ada2e78",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
