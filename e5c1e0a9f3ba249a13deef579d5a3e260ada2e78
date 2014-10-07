@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "ce8c5bf9_9801cd73",
+        "filename": "includes/Data/BagOStuff/BufferedBagOStuff.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-07T05:54:39Z",
+      "side": 1,
+      "message": "Probably needs to change to match a patch i just saw go through core.  See https://gerrit.wikimedia.org/r/#/c/165168/",
+      "revId": "e5c1e0a9f3ba249a13deef579d5a3e260ada2e78",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce8c5bf9_d8cc358f",
         "filename": "includes/Data/BagOStuff/BufferedBagOStuff.php",
         "patchSetId": 6
