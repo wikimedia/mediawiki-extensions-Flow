@@ -92,14 +92,14 @@ abstract class FeatureIndex implements Index {
 	protected function getOffsetLimit( $rows, $options ) {
 		$limit = isset( $options['limit'] ) ? $options['limit'] : $this->getLimit();
 
-		if ( !isset( $options['offset-key'] ) ) {
+		if ( !isset( $options['offset-id'] ) ) {
 			$offset = isset( $options['offset'] ) ? $options['offset'] : 0;
 			return array( $offset, $limit );
 		}
 
-		$offsetKey = $options['offset-key'];
-		if ( $offsetKey instanceof UUID ) {
-			$offsetKey = $offsetKey->getAlphadecimal();
+		$offsetId = $options['offset-id'];
+		if ( $offsetId instanceof UUID ) {
+			$offsetId = $offsetId->getAlphadecimal();
 		}
 
 		$dir = 'fwd';
@@ -110,7 +110,7 @@ abstract class FeatureIndex implements Index {
 			$dir = 'rev';
 		}
 
-		$offset = $this->getOffsetFromKey( $rows, $offsetKey );
+		$offset = $this->getOffsetFromKey( $rows, $offsetId );
 
 		if ( $dir === 'fwd' ) {
 			$startPos = $offset + 1;
@@ -144,7 +144,7 @@ abstract class FeatureIndex implements Index {
 		$rowIndex = 0;
 		foreach ( $rows as $row ) {
 			$comparisonValue = $this->compareRowToOffset( $row, $offsetKey );
-			if ( $comparisonValue <= 0 ) {
+			if ( $comparisonValue >= 0 ) {
 				return $rowIndex;
 			}
 			$rowIndex++;
