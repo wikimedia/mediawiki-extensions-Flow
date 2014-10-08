@@ -59,7 +59,6 @@ class TopicSummaryBlock extends AbstractBlock {
 	 */
 	protected $requiresWikitext = array( 'edit-topic-summary' );
 
-	// @Todo - fill in the template names
 	protected $templates = array(
 		'view-topic-summary' => 'single_view',
 		'compare-postsummary-revisions' => 'diff_view',
