@@ -2,28 +2,22 @@
 
 namespace Flow\Data\RecentChanges;
 
+use Closure;
 use Flow\Container;
 use Flow\Data\LifecycleHandler;
+use Flow\Data\Utils\RecentChangeFactory;
 use Flow\Repository\UserNameBatch;
 use Flow\FlowActions;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Workflow;
-use Closure;
 
 /**
- * Abstract class for inserting mw recentchange rows for flow AbstractRevision
- * instances.  Each revision type must extend this class implemnting the
- * self::onAfterInsert method which calls self::insert.  Those handlers must then
- * be attached to the appropriate ObjectManager.
+ * Inserts mw recentchange rows for flow AbstractRevision instances.
  */
-abstract class RecentChanges implements LifecycleHandler {
+class RecentChanges implements LifecycleHandler {
 
 	// Value used in rc_source field of recentchanges to identify flow specific changes
 	const SRC_FLOW = "flow";
-
-	// Maximum length any user generated content is truncated to before storing
-	// in recentchanges
-	const TRUNCATE_LENGTH = 164;
 
 	/**
 	 * @var FlowActions
@@ -66,17 +60,16 @@ abstract class RecentChanges implements LifecycleHandler {
 
 	/**
 	 * @param AbstractRevision $revision Revision object
-	 * @param string $block The block object's ->getName()
-	 * @param string $revisionType Classname of the Revision object
 	 * @param array $row Revision row
-	 * @param Workflow $workflow
-	 * @param array $changes
+	 * @param array $metadata;
 	 */
-	protected function insert( AbstractRevision $revision, $block, $revisionType, array $row, Workflow $workflow, array $changes ) {
+	public function onAfterInsert( $revision, array $row, array $metadata ) {
 		global $wgRCFeeds;
 		$action = $revision->getChangeType();
 		$revisionId = $revision->getRevisionId()->getAlphadecimal();
 		$timestamp = $revision->getRevisionId()->getTimestamp();
+		/** @var Workflow $workflow */
+		$workflow = $metadata['workflow'];
 
 		if ( !$this->isAllowed( $revision, $action ) ) {
 			return;
@@ -112,14 +105,10 @@ abstract class RecentChanges implements LifecycleHandler {
 			'rc_params' => serialize( array(
 				'flow-workflow-change' => array(
 					'action' => $action,
-					'block' => $block,
-					'revision_type' => $revisionType,
+					'revision_type' => get_class( $revision ),
 					'revision' => $revisionId,
 					'workflow' => $workflow->getId()->getAlphadecimal(),
-					'prev_revision' => $revision->isFirstRevision()
-						? null
-						: $revision->getPrevRevisionId()->getAlphadecimal()
-				) + $changes,
+				),
 			) ),
 			'rc_cur_id' => 0,
 			'rc_comment' => '',
