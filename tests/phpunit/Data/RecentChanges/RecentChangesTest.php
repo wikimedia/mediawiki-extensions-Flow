@@ -3,7 +3,7 @@
 namespace Flow\Tests\Data\RecentChanges;
 
 use Flow\Container;
-use Flow\Data\RecentChanges\RecentChanges;
+use Flow\Data\Listener\RecentChangesListener;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Title;
@@ -50,7 +50,7 @@ class RecentChangesTest extends \MediaWikiTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		$rc = new RecentChanges( $actions, $usernames, $rcFactory );
+		$rc = new RecentChangesListener( $actions, $usernames, $rcFactory );
 		$change = $this->getMock( 'RecentChange' );
 		$rcFactory->expects( $this->once() )
 			->method( 'newFromRow' )
