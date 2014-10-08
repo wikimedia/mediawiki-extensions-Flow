@@ -167,6 +167,12 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 		// commit pending db transaction
 		Container::get( 'db.factory' )->getDB( DB_MASTER )->commit( __METHOD__, 'flush' );
 
+		$cache = Container::get( 'memcache.buffered' );
+		$reflection = new \ReflectionClass( $cache );
+		$prop = $reflection->getProperty( 'cache' );
+		$prop->setAccessible( true );
+		$cache = $prop->getValue( $cache );
+
 		$debug = implode( ' ', $debug );
 		// secondly, iterate all revisions & see if expected permissions line up
 		foreach ( $actions as $action ) {
@@ -175,7 +181,8 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 			$this->assertEquals(
 				$expected,
 				$permissions->isAllowed( $revision, $permissionAction ),
-				'User ' . $user->getName() . ' should ' . ( $expected ? '' : 'not ' ) . 'be allowed action ' . $permissionAction . ' on revision ' . key( $action ) . ' : ' . $debug . ' : ' . json_encode( $revision::toStorageRow( $revision ) )
+				'Something went wrong. Local cache data: ' . json_encode( $cache )
+//				'User ' . $user->getName() . ' should ' . ( $expected ? '' : 'not ' ) . 'be allowed action ' . $permissionAction . ' on revision ' . key( $action ) . ' : ' . $debug . ' : ' . json_encode( $revision::toStorageRow( $revision ) )
 			);
 		}
 	}
