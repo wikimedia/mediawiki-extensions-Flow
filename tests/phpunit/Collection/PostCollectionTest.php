@@ -97,7 +97,13 @@ class PostCollectionTest extends PostRevisionTestCase {
 		$expected = $this->revisions[1];
 		$revision = $collection->getNextRevision( $start );
 
-		$this->assertTrue( $expected->getRevisionId()->equals( $revision->getRevisionId() ) );
+		$cache = Container::get( 'memcache.buffered' );
+		$reflection = new \ReflectionClass( $cache );
+		$prop = $reflection->getProperty( 'cache' );
+		$prop->setAccessible( true );
+		$cache = $prop->getValue( $cache );
+
+		$this->assertTrue( $expected->getRevisionId()->equals( $revision->getRevisionId() ), json_encode( $cache ) );
 	}
 
 	public function testGetPrevRevision() {
