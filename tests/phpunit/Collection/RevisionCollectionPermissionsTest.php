@@ -149,7 +149,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 	/**
 	 * @dataProvider permissionsProvider
 	 */
-	public function testPermissions( User $user, $permisisonAction, $actions ) {
+	public function testPermissions( User $user, $permissionAction, $actions ) {
 		$permissions = new RevisionActionPermissions( $this->actions, $user );
 
 		// we'll have to process this in 2 steps: first do all of the actions,
@@ -174,8 +174,8 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 			$revision = array_shift( $revisions );
 			$this->assertEquals(
 				$expected,
-				$permissions->isAllowed( $revision, $permisisonAction ),
-				'User ' . $user->getName() . ' should ' . ( $expected ? '' : 'not ' ) . 'be allowed action ' . $permisisonAction . ' on revision ' . key( $action ) . ' : ' . $debug . ' : ' . json_encode( $revision::toStorageRow( $revision ) )
+				$permissions->isAllowed( $revision, $permissionAction ),
+				'User ' . $user->getName() . ' should ' . ( $expected ? '' : 'not ' ) . 'be allowed action ' . $permissionAction . ' on revision ' . key( $action ) . ' : ' . $debug . ' : ' . json_encode( $revision::toStorageRow( $revision ) )
 			);
 		}
 	}
