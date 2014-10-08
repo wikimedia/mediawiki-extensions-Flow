@@ -10,6 +10,9 @@ use EchoNotificationController;
 use User;
 use WatchedItem;
 
+/**
+ * @group Flow
+ */
 class NotifiedUsersTest extends PostRevisionTestCase {
 	public function setUp() {
 		parent::setUp();
