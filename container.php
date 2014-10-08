@@ -228,19 +228,8 @@ $c['storage.board_history'] = $c->share( function( $c ) {
 
 // Arbitrary bit of revisioned wiki-text attached to a workflow
 $c['storage.header.lifecycle-handlers'] = $c->share( function( $c ) {
-	global $wgContLang;
 	return array(
-		// Recent change listeners go out to external services and
-		// as such must only be run after the transaction is commited.
-		new Flow\Data\Listener\DeferredInsertLifecycleHandler(
-			$c['deferred_queue'],
-			new Flow\Data\RecentChanges\HeaderRecentChanges(
-				$c['flow_actions'],
-				$c['repository.username'],
-				new Flow\Data\RecentChanges\RecentChangeFactory,
-				$wgContLang
-			)
-		),
+		$c['listener.recent_changes'],
 		$c['storage.board_history.index'],
 		new Flow\Data\Listener\UserNameListener(
 			$c['repository.username'],
@@ -289,23 +278,22 @@ $c['storage.header'] = $c->share( function( $c ) {
 $c['storage.post.summary.mapper'] = $c->share( function( $c ) {
 	return CachingObjectMapper::model( 'Flow\\Model\\PostSummary', array( 'rev_id' ) );
 } );
-
+$c['listener.recent_changes'] = $c->share( function( $c ) {
+	// Recent change listeners go out to external services and
+	// as such must only be run after the transaction is commited.
+	return new Flow\Data\Listener\DeferredInsertLifecycleHandler(
+		$c['deferred_queue'],
+		new Flow\Data\RecentChanges\RecentChanges(
+			$c['flow_actions'],
+			$c['repository.username'],
+			new Flow\Data\Utils\RecentChangeFactory
+		)
+	);
+} );
 $c['storage.post.summary.lifecycle-handlers'] = $c->share( function( $c ) {
-	global $wgContLang;
-
 	return array(
 		$c['storage.board_history.index'],
-		// Recent change listeners go out to external services and
-		// as such must only be run after the transaction is commited.
-		new Flow\Data\Listener\DeferredInsertLifecycleHandler(
-			$c['deferred_queue'],
-			new Flow\Data\RecentChanges\PostSummaryRecentChanges(
-				$c['flow_actions'],
-				$c['repository.username'],
-				new Flow\Data\RecentChanges\RecentChangeFactory,
-				$wgContLang
-			)
-		),
+		$c['listener.recent_changes'],
 		new Flow\Data\Listener\UserNameListener(
 			$c['repository.username'],
 			array(
@@ -400,21 +388,9 @@ $c['storage.topic_list'] = $c->share( function( $c ) {
 } );
 // Individual post within a topic workflow
 $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
-	global $wgContLang;
-
 	$handlers = array(
 		new Flow\Log\PostModerationLogger( $c['logger'] ),
-		// Recent change listeners go out to external services and
-		// as such must only be run after the transaction is commited.
-		new Flow\Data\Listener\DeferredInsertLifecycleHandler(
-			$c['deferred_queue'],
-			new Flow\Data\RecentChanges\PostRevisionRecentChanges(
-				$c['flow_actions'],
-				$c['repository.username'],
-				new Flow\Data\RecentChanges\RecentChangeFactory,
-				$wgContLang
-			)
-		),
+		$c['listener.recent_changes'],
 		$c['storage.board_history.index'],
 		new Flow\Data\Listener\UserNameListener(
 			$c['repository.username'],
