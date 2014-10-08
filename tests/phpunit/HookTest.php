@@ -2,7 +2,7 @@
 
 namespace Flow\Tests;
 
-use Flow\Data\RecentChanges\RecentChanges;
+use Flow\Data\Listener\RecentChangesListener;
 use FlowHooks;
 use RecentChange;
 
@@ -115,7 +115,7 @@ class HookTest extends FlowTestCase {
 		$rc->mAttribs = array(
 			'rc_namespace' => 0,
 			'rc_title' => 'Main Page',
-			'rc_source' => RecentChanges::SRC_FLOW,
+			'rc_source' => RecentChangesListener::SRC_FLOW,
 			'rc_params' => serialize( array(
 				'flow-workflow-change' => $change
 			) ),

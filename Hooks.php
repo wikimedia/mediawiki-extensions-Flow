@@ -268,7 +268,7 @@ class FlowHooks {
 			if ( $rcType !== RC_FLOW ) {
 				return true;
 			}
-		} elseif ( $source !== Flow\Data\RecentChanges\RecentChanges::SRC_FLOW ) {
+		} elseif ( $source !== Flow\Data\Listener\RecentChangesListener::SRC_FLOW ) {
 			return true;
 		}
 
@@ -701,7 +701,7 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onCheckUserInsertForRecentChange( RecentChange $rc, array &$rcRow ) {
-		if ( $rc->getAttribute( 'rc_source' ) !== Flow\Data\RecentChanges\RecentChanges::SRC_FLOW ) {
+		if ( $rc->getAttribute( 'rc_source' ) !== Flow\Data\Listener\RecentChangesListener::SRC_FLOW ) {
 			return true;
 		}
 
@@ -723,7 +723,7 @@ class FlowHooks {
 	}
 
 	public static function onIRCLineURL( &$url, &$query, RecentChange $rc ) {
-		if ( $rc->getAttribute( 'rc_source' ) !== Flow\Data\RecentChanges\RecentChanges::SRC_FLOW ) {
+		if ( $rc->getAttribute( 'rc_source' ) !== Flow\Data\Listener\RecentChangesListener::SRC_FLOW ) {
 			return true;
 		}
 
