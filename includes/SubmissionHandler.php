@@ -121,6 +121,12 @@ class SubmissionHandler {
 				$results[$block->getName()] = $block->commit();
 			}
 			$dbw->commit();
+
+			// Now commit to cache. If this fails, cache keys should have been
+			// invalidated, but still log the failure.
+			if ( !$cache->commit() ) {
+				wfDebugLog( 'Flow', __METHOD__ . ': Committed to database but failed applying to cache' );
+			}
 		} catch ( \Exception $e ) {
 			while( !$this->deferredQueue->isEmpty() ) {
 				$this->deferredQueue->dequeue();
@@ -128,13 +134,6 @@ class SubmissionHandler {
 			$dbw->rollback();
 			$cache->rollback();
 			throw $e;
-		}
-
-		try {
-			$cache->commit();
-		} catch ( \Exception $e ) {
-			wfWarn( __METHOD__ . ': Commited to database but failed applying to cache' );
-			\MWExceptionHandler::logException( $e );
 		}
 
 		while( !$this->deferredQueue->isEmpty() ) {
