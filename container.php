@@ -219,7 +219,7 @@ $c['listener.recentchanges'] = $c->share( function( $c ) {
 	// as such must only be run after the transaction is commited.
 	return new Flow\Data\Listener\DeferredInsertLifecycleHandler(
 		$c['deferred_queue'],
-		new Flow\Data\RecentChanges\RecentChanges(
+		new Flow\Data\Listener\RecentChangesListener(
 			$c['flow_actions'],
 			$c['repository.username'],
 			new Flow\Data\Utils\RecentChangeFactory

@@ -1,9 +1,9 @@
 <?php
 
-namespace Flow\Tests\Data\RecentChanges;
+namespace Flow\Tests\Data\Listener;
 
 use Flow\Container;
-use Flow\Data\RecentChanges\RecentChanges;
+use Flow\Data\Listener\RecentChangesListener;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Title;
@@ -12,7 +12,7 @@ use User;
 /**
  * @group Flow
  */
-class RecentChangesTest extends \MediaWikiTestCase {
+class RecentChangesListenerTest extends \MediaWikiTestCase {
 
 	public function somethingProvider() {
 		return array(
@@ -50,7 +50,7 @@ class RecentChangesTest extends \MediaWikiTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		$rc = new RecentChanges( $actions, $usernames, $rcFactory );
+		$rc = new RecentChangesListener( $actions, $usernames, $rcFactory );
 		$change = $this->getMock( 'RecentChange' );
 		$rcFactory->expects( $this->once() )
 			->method( 'newFromRow' )
