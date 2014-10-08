@@ -192,7 +192,10 @@ class RevisionFormatter {
 			);
 			// @todo why moderate instead of moderated or something else?
 			$res['moderateState'] = $moderatedRevision->getModerationState();
-			$res['moderateReason'] = $moderatedRevision->getModeratedReason();
+			$res['moderateReason'] = array(
+				'content' => $moderatedRevision->getModeratedReason(),
+				'format' => 'plaintext',
+			);
 		}
 
 		if ( $isContentAllowed ) {
