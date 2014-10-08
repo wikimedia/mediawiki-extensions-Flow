@@ -77,7 +77,7 @@ qunit:
 	@scripts/qunit.sh
 
 vagrant-browsertests:
-	@vagrant ssh -- -X cd /srv/browsertests/tests/browser '&&' MEDIAWIKI_URL=http://localhost/wiki/ MEDIAWIKI_USER=Admin MEDIAWIKI_PASSWORD=vagrant bundle exec cucumber /vagrant/mediawiki/extensions/Flow/tests/browser/features/ -f pretty
+	@vagrant ssh -- -X cd /vagrant/mediawiki/extensions/Flow/tests/browser '&&' MEDIAWIKI_URL=http://127.0.0.1:8080/wiki/ MEDIAWIKI_USER=Admin MEDIAWIKI_PASSWORD=vagrant bundle exec cucumber /vagrant/mediawiki/extensions/Flow/tests/browser/features/ -f pretty
 
 ###
 # Static analysis
