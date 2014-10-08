@@ -1,6 +1,6 @@
 <?php
 
-namespace Flow\Data\RecentChanges;
+namespace Flow\Data\Listener;
 
 use Closure;
 use Flow\Container;
@@ -14,7 +14,7 @@ use Flow\Model\Workflow;
 /**
  * Inserts mw recentchange rows for flow AbstractRevision instances.
  */
-class RecentChanges implements LifecycleHandler {
+class RecentChangesListener implements LifecycleHandler {
 
 	// Value used in rc_source field of recentchanges to identify flow specific changes
 	const SRC_FLOW = "flow";
