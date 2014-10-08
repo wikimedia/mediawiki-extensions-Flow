@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce8c5bf9_58afbade",
+        "filename": "includes/Block/TopicSummary.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-08T08:29:58Z",
+      "side": 1,
+      "message": "Side note, but what does this TODO mean?  If I understand right, it look TODONE.",
+      "revId": "dfa1fb66d167b6c4177c8bf0493a4c2e2868f196",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_78815e4e",
+        "filename": "includes/Data/Listener/OccupationListener.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-08T08:29:58Z",
+      "side": 1,
+      "message": "Doesn\u0027t look required (unless the previous code was broken), since nothing else in this file changed.",
+      "revId": "dfa1fb66d167b6c4177c8bf0493a4c2e2868f196",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_78cf1eb6",
+        "filename": "includes/api/ApiFlowLockTopic.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-08T08:29:58Z",
+      "side": 1,
+      "message": "What does \u0027cot\u0027 stand for?",
+      "revId": "dfa1fb66d167b6c4177c8bf0493a4c2e2868f196",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_d8d8aa81",
+        "filename": "includes/api/ApiFlowLockTopic.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-08T08:29:58Z",
+      "side": 1,
+      "message": "Add ApiBase::PARAM_TYPE \u003d\u003e \u0027string\u0027.",
+      "revId": "dfa1fb66d167b6c4177c8bf0493a4c2e2868f196",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
