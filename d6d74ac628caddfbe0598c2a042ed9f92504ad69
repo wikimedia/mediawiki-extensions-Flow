@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce8c5bf9_133113e9",
+        "filename": "includes/Data/Index/FeatureIndex.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-08T11:47:08Z",
+      "side": 1,
+      "message": "When fetching new topics via API, this is causing duplicates. I\u0027m always seeing the same posts.\n\n$rows contains an array of ids in DESC order (TopKIndex for flow_topic_list:list is order DESC). compareRowToOffset returns 1 as soon as the $row id is higher than $comparisonValue. This will always just be the first row, which is the highest id.\n\nWhat we presumably want instead if the next row that is smaller than (or equal to?) comparisonValue, so we would have to stick to \u003c\u003d here.\n\nWe probably have to check $this-\u003eoptions[\u0027order\u0027]. If it\u0027s DESC, that\u0027s the order the keys will be in cache, and that\u0027ll define if we should use \u003c\u003d or \u003e\u003d",
+      "revId": "d6d74ac628caddfbe0598c2a042ed9f92504ad69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
