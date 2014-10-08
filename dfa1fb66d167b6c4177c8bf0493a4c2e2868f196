@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "ce8c5bf9_d37e4be1",
+        "filename": "includes/Data/Listener/OccupationListener.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-08T13:32:24Z",
+      "side": 1,
+      "message": "A couple of patches down the commit chain, there\u0027s something related: https://gerrit.wikimedia.org/r/#/c/164660/2/includes/Data/Listener/OccupationListener.php\n\nI guess this line was not intended to be in the patch",
+      "parentUuid": "ce8c5bf9_78815e4e",
+      "revId": "dfa1fb66d167b6c4177c8bf0493a4c2e2868f196",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce8c5bf9_78cf1eb6",
         "filename": "includes/api/ApiFlowLockTopic.php",
         "patchSetId": 3
@@ -82,6 +100,24 @@
       "writtenOn": "2014-10-08T08:29:58Z",
       "side": 1,
       "message": "Add ApiBase::PARAM_TYPE \u003d\u003e \u0027string\u0027.",
+      "revId": "dfa1fb66d167b6c4177c8bf0493a4c2e2868f196",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce8c5bf9_53723b11",
+        "filename": "includes/api/ApiFlowLockTopic.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-08T13:32:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce8c5bf9_d8d8aa81",
       "revId": "dfa1fb66d167b6c4177c8bf0493a4c2e2868f196",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
