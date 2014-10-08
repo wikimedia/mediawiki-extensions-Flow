@@ -7,6 +7,9 @@ use Flow\Parsoid\ContentFixer;
 use Flow\Parsoid\Utils;
 use Title;
 
+/**
+ * @group Flow
+ */
 class BadImageRemoverTest extends \MediaWikiTestCase {
 
 	/**
