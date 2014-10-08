@@ -1,6 +1,6 @@
 <?php
 
-namespace Flow\Data\RecentChanges;
+namespace Flow\Data\Listener;
 
 use Closure;
 use Flow\Container;
@@ -18,7 +18,7 @@ use Language;
  * Attach this listener to any AbstractRevision object manager and update
  * self::getChangeParams() as necessary.
  */
-class RecentChanges implements LifecycleHandler {
+class RecentChangesListener implements LifecycleHandler {
 
 	// Value used in rc_source field of recentchanges to identify flow specific changes
 	const SRC_FLOW = "flow";
