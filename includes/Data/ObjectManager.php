@@ -7,13 +7,75 @@ use SplObjectStorage;
 use Flow\Exception\DataModelException;
 
 /**
- * Writable indexes. Error handling is all wrong currently.
+ * ObjectManager orchestrates the storage of a single type of objects.
+ * Where ObjectLocator handles querying, ObjectManager extends that to
+ * add persistence.
+ *
+ * The ObjectManager has two required constructor dependencies:
+ * * An ObjectMapper instance that can convert back and forth from domain
+ *   objects to database rows
+ * * An ObjectStorage implementation that implements persistence.
+ *
+ * Additionally there are two optional constructor arguments:
+ * * A set of Index objects that listen to life cycle events and maintain
+ *   an up-to date cache of all objects. Individual Index objects typically
+ *   answer a single set of query arguments.
+ * * A set of LifecycleHandler implementations that are notified about
+ *   insert, update, remove and load events.
+ *
+ * A simple ObjectManager instances might be created as such:
+ *
+ *  $om = new Flow\Data\ObjectManager(
+ * 		Flow\Data\Mapper\BasicObjectMapper::model( 'MyModelClass' ),
+ * 		new Flow\Data\Storage\BasicDbStorage(
+ * 			$dbFactory,
+ * 			'my_model_table',
+ * 			array( 'my_primary_key' )
+ * 		)
+ * 	);
+ *
+ * 	Objects of MyModelClass can be stored:
+ *
+ * 		$om->put( $object );
+ *
+ * 	Objects can be retrieved via my_primary_key
+ *
+ * 	    $object = $om->get( $pk );
+ *
+ * 	The Object can be updated by calling ObjectManager:put at
+ * 	any time.  If the object is to be deleted:
+ *
+ * 	    $om->remove( $object );
+ *
+ *  In addition to the single-use put, get and remove there are also multi
+ *  variants named multiPut, mulltiGet and multiRemove.  They perform the
+ *  same operation as their namesake but with fewer network operations when
+ *  dealing with multiple objects of the same type.
+ *
+ *  @todo Information about Indexes and LifecycleHandlers
  */
 class ObjectManager extends ObjectLocator {
-	// @var SplObjectStorage $loaded If the object exists then an 'update' is issued, otherwise 'insert'
+	/**
+	 * @var SplObjectStorage $loaded Maps from a php object to the database
+	 *  row that was used to create it. One use of this is to toggle between
+	 *  self::insert and self::update when self::put is called.
+	 */
 	protected $loaded;
 
-	public function __construct( ObjectMapper $mapper, ObjectStorage $storage, array $indexes = array(), array $lifecycleHandlers = array() ) {
+	/**
+	 * @param ObjectMapper $mapper Convert to/from database rows/domain objects.
+	 * @param ObjectStorage $storage Implements persistence(typically sql)
+	 * @param Index[] $indexes Specialized listeners that cache rows and can respond
+	 *  to queries
+	 * @param LifecycleHandler[] $lifecycleHandlers Listeners for insert, update,
+	 *  remove and load events.
+	 */
+	public function __construct(
+		ObjectMapper $mapper,
+		ObjectStorage $storage,
+		array $indexes = array(),
+		array $lifecycleHandlers = array()
+	) {
 		parent::__construct( $mapper, $storage, $indexes, $lifecycleHandlers );
 
 		// This needs to be SplObjectStorage rather than using spl_object_hash for keys
@@ -22,10 +84,35 @@ class ObjectManager extends ObjectLocator {
 		$this->loaded = new SplObjectStorage;
 	}
 
+	/**
+	 * Clear the internal cache of which objects have been loaded so far.
+	 *
+	 * Objects that were loaded prior to clearing the object manager must
+	 * not use self::put until they have been merged via self::merge or
+	 * an insert operation will be performed.
+	 */
+	public function clear() {
+		$this->loaded = new SplObjectStorage;
+	}
+
+	/**
+	 * Persist a single object to storage.
+	 *
+	 * @var object $object
+	 * @var array $metadata Additional information about the object for
+	 *  listeners to operate on.
+	 */
 	public function put( $object, array $metadata = array() ) {
 		$this->multiPut( array( $object ), $metadata );
 	}
 
+	/**
+	 * Persist multiple objects to storage.
+	 *
+	 * @var object[] $objects
+	 * @var array $metadata Additional information about the object for
+	 *  listeners to operate on.
+	 */
 	public function multiPut( array $objects, array $metadata = array() ) {
 		$updateObjects = array();
 		$insertObjects = array();
@@ -47,6 +134,29 @@ class ObjectManager extends ObjectLocator {
 		}
 	}
 
+	/**
+	 * Remove an object from persistent storage.
+	 *
+	 * @var object $object
+	 * @var array $metadata Additional information about the object for
+	 *  listeners to operate on.
+	 */
+	public function remove( $object, array $metadata = array() ) {
+		$section = new \ProfileSection( __METHOD__ );
+		$old = $this->loaded[$object];
+		$this->storage->remove( $old );
+		foreach ( $this->lifecycleHandlers as $handler ) {
+			$handler->onAfterRemove( $object, $old, $metadata );
+		}
+		unset( $this->loaded[$object] );
+	}
+
+	/**
+	 * Remove multiple objects from persistent storage.
+	 *
+	 * @var object[] $objects
+	 * @var array $metadata
+	 */
 	public function multiRemove( $objects, array $metadata ) {
 		foreach ( $objects as $obj ) {
 			$this->remove( $obj, $metadata );
@@ -54,8 +164,10 @@ class ObjectManager extends ObjectLocator {
 	}
 
 	/**
-	 * merge an object loaded from outside the object manager for update.
-	 * without merge it will be an insert.
+	 * Merge an object loaded from outside the object manager for update.
+	 * Without merge using self::put will trigger an insert operation.
+	 *
+	 * @var object $object
 	 */
 	public function merge( $object ) {
 		if ( !isset( $this->loaded[$object] ) ) {
@@ -63,6 +175,43 @@ class ObjectManager extends ObjectLocator {
 		}
 	}
 
+	/**
+	 * Return a string value that can be provided to self::find or self::findMulti
+	 * as the offset-id option to facilitate pagination.
+	 *
+	 * @param object $object
+	 * @param array $sortFields
+	 * @return string
+	 */
+	public function serializeOffset( $object, array $sortFields ) {
+		$offsetFields = array();
+		// @todo $row = $this->loaded[$object] ?
+		$row = $this->mapper->toStorageRow( $object );
+		// @todo Why not self::splitFromRow?
+		foreach( $sortFields as $field ) {
+			$value = $row[$field];
+
+			if ( is_string( $value )
+				&& strlen( $value ) === UUID::BIN_LEN
+				&& substr( $field, -3 ) === '_id'
+			) {
+				$value = UUID::create( $value );
+			}
+			if ( $value instanceof UUID ) {
+				$value = $value->getAlphadecimal();
+			}
+			$offsetFields[] = $value;
+		}
+
+		return implode( '|', $offsetFields );
+	}
+
+	/**
+	 * Insert new objects into storage.
+	 *
+	 * @param object[] $objects
+	 * @param array $metadata
+	 */
 	protected function insert( array $objects, array $metadata ) {
 		$section = new \ProfileSection( __METHOD__ );
 		$rows = array_map( array( $this->mapper, 'toStorageRow' ), $objects );
@@ -89,6 +238,12 @@ class ObjectManager extends ObjectLocator {
 		}
 	}
 
+	/**
+	 * Update the set of objects representation within storage.
+	 *
+	 * @param object[] $objects
+	 * @param array $metadata
+	 */
 	protected function update( array $objects, array $metadata ) {
 		$section = new \ProfileSection( __METHOD__ );
 		foreach( $objects as $object ) {
@@ -96,6 +251,12 @@ class ObjectManager extends ObjectLocator {
 		}
 	}
 
+	/**
+	 * Update a single objects representation within storage.
+	 *
+	 * @param object $objects
+	 * @param array $metadata
+	 */
 	protected function updateSingle( $object, array $metadata ) {
 		$old = $this->loaded[$object];
 		$new = $this->mapper->toStorageRow( $object );
@@ -109,31 +270,36 @@ class ObjectManager extends ObjectLocator {
 		$this->loaded[$object] = $new;
 	}
 
-	public function remove( $object, array $metadata = array() ) {
-		$section = new \ProfileSection( __METHOD__ );
-		$old = $this->loaded[$object];
-		$this->storage->remove( $old );
-		foreach ( $this->lifecycleHandlers as $handler ) {
-			$handler->onAfterRemove( $object, $old, $metadata );
-		}
-		unset( $this->loaded[$object] );
-	}
-
-	public function clear() {
-		$this->loaded = new SplObjectStorage;
-	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	protected function load( $row ) {
 		$object = parent::load( $row );
 		$this->loaded[$object] = $row;
 		return $object;
 	}
 
+	/**
+	 * Compare two arrays for equality.
+	 * @todo why not $x === $y ?
+	 *
+	 * @param array $old
+	 * @param array $new
+	 * @return bool
+	 */
 	static public function arrayEquals( array $old, array $new ) {
 		return array_diff_assoc( $old, $new ) === array()
 			&& array_diff_assoc( $new, $old ) === array();
 	}
 
+	/**
+	 * Convert the input argument into an array. This is preferred
+	 * over casting with (array)$value because that will cast an
+	 * object to an array rather than wrap it.
+	 *
+	 * @param mixed @input
+	 * @return array
+	 */
 	static public function makeArray( $input ) {
 		if ( is_array( $input ) ) {
 			return $input;
@@ -142,6 +308,15 @@ class ObjectManager extends ObjectLocator {
 		}
 	}
 
+	/**
+	 * Return an array containing all the top level changes between
+	 * $old and $new. Expects $old and $new to be representations of
+	 * database rows and contain only strings and numbers.
+	 *
+	 * @param array $old
+	 * @param array $new
+	 * @return array
+	 */
 	static public function calcUpdates( array $old, array $new ) {
 		$updates = array();
 		foreach ( array_keys( $new ) as $key ) {
@@ -176,35 +351,5 @@ class ObjectManager extends ObjectLocator {
 		}
 
 		return $split;
-	}
-
-	/**
-	 * @param object $object
-	 * @param array $sortFields
-	 * @return string
-	 */
-	public function serializeOffset( $object, array $sortFields ) {
-		$offsetFields = array();
-		$row = $this->mapper->toStorageRow( $object );
-		foreach( $sortFields as $field ) {
-			$value = $row[$field];
-
-			if ( is_string( $value )
-				&& strlen( $value ) === UUID::BIN_LEN
-				&& substr( $field, -3 ) === '_id'
-			) {
-				$value = UUID::create( $value );
-			}
-			if ( $value instanceof UUID ) {
-				$value = $value->getAlphadecimal();
-			}
-			$offsetFields[] = $value;
-		}
-
-		return implode( '|', $offsetFields );
-	}
-
-	public function multiDelete( array $objects ) {
-		throw new DataModelException( 'Not Implemented', 'process-data' );
 	}
 }
