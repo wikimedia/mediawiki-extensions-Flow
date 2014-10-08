@@ -3,7 +3,7 @@
 namespace Flow\Formatter;
 
 use Flow\Data\ManagerGroup;
-use Flow\Data\RecentChanges\RecentChanges as RecentChangesHandler; // not to be confused with RecentChanges in Flow\Formatter namespace
+use Flow\Data\Listener\RecentChangesListener;
 use Flow\Exception\FlowException;
 use Flow\FlowActions;
 use Flow\Model\UUID;
@@ -48,7 +48,7 @@ class RecentChangesQuery extends AbstractQuery {
 	public function loadMetadataBatch( $rows, $isWatchlist = false ) {
 		$needed = array();
 		foreach ( $rows as $row ) {
-			if ( !isset( $row->rc_source ) || $row->rc_source !== RecentChangesHandler::SRC_FLOW ) {
+			if ( !isset( $row->rc_source ) || $row->rc_source !== RecentChangesListener::SRC_FLOW ) {
 				continue;
 			}
 			if ( !isset( $row->rc_params ) ) {
