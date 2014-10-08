@@ -53,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "ce8c5bf9_53f55b7e",
+        "filename": "includes/api/ApiFlowLockTopic.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-08T13:22:00Z",
+      "side": 1,
+      "message": "close/open topic (lock/unlock used to be called close \u0026 open - we stuck with this API prefix)",
+      "parentUuid": "ce8c5bf9_78cf1eb6",
+      "revId": "dfa1fb66d167b6c4177c8bf0493a4c2e2868f196",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce8c5bf9_d8d8aa81",
         "filename": "includes/api/ApiFlowLockTopic.php",
         "patchSetId": 3
