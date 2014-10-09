@@ -25,7 +25,7 @@ class ReferenceRecorder implements LifecycleHandler {
 	protected $referenceExtractor;
 
 	/**
-	 * @var MangerGroup
+	 * @var ManagerGroup
 	 */
 	protected $storage;
 
