@@ -29,11 +29,6 @@ class RecentChanges extends AbstractFormatter {
 
 		$this->serializer->setIncludeHistoryProperties( true );
 		$data = $this->serializer->formatApi( $row, $ctx );
-		// @todo where should this go?
-		$data['size'] = array(
-			'old' => $row->recentChange->getAttribute( 'rc_old_len' ),
-			'new' => $row->recentChange->getAttribute( 'rc_new_len' ),
-		);
 
 		if ( $linkOnly ) {
 			return $this->getTitleLink( $data, $row, $ctx );
