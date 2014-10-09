@@ -1,7 +1,7 @@
 <?php
 
 use Flow\Container;
-use Flow\Parsoid\Controller;
+use Flow\Parsoid\ContentFixer;
 use Flow\Parsoid\Utils;
 use Flow\Exception\WikitextException;
 
@@ -16,10 +16,11 @@ class ApiParsoidUtilsFlow extends ApiBase {
 		} catch ( WikitextException $e ) {
 			$code = $e->getErrorCode();
 			$this->dieUsage( $this->msg( $code )->inContentLanguage()->useDatabase( false )->plain(), $code );
+			return; // helps static analysis know execution does not continue past self::dieUsage
 		}
 
 		if ( $params['to'] === 'html' ) {
-			/** @var Controller $contentFixer */
+			/** @var ContentFixer $contentFixer */
 			$contentFixer = Container::get( 'content_fixer' );
 			$content = $contentFixer->apply( $content, $page->getTitle() );
 		}

@@ -3,6 +3,7 @@
 namespace Flow\Model;
 
 use Flow\Exception\CrossWikiException;
+use Flow\Exception\FlowException;
 use User;
 
 class UserTuple {
