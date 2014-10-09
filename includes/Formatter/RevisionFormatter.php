@@ -154,6 +154,8 @@ class RevisionFormatter {
 		if ( !$isHistoryAllowed ) {
 			return array();
 		}
+		$isPrevHistoryAllowed =  $row->previousRevision &&
+			$this->permissions->isAllowed( $row->previousRevision, 'history' );
 
 		$moderatedRevision = $this->templating->getModeratedRevision( $row->revision );
 		$ts = $row->revision->getRevisionId()->getTimestampObj();
@@ -171,18 +173,20 @@ class RevisionFormatter {
 			// These are write urls
 			'actions' => $this->buildActions( $row ),
 			'size' => array(
-				'old' => strlen( $row->previousRevision ? $row->previousRevision->getContentRaw() : '' ),
-				'new' => strlen( $row->revision->getContentRaw() ),
+				'old' => $isPrevHistoryAllowed
+					? $row->revision->getPreviousContentLength()
+					: null,
+				'new' => $row->revision->getContentLength(),
 			),
 			'author' => $this->serializeUser(
 				$row->revision->getUserWiki(),
 				$row->revision->getUserId(),
 				$row->revision->getUserIp()
 			),
+			'previousRevisionId' => $row->revision->isFirstRevision()
+				? null
+				: $row->revision->getPrevRevisionId()->getAlphadecimal(),
 		);
-
-		$prevRevId = $row->revision->getPrevRevisionId();
-		$res['previousRevisionId'] = $prevRevId ? $prevRevId->getAlphadecimal() : null;
 
 		if ( $res['isModerated'] ) {
 			$res['moderator'] = $this->serializeUser(
@@ -203,23 +207,11 @@ class RevisionFormatter {
 			// topic titles are always forced to plain text
 			$contentFormat = $this->decideContentFormat( $row->revision );
 
-			$res += array(
-				// @todo better name?
-				'content' => array(
-					'content' => $this->templating->getContent( $row->revision, $contentFormat ),
-					'format' => $contentFormat
-				),
-				'size' => array(
-					'old' => null,
-					// @todo this isn't really correct
-					'new' => strlen( $row->revision->getContentRaw() ),
-				),
+			// @todo better name?
+			$res['content'] = array(
+				'content' => $this->templating->getContent( $row->revision, $contentFormat ),
+				'format' => $contentFormat
 			);
-			if ( $row->previousRevision
-				&& $this->permissions->isAllowed( $row->previousRevision, 'view' )
-			) {
-				$res['size']['old'] = strlen( $row->previousRevision->getContentRaw() );
-			}
 		}
 
 		if ( $row instanceof TopicRow ) {
@@ -263,7 +255,8 @@ class RevisionFormatter {
 					'topic-of-post',
 					$row->revision,
 					$row->workflow->getId(),
-					$ctx
+					$ctx,
+					$row
 				);
 			}
 		}
@@ -728,9 +721,10 @@ class RevisionFormatter {
 	 * @param UUID $workflowId
 	 * @param AbstractRevision $revision
 	 * @param IContextSource $ctx
+	 * @param FormatterRow|null $row
 	 * @return array
 	 */
-	public function buildProperties( UUID $workflowId, AbstractRevision $revision, IContextSource $ctx ) {
+	public function buildProperties( UUID $workflowId, AbstractRevision $revision, IContextSource $ctx, FormatterRow $row = null ) {
 		if ( $this->includeProperties === false ) {
 			return array();
 		}
@@ -748,7 +742,7 @@ class RevisionFormatter {
 
 		$res = array( '_key' => $actions->getValue( $changeType, 'history', 'i18n-message' ) );
 		foreach ( $params as $param ) {
-			$res[$param] = $this->processParam( $param, $revision, $workflowId, $ctx );
+			$res[$param] = $this->processParam( $param, $revision, $workflowId, $ctx, $row );
 		}
 
 		return $res;
@@ -761,11 +755,12 @@ class RevisionFormatter {
 	 * @param AbstractRevision|array $revision The revision to format or an array of revisions
 	 * @param UUID $workflowId The UUID of the workflow $revision belongs tow
 	 * @param IContextSource $ctx
+	 * @param FormatterRow|null $row
 	 * @return mixed A valid parameter for a core Message instance. These parameters will be used
 	 *  with Message::parse
 	 * @throws FlowException
 	 */
-	public function processParam( $param, /* AbstractRevision|array */ $revision, UUID $workflowId, IContextSource $ctx ) {
+	public function processParam( $param, /* AbstractRevision|array */ $revision, UUID $workflowId, IContextSource $ctx, FormatterRow $row = null ) {
 		switch ( $param ) {
 		case 'creator-text':
 			if ( $revision instanceof PostRevision ) {
@@ -804,7 +799,11 @@ class RevisionFormatter {
 			if ( $revision->isFirstRevision() ) {
 				return '';
 			}
-			$previousRevision = $revision->getCollection()->getPrevRevision( $revision );
+			if ( $row === null ) {
+				$previousRevision = $revision->getCollection()->getPrevRevision( $revision );
+			} else {
+				$previousRevision = $row->previousRevision;
+			}
 			if ( !$previousRevision ) {
 				return '';
 			}
