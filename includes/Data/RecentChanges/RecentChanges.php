@@ -74,6 +74,7 @@ abstract class RecentChanges implements LifecycleHandler {
 	 */
 	protected function insert( AbstractRevision $revision, $block, $revisionType, array $row, Workflow $workflow, array $changes ) {
 		global $wgRCFeeds;
+
 		$action = $revision->getChangeType();
 		$revisionId = $revision->getRevisionId()->getAlphadecimal();
 		$timestamp = $revision->getRevisionId()->getTimestamp();
@@ -83,29 +84,18 @@ abstract class RecentChanges implements LifecycleHandler {
 		}
 
 		$title = $this->getRcTitle( $workflow, $revision->getChangeType() );
-
-		$collection = $revision->getCollection();
-
-		// get content of both this & the current revision
-		$content = $revision->getContent( 'wikitext' );
-		$previousContent = '';
-		$previousRevision = $collection->getPrevRevision( $revision );
-		if ( $previousRevision ) {
-			$previousContent = $previousRevision->getContent( 'wikitext' );
-		}
-
 		$attribs = array(
 			'rc_namespace' => $title->getNamespace(),
 			'rc_title' => $title->getDBkey(),
 			'rc_user' => $row['rev_user_id'],
 			'rc_user_text' => $this->usernames->get( wfWikiId(), $row['rev_user_id'], $row['rev_user_ip'] ),
 			'rc_type' => RC_FLOW,
-			'rc_source' => self::SRC_FLOW, // depends on core change in gerrit 85787
+			'rc_source' => self::SRC_FLOW,
 			'rc_minor' => 0,
 			'rc_bot' => 0, // TODO: is revision by bot
 			'rc_patrolled' => 0,
-			'rc_old_len' => strlen( $previousContent ),
-			'rc_new_len' => strlen( $content ),
+			'rc_old_len' => $revision->getPreviousContentLength(),
+			'rc_new_len' => $revision->getContentLength(),
 			'rc_this_oldid' => 0,
 			'rc_last_oldid' => 0,
 			'rc_log_type' => null,
