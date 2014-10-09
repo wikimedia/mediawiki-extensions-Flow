@@ -20,7 +20,7 @@ abstract class LocalCacheAbstractCollection extends AbstractCollection {
 	/**
 	 * Returns all revisions.
 	 *
-	 * @return AbstractRevision
+	 * @return AbstractRevision[]
 	 */
 	public function getAllRevisions() {
 		// if we have not yet loaded everything, just clear what we have and
