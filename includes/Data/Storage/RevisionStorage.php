@@ -452,7 +452,7 @@ abstract class RevisionStorage extends DbStorage {
 			$res = $dbw->update(
 				'flow_revision',
 				$this->preprocessSqlArray( $rev ),
-				array( 'rev_id' => $old['rev_id'] ),
+				$this->preprocessSqlArray( array( 'rev_id' => $old['rev_id'] ) ),
 				__METHOD__
 			);
 			if ( !( $res && $dbw->affectedRows() ) ) {
