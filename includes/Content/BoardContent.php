@@ -5,10 +5,11 @@ namespace Flow\Content;
 use DerivativeContext;
 use FauxRequest;
 use Flow\Container;
+use Flow\LinksTableUpdater;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\View;
-use Flow\WorkflowLoader;
+use Flow\WorkflowLoaderFactory;
 use MWException;
 use OutputPage;
 use ParserOptions;
@@ -191,9 +192,9 @@ class BoardContent extends \AbstractContent {
 			);
 
 			// Load workflow and run View.
-			/** @var WorkflowLoader $loader */
-			$loader = Container::get('factory.loader.workflow')
-				->createWorkflowLoader( $title, $this->getWorkflowId() );
+			/** @var WorkflowLoaderFactory $factory */
+			$factory = Container::get('factory.loader.workflow');
+			$loader = $factory->createWorkflowLoader( $title, $this->getWorkflowId() );
 			$view->show( $loader, 'view' );
 
 			// Extract data from derivative context
@@ -203,8 +204,9 @@ class BoardContent extends \AbstractContent {
 			$parserOutput->addModuleScripts( $childContext->getOutput()->getModuleScripts() );
 		}
 
-		Container::get( 'reference.updater.links-tables' )
-			->mutateParserOutput( $title, $parserOutput );
+		/** @var LinksTableUpdater $updater */
+		$updater = Container::get( 'reference.updater.links-tables' );
+		$updater->mutateParserOutput( $title, $parserOutput );
 
 		return $parserOutput;
 	}

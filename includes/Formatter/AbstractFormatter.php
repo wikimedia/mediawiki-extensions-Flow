@@ -209,7 +209,7 @@ abstract class AbstractFormatter {
 			$anchor = null;
 		}
 
-		if ( $anchor ) {
+		if ( $anchor instanceof Anchor ) {
 			$anchor->setMessage( wfMessage( 'hist' ) );
 			return $anchor;
 		} else {

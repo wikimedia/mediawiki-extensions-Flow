@@ -5,9 +5,13 @@ namespace Flow\Block;
 use Flow\Container;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidInputException;
+use Flow\Formatter\HeaderViewQuery;
+use Flow\Formatter\RevisionDiffViewFormatter;
+use Flow\Formatter\RevisionViewFormatter;
 use Flow\Formatter\FormatterRow;
 use Flow\Model\Header;
 use Flow\RevisionActionPermissions;
+use Flow\UrlGenerator;
 
 class HeaderBlock extends AbstractBlock {
 
@@ -220,25 +224,35 @@ class HeaderBlock extends AbstractBlock {
 		if ( isset( $options['oldRevision'] ) ) {
 			$oldRevision = $options['newRevision'];
 		}
-		list( $new, $old ) = Container::get( 'query.header.view' )->getDiffViewResult( $options['newRevision'], $oldRevision );
-		$output['revision'] = Container::get( 'formatter.revision.diff.view' )->formatApi( $new, $old, \RequestContext::getMain() );
+		/** @var HeaderViewQuery $query */
+		$query = Container::get( 'query.header.view' );
+		list( $new, $old ) = $query->getDiffViewResult( $options['newRevision'], $oldRevision );
+		/** @var RevisionDiffViewFormatter $formatter */
+		$formatter = Container::get( 'formatter.revision.diff.view' );
+		$output['revision'] = $formatter->formatApi( $new, $old, \RequestContext::getMain() );
 		return $output;
 	}
 
 	// @Todo - duplicated logic in other single view block
 	protected function renderSingleViewAPI( $revId ) {
-		$row = Container::get( 'query.header.view' )->getSingleViewResult( $revId );
-		$output['revision'] = Container::get( 'formatter.revisionview' )->formatApi( $row, \RequestContext::getMain() );
+		/** @var HeaderViewQuery $query */
+		$query = Container::get( 'query.header.view' );
+		$row = $query->getSingleViewResult( $revId );
+		/** @var RevisionViewFormatter $formatter */
+		$formatter = Container::get( 'formatter.revisionview' );
+		$output['revision'] = $formatter->formatApi( $row, \RequestContext::getMain() );
 		return $output;
 	}
 
 	protected function renderRevisionAPI() {
 		$output = array();
 		if ( $this->header === null ) {
+			/** @var UrlGenerator $urlGenerator */
+			$urlGenerator = Container::get( 'url_generator' );
 			$output['revision'] = array(
 				// @todo
 				'actions' => array(
-					'edit' => Container::get( 'url_generator' )
+					'edit' => $urlGenerator
 						->createHeaderAction( $this->workflow->getArticleTitle() ),
 				),
 				'links' => array(

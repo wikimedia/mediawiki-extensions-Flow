@@ -51,6 +51,9 @@ class OccupationListener implements LifecycleHandler {
 	}
 
 	public function onAfterLoad( $object, array $old ) {
+		if ( !$object instanceof Workflow ) {
+			return;
+		}
 		if ( $object->getType() === $this->defaultType ) {
 			$this->ensureOccupation( $object );
 		}
