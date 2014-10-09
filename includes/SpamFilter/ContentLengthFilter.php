@@ -8,6 +8,15 @@ use Title;
 
 class ContentLengthFilter implements SpamFilter {
 
+	/**
+	 * @var integer The maximum number of characters of wikitext to allow through filter
+	 */
+	protected $maxLength;
+
+	public function __construct( $maxLength = 25600 ) {
+		$this->maxLength = $maxLength;
+	}
+
 	public function enabled() {
 		return true;
 	}
@@ -19,8 +28,8 @@ class ContentLengthFilter implements SpamFilter {
 	 * @return Status
 	 */
 	public function validate( AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title ) {
-		return strlen( $newRevision->getContentRaw() ) > 25600
-			? Status::newFatal( 'flow-error-content-too-long', '25600' )
+		return $newRevision->getContentLength() > $this->maxLength
+			? Status::newFatal( 'flow-error-content-too-long', $this->maxLength )
 			: Status::newGood();
 	}
 }
