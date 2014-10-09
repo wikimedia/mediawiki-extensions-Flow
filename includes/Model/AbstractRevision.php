@@ -125,6 +125,16 @@ abstract class AbstractRevision {
 	protected $lastEditUser;
 
 	/**
+	 * @var integer Size of previous revision wikitext
+	 */
+	protected $previousContentLength = 0;
+
+	/**
+	 * @var integer Size of current revision wikitext
+	 */
+	protected $contentLength = 0;
+
+	/**
 	 * @param string[] $row
 	 * @param AbstractRevision|null $obj
 	 * @return AbstractRevision
@@ -166,6 +176,9 @@ abstract class AbstractRevision {
 		$obj->lastEditId = isset( $row['rev_last_edit_id'] ) ? UUID::create( $row['rev_last_edit_id'] ) : null;
 		$obj->lastEditUser = UserTuple::newFromArray( $row, 'rev_edit_user_' );
 
+		$obj->contentLength = isset( $row['rev_content_length'] ) ? $row['rev_content_length'] : 0;
+		$obj->previousContentLength = isset( $row['rev_previous_content_length'] ) ? $row['rev_previous_content_length'] : 0;
+
 		return $obj;
 	}
 
@@ -199,6 +212,9 @@ abstract class AbstractRevision {
 			'rev_edit_user_id' => $obj->lastEditUser ? $obj->lastEditUser->id : null,
 			'rev_edit_user_ip' => $obj->lastEditUser ? $obj->lastEditUser->ip : null,
 			'rev_edit_user_wiki' => $obj->lastEditUser ? $obj->lastEditUser->wiki : null,
+
+			'rev_content_length' => $obj->contentLength,
+			'rev_previous_content_length' => $obj->previousContentLength,
 		);
 	}
 
@@ -220,6 +236,8 @@ abstract class AbstractRevision {
 		$obj->user = UserTuple::newFromUser( $user );
 		$obj->prevRevision = $this->revId;
 		$obj->changeType = '';
+		$obj->previousContentLength = $obj->contentLength;
+
 		return $obj;
 	}
 
@@ -420,6 +438,8 @@ abstract class AbstractRevision {
 		// should this only remove a subset of flags?
 		$this->flags = array_filter( explode( ',', \Revision::compressRevisionText( $this->content ) ) );
 		$this->flags[] = $storageFormat;
+
+		$this->contentLength = mb_strlen( $this->getContent( 'wikitext' ) );
 	}
 
 	/**
@@ -639,6 +659,20 @@ abstract class AbstractRevision {
 	 */
 	public function getModeratedByUserWiki() {
 		return $this->moderatedBy ? $this->moderatedBy->wiki : null;
+	}
+
+	/**
+	 * @return integer
+	 */
+	public function getContentLength() {
+		return $this->contentLength;
+	}
+
+	/**
+	 * @return integer
+	 */
+	public function getPreviousContentLength() {
+		return $this->previousContentLength;
 	}
 
 	/**

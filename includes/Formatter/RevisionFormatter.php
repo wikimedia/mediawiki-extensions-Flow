@@ -198,8 +198,8 @@ class RevisionFormatter {
 			// These are write urls
 			'actions' => $this->buildActions( $row ),
 			'size' => array(
-				'old' => strlen( $row->previousRevision ? $row->previousRevision->getContentRaw() : '' ),
-				'new' => strlen( $row->revision->getContentRaw() ),
+				'old' => $row->revision->getPreviousContentLength(),
+				'new' => $row->revision->getContentLength(),
 			),
 			'author' => $this->serializeUser(
 				$row->revision->getUserWiki(),
@@ -212,10 +212,10 @@ class RevisionFormatter {
 				$row->revision->getLastContentEditUserIp()
 			),
 			'lastEditId' => $row->revision->isOriginalContent() ? null : $row->revision->getLastContentEditId()->getAlphadecimal(),
+			'previousRevisionId' => $row->revision->isFirstRevision()
+				? null
+				: $row->revision->getPrevRevisionId()->getAlphadecimal(),
 		);
-
-		$prevRevId = $row->revision->getPrevRevisionId();
-		$res['previousRevisionId'] = $prevRevId ? $prevRevId->getAlphadecimal() : null;
 
 		if ( $res['isModerated'] ) {
 			$res['moderator'] = $this->serializeUser(
@@ -235,23 +235,11 @@ class RevisionFormatter {
 			// topic titles are always forced to plain text
 			$contentFormat = $this->decideContentFormat( $row->revision );
 
-			$res += array(
-				// @todo better name?
-				'content' => array(
-					'content' => $this->templating->getContent( $row->revision, $contentFormat ),
-					'format' => $contentFormat
-				),
-				'size' => array(
-					'old' => null,
-					// @todo this isn't really correct
-					'new' => strlen( $row->revision->getContentRaw() ),
-				),
+			// @todo better name?
+			$res['content'] = array(
+				'content' => $this->templating->getContent( $row->revision, $contentFormat ),
+				'format' => $contentFormat
 			);
-			if ( $row->previousRevision
-				&& $this->permissions->isAllowed( $row->previousRevision, 'view' )
-			) {
-				$res['size']['old'] = strlen( $row->previousRevision->getContentRaw() );
-			}
 		}
 
 		if ( $row instanceof TopicRow ) {

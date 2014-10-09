@@ -112,6 +112,8 @@ class PostRevisionTestCase extends FlowTestCase {
 			'rev_edit_user_wiki' => null,
 			'rev_edit_user_id' => null,
 			'rev_edit_user_ip' => null,
+			'rev_content_length' => 0,
+			'rev_previous_content_length' => 0,
 
 			// flow_tree_revision
 			'tree_rev_descendant_id' => $this->workflow->getId()->getBinary(),

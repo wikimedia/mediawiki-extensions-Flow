@@ -4,7 +4,10 @@ namespace Flow\Tests\Model;
 
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
+use Flow\Model\Workflow;
 use Flow\Tests\PostRevisionTestCase;
+use User;
+use Title;
 
 /**
  * @group Flow
@@ -29,5 +32,22 @@ class PostRevisionTest extends PostRevisionTestCase {
 		// disk we need to perform uuid conversion before comparing
 		$roundtripRow = UUID::convertUUIDs( $roundtripRow, 'binary' );
 		$this->assertEquals( $row, $roundtripRow );
+	}
+
+	public function testContentLength() {
+		$content = 'This is a topic title';
+		$nextContent = 'Changed my mind';
+
+		$title = Title::newMainPage();
+		$user = User::newFromName( '127.0.0.1', false );
+		$workflow = Workflow::create( 'topic', $title );
+
+		$topic = PostRevision::create( $workflow, $user, $content );
+		$this->assertEquals( 0, $topic->getPreviousContentLength() );
+		$this->assertEquals( mb_strlen( $content ), $topic->getContentLength() );
+
+		$next = $topic->newNextRevision( $user, $nextContent, 'edit-title', $title );
+		$this->assertEquals( mb_strlen( $content ), $next->getPreviousContentLength() );
+		$this->assertEquals( mb_strlen( $nextContent ), $next->getContentLength() );
 	}
 }

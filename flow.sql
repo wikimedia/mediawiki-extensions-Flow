@@ -108,6 +108,9 @@ CREATE TABLE /*_*/flow_revision (
 	rev_edit_user_ip varbinary(39) default null,
 	rev_edit_user_wiki varchar(32) binary default null,
 
+	rev_content_length int not null default 0,
+	rev_previous_content_length int not null default 0,
+
 	PRIMARY KEY (rev_id)
 ) /*$wgDBTableOptions*/;
 

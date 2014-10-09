@@ -40,12 +40,6 @@ class RecentChanges extends AbstractFormatter {
 			throw new FlowException( 'Could not format data for row ' . $row->revision->getRevisionId()->getAlphadecimal() );
 		}
 
-		// @todo where should this go?
-		$data['size'] = array(
-			'old' => $row->recentChange->getAttribute( 'rc_old_len' ),
-			'new' => $row->recentChange->getAttribute( 'rc_new_len' ),
-		);
-
 		if ( $linkOnly ) {
 			return $this->getTitleLink( $data, $row, $ctx );
 		}
