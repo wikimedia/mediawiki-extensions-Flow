@@ -3,7 +3,6 @@
 namespace Flow\Data\BagOStuff;
 
 use BagOStuff;
-use Flow\Exception\FlowException;
 use HashBagOStuff;
 
 /**

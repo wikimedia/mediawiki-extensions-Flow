@@ -8,7 +8,6 @@ use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidInputException;
 use Flow\Formatter\FormatterRow;
-use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Templating;

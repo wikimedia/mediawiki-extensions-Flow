@@ -15,7 +15,6 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use Flow\Parsoid\Utils;
 use Flow\Repository\RootPostLoader;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
