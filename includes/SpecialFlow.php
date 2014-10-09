@@ -6,11 +6,14 @@
 
 namespace Flow;
 
+use Flow\Data\ObjectManager;
+use Flow\Exception\FlowException;
+use Flow\Model\Workflow;
+use Flow\Model\UUID;
+use Flow\Repository\TreeRepository;
 use FormSpecialPage;
 use HTMLForm;
 use Status;
-use Flow\Model\UUID;
-use Flow\Exception\FlowException;
 
 class SpecialFlow extends FormSpecialPage {
 
@@ -102,10 +105,16 @@ class SpecialFlow extends FormSpecialPage {
 	protected function getPostUrl() {
 		try {
 			$postId = UUID::create( $this->uuid );
-			$rootId = Container::get( 'repository.tree' )->findRoot( $postId );
-			$workflow = Container::get( 'storage.workflow' )->get( $rootId );
-			if ( $workflow ) {
-				return Container::get( 'url_generator' )->postLink(
+			/** @var TreeRepository $treeRepo */
+			$treeRepo = Container::get( 'repository.tree' );
+			$rootId = $treeRepo->findRoot( $postId );
+			/** @var ObjectManager $om */
+			$om = Container::get( 'storage.workflow' );
+			$workflow = $om->get( $rootId );
+			if ( $workflow instanceof Workflow ) {
+				/** @var UrlGenerator $urlGenerator */
+				$urlGenerator = Container::get( 'url_generator' );
+				return $urlGenerator->postLink(
 					null,
 					$rootId,
 					$postId
@@ -125,9 +134,13 @@ class SpecialFlow extends FormSpecialPage {
 	protected function getWorkflowUrl() {
 		try {
 			$rootId = UUID::create( $this->uuid );
-			$workflow = Container::get( 'storage.workflow' )->get( $rootId );
-			if ( $workflow ) {
-				return Container::get( 'url_generator' )->workflowLink(
+			/** @var ObjectManager $om */
+			$om = Container::get( 'storage.workflow' );
+			$workflow = $om->get( $rootId );
+			if ( $workflow instanceof Workflow ) {
+				/** @var UrlGenerator $urlGenerator */
+				$urlGenerator = Container::get( 'url_generator' );
+				return $urlGenerator->workflowLink(
 					null,
 					$rootId
 				)->getFullUrl();

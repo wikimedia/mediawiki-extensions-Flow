@@ -49,12 +49,15 @@ abstract class Utils {
 	 * @return string plaintext
 	 */
 	public static function htmlToPlaintext( $html, $truncateLength = null, Language $lang = null ) {
+		/** @var Language $wgLang */
+		global $wgLang;
+
 		$plain = trim( html_entity_decode( strip_tags( $html ) ) );
 
 		if ( $truncateLength === null ) {
 			return $plain;
 		} else {
-			$lang = $lang ?: $GLOBALS['wgLang'];
+			$lang = $lang ?: $wgLang;
 			return $lang->truncate( $plain, $truncateLength );
 		}
 	}

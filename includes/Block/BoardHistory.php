@@ -4,6 +4,8 @@ namespace Flow\Block;
 
 use Flow\RevisionActionPermissions;
 use Flow\Container;
+use Flow\Formatter\BoardHistoryQuery;
+use Flow\Formatter\RevisionFormatter;
 use Flow\Exception\DataModelException;
 
 class BoardHistoryBlock extends AbstractBlock {
@@ -49,7 +51,10 @@ class BoardHistoryBlock extends AbstractBlock {
 			);
 		}
 
-		$history = Container::get( 'query.board-history' )->getResults( $this->workflow );
+		/** @var BoardHistoryQuery $query */
+		$query = Container::get( 'query.board-history' );
+		$history = $query->getResults( $this->workflow );
+		/** @var RevisionFormatter $formatter */
 		$formatter = Container::get( 'formatter.revision' );
 		$formatter->setIncludeHistoryProperties( true );
 		$ctx = \RequestContext::getMain();

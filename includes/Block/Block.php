@@ -2,16 +2,16 @@
 
 namespace Flow\Block;
 
+use Flow\Container;
+use Flow\Data\ManagerGroup;
 use Flow\Exception\InvalidInputException;
+use Flow\FlowActions;
+use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use Flow\Data\ManagerGroup;
 use Flow\SpamFilter\Controller as SpamFilterController;
 use Flow\Templating;
-use Flow\Model\AbstractRevision;
-use Flow\Container;
 use User;
-
 
 interface Block {
 	/**
@@ -236,7 +236,9 @@ abstract class AbstractBlock implements Block {
 	 */
 	public function getActionName( $action ) {
 		// BC for renamed actions
-		$alias = Container::get( 'flow_actions' )->getValue( $action );
+		/** @var FlowActions $actions */
+		$actions = Container::get( 'flow_actions' );
+		$alias = $actions->getValue( $action );
 		if ( is_string( $alias ) ) {
 			// All proper actions return arrays, but aliases return a string
 			$action = $alias;
