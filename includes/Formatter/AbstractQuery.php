@@ -100,7 +100,9 @@ abstract class AbstractQuery {
 			}
 
 			$revisions[$result->getRevisionId()->getAlphadecimal()] = $result;
-			$previousRevisionIds[get_class( $result )][] = $result->getPrevRevisionId();
+			if ( $this->needsPreviousRevision( $result ) ) {
+				$previousRevisionIds[get_class( $result )][] = $result->getPrevRevisionId();
+			}
 
 			$collection = $result->getCollection();
 			$collectionIds[get_class( $result )][] = $collection->getId();
@@ -138,7 +140,7 @@ abstract class AbstractQuery {
 		// should cover the lot.
 		$workflows = $this->storage->getMulti( 'Workflow', array_merge( $rootPostIds, $workflowIds ) );
 
-		// preload all previous revisions
+		// preload all requested previous revisions
 		foreach ( $previousRevisionIds as $revisionType => $ids ) {
 			// get rid of null-values (for original revisions, without previous revision)
 			$ids = array_filter( $ids );
@@ -196,7 +198,9 @@ abstract class AbstractQuery {
 
 		$row = $row ?: new FormatterRow;
 		$row->revision = $revision;
-		$row->previousRevision = $this->getPreviousRevision( $revision );
+		if ( $this->needsPreviousRevision( $revision ) ) {
+			$row->previousRevision = $this->getPreviousRevision( $revision );
+		}
 		$row->currentRevision = $this->getCurrentRevision( $revision );
 		$row->workflow = $workflow;
 
@@ -230,6 +234,18 @@ abstract class AbstractQuery {
 		} else {
 			throw new \MWException( 'Unsupported revision type ' . get_class( $revision ) );
 		}
+	}
+
+	/**
+	 * Decides if the given abstract revision needs its prior revision for formatting
+	 * @param AbstractRevision $revision
+	 * @return boolean true when the previous revision to this should be loaded
+	 */
+	protected function needsPreviousRevision( AbstractRevision $revision ) {
+		// crappy special case needs the previous object so it can show the title
+		// but only when outputting a full history api result(we don't know that here)
+		return $revision instanceof PostRevision
+			&& $revision->getChangeType() === 'edit-title';
 	}
 
 	/**
