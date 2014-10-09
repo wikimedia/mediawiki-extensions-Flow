@@ -164,7 +164,7 @@ class RevisionFormatter {
 			'timestamp_readable' => $language->userTimeAndDate( $ts, $user ),
 			'changeType' => $row->revision->getChangeType(),
 			'dateFormats' => $this->getDateFormats( $row->revision, $ctx ),
-			'properties' => $this->buildProperties( $row->workflow->getId(), $row->revision, $ctx ),
+			'properties' => $this->buildProperties( $row->workflow->getId(), $row->revision, $ctx, $row ),
 			'isModerated' => $moderatedRevision->isModerated(),
 			// These are read urls
 			'links' => $this->buildLinks( $row ),
@@ -263,7 +263,8 @@ class RevisionFormatter {
 					'topic-of-post',
 					$row->revision,
 					$row->workflow->getId(),
-					$ctx
+					$ctx,
+					$row
 				);
 			}
 		}
@@ -728,9 +729,10 @@ class RevisionFormatter {
 	 * @param UUID $workflowId
 	 * @param AbstractRevision $revision
 	 * @param IContextSource $ctx
+	 * @param FormatterRow|null $row
 	 * @return array
 	 */
-	public function buildProperties( UUID $workflowId, AbstractRevision $revision, IContextSource $ctx ) {
+	public function buildProperties( UUID $workflowId, AbstractRevision $revision, IContextSource $ctx, FormatterRow $row = null ) {
 		if ( $this->includeProperties === false ) {
 			return array();
 		}
@@ -748,7 +750,7 @@ class RevisionFormatter {
 
 		$res = array( '_key' => $actions->getValue( $changeType, 'history', 'i18n-message' ) );
 		foreach ( $params as $param ) {
-			$res[$param] = $this->processParam( $param, $revision, $workflowId, $ctx );
+			$res[$param] = $this->processParam( $param, $revision, $workflowId, $ctx, $row );
 		}
 
 		return $res;
@@ -761,11 +763,12 @@ class RevisionFormatter {
 	 * @param AbstractRevision|array $revision The revision to format or an array of revisions
 	 * @param UUID $workflowId The UUID of the workflow $revision belongs tow
 	 * @param IContextSource $ctx
+	 * @param FormatterRow|null $row
 	 * @return mixed A valid parameter for a core Message instance. These parameters will be used
 	 *  with Message::parse
 	 * @throws FlowException
 	 */
-	public function processParam( $param, /* AbstractRevision|array */ $revision, UUID $workflowId, IContextSource $ctx ) {
+	public function processParam( $param, /* AbstractRevision|array */ $revision, UUID $workflowId, IContextSource $ctx, FormatterRow $row = null ) {
 		switch ( $param ) {
 		case 'creator-text':
 			if ( $revision instanceof PostRevision ) {
@@ -804,7 +807,11 @@ class RevisionFormatter {
 			if ( $revision->isFirstRevision() ) {
 				return '';
 			}
-			$previousRevision = $revision->getCollection()->getPrevRevision( $revision );
+			if ( $row === null ) {
+				$previousRevision = $revision->getCollection()->getPrevRevision( $revision );
+			} else {
+				$previousRevision = $row->previousRevision;
+			}
 			if ( !$previousRevision ) {
 				return '';
 			}
