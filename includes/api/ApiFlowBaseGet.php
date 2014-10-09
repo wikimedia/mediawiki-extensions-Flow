@@ -9,7 +9,6 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 		$blocks = $loader->createBlocks();
 		$action = $this->getAction();
 		$user = $this->getUser();
-		$container = $this->getContainer();
 		$passedParams = $this->getBlockParams();
 
 		$output[$action] = array(
