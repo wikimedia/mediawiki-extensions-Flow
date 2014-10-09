@@ -10,9 +10,37 @@ use Flow\Exception\DataModelException;
  * ObjectManagers more conveniently.
  */
 class ManagerGroup {
+
+	/**
+	 * @var Container
+	 */
+	protected $container;
+
+	/**
+	 * @var string[] Map from FQCN or short name to key in container that holds
+	 *  the relevant ObjectManager
+	 */
+	protected $classMap;
+
+	/**
+	 * @var string[] List of container keys that have been used
+	 */
+	protected $used = array();
+
 	public function __construct( Container $container, array $classMap ) {
 		$this->container = $container;
 		$this->classMap = $classMap;
+	}
+
+	/**
+	 * Runs ObjectManager:;clear on all managers that have been accessed since
+	 * the last clear.
+	 */
+	public function clear() {
+		foreach ( array_keys( $this->used ) as $key ) {
+			$this->container[$key]->clear();
+		}
+		$this->used = array();
 	}
 
 	/**
@@ -24,8 +52,10 @@ class ManagerGroup {
 		if ( !isset( $this->classMap[$className] ) ) {
 			throw new DataModelException( "Request for '$className' is not in classmap: " . implode( ', ', array_keys( $this->classMap ) ), 'process-data' );
 		}
+		$key = $this->classMap[$className];
+		$this->used[$key] = true;
 
-		return $this->container[$this->classMap[$className]];
+		return $this->container[$key];
 	}
 
 	public function put( $object, array $metadata ) {
