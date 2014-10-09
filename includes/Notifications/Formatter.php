@@ -179,7 +179,7 @@ class NotificationFormatter extends EchoBasicFormatter {
 			// merged, $data should be always an instance of EchoEvent
 			if ( $data instanceof \EchoEvent ) {
 				$extra = $data->getExtra();
-			} else {
+			} elseif ( isset( $data->event_extra ) ) {
 				$extra = $data->event_extra;
 			}
 			if ( isset( $extra['post-id'] ) ) {
