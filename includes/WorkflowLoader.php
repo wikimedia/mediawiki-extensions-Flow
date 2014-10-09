@@ -52,10 +52,10 @@ class WorkflowLoader {
 	}
 
 	/**
-	 * @param $action
+	 * @param string $action
 	 * @param array $blocks
-	 * @param $user
-	 * @param WebRequest $request
+	 * @param mixed $user
+	 * @param array $params
 	 * @return Block\AbstractBlock[]
 	 */
 	public function handleSubmit( $action, array $blocks, $user, array $params ) {

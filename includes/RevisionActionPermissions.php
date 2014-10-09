@@ -180,6 +180,7 @@ class RevisionActionPermissions {
 	 *
 	 * @param AbstractRevision|null $revision
 	 * @param string $action
+	 * @param string $type
 	 * @return Closure|string
 	 */
 	public function getPermission( AbstractRevision $revision = null, $action, $type = 'permissions' ) {

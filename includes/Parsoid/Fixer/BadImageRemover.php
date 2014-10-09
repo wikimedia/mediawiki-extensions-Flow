@@ -29,7 +29,7 @@ class BadImageRemover implements Fixer {
 	protected $isFiltered;
 
 	/**
-	 * @var callable $callback (string, Title) returning bool. First
+	 * @var callable $isFiltered (string, Title) returning bool. First
 	 *  argument is the image name to check. Second argument is the page on
 	 *  which the image occurs. Returns true when the image should be filtered.
 	 */
