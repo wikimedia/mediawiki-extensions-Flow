@@ -38,11 +38,11 @@
 
 			<input type="hidden" name="wpEditToken" value="'.htmlentities(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['editToken'])) ? $cx['scopes'][0]['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
 			<textarea name="flow_reason"
-				      class="mw-ui-input"
-				      type="text"
-				      required
-				      data-flow-preview-node="moderateReason"
-				      data-flow-preview-template="flow_topic_titlebar"
+			          class="mw-ui-input"
+			          type="text"
+			          required
+			          data-flow-preview-node="moderateReason"
+			          data-flow-preview-template="flow_topic_titlebar"
 			>'.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['reason'])) ? $cx['scopes'][0]['submitted']['reason'] : null))) ? ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['reason'])) ? $cx['scopes'][0]['submitted']['reason'] : null), ENT_QUOTES, 'UTF-8').'' : '').'</textarea>
 			<div class="flow-form-actions flow-form-collapsible">
 				<button data-role="submit"
