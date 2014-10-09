@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce8c5bf9_04d304d8",
+        "filename": "includes/Formatter/SearchQuery.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-09T17:17:03Z",
+      "side": 1,
+      "message": "I know this is much easier, but this is doing network requests in a loop.  I\u0027m not a huge fan of the collections either because they reach out across global state, but it certainly is easier. \n\nA middle ground might be for us to think up a better replacement for the find/findMulti calls that clarify the queries and make them easy to reuse here and elsewhere?",
+      "revId": "c8acb7c4fed894f79e039c6c432f41f6e92be48c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
