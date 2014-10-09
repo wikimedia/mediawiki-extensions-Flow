@@ -1,7 +1,11 @@
 <?php
 
+use Flow\Container;
 use Flow\Model\Anchor;
+use Flow\Model\Workflow;
 use Flow\Model\UUID;
+use Flow\WorkflowLoader;
+use Flow\WorkflowLoaderFactory;
 
 /**
  * This API is deprecated and should not be used. Instead use
@@ -10,7 +14,20 @@ use Flow\Model\UUID;
  * @deprecated
  */
 class ApiQueryFlow extends ApiQueryBase {
-	protected $loader, $workflow, $container;
+	/**
+	 * @var WorkflowLoader
+	 */
+	protected $loader;
+
+	/**
+	 * @var Workflow
+	 */
+	protected $workflow;
+
+	/**
+	 * @var Container
+	 */
+	protected $container;
 
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'flow' );
@@ -25,8 +42,9 @@ class ApiQueryFlow extends ApiQueryBase {
 		$pageTitle = Title::newFromText( $params['page'] );
 		$id = $params['workflow'] ? UUID::create( $params['workflow'] ) : null;
 
-		$this->loader = $this->container['factory.loader.workflow']
-			->createWorkflowLoader( $pageTitle, $id );
+		/** @var WorkflowLoaderFactory $factory */
+		$factory = $this->container['factory.loader.workflow'];
+		$this->loader = $factory->createWorkflowLoader( $pageTitle, $id );
 		$result = array(
 			'workflow' => $this->loader->getWorkflow()->getId()->getAlphadecimal()
 		);

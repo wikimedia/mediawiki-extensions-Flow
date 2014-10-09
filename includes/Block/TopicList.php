@@ -5,6 +5,8 @@ namespace Flow\Block;
 use Flow\Container;
 use Flow\Data\Pager\Pager;
 use Flow\Data\Pager\PagerPage;
+use Flow\Formatter\TopicListFormatter;
+use Flow\Formatter\TopicListQuery;
 use Flow\Model\PostRevision;
 use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
@@ -164,6 +166,7 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	public function renderAPI( array $options ) {
+		/** @var TopicListFormatter $serializer */
 		$serializer = Container::get( 'formatter.topiclist' );
 		$response = array(
 			'submitted' => $this->wasSubmitted() ? $this->submitted : $options,
@@ -188,13 +191,16 @@ class TopicListBlock extends AbstractBlock {
 		}
 
 		$workflowIds = array();
+		/** @var TopicListEntry $topicListEntry */
 		foreach ( $page->getResults() as $topicListEntry ) {
 			$workflowIds[] = $topicListEntry->getId();
 		}
 
 		$workflows = $this->storage->getMulti( 'Workflow', $workflowIds );
-		$found = Container::get( 'query.topiclist' )->getResults( $page->getResults() );
-		wfDebugLog( 'Flow', 'Rendering topiclist for ids: ' . implode( ', ', array_map( function( $id ) {
+		/** @var TopicListQuery $query */
+		$query = Container::get( 'query.topiclist' );
+		$found = $query->getResults( $page->getResults() );
+		wfDebugLog( 'Flow', 'Rendering topiclist for ids: ' . implode( ', ', array_map( function( UUID $id ) {
 			return $id->getAlphadecimal();
 		}, $workflowIds ) ) );
 

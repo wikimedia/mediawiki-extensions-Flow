@@ -1,10 +1,11 @@
 <?php
 
-use Flow\WorkflowLoader;
-use Flow\Model\UUID;
 use Flow\Container;
-use Flow\TalkpageManager;
 use Flow\Model\AbstractRevision;
+use Flow\Model\UUID;
+use Flow\TalkpageManager;
+use Flow\WorkflowLoader;
+use Flow\WorkflowLoaderFactory;
 
 abstract class ApiFlowBase extends ApiBase {
 
@@ -32,6 +33,11 @@ abstract class ApiFlowBase extends ApiBase {
 		$this->apiFlow = $api;
 		parent::__construct( $api->getMain(), $modName, $prefix );
 	}
+
+	/**
+	 * @return array
+	 */
+	abstract protected function getBlockParams();
 
 	/**
 	 * Allows the main ApiFlow instance to set default parameters
@@ -67,8 +73,9 @@ abstract class ApiFlowBase extends ApiBase {
 	protected function getLoader() {
 		if ( $this->loader === null ) {
 			$container = $this->getContainer();
-			$this->loader = $container['factory.loader.workflow']
-				->createWorkflowLoader( $this->page, $this->id );
+ 			/** @var WorkflowLoaderFactory $factory */
+			$factory = $container['factory.loader.workflow'];
+			$this->loader = $factory->createWorkflowLoader( $this->page, $this->id );
 		}
 
 		return $this->loader;
@@ -158,4 +165,5 @@ abstract class ApiFlowBase extends ApiBase {
 	public function getParent() {
 		return $this->apiFlow;
 	}
+
 }

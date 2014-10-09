@@ -23,6 +23,9 @@ class ImageExtractor implements Extractor {
 	 */
 	public function perform( ReferenceFactory $factory, DOMElement $element ) {
 		foreach ( $element->getElementsByTagName( 'img' ) as $item ) {
+			if ( !$item instanceof DOMElement ) {
+				continue;
+			}
 			$resource = $item->getAttribute( 'resource' );
 			if ( $resource !== '' ) {
 				return $factory->createWikiReference(
