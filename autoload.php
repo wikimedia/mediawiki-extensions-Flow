@@ -250,6 +250,7 @@ $wgAutoloadClasses['Flow\\Tests\\Data\\UserNameBatchTest'] = __DIR__ . '/tests/p
 $wgAutoloadClasses['Flow\\Tests\\Data\\UserNameListenerTest'] = __DIR__ . '/tests/phpunit/Data/UserNameListenerTest.php';
 $wgAutoloadClasses['Flow\\Tests\\FlowTestCase'] = __DIR__ . '/tests/phpunit/FlowTestCase.php';
 $wgAutoloadClasses['Flow\\Tests\\Formatter\\FormatterTest'] = __DIR__ . '/tests/phpunit/Formatter/FormatterTest.php';
+$wgAutoloadClasses['Flow\\Tests\\Formatter\\RevisionFormatterTest'] = __DIR__ . '/tests/phpunit/Formatter/RevisionFormatterTest.php';
 $wgAutoloadClasses['Flow\\Tests\\HookTest'] = __DIR__ . '/tests/phpunit/HookTest.php';
 $wgAutoloadClasses['Flow\\Tests\\LinksTableTest'] = __DIR__ . '/tests/phpunit/LinksTableTest.php';
 $wgAutoloadClasses['Flow\\Tests\\LocalBufferedBagOStuffTest'] = __DIR__ . '/tests/phpunit/Data/BagOStuff/LocalBufferedBagOStuffTest.php';
