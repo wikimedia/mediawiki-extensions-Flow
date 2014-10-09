@@ -8,7 +8,6 @@ use Flow\Repository\UserNameBatch;
 use Flow\FlowActions;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Workflow;
-use RecentChange;
 use Closure;
 
 /**

@@ -2,7 +2,6 @@
 
 use Flow\Container;
 use Flow\Model\UUID;
-use Flow\Templating;
 
 class ApiFlow extends ApiBase {
 

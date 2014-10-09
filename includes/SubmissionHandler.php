@@ -11,7 +11,6 @@ use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidActionException;
 use DeferredUpdates;
 use SplQueue;
-use WebRequest;
 
 class SubmissionHandler {
 

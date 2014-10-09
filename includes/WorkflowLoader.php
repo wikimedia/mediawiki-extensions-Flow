@@ -4,7 +4,6 @@ namespace Flow;
 
 use Flow\Block\AbstractBlock;
 use Flow\Model\Workflow;
-use WebRequest;
 
 class WorkflowLoader {
 	/**
