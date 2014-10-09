@@ -28,6 +28,12 @@ abstract class RevisionStorage extends DbStorage {
 		'rev_mod_user_wiki',
 		'rev_mod_timestamp',
 		'rev_mod_reason',
+
+		// This is temporary for a maint script, can be removed once
+		// FlowUpdateRevisionContentLength is no longer needed. These two
+		// fields should *not* be updated in the normal course of operation
+		'rev_content_length',
+		'rev_previous_content_length',
 	);
 
 	// This is to prevent 'Update not allowed on xxx' error during moderation when
