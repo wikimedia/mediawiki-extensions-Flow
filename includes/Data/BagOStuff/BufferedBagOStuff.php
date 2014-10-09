@@ -146,8 +146,6 @@ class BufferedBagOStuff extends HashBagOStuff {
 		return array_filter( $values, function( $value ) {
 			return $value !== false;
 		} );
-
-		return $values;
 	}
 
 	/**
