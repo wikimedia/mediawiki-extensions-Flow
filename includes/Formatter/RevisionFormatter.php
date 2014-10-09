@@ -658,9 +658,11 @@ class RevisionFormatter {
 				$links['board-history'] = $this->urlGenerator->boardHistoryLink( $title );
 				break;
 
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case 'diff-header':
 				$diffCallback = isset( $diffCallback ) ? $diffCallback : array( $this->urlGenerator, 'diffHeaderLink' );
 				// don't break, diff links are rendered below
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case 'diff-post':
 				$diffCallback = isset( $diffCallback ) ? $diffCallback : array( $this->urlGenerator, 'diffPostLink' );
 				// don't break, diff links are rendered below
