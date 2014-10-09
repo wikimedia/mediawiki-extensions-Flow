@@ -6,10 +6,13 @@ use Action;
 use Article;
 use ErrorPageError;
 use Flow\Container;
+use Flow\Data\ManagerGroup;
 use Flow\Exception\FlowException;
 use Flow\Exception\InvalidInputException;
+use Flow\Model\Workflow;
 use Flow\Model\UUID;
 use Flow\View;
+use Flow\WorkflowLoaderFactory;
 use IContextSource;
 use OutputPage;
 use Page;
@@ -41,7 +44,7 @@ class FlowAction extends Action {
 	 */
 	public function showForAction( $action, OutputPage $output = null ) {
 		$container = Container::getContainer();
-		$occupationController = $container['occupation_controller'];
+		$occupationController = \FlowHooks::getOccupationController();
 
 		if ( $output === null ) {
 			$output = $this->context->getOutput();
@@ -71,8 +74,9 @@ class FlowAction extends Action {
 		$action = $request->getVal( 'action', 'view' );
 
 		try {
-			$loader = $container['factory.loader.workflow']
-				->createWorkflowLoader( $title, UUID::create( $workflowId ) );
+ 			/** @var WorkflowLoaderFactory $factory */
+			$factory = $container['factory.loader.workflow'];
+			$loader = $factory->createWorkflowLoader( $title, UUID::create( $workflowId ) );
 
 			if ( $title->getNamespace() === NS_TOPIC && $loader->getWorkflow()->getType() !== 'topic' ) {
 				// @todo better error handling
@@ -88,7 +92,9 @@ class FlowAction extends Action {
 		} catch ( InvalidInputException $e ) {
 			if ( $workflowId ) {
 				// Check if it's the wrong title, redirect to correct one
+				/** @var ManagerGroup $storage */
 				$storage = $container['storage'];
+				/** @var Workflow $workflow */
 				$workflow = $storage->get( 'Workflow', $workflowId );
 
 				if (

@@ -8,6 +8,9 @@ use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidInputException;
 use Flow\Formatter\FormatterRow;
+use Flow\Formatter\PostSummaryViewQuery;
+use Flow\Formatter\PostSummaryQuery;
+use Flow\Formatter\RevisionViewFormatter;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Templating;
@@ -74,7 +77,9 @@ class TopicSummaryBlock extends AbstractBlock {
 		$this->permissions = new RevisionActionPermissions( Container::get( 'flow_actions' ), $user );
 
 		if ( !$this->workflow->isNew() ) {
-			$this->formatterRow = Container::get( 'query.postsummary' )->getResult( $this->workflow->getId() );
+			/** @var PostSummaryQuery $query */
+			$query = Container::get( 'query.postsummary' );
+			$this->formatterRow = $query->getResult( $this->workflow->getId() );
 			if ( $this->formatterRow ) {
 				$this->topicSummary = $this->formatterRow->revision;
 			}
@@ -243,8 +248,12 @@ class TopicSummaryBlock extends AbstractBlock {
 			case 'view-topic-summary':
 				// @Todo - duplicated logic in other single view block
 				if ( isset( $options['revId'] ) && $options['revId'] ) {
-					$row = Container::get( 'query.postsummary.view' )->getSingleViewResult( $options['revId'] );
-					$output['revision'] = Container::get( 'formatter.revisionview' )->formatApi( $row, \RequestContext::getMain() );
+					/** @var PostSummaryViewQuery $query */
+					$query = Container::get( 'query.postsummary.view' );
+					$row = $query->getSingleViewResult( $options['revId'] );
+					/** @var RevisionViewFormatter $formatter */
+					$formatter = Container::get( 'formatter.revisionview' );
+					$output['revision'] = $formatter->formatApi( $row, \RequestContext::getMain() );
 				} else {
 					if ( isset( $options['contentFormat'] ) && $options['contentFormat'] === 'wikitext' ) {
 						$this->requiresWikitext[] = 'view-topic-summary';

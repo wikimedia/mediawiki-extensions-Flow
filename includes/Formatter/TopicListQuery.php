@@ -66,9 +66,11 @@ class TopicListQuery extends AbstractQuery {
 				}
 				$row = new TopicRow;
 				$this->buildResult( $post, null, $row );
-				$replyToId = $row->revision->getReplyToId();
+				/** @var PostRevision $revision */
+				$revision = $row->revision;
+				$replyToId = $revision->getReplyToId();
 				$replyToId = $replyToId ? $replyToId->getAlphadecimal() : null;
-				$postId = $row->revision->getPostId()->getAlphadecimal();
+				$postId = $revision->getPostId()->getAlphadecimal();
 				$replies[$replyToId] = $postId;
 				if ( $post->isTopicTitle() ) {
 					// Attach the summary
