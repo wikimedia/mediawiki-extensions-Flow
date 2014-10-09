@@ -61,7 +61,7 @@ class ApiFlow extends ApiBase {
 				$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 			}
 
-			if ( is_callable( $module, 'validateToken' ) ) {
+			if ( is_callable( array( $module, 'validateToken' ) ) ) {
 				if ( !$module->validateToken( $params['token'], $params ) ) {
 					$this->dieUsageMsg( 'sessionfailure' );
 				}
