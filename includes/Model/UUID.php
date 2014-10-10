@@ -96,6 +96,10 @@ class UUID {
 			throw new InvalidInputException( 'Expected ' . self::MIN_ALNUM_LEN . ' to ' . self::ALNUM_LEN . ' char alphanumeric string, got: ' . $value, 'invalid-input' );
 		}
 
+		// string containing upper case characters
+		if ( $format !== self::INPUT_BIN && $value !== strtolower( $value ) ) {
+			throw new InvalidInputException( 'Input UUID strings must be lowercase', 'invalid-input' );
+		}
 		self::$instances[$format][$value] = $this;
 		$this->{$format} = $value;
 	}
@@ -119,6 +123,14 @@ class UUID {
 			$this->binaryValue = substr( $this->binaryValue, 0, self::BIN_LEN );
 			$this->hexValue = null;
 			$this->alphadecimalValue = null;
+		}
+		if ( $this->alphadecimalValue ) {
+			// Bug 71377 was writing invalid uuid's into cache with an upper cased first letter.  We
+			// added code in the constructor to prevent them from being created, but since this is
+			// coming from cache lets just fix them and move on with the request.
+			// We don't do a comparison first since we would have to lowercase the string to check
+			// anyways.
+			$this->alphadecimalValue = strtolower( $this->alphadecimalValue );
 		}
 	}
 
