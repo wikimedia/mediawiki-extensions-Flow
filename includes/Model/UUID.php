@@ -7,6 +7,7 @@ use Flow\Exception\InvalidInputException;
 use User;
 use Language;
 use MWTimestamp;
+use TimestampException;
 
 /**
  * Immutable class modeling timestamped UUID's from
@@ -44,7 +45,7 @@ class UUID {
 	/**
 	 * Timestamp uuid was created
 	 *
-	 * @var MWTimestamp
+	 * @var MWTimestamp|null
 	 */
 	protected $timestamp;
 
@@ -126,7 +127,7 @@ class UUID {
 		}
 		if ( $this->alphadecimalValue ) {
 			// Bug 71377 was writing invalid uuid's into cache with an upper cased first letter.  We
-			// added code in the constructor to prevent them from being created, but since this is 
+			// added code in the constructor to prevent them from being created, but since this is
 			// coming from cache lets just fix them and move on with the request.
 			// We don't do a comparison first since we would have to lowercase the string to check
 			// anyways.
@@ -144,7 +145,7 @@ class UUID {
 	 */
 	static public function create( $input = false ) {
 		// Most calls to UUID::create are binary strings, check string first
-		if ( is_string( $input ) || is_int( $input) || $input === false ) {
+		if ( is_string( $input ) || is_int( $input ) || $input === false ) {
 			if ( $input === false ) {
 				// new uuid in base 16 and pad to HEX_LEN with 0's
 				$hexValue = str_pad( \UIDGenerator::newTimestampedUID88( 16 ), self::HEX_LEN, '0', STR_PAD_LEFT );
@@ -253,23 +254,15 @@ class UUID {
 
 	/**
 	 * @return MWTimestamp
-	 * @throws \TimestampException
+	 * @throws TimestampException
 	 */
 	public function getTimestampObj() {
 		if ( $this->timestamp === null ) {
-			if ( $this->alphadecimalValue ) {
-				$bits = wfBaseConvert( $this->alphadecimalValue, 36, 2, 88 );
-			} else {
-				// First 6 bytes === 48 bits
-				$bits = wfBaseConvert( $this->getHex(), 16, 2, 88 );
-			}
-			$msTimestamp = wfBaseConvert( substr( $bits, 0, 46 ), 2, 10 );
-
 			try {
-				$this->timestamp = new MWTimestamp( intval( $msTimestamp / 1000 ) );
-			} catch ( \TimestampException $e ) {
+				$this->timestamp = new MWTimestamp( self::hex2timestamp( $this->getHex() ) );
+			} catch ( TimestampException $e ) {
 				$alnum = $this->getAlphadecimal();
-				wfDebugLog( 'Flow', __METHOD__ . ": bogus time value: UUID=$alnum; VALUE=$msTimestamp" );
+				wfDebugLog( 'Flow', __METHOD__ . ": bogus time value: UUID=$alnum" );
 				throw $e;
 			}
 		}
@@ -401,5 +394,17 @@ class UUID {
 	 */
 	public static function hex2alnum( $hex ) {
 		return wfBaseConvert( $hex, 16, 36 );
+	}
+
+	/**
+	 * Converts a binary uuid into a MWTimestamp. This UUID must have
+	 * been generated with \UIDGenerator::newTimestampedUID88.
+	 *
+	 * @param string $binary
+	 * @return integer Number of seconds since epoch
+	 */
+	public static function hex2timestamp( $hex ) {
+		$msTimestamp = hexdec( substr( $hex, 0, 12 ) ) >> 2;
+		return intval( $msTimestamp / 1000 );
 	}
 }

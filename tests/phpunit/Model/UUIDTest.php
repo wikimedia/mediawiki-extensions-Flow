@@ -152,4 +152,9 @@ class UUIDTest extends FlowTestCase {
 	public function testUnpaddedPrettyUuid( $uuid ) {
 		$this->assertEquals( $uuid, UUID::create( $uuid )->getAlphadecimal() );
 	}
+
+	public function testConversionToTimestamp() {
+		// @todo assert now +-1?
+		$this->assertEquals( wfTimestampNow(), UUID::create()->getTimestamp() );
+	}
 }
