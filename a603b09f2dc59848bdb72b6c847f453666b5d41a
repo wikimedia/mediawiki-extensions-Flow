@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e96e304_385eb97c",
+        "filename": "Gruntfile.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-10T22:26:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce8c5bf9_5cc60050",
+      "revId": "a603b09f2dc59848bdb72b6c847f453666b5d41a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce8c5bf9_fc05947d",
         "filename": "Gruntfile.js",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-09-30T21:53:43Z",
       "side": 1,
       "message": "Needs a jscsrc file.",
+      "revId": "a603b09f2dc59848bdb72b6c847f453666b5d41a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_1855fd52",
+        "filename": "Gruntfile.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-10T22:26:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce8c5bf9_fc05947d",
       "revId": "a603b09f2dc59848bdb72b6c847f453666b5d41a",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "8e96e304_78c3e10a",
+        "filename": "Gruntfile.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-10T22:26:36Z",
+      "side": 1,
+      "message": "Nearly all Less, Flow currently only has \n\n  modules/wikiglyph/wikiglyphs.css",
+      "parentUuid": "ce8c5bf9_7ccae44b",
+      "revId": "a603b09f2dc59848bdb72b6c847f453666b5d41a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce8c5bf9_fc34b448",
         "filename": "package.json",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2014-09-30T21:54:19Z",
       "side": 1,
       "message": "This should\u0027ve been devDependencies, but it\u0027s redundant now.",
+      "revId": "a603b09f2dc59848bdb72b6c847f453666b5d41a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_186e5d2b",
+        "filename": "package.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-10T22:26:36Z",
+      "side": 1,
+      "message": "I moved it to devDependencies. Flow like MobileFrontend has a pre-commit script that runs jshint from the command line.  Is there a way to make the grunt task a pre-commit check?",
+      "parentUuid": "ce8c5bf9_fc34b448",
       "revId": "a603b09f2dc59848bdb72b6c847f453666b5d41a",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
