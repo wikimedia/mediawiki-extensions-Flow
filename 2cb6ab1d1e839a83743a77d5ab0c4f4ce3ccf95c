@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_1344fe1b",
+        "filename": "Gruntfile.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2014-10-10T22:28:13Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be needed. Use .jshintignore instead. That way running standalone jshint from the commandline will still work (as it wouldn\u0027t know about grunt).",
+      "revId": "2cb6ab1d1e839a83743a77d5ab0c4f4ce3ccf95c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
