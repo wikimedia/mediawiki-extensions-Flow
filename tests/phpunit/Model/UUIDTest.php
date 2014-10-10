@@ -10,6 +10,41 @@ use Flow\Tests\FlowTestCase;
  */
 class UUIDTest extends FlowTestCase {
 
+	public function testFixesCapitalizedDataWhenUnserializing() {
+		$uuid = UUID::create();
+		$serialized = serialize( $uuid );
+		// We are targeting this portion of the serialized string:
+		//   s:16:"s3xyjucl93jtq2ci"
+		$broken = preg_replace_callback(
+			'/(s:16:")([a-z0-9])/',
+			function( $matches ) {
+				return $matches[1] . strtoupper( $matches[2] );
+			},
+			$serialized
+		);
+		$this->assertNotEquals( $broken, $serialized, 'Failed to create a broken uuid to test unserializing' );
+		$fixed = unserialize( $broken );
+		$this->assertTrue( $uuid->equals( $fixed ) );
+	}
+
+	public function invalidInputProvider() {
+		$valid = UUID::create()->getAlphadecimal();
+
+		return array(
+			array( '' ),
+			array( strtoupper( $valid ) ),
+			array( strtoupper( UUID::alnum2hex( $valid ) ) ),
+			array( ucfirst( $valid ) ),
+		);
+	}
+	/**
+	 * @dataProvider invalidInputProvider
+	 * @expectedException Flow\Exception\InvalidInputException
+	 */
+	public function testUuidRejectsUppercaseInput( $invalidInput ) {
+		UUID::create( $invalidInput );
+	}
+
 	static public function uuidConversionProvider() {
 		// sample uuid from UIDGenerator::newTimestampedUID128()
 		$numeric_128 = '6709199728898751234959525538795913762';
