@@ -4,6 +4,7 @@ namespace Flow\Data\Index;
 
 use Flow\Container;
 use Flow\Data\BufferedCache;
+use Flow\Data\Compactor;
 use Flow\Data\Compactor\FeatureCompactor;
 use Flow\Data\Compactor\ShallowCompactor;
 use Flow\Data\Index;
@@ -18,27 +19,83 @@ use Flow\Exception\DataModelException;
  */
 abstract class FeatureIndex implements Index {
 
+	/**
+	 * @var BufferedCache
+	 */
 	protected $cache;
+
+	/**
+	 * @var ObjectStorage
+	 */
 	protected $storage;
+
+	/**
+	 * @var string
+	 */
 	protected $prefix;
+
+	/**
+	 * @var Compactor
+	 */
 	protected $rowCompactor;
+
+	/**
+	 * @var string[]
+	 */
 	protected $indexed;
+
+	/**
+	 * @var string[] The indexed columns in alphabetical order. This is
+	 *  ordered so that cache keys can be generated in a stable manner.
+	 */
 	protected $indexedOrdered;
+
+	/**
+	 * @var array
+	 */
 	protected $options;
 
-	// This exists in the Index interface and as such can't be abstract
-	// until php 5.3.9, but some of our test machines are on 5.3.3
+	/**
+	 * {@inheritDoc}
+	 *
+	 * This exists in the Index interface and as such can't be abstract
+	 * until php 5.3.9, but some of our test machines are on 5.3.3. It
+	 * is included here to a complete list of unimplemented methods are seen
+	 * by looking at just this class.
+	 */
 	//abstract public function getLimit();
+
+	/**
+	 * @return array The options used for querying self::$storage
+	 */
 	abstract public function queryOptions();
+
+	/**
+	 * @todo this doesn't need to be abstract
+	 * @param array $values The current contents of a single feature bucket
+	 * @return array $values trimmed to respect self::getLimit()
+	 */
 	abstract public function limitIndexSize( array $values );
+
+	/**
+	 * @todo Could the cache key be passed in instead of $indexed?
+	 * @param array $indexed The portion of $row that makes up the cache key
+	 * @param array $row A single row of data to add to its related feature bucket
+	 */
 	abstract protected function addToIndex( array $indexed, array $row );
+
+	/**
+	 * @todo Similar, Could the cache key be passed in instead of $indexed?
+	 * @param array $indexed The portion of $row that makes up the cache key
+	 * @param array $row A single row of data to remove from its related feature bucket
+	 */
 	abstract protected function removeFromIndex( array $indexed, array $row );
 
 	/**
 	 * @param BufferedCache $cache
 	 * @param ObjectStorage $storage
-	 * @param string        $prefix
-	 * @param array         $indexedColumns List of columns to index,
+	 * @param string $prefix Prefix to utilize for all cache keys
+	 * @param array $indexedColumns List of columns to index,
 	 */
 	public function __construct( BufferedCache $cache, ObjectStorage $storage, $prefix, array $indexedColumns ) {
 		$this->cache = $cache;
@@ -53,13 +110,16 @@ abstract class FeatureIndex implements Index {
 	}
 
 	/**
-	 * This must be in the provided order so portions of the application can
-	 * array_combine( $index->getPrimaryKeyColumns(), $primaryKeyValues )
+	 * @return string[] The list of columns to bucket database rows by in
+	 *  the same order as provided to the constructor.
 	 */
 	public function getPrimaryKeyColumns() {
 		return $this->indexed;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function canAnswer( array $featureColumns, array $options ) {
 		sort( $featureColumns );
 		if ( $featureColumns !== $this->indexedOrdered ) {
@@ -78,18 +138,24 @@ abstract class FeatureIndex implements Index {
 	}
 
 	/**
-	 * @return array|false
+	 * Rows are first sorted based on the first term of the result, then ties
+	 * are broken by evaluating the second term and so on.
+	 *
+	 * @return string[]|false The columns to sort by, or false if no sorting is defined
 	 */
 	public function getSort() {
 		return isset( $this->options['sort'] ) ? $this->options['sort'] : false;
 	}
 
 	/**
-	 * @return string
+	 * @return string Either 'ASC' for ascending or 'DESC' for descending
 	 */
 	public function getOrder() {
-		$order = isset( $this->options['order'] ) ? $this->options['order'] : 'DESC';
-		return strtoupper( $order );
+		if ( isset( $this->options['order'] ) && strtoupper( $options['order'] ) === 'ASC' ) {
+			return 'ASC';
+		} else {
+			return 'DESC';
+		}
 	}
 
 	/**
@@ -143,16 +209,19 @@ abstract class FeatureIndex implements Index {
 	}
 
 	/**
-	 * @param array $rows
-	 * @param $offsetKey
-	 * @return int
-	 * @throws DataModelException
+	 * Returns the 0-indexed position of $offsetKey within $rows or throws a
+	 * DataModelException if $offsetKey is not contained within $rows
+	 *
+	 * @todo seems wasteful to pass string offsetKey instead of exploding when it comes in
+	 * @param array $rows Current bucket contents
+	 * @param string $offsetKey
+	 * @return int The position of $offsetKey within $rows
+	 * @throws DataModelException When $offsetKey is not found within $rows
 	 */
 	protected function getOffsetFromKey( $rows, $offsetKey ) {
 		$rowIndex = 0;
+		$nextInOrder = $this->getOrder() === 'DESC' ? -1 : 1;
 		foreach ( $rows as $row ) {
-			$nextInOrder = $this->getOrder() === 'DESC' ? -1 : 1;
-
 			$comparisonValue = $this->compareRowToOffset( $row, $offsetKey );
 			if ( $comparisonValue === 0 || $comparisonValue === $nextInOrder ) {
 				return $rowIndex;
@@ -164,12 +233,15 @@ abstract class FeatureIndex implements Index {
 	}
 
 	/**
-	 * @param $row
-	 * @param $offset
-	 * @return int
-	 * @throws DataModelException
+	 * @param array $row
+	 * @param string $offset
+	 * @return integer An integer less than, equal to, or greater than zero if
+	 *  $row is considered to be respectively less than, equal to, or greater
+	 *  than $offset.
+	 * @throws DataModelException When the index does not support key offsets due to
+	 *  having an undefined sort order.
 	 */
-	public function compareRowToOffset( $row, $offset ) {
+	public function compareRowToOffset( array $row, $offset ) {
 		$sortFields = $this->getSort();
 		$splitOffset = explode( '|', $offset );
 		$fieldIndex = 0;
@@ -193,28 +265,34 @@ abstract class FeatureIndex implements Index {
 		return 0;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function onAfterInsert( $object, array $new, array $metadata ) {
 		$indexed = ObjectManager::splitFromRow( $new , $this->indexed );
 		// is un-indexable a bail-worthy occasion? Probably not but makes debugging easier
 		if ( !$indexed ) {
-			throw new DataModelException( 'Unindexable row: ' .FormatJson::encode( $new ), 'process-data' );
+			throw new DataModelException( 'Un-indexable row: ' . FormatJson::encode( $new ), 'process-data' );
 		}
 		$compacted = $this->rowCompactor->compactRow( UUID::convertUUIDs( $new, 'alphadecimal' ) );
 		// give implementing index option to create rather than append
 		if ( !$this->maybeCreateIndex( $indexed, $new, $compacted ) ) {
-			// fallback to append
+			// fall back to append
 			$this->addToIndex( $indexed, $compacted );
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
 		$oldIndexed = ObjectManager::splitFromRow( $old, $this->indexed );
 		$newIndexed = ObjectManager::splitFromRow( $new, $this->indexed );
 		if ( !$oldIndexed ) {
-			throw new DataModelException( 'Unindexable row: ' .FormatJson::encode( $oldIndexed ), 'process-data' );
+			throw new DataModelException( 'Un-indexable row: ' . FormatJson::encode( $oldIndexed ), 'process-data' );
 		}
 		if ( !$newIndexed ) {
-			throw new DataModelException( 'Unindexable row: ' .FormatJson::encode( $newIndexed ), 'process-data' );
+			throw new DataModelException( 'Un-indexable row: ' . FormatJson::encode( $newIndexed ), 'process-data' );
 		}
 		$oldCompacted = $this->rowCompactor->compactRow( UUID::convertUUIDs( $old, 'alphadecimal' ) );
 		$newCompacted = $this->rowCompactor->compactRow( UUID::convertUUIDs( $new, 'alphadecimal' ) );
@@ -232,23 +310,35 @@ abstract class FeatureIndex implements Index {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function onAfterRemove( $object, array $old, array $metadata ) {
 		$indexed = ObjectManager::splitFromRow( $old, $this->indexed );
 		if ( !$indexed ) {
-			throw new DataModelException( 'Unindexable row: ' .FormatJson::encode( $old ), 'process-data' );
+			throw new DataModelException( 'Unindexable row: ' . FormatJson::encode( $old ), 'process-data' );
 		}
 		$this->removeFromIndex( $indexed, $old );
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function onAfterLoad( $object, array $old ) {
 		// nothing to do
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function find( array $attributes, array $options = array() ) {
 		$results = $this->findMulti( array( $attributes ), $options );
 		return reset( $results );
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function findMulti( array $queries, array $options = array() ) {
 		if ( !$queries ) {
 			return array();
@@ -461,6 +551,16 @@ abstract class FeatureIndex implements Index {
 		return $idxToKey;
 	}
 
+	/**
+	 * Query persistent storage for data not found in cache.  Note that this
+	 * does not use the query options because an individual bucket contents is
+	 * based on constructor options, and not query options.  Query options merely
+	 * change what part of the bucket is returned(or if the query has to fail over
+	 * to direct from storage due to being beyond the set of cached values).
+	 *
+	 * @param array $queries
+	 * @return array
+	 */
 	protected function backingStoreFindMulti( array $queries ) {
 		// query backing store
 		$options = $this->queryOptions();
@@ -473,13 +573,6 @@ abstract class FeatureIndex implements Index {
 				// Nothing found,  should we cache failures as well as success?
 				continue;
 			}
-			foreach ( $rows as $row ) {
-				foreach ( $row as $k => $foo ) {
-					if ( $foo !== null && !is_scalar( $foo ) ) {
-						throw new DataModelException( "Received non-scalar row value for '$k' from: " . get_class( $this->storage ), 'process-data' );
-					}
-				}
-			}
 			$results[$idx] = $rows;
 			unset( $queries[$idx] );
 		}
@@ -491,20 +584,43 @@ abstract class FeatureIndex implements Index {
 		return $results;
 	}
 
-	// Called prior to self::addToIndex only when new objects as inserted.  Gives the
-	// opportunity for indexes to create rather than append if this object signifys a new
-	// feature list.
+	/**
+	 * Called prior to self::addToIndex only when new objects as inserted.  Gives the
+	 * opportunity for indexes to create rather than append if this object signifies a new
+	 * feature list.
+	 *
+	 * @todo again, could just pass cache key instead of $indexed?
+	 * @param array $indexed The values that make up the cache key
+	 * @param array $sourceRow The input database row
+	 * @param array $compacted The database row reduced in size for storage within the index
+	 * @return boolean True if an index was created, or false if $sourceRow should be merged
+	 *  into the index via self::addToIndex
+	 */
 	protected function maybeCreateIndex( array $indexed, array $sourceRow, array $compacted ) {
 		return false;
 	}
 
-	// Since these affect the same $indexed bucket implementing classes can likely
-	// do less round trips than this.
+	/**
+	 * Called to update a row's data within a feature bucket.
+	 *
+	 * Note that this naive implementation does two round trips, likely an implementing
+	 * class can do this in a single round trip.
+	 *
+	 * @todo again, could just pass cache key instead of $indexed?
+	 * @param array $indexed The values that make up the cache key
+	 * @param array $old The database row that was previously retrieved from cache
+	 * @param array $new The new version of that replacement row
+	 */
 	protected function replaceInIndex( array $indexed, array $old, array $new ) {
 		$this->removeFromIndex( $indexed, $old );
 		$this->addToIndex( $indexed, $new );
 	}
 
+	/**
+	 * Generate the cache key representing th
+	 * @param array $attributes
+	 * @return string
+	 */
 	protected function cacheKey( array $attributes ) {
 		foreach( $attributes as $key => $attr ) {
 			if ( $attr instanceof UUID ) {
