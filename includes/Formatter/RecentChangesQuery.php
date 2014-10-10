@@ -81,6 +81,7 @@ class RecentChangesQuery extends AbstractQuery {
 			$found[] = $this->storage->getMulti( $type, $uids );
 		}
 
+		$found = array_filter( $found );
 		$count = count( $found );
 		if ( $count === 0 ) {
 			$results = array();
