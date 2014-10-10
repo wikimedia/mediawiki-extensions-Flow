@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_6d67a123",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-10T19:19:33Z",
+      "side": 1,
+      "message": "It\u0027s defined to take a string anyway.  What do you think about throwing separately up top if is_string() is false?",
+      "revId": "d82c74cfd90b7444186f31b48479e6d6721c833e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_0d785dbe",
+        "filename": "tests/phpunit/Model/UUIDTest.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-10T19:19:33Z",
+      "side": 1,
+      "message": "Maybe also check getAlphadecimal() explicitly?",
+      "revId": "d82c74cfd90b7444186f31b48479e6d6721c833e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
