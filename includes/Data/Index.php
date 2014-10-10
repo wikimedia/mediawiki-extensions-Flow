@@ -57,7 +57,11 @@ interface Index extends LifecycleHandler {
 	function getLimit();
 
 	/**
-	 * @return array|false Sorting order, either 'ASC' or 'DESC'
+	 * Rows are first sorted based on the first term of the result, then ties
+	 * are broken by evaluating the second term and so on.
+	 *
+	 * @todo choose a default sort instead of false?
+	 * @return array|false Sorting order of either 'ASC', 'DESC' or false
 	 */
 	function getSort();
 
@@ -74,9 +78,11 @@ interface Index extends LifecycleHandler {
 	function canAnswer( array $keys, array $options );
 
 	/**
-	 * @param $row
-	 * @param $offset
-	 * @return mixed
+	 * @param array $row
+	 * @param string $offset
+	 * @return integer An integer less than, equal to, or greater than zero
+	 *  if $row is considered to be respectively less than, equal to, or
+	 *  greater than $offset
 	 */
-	function compareRowToOffset( $row, $offset );
+	function compareRowToOffset( array $row, $offset );
 }
