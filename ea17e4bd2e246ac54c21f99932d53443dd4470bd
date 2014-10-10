@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_2d867919",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-10T18:17:51Z",
+      "side": 1,
+      "message": "There is a bug 71377 writing invalid UUIDs into cache.\n\nAnd end last sentence with a period. :)",
+      "revId": "ea17e4bd2e246ac54c21f99932d53443dd4470bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
