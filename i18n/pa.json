@@ -4,7 +4,14 @@
 			"Babanwalia"
 		]
 	},
+	"flow-topic-moderated-reason-prefix": "ਕਾਰਨ:",
 	"flow-summarize-topic-placeholder": "ਇਸ ਚਰਚਾ ਦਾ ਸਾਰ ਕੱਢੋ",
 	"flow-topic-action-summarize-topic": "ਸਾਰ ਕੱਢੋ",
-	"flow-summarize-topic-submit": "ਸਾਰ ਕੱਢੋ"
+	"flow-topic-action-undo-moderation": "ਅਣਕੀਤਾ ਕਰੋ",
+	"flow-summarize-topic-submit": "ਸਾਰ ਕੱਢੋ",
+	"flow-notification-reply-email-subject": "$3 'ਤੇ $2",
+	"flow-moderation-confirmation-suppress-topic": "ਇਹ ਵਿਸ਼ਾ ਦਬਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।",
+	"flow-moderation-confirmation-delete-topic": "ਇਹ ਵਿਸ਼ਾ ਮਿਟਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।",
+	"flow-moderation-confirmation-hide-topic": "ਇਹ ਵਿਸ਼ਾ ਲੁਕਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।",
+	"flow-topic-html-title": "$2 'ਤੇ $1"
 }
