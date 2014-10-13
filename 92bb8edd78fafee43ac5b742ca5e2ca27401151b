@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_0c77f536",
+        "filename": "includes/UrlGenerator.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-13T14:24:08Z",
+      "side": 1,
+      "message": "This returns getLinkUrl, which will not properly parse in the \"[\u003curl\u003e message]\" messages where this is used.",
+      "revId": "92bb8edd78fafee43ac5b742ca5e2ca27401151b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
