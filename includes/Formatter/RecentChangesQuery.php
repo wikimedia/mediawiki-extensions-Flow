@@ -61,6 +61,7 @@ class RecentChangesQuery extends AbstractQuery {
 				continue;
 			}
 			$changeData = $params['flow-workflow-change'];
+
 			/**
 			 * Check to make sure revision_type exists, this is to make sure corrupted
 			 * flow recent change data doesn't throw error on the page.

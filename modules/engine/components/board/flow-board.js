@@ -18,7 +18,8 @@
 	 * @constructor
 	 */
 	function FlowBoardComponent( $container ) {
-		var uri = new mw.Uri( window.location.href );
+		var uri = new mw.Uri( window.location.href ),
+			uid = String( window.location.hash.match( /[0-9a-z]{16,19}$/i ) || '' );
 
 		// Default API submodule for FlowBoard URLs is to fetch a topiclist
 		this.API.setDefaultSubmodule( 'view-topiclist' );
@@ -30,11 +31,11 @@
 		}
 
 		// Handle URL parameters
-		if ( window.location.hash ) {
+		if ( uid ) {
 			if ( uri.query.fromnotif ) {
-				_flowHighlightPost( $container, window.location.hash, 'newer' );
+				_flowHighlightPost( $container, uid, 'newer' );
 			} else {
-				_flowHighlightPost( $container, window.location.hash );
+				_flowHighlightPost( $container, uid );
 			}
 		}
 
@@ -124,14 +125,13 @@
 
 	/**
 	 * Helper receives
-	 * @param {jQuery}
-	 * @param {string}
-	 * @param {string}
+	 * @param {jQuery} $container
+	 * @param {string} uid
+	 * @param {string} option
 	 * @return {jQuery}
 	 */
-	function _flowHighlightPost( $container, targetSelector, option ) {
-		var $target = $container.find( targetSelector ),
-			uid = $target.data( 'flow-id' );
+	function _flowHighlightPost( $container, uid, option ) {
+		var $target = $container.find( '#flow-post-' + uid );
 
 		// reset existing highlights
 		$container.find( '.flow-post-highlighted' ).removeClass( 'flow-post-highlighted' );
