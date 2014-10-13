@@ -2,6 +2,7 @@
 
 namespace Flow\Formatter;
 
+use Flow\Model\Header;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Templating;
@@ -62,12 +63,6 @@ class RevisionViewFormatter {
 		$links = array(
 			'hist' => $this->urlGenerator->boardHistoryLink( $title ),
 			'board' => $this->urlGenerator->boardLink( $boardTitle ),
-			'single-view' => $this->urlGenerator->postRevisionLink(
-				$title,
-				$workflowId,
-				$row->revision->getPostId(),
-				$row->revision->getRevisionId()
-			),
 		);
 		$links['single-view']->setMessage( $title->getPrefixedText() );
 
@@ -77,6 +72,21 @@ class RevisionViewFormatter {
 				$workflowId
 			);
 			$links['root']->setMessage( $title->getPrefixedText() );
+
+			$links['single-view'] = $this->urlGenerator->postRevisionLink(
+				$title,
+				$workflowId,
+				$row->revision->getPostId(),
+				$row->revision->getRevisionId()
+			);
+			$links['single-view']->setMessage( $title->getPrefixedText() );
+		} elseif ( $row->revision instanceof Header ) {
+			$links['single-view'] = $this->urlGenerator->headerRevisionLink(
+				$title,
+				$workflowId,
+				$row->revision->getRevisionId()
+			);
+			$links['single-view']->setMessage( $title->getPrefixedText() );
 		}
 
 		if ( $row->revision->getPrevRevisionId() !== null ) {
