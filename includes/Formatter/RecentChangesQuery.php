@@ -180,7 +180,7 @@ class RecentChangesQuery extends AbstractQuery {
 				// moderation actions are always shown when visible to the user
 				return false;
 
-			case 'new-post':
+			case 'new-topic':
 			case 'reply':
 			case 'edit-post':
 			case 'edit-title':
