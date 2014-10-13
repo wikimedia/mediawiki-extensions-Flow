@@ -85,7 +85,7 @@ class Anchor {
 
 	public function toArray() {
 		return array(
-			'url' => $this->getLinkURL(),
+			'url' => $this->getFullUrl(),
 			'title' => $this->message->text()
 		);
 	}
