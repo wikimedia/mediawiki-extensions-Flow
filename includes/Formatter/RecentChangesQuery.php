@@ -29,6 +29,13 @@ class RecentChangesQuery extends AbstractQuery {
 	 */
 	protected $extendWatchlist = false;
 
+	/**
+	 * Array of [workflowId => [changedata for every entry in this workflow]]
+	 *
+	 * @var array
+	 */
+	protected $changeData = array();
+
 	public function __construct( ManagerGroup $storage, TreeRepository $treeRepo, FlowActions $actions ) {
 		parent::__construct( $storage, $treeRepo );
 		$this->actions = $actions;
@@ -60,7 +67,14 @@ class RecentChangesQuery extends AbstractQuery {
 				wfDebugLog( 'Flow', __METHOD__ . ": rc_params does not contain serialized content: {$row->rc_params}" );
 				continue;
 			}
+
 			$changeData = $params['flow-workflow-change'];
+
+			// Store all changedata per workflow (since most records will be
+			// hidden, this can come in useful when we need more context)
+			$workflowId = $changeData['workflow'];
+			$this->changeData[$workflowId][] = $changeData;
+
 			/**
 			 * Check to make sure revision_type exists, this is to make sure corrupted
 			 * flow recent change data doesn't throw error on the page.
@@ -138,6 +152,7 @@ class RecentChangesQuery extends AbstractQuery {
 		$res = new RecentChangesRow;
 		$this->buildResult( $revision, 'timestamp', $res );
 		$res->recentChange = $rc;
+		$res->changeData = $this->changeData[$changeData['workflow']];
 
 		return $res;
 	}
@@ -219,4 +234,11 @@ class RecentChangesRow extends FormatterRow {
 	 * @var RecentChange
 	 */
 	public $recentChange;
+
+	/**
+	 * Array of changedata for every entry in this workflow
+	 *
+	 * @var array
+	 */
+	public $changeData;
 }
