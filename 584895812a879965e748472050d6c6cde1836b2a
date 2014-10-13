@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_8c6f85c0",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-13T13:39:55Z",
+      "side": 1,
+      "message": "Redundant space",
+      "revId": "584895812a879965e748472050d6c6cde1836b2a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_2c9af1bd",
+        "filename": "includes/Formatter/RevisionViewQuery.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-13T13:39:55Z",
+      "side": 1,
+      "message": "returns FormatterRow[] (array)",
+      "revId": "584895812a879965e748472050d6c6cde1836b2a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
