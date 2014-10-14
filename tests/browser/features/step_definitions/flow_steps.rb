@@ -47,7 +47,7 @@ When(/^I click New topic save$/) do
     page.new_topic_save_element.when_present.click
 
     # Wait for the save to finish, at which point the button will hide
-    page.new_topic_save_element.when_not_visible
+    page.new_topic_save_element.when_not_visible(10); # Bug 71476 - Saving a new topic can take >5s on beta labs
   end
 end
 
