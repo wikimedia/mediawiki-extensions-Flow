@@ -1,5 +1,7 @@
 <div class="flow-board flow-disable-topic-collapse">
 	<div class="flow-topics">
+		{{> flow_errors}}
+
 		{{!-- There is only one topic, but we use same api response structure --}}
 		{{> flow_topiclist_loop}}
 	</div>
