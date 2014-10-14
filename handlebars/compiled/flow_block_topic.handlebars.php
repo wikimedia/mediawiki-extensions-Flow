@@ -32,6 +32,19 @@
     );
     return '<div class="flow-board flow-disable-topic-collapse">
 	<div class="flow-topics">
+		<div class="flow-error-container">
+'.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['errors'])) ? $cx['scopes'][0]['errors'] : null))) ? '
+	<div class="flow-errors errorbox">
+		<ul>
+			'.LCRun3::sec($cx, ((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['errors'])) ? $cx['scopes'][0]['errors'] : null), $in, true, function($cx, $in) {return '
+				<li>'.LCRun3::ch($cx, 'html', Array(Array(((is_array($in) && isset($in['message'])) ? $in['message'] : null)),Array()), 'encq').'</li>
+			';}).'
+		</ul>
+	</div>
+' : '').'
+</div>
+
+
 		'.'
 		'.LCRun3::sec($cx, ((is_array($in) && isset($in['roots'])) ? $in['roots'] : null), $in, true, function($cx, $in) {return '
 	'.'
@@ -129,7 +142,7 @@
 			<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
 			<ul class="mw-ui-button-container flow-list">
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['edit'])) ? $in['actions']['edit'] : null))) ? '
-					<li>
+					<li class="flow-menu-edit-action">
 						<a class="mw-ui-button mw-ui-quiet"
 						   href="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['url'])) ? $in['actions']['edit']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['title'])) ? $in['actions']['edit']['title'] : null), ENT_QUOTES, 'UTF-8').'"
@@ -161,7 +174,7 @@
 					</li>
 				' : '').'
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['summarize'])) ? $in['actions']['summarize'] : null))) ? '
-					<li>
+					<li class="flow-menu-edit-action">
 						<a class="mw-ui-button mw-ui-progressive mw-ui-quiet"
 						   data-flow-interactive-handler="apiRequest"
 						   data-flow-api-handler="activateSummarizeTopic"
