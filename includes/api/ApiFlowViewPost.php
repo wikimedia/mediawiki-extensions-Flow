@@ -29,10 +29,6 @@ class ApiFlowViewPost extends ApiFlowBaseGet {
 				ApiBase::PARAM_TYPE => array( 'html', 'wikitext' ),
 				ApiBase::PARAM_DFLT => $wgFlowContentFormat,
 			),
-			'no-children' => array(
-				ApiBase::PARAM_TYPE => 'boolean',
-				ApiBase::PARAM_DFLT => false,
-			),
 		);
 	}
 
@@ -40,7 +36,6 @@ class ApiFlowViewPost extends ApiFlowBaseGet {
 		return array(
 			'postId' => 'Id of the post to view',
 			'contentFormat' => 'Format to return the content in',
-			'no-children' => 'If set, this won\'t render replies to the requested post',
 		);
 	}
 
