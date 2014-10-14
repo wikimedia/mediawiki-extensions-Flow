@@ -18,21 +18,6 @@ class ApiFlowViewTopic extends ApiFlowBaseGet {
 		return 'view-topic';
 	}
 
-	public function getAllowedParams() {
-		return array(
-			'no-children' => array(
-				ApiBase::PARAM_TYPE => 'boolean',
-				ApiBase::PARAM_DFLT => false,
-			),
-		);
-	}
-
-	public function getParamDescription() {
-		return array(
-			'no-children' => 'If set, this won\'t render replies to the requested topic',
-		);
-	}
-
 	public function getDescription() {
 		return 'View a topic';
 	}
