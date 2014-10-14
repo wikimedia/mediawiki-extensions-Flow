@@ -711,11 +711,58 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		if ( !$this->permissions->isAllowed( $this->topicTitle, $action ) ) {
-			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
+			$this->addError( 'permissions', $this->getDisallowedErrorMessage( $this->topicTitle ) );
 			return null;
 		}
 
 		return $this->topicTitle;
+	}
+
+	/**
+	 * @param AbstractRevision $revision
+	 * @return Message
+	 */
+	protected function getDisallowedErrorMessage( AbstractRevision $revision ) {
+		$state = $revision->getModerationState();
+
+		// LogEventsList::showLogExtract will write to OutputPage, but we
+		// actually just want that text, to write it ourselves wherever we want,
+		// so let's create an OutputPage object to then get the content from.
+		$rc = new \RequestContext();
+		$output = $rc->getOutput();
+
+		// state doesn't exist in log, display simple
+		if ( !\LogPage::isLogType( $state ) ) {
+			return array( 'flow-error-not-allowed-' . $state );
+		}
+
+		// check if user has sufficient permissions to see log
+		$logPage = new \LogPage( $state );
+		if ( !$this->user->isAllowed( $logPage->getRestriction() ) ) {
+			return array( 'flow-error-not-allowed-' . $state );
+		}
+
+		// get log extract
+		$entries = \LogEventsList::showLogExtract(
+			$output,
+			array( $state ),
+			$this->workflow->getArticleTitle()->getPrefixedText(),
+			'',
+			array(
+				'lim' => 10,
+				'showIfEmpty' => false,
+				'msgKey' => array( 'flow-error-not-allowed-' . $state . '-extract' )
+			)
+		);
+
+		// check if there were any log extracts
+		if ( $entries ) {
+			$message = new \RawMessage( '$1' );
+			return $message->rawParams( $output->getHTML() );
+		}
+
+		// display simple message
+		return array( 'flow-error-not-allowed-' . $state );
 	}
 
 	/**
