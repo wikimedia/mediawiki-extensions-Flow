@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "8e96e304_a1eda224",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 936,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-14T18:42:02Z",
+      "side": 1,
+      "message": "i think this should prefer to read from `result.submitted.postId`?\n\n    id \u003d result.submitted.postId || result.postId || result.roots[0];",
+      "revId": "ee1af5d399a5f4b3b31b3eca3fd86099dbba22ab",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e96e304_06302cfb",
         "filename": "modules/engine/components/board/base/flow-board-api-events.js",
         "patchSetId": 7
