@@ -13,8 +13,9 @@
 						<a class="mw-ui-button mw-ui-quiet"
 						   href="{{actions.edit.url}}"
 						   title="{{actions.edit.title}}"
-						   data-flow-interactive-handler="editTopicTitle"
-								>
+						   data-flow-interactive-handler="apiRequest"
+						   data-flow-api-handler="activateEditTitle"
+						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-title">
 							<span class="wikiglyph wikiglyph-pencil"></span>
 							{{l10n "flow-topic-action-edit-title"}}
 						</a>
