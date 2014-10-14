@@ -128,6 +128,7 @@ class FlowPage < WikiPage
   textarea(:topic_lock_form_reason, css: ".flow-edit-form textarea")
   button(:topic_lock_form_lock_button, css: ".flow-edit-form .mw-ui-constructive")
   button(:topic_lock_form_cancel_button, css: ".flow-edit-form .mw-ui-destructive")
+  div(:flow_reason, class: "flow-moderated-topic-reason")
 
   ### Editing title of first topic
   text_field(:title_edit, css: ".flow-topic-titlebar form .mw-ui-input", index: 0)

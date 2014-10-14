@@ -32,7 +32,7 @@ Feature: Lock and unlock topics
         And I type "This is a bikeshed" as the reason
         And I submit the lock/unlock topic form
     Then the top post is a locked discussion
-        And the topic summary of the first topic is "This is a bikeshed"
+        And the reason of the first topic is "This is a bikeshed"
         And the content of the top post should be visible
 
   # Close-then-unlock doesn't work in IE, it caches the API response (bug 69160).
@@ -45,5 +45,4 @@ Feature: Lock and unlock topics
     When I type "Fun discussion" as the reason
         And I submit the lock/unlock topic form
     Then the top post is an open discussion
-        And the topic summary of the first topic is "Fun discussion"
         And the content of the top post should be visible
