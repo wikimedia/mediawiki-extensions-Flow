@@ -120,6 +120,7 @@
 	"flow-error-process-data": "要求されたデータを処理する際にエラーが発生しました。",
 	"flow-error-process-wikitext": "HTML/ウィキテキスト変換を処理する際にエラーが発生しました。",
 	"flow-error-no-index": "データ検索を実行するためのインデックスが見つかりませんでした。",
+	"flow-error-content-too-long": "本文が長すぎます。本文の展開後のサイズが $1 {{PLURAL:$1|バイト}}までに制限されています。",
 	"flow-error-move": "現在、議論掲示板の移動には対応していません。",
 	"flow-edit-header-placeholder": "この議論掲示板について説明してください",
 	"flow-edit-header-submit": "ヘッダーを保存",
