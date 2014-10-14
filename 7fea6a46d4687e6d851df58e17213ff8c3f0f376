@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_d3ea0573",
+        "filename": "tests/browser/features/lock_unlock_topics.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-14T21:43:19Z",
+      "side": 1,
+      "message": "But on other lines \u0027as the reason\u0027 is lowercase, this should be lowercase too or fix them.",
+      "revId": "7fea6a46d4687e6d851df58e17213ff8c3f0f376",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
