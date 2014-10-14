@@ -40,8 +40,8 @@ Then(/^the top post is an open discussion$/) do
   on(FlowPage).flow_first_topic_moderation_msg_element.when_not_present
 end
 
-Then(/^the topic summary of the first topic is "(.*?)"$/) do |text|
-  on(FlowPage).flow_first_topic_summary_element.text.should match text
+Then(/^the Reason of the first topic is "(.*?)"$/) do |text|
+  on(FlowPage).flow_reason_element.text.should match text
 end
 
 Then(/^I expand the top post$/) do
