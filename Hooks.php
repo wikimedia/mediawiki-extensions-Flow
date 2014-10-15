@@ -875,7 +875,7 @@ class FlowHooks {
 		if ( $title->getNamespace() !== NS_TOPIC ) {
 			return true;
 		}
-		$uuid = UUID::create( $title->getDbKey() );
+		$uuid = UUID::create( strtolower( $title->getDbKey() ) );
 		if ( !$uuid ) {
 			return true;
 		}
@@ -924,7 +924,7 @@ class FlowHooks {
 
 		try {
 			// Find the title text of this specific topic
-			$uuid = UUID::create( $title->getDBKey() );
+			$uuid = UUID::create( strtolower( $title->getDBKey() ) );
 			$collection = PostCollection::newFromId( $uuid );
 			$revision = $collection->getLastRevision();
 		} catch ( \Exception $e ) {
