@@ -144,7 +144,11 @@ class UrlGenerator extends BaseUrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-link-post' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(),
+			array(
+				// If the post is moderated this will flag the backend to still
+				// include the content in the html response.
+				'topic_showPostId' => $postId->getAlphadecimal()
+			),
 			'#flow-post-' . $postId->getAlphadecimal()
 		);
 	}
