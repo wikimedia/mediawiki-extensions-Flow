@@ -99,60 +99,47 @@ end
 Then(/^I am on my user page$/) do
   # Get the title of the page without '_' characters
   text = 'User:' + ENV["MEDIAWIKI_USER"].gsub(/_/, ' ')
-  on(UserPage).page_title_element.text.should == text
-end
-
-Then(/^I do not see an actions link$/) do
-  on(FlowPage).actions_link_element.should_not exist
+  expect(on(UserPage).page_title_element.text).to eq(text)
 end
 
 Then(/^I should see a Delete button$/) do
-  on(FlowPage).delete_button_element.should be_visible
+  expect(on(FlowPage).delete_button_element).to be_visible
 end
 
 Then(/^I should see a Delete topic button$/) do
-  on(FlowPage).topic_delete_button_element.when_present.should be_visible
+  expect(on(FlowPage).topic_delete_button_element.when_present).to be_visible
 end
 
 Then(/^I should see a Hide button$/) do
-  on(FlowPage).hide_button_element.when_present.should be_visible
+  expect(on(FlowPage).hide_button_element.when_present).to be_visible
 end
 
 Then(/^I should see a Hide topic button$/) do
-  on(FlowPage).topic_hide_button_element.when_present.should be_visible
+  expect(on(FlowPage).topic_hide_button_element.when_present).to be_visible
 end
 
 Then(/^I should see a Suppress button$/) do
-  on(FlowPage).suppress_button_element.should be_visible
+  expect(on(FlowPage).suppress_button_element).to be_visible
 end
 
 Then(/^I should see a Suppress topic button$/) do
-  on(FlowPage).topic_suppress_button_element.when_present.should be_visible
+  expect(on(FlowPage).topic_suppress_button_element.when_present).to be_visible
 end
 
-Then(/^the block author link does not exist$/) do
-   on(FlowPage).usertools_block_user_link_element.should_not exist
+Then(/^the block author link should not be visible$/) do
+  expect(on(FlowPage).usertools_block_user_link_element).not_to be_visible
 end
 
-Then(/^the block author link is visible$/) do
-  on(FlowPage).usertools_block_user_link_element.when_present.should be_visible
+Then(/^the block author link should be visible$/) do
+  expect(on(FlowPage).usertools_block_user_link_element.when_present).to be_visible
 end
 
 Then(/^the content of the top post should be visible$/) do
-  on(FlowPage).flow_first_topic_body_element.when_present.should be_visible
+  expect(on(FlowPage).flow_first_topic_body_element.when_present).to be_visible
 end
 
 Then(/^the content of the top post should not be visible$/) do
-  on(FlowPage).flow_first_topic_body_element.should_not be_visible
-end
-
-Then(/^the preview and cancel buttons have disappeared$/) do
-  on(FlowPage) do |page|
-    page.wait_until(20) do
-      page.preview_button_element.visible? != true &&
-          page.cancel_button_element.visible? != true
-    end
-  end
+  expect(on(FlowPage).flow_first_topic_body_element).not_to be_visible
 end
 
 Then(/^the Save New Topic button should be disabled$/) do
@@ -161,21 +148,20 @@ Then(/^the Save New Topic button should be disabled$/) do
 end
 
 Then(/^the talk to author link is visible$/) do
-  on(FlowPage).usertools_talk_link_element.when_present.should be_visible
+  expect(on(FlowPage).usertools_talk_link_element.when_present).to be_visible
 end
 
 Then(/^the top post should have a heading which contains "(.+)"$/) do |text|
   on(FlowPage) do |page|
     page.flow_first_topic_heading_element.when_present
-    page.flow_first_topic_heading.should match(text)
+    expect(page.flow_first_topic_heading).to match(text)
   end
 end
 
 Then(/^the top post should have content which contains "(.+)"$/) do |text|
-  step 'the preview and cancel buttons have disappeared'
-  on(FlowPage).flow_first_topic_body.should match(text)
+    expect(on(FlowPage).flow_first_topic_body).to match(text)
 end
 
 Then(/^the top post should not have a heading which contains "(.+)"$/) do |text|
-  on(FlowPage).flow_first_topic_heading.should_not match(text)
+  expect(on(FlowPage).flow_first_topic_heading).not_to match(text)
 end
