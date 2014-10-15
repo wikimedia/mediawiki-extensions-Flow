@@ -312,7 +312,7 @@
 	"flow-special-type-post": "發表",
 	"flow-special-type-workflow": "工作流程",
 	"flow-special-uuid": "UUID",
-	"flow-preview-warning": "您在檢視預覽。遞送表單即可發表，或點按 \"繼續編輯\" 以繼續。",
+	"flow-preview-warning": "您在檢視預覽。遞送表單即可發表，或點按 \"{{int:flow-preview-return-edit-post}}\" 以繼續。",
 	"flow-preview-return-edit-post": "繼續編輯",
 	"flow-anonymous": "匿名",
 	"flow-active-ago-day": "活動於 $1 {{PLURAL:$1|天}}前",
