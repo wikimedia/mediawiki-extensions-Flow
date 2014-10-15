@@ -3,7 +3,7 @@
 		<div class="flow-moderated-topic-title">
 			{{~noop~}}{{> flow_topic_moderation_flag}}
 			<span>{{~l10n (concat 'flow-moderation-confirmation-' moderateState '-topic')~}}</span>
-			<div class="flow-topic-titlebar-undo">
+			<div class="flow-undo">
 				{{#if actions.unhide}}
 					<a class="mw-ui-anchor mw-ui-progressive mw-ui-quiet"
 					  href="{{actions.unhide.url}}"
