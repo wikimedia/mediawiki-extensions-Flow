@@ -77,6 +77,7 @@
     "flow-post-action-undelete-post": "Undelete",
     "flow-post-action-unhide-post": "Unhide",
     "flow-post-action-restore-post": "Restore",
+    "flow-post-action-undo-moderation": "Undo",
     "flow-topic-action-view": "Permalink",
     "flow-topic-action-watchlist": "Watchlist",
     "flow-topic-action-edit-title": "Edit title",
@@ -374,5 +375,8 @@
     "flow-time-ago-hour": "$1 {{PLURAL:$1|hour|hours}} ago",
     "flow-time-ago-minute": "$1 {{PLURAL:$1|minute|minutes}} ago",
     "flow-time-ago-second": "$1 {{PLURAL:$1|second|seconds}} ago",
-    "flow-time-ago-week": "$1 {{PLURAL:$1|week|weeks}} ago"
+    "flow-time-ago-week": "$1 {{PLURAL:$1|week|weeks}} ago",
+    "flow-post-undo-hide": "(undo hide)",
+    "flow-post-undo-delete": "(undo delete)",
+    "flow-post-undo-suppress": "(undo suppress)"
 }
