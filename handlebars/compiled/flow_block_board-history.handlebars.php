@@ -123,6 +123,7 @@
 
 
 				<ul class="flow-history-moderation-menu">
+					
 					'.LCRun3::p($cx, 'flow_moderation_actions_list', Array(Array($in),Array('moderationType'=>'history','moderationTarget'=>'post','moderationTemplate'=>'post','moderationContainerClass'=>'flow-history','moderationMwUiClass'=>'mw-ui-anchor','moderationIcons'=>false))).'
 				</ul>
 			</li>
