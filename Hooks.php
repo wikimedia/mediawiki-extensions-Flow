@@ -207,7 +207,10 @@ class FlowHooks {
 
 		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
 		try {
-			Container::get( 'query.recentchanges' )->loadMetadataBatch( $rows );
+			Container::get( 'query.recentchanges' )->loadMetadataBatch(
+				$rows,
+				$changesList->isWatchlist()
+			);
 		} catch ( Exception $e ) {
 			\MWExceptionHandler::logException( $e );
 		}
