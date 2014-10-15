@@ -43,6 +43,25 @@
 						<span class="mw-changeslist-separator">. .</span>
 						'.LCRun3::ch($cx, 'showCharacterDifference', Array(Array(((is_array($in['size']) && isset($in['size']['old'])) ? $in['size']['old'] : null),((is_array($in['size']) && isset($in['size']['new'])) ? $in['size']['new'] : null)),Array()), 'encq').'
 					' : '').'
+
+					<span class="flow-history-moderation-action">
+						'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['hide'])) ? $in['actions']['hide'] : null))) ? '
+							(<a href="'.htmlentities(((is_array($in['actions']['hide']) && isset($in['actions']['hide']['url'])) ? $in['actions']['hide']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+							   title="'.htmlentities(((is_array($in['actions']['hide']) && isset($in['actions']['hide']['title'])) ? $in['actions']['hide']['title'] : null), ENT_QUOTES, 'UTF-8').'"
+							   data-flow-interactive-handler="moderationDialog"
+							   data-template="flow_moderate_post"
+							   data-role="hide"
+							>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-post-action-hide-post'),Array()), 'encq').'</a>)
+						' : '').'
+						'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['unhide'])) ? $in['actions']['unhide'] : null))) ? '
+							(<a href="'.htmlentities(((is_array($in['actions']['unhide']) && isset($in['actions']['unhide']['url'])) ? $in['actions']['unhide']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+							   title="'.htmlentities(((is_array($in['actions']['unhide']) && isset($in['actions']['unhide']['title'])) ? $in['actions']['unhide']['title'] : null), ENT_QUOTES, 'UTF-8').'"
+							   data-flow-interactive-handler="moderationDialog"
+							   data-template="flow_moderate_post"
+							   data-role="unhide"
+							>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-post-action-restore-post'),Array()), 'encq').'</a>)
+						' : '').'
+					</span>
 				</li>
 			';}).'
 		</ul>
