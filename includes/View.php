@@ -182,7 +182,14 @@ class View extends ContextSource {
 			$renderedBlocks = array();
 
 			foreach ( $apiResponse['blocks'] as $block ) {
-				$flowComponent = 'board';
+				$flowComponent = $block['type'];
+				switch ( $flowComponent ) {
+					case 'board-history':
+						$flowComponent = 'boardHistory';
+						break;
+					default:
+						$flowComponent = 'board';
+				}
 
 				// Don't re-render a block type twice in one page
 				if ( isset( $renderedBlocks[$flowComponent] ) ) {
