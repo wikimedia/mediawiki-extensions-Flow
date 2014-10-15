@@ -55,10 +55,6 @@
 		// Is this a hidden form or invisible field? Make it visible.
 		flowBoard.emitWithReturn( 'showForm', $form );
 
-		if ( ! $form.is( ':visible' ) ) {
-			flowBoard.emitWithReturn( 'expandTopicIfNecessary', $form.closest( '.flow-topic' ) );
-		}
-
 		// Is this a form field? Scroll to the form instead of jumping.
 		$form.conditionalScrollIntoView().queue( function ( next ) {
 			var $el = $( hash[0] );
@@ -79,86 +75,18 @@
 	};
 
 	/**
-	 * Calls FlowBoardComponent.UI.collapserState to set and render the new Collapser state.
+	 * Toggles collapse state
+	 *
 	 * @param {Event} event
-	 * @returns {$.Promise}
-	 */
-	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.collapserGroupToggle = function ( event ) {
-		var flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) ),
-			$deferred = $.Deferred();
-
-		// Don't apply to titlebars in the topic namespace
-		if ( flowBoard.constructor.static.inTopicNamespace( $( this ) ) ) {
-			return $deferred.reject().promise();
-		}
-
-		flowBoard.collapserState( flowBoard, this.href.match( /[a-z]+$/ )[0] );
-
-		event.preventDefault();
-
-		return $deferred.resolve().promise();
-	};
-
-	/**
-	 * Sets the visibility class based on the user toggle action.
-	 * @param {Event} event
-	 * @returns {$.Promise}
 	 */
 	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.collapserCollapsibleToggle = function ( event ) {
-		var topicId, states,
-			$target = $( event.target ),
-			$this = $( this ),
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $this ),
-			$deferred = $.Deferred(),
-			isNotClickableElement = $target.not( '.flow-menu-js-drop' ) &&
-				!$target.closest( 'a, button, input, textarea, select, ul, ol' ).length;
+		var $target = $( this ).closest( '.flow-element-collapsible' ),
+			$deferred = $.Deferred();
 
-		// Don't apply to titlebars in the topic namespace
-		if ( flowBoard.constructor.static.inTopicNamespace( $this ) ) {
-			return $deferred.reject().promise();
-		}
-
-		if ( isNotClickableElement ) {
-			$target = $( this ).closest( '.flow-post-main, .flow-topic' ); // @todo genericize this
-
-			if ( flowBoard.$container.is( '.flow-board-collapsed-compact, .flow-board-collapsed-topics' ) ) {
-				// Board default is collapsed; topic can be overridden to
-				// expanded, or not.
-
-				// We also remove flow-element-collapsed.  That is set on the
-				// server for moderated posts, but an explicit user action
-				// overrides that.
-				if ( $target.is( '.flow-element-expanded' ) ) {
-					$target.addClass( 'flow-element-collapsed' ).removeClass( 'flow-element-expanded' );
-				} else {
-					$target.removeClass( 'flow-element-collapsed' ).addClass( 'flow-element-expanded' );
-				}
-			} else {
-				// .flow-board-collapsed-full; Board default is expanded;
-				// topic can be overridden to collapsed, or not.
-				if ( $target.is( '.flow-element-collapsed' ) ) {
-					$target.removeClass( 'flow-element-collapsed' ).addClass( 'flow-element-expanded' );
-				} else {
-					$target.addClass( 'flow-element-collapsed' ).removeClass( 'flow-element-expanded' );
-				}
-			}
-
-			topicId = $target.data('flow-id');
-
-			// Save in sessionStorage
-			states = mw.flow.StorageEngine.sessionStorage.getItem( 'collapserStates' ) || {};
-			// Opposite of STORAGE_TO_CLASS
-			if ( $target.hasClass( 'flow-element-expanded' ) ) {
-				states[ topicId ] = '+';
-			} else if ( $target.hasClass( 'flow-element-collapsed' ) ) {
-				states[ topicId ] = '-';
-			} else {
-				delete states[ topicId ];
-			}
-			mw.flow.StorageEngine.sessionStorage.setItem( 'collapserStates', states );
-
-			event.preventDefault();
-			this.blur();
+		if ( $target.is( '.flow-element-collapsed' ) ) {
+			$target.removeClass( 'flow-element-collapsed' ).addClass( 'flow-element-expanded' );
+		} else {
+			$target.addClass( 'flow-element-collapsed' ).removeClass( 'flow-element-expanded' );
 		}
 
 		return $deferred.resolve().promise();

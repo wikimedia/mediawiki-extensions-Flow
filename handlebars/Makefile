@@ -37,7 +37,6 @@ all: compiled/flow_block_loop.handlebars.php \
 		compiled/flow_block_header_edit.handlebars.php \
 		compiled/flow_block_header_single_view.handlebars.php \
 		compiled/flow_block_header_diff_view.handlebars.php \
-		compiled/flow_board_collapsers_subcomponent.handlebars.php \
 		compiled/flow_block_topiclist.handlebars.php \
 		compiled/flow_block_topiclist_newtopic.handlebars.php \
 		compiled/flow_block_topic.handlebars.php \
@@ -99,10 +98,6 @@ compiled/flow_block_topicsummary_single_view.handlebars.php: \
 compiled/flow_block_topicsummary_diff_view.handlebars.php: \
 		flow_block_topicsummary_diff_view.handlebars
 	$(COMPILE) flow_block_topicsummary_diff_view
-
-compiled/flow_board_collapsers_subcomponent.handlebars.php: \
-		flow_board_collapsers_subcomponent.handlebars
-	$(COMPILE) flow_board_collapsers_subcomponent
 
 compiled/flow_block_topiclist.handlebars.php: \
 		flow_block_topiclist.handlebars \
