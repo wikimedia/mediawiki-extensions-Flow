@@ -37,13 +37,6 @@
 	</div>
 	'.'
 	<div class="flow-board-navigation-inner">
-		'.LCRun3::hbch($cx, 'progressiveEnhancement', Array(Array(),Array()), $in, function($cx, $in) {return '
-			<a href="#topics/full"    data-flow-interactive-handler="collapserGroupToggle" class="flow-board-collapser-compact flow-board-navigator-right flow-board-navigator-cap"><span class="wikiglyph wikiglyph-stripe-compact flow-ui-tooltip-target" title="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-toggle-topics-posts'),Array()), 'encq').'"></span></a>
-<a href="#topics/compact" data-flow-interactive-handler="collapserGroupToggle" class="flow-board-collapser-topics flow-board-navigator-right flow-board-navigator-cap"><span class="wikiglyph wikiglyph-stripe-toc flow-ui-tooltip-target" title="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-toggle-small-topics'),Array()), 'encq').'"></span></a>
-<a href="#topics/topics"  data-flow-interactive-handler="collapserGroupToggle" class="flow-board-collapser-full flow-board-navigator-right flow-board-navigator-cap"><span class="wikiglyph wikiglyph-stripe-expanded flow-ui-tooltip-target" title="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-toggle-topics'),Array()), 'encq').'"></span></a>
-
-		';}).'
-
 		'.'
 		<a href="javascript:void(0);"
 		   class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target"

@@ -118,23 +118,6 @@
 	};
 
 	/**
-	 * Calls FlowBoardComponent.UI.collapserState to set and render the new Collapser state.
-	 * @param {Event} event
-	 */
-	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.collapserGroupToggle = function ( event ) {
-		var flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) );
-
-		// Don't apply to titlebars in the topic namespace
-		if ( flowBoard.constructor.static.inTopicNamespace( $( this ) ) ) {
-			return;
-		}
-
-		flowBoard.collapserState( flowBoard, this.href.match( /[a-z]+$/ )[0] );
-
-		event.preventDefault();
-	};
-
-	/**
 	 * Sets the visibility class based on the user toggle action.
 	 * @param {Event} event
 	 */
