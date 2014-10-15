@@ -52,10 +52,6 @@
 		// Is this a hidden form or invisible field? Make it visible.
 		flowBoard.emitWithReturn( 'showForm', $form );
 
-		if ( ! $form.is( ':visible' ) ) {
-			flowBoard.emitWithReturn( 'expandTopicIfNecessary', $form.closest( '.flow-topic' ) );
-		}
-
 		// Is this a form field? Scroll to the form instead of jumping.
 		$form.conditionalScrollIntoView().queue( function ( next ) {
 			var $el = $( hash[0] );
@@ -74,81 +70,57 @@
 	};
 
 	/**
-	 * Calls FlowBoardComponent.UI.collapserState to set and render the new Collapser state.
+	 * Shows the form for editing a topic title, it's not already showing
+	 *
 	 * @param {Event} event
 	 */
-	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.collapserGroupToggle = function ( event ) {
-		var flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) );
+	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.editTopicTitle = function( event ) {
+		var $title, flowBoard, $form, cancelCallback, linkParams,
+			$link = $( this ),
+			$topic = $link.closest( '.flow-topic' ),
+			$topicTitleBar = $topic.children( '.flow-topic-titlebar' );
 
-		// Don't apply to titlebars in the topic namespace
-		if ( flowBoard.constructor.static.inTopicNamespace( $( this ) ) ) {
-			return;
+		$form = $topicTitleBar.find( 'form' );
+
+		if ( $form.length === 0 ) {
+			$title = $topicTitleBar.find( '.flow-topic-title' );
+
+			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $link );
+
+			cancelCallback = function() {
+				$form.remove();
+				$title.show();
+			};
+
+			linkParams = flowBoard.API.getQueryMap( $link.attr( 'href' ) );
+
+			$title.hide();
+
+			$form = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
+				'flow_edit_topic_title',
+				{
+					'actions' : {
+						'edit' : {
+							'url' : $link.attr( 'href' )
+						}
+					},
+					'content': {
+						'content' : $title.data( 'title' )
+					},
+					'revisionId' : linkParams.etrevId
+				}
+			) ).children();
+
+
+			flowBoard.emitWithReturn( 'addFormCancelCallback', $form, cancelCallback );
+			$form
+				.data( 'flow-initial-state', 'hidden' )
+				.insertAfter( $title );
 		}
 
-		flowBoard.collapserState( flowBoard, this.href.match( /[a-z]+$/ )[0] );
+		$form.find( '.mw-ui-input' ).focus();
 
 		event.preventDefault();
-	};
-
-	/**
-	 * Sets the visibility class based on the user toggle action.
-	 * @param {Event} event
-	 */
-	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.collapserCollapsibleToggle = function ( event ) {
-		var topicId, states,
-			$target = $( event.target ),
-			$this = $( this ),
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $this ),
-			isNotClickableElement = $target.not( '.flow-menu-js-drop' ) &&
-				!$target.closest( 'a, button, input, textarea, select, ul, ol' ).length;
-
-		// Don't apply to titlebars in the topic namespace
-		if ( flowBoard.constructor.static.inTopicNamespace( $this ) ) {
-			return;
-		}
-
-		if ( isNotClickableElement ) {
-			$target = $( this ).closest( '.flow-post-main, .flow-topic' ); // @todo genericize this
-
-			if ( flowBoard.$container.is( '.flow-board-collapsed-compact, .flow-board-collapsed-topics' ) ) {
-				// Board default is collapsed; topic can be overridden to
-				// expanded, or not.
-
-				// We also remove flow-element-collapsed.  That is set on the
-				// server for moderated posts, but an explicit user action
-				// overrides that.
-				if ( $target.is( '.flow-element-expanded' ) ) {
-					$target.addClass( 'flow-element-collapsed' ).removeClass( 'flow-element-expanded' );
-				} else {
-					$target.removeClass( 'flow-element-collapsed' ).addClass( 'flow-element-expanded' );
-				}
-			} else {
-				// .flow-board-collapsed-full; Board default is expanded;
-				// topic can be overridden to collapsed, or not.
-				if ( $target.is( '.flow-element-collapsed' ) ) {
-					$target.removeClass( 'flow-element-collapsed' ).addClass( 'flow-element-expanded' );
-				} else {
-					$target.addClass( 'flow-element-collapsed' ).removeClass( 'flow-element-expanded' );
-				}
-			}
-
-			topicId = $target.data('flow-id');
-
-			// Save in sessionStorage
-			states = mw.flow.StorageEngine.sessionStorage.getItem( 'collapserStates' ) || {};
-			// Opposite of STORAGE_TO_CLASS
-			if ( $target.hasClass( 'flow-element-expanded' ) ) {
-				states[ topicId ] = '+';
-			} else if ( $target.hasClass( 'flow-element-collapsed' ) ) {
-				states[ topicId ] = '-';
-			} else {
-				delete states[ topicId ];
-			}
-			mw.flow.StorageEngine.sessionStorage.setItem( 'collapserStates', states );
-
-			event.preventDefault();
-			this.blur();
-		}
 	};
 
 	/**
