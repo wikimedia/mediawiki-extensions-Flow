@@ -99,11 +99,7 @@ end
 Then(/^I am on my user page$/) do
   # Get the title of the page without '_' characters
   text = 'User:' + ENV["MEDIAWIKI_USER"].gsub(/_/, ' ')
-  on(UserPage).page_title_element.text.should == text
-end
-
-Then(/^I do not see an actions link$/) do
-  on(FlowPage).actions_link_element.should_not exist
+  expect(on(UserPage).page_title_element.text).to eq(text)
 end
 
 Then(/^I should see a Delete button$/) do
