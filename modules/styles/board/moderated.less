@@ -14,28 +14,8 @@
 	}
 }
 
-// Hidden simply collapse partially
-.flow-board:not(.flow-disable-topic-collapse) {
-	.flow-topic-moderatestate-hide {
-		&.flow-element-collapsed {
-			.flow-topic-title,
-			.flow-topic-meta {
-				display: none;
-			}
-			.flow-moderated-topic-title {
-				margin-bottom: 0;
-			}
-		}
-	}
-}
-
 // Entire moderated post element
 .flow-post-moderated .flow-author a,
 .flow-moderated-post-content {
 	color: @colorTextLight;
-}
-
-// click to collapse/uncollapse
-.flow-post > .flow-element-collapsible {
-	cursor: pointer;
 }
