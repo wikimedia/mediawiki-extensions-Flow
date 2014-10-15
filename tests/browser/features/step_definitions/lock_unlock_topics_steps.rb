@@ -17,6 +17,10 @@ When(/^I cancel the lock\/unlock topic form$/) do
   on(FlowPage).topic_lock_form_cancel_button_element.when_present.click
 end
 
+When(/^I expand the top post$/) do
+  on(FlowPage).flow_first_topic_heading_element.when_present.click
+end
+
 When(/^I submit the lock\/unlock topic form$/) do
   on(FlowPage) do |page|
     page.topic_lock_form_lock_button_element.when_present.click
@@ -32,31 +36,32 @@ When(/^I type "(.*?)" as the reason$/) do |reason|
   on(FlowPage).topic_lock_form_reason_element.send_keys(reason)
 end
 
-Then(/^I do not see the lock\/unlock form$/) do
-  on(FlowPage).topic_lock_form_element.when_not_present
+Then(/^I should not see the lock\/unlock form$/) do
+  on(FlowPage) do |page|
+    page.topic_lock_form_element.when_not_present
+    expect(page.topic_lock_form_element).not_to be_visible
+  end
 end
 
-
-Then(/^I expand the top post$/) do
-  on(FlowPage).flow_first_topic_heading_element.when_present.click
+Then(/the original message for the top post should have no edit link$/) do
+  expect(on(FlowPage).flow_first_topic_original_post_edit_element).not_to be_visible
 end
 
-Then(/the original message for the top post has no edit link$/) do
-  on(FlowPage).flow_first_topic_original_post_edit_element.should_not exist
+Then(/^the original message for the top post should have no reply link$/) do
+  expect(on(FlowPage).flow_first_topic_original_post_reply_element).not_to be_visible
 end
 
-Then(/^the original message for the top post has no reply link$/) do
-  on(FlowPage).flow_first_topic_original_post_reply_element.should_not exist
+Then(/^the reason of the first topic should be "(.*?)"$/) do |text|
+  expect(on(FlowPage).flow_reason_element.text).to match text
 end
 
-Then(/^the reason of the first topic is "(.*?)"$/) do |text|
-  on(FlowPage).flow_reason_element.text.should match text
+Then(/^the top post should be a locked discussion$/) do
+  expect(on(FlowPage).flow_first_topic_moderation_msg_element.when_present).to be_visible
 end
 
-Then(/^the top post is a locked discussion$/) do
-  on(FlowPage).flow_first_topic_moderation_msg_element.when_present.should be_visible
-end
-
-Then(/^the top post is an open discussion$/) do
-  on(FlowPage).flow_first_topic_moderation_msg_element.when_not_present
+Then(/^the top post should be an open discussion$/) do
+  on(FlowPage) do |page|
+    page.flow_first_topic_moderation_msg_element.when_not_present
+    expect(page.flow_first_topic_moderation_msg_element).not_to be_visible
+  end
 end
