@@ -36,9 +36,6 @@
 		// @todo move form stuff
 		this.emitWithReturn( 'makeContentInteractive', this );
 
-		// Bind any necessary event handlers to this board
-		this.bindContainerHandlers( this );
-
 		// Initialize editors, turning them from textareas into editor objects
 		if ( typeof this.editorTimer === 'undefined' ) {
 			/*
@@ -58,15 +55,6 @@
 
 		// We don't replace anything with this method (we do with flowBoardComponentReinitializeContainer)
 		return $();
-	};
-
-	/**
-	 * Binds event handlers to individual boards
-	 * @param {FlowBoardAndHistoryComponentBase} flowBoard
-	 */
-	FlowBoardAndHistoryComponentBase.prototype.bindContainerHandlers = function ( flowBoard ) {
-		// Load the collapser state from localStorage
-		this.collapserState( flowBoard );
 	};
 
 	//
