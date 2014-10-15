@@ -30,14 +30,12 @@
 }
 
 // Entire moderated post element
-.flow-post-moderated {
-	.flow-post-main,
-	.flow-author a {
-		color: @colorTextLight;
-	}
+.flow-post-moderated .flow-author a,
+.flow-moderated-post-content {
+	color: @colorTextLight;
 }
 
-// Status of post
-.flow-moderated-post-content {
+// click to collapse/uncollapse
+.flow-post > .flow-element-collapsible {
 	cursor: pointer;
 }
