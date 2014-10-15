@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_c728fb34",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-15T14:57:40Z",
+      "side": 1,
+      "message": "getPreviousContentLength doesn\u0027t exist.\n\nI also don\u0027t think it makes much sense to have a method like that - I\u0027d prefer not to have Revision be able to look up previous versions of itself.",
+      "revId": "1c56bb1382dbadaac145c6e89e471fc67ad8318e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_c75a3bf9",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-15T14:57:40Z",
+      "side": 1,
+      "message": "Haven\u0027t checked if null is ok; but is there a reason we\u0027re not sticking to 0 (back compat)",
+      "revId": "1c56bb1382dbadaac145c6e89e471fc67ad8318e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
