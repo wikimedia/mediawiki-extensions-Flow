@@ -7,6 +7,7 @@ use Flow\Model\PostRevision;
 use Flow\Parsoid\Utils;
 use ChangesList;
 use IContextSource;
+use Html;
 
 class Contributions extends AbstractFormatter {
 	protected function getHistoryType() {
@@ -64,6 +65,44 @@ class Contributions extends AbstractFormatter {
 			$charDiff .
 			$separator .
 			$this->getTitleLink( $data, $row, $ctx ) .
-			( Utils::htmlToPlaintext( $description ) ? $separator . $description : '' );
+			( Utils::htmlToPlaintext( $description ) ? $separator . $description : '' ) .
+			$this->getHideUnhide( $data, $row, $ctx );
+	}
+
+	/**
+	 * @todo can be generic?
+	 */
+	protected function getHideUnhide( array $data, FormatterRow $row, IContextSource $ctx ) {
+		// Only currently handling individual comments, not full topics.
+		// full topics in followup patch
+		if ( $row->revision instanceof PostRevision && $row->revision->isTopicTitle() ) {
+			return '';
+		}
+
+		if ( isset( $data['actions']['hide'] ) ) {
+			$key = 'hide';
+			$msg = 'flow-post-action-hide-post';
+			$role = 'hide';
+		} elseif ( isset( $data['actions']['unhide'] ) ) {
+			$key = 'unhide';
+			$msg = 'flow-post-action-restore-post';
+			$role = 'restore';
+		} else {
+			return '';
+		}
+
+		$anchor = $data['actions'][$key];
+
+		return ' (' . Html::rawElement(
+			'a',
+			array(
+				'href' => $anchor->getFullURL(),
+				'data-flow-interactive-handler' => 'moderationDialog',
+				'data-template' => 'flow_moderate_post',
+				'data-role' => $role,
+				'class' => 'flow-lowercase flow-click-interactive',
+			),
+			$ctx->msg( $msg )->escaped()
+		) . ')';
 	}
 }

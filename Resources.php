@@ -17,6 +17,11 @@ $flowTemplatingResourceTemplate = $flowResourceTemplate + array(
 );
 
 $wgResourceModules += array(
+	'ext.flow.contributions' => $flowResourceTemplate + array(
+		'scripts' => array(
+			'contributions/base.js',
+		),
+	),
 	'ext.flow.templating' => $flowTemplatingResourceTemplate + array(
 		'class' => 'ResourceLoaderTemplateModule',
 		'dependencies' => 'ext.mantle.handlebars',
@@ -50,6 +55,7 @@ $wgResourceModules += array(
 			"flow_moderate_post.handlebars",
 			"flow_moderate_topic.handlebars",
 			"flow_moderate_topic_confirmation.handlebars",
+			"flow_moderate_post_confirmation.handlebars",
 			"flow_newtopic_form.handlebars",
 			"flow_post.handlebars",
 			"flow_post_inner.handlebars",
@@ -100,6 +106,7 @@ $wgResourceModules += array(
 			'flow-post-action-suppress-post',
 			'flow-post-action-unsuppress-post',
 			'flow-post-action-restore-post',
+			'flow-post-action-undo-moderation',
 			"flow-preview-return-edit-post",
 			'flow-preview',
 			'flow-recent-topics',
@@ -209,6 +216,9 @@ $wgResourceModules += array(
 			'flow-moderation-confirmation-delete-topic',
 			'flow-moderation-confirmation-suppress-topic',
 			'flow-topic-moderated-reason-prefix',
+			'flow-post-undo-hide',
+			'flow-post-undo-delete',
+			'flow-post-undo-suppress',
 		),
 	),
 	// @todo: upstream to mediawiki ui

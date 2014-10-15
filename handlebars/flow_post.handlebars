@@ -6,15 +6,27 @@
 	         data-flow-post-max-depth="1"
 	     {{/if~}}
 	>
-		{{#ifCond @root.rootBlock.submitted.action "===" "edit-post"}}
-			{{#ifCond @root.rootBlock.submitted.postId "===" postId}}
-				{{> flow_edit_post}}
+		{{#if isModerated}}
+			{{#ifCond @root.rootBlock.submitted.showPostId "===" postId}}
+				{{> flow_post_inner}}
+			{{else}}
+				<div class="flow-post-main">
+					<span class="flow-moderated-post-content">
+						{{~l10n "post_moderation_state" moderateState replyToId moderator.name~}}
+					</span>
+				</div>
+			{{/ifCond}}
+		{{else}}
+			{{#ifCond @root.rootBlock.submitted.action "===" "edit-post"}}
+				{{#ifCond @root.rootBlock.submitted.postId "===" postId}}
+					{{> flow_edit_post}}
+				{{else}}
+					{{> flow_post_inner}}
+				{{/ifCond}}
 			{{else}}
 				{{> flow_post_inner}}
 			{{/ifCond}}
-		{{else}}
-			{{> flow_post_inner}}
-		{{/ifCond}}
+		{{/if}}
 
 		{{!-- This stuff is also not needed in preview mode --}}
 		{{#unless isPreview}}

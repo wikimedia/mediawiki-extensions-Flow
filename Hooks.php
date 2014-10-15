@@ -515,6 +515,9 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onContributionsLineEnding( $pager, &$ret, $row, &$classes ) {
+		global $wgHooks;
+		static $javascriptIncluded = false;
+
 		if ( !$row instanceof Flow\Formatter\FormatterRow ) {
 			return true;
 		}
@@ -534,6 +537,16 @@ class FlowHooks {
 
 		$classes[] = 'mw-flow-contribution';
 		$ret = $line;
+
+		// If we output one or more lines of contributions entries we also need to include
+		// the javascript that hooks into moderation actions.
+		// @todo not a huge fan of this static variable, what else though?
+		if ( !$javascriptIncluded ) {
+			$javascriptIncluded = true;
+			$wgHooks['SpecialPageAfterExecute'][] = function( $specialPage, $subPage ) {
+				$specialPage->getOutput()->addModules( array( 'ext.flow.contributions' ) );
+			};
+		}
 
 		return true;
 	}
