@@ -6,4 +6,4 @@ Feature: Check the interface for anonymous users
       And I have created a Flow topic
       # which is not hidden (this is implicit from the above step)
     When I see a flow creator element
-    Then the block author link does not exist
+    Then the block author link should not exist

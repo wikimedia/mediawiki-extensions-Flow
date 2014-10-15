@@ -99,43 +99,39 @@ end
 Then(/^I am on my user page$/) do
   # Get the title of the page without '_' characters
   text = 'User:' + ENV["MEDIAWIKI_USER"].gsub(/_/, ' ')
-  on(UserPage).page_title_element.text.should == text
-end
-
-Then(/^I do not see an actions link$/) do
-  on(FlowPage).actions_link_element.should_not exist
+  expect(on(UserPage).page_title_element.text).to eq(text)
 end
 
 Then(/^I should see a Delete button$/) do
-  on(FlowPage).delete_button_element.should be_visible
+  expect(on(FlowPage).delete_button_element).to be_visible
 end
 
 Then(/^I should see a Delete topic button$/) do
-  on(FlowPage).topic_delete_button_element.when_present.should be_visible
+  expect(on(FlowPage).topic_delete_button_element.when_present).to be_visible
 end
 
 Then(/^I should see a Hide button$/) do
-  on(FlowPage).hide_button_element.when_present.should be_visible
+  expect(on(FlowPage).hide_button_element.when_present).to be_visible
 end
 
 Then(/^I should see a Hide topic button$/) do
-  on(FlowPage).topic_hide_button_element.when_present.should be_visible
+  expect(on(FlowPage).topic_hide_button_element.when_present).to be_visible
 end
 
 Then(/^I should see a Suppress button$/) do
-  on(FlowPage).suppress_button_element.should be_visible
+  expect(on(FlowPage).suppress_button_element).to be_visible
 end
 
 Then(/^I should see a Suppress topic button$/) do
-  on(FlowPage).topic_suppress_button_element.when_present.should be_visible
+  expect(on(FlowPage).topic_suppress_button_element.when_present).to be_visible
 end
 
-Then(/^the block author link does not exist$/) do
-   on(FlowPage).usertools_block_user_link_element.should_not exist
+Then(/^the block author link should not exist$/) do
+   expect(on(FlowPage).usertools_block_user_link_element).not_to be_visible
 end
 
 Then(/^the block author link is visible$/) do
-  on(FlowPage).usertools_block_user_link_element.when_present.should be_visible
+  expect(on(FlowPage).usertools_block_user_link_element.when_present).to be_visible
 end
 
 Then(/^the content of the top post should be visible$/) do
