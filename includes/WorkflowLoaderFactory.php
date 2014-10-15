@@ -66,7 +66,7 @@ class WorkflowLoaderFactory {
 		}
 
 		if ( $pageTitle->getNamespace() === NS_TOPIC ) {
-			$workflowId = UUID::create( strtolower( $pageTitle->getRootText() ) );
+			$workflowId = self::uuidFromTitle( $pageTitle );
 		}
 		if ( $workflowId !== null ) {
 			$workflow = $this->loadWorkflowById( $pageTitle, $workflowId );
@@ -122,5 +122,31 @@ class WorkflowLoaderFactory {
 		}
 
 		return $workflow;
+	}
+
+	/**
+	 * Create a UUID for a Title object
+	 *
+	 * @param Title $title
+	 * @return UUID
+	 */
+	public static function uuidFromTitle( Title $title ) {
+		return self::uuidFromTitlePair( $title->getNamespace(), $title->getDbKey() );
+	}
+
+	/**
+	 * Create a UUID for a ns/dbkey title pair
+	 *
+	 * @param integer $ns
+	 * @param string $dbKey
+	 * @return UUID
+	 * @throws InvalidInputException When the pair does not represent a valid uuid
+	 */
+	public static function uuidFromTitlePair( $ns, $dbKey ) {
+		if ( $ns !== NS_TOPIC ) {
+			throw new InvalidInputException( '', 'invalid-input' );
+		}
+
+		return UUID::create( strtolower( $dbKey ) );
 	}
 }
