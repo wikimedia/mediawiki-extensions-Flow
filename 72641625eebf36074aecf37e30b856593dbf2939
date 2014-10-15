@@ -1,0 +1,259 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_dd38ce9d",
+        "filename": "autoload.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-15T18:46:32Z",
+      "side": 1,
+      "message": "I suppose i should document this better, you didn\u0027t need to edit this file directly.  If you run\n\n    scripts/gen-autoload.php\n\nit will autogenerate this file",
+      "revId": "72641625eebf36074aecf37e30b856593dbf2939",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_1d65d6aa",
+        "filename": "includes/Import/ImportSource.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-15T18:46:32Z",
+      "side": 1,
+      "message": "sic, Iterator\u003cImportTopic\u003e",
+      "revId": "72641625eebf36074aecf37e30b856593dbf2939",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_5d6b5e82",
+        "filename": "includes/Import/ImportSource.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-15T18:46:32Z",
+      "side": 1,
+      "message": "Lets use\n\n    Iterator\u003cImportPost\u003e\n\nso it\u0027s clear exactly what is being returned.  I suppose there isn\u0027t really a standard phpdoc syntax, but this will work.",
+      "revId": "72641625eebf36074aecf37e30b856593dbf2939",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_1da636a8",
+        "filename": "includes/Import/ImportSource.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-15T18:46:32Z",
+      "side": 1,
+      "message": "phpdoc these interfaces and their methods too please",
+      "revId": "72641625eebf36074aecf37e30b856593dbf2939",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_1dd4f6eb",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-15T18:46:32Z",
+      "side": 1,
+      "message": "do the rest of your initialization here too, setup all the reflection classes you will need",
+      "revId": "72641625eebf36074aecf37e30b856593dbf2939",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_bd00626e",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-15T18:46:32Z",
+      "side": 1,
+      "message": "missing class property",
+      "revId": "72641625eebf36074aecf37e30b856593dbf2939",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_dd052e7e",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-15T18:46:32Z",
+      "side": 1,
+      "message": "missing class property",
+      "revId": "72641625eebf36074aecf37e30b856593dbf2939",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_7dfada74",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-15T18:46:32Z",
+      "side": 1,
+      "message": "missing visibility declaration",
+      "revId": "72641625eebf36074aecf37e30b856593dbf2939",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_9dffa662",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-15T18:46:32Z",
+      "side": 1,
+      "message": "missing phpdoc, visibility declaration",
+      "revId": "72641625eebf36074aecf37e30b856593dbf2939",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_7d109aad",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-15T18:46:32Z",
+      "side": 1,
+      "message": "will likely need more metadata,  typically we have:\n\n   workflow - all commits\n   board-workflow - all commits of PostRevision\n   topic-title - all commits of PostRevision\n   first-post - seems to be a special case only used when creating a topic title\n   reply-to - most commits of PostRevision\n\nI suppose we should consider codifying the metadata into a class hierarchy with public properties like FormatterRow, just so this type of information has somewhere to be concretely defined.",
+      "revId": "72641625eebf36074aecf37e30b856593dbf2939",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_5d6efe2b",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-15T18:46:32Z",
+      "side": 1,
+      "message": "much better than before, i think with the reflection instantiation moved up to the constructor this will be much easier to read than the previous implementation.",
+      "revId": "72641625eebf36074aecf37e30b856593dbf2939",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_5dc35e3d",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-15T18:46:32Z",
+      "side": 1,
+      "message": "rather than creating these over and over while running should just set it up in the constructor.  Also can just new up a ReflectionProperty directly.",
+      "revId": "72641625eebf36074aecf37e30b856593dbf2939",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_1dbdd6ad",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-15T18:46:32Z",
+      "side": 1,
+      "message": "i presume from this it means we are only inserting one revision of each post, no edit history possible via the current interfaces?",
+      "revId": "72641625eebf36074aecf37e30b856593dbf2939",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_fde02a95",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-15T18:46:32Z",
+      "side": 1,
+      "message": "it seems the whole thing would be easier if we just took the 46 bits above, and appended 42 random bits?  The node id isn\u0027t particularly significant here, its used in the original algo because the counters are guaranteed unique(until it rolls over) per node-id",
+      "revId": "72641625eebf36074aecf37e30b856593dbf2939",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_9d63263b",
+        "filename": "maintenance/convertLqt.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-15T18:46:32Z",
+      "side": 1,
+      "message": "not reviewing since this class seems to completely avoid the Importer class implemented in the rest of this patch?",
+      "revId": "72641625eebf36074aecf37e30b856593dbf2939",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
