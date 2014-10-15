@@ -180,9 +180,18 @@ class View extends ContextSource {
 		// Render the flow-component wrapper
 		if ( !empty( $apiResponse['blocks'] ) ) {
 			$renderedBlocks = array();
+			$template = null;
 
 			foreach ( $apiResponse['blocks'] as $block ) {
-				$flowComponent = 'board';
+				// @todo find a better way to do this; potentially make all blocks their own components
+				$flowComponent = $block['type'];
+				switch ( $flowComponent ) {
+					case 'board-history':
+						$flowComponent = 'boardHistory';
+						break;
+					default:
+						$flowComponent = 'board';
+				}
 
 				// Don't re-render a block type twice in one page
 				if ( isset( $renderedBlocks[$flowComponent] ) ) {
@@ -190,9 +199,14 @@ class View extends ContextSource {
 				}
 				$renderedBlocks[$flowComponent] = true;
 
-				// Render this template
+				// Assign the component type for flow_component's data attribs
 				$apiResponse['component'] = $flowComponent;
+				// Set $template to indicate that we have something to render
 				$template = $this->lightncandy->getTemplate( 'flow_component' );
+			}
+
+			// Render the actual template
+			if ( $template ) {
 				$out->addHTML( $template( $apiResponse ) );
 			}
 		}
