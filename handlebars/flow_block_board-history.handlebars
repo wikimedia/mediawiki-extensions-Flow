@@ -38,6 +38,94 @@
 					<span class="mw-changeslist-separator">. .</span>
 					{{showCharacterDifference size.old size.new}}
 				{{/if}}
+
+
+				<ul class="flow-history-moderation-menu">
+					{{~#if actions.hide~}}
+						<li class="flow-history-moderation-action">
+							{{~null~}}
+							<a class="mw-ui-anchor mw-ui-quiet"
+							   href="{{actions.hide.url}}"
+							   title="{{actions.hide.title}}"
+							   data-flow-interactive-handler="moderationDialog"
+							   data-template="flow_moderate_post"
+							   data-role="hide">
+								{{~l10n "flow-post-action-hide-post"~}}
+							</a>
+							{{~null~}}
+						</li>
+					{{~/if~}}
+					{{~#if actions.unhide~}}
+						<li class="flow-history-moderation-action">
+							{{~null~}}
+							<a class="mw-ui-anchor mw-ui-progressive mw-ui-quiet"
+							   href="{{actions.unhide.url}}"
+							   title="{{actions.unhide.title}}"
+							   data-flow-interactive-handler="moderationDialog"
+							   data-template="flow_moderate_post"
+							   data-role="unhide">
+								{{~l10n "flow-post-action-unhide-post"~}}
+							</a>
+							{{~null~}}
+						</li>
+					{{~/if~}}
+					{{~#if actions.delete~}}
+						<li class="flow-history-moderation-action">
+							{{~null~}}
+							<a class="mw-ui-anchor mw-ui-quiet"
+							   href="{{actions.delete.url}}"
+							   title="{{actions.delete.title}}"
+							   data-flow-interactive-handler="moderationDialog"
+							   data-template="flow_moderate_post"
+							   data-role="delete">
+								{{~l10n "flow-post-action-delete-post"~}}
+							</a>
+							{{~null~}}
+						</li>
+					{{~/if~}}
+					{{~#if actions.undelete~}}
+						<li class="flow-history-moderation-action">
+							{{~null~}}
+							<a class="mw-ui-anchor mw-ui-progressive mw-ui-quiet"
+							   href="{{actions.undelete.url}}"
+							   title="{{actions.undelete.title}}"
+							   data-flow-interactive-handler="moderationDialog"
+							   data-template="flow_moderate_post"
+							   data-role="undelete">
+								{{~l10n "flow-post-action-undelete-post"~}}
+							</a>
+							{{~null~}}
+						</li>
+					{{~/if~}}
+					{{~#if actions.suppress~}}
+						<li class="flow-history-moderation-action">
+							{{~null~}}
+							<a class="mw-ui-anchor mw-ui-destructive mw-ui-quiet"
+							   href="{{actions.suppress.url}}"
+							   title="{{actions.suppress.title}}"
+							   data-flow-interactive-handler="moderationDialog"
+							   data-template="flow_moderate_post"
+							   data-role="suppress">
+								{{~l10n "flow-post-action-suppress-post"~}}
+							</a>
+							{{~null~}}
+						</li>
+					{{~/if~}}
+					{{~#if actions.unsuppress~}}
+						<li class="flow-history-moderation-action">
+							{{~null~}}
+							<a class="mw-ui-anchor mw-ui-progressive mw-ui-quiet"
+							   href="{{actions.unsuppress.url}}"
+							   title="{{actions.unsuppress.title}}"
+							   data-flow-interactive-handler="moderationDialog"
+							   data-template="flow_moderate_post"
+							   data-role="unsuppress">
+								{{~l10n "flow-post-action-unsuppress-post"~}}
+							</a>
+							{{~null~}}
+						</li>
+					{{~/if~}}
+				</ul>
 			</li>
 		{{/each}}
 	</ul>
