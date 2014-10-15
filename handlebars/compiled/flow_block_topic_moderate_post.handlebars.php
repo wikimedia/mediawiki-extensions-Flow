@@ -216,7 +216,6 @@
 ';},'flow_post_inner' => function ($cx, $in) {return '<div
 	'.((LCRun3::ifvar($cx, ((isset($in['isModerated']) && is_array($in)) ? $in['isModerated'] : null))) ? '
 		class="flow-post-main flow-post-moderated flow-click-interactive flow-element-collapsible flow-element-collapsed"
-		data-flow-load-handler="collapserState"
 		data-flow-interactive-handler="collapserCollapsibleToggle"
 		tabindex="0"
 	' : '
