@@ -93,6 +93,7 @@
     "flow-topic-action-unsuppress-topic": "Unsuppress topic",
     "flow-topic-action-restore-topic": "Restore topic",
     "flow-topic-action-undo-moderation": "Undo",
+    "flow-post-action-undo-moderation": "Undo",
     "flow-topic-notification-subscribe-title": "This topic has been added to your watchlist.",
     "flow-topic-notification-subscribe-description": "You will receive notifications on all activities on this topic.",
     "flow-board-notification-subscribe-title": "You're subscribed to this discussion board!",
@@ -374,5 +375,8 @@
     "flow-time-ago-hour": "$1 {{PLURAL:$1|hour|hours}} ago",
     "flow-time-ago-minute": "$1 {{PLURAL:$1|minute|minutes}} ago",
     "flow-time-ago-second": "$1 {{PLURAL:$1|second|seconds}} ago",
-    "flow-time-ago-week": "$1 {{PLURAL:$1|week|weeks}} ago"
+    "flow-time-ago-week": "$1 {{PLURAL:$1|week|weeks}} ago",
+    "flow-post-undo-hide": "(undo hide)",
+    "flow-post-undo-delete": "(undo delete)",
+    "flow-post-undo-suppress": "(undo suppress)"
 }
