@@ -59,54 +59,6 @@
 		   title="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</a>
 	</div>
 </form>
-';},'flow_anon_warning' => function ($cx, $in) {return '<div class="flow-anon-warning">
-	<div class="flow-anon-warning-mobile">
-		
-		'.LCRun3::hbch($cx, 'tooltip', Array(Array(),Array('positionClass'=>'down','contextClass'=>'progressive','extraClass'=>'flow-form-collapsible','isBlock'=>true)), $in, function($cx, $in) {return '
-			'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-anon-warning',LCRun3::ch($cx, 'linkWithReturnTo', Array(Array('Special:UserLogin'),Array()), 'raw'),LCRun3::ch($cx, 'linkWithReturnTo', Array(Array('Special:UserLogin/signup'),Array()), 'raw')),Array()), 'encq').'';}).'
-	</div>
-
-	
-	'.LCRun3::hbch($cx, 'progressiveEnhancement', Array(Array(),Array()), $in, function($cx, $in) {return '
-		<div class="flow-anon-warning-desktop">
-			'.LCRun3::hbch($cx, 'tooltip', Array(Array(),Array('positionClass'=>'left','contextClass'=>'progressive','extraClass'=>'flow-form-collapsible','isBlock'=>true)), $in, function($cx, $in) {return '
-				'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-anon-warning',LCRun3::ch($cx, 'linkWithReturnTo', Array(Array('Special:UserLogin'),Array()), 'raw'),LCRun3::ch($cx, 'linkWithReturnTo', Array(Array('Special:UserLogin/signup'),Array()), 'raw')),Array()), 'encq').'';}).'
-		</div>
-	';}).'
-</div>';},'flow_form_buttons' => function ($cx, $in) {return '<button data-flow-api-handler="preview"
-        data-flow-api-target="< form textarea"
-        name="preview"
-        data-role="action"
-        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-js"
->'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
-
-<button data-flow-interactive-handler="cancelForm"
-        data-role="cancel"
-        type="reset"
-        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
->'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
-';},'flow_edit_post' => function ($cx, $in) {return '<form class="flow-edit-post-form"
-      method="POST"
-      action="'.htmlentities((string)((isset($in['actions']['edit']['url']) && is_array($in['actions']['edit'])) ? $in['actions']['edit']['url'] : null), ENT_QUOTES, 'UTF-8').'"
->
-	'.LCRun3::p($cx, 'flow_errors', Array(Array($in),Array())).'
-	<input type="hidden" name="wpEditToken" value="'.htmlentities((string)((isset($cx['scopes'][0]['rootBlock']['editToken']) && is_array($cx['scopes'][0]['rootBlock'])) ? $cx['scopes'][0]['rootBlock']['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
-	<input type="hidden" name="topic_prev_revision" value="'.htmlentities((string)((isset($in['revisionId']) && is_array($in)) ? $in['revisionId'] : null), ENT_QUOTES, 'UTF-8').'" />
-	'.LCRun3::hbch($cx, 'ifAnonymous', Array(Array(),Array()), $in, function($cx, $in) {return '
-		'.LCRun3::p($cx, 'flow_anon_warning', Array(Array($in),Array())).'
-	';}).'
-
-	<textarea name="topic_content" class="mw-ui-input flow-form-collapsible"
-		data-flow-preview-template="flow_post"
-		data-role="content">'.((LCRun3::ifvar($cx, ((isset($cx['scopes'][0]['rootBlock']['submitted']['content']) && is_array($cx['scopes'][0]['rootBlock']['submitted'])) ? $cx['scopes'][0]['rootBlock']['submitted']['content'] : null))) ? ''.htmlentities((string)((isset($cx['scopes'][0]['rootBlock']['submitted']['content']) && is_array($cx['scopes'][0]['rootBlock']['submitted'])) ? $cx['scopes'][0]['rootBlock']['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities((string)((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null), ENT_QUOTES, 'UTF-8').'').'</textarea>
-
-	<div class="flow-form-actions flow-form-collapsible">
-		<button class="mw-ui-button mw-ui-constructive"
-		        data-flow-api-handler="submitEditPost">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-post-action-edit-post-submit'),Array()), 'encq').'</button>
-		'.LCRun3::p($cx, 'flow_form_buttons', Array(Array($in),Array())).'
-		<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-terms-of-use-edit'),Array()), 'encq').'</small>
-	</div>
-</form>
 ';},'flow_post_author' => function ($cx, $in) {return '<span class="flow-author">
 	'.((LCRun3::ifvar($cx, ((isset($in['links']) && is_array($in)) ? $in['links'] : null))) ? '
 		'.((LCRun3::ifvar($cx, ((isset($in['links']['userpage']) && is_array($in['links'])) ? $in['links']['userpage'] : null))) ? '
@@ -246,7 +198,7 @@
 </div>
 ';},'flow_post_inner' => function ($cx, $in) {return '<div
 	'.((LCRun3::ifvar($cx, ((isset($in['isModerated']) && is_array($in)) ? $in['isModerated'] : null))) ? '
-		class="flow-post-main flow-click-interactive flow-element-collapsible flow-element-collapsed"
+		class="flow-post-main flow-post-moderated flow-click-interactive flow-element-collapsible flow-element-collapsed"
 		data-flow-load-handler="collapserState"
 		data-flow-interactive-handler="collapserCollapsibleToggle"
 		tabindex="0"
@@ -274,6 +226,54 @@
 		'.LCRun3::p($cx, 'flow_post_actions', Array(Array($in),Array())).'
 	' : '').'
 </div>
+';},'flow_anon_warning' => function ($cx, $in) {return '<div class="flow-anon-warning">
+	<div class="flow-anon-warning-mobile">
+		
+		'.LCRun3::hbch($cx, 'tooltip', Array(Array(),Array('positionClass'=>'down','contextClass'=>'progressive','extraClass'=>'flow-form-collapsible','isBlock'=>true)), $in, function($cx, $in) {return '
+			'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-anon-warning',LCRun3::ch($cx, 'linkWithReturnTo', Array(Array('Special:UserLogin'),Array()), 'raw'),LCRun3::ch($cx, 'linkWithReturnTo', Array(Array('Special:UserLogin/signup'),Array()), 'raw')),Array()), 'encq').'';}).'
+	</div>
+
+	
+	'.LCRun3::hbch($cx, 'progressiveEnhancement', Array(Array(),Array()), $in, function($cx, $in) {return '
+		<div class="flow-anon-warning-desktop">
+			'.LCRun3::hbch($cx, 'tooltip', Array(Array(),Array('positionClass'=>'left','contextClass'=>'progressive','extraClass'=>'flow-form-collapsible','isBlock'=>true)), $in, function($cx, $in) {return '
+				'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-anon-warning',LCRun3::ch($cx, 'linkWithReturnTo', Array(Array('Special:UserLogin'),Array()), 'raw'),LCRun3::ch($cx, 'linkWithReturnTo', Array(Array('Special:UserLogin/signup'),Array()), 'raw')),Array()), 'encq').'';}).'
+		</div>
+	';}).'
+</div>';},'flow_form_buttons' => function ($cx, $in) {return '<button data-flow-api-handler="preview"
+        data-flow-api-target="< form textarea"
+        name="preview"
+        data-role="action"
+        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-js"
+>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
+
+<button data-flow-interactive-handler="cancelForm"
+        data-role="cancel"
+        type="reset"
+        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
+>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
+';},'flow_edit_post' => function ($cx, $in) {return '<form class="flow-edit-post-form"
+      method="POST"
+      action="'.htmlentities((string)((isset($in['actions']['edit']['url']) && is_array($in['actions']['edit'])) ? $in['actions']['edit']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+>
+	'.LCRun3::p($cx, 'flow_errors', Array(Array($in),Array())).'
+	<input type="hidden" name="wpEditToken" value="'.htmlentities((string)((isset($cx['scopes'][0]['rootBlock']['editToken']) && is_array($cx['scopes'][0]['rootBlock'])) ? $cx['scopes'][0]['rootBlock']['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
+	<input type="hidden" name="topic_prev_revision" value="'.htmlentities((string)((isset($in['revisionId']) && is_array($in)) ? $in['revisionId'] : null), ENT_QUOTES, 'UTF-8').'" />
+	'.LCRun3::hbch($cx, 'ifAnonymous', Array(Array(),Array()), $in, function($cx, $in) {return '
+		'.LCRun3::p($cx, 'flow_anon_warning', Array(Array($in),Array())).'
+	';}).'
+
+	<textarea name="topic_content" class="mw-ui-input flow-form-collapsible"
+		data-flow-preview-template="flow_post"
+		data-role="content">'.((LCRun3::ifvar($cx, ((isset($cx['scopes'][0]['rootBlock']['submitted']['content']) && is_array($cx['scopes'][0]['rootBlock']['submitted'])) ? $cx['scopes'][0]['rootBlock']['submitted']['content'] : null))) ? ''.htmlentities((string)((isset($cx['scopes'][0]['rootBlock']['submitted']['content']) && is_array($cx['scopes'][0]['rootBlock']['submitted'])) ? $cx['scopes'][0]['rootBlock']['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities((string)((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null), ENT_QUOTES, 'UTF-8').'').'</textarea>
+
+	<div class="flow-form-actions flow-form-collapsible">
+		<button class="mw-ui-button mw-ui-constructive"
+		        data-flow-api-handler="submitEditPost">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-post-action-edit-post-submit'),Array()), 'encq').'</button>
+		'.LCRun3::p($cx, 'flow_form_buttons', Array(Array($in),Array())).'
+		<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-terms-of-use-edit'),Array()), 'encq').'</small>
+	</div>
+</form>
 ';},'flow_reply_form' => function ($cx, $in) {return ''.((LCRun3::ifvar($cx, ((isset($in['actions']['reply']) && is_array($in['actions'])) ? $in['actions']['reply'] : null))) ? '
 	<form class="flow-post flow-reply-form"
 	      method="POST"
@@ -325,20 +325,30 @@
 </div>
 ';},'flow_post' => function ($cx, $in) {return ''.LCRun3::wi($cx, ((isset($in['revision']) && is_array($in)) ? $in['revision'] : null), $in, function($cx, $in) {return '
 	<div id="flow-post-'.htmlentities((string)((isset($in['postId']) && is_array($in)) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
-	     class="flow-post'.((LCRun3::ifvar($cx, ((isset($in['isModerated']) && is_array($in)) ? $in['isModerated'] : null))) ? ' flow-post-moderated' : '').'"
+	     class="flow-post"
 	     data-flow-id="'.htmlentities((string)((isset($in['postId']) && is_array($in)) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
 	     '.((LCRun3::ifvar($cx, ((isset($in['isMaxThreadingDepth']) && is_array($in)) ? $in['isMaxThreadingDepth'] : null))) ? '
 	         data-flow-post-max-depth="1"
 	     ' : '').'>
-		'.LCRun3::hbch($cx, 'ifCond', Array(Array(((isset($cx['scopes'][0]['rootBlock']['submitted']['action']) && is_array($cx['scopes'][0]['rootBlock']['submitted'])) ? $cx['scopes'][0]['rootBlock']['submitted']['action'] : null),'===','edit-post'),Array()), $in, function($cx, $in) {return '
-			'.LCRun3::hbch($cx, 'ifCond', Array(Array(((isset($cx['scopes'][0]['rootBlock']['submitted']['postId']) && is_array($cx['scopes'][0]['rootBlock']['submitted'])) ? $cx['scopes'][0]['rootBlock']['submitted']['postId'] : null),'===',((isset($in['postId']) && is_array($in)) ? $in['postId'] : null)),Array()), $in, function($cx, $in) {return '
-				'.LCRun3::p($cx, 'flow_edit_post', Array(Array($in),Array())).'
+		'.((LCRun3::ifvar($cx, ((isset($in['isModerated']) && is_array($in)) ? $in['isModerated'] : null))) ? '
+			'.LCRun3::hbch($cx, 'ifCond', Array(Array(((isset($cx['scopes'][0]['rootBlock']['submitted']['showPostId']) && is_array($cx['scopes'][0]['rootBlock']['submitted'])) ? $cx['scopes'][0]['rootBlock']['submitted']['showPostId'] : null),'===',((isset($in['postId']) && is_array($in)) ? $in['postId'] : null)),Array()), $in, function($cx, $in) {return '
+				'.LCRun3::p($cx, 'flow_post_inner', Array(Array($in),Array())).'
+			';}, function($cx, $in) {return '
+				<div class="flow-post-main flow-post-moderated">
+					<span class="flow-moderated-post-content">'.LCRun3::ch($cx, 'l10n', Array(Array('post_moderation_state',((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null),((isset($in['replyToId']) && is_array($in)) ? $in['replyToId'] : null),((isset($in['moderator']['name']) && is_array($in['moderator'])) ? $in['moderator']['name'] : null)),Array()), 'encq').'</span>
+				</div>
+			';}).'
+		' : '
+			'.LCRun3::hbch($cx, 'ifCond', Array(Array(((isset($cx['scopes'][0]['rootBlock']['submitted']['action']) && is_array($cx['scopes'][0]['rootBlock']['submitted'])) ? $cx['scopes'][0]['rootBlock']['submitted']['action'] : null),'===','edit-post'),Array()), $in, function($cx, $in) {return '
+				'.LCRun3::hbch($cx, 'ifCond', Array(Array(((isset($cx['scopes'][0]['rootBlock']['submitted']['postId']) && is_array($cx['scopes'][0]['rootBlock']['submitted'])) ? $cx['scopes'][0]['rootBlock']['submitted']['postId'] : null),'===',((isset($in['postId']) && is_array($in)) ? $in['postId'] : null)),Array()), $in, function($cx, $in) {return '
+					'.LCRun3::p($cx, 'flow_edit_post', Array(Array($in),Array())).'
+				';}, function($cx, $in) {return '
+					'.LCRun3::p($cx, 'flow_post_inner', Array(Array($in),Array())).'
+				';}).'
 			';}, function($cx, $in) {return '
 				'.LCRun3::p($cx, 'flow_post_inner', Array(Array($in),Array())).'
 			';}).'
-		';}, function($cx, $in) {return '
-			'.LCRun3::p($cx, 'flow_post_inner', Array(Array($in),Array())).'
-		';}).'
+		').'
 
 		
 		'.((!LCRun3::ifvar($cx, ((isset($in['isPreview']) && is_array($in)) ? $in['isPreview'] : null))) ? '
