@@ -769,6 +769,28 @@
 	}
 	FlowComponentEventsMixin.eventHandlers.expandTopicIfNecessary = flowEventsMixinExpandTopicIfNecessary;
 
+	/**
+	 * If a form has a cancelForm handler, we clear the form and trigger it. This allows easy cleanup
+	 * and triggering of form events after successful API calls.
+	 * @param {Element|jQuery} formElement
+	 */
+	function flowEventsMixinCancelForm( formElement ) {
+		var $form = $( formElement ),
+			$button = $form.find( 'button, input, a' ).filter( '[data-flow-interactive-handler="cancelForm"]' );
+
+		if ( $button.length ) {
+			// Clear contents to not trigger the "are you sure you want to
+			// discard your text" warning
+			$form.find( 'textarea, :text' ).each( function() {
+				$( this ).val( this.defaultValue );
+			} );
+
+			// Trigger a click on cancel to have it destroy the form the way it should
+			$button.trigger( 'click' );
+		}
+	}
+	FlowComponentEventsMixin.eventHandlers.cancelForm = flowEventsMixinCancelForm;
+
 	//
 	// Private functions
 	//
