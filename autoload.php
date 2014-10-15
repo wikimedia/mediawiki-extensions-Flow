@@ -19,7 +19,6 @@ $wgAutoloadClasses['ApiFlowViewTopic'] = __DIR__ . '/includes/api/ApiFlowViewTop
 $wgAutoloadClasses['ApiFlowViewTopicList'] = __DIR__ . '/includes/api/ApiFlowViewTopicList.php';
 $wgAutoloadClasses['ApiFlowViewTopicSummary'] = __DIR__ . '/includes/api/ApiFlowViewTopicSummary.php';
 $wgAutoloadClasses['ApiParsoidUtilsFlow'] = __DIR__ . '/includes/api/ApiParsoidUtilsFlow.php';
-$wgAutoloadClasses['ApiQueryFlow'] = __DIR__ . '/includes/api/ApiQueryFlow.php';
 $wgAutoloadClasses['ApiQueryPropFlowInfo'] = __DIR__ . '/includes/api/ApiQueryPropFlowInfo.php';
 $wgAutoloadClasses['FlowHooks'] = __DIR__ . '/Hooks.php';
 $wgAutoloadClasses['Flow\\Actions\\CompareHeaderRevisionsAction'] = __DIR__ . '/includes/Actions/CompareHeaderRevisionsAction.php';
