@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_9daec6e3",
+        "filename": "handlebars/flow_post.handlebars",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-15T17:47:40Z",
+      "side": 1,
+      "message": "i\u0027m not liking this set of if/else, but not sure what to do about it.\n\nOne possibility would be to remove this logic from templates and put it somewhere else, but the downside there is instead of implementing and maintaining this once, we have to do it in both js and php independently. I\u0027m not sure if this is ugly enough yet to warrant maintaining two copies.",
+      "revId": "3bd5863936ae830308b25259e841de19d058650d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
