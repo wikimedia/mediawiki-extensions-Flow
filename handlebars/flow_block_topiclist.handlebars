@@ -1,15 +1,15 @@
 {{> flow_board_navigation}}
 
 <div class="flow-board">
-	{{! new-topic form should only be displayed when run with JS, otherwise link to designated page }}
 	<div class="flow-newtopic-container">
+		{{! No-JS gets a link to separate page with newtopic form }}
 		<div class="flow-nojs">
 			<a class="mw-ui-input mw-ui-input-large flow-ui-input-replacement-anchor"
 				href="{{links.newtopic}}">{{l10n "flow-newtopic-start-placeholder"}}</a>
 		</div>
 
 		<div class="flow-js">
-			{{> flow_newtopic_form}}
+			{{> flow_newtopic_form isOnFlowBoard=true }}
 		</div>
 	</div>
 
