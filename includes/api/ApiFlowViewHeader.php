@@ -42,7 +42,7 @@ class ApiFlowViewHeader extends ApiFlowBaseGet {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=view-header&vhcontentFormat=wikitext&workflow=&revId=',
+			'api.php?action=flow&submodule=view-header&page=Topic:S2tycnas4hcucw8w&vhcontentFormat=wikitext&revId=',
 		);
 	}
 }

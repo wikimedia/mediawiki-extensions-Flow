@@ -42,7 +42,7 @@ class ApiFlowEditTitle extends ApiFlowBasePost {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=edit-title&ehprev_revision=???&ehtcontent=Nice%20to&20meet%20you&workflow=',
+			'api.php?action=flow&submodule=edit-title&page=Talk:Sandbox&ehprev_revision=???&ehtcontent=Nice%20to&20meet%20you',
 		);
 	}
 }
