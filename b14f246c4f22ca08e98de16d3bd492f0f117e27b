@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_c916d4ac",
+        "filename": "handlebars/flow_block_topiclist.handlebars",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-15T01:49:08Z",
+      "side": 1,
+      "message": "Does handlebars have a more direct way to tell \"I\u0027m being called from a particular parent form or context?\n\nAlso I think passing parameters to a partial is a handlebars 2.0 feature, thought lightncandy seems to support it.",
+      "revId": "b14f246c4f22ca08e98de16d3bd492f0f117e27b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
