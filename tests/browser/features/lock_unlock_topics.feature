@@ -10,8 +10,8 @@ Feature: Lock and unlock topics
         And I have created a Flow topic
         And the top post has been locked
     When I expand the top post
-    Then the original message for the top post has no reply link
-        And the original message for the top post has no edit link
+    Then the original message for the top post should have no reply link
+        And the original message for the top post should have no edit link
 
   @internet_explorer_10
   Scenario: Locking a topic and then changing your mind
@@ -20,8 +20,8 @@ Feature: Lock and unlock topics
     When I click the Topic Actions link
         And I click the Lock topic button
         And I cancel the lock/unlock topic form
-    Then the top post is an open discussion
-        And I do not see the lock/unlock form
+    Then the top post should be an open discussion
+        And I should not see the lock/unlock form
 
   @internet_explorer_10
   Scenario: Locking a topic
@@ -31,8 +31,8 @@ Feature: Lock and unlock topics
         And I click the Lock topic button
         And I type "This is a bikeshed" as the reason
         And I submit the lock/unlock topic form
-    Then the top post is a locked discussion
-        And the reason of the first topic is "This is a bikeshed"
+    Then the top post should be a locked discussion
+        And the reason of the first topic should be "This is a bikeshed"
         And the content of the top post should be visible
 
   # Close-then-unlock doesn't work in IE, it caches the API response (bug 69160).
@@ -44,5 +44,5 @@ Feature: Lock and unlock topics
         And I click the Unlock topic button
     When I type "Fun discussion" as the reason
         And I submit the lock/unlock topic form
-    Then the top post is an open discussion
+    Then the top post should be an open discussion
         And the content of the top post should be visible
