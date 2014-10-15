@@ -39,7 +39,7 @@ class ApiFlowViewTopic extends ApiFlowBaseGet {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=view-topic&workflow=',
+			'api.php?action=flow&submodule=view-topic&page=Topic:S2tycnas4hcucw8w',
 		);
 	}
 }

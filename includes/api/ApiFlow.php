@@ -77,7 +77,7 @@ class ApiFlow extends ApiBase {
 
 		$module->extractRequestParams();
 		$module->profileIn();
-		$module->setWorkflowParams( $this->getPage( $params ), $this->getId( $params ) );
+		$module->setPage( $this->getPage( $params ) );
 		$module->doRender( $params['render'] );
 		$module->execute();
 		wfRunHooks( 'APIFlowAfterExecute', array( $module ) );
@@ -86,37 +86,17 @@ class ApiFlow extends ApiBase {
 
 	/**
 	 * @param array $params
-	 * @return null|UUID
-	 */
-	protected function getId( $params ) {
-		if ( isset( $params['workflow'] ) ) {
-			try {
-				return UUID::create( $params['workflow'] );
-			} catch ( \Flow\Exception\InvalidInputException $e ) {
-				$this->dieUsage( 'An invalid value was passed as the workflow id', 'invalid-workflow' );
-			}
-		}
-
-		return null;
-	}
-
-	/**
-	 * @param array $params
-	 * @return Title|bool false if no title provided
+	 * @return Title
 	 */
 	protected function getPage( $params ) {
-		if ( isset( $params['page'] ) ) {
-			$page = Title::newFromText( $params['page'] );
-			if ( !$page ) {
-				$this->dieUsage( 'Invalid page provided', 'invalid-page' );
-			}
-			/** @var Flow\TalkpageManager $controller */
-			$controller = Container::get( 'occupation_controller' );
-			if ( !$controller->isTalkpageOccupied( $page ) ) {
-				$this->dieUsage( 'Page provided does not have Flow enabled', 'invalid-page' );
-			}
-		} else {
-			$page = false;
+		$page = Title::newFromText( $params['page'] );
+		if ( !$page ) {
+			$this->dieUsage( 'Invalid page provided', 'invalid-page' );
+		}
+		/** @var Flow\TalkpageManager $controller */
+		$controller = Container::get( 'occupation_controller' );
+		if ( !$controller->isTalkpageOccupied( $page ) ) {
+			$this->dieUsage( 'Page provided does not have Flow enabled', 'invalid-page' );
 		}
 
 		return $page;
@@ -135,8 +115,9 @@ class ApiFlow extends ApiBase {
 				ApiBase::PARAM_REQUIRED => true,
 				ApiBase::PARAM_TYPE => $submodulesType,
 			),
-			'workflow' => null,
-			'page' => null,
+			'page' => array(
+				ApiBase::PARAM_REQUIRED => true
+			),
 			'token' => '',
 			'render' => array(
 				ApiBase::PARAM_TYPE => 'boolean',
@@ -152,7 +133,6 @@ class ApiFlow extends ApiBase {
 	public function getParamDescription() {
 		return array(
 			'submodule' => 'The Flow submodule to invoke',
-			'workflow' => 'The Workflow to take the action on',
 			'page' => 'The page to take the action on',
 			'token' => 'An edit token',
 			'render' => 'Set this to something to include a block-specific rendering in the output',
@@ -212,7 +192,7 @@ class ApiFlow extends ApiBase {
 
 	public function getExamples() {
 		 return array(
-			 'api.php?action=flow&submodule=edit-header&ehprev_revision=???&ehcontent=Nice%20to&20meet%20you&workflow=',
+			 'api.php?action=flow&submodule=edit-header&page=Talk:Sandbox&ehprev_revision=???&ehcontent=Nice%20to&20meet%20you',
 		 );
 	}
 

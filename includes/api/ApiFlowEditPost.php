@@ -42,7 +42,7 @@ class ApiFlowEditPost extends ApiFlowBasePost {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=edit-post&eppostId=???&epprev_revision=???&epcontent=Nice%20to&20meet%20you&workflow=',
+			'api.php?action=flow&submodule=edit-post&page=Topic:S2tycnas4hcucw8w&eppostId=???&epprev_revision=???&epcontent=Nice%20to&20meet%20you',
 		);
 	}
 }

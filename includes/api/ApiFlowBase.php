@@ -15,9 +15,6 @@ abstract class ApiFlowBase extends ApiBase {
 	/** @var Title|bool $page */
 	protected $page;
 
-	/** @var UUID|null $id */
-	protected $id;
-
 	/** @var bool $render */
 	protected $render;
 
@@ -39,19 +36,15 @@ abstract class ApiFlowBase extends ApiBase {
 	 */
 	abstract protected function getBlockParams();
 
-	/**
-	 * Allows the main ApiFlow instance to set default parameters
-	 *
-	 * @param Title|bool $page
-	 * @param UUID|null $workflow
-	 */
-	public function setWorkflowParams( $page, $workflow ) {
-		$this->page = $page;
-		$this->id = $workflow;
-	}
-
 	public function doRender( $do = null ) {
 		return wfSetVar( $this->render, $do );
+	}
+
+	/**
+	 * @param Title $title
+	 */
+	public function setPage( Title $page ) {
+		$this->page = $page;
 	}
 
 	/*
@@ -75,7 +68,7 @@ abstract class ApiFlowBase extends ApiBase {
 			$container = $this->getContainer();
  			/** @var WorkflowLoaderFactory $factory */
 			$factory = $container['factory.loader.workflow'];
-			$this->loader = $factory->createWorkflowLoader( $this->page, $this->id );
+			$this->loader = $factory->createWorkflowLoader( $this->page );
 		}
 
 		return $this->loader;

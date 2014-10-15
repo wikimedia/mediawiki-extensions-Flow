@@ -41,7 +41,7 @@ class ApiFlowReply extends ApiFlowBasePost {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=reply&repreplyTo=050e554490c2b269143b080027630f57&repntcontent=Nice%20to&20meet%20you&workflow=',
+			'api.php?action=flow&submodule=reply&page=Topic:S2tycnas4hcucw8w&repreplyTo=050e554490c2b269143b080027630f57&repntcontent=Nice%20to&20meet%20you',
 		);
 	}
 }

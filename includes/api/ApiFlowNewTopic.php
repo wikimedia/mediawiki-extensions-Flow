@@ -42,7 +42,7 @@ class ApiFlowNewTopic extends ApiFlowBasePost {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=new-topic&nttopic=Hi&ntcontent=Nice%20to&20meet%20you&workflow=',
+			'api.php?action=flow&submodule=new-topic&page=Talk:Sandbox&nttopic=Hi&ntcontent=Nice%20to&20meet%20you',
 		);
 	}
 }
