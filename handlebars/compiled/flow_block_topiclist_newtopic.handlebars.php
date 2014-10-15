@@ -65,11 +65,11 @@
 		<textarea name="topiclist_content"
 			data-flow-preview-template="flow_topic"
 			class="mw-ui-input flow-form-collapsible mw-ui-input-large"
-			style="display:none;"
+			'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isOnFlowBoard'])) ? $in['isOnFlowBoard'] : null))) ? 'style="display:none;"' : '').'
 			placeholder="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-newtopic-content-placeholder',((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['title'])) ? $cx['scopes'][0]['title'] : null)),Array()), 'encq').'" data-role="content" required></textarea>
 
 		<div class="flow-form-actions flow-form-collapsible"
-			style="display:none;">
+			'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isOnFlowBoard'])) ? $in['isOnFlowBoard'] : null))) ? 'style="display:none;"' : '').'>
 			<button data-role="submit" data-flow-api-handler="newTopic"
 				data-flow-interactive-handler="apiRequest"
 				class="mw-ui-button mw-ui-constructive mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-newtopic-save'),Array()), 'encq').'</button>
