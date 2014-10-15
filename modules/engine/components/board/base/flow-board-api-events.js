@@ -92,6 +92,22 @@
 		};
 	};
 
+	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.moderatePost = function() {
+		var $this = $( this ),
+			role = $this.data( 'role' );
+
+		// @todo blah method of determining what to do, what should we use instead?
+		if ( role && $this.closest( '.flow-undo' ).length ) {
+			// undo'ing pre-fills the content field
+			return {
+				content: '(undo ' + role + ')'
+			};
+		} else {
+			// no overrides
+			return {};
+		}
+	};
+
 	/**
 	 * Before activating header, sends an overrideObject to the API to modify the request params.
 	 * @param {Event} event
@@ -911,7 +927,19 @@
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.moderatePost = _genModerateHandler(
 		'moderate-post',
 		function ( $target, revision, apiResult ) {
-			_flowBoardComponentRefreshTopic( $target, apiResult );
+			var $replacement,
+				flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) );
+
+			if ( revision.isModerated ) {
+				$replacement = $( mw.flow.TemplateEngine.processTemplate(
+					'flow_moderate_post_confirmation',
+					revision
+				) );
+				$target.closest( '.flow-post-main' ).replaceWith( $replacement );
+				flowBoard.emitWithReturn( 'makeContentInteractive', $replacement );
+			} else {
+				_flowBoardComponentRefreshTopic( $target, apiResult );
+			}
 		}
 	);
 
@@ -947,7 +975,7 @@
 
 			successCallback.call(
 				this,
-				$form.data( 'flow-dialog-owner' ),
+				$form.data( 'flow-dialog-owner' ) || $form,
 				result.revisions[result.posts[id]],
 				result
 			);
