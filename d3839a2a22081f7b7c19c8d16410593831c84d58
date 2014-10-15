@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_78950835",
+        "filename": "handlebars/flow_topic_titlebar.handlebars",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-15T19:37:55Z",
+      "side": 1,
+      "message": "no need to set the interactive-handler as long as the api-handler is set",
+      "revId": "d3839a2a22081f7b7c19c8d16410593831c84d58",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_989a5465",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-15T19:37:55Z",
+      "side": 1,
+      "message": "we should really be sending plaintext here rather than wikitext, not sure if backend allows it yet though.",
+      "revId": "d3839a2a22081f7b7c19c8d16410593831c84d58",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
