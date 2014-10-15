@@ -36,7 +36,7 @@ class ApiFlowEditTopicSummary extends ApiFlowBasePost {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=edit-topic-summary&wetsprev_revision=???&etssummary=Nice%20to&20meet%20you&workflow=???',
+			'api.php?action=flow&submodule=edit-topic-summary&page=Topic:S2tycnas4hcucw8w&wetsprev_revision=???&etssummary=Nice%20to&20meet%20you',
 		);
 	}
 }

@@ -42,7 +42,7 @@ class ApiFlowViewTopicSummary extends ApiFlowBaseGet {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=view-topic-summary&vtscontentFormat=wikitext&workflow=&revId=',
+			'api.php?action=flow&submodule=view-topic-summary&page=Topic:S2tycnas4hcucw8w&vtscontentFormat=wikitext&revId=',
 		);
 	}
 }
