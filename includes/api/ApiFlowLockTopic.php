@@ -48,7 +48,7 @@ class ApiFlowLockTopic extends ApiFlowBasePost {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=lock-topic&cotmoderationState=lock&cotsummary=Ahhhh&workflow=',
+			'api.php?action=flow&submodule=lock-topic&page=Topic:S2tycnas4hcucw8w&cotmoderationState=lock&cotsummary=Ahhhh',
 		);
 	}
 }

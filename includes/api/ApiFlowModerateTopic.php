@@ -39,7 +39,7 @@ class ApiFlowModerateTopic extends ApiFlowBasePost {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=moderate-topic&mtmoderationState=delete&mtreason=Ahhhh&workflow=',
+			'api.php?action=flow&submodule=moderate-topic&page=Topic:S2tycnas4hcucw8w&mtmoderationState=delete&mtreason=Ahhhh',
 		);
 	}
 }

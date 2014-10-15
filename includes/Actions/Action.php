@@ -70,13 +70,12 @@ class FlowAction extends Action {
 
 		$request = $this->context->getRequest();
 
-		$workflowId = $this->detectWorkflowId( $title, $request );
 		$action = $request->getVal( 'action', 'view' );
 
 		try {
  			/** @var WorkflowLoaderFactory $factory */
 			$factory = $container['factory.loader.workflow'];
-			$loader = $factory->createWorkflowLoader( $title, UUID::create( $workflowId ) );
+			$loader = $factory->createWorkflowLoader( $title );
 
 			if ( $title->getNamespace() === NS_TOPIC && $loader->getWorkflow()->getType() !== 'topic' ) {
 				// @todo better error handling
@@ -89,45 +88,9 @@ class FlowAction extends Action {
 			}
 
 			$view->show( $loader, $action );
-		} catch ( InvalidInputException $e ) {
-			if ( $workflowId ) {
-				// Check if it's the wrong title, redirect to correct one
-				/** @var ManagerGroup $storage */
-				$storage = $container['storage'];
-				/** @var Workflow $workflow */
-				$workflow = $storage->get( 'Workflow', $workflowId );
-
-				if (
-					$workflow &&
-					! $workflow->getArticleTitle()->equals( $title )
-				) {
-					$redirTitle = $workflow->getArticleTitle();
-					$query = array( 'workflow' => $workflowId->getAlphadecimal() );
-					$redirUrl = $redirTitle->getLinkURL( $query );
-
-					$output->redirect( $redirUrl );
-					return;
-				}
-			}
-
-			// If we couldn't handle it by redirecting, show an error
-			$e->setOutput( $output );
-			throw $e;
 		} catch( FlowException $e ) {
 			$e->setOutput( $output );
 			throw $e;
 		}
-	}
-
-	// @todo delete this function. The title will be converted to uuid anyways
-	// and afaik we dont need to pass workflow as a query parameter anymore.
-	protected function detectWorkflowId( Title $title, WebRequest $request ) {
-		if ( $title->getNamespace() === NS_TOPIC ) {
-			$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
-		} else {
-			$uuid = UUID::create( strtolower( $request->getVal( 'workflow' ) ) ?: null );
-		}
-
-		return $uuid;
 	}
 }

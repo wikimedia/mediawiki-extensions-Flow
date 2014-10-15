@@ -77,7 +77,7 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=view-topiclist&workflow=',
+			'api.php?action=flow&submodule=view-topiclist&page=Talk:Sandbox',
 		);
 	}
 }
