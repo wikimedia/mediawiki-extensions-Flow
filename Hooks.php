@@ -884,8 +884,9 @@ class FlowHooks {
 		if ( $title->getNamespace() !== NS_TOPIC ) {
 			return true;
 		}
-		$uuid = UUID::create( $title->getDbKey() );
-		if ( !$uuid ) {
+		try {
+			$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
+		} catch ( Flow\Exception\InvalidInputException $e ) {
 			return true;
 		}
 		$workflow = Container::get( 'storage' )->get( 'Workflow', $uuid );
@@ -933,7 +934,7 @@ class FlowHooks {
 
 		try {
 			// Find the title text of this specific topic
-			$uuid = UUID::create( $title->getDBKey() );
+			$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
 			$collection = PostCollection::newFromId( $uuid );
 			$revision = $collection->getLastRevision();
 		} catch ( \Exception $e ) {
@@ -964,7 +965,7 @@ class FlowHooks {
 		$queries = array();
 		foreach( $ids as $id ) {
 			try {
-				$uuid = UUID::create( strtolower( $id ) );
+				$uuid = WorkflowLoaderFactory::uuidFromTitlePair( NS_TOPIC, $id );
 				$queries[] = array( 'rev_type_id' => $uuid );
 			} catch ( \Exception $e ) {
 				// invalid id
