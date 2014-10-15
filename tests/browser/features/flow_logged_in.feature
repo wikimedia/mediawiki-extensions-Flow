@@ -18,7 +18,7 @@ Feature: Create new topic logged in
     # hover doesn't work in IE, bug 67723
     When I hover over the author link
     Then the talk to author link is visible
-      And the block author link is visible
+      And the block author link should be visible
 
   Scenario: Post Actions
     When I click the Post Actions link
