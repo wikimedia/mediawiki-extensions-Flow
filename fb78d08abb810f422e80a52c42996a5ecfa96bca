@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e96e304_7c13b505",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-16T14:46:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e96e304_b8287033",
+      "revId": "fb78d08abb810f422e80a52c42996a5ecfa96bca",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e96e304_1813a406",
         "filename": "includes/Block/Topic.php",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-10-15T19:23:37Z",
       "side": 1,
       "message": "should this switch based on $this-\u003ewasSubmitted() like below?",
+      "revId": "fb78d08abb810f422e80a52c42996a5ecfa96bca",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_5c16f9f7",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-16T14:46:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e96e304_1813a406",
       "revId": "fb78d08abb810f422e80a52c42996a5ecfa96bca",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
