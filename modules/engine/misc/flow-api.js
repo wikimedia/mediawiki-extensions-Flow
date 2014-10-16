@@ -11,7 +11,7 @@ window.mw = window.mw || {}; // mw-less testing
 		// Map of API submodule name, block name, and prefix name
 		'moderate-post': [ 'topic_', 'mp' ],
 		'new-topic': [ 'topiclist_', 'nt' ],
-		'edit-header': [ 'header_' , 'eh' ],
+		'edit-header': [ 'header_', 'eh' ],
 		'edit-post': [ 'topic_', 'ep' ],
 		'reply': [ 'topic_', 'rep' ],
 		'moderate-topic': [ 'topic_', 'mt' ],
@@ -84,7 +84,7 @@ window.mw = window.mw || {}; // mw-less testing
 
 				return mwApi.postWithToken( tokenType, params );
 			} else if ( method !== 'GET' ) {
-				return $deferred.rejectWith({ error: "Unknown submission method: " + method });
+				return $deferred.rejectWith({ error: 'Unknown submission method: ' + method });
 			} else {
 				return mwApi.get( params );
 			}
