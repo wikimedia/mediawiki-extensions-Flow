@@ -8,8 +8,8 @@ Feature: Replying
   @phantomjs
   Scenario: I can reply
     Given I have created a Flow topic with title "Reply test"
-      And I reply with comment "Boom boom shake shake the room"
-    Then the top post's first reply contains the text "Boom boom shake shake the room"
+    When I reply with comment "Boom boom shake shake the room"
+    Then the top post's first reply should contain the text "Boom boom shake shake the room"
 
   @phantomjs
   Scenario: Replying updates watched state
@@ -22,7 +22,7 @@ Feature: Replying
 
   Scenario: Previewing reply, continue editing, then cancel leaves usable form
     Given I have created a Flow topic with title "Reply preview test"
-      And I start a reply with comment "my form lies over the ocean"
+    When I start a reply with comment "my form lies over the ocean"
       And I click the Preview button
       And I click the Keep editing button
       And I click the Cancel button and confirm the dialog
