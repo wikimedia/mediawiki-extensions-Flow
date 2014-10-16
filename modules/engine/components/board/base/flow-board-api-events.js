@@ -683,12 +683,13 @@
 		result.roots = [result.roots[0]];
 		html = mw.flow.TemplateEngine.processTemplateGetFragment( 'flow_topiclist_loop', result );
 
+		_flowBoardComponentCancelForm( $( this ).closest( 'form' ) );
+
+		// Everything must be reset before re-initializing
 		// @todo un-hardcode
 		flowBoard.reinitializeContainer(
 			flowBoard.$container.find( '.flow-topics' ).prepend( $( html ) )
 		);
-
-		$( this ).closest( 'form' )[0].reset();
 
 		// remove focus - title input field may still have focus
 		// (submitted via enter key), which it needs to lose:
