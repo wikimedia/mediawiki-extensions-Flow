@@ -12,7 +12,8 @@
 			"Ty221",
 			"WTM",
 			"Tar Lócesilion",
-			"Darellur"
+			"Darellur",
+			"Py64"
 		]
 	},
 	"flow-edit-header-link": "Edytuj nagłówek",
@@ -95,6 +96,8 @@
 	"flow-moderation-confirm-hide-topic": "Ukryj",
 	"flow-moderation-confirm-undelete-topic": "Odtwórz",
 	"flow-moderation-confirm-unhide-topic": "Nie ukrywaj",
+	"flow-moderation-confirmation-delete-topic": "Ten temat został usunięty.",
+	"flow-moderation-confirmation-hide-topic": "Ten temat został ukryty.",
 	"flow-revision-permalink-warning-header": "To jest link do pojedynczej wersji nagłówka.\nTa wersja jest z $1. Możesz zobaczyć [$3 różnice od poprzedniej wersji] lub zobaczyć inne wersje na [$2 stronie historii].",
 	"flow-revision-permalink-warning-header-first": "To jest link do pierwszej wersji nagłówka.\nMożesz zobaczyć późniejsze wersje na [$2 stronie historii].",
 	"flow-compare-revisions-header-header": "Ta strona pokazuje {{GENDER:$2|zmiany}} pomiędzy dwiema wersjami nagłówka w [$3 $1]. Możesz również zobaczyć inne wersje na [$4 stronie historii].",
