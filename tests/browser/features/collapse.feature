@@ -5,13 +5,9 @@ Feature: Topic collapsing
     Given I am logged in
       And I am on Flow page
 
-      And I type "Non-Moderated Topic" into the new topic title field
-      And I type "Initial post of Non-Moderated Topic" into the new topic content field
-      And I click New topic save
+      And I have created a Flow topic with title "Non-Moderated Topic"
 
-      And I type "Hidden Topic" into the new topic title field
-      And I type "Initial post of Hidden Topic" into the new topic content field
-      And I click New topic save
+      And I have created a Flow topic with title "Hidden Topic"
       And I click the Topic Actions link
       And I click the Hide topic button
       And I give reason for hiding as being "Test collapsing moderated posts"
