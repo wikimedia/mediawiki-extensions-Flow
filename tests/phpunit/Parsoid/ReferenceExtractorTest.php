@@ -121,7 +121,7 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 			),
 
 			array(
-				'Non-existant File',
+				'Non-existent File',
 				// source wiki text
 				'[[File:Some/Files/Really/Should_Not_Ex/ist.png]]',
 				// expected factory method

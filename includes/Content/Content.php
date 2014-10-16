@@ -29,7 +29,7 @@ abstract class Content {
 
 		if ( $article->getTitle()->getNamespace() === NS_TOPIC ) {
 			// @todo pretty message about invalid workflow
-			throw new FlowException( 'Non-existant topic' );
+			throw new FlowException( 'Non-existent topic' );
 		}
 
 		$emptyContent = ContentHandler::getForModelID( 'flow-board' )->makeEmptyContent();

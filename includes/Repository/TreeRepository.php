@@ -404,7 +404,7 @@ class TreeRepository {
 	}
 
 	/**
-	 * Fetch the id of the immediate parent node of all ids in $nodes.  Non-existant
+	 * Fetch the id of the immediate parent node of all ids in $nodes.  Non-existent
 	 * nodes are not represented in the result set.
 	 */
 	public function fetchParentMap( array $nodes ) {

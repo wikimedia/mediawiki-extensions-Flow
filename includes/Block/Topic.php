@@ -635,7 +635,7 @@ class TopicBlock extends AbstractBlock {
 
 	protected function renderTopicHistoryAPI( array $options ) {
 		if ( $this->workflow->isNew() ) {
-			throw new FlowException( 'No topic history can exist for non-existant topic' );
+			throw new FlowException( 'No topic history can exist for non-existent topic' );
 		}
 		$found = Container::get( 'query.topic.history' )->getResults( $this->workflow->getId() );
 		return $this->processHistoryResult( $found, $options );
@@ -643,7 +643,7 @@ class TopicBlock extends AbstractBlock {
 
 	protected function renderPostHistoryAPI( array $options, UUID $postId ) {
 		if ( $this->workflow->isNew() ) {
-			throw new FlowException( 'No post history can exist for non-existant topic' );
+			throw new FlowException( 'No post history can exist for non-existent topic' );
 		}
 		$found = Container::get( 'query.post.history' )->getResults( $postId );
 		return $this->processHistoryResult( $found, $options );
