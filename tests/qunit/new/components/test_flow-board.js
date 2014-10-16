@@ -17,7 +17,7 @@ QUnit.module( 'ext.flow: FlowBoardComponent', {
 			workflow: 's18cjkj1bs3rkt13',
 			page: 'Topic:S18cjkj1bs3rkt13'
 		} ).returns(
-			new $.Deferred().resolve( {
+			$.Deferred().resolve( {
 				flow: {
 					'view-topic': {
 						result: {
@@ -48,7 +48,7 @@ QUnit.module( 'ext.flow: FlowBoardComponent', {
 			workflow: 't18cjkj1bs3rkt13',
 			page: 'Topic:T18cjkj1bs3rkt13'
 		} ).returns(
-			new $.Deferred().resolve( {
+			$.Deferred().resolve( {
 				flow: {
 					'view-topic': {
 						result: {

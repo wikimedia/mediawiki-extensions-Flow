@@ -17,7 +17,8 @@
 	 * Instantiate one or more new FlowComponents.
 	 * Uses data-flow-component to find the right class, and returns that new instance.
 	 * @param {jQuery} $container
-	 * @returns {FlowComponent|bool|Array}
+	 * @returns {FlowComponent|boolean|Array} The created FlowComponent instance, or an
+	 *  array of FlowComponent instances, or boolean false in case of an error.
 	 * @constructor
 	 */
 	function initFlowComponent( $container ) {
