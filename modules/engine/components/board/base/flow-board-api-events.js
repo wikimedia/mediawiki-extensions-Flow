@@ -98,8 +98,8 @@
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.activateEditHeader = function () {
 		return {
-			submodule: "view-header", // href submodule is edit-header
-			vhcontentFormat: "wikitext" // href does not have this param
+			submodule: 'view-header', // href submodule is edit-header
+			vhcontentFormat: 'wikitext' // href does not have this param
 		};
 	};
 
@@ -126,9 +126,9 @@
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.activateEditPost = function ( event ) {
 		return {
-			submodule: "view-post",
+			submodule: 'view-post',
 			vppostId: $( this ).closest( '.flow-post' ).data( 'flow-id' ),
-			vpcontentFormat: "wikitext"
+			vpcontentFormat: 'wikitext'
 		};
 	};
 
@@ -169,7 +169,7 @@
 
 			// XXX: Find the content parameter
 			$.each( queryMap, function( key, value ) {
-				var piece = key.substr( -7 );
+				var piece = key.slice( -7 );
 				if ( piece === 'content' || piece === 'summary' ) {
 					content = value;
 					return false;
@@ -247,7 +247,9 @@
 
 	/**
 	 * On complete board reprocessing through view-topiclist (eg. change topic sort order), re-render any given blocks.
-	 * @param {Object} info (status:done|fail, $target: jQuery)
+	 * @param {Object} info
+	 * @param {string} info.status "done" or "fail"
+	 * @param {jQuery} info.$target
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
 	 */
@@ -338,7 +340,9 @@
 
 	/**
 	 * Renders the editable board header with the given API response.
-	 * @param {Object} info (status:done|fail, $target: jQuery)
+	 * @param {Object} info
+	 * @param {string} info.status "done" or "fail"
+	 * @param {jQuery} info.$target
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
 	 */
@@ -430,6 +434,10 @@
 
 		// Ensure that on a cancel the form gets destroyed.
 		flowBoard.emitWithReturn( 'addFormCancelCallback', $target.find( 'form' ), function () {
+			// xxx: Can this use replaceWith()? If so, use it because it saves the browser
+			// from having to reflow the document view twice (once with both elements on the
+			// page and then again after its removed, which causes bugs like losing your
+			// scroll offset on long pages).
 			$target.before( $old ).remove();
 		} );
 
@@ -479,6 +487,13 @@
 			workflow: flowId,
 			// Flow topic title, in Topic:<topicId> format (2600 is topic namespace id)
 			page: mw.Title.newFromText( flowId, 2600 ).getPrefixedDb()
+			// @todo fixme
+			// - mw.Title.newFromText can return null. If you're not going to check its return
+			//   value, use 'new mw.Title' instead so that you get an exception for 'invalid title'
+			//   instead of an exception for 'property of null'.
+			// - The second parameter to mw.Title is 'defaultNamespace' not 'namespace'.
+			//   E.g. mw.Title.newFromText( 'User:Example', 6 ) -> 'User:Example', not 'File:
+			//   If you need to prefix/enforce a namespace, use the canonical prefix instead.
 		} ).done( function( result ) {
 			// Update view of the full topic
 			$replacement = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
@@ -501,7 +516,9 @@
 	};
 
 	/**
-	 * @param {Object} info (status:done|fail, $target: jQuery)
+	 * @param {Object} info
+	 * @param {string} info.status "done" or "fail"
+	 * @param {jQuery} info.$target
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
 	 */
@@ -539,7 +556,9 @@
 	/**
 	 * After submit of the topic title edit form, process the response.
 	 *
-	 * @param {Object} info (status:done|fail, $target: jQuery)
+	 * @param {Object} info
+	 * @param {string} info.status "done" or "fail"
+	 * @param {jQuery} info.$target
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
 	 */
@@ -681,12 +700,14 @@
 
 	/**
 	 * After submitting a new topic, process the response.
-	 * @param {Object} info (status:done|fail, $target: jQuery)
+	 * @param {Object} info
+	 * @param {string} info.status "done" or "fail"
+	 * @param {jQuery} info.$target
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.newTopic = function ( info, data, jqxhr ) {
-		var result, html,
+		var result, fragment,
 			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) );
 
 		if ( info.status !== 'done' ) {
@@ -698,14 +719,14 @@
 
 		// render only the new topic
 		result.roots = [result.roots[0]];
-		html = mw.flow.TemplateEngine.processTemplateGetFragment( 'flow_topiclist_loop', result );
+		fragment = mw.flow.TemplateEngine.processTemplateGetFragment( 'flow_topiclist_loop', result );
 
 		flowBoard.emitWithReturn( 'cancelForm', $( this ).closest( 'form' ) );
 
 		// Everything must be reset before re-initializing
 		// @todo un-hardcode
 		flowBoard.reinitializeContainer(
-			flowBoard.$container.find( '.flow-topics' ).prepend( $( html ) )
+			flowBoard.$container.find( '.flow-topics' ).prepend( fragment )
 		);
 
 		// remove focus - title input field may still have focus
@@ -735,7 +756,9 @@
 	};
 
 	/**
-	 * @param {Object} info (status:done|fail, $target: jQuery)
+	 * @param {Object} info
+	 * @param {string} info.status "done" or "fail"
+	 * @param {jQuery} info.$target
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
 	 */
@@ -828,7 +851,9 @@
 
 	/**
 	 * After submit of the summarize topic edit form, process the new topic summary data.
-	 * @param {Object} info (status:done|fail, $target: jQuery)
+	 * @param {Object} info
+	 * @param {string} info.status "done" or "fail"
+	 * @param {jQuery} info.$target
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
 	 */
@@ -916,7 +941,9 @@
 
 	/**
 	 * Renders the editable post with the given API response.
-	 * @param {Object} info (status:done|fail, $target: jQuery)
+	 * @param {Object} info
+	 * @param {string} info.status "done" or "fail"
+	 * @param {jQuery} info.$target
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
 	 */
