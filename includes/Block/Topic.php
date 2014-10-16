@@ -210,7 +210,7 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	protected function validateReply() {
-		if ( empty( $this->submitted['content'] ) ) {
+		if ( trim( $this->submitted['content'] ) === '' ) {
 			$this->addError( 'content', $this->context->msg( 'flow-error-missing-content' ) );
 			return;
 		}
@@ -324,7 +324,7 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 
-		if ( empty( $this->submitted['reason'] ) ) {
+		if ( trim( $this->submitted['reason'] ) === '' ) {
 			$this->addError( 'moderate', $this->context->msg( 'flow-error-invalid-moderation-reason' ) );
 			return;
 		}
@@ -343,7 +343,7 @@ class TopicBlock extends AbstractBlock {
 			$this->addError( 'post', $this->context->msg( 'flow-error-missing-postId' ) );
 			return;
 		}
-		if ( empty( $this->submitted['content'] ) ) {
+		if ( trim( $this->submitted['content'] ) === '' ) {
 			$this->addError( 'content', $this->context->msg( 'flow-error-missing-content' ) );
 			return;
 		}
