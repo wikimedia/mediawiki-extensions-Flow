@@ -96,7 +96,7 @@ class UUID {
 			throw new InvalidInputException( 'Expected ' . self::MIN_ALNUM_LEN . ' to ' . self::ALNUM_LEN . ' char alphanumeric string, got: ' . $value, 'invalid-input' );
 		}
 
-		// string containing upper case characters
+		// If this is not a binary UUID, reject any string containing upper case characters.
 		if ( $format !== self::INPUT_BIN && $value !== strtolower( $value ) ) {
 			throw new InvalidInputException( 'Input UUID strings must be lowercase', 'invalid-input' );
 		}
