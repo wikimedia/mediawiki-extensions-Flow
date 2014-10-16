@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_087eefe1",
+        "filename": "Hooks.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 891,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-16T00:30:59Z",
+      "side": 1,
+      "message": "Shouldn\u0027t it log on this failure?",
+      "revId": "7010c4ff141c0b91866406fcb74481a3b799fd39",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_c8cd6736",
+        "filename": "includes/WorkflowLoaderFactory.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-16T00:30:59Z",
+      "side": 1,
+      "message": "This should also be tagged as throwing.",
+      "revId": "7010c4ff141c0b91866406fcb74481a3b799fd39",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
