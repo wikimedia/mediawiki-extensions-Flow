@@ -40,9 +40,7 @@ $wgExtensionCredits['other'][] = array(
 	'descriptionmsg' => 'flow-desc',
 );
 
-// Constants
-define( 'RC_FLOW', 142 ); // soon to be obsolete, random number chosen
-define( 'NS_TOPIC', 2600 );
+require_once __DIR__ . '/defines.php';
 
 $wgNamespacesWithSubpages[NS_TOPIC] = false;
 $wgNamespaceContentModels[NS_TOPIC] = 'flow-board';

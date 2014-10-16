@@ -7,10 +7,7 @@
 
 $namespaceNames = array();
 
-// For wikis where the Flow extension is not installed.
-if( !defined( 'NS_TOPIC' ) ) {
-	define( 'NS_TOPIC', 2600 );
-}
+require_once __DIR__ . '/defines.php';
 
 /** Asturian */
 $namespaceNames['ast'] = array(
