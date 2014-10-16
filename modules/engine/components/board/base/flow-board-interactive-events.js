@@ -52,7 +52,7 @@
 		// Is this a hidden form or invisible field? Make it visible.
 		flowBoard.emitWithReturn( 'showForm', $form );
 
-		if ( ! $form.is( ':visible' ) ) {
+		if ( !$form.is( ':visible' ) ) {
 			flowBoard.emitWithReturn( 'expandTopicIfNecessary', $form.closest( '.flow-topic' ) );
 		}
 
