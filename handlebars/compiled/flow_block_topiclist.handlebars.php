@@ -31,7 +31,7 @@
 
     );
     return '
-<div class="flow-board-navigation">
+<div class="flow-board-navigation flow-load-interactive" data-flow-load-handler="boardNavigation">
 	<div class="flow-error-container">
 		'.'
 	</div>
