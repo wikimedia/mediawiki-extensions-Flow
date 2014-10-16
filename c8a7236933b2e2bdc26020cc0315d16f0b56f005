@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_5751f2db",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2014-10-16T23:23:04Z",
+      "side": 1,
+      "message": "Assuming this is a string, what\u0027s the .string method?",
+      "revId": "c8a7236933b2e2bdc26020cc0315d16f0b56f005",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
