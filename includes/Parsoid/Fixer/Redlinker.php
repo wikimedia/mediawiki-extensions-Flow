@@ -88,7 +88,7 @@ class Redlinker implements Fixer {
 	 * Linker class build the link HTML (which will take redlinks into account.)
 	 * It will then substitute original link HTML for the one Linker generated.
 	 *
-	 * This replaces both existing and non-existant anchors because the relative links
+	 * This replaces both existing and non-existent anchors because the relative links
 	 * output by parsoid are not usable when output within a subpage.
 	 *
 	 * @param DOMNode $node

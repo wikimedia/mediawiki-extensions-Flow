@@ -894,7 +894,7 @@ class FlowHooks {
 		}
 		$workflow = Container::get( 'storage' )->get( 'Workflow', $uuid );
 		if ( !$workflow ) {
-			wfDebugLog( 'Flow', __METHOD__ . ': Title for non-existant Workflow ' . $title->getPrefixedText() );
+			wfDebugLog( 'Flow', __METHOD__ . ': Title for non-existent Workflow ' . $title->getPrefixedText() );
 			return true;
 		}
 		$urls = array_merge(
