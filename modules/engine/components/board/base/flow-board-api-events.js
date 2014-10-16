@@ -640,8 +640,8 @@
 			) ).children()
 		);
 
-		// Hide any input fields
-		$form.find( 'input, textarea' )
+		// Hide any input fields and anon warning
+		$form.find( 'input, textarea, .flow-anon-warning' )
 			.addClass( 'flow-preview-target-hidden' );
 
 		// Insert the new preview before the form
