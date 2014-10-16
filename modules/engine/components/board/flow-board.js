@@ -67,7 +67,6 @@
 		// Find any new (or previous) elements
 			$header = $container.find( '.flow-board-header' ).addBack().filter( '.flow-board-header:first' ),
 			$boardNavigation = $container.find( '.flow-board-navigation' ).addBack().filter( '.flow-board-navigation:first' ),
-			$topicNavigation = $container.find( '.flow-topic-navigation' ).addBack().filter( '.flow-topic-navigation:first' ),
 			$board = $container.find( '.flow-board' ).addBack().filter( '.flow-board:first' );
 
 		if ( $retObj === false ) {
@@ -99,14 +98,6 @@
 
 			this.$board = $board;
 		}
-		if ( $topicNavigation.length ) {
-			if ( this.$topicNavigation ) {
-				$retObj = $retObj.add( this.$topicNavigation.replaceWith( $topicNavigation ) );
-				this.$topicNavigation.remove();
-			}
-		}
-
-		this.$topicNavigation = $topicNavigation;
 
 		// Second, verify that this board in fact exists
 		if ( !this.$board || !this.$board.length ) {
