@@ -17,6 +17,10 @@ When(/^I cancel the lock\/unlock topic form$/) do
   on(FlowPage).topic_lock_form_cancel_button_element.when_present.click
 end
 
+When(/^I expand the top post$/) do
+  on(FlowPage).flow_first_topic_heading_element.when_present.click
+end
+
 When(/^I submit the lock\/unlock topic form$/) do
   on(FlowPage) do |page|
     page.topic_lock_form_lock_button_element.when_present.click
@@ -33,30 +37,31 @@ When(/^I type "(.*?)" as the reason$/) do |reason|
 end
 
 Then(/^I do not see the lock\/unlock form$/) do
-  on(FlowPage).topic_lock_form_element.when_not_present
-end
-
-
-Then(/^I expand the top post$/) do
-  on(FlowPage).flow_first_topic_heading_element.when_present.click
+  on(FlowPage) do |page|
+    page.topic_lock_form_element.when_not_present
+    expect(page.topic_lock_form_element).not_to be_visible
+  end
 end
 
 Then(/the original message for the top post has no edit link$/) do
-  on(FlowPage).flow_first_topic_original_post_edit_element.should_not exist
+  expect(on(FlowPage).flow_first_topic_original_post_edit_element).not_to be_visible
 end
 
 Then(/^the original message for the top post has no reply link$/) do
-  on(FlowPage).flow_first_topic_original_post_reply_element.should_not exist
+  expect(on(FlowPage).flow_first_topic_original_post_reply_element).not_to be_visible
 end
 
 Then(/^the reason of the first topic is "(.*?)"$/) do |text|
-  on(FlowPage).flow_reason_element.text.should match text
+  expect(on(FlowPage).flow_reason_element.text).to match text
 end
 
 Then(/^the top post is a locked discussion$/) do
-  on(FlowPage).flow_first_topic_moderation_msg_element.when_present.should be_visible
+  expect(on(FlowPage).flow_first_topic_moderation_msg_element.when_present).to be_visible
 end
 
 Then(/^the top post is an open discussion$/) do
-  on(FlowPage).flow_first_topic_moderation_msg_element.when_not_present
+  on(FlowPage) do |page|
+    page.flow_first_topic_moderation_msg_element.when_not_present
+    expect(page.flow_first_topic_moderation_msg_element).not_to be_visible
+  end
 end
