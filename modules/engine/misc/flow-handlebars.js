@@ -69,20 +69,20 @@
 	 * @returns {DocumentFragment}
 	 */
 	FlowHandlebars.prototype.processTemplateGetFragment = function ( templateName, args ) {
-		var $fragment = $( document.createDocumentFragment() ),
+		var fragment = document.createDocumentFragment(),
 			div = document.createElement( 'div' );
 
 		div.innerHTML = FlowHandlebars.prototype.processTemplate( templateName, args );
 
 		FlowHandlebars.prototype.processProgressiveEnhancement( div );
 
-		while ( div.childNodes.length ) {
-			$fragment[0].appendChild( div.childNodes[0] );
+		while ( div.firstChild ) {
+			fragment.appendChild( div.firstChild );
 		}
 
 		div = null;
 
-		return $fragment[0];
+		return fragment;
 	};
 
 	/**
@@ -119,7 +119,7 @@
 				$target = $this.findWithParent( target );
 
 				if ( !$target.length ) {
-					mw.flow.debug( "[processProgressiveEnhancement] Failed to find target", target, arguments );
+					mw.flow.debug( '[processProgressiveEnhancement] Failed to find target', target, arguments );
 					return;
 				}
 			}
@@ -294,7 +294,7 @@
 			return;
 		}
 
-		$ago = $( '#' + arrayItem.guid );
+		$ago = $( document.getElementById( arrayItem.guid ) );
 		failed = true;
 		secondsAgo = currentTime - ( arrayItem.timestamp / 1000 );
 
@@ -349,7 +349,7 @@
 	 */
 	FlowHandlebars.prototype.workflowBlock = function ( context, options ) {
 		return FlowHandlebars.prototype.html( FlowHandlebars.prototype.processTemplate(
-			"flow_block_" + context.type + ( context['block-action-template'] || '' ),
+			'flow_block_' + context.type + ( context['block-action-template'] || '' ),
 			context
 		) );
 	};
@@ -363,7 +363,7 @@
 	 */
 	FlowHandlebars.prototype.postBlock = function ( context, revision, options ) {
 		return FlowHandlebars.prototype.html( FlowHandlebars.prototype.processTemplate(
-			"flow_post",
+			'flow_post',
 			{
 				revision: revision,
 				rootBlock: context
@@ -423,7 +423,7 @@
 			'<scr' + 'ipt' +
 				' type="text/x-handlebars-template-progressive-enhancement"' +
 				' data-type="' + hash.type + '"' +
-				( hash.target ? ' data-target="' + hash.target +'"' : '' ) +
+				( hash.target ? ' data-target="' + hash.target + '"' : '' ) +
 				( hash.id ? ' id="' + hash.id + '"' : '' ) +
 			'>' +
 				inner +
@@ -440,9 +440,8 @@
 	FlowHandlebars.prototype.ifAnonymous = function( options ) {
 		if ( mw.user.isAnon() ) {
 			return options.fn( this );
-		} else {
-			return options.inverse( this );
 		}
+		return options.inverse( this );
 	};
 
 	/**
@@ -476,9 +475,8 @@
 	FlowHandlebars.prototype.escapeContent = function ( contentType, content ) {
 		if ( contentType === 'html' ) {
 			return FlowHandlebars.prototype.html( content );
-		} else {
-			return content;
 		}
+		return content;
 	};
 
 	/**
@@ -491,7 +489,7 @@
 		var params = options.hash;
 
 		return FlowHandlebars.prototype.html( FlowHandlebars.prototype.processTemplate(
-			"flow_tooltip",
+			'flow_tooltip',
 			{
 				positionClass: params.positionClass ? 'flow-ui-tooltip-' + params.positionClass : null,
 				contextClass: params.contextClass ? 'mw-ui-' + params.contextClass : null,
@@ -535,13 +533,14 @@
 	FlowHandlebars.prototype.ifCond = function ( value, operator, value2, options ) {
 		if ( operator === 'or' ) {
 			return value || value2 ? options.fn( this ) : options.inverse( this );
-		} else if ( operator === '===' ) {
-			return value === value2 ? options.fn( this ) : options.inverse( this );
-		} else if ( operator === '!==' ) {
-			return value !== value2 ? options.fn( this ) : options.inverse( this );
-		} else {
-			return '';
 		}
+		if ( operator === '===' ) {
+			return value === value2 ? options.fn( this ) : options.inverse( this );
+		}
+		if ( operator === '!==' ) {
+			return value !== value2 ? options.fn( this ) : options.inverse( this );
+		}
+		return '';
 	};
 
 	/**
@@ -561,7 +560,7 @@
 			retval = content;
 		}
 
-		return retval ? $.trim( retval ).substr( 0, 200 ) : '';
+		return retval ? $.trim( retval ).slice( 0, 200 ) : '';
 	};
 
 	/**
