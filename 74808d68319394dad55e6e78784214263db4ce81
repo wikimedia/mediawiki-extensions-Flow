@@ -16,6 +16,24 @@
       "revId": "74808d68319394dad55e6e78784214263db4ce81",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_b70cf63e",
+        "filename": "includes/Model/Anchor.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-16T16:17:51Z",
+      "side": 1,
+      "message": "It seems like $wgServer (used to build full url) is built from $_SERVER[\u0027HTTP_HOST\u0027], so likely includes m. subdomain.\n\nNot 100% sure though, just a cursory glance ;)",
+      "parentUuid": "8e96e304_386460e1",
+      "revId": "74808d68319394dad55e6e78784214263db4ce81",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
