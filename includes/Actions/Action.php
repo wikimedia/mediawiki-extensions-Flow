@@ -119,13 +119,11 @@ class FlowAction extends Action {
 		}
 	}
 
+	// @todo delete this function. The title will be converted to uuid anyways
+	// and afaik we dont need to pass workflow as a query parameter anymore.
 	protected function detectWorkflowId( Title $title, WebRequest $request ) {
 		if ( $title->getNamespace() === NS_TOPIC ) {
-			$uuid = UUID::create( strtolower( $title->getText() ) );
-			if ( !$uuid ) {
-				// @todo better error handling
-				throw new FlowException( 'Invalid title: not a uuid' );
-			}
+			$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
 		} else {
 			$uuid = UUID::create( strtolower( $request->getVal( 'workflow' ) ) ?: null );
 		}

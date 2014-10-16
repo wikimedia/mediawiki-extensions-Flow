@@ -9,6 +9,7 @@ use Flow\NotificationController;
 use Flow\OccupationController;
 use Flow\SpamFilter\AbuseFilter;
 use Flow\TalkpageManager;
+use Flow\WorkflowLoaderFactory;
 
 class FlowHooks {
 	/**
@@ -884,12 +885,16 @@ class FlowHooks {
 		if ( $title->getNamespace() !== NS_TOPIC ) {
 			return true;
 		}
-		$uuid = UUID::create( $title->getDbKey() );
-		if ( !$uuid ) {
+		try {
+			$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
+		} catch ( Flow\Exception\InvalidInputException $e ) {
+			MWExceptionHandler::logException( $e );
+			wfDebugLog( 'Flow', __METHOD__ . ': Invalid title ' . $title->getPrefixedText() );
 			return true;
 		}
 		$workflow = Container::get( 'storage' )->get( 'Workflow', $uuid );
 		if ( !$workflow ) {
+			wfDebugLog( 'Flow', __METHOD__ . ': Title for non-existant Workflow ' . $title->getPrefixedText() );
 			return true;
 		}
 		$urls = array_merge(
@@ -933,7 +938,7 @@ class FlowHooks {
 
 		try {
 			// Find the title text of this specific topic
-			$uuid = UUID::create( $title->getDBKey() );
+			$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
 			$collection = PostCollection::newFromId( $uuid );
 			$revision = $collection->getLastRevision();
 		} catch ( \Exception $e ) {
@@ -964,7 +969,7 @@ class FlowHooks {
 		$queries = array();
 		foreach( $ids as $id ) {
 			try {
-				$uuid = UUID::create( strtolower( $id ) );
+				$uuid = WorkflowLoaderFactory::uuidFromTitlePair( NS_TOPIC, $id );
 				$queries[] = array( 'rev_type_id' => $uuid );
 			} catch ( \Exception $e ) {
 				// invalid id
