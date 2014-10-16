@@ -63,6 +63,16 @@
 			border-bottom: 1px solid @colorGrayLight;
 		}
 	}
+
+	// Added by JS when the window has been scrolled beyond the navigation, so it sticks to the viewport
+	&.flow-board-navigation-affixed {
+		*display: none !important; // IE6 go away
+		position: fixed;
+		z-index: 2;
+		top: 0;
+		width: 100%;
+		background: @colorWhite;
+	}
 }
 
 // Filter menu below navigation bar
