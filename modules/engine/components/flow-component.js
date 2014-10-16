@@ -186,7 +186,7 @@
 		var i, ret, handleObj, matched, j,
 			handlerQueue = [],
 			args = Array.prototype.slice.call( arguments, 0 ),
-			handlers = ( jQuery._data( this, "events" ) || {} )[ event.type ] || [],
+			handlers = ( jQuery._data( this, 'events' ) || {} )[ event.type ] || [],
 			special = jQuery.event.special[ event.type ] || {};
 
 		// Use the fix-ed jQuery.Event rather than the (read-only) native event
