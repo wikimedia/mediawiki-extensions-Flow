@@ -658,6 +658,9 @@ $wgFlowActions = array(
 	'moderate-post' => array(
 		'handler-class' => 'Flow\Actions\ModeratePostAction',
 	),
+	'purge' => array(
+		'handler-class' => 'Flow\Actions\PurgeAction',
+	),
 
 	// log & all other formatters have same config as history
 	'log' => 'history',
