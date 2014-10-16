@@ -18,7 +18,8 @@
 	 * Uses data-flow-component to find the right class, and returns that new instance.
 	 * Accepts one or more container elements in $container. If multiple, returns an array of FlowBoardComponents.
 	 * @param {jQuery} $container
-	 * @returns {FlowComponent|bool|Array}
+	 * @returns {FlowComponent|boolean|Array} The created FlowComponent instance, or an
+	 *  array of FlowComponent instances, or boolean false in case of an error.
 	 */
 	function initFlowComponent( $container ) {
 		var a, i, componentName, componentBase,
