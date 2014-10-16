@@ -98,8 +98,8 @@
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.activateEditHeader = function () {
 		return {
-			submodule: "view-header", // href submodule is edit-header
-			vhcontentFormat: "wikitext" // href does not have this param
+			submodule: 'view-header', // href submodule is edit-header
+			vhcontentFormat: 'wikitext' // href does not have this param
 		};
 	};
 
@@ -110,9 +110,9 @@
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.activateEditPost = function ( event ) {
 		return {
-			submodule: "view-post",
+			submodule: 'view-post',
 			vppostId: $( this ).closest( '.flow-post' ).data( 'flow-id' ),
-			vpcontentFormat: "wikitext"
+			vpcontentFormat: 'wikitext'
 		};
 	};
 
@@ -153,7 +153,7 @@
 
 			// XXX: Find the content parameter
 			$.each( queryMap, function( key, value ) {
-				var piece = key.substr( -7 );
+				var piece = key.string( -7 );
 				if ( piece === 'content' || piece === 'summary' ) {
 					content = value;
 					return false;
@@ -670,7 +670,7 @@
 	 * @param {jqXHR} jqxhr
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.newTopic = function ( info, data, jqxhr ) {
-		var result, html,
+		var result, fragment,
 			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) );
 
 		if ( info.status !== 'done' ) {
@@ -682,11 +682,11 @@
 
 		// render only the new topic
 		result.roots = [result.roots[0]];
-		html = mw.flow.TemplateEngine.processTemplateGetFragment( 'flow_topiclist_loop', result );
+		fragment = mw.flow.TemplateEngine.processTemplateGetFragment( 'flow_topiclist_loop', result );
 
 		// @todo un-hardcode
 		flowBoard.reinitializeContainer(
-			flowBoard.$container.find( '.flow-topics' ).prepend( $( html ) )
+			flowBoard.$container.find( '.flow-topics' ).prepend( $( fragment ) )
 		);
 
 		$( this ).closest( 'form' )[0].reset();

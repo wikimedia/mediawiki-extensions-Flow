@@ -70,7 +70,7 @@ window.mw = window.mw || {}; // mw-less testing
 					return mwApi.post( params );
 				}
 			} else if ( method !== 'GET' ) {
-				return $deferred.rejectWith({ error: "Unknown submission method: " + method });
+				return $deferred.rejectWith({ error: 'Unknown submission method: ' + method });
 			} else {
 				return mwApi.get( params );
 			}
