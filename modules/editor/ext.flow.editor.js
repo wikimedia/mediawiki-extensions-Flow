@@ -99,6 +99,7 @@
 			},
 			deferred = $.Deferred(),
 			interval = setInterval( $.proxy( load, this, $node, content, contentFormat ), 10 );
+			//$.proxy( load, this, $node, content, contentFormat )();
 
 			return deferred.promise();
 		},
