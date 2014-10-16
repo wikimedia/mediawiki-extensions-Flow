@@ -151,7 +151,7 @@ abstract class FeatureIndex implements Index {
 	 * {@inheritDoc}
 	 */
 	public function getOrder() {
-		if ( isset( $this->options['order'] ) && strtoupper( $options['order'] ) === 'ASC' ) {
+		if ( isset( $this->options['order'] ) && strtoupper( $this->options['order'] ) === 'ASC' ) {
 			return 'ASC';
 		} else {
 			return 'DESC';
