@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e96e304_5cbd9915",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-16T14:06:48Z",
+      "side": 1,
+      "message": "No idea where else we might want to reuse this. But if we do, we can come grab it from here and put it wherever it makes most sense :p",
+      "parentUuid": "8e96e304_f8cb5873",
+      "revId": "9864dfc3f1b17c0a3d0ce92326c39c22a12e4655",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e96e304_18f2c4cd",
         "filename": "includes/Block/Topic.php",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "8e96e304_7cbad51f",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 731,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-16T14:06:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e96e304_18f2c4cd",
+      "revId": "9864dfc3f1b17c0a3d0ce92326c39c22a12e4655",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e96e304_f879182b",
         "filename": "includes/Block/Topic.php",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2014-10-15T19:32:25Z",
       "side": 1,
       "message": "doesn\u0027t seem to be any good way to assert the revision that triggered this error is within the log extract, probably still better than nothing though.",
+      "revId": "9864dfc3f1b17c0a3d0ce92326c39c22a12e4655",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_3c8c4d89",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 746,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-16T14:06:48Z",
+      "side": 1,
+      "message": "The message is \"vague\" enough to only say that we\u0027re showing the deletion log, not guaranteeing whatever we\u0027re looking for is there (which it should always be) :p\n\nGood enough for me, what do you think?",
+      "parentUuid": "8e96e304_f879182b",
       "revId": "9864dfc3f1b17c0a3d0ce92326c39c22a12e4655",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
