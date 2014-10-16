@@ -223,6 +223,24 @@
     },
     {
       "key": {
+        "uuid": "8e96e304_c2277b5e",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-10-16T23:33:46Z",
+      "side": 1,
+      "message": "Right now, yep.",
+      "parentUuid": "8e96e304_1dbdd6ad",
+      "revId": "72641625eebf36074aecf37e30b856593dbf2939",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e96e304_fde02a95",
         "filename": "includes/Model/UUID.php",
         "patchSetId": 9
@@ -240,6 +258,24 @@
     },
     {
       "key": {
+        "uuid": "8e96e304_82197329",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-10-16T23:33:46Z",
+      "side": 1,
+      "message": "This change can be removed.",
+      "parentUuid": "8e96e304_fde02a95",
+      "revId": "72641625eebf36074aecf37e30b856593dbf2939",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e96e304_9d63263b",
         "filename": "maintenance/convertLqt.php",
         "patchSetId": 9
@@ -251,6 +287,24 @@
       "writtenOn": "2014-10-15T18:46:32Z",
       "side": 1,
       "message": "not reviewing since this class seems to completely avoid the Importer class implemented in the rest of this patch?",
+      "revId": "72641625eebf36074aecf37e30b856593dbf2939",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_22165ff7",
+        "filename": "maintenance/convertLqt.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-10-16T23:33:46Z",
+      "side": 1,
+      "message": "Yep, it still needs to be changed.",
+      "parentUuid": "8e96e304_9d63263b",
       "revId": "72641625eebf36074aecf37e30b856593dbf2939",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
