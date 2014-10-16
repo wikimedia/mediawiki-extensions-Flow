@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_57a9f276",
+        "filename": "Resources.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-16T17:30:37Z",
+      "side": 1,
+      "message": "Forgot to drop the .new in the module name.  I\u0027ll do that later today.",
+      "revId": "5ae67e19be3eb48b6263c2f80dc7b363791a4347",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_37b8e6c2",
+        "filename": "Resources.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-16T17:30:37Z",
+      "side": 1,
+      "message": "Can this be more descriptive about what it actually does, rather than which classes extend it?",
+      "revId": "5ae67e19be3eb48b6263c2f80dc7b363791a4347",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_17b36ae9",
+        "filename": "Resources.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-16T17:30:37Z",
+      "side": 1,
+      "message": "It doesn\u0027t seem like these should all be the same module.  E.g. FlowBoardHistoryComponent should be a separate module since it only needs to load on the history page.\n\nThere are probably other useful ways to break it up.",
+      "revId": "5ae67e19be3eb48b6263c2f80dc7b363791a4347",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_57d7b2f2",
+        "filename": "handlebars/flow_form_buttons.handlebars",
+        "patchSetId": 11
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-16T17:30:37Z",
+      "side": 1,
+      "message": "This should be uncommented or removed.",
+      "revId": "5ae67e19be3eb48b6263c2f80dc7b363791a4347",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
