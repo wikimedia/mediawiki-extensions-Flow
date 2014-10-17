@@ -29,11 +29,13 @@ When(/^I submit the lock\/unlock topic form$/) do
 end
 
 When(/^I type "(.*?)" as the reason$/) do |reason|
-  on(FlowPage).topic_lock_form_reason_element.when_present.clear()
-  # Focus textarea so that any menus that have been clicked lose their focus. In Chrome these might disrupt the test as
-  # elements may be masked and not clickable.
-  on(FlowPage).topic_lock_form_reason_element.click
-  on(FlowPage).topic_lock_form_reason_element.send_keys(reason)
+  on(FlowPage) do |page|
+    page.topic_lock_form_reason_element.when_present.clear()
+    # Focus textarea so that any menus that have been clicked lose their focus. In Chrome these might disrupt the test as
+    # elements may be masked and not clickable.
+    page.topic_lock_form_reason_element.click
+    page.topic_lock_form_reason_element.send_keys(reason)
+  end
 end
 
 Then(/^I should not see the lock\/unlock form$/) do
