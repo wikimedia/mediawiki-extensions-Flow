@@ -263,6 +263,22 @@ abstract class FeatureIndex implements Index {
 	}
 
 	/**
+	 * Delete any feature bucket $object would be contained in from the cache
+	 *
+	 * @param object $object
+	 * @param array $row
+	 */
+	public function cachePurge( $object, array $row ) {
+		$indexed = ObjectManager::splitFromRow( $row, $this->indexed );
+		if ( !$indexed ) {
+			throw new DataModelException( 'Un-indexable row: ' . FormatJson::encode( $new ), 'process-data' );
+		}
+		// We don't want to just remove this object from the index, then the index would be incorrect.
+		// We want to delete the bucket that contains this object.
+		$this->cache->delete( $this->cacheKey( $indexed ) );
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	public function onAfterInsert( $object, array $new, array $metadata ) {
