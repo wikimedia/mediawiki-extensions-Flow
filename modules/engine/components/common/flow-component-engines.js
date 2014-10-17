@@ -30,14 +30,8 @@
 	mw.flow.TemplateEngine = FlowComponentEnginesMixin.static.TemplateEngine = new mw.flow.FlowHandlebars( FlowComponentEnginesMixin.static.StorageEngine );
 
 	/**
-	 * Contains the Flow history state manager.
-	 * @type {FlowHistoryStateManager}
-	 */
-	mw.flow.HistoryEngine = FlowComponentEnginesMixin.static.HistoryEngine = new mw.flow.FlowHistoryStateManager( FlowComponentEnginesMixin.static.StorageEngine );
-
-	/**
-	 * Contains the Flow history state manager.
-	 * @type {FlowHistoryStateManager}
+	 * Flow API singleton
+	 * @type {FlowAPI}
 	 */
 	mw.flow.API = new mw.flow.FlowAPI( FlowComponentEnginesMixin.static.StorageEngine );
 
