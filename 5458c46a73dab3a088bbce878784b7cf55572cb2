@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_b0c9567d",
+        "filename": "tests/browser/features/step_definitions/lock_unlock_topics_steps.rb",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1731
+      },
+      "writtenOn": "2014-10-17T18:08:27Z",
+      "side": 1,
+      "message": "Did you miss this one? (could be `page.topic_...`)",
+      "revId": "5458c46a73dab3a088bbce878784b7cf55572cb2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
