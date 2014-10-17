@@ -12,20 +12,26 @@ When(/^I click the Edit title action$/) do
 end
 
 Then(/^I should be able to edit the post field with (.+)$/) do |edited_post|
-  # Take focus away from menu
-  on(FlowPage).post_edit_element.when_present.click
-  on(FlowPage).post_edit_element.when_present.send_keys(edited_post + @random_string)
+  on(FlowPage) do |page|
+    # Take focus away from menu
+    page.post_edit_element.when_present.click
+    page.post_edit_element.when_present.send_keys(edited_post + @random_string)
+  end
 end
 
 Then(/^I should be able to edit the title field with (.+)$/) do |edited_title|
-  # Take focus away from menu
-  on(FlowPage).title_edit_element.when_present.click
-  on(FlowPage).title_edit_element.when_present.send_keys(edited_title + @random_string)
+  on(FlowPage) do |page|
+    # Take focus away from menu
+    page.title_edit_element.when_present.click
+    page.title_edit_element.when_present.send_keys(edited_title + @random_string)
+  end
 end
 
 Then(/^I should be able to save the new post/) do
-  on(FlowPage).change_post_save_element.when_present.click
-  on(FlowPage).change_post_save_element.when_not_present
+  on(FlowPage) do |page|
+    page.change_post_save_element.when_present.click
+    page.change_post_save_element.when_not_present
+  end
 end
 
 Then(/^I should be able to save the new title$/) do
