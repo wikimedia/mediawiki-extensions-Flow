@@ -28,6 +28,15 @@ class ManagerGroup {
 		return $this->container[$this->classMap[$className]];
 	}
 
+	/**
+	 * Purge all cached data related to this object
+	 *
+	 * @param object $object
+	 */
+	public function cachePurge( $object ) {
+		$this->getStorage( get_class( $object ) )->cachePurge( $object );
+	}
+
 	public function put( $object, array $metadata ) {
 		$this->getStorage( get_class( $object ) )->put( $object, $metadata );
 	}

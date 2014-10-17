@@ -42,6 +42,16 @@ class BoardHistoryIndex extends TopKIndex {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	public function cachePurge( $object, array $row ) {
+		$row['topic_list_id'] = $this->findTopicListId( $object, $new );
+		if ( $row['topic_list_id'] ) {
+			parent::cachePurge( $object, $row );
+		}
+	}
+
+	/**
 	 * @param Header|PostRevision $object
 	 * @param string[] $new
 	 * @param array $metadata
