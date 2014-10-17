@@ -61,9 +61,6 @@
 			this.emitWithReturn( 'initializeEditors', $container );
 		}
 
-		// Restore the last state
-		this.constructor.static.HistoryEngine.restoreLastState();
-
 		return $retObj;
 	};
 
