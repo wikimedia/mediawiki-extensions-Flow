@@ -277,11 +277,14 @@ class UUID {
 	}
 
 	/**
-	 * @return string Timestamp in TS_MW format
+	 * Returns the timestamp in the desired format (defaults to TS_MW)
+	 *
+	 * @param string $format Desired format
+	 * @return string
 	 */
-	public function getTimestamp() {
+	public function getTimestamp( $format = TS_MW ) {
 		$ts = $this->getTimestampObj();
-		return $ts->getTimestamp( TS_MW );
+		return $ts->getTimestamp( $format );
 	}
 
 	/**
