@@ -305,11 +305,6 @@ $wgResourceModules += array(
 			'ext.flow.templating',
 		),
 	) + $mobile,
-	'ext.flow.history' => $flowResourceTemplate + array(
-		'scripts' => array(
-			'engine/misc/flow-history.js',
-		),
-	) + $mobile,
 	'ext.flow' => $flowResourceTemplate + array(
 		'scripts' => array( // Component order is important
 			// MW UI
@@ -341,7 +336,6 @@ $wgResourceModules += array(
 			'oojs',
 			'ext.flow.templating', // ResourceLoader templating
 			'ext.flow.handlebars', // prototype-based for progressiveEnhancement
-			'ext.flow.history',
 			'ext.flow.vendor.storer',
 			'ext.flow.vendor.jquery.ba-throttle-debounce',
 			'mediawiki.jqueryMsg',
