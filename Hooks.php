@@ -275,7 +275,6 @@ class FlowHooks {
 
 			$isWatchlist = is_array( $classes ) ? $query->isWatchlist( $classes ) : $isWatchlist;
 
-			// @todo: create hook to allow batch-loading this data
 			$row = $query->getResult( $changesList, $rc, $isWatchlist );
 			if ( $row === false ) {
 				return false;
