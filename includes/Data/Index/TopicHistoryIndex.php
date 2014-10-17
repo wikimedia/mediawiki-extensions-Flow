@@ -4,6 +4,7 @@ namespace Flow\Data\Index;
 
 use Flow\Data\BufferedCache;
 use Flow\Data\Storage\TopicHistoryStorage;
+use Flow\Exception\InvalidInputException;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\UUID;
@@ -31,13 +32,8 @@ class TopicHistoryIndex extends TopKIndex {
 	 * @param array $metadata
 	 */
 	public function onAfterInsert( $object, array $new, array $metadata ) {
-		if ( $object instanceof PostRevision ) {
-			$new['topic_root_id'] = $object->getRootPost()->getPostId()->getAlphadecimal();
-			parent::onAfterInsert( $object, $new, $metadata );
-		} elseif ( $object instanceof PostSummary ) {
-			$new['topic_root_id'] = $object->getCollection()->getWorkflowId()->getAlphadecimal();
-			parent::onAfterInsert( $object, $new, $metadata );
-		}
+		$new['topic_root_id'] = $this->findTopicRootId( $object );
+		parent::onAfterInsert( $object, $new, $metadata );
 	}
 
 	/**
@@ -47,13 +43,8 @@ class TopicHistoryIndex extends TopKIndex {
 	 * @param array $metadata
 	 */
 	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
-		if ( $object instanceof PostRevision ) {
-			$old['topic_root_id'] = $new['topic_root_id'] = $object->getRootPost()->getPostId()->getAlphadecimal();
-			parent::onAfterUpdate( $object, $old, $new, $metadata );
-		} elseif ( $object instanceof PostSummary ) {
-			$old['topic_root_id'] = $new['topic_root_id'] = $object->getCollection()->getWorkflowId()->getAlphadecimal();
-			parent::onAfterUpdate( $object, $old, $new, $metadata );
-		}
+		$old['topic_root_id'] = $new['topic_root_id'] = $this->findTopicRootId( $object );
+		parent::onAfterUpdate( $object, $old, $new, $metadata );
 	}
 
 	/**
@@ -62,12 +53,21 @@ class TopicHistoryIndex extends TopKIndex {
 	 * @param array $metadata
 	 */
 	public function onAfterRemove( $object, array $old, array $metadata ) {
+		$old['topic_root_id'] = $this->findTopicRootId( $object );
+		parent::onAfterRemove( $object, $old, $metadata );
+	}
+
+	/**
+	 * @param PostRevision|PostSummary $object
+	 * @return string alphadecimal uuid
+	 */
+	protected function findTopicRootId( $object ) {
 		if ( $object instanceof PostRevision ) {
-			$old['topic_root_id'] = $object->getRootPost()->getPostId()->getAlphadecimal();
-			parent::onAfterRemove( $object, $old, $metadata );
+			return $object->getRootPost()->getPostId()->getAlphadecimal();
 		} elseif ( $object instanceof PostSummary ) {
-			$old['topic_root_id'] = $object->getCollection()->getWorkflowId()->getAlphadecimal();
-			parent::onAfterRemove( $object, $old, $metadata );
+			return $object->getCollection()->getWorkflowId()->getAlphadecimal();
+		} else {
+			throw new InvalidInputException( 'Unexpected revision type: ' . get_class( $object ) );
 		}
 	}
 
