@@ -4,6 +4,9 @@ namespace Flow\Tests\Data\Index;
 
 use Flow\Data\Index\FeatureIndex;
 
+/**
+ * @group Flow
+ */
 class UniqueFeatureIndexTests extends \MediaWikiTestCase {
 
 	public function testOffsetIdReturnsCorrectPortionOfIndexedValues() {

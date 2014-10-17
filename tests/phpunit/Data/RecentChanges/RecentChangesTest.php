@@ -9,6 +9,9 @@ use Flow\Model\Workflow;
 use Title;
 use User;
 
+/**
+ * @group Flow
+ */
 class RecentChangesTest extends \MediaWikiTestCase {
 
 	public function somethingProvider() {
