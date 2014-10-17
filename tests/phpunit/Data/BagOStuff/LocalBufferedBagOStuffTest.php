@@ -9,6 +9,7 @@ use ObjectCache;
 /**
  * Runs the exact same set of tests as BufferedBagOStuffTest, but with a
  * LocalBufferedBagOStuff object (where get requests are also cached)
+ * @group Flow
  */
 class LocalBufferedBagOStuffTest extends BufferedBagOStuffTest {
 	protected function setUp() {

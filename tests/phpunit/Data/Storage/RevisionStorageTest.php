@@ -5,6 +5,9 @@ namespace Flow\Tests\Data\Storage;
 use Flow\Data\Storage\HeaderRevisionStorage;
 use Flow\Model\UUID;
 
+/**
+ * @group Flow
+ */
 class RevisionStorageTest extends \MediaWikiTestCase {
 
 	public function testUpdateConvertsPrimaryKeyToBinary() {

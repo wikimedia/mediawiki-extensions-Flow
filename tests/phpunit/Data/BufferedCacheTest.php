@@ -10,6 +10,7 @@ use ObjectCache;
 /**
  * Runs the exact same set of tests as BufferedBagOStuffTest, but with a
  * LocalBufferedCache object (with static expiry time)
+ * @group Flow
  */
 class BufferedCacheTest extends BufferedBagOStuffTest {
 	protected function setUp() {

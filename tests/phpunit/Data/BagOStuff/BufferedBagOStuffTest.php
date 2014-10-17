@@ -10,6 +10,9 @@ use MediaWikiTestCase;
 use MultiWriteBagOStuff;
 use ObjectCache;
 
+/**
+ * @group Flow
+ */
 class BufferedBagOStuffTest extends MediaWikiTestCase {
 	/**
 	 * @var BagOStuff
