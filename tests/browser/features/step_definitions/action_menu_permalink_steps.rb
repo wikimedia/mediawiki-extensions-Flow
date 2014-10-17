@@ -27,10 +27,12 @@ When(/^I go to an old style permalink to my topic$/) do
 end
 
 Then(/^I see only one topic on the page$/) do
-  # We should have the a post with a heading
-  expect(on(FlowPage).flow_first_topic_heading_element.when_present).to be_visible
-  # but this should match nothing - there is only one topic.
-  expect(on(FlowPage).flow_second_topic_heading_element).not_to be_visible
+  on(FlowPage) do |page|
+    # We should have the a post with a heading
+    expect(page.flow_first_topic_heading_element.when_present).to be_visible
+    # but this should match nothing - there is only one topic.
+    expect(page.flow_second_topic_heading_element).not_to be_visible
+  end
 end
 
 Then(/^the highlighted comment should contain the text for the 3rd comment$/) do
