@@ -56,9 +56,6 @@
 			this.emitWithReturn( 'initializeEditors', $container );
 		}
 
-		// Restore the last state
-		this.constructor.static.HistoryEngine.restoreLastState();
-
 		// We don't replace anything with this method (we do with flowBoardComponentReinitializeContainer)
 		return $();
 	};
