@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_3fb99178",
+        "filename": "includes/Data/Utils/UserMerger.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 33
+      },
+      "writtenOn": "2014-10-18T20:34:40Z",
+      "side": 1,
+      "message": "the BatchRow stuff looks like it would be useful in core, as seems batch updating stuff is a general / common need.",
+      "revId": "36a43959b3b07a4d31c2c54bd6069d499b3cf07a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
