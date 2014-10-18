@@ -32,8 +32,9 @@ class FlowPage < WikiPage
   # Dialogs
   div(:dialog, css: ".flow-ui-modal")
   textarea(:dialog_input, name: "topic_reason")
-  button(:dialog_cancel, css: ".flow-ui-modal .mw-ui-destructive")
-  button(:dialog_submit, text: "Hide")
+  button(:dialog_cancel, css: "a.mw-ui-destructive:nth-child(2)")
+  button(:dialog_submit_delete, text: "Delete")
+  button(:dialog_submit_suppress, text: "Suppress")
 
   # Posts
   ## Highlighted post
@@ -43,9 +44,11 @@ class FlowPage < WikiPage
   div(:flow_first_topic, css: ".flow-topic", index: 0)
   h2(:flow_first_topic_heading, css: ".flow-topic h2", index: 0)
   div(:flow_first_topic_body, css: ".flow-post-content", index: 0)
-  div(:flow_first_topic_moderation_msg) do |page|
-    page.flow_first_topic_element.div_element(css: '.flow-moderated-topic-title', index: 0)
-  end
+  div(:flow_first_topic_moderation_msg, css: "div.flow-topic-titlebar div.flow-moderated-topic-title")
+
+  #div(:flow_first_topic_moderation_msg) do |page|
+  #  page.flow_first_topic_element.div_element(css: '.flow-moderated-topic-title', index: 0)
+  #end
   div(:flow_first_topic_summary) do |page|
     page.flow_first_topic_element.div_element(css: ".flow-topic-summary")
   end
