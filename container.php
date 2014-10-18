@@ -931,4 +931,11 @@ $c['reference.recorder'] = $c->share( function( $c ) {
 		);
 } );
 
+$c['user_merger'] = $c->share( function( $c ) {
+	return new Flow\Data\Utils\UserMerger(
+		$c['db.factory'],
+		$c['storage']
+	);
+} );
+
 return $c;
