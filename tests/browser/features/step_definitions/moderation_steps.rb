@@ -20,7 +20,6 @@ end
 
 When(/^I give reason for deletion as being "(.*?)"$/) do |delete_reason|
   on(FlowPage) do |page|
-    page.dialog_input_expand_element.when_present.click
     page.dialog_input_element.when_present.send_keys(delete_reason)
   end
 end
@@ -52,7 +51,7 @@ end
 
 
 Then(/^the top post should be marked as deleted$/) do
-  on(FlowPage).flow_first_topic_moderation_msg.when_present.should match( 'This topic was deleted' )
+  on(FlowPage).flow_first_topic_moderation_msg_element.when_present.text.should match( 'This topic has been deleted' )
 end
 
 Then(/^the top post should be marked as suppressed$/) do
