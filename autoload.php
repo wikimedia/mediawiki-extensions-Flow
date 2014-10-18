@@ -113,6 +113,7 @@ $wgAutoloadClasses['Flow\\Data\\Utils\\MultiDimArray'] = __DIR__ . '/includes/Da
 $wgAutoloadClasses['Flow\\Data\\Utils\\RawSql'] = __DIR__ . '/includes/Data/Utils/RawSql.php';
 $wgAutoloadClasses['Flow\\Data\\Utils\\ResultDuplicator'] = __DIR__ . '/includes/Data/Utils/ResultDuplicator.php';
 $wgAutoloadClasses['Flow\\Data\\Utils\\SortArrayByKeys'] = __DIR__ . '/includes/Data/Utils/SortArrayByKeys.php';
+$wgAutoloadClasses['Flow\\Data\\Utils\\UserMerger'] = __DIR__ . '/includes/Data/Utils/UserMerger.php';
 $wgAutoloadClasses['Flow\\DbFactory'] = __DIR__ . '/includes/DbFactory.php';
 $wgAutoloadClasses['Flow\\Exception\\CatchableFatalErrorException'] = __DIR__ . '/includes/Exception/CatchableFatalErrorException.php';
 $wgAutoloadClasses['Flow\\Exception\\CrossWikiException'] = __DIR__ . '/includes/Exception/ExceptionHandling.php';

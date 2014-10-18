@@ -102,6 +102,10 @@ $wgHooks['TitleSquidURLs'][] = 'FlowHooks::onTitleSquidURLs';
 $wgHooks['WatchlistEditorBuildRemoveLine'][] = 'FlowHooks::onWatchlistEditorBuildRemoveLine';
 $wgHooks['WatchlistEditorBeforeFormRender'][] = 'FlowHooks::onWatchlistEditorBeforeFormRender';
 
+// Extension:UserMerge support
+$wgHooks['UserMergeAccountFields'][] = 'FlowHooks::onUserMergeAccountFields';
+$wgHooks['MergeAccountFromTo'][] = 'FlowHooks::onMergeAccountFromTo';
+
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
 
