@@ -586,6 +586,13 @@ abstract class AbstractRevision {
 	}
 
 	/**
+	 * @return UserTuple
+	 */
+	public function getLastContentEditUserTuple() {
+		return $this->lastEditUser;
+	}
+
+	/**
 	 * @return integer
 	 */
 	public function getLastContentEditUserId() {
