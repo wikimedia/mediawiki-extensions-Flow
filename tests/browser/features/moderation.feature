@@ -1,4 +1,4 @@
-@chrome @firefox @internet_explorer_10 @login
+@chrome @clean @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10 @login @test2.wikipedia.org
 Feature: Moderation
 
   Assumes Flow is enabled for the User_talk namespace.
