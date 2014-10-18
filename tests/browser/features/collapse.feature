@@ -14,8 +14,8 @@ Feature: Topic collapsing
       And I click New topic save
       And I click the Topic Actions link
       And I click the Hide topic button
-      And I give reason for hiding as being "Test collapsing moderated posts"
-      And I click Hide topic
+      And I give as reason for moderation "Test collapsing moderated posts"
+      And I click the dialog's Hide button
       And I do not see the dialog box
 
   Scenario: Small topics view

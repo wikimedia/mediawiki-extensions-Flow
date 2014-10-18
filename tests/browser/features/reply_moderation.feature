@@ -11,7 +11,7 @@ Feature: Reply moderation
     When I click the Post Actions link on the 3rd comment on the topic
         And I click Hide comment button
         And I see a dialog box
-        And I give reason for hiding as being "Shhhh!"
+        And I give as reason for moderation "Shhhh!"
         And I click the Hide button in the dialog
     Then the 3rd comment should be marked as hidden
         And the content of the 3rd comment should not be visible

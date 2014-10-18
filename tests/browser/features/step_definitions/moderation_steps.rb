@@ -6,40 +6,31 @@ When(/^I cancel the dialog$/) do
   on(FlowPage).dialog_cancel_element.when_present.click
 end
 
-When(/^I click Delete topic$/) do
-  on(FlowPage).dialog_submit_element.when_present.click
+When(/^I click the dialog's Delete button$/) do
+  on(FlowPage).dialog_delete_button_element.when_present.click
 end
 
-When(/^I click Hide topic$/) do
-  on(FlowPage).dialog_submit_element.when_present.click
+When(/^I click the dialog's Hide button$/) do
+  on(FlowPage).dialog_hide_button_element.when_present.click
 end
 
-When(/^I click Suppress topic$/) do
-  on(FlowPage).dialog_submit_element.when_present.click
+When(/^I click the dialog's Suppress button$/) do
+  on(FlowPage).dialog_suppress_button_element.when_present.click
 end
 
-When(/^I give reason for deletion as being "(.*?)"$/) do |delete_reason|
+When(/^I give as reason for moderation "(.*?)"$/) do |moderation_reason|
   on(FlowPage) do |page|
-    page.dialog_input_expand_element.when_present.click
-    page.dialog_input_element.when_present.send_keys(delete_reason)
-  end
-end
-
-When(/^I give reason for hiding as being "(.*?)"$/) do |hide_reason|
-  on(FlowPage) do |page|
-    page.dialog_input_element.when_present.send_keys(hide_reason)
-  end
-end
-
-When(/^I give reason for suppression as being "(.*?)"$/) do |suppress_reason|
-  on(FlowPage) do |page|
-    page.dialog_input_expand_element.when_present.click
-    page.dialog_input_element.when_present.send_keys(suppress_reason)
+    page.dialog_input_element.when_present.send_keys(moderation_reason)
   end
 end
 
 When(/^I see a dialog box$/) do
   on(FlowPage).dialog_element.when_present.should be_visible
+end
+
+Then(/^the dialog's Delete button should be disabled$/) do
+  val = (FlowPage).dialog_delete_button_element.attribute( "disabled" )
+  expect(val).to eq("true")
 end
 
 Then(/^I confirm$/) do
@@ -50,11 +41,6 @@ Then(/^I do not see the dialog box$/) do
   on(FlowPage).dialog_element.when_not_present
 end
 
-
-Then(/^the top post should be marked as deleted$/) do
-  on(FlowPage).flow_first_topic_moderation_msg.when_present.should match( 'This topic was deleted' )
-end
-
-Then(/^the top post should be marked as suppressed$/) do
-  on(FlowPage).flow_first_topic_moderation_msg.when_present.should match( 'This topic was suppressed' )
+Then(/^the first topic should be moderated as (.+)$/) do |moderation_type|
+  expect(on(FlowPage).flow_first_topic_moderation_msg.when_present).to match('This topic has been ' + moderation_type)
 end

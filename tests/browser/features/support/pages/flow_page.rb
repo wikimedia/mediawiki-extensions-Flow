@@ -31,9 +31,26 @@ class FlowPage < WikiPage
 
   # Dialogs
   div(:dialog, css: ".flow-ui-modal")
-  textarea(:dialog_input, name: "topic_reason")
-  button(:dialog_cancel, css: ".flow-ui-modal .mw-ui-destructive")
-  button(:dialog_submit, text: "Hide")
+  # TODO The following is verbose, surely there's a compact way to identify
+  # five different items all within dialog_element.
+  button(:dialog_delete_button) do |page|
+    page.dialog_element.button_element(text: "Delete")
+  end
+  button(:dialog_hide_button) do |page|
+    page.dialog_element.button_element(text: "Hide")
+  end
+  button(:dialog_suppress_button) do |page|
+    page.dialog_element.button_element(text: "Suppress")
+  end
+  # Note can't use css: ".flow-ui-modal .mw-ui-destructive" to identify
+  # [Cancel] because Flow dialog has another mw-ui-destructive button, the '✕'
+  # in the hidden modal dialog heading.
+  button(:dialog_cancel) do |page|
+    page.dialog_element.button_element(text: "Cancel")
+  end
+  textarea(:dialog_input) do |page|
+    page.dialog_element.text_area_element(name: "topic_reason")
+  end
 
   # Posts
   ## Highlighted post
@@ -44,7 +61,7 @@ class FlowPage < WikiPage
   h2(:flow_first_topic_heading, css: ".flow-topic h2", index: 0)
   div(:flow_first_topic_body, css: ".flow-post-content", index: 0)
   div(:flow_first_topic_moderation_msg) do |page|
-    page.flow_first_topic_element.div_element(css: '.flow-moderated-topic-title', index: 0)
+    page.flow_first_topic_element.div_element(css: '.flow-moderated-topic-title')
   end
   div(:flow_first_topic_summary) do |page|
     page.flow_first_topic_element.div_element(css: ".flow-topic-summary")
