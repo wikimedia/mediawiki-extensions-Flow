@@ -217,6 +217,13 @@ class FlowPage < WikiPage
 
   button(:edit_header_save, text: "Save header")
 
+  # Sorting
+  a(:newest_topics_link, text: "Newest topics")
+  a(:recently_active_topics_choice, href: /topiclist_sortby=updated/)
+  a(:recently_active_topics_link, text: "Recently active topics")
+  a(:newest_topics_choice, href: /topiclist_sortby=newest/)
+
+
   ## Watch and unwatch links
   div(:first_topic_watchlist_container, css: ".flow-topic-watchlist", index:0)
 
