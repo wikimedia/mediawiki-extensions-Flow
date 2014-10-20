@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e96e304_6d33ec0a",
+        "filename": "handlebars/flow_topic_titlebar.handlebars",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-20T14:21:08Z",
+      "side": 1,
+      "message": "Removing this line seemed to break it, handler wasn\u0027t executed.",
+      "parentUuid": "8e96e304_78950835",
+      "revId": "d3839a2a22081f7b7c19c8d16410593831c84d58",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e96e304_989a5465",
         "filename": "modules/new/components/flow-board.js",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2014-10-15T19:37:55Z",
       "side": 1,
       "message": "we should really be sending plaintext here rather than wikitext, not sure if backend allows it yet though.",
+      "revId": "d3839a2a22081f7b7c19c8d16410593831c84d58",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_d033b7f1",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-20T14:21:08Z",
+      "side": 1,
+      "message": "What do you mean exactly? Just that the terminology is awful when consistently using \u0027wikitext\u0027 to not make it parse, when we actually just mean \"this is plain text\"?",
+      "parentUuid": "8e96e304_989a5465",
       "revId": "d3839a2a22081f7b7c19c8d16410593831c84d58",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
