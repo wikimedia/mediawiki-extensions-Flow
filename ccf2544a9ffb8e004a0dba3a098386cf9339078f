@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_991797a8",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-10-20T22:53:29Z",
+      "side": 1,
+      "message": "Please add better context information. This template is only useful on translatewiki.net, and requires changes in a template there to be useful.",
+      "revId": "ccf2544a9ffb8e004a0dba3a098386cf9339078f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
