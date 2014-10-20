@@ -196,19 +196,6 @@ class RecentChangesQuery extends AbstractQuery {
 		return false;
 	}
 
-	// @todo:
-	// This is a temporary fix.
-	// We will add a param to core hook to determine if this is watchlist page
-	// Or add a method to the ChangesList to test for its $watchlist property
-	public function isWatchList( array $classes ) {
-		foreach ( $classes as $class ) {
-			if ( substr( $class, 0, 10 ) === 'watchlist-' ) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	protected function changeSeparator() {
 		return ' <span class="mw-changeslist-separator">. .</span> ';
 	}
