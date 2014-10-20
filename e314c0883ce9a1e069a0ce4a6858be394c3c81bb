@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_0dbee8ce",
+        "filename": "includes/Data/Index/BoardHistoryIndex.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-20T12:58:18Z",
+      "side": 1,
+      "message": "Parameters for this function call are incorrect\n\nFix at https://gerrit.wikimedia.org/r/167564",
+      "revId": "e314c0883ce9a1e069a0ce4a6858be394c3c81bb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_4d2e3040",
+        "filename": "includes/Data/Index/BoardHistoryIndex.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-20T12:58:18Z",
+      "side": 1,
+      "message": "Fatal error: Call to undefined method Flow\\Model\\PostSummary::getRootPost()\n\nFix at https://gerrit.wikimedia.org/r/167563",
+      "revId": "e314c0883ce9a1e069a0ce4a6858be394c3c81bb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
