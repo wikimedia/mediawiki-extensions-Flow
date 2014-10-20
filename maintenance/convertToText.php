@@ -144,7 +144,7 @@ class ConvertToText extends Maintenance {
 		global $wgContLang, $wgParser;
 
 		// Force unstub
-		$wgParser->getRandomString();
+		StubObject::unstub( $wgParser );
 
 		$timestamp = MWTimestamp::getLocalInstance( $timestamp );
 		$ts = $timestamp->format( 'YmdHis' );
