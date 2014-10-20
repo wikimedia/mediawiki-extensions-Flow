@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_2d1724aa",
+        "filename": "autoload.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-20T13:29:16Z",
+      "side": 1,
+      "message": "This isn\u0027t supposed to be in this patch, I guess (or we have an out-of-sync autoload.php)",
+      "revId": "d1bc5b585e09e09b5d142da78943701f8016af77",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_6d4d2ce0",
+        "filename": "includes/Actions/PurgeAction.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-20T13:29:16Z",
+      "side": 1,
+      "message": "The comment could probably be fleshed out a bit more",
+      "revId": "d1bc5b585e09e09b5d142da78943701f8016af77",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_2d308452",
+        "filename": "includes/Actions/PurgeAction.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-20T13:29:16Z",
+      "side": 1,
+      "message": "Drop the \"return\", made me expect the below fetchTopics would also have to return something, while the goal is actually just to have it populate $this-\u003ehashBag",
+      "revId": "d1bc5b585e09e09b5d142da78943701f8016af77",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_cdf1e093",
+        "filename": "includes/Actions/PurgeAction.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-20T13:29:16Z",
+      "side": 1,
+      "message": "I think something in our coding standards says we don\u0027t do \u003d\u003d\u003d with values first",
+      "revId": "d1bc5b585e09e09b5d142da78943701f8016af77",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
