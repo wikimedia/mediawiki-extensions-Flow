@@ -253,7 +253,7 @@ class FlowHooks {
 	/**
 	 * Does the actual work for onOldChangesListRecentChangesLine and onChangesListInsertArticleLink hooks.
 	 * Either updates an entire line with meta info (old changes), or simply updates the link to the topic (enhanced).
-	 * @param IContextSource $changesList
+	 * @param ChangesList    $changesList
 	 * @param string         $s
 	 * @param RecentChange   $rc
 	 * @param null           $classes
@@ -261,7 +261,7 @@ class FlowHooks {
 	 * @param bool           $topicOnly
 	 * @return bool
 	 */
-	protected static function processRecentChangesLine( \IContextSource &$changesList, &$s, \RecentChange $rc, &$classes = null, $isWatchlist = null, $topicOnly = false ) {
+	protected static function processRecentChangesLine( \ChangesList &$changesList, &$s, \RecentChange $rc, &$classes = null, $isWatchlist = null, $topicOnly = false ) {
 		$source = $rc->getAttribute( 'rc_source' );
 		if ( $source === null ) {
 			$rcType = (int) $rc->getAttribute( 'rc_type' );
@@ -276,10 +276,8 @@ class FlowHooks {
 		try {
 			$query = Container::get( 'query.recentchanges' );
 
-			$isWatchlist = is_array( $classes ) ? $query->isWatchlist( $classes ) : $isWatchlist;
-
 			// @todo: create hook to allow batch-loading this data
-			$row = $query->getResult( $changesList, $rc, $isWatchlist );
+			$row = $query->getResult( $changesList, $rc, $changesList->isWatchlist() );
 			if ( $row === false ) {
 				return false;
 			}
