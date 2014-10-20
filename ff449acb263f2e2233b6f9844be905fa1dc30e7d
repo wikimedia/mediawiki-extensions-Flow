@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e96e304_2b02acbe",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-20T16:06:23Z",
+      "side": 1,
+      "message": "that it should, dunno what i was thinking...",
+      "parentUuid": "8e96e304_0d16e8a9",
+      "revId": "ff449acb263f2e2233b6f9844be905fa1dc30e7d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e96e304_ad2a54d5",
         "filename": "includes/Block/Topic.php",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-10-20T13:30:36Z",
       "side": 1,
       "message": "Same as above",
+      "revId": "ff449acb263f2e2233b6f9844be905fa1dc30e7d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_4b07f8cd",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-20T16:06:23Z",
+      "side": 1,
+      "message": "Same as above",
+      "parentUuid": "8e96e304_ad2a54d5",
       "revId": "ff449acb263f2e2233b6f9844be905fa1dc30e7d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
