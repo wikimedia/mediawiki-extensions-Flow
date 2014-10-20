@@ -716,6 +716,24 @@
     },
     {
       "key": {
+        "uuid": "8e96e304_1c3e15b6",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-20T23:40:14Z",
+      "side": 1,
+      "message": "Also, Erik and I don\u0027t think this should trigger a debug warning.",
+      "parentUuid": "8e96e304_1df06861",
+      "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e96e304_7028ae81",
         "filename": "modules/engine/components/common/flow-component-events.js",
         "patchSetId": 13
