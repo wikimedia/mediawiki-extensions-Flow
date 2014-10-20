@@ -71,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "8e96e304_5917cf56",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-20T23:34:49Z",
+      "side": 1,
+      "message": "I\u0027d rather have four arguments.  A meaningful constructor is more important than the count.\n\nThey\u0027re typed anyway, so a mistake is super-obvious (unlike Block.php).",
+      "parentUuid": "8e96e304_593eef88",
+      "revId": "bcefce47834da447e7741cebe46f8bcb4b52da5d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e96e304_7733bd0a",
         "filename": "includes/Import/Importer.php",
         "patchSetId": 12
@@ -116,6 +134,23 @@
       "writtenOn": "2014-10-20T17:31:24Z",
       "side": 1,
       "message": "First parameter should be boardWorkflow.",
+      "revId": "bcefce47834da447e7741cebe46f8bcb4b52da5d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_bc2601b4",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-20T23:34:49Z",
+      "side": 1,
+      "message": "I believe the parent can be a topic (post is a direct child of a topic, for LQT this seems to be limited to one post per topic) or a post (other posts are replies to a post).\n\nIt should work to put ImportOperation $parent, I think.\n\nThis is causing a crash.",
       "revId": "bcefce47834da447e7741cebe46f8bcb4b52da5d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
