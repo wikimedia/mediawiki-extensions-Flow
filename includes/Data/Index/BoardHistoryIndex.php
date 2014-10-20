@@ -101,7 +101,7 @@ class BoardHistoryIndex extends TopKIndex {
 
 		$found = Container::get( 'storage' )->find(
 			'TopicListEntry',
-			array( 'topic_id' => $object->getRootPost()->getPostId() )
+			array( 'topic_id' => $post->getRootPost()->getPostId() )
 		);
 
 		if ( $found ) {
