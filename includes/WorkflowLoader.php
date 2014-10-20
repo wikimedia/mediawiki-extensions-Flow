@@ -53,7 +53,7 @@ class WorkflowLoader {
 
 	/**
 	 * @param IContextSource $context
-	 * @param array $blocks
+	 * @param AbstractBlock[] $blocks
 	 * @param string $action
 	 * @param array $parameters
 	 * @return Block\AbstractBlock[]

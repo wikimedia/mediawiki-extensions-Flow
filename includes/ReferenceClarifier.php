@@ -73,6 +73,12 @@ class ReferenceClarifier {
 			: array();
 	}
 
+	/**
+	 * @param UUID $workflow
+	 * @param string $objectType
+	 * @param UUID $objectId
+	 * @return string Full URL
+	 */
 	protected function getObjectLink( UUID $workflow, $objectType, UUID $objectId ) {
 		if ( $objectType === 'post' ) {
 			$anchor = $this->urlGenerator->postLink( null, $workflow, $objectId );

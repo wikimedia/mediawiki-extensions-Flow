@@ -51,7 +51,7 @@ class WorkflowLoaderFactory {
 
 	/**
 	 * @param Title $pageTitle
-	 * @param UUID|string|null $workflowId
+	 * @param UUID|null $workflowId
 	 * @return WorkflowLoader
 	 * @throws InvalidInputException
 	 * @throws CrossWikiException
@@ -107,7 +107,7 @@ class WorkflowLoaderFactory {
 
 	/**
 	 * @param Title|false $title
-	 * @param string $workflowId
+	 * @param UUID $workflowId
 	 * @return Workflow
 	 * @throws InvalidInputException
 	 */

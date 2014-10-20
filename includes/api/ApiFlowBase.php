@@ -1,8 +1,8 @@
 <?php
 
+use Flow\Block\AbstractBlock;
 use Flow\Container;
 use Flow\Model\AbstractRevision;
-use Flow\Model\UUID;
 use Flow\TalkpageManager;
 use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
@@ -41,7 +41,7 @@ abstract class ApiFlowBase extends ApiBase {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param Title $page
 	 */
 	public function setPage( Title $page ) {
 		$this->page = $page;
@@ -83,7 +83,7 @@ abstract class ApiFlowBase extends ApiBase {
 	}
 
 	/**
-	 * @return array
+	 * @return string[]
 	 */
 	protected function getModerationStates() {
 		return array(
@@ -104,7 +104,7 @@ abstract class ApiFlowBase extends ApiBase {
 	 *   outputting all encountered errors might still not cover everything
 	 *   that's wrong with the request
 	 *
-	 * @param array $blocks
+	 * @param AbstractBlock[] $blocks
 	 */
 	protected function processError( $blocks ) {
 		foreach( $blocks as $block ) {

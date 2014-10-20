@@ -88,7 +88,7 @@ class RevisionActionPermissions {
 	 * Check if a user is allowed to perform certain actions.
 	 *
 	 * @param AbstractRevision|null $revision
-	 * @param string $action... Multiple parameters to check if either of the provided actions are allowed
+	 * @param string $action Multiple parameters to check if either of the provided actions are allowed
 	 * @return bool
 	 */
 	public function isAllowedAny( AbstractRevision $revision = null, $action /* [, $action2 [, ... ]] */ ) {

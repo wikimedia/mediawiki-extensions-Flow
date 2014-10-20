@@ -3,6 +3,7 @@
 namespace Flow\Data;
 
 use BagOStuff;
+use Closure;
 
 /**
  * This class will emulate a BagOStuff, but with a fixed expiry time for all
@@ -93,11 +94,11 @@ class BufferedCache {
 
 	/**
 	 * @param string $key
-	 * @param callable $callback
+	 * @param Closure $callback
 	 * @param int $attempts
 	 * @return bool
 	 */
-	public function merge( $key, \Closure $callback, $attempts = 10 ) {
+	public function merge( $key, Closure $callback, $attempts = 10 ) {
 		return $this->cache->merge( $key, $callback, $this->exptime, $attempts );
 	}
 

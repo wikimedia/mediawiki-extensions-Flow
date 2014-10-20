@@ -1,6 +1,5 @@
 <?php
 
-use Flow\Block\AbstractBlock;
 use Flow\Model\Anchor;
 
 abstract class ApiFlowBasePost extends ApiFlowBase {

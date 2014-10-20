@@ -72,6 +72,14 @@ class ConvertToText extends Maintenance {
 		print $headerContent . implode( "\n", array_reverse( $topics ) );
 	}
 
+	/**
+	 * @param Title $title
+	 * @param string $submodule
+	 * @param array $request
+	 * @param bool $requiredBlock
+	 * @return array
+	 * @throws MWException
+	 */
 	public function flowApi( Title $title, $submodule, array $request, $requiredBlock = false ) {
 		$request = new FauxRequest( $request + array(
 			'action' => 'flow',

@@ -34,6 +34,9 @@ class Container extends \Pimple {
 	/**
 	 * Get a specific item from the Flow Container.
 	 * This should only be used from entry points (hooks and such) into flow from mediawiki core.
+	 *
+	 * @param string $name
+	 * @return mixed
 	 */
 	public static function get( $name ) {
 		$container = self::getContainer();

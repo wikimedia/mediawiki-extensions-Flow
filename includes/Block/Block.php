@@ -17,13 +17,14 @@ use IContextSource;
 interface Block {
 	/**
 	 * @param IContextSource $context
+	 * @param string $action
 	 */
 	function init( IContextSource $context, $action );
 
 	/**
 	 * Perform validation of data model
 	 *
-	 * @param string $action
+	 * @param array $data
 	 * @return boolean True if data model is valid
 	 */
 	function onSubmit( array $data );
@@ -292,7 +293,7 @@ abstract class AbstractBlock implements Block {
 	 *
 	 * @param AbstractRevision|null $old null when $new is first revision
 	 * @param AbstractRevision $new
-	 * @return boolean
+	 * @return boolean True when content is allowed by spam filter
 	 */
 	protected function checkSpamFilters( AbstractRevision $old = null, AbstractRevision $new ) {
 		/** @var SpamFilterController $spamFilter */
@@ -306,10 +307,16 @@ abstract class AbstractBlock implements Block {
 		return false;
 	}
 
+	/**
+	 * @return string The new edit token
+	 */
 	public function getEditToken() {
 		return $this->context->getUser()->getEditToken();
 	}
 
+	/**
+	 * @param string $action
+	 */
 	public function unsetRequiresWikitext( $action ) {
 		$key = array_search( $action, $this->requiresWikitext );
 		if ( $key !== false ) {

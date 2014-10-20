@@ -12,17 +12,35 @@ use User;
 
 // I got the feeling NinetyNinePercentController was a bit much.
 interface OccupationController {
+	/**
+	 * @param Title $title
+	 * @return bool
+	 */
 	public function isTalkpageOccupied( $title );
+
+	/**
+	 * @param Article $title
+	 * @param Workflow $workflow
+	 * @return Revision|null
+	 */
 	public function ensureFlowRevision( Article $title, Workflow $workflow );
 }
 
 class TalkpageManager implements OccupationController {
 
+	/**
+	 * @var int[]
+	 */
+	protected $occupiedNamespaces;
+
+	/**
+	 * @var string[]
+	 */
 	protected $occupiedPages;
 
 	/**
-	 * @param array $occupiedNamespaces See documentation for $wgFlowOccupyNamespaces
-	 * @param array $occupiedPages See documentation for $wgFlowOccupyPages
+	 * @param int[] $occupiedNamespaces See documentation for $wgFlowOccupyNamespaces
+	 * @param string[] $occupiedPages See documentation for $wgFlowOccupyPages
 	 */
 	public function __construct( array $occupiedNamespaces, array $occupiedPages ) {
 		$this->occupiedNamespaces = $occupiedNamespaces;
@@ -34,6 +52,7 @@ class TalkpageManager implements OccupationController {
 	 *
 	 * Internally, determines whether or not 1% of the talk page contains
 	 * 99% of the discussions.
+	 *
 	 * @param  Title  $title Title object to check for occupation status
 	 * @return boolean True if the talk page is occupied, False otherwise.
 	 */
@@ -110,6 +129,7 @@ class TalkpageManager implements OccupationController {
 
 	/**
 	 * Gives a user object used to manage talk pages
+	 *
 	 * @return User User to manage talkpages
 	 */
 	public function getTalkpageManager() {

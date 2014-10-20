@@ -26,10 +26,10 @@ class FlowActions {
 	}
 
 	/**
+	 * Function can be overloaded depending on how deep the desired value is.
+	 *
 	 * @param string $action
 	 * @param string[optional] $type
-	 * @param string[optional] $option Function can be overloaded in case the
-	 * desired value is nested deeper
 	 * @return bool True when the requested parameter exists and is not null
 	 */
 	public function hasValue( $action, $type = null /* [, $option = null [, ...]] */ ) {
@@ -60,10 +60,10 @@ class FlowActions {
 	}
 
 	/**
+	 * Function can be overloaded depending on how deep the desired value is.
+	 *
 	 * @param string $action
 	 * @param string[optional] $type
-	 * @param string[optional] $option Function can be overloaded in case the
-	 * desired value is nested deeper
 	 * @return mixed|null Requested value or null if missing
 	 */
 	public function getValue( $action, $type = null /* [, $option = null [, ...]] */ ) {

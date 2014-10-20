@@ -48,7 +48,7 @@ class FlowHooks {
 	 * Initialized during extension initialization rather than
 	 * in container so that non-flow pages don't load the container.
 	 *
-	 * @return AbuseFilter|null when disabled
+	 * @return AbuseFilter
 	 */
 	public static function getAbuseFilter() {
 		if ( self::$abuseFilter === null ) {
@@ -178,8 +178,8 @@ class FlowHooks {
 
 	/**
 	 * Hook: UnitTestsList
-	 *
 	 * @see http://www.mediawiki.org/wiki/Manual:Hooks/UnitTestsList
+	 *
 	 * @param &$files Array of unit test files
 	 * @return bool true in all cases
 	 */
@@ -196,6 +196,7 @@ class FlowHooks {
 
 	/**
 	 * Loads RecentChanges list metadata into a temporary cache for later use.
+	 *
 	 * @param ChangesList $changesList
 	 * @param array       $rows
 	 */
@@ -229,10 +230,18 @@ class FlowHooks {
 	 * @param bool           $isWatchlist
 	 * @return bool
 	 */
-	public static function onChangesListInsertArticleLink( ChangesList &$changesList, &$articlelink, &$s, &$rc, $unpatrolled, $isWatchlist ) {
+	public static function onChangesListInsertArticleLink(
+		ChangesList &$changesList,
+		&$articlelink,
+		&$s,
+		&$rc,
+		$unpatrolled,
+		$isWatchlist
+	) {
 		if ( !( $changesList instanceof EnhancedChangesList ) ) {
 			// This method is only to update EnhancedChangesList.
-			// onOldChangesListRecentChangesLine allows updating OldChangesList, and supports adding wrapper classes.
+			// onOldChangesListRecentChangesLine allows updating OldChangesList,
+			// and supports adding wrapper classes.
 			return true;
 		}
 		$classes = null; // avoid pass-by-reference error
@@ -241,19 +250,28 @@ class FlowHooks {
 
 	/**
 	 * Updates a Flow line in the old changes list (standard RecentChanges).
+	 *
 	 * @param ChangesList  $changesList
 	 * @param string       $s
 	 * @param RecentChange $rc
 	 * @param array        $classes
 	 * @return bool
 	 */
-	public static function onOldChangesListRecentChangesLine( ChangesList &$changesList, &$s, RecentChange $rc, &$classes = array() ) {
+	public static function onOldChangesListRecentChangesLine(
+		ChangesList &$changesList,
+		&$s,
+		RecentChange $rc,
+		&$classes = array()
+	) {
 		return self::processRecentChangesLine( $changesList, $s, $rc, $classes );
 	}
 
 	/**
-	 * Does the actual work for onOldChangesListRecentChangesLine and onChangesListInsertArticleLink hooks.
-	 * Either updates an entire line with meta info (old changes), or simply updates the link to the topic (enhanced).
+	 * Does the actual work for onOldChangesListRecentChangesLine and
+	 * onChangesListInsertArticleLink hooks. Either updates an entire
+	 * line with meta info (old changes), or simply updates the link to
+	 * the topic (enhanced).
+	 *
 	 * @param ChangesList    $changesList
 	 * @param string         $s
 	 * @param RecentChange   $rc
@@ -261,7 +279,13 @@ class FlowHooks {
 	 * @param bool           $topicOnly
 	 * @return bool
 	 */
-	protected static function processRecentChangesLine( ChangesList &$changesList, &$s, RecentChange $rc, &$classes = null, $topicOnly = false ) {
+	protected static function processRecentChangesLine(
+		ChangesList &$changesList,
+		&$s,
+		RecentChange $rc,
+		&$classes = null,
+		$topicOnly = false
+	) {
 		$source = $rc->getAttribute( 'rc_source' );
 		if ( $source === null ) {
 			$rcType = (int) $rc->getAttribute( 'rc_type' );
@@ -463,6 +487,7 @@ class FlowHooks {
 
 	/**
 	 * Adds Flow entries to watchlists
+	 *
 	 * @param array &$types Type array to modify
 	 * @return boolean true
 	 */
@@ -547,7 +572,8 @@ class FlowHooks {
 	/**
 	 * Adds Flow contributions to the Contributions special page
 	 *
-	 * @param $data array an array of results of all contribs queries, to be merged to form all contributions data
+	 * @param $data array an array of results of all contribs queries, to be
+	 *  merged to form all contributions data
 	 * @param ContribsPager $pager Object hooked into
 	 * @param string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
@@ -781,6 +807,7 @@ class FlowHooks {
 
 	/**
 	 * Add topiclist sortby to preferences.
+	 *
 	 * @param $user User object
 	 * @param &$preferences array Preferences object
 	 * @return bool
@@ -837,6 +864,10 @@ class FlowHooks {
 
 	/**
 	 * Don't (un)watch a non-existing flow topic
+	 *
+	 * @param User $user
+	 * @param Article $page
+	 * $param Status $status
 	 */
 	public static function onWatchArticle( &$user, Article &$page, &$status ) {
 		$title = $page->getTitle();

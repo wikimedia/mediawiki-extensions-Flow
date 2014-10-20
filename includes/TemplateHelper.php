@@ -58,7 +58,7 @@ class TemplateHelper {
 	 * Constructs the location of the the source handlebars template
 	 * and the compiled php code that goes with it.
 	 *
-	 * @param $templateName
+	 * @param string $templateName
 	 * @return array
 	 * @throws FlowException Disallows upwards directory traversal via $templateName
 	 */
@@ -122,6 +122,11 @@ class TemplateHelper {
 		};
 	}
 
+	/**
+	 * @param string $code Handlebars code
+	 * @param string $templateDir Directory templates are stored in
+	 * @return string PHP code
+	 */
 	static public function compile( $code, $templateDir ) {
 		return LightnCandy::compile(
 			$code,
@@ -313,7 +318,7 @@ class TemplateHelper {
 	 * variable into a template or helper.
 	 *
 	 * @param string $string
-	 * @return array (html, 'raw')
+	 * @return string[] array(html, 'raw')
 	 */
 	static protected function html( $string ) {
 		return array( $string, 'raw' );
@@ -322,7 +327,7 @@ class TemplateHelper {
 	/**
 	 * @param array $args Expects one string argument to be output unescaped.
 	 * @param array $named unused
-	 * @return array (html, 'raw')
+	 * @return string[] array(html, 'raw')
 	 */
 	static public function htmlHelper( array $args, array $named ) {
 		return self::html( isset( $args[0] ) ? $args[0] : 'undefined' );
@@ -331,7 +336,7 @@ class TemplateHelper {
 	/**
 	 * @param array $args Expects one array $block
 	 * @param array $named No named arguments expected
-	 * @return array
+	 * @return string[]
 	 * @throws WrongNumberArgumentsException
 	 */
 	static public function block( array $args, array $named ) {
@@ -438,7 +443,7 @@ class TemplateHelper {
 	 *
 	 * @param array $args Expects array $rootBlock, array $revision
 	 * @param array $named No named arguments expected
-	 * @return array
+	 * @return string[]
 	 * @throws WrongNumberArgumentsException
 	 */
 	static public function post( array $args, array $named ) {
@@ -455,7 +460,7 @@ class TemplateHelper {
 	/**
 	 * @param array $args Expects array $revision, string $key = 'timeAndDate'
 	 * @param array $named No named arguments expected
-	 * @return array
+	 * @return string[]
 	 * @throws WrongNumberArgumentsException
 	 */
 	static public function historyTimestamp( array $args, array $named ) {
@@ -501,7 +506,7 @@ class TemplateHelper {
 	/**
 	 * @param array $args Expects array $revision
 	 * @param array $named No named arguments expected
-	 * @return array
+	 * @return string[]
 	 * @throws WrongNumberArgumentsException
 	 */
 	static public function historyDescription( array $args, array $named ) {
@@ -519,7 +524,7 @@ class TemplateHelper {
 	/**
 	 * @param array $args Expects string $old, string $new
 	 * @param array $named No named arguments expected
-	 * @return array
+	 * @return string[]
 	 * @throws WrongNumberArgumentsException
 	 */
 	static public function showCharacterDifference( array $args, array $named ) {
@@ -536,7 +541,7 @@ class TemplateHelper {
 	 *
 	 * @see FlowHandlebars.prototype.progressiveEnhancement in flow-handlebars.js for more details.
 	 * @param array $options
-	 * @return array
+	 * @return string[]
 	 */
 	static public function progressiveEnhancement( array $options ) {
 		$fn = $options['fn'];
@@ -561,7 +566,7 @@ class TemplateHelper {
 	/**
 	 * @param array $args one or more arguments, i18n key and parameters
 	 * @param array $named unused
-	 * @return array
+	 * @return string[]
 	 */
 	static public function l10nParse( array $args, array $named ) {
 		$str = array_shift( $args );
@@ -579,7 +584,7 @@ class TemplateHelper {
 	 *	   string $oldLink Url pointing to `old` content
 	 *	   string $newLink Url pointing to `new` content
 	 * @param array $named No named arguments expected
-	 * @return array HTML wrapped in array to prevent lightncandy from escaping
+	 * @return string[] HTML wrapped in array to prevent lightncandy from escaping
 	 * @throws WrongNumberArgumentsException
 	 */
 	static public function diffRevision( array $args, array $named ) {
