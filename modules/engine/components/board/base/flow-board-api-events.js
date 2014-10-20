@@ -105,6 +105,22 @@
 	};
 
 	/**
+	 * Before activating topic, sends an overrideObject to the API to modify the request params.
+	 *
+	 * @param {Event} event
+	 * @return {Object}
+	 */
+	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.activateEditTitle = function ( event ) {
+		// Use flow-post API for topic as well; we only want this on
+		// particular (title) post revision, not the full topic
+		return {
+			submodule: "view-post",
+			vppostId: $( this ).closest( '.flow-topic' ).data( 'flow-id' ),
+			vpcontentFormat: "wikitext"
+		};
+	};
+
+	/**
 	 * Before activating post, sends an overrideObject to the API to modify the request params.
 	 * @param {Event} event
 	 * @return {Object}
@@ -838,6 +854,65 @@
 
 		// Delete the form
 		$form.remove();
+	};
+
+	/**
+	 * Shows the form for editing a topic title, it's not already showing.
+	 *
+	 * @param {Object} info (status:done|fail, $target: jQuery)
+	 * @param {Object} data
+	 * @param {jqXHR} jqxhr
+	 */
+	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.activateEditTitle = function ( info, data, jqxhr ) {
+		var $title, flowBoard, $form, cancelCallback,
+			$link = $( this ),
+			$topic = $link.closest( '.flow-topic' ),
+			$topicTitleBar = $topic.children( '.flow-topic-titlebar' ),
+			rootBlock = data.flow['view-post'].result.topic,
+			revision = rootBlock.revisions[rootBlock.posts[rootBlock.roots[0]]];
+
+		if ( info.status !== 'done' ) {
+			// Error will be displayed by default, nothing else to wrap up
+			return;
+		}
+
+		$form = $topicTitleBar.find( 'form' );
+
+		if ( $form.length === 0 ) {
+			$title = $topicTitleBar.find( '.flow-topic-title' );
+
+			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $link );
+
+			cancelCallback = function() {
+				$form.remove();
+				$title.show();
+			};
+
+			$title.hide();
+
+			$form = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
+				'flow_edit_topic_title',
+				{
+					'actions' : {
+						'edit' : {
+							'url' : $link.attr( 'href' )
+						}
+					},
+					'content': {
+						'content' : revision.content.content
+					},
+					'revisionId' : revision.revisionId
+				}
+			) ).children();
+
+
+			flowBoard.emitWithReturn( 'addFormCancelCallback', $form, cancelCallback );
+			$form
+				.data( 'flow-initial-state', 'hidden' )
+				.insertAfter( $title );
+		}
+
+		$form.find( '.mw-ui-input' ).focus();
 	};
 
 	/**
