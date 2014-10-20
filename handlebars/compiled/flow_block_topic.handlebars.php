@@ -17,7 +17,6 @@
             'l10nParse' => 'Flow\TemplateHelper::l10nParse',
             'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
             'escapeContent' => 'Flow\TemplateHelper::escapeContent',
-            'plaintextSnippet' => 'Flow\TemplateHelper::plaintextSnippet',
 ),
         'blockhelpers' => Array(),
         'hbhelpers' => Array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -61,7 +60,7 @@
      data-flow-collapser-set="topics"
 >
 	<div class="flow-topic-titlebar flow-click-interactive" data-flow-interactive-handler="collapserCollapsibleToggle" tabindex="0">
-	<h2 class="flow-topic-title" data-title="'.LCRun3::ch($cx, 'plaintextSnippet', Array(Array(((is_array($in['content']) && isset($in['content']['format'])) ? $in['content']['format'] : null),((is_array($in['content']) && isset($in['content']['content'])) ? $in['content']['content'] : null)),Array()), 'encq').'">'.LCRun3::ch($cx, 'escapeContent', Array(Array(((is_array($in['content']) && isset($in['content']['format'])) ? $in['content']['format'] : null),((is_array($in['content']) && isset($in['content']['content'])) ? $in['content']['content'] : null)),Array()), 'encq').'</h2>
+	<h2 class="flow-topic-title">'.LCRun3::ch($cx, 'escapeContent', Array(Array(((is_array($in['content']) && isset($in['content']['format'])) ? $in['content']['format'] : null),((is_array($in['content']) && isset($in['content']['content'])) ? $in['content']['content'] : null)),Array()), 'encq').'</h2>
 <div class="flow-topic-meta">
 	'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['reply'])) ? $in['actions']['reply'] : null))) ? '
 		<a href="'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['url'])) ? $in['actions']['reply']['url'] : null), ENT_QUOTES, 'UTF-8').'"
@@ -146,8 +145,9 @@
 						<a class="mw-ui-button mw-ui-quiet"
 						   href="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['url'])) ? $in['actions']['edit']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['title'])) ? $in['actions']['edit']['title'] : null), ENT_QUOTES, 'UTF-8').'"
-						   data-flow-interactive-handler="editTopicTitle"
-								>
+						   data-flow-interactive-handler="apiRequest"
+						   data-flow-api-handler="activateEditTitle"
+						   data-flow-api-target="< .flow-topic-titlebar">
 							<span class="wikiglyph wikiglyph-pencil"></span>
 							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-edit-title'),Array()), 'encq').'
 						</a>
@@ -370,20 +370,18 @@
 			        data-flow-interactive-handler="apiRequest"
 			        data-flow-api-handler="submitReply"
 			        data-flow-api-target="< .flow-topic">'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['title'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'</button>
-			'.'
-	<button data-flow-api-handler="preview"
-	        data-flow-api-target="< form textarea"
-	        name="preview"
-	        data-role="action"
-	        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-js"
-	>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
+			<button data-flow-api-handler="preview"
+        data-flow-api-target="< form textarea"
+        name="preview"
+        data-role="action"
+        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-js"
+>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
 
-	<button data-flow-interactive-handler="cancelForm"
-	        data-role="cancel"
-	        type="reset"
-	        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
-	>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
-'.'
+<button data-flow-interactive-handler="cancelForm"
+        data-role="cancel"
+        type="reset"
+        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
+>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
 
 			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-terms-of-use-reply'),Array()), 'encq').'</small>
 		</div>
@@ -448,20 +446,18 @@
 			        data-flow-interactive-handler="apiRequest"
 			        data-flow-api-handler="submitReply"
 			        data-flow-api-target="< .flow-topic">'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['title'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'</button>
-			'.'
-	<button data-flow-api-handler="preview"
-	        data-flow-api-target="< form textarea"
-	        name="preview"
-	        data-role="action"
-	        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-js"
-	>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
+			<button data-flow-api-handler="preview"
+        data-flow-api-target="< form textarea"
+        name="preview"
+        data-role="action"
+        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-js"
+>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
 
-	<button data-flow-interactive-handler="cancelForm"
-	        data-role="cancel"
-	        type="reset"
-	        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
-	>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
-'.'
+<button data-flow-interactive-handler="cancelForm"
+        data-role="cancel"
+        type="reset"
+        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
+>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
 
 			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-terms-of-use-reply'),Array()), 'encq').'</small>
 		</div>
