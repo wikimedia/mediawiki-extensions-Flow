@@ -53,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "8e96e304_593eef88",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-10-20T22:23:01Z",
+      "side": 1,
+      "message": "The only reason was that I don\u0027t really want to have a constructor with four arguments.",
+      "parentUuid": "8e96e304_b729459c",
+      "revId": "bcefce47834da447e7741cebe46f8bcb4b52da5d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e96e304_7733bd0a",
         "filename": "includes/Import/Importer.php",
         "patchSetId": 12
@@ -155,6 +173,24 @@
     },
     {
       "key": {
+        "uuid": "8e96e304_f94c9b45",
+        "filename": "includes/Import/lqt-api/Iterators.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-10-20T22:23:01Z",
+      "side": 1,
+      "message": "Yeah, should be replyIndex.",
+      "parentUuid": "8e96e304_2b92ac00",
+      "revId": "bcefce47834da447e7741cebe46f8bcb4b52da5d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e96e304_6b33d40a",
         "filename": "includes/Import/lqt-api/Objects.php",
         "patchSetId": 12
@@ -166,6 +202,24 @@
       "writtenOn": "2014-10-20T17:31:24Z",
       "side": 1,
       "message": "What is expected to happen if the user does not exist on the current wiki?",
+      "revId": "bcefce47834da447e7741cebe46f8bcb4b52da5d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_b95e13eb",
+        "filename": "includes/Import/lqt-api/Objects.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-10-20T22:23:01Z",
+      "side": 1,
+      "message": "You get a User object with UID 0 but that user\u0027s name as the name. Same as what happens with the inbuilt MW export system.\n\nIn production we expect to use this on the same wiki.",
+      "parentUuid": "8e96e304_6b33d40a",
       "revId": "bcefce47834da447e7741cebe46f8bcb4b52da5d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -200,6 +254,24 @@
       "writtenOn": "2014-10-20T17:31:24Z",
       "side": 1,
       "message": "Should throw instead.",
+      "revId": "bcefce47834da447e7741cebe46f8bcb4b52da5d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_196f0791",
+        "filename": "includes/Import/lqt-api/Source.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-10-20T22:23:01Z",
+      "side": 1,
+      "message": "Yep, old debugging code.",
+      "parentUuid": "8e96e304_26bf41cf",
       "revId": "bcefce47834da447e7741cebe46f8bcb4b52da5d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
