@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_ad6494e2",
+        "filename": "autoload.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-20T12:08:41Z",
+      "side": 1,
+      "message": "This line is incorrect; the test file (and autoload entry) is in the correct location already",
+      "revId": "55e45f67702f2dbd9f6edb4355bdae159a5fbe14",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
