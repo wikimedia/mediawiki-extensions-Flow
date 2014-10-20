@@ -2,9 +2,10 @@
 
 namespace Flow\Data;
 
+use Flow\Exception\DataModelException;
+use Flow\Exception\FlowException;
 use Flow\Model\UUID;
 use SplObjectStorage;
-use Flow\Exception\DataModelException;
 
 /**
  * ObjectManager orchestrates the storage of a single type of objects.
@@ -42,10 +43,15 @@ use Flow\Exception\DataModelException;
  *
  *   $object = $om->get( $pk );
  *
- * The Object can be updated by calling ObjectManager:put at
+ * The object can be updated by calling ObjectManager:put at
  * any time.  If the object is to be deleted:
  *
  *   $om->remove( $object );
+ *
+ * The data cached in the indexes about this object can be cleared
+ * with:
+ *
+ *   $om->cachePurge( $object );
  *
  * In addition to the single-use put, get and remove there are also multi
  * variants named multiPut, mulltiGet and multiRemove.  They perform the
@@ -104,6 +110,21 @@ class ObjectManager extends ObjectLocator {
 	public function merge( $object ) {
 		if ( !isset( $this->loaded[$object] ) ) {
 			$this->loaded[$object] = $this->mapper->toStorageRow( $object );
+		}
+	}
+
+	/**
+	 * Purge all cached data related to this object.
+	 *
+	 * @param object $object
+	 */
+	public function cachePurge( $object ) {
+		if ( !isset( $this->loaded[$object] ) ) {
+			throw new FlowException( 'Object was not loaded through this object manager, use ObjectManager::merge if necessary' );
+		}
+		$row = $this->loaded[$object];
+		foreach ( $this->indexes as $index ) {
+			$index->cachePurge( $object, $row );
 		}
 	}
 

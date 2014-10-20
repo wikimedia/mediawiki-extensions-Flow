@@ -27,6 +27,14 @@ class TopicHistoryIndex extends TopKIndex {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	public function cachePurge( $object, array $row ) {
+		$row['topic_root_id'] = $this->findTopicRootId( $object );
+		parent::cachePurge( $object, $row );
+	}
+
+	/**
 	 * @param PostRevision $object
 	 * @param string[] $new
 	 * @param array $metadata
