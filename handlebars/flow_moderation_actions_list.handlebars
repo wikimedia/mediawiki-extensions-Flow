@@ -6,8 +6,10 @@
 			<a class="{{moderationMwUiClass}} mw-ui-quiet"
 			   href="{{actions.edit.url}}"
 			   title="{{actions.edit.title}}"
-			   data-flow-interactive-handler="editTopicTitle"
-					>
+			   data-flow-interactive-handler="apiRequest"
+			   data-flow-api-handler="activateEditTitle"
+			   data-flow-api-target="< .flow-topic-titlebar"
+			>
 				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-pencil"></span> {{/if~}}
 				{{~l10n (concat "flow-" moderationType "-action-edit-title")~}}
 			</a>
