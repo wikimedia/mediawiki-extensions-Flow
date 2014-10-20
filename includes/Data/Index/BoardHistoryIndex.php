@@ -86,7 +86,7 @@ class BoardHistoryIndex extends TopKIndex {
 	public function onAfterRemove( $object, array $old, array $metadata ) {
 		$old['topic_list_id'] = $this->findTopicListId( $object, $old );
 		if ( $old['topic_list_id'] ) {
-			parent::onAfterRemove( $old );
+			parent::onAfterRemove( $object, $old, $metadata );
 		}
 	}
 
