@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_0d77c8d2",
+        "filename": "includes/Data/Storage/RevisionStorage.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-20T13:57:28Z",
+      "side": 1,
+      "message": "Already make follow-up patch to remove these, so we don\u0027t forget about it",
+      "revId": "8307b46a1672c51494ca4e851ca899ad3d4e9eec",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
