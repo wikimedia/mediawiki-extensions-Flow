@@ -195,60 +195,6 @@
 	};
 
 	/**
-	 * Shows the form for editing a topic title, it's not already showing
-	 *
-	 * @param {Event} event
-	 */
-	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.editTopicTitle = function( event ) {
-		var $title, flowBoard, $form, cancelCallback, linkParams,
-			$link = $( this ),
-			$topic = $link.closest( '.flow-topic' ),
-			$topicTitleBar = $topic.children( '.flow-topic-titlebar' );
-
-		$form = $topicTitleBar.find( 'form' );
-
-		if ( $form.length === 0 ) {
-			$title = $topicTitleBar.find( '.flow-topic-title' );
-
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $link );
-
-			cancelCallback = function() {
-				$form.remove();
-				$title.show();
-			};
-
-			linkParams = flowBoard.API.getQueryMap( $link.attr( 'href' ) );
-
-			$title.hide();
-
-			$form = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-				'flow_edit_topic_title',
-				{
-					'actions' : {
-						'edit' : {
-							'url' : $link.attr( 'href' )
-						}
-					},
-					'content': {
-						'content' : $title.data( 'title' )
-					},
-					'revisionId' : linkParams.etrevId
-				}
-			) ).children();
-
-
-			flowBoard.emitWithReturn( 'addFormCancelCallback', $form, cancelCallback );
-			$form
-				.data( 'flow-initial-state', 'hidden' )
-				.insertAfter( $title );
-		}
-
-		$form.find( '.mw-ui-input' ).focus();
-
-		event.preventDefault();
-	};
-
-	/**
 	 * @param {Event} event
 	 */
 	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.activateReplyPost = function ( event ) {
