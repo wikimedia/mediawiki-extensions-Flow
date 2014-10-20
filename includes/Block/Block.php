@@ -17,13 +17,14 @@ use IContextSource;
 interface Block {
 	/**
 	 * @param IContextSource $context
+	 * @param string $action
 	 */
 	function init( IContextSource $context, $action );
 
 	/**
 	 * Perform validation of data model
 	 *
-	 * @param string $action
+	 * @param array $data
 	 * @return boolean True if data model is valid
 	 */
 	function onSubmit( array $data );
@@ -310,6 +311,9 @@ abstract class AbstractBlock implements Block {
 		return $this->context->getUser()->getEditToken();
 	}
 
+	/**
+	 * @param string $action
+	 */
 	public function unsetRequiresWikitext( $action ) {
 		$key = array_search( $action, $this->requiresWikitext );
 		if ( $key !== false ) {

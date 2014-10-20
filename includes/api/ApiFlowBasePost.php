@@ -1,6 +1,5 @@
 <?php
 
-use Flow\Block\AbstractBlock;
 use Flow\Model\Anchor;
 
 abstract class ApiFlowBasePost extends ApiFlowBase {
@@ -10,7 +9,6 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 		/** @var \Flow\Model\Workflow $workflow */
 		$workflow = $loader->getWorkflow();
 		$action = $this->getAction();
-		$user = $this->getUser();
 
 		$result = $this->getResult();
 		$params = $this->getBlockParams();

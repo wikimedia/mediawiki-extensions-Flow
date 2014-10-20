@@ -275,7 +275,7 @@ class ObjectManager extends ObjectLocator {
 	/**
 	 * Update a single objects representation within storage.
 	 *
-	 * @param object $objects
+	 * @param object $object
 	 * @param array $metadata
 	 */
 	protected function updateSingle( $object, array $metadata ) {

@@ -10,6 +10,10 @@ use Flow\Exception\DataModelException;
  * ObjectManagers more conveniently.
  */
 class ManagerGroup {
+	/**
+	 * @param Container $container
+	 * @param array $classMap
+	 */
 	public function __construct( Container $container, array $classMap ) {
 		$this->container = $container;
 		$this->classMap = $classMap;
@@ -37,11 +41,21 @@ class ManagerGroup {
 		$this->getStorage( get_class( $object ) )->cachePurge( $object );
 	}
 
+	/**
+	 * @param object $object
+	 * @param array $metadata
+	 * @throws DataModelException
+	 */
 	public function put( $object, array $metadata ) {
 		$this->getStorage( get_class( $object ) )->put( $object, $metadata );
 	}
 
-
+	/**
+	 * @param string $method
+	 * @param array $objects
+	 * @param array $metadata
+	 * @throws DataModelException
+	 */
 	protected function multiMethod( $method, $objects, array $metadata ) {
 		$itemsByClass = array();
 
@@ -54,14 +68,28 @@ class ManagerGroup {
 		}
 	}
 
+	/**
+	 * @param array $objects
+	 * @param array $metadata
+	 */
 	public function multiPut( $objects, array $metadata = array() ) {
 		$this->multiMethod( 'multiPut', $objects, $metadata );
 	}
 
+	/**
+	 * @param array $objects
+	 * @param array $metadata
+	 */
 	public function multiRemove( $objects, array $metadata = array() ) {
 		$this->multiMethod( 'multiRemove', $objects, $metadata );
 	}
 
+	/**
+	 * @param string $method
+	 * @param array $args
+	 * @return mixed
+	 * @throws DataModelException
+	 */
 	protected function call( $method, $args ) {
 		$className = array_shift( $args );
 

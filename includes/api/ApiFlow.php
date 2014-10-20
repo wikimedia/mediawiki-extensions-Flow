@@ -1,7 +1,6 @@
 <?php
 
 use Flow\Container;
-use Flow\Model\UUID;
 
 class ApiFlow extends ApiBase {
 

@@ -6,28 +6,30 @@ use Action;
 use Article;
 use ErrorPageError;
 use Flow\Container;
-use Flow\Data\ManagerGroup;
 use Flow\Exception\FlowException;
-use Flow\Exception\InvalidInputException;
-use Flow\Model\Workflow;
-use Flow\Model\UUID;
 use Flow\View;
 use Flow\WorkflowLoaderFactory;
 use IContextSource;
 use OutputPage;
 use Page;
-use Title;
-use WebRequest;
 use WikiPage;
 
 class FlowAction extends Action {
 	protected $actionName;
 
+	/**
+	 * @param Page $page
+	 * @param IContextSource $source
+	 * @param string $actionName
+	 */
 	function __construct( Page $page, IContextSource $source, /* string */ $actionName ) {
 		parent::__construct( $page, $source );
 		$this->actionName = $actionName;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() {
 		return $this->actionName;
 	}

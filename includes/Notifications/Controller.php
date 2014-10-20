@@ -398,7 +398,7 @@ class NotificationController {
 	 *
 	 * @param $event EchoEvent being triggered
 	 * @param &$users Array of User objects.
-	 * @return true
+	 * @return bool
 	 */
 	public static function getDefaultNotifiedUsers( EchoEvent $event, &$users ) {
 		$extra = $event->getExtra();

@@ -12,7 +12,17 @@ use User;
 
 // I got the feeling NinetyNinePercentController was a bit much.
 interface OccupationController {
+	/**
+	 * @param Title $title
+	 * @return bool
+	 */
 	public function isTalkpageOccupied( $title );
+
+	/**
+	 * @param Article $title
+	 * @param Workflow $workflow
+	 * @return Revision|null
+	 */
 	public function ensureFlowRevision( Article $title, Workflow $workflow );
 }
 
@@ -21,8 +31,8 @@ class TalkpageManager implements OccupationController {
 	protected $occupiedPages;
 
 	/**
-	 * @param array $occupiedNamespaces See documentation for $wgFlowOccupyNamespaces
-	 * @param array $occupiedPages See documentation for $wgFlowOccupyPages
+	 * @param int[] $occupiedNamespaces See documentation for $wgFlowOccupyNamespaces
+	 * @param string[] $occupiedPages See documentation for $wgFlowOccupyPages
 	 */
 	public function __construct( array $occupiedNamespaces, array $occupiedPages ) {
 		$this->occupiedNamespaces = $occupiedNamespaces;

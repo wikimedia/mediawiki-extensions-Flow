@@ -53,6 +53,14 @@ class NotificationListener implements LifecycleHandler {
 		}
 	}
 
+	/**
+	 * @param string $type
+	 * @param AbstractRevision $object
+	 * @param array $metadata
+	 * @param array $params
+	 * @throws InvalidDataException
+	 * @throws \Flow\Exception\FlowException
+	 */
 	protected function notifyPostChange( $type, $object, $metadata, array $params = array() ) {
 		$workflow = $metadata['workflow'];
 		if ( !$workflow instanceof Workflow ) {

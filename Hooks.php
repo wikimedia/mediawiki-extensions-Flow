@@ -4,7 +4,6 @@ use Flow\Collection\PostCollection;
 use Flow\Container;
 use Flow\Exception\FlowException;
 use Flow\Formatter\CheckUserQuery;
-use Flow\Model\UUID;
 use Flow\NotificationController;
 use Flow\OccupationController;
 use Flow\SpamFilter\AbuseFilter;
@@ -49,7 +48,7 @@ class FlowHooks {
 	 * Initialized during extension initialization rather than
 	 * in container so that non-flow pages don't load the container.
 	 *
-	 * @return AbuseFilter|null when disabled
+	 * @return AbuseFilter
 	 */
 	public static function getAbuseFilter() {
 		if ( self::$abuseFilter === null ) {
@@ -232,7 +231,7 @@ class FlowHooks {
 		if ( !( $changesList instanceof \EnhancedChangesList ) ) {
 			// This method is only to update EnhancedChangesList.
 			// onOldChangesListRecentChangesLine allows updating OldChangesList, and supports adding wrapper classes.
-			return;
+			return true;
 		}
 		$classes = null; // avoid pass-by-reference error
 		return self::processRecentChangesLine( $changesList, $articlelink, $rc, $classes, $isWatchlist, true );
@@ -257,7 +256,7 @@ class FlowHooks {
 	 * @param string         $s
 	 * @param RecentChange   $rc
 	 * @param null           $classes
-	 * @param null           $isWatchlist
+	 * @param bool           $isWatchlist
 	 * @param bool           $topicOnly
 	 * @return bool
 	 */

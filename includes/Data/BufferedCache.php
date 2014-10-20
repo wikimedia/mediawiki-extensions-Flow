@@ -93,7 +93,7 @@ class BufferedCache {
 
 	/**
 	 * @param string $key
-	 * @param callable $callback
+	 * @param \Closure $callback
 	 * @param int $attempts
 	 * @return bool
 	 */
