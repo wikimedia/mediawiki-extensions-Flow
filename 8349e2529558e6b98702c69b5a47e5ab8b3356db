@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_2dd5e447",
+        "filename": "includes/Data/RecentChanges/PostRevisionRecentChanges.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-20T12:23:37Z",
+      "side": 0,
+      "message": "I\u0027m 100% in favor of dropping all this useless stuff.\n\nHowever, I recently submitted a patch (https://gerrit.wikimedia.org/r/#/c/167218/) that would use this.\n\nWithout this, we\u0027ll need additional DB lookups for what I\u0027m doing there.\n\nI think killing the horrible RC hacks is not really an option, so I\u0027m not sure we still want to remove these additional bits of data before we have a better way to load related data.\n\nI\u0027ll think about this for a bit.",
+      "revId": "8349e2529558e6b98702c69b5a47e5ab8b3356db",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
