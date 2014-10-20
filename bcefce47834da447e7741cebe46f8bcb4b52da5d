@@ -1,0 +1,208 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_f73fcdd1",
+        "filename": "autoload.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-20T17:31:24Z",
+      "side": 1,
+      "message": "Would these class names be better using sub-namespaces?  I.E.:\n\nFlow\\\\Import\\\\LiquidThreads\\\\ApiBackend\n\nYou might also rename lqt-api to LiquidThreads.",
+      "revId": "bcefce47834da447e7741cebe46f8bcb4b52da5d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_1745996a",
+        "filename": "includes/Import/CachedData.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-20T17:31:24Z",
+      "side": 1,
+      "message": "API documentation is appreciated.  If nothing else, at least a simple class description on the root class would be useful.",
+      "revId": "bcefce47834da447e7741cebe46f8bcb4b52da5d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_b729459c",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-20T17:31:24Z",
+      "side": 1,
+      "message": "Can storage also be a constructor parameter?",
+      "revId": "bcefce47834da447e7741cebe46f8bcb4b52da5d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_7733bd0a",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-20T17:31:24Z",
+      "side": 1,
+      "message": "Do these all need to be public?  Same question for TopicImportOperation.  Also, type hints would be good, especially since there is no corresponding constructor parameter for some of them.",
+      "revId": "bcefce47834da447e7741cebe46f8bcb4b52da5d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_d72651c9",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-20T17:31:24Z",
+      "side": 1,
+      "message": "This workflowLoaderFactory field appears unused.",
+      "revId": "bcefce47834da447e7741cebe46f8bcb4b52da5d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_8ba660a6",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-20T17:31:24Z",
+      "side": 1,
+      "message": "First parameter should be boardWorkflow.",
+      "revId": "bcefce47834da447e7741cebe46f8bcb4b52da5d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_6b52f46b",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-20T17:31:24Z",
+      "side": 1,
+      "message": "Extra tab.",
+      "revId": "bcefce47834da447e7741cebe46f8bcb4b52da5d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_2beb8c78",
+        "filename": "includes/Import/lqt-api/Iterators.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-20T17:31:24Z",
+      "side": 1,
+      "message": "Rather than do this whole search every time, can this class hold on to the iterator returned by getTopics and call the appropriate methods (current, next, etc.) on that iterator as needed?",
+      "revId": "bcefce47834da447e7741cebe46f8bcb4b52da5d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_2b92ac00",
+        "filename": "includes/Import/lqt-api/Iterators.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-20T17:31:24Z",
+      "side": 1,
+      "message": "lastOffset is undefined in this class, and using a different field from key/next/current would probably cause problems.",
+      "revId": "bcefce47834da447e7741cebe46f8bcb4b52da5d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_6b33d40a",
+        "filename": "includes/Import/lqt-api/Objects.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-20T17:31:24Z",
+      "side": 1,
+      "message": "What is expected to happen if the user does not exist on the current wiki?",
+      "revId": "bcefce47834da447e7741cebe46f8bcb4b52da5d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_66cc698d",
+        "filename": "includes/Import/lqt-api/Objects.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-20T17:31:24Z",
+      "side": 1,
+      "message": "PHP lint is rejecting this on Jenkins (but not on my local).  It\u0027s probably version-specific.  Try separating the reset and [\u0027*\u0027] part into different statements, with a variable.",
+      "revId": "bcefce47834da447e7741cebe46f8bcb4b52da5d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_26bf41cf",
+        "filename": "includes/Import/lqt-api/Source.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-20T17:31:24Z",
+      "side": 1,
+      "message": "Should throw instead.",
+      "revId": "bcefce47834da447e7741cebe46f8bcb4b52da5d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
