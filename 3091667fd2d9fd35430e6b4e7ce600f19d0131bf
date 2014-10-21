@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e96e304_25ce5060",
+        "filename": "includes/Formatter/RecentChanges.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-21T13:58:15Z",
+      "side": 1,
+      "message": "That was my original idea too.\n\nHowever, the #flow-post-uuid part in the url is used as selector, to find a node #flow-post-uuid or #flow-topic-uuid. From that node, we then fetch the ID: .data( \u0027flow-id\u0027 ).\n\nI assumed there were good reasons for doing so. If not, I\u0027ll just go refactor that to get rid of the \u0027flow-post-\u0027 or \u0027flow-topic-\u0027 prefix and simply toss in the uuid as hash, then use that in the highlighter function. What do you think?\n\nI\u0027d definitely prefer that over this mess.",
+      "parentUuid": "8e96e304_8682d595",
+      "revId": "3091667fd2d9fd35430e6b4e7ce600f19d0131bf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e96e304_0645656a",
         "filename": "includes/Formatter/RecentChanges.php",
         "patchSetId": 1
