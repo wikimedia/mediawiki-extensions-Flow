@@ -250,21 +250,6 @@ class ObjectLocator {
 	}
 
 	/**
-	 * Only use from maintenance.  Updates not implemented(yet), needs
-	 * handling for transactions.
-	 */
-	public function visitAll( $callback ) {
-		// storage is commonly IteratorAggregate returning EchoBatchRowIterator of
-		// 500 rows at a time by default.
-		foreach ( $this->storage as $rows ) {
-			foreach ( $rows as $row ) {
-				call_user_func( $callback, $this->load( $row ) );
-			}
-			$this->clear();
-		}
-	}
-
-	/**
 	 * @param array $keys
 	 * @param array $options
 	 * @return Index
