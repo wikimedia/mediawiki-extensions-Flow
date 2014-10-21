@@ -3,6 +3,7 @@
 namespace Flow\Formatter;
 
 use Flow\Exception\FlowException;
+use Flow\Model\Anchor;
 use Flow\Model\PostRevision;
 use Flow\Parsoid\Utils;
 use ChangesList;
@@ -80,22 +81,21 @@ class Contributions extends AbstractFormatter {
 			return '';
 		}
 
-		// Only currently handling individual comments, not full topics.
-		// full topics in followup patch
-		if ( $row->revision->isTopicTitle() ) {
-			return '';
-		}
+		$type = $row->revision->isTopicTitle() ? 'topic' : 'post';
 
 		if ( isset( $data['actions']['hide'] ) ) {
 			$key = 'hide';
-			$msg = 'flow-post-action-hide-post';
+			// flow-post-action-hide-post, flow-post-action-hide-topic
+			$msg = "flow-$type-action-hide-$type";
 		} elseif ( isset( $data['actions']['unhide'] ) ) {
 			$key = 'unhide';
-			$msg = 'flow-post-action-restore-post';
+			// flow-topic-action-restore-topic, flow-post-action-restore-post
+			$msg = "flow-$type-action-restore-$type";
 		} else {
 			return '';
 		}
 
+		/** @var Anchor $anchor */
 		$anchor = $data['actions'][$key];
 
 		return ' (' . Html::rawElement(
@@ -103,7 +103,7 @@ class Contributions extends AbstractFormatter {
 			array(
 				'href' => $anchor->getFullURL(),
 				'data-flow-interactive-handler' => 'moderationDialog',
-				'data-template' => 'flow_moderate_post',
+				'data-template' => "flow_moderate_$type",
 				'data-role' => $key,
 				'class' => 'flow-history-moderation-action flow-click-interactive',
 			),
