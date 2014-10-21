@@ -63,15 +63,6 @@ class Workflow {
 	protected $user;
 
 	/**
-	 * lock state is a list of state updates, the final state
-	 * is the active state. It is unused and must be reviewed
-	 * before any use
-	 *
-	 * @var array
-	 */
-	protected $lockState;
-
-	/**
 	 * @var string
 	 */
 	protected $lastModified;
@@ -85,8 +76,6 @@ class Workflow {
 	 * @var Title
 	 */
 	protected $ownerTitle;
-
-	const STATE_LOCKED = 'locked';
 
 	/**
 	 * @param array $row
@@ -111,7 +100,6 @@ class Workflow {
 		if ( !$obj->user ) {
 			throw new DataModelException( 'Could not create UserTuple for workflow_user_' );
 		}
-		$obj->lockState = $row['workflow_lock_state'];
 		$obj->lastModified = $row['workflow_last_update_timestamp'];
 
 		return $obj;
@@ -132,11 +120,10 @@ class Workflow {
 			'workflow_user_wiki' => $obj->user->wiki,
 			'workflow_user_id' => $obj->user->id,
 			'workflow_user_ip' => $obj->user->ip,
-			'workflow_lock_state' => $obj->lockState,
+			'workflow_lock_state' => 0, // unused
 			'workflow_last_update_timestamp' => $obj->lastModified,
 			// not used, but set it to empty string so it doesn't fail in strict mode
 			'workflow_name' => '',
-
 		);
 	}
 
@@ -167,7 +154,6 @@ class Workflow {
 		$obj->namespace = $title->getNamespace();
 		$obj->titleText = $title->getDBkey();
 		$obj->user = UserTuple::newFromUser( $user );
-		$obj->lockState = 0;
 		$obj->updateLastModified();
 
 		return $obj;
@@ -316,30 +302,6 @@ class Workflow {
 	 */
 	public function matchesTitle( Title $title ) {
 		return $this->getArticleTitle()->equals( $title );
-	}
-
-	/**
-	 * Unused, review before use
-	 *
-	 * @param User $user
-	 */
-	public function lock( User $user ) {
-		$this->lockState[] = array(
-			'id' => UUID::create(),
-			'user' => $user->getId(),
-			'state' => self::STATE_LOCKED,
-		);
-	}
-
-	/**
-	 * @return boolean
-	 */
-	public function isLocked() {
-		if ( !$this->lockState ) {
-			return false;
-		}
-		$state = end( $this->lockState );
-		return $state['state'] === self::STATE_LOCKED;
 	}
 
 	/**
