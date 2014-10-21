@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e96e304_3c0c3145",
+        "filename": "includes/Import/ImportSource.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-21T05:28:35Z",
+      "side": 1,
+      "message": "All the \"return string\" where the string is actual content (e.g. topic subject, summary, post body, etc.) should specify content model (i.e. what is it a string of, wikitext, Parsoid HTML, plain text, etc. ?)",
+      "revId": "8b3d94401d30a16852deebadb5565e43e57d5e7b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_9c4f8597",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-21T05:28:35Z",
+      "side": 1,
+      "message": "Is this name intentional, or just a product of find/replace (if the latter, see below too)?  Fields should generally use lowerCamelCase, per https://www.mediawiki.org/wiki/Manual:Coding_conventions/PHP#Naming .\n\nAlso, per my previous comment, do these need to be public?",
+      "revId": "8b3d94401d30a16852deebadb5565e43e57d5e7b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_7c4cf99f",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-21T05:28:35Z",
+      "side": 1,
+      "message": "Do these need to be public?",
+      "revId": "8b3d94401d30a16852deebadb5565e43e57d5e7b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_dc33cd08",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-21T05:28:35Z",
+      "side": 1,
+      "message": "Per above, do these need to be public?",
+      "revId": "8b3d94401d30a16852deebadb5565e43e57d5e7b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_fc2ec99f",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-21T05:28:35Z",
+      "side": 1,
+      "message": "Needs to be public?",
+      "revId": "8b3d94401d30a16852deebadb5565e43e57d5e7b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_5c17bd56",
+        "filename": "includes/Import/LiquidThreadsApi/Iterators.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-21T05:28:35Z",
+      "side": 1,
+      "message": "I actually meant that in theory no search (\"if ( $topicId \u003c\u003d $this-\u003elastOffset )\") is necessary.  Since there\u0027s a 1-1 mapping between the topic ID and the topic, TopicIterator might be able to just call the underlying next (e.g. $this-topicIdIterator-\u003enext()) when someone calls -\u003enext() on it.\n\nBut this might not be as feasible as I thought due to loadMore, so not making this a blocker.  It also looks (not positive about this) like this currently might have the desired effect anyway (optimizing away the need for continue-s, except when the iterator is rebuilt on \"load more\" anyway).",
+      "revId": "8b3d94401d30a16852deebadb5565e43e57d5e7b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
