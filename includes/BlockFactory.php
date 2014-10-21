@@ -15,6 +15,15 @@ use Flow\Exception\InvalidDataException;
 use Flow\Repository\RootPostLoader;
 
 class BlockFactory {
+	/**
+	 * @var ManagerGroup
+	 */
+	protected $storage;
+
+	/**
+	 * @var RootPostLoader
+	 */
+	protected $rootPostLoader;
 
 	public function __construct(
 		ManagerGroup $storage,
@@ -43,7 +52,7 @@ class BlockFactory {
 			case 'topic':
 				$blocks = array(
 					new TopicBlock( $workflow, $this->storage, $this->rootPostLoader ),
-					new TopicSummaryBlock( $workflow, $this->storage, $this->rootPostLoader ),
+					new TopicSummaryBlock( $workflow, $this->storage ),
 				);
 				break;
 

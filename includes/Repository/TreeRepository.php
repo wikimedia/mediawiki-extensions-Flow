@@ -266,7 +266,7 @@ class TreeRepository {
 	/**
 	 * Finds the root path for a single post ID.
 	 * @param  UUID   $descendant Post ID
-	 * @return array Path to the root of that node.
+	 * @return UUID[]|null Path to the root of that node.
 	 */
 	public function findRootPath( UUID $descendant ) {
 		$paths = $this->findRootPaths( array( $descendant ) );
@@ -295,6 +295,10 @@ class TreeRepository {
 
 	/**
 	 * Given a specific child node find the associated root node
+	 *
+	 * @param UUID $descendant
+	 * @return UUID
+	 * @throws DataModelException
 	 */
 	public function findRoot( UUID $descendant ) {
 		// To simplify caching we will work through the root path instead

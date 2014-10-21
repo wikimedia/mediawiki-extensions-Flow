@@ -10,7 +10,6 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 		/** @var \Flow\Model\Workflow $workflow */
 		$workflow = $loader->getWorkflow();
 		$action = $this->getAction();
-		$user = $this->getUser();
 
 		$result = $this->getResult();
 		$params = $this->getBlockParams();
@@ -44,6 +43,7 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 			$savedBlocks[] = $block->getName();
 		}
 
+		$output = array();
 		$output[$action] = array(
 			'result' => array(),
 			'status' => 'ok',
@@ -70,18 +70,30 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 		$this->getResult()->addValue( null, $this->apiFlow->getModuleName(), $output );
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function mustBePosted() {
 		return true;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function isWriteMode() {
 		return true;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function needsToken() {
 		return 'csrf';
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function getTokenSalt() {
 		return '';
 	}

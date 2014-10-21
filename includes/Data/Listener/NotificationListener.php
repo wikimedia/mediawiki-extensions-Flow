@@ -23,7 +23,7 @@ class NotificationListener implements LifecycleHandler {
 		if ( !$object instanceof AbstractRevision ) {
 			return;
 		}
-		$type = null;
+
 		switch( $row['rev_change_type'] ) {
 		// Actually new-topic @todo rename
 		case 'new-post':

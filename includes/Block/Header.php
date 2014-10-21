@@ -233,7 +233,7 @@ class HeaderBlock extends AbstractBlock {
 		if ( !isset( $options['newRevision'] ) ) {
 			throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
 		}
-		$oldRevision = '';
+		$oldRevision = null;
 		if ( isset( $options['oldRevision'] ) ) {
 			$oldRevision = $options['newRevision'];
 		}
@@ -242,7 +242,7 @@ class HeaderBlock extends AbstractBlock {
 		list( $new, $old ) = $query->getDiffViewResult( $options['newRevision'], $oldRevision );
 		/** @var RevisionDiffViewFormatter $formatter */
 		$formatter = Container::get( 'formatter.revision.diff.view' );
-		$output['revision'] = $formatter->formatApi( $new, $old, $this->context );
+		$output = array( 'revision' => $formatter->formatApi( $new, $old, $this->context ) );
 		return $output;
 	}
 
@@ -253,7 +253,7 @@ class HeaderBlock extends AbstractBlock {
 		$row = $query->getSingleViewResult( $revId );
 		/** @var RevisionViewFormatter $formatter */
 		$formatter = Container::get( 'formatter.revisionview' );
-		$output['revision'] = $formatter->formatApi( $row, $this->context );
+		$output = array( 'revision' => $formatter->formatApi( $row, $this->context ) );
 		return $output;
 	}
 
