@@ -112,6 +112,8 @@ class RevisionFormatter {
 	 * The self::buildProperties method is fairly expensive and only used for rendering
 	 * history entries.  As such it is optimistically disabled unless requested
 	 * here
+	 *
+	 * @param bool $shouldInclude
 	 */
 	public function setIncludeHistoryProperties( $shouldInclude ) {
 		$this->includeProperties = (bool)$shouldInclude;
@@ -760,7 +762,7 @@ class RevisionFormatter {
 	 * Mimic Echo parameter formatting
 	 *
 	 * @param string $param The requested i18n parameter
-	 * @param AbstractRevision|array $revision The revision to format or an array of revisions
+	 * @param AbstractRevision|AbstractRevision[] $revision The revision to format or an array of revisions
 	 * @param UUID $workflowId The UUID of the workflow $revision belongs tow
 	 * @param IContextSource $ctx
 	 * @param FormatterRow|null $row
@@ -768,7 +770,7 @@ class RevisionFormatter {
 	 *  with Message::parse
 	 * @throws FlowException
 	 */
-	public function processParam( $param, /* AbstractRevision|array */ $revision, UUID $workflowId, IContextSource $ctx, FormatterRow $row = null ) {
+	public function processParam( $param, $revision, UUID $workflowId, IContextSource $ctx, FormatterRow $row = null ) {
 		switch ( $param ) {
 		case 'creator-text':
 			if ( $revision instanceof PostRevision ) {

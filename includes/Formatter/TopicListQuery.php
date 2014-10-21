@@ -154,7 +154,7 @@ class TopicListQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param UUID[]
+	 * @param UUID[] $topicIds
 	 * @return PostSummary[]
 	 */
 	protected function collectSummary( $topicIds ) {
@@ -179,7 +179,7 @@ class TopicListQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param array $postIds
+	 * @param UUID[] $postIds
 	 * @return PostRevision[] Indexed by alphadecimal post id
 	 */
 	protected function collectRevisions( array $postIds ) {

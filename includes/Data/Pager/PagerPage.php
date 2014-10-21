@@ -6,20 +6,49 @@ namespace Flow\Data\Pager;
  * Represents a single page of data loaded via Flow\Data\Pager
  */
 class PagerPage {
-	function __construct( $results, $pagingLinkOptions, $pager ) {
+	/**
+	 * @var array
+	 */
+	protected $results;
+
+	/**
+	 * @var array
+	 */
+	protected $pagingLinkOptions;
+
+	/**
+	 * @var Pager
+	 */
+	protected $pager;
+
+	/**
+	 * @param array $results
+	 * @param array $pagingLinkOptions
+	 * @param Pager $pager
+	 */
+	public function __construct( $results, $pagingLinkOptions, $pager ) {
 		$this->results = $results;
 		$this->pagingLinkOptions = $pagingLinkOptions;
 		$this->pager = $pager;
 	}
 
+	/**
+	 * @return Pager
+	 */
 	public function getPager() {
 		return $this->pager;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getResults() {
 		return $this->results;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getPagingLinksOptions() {
 		return $this->pagingLinkOptions;
 	}

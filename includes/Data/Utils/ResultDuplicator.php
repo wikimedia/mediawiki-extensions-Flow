@@ -9,7 +9,7 @@ use Flow\Exception\InvalidInputException;
 //
 // Add query arrays with a multi-dimensional position
 // Merge results with their query value
-// Get back result array with same positions as the origional query
+// Get back result array with same positions as the original query
 //
 // Maintains merge ordering
 class ResultDuplicator {
@@ -19,6 +19,10 @@ class ResultDuplicator {
 	protected $queries = array();
 	protected $result;
 
+	/**
+	 * @param array $queryKeys
+	 * @param int $dimensions
+	 */
 	public function __construct( array $queryKeys, $dimensions ) {
 		$this->queryKeys = $queryKeys;
 		$this->dimensions = $dimensions;

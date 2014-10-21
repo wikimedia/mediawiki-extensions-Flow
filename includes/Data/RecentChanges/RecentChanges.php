@@ -133,6 +133,11 @@ abstract class RecentChanges implements LifecycleHandler {
 		$rc->notifyRCFeeds( $feeds );
 	}
 
+	/**
+	 * @param Workflow $workflow
+	 * @param string $action
+	 * @return \Title
+	 */
 	public function getRcTitle( Workflow $workflow, $action ) {
 		if ( $this->actions->getValue( $action, 'rc_title' ) === 'owner' ) {
 			return $workflow->getOwnerTitle();

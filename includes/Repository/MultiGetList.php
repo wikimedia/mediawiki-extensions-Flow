@@ -21,6 +21,13 @@ class MultiGetList {
 		$this->cache = $cache;
 	}
 
+	/**
+	 * @param string $key
+	 * @param array $ids
+	 * @param callable $loadCallback
+	 * @return array
+	 * @throws InvalidInputException
+	 */
 	public function get( $key, array $ids, $loadCallback ) {
 		$key = implode( ':', (array) $key );
 		$cacheKeys = array();
@@ -37,6 +44,11 @@ class MultiGetList {
 		return $this->getByKey( $cacheKeys, $loadCallback );
 	}
 
+	/**
+	 * @param array $cacheKeys
+	 * @param callable $loadCallback
+	 * @return array
+	 */
 	public function getByKey( array $cacheKeys, $loadCallback ) {
 		if ( !$cacheKeys ) {
 			return array();

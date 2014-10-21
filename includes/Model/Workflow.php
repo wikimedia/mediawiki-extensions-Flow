@@ -209,6 +209,13 @@ class Workflow {
 
 	/**
 	 * Can't use the title cache in Title class, it only operates on default namespace
+	 *
+	 * @param string $wiki
+	 * @param int $namespace
+	 * @param string $titleText
+	 * @return Title
+	 * @throws CrossWikiException
+	 * @throws InvalidInputException
 	 */
 	public static function getFromTitleCache( $wiki, $namespace, $titleText ) {
 		if ( $wiki !== wfWikiId() ) {

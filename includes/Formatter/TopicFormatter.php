@@ -89,6 +89,13 @@ class TopicFormatter {
 		);
 	}
 
+	/**
+	 * @param array $posts
+	 * @param array $revisions
+	 * @param array $workflows
+	 * @param string $postAlphaId
+	 * @return array
+	 */
 	protected function generateTopicMetadata( array $posts, array $revisions, array $workflows, $postAlphaId ) {
 		$replies = -1;
 		$authors = array();

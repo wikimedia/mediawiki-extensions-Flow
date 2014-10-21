@@ -38,6 +38,13 @@ class ReferenceExtractor {
 		);
 	}
 
+	/**
+	 * @param ReferenceFactory $factory
+	 * @param string $text
+	 * @return array
+	 * @throws MWException
+	 * @throws \Flow\Exception\WikitextException
+	 */
 	protected function extractReferences( ReferenceFactory $factory, $text ) {
 		$dom = Utils::createDOM( '<?xml encoding="utf-8" ?>' . $text );
 
@@ -48,7 +55,7 @@ class ReferenceExtractor {
 		foreach( $this->extractors as $extractor ) {
 			$elements = $xpath->query( $extractor->getXPath() );
 
-			if ( ! $elements ) {
+			if ( !$elements ) {
 				$class = get_class( $extractor );
 				throw new MWException( "Malformed xpath from $class: " . $extractor->getXPath() );
 			}

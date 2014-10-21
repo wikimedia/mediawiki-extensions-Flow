@@ -48,6 +48,13 @@ class Merger {
 
 	/**
 	 * Same as self::merge, but for 3-dimensional source arrays
+	 *
+	 * @param array $multiSource
+	 * @param string $fromKey
+	 * @param callable $callable
+	 * @param string $name
+	 * @param string $default
+	 * @return array
 	 */
 	static public function mergeMulti( array $multiSource, $fromKey, $callable, $name = null, $default = '' ) {
 		if ( $name === null ) {
