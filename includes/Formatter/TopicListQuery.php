@@ -59,6 +59,7 @@ class TopicListQuery extends AbstractQuery {
 
 		$this->loadMetadataBatch( $posts );
 		$results = array();
+		$replies = array();
 		foreach ( $posts as $post ) {
 			try {
 				if ( !$this->permissions->isAllowed( $post, 'view' )  ) {

@@ -42,10 +42,10 @@ class LinksTableUpdater {
 	/**
 	 * @param Title $title
 	 * @param ParserOutput $parserOutput
-	 * @param Reference[]|bool $references
+	 * @param Reference[] $references
 	 */
-	public function mutateParserOutput( Title $title, ParserOutput $parserOutput, $references = false ) {
-		if ( $references === false ) {
+	public function mutateParserOutput( Title $title, ParserOutput $parserOutput, $references = null ) {
+		if ( $references === null ) {
 			$references = $this->getReferencesForTitle( $title );
 		}
 

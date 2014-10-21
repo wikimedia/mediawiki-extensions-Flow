@@ -17,6 +17,14 @@ use Flow\Exception\FlowException;
  * @todo Is TwoStep usefull? shouldn't we always use the join?
  */
 class TwoStepUserNameQuery implements UserNameQuery {
+	/**
+	 * @var DbFactory
+	 */
+	protected $dbFactory;
+
+	/**
+	 * @param DbFactory $dbFactory
+	 */
 	public function __construct( DbFactory $dbFactory ) {
 		$this->dbFactory = $dbFactory;
 	}

@@ -74,7 +74,7 @@ class BadImageRemover implements Fixer {
 
 		// Move up the DOM and remove the typeof="mw:Image" node
 		$nodeToRemove = $node->parentNode;
-		while( $nodeToRemove && $nodeToRemove->getAttribute( 'typeof' ) !== 'mw:Image' ) {
+		while( $nodeToRemove instanceof DOMElement && $nodeToRemove->getAttribute( 'typeof' ) !== 'mw:Image' ) {
 			$nodeToRemove = $nodeToRemove->parentNode;
 		}
 		if ( !$nodeToRemove ) {

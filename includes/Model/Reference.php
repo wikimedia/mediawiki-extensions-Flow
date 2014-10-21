@@ -8,12 +8,36 @@ use Title;
 abstract class Reference {
 	const TYPE_LINK = 'link';
 
-	protected $workflowId, $title, $objectType, $objectId, $type;
+	/**
+	 * @var UUID
+	 */
+	protected $workflowId;
+
+	/**
+	 * @var Title
+	 */
+	protected $srcTitle;
+
+	/**
+	 * @var String
+	 */
+	protected $objectType;
+
+	/**
+	 * @var UUID
+	 */
+	protected $objectId;
+
+	/**
+	 * @var string
+	 */
+	protected $type;
 
 	protected $validTypes = array( self::TYPE_LINK );
 
 	/**
 	 * Standard constructor. Called from subclasses only
+	 *
 	 * @param UUID   $srcWorkflow Source Workflow's ID
 	 * @param Title  $srcTitle    Title of the Workflow from which this reference comes.
 	 * @param String $objectType  Output of getRevisionType for the AbstractRevision that this reference comes from.
@@ -37,6 +61,7 @@ abstract class Reference {
 
 	/**
 	 * Gives the UUID of the source Workflow
+	 *
 	 * @return UUID
 	 */
 	public function getWorkflowId() {
@@ -45,6 +70,7 @@ abstract class Reference {
 
 	/**
 	 * Gives the Title from which this Reference comes.
+	 *
 	 * @return Title
 	 */
 	public function getSrcTitle() {
@@ -60,6 +86,7 @@ abstract class Reference {
 
 	/**
 	 * Gives the UUID of the source object
+	 *
 	 * @return UUID
 	 */
 	public function getObjectId() {
@@ -68,6 +95,7 @@ abstract class Reference {
 
 	/**
 	 * Gives the type of Reference
+	 *
 	 * @return string
 	 */
 	public function getType() {
@@ -77,6 +105,7 @@ abstract class Reference {
 	/**
 	 * Returns the storage row for this Reference.
 	 * For this abstract reference, only partial.
+	 *
 	 * @return array
 	 */
 	public function getStorageRow() {
@@ -93,6 +122,7 @@ abstract class Reference {
 	/**
 	 * Returns the name of the table that stores this
 	 * reference in core MediaWiki
+	 *
 	 * @return string
 	 */
 	abstract public function getWikiTableName();
@@ -143,6 +173,7 @@ class WikiReference extends Reference {
 
 	/**
 	 * Gets the storage row for this WikiReference
+	 *
 	 * @return array
 	 */
 	public function getStorageRow() {
@@ -154,6 +185,7 @@ class WikiReference extends Reference {
 
 	/**
 	 * Instantiates a WikiReference object from a storage row.
+	 *
 	 * @param  \StdClass $row
 	 * @return WikiReference
 	 */
@@ -244,6 +276,7 @@ class URLReference extends Reference {
 
 	/**
 	 * Gets the storage row for this URLReference
+	 *
 	 * @return array
 	 */
 	public function getStorageRow() {
@@ -254,6 +287,7 @@ class URLReference extends Reference {
 
 	/**
 	 * Instantiates a URLReference object from a storage row.
+	 *
 	 * @param  \StdClass $row
 	 * @return URLReference
 	 */

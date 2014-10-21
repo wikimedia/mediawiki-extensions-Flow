@@ -6,8 +6,29 @@ use Flow\Model\URLReference;
 use Flow\Model\UUID;
 use Flow\Model\WikiReference;
 use Flow\Model\Workflow;
+use Title;
 
 class ReferenceFactory {
+	/**
+	 * @var UUID
+	 */
+	protected $workflowId;
+
+	/**
+	 * @var Title
+	 */
+	protected $title;
+
+	/**
+	 * @var string
+	 */
+	protected $objectType;
+
+	/**
+	 * @var UUID
+	 */
+	protected $objectId;
+
 	/**
 	 * @param Workflow $workflow
 	 * @param string $objectType

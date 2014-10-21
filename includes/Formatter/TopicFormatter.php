@@ -8,6 +8,15 @@ use Flow\UrlGenerator;
 use IContextSource;
 
 class TopicFormatter {
+	/**
+	 * @var UrlGenerator
+	 */
+	protected $urlGenerator;
+
+	/**
+	 * @var RevisionFormatter
+	 */
+	protected $serializer;
 
 	public function __construct( UrlGenerator $urlGenerator, RevisionFormatter $serializer ) {
 		$this->urlGenerator = $urlGenerator;

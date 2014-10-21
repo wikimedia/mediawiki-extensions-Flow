@@ -38,7 +38,7 @@ class RootPostLoader {
 	 * Retrieves a single post and the related topic title.
 	 *
 	 * @param UUID|string $postId The uid of the post being requested
-	 * @return PostRevision[] associative array with 'root' and 'post' keys. Array
+	 * @return PostRevision[]|null[] associative array with 'root' and 'post' keys. Array
 	 *   values may be null if not found.
 	 * @throws InvalidDataException
 	 */

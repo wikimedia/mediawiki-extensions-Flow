@@ -190,6 +190,8 @@ class NotificationController {
 		if ( !$boardWorkflow instanceof Workflow ) {
 			throw new FlowException( 'Expected Workflow but received ' . get_class( $boardWorkflow ) );
 		}
+
+		$events = array();
 		$events[] = EchoEvent::create( array(
 			'type' => 'flow-new-topic',
 			'agent' => $user,

@@ -27,7 +27,6 @@ interface OccupationController {
 }
 
 class TalkpageManager implements OccupationController {
-
 	/**
 	 * @var int[]
 	 */

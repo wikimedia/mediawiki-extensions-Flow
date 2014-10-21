@@ -28,7 +28,7 @@ class SinglePostQuery extends AbstractQuery {
 		$post = reset( $found );
 		// Summary is only available to topic title now
 		if ( $post->isTopicTitle() ) {
-			$summary = $found = $this->storage->find(
+			$summary = $this->storage->find(
 				'PostSummary',
 				array( 'rev_type_id' => $postId ),
 				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
