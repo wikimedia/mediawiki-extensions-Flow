@@ -36,7 +36,7 @@ class WorkflowTopicListListener implements LifecycleHandler {
 
 	/**
 	 * @var string
-	 * @return TopicListEntry|bool
+	 * @return TopicListEntry|false
 	 */
 	protected function getTopicListEntry( $workflowId ) {
 		$list = $this->topicListStorage->find( array( 'topic_id' => $workflowId ) );

@@ -10,6 +10,16 @@ use Flow\Exception\DataModelException;
  * ObjectManagers more conveniently.
  */
 class ManagerGroup {
+	/**
+	 * @var Container
+	 */
+	protected $container;
+
+	/**
+	 * @var string[] Map from ObjectManager alias to container key holding that object manager.
+	 */
+	protected $classMap;
+
 	public function __construct( Container $container, array $classMap ) {
 		$this->container = $container;
 		$this->classMap = $classMap;

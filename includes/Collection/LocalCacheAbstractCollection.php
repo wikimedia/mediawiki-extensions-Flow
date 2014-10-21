@@ -64,7 +64,7 @@ abstract class LocalCacheAbstractCollection extends AbstractCollection {
 			$previousId = $oldest->getPrevRevisionId();
 
 			// check if it's in local storage already
-			if ( $this->getStorage()->got( $previousId ) ) {
+			if ( $previousId && $this->getStorage()->got( $previousId ) ) {
 				$revision = $this->getStorage()->get( $previousId );
 
 				// add this revision to revisions array

@@ -138,7 +138,7 @@ class TopicBlock extends AbstractBlock {
 
 		case 'restore-post':
 			// @todo still necessary?
-			$this->validateModeratePost( 'restore' );
+			$this->validateModeratePost();
 			break;
 
 		case 'edit-post':
@@ -538,18 +538,19 @@ class TopicBlock extends AbstractBlock {
 			$oldRevision = $options['newRevision'];
 		}
 		list( $new, $old ) = Container::get( 'query.post.view' )->getDiffViewResult( $options['newRevision'], $oldRevision );
-		$output['revision'] = Container::get( 'formatter.revision.diff.view' )
-			->formatApi( $new, $old, $this->context );
-		return $output;
+
+		return array(
+			'revision' => Container::get( 'formatter.revision.diff.view' )->formatApi( $new, $old, $this->context )
+		);
 	}
 
 	// @Todo - duplicated logic in other single view block
 	protected function renderSingleViewAPI( $revId ) {
 		$row = Container::get( 'query.post.view' )->getSingleViewResult( $revId );
-		$output['revision'] = Container::get( 'formatter.revisionview' )
-			->formatApi( $row, $this->context );
 
-		return $output;
+		return array(
+			'revision' => Container::get( 'formatter.revisionview' )->formatApi( $row, $this->context )
+		);
 	}
 
 	protected function renderTopicAPI( array $options, $workflowId = '' ) {
@@ -652,7 +653,7 @@ class TopicBlock extends AbstractBlock {
 	/**
 	 * Process the history result for either topic or post
 	 *
-	 * @param FormatterRow $found
+	 * @param FormatterRow[] $found
 	 * @param array $options
 	 * @return array
 	 */
@@ -771,7 +772,7 @@ class TopicBlock extends AbstractBlock {
 			$post = $found['post'];
 
 			// using the path to the root post, we can know the post's depth
-			$rootPath = $this->rootLoader->treeRepo->findRootPath( $postId );
+			$rootPath = $this->rootLoader->getTreeRepo()->findRootPath( $postId );
 			$post->setDepth( count( $rootPath ) - 1 );
 			$post->setRootPost( $found['root'] );
 		}

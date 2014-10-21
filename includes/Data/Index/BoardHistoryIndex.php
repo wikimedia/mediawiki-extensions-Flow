@@ -47,7 +47,7 @@ class BoardHistoryIndex extends TopKIndex {
 	 * {@inheritDoc}
 	 */
 	public function cachePurge( $object, array $row ) {
-		$row['topic_list_id'] = $this->findTopicListId( $object, $new );
+		$row['topic_list_id'] = $this->findTopicListId( $object, $row );
 		if ( $row['topic_list_id'] ) {
 			parent::cachePurge( $object, $row );
 		}

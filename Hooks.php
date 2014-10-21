@@ -4,7 +4,6 @@ use Flow\Collection\PostCollection;
 use Flow\Container;
 use Flow\Exception\FlowException;
 use Flow\Formatter\CheckUserQuery;
-use Flow\Model\UUID;
 use Flow\NotificationController;
 use Flow\OccupationController;
 use Flow\SpamFilter\AbuseFilter;
@@ -185,8 +184,8 @@ class FlowHooks {
 	 * @return bool true in all cases
 	 */
 	static function getUnitTests( &$files ) {
-		$it = new \RecursiveDirectoryIterator( __DIR__ . '/tests/phpunit' );
-		$it = new \RecursiveIteratorIterator( $it );
+		$it = new RecursiveDirectoryIterator( __DIR__ . '/tests/phpunit' );
+		$it = new RecursiveIteratorIterator( $it );
 		foreach ( $it as $path => $file ) {
 			if ( substr( $path, -8 ) === 'Test.php' ) {
 				$files[] = $path;
@@ -200,19 +199,21 @@ class FlowHooks {
 	 * @param ChangesList $changesList
 	 * @param array       $rows
 	 */
-	public static function onChangesListInitRows( \ChangesList $changesList, $rows ) {
-		if ( !( $changesList instanceof \OldChangesList || $changesList instanceof \EnhancedChangesList ) ) {
+	public static function onChangesListInitRows( ChangesList $changesList, $rows ) {
+		if ( !( $changesList instanceof OldChangesList || $changesList instanceof EnhancedChangesList ) ) {
 			return;
 		}
 
 		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
 		try {
-			Container::get( 'query.recentchanges' )->loadMetadataBatch(
+			/** @var Flow\Formatter\RecentChangesQuery $query */
+			$query = Container::get( 'query.recentchanges' );
+			$query->loadMetadataBatch(
 				$rows,
 				$changesList->isWatchlist()
 			);
 		} catch ( Exception $e ) {
-			\MWExceptionHandler::logException( $e );
+			MWExceptionHandler::logException( $e );
 		}
 		restore_error_handler();
 	}
@@ -220,22 +221,22 @@ class FlowHooks {
 	/**
 	 * Updates the given Flow topic line in an enhanced changes list (grouped RecentChanges).
 	 *
-	 * @param IContextSource $changesList
+	 * @param ChangesList    $changesList
 	 * @param string         $articlelink
 	 * @param string         $s
-	 * @param array          $rc
+	 * @param RecentChange   $rc
 	 * @param bool           $unpatrolled
 	 * @param bool           $isWatchlist
 	 * @return bool
 	 */
-	public static function onChangesListInsertArticleLink( \IContextSource &$changesList, &$articlelink, &$s, &$rc, $unpatrolled, $isWatchlist ) {
-		if ( !( $changesList instanceof \EnhancedChangesList ) ) {
+	public static function onChangesListInsertArticleLink( ChangesList &$changesList, &$articlelink, &$s, &$rc, $unpatrolled, $isWatchlist ) {
+		if ( !( $changesList instanceof EnhancedChangesList ) ) {
 			// This method is only to update EnhancedChangesList.
 			// onOldChangesListRecentChangesLine allows updating OldChangesList, and supports adding wrapper classes.
-			return;
+			return true;
 		}
 		$classes = null; // avoid pass-by-reference error
-		return self::processRecentChangesLine( $changesList, $articlelink, $rc, $classes, $isWatchlist, true );
+		return self::processRecentChangesLine( $changesList, $articlelink, $rc, $classes, true );
 	}
 
 	/**
@@ -246,7 +247,7 @@ class FlowHooks {
 	 * @param array        $classes
 	 * @return bool
 	 */
-	public static function onOldChangesListRecentChangesLine( \ChangesList &$changesList, &$s, \RecentChange $rc, &$classes = array() ) {
+	public static function onOldChangesListRecentChangesLine( ChangesList &$changesList, &$s, RecentChange $rc, &$classes = array() ) {
 		return self::processRecentChangesLine( $changesList, $s, $rc, $classes );
 	}
 
@@ -256,12 +257,11 @@ class FlowHooks {
 	 * @param ChangesList    $changesList
 	 * @param string         $s
 	 * @param RecentChange   $rc
-	 * @param null           $classes
-	 * @param null           $isWatchlist
+	 * @param array|null     $classes
 	 * @param bool           $topicOnly
 	 * @return bool
 	 */
-	protected static function processRecentChangesLine( \ChangesList &$changesList, &$s, \RecentChange $rc, &$classes = null, $isWatchlist = null, $topicOnly = false ) {
+	protected static function processRecentChangesLine( ChangesList &$changesList, &$s, RecentChange $rc, &$classes = null, $topicOnly = false ) {
 		$source = $rc->getAttribute( 'rc_source' );
 		if ( $source === null ) {
 			$rcType = (int) $rc->getAttribute( 'rc_type' );
@@ -274,6 +274,7 @@ class FlowHooks {
 
 		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
 		try {
+			/** @var Flow\Formatter\RecentChangesQuery $query */
 			$query = Container::get( 'query.recentchanges' );
 
 			// @todo: create hook to allow batch-loading this data
@@ -283,10 +284,12 @@ class FlowHooks {
 				return false;
 			}
 
-			$line = Container::get( 'formatter.recentchanges' )->format( $row, $changesList, $topicOnly );
+			/** @var Flow\Formatter\RecentChanges $formatter */
+			$formatter = Container::get( 'formatter.recentchanges' );
+			$line = $formatter->format( $row, $changesList, $topicOnly );
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting rc ' . $rc->getAttribute( 'rc_id' ) . ' ' . $e );
-			\MWExceptionHandler::logException( $e );
+			MWExceptionHandler::logException( $e );
 			restore_error_handler();
 			return false;
 		}
@@ -321,11 +324,13 @@ class FlowHooks {
 			$query->loadMetadataBatch( array( $row ) );
 			$row = $query->getResult( $checkUser, $row );
 			if ( $row !== false ) {
-				$replacement = Container::get( 'formatter.checkuser' )->format( $row, $checkUser->getContext() );
+				/** @var Flow\Formatter\CheckUserFormatter $formatter */
+				$formatter = Container::get( 'formatter.checkuser' );
+				$replacement = $formatter->format( $row, $checkUser->getContext() );
 			}
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting cu ' . $cucId . ' ' . $e );
-			\MWExceptionHandler::logException( $e );
+			MWExceptionHandler::logException( $e );
 		}
 		restore_error_handler();
 
@@ -441,6 +446,7 @@ class FlowHooks {
 	 */
 	public static function onMissingArticleConditions( array &$conds, array $logTypes ) {
 		global $wgLogActionsHandlers;
+		/** @var Flow\FlowActions $actions */
 		$actions = Container::get( 'flow_actions' );
 
 		foreach ( $actions->getActions() as $action ) {
@@ -520,7 +526,9 @@ class FlowHooks {
 
 		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
 		try {
-			$line = Container::get( 'formatter.contributions' )->format( $row, $pager );
+			/** @var Flow\Formatter\Contributions $formatter */
+			$formatter = Container::get( 'formatter.contributions' );
+			$line = $formatter->format( $row, $pager );
 		} catch ( Exception $e ) {
 			MWExceptionHandler::logException( $e );
 			$line = false;
@@ -575,13 +583,16 @@ class FlowHooks {
 		try {
 			// Contributions may be on pages outside the set of currently
 			// enabled pages so we must disable to occupation listener
+			/** @var Flow\Data\Listener\OccupationListener $listener */
 			$listener = Container::get( 'listener.occupation' );
 			$listener->setEnabled( false );
-			$results = Container::get( 'query.contributions' )->getResults( $pager, $offset, $limit, $descending );
+			/** @var Flow\Formatter\ContributionsQuery $query */
+			$query = Container::get( 'query.contributions' );
+			$results = $query->getResults( $pager, $offset, $limit, $descending );
 			$listener->setEnabled( true );
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Failed contributions query' );
-			\MWExceptionHandler::logException( $e );
+			MWExceptionHandler::logException( $e );
 			$results = false;
 		}
 		restore_error_handler();
@@ -730,10 +741,12 @@ class FlowHooks {
 		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
 		$result = null;
 		try {
-			$result = Container::get( 'formatter.irclineurl' )->format( $rc );
+			/** @var Flow\Formatter\IRCLineUrlFormatter $formatter */
+			$formatter = Container::get( 'formatter.irclineurl' );
+			$result = $formatter->format( $rc );
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Failed formatting rc ' . $rc->getAttribute( 'rc_id' ) );
-			\MWExceptionHandler::logException( $e );
+			MWExceptionHandler::logException( $e );
 		}
 		restore_error_handler();
 
@@ -745,10 +758,12 @@ class FlowHooks {
 		return true;
 	}
 
-	public static function onWhatLinksHereProps( $row, $title, $target, &$props ) {
+	public static function onWhatLinksHereProps( $row, Title $title, Title $target, &$props ) {
 		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
 		try {
-			$newProps = Flow\Container::get( 'reference.clarifier' )->getWhatLinksHereProps( $row, $title, $target );
+			/** @var Flow\ReferenceClarifier $clarifier */
+			$clarifier = Flow\Container::get( 'reference.clarifier' );
+			$newProps = $clarifier->getWhatLinksHereProps( $row, $title, $target );
 
 			$props = array_merge( $props, $newProps );
 		} catch ( Exception $e ) {
@@ -758,16 +773,9 @@ class FlowHooks {
 				$title->getFullText(),
 				$target->getFullText()
 			) );
-			\MWExceptionHandler::logException( $e );
+			MWExceptionHandler::logException( $e );
 		}
 		restore_error_handler();
-
-		return true;
-	}
-
-	public static function onLinksUpdateConstructed( $linksUpdate ) {
-		Flow\Container::get( 'reference.updater.links-tables' )
-			->mutateLinksUpdate( $linksUpdate );
 
 		return true;
 	}
@@ -831,11 +839,13 @@ class FlowHooks {
 	/**
 	 * Don't (un)watch a non-existing flow topic
 	 */
-	public static function onWatchArticle( &$user, &$page, &$status ) {
+	public static function onWatchArticle( &$user, Article &$page, &$status ) {
 		$title = $page->getTitle();
 		if ( $title->getNamespace() == NS_TOPIC ) {
 			// @todo - use !$title->exists()?
-			$found = Container::get( 'storage' )->find(
+			/** @var Flow\Data\ManagerGroup $storage */
+			$storage = Container::get( 'storage' );
+			$found = $storage->find(
 				'PostRevision',
 				array( 'rev_type_id' => strtolower( $title->getDBkey() ) ),
 				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
@@ -894,8 +904,10 @@ class FlowHooks {
 			wfDebugLog( 'Flow', __METHOD__ . ': Invalid title ' . $title->getPrefixedText() );
 			return true;
 		}
-		$workflow = Container::get( 'storage' )->get( 'Workflow', $uuid );
-		if ( !$workflow ) {
+		/** @var Flow\Data\ManagerGroup $storage */
+		$storage = Container::get( 'storage' );
+		$workflow = $storage->get( 'Workflow', $uuid );
+		if ( !$workflow instanceof Flow\Model\Workflow ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Title for non-existent Workflow ' . $title->getPrefixedText() );
 			return true;
 		}
@@ -943,7 +955,7 @@ class FlowHooks {
 			$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
 			$collection = PostCollection::newFromId( $uuid );
 			$revision = $collection->getLastRevision();
-		} catch ( \Exception $e ) {
+		} catch ( Exception $e ) {
 			wfWarn( __METHOD__ . ': Failed to locate revision for: ' . $title->getDBKey() );
 			return true;
 		}
@@ -973,11 +985,14 @@ class FlowHooks {
 			try {
 				$uuid = WorkflowLoaderFactory::uuidFromTitlePair( NS_TOPIC, $id );
 				$queries[] = array( 'rev_type_id' => $uuid );
-			} catch ( \Exception $e ) {
+			} catch ( Exception $e ) {
 				// invalid id
 				unset( $watchlistInfo[NS_TOPIC][$id] );
 			}
 		}
+
+		/** @var Flow\Data\ManagerGroup $storage */
+		$storage = Container::get( 'storage' );
 
 		/*
 		 * Now, finally find all requested topics - this will be stored in
@@ -985,7 +1000,7 @@ class FlowHooks {
 		 * will just find these in memory, instead of doing a bunch of network
 		 * requests.
 		 */
-		Container::get( 'storage' )->findMulti(
+		$storage->findMulti(
 			'PostRevision',
 			$queries,
 			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )

@@ -15,6 +15,10 @@ class PostCollection extends LocalCacheAbstractCollection {
 		return 'Flow\\Model\\PostRevision';
 	}
 
+	/**
+	 * @return UUID
+	 * @throws \Flow\Exception\DataModelException
+	 */
 	public function getWorkflowId() {
 		// the root post (topic title) has the same id as the workflow
 		if ( !$this->rootId ) {

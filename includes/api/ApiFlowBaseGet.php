@@ -11,10 +11,10 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 		$action = $this->getAction();
 		$passedParams = $this->getBlockParams();
 
-		$output[$action] = array(
+		$output = array( $action => array(
 			'result' => array(),
 			'status' => 'ok',
-		);
+		) );
 
 		/** @var AbstractBlock $block */
 		foreach( $blocks as $block ) {
@@ -60,14 +60,23 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 		$this->getResult()->addValue( null, $this->apiFlow->getModuleName(), $output );
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function mustBePosted() {
 		return false;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function needsToken() {
 		return false;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function getTokenSalt() {
 		return false;
 	}

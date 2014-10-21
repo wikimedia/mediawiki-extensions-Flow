@@ -95,7 +95,7 @@ class TopicHistoryIndex extends TopKIndex {
 		$nodeList = $this->treeRepository->fetchSubtreeNodeList( $roots );
 		if ( $nodeList === false ) {
 			// We can't return the existing $retval, that false data would be cached.
-			return false;
+			return array();
 		}
 
 		$descendantQueries = array();
