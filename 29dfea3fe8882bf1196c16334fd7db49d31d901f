@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "8e96e304_8ae89378",
+        "filename": "Resources.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-21T13:15:25Z",
+      "side": 1,
+      "message": "Yeah, this needs to be revisited, but I agree that it isn\u0027t a blocker.",
+      "parentUuid": "8e96e304_c99a4666",
+      "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e96e304_c93ec626",
         "filename": "Resources.php",
         "patchSetId": 13
@@ -132,6 +150,24 @@
       "writtenOn": "2014-10-17T20:49:20Z",
       "side": 1,
       "message": "This really does need to be cleaned up (not in this commit, though).  E.g. could it at least always use the data-role content?",
+      "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_8a9f3306",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-21T13:15:25Z",
+      "side": 1,
+      "message": "Yeah, this is a pretty strange piece of code.",
+      "parentUuid": "8e96e304_5fc828aa",
       "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -376,6 +412,24 @@
     },
     {
       "key": {
+        "uuid": "8e96e304_2a637f0b",
+        "filename": "modules/engine/components/board/base/flow-boardandhistory-base.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-21T13:15:25Z",
+      "side": 1,
+      "message": "Agreed.",
+      "parentUuid": "8e96e304_a2e34fd3",
+      "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e96e304_8227330d",
         "filename": "modules/engine/components/board/base/flow-boardandhistory-base.js",
         "patchSetId": 13
@@ -387,6 +441,24 @@
       "writtenOn": "2014-10-17T20:49:20Z",
       "side": 1,
       "message": "retObj seems unnecessary.  It just returns an empty jQuery set unconnected to anything else.  If the caller wants that, they can call jQuery themselves.",
+      "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_8a4c13a1",
+        "filename": "modules/engine/components/board/base/flow-boardandhistory-base.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-21T13:15:25Z",
+      "side": 1,
+      "message": "It\u0027s just to maintain the same return type as the child version (flowBoardComponentReinitializeContainer). Will be improved upon in a later patch.",
+      "parentUuid": "8e96e304_8227330d",
       "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -597,6 +669,24 @@
     },
     {
       "key": {
+        "uuid": "8e96e304_2a113f5f",
+        "filename": "modules/engine/components/board/flow-boardHistory.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-21T13:15:25Z",
+      "side": 1,
+      "message": "Yes.",
+      "parentUuid": "8e96e304_dd59a002",
+      "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e96e304_fd281c34",
         "filename": "modules/engine/components/common/flow-component-engines.js",
         "patchSetId": 13
@@ -625,6 +715,24 @@
       "writtenOn": "2014-10-17T20:49:20Z",
       "side": 1,
       "message": "The callback is meant to tell when storage is safe to use.  But since the code using storage is not inside (or called by something inside) the callback, this doesn\u0027t serve that purpose.\n\nHowever, we don\u0027t need to worry about it.  All the versions of IE we support for JS now have localStorage, so we can drop the callback entirely.",
+      "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_4a0ccb45",
+        "filename": "modules/engine/components/common/flow-component-engines.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-21T13:15:25Z",
+      "side": 1,
+      "message": "You mean we don\u0027t serve JS to IE6-7?",
+      "parentUuid": "8e96e304_7d1c0c19",
       "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -665,6 +773,24 @@
     },
     {
       "key": {
+        "uuid": "8e96e304_ea0a7728",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-21T13:15:25Z",
+      "side": 1,
+      "message": "We want this constructor to get called as many times as it needs to, but we don\u0027t need to do this specific thing twice.",
+      "parentUuid": "8e96e304_ddbd20d3",
+      "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e96e304_9dd478c0",
         "filename": "modules/engine/components/common/flow-component-events.js",
         "patchSetId": 13
@@ -693,6 +819,24 @@
       "writtenOn": "2014-10-17T20:49:20Z",
       "side": 1,
       "message": "Is the second approach for when you want to populate the returns array with a non-boolean, but also abort?\n\nThe alternative approach (which I think solves this)) would be to not accumulate return values into an array, but instead use a parameter.  For example, one of the args could be an array (or an object).  Since only the array reference is passed around, it can be mutated.\n\nThen, the only purpose of the return value would be to abort (and there would only be one way to abort) which may be simpler.",
+      "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_85096431",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-21T13:15:25Z",
+      "side": 1,
+      "message": "Pretty much. The API pre-handlers can return a new object to override the previously-given object. But, for previews, we want to keep that returned object, but let the main method know that it\u0027s been aborted.",
+      "parentUuid": "8e96e304_3de1a497",
       "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -745,6 +889,24 @@
       "writtenOn": "2014-10-17T20:49:20Z",
       "side": 1,
       "message": "Not a blocker, but a lot of the methods here and below (e.g. bind.*Handlers, flowEventsMixinHideForm) do not seem to belong here.  Some are already commented as such.\n\nThere should be the event system (i.e. emitWithReturn, and the code it extends), then additional Flow-process specific code built on top of this in separate files/modules.",
+      "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_25109052",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-21T13:15:25Z",
+      "side": 1,
+      "message": "Agreed. I\u0027d like to find a better place to put them.",
+      "parentUuid": "8e96e304_7028ae81",
       "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -853,6 +1015,24 @@
     },
     {
       "key": {
+        "uuid": "8e96e304_450b5c26",
+        "filename": "modules/engine/components/flow-component.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-21T13:15:25Z",
+      "side": 1,
+      "message": "This allows us to do fun things like:\n\nget all instances of BoardComponent\nget all instances of Component (which returns boards, since they inherit it)",
+      "parentUuid": "8e96e304_768c268a",
+      "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e96e304_9651b2df",
         "filename": "modules/engine/components/flow-registry.js",
         "patchSetId": 13
@@ -870,6 +1050,24 @@
     },
     {
       "key": {
+        "uuid": "8e96e304_05155440",
+        "filename": "modules/engine/components/flow-registry.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-21T13:15:25Z",
+      "side": 1,
+      "message": "Definitely.",
+      "parentUuid": "8e96e304_9651b2df",
+      "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e96e304_565b2afd",
         "filename": "modules/engine/components/flow-registry.js",
         "patchSetId": 13
@@ -881,6 +1079,24 @@
       "writtenOn": "2014-10-17T20:49:20Z",
       "side": 1,
       "message": "This is not a blocker, but we should check if this is really necessary.\n\nThe general point of a prototype method is that you call it on an instance.  When this principle is followed (static methods are converted so they\u0027re not using the prototype syntax), this is a non-issue, since if you have an instance you can just call the instance method.\n\nThen, we need to check whether there are any valid use cases of explicitly using the prototype like this (that shouldn\u0027t just be static methods).",
+      "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_45327cf0",
+        "filename": "modules/engine/components/flow-registry.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-21T13:15:25Z",
+      "side": 1,
+      "message": "This was done for two reasons: a quick way to convert a bulk of code that we have (relating to fetching instances), and a quick way of getting some qunit stuff to work.\n\nIt absolutely needs to change in the future.",
+      "parentUuid": "8e96e304_565b2afd",
       "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -915,6 +1131,24 @@
       "writtenOn": "2014-10-17T20:49:20Z",
       "side": 1,
       "message": "These \u0027return false\u0027 (including the other below) seem like very serious failures.  Should they throw?",
+      "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_c54d2c77",
+        "filename": "modules/engine/components/flow-registry.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-21T13:15:25Z",
+      "side": 1,
+      "message": "Maybe. We do this so that when you are instantiating multiple containers, an exception on one doesn\u0027t break the rest. Should probably be done with a try-catch elsewhere, though.",
+      "parentUuid": "8e96e304_5629ea34",
       "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -983,6 +1217,24 @@
       "writtenOn": "2014-10-17T20:49:20Z",
       "side": 1,
       "message": "These like they should throw.  They indicate a code error that should be fixed ASAP.",
+      "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e96e304_e547084f",
+        "filename": "modules/engine/components/flow-registry.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-21T13:15:25Z",
+      "side": 1,
+      "message": "Probably, but I\u0027ll need to look into a better way of doing this so that we don\u0027t break qunit tests.",
+      "parentUuid": "8e96e304_b6138e04",
       "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
