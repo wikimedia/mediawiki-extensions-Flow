@@ -739,6 +739,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_c0d32004",
+        "filename": "modules/engine/components/common/flow-component-engines.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-21T20:59:50Z",
+      "side": 1,
+      "message": "Yep. https://lists.wikimedia.org/pipermail/wikitech-ambassadors/2014-August/000872.html and https://lists.wikimedia.org/pipermail/wikitech-ambassadors/2014-September/000926.html",
+      "parentUuid": "8e96e304_4a0ccb45",
+      "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e96e304_3df524b6",
         "filename": "modules/engine/components/common/flow-component-events.js",
         "patchSetId": 13
@@ -1235,6 +1253,24 @@
       "side": 1,
       "message": "Probably, but I\u0027ll need to look into a better way of doing this so that we don\u0027t break qunit tests.",
       "parentUuid": "8e96e304_b6138e04",
+      "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_83f20202",
+        "filename": "modules/engine/components/flow-registry.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-21T20:59:50Z",
+      "side": 1,
+      "message": "Hmm, curious why this is currently required for QUnit.",
+      "parentUuid": "8e96e304_e547084f",
       "revId": "29dfea3fe8882bf1196c16334fd7db49d31d901f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
