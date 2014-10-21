@@ -75,7 +75,7 @@ class ReferenceRecorder implements LifecycleHandler {
 	 *
 	 * @param  Workflow $workflow The Workflow that the revision is attached to.
 	 * @param  AbstractRevision $revision The Revision to pull references from.
-	 * @return array Array of References.
+	 * @return Reference[] Array of References.
 	 */
 	public function getReferencesFromRevisionContent( Workflow $workflow, AbstractRevision $revision ) {
 		$content = $revision->getContent( 'html' );
@@ -93,7 +93,7 @@ class ReferenceRecorder implements LifecycleHandler {
 	 *
 	 * @param  string $revType The value returned from Revision::getRevisionType() for the revision.
 	 * @param  UUID $objectId   The revision's Object ID.
-	 * @return array Array of References.
+	 * @return Reference[] Array of References.
 	 */
 	public function getExistingReferences( $revType, UUID $objectId ) {
 		$prevWikiReferences = $this->storage->find( 'WikiReference', array(

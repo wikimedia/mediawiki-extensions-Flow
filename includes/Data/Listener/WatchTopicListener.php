@@ -58,7 +58,7 @@ abstract class AbstractTopicInsertListener implements LifecycleHandler {
 	 *
 	 * @param string $changeType
 	 * @param string $watchType Key of the corresponding 'watch' array in FlowActions.php
-	 * @param array $params Params to feed to callback function that will return
+	 * @param WatchedTopicItems[] $params Params to feed to callback function that will return
 	 *   an array of users to subscribe
 	 * @return User[]
 	 */

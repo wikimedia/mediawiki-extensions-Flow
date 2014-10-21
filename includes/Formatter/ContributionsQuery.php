@@ -30,7 +30,7 @@ class ContributionsQuery extends AbstractQuery {
 	 * @param ManagerGroup $storage
 	 * @param BagOStuff $cache
 	 * @param TreeRepository $treeRepo
-	 * @param DBFactory $dbFactory
+	 * @param DbFactory $dbFactory
 	 */
 	public function __construct( ManagerGroup $storage, TreeRepository $treeRepo, BagOStuff $cache, DbFactory $dbFactory ) {
 		parent::__construct( $storage, $treeRepo );
@@ -135,7 +135,7 @@ class ContributionsQuery extends AbstractQuery {
 	 * @param array $conditions
 	 * @param int $limit
 	 * @param string $revisionClass Storage type (e.g. "PostRevision", "Header")
-	 * @return ResultWrapper|boolean false on failure
+	 * @return ResultWrapper|false false on failure
 	 * @throws \MWException
 	 */
 	protected function queryRevisions( $conditions, $limit, $revisionClass ) {

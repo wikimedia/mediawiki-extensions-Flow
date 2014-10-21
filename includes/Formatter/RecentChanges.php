@@ -16,7 +16,7 @@ class RecentChanges extends AbstractFormatter {
 	 * @param RecentChangesRow $row
 	 * @param IContextSource $ctx
 	 * @param bool $linkOnly
-	 * @return string|bool Output line, or false on failure
+	 * @return string|false Output line, or false on failure
 	 */
 	public function format( RecentChangesRow $row, IContextSource $ctx, $linkOnly = false ) {
 		if ( !$this->permissions->isAllowed( $row->revision, 'recentchanges' ) ) {

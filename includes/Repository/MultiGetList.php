@@ -21,6 +21,13 @@ class MultiGetList {
 		$this->cache = $cache;
 	}
 
+	/**
+	 * @param string $key
+	 * @param array $ids
+	 * @param callable $loadCallback
+	 * @return array
+	 * @throws InvalidInputException
+	 */
 	public function get( $key, array $ids, $loadCallback ) {
 		$key = implode( ':', (array) $key );
 		$cacheKeys = array();
@@ -37,6 +44,11 @@ class MultiGetList {
 		return $this->getByKey( $cacheKeys, $loadCallback );
 	}
 
+	/**
+	 * @param array $cacheKeys
+	 * @param callable $loadCallback
+	 * @return array
+	 */
 	public function getByKey( array $cacheKeys, $loadCallback ) {
 		if ( !$cacheKeys ) {
 			return array();
@@ -48,7 +60,7 @@ class MultiGetList {
 			wfDebugLog( 'Flow', __METHOD__ . ': Failure querying memcache' );
 		} else {
 			// Memcached BagOStuff only returns found keys, but the redis bag
-			// returns false for found keys.
+			// returns false for not found keys.
 			$multiRes = array_filter(
 				$multiRes,
 				function( $val ) { return $val !== false; }

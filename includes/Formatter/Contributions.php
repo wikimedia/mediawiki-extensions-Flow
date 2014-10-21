@@ -16,7 +16,7 @@ class Contributions extends AbstractFormatter {
 	/**
 	 * @param FormatterRow $row With properties workflow, revision, previous_revision
 	 * @param IContextSource $ctx
-	 * @return string|bool HTML for contributions entry, or false on failure
+	 * @return string|false HTML for contributions entry, or false on failure
 	 */
 	public function format( FormatterRow $row, IContextSource $ctx ) {
 		try {

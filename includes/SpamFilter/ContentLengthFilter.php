@@ -18,7 +18,7 @@ class ContentLengthFilter implements SpamFilter {
 	 * @param Title $title
 	 * @return Status
 	 */
-	public function validate( AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title = null ) {
+	public function validate( AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title ) {
 		return strlen( $newRevision->getContentRaw() ) > 25600
 			? Status::newFatal( 'flow-error-content-too-long', '25600' )
 			: Status::newGood();
