@@ -2,9 +2,10 @@
 
 namespace Flow\Data;
 
-use FormatJson;
+use Flow\Exception\FlowException;
 use Flow\Exception\NoIndexException;
 use Flow\Model\UUID;
+use FormatJson;
 
 /**
  * Denormalized indexes that are query-only.  The indexes used here must
@@ -33,6 +34,12 @@ class ObjectLocator {
 	 */
 	protected $lifecycleHandlers;
 
+	/**
+	 * @param ObjectMapper $mapper
+	 * @param ObjectStorage $storage
+	 * @param Index[] $indexes
+	 * @param LifecycleHandler[] $lifecycleHandlers
+	 */
 	public function __construct( ObjectMapper $mapper, ObjectStorage $storage, array $indexes = array(), array $lifecycleHandlers = array() ) {
 		$this->mapper = $mapper;
 		$this->storage = $storage;
@@ -50,6 +57,10 @@ class ObjectLocator {
 	}
 
 	public function getIterator() {
+		if ( !method_exists( $this->storage, 'getIterator' ) ) {
+			throw new FlowException( 'Storage object of class "' . get_class( $this->storage ) . '" has no iterator.' );
+		}
+
 		return $this->storage->getIterator();
 	}
 
@@ -246,7 +257,7 @@ class ObjectLocator {
 	}
 
 	public function clear() {
-		// nop, we dont store anything
+		// nop, we don't store anything
 	}
 
 	/**

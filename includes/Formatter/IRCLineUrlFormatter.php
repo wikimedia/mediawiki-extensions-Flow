@@ -23,13 +23,18 @@ class IRCLineUrlFormatter extends AbstractFormatter implements RCFeedFormatter {
 	public function getLine( array $feed, RecentChange $rc, $actionComment ) {
 		/** @var RecentChangesQuery $query */
 		$query = Container::get( 'query.recentchanges' );
-		//throw new \Exception($rc->mAttribs['rc_params']);
 		$query->loadMetadataBatch( array( (object)$rc->mAttribs ) );
 		$rcRow = $query->getResult( null, $rc );
+
 		$ctx = \RequestContext::getMain();
 		$data = $this->serializer->formatApi( $rcRow, $ctx );
+		if ( !$data ) {
+			throw new FlowException( 'Could not format data for row ' . $rcRow->revision->getRevisionId()->getAlphadecimal() );
+		}
 		$this->serializer->setIncludeHistoryProperties( true );
+
 		$rc->mAttribs['rc_comment'] = $this->formatDescription( $data, $ctx );
+
 		/** @var RCFeedFormatter $formatter */
 		$formatter = new $feed['original_formatter']();
 		return $formatter->getLine( $feed, $rc, $actionComment );

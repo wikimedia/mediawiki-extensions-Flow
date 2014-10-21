@@ -13,11 +13,37 @@ use Flow\Exception\InvalidInputException;
 //
 // Maintains merge ordering
 class ResultDuplicator {
-	// Maps from the query array to its position in the query array
+	/**
+	 * Maps from the query array to its position in the query array
+	 *
+	 * @var array
+	 */
 	protected $queryKeys;
+
+	/**
+	 * @var int
+	 */
+	protected $dimensions;
+
+	/**
+	 * @var MultiDimArray
+	 */
+	protected $desiredOrder;
+
+	/**
+	 * @var MultiDimArray
+	 */
 	protected $queryMap;
-	protected $queries = array();
+
+	/**
+	 * @var MultiDimArray
+	 */
 	protected $result;
+
+	/**
+	 * @var array
+	 */
+	protected $queries = array();
 
 	/**
 	 * @param array $queryKeys

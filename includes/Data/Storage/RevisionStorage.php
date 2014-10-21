@@ -97,7 +97,7 @@ abstract class RevisionStorage extends DbStorage {
 
 	/**
 	 * @param DbFactory $dbFactory
-	 * @param array|false List of externel store servers available for insert
+	 * @param array|false List of external store servers available for insert
 	 *  or false to disable. See $wgFlowExternalStore.
 	 */
 	public function __construct( DbFactory $dbFactory, $externalStore ) {
@@ -459,7 +459,7 @@ abstract class RevisionStorage extends DbStorage {
 				return false;
 			}
 		}
-		return $this->updateRelated( $changeSet, $old );
+		return (bool) $this->updateRelated( $changeSet, $old );
 	}
 
 

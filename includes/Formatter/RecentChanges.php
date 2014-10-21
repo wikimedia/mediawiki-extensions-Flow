@@ -29,6 +29,10 @@ class RecentChanges extends AbstractFormatter {
 
 		$this->serializer->setIncludeHistoryProperties( true );
 		$data = $this->serializer->formatApi( $row, $ctx );
+		if ( !$data ) {
+			throw new FlowException( 'Could not format data for row ' . $row->revision->getRevisionId()->getAlphadecimal() );
+		}
+
 		// @todo where should this go?
 		$data['size'] = array(
 			'old' => $row->recentChange->getAttribute( 'rc_old_len' ),

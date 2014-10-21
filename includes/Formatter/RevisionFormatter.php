@@ -89,6 +89,16 @@ class RevisionFormatter {
 	protected $userLinks = array();
 
 	/**
+	 * @var UserNameBatch
+	 */
+	protected $usernames;
+
+	/**
+	 * @var GenderCache
+	 */
+	protected $genderCache;
+
+	/**
 	 * @param RevisionActionPermissions $permissions
 	 * @param Templating $templating
 	 * @param UserNameBatch $usernames
@@ -421,8 +431,11 @@ class RevisionFormatter {
 				if (
 					// thanks extension must be available
 					!class_exists( 'ThanksHooks' ) ||
-					// anon's can't thank
+					// anons can't thank
 					$user->isAnon() ||
+					// can only thank for PostRevisions
+					// (other revision objects have mo getCreator* methods)
+					!$revision instanceof PostRevision ||
 					// can't thank an anon user
 					$revision->getCreatorIp() ||
 					// can't thank self
@@ -436,11 +449,13 @@ class RevisionFormatter {
 			case 'reply':
 				if ( !$postId ) {
 					throw new FlowException( "$type called without \$postId" );
+				} elseif ( !$revision instanceof PostRevision ) {
+					throw new FlowException( "$type called without PostRevision object" );
 				}
 
 				/*
-				 * If the post being replied is at or exceeds the max threading
-				 * depth, the reply link should point to parent.
+				 * If the post being replied to is at or exceeds the max
+				 * threading depth, the reply link should point to parent.
 				 */
 				$replyToId = $postId;
 				$replyToRevision = $revision;
@@ -854,6 +869,7 @@ class RevisionFormatter {
 			if ( !$revision instanceof PostSummary ) {
 				throw new FlowException( 'Expected PostSummary but received ' . get_class( $revision ) );
 			}
+			/** @var PostRevision $post */
 			$post = $revision->getCollection()->getPost()->getLastRevision();
 			if ( $post->isTopicTitle() ) {
 				return Message::plaintextParam( $this->templating->getContent( $post, 'wikitext' ) );

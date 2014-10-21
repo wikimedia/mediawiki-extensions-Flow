@@ -18,6 +18,22 @@ use Flow\Exception\DataPersistenceException;
  * Doesn't support auto-increment pk yet
  */
 class BasicDbStorage extends DbStorage {
+	/**
+	 * @var string
+	 */
+	protected $table;
+
+	/**
+	 * @var string[]
+	 */
+	protected $primaryKey;
+
+	/**
+	 * @param DbFactory $dbFactory
+	 * @param string $table
+	 * @param string[] $primaryKey
+	 * @throws DataModelException
+	 */
 	public function __construct( DbFactory $dbFactory, $table, array $primaryKey ) {
 		if ( !$primaryKey ) {
 			throw new DataModelException( 'PK required', 'process-data' );
@@ -69,7 +85,7 @@ class BasicDbStorage extends DbStorage {
 		$pk = ObjectManager::splitFromRow( $old, $this->primaryKey );
 		if ( $pk === null ) {
 			$missing = array_diff( $this->primaryKey, array_keys( $old ) );
-			throw new DataPersistenceException( 'Row has null primary key: ' . implode( $missing ), 'process-data' );
+			throw new DataPersistenceException( 'Row has null primary key: ' . implode( ', ', $missing ), 'process-data' );
 		}
 		$updates = ObjectManager::calcUpdates( $old, $new );
 		if ( !$updates ) {
@@ -98,7 +114,7 @@ class BasicDbStorage extends DbStorage {
 		$pk = ObjectManager::splitFromRow( $row, $this->primaryKey );
 		if ( $pk === null ) {
 			$missing = array_diff( $this->primaryKey, array_keys( $row ) );
-			throw new DataPersistenceException( 'Row has null primary key: ' . implode( $missing ), 'process-data' );
+			throw new DataPersistenceException( 'Row has null primary key: ' . implode( ', ', $missing ), 'process-data' );
 		}
 
 		$pk = $this->preprocessSqlArray( $pk );

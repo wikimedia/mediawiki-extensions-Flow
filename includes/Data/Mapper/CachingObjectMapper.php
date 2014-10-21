@@ -26,6 +26,11 @@ class CachingObjectMapper implements ObjectMapper {
 	protected $fromStorageRow;
 
 	/**
+	 * @var string[]
+	 */
+	protected $primaryKey;
+
+	/**
 	 * @var MultiDimArray
 	 */
 	protected $loaded;

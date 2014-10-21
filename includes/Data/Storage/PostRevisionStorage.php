@@ -11,7 +11,17 @@ use Flow\Exception\DataModelException;
  * SQL storage and query for PostRevision instances
  */
 class PostRevisionStorage extends RevisionStorage {
+	/**
+	 * @var TreeRepository
+	 */
+	protected $treeRepo;
 
+	/**
+	 * @param DbFactory $dbFactory
+	 * @param array|false List of external store servers available for insert
+	 *  or false to disable. See $wgFlowExternalStore.
+	 * @param TreeRepository $treeRepo
+	 */
 	public function __construct( DbFactory $dbFactory, $externalStore, TreeRepository $treeRepo ) {
 		parent::__construct( $dbFactory, $externalStore );
 		$this->treeRepo = $treeRepo;
@@ -60,7 +70,7 @@ class PostRevisionStorage extends RevisionStorage {
 		}
 
 		if ( !$res ) {
-			return false;
+			return array();
 		}
 
 		return $rows;
@@ -98,15 +108,15 @@ class PostRevisionStorage extends RevisionStorage {
 		);
 
 		if ( !$res ) {
-			return false;
+			return array();
 		}
 
 		return $changes;
 	}
 
-	// this doesnt delete the whole post, it just deletes the revision.
+	// this doesn't delete the whole post, it just deletes the revision.
 	// The post will *always* exist in the tree structure, its just a tree
-	// and we arn't going to re-parent its children;
+	// and we aren't going to re-parent its children;
 	protected function removeRelated( array $row ) {
 		return $this->dbFactory->getDB( DB_MASTER )->delete(
 			$this->joinTable(),

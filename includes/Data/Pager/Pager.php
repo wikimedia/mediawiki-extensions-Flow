@@ -41,6 +41,11 @@ class Pager {
 	 */
 	protected $options;
 
+	/**
+	 * @var string
+	 */
+	protected $offsetKey;
+
 	public function __construct( ObjectManager $storage, array $query, array $options ) {
 		// not sure i like this
 		$this->storage = $storage;

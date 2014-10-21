@@ -26,9 +26,19 @@ class BoardHistoryStorage extends DbStorage {
 		$merged = $this->findHeaderHistory( $queries, $options ) +
 			$this->findTopicListHistory( $queries, $options ) +
 			$this->findTopicSummaryHistory( $queries, $options );
-		// newest items at the begining of the list
+		// newest items at the beginning of the list
 		krsort( $merged );
-		return RevisionStorage::mergeExternalContent( array( $merged ) );
+
+		// Merge data from external store & get rid of failures
+		$res = array( $merged );
+		$res = RevisionStorage::mergeExternalContent( $res );
+		foreach ( $res as $i => $result ) {
+			if ( $result ) {
+				$res[$i] = array_filter( $result, array( $this, 'validate' ) );
+			}
+		}
+
+		return $res;
 	}
 
 	protected function findHeaderHistory( array $queries, array $options = array() ) {
@@ -105,6 +115,17 @@ class BoardHistoryStorage extends DbStorage {
 		return $retval;
 	}
 
+	/**
+	 * When retrieving revisions from DB, RevisionStorage::mergeExternalContent
+	 * will be called to fetch the content. This could fail, resulting in the
+	 * content being a 'false' value.
+	 *
+	 * {@inheritDoc}
+	 */
+	public function validate( array $row ) {
+		return !isset( $row['rev_content'] ) || $row['rev_content'] !== false;
+	}
+
 	public function getPrimaryKeyColumns() {
 		return array( 'topic_list_id' );
 	}
@@ -124,5 +145,4 @@ class BoardHistoryStorage extends DbStorage {
 	public function getIterator() {
 		throw new DataModelException( 'Not Implemented', 'process-data' );
 	}
-
 }
