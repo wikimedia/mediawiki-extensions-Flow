@@ -10,6 +10,20 @@ use Flow\UrlGenerator;
 use IContextSource;
 
 class TopicListFormatter {
+	/**
+	 * @var UrlGenerator
+	 */
+	protected $urlGenerator;
+
+	/**
+	 * @var RevisionFormatter
+	 */
+	protected $serializer;
+
+	/**
+	 * @var Templating
+	 */
+	protected $templating;
 
 	public function __construct( UrlGenerator $urlGenerator, RevisionFormatter $serializer, Templating $templating ) {
 		$this->urlGenerator = $urlGenerator;

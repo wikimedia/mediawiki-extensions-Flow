@@ -107,7 +107,7 @@ class Templating {
 		// if this specific revision is moderated, its usertext can always be
 		// displayed, since it will be the moderator user
 		if ( $revision->isModerated() || $this->permissions->isAllowed( $revision, 'view' ) ) {
-			return $this->usernames->get( wfWikiId(), $revision->getUserId(), $revision->getUserIp() );
+			return $this->usernames->get( wfWikiId(), $revision->getUserId(), $revision->getUserIp() ) ?: '';
 		} else {
 			$revision = $this->getModeratedRevision( $revision );
 			$username = $this->usernames->get(
@@ -186,7 +186,7 @@ class Templating {
 				wfWikiId(),
 				$revision->getCreatorId(),
 				$revision->getCreatorIp()
-			);
+			) ?: '';
 		} else {
 			$revision = $this->getModeratedRevision( $revision );
 			$state = $revision->getModerationState();

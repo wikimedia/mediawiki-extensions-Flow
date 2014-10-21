@@ -8,7 +8,30 @@ use Title;
 abstract class Reference {
 	const TYPE_LINK = 'link';
 
-	protected $workflowId, $title, $objectType, $objectId, $type;
+	/**
+	 * @var UUID
+	 */
+	protected $workflowId;
+
+	/**
+	 * @var Title
+	 */
+	protected $srcTitle;
+
+	/**
+	 * @var String
+	 */
+	protected $objectType;
+
+	/**
+	 * @var UUID
+	 */
+	protected $objectId;
+
+	/**
+	 * @var string
+	 */
+	protected $type;
 
 	protected $validTypes = array( self::TYPE_LINK );
 

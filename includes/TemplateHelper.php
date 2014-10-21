@@ -271,8 +271,7 @@ class TemplateHelper {
 		return self::timestamp(
 			$args[0],
 			$args[1],
-			isset( $args[2] ) ? $args[2] : false,
-			isset( $args[3] ) ? $args[3] : false
+			isset( $args[2] ) ? $args[2] : false
 		);
 	}
 

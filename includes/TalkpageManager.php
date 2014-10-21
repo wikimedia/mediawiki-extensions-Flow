@@ -17,7 +17,14 @@ interface OccupationController {
 }
 
 class TalkpageManager implements OccupationController {
+	/**
+	 * @var array
+	 */
+	protected $occupiedNamespaces;
 
+	/**
+	 * @var array
+	 */
 	protected $occupiedPages;
 
 	/**

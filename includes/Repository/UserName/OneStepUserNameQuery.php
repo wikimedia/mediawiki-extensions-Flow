@@ -9,6 +9,14 @@ use Flow\DbFactory;
  * database requests for multiple usernames when possible.
  */
 class OneStepUserNameQuery implements UserNameQuery {
+	/**
+	 * @var DbFactory
+	 */
+	protected $dbFactory;
+
+	/**
+	 * @param DbFactory $dbFactory
+	 */
 	public function __construct( DbFactory $dbFactory ) {
 		$this->dbFactory = $dbFactory;
 	}

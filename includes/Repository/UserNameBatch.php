@@ -12,6 +12,11 @@ use User;
  */
 class UserNameBatch {
 	/**
+	 * @var UserName\UserNameQuery
+	 */
+	protected $query;
+
+	/**
 	 * @var array[] map from wikiid to list of userid's to request
 	 */
 	protected $queued = array();

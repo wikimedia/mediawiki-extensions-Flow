@@ -167,7 +167,7 @@ class Workflow {
 		$obj->namespace = $title->getNamespace();
 		$obj->titleText = $title->getDBkey();
 		$obj->user = UserTuple::newFromUser( $user );
-		$obj->lockState = 0;
+		$obj->lockState = array();
 		$obj->updateLastModified();
 
 		return $obj;
