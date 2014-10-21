@@ -10,6 +10,14 @@ use Flow\Exception\DataModelException;
  * Re-adds them when retrieving from cache.
  */
 class FeatureCompactor implements Compactor {
+	/**
+	 * @var string[]
+	 */
+	protected $indexed;
+
+	/**
+	 * @param string[] $indexedColumns
+	 */
 	public function __construct( array $indexedColumns ) {
 		$this->indexed = $indexedColumns;
 	}
@@ -17,6 +25,10 @@ class FeatureCompactor implements Compactor {
 	/**
 	 * The indexed values are always available when querying, this strips
 	 * the duplicated data.
+	 *
+	 * @param array $row
+	 * @return array
+	 * @throws DataModelException
 	 */
 	public function compactRow( array $row ) {
 		foreach ( $this->indexed as $key ) {
@@ -30,6 +42,10 @@ class FeatureCompactor implements Compactor {
 		return $row;
 	}
 
+	/**
+	 * @param array $rows
+	 * @return array
+	 */
 	public function compactRows( array $rows ) {
 		return array_map( array( $this, 'compactRow' ), $rows );
 	}

@@ -12,12 +12,36 @@ use Flow\Data\Utils\ResultDuplicator;
  * values into full rows from the unique index.
  */
 class ShallowCompactor implements Compactor {
+	/**
+	 * @var Compactor
+	 */
+	protected $inner;
+
+	/**
+	 * @var UniqueFeatureIndex
+	 */
+	protected $shallow;
+
+	/**
+	 * @var array
+	 */
+	protected $sort;
+
+	/**
+	 * @param Compactor $inner
+	 * @param UniqueFeatureIndex $shallow
+	 * @param array $sortedColumns
+	 */
 	public function __construct( Compactor $inner, UniqueFeatureIndex $shallow, array $sortedColumns ) {
 		$this->inner = $inner;
 		$this->shallow = $shallow;
 		$this->sort = $sortedColumns;
 	}
 
+	/**
+	 * @param array $row
+	 * @return array
+	 */
 	public function compactRow( array $row ) {
 		$keys = array_merge( $this->shallow->getPrimaryKeyColumns(), $this->sort );
 		$extra = array_diff( array_keys( $row ), $keys );
@@ -27,6 +51,10 @@ class ShallowCompactor implements Compactor {
 		return $this->inner->compactRow( $row );
 	}
 
+	/**
+	 * @param array $rows
+	 * @return array
+	 */
 	public function compactRows( array $rows ) {
 		return array_map( array( $this, 'compactRow' ), $rows );
 	}

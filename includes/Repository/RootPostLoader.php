@@ -15,6 +15,20 @@ use FormatJson;
  * is actually a root.
  */
 class RootPostLoader {
+	/**
+	 * @var ManagerGroup
+	 */
+	protected $storage;
+
+	/**
+	 * @var TreeRepository
+	 */
+	protected $treeRepo;
+
+	/**
+	 * @param ManagerGroup $storage
+	 * @param TreeRepository $treeRepo
+	 */
 	public function __construct( ManagerGroup $storage, TreeRepository $treeRepo ) {
 		$this->storage = $storage;
 		$this->treeRepo = $treeRepo;
@@ -212,5 +226,12 @@ class RootPostLoader {
 			$retval[$id->getAlphadecimal()] = $id;
 		}
 		return $retval;
+	}
+
+	/**
+	 * @return TreeRepository
+	 */
+	public function getTreeRepo() {
+		return $this->treeRepo;
 	}
 }

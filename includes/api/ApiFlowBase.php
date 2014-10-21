@@ -12,7 +12,7 @@ abstract class ApiFlowBase extends ApiBase {
 	/** @var WorkflowLoader $loader */
 	protected $loader;
 
-	/** @var Title|bool $page */
+	/** @var Title $page */
 	protected $page;
 
 	/** @var bool $render */
@@ -141,20 +141,32 @@ abstract class ApiFlowBase extends ApiBase {
 			: parent::encodeParamName( $paramName );
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function getHelpUrls() {
 		return array(
 			'https://www.mediawiki.org/wiki/Extension:Flow/API#' . $this->getAction(),
 		);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function needsToken() {
 		return 'csrf';
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function getTokenSalt() {
 		return '';
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function getParent() {
 		return $this->apiFlow;
 	}

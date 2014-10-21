@@ -10,6 +10,16 @@ use Flow\Exception\DataModelException;
  * ObjectManagers more conveniently.
  */
 class ManagerGroup {
+	/**
+	 * @var Container
+	 */
+	protected $container;
+
+	/**
+	 * @var array
+	 */
+	protected $classMap;
+
 	public function __construct( Container $container, array $classMap ) {
 		$this->container = $container;
 		$this->classMap = $classMap;

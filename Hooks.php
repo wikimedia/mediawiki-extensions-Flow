@@ -220,15 +220,15 @@ class FlowHooks {
 	/**
 	 * Updates the given Flow topic line in an enhanced changes list (grouped RecentChanges).
 	 *
-	 * @param IContextSource $changesList
+	 * @param ChangesList    $changesList
 	 * @param string         $articlelink
 	 * @param string         $s
-	 * @param array          $rc
+	 * @param RecentChange   $rc
 	 * @param bool           $unpatrolled
 	 * @param bool           $isWatchlist
 	 * @return bool
 	 */
-	public static function onChangesListInsertArticleLink( \IContextSource &$changesList, &$articlelink, &$s, &$rc, $unpatrolled, $isWatchlist ) {
+	public static function onChangesListInsertArticleLink( \ChangesList &$changesList, &$articlelink, &$s, &$rc, $unpatrolled, $isWatchlist ) {
 		if ( !( $changesList instanceof \EnhancedChangesList ) ) {
 			// This method is only to update EnhancedChangesList.
 			// onOldChangesListRecentChangesLine allows updating OldChangesList, and supports adding wrapper classes.
@@ -256,8 +256,8 @@ class FlowHooks {
 	 * @param ChangesList    $changesList
 	 * @param string         $s
 	 * @param RecentChange   $rc
-	 * @param null           $classes
-	 * @param null           $isWatchlist
+	 * @param array          $classes
+	 * @param bool           $isWatchlist
 	 * @param bool           $topicOnly
 	 * @return bool
 	 */
