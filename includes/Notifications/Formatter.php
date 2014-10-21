@@ -170,7 +170,7 @@ class NotificationFormatter extends EchoBasicFormatter {
 	 * Get the very first unread post from a topic in an event
 	 * @param \EchoEvent
 	 * @param \User
-	 * @return UUID|boolean
+	 * @return UUID|false
 	 */
 	protected function getFirstUnreadPostId( $event, $user ) {
 		$data = $this->getBundleLastRawData( $event, $user );

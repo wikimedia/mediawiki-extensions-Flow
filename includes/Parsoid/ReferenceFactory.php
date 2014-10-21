@@ -9,6 +9,26 @@ use Flow\Model\Workflow;
 
 class ReferenceFactory {
 	/**
+	 * @var UUID
+	 */
+	protected $workflowId;
+
+	/**
+	 * @var \Title
+	 */
+	protected $title;
+
+	/**
+	 * @var string
+	 */
+	protected $objectType;
+
+	/**
+	 * @var UUID
+	 */
+	protected $objectId;
+
+	/**
 	 * @param Workflow $workflow
 	 * @param string $objectType
 	 * @param UUID $objectId

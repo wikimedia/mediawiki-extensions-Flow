@@ -25,6 +25,11 @@ class Redlinker implements Fixer {
 	protected $batch;
 
 	/**
+	 * @var ArrayObject
+	 */
+	protected $processed;
+
+	/**
 	 * @param LinkBatch $batch
 	 */
 	public function __construct( LinkBatch $batch ) {

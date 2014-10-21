@@ -11,6 +11,21 @@ use IContextSource;
 
 class RevisionViewFormatter {
 	/**
+	 * @var UrlGenerator
+	 */
+	protected $urlGenerator;
+
+	/**
+	 * @var RevisionFormatter
+	 */
+	protected $serializer;
+
+	/**
+	 * @var Templating
+	 */
+	protected $templating;
+
+	/**
 	 * @param UrlGenerator $urlGenerator
 	 * @param RevisionFormatter $serializer
 	 * @param Templating $templating
@@ -66,12 +81,11 @@ class RevisionViewFormatter {
 		);
 
 		if ( $row->revision instanceof PostRevision || $row->revision instanceof PostSummary ) {
-			$links['root'] = $this->urlGenerator->topicLink(
-				$row->workflow->getArticleTitle(),
-				$workflowId
-			);
+			$links['root'] = $this->urlGenerator->topicLink( $row->workflow->getArticleTitle(), $workflowId );
 			$links['root']->setMessage( $title->getPrefixedText() );
+		}
 
+		if ( $row->revision instanceof PostRevision ) {
 			$links['single-view'] = $this->urlGenerator->postRevisionLink(
 				$title,
 				$workflowId,
@@ -86,7 +100,7 @@ class RevisionViewFormatter {
 				$row->revision->getRevisionId()
 			);
 			$links['single-view']->setMessage( $title->getPrefixedText() );
-		} else {
+		} elseif ( !$row->revision instanceof PostSummary ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Received unknown revision type ' . get_class( $row->revision ) );
 		}
 
