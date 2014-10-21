@@ -36,6 +36,11 @@ abstract class RecentChanges implements LifecycleHandler {
 	protected $usernames;
 
 	/**
+	 * @var RecentChangeFactory
+	 */
+	protected $rcFactory;
+
+	/**
 	 * @param FlowActions $actions
 	 * @param UserNameBatch $usernames
 	 * @param RecentChangeFactory $rcFactory Creates mw RecentChange instances

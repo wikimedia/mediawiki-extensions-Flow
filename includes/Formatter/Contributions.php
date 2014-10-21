@@ -42,6 +42,9 @@ class Contributions extends AbstractFormatter {
 	protected function formatHtml( FormatterRow $row, IContextSource $ctx ) {
 		$this->serializer->setIncludeHistoryProperties( true );
 		$data = $this->serializer->formatApi( $row, $ctx );
+		if ( !$data ) {
+			throw new FlowException( 'Could not format data for row ' . $row->revision->getRevisionId()->getAlphadecimal() );
+		}
 
 		$charDiff = ChangesList::showCharacterDifference(
 			$data['size']['old'],

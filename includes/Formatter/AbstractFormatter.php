@@ -107,7 +107,7 @@ abstract class AbstractFormatter {
 			$request = array_keys( $links );
 		} elseif ( !$request ) {
 			// empty array was passed
-			return array();
+			return '';
 		}
 		$have = array_combine( $request, $request );
 

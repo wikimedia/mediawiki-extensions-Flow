@@ -22,7 +22,7 @@ class ContributionsQuery extends AbstractQuery {
 	protected $cache;
 
 	/**
-	 * @var DBFactory
+	 * @var DbFactory
 	 */
 	protected $dbFactory;
 
@@ -89,6 +89,8 @@ class ContributionsQuery extends AbstractQuery {
 	 * @return array Query conditions
 	 */
 	protected function buildConditions( ContribsPager $pager, $offset, $descending ) {
+		$conditions = array();
+
 		// Work out user condition
 		if ( $pager->contribs == 'newbie' ) {
 			list( $minUserId, $excludeUserIds ) = $this->getNewbieConditionInfo( $pager );
@@ -234,8 +236,14 @@ class ContributionsQuery extends AbstractQuery {
 		}
 
 		// get content in external storage
-		$revisions = RevisionStorage::mergeExternalContent( array( $revisions ) );
-		$revisions = reset( $revisions );
+		$res = array( $revisions );
+		$res = RevisionStorage::mergeExternalContent( $res );
+		foreach ( $res as $i => $result ) {
+			if ( $result ) {
+				$res[$i] = array_filter( $result, array( $this, 'validate' ) );
+			}
+		}
+		$revisions = reset( $res );
 
 		// we have all required data to build revision
 		$mapper = $this->storage->getStorage( $revisionClass )->getMapper();
@@ -290,6 +298,17 @@ class ContributionsQuery extends AbstractQuery {
 		}
 
 		return array( $minUserId, $excludeUserIds );
+	}
+
+	/**
+	 * When retrieving revisions from DB, self::mergeExternalContent will be
+	 * called to fetch the content. This could fail, resulting in the content
+	 * being a 'false' value.
+	 *
+	 * {@inheritDoc}
+	 */
+	public function validate( array $row ) {
+		return !isset( $row['rev_content'] ) || $row['rev_content'] !== false;
 	}
 }
 

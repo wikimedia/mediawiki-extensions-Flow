@@ -61,7 +61,7 @@ interface Index extends LifecycleHandler {
 	 * are broken by evaluating the second term and so on.
 	 *
 	 * @todo choose a default sort instead of false?
-	 * @return array|false Sorting order of either 'ASC', 'DESC' or false
+	 * @return array|false Columns to sort on
 	 */
 	function getSort();
 

@@ -8,11 +8,13 @@ namespace Flow\Data\Utils;
  * plain strings.
  */
 class RawSql {
-	function __construct( $sql ) {
+	protected $sql;
+
+	public function __construct( $sql ) {
 		$this->sql = $sql;
 	}
 
-	function getSQL( $db ) {
+	public function getSQL( $db ) {
 		if ( is_callable( $this->sql ) ) {
 			return call_user_func( $this->sql, $db );
 		}

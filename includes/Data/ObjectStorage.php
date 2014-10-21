@@ -23,7 +23,7 @@ interface ObjectStorage {
 	 *
 	 * @param array $queries list of queries to perform
 	 * @param array $options Options to use for all queries
-	 * @return array
+	 * @return array[] Array of results for every query
 	 */
 	function findMulti( array $queries, array $options = array() );
 
