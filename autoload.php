@@ -180,7 +180,6 @@ $wgAutoloadClasses['Flow\\NotificationController'] = __DIR__ . '/includes/Notifi
 $wgAutoloadClasses['Flow\\NotificationFormatter'] = __DIR__ . '/includes/Notifications/Formatter.php';
 $wgAutoloadClasses['Flow\\NotificationsUserLocator'] = __DIR__ . '/includes/Notifications/UserLocator.php';
 $wgAutoloadClasses['Flow\\OccupationController'] = __DIR__ . '/includes/TalkpageManager.php';
-$wgAutoloadClasses['Flow\\OutputPage'] = __DIR__ . '/includes/OutputPage.php';
 $wgAutoloadClasses['Flow\\Parsoid\\ContentFixer'] = __DIR__ . '/includes/Parsoid/ContentFixer.php';
 $wgAutoloadClasses['Flow\\Parsoid\\Extractor'] = __DIR__ . '/includes/Parsoid/Extractor.php';
 $wgAutoloadClasses['Flow\\Parsoid\\Extractor\\ExtLinkExtractor'] = __DIR__ . '/includes/Parsoid/Extractor/ExtLinkExtractor.php';
