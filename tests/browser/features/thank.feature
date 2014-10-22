@@ -1,5 +1,4 @@
-@test2.wikipedia.org @en.wikipedia.beta.wmflabs.org @ee-prototype.wmflabs.org
-
+@chrome @clean @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10 @login @test2.wikipedia.org
 Feature: Thank author of a Flow post
 
   Scenario: Anon does not see Thank button
@@ -21,4 +20,4 @@ Feature: Thank author of a Flow post
     Given I am logged in
       And the "Talk:Flow QA" page has a new unmoderated topic created by me
       And I am on Flow page
-    Then I should not see the Thank button for that post
+    Then I should not see the Thank button
