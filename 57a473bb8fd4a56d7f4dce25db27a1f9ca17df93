@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_493df489",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 868,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-22T15:57:23Z",
+      "side": 1,
+      "message": "You\u0027re defining data-flow-api-target in the HTML, but you don\u0027t use it here. You should probably change it to that it fetches just \"\u003c .flow-topic-titlebar\" (and not \".flow-topic-title\"), and then remove $topic and $topicTitlebar here and use info.$target instead.",
+      "revId": "57a473bb8fd4a56d7f4dce25db27a1f9ca17df93",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_895a1cf8",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 890,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-22T15:57:23Z",
+      "side": 1,
+      "message": "I feel like we could do this a better way, like a CSS class. I\u0027m not a big fan of directly hiding/showing things with inline CSS attributes.",
+      "revId": "57a473bb8fd4a56d7f4dce25db27a1f9ca17df93",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_a95fd8e7",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 911,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-22T15:57:23Z",
+      "side": 1,
+      "message": "Can\u0027t this be inserted after/inside info.$target?",
+      "revId": "57a473bb8fd4a56d7f4dce25db27a1f9ca17df93",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
