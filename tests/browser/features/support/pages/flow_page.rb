@@ -136,14 +136,14 @@ class FlowPage < WikiPage
 
   ### Post meta actions
   span(:post_meta_actions, css:".flow-post .flow-post-meta-actions", index: 0)
-  a(:edit_post) do |page|
+  a(:edit_post) do |first_post_meta_actions|
     page.post_meta_actions_element.link_element(title: "Edit")
   end
-  a(:thank_button) do |page|
-    page.post_meta_actions_element.link_element(css: ".mw-thanks-flow-thank-link", index: 0)
+  a(:thank_button) do |first_post_meta_actions|
+    first_post_meta_actions.post_meta_actions_element.link_element(css: ".mw-thanks-flow-thank-link", index: 0)
   end
-  span(:thanked_button) do |page|
-    page.post_meta_actions_element.span_element(css: ".mw-thanks-flow-thanked", index: 0)
+  span(:thanked_button) do |first_post_meta_actions|
+    first_post_meta_actions.post_meta_actions_element.span_element(css: ".mw-thanks-flow-thanked", index: 0)
   end
 
   ### First post of first topic actions menu

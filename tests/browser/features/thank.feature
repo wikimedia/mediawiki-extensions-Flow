@@ -1,5 +1,4 @@
-@test2.wikipedia.org @en.wikipedia.beta.wmflabs.org @ee-prototype.wmflabs.org
-
+@chrome @clean @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10 @login @test2.wikipedia.org
 Feature: Thank author of a Flow post
 
   Scenario: Anon does not see Thank button
