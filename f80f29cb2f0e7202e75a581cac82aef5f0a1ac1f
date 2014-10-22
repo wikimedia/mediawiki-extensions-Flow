@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_a969181f",
+        "filename": "modules/styles/common.less",
+        "patchSetId": 20
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-22T16:19:55Z",
+      "side": 1,
+      "message": "Please remove (dead code), per patch set 17.",
+      "revId": "f80f29cb2f0e7202e75a581cac82aef5f0a1ac1f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
