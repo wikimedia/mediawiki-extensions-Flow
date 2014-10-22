@@ -17,18 +17,8 @@ Given(/^the most recent topic on "(.*?)" is written by another user$/) do |title
   client.action( 'flow', token_type: 'edit', submodule: 'new-topic', page: title, nttopic:'Thank me please!', ntcontent: 'Hello' )
 end
 
-Then(/^I do not see a Thank button$/) do
-  on(FlowPage).thank_button_element.should_not exist
-end
-
-Then(/^I do not see a Thanked button$/) do
-  on(FlowPage).thanked_button_element.should_not exist
-end
-
-Then(/^I should see the Thank button be replaced with Thanked button$/) do
-  # TODO: If we decide to use a loading indicator for the thank button,
-  # then condition can be changed to loading_indicator.when_not_present.
-  @target_container.span_element(class: 'mw-thanks-flow-thanked').when_visible
+When(/^I click on the Thank button$/) do
+  on(FlowPage).thank_button_element.click
 end
 
 When(/^I see a Thank button$/) do
@@ -37,10 +27,14 @@ When(/^I see a Thank button$/) do
   @target_container = on(FlowPage).thank_button_element.parent
 end
 
-When(/^I click on the Thank button$/) do
-  on(FlowPage).thank_button_element.click
+Then(/^I should not see a Thank button$/) do
+  on(FlowPage).thank_button_element.should_not exist
 end
 
 Then(/^I should not see the Thank button for that post$/) do
   on(FlowPage).thank_button_element.should_not exist
+end
+
+Then(/^I should see the Thank button be replaced with Thanked button$/) do
+  @target_container.span_element(class: 'mw-thanks-flow-thanked').when_visible
 end

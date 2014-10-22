@@ -5,7 +5,7 @@ Feature: Thank author of a Flow post
   Scenario: Anon does not see Thank button
     Given the "Talk:Flow QA" page has a new unmoderated topic created by me
       And I am on Flow page
-    Then I do not see a Thank button
+    Then I should not see a Thank button
 
   @login
   Scenario: Thank the user
