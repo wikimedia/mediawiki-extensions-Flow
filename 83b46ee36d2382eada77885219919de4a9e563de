@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_57ffd462",
+        "filename": "Resources.php",
+        "patchSetId": 17
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-22T16:19:38Z",
+      "side": 1,
+      "message": "Okay, I think I see what convention you\u0027re going for.  String between first and second (if any) dash is the identifier that maps to the class (e.g. \u0027board\u0027, \u0027boardhistory\u0027), and everything after specifies which part of the class it implements?",
+      "parentUuid": "6e936f18_f7eaa0d6",
+      "revId": "83b46ee36d2382eada77885219919de4a9e563de",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_3dd22fd6",
         "filename": "modules/engine/components/board/flow-board.js",
         "patchSetId": 17
@@ -83,6 +101,24 @@
       "side": 1,
       "message": "Note below, the flow would actually be like this:\n\n    1. set SE to {}\n    2. call initStorer\n    3. via callback, assigns SE.cookieStorage, SE.memoryStorage, ...\n    4. set SE to {cookieStorage,memoryStorage,...}\n\nThe callback function (3) triggers BEFORE StorageEngine is anything, so if it isn\u0027t an object at that time, it will error out because we are trying to set properties on undefined.\n\nI don\u0027t quite want to remove the callback function yet (even though it\u0027s mostly for IE6-7), because I\u0027m not entirely sure how it affects all browsers. Some older browsers in Incognito mode (Safari, I think), act strange with storage.",
       "parentUuid": "6e936f18_40ff1063",
+      "revId": "83b46ee36d2382eada77885219919de4a9e563de",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_c9d6e4f6",
+        "filename": "modules/engine/components/common/flow-component-engines.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-22T16:19:38Z",
+      "side": 1,
+      "message": "I see.  initStorer also returns the root storage object (_returnable), so that second assignment alone would be enough, except that the callback may fire before initStorer returns.\n\nIn fact, on further investigation, I believe this is *guaranteed* to happen (calling the callback before return), since flow-initialize.js waits for jQuery ready.\n\nThat means when initStorer calls $(document).ready (which it will since we don\u0027t have a domReady), it will already be ready, which means the callback is fired immediately.\n\nAnyway, the callback no longer provides any benefit, so I will put up a follow up to remove it.",
+      "parentUuid": "6e936f18_17e86cdc",
       "revId": "83b46ee36d2382eada77885219919de4a9e563de",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
