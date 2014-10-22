@@ -12,26 +12,25 @@
         'helpers' => Array(            'l10n' => 'Flow\TemplateHelper::l10n',
 ),
         'blockhelpers' => Array(),
-        'hbhelpers' => Array(            'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
-),
+        'hbhelpers' => Array(),
         'scopes' => Array($in),
         'sp_vars' => Array(),
 
     );
-    return ''.LCRun3::hbch($cx, 'progressiveEnhancement', Array(Array(),Array()), $in, function($cx, $in) {return '
+    return ''.'
 	<button data-flow-api-handler="preview"
 	        data-flow-api-target="< form textarea"
 	        name="preview"
 	        data-role="action"
-	        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right"
+	        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-js"
 	>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
 
 	<button data-flow-interactive-handler="cancelForm"
 	        data-role="cancel"
 	        type="reset"
-	        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right"
+	        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
 	>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
-';}).'
+'.'
 ';
 }
 ?>
