@@ -1,79 +1,51 @@
-Given(/^I am (not )?watching the Flow (board|topic)$/) do |not_watching, type|
-	on(FlowPage) do |page|
-		if ( type === 'board' ) then
-			container = page.board_watchlist_container_element
-		elsif ( type === 'topic' ) then
-			container = page.first_topic_watchlist_container_element
-		end
-
-		container.should exist
-
-		watch_link = container.link_element( :class => 'flow-watch-link-watch' )
-		unwatch_link = container.link_element( :class => 'flow-watch-link-unwatch' )
-
-		if ( ! not_watching ) then ## Make sure we *are* watching something
-			element = watch_link
-			other_element = unwatch_link
-		else ## Make sure we *are not* watching something
-			element = unwatch_link
-			other_element = watch_link
-		end
-
-		if element.visible? then
-			element.click
-			other_element.when_present
-		end
-	end
+Given(/^I am not watching the Flow topic$/) do
+  on(FlowPage).first_topic_unwatch_link_element.when_present.click
 end
 
-When(/^I click the (Watch|Unwatch) (Topic|Board) link$/) do |action, target|
-	on(FlowPage) do |page|
-		if ( target === 'Board' ) then
-			container = page.board_watchlist_container_element
-		elsif ( target === 'Topic' ) then
-			container = page.first_topic_watchlist_container_element
-		end
-
-		container.should exist
-
-		watch_link = container.link_element( :class => 'flow-watch-link-watch' )
-		unwatch_link = container.link_element( :class => 'flow-watch-link-unwatch' )
-
-		if ( action === 'Unwatch' ) then
-			unwatch_link.when_present.click
-		elsif ( action === 'Watch' ) then
-			watch_link.when_present.click
-		end
-
-		## Wait for it to finish
-		container.link_element( :class => 'flow-api-inprogress' ).when_not_present
-	end
+When(/^I click the Watch Topic link$/) do
+  on(FlowPage).first_topic_watch_link_element.when_present.click
 end
 
-Then(/^I should see (?:the|a) (Watch|Unwatch) (Topic|Board) link$/) do |action, target|
-	on(FlowPage) do |page|
-		if ( target === 'Board' ) then
-			container = page.board_watchlist_container_element
-		elsif ( target === 'Topic' ) then
-			container = page.first_topic_watchlist_container_element
-		end
+Then(/^I should see the Unwatch Topic link$/) do
+  expect(on(FlowPage).first_topic_unwatch_link_element.when_present).to be_visible
+end
 
-		container.should exist
+Given(/^I am watching the Flow topic$/) do
+  pending # express the regexp above with the code you wish you had
+end
 
-		watch_link = container.link_element( :class => 'flow-watch-link-watch' )
-		unwatch_link = container.link_element( :class => 'flow-watch-link-unwatch' )
+When(/^I click the Unwatch Topic link$/) do
+  pending # express the regexp above with the code you wish you had
+end
 
-		if ( action === 'Unwatch' ) then
-			unwatch_link.should be_visible
-		elsif ( action === 'Watch' ) then
-			watch_link.should be_visible
-		end
-	end
+Then(/^I should see the Watch Topic link$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+Given(/^I am not watching the Flow board$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+When(/^I click the Watch Board link$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then(/^I should see the Unwatch Board link$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+Given(/^I am watching the Flow board$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+When(/^I click the Unwatch Board link$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then(/^I should see the Watch Board link$/) do
+  pending # express the regexp above with the code you wish you had
 end
 
 Then(/^I should not see any watch links$/) do
-  on(FlowPage) do |page|
-    page.board_watchlist_container_element.should_not be_visible
-    page.first_topic_watchlist_container_element.should_not be_visible
-  end
+  pending # express the regexp above with the code you wish you had
 end
