@@ -4,17 +4,68 @@ namespace Flow\Model;
 
 use Flow\Exception\CrossWikiException;
 use Flow\Exception\FlowException;
+use Flow\Exception\InvalidDataException;
 use User;
 
+/**
+ * Small value object holds the values necessary to uniquely identify
+ * a user across multiple wiki's.
+ */
 class UserTuple {
+	/**
+	 * @param string The wiki the user belongs to
+	 */
 	public $wiki;
+
+	/**
+	 * @param integer The id of the user, or 0 for anonymous
+	 */
 	public $id;
+
+	/**
+	 * @param string The ip of the user, blank string if logged in.
+	 */
 	public $ip;
 
+	/**
+	 * @param string $wiki The wiki the user belongs to
+	 * @param integer|string $id The id of the user, or 0 for anonymous
+	 * @param string|null $ip The ip of the user, blank string for no ip.
+	 *  null special case pass-through to be removed.
+	 * @throws InvalidDataException
+	 */
 	public function __construct( $wiki, $id, $ip ) {
+		if ( !is_integer( $id ) ) {
+			if ( ctype_digit( $id ) ) {
+				$id = (int)$id;
+			} else {
+				throw new InvalidDataException( 'User id must be an integer' );
+			}
+		}
+		if ( $id < 0 ) {
+			throw new InvalidDataException( 'User id must be >= 0' );
+		}
+		if ( !$wiki ) {
+			throw new InvalidDataException( 'No wiki provided' );
+		}
+		if ( $id === 0 && strlen( $ip ) === 0 ) {
+			if ( $ip === null ) {
+				// allowing $ip === null is a temporary hack allowing
+				// IRCLineFormatter to operate as it has in the past. A
+				// followup will be in gerrit to remove this conditional
+			} else {
+				throw new InvalidDataException( 'User has no id and no ip' );
+			}
+		}
+		if ( $id !== 0 && strlen( $ip ) !== 0 ) {
+			throw new InvalidDataException( 'User has both id and ip' );
+		}
+		// @todo assert ip is ipv4 or ipv6, but do we really want
+		// that on every anon user we load from storage?
+
 		$this->wiki = $wiki;
 		$this->id = $id;
-		$this->ip = $ip;
+		$this->ip = (string)$ip;
 	}
 
 	public static function newFromUser( User $user ) {
