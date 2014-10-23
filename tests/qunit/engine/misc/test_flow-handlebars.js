@@ -1,10 +1,10 @@
 ( function ( $ ) {
 QUnit.module( 'ext.flow: Handlebars helpers', {
 	setup: function() {
-		var stub = this.sandbox.stub( mw.mantle.template, 'get' ),
+		var stub = this.sandbox.stub( mw.template, 'get' ),
 			stubUser;
 
-		stub.withArgs( 'foo.handlebars' ).returns ( {
+		stub.withArgs( 'ext.flow.templating', 'foo.handlebars' ).returns ( {
 			render: function( data ) {
 				return data && data.val ? '<div>Magic.</div>' : 'Stubbed.';
 			}
