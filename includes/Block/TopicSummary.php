@@ -118,6 +118,7 @@ class TopicSummaryBlock extends AbstractBlock {
 			}
 
 			$this->nextRevision = PostSummary::create(
+				$this->workflow->getArticleTitle(),
 				$this->findTopicTitle(),
 				$this->context->getUser(),
 				$this->submitted['summary'],

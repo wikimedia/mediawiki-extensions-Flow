@@ -3,25 +3,27 @@
 namespace Flow\Model;
 
 use Flow\Collection\PostSummaryCollection;
+use Title;
 use User;
 
 class PostSummary extends AbstractSummary {
 
 	/**
+	 * @param Title $title
 	 * @param PostRevision $post
 	 * @param User $user
 	 * @param string $content
 	 * @param string $changeType
 	 * @return PostSummary
 	 */
-	static public function create( PostRevision $post, User $user, $content, $changeType ) {
+	static public function create( Title $title, PostRevision $post, User $user, $content, $changeType ) {
 		$obj = new self;
 		$obj->revId = UUID::create();
 		$obj->user = UserTuple::newFromUser( $user );
 		$obj->prevRevision = null;
 		$obj->changeType = $changeType;
 		$obj->summaryTargetId = $post->getPostId();
-		$obj->setContent( $content );
+		$obj->setContent( $content, $title );
 		return $obj;
 	}
 
