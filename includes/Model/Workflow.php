@@ -205,7 +205,8 @@ class Workflow {
 	 */
 	public static function getFromTitleCache( $wiki, $namespace, $titleText ) {
 		if ( $wiki !== wfWikiId() ) {
-			throw new CrossWikiException( 'Interwiki to ' . $wiki . ' not implemented ', 'default' );
+			$thisWiki = wfWikiId();
+			throw new CrossWikiException( "Interwiki to '$wiki' from '$thisWiki'  not implemented", 'default' );
 		}
 		if ( self::$titleCache === null ) {
 			self::$titleCache = new MapCacheLRU( 50 );
