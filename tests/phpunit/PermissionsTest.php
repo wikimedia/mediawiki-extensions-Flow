@@ -89,6 +89,7 @@ class PermissionsTest extends PostRevisionTestCase {
 	 * @return array
 	 */
 	public function permissionsProvider() {
+		try{
 		return array(
 			// anon users can submit content, but not moderate
 			array( $this->anonUser(), null, 'create-header', true ),
@@ -213,6 +214,9 @@ class PermissionsTest extends PostRevisionTestCase {
 			array( $this->oversightUser(), $this->suppressedPost(), 'restore-post', true ),
 			array( $this->oversightUser(), $this->suppressedTopic(), 'restore-topic', true ),
 		);
+		} catch( \Exception $e ) {
+			echo $e;throw $e;
+		}
 	}
 
 	/**
@@ -316,10 +320,12 @@ class PermissionsTest extends PostRevisionTestCase {
 		if ( !$this->post ) {
 			$this->post = $this->generateObject( array(
 				'tree_orig_user_id' => $this->unconfirmedUser()->getId(),
+				'tree_orig_user_ip' => '',
 				'tree_parent_id' => $this->topic()->getPostId()->getBinary()
 			), array(), 1 );
 			$this->post->setRootPost( $this->generateObject( array(
 				'tree_orig_user_id' => $this->unconfirmedUser()->getId(),
+				'tree_orig_user_ip' => '',
 				'tree_parent_id' => $this->topic()->getPostId()->getBinary()
 			), array(), 1 ) );
 		}
@@ -331,6 +337,7 @@ class PermissionsTest extends PostRevisionTestCase {
 		if ( !$this->hiddenPost ) {
 			$this->hiddenPost = $this->generateObject( array(
 				'tree_orig_user_id' => $this->unconfirmedUser()->getId(),
+				'tree_orig_user_ip' => '',
 				'tree_parent_id' => $this->topic()->getPostId()->getBinary(),
 				'rev_change_type' => 'hide-post',
 				'rev_mod_state' => AbstractRevision::MODERATED_HIDDEN
@@ -344,6 +351,7 @@ class PermissionsTest extends PostRevisionTestCase {
 		if ( !$this->deletedPost ) {
 			$this->deletedPost = $this->generateObject( array(
 				'tree_orig_user_id' => $this->unconfirmedUser()->getId(),
+				'tree_orig_user_ip' => '',
 				'tree_parent_id' => $this->topic()->getPostId()->getBinary(),
 				'rev_change_type' => 'delete-post',
 				'rev_mod_state' => AbstractRevision::MODERATED_DELETED
@@ -357,6 +365,7 @@ class PermissionsTest extends PostRevisionTestCase {
 		if ( !$this->suppressedPost ) {
 			$this->suppressedPost = $this->generateObject( array(
 				'tree_orig_user_id' => $this->unconfirmedUser()->getId(),
+				'tree_orig_user_ip' => '',
 				'tree_parent_id' => $this->topic()->getPostId()->getBinary(),
 				'rev_change_type' => 'suppress-post',
 				'rev_mod_state' => AbstractRevision::MODERATED_SUPPRESSED
