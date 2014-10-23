@@ -130,7 +130,8 @@ class HeaderBlock extends AbstractBlock {
 		$this->newRevision = $this->header->newNextRevision(
 			$this->context->getUser(),
 			$this->submitted['content'],
-			'edit-header'
+			'edit-header',
+			$this->workflow->getArticleTitle()
 		);
 
 		if ( !$this->checkSpamFilters( $this->header, $this->newRevision ) ) {
