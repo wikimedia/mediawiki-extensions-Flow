@@ -6,7 +6,7 @@ use Flow\Model\Anchor;
 abstract class ApiFlowBaseGet extends ApiFlowBase {
 	public function execute() {
 		$loader = $this->getLoader();
-		$blocks = $loader->createBlocks();
+		$blocks = $loader->getBlocks();
 		$context = $this->getContext();
 		$action = $this->getAction();
 		$passedParams = $this->getBlockParams();

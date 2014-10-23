@@ -80,7 +80,7 @@ class View extends ContextSource {
 		$request = $this->getRequest();
 		$user = $this->getUser();
 
-		$blocks = $loader->createBlocks();
+		$blocks = $loader->getBlocks();
 		wfProfileOut( __CLASS__ . '-init' );
 
 		$parameters = $this->extractBlockParameters( $action, $request, $blocks );
@@ -88,7 +88,7 @@ class View extends ContextSource {
 		$wasPosted = $request->wasPosted();
 		if ( $wasPosted ) {
 			wfProfileIn( __CLASS__ . '-submit' );
-			$blocksToCommit = $loader->handleSubmit( $this, $blocks, $action, $parameters );
+			$blocksToCommit = $loader->handleSubmit( $this, $action, $parameters );
 			if ( $blocksToCommit ) {
 				if ( !$user->matchEditToken( $request->getVal( 'wpEditToken' ) ) ) {
 					// only render the failed blocks

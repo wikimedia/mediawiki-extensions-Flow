@@ -76,7 +76,7 @@ class WorkflowLoaderFactory {
 
 		return new WorkflowLoader(
 			$workflow,
-			$this->blockFactory,
+			$this->blockFactory->createBlocks( $workflow ),
 			$this->submissionHandler
 		);
 	}
