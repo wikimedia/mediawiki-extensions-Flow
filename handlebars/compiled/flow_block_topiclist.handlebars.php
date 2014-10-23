@@ -151,6 +151,7 @@
 		<div class="flow-topic-summary">
 			'.LCRun3::ch($cx, 'escapeContent', Array(Array(((isset($in['summary']['format']) && is_array($in['summary'])) ? $in['summary']['format'] : null),((isset($in['summary']['content']) && is_array($in['summary'])) ? $in['summary']['content'] : null)),Array()), 'encq').'
 		</div>
+		<br class="flow-ui-clear"/>
 	' : '').'
 </div>
 ';},'flow_topic_titlebar_content' => function ($cx, $in) {return '<h2 class="flow-topic-title">'.LCRun3::ch($cx, 'escapeContent', Array(Array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),Array()), 'encq').'</h2>
