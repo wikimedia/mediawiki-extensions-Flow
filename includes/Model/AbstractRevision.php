@@ -229,11 +229,12 @@ abstract class AbstractRevision {
 	 * @param User $user
 	 * @param string $content
 	 * @param string $changeType
+	 * @param Title $title The article title of the related workflow
 	 * @return AbstractRevision
 	 */
-	public function newNextRevision( User $user, $content, $changeType ) {
+	public function newNextRevision( User $user, $content, $changeType, Title $title ) {
 		$obj = $this->newNullRevision( $user );
-		$obj->setNextContent( $user, $content );
+		$obj->setNextContent( $user, $content, $title );
 		$obj->changeType = $changeType;
 		return $obj;
 	}
@@ -426,15 +427,16 @@ abstract class AbstractRevision {
 	 *
 	 * @param User $user
 	 * @param string $content
+	 * @param Title|null $title When null the related workflow will be lazy-loaded to locate the title
 	 * @throws DataModelException
 	 */
-	protected function setNextContent( User $user, $content ) {
+	protected function setNextContent( User $user, $content, Title $title = null ) {
 		if ( $this->moderationState !== self::MODERATED_NONE ) {
 			throw new DataModelException( 'Cannot change content of restricted revision', 'process-data' );
 		}
 		if ( $content !== $this->getContent() ) {
 			$this->content = null;
-			$this->setContent( $content );
+			$this->setContent( $content, $title );
 			$this->lastEditId = $this->getRevisionId();
 			$this->lastEditUser = UserTuple::newFromUser( $user );
 		}
