@@ -219,30 +219,14 @@ class FlowPage < WikiPage
 
   ## Watch and unwatch links
   div(:first_topic_watchlist_container, css: ".flow-topic-watchlist", index:0)
-
   a(:first_topic_watch_link) do |page|
-    page.first_topic_watchlist_container_element.link_element( css: '.mw-ui-constructive.mw-ui-quiet' )
+    page.first_topic_watchlist_container_element.link_element(css: ".flow-watch-link-watch")
   end
-
   a(:first_topic_unwatch_link) do |page|
-    page.first_topic_watchlist_container_element.link_element( css: '.mw-ui-constructive:not(.mw-ui-quiet)' )
+    page.first_topic_watchlist_container_element.link_element(css: ".flow-watch-link-unwatch")
   end
 
-  a(:first_topic_watchlist_loading_link) do |page|
-    page.first_topic_watchlist_container_element.link_element( css: '.flow-api-inprogress' )
-  end
+  a(:board_unwatch_link, href: /Flow_QA&action=unwatch/)
+  a(:board_watch_link, href: /Flow_QA&action=watch/)
 
-  div(:board_watchlist_container, css:".flow-board-watch-link")
-
-  a(:board_watch_link) do |page|
-    page.board_watchlist_container_element.link_element( css: '.flow-watch-link-watch' )
   end
-
-  a(:board_unwatch_link) do |page|
-    page.board_watchlist_container_element.link_element( css: '.flow-watch-link-unwatch' )
-  end
-
-  a(:board_watch_loading_link) do |page|
-    page.board_watchlist_container_element.link_element( css: '.flow-api-inprogress' )
-  end
-end
