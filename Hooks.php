@@ -770,7 +770,8 @@ class FlowHooks {
 			$formatter = Container::get( 'formatter.irclineurl' );
 			$result = $formatter->format( $rc );
 		} catch ( Exception $e ) {
-			wfDebugLog( 'Flow', __METHOD__ . ': Failed formatting rc ' . $rc->getAttribute( 'rc_id' ) );
+			wfDebugLog( 'Flow', __METHOD__ . ': Failed formatting rc ' . $rc->getAttribute( 'rc_id' )
+				. ': ' . $e->getMessage() );
 			MWExceptionHandler::logException( $e );
 		}
 		restore_error_handler();

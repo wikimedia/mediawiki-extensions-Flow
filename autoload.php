@@ -255,6 +255,7 @@ $wgAutoloadClasses['Flow\\Tests\\LinksTableTest'] = __DIR__ . '/tests/phpunit/Li
 $wgAutoloadClasses['Flow\\Tests\\LocalBufferedBagOStuffTest'] = __DIR__ . '/tests/phpunit/Data/BagOStuff/LocalBufferedBagOStuffTest.php';
 $wgAutoloadClasses['Flow\\Tests\\Model\\PostRevisionTest'] = __DIR__ . '/tests/phpunit/Model/PostRevisionTest.php';
 $wgAutoloadClasses['Flow\\Tests\\Model\\UUIDTest'] = __DIR__ . '/tests/phpunit/Model/UUIDTest.php';
+$wgAutoloadClasses['Flow\\Tests\\Model\\UserTupleTest'] = __DIR__ . '/tests/phpunit/Model/UserTupleTest.php';
 $wgAutoloadClasses['Flow\\Tests\\NotifiedUsersTest'] = __DIR__ . '/tests/phpunit/Notifications/NotifiedUsersTest.php';
 $wgAutoloadClasses['Flow\\Tests\\PagerTest'] = __DIR__ . '/tests/phpunit/PagerTest.php';
 $wgAutoloadClasses['Flow\\Tests\\Parsoid\\BadImageRemoverTest'] = __DIR__ . '/tests/phpunit/Parsoid/Fixer/BadImageRemoverTest.php';
