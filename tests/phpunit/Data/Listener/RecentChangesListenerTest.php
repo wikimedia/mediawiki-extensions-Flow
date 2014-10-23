@@ -49,8 +49,11 @@ class RecentChangesListenerTest extends \MediaWikiTestCase {
 		$rcFactory = $this->getMockBuilder( 'Flow\Data\Utils\RecentChangeFactory' )
 			->disableOriginalConstructor()
 			->getMock();
+		$ircFormatter = $this->getMockBuilder( 'Flow\Formatter\IRCLineUrlFormatter' )
+			->disableOriginalConstructor()
+			->getMock();
 
-		$rc = new RecentChangesListener( $actions, $usernames, $rcFactory );
+		$rc = new RecentChangesListener( $actions, $usernames, $rcFactory, $ircFormatter );
 		$change = $this->getMock( 'RecentChange' );
 		$rcFactory->expects( $this->once() )
 			->method( 'newFromRow' )
