@@ -6,10 +6,11 @@ use Closure;
 use Flow\Container;
 use Flow\Data\LifecycleHandler;
 use Flow\Data\Utils\RecentChangeFactory;
-use Flow\Repository\UserNameBatch;
 use Flow\FlowActions;
+use Flow\Formatter\IRCLineUrlFormatter;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Workflow;
+use Flow\Repository\UserNameBatch;
 
 /**
  * Inserts mw recentchange rows for flow AbstractRevision instances.
@@ -35,14 +36,26 @@ class RecentChangesListener implements LifecycleHandler {
 	protected $rcFactory;
 
 	/**
+	 * @var IRCLineUrlFormatter
+	 */
+	protected $ircFormatter;
+
+	/**
 	 * @param FlowActions $actions
 	 * @param UserNameBatch $usernames
 	 * @param RecentChangeFactory $rcFactory Creates mw RecentChange instances
+	 * @param IRCLineUrlFormatter $ircFormatter
 	 */
-	public function __construct( FlowActions $actions, UserNameBatch $usernames, RecentChangeFactory $rcFactory ) {
+	public function __construct(
+		FlowActions $actions,
+		UserNameBatch $usernames,
+		RecentChangeFactory $rcFactory,
+		IRCLineUrlFormatter $ircFormatter
+	) {
 		$this->actions = $actions;
 		$this->usernames = $usernames;
 		$this->rcFactory = $rcFactory;
+		$this->ircFormatter = $ircFormatter;
 	}
 
 	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
@@ -124,6 +137,11 @@ class RecentChangesListener implements LifecycleHandler {
 			$feeds[$name]['original_formatter'] = $feeds[$name]['formatter'];
 			$feeds[$name]['formatter'] = Container::get( 'formatter.irclineurl' );
 		}
+		// pre-load the irc formatter which will be triggered via hook
+		$this->ircFormatter->associate( $rc, array(
+			'revision' => $revision
+		) + $metadata );
+		// run the feeds/irc/etc external notifications
 		$rc->notifyRCFeeds( $feeds );
 	}
 

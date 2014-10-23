@@ -49,13 +49,7 @@ class UserTuple {
 			throw new InvalidDataException( 'No wiki provided' );
 		}
 		if ( $id === 0 && strlen( $ip ) === 0 ) {
-			if ( $ip === null ) {
-				// allowing $ip === null is a temporary hack allowing
-				// IRCLineFormatter to operate as it has in the past. A
-				// followup will be in gerrit to remove this conditional
-			} else {
-				throw new InvalidDataException( 'User has no id and no ip' );
-			}
+			throw new InvalidDataException( 'User has no id and no ip' );
 		}
 		if ( $id !== 0 && strlen( $ip ) !== 0 ) {
 			throw new InvalidDataException( 'User has both id and ip' );
