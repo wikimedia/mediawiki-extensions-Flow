@@ -142,11 +142,12 @@ class Templating {
 		if ( $revision->isModerated() || $this->permissions->isAllowed( $revision, 'view' ) ) {
 			static $cache;
 			$userid = $revision->getUserId();
-			if ( isset( $cache[$userid] ) ) {
-				return $cache[$userid];
+			$userip = $revision->getUserIp();
+			if ( isset( $cache[$userid][$userip] ) ) {
+				return $cache[$userid][$userip];
 			}
-			$username = $this->usernames->get( wfWikiId(), $revision->getUserId(), $revision->getUserIp() );
-			return $cache[$userid] = Linker::userLink( $userid, $username ) . Linker::userToolLinks( $userid, $username );
+			$username = $this->usernames->get( wfWikiId(), $userid, $userip );
+			return $cache[$userid][$userip] = Linker::userLink( $userid, $username ) . Linker::userToolLinks( $userid, $username );
 		} else {
 			$revision = $this->getModeratedRevision( $revision );
 			$state = $revision->getModerationState();
