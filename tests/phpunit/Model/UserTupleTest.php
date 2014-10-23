@@ -14,6 +14,7 @@ class UserTupleTest extends \MediaWikiTestCase {
 			array( 'foo', -25, '' ),
 			array( 'foo', null, '127.0.0.1' ),
 			array( null, 55, '' ),
+			array( 'foo', 0, null ),
 		);
 	}
 
@@ -31,8 +32,6 @@ class UserTupleTest extends \MediaWikiTestCase {
 			array( 'foo', 42, '' ),
 			array( 'foo', 0, '127.0.0.1' ),
 			array( 'foo', '0', '10.1.2.3' ),
-			// Required hack for IRCLineFormatter
-			array( 'foo', 0, null ),
 		);
 	}
 

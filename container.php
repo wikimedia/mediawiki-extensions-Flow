@@ -287,7 +287,8 @@ $c['listener.recent_changes'] = $c->share( function( $c ) {
 		new Flow\Data\Listener\RecentChangesListener(
 			$c['flow_actions'],
 			$c['repository.username'],
-			new Flow\Data\Utils\RecentChangeFactory
+			new Flow\Data\Utils\RecentChangeFactory,
+			$c['formatter.irclineurl']
 		)
 	);
 } );
