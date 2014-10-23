@@ -22,15 +22,6 @@
  * @author Andrew Garrett
  */
 
-# Alert the user that this is not a valid entry point to MediaWiki if they try to access the special pages file directly.
-if ( !defined( 'MEDIAWIKI' ) ) {
-	echo <<<EOT
-To install this extension, put the following line in LocalSettings.php:
-require_once( "$IP/extensions/Flow/Flow.php" );
-EOT;
-	exit( 1 );
-}
-
 // Extension credits that will show up on Special:Version
 $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
