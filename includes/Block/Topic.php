@@ -202,7 +202,8 @@ class TopicBlock extends AbstractBlock {
 		$this->newRevision = $topicTitle->newNextRevision(
 			$this->context->getUser(),
 			$this->submitted['content'],
-			'edit-title'
+			'edit-title',
+			$this->workflow->getArticleTitle()
 		);
 		if ( !$this->checkSpamFilters( $topicTitle, $this->newRevision ) ) {
 			return;
@@ -384,7 +385,8 @@ class TopicBlock extends AbstractBlock {
 		$this->newRevision = $post->newNextRevision(
 			$this->context->getUser(),
 			$this->submitted['content'],
-			'edit-post'
+			'edit-post',
+			$this->workflow->getArticleTitle()
 		);
 		if ( !$this->checkSpamFilters( $post, $this->newRevision ) ) {
 			return;
