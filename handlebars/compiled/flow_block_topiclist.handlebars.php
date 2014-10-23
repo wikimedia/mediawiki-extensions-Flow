@@ -223,6 +223,7 @@
 		<div class="flow-topic-summary">
 			'.LCRun3::ch($cx, 'escapeContent', Array(Array(((is_array($in['summary']) && isset($in['summary']['format'])) ? $in['summary']['format'] : null),((is_array($in['summary']) && isset($in['summary']['content'])) ? $in['summary']['content'] : null)),Array()), 'encq').'
 		</div>
+		<br class="flow-ui-clear"/>
 	' : '').'
 </div>
 
