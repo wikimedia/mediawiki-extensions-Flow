@@ -2,107 +2,114 @@
 
 namespace Flow\Tests;
 
+use Flow\Container;
 use Flow\Data\Listener\RecentChangesListener;
+use Flow\Model\AbstractRevision;
+use Flow\Model\Header;
+use Flow\Model\PostRevision;
+use Flow\Model\Workflow;
 use FlowHooks;
 use RecentChange;
+use Title;
+use User;
 
 /**
  * @group Flow
  */
 class HookTest extends FlowTestCase {
 	static public function onIRCLineURLProvider() {
-		// specific uuid's dont mean anything, just repeatability
-		$workflowAlpha = 'rs2l7n89pmch81qy';
-		$postAlpha = 'rs2l7n8ctv7rwf6i';
-		$topicAlpha = 'rs2l7n8dra7r9a22';
-		$revisionAlpha = 'rs2l7n89ab7rdd0f';
-		$prevRevisionAlpha = 'rs2l7k73abd02ee2';
+		$user = User::newFromName( '127.0.0.1', false );
+		$title = Title::newMainPage();
+		$boardWorkflow = Workflow::create( 'discussion', $user, Title::newMainPage() );
+		$workflow = Workflow::create( 'topic', $user, Title::newMainPage() );
+		$topicTitle = PostRevision::create( $workflow, 'some content' );
+		$firstReply = $topicTitle->reply( $workflow, $user, 'ffuts dna ylper' );
+		$header = Header::create( $workflow, $user, 'header content' );
 
-		$basicPost = array(
-			'block' => 'topic',
-			'revision_type' => 'PostRevision',
-			'revision' => $revisionAlpha,
-			'prev_revision' => $prevRevisionAlpha,
-			'workflow' => $workflowAlpha,
-			'post' => $postAlpha,
-			'topic' => $topicAlpha,
-		);
-
-		$basicHeader = array(
-			'block' => 'header',
-			'revision_type' => 'Header',
-			'revision' => $revisionAlpha,
-			'prev_revision' => $prevRevisionAlpha,
-			'workflow' => $workflowAlpha,
-			'content' => 'foo bar baz...',
-		);
+		$titleText = $workflow->getArticleTitle()->getPrefixedText();
 
 		return array(
 			array(
 				// test message
 				'Freshly created topic',
 				// flow-workflow-change attribute within rc_params
-				$basicPost + array(
-					'action' => 'new-post',
+				$workflow,
+				$topicTitle,
+				// expected query parameters
+				array(
+					'title' => $titleText,
+					'action' => 'history',
 				),
-				// expected url
-				'?title=Main_Page&action=history',
-				// expected query
-				''
 			),
 
 			array(
 				'Reply to topic',
-				$basicPost + array(
-					'action' => 'reply',
+				$workflow,
+				$firstReply,
+				array(
+					'title' => $titleText,
+					'action' => 'history',
 				),
-				'?title=Main_Page&action=history',
-				'',
 			),
 
 			array(
 				'Edit topic title',
-				$basicPost + array(
-					'action' => 'edit-title',
+				$workflow,
+				$topicTitle->newNextRevision( $user, 'gnihtemos gnihtemos', 'edit-title', $title ),
+				array(
+					'title' => $titleText,
+					'action' => 'compare-post-revisions',
 				),
-				'?title=Main_Page&action=compare-post-revisions&topic_newRevision=rs2l7n89ab7rdd0f',
-				'',
 			),
 
 			array(
 				'Edit post',
-				$basicPost + array(
-					'action' => 'edit-post',
+				$workflow,
+				$firstReply->newNextRevision( $user, 'IT\'S CAPS LOCKS DAY!', 'edit-post', $title ),
+				array(
+					'title' => $titleText,
+					'action' => 'compare-post-revisions',
 				),
-				'?title=Main_Page&action=compare-post-revisions&topic_newRevision=rs2l7n89ab7rdd0f',
-				'',
 			),
 
 			array(
 				'Edit board header',
-				$basicHeader + array(
-					'action' => 'edit-header',
+				$boardWorkflow,
+				$header->newNextRevision( $user, 'STILL CAPS LOCKS DAY!', 'edit-header', $title ),
+				array(
+					'title' => 'Main_Page',
+					'action' => 'compare-header-revisions',
 				),
-				'?title=Main_Page&action=compare-header-revisions&header_newRevision=rs2l7n89ab7rdd0f',
-				'',
 			),
 
 			array(
 				'Moderate a post',
-				$basicPost + array(
-					'action' => 'delete-post',
+				$workflow,
+				$firstReply->moderate(
+					$user,
+					$firstReply::MODERATED_DELETED,
+					'delete-post',
+					'something about cruise control'
 				),
-				'?title=Main_Page&action=history&topic_postId=rs2l7n8ctv7rwf6i',
-				'',
+				array(
+					'title' => $titleText,
+					'action' => 'history',
+				),
 			),
 
 			array(
 				'Moderate a topic',
-				$basicPost + array(
-					'action' => 'hide-topic',
+				$workflow,
+				$topicTitle->moderate(
+					$user,
+					$topicTitle::MODERATED_HIDDEN,
+					'hide-topic',
+					'adorable kittens'
 				),
-				'?title=Main_Page&action=history&topic_postId=rs2l7n8ctv7rwf6i',
-				'',
+				array(
+					'title' => $titleText,
+					'action' => 'history',
+				),
 			),
 		);
 	}
@@ -110,21 +117,27 @@ class HookTest extends FlowTestCase {
 	/**
 	 * @dataProvider onIRCLineUrlProvider
 	 */
-	public function testOnIRCLineUrl( $message, array $change, $expectedUrl, $expectedQuery ) {
+	public function testOnIRCLineUrl( $message, Workflow $workflow, AbstractRevision $revision, $expectedQuery ) {
 		$rc = new RecentChange;
 		$rc->mAttribs = array(
 			'rc_namespace' => 0,
 			'rc_title' => 'Main Page',
 			'rc_source' => RecentChangesListener::SRC_FLOW,
-			'rc_params' => serialize( array(
-				'flow-workflow-change' => $change
-			) ),
 		);
+		Container::get( 'formatter.irclineurl' )->associate( $rc, array(
+			'revision' => $revision,
+			'workflow' => $workflow,
+		) );
+
 		$url = 'unset';
 		$query = 'unset';
 		$this->assertTrue( FlowHooks::onIRCLineURL( $url, $query, $rc ) );
 
-		$this->assertStringEndsWith( $expectedUrl, $url, $message );
-		$this->assertEquals( $expectedQuery, $query, $message );
+		$parts = parse_url( $url );
+		parse_str( $parts['query'], $queryParts );
+		foreach ( $expectedQuery as $key => $value ) {
+			$this->assertEquals( $value, $queryParts[$key], "Query part $key" );
+		}
+		$this->assertEquals( '', $query, $message );
 	}
 }
