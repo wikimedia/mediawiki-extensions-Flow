@@ -41,7 +41,7 @@
 			return _tplcache[ templateName ];
 		}
 
-		_tplcache[ templateName ] = mw.mantle.template.get( templateName + '.handlebars' );
+		_tplcache[ templateName ] = mw.template.get( 'ext.flow.templating', templateName + '.handlebars' );
 		if ( _tplcache[ templateName ] ) {
 			// Try to get this template via Mantle
 			_tplcache[ templateName ] = _tplcache[ templateName ].render;
@@ -671,6 +671,15 @@
 	FlowHandlebars.prototype.debug = function () {
 		mw.flow.debug( '[Handlebars] debug', arguments );
 	};
+
+	// Load partials
+	$.each( mw.templates.values, function( moduleName ) {
+		$.each( this, function( name ) {
+			// remove extension
+			var partialName = name.split( '.' )[0];
+			Handlebars.partials[ partialName ] = mw.template.get( moduleName, name ).render;
+		} );
+	} );
 
 	// Register helpers
 	Handlebars.registerHelper( 'l10n', FlowHandlebars.prototype.l10n );

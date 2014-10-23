@@ -10,9 +10,11 @@ $flowResourceTemplate = array(
 	'group' => 'ext.flow',
 );
 
-$flowTemplatingResourceTemplate = $flowResourceTemplate + array(
-	'localTemplateBasePath' => __DIR__ . '/handlebars',
-	'class' => 'ResourceLoaderTemplateModule',
+$flowTemplatingResourceTemplate = array(
+	'localBasePath' => __DIR__ . '/handlebars',
+	'remoteExtPath' => 'Flow/modules',
+	'group' => 'ext.flow',
+	'class' => 'ResourceLoaderFileModule',
 	'targets' => array( 'mobile', 'desktop' ),
 );
 
@@ -28,9 +30,7 @@ $wgResourceModules += array(
 		),
 	),
 	'ext.flow.templating' => $flowTemplatingResourceTemplate + array(
-		'class' => 'ResourceLoaderTemplateModule',
 		'dependencies' => 'ext.mantle.handlebars',
-		'localTemplateBasePath' => $dir . 'handlebars',
 		'templates' => array(
 			'flow_anon_warning.handlebars',
 			"flow_block_board-history.handlebars",
