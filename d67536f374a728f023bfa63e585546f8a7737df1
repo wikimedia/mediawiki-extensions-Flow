@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_0b4a7bc8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2014-10-23T13:01:37Z",
+      "side": 1,
+      "message": "This should probably not stay in the commit message. :)",
+      "revId": "d67536f374a728f023bfa63e585546f8a7737df1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_6b877fdd",
+        "filename": "tests/browser/features/step_definitions/sorting_topics_steps.rb",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2014-10-23T13:01:37Z",
+      "side": 1,
+      "message": "I think the above three lines could be replaced with this one (not tested):\n\n  page.recently_active_topics_choice_element.when_not_visible",
+      "revId": "d67536f374a728f023bfa63e585546f8a7737df1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_ab64a746",
+        "filename": "tests/browser/features/step_definitions/sorting_topics_steps.rb",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2014-10-23T13:01:37Z",
+      "side": 1,
+      "message": "The above block could be replaced with this (not tested):\n\nexpect(on(FlowPage).recently_active_topics_link_element.when_not_visible).not_to be_visible",
+      "revId": "d67536f374a728f023bfa63e585546f8a7737df1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_cb69f31e",
+        "filename": "tests/browser/features/step_definitions/sorting_topics_steps.rb",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2014-10-23T13:01:37Z",
+      "side": 1,
+      "message": "Similar to the comment I made for line 28.",
+      "revId": "d67536f374a728f023bfa63e585546f8a7737df1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
