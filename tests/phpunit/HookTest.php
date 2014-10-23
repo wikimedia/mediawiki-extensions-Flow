@@ -2,107 +2,143 @@
 
 namespace Flow\Tests;
 
+use Flow\Container;
 use Flow\Data\Listener\RecentChangesListener;
+use Flow\Model\AbstractRevision;
+use Flow\Model\Header;
+use Flow\Model\PostRevision;
+use Flow\Model\Workflow;
 use FlowHooks;
 use RecentChange;
+use Title;
+use User;
 
 /**
  * @group Flow
  */
-class HookTest extends FlowTestCase {
+class HookTest extends \MediaWikiTestCase {
 	static public function onIRCLineURLProvider() {
-		// specific uuid's dont mean anything, just repeatability
-		$workflowAlpha = 'rs2l7n89pmch81qy';
-		$postAlpha = 'rs2l7n8ctv7rwf6i';
-		$topicAlpha = 'rs2l7n8dra7r9a22';
-		$revisionAlpha = 'rs2l7n89ab7rdd0f';
-		$prevRevisionAlpha = 'rs2l7k73abd02ee2';
+		$user = User::newFromName( '127.0.0.1', false );
+		$title = Title::newMainPage();
 
-		$basicPost = array(
-			'block' => 'topic',
-			'revision_type' => 'PostRevision',
-			'revision' => $revisionAlpha,
-			'prev_revision' => $prevRevisionAlpha,
-			'workflow' => $workflowAlpha,
-			'post' => $postAlpha,
-			'topic' => $topicAlpha,
-		);
-
-		$basicHeader = array(
-			'block' => 'header',
-			'revision_type' => 'Header',
-			'revision' => $revisionAlpha,
-			'prev_revision' => $prevRevisionAlpha,
-			'workflow' => $workflowAlpha,
-			'content' => 'foo bar baz...',
-		);
+		// data providers do not run in the same context as the actual test, as such we
+		// can't create Title objects because they can have the wrong wikiID.  Instead we
+		// pass closures into the test that create the objects within the correct context.
+		$newHeader = function() use( $user ) {
+			$workflow = Workflow::create( 'discussion', $user, Title::newMainPage() );
+			return array(
+				'workflow' => $workflow,
+				'revision' => Header::create( $workflow, $user, 'header content' ),
+			);
+		};
+		$freshTopic = function() use( $user ) {
+			$workflow = Workflow::create( 'topic', $user, Title::newMainPage() );
+			return array(
+				'workflow' => $workflow,
+				'revision' => PostRevision::create( $workflow, 'some content' ),
+			);
+		};
+		$replyToTopic = function() use( $freshTopic, $user ) {
+			$metadata = $freshTopic();
+			return array(
+				'revision' => $metadata['revision']->reply( $metadata['workflow'], $user, 'ffuts dna ylper' ),
+			) + $metadata;
+		};
 
 		return array(
 			array(
 				// test message
 				'Freshly created topic',
 				// flow-workflow-change attribute within rc_params
-				$basicPost + array(
-					'action' => 'new-post',
+				$freshTopic,
+				// expected query parameters
+				array(
+					'action' => 'history',
 				),
-				// expected url
-				'?title=Main_Page&action=history',
-				// expected query
-				''
 			),
 
 			array(
 				'Reply to topic',
-				$basicPost + array(
-					'action' => 'reply',
+				$replyToTopic,
+				array(
+					'action' => 'history',
 				),
-				'?title=Main_Page&action=history',
-				'',
 			),
 
 			array(
 				'Edit topic title',
-				$basicPost + array(
-					'action' => 'edit-title',
+				function() use( $freshTopic, $user, $title ) {
+					$metadata = $freshTopic();
+
+					return array(
+						'revision' => $metadata['revision']->newNextRevision( $user, 'gnihtemos gnihtemos', 'edit-title', $title ),
+					) + $metadata;
+				},
+				array(
+					'action' => 'compare-post-revisions',
 				),
-				'?title=Main_Page&action=compare-post-revisions&topic_newRevision=rs2l7n89ab7rdd0f',
-				'',
 			),
 
 			array(
 				'Edit post',
-				$basicPost + array(
-					'action' => 'edit-post',
+				function() use( $replyToTopic, $user, $title ) {
+					$metadata = $replyToTopic();
+					return array(
+						'revision' => $metadata['revision']->newNextRevision( $user, 'IT\'S CAPS LOCKS DAY!', 'edit-post', $title ),
+					) + $metadata;
+				},
+				array(
+					'action' => 'compare-post-revisions',
 				),
-				'?title=Main_Page&action=compare-post-revisions&topic_newRevision=rs2l7n89ab7rdd0f',
-				'',
 			),
 
 			array(
 				'Edit board header',
-				$basicHeader + array(
-					'action' => 'edit-header',
+				function() use ( $newHeader, $user, $title ) {
+					$metadata = $newHeader();
+					return array(
+						'revision' => $metadata['revision']->newNextRevision( $user, 'STILL CAPS LOCKS DAY!', 'edit-header', $title ),
+					) + $metadata;
+				},
+				array(
+					'action' => 'compare-header-revisions',
 				),
-				'?title=Main_Page&action=compare-header-revisions&header_newRevision=rs2l7n89ab7rdd0f',
-				'',
 			),
 
 			array(
 				'Moderate a post',
-				$basicPost + array(
-					'action' => 'delete-post',
+				function() use ( $replyToTopic, $user ) {
+					$metadata = $replyToTopic();
+					return array(
+						'revision' => $metadata['revision']->moderate(
+							$user,
+							$metadata['revision']::MODERATED_DELETED,
+							'delete-post',
+							'something about cruise control'
+						),
+					) + $metadata;
+				},
+				array(
+					'action' => 'history',
 				),
-				'?title=Main_Page&action=history&topic_postId=rs2l7n8ctv7rwf6i',
-				'',
 			),
 
 			array(
 				'Moderate a topic',
-				$basicPost + array(
-					'action' => 'hide-topic',
+				function() use ( $freshTopic, $user ) {
+					$metadata = $freshTopic();
+					return array(
+						'revision' => $metadata['revision']->moderate(
+							$user,
+							$metadata['revision']::MODERATED_HIDDEN,
+							'hide-topic',
+							'adorable kittens'
+						),
+					) + $metadata;
+				},
+				array(
+					'action' => 'history',
 				),
-				'?title=Main_Page&action=history&topic_postId=rs2l7n8ctv7rwf6i',
-				'',
 			),
 		);
 	}
@@ -110,21 +146,27 @@ class HookTest extends FlowTestCase {
 	/**
 	 * @dataProvider onIRCLineUrlProvider
 	 */
-	public function testOnIRCLineUrl( $message, array $change, $expectedUrl, $expectedQuery ) {
+	public function testOnIRCLineUrl( $message, $metadataGen, $expectedQuery ) {
 		$rc = new RecentChange;
 		$rc->mAttribs = array(
 			'rc_namespace' => 0,
 			'rc_title' => 'Main Page',
 			'rc_source' => RecentChangesListener::SRC_FLOW,
-			'rc_params' => serialize( array(
-				'flow-workflow-change' => $change
-			) ),
 		);
+		$metadata = $metadataGen();
+		Container::get( 'formatter.irclineurl' )->associate( $rc, $metadata );
+
 		$url = 'unset';
 		$query = 'unset';
 		$this->assertTrue( FlowHooks::onIRCLineURL( $url, $query, $rc ) );
+		$expectedQuery['title'] = $metadata['workflow']->getArticleTitle()->getPrefixedDBkey();
 
-		$this->assertStringEndsWith( $expectedUrl, $url, $message );
-		$this->assertEquals( $expectedQuery, $query, $message );
+		$parts = parse_url( $url );
+		$this->assertArrayHasKey( 'query', $parts, $url );
+		parse_str( $parts['query'], $queryParts );
+		foreach ( $expectedQuery as $key => $value ) {
+			$this->assertEquals( $value, $queryParts[$key], "Query part $key" );
+		}
+		$this->assertEquals( '', $query, $message );
 	}
 }
