@@ -53,19 +53,20 @@ class ApiFlowLockTopicTest extends \ApiTestCase {
 		) );
 
 		$result = $data[0]['flow']['lock-topic']['result']['topic'];
-		$this->assertArrayHasKey( 'errors', $result );
-		$this->assertCount( 0, $result['errors'] );
-		$this->assertArrayHasKey( 'workflowId', $result );
-		$this->assertEquals( $workflowId, $result['workflowId'] );
-		$this->assertArrayHasKey( 'changeType', $result );
-		$this->assertEquals( 'lock-topic', $result['changeType'] );
-		$this->assertArrayHasKey( 'isModerated', $result );
-		$this->assertTrue( $result['isModerated'] );
-		$this->assertArrayHasKey( 'actions', $result );
-		$this->assertArrayHasKey( 'unlock', $result['actions'] );
-		$this->assertArrayHasKey( 'moderateReason', $result );
-		$this->assertEquals( 'fiddle faddle', $result['moderateReason']['content'] );
-		$this->assertEquals( 'plaintext', $result['moderateReason']['format'] );
+		$debug = json_encode( $result );
+		$this->assertArrayHasKey( 'errors', $result, $debug );
+		$this->assertCount( 0, $result['errors'], $debug );
+		$this->assertArrayHasKey( 'workflowId', $result, $debug );
+		$this->assertEquals( $workflowId, $result['workflowId'], $debug );
+		$this->assertArrayHasKey( 'changeType', $result, $debug );
+		$this->assertEquals( 'lock-topic', $result['changeType'], $debug );
+		$this->assertArrayHasKey( 'isModerated', $result, $debug );
+		$this->assertTrue( $result['isModerated'], $debug );
+		$this->assertArrayHasKey( 'actions', $result, $debug );
+		$this->assertArrayHasKey( 'unlock', $result['actions'], $debug );
+		$this->assertArrayHasKey( 'moderateReason', $result, $debug );
+		$this->assertEquals( 'fiddle faddle', $result['moderateReason']['content'], $debug );
+		$this->assertEquals( 'plaintext', $result['moderateReason']['format'], $debug );
 	}
 
 	public function testUnlockTopic() {
