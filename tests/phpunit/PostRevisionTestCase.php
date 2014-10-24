@@ -138,9 +138,6 @@ class PostRevisionTestCase extends FlowTestCase {
 			'workflow_page_id' => 1,
 			'workflow_namespace' => NS_USER_TALK,
 			'workflow_title_text' => 'Test',
-			'workflow_user_wiki' => $tuple->wiki,
-			'workflow_user_id' => $tuple->id,
-			'workflow_user_ip' => $tuple->ip,
 			'workflow_lock_state' => 0,
 			'workflow_last_update_timestamp' => wfTimestampNow(),
 		);
