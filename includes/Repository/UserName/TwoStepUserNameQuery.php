@@ -10,7 +10,7 @@ use Flow\Exception\FlowException;
 
 /**
  * Helper query for UserNameBatch fetches requested userIds
- * from the wiki with two independant queries.  There is
+ * from the wiki with two independent queries.  There is
  * a different implementation that does this in one query
  * with a join.
  *
