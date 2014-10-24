@@ -272,7 +272,7 @@ class UUID {
 	/**
 	 * Returns the timestamp in the desired format (defaults to TS_MW)
 	 *
-	 * @param string $format Desired format
+	 * @param int $format Desired format (TS_MW, TS_UNIX, etc.)
 	 * @return string
 	 */
 	public function getTimestamp( $format = TS_MW ) {

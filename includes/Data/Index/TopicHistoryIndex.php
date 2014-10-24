@@ -27,7 +27,8 @@ class TopicHistoryIndex extends TopKIndex {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @param PostRevision|PostSummary $object
+	 * @param array $row
 	 */
 	public function cachePurge( $object, array $row ) {
 		$row['topic_root_id'] = $this->findTopicRootId( $object );
@@ -35,7 +36,7 @@ class TopicHistoryIndex extends TopKIndex {
 	}
 
 	/**
-	 * @param PostRevision $object
+	 * @param PostRevision|PostSummary $object
 	 * @param string[] $new
 	 * @param array $metadata
 	 */
@@ -45,7 +46,7 @@ class TopicHistoryIndex extends TopKIndex {
 	}
 
 	/**
-	 * @param PostRevision $object
+	 * @param PostRevision|PostSummary $object
 	 * @param string[] $old
 	 * @param string[] $new
 	 * @param array $metadata
@@ -56,7 +57,7 @@ class TopicHistoryIndex extends TopKIndex {
 	}
 
 	/**
-	 * @param PostRevision $object
+	 * @param PostRevision|PostSummary $object
 	 * @param string[] $old
 	 * @param array $metadata
 	 */
@@ -68,6 +69,7 @@ class TopicHistoryIndex extends TopKIndex {
 	/**
 	 * @param PostRevision|PostSummary $object
 	 * @return string alphadecimal uuid
+	 * @throws InvalidInputException When $object is not PostRevision or PostSummary
 	 */
 	protected function findTopicRootId( $object ) {
 		if ( $object instanceof PostRevision ) {

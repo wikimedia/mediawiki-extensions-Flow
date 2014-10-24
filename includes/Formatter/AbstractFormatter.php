@@ -72,7 +72,7 @@ abstract class AbstractFormatter {
 		$anchor = null;
 		foreach ( $linkKeys as $linkKey ) {
 			if ( isset( $data['links'][$linkKey] ) ) {
-				$anchor = $data['links'][$linkKey]->toHTML( $formattedTime );
+				$anchor = $data['links'][$linkKey];
 				break;
 			}
 		}

@@ -4,6 +4,7 @@ namespace Flow\Data\Index;
 
 use Flow\Container;
 use Flow\Data\BufferedCache;
+use Flow\Data\ManagerGroup;
 use Flow\Data\Storage\BoardHistoryStorage;
 use Flow\Exception\DataModelException;
 use Flow\Exception\InvalidInputException;
@@ -44,7 +45,8 @@ class BoardHistoryIndex extends TopKIndex {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @param Header|PostRevision $object
+	 * @param string[] $row
 	 */
 	public function cachePurge( $object, array $row ) {
 		$row['topic_list_id'] = $this->findTopicListId( $object, $row );
@@ -94,7 +96,10 @@ class BoardHistoryIndex extends TopKIndex {
 	 * Find a topic list id related to an abstract revision
 	 *
 	 * @param AbstractRevision $object
-	 * @return string|boolean False when object is not root post or topic is not found
+	 * @param array $row
+	 * @return string|false Alphadecimal uid of the related board. False when object is not root post or topic is not found
+	 * @throws InvalidInputException when $object is not a Header, PostRevision or
+	 *  PostSummary instance.
 	 */
 	protected function findTopicListId( AbstractRevision $object, array $row ) {
 		if ( $object instanceof Header ) {
@@ -108,8 +113,9 @@ class BoardHistoryIndex extends TopKIndex {
 		} else {
 			throw new InvalidInputException( 'Unexpected object type: ' . get_class( $object ) );
 		}
-
-		$found = Container::get( 'storage' )->find(
+		/** @var ManagerGroup $storage */
+		$storage = Container::get( 'storage' );
+		$found = $storage->find(
 			'TopicListEntry',
 			array( 'topic_id' => $post->getRootPost()->getPostId() )
 		);

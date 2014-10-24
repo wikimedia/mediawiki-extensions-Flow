@@ -268,6 +268,7 @@ class ObjectLocator {
 	 */
 	public function getIndexFor( array $keys, array $options = array() ) {
 		sort( $keys );
+		/** @var Index|null $current */
 		$current = null;
 		foreach ( $this->indexes as $index ) {
 			// @var Index $index

@@ -56,7 +56,9 @@ abstract class Content {
 			$newRev = $occupationController->ensureFlowRevision( $article, $loader->getWorkflow() );
 
 			if ( $newRev ) {
+				/** @noinspection PhpUndefinedFieldInspection */
 				$article->getPage()->mRevision = $newRev;
+				/** @noinspection PhpUndefinedFieldInspection */
 				$article->getPage()->mContentObject = $newRev->getContent();
 				$contentObject = $newRev->getContent();
 			}

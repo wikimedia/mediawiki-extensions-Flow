@@ -99,7 +99,7 @@ class TopicFormatter {
 	}
 
 	/**
-	 * @param array Map from alphadecimal postId to list of alphadecimal revisionId's
+	 * @param array $posts Map from alphadecimal postId to list of alphadecimal revisionId's
 	 *  for that postId contained within $revisions.
 	 * @param array $revisions Map from alphadecimal revisionId to serialized representation
 	 *  of that revision.

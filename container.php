@@ -39,9 +39,7 @@ $c['repository.tree'] = $c->share( function( $c ) {
 } );
 
 $c['url_generator'] = $c->share( function( $c ) {
-	return new Flow\UrlGenerator(
-		$c['occupation_controller']
-	);
+	return new Flow\UrlGenerator();
 } );
 // listener is attached to storage.workflow, it
 // notifies the url generator about all loaded workflows.

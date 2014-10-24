@@ -2,7 +2,7 @@
 
 namespace Flow\Data;
 
-use BagOStuff;
+use Flow\Data\BagOStuff\BufferedBagOStuff;
 use Closure;
 
 /**
@@ -12,7 +12,7 @@ use Closure;
  */
 class BufferedCache {
 	/**
-	 * @var BagOStuff
+	 * @var BufferedBagOStuff
 	 */
 	protected $cache;
 
@@ -22,10 +22,10 @@ class BufferedCache {
 	protected $exptime = 0;
 
 	/**
-	 * @param BagOStuff $cache The cache implementation to back this buffer with
+	 * @param BufferedBagOStuff $cache The cache implementation to back this buffer with
 	 * @param int $exptime The default length of time to cache data. 0 for LRU.
 	 */
-	public function __construct( BagOStuff $cache, $exptime = 0 ) {
+	public function __construct( BufferedBagOStuff $cache, $exptime = 0 ) {
 		$this->exptime = $exptime;
 		$this->cache = $cache;
 	}
@@ -100,6 +100,30 @@ class BufferedCache {
 	 */
 	public function merge( $key, Closure $callback, $attempts = 10 ) {
 		return $this->cache->merge( $key, $callback, $this->exptime, $attempts );
+	}
+
+	/**
+	 * Initiate a transaction: this will defer all writes to real cache until
+	 * commit() is called.
+	 */
+	public function begin() {
+		$this->cache->begin();
+	}
+
+	/**
+	 * Commits all deferred updates to real cache.
+	 *
+	 * @return bool
+	 */
+	public function commit() {
+		return $this->cache->commit();
+	}
+
+	/**
+	 * Roll back all scheduled changes.
+	 */
+	public function rollback() {
+		$this->cache->rollback();
 	}
 
 	/**

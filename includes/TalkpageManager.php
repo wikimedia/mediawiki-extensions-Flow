@@ -91,7 +91,7 @@ class TalkpageManager implements OccupationController {
 		if ( $doing ) {
 			return null;
 		}
-		$doing = true;
+
 
 		// Comment to add to the Revision to indicate Flow taking over
 		$comment = '/* Taken over by Flow */';
@@ -99,30 +99,32 @@ class TalkpageManager implements OccupationController {
 		$page = $article->getPage();
 		$revision = $page->getRevision();
 
-		// Add a revision only if a Flow revision has not yet been inserted.
-		if (
-			$revision === null ||
-			$revision->getComment( Revision::RAW ) != $comment ||
-			(
-				! $revision->getContent() instanceof BoardContent ||
-				! $revision->getContent()->getWorkflowId()
-			)
-		) {
-			$status = $page->doEditContent(
-				new BoardContent( 'flow-board', $workflow ),
-				$comment,
-				EDIT_FORCE_BOT | EDIT_SUPPRESS_RC,
-				false,
-				$this->getTalkpageManager()
-			);
-
-			if ( $status->isGood() && isset( $status->value['revision'] ) ) {
-				$doing = false;
-				return $status->value['revision'];
+		if ( $revision !== null ) {
+			if ( $revision->getComment( Revision::RAW ) == $comment ) {
+				// Revision was created by this process
+				return null;
+			}
+			$content = $revision->getContent();
+			if ( $content instanceof BoardContent && $content->getWorkflowId() ) {
+				// Revision is already a valid BoardContent
+				return null;
 			}
 		}
 
+		$doing = true;
+		$status = $page->doEditContent(
+			new BoardContent( 'flow-board', $workflow ),
+			$comment,
+			EDIT_FORCE_BOT | EDIT_SUPPRESS_RC,
+			false,
+			$this->getTalkpageManager()
+		);
 		$doing = false;
+
+		if ( $status->isGood() && isset( $status->value['revision'] ) ) {
+			return $status->value['revision'];
+		}
+
 		return null;
 	}
 

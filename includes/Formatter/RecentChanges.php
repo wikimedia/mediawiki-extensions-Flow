@@ -2,6 +2,7 @@
 
 namespace Flow\Formatter;
 
+use Flow\Exception\FlowException;
 use Flow\Model\PostRevision;
 use Flow\Parsoid\Utils;
 use ChangesList;
@@ -17,6 +18,7 @@ class RecentChanges extends AbstractFormatter {
 	 * @param IContextSource $ctx
 	 * @param bool $linkOnly
 	 * @return string|false Output line, or false on failure
+	 * @throws FlowException
 	 */
 	public function format( RecentChangesRow $row, IContextSource $ctx, $linkOnly = false ) {
 		if ( !$this->permissions->isAllowed( $row->revision, 'recentchanges' ) ) {

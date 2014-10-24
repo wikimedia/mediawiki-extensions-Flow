@@ -37,7 +37,7 @@ class PostRevisionRecentChanges extends RecentChanges {
 		if ( !isset( $metadata['workflow'] ) ) {
 			throw new FlowException( 'Missing required metadata: workflow' );
 		}
-		if ( !isset( $metadata['topic-title'] ) ) {
+		if ( !isset( $metadata['topic-title'] ) || !$metadata['topic-title'] instanceof PostRevision ) {
 			throw new FlowException( 'Missing required metadata: topic-title' );
 		}
 
