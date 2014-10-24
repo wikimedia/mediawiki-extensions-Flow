@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_949b071b",
+        "filename": "includes/Data/Pager/PagerPage.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T00:02:17Z",
+      "side": 1,
+      "message": "Unrelated, but this is now Flow\\Data\\Pager\\Pager",
+      "revId": "253b0afc0a56d88205a6959dbde4d3bb06ecf6f0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_7482fbaa",
+        "filename": "includes/Data/Utils/Merger.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T00:02:17Z",
+      "side": 1,
+      "message": "string|null",
+      "revId": "253b0afc0a56d88205a6959dbde4d3bb06ecf6f0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_54857fb0",
+        "filename": "includes/Data/Utils/Merger.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T00:02:17Z",
+      "side": 1,
+      "message": "string|null",
+      "revId": "253b0afc0a56d88205a6959dbde4d3bb06ecf6f0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_348c73db",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 765,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T00:02:17Z",
+      "side": 1,
+      "message": "should say \u0027The revision or revisions to format ...\u0027",
+      "revId": "253b0afc0a56d88205a6959dbde4d3bb06ecf6f0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_d4b8af76",
+        "filename": "includes/Formatter/TopicFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T00:02:17Z",
+      "side": 1,
+      "message": "string[]",
+      "revId": "253b0afc0a56d88205a6959dbde4d3bb06ecf6f0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_f4bdab64",
+        "filename": "includes/Formatter/TopicFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T00:02:17Z",
+      "side": 1,
+      "message": "Workflow[]",
+      "revId": "253b0afc0a56d88205a6959dbde4d3bb06ecf6f0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_74a99b20",
+        "filename": "includes/Parsoid/ReferenceExtractor.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T00:02:17Z",
+      "side": 1,
+      "message": "Reference[]",
+      "revId": "253b0afc0a56d88205a6959dbde4d3bb06ecf6f0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_f46ccb07",
+        "filename": "includes/Repository/RootPostLoader.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T00:02:17Z",
+      "side": 1,
+      "message": "unnecessarily fully qualified",
+      "revId": "253b0afc0a56d88205a6959dbde4d3bb06ecf6f0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
