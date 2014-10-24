@@ -7,6 +7,7 @@ use Flow\Data\Storage\TopicHistoryStorage;
 use Flow\Exception\InvalidInputException;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
+use Flow\Model\Workflow;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use MWException;
@@ -68,11 +69,12 @@ class TopicHistoryIndex extends TopKIndex {
 
 	/**
 	 * @param PostRevision|PostSummary $object
+	 * @param array $metadata
 	 * @return string alphadecimal uuid
 	 * @throws InvalidInputException When $object is not PostRevision or PostSummary
 	 */
 	protected function findTopicRootId( $object, array $metadata ) {
-		if ( isset( $metadata['workflow'] ) ) {
+		if ( isset( $metadata['workflow'] ) && $metadata['workflow'] instanceof Workflow ) {
 			return $metadata['workflow']->getId();
 		} elseif ( $object instanceof PostRevision ) {
 			return $object->getRootPost()->getPostId()->getAlphadecimal();
