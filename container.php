@@ -184,13 +184,22 @@ $c['storage.board_history.backing'] = $c->share( function( $c ) {
 } );
 
 $c['storage.board_history.index'] = $c->share( function( $c ) {
-	return new BoardHistoryIndex( $c['memcache.buffered'], $c['storage.board_history.backing'], 'flow_revision:topic_list_history',
+	return new BoardHistoryIndex(
+		$c['memcache.buffered'],
+		// backend storage
+		$c['storage.board_history.backing'],
+		// key prefix
+		'flow_revision:topic_list_history',
+		// primary key
 		array( 'topic_list_id' ),
+		// index options
 		array(
 			'limit' => 500,
 			'sort' => 'rev_id',
 			'order' => 'DESC'
-	) );
+		),
+		$c['storage.topic_list']
+	);
 } );
 
 $c['storage.board_history'] = $c->share( function( $c ) {

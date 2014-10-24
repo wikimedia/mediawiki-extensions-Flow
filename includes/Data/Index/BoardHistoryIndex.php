@@ -4,9 +4,10 @@ namespace Flow\Data\Index;
 
 use Flow\Container;
 use Flow\Data\BufferedCache;
-use Flow\Data\ManagerGroup;
+use Flow\Data\ObjectManager;
 use Flow\Data\Storage\BoardHistoryStorage;
 use Flow\Exception\DataModelException;
+use Flow\Exception\FlowException;
 use Flow\Exception\InvalidInputException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
@@ -16,32 +17,49 @@ use Flow\Model\TopicListEntry;
 
 /**
  * Keeps a list of revision ids relevant to the board history bucketed
- * by the owning TopicList id (board workflow)
+ * by the owning TopicList id (board workflow).
+ *
+ * Can be used with Header, PostRevision and PostSummary ObjectMapper's
  */
 class BoardHistoryIndex extends TopKIndex {
 
-	public function __construct( BufferedCache $cache, BoardHistoryStorage $storage, $prefix, array $indexed, array $options = array() ) {
+	/**
+	 * @var ObjectManager Manager for the TopicListEntry model
+	 */
+	protected $om;
+
+	public function __construct(
+		BufferedCache $cache,
+		BoardHistoryStorage $storage,
+		$prefix,
+		array $indexed,
+		array $options = array(),
+		ObjectManager $om
+	) {
 		if ( $indexed !== array( 'topic_list_id' ) ) {
 			throw new DataModelException( __CLASS__ . ' is hardcoded to only index topic_list_id: ' . print_r( $indexed, true ), 'process-data' );
 		}
 		parent::__construct( $cache, $storage, $prefix, $indexed, $options );
+		$this->om = $om;
 	}
 
 	public function findMulti( array $queries, array $options = array() ) {
 		if ( count( $queries ) > 1 ) {
+			// why?
 			throw new DataModelException( __METHOD__ . ' expects only one value in $queries', 'process-data' );
 		}
 		return parent::findMulti( $queries, $options );
 	}
 
+	/**
+	 * @param array $queries
+	 * @return array
+	 */
 	public function backingStoreFindMulti( array $queries ) {
-		$options = $this->queryOptions();
-		$res = $this->storage->findMulti( $queries, $options );
-		if  ( !$res ) {
-			return array();
-		}
-
-		return $res;
+		return $this->storage->findMulti(
+			$queries,
+			$this->queryOptions()
+		) ?: array();
 	}
 
 	/**
@@ -49,10 +67,8 @@ class BoardHistoryIndex extends TopKIndex {
 	 * @param string[] $row
 	 */
 	public function cachePurge( $object, array $row ) {
-		$row['topic_list_id'] = $this->findTopicListId( $object, $row );
-		if ( $row['topic_list_id'] ) {
-			parent::cachePurge( $object, $row );
-		}
+		$row['topic_list_id'] = $this->findTopicListId( $object, $row, array() );
+		parent::cachePurge( $object, $row );
 	}
 
 	/**
@@ -61,10 +77,8 @@ class BoardHistoryIndex extends TopKIndex {
 	 * @param array $metadata
 	 */
 	public function onAfterInsert( $object, array $new, array $metadata ) {
-		$new['topic_list_id'] = $this->findTopicListId( $object, $new );
-		if ( $new['topic_list_id'] ) {
-			parent::onAfterInsert( $object, $new, $metadata );
-		}
+		$new['topic_list_id'] = $this->findTopicListId( $object, $new, $metadata );
+		parent::onAfterInsert( $object, $new, $metadata );
 	}
 
 	/**
@@ -74,10 +88,8 @@ class BoardHistoryIndex extends TopKIndex {
 	 * @param array $metadata
 	 */
 	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
-		$new['topic_list_id'] = $old['topic_list_id'] = $this->findTopicListId( $object, $new );
-		if ( $new['topic_list_id'] ) {
-			parent::onAfterUpdate( $object, $old, $new, $metadata );
-		}
+		$new['topic_list_id'] = $old['topic_list_id'] = $this->findTopicListId( $object, $new, $metadata );
+		parent::onAfterUpdate( $object, $old, $new, $metadata );
 	}
 
 	/**
@@ -86,46 +98,49 @@ class BoardHistoryIndex extends TopKIndex {
 	 * @param array $metadata
 	 */
 	public function onAfterRemove( $object, array $old, array $metadata ) {
-		$old['topic_list_id'] = $this->findTopicListId( $object, $old );
-		if ( $old['topic_list_id'] ) {
-			parent::onAfterRemove( $object, $old, $metadata );
-		}
+		$old['topic_list_id'] = $this->findTopicListId( $object, $old, $metadata );
+		parent::onAfterRemove( $object, $old, $metadata );
 	}
 
 	/**
 	 * Find a topic list id related to an abstract revision
 	 *
 	 * @param AbstractRevision $object
-	 * @param array $row
-	 * @return string|false Alphadecimal uid of the related board. False when object is not root post or topic is not found
-	 * @throws InvalidInputException when $object is not a Header, PostRevision or
+	 * @param string[] $row
+	 * @param array $metadata
+	 * @return string Alphadecimal uid of the related board
+	 * @throws InvalidInputException When $object is not a Header, PostRevision or
 	 *  PostSummary instance.
+	 * @throws DataModelException When the related id cannot be located
 	 */
-	protected function findTopicListId( AbstractRevision $object, array $row ) {
+	protected function findTopicListId( AbstractRevision $object, array $row, array $metadata ) {
 		if ( $object instanceof Header ) {
 			return $row['rev_type_id'];
 		}
 
-		if ( $object instanceof PostRevision ) {
-			$post = $object;
-		} elseif ( $object instanceof PostSummary ) {
-			$post = $object->getCollection()->getPost()->getLastRevision();
+		if ( isset( $metadata['workflow'] ) ) {
+			$topicId = $metadata['workflow']->getId();
 		} else {
-			throw new InvalidInputException( 'Unexpected object type: ' . get_class( $object ) );
+			if ( $object instanceof PostRevision ) {
+				$post = $object;
+			} elseif ( $object instanceof PostSummary ) {
+				$post = $object->getCollection()->getPost()->getLastRevision();
+			} else {
+				throw new InvalidInputException( 'Unexpected object type: ' . get_class( $object ) );
+			}
+			$topicId = $post->getRootPost()->getPostId();
 		}
-		/** @var ManagerGroup $storage */
-		$storage = Container::get( 'storage' );
-		$found = $storage->find(
-			'TopicListEntry',
-			array( 'topic_id' => $post->getRootPost()->getPostId() )
-		);
 
-		if ( $found ) {
-			/** @var TopicListEntry $topicListEntry */
-			$topicListEntry = reset( $found );
-			return $topicListEntry->getListId()->getAlphadecimal();
-		} else {
-			return false;
+		$found = $this->om->find( array( 'topic_id' => $topicId ) );
+		if ( !$found ) {
+			throw new DataModelException(
+				"No topic list contains topic " . $topicId->getAlphadecimal() .
+				", called for revision " .  $object->getRevisionId()->getAlphadecimal()
+			);
 		}
+
+		/** @var TopicListEntry $topicListEntry */
+		$topicListEntry = reset( $found );
+		return $topicListEntry->getListId()->getAlphadecimal();
 	}
 }
