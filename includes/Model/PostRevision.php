@@ -6,6 +6,7 @@ use Flow\Collection\PostCollection;
 use Flow\Container;
 use Flow\Exception\DataModelException;
 use Flow\Repository\TreeRepository;
+use Title;
 use User;
 
 class PostRevision extends AbstractRevision {
@@ -80,13 +81,12 @@ class PostRevision extends AbstractRevision {
 	 * an existing post(incl topic root) should use self::reply.
 	 *
 	 * @param Workflow $topic
+	 * @param User $user
 	 * @param string $content The title of the topic(they are Collection as well)
 	 * @return PostRevision
 	 */
-	static public function create( Workflow $topic, $content ) {
-		// @todo pass tuple instead?
-		$user = $topic->getUserTuple()->createUser();
-		$obj = static::newFromId( $topic->getId(), $user, $content );
+	static public function create( Workflow $topic, User $user, $content ) {
+		$obj = static::newFromId( $topic->getId(), $user, $content, $topic->getArticleTitle() );
 
 		$obj->changeType = 'new-post';
 		// A newly created post has no children, a depth of 0, and
@@ -118,9 +118,10 @@ class PostRevision extends AbstractRevision {
 	 * @param UUID $uuid
 	 * @param User $user
 	 * @param string $content
+	 * @param Title|null $title
 	 * @return PostRevision
 	 */
-	static public function newFromId( UUID $uuid, User $user, $content ) {
+	static public function newFromId( UUID $uuid, User $user, $content, Title $title = null ) {
 		$obj = new self;
 		$obj->revId = UUID::create();
 		$obj->postId = $uuid;
@@ -130,7 +131,7 @@ class PostRevision extends AbstractRevision {
 
 		$obj->setReplyToId( null ); // not a reply to anything
 		$obj->prevRevision = null; // no parent revision
-		$obj->setContent( $content );
+		$obj->setContent( $content, $title );
 
 		return $obj;
 	}
