@@ -1,0 +1,225 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_b76f25c0",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T00:40:22Z",
+      "side": 1,
+      "message": "This file isn\u0027t namespaced, no need for leading \\",
+      "revId": "9201bd7cd58cf290155a659c94a820d5f02b9579",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_5764a1e1",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T00:40:22Z",
+      "side": 1,
+      "message": "array|null",
+      "revId": "9201bd7cd58cf290155a659c94a820d5f02b9579",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_77619dcf",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T00:40:22Z",
+      "side": 1,
+      "message": "bool|null",
+      "revId": "9201bd7cd58cf290155a659c94a820d5f02b9579",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_d7ed1124",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T00:40:22Z",
+      "side": 1,
+      "message": "the isWatchlist argument is unused",
+      "revId": "9201bd7cd58cf290155a659c94a820d5f02b9579",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_175e1918",
+        "filename": "includes/Block/Header.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T00:40:22Z",
+      "side": 1,
+      "message": "might as well return from here",
+      "revId": "9201bd7cd58cf290155a659c94a820d5f02b9579",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_375b1528",
+        "filename": "includes/Block/Header.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T00:40:22Z",
+      "side": 1,
+      "message": "might as well return from here",
+      "revId": "9201bd7cd58cf290155a659c94a820d5f02b9579",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_d79f51b8",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T00:40:22Z",
+      "side": 1,
+      "message": "return from here",
+      "revId": "9201bd7cd58cf290155a659c94a820d5f02b9579",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_f7a4cd06",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T00:40:22Z",
+      "side": 1,
+      "message": "return from here",
+      "revId": "9201bd7cd58cf290155a659c94a820d5f02b9579",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_97a9c9de",
+        "filename": "includes/Data/Compactor/ShallowCompactor.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T00:40:22Z",
+      "side": 1,
+      "message": "string[]",
+      "revId": "9201bd7cd58cf290155a659c94a820d5f02b9579",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_b7ae45e3",
+        "filename": "includes/Data/Compactor/ShallowCompactor.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T00:40:22Z",
+      "side": 1,
+      "message": "string[]",
+      "revId": "9201bd7cd58cf290155a659c94a820d5f02b9579",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_57b3414c",
+        "filename": "includes/Data/ManagerGroup.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T00:40:22Z",
+      "side": 1,
+      "message": "string[]",
+      "revId": "9201bd7cd58cf290155a659c94a820d5f02b9579",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_17bdb916",
+        "filename": "includes/api/ApiFlowBaseGet.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T00:40:22Z",
+      "side": 1,
+      "message": "make this\n\n  $output \u003d array( $action \u003d\u003e ... )",
+      "revId": "9201bd7cd58cf290155a659c94a820d5f02b9579",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_37ba351f",
+        "filename": "includes/api/ApiFlowBasePost.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T00:40:22Z",
+      "side": 1,
+      "message": "make this\n\n $output \u003d array( $action \u003d\u003e array( ... ) )",
+      "revId": "9201bd7cd58cf290155a659c94a820d5f02b9579",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
