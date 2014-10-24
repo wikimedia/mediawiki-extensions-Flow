@@ -291,7 +291,7 @@ class PostRevision extends AbstractRevision {
 	public function getDepth() {
 		if ( $this->depth === null ) {
 			$rootLoader = Container::get( 'loader.root_post' );
-			$rootPath = $rootLoader->treeRepo->findRootPath( $this->getCollectionId() );
+			$rootPath = $rootLoader->getTreeRepo()->findRootPath( $this->getCollectionId() );
 			$this->setDepth( count( $rootPath ) - 1 );
 		}
 
