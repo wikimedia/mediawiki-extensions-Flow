@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_b9a5d4b3",
+        "filename": "handlebars/flow_block_board-history.handlebars",
+        "patchSetId": 15
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T21:42:57Z",
+      "side": 1,
+      "message": "these are practically copy/paste from flow_post_actions.handlebars, we should find a way to keep this DRY",
+      "revId": "b77be3f287a86582d09f1ca9ef30684d153ee7c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_79af4c92",
+        "filename": "includes/View.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T21:42:57Z",
+      "side": 1,
+      "message": "the $block variable was previously unused, this is a wierd bit of code.  More below.",
+      "revId": "b77be3f287a86582d09f1ca9ef30684d153ee7c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_d9aa2082",
+        "filename": "includes/View.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T21:42:57Z",
+      "side": 1,
+      "message": "it seems very odd to pass the full api response into each individual block template.  \n\nWhat its accomplishing is fine, but how it gets there just feels odd.  I doubt we want to output boardHistory and board components on the same page. Lets have the above chose a component/template, and then run the template outside the for loop",
+      "revId": "b77be3f287a86582d09f1ca9ef30684d153ee7c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_99b498e6",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T21:42:57Z",
+      "side": 1,
+      "message": "not really for this patch to solve, but i feel like i see this line everywhere.  Seems like the mw.flow.getPrototypeMethod( \u0027board\u0027, \u0027getInstanceByElement\u0027 ) should be held somewhere to be called? but i dunno, just seems repetitive.",
+      "revId": "b77be3f287a86582d09f1ca9ef30684d153ee7c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
