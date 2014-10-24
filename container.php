@@ -157,10 +157,6 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 		),
 	);
 	$lifecycle = array(
-		new Flow\Data\Listener\UserNameListener(
-			$c['repository.username'],
-			array( 'workflow_user_id' => 'workflow_user_wiki' )
-		),
 		new Flow\Data\Listener\WorkflowTopicListListener( $c['storage.topic_list'], $c['topic_list.last_updated.index'] ),
 		$c['listener.occupation'],
 		$c['listener.url_generator']

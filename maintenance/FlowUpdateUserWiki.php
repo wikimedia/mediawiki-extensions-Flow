@@ -75,7 +75,6 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 							$this->updateHeader( $workflow, $row->workflow_wiki );
 							$this->updateTopicList( $workflow, $row->workflow_wiki );
 						}
-						$this->updateWorkflow( $workflow, $row->workflow_wiki );
 					}
 				}
 			} else {
@@ -84,23 +83,6 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 		}
 
 		return true;
-	}
-
-	/**
-	 * Update workflow
-	 */
-	private function updateWorkflow( $wf, $wiki ) {
-		$dbw = Container::get( 'db.factory' )->getDB( DB_MASTER );
-		$res = $dbw->update(
-			'flow_workflow',
-			array( 'workflow_user_wiki' => $wiki ),
-			array( 'workflow_id' => $wf->getId()->getBinary() )
-		);
-		if ( !$res ) {
-			throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
-		}
-
-		$this->checkForSlave();
 	}
 
 	/**
