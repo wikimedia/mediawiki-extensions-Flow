@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_b742c511",
+        "filename": "includes/Data/ObjectLocator.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T01:30:08Z",
+      "side": 1,
+      "message": "i don\u0027t think we ever used this, should just kill it: https://gerrit.wikimedia.org/r/168533",
+      "revId": "b28859b193fd615f03b1e99e9d6cc868b7694570",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_374eb53d",
+        "filename": "includes/Formatter/RecentChangesQuery.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T01:30:08Z",
+      "side": 1,
+      "message": "soon to be renamed to RecentChangesListener!! :)  I\u0027ll update the other patch to fix this after merging.",
+      "revId": "b28859b193fd615f03b1e99e9d6cc868b7694570",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_d75af1f8",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T01:30:08Z",
+      "side": 1,
+      "message": "we would use AbstractRevision::getUser() on the specific revisionId to be thanked then, but for now this is good :)",
+      "revId": "b28859b193fd615f03b1e99e9d6cc868b7694570",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
