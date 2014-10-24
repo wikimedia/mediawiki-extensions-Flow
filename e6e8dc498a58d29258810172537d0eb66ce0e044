@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_4364dfe1",
+        "filename": "includes/Formatter/RecentChanges.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-24T18:20:45Z",
+      "side": 1,
+      "message": "should probably use\n\n  $anchor-\u003equery[\u0027fromnotif\u0027] \u003d 1\n\nto ensure we dont clobber existing query options.  There arn\u0027t any right now but there could be.",
+      "revId": "e6e8dc498a58d29258810172537d0eb66ce0e044",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
