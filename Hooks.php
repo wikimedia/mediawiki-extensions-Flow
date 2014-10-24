@@ -277,7 +277,6 @@ class FlowHooks {
 			/** @var Flow\Formatter\RecentChangesQuery $query */
 			$query = Container::get( 'query.recentchanges' );
 
-			// @todo: create hook to allow batch-loading this data
 			$row = $query->getResult( $changesList, $rc, $changesList->isWatchlist() );
 			if ( $row === false ) {
 				restore_error_handler();
