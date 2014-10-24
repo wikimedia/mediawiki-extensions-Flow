@@ -2,6 +2,7 @@
 
 namespace Flow;
 
+use Flow\Exception\InvalidInputException;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Anchor;
@@ -9,10 +10,53 @@ use Flow\Model\Header;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\UUID;
+use Flow\Model\Workflow;
 use SpecialPage;
 use Title;
 
-class UrlGenerator extends BaseUrlGenerator {
+/**
+ * Provides url generation capabilities for Flow. Ties together an
+ * i18n message with a specific Title, query parameters and fragment.
+ *
+ * URL generation methods mostly accept either a Title or a UUID
+ * representing the Workflow. URL generation methods all return
+ * Anchor instances..
+ */
+class UrlGenerator {
+	/**
+	 * @var Workflow[] Map from alphadecimal workflow id to Workflow instance
+	 */
+	protected $workflows = array();
+
+	/**
+	 * @param Workflow $workflow
+	 */
+	public function withWorkflow( Workflow $workflow ) {
+		$this->workflows[$workflow->getId()->getAlphadecimal()] = $workflow;
+	}
+
+	/**
+	 * @param Title|null $title
+	 * @param UUID|null $workflowId
+	 * @return Title
+	 * @throws FlowException
+	 */
+	protected function resolveTitle( Title $title = null, UUID $workflowId = null ) {
+		if ( $title !== null ) {
+			return $title;
+		}
+		if ( $workflowId === null ) {
+			throw new FlowException( 'No title or workflow given' );
+		}
+
+		$alpha = $workflowId->getAlphadecimal();
+		if ( !isset( $this->workflows[$alpha] ) ) {
+			throw new InvalidInputException( 'Unloaded workflow:' . $alpha, 'invalid-workflow' );
+		}
+
+		return $this->workflows[$alpha]->getArticleTitle();
+	}
+
 	/**
 	 * Link to create new topic on a topiclist.
 	 *
