@@ -1,6 +1,4 @@
 
-ALTER TABLE /*_*/flow_workflow ADD workflow_user_wiki varchar(32) binary not null;
-
 ALTER TABLE /*_*/flow_subscription ADD subscription_user_wiki varchar(32) binary not null;
 
 ALTER TABLE /*_*/flow_tree_revision ADD tree_orig_user_wiki varchar(32) binary not null;

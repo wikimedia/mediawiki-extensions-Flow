@@ -161,9 +161,6 @@ class IRCLineUrlFormatter extends AbstractFormatter implements RCFeedFormatter {
 			'workflow_last_update_timestamp' => null,
 			'workflow_definition_id' => null,
 			'workflow_lock_state' => null,
-			'workflow_user_wiki' => wfWikiId(),
-			'workflow_user_id' => 0,
-			'workflow_user_ip' => null,
 		) );
 	}
 }
