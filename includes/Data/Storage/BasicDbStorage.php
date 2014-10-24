@@ -203,18 +203,6 @@ class BasicDbStorage extends DbStorage {
 		return $result;
 	}
 
-	/**
-	 * Only use from maintenance and debugging
-	 */
-	public function getIterator( $batchSize = 500 ) {
-		return new \EchoBatchRowIterator(
-			$this->dbFactory->getDB( DB_MASTER ),
-			$this->table,
-			$this->primaryKey,
-			$batchSize
-		);
-	}
-
 	public function getPrimaryKeyColumns() {
 		return $this->primaryKey;
 	}

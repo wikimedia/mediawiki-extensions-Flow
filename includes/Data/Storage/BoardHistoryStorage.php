@@ -141,8 +141,4 @@ class BoardHistoryStorage extends DbStorage {
 	public function remove( array $row ) {
 		throw new DataModelException( __CLASS__ . ' does not support remove action', 'process-data' );
 	}
-
-	public function getIterator() {
-		throw new DataModelException( 'Not Implemented', 'process-data' );
-	}
 }

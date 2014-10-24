@@ -56,14 +56,6 @@ class ObjectLocator {
 		return $result ? reset( $result ) : null;
 	}
 
-	public function getIterator() {
-		if ( !method_exists( $this->storage, 'getIterator' ) ) {
-			throw new FlowException( 'Storage object of class "' . get_class( $this->storage ) . '" has no iterator.' );
-		}
-
-		return $this->storage->getIterator();
-	}
-
 	/**
 	 * All queries must be against the same index. Results are equivalent to
 	 * array_map, maintaining order and key relationship between input $queries

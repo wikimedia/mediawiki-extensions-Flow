@@ -498,10 +498,6 @@ abstract class RevisionStorage extends DbStorage {
 		return !isset( $row['rev_content'] ) || $row['rev_content'] !== false;
 	}
 
-	public function getIterator() {
-		throw new DataModelException( __CLASS__ . '::' . __METHOD__ . ' is not implemented', 'process-data' );
-	}
-
 	/**
 	 * Gets all columns from $row that start with a given prefix and omits other
 	 * columns.

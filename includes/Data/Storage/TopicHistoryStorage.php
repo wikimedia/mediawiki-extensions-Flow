@@ -80,8 +80,4 @@ class TopicHistoryStorage implements ObjectStorage {
 	public function validate( array $row ) {
 		return true;
 	}
-
-	public function getIterator() {
-		throw new DataModelException( 'Not Implemented', 'process-data' );
-	}
 }
