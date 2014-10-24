@@ -49,10 +49,6 @@ class ObjectLocator {
 		return $result ? reset( $result ) : null;
 	}
 
-	public function getIterator() {
-		return $this->storage->getIterator();
-	}
-
 	/**
 	 * All queries must be against the same index. Results are equivalent to
 	 * array_map, maintaining order and key relationship between input $queries
