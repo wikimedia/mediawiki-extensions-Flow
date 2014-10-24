@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_ad8b521f",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-24T13:10:22Z",
+      "side": 1,
+      "message": "Probably doesn\u0027t have to be nullable \u0026 we can probably remove it from setContent now as well, enforcing a $title to be passed in",
+      "revId": "9763fd83841d2954cf4319a961c771ebf18dff24",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
