@@ -866,10 +866,10 @@ class FlowHooks {
 	 * Don't (un)watch a non-existing flow topic
 	 *
 	 * @param User $user
-	 * @param Article $page
+	 * @param WikiPage $page
 	 * $param Status $status
 	 */
-	public static function onWatchArticle( &$user, Article &$page, &$status ) {
+	public static function onWatchArticle( &$user, WikiPage &$page, &$status ) {
 		$title = $page->getTitle();
 		if ( $title->getNamespace() == NS_TOPIC ) {
 			// @todo - use !$title->exists()?
