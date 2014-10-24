@@ -32,6 +32,19 @@
     );
     return '<div class="flow-board flow-disable-topic-collapse">
 	<div class="flow-topics">
+		<div class="flow-error-container">
+'.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['errors'])) ? $cx['scopes'][0]['errors'] : null))) ? '
+	<div class="flow-errors errorbox">
+		<ul>
+			'.LCRun3::sec($cx, ((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['errors'])) ? $cx['scopes'][0]['errors'] : null), $in, true, function($cx, $in) {return '
+				<li>'.LCRun3::ch($cx, 'html', Array(Array(((is_array($in) && isset($in['message'])) ? $in['message'] : null)),Array()), 'encq').'</li>
+			';}).'
+		</ul>
+	</div>
+' : '').'
+</div>
+
+
 		'.'
 		'.LCRun3::sec($cx, ((is_array($in) && isset($in['roots'])) ? $in['roots'] : null), $in, true, function($cx, $in) {return '
 	'.'

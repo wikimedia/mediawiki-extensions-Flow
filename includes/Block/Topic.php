@@ -442,9 +442,11 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	public function renderAPI( array $options ) {
+		$output = array( 'type' => $this->getName() );
+
 		$topic = $this->loadTopicTitle( $this->action === 'history' ? 'history' : 'view' );
 		if ( !$topic ) {
-			throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
+			return $output + $this->finalizeApiOutput($options);
 		}
 
 		// there's probably some OO way to turn this stack of if/else into
@@ -454,10 +456,10 @@ class TopicBlock extends AbstractBlock {
 			// single post history or full topic?
 			if ( isset( $options['postId'] ) ) {
 				// singular post history
-				$output = $this->renderPostHistoryAPI( $options, UUID::create( $options['postId'] ) );
+				$output += $this->renderPostHistoryAPI( $options, UUID::create( $options['postId'] ) );
 			} else {
 				// post history for full topic
-				$output = $this->renderTopicHistoryAPI( $options );
+				$output += $this->renderTopicHistoryAPI( $options );
 			}
 		} elseif ( $this->action === 'single-view' ) {
 			if ( isset( $options['revId'] ) ) {
@@ -465,45 +467,44 @@ class TopicBlock extends AbstractBlock {
 			} else {
 				throw new InvalidInputException( 'A revision must be provided', 'invalid-input' );
 			}
-			$output = $this->renderSingleViewAPI( $revId );
+			$output += $this->renderSingleViewAPI( $revId );
 		} elseif ( $this->action === 'lock-topic' ) {
 			// Treat topic as a post, only the post + summary are needed
 			$result = $this->renderPostAPI( $options, $this->workflow->getId() );
 			$topicId = $result['roots'][0];
 			$revisionId = $result['posts'][$topicId][0];
-			$output = $result['revisions'][$revisionId];
+			$output += $result['revisions'][$revisionId];
 		} elseif ( $this->action === 'compare-post-revisions' ) {
-			$output = $this->renderDiffViewAPI( $options );
+			$output += $this->renderDiffViewAPI( $options );
 		} elseif ( $this->shouldRenderTopicAPI( $options ) ) {
 			// view full topic
-			$output = $this->renderTopicAPI( $options );
+			$output += $this->renderTopicAPI( $options );
 		} else {
 			// view single post, possibly specific revision
 			// @todo this isn't valid for the topic title
-			$output = $this->renderPostAPI( $options );
+			$output += $this->renderPostAPI( $options );
 		}
 
-		if ( $output === null ) {
-			// @todo might as well throw these at the source?
-			throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
-		}
+		return $output + $this->finalizeApiOutput($options);
+	}
 
-		$output['type'] = $this->getName();
-
+	/**
+	 * @param array $options
+	 * @return array
+	 */
+	protected function finalizeApiOutput( $options ) {
 		if ( $this->wasSubmitted() ) {
 			// Failed actions, like reply, end up here
-			$output += array(
+			return array(
 				'submitted' => $this->submitted,
 				'errors' => $this->errors,
 			);
 		} else {
-			$output += array(
+			return array(
 				'submitted' => $options,
 				'errors' => array(),
 			);
 		}
-
-		return $output;
 	}
 
 	protected function shouldRenderTopicAPI( array $options ) {
@@ -794,7 +795,6 @@ class TopicBlock extends AbstractBlock {
 	/**
 	 * @param Templating $templating
 	 * @param \OutputPage $out
-	 * @throws PermissionException
 	 *
 	 * @todo Provide more informative page title for actions other than view,
      *       e.g. "Hide post in <TITLE>", "Unlock <TITLE>", etc.
@@ -802,7 +802,7 @@ class TopicBlock extends AbstractBlock {
 	public function setPageTitle( Templating $templating, \OutputPage $out ) {
 		$topic = $this->loadTopicTitle( $this->action === 'history' ? 'history' : 'view' );
 		if ( !$topic ) {
-			throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
+			return;
 		}
 
 		$title = $this->workflow->getOwnerTitle();
