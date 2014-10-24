@@ -89,6 +89,15 @@ class TopicFormatter {
 		);
 	}
 
+	/**
+	 * @param array Map from alphadecimal postId to list of alphadecimal revisionId's
+	 *  for that postId contained within $revisions.
+	 * @param array $revisions Map from alphadecimal revisionId to serialized representation
+	 *  of that revision.
+	 * @param Workflow[] $workflows Map from alphadecimal workflowId to Workflow instance
+	 * @param string $postAlphaId PostId of the topic title
+	 * @return array
+	 */
 	protected function generateTopicMetadata( array $posts, array $revisions, array $workflows, $postAlphaId ) {
 		$replies = -1;
 		$authors = array();

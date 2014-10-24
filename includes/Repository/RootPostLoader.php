@@ -64,6 +64,11 @@ class RootPostLoader {
 		return $res;
 	}
 
+	/**
+	 * @param UUID $topicId
+	 * @return PostRevision
+	 * @throws InvalidDataException
+	 */
 	public function get( $topicId ) {
 		$result = $this->getMulti( array( $topicId ) );
 		return reset( $result );
@@ -72,7 +77,7 @@ class RootPostLoader {
 	/**
 	 * @param UUID[] $topicIds
 	 * @return PostRevision[]
-	 * @throws \Flow\Exception\InvalidDataException
+	 * @throws InvalidDataException
 	 */
 	public function getMulti( array $topicIds ) {
 		if ( !$topicIds ) {
@@ -177,7 +182,7 @@ class RootPostLoader {
 			$roots[$id->getAlphadecimal()] = $posts[$id->getAlphadecimal()];
 		}
 		// Attach every post in the tree to its root. setRootPost
-		// recursivly applies it to all children as well.
+		// recursively applies it to all children as well.
 		foreach ( $roots as $post ) {
 			$post->setRootPost( $post );
 		}

@@ -109,7 +109,7 @@ class UUID {
 	 * Alphanumeric value is all we need to construct a UUID object; saving
 	 * anything more is just wasted storage/bandwidth.
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public function __sleep() {
 		// ensure alphadecimal is populated
@@ -400,7 +400,7 @@ class UUID {
 	 * Converts a binary uuid into a MWTimestamp. This UUID must have
 	 * been generated with \UIDGenerator::newTimestampedUID88.
 	 *
-	 * @param string $binary
+	 * @param string $hex
 	 * @return integer Number of seconds since epoch
 	 */
 	public static function hex2timestamp( $hex ) {

@@ -289,6 +289,11 @@ class CrossWikiException extends FlowException {}
  * Category: Template helper
  */
 class WrongNumberArgumentsException extends FlowException {
+	/**
+	 * @param array $args
+	 * @param string $minExpected
+	 * @param string|null $maxExpected
+	 */
 	public function __construct( array $args, $minExpected, $maxExpected = null ) {
 		$count = count( $args );
 		if ( $maxExpected === null ) {

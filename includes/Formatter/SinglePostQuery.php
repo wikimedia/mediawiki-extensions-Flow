@@ -8,7 +8,7 @@ use Flow\Model\UUID;
 class SinglePostQuery extends AbstractQuery {
 	/**
 	 * @param UUID $postId
-	 * @return FormatterRow[]
+	 * @return FormatterRow
 	 * @throws FlowException
 	 */
 	public function getResult( UUID $postId ) {
