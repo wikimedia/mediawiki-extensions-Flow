@@ -5,7 +5,7 @@ use Flow\Model\Anchor;
 abstract class ApiFlowBasePost extends ApiFlowBase {
 	public function execute() {
 		$loader = $this->getLoader();
-		$blocks = $loader->createBlocks();
+		$blocks = $loader->getBlocks();
 		/** @var \Flow\Model\Workflow $workflow */
 		$workflow = $loader->getWorkflow();
 		$action = $this->getAction();
@@ -14,7 +14,6 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 		$params = $this->getBlockParams();
 		$blocksToCommit = $loader->handleSubmit(
 			$this->getContext(),
-			$blocks,
 			$action,
 			$params
 		);

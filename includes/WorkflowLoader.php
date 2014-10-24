@@ -2,7 +2,7 @@
 
 namespace Flow;
 
-use Flow\Block\AbstractBlock;
+use Flow\Block\Block;
 use Flow\Model\Workflow;
 use IContextSource;
 
@@ -13,9 +13,9 @@ class WorkflowLoader {
 	protected $workflow;
 
 	/**
-	 * @var BlockFactory
+	 * @var Block[]
 	 */
-	protected $blockFactory;
+	protected $blocks;
 
 	/**
 	 * @var SubmissionHandler
@@ -24,15 +24,15 @@ class WorkflowLoader {
 
 	/**
 	 * @param Workflow $workflow
-	 * @param BlockFactory $blockFactory
+	 * @param Block[] $blocks
 	 * @param SubmissionHandler $submissionHandler
 	 */
 	public function __construct(
 			Workflow $workflow,
-			BlockFactory $blockFactory,
+			array $blocks,
 			SubmissionHandler $submissionHandler
 	) {
-		$this->blockFactory = $blockFactory;
+		$this->blocks = $blocks;
 		$this->submissionHandler = $submissionHandler;
 		$this->workflow = $workflow;
 	}
@@ -45,10 +45,10 @@ class WorkflowLoader {
 	}
 
 	/**
-	 * @return AbstractBlock[]
+	 * @return Block[]
 	 */
-	public function createBlocks() {
-		return $this->blockFactory->createBlocks( $this->workflow );
+	public function getBlocks() {
+		return $this->blocks;
 	}
 
 	/**
@@ -56,11 +56,11 @@ class WorkflowLoader {
 	 * @param AbstractBlock[] $blocks
 	 * @param string $action
 	 * @param array $parameters
-	 * @return Block\AbstractBlock[]
+	 * @return Block[]
 	 */
-	public function handleSubmit( IContextSource $context, array $blocks, $action, array $parameters ) {
+	public function handleSubmit( IContextSource $context, $action, array $parameters ) {
 		return $this->submissionHandler
-			->handleSubmit( $this->workflow, $context, $blocks, $action, $parameters );
+			->handleSubmit( $this->workflow, $context, $this->blocks, $action, $parameters );
 	}
 
 	public function commit( Workflow $workflow, array $blocks ) {
