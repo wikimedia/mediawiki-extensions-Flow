@@ -2,18 +2,17 @@
 
 namespace Flow\Data\Index;
 
-use Flow\Container;
 use Flow\Data\BufferedCache;
 use Flow\Data\ObjectManager;
 use Flow\Data\Storage\BoardHistoryStorage;
 use Flow\Exception\DataModelException;
-use Flow\Exception\FlowException;
 use Flow\Exception\InvalidInputException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
 use Flow\Model\PostSummary;
 use Flow\Model\PostRevision;
 use Flow\Model\TopicListEntry;
+use Flow\Model\Workflow;
 
 /**
  * Keeps a list of revision ids relevant to the board history bucketed
@@ -118,7 +117,7 @@ class BoardHistoryIndex extends TopKIndex {
 			return $row['rev_type_id'];
 		}
 
-		if ( isset( $metadata['workflow'] ) ) {
+		if ( isset( $metadata['workflow'] ) && $metadata['workflow'] instanceof Workflow ) {
 			$topicId = $metadata['workflow']->getId();
 		} else {
 			if ( $object instanceof PostRevision ) {

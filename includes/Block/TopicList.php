@@ -102,9 +102,9 @@ class TopicListBlock extends AbstractBlock {
 	protected function create() {
 		$title = $this->workflow->getArticleTitle();
 		$user = $this->context->getUser();
-		$topicWorkflow = Workflow::create( 'topic', $user, $title );
+		$topicWorkflow = Workflow::create( 'topic', $title );
 		$topicListEntry = TopicListEntry::create( $this->workflow, $topicWorkflow );
-		$topicTitle = PostRevision::create( $topicWorkflow, $this->submitted['topic'] );
+		$topicTitle = PostRevision::create( $topicWorkflow, $user, $this->submitted['topic'] );
 
 		$firstPost = null;
 		if ( !empty( $this->submitted['content'] ) ) {
