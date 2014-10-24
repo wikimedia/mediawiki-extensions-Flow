@@ -258,6 +258,7 @@ $wgAutoloadClasses['Flow\\Tests\\SpamFilter\\AbuseFilterTest'] = __DIR__ . '/tes
 $wgAutoloadClasses['Flow\\Tests\\SpamFilter\\SpamBlacklistTest'] = __DIR__ . '/tests/phpunit/SpamFilter/SpamBlacklistTest.php';
 $wgAutoloadClasses['Flow\\Tests\\SpamFilter\\SpamRegexTest'] = __DIR__ . '/tests/phpunit/SpamFilter/SpamRegexTest.php';
 $wgAutoloadClasses['Flow\\Tests\\TemplateHelperTest'] = __DIR__ . '/tests/phpunit/TemplateHelperTest.php';
+$wgAutoloadClasses['Flow\\Tests\\TemplatingTest'] = __DIR__ . '/tests/phpunit/TemplatingTest.php';
 $wgAutoloadClasses['Flow\\Tests\\UrlGeneratorTest'] = __DIR__ . '/tests/phpunit/UrlGeneratorTest.php';
 $wgAutoloadClasses['Flow\\Tests\\WatchedTopicItemTest'] = __DIR__ . '/tests/phpunit/WatchedTopicItemsTest.php';
 $wgAutoloadClasses['Flow\\UrlGenerator'] = __DIR__ . '/includes/UrlGenerator.php';
