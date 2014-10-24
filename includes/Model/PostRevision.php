@@ -2,10 +2,11 @@
 
 namespace Flow\Model;
 
-use Flow\Container;
-use User;
-use Flow\Exception\DataModelException;
 use Flow\Collection\PostCollection;
+use Flow\Container;
+use Flow\Exception\DataModelException;
+use Flow\Repository\TreeRepository;
+use User;
 
 class PostRevision extends AbstractRevision {
 	const MAX_TOPIC_LENGTH = 260;
@@ -290,8 +291,9 @@ class PostRevision extends AbstractRevision {
 	 */
 	public function getDepth() {
 		if ( $this->depth === null ) {
-			$rootLoader = Container::get( 'loader.root_post' );
-			$rootPath = $rootLoader->getTreeRepo()->findRootPath( $this->getCollectionId() );
+			/** @var TreeRepository $treeRepo */
+			$treeRepo = Container::get( 'repository.tree' );
+			$rootPath = $treeRepo->findRootPath( $this->getCollectionId() );
 			$this->setDepth( count( $rootPath ) - 1 );
 		}
 
