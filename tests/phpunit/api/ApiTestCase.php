@@ -66,6 +66,8 @@ abstract class ApiTestCase extends BaseApiTestCase {
 
 		if ( $return === 'all' ) {
 			return $data;
+		} elseif ( $return === 'result' ) {
+			return $data[0]['flow']['new-topic']['result']['topiclist'];
 		} else {
 			return $data[0]['flow']['new-topic']['result']['topiclist']['roots'][0];
 		}
