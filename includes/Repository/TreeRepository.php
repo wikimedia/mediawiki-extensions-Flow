@@ -121,36 +121,39 @@ class TreeRepository {
 					__METHOD__
 				);
 			} catch( \DBQueryError $e ) {
-				/*
-				 * insertSelect won't work on temporary tables (as used for MW
-				 * unit tests), because it refers to the same table twice, in
-				 * one query.
-				 * In this case, we'll do a separate select & insert.
-				 *
-				 * @see https://dev.mysql.com/doc/refman/5.0/en/temporary-table-problems.html
-				 * @see http://dba.stackexchange.com/questions/45270/mysql-error-1137-hy000-at-line-9-cant-reopen-table-temp-table
-				 */
-				if ( $dbw->lastErrno() === 1137 ) {
-					// @todo: needs to be done for ALL depths, not just one
-					$rows = $dbw->select(
+				$res = false;
+			}
+			/*
+			 * insertSelect won't work on temporary tables (as used for MW
+			 * unit tests), because it refers to the same table twice, in
+			 * one query.
+			 * In this case, we'll do a separate select & insert. This used
+			 * to always be detected via the DBQueryError, but it can also
+			 * return false from insertSelect.
+			 *
+			 * @see https://dev.mysql.com/doc/refman/5.0/en/temporary-table-problems.html
+			 * @see http://dba.stackexchange.com/questions/45270/mysql-error-1137-hy000-at-line-9-cant-reopen-table-temp-table
+			 */
+			if ( !$res && $dbw->lastErrno() === 1137 ) {
+				// @todo: needs to be done for ALL depths, not just one
+				$rows = $dbw->select(
+					$this->tableName,
+					array( 'tree_depth' ),
+					array( 'tree_descendant_id' => $ancestor->getBinary() ),
+					__METHOD__
+				);
+
+				$res = true;
+				foreach ( $rows as $row ) {
+					$res &= $dbw->insert(
 						$this->tableName,
-						array( 'tree_depth' ),
-						array( 'tree_descendant_id' => $ancestor->getBinary() ),
+						array(
+							'tree_descendant_id' => $descendant->getBinary(),
+							'tree_ancestor_id' => $ancestor->getBinary(),
+							'tree_depth' => $row->tree_depth + 1,
+						),
 						__METHOD__
 					);
-
-					$res = true;
-					foreach ( $rows as $row ) {
-						$res &= $dbw->insert(
-							$this->tableName,
-							array(
-								'tree_descendant_id' => $descendant->getBinary(),
-								'tree_ancestor_id' => $ancestor->getBinary(),
-								'tree_depth' => $row->tree_depth + 1,
-							),
-							__METHOD__
-						);
-					}
 				}
 			}
 		}
