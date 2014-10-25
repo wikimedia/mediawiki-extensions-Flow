@@ -79,11 +79,12 @@ $c['permissions'] = $c->share( function( $c ) {
 	return new Flow\RevisionActionPermissions( $c['flow_actions'], $c['user'] );
 } );
 
+$c['lightncandy.template_dir'] = __DIR__ . '/handlebars';
 $c['lightncandy'] = $c->share( function( $c ) {
 	global $wgFlowServerCompileTemplates;
 
 	return new Flow\TemplateHelper(
-		__DIR__ . '/handlebars',
+		$c['lightncandy.template_dir'],
 		$wgFlowServerCompileTemplates
 	);
 } );
@@ -129,44 +130,88 @@ $c['memcache.buffered'] = $c->share( function( $c ) {
 	return new BufferedCache( $bufferedCache, $wgFlowCacheTime );
 } );
 // Batched username loader
+$c['repository.username.query'] = $c->share( function( $c ) {
+	return new Flow\Repository\UserName\TwoStepUserNameQuery(
+		$c['db.factory']
+	);
+} );
 $c['repository.username'] = $c->share( function( $c ) {
-	return new Flow\Repository\UserNameBatch( new Flow\Repository\UserName\TwoStepUserNameQuery( $c['db.factory'] ) );
+	return new Flow\Repository\UserNameBatch(
+		$c['repository.username.query']
+	);
 } );
 $c['collection.cache'] = $c->share( function( $c ) {
 	return new Flow\Collection\CollectionCache();
 } );
 // Individual workflow instances
-$c['storage.workflow'] = $c->share( function( $c ) {
-	$primaryKey = array( 'workflow_id' );
-	$cache = $c['memcache.buffered'];
-	$mapper = CachingObjectMapper::model( 'Flow\\Model\\Workflow', $primaryKey );
-	$storage = new BasicDbStorage(
-		// factory and table
-		$c['db.factory'], 'flow_workflow',
-		// pk
-		$primaryKey
+$c['storage.workflow.class'] = 'Flow\Model\Workflow';
+$c['storage.workflow.table'] = 'flow_workflow';
+$c['storage.workflow.primary_key'] = array( 'workflow_id' );
+$c['storage.workflow.backend'] = $c->share( function( $c ) {
+	return new BasicDbStorage(
+		$c['db.factory'],
+		$c['storage.workflow.table'],
+		$c['storage.workflow.primary_key']
 	);
-	$pk = new UniqueFeatureIndex( $cache, $storage, 'flow_workflow:v2:pk', $primaryKey );
-	$indexes = array(
-		$pk,
-		// This is actually a unique index, but it wants the shallow functionality.
-		new TopKIndex(
-			$cache, $storage, 'flow_workflow:title:v2:',
-			array( 'workflow_wiki', 'workflow_namespace', 'workflow_title_text', 'workflow_type' ),
-			array( 'shallow' => $pk, 'limit' => 1, 'sort' => 'workflow_id' )
-		),
+} );
+$c['storage.workflow.mapper'] = $c->share( function( $c ) {
+	return CachingObjectMapper::model(
+		$c['storage.workflow.class'],
+		$c['storage.workflow.primary_key']
 	);
-	$lifecycle = array(
-		new Flow\Data\Listener\UserNameListener(
-			$c['repository.username'],
-			array( 'workflow_user_id' => 'workflow_user_wiki' )
-		),
-		new Flow\Data\Listener\WorkflowTopicListListener( $c['storage.topic_list'], $c['topic_list.last_updated.index'] ),
+} );
+$c['storage.workflow.indexes.primary'] = $c->share( function( $c ) {
+	return new UniqueFeatureIndex(
+		$c['memcache.buffered'],
+		$c['storage.workflow.backend'],
+		'flow_workflow:v2:pk',
+		$c['storage.workflow.primary_key']
+	);
+} );
+$c['storage.workflow.indexes.title_lookup'] = $c->share( function( $c ) {
+	return new TopKIndex(
+		$c['memcache.buffered'],
+		$c['storage.workflow.backend'],
+		'flow_workflow:title:v2:',
+		array( 'workflow_wiki', 'workflow_namespace', 'workflow_title_text', 'workflow_type' ),
+		array(
+			'shallow' => $c['storage.workflow.indexes.primary'],
+			'limit' => 1,
+			'sort' => 'workflow_id'
+		)
+	);
+} );
+$c['storage.workflow.indexes'] = function( $c ) {
+	return array(
+		$c['storage.workflow.indexes.primary'],
+		$c['storage.workflow.indexes.title_lookup']
+	);
+};
+$c['storage.workflow.listeners.username'] = $c->share( function( $c ) {
+	return new Flow\Data\Listener\UserNameListener(
+		$c['repository.username'],
+		array( 'workflow_user_id' => 'workflow_user_wiki' )
+	);
+} );
+$c['storage.workflow.listeners.topiclist'] = $c->share( function( $c ) {
+	return new Flow\Data\Listener\WorkflowTopicListListener(
+		$c['storage.topic_list'],
+		$c['storage.topic_list.indexes.last_updated']
+	);
+} );
+$c['storage.workflow.listeners'] = function( $c ) {
+	return array(
 		$c['listener.occupation'],
 		$c['listener.url_generator']
 	);
-
-	return new ObjectManager( $mapper, $storage, $indexes, $lifecycle );
+};
+$c['storage.workflow'] = $c->share( function( $c ) {
+	return new ObjectManager(
+		$c['storage.workflow.mapper'],
+		$c['storage.workflow.backend'],
+		$c['storage.workflow.indexes'],
+		$c['storage.workflow.listeners']
+	);
 } );
 
 $c['listener.occupation'] = $c->share( function( $c ) {
@@ -179,15 +224,14 @@ $c['listener.occupation'] = $c->share( function( $c ) {
 	);
 } );
 
-$c['storage.board_history.backing'] = $c->share( function( $c ) {
+$c['storage.board_history.backend'] = $c->share( function( $c ) {
 	return new BoardHistoryStorage( $c['db.factory'] );
 } );
-
-$c['storage.board_history.index'] = $c->share( function( $c ) {
+$c['storage.board_history.indexes.primary'] = $c->share( function( $c ) {
 	return new BoardHistoryIndex(
 		$c['memcache.buffered'],
 		// backend storage
-		$c['storage.board_history.backing'],
+		$c['storage.board_history.backend'],
 		// key prefix
 		'flow_revision:topic_list_history',
 		// primary key
@@ -201,16 +245,15 @@ $c['storage.board_history.index'] = $c->share( function( $c ) {
 		$c['storage.topic_list']
 	);
 } );
-
-$c['storage.board_history'] = $c->share( function( $c ) {
-	$mapper = new BasicObjectMapper(
+$c['storage.board_history.mapper'] = $c->share( function( $c ) {
+	return new BasicObjectMapper(
 		function( $rev ) use( $c ) {
 			if ( $rev instanceof PostRevision ) {
 				return $c['storage.post.mapper']->toStorageRow( $rev );
 			} elseif ( $rev instanceof Header ) {
 				return $c['storage.header.mapper']->toStorageRow( $rev );
 			} elseif ( $rev instanceof PostSummary ) {
-				return $c['storage.post.summary.mapper']->toStorageRow( $rev );
+				return $c['storage.post_summary.mapper']->toStorageRow( $rev );
 			} else {
 				throw new \Flow\Exception\InvalidDataException( 'Invalid class for board history entry: ' . get_class( $rev ), 'fail-load-data' );
 			}
@@ -221,277 +264,420 @@ $c['storage.board_history'] = $c->share( function( $c ) {
 			} elseif ( $row['rev_type'] === 'post' ) {
 				return $c['storage.post.mapper']->fromStorageRow( $row, $obj );
 			} elseif ( $row['rev_type'] === 'post-summary' ) {
-				return $c['storage.post.summary.mapper']->fromStorageRow( $row, $obj );
+				return $c['storage.post_summary.mapper']->fromStorageRow( $row, $obj );
 			} else {
 				throw new \Flow\Exception\InvalidDataException( 'Invalid rev_type for board history entry: ' . $row['rev_type'], 'fail-load-data' );
 			}
 		}
 	);
-
-	$indexes = array(
-		$c['storage.board_history.index'],
+} );
+$c['storage.board_history.indexes'] = function( $c ) {
+	return array( $c['storage.board_history.indexes.primary'] );
+};
+$c['storage.board_history'] = $c->share( function( $c ) {
+	return new ObjectLocator(
+		$c['storage.board_history.mapper'],
+		$c['storage.board_history.backend'],
+		$c['storage.board_history.indexes']
 	);
-	return new ObjectLocator( $mapper, $c['storage.board_history.backing'], $indexes );
 } );
 
-// Arbitrary bit of revisioned wiki-text attached to a workflow
-$c['storage.header.lifecycle-handlers'] = $c->share( function( $c ) {
+$c['storage.header.listeners.recentchanges'] = $c->share( function( $c ) {
 	global $wgContLang;
-	return array(
-		// Recent change listeners go out to external services and
-		// as such must only be run after the transaction is commited.
-		new Flow\Data\Listener\DeferredInsertLifecycleHandler(
-			$c['deferred_queue'],
-			new Flow\Data\RecentChanges\HeaderRecentChanges(
-				$c['flow_actions'],
-				$c['repository.username'],
-				new Flow\Data\RecentChanges\RecentChangeFactory,
-				$wgContLang
-			)
-		),
-		$c['storage.board_history.index'],
-		new Flow\Data\Listener\UserNameListener(
+	// Recent change listeners go out to external services and
+	// as such must only be run after the transaction is commited.
+	return new Flow\Data\Listener\DeferredInsertLifecycleHandler(
+		$c['deferred_queue'],
+		new Flow\Data\RecentChanges\HeaderRecentChanges(
+			$c['flow_actions'],
 			$c['repository.username'],
-			array(
-				'rev_user_id' => 'rev_user_wiki',
-				'rev_mod_user_id' => 'rev_mod_user_wiki',
-				'rev_edit_user_id' => 'rev_edit_user_wiki'
-			)
-		),
-		$c['reference.recorder'],
+			new Flow\Data\RecentChanges\RecentChangeFactory,
+			$wgContLang
+		)
 	);
 } );
+$c['storage.header.listeners.username'] = $c->share( function( $c ) {
+	return new Flow\Data\Listener\UserNameListener(
+		$c['repository.username'],
+		array(
+			'rev_user_id' => 'rev_user_wiki',
+			'rev_mod_user_id' => 'rev_mod_user_wiki',
+			'rev_edit_user_id' => 'rev_edit_user_wiki'
+		)
+	);
+} );
+$c['storage.header.listeners'] = $c->share( function( $c ) {
+	return array(
+		$c['reference.recorder'],
+		$c['storage.board_history.indexes.primary'],
+		$c['storage.header.listeners.username'],
+	);
+} );
+$c['storage.header.primary_key'] = array( 'rev_id' );
 $c['storage.header.mapper'] = $c->share( function( $c ) {
 	return CachingObjectMapper::model( 'Flow\\Model\\Header', array( 'rev_id' ) );
 } );
-$c['storage.header'] = $c->share( function( $c ) {
+$c['storage.header.backend'] = $c->share( function( $c ) {
 	global $wgFlowExternalStore;
-
-	$cache = $c['memcache.buffered'];
-	$storage = new HeaderRevisionStorage( $c['db.factory'], $wgFlowExternalStore );
-
-	$pk = new UniqueFeatureIndex(
-		$cache, $storage,
-		'flow_header:v2:pk', array( 'rev_id' )
-	);
-	$workflowIndexOptions = array(
-		'sort' => 'rev_id',
-		'order' => 'DESC',
-		'shallow' => $pk,
-		'create' => function( array $row ) {
-			return $row['rev_parent_id'] === null;
-		},
-	);
-	$indexes = array(
-		$pk,
-		new TopKIndex(
-			$cache, $storage,
-			'flow_header:workflow', array( 'rev_type_id' ),
-			array( 'limit' => 100 ) + $workflowIndexOptions
-		),
+	return new HeaderRevisionStorage(
+		$c['db.factory'],
+		$wgFlowExternalStore
 	);
 
-	return new ObjectManager( $c['storage.header.mapper'], $storage, $indexes, $c['storage.header.lifecycle-handlers'] );
 } );
-
-$c['storage.post.summary.mapper'] = $c->share( function( $c ) {
-	return CachingObjectMapper::model( 'Flow\\Model\\PostSummary', array( 'rev_id' ) );
+$c['storage.header.indexes.primary'] = $c->share( function( $c ) {
+	return new UniqueFeatureIndex(
+		$c['memcache.buffered'],
+		$c['storage.header.backend'],
+		'flow_header:v2:pk',
+		$c['storage.header.primary_key']
+	);
 } );
-
-$c['storage.post.summary.lifecycle-handlers'] = $c->share( function( $c ) {
-	global $wgContLang;
-
+$c['storage.header.indexes.topic_lookup'] = $c->share( function( $c ) {
+	return new TopKIndex(
+		$c['memcache.buffered'],
+		$c['storage.header.backend'],
+		'flow_header:workflow',
+		array( 'rev_type_id' ),
+		array(
+			'limit' => 100,
+			'sort' => 'rev_id',
+			'order' => 'DESC',
+			'shallow' => $c['storage.header.indexes.primary'],
+			'create' => function( array $row ) {
+				return $row['rev_parent_id'] === null;
+			},
+		)
+	);
+} );
+$c['storage.header.indexes'] = function( $c ) {
 	return array(
-		$c['storage.board_history.index'],
-		// Recent change listeners go out to external services and
-		// as such must only be run after the transaction is commited.
-		new Flow\Data\Listener\DeferredInsertLifecycleHandler(
-			$c['deferred_queue'],
-			new Flow\Data\RecentChanges\PostSummaryRecentChanges(
-				$c['flow_actions'],
-				$c['repository.username'],
-				new Flow\Data\RecentChanges\RecentChangeFactory,
-				$wgContLang
-			)
-		),
-		new Flow\Data\Listener\UserNameListener(
+		$c['storage.header.indexes.primary'],
+		$c['storage.header.indexes.topic_lookup']
+	);
+};
+$c['storage.header'] = $c->share( function( $c ) {
+	return new ObjectManager(
+		$c['storage.header.mapper'],
+		$c['storage.header.backend'],
+		$c['storage.header.indexes'],
+		$c['storage.header.listeners']
+	);
+} );
+
+$c['storage.post_summary.class'] = 'Flow\Model\PostSummary';
+$c['storage.post_summary.primary_key'] = array( 'rev_id' );
+$c['storage.post_summary.mapper'] = $c->share( function( $c ) {
+	return CachingObjectMapper::model(
+		$c['storage.post_summary.class'],
+		$c['storage.post_summary.primary_key']
+	);
+} );
+$c['storage.post_summary.listeners.recentchanges'] = $c->share( function( $c ) {
+	global $wgContLang;
+	// Recent change listeners go out to external services and
+	// as such must only be run after the transaction is commited.
+	return new Flow\Data\Listener\DeferredInsertLifecycleHandler(
+		$c['deferred_queue'],
+		new Flow\Data\RecentChanges\PostSummaryRecentChanges(
+			$c['flow_actions'],
 			$c['repository.username'],
-			array(
-				'rev_user_id' => 'rev_user_wiki',
-				'rev_mod_user_id' => 'rev_mod_user_wiki',
-				'rev_edit_user_id' => 'rev_edit_user_wiki'
-			)
-		),
+			new Flow\Data\RecentChanges\RecentChangeFactory,
+			$wgContLang
+		)
+	);
+} );
+$c['storage.post_summary.listeners.username'] = $c->share( function( $c ) {
+	return new Flow\Data\Listener\UserNameListener(
+		$c['repository.username'],
+		array(
+			'rev_user_id' => 'rev_user_wiki',
+			'rev_mod_user_id' => 'rev_mod_user_wiki',
+			'rev_edit_user_id' => 'rev_edit_user_wiki'
+		)
+	);
+} );
+$c['storage.post_summary.listeners'] = function( $c ) {
+	return array(
+		$c['storage.post_summary.listeners.recentchanges'],
+		$c['storage.post_summary.listeners.username'],
+		$c['storage.board_history.indexes.primary'],
 		// topic history -- to keep a history by topic we have to know what topic every post
 		// belongs to, not just its parent. TopicHistoryIndex is a slight tweak to TopKIndex
 		// using TreeRepository for extra information and stuffing it into topic_root while indexing
-		$c['storage.topic_history.index'],
+		$c['storage.topic_history.indexes.primary'],
 	);
-} );
-
-$c['storage.post.summary'] = $c->share( function( $c ) {
+};
+$c['storage.post_summary.backend'] = $c->share( function( $c ) {
 	global $wgFlowExternalStore;
-
-	$cache = $c['memcache.buffered'];
-	$storage = new PostSummaryRevisionStorage( $c['db.factory'], $wgFlowExternalStore );
-	$pk = new UniqueFeatureIndex(
-		$cache, $storage,
-		'flow_post_summary:v2:pk', array( 'rev_id' )
+	return new PostSummaryRevisionStorage(
+		$c['db.factory'],
+		$wgFlowExternalStore
 	);
-	$workflowIndexOptions = array(
-		'sort' => 'rev_id',
-		'order' => 'DESC',
-		'shallow' => $pk,
-		'create' => function( array $row ) {
-			return $row['rev_parent_id'] === null;
-		},
+} );
+$c['storage.post_summary.indexes.primary'] = $c->share( function( $c ) {
+	return new UniqueFeatureIndex(
+		$c['memcache.buffered'],
+		$c['storage.post_summary.backend'],
+		'flow_post_summary:v2:pk',
+		$c['storage.post_summary.primary_key']
 	);
-	$indexes = array(
-		$pk,
-		new TopKIndex(
-			$cache, $storage,
-			'flow_post_summary:workflow', array( 'rev_type_id' ),
-			array( 'limit' => 100 ) + $workflowIndexOptions
-		),
+} );
+$c['storage.post_summary.indexes.topic_lookup'] = $c->share( function( $c ) {
+	return new TopKIndex(
+		$c['memcache.buffered'],
+		$c['storage.post_summary.backend'],
+		'flow_post_summary:workflow',
+		array( 'rev_type_id' ),
+		array(
+			'limit' => 100,
+			'sort' => 'rev_id',
+			'order' => 'DESC',
+			'shallow' => $c['storage.post_summary.indexes.primary'],
+			'create' => function( array $row ) {
+				return $row['rev_parent_id'] === null;
+			},
+		)
 	);
-
-	return new ObjectManager( $c['storage.post.summary.mapper'], $storage, $indexes, $c['storage.post.summary.lifecycle-handlers'] );
+} );
+$c['storage.post_summary.indexes'] = function( $c ) {
+	return array(
+		$c['storage.post_summary.indexes.primary'],
+		$c['storage.post_summary.indexes.topic_lookup']
+	);
+};
+$c['storage.post_summary'] = $c->share( function( $c ) {
+	return new ObjectManager(
+		$c['storage.post_summary.mapper'],
+		$c['storage.post_summary.backend'],
+		$c['storage.post_summary.indexes'],
+		$c['storage.post_summary.listeners']
+	);
 } );
 
-$c['topic_list.last_updated.index'] = $c->share( function( $c ) {
-	$primaryKey = array( 'topic_list_id', 'topic_id' );
-	$cache = $c['memcache.buffered'];
+$c['storage.topic_list.class'] = 'Flow\Model\TopicListEntry';
+$c['storage.topic_list.table'] = 'flow_topic_list';
+$c['storage.topic_list.primary_key'] = array( 'topic_list_id', 'topic_id' );
+$c['storage.topic_list.backend'] = $c->share( function( $c ) {
+	return new TopicListStorage(
+		$c['db.factory'],
+		$c['storage.topic_list.table'],
+		$c['storage.topic_list.primary_key']
+	);
+} );
+$c['storage.topic_list.indexes.last_updated.backend'] = $c->share( function( $c ) {
+	return new TopicListLastUpdatedStorage(
+		$c['db.factory'],
+		$c['storage.topic_list.table'],
+		$c['storage.topic_list.primary_key']
+	);
+} );
+$c['storage.topic_list.mapper'] = $c->share( function( $c ) {
+	return CachingObjectMapper::model(
+		$c['storage.topic_list.class'],
+		$c['storage.topic_list.primary_key']
+	);
+} );
+$c['storage.topic_list.backend'] = $c->share( function( $c ) {
+	return new TopicListStorage(
+		// factory and table
+		$c['db.factory'],
+		$c['storage.topic_list.table'],
+		$c['storage.topic_list.primary_key']
+	);
+} );
+// Lookup from topic_id to its owning board id
+$c['storage.topic_list.indexes.primary'] = $c->share( function( $c ) {
+	return new UniqueFeatureIndex(
+		$c['memcache.buffered'],
+		$c['storage.topic_list.backend'],
+		'flow_topic_list:topic',
+		array( 'topic_id' )
+	);
+} );
+// Lookup from board to contained topics
+$c['storage.topic_list.indexes.reverse_lookup'] = $c->share( function( $c ) {
 	return new TopKIndex(
-		$cache, new TopicListLastUpdatedStorage(
-			// factory and table
-			$c['db.factory'], 'flow_topic_list',
-			// pk
-			$primaryKey
-		),
-		'flow_topic_list_last_updated:list', array( 'topic_list_id' ),
+		$c['memcache.buffered'],
+		$c['storage.topic_list.backend'],
+		'flow_topic_list:list',
+		array( 'topic_list_id' ),
+		array( 'sort' => 'topic_id' )
+	);
+} );
+$c['storage.topic_list.indexes.last_updated'] = $c->share( function( $c ) {
+	return new TopKIndex(
+		$c['memcache.buffered'],
+		$c['storage.topic_list.indexes.last_updated.backend'],
+		'flow_topic_list_last_updated:list',
+		array( 'topic_list_id' ),
 		array(
 			'sort' => 'workflow_last_update_timestamp',
 			'order' => 'desc'
 		)
 	);
 } );
-
-// List of topic workflows and their owning discussion workflow
-// TODO: This could use similar to ShallowCompactor to
-// get the objects directly instead of just returning ids.
-// Would also need object mapper adjustments to return array
-// of two objects.
+$c['storage.topic_list.indexes'] = function( $c ) {
+	return array(
+		$c['storage.topic_list.indexes.primary'],
+		$c['storage.topic_list.indexes.reverse_lookup'],
+		$c['storage.topic_list.indexes.last_updated'],
+	);
+};
 $c['storage.topic_list'] = $c->share( function( $c ) {
-	$primaryKey = array( 'topic_list_id', 'topic_id' );
-	$cache = $c['memcache.buffered'];
-	$mapper = CachingObjectMapper::model( 'Flow\\Model\\TopicListEntry', $primaryKey );
-	$storage = new TopicListStorage(
-		// factory and table
-		$c['db.factory'], 'flow_topic_list',
-		// pk
-		$primaryKey
+	return new ObjectManager(
+		$c['storage.topic_list.mapper'],
+		$c['storage.topic_list.backend'],
+		$c['storage.topic_list.indexes']
 	);
-	$indexes = array(
-		new TopKIndex(
-			$cache, $storage,
-			'flow_topic_list:list', array( 'topic_list_id' ),
-			array( 'sort' => 'topic_id' )
-		),
-		$c['topic_list.last_updated.index'],
-		new UniqueFeatureIndex(
-			$cache, $storage,
-			'flow_topic_list:topic', array( 'topic_id' )
-		),
-	);
-
-	return new ObjectManager( $mapper, $storage, $indexes );
 } );
-// Individual post within a topic workflow
-$c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
+$c['storage.post.class'] = 'Flow\Model\PostRevision';
+$c['storage.post.primary_key'] = array( 'rev_id' );
+$c['storage.post.mapper'] = $c->share( function( $c ) {
+	return CachingObjectMapper::model(
+		$c['storage.post.class'],
+		$c['storage.post.primary_key']
+	);
+} );
+$c['storage.post.backend'] = $c->share( function( $c ) {
+	global $wgFlowExternalStore;
+	return new PostRevisionStorage(
+		$c['db.factory'],
+		$wgFlowExternalStore,
+		$c['repository.tree']
+	);
+} );
+$c['storage.post.listeners.moderation_logger'] = $c->share( function( $c ) {
+	return new Flow\Log\PostModerationLogger(
+		$c['logger']
+	);
+} );
+$c['storage.post.listeners.recentchanges'] = $c->share( function( $c ) {
 	global $wgContLang;
-
-	$handlers = array(
-		new Flow\Log\PostModerationLogger( $c['logger'] ),
-		// Recent change listeners go out to external services and
-		// as such must only be run after the transaction is commited.
-		new Flow\Data\Listener\DeferredInsertLifecycleHandler(
-			$c['deferred_queue'],
-			new Flow\Data\RecentChanges\PostRevisionRecentChanges(
-				$c['flow_actions'],
-				$c['repository.username'],
-				new Flow\Data\RecentChanges\RecentChangeFactory,
-				$wgContLang
-			)
-		),
-		$c['storage.board_history.index'],
-		new Flow\Data\Listener\UserNameListener(
+	// Recent change listeners go out to external services and
+	// as such must only be run after the transaction is commited.
+	return new Flow\Data\Listener\DeferredInsertLifecycleHandler(
+		$c['deferred_queue'],
+		new Flow\Data\RecentChanges\PostRevisionRecentChanges(
+			$c['flow_actions'],
 			$c['repository.username'],
-			array(
-				'rev_user_id' => 'rev_user_wiki',
-				'rev_mod_user_id' => 'rev_mod_user_wiki',
-				'rev_edit_user_id' => 'rev_edit_user_wiki',
-				'tree_orig_user_id' => 'tree_orig_user_wiki'
-			)
-		),
-		// Auto-subscribe users to the topic after performing specific actions
-		new Flow\Data\Listener\ImmediateWatchTopicListener( $c['watched_items'] ),
+			new Flow\Data\RecentChanges\RecentChangeFactory,
+			$wgContLang
+		)
+	);
+} );
+$c['storage.post.listeners.username'] = $c->share( function( $c ) {
+	return new Flow\Data\Listener\UserNameListener(
+		$c['repository.username'],
+		array(
+			'rev_user_id' => 'rev_user_wiki',
+			'rev_mod_user_id' => 'rev_mod_user_wiki',
+			'rev_edit_user_id' => 'rev_edit_user_wiki',
+			'tree_orig_user_id' => 'tree_orig_user_wiki'
+		)
+	);
+} );
+$c['storage.post.listeners.watch_topic'] = $c->share( function( $c ) {
+	// Auto-subscribe users to the topic after performing specific actions
+	return new Flow\Data\Listener\ImmediateWatchTopicListener(
+		$c['watched_items']
+	);
+} );
+$c['storage.post.listeners.notification'] = $c->share( function( $c ) {
+	// Defer notifications triggering till end of request so we could get
+	// article_id in the case of a new topic, this will need support of
+	// adding deferred update when running deferred update
+	return new Flow\Data\Listener\DeferredInsertLifecycleHandler(
+		$c['deferred_queue'],
+		new Flow\Data\Listener\NotificationListener(
+			$c['controller.notification']
+		)
+	);
+} );
+$c['storage.post.listeners'] = function( $c ) {
+	return array(
+		$c['reference.recorder'],
 		$c['collection.cache'],
+		$c['storage.post.listeners.username'],
+		$c['storage.post.listeners.watch_topic'],
+		$c['storage.post.listeners.notification'],
+		$c['storage.post.listeners.recentchanges'],
 		// topic history -- to keep a history by topic we have to know what topic every post
 		// belongs to, not just its parent. TopicHistoryIndex is a slight tweak to TopKIndex
 		// using TreeRepository for extra information and stuffing it into topic_root while indexing
-		$c['storage.topic_history.index'],
-		$c['reference.recorder'],
-		// Defer notifications triggering till end of request so we could get
-		// article_id in the case of a new topic, this will need support of
-		// adding deferred update when running deferred update
-		new Flow\Data\Listener\DeferredInsertLifecycleHandler(
-			$c['deferred_queue'],
-			new Flow\Data\Listener\NotificationListener( $c['controller.notification'] )
+		$c['storage.board_history.indexes.primary'],
+		$c['storage.topic_history.indexes.primary'],
+	);
+};
+$c['storage.post.indexes.primary'] = $c->share( function( $c ) {
+	return new UniqueFeatureIndex(
+		$c['memcache.buffered'],
+		$c['storage.post.backend'],
+		'flow_revision:v4:pk',
+		$c['storage.post.primary_key']
+	);
+} );
+// Each bucket holds a list of revisions in a single post
+$c['storage.post.indexes.post_lookup'] = $c->share( function( $c ) {
+	return new TopKIndex(
+		$c['memcache.buffered'],
+		$c['storage.post.backend'],
+		'flow_revision:descendant',
+		array( 'rev_type_id' ),
+		array(
+			'limit' => 100,
+			'sort' => 'rev_id',
+			'order' => 'DESC',
+			'shallow' => $c['storage.post.indexes.primary'],
+			'create' => function( array $row ) {
+				// return true to create instead of merge index
+				return $row['rev_parent_id'] === null;
+			},
 		)
 	);
-
-	return $handlers;
 } );
-$c['storage.post.mapper'] = $c->share( function( $c ) {
-	return CachingObjectMapper::model( 'Flow\\Model\\PostRevision', array( 'rev_id' ) );
-} );
-
-$c['storage.post'] = $c->share( function( $c ) {
-	global $wgFlowExternalStore;
-	$cache = $c['memcache.buffered'];
-	$treeRepo = $c['repository.tree'];
-	$storage = new PostRevisionStorage( $c['db.factory'], $wgFlowExternalStore, $treeRepo );
-	$pk = new UniqueFeatureIndex( $cache, $storage, 'flow_revision:v4:pk', array( 'rev_id' ) );
-	$indexes = array(
-		$pk,
-		// revision history
-		new TopKIndex( $cache, $storage, 'flow_revision:descendant',
-			array( 'rev_type_id' ),
-			array(
-				'limit' => 100,
-				'sort' => 'rev_id',
-				'order' => 'DESC',
-				'shallow' => $pk,
-				'create' => function( array $row ) {
-					// return true to create instead of merge index
-					return $row['rev_parent_id'] === null;
-				},
-		) ),
+$c['storage.post.indexes'] = function( $c ) {
+	return array(
+		$c['storage.post.indexes.primary'],
+		$c['storage.post.indexes.post_lookup'],
 	);
-
-	return new ObjectManager( $c['storage.post.mapper'], $storage, $indexes, $c['storage.post.lifecycle-handlers'] );
+};
+$c['storage.post'] = $c->share( function( $c ) {
+	return new ObjectManager(
+		$c['storage.post.mapper'],
+		$c['storage.post.backend'],
+		$c['storage.post.indexes'],
+		$c['storage.post.listeners']
+	);
 } );
-
-$c['storage.topic_history.index'] = $c->share( function( $c ) {
-	$cache = $c['memcache.buffered'];
-	$pk = new UniqueFeatureIndex( $cache, $c['storage.topic_history.backing'], 'flow_revision:v4:pk', array( 'rev_id' ) );
-	return new TopicHistoryIndex( $cache, $c['storage.topic_history.backing'], $c['repository.tree'], 'flow_revision:topic',
+$c['storage.topic_history.primary_key'] = array( 'rev_id' );
+$c['storage.topic_history.backend'] = $c->share( function( $c ) {
+	global $wgFlowExternalStore;
+	return new TopicHistoryStorage(
+		new PostRevisionStorage( $c['db.factory'], $wgFlowExternalStore, $c['repository.tree'] ),
+		new PostSummaryRevisionStorage( $c['db.factory'], $wgFlowExternalStore )
+	);
+} );
+$c['storage.topic_history.indexes.primary'] = $c->share( function( $c ) {
+	return new UniqueFeatureIndex(
+		$c['memcache.buffered'],
+		$c['storage.topic_history.backend'],
+		'flow_revision:v4:pk',
+		$c['storage.topic_history.primary_key']
+	);
+} );
+$c['storage.topic_history.indexes.topic_lookup'] = $c->share( function( $c ) {
+	return new TopicHistoryIndex(
+		$c['memcache.buffered'],
+		$c['storage.topic_history.backend'],
+		$c['repository.tree'],
+		'flow_revision:topic',
 		array( 'topic_root_id' ),
 		array(
 			'limit' => 500,
 			'sort' => 'rev_id',
 			'order' => 'DESC',
-			'shallow' => $pk,
+			'shallow' => $c['storage.topic_history.indexes.primary'],
 			'create' => function( array $row ) {
 				// only create new indexes for post revisions
 				if ( $row['rev_type'] !== 'post' ) {
@@ -501,24 +687,22 @@ $c['storage.topic_history.index'] = $c->share( function( $c ) {
 				// then this is a brand new topic title
 				return $row['tree_parent_id'] === null && $row['rev_parent_id'] === null;
 			},
-	) );
-} );
-
-$c['storage.topic_history.backing'] = $c->share( function( $c ) {
-	global $wgFlowExternalStore;
-	return new TopicHistoryStorage(
-		new PostRevisionStorage( $c['db.factory'], $wgFlowExternalStore, $c['repository.tree'] ),
-		new PostSummaryRevisionStorage( $c['db.factory'], $wgFlowExternalStore )
+		)
 	);
 } );
-
-$c['storage.topic_history'] = $c->share( function( $c ) {
-	$mapper = new BasicObjectMapper(
+$c['storage.topic_history.indexes'] = function( $c ) {
+	return array(
+		$c['storage.topic_history.indexes.primary'],
+		$c['storage.topic_history.indexes.topic_lookup'],
+	);
+};
+$c['storage.topic_history.mapper'] = $c->share( function( $c ) {
+	return new BasicObjectMapper(
 		function( $rev ) use( $c ) {
 			if ( $rev instanceof PostRevision ) {
 				return $c['storage.post.mapper']->toStorageRow( $rev );
 			} elseif ( $rev instanceof PostSummary ) {
-				return $c['storage.post.summary.mapper']->toStorageRow( $rev );
+				return $c['storage.post_summary.mapper']->toStorageRow( $rev );
 			} else {
 				throw new \Flow\Exception\InvalidDataException( 'Invalid class for board history entry: ' . get_class( $rev ), 'fail-load-data' );
 			}
@@ -527,49 +711,52 @@ $c['storage.topic_history'] = $c->share( function( $c ) {
 			if ( $row['rev_type'] === 'post' ) {
 				return $c['storage.post.mapper']->fromStorageRow( $row, $obj );
 			} elseif ( $row['rev_type'] === 'post-summary' ) {
-				return $c['storage.post.summary.mapper']->fromStorageRow( $row, $obj );
+				return $c['storage.post_summary.mapper']->fromStorageRow( $row, $obj );
 			} else {
 				throw new \Flow\Exception\InvalidDataException( 'Invalid rev_type for board history entry: ' . $row['rev_type'], 'fail-load-data' );
 			}
 		}
 	);
-
-	$indexes = array(
-		$c['storage.topic_history.index'],
-	);
-	return new ObjectLocator( $mapper, $c['storage.topic_history.backing'], $indexes );
 } );
+$c['storage.topic_history'] = $c->share( function( $c ) {
+	return new ObjectLocator(
+		$c['storage.topic_history.mapper'],
+		$c['storage.topic_history.backend'],
+		$c['storage.topic_history.indexes']
+	);
+} );
+$c['storage.manager_list'] = $c->share( function( $c ) {
+	return array(
+		'Flow\\Model\\Workflow' => 'storage.workflow',
+		'Workflow' => 'storage.workflow',
 
+		'Flow\\Model\\PostRevision' => 'storage.post',
+		'PostRevision' => 'storage.post',
 
+		'Flow\\Model\\PostSummary' => 'storage.post_summary',
+		'PostSummary' => 'storage.post_summary',
+
+		'Flow\\Model\\TopicListEntry' => 'storage.topic_list',
+		'TopicListEntry' => 'storage.topic_list',
+
+		'Flow\\Model\\Header' => 'storage.header',
+		'Header' => 'storage.header',
+
+		'BoardHistoryEntry' => 'storage.board_history',
+
+		'TopicHistoryEntry' => 'storage.topic_history',
+
+		'Flow\\Model\\WikiReference' => 'storage.wiki_reference',
+		'WikiReference' => 'storage.wiki_reference',
+
+		'Flow\\Model\\URLReference' => 'storage.url_reference',
+		'URLReference' => 'storage.url_reference',
+	);
+} );
 $c['storage'] = $c->share( function( $c ) {
 	return new \Flow\Data\ManagerGroup(
 		$c,
-		array(
-			'Flow\\Model\\Workflow' => 'storage.workflow',
-			'Workflow' => 'storage.workflow',
-
-			'Flow\\Model\\PostRevision' => 'storage.post',
-			'PostRevision' => 'storage.post',
-
-			'Flow\\Model\\PostSummary' => 'storage.post.summary',
-			'PostSummary' => 'storage.post.summary',
-
-			'Flow\\Model\\TopicListEntry' => 'storage.topic_list',
-			'TopicListEntry' => 'storage.topic_list',
-
-			'Flow\\Model\\Header' => 'storage.header',
-			'Header' => 'storage.header',
-
-			'BoardHistoryEntry' => 'storage.board_history',
-
-			'TopicHistoryEntry' => 'storage.topic_history',
-
-			'Flow\\Model\\WikiReference' => 'storage.reference.wiki',
-			'WikiReference' => 'storage.reference.wiki',
-
-			'Flow\\Model\\URLReference' => 'storage.reference.url',
-			'URLReference' => 'storage.reference.url',
-		)
+		$c['storage.manager_list']
 	);
 } );
 $c['loader.root_post'] = $c->share( function( $c ) {
@@ -817,109 +1004,137 @@ $c['reference.extractor'] = $c->share( function( $c ) {
 	);
 } );
 
-$c['storage.reference.wiki'] = $c->share( function( $c ) {
-	$mapper = Flow\Data\Mapper\BasicObjectMapper::model( 'Flow\Model\WikiReference' );
-
-	$cache = $c['memcache.buffered'];
-
-	$storage = new BasicDbStorage(
-		// factory and table
-		$c['db.factory'], 'flow_wiki_ref',
-		// pk
+$c['storage.wiki_reference.class'] = 'Flow\Model\WikiReference';
+$c['storage.wiki_reference.table'] = 'flow_wiki_ref';
+$c['storage.wiki_reference.primary_key'] = array(
+	'ref_src_namespace',
+	'ref_src_title',
+	'ref_src_object_id',
+	'ref_type',
+	'ref_target_namespace', 'ref_target_title'
+);
+$c['storage.wiki_reference.mapper'] = $c->share( function( $c ) {
+	return Flow\Data\Mapper\BasicObjectMapper::model(
+		$c['storage.wiki_reference.class']
+	);
+} );
+$c['storage.wiki_reference.backend'] = $c->share( function( $c ) {
+	return new BasicDbStorage(
+		$c['db.factory'],
+		$c['storage.wiki_reference.table'],
+		$c['storage.wiki_reference.primary_key']
+	);
+} );
+$c['storage.wiki_reference.indexes.source_lookup'] = $c->share( function( $c ) {
+	return new TopKIndex(
+		$c['memcache.buffered'],
+		$c['storage.wiki_reference.backend'],
+		'flow_ref:wiki:by-source',
 		array(
 			'ref_src_namespace',
 			'ref_src_title',
-			'ref_src_object_id',
-			'ref_type',
-			'ref_target_namespace', 'ref_target_title'
+		),
+		array(
+			'order' => 'ASC',
+			'sort' => 'ref_src_object_id',
 		)
 	);
-
-	$indexes = array(
-		new TopKIndex(
-			$cache,
-			$storage,
-			'flow_ref:wiki:by-source',
-			array(
-				'ref_src_namespace',
-				'ref_src_title',
-			),
-			array(
-				'order' => 'ASC',
-				'sort' => 'ref_src_object_id',
-			)
+} );
+$c['storage.wiki_reference.indexes.revision_lookup'] = $c->share( function( $c ) {
+	return new TopKIndex(
+		$c['memcache.buffered'],
+		$c['storage.wiki_reference.backend'],
+		'flow_ref:wiki:by-revision:v2',
+		array(
+			'ref_src_object_type',
+			'ref_src_object_id',
 		),
-		new TopKIndex(
-			$cache,
-			$storage,
-			'flow_ref:wiki:by-revision:v2',
-			array(
-				'ref_src_object_type',
-				'ref_src_object_id',
-			),
-			array(
-				'order' => 'ASC',
-				'sort' => array( 'ref_target_namespace', 'ref_target_title' ),
-			)
-		),
+		array(
+			'order' => 'ASC',
+			'sort' => array( 'ref_target_namespace', 'ref_target_title' ),
+		)
 	);
-
-	$handlers = array();
-
-	return new ObjectManager( $mapper, $storage, $indexes, $handlers );
+} );
+$c['storage.wiki_reference.indexes'] = function( $c ) {
+	return array(
+		$c['storage.wiki_reference.indexes.source_lookup'],
+		$c['storage.wiki_reference.indexes.revision_lookup'],
+	);
+};
+$c['storage.wiki_reference'] = $c->share( function( $c ) {
+	return new ObjectManager(
+		$c['storage.wiki_reference.mapper'],
+		$c['storage.wiki_reference.backend'],
+		$c['storage.wiki_reference.indexes'],
+		array()
+	);
+} );
+$c['storage.url_reference.class'] = 'Flow\Model\URLReference';
+$c['storage.url_reference.table'] = 'flow_ext_ref';
+$c['storage.url_reference.primary_key'] = array(
+	'ref_src_namespace',
+	'ref_src_title',
+	'ref_src_object_id',
+	'ref_type',
+	'ref_target'
+);
+$c['storage.url_reference.mapper'] = $c->share( function( $c ) {
+	return Flow\Data\Mapper\BasicObjectMapper::model(
+		$c['storage.url_reference.class']
+	);
+} );
+$c['storage.url_reference.backend'] = $c->share( function( $c ) {
+	return new BasicDbStorage(
+		// factory and table
+		$c['db.factory'],
+		$c['storage.url_reference.table'],
+		$c['storage.url_reference.primary_key']
+	);
 } );
 
-// TODO duplicated
-$c['storage.reference.url'] = $c->share( function( $c ) {
-	$mapper = Flow\Data\Mapper\BasicObjectMapper::model( 'Flow\Model\URLReference' );
-
-	$cache = $c['memcache.buffered'];
-
-	$storage = new BasicDbStorage(
-		// factory and table
-		$c['db.factory'], 'flow_ext_ref',
-		// pk
+$c['storage.url_reference.indexes.revision_lookup'] = $c->share( function( $c ) {
+	return new TopKIndex(
+		$c['memcache.buffered'],
+		$c['storage.url_reference.backend'],
+		'flow_ref:url:by-source',
 		array(
 			'ref_src_namespace',
 			'ref_src_title',
-			'ref_src_object_id',
-			'ref_type',
-			'ref_target'
+		),
+		array(
+			'order' => 'ASC',
+			'sort' => 'ref_src_object_id',
 		)
 	);
-
-	$indexes = array(
-		new TopKIndex(
-			$cache,
-			$storage,
-			'flow_ref:url:by-source',
-			array(
-				'ref_src_namespace',
-				'ref_src_title',
-			),
-			array(
-				'order' => 'ASC',
-				'sort' => 'ref_src_object_id',
-			)
+} );
+$c['storage.url_reference.indexes.source_lookup'] = $c->share( function( $c ) {
+	return new TopKIndex(
+		$c['memcache.buffered'],
+		$c['storage.url_reference.backend'],
+		'flow_ref:url:by-revision:v2',
+		array(
+			'ref_src_object_type',
+			'ref_src_object_id',
 		),
-		new TopKIndex(
-			$cache,
-			$storage,
-			'flow_ref:url:by-revision:v2',
-			array(
-				'ref_src_object_type',
-				'ref_src_object_id',
-			),
-			array(
-				'order' => 'ASC',
-				'sort' => array( 'ref_target' ),
-			)
-		),
+		array(
+			'order' => 'ASC',
+			'sort' => array( 'ref_target' ),
+		)
 	);
-
-	$handlers = array(); // TODO make a handler to insert into *links tables
-
-	return new ObjectManager( $mapper, $storage, $indexes, $handlers );
+} );
+$c['storage.url_reference.indexes'] = function( $c ) {
+	return array(
+		$c['storage.url_reference.indexes.source_lookup'],
+		$c['storage.url_reference.indexes.revision_lookup'],
+	);
+};
+$c['storage.url_reference'] = $c->share( function( $c ) {
+	return new ObjectManager(
+		$c['storage.url_reference.mapper'],
+		$c['storage.url_reference.backend'],
+		$c['storage.url_reference.indexes'],
+		array()
+	);
 } );
 
 $c['reference.updater.links-tables'] = $c->share( function( $c ) {
@@ -932,10 +1147,10 @@ $c['reference.clarifier'] = $c->share( function( $c ) {
 
 $c['reference.recorder'] = $c->share( function( $c ) {
 	return new Flow\Data\Listener\ReferenceRecorder(
-			$c['reference.extractor'],
-			$c['reference.updater.links-tables'],
-			$c['storage']
-		);
+		$c['reference.extractor'],
+		$c['reference.updater.links-tables'],
+		$c['storage']
+	);
 } );
 
 $c['user_merger'] = $c->share( function( $c ) {

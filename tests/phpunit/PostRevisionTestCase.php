@@ -193,10 +193,12 @@ class PostRevisionTestCase extends FlowTestCase {
 
 	protected function clearExtraLifecycleHandlers() {
 		$c = Container::getContainer();
-		foreach ( array( 'header', 'post' ) as $kind ) {
-			$key = "storage.$kind.lifecycle-handlers";
-			$c[$key] = array_filter(
-				$c[$key],
+		foreach( array_unique( $c['storage.manager_list'] ) as $key ) {
+			if ( !isset( $c["$key.listeners"] ) ) {
+				continue;
+			}
+			$c["$key.listeners"] = array_filter(
+				$c["$key.listeners"],
 				function( $handler ) {
 					// Recent changes logging is outside the scope of this test, and
 					// causes interaction issues
