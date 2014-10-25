@@ -2,13 +2,16 @@
 
 namespace Flow\Collection;
 
+use Flow\Data\LifecycleHandler;
 use Flow\Model\AbstractRevision;
 use MapCacheLRU;
 
 /**
- * Cache any useful collection data
+ * Cache any useful collection data. Listens to lifecycle events for
+ * insert/update/remove to keep the internal cache up to date and reduce
+ * requests deeper into the stack.
  */
-class CollectionCache {
+class CollectionCache implements LifecycleHandler {
 
 	/**
 	 * Max to cache collection's last revision
@@ -57,19 +60,19 @@ class CollectionCache {
 
 	public function onAfterLoad( $object, array $row ) {}
 
-	public function onAfterInsert( $object, array $new ) {
+	public function onAfterInsert( $object, array $new, array $metadata ) {
 		if ( $object instanceof AbstractRevision ) {
 			$this->lastRevCache->clear( $this->getLastRevCacheKey( $object ) );
 		}
 	}
 
-	public function onAfterUpdate( $object, array $old, array $new ) {
+	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
 		if ( $object instanceof AbstractRevision ) {
 			$this->lastRevCache->clear( $this->getLastRevCacheKey( $object ) );
 		}
 	}
 
-	public function onAfterRemove( $object, array $old ) {
+	public function onAfterRemove( $object, array $old, array $metadata ) {
 		if ( $object instanceof AbstractRevision ) {
 			$this->lastRevCache->clear( $this->getLastRevCacheKey( $object ) );
 		}
