@@ -119,7 +119,7 @@
 	"flow-error-not-a-post": "主題標題無法被儲存為文章。",
 	"flow-error-missing-header-content": "頁首沒有內容。 您需要填寫內容以儲存頁首。",
 	"flow-error-missing-prev-revision-identifier": "遺失前次修訂的識別碼。",
-	"flow-error-prev-revision-mismatch": "另一位使用者於幾秒鐘前才編輯此留言。 您確定要覆蓋此最近變更？",
+	"flow-error-prev-revision-mismatch": "另一位使用者於幾秒鐘前才編輯此留言。{{GENDER:$3|您}}確定要覆蓋此最近變更？",
 	"flow-error-prev-revision-does-not-exist": "找不到前次修訂。",
 	"flow-error-default": "發生錯誤。",
 	"flow-error-invalid-input": "提供用來讀取 Flow 內容的數值無效。",
