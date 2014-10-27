@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_aa71eade",
+        "filename": "tests/browser/features/step_definitions/thank_steps.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2014-10-27T15:28:25Z",
+      "side": 1,
+      "message": "There is no need for duplication here. This step should call the above step:\n\n  step \"I should not see a Thank button\"",
+      "revId": "b0714f8bed2a038dc93c6835baefd92cf85b71df",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
