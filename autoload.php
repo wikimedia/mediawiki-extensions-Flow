@@ -46,7 +46,6 @@ $wgAutoloadClasses['Flow\\Actions\\RestoreTopicAction'] = __DIR__ . '/includes/A
 $wgAutoloadClasses['Flow\\Actions\\ViewAction'] = __DIR__ . '/includes/Actions/ViewAction.php';
 $wgAutoloadClasses['Flow\\Actions\\ViewHeaderAction'] = __DIR__ . '/includes/Actions/ViewHeaderAction.php';
 $wgAutoloadClasses['Flow\\Actions\\ViewTopicSummaryAction'] = __DIR__ . '/includes/Actions/ViewTopicSummaryAction.php';
-$wgAutoloadClasses['Flow\\BaseUrlGenerator'] = __DIR__ . '/includes/BaseUrlGenerator.php';
 $wgAutoloadClasses['Flow\\BlockFactory'] = __DIR__ . '/includes/BlockFactory.php';
 $wgAutoloadClasses['Flow\\Block\\AbstractBlock'] = __DIR__ . '/includes/Block/Block.php';
 $wgAutoloadClasses['Flow\\Block\\Block'] = __DIR__ . '/includes/Block/Block.php';
