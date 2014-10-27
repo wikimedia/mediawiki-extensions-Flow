@@ -899,6 +899,15 @@ class FlowHooks {
 		return true;
 	}
 
+	public static function onMovePageIsValidMove( Title $oldTitle, Title $newTitle, Status $status ) {
+		if ( self::$occupationController->isTalkpageOccupied( $oldTitle ) ) {
+			$status->fatal( 'flow-error-move' );
+			return false;
+		}
+
+		return true;
+	}
+
 	/**
 	 * Moving a Flow page is not yet supported; make sure it can't be done.
 	 *
@@ -910,8 +919,10 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onAbortMove( $oldTitle, $newTitle, $user, &$error, $reason ) {
-		if ( self::$occupationController->isTalkpageOccupied( $oldTitle ) ) {
-			$error = wfMessage( 'flow-error-move' )->escaped();
+		$status = new Status();
+		self::onMovePageIsValidMove( $oldTitle, $newTitle, $status );
+		if ( !$status->isOK() ) {
+			$error = $status->getHTML();
 			return false;
 		}
 
