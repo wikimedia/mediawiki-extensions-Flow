@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_56a6d651",
+        "filename": "includes/Formatter/RecentChanges.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-27T12:55:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e936f18_4364dfe1",
+      "revId": "e6e8dc498a58d29258810172537d0eb66ce0e044",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_23ebd3a1",
         "filename": "includes/Formatter/RecentChangesQuery.php",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2014-10-24T18:52:19Z",
       "side": 1,
       "message": "It\u0027s obviously not a new bug in this patch, but i\u0027m not getting any watchlist output.  It looks to be because calling isRecordHidden from loadMetadataBatch marks it as seen, when isRecordHidden is called a second time from getResult() it will always return true.",
+      "revId": "e6e8dc498a58d29258810172537d0eb66ce0e044",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_76a3d23f",
+        "filename": "includes/Formatter/RecentChangesQuery.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-27T12:55:20Z",
+      "side": 1,
+      "message": "Fix is in follow-up patch: https://gerrit.wikimedia.org/r/#/c/168953/",
+      "parentUuid": "6e936f18_23ebd3a1",
       "revId": "e6e8dc498a58d29258810172537d0eb66ce0e044",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
