@@ -22,6 +22,7 @@ class ManagerGroupTest extends \MediaWikiTestCase {
 			'B' => 'B',
 			'C' => 'C',
 			'D' => 'D',
+			'stdClass' => 'D',
 		) );
 
 		return array( $storage, $container );
@@ -47,4 +48,19 @@ class ManagerGroupTest extends \MediaWikiTestCase {
 
 		$storage->clear();
 	}
+
+	public function testCachePurgeCallsAppropriateManager() {
+		$object = new \stdClass;
+
+		list( $storage, $container ) = $this->mockStorage();
+		$container['A']->expects( $this->never() )->method( 'clear' );
+		$container['B']->expects( $this->never() )->method( 'clear' );
+		$container['C']->expects( $this->never() )->method( 'clear' );
+		$container['D']->expects( $this->once() )
+			->method( 'cachePurge' )
+			->with( $this->identicalTo( $object ) );
+
+		$storage->cachePurge( $object );
+	}
 }
+

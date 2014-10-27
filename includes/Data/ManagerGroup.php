@@ -48,6 +48,15 @@ class ManagerGroup {
 	}
 
 	/**
+	 * Purge all cached data related to this object
+	 *
+	 * @param object $object
+	 */
+	public function cachePurge( $object ) {
+		$this->getStorage( get_class( $object ) )->cachePurge( $object );
+	}
+
+	/**
 	 * @param string $className
 	 * @return ObjectManager
 	 * @throws DataModelException
