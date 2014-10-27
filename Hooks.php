@@ -1038,4 +1038,32 @@ class FlowHooks {
 
 		return true;
 	}
+
+	/**
+	 * For integration with the UserMerge extension. Provides the database and
+	 * sets of table/column pairs to update user id's within.
+	 *
+	 * @param array $updateFields
+	 * @return bool
+	 */
+	public static function onUserMergeAccountFields( &$updateFields ) {
+		/** @var Flow\Data\Utils\UserMerger $merger */
+		$merger = Container::get( 'user_merger' );
+		foreach ( $merger->getAccountFields() as $row ) {
+			$updateFields[] = $row;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Finalize the merge by purging any cached value that contained $oldUser
+	 */
+	public static function onMergeAccountFromTo( User &$oldUser, User &$newUser ) {
+		/** @var Flow\Data\Utils\UserMerger $merger */
+		$merger = Container::get( 'user_merger' );
+		$merger->finalizeMerge( $oldUser->getId(), $newUser->getId() );
+
+		return true;
+	}
 }
