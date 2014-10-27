@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_0a2ede3e",
+        "filename": "handlebars/flow_block_board-history.handlebars",
+        "patchSetId": 15
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-27T14:25:53Z",
+      "side": 1,
+      "message": "Not too sure how we\u0027d do this in a DRY way. I don\u0027t want to make another helper for it... We have it in flow_topic_titlebar as well. I\u0027m not sure that this is for this patch to solve.",
+      "parentUuid": "6e936f18_b9a5d4b3",
+      "revId": "b77be3f287a86582d09f1ca9ef30684d153ee7c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_79af4c92",
         "filename": "includes/View.php",
         "patchSetId": 15
@@ -53,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_4afce6b1",
+        "filename": "includes/View.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-27T14:25:53Z",
+      "side": 1,
+      "message": "Yeah, looking at this again, it\u0027s really odd. We\u0027re looping through blocks, then looping through blocks again within the flow_component template.\n\nSeems to me that each block should be a component. (In a subsequent patch, of course.) What do you think?",
+      "parentUuid": "6e936f18_d9aa2082",
+      "revId": "b77be3f287a86582d09f1ca9ef30684d153ee7c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_99b498e6",
         "filename": "modules/engine/components/board/base/flow-board-api-events.js",
         "patchSetId": 15
@@ -64,6 +100,24 @@
       "writtenOn": "2014-10-24T21:42:57Z",
       "side": 1,
       "message": "not really for this patch to solve, but i feel like i see this line everywhere.  Seems like the mw.flow.getPrototypeMethod( \u0027board\u0027, \u0027getInstanceByElement\u0027 ) should be held somewhere to be called? but i dunno, just seems repetitive.",
+      "revId": "b77be3f287a86582d09f1ca9ef30684d153ee7c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_6a6e8295",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-27T14:25:53Z",
+      "side": 1,
+      "message": "Yeah, I\u0027ll find a better, more OOJS-like solution for this in another patch.",
+      "parentUuid": "6e936f18_99b498e6",
       "revId": "b77be3f287a86582d09f1ca9ef30684d153ee7c1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +141,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_4a65c6a9",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-27T14:25:53Z",
+      "side": 1,
+      "message": "Works for me...?",
+      "parentUuid": "6e936f18_417a9620",
+      "revId": "b77be3f287a86582d09f1ca9ef30684d153ee7c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_c1ac6687",
         "filename": "modules/engine/components/common/flow-component-events.js",
         "patchSetId": 15
@@ -98,6 +170,24 @@
       "writtenOn": "2014-10-24T23:01:57Z",
       "side": 1,
       "message": "seems like refactoring this out and updating all the call sites could have been its own patch.",
+      "revId": "b77be3f287a86582d09f1ca9ef30684d153ee7c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_ea0132ba",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-27T14:25:53Z",
+      "side": 1,
+      "message": "Yeah, do you want me to split it out?",
+      "parentUuid": "6e936f18_c1ac6687",
       "revId": "b77be3f287a86582d09f1ca9ef30684d153ee7c1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
