@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_565c964e",
+        "filename": "includes/Data/RecentChanges/RecentChanges.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-27T13:04:08Z",
+      "side": 1,
+      "message": "Looks like this comment is outdated - there is no getChangeParams (I guess because we don\u0027t used them anyway)",
+      "revId": "7d67643a3f5c3638199a1f5be13e3e043a135254",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
