@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_0abede60",
+        "filename": "tests/browser/features/step_definitions/watch_steps.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2014-10-27T15:37:00Z",
+      "side": 1,
+      "message": "No need for block here. This should be one line.",
+      "revId": "5cb25c662450ed913a7805f2ecda2fbd1d0e0c22",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_aab24a90",
+        "filename": "tests/browser/features/step_definitions/watch_steps.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2014-10-27T15:37:00Z",
+      "side": 1,
+      "message": "No need for block here. This should be one line.",
+      "revId": "5cb25c662450ed913a7805f2ecda2fbd1d0e0c22",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_0d4fd86f",
+        "filename": "tests/browser/features/step_definitions/watch_steps.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2014-10-27T15:37:00Z",
+      "side": 1,
+      "message": "The above block would be more readable like this:\n\npage.board_watch_link_element.when_not_visible",
+      "revId": "5cb25c662450ed913a7805f2ecda2fbd1d0e0c22",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_cd581038",
+        "filename": "tests/browser/features/step_definitions/watch_steps.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2014-10-27T15:37:00Z",
+      "side": 1,
+      "message": "Similar as comment in line 52.",
+      "revId": "5cb25c662450ed913a7805f2ecda2fbd1d0e0c22",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
