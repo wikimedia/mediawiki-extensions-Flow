@@ -31,7 +31,7 @@ class TopicHistoryIndex extends TopKIndex {
 	 * @param array $row
 	 */
 	public function cachePurge( $object, array $row ) {
-		$row['topic_root_id'] = $this->findTopicRootId( $object );
+		$row['topic_root_id'] = $this->findTopicRootId( $object, array() );
 		parent::cachePurge( $object, $row );
 	}
 
@@ -41,7 +41,7 @@ class TopicHistoryIndex extends TopKIndex {
 	 * @param array $metadata
 	 */
 	public function onAfterInsert( $object, array $new, array $metadata ) {
-		$new['topic_root_id'] = $this->findTopicRootId( $object );
+		$new['topic_root_id'] = $this->findTopicRootId( $object, $metadata );
 		parent::onAfterInsert( $object, $new, $metadata );
 	}
 
@@ -52,7 +52,7 @@ class TopicHistoryIndex extends TopKIndex {
 	 * @param array $metadata
 	 */
 	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
-		$old['topic_root_id'] = $new['topic_root_id'] = $this->findTopicRootId( $object );
+		$old['topic_root_id'] = $new['topic_root_id'] = $this->findTopicRootId( $object, $metadata );
 		parent::onAfterUpdate( $object, $old, $new, $metadata );
 	}
 
@@ -62,7 +62,7 @@ class TopicHistoryIndex extends TopKIndex {
 	 * @param array $metadata
 	 */
 	public function onAfterRemove( $object, array $old, array $metadata ) {
-		$old['topic_root_id'] = $this->findTopicRootId( $object );
+		$old['topic_root_id'] = $this->findTopicRootId( $object, $metadata );
 		parent::onAfterRemove( $object, $old, $metadata );
 	}
 
@@ -71,8 +71,10 @@ class TopicHistoryIndex extends TopKIndex {
 	 * @return string alphadecimal uuid
 	 * @throws InvalidInputException When $object is not PostRevision or PostSummary
 	 */
-	protected function findTopicRootId( $object ) {
-		if ( $object instanceof PostRevision ) {
+	protected function findTopicRootId( $object, array $metadata ) {
+		if ( isset( $metadata['workflow'] ) ) {
+			return $metadata['workflow']->getId();
+		} elseif ( $object instanceof PostRevision ) {
 			return $object->getRootPost()->getPostId()->getAlphadecimal();
 		} elseif ( $object instanceof PostSummary ) {
 			return $object->getCollection()->getWorkflowId()->getAlphadecimal();

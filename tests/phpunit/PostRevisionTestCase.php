@@ -3,7 +3,8 @@
 namespace Flow\Tests;
 
 use Flow\Container;
-use Flow\Data\NotificationListener;
+use Flow\Data\Index\BoardHistoryIndex;
+use Flow\Data\Listener\NotificationListener;
 use Flow\Data\ObjectManager;
 use Flow\Data\RecentChanges\RecentChanges as RecentChangesListener;
 use Flow\Model\AbstractRevision;
@@ -202,7 +203,10 @@ class PostRevisionTestCase extends FlowTestCase {
 					return !$handler instanceof RecentChangesListener
 						// putting together the right metadata for a commit is beyond the
 						// scope of these tests
-						&& !$handler instanceof NotificationListener;
+						&& !$handler instanceof NotificationListener
+						// BoardHistory requires we also wire together TopicListEntry objects for
+						// each revision, but thats also beyond our scope.
+						&& !$handler instanceof BoardHistoryIndex;
 				}
 			);
 		}
