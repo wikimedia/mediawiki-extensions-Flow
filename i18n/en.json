@@ -337,7 +337,7 @@
     "flow-edited-ago-minute": "Edited $1 {{PLURAL:$1|minute|minutes}} ago",
     "flow-edited-ago-second": "Edited $1 {{PLURAL:$1|second|seconds}} ago",
     "flow-edited-ago-week": "Edited $1 {{PLURAL:$1|week|weeks}} ago",
-    "flow-load-more": "Load More",
+    "flow-load-more": "Load more",
     "flow-no-more-fwd": "There are no older topics",
     "flow-add-topic": "Add Topic ",
     "flow-newest-topics": "Newest topics",
