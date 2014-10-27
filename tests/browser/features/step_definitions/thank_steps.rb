@@ -22,19 +22,16 @@ When(/^I click on the Thank button$/) do
 end
 
 When(/^I see a Thank button$/) do
-  # Carry on with the test per normal if the element is present.
-  on(FlowPage).thank_button_element.should be_visible
-  @target_container = on(FlowPage).thank_button_element.parent
+  on(FlowPage).thank_button_element.when_present
 end
 
 Then(/^I should not see a Thank button$/) do
-  on(FlowPage).thank_button_element.should_not exist
-end
-
-Then(/^I should not see the Thank button for that post$/) do
-  on(FlowPage).thank_button_element.should_not exist
+  expect(on(FlowPage).thank_button_element).not_to be_visible
 end
 
 Then(/^I should see the Thank button be replaced with Thanked button$/) do
-  @target_container.span_element(class: 'mw-thanks-flow-thanked').when_visible
+  on(FlowPage) do |page|
+    expect(page.thanked_button_element.when_present).to be_visible
+    expect(page.thank_button_element).not_to be_visible
+  end
 end
