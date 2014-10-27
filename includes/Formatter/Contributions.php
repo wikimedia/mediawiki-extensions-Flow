@@ -38,6 +38,7 @@ class Contributions extends AbstractFormatter {
 	 * @param FormatterRow $row
 	 * @param IContextSource $ctx
 	 * @return string
+	 * @throws FlowException
 	 */
 	protected function formatHtml( FormatterRow $row, IContextSource $ctx ) {
 		$this->serializer->setIncludeHistoryProperties( true );

@@ -430,20 +430,19 @@ class RevisionFormatter {
 			case 'thank':
 				if (
 					// thanks extension must be available
-					!class_exists( 'ThanksHooks' ) ||
-					// anons can't thank
-					$user->isAnon() ||
+					class_exists( 'ThanksHooks' ) &&
+					// anons can't give a thank
+					!$user->isAnon() &&
 					// can only thank for PostRevisions
-					// (other revision objects have mo getCreator* methods)
-					!$revision instanceof PostRevision ||
-					// can't thank an anon user
-					$revision->getCreatorIp() ||
+					// (other revision objects have no getCreator* methods)
+					$revision instanceof PostRevision &&
+					// only thank a logged in user
+					$revision->getCreatorId() > 0 &&
 					// can't thank self
-					$user->getId() === $revision->getCreatorId()
+					$user->getId() !== $revision->getCreatorId()
 				) {
-					continue;
+					$links['thank'] = $this->urlGenerator->thankAction( $postId );
 				}
-				$links['thank'] = $this->urlGenerator->thankAction( $postId );
 				break;
 
 			case 'reply':

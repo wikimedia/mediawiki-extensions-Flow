@@ -3,6 +3,7 @@
 namespace Flow\Tests\Data;
 
 use Flow\Container;
+use Flow\Data\BagOStuff\BufferedBagOStuff;
 use Flow\Data\BufferedCache;
 use Flow\Data\Index\FeatureIndex;
 use Flow\Data\Index\TopKIndex;
@@ -17,7 +18,7 @@ class IndexTest extends FlowTestCase {
 	public function testShallow() {
 		global $wgFlowCacheTime;
 
-		$bag = new \HashBagOStuff;
+		$bag = new BufferedBagOStuff( new \HashBagOStuff );
 		$cache = new BufferedCache( $bag, $wgFlowCacheTime );
 
 		// As we are only testing the cached result, storage should never be called
@@ -62,7 +63,7 @@ class IndexTest extends FlowTestCase {
 	public function testCompositeShallow() {
 		global $wgFlowCacheTime;
 
-		$bag = new \HashBagOStuff;
+		$bag = new BufferedBagOStuff( new \HashBagOStuff );
 		$cache = new BufferedCache( $bag, $wgFlowCacheTime );
 		$storage = $this->getMock( 'Flow\\Data\\ObjectStorage' );
 

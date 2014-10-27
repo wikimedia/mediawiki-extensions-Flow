@@ -283,6 +283,7 @@ class TopicListBlock extends AbstractBlock {
 		$postStorage = $this->storage->getStorage( 'PostRevision' );
 		return $pager->getPage( function( array $found ) use ( $postStorage ) {
 			$queries = array();
+			/** @var TopicListEntry[] $found */
 			foreach ( $found as $entry ) {
 				$queries[] = array( 'rev_type_id' => $entry->getId() );
 			}

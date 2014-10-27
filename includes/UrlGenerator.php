@@ -247,6 +247,7 @@ class UrlGenerator {
 	 * @param UUID $workflowId
 	 * @param UUID $oldRevId
 	 * @return Anchor
+	 * @throws FlowException When $revision is not PostRevision, Header or PostSummary
 	 */
 	public function diffLink( AbstractRevision $revision, Title $title = null, UUID $workflowId, UUID $oldRevId = null ) {
 		if ( $revision instanceof PostRevision ) {

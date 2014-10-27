@@ -85,4 +85,10 @@ interface Index extends LifecycleHandler {
 	 *  greater than $offset
 	 */
 	function compareRowToOffset( array $row, $offset );
+
+	/**
+	 * @param object $object
+	 * @param array $row
+	 */
+	function cachePurge( $object, array $row );
 }

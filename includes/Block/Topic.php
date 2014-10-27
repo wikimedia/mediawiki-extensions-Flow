@@ -412,7 +412,7 @@ class TopicBlock extends AbstractBlock {
 				'workflow' => $this->workflow,
 				'topic-title' => $this->loadTopicTitle(),
 			);
-			if ( !$metadata['topic-title'] ) {
+			if ( !$metadata['topic-title'] instanceof PostRevision ) {
 				// permissions failure, should never have gotten this far
 				throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
 			}

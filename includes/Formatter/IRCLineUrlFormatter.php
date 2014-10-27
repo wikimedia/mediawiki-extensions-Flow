@@ -133,6 +133,7 @@ class IRCLineUrlFormatter extends AbstractFormatter implements RCFeedFormatter {
 			throw new FlowException( 'Unknown revision type in recent change row ' . $rc->getAttribute( 'rc_id' ) );
 		}
 
+		/** @noinspection PhpUndefinedMethodInspection */
 		return $class::fromStorageRow( $row + array(
 			'rev_id' => $change['revision'],
 			'rev_change_type' => $change['action'],

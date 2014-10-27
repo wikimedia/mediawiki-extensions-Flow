@@ -60,8 +60,8 @@ class TopicSummaryBlock extends AbstractBlock {
 	);
 
 	/**
-	 * @param string
-	 * @param User
+	 * @param IContextSource $context
+	 * @param string $action
 	 */
 	public function init( IContextSource $context, $action ) {
 		parent::init( $context, $action );
