@@ -14,6 +14,7 @@
             'html' => 'Flow\TemplateHelper::htmlHelper',
             'post' => 'Flow\TemplateHelper::post',
             'l10nParse' => 'Flow\TemplateHelper::l10nParse',
+            'concat' => 'Flow\TemplateHelper::concat',
             'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
             'escapeContent' => 'Flow\TemplateHelper::escapeContent',
 ),
@@ -143,7 +144,9 @@
 	';}).'
 
 	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? '
-		<div class="flow-moderated-post-content">'.LCRun3::ch($cx, 'l10n', Array(Array('post_moderation_state',((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),((is_array($in) && isset($in['replyToId'])) ? $in['replyToId'] : null),((is_array($in['moderator']) && isset($in['moderator']['name'])) ? $in['moderator']['name'] : null)),Array()), 'encq').'</div>
+		<div class="flow-moderated-post-content">'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['replyToId'])) ? $in['replyToId'] : null))) ? ''.LCRun3::ch($cx, 'l10n', Array(Array(LCRun3::ch($cx, 'concat', Array(Array('flow-',((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'-post-content'),Array()), 'raw'),((is_array($in['moderator']) && isset($in['moderator']['name'])) ? $in['moderator']['name'] : null)),Array()), 'encq').'
+			' : ''.LCRun3::ch($cx, 'l10n', Array(Array(LCRun3::ch($cx, 'concat', Array(Array('flow-',((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'-title-content'),Array()), 'raw'),((is_array($in['moderator']) && isset($in['moderator']['name'])) ? $in['moderator']['name'] : null)),Array()), 'encq').'
+			').'</div>
 	' : '').'
 
 	<div class="flow-post-content">
@@ -336,7 +339,9 @@
 	';}).'
 
 	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? '
-		<div class="flow-moderated-post-content">'.LCRun3::ch($cx, 'l10n', Array(Array('post_moderation_state',((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),((is_array($in) && isset($in['replyToId'])) ? $in['replyToId'] : null),((is_array($in['moderator']) && isset($in['moderator']['name'])) ? $in['moderator']['name'] : null)),Array()), 'encq').'</div>
+		<div class="flow-moderated-post-content">'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['replyToId'])) ? $in['replyToId'] : null))) ? ''.LCRun3::ch($cx, 'l10n', Array(Array(LCRun3::ch($cx, 'concat', Array(Array('flow-',((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'-post-content'),Array()), 'raw'),((is_array($in['moderator']) && isset($in['moderator']['name'])) ? $in['moderator']['name'] : null)),Array()), 'encq').'
+			' : ''.LCRun3::ch($cx, 'l10n', Array(Array(LCRun3::ch($cx, 'concat', Array(Array('flow-',((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'-title-content'),Array()), 'raw'),((is_array($in['moderator']) && isset($in['moderator']['name'])) ? $in['moderator']['name'] : null)),Array()), 'encq').'
+			').'</div>
 	' : '').'
 
 	<div class="flow-post-content">

@@ -15,6 +15,7 @@
             'html' => 'Flow\TemplateHelper::htmlHelper',
             'post' => 'Flow\TemplateHelper::post',
             'l10nParse' => 'Flow\TemplateHelper::l10nParse',
+            'concat' => 'Flow\TemplateHelper::concat',
             'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
             'escapeContent' => 'Flow\TemplateHelper::escapeContent',
             'plaintextSnippet' => 'Flow\TemplateHelper::plaintextSnippet',
@@ -80,9 +81,9 @@
 	').'
 </div>
 '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? '
-	<div class="flow-moderated-topic-title flow-ui-text-truncated">'.htmlentities(((is_array($in) && isset($in['noop'])) ? $in['noop'] : null), ENT_QUOTES, 'UTF-8').'<span class="wikiglyph'.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'===','lock'),Array()), $in, function($cx, $in) {return ' wikiglyph-lock';}).''.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'===','hide'),Array()), $in, function($cx, $in) {return ' wikiglyph-flag';}).''.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'===','delete'),Array()), $in, function($cx, $in) {return ' wikiglyph-trash';}).'"></span>
-
-		'.LCRun3::ch($cx, 'l10n', Array(Array('post_moderation_state',((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),((is_array($in) && isset($in['replyToId'])) ? $in['replyToId'] : null),((is_array($in['moderator']) && isset($in['moderator']['name'])) ? $in['moderator']['name'] : null)),Array()), 'encq').'</div>
+	<div class="flow-moderated-topic-title flow-ui-text-truncated">'.htmlentities(((is_array($in) && isset($in['noop'])) ? $in['noop'] : null), ENT_QUOTES, 'UTF-8').'<span class="wikiglyph'.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'===','lock'),Array()), $in, function($cx, $in) {return ' wikiglyph-lock';}).''.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'===','hide'),Array()), $in, function($cx, $in) {return ' wikiglyph-flag';}).''.LCRun3::hbch($cx, 'ifCond', Array(Array(((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'===','delete'),Array()), $in, function($cx, $in) {return ' wikiglyph-trash';}).'"></span>'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['replyToId'])) ? $in['replyToId'] : null))) ? ''.LCRun3::ch($cx, 'l10n', Array(Array(LCRun3::ch($cx, 'concat', Array(Array('flow-',((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'-post-content'),Array()), 'raw'),((is_array($in['moderator']) && isset($in['moderator']['name'])) ? $in['moderator']['name'] : null)),Array()), 'encq').'
+		' : ''.LCRun3::ch($cx, 'l10n', Array(Array(LCRun3::ch($cx, 'concat', Array(Array('flow-',((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),'-title-content'),Array()), 'raw'),((is_array($in['moderator']) && isset($in['moderator']['name'])) ? $in['moderator']['name'] : null)),Array()), 'encq').'
+		').'</div>
 	<div class="flow-moderated-topic-reason">
 		'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-moderated-reason-prefix'),Array()), 'encq').'
 		'.LCRun3::ch($cx, 'escapeContent', Array(Array(((is_array($in['moderateReason']) && isset($in['moderateReason']['format'])) ? $in['moderateReason']['format'] : null),((is_array($in['moderateReason']) && isset($in['moderateReason']['content'])) ? $in['moderateReason']['content'] : null)),Array()), 'encq').'
@@ -370,20 +371,18 @@
 			        data-flow-interactive-handler="apiRequest"
 			        data-flow-api-handler="submitReply"
 			        data-flow-api-target="< .flow-topic">'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['title'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'</button>
-			'.'
-	<button data-flow-api-handler="preview"
-	        data-flow-api-target="< form textarea"
-	        name="preview"
-	        data-role="action"
-	        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-js"
-	>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
+			<button data-flow-api-handler="preview"
+        data-flow-api-target="< form textarea"
+        name="preview"
+        data-role="action"
+        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-js"
+>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
 
-	<button data-flow-interactive-handler="cancelForm"
-	        data-role="cancel"
-	        type="reset"
-	        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
-	>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
-'.'
+<button data-flow-interactive-handler="cancelForm"
+        data-role="cancel"
+        type="reset"
+        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
+>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
 
 			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-terms-of-use-reply'),Array()), 'encq').'</small>
 		</div>
@@ -448,20 +447,18 @@
 			        data-flow-interactive-handler="apiRequest"
 			        data-flow-api-handler="submitReply"
 			        data-flow-api-target="< .flow-topic">'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['title'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'</button>
-			'.'
-	<button data-flow-api-handler="preview"
-	        data-flow-api-target="< form textarea"
-	        name="preview"
-	        data-role="action"
-	        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-js"
-	>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
+			<button data-flow-api-handler="preview"
+        data-flow-api-target="< form textarea"
+        name="preview"
+        data-role="action"
+        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-js"
+>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
 
-	<button data-flow-interactive-handler="cancelForm"
-	        data-role="cancel"
-	        type="reset"
-	        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
-	>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
-'.'
+<button data-flow-interactive-handler="cancelForm"
+        data-role="cancel"
+        type="reset"
+        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
+>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
 
 			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-terms-of-use-reply'),Array()), 'encq').'</small>
 		</div>

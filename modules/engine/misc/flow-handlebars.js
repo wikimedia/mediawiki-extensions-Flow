@@ -196,16 +196,6 @@
 	function flowMessages( str ) {
 		var parameters = flowNormalizeL10nParameters( Array.prototype.slice.call( arguments, 1 ) ),
 			strings = ( {
-				"post_moderation_state": function( type, replyToId, name ) {
-					var str;
-					if ( !replyToId ) {
-						str = 'flow-' + type + '-title-content';
-					} else {
-						str = 'flow-' + type + '-post-content';
-					}
-					return mw.message( str ).params( [ name ] );
-				},
-
 				"time": function ( msgKeyPrefix, secondsAgo ) {
 					var suffix = '-second',
 						new_time = secondsAgo;
