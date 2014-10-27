@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_7443c5b6",
+        "filename": "handlebars/flow_block_board-history.handlebars",
+        "patchSetId": 15
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-27T20:35:26Z",
+      "side": 1,
+      "message": "perhaps replacing each link with a version of:\n\n    {{\u003e flow_post_action_hide}}\n\nor if we want simpler we can move the entire block of hide/unhide/delete/undelete/suppress/unsuppress to:\n\n    {{\u003e flow_post_moderation_actions}}\n\nWithout any \u003cul\u003e wrapper in the template so it can be reused in different places.  I think the two places use the exact same set of 6 actions in the same order with all the same arguments.\n\nIf there are variances, they can be passed in as part of the partial call:\n\n    {{\u003e flow_post_moderation_actions isFooBar\u003d0}}",
+      "parentUuid": "6e936f18_0a2ede3e",
+      "revId": "b77be3f287a86582d09f1ca9ef30684d153ee7c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_79af4c92",
         "filename": "includes/View.php",
         "patchSetId": 15
@@ -83,6 +101,24 @@
       "side": 1,
       "message": "Yeah, looking at this again, it\u0027s really odd. We\u0027re looping through blocks, then looping through blocks again within the flow_component template.\n\nSeems to me that each block should be a component. (In a subsequent patch, of course.) What do you think?",
       "parentUuid": "6e936f18_d9aa2082",
+      "revId": "b77be3f287a86582d09f1ca9ef30684d153ee7c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_f4283534",
+        "filename": "includes/View.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-27T20:35:26Z",
+      "side": 1,
+      "message": "You can probably remove flow_component.handlebars and flow_block_loop from handleabars and move the logic here which will also let you remove the `block` helper which allows dynamic template inclusion",
+      "parentUuid": "6e936f18_4afce6b1",
       "revId": "b77be3f287a86582d09f1ca9ef30684d153ee7c1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
