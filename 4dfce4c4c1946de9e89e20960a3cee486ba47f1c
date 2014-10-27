@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_2a94fa8c",
+        "filename": "modules/contributions/base.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-27T14:01:13Z",
+      "side": 1,
+      "message": "Please describe this file with the following syntax:\n\n    /*!\n     * This file ...\n     */",
+      "revId": "4dfce4c4c1946de9e89e20960a3cee486ba47f1c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_4a91469b",
+        "filename": "modules/contributions/base.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-27T14:01:13Z",
+      "side": 1,
+      "message": "$( document ).ready() is the preferred convention, and is marginally faster.",
+      "revId": "4dfce4c4c1946de9e89e20960a3cee486ba47f1c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_0af33e08",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 918,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-27T14:01:13Z",
+      "side": 1,
+      "message": "You have flowBoard, so you can do flowBoard.constructor.static.TemplateEngine",
+      "revId": "4dfce4c4c1946de9e89e20960a3cee486ba47f1c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_cafc76d8",
+        "filename": "modules/styles/history/common.less",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-27T14:01:13Z",
+      "side": 1,
+      "message": "I don\u0027t like this, and I\u0027d rather see it implemented elsewhere. We should not have individual classes that describe what an element looks like. Name the class what the element is, and style that instead. Get rid of this file.",
+      "revId": "4dfce4c4c1946de9e89e20960a3cee486ba47f1c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
