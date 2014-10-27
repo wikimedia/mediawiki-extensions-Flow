@@ -67,6 +67,24 @@
       "revId": "4dfce4c4c1946de9e89e20960a3cee486ba47f1c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_8d2688c8",
+        "filename": "modules/styles/history/common.less",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-27T17:20:00Z",
+      "side": 1,
+      "message": "the problem with implementing it elsewhere is that we need this included in Special:Contributions via addModuleStyles to prevent a FOUC.  We really don\u0027t want to add a heavy amount of css to common special pages for one css rule\n\nAdditionally I\u0027m going to need help naming, i tried flow-lowercase and flow-history-moderation-action, i\u0027m not sure what name you want :)",
+      "parentUuid": "6e936f18_cafc76d8",
+      "revId": "4dfce4c4c1946de9e89e20960a3cee486ba47f1c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
