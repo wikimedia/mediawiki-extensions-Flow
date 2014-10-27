@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_ca4d569d",
+        "filename": "tests/browser/features/step_definitions/moderation_steps.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2014-10-27T15:33:30Z",
+      "side": 1,
+      "message": "There is no need for a block here, it should be one line.",
+      "revId": "9cc990990634de6f11dde4209afe43169377c453",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_8a5f4e44",
+        "filename": "tests/browser/features/step_definitions/moderation_steps.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2014-10-27T15:33:30Z",
+      "side": 1,
+      "message": "There is no need for a block here, it should be one line.",
+      "revId": "9cc990990634de6f11dde4209afe43169377c453",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_ca447671",
+        "filename": "tests/browser/features/step_definitions/moderation_steps.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2014-10-27T15:33:30Z",
+      "side": 1,
+      "message": "Since we are touching this code, _should_ syntax should be replaced with _expect_ syntax.",
+      "revId": "9cc990990634de6f11dde4209afe43169377c453",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_ea1cd27e",
+        "filename": "tests/browser/features/step_definitions/moderation_steps.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2014-10-27T15:33:30Z",
+      "side": 1,
+      "message": "Since we are touching this code, _should_ syntax should be replaced with _expect_ syntax.",
+      "revId": "9cc990990634de6f11dde4209afe43169377c453",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_aa16ca58",
+        "filename": "tests/browser/features/support/pages/flow_page.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2014-10-27T15:33:30Z",
+      "side": 1,
+      "message": "Why is commented out code committed here?",
+      "revId": "9cc990990634de6f11dde4209afe43169377c453",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
