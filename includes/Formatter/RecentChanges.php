@@ -9,6 +9,7 @@ use Flow\Model\UUID;
 use Flow\Parsoid\Utils;
 use ChangesList;
 use IContextSource;
+use RCCacheEntry;
 
 class RecentChanges extends AbstractFormatter {
 	protected function getHistoryType() {
@@ -87,7 +88,8 @@ class RecentChanges extends AbstractFormatter {
 			return parent::getTitleLink( $data, $row, $ctx );
 		}
 
-		$watched = $row->recentChange->watched;
+		$watched = $row->recentChange->getAttribute( 'wl_notificationtimestamp' );
+
 		if ( is_bool( $watched ) ) {
 			// RC & watchlist share most code; the latter is unaware of when
 			// something was watched though, so we'll ignore that here
