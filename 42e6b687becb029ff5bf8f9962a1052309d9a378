@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_0f8348d2",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-27T22:28:51Z",
+      "side": 1,
+      "message": "Need to add or address Krinkle\u0027s xxx: comment in https://gerrit.wikimedia.org/r/#/c/163962/2/modules/new/components/flow-board.js",
+      "revId": "42e6b687becb029ff5bf8f9962a1052309d9a378",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_8f40b8a9",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-27T22:28:51Z",
+      "side": 1,
+      "message": "Need to add or address Krinkle\u0027s fixme comment in \nhttps://gerrit.wikimedia.org/r/#/c/163962/2/modules/new/components/flow-board.js",
+      "revId": "42e6b687becb029ff5bf8f9962a1052309d9a378",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_4f7870ed",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-27T22:28:51Z",
+      "side": 1,
+      "message": "Need to restructure this jsduck documentation line  (and many others) per Krinkle\u0027s version in https://gerrit.wikimedia.org/r/#/c/163962/2/modules/new/components/flow-board.js",
+      "revId": "42e6b687becb029ff5bf8f9962a1052309d9a378",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_4f4f10c1",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 691,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-27T22:28:51Z",
+      "side": 1,
+      "message": "Krinkle\u0027s change in https://gerrit.wikimedia.org/r/#/c/163962/2/modules/new/components/flow-board.js dropped the $( ) around fragment and just directly prepends it.",
+      "revId": "42e6b687becb029ff5bf8f9962a1052309d9a378",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
