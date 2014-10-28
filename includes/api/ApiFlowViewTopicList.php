@@ -56,6 +56,12 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 				ApiBase::PARAM_TYPE => 'boolean',
 				ApiBase::PARAM_DFLT => false,
 			),
+			// I don't like double-negatives, but boolean parameters can't
+			// default to true for some reason.
+			'omitreplies' => array(
+				ApiBase::PARAM_TYPE => 'boolean',
+				ApiBase::PARAM_DFLT => false,
+			),
 		);
 	}
 
@@ -68,6 +74,7 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 			'offset' => 'Offset value to start fetching topics at',
 			'limit' => 'Amount of topics to fetch',
 			'render' => 'Renders (in HTML) the topics, if set',
+			'omitreplies' => 'Whether to omit replies (posts); if true, only each topic itself will be included',
 		);
 	}
 

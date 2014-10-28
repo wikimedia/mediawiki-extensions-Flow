@@ -696,6 +696,14 @@ $c['query.topiclist'] = $c->share( function( $c ) {
 		$c['watched_items']
 	);
 } );
+$c['query.topiclistwithoutreplies'] = $c->share( function( $c ) {
+	return new Flow\Formatter\TopicListQueryWithoutReplies(
+		$c['storage'],
+		$c['repository.tree'],
+		$c['permissions'],
+		$c['watched_items']
+	);
+} );
 $c['query.topic.history'] = $c->share( function( $c ) {
 	return new Flow\Formatter\TopicHistoryQuery(
 		$c['storage'],
