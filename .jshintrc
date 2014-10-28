@@ -14,7 +14,8 @@
 		"ve":          true,
 		"Handlebars":  true,
 		"initStorer":  true,
-		"OO":          true
+		"OO":          true,
+		"moment":      true
 	},
 	"browser":  true,  // document, navigator, etc.
 	"curly":    true,  // requres curly braces around loops and conditionals
