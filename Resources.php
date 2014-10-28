@@ -30,7 +30,10 @@ $wgResourceModules += array(
 		),
 	),
 	'ext.flow.templating' => $flowTemplatingResourceTemplate + array(
-		'dependencies' => 'ext.mantle.handlebars',
+		'dependencies' => array(
+			'ext.mantle.handlebars',
+			'moment',
+		),
 		'templates' => array(
 			'flow_anon_warning.handlebars',
 			"flow_block_board-history.handlebars",
@@ -297,28 +300,6 @@ $wgResourceModules += array(
 	'ext.flow.handlebars' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'engine/misc/flow-handlebars.js',
-		),
-		'messages' => array(
-			'flow-time-ago-second',
-			'flow-time-ago-minute',
-			'flow-time-ago-hour',
-			'flow-time-ago-day',
-			'flow-time-ago-week',
-			'flow-active-ago-second',
-			'flow-active-ago-minute',
-			'flow-active-ago-hour',
-			'flow-active-ago-day',
-			'flow-active-ago-week',
-			'flow-started-ago-second',
-			'flow-started-ago-minute',
-			'flow-started-ago-hour',
-			'flow-started-ago-day',
-			'flow-started-ago-week',
-			'flow-edited-ago-second',
-			'flow-edited-ago-minute',
-			'flow-edited-ago-hour',
-			'flow-edited-ago-day',
-			'flow-edited-ago-week',
 		),
 		'dependencies' => array(
 			'ext.mantle.handlebars',
