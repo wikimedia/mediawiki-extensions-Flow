@@ -455,5 +455,7 @@
 	"apihelp-flow-parsoid-utils-param-pageid": "ID of the page. Cannot be used together with $1title.",
 	"apihelp-flow-parsoid-utils-example-1": "Convert wikitext <nowiki>'''lorem''' ''blah''</nowiki> to HTML",
 	"apihelp-query+flowinfo-description": "Get basic Flow information about a page.",
-	"apihelp-query+flowinfo-example-1": "Fetch Flow information about [[Talk:Sandbox]], [[Main Page]], and [[Talk:Flow]]"
+	"apihelp-query+flowinfo-example-1": "Fetch Flow information about [[Talk:Sandbox]], [[Main Page]], and [[Talk:Flow]]",
+	"flow-edited": "Edited",
+	"flow-edited-by": "Edited by $1"
 }

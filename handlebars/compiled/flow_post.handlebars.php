@@ -81,19 +81,19 @@
 			   title="'.htmlentities((string)((isset($in['actions']['thank']['title']) && is_array($in['actions']['thank'])) ? $in['actions']['thank']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.htmlentities((string)((isset($in['actions']['thank']['title']) && is_array($in['actions']['thank'])) ? $in['actions']['thank']['title'] : null), ENT_QUOTES, 'UTF-8').'</a>
 		' : '').'
 	</span>
-	'.((LCRun3::ifvar($cx, ((isset($in['previousRevisionId']) && is_array($in)) ? $in['previousRevisionId'] : null))) ? '
-		'.((LCRun3::ifvar($cx, ((isset($in['links']['diff-prev']) && is_array($in['links'])) ? $in['links']['diff-prev'] : null))) ? '
-			<a href="'.htmlentities((string)((isset($in['links']['diff-prev']['url']) && is_array($in['links']['diff-prev'])) ? $in['links']['diff-prev']['url'] : null), ENT_QUOTES, 'UTF-8').'"
-			    class="mw-ui-anchor mw-ui-progressive mw-ui-quiet"
-			    title="'.htmlentities((string)((isset($in['links']['diff-prev']['title']) && is_array($in['links']['diff-prev'])) ? $in['links']['diff-prev']['title'] : null), ENT_QUOTES, 'UTF-8').'">
-		' : '').'
-			'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((isset($in['revisionId']) && is_array($in)) ? $in['revisionId'] : null),true),Array()), 'encq').'
-		'.((LCRun3::ifvar($cx, ((isset($in['links']['diff-prev']) && is_array($in['links'])) ? $in['links']['diff-prev'] : null))) ? '
-			</a>
-		' : '').'
-		&#8226;
-	' : '').'
-	'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((isset($in['postId']) && is_array($in)) ? $in['postId'] : null)),Array()), 'encq').'
+
+	<span class="flow-post-timestamp">
+		'.((LCRun3::ifvar($cx, ((isset($in['isOriginalContent']) && is_array($in)) ? $in['isOriginalContent'] : null))) ? '
+			'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((isset($in['postId']) && is_array($in)) ? $in['postId'] : null)),Array()), 'encq').'
+		' : '
+			'.LCRun3::hbch($cx, 'ifCond', Array(Array(((isset($in['creator']['name']) && is_array($in['creator'])) ? $in['creator']['name'] : null),'===',((isset($in['author']['name']) && is_array($in['author'])) ? $in['author']['name'] : null)),Array()), $in, function($cx, $in) {return '
+				'.LCRun3::ch($cx, 'l10n', Array(Array('flow-edited'),Array()), 'encq').'
+			';}, function($cx, $in) {return '
+				'.LCRun3::ch($cx, 'l10n', Array(Array('flow-edited-by',((isset($in['author']['name']) && is_array($in['author'])) ? $in['author']['name'] : null)),Array()), 'encq').'
+			';}).'
+			<a href="'.htmlentities((string)((isset($in['links']['topic-history']['url']) && is_array($in['links']['topic-history'])) ? $in['links']['topic-history']['url'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-timestamp-anchor">'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((isset($in['lastEditId']) && is_array($in)) ? $in['lastEditId'] : null)),Array()), 'encq').'</a>
+		').'
+	</span>
 </div>
 ';},'flow_moderation_actions_list' => function ($cx, $in) {return ''.LCRun3::hbch($cx, 'ifCond', Array(Array(((isset($in['moderationType']) && is_array($in)) ? $in['moderationType'] : null),'===','topic'),Array()), $in, function($cx, $in) {return '
 	'.((LCRun3::ifvar($cx, ((isset($in['actions']['edit']) && is_array($in['actions'])) ? $in['actions']['edit'] : null))) ? '<li class="'.htmlentities((string)((isset($in['moderationContainerClass']) && is_array($in)) ? $in['moderationContainerClass'] : null), ENT_QUOTES, 'UTF-8').'-edit-action">'.htmlentities((string)((isset($in['null']) && is_array($in)) ? $in['null'] : null), ENT_QUOTES, 'UTF-8').'<a class="'.htmlentities((string)((isset($in['moderationMwUiClass']) && is_array($in)) ? $in['moderationMwUiClass'] : null), ENT_QUOTES, 'UTF-8').' mw-ui-quiet"

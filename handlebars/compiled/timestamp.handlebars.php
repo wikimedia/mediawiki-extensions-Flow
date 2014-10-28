@@ -27,7 +27,7 @@
 	      data-time-ago-only="'.htmlentities((string)((isset($in['time_ago_only']) && is_array($in)) ? $in['time_ago_only'] : null), ENT_QUOTES, 'UTF-8').'"
 	>
 ').'
-	<span class="flow-timestamp-now">'.htmlentities((string)((isset($in['time_readable']) && is_array($in)) ? $in['time_readable'] : null), ENT_QUOTES, 'UTF-8').'</span>
+	<span class="flow-timestamp-user-formatted">'.htmlentities((string)((isset($in['time_readable']) && is_array($in)) ? $in['time_readable'] : null), ENT_QUOTES, 'UTF-8').'</span>
 	<span id="'.htmlentities((string)((isset($in['guid']) && is_array($in)) ? $in['guid'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-timestamp-ago">'.htmlentities((string)((isset($in['time_ago']) && is_array($in)) ? $in['time_ago'] : null), ENT_QUOTES, 'UTF-8').'</span>
 </time>
 ';
