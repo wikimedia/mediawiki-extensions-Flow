@@ -62,11 +62,15 @@
 		}
 		_isGlobalBound = true;
 
-		// Handle scroll events globally
+		// Handle scroll and resize events globally
 		$( window )
 			.on(
 				'scroll.flow',
 				$.throttle( 50, _getDispatchCallback( this, 'scroll' ) )
+			)
+			.on(
+				'resize.flow',
+				$.throttle( 50, _getDispatchCallback( this, 'resize' ) )
 			);
 	}
 	OO.mixinClass( FlowComponentEventsMixin, OO.EventEmitter );
@@ -109,7 +113,7 @@
 
 				// Call function
 				retVal = method.apply(
-					binding.context,
+					binding.context || this,
 					binding.args ? binding.args.concat( args ) : args
 				);
 
