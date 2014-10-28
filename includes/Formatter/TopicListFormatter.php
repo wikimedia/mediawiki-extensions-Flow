@@ -3,13 +3,11 @@
 namespace Flow\Formatter;
 
 use Flow\Data\Pager\PagerPage;
-use Flow\Model\Anchor;
 use Flow\Model\Workflow;
-use Flow\Templating;
 use Flow\UrlGenerator;
 use IContextSource;
 
-class TopicListFormatter {
+class TopicListFormatter extends BaseTopicListFormatter {
 	/**
 	 * @var UrlGenerator
 	 */
@@ -20,27 +18,17 @@ class TopicListFormatter {
 	 */
 	protected $serializer;
 
-	/**
-	 * @var Templating
-	 */
-	protected $templating;
-
-	public function __construct( UrlGenerator $urlGenerator, RevisionFormatter $serializer, Templating $templating ) {
+	public function __construct( UrlGenerator $urlGenerator, RevisionFormatter $serializer ) {
 		$this->urlGenerator = $urlGenerator;
 		$this->serializer = $serializer;
-		$this->templating = $templating;
 	}
 
 	public function buildEmptyResult( Workflow $workflow ) {
+		$title = $workflow->getArticleTitle();
 		return array(
-			'type' => 'topiclist',
-			'roots' => array(),
-			'posts' => array(),
-			'revisions' => array(),
-			'links' => array( 'pagination' => array() ),
+			'title' => $title->getPrefixedText(),
 			'actions' => $this->buildApiActions( $workflow ),
-			'submitted' => array(),
-		);
+		) + parent::buildEmptyResult( $workflow );
 	}
 
 	public function formatApi(
@@ -66,25 +54,6 @@ class TopicListFormatter {
 
 		// Link to designated new-topic page, for no-JS users
 		$res['links']['newtopic'] = $this->urlGenerator->newTopicAction( $title, $listWorkflow->getId() )->getLinkURL();
-
-		return $res;
-	}
-
-	protected function buildPaginationLinks( Workflow $workflow, array $links ) {
-		$res = array();
-		$title = $workflow->getArticleTitle();
-		foreach ( $links as $key => $options ) {
-			// prefix all options with topiclist_
-			$realOptions = array();
-			foreach ( $options as $k => $v ) {
-				$realOptions["topiclist_$k"] = $v;
-			}
-			$res[$key] = new Anchor(
-				$key, // @todo i18n
-				$title,
-				$realOptions
-			);
-		}
 
 		return $res;
 	}

@@ -26,6 +26,10 @@ class ApiFlowNewTopic extends ApiFlowBasePost {
 			'content' => array(
 				ApiBase::PARAM_REQUIRED => true,
 			),
+			'toconly' => array(
+				ApiBase::PARAM_TYPE => 'boolean',
+				ApiBase::PARAM_DFLT => false,
+			),
 		);
 	}
 
@@ -33,6 +37,9 @@ class ApiFlowNewTopic extends ApiFlowBasePost {
 		return array(
 			'topic' => 'Text for new topic header',
 			'content' => 'Content for new topic',
+
+			// Since this triggers TopicList to render
+			'toconly' => 'Whether to respond with only the information required for the TOC',
 		);
 	}
 

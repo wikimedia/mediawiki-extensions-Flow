@@ -14,7 +14,14 @@ use User;
  */
 abstract class ApiTestCase extends BaseApiTestCase {
 	protected function setUp() {
-		$this->setMwGlobals( 'wgFlowOccupyPages', array( 'Talk:Flow QA' ) );
+		$this->setMwGlobals( 'wgFlowOccupyPages', array(
+			// For testing use; shared with browser tests
+			'Talk:Flow QA',
+
+			// Don't do any write operations on this.  It's intentionally left
+			// blank for testing read operations on unused (but occupied) pages.
+			'Talk:Intentionally blank',
+		) );
 		parent::setUp();
 	}
 
@@ -49,13 +56,13 @@ abstract class ApiTestCase extends BaseApiTestCase {
 	/**
 	 * Create a topic on a board using the default user
 	 */
-	protected function createTopic( $return = '' ) {
+	protected function createTopic( $return = '', $topicTitle = 'Hi there!' ) {
 		$data = $this->doApiRequest( array(
 			'page' => 'Talk:Flow QA',
 			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'new-topic',
-			'nttopic' => 'Hi there!',
+			'nttopic' => $topicTitle,
 			'ntcontent' => '...',
 		) );
 		$this->assertTrue(
