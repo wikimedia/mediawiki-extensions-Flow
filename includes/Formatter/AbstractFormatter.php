@@ -3,6 +3,7 @@
 namespace Flow\Formatter;
 
 use Flow\Container;
+use Flow\FlowActions;
 use Flow\Model\Anchor;
 use Flow\Model\PostRevision;
 use Flow\RevisionActionPermissions;
@@ -243,6 +244,16 @@ abstract class AbstractFormatter {
 			$msg = $ctx->msg( $key );
 		}
 
+		return $msg->params( $this->getDescriptionParams( $data, $actions, $changeType ) );
+	}
+
+	/**
+	 * @param array $data
+	 * @param FlowActions $actions
+	 * @param string $changeType
+	 * @return array
+	 */
+	protected function getDescriptionParams( array $data, FlowActions $actions, $changeType ) {
 		$source = $actions->getValue( $changeType, 'history', 'i18n-params' );
 		$params = array();
 		foreach ( $source as $param ) {
@@ -254,7 +265,7 @@ abstract class AbstractFormatter {
 			}
 		}
 
-		return $msg->params( $params );
+		return $params;
 	}
 
 	/**
