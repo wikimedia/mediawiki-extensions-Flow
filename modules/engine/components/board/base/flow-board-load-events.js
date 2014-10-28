@@ -74,9 +74,7 @@
 			mw.flow.TemplateEngine.callHelper(
 				'timestamp',
 				parseInt( $time.attr( 'datetime' ), 10) * 1000,
-				$time.data( 'time-str' ),
-				$time.data( 'time-ago-only' ) === "1",
-				$time.text()
+				$time.data( 'time-ago-only' ) === "1"
 			)
 		);
 	};

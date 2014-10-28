@@ -68,16 +68,17 @@
 		<a href="'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['url'])) ? $in['actions']['reply']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 		   title="'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['title'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 		   class="mw-ui-anchor mw-ui-progressive mw-ui-quiet"
-		   data-flow-interactive-handler="activateForm">'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['title'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'</a>
+		   data-flow-interactive-handler="activateForm"
+		>'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['title'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'</a>
 		&bull;
 	' : '').'
 
 	'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-comments',((is_array($in) && isset($in['reply_count'])) ? $in['reply_count'] : null)),Array()), 'encq').' &bull;
 
 	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['last_updated'])) ? $in['last_updated'] : null))) ? '
-		'.LCRun3::ch($cx, 'timestamp', Array(Array(((is_array($in) && isset($in['last_updated'])) ? $in['last_updated'] : null),'flow-active-ago',false,((is_array($in) && isset($in['last_updated_readable'])) ? $in['last_updated_readable'] : null)),Array()), 'encq').'
+		'.LCRun3::ch($cx, 'timestamp', Array(Array(((is_array($in) && isset($in['last_updated'])) ? $in['last_updated'] : null)),Array()), 'encq').'
 	' : '
-		'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null),'flow-started-ago',false),Array()), 'encq').'
+		'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)),Array()), 'encq').'
 	').'
 </div>
 '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? '
