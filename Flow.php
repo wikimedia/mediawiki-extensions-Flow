@@ -86,6 +86,7 @@ $wgHooks['MessageCache::get'][] = 'FlowHooks::onMessageCacheGet';
 $wgHooks['WatchArticle'][] = 'FlowHooks::onWatchArticle';
 $wgHooks['UnwatchArticle'][] = 'FlowHooks::onWatchArticle';
 $wgHooks['CanonicalNamespaces'][] = 'FlowHooks::onCanonicalNamespaces';
+$wgHooks['MovePageIsValidMove'][] = 'FlowHooks::onMovePageIsValidMove';
 $wgHooks['AbortMove'][] = 'FlowHooks::onAbortMove';
 $wgHooks['TitleSquidURLs'][] = 'FlowHooks::onTitleSquidURLs';
 $wgHooks['WatchlistEditorBuildRemoveLine'][] = 'FlowHooks::onWatchlistEditorBuildRemoveLine';
