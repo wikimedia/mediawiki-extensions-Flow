@@ -48,11 +48,12 @@ class TopicListFormatter {
 		array $workflows,
 		array $found,
 		PagerPage $page,
-		IContextSource $ctx
+		IContextSource $ctx,
+		$includeReplies
 	) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$section = new \ProfileSection( __METHOD__ );
-		$res = $this->buildResult( $listWorkflow, $workflows, $found, $ctx ) +
+		$res = $this->buildResult( $listWorkflow, $workflows, $found, $ctx, $includeReplies ) +
 			$this->buildEmptyResult( $listWorkflow );
 		$pagingOption = $page->getPagingLinksOptions();
 		$res['links']['pagination'] = $this->buildPaginationLinks(
@@ -94,9 +95,10 @@ class TopicListFormatter {
 	 * @param Workflow[] $workflows
 	 * @param FormatterRow[] $found
 	 * @param IContextSource $ctx
+	 * @param boolean $includeReplies True to include replies, false to limit to the topic entity itself
 	 * @return array
 	 */
-	protected function buildResult( Workflow $listWorkflow, array $workflows, array $found, IContextSource $ctx ) {
+	protected function buildResult( Workflow $listWorkflow, array $workflows, array $found, IContextSource $ctx, $includeReplies ) {
 		$revisions = $posts = $replies = array();
 		foreach( $found as $formatterRow ) {
 			$serialized = $this->serializer->formatApi( $formatterRow, $ctx );
@@ -108,9 +110,11 @@ class TopicListFormatter {
 			$replies[$serialized['replyToId']][] = $serialized['postId'];
 		}
 
-		foreach ( $revisions as $i => $serialized ) {
-			$alpha = $serialized['postId'];
-			$revisions[$i]['replies'] = isset( $replies[$alpha] ) ? $replies[$alpha] : array();
+		if ( $includeReplies ) {
+			foreach ( $revisions as $i => $serialized ) {
+				$alpha = $serialized['postId'];
+				$revisions[$i]['replies'] = isset( $replies[$alpha] ) ? $replies[$alpha] : array();
+			}
 		}
 
 		$list = array();
@@ -129,7 +133,7 @@ class TopicListFormatter {
 
 			foreach ( $list as $alpha ) {
 				// Metadata that requires everything to be serialied first
-				$metadata = $this->generateTopicMetadata( $posts, $revisions, $workflows, $alpha, $ctx );
+				$metadata = $this->generateTopicMetadata( $posts, $revisions, $workflows, $alpha, $ctx, $includeReplies );
 				foreach ( $posts[$alpha] as $revId ) {
 					$revisions[$revId] += $metadata;
 				}
@@ -163,7 +167,7 @@ class TopicListFormatter {
 		);
 	}
 
-	protected function generateTopicMetadata( array $posts, array $revisions, array $workflows, $postAlphaId, IContextSource $ctx ) {
+	protected function generateTopicMetadata( array $posts, array $revisions, array $workflows, $postAlphaId, IContextSource $ctx, $includeReplies ) {
 		$language = $ctx->getLanguage();
 		$user = $ctx->getUser();
 
@@ -171,23 +175,31 @@ class TopicListFormatter {
 		$authors = array();
 		$stack = new \SplStack;
 		$stack->push( $revisions[$posts[$postAlphaId][0]] );
-		do {
-			$data = $stack->pop();
-			$replies++;
-			$authors[] = $data['creator']['name'];
-			foreach ( $data['replies'] as $postId ) {
-				$stack->push( $revisions[$posts[$postId][0]] );
-			}
-		} while( !$stack->isEmpty() );
+		if ( $includeReplies ) {
+			do {
+				$data = $stack->pop();
+				$replies++;
+				$authors[] = $data['creator']['name'];
+				foreach ( $data['replies'] as $postId ) {
+					$stack->push( $revisions[$posts[$postId][0]] );
+				}
+			} while( !$stack->isEmpty() );
+		}
 
 		/** @var Workflow|null $workflow */
 		$workflow = isset( $workflows[$postAlphaId] ) ? $workflows[$postAlphaId] : null;
 		$ts = $workflow ? $workflow->getLastModifiedObj()->getTimestamp() : 0;
-		return array(
-			'reply_count' => $replies,
+
+		$metadata = array(
 			'last_updated_readable' => $language->userTimeAndDate( $ts, $user ),
 			// ms timestamp
 			'last_updated' => $ts * 1000,
 		);
+
+		if ( $includeReplies ) {
+			$metadata['reply_count'] = $replies;
+		}
+
+		return $metadata;
 	}
 }

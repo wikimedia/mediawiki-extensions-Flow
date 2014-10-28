@@ -159,6 +159,7 @@ $wgAutoloadClasses['Flow\\Formatter\\TopicFormatter'] = __DIR__ . '/includes/For
 $wgAutoloadClasses['Flow\\Formatter\\TopicHistoryQuery'] = __DIR__ . '/includes/Formatter/TopicHistoryQuery.php';
 $wgAutoloadClasses['Flow\\Formatter\\TopicListFormatter'] = __DIR__ . '/includes/Formatter/TopicListFormatter.php';
 $wgAutoloadClasses['Flow\\Formatter\\TopicListQuery'] = __DIR__ . '/includes/Formatter/TopicListQuery.php';
+$wgAutoloadClasses['Flow\\Formatter\\TopicListQueryWithoutReplies'] = __DIR__ . '/includes/Formatter/TopicListQueryWithoutReplies.php';
 $wgAutoloadClasses['Flow\\Formatter\\TopicRow'] = __DIR__ . '/includes/Formatter/TopicRow.php';
 $wgAutoloadClasses['Flow\\LinksTableUpdater'] = __DIR__ . '/includes/LinksTableUpdater.php';
 $wgAutoloadClasses['Flow\\Log\\Formatter'] = __DIR__ . '/includes/Log/Formatter.php';

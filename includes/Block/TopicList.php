@@ -184,14 +184,24 @@ class TopicListBlock extends AbstractBlock {
 		}
 
 		$workflows = $this->storage->getMulti( 'Workflow', $workflowIds );
+
+		$includeReplies = !$options['omitreplies']; // See ApiFlowViewTopicList
+
 		/** @var TopicListQuery $query */
-		$query = Container::get( 'query.topiclist' );
+		$query = null;
+
+		if ( $includeReplies ) {
+			$query = Container::get( 'query.topiclist' );
+		} else {
+			$query = Container::get( 'query.topiclistwithoutreplies' );
+		}
+
 		$found = $query->getResults( $page->getResults() );
 		wfDebugLog( 'FlowDebug', 'Rendering topiclist for ids: ' . implode( ', ', array_map( function( UUID $id ) {
 			return $id->getAlphadecimal();
 		}, $workflowIds ) ) );
 
-		return $response + $serializer->formatApi( $this->workflow, $workflows, $found, $page, $this->context );
+		return $response + $serializer->formatApi( $this->workflow, $workflows, $found, $page, $this->context, $includeReplies );
 	}
 
 	public function getName() {

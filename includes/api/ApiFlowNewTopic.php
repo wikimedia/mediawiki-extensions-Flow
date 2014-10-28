@@ -26,6 +26,10 @@ class ApiFlowNewTopic extends ApiFlowBasePost {
 			'content' => array(
 				ApiBase::PARAM_REQUIRED => true,
 			),
+			'omitreplies' => array(
+				ApiBase::PARAM_TYPE => 'boolean',
+				ApiBase::PARAM_DFLT => false,
+			),
 		);
 	}
 
@@ -33,6 +37,7 @@ class ApiFlowNewTopic extends ApiFlowBasePost {
 		return array(
 			'topic' => 'Text for new topic header',
 			'content' => 'Content for new topic',
+			'omitreplies' => 'Whether to omit replies (posts); if true, only each topic itself will be included',
 		);
 	}
 
