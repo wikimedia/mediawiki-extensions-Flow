@@ -74,49 +74,6 @@
 	};
 
 	/**
-	 * Cancels and closes a form. If text has been entered, issues a warning first.
-	 * @param {Event} event
-	 */
-	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.cancelForm = function ( event ) {
-		var target = this,
-			$form = $( this ).closest( 'form' ),
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $form ),
-			$fields = $form.find( 'textarea, :text' ),
-			changedFieldCount = 0;
-
-		event.preventDefault();
-
-		// Check for non-empty fields of text
-		$fields.each( function () {
-			if ( $( this ).val() !== this.defaultValue ) {
-				changedFieldCount++;
-				return false;
-			}
-		} );
-		// If all the text fields are empty, OR if the user confirms to close this with text already entered, do it.
-		if ( !changedFieldCount || confirm( flowBoard.constructor.static.TemplateEngine.l10n( 'flow-cancel-warning' ) ) ) {
-			// Reset the form content
-			$form[0].reset();
-
-			// Trigger for flow-actions-disabler
-			$form.find( 'textarea, :text' ).trigger( 'keyup' );
-
-			// Hide the form
-			flowBoard.emitWithReturn( 'hideForm', $form );
-
-			// Get rid of existing error messages
-			flowBoard.emitWithReturn( 'removeError', $form );
-
-			// Trigger the cancel callback
-			if ( $form.data( 'flow-cancel-callback' ) ) {
-				$.each( $form.data( 'flow-cancel-callback' ), function ( idx, fn ) {
-					fn.call( target, event );
-				} );
-			}
-		}
-	};
-
-	/**
 	 * Calls FlowBoardComponent.UI.collapserState to set and render the new Collapser state.
 	 * @param {Event} event
 	 */
@@ -325,54 +282,6 @@
 		$target.find( '.flow-menu-js-drop' ).trigger( 'click' );
 	}
 	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.menuToggle = flowEventsMixinMenuToggle;
-
-	/**
-	 *
-	 * @param {Event} event
-	 */
-	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.moderationDialog = function ( event ) {
-		var $form,
-			$this = $( this ),
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $this ),
-			// hide, delete, suppress
-			// @todo this could just be detected from the url
-			role = $this.data( 'role' ),
-			template = $this.data( 'template' ),
-			params = {
-				editToken: mw.user.tokens.get( 'editToken' ), // might be unnecessary
-				submitted: {
-					moderationState: role
-				},
-				actions: {}
-			},
-			modal;
-
-		event.preventDefault();
-
-		params.actions[role] = { url: $this.attr( 'href' ), title: $this.attr( 'title' ) };
-
-		// Render the modal itself with mw-ui-modal
-		modal = mw.Modal( {
-			open:  $( mw.flow.TemplateEngine.processTemplateGetFragment( template, params ) ).children(),
-			disableCloseOnOutsideClick: true
-		} );
-
-		// @todo remove this data-flow handler forwarder when data-mwui handlers are implemented
-		// Have the events begin bubbling up from $board
-		flowBoard.assignSpawnedNode( modal.getNode(), flowBoard.$board );
-
-		// Run loadHandlers
-		flowBoard.emitWithReturn( 'makeContentInteractive', modal.getContentNode() );
-
-		// Set flowDialogOwner for API callback @todo find a better way of doing this with mw.Modal
-		$form = modal.getContentNode().find( 'form' ).data( 'flow-dialog-owner', $this );
-		// Bind the cancel callback on the form
-		flowBoard.emitWithReturn( 'addFormCancelCallback', $form, function () {
-			mw.Modal.close( this );
-		} );
-
-		modal = null; // avoid permanent reference
-	};
 
 	// @todo remove these data-flow handler forwarder callbacks when data-mwui handlers are implemented
 	$( [ 'close', 'prevOrClose', 'nextOrSubmit', 'prev', 'next' ] ).each( function ( i, fn ) {

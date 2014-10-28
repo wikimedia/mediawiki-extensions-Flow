@@ -195,7 +195,8 @@
 	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.activateSummarizeTopic = function ( event, info ) {
 		if ( info.$target.find( 'form' ).length ) {
 			// Form already open; cancel the old form
-			_flowBoardComponentCancelForm( info.$target );
+			var flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) );
+			flowBoard.emitWithReturn( 'cancelForm', info.$target );
 			return false;
 		}
 
@@ -683,7 +684,7 @@
 		result.roots = [result.roots[0]];
 		html = mw.flow.TemplateEngine.processTemplateGetFragment( 'flow_topiclist_loop', result );
 
-		_flowBoardComponentCancelForm( $( this ).closest( 'form' ) );
+		flowBoard.emitWithReturn( 'cancelForm', $( this ).closest( 'form' ) );
 
 		// Everything must be reset before re-initializing
 		// @todo un-hardcode
@@ -703,14 +704,15 @@
 	 * @param {jqXHR} jqxhr
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitReply = function ( info, data, jqxhr ) {
-		var $form = $( this ).closest( 'form' );
+		var $form = $( this ).closest( 'form' ),
+			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $form );
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
 			return;
 		}
 
-		_flowBoardComponentCancelForm( $form );
+		flowBoard.emitWithReturn( 'cancelForm', $form );
 
 		// Target should be flow-topic
 		_flowBoardComponentRefreshTopic( info.$target, data.flow.reply.result.topic );
@@ -881,6 +883,9 @@
 		$rendered.find( 'textarea' ).conditionalScrollIntoView().focus();
 	};
 
+	/**
+	 * Callback from the topic moderation dialog.
+	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.moderateTopic = _genModerateHandler(
 		'moderate-topic',
 		function ( $target, revision, apiResult ) {
@@ -900,6 +905,9 @@
 		}
 	);
 
+	/**
+	 * Callback from the post moderation dialog.
+	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.moderatePost = _genModerateHandler(
 		'moderate-post',
 		function ( $target, revision, apiResult ) {
@@ -932,8 +940,10 @@
 			}
 
 			var result = data.flow[action].result.topic,
-				$form = $( this ).closest( 'form' ),
-				id = result.submitted.postId || result.postId || result.roots[0];
+				$this = $( this ),
+				$form = $this.closest( 'form' ),
+				id = result.submitted.postId || result.postId || result.roots[0],
+				flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $this );
 
 			successCallback.call(
 				this,
@@ -942,28 +952,8 @@
 				result
 			);
 
-			_flowBoardComponentCancelForm( $form );
+			flowBoard.emitWithReturn( 'cancelForm', $form );
 		};
-	}
-
-	/**
-	 * If a form has a cancelForm handler, we clear the form and trigger it. This allows easy cleanup
-	 * and triggering of form events after successful API calls.
-	 * @param {jQuery} $form
-	 */
-	function _flowBoardComponentCancelForm( $form ) {
-		var $button = $form.find( 'button, input, a' ).filter( '[data-flow-interactive-handler="cancelForm"]' );
-
-		if ( $button.length ) {
-			// Clear contents to not trigger the "are you sure you want to
-			// discard your text" warning
-			$form.find( 'textarea, :text' ).each( function() {
-				$( this ).val( this.defaultValue );
-			} );
-
-			// Trigger a click on cancel to have it destroy the form the way it should
-			$button.trigger( 'click' );
-		}
 	}
 
 	/**
