@@ -225,9 +225,12 @@ $wgResourceModules += array(
 			'flow-moderation-confirmation-delete-topic',
 			'flow-moderation-confirmation-suppress-topic',
 			'flow-topic-moderated-reason-prefix',
+			// Undo actions
 			'flow-post-undo-hide',
 			'flow-post-undo-delete',
 			'flow-post-undo-suppress',
+			// Board header
+			"flow-board-header-browse-topics-link",
 		),
 	),
 	// @todo: upstream to mediawiki ui
