@@ -232,6 +232,9 @@ $wgResourceModules += array(
 			'flow-post-undo-hide',
 			'flow-post-undo-delete',
 			'flow-post-undo-suppress',
+			// Timestamps
+			'flow-edited',
+			'flow-edited-by',
 		),
 	),
 	// @todo: upstream to mediawiki ui
@@ -305,6 +308,7 @@ $wgResourceModules += array(
 			'ext.mantle.handlebars',
 			// the timestamp helper uses the timestamp template
 			'ext.flow.templating',
+			'moment',
 		),
 	) + $mobile,
 	// Work around old Varnish-cached HTML following module rename
