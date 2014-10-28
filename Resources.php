@@ -41,7 +41,6 @@ $wgResourceModules += array(
 			"flow_block_topicsummary_single_view.handlebars",
 			"flow_board_collapsers_subcomponent.handlebars",
 			"flow_board_navigation.handlebars",
-			"flow_component.handlebars",
 			"flow_edit_post.handlebars",
 			"flow_edit_post_ajax.handlebars",
 			"flow_edit_topic_title.handlebars",
