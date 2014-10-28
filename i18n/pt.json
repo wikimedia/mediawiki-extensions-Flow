@@ -295,7 +295,6 @@
 	"flow-cancel-warning": "Introduziu texto neste formulário. Tem a certeza de que pretende descartá-lo?",
 	"flow-topic-first-heading": "Tópico em $1",
 	"flow-topic-html-title": "$1 em $2",
-	"flow-topic-count-sidebar": "A mostrar $1 dos $2 tópicos anexados a esta página",
 	"flow-topic-count": "Tópicos ($1)",
 	"flow-active-ago": "Ativo há $1",
 	"flow-started-ago": "Iniciado há $1",

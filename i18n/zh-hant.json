@@ -295,7 +295,6 @@
 	"flow-cancel-warning": "您已於此表單輸入內容，您確定要放棄內容？",
 	"flow-topic-first-heading": "於 $1 的主題",
 	"flow-topic-html-title": "$1 於 $2",
-	"flow-topic-count-sidebar": "顯示連結至此頁面的 $1 個主題，共 $2 個",
 	"flow-topic-count": "主題 ($1)",
 	"flow-active-ago": "活動於 $1",
 	"flow-started-ago": "已發起於 $1",

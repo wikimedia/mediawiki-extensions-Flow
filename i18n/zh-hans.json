@@ -304,7 +304,6 @@
 	"flow-cancel-warning": "您在此表单中输入了文字。您确定要放弃它？",
 	"flow-topic-first-heading": "在$1的话题",
 	"flow-topic-html-title": "$2上的$1",
-	"flow-topic-count-sidebar": "显示附加于此页面的$2个主题中的$1",
 	"flow-topic-count": "主题（$1）",
 	"flow-active-ago": "活跃于$1",
 	"flow-started-ago": "开始于$1",

@@ -293,7 +293,6 @@
 	"flow-cancel-warning": "Bạn đã nhập văn bản vào biểu mẫu này. Bạn có chắc chắn muốn bác bỏ nó?",
 	"flow-topic-first-heading": "Chủ đề trên $1",
 	"flow-topic-html-title": "$1 trên $2",
-	"flow-topic-count-sidebar": "Đang xem $1 trên $2 chủ đề có liên quan đến trang này",
 	"flow-topic-count": "Chủ đề ($1)",
 	"flow-active-ago": "Có hoạt động $1",
 	"flow-started-ago": "Bắt đầu $1",

@@ -295,7 +295,6 @@
 	"flow-cancel-warning": "Du har skrivit in text i denna formulär. Är du säker på att du vill överge den?",
 	"flow-topic-first-heading": "Ämne på $1",
 	"flow-topic-html-title": "$1 på $2",
-	"flow-topic-count-sidebar": "Visar $1 av $2 ämnen kopplade till denna sida",
 	"flow-topic-count": "Ämnen ($1)",
 	"flow-active-ago": "Aktiv $1",
 	"flow-started-ago": "Startad $1",

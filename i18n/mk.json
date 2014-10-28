@@ -291,7 +291,6 @@
 	"flow-cancel-warning": "Внесовте текст во образецов. Дали сте сигурни дека сакате да го отфрлите?",
 	"flow-topic-first-heading": "Тема на $1",
 	"flow-topic-html-title": "$1 на $2",
-	"flow-topic-count-sidebar": "Прикажувам $1 од $2 теми приложени кон страницава",
 	"flow-topic-count": "Теми ($1)",
 	"flow-active-ago": "Активна $1",
 	"flow-started-ago": "Започната $1",

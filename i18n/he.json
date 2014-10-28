@@ -293,7 +293,6 @@
 	"flow-cancel-warning": "הזנת טקסט בטופס הזה. האם למחוק אותו?",
 	"flow-topic-first-heading": "נושא בדף $1",
 	"flow-topic-html-title": "$1 בדף $2",
-	"flow-topic-count-sidebar": "הצגה של $1 מתוך $2 נושאים בדף הזה",
 	"flow-topic-count": "נושאים ($1)",
 	"flow-active-ago": "פעיל $1",
 	"flow-started-ago": "התחיל $1",
