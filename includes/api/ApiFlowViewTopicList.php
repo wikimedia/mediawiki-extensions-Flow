@@ -19,7 +19,7 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 	}
 
 	public function getAllowedParams() {
-		global $wgFlowDefaultLimit;
+		global $wgFlowDefaultLimit, $wgFlowMaxLimit;
 
 		return array(
 			'offset-dir' => array(
@@ -43,16 +43,19 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 				ApiBase::PARAM_REQUIRED => false,
 			),
 			'limit' => array(
-				// @todo once we have a better idea of the performance of this
-				// adjust these to sane defaults
+				// TODO: Confirm this limit change is okay.
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_DFLT => $wgFlowDefaultLimit,
-				ApiBase::PARAM_MAX => $wgFlowDefaultLimit,
-				ApiBase::PARAM_MAX2 => $wgFlowDefaultLimit,
+				ApiBase::PARAM_MAX => $wgFlowMaxLimit,
+				ApiBase::PARAM_MAX2 => $wgFlowMaxLimit,
 			),
 			// @todo: I assume render parameter will soon be removed, after
 			// frontend rewrite
 			'render' => array(
+				ApiBase::PARAM_TYPE => 'boolean',
+				ApiBase::PARAM_DFLT => false,
+			),
+			'toconly' => array(
 				ApiBase::PARAM_TYPE => 'boolean',
 				ApiBase::PARAM_DFLT => false,
 			),
@@ -68,6 +71,7 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 			'offset' => 'Offset value to start fetching topics at',
 			'limit' => 'Amount of topics to fetch',
 			'render' => 'Renders (in HTML) the topics, if set',
+			'toconly' => 'Whether to respond with only the information required for the TOC',
 		);
 	}
 

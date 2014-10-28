@@ -23,12 +23,13 @@ class TopicListLastUpdatedStorage extends TopicListStorage {
 
 		$res = $this->dbFactory->getDB( DB_MASTER )->select(
 			array( $this->table, 'flow_workflow' ),
-			$this->table . '.*, workflow_last_update_timestamp',
+			'topic_list_id, topic_id, workflow_last_update_timestamp',
 			$attributes + array( 'topic_id = workflow_id' ),
 			__METHOD__ . " ({$this->table})",
 			$options
 		);
 		if ( ! $res ) {
+			// TODO: This should probably not silently fail on database errors.
 			return null;
 		}
 
