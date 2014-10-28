@@ -42,5 +42,15 @@
 		{{/if}}
 		&#8226;
 	{{/if}}
-	{{uuidTimestamp postId}}
+
+	<span class="flow-post-timestamp">
+		{{#unless isOriginalContent}}
+			{{#ifCond lastEditUser.name "!==" author.name}}
+				{{l10n "flow-edited"}}
+			{{else}}
+				{{l10n "flow-edited-by" lastEditUser.name}}
+			{{/ifCond}}
+		{{/unless}}
+		{{uuidTimestamp postId}}
+	</span>
 </div>
