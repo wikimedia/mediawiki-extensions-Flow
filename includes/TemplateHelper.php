@@ -134,7 +134,8 @@ class TemplateHelper {
 				'flags' => LightnCandy::FLAG_ERROR_EXCEPTION
 					| LightnCandy::FLAG_EXTHELPER
 					| LightnCandy::FLAG_SPVARS
-					| LightnCandy::FLAG_HANDLEBARS, // FLAG_THIS + FLAG_WITH + FLAG_PARENT + FLAG_JSQUOTE + FLAG_ADVARNAME + FLAG_NAMEDARGS
+					| LightnCandy::FLAG_HANDLEBARS // FLAG_THIS + FLAG_WITH + FLAG_PARENT + FLAG_JSQUOTE + FLAG_ADVARNAME + FLAG_NAMEDARGS
+					| LightnCandy::FLAG_RUNTIMEPARTIAL,
 				'basedir' => array( $templateDir ),
 				'fileext' => array( '.handlebars' ),
 				'helpers' => array(
