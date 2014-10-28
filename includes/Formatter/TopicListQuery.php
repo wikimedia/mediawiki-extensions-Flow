@@ -32,13 +32,13 @@ class TopicListQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param UUID[]|TopicListEntry[] $topicRevisionIds
+	 * @param UUID[]|TopicListEntry[] $topicIdsOrEntries
 	 * @return FormatterRow[]
 	 */
-	public function getResults( array $topicRevisionIds ) {
+	public function getResults( array $topicIdsOrEntries ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$section = new \ProfileSection( __METHOD__ );
-		$topicIds = $this->getTopicIds( $topicRevisionIds );
+		$topicIds = $this->getTopicIds( $topicIdsOrEntries );
 		$allPostIds = $this->collectPostIds( $topicIds );
 		$topicSummary = $this->collectSummary( $topicIds );
 		$posts = $this->collectRevisions( $allPostIds );
@@ -98,12 +98,13 @@ class TopicListQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param TopicListEntry[] $topicListEntries
+	 * @param TopicListEntry[]|UUID[] $topicsIdsOrEntries Topic IDs as UUID entries or
+	 *  TopicListEntry objects
 	 * @return UUID[]
 	 */
-	protected function getTopicIds( array $topicListEntries ) {
+	protected function getTopicIds( array $topicsIdsOrEntries ) {
 		$topicIds = array();
-		foreach ( $topicListEntries as $entry ) {
+		foreach ( $topicsIdsOrEntries as $entry ) {
 			if ( $entry instanceof UUID ) {
 				$topicIds[] = $entry;
 			} elseif ( $entry instanceof TopicListEntry ) {
