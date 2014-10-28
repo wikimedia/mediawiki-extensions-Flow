@@ -37,7 +37,7 @@ class TopicListFormatter {
 			'roots' => array(),
 			'posts' => array(),
 			'revisions' => array(),
-			'links' => array( 'pagination' => array() ),
+			'links' => array(),
 			'actions' => $this->buildApiActions( $workflow ),
 			'submitted' => array(),
 		);
@@ -142,18 +142,6 @@ class TopicListFormatter {
 			'roots' => $list,
 			'posts' => $posts,
 			'revisions' => $revisions,
-			'links' => array(
-				'search' => array(
-					'url' => '',
-					'title' => '',
-				),
-				'pagination' => array(
-					'load_more' => array(
-						'url' => '',
-						'title' => '',
-					),
-				),
-			),
 		);
 	}
 
