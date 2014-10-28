@@ -173,10 +173,11 @@ class RevisionFormatter {
 			'workflowId' => $row->workflow->getId()->getAlphadecimal(),
 			'revisionId' => $row->revision->getRevisionId()->getAlphadecimal(),
 			'timestamp' => $ts->getTimestamp( TS_MW ),
-			'timestamp_readable' => $language->userTimeAndDate( $ts, $user ),
 			'changeType' => $row->revision->getChangeType(),
+			// @todo push all date formatting to the render side?
 			'dateFormats' => $this->getDateFormats( $row->revision, $ctx ),
 			'properties' => $this->buildProperties( $row->workflow->getId(), $row->revision, $ctx, $row ),
+			'isOriginalContent' => $row->revision->isOriginalContent(),
 			'isModerated' => $moderatedRevision->isModerated(),
 			// These are read urls
 			'links' => $this->buildLinks( $row ),
@@ -191,6 +192,14 @@ class RevisionFormatter {
 				$row->revision->getUserId(),
 				$row->revision->getUserIp()
 			),
+			'lastEditUser' => $row->revision->isOriginalContent()
+				? $this->serializeUser(
+					$row->revision->getLastContentEditUserWiki(),
+					$row->revision->getLastContentEditUserId(),
+					$row->revision->getLastContentEditUserIp()
+				  )
+				: array(),
+			'lastEditId' => $row->revision->getLastContentEditId(),
 		);
 
 		$prevRevId = $row->revision->getPrevRevisionId();

@@ -351,5 +351,7 @@
     "flow-preview-return-edit-post": "Keep editing",
     "flow-anonymous": "Anonymous",
     "flow-embedding-unsupported": "Discussions cannot be embedded yet.",
-    "mw-ui-unsubmitted-confirm": "You have unsubmitted changes on this page. Are you sure you want to navigate away and lose your work?"
+    "mw-ui-unsubmitted-confirm": "You have unsubmitted changes on this page. Are you sure you want to navigate away and lose your work?",
+    "flow-edited": "Edited",
+    "flow-edited-by": "Edited by $1"
 }

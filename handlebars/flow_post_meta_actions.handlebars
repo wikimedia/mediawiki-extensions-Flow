@@ -30,17 +30,19 @@
 			</a>
 		{{/if}}
 	</span>
-	{{#if previousRevisionId}}
-		{{#if links.diff-prev}}
-			<a href="{{links.diff-prev.url}}"
-			    class="mw-ui-anchor mw-ui-progressive mw-ui-quiet"
-			    title="{{links.diff-prev.title}}">
-		{{/if}}
-			{{uuidTimestamp revisionId true}}
-		{{#if links.diff-prev}}
+
+	<span class="flow-post-timestamp">
+		{{#if isOriginalContent}}
+			{{uuidTimestamp postId}}
+		{{else}}
+			{{#ifCond lastEditUser.name "!==" author.name}}
+				{{l10n "flow-edited"}}
+			{{else}}
+				{{l10n "flow-edited-by" lastEditUser.name}}
+			{{/ifCond}}
+			<a href="{{links.topic-history.url}}" class="flow-timestamp-anchor">
+				{{~uuidTimestamp lastEditId~}}
 			</a>
 		{{/if}}
-		&#8226;
-	{{/if}}
-	{{uuidTimestamp postId}}
+	</span>
 </div>
