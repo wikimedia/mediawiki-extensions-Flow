@@ -2,7 +2,7 @@
  * Implements a Handlebars layer for FlowBoard.TemplateEngine
  */
 
-( function ( $, undefined ) {
+( function ( $, moment, undefined ) {
 	window.mw = window.mw || {}; // mw-less testing
 	mw.flow = mw.flow || {}; // create mw.flow globally
 
@@ -180,62 +180,6 @@
 		} );
 	}
 
-	// @todo remove and replace with mw.message || $.noop
-	/**
-	 * Checks for a helper function based on a key.
-	 *
-	 * If not found, uses the mw.message API.
-	 *
-	 * In either case, optional variable arguments are passed (either as Message parameters or to
-	 * the custom function)
-	 *
-	 * @param {string} str Key for message
-	 * @param Object... [parameters] Parameters to pass as Message parameters or custom function
-	 *   parameters
-	 */
-	function flowMessages( str ) {
-		var parameters = flowNormalizeL10nParameters( Array.prototype.slice.call( arguments, 1 ) ),
-			strings = ( {
-				"time": function ( msgKeyPrefix, secondsAgo ) {
-					var suffix = '-second',
-						new_time = secondsAgo;
-
-					if ( secondsAgo >= 604800 ) {
-						new_time = secondsAgo / 604800;
-						suffix = '-week';
-					} else if ( secondsAgo >= 86400 ) {
-						new_time = secondsAgo / 86400;
-						suffix = '-day';
-					} else if ( secondsAgo >= 3600 ) {
-						new_time = secondsAgo / 3600;
-						suffix = '-hour';
-					} else if ( secondsAgo >= 60 ) {
-						new_time = secondsAgo / 60;
-						suffix = '-minute';
-					}
-
-					return mw.msg.call( this, msgKeyPrefix + suffix, Math.floor( new_time ) );
-				},
-
-				"datetime": function ( timestamp ) {
-					return ( new Date( timestamp ) ).toLocaleString();
-				}
-			} ),
-			result = strings[ str ];
-
-		if ( !result ) {
-			return mw.message( str ).params( parameters );
-		}
-
-		if ( $.isFunction( result ) ) {
-			// Callable; return the result of callback(arguments)
-			result = result.apply( strings, parameters );
-		}
-
-		// Return the result string
-		return { text: function () { return result; } };
-	}
-
 	/**
 	 * Calls flowMessages to get localized message strings.
 	 * @todo use mw.message
@@ -247,15 +191,9 @@
 	 */
 	FlowHandlebars.prototype.l10n = function ( str /*, args..., options */ ) {
 		// chop off str and options leaving just args
-		var args = flowNormalizeL10nParameters( Array.prototype.slice.call( arguments, 1, -1 ) ),
-			res = flowMessages.call( mw, str, args ).text();
+		var args = flowNormalizeL10nParameters( Array.prototype.slice.call( arguments, 1, -1 ) );
 
-		if ( !res ) {
-			mw.flow.debug( "[l10n] Empty String", args );
-			return "(l10n:" + str + ")";
-		}
-
-		return res;
+		return mw.message( str ).params( args ).text();
 	};
 
 	/**
@@ -274,57 +212,42 @@
 	 * Parses the timestamp out of a base-36 UUID, and calls timestamp with it.
 	 * @example {{uuidTimestamp id "flow-message-x-"}}
 	 * @param {String} uuid id
-	 * @param {String} str a message key prefix  which when combined with 'second', 'minute', 'hour',
-	 *                 'week' matches an i18n message
 	 * @param {bool} [timeAgoOnly]
-	 * @param {String} [fallback] fallback string displayed when timestamp hovered over
 	 * @returns {String}
 	 */
-	FlowHandlebars.prototype.uuidTimestamp = function ( uuid, str, timeAgoOnly, fallback ) {
+	FlowHandlebars.prototype.uuidTimestamp = function ( uuid, timeAgoOnly ) {
 		var timestamp = parseInt( uuid, 36 ).toString( 2 ); // base-36 to base-10 to base-2
 		timestamp = Array( 88 + 1 - timestamp.length ).join( '0' ) + timestamp; // left pad 0 to 88 chars
 		timestamp = parseInt( timestamp.substr( 0, 46 ), 2 ); // first 46 chars base-2 to base-10
 
-		return FlowHandlebars.prototype.timestamp( timestamp, str, timeAgoOnly, fallback );
+		return FlowHandlebars.prototype.timestamp( timestamp, timeAgoOnly );
 	};
 
 	/**
 	 * Generates markup for an "nnn sssss ago" and date/time string.
 	 * @example {{timestamp start_time "flow-message-x-"}}
 	 * @param {int} timestamp milliseconds
-	 * @param {String} str a message key prefix which when combined with 'second', 'minute', 'hour',
-	 *                 'week' matches an i18n message
 	 * @param {bool} [timeAgoOnly]
-	 * @param {str} fallback string displayed when timestamp hovered over and for posts older than a month
 	 * @returns {String|undefined}
 	 */
-	FlowHandlebars.prototype.timestamp = function ( timestamp, str, timeAgoOnly, fallback ) {
-		if ( isNaN( timestamp ) || !str ) {
+	FlowHandlebars.prototype.timestamp = function ( timestamp, timeAgoOnly ) {
+		if ( isNaN( timestamp ) ) {
 			mw.flow.debug( '[timestamp] Invalid arguments', arguments);
 			return;
 		}
 
-		var time_ago, guid,
-			seconds_ago = ( +new Date() - timestamp ) / 1000;
+		var  guid,
+			formatter = moment( timestamp );
 
-		if ( seconds_ago < 2419200 ) {
-			// Return "n ago" for only dates less than 4 weeks ago
-			time_ago = FlowHandlebars.prototype.l10n( 'time', str, seconds_ago, {} );
-
-			if ( timeAgoOnly === true ) {
-				// timeAgoOnly: return only this text
-				return time_ago;
-			}
-		} else if ( timeAgoOnly === true ) {
-			// timeAgoOnly: return nothing
-			return fallback;
+		if ( timeAgoOnly ) {
+			return formatter.fromNow();
 		}
 
 		// Generate a GUID for this element to find it later
 		guid = (Math.random() + 1 ).toString( 36 ).substring( 2 );
 
 		// Store this in the timestamps auto-updater array
-		_timestamp.list.push( { guid: guid, timestamp: timestamp, str: str, failcount: 0 } );
+		_timestamp.list.push( { guid: guid, timestamp: timestamp, failcount: 0 } );
 
 		// Render the timestamp template
 		return FlowHandlebars.prototype.html(
@@ -332,8 +255,8 @@
 				'timestamp',
 				{
 					time_iso: timestamp,
-					time_readable: fallback || FlowHandlebars.prototype.l10n( 'datetime', timestamp, {} ),
-					time_ago: time_ago,
+					time_ago: formatter.fromNow(),
+					time_readable: formatter.format( 'LLL' ),
 					guid: guid
 				}
 			)
@@ -376,7 +299,7 @@
 		secondsAgo = currentTime - ( arrayItem.timestamp / 1000 );
 
 		if ( $ago && $ago.length ) {
-			text = FlowHandlebars.prototype.timestamp( arrayItem.timestamp, arrayItem.str, true );
+			text = FlowHandlebars.prototype.timestamp( arrayItem.timestamp, true );
 
 			// Returned a valid "n ago" string?
 			if ( text ) {
@@ -702,4 +625,4 @@
 	Handlebars.registerHelper( 'plaintextSnippet', FlowHandlebars.prototype.plaintextSnippet );
 	Handlebars.registerHelper( 'debug', FlowHandlebars.prototype.debug );
 
-}( jQuery ) );
+}( jQuery, moment ) );

@@ -9,6 +9,7 @@ use Flow\Parsoid\Utils;
 use Closure;
 use HTML;
 use LightnCandy;
+use MWTimestamp;
 use RequestContext;
 use Title;
 
@@ -193,41 +194,6 @@ class TemplateHelper {
 	// Helpers
 
 	/**
-	 * Localize message.
-	 * If given a simple MW message key this will convert it using the usual wfMessage() function,
-	 * storing it in a cache. It may also perform special processing of other messages such as
-	 * timestamps and topic counts.
-	 */
-	// @todo: Maybe the straight message lookup should be a separate msg helper function, for clarity?
-	static public function l10n( array $args, array $named ) {
-		$message = null;
-		// pull $str out of $args
-		$str = array_shift( $args );
-
-		switch( $str ) {
-		case 'time':
-			// This one is not used right now. The parsing of
-			// "x time ago" is done client-side (see its radically different
-			// implementation of the "timestamp" helper, which is the only place
-			// these l10n's are used)
-			break;
-
-		case 'datetime':
-			// This one is not really used right now. The parsing of
-			// "x time ago" is done client-side (see its radically different
-			// implementation of the "timestamp" helper, which is the only place
-			// these l10n's are used)
-			break;
-		}
-
-		if ( $message ) {
-			return $message->text();
-		} else {
-			return wfMessage( $str )->params( $args )->text();
-		}
-	}
-
-	/**
 	 * Generates a timestamp using the UUID, then calls the timestamp helper with it.
 	 * @param array $args Expects string $uuid, string $str, bool $timeAgoOnly = false
 	 * @param array $named No named arguments expected
@@ -235,12 +201,11 @@ class TemplateHelper {
 	 * @throws WrongNumberArgumentsException
 	 */
 	static public function uuidTimestamp( array $args, array $named ) {
-		if ( count( $args ) < 2 ) {
-			throw new WrongNumberArgumentsException( $args, 'two', 'three' );
+		if ( count( $args ) < 1 || count( $args ) > 2 ) {
+			throw new WrongNumberArgumentsException( $args, 'one', 'two' );
 		}
 		$uuid = $args[0];
-		$str = $args[1];
-		$timeAgoOnly = isset( $args[2] ) ? $args[2] : false;
+		$timeAgoOnly = isset( $args[1] ) ? $args[1] : false;
 
 		$obj = UUID::create( $uuid );
 		if ( !$obj ) {
@@ -249,7 +214,7 @@ class TemplateHelper {
 
 		// timestamp helper expects ms timestamp
 		$timestamp = $obj->getTimestampObj()->getTimestamp() * 1000;
-		return self::timestamp( $timestamp, $str, $timeAgoOnly );
+		return self::timestamp( $timestamp, $timeAgoOnly );
 	}
 
 	/**
@@ -259,42 +224,43 @@ class TemplateHelper {
 	 * @throws WrongNumberArgumentsException
 	 */
 	static public function timestampHelper( array $args, array $named ) {
-		if ( count( $args ) < 2 ) {
-			throw new WrongNumberArgumentsException( $args, 'two' );
+		if ( count( $args ) < 1 || count( $args ) > 2 ) {
+			throw new WrongNumberArgumentsException( $args, 'one', 'two' );
 		}
 		return self::timestamp(
 			$args[0],
-			$args[1],
-			isset( $args[2] ) ? $args[2] : false
+			isset( $args[1] ) ? $args[1] : false
 		);
 	}
 
 	/**
 	 * This server-side version of timestamp does not render time-ago.
 	 * @param integer $timestamp milliseconds since the unix epoch
-	 * @param string $str i18n key name for ago message
-	 * @param boolean $timeAgoOnly Only render the 'X minutes ago' portion
+	 * @param boolean $timeAgoOnly true to return plaintext '5 hours ago'
 	 * @return string|false
 	 */
-	static protected function timestamp( $timestamp, $str, $timeAgoOnly = false ) {
+	static protected function timestamp( $timestamp, $timeAgoOnly = false ) {
 		global $wgLang, $wgUser;
 
-		if ( !$timestamp || !$str || $timeAgoOnly === true ) {
+		if ( !$timestamp ) {
 			return false;
 		}
 
 		// source timestamps are in ms
 		$timestamp /= 1000;
+		$ts = new MWTimestamp( $timestamp );
+
+		if ( $timeAgoOnly ) {
+			return $ts->getHumanTimestamp();
+		}
 
 		return self::html( self::processTemplate(
 			'timestamp',
 			array(
 				'time_iso' => $timestamp,
-				// do not like
-				'time_readable' => $wgLang->userTimeAndDate( $timestamp, $wgUser ),
-				'time_ago' => true, //generated client-side
-				'time_str' => $str,
+				'time_ago' => $ts->getHumanTimestamp(),
 				'time_ago_only' => $timeAgoOnly ? 1 : 0,
+				'time_readable' => $wgLang->userTimeAndDate( $timestamp, $wgUser ),
 				'guid' => null, //generated client-side
 			)
 		) );
@@ -554,7 +520,18 @@ class TemplateHelper {
 	/**
 	 * @param array $args one or more arguments, i18n key and parameters
 	 * @param array $named unused
-	 * @return string[]
+	 * @return string Plaintext
+	 */
+	static public function l10n( array $args, array $named ) {
+		$message = null;
+		$str = array_shift( $args );
+
+		return wfMessage( $str )->params( $args )->text();
+	}
+	/**
+	 * @param array $args one or more arguments, i18n key and parameters
+	 * @param array $named unused
+	 * @return string[] HTML
 	 */
 	static public function l10nParse( array $args, array $named ) {
 		$str = array_shift( $args );

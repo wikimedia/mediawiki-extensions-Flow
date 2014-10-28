@@ -109,13 +109,13 @@
 			    class="mw-ui-anchor mw-ui-progressive mw-ui-quiet"
 			    title="'.htmlentities((string)((isset($in['links']['diff-prev']['title']) && is_array($in['links']['diff-prev'])) ? $in['links']['diff-prev']['title'] : null), ENT_QUOTES, 'UTF-8').'">
 		' : '').'
-			'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((isset($in['revisionId']) && is_array($in)) ? $in['revisionId'] : null),'flow-edited-ago','1'),Array()), 'encq').'
+			'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((isset($in['revisionId']) && is_array($in)) ? $in['revisionId'] : null),true),Array()), 'encq').'
 		'.((LCRun3::ifvar($cx, ((isset($in['links']['diff-prev']) && is_array($in['links'])) ? $in['links']['diff-prev'] : null))) ? '
 			</a>
 		' : '').'
 		&#8226;
 	' : '').'
-	'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((isset($in['postId']) && is_array($in)) ? $in['postId'] : null),'flow-time-ago','0',((isset($in['timestamp_readable']) && is_array($in)) ? $in['timestamp_readable'] : null)),Array()), 'encq').'
+	'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((isset($in['postId']) && is_array($in)) ? $in['postId'] : null)),Array()), 'encq').'
 </div>
 ';},'flow_moderation_actions_list' => function ($cx, $in) {return ''.LCRun3::hbch($cx, 'ifCond', Array(Array(((isset($in['moderationType']) && is_array($in)) ? $in['moderationType'] : null),'===','topic'),Array()), $in, function($cx, $in) {return '
 	'.((LCRun3::ifvar($cx, ((isset($in['actions']['edit']) && is_array($in['actions'])) ? $in['actions']['edit'] : null))) ? '<li class="'.htmlentities((string)((isset($in['moderationContainerClass']) && is_array($in)) ? $in['moderationContainerClass'] : null), ENT_QUOTES, 'UTF-8').'-edit-action">'.htmlentities((string)((isset($in['null']) && is_array($in)) ? $in['null'] : null), ENT_QUOTES, 'UTF-8').'<a class="'.htmlentities((string)((isset($in['moderationMwUiClass']) && is_array($in)) ? $in['moderationMwUiClass'] : null), ENT_QUOTES, 'UTF-8').' mw-ui-quiet"

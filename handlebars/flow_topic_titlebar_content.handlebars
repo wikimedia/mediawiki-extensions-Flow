@@ -4,7 +4,8 @@
 		<a href="{{actions.reply.url}}"
 		   title="{{actions.reply.title}}"
 		   class="mw-ui-anchor mw-ui-progressive mw-ui-quiet"
-		   data-flow-interactive-handler="activateForm">
+		   data-flow-interactive-handler="activateForm"
+		>
 			{{~actions.reply.title~}}
 		</a>
 		&bull;
@@ -13,9 +14,9 @@
 	{{l10n "flow-topic-comments" reply_count}} &bull;
 
 	{{#if last_updated}}
-		{{timestamp last_updated "flow-active-ago" false last_updated_readable}}
+		{{timestamp last_updated}}
 	{{else}}
-		{{uuidTimestamp postId "flow-started-ago" false}}
+		{{uuidTimestamp postId}}
 	{{/if}}
 </div>
 {{#if isModerated}}
