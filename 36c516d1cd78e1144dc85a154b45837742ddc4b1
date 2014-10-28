@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_69df6311",
+        "filename": "tests/phpunit/PermissionsTest.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-28T15:04:07Z",
+      "side": 1,
+      "message": "Intended?",
+      "revId": "36c516d1cd78e1144dc85a154b45837742ddc4b1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
