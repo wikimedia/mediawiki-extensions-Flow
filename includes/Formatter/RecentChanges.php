@@ -103,11 +103,45 @@ class RecentChanges extends AbstractFormatter {
 		);
 		$summary = '<span class="autocomment">' . $msg->text() . '</span>';
 
-		// '(' + '' + '←' + summary + ')'
-		$text = Linker::commentBlock( $prefix . $link . $summary );
+		// '(' + '' + '←' + summary + ':' + user content + ')'
+		$content = $this->getEditSummaryContent( $row, $ctx, $data );
+		$text = Linker::commentBlock( $prefix . $link . $summary . $content );
 
 		// Linker::commentBlock escaped everything, but what we built was safe
 		// and should not be escaped so let's go back to decoded entities
 		return htmlspecialchars_decode( $text );
+	}
+
+	/**
+	 * @param RecentChangesRow $row
+	 * @param IContextSource $ctx
+	 * @param array $data
+	 * @return string
+	 */
+	protected function getEditSummaryContent( RecentChangesRow $row, IContextSource $ctx, array $data ) {
+		$changeType = $data['changeType'];
+		if ( $changeType !== 'new-post' ) {
+			return '';
+		}
+
+		// For a new topic, we're supposed to show a truncated excerpt of the
+		// first reply (I guess only when the topic was posted with an initial
+		// post - could also be submitted without...)
+		// I'm not sure how to best first this first reply's content; all of the
+		// options I can think of suck.
+		// Best idea would be to let RecentChangesQuery::loadMetadataBatch also
+		// fetch first child for all new-topic revisions, and let ::getResult
+		// add it to $row, similar to $row->previousRevision & ->nextRevision.
+		// The reasons I hate that solution is:
+		// * it's inconsistent with other Formatter thingies
+		// * it's inconsistent with other actions
+		// * frankly, this RC formatter is hideous enough already
+		// Anyone any better ideas?
+
+		$content = ''; // @todo: see comment above
+		$content = strip_tags( $content );
+		$content = $ctx->getLanguage()->truncate( $content, 200 );
+
+		return $ctx->msg( 'colon-separator' )->inContentLanguage()->escaped() . $content;
 	}
 }
