@@ -52,6 +52,13 @@ class TopicListBlock extends AbstractBlock {
 	 */
 	protected $firstPost;
 
+	/**
+	 * @var array
+	 *
+	 * Associative array mapping topic ID (in alphadecimal form) to PostRevision for the topic root.
+	 */
+	protected $topicRootRevisionCache = array();
+
 	protected function validate() {
 		// for now, new topic is considered a new post; perhaps some day topic creation should get it's own permissions?
 		if ( !$this->permissions->isAllowed( null, 'new-post' ) ) {
@@ -154,12 +161,23 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	public function renderApi( array $options ) {
-		/** @var TopicListFormatter $serializer */
-		$serializer = Container::get( 'formatter.topiclist' );
 		$response = array(
 			'submitted' => $this->wasSubmitted() ? $this->submitted : $options,
 			'errors' => $this->errors,
 		);
+
+		// Repeating the default until we use the API for everything (bug 72659)
+		// Also, if this is removed other APIs (i.e. ApiFlowNewTopic) may need
+		// to be adjusted if they trigger a rendering of this block.
+		$isTocOnly = isset( $options['toconly'] ) ? $options['toconly'] : false;
+
+		if ( $isTocOnly ) {
+			/** @var TocTopicListFormatter $serializer */
+			$serializer = Container::get( 'formatter.topiclist.toc' );
+		} else {
+			/** @var TopicListFormatter $serializer */
+			$serializer = Container::get( 'formatter.topiclist' );
+		}
 
 		if ( $this->workflow->isNew() ) {
 			return $response + $serializer->buildEmptyResult( $this->workflow );
@@ -183,7 +201,20 @@ class TopicListBlock extends AbstractBlock {
 			$workflowIds[] = $topicListEntry->getId();
 		}
 
+		if ( $isTocOnly ) {
+			// We don't need any further data, so we skip the TopicListQuery.
+
+			$mapping = array();
+			foreach ( $workflowIds as $workflowId ) {
+				$alphaWorkflowId = $workflowId->getAlphadecimal();
+				$mapping[$alphaWorkflowId] = $this->topicRootRevisionCache[$alphaWorkflowId];
+			}
+
+			return $response + $serializer->formatApi( $this->workflow, $mapping, $page );
+		}
+
 		$workflows = $this->storage->getMulti( 'Workflow', $workflowIds );
+
 		/** @var TopicListQuery $query */
 		$query = Container::get( 'query.topiclist' );
 		$found = $query->getResults( $page->getResults() );
@@ -274,6 +305,9 @@ class TopicListBlock extends AbstractBlock {
 	 * Gets a set of workflow IDs
 	 * This filters result to only include unmoderated and locked topics.
 	 *
+	 * Also populates topicRootRevisionCache with a mapping from topic ID to the
+	 * PostRevision for the topic root.
+	 *
 	 * @param array $findOptions
 	 * @return PagerPage
 	 */
@@ -285,7 +319,11 @@ class TopicListBlock extends AbstractBlock {
 		);
 
 		$postStorage = $this->storage->getStorage( 'PostRevision' );
-		return $pager->getPage( function( array $found ) use ( $postStorage ) {
+
+		// Work around lack of $this in closures until we can use PHP 5.4+ features.
+		$topicRootRevisionCache =& $this->topicRootRevisionCache;
+
+		return $pager->getPage( function( array $found ) use ( $postStorage, &$topicRootRevisionCache ) {
 			$queries = array();
 			/** @var TopicListEntry[] $found */
 			foreach ( $found as $entry ) {
@@ -300,11 +338,13 @@ class TopicListBlock extends AbstractBlock {
 			foreach ( $posts as $queryResult ) {
 				$post = reset( $queryResult );
 				if ( !$post->isModerated() || $post->isLocked() ) {
-					$allowed[$post->getPostId()->getAlphadecimal()] = true;
+					$allowed[$post->getPostId()->getAlphadecimal()] = $post;
 				}
 			}
 			foreach ( $found as $idx => $entry ) {
-				if ( !isset( $allowed[$entry->getId()->getAlphadecimal()] ) ) {
+				if ( isset( $allowed[$entry->getId()->getAlphadecimal()] ) ) {
+					$topicRootRevisionCache[$entry->getId()->getAlphadecimal()] = $allowed[$entry->getId()->getAlphadecimal()];
+				} else {
 					unset( $found[$idx] );
 				}
 			}
