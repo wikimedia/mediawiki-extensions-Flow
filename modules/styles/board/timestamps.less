@@ -6,7 +6,7 @@
 	display: inline-block;
 	text-align: left;
 
-	.flow-timestamp-now {
+	.flow-timestamp-user-formatted {
 		display: none;
 	}
 	.flow-timestamp-ago {
@@ -15,7 +15,7 @@
 }
 
 .flow-timestamp-ago,
-.flow-timestamp-now {
+.flow-timestamp-user-formatted {
 	display: block;
 	position: relative;
 	line-height: 1em;
@@ -30,12 +30,17 @@
 	.flow-timestamp {
 
 		&:hover {
-			.flow-timestamp-now {
+			.flow-timestamp-user-formatted {
 				display: block;
 			}
 			.flow-timestamp-ago {
 				display: none;
 			}
 		}
+	}
+
+	// inherit the gray color if not hovered, doesnt work in ie8
+	a.flow-timestamp-anchor:not(:hover) {
+		color: inherit;
 	}
 }
