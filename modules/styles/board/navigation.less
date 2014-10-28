@@ -53,13 +53,6 @@
 		&.flow-board-navigator-first {
 			padding-left: 0;
 		}
-		&.flow-board-navigator-last {
-			position: absolute;
-			bottom: 0;
-			right: -2.5em;
-			width: 1.1em;
-			border-bottom: 1px solid @colorGrayLight;
-		}
 	}
 
 	// Added by JS when the window has been scrolled beyond the navigation, so it sticks to the viewport
@@ -69,6 +62,21 @@
 		top: 0;
 		width: 100%;
 		background: @colorWhite;
+
+		.flow-board-navigation-inner {
+			& > a {
+				display: none; // hide everything but the current topic title
+			}
+
+			& > a.flow-board-navigator-active {
+				// Clip the topic title
+				display: block;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+		}
+
 	}
 }
 
