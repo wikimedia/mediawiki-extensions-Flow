@@ -114,6 +114,8 @@
 			return false;
 		}
 
+		this.emitWithReturn( 'makeContentInteractive', this );
+
 		return $retObj;
 	}
 	FlowBoardComponent.prototype.reinitializeContainer = flowBoardComponentReinitializeContainer;
