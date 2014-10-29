@@ -1116,10 +1116,13 @@ $c['reference.clarifier'] = $c->share( function( $c ) {
 } );
 
 $c['reference.recorder'] = $c->share( function( $c ) {
-	return new Flow\Data\Listener\ReferenceRecorder(
-		$c['reference.extractor'],
-		$c['reference.updater.links-tables'],
-		$c['storage']
+	return new Flow\Data\Listener\DeferredInsertLifecycleHandler(
+		$c['deferred_queue'],
+		new Flow\Data\Listener\ReferenceRecorder(
+			$c['reference.extractor'],
+			$c['reference.updater.links-tables'],
+			$c['storage']
+		)
 	);
 } );
 
