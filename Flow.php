@@ -159,9 +159,9 @@ $wgFlowContentFormat = 'html'; // possible values: html|wikitext XXX bug 70148 w
 
 // Flow Parsoid config
 // If null, VE's defaults (if available) will be used
-$wgFlowParsoidURL = null; // defaults to $wgVisualEditorParsoidURL
-$wgFlowParsoidPrefix = null; // defaults to $wgVisualEditorParsoidPrefix
-$wgFlowParsoidTimeout = null; // defaults to $wgVisualEditorParsoidTimeout
+$wgFlowParsoidURL = 'http://parsoid-lb.eqiad.wikimedia.org/'; // defaults to $wgVisualEditorParsoidURL
+$wgFlowParsoidPrefix = 'enwiki'; // defaults to $wgVisualEditorParsoidPrefix
+$wgFlowParsoidTimeout = 100; // defaults to $wgVisualEditorParsoidTimeout
 
 // Flow Configuration for EventLogging
 $wgFlowConfig = array(
