@@ -32,8 +32,10 @@ class TopicListFormatter {
 	}
 
 	public function buildEmptyResult( Workflow $workflow ) {
+		$title = $workflow->getArticleTitle();
 		return array(
 			'type' => 'topiclist',
+			'title' => $title->getPrefixedText(),
 			'roots' => array(),
 			'posts' => array(),
 			'revisions' => array(),
