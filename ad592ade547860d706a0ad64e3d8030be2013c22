@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_9ba0ebf2",
+        "filename": "tests/browser/features/step_definitions/watch_steps.rb",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1731
+      },
+      "writtenOn": "2014-10-29T17:32:19Z",
+      "side": 1,
+      "message": "Combining `wait_until` and `when_not_visible` seems redundant. I would either ditch the `wait_until` or change the block to `!page.board_watch_link_element.visible?`.",
+      "revId": "ad592ade547860d706a0ad64e3d8030be2013c22",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_fbb80f27",
+        "filename": "tests/browser/features/step_definitions/watch_steps.rb",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1731
+      },
+      "writtenOn": "2014-10-29T17:32:19Z",
+      "side": 1,
+      "message": "See my previous comment about using either `wait_until` _or_ `when_not_visible` but not both.",
+      "revId": "ad592ade547860d706a0ad64e3d8030be2013c22",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_7baddfe6",
+        "filename": "tests/browser/features/step_definitions/watch_steps.rb",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1731
+      },
+      "writtenOn": "2014-10-29T17:32:19Z",
+      "side": 1,
+      "message": "Indentation within the block needs to be corrected.",
+      "revId": "ad592ade547860d706a0ad64e3d8030be2013c22",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_1b9b7bc2",
+        "filename": "tests/browser/features/support/pages/flow_page.rb",
+        "patchSetId": 4
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1731
+      },
+      "writtenOn": "2014-10-29T17:32:19Z",
+      "side": 1,
+      "message": "Not your mistake but you might as well remove the spaces after `(` and before `)`.\n\nhttps://github.com/bbatsov/ruby-style-guide#no-spaces-braces",
+      "revId": "ad592ade547860d706a0ad64e3d8030be2013c22",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_3b967798",
+        "filename": "tests/browser/features/support/pages/flow_page.rb",
+        "patchSetId": 4
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1731
+      },
+      "writtenOn": "2014-10-29T17:32:19Z",
+      "side": 1,
+      "message": "Same here.",
+      "revId": "ad592ade547860d706a0ad64e3d8030be2013c22",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
