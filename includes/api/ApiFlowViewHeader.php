@@ -29,6 +29,9 @@ class ApiFlowViewHeader extends ApiFlowBaseGet {
 		);
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getParamDescription() {
 		return array(
 			'contentFormat' => 'Format to return the content in',
@@ -36,13 +39,29 @@ class ApiFlowViewHeader extends ApiFlowBaseGet {
 		);
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getDescription() {
 		return 'View a board header';
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getExamples() {
 		return array(
 			'api.php?action=flow&submodule=view-header&page=Talk:Sandbox&vhcontentFormat=wikitext&revId=',
+		);
+	}
+
+	/**
+	 * @see ApiBase::getExamplesMessages()
+	 */
+	protected function getExamplesMessages() {
+		return array(
+			'action=flow&submodule=view-header&page=Talk:Sandbox&vhcontentFormat=wikitext&revId='
+				=> 'apihelp-flow+view-header-example-1',
 		);
 	}
 }

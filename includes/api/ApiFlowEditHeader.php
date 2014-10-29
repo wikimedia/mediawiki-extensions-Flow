@@ -28,6 +28,9 @@ class ApiFlowEditHeader extends ApiFlowBasePost {
 		);
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getParamDescription() {
 		return array(
 			'prev_revision' => 'Revision id of the current header revision to check for edit conflicts',
@@ -35,13 +38,29 @@ class ApiFlowEditHeader extends ApiFlowBasePost {
 		);
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getDescription() {
 		return 'Edits a topic\'s header';
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getExamples() {
 		return array(
 			'api.php?action=flow&submodule=edit-header&page=Talk:Sandbox&ehprev_revision=???&ehcontent=Nice%20to&20meet%20you',
+		);
+	}
+
+	/**
+	 * @see ApiBase::getExamplesMessages()
+	 */
+	protected function getExamplesMessages() {
+		return array(
+			'action=flow&submodule=edit-header&page=Talk:Sandbox&ehprev_revision=???&ehcontent=Nice%20to&20meet%20you'
+				=> 'apihelp-flow+edit-header-example-1',
 		);
 	}
 }

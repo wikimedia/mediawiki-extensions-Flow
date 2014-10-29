@@ -61,6 +61,9 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 		);
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getParamDescription() {
 		return array(
 			'offset-dir' => 'Direction to get topics for',
@@ -74,13 +77,29 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 		);
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getDescription() {
 		return 'View a list of topics';
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getExamples() {
 		return array(
 			'api.php?action=flow&submodule=view-topiclist&page=Talk:Sandbox',
+		);
+	}
+
+	/**
+	 * @see ApiBase::getExamplesMessages()
+	 */
+	protected function getExamplesMessages() {
+		return array(
+			'action=flow&submodule=view-topiclist&page=Talk:Sandbox'
+				=> 'apihelp-flow+view-topiclist-example-1',
 		);
 	}
 }
