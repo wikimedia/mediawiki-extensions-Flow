@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_e295c536",
+        "filename": "includes/View.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-10-29T04:07:10Z",
+      "side": 1,
+      "message": "I don\u0027t like how the $flowComponent variable is re-used.  Maybe $blockType instead?\n\nYou can also use an if/else instead of a switch, but if you prefer a switch, I\u0027m alright with it.",
+      "revId": "bcca52224a5303b0aea278b9ca8a1bfef7500250",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
