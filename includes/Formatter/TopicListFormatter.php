@@ -60,6 +60,7 @@ class TopicListFormatter {
 			$pagingOption
 		);
 		$title = $listWorkflow->getArticleTitle();
+		$res['title'] = $title->getPrefixedText();
 		$saveSortBy = true;
 		$res['links']['board-sort']['updated'] = $this->urlGenerator->boardLink( $title, 'updated', $saveSortBy )->getLinkURL();
 		$res['links']['board-sort']['newest'] = $this->urlGenerator->boardLink( $title, 'newest', $saveSortBy )->getLinkURL();
