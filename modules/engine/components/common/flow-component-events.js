@@ -239,7 +239,8 @@
 			preHandlerReturns = [],
 			info = {
 				$target: null,
-				status: null
+				status: null,
+				component: flowComponent
 			},
 			args = Array.prototype.slice.call( arguments, 0 );
 
@@ -260,7 +261,7 @@
 
 		// Make sure an API call is not already in progress for this target
 		if ( $target.closest( '.flow-api-inprogress' ).length ) {
-			flowComponent.debug( 'apiRequest already in progress', arguments );
+			flowComponent.debug( false, 'apiRequest already in progress', arguments );
 			return $.Deferred().reject().promise();
 		}
 
