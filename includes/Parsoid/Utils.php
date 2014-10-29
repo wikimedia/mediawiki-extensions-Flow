@@ -77,6 +77,8 @@ abstract class Utils {
 	 */
 	protected static function parsoid( $from, $to, $content, Title $title ) {
 		list( $parsoidURL, $parsoidPrefix, $parsoidTimeout ) = self::parsoidConfig();
+var_dump($parsoidURL);
+exit;
 		if ( !isset( $parsoidURL ) || !$parsoidURL ) {
 			throw new NoParsoidException( 'Flow Parsoid configuration is unavailable' );
 		}
@@ -172,9 +174,9 @@ abstract class Utils {
 			$wgVisualEditorParsoidURL, $wgVisualEditorParsoidPrefix, $wgVisualEditorParsoidTimeout;
 
 		return array(
-			$wgFlowParsoidURL ? $wgFlowParsoidURL : $wgVisualEditorParsoidURL,
-			$wgFlowParsoidPrefix ? $wgFlowParsoidPrefix : $wgVisualEditorParsoidPrefix,
-			$wgFlowParsoidTimeout ? $wgFlowParsoidTimeout : $wgVisualEditorParsoidTimeout,
+			$wgFlowParsoidURL ?: $wgVisualEditorParsoidURL,
+			$wgFlowParsoidPrefix ?: $wgVisualEditorParsoidPrefix,
+			$wgFlowParsoidTimeout ?: $wgVisualEditorParsoidTimeout,
 		);
 	}
 
