@@ -127,6 +127,7 @@ $wgAutoloadClasses['Flow\\Exception\\InvalidActionException'] = __DIR__ . '/incl
 $wgAutoloadClasses['Flow\\Exception\\InvalidDataException'] = __DIR__ . '/includes/Exception/ExceptionHandling.php';
 $wgAutoloadClasses['Flow\\Exception\\InvalidInputException'] = __DIR__ . '/includes/Exception/ExceptionHandling.php';
 $wgAutoloadClasses['Flow\\Exception\\NoIndexException'] = __DIR__ . '/includes/Exception/ExceptionHandling.php';
+$wgAutoloadClasses['Flow\\Exception\\NoParsoidException'] = __DIR__ . '/includes/Exception/ExceptionHandling.php';
 $wgAutoloadClasses['Flow\\Exception\\PermissionException'] = __DIR__ . '/includes/Exception/ExceptionHandling.php';
 $wgAutoloadClasses['Flow\\Exception\\WikitextException'] = __DIR__ . '/includes/Exception/ExceptionHandling.php';
 $wgAutoloadClasses['Flow\\Exception\\WrongNumberArgumentsException'] = __DIR__ . '/includes/Exception/ExceptionHandling.php';
