@@ -4,6 +4,7 @@ namespace Flow\Model;
 
 use Flow\Collection\AbstractCollection;
 use Flow\Exception\DataModelException;
+use Flow\Exception\InvalidDataException;
 use Flow\Exception\PermissionException;
 use Flow\Parsoid\Utils;
 use Title;

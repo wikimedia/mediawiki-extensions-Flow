@@ -12,6 +12,7 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Model\Reference;
 use Flow\Parsoid\ReferenceExtractor;
+use SplQueue;
 
 /**
  * Listens for new revisions to be inserted.  Calculates the difference in
@@ -34,10 +35,22 @@ class ReferenceRecorder implements LifecycleHandler {
 	 */
 	protected $linksTableUpdater;
 
-	public function __construct( ReferenceExtractor $referenceExtractor, LinksTableUpdater $linksTableUpdater, ManagerGroup $storage ) {
+	/**
+	 * @var SplQueue
+	 */
+	protected $deferredQueue;
+
+	/**
+	 * @param ReferenceExtractor $referenceExtractor
+	 * @param LinksTableUpdater $linksTableUpdater
+	 * @param ManagerGroup $storage
+	 * @param SplQueue $deferredQueue
+	 */
+	public function __construct( ReferenceExtractor $referenceExtractor, LinksTableUpdater $linksTableUpdater, ManagerGroup $storage, SplQueue $deferredQueue ) {
 		$this->referenceExtractor = $referenceExtractor;
 		$this->linksTableUpdater = $linksTableUpdater;
 		$this->storage = $storage;
+		$this->deferredQueue = $deferredQueue;
 	}
 
 	public function onAfterLoad( $object, array $old ) {
@@ -58,16 +71,18 @@ class ReferenceRecorder implements LifecycleHandler {
 			return;
 		}
 
-		$prevReferences = $this->getExistingReferences( $revision->getRevisionType(), $revision->getCollectionId() );
-		$references = $this->getReferencesFromRevisionContent( $workflow, $revision );
+		$this->deferredQueue->push( function() use ( $revision, $workflow ) {
+			$prevReferences = $this->getExistingReferences( $revision->getRevisionType(), $revision->getCollectionId() );
+			$references = $this->getReferencesFromRevisionContent( $workflow, $revision );
 
-		list( $added, $removed ) = $this->referencesDifference( $prevReferences, $references );
+			list( $added, $removed ) = $this->referencesDifference( $prevReferences, $references );
 
-		$this->storage->multiPut( $added );
-		$this->storage->multiRemove( $removed );
+			$this->storage->multiPut( $added );
+			$this->storage->multiRemove( $removed );
 
-		// Data updates
-		$this->linksTableUpdater->doUpdate( $workflow );
+			// Data updates
+			$this->linksTableUpdater->doUpdate( $workflow );
+		} );
 	}
 
 	/**

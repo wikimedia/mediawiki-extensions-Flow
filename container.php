@@ -934,7 +934,8 @@ $c['reference.recorder'] = $c->share( function( $c ) {
 	return new Flow\Data\Listener\ReferenceRecorder(
 			$c['reference.extractor'],
 			$c['reference.updater.links-tables'],
-			$c['storage']
+			$c['storage'],
+			$c['deferred_queue']
 		);
 } );
 
