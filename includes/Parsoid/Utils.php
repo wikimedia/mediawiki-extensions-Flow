@@ -172,9 +172,9 @@ abstract class Utils {
 			$wgVisualEditorParsoidURL, $wgVisualEditorParsoidPrefix, $wgVisualEditorParsoidTimeout;
 
 		return array(
-			$wgFlowParsoidURL ? $wgFlowParsoidURL : $wgVisualEditorParsoidURL,
-			$wgFlowParsoidPrefix ? $wgFlowParsoidPrefix : $wgVisualEditorParsoidPrefix,
-			$wgFlowParsoidTimeout ? $wgFlowParsoidTimeout : $wgVisualEditorParsoidTimeout,
+			$wgFlowParsoidURL ?: $wgVisualEditorParsoidURL,
+			$wgFlowParsoidPrefix ?: $wgVisualEditorParsoidPrefix,
+			$wgFlowParsoidTimeout ?: $wgVisualEditorParsoidTimeout,
 		);
 	}
 
