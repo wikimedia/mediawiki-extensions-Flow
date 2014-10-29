@@ -1,8 +1,7 @@
 Given(/^I am not watching my new Flow topic$/) do
   on(FlowPage) do |page|
     page.first_topic_unwatch_link_element.when_present.click
-    page.wait_until { page.first_topic_unwatch_link_element.visible? == false }
-    page.wait_until {page.first_topic_watchlist_loading_link_element.visible? == false}
+    page.first_topic_unwatch_link_element.when_not_visible
   end
 end
 
