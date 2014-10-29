@@ -33,13 +33,29 @@ class ApiQueryPropFlowInfo extends ApiQueryBase {
 		return $result;
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getDescription() {
 		return 'Get basic Flow information about a page including whether Flow is enabled on them';
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getExamples() {
 		return array(
 			'api.php?action=query&prop=flowinfo&titles=Talk:Sandbox|Main_Page|Talk:Flow',
+		);
+	}
+
+	/**
+	 * @see ApiBase::getExamplesMessages()
+	 */
+	protected function getExamplesMessages() {
+		return array(
+			'action=query&prop=flowinfo&titles=Talk:Sandbox|Main_Page|Talk:Flow'
+				=> 'apihelp-query+flowinfo-example-1',
 		);
 	}
 

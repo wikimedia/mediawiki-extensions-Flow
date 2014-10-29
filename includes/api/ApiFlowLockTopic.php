@@ -19,6 +19,10 @@ class ApiFlowLockTopic extends ApiFlowBasePost {
 		return 'lock-topic';
 	}
 
+	public function isDeprecated() {
+		return $this->getModuleName() === 'close-open-topic';
+	}
+
 	public function getAllowedParams() {
 		return array(
 			'moderationState' => array(
@@ -35,6 +39,9 @@ class ApiFlowLockTopic extends ApiFlowBasePost {
 		);
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getParamDescription() {
 		return array(
 			'moderationState' => "State to put topic in, either locked or unlocked",
@@ -42,13 +49,29 @@ class ApiFlowLockTopic extends ApiFlowBasePost {
 		);
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getDescription() {
 		return 'Lock or unlock a Flow topic';
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getExamples() {
 		return array(
 			'api.php?action=flow&submodule=lock-topic&page=Topic:S2tycnas4hcucw8w&cotmoderationState=lock&cotsummary=Ahhhh',
+		);
+	}
+
+	/**
+	 * @see ApiBase::getExamplesMessages()
+	 */
+	protected function getExamplesMessages() {
+		return array(
+			'action=flow&submodule=lock-topic&page=Topic:S2tycnas4hcucw8w&cotmoderationState=lock&cotsummary=Ahhhh'
+				=> 'apihelp-flow+lock-topic-example-1',
 		);
 	}
 }

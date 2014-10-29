@@ -29,6 +29,9 @@ class ApiFlowViewTopicSummary extends ApiFlowBaseGet {
 		);
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getParamDescription() {
 		return array(
 			'contentFormat' => 'Format to return the content in',
@@ -36,13 +39,29 @@ class ApiFlowViewTopicSummary extends ApiFlowBaseGet {
 		);
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getDescription() {
 		return 'View a topic summary';
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getExamples() {
 		return array(
 			'api.php?action=flow&submodule=view-topic-summary&page=Topic:S2tycnas4hcucw8w&vtscontentFormat=wikitext&revId=',
+		);
+	}
+
+	/**
+	 * @see ApiBase::getExamplesMessages()
+	 */
+	protected function getExamplesMessages() {
+		return array(
+			'action=flow&submodule=view-topic-summary&page=Topic:S2tycnas4hcucw8w&vtscontentFormat=wikitext&revId='
+				=> 'apihelp-flow+view-topic-summary-example-1',
 		);
 	}
 }
