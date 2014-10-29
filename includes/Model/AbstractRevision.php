@@ -4,6 +4,7 @@ namespace Flow\Model;
 
 use Flow\Collection\AbstractCollection;
 use Flow\Exception\DataModelException;
+use Flow\Exception\InvalidDataException;
 use Flow\Exception\PermissionException;
 use Flow\Parsoid\Utils;
 use Title;
@@ -334,11 +335,22 @@ abstract class AbstractRevision {
 			if ( $sourceFormat === $format ) {
 				$this->convertedContent[$format] = $raw;
 			} else {
+				try {
+					$title = $this->getCollection()->getTitle();
+				} catch ( InvalidDataException $e ) {
+					// When creating a new topic, ReferenceRecorder will call
+					// this method (for the initial post), but workflow is only
+					// inserted after the post is, so the workflow (required to
+					// get the associated Title) does not yet exist. This hacks
+					// around it by just creating title object ourselves.
+					$title = Title::newFromText( $this->getCollection()->getWorkflowId()->getAlphadecimal(), NS_TOPIC );
+				}
+
 				$this->convertedContent[$format] = Utils::convert(
 					$sourceFormat,
 					$format,
 					$raw,
-					$this->getCollection()->getTitle()
+					$title
 				);
 			}
 		}
