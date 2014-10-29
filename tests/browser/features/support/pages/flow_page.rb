@@ -34,6 +34,7 @@ class FlowPage < WikiPage
   textarea(:dialog_input, name: "topic_reason")
   button(:dialog_cancel, css: "a.mw-ui-destructive:nth-child(2)")
   button(:dialog_submit_delete, text: "Delete")
+  button(:dialog_submit_hide, text: "Hide")
   button(:dialog_submit_suppress, text: "Suppress")
 
   # Posts

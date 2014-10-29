@@ -7,7 +7,7 @@ When(/^I click Delete topic$/) do
 end
 
 When(/^I click Hide topic$/) do
-  on(FlowPage).dialog_submit_element.when_present.click
+  on(FlowPage).dialog_submit_hide_element.when_present.click
 end
 
 When(/^I click Suppress topic$/) do
