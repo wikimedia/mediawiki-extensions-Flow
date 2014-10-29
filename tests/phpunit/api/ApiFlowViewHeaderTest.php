@@ -35,6 +35,8 @@ class ApiFlowViewHeaderTest extends ApiTestCase {
 	}
 
 	public function testViewHeader() {
+		global $wgFlowContentFormat;
+
 		$data = $this->doApiRequest( array(
 			'page' => 'Talk:Flow_QA',
 			'token' => $this->getEditToken(),
@@ -69,7 +71,7 @@ class ApiFlowViewHeaderTest extends ApiTestCase {
 			$debug
 		);
 		$this->assertArrayHasKey( 'format', $revision['content'], $debug );
-		$this->assertEquals( 'html', $revision['content']['format'], $debug );
+		$this->assertEquals( $wgFlowContentFormat, $revision['content']['format'], $debug );
 	}
 
 	/**
