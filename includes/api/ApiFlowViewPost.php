@@ -32,6 +32,9 @@ class ApiFlowViewPost extends ApiFlowBaseGet {
 		);
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getParamDescription() {
 		return array(
 			'postId' => 'Id of the post to view',
@@ -39,13 +42,29 @@ class ApiFlowViewPost extends ApiFlowBaseGet {
 		);
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getDescription() {
 		return 'View a post';
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getExamples() {
 		return array(
 			'api.php?action=flow&submodule=view-post&page=Topic:S2tycnas4hcucw8w&vppostId=???&vpcontentFormat=wikitext',
+		);
+	}
+
+	/**
+	 * @see ApiBase::getExamplesMessages()
+	 */
+	protected function getExamplesMessages() {
+		return array(
+			'action=flow&submodule=view-post&page=Topic:S2tycnas4hcucw8w&vppostId=???&vpcontentFormat=wikitext'
+				=> 'apihelp-flow+view-post-example-1',
 		);
 	}
 }
