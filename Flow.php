@@ -159,7 +159,7 @@ $wgFlowContentFormat = 'html'; // possible values: html|wikitext XXX bug 70148 w
 
 // Flow Parsoid config
 // If null, VE's defaults (if available) will be used
-$wgFlowParsoidURL = null; // defaults to $wgVisualEditorParsoidURL
+$wgFlowParsoidURL = 'http://10.68.16.145/'; // defaults to $wgVisualEditorParsoidURL
 $wgFlowParsoidPrefix = null; // defaults to $wgVisualEditorParsoidPrefix
 $wgFlowParsoidTimeout = null; // defaults to $wgVisualEditorParsoidTimeout
 
