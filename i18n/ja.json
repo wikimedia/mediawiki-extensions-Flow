@@ -265,6 +265,7 @@
 	"flow-edited-ago-minute": "$1{{PLURAL:$1|分}}前に編集",
 	"flow-edited-ago-second": "$1{{PLURAL:$1|秒}}前に編集",
 	"flow-edited-ago-week": "$1{{PLURAL:$1|週間}}前に編集",
+	"flow-load-more": "続きを表示",
 	"flow-recent-topics": "最近活発な話題",
 	"flow-toggle-topics": "話題のみの表示に切り替える",
 	"flow-toggle-topics-posts": "話題と投稿の表示に切り替える",

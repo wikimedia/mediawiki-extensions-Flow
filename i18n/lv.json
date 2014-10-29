@@ -22,5 +22,6 @@
 	"flow-notification-reply-email-batch-body": "$1 {{GENDER:$1|atbildēja}} par \"$2\" lapā \"$3\"",
 	"flow-notification-reply-email-batch-bundle-body": "$1 un $4 {{PLURAL:$5|cits|citi}} {{GENDER:$1|atbildēja}} par \"$2\" lapā \"$3\"",
 	"flow-link-topic": "tēma",
-	"flow-link-history": "vēsture"
+	"flow-link-history": "vēsture",
+	"flow-load-more": "Ielādēt vairāk"
 }
