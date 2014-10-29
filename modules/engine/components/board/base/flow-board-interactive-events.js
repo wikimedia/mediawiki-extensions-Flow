@@ -217,7 +217,7 @@
 				$title.show();
 			};
 
-			linkParams = flowBoard.API.getQueryMap( $link.attr( 'href' ) );
+			linkParams = flowBoard.Api.getQueryMap( $link.attr( 'href' ) );
 
 			$title.hide();
 

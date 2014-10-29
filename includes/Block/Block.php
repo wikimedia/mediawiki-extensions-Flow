@@ -41,7 +41,7 @@ interface Block {
 	 * @param array $options
 	 * @return array
 	 */
-	function renderAPI( array $options );
+	function renderApi( array $options );
 
 	/**
 	 * @return string Unique name among all blocks on an object

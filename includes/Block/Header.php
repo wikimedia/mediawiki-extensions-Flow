@@ -175,7 +175,7 @@ class HeaderBlock extends AbstractBlock {
 				$this->storage->put( $this->newRevision, array(
 					'workflow' => $this->workflow,
 				) );
-				// Reload $this->header for renderAPI() after save
+				// Reload $this->header for renderApi() after save
 				$this->header = $this->newRevision;
 				return array(
 					'new-revision-id' => $this->newRevision->getRevisionId(),
@@ -186,7 +186,7 @@ class HeaderBlock extends AbstractBlock {
 		}
 	}
 
-	public function renderAPI( array $options ) {
+	public function renderApi( array $options ) {
 		$output = array(
 			'type' => $this->getName(),
 			'editToken' => $this->getEditToken(),
@@ -195,22 +195,22 @@ class HeaderBlock extends AbstractBlock {
 		switch ( $this->action ) {
 			case 'view':
 			case 'edit-header':
-				$output += $this->renderRevisionAPI();
+				$output += $this->renderRevisionApi();
 				break;
 
 			case 'view-header':
 				if ( isset( $options['revId'] ) && $options['revId'] ) {
-					$output += $this->renderSingleViewAPI( $options['revId'] );
+					$output += $this->renderSingleViewApi( $options['revId'] );
 				} else {
 					if ( isset( $options['contentFormat'] ) && $options['contentFormat'] === 'wikitext' ) {
 						$this->requiresWikitext[] = 'view-header';
 					}
-					$output += $this->renderRevisionAPI();
+					$output += $this->renderRevisionApi();
 				}
 				break;
 
 			case 'compare-header-revisions':
-				$output += $this->renderDiffviewAPI( $options );
+				$output += $this->renderDiffviewApi( $options );
 				break;
 		}
 
@@ -230,7 +230,7 @@ class HeaderBlock extends AbstractBlock {
 	}
 
 	// @Todo - duplicated logic in other diff view block
-	protected function renderDiffviewAPI( array $options ) {
+	protected function renderDiffviewApi( array $options ) {
 		if ( !isset( $options['newRevision'] ) ) {
 			throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
 		}
@@ -250,7 +250,7 @@ class HeaderBlock extends AbstractBlock {
 	}
 
 	// @Todo - duplicated logic in other single view block
-	protected function renderSingleViewAPI( $revId ) {
+	protected function renderSingleViewApi( $revId ) {
 		/** @var HeaderViewQuery $query */
 		$query = Container::get( 'query.header.view' );
 		$row = $query->getSingleViewResult( $revId );
@@ -262,7 +262,7 @@ class HeaderBlock extends AbstractBlock {
 		);
 	}
 
-	protected function renderRevisionAPI() {
+	protected function renderRevisionApi() {
 		$output = array();
 		if ( $this->header === null ) {
 			/** @var UrlGenerator $urlGenerator */

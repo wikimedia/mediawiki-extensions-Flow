@@ -278,7 +278,7 @@
 				flowComponent.debug( false, 'apiPreHandler returned false', handlerName, args );
 
 				// Abort any old request in flight; this is normally done automatically by requestFromNode
-				flowComponent.API.abortOldRequestFromNode( self, null, null, preHandlerReturns );
+				flowComponent.Api.abortOldRequestFromNode( self, null, null, preHandlerReturns );
 
 				// @todo support for multiple indicators on same target
 				$target.removeClass( 'flow-api-inprogress' );
@@ -289,9 +289,9 @@
 		}
 
 		// Make the request
-		$deferred = flowComponent.API.requestFromNode( self, preHandlerReturns );
+		$deferred = flowComponent.Api.requestFromNode( self, preHandlerReturns );
 		if ( !$deferred ) {
-			mw.flow.debug( '[FlowAPI] [interactiveHandlers] apiRequest element is not anchor or form element' );
+			mw.flow.debug( '[FlowApi] [interactiveHandlers] apiRequest element is not anchor or form element' );
 			$deferred = $.Deferred();
 			$deferred.rejectWith( { error: { info: 'Not an anchor or form' } } );
 		}

@@ -21,7 +21,7 @@
 		var uri = new mw.Uri( window.location.href );
 
 		// Default API submodule for FlowBoard URLs is to fetch a topiclist
-		this.API.setDefaultSubmodule( 'view-topiclist' );
+		this.Api.setDefaultSubmodule( 'view-topiclist' );
 
 		// Set up the board
 		if ( this.reinitializeContainer( $container ) === false ) {

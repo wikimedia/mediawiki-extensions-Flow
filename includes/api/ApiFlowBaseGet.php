@@ -26,7 +26,7 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 					$blockParams = $passedParams[$block->getName()];
 				}
 
-				$output[$action]['result'][$block->getName()] = $block->renderAPI( $blockParams );
+				$output[$action]['result'][$block->getName()] = $block->renderApi( $blockParams );
 			}
 		}
 

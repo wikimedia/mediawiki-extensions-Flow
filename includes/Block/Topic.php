@@ -443,7 +443,7 @@ class TopicBlock extends AbstractBlock {
 		}
 	}
 
-	public function renderAPI( array $options ) {
+	public function renderApi( array $options ) {
 		$output = array( 'type' => $this->getName() );
 
 		$topic = $this->loadTopicTitle( $this->action === 'history' ? 'history' : 'view' );
@@ -458,10 +458,10 @@ class TopicBlock extends AbstractBlock {
 			// single post history or full topic?
 			if ( isset( $options['postId'] ) ) {
 				// singular post history
-				$output += $this->renderPostHistoryAPI( $options, UUID::create( $options['postId'] ) );
+				$output += $this->renderPostHistoryApi( $options, UUID::create( $options['postId'] ) );
 			} else {
 				// post history for full topic
-				$output += $this->renderTopicHistoryAPI( $options );
+				$output += $this->renderTopicHistoryApi( $options );
 			}
 		} elseif ( $this->action === 'single-view' ) {
 			if ( isset( $options['revId'] ) ) {
@@ -469,22 +469,22 @@ class TopicBlock extends AbstractBlock {
 			} else {
 				throw new InvalidInputException( 'A revision must be provided', 'invalid-input' );
 			}
-			$output += $this->renderSingleViewAPI( $revId );
+			$output += $this->renderSingleViewApi( $revId );
 		} elseif ( $this->action === 'lock-topic' ) {
 			// Treat topic as a post, only the post + summary are needed
-			$result = $this->renderPostAPI( $options, $this->workflow->getId() );
+			$result = $this->renderPostApi( $options, $this->workflow->getId() );
 			$topicId = $result['roots'][0];
 			$revisionId = $result['posts'][$topicId][0];
 			$output += $result['revisions'][$revisionId];
 		} elseif ( $this->action === 'compare-post-revisions' ) {
-			$output += $this->renderDiffViewAPI( $options );
-		} elseif ( $this->shouldRenderTopicAPI( $options ) ) {
+			$output += $this->renderDiffViewApi( $options );
+		} elseif ( $this->shouldRenderTopicApi( $options ) ) {
 			// view full topic
-			$output += $this->renderTopicAPI( $options );
+			$output += $this->renderTopicApi( $options );
 		} else {
 			// view single post, possibly specific revision
 			// @todo this isn't valid for the topic title
-			$output += $this->renderPostAPI( $options );
+			$output += $this->renderPostApi( $options );
 		}
 
 		return $output + $this->finalizeApiOutput($options);
@@ -509,7 +509,7 @@ class TopicBlock extends AbstractBlock {
 		}
 	}
 
-	protected function shouldRenderTopicAPI( array $options ) {
+	protected function shouldRenderTopicApi( array $options ) {
 		switch( $this->action ) {
 		// Any actions require rerendering the whole topic
 		case 'edit-post':
@@ -532,7 +532,7 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	// @Todo - duplicated logic in other diff view block
-	protected function renderDiffViewAPI( array $options ) {
+	protected function renderDiffViewApi( array $options ) {
 		if ( !isset( $options['newRevision'] ) ) {
 			throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
 		}
@@ -548,7 +548,7 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	// @Todo - duplicated logic in other single view block
-	protected function renderSingleViewAPI( $revId ) {
+	protected function renderSingleViewApi( $revId ) {
 		$row = Container::get( 'query.post.view' )->getSingleViewResult( $revId );
 
 		return array(
@@ -556,7 +556,7 @@ class TopicBlock extends AbstractBlock {
 		);
 	}
 
-	protected function renderTopicAPI( array $options, $workflowId = '' ) {
+	protected function renderTopicApi( array $options, $workflowId = '' ) {
 		$serializer = Container::get( 'formatter.topic' );
 		if ( !$workflowId ) {
 			if ( $this->workflow->isNew() ) {
@@ -591,7 +591,7 @@ class TopicBlock extends AbstractBlock {
 	 * To generate forms with validation errors in the non-javascript renders we
 	 * need to add something to this output, but not sure what yet
 	 */
-	protected function renderPostAPI( array $options, $postId = '' ) {
+	protected function renderPostApi( array $options, $postId = '' ) {
 		if ( $this->workflow->isNew() ) {
 			throw new FlowException( 'No posts can exist for non-existent topic' );
 		}
@@ -637,7 +637,7 @@ class TopicBlock extends AbstractBlock {
 		return $serializer;
 	}
 
-	protected function renderTopicHistoryAPI( array $options ) {
+	protected function renderTopicHistoryApi( array $options ) {
 		if ( $this->workflow->isNew() ) {
 			throw new FlowException( 'No topic history can exist for non-existent topic' );
 		}
@@ -645,7 +645,7 @@ class TopicBlock extends AbstractBlock {
 		return $this->processHistoryResult( $found, $options );
 	}
 
-	protected function renderPostHistoryAPI( array $options, UUID $postId ) {
+	protected function renderPostHistoryApi( array $options, UUID $postId ) {
 		if ( $this->workflow->isNew() ) {
 			throw new FlowException( 'No post history can exist for non-existent topic' );
 		}
