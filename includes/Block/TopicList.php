@@ -153,7 +153,7 @@ class TopicListBlock extends AbstractBlock {
 		return $output;
 	}
 
-	public function renderAPI( array $options ) {
+	public function renderApi( array $options ) {
 		/** @var TopicListFormatter $serializer */
 		$serializer = Container::get( 'formatter.topiclist' );
 		$response = array(

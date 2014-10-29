@@ -34,7 +34,7 @@
 		}
 
 		// Give this board its own API instance @todo do this with OOjs
-		this.API = new mw.flow.FlowAPI( FlowComponent.static.StorageEngine, this.id );
+		this.Api = new mw.flow.FlowApi( FlowComponent.static.StorageEngine, this.id );
 
 		// Keep this in the registry to find it by other means
 		while ( parent ) {

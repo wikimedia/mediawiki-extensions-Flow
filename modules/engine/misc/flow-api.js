@@ -26,14 +26,14 @@ window.mw = window.mw || {}; // mw-less testing
 	};
 
 	/**
-	 * Handles Flow API calls. Each FlowComponent has its own instance of FlowAPI as component.API,
+	 * Handles Flow API calls. Each FlowComponent has its own instance of FlowApi as component.Api,
 	 * so that it can store a workflowId and pageName permanently for simplicity.
 	 * @param {String} [workflowId]
 	 * @param {String} [pageName]
-	 * @returns {FlowAPI}
+	 * @returns {FlowApi}
 	 * @constructor
 	 */
-	function FlowAPI( storageEngine, workflowId, pageName ) {
+	function FlowApi( storageEngine, workflowId, pageName ) {
 		this.StorageEngine = storageEngine;
 		this.workflowId = workflowId;
 		this.pageName = pageName;
@@ -55,11 +55,11 @@ window.mw = window.mw || {}; // mw-less testing
 				mwApi = new mw.Api( { ajax: { cache: false } } );
 
 			if ( !params.action ) {
-				mw.flow.debug( '[FlowAPI] apiCall error: missing action string', arguments );
+				mw.flow.debug( '[FlowApi] apiCall error: missing action string', arguments );
 				return $deferred.rejectWith({ error: 'Invalid action' });
 			}
 			if ( !params.page ) {
-				mw.flow.debug( '[FlowAPI] apiCall error: missing page string', [ mw.config.get( 'wgPageName' ) ], arguments );
+				mw.flow.debug( '[FlowApi] apiCall error: missing page string', [ mw.config.get( 'wgPageName' ) ], arguments );
 				return $deferred.rejectWith({ error: 'Invalid title' });
 			}
 
@@ -80,13 +80,13 @@ window.mw = window.mw || {}; // mw-less testing
 	}
 
 	/** @type {Storer} */
-	FlowAPI.prototype.StorageEngine = null;
+	FlowApi.prototype.StorageEngine = null;
 	/** @type {String} */
-	FlowAPI.prototype.pageName = null;
+	FlowApi.prototype.pageName = null;
 	/** @type {String} */
-	FlowAPI.prototype.workflowId = null;
+	FlowApi.prototype.workflowId = null;
 	/** @type {String} */
-	FlowAPI.prototype.defaultSubmodule = null;
+	FlowApi.prototype.defaultSubmodule = null;
 
 	/**
 	 * Sets the fixed pageName for this API instance.
@@ -96,7 +96,7 @@ window.mw = window.mw || {}; // mw-less testing
 		this.pageName = pageName;
 	}
 
-	FlowAPI.prototype.setPageName = flowApiSetPageName;
+	FlowApi.prototype.setPageName = flowApiSetPageName;
 
 	/**
 	 * Sets the fixed workflowId for this API instance.
@@ -106,7 +106,7 @@ window.mw = window.mw || {}; // mw-less testing
 		this.workflowId = workflowId;
 	}
 
-	FlowAPI.prototype.setWorkflowId = flowApiSetWorkflowId;
+	FlowApi.prototype.setWorkflowId = flowApiSetWorkflowId;
 
 	/**
 	 * Transforms URL request parameters into API params
@@ -144,7 +144,7 @@ window.mw = window.mw || {}; // mw-less testing
 		this.defaultSubmodule = defaultSubmodule;
 	}
 
-	FlowAPI.prototype.setDefaultSubmodule = flowApiSetDefaultSubmodule;
+	FlowApi.prototype.setDefaultSubmodule = flowApiSetDefaultSubmodule;
 
 	/**
 	 * Overrides (values of) queryMap with a provided override, which can come
@@ -264,7 +264,7 @@ window.mw = window.mw || {}; // mw-less testing
 		return queryMap;
 	}
 
-	FlowAPI.prototype.getQueryMap = flowApiGetQueryMap;
+	FlowApi.prototype.getQueryMap = flowApiGetQueryMap;
 
 	/**
 	 * Using a given form, parses its action, serializes the data, and sends it as GET or POST depending on form method.
@@ -293,7 +293,7 @@ window.mw = window.mw || {}; // mw-less testing
 		return this.abortOldRequestFromNode( $button, queryMap, method );
 	}
 
-	FlowAPI.prototype.requestFromForm = flowApiRequestFromForm;
+	FlowApi.prototype.requestFromForm = flowApiRequestFromForm;
 
 	/**
 	 * Using a given anchor, parses its URL and sends it as a GET (default) or POST depending on data-flow-api-method.
@@ -310,7 +310,7 @@ window.mw = window.mw || {}; // mw-less testing
 
 		// Build the query map from this anchor's HREF
 		if ( !( queryMap = this.getQueryMap( anchor.href, null, overrides ) ) ) {
-			mw.flow.debug( '[FlowAPI] requestFromAnchor error: invalid href', arguments );
+			mw.flow.debug( '[FlowApi] requestFromAnchor error: invalid href', arguments );
 			return $deferred.rejectWith( { error: 'Invalid href' } );
 		}
 
@@ -318,7 +318,7 @@ window.mw = window.mw || {}; // mw-less testing
 		return this.abortOldRequestFromNode( $anchor, queryMap, method );
 	}
 
-	FlowAPI.prototype.requestFromAnchor = flowApiRequestFromAnchor;
+	FlowApi.prototype.requestFromAnchor = flowApiRequestFromAnchor;
 
 	/**
 	 * Automatically calls requestFromAnchor or requestFromForm depending on the type of node given.
@@ -338,7 +338,7 @@ window.mw = window.mw || {}; // mw-less testing
 		}
 	}
 
-	FlowAPI.prototype.requestFromNode = flowApiRequestFromNode;
+	FlowApi.prototype.requestFromNode = flowApiRequestFromNode;
 
 	/**
 	 * Handles aborting an old in-flight API request.
@@ -355,7 +355,7 @@ window.mw = window.mw || {}; // mw-less testing
 		if ( !queryMap ) {
 			// Get the queryMap automatically if one wasn't given
 			if ( !( queryMap = this.getQueryMap( $node, null, overrides ) ) ) {
-				mw.flow.debug( '[FlowAPI] abortOldRequestFromNode failed to find a queryMap', arguments );
+				mw.flow.debug( '[FlowApi] abortOldRequestFromNode failed to find a queryMap', arguments );
 				return;
 			}
 		}
@@ -373,7 +373,7 @@ window.mw = window.mw || {}; // mw-less testing
 				prevApiCall.abort();
 			}
 
-			mw.flow.debug( '[FlowAPI] apiCall abort request in flight: ' + str, arguments );
+			mw.flow.debug( '[FlowApi] apiCall abort request in flight: ' + str, arguments );
 		}
 
 		// If a method was given, we want to also issue a new API request now
@@ -396,8 +396,8 @@ window.mw = window.mw || {}; // mw-less testing
 		}
 	}
 
-	FlowAPI.prototype.abortOldRequestFromNode = flowApiAbortOldRequestFromNode;
+	FlowApi.prototype.abortOldRequestFromNode = flowApiAbortOldRequestFromNode;
 
 	// Export
-	mw.flow.FlowAPI = FlowAPI;
+	mw.flow.FlowApi = FlowApi;
 }( mw, jQuery ) );

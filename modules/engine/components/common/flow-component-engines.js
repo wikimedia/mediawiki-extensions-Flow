@@ -1,10 +1,10 @@
 /*!
- * Initializes StorageEngine (Storer), TemplateEngine (Handlebars), and API (FlowAPI).
+ * Initializes StorageEngine (Storer), TemplateEngine (Handlebars), and API (FlowApi).
  */
 
 ( function ( $, mw, initStorer ) {
 	/**
-	 * Initializes Storer, Handlebars, and FlowAPI.
+	 * Initializes Storer, Handlebars, and FlowApi.
 	 * @constructor
 	 */
 	function FlowComponentEnginesMixin() {}
@@ -24,9 +24,9 @@
 
 	/**
 	 * Flow API singleton
-	 * @type {FlowAPI}
+	 * @type {FlowApi}
 	 */
-	mw.flow.API = new mw.flow.FlowAPI( FlowComponentEnginesMixin.static.StorageEngine );
+	mw.flow.Api = new mw.flow.FlowApi( FlowComponentEnginesMixin.static.StorageEngine );
 
 	// Copy static and prototype from mixin to main class
 	mw.flow.mixinComponent( 'component', FlowComponentEnginesMixin );

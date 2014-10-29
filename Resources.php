@@ -330,7 +330,7 @@ $wgResourceModules += array(
 			// MW UI
 			'engine/misc/mw-ui.enhance.js',
 			'engine/misc/mw-ui.modal.js',
-			// FlowAPI
+			// FlowApi
 			'engine/misc/flow-api.js',
 			// Component registry
 			'engine/components/flow-registry.js',

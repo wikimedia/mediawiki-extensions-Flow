@@ -52,7 +52,7 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 			// @Todo - hacky, maybe have contentformat in the request to overwrite
 			// requiredWikitext
 			$block->unsetRequiresWikitext( $action );
-			$output[$action]['result'][$block->getName()] = $block->renderAPI( $params[$block->getName()] );
+			$output[$action]['result'][$block->getName()] = $block->renderApi( $params[$block->getName()] );
 		}
 
 		// required until php5.4 which has the JsonSerializable interface

@@ -11,7 +11,7 @@ QUnit.module( 'ext.flow: FlowBoardComponent', {
 
 		this.$el = $( '<div class="flow-component" data-flow-component="board">' );
 		this.component = mw.flow.initComponent( this.$el );
-		stub = this.sandbox.stub( this.component.API, 'apiCall' );
+		stub = this.sandbox.stub( this.component.Api, 'apiCall' );
 
 		stub.withArgs( {
 			action: 'flow',

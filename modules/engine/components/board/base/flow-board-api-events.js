@@ -82,7 +82,7 @@
 
 		/*
 		 * This is prev_revision in "generic" form. Each Flow API has its
-		 * own unique prefix, which (in FlowAPI.prototype.getQueryMap) will
+		 * own unique prefix, which (in FlowApi.prototype.getQueryMap) will
 		 * be properly applied for the respective API call; e.g.
 		 * epprev_revision (for edit post)
 		 */
@@ -473,7 +473,7 @@
 		// could then import that and continuously update it with new revisions from
 		// api calls.  Rendering a topic would then just be pointing the template at
 		// the right part of that data instead of requesting it.
-		flowBoard.API.apiCall( {
+		flowBoard.Api.apiCall( {
 			action: 'flow',
 			submodule: 'view-topic',
 			workflow: flowId,
