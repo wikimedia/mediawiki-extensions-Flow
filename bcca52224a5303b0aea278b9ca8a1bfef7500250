@@ -16,6 +16,24 @@
       "revId": "bcca52224a5303b0aea278b9ca8a1bfef7500250",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_1dda9421",
+        "filename": "includes/View.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-10-29T12:02:51Z",
+      "side": 1,
+      "message": "I\u0027m only using a switch because we\u0027ll add other components later.",
+      "parentUuid": "6e936f18_e295c536",
+      "revId": "bcca52224a5303b0aea278b9ca8a1bfef7500250",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
