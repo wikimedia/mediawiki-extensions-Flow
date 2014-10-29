@@ -19,13 +19,6 @@ When(/^I click the Post Actions link on the 3rd comment on the topic$/) do
   on(FlowPage).third_post_actions_link_element.when_present.click
 end
 
-When(/^I go to an old style permalink to my topic$/) do
-  on(FlowPage) do |curPage|
-    workflowId = curPage.flow_first_topic_element.attribute( 'data-flow-id' )
-    visit(FlowOldPermalinkPage, :using_params => {:workflow_id => workflowId})
-  end
-end
-
 Then(/^I see only one topic on the page$/) do
   on(FlowPage) do |page|
     # We should have the a post with a heading
