@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_57dd4f72",
+        "filename": "includes/Actions/Action.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-10-30T15:26:08Z",
+      "side": 1,
+      "message": "Some other patch had taken out the no longer used WebRequest, Title \u0026 UUID.\n\nhttps://gerrit.wikimedia.org/r/#/c/170049/ brings them back.",
+      "revId": "b1584903d075b65e93d4295773f72731705d7ede",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
