@@ -12,7 +12,7 @@
 			{{else}}
 				<div class="flow-post-main flow-post-moderated">
 					<span class="flow-moderated-post-content">
-						{{~l10n "post_moderation_state" moderateState replyToId moderator.name~}}
+						{{> flow_post_moderation_state}}
 					</span>
 				</div>
 			{{/ifCond}}

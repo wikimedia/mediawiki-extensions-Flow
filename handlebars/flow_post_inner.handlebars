@@ -16,11 +16,7 @@
 
 	{{#if isModerated}}
 		<div class="flow-moderated-post-content">
-			{{~#if replyToId~}}
-				{{l10n (concat "flow-" moderateState "-post-content") moderator.name}}
-			{{~else~}}
-				{{l10n (concat "flow-" moderateState "-title-content") moderator.name}}
-			{{~/if~}}
+			{{> flow_post_moderation_state}}
 		</div>
 	{{/if}}
 

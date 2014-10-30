@@ -13,7 +13,8 @@ POST_SUBTEMPLATES=flow_post.handlebars \
 		flow_post_meta_actions.handlebars \
 		flow_post_replies.handlebars \
 		flow_reply_form.handlebars \
-		flow_moderation_actions_list.handlebars
+		flow_moderation_actions_list.handlebars \
+		flow_post_moderation_state.handlebars
 
 TOPIC_SUBTEMPLATES=flow_topic.handlebars \
 		flow_topic_titlebar.handlebars \
@@ -27,7 +28,8 @@ TOPIC_SUBTEMPLATES=flow_topic.handlebars \
 		flow_load_more.handlebars \
 		flow_errors.handlebars \
 		flow_form_buttons.handlebars \
-		flow_moderation_actions_list.handlebars
+		flow_moderation_actions_list.handlebars \
+		flow_post_moderation_state.handlebars
 
 all: compiled/flow_block_loop.handlebars.php \
 		compiled/flow_block_header.handlebars.php \
