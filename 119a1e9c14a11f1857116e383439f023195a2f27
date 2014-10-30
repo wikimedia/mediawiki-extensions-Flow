@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_dea97c8e",
+        "filename": "includes/Formatter/RecentChanges.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-30T01:57:48Z",
+      "side": 1,
+      "message": "Looks like RCCacheEntry keeps the attributes, so can use the following on either:\n\n  $row-\u003erecentChange-\u003egetAttribute( \u0027wl_notificationtimestamp\u0027 );",
+      "revId": "119a1e9c14a11f1857116e383439f023195a2f27",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
