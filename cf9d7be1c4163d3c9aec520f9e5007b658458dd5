@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_030b0427",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-30T22:01:09Z",
+      "side": 1,
+      "message": "So why does this add flow_post_moderation_state.handlebars?\n\nAlso would be nice to mention the beginning, I assume it\u0027s\nchange Ia2f4a89575ccbdcb2b.\n\nSo \"Finish removing post_moderation_state i18n message begun with change Ia2f4a89575ccbdcb2b\" would be an improvement.",
+      "revId": "cf9d7be1c4163d3c9aec520f9e5007b658458dd5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
