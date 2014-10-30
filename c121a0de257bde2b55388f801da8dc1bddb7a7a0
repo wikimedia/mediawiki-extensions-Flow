@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_0d17b4f3",
+        "filename": "includes/Formatter/RecentChanges.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-30T18:30:36Z",
+      "side": 1,
+      "message": "we currently require both a topic title and an initial post for topic creation",
+      "revId": "c121a0de257bde2b55388f801da8dc1bddb7a7a0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_ad8a401a",
+        "filename": "includes/Formatter/RecentChanges.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-30T18:30:36Z",
+      "side": 1,
+      "message": "i don\u0027t really have anything better.\n\nAn alternative solution could be, since new-post is always followed by a reply, to always hide the new-post and only display the reply.  This at least keeps consistent with the other formatters since we load the root post for all revisions. The problem then becomes which post is the first reply, any benefit gained is likely lost in the code that has to decide if a particular reply is the first reply to a topic or just another reply.",
+      "revId": "c121a0de257bde2b55388f801da8dc1bddb7a7a0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
