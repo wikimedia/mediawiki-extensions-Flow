@@ -21,7 +21,11 @@
 {{#if isModerated}}
 	<div class="flow-moderated-topic-title flow-ui-text-truncated">
 		{{~noop~}}{{> flow_topic_moderation_flag}}
-		{{l10n "post_moderation_state" moderateState replyToId moderator.name~}}
+		{{~#if replyToId~}}
+			{{l10n (concat "flow-" moderateState "-post-content") moderator.name}}
+		{{~else~}}
+			{{l10n (concat "flow-" moderateState "-title-content") moderator.name}}
+		{{~/if~}}
 	</div>
 	<div class="flow-moderated-topic-reason">
 		{{l10n "flow-topic-moderated-reason-prefix"}}

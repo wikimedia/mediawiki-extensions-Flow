@@ -205,18 +205,6 @@ class TemplateHelper {
 		$str = array_shift( $args );
 
 		switch( $str ) {
-		case 'post_moderation_state':
-			$type = $args[0];
-			$replyToId = $args[1];
-			$moderator = $args[2];
-			if ( !$replyToId ) {
-				$str = "flow-$type-title-content";
-			} else {
-				$str = "flow-$type-post-content";
-			}
-			$message = wfMessage( $str, $moderator );
-			break;
-
 		case 'time':
 			// This one is not used right now. The parsing of
 			// "x time ago" is done client-side (see its radically different
