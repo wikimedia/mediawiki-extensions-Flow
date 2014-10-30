@@ -1,6 +1,6 @@
 <div class="flow-post-main">
 	<span class="flow-moderated-post-content">
-		{{l10n "post_moderation_state" moderateState replyToId moderator.name}}
+		{{> flow_post_moderation_state}}
 	</span>
 	<span class="flow-undo">
 		{{#if actions.unhide}}

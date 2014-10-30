@@ -143,7 +143,9 @@
 	</form>
 ' : '').'
 ';},'flow_topic_moderation_flag' => function ($cx, $in) {return '<span class="wikiglyph'.LCRun3::hbch($cx, 'ifCond', Array(Array(((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null),'===','lock'),Array()), $in, function($cx, $in) {return ' wikiglyph-lock';}).''.LCRun3::hbch($cx, 'ifCond', Array(Array(((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null),'===','hide'),Array()), $in, function($cx, $in) {return ' wikiglyph-flag';}).''.LCRun3::hbch($cx, 'ifCond', Array(Array(((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null),'===','delete'),Array()), $in, function($cx, $in) {return ' wikiglyph-trash';}).'"></span>
-';},'flow_topic_titlebar_summary' => function ($cx, $in) {return '<div class="flow-topic-summary-container">
+';},'flow_post_moderation_state' => function ($cx, $in) {return ''.((LCRun3::ifvar($cx, ((isset($in['replyToId']) && is_array($in)) ? $in['replyToId'] : null))) ? ''.LCRun3::ch($cx, 'l10n', Array(Array(LCRun3::ch($cx, 'concat', Array(Array('flow-',((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null),'-post-content'),Array()), 'raw'),((isset($in['moderator']['name']) && is_array($in['moderator'])) ? $in['moderator']['name'] : null)),Array()), 'encq').'
+' : ''.LCRun3::ch($cx, 'l10n', Array(Array(LCRun3::ch($cx, 'concat', Array(Array('flow-',((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null),'-title-content'),Array()), 'raw'),((isset($in['moderator']['name']) && is_array($in['moderator'])) ? $in['moderator']['name'] : null)),Array()), 'encq').'
+').'';},'flow_topic_titlebar_summary' => function ($cx, $in) {return '<div class="flow-topic-summary-container">
 	'.LCRun3::p($cx, 'flow_errors', Array(Array($in),Array())).'
 	'.((LCRun3::ifvar($cx, ((isset($in['summary']) && is_array($in)) ? $in['summary'] : null))) ? '
 		<div class="flow-topic-summary">
@@ -171,9 +173,8 @@
 </div>
 '.((LCRun3::ifvar($cx, ((isset($in['isModerated']) && is_array($in)) ? $in['isModerated'] : null))) ? '
 	<div class="flow-moderated-topic-title flow-ui-text-truncated">'.htmlentities((string)((isset($in['noop']) && is_array($in)) ? $in['noop'] : null), ENT_QUOTES, 'UTF-8').''.LCRun3::p($cx, 'flow_topic_moderation_flag', Array(Array($in),Array())).'
-		'.((LCRun3::ifvar($cx, ((isset($in['replyToId']) && is_array($in)) ? $in['replyToId'] : null))) ? ''.LCRun3::ch($cx, 'l10n', Array(Array(LCRun3::ch($cx, 'concat', Array(Array('flow-',((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null),'-post-content'),Array()), 'raw'),((isset($in['moderator']['name']) && is_array($in['moderator'])) ? $in['moderator']['name'] : null)),Array()), 'encq').'
-		' : ''.LCRun3::ch($cx, 'l10n', Array(Array(LCRun3::ch($cx, 'concat', Array(Array('flow-',((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null),'-title-content'),Array()), 'raw'),((isset($in['moderator']['name']) && is_array($in['moderator'])) ? $in['moderator']['name'] : null)),Array()), 'encq').'
-		').'</div>
+		'.LCRun3::p($cx, 'flow_post_moderation_state', Array(Array($in),Array())).'
+	</div>
 	<div class="flow-moderated-topic-reason">
 		'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-moderated-reason-prefix'),Array()), 'encq').'
 		'.LCRun3::ch($cx, 'escapeContent', Array(Array(((isset($in['moderateReason']['format']) && is_array($in['moderateReason'])) ? $in['moderateReason']['format'] : null),((isset($in['moderateReason']['content']) && is_array($in['moderateReason'])) ? $in['moderateReason']['content'] : null)),Array()), 'encq').'
