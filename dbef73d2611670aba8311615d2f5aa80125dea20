@@ -16,6 +16,24 @@
       "revId": "dbef73d2611670aba8311615d2f5aa80125dea20",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_72c41995",
+        "filename": "tests/phpunit/PermissionsTest.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-30T16:57:48Z",
+      "side": 1,
+      "message": "not intended, just there because php unit wasn\u0027t showing me the full exception backtrace from the provider :)  removing",
+      "parentUuid": "6e936f18_e9ca9349",
+      "revId": "dbef73d2611670aba8311615d2f5aa80125dea20",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
