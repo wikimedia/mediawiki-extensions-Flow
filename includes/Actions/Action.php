@@ -75,8 +75,14 @@ class FlowAction extends Action {
 
 		$request = $this->context->getRequest();
 
-		$action = $request->getVal( 'action', 'view' );
+		// BC for urls pre july 2014 with workflow query parameter
+		$redirect = $this->getRedirectUrl( $request, $title );
+		if ( $redirect ) {
+			$output->redirect( $redirect );
+			return;
+		}
 
+		$action = $request->getVal( 'action', 'view' );
 		try {
 			/** @var WorkflowLoaderFactory $factory */
 			$factory = $container['factory.loader.workflow'];
@@ -97,5 +103,42 @@ class FlowAction extends Action {
 			$e->setOutput( $output );
 			throw $e;
 		}
+	}
+
+
+	/**
+	 * Flow used to output some permalink urls with workflow ids in them. Each
+	 * workflow now has its own page, so those have been deprecated. This checks
+	 * a web request for the old workflow parameter and returns a url to redirect
+	 * to if necessary.
+	 *
+	 * @param WebRequest $request
+	 * @param Title $title
+	 * @return string URL to redirect to or blank string for no redirect
+	 */
+	protected function getRedirectUrl( WebRequest $request, Title $title ) {
+		$workflowId = UUID::create( strtolower( $request->getVal( 'workflow' ) ) ?: null );
+		if ( !$workflowId ) {
+			return '';
+		}
+
+		/** @var ManagerGroup $storage */
+		$storage = Container::get( 'storage' );
+		/** @var Workflow $workflow */
+		$workflow = $storage->get( 'Workflow', $workflowId );
+
+		// The uuid points to a non-existant workflow
+		if ( !$workflow ) {
+			return '';
+		}
+
+		// The uuid points to the current page
+		$redirTitle = $workflow->getArticleTitle();
+		if ( $redirTitle->equals( $title ) ) {
+			return '';
+		}
+
+		// We need to redirect
+		return $redirTitle->getLinkURL();
 	}
 }
