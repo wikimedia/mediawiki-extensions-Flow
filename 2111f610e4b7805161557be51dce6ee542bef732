@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_23b96129",
+        "filename": "modules/engine/misc/flow-handlebars.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-30T21:10:36Z",
+      "side": 1,
+      "message": "This doesn\u0027t remove the extension, it returns everything before the first \u0027.\u0027\n\nA better implementation might be:\n\n    name.split(\".\").slice(0, -1).join(\".\")\n\nThe problem is only in theory, atm we don\u0027t use periods in names, but that doesn\u0027t seem like a good reason for this to be incorrect.",
+      "revId": "2111f610e4b7805161557be51dce6ee542bef732",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
