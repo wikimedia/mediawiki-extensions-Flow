@@ -53,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_726099cc",
+        "filename": "includes/Formatter/IRCLineUrlFormatter.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-30T16:55:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e936f18_d4ee3d86",
+      "revId": "5167da6903d1fbb9141426cf15cff5166a76e39c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_f48579a0",
         "filename": "includes/Formatter/IRCLineUrlFormatter.php",
         "patchSetId": 6
@@ -64,6 +82,24 @@
       "writtenOn": "2014-10-30T14:47:59Z",
       "side": 1,
       "message": "Shouldn\u0027t it return null, like other failure paths do/did?",
+      "revId": "5167da6903d1fbb9141426cf15cff5166a76e39c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_125fd514",
+        "filename": "includes/Formatter/IRCLineUrlFormatter.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-30T16:55:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e936f18_f48579a0",
       "revId": "5167da6903d1fbb9141426cf15cff5166a76e39c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
