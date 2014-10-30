@@ -102,7 +102,7 @@
 		   data-template="flow_moderate_{{moderationTemplate}}"
 		   data-role="unhide">
 			{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-flag"></span> {{/if~}}
-			{{~l10n (concat "flow-" moderationType "-action-unhide-" moderationTarget)~}}
+			{{~l10n (concat "flow-" moderationType "-action-unhide-" moderationTemplate)~}}
 		</a>
 		{{~null~}}
 	</li>
@@ -147,7 +147,7 @@
 		   data-template="flow_moderate_{{moderationTemplate}}"
 		   data-role="suppress">
 			{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-block"></span> {{/if~}}
-			{{~l10n (concat "flow-" moderationType "-action-suppress-" moderationTarget)~}}
+			{{~l10n (concat "flow-" moderationType "-action-suppress-" moderationTemplate)~}}
 		</a>
 		{{~null~}}
 	</li>
@@ -162,7 +162,7 @@
 		   data-template="flow_moderate_{{moderationTemplate}}"
 		   data-role="unsuppress">
 			{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-block"></span> {{/if~}}
-			{{~l10n (concat "flow-" moderationType "-action-unsuppress-" moderationTarget)~}}
+			{{~l10n (concat "flow-" moderationType "-action-unsuppress-" moderationTemplate)~}}
 		</a>
 		{{~null~}}
 	</li>
