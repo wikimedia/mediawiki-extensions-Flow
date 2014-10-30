@@ -4,6 +4,8 @@
 			"ElangoRamanujam"
 		]
 	},
+	"flow-history-action-delete-post": "நீக்கவும்",
+	"flow-history-action-hide-post": "மறைக்க",
 	"flow-lock-topic-submit": "தலைப்பைப் பூட்டுக",
 	"flow-unlock-topic-submit": "தலைப்பைத் திறக்கவும்",
 	"flow-topic-html-title": "$2ல் $1"
