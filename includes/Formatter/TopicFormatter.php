@@ -74,18 +74,6 @@ class TopicFormatter {
 			'roots' => $roots,
 			'posts' => $posts,
 			'revisions' => $revisions,
-			'links' => array(
-				'search' => array(
-					'url' => '',
-					'title' => '',
-				),
-				'pagination' => array(
-					'load_more' => array(
-						'url' => '',
-						'title' => '',
-					),
-				),
-			),
 		) + $this->getEmptyResult( $listWorkflow );
 	}
 
