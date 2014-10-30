@@ -67,6 +67,7 @@ $wgResourceModules += array(
 			"flow_post_author.handlebars",
 			"flow_post_actions.handlebars",
 			"flow_post_meta_actions.handlebars",
+			"flow_post_moderation_state.handlebars",
 			"flow_post_replies.handlebars",
 			"flow_reply_form.handlebars",
 			// Include dependent templates from handlebars/Makefile.
