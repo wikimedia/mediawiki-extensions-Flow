@@ -2,6 +2,7 @@
 
 namespace Flow\Tests\Parsoid;
 
+use Flow\Exception\WikitextException;
 use Flow\Parsoid\Utils;
 use Flow\Tests\FlowTestCase;
 use Title;
@@ -68,6 +69,45 @@ class ParsoidUtilsTest extends FlowTestCase {
 			$this->assertEquals( $expect->getPrefixedText(), $result->getPrefixedText(), $message );
 		} else {
 			$this->assertEquals( $expect, $result, $message );
+		}
+	}
+
+	static public function wikitextRoundtripProvider() {
+		return array(
+			array(
+				'italic text',
+				// text & expect
+				"''italic text''",
+				// title
+				Title::newMainPage(),
+			),
+			array(
+				'bold text',
+				// text & expect
+				"'''bold text'''",
+				// title
+				Title::newMainPage(),
+			),
+		);
+	}
+
+	/**
+	 * Test full roundtrip (wikitext -> html -> wikitext)
+	 *
+	 * It doesn't make sense to test only a specific path, since Parsoid's HTML
+	 * may change beyond our control & it doesn't really matter to us what
+	 * exactly the HTML looks like, as long as Parsoid is able to understand it.
+	 *
+	 * @dataProvider wikitextRoundtripProvider
+	 */
+	public function testwikitextRoundtrip( $message, $expect, Title $title ) {
+		// Check for Parsoid
+		try {
+			$html = Utils::convert( 'wikitext', 'html', $expect, $title );
+			$wikitext = Utils::convert( 'html', 'wikitext', $html, $title );
+			$this->assertEquals( $expect, trim( $wikitext ), $message );
+		} catch ( WikitextException $excep ) {
+			$this->markTestSkipped( 'Parsoid not enabled' );
 		}
 	}
 }
