@@ -136,6 +136,24 @@ class UUID {
 	}
 
 	/**
+	 * Returns a new 88 bit UUID in hexadecimal format.
+	 *
+	 * Due to a bug in sqlite on ubuntu 12.04, which our CI environment
+	 * runs on, we cannot use uuid's that have null bytes in their binary
+	 * representation. See https://bugzilla.wikimedia.org/show_bug.cgi?id=72367
+	 *
+	 * @return string
+	 */
+	static protected function generateNewUUID() {
+		do {
+			// new uuid in base 16 and pad to HEX_LEN with 0's
+			$hexValue = str_pad( \UIDGenerator::newTimestampedUID88( 16 ), self::HEX_LEN, '0', STR_PAD_LEFT );
+		} while( strpos( $hexValue, '00' ) !== false );
+
+		return $hexValue;
+	}
+
+	/**
 	 * Returns a UUID objects based on given input. Will automatically try to
 	 * determine the input format of the given $input or fail with an exception.
 	 *
@@ -147,9 +165,7 @@ class UUID {
 		// Most calls to UUID::create are binary strings, check string first
 		if ( is_string( $input ) || is_int( $input ) || $input === false ) {
 			if ( $input === false ) {
-				// new uuid in base 16 and pad to HEX_LEN with 0's
-				$hexValue = str_pad( \UIDGenerator::newTimestampedUID88( 16 ), self::HEX_LEN, '0', STR_PAD_LEFT );
-				return new static( $hexValue, static::INPUT_HEX );
+				return new static( self::generateNewUUID(), static::INPUT_HEX );
 			} else {
 				$len = strlen( $input );
 				if ( $len === self::BIN_LEN ) {
