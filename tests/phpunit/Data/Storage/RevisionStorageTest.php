@@ -30,7 +30,7 @@ class RevisionStorageTest extends \MediaWikiTestCase {
 					'rev_mod_user_id' => 42,
 				) ),
 				$this->equalTo( array(
-					'rev_id' => $id->getBinary(),
+					'rev_id' => wfGetDB( DB_SLAVE )->encodeBlob( $id->getBinary() ),
 				) )
 			)
 			->will( $this->returnValue( true ) );
