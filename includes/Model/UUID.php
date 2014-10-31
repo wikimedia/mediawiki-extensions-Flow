@@ -147,7 +147,6 @@ class UUID {
 		// Most calls to UUID::create are binary strings, check string first
 		if ( is_string( $input ) || is_int( $input ) || $input === false ) {
 			if ( $input === false ) {
-				// new uuid in base 16 and pad to HEX_LEN with 0's
 				$hexValue = str_pad( \UIDGenerator::newTimestampedUID88( 16 ), self::HEX_LEN, '0', STR_PAD_LEFT );
 				return new static( $hexValue, static::INPUT_HEX );
 			} else {
@@ -302,14 +301,20 @@ class UUID {
 	/**
 	 * @param array $array
 	 * @param string $format
-	 * @return array
+	 * @return string[]|Blob[] Typically an array of strings.  If required by the database when
+	 *  $format === 'binary' this will be an array of Blob objects.
 	 */
 	public static function convertUUIDs( $array, $format = 'binary' ) {
 		$array = ObjectManager::makeArray( $array );
+		$dbr = $format === 'binary' ? wfGetDB( DB_SLAVE ) : null;
 		foreach( $array as $key => $value ) {
-			if ( $value instanceof UUID ) {
+			if ( $value instanceof Blob ) {
+				if ( $format === 'alphadecimal' ) {
+					$array[$key] = UUID::create( $array[$key] )->getAlphadecimal();
+				}
+			} elseif ( $value instanceof UUID ) {
 				if ( $format === 'binary' ) {
-					$array[$key] = $value->getBinary();
+					$array[$key] = $dbr->encodeBlob( $value->getBinary() );
 				} elseif ( $format === 'alphadecimal' ) {
 					$array[$key] = $value->getAlphadecimal();
 				}
@@ -317,12 +322,15 @@ class UUID {
 				$len = strlen( $value );
 				if ( $format === 'alphadecimal' && $len === self::BIN_LEN ) {
 					$array[$key] = UUID::create( $value )->getAlphadecimal();
-				} elseif ( $format === 'binary' && (
-					( $len >= self::MIN_ALNUM_LEN && $len <= self::ALNUM_LEN )
-					||
-					$len === self::HEX_LEN
-				) ) {
-					$array[$key] = UUID::create( $value )->getBinary();
+				} elseif ( $format === 'binary' ) {
+					if (
+						( $len >= self::MIN_ALNUM_LEN && $len <= self::ALNUM_LEN )
+						||
+						$len === self::HEX_LEN
+					) {
+						$value = UUID::create( $value )->getBinary();
+					}
+					$array[$key] = $dbr->encodeBlob( $value );
 				}
 			}
 		}

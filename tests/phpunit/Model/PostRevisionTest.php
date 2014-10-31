@@ -5,6 +5,7 @@ namespace Flow\Tests\Model;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Tests\PostRevisionTestCase;
+use Blob;
 
 /**
  * @group Flow
@@ -28,6 +29,13 @@ class PostRevisionTest extends PostRevisionTestCase {
 		// Due to our desire to store alphadecimal values in cache and binary values on
 		// disk we need to perform uuid conversion before comparing
 		$roundtripRow = UUID::convertUUIDs( $roundtripRow, 'binary' );
+		// UUID::convertUUIDs outputs Blob's for the database, but to check roundtrip
+		// we just want the binary string
+		foreach ( $roundtripRow as $k => $v ) {
+			if ( $v instanceof Blob ) {
+				$roundtripRow[$k] = $v->fetch();
+			}
+		}
 		$this->assertEquals( $row, $roundtripRow );
 	}
 }
