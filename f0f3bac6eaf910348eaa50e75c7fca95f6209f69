@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_58657340",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-10-31T21:00:49Z",
+      "side": 1,
+      "message": "UUID::create( $value-\u003efetch() )",
+      "revId": "f0f3bac6eaf910348eaa50e75c7fca95f6209f69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
