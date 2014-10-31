@@ -48,10 +48,12 @@ class UUIDTest extends FlowTestCase {
 	}
 
 	static public function uuidConversionProvider() {
+		$dbr = wfGetDB( DB_SLAVE );
+
 		// sample uuid from UIDGenerator::newTimestampedUID128()
 		$numeric_128 = '6709199728898751234959525538795913762';
 		$hex_128 = wfBaseConvert( $numeric_128, 10, 16, 32 );
-		$bin_128 = pack( 'H*', $hex_128 );
+		$bin_128 = $dbr->encodeBlob( pack( 'H*', $hex_128 ) );
 		$pretty_128 = wfBaseConvert( $numeric_128, 10, 36 );
 
 		// Conversion from 128 bit to 88 bit takes the left
@@ -59,7 +61,7 @@ class UUIDTest extends FlowTestCase {
 		$bits_88 = substr( wfBaseConvert( $numeric_128, 10, 2, 128 ), 0, 88 );
 		$numeric_88 = wfBaseConvert( $bits_88, 2, 10 );
 		$hex_88 = wfBaseConvert( $numeric_88, 10, 16, 22 );
-		$bin_88 = pack( 'H*', $hex_88 );
+		$bin_88 = $dbr->encodeBlob( pack( 'H*', $hex_88 ) );
 		$pretty_88 = wfBaseConvert( $numeric_88, 10, 36 );
 
 		return array(
