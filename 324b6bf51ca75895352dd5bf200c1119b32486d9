@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_3d209995",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-31T18:25:36Z",
+      "side": 1,
+      "message": "Is there an upstream bug report for this?",
+      "revId": "324b6bf51ca75895352dd5bf200c1119b32486d9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_1217cc57",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-31T18:25:36Z",
+      "side": 1,
+      "message": "Needs comment: \"xxx Remove test when sqlite bug NNN gets fixed in Ubuntu 12.04  or WMF stops using this config in CI\"",
+      "revId": "324b6bf51ca75895352dd5bf200c1119b32486d9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_f224a0c2",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-10-31T18:25:36Z",
+      "side": 1,
+      "message": "It seems there could be a part of the 46-bit timestamp, or worse the node ID, counter, or clock sequence number, that results in a null byte for a long time period. The machine would sit in this loop endlessly.\n\nWe should a) only do this loop on buggy sqlite, b) only loop through this 4 times before giving up and wfDebugLog( \u0027Flow\u0027, __METHOD__ . \"to hell with it, gave up trying to get a UUID with no null bytes after 4 tries.\"",
+      "revId": "324b6bf51ca75895352dd5bf200c1119b32486d9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
