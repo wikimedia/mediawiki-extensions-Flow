@@ -174,6 +174,7 @@ $wgAutoloadClasses['Flow\\Model\\Reference'] = __DIR__ . '/includes/Model/Refere
 $wgAutoloadClasses['Flow\\Model\\TopicListEntry'] = __DIR__ . '/includes/Model/TopicListEntry.php';
 $wgAutoloadClasses['Flow\\Model\\URLReference'] = __DIR__ . '/includes/Model/Reference.php';
 $wgAutoloadClasses['Flow\\Model\\UUID'] = __DIR__ . '/includes/Model/UUID.php';
+$wgAutoloadClasses['Flow\\Model\\UUIDBlob'] = __DIR__ . '/includes/Model/UUID.php';
 $wgAutoloadClasses['Flow\\Model\\UserTuple'] = __DIR__ . '/includes/Model/UserTuple.php';
 $wgAutoloadClasses['Flow\\Model\\WikiReference'] = __DIR__ . '/includes/Model/Reference.php';
 $wgAutoloadClasses['Flow\\Model\\Workflow'] = __DIR__ . '/includes/Model/Workflow.php';

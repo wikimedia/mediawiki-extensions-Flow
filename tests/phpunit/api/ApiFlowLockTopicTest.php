@@ -14,7 +14,13 @@ class ApiFlowLockTopicTest extends ApiTestCase {
 	/**
 	 * @var array
 	 */
-	protected $tablesUsed = array( 'flow_revision', 'flow_tree_revision' );
+	protected $tablesUsed = array(
+		'flow_workflow',
+		'flow_revision',
+		'flow_tree_revision',
+		'flow_tree_node',
+		'flow_topic_list',
+	);
 
 	public function testLockTopic() {
 		$workflowId = $this->createTopic();

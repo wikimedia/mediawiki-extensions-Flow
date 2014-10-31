@@ -98,8 +98,8 @@ class TreeRepository {
 		$res = $dbw->insert(
 			$this->tableName,
 			array(
-				'tree_descendant_id' => $descendant->getBinary(),
-				'tree_ancestor_id' => $descendant->getBinary(),
+				'tree_descendant_id' => $dbw->encodeBlob( $descendant->getBinary() ),
+				'tree_ancestor_id' => $dbw->encodeBlob( $descendant->getBinary() ),
 				'tree_depth' => 0,
 			),
 			__METHOD__
@@ -111,12 +111,12 @@ class TreeRepository {
 					$this->tableName,
 					$this->tableName,
 					array(
-						'tree_descendant_id' => $dbw->addQuotes( $descendant->getBinary() ),
+						'tree_descendant_id' => $dbw->addQuotes( $dbw->encodeBlob( $descendant->getBinary() ) ),
 						'tree_ancestor_id' => 'tree_ancestor_id',
 						'tree_depth' => 'tree_depth + 1',
 					),
 					array(
-						'tree_descendant_id' => $ancestor->getBinary(),
+						'tree_descendant_id' => $dbw->encodeBlob( $ancestor->getBinary() ),
 					),
 					__METHOD__
 				);
@@ -139,7 +139,7 @@ class TreeRepository {
 				$rows = $dbw->select(
 					$this->tableName,
 					array( 'tree_depth' ),
-					array( 'tree_descendant_id' => $ancestor->getBinary() ),
+					array( 'tree_descendant_id' => $dbw->encodeBlob( $ancestor->getBinary() ) ),
 					__METHOD__
 				);
 
@@ -148,8 +148,8 @@ class TreeRepository {
 					$res &= $dbw->insert(
 						$this->tableName,
 						array(
-							'tree_descendant_id' => $descendant->getBinary(),
-							'tree_ancestor_id' => $ancestor->getBinary(),
+							'tree_descendant_id' => $dbw->encodeBlob( $descendant->getBinary() ),
+							'tree_ancestor_id' => $dbw->encodeBlob( $ancestor->getBinary() ),
 							'tree_depth' => $row->tree_depth + 1,
 						),
 						__METHOD__
@@ -236,7 +236,9 @@ class TreeRepository {
 			$this->tableName,
 			array( 'tree_descendant_id', 'tree_ancestor_id', 'tree_depth' ),
 			array(
-				'tree_descendant_id' => array_keys( $missingValues ),
+				'tree_descendant_id' => array_map( function( $v ) use ( $dbr ) {
+					return $dbr->encodeBlob( $v );
+				}, array_keys( $missingValues ) ),
 			),
 			__METHOD__
 		);
@@ -251,7 +253,7 @@ class TreeRepository {
 			$paths[$hexId][$row->tree_depth] = UUID::create( $row->tree_ancestor_id );
 		}
 
-		foreach( $paths as $descendantId => &$path) {
+		foreach( $paths as $descendantId => &$path ) {
 			if ( !$path ) {
 				$path = null;
 				continue;
