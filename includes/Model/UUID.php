@@ -300,21 +300,20 @@ class UUID {
 
 	/**
 	 * @param array $array
-	 * @param string $format
-	 * @return string[]|Blob[] Typically an array of strings.  If required by the database when
-	 *  $format === 'binary' this will be an array of Blob objects.
+	 * @param string $format Either 'plaintext' or 'binary'.  Defaults to 'binary'
+	 * @return string[]|UUIDBlob[] When $format === 'plaintext' returns an array of strings,
+	 *  $format === 'binary' will return an array of UUIDBlob objects.
 	 */
 	public static function convertUUIDs( $array, $format = 'binary' ) {
 		$array = ObjectManager::makeArray( $array );
-		$dbr = $format === 'binary' ? wfGetDB( DB_SLAVE ) : null;
 		foreach( $array as $key => $value ) {
-			if ( $value instanceof Blob ) {
+			if ( $value instanceof UUIDBlob ) {
 				if ( $format === 'alphadecimal' ) {
 					$array[$key] = UUID::create( $array[$key] )->getAlphadecimal();
 				}
 			} elseif ( $value instanceof UUID ) {
 				if ( $format === 'binary' ) {
-					$array[$key] = $dbr->encodeBlob( $value->getBinary() );
+					$array[$key] = new UUIDBlob( $value->getBinary() );
 				} elseif ( $format === 'alphadecimal' ) {
 					$array[$key] = $value->getAlphadecimal();
 				}
@@ -330,7 +329,7 @@ class UUID {
 					) {
 						$value = UUID::create( $value )->getBinary();
 					}
-					$array[$key] = $dbr->encodeBlob( $value );
+					$array[$key] = new UUIDBlob( $value );
 				}
 			}
 		}
@@ -419,3 +418,8 @@ class UUID {
 		return intval( $msTimestamp / 1000 );
 	}
 }
+
+/**
+ * Extend Blob so we can identify UUID specific blobs
+ */
+class UUIDBlob extends \Blob {}

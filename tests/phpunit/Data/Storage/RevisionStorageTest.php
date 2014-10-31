@@ -4,6 +4,7 @@ namespace Flow\Tests\Data\Storage;
 
 use Flow\Data\Storage\HeaderRevisionStorage;
 use Flow\Model\UUID;
+use Flow\Model\UUIDBlob;
 
 /**
  * @group Flow
@@ -30,7 +31,7 @@ class RevisionStorageTest extends \MediaWikiTestCase {
 					'rev_mod_user_id' => 42,
 				) ),
 				$this->equalTo( array(
-					'rev_id' => $id->getBinary(),
+					'rev_id' => new UUIDBlob( $id->getBinary() ),
 				) )
 			)
 			->will( $this->returnValue( true ) );
