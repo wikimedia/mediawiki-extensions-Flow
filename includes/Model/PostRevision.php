@@ -142,16 +142,16 @@ class PostRevision extends AbstractRevision {
 	 * @throws DataModelException
 	 */
 	static public function fromStorageRow( array $row, $obj = null ) {
-		if ( $row['rev_id'] !== $row['tree_rev_id'] ) {
+		/** @var $obj PostRevision */
+		$obj = parent::fromStorageRow( $row, $obj );
+		$treeRevId = UUID::create( $row['tree_rev_id'] );
+		if ( ! $obj->revId->equals( $treeRevId ) ) {
 			throw new DataModelException(
 				'tree revision doesn\'t match provided revision: '
-					. $row['tree_rev_id'] . ' != ' . $row['rev_id'],
+					. $treeRevId->getAlphadecimal() . ' != ' . $obj->revId->getAlphadecimal(),
 				'process-data'
 			);
 		}
-		/** @var $obj PostRevision */
-		$obj = parent::fromStorageRow( $row, $obj );
-
 		$obj->replyToId = UUID::create( $row['tree_parent_id'] );
 		$obj->postId = UUID::create( $row['rev_type_id'] );
 		$obj->origUser = UserTuple::newFromArray( $row, 'tree_orig_user_' );

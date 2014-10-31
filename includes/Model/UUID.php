@@ -2,12 +2,14 @@
 
 namespace Flow\Model;
 
+use Blob;
 use Flow\Data\ObjectManager;
+use Flow\Exception\FlowException;
 use Flow\Exception\InvalidInputException;
-use User;
 use Language;
 use MWTimestamp;
 use TimestampException;
+use User;
 
 /**
  * Immutable class modeling timestamped UUID's from
@@ -22,7 +24,7 @@ class UUID {
 	private static $instances;
 
 	/**
-	 * Provided binary UUID
+	 * binary UUID string
 	 *
 	 * @var string
 	 */
@@ -184,6 +186,8 @@ class UUID {
 		} else if ( is_object( $input ) ) {
 			if ( $input instanceof UUID ) {
 				return $input;
+			} elseif ( $input instanceof Blob ) {
+				return self::create( $input->fetch() );
 			} else {
 				throw new InvalidInputException( 'Unknown input of type ' . get_class( $input ), 'invalid-input' );
 			}
@@ -204,7 +208,8 @@ class UUID {
 	}
 
 	/**
-	 * @return string
+	 * @return Blob|string UUID encoded in binary format for database storage
+	 * @throws FlowException
 	 */
 	public function getBinary() {
 		if ( $this->binaryValue !== null ) {
@@ -215,9 +220,13 @@ class UUID {
 			$this->hexValue = static::alnum2hex( $this->alphadecimalValue );
 			self::$instances[self::INPUT_HEX][$this->hexValue] = $this;
 			$this->binaryValue = static::hex2bin( $this->hexValue );
+		} else {
+			throw new FlowException( 'No binary, hex or alphadecimal value available' );
 		}
 		self::$instances[self::INPUT_BIN][$this->binaryValue] = $this;
-		return $this->binaryValue;
+		// finally, encode the blob for database storage.  This value
+		// may be a Blob object and unusable as an array key.
+		return $this->encodeBlob( $this->binaryValue );
 	}
 
 	/**
@@ -300,20 +309,30 @@ class UUID {
 	}
 
 	/**
+	 * Takes an array of rows going to/from the database/cache.  Converts uuid and
+	 * things that look like uuids into the requested format.
+	 *
 	 * @param array $array
 	 * @param string $format
-	 * @return array
+	 * @return string[]|Blob[] Typically an array of strings.  If required by the database when
+	 *  $format === 'binary' uuid values will be represented as Blob objects.
 	 */
 	public static function convertUUIDs( $array, $format = 'binary' ) {
 		$array = ObjectManager::makeArray( $array );
 		foreach( $array as $key => $value ) {
-			if ( $value instanceof UUID ) {
+			if ( $value instanceof Blob ) {
+				// database encoded binary value
+				if ( $format === 'alphadecimal' ) {
+					$array[$key] = UUID::create( $value->fetch() )->getAlphadecimal();
+				}
+			} elseif ( $value instanceof UUID ) {
 				if ( $format === 'binary' ) {
 					$array[$key] = $value->getBinary();
 				} elseif ( $format === 'alphadecimal' ) {
 					$array[$key] = $value->getAlphadecimal();
 				}
 			} elseif ( is_string( $value ) && substr( $key, -3 ) === '_id' ) {
+				// things that look like uuids
 				$len = strlen( $value );
 				if ( $format === 'alphadecimal' && $len === self::BIN_LEN ) {
 					$array[$key] = UUID::create( $value )->getAlphadecimal();
@@ -322,6 +341,10 @@ class UUID {
 					||
 					$len === self::HEX_LEN
 				) ) {
+					// Note that if a value is a binary string, but needs to be encoded
+					// for the database, that is unhandled here.  A patch is under
+					// consideration to allow binary data to always be wrapped in a Blob
+					// to clear up this inconsistency.
 					$array[$key] = UUID::create( $value )->getBinary();
 				}
 			}
@@ -409,5 +432,21 @@ class UUID {
 	public static function hex2timestamp( $hex ) {
 		$msTimestamp = hexdec( substr( $hex, 0, 12 ) ) >> 2;
 		return intval( $msTimestamp / 1000 );
+	}
+
+	/**
+	 * encode a binary string for database storage
+	 *
+	 * @param string
+	 * @return Blob|string
+	 */
+	protected function encodeBlob( $binary ) {
+		static $dbr;
+		if ( $dbr === null ) {
+			// assume the any potential database we connect to is
+			// the same as this slave.
+			$dbr = wfGetDB( DB_SLAVE );
+		}
+		return $dbr->encodeBlob( $binary );
 	}
 }
