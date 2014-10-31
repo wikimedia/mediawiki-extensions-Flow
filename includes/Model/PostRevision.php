@@ -101,13 +101,18 @@ class PostRevision extends AbstractRevision {
 	/**
 	 * DO NOT USE THIS METHOD!
 	 *
-	 * Seriously, you probably don't want to use this method. Although it's kind
-	 * of similar to Title::newFrom* or User::newFrom*, chances are slim to none
+	 * Seriously, you probably don't want to use this method, except from within
+	 * this class.
+	 *
+	 * Although it may seem similar to Title::newFrom* or User::newFrom*, chances are slim to none
 	 * that this will do what you'd expect.
+	 *
 	 * Unlike Title & User etc, a post is not something some object that can be
 	 * used in isolation: a post should always be retrieved via it's parents,
 	 * via a workflow, ...
-	 * The only reason we have this method is so that, when failing to load a
+	 *
+	 * The only reasons we have this method are for creating root posts
+	 * (called from PostRevision->create), and so when failing to load a
 	 * post, we can create a stub object.
 	 *
 	 * @param UUID $uuid
@@ -181,8 +186,12 @@ class PostRevision extends AbstractRevision {
 	 */
 	public function reply( Workflow $workflow, User $user, $content, $changeType = 'reply' ) {
 		$reply = new self;
-		// No great reason to create two uuid's,  a post and its first revision can share a uuid
+
+		// UUIDs should not be reused for different entities/entity types in the future.
+		// (It is also inconsistent with newFromId, which uses separate ones.)
+		// This may be changed here in the future.
 		$reply->revId = $reply->postId = UUID::create();
+
 		$reply->user = UserTuple::newFromUser( $user );
 		$reply->origUser = $reply->user;
 		$reply->replyToId = $this->postId;
