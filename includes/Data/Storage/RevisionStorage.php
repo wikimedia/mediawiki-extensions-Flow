@@ -10,6 +10,7 @@ use Flow\Data\ObjectManager;
 use Flow\DbFactory;
 use Flow\Exception\DataModelException;
 use Flow\Model\UUID;
+use Flow\Model\UUIDBlob;
 use MWException;
 
 /**
@@ -225,12 +226,11 @@ abstract class RevisionStorage extends DbStorage {
 	protected function findRevId( array $queries ) {
 		$duplicator = new ResultDuplicator( array( 'rev_id' ), 1 );
 		$pks = array();
-		$dbr = $this->dbFactory->getDB( DB_SLAVE );
 		foreach ( $queries as $idx => $query ) {
 			$query = UUID::convertUUIDs( (array) $query, 'alphadecimal' );
 			$duplicator->add( $query, $idx );
 			$id = $query['rev_id'];
-			$pks[$id] = $dbr->encodeBlob( UUID::create( $id )->getBinary() );
+			$pks[$id] = new UUIDBlob( UUID::create( $id )->getBinary() );
 		}
 
 		return $this->findRevIdReal( $duplicator, $pks );
