@@ -135,7 +135,6 @@ class TreeRepository {
 			 * @see http://dba.stackexchange.com/questions/45270/mysql-error-1137-hy000-at-line-9-cant-reopen-table-temp-table
 			 */
 			if ( !$res && $dbw->lastErrno() === 1137 ) {
-				// @todo: needs to be done for ALL depths, not just one
 				$rows = $dbw->select(
 					$this->tableName,
 					array( 'tree_depth', 'tree_ancestor_id' ),
@@ -202,28 +201,27 @@ class TreeRepository {
 	 * @return UUID[][] Associative array, key is the post ID in hex, value is the path as an array.
 	 */
 	public function findRootPaths( array $descendants ) {
+		// alphadecimal => cachekey
 		$cacheKeys = array();
+		// alphadecimal => cache result ( distance => parent uuid obj )
 		$cacheValues = array();
+		// list of binary values for db query
 		$missingValues = array();
+		// alphadecimal => distance => parent uuid obj
+		$paths = array();
 
 		foreach( $descendants as $descendant ) {
 			$cacheKeys[$descendant->getAlphadecimal()] = $this->cacheKey( 'rootpath', $descendant );
 		}
 
 		$cacheResult = $this->cache->getMulti( array_values( $cacheKeys ) );
-		// Memcached BagOStuff only returns found keys, but the redis bag
-		// returns false for found keys.
-		$cacheResult = array_filter(
-			$cacheResult,
-			function( $val ) { return $val !== false; }
-		);
-
 		foreach( $descendants as $descendant ) {
-			if ( isset( $cacheResult[$cacheKeys[$descendant->getAlphadecimal()]] ) ) {
-				$cacheValues[$descendant->getAlphadecimal()] = $cacheResult[$cacheKeys[$descendant->getAlphadecimal()]];
+			$alpha = $descendant->getAlphadecimal();
+			if ( isset( $cacheResult[$cacheKeys[$alpha]] ) ) {
+				$cacheValues[$alpha] = $cacheResult[$cacheKeys[$alpha]];
 			} else {
-				// This doubles as a way to convert binary UUIDs to alphanumeric
-				$missingValues[$descendant->getBinary()] = $descendant->getAlphadecimal();
+				$missingValues[] = $descendant->getBinary();
+				$paths[$alpha] = array();
 			}
 		}
 
@@ -236,7 +234,7 @@ class TreeRepository {
 			$this->tableName,
 			array( 'tree_descendant_id', 'tree_ancestor_id', 'tree_depth' ),
 			array(
-				'tree_descendant_id' => array_keys( $missingValues ),
+				'tree_descendant_id' => $missingValues,
 			),
 			__METHOD__
 		);
@@ -245,18 +243,19 @@ class TreeRepository {
 			return $cacheValues;
 		}
 
-		$paths = array_fill_keys( array_keys( $missingValues ), array() );
 		foreach ( $res as $row ) {
-			$hexId = $missingValues[$row->tree_descendant_id];
-			$paths[$hexId][$row->tree_depth] = UUID::create( $row->tree_ancestor_id );
+			$alpha = UUID::create( $row->tree_descendant_id )->getAlphadecimal();
+			$paths[$alpha][$row->tree_depth] = UUID::create( $row->tree_ancestor_id );
 		}
 
-		foreach( $paths as $descendantId => &$path) {
+		foreach( $paths as $descendantId => &$path ) {
 			if ( !$path ) {
 				$path = null;
 				continue;
 			}
 
+			// sort by reverse distance, so furthest away
+			// parent (root) is at position 0.
 			ksort( $path );
 			$path = array_reverse( $path );
 
