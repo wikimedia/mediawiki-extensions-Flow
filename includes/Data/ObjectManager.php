@@ -176,6 +176,9 @@ class ObjectManager extends ObjectLocator {
 	 */
 	public function remove( $object, array $metadata = array() ) {
 		$section = new \ProfileSection( __METHOD__ );
+		if ( !isset( $this->loaded[$object] ) ) {
+			throw new FlowException( 'Object was not loaded through this object manager, use ObjectManager::merge if necessary' );
+		}
 		$old = $this->loaded[$object];
 		$this->storage->remove( $old );
 		foreach ( $this->lifecycleHandlers as $handler ) {
