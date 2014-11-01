@@ -364,7 +364,9 @@
 	'.LCRun3::hbch($cx, 'eachPost', Array(Array($cx['scopes'][0],$in),Array()), $in, function($cx, $in) {return '
 		'.LCRun3::p($cx, 'flow_topic', Array(Array($in),Array())).'
 	';}).'
-';}).'';},'flow_load_more' => function ($cx, $in) {return ''.((LCRun3::ifvar($cx, ((isset($in['links']['pagination']['fwd']) && is_array($in['links']['pagination'])) ? $in['links']['pagination']['fwd'] : null))) ? '
+';}).'';},'flow_no_more' => function ($cx, $in) {return '<div class="flow-no-more">
+	'.LCRun3::ch($cx, 'l10n', Array(Array('flow-no-more-fwd'),Array()), 'encq').'
+</div>';},'flow_load_more' => function ($cx, $in) {return ''.((LCRun3::ifvar($cx, ((isset($in['links']['pagination']['fwd']) && is_array($in['links']['pagination'])) ? $in['links']['pagination']['fwd'] : null))) ? '
 	<div class="flow-load-more">
 		<div class="flow-error-container">
 			
@@ -377,7 +379,9 @@
 		   title="'.htmlentities((string)((isset($in['links']['pagination']['fwd']['title']) && is_array($in['links']['pagination']['fwd'])) ? $in['links']['pagination']['fwd']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 		   class="mw-ui-button mw-ui-progressive flow-load-interactive flow-ui-fallback-element"><span class="wikiglyph wikiglyph-article"></span> '.LCRun3::ch($cx, 'l10n', Array(Array('flow-load-more'),Array()), 'encq').'</a>
 	</div>
-' : '').'
+' : '
+	'.LCRun3::p($cx, 'flow_no_more', Array(Array($in),Array())).'
+').'
 ';},),
         'scopes' => Array($in),
         'sp_vars' => Array(),
