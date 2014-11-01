@@ -243,6 +243,7 @@ $wgAutoloadClasses['Flow\\Tests\\Data\\FlowNothingTest'] = __DIR__ . '/tests/php
 $wgAutoloadClasses['Flow\\Tests\\Data\\IndexTest'] = __DIR__ . '/tests/phpunit/Data/IndexTest.php';
 $wgAutoloadClasses['Flow\\Tests\\Data\\Index\\MockFeatureIndex'] = __DIR__ . '/tests/phpunit/Data/Index/FeatureIndexTest.php';
 $wgAutoloadClasses['Flow\\Tests\\Data\\Index\\UniqueFeatureIndexTests'] = __DIR__ . '/tests/phpunit/Data/Index/FeatureIndexTest.php';
+$wgAutoloadClasses['Flow\\Tests\\Data\\ManagerGroupTest'] = __DIR__ . '/tests/phpunit/Data/ManagerGroupTest.php';
 $wgAutoloadClasses['Flow\\Tests\\Data\\ObjectLocatorTest'] = __DIR__ . '/tests/phpunit/Data/ObjectLocatorTest.php';
 $wgAutoloadClasses['Flow\\Tests\\Data\\Pager\\PagerTest'] = __DIR__ . '/tests/phpunit/Data/Pager/PagerTest.php';
 $wgAutoloadClasses['Flow\\Tests\\Data\\RecentChanges\\RecentChangesMock'] = __DIR__ . '/tests/phpunit/Data/RecentChanges/RecentChangesTest.php';
