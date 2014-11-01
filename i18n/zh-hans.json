@@ -265,7 +265,7 @@
 	"flow-moderation-confirm-undelete-topic": "还原",
 	"flow-moderation-confirm-unhide-topic": "显示",
 	"flow-moderation-confirm-unlock-topic": "解锁",
-	"flow-moderation-confirmation-suppress-post": "该帖子已成功锁定。{{GENDER:$2|考虑}}此帖子提供$1条反馈。",
+	"flow-moderation-confirmation-suppress-post": "该帖子已成功锁定。{{GENDER:$2|考虑}}让$1为此帖子提供反馈。",
 	"flow-moderation-confirmation-delete-post": "此帖子已成功删除。{{GENDER:$2|考虑}}为此帖子提供$1反馈。",
 	"flow-moderation-confirmation-hide-post": "此帖子已成功隐藏。{{GENDER:$2|考虑}}为此帖子提供$1反馈。",
 	"flow-moderation-confirmation-unsuppress-post": "您已成功解锁上述帖子。",

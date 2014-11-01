@@ -33,6 +33,7 @@
 	"flow-reply-link": "{{GENDER:$1|Odpowiedz}}",
 	"flow-thank-link": "{{GENDER:$1|Podziękuj}}",
 	"flow-history-action-delete-post": "usuń",
+	"flow-history-action-hide-post": "ukryj",
 	"flow-history-action-undelete-post": "odtwórz",
 	"flow-history-action-restore-post": "przywróć",
 	"flow-post-action-view": "Bezpośredni link",
