@@ -730,11 +730,62 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		if ( !$this->permissions->isAllowed( $this->topicTitle, $action ) ) {
-			$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
+			$this->addError( 'permissions', $this->getDisallowedErrorMessage( $this->topicTitle ) );
 			return null;
 		}
 
 		return $this->topicTitle;
+	}
+
+	/**
+	 * @param AbstractRevision $revision
+	 * @return Message
+	 */
+	protected function getDisallowedErrorMessage( AbstractRevision $revision ) {
+		$state = $revision->getModerationState();
+
+		// state doesn't exist in log, display simple
+		if ( !\LogPage::isLogType( $state ) ) {
+			return $this->context->msg( 'flow-error-not-allowed-' . $state );
+		}
+
+		// check if user has sufficient permissions to see log
+		$logPage = new \LogPage( $state );
+		if ( !$this->user->isAllowed( $logPage->getRestriction() ) ) {
+			return $this->context->msg( 'flow-error-not-allowed-' . $state );
+		}
+
+		// LogEventsList::showLogExtract will write to OutputPage, but we
+		// actually just want that text, to write it ourselves wherever we want,
+		// so let's create an OutputPage object to then get the content from.
+		$rc = new \RequestContext();
+		$output = $rc->getOutput();
+
+		// get log extract
+		$entries = \LogEventsList::showLogExtract(
+			$output,
+			array( $state ),
+			$this->workflow->getArticleTitle()->getPrefixedText(),
+			'',
+			array(
+				'lim' => 10,
+				'showIfEmpty' => false,
+				// i18n messages: flow-error-not-allowed-hide-extract,
+				// flow-error-not-allowed-delete-extract, flow-error-not-allowed-suppress-extract
+				'msgKey' => array( 'flow-error-not-allowed-' . $state . '-extract' )
+			)
+		);
+
+		// check if there were any log extracts
+		if ( $entries ) {
+			$message = new \RawMessage( '$1' );
+			return $message->rawParams( $output->getHTML() );
+		}
+
+		// display simple message
+		// i18n messages: flow-error-not-allowed-hide,
+		// flow-error-not-allowed-delete, flow-error-not-allowed-suppress
+		return $this->context->msg( 'flow-error-not-allowed-' . $state );
 	}
 
 	/**
