@@ -152,7 +152,15 @@ class View extends ContextSource {
 
 		array_walk_recursive( $apiResponse, function( &$value ) {
 			if ( $value instanceof Anchor ) {
+				$anchor = $value;
 				$value = $value->toArray();
+
+				// TODO: We're looking into another approach for this
+				// using a parser function, so the URL doesn't have to be
+				// fully qualified.
+				// See https://bugzilla.wikimedia.org/show_bug.cgi?id=66746
+				$value['url'] = $anchor->getFullURL();
+
 			} elseif ( $value instanceof Message ) {
 				$value = $value->text();
 			}
