@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_cd10d555",
+        "filename": "includes/Data/Storage/TopicListLastUpdatedStorage.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-03T22:18:10Z",
+      "side": 1,
+      "message": "as long as we are already adjusting this code,  merging two arrays with + can be error prone with numerical indexes, the + operator should only be used to merge two associative arrays.\n\nbasically just mean this should be array_merge( $a, $b )",
+      "revId": "bfa4349d724b450244c64259748932b5101da9ae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_4d884576",
+        "filename": "includes/Formatter/TocTopicListFormatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-03T22:18:10Z",
+      "side": 1,
+      "message": "I\u0027m indecisive on how security should be handled here.\n\nOn one hand, we know that pagination only returned topics visible to everyone.  We also know that the only content being returned is being run through $this-\u003etemplating-\u003egetContent(), which does its own permission checks for safety.\n\nSo from the standpoint of basic security, we are covered and everything is safe.  \n\nWe have been intending to kill the entire $templating object for some time,  so i\u0027d kind of like to not create more code to be updated, and instead start the piecemeal conversion here?\n\nEssentially all you need is to accept a permissions object like the main topic list formatter, and use $this-\u003epermissions-isAllowed( $revision, \u0027view\u0027 ) on each.  Once that returns true the content below can just be $revision-\u003egetContent( $contentFormat ). (As an aside, all revisions have a \u0027view\u0027 and \u0027history\u0027 permission associated,  \u0027history\u0027 is for all the metadata and \u0027view\u0027 means metadata + content).\n\nBut this isn\u0027t a blocker, up to you if we want to wait and try and do that all at once later.",
+      "revId": "bfa4349d724b450244c64259748932b5101da9ae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_4dd60556",
+        "filename": "includes/api/ApiFlowNewTopic.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-03T22:18:10Z",
+      "side": 1,
+      "message": "it feels a smidgen odd to have a \u0027toconly\u0027 response when creating a new topic, I\u0027m imagining since this is here its used somewhere though?",
+      "revId": "bfa4349d724b450244c64259748932b5101da9ae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_ad4d4941",
+        "filename": "includes/api/ApiFlowViewTopicList.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-03T22:18:10Z",
+      "side": 1,
+      "message": "This is probably fine, I would just want to test it with the max values in prod to see what it does after this deploys.\n\nNot sure if there is an easy way, but it seems like if we are concerned about the amount of processing done we would want different maximum\u0027s for toconly and complete responses.  This is something we could come back to though.",
+      "revId": "bfa4349d724b450244c64259748932b5101da9ae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_6d5f41e9",
+        "filename": "tests/phpunit/api/ApiFlowViewTopicListTest.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-03T22:18:10Z",
+      "side": 1,
+      "message": "200 line test :(  But i don\u0027t have any better suggestions",
+      "revId": "bfa4349d724b450244c64259748932b5101da9ae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
