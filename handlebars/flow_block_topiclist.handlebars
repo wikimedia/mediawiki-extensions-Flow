@@ -1,6 +1,6 @@
 {{> flow_board_navigation}}
 
-<div class="flow-board">
+<div class="flow-board" data-flow-sortby="{{sortby}}">
 	<div class="flow-newtopic-container">
 		{{! No-JS gets a link to separate page with newtopic form }}
 		<div class="flow-nojs">
@@ -16,6 +16,6 @@
 	<div class="flow-topics">
 		{{> flow_topiclist_loop}}
 
-		{{> flow_load_more this loadMoreObject=links.pagination.fwd}}
+		{{> flow_load_more this loadMoreApiHandler="loadMoreTopics" loadMoreTarget="window" loadMoreContainer="< .flow-topics" loadMoreTemplate="flow_topiclist_loop" loadMoreObject=links.pagination.fwd}}
 	</div>
 </div>
