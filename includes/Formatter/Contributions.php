@@ -104,7 +104,7 @@ class Contributions extends AbstractFormatter {
 			array(
 				'href' => $anchor->getFullURL(),
 				'data-flow-interactive-handler' => 'moderationDialog',
-				'data-template' => "flow_moderate_$type",
+				'data-flow-template' => "flow_moderate_$type",
 				'data-role' => $key,
 				'class' => 'flow-history-moderation-action flow-click-interactive',
 			),
