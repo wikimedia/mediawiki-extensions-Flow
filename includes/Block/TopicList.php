@@ -250,6 +250,7 @@ class TopicListBlock extends AbstractBlock {
 		// @todo Once we migrate View.php to use the API directly
 		// all defaults will be handled by API and not here.
 		$requestOptions += array(
+			'include-offset' => false,
 			'offset-id' => false,
 			'offset-dir' => 'fwd',
 			'offset' => false,
@@ -268,6 +269,10 @@ class TopicListBlock extends AbstractBlock {
 
 		if ( $requestOptions['offset-dir'] ) {
 			$findOptions['pager-dir'] = $requestOptions['offset-dir'];
+		}
+
+		if ( $requestOptions['include-offset'] ) {
+			$findOptions['pager-include-offset'] = $requestOptions['include-offset'];
 		}
 
 		if ( $requestOptions['api'] ) {
