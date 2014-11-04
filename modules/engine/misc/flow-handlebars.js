@@ -216,9 +216,7 @@
 	 * @returns {String}
 	 */
 	FlowHandlebars.prototype.uuidTimestamp = function ( uuid, timeAgoOnly ) {
-		var timestamp = parseInt( uuid, 36 ).toString( 2 ); // base-36 to base-10 to base-2
-		timestamp = Array( 88 + 1 - timestamp.length ).join( '0' ) + timestamp; // left pad 0 to 88 chars
-		timestamp = parseInt( timestamp.substr( 0, 46 ), 2 ); // first 46 chars base-2 to base-10
+		var timestamp = mw.flow.uuidToTime( uuid );
 
 		return FlowHandlebars.prototype.timestamp( timestamp, timeAgoOnly );
 	};
