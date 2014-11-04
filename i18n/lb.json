@@ -42,6 +42,8 @@
 	"flow-reply-link": "{{GENDER:$1|Äntwerten}}",
 	"flow-thank-link": "{{GENDER:$1|Merci soen}}",
 	"flow-lock-link": "{{GENDER:$1|Spären}}",
+	"flow-history-action-delete-post": "läschen",
+	"flow-history-action-hide-post": "verstoppen",
 	"flow-post-action-view": "Permanentlink",
 	"flow-post-action-post-history": "Versiounen",
 	"flow-post-action-delete-post": "Läschen",
