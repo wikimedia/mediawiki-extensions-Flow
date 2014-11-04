@@ -4,11 +4,6 @@
 		{{!-- placeholder for javascript injected errors --}}
 	</div>
 	<div class="flow-board-navigation-inner">
-		<a href="javascript:void(0);"
-		   class="flow-board-navigator-active flow-board-navigator-first">
-			<span class="wikiglyph wikiglyph-stripe-toc"></span>
-			<span class="flow-load-interactive" data-flow-load-handler="boardNavigationTitle">{{l10n "flow-board-header-browse-topics-link"}}</span>
-		</a>
 		{{!-- Click for sorting options, not sure what this url should be --}}
 		<a href="javascript:void(0);"
 		   class="flow-board-navigator-last flow-ui-tooltip-target"
@@ -21,7 +16,7 @@
 			{{~/ifCond~}}
 		   "
 		   data-flow-interactive-handler="menuToggle"
-		   data-flow-menu-target="< .flow-board-navigation .flow-menu">
+		   data-flow-menu-target="< .flow-board-navigation .flow-board-sort-menu">
 			{{~#ifCond sortby "===" "updated"}}
 				{{l10n "flow-recent-topics"}}
 			{{else}}
@@ -29,10 +24,35 @@
 			{{/ifCond}}
 			<span class="wikiglyph wikiglyph-caret-down"></span>
 		</a>
+
+		<a href=""
+		   data-flow-interactive-handler="apiRequest"
+		   data-flow-api-target="< .flow-board-navigation .flow-board-toc-menu .flow-list"
+		   data-flow-api-handler="topicList" {{!-- also triggers menuToggle --}}
+		   data-flow-menu-target="< .flow-board-navigation .flow-board-toc-menu"
+		   class="flow-board-navigator-active flow-board-navigator-first">
+			<span class="wikiglyph wikiglyph-stripe-toc"></span>
+			<span class="flow-load-interactive" data-flow-load-handler="boardNavigationTitle">{{l10n "flow-board-header-browse-topics-link"}}</span>
+		</a>
 	</div>
-	<div class="flow-board-filter-menu">
-		<div class="flow-menu flow-menu-inverted">
-			<div class="flow-menu-js-drop flow-menu-js-drop-hidden"><a href="javascript:void(0);" class="flow-board-filter-menu-activator"></a></div>
+
+	<div class="flow-board-header-menu">
+		{{!-- Table of contents --}}
+		<div class="flow-menu flow-menu-inverted flow-board-toc-menu flow-load-interactive"
+		     data-flow-load-handler="menu"
+		     data-flow-toc-target=".flow-list">
+			<div class="flow-menu-js-drop flow-menu-js-drop-hidden"><a href="javascript:void(0);" class="flow-board-header-menu-activator"></a></div>
+			<ul class="mw-ui-button-container flow-list flow-load-interactive"
+			    data-flow-load-handler="tocMenu"
+			    data-flow-toc-target="li:not(.flow-load-more):last"
+			    data-flow-template="flow_board_toc_loop">
+			</ul>
+		</div>
+
+		{{!-- Topics sort menu --}}
+		<div class="flow-menu flow-board-sort-menu flow-load-interactive"
+		     data-flow-load-handler="menu">
+			<div class="flow-menu-js-drop flow-menu-js-drop-hidden"><a href="javascript:void(0);" class="flow-board-header-menu-activator"></a></div>
 			{{#if links.board-sort}}
 				<ul class="mw-ui-button-container flow-list">
 					{{~#ifCond sortby "===" "updated"}}

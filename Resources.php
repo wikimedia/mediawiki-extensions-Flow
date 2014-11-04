@@ -53,6 +53,7 @@ $wgResourceModules += array(
 			"flow_block_topicsummary_edit.handlebars",
 			"flow_block_topicsummary_single_view.handlebars",
 			"flow_board_navigation.handlebars",
+			"flow_board_toc_loop.handlebars",
 			"flow_edit_post.handlebars",
 			"flow_edit_post_ajax.handlebars",
 			"flow_edit_topic_title.handlebars",
@@ -315,6 +316,7 @@ $wgResourceModules += array(
 			// MW UI
 			'engine/misc/mw-ui.enhance.js',
 			'engine/misc/mw-ui.modal.js',
+
 			// FlowApi
 			'engine/misc/flow-api.js',
 			// FlowEventLog
@@ -325,18 +327,30 @@ $wgResourceModules += array(
 			'engine/components/flow-component.js',
 			'engine/components/common/flow-component-engines.js',
 			'engine/components/common/flow-component-events.js',
+			// Feature: flow-menu
+			'engine/components/common/flow-component-menus.js',
+
+			// Component: BoardAndHistoryBase
 			// Base class for both FlowBoardComponent and FlowBoardHistoryComponent
 			// Implements common methods between them, such as topic namespace checking
 			'engine/components/board/base/flow-boardandhistory-base.js',
-			// FlowBoardComponent
+
+			// Component: FlowBoardComponent
 			'engine/components/board/flow-board.js',
 			'engine/components/board/base/flow-board-api-events.js',
 			'engine/components/board/base/flow-board-interactive-events.js',
 			'engine/components/board/base/flow-board-load-events.js',
 			'engine/components/board/base/flow-board-misc.js',
+			// Feature: Load More
 			'engine/components/board/features/flow-board-loadmore.js',
-			// FlowBoardHistoryComponent
+			// Feature: Board Navigation Header
+			'engine/components/board/features/flow-board-navigation.js',
+			// Feature: Table of Contents
+			'engine/components/board/features/flow-board-toc.js',
+
+			// Component: FlowBoardHistoryComponent
 			'engine/components/board/flow-boardhistory.js',
+
 			// This must be the last file loaded
 			'flow-initialize.js',
 		),

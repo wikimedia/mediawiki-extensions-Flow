@@ -24,6 +24,7 @@
 	.flow-board-navigation-inner {
 		overflow: hidden;
 		border-bottom: 1px solid @colorGrayLight;
+		white-space: nowrap;
 	}
 
 	.flow-board-navigator-filter {
@@ -63,6 +64,13 @@
 		width: 100%;
 		background: @colorWhite;
 
+		.flow-board-toc-menu {
+			.flow-list {
+				// TODO: We can't use units like vh yet since IE 8 doesn't support them.
+				max-height: 85vh;
+			}
+		}
+
 		.flow-board-navigation-inner {
 			& > a {
 				display: none; // hide everything but the current topic title
@@ -80,9 +88,41 @@
 	}
 }
 
-// Filter menu below navigation bar
-.flow-board-filter-menu {
+// Filter & TOC menu below navigation bar
+.flow-board-header-menu {
 	position: relative;
+	float: right;
+
+	// Make TOC wide
+	.flow-board-toc-menu {
+		width: 100%;
+
+		.flow-list {
+			overflow-y: auto;
+			max-height: 18em;
+			max-height: 50vh;
+		}
+
+		a {
+			display: block;
+			overflow: hidden;
+			white-space: nowrap;
+			text-align: left;
+			text-overflow: ellipsis;
+			padding-left: 0;
+			padding-right: 0;
+
+			&.active {
+				font-weight: bold;
+			}
+		}
+
+		// This makes the list items align with the TOC bar text
+		.wikiglyph {
+			visibility: hidden;
+			font-weight: bold;
+		}
+	}
 }
 
 // MEDIA QUERIES
