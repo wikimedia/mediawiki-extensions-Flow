@@ -44,27 +44,6 @@
 	};
 
 	/**
-	 * Stores the load more button for use with infinite scroll.
-	 * @param {jQuery} $button
-	 */
-	FlowBoardComponentLoadEventsMixin.UI.events.loadHandlers.loadMore = function ( $button ) {
-		var flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $button );
-
-		if ( !flowBoard.$loadMoreNodes ) {
-			// Create a new $loadMoreNodes list
-			flowBoard.$loadMoreNodes = $();
-		} else {
-			// Remove any loadMore nodes that are no longer in the body
-			flowBoard.$loadMoreNodes = flowBoard.$loadMoreNodes.filter( function () {
-				return $( this ).closest( 'body' ).length;
-			} );
-		}
-
-		// Store this new loadMore node
-		flowBoard.$loadMoreNodes = flowBoard.$loadMoreNodes.add( $button );
-	};
-
-	/**
 	 * Bind the navigation header bar to the window.scroll event.
 	 * @param {jQuery} $boardNavigation
 	 */

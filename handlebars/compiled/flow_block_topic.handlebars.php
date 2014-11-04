@@ -269,12 +269,13 @@
 		</div>
 	</form>
 ' : '').'
-';},'flow_topic' => function ($cx, $in) {return '<div class="flow-topic
+';},'flow_topic' => function ($cx, $in) {return '<div class="flow-topic flow-load-interactive
             '.((LCRun3::ifvar($cx, ((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null))) ? 'flow-topic-moderatestate-'.htmlentities((string)((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null), ENT_QUOTES, 'UTF-8').'' : '').'
             '.((LCRun3::ifvar($cx, ((isset($in['isModerated']) && is_array($in)) ? $in['isModerated'] : null))) ? 'flow-topic-moderated' : '').'
             "
      id="flow-topic-'.htmlentities((string)((isset($in['postId']) && is_array($in)) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
      data-flow-id="'.htmlentities((string)((isset($in['postId']) && is_array($in)) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
+     data-flow-load-handler="topic"
 >
 	'.LCRun3::p($cx, 'flow_topic_titlebar', Array(Array($in),Array())).'
 
