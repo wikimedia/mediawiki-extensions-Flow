@@ -82,9 +82,42 @@
 	}
 }
 
-// Filter menu below navigation bar
-.flow-board-filter-menu {
+// Filter & TOC menu below navigation bar
+.flow-board-header-menu {
 	position: relative;
+	float: right;
+
+	// Make TOC wide
+	.flow-board-toc-menu {
+		width: 100%;
+
+		.flow-list {
+			overflow-y: auto;
+			max-height: 18em;
+			max-height: 85vh;
+		}
+
+		a {
+			display: block;
+			overflow: hidden;
+			white-space: nowrap;
+			text-align: left;
+			text-overflow: ellipsis;
+			padding-left: 0;
+			padding-right: 0;
+
+			&.active {
+				color: @colorProgressive;
+				font-weight: bold;
+			}
+		}
+
+		// This makes the list items align with the TOC bar text
+		.wikiglyph {
+			visibility: hidden;
+			font-weight: bold;
+		}
+	}
 }
 
 // MEDIA QUERIES

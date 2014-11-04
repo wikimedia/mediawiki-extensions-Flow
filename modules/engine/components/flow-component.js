@@ -8,8 +8,9 @@
 	/**
 	 * Inherited base class. Stores the instance in the class's instance registry.
 	 * @param {jQuery} $container
-	 * @extends FlowComponentEventsMixin
-	 * @extends FlowComponentEnginesMixin
+	 * @mixins FlowComponentEventsMixin
+	 * @mixins FlowComponentEnginesMixin
+	 * @mixins FlowComponentMenusFeatureMixin
 	 * @constructor
 	 */
 	function FlowComponent( $container ) {
