@@ -184,10 +184,25 @@ abstract class FeatureIndex implements Index {
 			$dir = 'rev';
 		}
 
+		// Get the item at offset-id in the results as well if needed
+		$startPos = 1;
+		if (
+			isset( $options['include-offset'] ) &&
+			$options['include-offset']
+		) {
+			if ( $dir === 'fwd' ) {
+				// Going forward, fetch the first result
+				$startPos = 0;
+			} else {
+				// Going backwards, fetch the last result
+				$limit += 1;
+			}
+		}
+
 		$offset = $this->getOffsetFromKey( $rows, $offsetId );
 
 		if ( $dir === 'fwd' ) {
-			$startPos = $offset + 1;
+			$startPos += $offset;
 		} elseif ( $dir === 'rev' ) {
 			$startPos = $offset - $limit;
 
@@ -201,8 +216,6 @@ abstract class FeatureIndex implements Index {
 				}
 				$startPos = 0;
 			}
-		} else {
-			$startPos = 0;
 		}
 
 		return array( $startPos, $limit );
