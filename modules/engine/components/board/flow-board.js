@@ -117,6 +117,23 @@
 
 		this.emitWithReturn( 'makeContentInteractive', this );
 
+		// Initialize editors, turning them from textareas into editor objects
+		if ( typeof this.editorTimer === 'undefined' ) {
+			/*
+			 * When this method is first run, all page elements are initialized.
+			 * We probably don't need editor immediately, so defer loading it
+			 * to speed up the rest of the work that needs to be done.
+			 */
+			this.editorTimer = setTimeout( $.proxy( function ( $container ) { this.emitWithReturn( 'initializeEditors', $container ); }, this, $container ), 20000 );
+		} else {
+			/*
+			 * Subsequent calls here (e.g. when rendering the edit header form)
+			 * should immediately initialize the editors!
+			 */
+			clearTimeout( this.editorTimer );
+			this.emitWithReturn( 'initializeEditors', $container );
+		}
+
 		return $retObj;
 	}
 	FlowBoardComponent.prototype.reinitializeContainer = flowBoardComponentReinitializeContainer;
