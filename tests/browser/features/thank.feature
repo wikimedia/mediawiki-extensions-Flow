@@ -20,4 +20,4 @@ Feature: Thank author of a Flow post
     Given I am logged in
       And the "Talk:Flow QA" page has a new unmoderated topic created by me
       And I am on Flow page
-    Then I should not see the Thank button
+    Then I should not see a Thank button
