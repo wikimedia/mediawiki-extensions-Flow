@@ -76,7 +76,7 @@
 
 		// Remove any of the old elements that are still in use
 		if ( $header.length ) {
-			if ( this.$header ) {
+				if ( this.$header ) {
 				$retObj = $retObj.add( this.$header.replaceWith( $header ) );
 				this.$header.remove();
 			}
