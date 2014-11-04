@@ -50,8 +50,11 @@
 }
 
 // When the load more wrapper is being processed, show the spinning loading icon
-.flow-topics > .flow-load-more.flow-api-inprogress {
-	.flow-loading;
+.flow-load-more.flow-api-inprogress {
+	.flow-topics > &,
+	.flow-board-header-menu .flow-list & {
+		.flow-loading;
+	}
 }
 
 // Basic API interaction indicator
