@@ -284,65 +284,9 @@
 	};
 
 	/**
-	 *
-	 * @param {Object} info (status:done|fail, $target: jQuery)
-	 * @param {Object} data
-	 * @param {jqXHR} jqxhr
 	 * @returns {$.Promise}
-	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.loadMore = function ( info, data, jqxhr ) {
-		var $tmp,
-			$target = $( this ).closest( '.flow-load-more' ),
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $target );
-
-		if ( info.status !== 'done' ) {
-			// Error will be displayed by default, nothing else to wrap up
-			return $.Deferred().reject().promise();
-		}
-
-		// See bug 61097, Catch any random javascript error from
-		// parsoid so they don't break and stop the page
-		try {
-			// Render topiclist template
-			$target.before(
-				$tmp = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-					'flow_topiclist_loop',
-					data.flow[ 'view-topiclist' ].result.topiclist
-				) ).children()
-			);
-
-			// Run loadHandlers
-			flowBoard.emitWithReturn( 'makeContentInteractive', $tmp );
-		} catch( e ) {
-			// nothing to do, just silently ignore the external error
-		}
-
-		// Render load more template
-		$target.replaceWith(
-			$tmp = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-				'flow_load_more',
-				data.flow[ 'view-topiclist' ].result.topiclist
-			) ).children()
-		);
-
-		// Run loadHandlers
-		flowBoard.emitWithReturn( 'makeContentInteractive', $tmp );
-
-		// Remove the old load button (necessary if the above load_more template returns nothing)
-		$target.remove();
-
-		/*
-		 * Fire infinite scroll check again - if no (or few) topics were
-		 * added (e.g. because they're moderated), we should immediately
-		 * fetch more instead of waiting for the user to scroll again (when
-		 * there's no reason to scroll)
-		 */
-		flowBoard.emitWithReturn( 'scroll' );
 
 		return $.Deferred().resolve().promise();
-	};
-
-	/**
 	 * Renders the editable board header with the given API response.
 	 * @param {Object} info
 	 * @param {string} info.status "done" or "fail"
