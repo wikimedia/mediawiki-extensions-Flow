@@ -82,9 +82,28 @@
 	}
 }
 
-// Filter menu below navigation bar
-.flow-board-filter-menu {
+// Filter & TOC menu below navigation bar
+.flow-board-header-menu {
 	position: relative;
+	float: right;
+
+	// Make TOC wide
+	.flow-board-toc-menu {
+		width: 100%;
+
+		.flow-list {
+			overflow-y: auto;
+			max-height: 18em;
+		}
+
+		a {
+			display: block;
+			overflow: hidden;
+			white-space: nowrap;
+			text-align: left;
+			text-overflow: ellipsis;
+		}
+	}
 }
 
 // MEDIA QUERIES
