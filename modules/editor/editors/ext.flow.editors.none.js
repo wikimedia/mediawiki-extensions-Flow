@@ -17,7 +17,7 @@
 
 		// initialize at height of existing content & update on every keyup
 		this.$node.keyup( this.autoExpand );
-		this.autoExpand.call( this.$node.get( 0 ), 0 );
+		this.autoExpand.call( this.$node.get( 0 ) );
 	};
 
 	/**
@@ -45,19 +45,12 @@
 
 	/**
 	 * Auto-expand/shrink as content changes.
-	 *
-	 * @param {int} [animationTime] Time in milliseconds to animate to new height.
 	 */
-	mw.flow.editors.none.prototype.autoExpand = function( animationTime ) {
+	mw.flow.editors.none.prototype.autoExpand = function() {
 		var scrollHeight, $form, formBottom, windowBottom, maxHeightIncrease,
 			$this = $( this ),
 			height = $this.height(),
 			padding = $this.outerHeight() - $this.height() + 5;
-
-		// if not specified, default animation time = 50
-		if ( typeof animationTime !== 'number' ) {
-			animationTime = 50;
-		}
 
 		/*
 		 * Collapse to 0 height to get accurate scrollHeight for the content,
