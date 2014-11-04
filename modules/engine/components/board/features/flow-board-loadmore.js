@@ -1,24 +1,25 @@
 /*!
- * Contains loadMore and jumpToTopic functionality.
+ * Contains loadMore, jumpToTopic, and topic titles list functionality.
  */
 
 ( function ( $, mw ) {
 	/**
-	 *
+	 * Bind UI events and infinite scroll handler for load more and titles list functionality.
 	 * @param {jQuery} $container
-	 * @extends FlowComponent
+	 * @this FlowBoardComponent
 	 * @constructor
 	 */
 	function FlowBoardComponentLoadMoreFeatureMixin( $container ) {
+		/** Stores a reference to each topic element currently on the page */
+		this.renderedTopics = {};
+		/** Stores a list of all topics titles by ID */
+		this.topicTitlesById = {};
+		/** Stores a list of all topic IDs in order */
+		this.orderedTopicIds = [];
+
 		this.bindNodeHandlers( FlowBoardComponentLoadMoreFeatureMixin.UI.events );
-		this.on( 'scroll', _flowBoardComponentLoadMoreFeatureInfiniteScrollCheck );
 	}
 	OO.initClass( FlowBoardComponentLoadMoreFeatureMixin );
-
-	/** Stores a reference of all topics currently on the page */
-	FlowBoardComponentLoadMoreFeatureMixin.prototype.loadedTopics = {};
-	/** Stores a list of all topic IDs we know about, in their sorted order */
-	FlowBoardComponentLoadMoreFeatureMixin.prototype.topicsList = {};
 
 	FlowBoardComponentLoadMoreFeatureMixin.UI = {
 		events: {
@@ -33,18 +34,18 @@
 
 	/**
 	 * Scrolls up or down to a specific topic, and loads any topics it needs to.
-	 * 1. If topic is loaded, scrolls to it.
-	 * 2. If topic is not loaded, but is within TOPICS_PER_PAGE of the last loaded topic, we load and scroll.
-	 * 3. If topic is not loaded and is beyond TOPICS_PER_PAGE, we load it and jump to it (no scroll).
+	 * 1. If topic is rendered, scrolls to it.
+	 * 2. Otherwise, we load the topic itself
 	 * 3b. When the user scrolls up, we begin loading the topics in between.
 	 * @param {String} topicId
 	 */
 	function flowBoardComponentLoadMoreFeatureJumpTo( topicId ) {
+		/** @type FlowBoardComponent*/
 		var flowBoard = this,
 			// Scrolls to the given topic, but disables infinite scroll loading while doing so
 			_scrollWithoutInfinite = function () {
 				flowBoard.infiniteScrollDisabled = true;
-				flowBoard.loadedTopics[ topicId ].conditionalScrollIntoView().queue( function ( next ) {
+				flowBoard.renderedTopics[ topicId ].conditionalScrollIntoView().queue( function ( next ) {
 					delete flowBoard.infiniteScrollDisabled;
 
 					// jQuery.dequeue
@@ -52,15 +53,19 @@
 				});
 			};
 
-		if ( flowBoard.loadedTopics[ topicId ] ) {
-			// 1. Topic is already on the page; just scroll to it
+		// 1. Topic is already on the page; just scroll to it
+		if ( flowBoard.renderedTopics[ topicId ] ) {
 			_scrollWithoutInfinite();
 			return;
 		}
 
-		// 2. @todo this requires the topics list API
+		// 2a. Topic is not rendered; do we know about this topic ID?
+		if ( !flowBoard.topicTitlesById[ topicId ] ) {
+			// We don't. Abort!
+			return flowBoard.debug( 'Unknown topicId', arguments );
+		}
 
-		// 3. Topic is beyond; load only that topic and jump to it
+		// 2b. Load that topic and jump to it
 		flowBoard.Api.apiCall( {
 			action: 'flow',
 			submodule: 'view-topiclist',
@@ -68,20 +73,45 @@
 			'vtlinclude-offset': true,
 			'vtllimit': 1, // @todo remove this and use the default
 			'vtloffset-id': topicId
-		} ).done( function( data ) {
-			_flowBoardComponentLoadMoreFeatureRenderTopics(
-				flowBoard,
-				data.flow['view-topiclist'].result.topiclist
-			);
-		} ).fail( function( code, data ) {
-			// Failed fetching the new data to be displayed.
-			// @todo how do we render this?
-			// $target = ????
-			// flowBoard.emitWithReturn( 'removeError', $target );
-			// var errorMsg = flowBoard.constructor.static.getApiErrorMessage( code, result );
-			// errorMsg = mw.msg( '????', errorMsg );
-			// flowBoard.emitWithReturn( 'showError', $target, errorMsg );
-		} );
+		} )
+			// Remove the load indicator
+			.always( function () {
+				// @todo support for multiple indicators on same target
+				//$target.removeClass( 'flow-api-inprogress' );
+				//$this.removeClass( 'flow-api-inprogress' );
+			} )
+			// On success, render the topic
+			.done( function( data ) {
+				/*
+				 * @param {FlowBoardComponent} flowBoard
+				 * @param {Object} topicsData
+				 * @param {boolean} [forceShowLoadMore]
+				 * @param {jQuery} [$insertAt]
+				 * @param {String} [scrollTarget]
+				 * @param {String} [scrollContainer]
+				 * @param {String} [scrollTemplate]
+				 * */
+				_flowBoardComponentLoadMoreFeatureRenderTopics(
+					flowBoard,
+					data.flow[ 'view-topiclist' ].result.topiclist,
+					false,
+					null,
+					'',
+					'',
+					'flow_topiclist_loop' // @todo clean up the way we pass these 3 params ^
+				);
+			} )
+			// On fail, render an error
+			.fail( function( code, data ) {
+				// Failed fetching the new data to be displayed.
+				// @todo render the error at topic position and scroll to it
+				// @todo how do we render this?
+				// $target = ????
+				// flowBoard.emitWithReturn( 'removeError', $target );
+				// var errorMsg = flowBoard.constructor.static.getApiErrorMessage( code, result );
+				// errorMsg = mw.msg( '????', errorMsg );
+				// flowBoard.emitWithReturn( 'showError', $target, errorMsg );
+			} );
 	}
 	FlowBoardComponentLoadMoreFeatureMixin.prototype.jumpToTopic = flowBoardComponentLoadMoreFeatureJumpTo;
 
@@ -95,9 +125,12 @@
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
 	 */
-	function flowBoardComponentLoadMoreFeatureApiCallback( info, data, jqxhr ) {
-		var $target = info.$target,
-			flowBoard = info.component;
+	function flowBoardComponentLoadMoreFeatureTopicsApiCallback( info, data, jqxhr ) {
+		var $this = $( this ),
+			$target = info.$target,
+			flowBoard = info.component,
+			scrollTarget = $this.data( 'flow-scroll-target' ),
+			$scrollContainer = $.findWithParent( $this, $this.data( 'flow-scroll-container' ) || target );
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
@@ -107,13 +140,22 @@
 		// Render topics
 		_flowBoardComponentLoadMoreFeatureRenderTopics(
 			flowBoard,
-			data.flow['view-topiclist'].result.topiclist,
+			data.flow[ 'view-topiclist' ].result.topiclist,
 			flowBoard.$container.find( flowBoard.$loadMoreNodes ).last()[ 0 ] === this, // if this is the last load more button
-			$target
+			$target,
+			scrollTarget,
+			$this.data( 'flow-scroll-container' ),
+			$this.data( 'flow-template' )
 		);
 
 		// Remove the old load button (necessary if the above load_more template returns nothing)
 		$target.remove();
+
+		if ( scrollTarget === 'window' ) {
+			scrollTarget = $( window );
+		} else {
+			scrollTarget = $.findWithParent( this, scrollTarget );
+		}
 
 		/*
 		 * Fire infinite scroll check again - if no (or few) topics were
@@ -121,9 +163,43 @@
 		 * fetch more instead of waiting for the user to scroll again (when
 		 * there's no reason to scroll)
 		 */
-		flowBoard.emitWithReturn( 'scroll' );
+		_flowBoardComponentLoadMoreFeatureInfiniteScrollCheck.call( flowBoard, scrollTarget, $scrollContainer );
 	}
-	FlowBoardComponentLoadMoreFeatureMixin.UI.events.apiHandlers.loadMore = flowBoardComponentLoadMoreFeatureApiCallback;
+	FlowBoardComponentLoadMoreFeatureMixin.UI.events.apiHandlers.loadMoreTopics = flowBoardComponentLoadMoreFeatureTopicsApiCallback;
+
+	/**
+	 * Saves the topic titles to topicTitlesById and orderedTopicIds.
+	 * @param {Object} info
+	 * @param {string} info.status "done" or "fail"
+	 * @param {jQuery} info.$target
+	 * @param {FlowBoardComponent} info.component
+	 * @param {Object} data
+	 * @param {jqXHR} jqxhr
+	 */
+	function flowBoardComponentLoadMoreFeatureTopicListApiCallback( info, data, jqxhr ) {
+		if ( info.status !== 'done' ) {
+			// Error will be displayed by default, nothing else to wrap up
+			return;
+		}
+
+		var i = 0,
+			topicsData = data.flow[ 'view-topiclist' ].result.topiclist,
+			topicId, revisionId,
+			flowBoard = info.component;
+
+		for ( ; i < topicsData.roots.length; i++ ) {
+			// Get the topic ID
+			topicId = topicsData.roots[ i ];
+			// Get the revision ID
+			revisionId = topicsData.posts[ topicId ][0];
+
+			// Store the title from the revision object
+			flowBoard.topicTitlesById[ topicId ] = topicsData.revisions[ revisionId ].content.content;
+			// Add it in order
+			flowBoard.orderedTopicIds.push( topicId );
+		}
+	}
+	FlowBoardComponentLoadMoreFeatureMixin.UI.events.apiHandlers.topicList = flowBoardComponentLoadMoreFeatureTopicListApiCallback;
 
 	//
 	// On element-load handlers
@@ -131,21 +207,49 @@
 
 	/**
 	 * Stores the load more button for use with infinite scroll.
+	 * @example <button data-flow-scroll-target="< ul"></button>
 	 * @param {jQuery} $button
 	 */
 	function flowBoardComponentLoadMoreFeatureElementLoadCallback( $button ) {
+		var target = $button.data( 'flow-scroll-target' ),
+			$container = $.findWithParent( $button, $button.data( 'flow-scroll-container' ) || target );
+
 		if ( !this.$loadMoreNodes ) {
 			// Create a new $loadMoreNodes list
 			this.$loadMoreNodes = $();
 		} else {
 			// Remove any loadMore nodes that are no longer in the body
 			this.$loadMoreNodes = this.$loadMoreNodes.filter( function () {
-				return $( this ).closest( 'body' ).length;
+				var $this = $( this );
+
+				// @todo unbind scroll handlers
+				if ( !$this.closest( 'body' ).length ) {
+					// Get rid of this and its handlers
+					$this.remove();
+					// Delete from list
+					return false;
+				}
+
+				return true;
 			} );
 		}
 
 		// Store this new loadMore node
 		this.$loadMoreNodes = this.$loadMoreNodes.add( $button );
+
+		// Make sure we didn't already bind to this element's scroll previously
+		if ( $container.data( 'scrollIsBound' ) ) {
+			return;
+		}
+		$container.data( 'scrollIsBound', true );
+
+		// Bind the event for this
+		if ( target === 'window' ) {
+			this.on( 'windowScroll', _flowBoardComponentLoadMoreFeatureInfiniteScrollCheck, [ $container ] );
+		} else {
+			target = $.findWithParent( $button, target );
+			target.on( 'scroll.flow', [ $container ], $.throttle( 50, $.proxy( _flowBoardComponentLoadMoreFeatureInfiniteScrollCheck, this ) ) );
+		}
 	}
 	FlowBoardComponentLoadMoreFeatureMixin.UI.events.loadHandlers.loadMore = flowBoardComponentLoadMoreFeatureElementLoadCallback;
 
@@ -154,41 +258,65 @@
 	 * @param {jQuery} $topic
 	 */
 	function flowBoardComponentLoadMoreFeatureElementLoadTopic( $topic ) {
-		var self = this;
+		var self = this,
+			currentTopicId = $topic.data( 'flow-id' );
 
 		// Store this topic by ID
-		this.loadedTopics[ $topic.data( 'flowId' ) ] = $topic;
+		this.renderedTopics[ currentTopicId ] = $topic;
 
 		// Remove any topics that are no longer on the page, just in case
-		$.each( this.loadedTopics, function ( topicId, $topic ) {
+		$.each( this.renderedTopics, function ( topicId, $topic ) {
 			if ( !$topic.closest( self.$board ).length ) {
-				delete self.loadedTopics[ topicId ];
+				delete self.renderedTopics[ topicId ];
 			}
 		} );
 	}
 	FlowBoardComponentLoadMoreFeatureMixin.UI.events.loadHandlers.topic = flowBoardComponentLoadMoreFeatureElementLoadTopic;
+
+	/**
+	 * Stores a list of all topics titles currently visible on the page.
+	 * @param {jQuery} $topicTitle
+	 */
+	function flowBoardComponentLoadMoreFeatureElementLoadTopicTitle( $topicTitle ) {
+		var currentTopicId = $topicTitle.closest( '[data-flow-id]' ).data( 'flowId' );
+
+		// If topic doesn't exist in topic titles list, add it (only happens at page load)
+		if ( !this.topicTitlesById[ currentTopicId ] ) {
+			this.topicTitlesById[ currentTopicId ] = $topicTitle.data( 'flow-topic-title' );
+			this.orderedTopicIds.push( currentTopicId );
+		}
+	}
+	FlowBoardComponentLoadMoreFeatureMixin.UI.events.loadHandlers.topicTitle = flowBoardComponentLoadMoreFeatureElementLoadTopicTitle;
 
 	//
 	// Private functions
 	//
 
 	/**
-	 * Called on window.scroll. Checks to see if a FlowBoard needs to have more content loaded.
+	 * Called on scroll. Checks to see if a FlowBoard needs to have more content loaded.
+	 * @param {jQuery} $container
 	 * @param {Event} event
 	 */
-	function _flowBoardComponentLoadMoreFeatureInfiniteScrollCheck( event ) {
+	function _flowBoardComponentLoadMoreFeatureInfiniteScrollCheck( $container, event ) {
 		if ( this.infiniteScrollDisabled ) {
 			// This happens when the topic navigation is used to jump to a topic
 			// We should not infinite-load anything when we are scrolling to a topic
 			return;
 		}
 
-		var $window = $( window ),
-			threshold = $window.height(),
-			scrollTop = $window.scrollTop();
+		// Might be passed via $.on data
+		if ( !event ) {
+			event = $container;
+			$container = event.data[0];
+		}
 
-		// Check each loadMore button
-		( this.$loadMoreNodes || $() ).each( function () {
+		// This is probably window, but for TOC it is another scrollable container
+		var $scrollContainer = $( event.currentTarget ),
+			threshold = $scrollContainer.height(),
+			scrollTop = $scrollContainer.scrollTop() + ( $scrollContainer.offset() || { top: 0 } ).top;
+
+		// Find load more buttons within our search container, and they must be visible
+		$container.find( this.$loadMoreNodes ).filter( ':visible' ).each( function () {
 			var $this = $( this ),
 				offsetTop = $this.offset().top,
 				offsetBottom = offsetTop + $this.outerHeight();
@@ -213,9 +341,12 @@
 	 * @param {Object} topicsData
 	 * @param {boolean} [forceShowLoadMore]
 	 * @param {jQuery} [$insertAt]
+	 * @param {String} [scrollTarget]
+	 * @param {String} [scrollContainer]
+	 * @param {String} [scrollTemplate]
 	 * @private
 	 */
-	function _flowBoardComponentLoadMoreFeatureRenderTopics( flowBoard, topicsData, forceShowLoadMore, $insertAt ) {
+	function _flowBoardComponentLoadMoreFeatureRenderTopics( flowBoard, topicsData, forceShowLoadMore, $insertAt, scrollTarget, scrollContainer, scrollTemplate ) {
 		if ( !topicsData.roots.length ) {
 			flowBoard.debug( 'No topics returned from API', arguments );
 			return;
@@ -224,7 +355,8 @@
 		var i = 0,
 			$prevExist, $nextExist, found, $newTopics = $(),
 			// We need to find a specific topic ID within our list of known topic IDs
-			findTopicId = topicsData.roots[0];
+			findTopicId = topicsData.roots[ 0 ],
+			wgFlowDefaultLimit = mw.config.get( 'wgFlowDefaultLimit' );
 
 		if ( topicsData.submitted[ 'offset-dir' ] === 'rev' ) {
 			// In reverse mode, we need to find the last item
@@ -235,18 +367,18 @@
 		if ( !$insertAt ) {
 			// But for jumpTo, we don't, so we use topicsList to find out where they will go
 			for ( ; i < flowBoard.topicsList.length; i++ ) {
-				if ( flowBoard.loadedTopics[flowBoard.topicsList[i]] ) {
+				if ( flowBoard.renderedTopics[ flowBoard.topicsList[i].id ] ) {
 					if ( found ) {
 						// We found an insertion location after the given topic
-						$nextExist = flowBoard.loadedTopics[flowBoard.topicsList[i]];
+						$nextExist = flowBoard.renderedTopics[ flowBoard.topicsList[i].id ];
 						break; // we already have the topic and somewhere to insert it
 					} else {
 						// We found an insertion location before the given topic
-						$prevExist = flowBoard.loadedTopics[flowBoard.topicsList[i]];
+						$prevExist = flowBoard.renderedTopics[ flowBoard.topicsList[i].id ];
 					}
 				}
 
-				if ( flowBoard.topicsList[i] === findTopicId ) {
+				if ( flowBoard.topicsList[ i ].id === findTopicId ) {
 					// We found this topic in our list of known topics
 					found = true;
 
@@ -260,7 +392,7 @@
 		// Don't render any topics that we already have on the page
 		// @todo implement live topic updating
 		topicsData.roots = $.grep( topicsData.roots, function( topicId ){
-			return !flowBoard.loadedTopics[ topicId ];
+			return !flowBoard.renderedTopics[ topicId ];
 		} );
 
 		// Render the new topics
@@ -269,7 +401,7 @@
 		// parsoid so they don't break and stop the page
 		try {
 			$newTopics = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-				'flow_topiclist_loop',
+				scrollTemplate,
 				topicsData
 			) ).children();
 		} catch( e ) {
@@ -286,7 +418,13 @@
 				$newTopics = $newTopics.add(
 					$( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
 						'flow_load_more',
-						{ loadMoreObject: topicsData.links.pagination.fwd }
+						{
+							loadMoreObject: topicsData.links.pagination.fwd,
+							loadMoreApiHandler: 'loadMoreTopics',
+							loadMoreTarget: scrollTarget,
+							loadMoreContainer: scrollContainer,
+							loadMoreTemplate: scrollTemplate
+						}
 					) ).children()
 				);
 			}
@@ -300,7 +438,13 @@
 				// Add the load more to the top of the stack
 				$newTopics = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
 						'flow_load_more',
-						{ loadMoreObject: topicsData.links.pagination.rev }
+						{
+							loadMoreObject: topicsData.links.pagination.rev,
+							loadMoreApiHandler: 'loadMoreTopics',
+							loadMoreTarget: scrollTarget,
+							loadMoreContainer: scrollContainer,
+							loadMoreTemplate: scrollTemplate
+						}
 					) ).children()
 					.add( $newTopics );
 			}
