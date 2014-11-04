@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_48d6f355",
+        "filename": "includes/Data/Storage/TopicListLastUpdatedStorage.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-04T01:18:47Z",
+      "side": 1,
+      "message": "Agreed, this is not related to the part I changed, but it looks bad.  It was probably overwriting something unless $attributes was empty.",
+      "parentUuid": "6e936f18_cd10d555",
+      "revId": "bfa4349d724b450244c64259748932b5101da9ae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_4d884576",
         "filename": "includes/Formatter/TocTopicListFormatter.php",
         "patchSetId": 8
@@ -30,6 +48,24 @@
       "writtenOn": "2014-11-03T22:18:10Z",
       "side": 1,
       "message": "I\u0027m indecisive on how security should be handled here.\n\nOn one hand, we know that pagination only returned topics visible to everyone.  We also know that the only content being returned is being run through $this-\u003etemplating-\u003egetContent(), which does its own permission checks for safety.\n\nSo from the standpoint of basic security, we are covered and everything is safe.  \n\nWe have been intending to kill the entire $templating object for some time,  so i\u0027d kind of like to not create more code to be updated, and instead start the piecemeal conversion here?\n\nEssentially all you need is to accept a permissions object like the main topic list formatter, and use $this-\u003epermissions-isAllowed( $revision, \u0027view\u0027 ) on each.  Once that returns true the content below can just be $revision-\u003egetContent( $contentFormat ). (As an aside, all revisions have a \u0027view\u0027 and \u0027history\u0027 permission associated,  \u0027history\u0027 is for all the metadata and \u0027view\u0027 means metadata + content).\n\nBut this isn\u0027t a blocker, up to you if we want to wait and try and do that all at once later.",
+      "revId": "bfa4349d724b450244c64259748932b5101da9ae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_e86a5f7d",
+        "filename": "includes/Formatter/TocTopicListFormatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-04T01:18:47Z",
+      "side": 1,
+      "message": "I don\u0027t see the permissions object at https://git.wikimedia.org/blob/mediawiki%2Fextensions%2FFlow.git/1c3d261fa668c673fc24974b0642d7a18901afd4/includes%2FFormatter%2FTopicListFormatter.php .\n\nAt any rate, I\u0027d prefer to wait on this since before this change, TopicListFormatter is using Templating.",
+      "parentUuid": "6e936f18_4d884576",
       "revId": "bfa4349d724b450244c64259748932b5101da9ae",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_a81217ff",
+        "filename": "includes/api/ApiFlowNewTopic.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-04T01:18:47Z",
+      "side": 1,
+      "message": "I briefly mentioned why it\u0027s here below.  This triggers the TopicList block.  However, I\u0027ll remove it for now, since it\u0027s not necessary as long as TopicList has its own default.",
+      "parentUuid": "6e936f18_4dd60556",
+      "revId": "bfa4349d724b450244c64259748932b5101da9ae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_ad4d4941",
         "filename": "includes/api/ApiFlowViewTopicList.php",
         "patchSetId": 8
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_88f63bc1",
+        "filename": "includes/api/ApiFlowViewTopicList.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-04T01:18:47Z",
+      "side": 1,
+      "message": "Agreed, it would be reasonable to have separate limits, but if wgFlowMaxLimit works for both, then we can keep it like this for now.",
+      "parentUuid": "6e936f18_ad4d4941",
+      "revId": "bfa4349d724b450244c64259748932b5101da9ae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_6d5f41e9",
         "filename": "tests/phpunit/api/ApiFlowViewTopicListTest.php",
         "patchSetId": 8
@@ -81,6 +153,24 @@
       "writtenOn": "2014-11-03T22:18:10Z",
       "side": 1,
       "message": "200 line test :(  But i don\u0027t have any better suggestions",
+      "revId": "bfa4349d724b450244c64259748932b5101da9ae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_288b6721",
+        "filename": "tests/phpunit/api/ApiFlowViewTopicListTest.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-04T01:18:47Z",
+      "side": 1,
+      "message": "I could maybe break it up into helpers, etc. if that would be helpful.\n\nMost of it\u0027s data, though.  I\u0027m only really testing two things (newest and updated, in standard order, in TOC-only mode).  It actually omits a lot stuff (that could be in separate functions).\n\n* Non-TOC mode (wasn\u0027t tested before, either)\n* Reverse order\n* Effect of updating the topic in other ways\n* Etc.",
+      "parentUuid": "6e936f18_6d5f41e9",
       "revId": "bfa4349d724b450244c64259748932b5101da9ae",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
