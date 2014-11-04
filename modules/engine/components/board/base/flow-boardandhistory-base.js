@@ -64,7 +64,7 @@
 			// hide, delete, suppress
 			// @todo this could just be detected from the url
 			role = $this.data( 'role' ),
-			template = $this.data( 'template' ),
+			template = $this.data( 'flow-template' ),
 			params = {
 				editToken: mw.user.tokens.get( 'editToken' ), // might be unnecessary
 				submitted: {
