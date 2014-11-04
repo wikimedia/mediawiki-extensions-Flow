@@ -43,27 +43,22 @@
 			.on(
 				'click.FlowBoardComponent keypress.FlowBoardComponent',
 				'a, input, button, .flow-click-interactive',
-				_getDispatchCallback( this, 'interactiveHandler' )
+				this.getDispatchCallback( 'interactiveHandler' )
 			)
 			.on(
 				'focusin.FlowBoardComponent',
 				'a, input, button, .flow-click-interactive',
-				_getDispatchCallback( this, 'interactiveHandlerFocus' )
-			)
-			.on(
-				'click.FlowBoardComponent focusin.FlowBoardComponent focusout.FlowBoardComponent',
-				'.flow-menu',
-				_getDispatchCallback( this, 'toggleHoverMenu' )
+				this.getDispatchCallback( 'interactiveHandlerFocus' )
 			)
 			.on(
 				'focusin.FlowBoardComponent',
 				'input.mw-ui-input, textarea',
-				_getDispatchCallback( this, 'focusField' )
+				this.getDispatchCallback( 'focusField' )
 			)
 			.on(
 				'click.FlowBoardComponent keypress.FlowBoardComponent',
 				'[data-flow-eventlog-action]',
-				_getDispatchCallback( this, 'eventLogHandler' )
+				this.getDispatchCallback( 'eventLogHandler' )
 			);
 
 		if ( _isGlobalBound ) {
@@ -76,11 +71,11 @@
 		$( window )
 			.on(
 				'scroll.flow',
-				$.throttle( 50, _getDispatchCallback( this, 'scroll' ) )
+				$.throttle( 50, this.getDispatchCallback( 'windowScroll' ) )
 			)
 			.on(
 				'resize.flow',
-				$.throttle( 50, _getDispatchCallback( this, 'resize' ) )
+				$.throttle( 50, this.getDispatchCallback( 'windowResize' ) )
 			);
 	}
 	OO.mixinClass( FlowComponentEventsMixin, OO.EventEmitter );
@@ -190,6 +185,28 @@
 	}
 	FlowComponentEventsMixin.prototype.bindNodeHandlers = bindFlowNodeHandlers;
 
+	/**
+	 * Returns a callback function which passes off arguments to the emitter.
+	 * This only exists to clean up the FlowComponentEventsMixin constructor,
+	 * by preventing it from having too many anonymous functions.
+	 * @param {String} name
+	 * @returns {Function}
+	 * @private
+	 */
+	function flowComponentGetDispatchCallback( name ) {
+		var context = this;
+
+		return function () {
+			var args = Array.prototype.slice.call( arguments, 0 );
+
+			// Add event name as first arg of emit
+			args.unshift( name );
+
+			return context.emitWithReturn.apply( context, args );
+		};
+	}
+	FlowComponentEventsMixin.prototype.getDispatchCallback = flowComponentGetDispatchCallback;
+
 	//
 	// Static methods
 	//
@@ -290,13 +307,13 @@
 				preHandlerReturn = callbackFn.apply( self, args );
 				preHandlerReturns.push( preHandlerReturn );
 
-				if ( preHandlerReturn === false || preHandlerReturn._abort === true ) {
+				if ( preHandlerReturn === false || ( preHandlerReturn && preHandlerReturn._abort === true ) ) {
 					// Callback returned false; break out of this loop
 					return false;
 				}
 			} );
 
-			if ( preHandlerReturn === false || preHandlerReturn._abort === true ) {
+			if ( preHandlerReturn === false || ( preHandlerReturn && preHandlerReturn._abort === true ) ) {
 				// Last callback returned false
 				flowComponent.debug( false, 'apiPreHandler returned false', handlerName, args );
 
@@ -405,6 +422,11 @@
 			$container = $container.$container;
 		}
 
+		if ( !$container.length ) {
+			// Prevent erroring out with an empty node set
+			return;
+		}
+
 		// Get the FlowComponent
 		var component = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $container );
 
@@ -412,6 +434,11 @@
 		$container.find( '.flow-load-interactive' ).add( $container.filter( '.flow-load-interactive' ) ).each( function () {
 			var $this = $( this ),
 				handlerName = $this.data( 'flow-load-handler' );
+
+			if ( $this.data( 'flow-load-handler-called' ) ) {
+				return;
+			}
+			$this.data( 'flow-load-handler-called', true );
 
 			// If this has a special load handler, run it.
 			component.emitWithReturn( 'loadHandler', handlerName, $this );
@@ -488,9 +515,14 @@
 	}
 
 	/**
-	 * Triggers both API and interactive handlers, on click/enter.
+	 * Triggers both API and interactive handlers.
+	 * To manually trigger a handler on an element, you can use extraParameters via $el.trigger.
+	 * @param {Event} event
+	 * @param {Object} [extraParameters]
+	 * @param {String} [extraParameters.interactiveHandler]
+	 * @param {String} [extraParameters.apiHandler]
 	 */
-	function flowInteractiveHandlerCallback( event ) {
+	function flowInteractiveHandlerCallback( event, extraParameters ) {
 		// Only trigger with enter key & no modifier keys, if keypress
 		if ( event.type === 'keypress' && ( event.charCode !== 13 || event.metaKey || event.shiftKey || event.ctrlKey || event.altKey )) {
 			return;
@@ -498,8 +530,9 @@
 
 		var args = Array.prototype.slice.call( arguments, 0 ),
 			$context = $( event.currentTarget || event.delegateTarget || event.target ),
-			interactiveHandlerName = $context.data( 'flow-interactive-handler' ),
-			apiHandlerName = $context.data( 'flow-api-handler' );
+		        // Have either of these been forced via trigger extraParameters?
+			interactiveHandlerName = ( extraParameters || {} ).interactiveHandler || $context.data( 'flow-interactive-handler' ),
+			apiHandlerName = ( extraParameters || {} ).apiHandler || $context.data( 'flow-api-handler' );
 
 		return flowExecuteInteractiveHandler.call( this, args, $context, interactiveHandlerName, apiHandlerName );
 	}
@@ -782,34 +815,6 @@
 	FlowComponentEventsMixin.eventHandlers.showError = flowEventsMixinShowError;
 
 	/**
-	 * On click, focus, and blur of hover menu events, decides whether or not to hide or show the expanded menu
-	 * @param {Event} event
-	 */
-	function flowEventsMixinToggleHoverMenu( event ) {
-		var $this = $( event.target ),
-			$menu = $this.closest( '.flow-menu' );
-
-		if ( event.type === 'click' ) {
-			// If the caret was clicked, toggle focus
-			if ( $this.closest( '.flow-menu-js-drop' ).length ) {
-				$menu.toggleClass( 'focus' );
-
-				// This trick lets us wait for a blur event from A instead on body, to later hide the menu on outside click
-				if ( $menu.hasClass( 'focus' ) ) {
-					$menu.find( '.flow-menu-js-drop' ).find( 'a' ).focus();
-				}
-			}
-		} else if ( event.type === 'focusin' ) {
-			// If we are focused on a menu item (eg. tabbed in), open the whole menu
-			$menu.addClass( 'focus' );
-		} else if ( event.type === 'focusout' && !$menu.find( 'a' ).filter( ':focus' ).length ) {
-			// If we lost focus, make sure no other element in this menu has focus, and then hide the menu
-			$menu.removeClass( 'focus' );
-		}
-	}
-	FlowComponentEventsMixin.eventHandlers.toggleHoverMenu = flowEventsMixinToggleHoverMenu;
-
-	/**
 	 * Shows a tooltip telling the user that they have subscribed
 	 * to this topic|board
 	 * @param  {jQuery} $tooltipTarget Element to attach tooltip to.
@@ -869,26 +874,6 @@
 	//
 	// Private functions
 	//
-
-	/**
-	 * Returns a callback function which passes off arguments to the emitter.
-	 * This only exists to clean up the FlowComponentEventsMixin constructor,
-	 * by preventing it from having too many anonymous functions.
-	 * @param {FlowComponent|FlowComponentEventsMixin} context
-	 * @param {String} name
-	 * @returns {Function}
-	 * @private
-	 */
-	function _getDispatchCallback( context, name ) {
-		return function () {
-			var args = Array.prototype.slice.call( arguments, 0 );
-
-			// Add event name as first arg of emit
-			args.unshift( name );
-
-			return context.emitWithReturn.apply( context, args );
-		};
-	}
 
 	/**
 	 * Given node & a selector, this will return the result closest to $node
