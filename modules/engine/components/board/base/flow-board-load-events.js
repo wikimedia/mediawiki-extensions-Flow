@@ -44,8 +44,8 @@
 	 */
 	function flowBoardLoadEventsBoardNavigation( $boardNavigation ) {
 		this
-			.on( 'scroll', _flowBoardAdjustTopicNavigationHeader, [ $boardNavigation ] )
-			.on( 'resize', _flowBoardAdjustTopicNavigationHeader, [ $boardNavigation ] );
+			.on( 'windowScroll', _flowBoardAdjustTopicNavigationHeader, [ $boardNavigation ] )
+			.on( 'windowResize', _flowBoardAdjustTopicNavigationHeader, [ $boardNavigation ] );
 
 		// The topic navigation header becomes fixed to the window beyond its position
 		_flowBoardAdjustTopicNavigationHeader.call( this, $boardNavigation, {} );
@@ -66,25 +66,6 @@
 	}
 	FlowBoardComponentLoadEventsMixin.UI.events.loadHandlers.boardNavigationTitle = flowBoardLoadEventsBoardNavigationTitle;
 
-	/**
-	 * Stores every topic title currently on the page
-	 * @param {jQuery} $topicTitle
-	 */
-	function flowBoardLoadEventsTopicTitle( $topicTitle ) {
-		if ( !this.topicTitles ) {
-			this.topicTitles = {};
-		}
-
-		// Get the topic ID from the parent container
-		var topicId = $topicTitle.closest( '[data-flow-id]' ).data( 'flow-id' );
-
-		// Store this title by ID
-		if ( topicId ) {
-			this.topicTitles[topicId] = $topicTitle;
-		}
-	}
-	FlowBoardComponentLoadEventsMixin.UI.events.loadHandlers.topicTitle = flowBoardLoadEventsTopicTitle;
-
 	//
 	// Private functions
 	//
@@ -97,9 +78,10 @@
 	 * @param {Event} event
 	 */
 	function _flowBoardAdjustTopicNavigationHeader( $boardNavigation, event ) {
-		var $clone = $boardNavigation.data( 'flowScrollClone' ),
+		var self = this,
+			$clone = $boardNavigation.data( 'flowScrollClone' ),
 			boardNavigationPosition = $boardNavigation.offset(),
-			bottomScrollPosition, $topicInView, topicText;
+			bottomScrollPosition, topicText;
 
 		if ( window.scrollY <= boardNavigationPosition.top ) {
 			// Board nav is still in view; don't affix it
@@ -142,16 +124,19 @@
 		// Find out what the bottom of the board nav is touching
 		bottomScrollPosition = window.scrollY + $boardNavigation.outerHeight();
 
-		$.each( this.topicTitles || {}, function ( topicId, $topicTitle ) {
-			if ( $topicTitle.offset().top > bottomScrollPosition ) {
+		$.each( this.renderedTopics || {}, function ( topicId, $topic ) {
+			var target = $topic.data( 'flow-toc-scroll-target' ),
+				$target = $.findWithParent( $topic, target );
+
+			if ( $target.offset().top > bottomScrollPosition ) {
 				return false; // stop, this topic is too far
 			}
-			$topicInView = $topicTitle;
-			topicText = $topicInView.text();
+
+			topicText = self.topicTitlesById[ topicId ];
 		} );
 
 		// Find out if we need to change the title
-		if ( $topicInView && this.$boardNavigationTitle && this.$boardNavigationTitle.text() !== topicText ) {
+		if ( topicText && this.$boardNavigationTitle && this.$boardNavigationTitle.text() !== topicText ) {
 			// Change it
 			this.$boardNavigationTitle.text( topicText );
 		}
