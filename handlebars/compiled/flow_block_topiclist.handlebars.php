@@ -152,13 +152,9 @@
 		</div>
 	' : '').'
 </div>
-';},'flow_topic_titlebar_content' => function ($cx, $in) {return '<<<<<<< HEAD
-<h2 class="flow-topic-title">'.LCRun3::ch($cx, 'escapeContent', Array(Array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),Array()), 'encq').'</h2>
-=======
-<h2 class="flow-topic-title flow-load-interactive"
+';},'flow_topic_titlebar_content' => function ($cx, $in) {return '<h2 class="flow-topic-title flow-load-interactive"
     data-title="'.LCRun3::ch($cx, 'plaintextSnippet', Array(Array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),Array()), 'encq').'"
     data-flow-load-handler="topicTitle">'.LCRun3::ch($cx, 'escapeContent', Array(Array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),Array()), 'encq').'</h2>
->>>>>>> J-2a.II Current topic title in affixed board nav
 <div class="flow-topic-meta">
 	'.((LCRun3::ifvar($cx, ((isset($in['actions']['reply']) && is_array($in['actions'])) ? $in['actions']['reply'] : null))) ? '
 		<a href="'.htmlentities((string)((isset($in['actions']['reply']['url']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['url'] : null), ENT_QUOTES, 'UTF-8').'"
@@ -328,12 +324,13 @@
 		</div>
 	</form>
 ' : '').'
-';},'flow_topic' => function ($cx, $in) {return '<div class="flow-topic
+';},'flow_topic' => function ($cx, $in) {return '<div class="flow-topic flow-load-interactive
             '.((LCRun3::ifvar($cx, ((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null))) ? 'flow-topic-moderatestate-'.htmlentities((string)((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null), ENT_QUOTES, 'UTF-8').'' : '').'
             '.((LCRun3::ifvar($cx, ((isset($in['isModerated']) && is_array($in)) ? $in['isModerated'] : null))) ? 'flow-topic-moderated' : '').'
             "
      id="flow-topic-'.htmlentities((string)((isset($in['postId']) && is_array($in)) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
      data-flow-id="'.htmlentities((string)((isset($in['postId']) && is_array($in)) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
+     data-flow-load-handler="topic"
 >
 	'.LCRun3::p($cx, 'flow_topic_titlebar', Array(Array($in),Array())).'
 
@@ -367,9 +364,7 @@
 	'.LCRun3::hbch($cx, 'eachPost', Array(Array($cx['scopes'][0],$in),Array()), $in, function($cx, $in) {return '
 		'.LCRun3::p($cx, 'flow_topic', Array(Array($in),Array())).'
 	';}).'
-';}).'';},'flow_no_more' => function ($cx, $in) {return '<div class="flow-no-more">
-	'.LCRun3::ch($cx, 'l10n', Array(Array('flow-no-more-fwd'),Array()), 'encq').'
-</div>';},'flow_load_more' => function ($cx, $in) {return ''.((LCRun3::ifvar($cx, ((isset($in['links']['pagination']['fwd']) && is_array($in['links']['pagination'])) ? $in['links']['pagination']['fwd'] : null))) ? '
+';}).'';},'flow_load_more' => function ($cx, $in) {return ''.((LCRun3::ifvar($cx, ((isset($in['loadMoreObject']) && is_array($in)) ? $in['loadMoreObject'] : null))) ? '
 	<div class="flow-load-more">
 		<div class="flow-error-container">
 			
@@ -377,13 +372,16 @@
 
 		<a data-flow-interactive-handler="apiRequest"
 		   data-flow-api-handler="loadMore"
+		   data-flow-api-target="< .flow-load-more"
 		   data-flow-load-handler="loadMore"
-		   href="'.htmlentities((string)((isset($in['links']['pagination']['fwd']['url']) && is_array($in['links']['pagination']['fwd'])) ? $in['links']['pagination']['fwd']['url'] : null), ENT_QUOTES, 'UTF-8').'"
-		   title="'.htmlentities((string)((isset($in['links']['pagination']['fwd']['title']) && is_array($in['links']['pagination']['fwd'])) ? $in['links']['pagination']['fwd']['title'] : null), ENT_QUOTES, 'UTF-8').'"
+		   href="'.htmlentities((string)((isset($in['loadMoreObject']['url']) && is_array($in['loadMoreObject'])) ? $in['loadMoreObject']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+		   title="'.htmlentities((string)((isset($in['loadMoreObject']['title']) && is_array($in['loadMoreObject'])) ? $in['loadMoreObject']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 		   class="mw-ui-button mw-ui-progressive flow-load-interactive flow-ui-fallback-element"><span class="wikiglyph wikiglyph-article"></span> '.LCRun3::ch($cx, 'l10n', Array(Array('flow-load-more'),Array()), 'encq').'</a>
 	</div>
 ' : '
-	'.LCRun3::p($cx, 'flow_no_more', Array(Array($in),Array())).'
+	<div class="flow-no-more">
+		'.LCRun3::ch($cx, 'l10n', Array(Array('flow-no-more-fwd'),Array()), 'encq').'
+	</div>
 ').'
 ';},),
         'scopes' => Array($in),
@@ -408,7 +406,7 @@
 	<div class="flow-topics">
 		'.LCRun3::p($cx, 'flow_topiclist_loop', Array(Array($in),Array())).'
 
-		'.LCRun3::p($cx, 'flow_load_more', Array(Array($in),Array())).'
+		'.LCRun3::p($cx, 'flow_load_more', Array(Array($in),Array('loadMoreObject'=>((isset($in['links']['pagination']['fwd']) && is_array($in['links']['pagination'])) ? $in['links']['pagination']['fwd'] : null)))).'
 	</div>
 </div>
 ';
