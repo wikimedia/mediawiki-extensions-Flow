@@ -51,7 +51,7 @@
 							(<a href="'.htmlentities((string)((isset($in['actions']['hide']['url']) && is_array($in['actions']['hide'])) ? $in['actions']['hide']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 							   title="'.htmlentities((string)((isset($in['actions']['hide']['title']) && is_array($in['actions']['hide'])) ? $in['actions']['hide']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 							   data-flow-interactive-handler="moderationDialog"
-							   data-template="flow_moderate_post"
+							   data-flow-template="flow_moderate_post"
 							   data-role="hide"
 							>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-post-action-hide-post'),Array()), 'encq').'</a>)
 						' : '').'
@@ -59,7 +59,7 @@
 							(<a href="'.htmlentities((string)((isset($in['actions']['unhide']['url']) && is_array($in['actions']['unhide'])) ? $in['actions']['unhide']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 							   title="'.htmlentities((string)((isset($in['actions']['unhide']['title']) && is_array($in['actions']['unhide'])) ? $in['actions']['unhide']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 							   data-flow-interactive-handler="moderationDialog"
-							   data-template="flow_moderate_post"
+							   data-flow-template="flow_moderate_post"
 							   data-role="unhide"
 							>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-post-action-restore-post'),Array()), 'encq').'</a>)
 						' : '').'
