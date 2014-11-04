@@ -6,6 +6,7 @@ use DOMDocument;
 use DOMNode;
 use Language;
 use OutputPage;
+use RequestContext;
 use Title;
 use Flow\Exception\WikitextException;
 use Flow\Exception\InvalidDataException;
@@ -76,7 +77,7 @@ abstract class Utils {
 	 * @throws WikitextException When conversion is unsupported
 	 */
 	protected static function parsoid( $from, $to, $content, Title $title ) {
-		list( $parsoidURL, $parsoidPrefix, $parsoidTimeout ) = self::parsoidConfig();
+		list( $parsoidURL, $parsoidPrefix, $parsoidTimeout, $parsoidForwardCookies ) = self::parsoidConfig();
 		if ( !isset( $parsoidURL ) || !$parsoidURL ) {
 			throw new NoParsoidException( 'Flow Parsoid configuration is unavailable' );
 		}
@@ -99,6 +100,9 @@ abstract class Utils {
 				'connectTimeout' => 'default',
 			)
 		);
+		if ( $parsoidForwardCookies && !User::isEveryoneAllowed( 'read' ) ) {
+			$req->setHeader( 'Cookie', RequestContext::getMain()->getRequest()->getHeader( 'Cookie' ) );
+		}
 		$status = $request->execute();
 		if ( !$status->isOK() ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Failed contacting parsoid: ' . $status->getMessage()->text() );
@@ -164,17 +168,21 @@ abstract class Utils {
 	 * specify a certain Parsoid installation. If none specified, we'll piggy-
 	 * back on VisualEditor's Parsoid setup.
 	 *
-	 * @return array Parsoid config, in array(URL, prefix, timeout) format
+	 * @return array Parsoid config, in array(URL, prefix, timeout, forwardCookies) format
 	 */
 	protected static function parsoidConfig() {
 		global
-			$wgFlowParsoidURL, $wgFlowParsoidPrefix, $wgFlowParsoidTimeout,
-			$wgVisualEditorParsoidURL, $wgVisualEditorParsoidPrefix, $wgVisualEditorParsoidTimeout;
+			$wgFlowParsoidURL, $wgFlowParsoidPrefix, $wgFlowParsoidTimeout, $wgFlowParsoidForwardCookies,
+			$wgVisualEditorParsoidURL, $wgVisualEditorParsoidPrefix, $wgVisualEditorParsoidTimeout,
+			$wgVisualEditorParsoidForwardCookies;
 
 		return array(
 			$wgFlowParsoidURL ?: $wgVisualEditorParsoidURL,
 			$wgFlowParsoidPrefix ?: $wgVisualEditorParsoidPrefix,
 			$wgFlowParsoidTimeout ?: $wgVisualEditorParsoidTimeout,
+			isset( $wgFlowParsoidForwardCookies )
+				? $wgFlowParsoidForwardCookies
+				: $wgVisualEditorParsoidForwardCookies,
 		);
 	}
 
