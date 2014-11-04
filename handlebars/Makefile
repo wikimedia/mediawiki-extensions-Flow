@@ -26,7 +26,6 @@ TOPIC_SUBTEMPLATES=flow_topic.handlebars \
 		flow_reply_form.handlebars \
 		flow_topiclist_loop.handlebars \
 		flow_load_more.handlebars \
-		flow_no_more.handlebars \
 		flow_errors.handlebars \
 		flow_form_buttons.handlebars \
 		flow_moderation_actions_list.handlebars \
