@@ -27,7 +27,7 @@ When(/^I give reason for suppression as being "(.*?)"$/) do |suppress_reason|
 end
 
 When(/^I see a dialog box$/) do
-  on(FlowPage).dialog_element.when_present.should be_visible
+  expect(on(FlowPage).dialog_element.when_present).to be_visible
 end
 
 Then(/^I confirm$/) do
