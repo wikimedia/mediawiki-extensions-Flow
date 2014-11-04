@@ -229,24 +229,26 @@ window.mw = window.mw || {}; // mw-less testing
 		}
 
 		// Parse the URL query params
-		uri = new mw.Uri( url );
+		try {
+			uri = new mw.Uri( url );
 
-		for ( queryKey in uri.query ) {
-			queryValue = uri.query[queryKey];
-			if ( queryKey === 'action' ) {
-				// Submodule is the action
-				queryKey = 'submodule';
-			}
-			if ( queryKey === 'title' ) {
-				// Server is using page
-				queryKey = 'page';
-			}
+			for ( queryKey in uri.query ) {
+				queryValue = uri.query[queryKey];
+				if ( queryKey === 'action' ) {
+					// Submodule is the action
+					queryKey = 'submodule';
+				}
+				if ( queryKey === 'title' ) {
+					// Server is using page
+					queryKey = 'page';
+				}
 
-			// Only add this to the query map if it didn't already exist, eg. in a form input
-			if ( !queryMap[ queryKey ] ) {
-				queryMap[ queryKey ] = queryValue;
+				// Only add this to the query map if it didn't already exist, eg. in a form input
+				if ( !queryMap[ queryKey ] ) {
+					queryMap[ queryKey ] = queryValue;
+				}
 			}
-		}
+		} catch ( e ) {}
 
 		// Use the default submodule if no action in URL
 		queryMap.submodule = queryMap.submodule || this.defaultSubmodule;
