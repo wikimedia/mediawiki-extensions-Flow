@@ -257,7 +257,7 @@
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.board = function ( info, data, jqxhr ) {
 		var $rendered,
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) );
+			flowBoard = info.component;
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
@@ -271,8 +271,11 @@
 			)
 		).children();
 
-		// Reinitialize the whole board with these nodes
-		flowBoard.reinitializeContainer( $rendered );
+		// Run this on a short timeout so that the other board handler in FlowBoardComponentLoadMoreFeatureMixin can run
+		setTimeout( function () {
+			// Reinitialize the whole board with these nodes
+			flowBoard.reinitializeContainer( $rendered );
+		}, 50 );
 	};
 
 	/**
