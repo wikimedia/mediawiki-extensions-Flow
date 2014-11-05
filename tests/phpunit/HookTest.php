@@ -25,17 +25,17 @@ class HookTest extends \MediaWikiTestCase {
 		// can't create Title objects because they can have the wrong wikiID.  Instead we
 		// pass closures into the test that create the objects within the correct context.
 		$newHeader = function() use( $user ) {
-			$workflow = Workflow::create( 'discussion', $user, Title::newMainPage() );
+			$workflow = Workflow::create( 'discussion', Title::newMainPage() );
 			return array(
 				'workflow' => $workflow,
 				'revision' => Header::create( $workflow, $user, 'header content' ),
 			);
 		};
 		$freshTopic = function() use( $user ) {
-			$workflow = Workflow::create( 'topic', $user, Title::newMainPage() );
+			$workflow = Workflow::create( 'topic', Title::newMainPage() );
 			return array(
 				'workflow' => $workflow,
-				'revision' => PostRevision::create( $workflow, 'some content' ),
+				'revision' => PostRevision::create( $workflow, $user, 'some content' ),
 			);
 		};
 		$replyToTopic = function() use( $freshTopic, $user ) {

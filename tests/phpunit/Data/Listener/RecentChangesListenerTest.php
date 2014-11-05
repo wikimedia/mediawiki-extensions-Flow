@@ -21,17 +21,16 @@ class RecentChangesListenerTest extends \MediaWikiTestCase {
 				// expect
 				NS_MAIN,
 				// something
-				function( $workflow ) {
-					return PostRevision::create( $workflow, 'blah blah' );
+				function( $workflow, $user ) {
+					return PostRevision::create( $workflow, $user, 'blah blah' );
 				}
 			),
 
 			array(
 				'Reply recent change goes to the topic',
 				NS_TOPIC,
-				function( $workflow ) {
-					$first = PostRevision::create( $workflow, 'blah blah' );
-					$user = $workflow->getUserTuple()->createUser();
+				function( $workflow, $user ) {
+					$first = PostRevision::create( $workflow, $user, 'blah blah' );
 					return $first->reply( $workflow, $user, 'fofofo' );
 				},
 			),
@@ -64,9 +63,9 @@ class RecentChangesListenerTest extends \MediaWikiTestCase {
 
 		$title = Title::newMainPage();
 		$user = User::newFromName( '127.0.0.1', false );
-		$workflow = Workflow::create( 'topic', $user, $title );
+		$workflow = Workflow::create( 'topic', $title );
 
-		$revision = $init( $workflow );
+		$revision = $init( $workflow, $user );
 
 		$rc->onAfterInsert(
 			$revision,

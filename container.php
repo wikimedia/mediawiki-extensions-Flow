@@ -187,12 +187,6 @@ $c['storage.workflow.indexes'] = function( $c ) {
 		$c['storage.workflow.indexes.title_lookup']
 	);
 };
-$c['storage.workflow.listeners.username'] = $c->share( function( $c ) {
-	return new Flow\Data\Listener\UserNameListener(
-		$c['repository.username'],
-		array( 'workflow_user_id' => 'workflow_user_wiki' )
-	);
-} );
 $c['storage.workflow.listeners.topiclist'] = $c->share( function( $c ) {
 	return new Flow\Data\Listener\WorkflowTopicListListener(
 		$c['storage.topic_list'],

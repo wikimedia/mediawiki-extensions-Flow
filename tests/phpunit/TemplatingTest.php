@@ -42,8 +42,8 @@ class TemplatingTest extends \MediaWikiTestCase {
 
 		$user = User::newFromName( '127.0.0.1', false );
 		$title = Title::newMainPage();
-		$workflow = Workflow::create( 'topic', $user, $title );
-		$topicTitle = PostRevision::create( $workflow, 'some content' );
+		$workflow = Workflow::create( 'topic', $title );
+		$topicTitle = PostRevision::create( $workflow, $user, 'some content' );
 
 		$hidden = $topicTitle->moderate(
 			$user,
