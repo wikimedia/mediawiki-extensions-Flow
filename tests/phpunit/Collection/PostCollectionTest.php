@@ -49,19 +49,19 @@ class PostCollectionTest extends PostRevisionTestCase {
 	public function testGetCollection() {
 		$revision = $this->revisions[0];
 		$collection = $revision->getCollection();
-		$this->assertTrue( $collection instanceof PostCollection );
+		$this->assertInstanceOf( 'Flow\Collection\PostCollection', $collection );
 	}
 
 	public function testNewFromId() {
 		$uuidPost = $this->revisions[0]->getPostId();
 		$collection = PostCollection::newFromId( $uuidPost );
-		$this->assertTrue( $collection instanceof PostCollection );
+		$this->assertInstanceOf( 'Flow\Collection\PostCollection', $collection );
 	}
 
 	public function testNewFromRevision() {
 		$revision = $this->revisions[0];
 		$collection = PostCollection::newFromRevision( $revision );
-		$this->assertTrue( $collection instanceof PostCollection );
+		$this->assertInstanceOf( 'Flow\Collection\PostCollection', $collection );
 	}
 
 	public function testGetRevision() {
@@ -69,6 +69,7 @@ class PostCollectionTest extends PostRevisionTestCase {
 
 		$expected = $this->revisions[1];
 		$revision = $collection->getRevision( $expected->getRevisionId() );
+		$this->assertInstanceOf( 'Flow\Model\PostRevision', $revision );
 		$this->assertTrue( $expected->getRevisionId()->equals( $revision->getRevisionId() ) );
 	}
 
@@ -78,6 +79,7 @@ class PostCollectionTest extends PostRevisionTestCase {
 		$expected = end( $this->revisions );
 		$revision = $collection->getLastRevision();
 
+		$this->assertInstanceOf( 'Flow\Model\PostRevision', $revision );
 		$this->assertTrue( $expected->getRevisionId()->equals( $revision->getRevisionId() ) );
 	}
 
@@ -87,6 +89,7 @@ class PostCollectionTest extends PostRevisionTestCase {
 		$expected = reset( $this->revisions );
 		$revision = $collection->getFirstRevision();
 
+		$this->assertInstanceOf( 'Flow\Model\PostRevision', $revision );
 		$this->assertTrue( $expected->getRevisionId()->equals( $revision->getRevisionId() ) );
 	}
 
@@ -97,6 +100,7 @@ class PostCollectionTest extends PostRevisionTestCase {
 		$expected = $this->revisions[1];
 		$revision = $collection->getNextRevision( $start );
 
+		$this->assertInstanceOf( 'Flow\Model\PostRevision', $revision );
 		$this->assertTrue( $expected->getRevisionId()->equals( $revision->getRevisionId() ) );
 	}
 
@@ -107,6 +111,7 @@ class PostCollectionTest extends PostRevisionTestCase {
 		$expected = $this->revisions[0];
 		$revision = $collection->getPrevRevision( $start );
 
+		$this->assertInstanceOf( 'Flow\Model\PostRevision', $revision );
 		$this->assertTrue( $expected->getRevisionId()->equals( $revision->getRevisionId() ) );
 	}
 
