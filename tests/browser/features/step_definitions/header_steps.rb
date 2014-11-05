@@ -1,4 +1,4 @@
-Then(/^The header should say "(.*?)"$/) do |content|
+Then(/^the header should say "(.*?)"$/) do |content|
   on(FlowPage) do |page|
     page.header_content_element.when_visible
     page.header_content.should match Regexp.escape( content )
@@ -7,8 +7,7 @@ end
 
 When(/^I click the edit header link$/) do
   on(FlowPage) do |page|
-    page.header_content_element.when_present.hover
-    page.edit_header_link_element.when_present.click
+    page.edit_header_link_element.click
   end
 end
 

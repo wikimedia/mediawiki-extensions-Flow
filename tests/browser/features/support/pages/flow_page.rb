@@ -10,7 +10,7 @@ class FlowPage < WikiPage
 
   # board header
   a(:edit_header_link, title: "Edit header")
-  div(:header_content, css: ".flow-board-header-detail-view p", index: 0)
+  div(:header_content, css: ".flow-board-header-detail-view")
   form(:edit_header_form, css: ".flow-board-header-edit-view form")
   textarea(:edit_header_textbox, css: ".flow-board-header-edit-view textarea")
 

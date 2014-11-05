@@ -8,7 +8,7 @@ Feature: Headers
 
   Scenario: No header on a new board
     Given I am on a new board
-    Then The header should say " "
+    Then the header should say " "
 
   Scenario: Edit header on a new board
     Given I am on a new board
@@ -16,4 +16,4 @@ Feature: Headers
       And I see the edit header form
       And I type "test12345" into the header textbox
       And I click Save
-    Then The header should say "test12345"
+    Then the header should say "test12345"
