@@ -175,7 +175,7 @@ class FlowPage < WikiPage
   # @todo: Should be index: 2, but sadly no way to distinguish replies from original post
   div(:third_reply, css: '.flow-post', index: 3)
   div(:third_reply_moderation_msg) do |page|
-    page.third_reply_element.div_element(css: '.flow-moderated-post-content', index: 0)
+    page.third_reply_element.span_element(css: '.flow-moderated-post-content', index: 0)
   end
   div(:third_reply_content) do |page|
     page.third_reply_element.div_element(css: '.flow-post-content', index: 0)

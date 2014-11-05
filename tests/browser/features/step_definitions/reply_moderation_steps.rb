@@ -4,8 +4,8 @@ end
 
 When(/^I click the Hide button in the dialog$/) do
   on(FlowPage) do |page|
-    page.dialog_submit_element.click
-    page.dialog_submit_element.when_not_present
+    page.dialog_submit_hide_element.click
+    page.dialog_submit_hide_element.when_not_present
   end
 end
 
