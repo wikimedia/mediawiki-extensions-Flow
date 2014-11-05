@@ -164,7 +164,7 @@ $c['storage.workflow.indexes.primary'] = $c->share( function( $c ) {
 	return new UniqueFeatureIndex(
 		$c['memcache.buffered'],
 		$c['storage.workflow.backend'],
-		'flow_workflow:v2:pk',
+		'flow_workflow:v3:pk',
 		$c['storage.workflow.primary_key']
 	);
 } );
