@@ -2,6 +2,7 @@
 
 namespace Flow\Data\Storage;
 
+use Flow\Data\ObjectManager;
 use Flow\Data\ObjectStorage;
 use Flow\Data\Utils\RawSql;
 use Flow\Model\UUID;
@@ -16,8 +17,31 @@ use Flow\Exception\DataModelException;
  * SQL security.
  */
 abstract class DbStorage implements ObjectStorage {
+	/**
+	 * @var DbFactory
+	 */
 	protected $dbFactory;
 
+	/**
+	 * The revision columns allowed to be updated
+	 *
+	 * @var string[]|true Allow of selective columns to allow, or true to allow
+	 *   everything
+	 */
+	protected $allowedUpdateColumns = true;
+
+	/**
+	 * This is to prevent 'Update not allowed on xxx' error during moderation when
+	 * * old cache is not purged and still holds obsolete deleted column
+	 * * old cache is not purged and doesn't have the newly added column
+	 *
+	 * @var string[] Array of columns to ignore
+	 */
+	protected $obsoleteUpdateColumns = array();
+
+	/**
+	 * @param DbFactory $dbFactory
+	 */
 	public function __construct( DbFactory $dbFactory ) {
 		$this->dbFactory = $dbFactory;
 	}
@@ -172,5 +196,34 @@ abstract class DbStorage implements ObjectStorage {
 	 */
 	public function validate( array $row ) {
 		return true;
+	}
+
+	/**
+	 * Calculates the DB updates to be performed to update data from $old to
+	 * $new.
+	 *
+	 * @param array $old
+	 * @param array $new
+	 * @return array
+	 * @throws DataModelException
+	 */
+	public function calcUpdates( array $old, array $new ) {
+		$changeSet = ObjectManager::calcUpdates( $old, $new );
+
+		foreach ( $this->obsoleteUpdateColumns as $val ) {
+			// Need to use array_key_exists to check null value
+			if ( array_key_exists( $val, $changeSet ) ) {
+				unset( $changeSet[$val] );
+			}
+		}
+
+		if ( is_array( $this->allowedUpdateColumns ) ) {
+			$extra = array_diff( array_keys( $changeSet ), $this->allowedUpdateColumns );
+			if ( $extra ) {
+				throw new DataModelException( 'Update not allowed on: ' . implode( ', ', $extra ), 'process-data' );
+			}
+		}
+
+		return $changeSet;
 	}
 }
