@@ -305,6 +305,12 @@ $wgResourceModules += array(
 			'ext.flow.templating',
 		),
 	) + $mobile,
+	// Work around old Varnish-cached HTML following module rename
+	// Remove on 2014-11-23, > 30 days after
+	// https://gerrit.wikimedia.org/r/#/c/165756/ was merged.
+	'ext.flow.new' => $flowResourceTemplate + array(
+		'dependencies' => 'ext.flow',
+	),
 	'ext.flow' => $flowResourceTemplate + array(
 		'scripts' => array( // Component order is important
 			// MW UI
