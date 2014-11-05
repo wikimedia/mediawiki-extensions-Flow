@@ -213,7 +213,19 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 		$c['storage.workflow.listeners']
 	);
 } );
-
+$c['listener.recentchanges'] = $c->share( function( $c ) {
+	global $wgContLang;
+	// Recent change listeners go out to external services and
+	// as such must only be run after the transaction is commited.
+	return new Flow\Data\Listener\DeferredInsertLifecycleHandler(
+		$c['deferred_queue'],
+		new Flow\Data\RecentChanges\RecentChanges(
+			$c['flow_actions'],
+			$c['repository.username'],
+			new Flow\Data\Utils\RecentChangeFactory
+		)
+	);
+} );
 $c['listener.occupation'] = $c->share( function( $c ) {
 	global $wgFlowDefaultWorkflow;
 
@@ -282,20 +294,6 @@ $c['storage.board_history'] = $c->share( function( $c ) {
 	);
 } );
 
-$c['storage.header.listeners.recentchanges'] = $c->share( function( $c ) {
-	global $wgContLang;
-	// Recent change listeners go out to external services and
-	// as such must only be run after the transaction is commited.
-	return new Flow\Data\Listener\DeferredInsertLifecycleHandler(
-		$c['deferred_queue'],
-		new Flow\Data\RecentChanges\HeaderRecentChanges(
-			$c['flow_actions'],
-			$c['repository.username'],
-			new Flow\Data\RecentChanges\RecentChangeFactory,
-			$wgContLang
-		)
-	);
-} );
 $c['storage.header.listeners.username'] = $c->share( function( $c ) {
 	return new Flow\Data\Listener\UserNameListener(
 		$c['repository.username'],
@@ -311,6 +309,7 @@ $c['storage.header.listeners'] = $c->share( function( $c ) {
 		$c['reference.recorder'],
 		$c['storage.board_history.indexes.primary'],
 		$c['storage.header.listeners.username'],
+		$c['listener.recentchanges']
 	);
 } );
 $c['storage.header.primary_key'] = array( 'rev_id' );
@@ -373,20 +372,6 @@ $c['storage.post_summary.mapper'] = $c->share( function( $c ) {
 		$c['storage.post_summary.primary_key']
 	);
 } );
-$c['storage.post_summary.listeners.recentchanges'] = $c->share( function( $c ) {
-	global $wgContLang;
-	// Recent change listeners go out to external services and
-	// as such must only be run after the transaction is commited.
-	return new Flow\Data\Listener\DeferredInsertLifecycleHandler(
-		$c['deferred_queue'],
-		new Flow\Data\RecentChanges\PostSummaryRecentChanges(
-			$c['flow_actions'],
-			$c['repository.username'],
-			new Flow\Data\RecentChanges\RecentChangeFactory,
-			$wgContLang
-		)
-	);
-} );
 $c['storage.post_summary.listeners.username'] = $c->share( function( $c ) {
 	return new Flow\Data\Listener\UserNameListener(
 		$c['repository.username'],
@@ -399,7 +384,7 @@ $c['storage.post_summary.listeners.username'] = $c->share( function( $c ) {
 } );
 $c['storage.post_summary.listeners'] = function( $c ) {
 	return array(
-		$c['storage.post_summary.listeners.recentchanges'],
+		$c['listener.recentchanges'],
 		$c['storage.post_summary.listeners.username'],
 		$c['storage.board_history.indexes.primary'],
 		// topic history -- to keep a history by topic we have to know what topic every post
@@ -552,20 +537,6 @@ $c['storage.post.listeners.moderation_logger'] = $c->share( function( $c ) {
 		$c['logger']
 	);
 } );
-$c['storage.post.listeners.recentchanges'] = $c->share( function( $c ) {
-	global $wgContLang;
-	// Recent change listeners go out to external services and
-	// as such must only be run after the transaction is commited.
-	return new Flow\Data\Listener\DeferredInsertLifecycleHandler(
-		$c['deferred_queue'],
-		new Flow\Data\RecentChanges\PostRevisionRecentChanges(
-			$c['flow_actions'],
-			$c['repository.username'],
-			new Flow\Data\RecentChanges\RecentChangeFactory,
-			$wgContLang
-		)
-	);
-} );
 $c['storage.post.listeners.username'] = $c->share( function( $c ) {
 	return new Flow\Data\Listener\UserNameListener(
 		$c['repository.username'],
@@ -601,7 +572,7 @@ $c['storage.post.listeners'] = function( $c ) {
 		$c['storage.post.listeners.username'],
 		$c['storage.post.listeners.watch_topic'],
 		$c['storage.post.listeners.notification'],
-		$c['storage.post.listeners.recentchanges'],
+		$c['listener.recentchanges'],
 		// topic history -- to keep a history by topic we have to know what topic every post
 		// belongs to, not just its parent. TopicHistoryIndex is a slight tweak to TopKIndex
 		// using TreeRepository for extra information and stuffing it into topic_root while indexing

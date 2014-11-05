@@ -1,6 +1,6 @@
 <?php
 
-namespace Flow\Data\RecentChanges;
+namespace Flow\Data\Utils;
 
 /**
  * Provides access to static methods of RecentChange so they
