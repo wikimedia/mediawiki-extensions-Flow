@@ -39,6 +39,9 @@ class PostRevisionTestCase extends FlowTestCase {
 		Container::reset();
 		$this->generateWorkflowForPost();
 		$this->revision = $this->generateObject();
+		// Revisions must be blanked here otherwise phpunit run with --repeat will remember
+		// ths revision list between multiple invocations of the test causing issues.
+		$this->revisions = array();
 	}
 
 	/**
