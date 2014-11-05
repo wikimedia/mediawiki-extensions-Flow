@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_dc62b736",
+        "filename": "includes/Data/Listener/ReferenceRecorder.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-05T19:24:04Z",
+      "side": 1,
+      "message": "with the other uses of Deferred we have just been wrapping the object with DeferredInsertLifecycleHandler from container.php, rather than changing the object itself.  Keeps all the usage of the defferedQueue centralized.",
+      "revId": "95ecfcc9140d18833d5d2bbc263c390be7b99207",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
