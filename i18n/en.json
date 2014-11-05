@@ -151,6 +151,7 @@
 	"flow-error-insufficient-permission": "Insufficient permission to access the content.",
 	"flow-error-revision-comparison": "Diff operation can only be done for two revisions belonging to the same post.",
 	"flow-error-missing-topic-title": "Could not find the topic title for current workflow.",
+	"flow-error-missing-metadata": "Could not find required metadata for this revision.",
 	"flow-error-fail-load-data": "Failed to load the requested data.",
 	"flow-error-invalid-workflow": "Could not find the requested workflow.",
 	"flow-error-process-data": "An error has occurred while processing the data in your request.",

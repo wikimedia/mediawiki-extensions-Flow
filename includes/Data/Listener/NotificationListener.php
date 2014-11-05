@@ -27,9 +27,16 @@ class NotificationListener implements LifecycleHandler {
 		switch( $row['rev_change_type'] ) {
 		// Actually new-topic @todo rename
 		case 'new-post':
+			if (
+				!isset( $metadata['board-workflow'] ) ||
+				!isset( $metadata['workflow'] ) ||
+				!isset( $metadata['topic-title'] ) ||
+				!isset( $metadata['first-post'] )
+			) {
+				throw new InvalidDataException( 'Invalid metadata for revision ' . $object->getRevisionId()->getAlphadecimal(), 'missing-metadata' );
+			}
+
 			$this->notificationController->notifyNewTopic( array(
-				// @todo this seems like a fragile way to pass these parameters,
-				// but works for now.
 				'board-workflow' => $metadata['board-workflow'],
 				'topic-workflow' => $metadata['workflow'],
 				'topic-title' => $metadata['topic-title'],
@@ -62,10 +69,18 @@ class NotificationListener implements LifecycleHandler {
 	 * @throws \Flow\Exception\FlowException
 	 */
 	protected function notifyPostChange( $type, $object, $metadata, array $params = array() ) {
+		if (
+			!isset( $metadata['workflow'] ) ||
+			!isset( $metadata['topic-title'] )
+		) {
+			throw new InvalidDataException( 'Invalid metadata for revision ' . $object->getRevisionId()->getAlphadecimal(), 'missing-metadata' );
+		}
+
 		$workflow = $metadata['workflow'];
 		if ( !$workflow instanceof Workflow ) {
-			throw new InvalidDataException( 'Workflow metadata is not a Workflow' );
+			throw new InvalidDataException( 'Workflow metadata is not a Workflow', 'missing-metadata' );
 		}
+
 		$this->notificationController->notifyPostChange( $type, $params + array(
 			'revision' => $object,
 			'title' => $workflow->getOwnerTitle(),
