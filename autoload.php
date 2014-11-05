@@ -106,6 +106,7 @@ $wgAutoloadClasses['Flow\\Data\\Storage\\RevisionStorage'] = __DIR__ . '/include
 $wgAutoloadClasses['Flow\\Data\\Storage\\TopicHistoryStorage'] = __DIR__ . '/includes/Data/Storage/TopicHistoryStorage.php';
 $wgAutoloadClasses['Flow\\Data\\Storage\\TopicListLastUpdatedStorage'] = __DIR__ . '/includes/Data/Storage/TopicListLastUpdatedStorage.php';
 $wgAutoloadClasses['Flow\\Data\\Storage\\TopicListStorage'] = __DIR__ . '/includes/Data/Storage/TopicListStorage.php';
+$wgAutoloadClasses['Flow\\Data\\Storage\\WorkflowStorage'] = __DIR__ . '/includes/Data/Storage/WorkflowStorage.php';
 $wgAutoloadClasses['Flow\\Data\\Utils\\Merger'] = __DIR__ . '/includes/Data/Utils/Merger.php';
 $wgAutoloadClasses['Flow\\Data\\Utils\\MultiDimArray'] = __DIR__ . '/includes/Data/Utils/MultiDimArray.php';
 $wgAutoloadClasses['Flow\\Data\\Utils\\RawSql'] = __DIR__ . '/includes/Data/Utils/RawSql.php';
