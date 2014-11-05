@@ -16,6 +16,24 @@
       "revId": "2d2ee8443094ac3e7c69a015357c231f29e41f0a",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_cde447de",
+        "filename": "includes/Parsoid/Utils.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-05T01:45:49Z",
+      "side": 1,
+      "message": "Matthias, you ignorant retard, of course we do, it\u0027s a frickin bool...",
+      "parentUuid": "6e936f18_0ddb0f26",
+      "revId": "2d2ee8443094ac3e7c69a015357c231f29e41f0a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
