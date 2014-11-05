@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_2dc36b62",
+        "filename": "includes/Data/Listener/NotificationListener.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-05T19:16:36Z",
+      "side": 1,
+      "message": "isset takes multiple arguments and returns true only if they all exist",
+      "revId": "b74511db9dcdb155c9f721c93db7ce9e5eb51de4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_cdb9a7e7",
+        "filename": "includes/Data/Listener/NotificationListener.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-05T19:16:36Z",
+      "side": 1,
+      "message": "@throws InvalidDataException",
+      "revId": "b74511db9dcdb155c9f721c93db7ce9e5eb51de4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_dcb397fb",
+        "filename": "includes/Data/Listener/NotificationListener.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-05T19:16:36Z",
+      "side": 1,
+      "message": "sic, isset",
+      "revId": "b74511db9dcdb155c9f721c93db7ce9e5eb51de4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
