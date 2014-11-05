@@ -20,6 +20,10 @@ Given(/^I have created a Flow topic with title "(.+)"$/) do |title|
   step "I click New topic save"
 end
 
+Given(/^the API action completes$/) do
+  on(FlowPage).api_inprogress_element.when_not_present
+end
+
 Given(/^the author link is visible$/) do
   on(FlowPage).author_link_element.when_present.when_present
 end

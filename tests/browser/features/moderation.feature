@@ -14,6 +14,7 @@ Feature: Moderation
         And I see a dialog box
         And I give reason for deletion as being "He's a naughty boy"
         And I click Delete topic
+        And the API action completes
     Then the top post should be marked as deleted
 
   Scenario: Suppressing a topic
@@ -23,6 +24,7 @@ Feature: Moderation
         And I see a dialog box
         And I give reason for suppression as being "Quelling the peasants"
         And I click Suppress topic
+        And the API action completes
     Then the top post should be marked as suppressed
 
   Scenario: Cancelling a dialog without text
