@@ -166,9 +166,11 @@
 	"flow-edit-post-submit": "Änderungen übertragen",
 	"flow-edit-post-submit-overwrite": "Änderungen überschreiben",
 	"flow-rev-message-edit-post": "$1 {{GENDER:$2|bearbeitete}} einen [$3 Kommentar] auf „$4“.",
+	"flow-rev-message-edit-post-recentchanges-summary": "{{GENDER:$2|Bearbeitete}} einen Beitrag",
 	"flow-rev-message-reply": "$1 [$3 {{GENDER:$2|kommentierte}}] auf „$4“ (<em>$5</em>).",
 	"flow-rev-message-reply-bundle": "{{PLURAL:$1|<strong>Ein Kommentar</strong> wurde|<strong>$1 Kommentare</strong> wurden}} hinzugefügt.",
 	"flow-rev-message-new-post": "$1 {{GENDER:$2|erstellte}} das Thema „[$3 $4]“.",
+	"flow-rev-message-new-post-recentchanges-summary": "{{GENDER:$2|Erstellte}} ein neues Thema",
 	"flow-rev-message-edit-title": "$1 {{GENDER:$2|änderte}} den Thementitel von „$5“ zu „[$3 $4]“.",
 	"flow-rev-message-create-header": "$1 {{GENDER:$2|erstellte}} die Überschrift.",
 	"flow-rev-message-edit-header": "$1 {{GENDER:$2|bearbeitete}} die Überschrift.",
@@ -363,5 +365,6 @@
 	"flow-time-ago-week": "vor {{PLURAL:$1|einer Woche|$1 Wochen}}",
 	"flow-post-undo-hide": "(Verstecken rückgängig gemacht)",
 	"flow-post-undo-delete": "(Löschen rückgängig gemacht)",
-	"flow-post-undo-suppress": "(Unterdrücken rückgängig gemacht)"
+	"flow-post-undo-suppress": "(Unterdrücken rückgängig gemacht)",
+	"apihelp-flow+edit-title-param-content": "Inhalt für den Titel."
 }

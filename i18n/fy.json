@@ -1,8 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kening Aldgilles"
+			"Kening Aldgilles",
+			"Robin0van0der0vliet"
 		]
 	},
-	"flow-cancel": "Ofbrekke"
+	"flow-cancel": "Annulearje",
+	"flow-post-action-post-history": "Skiednis",
+	"flow-topic-action-history": "Skiednis",
+	"flow-board-history": "\"$1\" skiednis",
+	"flow-history-day": "Hjoed",
+	"flow-link-history": "skiednis"
 }
