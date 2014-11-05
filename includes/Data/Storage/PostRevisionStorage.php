@@ -87,18 +87,6 @@ class PostRevisionStorage extends RevisionStorage {
 			return $changes;
 		}
 
-		foreach( static::$obsoleteUpdateColumns as $val ) {
-			// Need to use array_key_exists to check null value
-			if ( array_key_exists( $val, $treeChanges ) ) {
-				unset( $treeChanges[$val] );
-			}
-		}
-
-		$extra = array_diff( array_keys( $treeChanges ), static::$allowedUpdateColumns );
-		if ( $extra ) {
-			throw new DataModelException( 'Update not allowed on: ' . implode( ', ', $extra ), 'process-data' );
-		}
-
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
 		$res = $dbw->update(
 			$this->joinTable(),

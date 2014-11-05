@@ -110,6 +110,7 @@ use Flow\Data\Storage\PostRevisionStorage;
 use Flow\Data\Storage\HeaderRevisionStorage;
 use Flow\Data\Storage\PostSummaryRevisionStorage;
 use Flow\Data\Storage\TopicHistoryStorage;
+use Flow\Data\Storage\WorkflowStorage;
 use Flow\Data\Index\UniqueFeatureIndex;
 use Flow\Data\Index\TopKIndex;
 use Flow\Data\Index\TopicHistoryIndex;
@@ -148,7 +149,7 @@ $c['storage.workflow.class'] = 'Flow\Model\Workflow';
 $c['storage.workflow.table'] = 'flow_workflow';
 $c['storage.workflow.primary_key'] = array( 'workflow_id' );
 $c['storage.workflow.backend'] = $c->share( function( $c ) {
-	return new BasicDbStorage(
+	return new WorkflowStorage(
 		$c['db.factory'],
 		$c['storage.workflow.table'],
 		$c['storage.workflow.primary_key']

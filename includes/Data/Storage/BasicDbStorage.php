@@ -87,7 +87,7 @@ class BasicDbStorage extends DbStorage {
 			$missing = array_diff( $this->primaryKey, array_keys( $old ) );
 			throw new DataPersistenceException( 'Row has null primary key: ' . implode( ', ', $missing ), 'process-data' );
 		}
-		$updates = ObjectManager::calcUpdates( $old, $new );
+		$updates = $this->calcUpdates( $old, $new );
 		if ( !$updates ) {
 			return true; // nothing to change, success
 		}
