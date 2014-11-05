@@ -8,6 +8,10 @@ class FlowPage < WikiPage
   # MEDIAWIKI_URL must have this in $wgFlowOccupyPages array or $wgFlowOccupyNamespaces.
   page_url URL.url("Talk:Flow_QA")
 
+  # xxx I want any element with this class, it could be on anything.
+  # Or, wait for the cursor to not be the 'wait' cursor.
+  button(:api_inprogress, css: ".flow-api-inprogress")
+
   # board header
   a(:edit_header_link, title: "Edit header")
   div(:header_content, css: ".flow-board-header-detail-view p", index: 0)
