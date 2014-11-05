@@ -4,6 +4,7 @@ namespace Flow\Parsoid;
 
 use DOMDocument;
 use DOMNode;
+use Flow\Exception\NoParsoidException;
 use Language;
 use OutputPage;
 use Title;
@@ -78,7 +79,7 @@ abstract class Utils {
 	protected static function parsoid( $from, $to, $content, Title $title ) {
 		list( $parsoidURL, $parsoidPrefix, $parsoidTimeout ) = self::parsoidConfig();
 		if ( !isset( $parsoidURL ) || !$parsoidURL ) {
-			throw new NoParsoidException( 'Flow Parsoid configuration is unavailable' );
+			throw new NoParsoidException( 'Flow Parsoid configuration is unavailable', 'process-wikitext' );
 		}
 
 		if ( $from == 'html' ) {
@@ -102,7 +103,7 @@ abstract class Utils {
 		$status = $request->execute();
 		if ( !$status->isOK() ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Failed contacting parsoid: ' . $status->getMessage()->text() );
-			throw new WikitextException( 'Failed contacting Parsoid', 'process-wikitext' );
+			throw new NoParsoidException( 'Failed contacting Parsoid', 'process-wikitext' );
 		}
 		$response = $request->getContent();
 
@@ -288,5 +289,3 @@ abstract class Utils {
 		return Title::newFromText( $text );
 	}
 }
-
-class NoParsoidException extends \MWException {}

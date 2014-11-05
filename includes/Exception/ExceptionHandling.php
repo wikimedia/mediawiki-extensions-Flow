@@ -263,6 +263,15 @@ class DataPersistenceException extends FlowException {
 }
 
 /**
+ * Category: Parsoid
+ */
+class NoParsoidException extends FlowException {
+	protected function getErrorCodeList() {
+		return array ( 'process-wikitext' );
+	}
+}
+
+/**
  * Category: wikitext/html conversion exception
  */
 class WikitextException extends FlowException {
