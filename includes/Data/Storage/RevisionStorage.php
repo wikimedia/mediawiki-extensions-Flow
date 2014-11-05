@@ -16,12 +16,10 @@ use MWException;
  * Abstract storage implementation for models extending from AbstractRevision
  */
 abstract class RevisionStorage extends DbStorage {
-
 	/**
-	 * The revision columns allowed to be updated
-	 * @var array
+	 * {@inheritDoc}
 	 */
-	protected static $allowedUpdateColumns = array(
+	protected $allowedUpdateColumns = array(
 		'rev_mod_state',
 		'rev_mod_user_id',
 		'rev_mod_user_ip',
@@ -30,12 +28,13 @@ abstract class RevisionStorage extends DbStorage {
 		'rev_mod_reason',
 	);
 
-	// This is to prevent 'Update not allowed on xxx' error during moderation when
-	// * old cache is not purged and still holds obsolete deleted column
-	// * old cache is not purged and doesn't have the newly added column
-	// @Todo - This may not be necessary anymore since we don't update historical
-	// revisions ( flow_revision ) during moderation
-	protected static $obsoleteUpdateColumns = array (
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @Todo - This may not be necessary anymore since we don't update historical
+	 * revisions ( flow_revision ) during moderation
+	 */
+	protected $obsoleteUpdateColumns = array (
 		'tree_orig_user_text',
 		'rev_user_text',
 		'rev_edit_user_text',
@@ -430,19 +429,7 @@ abstract class RevisionStorage extends DbStorage {
 	// For the most part should insert a new revision.  This will only be called
 	// for suppressing?
 	public function update( array $old, array $new ) {
-		$changeSet = ObjectManager::calcUpdates( $old, $new );
-
-		foreach( static::$obsoleteUpdateColumns as $val ) {
-			// Need to use array_key_exists to check null value
-			if ( array_key_exists( $val, $changeSet ) ) {
-				unset( $changeSet[$val] );
-			}
-		}
-
-		$extra = array_diff( array_keys( $changeSet ), static::$allowedUpdateColumns );
-		if ( $extra ) {
-			throw new DataModelException( 'Update not allowed on: ' . implode( ', ', $extra ), 'process-data' );
-		}
+		$changeSet = $this->calcUpdates( $old, $new );
 
 		$rev = $this->splitUpdate( $changeSet, 'rev' );
 		$rev = $this->processExternalStore( $rev );
