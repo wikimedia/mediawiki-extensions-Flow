@@ -2,6 +2,7 @@
 
 namespace Flow\Tests;
 
+use DeferredUpdates;
 use Flow\Container;
 use Flow\Data\Index\BoardHistoryIndex;
 use Flow\Data\Listener\NotificationListener;
@@ -12,6 +13,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\Model\UserTuple;
 use Flow\Model\UUID;
+use SplQueue;
 use User;
 
 /**
@@ -189,6 +191,20 @@ class PostRevisionTestCase extends FlowTestCase {
 				// @todo: Topic.php also adds 'topic-title'
 			)
 		);
+
+		/** @var SplQueue $deferredQueue */
+		$deferredQueue = Container::get( 'deferred_queue' );
+		while( !$deferredQueue->isEmpty() ) {
+			try {
+				DeferredUpdates::addCallableUpdate( $deferredQueue->dequeue() );
+
+				// doing updates 1 by 1 so an exception doesn't break others in
+				// the queue
+				DeferredUpdates::doUpdates();
+			} catch ( \MWException $e ) {
+				// ignoring exceptions for now, not all are phpunit-proof yet
+			}
+		}
 
 		// save for removal at end of tests
 		$this->revisions[] = $revision;

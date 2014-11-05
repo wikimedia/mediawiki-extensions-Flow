@@ -155,6 +155,7 @@
 	"flow-error-insufficient-permission": "Error message when user does not have sufficient permission to perform an action.",
 	"flow-error-revision-comparison": "Error message when revision comparison fails.",
 	"flow-error-missing-topic-title": "Error message when a topic title is missing.",
+	"flow-error-missing-metadata": "Error message when a metadata is missing for a revision.",
 	"flow-error-fail-load-data": "General error message when failing to load data.",
 	"flow-error-invalid-workflow": "Error message when invalid workflow is provided.",
 	"flow-error-process-data": "General error message when failing to process data.",

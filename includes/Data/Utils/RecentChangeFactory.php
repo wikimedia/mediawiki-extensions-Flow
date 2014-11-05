@@ -8,6 +8,8 @@ namespace Flow\Data\Utils;
  */
 class RecentChangeFactory {
 	public function newFromRow( $obj ) {
-		return \RecentChange::newFromRow( $obj );
+		$rc = \RecentChange::newFromRow( $obj );
+		$rc->setExtra( array( 'pageStatus' => 'update' ) );
+		return $rc;
 	}
 }
