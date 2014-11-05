@@ -305,21 +305,12 @@
 		}
 
 		// Render load more template
-		if ( data.flow[ 'view-topiclist'].result.topiclist.links.pagination.fwd ) {
-			$target.replaceWith(
-				$tmp = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-					'flow_load_more',
-					data.flow[ 'view-topiclist' ].result.topiclist
-				) ).children()
-			);
-		} else {
-			$target.replaceWith(
-				$tmp = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-					'flow_no_more',
-					{}
-				) ).children()
-			);
-		}
+		$target.replaceWith(
+			$tmp = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
+				'flow_load_more',
+				data.flow[ 'view-topiclist' ].result.topiclist
+			) ).children()
+		);
 
 		// Run loadHandlers
 		flowBoard.emitWithReturn( 'makeContentInteractive', $tmp );
