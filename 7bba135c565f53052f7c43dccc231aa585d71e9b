@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_e4303555",
+        "filename": "handlebars/flow_post_meta_actions.handlebars",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-06T03:33:20Z",
+      "side": 1,
+      "message": "i think this was indeed wrong in what i wrote, but i think this might still be wrong. (aside, I wonder how we could best write tests against these templates to assert our logic does what we want).\n\nThe goal here is to handle the following circumstances:\n\nThe content of the post has never changed.  It may or may not have been moderated(\u003e1 revision):  5 minutes ago\n\nThe content of the post has been edited, and the most recent edit was by the original author: Edited 5 minutes ago\n\nThe content of the post has been edited, and the most recent edit was by a user other than the original author: Edited by ErikB 5 minutes ago\n\nThe prime difference vs the merged code is that this compares creator to author, where author may be a user that performed a moderation action(a non-content changing revision).\n\nI\u0027m going to figure out a reasonable way to write tests for this template so we can write out what we mean to display more concretely",
+      "revId": "7bba135c565f53052f7c43dccc231aa585d71e9b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
