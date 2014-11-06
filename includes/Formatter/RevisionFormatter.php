@@ -192,6 +192,11 @@ class RevisionFormatter {
 				$row->revision->getUserId(),
 				$row->revision->getUserIp()
 			),
+			'lastEditUser' => $this->serializeUser(
+				$row->revision->getLastContentEditUserWiki(),
+				$row->revision->getLastContentEditUserId(),
+				$row->revision->getLastContentEditUserIp()
+			),
 			'lastEditId' => $row->revision->getLastContentEditId(),
 		);
 
