@@ -16,6 +16,6 @@ Then(/^the 3rd comment should be marked as hidden$/) do
   end
 end
 
-Then (/^the content of the 3rd comment should not be visible$/) do
+Then(/^the content of the 3rd comment should not be visible$/) do
   expect(on(FlowPage).third_reply_content_element).not_to be_visible
 end
