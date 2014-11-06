@@ -12,6 +12,7 @@ class UserTupleTest extends \MediaWikiTestCase {
 	public function invalidInputProvider() {
 		return array(
 			array( 'foo', 0, ''),
+			array( 'foo', 1234, '127.0.0.1' ),
 			array( '', 0, '127.0.0.1' ),
 			array( 'foo', -25, '' ),
 			array( 'foo', null, '127.0.0.1' ),
@@ -34,7 +35,6 @@ class UserTupleTest extends \MediaWikiTestCase {
 			array( 'foo', 42, '' ),
 			array( 'foo', 0, '127.0.0.1' ),
 			array( 'foo', '0', '10.1.2.3' ),
-			array( 'foo', 1234, '127.0.0.1' ),
 		);
 	}
 
