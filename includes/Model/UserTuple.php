@@ -51,6 +51,9 @@ class UserTuple {
 		if ( $id === 0 && strlen( $ip ) === 0 ) {
 			throw new InvalidDataException( 'User has no id and no ip' );
 		}
+		if ( $id !== 0 && strlen( $ip ) !== 0 ) {
+			throw new InvalidDataException( 'User has both id and ip' );
+		}
 		// @todo assert ip is ipv4 or ipv6, but do we really want
 		// that on every anon user we load from storage?
 
