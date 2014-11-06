@@ -2,7 +2,7 @@ Given(/^I am viewing the site without JavaScript$/) do
   # Using IE5 user agent which is currently blocked by ResourceLoader
   user_agent = "Mozilla/4.0 (compatible; MSIE 5.5b1; Mac_PowerPC)"
   @user_agent = user_agent
-  @browser = browser(test_name(@scenario), {user_agent: user_agent})
+  @browser = browser(test_name(@scenario), user_agent: user_agent)
   $session_id = @browser.driver.instance_variable_get(:@bridge).session_id
 end
 
