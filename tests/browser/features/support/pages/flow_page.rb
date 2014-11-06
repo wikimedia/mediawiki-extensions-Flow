@@ -237,5 +237,4 @@ class FlowPage < WikiPage
 
   a(:board_unwatch_link, href: /Flow_QA&action=unwatch/)
   a(:board_watch_link, href: /Flow_QA&action=watch/)
-
 end
