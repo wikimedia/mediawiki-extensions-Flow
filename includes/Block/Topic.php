@@ -730,7 +730,18 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		if ( !$this->permissions->isAllowed( $this->topicTitle, $action ) ) {
-			$this->addError( 'permissions', $this->getDisallowedErrorMessage( $this->topicTitle ) );
+			if ( in_array( $this->action, array( 'moderate-topic', 'moderate-post' ) ) ) {
+				/*
+				 * When failing to moderate an already moderated action (like
+				 * undo), show the more general "you have insufficient
+				 * permissions for this action" message, rather than the
+				 * specialized "this topic is <hidden|deleted|suppressed>" msg.
+				 */
+				$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
+			} else {
+				$this->addError( 'permissions', $this->getDisallowedErrorMessage( $this->topicTitle ) );
+			}
+
 			return null;
 		}
 
