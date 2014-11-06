@@ -131,6 +131,11 @@ class RecentChanges extends AbstractFormatter {
 			return parent::getTitleLink( $data, $row, $ctx );
 		}
 
+		if ( !isset( $data['links']['topic'] ) || !$data['links']['topic'] instanceof Anchor ) {
+			// no valid title anchor (probably header entry)
+			return parent::getTitleLink( $data, $row, $ctx );
+		}
+
 		$watched = $row->recentChange->getAttribute( 'wl_notificationtimestamp' );
 		if ( is_bool( $watched ) ) {
 			// RC & watchlist share most code; the latter is unaware of when
