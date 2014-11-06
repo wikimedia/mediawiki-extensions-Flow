@@ -20,7 +20,7 @@ end
 When(/^I go to an old style permalink to my topic$/) do
   on(FlowPage) do |curPage|
     workflowId = curPage.flow_first_topic_element.attribute( 'data-flow-id' )
-    visit(FlowOldPermalinkPage, :using_params => {:workflow_id => workflowId})
+    visit(FlowOldPermalinkPage, using_params: {workflow_id: workflowId})
   end
 end
 
