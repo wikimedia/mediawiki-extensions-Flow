@@ -1,0 +1,9 @@
+{
+    "name": "mediawiki/flow",
+    "license": "GPL-2.0",
+    "require": {},
+    "require-dev": {
+        "symfony/dom-crawler": "~2.5",
+        "symfony/css-selector": "~2.5"
+    }
+}
