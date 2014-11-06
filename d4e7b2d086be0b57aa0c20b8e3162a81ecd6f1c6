@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_7f3910ca",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 41
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-06T07:23:26Z",
+      "side": 1,
+      "message": "err, looks like i changed all this and didn\u0027t update the comments",
+      "revId": "d4e7b2d086be0b57aa0c20b8e3162a81ecd6f1c6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_1f480c5f",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 41
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-06T07:23:26Z",
+      "side": 1,
+      "message": "HistoricalUIDGenerator? I know i named this, but old is making me feel like this was a previous implementation.",
+      "revId": "d4e7b2d086be0b57aa0c20b8e3162a81ecd6f1c6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_9f817c51",
+        "filename": "maintenance/convertLqt.php",
+        "patchSetId": 41
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-06T07:23:26Z",
+      "side": 1,
+      "message": "we will want to coordinate saving this store with writing to the database.\n\nCurrently we arn\u0027t handling database transactions at all it seems, i\u0027m thinking we should hold a transaction at the topic level?",
+      "revId": "d4e7b2d086be0b57aa0c20b8e3162a81ecd6f1c6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
