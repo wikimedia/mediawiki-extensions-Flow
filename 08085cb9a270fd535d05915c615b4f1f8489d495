@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_84261110",
+        "filename": "maintenance/FlowFixUserIp.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-11-06T04:39:52Z",
+      "side": 1,
+      "message": "I\u0027m getting an exception at this line (#9 in the stack trace below):\n\n[0b331e94] [no req]   Exception from line 61 of path/Flow/includes/Model/UserTuple.php: User has both id and ip\n\nBacktrace:\n#0 includes/Model/UserTuple.php(90): Flow\\Model\\UserTuple-\u003e__construct(string, string, string)\n#1 includes/Model/PostRevision.php(157): Flow\\Model\\UserTuple::newFromArray(array, string)\n#2 [internal function]: Flow\\Model\\PostRevision::fromStorageRow(array, NULL)\n#3 includes/Data/Mapper/CachingObjectMapper.php(89): call_user_func(array, array, NULL)\n#4 includes/Data/ObjectLocator.php(295): Flow\\Data\\Mapper\\CachingObjectMapper-\u003efromStorageRow(array)\n#5 includes/Data/ObjectManager.php(301): Flow\\Data\\ObjectLocator-\u003eload(array)\n#6 includes/Data/ObjectLocator.php(96): Flow\\Data\\ObjectManager-\u003eload(array)\n#7 includes/Data/ObjectLocator.php(190): Flow\\Data\\ObjectLocator-\u003efindMulti(array)\n#8 includes/Data/ObjectLocator.php(162): Flow\\Data\\ObjectLocator-\u003egetMulti(array)\n#9 maintenance/FlowFixUserIp.php(79): Flow\\Data\\ObjectLocator-\u003eget(Flow\\Model\\UUID)\n#10 [internal function]: FlowFixUserIp-\u003eupdateTreeRevision(DatabaseMysqli, string)\n#11 maintenance/FlowFixUserIp.php(45): call_user_func(array, DatabaseMysqli, string)\n#12 maintenance/FlowFixUserIp.php(51): FlowFixUserIp-\u003e{closure}(array)\n#13 /home/spage/projects/core/maintenance/Maintenance.php(1290): FlowFixUserIp-\u003edoDBUpdates()\n#14 /home/spage/projects/core/maintenance/doMaintenance.php(101): LoggedUpdateMaintenance-\u003eexecute()\n#15 maintenance/FlowFixUserIp.php(150): require_once(string)\n#16 {main}",
+      "revId": "08085cb9a270fd535d05915c615b4f1f8489d495",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
