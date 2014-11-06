@@ -86,11 +86,13 @@
 		'.((LCRun3::ifvar($cx, ((isset($in['isOriginalContent']) && is_array($in)) ? $in['isOriginalContent'] : null))) ? '
 			'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((isset($in['postId']) && is_array($in)) ? $in['postId'] : null)),Array()), 'encq').'
 		' : '
-			'.LCRun3::hbch($cx, 'ifCond', Array(Array(((isset($in['creator']['name']) && is_array($in['creator'])) ? $in['creator']['name'] : null),'===',((isset($in['author']['name']) && is_array($in['author'])) ? $in['author']['name'] : null)),Array()), $in, function($cx, $in) {return '
-				'.LCRun3::ch($cx, 'l10n', Array(Array('flow-edited'),Array()), 'encq').'
-			';}, function($cx, $in) {return '
-				'.LCRun3::ch($cx, 'l10n', Array(Array('flow-edited-by',((isset($in['author']['name']) && is_array($in['author'])) ? $in['author']['name'] : null)),Array()), 'encq').'
-			';}).'
+			<span>
+				'.LCRun3::hbch($cx, 'ifCond', Array(Array(((isset($in['creator']['name']) && is_array($in['creator'])) ? $in['creator']['name'] : null),'===',((isset($in['lastEditUser']['name']) && is_array($in['lastEditUser'])) ? $in['lastEditUser']['name'] : null)),Array()), $in, function($cx, $in) {return '
+					'.LCRun3::ch($cx, 'l10n', Array(Array('flow-edited'),Array()), 'encq').'
+				';}, function($cx, $in) {return '
+					'.LCRun3::ch($cx, 'l10n', Array(Array('flow-edited-by',((isset($in['lastEditUser']['name']) && is_array($in['lastEditUser'])) ? $in['lastEditUser']['name'] : null)),Array()), 'encq').'
+				';}).'
+			</span>
 			<a href="'.htmlentities((string)((isset($in['links']['topic-history']['url']) && is_array($in['links']['topic-history'])) ? $in['links']['topic-history']['url'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-timestamp-anchor">'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((isset($in['lastEditId']) && is_array($in)) ? $in['lastEditId'] : null)),Array()), 'encq').'</a>
 		').'
 	</span>
