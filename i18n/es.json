@@ -19,7 +19,8 @@
 			"Koavf",
 			"Themasterriot",
 			"JosouNoAria",
-			"Mor"
+			"Mor",
+			"Effy"
 		]
 	},
 	"flow-desc": "Sistema de gestión de flujo de trabajo",
@@ -260,18 +261,6 @@
 	"flow-cancel-warning": "Has escrito texto en este formulario. ¿Estás seguro de que quieres descartarlo?",
 	"flow-topic-html-title": "$1 en $2",
 	"flow-topic-count": "Temas ($1)",
-	"flow-active-ago": "Activo $1",
-	"flow-started-ago": "Comenzado $1",
-	"flow-started-ago-day": "Iniciado hace $1 {{PLURAL:$1|día|días}}",
-	"flow-started-ago-hour": "Iniciado hace $1 {{PLURAL:$1|hora|horas}}",
-	"flow-started-ago-minute": "Iniciado hace $1 {{PLURAL:$1|minuto|minutos}}",
-	"flow-started-ago-second": "Iniciado hace $1 {{PLURAL:$1|segundo|segundos}}",
-	"flow-started-ago-week": "Iniciado hace $1 {{PLURAL:$1|semana|semanas}}",
-	"flow-edited-ago-day": "Editado hace $1 {{PLURAL:$1|día|días}}",
-	"flow-edited-ago-hour": "Editado hace $1 {{PLURAL:$1|hora|horas}}",
-	"flow-edited-ago-minute": "Editado hace $1 {{PLURAL:$1|minuto|minutos}}",
-	"flow-edited-ago-second": "Editado hace $1 {{PLURAL:$1|segundo|segundos}}",
-	"flow-edited-ago-week": "Editado hace $1 {{PLURAL:$1|semana|semanas}}",
 	"flow-load-more": "Cargar más",
 	"flow-newest-topics": "Temas más recientes",
 	"flow-sorting-tooltip": "{{GENDER:|Estás}} leyendo los temas más recientes primero. Haz clic para ver más opciones de clasificación.",
@@ -288,14 +277,5 @@
 	"flow-anonymous": "Anónimo",
 	"flow-embedding-unsupported": "Las discusiones todavía no pueden ser incrustadas.",
 	"mw-ui-unsubmitted-confirm": "Tienes cambios no enviados en esta página. ¿Estás seguro que deseas salir y perder tu trabajo?",
-	"flow-active-ago-day": "Activo hace $1 {{PLURAL:$1|día|días}}",
-	"flow-active-ago-hour": "Activo hace $1 {{PLURAL:$1|hora|horas}}",
-	"flow-active-ago-minute": "Activo hace $1 {{PLURAL:$1|minuto|minutos}}",
-	"flow-active-ago-second": "Activo hace $1 {{PLURAL:$1|segundo|segundos}}",
-	"flow-active-ago-week": "Activo hace $1 {{PLURAL:$1|semana|semanas}}",
-	"flow-time-ago-day": "Hace $1 {{PLURAL:$1|día|días}}",
-	"flow-time-ago-hour": "Hace $1 {{PLURAL:$1|hora|horas}}",
-	"flow-time-ago-minute": "Hace $1 {{PLURAL:$1|minuto|minutos}}",
-	"flow-time-ago-second": "Hace $1 {{PLURAL:$1|segundo|segundos}}",
-	"flow-time-ago-week": "Hace $1 {{PLURAL:$1|semana|semanas}}"
+	"apihelp-flow+edit-post-param-content": "Contenido para publicar."
 }

@@ -290,8 +290,6 @@
 	"flow-topic-first-heading": "Diskusjon på $1",
 	"flow-topic-html-title": "$1 på $2",
 	"flow-topic-count": "Diskusjoner ($1)",
-	"flow-active-ago": "Aktiv $1",
-	"flow-started-ago": "Påbegynt for $1",
 	"flow-load-more": "Last inn mer",
 	"flow-no-more-fwd": "Det finnes ingen eldre diskusjoner",
 	"flow-add-topic": "Ny diskusjon",
@@ -316,10 +314,5 @@
 	"flow-preview-return-edit-post": "Fortsett å redigere",
 	"flow-anonymous": "Anonym",
 	"flow-embedding-unsupported": "Diskusjoner kan ikke bygges inn enda.",
-	"mw-ui-unsubmitted-confirm": "Du har ulagrede endringer på denne siden. Er du sikker på at du vil navigere vekk og miste arbeidet ditt?",
-	"flow-time-ago-day": "$1 {{PLURAL:$1|dag|dager}} siden",
-	"flow-time-ago-hour": "$1 {{PLURAL:$1|time|timer}} siden",
-	"flow-time-ago-minute": "$1 {{PLURAL:$1|minutt|minutter}} siden",
-	"flow-time-ago-second": "$1 {{PLURAL:$1|sekund|sekunder}} siden",
-	"flow-time-ago-week": "$1 {{PLURAL:$1|uke|uker}} siden"
+	"mw-ui-unsubmitted-confirm": "Du har ulagrede endringer på denne siden. Er du sikker på at du vil navigere vekk og miste arbeidet ditt?"
 }
