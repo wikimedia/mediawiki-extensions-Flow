@@ -226,7 +226,6 @@ class FlowPage < WikiPage
   a(:recently_active_topics_link, text: "Recently active topics")
   a(:newest_topics_choice, href: /topiclist_sortby=newest/)
 
-
   ## Watch and unwatch links
   div(:first_topic_watchlist_container, css: ".flow-topic-watchlist", index:0)
   a(:first_topic_watch_link) do |page|
