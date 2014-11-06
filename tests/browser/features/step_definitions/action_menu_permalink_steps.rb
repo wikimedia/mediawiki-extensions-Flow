@@ -1,9 +1,7 @@
 When(/^I add (\d+) comments to the Topic$/) do |number|
   number.to_i.times do
-    on(FlowPage) do |page|
       @saved_random=Random.new.rand.to_s
       step 'I reply with comment "' + 'Selenium comment ' + @saved_random + '"'
-    end
   end
 end
 
