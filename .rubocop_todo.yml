@@ -10,11 +10,6 @@
 Metrics/LineLength:
   Max: 224
 
-# Offense count: 1
-# Configuration parameters: Keywords.
-Style/CommentAnnotation:
-  Enabled: false
-
 # Offense count: 5
 Style/Documentation:
   Enabled: false

@@ -200,7 +200,7 @@ class FlowPage < WikiPage
   button(:new_topic_save, css: ".flow-newtopic-form .mw-ui-constructive, .flow-newtopic-form .flow-ui-constructive")
 
   # Replying
-  # TODO (mattflaschen, 2014-06-24): Should distinguish between
+  # TODO: (mattflaschen, 2014-06-24): Should distinguish between
   # top-level replies to the topic, and replies to regular posts
   form(:new_reply_form, css: ".flow-reply-form")
   # Is an input when not focused, textarea when focused
