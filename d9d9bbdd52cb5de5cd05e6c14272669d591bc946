@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_81d11a28",
+        "filename": "maintenance/FlowFixUserIp.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-11-06T23:04:28Z",
+      "side": 1,
+      "message": "I get\n\n[761dd643] [no req]   Exception from line 143 of /home/spage/projects/core/extensions/Flow/includes/Model/AbstractRevision.php: Could not load UserTuple for rev_user_\nBacktrace:\n#0 /home/spage/projects/core/extensions/Flow/includes/Model/PostRevision.php(154): Flow\\Model\\AbstractRevision::fromStorageRow(array, NULL)\n#1 [internal function]: Flow\\Model\\PostRevision::fromStorageRow(array, NULL)\n#2 /home/spage/projects/core/extensions/Flow/includes/Data/Mapper/CachingObjectMapper.php(89): call_user_func(array, array, NULL)\n#3 /home/spage/projects/core/extensions/Flow/includes/Data/ObjectLocator.php(295): Flow\\Data\\Mapper\\CachingObjectMapper-\u003efromStorageRow(array)\n#4 /home/spage/projects/core/extensions/Flow/includes/Data/ObjectManager.php(301): Flow\\Data\\ObjectLocator-\u003eload(array)\n#5 /home/spage/projects/core/extensions/Flow/includes/Data/ObjectLocator.php(96): Flow\\Data\\ObjectManager-\u003eload(array)\n#6 /home/spage/projects/core/extensions/Flow/includes/Data/ObjectLocator.php(190): Flow\\Data\\ObjectLocator-\u003efindMulti(array)\n#7 /home/spage/projects/core/extensions/Flow/includes/Data/ObjectLocator.php(162): Flow\\Data\\ObjectLocator-\u003egetMulti(array)\n#8 /home/spage/projects/core/extensions/Flow/maintenance/FlowFixUserIp.php(117): Flow\\Data\\ObjectLocator-\u003eget(Flow\\Model\\UUID)\n#9 /home/spage/projects/core/extensions/Flow/maintenance/FlowFixUserIp.php(55): FlowFixUserIp-\u003eupdateRevision(string, DatabaseMysqli, string)\n#10 [internal function]: FlowFixUserIp-\u003e{closure}(DatabaseMysqli, string)\n#11 /home/spage/projects/core/extensions/Flow/maintenance/FlowFixUserIp.php(45): call_user_func(Closure, DatabaseMysqli, string)\n#12 /home/spage/projects/core/extensions/Flow/maintenance/FlowFixUserIp.php(56): FlowFixUserIp-\u003e{closure}(Closure)\n#13 /home/spage/projects/core/maintenance/Maintenance.php(1290): FlowFixUserIp-\u003edoDBUpdates()\n#14 /home/spage/projects/core/maintenance/doMaintenance.php(101): LoggedUpdateMaintenance-\u003eexecute()\n#15 /home/spage/projects/core/extensions/Flow/maintenance/FlowFixUserIp.php(150): require_once(string)\n#16 {main}",
+      "revId": "d9d9bbdd52cb5de5cd05e6c14272669d591bc946",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
