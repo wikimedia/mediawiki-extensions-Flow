@@ -179,22 +179,22 @@ class TopicListBlock extends AbstractBlock {
 			$serializer = Container::get( 'formatter.topiclist' );
 		}
 
-		if ( $this->workflow->isNew() ) {
-			return $response + $serializer->buildEmptyResult( $this->workflow );
-		}
-
 		// @todo remove the 'api' => true, its always api
 		$findOptions = $this->getFindOptions( $options + array( 'api' => true ) );
-		$page = $this->getPage( $findOptions );
 
 		// sortby option
 		if ( isset( $findOptions['sortby'] ) ) {
 			$response['sortby'] = $findOptions['sortby'];
 		// default is newest
 		} else {
-			$response['sortby'] = '';
+			$response['sortby'] = 'newest';
 		}
 
+		if ( $this->workflow->isNew() ) {
+			return $response + $serializer->buildEmptyResult( $this->workflow );
+		}
+
+		$page = $this->getPage( $findOptions );
 		$workflowIds = array();
 		/** @var TopicListEntry $topicListEntry */
 		foreach ( $page->getResults() as $topicListEntry ) {
@@ -247,42 +247,50 @@ class TopicListBlock extends AbstractBlock {
 		// Compute offset/limit
 		$limit = $this->getLimit( $requestOptions );
 
-		if ( isset( $requestOptions['offset-id'] ) && $requestOptions['offset-id'] ) {
+		// @todo Once we migrate View.php to use the API directly
+		// all defaults will be handled by API and not here.
+		$requestOptions += array(
+			'offset-id' => false,
+			'offset-dir' => 'fwd',
+			'offset' => false,
+			'api' => true,
+			'sortby' => 'user',
+		);
+		if ( strlen( $requestOptions['sortby'] ) === 0 ) {
+			$requestOptions['sortby'] = 'user';
+		}
+
+		if ( $requestOptions['offset-id'] ) {
 			$findOptions['pager-offset'] = UUID::create( $requestOptions['offset-id'] );
-		} elseif ( isset( $requestOptions['offset'] ) && $requestOptions['offset'] ) {
+		} elseif ( $requestOptions['offset'] ) {
 			$findOptions['pager-offset'] = intval( $requestOptions['offset'] );
 		}
 
-		if ( isset( $requestOptions['offset-dir'] ) && $requestOptions['offset-dir'] ) {
+		if ( $requestOptions['offset-dir'] ) {
 			$findOptions['pager-dir'] = $requestOptions['offset-dir'];
 		}
 
-		if ( isset( $requestOptions['api'] ) && $requestOptions['api'] ) {
+		if ( $requestOptions['api'] ) {
 			$findOptions['offset-elastic'] = false;
 		}
 
 		$findOptions['pager-limit'] = $limit;
 
-		// Only support sortby = updated now, fall back to creation time by default otherwise.
-		// To clear the sortby user preference, pass sortby with an empty value
 		$sortByOption = '';
 		$user = $this->context->getUser();
-		if ( isset( $requestOptions['sortby'] ) ) {
-			if ( $requestOptions['sortby'] === 'updated' ) {
-				$sortByOption = 'updated';
-			}
-			if (
-				isset( $requestOptions['savesortby'] )
-				&& !$user->isAnon()
-				&& $user->getOption( 'flow-topiclist-sortby' ) != $sortByOption
-			) {
-				$user->setOption( 'flow-topiclist-sortby', $sortByOption );
-				$user->saveSettings();
-			}
-		} else {
-			if ( !$user->isAnon() && $user->getOption( 'flow-topiclist-sortby' ) === 'updated' ) {
-				 $sortByOption = 'updated';
-			}
+		if ( $requestOptions['sortby'] === 'user' && !$user->isAnon() ) {
+			$sortByOption = $user->getOption( 'flow-topiclist-sortby' );
+		} elseif ( $requestOptions['sortby'] === 'updated' ) {
+			$sortByOption = 'updated';
+		}
+
+		if (
+			isset( $requestOptions['savesortby'] )
+			&& !$user->isAnon()
+			&& $user->getOption( 'flow-topiclist-sortby' ) != $sortByOption
+		) {
+			$user->setOption( 'flow-topiclist-sortby', $sortByOption );
+			$user->saveSettings();
 		}
 
 		if ( $sortByOption === 'updated' ) {
