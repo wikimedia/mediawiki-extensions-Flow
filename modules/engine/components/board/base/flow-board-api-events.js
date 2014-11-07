@@ -712,12 +712,15 @@
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitReply = function ( info, data, jqxhr ) {
 		var $form = $( this ).closest( 'form' ),
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $form );
+			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $form ),
+			eventLog = new mw.flow.EventLog( 'FlowReplies' ); // @todo: create a shared object somewhere with the shared properties for FlowReplies schema
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
 			return;
 		}
+
+		eventLog.logEvent( { action: 'save' } );
 
 		flowBoard.emitWithReturn( 'cancelForm', $form );
 

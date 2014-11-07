@@ -666,6 +666,16 @@
 	FlowComponentEventsMixin.eventHandlers.addFormCancelCallback = flowEventsMixinAddFormCancelCallback;
 
 	/**
+	 * Adds a flow-cancel-eventlog to a given form, to be triggered on click of the "cancel" button.
+	 * @param {jQuery} $form
+	 * @param {FlowEventLog} eventLog
+	 */
+	function flowEventsMixinSetFormCancelCallback( $form, eventLog ) {
+		$form.data( 'flow-cancel-eventlog', eventLog );
+	}
+	FlowComponentEventsMixin.eventHandlers.setFormCancelEventLog = flowEventsMixinSetFormCancelCallback;
+
+	/**
 	 * @param {FlowBoardComponent|jQuery} $node or entire FlowBoard
 	 */
 	function flowEventsMixinRemoveError( $node ) {
