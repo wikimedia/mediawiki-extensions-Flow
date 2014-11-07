@@ -4,7 +4,21 @@
 			<a href="{{actions.reply.url}}"
 			   title="{{actions.reply.title}}"
 			   class="mw-ui-anchor mw-ui-progressive mw-ui-quiet"
-			   data-flow-interactive-handler="activateReplyPost">
+			   data-flow-interactive-handler="activateReplyPost"
+
+			   {{!--
+				   Initialize EventLogging: see flow_topic_titlebar_content for
+				   more details on how this works.
+			   --}}
+			   data-flow-eventlog-schema="FlowReplies"
+			   data-flow-eventlog-action="initiate"
+			   data-flow-eventlog-entrypoint="reply-post"
+			   data-flow-eventlog-forward="
+				   < .flow-post:not([data-flow-post-max-depth='1']) .flow-reply-form [data-role='cancel'],
+				   < .flow-post:not([data-flow-post-max-depth='1']) .flow-reply-form [data-role='action'][name='preview'],
+				   < .flow-post:not([data-flow-post-max-depth='1']) .flow-reply-form [data-role='submit']
+			   "
+			>
 				{{~actions.reply.title~}}
 			</a>
 		{{/if}}
