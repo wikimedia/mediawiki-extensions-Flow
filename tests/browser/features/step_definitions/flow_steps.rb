@@ -28,7 +28,7 @@ Given(/^the block author link is not visible$/) do
   on(FlowPage).usertools_block_user_link_element.when_not_visible
 end
 
-Given(/^The Flow page is fully loaded$/ ) do
+Given(/^The Flow page is fully loaded$/) do
   on(FlowPage).new_topic_body_element.when_not_visible
 end
 
@@ -143,7 +143,7 @@ Then(/^the content of the top post should not be visible$/) do
 end
 
 Then(/^the Save New Topic button should be disabled$/) do
-  val = on(FlowPage).new_topic_save_element.attribute( "disabled" )
+  val = on(FlowPage).new_topic_save_element.attribute("disabled")
   expect(val).to eq("true")
 end
 

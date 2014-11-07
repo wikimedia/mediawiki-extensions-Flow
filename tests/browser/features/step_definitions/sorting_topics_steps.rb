@@ -32,4 +32,3 @@ end
 Then(/^the Flow page should show Newest topics link$/) do
   expect(on(FlowPage).newest_topics_link_element.when_present).to be_visible
 end
-
