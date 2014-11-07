@@ -751,7 +751,7 @@ class TopicBlock extends AbstractBlock {
 
 		// check if user has sufficient permissions to see log
 		$logPage = new \LogPage( $state );
-		if ( !$this->user->isAllowed( $logPage->getRestriction() ) ) {
+		if ( !$this->context->getUser()->isAllowed( $logPage->getRestriction() ) ) {
 			return $this->context->msg( 'flow-error-not-allowed-' . $state );
 		}
 
