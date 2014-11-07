@@ -267,7 +267,7 @@ class TopicListBlock extends AbstractBlock {
 		// To clear the sortby user preference, pass sortby with an empty value
 		$sortByOption = '';
 		$user = $this->context->getUser();
-		if ( isset( $requestOptions['sortby'] ) ) {
+		if ( isset( $requestOptions['sortby'] ) && $requestOptions['sortBy'] !== '' ) {
 			if ( $requestOptions['sortby'] === 'updated' ) {
 				$sortByOption = 'updated';
 			}
