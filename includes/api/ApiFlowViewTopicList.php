@@ -27,8 +27,8 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 				ApiBase::PARAM_DFLT => 'fwd',
 			),
 			'sortby' => array(
-				ApiBase::PARAM_TYPE => array( 'newest', 'updated' ),
-				ApiBase::PARAM_DFLT => 'newest',
+				ApiBase::PARAM_TYPE => array( 'newest', 'updated', 'user' ),
+				ApiBase::PARAM_DFLT => 'user',
 			),
 			'savesortby' => array(
 				ApiBase::PARAM_TYPE => 'boolean',
