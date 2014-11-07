@@ -106,12 +106,14 @@
         name="preview"
         data-role="action"
         class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-js"
+        data-flow-eventlog-action="preview"
 >'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
 
 <button data-flow-interactive-handler="cancelForm"
         data-role="cancel"
         type="reset"
         class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
+        data-flow-eventlog-action="cancel-attempt"
 >'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
 ';},'flow_newtopic_form' => function ($cx, $in) {return ''.((LCRun3::ifvar($cx, ((isset($in['actions']['newtopic']) && is_array($in['actions'])) ? $in['actions']['newtopic'] : null))) ? '
 	<form action="'.htmlentities((string)((isset($in['actions']['newtopic']['url']) && is_array($in['actions']['newtopic'])) ? $in['actions']['newtopic']['url'] : null), ENT_QUOTES, 'UTF-8').'" method="POST" class="flow-newtopic-form" data-flow-initial-state="collapsed">
@@ -160,6 +162,16 @@
 		   title="'.htmlentities((string)((isset($in['actions']['reply']['title']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 		   class="mw-ui-anchor mw-ui-progressive mw-ui-quiet"
 		   data-flow-interactive-handler="activateForm"
+
+		   
+		   data-flow-eventlog-log="FlowReplies"
+		   data-flow-eventlog-action="initiate"
+		   data-flow-eventlog-entrypoint="reply-top"
+		   data-flow-eventlog-forward="
+		       < .flow-topic .flow-reply-form:last [data-role=\'cancel\'],
+		       < .flow-topic .flow-reply-form:last [data-role=\'action\'][name=\'preview\'],
+		       < .flow-topic .flow-reply-form:last [data-role=\'submit\']
+		   "
 		>'.htmlentities((string)((isset($in['actions']['reply']['title']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'</a>
 		&bull;
 	' : '').'
@@ -317,7 +329,9 @@
 			        class="mw-ui-button mw-ui-constructive"
 			        data-flow-interactive-handler="apiRequest"
 			        data-flow-api-handler="submitReply"
-			        data-flow-api-target="< .flow-topic">'.htmlentities((string)((isset($in['actions']['reply']['title']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'</button>
+			        data-flow-api-target="< .flow-topic"
+			        data-flow-eventlog-action="save-attempt"
+			>'.htmlentities((string)((isset($in['actions']['reply']['title']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'</button>
 			'.LCRun3::p($cx, 'flow_form_buttons', Array(Array($in),Array())).'
 			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-terms-of-use-reply'),Array()), 'encq').'</small>
 		</div>

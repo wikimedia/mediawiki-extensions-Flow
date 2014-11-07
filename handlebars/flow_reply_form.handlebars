@@ -34,7 +34,9 @@
 			        class="mw-ui-button mw-ui-constructive"
 			        data-flow-interactive-handler="apiRequest"
 			        data-flow-api-handler="submitReply"
-			        data-flow-api-target="< .flow-topic">
+			        data-flow-api-target="< .flow-topic"
+			        data-flow-eventlog-action="save-attempt"
+			>
 				{{~actions.reply.title~}}
 			</button>
 			{{> flow_form_buttons }}

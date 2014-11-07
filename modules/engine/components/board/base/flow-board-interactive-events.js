@@ -56,6 +56,8 @@
 			flowBoard.emitWithReturn( 'expandTopicIfNecessary', $form.closest( '.flow-topic' ) );
 		}
 
+		// @todo: somehow, this will have to trigger eventLog action: initiate
+
 		// Is this a form field? Scroll to the form instead of jumping.
 		$form.conditionalScrollIntoView().queue( function ( next ) {
 			var $el = $( hash[0] );
@@ -197,10 +199,14 @@
 		// We have to make sure the data attribute is added to the form; the
 		// addBack is failsafe for when form is actually the root node in $form
 		// already (there may or may not be parent containers)
-		flowBoard.emitWithReturn( 'addFormCancelCallback', $form.find( 'form' ).addBack( 'form' ), function () {
-			$post.removeData( 'flow-replying' );
-			$form.remove();
-		} );
+		flowBoard.emitWithReturn(
+			'addFormCancelCallback',
+			$form.find( 'form' ).addBack( 'form' ),
+			function () {
+				$post.removeData( 'flow-replying' );
+				$form.remove();
+			}
+		);
 
 		// Add reply form below the post being replied to (WRT max depth)
 		$targetPost.children( '.flow-replies' ).append( $form );
