@@ -324,6 +324,8 @@ $wgResourceModules += array(
 			'engine/misc/mw-ui.modal.js',
 			// FlowApi
 			'engine/misc/flow-api.js',
+			// FlowEventLog
+			'engine/misc/flow-eventlog.js',
 			// Component registry
 			'engine/components/flow-registry.js',
 			// FlowComponent must come before actual components
