@@ -712,13 +712,19 @@
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitReply = function ( info, data, jqxhr ) {
 		var $form = $( this ).closest( 'form' ),
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $form );
+			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $form ),
+			eventLog = new mw.flow.EventLog( 'FlowReplies' ); // @todo: create a shared object somewhere with the shared properties for FlowReplies schema
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
 			return;
 		}
 
+		eventLog.logEvent( { action: 'save' } );
+
+		// Execute cancel callback to destroy form, but unset EventLog first, as
+		// we don't want it to log the cancel events
+		flowBoard.emitWithReturn( 'setFormCancelEventLog', $form );
 		flowBoard.emitWithReturn( 'cancelForm', $form );
 
 		// Target should be flow-topic

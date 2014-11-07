@@ -164,7 +164,8 @@
 			postId = $targetPost.data( 'flow-id' ),
 			topicTitle = $post.closest( '.flow-topic' ).find( '.flow-topic-title' ).text(),
 			replyToContent = $post.find( '.flow-post-content' ).filter( ':first' ).text() || topicTitle,
-			author = $.trim( $post.find( '.flow-author' ).filter( ':first' ).find( '.mw-userlink' ).text() );
+			author = $.trim( $post.find( '.flow-author' ).filter( ':first' ).find( '.mw-userlink' ).text() ),
+			eventLog = new mw.flow.EventLog( 'FlowReplies' ); // @todo: create a shared object somewhere with the shared properties for FlowReplies schema
 
 		// Check if reply form has already been opened
 		if ( $post.data( 'flow-replying' ) ) {
@@ -197,14 +198,27 @@
 		// We have to make sure the data attribute is added to the form; the
 		// addBack is failsafe for when form is actually the root node in $form
 		// already (there may or may not be parent containers)
-		flowBoard.emitWithReturn( 'addFormCancelCallback', $form.find( 'form' ).addBack( 'form' ), function () {
-			$post.removeData( 'flow-replying' );
-			$form.remove();
-		} );
+		flowBoard.emitWithReturn(
+			'addFormCancelCallback',
+			$form.find( 'form' ).addBack( 'form' ),
+			function () {
+				$post.removeData( 'flow-replying' );
+				$form.remove();
+			}
+		);
+
+		// Assign event log object to log cancel event
+		flowBoard.emitWithReturn(
+			'setFormCancelEventLog',
+			$form.find( 'form' ).addBack( 'form' ),
+			eventLog
+		);
 
 		// Add reply form below the post being replied to (WRT max depth)
 		$targetPost.children( '.flow-replies' ).append( $form );
 		$form.conditionalScrollIntoView();
+
+		eventLog.logEvent( { action: 'initiate' } );
 	};
 
 	/**
