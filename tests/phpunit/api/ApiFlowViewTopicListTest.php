@@ -57,8 +57,9 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 					'result' => array(
 						'topiclist' => array(
 							'submitted' => array(
-								'sortby' => 'newest',
+								'sortby' => 'user',
 							),
+							'sortby' => 'newest',
 							'roots' => array(),
 							'posts' => array(),
 							'revisions' => array(),
@@ -96,7 +97,7 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 							'submitted' => array(
 								'sortby' => 'newest',
 							),
-							'sortby' => '',
+							'sortby' => 'newest',
 							'roots' => array(
 								$topicData[2]['id'],
 								$topicData[1]['id'],
