@@ -13,7 +13,7 @@ class FlowPage < WikiPage
   form(:edit_header_form, css: ".flow-board-header-edit-view form")
   textarea(:edit_header_textbox, css: ".flow-board-header-edit-view textarea")
 
-  a(:author_link, css: ".flow-author a", index:0)
+  a(:author_link, css: ".flow-author a", index: 0)
   a(:cancel_button, text: "Cancel")
 
   # XXX (mattflaschen, 2014-06-24): This is broken; there is no
@@ -137,7 +137,7 @@ class FlowPage < WikiPage
   button(:change_title_save, css: ".flow-topic-titlebar form .mw-ui-constructive")
 
   ### Post meta actions
-  span(:post_meta_actions, css:".flow-post .flow-post-meta-actions", index: 0)
+  span(:post_meta_actions, css: ".flow-post .flow-post-meta-actions", index: 0)
   a(:edit_post) do |page|
     page.post_meta_actions_element.link_element(title: "Edit")
   end
@@ -225,9 +225,8 @@ class FlowPage < WikiPage
   a(:recently_active_topics_link, text: "Recently active topics")
   a(:newest_topics_choice, href: /topiclist_sortby=newest/)
 
-
   ## Watch and unwatch links
-  div(:first_topic_watchlist_container, css: ".flow-topic-watchlist", index:0)
+  div(:first_topic_watchlist_container, css: ".flow-topic-watchlist", index: 0)
   a(:first_topic_watch_link) do |page|
     page.first_topic_watchlist_container_element.link_element(css: ".flow-watch-link-watch")
   end

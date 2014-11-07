@@ -1,7 +1,7 @@
 When(/^I add (\d+) comments to the Topic$/) do |number|
   number.to_i.times do
-      @saved_random=Random.new.rand.to_s
-      step 'I reply with comment "' + 'Selenium comment ' + @saved_random + '"'
+    @saved_random = Random.new.rand.to_s
+    step 'I reply with comment "' + 'Selenium comment ' + @saved_random + '"'
   end
 end
 
@@ -19,8 +19,8 @@ end
 
 When(/^I go to an old style permalink to my topic$/) do
   on(FlowPage) do |curPage|
-    workflowId = curPage.flow_first_topic_element.attribute( 'data-flow-id' )
-    visit(FlowOldPermalinkPage, :using_params => {:workflow_id => workflowId})
+    work_flow_id = curPage.flow_first_topic_element.attribute('data-flow-id')
+    visit(FlowOldPermalinkPage, using_params: { workflow_id: work_flow_id })
   end
 end
 

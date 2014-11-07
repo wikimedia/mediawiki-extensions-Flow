@@ -26,17 +26,17 @@ When(/^I switch from (.*) view to (.*) view$/) do |start_mode, end_mode|
   on(FlowPage) do |page|
     # If current_index is the array index, what must be clicked to
     # get to the next one
-    elementToClick = [
+    element_to_click = [
       page.topics_only_view_element,
       page.small_topics_view_element,
       page.topics_and_posts_view_element
-    ];
+    ]
 
-    current_index = COLLAPSE_STRING_TO_INDEX[start_mode];
-    current_mode = start_mode;
+    current_index = COLLAPSE_STRING_TO_INDEX[start_mode]
+    current_mode = start_mode
     while current_mode != end_mode do
-      elementToClick[current_index].when_visible.click
-      current_index = ( current_index + 1 ) % elementToClick.length
+      element_to_click[current_index].when_visible.click
+      current_index = (current_index + 1) % element_to_click.length
       current_mode = COLLAPSE_INDEX_TO_STRING[current_index]
     end
   end

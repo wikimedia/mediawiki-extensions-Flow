@@ -31,7 +31,7 @@ When(/^I see a dialog box$/) do
 end
 
 Then(/^I confirm$/) do
-  on(FlowPage).confirm(true){}
+  on(FlowPage).confirm(true) {}
 end
 
 Then(/^I do not see the dialog box$/) do

@@ -30,7 +30,7 @@ end
 
 When(/^I type "(.*?)" as the reason$/) do |reason|
   on(FlowPage) do |page|
-    page.topic_lock_form_reason_element.when_present.clear()
+    page.topic_lock_form_reason_element.when_present.clear
     # Focus textarea so that any menus that have been clicked lose their focus. In Chrome these might disrupt the test as
     # elements may be masked and not clickable.
     page.topic_lock_form_reason_element.click
