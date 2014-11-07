@@ -354,5 +354,11 @@
 	"mw-ui-unsubmitted-confirm": "您在此页有未提交的更新。您确信不保存您的更改离开？",
 	"flow-post-undo-hide": "（撤销隐藏）",
 	"flow-post-undo-delete": "（撤销删除）",
-	"flow-post-undo-suppress": "（撤销锁定）"
+	"flow-post-undo-suppress": "（撤销锁定）",
+	"apihelp-flow-example-1": "编辑[[Talk:Sandbox]]的页顶",
+	"apihelp-flow+edit-post-param-postId": "帖子ID。",
+	"apihelp-flow+lock-topic-example-1": "锁定[[Topic:S2tycnas4hcucw8w]]",
+	"apihelp-flow+view-topic-example-1": "查看[[Topic:S2tycnas4hcucw8w]]",
+	"flow-edited": "已编辑",
+	"flow-edited-by": "由$1编辑"
 }

@@ -11,5 +11,6 @@
 	"flow-topic-action-history": "Skiednis",
 	"flow-board-history": "\"$1\" skiednis",
 	"flow-history-day": "Hjoed",
-	"flow-link-history": "skiednis"
+	"flow-link-history": "skiednis",
+	"flow-load-more": "Mear laden"
 }

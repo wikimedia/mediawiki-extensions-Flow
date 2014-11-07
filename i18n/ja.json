@@ -323,7 +323,7 @@
 	"apihelp-flow+view-topic-summary-param-revId": "最新版の代わりに、この版を読み込みます。",
 	"apihelp-flow+view-topic-summary-example-1": "[[Topic:S2tycnas4hcucw8w]] の要約をウィキテキスト形式で閲覧",
 	"apihelp-flow+view-topiclist-description": "話題の一覧を閲覧します。",
-	"apihelp-flow+view-topiclist-param-offset-dir": "話題の並び順です。",
+	"apihelp-flow+view-topiclist-param-offset-dir": "話題の並び順指定です。",
 	"apihelp-flow+view-topiclist-param-sortby": "話題の並べ替えのオプションです。",
 	"apihelp-flow+view-topiclist-param-savesortby": "設定すると、並べ替えのオプションを保存します。",
 	"apihelp-flow+view-topiclist-param-offset-id": "話題の取得を開始するオフセット値 (UUID 形式) です。",
@@ -339,5 +339,6 @@
 	"apihelp-flow-parsoid-utils-param-pageid": "ページの ID です。$1title とは共存できません。",
 	"apihelp-flow-parsoid-utils-example-1": "ウィキテキスト <nowiki>'''lorem''' ''blah''</nowiki> を HTML 形式に変換",
 	"apihelp-query+flowinfo-description": "ページの Flow の基礎的な情報を取得します。",
-	"apihelp-query+flowinfo-example-1": "[[Talk:Sandbox]]、[[Main Page]]、[[Talk:Flow]] の Flow の情報を取得"
+	"apihelp-query+flowinfo-example-1": "[[Talk:Sandbox]]、[[Main Page]]、[[Talk:Flow]] の Flow の情報を取得",
+	"flow-edited-by": "$1 が編集しました"
 }
