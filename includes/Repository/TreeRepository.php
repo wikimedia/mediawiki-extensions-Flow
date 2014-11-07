@@ -138,7 +138,7 @@ class TreeRepository {
 				// @todo: needs to be done for ALL depths, not just one
 				$rows = $dbw->select(
 					$this->tableName,
-					array( 'tree_depth' ),
+					array( 'tree_depth', 'tree_ancestor_id' ),
 					array( 'tree_descendant_id' => $ancestor->getBinary() ),
 					__METHOD__
 				);
@@ -149,7 +149,7 @@ class TreeRepository {
 						$this->tableName,
 						array(
 							'tree_descendant_id' => $descendant->getBinary(),
-							'tree_ancestor_id' => $ancestor->getBinary(),
+							'tree_ancestor_id' => $row->tree_ancestor_id,
 							'tree_depth' => $row->tree_depth + 1,
 						),
 						__METHOD__
