@@ -662,9 +662,13 @@
 		$button
 			.data( 'flow-return-to-edit', {
 				text: $button.text(),
-				$nodes: $previewContainer
+				$nodes: $previewContainer,
+				data: {
+					'flow-eventlog-action': 'keep-editing' // Reset EventLog action name so that when clicked next, keep-editing is logged
+				}
 			} )
-			.text( flowBoard.constructor.static.TemplateEngine.l10n('flow-preview-return-edit-post') )
+			.text( flowBoard.constructor.static.TemplateEngine.l10n( 'flow-preview-return-edit-post' ) )
+			.data( 'flow-eventlog-action', 'preview' ) // When clicked, set the action-to-be-logged to preview
 			.click( function() {
 				$cancelButton.show();
 			} );
@@ -719,6 +723,9 @@
 			return;
 		}
 
+		// @todo: Successfully saved, now log this: save-success
+
+		// Execute cancel callback to destroy form
 		flowBoard.emitWithReturn( 'cancelForm', $form );
 
 		// Target should be flow-topic
