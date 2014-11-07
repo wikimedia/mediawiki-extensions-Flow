@@ -50,12 +50,16 @@
         name="preview"
         data-role="action"
         class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-js"
+        data-flow-eventlog-action="preview"
 >'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
 
 <button data-flow-interactive-handler="cancelForm"
         data-role="cancel"
         type="reset"
         class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
+
+        
+        
 >'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
 ';},'flow_newtopic_form' => function ($cx, $in) {return ''.((LCRun3::ifvar($cx, ((isset($in['actions']['newtopic']) && is_array($in['actions'])) ? $in['actions']['newtopic'] : null))) ? '
 	<form action="'.htmlentities((string)((isset($in['actions']['newtopic']['url']) && is_array($in['actions']['newtopic'])) ? $in['actions']['newtopic']['url'] : null), ENT_QUOTES, 'UTF-8').'" method="POST" class="flow-newtopic-form" data-flow-initial-state="collapsed">
@@ -69,12 +73,21 @@
 		<input type="hidden" name="topiclist_replyTo" value="'.htmlentities((string)((isset($in['workflowId']) && is_array($in)) ? $in['workflowId'] : null), ENT_QUOTES, 'UTF-8').'" />
 		<input name="topiclist_topic" class="mw-ui-input mw-ui-input-large"
 			required
-			type="text" placeholder="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-newtopic-start-placeholder'),Array()), 'encq').'" data-role="title"/>
+			type="text"
+			placeholder="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-newtopic-start-placeholder'),Array()), 'encq').'"
+			data-role="title"
+
+			
+			data-flow-interactive-handler-focus="activateNewTopic"
+		/>
 		<textarea name="topiclist_content"
 			data-flow-preview-template="flow_topic"
 			class="mw-ui-input flow-form-collapsible mw-ui-input-large"
 			'.((LCRun3::ifvar($cx, ((isset($in['isOnFlowBoard']) && is_array($in)) ? $in['isOnFlowBoard'] : null))) ? 'style="display:none;"' : '').'
-			placeholder="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-newtopic-content-placeholder',((isset($cx['scopes'][0]['title']) && is_array($cx['scopes'][0])) ? $cx['scopes'][0]['title'] : null)),Array()), 'encq').'" data-role="content" required></textarea>
+			placeholder="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-newtopic-content-placeholder',((isset($cx['scopes'][0]['title']) && is_array($cx['scopes'][0])) ? $cx['scopes'][0]['title'] : null)),Array()), 'encq').'"
+			data-role="content"
+			required
+		></textarea>
 
 		<div class="flow-form-actions flow-form-collapsible"
 			'.((LCRun3::ifvar($cx, ((isset($in['isOnFlowBoard']) && is_array($in)) ? $in['isOnFlowBoard'] : null))) ? 'style="display:none;"' : '').'>
