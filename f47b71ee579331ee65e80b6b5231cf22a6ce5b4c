@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_79cfe25b",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 43
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-07T19:19:57Z",
+      "side": 1,
+      "message": "might as well have consistent interface with getImportedId, and take the object in both cases",
+      "revId": "f47b71ee579331ee65e80b6b5231cf22a6ce5b4c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_f9021275",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 43
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-07T19:19:57Z",
+      "side": 1,
+      "message": "i know this is prettier, and personally i would be fine with\n\n    if ( $header \u003d $this-\u003eimportSouce-\u003egetHeader() ) {\n\nbut if we want to call the method only one time i think mediawiki coding standards require to put this into a variable. this implementation may not strictly require it but its just good hygiene :)",
+      "revId": "f47b71ee579331ee65e80b6b5231cf22a6ce5b4c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_99f3ce9a",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 43
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-07T19:19:57Z",
+      "side": 1,
+      "message": "how does this work for multiple header revisions, the second revision would need to reference the first to create itself.  I\u0027m guessing its because we arn\u0027t walking back the main revision table to find when lqt was first added to the page? (probably fine for now)",
+      "revId": "f47b71ee579331ee65e80b6b5231cf22a6ce5b4c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_b937aa49",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 43
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-07T19:19:57Z",
+      "side": 1,
+      "message": "this is correct for header, but summary and post revision should be against the topic article title (Topic:Sijo4ijr14gfijo). It may be that we should be doing it this way, but thats not for this patch.",
+      "revId": "f47b71ee579331ee65e80b6b5231cf22a6ce5b4c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_79004239",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 43
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-07T19:19:57Z",
+      "side": 1,
+      "message": "i would reshuffle this function above importObjectWithHistory, that function is kind of the odd one out and should be first or last rather than splitting up the group of similar methods",
+      "revId": "f47b71ee579331ee65e80b6b5231cf22a6ce5b4c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_2cfd96ae",
+        "filename": "includes/Import/LiquidThreadsApi/Iterators.php",
+        "patchSetId": 43
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-07T19:19:57Z",
+      "side": 1,
+      "message": "lets clean up the debug comments",
+      "revId": "f47b71ee579331ee65e80b6b5231cf22a6ce5b4c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_0c30da98",
+        "filename": "includes/Import/LiquidThreadsApi/Iterators.php",
+        "patchSetId": 43
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-07T19:19:57Z",
+      "side": 1,
+      "message": "sic debug comments",
+      "revId": "f47b71ee579331ee65e80b6b5231cf22a6ce5b4c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_cc251258",
+        "filename": "includes/Import/LiquidThreadsApi/Iterators.php",
+        "patchSetId": 43
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-07T19:19:57Z",
+      "side": 1,
+      "message": "sic debug comments",
+      "revId": "f47b71ee579331ee65e80b6b5231cf22a6ce5b4c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_cce4320d",
+        "filename": "tests/phpunit/Import/OldUIDGeneratorTest.php",
+        "patchSetId": 43
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-07T19:19:57Z",
+      "side": 1,
+      "message": "rename file",
+      "revId": "f47b71ee579331ee65e80b6b5231cf22a6ce5b4c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
