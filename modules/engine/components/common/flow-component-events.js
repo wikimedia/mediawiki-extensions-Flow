@@ -54,6 +54,13 @@
 				'focusin.FlowBoardComponent',
 				'input.mw-ui-input, textarea',
 				_getDispatchCallback( this, 'focusField' )
+			)
+			// Note: this MUST be executed after interactiveHandlers are run!
+			// @todo: make what above comment said be what happens!
+			.on(
+				'click.FlowBoardComponent keypress.FlowBoardComponent',
+				'[data-flow-eventlog-action]',
+				_getDispatchCallback( this, 'eventLogHandler' )
 			);
 
 		if ( _isGlobalBound ) {
@@ -463,6 +470,55 @@
 	}
 	FlowComponentEventsMixin.eventHandlers.interactiveHandler = flowInteractiveHandlerCallback;
 	FlowComponentEventsMixin.eventHandlers.apiRequest = flowInteractiveHandlerCallback;
+
+	/**
+	 * @todo: document.
+	 */
+	function flowEventLogCallback( event ) {
+		// Only trigger with enter key, if keypress
+		if ( event.type === 'keypress' && ( event.charCode !== 13 || event.metaKey || event.shiftKey || event.ctrlKey || event.altKey )) {
+			return;
+		}
+
+		var $context = $( event.currentTarget || event.delegateTarget || event.target ),
+			// Get existing (forwarded) funnel id, or generate a new one if it does not yet exist
+			funnelId = $context.data( 'flow-eventlog-funnel' ) || mw.flow.FlowEventLogRegistry.generateFunnelId(),
+			// Fetch existing EventLog object for this funnel (if any)
+			eventLog = mw.flow.FlowEventLogRegistry.funnels[funnelId],
+			// Figure out what nodes we have to forward this funnel to
+			// @todo: we only want to do this after all interactive handlers are done (they may be creating these nodes...) - I'm not yet sure how to proceed here
+			forward = $context.data( 'flow-eventlog-forward' ),
+			$forward = forward ? $context.findWithParent( forward ) : $();
+
+		if ( !eventLog ) {
+			// @todo: check input - need all .data attributes
+
+			// A funnel with this id does not yet exist, create it!
+			eventLog = new mw.flow.EventLog(
+				$context.data( 'flow-eventlog-log' ),
+				{
+					entrypoint: $context.data( 'flow-eventlog-entrypoint' ),
+					isAnon: mw.user.isAnon(),
+					sessionId: mw.user.sessionId(),
+					funnelId: funnelId,
+					pageNs: mw.config.get( 'wgNamespaceNumber' ),
+					pageTitle: mw.config.get( 'wgTitle' )
+				}
+			);
+
+			// Store this particular eventLog - we may want to log more things in this funnel
+			mw.flow.FlowEventLogRegistry.funnels[funnelId] = eventLog;
+		}
+
+		// Forward funnel data to other places
+		$forward.data( 'flow-eventlog-funnel', funnelId );
+
+		// Log this action
+		eventLog.logEvent( { action: $context.data( 'flow-eventlog-action' ) } );
+
+		// @todo: will probably need to pull out much of this code into something else that's easily called from code, with a specified action
+	}
+	FlowComponentEventsMixin.eventHandlers.eventLogHandler = flowEventLogCallback;
 
 	/**
 	 * When the whole class has been instantiated fully (after every constructor has been called).
