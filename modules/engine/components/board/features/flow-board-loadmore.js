@@ -427,19 +427,23 @@
 			scrollTop = $scrollContainer.scrollTop() + ( $scrollContainer.offset() || { top: 0 } ).top;
 
 		// Find load more buttons within our search container, and they must be visible
+		mw.flow.debug( 'Checking', [this.$loadMoreNodes, $container] );
 		$container.find( this.$loadMoreNodes ).filter( ':visible' ).each( function () {
+			mw.flow.debug( 'Found node', this, arguments );
 			var $this = $( this ),
 				offsetTop = $this.offset().top;
 
 			// First, is this element above or below us?
 			if ( offsetTop - 10 <= scrollTop ) { // Top of the element is not in viewport, plus 10px arbitrary padding
 				// The element is above the viewport; don't use it.
+				mw.flow.debug( 'Cant click it' );
 				return;
 			}
 
 			// Is this element in the viewport?
 			if ( scrollTop + threshold > offsetTop ) { // As long as the edge of the top is visible
 				// Yes, trigger it.
+				mw.flow.debug( 'Clicked it', this );
 				$( this ).trigger( 'click' );
 			}
 		} );
