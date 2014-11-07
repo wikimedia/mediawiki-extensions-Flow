@@ -46,7 +46,7 @@
 				_getDispatchCallback( this, 'interactiveHandler' )
 			)
 			.on(
-				'focus.FlowBoardComponent',
+				'focusin.FlowBoardComponent',
 				'a, input, button, .flow-click-interactive',
 				_getDispatchCallback( this, 'interactiveHandlerFocus' )
 			)
@@ -59,6 +59,11 @@
 				'focusin.FlowBoardComponent',
 				'input.mw-ui-input, textarea',
 				_getDispatchCallback( this, 'focusField' )
+			)
+			.on(
+				'click.FlowBoardComponent keypress.FlowBoardComponent',
+				'[data-flow-eventlog-action]',
+				_getDispatchCallback( this, 'eventLogHandler' )
 			);
 
 		if ( _isGlobalBound ) {
@@ -210,6 +215,26 @@
 	// Interactive Handlers
 	//
 
+	function getTarget( event ) {
+		var $target,
+			self = event.currentTarget || event.delegateTarget || event.target,
+			$this = $( self ),
+			dataParams = $this.data();
+
+		// Find the target node
+		if ( dataParams.flowApiTarget ) {
+			// This fn supports finding parents
+			$target = $this.findWithParent( dataParams.flowApiTarget );
+		}
+
+		// Assign a target node if none
+		if ( !$target || !$target.length ) {
+			return $this;
+		}
+
+		return $target;
+	}
+
 	/**
 	 * Triggers an API request based on URL and form data, and triggers the callbacks based on flow-api-handler.
 	 * @example <a data-flow-interactive-handler="apiRequest" data-flow-api-handler="loadMore" data-flow-api-target="< .flow-component div" href="...">...</a>
@@ -233,15 +258,7 @@
 
 		event.preventDefault();
 
-		// Find the target node
-		if ( dataParams.flowApiTarget ) {
-			// This fn supports finding parents
-			$target = $this.findWithParent( dataParams.flowApiTarget );
-		}
-		if ( !$target || !$target.length ) {
-			// Assign a target node if none
-			$target = $this;
-		}
+		$target = getTarget( event );
 		info.$target = $target;
 		args.splice( 1, 0, info ); // insert info into args for prehandler
 
@@ -479,6 +496,77 @@
 		return flowExecuteInteractiveHandler.call( this, args, $context, interactiveHandlerName, apiHandlerName );
 	}
 	FlowComponentEventsMixin.eventHandlers.interactiveHandlerFocus = flowInteractiveHandlerFocusCallback;
+
+	/**
+	 * Callback function for when a [data-flow-eventlog-action] node is clicked.
+	 * This will trigger a eventLog call to the given schema with the given
+	 * parameters.
+	 * A unique funnel ID will be created for all new EventLog calls.
+	 *
+	 * There may be multiple subsequent calls in the same "funnel" (and share
+	 * same info) that you want to track. It is possible to forward funnel data
+	 * from one attribute to another once the first has been clicked. It'll then
+	 * log new calls with the same data (schema & entrypoint) & funnel ID as the
+	 * initial logged event.
+	 *
+	 * Required parameters (as data-attributes) are:
+	 * * data-flow-eventlog-log: The schema name
+	 * * data-flow-eventlog-entrypoint: The schema's entrypoint parameter
+	 * * data-flow-eventlog-action: The schema's action parameter
+	 *
+	 * Additionally:
+	 * * data-flow-eventlog-forward: Selectors to forward funnel data to
+	 */
+	function flowEventLogCallback( event ) {
+		// Only trigger with enter key, if keypress
+		if ( event.type === 'keypress' && ( event.charCode !== 13 || event.metaKey || event.shiftKey || event.ctrlKey || event.altKey )) {
+			return;
+		}
+
+		var $context = $( event.currentTarget || event.delegateTarget || event.target ),
+			data = $context.data(),
+			$target = getTarget( event ),
+			component = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $context ),
+			$forward,
+			interval;
+
+		/*
+		 * We'll want to forward funnel info to nodes that may be clicked next.
+		 * In the case of opening a new reply field, that would be the cancel,
+		 * reply & submit buttons.
+		 * However, those buttons may not yet exist at this point: we could have
+		 * eventHandlers that are still building the nodes that we want to
+		 * forward to (like compiling the template & setting everything up, or
+		 * even worse: waiting for an API request to get the data we'll need in
+		 * the template...)
+		 * This will wait for as long as an API call is still in process, in a
+		 * short interval. This gives JS some time to do what it needs to do
+		 * (like build the template and output it), but is still short enough
+		 * that it's unlikely that a human has already interacted with an
+		 * element we want to forward to.
+		 * But still, it is slightly error-prone: JS may not be done preparing
+		 * what we're waiting for, so we may not be able to forward to those
+		 * nodes then, because they don't exist at that time...
+		 * @todo: find an alternative solution to only get this to fire after
+		 * all eventhandlers are actually done (preferably figure out a solution
+		 * that won't require us to manually call this from multiple places, as
+		 * that will be really hard to maintain)
+		 */
+		interval = setInterval( function() {
+			if ( $target.closest( '.flow-api-inprogress' ).length === 0 ) {
+				clearInterval( interval );
+
+				// Now find all nodes to forward to
+				$forward = data.flowEventlogForward ? $context.findWithParent( data.flowEventlogForward ) : $();
+
+				// Log the event & forward the funnel
+				component.logEvent( data, $forward );
+			}
+		}, 50 );
+
+		// @todo: will probably need to pull out much of this code into something else that's easily called from code, with a specified action
+	}
+	FlowComponentEventsMixin.eventHandlers.eventLogHandler = flowEventLogCallback;
 
 	/**
 	 * When the whole class has been instantiated fully (after every constructor has been called).

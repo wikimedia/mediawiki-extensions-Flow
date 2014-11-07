@@ -56,6 +56,8 @@
 			flowBoard.emitWithReturn( 'expandTopicIfNecessary', $form.closest( '.flow-topic' ) );
 		}
 
+		// @todo: somehow, this will have to trigger eventLog action: initiate
+
 		// Is this a form field? Scroll to the form instead of jumping.
 		$form.conditionalScrollIntoView().queue( function ( next ) {
 			var $el = $( hash[0] );
@@ -154,6 +156,45 @@
 	/**
 	 * @param {Event} event
 	 */
+	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.activateReplyTopic = function ( event ) {
+		var $topic = $( this ).closest( '.flow-topic' ),
+			topicId = $topic.data( 'flow-id' ),
+			component = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $( this ) );
+
+		// The reply form is used in multiple places. This will check if it was
+		// triggered from inside the topic reply form.
+		if ( $( this ).closest( '#flow-reply-' + topicId ).length === 0 ) {
+			// Not in topic reply form
+			return;
+		}
+
+		// Only if the textarea is compressed, is it being activated. Otherwise,
+		// it has already expanded and this focus is now just re-focussing the
+		// already active form
+		if ( !$( this ).hasClass( 'flow-input-compressed' ) ) {
+			// Form already activated
+			return;
+		}
+
+		component.logEvent(
+			// log data
+			{
+				flowEventlogLog: 'FlowReplies',
+				flowEventlogEntrypoint: 'reply-bottom',
+				flowEventlogAction: 'initiate'
+			},
+			// nodes to forward funnel to
+			$( this ).findWithParent(
+				'< .flow-reply-form [data-role="cancel"],' +
+				'< .flow-reply-form [data-role="action"][name="preview"],' +
+				'< .flow-reply-form [data-role="submit"]'
+			)
+		);
+	};
+
+	/**
+	 * @param {Event} event
+	 */
 	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.activateReplyPost = function ( event ) {
 		event.preventDefault();
 
@@ -197,10 +238,14 @@
 		// We have to make sure the data attribute is added to the form; the
 		// addBack is failsafe for when form is actually the root node in $form
 		// already (there may or may not be parent containers)
-		flowBoard.emitWithReturn( 'addFormCancelCallback', $form.find( 'form' ).addBack( 'form' ), function () {
-			$post.removeData( 'flow-replying' );
-			$form.remove();
-		} );
+		flowBoard.emitWithReturn(
+			'addFormCancelCallback',
+			$form.find( 'form' ).addBack( 'form' ),
+			function () {
+				$post.removeData( 'flow-replying' );
+				$form.remove();
+			}
+		);
 
 		// Add reply form below the post being replied to (WRT max depth)
 		$targetPost.children( '.flow-replies' ).append( $form );

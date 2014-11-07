@@ -78,6 +78,11 @@
 			// We're in preview mode. Revert it back.
 			$button.text( oldData.text );
 
+			// Restore data attributes
+			$.each( oldData.data, function( key, value ) {
+				$button.data( key, value );
+			} );
+
 			// Show the inputs again
 			$form.find( '.flow-preview-target-hidden' ).removeClass( 'flow-preview-target-hidden' ).focus();
 
@@ -92,6 +97,69 @@
 		return false;
 	}
 	FlowBoardComponentMiscMixin.prototype.resetPreview = flowBoardComponentResetPreview;
+
+	/**
+	 * This will trigger a eventLog call to the given schema with the given
+	 * parameters.
+	 * A unique funnel ID will be created for all new EventLog calls.
+	 *
+	 * There may be multiple subsequent calls in the same "funnel" (and share
+	 * same info) that you want to track. It is possible to forward funnel data
+	 * from one node to another once the first has been clicked. It'll then
+	 * log new calls with the same data (schema & entrypoint) & funnel ID as the
+	 * initial logged event.
+	 *
+	 * Required keys in data argument are:
+	 * * flowEventlogLog: The schema name
+	 * * flowEventlogEntrypoint: The schema's entrypoint parameter
+	 * * flowEventlogAction: The schema's action parameter
+	 *
+	 * @param {object} data
+	 * @param {jQuery} [$forward] Nodes to forward funnel to
+	 */
+	function logEvent( data, $forward ) {
+		var // Get existing (forwarded) funnel id, or generate a new one if it does not yet exist
+			funnelId = data.flowEventlogFunnel || mw.flow.FlowEventLogRegistry.generateFunnelId(),
+			// Fetch existing EventLog object for this funnel (if any)
+			eventLog = mw.flow.FlowEventLogRegistry.funnels[funnelId];
+
+		// Optional argument, may not want/need to forward funnel to other nodes
+		$forward = $forward || $();
+
+		if ( !eventLog ) {
+			// Make sure we have the data required to init the EventLog
+			if ( !data.flowEventlogLog || !data.flowEventlogEntrypoint ) {
+				return;
+			}
+
+			// A funnel with this id does not yet exist, create it!
+			eventLog = new mw.flow.EventLog(
+				data.flowEventlogLog,
+				{
+					entrypoint: data.flowEventlogEntrypoint,
+					isAnon: mw.user.isAnon(),
+					sessionId: mw.user.sessionId(),
+					funnelId: funnelId,
+					pageNs: mw.config.get( 'wgNamespaceNumber' ),
+					pageTitle: mw.config.get( 'wgTitle' )
+				}
+			);
+
+			// Store this particular eventLog - we may want to log more things
+			// in this funnel
+			mw.flow.FlowEventLogRegistry.funnels[funnelId] = eventLog;
+		}
+
+		// Log this action
+		if ( data.flowEventlogAction ) {
+			eventLog.logEvent( { action: data.flowEventlogAction } );
+		}
+
+		// Forward funnel data to other places
+		// Not using data() - it somehow gets lost on some nodes
+		$forward.attr( 'data-flow-eventlog-funnel', funnelId );
+	}
+	FlowBoardComponentMiscMixin.prototype.logEvent = logEvent;
 
 	//
 	// Static functions
