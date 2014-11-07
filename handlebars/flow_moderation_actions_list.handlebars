@@ -1,239 +1,243 @@
-{{~#ifCond moderationType "===" "topic"~}}
-	{{!-- Topic only --}}
-	{{~#if actions.edit~}}
-		<li class="{{moderationContainerClass}}-edit-action">
-			{{~null~}}
-			<a class="{{moderationMwUiClass}} mw-ui-quiet"
-			   href="{{actions.edit.url}}"
-			   title="{{actions.edit.title}}"
-			   data-flow-interactive-handler="apiRequest"
-			   data-flow-api-handler="activateEditTitle"
-			   data-flow-api-target="< .flow-topic-titlebar"
-			>
-				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-pencil"></span> {{/if~}}
-				{{~l10n (concat "flow-" moderationType "-action-edit-title")~}}
-			</a>
-			{{~null~}}
-		</li>
-	{{~/if~}}
-	{{~#if links.topic-history~}}
+<section>
+	{{~#ifCond moderationType "===" "topic"~}}
+		{{!-- Topic only --}}
+		{{~#if actions.edit~}}
+			<li class="flow-js">
+				{{~null~}}
+				<a class="{{moderationMwUiClass}} mw-ui-quiet"
+				   href="{{actions.edit.url}}"
+				   title="{{actions.edit.title}}"
+				   data-flow-interactive-handler="apiRequest"
+				   data-flow-api-handler="activateEditTitle"
+				   data-flow-api-target="< .flow-topic-titlebar"
+				>
+					{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-pencil"></span> {{/if~}}
+					{{~l10n (concat "flow-" moderationType "-action-edit-title")~}}
+				</a>
+				{{~null~}}
+			</li>
+		{{~/if~}}
+		{{~#if links.topic-history~}}
+			<li>
+				{{~null~}}
+				<a class="{{moderationMwUiClass}} mw-ui-quiet"
+				   href="{{links.topic-history.url}}"
+				   title="{{links.topic-history.title}}">
+					{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-clock"></span> {{/if~}}
+					{{~l10n (concat "flow-" moderationType "-action-history")~}}
+				</a>
+				{{~null~}}
+			</li>
+		{{~/if~}}
+		{{~#if links.topic~}}
+			<li>
+				{{~null~}}
+				<a class="{{moderationMwUiClass}} mw-ui-quiet"
+				   href="{{links.topic.url}}"
+				   title="{{links.topic.title}}">
+					{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-link"></span> {{/if~}}
+					{{~l10n (concat "flow-" moderationType "-action-view")~}}
+				</a>
+				{{~null~}}
+			</li>
+		{{~/if~}}
+		{{~#if actions.summarize~}}
+			<li class="flow-js">
+				{{~null~}}
+				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet"
+				   data-flow-interactive-handler="apiRequest"
+				   data-flow-api-handler="activateSummarizeTopic"
+				   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
+				   href="{{actions.summarize.url}}"
+				   title="{{actions.summarize.title}}">
+					{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-stripe-toc"></span> {{/if~}}
+					{{~#if summary~}}
+						{{~l10n (concat "flow-" moderationType "-action-resummarize-topic")~}}
+					{{else~}}
+						{{~l10n (concat "flow-" moderationType "-action-summarize-topic")~}}
+					{{~/if~}}
+				</a>
+				{{~null~}}
+			</li>
+		{{~/if~}}
+	{{~/ifCond~}}
+
+	{{~#ifCond moderationType "===" "post"~}}
+		{{!-- Post only --}}
+		{{~#if links.post~}}
+			<li>
+				{{~null~}}
+				<a class="{{moderationMwUiClass}} mw-ui-quiet"
+				   href="{{links.post.url}}"
+				   title="{{links.post.title}}">
+					{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-link"></span> {{/if~}}
+					{{~l10n (concat "flow-" moderationType "-action-view")~}}
+				</a>
+				{{~null~}}
+			</li>
+		{{~/if~}}
+	{{~/ifCond~}}
+</section>
+
+<section>
+	{{~#if actions.hide~}}
 		<li>
 			{{~null~}}
 			<a class="{{moderationMwUiClass}} mw-ui-quiet"
-			   href="{{links.topic-history.url}}"
-			   title="{{links.topic-history.title}}">
-				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-clock"></span> {{/if~}}
-				{{~l10n (concat "flow-" moderationType "-action-history")~}}
-			</a>
-			{{~null~}}
-		</li>
-	{{~/if~}}
-	{{~#if links.topic~}}
-		<li>
-			{{~null~}}
-			<a class="{{moderationMwUiClass}} mw-ui-quiet"
-			   href="{{links.topic.url}}"
-			   title="{{links.topic.title}}">
-				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-link"></span> {{/if~}}
-				{{~l10n (concat "flow-" moderationType "-action-view")~}}
-			</a>
-			{{~null~}}
-		</li>
-	{{~/if~}}
-	{{~#if actions.summarize~}}
-		<li class="{{moderationContainerClass}}-edit-action">
-			{{~null~}}
-			<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet"
-			   data-flow-interactive-handler="apiRequest"
-			   data-flow-api-handler="activateSummarizeTopic"
-			   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
-			   href="{{actions.summarize.url}}"
-			   title="{{actions.summarize.title}}">
-				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-stripe-toc"></span> {{/if~}}
-				{{~#if summary~}}
-					{{~l10n (concat "flow-" moderationType "-action-resummarize-topic")~}}
-				{{else~}}
-					{{~l10n (concat "flow-" moderationType "-action-summarize-topic")~}}
-				{{~/if~}}
-			</a>
-			{{~null~}}
-		</li>
-	{{~/if~}}
-{{~/ifCond~}}
-
-{{~#ifCond moderationType "===" "post"~}}
-	{{!-- Post only --}}
-	{{~#if links.post~}}
-		<li>
-			{{~null~}}
-			<a class="{{moderationMwUiClass}} mw-ui-quiet"
-			   href="{{links.post.url}}"
-			   title="{{links.post.title}}">
-				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-link"></span> {{/if~}}
-				{{~l10n (concat "flow-" moderationType "-action-view")~}}
-			</a>
-			{{~null~}}
-		</li>
-	{{~/if~}}
-{{~/ifCond~}}
-
-{{~#if actions.hide~}}
-	<li class="{{moderationContainerClass}}-moderation-action">
-		{{~null~}}
-		<a class="{{moderationMwUiClass}} mw-ui-quiet"
-		   href="{{actions.hide.url}}"
-		   title="{{actions.hide.title}}"
-		   data-flow-interactive-handler="moderationDialog"
-		   data-flow-template="flow_moderate_{{moderationTemplate}}"
-		   data-role="hide">
-			{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-flag"></span> {{/if~}}
-			{{~l10n (concat "flow-" moderationType "-action-hide-" moderationTemplate)~}}
-		</a>
-		{{~null~}}
-	</li>
-{{~/if~}}
-{{~#if actions.unhide~}}
-	<li class="{{moderationContainerClass}}-moderation-action">
-		{{~null~}}
-		<a class="{{moderationMwUiClass}} mw-ui-quiet"
-		   href="{{actions.unhide.url}}"
-		   title="{{actions.unhide.title}}"
-		   data-flow-interactive-handler="moderationDialog"
-		   data-flow-template="flow_moderate_{{moderationTemplate}}"
-		   data-role="unhide">
-			{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-flag"></span> {{/if~}}
-			{{~l10n (concat "flow-" moderationType "-action-unhide-" moderationTemplate)~}}
-		</a>
-		{{~null~}}
-	</li>
-{{~/if~}}
-{{~#if actions.delete~}}
-	<li class="{{moderationContainerClass}}-moderation-action">
-		{{~null~}}
-		<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
-		   href="{{actions.delete.url}}"
-		   title="{{actions.delete.title}}"
-		   data-flow-interactive-handler="moderationDialog"
-		   data-flow-template="flow_moderate_{{moderationTemplate}}"
-		   data-role="delete">
-			{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-trash"></span> {{/if~}}
-			{{~l10n (concat "flow-" moderationType "-action-delete-" moderationTemplate)~}}
-		</a>
-		{{~null~}}
-	</li>
-{{~/if~}}
-{{~#if actions.undelete~}}
-	<li class="{{moderationContainerClass}}-moderation-action">
-		{{~null~}}
-		<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
-		   href="{{actions.undelete.url}}"
-		   title="{{actions.undelete.title}}"
-		   data-flow-interactive-handler="moderationDialog"
-		   data-flow-template="flow_moderate_{{moderationTemplate}}"
-		   data-role="undelete">
-			{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-trash"></span> {{/if~}}
-			{{~l10n (concat "flow-" moderationType "-action-undelete-" moderationTemplate)~}}
-		</a>
-		{{~null~}}
-	</li>
-{{~/if~}}
-{{~#if actions.suppress~}}
-	<li class="{{moderationContainerClass}}-moderation-action">
-		{{~null~}}
-		<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
-		   href="{{actions.suppress.url}}"
-		   title="{{actions.suppress.title}}"
-		   data-flow-interactive-handler="moderationDialog"
-		   data-flow-template="flow_moderate_{{moderationTemplate}}"
-		   data-role="suppress">
-			{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-block"></span> {{/if~}}
-			{{~l10n (concat "flow-" moderationType "-action-suppress-" moderationTemplate)~}}
-		</a>
-		{{~null~}}
-	</li>
-{{~/if~}}
-{{~#if actions.unsuppress~}}
-	<li class="{{moderationContainerClass}}-moderation-action">
-		{{~null~}}
-		<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
-		   href="{{actions.unsuppress.url}}"
-		   title="{{actions.unsuppress.title}}"
-		   data-flow-interactive-handler="moderationDialog"
-		   data-flow-template="flow_moderate_{{moderationTemplate}}"
-		   data-role="unsuppress">
-			{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-block"></span> {{/if~}}
-			{{~l10n (concat "flow-" moderationType "-action-unsuppress-" moderationTemplate)~}}
-		</a>
-		{{~null~}}
-	</li>
-{{~/if~}}
-
-{{~#ifCond moderationType "===" "history"~}}
-	{{!-- The history page uses a modal, while the topic view puts this in the title bar --}}
-	{{~#if actions.lock~}}
-		<li class="{{moderationContainerClass}}-moderation-action">
-			{{~null~}}
-			<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
+			   href="{{actions.hide.url}}"
+			   title="{{actions.hide.title}}"
 			   data-flow-interactive-handler="moderationDialog"
-			   data-flow-template="flow_moderate_topic"
-			   data-role="lock"
-			   data-flow-id="{{postId}}"
-			   href="{{actions.lock.url}}"
-			   title="{{actions.lock.title}}">
-				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-lock"></span> {{/if~}}
-				{{~l10n (concat "flow-" moderationType "-action-lock-topic")~}}
+			   data-flow-template="flow_moderate_{{moderationTemplate}}"
+			   data-role="hide">
+				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-flag"></span> {{/if~}}
+				{{~l10n (concat "flow-" moderationType "-action-hide-" moderationTemplate)~}}
 			</a>
 			{{~null~}}
 		</li>
 	{{~/if~}}
-	{{~#if actions.unlock~}}
-		<li class="{{moderationContainerClass}}-moderation-action">
+	{{~#if actions.unhide~}}
+		<li>
 			{{~null~}}
-			<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
+			<a class="{{moderationMwUiClass}} mw-ui-quiet"
+			   href="{{actions.unhide.url}}"
+			   title="{{actions.unhide.title}}"
 			   data-flow-interactive-handler="moderationDialog"
-			   data-flow-template="flow_moderate_topic"
-			   data-role="unlock"
-			   data-flow-id="{{postId}}"
-			   href="{{actions.unlock.url}}"
-			   title="{{actions.unlock.title}}">
-				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-unlock"></span> {{/if~}}
-				{{~l10n (concat "flow-" moderationType "-action-unlock-topic")~}}
+			   data-flow-template="flow_moderate_{{moderationTemplate}}"
+			   data-role="unhide">
+				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-flag"></span> {{/if~}}
+				{{~l10n (concat "flow-" moderationType "-action-unhide-" moderationTemplate)~}}
 			</a>
 			{{~null~}}
 		</li>
 	{{~/if~}}
-{{else}}
-	{{!-- @todo Maybe we should change the topic view so that it also uses this modal? Consistency! --}}
-	{{~#if actions.lock~}}
-		<li class="{{moderationContainerClass}}-moderation-action">
+	{{~#if actions.delete~}}
+		<li>
 			{{~null~}}
 			<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
-			   data-flow-interactive-handler="apiRequest"
-			   data-flow-api-handler="activateLockTopic"
-			   data-flow-id="{{postId}}"
-			   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
-			   href="{{actions.lock.url}}"
-			   title="{{actions.lock.title}}">
-				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-lock"></span> {{/if~}}
-				{{~l10n (concat "flow-" moderationType "-action-lock-topic")~}}
+			   href="{{actions.delete.url}}"
+			   title="{{actions.delete.title}}"
+			   data-flow-interactive-handler="moderationDialog"
+			   data-flow-template="flow_moderate_{{moderationTemplate}}"
+			   data-role="delete">
+				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-trash"></span> {{/if~}}
+				{{~l10n (concat "flow-" moderationType "-action-delete-" moderationTemplate)~}}
 			</a>
 			{{~null~}}
 		</li>
 	{{~/if~}}
-	{{~#if actions.unlock~}}
-		<li class="{{moderationContainerClass}}-moderation-action">
+	{{~#if actions.undelete~}}
+		<li>
 			{{~null~}}
 			<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
-			   data-flow-interactive-handler="apiRequest"
-			   data-flow-api-handler="activateLockTopic"
-			   data-flow-id="{{postId}}"
-			   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
-			   href="{{actions.unlock.url}}"
-			   title="{{actions.unlock.title}}">
-				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-unlock"></span> {{/if~}}
-				{{~l10n (concat "flow-" moderationType "-action-unlock-topic")~}}
+			   href="{{actions.undelete.url}}"
+			   title="{{actions.undelete.title}}"
+			   data-flow-interactive-handler="moderationDialog"
+			   data-flow-template="flow_moderate_{{moderationTemplate}}"
+			   data-role="undelete">
+				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-trash"></span> {{/if~}}
+				{{~l10n (concat "flow-" moderationType "-action-undelete-" moderationTemplate)~}}
 			</a>
 			{{~null~}}
 		</li>
 	{{~/if~}}
-{{~/ifCond~}}
+	{{~#if actions.suppress~}}
+		<li>
+			{{~null~}}
+			<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
+			   href="{{actions.suppress.url}}"
+			   title="{{actions.suppress.title}}"
+			   data-flow-interactive-handler="moderationDialog"
+			   data-flow-template="flow_moderate_{{moderationTemplate}}"
+			   data-role="suppress">
+				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-block"></span> {{/if~}}
+				{{~l10n (concat "flow-" moderationType "-action-suppress-" moderationTemplate)~}}
+			</a>
+			{{~null~}}
+		</li>
+	{{~/if~}}
+	{{~#if actions.unsuppress~}}
+		<li>
+			{{~null~}}
+			<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
+			   href="{{actions.unsuppress.url}}"
+			   title="{{actions.unsuppress.title}}"
+			   data-flow-interactive-handler="moderationDialog"
+			   data-flow-template="flow_moderate_{{moderationTemplate}}"
+			   data-role="unsuppress">
+				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-block"></span> {{/if~}}
+				{{~l10n (concat "flow-" moderationType "-action-unsuppress-" moderationTemplate)~}}
+			</a>
+			{{~null~}}
+		</li>
+	{{~/if~}}
+
+	{{~#ifCond moderationType "===" "history"~}}
+		{{!-- The history page uses a modal, while the topic view puts this in the title bar --}}
+		{{~#if actions.lock~}}
+			<li>
+				{{~null~}}
+				<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
+				   data-flow-interactive-handler="moderationDialog"
+				   data-flow-template="flow_moderate_topic"
+				   data-role="lock"
+				   data-flow-id="{{postId}}"
+				   href="{{actions.lock.url}}"
+				   title="{{actions.lock.title}}">
+					{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-lock"></span> {{/if~}}
+					{{~l10n (concat "flow-" moderationType "-action-lock-topic")~}}
+				</a>
+				{{~null~}}
+			</li>
+		{{~/if~}}
+		{{~#if actions.unlock~}}
+			<li>
+				{{~null~}}
+				<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
+				   data-flow-interactive-handler="moderationDialog"
+				   data-flow-template="flow_moderate_topic"
+				   data-role="unlock"
+				   data-flow-id="{{postId}}"
+				   href="{{actions.unlock.url}}"
+				   title="{{actions.unlock.title}}">
+					{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-unlock"></span> {{/if~}}
+					{{~l10n (concat "flow-" moderationType "-action-unlock-topic")~}}
+				</a>
+				{{~null~}}
+			</li>
+		{{~/if~}}
+	{{else}}
+		{{!-- @todo Maybe we should change the topic view so that it also uses this modal? Consistency! --}}
+		{{~#if actions.lock~}}
+			<li>
+				{{~null~}}
+				<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
+				   data-flow-interactive-handler="apiRequest"
+				   data-flow-api-handler="activateLockTopic"
+				   data-flow-id="{{postId}}"
+				   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
+				   href="{{actions.lock.url}}"
+				   title="{{actions.lock.title}}">
+					{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-lock"></span> {{/if~}}
+					{{~l10n (concat "flow-" moderationType "-action-lock-topic")~}}
+				</a>
+				{{~null~}}
+			</li>
+		{{~/if~}}
+		{{~#if actions.unlock~}}
+			<li>
+				{{~null~}}
+				<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
+				   data-flow-interactive-handler="apiRequest"
+				   data-flow-api-handler="activateLockTopic"
+				   data-flow-id="{{postId}}"
+				   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
+				   href="{{actions.unlock.url}}"
+				   title="{{actions.unlock.title}}">
+					{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-unlock"></span> {{/if~}}
+					{{~l10n (concat "flow-" moderationType "-action-unlock-topic")~}}
+				</a>
+				{{~null~}}
+			</li>
+		{{~/if~}}
+	{{~/ifCond~}}
+</section>
