@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_a5c53942",
+        "filename": "includes/api/ApiFlowViewTopicList.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-11-07T22:59:29Z",
+      "side": 1,
+      "message": "Can we just use the string \"user\" to mean use the user\u0027s setting?",
+      "revId": "e35fd961ec5d56854ed18e6533e1344f2b18bd97",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
