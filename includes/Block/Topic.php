@@ -504,7 +504,7 @@ class TopicBlock extends AbstractBlock {
 		} else {
 			return array(
 				'submitted' => $options,
-				'errors' => array(),
+				'errors' => $this->errors,
 			);
 		}
 	}
