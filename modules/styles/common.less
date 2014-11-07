@@ -102,13 +102,23 @@
 		display: inline;
 	}
 
-	.flow-history-moderation-action:first-of-type:before {
-		content: '(';
-	}
-	.flow-history-moderation-action + .flow-history-moderation-action:before {
-		content: ' | ';
-	}
-	.flow-history-moderation-action:last-of-type:after {
-		content: ')';
+	> section {
+		display: inline;
+
+		&:not(:first-of-type) > li {
+			&:first-of-type {
+				border-top: 0px;
+
+				&:before {
+					content: '(';
+				}
+			}
+			& + li:before {
+				content: ' | ';
+			}
+			&:last-of-type:after {
+				content: ')';
+			}
+		}
 	}
 }
