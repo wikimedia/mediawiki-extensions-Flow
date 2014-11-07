@@ -37,7 +37,7 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 		// If nothing could render, we'll consider that an error (at least some
 		// block should've been able to render a GET request)
 		if ( !$output[$action]['result'] ) {
-			$this->getResult()->dieUsage(
+			$this->dieUsage(
 				wfMessage( 'flow-error-no-render' )->parse(),
 				'no-render',
 				200,

@@ -112,7 +112,7 @@ abstract class ApiFlowBase extends ApiBase {
 				$errors = $block->getErrors();
 
 				foreach( $errors as $key ) {
-					$this->getResult()->dieUsage(
+					$this->dieUsage(
 						$block->getErrorMessage( $key )->parse(),
 						$key,
 						200,
