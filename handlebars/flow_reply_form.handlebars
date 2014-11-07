@@ -18,10 +18,18 @@
 				required
 				data-flow-preview-template="flow_post"
 				data-flow-expandable="true"
-				class="mw-ui-input"
+				class="mw-ui-input flow-click-interactive"
 				type="text"
 				placeholder="{{l10n "flow-reply-topic-title-placeholder" properties.topic-of-post}}"
-				data-role="content">
+				data-role="content"
+
+				{{!--
+					You'd expect data-flow-eventlog-* data here (this one
+					needs to be clicked to expand the form). That stuff will be
+					in JS though, since this form is reused for all comments.
+				--}}
+				data-flow-interactive-handler-focus="activateReplyTopic"
+		>
 			{{~#if @root.submitted~}}
 				{{~#ifCond @root.submitted.postId "===" postId~}}
 					{{~@root.submitted.content~}}
@@ -34,7 +42,9 @@
 			        class="mw-ui-button mw-ui-constructive"
 			        data-flow-interactive-handler="apiRequest"
 			        data-flow-api-handler="submitReply"
-			        data-flow-api-target="< .flow-topic">
+			        data-flow-api-target="< .flow-topic"
+			        data-flow-eventlog-action="save-attempt"
+			>
 				{{~actions.reply.title~}}
 			</button>
 			{{> flow_form_buttons }}

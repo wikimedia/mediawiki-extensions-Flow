@@ -110,7 +110,8 @@
 			$form = $( this ).closest( 'form' ),
 			flowComponent = mw.flow.getPrototypeMethod( 'boardAndHistoryBase', 'getInstanceByElement' )( $form ),
 			$fields = $form.find( 'textarea, :text' ),
-			changedFieldCount = 0;
+			changedFieldCount = 0,
+			callbacks = $form.data( 'flow-cancel-callback' ) || [];
 
 		event.preventDefault();
 
@@ -121,27 +122,36 @@
 				return false;
 			}
 		} );
-		// If all the text fields are empty, OR if the user confirms to close this with text already entered, do it.
-		if ( !changedFieldCount || confirm( flowComponent.constructor.static.TemplateEngine.l10n( 'flow-cancel-warning' ) ) ) {
-			// Reset the form content
-			$form[0].reset();
 
-			// Trigger for flow-actions-disabler
-			$form.find( 'textarea, :text' ).trigger( 'keyup' );
+		// If fields are not empty, AND the user confirms to close this with text already entered, log it as abort.
+		if ( changedFieldCount && !confirm( flowComponent.constructor.static.TemplateEngine.l10n( 'flow-cancel-warning' ) ) ) {
+			// @todo: Aborted, now log this: cancel-abort
 
-			// Hide the form
-			flowComponent.emitWithReturn( 'hideForm', $form );
-
-			// Get rid of existing error messages
-			flowComponent.emitWithReturn( 'removeError', $form );
-
-			// Trigger the cancel callback
-			if ( $form.data( 'flow-cancel-callback' ) ) {
-				$.each( $form.data( 'flow-cancel-callback' ), function ( idx, fn ) {
-					fn.call( target, event );
-				} );
-			}
+			// Don't cancel!
+			return;
 		}
+
+		// Only log if user had already entered text (= confirmed to close)
+		if ( changedFieldCount ) {
+			// @todo: Successfully cancelled, now log this: save-success
+		}
+
+		// Reset the form content
+		$form[0].reset();
+
+		// Trigger for flow-actions-disabler
+		$form.find( 'textarea, :text' ).trigger( 'keyup' );
+
+		// Hide the form
+		flowComponent.emitWithReturn( 'hideForm', $form );
+
+		// Get rid of existing error messages
+		flowComponent.emitWithReturn( 'removeError', $form );
+
+		// Trigger the cancel callback
+		$.each( callbacks, function ( idx, fn ) {
+			fn.call( target, event );
+		} );
 	};
 
 	//

@@ -78,6 +78,11 @@
 			// We're in preview mode. Revert it back.
 			$button.text( oldData.text );
 
+			// Restore data attributes
+			$.each( oldData.data, function( key, value ) {
+				$button.data( key, value );
+			} );
+
 			// Show the inputs again
 			$form.find( '.flow-preview-target-hidden' ).removeClass( 'flow-preview-target-hidden' ).focus();
 
