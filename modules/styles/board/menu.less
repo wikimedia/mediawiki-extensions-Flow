@@ -99,28 +99,15 @@ div > .flow-menu {
 		box-shadow: 0 1px 2px @colorGrayLight;
 		background: #fff;
 		border-radius: 2px;
-	}
 
-	li {
-		display: block;
-		cursor: default;
-
-		// @todo move these outside of menu.less or genericize it
-		&.flow-menu-moderation-action {
-			border-top: 1px solid @colorGrayLight;
-		}
-		// Only show the grey top border in the first moderation action
-		&.flow-menu-moderation-action ~ .flow-menu-moderation-action {
-			border-top: 0px;
+		> section:not(:first-of-type) > li:first-of-type,
+		li.flow-menu-section:not(:first-of-type) {
+			border-top: 1px solid @colorGrayLighter;
 		}
 
-		// Hide moderation and edit actions in menu when JS is not working
-		.client-nojs & {
-			&.flow-menu-moderation-action,
-			&.flow-menu-edit-action {
-				// @todo improve the UX on those no-JS pages
-				display: none;
-			}
+		li {
+			display: block;
+			cursor: default;
 		}
 	}
 
