@@ -529,7 +529,7 @@ class FlowHooks {
 	}
 
 	public static function onResourceLoaderGetConfigVars( &$vars ) {
-		global $wgFlowEditorList, $wgFlowDefaultLimit, $wgFlowMaxLimit;
+		global $wgFlowEditorList, $wgFlowDefaultLimit, $wgFlowMaxLimit, $wgFlowLogEvents;
 
 		$vars['wgFlowEditorList'] = $wgFlowEditorList;
 		$vars['wgFlowMaxTopicLength'] = Flow\Model\PostRevision::MAX_TOPIC_LENGTH;
@@ -538,6 +538,7 @@ class FlowHooks {
 			'collapsed-full' => min( $wgFlowDefaultLimit * 2, $wgFlowMaxLimit ),
 			'collapsed-oneline' => min( $wgFlowDefaultLimit * 3, $wgFlowMaxLimit ),
 		);
+		$vars['wgFlowLogEvents'] = $wgFlowLogEvents;
 
 		return true;
 	}
