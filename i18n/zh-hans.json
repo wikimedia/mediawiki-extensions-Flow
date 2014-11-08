@@ -15,7 +15,8 @@
 			"Hudafu",
 			"Mywood",
 			"Impersonator 1",
-			"Duolaimi"
+			"Duolaimi",
+			"御坂美琴"
 		]
 	},
 	"flow-desc": "工作流管理系统",
@@ -357,6 +358,7 @@
 	"flow-post-undo-suppress": "（撤销锁定）",
 	"apihelp-flow-example-1": "编辑[[Talk:Sandbox]]的页顶",
 	"apihelp-flow+edit-post-param-postId": "帖子ID。",
+	"apihelp-flow+edit-topic-summary-param-summary": "编辑摘要的内容。",
 	"apihelp-flow+lock-topic-example-1": "锁定[[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+view-topic-example-1": "查看[[Topic:S2tycnas4hcucw8w]]",
 	"flow-edited": "已编辑",
