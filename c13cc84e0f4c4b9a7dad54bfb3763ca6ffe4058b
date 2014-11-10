@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_5adf6640",
+        "filename": "includes/Import/ImportSource.php",
+        "patchSetId": 45
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-10T21:26:41Z",
+      "side": 1,
+      "message": "Should be @return IImportHeader|null because we allow null result here",
+      "revId": "c13cc84e0f4c4b9a7dad54bfb3763ca6ffe4058b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_7aeca2b8",
+        "filename": "includes/Import/ImportSource.php",
+        "patchSetId": 45
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-10T21:26:41Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem correct, this shouldn\u0027t be handled explicitly and just \"happens\" via the author of the first revision returned by getRevisions()",
+      "revId": "c13cc84e0f4c4b9a7dad54bfb3763ca6ffe4058b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_9ae96ea9",
+        "filename": "includes/Import/ImportSource.php",
+        "patchSetId": 45
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-10T21:26:41Z",
+      "side": 1,
+      "message": "sic, duplicates IObjectRevision",
+      "revId": "c13cc84e0f4c4b9a7dad54bfb3763ca6ffe4058b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_fa375248",
+        "filename": "includes/Import/ImportSource.php",
+        "patchSetId": 45
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-10T21:26:41Z",
+      "side": 1,
+      "message": "sic, duplicates IObjectRevision",
+      "revId": "c13cc84e0f4c4b9a7dad54bfb3763ca6ffe4058b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
