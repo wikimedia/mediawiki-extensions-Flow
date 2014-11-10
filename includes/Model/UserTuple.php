@@ -23,7 +23,7 @@ class UserTuple {
 	public $id;
 
 	/**
-	 * @param string The ip of the user, blank string if logged in.
+	 * @param string|null The ip of the user, null if logged in.
 	 */
 	public $ip;
 
@@ -56,7 +56,7 @@ class UserTuple {
 
 		$this->wiki = $wiki;
 		$this->id = $id;
-		$this->ip = (string)$ip;
+		$this->ip = (string)$ip ?: null;
 	}
 
 	public static function newFromUser( User $user ) {
