@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "6e936f18_e4d6d9c6",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 43
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-10T19:50:50Z",
+      "side": 1,
+      "message": "This seems incorrect, or at least not matching what PostRevision currently does.\n\nIIUC:\n\nA topic title gets its postId from the workflow, the revision id is generated\nA reply generates a new postId, and reuses it as a revision id\nNew revisions that are not the first revision always get a generated rev id\n\nThis skips setting the revision id, but the one we were trying to skip is the post Id (which is appropriatly skipped here)",
+      "revId": "f47b71ee579331ee65e80b6b5231cf22a6ce5b4c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_79cfe25b",
         "filename": "includes/Import/Importer.php",
         "patchSetId": 43
