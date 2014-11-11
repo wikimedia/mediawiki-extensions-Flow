@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_b8c8f25a",
+        "filename": "includes/Import/LiquidThreadsApi/Source.php",
+        "patchSetId": 46
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-11T00:13:35Z",
+      "side": 1,
+      "message": "This seems like a condition we need to handle?  This is outputting as soon as i start the import using:\n\n    mwscript extensions/Flow/maintenance/convertLqt.php api http://www.mediawiki.org/w/api.php --srcpage Extension_talk:LiquidThreads --dstpage User_talk:LQTImport1",
+      "revId": "b9a79a1e51d6afaea92cf68edd06e836c68769f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
