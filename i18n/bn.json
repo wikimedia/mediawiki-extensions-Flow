@@ -21,6 +21,7 @@
 	"flow-lock-topic-submit": "বিষয় বন্দী করুন",
 	"flow-lock-topic-submit-overwrite": "বন্দী বিষয় সারাংশ আবার লিখুন",
 	"flow-unlock-topic-submit": "বিষয় মুক্ত করুন",
+	"flow-rev-message-new-post-recentchanges-summary": "নতুন প্রসঙ্গ {{GENDER:$2|তৈরি হয়েছে}}",
 	"flow-history-day": "আজ",
 	"flow-history-week": "গত সপ্তাহ",
 	"flow-notification-reply-email-subject": "$3-এ $2",
@@ -30,8 +31,7 @@
 	"flow-moderation-confirmation-suppress-topic": "আপনার পোস্টটি সফলভাবে গোপন করা হয়েছে। \nপোস্টটির উপর প্রতিক্রিয়া {{GENDER:$1|প্রকাশের}} $1 মাধ্যমে বিবেচনা করুন।",
 	"flow-moderation-confirmation-delete-topic": "আপনার পোস্টটি সফলভাবে মুছে ফেলা হয়েছে। \nপোস্টটির উপর প্রতিক্রিয়া {{GENDER:$1|প্রকাশের}} $1 মাধ্যমে বিবেচনা করুন।",
 	"flow-moderation-confirmation-hide-topic": "আপনার পোস্টটি সফলভাবে লুকানো হয়েছে। \nপোস্টটির উপর প্রতিক্রিয়া {{GENDER:$1|প্রকাশের}} $1 মাধ্যমে বিবেচনা করুন।",
-	"flow-edited-ago-day": "$1 {{PLURAL:$1|দিন}} আগে",
-	"flow-time-ago-day": "$1 {{PLURAL:$1|দিন}} আগে",
-	"flow-time-ago-hour": "$1 {{PLURAL:$1|ঘণ্টা}} আগে",
-	"flow-time-ago-second": "$1 {{PLURAL:$1|সেকেন্ড}} আগে"
+	"apihelp-flow+view-topic-example-1": "[[Topic:S2tycnas4hcucw8w]] দেখুন",
+	"flow-edited": "সম্পাদিত",
+	"flow-edited-by": "$1 দ্বারা সম্পাদিত"
 }
