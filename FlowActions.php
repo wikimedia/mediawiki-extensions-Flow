@@ -190,7 +190,7 @@ $wgFlowActions = array(
 		'root-permissions' => array(
 			PostRevision::MODERATED_NONE => '',
 		),
-		'links' => array( 'post-history', 'topic', 'post', 'diff-post', 'post-revision' ),
+		'links' => array( 'post-history', 'topic-history', 'topic', 'post', 'diff-post', 'post-revision' ),
 		'actions' => array( 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-post',
