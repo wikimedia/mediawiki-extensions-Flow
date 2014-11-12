@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_c6a0749d",
+        "filename": "includes/Data/Storage/RevisionStorage.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-12T18:23:09Z",
+      "side": 1,
+      "message": "yes, this limits what update queries the code allows to send to the database.  It was originally intended to prevent accidents changing historical revisions that shouldn\u0027t be changed.",
+      "parentUuid": "6e936f18_805c94f5",
+      "revId": "89f358b36dfcb4ef815403eabb32e1697d0de2af",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_40cc4cc0",
         "filename": "includes/Formatter/AbstractQuery.php",
         "patchSetId": 12
@@ -30,6 +48,24 @@
       "writtenOn": "2014-11-12T13:41:45Z",
       "side": 1,
       "message": "I don\u0027t really understand this. Why do we need the old content to display titles?",
+      "revId": "89f358b36dfcb4ef815403eabb32e1697d0de2af",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_269ef858",
+        "filename": "includes/Formatter/AbstractQuery.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-12T18:23:09Z",
+      "side": 1,
+      "message": "The history line for a topic Title reads something like:\n\n    EBernhardson changed the topic title from \"something old\" to \"something new\"\n\nSo to output that and have appropriate security checks for the content, we load the previous revision. There may be some way we could better handle it but i\u0027m not sure how.",
+      "parentUuid": "6e936f18_40cc4cc0",
       "revId": "89f358b36dfcb4ef815403eabb32e1697d0de2af",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_46e1c4c9",
+        "filename": "maintenance/FlowUpdateRevisionContentLength.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-12T18:23:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e936f18_e04b182a",
+      "revId": "89f358b36dfcb4ef815403eabb32e1697d0de2af",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_00496435",
         "filename": "maintenance/FlowUpdateRevisionContentLength.php",
         "patchSetId": 12
@@ -64,6 +118,24 @@
       "writtenOn": "2014-11-12T13:41:45Z",
       "side": 1,
       "message": "Needs to be updated.",
+      "revId": "89f358b36dfcb4ef815403eabb32e1697d0de2af",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_a6e0c8c8",
+        "filename": "maintenance/FlowUpdateRevisionContentLength.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-12T18:23:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e936f18_00496435",
       "revId": "89f358b36dfcb4ef815403eabb32e1697d0de2af",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
