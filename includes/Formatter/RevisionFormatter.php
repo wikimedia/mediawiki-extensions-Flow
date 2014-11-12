@@ -197,7 +197,7 @@ class RevisionFormatter {
 				$row->revision->getLastContentEditUserId(),
 				$row->revision->getLastContentEditUserIp()
 			),
-			'lastEditId' => $row->revision->getLastContentEditId(),
+			'lastEditId' => $row->revision->isOriginalContent() ? null : $row->revision->getLastContentEditId()->getAlphadecimal(),
 		);
 
 		$prevRevId = $row->revision->getPrevRevisionId();
