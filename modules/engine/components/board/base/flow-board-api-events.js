@@ -133,7 +133,7 @@
 	};
 
 	/**
-	 * Adjusts query params to use global watch action, and appends the watch token.
+	 * Adjusts query params to use global watch action, and specifies it should use a watch token.
 	 * @param {Event} event
 	 * @returns {Function}
 	 */
@@ -142,7 +142,9 @@
 			var params = {
 				action: 'watch',
 				titles: queryMap.page,
-				token: mw.user.tokens.get( 'watchToken' )
+				_internal: {
+					tokenType: 'watch'
+				}
 			};
 			if ( queryMap.submodule === 'unwatch' ) {
 				params.unwatch = 1;

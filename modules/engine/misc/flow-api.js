@@ -45,14 +45,15 @@ window.mw = window.mw || {}; // mw-less testing
 		 * @returns {$.Deferred}
 		 */
 		function flowApiCall( params, method ) {
+			var tokenType,
+				$deferred = $.Deferred(),
+				mwApi = new mw.Api( { ajax: { cache: false } } );
+
 			params = params || {};
 			// Server is using page instead of title
 			// @todo this should not be necessary
 			params.page = params.page || this.pageName || mw.config.get( 'wgPageName' );
 			method = method ? method.toUpperCase() : 'GET';
-
-			var $deferred = $.Deferred(),
-				mwApi = new mw.Api( { ajax: { cache: false } } );
 
 			if ( !params.action ) {
 				mw.flow.debug( '[FlowApi] apiCall error: missing action string', arguments );
@@ -64,11 +65,15 @@ window.mw = window.mw || {}; // mw-less testing
 			}
 
 			if ( method === 'POST' ) {
-				if ( !params.hasOwnProperty( 'token' ) ) {
-					return mwApi.postWithToken( 'edit', params );
+				if ( params._internal && params._internal.tokenType ) {
+					tokenType = params._internal.tokenType;
 				} else {
-					return mwApi.post( params );
+					tokenType = 'edit';
 				}
+
+				delete params._internal;
+
+				return mwApi.postWithToken( tokenType, params );
 			} else if ( method !== 'GET' ) {
 				return $deferred.rejectWith({ error: "Unknown submission method: " + method });
 			} else {
