@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_805c94f5",
+        "filename": "includes/Data/Storage/RevisionStorage.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-11-12T13:41:45Z",
+      "side": 1,
+      "message": "Is this required if you\u0027re using Reflection? I\u0027m not sure.",
+      "revId": "89f358b36dfcb4ef815403eabb32e1697d0de2af",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_40cc4cc0",
+        "filename": "includes/Formatter/AbstractQuery.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-11-12T13:41:45Z",
+      "side": 1,
+      "message": "I don\u0027t really understand this. Why do we need the old content to display titles?",
+      "revId": "89f358b36dfcb4ef815403eabb32e1697d0de2af",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_e04b182a",
+        "filename": "maintenance/FlowUpdateRevisionContentLength.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-11-12T13:41:45Z",
+      "side": 1,
+      "message": "I know it makes the vars much longer to add \u0027prop\u0027 or \u0027property\u0027 to the end, but these names confuse me.",
+      "revId": "89f358b36dfcb4ef815403eabb32e1697d0de2af",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_00496435",
+        "filename": "maintenance/FlowUpdateRevisionContentLength.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-11-12T13:41:45Z",
+      "side": 1,
+      "message": "Needs to be updated.",
+      "revId": "89f358b36dfcb4ef815403eabb32e1697d0de2af",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
