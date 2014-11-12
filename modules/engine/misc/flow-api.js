@@ -45,6 +45,8 @@ window.mw = window.mw || {}; // mw-less testing
 		 * @returns {$.Deferred}
 		 */
 		function flowApiCall( params, method ) {
+			var tokenType;
+
 			params = params || {};
 			// Server is using page instead of title
 			// @todo this should not be necessary
@@ -65,7 +67,12 @@ window.mw = window.mw || {}; // mw-less testing
 
 			if ( method === 'POST' ) {
 				if ( !params.hasOwnProperty( 'token' ) ) {
-					return mwApi.postWithToken( 'edit', params );
+					if ( params._internal && params._internal.tokenType ) {
+						tokenType = params._internal.tokenType;
+					} else {
+						tokenType = 'edit';
+					}
+					return mwApi.postWithToken( tokenType, params );
 				} else {
 					return mwApi.post( params );
 				}

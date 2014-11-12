@@ -142,7 +142,9 @@
 			var params = {
 				action: 'watch',
 				titles: queryMap.page,
-				token: mw.user.tokens.get( 'watchToken' )
+				_internal: {
+					tokenType: 'watch'
+				}
 			};
 			if ( queryMap.submodule === 'unwatch' ) {
 				params.unwatch = 1;
