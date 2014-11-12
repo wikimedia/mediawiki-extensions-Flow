@@ -8,5 +8,7 @@
 	"flow-history-action-hide-post": "மறைக்க",
 	"flow-lock-topic-submit": "தலைப்பைப் பூட்டுக",
 	"flow-unlock-topic-submit": "தலைப்பைத் திறக்கவும்",
-	"flow-topic-html-title": "$2ல் $1"
+	"flow-topic-html-title": "$2ல் $1",
+	"flow-edited": "தொகுக்கப்பட்டது",
+	"flow-edited-by": "$1ஆல் தொகுக்கப்பட்டது"
 }

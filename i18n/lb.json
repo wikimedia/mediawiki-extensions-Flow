@@ -177,6 +177,7 @@
 	"apihelp-flow+edit-topic-summary-example-1": "Ännert de Resumé vu(n) [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+moderate-post-param-reason": "Grond fir Moderatioun.",
 	"apihelp-flow+view-topic-description": "En Thema weisen.",
+	"apihelp-flow-parsoid-utils-param-to": "Format an deen den Inhalt ëmgewandelt soll ginn.",
 	"flow-edited": "Geännert",
 	"flow-edited-by": "Geännert vum $1"
 }
