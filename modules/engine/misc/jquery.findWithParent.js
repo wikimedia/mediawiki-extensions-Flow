@@ -32,6 +32,14 @@
 
 	$.findWithParent = jQueryFindWithParent;
 	$.fn.findWithParent = function ( selector ) {
-		return jQueryFindWithParent( this, selector );
+		var selectors = selector.split( ',' ),
+			$elements = $(),
+			self = this;
+
+		$.each( selectors, function( i, selector ) {
+			$elements = $elements.add( jQueryFindWithParent( self, selector ) );
+		} );
+
+		return $elements;
 	};
 }( jQuery ) );
