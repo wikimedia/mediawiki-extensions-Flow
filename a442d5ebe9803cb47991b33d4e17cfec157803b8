@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_26d11826",
+        "filename": "modules/engine/misc/flow-api.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-12T17:53:10Z",
+      "side": 1,
+      "message": "should only be one var block",
+      "revId": "a442d5ebe9803cb47991b33d4e17cfec157803b8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_66bba0de",
+        "filename": "modules/engine/misc/flow-api.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-12T17:53:10Z",
+      "side": 1,
+      "message": "the code changed in this patch appears to be the only code that triggered this special condition. might as well remove this condition and always call postWithToken",
+      "revId": "a442d5ebe9803cb47991b33d4e17cfec157803b8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
