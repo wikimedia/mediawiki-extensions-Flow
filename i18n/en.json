@@ -422,7 +422,7 @@
 	"apihelp-flow+new-topic-example-1": "Create a new topic on [[Talk:Sandbox]]",
 	"apihelp-flow+reply-description": "Replies to a post.",
 	"apihelp-flow+reply-param-replyTo": "Post ID to reply to.",
-	"apihelp-flow+reply-param-content": "Content for new topic.",
+	"apihelp-flow+reply-param-content": "Content for new post.",
 	"apihelp-flow+reply-example-1": "Reply to a post on [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+view-header-description": "View a board header.",
 	"apihelp-flow+view-header-param-contentFormat": "Format to return the content in.",
