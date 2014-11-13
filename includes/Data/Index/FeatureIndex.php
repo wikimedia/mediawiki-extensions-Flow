@@ -631,7 +631,7 @@ abstract class FeatureIndex implements Index {
 	}
 
 	/**
-	 * Generate the cache key representing th
+	 * Generate the cache key representing the attributes
 	 * @param array $attributes
 	 * @return string
 	 */
