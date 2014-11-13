@@ -378,6 +378,7 @@
 	"flow-post-undo-hide": "(undo hide)",
 	"flow-post-undo-delete": "(undo delete)",
 	"flow-post-undo-suppress": "(undo suppress)",
+	"flow-importer-lqt-converted-template": "LQT page converted to Flow",
 	"apihelp-flow-description": "Allows actions to be taken on Flow pages.",
 	"apihelp-flow-param-submodule": "The Flow submodule to invoke.",
 	"apihelp-flow-param-page": "The page to take the action on.",
