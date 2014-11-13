@@ -14,3 +14,4 @@ $user: User object to display the link for
 
 'FlowAddModules': Allows other extensions to add relevant modules.
 $output: OutputPage object
+
