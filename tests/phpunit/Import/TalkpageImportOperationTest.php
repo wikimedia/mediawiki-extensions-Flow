@@ -31,6 +31,8 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 	 * and sees if it falls over.
 	 */
 	public function testImportDoesntCompletelyFail() {
+		global $wgUser;
+
 		$workflow = Workflow::create(
 			'discussion',
 			Title::newMainPage()
@@ -93,7 +95,7 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 			)
 		);
 
-		$op = new TalkpageImportOperation( $source );
+		$op = new TalkpageImportOperation( $source, $wgUser );
 		$store = new NullImportSourceStore;
 		$op->import( new PageImportState(
 			$workflow,
@@ -139,15 +141,18 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 		}
 
 		// Verify we wrote the expected objects to storage
-		$this->assertEquals( 1, $storedHeader );
+
+		// Top-most revision of LQT page, plus cleanup change
+		$this->assertEquals( 2, $storedHeader );
+
 		$this->assertEquals( 1, $storedDiscussion );
 		$this->assertEquals( 1, $storedTopics );
 		$this->assertEquals( 1, $storedTopicListEntry );
 		$this->assertEquals( 1, $storedSummary );
 		$this->assertEquals( 3, $storedPosts );
 
-		// Eight objects should have been inserted in total
-		$this->assertCount( 8, array_unique( array_map( 'spl_object_hash', $stored ) ) );
+		// This total expected number of insertions should match the sum of the left assertEquals parameters above.
+		$this->assertCount( 9, array_unique( array_map( 'spl_object_hash', $stored ) ) );
 
 		// Other special cases we need to check
 		$this->assertTrue(

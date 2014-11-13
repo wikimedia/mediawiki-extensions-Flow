@@ -14,6 +14,7 @@ use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\WorkflowLoaderFactory;
+use FlowHooks;
 use IP;
 use MWCryptRand;
 use Psr\Log\LoggerInterface;
