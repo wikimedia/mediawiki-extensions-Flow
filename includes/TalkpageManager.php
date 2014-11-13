@@ -132,18 +132,49 @@ class TalkpageManager implements OccupationController {
 	 * Gives a user object used to manage talk pages
 	 *
 	 * @return User User to manage talkpages
+	 * @throws MWException If both of the names already exist, but are not properly
+	 *  configured.
 	 */
 	public function getTalkpageManager() {
-		$user = User::newFromName(
-			wfMessage( 'flow-talk-username' )->inContentLanguage()->text()
+		$userNameCandidates = array(
+			wfMessage( 'flow-talk-username' )->inContentLanguage()->text(),
+			'Flow talk page manager',
 		);
-		// Use the English fallback if the localized username is invalid or if a user
-		// with the name exists.
-		if ( $user === false || $user->getId() !== 0 ) {
-			$user = User::newFromName( 'Flow talk page manager', false );
+
+		$user = null;
+
+		foreach ( $userNameCandidates as $name ) {
+			$candidateUser = User::newFromName( $name );
+
+			if ( $candidateUser->getId() !== 0 ) {
+				// Exists
+
+				$groups = $candidateUser->getGroups();
+				if ( in_array( 'bot', $groups ) ) {
+					// We created this user earlier.
+					$user = $candidateUser;
+					break;
+				}
+
+				// If it exists, but is not a bot, someone created this
+				// without setting it up as expected, so go on to the next
+				// user.
+			} else {
+				$user = User::createNew( $name );
+				$user->addGroup( 'bot' );
+				break;
+			}
 		}
 
-		// prevent newtalk notification for takeover edit
+		if ( $user === null ) {
+			throw new MWException( 'All of the candidate usernames exist, but they are not configured as expected.' );
+		}
+
+		// Prevent newtalk notification for takeover edit.
+		// We could potentially do this through a group instead.
+		// getRights() call is so we don't confuse the in-object caching when we
+		// modify mRights.
+		$user->getRights();
 		$user->mRights[] = 'nominornewtalk';
 
 		return $user;

@@ -11,9 +11,12 @@ use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\WorkflowLoaderFactory;
+use FlowHooks;
+
 use MWCryptRand;
 use ReflectionProperty;
 use Title;
+use User;
 use UIDGenerator;
 
 /**
@@ -44,7 +47,9 @@ class Importer {
 	 * @return TalkpageImportOperation
 	 */
 	public function import( IImportSource $source, Title $targetPage, ImportSourceStore $sourceStore ) {
-		$operation = new TalkpageImportOperation( $source );
+		$occupationController = FlowHooks::getOccupationController();
+		$destinationScriptUser = $occupationController->getTalkpageManager();
+		$operation = new TalkpageImportOperation( $source, $destinationScriptUser );
 		$operation->import( new PageImportState(
 			$this->workflowLoaderFactory
 				->createWorkflowLoader( $targetPage )
@@ -342,10 +347,18 @@ class TalkpageImportOperation {
 	protected $importSource;
 
 	/**
+	 * User used to take actions that the script originates (such as adding {{LQT page converted to Flow}}).
+	 *
+	 * @var User
+	 */
+	protected $destinationScriptUser;
+
+	/**
 	 * @param IImportSource $source
 	 */
-	public function __construct( IImportSource $source ) {
+	public function __construct( IImportSource $source, User $destinationScriptUser ) {
 		$this->importSource = $source;
+		$this->destinationScriptUser = $destinationScriptUser;
 	}
 
 	/**
@@ -395,12 +408,45 @@ class TalkpageImportOperation {
 			$pageState,
 			$pageState->boardWorkflow->getArticleTitle()
 		);
+		
+		$finalHeaderCleanupRevision = $this->createHeaderCleanupRevision(
+			$pageState,
+			end( $revisions ),
+			$pageState->boardWorkflow->getArticleTitle()
+		);
+		$revisions[] = $finalHeaderCleanupRevision;
 
 		$pageState->put( $revisions, array() );
 		$pageState->recordAssociation(
 			reset( $revisions )->getCollectionId(),
 			$importHeader
 		);
+	}
+	
+	/**
+	 * @param PageImportState $pageState
+	 * @param AbstractRevision $lastRevision last imported header revision
+	 * @param Title $boardTitle board title associated with header
+	 * @return AbstractRevision generated revision for cleanup edit
+	 */
+	protected function createHeaderCleanupRevision( PageImportState $pageState, AbstractRevision $lastRevision, $boardTitle ) {
+		$wikitextForLastRevision = $lastRevision->getContent( 'wikitext' );
+		// This is will remove all instances, without attempting to check if it's in
+		// nowiki, etc.  It also ignores case and spaces in places where it doesn't
+		// matter.
+		$newWikitext = preg_replace(
+			'/{{\s*#useliquidthreads:\s*1\s*}}/i',
+			'',
+			$wikitextForLastRevision
+		);
+		$newWikitext .= "\n{{LQT page converted to Flow}}";
+		$cleanupRevision = $lastRevision->newNextRevision(
+			$this->destinationScriptUser,
+			$newWikitext,
+			'edit-header',
+			$boardTitle
+		);
+		return $cleanupRevision;
 	}
 
 	/**
