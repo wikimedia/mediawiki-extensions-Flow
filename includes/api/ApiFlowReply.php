@@ -34,7 +34,7 @@ class ApiFlowReply extends ApiFlowBasePost {
 	public function getParamDescription() {
 		return array(
 			'replyTo' => 'Post ID to reply to',
-			'content' => 'Content for new topic',
+			'content' => 'Content for new post',
 		);
 	}
 
