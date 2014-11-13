@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_33386ecf",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-13T21:52:51Z",
+      "side": 1,
+      "message": "no blank line here",
+      "revId": "9ee819cae027997a43e57c057fda0240d1720a3e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_13b8d223",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-13T21:52:51Z",
+      "side": 1,
+      "message": "generally try to not reach out into global state,  prefer accepting the occupation controller in the constructor.  While it doesn\u0027t make a big difference for production code, it does help when writing tests for all the required state to be explicitly requested via constructor type signature.  For lower coupling the constructor could just take the User object, but i\u0027m ok with either way.",
+      "revId": "9ee819cae027997a43e57c057fda0240d1720a3e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_93ace2ec",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-13T21:52:51Z",
+      "side": 1,
+      "message": "needs phpdoc for new parameter",
+      "revId": "9ee819cae027997a43e57c057fda0240d1720a3e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_5335fad4",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-13T21:52:51Z",
+      "side": 1,
+      "message": "red bar of doom!!!",
+      "revId": "9ee819cae027997a43e57c057fda0240d1720a3e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_f32d268d",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-13T21:52:51Z",
+      "side": 1,
+      "message": "doom!11!!",
+      "revId": "9ee819cae027997a43e57c057fda0240d1720a3e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_b388fe76",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-13T21:52:51Z",
+      "side": 1,
+      "message": "type hint $boardTitle to match phpdoc",
+      "revId": "9ee819cae027997a43e57c057fda0240d1720a3e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_93562208",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-13T21:52:51Z",
+      "side": 1,
+      "message": "prefer positive conditionals when an else clause exists",
+      "revId": "9ee819cae027997a43e57c057fda0240d1720a3e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_b3ef9e1a",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-13T21:52:51Z",
+      "side": 1,
+      "message": "Generally we throw FlowException, or something extending from FlowException.  TBH we arn\u0027t particularly careful with what exceptions are thrown where though(a problem to be fixed some other day), so this isn\u0027t a new oddity, but we should probably try and stick to FlowException?",
+      "revId": "9ee819cae027997a43e57c057fda0240d1720a3e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_b3d6be52",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-13T21:52:51Z",
+      "side": 1,
+      "message": "I think this can be done just be adding an appropriate line to Flow.php?  If its easy we should probably just do it, if its complicated its not a blocker.",
+      "revId": "9ee819cae027997a43e57c057fda0240d1720a3e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
