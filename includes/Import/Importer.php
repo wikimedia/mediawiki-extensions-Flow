@@ -14,6 +14,7 @@ use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\WorkflowLoaderFactory;
+use FlowHooks;
 use IP;
 use MWCryptRand;
 use Psr\Log\LoggerInterface;
@@ -39,6 +40,13 @@ class Importer {
 	protected $cache;
 	/** @var DbFactory */
 	protected $dbFactory;
+	/**
+	    User used for script-originated actions, such as cleanup edits.
+	    Does not apply to actual posts, which retain their original users.
+
+	    @var User
+	*/
+	protected $destinationScriptUser;
 	/** @var bool */
 	protected $allowUnknownUsernames;
 
@@ -46,12 +54,14 @@ class Importer {
 		ManagerGroup $storage,
 		WorkflowLoaderFactory $workflowLoaderFactory,
 		BufferedCache $cache,
-		DbFactory $dbFactory
+		DbFactory $dbFactory,
+		User $destinationScriptUser
 	) {
 		$this->storage = $storage;
 		$this->workflowLoaderFactory = $workflowLoaderFactory;
 		$this->cache = $cache;
 		$this->dbFactory = $dbFactory;
+		$this->destinationScriptUser = $destinationScriptUser;
 	}
 
 	/**
@@ -80,7 +90,7 @@ class Importer {
 	 * @return TalkpageImportOperation
 	 */
 	public function import( IImportSource $source, Title $targetPage, ImportSourceStore $sourceStore ) {
-		$operation = new TalkpageImportOperation( $source );
+		$operation = new TalkpageImportOperation( $source, $this->destinationScriptUser );
 		$operation->import( new PageImportState(
 			$this->workflowLoaderFactory
 				->createWorkflowLoader( $targetPage )
@@ -430,10 +440,19 @@ class TalkpageImportOperation {
 	protected $importSource;
 
 	/**
-	 * @param IImportSource $source
+	 * User used to take actions that the script originates (such as adding {{LQT page converted to Flow}}).
+	 *
+	 * @var User
 	 */
-	public function __construct( IImportSource $source ) {
+	protected $destinationScriptUser;
+
+	/**
+	 * @param IImportSource $source
+	 * @param User $destinationScriptUser
+	 */
+	public function __construct( IImportSource $source, User $destinationScriptUser ) {
 		$this->importSource = $source;
+		$this->destinationScriptUser = $destinationScriptUser;
 	}
 
 	/**
@@ -511,6 +530,13 @@ class TalkpageImportOperation {
 			$pageState->boardWorkflow->getArticleTitle()
 		);
 
+		$finalHeaderCleanupRevision = $this->createHeaderCleanupRevision(
+			$pageState,
+			end( $revisions ),
+			$pageState->boardWorkflow->getArticleTitle()
+		);
+		$revisions[] = $finalHeaderCleanupRevision;
+
 		$pageState->put( $revisions, array() );
 		$pageState->recordAssociation(
 			reset( $revisions )->getCollectionId(),
@@ -518,6 +544,33 @@ class TalkpageImportOperation {
 		);
 
 		$pageState->logger->info( 'Imported ' . count( $revisions ) . ' revisions for header' );
+	}
+
+	/**
+	 * @param PageImportState $pageState
+	 * @param AbstractRevision $lastRevision last imported header revision
+	 * @param Title $boardTitle board title associated with header
+	 * @return AbstractRevision generated revision for cleanup edit
+	 */
+	protected function createHeaderCleanupRevision( PageImportState $pageState, AbstractRevision $lastRevision, Title $boardTitle ) {
+		$wikitextForLastRevision = $lastRevision->getContent( 'wikitext' );
+		// This is will remove all instances, without attempting to check if it's in
+		// nowiki, etc.  It also ignores case and spaces in places where it doesn't
+		// matter.
+		$newWikitext = preg_replace(
+			'/{{\s*#useliquidthreads:\s*1\s*}}/i',
+			'',
+			$wikitextForLastRevision
+		);
+		$templateName = wfMessage( 'flow-importer-lqt-converted-template' )->inContentLanguage()->plain();
+		$newWikitext .= "\n\n{{{$templateName}}}";
+		$cleanupRevision = $lastRevision->newNextRevision(
+			$this->destinationScriptUser,
+			$newWikitext,
+			'edit-header',
+			$boardTitle
+		);
+		return $cleanupRevision;
 	}
 
 	/**

@@ -1131,11 +1131,14 @@ $c['user_merger'] = $c->share( function( $c ) {
 } );
 
 $c['importer'] = $c->share( function( $c ) {
+	$controller = $c['occupation_controller'];
+
 	return new Flow\Import\Importer(
 		$c['storage'],
 		$c['factory.loader.workflow'],
 		$c['memcache.buffered'],
-		$c['db.factory']
+		$c['db.factory'],
+		$controller->getTalkpageManager()
 	);
 } );
 

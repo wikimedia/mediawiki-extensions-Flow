@@ -31,6 +31,8 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 	 * and sees if it falls over.
 	 */
 	public function testImportDoesntCompletelyFail() {
+		global $wgUser;
+
 		$workflow = Workflow::create(
 			'discussion',
 			Title::newMainPage()
@@ -93,7 +95,7 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 			)
 		);
 
-		$op = new TalkpageImportOperation( $source );
+		$op = new TalkpageImportOperation( $source, $wgUser );
 		$store = new NullImportSourceStore;
 		$op->import( new PageImportState(
 			$workflow,
