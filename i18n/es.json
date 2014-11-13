@@ -277,5 +277,6 @@
 	"flow-anonymous": "Anónimo",
 	"flow-embedding-unsupported": "Las discusiones todavía no pueden ser incrustadas.",
 	"mw-ui-unsubmitted-confirm": "Tienes cambios no enviados en esta página. ¿Estás seguro que deseas salir y perder tu trabajo?",
-	"apihelp-flow+edit-post-param-content": "Contenido para publicar."
+	"apihelp-flow+edit-post-param-content": "Contenido para publicar.",
+	"flow-edited": "Editada"
 }

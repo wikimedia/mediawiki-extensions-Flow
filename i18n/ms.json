@@ -44,5 +44,6 @@
 	"flow-topic-collapsed-one-line": "Paparan kecil",
 	"flow-topic-collapsed-full": "Paparan terlipat",
 	"flow-topic-complete": "Paparan penuh",
-	"flow-topic-html-title": "$1 di $2"
+	"flow-topic-html-title": "$1 di $2",
+	"apihelp-flow+reply-param-content": "Kandungan untuk pos baru."
 }

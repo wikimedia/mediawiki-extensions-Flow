@@ -337,5 +337,7 @@
 	"mw-ui-unsubmitted-confirm": "עשית בדף הזה שינויים ולא שלחת אותם. האם ברצונך לצאת מכאן ולעבד את עבודתך?",
 	"flow-post-undo-hide": "(ביטול הסתרה)",
 	"flow-post-undo-delete": "(ביטול מחיקה)",
-	"flow-post-undo-suppress": "(ביטול העלמה)"
+	"flow-post-undo-suppress": "(ביטול העלמה)",
+	"flow-edited": "נערכה",
+	"flow-edited-by": "נערכה על־ידי $1"
 }

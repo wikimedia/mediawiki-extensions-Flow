@@ -348,6 +348,7 @@
 	"mw-ui-unsubmitted-confirm": "Esta página possui alterações que ainda não foram gravadas. Tem a certeza que pretende continuar a navegar e perder todo o seu trabalho?",
 	"apihelp-flow+lock-topic-param-reason": "Motivo para bloquear ou desbloquear o tópico.",
 	"apihelp-flow+new-topic-param-content": "Conteúdo para um novo tópico.",
+	"apihelp-flow+reply-param-content": "Conteúdo para novo tópico.",
 	"flow-edited": "Editada",
 	"flow-edited-by": "Editada por $1"
 }
