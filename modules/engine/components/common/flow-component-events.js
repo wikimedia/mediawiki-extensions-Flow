@@ -389,25 +389,11 @@
 
 			// Find this form's inputs
 			$this.find( 'textarea' ).filter( '[data-flow-expandable]').each( function () {
-				// @todo Should this be done via TemplateEngine? Maybe don't modify elements within a template?
-				var $this = $( this ),
-				// If any of these textareas are expandable, compress them at start via pseudo-cloning into inputs.
-					attributes = $this.prop( 'attributes' ),
-					$input = $( '<input/>' );
-				$.each( attributes, function () {
-					$input.attr( this.name, this.value );
-				} );
-
-				// Store the old textarea as data on the input
-				$.data( $input[0], 'flow-compressed', $this[0] );
-				// Store the new input as data on the old textarea
-				$.data( $this[0], 'flow-expanded', $input[0] );
-
-				// Drop the new input in place if:
+				// Compress textarea if:
 				// the textarea isn't already focused
 				// and the textarea doesn't have text typed into it
-				if ( !$this.is( ':focus' ) && this.value === this.defaultValue ) {
-					component.emitWithReturn( 'compressTextarea', $this );
+				if ( !$( this ).is( ':focus' ) && this.value === this.defaultValue ) {
+					component.emitWithReturn( 'compressTextarea', $( this ) );
 				}
 			} );
 
@@ -524,22 +510,13 @@
 	FlowComponentEventsMixin.eventHandlers.hideForm = flowEventsMixinHideForm;
 
 	/**
-	 * "Compresses" a textarea by replacing it with a single-line input field,
-	 * which turns back into a textarea on focus.
+	 * "Compresses" a textarea by adding a class to it, which CSS will pick up
+	 * to force a smaller display size.
 	 * @param {jQuery} $textarea
 	 * @todo Move this to a separate file
 	 */
 	function flowEventsMixinCompressTextarea( $textarea ) {
-		var input = $.data( $textarea[0], 'flow-expanded' );
-
-		if ( input ) {
-			// Swap the nodes
-			$textarea.replaceWith( input );
-
-			// Store this data again; jQuery has a habit of losing it after replaceWith
-			$.data( $textarea[0], 'flow-expanded', input );
-			$.data( input, 'flow-compressed', $textarea[0] );
-		}
+		$textarea.addClass( 'flow-input-compressed' );
 	}
 	FlowComponentEventsMixin.eventHandlers.compressTextarea = flowEventsMixinCompressTextarea;
 
@@ -553,8 +530,8 @@
 		var $context = $( event.currentTarget || event.delegateTarget || event.target ),
 			component = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $context );
 
-		// Expand this input
-		component.emitWithReturn( 'expandInput', $context, event.target );
+		// Expand this textarea
+		component.emitWithReturn( 'expandTextarea', $context );
 
 		// Show the form (and swap it for textarea if needed)
 		component.emitWithReturn( 'showForm', $context.closest( 'form' ) );
@@ -580,9 +557,9 @@
 			$form.show();
 		}
 
-		// Expand all inputs to textareas if needed
+		// Expand all textareas if needed
 		$form.find( 'input' ).each( function () {
-			self.emitWithReturn( 'expandInput', $( this ) );
+			self.emitWithReturn( 'expandTextarea', $( this ) );
 		} );
 
 		// Initialize editors, turning them from textareas into editor objects
@@ -594,34 +571,14 @@
 	FlowComponentEventsMixin.eventHandlers.showForm = flowEventsMixinShowForm;
 
 	/**
-	 * If this input has a textarea stored on it, swap the elements in DOM.
-	 * @param {jQuery} $input
-	 * @param {Element} [target]
+	 * Expand the textarea by removing the CSS class that will make it appear
+	 * smaller.
+	 * @param {jQuery} $textarea
 	 */
-	function flowEventsMixinExpandInput( $input, target ) {
-		var textarea = $.data( $input[0], 'flow-compressed' ),
-			$textarea = $( textarea ),
-			focused = $input.is( ':focus' );
-
-		// Prevent double-focusing
-		if ( textarea && ( $input.is( ':visible' ) || !$textarea.is( ':visible' ) ) ) {
-			// Swap the nodes
-			$input.replaceWith( textarea );
-
-			// Store this data again; jQuery has a habit of losing it after replaceWith
-			$.data( textarea, 'flow-expanded', $input[0] );
-			$.data( $input[0], 'flow-compressed', textarea );
-
-			// target is a bug fix because the inputs are not being focused on click
-			// @todo find out why this is happening ^
-			if ( focused || $input[0] === target ) {
-				// Swap focus!
-				$textarea.focus()
-					.closest( 'form' ).conditionalScrollIntoView();
-			}
-		}
+	function flowEventsMixinexpandTextarea( $textarea ) {
+		$textarea.removeClass( 'flow-input-compressed' );
 	}
-	FlowComponentEventsMixin.eventHandlers.expandInput = flowEventsMixinExpandInput;
+	FlowComponentEventsMixin.eventHandlers.expandTextarea = flowEventsMixinexpandTextarea;
 
 	/**
 	 * Initialize all editors, turning them from textareas into editor objects.
