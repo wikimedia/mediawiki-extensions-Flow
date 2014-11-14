@@ -160,7 +160,7 @@
 		var $form,
 			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) ),
 			$post = $( this ).closest( '.flow-post' ),
-			$targetPost = $( this ).closest( '.flow-post:not([data-flow-post-max-depth])' ),
+			$targetPost = $( this ).closest( '.flow-post:not(.flow-post-max-depth)' ),
 			postId = $targetPost.data( 'flow-id' ),
 			topicTitle = $post.closest( '.flow-topic' ).find( '.flow-topic-title' ).text(),
 			replyToContent = $post.find( '.flow-post-content' ).filter( ':first' ).text() || topicTitle,

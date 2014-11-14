@@ -333,11 +333,9 @@
 </div>
 ';},'flow_post' => function ($cx, $in) {return ''.LCRun3::wi($cx, ((isset($in['revision']) && is_array($in)) ? $in['revision'] : null), $in, function($cx, $in) {return '
 	<div id="flow-post-'.htmlentities((string)((isset($in['postId']) && is_array($in)) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
-	     class="flow-post"
+	     class="flow-post'.((LCRun3::ifvar($cx, ((isset($in['isMaxThreadingDepth']) && is_array($in)) ? $in['isMaxThreadingDepth'] : null))) ? ' flow-post-max-depth' : '').'"
 	     data-flow-id="'.htmlentities((string)((isset($in['postId']) && is_array($in)) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
-	     '.((LCRun3::ifvar($cx, ((isset($in['isMaxThreadingDepth']) && is_array($in)) ? $in['isMaxThreadingDepth'] : null))) ? '
-	         data-flow-post-max-depth="1"
-	     ' : '').'>
+	>
 		'.((LCRun3::ifvar($cx, ((isset($in['isModerated']) && is_array($in)) ? $in['isModerated'] : null))) ? '
 			'.LCRun3::hbch($cx, 'ifCond', Array(Array(((isset($cx['scopes'][0]['rootBlock']['submitted']['showPostId']) && is_array($cx['scopes'][0]['rootBlock']['submitted'])) ? $cx['scopes'][0]['rootBlock']['submitted']['showPostId'] : null),'===',((isset($in['postId']) && is_array($in)) ? $in['postId'] : null)),Array()), $in, function($cx, $in) {return '
 				'.LCRun3::p($cx, 'flow_post_inner', Array(Array($in),Array())).'
