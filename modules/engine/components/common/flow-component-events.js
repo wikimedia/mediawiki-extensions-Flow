@@ -46,6 +46,11 @@
 				_getDispatchCallback( this, 'interactiveHandler' )
 			)
 			.on(
+				'focus.FlowBoardComponent',
+				'a, input, button, .flow-click-interactive',
+				_getDispatchCallback( this, 'interactiveHandlerFocus' )
+			)
+			.on(
 				'click.FlowBoardComponent focusin.FlowBoardComponent focusout.FlowBoardComponent',
 				'.flow-menu',
 				_getDispatchCallback( this, 'toggleHoverMenu' )
@@ -418,19 +423,14 @@
 	FlowComponentEventsMixin.eventHandlers.loadHandler = flowLoadHandlerCallback;
 
 	/**
-	 * Triggers both API and interactive handlers.
+	 * Executes interactive handlers.
+	 *
+	 * @param {array} args
+	 * @param {jQuery} $context
+	 * @param {string} interactiveHandlerName
+	 * @param {string} apiHandlerName
 	 */
-	function flowInteractiveHandlerCallback( event ) {
-		// Only trigger with enter key, if keypress
-		if ( event.type === 'keypress' && ( event.charCode !== 13 || event.metaKey || event.shiftKey || event.ctrlKey || event.altKey )) {
-			return;
-		}
-
-		var args = Array.prototype.slice.call( arguments, 0 ),
-			$context = $( event.currentTarget || event.delegateTarget || event.target ),
-			interactiveHandlerName = $context.data( 'flow-interactive-handler' ),
-			apiHandlerName = $context.data( 'flow-api-handler' );
-
+	function flowExecuteInteractiveHandler( args, $context, interactiveHandlerName, apiHandlerName ) {
 		// Call any matching interactive handlers
 		if ( this.UI.events.interactiveHandlers[interactiveHandlerName] ) {
 			$.each( this.UI.events.interactiveHandlers[interactiveHandlerName], function ( i, fn ) {
@@ -447,8 +447,38 @@
 			this.debug( 'Failed to find apiHandler', apiHandlerName, arguments );
 		}
 	}
+
+	/**
+	 * Triggers both API and interactive handlers, on click/enter.
+	 */
+	function flowInteractiveHandlerCallback( event ) {
+		// Only trigger with enter key, if keypress
+		if ( event.type === 'keypress' && ( event.charCode !== 13 || event.metaKey || event.shiftKey || event.ctrlKey || event.altKey )) {
+			return;
+		}
+
+		var args = Array.prototype.slice.call( arguments, 0 ),
+			$context = $( event.currentTarget || event.delegateTarget || event.target ),
+			interactiveHandlerName = $context.data( 'flow-interactive-handler' ),
+			apiHandlerName = $context.data( 'flow-api-handler' );
+
+		return flowExecuteInteractiveHandler.call( this, args, $context, interactiveHandlerName, apiHandlerName );
+	}
 	FlowComponentEventsMixin.eventHandlers.interactiveHandler = flowInteractiveHandlerCallback;
 	FlowComponentEventsMixin.eventHandlers.apiRequest = flowInteractiveHandlerCallback;
+
+	/**
+	 * Triggers both API and interactive handlers, on focus.
+	 */
+	function flowInteractiveHandlerFocusCallback( event ) {
+		var args = Array.prototype.slice.call( arguments, 0 ),
+			$context = $( event.currentTarget || event.delegateTarget || event.target ),
+			interactiveHandlerName = $context.data( 'flow-interactive-handler-focus' ),
+			apiHandlerName = $context.data( 'flow-api-handler-focus' );
+
+		return flowExecuteInteractiveHandler.call( this, args, $context, interactiveHandlerName, apiHandlerName );
+	}
+	FlowComponentEventsMixin.eventHandlers.interactiveHandlerFocus = flowInteractiveHandlerFocusCallback;
 
 	/**
 	 * When the whole class has been instantiated fully (after every constructor has been called).
