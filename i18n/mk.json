@@ -389,7 +389,7 @@
 	"apihelp-flow+new-topic-example-1": "Создај нова тема на [[Talk:Sandbox]]",
 	"apihelp-flow+reply-description": "Одговара на објава.",
 	"apihelp-flow+reply-param-replyTo": "Назнака на објавата на која се одговара.",
-	"apihelp-flow+reply-param-content": "Содржина на новата тема.",
+	"apihelp-flow+reply-param-content": "Содржина на новата објава.",
 	"apihelp-flow+reply-example-1": "Одговори на објава на [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+view-header-description": "Погл. заглавие на таблата.",
 	"apihelp-flow+view-header-param-contentFormat": "Во кој формат да се даде содржината.",
