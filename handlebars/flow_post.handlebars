@@ -1,10 +1,7 @@
 {{#with revision}}
 	<div id="flow-post-{{postId}}"
-	     class="flow-post"
+	     class="flow-post{{#if isMaxThreadingDepth}} flow-post-max-depth{{/if}}"
 	     data-flow-id="{{postId}}"
-	     {{#if isMaxThreadingDepth}}
-	         data-flow-post-max-depth="1"
-	     {{/if~}}
 	>
 		{{#if isModerated}}
 			{{#ifCond @root.rootBlock.submitted.showPostId "===" postId}}
