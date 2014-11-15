@@ -136,7 +136,7 @@
 	"flow-error-missing-revision": "Er is geen versie gevonden om inhoud van Flow van te downloaden.",
 	"flow-error-fail-commit": "Het opslaan van de inhoud van Flow is mislukt.",
 	"flow-error-insufficient-permission": "Onvoldoende rechten om de inhoud te kunnen bekijken.",
-	"flow-error-revision-comparison": "Diff bewerking kan alleen worden uitgevoerd voor twee revisies van dezelfde post.",
+	"flow-error-revision-comparison": "Verschillen tussen twee versies kunnen alleen weergegeven worden als het om hetzelfde bericht gaat.",
 	"flow-error-missing-topic-title": "Kan de onderwerptitel voor de huidige werkstroom niet vinden.",
 	"flow-error-fail-load-data": "Fout bij het laden van de gevraagde gegevens.",
 	"flow-error-invalid-workflow": "Kan de gevraagde werkstroom niet vinden.",
