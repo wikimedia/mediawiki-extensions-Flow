@@ -16,11 +16,11 @@ class ConvertLqt extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Converts LiquidThreads data to Flow data";
 		$this->addArg( 'dstpage', 'Page name of the local page to import to', true );
-		$this->addOption( 'srcpage', 'Page name of the remote page to import from. If not specified defaults to dstpage', true );
-		$this->addOption( 'remoteapi', 'Remote API URL to read from' );
+		$this->addOption( 'srcpage', 'Page name of the remote page to import from. If not specified defaults to dstpage', false, true );
+		$this->addOption( 'remoteapi', 'Remote API URL to read from', false, true );
 		$this->addOption( 'logfile', 'File to read and store associations between imported items and their sources', false, true );
 		$this->addOption( 'verbose', 'Report on import progress to stdout' );
-		$this->addOption( 'allowunknownusernames', 'Allow import of usernames that do not exist on this wiki.  DO NOT USE IN PRODUCTION. This simplifies testing imports of production data to a test wiki' );
+		$this->addOption( 'allowunknownusernames', 'Allow import of usernames that do not exist on this wiki.  DO NOT USE IN PRODUCTION. This simplifies testing imports of production data to a test wiki', false, true );
 	}
 
 	public function execute() {
