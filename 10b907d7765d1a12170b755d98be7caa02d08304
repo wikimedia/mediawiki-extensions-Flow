@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_18e45409",
+        "filename": "includes/Import/LiquidThreadsApi/Source.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-17T19:38:14Z",
+      "side": 1,
+      "message": "wrong doccomment",
+      "revId": "10b907d7765d1a12170b755d98be7caa02d08304",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_5893bc5a",
+        "filename": "maintenance/convertLqt.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-17T19:38:14Z",
+      "side": 1,
+      "message": "it seems dstpage might now be optional as well?  If we are occupying a page and then importing the lqt that was previously on that page to the flow board that is now on that page..\n\nEssentially i mean the \"production\" use case is srcpage \u003d\u003d\u003d dstpage i believe?",
+      "revId": "10b907d7765d1a12170b755d98be7caa02d08304",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_18b214f9",
+        "filename": "maintenance/convertLqt.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-17T19:38:14Z",
+      "side": 1,
+      "message": "should probably use `hasOption`",
+      "revId": "10b907d7765d1a12170b755d98be7caa02d08304",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
