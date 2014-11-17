@@ -1,5 +1,6 @@
 {
     "name": "mediawiki/flow",
+    "description": "Discussion and collaboration system extension for MediaWiki",
     "license": "GPL-2.0",
     "require": {},
     "require-dev": {
