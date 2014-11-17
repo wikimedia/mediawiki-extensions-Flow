@@ -96,6 +96,10 @@ $wgHooks['WatchlistEditorBeforeFormRender'][] = 'FlowHooks::onWatchlistEditorBef
 $wgHooks['UserMergeAccountFields'][] = 'FlowHooks::onUserMergeAccountFields';
 $wgHooks['MergeAccountFromTo'][] = 'FlowHooks::onMergeAccountFromTo';
 
+// Special case: Flow is the successor to LiquidThreads and any Flow boards should automatically
+// not be LiquidThreads talk pages.
+$wgHooks['LiquidThreadsIsLqtPage'][] = 'FlowHooks::onIsLiquidThreadsPage';
+
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
 

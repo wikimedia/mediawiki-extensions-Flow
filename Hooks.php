@@ -1100,4 +1100,15 @@ class FlowHooks {
 
 		return true;
 	}
+
+	/**
+	 * Gives precedence to Flow over LQT.
+	 */
+	public static function onIsLiquidThreadsPage( Title $title, &$isLqtPage ) {
+		if ( $isLqtPage && self::$occupationController->isTalkpageOccupied( $title ) ) {
+			$isLqtPage = false;
+		}
+
+		return true;
+	}
 }
