@@ -3,9 +3,13 @@
 namespace Flow\Import\LiquidThreadsApi;
 
 use ApiBase;
+use ApiMain;
+use Exception;
+use FauxRequest;
 use Flow\Import\ImportException;
 use Flow\Import\IImportSource;
 use Http;
+use UsageException;
 
 class ImportSource implements IImportSource {
 	/**
@@ -32,8 +36,8 @@ class ImportSource implements IImportSource {
 	 * @param string $apiUrl
 	 * @param string $pageName
 	 */
-	public function __construct( $apiUrl, $pageName ) {
-		$this->api = new ApiBackend( $apiUrl );
+	public function __construct( ApiBackend $apiBackend, $pageName ) {
+		$this->api = $apiBackend;
 		$this->pageName = $pageName;
 
 		$this->threadData = new CachedThreadData( $this->api );
@@ -104,11 +108,11 @@ class ImportSource implements IImportSource {
 	}
 
 	/**
-	 * Gets the API URL being used for importing
-	 * @return string
+	 * Gets a unique identifier for the wiki being imported
+	 * @return string Usually either a string 'local' or an API URL
 	 */
-	public function getApiUrl() {
-		return $this->api->getUrl();
+	public function getApiKey() {
+		return $this->api->getKey();
 	}
 
 	/**
@@ -120,7 +124,7 @@ class ImportSource implements IImportSource {
 	 */
 	public function getObjectKey( /* $args */ ) {
 		$components = array_merge(
-			array( 'lqt-api', $this->getApiUrl() ),
+			array( 'lqt-api', $this->getApiKey() ),
 			func_get_args()
 		);
 
@@ -128,11 +132,7 @@ class ImportSource implements IImportSource {
 	}
 }
 
-class ApiBackend {
-	public function __construct( $apiUrl ) {
-		$this->apiUrl = $apiUrl;
-	}
-
+abstract class ApiBackend {
 	/**
 	 * Retrieves LiquidThreads data from the API
 	 *
@@ -245,25 +245,12 @@ class ApiBackend {
 	 * @param int   $retry  Retry the request on failure this many times
 	 * @return array API return value, decoded from JSON into an array.
 	 */
-	public function apiCall( array $params, $retry = 1 ) {
-		$params['format'] = 'json';
-		$url = wfAppendQuery( $this->apiUrl, $params );
-
-		$result = Http::get( $url );
-		if ( $result === false && $retry > 0 ) {
-			return self::apiCall( $params, $retry - 1 );
-		}
-		return json_decode( $result, true );
-	}
+	abstract function apiCall( array $params, $retry = 1 );
 
 	/**
-	 * Returns the URL being used for this backend.
-	 *
-	 * @return string API URL
+	 * @return string A unique identifier for this backend.
 	 */
-	public function getUrl() {
-		return $this->apiUrl;
-	}
+	abstract function getKey();
 
 	/**
 	 * @param array $apiResponse
@@ -272,6 +259,59 @@ class ApiBackend {
 	protected function isNotFoundError( $apiResponse ) {
 		$expect = 'Exception Caught: DatabaseBase::makeList: empty input for field thread_parent';
 		return $apiResponse['error']['info'] === $expect;
+	}
+}
+
+class RemoteApiBackend extends ApiBackend {
+	public function __construct( $apiUrl ) {
+		$this->apiUrl = $apiUrl;
+	}
+
+	/**
+	 * Returns the URL being used for this backend.
+	 *
+	 * @return string API URL
+	 */
+	public function getKey() {
+		return $this->apiUrl;
+	}
+
+	public function apiCall( array $params, $retry = 1 ) {
+		$params['format'] = 'json';
+		$url = wfAppendQuery( $this->apiUrl, $params );
+
+		$result = Http::get( $url );
+		if ( $result === false && $retry > 0 ) {
+			return $this->apiCall( $params, $retry - 1 );
+		}
+		return json_decode( $result, true );
+	}
+}
+
+class LocalApiBackend extends ApiBackend {
+	public function apiCall( array $params, $retry = 1 ) {
+		try {
+			$request = new FauxRequest( $params );
+
+			$api = new ApiMain( $request );
+			$api->execute();
+			return $api->getResult()->getData();
+		} catch ( UsageException $exception ) {
+			// Mimic the behaviour when called remotely
+			return array( 'error' => $exception->getMessageArray() );
+		} catch ( Exception $exception ) {
+			// Mimic behaviour when called remotely
+			return array(
+				'error' => array(
+					'code' => 'internal_api_error_' . get_class( $exception ),
+					'info' => 'Exception Caught: ' . $exception->getMessage(),
+				),
+			);
+		}
+	}
+
+	public function getKey() {
+		return 'local';
 	}
 }
 
