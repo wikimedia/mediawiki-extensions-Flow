@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_3674c02f",
+        "filename": "modules/styles/board/navigation.less",
+        "patchSetId": 11
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-17T22:51:56Z",
+      "side": 1,
+      "message": "IE 6 has gone away for any JS, or JS-loaded CSS: https://lists.wikimedia.org/pipermail/wikitech-ambassadors/2014-August/000872.html\n\nAlthough this CSS file is not JS-loaded (it uses addModuleStyles), this particular class is only added by JS, so it still doesn\u0027t need to support IE 6.",
+      "revId": "3a9bbbde16aefa2093c4fe983051346a44dc3c7c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
