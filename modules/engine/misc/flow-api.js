@@ -45,14 +45,24 @@ window.mw = window.mw || {}; // mw-less testing
 		 * @returns {$.Deferred}
 		 */
 		function flowApiCall( params, method ) {
+			var mwApi,
+				$deferred = $.Deferred();
+
+			// IE8 caches POST under some conditions, prevent that here.
+			// IE8 is most likely the only browser we support that doesn't
+			// have addEventListener, and anything else that gets caught
+			// up isn't that bad off.
+			if ( !document.addEventListener ) {
+				mwApi = new mw.Api( { ajax: { cache: false } } );
+			} else {
+				mwApi = new mw.Api();
+			}
+
 			params = params || {};
 			// Server is using page instead of title
 			// @todo this should not be necessary
 			params.page = params.page || this.pageName || mw.config.get( 'wgPageName' );
 			method = method ? method.toUpperCase() : 'GET';
-
-			var $deferred = $.Deferred(),
-				mwApi = new mw.Api( { ajax: { cache: false } } );
 
 			if ( !params.action ) {
 				mw.flow.debug( '[FlowApi] apiCall error: missing action string', arguments );
