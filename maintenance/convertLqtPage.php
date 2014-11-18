@@ -11,7 +11,16 @@ require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
 	: dirname( __FILE__ ) . '/../../../maintenance/Maintenance.php' );
 
-class ConvertLqt extends Maintenance {
+/**
+ * Imports a single liquid threads page to the local wiki.  It can import
+ * from local or foreign wiki's.  Importing from a foreign wiki's it considered
+ * a development option, and is most usefull for testing an import before
+ * doing it for real on the production wiki.
+ *
+ * This script is not intended for converting entire wiki's, for that please see
+ * the ConvertLqt maintenance class.
+ */
+class ConvertLqtPage extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Converts LiquidThreads data to Flow data";
@@ -33,7 +42,7 @@ class ConvertLqt extends Maintenance {
 		if ( $this->hasOption( 'remoteapi' ) ) {
 			$api = new RemoteApiBackend( $this->getOption( 'remoteapi' ) );
 		} else {
-			$api = new LocalApiBackend;
+			$api = new LocalApiBackend();
 		}
 
 		$importer = Flow\Container::get( 'importer' );
@@ -56,10 +65,8 @@ class ConvertLqt extends Maintenance {
 		}
 
 		$importer->import( $source, $title, $sourceStore );
-
-		$sourceStore->save();
 	}
 }
 
-$maintClass = "ConvertLqt";
+$maintClass = "ConvertLqtPage";
 require_once ( RUN_MAINTENANCE_IF_MAIN );
