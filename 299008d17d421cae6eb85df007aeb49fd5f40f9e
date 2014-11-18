@@ -1,0 +1,429 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_dc4c9b7c",
+        "filename": "Resources.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "This module should depend on schema.FlowReplies.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_bcabcfd2",
+        "filename": "Resources.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "Module is duplicated.  Also, I made a small change to the schema docs.  If https://meta.wikimedia.org/wiki/Schema:FlowReplies looks good, the rev ID is now 10560491.\n\nAlso, even though the actual logging is conditional, Flow will need to document that it depends on EventLogging (which is fine) if the modules are set up like this (they can be set up conditionally, but that is probably not necessary).",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_dcd7bb4e",
+        "filename": "handlebars/flow_reply_form.handlebars",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "Can you clarify what you mean by \"this form is reused for all comments\"?\n\nSeparate comments/posts should count as separate initiations.  I think you\u0027re talking about something else, though.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_fcddd747",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "You may want to combine the two .data calls into one with https://api.jquery.com/data/#data-obj , so people don\u0027t miss one of them.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_7c7ea715",
+        "filename": "modules/engine/components/board/base/flow-board-interactive-events.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "Is this log action done or in progress?",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_5caf2b27",
+        "filename": "modules/engine/components/board/base/flow-board-interactive-events.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "Try to avoid changing unrelated blocks of code, since it increases the amount of code reviewers go through.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_dc381bee",
+        "filename": "modules/engine/components/board/base/flow-board-misc.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "Plus, additional parameters are added, which should be mentioned (but I don\u0027t think a list is needed).",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_1c320306",
+        "filename": "modules/engine/components/board/base/flow-board-misc.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "This should better explain what\u0027s really required (if anything) when calling the function.  It seems some of this is not really required, because it can be looked up from the funnel.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_dc51fb3b",
+        "filename": "modules/engine/components/board/base/flow-board-misc.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "I would prefer not to have this as tightly coupled to the .data() keys.  It doesn\u0027t make sense in this context, or when it\u0027s called with values that are not pulled out of HTML.  Suggested alternative:\n\nlogEvent( schemaName, data, $forward )\n\nand data.entrypoint, data.action, data.funnel\n\n(The forwarding is not really part of the logging itself, but I\u0027m not saying that has to be moved).\n-----\nIn JSDuck, required sub-keys are documented like this:\n\n@param {object} data Data to be logged\n@param {string} data.entrypoint Schema\u0027s entrypoint parameter\n@param {string} data.action Schema\u0027s action parameter\n// etc.\n\nOptional fields are in brackets, just like regular optional parameters\n\n@param {string} [data.funnelId] Funnel ID, if one already exists; if omitted, one will be generated\n\nin JSDuck.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_fc3b97e5",
+        "filename": "modules/engine/components/board/base/flow-board-misc.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "This wasn\u0027t documented before (I just added it), but from my experience we want this in unprefixed DB form.  You can get this from:\n\n(new mw.Title( mw.config.get( \u0027wgPageName\u0027 ))).getMain()",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_5c2c0baa",
+        "filename": "modules/engine/components/board/base/flow-board-misc.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "See above re required parameters.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_7c2787c5",
+        "filename": "modules/engine/components/board/base/flow-board-misc.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "Maybe they\u0027re being cloned without explicitly passing true (withDataAndEvents \u003d true): https://api.jquery.com/clone/",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_e776a09e",
+        "filename": "modules/engine/components/board/base/flow-boardandhistory-base.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "\"AND the user does not confirm the cancellation\" (they saw a message that said \"You have entered text in this form. Are you sure you want to discard it?\" and chose \"Cancel\", which means \"No, don\u0027t discard\").\n\n(N.B. Unrelated to this change, this is a pretty severe downside to confirm().  It doesn\u0027t let you change the buttons, or indeed anything except the text.  Something like Keep/DIscard might be clearer).",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_476754e6",
+        "filename": "modules/engine/components/board/base/flow-boardandhistory-base.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "I think this would be more readable like:\n\nif ( changedFieldCount ) {\n  if ( confirm() ) {\n     // cancel-success path\n  } else {\n     // cancel-abort path\n  }\n}\n// Do the discard",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_e7a54001",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "I know this wasn\u0027t introduced here, but I\u0027m relunctant to generalize it.\n\nThese all do different things (which makes it confusing to combine like this).  I don\u0027t think currentTarget (https://api.jquery.com/event.currentTarget/) can ever be unset, so that\u0027s effectively what it\u0027s using, I believe.\n\ncurrentTarget is effectively the element it\u0027s bubbled up to that triggered our listener.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_27b7a836",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "This doesn\u0027t belong in a general-purpose function.  It\u0027s specific to apiRequest.  Once that\u0027s pulled back into flowEventsMixinApiRequestInteractiveHandler, I don\u0027t think we should use the function.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_c789247b",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "Enter key with no modifier keys, in particular.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_e78c608b",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "Per above, you don\u0027t need all this.  You asked for [data-flow-eventlog-action] so that\u0027s what you\u0027ll get in currentTarget.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_877f9c62",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "This approach is not going to work reliably, for the general reasons you laid out.  Even when the API is done, there is no guarantee any other work blocking this is (e.g. template rendering)\n\nSee my top-level comment, which has a suggested alternative.\n\nAnd we just want to avoid polling like this in general.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_479d14b3",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "I think you did this TODO.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_679850c3",
+        "filename": "modules/engine/misc/flow-eventlog.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "Remove or document.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_07938ca6",
+        "filename": "modules/engine/misc/flow-eventlog.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "I\u0027ve never been sure what this referred to (a couple other files refer to it too).",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_278ec87c",
+        "filename": "modules/engine/misc/flow-eventlog.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "We should generally move away from this and use module dependencies or an init file instead.  For now, this is not necessary since flow-api.js (before this) does it.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_87f6bcf4",
+        "filename": "modules/engine/misc/flow-eventlog.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "I don\u0027t think FlowEventLog is necessary.\n\nWe\u0027re going to be instrumenting pretty much everything (even menu hovers), so ext.eventLogging is bound to get loaded.  So in my opinion it\u0027s better to do so up front.\n\nThe schema modules themselves are also tiny (e.g. FlowReplies, 722 bytes *un*compressed), so I would just make them dependencies too.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_e760e0a1",
+        "filename": "modules/engine/misc/flow-eventlog.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-18T07:14:31Z",
+      "side": 1,
+      "message": "Can we just use mw.user.generateRandomSessionId()?\n\nThe name is not a great fit (I\u0027m fine with keeping generateFunnelId as a wrapper), but the behavior is.  There is no requirement that the funnel ID contain the user\u0027s session ID.\n\nThat\u0027s not really necessary, since it\u0027s already trivial to map between a funnel ID and a session ID since they\u0027ll be in the same MySQL row in the logging database.\n\nThis will also avoid busy-waiting, and the potential collision you identified.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
