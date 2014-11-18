@@ -20,7 +20,7 @@ class ConvertLqt extends Maintenance {
 		$this->addOption( 'remoteapi', 'Remote API URL to read from', false, true );
 		$this->addOption( 'logfile', 'File to read and store associations between imported items and their sources', false, true );
 		$this->addOption( 'verbose', 'Report on import progress to stdout' );
-		$this->addOption( 'allowunknownusernames', 'Allow import of usernames that do not exist on this wiki.  DO NOT USE IN PRODUCTION. This simplifies testing imports of production data to a test wiki', false, true );
+		$this->addOption( 'allowunknownusernames', 'Allow import of usernames that do not exist on this wiki.  DO NOT USE IN PRODUCTION. This simplifies testing imports of production data to a test wiki' );
 	}
 
 	public function execute() {
@@ -38,7 +38,9 @@ class ConvertLqt extends Maintenance {
 
 		$importer = Flow\Container::get( 'importer' );
 		if ( $this->getOption( 'verbose' ) ) {
-			$importer->setLogger( new MaintenanceDebugLogger( $this ) );
+			$logger = new MaintenanceDebugLogger( $this );
+			$importer->setLogger( $logger );
+			$logger->info( "Starting LQT import from $srcPageName to $dstPageName" );
 		}
 		if ( $this->getOption( 'allowunknownusernames' ) ) {
 			$importer->setAllowUnknownUsernames( true );
