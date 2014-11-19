@@ -1,7 +1,6 @@
 <?php
 
 use Flow\Import\FileImportSourceStore;
-use Flow\Import\Importer;
 use Flow\Import\NullImportSourceStore;
 use Flow\Import\LiquidThreadsApi\LocalApiBackend;
 use Flow\Import\LiquidThreadsApi\RemoteApiBackend;
