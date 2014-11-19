@@ -256,7 +256,7 @@ class ScriptedImportRevision implements IObjectRevision {
 	 * and arbitrary text.
 	 *
 	 * @param IImportObject $parentObject Object this is a revision of
-	 * @parma User $destinationScriptUser User that performed this scripted edit
+	 * @param User $destinationScriptUser User that performed this scripted edit
 	 * @param string $revisionText Text of revision
 	 */
 	function __construct( IImportObject $parentObject, User $destinationScriptUser, $revisionText ) {
