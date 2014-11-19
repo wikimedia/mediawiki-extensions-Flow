@@ -461,5 +461,6 @@
 	"apihelp-query+flowinfo-description": "{{doc-apihelp-description|query+flowinfo}}",
 	"apihelp-query+flowinfo-example-1": "{{doc-apihelp-example|query+flowinfo}}",
 	"flow-edited": "Message displayed below a post to indicate it has last been edited by the original author\n{{Identical|Edited}}",
-	"flow-edited-by": "Message displayed below a post to indicate it has last been edited by a user other than the original author"
+	"flow-edited-by": "Message displayed below a post to indicate it has last been edited by a user other than the original author",
+	"flow-lqt-redirect-reason": "Edit summary used to redirect old LQT thread pages to Flow topics"
 }
