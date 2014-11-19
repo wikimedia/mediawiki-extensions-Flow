@@ -6,6 +6,8 @@ use Flow\Data\BufferedCache;
 use Flow\Data\ManagerGroup;
 use Flow\DbFactory;
 use Flow\Exception\FlowException;
+use Flow\Import\Postprocessing\ProcessorGroup;
+use Flow\Import\Postprocessing\Postprocessor;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
@@ -41,6 +43,8 @@ class Importer {
 	protected $dbFactory;
 	/** @var bool */
 	protected $allowUnknownUsernames;
+	/** @var ProcessorGroup **/
+	protected $postprocessors;
 
 	public function __construct(
 		ManagerGroup $storage,
@@ -52,6 +56,11 @@ class Importer {
 		$this->workflowLoaderFactory = $workflowLoaderFactory;
 		$this->cache = $cache;
 		$this->dbFactory = $dbFactory;
+		$this->postprocessors = new ProcessorGroup( array( 'afterTopicImported', 'afterPostImported' ) );
+	}
+
+	public function addPostprocessor( Postprocessor $proc ) {
+		$this->postprocessors->add( $proc );
 	}
 
 	/**
@@ -90,6 +99,7 @@ class Importer {
 			$this->logger ?: new NullLogger,
 			$this->cache,
 			$this->dbFactory,
+			$this->postprocessors,
 			$this->allowUnknownUsernames
 		) );
 	}
@@ -185,6 +195,7 @@ class PageImportState {
 		LoggerInterface $logger,
 		BufferedCache $cache,
 		DbFactory $dbFactory,
+		ProcessorGroup $postprocessors,
 		$allowUnknownUsernames = false
 	) {
 		$this->storage = $storage;;
@@ -193,6 +204,7 @@ class PageImportState {
 		$this->logger = $logger;
 		$this->cache = $cache;
 		$this->dbw = $dbFactory->getDB( DB_MASTER );
+		$this->postprocessors = $postprocessors;
 		$this->allowUnknownUsernames = $allowUnknownUsernames;
 
 		// Get our workflow UUID property
@@ -539,6 +551,8 @@ class TalkpageImportOperation {
 
 		$topicState->commitLastModified();
 		$topicState->parent->saveAssociations();
+		$topicId = $topicState->topicWorkflow->getId();
+		$pageState->postprocessors->afterTopicImported( $importTopic, $topicId );
 		// $database->commit();
 	}
 
@@ -734,6 +748,9 @@ class TalkpageImportOperation {
 		}
 
 		$state->recordModificationTime( $topRevision->getRevisionId() );
+
+		$topicId = $state->topicWorkflow->getId();
+		$state->parent->postprocessors->afterPostImported( $post, $topicId, $topRevision->getPostId() );
 
 		foreach ( $post->getReplies() as $subReply ) {
 			$this->importPost( $state, $subReply, $topRevision, $logPrefix . ' ' );
