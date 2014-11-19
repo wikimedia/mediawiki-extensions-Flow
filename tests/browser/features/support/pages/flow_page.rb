@@ -43,7 +43,8 @@ class FlowPage < WikiPage
   ## First topic
   div(:flow_first_topic, css: ".flow-topic", index: 0)
   h2(:flow_first_topic_heading, css: ".flow-topic h2", index: 0)
-  div(:flow_first_topic_body, css: ".flow-post-content", index: 0)
+  # todo this is poor naming, it's really the first_topic_first_post_content
+  div(:flow_first_topic_body, css: ".flow-topic .flow-post-content", index: 0)
   div(:flow_first_topic_moderation_msg) do |page|
     page.flow_first_topic_element.div_element(css: "div.flow-topic-titlebar div.flow-moderated-topic-title")
   end
@@ -72,11 +73,6 @@ class FlowPage < WikiPage
   ### First Topic actions menu
 
   # For topic collapsing testing
-  # Watir WebDriver apparently doesn't support CSS :not (https://developer.mozilla.org/en-US/docs/Web/CSS/:not), so using XPath
-  h2(:first_non_moderated_topic_title, xpath: '(//*[contains(@class, "flow-topic ") and not(contains(@class, "flow-topic-moderated"))]//h2[contains(@class, "flow-topic-title")])[1]')
-  span(:first_non_moderated_topic_starter, xpath: '(//*[contains(@class, "flow-topic ") and not(contains(@class, "flow-topic-moderated"))]//*[contains(@class, "flow-topic-titlebar")]//*[contains(@class, "flow-author")])[1]')
-  div(:first_non_moderated_topic_post_content, xpath: '(//*[contains(@class, "flow-topic ") and not(contains(@class, "flow-topic-moderated"))]//*[contains(@class, "flow-post-content")])[1]')
-
   # Works around CSS descendant selector problem (https://github.com/cheezy/page-object/issues/222)
   div(:first_moderated_topic, css: '.flow-topic.flow-topic-moderated', index: 0)
 
@@ -90,10 +86,6 @@ class FlowPage < WikiPage
 
   h2(:first_moderated_topic_title) do |page|
     page.first_moderated_topic_titlebar_element.h2_element(class: 'flow-topic-title')
-  end
-
-  span(:first_moderated_topic_starter) do |page|
-    page.first_moderated_topic_titlebar_element.span_element(class: 'flow-author')
   end
 
   div(:first_moderated_topic_post_content) do |page|
