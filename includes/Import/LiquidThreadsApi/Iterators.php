@@ -201,8 +201,16 @@ class RevisionIterator implements Iterator {
 		$this->parent = $parent;
 	}
 
+	protected function getRevisionCount() {
+		if ( isset( $this->pageData['revisions'] ) ) {
+			return count( $this->pageData['revisions'] );
+		} else {
+			return 0;
+		}
+	}
+
 	public function valid() {
-		return ($this->pointer < count( $this->pageData['revisions'] ) );
+		return $this->pointer < $this->getRevisionCount();
 	}
 
 	public function next() {
