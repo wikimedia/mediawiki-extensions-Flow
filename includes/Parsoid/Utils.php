@@ -33,7 +33,6 @@ abstract class Utils {
 		$section = new \ProfileSection( __METHOD__ );
 
 		try {
-			// use VE API (which connects to Parsoid) if available...
 			$res = self::parsoid( $from, $to, $content, $title );
 		} catch ( NoParsoidException $e ) {
 			// ... otherwise default to parser
