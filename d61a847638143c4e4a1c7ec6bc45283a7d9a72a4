@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_7d5d337d",
+        "filename": "includes/Import/postprocessing/LqtRedirector.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-19T21:42:57Z",
+      "side": 1,
+      "message": "my worry here is that we are doing these mid-stream, as the import happens. The only database transaction we are holding open is against the flow db though, so if an exception is thrown and the topic import is rolled back, the afterPostImported redirects will have been inserted and will point to the wrong UUID.\n\nOne solution would be to queue up work to be done in these listeners, and then have a final commit listener than does the work?",
+      "revId": "d61a847638143c4e4a1c7ec6bc45283a7d9a72a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_5dc4f743",
+        "filename": "includes/Import/postprocessing/LqtRedirector.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-19T21:42:57Z",
+      "side": 1,
+      "message": "i think it would be more correct to go through the url generator, especially in terms of making sure we have the correct fragment.",
+      "revId": "d61a847638143c4e4a1c7ec6bc45283a7d9a72a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_ddc9e729",
+        "filename": "includes/Import/postprocessing/Postprocessor.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-19T21:42:57Z",
+      "side": 1,
+      "message": "we already have an interface that defines what methods are legal",
+      "revId": "d61a847638143c4e4a1c7ec6bc45283a7d9a72a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_78f6a1f7",
+        "filename": "includes/Import/postprocessing/Postprocessor.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-19T21:42:57Z",
+      "side": 1,
+      "message": "not the biggest fan of __call, a potentially more elegant solution is for ProcessorGroup to also implement Postprocessor. the group can be built up ahead of time with multiple listeners, but the PageImportState just asks for and calls a \u0027Postprocessor\u0027 instance.",
+      "revId": "d61a847638143c4e4a1c7ec6bc45283a7d9a72a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_3d01eb3c",
+        "filename": "includes/Import/postprocessing/Postprocessor.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-19T21:42:57Z",
+      "side": 1,
+      "message": "method_exists( \u0027Flow\\Import\\Postprocesing\\Postprocessor\u0027, $name )",
+      "revId": "d61a847638143c4e4a1c7ec6bc45283a7d9a72a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
