@@ -6,6 +6,8 @@ use Flow\Data\BufferedCache;
 use Flow\Data\ManagerGroup;
 use Flow\DbFactory;
 use Flow\Exception\FlowException;
+use Flow\Import\Postprocessing\Postprocessor;
+use Flow\Import\Postprocessing\ProcessorGroup;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
@@ -41,6 +43,8 @@ class Importer {
 	protected $dbFactory;
 	/** @var bool */
 	protected $allowUnknownUsernames;
+	/** @var ProcessorGroup **/
+	protected $postprocessors;
 
 	public function __construct(
 		ManagerGroup $storage,
@@ -52,6 +56,11 @@ class Importer {
 		$this->workflowLoaderFactory = $workflowLoaderFactory;
 		$this->cache = $cache;
 		$this->dbFactory = $dbFactory;
+		$this->postprocessors = new ProcessorGroup;
+	}
+
+	public function addPostprocessor( Postprocessor $proc ) {
+		$this->postprocessors->add( $proc );
 	}
 
 	/**
@@ -90,6 +99,7 @@ class Importer {
 			$this->logger ?: new NullLogger,
 			$this->cache,
 			$this->dbFactory,
+			$this->postprocessors,
 			$this->allowUnknownUsernames
 		) );
 	}
@@ -178,6 +188,11 @@ class PageImportState {
 	 */
 	protected $allowUnknownUsernames;
 
+	/**
+	 * @var Postprocessor
+	 */
+	public $postprocessor;
+
 	public function __construct(
 		Workflow $boardWorkflow,
 		ManagerGroup $storage,
@@ -185,6 +200,7 @@ class PageImportState {
 		LoggerInterface $logger,
 		BufferedCache $cache,
 		DbFactory $dbFactory,
+		Postprocessor $postprocessor,
 		$allowUnknownUsernames = false
 	) {
 		$this->storage = $storage;;
@@ -193,6 +209,7 @@ class PageImportState {
 		$this->logger = $logger;
 		$this->cache = $cache;
 		$this->dbw = $dbFactory->getDB( DB_MASTER );
+		$this->postprocessor = $postprocessor;
 		$this->allowUnknownUsernames = $allowUnknownUsernames;
 
 		// Get our workflow UUID property
@@ -466,12 +483,14 @@ class TalkpageImportOperation {
 				$state->begin();
 				$this->importTopic( $state, $topic );
 				$state->commit();
+				$state->postprocessor->afterTalkpageImported();
 				$imported++;
 			} catch ( FlowException $e ) {
 				$state->rollback();
 				\MWExceptionHandler::logException( $e );
 				$state->logger->error( 'Failed importing topic' );
 				$state->logger->error( (string)$e );
+				$state->postprocessor->talkpageImportAborted();
 				$failed++;
 			}
 		}
@@ -539,6 +558,8 @@ class TalkpageImportOperation {
 
 		$topicState->commitLastModified();
 		$topicState->parent->saveAssociations();
+		$topicId = $topicState->topicWorkflow->getId();
+		$pageState->postprocessor->afterTopicImported( $importTopic, $topicId );
 		// $database->commit();
 	}
 
@@ -734,6 +755,9 @@ class TalkpageImportOperation {
 		}
 
 		$state->recordModificationTime( $topRevision->getRevisionId() );
+
+		$topicId = $state->topicWorkflow->getId();
+		$state->parent->postprocessor->afterPostImported( $post, $topicId, $topRevision->getPostId() );
 
 		foreach ( $post->getReplies() as $subReply ) {
 			$this->importPost( $state, $subReply, $topRevision, $logPrefix . ' ' );
