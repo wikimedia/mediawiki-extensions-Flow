@@ -6,6 +6,7 @@ use Flow\Import\NullImportSourceStore;
 use Flow\Import\LiquidThreadsApi\LocalApiBackend;
 use Flow\Import\LiquidThreadsApi\RemoteApiBackend;
 use Flow\Import\LiquidThreadsApi\ImportSource as LiquidThreadsApiImportSource;
+use Flow\Import\Postprocessing\LqtRedirector;
 
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
@@ -21,6 +22,7 @@ class ConvertLqt extends Maintenance {
 		$this->addOption( 'logfile', 'File to read and store associations between imported items and their sources', false, true );
 		$this->addOption( 'verbose', 'Report on import progress to stdout' );
 		$this->addOption( 'allowunknownusernames', 'Allow import of usernames that do not exist on this wiki.  DO NOT USE IN PRODUCTION. This simplifies testing imports of production data to a test wiki' );
+		$this->addOption( 'redirect', 'Add redirects from LQT posts to their Flow equivalents and update watchlists' );
 	}
 
 	public function execute() {
@@ -53,6 +55,17 @@ class ConvertLqt extends Maintenance {
 			$sourceStore = new FileImportSourceStore( $filename );
 		} else {
 			$sourceStore = new NullImportSourceStore;
+		}
+
+		if ( $this->hasOption( 'redirect' ) ) {
+			if ( $this->hasOption( 'remoteapi' ) ) {
+				$this->error( 'Cannot use remoteapi and redirect together', true );
+			}
+
+			$urlGenerator = Flow\Container::get( 'url_generator' );
+			$user = Flow\Container::get( 'occupation_controller' )->getTalkpageManager();
+			$redirector = new LqtRedirector( $urlGenerator, $user );
+			$importer->addPostprocessor( $redirector );
 		}
 
 		$importer->import( $source, $title, $sourceStore );
