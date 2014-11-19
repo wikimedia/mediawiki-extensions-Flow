@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_6ce267d1",
+        "filename": "Resources.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-19T16:44:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e936f18_dc4c9b7c",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_bcabcfd2",
         "filename": "Resources.php",
         "patchSetId": 11
@@ -30,6 +48,24 @@
       "writtenOn": "2014-11-18T07:14:31Z",
       "side": 1,
       "message": "Module is duplicated.  Also, I made a small change to the schema docs.  If https://meta.wikimedia.org/wiki/Schema:FlowReplies looks good, the rev ID is now 10560491.\n\nAlso, even though the actual logging is conditional, Flow will need to document that it depends on EventLogging (which is fine) if the modules are set up like this (they can be set up conditionally, but that is probably not necessary).",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_49c43d44",
+        "filename": "Resources.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-19T16:44:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e936f18_bcabcfd2",
       "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_29d0d1f9",
+        "filename": "handlebars/flow_reply_form.handlebars",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-19T16:44:47Z",
+      "side": 1,
+      "message": "I meant that this form is used for both replies to posts (which open by clicking the \"reply\" link) and topic-level replies (which open by clicking this textarea)\n\nI\u0027ll improve the comment.",
+      "parentUuid": "6e936f18_dcd7bb4e",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_fcddd747",
         "filename": "modules/engine/components/board/base/flow-board-api-events.js",
         "patchSetId": 11
@@ -64,6 +118,41 @@
       "writtenOn": "2014-11-18T07:14:31Z",
       "side": 1,
       "message": "You may want to combine the two .data calls into one with https://api.jquery.com/data/#data-obj , so people don\u0027t miss one of them.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_c935ad43",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-19T16:44:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e936f18_fcddd747",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_6938193a",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-19T16:44:47Z",
+      "side": 1,
+      "message": "Done",
       "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +176,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_a91941dd",
+        "filename": "modules/engine/components/board/base/flow-board-interactive-events.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-19T16:44:47Z",
+      "side": 1,
+      "message": "Should\u0027ve removed this todo; that\u0027s in interactiveHandlers.activateReplyTopic now. Sloppy me.",
+      "parentUuid": "6e936f18_7c7ea715",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_5caf2b27",
         "filename": "modules/engine/components/board/base/flow-board-interactive-events.js",
         "patchSetId": 11
@@ -98,6 +205,24 @@
       "writtenOn": "2014-11-18T07:14:31Z",
       "side": 1,
       "message": "Try to avoid changing unrelated blocks of code, since it increases the amount of code reviewers go through.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_893b2535",
+        "filename": "modules/engine/components/board/base/flow-board-interactive-events.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-19T16:44:47Z",
+      "side": 1,
+      "message": "Agreed. I had originally added stuff in here but then started another approach. I\u0027ll undo cosmetic changes here.",
+      "parentUuid": "6e936f18_5caf2b27",
       "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -121,6 +246,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_ac038f78",
+        "filename": "modules/engine/components/board/base/flow-board-misc.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-19T16:44:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e936f18_dc381bee",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_1c320306",
         "filename": "modules/engine/components/board/base/flow-board-misc.js",
         "patchSetId": 11
@@ -132,6 +275,24 @@
       "writtenOn": "2014-11-18T07:14:31Z",
       "side": 1,
       "message": "This should better explain what\u0027s really required (if anything) when calling the function.  It seems some of this is not really required, because it can be looked up from the funnel.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_cc061b89",
+        "filename": "modules/engine/components/board/base/flow-board-misc.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-19T16:44:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e936f18_1c320306",
       "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -155,6 +316,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_6cf9077d",
+        "filename": "modules/engine/components/board/base/flow-board-misc.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-19T16:44:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e936f18_dc51fb3b",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_fc3b97e5",
         "filename": "modules/engine/components/board/base/flow-board-misc.js",
         "patchSetId": 11
@@ -172,6 +351,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_e950a962",
+        "filename": "modules/engine/components/board/base/flow-board-misc.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-19T16:44:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e936f18_fc3b97e5",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_5c2c0baa",
         "filename": "modules/engine/components/board/base/flow-board-misc.js",
         "patchSetId": 11
@@ -183,6 +380,24 @@
       "writtenOn": "2014-11-18T07:14:31Z",
       "side": 1,
       "message": "See above re required parameters.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_cc6a9b11",
+        "filename": "modules/engine/components/board/base/flow-board-misc.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-19T16:44:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e936f18_5c2c0baa",
       "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -223,6 +438,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_ac670f49",
+        "filename": "modules/engine/components/board/base/flow-boardandhistory-base.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-19T16:44:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e936f18_e776a09e",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_476754e6",
         "filename": "modules/engine/components/board/base/flow-boardandhistory-base.js",
         "patchSetId": 11
@@ -234,6 +467,24 @@
       "writtenOn": "2014-11-18T07:14:31Z",
       "side": 1,
       "message": "I think this would be more readable like:\n\nif ( changedFieldCount ) {\n  if ( confirm() ) {\n     // cancel-success path\n  } else {\n     // cancel-abort path\n  }\n}\n// Do the discard",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_094cf5c9",
+        "filename": "modules/engine/components/board/base/flow-boardandhistory-base.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-19T16:44:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e936f18_476754e6",
       "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -291,6 +542,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_09a07530",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-19T16:44:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e936f18_c789247b",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_e78c608b",
         "filename": "modules/engine/components/common/flow-component-events.js",
         "patchSetId": 11
@@ -302,6 +571,24 @@
       "writtenOn": "2014-11-18T07:14:31Z",
       "side": 1,
       "message": "Per above, you don\u0027t need all this.  You asked for [data-flow-eventlog-action] so that\u0027s what you\u0027ll get in currentTarget.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_c96dad02",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-19T16:44:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e936f18_e78c608b",
       "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -342,6 +629,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_897325e4",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-19T16:44:47Z",
+      "side": 1,
+      "message": "Yup, done",
+      "parentUuid": "6e936f18_479d14b3",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_679850c3",
         "filename": "modules/engine/misc/flow-eventlog.js",
         "patchSetId": 11
@@ -353,6 +658,24 @@
       "writtenOn": "2014-11-18T07:14:31Z",
       "side": 1,
       "message": "Remove or document.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_891245b3",
+        "filename": "modules/engine/misc/flow-eventlog.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-19T16:44:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e936f18_679850c3",
       "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -376,6 +699,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_292d31ee",
+        "filename": "modules/engine/misc/flow-eventlog.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-19T16:44:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e936f18_07938ca6",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_278ec87c",
         "filename": "modules/engine/misc/flow-eventlog.js",
         "patchSetId": 11
@@ -387,6 +728,24 @@
       "writtenOn": "2014-11-18T07:14:31Z",
       "side": 1,
       "message": "We should generally move away from this and use module dependencies or an init file instead.  For now, this is not necessary since flow-api.js (before this) does it.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_4928bddc",
+        "filename": "modules/engine/misc/flow-eventlog.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-19T16:44:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e936f18_278ec87c",
       "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -410,6 +769,24 @@
     },
     {
       "key": {
+        "uuid": "6e936f18_ac25cfaa",
+        "filename": "modules/engine/misc/flow-eventlog.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-19T16:44:47Z",
+      "side": 1,
+      "message": "I\u0027ll still keep it around \u0026 make it store eventInstance data. I will get rid of the lazy-loading for schemas and stuff, though.\n\nThe below setDefaults() is pointless - most defaults in here on not defaults on a per-schemaName level, but on a per-funnel level. Using eventLog.setDefaults doesn\u0027t make a lot of sense there.\n\nSince we can\u0027t use that, we\u0027ll need to save to of the funnel data somewhere - might as well keep this wrapper class around \u0026 continue to save the funnel data (funnel id, entrypoint) in there.",
+      "parentUuid": "6e936f18_87f6bcf4",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e936f18_e760e0a1",
         "filename": "modules/engine/misc/flow-eventlog.js",
         "patchSetId": 11
@@ -421,6 +798,24 @@
       "writtenOn": "2014-11-18T07:14:31Z",
       "side": 1,
       "message": "Can we just use mw.user.generateRandomSessionId()?\n\nThe name is not a great fit (I\u0027m fine with keeping generateFunnelId as a wrapper), but the behavior is.  There is no requirement that the funnel ID contain the user\u0027s session ID.\n\nThat\u0027s not really necessary, since it\u0027s already trivial to map between a funnel ID and a session ID since they\u0027ll be in the same MySQL row in the logging database.\n\nThis will also avoid busy-waiting, and the potential collision you identified.",
+      "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_4960bdfb",
+        "filename": "modules/engine/misc/flow-eventlog.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-19T16:44:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e936f18_e760e0a1",
       "revId": "299008d17d421cae6eb85df007aeb49fd5f40f9e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
