@@ -1,8 +1,36 @@
 {
 	"@metadata": {
 		"authors": [
-			"Minisarm"
+			"Minisarm",
+			"Tuxilina"
 		]
 	},
+	"flow-user-moderated": "Utilizator moderat",
+	"flow-topic-moderated-reason-prefix": "Motiv:",
+	"flow-post-actions": "Acțiuni",
+	"flow-topic-actions": "Acțiuni",
+	"flow-cancel": "Anulare",
+	"flow-preview": "Previzualizare",
+	"flow-show-change": "Arată modificări",
+	"flow-stub-post-content": "\"Din cauza unei erori de natură tehnică, acest mesaj nu a putut fi obținut.\"",
+	"flow-newtopic-title-placeholder": "Subiect nou",
+	"flow-newtopic-header": "Adaugă un nou subiect",
+	"flow-newtopic-start-placeholder": "Începe un nou subiect",
+	"flow-summarize-topic-placeholder": "Vă rugăm să faceți un rezumat al acestei discuții",
+	"flow-history-action-delete-post": "șterge",
+	"flow-history-action-hide-post": "ascunde",
+	"flow-history-action-lock-topic": "blochează",
+	"flow-history-action-unlock-topic": "deblochează",
+	"flow-post-action-view": "Legătură permanentă",
+	"flow-post-action-post-history": "Istoric",
+	"flow-post-action-delete-post": "Şterge",
+	"flow-post-action-hide-post": "Ascunde",
+	"flow-post-action-edit-post": "Modificare",
+	"flow-post-action-edit-post-submit": "Salvează modificările",
+	"flow-topic-action-view": "Legătură permanentă",
+	"flow-topic-action-history": "Istoric",
+	"flow-topic-action-hide-topic": "Ascunde subiect",
+	"flow-topic-action-summarize-topic": "Rezumare",
+	"flow-topic-action-resummarize-topic": "Modifică rezumat",
 	"flow-notification-rename-email-subject": "$1 {{GENDER:$1|a redenumit}} subiectul dv."
 }
