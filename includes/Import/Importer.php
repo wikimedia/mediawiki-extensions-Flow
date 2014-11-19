@@ -77,11 +77,11 @@ class Importer {
 	 * @param IImportSource     $source
 	 * @param Title             $targetPage
 	 * @param ImportSourceStore $sourceStore
-	 * @return TalkpageImportOperation
+	 * @return bool True When the import completes with no failures
 	 */
 	public function import( IImportSource $source, Title $targetPage, ImportSourceStore $sourceStore ) {
 		$operation = new TalkpageImportOperation( $source );
-		$operation->import( new PageImportState(
+		return $operation->import( new PageImportState(
 			$this->workflowLoaderFactory
 				->createWorkflowLoader( $targetPage )
 				->getWorkflow(),
@@ -438,6 +438,7 @@ class TalkpageImportOperation {
 
 	/**
 	 * @param PageImportState $state
+	 * @return bool True if import completed successfully
 	 */
 	public function import( PageImportState $state ) {
 		$state->logger->info( 'Importing to ' . $state->boardWorkflow->getArticleTitle()->getPrefixedText() );
@@ -445,21 +446,23 @@ class TalkpageImportOperation {
 			$state->put( $state->boardWorkflow, array() );
 		}
 
+		$imported = $failed = 0;
 		$header = $this->importSource->getHeader();
 		if ( $header ) {
 			try {
 				$state->begin();
 				$this->importHeader( $state, $header );
 				$state->commit();
+				$imported++;
 			} catch ( FlowException $e ) {
 				$state->rollback();
 				\MWExceptionHandler::logException( $e );
 				$state->logger->error( 'Failed importing header' );
 				$state->logger->error( (string)$e );
+				$failed++;
 			}
 		}
 
-		$imported = $failed = 0;
 		foreach( $this->importSource->getTopics() as $topic ) {
 			try {
 				// @todo this may be too large of a chunk for one commit, unsure
@@ -475,7 +478,9 @@ class TalkpageImportOperation {
 				$failed++;
 			}
 		}
-		$state->logger->info( "Imported $imported topics, failed $failed" );
+		$state->logger->info( "Imported $imported items, failed $failed" );
+
+		return $failed === 0;
 	}
 
 	/**
