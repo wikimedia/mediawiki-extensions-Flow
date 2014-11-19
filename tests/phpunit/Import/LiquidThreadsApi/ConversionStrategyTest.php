@@ -1,0 +1,142 @@
+<?php
+
+namespace Flow\Tests\Import\LiquidThreadsApi;
+
+use DatabaseBase;
+use DateTime;
+use DateTimeZone;
+use Flow\Import\ImportSourceStore;
+use Flow\Import\NullImportSourceStore;
+use Flow\Import\LiquidThreadsApi\ConversionStrategy;
+use Flow\Import\LiquidThreadsApi\ApiBackend;
+use Title;
+use WikitextContent;
+
+class ConversionStrategyTest extends \MediaWikiTestCase {
+
+	public function testCanConstruct() {
+		$this->assertInstanceOf(
+			'Flow\Import\LiquidThreadsApi\ConversionStrategy',
+			$this->createStrategy()
+		);
+	}
+
+	public function testGeneratesMoveComment() {
+		$from = Title::newFromText( 'Talk:Blue_birds' );
+		$to = Title::newFromText( 'Talk:Blue_birds/Archive 4' );
+		$this->assertGreaterThan(
+			1,
+			strlen( $this->createStrategy()->getMoveComment( $from, $to ) )
+		);
+	}
+
+	public function testGeneratesCleanupComment() {
+		$from = Title::newFromText( 'Talk:Blue_birds' );
+		$to = Title::newFromText( 'Talk:Blue_birds/Archive 4' );
+		$this->assertGreaterThan(
+			1,
+			strlen( $this->createStrategy()->getCleanupComment( $from, $to ) )
+		);
+	}
+
+	public function testCreatesValidImportSource() {
+		$this->assertInstanceOf(
+			'Flow\Import\IImportSource',
+			$this->createStrategy()->createImportSource( Title::newFromText( 'Talk:Blue_birds' ) )
+		);
+	}
+
+	public function testReturnsValidSourceStore() {
+		$this->assertInstanceOf(
+			'Flow\Import\ImportSourceStore',
+			$this->createStrategy()->getSourceStore()
+		);
+	}
+
+	public function testDecidesArchiveTitle() {
+		// we don't have control of the Title::exists() calls that are made here,
+		// so just assume the page doesn't exist and we get format = 0 n = 1
+		$this->assertEquals(
+			'Talk:Blue birds/LQT Archive 1',
+			$this->createStrategy()
+				->decideArchiveTitle( Title::newFromText( 'Talk:Blue_birds' ) )
+				->getPrefixedText()
+		);
+	}
+
+	public function provideArchiveCleanupRevisionContent() {
+		// @todo superm401 suggested finding library that lets us control time during tests,
+		// would probably be better
+		$now = new DateTime( "now", new DateTimeZone( "GMT" ) );
+		$date = $now->format( 'Y-m-d' );
+
+		return array(
+			array(
+				'Blank input page',
+				// expect
+				"\n\n{{LQT page converted to Flow|from=Talk:Blue birds|date=$date}}",
+				// input content
+				'',
+			),
+			array(
+				'Page containing lqt magic word',
+				// expect
+				"\n\n{{LQT page converted to Flow|from=Talk:Blue birds|date=$date}}",
+				// input content
+				'{{#useliquidthreads:1}}',
+			),
+
+			array(
+				'Page containing some stuff and the lqt magic word',
+				// expect
+				<<<EOD
+Four score and seven years ago our fathers brought forth
+on this continent, a new nation, conceived in Liberty, and
+dedicated to the proposition that all men are created equal.
+
+
+{{LQT page converted to Flow|from=Talk:Blue birds|date=$date}}
+EOD
+				,
+				// input content
+				<<<EOD
+Four score and seven years ago our fathers brought forth
+on this continent, a new nation, conceived in Liberty, and
+dedicated to the proposition that all men are created equal.
+{{#useliquidthreads:
+	1
+}}
+EOD
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider provideArchiveCleanupRevisionContent
+	 * @param string $content
+	 */
+	public function testCreateArchiveCleanupRevisionContent( $message, $expect, $content ) {
+		$result = $this->createStrategy()->createArchiveCleanupRevisionContent(
+			new WikitextContent( $content ),
+			Title::newFromText( 'Talk:Blue_birds' )
+		);
+		if ( $result !== null ) {
+			$this->assertInstanceOf( 'WikitextContent', $result );
+		}
+		$this->assertEquals( $expect, $result->getNativeData(), $message );
+	}
+
+	protected function createStrategy(
+		DatabaseBase $dbr = null,
+		ImportSourceStore $sourceStore = null,
+		ApiBackend $api = null
+	) {
+		return new ConversionStrategy(
+			$dbr ?: wfGetDB( DB_SLAVE ),
+			$sourceStore ?: new NullImportSourceStore,
+			$api ?: $this->getMockBuilder( 'Flow\Import\LiquidThreadsApi\ApiBackend' )
+				->disableOriginalConstructor()
+				->getMock()
+		);
+	}
+}
