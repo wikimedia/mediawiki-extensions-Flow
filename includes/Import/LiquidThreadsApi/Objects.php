@@ -12,6 +12,7 @@ use Flow\Import\ImportException;
 use Flow\Import\IObjectRevision;
 use Flow\Import\IRevisionableObject;
 use Iterator;
+use Title;
 
 abstract class PageRevisionedObject implements IRevisionableObject {
 	/** @var int **/
@@ -81,6 +82,12 @@ class ImportPost extends PageRevisionedObject implements IImportPost {
 		$pageData = $this->importSource->getPageData( $this->apiResponse['rootid'] );
 
 		return $pageData['revisions'][0]['*'];
+	}
+
+	public function getTitle() {
+		$pageData = $this->importSource->getPageData( $this->apiResponse['rootid'] );
+
+		return Title::newFromText( $pageData['title'] );
 	}
 
 	/**
