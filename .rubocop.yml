@@ -1,1 +1,6 @@
 inherit_from: .rubocop_todo.yml
+
+# rubocop fix lifted from CirrusSearch/.rubocop.yml
+Style/LeadingCommentSpace:
+  Exclude:
+    - Gemfile  # RVM doesn't recognise spaces after the #s
