@@ -4,6 +4,7 @@ namespace Flow\Tests\Import;
 
 use Flow\Import\NullImportSourceStore;
 use Flow\Import\PageImportState;
+use Flow\Import\Postprocessing\ProcessorGroup;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Psr\Log\NullLogger;
@@ -35,7 +36,8 @@ class PageImportStateTest extends \MediaWikiTestCase {
 				->getMock(),
 			$this->getMockBuilder( 'Flow\DbFactory' )
 				->disableOriginalConstructor()
-				->getMock()
+				->getMock(),
+			new ProcessorGroup
 		);
 		if ( $returnAll ) {
 			return array( $state, $workflow, $storage );
