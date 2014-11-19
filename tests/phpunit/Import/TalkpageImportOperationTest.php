@@ -5,6 +5,7 @@ namespace Flow\Tests\Import;
 use Flow\Container;
 use Flow\Import\NullImportSourceStore;
 use Flow\Import\PageImportState;
+use Flow\Import\Postprocessor\ProcessorGroup;
 use Flow\Import\TalkpageImportOperation;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
@@ -103,7 +104,8 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 			$this->getMockBuilder( 'Flow\Data\BufferedCache' )
 				->disableOriginalConstructor()
 				->getMock(),
-			Container::get( 'db.factory' )
+			Container::get( 'db.factory' ),
+			new ProcessorGroup
 		) );
 
 		// Count what actually came through

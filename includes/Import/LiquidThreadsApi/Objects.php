@@ -87,6 +87,12 @@ class ImportPost extends PageRevisionedObject implements IImportPost {
 		return $pageData['revisions'][0]['*'];
 	}
 
+	public function getTitle() {
+		$pageData = $this->importSource->getPageData( $this->apiResponse['rootid'] );
+
+		return Title::newFromText( $pageData['title'] );
+	}
+
 	/**
 	 * @return Iterator<IImportPost>
 	 */
