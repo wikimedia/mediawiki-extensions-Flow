@@ -145,11 +145,15 @@ class Converter {
 			// The move needs to happen prior to the import because upon starting the
 			// import the top revision will be a flow-board revision.
 			$archiveTitle = $this->strategy->decideArchiveTitle( $title );
-			$titleText = $title->getPrefixedText();
 			$archiveTitleText = $archiveTitle->getPrefixedText();
+			if ( !$archiveTitle->isSubpage() ) {
+				throw new FlowException( 'Archive title is not a subpage: ' . $archiveTitleText );
+			}
+			$titleText = $title->getPrefixedText();
 			$this->logger->info( "Archiving page from $titleText to $archiveTitleText" );
 			$this->movePage( $title, $archiveTitle );
 		}
+
 
 		$source = $this->strategy->createImportSource( $archiveTitle );
 		if ( $this->importer->import( $source, $title, $this->strategy->getSourceStore() ) ) {
