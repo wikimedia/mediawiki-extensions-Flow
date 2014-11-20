@@ -10,17 +10,32 @@
 		<input type="hidden" name="topiclist_replyTo" value="{{ workflowId }}" />
 		<input name="topiclist_topic" class="mw-ui-input mw-ui-input-large"
 			required
-			type="text" placeholder="{{l10n "flow-newtopic-start-placeholder"}}" data-role="title"/>
+			type="text"
+			placeholder="{{l10n "flow-newtopic-start-placeholder"}}"
+			data-role="title"
+
+			{{!--
+				You'd expect data-flow-eventlog-* data here (this one
+				needs to be clicked to expand the form). That stuff will be
+				in JS though, since we only want it on initial focus (activating
+				the form)
+			--}}
+			data-flow-interactive-handler-focus="activateNewTopic"
+		/>
 		<textarea name="topiclist_content"
 			data-flow-preview-template="flow_topic"
 			class="mw-ui-input flow-form-collapsible mw-ui-input-large"
 			{{#if isOnFlowBoard}}style="display:none;"{{/if}}
-			placeholder="{{l10n "flow-newtopic-content-placeholder" @root.title}}" data-role="content" required></textarea>
+			placeholder="{{l10n "flow-newtopic-content-placeholder" @root.title}}"
+			data-role="content"
+			required
+		></textarea>
 
 		<div class="flow-form-actions flow-form-collapsible"
 			{{#if isOnFlowBoard}}style="display:none;"{{/if}}>
 			<button data-role="submit" data-flow-api-handler="newTopic"
 				data-flow-interactive-handler="apiRequest"
+				data-flow-eventlog-action="save-attempt"
 				class="mw-ui-button mw-ui-constructive mw-ui-flush-right">{{l10n "flow-newtopic-save"}}</button>
 			{{> flow_form_buttons }}
 			<small class="flow-terms-of-use plainlinks">{{l10nParse "flow-terms-of-use-new-topic"}}</small>

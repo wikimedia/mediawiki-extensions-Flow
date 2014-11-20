@@ -164,7 +164,12 @@
 	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.preview = function ( event ) {
 		var callback,
 			$this = $( this ),
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $this );
+			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $this ),
+			schemaName = $( this ).data( 'flow-eventlog-schema' ),
+			funnelId = $( this ).data( 'flow-eventlog-funnel-id' ),
+			logAction = $( this ).data( 'flow-return-to-edit' ) ? 'keep-editing' : 'preview';
+
+		flowBoard.logEvent( schemaName, { action: logAction, funnelId: funnelId } );
 
 		callback = function ( queryMap ) {
 			var content = null;
@@ -691,13 +696,14 @@
 
 		// Hide cancel button on preview screen
 		$cancelButton.hide();
+
 		// Assign the reset-preview information for later use
 		$button
 			.data( 'flow-return-to-edit', {
 				text: $button.text(),
-				$nodes: $previewContainer
+				$nodes: $previewContainer,
 			} )
-			.text( flowBoard.constructor.static.TemplateEngine.l10n('flow-preview-return-edit-post') )
+			.text( flowBoard.constructor.static.TemplateEngine.l10n( 'flow-preview-return-edit-post' ) )
 			.one( 'click', function() {
 				$cancelButton.show();
 			} );
@@ -714,12 +720,16 @@
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.newTopic = function ( info, data, jqxhr ) {
 		var result, html,
+			schemaName = $( this ).data( 'flow-eventlog-schema' ),
+			funnelId = $( this ).data( 'flow-eventlog-funnel-id' ),
 			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) );
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
 			return $.Deferred().reject().promise();
 		}
+
+		flowBoard.logEvent( schemaName, { action: 'save-success', funnelId: funnelId } );
 
 		result = data.flow['new-topic'].result.topiclist;
 
@@ -751,13 +761,18 @@
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitReply = function ( info, data, jqxhr ) {
 		var $form = $( this ).closest( 'form' ),
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $form );
+			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $form ),
+			schemaName = $( this ).data( 'flow-eventlog-schema' ),
+			funnelId = $( this ).data( 'flow-eventlog-funnel-id' );
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
 			return $.Deferred().reject().promise();
 		}
 
+		flowBoard.logEvent( schemaName, { action: 'save-success', funnelId: funnelId } );
+
+		// Execute cancel callback to destroy form
 		flowBoard.emitWithReturn( 'cancelForm', $form );
 
 		// Target should be flow-topic

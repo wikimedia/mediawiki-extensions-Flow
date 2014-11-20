@@ -3,6 +3,8 @@
         name="preview"
         data-role="action"
         class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-js"
+
+        {{!-- No data-flow-eventlog-action here; we'll do that in code because the action will toggle between preview & keep-editing --}}
 >
 	{{~l10n "flow-preview"~}}
 </button>
@@ -11,6 +13,9 @@
         data-role="cancel"
         type="reset"
         class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
+
+        {{!-- No data-flow-eventlog-action here; we'll do that in code to make sure it's run before cancel-success & cancel-abort --}}
+        {{!-- funnel id will have been forwarded to this button though, so we can access that from the code --}}
 >
 	{{~l10n "flow-cancel"~}}
 </button>

@@ -287,3 +287,6 @@ $wgFlowServerCompileTemplates = false;
 // of sending Cookie headers to Parsoid over HTTP. For security reasons, it is strongly recommended
 // that $wgVisualEditorParsoidURL be pointed to localhost if this setting is enabled.
 $wgFlowParsoidForwardCookies = false;
+
+// Enable/disable event logging
+$wgFlowEventLogging = true;
