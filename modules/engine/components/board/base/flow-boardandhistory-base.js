@@ -54,8 +54,8 @@
 	//
 
 	/**
-	 *
 	 * @param {Event} event
+	 * @returns {$.Deferred}
 	 */
 	FlowBoardAndHistoryComponentBase.UI.events.interactiveHandlers.moderationDialog = function ( event ) {
 		var $form,
@@ -72,6 +72,7 @@
 				},
 				actions: {}
 			},
+			$deferred = $.Deferred(),
 			modal;
 
 		event.preventDefault();
@@ -99,18 +100,22 @@
 		} );
 
 		modal = null; // avoid permanent reference
+
+		return $deferred.resolve();
 	};
 
 	/**
 	 * Cancels and closes a form. If text has been entered, issues a warning first.
 	 * @param {Event} event
+	 * @returns {$.Deferred}
 	 */
 	FlowBoardAndHistoryComponentBase.UI.events.interactiveHandlers.cancelForm = function ( event ) {
 		var target = this,
 			$form = $( this ).closest( 'form' ),
 			flowComponent = mw.flow.getPrototypeMethod( 'boardAndHistoryBase', 'getInstanceByElement' )( $form ),
 			$fields = $form.find( 'textarea, :text' ),
-			changedFieldCount = 0;
+			changedFieldCount = 0,
+			$deferred = $.Deferred();
 
 		event.preventDefault();
 
@@ -121,6 +126,7 @@
 				return false;
 			}
 		} );
+
 		// If all the text fields are empty, OR if the user confirms to close this with text already entered, do it.
 		if ( !changedFieldCount || confirm( flowComponent.constructor.static.TemplateEngine.l10n( 'flow-cancel-warning' ) ) ) {
 			// Reset the form content
@@ -141,7 +147,11 @@
 					fn.call( target, event );
 				} );
 			}
+
+			return $deferred.resolve();
 		}
+
+		return $deferred.reject();
 	};
 
 	//
