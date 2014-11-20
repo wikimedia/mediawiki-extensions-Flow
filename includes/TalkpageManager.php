@@ -113,7 +113,7 @@ class TalkpageManager implements OccupationController {
 
 		$doing = true;
 		$status = $page->doEditContent(
-			new BoardContent( 'flow-board', $workflow ),
+			new BoardContent( CONTENT_MODEL_FLOW_BOARD, $workflow ),
 			$comment,
 			EDIT_FORCE_BOT | EDIT_SUPPRESS_RC,
 			false,
