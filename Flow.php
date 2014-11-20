@@ -33,8 +33,9 @@ $wgExtensionCredits['other'][] = array(
 
 require_once __DIR__ . '/defines.php';
 
+define( 'CONTENT_MODEL_FLOW_BOARD', 'flow-board' );
 $wgNamespacesWithSubpages[NS_TOPIC] = false;
-$wgNamespaceContentModels[NS_TOPIC] = 'flow-board';
+$wgNamespaceContentModels[NS_TOPIC] = CONTENT_MODEL_FLOW_BOARD;
 
 $dir = __DIR__ . '/';
 require $dir . 'Resources.php';
