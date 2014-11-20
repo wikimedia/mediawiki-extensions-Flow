@@ -459,5 +459,6 @@
 	"apihelp-query+flowinfo-example-1": "Fetch Flow information about [[Talk:Sandbox]], [[Main Page]], and [[Talk:Flow]]",
 	"flow-edited": "Edited",
 	"flow-edited-by": "Edited by $1",
-	"flow-lqt-redirect-reason": "Redirecting retired LiquidThreads post to its converted Flow post"
+	"flow-lqt-redirect-reason": "Redirecting retired LiquidThreads post to its converted Flow post",
+	"flow-importer-wt-converted-template": "Wikitext talk page converted to Flow"
 }
