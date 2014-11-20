@@ -29,7 +29,6 @@ class ConvertLqt extends Maintenance {
 			? new MaintenanceDebugLogger( $this )
 			: new NullLogger;
 		$importer = Flow\Container::get( 'importer' );
-		$importer->setLogger( $logger );
 		$talkpageManagerUser = FlowHooks::getOccupationController()->getTalkpageManager();
 
 		$dbr = wfGetDB( DB_SLAVE );
