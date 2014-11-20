@@ -21,8 +21,8 @@ class BoardContent extends \AbstractContent {
 	/** @var Workflow|UUID|null */
 	protected $workflow;
 
-	public function __construct( $contentModel = 'flow-board', $workflow = null ) {
-		parent::__construct( 'flow-board' );
+	public function __construct( $contentModel = CONTENT_MODEL_FLOW_BOARD, $workflow = null ) {
+		parent::__construct( CONTENT_MODEL_FLOW_BOARD );
 
 		// Allowed ways of loading a Workflow
 		if ( ! (
