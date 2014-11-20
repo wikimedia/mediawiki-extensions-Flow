@@ -211,6 +211,18 @@ class FlowPage < WikiPage
 
   button(:edit_header_save, text: "Save header")
 
+  # No javascript elements
+  button(:no_javascript_add_topic, text: "Add topic")
+  div(:no_javascript_page_content_body, class: "flow-post-content")
+  div(:no_javascript_page_content_title, class: "flow-topic-titlebar flow-click-interactive")
+  div(:no_javascript_page_flow_topics, class: "flow-topics")
+  button(:no_javascript_reply, text: "Reply")
+  text_area(:no_javascript_reply_form, name: "topic_content")
+  a(:no_javascript_start_reply, href: /action=reply/)
+  a(:no_javascript_start_topic, href: /action=new-topic/)
+  text_field(:no_javascript_topic_body_text, name: "topiclist_content")
+  text_field(:no_javascript_topic_title_text, name: "topiclist_topic")
+
   # Sorting
   a(:newest_topics_link, text: "Newest topics")
   a(:recently_active_topics_choice, href: /topiclist_sortby=updated/)
