@@ -56,6 +56,16 @@
 		   title="'.htmlentities((string)((isset($in['actions']['reply']['title']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 		   class="mw-ui-anchor mw-ui-progressive mw-ui-quiet"
 		   data-flow-interactive-handler="activateForm"
+
+		   
+		   data-flow-eventlog-schema="FlowReplies"
+		   data-flow-eventlog-action="initiate"
+		   data-flow-eventlog-entrypoint="reply-top"
+		   data-flow-eventlog-forward="
+		       < .flow-topic .flow-reply-form:last [data-role=\'cancel\'],
+		       < .flow-topic .flow-reply-form:last [data-role=\'action\'][name=\'preview\'],
+		       < .flow-topic .flow-reply-form:last [data-role=\'submit\']
+		   "
 		>'.htmlentities((string)((isset($in['actions']['reply']['title']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'</a>
 		&bull;
 	' : '').'
@@ -202,12 +212,16 @@
         name="preview"
         data-role="action"
         class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-js"
+        data-flow-eventlog-action="preview"
 >'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
 
 <button data-flow-interactive-handler="cancelForm"
         data-role="cancel"
         type="reset"
         class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
+
+        
+        
 >'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
 ';},'flow_reply_form' => function ($cx, $in) {return ''.((LCRun3::ifvar($cx, ((isset($in['actions']['reply']) && is_array($in['actions'])) ? $in['actions']['reply'] : null))) ? '
 	<form class="flow-post flow-reply-form"
@@ -229,17 +243,23 @@
 				required
 				data-flow-preview-template="flow_post"
 				data-flow-expandable="true"
-				class="mw-ui-input"
+				class="mw-ui-input flow-click-interactive"
 				type="text"
 				placeholder="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-reply-topic-title-placeholder',((isset($in['properties']['topic-of-post']) && is_array($in['properties'])) ? $in['properties']['topic-of-post'] : null)),Array()), 'encq').'"
-				data-role="content">'.((LCRun3::ifvar($cx, ((isset($cx['scopes'][0]['submitted']) && is_array($cx['scopes'][0])) ? $cx['scopes'][0]['submitted'] : null))) ? ''.LCRun3::hbch($cx, 'ifCond', Array(Array(((isset($cx['scopes'][0]['submitted']['postId']) && is_array($cx['scopes'][0]['submitted'])) ? $cx['scopes'][0]['submitted']['postId'] : null),'===',((isset($in['postId']) && is_array($in)) ? $in['postId'] : null)),Array()), $in, function($cx, $in) {return ''.htmlentities((string)((isset($cx['scopes'][0]['submitted']['content']) && is_array($cx['scopes'][0]['submitted'])) ? $cx['scopes'][0]['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'';}).'' : '').'</textarea>
+				data-role="content"
+
+				
+				data-flow-interactive-handler-focus="activateReplyTopic"
+		>'.((LCRun3::ifvar($cx, ((isset($cx['scopes'][0]['submitted']) && is_array($cx['scopes'][0])) ? $cx['scopes'][0]['submitted'] : null))) ? ''.LCRun3::hbch($cx, 'ifCond', Array(Array(((isset($cx['scopes'][0]['submitted']['postId']) && is_array($cx['scopes'][0]['submitted'])) ? $cx['scopes'][0]['submitted']['postId'] : null),'===',((isset($in['postId']) && is_array($in)) ? $in['postId'] : null)),Array()), $in, function($cx, $in) {return ''.htmlentities((string)((isset($cx['scopes'][0]['submitted']['content']) && is_array($cx['scopes'][0]['submitted'])) ? $cx['scopes'][0]['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'';}).'' : '').'</textarea>
 
 		<div class="flow-form-actions flow-form-collapsible">
 			<button data-role="submit"
 			        class="mw-ui-button mw-ui-constructive"
 			        data-flow-interactive-handler="apiRequest"
 			        data-flow-api-handler="submitReply"
-			        data-flow-api-target="< .flow-topic">'.htmlentities((string)((isset($in['actions']['reply']['title']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'</button>
+			        data-flow-api-target="< .flow-topic"
+			        data-flow-eventlog-action="save-attempt"
+			>'.htmlentities((string)((isset($in['actions']['reply']['title']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'</button>
 			'.LCRun3::p($cx, 'flow_form_buttons', Array(Array($in),Array())).'
 			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array(Array('flow-terms-of-use-reply'),Array()), 'encq').'</small>
 		</div>
