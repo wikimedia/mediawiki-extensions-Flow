@@ -88,8 +88,12 @@ class Converter {
 
 		$postprocessor = $strategy->getPostprocessor();
 		if ( $postprocessor !== null ) {
+			// @todo assert we cant cause duplicate postprocessors
 			$this->importer->addPostprocessor( $postprocessor );
 		}
+
+		// Force the importer to use our logger for consistent output.
+		$this->importer->setLogger( $logger );
 	}
 
 	/**
