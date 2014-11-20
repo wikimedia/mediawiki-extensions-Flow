@@ -27,24 +27,27 @@
 	/**
 	 * The activateForm handler will expand, scroll to, and then focus onto a form (target = field).
 	 * @param {Event} event
+	 * @returns {$.Promise}
 	 */
 	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.activateForm = function ( event ) {
 		var $el, $form,
 			href = $( this ).prop( 'href' ),
 			hash = href.match( /#.+$/ ),
 			$target = hash ? $( hash ) : false,
-			flowBoard;
+			flowBoard,
+			$deferred = $.Deferred();
 
-		// If this element is leading to another element on the page, find it.
+		// Can't find target.
 		if ( !$target || !$target.length ) {
-			return;
+			return $deferred.reject().promise();
 		}
 
 		$el = $( hash[0] );
 		$form = $el.closest( 'form' );
 
+		// Can't find form to activate
 		if ( !$el.length || !$form.length ) {
-			return;
+			return $deferred.reject().promise();
 		}
 
 		flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $form );
@@ -71,40 +74,48 @@
 
 		// OK, we're done here. Don't use the hard link.
 		event.preventDefault();
+
+		return $deferred.resolve().promise();
 	};
 
 	/**
 	 * Calls FlowBoardComponent.UI.collapserState to set and render the new Collapser state.
 	 * @param {Event} event
+	 * @returns {$.Promise}
 	 */
 	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.collapserGroupToggle = function ( event ) {
-		var flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) );
+		var flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) ),
+			$deferred = $.Deferred();
 
 		// Don't apply to titlebars in the topic namespace
 		if ( flowBoard.constructor.static.inTopicNamespace( $( this ) ) ) {
-			return;
+			return $deferred.reject().promise();
 		}
 
 		flowBoard.collapserState( flowBoard, this.href.match( /[a-z]+$/ )[0] );
 
 		event.preventDefault();
+
+		return $deferred.resolve().promise();
 	};
 
 	/**
 	 * Sets the visibility class based on the user toggle action.
 	 * @param {Event} event
+	 * @returns {$.Promise}
 	 */
 	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.collapserCollapsibleToggle = function ( event ) {
 		var topicId, states,
 			$target = $( event.target ),
 			$this = $( this ),
 			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $this ),
+			$deferred = $.Deferred(),
 			isNotClickableElement = $target.not( '.flow-menu-js-drop' ) &&
 				!$target.closest( 'a, button, input, textarea, select, ul, ol' ).length;
 
 		// Don't apply to titlebars in the topic namespace
 		if ( flowBoard.constructor.static.inTopicNamespace( $this ) ) {
-			return;
+			return $deferred.reject().promise();
 		}
 
 		if ( isNotClickableElement ) {
@@ -149,10 +160,13 @@
 			event.preventDefault();
 			this.blur();
 		}
+
+		return $deferred.resolve().promise();
 	};
 
 	/**
 	 * @param {Event} event
+	 * @returns {$.Promise}
 	 */
 	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.activateReplyPost = function ( event ) {
 		event.preventDefault();
@@ -164,11 +178,12 @@
 			postId = $targetPost.data( 'flow-id' ),
 			topicTitle = $post.closest( '.flow-topic' ).find( '.flow-topic-title' ).text(),
 			replyToContent = $post.find( '.flow-post-content' ).filter( ':first' ).text() || topicTitle,
-			author = $.trim( $post.find( '.flow-author' ).filter( ':first' ).find( '.mw-userlink' ).text() );
+			author = $.trim( $post.find( '.flow-author' ).filter( ':first' ).find( '.mw-userlink' ).text() ),
+			$deferred = $.Deferred();
 
 		// Check if reply form has already been opened
 		if ( $post.data( 'flow-replying' ) ) {
-			return;
+			return $deferred.reject().promise();
 		}
 		$post.data( 'flow-replying', true );
 
@@ -205,27 +220,33 @@
 		// Add reply form below the post being replied to (WRT max depth)
 		$targetPost.children( '.flow-replies' ).append( $form );
 		$form.conditionalScrollIntoView();
+
+		return $deferred.resolve().promise();
 	};
 
 	/**
 	 * Allows you to open a flow-menu from a secondary click handler elsewhere.
 	 * Uses data-flow-menu-target="< foo .flow-menu"
 	 * @param {Event} event
+	 * @returns {$.Promise}
 	 */
 	function flowEventsMixinMenuToggle( event ) {
 		var $this = $( this ),
 			flowComponent = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $this ),
 			target = $this.data( 'flowMenuTarget' ),
-			$target = $.findWithParent( $this, target );
+			$target = $.findWithParent( $this, target ),
+			$deferred = $.Deferred();
 
 		event.preventDefault();
 
 		if ( !$target || !$target.length ) {
 			flowComponent.debug( 'Could not find openFlowMenu target', arguments );
-			return;
+			return $deferred.reject().promise();
 		}
 
 		$target.find( '.flow-menu-js-drop' ).trigger( 'click' );
+
+		return $deferred.resolve().promise();
 	}
 	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.menuToggle = flowEventsMixinMenuToggle;
 

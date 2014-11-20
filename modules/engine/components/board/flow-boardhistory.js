@@ -33,11 +33,12 @@
 	 * @param {Object} info (status:done|fail, $target: jQuery)
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
+	 * @returns {$.Promise}
 	 */
 	function flowBoardHistoryModerationCallback( info, data, jqxhr ) {
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return;
+			return $.Deferred().reject().promise();
 		}
 
 		var flowBoardHistory = mw.flow.getPrototypeMethod( 'boardHistory', 'getInstanceByElement' )( $( this ) );
@@ -47,6 +48,8 @@
 
 		// @todo implement dynamic updating of the history page instead of this
 		window.location.reload();
+
+		return $.Deferred().resolve().promise();
 	}
 
 	FlowBoardHistoryComponent.UI.events.apiHandlers.moderateTopic = flowBoardHistoryModerationCallback;

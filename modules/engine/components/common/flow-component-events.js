@@ -214,9 +214,12 @@
 	 * Triggers an API request based on URL and form data, and triggers the callbacks based on flow-api-handler.
 	 * @example <a data-flow-interactive-handler="apiRequest" data-flow-api-handler="loadMore" data-flow-api-target="< .flow-component div" href="...">...</a>
 	 * @param {Event} event
+	 * @returns {$.Promise}
 	 */
 	function flowEventsMixinApiRequestInteractiveHandler( event ) {
 		var $deferred,
+			$handlerDeferred,
+			handlerPromises = [],
 			$target,
 			preHandlerReturn,
 			self = event.currentTarget || event.delegateTarget || event.target,
@@ -242,13 +245,14 @@
 			// Assign a target node if none
 			$target = $this;
 		}
+
 		info.$target = $target;
 		args.splice( 1, 0, info ); // insert info into args for prehandler
 
 		// Make sure an API call is not already in progress for this target
 		if ( $target.closest( '.flow-api-inprogress' ).length ) {
 			flowComponent.debug( 'apiRequest already in progress', arguments );
-			return;
+			return $.Deferred().reject().promise();
 		}
 
 		// Mark the target node as "in progress" to disallow any further API calls until it finishes
@@ -261,6 +265,10 @@
 				preHandlerReturns.push( callbackFn.apply( self, args ) );
 			} );
 		} );
+
+		// We'll return a deferred object that won't resolve before apiHandlers
+		// are resolved
+		$handlerDeferred = $.Deferred();
 
 		// Use the pre-callback to find out if we should process this
 		if ( flowComponent.UI.events.apiPreHandlers[ handlerName ] ) {
@@ -289,7 +297,7 @@
 				$target.removeClass( 'flow-api-inprogress' );
 				$this.removeClass( 'flow-api-inprogress' );
 
-				return;
+				return $.Deferred().reject().promise();
 			}
 		}
 
@@ -319,7 +327,7 @@
 					info.status = 'done';
 					args.unshift( info );
 					$.each( flowComponent.UI.events.apiHandlers[ handlerName ], function ( i, callbackFn ) {
-						callbackFn.apply( self, args );
+						handlerPromises.push( callbackFn.apply( self, args ) );
 					} );
 				} )
 				.fail( function ( code, result ) {
@@ -351,10 +359,21 @@
 					flowComponent.emitWithReturn( 'showError', $this, errorMsg );
 
 					$.each( flowComponent.UI.events.apiHandlers[ handlerName ], function ( i, callbackFn ) {
-						callbackFn.apply( self, args );
+						handlerPromises.push( callbackFn.apply( self, args ) );
 					} );
+				} )
+				.always( function() {
+					// Resolve/reject the promised deferreds when all apiHandler
+					// deferreds have been resolved/rejected
+					$.when.apply( $, handlerPromises )
+						.done( $handlerDeferred.resolve )
+						.fail( $handlerDeferred.reject );
 				} );
 		}
+
+		// Return an aggregate promise that resolves when all are resolved, or
+		// rejects once one of them is rejected
+		return $handlerDeferred.promise();
 	}
 	FlowComponentEventsMixin.UI.events.interactiveHandlers.apiRequest = flowEventsMixinApiRequestInteractiveHandler;
 
@@ -431,21 +450,25 @@
 	 * @param {string} apiHandlerName
 	 */
 	function flowExecuteInteractiveHandler( args, $context, interactiveHandlerName, apiHandlerName ) {
+		var promises = [];
+
 		// Call any matching interactive handlers
 		if ( this.UI.events.interactiveHandlers[interactiveHandlerName] ) {
 			$.each( this.UI.events.interactiveHandlers[interactiveHandlerName], function ( i, fn ) {
-				fn.apply( $context[0], args );
+				promises.push( fn.apply( $context[0], args ) );
 			} );
 		} else if ( this.UI.events.apiHandlers[apiHandlerName] ) {
 			// Call any matching API handlers
 			$.each( this.UI.events.interactiveHandlers.apiRequest, function ( i, fn ) {
-				fn.apply( $context[0], args );
+				promises.push( fn.apply( $context[0], args ) );
 			} );
 		} else if ( interactiveHandlerName ) {
 			this.debug( 'Failed to find interactiveHandler', interactiveHandlerName, arguments );
 		} else if ( apiHandlerName ) {
 			this.debug( 'Failed to find apiHandler', apiHandlerName, arguments );
 		}
+
+		$context.data( 'flow-interactive-handler-promise', $.when.apply( $, promises ) );
 	}
 
 	/**
