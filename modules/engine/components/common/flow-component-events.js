@@ -54,6 +54,11 @@
 				'focusin.FlowBoardComponent',
 				'input.mw-ui-input, textarea',
 				_getDispatchCallback( this, 'focusField' )
+			)
+			.on(
+				'click.FlowBoardComponent keypress.FlowBoardComponent',
+				'[data-flow-eventlog-action]',
+				_getDispatchCallback( this, 'eventLogHandler' )
 			);
 
 		if ( _isGlobalBound ) {
@@ -212,6 +217,8 @@
 	 */
 	function flowEventsMixinApiRequestInteractiveHandler( event ) {
 		var $deferred,
+			$handlerDeferred,
+			handlerDeferreds = [],
 			$target,
 			preHandlerReturn,
 			self = event.currentTarget || event.delegateTarget || event.target,
@@ -237,6 +244,7 @@
 			// Assign a target node if none
 			$target = $this;
 		}
+
 		info.$target = $target;
 		args.splice( 1, 0, info ); // insert info into args for prehandler
 
@@ -306,6 +314,10 @@
 		// Remove existing errors from previous attempts
 		flowComponent.emitWithReturn( 'removeError', $this );
 
+		// We'll return a deferred object that won't resolve before apiHandlers
+		// are resolved
+		$handlerDeferred = $.Deferred();
+
 		// If this has a special api handler, bind it to the callback.
 		if ( flowComponent.UI.events.apiHandlers[ handlerName ] ) {
 			$deferred
@@ -348,8 +360,19 @@
 					$.each( flowComponent.UI.events.apiHandlers[ handlerName ], function ( i, callbackFn ) {
 						callbackFn.apply( self, args );
 					} );
+				} )
+				.always( function() {
+					// Resolve/reject the promised deferreds when all apiHandler
+					// deferreds have been resolved/rejected
+					$.when.apply( $, handlerDeferreds )
+						.done( $handlerDeferred.resolve )
+						.fail( $handlerDeferred.reject );
 				} );
 		}
+
+		// Return an aggregate deferred object that resolves when all are
+		// resolved, or rejects once one of them is rejected
+		return $handlerDeferred.promise();
 	}
 	FlowComponentEventsMixin.UI.events.interactiveHandlers.apiRequest = flowEventsMixinApiRequestInteractiveHandler;
 
@@ -460,9 +483,104 @@
 		} else if ( apiHandlerName ) {
 			this.debug( 'Failed to find apiHandler', apiHandlerName, arguments );
 		}
+
+		// Add aggregate deferred object as data attribute, so we can hook into
+		// the element when the handlers have run
+		$context.data( 'flow-interactive-handler-deferred', $.when.apply( $, deferreds ) );
+	}
+
+	/**
+	 * Triggers both API and interactive handlers, on click/enter.
+	 */
+	function flowInteractiveHandlerCallback( event ) {
+		// Only trigger with enter key & no modifier keys, if keypress
+		if ( event.type === 'keypress' && ( event.charCode !== 13 || event.metaKey || event.shiftKey || event.ctrlKey || event.altKey )) {
+			return;
+		}
+
+		var args = Array.prototype.slice.call( arguments, 0 ),
+			$context = $( event.currentTarget || event.delegateTarget || event.target ),
+			interactiveHandlerName = $context.data( 'flow-interactive-handler' ),
+			apiHandlerName = $context.data( 'flow-api-handler' );
+
+		return flowExecuteInteractiveHandler.call( this, args, $context, interactiveHandlerName, apiHandlerName );
 	}
 	FlowComponentEventsMixin.eventHandlers.interactiveHandler = flowInteractiveHandlerCallback;
 	FlowComponentEventsMixin.eventHandlers.apiRequest = flowInteractiveHandlerCallback;
+
+	/**
+	 * Triggers both API and interactive handlers, on focus.
+	 */
+	function flowInteractiveHandlerFocusCallback( event ) {
+		var args = Array.prototype.slice.call( arguments, 0 ),
+			$context = $( event.currentTarget || event.delegateTarget || event.target ),
+			interactiveHandlerName = $context.data( 'flow-interactive-handler-focus' ),
+			apiHandlerName = $context.data( 'flow-api-handler-focus' );
+
+		return flowExecuteInteractiveHandler.call( this, args, $context, interactiveHandlerName, apiHandlerName );
+	}
+	FlowComponentEventsMixin.eventHandlers.interactiveHandlerFocus = flowInteractiveHandlerFocusCallback;
+
+	/**
+	 * Callback function for when a [data-flow-eventlog-action] node is clicked.
+	 * This will trigger a eventLog call to the given schema with the given
+	 * parameters.
+	 * A unique funnel ID will be created for all new EventLog calls.
+	 *
+	 * There may be multiple subsequent calls in the same "funnel" (and share
+	 * same info) that you want to track. It is possible to forward funnel data
+	 * from one attribute to another once the first has been clicked. It'll then
+	 * log new calls with the same data (schema & entrypoint) & funnel ID as the
+	 * initial logged event.
+	 *
+	 * Required parameters (as data-attributes) are:
+	 * * data-flow-eventlog-schema: The schema name
+	 * * data-flow-eventlog-entrypoint: The schema's entrypoint parameter
+	 * * data-flow-eventlog-action: The schema's action parameter
+	 *
+	 * Additionally:
+	 * * data-flow-eventlog-forward: Selectors to forward funnel data to
+	 */
+	function flowEventLogCallback( event ) {
+		// Only trigger with enter key & no modifier keys, if keypress
+		if ( event.type === 'keypress' && ( event.charCode !== 13 || event.metaKey || event.shiftKey || event.ctrlKey || event.altKey )) {
+			return;
+		}
+
+		var $context = $( event.currentTarget ),
+			data = $context.data(),
+			component = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $context ),
+			$deferred = $context.data( 'flow-interactive-handler-deferred' ) || $.Deferred().resolve(),
+			eventInstance = {},
+			$forward;
+
+		// $deferred resolves once all interactiveHandlers/apiHandlers are done,
+		// so all nodes we want to forward to are bound to be there
+		$deferred.always( function() {
+			var key, value;
+
+			// Now find all nodes to forward to
+			$forward = data.flowEventlogForward ? $context.findWithParent( data.flowEventlogForward ) : $();
+
+			// Fetch loggable data: everything prefixed flowEventlog
+			for ( key in data ) {
+				if ( key.indexOf( 'flowEventlog' ) === 0 ) {
+					// Strips "flowEventlog" and lowercases first char after that
+					value = data[key];
+					key = key.substr( 12, 1 ).toLowerCase() + key.substr( 13 );
+
+					eventInstance[key] = value;
+				}
+			}
+
+			// Forward is not loggable data!
+			delete eventInstance.forward;
+
+			// Log the event & forward the funnel
+			component.logEvent( data.flowEventlogSchema, eventInstance, $forward );
+		} );
+	}
+	FlowComponentEventsMixin.eventHandlers.eventLogHandler = flowEventLogCallback;
 
 	/**
 	 * When the whole class has been instantiated fully (after every constructor has been called).

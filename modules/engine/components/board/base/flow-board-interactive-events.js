@@ -154,6 +154,82 @@
 	/**
 	 * @param {Event} event
 	 */
+	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.activateReplyTopic = function ( event ) {
+		var $topic = $( this ).closest( '.flow-topic' ),
+			topicId = $topic.data( 'flow-id' ),
+			component;
+
+		// The reply form is used in multiple places. This will check if it was
+		// triggered from inside the topic reply form.
+		if ( $( this ).closest( '#flow-reply-' + topicId ).length === 0 ) {
+			// Not in topic reply form
+			return $.Deferred().reject();
+		}
+
+		// Only if the textarea is compressed, is it being activated. Otherwise,
+		// it has already expanded and this focus is now just re-focussing the
+		// already active form
+		if ( !$( this ).hasClass( 'flow-input-compressed' ) ) {
+			// Form already activated
+			return $.Deferred().reject();
+		}
+
+		component = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $( this ) );
+		component.logEvent(
+			'FlowReplies',
+			// log data
+			{
+				entrypoint: 'reply-bottom',
+				action: 'initiate'
+			},
+			// nodes to forward funnel to
+			$( this ).findWithParent(
+				'< .flow-reply-form [data-role="cancel"],' +
+				'< .flow-reply-form [data-role="action"][name="preview"],' +
+				'< .flow-reply-form [data-role="submit"]'
+			)
+		);
+
+		return $.Deferred().resolve();
+	};
+
+	/**
+	 * @param {Event} event
+	 */
+	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.activateNewTopic = function ( event ) {
+		var $form = $( this ).closest( '.flow-newtopic-form' ),
+			component;
+
+		// Only if the textarea is compressed, is it being activated. Otherwise,
+		// it has already expanded and this focus is now just re-focussing the
+		// already active form
+		if ( $form.find( '.flow-input-compressed' ).length === 0 ) {
+			// Form already activated
+			return $.Deferred().reject();
+		}
+
+		component = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $( this ) );
+		component.logEvent(
+			'FlowReplies',
+			// log data
+			{
+				entrypoint: 'new-topic',
+				action: 'initiate'
+			},
+			// nodes to forward funnel to
+			$( this ).findWithParent(
+				'< .flow-newtopic-form [data-role="cancel"],' +
+				'< .flow-newtopic-form [data-role="action"][name="preview"],' +
+				'< .flow-newtopic-form [data-role="submit"]'
+			)
+		);
+
+		return $.Deferred().resolve();
+	};
+
+	/**
+	 * @param {Event} event
+	 */
 	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.activateReplyPost = function ( event ) {
 		event.preventDefault();
 

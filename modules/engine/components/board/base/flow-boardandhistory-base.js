@@ -110,9 +110,15 @@
 			$form = $( this ).closest( 'form' ),
 			flowComponent = mw.flow.getPrototypeMethod( 'boardAndHistoryBase', 'getInstanceByElement' )( $form ),
 			$fields = $form.find( 'textarea, :text' ),
-			changedFieldCount = 0;
+			changedFieldCount = 0,
+			$deferred = $.Deferred(),
+			callbacks = $form.data( 'flow-cancel-callback' ) || [],
+			schemaName = $( this ).data( 'flow-eventlog-schema' ),
+			funnelId = $( this ).data( 'flow-eventlog-funnel-id' );
 
 		event.preventDefault();
+
+		flowComponent.logEvent( schemaName, { action: 'cancel-attempt', funnelId: funnelId } );
 
 		// Check for non-empty fields of text
 		$fields.each( function () {
@@ -121,27 +127,37 @@
 				return false;
 			}
 		} );
-		// If all the text fields are empty, OR if the user confirms to close this with text already entered, do it.
-		if ( !changedFieldCount || confirm( flowComponent.constructor.static.TemplateEngine.l10n( 'flow-cancel-warning' ) ) ) {
-			// Reset the form content
-			$form[0].reset();
 
-			// Trigger for flow-actions-disabler
-			$form.find( 'textarea, :text' ).trigger( 'keyup' );
+		// Only log if user had already entered text (= confirmation was requested)
+		if ( changedFieldCount ) {
+			if ( confirm( flowComponent.constructor.static.TemplateEngine.l10n( 'flow-cancel-warning' ) ) ) {
+				flowComponent.logEvent( schemaName, { action: 'cancel-success', funnelId: funnelId } );
+			} else {
+				flowComponent.logEvent( schemaName, { action: 'cancel-abort', funnelId: funnelId } );
 
-			// Hide the form
-			flowComponent.emitWithReturn( 'hideForm', $form );
-
-			// Get rid of existing error messages
-			flowComponent.emitWithReturn( 'removeError', $form );
-
-			// Trigger the cancel callback
-			if ( $form.data( 'flow-cancel-callback' ) ) {
-				$.each( $form.data( 'flow-cancel-callback' ), function ( idx, fn ) {
-					fn.call( target, event );
-				} );
+				// User aborted cancel, quit this function & don't destruct the form!
+				return $deferred.reject();
 			}
 		}
+
+		// Reset the form content
+		$form[0].reset();
+
+		// Trigger for flow-actions-disabler
+		$form.find( 'textarea, :text' ).trigger( 'keyup' );
+
+		// Hide the form
+		flowComponent.emitWithReturn( 'hideForm', $form );
+
+		// Get rid of existing error messages
+		flowComponent.emitWithReturn( 'removeError', $form );
+
+		// Trigger the cancel callback
+		$.each( callbacks, function ( idx, fn ) {
+			fn.call( target, event );
+		} );
+
+		return $deferred.resolve();
 	};
 
 	//
