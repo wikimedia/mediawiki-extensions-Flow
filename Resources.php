@@ -324,6 +324,8 @@ $wgResourceModules += array(
 			'engine/misc/mw-ui.modal.js',
 			// FlowApi
 			'engine/misc/flow-api.js',
+			// FlowEventLog
+			'engine/misc/flow-eventlog.js',
 			// Component registry
 			'engine/components/flow-registry.js',
 			// FlowComponent must come before actual components
@@ -358,6 +360,8 @@ $wgResourceModules += array(
 			'mediawiki.Title',
 			'mediawiki.user',
 			'mediawiki.util',
+			// EventLogging schemas
+			'schema.FlowReplies',
 		),
 		'messages' => array(
 			'flow-error-external',
@@ -406,4 +410,10 @@ $wgResourceModules += array(
 			'engine/misc/jquery.findWithParent.js',
 		),
 	) + $mobile,
+	// EventLogging schemas
+	'schema.FlowReplies' => array(
+		'class'  => 'ResourceLoaderSchemaModule',
+		'schema' => 'FlowReplies',
+		'revision' => 10560491,
+	)
 );
