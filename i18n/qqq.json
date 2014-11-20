@@ -462,5 +462,6 @@
 	"apihelp-query+flowinfo-description": "{{doc-apihelp-description|query+flowinfo}}",
 	"apihelp-query+flowinfo-example-1": "{{doc-apihelp-example|query+flowinfo}}",
 	"flow-edited": "Message displayed below a post to indicate it has last been edited by the original author\n{{Identical|Edited}}",
-	"flow-edited-by": "Message displayed below a post to indicate it has last been edited by a user other than the original author"
+	"flow-edited-by": "Message displayed below a post to indicate it has last been edited by a user other than the original author",
+	"flow-importer-wt-converted-template": "Name of a wikitext template that is added to the header of flow boards that were converted from wikitext"
 }
