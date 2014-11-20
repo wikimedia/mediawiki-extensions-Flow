@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_9ee6f5a9",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-20T05:05:10Z",
+      "side": 1,
+      "message": "i just realized, while the import process only currently deals with LQT, this TalkpageImportOperation is generic and will work with any implemented import source.\n\nI suppose that implies that instead of here, the LQT ImportHeader::getRevisions() should return this cleanup revision after the last real revision.",
+      "revId": "82e255c48484c907d11da922d74b00fbcda74bbc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
