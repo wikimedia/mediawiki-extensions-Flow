@@ -385,6 +385,8 @@
 	"flow-post-undo-suppress": "Automatic moderation summary when undoing a suppress that was just performed.",
 	"flow-importer-lqt-converted-template": "Name of a wikitext template that is added to the header of Flow boards that were converted from LiquidThreads",
 	"flow-importer-lqt-converted-archive-template": "Name of a wikitext template that is added to the archived copy of a LiquidThreads page converted to Flow.",
+	"flow-importer-wt-converted-template": "Name of a wikitext template that is added to the header of a Flow boards that were converted from Wikitext",
+	"flow-importer-wt-converted-archive-template": "Name of a wikitext template that is added to the archived copy of a wikitext talk page converted to Flow.",
 	"apihelp-flow-description": "{{doc-apihelp-description|flow}}",
 	"apihelp-flow-param-submodule": "{{doc-apihelp-param|flow|submodule}}",
 	"apihelp-flow-param-page": "{{doc-apihelp-param|flow|page}}",
@@ -465,5 +467,7 @@
 	"apihelp-query+flowinfo-example-1": "{{doc-apihelp-example|query+flowinfo}}",
 	"flow-edited": "Message displayed below a post to indicate it has last been edited by the original author\n{{Identical|Edited}}",
 	"flow-edited-by": "Message displayed below a post to indicate it has last been edited by a user other than the original author",
-	"flow-lqt-redirect-reason": "Edit summary used to redirect old LQT thread pages to Flow topics"
+	"flow-lqt-redirect-reason": "Edit summary used to redirect old LQT thread pages to Flow topics",
+	"flow-talk-conversion-move-reason": "Message used as an edit summary when moving an existing talk page to an archive location in preparation for enabling flow on that page.\nParameters:\n* $1 - Title the page was moved from",
+	"flow-talk-conversion-archive-edit-reason": "Message used as an edit summary when appending a template to a wikitext talk page after archiving it in preparation for conversion to Flow."
 }
