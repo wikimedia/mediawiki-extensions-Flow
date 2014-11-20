@@ -125,7 +125,7 @@ class HistoricalUIDGenerator extends UIDGenerator {
 		$gen = self::singleton();
 		self::rotateNodeId( $gen );
 		$binaryUUID = $gen->getTimestampedID88(
-			array( $time, ++$counter )
+			array( $time, ++$counter % 1024 )
 		);
 
 		return wfBaseConvert( $binaryUUID, 2, $base );
