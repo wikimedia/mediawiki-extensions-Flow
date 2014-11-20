@@ -28,6 +28,12 @@
 	 */
 	mw.flow.Api = new mw.flow.FlowApi( FlowComponentEnginesMixin.static.StorageEngine );
 
+	/**
+	 * EventLogging wrapper
+	 * @type {FlowEventLog}
+	 */
+	mw.flow.EventLog = mw.flow.FlowEventLog;
+
 	// Copy static and prototype from mixin to main class
 	mw.flow.mixinComponent( 'component', FlowComponentEnginesMixin );
 }( jQuery, mediaWiki, mediaWiki.flow.vendor.initStorer ) );
