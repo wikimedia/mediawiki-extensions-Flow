@@ -196,7 +196,8 @@ $c['storage.workflow.listeners.topiclist'] = $c->share( function( $c ) {
 $c['storage.workflow.listeners'] = function( $c ) {
 	return array(
 		$c['listener.occupation'],
-		$c['listener.url_generator']
+		$c['listener.url_generator'],
+		$c['storage.workflow.listeners.topiclist'],
 	);
 };
 $c['storage.workflow'] = $c->share( function( $c ) {
