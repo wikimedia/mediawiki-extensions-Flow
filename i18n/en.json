@@ -457,5 +457,6 @@
 	"apihelp-query+flowinfo-description": "Get basic Flow information about a page.",
 	"apihelp-query+flowinfo-example-1": "Fetch Flow information about [[Talk:Sandbox]], [[Main Page]], and [[Talk:Flow]]",
 	"flow-edited": "Edited",
-	"flow-edited-by": "Edited by $1"
+	"flow-edited-by": "Edited by $1",
+	"flow-importer-wt-converted-template": "Wikitext talk page converted to Flow"
 }

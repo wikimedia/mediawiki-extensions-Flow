@@ -80,11 +80,11 @@ class ConvertWiki {
 		);
 		/** @var Title $title */
 		foreach ( $titles as $title ) {
-			if ( $title->isSubpage() ) {
+			$movedFrom = $this->getPageMovedFrom( $title );
+			if ( $movedFrom === null && $title->isSubpage() ) {
 				continue;
 			}
 			try {
-				$movedFrom = $this->getPageMovedFrom( $title );
 				if ( $movedFrom ) {
 					// If the page is moved but still retains the use-liquid-threads page prop
 					// that means the previous import failed to complete.  Try again.
