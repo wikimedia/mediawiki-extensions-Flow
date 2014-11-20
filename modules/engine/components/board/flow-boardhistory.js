@@ -37,7 +37,7 @@
 	function flowBoardHistoryModerationCallback( info, data, jqxhr ) {
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return;
+			return $.Deferred().reject();
 		}
 
 		var flowBoardHistory = mw.flow.getPrototypeMethod( 'boardHistory', 'getInstanceByElement' )( $( this ) );
@@ -47,6 +47,8 @@
 
 		// @todo implement dynamic updating of the history page instead of this
 		window.location.reload();
+
+		return $.Deferred().resolve();
 	}
 
 	FlowBoardHistoryComponent.UI.events.apiHandlers.moderateTopic = flowBoardHistoryModerationCallback;

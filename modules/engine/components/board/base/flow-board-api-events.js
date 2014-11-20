@@ -252,6 +252,7 @@
 	 * @param {Object} info (status:done|fail, $target: jQuery)
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
+	 * @returns {$.Deferred}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.board = function ( info, data, jqxhr ) {
 		var $rendered,
@@ -259,7 +260,7 @@
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return;
+			return $.Deferred().reject();
 		}
 
 		$rendered = $(
@@ -271,6 +272,8 @@
 
 		// Reinitialize the whole board with these nodes
 		flowBoard.reinitializeContainer( $rendered );
+
+		return $.Deferred().resolve();
 	};
 
 	/**
@@ -278,6 +281,7 @@
 	 * @param {Object} info (status:done|fail, $target: jQuery)
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
+	 * @returns {$.Deferred}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.loadMore = function ( info, data, jqxhr ) {
 		var $tmp,
@@ -286,7 +290,7 @@
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return;
+			return $.Deferred().reject();
 		}
 
 		// See bug 61097, Catch any random javascript error from
@@ -327,6 +331,8 @@
 		 * there's no reason to scroll)
 		 */
 		flowBoard.emitWithReturn( 'scroll' );
+
+		return $.Deferred().resolve();
 	};
 
 	/**
@@ -334,6 +340,7 @@
 	 * @param {Object} info (status:done|fail, $target: jQuery)
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
+	 * @returns {$.Deferred}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.activateEditHeader = function ( info, data, jqxhr ) {
 		var $rendered,
@@ -342,7 +349,7 @@
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
-			return;
+			return $.Deferred().reject();
 		}
 
 		// Change "header" to "header_edit" so that it loads up flow_block_header_edit
@@ -362,6 +369,8 @@
 
 		// Reinitialize the whole board with these nodes, and hold onto the replaced header
 		$oldBoardNodes = flowBoard.reinitializeContainer( $rendered );
+
+		return $.Deferred().resolve();
 	};
 
 	/**
@@ -369,6 +378,7 @@
 	 * @param {Object} info (status:done|fail, $target: jQuery)
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
+	 * @returns {$.Deferred}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitHeader = function ( info, data, jqxhr ) {
 		var $rendered,
@@ -376,7 +386,7 @@
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
-			return;
+			return $.Deferred().reject();
 		}
 
 		$rendered = $(
@@ -388,6 +398,8 @@
 
 		// Reinitialize the whole board with these nodes
 		flowBoard.reinitializeContainer( $rendered );
+
+		return $.Deferred().resolve();
 	};
 
 	/**
@@ -396,6 +408,7 @@
 	 * @param {Object} info
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
+	 * @returns {$.Deferred}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.activateLockTopic = function ( info, data ) {
 		var result, revision, postId, revisionId,
@@ -407,7 +420,7 @@
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
-			return;
+			return $.Deferred().reject();
 		}
 
 		// FIXME: API should take care of this for me.
@@ -433,6 +446,8 @@
 
 		// Focus on first form field
 		$target.find( 'input, textarea' ).filter( ':visible:first' ).focus();
+
+		return $.Deferred().resolve();
 	};
 
 	/**
@@ -441,17 +456,19 @@
 	 * @param {String} status
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
+	 * @returns {$.Deferred}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.lockTopic = function ( info, data ) {
 		var $replacement,
 			$target = info.$target,
 			$this = $( this ),
+			$deferred = $.Deferred(),
 			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $this ),
 			flowId = $this.closest( '.flow-topic' ).data( 'flow-id' );
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
-			return;
+			return $deferred.reject();
 		}
 
 		// We couldn't make lock-topic to return topic data after a successful
@@ -481,6 +498,8 @@
 
 			$target.replaceWith( $replacement );
 			flowBoard.emitWithReturn( 'makeContentInteractive', $replacement );
+
+			$deferred.resolve();
 		} ).fail( function( code, result ) {
 			/*
 			 * At this point, the lock/unlock actually worked, but failed
@@ -490,13 +509,18 @@
 			var errorMsg = flowBoard.constructor.static.getApiErrorMessage( code, result );
 			errorMsg = mw.msg( 'flow-error-fetch-after-open-lock', errorMsg );
 			flowBoard.emitWithReturn( 'showError', $target, errorMsg );
+
+			$deferred.reject();
 		} );
+
+		return $deferred.promise();
 	};
 
 	/**
 	 * @param {Object} info (status:done|fail, $target: jQuery)
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
+	 * @returns {$.Deferred}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitTopicTitle = function( info, data, jqxhr ) {
 		var
@@ -507,9 +531,10 @@
 			$topic = info.$target,
 			$oldTopicTitleBar, $newTopicTitleBar,
 			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $this );
+
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
-			return;
+			return $.Deferred().reject();
 		}
 
 		$oldTopicTitleBar = $topic.find( '.flow-topic-titlebar' );
@@ -527,6 +552,8 @@
 		flowBoard.emitWithReturn( 'makeContentInteractive', $newTopicTitleBar );
 
 		$newTopicTitleBar.conditionalScrollIntoView();
+
+		return $.Deferred().resolve();
 	};
 
 	/**
@@ -535,13 +562,14 @@
 	 * @param {Object} info (status:done|fail, $target: jQuery)
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
+	 * @returns {$.Deferred}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitEditPost = function( info, data, jqxhr ) {
 		var result;
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
-			return;
+			return $.Deferred().reject();
 		}
 
 		result = data.flow['edit-post'].result.topic;
@@ -550,6 +578,8 @@
 		result.submitted = {};
 
 		_flowBoardComponentRefreshTopic( info.$target, result );
+
+		return $.Deferred().resolve();
 	};
 
 	/**
@@ -557,6 +587,7 @@
 	 * @param {Object} info (status:done|fail, $target: jQuery)
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
+	 * @returns {$.Deferred}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.preview = function( info, data, jqxhr ) {
 		var revision, creator,
@@ -575,7 +606,7 @@
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return;
+			return $.Deferred().reject();
 		}
 
 		creator = {
@@ -670,6 +701,8 @@
 			.click( function() {
 				$cancelButton.show();
 			} );
+
+		return $.Deferred().resolve();
 	};
 
 	/**
@@ -677,6 +710,7 @@
 	 * @param {Object} info (status:done|fail, $target: jQuery)
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
+	 * @returns {$.Deferred}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.newTopic = function ( info, data, jqxhr ) {
 		var result, html,
@@ -684,7 +718,7 @@
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return;
+			return $.Deferred().reject();
 		}
 
 		result = data.flow['new-topic'].result.topiclist;
@@ -705,12 +739,15 @@
 		// (submitted via enter key), which it needs to lose:
 		// the form will only re-activate if re-focused
 		document.activeElement.blur();
+
+		return $.Deferred().resolve();
 	};
 
 	/**
 	 * @param {Object} info (status:done|fail, $target: jQuery)
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
+	 * @returns {$.Deferred}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitReply = function ( info, data, jqxhr ) {
 		var $form = $( this ).closest( 'form' ),
@@ -718,19 +755,22 @@
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return;
+			return $.Deferred().reject();
 		}
 
 		flowBoard.emitWithReturn( 'cancelForm', $form );
 
 		// Target should be flow-topic
 		_flowBoardComponentRefreshTopic( info.$target, data.flow.reply.result.topic );
+
+		return $.Deferred().resolve();
 	};
 
 	/**
 	 * @param {Object} info (status:done|fail, $target: jQuery)
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
+	 * @returns {$.Deferred}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.watchItem = function ( info, data, jqxhr ) {
 		var watchUrl, unwatchUrl,
@@ -744,7 +784,7 @@
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return;
+			return $.Deferred().reject();
 		}
 
 		if ( $tooltipTarget.is( '.flow-topic-watchlist' ) ) {
@@ -781,6 +821,8 @@
 			// Successful watch: show tooltip
 			flowBoard.emitWithReturn( 'showSubscribedTooltip', $newLink.find( '.wikiglyph' ), watchType );
 		}
+
+		return $.Deferred().resolve();
 	};
 
 	/**
@@ -788,6 +830,7 @@
 	 * @param {Object} info (status:done|fail, $target: jQuery)
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
+	 * @returns {$.Deferred}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.activateSummarizeTopic = function ( info, data, jqxhr ) {
 		var $target = info.$target,
@@ -796,7 +839,7 @@
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return;
+			return $.Deferred().reject();
 		}
 
 		// Create the new topic_summary_edit template
@@ -817,6 +860,8 @@
 
 		// Focus on first form field
 		$target.find( 'input, textarea' ).filter( ':visible:first' ).focus();
+
+		return $.Deferred().resolve();
 	};
 
 	/**
@@ -824,6 +869,7 @@
 	 * @param {Object} info (status:done|fail, $target: jQuery)
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
+	 * @returns {$.Deferred}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.summarizeTopic = function ( info, data, jqxhr ) {
 		var $this = $( this ),
@@ -833,7 +879,7 @@
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return;
+			return $.Deferred().reject();
 		}
 
 		$target.replaceWith( $(
@@ -849,6 +895,8 @@
 
 		// Delete the form
 		$form.remove();
+
+		return $.Deferred().resolve();
 	};
 
 	/**
@@ -857,6 +905,7 @@
 	 * @param {Object} info (status:done|fail, $target: jQuery)
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
+	 * @returns {$.Deferred}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.activateEditTitle = function ( info, data, jqxhr ) {
 		var flowBoard, $form, cancelCallback,
@@ -867,7 +916,7 @@
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return;
+			return $.Deferred().reject();
 		}
 
 		$form = info.$target.find( 'form' );
@@ -905,6 +954,8 @@
 		}
 
 		$form.find( '.mw-ui-input' ).focus();
+
+		return $.Deferred().resolve();
 	};
 
 	/**
@@ -912,6 +963,7 @@
 	 * @param {Object} info (status:done|fail, $target: jQuery)
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
+	 * @returns {$.Deferred}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.activateEditPost = function ( info, data, jqxhr ) {
 		var $rendered, rootBlock,
@@ -920,7 +972,7 @@
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return;
+			return $.Deferred().reject();
 		}
 
 		// The API returns with the entire topic, but we only want to render the edit form
@@ -946,6 +998,8 @@
 
 		$post.replaceWith( $rendered );
 		$rendered.find( 'textarea' ).conditionalScrollIntoView().focus();
+
+		return $.Deferred().resolve();
 	};
 
 	/**
@@ -1009,11 +1063,12 @@
 		 * @param {Object} info (status:done|fail, $target: jQuery)
 		 * @param {Object} data
 		 * @param {jqXHR} jqxhr
+		 * @returns {$.Deferred}
 		 */
 		return function ( info, data, jqxhr ) {
 			if ( info.status !== 'done' ) {
 				// Error will be displayed by default, nothing else to wrap up
-				return;
+				return $.Deferred().reject();
 			}
 
 			var result = data.flow[action].result.topic,
@@ -1030,6 +1085,8 @@
 			);
 
 			flowBoard.emitWithReturn( 'cancelForm', $form );
+
+			return $.Deferred().resolve();
 		};
 	}
 
