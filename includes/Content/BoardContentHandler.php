@@ -10,11 +10,11 @@ use MWException;
 
 class BoardContentHandler extends \ContentHandler {
 	public function __construct( $modelId ) {
-		if ( $modelId !== 'flow-board' ) {
+		if ( $modelId !== CONTENT_MODEL_FLOW_BOARD ) {
 			throw new MWException( __CLASS__." initialised for invalid content model" );
 		}
 
-		parent::__construct( 'flow-board', array( CONTENT_FORMAT_JSON ) );
+		parent::__construct( CONTENT_MODEL_FLOW_BOARD, array( CONTENT_FORMAT_JSON ) );
 	}
 
 	public function isSupportedFormat( $format ) {
@@ -74,7 +74,7 @@ class BoardContentHandler extends \ContentHandler {
 			$uuid = UUID::create( $info['flow-workflow'] );
 		}
 
-		return new BoardContent( 'flow-board', $uuid );
+		return new BoardContent( CONTENT_MODEL_FLOW_BOARD, $uuid );
 	}
 
 	/**
