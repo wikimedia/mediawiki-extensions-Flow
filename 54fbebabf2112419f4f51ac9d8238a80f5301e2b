@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_41df296c",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-20T19:19:40Z",
+      "side": 1,
+      "message": "This won\u0027t work as expected: at the time this is returned, the api call won\u0027t have .done of .failed yet, so we won\u0027t have any handlerDeferreds yet.\n\nI\u0027ve fixed this in https://gerrit.wikimedia.org/r/#/c/171791/15/modules/engine/components/common/flow-component-events.js but have yet to backport to this patch.",
+      "revId": "54fbebabf2112419f4f51ac9d8238a80f5301e2b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
