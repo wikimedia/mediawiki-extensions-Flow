@@ -693,11 +693,19 @@
 		$cancelButton.hide();
 		// Assign the reset-preview information for later use
 		$button
-			.data( 'flow-return-to-edit', {
-				text: $button.text(),
-				$nodes: $previewContainer
+			.data( {
+				// When clicked, set the action-to-be-logged to preview
+				'flow-eventlog-action': 'preview',
+				'flow-return-to-edit': {
+					text: $button.text(),
+					$nodes: $previewContainer,
+					data: {
+						// Reset EventLog action name so that when clicked next, keep-editing is logged
+						'flow-eventlog-action': 'keep-editing'
+					}
+				}
 			} )
-			.text( flowBoard.constructor.static.TemplateEngine.l10n('flow-preview-return-edit-post') )
+			.text( flowBoard.constructor.static.TemplateEngine.l10n( 'flow-preview-return-edit-post' ) )
 			.click( function() {
 				$cancelButton.show();
 			} );
@@ -751,13 +759,18 @@
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitReply = function ( info, data, jqxhr ) {
 		var $form = $( this ).closest( 'form' ),
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $form );
+			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $form ),
+			schemaName = $( this ).data( 'flow-eventlog-schema' ),
+			funnelId = $( this ).data( 'flow-eventlog-funnel-id' );
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
 			return $.Deferred().reject();
 		}
 
+		flowBoard.logEvent( schemaName, { action: 'save-success', funnelId: funnelId } );
+
+		// Execute cancel callback to destroy form
 		flowBoard.emitWithReturn( 'cancelForm', $form );
 
 		// Target should be flow-topic
