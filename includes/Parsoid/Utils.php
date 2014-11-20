@@ -102,7 +102,7 @@ abstract class Utils {
 			)
 		);
 		if ( $parsoidForwardCookies && !User::isEveryoneAllowed( 'read' ) ) {
-			$req->setHeader( 'Cookie', RequestContext::getMain()->getRequest()->getHeader( 'Cookie' ) );
+			$request->setHeader( 'Cookie', RequestContext::getMain()->getRequest()->getHeader( 'Cookie' ) );
 		}
 		$status = $request->execute();
 		if ( !$status->isOK() ) {
