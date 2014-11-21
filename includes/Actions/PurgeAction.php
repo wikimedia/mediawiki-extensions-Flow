@@ -78,18 +78,34 @@ class PurgeAction extends \PurgeAction {
 	 * @param Workflow $workflow
 	 */
 	protected function fetchDiscussion( Workflow $workflow ) {
+		$results = array();
 		/** @var ManagerGroup $storage */
 		$storage = Container::get( 'storage' );
-		$pager = new Pager(
+		// 'newest' sort order
+		$pagers = array( new Pager(
 			$storage->getStorage( 'TopicListEntry' ),
 			array( 'topic_list_id' => $workflow->getId() ),
 			array( 'pager-limit' => 499 )
+		) );
+
+		// 'updated' sort order
+		$pagers[] = new Pager(
+			$storage->getStorage( 'TopicListEntry' ),
+			array( 'topic_list_id' => $workflow->getId() ),
+			array(
+				'pager-limit' => 499,
+				'sort' => 'workflow_last_update_timestamp',
+				'order' => 'desc',
+			)
 		);
 
-		$queries = $results = array();
-		foreach ( $pager->getPage()->getResults() as $entry ) {
-			$results[] = $entry->getId();
+		foreach ( $pagers as $pager ) {
+			foreach ( $pager->getPage()->getResults() as $entry ) {
+				// use array key to de-duplicate
+				$results[$entry->getId()->getAlphadecimal()] = $entry->getId();
+			}
 		}
+
 		$this->fetchTopics( $results );
 
 		// purge the board history
