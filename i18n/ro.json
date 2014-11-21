@@ -32,5 +32,10 @@
 	"flow-topic-action-hide-topic": "Ascunde subiect",
 	"flow-topic-action-summarize-topic": "Rezumare",
 	"flow-topic-action-resummarize-topic": "Modifică rezumat",
+	"flow-error-http": "A apărut o eroare în momentul accesării serverului.",
+	"flow-error-other": "A intervenit o eroare neașteptată.",
+	"flow-error-external": "A intervenit o eroare.<br />Mesajul de eroare primit a fost: $1.",
+	"flow-error-edit-restricted": "Nu aveți permisiunea de a edita acest mesaj.",
+	"flow-error-topic-is-locked": "Acest subiect este blocat pentru orice acțiuni suplimentare.",
 	"flow-notification-rename-email-subject": "$1 {{GENDER:$1|a redenumit}} subiectul dv."
 }

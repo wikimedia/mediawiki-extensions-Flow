@@ -73,7 +73,7 @@
 	"flow-history-action-hide-post": "Text link for hiding a post or topic from the board history page.\n{{Identical|Hide}}",
 	"flow-history-action-unsuppress-post": "Text link for unsuppressing a post or topic from the board history page.\n{{Identical|Unsuppress}}",
 	"flow-history-action-undelete-post": "Text link for undeleting a post or topic from the board history page.\n{{Identical|Undelete}}",
-	"flow-history-action-unhide-post": "Text link for undeleting a post or topic from the board history page.\n{{Identical|Unhide}}",
+	"flow-history-action-unhide-post": "Text link for unhiding a post or topic from the board history page.\n{{Identical|Unhide}}",
 	"flow-history-action-restore-post": "Text link for restoring a post or topic from the board history page.\n{{Identical|Restore}}",
 	"flow-history-action-lock-topic": "Text link for locking a post or topic from the board history page.\n{{Identical|Lock}}",
 	"flow-history-action-unlock-topic": "Text link for unlocking a post or topic from the board history page.\n{{Identical|Unlock}}",
