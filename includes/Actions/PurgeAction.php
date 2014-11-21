@@ -86,19 +86,43 @@ class PurgeAction extends \PurgeAction {
 			array( 'pager-limit' => 499 )
 		);
 
-		$this->fetchTopics( $pager->getPage()->getResults() );
+		$results = array();
+		foreach ( $pager->getPage()->getResults() as $entry ) {
+			$results[] = $entry->getId();
+		}
+		$this->fetchTopics( $results );
+
+		// purge the board history
+		$storage->find(
+			'BoardHistoryEntry',
+			array( 'topic_list_id' => $workflow->getId() ),
+			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 499 )
+		);
 	}
+
 
 	/**
 	 * Load the requested topics.  Does not return anything, the goal
 	 * here is to populate $this->hashBag.
 	 *
-	 * @param UUID[]|TopicListEntry[] $results
+	 * @param UUID[] $results
 	 */
 	protected function fetchTopics( array $results ) {
+		// purge the revisions that make up the topic
 		/** @var TopicListQuery $query */
 		$query = Container::get( 'query.topiclist' );
 		$query->getResults( $results );
+
+		// Purge the history
+		$queries = array();
+		foreach ( $results as $id ) {
+			$queries[] = array( 'topic_root_id' => $id );
+		}
+		Container::get( 'storage' )->findMulti(
+			'TopicHistoryEntry',
+			$queries,
+			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 499 )
+		);
 	}
 
 	/**
