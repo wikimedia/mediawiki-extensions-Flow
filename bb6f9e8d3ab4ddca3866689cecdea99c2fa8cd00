@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_c39fb3f8",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-21T22:40:18Z",
+      "side": 1,
+      "message": "i wonder if this should just be called from PageImportState::commit and PageImportState::rollback() ?",
+      "revId": "bb6f9e8d3ab4ddca3866689cecdea99c2fa8cd00",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_03791bc2",
+        "filename": "includes/Import/postprocessing/LqtRedirector.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-21T22:40:18Z",
+      "side": 1,
+      "message": "OccupationController::getTalkpageManager(). Prefer to take a User in the constructor",
+      "revId": "bb6f9e8d3ab4ddca3866689cecdea99c2fa8cd00",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_2347777d",
+        "filename": "maintenance/convertLqt.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-21T22:40:18Z",
+      "side": 1,
+      "message": "just to be nice, we should detect an attempt to use redirect + remote api and bail.",
+      "revId": "bb6f9e8d3ab4ddca3866689cecdea99c2fa8cd00",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
