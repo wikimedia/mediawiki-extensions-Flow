@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e936f18_6667d24a",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-21T18:43:39Z",
+      "side": 1,
+      "message": "This just takes a Postprocessor",
+      "revId": "8390ada031dfdefff77f0d9cc6128620031d7942",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_265d4a7e",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-21T18:43:39Z",
+      "side": 1,
+      "message": "singular",
+      "revId": "8390ada031dfdefff77f0d9cc6128620031d7942",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_c64b46b2",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-21T18:43:39Z",
+      "side": 1,
+      "message": "you will want to do this per commit, rather than outside the foreach.\n\nAdditionally on rollback this needs to forget anything that was pending commit.",
+      "revId": "8390ada031dfdefff77f0d9cc6128620031d7942",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
