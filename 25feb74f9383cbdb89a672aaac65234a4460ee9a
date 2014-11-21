@@ -16,6 +16,24 @@
       "revId": "25feb74f9383cbdb89a672aaac65234a4460ee9a",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e936f18_e6120263",
+        "filename": "modules/styles/board/form-actions.less",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-21T19:03:53Z",
+      "side": 1,
+      "message": "Can\u0027t be done with specificity :p\n\nThe height is added in JS, on the element itself, based on how much text is in the element (or the default). There is no selector that will trump that.",
+      "parentUuid": "6e936f18_26046a16",
+      "revId": "25feb74f9383cbdb89a672aaac65234a4460ee9a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
