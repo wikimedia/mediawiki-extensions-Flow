@@ -3,13 +3,13 @@
 # Therefore it should run without any "when_present" clauses
 # If you need a "when_present" to make the test run, that is a bug
 
-Given(/^I am on a Flow page without JavaScript$/ ) do
+Given(/^I am on a Flow page without JavaScript$/) do
   visit(FlowPage)
 end
 
 Given(/^I am using user agent "(.+)"$/) do |user_agent|
   @user_agent = user_agent
-  @browser = browser(test_name(@scenario), {user_agent: user_agent})
+  @browser = browser(test_name(@scenario), { user_agent: user_agent })
   $session_id = @browser.driver.instance_variable_get(:@bridge).session_id
 end
 
