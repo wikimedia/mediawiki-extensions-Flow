@@ -24,6 +24,14 @@ interface OccupationController {
 	 * @return Revision|null
 	 */
 	public function ensureFlowRevision( Article $title, Workflow $workflow );
+
+	/**
+	 * Gives a user object used to manage talk pages
+	 *
+	 * @return User User to manage talkpages
+	 * @throws MWException If a user cannot be created.
+	 */
+	public function getTalkpageManager();
 }
 
 class TalkpageManager implements OccupationController {
