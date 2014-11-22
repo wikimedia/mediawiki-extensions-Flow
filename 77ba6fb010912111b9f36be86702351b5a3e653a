@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea06b5a_9f5d771d",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-11-22T12:07:39Z",
+      "side": 1,
+      "message": "Is this the name of a wikitext template or is it just some wikitext?",
+      "revId": "77ba6fb010912111b9f36be86702351b5a3e653a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea06b5a_1fa967dc",
+        "filename": "includes/Import/LiquidThreadsApi/Objects.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-11-22T12:07:39Z",
+      "side": 1,
+      "message": "I don\u0027t reaaally like this being here, but I guess it\u0027s okay…",
+      "revId": "77ba6fb010912111b9f36be86702351b5a3e653a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea06b5a_7fa42b05",
+        "filename": "includes/Import/LiquidThreadsApi/Source.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-11-22T12:07:39Z",
+      "side": 1,
+      "message": "I don\u0027t really like reaching out into global state like this, but if you must, I think it\u0027s better to use Flow\\Container::get( \u0027occupation_controller\u0027 ).",
+      "revId": "77ba6fb010912111b9f36be86702351b5a3e653a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea06b5a_3faea3e5",
+        "filename": "tests/phpunit/Import/TalkpageImportOperationTest.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-11-22T12:07:39Z",
+      "side": 1,
+      "message": "What\u0027s going on in this file? Is this related?",
+      "revId": "77ba6fb010912111b9f36be86702351b5a3e653a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
