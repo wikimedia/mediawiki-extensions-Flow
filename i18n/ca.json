@@ -86,6 +86,7 @@
 	"flow-moderation-placeholder-unsuppress-post": "{{GENDER:$3|Expliqueu}} per què recupereu aquest apunt.",
 	"flow-moderation-placeholder-undelete-post": "{{GENDER:$3|Expliqueu}} per què restaureu aquest apunt.",
 	"flow-moderation-placeholder-unhide-post": "{{GENDER:$3|Expliqueu}} per què mostreu de nou aquest apunt.",
+	"flow-topic-first-heading": "Tema de $1",
 	"flow-newest-topics": "Temes més recents",
 	"flow-sorting-tooltip": "{{GENDER:|Esteu}} veient primer els temes més recents. Cliqueu per altres opcions d'ordenació.",
 	"flow-toggle-small-topics": "Canvia a la vista reduïda de temes",
