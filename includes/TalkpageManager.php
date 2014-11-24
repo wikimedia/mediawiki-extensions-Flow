@@ -70,9 +70,19 @@ class TalkpageManager implements OccupationController {
 			return false;
 		}
 
-		return in_array( $title->getPrefixedText(), $this->occupiedPages )
-			|| ( in_array( $title->getNamespace(), $this->occupiedNamespaces )
-				&& !$title->isSubpage() );
+		if ( in_array( $title->getPrefixedText(), $this->occupiedPages ) ) {
+			return true;
+		}
+		if ( !$title->isSubpage() && in_array( $title->getNamespace(), $this->occupiedNamespaces ) ) {
+			return true;
+		}
+
+		// If it was saved as a flow board, lets just believe the database.
+		if ( $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
