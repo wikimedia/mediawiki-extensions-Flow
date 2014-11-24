@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea06b5a_4339553d",
+        "filename": "includes/Import/LiquidThreadsApi/Objects.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-24T18:02:06Z",
+      "side": 1,
+      "message": "we used to order use statements like this with them sorted by a combination of namespace depth and alphabetical, but its seemed simpler lately to just go with alphabetical",
+      "revId": "b6ea2ab26265968c480c08a44d5bb5b0725e1eb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea06b5a_03434db7",
+        "filename": "includes/Import/LiquidThreadsApi/Objects.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-24T18:02:06Z",
+      "side": 1,
+      "message": "should either call this scriptUser, or consistently use destinationScriptUser in this class",
+      "revId": "b6ea2ab26265968c480c08a44d5bb5b0725e1eb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea06b5a_c32325ff",
+        "filename": "includes/Import/LiquidThreadsApi/Objects.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-24T18:02:06Z",
+      "side": 1,
+      "message": "@param User $scriptUser",
+      "revId": "b6ea2ab26265968c480c08a44d5bb5b0725e1eb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
