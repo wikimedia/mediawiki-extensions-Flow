@@ -13,7 +13,7 @@ abstract class Content {
 	static function onGetDefaultModel( Title $title, &$model ) {
 		$occupationController = \FlowHooks::getOccupationController();
 
-		if ( $occupationController->isTalkpageOccupied( $title ) ) {
+		if ( $occupationController->isTalkpageOccupied( $title, false ) ) {
 			$model = CONTENT_MODEL_FLOW_BOARD;
 
 			return false;
