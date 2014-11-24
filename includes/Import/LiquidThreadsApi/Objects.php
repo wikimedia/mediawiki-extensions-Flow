@@ -269,7 +269,7 @@ class ScriptedImportRevision implements IObjectRevision {
 	}
 
 	public function getAuthor() {
-		return $this->scriptUser->getName();
+		return $this->destinationScriptUser->getName();
 	}
 
 	// XXX: This is called but never used, but if it were, including getText and getAuthor in
