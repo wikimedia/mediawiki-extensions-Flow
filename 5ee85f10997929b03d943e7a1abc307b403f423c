@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4ea06b5a_03858db1",
+        "filename": "includes/Import/Converter.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-24T22:46:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ea06b5a_dfe0df27",
+      "revId": "5ee85f10997929b03d943e7a1abc307b403f423c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ea06b5a_ffdd9b74",
         "filename": "includes/Import/Converter.php",
         "patchSetId": 7
@@ -30,6 +48,24 @@
       "writtenOn": "2014-11-22T12:52:49Z",
       "side": 1,
       "message": "What if it doesn\u0027t exist? Is that what the next if statement is for?",
+      "revId": "5ee85f10997929b03d943e7a1abc307b403f423c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea06b5a_e38bc1c2",
+        "filename": "includes/Import/Converter.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-24T22:46:28Z",
+      "side": 1,
+      "message": "exactly.  If it tries all of the formats and non of them match the $format \u003d\u003d\u003d false triggers, and the very first format with n\u003d1 is returned.  While LQT doesn\u0027t use this it was added for the wikitext converter which needs to check multiple formats.",
+      "parentUuid": "4ea06b5a_ffdd9b74",
       "revId": "5ee85f10997929b03d943e7a1abc307b403f423c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "4ea06b5a_83b8bd75",
+        "filename": "includes/Import/LiquidThreadsApi/ConversionStrategy.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-24T22:46:28Z",
+      "side": 1,
+      "message": "it is quite similar to the other half of this, that generates the header cleanup revision.  not sure yet how to merge.",
+      "parentUuid": "4ea06b5a_bfe7133b",
+      "revId": "5ee85f10997929b03d943e7a1abc307b403f423c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ea06b5a_9fea5704",
         "filename": "includes/Import/LiquidThreadsApi/ConversionStrategy.php",
         "patchSetId": 7
@@ -64,6 +118,24 @@
       "writtenOn": "2014-11-22T12:52:49Z",
       "side": 1,
       "message": "One way of doing it. Could also check an LqtDispatch method.",
+      "revId": "5ee85f10997929b03d943e7a1abc307b403f423c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea06b5a_63b7b182",
+        "filename": "includes/Import/LiquidThreadsApi/ConversionStrategy.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-24T22:46:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ea06b5a_9fea5704",
       "revId": "5ee85f10997929b03d943e7a1abc307b403f423c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
