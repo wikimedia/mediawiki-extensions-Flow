@@ -17,7 +17,7 @@ interface OccupationController {
 	 * @param Title $title
 	 * @return bool
 	 */
-	public function isTalkpageOccupied( $title );
+	public function isTalkpageOccupied( $title, $checkContentModel = true );
 
 	/**
 	 * @param Article $title
@@ -64,15 +64,25 @@ class TalkpageManager implements OccupationController {
 	 * @param  Title  $title Title object to check for occupation status
 	 * @return boolean True if the talk page is occupied, False otherwise.
 	 */
-	public function isTalkpageOccupied( $title ) {
+	public function isTalkpageOccupied( $title, $checkContentModel = true ) {
 		if ( !$title || !is_object( $title ) ) {
 			// Invalid parameter
 			return false;
 		}
 
-		return in_array( $title->getPrefixedText(), $this->occupiedPages )
-			|| ( in_array( $title->getNamespace(), $this->occupiedNamespaces )
-				&& !$title->isSubpage() );
+		if ( in_array( $title->getPrefixedText(), $this->occupiedPages ) ) {
+			return true;
+		}
+		if ( !$title->isSubpage() && in_array( $title->getNamespace(), $this->occupiedNamespaces ) ) {
+			return true;
+		}
+
+		// If it was saved as a flow board, lets just believe the database.
+		if ( $checkContentModel && $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
