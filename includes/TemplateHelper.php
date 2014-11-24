@@ -146,7 +146,6 @@ class TemplateHelper {
 					'html' => 'Flow\TemplateHelper::htmlHelper',
 					'block' => 'Flow\TemplateHelper::block',
 					'author' => 'Flow\TemplateHelper::author',
-					'math' => 'Flow\TemplateHelper::math',
 					'post' => 'Flow\TemplateHelper::post',
 					'historyTimestamp' => 'Flow\TemplateHelper::historyTimestamp',
 					'historyDescription' => 'Flow\TemplateHelper::historyDescription',
@@ -356,40 +355,6 @@ class TemplateHelper {
 
 		// Return the resulting HTML
 		return implode( '', $html );
-	}
-
-	/**
-	 * @param array $args Expects string $lvalue, string $op, string $rvalue
-	 * @param array $named No named arguments expected
-	 * @return float|int
-	 * @throws Exception\FlowException
-	 * @throws WrongNumberArgumentsException
-	 */
-	static public function math( array $args, array $named ) {
-		if ( count( $args ) !== 3 ) {
-			throw new WrongNumberArgumentsException( $args, 'three' );
-		}
-		list( $lvalue, $op, $rvalue ) = $args;
-
-		switch( $op ) {
-		case '+':
-			return $lvalue + $rvalue;
-
-		case '-':
-			return $lvalue - $rvalue;
-
-		case '*':
-			return $lvalue * $rvalue;
-
-		case '/':
-			return $lvalue / $rvalue;
-
-		case '%':
-			return $lvalue % $rvalue;
-
-		default:
-			throw new FlowException( "Unknown math operand: $op" );
-		}
 	}
 
 	/**
