@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea06b5a_069a7bbd",
+        "filename": "maintenance/FlowUpdateRevisionContentLength.php",
+        "patchSetId": 17
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-24T18:41:43Z",
+      "side": 1,
+      "message": "Unrelated to this exact patch, but it\u0027s making this script fail.\n\nThis fails with:\n\n[e5423c86] [no req]   Flow\\Exception\\DataModelException from line 450 of /Users/mmullie/Sites/mediawiki/mediawiki/mediawiki/extensions/Flow/includes/Data/Storage/RevisionStorage.php: Update not allowed on: rev_user_id, tree_orig_user_id\nBacktrace:\n#0 /Users/mmullie/Sites/mediawiki/mediawiki/mediawiki/extensions/Flow/includes/Data/ObjectManager.php(290): Flow\\Data\\Storage\\RevisionStorage-\u003eupdate(array, array)\n#1 /Users/mmullie/Sites/mediawiki/mediawiki/mediawiki/extensions/Flow/includes/Data/ObjectManager.php(274): Flow\\Data\\ObjectManager-\u003eupdateSingle(Flow\\Model\\PostRevision, array)\n#2 /Users/mmullie/Sites/mediawiki/mediawiki/mediawiki/extensions/Flow/includes/Data/ObjectManager.php(162): Flow\\Data\\ObjectManager-\u003eupdate(array, array)\n#3 /Users/mmullie/Sites/mediawiki/mediawiki/mediawiki/extensions/Flow/includes/Data/ObjectManager.php(139): Flow\\Data\\ObjectManager-\u003emultiPut(array, array)\n#4 /Users/mmullie/Sites/mediawiki/mediawiki/mediawiki/extensions/Flow/maintenance/FlowUpdateRevisionContentLength.php(121): Flow\\Data\\ObjectManager-\u003eput(Flow\\Model\\PostRevision)\n#5 /Users/mmullie/Sites/mediawiki/mediawiki/mediawiki/maintenance/Maintenance.php(1300): FlowUpdateRevisionContentLength-\u003edoDBUpdates()\n#6 /Users/mmullie/Sites/mediawiki/mediawiki/mediawiki/maintenance/update.php(175): LoggedUpdateMaintenance-\u003eexecute()\n#7 /Users/mmullie/Sites/mediawiki/mediawiki/mediawiki/maintenance/doMaintenance.php(101): UpdateMediaWiki-\u003eexecute()\n#8 /Users/mmullie/Sites/mediawiki/mediawiki/mediawiki/maintenance/update.php(207): require_once(string)\n#9 {main}\n\nTook a quick look: rev_user_id \u0026 tree_orig_user_id in $old are string \"0\", in $new they\u0027re int(0)\n\nI\u0027ll fix that in another patch.",
+      "revId": "2df288c536402c16e353ce8785791d9f931d8cb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
