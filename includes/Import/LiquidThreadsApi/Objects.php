@@ -139,7 +139,7 @@ class ImportTopic extends ImportPost implements IImportTopic, IObjectRevision {
 	}
 
 	public function getTimestamp() {
-		return wfTimestamp( TS_MW, $this->apiResponse['modified'] );
+		return wfTimestamp( TS_MW, $this->apiResponse['created'] );
 	}
 
 	/**
