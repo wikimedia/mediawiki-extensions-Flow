@@ -299,7 +299,17 @@ class ObjectManager extends ObjectLocator {
 	 */
 	protected function load( $row ) {
 		$object = parent::load( $row );
+
+		/*
+		 * We already have $row, but in $this->loaded, we'll want a copy that
+		 * has been through ObjectMapper. This value will be used when updating
+		 * data, and differences will be calculated. We want to make sure that
+		 * data type differences cause no false positives, like $row containing
+		 * strings, & the new row has integers with the same value.
+		 */
+		$row = $this->mapper->toStorageRow( $object );
 		$this->loaded[$object] = $row;
+
 		return $object;
 	}
 
