@@ -140,7 +140,7 @@ class Workflow {
 		$obj->pageId = $title->getArticleID();
 		$obj->namespace = $title->getNamespace();
 		$obj->titleText = $title->getDBkey();
-		$obj->updateLastModified();
+		$obj->updateLastModified( $obj->id );
 
 		return $obj;
 	}
@@ -240,8 +240,8 @@ class Workflow {
 	 */
 	public function getLastModifiedObj() { return new MWTimestamp( $this->lastModified ); }
 
-	public function updateLastModified() {
-		$this->lastModified = wfTimestampNow();
+	public function updateLastModified( UUID $latestRevisionId ) {
+		$this->lastModified = $latestRevisionId->getTimestamp();
 	}
 
 	/**
