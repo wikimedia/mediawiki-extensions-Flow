@@ -181,7 +181,17 @@ class PageImportState {
 	/**
 	 * @var ReflectionProperty[]
 	 */
-	protected $postIdProperties;
+	protected $postIdProperty;
+
+	/**
+	 * @var ReflectionProperty[]
+	 */
+	protected $revIdProperty;
+
+	/**
+	 * @var ReflectionProperty[]
+	 */
+	protected $lastEditIdProperty;
 
 	/**
 	 * @var bool
@@ -221,6 +231,8 @@ class PageImportState {
 		$this->postIdProperty->setAccessible( true );
 		$this->revIdProperty = new ReflectionProperty( 'Flow\\Model\\AbstractRevision', 'revId' );
 		$this->revIdProperty->setAccessible( true );
+		$this->lastEditIdProperty = new ReflectionProperty( 'Flow\\Model\\AbstractRevision', 'lastEditId' );
+		$this->lastEditIdProperty->setAccessible( true );
 	}
 
 	/**
@@ -305,6 +317,9 @@ class PageImportState {
 		}
 
 		if ( $setRevId ) {
+			if ( $revision->getRevisionId()->equals( $revision->getLastContentEditId() ) ) {
+				$this->lastEditIdProperty->setValue( $revision, $uid );
+			}
 			$this->revIdProperty->setValue( $revision, $uid );
 		}
 	}
