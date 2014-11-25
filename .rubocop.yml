@@ -1,6 +1,33 @@
 inherit_from: .rubocop_todo.yml
 
+# See discussion of rules at
+# https://www.mediawiki.org/wiki/Manual:Coding_conventions/Ruby
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/ParameterLists:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Style/Alias:
+  Enabled: false
+
 # rubocop fix lifted from CirrusSearch/.rubocop.yml
 Style/LeadingCommentSpace:
   Exclude:
     - Gemfile  # RVM doesn't recognise spaces after the #s
+
+Style/SignalException:
+  Enabled: false
