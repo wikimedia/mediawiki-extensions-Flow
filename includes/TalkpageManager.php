@@ -3,6 +3,7 @@
 namespace Flow;
 
 use Flow\Content\BoardContent;
+use Flow\Exception\FlowException;
 use Flow\Exception\InvalidInputException;
 use Flow\Model\Workflow;
 use Article;
@@ -16,7 +17,7 @@ interface OccupationController {
 	 * @param Title $title
 	 * @return bool
 	 */
-	public function isTalkpageOccupied( $title );
+	public function isTalkpageOccupied( $title, $checkContentModel = true );
 
 	/**
 	 * @param Article $title
@@ -24,6 +25,14 @@ interface OccupationController {
 	 * @return Revision|null
 	 */
 	public function ensureFlowRevision( Article $title, Workflow $workflow );
+
+	/**
+	 * Gives a user object used to manage talk pages
+	 *
+	 * @return User User to manage talkpages
+	 * @throws MWException If a user cannot be created.
+	 */
+	public function getTalkpageManager();
 }
 
 class TalkpageManager implements OccupationController {
@@ -55,15 +64,25 @@ class TalkpageManager implements OccupationController {
 	 * @param  Title  $title Title object to check for occupation status
 	 * @return boolean True if the talk page is occupied, False otherwise.
 	 */
-	public function isTalkpageOccupied( $title ) {
+	public function isTalkpageOccupied( $title, $checkContentModel = true ) {
 		if ( !$title || !is_object( $title ) ) {
 			// Invalid parameter
 			return false;
 		}
 
-		return in_array( $title->getPrefixedText(), $this->occupiedPages )
-			|| ( in_array( $title->getNamespace(), $this->occupiedNamespaces )
-				&& !$title->isSubpage() );
+		if ( in_array( $title->getPrefixedText(), $this->occupiedPages ) ) {
+			return true;
+		}
+		if ( !$title->isSubpage() && in_array( $title->getNamespace(), $this->occupiedNamespaces ) ) {
+			return true;
+		}
+
+		// If it was saved as a flow board, lets just believe the database.
+		if ( $checkContentModel && $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -113,7 +132,7 @@ class TalkpageManager implements OccupationController {
 
 		$doing = true;
 		$status = $page->doEditContent(
-			new BoardContent( 'flow-board', $workflow ),
+			new BoardContent( CONTENT_MODEL_FLOW_BOARD, $workflow ),
 			$comment,
 			EDIT_FORCE_BOT | EDIT_SUPPRESS_RC,
 			false,
@@ -132,19 +151,43 @@ class TalkpageManager implements OccupationController {
 	 * Gives a user object used to manage talk pages
 	 *
 	 * @return User User to manage talkpages
+	 * @throws MWException If both of the names already exist, but are not properly
+	 *  configured.
 	 */
 	public function getTalkpageManager() {
-		$user = User::newFromName(
-			wfMessage( 'flow-talk-username' )->inContentLanguage()->text()
+		$userNameCandidates = array(
+			wfMessage( 'flow-talk-username' )->inContentLanguage()->text(),
+			'Flow talk page manager',
 		);
-		// Use the English fallback if the localized username is invalid or if a user
-		// with the name exists.
-		if ( $user === false || $user->getId() !== 0 ) {
-			$user = User::newFromName( 'Flow talk page manager', false );
+
+		$user = null;
+
+		foreach ( $userNameCandidates as $name ) {
+			$candidateUser = User::newFromName( $name );
+
+			if ( $candidateUser->getId() === 0 ) {
+				$user = User::createNew( $name );
+				$user->addGroup( 'bot' );
+				break;
+			} else {
+				// Exists
+
+				$groups = $candidateUser->getGroups();
+				if ( in_array( 'bot', $groups ) ) {
+					// We created this user earlier.
+					$user = $candidateUser;
+					break;
+				}
+
+				// If it exists, but is not a bot, someone created this
+				// without setting it up as expected, so go on to the next
+				// user.
+			}
 		}
 
-		// prevent newtalk notification for takeover edit
-		$user->mRights[] = 'nominornewtalk';
+		if ( $user === null ) {
+			throw new FlowException( 'All of the candidate usernames exist, but they are not configured as expected.' );
+		}
 
 		return $user;
 	}

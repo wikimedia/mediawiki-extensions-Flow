@@ -6,6 +6,7 @@ use ApiBase;
 use ApiMain;
 use Exception;
 use FauxRequest;
+use Flow\Container;
 use Flow\Import\ImportException;
 use Flow\Import\IImportSource;
 use Http;
@@ -48,7 +49,9 @@ class ImportSource implements IImportSource {
 	 * {@inheritDoc}
 	 */
 	public function getHeader() {
-		return new ImportHeader( $this->api, $this, $this->pageName );
+		$controller = Container::get( 'occupation_controller' );
+
+		return new ImportHeader( $this->api, $this, $this->pageName, $controller->getTalkpageManager() );
 	}
 
 	/**

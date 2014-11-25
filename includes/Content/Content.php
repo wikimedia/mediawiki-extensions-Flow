@@ -13,8 +13,8 @@ abstract class Content {
 	static function onGetDefaultModel( Title $title, &$model ) {
 		$occupationController = \FlowHooks::getOccupationController();
 
-		if ( $occupationController->isTalkpageOccupied( $title ) ) {
-			$model = 'flow-board';
+		if ( $occupationController->isTalkpageOccupied( $title, false ) ) {
+			$model = CONTENT_MODEL_FLOW_BOARD;
 
 			return false;
 		}
@@ -23,7 +23,7 @@ abstract class Content {
 	}
 
 	static function onShowMissingArticle( Article $article ) {
-		if ( $article->getPage()->getContentModel() !== 'flow-board' ) {
+		if ( $article->getPage()->getContentModel() !== CONTENT_MODEL_FLOW_BOARD ) {
 			return true;
 		}
 
@@ -32,7 +32,7 @@ abstract class Content {
 			throw new FlowException( 'Non-existent topic' );
 		}
 
-		$emptyContent = ContentHandler::getForModelID( 'flow-board' )->makeEmptyContent();
+		$emptyContent = ContentHandler::getForModelID( CONTENT_MODEL_FLOW_BOARD )->makeEmptyContent();
 
 		$parserOutput = $emptyContent->getParserOutput( $article->getTitle() );
 		$article->getContext()->getOutput()->addParserOutput( $parserOutput );

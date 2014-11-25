@@ -353,7 +353,8 @@
 	"flow-add-topic": "Add Topic ",
 	"flow-newest-topics": "Newest topics",
 	"flow-recent-topics": "Recently active topics",
-	"flow-sorting-tooltip": "{{GENDER:|You}} are currently reading the newest topics first. Click for more sorting options.",
+	"flow-sorting-tooltip-newest": "{{GENDER:|You}} are currently reading the newest topics first. Click for more sorting options.",
+	"flow-sorting-tooltip-recent": "{{GENDER:|You}} are currently reading the most recently active topics first. Click for more sorting options.",
 	"flow-toggle-small-topics": "Switch to small topics view",
 	"flow-toggle-topics": "Switch to topics only view",
 	"flow-toggle-topics-posts": "Switch to topics and posts view",
@@ -378,6 +379,7 @@
 	"flow-post-undo-hide": "(undo hide)",
 	"flow-post-undo-delete": "(undo delete)",
 	"flow-post-undo-suppress": "(undo suppress)",
+	"flow-importer-lqt-converted-template": "LQT page converted to Flow",
 	"apihelp-flow-description": "Allows actions to be taken on Flow pages.",
 	"apihelp-flow-param-submodule": "The Flow submodule to invoke.",
 	"apihelp-flow-param-page": "The page to take the action on.",
@@ -457,5 +459,6 @@
 	"apihelp-query+flowinfo-description": "Get basic Flow information about a page.",
 	"apihelp-query+flowinfo-example-1": "Fetch Flow information about [[Talk:Sandbox]], [[Main Page]], and [[Talk:Flow]]",
 	"flow-edited": "Edited",
-	"flow-edited-by": "Edited by $1"
+	"flow-edited-by": "Edited by $1",
+	"flow-lqt-redirect-reason": "Redirecting retired LiquidThreads post to its converted Flow post"
 }

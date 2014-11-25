@@ -5,6 +5,7 @@ namespace Flow\Block;
 use Flow\Container;
 use Flow\Data\Pager\Pager;
 use Flow\Data\Pager\PagerPage;
+use Flow\Formatter\TocTopicListFormatter;
 use Flow\Formatter\TopicListFormatter;
 use Flow\Formatter\TopicListQuery;
 use Flow\Model\PostRevision;

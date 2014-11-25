@@ -12,7 +12,13 @@
 		<a href="javascript:void(0);"
 		   class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target"
 		   data-tooltip-pointing="down"
-		   title="{{l10n "flow-sorting-tooltip"}}"
+		   title="
+			{{~#ifCond sortby "===" "updated"~}}
+				{{~l10n "flow-sorting-tooltip-recent"~}}
+			{{~else~}}
+				{{~l10n "flow-sorting-tooltip-newest"~}}
+			{{~/ifCond~}}
+		   "
 		   data-flow-interactive-handler="menuToggle"
 		   data-flow-menu-target="< .flow-board-navigation .flow-menu">
 			{{~#ifCond sortby "===" "updated"}}
