@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea06b5a_2ee18929",
+        "filename": "includes/Import/Converter.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-11-25T11:21:07Z",
+      "side": 1,
+      "message": "Revision::RAW means we ignore rev_deleted. Not sure we want to do that without any special handling.",
+      "revId": "dd46528d89e4bd4cc5c3af16dc6a0e845933459a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea06b5a_eeeac104",
+        "filename": "includes/Import/Converter.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-11-25T11:21:07Z",
+      "side": 1,
+      "message": "Might want to throw an exception here.",
+      "revId": "dd46528d89e4bd4cc5c3af16dc6a0e845933459a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea06b5a_6ef791f3",
+        "filename": "includes/Import/LiquidThreadsApi/ConversionStrategy.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-11-25T11:21:07Z",
+      "side": 1,
+      "message": "successful!",
+      "revId": "dd46528d89e4bd4cc5c3af16dc6a0e845933459a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
