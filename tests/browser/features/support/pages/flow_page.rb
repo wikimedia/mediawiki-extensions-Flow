@@ -2,6 +2,9 @@ class WikiPage
   include PageObject
   a(:logout, css: "#pt-logout a")
 end
+
+# TODO restructure this class into topic buttons, moderation dialog, etc.
+# rubocop:disable ClassLength
 class FlowPage < WikiPage
   include URL
   # MEDIAWIKI_URL must have this in $wgFlowOccupyPages array or $wgFlowOccupyNamespaces.
