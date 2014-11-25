@@ -123,7 +123,7 @@ class ConversionStrategy implements IConversionStrategy {
 			'',
 			$content->getNativeData()
 		);
-		$template = wfMessage( 'flow-importer-lqt-converted-template' )->inContentLanguage()->plain();
+		$template = wfMessage( 'flow-importer-lqt-converted-archive-template' )->inContentLanguage()->plain();
 		$newWikitext .= "\n\n{{{$template}|$arguments}}";
 
 		return new WikitextContent( $newWikitext );

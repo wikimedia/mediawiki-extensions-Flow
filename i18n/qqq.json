@@ -384,6 +384,7 @@
 	"flow-post-undo-delete": "Automatic moderation summary when undoing a delete that was just performed.",
 	"flow-post-undo-suppress": "Automatic moderation summary when undoing a suppress that was just performed.",
 	"flow-importer-lqt-converted-template": "Name of a wikitext template that is added to the header of Flow boards that were converted from LiquidThreads",
+	"flow-importer-lqt-converted-archive-template": "Name of a wikitext template that is added to the archived copy of a LiquidThreads page converted to Flow.",
 	"apihelp-flow-description": "{{doc-apihelp-description|flow}}",
 	"apihelp-flow-param-submodule": "{{doc-apihelp-param|flow|submodule}}",
 	"apihelp-flow-param-page": "{{doc-apihelp-param|flow|page}}",
