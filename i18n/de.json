@@ -320,7 +320,7 @@
 	"flow-add-topic": "Thema hinzufügen",
 	"flow-newest-topics": "Neueste Themen",
 	"flow-recent-topics": "Zuletzt aktive Themen",
-	"flow-sorting-tooltip": "{{GENDER:|Du}} liest derzeit zuerst die neuesten Themen. Klicke für weitere Sortierungsoptionen.",
+	"flow-sorting-tooltip-newest": "{{GENDER:|Du}} liest derzeit zuerst die neuesten Themen. Klicke für weitere Sortierungsoptionen.",
 	"flow-toggle-small-topics": "Zur Kleine-Themen-Ansicht wechseln",
 	"flow-toggle-topics": "Zur Nur-Themen-Ansicht wechseln",
 	"flow-toggle-topics-posts": "Zur Themen-und-Beiträge-Ansicht wechseln",
@@ -346,7 +346,12 @@
 	"flow-post-undo-delete": "(Löschen rückgängig gemacht)",
 	"flow-post-undo-suppress": "(Unterdrücken rückgängig gemacht)",
 	"flow-importer-lqt-converted-template": "LiquidThreads-Seite nach Flow konvertiert",
+	"apihelp-flow+edit-post-description": "Bearbeitet den Inhalt eines Beitrags.",
+	"apihelp-flow+edit-post-param-postId": "Beitragskennung.",
 	"apihelp-flow+edit-title-param-content": "Inhalt für den Titel.",
+	"apihelp-flow+edit-topic-summary-description": "Bearbeitet den Inhalt einer Themenzusammenfassung.",
+	"apihelp-flow+edit-topic-summary-param-summary": "Inhalt für die Zusammenfassung.",
 	"flow-edited": "Bearbeitet",
-	"flow-edited-by": "Bearbeitet von $1"
+	"flow-edited-by": "Bearbeitet von $1",
+	"flow-lqt-redirect-reason": "Eingeschlafenen LiquidThreads-Beitrag zum konvertierten Flow-Beitrag umgeleitet"
 }
