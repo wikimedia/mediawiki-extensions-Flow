@@ -180,6 +180,7 @@ class ObjectManager extends ObjectLocator {
 			throw new FlowException( 'Object was not loaded through this object manager, use ObjectManager::merge if necessary' );
 		}
 		$old = $this->loaded[$object];
+		$old = $this->mapper->normalizeRow( $old );
 		$this->storage->remove( $old );
 		foreach ( $this->lifecycleHandlers as $handler ) {
 			$handler->onAfterRemove( $object, $old, $metadata );
@@ -283,6 +284,7 @@ class ObjectManager extends ObjectLocator {
 	 */
 	protected function updateSingle( $object, array $metadata ) {
 		$old = $this->loaded[$object];
+		$old = $this->mapper->normalizeRow( $old );
 		$new = $this->mapper->toStorageRow( $object );
 		if ( self::arrayEquals( $old, $new ) ) {
 			return;
