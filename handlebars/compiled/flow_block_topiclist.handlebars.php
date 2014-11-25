@@ -44,7 +44,7 @@
 		<a href="javascript:void(0);"
 		   class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target"
 		   data-tooltip-pointing="down"
-		   title="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-sorting-tooltip'),Array()), 'encq').'"
+		   title="'.LCRun3::hbch($cx, 'ifCond', Array(Array(((isset($in['sortby']) && is_array($in)) ? $in['sortby'] : null),'===','updated'),Array()), $in, function($cx, $in) {return ''.LCRun3::ch($cx, 'l10n', Array(Array('flow-sorting-tooltip-recent'),Array()), 'encq').'';}, function($cx, $in) {return ''.LCRun3::ch($cx, 'l10n', Array(Array('flow-sorting-tooltip-newest'),Array()), 'encq').'';}).'"
 		   data-flow-interactive-handler="menuToggle"
 		   data-flow-menu-target="< .flow-board-navigation .flow-menu">'.LCRun3::hbch($cx, 'ifCond', Array(Array(((isset($in['sortby']) && is_array($in)) ? $in['sortby'] : null),'===','updated'),Array()), $in, function($cx, $in) {return '
 				'.LCRun3::ch($cx, 'l10n', Array(Array('flow-recent-topics'),Array()), 'encq').'
