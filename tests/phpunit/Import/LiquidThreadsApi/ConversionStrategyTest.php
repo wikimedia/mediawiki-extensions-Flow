@@ -129,6 +129,12 @@ EOD
 		$this->assertEquals( $expect, $result->getNativeData(), $message );
 	}
 
+	public function testGetPostprocessor() {
+		$result = $this->createStrategy()->getPostprocessor();
+
+		$this->assertEquals( get_class( $result ), 'Flow\Import\Postprocessor\LqtRedirector');
+	}
+
 	protected function createStrategy(
 		DatabaseBase $dbr = null,
 		ImportSourceStore $sourceStore = null,
@@ -138,6 +144,12 @@ EOD
 			$dbr ?: wfGetDB( DB_SLAVE ),
 			$sourceStore ?: new NullImportSourceStore,
 			$api ?: $this->getMockBuilder( 'Flow\Import\LiquidThreadsApi\ApiBackend' )
+				->disableOriginalConstructor()
+				->getMock(),
+			$this->getMockBuilder( 'Flow\UrlGenerator' )
+				->disableOriginalConstructor()
+				->getMock(),
+			$this->getMockBuilder( 'User' )
 				->disableOriginalConstructor()
 				->getMock()
 		);

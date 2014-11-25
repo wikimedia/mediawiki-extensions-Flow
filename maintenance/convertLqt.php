@@ -1,5 +1,6 @@
 <?php
 
+use Flow\Container;
 use Flow\Import\FileImportSourceStore;
 use Flow\Import\LiquidThreadsApi\ConversionStrategy;
 use Flow\Import\LiquidThreadsApi\LocalApiBackend;
@@ -24,29 +25,27 @@ class ConvertLqt extends Maintenance {
 	}
 
 	public function execute() {
-		$maintUser = FlowHooks::getOccupationController()->getTalkpageManager();
 		$logger = $this->getOption( 'verbose' )
 			? new MaintenanceDebugLogger( $this )
 			: new NullLogger;
 		$importer = Flow\Container::get( 'importer' );
 		$importer->setLogger( $logger );
-		$importer->addPostprocessor( new LqtRedirector(
-			Flow\Container::get( 'url_generator' ),
-			$maintUser
-		) );
+		$talkpageManagerUser = FlowHooks::getOccupationController()->getTalkpageManager();
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$strategy = new ConversionStrategy(
 			$dbr,
 			new FileImportSourceStore( $this->getOption( 'logfile' ) ),
-			new LocalApiBackend()
+			new LocalApiBackend(),
+			Container::get( 'url_generator' ),
+			$talkpageManagerUser
 		);
 
 		$converter = new \Flow\Import\Converter(
 			$dbr,
 			$importer,
 			$logger,
-			$maintUser,
+			$talkpageManagerUser,
 			$strategy
 		);
 
