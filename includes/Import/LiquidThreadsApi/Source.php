@@ -294,11 +294,24 @@ class RemoteApiBackend extends ApiBackend {
 }
 
 class LocalApiBackend extends ApiBackend {
+	/**
+	 * @var User|null
+	 */
+	protected $user;
+
+	public function __construct( User $user = null ) {
+		$this->user = $user;
+	}
+
 	public function apiCall( array $params, $retry = 1 ) {
 		try {
-			$request = new FauxRequest( $params );
+			$context = new RequestContext;
+			$context->setRequest( new FauxRequest( $params ) );
+			if ( $this->user ) {
+				$context->setUser( $this->user );
+			}
 
-			$api = new ApiMain( $request );
+			$api = new ApiMain( $context );
 			$api->execute();
 			return $api->getResult()->getData();
 		} catch ( UsageException $exception ) {
