@@ -6,6 +6,8 @@ use Flow\Data\BufferedCache;
 use Flow\Data\ManagerGroup;
 use Flow\DbFactory;
 use Flow\Exception\FlowException;
+use Flow\Import\Postprocessor\Postprocessor;
+use Flow\Import\Postprocessor\ProcessorGroup;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
@@ -41,6 +43,8 @@ class Importer {
 	protected $dbFactory;
 	/** @var bool */
 	protected $allowUnknownUsernames;
+	/** @var ProcessorGroup **/
+	protected $postprocessors;
 
 	public function __construct(
 		ManagerGroup $storage,
@@ -52,6 +56,11 @@ class Importer {
 		$this->workflowLoaderFactory = $workflowLoaderFactory;
 		$this->cache = $cache;
 		$this->dbFactory = $dbFactory;
+		$this->postprocessors = new ProcessorGroup;
+	}
+
+	public function addPostprocessor( Postprocessor $proc ) {
+		$this->postprocessors->add( $proc );
 	}
 
 	/**
@@ -77,11 +86,11 @@ class Importer {
 	 * @param IImportSource     $source
 	 * @param Title             $targetPage
 	 * @param ImportSourceStore $sourceStore
-	 * @return TalkpageImportOperation
+	 * @return bool True When the import completes with no failures
 	 */
 	public function import( IImportSource $source, Title $targetPage, ImportSourceStore $sourceStore ) {
 		$operation = new TalkpageImportOperation( $source );
-		$operation->import( new PageImportState(
+		return $operation->import( new PageImportState(
 			$this->workflowLoaderFactory
 				->createWorkflowLoader( $targetPage )
 				->getWorkflow(),
@@ -90,6 +99,7 @@ class Importer {
 			$this->logger ?: new NullLogger,
 			$this->cache,
 			$this->dbFactory,
+			$this->postprocessors,
 			$this->allowUnknownUsernames
 		) );
 	}
@@ -125,7 +135,7 @@ class HistoricalUIDGenerator extends UIDGenerator {
 		$gen = self::singleton();
 		self::rotateNodeId( $gen );
 		$binaryUUID = $gen->getTimestampedID88(
-			array( $time, ++$counter )
+			array( $time, ++$counter % 1024 )
 		);
 
 		return wfBaseConvert( $binaryUUID, 2, $base );
@@ -171,12 +181,27 @@ class PageImportState {
 	/**
 	 * @var ReflectionProperty[]
 	 */
-	protected $postIdProperties;
+	protected $postIdProperty;
+
+	/**
+	 * @var ReflectionProperty[]
+	 */
+	protected $revIdProperty;
+
+	/**
+	 * @var ReflectionProperty[]
+	 */
+	protected $lastEditIdProperty;
 
 	/**
 	 * @var bool
 	 */
 	protected $allowUnknownUsernames;
+
+	/**
+	 * @var Postprocessor
+	 */
+	public $postprocessor;
 
 	public function __construct(
 		Workflow $boardWorkflow,
@@ -185,6 +210,7 @@ class PageImportState {
 		LoggerInterface $logger,
 		BufferedCache $cache,
 		DbFactory $dbFactory,
+		Postprocessor $postprocessor,
 		$allowUnknownUsernames = false
 	) {
 		$this->storage = $storage;;
@@ -193,6 +219,7 @@ class PageImportState {
 		$this->logger = $logger;
 		$this->cache = $cache;
 		$this->dbw = $dbFactory->getDB( DB_MASTER );
+		$this->postprocessor = $postprocessor;
 		$this->allowUnknownUsernames = $allowUnknownUsernames;
 
 		// Get our workflow UUID property
@@ -204,6 +231,8 @@ class PageImportState {
 		$this->postIdProperty->setAccessible( true );
 		$this->revIdProperty = new ReflectionProperty( 'Flow\\Model\\AbstractRevision', 'revId' );
 		$this->revIdProperty->setAccessible( true );
+		$this->lastEditIdProperty = new ReflectionProperty( 'Flow\\Model\\AbstractRevision', 'lastEditId' );
+		$this->lastEditIdProperty->setAccessible( true );
 	}
 
 	/**
@@ -288,6 +317,9 @@ class PageImportState {
 		}
 
 		if ( $setRevId ) {
+			if ( $revision->getRevisionId()->equals( $revision->getLastContentEditId() ) ) {
+				$this->lastEditIdProperty->setValue( $revision, $uid );
+			}
 			$this->revIdProperty->setValue( $revision, $uid );
 		}
 	}
@@ -341,12 +373,14 @@ class PageImportState {
 		$this->dbw->commit();
 		$this->cache->commit();
 		$this->sourceStore->save();
+		$this->postprocessor->afterTalkpageImported();
 	}
 
 	public function rollback() {
 		$this->dbw->rollback();
 		$this->cache->rollback();
 		$this->sourceStore->rollback();
+		$this->postprocessor->talkpageImportAborted();
 	}
 }
 
@@ -438,6 +472,7 @@ class TalkpageImportOperation {
 
 	/**
 	 * @param PageImportState $state
+	 * @return bool True if import completed successfully
 	 */
 	public function import( PageImportState $state ) {
 		$state->logger->info( 'Importing to ' . $state->boardWorkflow->getArticleTitle()->getPrefixedText() );
@@ -445,21 +480,23 @@ class TalkpageImportOperation {
 			$state->put( $state->boardWorkflow, array() );
 		}
 
+		$imported = $failed = 0;
 		$header = $this->importSource->getHeader();
 		if ( $header ) {
 			try {
 				$state->begin();
 				$this->importHeader( $state, $header );
 				$state->commit();
+				$imported++;
 			} catch ( FlowException $e ) {
 				$state->rollback();
 				\MWExceptionHandler::logException( $e );
 				$state->logger->error( 'Failed importing header' );
 				$state->logger->error( (string)$e );
+				$failed++;
 			}
 		}
 
-		$imported = $failed = 0;
 		foreach( $this->importSource->getTopics() as $topic ) {
 			try {
 				// @todo this may be too large of a chunk for one commit, unsure
@@ -475,7 +512,9 @@ class TalkpageImportOperation {
 				$failed++;
 			}
 		}
-		$state->logger->info( "Imported $imported topics, failed $failed" );
+		$state->logger->info( "Imported $imported items, failed $failed" );
+
+		return $failed === 0;
 	}
 
 	/**
@@ -539,6 +578,8 @@ class TalkpageImportOperation {
 
 		$topicState->commitLastModified();
 		$topicState->parent->saveAssociations();
+		$topicId = $topicState->topicWorkflow->getId();
+		$pageState->postprocessor->afterTopicImported( $importTopic, $topicId );
 		// $database->commit();
 	}
 
@@ -734,6 +775,9 @@ class TalkpageImportOperation {
 		}
 
 		$state->recordModificationTime( $topRevision->getRevisionId() );
+
+		$topicId = $state->topicWorkflow->getId();
+		$state->parent->postprocessor->afterPostImported( $post, $topicId, $topRevision->getPostId() );
 
 		foreach ( $post->getReplies() as $subReply ) {
 			$this->importPost( $state, $subReply, $topRevision, $logPrefix . ' ' );

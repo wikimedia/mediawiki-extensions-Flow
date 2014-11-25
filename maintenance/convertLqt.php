@@ -1,63 +1,60 @@
 <?php
 
+use Flow\Container;
 use Flow\Import\FileImportSourceStore;
-use Flow\Import\Importer;
-use Flow\Import\NullImportSourceStore;
+use Flow\Import\LiquidThreadsApi\ConversionStrategy;
 use Flow\Import\LiquidThreadsApi\LocalApiBackend;
-use Flow\Import\LiquidThreadsApi\RemoteApiBackend;
-use Flow\Import\LiquidThreadsApi\ImportSource as LiquidThreadsApiImportSource;
+use Flow\Utils\PagesWithPropertyIterator;
+use Psr\Log\NullLogger;
 
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
 	: dirname( __FILE__ ) . '/../../../maintenance/Maintenance.php' );
 
+/**
+ * Converts all LiquidThreads pages on a wiki to Flow. When using the logfile
+ * option this process is idempotent.It may be run many times and will only import
+ * one copy of each item.
+ */
 class ConvertLqt extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Converts LiquidThreads data to Flow data";
-		$this->addArg( 'dstpage', 'Page name of the local page to import to', true );
-		$this->addOption( 'srcpage', 'Page name of the remote page to import from. If not specified defaults to dstpage', false, true );
-		$this->addOption( 'remoteapi', 'Remote API URL to read from', false, true );
-		$this->addOption( 'logfile', 'File to read and store associations between imported items and their sources', false, true );
+		$this->addOption( 'logfile', 'File to read and store associations between imported items and their sources. This is required for the import to be idempotent.', true, true );
 		$this->addOption( 'verbose', 'Report on import progress to stdout' );
-		$this->addOption( 'allowunknownusernames', 'Allow import of usernames that do not exist on this wiki.  DO NOT USE IN PRODUCTION. This simplifies testing imports of production data to a test wiki', false, true );
 	}
 
 	public function execute() {
-		$dstPageName = $srcPageName = $this->getArg( 0 );
-
-		if ( $this->hasOption( 'srcpage' ) ) {
-			$srcPageName = $this->getOption( 'srcpage' );
-		}
-
-		if ( $this->hasOption( 'remoteapi' ) ) {
-			$api = new RemoteApiBackend( $this->getOption( 'remoteapi' ) );
-		} else {
-			$api = new LocalApiBackend;
-		}
-
+		$logger = $this->getOption( 'verbose' )
+			? new MaintenanceDebugLogger( $this )
+			: new NullLogger;
 		$importer = Flow\Container::get( 'importer' );
-		if ( $this->getOption( 'verbose' ) ) {
-			$importer->setLogger( new MaintenanceDebugLogger( $this ) );
-		}
-		if ( $this->getOption( 'allowunknownusernames' ) ) {
-			$importer->setAllowUnknownUsernames( true );
-		}
-		$source = new LiquidThreadsApiImportSource( $api, $srcPageName );
-		$title = Title::newFromText( $dstPageName );
+		$importer->setLogger( $logger );
+		$talkpageManagerUser = FlowHooks::getOccupationController()->getTalkpageManager();
 
-		if ( $this->hasOption( 'logfile' ) ) {
-			$filename = $this->getOption( 'logfile' );
-			$sourceStore = new FileImportSourceStore( $filename );
-		} else {
-			$sourceStore = new NullImportSourceStore;
-		}
+		$dbr = wfGetDB( DB_SLAVE );
+		$strategy = new ConversionStrategy(
+			$dbr,
+			new FileImportSourceStore( $this->getOption( 'logfile' ) ),
+			new LocalApiBackend(),
+			Container::get( 'url_generator' ),
+			$talkpageManagerUser
+		);
 
-		$importer->import( $source, $title, $sourceStore );
+		$converter = new \Flow\Import\Converter(
+			$dbr,
+			$importer,
+			$logger,
+			$talkpageManagerUser,
+			$strategy
+		);
 
-		$sourceStore->save();
+		$logger->info( "Starting full wiki LQT conversion" );
+		$titles = new PagesWithPropertyIterator( $dbr, 'use-liquid-threads' );
+		$converter->convert( $titles );
 	}
 }
 
 $maintClass = "ConvertLqt";
 require_once ( RUN_MAINTENANCE_IF_MAIN );
+

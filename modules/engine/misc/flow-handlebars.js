@@ -391,28 +391,6 @@
 	};
 
 	/**
-	 * Simple math.
-	 * @example {{math @index "+" 1}}
-	 * @param {Number} lvalue
-	 * @param {String} operator
-	 * @param {Number} rvalue
-	 * @param {Object} options
-	 * @return {Number}
-	 */
-	FlowHandlebars.prototype.math = function ( lvalue, operator, rvalue, options ) {
-		lvalue = parseFloat(lvalue);
-		rvalue = parseFloat(rvalue);
-
-		return {
-			"+": lvalue + rvalue,
-			"-": lvalue - rvalue,
-			"*": lvalue * rvalue,
-			"/": lvalue / rvalue,
-			"%": lvalue % rvalue
-		}[operator];
-	};
-
-	/**
 	 * The progressiveEnhancement helper essentially does one of replace things:
 	 * 1. type="replace": (target="selector") Replaces target entirely with rendered template.
 	 * 2. type="content": (target="selector") Replaces target's content with rendered template.
@@ -613,7 +591,6 @@
 	Handlebars.registerHelper( 'block', FlowHandlebars.prototype.workflowBlock );
 	Handlebars.registerHelper( 'post', FlowHandlebars.prototype.postBlock );
 	Handlebars.registerHelper( 'eachPost', FlowHandlebars.prototype.eachPost );
-	Handlebars.registerHelper( 'math', FlowHandlebars.prototype.math );
 	Handlebars.registerHelper( 'progressiveEnhancement', FlowHandlebars.prototype.progressiveEnhancement );
 	Handlebars.registerHelper( 'ifAnonymous', FlowHandlebars.prototype.ifAnonymous );
 	Handlebars.registerHelper( 'linkWithReturnTo', FlowHandlebars.prototype.linkWithReturnTo );

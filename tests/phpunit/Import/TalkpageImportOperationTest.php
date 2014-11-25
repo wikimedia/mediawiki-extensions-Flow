@@ -5,6 +5,7 @@ namespace Flow\Tests\Import;
 use Flow\Container;
 use Flow\Import\NullImportSourceStore;
 use Flow\Import\PageImportState;
+use Flow\Import\Postprocessor\ProcessorGroup;
 use Flow\Import\TalkpageImportOperation;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
@@ -103,7 +104,8 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 			$this->getMockBuilder( 'Flow\Data\BufferedCache' )
 				->disableOriginalConstructor()
 				->getMock(),
-			Container::get( 'db.factory' )
+			Container::get( 'db.factory' ),
+			new ProcessorGroup
 		) );
 
 		// Count what actually came through
@@ -139,14 +141,16 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 		}
 
 		// Verify we wrote the expected objects to storage
+
 		$this->assertEquals( 1, $storedHeader );
+
 		$this->assertEquals( 1, $storedDiscussion );
 		$this->assertEquals( 1, $storedTopics );
 		$this->assertEquals( 1, $storedTopicListEntry );
 		$this->assertEquals( 1, $storedSummary );
 		$this->assertEquals( 3, $storedPosts );
 
-		// Eight objects should have been inserted in total
+		// This total expected number of insertions should match the sum of the left assertEquals parameters above.
 		$this->assertCount( 8, array_unique( array_map( 'spl_object_hash', $stored ) ) );
 
 		// Other special cases we need to check

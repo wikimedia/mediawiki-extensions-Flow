@@ -354,11 +354,11 @@ class UUID {
 	}
 
 	/**
-	 * @param UUID $other
+	 * @param UUID|null $other
 	 * @return boolean
 	 */
-	public function equals( UUID $other ) {
-		return $other->getAlphadecimal() === $this->getAlphadecimal();
+	public function equals( UUID $other = null ) {
+		return $other && $other->getAlphadecimal() === $this->getAlphadecimal();
 	}
 
 	/**

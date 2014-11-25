@@ -345,6 +345,7 @@
 	"flow-post-undo-hide": "(Verstecken rückgängig gemacht)",
 	"flow-post-undo-delete": "(Löschen rückgängig gemacht)",
 	"flow-post-undo-suppress": "(Unterdrücken rückgängig gemacht)",
+	"flow-importer-lqt-converted-template": "LiquidThreads-Seite nach Flow konvertiert",
 	"apihelp-flow+edit-title-param-content": "Inhalt für den Titel.",
 	"flow-edited": "Bearbeitet",
 	"flow-edited-by": "Bearbeitet von $1"

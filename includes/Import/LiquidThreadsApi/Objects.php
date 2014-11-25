@@ -3,6 +3,8 @@
 namespace Flow\Import\LiquidThreadsApi;
 
 use ArrayIterator;
+use DateTime;
+use DateTimeZone;
 use Flow\Import\IImportHeader;
 use Flow\Import\IImportObject;
 use Flow\Import\IImportPost;
@@ -12,6 +14,8 @@ use Flow\Import\ImportException;
 use Flow\Import\IObjectRevision;
 use Flow\Import\IRevisionableObject;
 use Iterator;
+use Title;
+use User;
 
 abstract class PageRevisionedObject implements IRevisionableObject {
 	/** @var int **/
@@ -83,6 +87,12 @@ class ImportPost extends PageRevisionedObject implements IImportPost {
 		return $pageData['revisions'][0]['*'];
 	}
 
+	public function getTitle() {
+		$pageData = $this->importSource->getPageData( $this->apiResponse['rootid'] );
+
+		return Title::newFromText( $pageData['title'] );
+	}
+
 	/**
 	 * @return Iterator<IImportPost>
 	 */
@@ -135,7 +145,7 @@ class ImportTopic extends ImportPost implements IImportTopic, IObjectRevision {
 	}
 
 	public function getTimestamp() {
-		return wfTimestamp( TS_MW, $this->apiResponse['modified'] );
+		return wfTimestamp( TS_MW, $this->apiResponse['created'] );
 	}
 
 	/**
@@ -227,6 +237,55 @@ class ImportRevision implements IObjectRevision {
 	}
 }
 
+// Represents a revision the script makes on its own behalf, using a script user
+class ScriptedImportRevision implements IObjectRevision {
+	/** @var IImportObject **/
+	protected $parentObject;
+
+	/** @var User */
+	protected $destinationScriptUser;
+
+	/** @var string */
+	protected $revisionText;
+
+	/** @var string */
+	protected $timestamp;
+
+	/**
+	 * Creates a ScriptedImportRevision with the current timestamp, given a script user
+	 * and arbitrary text.
+	 *
+	 * @param IImportObject $parentObject Object this is a revision of
+	 * @param User $destinationScriptUser User that performed this scripted edit
+	 * @param string $revisionText Text of revision
+	 */
+	function __construct( IImportObject $parentObject, User $destinationScriptUser, $revisionText ) {
+		$this->parent = $parentObject;
+		$this->destinationScriptUser = $destinationScriptUser;
+		$this->revisionText = $revisionText;
+		$this->timestamp = wfTimestampNow();
+	}
+
+	public function getText() {
+		return $this->revisionText;
+	}
+
+	public function getTimestamp() {
+		return $this->timestamp;
+	}
+
+	public function getAuthor() {
+		return $this->destinationScriptUser->getName();
+	}
+
+	// XXX: This is called but never used, but if it were, including getText and getAuthor in
+	// the key might not be desirable, because we don't necessarily want to re-import
+	// the revision when these change.
+	public function getObjectKey() {
+		return $this->parent->getObjectKey() . ':rev:scripted:' . md5( $this->getText() . $this->getAuthor() );
+	}
+}
+
 class ImportHeader extends PageRevisionedObject implements IImportHeader {
 	/** @var ApiBackend **/
 	protected $api;
@@ -236,12 +295,20 @@ class ImportHeader extends PageRevisionedObject implements IImportHeader {
 	protected $pageData;
 	/** @var ImportSource **/
 	protected $source;
+	/**
+	 *  User used for script-originated actions, such as cleanup edits.
+	 *  Does not apply to actual posts, which retain their original users.
+	 *
+	 *  @var User
+	 */
+	protected $destinationScriptUser;
 
-	public function __construct( ApiBackend $api, ImportSource $source, $title ) {
+	public function __construct( ApiBackend $api, ImportSource $source, $title, User $destinationScriptUser ) {
 		$this->api = $api;
 		$this->title = $title;
 		$this->source = $source;
 		$this->pageData = null;
+		$this->destinationScriptUser = $destinationScriptUser;
 	}
 
 	public function getRevisions() {
@@ -252,7 +319,50 @@ class ImportHeader extends PageRevisionedObject implements IImportHeader {
 			$this->pageData = reset( $response );
 		}
 
-		return new RevisionIterator( $this->pageData, $this );
+		$revisions = array();
+
+		if ( isset( $this->pageData['revisions'] ) && count( $this->pageData['revisions'] ) > 0 ) {
+			$lastLqtRevision = new ImportRevision( end( $this->pageData['revisions'] ), $this );
+
+			$titleObject = Title::newFromText( $this->title );
+			$cleanupRevision = $this->createHeaderCleanupRevision( $lastLqtRevision, $titleObject );
+
+			$revisions = array( $lastLqtRevision, $cleanupRevision );
+		}
+
+		return new ArrayIterator( $revisions );
+	}
+
+	/**
+	 * @param IObjectRevision $lastRevision last imported header revision
+	 * @param Title $archiveTitle archive page title associated with header
+	 * @return IObjectRevision generated revision for cleanup edit
+	 */
+	protected function createHeaderCleanupRevision( IObjectRevision $lastRevision, Title $archiveTitle ) {
+		$wikitextForLastRevision = $lastRevision->getText();
+		// This is will remove all instances, without attempting to check if it's in
+		// nowiki, etc.  It also ignores case and spaces in places where it doesn't
+		// matter.
+		$newWikitext = preg_replace(
+			'/{{\s*#useliquidthreads:\s*1\s*}}/i',
+			'',
+			$wikitextForLastRevision
+		);
+		$templateName = wfMessage( 'flow-importer-lqt-converted-template' )->inContentLanguage()->plain();
+		$now = new DateTime( 'now', new DateTimeZone( 'UTC' ) );
+		$arguments = implode( '|', array(
+			'archive=' . $archiveTitle->getPrefixedText(),
+			'date=' . $now->format( 'Y-m-d' ),
+		) );
+
+		$newWikitext .= "\n\n{{{$templateName}|$arguments}}";
+		$cleanupRevision = new ScriptedImportRevision(
+			$this,
+			$this->destinationScriptUser,
+			$newWikitext,
+			$lastRevision->getTimestamp()
+		);
+		return $cleanupRevision;
 	}
 
 	public function getObjectKey() {
