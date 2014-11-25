@@ -72,4 +72,10 @@ interface IConversionStrategy {
 	 * @return WikitextContent|null
 	 */
 	function createArchiveCleanupRevisionContent( WikitextContent $content, Title $title );
+
+	/**
+	 * Gets any postprocessors used for this type of conversion
+	 * @return Postprocessor|null
+	 */
+	function getPostprocessor();
 }
