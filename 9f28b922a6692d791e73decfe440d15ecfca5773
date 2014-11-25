@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea06b5a_d209a935",
+        "filename": "modules/engine/components/board/base/flow-board-load-events.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-25T01:31:58Z",
+      "side": 1,
+      "message": "The order of iteration for JavaScript objects is undefined.  See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in (\"A for...in loop iterates over the properties of an object in an arbitrary order\").\n\nThis seems to rely on them being in order, then stopping when it gets to the first one that\u0027s too far.",
+      "revId": "9f28b922a6692d791e73decfe440d15ecfca5773",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea06b5a_0df5b6c7",
+        "filename": "modules/styles/board/navigation.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-11-25T01:31:58Z",
+      "side": 1,
+      "message": "We still support IE 8, so we can not use :not in LESS.  See T75819 (there are already some on master, but we shouldn\u0027t add more).",
+      "revId": "9f28b922a6692d791e73decfe440d15ecfca5773",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
