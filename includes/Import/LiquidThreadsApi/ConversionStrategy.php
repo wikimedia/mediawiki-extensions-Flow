@@ -79,8 +79,6 @@ class ConversionStrategy implements IConversionStrategy {
 	}
 
 	public function isConversionFinished( Title $title, Title $movedFrom = null ) {
-		// force lqt to re-calculate this answer
-		LqtDispatch::$userLqtOverride = array();
 		// After successful conversion we strip the LQT magic word
 		if ( LqtDispatch::isLqtPage( $title ) ) {
 			return false;
