@@ -77,14 +77,14 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 			array(
 				'Blank input page',
 				// expect
-				"\n\n{{LQT page converted to Flow|from=Talk:Blue birds|date=$date}}",
+				"\n\n{{Archive for converted LQT page|from=Talk:Blue birds|date=$date}}",
 				// input content
 				'',
 			),
 			array(
 				'Page containing lqt magic word',
 				// expect
-				"\n\n{{LQT page converted to Flow|from=Talk:Blue birds|date=$date}}",
+				"\n\n{{Archive for converted LQT page|from=Talk:Blue birds|date=$date}}",
 				// input content
 				'{{#useliquidthreads:1}}',
 			),
@@ -98,7 +98,7 @@ on this continent, a new nation, conceived in Liberty, and
 dedicated to the proposition that all men are created equal.
 
 
-{{LQT page converted to Flow|from=Talk:Blue birds|date=$date}}
+{{Archive for converted LQT page|from=Talk:Blue birds|date=$date}}
 EOD
 				,
 				// input content
