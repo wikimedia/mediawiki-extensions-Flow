@@ -394,7 +394,7 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	public function commit() {
-		$this->workflow->updateLastModified();
+		$this->workflow->updateLastModified( $this->newRevision );
 
 		switch( $this->action ) {
 		case 'reply':
