@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea06b5a_17593c5d",
+        "filename": "includes/Import/LiquidThreadsApi/ConversionStrategy.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-25T19:15:29Z",
+      "side": 1,
+      "message": "need class properties.  In HHVM and zend \u003e 5.4 defined class properties are vectorized(vanilla C arrays accessed via index) whereas properties added at runtime force a hash map to be created and accessed.",
+      "revId": "3928649594b8f26d2c855f1706bc778d7b13a04a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea06b5a_b735e8f5",
+        "filename": "includes/Import/LiquidThreadsApi/ConversionStrategy.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-25T19:15:29Z",
+      "side": 1,
+      "message": "need class properties.",
+      "revId": "3928649594b8f26d2c855f1706bc778d7b13a04a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea06b5a_575fc444",
+        "filename": "maintenance/convertLqt.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-11-25T19:15:29Z",
+      "side": 1,
+      "message": "should fetch user single time to pass into Converter and ConversionStrategy",
+      "revId": "3928649594b8f26d2c855f1706bc778d7b13a04a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
