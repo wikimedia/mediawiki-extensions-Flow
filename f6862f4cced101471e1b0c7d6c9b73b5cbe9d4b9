@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea06b5a_c3c31660",
+        "filename": ".rubocop.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-11-25T23:52:53Z",
+      "side": 1,
+      "message": "Maybe add \u0027# See discussion at https://www.mediawiki.org/wiki/Manual:Coding_conventions/Ruby\u0027 ?\n\nPut the Metrics/Foo below in alphabetical order unless there\u0027s a reason for this order.",
+      "revId": "f6862f4cced101471e1b0c7d6c9b73b5cbe9d4b9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea06b5a_03f25ecd",
+        "filename": ".rubocop.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-11-25T23:52:53Z",
+      "side": 1,
+      "message": "duplicate of above",
+      "revId": "f6862f4cced101471e1b0c7d6c9b73b5cbe9d4b9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
