@@ -19,7 +19,7 @@ interface ObjectMapper {
 	 * Convert a db row to its domain model. Object passing is intended for
 	 * updating the object to match a changed storage representation.
 	 *
-	 * @param array $row assoc array representing the domain model
+	 * @param array $row Assoc array representing the domain model
 	 * @param object|null $object The domain model to populate, creates when null
 	 * @return object The domain model populated with $row
 	 * @throws \Exception When object is the wrong class for the mapper
@@ -33,4 +33,15 @@ interface ObjectMapper {
 	 * @return object|null
 	 */
 	function get( array $primaryKey );
+
+	/**
+	 * Accepts a row representing domain model & returns that same row,
+	 * normalized. It'll roundtrip the row from- & toStorageRow to cleanup data.
+	 * We want to make sure that data type differences cause no false positives,
+	 * like $row containing strings, & new row has integers with the same value.
+	 *
+	 * @param array $row Assoc array representing the domain model
+	 * @return array Normalized row
+	 */
+	function normalizeRow( array $row );
 }
