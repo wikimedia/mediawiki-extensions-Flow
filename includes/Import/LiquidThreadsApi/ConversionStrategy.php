@@ -2,14 +2,18 @@
 
 namespace Flow\Import\LiquidThreadsApi;
 
+use ArrayIterator;
 use DatabaseBase;
 use DateTime;
 use DateTimeZone;
 use Flow\Import\Converter;
 use Flow\Import\IConversionStrategy;
 use Flow\Import\ImportSourceStore;
+use Flow\Import\Postprocessor\LqtRedirector;
+use Flow\UrlGenerator;
 use LqtDispatch;
 use Title;
+use User;
 use WikitextContent;
 
 /**
@@ -41,11 +45,15 @@ class ConversionStrategy implements IConversionStrategy {
 	public function __construct(
 		DatabaseBase $dbr,
 		ImportSourceStore $sourceStore,
-		ApiBackend $api
+		ApiBackend $api,
+		UrlGenerator $urlGenerator,
+		User $talkpageUser
 	) {
 		$this->dbr = $dbr;
 		$this->sourceStore = $sourceStore;
 		$this->api = $api;
+		$this->urlGenerator = $urlGenerator;
+		$this->talkpageUser = $talkpageUser;
 	}
 
 	public function getSourceStore() {
@@ -109,5 +117,10 @@ class ConversionStrategy implements IConversionStrategy {
 		$newWikitext .= "\n\n{{{$template}|$arguments}}";
 
 		return new WikitextContent( $newWikitext );
+	}
+
+	public function getPostprocessor() {
+		$redirector = new LqtRedirector( $this->urlGenerator, $this->talkpageUser );
+		return $redirector;
 	}
 }

@@ -1,5 +1,6 @@
 <?php
 
+use Flow\Container;
 use Flow\Import\FileImportSourceStore;
 use Flow\Import\LiquidThreadsApi\ConversionStrategy;
 use Flow\Import\LiquidThreadsApi\LocalApiBackend;
@@ -34,7 +35,9 @@ class ConvertLqt extends Maintenance {
 		$strategy = new ConversionStrategy(
 			$dbr,
 			new FileImportSourceStore( $this->getOption( 'logfile' ) ),
-			new LocalApiBackend()
+			new LocalApiBackend(),
+			Container::get( 'url_generator' ),
+			Container::get( 'occupation_controller' )->getTalkpageManager()
 		);
 
 		$converter = new \Flow\Import\Converter(

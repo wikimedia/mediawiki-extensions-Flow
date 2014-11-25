@@ -85,6 +85,11 @@ class Converter {
 		$this->logger = $logger;
 		$this->user = $user;
 		$this->strategy = $strategy;
+
+		$postprocessor = $strategy->getPostprocessor();
+		if ( $postprocessor !== null ) {
+			$this->importer->addPostprocessor( $postprocessor );
+		}
 	}
 
 	/**
