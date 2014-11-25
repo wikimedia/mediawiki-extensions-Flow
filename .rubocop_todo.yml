@@ -8,7 +8,8 @@
 # Offense count: 1
 # Configuration parameters: CountComments.
 Metrics/ClassLength:
-  Max: 165
+  # TODO reset to 165 after breaking up class FlowPage in features/support/pages/flow_page.rb
+  Max: 180
 
 # Offense count: 66
 # Configuration parameters: AllowURI, URISchemes.
