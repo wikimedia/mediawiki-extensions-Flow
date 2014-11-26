@@ -323,6 +323,7 @@
 	"flow-newest-topics": "הנושאים החדשים ביותר",
 	"flow-recent-topics": "נושאים פעילים לאחרונה",
 	"flow-sorting-tooltip-newest": "{{GENDER:|אתה קורא|את קוראת}} עכשיו את הנושאים החדשים ביותר תחילה. נא ללחוץ כאן לאפשרויות מיון נוספות.",
+	"flow-sorting-tooltip-recent": "{{GENDER:|אתה קורא|את קוראת}} עכשיו תחילה את הנושאים שהיו פעילים לאחרונה. {{GENDER:|לחץ|לחצי}} לאפשרויות מיון אחרות.",
 	"flow-toggle-small-topics": "מעבר לתצוגת נושאים קטנה",
 	"flow-toggle-topics": "מעבר לתצוגת נושאים בלבד",
 	"flow-toggle-topics-posts": "מעבר לתצוגת נושאים ורשומות",
@@ -348,6 +349,7 @@
 	"flow-post-undo-delete": "(ביטול מחיקה)",
 	"flow-post-undo-suppress": "(ביטול העלמה)",
 	"flow-importer-lqt-converted-template": "דף LQT מומר לזרימה",
+	"flow-importer-lqt-converted-archive-template": "ארכיון לדף LQT מאורכב",
 	"flow-edited": "נערכה",
 	"flow-edited-by": "נערכה על־ידי $1",
 	"flow-lqt-redirect-reason": "הפניה של רשומת LiquidThreads מיושנת לרשומת זרימה מומרת"

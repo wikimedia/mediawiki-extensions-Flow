@@ -325,6 +325,7 @@
 	"flow-newest-topics": "Nyaste ämnen",
 	"flow-recent-topics": "Senaste aktiva ämnen",
 	"flow-sorting-tooltip-newest": "{{GENDER:|Du}} läser just nu det nyaste ämnet först. Klicka för fler sorteringsalternativ.",
+	"flow-sorting-tooltip-recent": "{{GENDER:|Du}} läser för tillfället de allra senaste aktiva ämnena först. Klicka för fler sorteringsalternativ.",
 	"flow-toggle-small-topics": "Byt till liten ämnesvy",
 	"flow-toggle-topics": "Byt till enbart ämnesvy",
 	"flow-toggle-topics-posts": "Byt till ämnes- och inläggsvy",
@@ -349,9 +350,13 @@
 	"flow-post-undo-hide": "(ångra dölj)",
 	"flow-post-undo-delete": "(ångra radera)",
 	"flow-post-undo-suppress": "(ångra censurera)",
+	"flow-importer-lqt-converted-template": "LQT-sida omvandlad till Flow",
+	"flow-importer-lqt-converted-archive-template": "Arkiv för konverterad LQT-sida",
 	"apihelp-flow-description": "GÖr det möjligt att utföra åtgärder på Flow-sidor.",
+	"apihelp-flow-param-submodule": "Den Flow-undermodul som ska anropas.",
 	"apihelp-flow-param-page": "Sidan som åtgärden ska utföras på.",
 	"apihelp-flow-example-1": "Redigera sidhuvudet för [[Talk:Sandbox]]",
+	"apihelp-flow+close-open-topic-description": "Utfasad i förmån för [[Special:ApiHelp/flow+lock-topic|action=flow&submodule=lock-topic]].",
 	"apihelp-flow+close-open-topic-param-reason": "Skäl för att låsa eller låsa upp ämnet.",
 	"apihelp-flow+edit-header-description": "Redigera ett ämnes sidhuvud.",
 	"apihelp-flow+edit-header-param-prev_revision": "Versions-ID för den aktuella sidhuvudversionen, för att hantera redigeringskonflikter.",
@@ -389,7 +394,7 @@
 	"apihelp-flow+reply-description": "Svar på ett inlägg.",
 	"apihelp-flow+reply-param-replyTo": "Inläggs-ID att svara på.",
 	"apihelp-flow+reply-param-content": "Innehåll för nytt inlägg.",
-	"apihelp-flow+reply-example-1": "Svar ett inlägg på [[Topic:S2tycnas4hcucw8w]]",
+	"apihelp-flow+reply-example-1": "Svara på ett inlägg på [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+view-header-description": "Visa ett forums sidhuvud.",
 	"apihelp-flow+view-header-param-contentFormat": "Format att returnera innehållet i.",
 	"apihelp-flow+view-header-param-revId": "Ladda denna version, istället för den senaste.",
@@ -421,5 +426,6 @@
 	"apihelp-query+flowinfo-description": "Hämta grundläggande Flow-information för en sida.",
 	"apihelp-query+flowinfo-example-1": "Hämta Flow-information om [[Talk:Sandbox]], [[Main Page]], och [[Talk:Flow]]",
 	"flow-edited": "Redigerad",
-	"flow-edited-by": "Redigerad av $1"
+	"flow-edited-by": "Redigerad av $1",
+	"flow-lqt-redirect-reason": "Omdirigerar utfasad LiquidThreads-inlägg till dess konverterade Flow-inlägg"
 }
