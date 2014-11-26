@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea06b5a_ae634e3a",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-26T16:44:31Z",
+      "side": 1,
+      "message": "The only pace this actually really matters (right now) is when updating data.\n\nPerhaps we shouldn\u0027t do this for every object that is load()ed, if we only need it when updating. We can just do that in update().",
+      "revId": "64d3916c9aaf20c47beb48d15cb0568517dc29fe",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
