@@ -36,7 +36,7 @@ class ConvertLqt extends Maintenance {
 		$strategy = new ConversionStrategy(
 			$dbr,
 			new FileImportSourceStore( $this->getOption( 'logfile' ) ),
-			new LocalApiBackend(),
+			new LocalApiBackend( $talkpageManagerUser ),
 			Container::get( 'url_generator' ),
 			$talkpageManagerUser
 		);
