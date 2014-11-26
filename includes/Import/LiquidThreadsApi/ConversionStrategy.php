@@ -2,7 +2,6 @@
 
 namespace Flow\Import\LiquidThreadsApi;
 
-use ArrayIterator;
 use DatabaseBase;
 use DateTime;
 use DateTimeZone;

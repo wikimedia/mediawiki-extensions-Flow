@@ -3,6 +3,7 @@
 namespace Flow\Import;
 
 use Flow\Exception\FlowException;
+use Flow\Import\Postprocessor\Postprocessor;
 use Title;
 use WikitextContent;
 
@@ -44,7 +45,7 @@ interface IConversionStrategy {
 	/**
 	 * Create an ImportSource implementation for the provided Title.
 	 * This provides a consistent interface to the headers, topics,
-	 * summarys and posts to be imported.
+	 * summaries and posts to be imported.
 	 *
 	 * @param Title $title The page to import from
 	 * @return IImportSource
