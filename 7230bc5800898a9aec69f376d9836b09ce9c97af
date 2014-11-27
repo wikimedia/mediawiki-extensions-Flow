@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea06b5a_74166c4f",
+        "filename": "includes/Actions/PurgeAction.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-27T12:52:05Z",
+      "side": 1,
+      "message": "Unused $queries",
+      "revId": "7230bc5800898a9aec69f376d9836b09ce9c97af",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
