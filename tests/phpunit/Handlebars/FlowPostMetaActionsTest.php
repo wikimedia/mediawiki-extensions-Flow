@@ -4,6 +4,7 @@ namespace Flow\Tests\Handlebars;
 
 use Flow\Container;
 use Flow\TemplateHelper;
+use LightnCandy;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -107,11 +108,13 @@ class FlowPostMetaActionsTest extends \MediaWikiTestCase {
 	}
 
 	protected function renderTemplate( $templateName, array $args = array() ) {
-		$lc = new TemplateHelper(
-			Container::get( 'lightncandy.template_dir' ),
-			true // force recompile
+		$lc = Container::get( 'lightncandy' );
+		$filenames = $lc->getTemplateFilenames( $templateName );
+		$phpCode = $lc::compile(
+			file_get_contents( $filenames['template'] ),
+			Container::get( 'lightncandy.template_dir' )
 		);
-		$renderer = $lc->getTemplate( $templateName );
+		$renderer = LightnCandy::prepare( $phpCode );
 
 		return new Crawler( $renderer( $args ) );
 	}
