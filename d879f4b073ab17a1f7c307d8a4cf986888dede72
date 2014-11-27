@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea06b5a_a9a90123",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-11-27T11:34:20Z",
+      "side": 1,
+      "message": "This should come from $obj instead of $this",
+      "revId": "d879f4b073ab17a1f7c307d8a4cf986888dede72",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
