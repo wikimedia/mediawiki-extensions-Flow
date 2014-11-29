@@ -12,7 +12,7 @@
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 se je {{GENDER:$1|odzval|odzvala|odzval(-a)}} na <span class=\"plainlinks\">[$5 $2]</span> na strani '''$4'''.",
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 in $5 {{PLURAL:$6|drug|druga|drugi|drugih}} so se odzvali na <span class=\"plainlinks\">[$4 $2]</span> na strani '''$3'''.",
 	"flow-notification-edit": "$1 {{GENDER:$1|je urejal|je urejala}} <span class=\"plainlinks\">[$5 objavo]</span> v razdelku »$2« na [[$3|$4]].",
-	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1 {{GENDER:$1|je ustvaril|je ustvarila}}  novo temo na '''$3'''.",
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|je ustvaril|je ustvarila}}  novo temo na '''$3'''.",
 	"flow-notification-rename": "$1 {{GENDER:$1|je spremenil|je spremenila}} naslov <span class=\"plainlinks\">[$2 $3]</span> v »$4« na [[$5|$6]].",
 	"flow-notification-link-text-view-post": "Ogled objave",
 	"flow-notification-reply-email-subject": "$2 na $3",

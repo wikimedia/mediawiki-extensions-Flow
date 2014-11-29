@@ -155,7 +155,7 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 y {{PLURAL:$6|otru|otros $5}} más {{GENDER:$1|contestaron}} en '''$3'''.",
 	"flow-notification-edit": "$1 {{GENDER:$1|editó}} un <span class=\"plainlinks\">[$5 comentariu]</span> sobro \"$2\" en [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 y {{PLURAL:$6|otru|otros $5}} {{GENDER:$1|editaron}} un <span class=\"plainlinks\">[$4 comentariu]</span> sobro \"$2\" en \"$3\".",
-	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1 {{GENDER:$1|creó}} un  asuntu nuevu en '''$3'''.",
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|creó}} un  asuntu nuevu en '''$3'''.",
 	"flow-notification-rename": "$1 {{GENDER:$1|cambió}}'l títulu de <span class=\"plainlinks\">[$2 $3]</span> a «$4» en [[$5|$6]].",
 	"flow-notification-mention": "$1 {{GENDER:$1|mencionóte}} nel {{GENDER:$1|so}} <span class=\"plainlinks\">[$2 mensaxe]</span> sobro \"$3\" en \"$4\".",
 	"flow-notification-link-text-view-post": "Ver el mensaxe",

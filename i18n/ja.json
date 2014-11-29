@@ -174,7 +174,7 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 と他 $5 {{PLURAL:$6|人}}が '''$3''' で{{GENDER:$1|返信しました}}。",
 	"flow-notification-edit": "$1 が [[$3|$4]] の「$2」での<span class=\"plainlinks\">[$5 投稿]</span>を{{GENDER:$1|編集しました}}。",
 	"flow-notification-edit-bundle": "$1 と他 $5 {{PLURAL:$6|人}}が「$3」の「$2」での<span class=\"plainlinks\">[$4 投稿]</span>を{{GENDER:$1|編集しました}}。",
-	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1 が '''$3''' で 新しい話題を{{GENDER:$1|作成しました}}。",
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 が '''$3''' で 新しい話題を{{GENDER:$1|作成しました}}。",
 	"flow-notification-rename": "$1 が [[$5|$6]] で <span class=\"plainlinks\">[$2 $3]</span> のページ名を「$4」に{{GENDER:$1|変更しました}}。",
 	"flow-notification-mention": "$1 が「$4」の「$3」での{{GENDER:$1|自身の}}<span class=\"plainlinks\">[$2 投稿]</span>で{{GENDER:$5|あなた}}に{{GENDER:$1|言及しました}}。",
 	"flow-notification-link-text-view-post": "投稿を閲覧",

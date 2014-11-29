@@ -52,6 +52,7 @@
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|дӀаяьккхина}} тема [$4 topic] $6 (<em>$5</em>).",
 	"flow-rc-topic-of-board": "$1 оцу $2",
 	"flow-board-history": "\"$1\" истори",
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|кхоьллина}} '''$3''' агӀонгахь керла хьедар.",
 	"flow-notification-mention": "$1 {{GENDER:$1|хьахийна}} {{GENDER:$5|хьо}} {{GENDER:$1|шен}} <span class=\"plainlinks\">[$2 хаамехь]</span> темехь «$3» агӀонгахь «$4».",
 	"flow-notification-link-text-view-post": "Хьажа хааме",
 	"flow-notification-reply-email-subject": "$2 $3 тӀе",

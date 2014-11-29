@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Danmichaelo",
-			"Jeblad"
+			"Jeblad",
+			"Laaknor"
 		]
 	},
 	"flow-desc": "Styringssystem for arbeidsflyt",
@@ -187,7 +188,7 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 og $5 {{PLURAL:$6|annen|andre}} {{GENDER:$1|svarte}} på '''$3'''.",
 	"flow-notification-edit": "$1 {{GENDER:$1|redigerte}} en <span class=\"plainlinks\">[$5 melding]</span> i «$2» på [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 og $5 {{PLURAL:$6|annen|andre}} {{GENDER:$1|redigerte}} et <span class=\"plainlinks\">[$4 innlegg]</span> under «$2» på «$3».",
-	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1 {{GENDER:$1|startet}} en  ny diskusjon på '''$3'''.",
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|startet}} en  ny diskusjon på '''$3'''.",
 	"flow-notification-rename": "$1 {{GENDER:$1|endret}} tittelen på <span class=\"plainlinks\">[$2 $3]</span> til «$4» på [[$5|$6]].",
 	"flow-notification-mention": "$1 {{GENDER:$1|nevnte}} {{GENDER:$5|deg}} i <span class=\"plainlinks\">[$2 innlegget]</span>  {{GENDER:$1|hans|hennes|sitt}} under «$3» på «$4»",
 	"flow-notification-link-text-view-post": "Vis innlegg",
@@ -295,7 +296,8 @@
 	"flow-add-topic": "Ny diskusjon",
 	"flow-newest-topics": "Nyeste diskusjoner",
 	"flow-recent-topics": "Diskusjoner med nylig aktivitet",
-	"flow-sorting-tooltip": "De nyeste diskusjonene vises først. Klikk for flere sorteringsmuligheter.",
+	"flow-sorting-tooltip-newest": "De nyeste diskusjonene vises først. Klikk for flere sorteringsmuligheter.",
+	"flow-sorting-tooltip-recent": "{{GENDER:|Du}} leser nå det nyeste aktive emnet. Klikk for flere sorteringsmuligheter.",
 	"flow-toggle-small-topics": "Bytt til kompakt visning",
 	"flow-toggle-topics": "Bytt til visning av kun emner",
 	"flow-toggle-topics-posts": "Bytt til visning av emner og innlegg",

@@ -61,7 +61,7 @@
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|ha contestat}} a '''$4'''.",
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 i $5 {{PLURAL:$6|més}} han {{GENDER:$1|contestat}} a '''$3'''.",
 	"flow-notification-edit-bundle": "$1 i $5 {{PLURAL:$6|més}} han {{GENDER:$1|modificat}} un <span class=\"plainlinks\">[$4 apunt]</span> de «$2» a «$3».",
-	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1 {{GENDER:$1|ha creat}} un nou tema a '''$3'''.",
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|ha creat}} un nou tema a '''$3'''.",
 	"flow-notification-mention": "$1 {{GENDER:$5|us}} {{GENDER:$1|ha mencionat}} en {{GENDER:$1|el seu}} <span class=\"plainlinks\">[$2 apunt]</span> de \"$3\" a \"$4\".",
 	"flow-notification-link-text-view-post": "Mostra l'apunt",
 	"flow-notification-link-text-view-topic": "Mostra el tema",

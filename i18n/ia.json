@@ -88,7 +88,7 @@
 	"flow-notification-reply": "$1 {{GENDER:$1|respondeva}} a <span class=\"plainlinks\">[$5 $2]</span> sur \"$4\".",
 	"flow-notification-reply-bundle": "$1 e $5 {{PLURAL:$6|altere|alteres}} {{GENDER:$1|respondeva}} a <span class=\"plainlinks\">[$4 $2]</span> sur \"$3\".",
 	"flow-notification-edit": "$1 {{GENDER:$1|modificava}} un [$5 message] in $2 sur [[$3|$4]].",
-	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1 {{GENDER:$1|creava}} un nove topico super '''$3'''.",
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|creava}} un nove topico super '''$3'''.",
 	"flow-notification-rename": "$1 {{GENDER:$1|cambiava}} le titulo de [$2 $3] a \"$4\" super [[$5|$6]].",
 	"flow-notification-link-text-view-post": "Vider message",
 	"flow-notification-reply-email-subject": "$1 {{GENDER:$1|respondeva}} a un topico",

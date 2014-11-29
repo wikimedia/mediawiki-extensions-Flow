@@ -171,7 +171,7 @@
 	"flow-notification-reply-bundle": "$1 사용자와 $5 {{PLURAL:$6|그 외 사용자}}가 당신이 \"$3\"에 남긴 <span class=\"plainlinks\">[$4 게시물] $2</span>에 {{GENDER:$1|답변을 남겼습니다}}.",
 	"flow-notification-edit": "$1 [[$3|$4]]에 남긴 <span class=\"plainlinks\">[$5 게시물]</span> $2을 {{GENDER:$1|편집했습니다}}.",
 	"flow-notification-edit-bundle": "$1 사용자와 $5 {{PLURAL:$6|그 외 사용자}}가 당신이 \"$3\"에 남긴 <span class=\"plainlinks\">[$4 게시물]</span> $2을 {{GENDER:$1|편집했습니다}}.",
-	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1 사용자가 '''$3'''에 새 주제를 {{GENDER:$1|만들었습니다}}.",
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 사용자가 '''$3'''에 새 주제를 {{GENDER:$1|만들었습니다}}.",
 	"flow-notification-rename": "$1 사용자가 [[$5|$6]]의 <span class=\"plainlinks\">[$2 $3]</span>의 제목을 \"$4\"으로 {{GENDER:$1|바꿨습니다}}.",
 	"flow-notification-mention": "$1 사용자가 \"$4\"의 \"$3\" {{GENDER:$1|}} <span class=\"plainlinks\">[$2 게시물]</span>에서 {{GENDER:$1|언급했습니다}}.",
 	"flow-notification-link-text-view-post": "게시물 보기",

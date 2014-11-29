@@ -85,7 +85,7 @@
 	"flow-notification-reply-bundle": "$1 e {{PLURAL:$6|outra persoa|outras $5 persoas}} {{GENDER:$1|responderon}} á súa <span class=\"plainlinks\">[$4 mensaxe]</span> de \"$2\" en \"$3\".",
 	"flow-notification-edit": "$1 {{GENDER:$1|editou}} a <span class=\"plainlinks\">[$5 mensaxe]</span> de \"$2\" en \"[[$3|$4]]\".",
 	"flow-notification-edit-bundle": "$1 e {{PLURAL:$6|outra persoa|outras $5 persoas}} {{GENDER:$1|responderon}} á <span class=\"plainlinks\">[$4 mensaxe]</span> de \"$2\" en \"$3\".",
-	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1 {{GENDER:$1|creou}} un  novo fío] en '''$3'''",
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|creou}} un  novo fío] en '''$3'''",
 	"flow-notification-rename": "$1 {{GENDER:$1|cambiou}} o título de \"<span class=\"plainlinks\">[$2 $3]</span>\" a \"$4\" en \"[[$5|$6]]\".",
 	"flow-notification-mention": "$1 {{GENDER:$1|fíxolle unha mención}} na {{GENDER:$1|súa}} <span class=\"plainlinks\">[$2 mensaxe]</span> de \"$3\" en \"$4\".",
 	"flow-notification-link-text-view-post": "Ver a mensaxe",
@@ -121,15 +121,5 @@
 	"flow-terms-of-use-reply": "Ao premer no botón \"{{int:flow-reply-submit}}\", acepta os termos de uso deste wiki.",
 	"flow-terms-of-use-edit": "Ao gardar os seus cambios, acepta os termos de uso deste wiki.",
 	"flow-load-more": "Cargar máis",
-	"flow-special-type": "Tipo",
-	"flow-active-ago-day": "Activo hai {{PLURAL:$1|un día|$1 días}}",
-	"flow-active-ago-hour": "Activo hai {{PLURAL:$1|unha hora|$1 horas}}",
-	"flow-active-ago-minute": "Activo hai {{PLURAL:$1|un minuto|$1 minutos}}",
-	"flow-active-ago-second": "Activo hai {{PLURAL:$1|un segundo|$1 segundos}}",
-	"flow-active-ago-week": "Activo hai {{PLURAL:$1|unha semana|$1 semanas}}",
-	"flow-time-ago-day": "hai {{PLURAL:$1|un día|$1 días}}",
-	"flow-time-ago-hour": "hai {{PLURAL:$1|unha hora|$1 horas}}",
-	"flow-time-ago-minute": "hai {{PLURAL:$1|un minuto|$1 minutos}}",
-	"flow-time-ago-second": "hai {{PLURAL:$1|un segundo|$1 segundos}}",
-	"flow-time-ago-week": "hai {{PLURAL:$1|unha semana|$1 semanas}}"
+	"flow-special-type": "Tipo"
 }

@@ -17,7 +17,7 @@
 	"flow-error-content-too-long": "İçerik çok büyük. Genişlemeden sonraki içerik $1 {{PLURAL:$1|byte|byte}}'la sınırlanmıştır.",
 	"flow-lock-topic-submit": "Konuyu kilitle",
 	"flow-unlock-topic-submit": "Konunun kilidini aç",
-	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1   '''$3'başlığında yeni bir konu'{{GENDER:$1|oluşturdu}}'.",
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1   '''$3'başlığında yeni bir konu'{{GENDER:$1|oluşturdu}}'.",
 	"flow-notification-mention": "$1, \"$4\" sayfasındaki \"$3\" başlığındaki [$2 değişikliğinde] sizden {{GENDER:$1|bahsetti}}",
 	"flow-notification-mention-email-subject": "$1, $2 sayfasında sizden {{GENDER:$1|bahsetti}}",
 	"flow-notification-mention-email-batch-body": "$1, \"$3\" sayfasındaki \"$2\" başlığında sizden {{GENDER:$1|bahsetti}}",
@@ -26,9 +26,5 @@
 	"flow-moderation-confirmation-delete-topic": "Bu konu silindi.",
 	"flow-moderation-confirmation-hide-topic": "Bu konu gizlenmiştir.",
 	"flow-anon-warning": "Oturum açmadınız.",
-	"flow-topic-html-title": "$1 sayfa $2",
-	"flow-time-ago-day": "$1 gün önce",
-	"flow-time-ago-hour": "$1 saat önce",
-	"flow-time-ago-second": "$1 saniye önce",
-	"flow-time-ago-week": "$1 hafta önce"
+	"flow-topic-html-title": "$1 sayfa $2"
 }

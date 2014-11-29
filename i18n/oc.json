@@ -104,7 +104,7 @@
 	"flow-last-modified": "Darrièr cambiament $1",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|a respondut}} sus '''$4'''.",
 	"flow-notification-edit": "$1 {{GENDER:$1|a modificat}} una <span class=\"plainlinks\">[$5 nòta]</span> sus « $2 » en [[$3|$4]].",
-	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1 {{GENDER:$1|a creat}} una \n discussion novèla sus '''$3'''.",
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|a creat}} una \n discussion novèla sus '''$3'''.",
 	"flow-notification-rename": "$1 {{GENDER:$1|a modificat}} lo títol de <span class=\"plainlinks\">[$2 $3]</span> en « $4 » sus [[$5|$6]].",
 	"echo-category-title-flow-discussion": "Flux",
 	"flow-link-post": "nòta",

@@ -48,18 +48,10 @@
 	"flow-comment-moderated": "מאדערירטע הערה",
 	"flow-paging-fwd": "עלטערע טעמעס",
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 און $5 {{PLURAL:$6|אן אנדערער|אנדערע}} {{GENDER:$1|האבן זיך אנגערופֿן}} דעם '''$3'''.",
-	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1 {{GENDER:$1|האט געשאפן}} א   נײַע טעמע </span> אויף '''$3'''.",
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|האט געשאפן}} א   נײַע טעמע </span> אויף '''$3'''.",
 	"echo-category-title-flow-discussion": "פֿלוסן",
 	"flow-link-topic": "טעמע",
 	"flow-link-history": "היסטאריע",
 	"flow-moderation-confirm-undelete-post": "מבטל זיין אויסמעקן",
-	"flow-moderation-confirm-undelete-topic": "מבטל זיין אויסמעקן",
-	"flow-started-ago-hour": "אנגעהויבן פֿאר $1 {{PLURAL:$1|שעה|שעה'ן}}",
-	"flow-started-ago-week": "אנגעהויבן פֿאר $1 {{PLURAL:$1|וואך|וואכן}}",
-	"flow-edited-ago-day": "רעדאקטירט פֿאר $1 {{PLURAL:$1|טאג|טעג}}",
-	"flow-time-ago-day": "פֿאר $1 {{PLURAL:$1|טאג|טעג}}",
-	"flow-time-ago-hour": "פֿאר $1 {{PLURAL:$1|שעה|שעה'ן}}",
-	"flow-time-ago-minute": "פֿאר $1 {{PLURAL:$1|מינוט}}",
-	"flow-time-ago-second": "פֿאַר $1 {{PLURAL:$1|סעקונדע|סעקונדעס}}",
-	"flow-time-ago-week": "פֿאר $1 {{PLURAL:$1|וואך|וואכן}}"
+	"flow-moderation-confirm-undelete-topic": "מבטל זיין אויסמעקן"
 }

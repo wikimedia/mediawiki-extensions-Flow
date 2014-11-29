@@ -5,25 +5,5 @@
 		]
 	},
 	"flow-newtopic-content-placeholder": "Ikteb messaġġ ġdid fuq \"$1\"",
-	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1 {{GENDER:$1|ħalaq|ħalqet}}  suġġett ġdid fuq '''$3'''.",
-	"flow-started-ago-day": "Beda $1 {{PLURAL:$1|jum|jiem}} ilu",
-	"flow-started-ago-hour": "Inbeda $1 {{PLURAL:$1|siegħa|sigħat}} ilu",
-	"flow-started-ago-minute": "Beda $1 {{PLURAL:$1|minuta|minuti}} ilu",
-	"flow-started-ago-second": "Beda $1 {{PLURAL:$1|sekonda|sekondi}} ilu",
-	"flow-started-ago-week": "Beda $1 {{PLURAL:$1|ġimgħa|ġimgħat}} ilu",
-	"flow-edited-ago-day": "Editjat $1 {{PLURAL:$1|jum|jiem}} ilu",
-	"flow-edited-ago-hour": "Ġie modifikat $1 {{PLURAL:$1|siegħa|sigħat}} ilu",
-	"flow-edited-ago-minute": "Ġie modifikat $1 {{PLURAL:$1|minuta|minuti}} ilu",
-	"flow-edited-ago-second": "Ġie modifikat $1 {{PLURAL:$1|sekonda|sekondi}} ilu",
-	"flow-edited-ago-week": "Ġie modifikat $1 {{PLURAL:$1|ġimgħa|ġimgħat}} ilu",
-	"flow-active-ago-day": "Attiv minn $1 {{PLURAL:$1|jum|jiem}} ilu",
-	"flow-active-ago-hour": "Attiv minn $1 {{PLURAL:$1|siegħa|sigħat}} ilu",
-	"flow-active-ago-minute": "Attiv minn $1 {{PLURAL:$1| minute|minutes}} ilu",
-	"flow-active-ago-second": "attiv minn $1 {{PLURAL:$1|sekonda|sekondi}} ilu",
-	"flow-active-ago-week": "Kien attiv $1 {{PLURAL:$1|ġimgħa|ġimgħat}} ilu",
-	"flow-time-ago-day": "$1 {{PLURAL:$1|jum|jiem}} ilu",
-	"flow-time-ago-hour": "$1 {{PLURAL:$1|siegħa|sigħat}} ilu",
-	"flow-time-ago-minute": "$1 {{PLURAL:$1|minuta|minuti}} ilu",
-	"flow-time-ago-second": "$1 {{PLURAL:$1|sekonda|sekondi}} ilu",
-	"flow-time-ago-week": "$1 {{PLURAL:$1|ġimgħa|ġimgħat}} ilu"
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|ħalaq|ħalqet}}  suġġett ġdid fuq '''$3'''."
 }

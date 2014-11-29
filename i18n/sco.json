@@ -41,7 +41,7 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 n $5 {{PLURAL:$6|ither|ithers}} {{GENDER:$1|respondit}} oan '''$3'''.",
 	"flow-notification-edit": "$1 {{GENDER:$1|edited}} ae <span class=\"plainlinks\">[$5 post]</span> in \"$2\" on [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 n $5 {{PLURAL:$6|ither|ithers}} {{GENDER:$1|eidited}} ae <span class=\"plainlinks\">[$4 post]</span> in \"$2\" oan \"$3\".",
-	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading\">$4</span><br />$1 {{GENDER:$1|creautit}} ae  new topic oan '''$3'''.",
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|creautit}} ae  new topic oan '''$3'''.",
 	"flow-notification-rename": "$1 {{GENDER:$1|chynged}} the title o <span class=\"plainlinks\">[$2 $3]</span> til \"$4\" oan [[$5|$6]].",
 	"flow-notification-mention": "$1 {{GENDER:$1|mentioned}} {{GENDER:$5|ye}} in {{GENDER:$1|his|her|thair}} <span class=\"plainlinks\">[$2 post]</span> in \"$3\" oan \"$4\".",
 	"flow-notification-reply-email-batch-body": "$1 {{GENDER:$1|respondit}} ti yer post in \"$2\" oan \"$3\"",
