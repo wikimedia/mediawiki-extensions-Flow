@@ -120,7 +120,7 @@
 	"flow-paging-fwd": "Méi al Themen",
 	"flow-last-modified": "Fir d'lescht geännert ongeféier $1",
 	"flow-workflow": "workflow",
-	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|huet}} een   neit Thema iwwer '\"$3\"' ugeluecht.",
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|huet}} een neit Thema iwwer '''$3''' ugeluecht.",
 	"flow-notification-rename": "$1 {{GENDER:$1|huet}} den Titel vu(n) span class=\"plainlinks\">[$2 $3]</span> op \"$4\" op [[$5|$6]] geännert.",
 	"flow-notification-link-text-view-topic": "Thema weisen",
 	"flow-notification-reply-email-subject": "$2 op $3",
