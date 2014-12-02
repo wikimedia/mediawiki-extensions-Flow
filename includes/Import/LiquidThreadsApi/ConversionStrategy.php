@@ -4,14 +4,13 @@ namespace Flow\Import\LiquidThreadsApi;
 
 use ArrayIterator;
 use DatabaseBase;
-use DateTime;
-use DateTimeZone;
 use Flow\Import\Converter;
 use Flow\Import\IConversionStrategy;
 use Flow\Import\ImportSourceStore;
 use Flow\Import\Postprocessor\LqtRedirector;
 use Flow\UrlGenerator;
 use LqtDispatch;
+use MWTimestamp;
 use Title;
 use User;
 use WikitextContent;
@@ -112,10 +111,9 @@ class ConversionStrategy implements IConversionStrategy {
 	 * @return WikitextContent
 	 */
 	public function createArchiveCleanupRevisionContent( WikitextContent $content, Title $title ) {
-		$now = new DateTime( "now", new DateTimeZone( 'GMT' ) );
 		$arguments = implode( '|', array(
 			'from=' . $title->getPrefixedText(),
-			'date=' . $now->format( 'Y-m-d' ),
+			'date=' . MWTimestamp::getInstance()->timestamp->format( 'Y-m-d' ),
 		) );
 
 		$newWikitext = preg_replace(
