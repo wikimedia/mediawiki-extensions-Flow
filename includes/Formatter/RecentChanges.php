@@ -58,7 +58,7 @@ class RecentChanges extends AbstractFormatter {
 		$description = $this->formatDescription( $data, $ctx );
 
 		return $this->formatAnchorsAsPipeList( $links, $ctx ) .
-			' ' .
+			$separator .
 			$this->getTitleLink( $data, $row, $ctx ) .
 			$ctx->msg( 'semicolon-separator' )->escaped() .
 			' ' .
