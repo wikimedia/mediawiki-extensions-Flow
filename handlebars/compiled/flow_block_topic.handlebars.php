@@ -64,9 +64,9 @@
 	'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-comments',((isset($in['reply_count']) && is_array($in)) ? $in['reply_count'] : null)),Array()), 'encq').' &bull;
 
 	'.((LCRun3::ifvar($cx, ((isset($in['last_updated']) && is_array($in)) ? $in['last_updated'] : null))) ? '
-		'.LCRun3::ch($cx, 'timestamp', Array(Array(((isset($in['last_updated']) && is_array($in)) ? $in['last_updated'] : null)),Array()), 'encq').'
+		'.LCRun3::ch($cx, 'timestamp', Array(Array(((isset($in['last_updated']) && is_array($in)) ? $in['last_updated'] : null),false),Array()), 'encq').'
 	' : '
-		'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((isset($in['postId']) && is_array($in)) ? $in['postId'] : null)),Array()), 'encq').'
+		'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((isset($in['postId']) && is_array($in)) ? $in['postId'] : null),false),Array()), 'encq').'
 	').'
 </div>
 '.((LCRun3::ifvar($cx, ((isset($in['isModerated']) && is_array($in)) ? $in['isModerated'] : null))) ? '
@@ -88,7 +88,6 @@
 	   class="mw-ui-anchor mw-ui-constructive '.((!LCRun3::ifvar($cx, ((isset($in['isWatched']) && is_array($in)) ? $in['isWatched'] : null))) ? 'mw-ui-quiet' : '').'
 	   '.((LCRun3::ifvar($cx, ((isset($in['isWatched']) && is_array($in)) ? $in['isWatched'] : null))) ? 'flow-watch-link-unwatch' : 'flow-watch-link-watch').'"
 	   data-flow-api-handler="watchItem"
-	   data-flow-api-handler="watchTopic"
 	   data-flow-api-target="< .flow-topic-watchlist"
 	   data-flow-api-method="POST">'.htmlentities((string)((isset($in['null']) && is_array($in)) ? $in['null'] : null), ENT_QUOTES, 'UTF-8').'<span class="wikiglyph wikiglyph-star"></span>'.htmlentities((string)((isset($in['null']) && is_array($in)) ? $in['null'] : null), ENT_QUOTES, 'UTF-8').''.htmlentities((string)((isset($in['null']) && is_array($in)) ? $in['null'] : null), ENT_QUOTES, 'UTF-8').'<span class="wikiglyph wikiglyph-unstar"></span>'.htmlentities((string)((isset($in['null']) && is_array($in)) ? $in['null'] : null), ENT_QUOTES, 'UTF-8').'</a>
 </div>
