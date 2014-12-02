@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea06b5a_9e80dcfa",
+        "filename": "includes/Import/Wikitext/ConversionStrategy.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-02T22:20:04Z",
+      "side": 1,
+      "message": "Undefined",
+      "revId": "10da1bb1db4e6f35ffcaaedd6d99d356745423cf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea06b5a_5e7a5420",
+        "filename": "includes/Import/Wikitext/ConversionStrategy.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-02T22:20:04Z",
+      "side": 1,
+      "message": "Undefined",
+      "revId": "10da1bb1db4e6f35ffcaaedd6d99d356745423cf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea06b5a_de950437",
+        "filename": "includes/Import/Wikitext/ConversionStrategy.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-02T22:20:04Z",
+      "side": 1,
+      "message": "Per discussion, we\u0027re going to have to revisit this, but it\u0027s okay for OfficeWiki.",
+      "revId": "10da1bb1db4e6f35ffcaaedd6d99d356745423cf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea06b5a_be9cb860",
+        "filename": "includes/Import/Wikitext/ConversionStrategy.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-02T22:20:04Z",
+      "side": 1,
+      "message": "They\u0027re almost the same, but other parts of MW consistently use UTC, so we should standardize on that (it\u0027s already variable so we need a follow-up commit, so don\u0027t need to change this now).",
+      "revId": "10da1bb1db4e6f35ffcaaedd6d99d356745423cf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea06b5a_7ea630a9",
+        "filename": "includes/Import/Wikitext/ImportSource.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-02T22:20:04Z",
+      "side": 1,
+      "message": "We should make a utility for this later.",
+      "revId": "10da1bb1db4e6f35ffcaaedd6d99d356745423cf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea06b5a_3eb8a8c2",
+        "filename": "includes/Import/Wikitext/ImportSource.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-02T22:20:04Z",
+      "side": 1,
+      "message": "This is technically ambiguous with the revid one above.  Prefixed titles can be numbers (e.g. https://en.wikipedia.org/wiki/123 is 123, prefixed).",
+      "revId": "10da1bb1db4e6f35ffcaaedd6d99d356745423cf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
