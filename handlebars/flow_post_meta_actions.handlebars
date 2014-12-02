@@ -33,7 +33,7 @@
 
 	<span class="flow-post-timestamp">
 		{{#if isOriginalContent}}
-			{{uuidTimestamp postId}}
+			{{uuidTimestamp postId false}}
 		{{else}}
 			<span>
 				{{#ifCond creator.name "===" lastEditUser.name}}
@@ -43,7 +43,7 @@
 				{{/ifCond}}
 			</span>
 			<a href="{{links.topic-history.url}}" class="flow-timestamp-anchor">
-				{{~uuidTimestamp lastEditId~}}
+				{{~uuidTimestamp lastEditId false~}}
 			</a>
 		{{/if}}
 	</span>

@@ -14,9 +14,9 @@
 	{{l10n "flow-topic-comments" reply_count}} &bull;
 
 	{{#if last_updated}}
-		{{timestamp last_updated}}
+		{{timestamp last_updated false}}
 	{{else}}
-		{{uuidTimestamp postId}}
+		{{uuidTimestamp postId false}}
 	{{/if}}
 </div>
 {{#if isModerated}}

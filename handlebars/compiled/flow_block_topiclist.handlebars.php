@@ -168,9 +168,9 @@
 	'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-comments',((isset($in['reply_count']) && is_array($in)) ? $in['reply_count'] : null)),Array()), 'encq').' &bull;
 
 	'.((LCRun3::ifvar($cx, ((isset($in['last_updated']) && is_array($in)) ? $in['last_updated'] : null))) ? '
-		'.LCRun3::ch($cx, 'timestamp', Array(Array(((isset($in['last_updated']) && is_array($in)) ? $in['last_updated'] : null)),Array()), 'encq').'
+		'.LCRun3::ch($cx, 'timestamp', Array(Array(((isset($in['last_updated']) && is_array($in)) ? $in['last_updated'] : null),false),Array()), 'encq').'
 	' : '
-		'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((isset($in['postId']) && is_array($in)) ? $in['postId'] : null)),Array()), 'encq').'
+		'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((isset($in['postId']) && is_array($in)) ? $in['postId'] : null),false),Array()), 'encq').'
 	').'
 </div>
 '.((LCRun3::ifvar($cx, ((isset($in['isModerated']) && is_array($in)) ? $in['isModerated'] : null))) ? '
