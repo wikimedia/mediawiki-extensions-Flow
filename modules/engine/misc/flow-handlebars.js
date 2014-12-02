@@ -210,27 +210,34 @@
 
 	/**
 	 * Parses the timestamp out of a base-36 UUID, and calls timestamp with it.
-	 * @example {{uuidTimestamp id "flow-message-x-"}}
-	 * @param {String} uuid id
-	 * @param {bool} [timeAgoOnly]
+	 * @example {{uuidTimestamp id timeAgoOnly=true}}
+	 * @param {String} uuid                 id
+	 * @param {Object} [options]              handlebars options object
+	 * @param {Object} [options.hash]         handlebars options hash that contains optional arguments
+	 * @param {bool}   [options.timeAgoOnly]  If true, only generates "nnn sssss ago" string
 	 * @returns {String}
 	 */
-	FlowHandlebars.prototype.uuidTimestamp = function ( uuid, timeAgoOnly ) {
+	FlowHandlebars.prototype.uuidTimestamp = function ( uuid, options ) {
 		var timestamp = parseInt( uuid, 36 ).toString( 2 ); // base-36 to base-10 to base-2
 		timestamp = Array( 88 + 1 - timestamp.length ).join( '0' ) + timestamp; // left pad 0 to 88 chars
 		timestamp = parseInt( timestamp.substr( 0, 46 ), 2 ); // first 46 chars base-2 to base-10
 
-		return FlowHandlebars.prototype.timestamp( timestamp, timeAgoOnly );
+		return FlowHandlebars.prototype.timestamp(
+			timestamp,
+			{ hash: { timeAgoOnly: options.hash.timeAgoOnly } }
+		);
 	};
 
 	/**
 	 * Generates markup for an "nnn sssss ago" and date/time string.
-	 * @example {{timestamp start_time "flow-message-x-"}}
-	 * @param {int} timestamp milliseconds
-	 * @param {bool} [timeAgoOnly]
+	 * @example {{timestamp start_time timeAgoOnly=true}}
+	 * @param {int}    timestamp              milliseconds
+	 * @param {Object} [options]              handlebars options object
+	 * @param {Object} [options.hash]         handlebars options hash that contains optional arguments
+	 * @param {bool}   [options.timeAgoOnly]  If true, only generates "nnn sssss ago" string
 	 * @returns {String|undefined}
 	 */
-	FlowHandlebars.prototype.timestamp = function ( timestamp, timeAgoOnly ) {
+	FlowHandlebars.prototype.timestamp = function ( timestamp, options ) {
 		if ( isNaN( timestamp ) ) {
 			mw.flow.debug( '[timestamp] Invalid arguments', arguments);
 			return;
@@ -239,7 +246,7 @@
 		var  guid,
 			formatter = moment( timestamp );
 
-		if ( timeAgoOnly ) {
+		if ( options.hash.timeAgoOnly ) {
 			return formatter.fromNow();
 		}
 
@@ -299,7 +306,10 @@
 		secondsAgo = currentTime - ( arrayItem.timestamp / 1000 );
 
 		if ( $ago && $ago.length ) {
-			text = FlowHandlebars.prototype.timestamp( arrayItem.timestamp, true );
+			text = FlowHandlebars.prototype.timestamp(
+				arrayItem.timestamp,
+				{ hash: { timeAgoOnly: true } }
+			);
 
 			// Returned a valid "n ago" string?
 			if ( text ) {
