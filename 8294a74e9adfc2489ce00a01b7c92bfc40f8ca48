@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea06b5a_de16645a",
+        "filename": "includes/Import/Wikitext/ConversionStrategy.php",
+        "patchSetId": 20
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-02T23:12:14Z",
+      "side": 1,
+      "message": "The template should go at the top, since there could be many sections.",
+      "revId": "8294a74e9adfc2489ce00a01b7c92bfc40f8ca48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
