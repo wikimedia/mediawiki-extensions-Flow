@@ -667,7 +667,7 @@
 				$nodes: $previewContainer
 			} )
 			.text( flowBoard.constructor.static.TemplateEngine.l10n('flow-preview-return-edit-post') )
-			.click( function() {
+			.one( 'click', function() {
 				$cancelButton.show();
 			} );
 	};
