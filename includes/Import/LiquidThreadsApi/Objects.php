@@ -3,8 +3,6 @@
 namespace Flow\Import\LiquidThreadsApi;
 
 use ArrayIterator;
-use DateTime;
-use DateTimeZone;
 use Flow\Import\IImportHeader;
 use Flow\Import\IImportObject;
 use Flow\Import\IImportPost;
@@ -14,6 +12,7 @@ use Flow\Import\ImportException;
 use Flow\Import\IObjectRevision;
 use Flow\Import\IRevisionableObject;
 use Iterator;
+use MWTimestamp;
 use Title;
 use User;
 
@@ -349,10 +348,9 @@ class ImportHeader extends PageRevisionedObject implements IImportHeader {
 			$wikitextForLastRevision
 		);
 		$templateName = wfMessage( 'flow-importer-lqt-converted-template' )->inContentLanguage()->plain();
-		$now = new DateTime( 'now', new DateTimeZone( 'UTC' ) );
 		$arguments = implode( '|', array(
 			'archive=' . $archiveTitle->getPrefixedText(),
-			'date=' . $now->format( 'Y-m-d' ),
+			'date=' . MWTimestamp::getInstance()->timestamp->format( 'Y-m-d' ),
 		) );
 
 		$newWikitext .= "\n\n{{{$templateName}|$arguments}}";
