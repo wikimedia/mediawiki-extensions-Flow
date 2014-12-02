@@ -5,7 +5,6 @@ namespace Flow\Import;
 use Flow\Data\BufferedCache;
 use Flow\Data\ManagerGroup;
 use Flow\DbFactory;
-use Flow\Exception\FlowException;
 use Flow\Import\Postprocessor\Postprocessor;
 use Flow\Import\Postprocessor\ProcessorGroup;
 use Flow\Model\AbstractRevision;
@@ -488,7 +487,7 @@ class TalkpageImportOperation {
 				$this->importHeader( $state, $header );
 				$state->commit();
 				$imported++;
-			} catch ( FlowException $e ) {
+			} catch ( \Exception $e ) {
 				$state->rollback();
 				\MWExceptionHandler::logException( $e );
 				$state->logger->error( 'Failed importing header' );
@@ -504,7 +503,7 @@ class TalkpageImportOperation {
 				$this->importTopic( $state, $topic );
 				$state->commit();
 				$imported++;
-			} catch ( FlowException $e ) {
+			} catch ( \Exception $e ) {
 				$state->rollback();
 				\MWExceptionHandler::logException( $e );
 				$state->logger->error( 'Failed importing topic' );

@@ -88,8 +88,12 @@ class Converter {
 
 		$postprocessor = $strategy->getPostprocessor();
 		if ( $postprocessor !== null ) {
+			// @todo assert we cant cause duplicate postprocessors
 			$this->importer->addPostprocessor( $postprocessor );
 		}
+
+		// Force the importer to use our logger for consistent output.
+		$this->importer->setLogger( $logger );
 	}
 
 	/**
@@ -103,7 +107,10 @@ class Converter {
 					continue;
 				}
 
-				// Only convert sub pages if we made them sub pages
+				// Filter out sub pages unless we moved them there.  This
+				// matches the behaviour of $wgFlowOccupyNamespaces, where
+				// the main pages get converted to Flow but the sub pages
+				// remain wikitext.
 				$movedFrom = $this->getPageMovedFrom( $title );
 				if ( $movedFrom === null && $title->isSubpage() ) {
 					continue;

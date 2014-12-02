@@ -381,6 +381,8 @@
 	"flow-post-undo-suppress": "(undo suppress)",
 	"flow-importer-lqt-converted-template": "LQT page converted to Flow",
 	"flow-importer-lqt-converted-archive-template": "Archive for converted LQT page",
+	"flow-importer-wt-converted-template": "Wikitext talk page converted to Flow",
+	"flow-importer-wt-converted-archive-template": "Archive for converted wikitext talk page",
 	"apihelp-flow-description": "Allows actions to be taken on Flow pages.",
 	"apihelp-flow-param-submodule": "The Flow submodule to invoke.",
 	"apihelp-flow-param-page": "The page to take the action on.",
@@ -461,5 +463,7 @@
 	"apihelp-query+flowinfo-example-1": "Fetch Flow information about [[Talk:Sandbox]], [[Main Page]], and [[Talk:Flow]]",
 	"flow-edited": "Edited",
 	"flow-edited-by": "Edited by $1",
-	"flow-lqt-redirect-reason": "Redirecting retired LiquidThreads post to its converted Flow post"
+	"flow-lqt-redirect-reason": "Redirecting retired LiquidThreads post to its converted Flow post",
+	"flow-talk-conversion-move-reason": "Conversion of wikitext talk to Flow from $1",
+	"flow-talk-conversion-archive-edit-reason": "Wikitext talk to Flow conversion"
 }
