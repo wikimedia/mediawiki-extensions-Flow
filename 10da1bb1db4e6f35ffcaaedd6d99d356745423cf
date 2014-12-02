@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4ea06b5a_fe3ec025",
+        "filename": "includes/Import/Wikitext/ConversionStrategy.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-12-02T22:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ea06b5a_9e80dcfa",
+      "revId": "10da1bb1db4e6f35ffcaaedd6d99d356745423cf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ea06b5a_5e7a5420",
         "filename": "includes/Import/Wikitext/ConversionStrategy.php",
         "patchSetId": 18
@@ -30,6 +48,24 @@
       "writtenOn": "2014-12-02T22:20:04Z",
       "side": 1,
       "message": "Undefined",
+      "revId": "10da1bb1db4e6f35ffcaaedd6d99d356745423cf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea06b5a_de39843f",
+        "filename": "includes/Import/Wikitext/ConversionStrategy.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-12-02T22:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ea06b5a_5e7a5420",
       "revId": "10da1bb1db4e6f35ffcaaedd6d99d356745423cf",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -70,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "4ea06b5a_3e350843",
+        "filename": "includes/Import/Wikitext/ConversionStrategy.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-12-02T22:31:20Z",
+      "side": 1,
+      "message": "I used GMT because MWTimestamp uses it, but does seem odd.\n\nhttps://github.com/wikimedia/mediawiki/blob/master/includes/MWTimestamp.php#L151",
+      "parentUuid": "4ea06b5a_be9cb860",
+      "revId": "10da1bb1db4e6f35ffcaaedd6d99d356745423cf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ea06b5a_7ea630a9",
         "filename": "includes/Import/Wikitext/ImportSource.php",
         "patchSetId": 18
@@ -87,6 +141,24 @@
     },
     {
       "key": {
+        "uuid": "4ea06b5a_7e4ab0c9",
+        "filename": "includes/Import/Wikitext/ImportSource.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-12-02T22:31:20Z",
+      "side": 1,
+      "message": "we should, i\u0027m just not sure where it goes.  I recently added a Flow\\Utils\\ namespace we could probably stuff a static function into.",
+      "parentUuid": "4ea06b5a_7ea630a9",
+      "revId": "10da1bb1db4e6f35ffcaaedd6d99d356745423cf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ea06b5a_3eb8a8c2",
         "filename": "includes/Import/Wikitext/ImportSource.php",
         "patchSetId": 18
@@ -98,6 +170,41 @@
       "writtenOn": "2014-12-02T22:20:04Z",
       "side": 1,
       "message": "This is technically ambiguous with the revid one above.  Prefixed titles can be numbers (e.g. https://en.wikipedia.org/wiki/123 is 123, prefixed).",
+      "revId": "10da1bb1db4e6f35ffcaaedd6d99d356745423cf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea06b5a_5e4d74df",
+        "filename": "includes/Import/Wikitext/ImportSource.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-12-02T22:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ea06b5a_3eb8a8c2",
+      "revId": "10da1bb1db4e6f35ffcaaedd6d99d356745423cf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea06b5a_3e1c28cb",
+        "filename": "maintenance/convertNamespaceFromWikitext.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-12-02T22:31:20Z",
+      "side": 1,
+      "message": "sub pages are already filtered in the Converter, no need to do it twice.  The comment is good though, move it to the right place in Converter.php",
       "revId": "10da1bb1db4e6f35ffcaaedd6d99d356745423cf",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
