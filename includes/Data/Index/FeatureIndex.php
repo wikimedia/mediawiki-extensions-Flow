@@ -186,10 +186,16 @@ abstract class FeatureIndex implements Index {
 
 		$offset = $this->getOffsetFromKey( $rows, $offsetId );
 
+		$inclusive = isset( $options['offset-inclusive'] ) && $options['offset-inclusive'];
 		if ( $dir === 'fwd' ) {
-			$startPos = $offset + 1;
+			if ( !$inclusive ) {
+				$startPos = $offset + 1;
+			}
 		} elseif ( $dir === 'rev' ) {
 			$startPos = $offset - $limit;
+			if ( $inclusive ) {
+				$startPos++;
+			}
 
 			if ( $startPos < 0 ) {
 				if (

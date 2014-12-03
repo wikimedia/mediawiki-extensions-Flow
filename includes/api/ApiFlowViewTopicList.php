@@ -1,5 +1,7 @@
 <?php
 
+use Flow\Data\Pager\Pager;
+
 class ApiFlowViewTopicList extends ApiFlowBaseGet {
 	public function __construct( $api, $modName ) {
 		parent::__construct( $api, $modName, 'vtl' );
@@ -23,8 +25,8 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 
 		return array(
 			'offset-dir' => array(
-				ApiBase::PARAM_TYPE => array( 'fwd', 'rev' ),
-				ApiBase::PARAM_DFLT => 'fwd',
+				ApiBase::PARAM_TYPE => Pager::$VALID_DIRECTIONS,
+				ApiBase::PARAM_DFLT => Pager::DEFAULT_DIRECTION,
 			),
 			'sortby' => array(
 				ApiBase::PARAM_TYPE => array( 'newest', 'updated' ),

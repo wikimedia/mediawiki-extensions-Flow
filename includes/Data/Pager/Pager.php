@@ -10,7 +10,9 @@ use Flow\Exception\InvalidInputException;
  * Fetches paginated results from the OM provided in constructor
  */
 class Pager {
-	private static $VALID_DIRECTIONS = array( 'fwd', 'rev' );
+	// public for accessiblity, DO NOT MODIFY.
+	public static $VALID_DIRECTIONS = array( 'fwd', 'fwdi', 'rev', 'revi' );
+
 	const DEFAULT_DIRECTION = 'fwd';
 	const DEFAULT_LIMIT = 1;
 	const MAX_LIMIT = 500;
@@ -54,6 +56,7 @@ class Pager {
 			'pager-offset' => null,
 			'pager-limit' => self::DEFAULT_LIMIT,
 			'pager-dir' => self::DEFAULT_DIRECTION,
+			'pager-inclusive' => false,
 		);
 
 		$this->options['pager-limit'] = intval( $this->options['pager-limit'] );
@@ -61,8 +64,14 @@ class Pager {
 			$this->options['pager-limit'] = self::DEFAULT_LIMIT;
 		}
 
+
 		if ( !in_array( $this->options['pager-dir'], self::$VALID_DIRECTIONS ) ) {
 			$this->options['pager-dir'] = self::DEFAULT_DIRECTION;
+		}
+
+		if ( strlen( $this->options['pager-dir'] ) === 4 && $this->options['pager-dir'][3] === 'i' ) {
+			$this->options['pager-inclusive'] = true;
+			$this->options['pager-dir'] = substr( $this->options['pager-dir'], 0, 3 );
 		}
 
 		$indexOptions = array(
@@ -101,6 +110,7 @@ class Pager {
 			'limit' => $numRequested,
 			'offset-dir' => $this->options['pager-dir'],
 			'offset-id' => $this->options['pager-offset'],
+			'offset-inclusive' => $this->options['pager-inclusive'],
 			'offset-elastic' => true,
 		);
 		$offset = $this->options['pager-offset'];
@@ -134,6 +144,9 @@ class Pager {
 
 			// setup offset for next query
 			$offset = $this->storage->serializeOffset( end( $found ), $this->sort );
+
+			// Repeated queries should not be inclusive, we already have the offset row
+			$options['offset-inclusive'] = false;
 
 		} while ( count( $results ) < $numRequested && ++$queries < self::MAX_QUERIES );
 
