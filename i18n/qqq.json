@@ -237,8 +237,6 @@
 	"flow-comment-deleted": "Used as revision comment when the post has been deleted.\n\nSee also:\n* {{msg-mw|Flow-comment-restored}}",
 	"flow-comment-hidden": "Used as revision comment when the post has been hidden.",
 	"flow-comment-moderated": "Used as a revision comment when the post has been oversighted.",
-	"flow-paging-rev": "Label for paging link that shows more recently modified topics.\n\nSee also:\n* {{msg-mw|Flow-paging-fwd}}",
-	"flow-paging-fwd": "Label for paging link that shows less recently modified topics.\n\nSee also:\n* {{msg-mw|Flow-paging-rev}}",
 	"flow-last-modified": "Followed by the timestamp.\n\nParameters:\n* $1 - most significant unit of time since modification rendered by MWTimestamp::getHumanTimestamp",
 	"flow-workflow": "Anchor link text for linking to a workflow.\n{{Identical|Workflow}}",
 	"flow-notification-reply": "Notification text for when a user receives a reply. Parameters:\n* $1 - username of the person who replied\n* $2 - title of the topic\n* $3 - (Unused) title for the Flow board, this parameter is not used for the message at this moment\n* $4 - title for the page that the Flow board is attached to\n* $5 - permanent URL for the post\n{{Related|Flow-notification}}",
