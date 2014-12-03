@@ -193,8 +193,6 @@
 	"flow-comment-deleted": "Comentario eliminado",
 	"flow-comment-hidden": "Comentario oculto",
 	"flow-comment-moderated": "Comentario moderado",
-	"flow-paging-rev": "Más temas recientes",
-	"flow-paging-fwd": "Temas anteriores",
 	"flow-last-modified": "Última modificación hace $1",
 	"flow-workflow": "flujo de trabajo",
 	"flow-notification-reply": "$1 {{GENDER:$1|respondió}} a <span class=\"plainlinks\">[$5 $2]</span> en «$4».",

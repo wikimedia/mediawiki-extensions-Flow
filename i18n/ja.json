@@ -166,8 +166,6 @@
 	"flow-comment-restored": "コメントを復元",
 	"flow-comment-deleted": "コメントを削除",
 	"flow-comment-hidden": "コメントを非表示",
-	"flow-paging-rev": "最近の話題",
-	"flow-paging-fwd": "古い話題",
 	"flow-last-modified": "最終更新 $1",
 	"flow-workflow": "ワークフロー",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 が '''$4''' で{{GENDER:$1|返信しました}}。",

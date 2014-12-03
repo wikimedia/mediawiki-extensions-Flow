@@ -83,7 +83,6 @@
 	"flow-comment-deleted": "Komentarz usunięty",
 	"flow-comment-hidden": "Ukryty komentarz",
 	"flow-comment-moderated": "Komentarz moderowany",
-	"flow-paging-fwd": "Starsze tematy",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|utworzył|utworzyła}}  nowy wątek na stronie '''$3'''.",
 	"flow-notification-mention": "$1 {{GENDER:$1|wspomniał|wspomniała}} o {{GENDER:$5|Tobie}} w {{GENDER:$1|swoim}} <span class=\"plainlinks\">[$2 wpisie]</span> w temacie „$3” na stronie „$4”.",
 	"flow-notification-reply-email-subject": "$1 {{GENDER:$1|odpowiedział|odpowiedziała}} na temat",

@@ -56,8 +56,6 @@
 	"flow-board-history-empty": "Aquest tauler no té actualment cap historial.",
 	"flow-topic-history": "Historial del tema «$1»",
 	"flow-history-pages-topic": "Apareix en el [$1 tauler «$2»]",
-	"flow-paging-rev": "Temes més recents",
-	"flow-paging-fwd": "Temes més antics",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|ha contestat}} a '''$4'''.",
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 i $5 {{PLURAL:$6|més}} han {{GENDER:$1|contestat}} a '''$3'''.",
 	"flow-notification-edit-bundle": "$1 i $5 {{PLURAL:$6|més}} han {{GENDER:$1|modificat}} un <span class=\"plainlinks\">[$4 apunt]</span> de «$2» a «$3».",

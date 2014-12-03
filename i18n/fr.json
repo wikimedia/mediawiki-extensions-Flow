@@ -202,8 +202,6 @@
 	"flow-comment-deleted": "Message supprimé",
 	"flow-comment-hidden": "Message caché",
 	"flow-comment-moderated": "Message soumis à modération",
-	"flow-paging-rev": "Sujets les plus récents",
-	"flow-paging-fwd": "Sujets plus anciens",
 	"flow-last-modified": "Dernière modification : $1",
 	"flow-workflow": "flux de travail",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|a répondu}} sur '''$4'''.",

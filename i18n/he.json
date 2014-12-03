@@ -203,8 +203,6 @@
 	"flow-comment-deleted": "תגובה מחוקה",
 	"flow-comment-hidden": "תגובה מוסתרת",
 	"flow-comment-moderated": "תגובה מפוקחת",
-	"flow-paging-rev": "נושאים חדשים יותר",
-	"flow-paging-fwd": "נושאים ישנים יותר",
 	"flow-last-modified": "שוּנה לאחרונה $1",
 	"flow-workflow": "זרימת עבודה",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|השיב|השיבה}} בדף '''$4'''.",

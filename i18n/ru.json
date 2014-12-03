@@ -193,8 +193,6 @@
 	"flow-comment-deleted": "Удалённый комментарий",
 	"flow-comment-hidden": "Скрытый комментарий",
 	"flow-comment-moderated": "Промодерированный комментарий",
-	"flow-paging-rev": "Более новые темы",
-	"flow-paging-fwd": "Более старые темы",
 	"flow-last-modified": "Последнее изменение около $1",
 	"flow-workflow": "поток работ",
 	"flow-notification-reply": "span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1| ответил|ответила}} на странице '''$4'''.",

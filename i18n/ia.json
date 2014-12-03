@@ -82,8 +82,6 @@
 	"flow-comment-deleted": "Commento delite",
 	"flow-comment-hidden": "Commento celate",
 	"flow-comment-moderated": "Commento moderate",
-	"flow-paging-rev": "Topicos plus recente",
-	"flow-paging-fwd": "Topicos plus vetule",
 	"flow-last-modified": "Ultime modification circa $1",
 	"flow-notification-reply": "$1 {{GENDER:$1|respondeva}} a <span class=\"plainlinks\">[$5 $2]</span> sur \"$4\".",
 	"flow-notification-reply-bundle": "$1 e $5 {{PLURAL:$6|altere|alteres}} {{GENDER:$1|respondeva}} a <span class=\"plainlinks\">[$4 $2]</span> sur \"$3\".",

@@ -99,8 +99,6 @@
 	"flow-comment-restored": "Comentari restablit",
 	"flow-comment-deleted": "Comentari suprimit",
 	"flow-comment-hidden": "Comentari amagat",
-	"flow-paging-rev": "Subjèctes los mai recents",
-	"flow-paging-fwd": "Subjèctes mai ancians",
 	"flow-last-modified": "Darrièr cambiament $1",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|a respondut}} sus '''$4'''.",
 	"flow-notification-edit": "$1 {{GENDER:$1|a modificat}} una <span class=\"plainlinks\">[$5 nòta]</span> sus « $2 » en [[$3|$4]].",

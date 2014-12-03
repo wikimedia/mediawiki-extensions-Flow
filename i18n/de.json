@@ -201,8 +201,6 @@
 	"flow-comment-deleted": "Kommentar gelöscht",
 	"flow-comment-hidden": "Versteckter Kommentar",
 	"flow-comment-moderated": "Kommentar moderiert",
-	"flow-paging-rev": "Mehr aktuelle Themen",
-	"flow-paging-fwd": "Ältere Themen",
 	"flow-last-modified": "Zuletzt geändert $1",
 	"flow-workflow": "workflow",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|antwortete}} auf '''$4'''.",
@@ -348,10 +346,13 @@
 	"flow-post-undo-suppress": "(Unterdrücken rückgängig gemacht)",
 	"flow-importer-lqt-converted-template": "LiquidThreads-Seite nach Flow konvertiert",
 	"flow-importer-lqt-converted-archive-template": "Archiv für konvertierte LiquidThreads-Seite",
+	"flow-importer-wt-converted-template": "Wikitext-Diskussionsseite zu Flow konvertiert",
+	"flow-importer-wt-converted-archive-template": "Archiv für konvertierte Wikitext-Diskussionsseite",
 	"apihelp-flow+edit-header-description": "Bearbeitet die Überschrift eines Themas.",
 	"apihelp-flow+edit-header-param-content": "Inhalt für die Überschrift.",
 	"apihelp-flow+edit-post-description": "Bearbeitet den Inhalt eines Beitrags.",
 	"apihelp-flow+edit-post-param-postId": "Beitragskennung.",
+	"apihelp-flow+edit-post-param-content": "Inhalt für den Beitrag.",
 	"apihelp-flow+edit-title-param-content": "Inhalt für den Titel.",
 	"apihelp-flow+edit-topic-summary-description": "Bearbeitet den Inhalt einer Themenzusammenfassung.",
 	"apihelp-flow+edit-topic-summary-param-summary": "Inhalt für die Zusammenfassung.",
@@ -361,5 +362,7 @@
 	"apihelp-flow+view-topiclist-example-1": "Themen zu [[Talk:Sandbox]] auflisten",
 	"flow-edited": "Bearbeitet",
 	"flow-edited-by": "Bearbeitet von $1",
-	"flow-lqt-redirect-reason": "Eingeschlafenen LiquidThreads-Beitrag zum konvertierten Flow-Beitrag umgeleitet"
+	"flow-lqt-redirect-reason": "Eingeschlafenen LiquidThreads-Beitrag zum konvertierten Flow-Beitrag umgeleitet",
+	"flow-talk-conversion-move-reason": "Konvertierung der Wikitext-Diskussion zu Flow von $1",
+	"flow-talk-conversion-archive-edit-reason": "Wikitext-Diskussion-zu-Flow-Konvertierung"
 }

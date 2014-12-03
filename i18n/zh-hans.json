@@ -215,8 +215,6 @@
 	"flow-comment-deleted": "删除的评论",
 	"flow-comment-hidden": "隐藏的评论",
 	"flow-comment-moderated": "限制的评论",
-	"flow-paging-rev": "更多最近的话题",
-	"flow-paging-fwd": "更旧的话题",
 	"flow-last-modified": "有关$1的最后修改时间",
 	"flow-workflow": "工作流",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1回答了'''$4'''。",

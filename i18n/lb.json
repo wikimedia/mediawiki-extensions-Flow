@@ -116,8 +116,6 @@
 	"flow-comment-deleted": "Geläscht Bemierkung",
 	"flow-comment-hidden": "Verstoppte Bemierkung",
 	"flow-comment-moderated": "Moderéiert Bemierkung",
-	"flow-paging-rev": "Méi rezent Themen",
-	"flow-paging-fwd": "Méi al Themen",
 	"flow-last-modified": "Fir d'lescht geännert ongeféier $1",
 	"flow-workflow": "workflow",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|huet}} een neit Thema iwwer '''$3''' ugeluecht.",

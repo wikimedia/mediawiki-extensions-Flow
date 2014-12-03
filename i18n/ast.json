@@ -148,8 +148,6 @@
 	"flow-comment-deleted": "Comentariu desaniciáu",
 	"flow-comment-hidden": "Comentariu tapecíu",
 	"flow-comment-moderated": "Comentariu moderáu",
-	"flow-paging-rev": "Más asuntos de recién",
-	"flow-paging-fwd": "Asuntos más antiguos",
 	"flow-last-modified": "Últimu cambiu hai como $1",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|contestó}} en '''$4'''.",
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 y {{PLURAL:$6|otru|otros $5}} más {{GENDER:$1|contestaron}} en '''$3'''.",

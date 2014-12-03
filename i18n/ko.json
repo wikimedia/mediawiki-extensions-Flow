@@ -163,8 +163,6 @@
 	"flow-comment-deleted": "삭제된 덧글",
 	"flow-comment-hidden": "표시 안 함으로 설정된 댓글",
 	"flow-comment-moderated": "검토 의견",
-	"flow-paging-rev": "최근 주제 더보기",
-	"flow-paging-fwd": "지난 주제",
 	"flow-last-modified": "$1에 대한 마지막 수정",
 	"flow-workflow": "워크플로우",
 	"flow-notification-reply": "$1 사용자가 <span class=\"plainlinks\">\"$4\"의 $2 주제에 대한 [$5 게시물]</span>에 {{GENDER:$1|답변을 남겼습니다}}.",

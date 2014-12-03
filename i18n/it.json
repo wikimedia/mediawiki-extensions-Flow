@@ -184,8 +184,6 @@
 	"flow-comment-deleted": "Commento cancellato",
 	"flow-comment-hidden": "Commento nascosto",
 	"flow-comment-moderated": "Commento moderato",
-	"flow-paging-rev": "Argomenti più recenti",
-	"flow-paging-fwd": "Argomenti più vecchi",
 	"flow-last-modified": "Ultima modifica $1",
 	"flow-workflow": "flusso di lavoro",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|ha risposto}} su '''$4'''.",

@@ -186,8 +186,6 @@
 	"flow-comment-deleted": "Видалений коментар",
 	"flow-comment-hidden": "Прихований коментар",
 	"flow-comment-moderated": "Модерований коментар",
-	"flow-paging-rev": "Новіші теми",
-	"flow-paging-fwd": "Старіші теми",
 	"flow-last-modified": "Остання зміна про $1",
 	"flow-workflow": "робочий процес",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|відповів|відповіла}} на '''$4'''.",

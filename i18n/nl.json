@@ -194,8 +194,6 @@
 	"flow-comment-deleted": "Verwijderde reactie",
 	"flow-comment-hidden": "Verborgen reactie",
 	"flow-comment-moderated": "Gemodereerde reactie",
-	"flow-paging-rev": "Meer recente onderwerpen",
-	"flow-paging-fwd": "Oudere onderwerpen",
 	"flow-last-modified": "Ongeveer $1 voor het laatst bewerkt",
 	"flow-workflow": "workflow",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 heeft {{GENDER:$1|gereageerd}} op '''$4'''.",

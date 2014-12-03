@@ -201,8 +201,6 @@
 	"flow-comment-deleted": "Избришан коментар",
 	"flow-comment-hidden": "Скриен коментар",
 	"flow-comment-moderated": "Модериран коментар",
-	"flow-paging-rev": "Најнови теми",
-	"flow-paging-fwd": "Постари теми",
 	"flow-last-modified": "Последна измена: $1",
 	"flow-workflow": "работен тек",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|одговори}} на '''$4'''.",

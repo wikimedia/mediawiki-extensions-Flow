@@ -77,8 +77,6 @@
 	"flow-comment-deleted": "Comentario borrado",
 	"flow-comment-hidden": "Comentario agochado",
 	"flow-comment-moderated": "Comentario moderado",
-	"flow-paging-rev": "Fíos máis recentes",
-	"flow-paging-fwd": "Fíos máis vellos",
 	"flow-last-modified": "Última modificación $1",
 	"flow-workflow": "fluxo de traballo",
 	"flow-notification-reply": "$1 {{GENDER:$1|respondeu}} á súa <span class=\"plainlinks\">[$5 mensaxe]</span> de \"$2\" en \"$4\".",

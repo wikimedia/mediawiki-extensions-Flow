@@ -205,8 +205,6 @@
 	"flow-comment-deleted": "Comentário eliminado",
 	"flow-comment-hidden": "Comentário oculto",
 	"flow-comment-moderated": "Comentário moderado",
-	"flow-paging-rev": "Tópicos mais recentes",
-	"flow-paging-fwd": "Tópicos mais antigos",
 	"flow-last-modified": "Modificado pela última vez em $1",
 	"flow-workflow": "fluxo de trabalho",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 \"$2\"]</span><br />$1 {{GENDER:$1|respondeu}} em \"$4\".",

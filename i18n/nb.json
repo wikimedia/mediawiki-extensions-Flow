@@ -180,8 +180,6 @@
 	"flow-comment-deleted": "Slettet kommentar",
 	"flow-comment-hidden": "Skjult kommentar",
 	"flow-comment-moderated": "Moderert melding",
-	"flow-paging-rev": "Mer aktuelle diskusjoner",
-	"flow-paging-fwd": "Eldre diskusjoner",
 	"flow-last-modified": "Sist endret for rundt $1",
 	"flow-workflow": "arbeidsflyt",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|svarte}} på '''$4'''.",

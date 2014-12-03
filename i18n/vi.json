@@ -204,8 +204,6 @@
 	"flow-comment-deleted": "Bình luận đã bị xóa",
 	"flow-comment-hidden": "Bình luận đã bị ẩn",
 	"flow-comment-moderated": "Bài đăng kiểm duyệt",
-	"flow-paging-rev": "Thêm chủ đề gần đây",
-	"flow-paging-fwd": "Chủ đề cũ hơn",
 	"flow-last-modified": "Thay đổi lần cuối cùng vào khoảng $1",
 	"flow-workflow": "luồng làm việc",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1}}đã trả lời tại '''$4'''.",

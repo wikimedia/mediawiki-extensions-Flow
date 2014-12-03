@@ -188,8 +188,6 @@
 	"flow-comment-deleted": "已刪除的評論",
 	"flow-comment-hidden": "隱藏的評論",
 	"flow-comment-moderated": "受管制的評論",
-	"flow-paging-rev": "更多最近的主題",
-	"flow-paging-fwd": "更舊的主題",
 	"flow-last-modified": "上次修改於 $1",
 	"flow-workflow": "工作流程",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 已於 '''$4''' {{GENDER:$1|回應}}。",
