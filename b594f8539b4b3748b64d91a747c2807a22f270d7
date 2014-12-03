@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea06b5a_8343a066",
+        "filename": "includes/Data/Index/FeatureIndex.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-03T17:59:38Z",
+      "side": 1,
+      "message": "I need to look at why it\u0027s changing the limit for one, not the other.  It seems the limit should maybe be the same, but the result set shifted.\n\nThis is also different from https://gerrit.wikimedia.org/r/#/c/177144/1/includes/Data/Index/FeatureIndex.php in \u0027rev\u0027; the latter seems right, but I\u0027m not sure.",
+      "revId": "b594f8539b4b3748b64d91a747c2807a22f270d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
