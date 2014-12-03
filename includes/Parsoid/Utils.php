@@ -4,14 +4,17 @@ namespace Flow\Parsoid;
 
 use DOMDocument;
 use DOMNode;
+use FauxResponse;
+use Flow\Container;
+use Flow\Exception\FlowException;
+use Flow\Exception\InvalidDataException;
 use Flow\Exception\NoParsoidException;
+use Flow\Exception\WikitextException;
 use Language;
 use OutputPage;
 use RequestContext;
 use Title;
 use User;
-use Flow\Exception\WikitextException;
-use Flow\Exception\InvalidDataException;
 
 abstract class Utils {
 	/**
@@ -102,7 +105,13 @@ abstract class Utils {
 			)
 		);
 		if ( $parsoidForwardCookies && !User::isEveryoneAllowed( 'read' ) ) {
-			$request->setHeader( 'Cookie', RequestContext::getMain()->getRequest()->getHeader( 'Cookie' ) );
+			if ( PHP_SAPI === 'cli' ) {
+				// From the command line we need to generate a cookie
+				$cookies = self::generateForwardedCookieForCli();
+			} else {
+				$cookies = RequestContext::getMain()->getRequest()->getHeader( 'Cookie' );
+			}
+			$request->setHeader( 'Cookie', $cookies );
 		}
 		$status = $request->execute();
 		if ( !$status->isOK() ) {
@@ -296,5 +305,29 @@ abstract class Utils {
 		}
 
 		return Title::newFromText( $text );
+	}
+
+	public static function generateForwardedCookieForCli() {
+		$user = Container::get( 'occupation_controller' )->getTalkpageManager();
+		// This takes a request object, but doesnt set the cookies against it.
+		// patch at https://gerrit.wikimedia.org/r/177403
+		$user->setCookies();
+		$response = RequestContext::getMain()->getRequest()->response();
+		if ( !$response instanceof FauxResponse ) {
+			throw new FlowException( 'Expected a FauxResponse in CLI environment' );
+		}
+		// FauxResponse does not yet expose the full set of cookies
+		$reflProp = new \ReflectionProperty( $response, 'cookies' );
+		$reflProp->setAccessible( true );
+		$cookies = $reflProp->getValue( $response );
+
+		// now we need to convert the array into the cookie format of
+		// foo=bar; baz=bang
+		$output = array();
+		foreach ( $cookies as $key => $value ) {
+			$output[] = "$key=$value";
+		}
+
+		return implode( '; ', $output );
 	}
 }
