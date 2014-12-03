@@ -70,6 +70,10 @@ class TalkpageManager implements OccupationController {
 			return false;
 		}
 
+		if ( $title->isRedirect() ) {
+			return false;
+		}
+
 		if ( in_array( $title->getPrefixedText(), $this->occupiedPages ) ) {
 			return true;
 		}
