@@ -233,8 +233,6 @@
 	"flow-comment-deleted": "Deleted comment",
 	"flow-comment-hidden": "Hidden comment",
 	"flow-comment-moderated": "Moderated comment",
-	"flow-paging-rev": "More recent topics",
-	"flow-paging-fwd": "Older topics",
 	"flow-last-modified": "Last modified about $1",
 	"flow-workflow": "workflow",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|responded}} on '''$4'''.",
