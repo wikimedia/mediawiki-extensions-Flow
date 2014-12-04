@@ -346,6 +346,8 @@
 	"flow-post-undo-suppress": "(откажи го притајувањето)",
 	"flow-importer-lqt-converted-template": "LQT-страница пертворена во Тек",
 	"flow-importer-lqt-converted-archive-template": "Архив за претворената LQT-страница",
+	"flow-importer-wt-converted-template": "Бикитекстуална страница за разговор што треба да се претвори во Тек",
+	"flow-importer-wt-converted-archive-template": "Архива за претворени викитекстуални страници за разговор",
 	"apihelp-flow-description": "Овозможува вршење дејства брз страници со Тек.",
 	"apihelp-flow-param-submodule": "Подмодулот на Тек што треба да се повика.",
 	"apihelp-flow-param-page": "Врз која страница да се изврши дејството.",
@@ -426,5 +428,7 @@
 	"apihelp-query+flowinfo-example-1": "Дај информации за текот на [[Talk:Sandbox]], [[Main Page|Главната страница]] и [[Talk:Flow]]",
 	"flow-edited": "Изменета",
 	"flow-edited-by": "Изменил: $1",
-	"flow-lqt-redirect-reason": "Пренасочување на повлечена објава во LiquidThreads кон нејзината претворана објава во Тек"
+	"flow-lqt-redirect-reason": "Пренасочување на повлечена објава во LiquidThreads кон нејзината претворана објава во Тек",
+	"flow-talk-conversion-move-reason": "Претворање на викитекстуален разговор во Тек од $1",
+	"flow-talk-conversion-archive-edit-reason": "Претворање на викитекстуален развговор во Тек"
 }

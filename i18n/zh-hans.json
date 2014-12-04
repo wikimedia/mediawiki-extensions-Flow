@@ -360,6 +360,8 @@
 	"flow-post-undo-suppress": "（撤销锁定）",
 	"flow-importer-lqt-converted-template": "LQT页面已转换为Flow",
 	"flow-importer-lqt-converted-archive-template": "已转换的LQT页面的存档",
+	"flow-importer-wt-converted-template": "从Wiki文本讨论页转换为Flow页面",
+	"flow-importer-wt-converted-archive-template": "来自已转换的wiki文本讨论页的存档",
 	"apihelp-flow-description": "允许对Flow页面的操作。",
 	"apihelp-flow-param-submodule": "要调用的Flow子模块。",
 	"apihelp-flow-param-page": "要进行操作的页面。",
@@ -433,5 +435,7 @@
 	"apihelp-query+flowinfo-example-1": "获取有关[[Talk:Sandbox]]、[[Main Page]]和[[Talk:Flow]]的Flow信息",
 	"flow-edited": "已编辑",
 	"flow-edited-by": "由$1编辑",
-	"flow-lqt-redirect-reason": "重定向停用的LiquidThreads帖子至转换的Flow帖子"
+	"flow-lqt-redirect-reason": "重定向停用的LiquidThreads帖子至转换的Flow帖子",
+	"flow-talk-conversion-move-reason": "将$1从wiki文本讨论页转换为Flow页面",
+	"flow-talk-conversion-archive-edit-reason": "Wiki文本讨论页至Flow转换"
 }
