@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e9df725_81067ed0",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-12-04T23:07:47Z",
+      "side": 1,
+      "message": "This returns Deferred in the failure case, and Promise in the success case.  Promise is a strict sub-set of deferred,  its a bit of an inconsistency, but i don\u0027t know how much it matters.\n\nSince Promise is a strict subset, should we mark everything as returning Promises? Note i havn\u0027t looked at the rest of the patch yet so i\u0027m not sure if returning promise is valid in all cases we expect these to return deferred\u0027s.",
+      "revId": "01b9bdd10618fe72addcdd021979cf5c2f6bbd25",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e9df725_01402ea7",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-12-04T23:07:47Z",
+      "side": 1,
+      "message": "it appears this return value is never used?  For consistency its probably fine though.",
+      "revId": "01b9bdd10618fe72addcdd021979cf5c2f6bbd25",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
