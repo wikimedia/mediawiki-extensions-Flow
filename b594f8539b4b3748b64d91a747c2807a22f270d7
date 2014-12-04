@@ -16,6 +16,24 @@
       "revId": "b594f8539b4b3748b64d91a747c2807a22f270d7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea06b5a_14a5819a",
+        "filename": "includes/Data/Index/FeatureIndex.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-12-04T00:44:38Z",
+      "side": 1,
+      "message": "I have now added some tests for this, and adjusted it(you were right this was incorrect) so it passes the tests as well. The resulting code is still a little hairy, but not sure how to fix yet.",
+      "parentUuid": "4ea06b5a_8343a066",
+      "revId": "b594f8539b4b3748b64d91a747c2807a22f270d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
