@@ -35,12 +35,12 @@
 	}
 }
 
-.flow-topic-title {
+// needs extra specificity to override `div#content h2` from vector
+div#content .flow-topic-title {
 	padding: 0;
 	border-bottom: none;
-	// @todo: !important needed to override default Vector styles on div#content h2
-	margin: 0 2.5em .15em 0 !important;
-	font-family: sans-serif !important;
+	margin: 0 2.5em .15em 0;
+	font-family: sans-serif;
 	font-weight: bold;
 	word-break: break-word;
 	word-wrap: break-word;
