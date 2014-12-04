@@ -7,11 +7,12 @@
 	border-top: 1px dotted @colorGrayLight;
 	margin-top: .33em;
 
-	> p {
+	// Needs increased specificity to override `div#content p`
+	div#content & > p {
 		font-style: italic;
 		&:last-of-type {
 			// Remove margin-bottom from last p in summary, to remove excess bottom whitespace
-			margin-bottom: 0 !important; // @todo find a better way to override div#content p
+			margin-bottom: 0;
 		}
 	}
 }
