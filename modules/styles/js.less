@@ -22,9 +22,9 @@
 	}
 
 	// API interaction indicator
-	.flow-api-inprogress {
+	div#content div#bodyContent & .flow-api-inprogress {
 		opacity: 0.5;
-		cursor: wait !important;
+		cursor: wait;
 	}
 
 	// A preview version of a given block
@@ -34,8 +34,8 @@
 		color: @colorRegressive;
 	}
 
-	.flow-preview-target-hidden {
-		display: none !important;
+	div#content div#bodyContent & .flow-preview-target-hidden {
+		display: none;
 	}
 
 	// With JS, hide .flow-nojs & display .flow-js elements
