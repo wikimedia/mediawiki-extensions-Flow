@@ -77,8 +77,14 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 		$om = Container::get( 'storage' )->getStorage( 'PostRevision' );
 		$objs = $ids = array();
 		foreach ( $rows as $row ) {
-			$ids[] = $row->tree_rev_id;
-			$objs[] = $om->get( UUID::create( $row->tree_rev_id ) );
+			$id = UUID::create( $row->tree_rev_id );
+			$found = $om->get( $id );
+			if ( $found ) {
+				$ids[] = $row->tree_rev_id;
+				$objs[] = $found;
+			} else {
+				$this->error( __METHOD__ . ': Failed loading Flow\Model\PostRevision: ' . $id->getAlphadecimal() );
+			}
 		}
 		if ( !$ids ) {
 			return null;
@@ -113,12 +119,17 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 
 		$ids = $objs = array();
 		foreach ( $rows as $row ) {
-			$ids[] = $row->rev_id;
-
-			$storage = $this->storage->getStorage( self::$types[$row->rev_type] );
-			$obj = $storage->get( UUID::create( $row->rev_id ) );
-			$storage->merge( $obj );
-			$objs[] = $obj;
+			$id = UUID::create( $row->rev_id );
+			$type = self::$types[$row->rev_id];
+			$om = $this->storage->getStorage( $type );
+			$obj = $om->get( $id );
+			if ( $found ) {
+				$om->merge( $obj );
+				$ids[] = $row->rev_id;
+				$objs[] = $obj;
+			} else {
+				$this->error( __METHOD__ . ": Failed loading $type: " . $id->getAlphadecimal() );
+			}
 		}
 		if ( !$ids ) {
 			return null;
