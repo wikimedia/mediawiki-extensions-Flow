@@ -36,12 +36,13 @@ abstract class Utils {
 		$section = new \ProfileSection( __METHOD__ );
 
 		try {
-			$res = self::parsoid( $from, $to, $content, $title );
+			self::parsoidConfig();
 		} catch ( NoParsoidException $e ) {
-			// ... otherwise default to parser
-			$res = self::parser( $from, $to, $content, $title );
+			// If we have no parsoid config, fallback to the parser.
+			return self::parser( $from, $to, $content, $title );
 		}
-		return $res;
+
+		return self::parsoid( $from, $to, $content, $title );
 	}
 
 	/**
@@ -82,9 +83,6 @@ abstract class Utils {
 	 */
 	protected static function parsoid( $from, $to, $content, Title $title ) {
 		list( $parsoidURL, $parsoidPrefix, $parsoidTimeout, $parsoidForwardCookies ) = self::parsoidConfig();
-		if ( !isset( $parsoidURL ) || !$parsoidURL ) {
-			throw new NoParsoidException( 'Flow Parsoid configuration is unavailable', 'process-wikitext' );
-		}
 
 		if ( $from == 'html' ) {
 			$from = 'html';
@@ -179,12 +177,17 @@ abstract class Utils {
 	 * back on VisualEditor's Parsoid setup.
 	 *
 	 * @return array Parsoid config, in array(URL, prefix, timeout, forwardCookies) format
+	 * @throws NoParsoidException When parsoid is unconfigured
 	 */
 	protected static function parsoidConfig() {
 		global
 			$wgFlowParsoidURL, $wgFlowParsoidPrefix, $wgFlowParsoidTimeout, $wgFlowParsoidForwardCookies,
 			$wgVisualEditorParsoidURL, $wgVisualEditorParsoidPrefix, $wgVisualEditorParsoidTimeout,
 			$wgVisualEditorParsoidForwardCookies;
+
+		if ( !$wgFlowParsoidURL && !$wgVisualEditorParsoidURL ) {
+			throw new NoParsoidException( 'Flow Parsoid configuration is unavailable', 'process-wikitext' );
+		}
 
 		return array(
 			$wgFlowParsoidURL ?: $wgVisualEditorParsoidURL,
@@ -259,12 +262,15 @@ abstract class Utils {
 	 */
 	public static function onFlowAddModules( OutputPage $out ) {
 
-		list( $parsoidURL ) = self::parsoidConfig();
-		if ( isset( $parsoidURL ) && $parsoidURL ) {
+		try {
+			self::parsoidConfig();
 			// XXX We only need the Parsoid CSS if some content being
 			// rendered has getContentFormat() === 'html'.
 			$out->addModules( 'mediawiki.skinning.content.parsoid' );
+		} catch ( NoParsoidException $e ) {
+			// The module is only necessary when we are using parsoid.
 		}
+
 		return true;
 	}
 
