@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e9df725_c18b26c3",
+        "filename": "Resources.php",
+        "patchSetId": 19
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-12-05T01:10:09Z",
+      "side": 1,
+      "message": "could we add a comment referring to where this comes from?",
+      "revId": "5ca1a0e74a46bfd2e845743e3a2ea38b018d7388",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e9df725_24b21893",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-12-05T01:10:09Z",
+      "side": 1,
+      "message": "probably doesn\u0027t matter, but don\u0027t we already have this data from two lines above?\n\n    $deferred \u003d data[\"flow-interactive-handler-deferred\"] || $.Deferred().resolve()",
+      "revId": "5ca1a0e74a46bfd2e845743e3a2ea38b018d7388",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
