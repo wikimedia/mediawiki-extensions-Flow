@@ -45,5 +45,9 @@
 	"flow-topic-collapsed-full": "Paparan terlipat",
 	"flow-topic-complete": "Paparan penuh",
 	"flow-topic-html-title": "$1 di $2",
-	"apihelp-flow+reply-param-content": "Kandungan untuk pos baru."
+	"flow-importer-wt-converted-template": "Laman perbincangan Wikiteks ditukarkan ke Flow",
+	"flow-importer-wt-converted-archive-template": "Arkib untuk laman perbincangan wikiteks yang ditukarkan",
+	"apihelp-flow+reply-param-content": "Kandungan untuk pos baru.",
+	"flow-talk-conversion-move-reason": "Penukaran perbincangan Wikiteks ke Flow dari $1",
+	"flow-talk-conversion-archive-edit-reason": "Penukaran perbincangan Wikiteks ke Flow"
 }
