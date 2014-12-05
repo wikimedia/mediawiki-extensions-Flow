@@ -33,12 +33,13 @@ abstract class Utils {
 		$section = new \ProfileSection( __METHOD__ );
 
 		try {
-			$res = self::parsoid( $from, $to, $content, $title );
+			self::parsoidConfig();
 		} catch ( NoParsoidException $e ) {
-			// ... otherwise default to parser
-			$res = self::parser( $from, $to, $content, $title );
+			// If we have no parsoid config, fallback to the parser.
+			return self::parser( $from, $to, $content, $title );
 		}
-		return $res;
+
+		return self::parsoid( $from, $to, $content, $title );
 	}
 
 	/**
