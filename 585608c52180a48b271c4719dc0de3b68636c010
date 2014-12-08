@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e9df725_818bcc1f",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-12-08T13:43:17Z",
+      "side": 1,
+      "message": "See comment on patchset 1!",
+      "revId": "585608c52180a48b271c4719dc0de3b68636c010",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
