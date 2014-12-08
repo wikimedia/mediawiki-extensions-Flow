@@ -265,7 +265,7 @@ abstract class AbstractRevision {
 			$obj->moderationTimestamp = null;
 		} else {
 			$obj->moderatedBy = UserTuple::newFromUser( $user );
-			$obj->moderationTimestamp = wfTimestampNow();
+			$obj->moderationTimestamp = $obj->revId->getTimestamp();
 		}
 
 		return $obj;
