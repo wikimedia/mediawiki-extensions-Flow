@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e9df725_a1b84875",
+        "filename": "modules/styles/common.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-12-08T15:25:51Z",
+      "side": 1,
+      "message": "This doesn\u0027t make sense",
+      "revId": "1956272d7442280279b4fd012c88c3091cda7a2c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
