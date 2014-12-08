@@ -169,10 +169,14 @@ class Converter {
 	}
 
 	/**
-	 * Looks in the logging table to see if the provided title was moved
+	 * Looks in the logging table to see if the provided title was last moved
 	 * there by the user provided in the constructor. The provided user should
 	 * be a system user for this task, as this assumes that user has never
 	 * moved these pages outside the conversion process.
+	 *
+	 * This only considers the most recent move and not prior moves.  This allows
+	 * for edge cases such as starting an import, canceling it, and manually
+	 * reverting the move by a normal user.
 	 *
 	 * @param Title $title
 	 * @return Title|null
@@ -180,12 +184,11 @@ class Converter {
 	protected function getPageMovedFrom( Title $title ) {
 		$row = $this->dbr->selectRow(
 			array( 'logging', 'page' ),
-			array( 'log_namespace', 'log_title' ),
+			array( 'log_namespace', 'log_title', 'log_user' ),
 			array(
 				'page_namespace' => $title->getNamespace(),
 				'page_title' => $title->getDBkey(),
 				'log_page = page_id',
-				'log_user' => $this->user->getId(),
 				'log_type' => 'move',
 			),
 			__METHOD__,
@@ -195,11 +198,17 @@ class Converter {
 			)
 		);
 
-		if ( $row ) {
-			return Title::makeTitle( $row->log_namespace, $row->log_title );
-		} else {
+		// The page has never been moved
+		if ( !$row ) {
 			return null;
 		}
+
+		// The most recent move was not by our user
+		if ( $row->log_user != $this->user->getId() ) {
+			return null;
+		}
+
+		return Title::makeTitle( $row->log_namespace, $row->log_title );
 	}
 
 	/**
