@@ -295,4 +295,4 @@ $wgFlowServerCompileTemplates = false;
 $wgFlowParsoidForwardCookies = false;
 
 // Enable/disable event logging
-$wgFlowEventLogging = true;
+$wgFlowEventLogging = false;
