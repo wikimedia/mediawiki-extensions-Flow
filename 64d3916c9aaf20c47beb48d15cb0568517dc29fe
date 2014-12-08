@@ -16,6 +16,24 @@
       "revId": "64d3916c9aaf20c47beb48d15cb0568517dc29fe",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e9df725_c191d453",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-12-08T13:42:52Z",
+      "side": 1,
+      "message": "So, I wanted to change this and store a clone of the object in $this-\u003eloaded, instead of the row. Like:\n\n    $this-\u003eloaded[$object] \u003d clone $object;\n\nI could then defer the -\u003etoStorageRow part until we actually need the row.\n\nHowever, CachingObjectMapper::toStorageRow \u0026 ::fromStorageRow have some checks in place to ensure the data that has gone in there are the same objects.\n\nI could either delete those checks for duplicates (probably undesired - kinda defeats the point of CachingObjectMapper) or add some argument, or whatever other workaround, to allow cloned objects to be passed in regardless (but that just seems nasty)\n\nSee follow-up patch https://gerrit.wikimedia.org/r/#/c/178193/\n\nIdeas? I\u0027m considering just doing the -\u003etoStorageRow here anyway, the computational overhead isn\u0027t *that* big :p",
+      "parentUuid": "4ea06b5a_ae634e3a",
+      "revId": "64d3916c9aaf20c47beb48d15cb0568517dc29fe",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
