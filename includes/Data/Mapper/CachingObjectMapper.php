@@ -72,6 +72,8 @@ class CachingObjectMapper implements ObjectMapper {
 			// first time this id has been seen
 			$this->loaded[$pk] = $object;
 		} elseif ( $this->loaded[$pk] !== $object ) {
+			// @todo: duplicates may be ok...
+
 			// loaded object of this id is not same object
 			$class = get_class( $object );
 			$id = json_encode( $pk );
@@ -91,6 +93,8 @@ class CachingObjectMapper implements ObjectMapper {
 			// provide previously loaded object
 			return $this->loaded[$pk];
 		} elseif ( $object !== $this->loaded[$pk] ) {
+			// @todo: duplicates may be ok...
+
 			// loaded object of this id is not same object
 			$class = get_class( $object );
 			$id = json_encode( $pk );

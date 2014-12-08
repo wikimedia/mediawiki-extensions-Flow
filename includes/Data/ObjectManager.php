@@ -109,7 +109,7 @@ class ObjectManager extends ObjectLocator {
 	 */
 	public function merge( $object ) {
 		if ( !isset( $this->loaded[$object] ) ) {
-			$this->loaded[$object] = $this->mapper->toStorageRow( $object );
+			$this->loaded[$object] = $object;
 		}
 	}
 
@@ -122,7 +122,7 @@ class ObjectManager extends ObjectLocator {
 		if ( !isset( $this->loaded[$object] ) ) {
 			throw new FlowException( 'Object was not loaded through this object manager, use ObjectManager::merge if necessary' );
 		}
-		$row = $this->loaded[$object];
+		$row = $this->mapper->toStorageRow( $this->loaded[$object] );
 		foreach ( $this->indexes as $index ) {
 			$index->cachePurge( $object, $row );
 		}
@@ -179,7 +179,7 @@ class ObjectManager extends ObjectLocator {
 		if ( !isset( $this->loaded[$object] ) ) {
 			throw new FlowException( 'Object was not loaded through this object manager, use ObjectManager::merge if necessary' );
 		}
-		$old = $this->loaded[$object];
+		$old = $this->mapper->toStorageRow( $this->loaded[$object] );
 		$this->storage->remove( $old );
 		foreach ( $this->lifecycleHandlers as $handler ) {
 			$handler->onAfterRemove( $object, $old, $metadata );
@@ -209,7 +209,7 @@ class ObjectManager extends ObjectLocator {
 	 */
 	public function serializeOffset( $object, array $sortFields ) {
 		$offsetFields = array();
-		// @todo $row = $this->loaded[$object] ?
+		// @todo $row = $this->mapper->toStorageRow( $this->loaded[$object] ) ?
 		$row = $this->mapper->toStorageRow( $object );
 		// @todo Why not self::splitFromRow?
 		foreach( $sortFields as $field ) {
@@ -258,7 +258,7 @@ class ObjectManager extends ObjectLocator {
 				$handler->onAfterInsert( $object, $stored, $metadata );
 			}
 
-			$this->loaded[$object] = $stored;
+			$this->loaded[$object] = clone $object;
 		}
 	}
 
@@ -282,7 +282,7 @@ class ObjectManager extends ObjectLocator {
 	 * @param array $metadata
 	 */
 	protected function updateSingle( $object, array $metadata ) {
-		$old = $this->loaded[$object];
+		$old = $this->mapper->toStorageRow( $this->loaded[$object] );
 		$new = $this->mapper->toStorageRow( $object );
 		if ( self::arrayEquals( $old, $new ) ) {
 			return;
@@ -291,7 +291,7 @@ class ObjectManager extends ObjectLocator {
 		foreach ( $this->lifecycleHandlers as $handler ) {
 			$handler->onAfterUpdate( $object, $old, $new, $metadata );
 		}
-		$this->loaded[$object] = $new;
+		$this->loaded[$object] = clone $object;
 	}
 
 	/**
@@ -301,14 +301,16 @@ class ObjectManager extends ObjectLocator {
 		$object = parent::load( $row );
 
 		/*
-		 * We already have $row, but in $this->loaded, we'll want a copy that
-		 * has been through ObjectMapper. This value will be used when updating
-		 * data, and differences will be calculated. We want to make sure that
-		 * data type differences cause no false positives, like $row containing
-		 * strings, & the new row has integers with the same value.
+		 * Save a copy (instead of reference) of this object so we can derive
+		 * the DB row data from it when we need to update.
+		 * We could just as well save the $row here. However, we'll want to
+		 * run it through $this->mapper->toStorageRow first to regenerate
+		 * valid DB data: update differences will be calculated from it & we
+		 * want to make sure that data type differences cause no false
+		 * positives, like $row containing strings, & the new row has integers
+		 * with the same value.
 		 */
-		$row = $this->mapper->toStorageRow( $object );
-		$this->loaded[$object] = $row;
+		$this->loaded[$object] = clone $object;
 
 		return $object;
 	}
