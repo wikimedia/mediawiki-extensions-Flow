@@ -307,11 +307,14 @@ abstract class Utils {
 		return Title::newFromText( $text );
 	}
 
+	// @todo move into FauxRequest
 	public static function generateForwardedCookieForCli() {
+		global $wgCookiePrefix;
+
 		$user = Container::get( 'occupation_controller' )->getTalkpageManager();
 		// This takes a request object, but doesnt set the cookies against it.
 		// patch at https://gerrit.wikimedia.org/r/177403
-		$user->setCookies();
+		$user->setCookies( null, null, /* rememberMe */ true );
 		$response = RequestContext::getMain()->getRequest()->response();
 		if ( !$response instanceof FauxResponse ) {
 			throw new FlowException( 'Expected a FauxResponse in CLI environment' );
@@ -325,7 +328,7 @@ abstract class Utils {
 		// foo=bar; baz=bang
 		$output = array();
 		foreach ( $cookies as $key => $value ) {
-			$output[] = "$key=$value";
+			$output[] = "$wgCookiePrefix$key=$value";
 		}
 
 		return implode( '; ', $output );
