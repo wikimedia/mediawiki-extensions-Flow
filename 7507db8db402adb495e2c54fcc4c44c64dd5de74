@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e9df725_417dc416",
+        "filename": "includes/Data/Mapper/CachingObjectMapper.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-12-08T13:43:51Z",
+      "side": 1,
+      "message": "See comments on https://gerrit.wikimedia.org/r/#/c/175694/1/includes/Data/ObjectManager.php",
+      "revId": "7507db8db402adb495e2c54fcc4c44c64dd5de74",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
