@@ -3,13 +3,12 @@
 namespace Flow\Import\Wikitext;
 
 use ArrayIterator;
-use DateTime;
-use DateTimeZone;
 use FlowHooks;
 use Flow\Exception\FlowException;
 use Flow\Import\Plain\ImportHeader;
 use Flow\Import\Plain\ObjectRevision;
 use Flow\Import\IImportSource;
+use MWTimestamp;
 use Parser;
 use ParserOptions;
 use Revision;
@@ -62,10 +61,9 @@ class ImportSource implements IImportSource {
 		}
 
 		$template = wfMessage( 'flow-importer-wt-converted-template' )->inContentLanguage()->plain();
-		$now = new DateTime( "now", new DateTimeZone( "GMT" ) );
 		$arguments = implode( '|', array(
 			'from=' . $this->title->getPrefixedText(),
-			'date=' . $now->format( 'Y-m-d' ),
+			'date=' . MWTimestamp::getInstance()->timestamp->format( 'Y-m-d' ),
 		) );
 		$content .= "\n\n{{{$template}|$arguments}}";
 
