@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e9df725_fc435341",
+        "filename": "includes/Import/Wikitext/ImportSource.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-12-08T15:46:26Z",
+      "side": 1,
+      "message": "use MWTimestamp",
+      "revId": "a0cc1b5f2b40bf9493d3811e4eda604b216ee48d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
