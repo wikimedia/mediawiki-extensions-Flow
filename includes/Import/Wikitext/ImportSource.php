@@ -64,7 +64,7 @@ class ImportSource implements IImportSource {
 		$template = wfMessage( 'flow-importer-wt-converted-template' )->inContentLanguage()->plain();
 		$now = new DateTime( "now", new DateTimeZone( "GMT" ) );
 		$arguments = implode( '|', array(
-			'from=' . $this->title->getPrefixedText(),
+			'archive=' . $this->title->getPrefixedText(),
 			'date=' . $now->format( 'Y-m-d' ),
 		) );
 		$content .= "\n\n{{{$template}|$arguments}}";
