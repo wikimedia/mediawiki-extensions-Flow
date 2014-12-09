@@ -697,6 +697,7 @@
 	 */
 	function flowEventsMixinCompressTextarea( $textarea ) {
 		$textarea.addClass( 'flow-input-compressed' );
+		mw.flow.editor.destroy( $textarea );
 	}
 	FlowComponentEventsMixin.eventHandlers.compressTextarea = flowEventsMixinCompressTextarea;
 
@@ -757,6 +758,7 @@
 	 */
 	function flowEventsMixinexpandTextarea( $textarea ) {
 		$textarea.removeClass( 'flow-input-compressed' );
+		mw.flow.editor.load( $textarea, $textarea.val(), 'wikitext' );
 	}
 	FlowComponentEventsMixin.eventHandlers.expandTextarea = flowEventsMixinexpandTextarea;
 
@@ -769,7 +771,7 @@
 		var flowComponent = this;
 
 		mw.loader.using( 'ext.flow.editor', function() {
-			var $editors = $container.find( 'textarea' );
+			var $editors = $container.find( 'textarea:not(.flow-input-compressed)' );
 
 			$editors.each( function() {
 				var $editor = $( this );
