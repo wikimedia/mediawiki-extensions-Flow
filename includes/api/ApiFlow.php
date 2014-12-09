@@ -95,7 +95,11 @@ class ApiFlow extends ApiBase {
 		/** @var Flow\TalkpageManager $controller */
 		$controller = Container::get( 'occupation_controller' );
 		if ( !$controller->isTalkpageOccupied( $page ) ) {
-			$this->dieUsage( 'Page provided does not have Flow enabled', 'invalid-page' );
+			if ( $controller->isCreationAllowed( $page, $this->getUser() ) ) {
+
+			} else {
+				$this->dieUsage( 'Page provided does not have Flow enabled', 'invalid-page' );
+			}
 		}
 
 		return $page;

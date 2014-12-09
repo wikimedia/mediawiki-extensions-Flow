@@ -27,6 +27,14 @@ interface OccupationController {
 	public function ensureFlowRevision( Article $title, Workflow $workflow );
 
 	/**
+	 * @param Title $title
+	 * @param User $user
+	 * @return bool Returns true when the provided user has the rights to
+	 *  convert $title from whatever it is now to a flow board.
+	 */
+	public function isCreationAllowed( $title, $user );
+
+	/**
 	 * Gives a user object used to manage talk pages
 	 *
 	 * @return User User to manage talkpages
@@ -91,12 +99,19 @@ class TalkpageManager implements OccupationController {
 
 	/**
 	 * When a page is taken over by Flow, add a revision.
+	 *
 	 * First, it provides a clearer history should Flow be disabled again later,
 	 * and a descriptive message when people attempt to use regular API to fetch
 	 * data for this "Page", which will no longer contain any useful content,
 	 * since Flow has taken over.
+	 *
 	 * Also: Parsoid performs an API call to fetch page information, so we need
 	 * to make sure a page actually exists ;)
+	 *
+	 * This method does not do any security checks regarding content model changes
+	 * or the like.  Those happen much earlier in the request and should be checked
+	 * before even attempting to create revisions which, when written to the database,
+	 * trigger this method through the OccupationListener.
 	 *
 	 * @param \Article $article
 	 * @param Workflow $workflow
@@ -105,16 +120,12 @@ class TalkpageManager implements OccupationController {
 	 */
 	public function ensureFlowRevision( Article $article, Workflow $workflow ) {
 		$title = $article->getTitle();
-		if ( !$this->isTalkpageOccupied( $title ) ) {
-			throw new InvalidInputException( 'Requested article is not Flow enabled', 'invalid-input' );
-		}
 
 		// Break loops (because doEditContent requires rendering, which will load the workflow, which will call this function)
 		static $doing = false;
 		if ( $doing ) {
 			return null;
 		}
-
 
 		// Comment to add to the Revision to indicate Flow taking over
 		$comment = '/* Taken over by Flow */';
@@ -149,6 +160,29 @@ class TalkpageManager implements OccupationController {
 		}
 
 		return null;
+	}
+
+	public function isCreationAllowed( $title, $user ) {
+		global $wgContentHandlerUseDB;
+
+		// Arbitrary pages can only be enabled when content handler
+		// can store that content model in the database.
+		if ( !$wgContentHandlerUseDB ) {
+			return false;
+		}
+
+		// Only allow converting a non-existant page to flow
+		if ( $title->exists() ) {
+			return false;
+		}
+
+		// User must have rights to change a page from one content model
+		// to another.  They must also be allowed to create a flow board.
+		if ( $user->isAllowedAll( 'editcontentmodel', 'flow-create-board' ) ) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
