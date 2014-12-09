@@ -43,7 +43,7 @@ class ImportSourceTest extends \MediaWikiTestCase {
 		$revision = reset( $revisions );
 		$this->assertInstanceOf( 'Flow\Import\IObjectRevision', $revision );
 		$this->assertEquals(
-			"This is some content\n\n{{Wikitext talk page converted to Flow|from=Main Page|date=$date}}",
+			"This is some content\n\n{{Wikitext talk page converted to Flow|archive=Main Page|date=$date}}",
 			$revision->getText()
 		);
 	}

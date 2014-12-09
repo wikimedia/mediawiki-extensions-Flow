@@ -62,7 +62,7 @@ class ImportSource implements IImportSource {
 
 		$template = wfMessage( 'flow-importer-wt-converted-template' )->inContentLanguage()->plain();
 		$arguments = implode( '|', array(
-			'from=' . $this->title->getPrefixedText(),
+			'archive=' . $this->title->getPrefixedText(),
 			'date=' . MWTimestamp::getInstance()->timestamp->format( 'Y-m-d' ),
 		) );
 		$content .= "\n\n{{{$template}|$arguments}}";
