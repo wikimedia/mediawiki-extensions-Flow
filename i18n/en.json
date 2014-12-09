@@ -467,5 +467,8 @@
 	"flow-edited-by": "Edited by $1",
 	"flow-lqt-redirect-reason": "Redirecting retired LiquidThreads post to its converted Flow post",
 	"flow-talk-conversion-move-reason": "Conversion of wikitext talk to Flow from $1",
-	"flow-talk-conversion-archive-edit-reason": "Wikitext talk to Flow conversion"
+	"flow-talk-conversion-archive-edit-reason": "Wikitext talk to Flow conversion",
+	"group-flow-bot": "Flow bot",
+	"group-flow-bot-member": "Flow bot",
+	"grouppage-flow-bot": "Project:Flow bot"
 }
