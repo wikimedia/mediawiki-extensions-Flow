@@ -95,7 +95,12 @@ class ApiFlow extends ApiBase {
 		/** @var Flow\TalkpageManager $controller */
 		$controller = Container::get( 'occupation_controller' );
 		if ( !$controller->isTalkpageOccupied( $page ) ) {
-			$this->dieUsage( 'Page provided does not have Flow enabled', 'invalid-page' );
+			// just check for permissions, nothing else to do. if the commit
+			// is successfull the OccupationListener will see the new revision
+			// and put the flow board in place.
+			if ( !$controller->isCreationAllowed( $page, $this->getUser() ) ) {
+				$this->dieUsage( 'Page provided does not have Flow enabled', 'invalid-page' );
+			}
 		}
 
 		return $page;
