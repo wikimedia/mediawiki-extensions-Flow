@@ -34,6 +34,24 @@
       "revId": "64d3916c9aaf20c47beb48d15cb0568517dc29fe",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e9df725_3678f7ec",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-12-09T18:13:14Z",
+      "side": 1,
+      "message": "How about we add a method to the ObjectMapper interface, we could call it sanitiizeRow() or normalizeRow() or some such.  This method could take the row of \"old\" data as originally retrieved, and round trip it through fromStorageRow/toStorageRow. Since it would be internal to the Mapper you can very simply avoid the internal caching. Should be reasonable to implement just in BasicObjectMapper.",
+      "parentUuid": "2e9df725_c191d453",
+      "revId": "64d3916c9aaf20c47beb48d15cb0568517dc29fe",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
