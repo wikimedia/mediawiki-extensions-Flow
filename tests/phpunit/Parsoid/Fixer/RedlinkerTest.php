@@ -43,12 +43,21 @@ class RedlinkerTest extends PostRevisionTestCase {
 			),
 
 			array(
-				'Link containing UTF-8 content passes through as UTF-8',
+				'Link containing UTF-8 anchor content passes through as UTF-8',
 				// html from parsoid for: [[Foo|test – test]]
 				'<a rel="mw:WikiLink" href="./Foo" data-parsoid=\'{"stx":"piped","a":{"href":"./Foo"},"sa":{"href":"Foo"},"dsr":[0,19,6,2]}\'>test – test</a>',
 				// title text from parsoid
 				// expect string
 				'test – test',
+			),
+
+			array(
+				'Link containing urlencoded UTF-8 href works',
+				// html from parsoid for: [[Viquipèdia:La taverna/Tecnicismes/Arxius_2]]
+				'<a rel="mw:WikiLink" href="./Viquip%C3%A8dia:La_taverna/Tecnicismes/Arxius_2" title="Viquipdia:La taverna/Tecnicismes/Arxius 2" data-parsoid=\'{"stx":"simple","a":{"href":"./Viquipdia:La_taverna/Tecnicismes/Arxius_2"},"sa":{"href":"Viquipdia:La taverna/Tecnicismes/Arxius 2"},"dsr":[59,105,2,2]}\'>Viquipdia:La taverna/Tecnicismes/Arxius 2</a>',
+				// anchor should be transformed to /wiki/Viquip...
+				// annoyingly we don't control Title::exists() so just assume redlink
+				'/w/index.php?title=Viquip%C3%A8dia:La_taverna/Tecnicismes/Arxius_2'
 			),
 		);
 	}

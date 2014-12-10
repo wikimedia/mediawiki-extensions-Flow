@@ -69,7 +69,7 @@ class Redlinker implements Fixer {
 		// @todo Get proper title in here.  doesn't matter currently due to
 		// the html from parsoid using '../../' style of relative
 		// that don't strictly require the title its relative from.
-		$title = Utils::createRelativeTitle( $href, Title::newMainPage() );
+		$title = Utils::createRelativeTitle( urldecode( $href ), Title::newMainPage() );
 		if ( $title !== null ) {
 			$this->batch->addObj( $title );
 		}
@@ -110,7 +110,7 @@ class Redlinker implements Fixer {
 			return;
 		}
 
-		$title = Utils::createRelativeTitle( $href, $title );
+		$title = Utils::createRelativeTitle( urldecode( $href ), $title );
 		if ( $title === null ) {
 			return;
 		}
