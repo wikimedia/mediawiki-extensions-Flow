@@ -54,7 +54,8 @@ all: compiled/flow_block_loop.handlebars.php \
 		compiled/flow_form_buttons.handlebars.php \
 		compiled/flow_post.handlebars.php \
 		compiled/flow_tooltip.handlebars.php \
-		compiled/timestamp.handlebars.php
+		compiled/timestamp.handlebars.php \
+		compiled/flow_board_export_wikitext.handlebars.php
 
 compiled/flow_block_loop.handlebars.php: \
 		flow_block_loop.handlebars
@@ -183,3 +184,7 @@ compiled/flow_tooltip.handlebars.php: \
 compiled/timestamp.handlebars.php: \
 		timestamp.handlebars
 	$(COMPILE) timestamp
+
+compiled/flow_board_export_wikitext.handlebars.php: \
+		flow_board_export_wikitext.handlebars
+	$(COMPILE) flow_board_export_wikitext
