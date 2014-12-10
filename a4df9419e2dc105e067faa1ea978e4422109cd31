@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e9df725_b9f2abdd",
+        "filename": "includes/Notifications/Formatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-12-10T00:26:30Z",
+      "side": 1,
+      "message": "if the code on the left ever worked, that means we have old notifications with the old format somewhere.  Echo cleans out old notifications based on the number in a users box, rather than a point in time, so we basically can always have old notifications.\n\nWe should check if this is a string or a UUID.  a string here would fatal by calling a method on it",
+      "revId": "a4df9419e2dc105e067faa1ea978e4422109cd31",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
