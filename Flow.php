@@ -54,6 +54,7 @@ $wgAPIPropModules['flowinfo'] = 'ApiQueryPropFlowInfo';
 // Special:Flow
 $wgExtensionMessagesFiles['FlowAlias'] = $dir . 'Flow.alias.php';
 $wgSpecialPages['Flow'] = 'Flow\SpecialFlow';
+$wgSpecialPages['FlowExport'] = 'Flow\SpecialFlowExport';
 $wgSpecialPageGroups['Flow'] = 'redirects';
 
 // Housekeeping hooks
