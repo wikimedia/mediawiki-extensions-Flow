@@ -477,5 +477,12 @@
 	"flow-talk-conversion-archive-edit-reason": "Wikitext talk to Flow conversion",
 	"group-flow-bot": "Flow bots",
 	"group-flow-bot-member": "Flow bot",
-	"grouppage-flow-bot": "Project:Flow bots"
+	"grouppage-flow-bot": "Project:Flow bots",
+	"flowexport": "Flow export",
+	"flow-special-export-desc": "Export flow board to wikitext",
+	"flow-special-export-title-label": "Page to export",
+	"flow-special-export-error-invalid-title": "An invalid title was provided",
+	"flow-special-export-error-non-existant-title": "The provided page does not exist",
+	"flow-special-export-error-wrong-content-model": "The provided page is not a flow board",
+	"flow-special-export-error-topic-not-implemented": "Export of individual topics not yet implemented"
 }
