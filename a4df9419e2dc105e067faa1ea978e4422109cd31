@@ -34,6 +34,24 @@
       "revId": "a4df9419e2dc105e067faa1ea978e4422109cd31",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e9df725_fc7d7ce5",
+        "filename": "includes/Notifications/Formatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-12-10T18:56:57Z",
+      "side": 1,
+      "message": "i think your right, lets ship it as is.",
+      "parentUuid": "2e9df725_74a0aa9a",
+      "revId": "a4df9419e2dc105e067faa1ea978e4422109cd31",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
