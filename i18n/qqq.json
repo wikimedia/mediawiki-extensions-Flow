@@ -482,5 +482,12 @@
 	"flow-talk-conversion-archive-edit-reason": "Message used as an edit summary when appending a template to a wikitext talk page after archiving it in preparation for conversion to Flow.",
 	"group-flow-bot": "{{doc-group|flow-bot}}",
 	"group-flow-bot-member": "{{doc-group|flow-bot|member}}",
-	"grouppage-flow-bot": "{{doc-group|flow-bot|page}}"
+	"grouppage-flow-bot": "{{doc-group|flow-bot|page}}",
+	"flowexport": "{{doc-special|FlowExport}}",
+	"flow-special-export-desc": "Description at the top of Special:FlowExport describing what this special page is for",
+	"flow-special-export-title-label": "Label on the form input of Special:FlowExport for inputting the article to be exported",
+	"flow-special-export-error-invalid-title": "An error message from Special:FlowExport when the user provided title to export is not a valid mediawiki page title.",
+	"flow-special-export-error-non-existant-title": "An error message from Special:FlowExport when the user provided title to export does not exist.",
+	"flow-special-export-error-wrong-content-model": "An error message from Special:FlowExport when the user provided title to export is not a flow board.",
+	"flow-special-export-error-topic-not-implemented": "An error message from Special:FlowExport when the user attempts to export a single topic rather than a complete flow board."
 }
