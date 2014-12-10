@@ -8,6 +8,8 @@
 	},
 	"flow-edit-header-link": "Modifica l'encapçalament",
 	"flow-post-moderated-toggle-hide-show": "Mostra el comentari {{GENDER:$1|amagat}} per $2",
+	"flow-topic-moderated-reason-prefix": "Motiu:",
+	"flow-lock-title-content": "Aquest tema de discussió ha estat {{GENDER:$1|tancat}} per $1",
 	"flow-cancel": "Cancel·la",
 	"flow-preview": "Previsualitza",
 	"flow-show-change": "Mostra els canvis",
@@ -32,6 +34,8 @@
 	"flow-topic-action-edit-title": "Modifica el títol",
 	"flow-topic-action-history": "Historial",
 	"flow-topic-action-hide-topic": "Amaga el tema",
+	"flow-topic-action-delete-topic": "Esborra el tema",
+	"flow-topic-action-lock-topic": "Tanca el tema",
 	"flow-topic-action-summarize-topic": "Resum",
 	"flow-topic-action-resummarize-topic": "Modifica el resum",
 	"flow-topic-action-undo-moderation": "Desfés",
@@ -56,6 +60,7 @@
 	"flow-board-history-empty": "Aquest tauler no té actualment cap historial.",
 	"flow-topic-history": "Historial del tema «$1»",
 	"flow-history-pages-topic": "Apareix en el [$1 tauler «$2»]",
+	"flow-topic-comments": "{{PLURAL:$1|$1 comentari|$1 comentaris|0=Sigueu {{GENDER:$2|el primer|la primera}} en comentar!}}",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|ha contestat}} a '''$4'''.",
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 i $5 {{PLURAL:$6|més}} han {{GENDER:$1|contestat}} a '''$3'''.",
 	"flow-notification-edit-bundle": "$1 i $5 {{PLURAL:$6|més}} han {{GENDER:$1|modificat}} un <span class=\"plainlinks\">[$4 apunt]</span> de «$2» a «$3».",
@@ -85,6 +90,7 @@
 	"flow-moderation-placeholder-undelete-post": "{{GENDER:$3|Expliqueu}} per què restaureu aquest apunt.",
 	"flow-moderation-placeholder-unhide-post": "{{GENDER:$3|Expliqueu}} per què mostreu de nou aquest apunt.",
 	"flow-topic-first-heading": "Tema de $1",
+	"flow-no-more-fwd": "Cap més tema anterior",
 	"flow-newest-topics": "Temes més recents",
 	"flow-sorting-tooltip-newest": "{{GENDER:|Esteu}} veient primer els temes més recents. Cliqueu per altres opcions d'ordenació.",
 	"flow-toggle-small-topics": "Canvia a la vista reduïda de temes",
@@ -97,5 +103,6 @@
 	"flow-special-type-post": "Apunt",
 	"flow-special-type-workflow": "Flux de treball",
 	"flow-preview-return-edit-post": "Segueix editant",
-	"flow-anonymous": "Anònim"
+	"flow-anonymous": "Anònim",
+	"flow-edited": "Modificat"
 }
