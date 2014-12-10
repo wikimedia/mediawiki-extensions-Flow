@@ -16,6 +16,24 @@
       "revId": "a4df9419e2dc105e067faa1ea978e4422109cd31",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e9df725_74a0aa9a",
+        "filename": "includes/Notifications/Formatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-10T02:41:53Z",
+      "side": 1,
+      "message": "I don\u0027t think the code on the left ever did work.\n\nIt was only added in https://gerrit.wikimedia.org/r/#/c/171005/3/includes/Notifications/Formatter.php , merged Nov 27.\n\nThat kept the $this-\u003egetUrlGenerator()-\u003eworkflowLink call, with $extra[\u0027topic-work\nflow\u0027] as the second parameter (only the first parameter was refactored).\n\nThat changes doesn\u0027t touch UrlGenerator, so both before and after (https://git.wikimedia.org/blob/mediawiki%2Fextensions%2FFlow.git/479dfebc4dd1674cc3e55cee465379cfe85f61f2/includes%2FUrlGenerator.php#L346) the second parameter of workflowLink was a UUID.\n\nI think it\u0027s been a UUID since the beginning.  The first commit to touch this file was https://gerrit.wikimedia.org/r/#/c/85823/ / c4772a8341649800e8f49b16d3b406d177556d3a.  See https://git.wikimedia.org/blob/mediawiki%2Fextensions%2FFlow.git/c4772a8341649800e8f49b16d3b406d177556d3a/includes%2FUrlGenerator.php#L346 (UrlGenerator) and https://git.wikimedia.org/blob/mediawiki%2Fextensions%2FFlow.git/c4772a8341649800e8f49b16d3b406d177556d3a/includes%2FNotifications%2FFormatter.php (Formatter).\n\nThe formatter called $extra[\u0027topic-workflow\u0027]-\u003egetHex() and did:\n\n$topic \u003d $event-\u003egetExtraParam( \u0027topic-workflow\u0027 );\nlist( $target, $query ) \u003d\n                   $urlGenerator-\u003egenerateUrlData( $topic );\n\nThe first parameter of generateUrlData was documented as Workflow|UUID .",
+      "parentUuid": "2e9df725_b9f2abdd",
+      "revId": "a4df9419e2dc105e067faa1ea978e4422109cd31",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
