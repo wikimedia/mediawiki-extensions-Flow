@@ -12,6 +12,7 @@ $specialPageAliases = array();
 $specialPageAliases['en'] = array(
 	'Flow' => array( 'Flow' ),
 	'EnableFlow' => array( 'EnableFlow' ),
+	'FlowExport' => array( 'FlowExport' ),
 );
 
 /** Arabic (العربية) */
@@ -84,5 +85,9 @@ $specialPageAliases['zh-hans'] = array(
 /** Traditional Chinese (中文（繁體）‎) */
 $specialPageAliases['zh-hant'] = array(
 	'Flow' => array( '流動量' ),
+<<<<<<< HEAD
 	'EnableFlow' => array( '啟用流動量' ),
 );
+=======
+);
+>>>>>>> Expose the convertToText method via Special:FlowExport
