@@ -12,6 +12,7 @@ $specialPageAliases = array();
 $specialPageAliases['en'] = array(
 	'Flow' => array( 'Flow' ),
 	'EnableFlow' => array( 'EnableFlow' ),
+	'FlowExport' => array( 'FlowExport' ),
 );
 
 /** Arabic (العربية) */
