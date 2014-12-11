@@ -356,7 +356,7 @@ abstract class AbstractRevision {
 					$sourceFormat,
 					$format,
 					$raw,
-					$this->getCollection()->getTitle()
+					$this->getCollection()->getOwnerTitle()
 				);
 			}
 		}
