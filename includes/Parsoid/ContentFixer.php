@@ -48,7 +48,7 @@ class ContentFixer {
 	public function getContent( AbstractRevision $revision ) {
 		return $this->apply(
 			$revision->getContent( 'html' ),
-			$revision->getCollection()->getTitle()
+			$revision->getCollection()->getOwnerTitle()
 		);
 	}
 
