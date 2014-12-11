@@ -59,6 +59,11 @@ class RevisionFormatter {
 	protected $includeProperties = false;
 
 	/**
+	 * @var bool
+	 */
+	protected $includeContent = true;
+
+	/**
 	 * @var string[]
 	 */
 	protected $allowedContentFormats = array( 'html', 'wikitext' );
@@ -129,6 +134,15 @@ class RevisionFormatter {
 		$this->includeProperties = (bool)$shouldInclude;
 	}
 
+	/**
+	 * Outputing content can be somehwat expensive, as most of the content is loaded
+	 * into DOMDocuemnts for processing of relidlinks and badimages.  Set this to false
+	 * if the content will not be used such as for recent changes.
+	 */
+	public function setIncludeContent( $shouldInclude ) {
+		$this->includeContent = (bool)$shouldInclude;
+	}
+
 	public function setContentFormat( $format, UUID $revisionId = null ) {
 		if ( false === array_search( $format, $this->allowedContentFormats ) ) {
 			throw new FlowException( "Unknown content format: $format" );
@@ -160,7 +174,7 @@ class RevisionFormatter {
 
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$section = new \ProfileSection( __METHOD__ );
-		$isContentAllowed = $this->permissions->isAllowed( $row->revision, 'view' );
+		$isContentAllowed = $this->includeContent && $this->permissions->isAllowed( $row->revision, 'view' );
 		$isHistoryAllowed = $isContentAllowed ?: $this->permissions->isAllowed( $row->revision, 'history' );
 
 		if ( !$isHistoryAllowed ) {
