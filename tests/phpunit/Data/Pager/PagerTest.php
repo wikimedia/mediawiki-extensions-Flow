@@ -12,7 +12,7 @@ class PagerTest extends \MediaWikiTestCase {
 
 	public static function getPageResultsProvider() {
 		$objs = array();
-		foreach ( range( 'A', 'G' ) as $letter ) {
+		foreach ( range( 'A', 'J' ) as $letter ) {
 			$objs[$letter] = (object)array( 'foo' => $letter );
 		}
 
@@ -75,7 +75,31 @@ class PagerTest extends \MediaWikiTestCase {
 					return array_filter( $found, function( $obj ) {
 						return $obj->foo !== 'B' && $obj->foo !== 'C';
 					} );
-				}
+				},
+			),
+
+			array(
+				'Reverse pagination with filter',
+				// expect
+				array( $objs['B'], $objs['F'], $objs['I'] ),
+				// find results
+				array(
+					// note thate feature index will return these in the normal
+					// forward sort order, the provided direction just means to
+					// get items before rather than after the offset.
+					// verified at FeatureIndexTest::testReversePagination()
+					array( $objs['G'], $objs['H'], $objs['I'], $objs['J'] ),
+					array( $objs['C'], $objs['D'], $objs['E'], $objs['F'] ),
+					array( $objs['A'], $objs['B'] ),
+				),
+				// query options
+				array( 'pager-limit' => 3, 'pager-dir' => 'rev', 'pager-offset' => 'K' ),
+				// query filter
+				function( $found ) {
+					return array_filter( $found, function( $obj ) {
+						return in_array( $obj->foo, array( 'I', 'F', 'B', 'A' ) );
+					} );
+				},
 			),
 		);
 	}
@@ -84,7 +108,6 @@ class PagerTest extends \MediaWikiTestCase {
 	 * @dataProvider getPageResultsProvider
 	 */
 	public function testGetPageResults( $message, $expect, $found, array $options, $filter ) {
-
 		$pager = new Pager(
 			$this->mockObjectManager( $found ),
 			array( 'otherthing' => 42 ),
@@ -221,7 +244,6 @@ class PagerTest extends \MediaWikiTestCase {
 				// filter
 				null,
 			),
-
 		);
 	}
 
