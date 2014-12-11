@@ -2,6 +2,7 @@
 
 namespace Flow\Tests\SpamFilter;
 
+use BaseBlacklist;
 use Flow\Model\PostRevision;
 use Flow\SpamFilter\SpamBlacklist;
 use Flow\Tests\PostRevisionTestCase;
@@ -83,6 +84,11 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 		$msgCache->enable();
 		$msgCache->replace( 'Spam-blacklist', implode( "\n", $this->blacklist ) );
 		$msgCache->replace( 'Spam-whitelist', implode( "\n", $this->whitelist ) );
+		// That only works if the spam blacklist is really reset
+		$instance = BaseBlacklist::getInstance( 'spam' );
+		$reflProp = new \ReflectionProperty( $instance, 'regexes' );
+		$reflProp->setAccessible( true );
+		$reflProp->setValue( $instance, false );
 	}
 
 	protected function tearDown() {
