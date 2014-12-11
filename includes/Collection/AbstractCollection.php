@@ -220,6 +220,15 @@ abstract class AbstractCollection {
 	}
 
 	/**
+	 * Returns the Title object this revision was created at.
+	 *
+	 * @return Title
+	 */
+	public function getOwnerTitle() {
+		return $this->getWorkflow()->getOwnerTitle();
+	}
+
+	/**
 	 * Returns the workflow object this collection is associated with.
 	 *
 	 * @return Workflow
