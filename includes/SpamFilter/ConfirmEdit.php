@@ -2,14 +2,12 @@
 
 namespace Flow\SpamFilter;
 
-use Article;
 use ConfirmEditHooks;
-use EditPage;
 use Flow\Model\AbstractRevision;
-use RequestContext;
 use SimpleCaptcha;
 use Status;
 use Title;
+use WikiPage;
 
 class ConfirmEdit implements SpamFilter {
 	/**
@@ -23,11 +21,11 @@ class ConfirmEdit implements SpamFilter {
 
 		/** @var SimpleCaptcha $captcha */
 		$captcha = ConfirmEditHooks::getInstance();
-		$editPage = new EditPage( Article::newFromTitle( $title, RequestContext::getMain() ) );
+		$wikiPage = new WikiPage( $title );
 
 		// first check if the submitted content is offensive (as flagged by
 		// ConfirmEdit), next check for a (valid) captcha to have been entered
-		if ( $captcha->shouldCheck( $editPage, $newContent, false, false ) && !$captcha->passCaptcha() ) {
+		if ( $captcha->shouldCheck( $wikiPage, $newContent, false, false ) && !$captcha->passCaptcha() ) {
 			// getting here means we submitted bad content without good captcha
 			// result (or any captcha result at all) - let's get the captcha
 			// HTML to display as error message!
