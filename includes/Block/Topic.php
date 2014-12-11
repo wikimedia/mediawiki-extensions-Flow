@@ -62,6 +62,9 @@ class TopicBlock extends AbstractBlock {
 		'lock-topic',
 		// Other stuff
 		'edit-title',
+		// psuedo-action, we don't do anything but we return
+		// information about the topic in the api response
+		'edit-topic-summary',
 	);
 
 	protected $supportedGetActions = array(
@@ -143,6 +146,10 @@ class TopicBlock extends AbstractBlock {
 
 		case 'edit-post':
 			$this->validateEditPost();
+			break;
+
+		case 'edit-topic-summary':
+			// pseudo-action does not do anything, only includes data in api response
 			break;
 
 		default:
@@ -394,9 +401,12 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	public function commit() {
-		$this->workflow->updateLastModified( $this->newRevision->getRevisionId() );
 
 		switch( $this->action ) {
+		case 'edit-topic-summary':
+			// pseudo-action does not do anything, only includes data in api response
+			return array();
+
 		case 'reply':
 		case 'moderate-topic':
 		case 'lock-topic':
@@ -407,6 +417,7 @@ class TopicBlock extends AbstractBlock {
 			if ( $this->newRevision === null ) {
 				throw new FailCommitException( 'Attempt to save null revision', 'fail-commit' );
 			}
+
 
 			$metadata = $this->extraCommitMetadata + array(
 				'workflow' => $this->workflow,
@@ -423,6 +434,7 @@ class TopicBlock extends AbstractBlock {
 			}
 
 			$this->storage->put( $this->newRevision, $metadata );
+			$this->workflow->updateLastModified( $this->newRevision->getRevisionId() );
 			$this->storage->put( $this->workflow, $metadata );
 			$newRevision = $this->newRevision;
 
