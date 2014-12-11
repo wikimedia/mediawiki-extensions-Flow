@@ -11,7 +11,10 @@ class ApiFlowEditTopicSummary extends ApiFlowBasePost {
 	}
 
 	protected function getBlockParams() {
-		return array( 'topicsummary' => $this->extractRequestParams() );
+		return array(
+			'topicsummary' => $this->extractRequestParams(),
+			'topic' => array(),
+		);
 	}
 
 	public function getAllowedParams() {

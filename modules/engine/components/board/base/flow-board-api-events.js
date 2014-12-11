@@ -862,29 +862,16 @@
 	 * @returns {$.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.summarizeTopic = function ( info, data, jqxhr ) {
-		var $this = $( this ),
-			$form = $this.closest( 'form' ),
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $this ),
-			$target = info.$target;
-
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
 			return $.Deferred().reject().promise();
 		}
 
-		$target.replaceWith( $(
-			flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-				// @todo this should be fixed so that it re-renders the entire flow_topic_titlebar
-				'flow_topic_titlebar_summary',
-				// @todo the response here doesnt match the standard serialization, typically we
-				// get the topic title with summary embedded, but this revision is the actual
-				// summary.  As such we have to rename content key to summary
-				{ summary: data.flow[ 'edit-topic-summary' ].result.topicsummary.revision.content }
-			)
-		).children() );
-
-		// Delete the form
-		$form.remove();
+		_flowBoardComponentRefreshTopic(
+			info.$target,
+			data.flow['edit-topic-summary'].result.topic,
+			'.flow-topic-titlebar'
+		);
 
 		return $.Deferred().resolve().promise();
 	};
@@ -1086,19 +1073,24 @@
 	 * Refreshes the titlebar of a topic given an API response.
 	 * @param  {jQuery} $targetElement An element in the topic.
 	 * @param  {Object} apiResult      Plain object containing the API response to build from.
+	 * @param  {String} [selector]     Select specific element to replace
 	 */
-	function _flowBoardComponentRefreshTopic( $targetElement, apiResult ) {
-		var $topic = $targetElement.closest( '.flow-topic' ),
+	function _flowBoardComponentRefreshTopic( $targetElement, apiResult, selector ) {
+		var $target = $targetElement.closest( '.flow-topic' ),
 			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $targetElement ),
-			$newTopic = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
+			$newContent = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
 				'flow_topiclist_loop',
 				apiResult
 			) ).children();
 
-		$topic.replaceWith( $newTopic );
+		if ( selector ) {
+			$newContent = $newContent.find( selector );
+			$target = $target.find( selector );
+		}
 
+		$target.replaceWith( $newContent );
 		// Run loadHandlers
-		flowBoard.emitWithReturn( 'makeContentInteractive', $newTopic );
+		flowBoard.emitWithReturn( 'makeContentInteractive', $newContent );
 	}
 
 	// Mixin to FlowBoardComponent
