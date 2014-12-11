@@ -75,7 +75,26 @@ class PagerTest extends \MediaWikiTestCase {
 					return array_filter( $found, function( $obj ) {
 						return $obj->foo !== 'B' && $obj->foo !== 'C';
 					} );
-				}
+				},
+			),
+
+			array(
+				'Reverse pagination with filter',
+				// expect
+				array( $objs['D'], $objs['B'] ),
+				// find results
+				array(
+					array( $objs['E'], $objs['D'], $objs['C'] ),
+					array( $objs['B'], $objs['A'] ),
+				),
+				// query options
+				array( 'pager-limit' => 2, 'pager-dir' => 'rev' ),
+				// query filter
+				function( $found ) {
+					return array_filter( $found, function( $obj ) {
+						return $obj->foo !== 'E' && $obj->foo !== 'C';
+					} );
+				},
 			),
 		);
 	}

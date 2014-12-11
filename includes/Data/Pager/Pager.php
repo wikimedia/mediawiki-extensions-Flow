@@ -180,7 +180,7 @@ class Pager {
 		} elseif ( $this->options['pager-dir'] === 'rev' ) {
 			if ( count( $results ) > $this->options['pager-limit'] ) {
 				// We got extra, another page exists
-				$results = array_slice( $results, -$this->options['pager-limit'] );
+				$results = array_slice( $results, 0, $this->options['pager-limit'] );
 				$pagingLinks['rev'] = $this->makePagingLink(
 					'rev',
 					reset( $results ),
