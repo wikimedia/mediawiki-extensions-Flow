@@ -8,7 +8,6 @@ use Flow\DbFactory;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
-use Flow\Model\Workflow;
 use Iterator;
 
 class UserMerger {
@@ -35,14 +34,6 @@ class UserMerger {
 		$this->dbFactory = $dbFactory;
 		$this->storage = $storage;
 		$this->config = array(
-			'flow_workflow' => array(
-				'pk' => array( 'workflow_id' ),
-				'userColumns' => array(
-					'workflow_user_id' => 'getUserTuple',
-				),
-				'load' => array( $this, 'loadFromWorkflow' ),
-			),
-
 			'flow_tree_revision' => array(
 				'pk' => array( 'tree_rev_id' ),
 				'userColumns' => array(
@@ -135,14 +126,6 @@ class UserMerger {
 			}
 			$this->storage->clear();
 		}
-	}
-
-	/**
-	 * @param object $row Single row from database
-	 * @return Workflow|null
-	 */
-	protected function loadFromWorkflow( $row ) {
-		return $this->storage->get( 'Workflow', $row->workflow_id );
 	}
 
 	/**
