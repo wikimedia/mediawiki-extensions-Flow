@@ -122,10 +122,15 @@ class Pager {
 				// nothing found
 				break;
 			}
-			$results = array_merge(
-				$results,
-				$filter ? call_user_func( $filter, $found ) : $found
-			);
+			$filtered = $filter ? call_user_func( $filter, $found ) : $found;
+			if ( $this->options['pager-dir'] === 'rev' ) {
+				// Paging A-Z with pager-offset F, pager-dir rev, pager-limit 2 gives
+				// DE on first query, BC on second, and A on third.  The output
+				// needs to be ABCDE
+				$results = array_merge( $filtered, $results );
+			} else {
+				$results = array_merge( $results, $filtered );
+			}
 
 			if ( count( $found ) !== $numRequested ) {
 				// last page
@@ -133,7 +138,12 @@ class Pager {
 			}
 
 			// setup offset for next query
-			$offset = $this->storage->serializeOffset( end( $found ), $this->sort );
+			if ( $this->options['pager-dir'] === 'rev' ) {
+				$last = reset( $found );
+			} else {
+				$last = end( $found );
+			}
+			$offset = $this->storage->serializeOffset( $last, $this->sort );
 
 		} while ( count( $results ) < $numRequested && ++$queries < self::MAX_QUERIES );
 
