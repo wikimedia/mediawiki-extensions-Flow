@@ -297,6 +297,9 @@
 		$targetPost.children( '.flow-replies' ).append( $form );
 		$form.conditionalScrollIntoView();
 
+		// focus the input
+		$form.find('textarea').focus();
+
 		return $deferred.resolve().promise();
 	};
 
