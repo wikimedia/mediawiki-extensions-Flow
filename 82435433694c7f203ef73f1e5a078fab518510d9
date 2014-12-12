@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e6cb3ef_a9328904",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 26
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-12T02:07:48Z",
+      "side": 1,
+      "message": "Link to Phabricator cards.",
+      "revId": "82435433694c7f203ef73f1e5a078fab518510d9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6cb3ef_09fb7545",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 26
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-12T02:07:48Z",
+      "side": 1,
+      "message": "Not going to happen",
+      "revId": "82435433694c7f203ef73f1e5a078fab518510d9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6cb3ef_e97f2110",
+        "filename": "Hooks.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-12T02:07:48Z",
+      "side": 1,
+      "message": "Duplicate",
+      "revId": "82435433694c7f203ef73f1e5a078fab518510d9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6cb3ef_745a08fb",
+        "filename": "handlebars/flow_board_navigation.handlebars",
+        "patchSetId": 26
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-12T02:07:48Z",
+      "side": 1,
+      "message": "If the valid URL is javascript:void(0), I don\u0027t think this note is needed.",
+      "revId": "82435433694c7f203ef73f1e5a078fab518510d9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6cb3ef_54ffc462",
+        "filename": "modules/engine/components/board/features/flow-board-loadmore.js",
+        "patchSetId": 26
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-12T02:07:48Z",
+      "side": 1,
+      "message": "Seems to be a bug.  I don\u0027t think we want to overwrite fwd.",
+      "revId": "82435433694c7f203ef73f1e5a078fab518510d9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6cb3ef_2f53d91b",
+        "filename": "modules/engine/components/board/features/flow-board-navigation.js",
+        "patchSetId": 26
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-12T02:07:48Z",
+      "side": 1,
+      "message": "Space-separate, instead of repeating whole line.",
+      "revId": "82435433694c7f203ef73f1e5a078fab518510d9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6cb3ef_6f3311c1",
+        "filename": "modules/engine/misc/flow-api.js",
+        "patchSetId": 26
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-12T02:07:48Z",
+      "side": 1,
+      "message": "Not going to do this.",
+      "revId": "82435433694c7f203ef73f1e5a078fab518510d9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
