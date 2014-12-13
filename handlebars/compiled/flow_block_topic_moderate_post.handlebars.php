@@ -264,7 +264,8 @@
         name="preview"
         data-role="action"
         class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-js"
-        data-flow-eventlog-action="preview"
+
+        
 >'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
 
 <button data-flow-interactive-handler="cancelForm"
