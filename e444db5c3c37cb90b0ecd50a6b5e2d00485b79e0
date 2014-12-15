@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e6cb3ef_e8006606",
+        "filename": "includes/Search/maintenance/SearchIndexConfig.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-12-15T15:21:30Z",
+      "side": 1,
+      "message": "This file is no longer relevant. All of this will be in FlowSearchConfig.php.\nHaven\u0027t removed it as it may still have some useful code that I need to copy into FlowSearchConfig.php.",
+      "revId": "e444db5c3c37cb90b0ecd50a6b5e2d00485b79e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
