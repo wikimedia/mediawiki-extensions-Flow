@@ -547,9 +547,16 @@
 			eventInstance = {},
 			key, value;
 
-		// Fetch loggable data: everything prefixed flowEventlog
+		// Fetch loggable data: everything prefixed flowEventlog except
+		// flowEventLogForward and flowEventLogSchema
 		for ( key in data ) {
 			if ( key.indexOf( 'flowEventlog' ) === 0 ) {
+				// @todo Either the data or this config should have separate prefixes,
+				// it shouldn't be shared and then handled here.
+				if ( key === 'flowEventlogForward' || key === 'flowEventlogSchema' ) {
+					continue;
+				}
+
 				// Strips "flowEventlog" and lowercases first char after that
 				value = data[key];
 				key = key.substr( 12, 1 ).toLowerCase() + key.substr( 13 );
@@ -557,9 +564,6 @@
 				eventInstance[key] = value;
 			}
 		}
-
-		// Forward is not loggable data!
-		delete eventInstance.forward;
 
 		// Log the event
 		eventInstance = component.logEvent( data.flowEventlogSchema, eventInstance );
