@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e6cb3ef_d91bf6d2",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-12-15T21:52:58Z",
+      "side": 1,
+      "message": "Change to \"Fetch loggable data: most things prefixed \u0027flowEventLog\u0027. \"",
+      "revId": "00df5a57f6234281c33ba580365da1c6767c1272",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6cb3ef_b91642ab",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-12-15T21:52:58Z",
+      "side": 1,
+      "message": "Why add the keys only to delete them later?\nIs it better to move the test here?\n\n    if (key \u003d\u003d\u003d \u0027forward\u0027 || key \u003d\u003d\u003d \u0027schema\u0027 ) {\n        continue;\n    }",
+      "revId": "00df5a57f6234281c33ba580365da1c6767c1272",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
