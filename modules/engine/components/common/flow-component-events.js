@@ -558,8 +558,9 @@
 			}
 		}
 
-		// Forward is not loggable data!
+		// Forward and schema are not loggable data!
 		delete eventInstance.forward;
+		delete eventInstance.schema;
 
 		// Log the event
 		eventInstance = component.logEvent( data.flowEventlogSchema, eventInstance );
