@@ -33,6 +33,24 @@
       "revId": "00df5a57f6234281c33ba580365da1c6767c1272",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6cb3ef_79b2ea93",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-12-15T22:14:36Z",
+      "side": 1,
+      "message": "i suppose that works, i was considering that perhaps we should just have a non-shared prefix (flowEventConfigSchema, flowEventConfigForward, separate from flowEventlogFoo or, or change the data to flowEventlogDataFoo, but that seemed too big for a quick patch).\n\nI\u0027ll swap it around to the suggested method for now though.",
+      "parentUuid": "0e6cb3ef_b91642ab",
+      "revId": "00df5a57f6234281c33ba580365da1c6767c1272",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
