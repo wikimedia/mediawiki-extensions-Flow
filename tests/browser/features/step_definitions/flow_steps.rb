@@ -89,10 +89,10 @@ end
 When(/^I type "(.+)" into the new topic title field$/) do |flow_title|
   @automated_test_marker = " browsertest edit"
   on(FlowPage) do |page|
-    topic_string = flow_title + @random_string + @automated_test_marker
+    @topic_string = flow_title + @random_string + @automated_test_marker
     page.new_topic_title_element.when_present.click
     page.new_topic_title_element.when_present.focus
-    page.new_topic_title_element.when_present.send_keys(topic_string)
+    page.new_topic_title_element.when_present.send_keys(@topic_string)
   end
 end
 
