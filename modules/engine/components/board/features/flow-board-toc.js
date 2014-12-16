@@ -220,7 +220,7 @@
 		}
 
 		// Triggers load more if we didn't load enough content to fill the viewport
-		info.$target.trigger( 'scroll.flow' );
+		$kids.trigger( 'scroll.flow' );
 	}
 	FlowBoardComponentTocFeatureMixin.UI.events.apiHandlers.topicList = flowBoardComponentTocFeatureMixinTopicListApiHandler;
 

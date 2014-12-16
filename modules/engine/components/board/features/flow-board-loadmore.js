@@ -345,13 +345,6 @@
 			$target.on( 'scroll.flow', $.throttle( 50, function () {
 				_flowBoardComponentLoadMoreFeatureInfiniteScrollCheck.call( board, $scrollContainer, $target );
 			} ) );
-
-			// Auto-trigger to keep loading if the new button is already in the viewport
-			if ( $button.is( ':visible' ) ) {
-				setTimeout( function () {
-					$button.parents().trigger( 'scroll.flow' );
-				}, 100 );
-			}
 		}
 	}
 	FlowBoardComponentLoadMoreFeatureMixin.UI.events.loadHandlers.loadMore = flowBoardComponentLoadMoreFeatureElementLoadCallback;
