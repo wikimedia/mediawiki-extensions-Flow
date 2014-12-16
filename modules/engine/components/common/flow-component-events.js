@@ -14,6 +14,8 @@
 	 * @constructor
 	 */
 	function FlowComponentEventsMixin( $container ) {
+		var self = this;
+
 		/**
 		 * Stores event callbacks.
 		 */
@@ -70,8 +72,18 @@
 		// Handle scroll and resize events globally
 		$( window )
 			.on(
-				'scroll.flow',
-				$.throttle( 50, this.getDispatchCallback( 'windowScroll' ) )
+				// Normal scroll events on elements do not bubble.  However, if they
+				// are triggered, jQuery will do so.  To avoid this affecting the
+				// global scroll handler, trigger scroll events on elements only with
+				// scroll.flow-something, where 'something' is not 'window-scroll'.
+				'scroll.flow-window-scroll',
+				$.throttle( 50, function ( evt ) {
+					if ( evt.target !== window && evt.target !== document ) {
+						throw new Error( 'Target is "' + evt.target.nodeName + '", not window or document.' );
+					}
+
+					self.getDispatchCallback( 'windowScroll' ).apply( self, arguments );
+				} )
 			)
 			.on(
 				'resize.flow',
@@ -623,7 +635,7 @@
 	 * @param {FlowComponent} component
 	 */
 	function flowEventsMixinInstantiationComplete( component ) {
-		$( window ).trigger( 'scroll.flow' );
+		$( window ).trigger( 'scroll.flow-window-scroll' );
 	}
 	FlowComponentEventsMixin.eventHandlers.instantiationComplete = flowEventsMixinInstantiationComplete;
 
