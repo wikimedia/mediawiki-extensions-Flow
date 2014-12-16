@@ -283,9 +283,20 @@
 				unknownTopicIds = [];
 			}
 		}
+
 		if ( unknownTopicIds.length ) {
 			// Add any other topic IDs at the end
 			flowBoard.orderedTopicIds.push.apply( flowBoard.orderedTopicIds, unknownTopicIds );
+		}
+
+		// we need to re-trigger scroll.flow if there are not enough items in the
+		// toc for it to scroll and trigger on its own. Without this TOC never triggers
+		// the initial loadmore to expand from the number of topics on page to topics
+		// available from the api.
+		if ( this.$loadMoreNodes ) {
+			this.$loadMoreNodes
+				.filter( '[data-flow-api-handler=topicList]' )
+				.trigger( 'scroll.flow', { forceNavigationUpdate: true } );
 		}
 	}
 	FlowBoardComponentLoadMoreFeatureMixin.UI.events.apiHandlers.topicList = flowBoardComponentLoadMoreFeatureTopicListApiCallback;
@@ -342,8 +353,9 @@
 			} );
 		} else {
 			$target = $.findWithParent( $button, scrollTargetSelector );
-			$target.on( 'scroll.flow', $.throttle( 50, function () {
+			$target.on( 'scroll.flow', $.throttle( 50, function ( evt ) {
 				_flowBoardComponentLoadMoreFeatureInfiniteScrollCheck.call( board, $scrollContainer, $target );
+				evt.stopPropagation();
 			} ) );
 		}
 	}
