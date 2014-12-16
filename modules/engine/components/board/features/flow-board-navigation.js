@@ -54,6 +54,10 @@
 
 		// The topic navigation header becomes fixed to the window beyond its position
 		_flowBoardAdjustTopicNavigationHeader.call( this, $boardNavigation, {} );
+
+		// This allows the toc to initialize eagerly before the user looks at it.
+		$boardNavigation.find( '[data-flow-api-handler=topicList]' )
+			.trigger( 'click', { skipMenuToggle: true, forceNavigationUpdate: true } );
 	}
 	FlowBoardComponentBoardHeaderFeatureMixin.UI.events.loadHandlers.boardNavigation = flowBoardLoadEventsBoardNavigation;
 
@@ -78,10 +82,12 @@
 	 * @param {jQuery} $boardNavigation
 	 * @param {Event} event
 	 */
-	function _flowBoardAdjustTopicNavigationHeader( $boardNavigation, event ) {
-		var self = this,
-			boardNavigationPosition = ( this.$boardNavigationClone || $boardNavigation ).offset(),
-			bottomScrollPosition, topicText, newReadingTopicId;
+	function _flowBoardAdjustTopicNavigationHeader( $boardNavigation, event, extraParameters ) {
+		var bottomScrollPosition, topicText, newReadingTopicId, $tocContainer, $scrollTarget,
+			self = this,
+			boardNavigationPosition = ( this.$boardNavigationClone || $boardNavigation ).offset();
+
+		extraParameters = extraParameters || {};
 
 		if ( window.scrollY <= boardNavigationPosition.top ) {
 			// Board nav is still in view; don't affix it
@@ -119,6 +125,9 @@
 				.before( this.$boardNavigationClone )
 				// Affix the original one
 				.addClass( 'flow-board-navigation-affixed' );
+
+			// After cloning a new navigation we must always update the sort
+			extraParameters.forceNavigationUpdate = true;
 		}
 
 		boardNavigationPosition = this.$boardNavigationClone.offset();
@@ -153,25 +162,64 @@
 
 		self.readingTopicId = newReadingTopicId;
 
-		if ( this.$boardNavigationTitle ) {
+		if ( !this.$boardNavigationTitle ) {
+			return;
+		}
+
+		function calculateUpdatedTitleText( board, topicText ) {
 			// Find out if we need to change the title
 			if ( topicText !== undefined ) {
-				if ( this.$boardNavigationTitle.text() !== topicText ) {
+				if ( board.$boardNavigationTitle.text() !== topicText ) {
 					// Change it
-					this.$boardNavigationTitle.text( topicText );
+					return topicText;
 				}
-			} else if ( this.$boardNavigationTitle.text() !== this.boardNavigationOriginalTitle ) {
-				this.$boardNavigationTitle.text( this.boardNavigationOriginalTitle );
+			} else if ( board.$boardNavigationTitle.text() !== board.boardNavigationOriginalTitle ) {
+				return board.boardNavigationOriginalTitle;
 			}
+		}
 
-			// Set TOC active item
-			this.$boardNavigationTitle.parent().findWithParent( this.$boardNavigationTitle.parent().data( 'flow-api-target' ) )
-				.find( 'a[data-flow-id]' )
-					.filter( '[data-flow-id=' + this.readingTopicId + ']' )
-						.addClass( 'active' )
-					.end().not( '[data-flow-id=' + this.readingTopicId + ']' )
-						.removeClass( 'active' );
+		// We still need to trigger movemnt when the topic title has not changed
+		// in instances where new data has been loaded.
+		topicText = calculateUpdatedTitleText( this, topicText );
+		if ( topicText !== undefined ) {
+			// We only reach this if the visible topic has changed
+			this.$boardNavigationTitle.text( topicText );
+		} else if ( extraParameters.forceNavigationUpdate !== true ) {
+			// If the visible topic has not changed and we are not forced
+			// to update(due to new items or other situations), exit early.
+			return;
+		}
 
+		// Set TOC active item
+		$tocContainer = this.$boardNavigationTitle.parent()
+			.findWithParent( this.$boardNavigationTitle.parent().data( 'flow-api-target' ) );
+
+		$scrollTarget = $tocContainer.find( 'a[data-flow-id]' )
+			.removeClass( 'active' )
+			.filter( '[data-flow-id=' + this.readingTopicId + ']' )
+				.addClass( 'active' )
+				.closest( 'li' )
+				.next();
+
+		if ( !$scrollTarget.length ) {
+			// we are at the last list item; use the current one instead
+			$scrollTarget = $scrollTarget.end();
+		}
+		// Scroll to the active item
+		if ( $scrollTarget.length ) {
+			$tocContainer.scrollTop( $scrollTarget.offset().top - $tocContainer.offset().top + $tocContainer.scrollTop() );
+			// the above may not trigger the scroll.flow-load-more event within the TOC if the $tocContainer
+			// does not have a scrollbar. If that happens you could have a TOC without a scrollbar
+			// that refuses to autoload anything else. Fire it again(wasteful) untill we find
+			// a better way.
+			// This does not seem to work for the initial load, that is handled in flow-boad-loadmore.js
+			// when it runs this same code.  This seems to be required for subsequent loads after
+			// the initial call.
+			if ( this.$loadMoreNodes ) {
+				this.$loadMoreNodes
+					.filter( '[data-flow-api-handler=topicList]' )
+					.trigger( 'scroll.flow-load-more', { forceNavigationUpdate: true } );
+			}
 		}
 	}
 

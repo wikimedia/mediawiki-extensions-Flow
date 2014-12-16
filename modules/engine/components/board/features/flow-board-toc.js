@@ -62,31 +62,18 @@
 	 * @param {jQuery} info.$target
 	 * @param {FlowBoardComponent} info.component
 	 */
-	function flowBoardComponentTocFeatureMixinTopicListApiPreHandler( event, info ) {
+	function flowBoardComponentTocFeatureMixinTopicListApiPreHandler( event, info, extraParameters ) {
 		var $this = $( this ),
-			isLoadMoreButton = $this.data( 'flow-load-handler' ) === 'loadMore',
-			$scrollTarget;
+			isLoadMoreButton = $this.data( 'flow-load-handler' ) === 'loadMore';
 
-		if ( !isLoadMoreButton ) {
+		if ( !isLoadMoreButton && !( extraParameters || {} ).skipMenuToggle ) {
 			// Also open the menu on this node
 			$this.trigger( 'click', { interactiveHandler: 'menuToggle' } );
 		}
 
-		if ( info.component.readingTopicId ) {
-			$scrollTarget = info.$target.find( 'a[data-flow-id=' + info.component.readingTopicId + ']' ).closest( 'li' ).next();
-			if ( !$scrollTarget.length ) {
-				// We are at the last list item; use the current one instead
-				$scrollTarget = $scrollTarget.end();
-			}
-			// Scroll to the active item
-			if ( $scrollTarget.length ) {
-				info.$target.scrollTop( $scrollTarget.offset().top - info.$target.offset().top + info.$target.scrollTop() );
-			}
-		}
-
 		if ( !isLoadMoreButton && info.component.doneInitialTocApiCall ) {
 			// Triggers load more if we didn't load enough content to fill the viewport
-			info.$target.trigger( 'scroll.flow' );
+			info.$target.trigger( 'scroll.flow-load-more', { forceNavigationUpdate: true } );
 			return false;
 		}
 
@@ -163,13 +150,11 @@
 			return;
 		}
 
-		var $this = $( this ),
+		var $kids, i,
+			$this = $( this ),
 			template = info.component.tocTemplate,
 			topicsData = data.flow['view-topiclist'].result.topiclist,
-			isLoadMoreButton = $this.data( 'flow-load-handler' ) === 'loadMore',
-			$kids,
-			$scrollTarget,
-			i;
+			isLoadMoreButton = $this.data( 'flow-load-handler' ) === 'loadMore';
 
 		// Iterate over every topic
 		for ( i = 0; i < topicsData.roots.length; i++ ) {
@@ -211,16 +196,11 @@
 		if ( isLoadMoreButton ) {
 			// Remove the old load button (necessary if the above load_more template returns nothing)
 			$this.remove();
-		} else if ( info.component.readingTopicId ) {
-			$scrollTarget = info.$target.find( 'a[data-flow-id=' + info.component.readingTopicId + ']' );
-			// Scroll to the active item
-			if ( $scrollTarget.length ) {
-				info.$target.scrollTop( $scrollTarget.offset().top - info.$target.offset().top + info.$target.scrollTop() );
-			}
 		}
 
 		// Triggers load more if we didn't load enough content to fill the viewport
-		$kids.trigger( 'scroll.flow' );
+		$kids.trigger( 'scroll.flow-load-more', { forceNavigationUpdate: true } );
+
 	}
 	FlowBoardComponentTocFeatureMixin.UI.events.apiHandlers.topicList = flowBoardComponentTocFeatureMixinTopicListApiHandler;
 
