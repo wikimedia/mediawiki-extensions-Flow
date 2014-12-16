@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e6cb3ef_05b338e9",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-12-16T16:14:54Z",
+      "side": 1,
+      "message": "typo: redlinks",
+      "revId": "c7bdc156ea8ea1945a2d48091d15c2f1304042d8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
