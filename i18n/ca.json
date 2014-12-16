@@ -4,7 +4,8 @@
 			"Fitoschido",
 			"Hiperpobla",
 			"Vriullop",
-			"Unapersona"
+			"Unapersona",
+			"QuimGil"
 		]
 	},
 	"flow-talk-taken-over": "Aquesta pàgina de discussió utilitza [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow].",
@@ -159,6 +160,7 @@
 	"flow-moderation-placeholder-unhide-post": "{{GENDER:$3|Expliqueu}} per què mostreu de nou aquest apunt.",
 	"flow-compare-revisions-revision-header": "Versió de {{GENDER:$2|$2}} de $1",
 	"flow-compare-revisions-header-header": "Aquesta pàgina mostra els {{GENDER:$2|canvis}} entre dues versions de l'encapçalament de [$3 $1].\nPodeu veure altres versions de l'encapçalament en la [$4 pàgina d'historial].",
+	"flow-terms-of-use-new-topic": "En clicar «{{int:flow-newtopic-save}}», esteu acceptant les condicions d'ús d'aquest wiki.",
 	"flow-topic-first-heading": "Tema de $1",
 	"flow-no-more-fwd": "Cap més tema anterior",
 	"flow-newest-topics": "Temes més recents",
