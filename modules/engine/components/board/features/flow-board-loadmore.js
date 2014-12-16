@@ -330,28 +330,26 @@
 		this.$loadMoreNodes = this.$loadMoreNodes.add( $button );
 
 		// Make sure we didn't already bind to this element's scroll previously
-		if ( $scrollContainer.data( 'scrollIsBound' ) ) {
-			return;
-		}
-		$scrollContainer.data( 'scrollIsBound', true );
+		if ( !$scrollContainer.data( 'scrollIsBound' ) ) {
+			$scrollContainer.data( 'scrollIsBound', true );
 
-		// Bind the event for this
-		if ( scrollTargetSelector === 'window' ) {
-			this.on( 'windowScroll', function () {
-				_flowBoardComponentLoadMoreFeatureInfiniteScrollCheck.call( board, $scrollContainer, $( window ) );
-			} );
-		} else {
-			$target = $.findWithParent( $button, scrollTargetSelector );
-			$target.on( 'scroll.flow', $.throttle( 50, function () {
-				_flowBoardComponentLoadMoreFeatureInfiniteScrollCheck.call( board, $scrollContainer, $target );
-			} ) );
-
-			// Auto-trigger to keep loading if the new button is already in the viewport
-			if ( $button.is( ':visible' ) ) {
-				setTimeout( function () {
-					$button.parents().trigger( 'scroll.flow' );
-				}, 100 );
+			// Bind the event for this
+			if ( scrollTargetSelector === 'window' ) {
+				this.on( 'windowScroll', function () {
+					_flowBoardComponentLoadMoreFeatureInfiniteScrollCheck.call( board, $scrollContainer, $( window ) );
+				} );
+			} else {
+				$target = $.findWithParent( $button, scrollTargetSelector );
+				$target.on( 'scroll.flow', $.throttle( 50, function () {
+					_flowBoardComponentLoadMoreFeatureInfiniteScrollCheck.call( board, $scrollContainer, $target );
+				} ) );
 			}
+		}
+		// Auto-trigger to keep loading if the new button is already in the viewport
+		if ( scrollTargetSelector !== 'window' && $button.is( ':visible' ) ) {
+			setTimeout( function () {
+				$button.trigger( 'scroll.flow' );
+			}, 100 );
 		}
 	}
 	FlowBoardComponentLoadMoreFeatureMixin.UI.events.loadHandlers.loadMore = flowBoardComponentLoadMoreFeatureElementLoadCallback;
