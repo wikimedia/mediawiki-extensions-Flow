@@ -4,6 +4,5 @@
 source "https://rubygems.org"
 
 gem "csscss"
-gem "mediawiki_api"
-gem "mediawiki_selenium"
+gem "mediawiki_selenium", git: "https://github.com/wikimedia/mediawiki-selenium.git", branch: "env-abstraction-layer"
 gem "rubocop", require: false

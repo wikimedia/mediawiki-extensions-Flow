@@ -1,4 +1,4 @@
-@chrome @clean @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10 @login @test2.wikipedia.org
+@chrome @clean @en.wikipedia.beta.wmflabs.org @extension-echo @extension-thanks @firefox @internet_explorer_10 @login @test2.wikipedia.org
 Feature: Thank author of a Flow post
 
   Scenario: Anon does not see Thank button
@@ -8,8 +8,9 @@ Feature: Thank author of a Flow post
 
   @login
   Scenario: Thank the user
-    Given I am logged in
-      And the most recent topic on "Talk:Flow QA" is written by another user
+    Given user B exists
+      And the most recent topic on "Talk:Flow QA" is written by user B
+      And I am logged in
       And I am on Flow page
       And I see a Thank button
     When I click on the Thank button

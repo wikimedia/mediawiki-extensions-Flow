@@ -4,9 +4,8 @@ class WikiPage
 end
 
 class FlowPage < WikiPage
-  include URL
   # MEDIAWIKI_URL must have this in $wgFlowOccupyPages array or $wgFlowOccupyNamespaces.
-  page_url URL.url("Talk:Flow_QA")
+  page_url "Talk:Flow_QA"
 
   # board header
   a(:edit_header_link, title: "Edit header")
