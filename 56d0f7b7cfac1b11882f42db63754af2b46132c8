@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e6cb3ef_a56b6c81",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-12-16T16:01:47Z",
+      "side": 1,
+      "message": "Typehint $title \u0026 $user",
+      "revId": "56d0f7b7cfac1b11882f42db63754af2b46132c8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6cb3ef_856e6892",
+        "filename": "includes/api/ApiFlow.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-12-16T16:01:47Z",
+      "side": 1,
+      "message": "I guess this empty if-condition should have something like below?\n\n    /** @var WorkflowLoaderFactory $factory */\n    $factory \u003d Container::get( \u0027factory.loader.workflow\u0027 );\n    $loader \u003d $factory-\u003ecreateWorkflowLoader( $page );\n    $controller-\u003eensureFlowRevision( Article::newFromTitle( $page ), $loader-\u003egetWorkflow() );",
+      "revId": "56d0f7b7cfac1b11882f42db63754af2b46132c8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
