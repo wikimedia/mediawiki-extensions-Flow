@@ -313,3 +313,40 @@ class WrongNumberArgumentsException extends FlowException {
 		}
 	}
 }
+
+/**
+ * Specific exception thrown when a workflow is requested by id through
+ * WorkflowLoaderFactory and it does not exist.
+ */
+class UnknownWorkflowIdException extends InvalidInputException {
+	protected function getErrorCodeList() {
+		return array( 'invalid-input' );
+	}
+
+	public function getHTML() {
+		return wfMessage( 'flow-error-unknown-workflow-id' )->escaped();
+	}
+
+	public function getPageTitle() {
+		return wfMessage( 'flow-error-unknown-workflow-id-title' )->escaped();
+	}
+}
+
+/**
+ * Specific exception thrown when a page within NS_TOPIC is requested
+ * through WorkflowLoaderFactory and it is an invalid uuid
+ */
+class InvalidTopicUuidException extends InvalidInputException {
+	protected function getErrorCodeList() {
+		return array( 'invalid-input' );
+	}
+
+	public function getHTML() {
+		return wfMessage( 'flow-error-invalid-topic-uuid' )->escaped();
+	}
+
+	public function getPageTitle() {
+		return wfMessage( 'flow-error-invalid-topic-uuid-title' )->escaped();
+	}
+}
+
