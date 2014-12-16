@@ -33,6 +33,8 @@ class RecentChanges extends AbstractFormatter {
 		}
 
 		$this->serializer->setIncludeHistoryProperties( true );
+		$this->serializer->setIncludeContent( false );
+
 		$data = $this->serializer->formatApi( $row, $ctx );
 		if ( !$data ) {
 			throw new FlowException( 'Could not format data for row ' . $row->revision->getRevisionId()->getAlphadecimal() );
