@@ -8,9 +8,9 @@ Given(/^I am on a Flow page without JavaScript$/) do
 end
 
 Given(/^I am using user agent "(.+)"$/) do |user_agent|
-  @user_agent = user_agent
-  @browser = browser(test_name(@scenario), { user_agent: user_agent })
-  $session_id = @browser.driver.instance_variable_get(:@bridge).session_id
+  browser_factory(:firefox).bind do |options|
+    options[:profile]["general.useragent.override"] = user_agent
+  end
 end
 
 When(/^I click Add topic no javascript$/) do
