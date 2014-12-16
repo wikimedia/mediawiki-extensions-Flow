@@ -53,12 +53,30 @@ div > .flow-menu {
 		}
 	}
 
+
+	// the toc needs to retain display:block for purposes
+	// of triggering autoload eagerly behind the scenes.
+	// flow-menu-scrollable and flow-menu-hoverable cannot
+	// be combined, as this hides the hoverable control.
+	&.flow-menu-scrollable {
+		visibility: hidden;
+		ul {
+			display: block;
+		}
+	}
+
+
+
 	&.flow-menu-hoverable:hover,
 	&.focus {
 		z-index: 2;
 
 		ul {
 			display: block;
+		}
+
+		&.flow-menu-scrollable {
+			visibility: visible;
 		}
 
 		.flow-menu-js-drop a {
@@ -74,6 +92,8 @@ div > .flow-menu {
 	}
 
 	ul {
+		// By default the menu control is shown and the menu
+		// itself is hidden
 		display: none;
 		font-size: 1em;
 		box-shadow: 0 1px 2px @colorGrayLight;
