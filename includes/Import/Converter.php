@@ -103,16 +103,8 @@ class Converter {
 		/** @var Title $title */
 		foreach ( $titles as $title ) {
 			try {
-				if ( ! $this->isAllowed( $title ) ) {
-					continue;
-				}
-
-				// Filter out sub pages unless we moved them there.  This
-				// matches the behaviour of $wgFlowOccupyNamespaces, where
-				// the main pages get converted to Flow but the sub pages
-				// remain wikitext.
 				$movedFrom = $this->getPageMovedFrom( $title );
-				if ( $movedFrom === null && $title->isSubpage() ) {
+				if ( ! $this->isAllowed( $title, $movedFrom ) ) {
 					continue;
 				}
 
@@ -129,7 +121,7 @@ class Converter {
 		}
 	}
 
-	protected function isAllowed( Title $title ) {
+	protected function isAllowed( Title $title, Title $movedFrom = null ) {
 		// Only make changes to wikitext pages
 		if ( $title->getContentModel() !== CONTENT_MODEL_WIKITEXT ) {
 			return false;
@@ -138,6 +130,19 @@ class Converter {
 		// At some point we may want to handle these, but for now just
 		// let them be
 		if ( $title->isRedirect() ) {
+			return false;
+		}
+
+		// If we previously moved this page, continue the import
+		if ( $movedFrom !== null ) {
+			return true;
+		}
+
+		// Don't allow conversion of sub pages unless it is
+		// a talk page with matching subject page. For example
+		// we will convert User_talk:Foo/bar only if User:Foo/bar
+		// exists, and we will never convert User:Baz/bang.
+		if ( $title->isSubPage() && ( !$title->isTalkPage() || !$title->getSubjectPage()->exists() ) ) {
 			return false;
 		}
 
