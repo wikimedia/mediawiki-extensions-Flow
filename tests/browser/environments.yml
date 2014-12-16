@@ -1,0 +1,23 @@
+mw-vagrant-host:
+  mediawiki_url: http://127.0.0.1:8080/wiki/
+  mediawiki_user: Selenium_user
+  mediawiki_password: vagrant
+  mediawiki_user_b: Selenium_user2
+  mediawiki_password_b: vagrant
+
+mw-vagrant-guest:
+  mediawiki_url: http://127.0.0.1/wiki/
+  mediawiki_user: Selenium_user
+  mediawiki_password: vagrant
+  mediawiki_user_b: Selenium_user2
+  mediawiki_password_b: vagrant
+
+beta:
+  mediawiki_url: http://en.wikipedia.beta.wmflabs.org/wiki/
+  mediawiki_user: Selenium_user
+  mediawiki_user_b: Selenium Flow user 2
+
+test2:
+  mediawiki_url: http://test2.wikipedia.org/wiki/
+  mediawiki_user: Selenium_user
+  mediawiki_user_b: Selenium Flow user 2

@@ -1,9 +1,8 @@
 class UserPage
   include PageObject
 
-  include URL
   # MEDIAWIKI_URL must have this in $wgFlowOccupyPages array or $wgFlowOccupyNamespaces.
-  page_url URL.url("User talk:ENV['MEDIAWIKI_USER']")
+  page_url "User talk:ENV['MEDIAWIKI_USER']"
 
   h1(:first_heading, id: "firstHeading")
   # on test2wiki, page titles include an additional ShortURL after span containing page title.
