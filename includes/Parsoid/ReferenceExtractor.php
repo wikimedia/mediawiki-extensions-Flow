@@ -63,9 +63,16 @@ class ReferenceExtractor {
 
 			foreach( $elements as $element ) {
 				$ref = $extractor->perform( $factory, $element );
-				if ( $ref !== null ) {
-					$output[] = $ref;
+				// no reference was generated
+				if ( $ref === null ) {
+					continue;
 				}
+				// reference points to a special page
+				if ( $ref->getSrcTitle()->isSpecialPage() ) {
+					continue;
+				}
+
+				$output[] = $ref;
 			}
 		}
 
