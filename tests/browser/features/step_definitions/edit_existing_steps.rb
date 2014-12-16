@@ -11,7 +11,7 @@ When(/^I click the Edit title action$/) do
   end
 end
 
-Then(/^I should be able to edit the post field with (.+)$/) do |edited_post|
+When(/^I edit the post field with (.+)$/) do |edited_post|
   on(FlowPage) do |page|
     # Take focus away from menu
     page.post_edit_element.when_present.click
@@ -19,7 +19,7 @@ Then(/^I should be able to edit the post field with (.+)$/) do |edited_post|
   end
 end
 
-Then(/^I should be able to edit the title field with (.+)$/) do |edited_title|
+When(/^I edit the title field with (.+)$/) do |edited_title|
   on(FlowPage) do |page|
     # Take focus away from menu
     page.title_edit_element.when_present.click
@@ -27,14 +27,14 @@ Then(/^I should be able to edit the title field with (.+)$/) do |edited_title|
   end
 end
 
-Then(/^I should be able to save the new post/) do
+When(/^I save the new post/) do
   on(FlowPage) do |page|
     page.change_post_save_element.when_present.click
     page.change_post_save_element.when_not_present
   end
 end
 
-Then(/^I should be able to save the new title$/) do
+When(/^I save the new title$/) do
   on(FlowPage).change_title_save_element.when_present.click
 end
 
