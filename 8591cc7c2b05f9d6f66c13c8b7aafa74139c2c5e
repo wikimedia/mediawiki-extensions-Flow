@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e6cb3ef_2583dcd2",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-12-16T16:34:43Z",
+      "side": 1,
+      "message": "I assume we also have to change AbstractRevision::setContent(), which currently still does getTitle()\n\nAnd I guess ContentFixer::getContent also should also getOwnerTitle() instead of getTitle(), if we\u0027re changing this here?",
+      "revId": "8591cc7c2b05f9d6f66c13c8b7aafa74139c2c5e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
