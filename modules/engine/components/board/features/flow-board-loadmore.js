@@ -283,9 +283,18 @@
 				unknownTopicIds = [];
 			}
 		}
+
 		if ( unknownTopicIds.length ) {
 			// Add any other topic IDs at the end
 			flowBoard.orderedTopicIds.push.apply( flowBoard.orderedTopicIds, unknownTopicIds );
+		}
+
+		// we need to re-trigger scroll.flow if there are not enough items in the
+		// toc for it to scroll and trigger on its own
+		if ( this.$loadMoreNodes ) {
+			this.$loadMoreNodes
+				.filter( '[data-flow-api-handler=topicList]' )
+				.trigger( 'scroll.flow', { forceNavigationUpdate: true } );
 		}
 	}
 	FlowBoardComponentLoadMoreFeatureMixin.UI.events.apiHandlers.topicList = flowBoardComponentLoadMoreFeatureTopicListApiCallback;
