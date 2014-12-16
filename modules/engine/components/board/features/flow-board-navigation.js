@@ -79,9 +79,9 @@
 	 * @param {Event} event
 	 */
 	function _flowBoardAdjustTopicNavigationHeader( $boardNavigation, event ) {
-		var self = this,
-			boardNavigationPosition = ( this.$boardNavigationClone || $boardNavigation ).offset(),
-			bottomScrollPosition, topicText, newReadingTopicId;
+		var bottomScrollPosition, topicText, newReadingTopicId, $tocContainer, $scrollTarget,
+			self = this,
+			boardNavigationPosition = ( this.$boardNavigationClone || $boardNavigation ).offset();
 
 		if ( window.scrollY <= boardNavigationPosition.top ) {
 			// Board nav is still in view; don't affix it
@@ -153,25 +153,48 @@
 
 		self.readingTopicId = newReadingTopicId;
 
-		if ( this.$boardNavigationTitle ) {
+		if ( !this.$boardNavigationTitle ) {
+			return;
+		}
+
+		function calculateUpdatedTitleText( board, topicText ) {
 			// Find out if we need to change the title
 			if ( topicText !== undefined ) {
-				if ( this.$boardNavigationTitle.text() !== topicText ) {
+				if ( board.$boardNavigationTitle.text() !== topicText ) {
 					// Change it
-					this.$boardNavigationTitle.text( topicText );
+					return topicText;
 				}
-			} else if ( this.$boardNavigationTitle.text() !== this.boardNavigationOriginalTitle ) {
-				this.$boardNavigationTitle.text( this.boardNavigationOriginalTitle );
+			} else if ( board.$boardNavigationTitle.text() !== board.boardNavigationOriginalTitle ) {
+				return board.boardNavigationOriginalTitle;
 			}
+		}
 
-			// Set TOC active item
-			this.$boardNavigationTitle.parent().findWithParent( this.$boardNavigationTitle.parent().data( 'flow-api-target' ) )
-				.find( 'a[data-flow-id]' )
-					.filter( '[data-flow-id=' + this.readingTopicId + ']' )
-						.addClass( 'active' )
-					.end().not( '[data-flow-id=' + this.readingTopicId + ']' )
-						.removeClass( 'active' );
+		topicText = calculateUpdatedTitleText( this, topicText );
+		if ( topicText === undefined ) {
+			return;
+		}
 
+		// We only reach this if the visible topic has changed
+		this.$boardNavigationTitle.text( topicText );
+
+		// Set TOC active item
+		$tocContainer = this.$boardNavigationTitle.parent()
+			.findWithParent( this.$boardNavigationTitle.parent().data( 'flow-api-target' ) );
+
+		$scrollTarget = $tocContainer.find( 'a[data-flow-id]' )
+			.removeClass( 'active' )
+			.filter( '[data-flow-id=' + this.readingTopicId + ']' )
+				.addClass( 'active' )
+				.closest( 'li' )
+				.next();
+
+		if ( !$scrollTarget.length ) {
+			// we are at the last list item; use the current one instead
+			$scrollTarget = $scrollTarget.end();
+		}
+		// Scroll to the active item
+		if ( $scrollTarget.length ) {
+			$tocContainer.scrollTop( $scrollTarget.offset().top - $tocContainer.offset().top + $tocContainer.scrollTop() );
 		}
 	}
 
