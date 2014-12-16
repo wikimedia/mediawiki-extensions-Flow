@@ -3,7 +3,8 @@
 # this Makefile with the metadata it calculates.
 #
 
-COMPILE=php5 ../maintenance/compileLightncandy.php
+PHP=`command -v php5 || command -v php`
+COMPILE=@${PHP} ../maintenance/compileLightncandy.php
 
 POST_SUBTEMPLATES=flow_post.handlebars \
 		flow_post_inner.handlebars \
