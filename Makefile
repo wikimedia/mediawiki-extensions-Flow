@@ -10,9 +10,9 @@ ANALYZE_EXTRA=../../includes/GlobalFunctions.php ../../includes/Defines.php ../.
 	../../includes/db/DatabaseUtility.php \
 	../Echo/formatters/BasicFormatter.php ../Echo/formatters/NotificationFormatter.php
 
-# mediawiki-vagarnt default to hhvm rather than php5, which is mostly
+# mediawiki-vagrant default to hhvm rather than php5, which is mostly
 # fine but really slow for commands like phplint
-PHP=/usr/bin/php5
+PHP=`command -v php5 || command -v php`
 
 ###
 # Labs maintenance
