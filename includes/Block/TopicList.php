@@ -125,8 +125,7 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Create a new topic attached to the current topic list and write it
-	 * out to storage.
+
 	 */
 	public function commit() {
 		if ( $this->action !== 'new-topic' ) {
@@ -154,8 +153,11 @@ class TopicListBlock extends AbstractBlock {
 		$storage->put( $this->topicWorkflow, $metadata );
 
 		$output = array(
-			'created-topic-id' => $this->topicWorkflow->getId(),
-			'created-post-id' => $this->firstPost ? $this->firstPost->getRevisionId() : null,
+			'topic-page' => $this->topicWorkflow->getArticleTitle()->getPrefixedText(),
+			'topic-id' => $this->topicTitle->getPostId(),
+			'topic-revision-id' => $this->topicTitle->getRevisionId(),
+			'post-id' => $this->firstPost ? $this->firstPost->getPostId() : null,
+			'post-revision-id' => $this->firstPost ? $this->firstPost->getRevisionId() : null,
 		);
 
 		return $output;

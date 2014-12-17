@@ -54,6 +54,8 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 				$value = $value->toArray();
 			} elseif ( $value instanceof Message ) {
 				$value = $value->text();
+			} elseif ( $value instanceof UUID ) {
+				$value = $value->getAlphadecimal();
 			}
 		} );
 

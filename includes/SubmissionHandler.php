@@ -110,7 +110,8 @@ class SubmissionHandler {
 	/**
 	 * @param Workflow $workflow
 	 * @param AbstractBlock[] $blocks
-	 * @return array
+	 * @return array map from commited block name to an array of metadata returned
+	 *  about inseted objects.
 	 * @throws \Exception
 	 */
 	public function commit( Workflow $workflow, array $blocks ) {
