@@ -23,7 +23,7 @@ class ApiFlowModerateTopic extends ApiFlowBasePost {
 			'reason' => array(
 				ApiBase::PARAM_REQUIRED => true,
 			),
-		);
+		) + parent::getAllowedParams();
 	}
 
 	/**

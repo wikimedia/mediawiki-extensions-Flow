@@ -5,6 +5,7 @@ namespace Flow;
 use Flow\Block\AbstractBlock;
 use Flow\Exception\InvalidActionException;
 use Flow\Model\Anchor;
+use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use ContextSource;
 use Html;
@@ -163,6 +164,8 @@ class View extends ContextSource {
 
 			} elseif ( $value instanceof Message ) {
 				$value = $value->text();
+			} elseif ( $value instanceof UUID ) {
+				$value = $value->getAlphadecimal();
 			}
 		} );
 		wfProfileOut( __CLASS__ . '-serialize' );
