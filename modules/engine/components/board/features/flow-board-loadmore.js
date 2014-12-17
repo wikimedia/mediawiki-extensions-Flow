@@ -45,17 +45,14 @@
 		var flowBoard = this,
 			// Scrolls to the given topic, but disables infinite scroll loading while doing so
 			_scrollWithoutInfinite = function () {
+				var $renderedTopic = flowBoard.renderedTopics[ topicId ];
+
 				flowBoard.infiniteScrollDisabled = true;
 
-				$( 'html, body' ).scrollTop(
-					flowBoard.renderedTopics[ topicId ].offset().top -
-					parseInt( flowBoard.renderedTopics[ topicId ].css( "border-top-width" ) ) -
-					parseInt( flowBoard.renderedTopics[ topicId ].css( "margin-top" ) ) -
-					parseInt( flowBoard.renderedTopics[ topicId ].css( "padding-top" ) )
-				);
+				$( 'html, body' ).scrollTop( $renderedTopic.offset().top );
 
 				// Focus on given topic
-				flowBoard.$board.find('.flow-topic').filter('[data-flow-id=' + topicId + ']' ).click().focus();
+				$renderedTopic.click().focus();
 
 				delete flowBoard.infiniteScrollDisabled;
 			};
@@ -78,7 +75,6 @@
 			submodule: 'view-topiclist',
 			'vtloffset-dir': 'fwd', // @todo support "middle" dir
 			'vtlinclude-offset': true,
-			'vtllimit': 1, // @todo remove this and use the default
 			'vtloffset-id': topicId
 		} )
 			// TODO: Finish this error handling or remove the empty functions.
@@ -294,6 +290,26 @@
 	// On element-load handlers
 	//
 
+	// Checks whether the element is visible and within the on-screen viewport.
+	// https://stackoverflow.com/a/7557433
+	function isVisibleInViewport( $el ) {
+		var el = $el[0],
+			rect;
+
+		if ( !$el.is( ':visible' ) ) {
+			return false;
+		}
+
+		rect = el.getBoundingClientRect();
+
+		return (
+			rect.top >= 0 &&
+			rect.left >= 0 &&
+			rect.bottom <= $(window).height() &&
+			rect.right <= $(window).width()
+		);
+	}
+
 	/**
 	 * Stores the load more button for use with infinite scroll.
 	 * @example <button data-flow-scroll-target="< ul"></button>
@@ -347,7 +363,7 @@
 			} ) );
 
 			// Auto-trigger to keep loading if the new button is already in the viewport
-			if ( $button.is( ':visible' ) ) {
+			if ( isVisibleInViewport( $button ) ) {
 				setTimeout( function () {
 					$button.parents().trigger( 'scroll.flow' );
 				}, 100 );
