@@ -45,17 +45,19 @@
 		var flowBoard = this,
 			// Scrolls to the given topic, but disables infinite scroll loading while doing so
 			_scrollWithoutInfinite = function () {
+				var $renderedTopic = flowBoard.renderedTopics[ topicId ];
+
 				flowBoard.infiniteScrollDisabled = true;
 
-				$( 'html, body' ).scrollTop(
-					flowBoard.renderedTopics[ topicId ].offset().top -
-					parseInt( flowBoard.renderedTopics[ topicId ].css( "border-top-width" ) ) -
-					parseInt( flowBoard.renderedTopics[ topicId ].css( "margin-top" ) ) -
-					parseInt( flowBoard.renderedTopics[ topicId ].css( "padding-top" ) )
-				);
+				// We want to get out of the way of the affixed navigation, but
+				// without showing or triggering the infinite scroll above the new
+				// topic.  With:
+				// .scrollTop( $renderedTopic.offset().top - $( '.flow-board-navigation' ).height() )
+				// the 'load more' above becomes visible.
+				$( 'html, body' ).scrollTop( $renderedTopic.offset().top - 10 );
 
 				// Focus on given topic
-				flowBoard.$board.find('.flow-topic').filter('[data-flow-id=' + topicId + ']' ).click().focus();
+				$renderedTopic.click().focus();
 
 				delete flowBoard.infiniteScrollDisabled;
 			};
@@ -78,7 +80,6 @@
 			submodule: 'view-topiclist',
 			'vtloffset-dir': 'fwd', // @todo support "middle" dir
 			'vtlinclude-offset': true,
-			'vtllimit': 1, // @todo remove this and use the default
 			'vtloffset-id': topicId
 		} )
 			// TODO: Finish this error handling or remove the empty functions.
