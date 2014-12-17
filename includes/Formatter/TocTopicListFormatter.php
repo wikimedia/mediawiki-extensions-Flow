@@ -23,21 +23,26 @@ class TocTopicListFormatter extends BaseTopicListFormatter {
 	 * Formats the response
 	 *
 	 * @param Workflow $listWorkflow Workflow corresponding to board/list of topics
-	 * @param array $mapping Associative array mapping topic ID (in alphadecimal form)
+	 * @param array $topicRootRevisionsByWorkflowId Associative array mapping topic ID (in alphadecimal form)
 	 *  to PostRevision for the topic root.
+	 * @param array $workflowsByWorkflowId Associative array mapping topic ID (in alphadecimal form) to
+	 *  workflow
 	 * @param PagerPage $page page from query, to support pagination
 	 *
 	 * @return array Array formatted for response
 	 */
-	public function formatApi( Workflow $listWorkflow, $mapping, PagerPage $page ) {
+	public function formatApi( Workflow $listWorkflow, $topicRootRevisionsByWorkflowId, $workflowsByWorkflowId, PagerPage $page ) {
 		$result = $this->buildEmptyResult( $listWorkflow );
 
-		foreach ( $mapping as $topicId => $postRevision ) {
+		foreach ( $topicRootRevisionsByWorkflowId as $topicId => $postRevision ) {
 			$result['roots'][] = $topicId;
 			$revisionId = $postRevision->getRevisionId()->getAlphadecimal();
 			$result['posts'][$topicId] = array( $revisionId );
 
 			$contentFormat = 'plaintext';
+
+			$workflow = $workflowsByWorkflowId[$topicId];
+
 			$result['revisions'][$revisionId] = array(
 				// Keep this as a minimal subset of
 				// RevisionFormatter->formatApi, and keep the same content
@@ -51,6 +56,7 @@ class TocTopicListFormatter extends BaseTopicListFormatter {
 					),
 					'format' => $contentFormat,
 				),
+				'last_updated' => $workflow->getLastModifiedObj()->getTimestamp() * 1000,
 			);
 		}
 
