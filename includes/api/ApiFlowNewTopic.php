@@ -26,7 +26,7 @@ class ApiFlowNewTopic extends ApiFlowBasePost {
 			'content' => array(
 				ApiBase::PARAM_REQUIRED => true,
 			),
-		);
+		) + parent::getAllowedParams();;
 	}
 
 	/**

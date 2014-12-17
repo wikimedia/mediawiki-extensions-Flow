@@ -36,7 +36,7 @@ class ApiFlowLockTopic extends ApiFlowBasePost {
 				ApiBase::PARAM_REQUIRED => true,
 				ApiBase::PARAM_TYPE => 'string',
 			),
-		);
+		) + parent::getAllowedParams();
 	}
 
 	/**
