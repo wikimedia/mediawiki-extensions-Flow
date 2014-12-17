@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e6cb3ef_d1765fd5",
+        "filename": "modules/styles/board/menu.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-17T03:58:35Z",
+      "side": 1,
+      "message": "flow-menu-hidden itself needs to be hidden to avoid trapping clicks.",
+      "revId": "ce03d3122c57d76872f8b89223956edf33a2ab35",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
