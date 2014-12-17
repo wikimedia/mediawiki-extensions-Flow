@@ -16,7 +16,9 @@
 			{{~/ifCond~}}
 		   "
 		   data-flow-interactive-handler="menuToggle"
-		   data-flow-menu-target="< .flow-board-navigation .flow-board-sort-menu">
+		   data-flow-menu-target="< .flow-board-navigation .flow-board-sort-menu"
+		   data-flow-sort="{{sortby}}"
+		>
 			{{~#ifCond sortby "===" "updated"}}
 				{{l10n "flow-recent-topics"}}
 			{{else}}

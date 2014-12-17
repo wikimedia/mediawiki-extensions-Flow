@@ -40,7 +40,9 @@
 		   data-tooltip-pointing="down"
 		   title="'.LCRun3::hbch($cx, 'ifCond', Array(Array(((isset($in['sortby']) && is_array($in)) ? $in['sortby'] : null),'===','updated'),Array()), $in, function($cx, $in) {return ''.LCRun3::ch($cx, 'l10n', Array(Array('flow-sorting-tooltip-recent'),Array()), 'encq').'';}, function($cx, $in) {return ''.LCRun3::ch($cx, 'l10n', Array(Array('flow-sorting-tooltip-newest'),Array()), 'encq').'';}).'"
 		   data-flow-interactive-handler="menuToggle"
-		   data-flow-menu-target="< .flow-board-navigation .flow-board-sort-menu">'.LCRun3::hbch($cx, 'ifCond', Array(Array(((isset($in['sortby']) && is_array($in)) ? $in['sortby'] : null),'===','updated'),Array()), $in, function($cx, $in) {return '
+		   data-flow-menu-target="< .flow-board-navigation .flow-board-sort-menu"
+		   data-flow-sort="'.htmlentities((string)((isset($in['sortby']) && is_array($in)) ? $in['sortby'] : null), ENT_QUOTES, 'UTF-8').'"
+		>'.LCRun3::hbch($cx, 'ifCond', Array(Array(((isset($in['sortby']) && is_array($in)) ? $in['sortby'] : null),'===','updated'),Array()), $in, function($cx, $in) {return '
 				'.LCRun3::ch($cx, 'l10n', Array(Array('flow-recent-topics'),Array()), 'encq').'
 			';}, function($cx, $in) {return '
 				'.LCRun3::ch($cx, 'l10n', Array(Array('flow-newest-topics'),Array()), 'encq').'
