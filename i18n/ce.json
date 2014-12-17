@@ -37,6 +37,7 @@
 	"flow-topic-action-hide-topic": "Хьулле тема",
 	"flow-topic-action-delete-topic": "ДӀаяккха тема",
 	"flow-error-no-commit": "Нисдинарг Ӏалашдан йиш яц.",
+	"flow-error-invalid-topic-uuid-title": "Цамегаш йолу цӀе",
 	"flow-edit-header-submit-overwrite": "Юха дӀаязбе корта",
 	"flow-unlock-topic-submit": "Теман тӀера блокдӀаяккха",
 	"flow-edit-title-submit-overwrite": "Юха дӀаязъе цӀе",

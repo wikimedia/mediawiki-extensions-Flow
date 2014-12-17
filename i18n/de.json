@@ -375,6 +375,7 @@
 	"apihelp-flow+reply-param-content": "Inhalt für den neuen Beitrag.",
 	"apihelp-flow+view-header-description": "Betrachtet eine Board-Überschrift.",
 	"apihelp-flow+view-post-description": "Betrachtet einen Beitrag.",
+	"apihelp-flow+view-post-param-postId": "Kennung des anzuzeigenden Beitrags.",
 	"apihelp-flow+view-topic-description": "Betrachtet ein Thema.",
 	"apihelp-flow+view-topic-summary-description": "Betrachtet eine Themenzusammenfassung.",
 	"apihelp-flow+view-topiclist-description": "Betrachtet eine Liste der Themen.",
