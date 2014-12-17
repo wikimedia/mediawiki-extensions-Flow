@@ -434,9 +434,14 @@ class TopicBlock extends AbstractBlock {
 				$newRevision->setChildren( array() );
 			}
 
-			return array(
-				'new-revision-id' => $this->newRevision->getRevisionId(),
+			$returnMetadata = array(
+				'post-revision-id' => $this->newRevision->getRevisionId(),
 			);
+			if ( $this->newRevision->isFirstRevision() ) {
+				$returnMetadata['post-id'] = $this->newRevision->getPostId();
+			}
+
+			return $returnMetadata;
 
 		default:
 			throw new InvalidActionException( "Unknown commit action: {$this->action}", 'invalid-action' );
