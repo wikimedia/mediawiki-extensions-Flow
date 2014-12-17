@@ -49,9 +49,17 @@
 	 */
 	function flowBoardLoadEventsBoardNavigation( $boardNavigation ) {
 		this
+			.off( 'windowScroll', _flowBoardAdjustTopicNavigationHeader )
+			.off( 'windowResize', _flowBoardAdjustTopicNavigationHeader )
 			.on( 'windowScroll', _flowBoardAdjustTopicNavigationHeader, [ $boardNavigation ] )
 			.on( 'windowResize', _flowBoardAdjustTopicNavigationHeader, [ $boardNavigation ] );
 
+		// remove any existing state about the affixed navigation, it has been replaced
+		// with a new $boardNavigation to clone from.
+		if ( this.$boardNavigationClone ) {
+			this.$boardNavigationClone.remove();
+			delete this.$boardNavigationClone;
+		}
 		// The topic navigation header becomes fixed to the window beyond its position
 		_flowBoardAdjustTopicNavigationHeader.call( this, $boardNavigation, {} );
 
