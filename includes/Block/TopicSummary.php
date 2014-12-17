@@ -203,7 +203,7 @@ class TopicSummaryBlock extends AbstractBlock {
 		$this->topicSummary = $this->nextRevision;
 
 		return array(
-			'new-revision-id' => $this->nextRevision->getRevisionId(),
+			'summary-revision-id' => $this->nextRevision->getRevisionId(),
 		);
 	}
 
