@@ -2,7 +2,7 @@
  * Contains loadMore, jumpToTopic, and topic titles list functionality.
  */
 
-( function ( $, mw ) {
+( function ( $, mw, moment ) {
 	/**
 	 * Bind UI events and infinite scroll handler for load more and titles list functionality.
 	 * @param {jQuery} $container
@@ -42,24 +42,26 @@
 	 */
 	function flowBoardComponentLoadMoreFeatureJumpTo( topicId ) {
 		/** @type FlowBoardComponent*/
-		var flowBoard = this,
+		var flowBoard = this, apiParameters,
 			// Scrolls to the given topic, but disables infinite scroll loading while doing so
 			_scrollWithoutInfinite = function () {
 				var $renderedTopic = flowBoard.renderedTopics[ topicId ];
 
-				flowBoard.infiniteScrollDisabled = true;
+				if ( $renderedTopic.length ) {
+					flowBoard.infiniteScrollDisabled = true;
 
-				// We want to get out of the way of the affixed navigation, but
-				// without showing or triggering the infinite scroll above the new
-				// topic.  With:
-				// .scrollTop( $renderedTopic.offset().top - $( '.flow-board-navigation' ).height() )
-				// the 'load more' above becomes visible.
-				$( 'html, body' ).scrollTop( $renderedTopic.offset().top - 10 );
+					// We want to get out of the way of the affixed navigation, but
+					// without showing or triggering the infinite scroll above the new
+					// topic.  With:
+					// .scrollTop( $renderedTopic.offset().top - $( '.flow-board-navigation' ).height() )
+					// the 'load more' above becomes visible.
+					$( 'html, body' ).scrollTop( $renderedTopic.offset().top - 10 );
 
-				// Focus on given topic
-				$renderedTopic.click().focus();
+					// Focus on given topic
+					$renderedTopic.click().focus();
 
-				delete flowBoard.infiniteScrollDisabled;
+					delete flowBoard.infiniteScrollDisabled;
+				}
 			};
 
 		// 1. Topic is already on the page; just scroll to it
@@ -75,13 +77,30 @@
 		}
 
 		// 2b. Load that topic and jump to it
-		flowBoard.Api.apiCall( {
+		apiParameters = {
 			action: 'flow',
 			submodule: 'view-topiclist',
 			'vtloffset-dir': 'fwd', // @todo support "middle" dir
 			'vtlinclude-offset': true,
-			'vtloffset-id': topicId
-		} )
+			vtlsortby: this.topicIdSort
+		};
+
+		if ( this.topicIdSort === 'newest' ) {
+			apiParameters['vtloffset-id'] = topicId;
+		} else {
+			// TODO: It would seem to be safer to pass 'offset-id' for both (what happens
+			// if there are two posts at the same timestamp?).  (Also, that would avoid needing
+			// the timestamp in the TOC-only API response).  However,
+			// apparently, we must pass 'offset' for 'updated' order to get valid
+			// results (e.g. by passing offset-id for 'updated'), it doesn't even include
+			// the item requested despite include-offset).  However, the server
+			// does not throw an exception for 'offset-id' + 'sortby'='updated', which it
+			// should if this analysis is correct.
+
+			apiParameters.vtloffset = moment.utc( this.updateTimestampsByTopicId[ topicId ] ).format( 'YYYYMMDDHHmmss' );
+		}
+
+		flowBoard.Api.apiCall( apiParameters )
 			// TODO: Finish this error handling or remove the empty functions.
 			// Remove the load indicator
 			.always( function () {
@@ -243,7 +262,9 @@
 
 	/**
 	 * Loads up the topic titles list.
-	 * Saves the topic titles to topicTitlesById and orderedTopicIds.
+	 * Saves the topic titles to topicTitlesById and orderedTopicIds, and adds timestamps
+	 * to updateTimestampsByTopicId.
+	 *
 	 * @param {Object} info
 	 * @param {string} info.status "done" or "fail"
 	 * @param {jQuery} info.$target
@@ -260,9 +281,7 @@
 		var i = 0,
 			topicsData = data.flow[ 'view-topiclist' ].result.topiclist,
 			topicId, revisionId,
-			flowBoard = info.component,
-			unknownTopicIds = [];
-
+			flowBoard = info.component;
 
 		// Iterate over every topic
 		for ( ; i < topicsData.roots.length; i++ ) {
@@ -271,24 +290,22 @@
 			// Get the revision ID
 			revisionId = topicsData.posts[ topicId ][0];
 
+			if ( $.inArray( topicId, flowBoard.orderedTopicIds ) === -1 ) {
+				// Append to the end, we will sort after the insert loop.
+				flowBoard.orderedTopicIds.push( topicId );
+			}
+
 			if ( flowBoard.topicTitlesById[ topicId ] === undefined ) {
 				// Store the title from the revision object
 				flowBoard.topicTitlesById[ topicId ] = topicsData.revisions[ revisionId ].content.content;
-				// Hold onto the new topic IDs to be inserted
-				unknownTopicIds.push( topicId );
-			} else if ( unknownTopicIds.length ) {
-				// This is a known topic ID; merge the other topics at this location
-				// Start changing orderedTopicIds at index i, remove 0 elements, add all of the unknownTopicIds.
-				unknownTopicIds.unshift( i, 0 );
-				flowBoard.orderedTopicIds.splice.apply( flowBoard.orderedTopicIds, unknownTopicIds );
-				unknownTopicIds = [];
+			}
+
+			if ( flowBoard.updateTimestampsByTopicId[ topicId ] === undefined ) {
+				flowBoard.updateTimestampsByTopicId[ topicId ] = topicsData.revisions[ revisionId ].last_updated;
 			}
 		}
 
-		if ( unknownTopicIds.length ) {
-			// Add any other topic IDs at the end
-			flowBoard.orderedTopicIds.push.apply( flowBoard.orderedTopicIds, unknownTopicIds );
-		}
+		_flowBoardSortTopicIds( flowBoard );
 
 		// we need to re-trigger scroll.flow-load-more if there are not enough items in the
 		// toc for it to scroll and trigger on its own. Without this TOC never triggers
@@ -395,6 +412,7 @@
 
 			if ( $.inArray( currentTopicId, this.orderedTopicIds ) === -1 ) {
 				this.orderedTopicIds.push( currentTopicId );
+				_flowBoardSortTopicIds( this );
 			}
 		}
 	}
@@ -403,6 +421,24 @@
 	//
 	// Private functions
 	//
+
+
+	/**
+	 * Re-sorts the orderedTopicIds after insert
+	 *
+	 * @param {Object} flowBoard
+	 */
+	function _flowBoardSortTopicIds( flowBoard ) {
+		if ( flowBoard.topicIdSortCallback ) {
+			// Custom sorts
+			flowBoard.orderedTopicIds = flowBoard.orderedTopicIds.sort( flowBoard.topicIdSortCallback );
+		} else {
+			// Default sort, takes advantage of topic ids monotonically increasing
+			// which allows for the newest sort to be the default utf-8 string sort
+			// in reverse.
+			flowBoard.orderedTopicIds = flowBoard.orderedTopicIds.sort().reverse();
+		}
+	}
 
 	/**
 	 * Called on scroll. Checks to see if a FlowBoard needs to have more content loaded.
@@ -535,260 +571,75 @@
 			return $newTopics;
 		}
 
-		/**
-		 * Updates the topic objects and arrays on this object to reflect the new information.
-		 * @param {String[]} topicIdsToRender
-		 * @param {String} [insertAtTopicId]
-		 * @param {String} [insertAt] before or after
-		 * @private
-		 */
-		function _updateIdTables( topicIdsToRender, insertAtTopicId, insertAt ) {
-			var arrayIndex, i;
-
-			// Remove any topic IDs that we already have in the page
-			for ( i = 0; i < topicIdsToRender.length; i++ ) {
-				if ( flowBoard.topicTitlesById[ topicIdsToRender[ i ] ] ) {
-					topicIdsToRender.splice( i, 1 );
-					i--;
-				}
-			}
-
-			// renderedTopics is set by topic loadHandler
-			// topicTitlesById is set by topicTitle loadHandler
-			if ( !insertAtTopicId ) {
-				// Concat new topics at end
-				flowBoard.orderedTopicIds.push.apply( flowBoard.orderedTopicIds, topicIdsToRender );
-			} else {
-				// Find topic position and merge in place
-				arrayIndex = $.inArray( insertAtTopicId, flowBoard.orderedTopicIds );
-				topicIdsToRender.unshift( insertAt === 'after' ? arrayIndex + 1 : arrayIndex, 0 );
-				flowBoard.orderedTopicIds.splice.apply( flowBoard.orderedTopicIds, topicIdsToRender );
-			}
-		}
-
-		var toRender = [],
-			insertAtTopicId,
-			topicId,
-		// Currently rendered topics in queue to be inserted
-			$rendered,
-		// All new topics rendered
-			$allRendered = $(),
-			i,
-			arrayIndex,
-			sortBy = topicsData.sortby || 'newest', // updated or newest
-			reverseDirection = topicsData.submitted[ 'offset-dir' ] === 'rev',
-		// Requested offset datetime as timestamp
-			firstTopicTime,
-		// Iterated topic timestamp
-			topicTime,
-		// Best time difference found
-			bestTopicTimeDifference = null,
-		// Best matching topic found
-			$bestTopic;
+		var i, j, $topic, topicId,
+			$allRendered = $( [] ),
+			toInsert = [];
 
 		for ( i = 0; i < topicsData.roots.length; i++ ) {
 			topicId = topicsData.roots[ i ];
 
 			if ( flowBoard.renderedTopics[ topicId ] ) {
-				// This topic was already rendered. Render any topics before it.
-				$insertAt = flowBoard.renderedTopics[ topicId ];
-				insertAtTopicId = topicId;
-
-				// Render any topics from before this point
-				if ( toRender.length ) {
-					$rendered = _render( toRender ).insertBefore( $insertAt );
-					_updateIdTables( toRender, insertAtTopicId, 'before' );
-					$allRendered = $allRendered.add( $rendered );
-					toRender = [];
+				// already rendered, update?
+			} else {
+				flowBoard.renderedTopics[ topicId ] = _render( [ topicId ] );
+				$allRendered.push( flowBoard.renderedTopics[ topicId ][0] );
+				toInsert.push( topicId );
+				if ( $.inArray( topicId, flowBoard.orderedTopicIds ) === -1 ) {
+					flowBoard.orderedTopicIds.push( topicId );
 				}
-
-				// Remove now-rendered topics and the current topic (which was already rendered)
-				topicsData.roots.splice( 0, i + 1 );
-				// Reset the index
-				i = -1;
-
-				continue;
+				// @todo this is already done elsewhere, but it runs after insert
+				// to the DOM instead of before.  Not sure how to fix ordering.
+				if ( !flowBoard.updateTimestampsByTopicId[ topicId ] ) {
+					flowBoard.updateTimestampsByTopicId[ topicId ] = topicsData.revisions[topicsData.posts[topicId][0]].last_updated;
+				}
 			}
-
-			// Add this topic to the list of topics to render
-			toRender.push( topicId );
 		}
 
-		// Do we have more topics to render?
-		if ( toRender.length ) {
-			$rendered = _render( toRender );
-			$allRendered = $allRendered.add( $rendered );
+		if ( toInsert.length ) {
+			_flowBoardSortTopicIds( flowBoard );
 
-			if ( $insertAt ) {
-				// Easy solution; insert all these topics after a known, rendered topic.  We had a set of results in
-				// which at least one topic in the middle was already on the page, so we can render around it.
-				$rendered.insertAfter( $insertAt );
-				_updateIdTables( toRender, insertAtTopicId, 'after' );
-			} else {
-				// The less easy solution; find out where these topics go...
+			// This uses the assumption that there will be at least one pre-existing
+			// topic above the topics to be inserted.  This should hold true as the
+			// initial page load starts at the begining.
+			for ( i = 1; i < flowBoard.orderedTopicIds.length; i++ ) {
+				// topic is not to be inserted yet.
+				if ( $.inArray( flowBoard.orderedTopicIds[ i ], toInsert ) === -1 ) {
+					continue;
+				}
 
-				// Find the first topic to be rendered in our current list of topic IDs
-				arrayIndex = $.inArray( toRender[ 0 ], flowBoard.orderedTopicIds );
-
-				// Four possible options for finding where to drop these in
-				if ( arrayIndex > -1 ) {
-				/**
-				 * 1. Find by known order in topic list
-				 */
-					// Try to find a preceding topic
-					for ( i = arrayIndex; --i > 0; ) {
-						topicId = flowBoard.orderedTopicIds[ i ];
-
-						// Seems we found the closest topic before
-						if ( flowBoard.renderedTopics[ topicId ] ) {
-							$insertAt = flowBoard.renderedTopics[ topicId ];
-							insertAtTopicId = topicId;
-
-							$rendered.insertAfter( $insertAt );
-
-							_updateIdTables( toRender, insertAtTopicId, 'after' );
-
-							if ( i !== arrayIndex - 1 && i > 0 ) {
-								// If we had to look further than 1 topic, a load more button needs to be inserted before
-								_createRevPagination( $rendered );
-							}
-
-							$rendered = null; // used later
-
-							break;
-						}
-					}
-
-					// Try to find a subsequent topic
-					// Is this necessary, or is the 'preceding' version enough (the initial topics of the current sort order are always loaded at page load)?
-					for ( i = arrayIndex; ++i < flowBoard.orderedTopicIds.length; ) {
-						topicId = flowBoard.orderedTopicIds[ i ];
-
-						// Seems we found the closest topic after
-						if ( flowBoard.renderedTopics[ topicId ] ) {
-							if ( $rendered ) {
-								// If we didn't already insert our topics in the previous loop, do it now
-								$insertAt = flowBoard.renderedTopics[ topicId ];
-								insertAtTopicId = topicId;
-
-								$rendered.insertBefore( $insertAt );
-
-								_updateIdTables( toRender, insertAtTopicId, 'before' );
-							}
-
-							if ( i !== arrayIndex + 1 ) {
-								// If we had to look further than 1 topic, a load more button needs to be inserted after
-								_createFwdPagination( $rendered );
-							}
-							break;
-						}
-
-						// If we already inserted the topics in the previous loop, and we haven't found the next sibling yet...
-						if ( !$rendered ) {
-							// ...then insert a load more link after, and stop the loop
-							_createFwdPagination( $allRendered );
-							break;
-						}
-					}
-				} else if ( topicsData.submitted.offset ) {
-				/**
-				 * 2. Find by date
-				 */
-					// Requested offset datetime as timestamp
-					// TODO: Use http://momentjs.com/docs/#/parsing/string-format/ instead.
-					firstTopicTime = ( new Date( topicsData.submitted.offset.replace(/([0-9]{4})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})/, '$1-$2-$3T$4:$5:$6') ) ).getTime();
-
-					for ( i = 0; i < flowBoard.orderedTopicIds.length; i++ ) {
-						topicId = flowBoard.orderedTopicIds[ i ];
-
-						if ( flowBoard.renderedTopics[ topicId ] ) {
-							topicTime = sortBy === 'newest' ? mw.flow.uuidToTime( topicId ) : flowBoard.renderedTopics[ topicId ].data( 'flow-topic-timestamp-updated' );
-
-							if ( bestTopicTimeDifference === null || Math.abs( topicTime - firstTopicTime ) < Math.abs( bestTopicTimeDifference ) ) {
-								bestTopicTimeDifference = topicTime - firstTopicTime;
-								$bestTopic = flowBoard.renderedTopics[ topicId ];
-								insertAtTopicId = topicId;
-							} else {
-								// The previous diff we found was smaller than this one, so it's the closest option
-								break;
-							}
-						}
-					}
-
-					if ( !$bestTopic ) {
-						flowBoard.debug( true, 'Failed to find topics insertion location by offset time', arguments );
-					} else if ( bestTopicTimeDifference < 0 || ( bestTopicTimeDifference === 0 && reverseDirection ) ) {
-						// 'rev' topics, insert before the topic it had offset from
-						$rendered.insertBefore( $bestTopic );
-
-						_updateIdTables( toRender, insertAtTopicId, 'before' );
-						_createRevPagination( $rendered );
-					} else {
-						// 'fwd' topics, insert after the topic it had offset from
-						$rendered.insertAfter( $bestTopic );
-
-						_updateIdTables( toRender, insertAtTopicId, 'after' );
-						_createFwdPagination( $rendered );
-					}
-				} else if ( topicsData.submitted[ 'offset-id' ] ) {
-				/**
-				 * 3. Find by sibling ID
-				 */
-					topicId = topicsData.submitted[ 'offset-id' ];
-
-					if ( flowBoard.renderedTopics[ topicId ] ) {
-						$insertAt = flowBoard.renderedTopics[ topicId ];
-						insertAtTopicId = topicId;
-
-						if ( reverseDirection ) {
-							// rev mode, topics go before offset
-							$rendered.insertBefore( $insertAt );
-
-							_updateIdTables( toRender, insertAtTopicId, 'before' );
-							_createRevPagination( $rendered );
-						} else {
-							// fwd mode, topics go after offset
-							$rendered.insertAfter( $insertAt );
-
-							_updateIdTables( toRender, insertAtTopicId, 'after' );
-							_createFwdPagination( $rendered );
-						}
-					} else {
-						flowBoard.debug( true, 'Failed to find topics insertion location by offset ID', arguments );
-						return;
-					}
-				} else {
-				/**
-				 * 4. Just drop in at the end of our current topics
-				 */
-					// Find the last rendered topic
-					for ( i = flowBoard.orderedTopicIds.length; i--; ) {
-						topicId = flowBoard.orderedTopicIds[ i ];
-
-						if ( flowBoard.renderedTopics[ topicId ] ) {
-							$insertAt = flowBoard.renderedTopics[ topicId ];
-							insertAtTopicId = topicId;
-
-							$rendered.insertAfter( $insertAt );
-
-							_updateIdTables( toRender, insertAtTopicId, 'after' );
-
-							$rendered = null;
-
-							break;
-						}
-					}
-
-					// For some reason, we STILL didn't insert these topics. Most likely there are no topics on the page.
-					if ( $rendered ) {
-						// Do a hacky insert with find
-						flowBoard.$board.find( '.flow-topics' ).append( $rendered );
-
-						_updateIdTables( toRender );
-						_createRevPagination( $rendered );
-						_createFwdPagination( $rendered );
+				// find the most recent topic in the list that exists and insert after it.
+				for ( j = i - 1; j >= 0; j-- ) {
+					$topic = flowBoard.renderedTopics[ flowBoard.orderedTopicIds[ j ] ];
+					if ( $topic && $topic.length && $.contains( document.body, $topic[0] ) ) {
+						break;
 					}
 				}
+
+				// Put the new topic after the found topic above it
+				if ( j >= 0 ) {
+					$topic.after( flowBoard.renderedTopics[ flowBoard.orderedTopicIds[ i ] ] );
+					if ( j !== i - 1 ) {
+						// needs a load more button?
+					}
+				} else {
+					// @todo log something about failures?
+				}
+			}
+
+			// This works because orderedTopicIds includes not only the topics on
+			// page but also the ones loaded by the toc.  If these topics are due
+			// to a jump rather than forward auto-pagination the prior topic will
+			// not be rendered.
+			i = $.inArray( topicsData.roots[0], flowBoard.orderedTopicIds );
+			if ( i > 0 && flowBoard.renderedTopics[ flowBoard.orderedTopicIds[ i - 1 ] ] === undefined ) {
+				_createRevPagination( flowBoard.renderedTopics[ topicsData.roots[0] ] );
+			}
+			// Same for forward pagination, if we jumped and then scrolled backwards the
+			// topic after the last will already be rendered, and forward pagination
+			// will not be necessary.
+			i = $.inArray( topicsData.roots[ topicsData.roots.length - 1 ], flowBoard.orderedTopicIds );
+			if ( i === flowBoard.orderedTopicIds.length - 1 || flowBoard.renderedTopics[ flowBoard.orderedTopicIds[ i + 1 ] ] === undefined ) {
+				_createFwdPagination( flowBoard.renderedTopics[ topicsData.roots[ topicsData.roots.length - 1 ] ] );
 			}
 		}
 
@@ -798,4 +649,4 @@
 
 	// Mixin to FlowBoardComponent
 	mw.flow.mixinComponent( 'board', FlowBoardComponentLoadMoreFeatureMixin );
-}( jQuery, mediaWiki ) );
+}( jQuery, mediaWiki, moment ) );
