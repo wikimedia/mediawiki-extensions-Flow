@@ -255,9 +255,7 @@
 		var i = 0,
 			topicsData = data.flow[ 'view-topiclist' ].result.topiclist,
 			topicId, revisionId,
-			flowBoard = info.component,
-			unknownTopicIds = [];
-
+			flowBoard = info.component;
 
 		// Iterate over every topic
 		for ( ; i < topicsData.roots.length; i++ ) {
@@ -266,23 +264,18 @@
 			// Get the revision ID
 			revisionId = topicsData.posts[ topicId ][0];
 
+			if ( $.inArray( topicId, flowBoard.orderedTopicIds ) === -1 ) {
+				// Append to the end, we will sort after the insert loop.
+				flowBoard.orderedTopicIds.push( topicId );
+			}
+
 			if ( flowBoard.topicTitlesById[ topicId ] === undefined ) {
 				// Store the title from the revision object
 				flowBoard.topicTitlesById[ topicId ] = topicsData.revisions[ revisionId ].content.content;
-				// Hold onto the new topic IDs to be inserted
-				unknownTopicIds.push( topicId );
-			} else if ( unknownTopicIds.length ) {
-				// This is a known topic ID; merge the other topics at this location
-				// Start changing orderedTopicIds at index i, remove 0 elements, add all of the unknownTopicIds.
-				unknownTopicIds.unshift( i, 0 );
-				flowBoard.orderedTopicIds.splice.apply( flowBoard.orderedTopicIds, unknownTopicIds );
-				unknownTopicIds = [];
 			}
 		}
-		if ( unknownTopicIds.length ) {
-			// Add any other topic IDs at the end
-			flowBoard.orderedTopicIds.push.apply( flowBoard.orderedTopicIds, unknownTopicIds );
-		}
+
+		_flowBoardSortTopicIds( flowBoard );
 	}
 	FlowBoardComponentLoadMoreFeatureMixin.UI.events.apiHandlers.topicList = flowBoardComponentLoadMoreFeatureTopicListApiCallback;
 
@@ -379,6 +372,7 @@
 
 			if ( $.inArray( currentTopicId, this.orderedTopicIds ) === -1 ) {
 				this.orderedTopicIds.push( currentTopicId );
+				_flowBoardSortTopicIds( this );
 			}
 		}
 	}
@@ -387,6 +381,24 @@
 	//
 	// Private functions
 	//
+
+
+	/**
+	 * Re-sorts the orderedTopicIds after insert
+	 *
+	 * @param {Object} flowBoard
+	 */
+	function _flowBoardSortTopicIds( flowBoard ) {
+		if ( flowBoard.topicIdSortCallback ) {
+			// Custom sorts
+			flowBoard.orderedTopicIds = flowBoard.orderedTopicIds.sort( flowBoard.topicIdSortCallback );
+		} else {
+			// Default sort, takes advantage of topic ids monotonically increasing
+			// which allows for the newest sort to be the default utf-8 string sort
+			// in reverse.
+			flowBoard.orderedTopicIds = flowBoard.orderedTopicIds.sort().reverse();
+		}
+	}
 
 	/**
 	 * Called on scroll. Checks to see if a FlowBoard needs to have more content loaded.
@@ -527,7 +539,7 @@
 		 * @private
 		 */
 		function _updateIdTables( topicIdsToRender, insertAtTopicId, insertAt ) {
-			var arrayIndex, i;
+			var i;
 
 			// Remove any topic IDs that we already have in the page
 			for ( i = 0; i < topicIdsToRender.length; i++ ) {
@@ -537,17 +549,9 @@
 				}
 			}
 
-			// renderedTopics is set by topic loadHandler
-			// topicTitlesById is set by topicTitle loadHandler
-			if ( !insertAtTopicId ) {
-				// Concat new topics at end
-				flowBoard.orderedTopicIds.push.apply( flowBoard.orderedTopicIds, topicIdsToRender );
-			} else {
-				// Find topic position and merge in place
-				arrayIndex = $.inArray( insertAtTopicId, flowBoard.orderedTopicIds );
-				topicIdsToRender.unshift( insertAt === 'after' ? arrayIndex + 1 : arrayIndex, 0 );
-				flowBoard.orderedTopicIds.splice.apply( flowBoard.orderedTopicIds, topicIdsToRender );
-			}
+			// Append and sort
+			flowBoard.orderedTopicIds.push.apply( flowBoard.orderedTopicIds, topicIdsToRender );
+			_flowBoardSortTopicIds( flowBoard );
 		}
 
 		var toRender = [],
