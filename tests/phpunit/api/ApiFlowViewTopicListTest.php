@@ -18,11 +18,14 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 			$topicData[$i]['response'] = $this->createTopic( 'result', $title );
 			$topicData[$i]['id'] = $topicData[$i]['response']['roots'][0];
 			$topicData[$i]['revisionId'] = $topicData[$i]['response']['posts'][$topicData[$i]['id']][0];
+			$actualRevision = $topicData[$i]['response']['revisions'][$topicData[$i]['revisionId']];
 			$topicData[$i]['expectedRevision'] = array(
 				'content' => array(
 					'content' => $title,
 					'format' => 'plaintext'
 				),
+				// This last_updated is used for the 'newest' test, then later changed for 'updated' test.
+				'last_updated' => $actualRevision['last_updated'],
 			);
 		}
 
@@ -184,6 +187,7 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 			$topicRevisionId = $topicData[$topicDataInd]['revisionId'];
 			$newPostId = end( $responseTopic['revisions'][$topicRevisionId]['replies'] );
 			$topicData[$topicDataInd]['updateTimestamp'] = $responseTopic['revisions'][$newPostId]['timestamp'];
+			$topicData[$topicDataInd]['expectedRevision']['last_updated'] = wfTimestamp( TS_UNIX, $topicData[$topicDataInd]['updateTimestamp'] ) * 1000;
 		}
 
 		$expectedUpdatedResponse = array_merge_recursive( array(

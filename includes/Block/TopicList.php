@@ -201,19 +201,22 @@ class TopicListBlock extends AbstractBlock {
 			$workflowIds[] = $topicListEntry->getId();
 		}
 
+		$workflows = $this->storage->getMulti( 'Workflow', $workflowIds );
+
 		if ( $isTocOnly ) {
 			// We don't need any further data, so we skip the TopicListQuery.
 
-			$mapping = array();
-			foreach ( $workflowIds as $workflowId ) {
-				$alphaWorkflowId = $workflowId->getAlphadecimal();
-				$mapping[$alphaWorkflowId] = $this->topicRootRevisionCache[$alphaWorkflowId];
+			$topicRootRevisionsByWorkflowId = array();
+			$workflowsByWorkflowId = array();
+
+			foreach ( $workflows as $workflow ) {
+				$alphaWorkflowId = $workflow->getId()->getAlphadecimal();
+				$topicRootRevisionsByWorkflowId[$alphaWorkflowId] = $this->topicRootRevisionCache[$alphaWorkflowId];
+				$workflowsByWorkflowId[$alphaWorkflowId] = $workflow;
 			}
 
-			return $response + $serializer->formatApi( $this->workflow, $mapping, $page );
+			return $response + $serializer->formatApi( $this->workflow, $topicRootRevisionsByWorkflowId, $workflowsByWorkflowId, $page );
 		}
-
-		$workflows = $this->storage->getMulti( 'Workflow', $workflowIds );
 
 		/** @var TopicListQuery $query */
 		$query = Container::get( 'query.topiclist' );
@@ -300,6 +303,8 @@ class TopicListBlock extends AbstractBlock {
 
 		if ( $sortByOption === 'updated' ) {
 			$findOptions = array(
+				// TODO: Why is this only set for 'updated' order?  Is it redundant
+				// to storage.topic_list.indexes?
 				'sort' => 'workflow_last_update_timestamp',
 				'order' => 'desc',
 				// keep sortby so it can be used later for building links
