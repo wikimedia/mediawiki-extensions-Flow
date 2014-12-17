@@ -300,6 +300,8 @@ class TopicListBlock extends AbstractBlock {
 
 		if ( $sortByOption === 'updated' ) {
 			$findOptions = array(
+				// TODO: Why is this only set for 'updated' order?  Is it redundant
+				// to storage.topic_list.indexes?
 				'sort' => 'workflow_last_update_timestamp',
 				'order' => 'desc',
 				// keep sortby so it can be used later for building links

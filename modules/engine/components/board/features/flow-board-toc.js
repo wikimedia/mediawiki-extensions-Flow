@@ -79,8 +79,12 @@
 
 		// Send some overrides to this API request
 		var overrides = {
-			topiclist_sortby: info.component.$board.data( 'flow-sortby' ),
-			topiclist_toconly: true
+			topiclist_sortby: info.component.$board.data( 'flow-sortby' )
+
+			// TODO: Gave up toconly temporarily, to see if this is the right approach
+			// to solve the last_updated/offset problem.  If so, we can look at adding the
+			// required information to the toconly formatter.
+			// topiclist_toconly: true
 		};
 
 		// @todo verify that this works

@@ -15,6 +15,9 @@
 
 		/** {String} topic ID currently being read in viewport */
 		this.readingTopicId = null;
+
+		/** {Object} Map from topic id to its last update timestamp for sorting */
+		this.updateTimestampsByTopicId = {};
 	}
 	OO.initClass( FlowBoardComponentBoardHeaderFeatureMixin );
 
@@ -63,6 +66,12 @@
 		// The topic navigation header becomes fixed to the window beyond its position
 		_flowBoardAdjustTopicNavigationHeader.call( this, $boardNavigation, {} );
 
+		// initialize the board topicId sorting callback.  This expects an element with
+		// data-flow-sort of either 'newest' or 'updated'. Typically this is the anchor
+		// that shows the current sort and allows changing to a new sort.
+		this.topicIdSort = $boardNavigation.find('[data-flow-sort]').data( 'flow-sort' );
+		_flowBoardUpdateTopicIdSortCallback.call( this );
+
 		// This allows the toc to initialize eagerly before the user looks at it.
 		$boardNavigation.find( '[data-flow-api-handler=topicList]' )
 			.trigger( 'click', { skipMenuToggle: true, forceNavigationUpdate: true } );
@@ -79,9 +88,67 @@
 	}
 	FlowBoardComponentBoardHeaderFeatureMixin.UI.events.loadHandlers.boardNavigationTitle = flowBoardLoadEventsBoardNavigationTitle;
 
+	/**
+	 * @param {jQuery} $topic
+	 */
+	function flowBoardLoadEventsTopic( $topic ) {
+		var id = $topic.data( 'flow-id' ),
+			updated = $topic.data( 'flow-last-updated' );
+
+		this.updateTimestampsByTopicId[id] = updated;
+	}
+	FlowBoardComponentBoardHeaderFeatureMixin.UI.events.loadHandlers.topic = flowBoardLoadEventsTopic;
+
 	//
 	// Private functions
 	//
+
+	/**
+	 * Initialize the topic id sort callback
+	 */
+	function _flowBoardUpdateTopicIdSortCallback( $boardNavigation ) {
+		if ( this.topicIdSort === 'newest' ) {
+			// the sort callback takes advantage of the default utf-8
+			// sort in this case
+			this.topicIdSortCallback = undefined;
+		} else if ( this.topicIdSort === 'updated' ) {
+			this.topicIdSortCallback = flowBoardTopicIdGenerateSortRecentlyActive( this );
+		} else {
+			// @todo log something?
+			this.topicIdSortCallback = undefined;
+		}
+	}
+
+	/**
+	 * Generates Array#sort callback for sorting a list of topic ids
+	 * by the 'recently active' sort order. This is a numerical
+	 * comparison of related timestamps held within the board object.
+	 * Also note that this is a reverse sort from newest to oldest.
+	 * @param {Object} board Object from which to source
+	 *  timestamps which map from topicId to its last updated timestamp
+	 * @return {Function}
+	 */
+	function flowBoardTopicIdGenerateSortRecentlyActive( board ) {
+		/**
+		 * @param {String} a
+		 * @param {String} b
+		 * @return {integer} Per Array#sort callback rules
+		 */
+		return function ( a, b ) {
+			var aa = board.updateTimestampsByTopicId[a],
+				bb = board.updateTimestampsByTopicId[b];
+
+			if ( aa === undefined && bb === undefined ) {
+				return 0;
+			} else if ( aa === undefined ) {
+				return 1;
+			} else if ( bb === undefined ) {
+				return -1;
+			} else {
+				return bb - aa;
+			}
+		};
+	}
 
 	/**
 	 * On window.scroll, we clone the nav header bar and fix the original to the window top.
