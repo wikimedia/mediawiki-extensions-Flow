@@ -38,11 +38,13 @@
 
 	{{l10n "flow-topic-comments" reply_count}} &bull;
 
-	{{#if last_updated}}
-		{{timestamp last_updated}}
-	{{else}}
-		{{uuidTimestamp postId}}
-	{{/if}}
+	<a href="{{links.topic-history.url}}" class="flow-timestamp-anchor">
+		{{#if last_updated}}
+			{{timestamp last_updated}}
+		{{else}}
+			{{uuidTimestamp postId}}
+		{{/if}}
+	</a>
 </div>
 {{#if isModerated}}
 	<div class="flow-moderated-topic-title flow-ui-text-truncated">
