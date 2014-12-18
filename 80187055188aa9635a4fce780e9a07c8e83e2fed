@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e6cb3ef_39b3f9e9",
+        "filename": "handlebars/flow_topic.handlebars",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-18T05:25:07Z",
+      "side": 1,
+      "message": "Same as data-flow-topic-timestamp-updated below.",
+      "revId": "80187055188aa9635a4fce780e9a07c8e83e2fed",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6cb3ef_b9c6294d",
+        "filename": "modules/engine/components/board/features/flow-board-loadmore.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-18T05:25:07Z",
+      "side": 1,
+      "message": ".sort() does an in-place sort, so the \u003d assignment is not necessary.",
+      "revId": "80187055188aa9635a4fce780e9a07c8e83e2fed",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6cb3ef_99bd65b0",
+        "filename": "modules/engine/components/board/features/flow-board-loadmore.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-18T05:25:07Z",
+      "side": 1,
+      "message": "This is not a blocker (you can just add a TODO comment), but it would be more performant to do the actual sort in reverse.\n\nIf you use a sort function like:\n\nfunction compare(a, b) {\n  if ( a \u003e b ) {\n    return -1;\n  }\n\n  if ( a \u003c b ) {\n    return 1;\n  }\n\n   return 0;\n}\n\nyou save the separate reverse step.",
+      "revId": "80187055188aa9635a4fce780e9a07c8e83e2fed",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6cb3ef_397e99e2",
+        "filename": "modules/engine/components/board/features/flow-board-navigation.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-18T05:25:07Z",
+      "side": 1,
+      "message": "It could also throw an exception?  There\u0027s no way this should happen.",
+      "revId": "80187055188aa9635a4fce780e9a07c8e83e2fed",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6cb3ef_59834dd1",
+        "filename": "modules/engine/components/board/features/flow-board-navigation.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-18T05:25:07Z",
+      "side": 1,
+      "message": "aTimestamp and bTimestamp would be clearer.",
+      "revId": "80187055188aa9635a4fce780e9a07c8e83e2fed",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
