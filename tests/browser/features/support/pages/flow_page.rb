@@ -196,7 +196,7 @@ class FlowPage < WikiPage
   # top-level replies to the topic, and replies to regular posts
   form(:new_reply_form, css: ".flow-reply-form")
   # Is an input when not focused, textarea when focused
-  text_field(:new_reply_input, css: ".flow-reply-form .mw-ui-input")
+  textarea(:new_reply_input, css: ".flow-reply-form .mw-ui-input")
   button(:new_reply_cancel, css: ".flow-reply-form .mw-ui-destructive")
   button(:new_reply_preview, css: ".flow-reply-form .mw-ui-progressive")
   button(:new_reply_save, css: ".flow-reply-form .mw-ui-constructive")
@@ -218,10 +218,10 @@ class FlowPage < WikiPage
   div(:no_javascript_page_content_title, class: "flow-topic-titlebar flow-click-interactive")
   div(:no_javascript_page_flow_topics, class: "flow-topics")
   button(:no_javascript_reply, text: "Reply")
-  text_area(:no_javascript_reply_form, name: "topic_content")
+  textarea(:no_javascript_reply_form, name: "topic_content")
   a(:no_javascript_start_reply, href: /action=reply/)
   a(:no_javascript_start_topic, href: /action=new-topic/)
-  text_field(:no_javascript_topic_body_text, name: "topiclist_content")
+  textarea(:no_javascript_topic_body_text, name: "topiclist_content")
   text_field(:no_javascript_topic_title_text, name: "topiclist_topic")
 
   # Sorting
