@@ -386,5 +386,8 @@
 	"flow-edited-by": "Bearbeitet von $1",
 	"flow-lqt-redirect-reason": "Eingeschlafenen LiquidThreads-Beitrag zum konvertierten Flow-Beitrag umgeleitet",
 	"flow-talk-conversion-move-reason": "Konvertierung der Wikitext-Diskussion zu Flow von $1",
-	"flow-talk-conversion-archive-edit-reason": "Wikitext-Diskussion-zu-Flow-Konvertierung"
+	"flow-talk-conversion-archive-edit-reason": "Wikitext-Diskussion-zu-Flow-Konvertierung",
+	"group-flow-bot": "Flow-Bot",
+	"group-flow-bot-member": "Flow-Bot",
+	"grouppage-flow-bot": "Project:Flow-Bots"
 }

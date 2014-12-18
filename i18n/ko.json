@@ -158,7 +158,7 @@
 	"flow-history-week": "지난 주",
 	"flow-history-pages-topic": "[$1 \"$2\" 게시판]에 나타납니다",
 	"flow-history-pages-post": "[$1 $2]에 나타납니다",
-	"flow-topic-comments": "{{PLURAL:$1|댓글 ($1개)|댓글 ($1개)|0=첫 댓글을 {{GENDER:$2|달아 보세요}}!}}",
+	"flow-topic-comments": "{{PLURAL:$1|덧글 $1개|0=첫 덧글을 {{GENDER:$2|남기세요}}!}}",
 	"flow-comment-restored": "복원된 덧글",
 	"flow-comment-deleted": "삭제된 덧글",
 	"flow-comment-hidden": "표시 안 함으로 설정된 댓글",

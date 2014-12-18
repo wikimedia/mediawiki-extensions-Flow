@@ -14,7 +14,8 @@
 			"TBloemink",
 			"Arg",
 			"Romaine",
-			"Mar(c)"
+			"Mar(c)",
+			"Mirolith"
 		]
 	},
 	"flow-desc": "Workflowmanagementsysteem",
@@ -148,6 +149,8 @@
 	"flow-error-fetch-after-lock": "Er is een fout opgetreden tijdens het opvragen van nieuwe gegevens. De handeling om te sluiten of te openen is wel geslaagd. De foutmelding is: $1",
 	"flow-error-content-too-long": "De inhoud is te lang. Na uitbreiding van sjablonen mag de grootte maximaal $1 {{PLURAL:$1|byte|bytes}} zijn.",
 	"flow-error-move": "Een prikbord hernoemen is op dit moment niet mogelijk.",
+	"flow-error-invalid-topic-uuid-title": "Ongeldige paginanaam",
+	"flow-error-unknown-workflow-id-title": "Onbekend onderwerp",
 	"flow-edit-header-placeholder": "Beschrijf dit overlegbord",
 	"flow-edit-header-submit": "Koptekst opslaan",
 	"flow-edit-header-submit-overwrite": "Koptekst overschrijven",
