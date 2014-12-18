@@ -33,6 +33,24 @@
       "revId": "bdf71825cbd727e5a62de6ca2aa0f5767777120d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6cb3ef_994fa5c0",
+        "filename": "modules/engine/components/board/features/flow-board-navigation.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-12-18T05:35:58Z",
+      "side": 1,
+      "message": "This seems to work, although is a roundabout way of getting there.  After reading the scrollTop docs i\u0027ve switched this to be:\n\n    $scrollTarget.offset().top - $tocContainer.children().first().offset().top\n\nWhich seems to always get the same result, but is a little easier to parse in my head and reads closer to the documentation of .scrollTop().",
+      "parentUuid": "0e6cb3ef_d9975d92",
+      "revId": "bdf71825cbd727e5a62de6ca2aa0f5767777120d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
