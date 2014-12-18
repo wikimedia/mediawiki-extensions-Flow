@@ -34,6 +34,24 @@
       "revId": "08c0902152c00bebdf1d646db00db11c58ecfd30",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6cb3ef_4107cfcd",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-12-18T12:36:14Z",
+      "side": 1,
+      "message": "Even though you may already know the post-id, I\u0027d still return it for the sake of consistency - knowing that whatever topic/post action will return the post-id.\n\nCould be easy to rely on in scripts: instead of having to pass around the the id you had when you submitted, to whatever is processing the API output.",
+      "parentUuid": "0e6cb3ef_e13dc38b",
+      "revId": "08c0902152c00bebdf1d646db00db11c58ecfd30",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
