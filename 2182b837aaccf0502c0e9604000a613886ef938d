@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e6cb3ef_d97d1d19",
+        "filename": "modules/engine/components/board/features/flow-board-navigation.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-18T04:40:49Z",
+      "side": 1,
+      "message": "Pass the listener to off (second parameter), to avoid removing unrelated listeners.",
+      "revId": "2182b837aaccf0502c0e9604000a613886ef938d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
