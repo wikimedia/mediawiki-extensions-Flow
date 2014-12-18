@@ -16,6 +16,24 @@
       "revId": "08c0902152c00bebdf1d646db00db11c58ecfd30",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6cb3ef_e13dc38b",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-12-18T12:32:45Z",
+      "side": 1,
+      "message": "if its not the first revision i think you must have submitted a post id to make the change.  I suppose it could be done from just a revision id, but i think we require the post id in all cases(edit, moderate, etc)?",
+      "parentUuid": "0e6cb3ef_e1ce23b9",
+      "revId": "08c0902152c00bebdf1d646db00db11c58ecfd30",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
