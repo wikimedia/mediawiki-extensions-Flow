@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e6cb3ef_e1ce23b9",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-12-18T12:31:07Z",
+      "side": 1,
+      "message": "Why only on first revision \u0026 not always add post-id?",
+      "revId": "08c0902152c00bebdf1d646db00db11c58ecfd30",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
