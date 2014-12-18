@@ -26,7 +26,7 @@ class ApiFlowModeratePost extends ApiFlowBasePost {
 			'postId' => array(
 				ApiBase::PARAM_REQUIRED => true,
 			),
-		);
+		) + parent::getAllowedParams();
 	}
 
 	/**

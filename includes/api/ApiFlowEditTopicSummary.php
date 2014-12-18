@@ -20,7 +20,7 @@ class ApiFlowEditTopicSummary extends ApiFlowBasePost {
 			'summary' => array(
 				ApiBase::PARAM_REQUIRED => true,
 			),
-		);
+		) + parent::getAllowedParams();
 	}
 
 	/**

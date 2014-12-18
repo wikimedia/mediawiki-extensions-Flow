@@ -1,6 +1,7 @@
 <?php
 
 use Flow\Model\Anchor;
+use Flow\Model\UUID;
 
 abstract class ApiFlowBasePost extends ApiFlowBase {
 	public function execute() {
@@ -33,7 +34,7 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 			);
 		}
 
-		$loader->commit( $workflow, $blocksToCommit );
+		$commitMetadata = $loader->commit( $workflow, $blocksToCommit );
 		$savedBlocks = array();
 		$result->setIndexedTagName( $savedBlocks, 'block' );
 
@@ -42,17 +43,23 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 		}
 
 		$output = array( $action => array(
-			'result' => array(),
 			'status' => 'ok',
 			'workflow' => $workflow->isNew() ? '' : $workflow->getId()->getAlphadecimal(),
+			'committed' => $commitMetadata,
 		) );
 
-		foreach( $blocksToCommit as $block ) {
-			// Always return parsed text to client after successful submission?
-			// @Todo - hacky, maybe have contentformat in the request to overwrite
-			// requiredWikitext
-			$block->unsetRequiresWikitext( $action );
-			$output[$action]['result'][$block->getName()] = $block->renderApi( $params[$block->getName()] );
+		// User frontends need this data, but bots do not.  When they
+		// pass metadataonly=1 we will skip this data and return a slimmer
+		// response in a shorter timeframe.
+		if ( !$this->getParameter( 'metadataonly' ) ) {
+			$output[$action]['result'] = array();
+			foreach( $blocksToCommit as $block ) {
+				// Always return parsed text to client after successful submission?
+				// @Todo - hacky, maybe have contentformat in the request to overwrite
+				// requiredWikitext
+				$block->unsetRequiresWikitext( $action );
+				$output[$action]['result'][$block->getName()] = $block->renderApi( $params[$block->getName()] );
+			}
 		}
 
 		// required until php5.4 which has the JsonSerializable interface
@@ -61,10 +68,22 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 				$value = $value->toArray();
 			} elseif ( $value instanceof Message ) {
 				$value = $value->text();
+			} elseif ( $value instanceof UUID ) {
+				$value = $value->getAlphadecimal();
 			}
 		} );
 
 		$this->getResult()->addValue( null, $this->apiFlow->getModuleName(), $output );
+	}
+
+	public function getAllowedParams() {
+		return array(
+			'metadataonly' => array(
+				ApiBase::PARAM_TYPE => 'boolean',
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_REQUIRED => false,
+			),
+		);
 	}
 
 	/**
