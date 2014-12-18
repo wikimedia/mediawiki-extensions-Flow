@@ -200,11 +200,10 @@ class TemplateHelper {
 	 * @throws WrongNumberArgumentsException
 	 */
 	static public function uuidTimestamp( array $args, array $named ) {
-		if ( count( $args ) < 1 || count( $args ) > 2 ) {
-			throw new WrongNumberArgumentsException( $args, 'one', 'two' );
+		if ( count( $args ) !== 1 ) {
+			throw new WrongNumberArgumentsException( $args, 'one' );
 		}
 		$uuid = $args[0];
-		$timeAgoOnly = isset( $args[1] ) ? $args[1] : false;
 
 		$obj = UUID::create( $uuid );
 		if ( !$obj ) {
@@ -213,7 +212,7 @@ class TemplateHelper {
 
 		// timestamp helper expects ms timestamp
 		$timestamp = $obj->getTimestampObj()->getTimestamp() * 1000;
-		return self::timestamp( $timestamp, $timeAgoOnly );
+		return self::timestamp( $timestamp );
 	}
 
 	/**
@@ -233,12 +232,10 @@ class TemplateHelper {
 	}
 
 	/**
-	 * This server-side version of timestamp does not render time-ago.
 	 * @param integer $timestamp milliseconds since the unix epoch
-	 * @param boolean $timeAgoOnly true to return plaintext '5 hours ago'
 	 * @return string|false
 	 */
-	static protected function timestamp( $timestamp, $timeAgoOnly = false ) {
+	static protected function timestamp( $timestamp ) {
 		global $wgLang, $wgUser;
 
 		if ( !$timestamp ) {
@@ -249,16 +246,11 @@ class TemplateHelper {
 		$timestamp /= 1000;
 		$ts = new MWTimestamp( $timestamp );
 
-		if ( $timeAgoOnly ) {
-			return $ts->getHumanTimestamp();
-		}
-
 		return self::html( self::processTemplate(
 			'timestamp',
 			array(
 				'time_iso' => $timestamp,
 				'time_ago' => $ts->getHumanTimestamp(),
-				'time_ago_only' => $timeAgoOnly ? 1 : 0,
 				'time_readable' => $wgLang->userTimeAndDate( $timestamp, $wgUser ),
 				'guid' => null, //generated client-side
 			)

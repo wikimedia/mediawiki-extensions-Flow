@@ -73,8 +73,7 @@
 		$time.replaceWith(
 			mw.flow.TemplateEngine.callHelper(
 				'timestamp',
-				parseInt( $time.attr( 'datetime' ), 10) * 1000,
-				$time.data( 'time-ago-only' ) === "1"
+				parseInt( $time.attr( 'datetime' ), 10) * 1000
 			)
 		);
 	};

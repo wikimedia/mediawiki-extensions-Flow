@@ -12,6 +12,15 @@
 	.flow-timestamp-ago {
 		display: block;
 	}
+
+	&:hover {
+		.flow-timestamp-user-formatted {
+			display: block;
+		}
+		.flow-timestamp-ago {
+			display: none;
+		}
+	}
 }
 
 .flow-timestamp-ago,
@@ -22,20 +31,6 @@
 
 .flow-timestamp-ago {
 	margin-top: -1em;
-}
-
-.client-js {
-	.flow-timestamp {
-
-		&:hover {
-			.flow-timestamp-user-formatted {
-				display: block;
-			}
-			.flow-timestamp-ago {
-				display: none;
-			}
-		}
-	}
 }
 
 // inherit the gray color if not hovered, doesn't work in ie8

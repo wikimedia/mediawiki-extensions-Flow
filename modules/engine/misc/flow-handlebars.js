@@ -225,26 +225,21 @@
 
 	/**
 	 * Generates markup for an "nnn sssss ago" and date/time string.
-	 * @example {{timestamp start_time "flow-message-x-"}}
+	 * @example {{timestamp start_time}}
 	 * @param {int} timestamp milliseconds
-	 * @param {bool} [timeAgoOnly]
-	 * @returns {String|undefined}
+	 * @returns {String}
 	 */
-	FlowHandlebars.prototype.timestamp = function ( timestamp, timeAgoOnly ) {
+	FlowHandlebars.prototype.timestamp = function ( timestamp ) {
 		if ( isNaN( timestamp ) ) {
-			mw.flow.debug( '[timestamp] Invalid arguments', arguments);
+			mw.flow.debug( '[timestamp] Invalid arguments', arguments );
 			return;
 		}
 
-		var  guid,
+		var guid,
 			formatter = moment( timestamp );
 
-		if ( timeAgoOnly ) {
-			return formatter.fromNow();
-		}
-
 		// Generate a GUID for this element to find it later
-		guid = (Math.random() + 1 ).toString( 36 ).substring( 2 );
+		guid = ( Math.random() + 1 ).toString( 36 ).substring( 2 );
 
 		// Store this in the timestamps auto-updater array
 		_timestamp.list.push( { guid: guid, timestamp: timestamp, failcount: 0 } );
@@ -270,7 +265,7 @@
 	 * @todo Maybe updating elements every few seconds is distracting? Think about this.
 	 */
 	function timestampAutoUpdate() {
-		var arrayItem, $ago, failed, secondsAgo, text,
+		var arrayItem, $ago, failed, secondsAgo, text, formatter,
 			currentTime = +new Date() / 1000;
 
 		// Only update elements that need updating (eg. only update minutes every 60s)
@@ -299,7 +294,8 @@
 		secondsAgo = currentTime - ( arrayItem.timestamp / 1000 );
 
 		if ( $ago && $ago.length ) {
-			text = FlowHandlebars.prototype.timestamp( arrayItem.timestamp, true );
+			formatter = moment( arrayItem.timestamp );
+			text = formatter.fromNow();
 
 			// Returned a valid "n ago" string?
 			if ( text ) {

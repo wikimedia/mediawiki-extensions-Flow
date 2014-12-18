@@ -24,7 +24,6 @@
 	<time datetime="'.htmlentities((string)((isset($in['time_iso']) && is_array($in)) ? $in['time_iso'] : null), ENT_QUOTES, 'UTF-8').'"
 	      class="flow-timestamp flow-load-interactive"
 	      data-flow-load-handler="timestamp"
-	      data-time-ago-only="'.htmlentities((string)((isset($in['time_ago_only']) && is_array($in)) ? $in['time_ago_only'] : null), ENT_QUOTES, 'UTF-8').'"
 	>
 ').'
 	<span class="flow-timestamp-user-formatted">'.htmlentities((string)((isset($in['time_readable']) && is_array($in)) ? $in['time_readable'] : null), ENT_QUOTES, 'UTF-8').'</span>
