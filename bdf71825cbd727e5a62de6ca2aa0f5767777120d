@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e6cb3ef_7994118e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-18T03:00:02Z",
+      "side": 1,
+      "message": "\"in the TOC\"",
+      "revId": "bdf71825cbd727e5a62de6ca2aa0f5767777120d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6cb3ef_d9975d92",
+        "filename": "modules/engine/components/board/features/flow-board-navigation.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-12-18T03:00:02Z",
+      "side": 1,
+      "message": "I don\u0027t totally get this line.  I think this all means:\n\n$scrollTarget.offset().top - Y offset of the new target, relative to the document.\n$tocContainer.offset().top - Y offset of the container, relative to the document.\n$tocContainer.scrollTop() - Y scroll position of the $tocContainer\u0027s scroll bar.\n\nSo why does the new scroll position of the TOC depend on the old scroll position?  It also doesn\u0027t take into account the old scroll target, so it seems like the old scroll position shouldn\u0027t be in there either.",
+      "revId": "bdf71825cbd727e5a62de6ca2aa0f5767777120d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
