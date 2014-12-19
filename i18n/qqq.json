@@ -357,7 +357,7 @@
 	"flow-topic-count": "Message displayed at the top of the sidebar showing the number of topics loaded on the page\n{{Identical|Topic}}",
 	"flow-load-more": "Message displayed inside a button that fetches more topics and appends them to the bottom of the page\n{{Identical|Load more}}",
 	"flow-no-more-fwd": "Displayed instead of 'flow-load-more' when there are no more topics to show in the forward direction",
-	"flow-add-topic": "Button text for submitting a new topic to the page",
+	"flow-add-topic": "Button text for submitting a new topic to the page\n{{Identical|Add topic}}",
 	"flow-newest-topics": "Filter label text for \"Newest topics\".\n\nSee also:\n* {{msg-mw|Flow-recent-topics}}",
 	"flow-recent-topics": "Filter label text for \"Recent active topics\".\n\nSee also:\n* {{msg-mw|Flow-newest-topics}}",
 	"flow-sorting-tooltip-newest": "Tooltip displayed when mouse hovering over the sorting drop down menu and '{{msg-mw|flow-newest-topics}}' is selected.",
@@ -482,7 +482,7 @@
 	"flow-lqt-redirect-reason": "Edit summary used to redirect old LQT thread pages to Flow topics",
 	"flow-talk-conversion-move-reason": "Message used as an edit summary when moving an existing talk page to an archive location in preparation for enabling flow on that page.\nParameters:\n* $1 - Title the page was moved from",
 	"flow-talk-conversion-archive-edit-reason": "Message used as an edit summary when appending a template to a wikitext talk page after archiving it in preparation for conversion to Flow.",
-	"group-flow-bot": "Name of flow-bot group",
-	"group-flow-bot-member": "Name of member of flow-bot group",
-	"grouppage-flow-bot": "Project page for flow-bot group"
+	"group-flow-bot": "{{doc-group|flow-bot}}",
+	"group-flow-bot-member": "{{doc-group|flow-bot|member}}",
+	"grouppage-flow-bot": "{{doc-group|flow-bot|page}}"
 }

@@ -438,5 +438,8 @@
 	"flow-edited-by": "由$1编辑",
 	"flow-lqt-redirect-reason": "重定向停用的LiquidThreads帖子至转换的Flow帖子",
 	"flow-talk-conversion-move-reason": "将$1从wiki文本讨论页转换为Flow页面",
-	"flow-talk-conversion-archive-edit-reason": "Wiki文本讨论页至Flow转换"
+	"flow-talk-conversion-archive-edit-reason": "Wiki文本讨论页至Flow转换",
+	"group-flow-bot": "Flow机器人",
+	"group-flow-bot-member": "Flow机器人",
+	"grouppage-flow-bot": "Project:Flow机器人"
 }
