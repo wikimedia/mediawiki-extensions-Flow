@@ -151,6 +151,7 @@
 	"flow-error-no-render": "No se reconoció la acción especificada.",
 	"flow-error-no-commit": "No se pudo guardar la acción especificada.",
 	"flow-error-move": "No se admite el traslado de los paneles de discusión.",
+	"flow-error-invalid-topic-uuid-title": "Título incorrecto",
 	"flow-edit-header-placeholder": "Describir este panel de discusión",
 	"flow-edit-header-submit": "Guardar cabecera",
 	"flow-edit-header-submit-overwrite": "Sobrescribir encabezado",

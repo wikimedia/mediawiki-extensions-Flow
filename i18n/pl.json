@@ -60,6 +60,7 @@
 	"flow-error-prev-revision-mismatch": "Ktoś inny kilka sekund temu edytował ten wpis. Na pewno {{GENDER:$3|chcesz}} nadpisać jego zmiany?",
 	"flow-error-default": "Wystąpił błąd.",
 	"flow-error-content-too-long": "Treść jest zbyt duża. Po rozbudowie treść jest ograniczona do $1 {{PLURAL:$1|bajta|bajtów}}.",
+	"flow-error-invalid-topic-uuid-title": "Niepoprawny tytuł",
 	"flow-edit-header-submit": "Zapisz nagłówek",
 	"flow-edit-header-submit-overwrite": "Nadpisz nagłówek",
 	"flow-summarize-topic-submit": "Podsumuj",

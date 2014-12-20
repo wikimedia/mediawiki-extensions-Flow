@@ -21,7 +21,8 @@
 			"Trizek",
 			"Kvardek du",
 			"Arkanosis",
-			"Dereckson"
+			"Dereckson",
+			"Macofe"
 		]
 	},
 	"flow-desc": "Système de gestion du flux de travail",
@@ -156,6 +157,7 @@
 	"flow-error-fetch-after-lock": "Une erreur s’est produite en recherchant de nouvelles données. L’opération de verrouillage/déverrouillage s’est toutefois bien passée. Le message d’erreur est : $1",
 	"flow-error-content-too-long": "Le contenu est trop grand. Après expansion, la taille du contenu est limitée à $1 {{PLURAL:$1|octet|octets}}.",
 	"flow-error-move": "Déplacer l'ensemble de la discussion n’est pas possible pour le moment.",
+	"flow-error-invalid-topic-uuid-title": "Mauvais titre",
 	"flow-edit-header-placeholder": "Décrire l'ensemble de cette discussion",
 	"flow-edit-header-submit": "Enregistrer l’entête",
 	"flow-edit-header-submit-overwrite": "Écraser l’entête",

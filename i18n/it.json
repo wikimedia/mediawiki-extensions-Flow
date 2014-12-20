@@ -6,7 +6,8 @@
 			"Gianfranco",
 			"Maria victoria",
 			"Rosh",
-			"FRacco"
+			"FRacco",
+			"Macofe"
 		]
 	},
 	"flow-desc": "Sistema di gestione del flusso di lavoro",
@@ -140,6 +141,7 @@
 	"flow-error-fetch-after-lock": "Si è verificato un errore durante la richiesta di nuovi dati. L'operazione di blocco/sblocco è comunque andata a buon fine. Il messaggio di errore è: $1",
 	"flow-error-content-too-long": "Il contenuto è troppo grande. Il contenuto, dopo l'espansione, deve essere minore di $1 {{PLURAL:$1|byte}}.",
 	"flow-error-move": "Lo spostamento di una bacheca di discussione non è attualmente supportato.",
+	"flow-error-invalid-topic-uuid-title": "Titolo non corretto",
 	"flow-edit-header-placeholder": "Descrivi questa bacheca di discussione",
 	"flow-edit-header-submit": "Salva intestazione",
 	"flow-edit-header-submit-overwrite": "Sovrascrivi intestazione",

@@ -84,6 +84,8 @@
 	"flow-error-no-render": "Déi spzifizéiert Aktioun gouf net erkannt.",
 	"flow-error-no-commit": "Déi spezifiséiert Aktioun konnt net gespäichert ginn",
 	"flow-error-move": "D'Réckel vun engem Diskussiouns-Forum gëtt elo net ënnerstëtzt",
+	"flow-error-invalid-topic-uuid-title": "Schlechten Titel",
+	"flow-error-unknown-workflow-id-title": "Onbekannt Thema",
 	"flow-edit-header-placeholder": "Dësen Diskussiouns-Board beschreiwen",
 	"flow-edit-header-submit": "Iwwerschrëft späicheren",
 	"flow-edit-header-submit-overwrite": "Iwwerschrëft iwwerschreiwen",
