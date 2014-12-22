@@ -62,6 +62,7 @@
 	"flow-thank-link": "{{GENDER:$1|感謝}}",
 	"flow-lock-link": "{{GENDER:$1|鎖定}}",
 	"flow-history-action-suppress-post": "封鎖",
+	"flow-history-action-delete-post": "刪除",
 	"flow-history-action-unsuppress-post": "解除封鎖",
 	"flow-history-action-undelete-post": "取消刪除",
 	"flow-history-action-lock-topic": "鎖定",

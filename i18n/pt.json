@@ -352,5 +352,8 @@
 	"apihelp-flow+new-topic-param-content": "Conteúdo para um novo tópico.",
 	"apihelp-flow+reply-param-content": "Conteúdo para novo tópico.",
 	"flow-edited": "Editada",
-	"flow-edited-by": "Editada por $1"
+	"flow-edited-by": "Editada por $1",
+	"group-flow-bot": "Flow bot",
+	"group-flow-bot-member": "Flow bot",
+	"grouppage-flow-bot": "Project:Flow bot"
 }
