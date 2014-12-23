@@ -368,6 +368,7 @@
 	"apihelp-flow+lock-topic-example-1": "Sperrt [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+moderate-post-description": "Moderiert einen Flow-Beitrag.",
 	"apihelp-flow+moderate-post-param-reason": "Grund für die Moderation.",
+	"apihelp-flow+moderate-topic-description": "Moderiert ein Flow-Thema.",
 	"apihelp-flow+moderate-topic-param-reason": "Grund für die Moderation.",
 	"apihelp-flow+new-topic-param-topic": "Text für die neue Themenüberschrift.",
 	"apihelp-flow+new-topic-param-content": "Inhalt für das neue Thema.",
