@@ -6,11 +6,27 @@
 			"Boxmein"
 		]
 	},
+	"flow-edit-header-link": "Redigeeri päist",
+	"flow-hide-post-content": "$1 peitis selle kommentaari.",
+	"flow-hide-title-content": "$1 peitis selle teema.",
+	"flow-lock-title-content": "$1 lukustas selle teema.",
 	"flow-cancel": "Loobu",
 	"flow-preview": "Eelvaade",
 	"flow-newtopic-content-placeholder": "Postita uus sõnum leheküljele \"$1\"",
+	"flow-newtopic-start-placeholder": "Alusta uut teemat",
 	"flow-newtopic-first-heading": "Alusta uut teemat lehel $1",
+	"flow-reply-topic-title-placeholder": "Vasta teemale \"$1\"",
+	"flow-reply-submit": "{{GENDER:$1|Vasta}}",
+	"flow-reply-link": "{{GENDER:$1|Vasta}}",
+	"flow-edit-header-submit": "Salvesta päis",
 	"flow-workflow": "töövoog",
-	"flow-time-ago-day": "{{PLURAL:$1|ühe|$1}} päeva eest",
-	"flow-time-ago-hour": "{{PLURAL:$1|ühe|$1}} tunni eest"
+	"flow-newest-topics": "Uusimad teemad",
+	"flow-recent-topics": "Viimati aktiivsed teemad",
+	"flow-sorting-tooltip-newest": "Loed praegu kõigepealt uusimaid teemasid. Klõpsa, et näha rohkem järjestussätteid.",
+	"flow-sorting-tooltip-recent": "Loed praegu kõigepealt viimati aktiivseid teemasid. Klõpsa, et näha rohkem järjestussätteid.",
+	"flow-toggle-small-topics": "Vaheta vaadet: ainult teemapealkirjad",
+	"flow-toggle-topics": "Vaheta vaadet: teemad ilma postitusteta",
+	"flow-toggle-topics-posts": "Vaheta vaadet: teemad postitustega",
+	"flow-preview-warning": "Näed praegu eelvaadet. Salvesta, et postitamine lõpule viia, või klõpsa \"{{int:flow-preview-return-edit-post}}\", et kirjutamist jätkata.",
+	"flow-preview-return-edit-post": "Redigeeri edasi"
 }
