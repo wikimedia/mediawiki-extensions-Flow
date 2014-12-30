@@ -90,13 +90,19 @@ class ConvertToText extends Maintenance {
 		$api = new ApiMain( $request );
 		$api->execute();
 
-		$apiResponse = $api->getResult()->getData();
-
-		if ( ! isset( $apiResponse['flow'] ) ) {
-			throw new MWException( "API response has no Flow data" );
+		if ( defined( 'ApiResult::META_CONTENT' ) ) {
+			$flowData = $api->getResult()->getResultData( array( 'flow', $submodule, 'result' ) );
+			if ( $flowData === null ) {
+				throw new MWException( "API response has no Flow data" );
+			}
+			$flowData = ApiResult::removeMetadata( $flowData );
+		} else {
+			$apiResponse = $api->getResult()->getData();
+			if ( ! isset( $apiResponse['flow'] ) ) {
+				throw new MWException( "API response has no Flow data" );
+			}
+			$flowData = $apiResponse['flow'][$submodule]['result'];
 		}
-
-		$flowData = $apiResponse['flow'][$submodule]['result'];
 
 		if( $requiredBlock !== false && ! isset( $flowData[$requiredBlock] ) ) {
 			throw new MWException( "No $requiredBlock block in API response" );

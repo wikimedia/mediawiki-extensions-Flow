@@ -315,7 +315,11 @@ class LocalApiBackend extends ApiBackend {
 
 			$api = new ApiMain( $context );
 			$api->execute();
-			return $api->getResult()->getData();
+			if ( defined( 'ApiResult::META_CONTENT' ) ) {
+				return ApiResult::removeMetadata( $api->getResult()->getResultData() );
+			} else {
+				return $api->getResult()->getData();
+			}
 		} catch ( UsageException $exception ) {
 			// Mimic the behaviour when called remotely
 			return array( 'error' => $exception->getMessageArray() );
