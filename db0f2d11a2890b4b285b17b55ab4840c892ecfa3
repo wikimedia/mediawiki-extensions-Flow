@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0e6cb3ef_3b25f103",
+        "filename": "tests/browser/features/step_definitions/flow_in_recent_changes_steps.rb",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 77
+      },
+      "writtenOn": "2014-12-31T22:54:20Z",
+      "side": 1,
+      "message": "I changed \u0027is\u0027 to \u0027should be\u0027, good catch.",
+      "parentUuid": "0e6cb3ef_9bc99d57",
+      "revId": "db0f2d11a2890b4b285b17b55ab4840c892ecfa3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e6cb3ef_7bce0961",
         "filename": "tests/browser/features/step_definitions/flow_steps.rb",
         "patchSetId": 7
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "0e6cb3ef_5b20e5f1",
+        "filename": "tests/browser/features/step_definitions/flow_steps.rb",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 77
+      },
+      "writtenOn": "2014-12-31T22:54:20Z",
+      "side": 1,
+      "message": "the @ makes this an instance variable, which is accessible by all methods within a class. \n\nwithout the @ this variable would only be available within the method in which it is defined.",
+      "parentUuid": "0e6cb3ef_7bce0961",
+      "revId": "db0f2d11a2890b4b285b17b55ab4840c892ecfa3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e6cb3ef_dbe715de",
         "filename": "tests/browser/features/support/pages/flow_recent_changes_page.rb",
         "patchSetId": 7
@@ -47,6 +83,24 @@
       "writtenOn": "2014-12-31T22:22:59Z",
       "side": 1,
       "message": "This isn\u0027t Flow-specific. I would name the file recent_changes_page.rb and name this just `recent_changes`, and add a\n\n    @todo Should be in MediaWiki core pages elements\n\nor whatever.",
+      "revId": "db0f2d11a2890b4b285b17b55ab4840c892ecfa3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6cb3ef_3b7c11e2",
+        "filename": "tests/browser/features/support/pages/flow_recent_changes_page.rb",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 77
+      },
+      "writtenOn": "2014-12-31T22:54:20Z",
+      "side": 1,
+      "message": "actually, this is by design. if and when we get other repos using this page heavily, we can abstract it into some aspect of the mediawiki-selenium gem, but having it local makes it nice for use specifically for Flow",
+      "parentUuid": "0e6cb3ef_dbe715de",
       "revId": "db0f2d11a2890b4b285b17b55ab4840c892ecfa3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
