@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e6cb3ef_9bc99d57",
+        "filename": "tests/browser/features/step_definitions/flow_in_recent_changes_steps.rb",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-12-31T22:22:59Z",
+      "side": 1,
+      "message": "I\u0027m curious, why \"should be\" here and \"is\" above?",
+      "revId": "db0f2d11a2890b4b285b17b55ab4840c892ecfa3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6cb3ef_7bce0961",
+        "filename": "tests/browser/features/step_definitions/flow_steps.rb",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-12-31T22:22:59Z",
+      "side": 1,
+      "message": "I\u0027m curious what\u0027s the @ for, is this an annotation? Why isn\u0027t e.g. the variable text \u003d \u0027User:\u0027.... below @text ?",
+      "revId": "db0f2d11a2890b4b285b17b55ab4840c892ecfa3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6cb3ef_dbe715de",
+        "filename": "tests/browser/features/support/pages/flow_recent_changes_page.rb",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-12-31T22:22:59Z",
+      "side": 1,
+      "message": "This isn\u0027t Flow-specific. I would name the file recent_changes_page.rb and name this just `recent_changes`, and add a\n\n    @todo Should be in MediaWiki core pages elements\n\nor whatever.",
+      "revId": "db0f2d11a2890b4b285b17b55ab4840c892ecfa3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
