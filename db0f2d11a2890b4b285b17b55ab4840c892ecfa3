@@ -122,6 +122,24 @@
       "revId": "db0f2d11a2890b4b285b17b55ab4840c892ecfa3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6cb3ef_06a1b0f4",
+        "filename": "tests/browser/features/support/pages/flow_recent_changes_page.rb",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2015-01-01T01:31:54Z",
+      "side": 1,
+      "message": "https://gerrit.wikimedia.org/r/#/c/182394/ removes the flow_ prefix.",
+      "parentUuid": "0e6cb3ef_7b2a8990",
+      "revId": "db0f2d11a2890b4b285b17b55ab4840c892ecfa3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
