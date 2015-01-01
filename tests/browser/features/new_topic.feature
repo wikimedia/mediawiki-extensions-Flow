@@ -13,3 +13,4 @@ Feature: Creating a new topic
     # TODO the terminology below is terrible, posts don't have headings. It's the top topic's title and first post.
     Then the top post should have a heading which contains "Anonymous user topic creation"
       And the top post should have content which contains "Anonymous user topic creation"
+      And the new topic should be in the Recent Changes page
