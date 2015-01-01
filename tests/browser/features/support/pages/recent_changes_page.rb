@@ -4,5 +4,5 @@ class RecentChangesPage
   include URL
   page_url URL.url('Special:RecentChanges')
 
-  div(:flow_recent_changes, class: 'mw-changeslist')
+  div(:recent_changes, class: 'mw-changeslist')
 end
