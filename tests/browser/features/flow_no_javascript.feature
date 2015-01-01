@@ -12,7 +12,9 @@ Feature: Basic site for legacy devices
     And I enter a no javascript topic body of "Selenium no javascript body"
     And I save a no javascript new topic
     Then the page contains my no javascript topic
-    And the page contains my no javascript body
+      And the page contains my no javascript body
+      # FIXME no-JS browser interacts badly with "page has no ResourceLoader errors".
+      # And the new topic should be in the Recent Changes page
 
   Scenario: I reply to a topic without JavaScript
     When I see the form to reply to a topic

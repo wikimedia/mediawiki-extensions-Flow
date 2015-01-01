@@ -3,6 +3,9 @@ When(/^I navigate to the Recent Changes page$/) do
 end
 
 Then(/^the new topic should be in the Recent Changes page$/) do
+  visit(RecentChangesPage)
+  # FIXME T85654 RL check doesn't work with flow_no_javascript.feature, it assumes mw JS object.
+  step "page has no ResourceLoader errors"
   expect(on(RecentChangesPage).recent_changes_element.when_present.text).to match @topic_string
 end
 
