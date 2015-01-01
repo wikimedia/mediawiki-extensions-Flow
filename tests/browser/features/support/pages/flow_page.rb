@@ -45,7 +45,7 @@ class FlowPage < WikiPage
   div(:highlighted_post, css: ".flow-post-highlighted")
 
   def topic_with_title(title)
-    div_element(text: title)
+    h2_element(text: title)
   end
 
   ## First topic
