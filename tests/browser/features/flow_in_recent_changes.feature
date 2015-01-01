@@ -8,9 +8,9 @@ Feature: Flow updates are in Recent Changes
     And I have created a Flow topic with title "New topic should be in Recent Changes"
 
   Scenario: New topic is in Recent Changes
-    When I navigate to the Recent Changes page
     Then the new topic should be in the Recent Changes page
 
+  @integration
   Scenario: Edited topic is in Recent Changes
     When I select the Edit title action
     And I edit the title field with "Title should be in Recent Changes"

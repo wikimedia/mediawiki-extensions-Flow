@@ -8,4 +8,5 @@ Feature: Creating a new topic
   Scenario: Add new Flow topic as anonymous user
     When I have created a Flow topic with title "Anonymous user topic creation"
     Then the top post should have a heading which contains "Anonymous user topic creation"
-    And the top post should have content which contains "Anonymous user topic creation"
+      And the top post should have content which contains "Anonymous user topic creation"
+      And the new topic should be in the Recent Changes page
