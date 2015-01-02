@@ -359,7 +359,7 @@
 	"flow-lqt-redirect-reason": "הפניה של רשומת LiquidThreads מיושנת לרשומת זרימה מומרת",
 	"flow-talk-conversion-move-reason": "המרה של שיחה בקוד מקור לזרימה מהדף $1",
 	"flow-talk-conversion-archive-edit-reason": "המרה משיחה בקוד וויקי לזרימה",
-	"group-flow-bot": "בוט זרימה",
+	"group-flow-bot": "בוטי זרימה",
 	"group-flow-bot-member": "בוט זרימה",
-	"grouppage-flow-bot": "Project:בוט זרימה"
+	"grouppage-flow-bot": "Project:בוטי זרימה"
 }

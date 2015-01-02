@@ -10,7 +10,8 @@
 			"아라",
 			"관인생략",
 			"Keysuck",
-			"Revi"
+			"Revi",
+			"Gusdud25"
 		]
 	},
 	"flow-desc": "워크플로우 관리 시스템",
@@ -274,5 +275,6 @@
 	"flow-special-type-post": "게시글",
 	"flow-special-type-workflow": "워크플로우",
 	"flow-special-uuid": "UUID",
-	"flow-special-invalid-uuid": "종류와 UUID에 맞는 콘텐츠를 찾을 수 없습니다."
+	"flow-special-invalid-uuid": "종류와 UUID에 맞는 콘텐츠를 찾을 수 없습니다.",
+	"group-flow-bot": "흐름 봇"
 }

@@ -353,6 +353,7 @@
 	"flow-importer-wt-converted-template": "Wikitext-Diskussionsseite zu Flow konvertiert",
 	"flow-importer-wt-converted-archive-template": "Archiv für konvertierte Wikitext-Diskussionsseite",
 	"apihelp-flow-param-page": "Die Seite, auf die die Aktion angewandt werden soll.",
+	"apihelp-flow-example-1": "Bearbeitet die Überschrift von [[Talk:Sandbox]]",
 	"apihelp-flow+edit-header-description": "Bearbeitet die Überschrift eines Themas.",
 	"apihelp-flow+edit-header-param-content": "Inhalt für die Überschrift.",
 	"apihelp-flow+edit-header-example-1": "Bearbeitet die Überschrift von [[Talk:Sandbox]]",
@@ -381,6 +382,7 @@
 	"apihelp-flow+view-topic-description": "Betrachtet ein Thema.",
 	"apihelp-flow+view-topic-summary-description": "Betrachtet eine Themenzusammenfassung.",
 	"apihelp-flow+view-topiclist-description": "Betrachtet eine Liste der Themen.",
+	"apihelp-flow+view-topiclist-param-sortby": "Sortieroption der Themen.",
 	"apihelp-flow+view-topiclist-param-render": "Zeigt die Themen in HTML an.",
 	"apihelp-flow+view-topiclist-example-1": "Themen zu [[Talk:Sandbox]] auflisten",
 	"apihelp-flow-parsoid-utils-param-content": "Zu konvertierender Inhalt.",
@@ -391,7 +393,7 @@
 	"flow-lqt-redirect-reason": "Eingeschlafenen LiquidThreads-Beitrag zum konvertierten Flow-Beitrag umgeleitet",
 	"flow-talk-conversion-move-reason": "Konvertierung der Wikitext-Diskussion zu Flow von $1",
 	"flow-talk-conversion-archive-edit-reason": "Wikitext-Diskussion-zu-Flow-Konvertierung",
-	"group-flow-bot": "Flow-Bot",
+	"group-flow-bot": "Flow-Bots",
 	"group-flow-bot-member": "Flow-Bot",
 	"grouppage-flow-bot": "Project:Flow-Bots"
 }
