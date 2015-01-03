@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e6cb3ef_69107c53",
+        "filename": "modules/engine/components/board/features/flow-board-loadmore.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-01-03T05:01:07Z",
+      "side": 1,
+      "message": "This is triggering a scroll event on a \u003ca\u003e element, though I think a native scroll event would only happen on a scrollable element (in this case I believe the \u003cul\u003e with data-flow-template\u003d\"flow_board_toc_loop\" ).\n\nIt will bubble up to the \u003cul\u003e, which is OK.  However, since this is TOC-specific anyway, it might be clearer to trigger directly on the scrollable element (probably the \u003cul\u003e in this case).\n\n(Rather than triggering an event, it would be better to just call a function to do what\u0027s needed (the DOM is not our application\u0027s API, and this applies even more so if we\u0027re passing parameters).  But we can defer looking at that until after merge.)",
+      "revId": "835453625e6f82f711f4cb62efdf32fcceccdbcf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6cb3ef_2c17f2f3",
+        "filename": "modules/engine/components/board/features/flow-board-navigation.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-01-03T05:01:07Z",
+      "side": 1,
+      "message": "This seems to be causing T85571 . \n\nThis propagates to the \u003cul\u003e (the element that actually scrolls; see comment on flow-board-loadmore.js).\n\nHowever, it also propagates up to the window, which leads to windowScroll firing ( https://git.wikimedia.org/blob/mediawiki%2Fextensions%2FFlow/835453625e6f82f711f4cb62efdf32fcceccdbcf/modules%2Fengine%2Fcomponents%2Fcommon%2Fflow-component-events.js#L71 ), which in turn triggers _flowBoardAdjustTopicNavigationHeader (https://git.wikimedia.org/blob/mediawiki%2Fextensions%2FFlow/835453625e6f82f711f4cb62efdf32fcceccdbcf/modules%2Fengine%2Fcomponents%2Fboard%2Ffeatures%2Fflow-board-navigation.js#L52) (thus causing infinite recursion).\n\nI believe we can fix this by stopping propagation in the listener.\n\nSee also other comment, re potentially triggering the scroll directly on the intended element (or calling an appropriate method directly rather than using the event system as an intermediary).  This is not a blocker.",
+      "revId": "835453625e6f82f711f4cb62efdf32fcceccdbcf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
