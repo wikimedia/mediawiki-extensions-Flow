@@ -6,7 +6,8 @@
 			"SandroHc",
 			"Vitorvicentevalente",
 			"Waldir",
-			"Fúlvio"
+			"Fúlvio",
+			"Ti4goc"
 		]
 	},
 	"flow-desc": "Sistema de gestão do fluxo de trabalho",
@@ -353,7 +354,7 @@
 	"apihelp-flow+reply-param-content": "Conteúdo para novo tópico.",
 	"flow-edited": "Editada",
 	"flow-edited-by": "Editada por $1",
-	"group-flow-bot": "Flow bot",
+	"group-flow-bot": "Flow bots",
 	"group-flow-bot-member": "Flow bot",
 	"grouppage-flow-bot": "Project:Flow bots"
 }
