@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e6cb3ef_b3b27af7",
+        "filename": "includes/Search/Connection.php",
+        "patchSetId": 31
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-01-05T15:36:55Z",
+      "side": 1,
+      "message": "Come up with another name for this method.\n\nIn Cirrus, Connection::getAllIndexTypes returns the index names; in Flow, this currently returns types (index is always \u0027flow\u0027)",
+      "revId": "c8adbc2c924d7ee068dca31e486bb013f36a1e14",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
