@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e6cb3ef_4a648311",
+        "filename": "modules/styles/common.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-01-05T09:34:05Z",
+      "side": 1,
+      "message": "1.3 shrinks line height for me. So does 1.4, but barely noticable.\n\nDo we want it to shrink? If we just want to make it unitless, 1.4 seems to better match current height (for me, on FF)",
+      "revId": "48a17da7f658e7a9d57097f92d45373d94e02d70",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
