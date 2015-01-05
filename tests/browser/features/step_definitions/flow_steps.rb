@@ -18,6 +18,9 @@ Given(/^I have created a Flow topic with title "(.+)"$/) do |title|
   step "I type \"" + title + "\" into the new topic title field"
   step "I type \"" + title + "\" into the new topic content field"
   step "I click New topic save"
+  step "I click the Topic Actions link"
+  # We need to save the id value for the newly created Topic in order to refer to elements nested in that Topic
+  @topic_id_value = on(FlowPage).permalink_button_element.href.match(/\w+$/)
 end
 
 Given(/^the author link is visible$/) do
