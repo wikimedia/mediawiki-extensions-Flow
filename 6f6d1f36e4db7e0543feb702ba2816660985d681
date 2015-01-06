@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "0e6cb3ef_e724a5af",
+        "filename": "modules/engine/components/board/features/flow-board-loadmore.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-01-06T05:06:02Z",
+      "side": 1,
+      "message": "It shouldn\u0027t allow an invalid topic ID, so let\u0027s throw an exception or log if it\u0027s not found.",
+      "revId": "6f6d1f36e4db7e0543feb702ba2816660985d681",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e6cb3ef_542e61a1",
         "filename": "modules/engine/components/board/features/flow-board-loadmore.js",
         "patchSetId": 14
@@ -47,6 +64,23 @@
       "writtenOn": "2015-01-06T02:06:48Z",
       "side": 1,
       "message": "This is not a blocker (you can just add a TODO comment), but it would be more performant to do the actual sort in reverse.\n\nIf you use a sort function like:\n\nfunction compare(a, b) {\nif ( a \u003e b ) {\nreturn -1;\n}\n\nif ( a \u003c b ) {\nreturn 1;\n}\n\nreturn 0;\n}\n\nyou save the separate reverse step.",
+      "revId": "6f6d1f36e4db7e0543feb702ba2816660985d681",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6cb3ef_34088d2f",
+        "filename": "modules/engine/components/board/features/flow-board-navigation.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-01-06T05:06:02Z",
+      "side": 1,
+      "message": "Can\u0027t this be done as a normal method call (this.)?",
       "revId": "6f6d1f36e4db7e0543feb702ba2816660985d681",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
