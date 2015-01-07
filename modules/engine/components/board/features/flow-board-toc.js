@@ -67,7 +67,11 @@
 			isLoadMoreButton = $this.data( 'flow-load-handler' ) === 'loadMore';
 
 		if ( !isLoadMoreButton && !( extraParameters || {} ).skipMenuToggle ) {
-			// Also open the menu on this node
+			// Re-scroll the TOC (in case the scroll that tracks the page scroll failed
+			// due to insufficient elements making the desired scrollTop not work (T78572)).
+			info.component.scrollTocToActiveItem();
+
+			// Actually open/close the TOC menu on this node.
 			$this.trigger( 'click', { interactiveHandler: 'menuToggle' } );
 		}
 
@@ -225,6 +229,8 @@
 	// On element-load handlers
 	//
 
+	// This is a confusing name since this.$tocMenu is set to flow-board-toc-list, whereas you
+	// would expect flow-board-toc-menu.
 	/**
 	 * Stores the TOC menu for later use.
 	 * @param {jQuery} $tocMenu
@@ -282,6 +288,52 @@
 		}
 	}
 	FlowBoardComponentTocFeatureMixin.UI.events.loadHandlers.topicTitle = flowBoardComponentTocFeatureElementLoadTopicTitle;
+
+	//
+	// Public functions
+	//
+
+	/**
+	 * Scroll the TOC to the active item
+	 */
+	function flowBoardComponentTocFeatureScrollTocToActiveItem() {
+		// Set TOC active item
+		var $tocContainer = this.$tocMenu,
+			requestedScrollTop, afterScrollTop; // For debugging
+
+		var $scrollTarget = $tocContainer.find( 'a[data-flow-id]' )
+			.removeClass( 'active' )
+			.filter( '[data-flow-id=' + this.readingTopicId + ']' )
+				.addClass( 'active' )
+				.closest( 'li' )
+				.next();
+
+		if ( !$scrollTarget.length ) {
+			// we are at the last list item; use the current one instead
+			$scrollTarget = $scrollTarget.end();
+		}
+		// Scroll to the active item
+		if ( $scrollTarget.length ) {
+			requestedScrollTop = $scrollTarget.offset().top - $tocContainer.offset().top + $tocContainer.scrollTop();
+			$tocContainer.scrollTop( requestedScrollTop );
+			afterScrollTop = $tocContainer.scrollTop();
+			// the above may not trigger the scroll.flow-load-more event within the TOC if the $tocContainer
+			// does not have a scrollbar. If that happens you could have a TOC without a scrollbar
+			// that refuses to autoload anything else. Fire it again(wasteful) untill we find
+			// a better way.
+			// This does not seem to work for the initial load, that is handled in flow-boad-loadmore.js
+			// when it runs this same code.  This seems to be required for subsequent loads after
+			// the initial call.
+			if ( this.$loadMoreNodes ) {
+				this.$loadMoreNodes
+					.filter( '[data-flow-api-handler=topicList]' )
+					.trigger( 'scroll.flow-load-more', { forceNavigationUpdate: true } );
+			}
+		}
+
+	}
+
+	FlowBoardComponentTocFeatureMixin.prototype.scrollTocToActiveItem = flowBoardComponentTocFeatureScrollTocToActiveItem;
 
 	//
 	// Private functions
