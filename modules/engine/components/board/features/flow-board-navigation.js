@@ -150,12 +150,18 @@
 		};
 	}
 
+	// TODO: This method is doing a lot.  Let's consider breaking it up, and possibly decoupling
+	// the event handler part from the parts that actually do the work.  (Already, event is
+	// not used, though I think this is required because it is a handler for a OOJS event).
 	/**
 	 * On window.scroll, we clone the nav header bar and fix the original to the window top.
 	 * We clone so that we have one which always remains in the same place for calculation purposes,
 	 * as it can vary depending on whether or not new content is rendered or the window is resized.
-	 * @param {jQuery} $boardNavigation
-	 * @param {Event} event
+	 * @param {jQuery} $boardNavigation board navigation element
+	 * @param {Event} event Event passed to windowScroll (unused)
+	 * @param {Object} extraParameters
+	 * @param {boolean} extraParameters.forceNavigationUpdate True to force a change to the
+	 *   active item and TOC scroll.
 	 */
 	function _flowBoardAdjustTopicNavigationHeader( $boardNavigation, event, extraParameters ) {
 		var bottomScrollPosition, topicText, newReadingTopicId, $tocContainer, $scrollTarget,

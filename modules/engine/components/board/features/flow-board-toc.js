@@ -191,6 +191,10 @@
 			info.$target.append( $kids );
 		}
 
+		// Without the new elements, we may not have been able to scroll the TOC correctly.
+		// We may be able to do now.
+		$( window ).trigger( 'scroll.flow-window-scroll', { forceNavigationUpdate: true } );
+
 		info.component.emitWithReturn( 'makeContentInteractive', $kids );
 
 		if ( isLoadMoreButton ) {
