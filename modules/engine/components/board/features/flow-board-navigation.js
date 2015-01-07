@@ -151,15 +151,20 @@
 		};
 	}
 
+	// TODO: Let's look at decoupling the event handler part from the parts that actually do the
+	// work.  (Already, event is not used.)
 	/**
 	 * On window.scroll, we clone the nav header bar and fix the original to the window top.
 	 * We clone so that we have one which always remains in the same place for calculation purposes,
 	 * as it can vary depending on whether or not new content is rendered or the window is resized.
-	 * @param {jQuery} $boardNavigation
-	 * @param {Event} event
+	 * @param {jQuery} $boardNavigation board navigation element
+	 * @param {Event} event Event passed to windowScroll (unused)
+	 * @param {Object} extraParameters
+	 * @param {boolean} extraParameters.forceNavigationUpdate True to force a change to the
+	 *   active item and TOC scroll.
 	 */
 	function _flowBoardAdjustTopicNavigationHeader( $boardNavigation, event, extraParameters ) {
-		var bottomScrollPosition, topicText, newReadingTopicId, $tocContainer, $scrollTarget,
+		var bottomScrollPosition, topicText, newReadingTopicId,
 			self = this,
 			boardNavigationPosition = ( this.$boardNavigationClone || $boardNavigation ).offset();
 
@@ -266,37 +271,7 @@
 			return;
 		}
 
-		// Set TOC active item
-		$tocContainer = this.$boardNavigationTitle.parent()
-			.findWithParent( this.$boardNavigationTitle.parent().data( 'flow-api-target' ) );
-
-		$scrollTarget = $tocContainer.find( 'a[data-flow-id]' )
-			.removeClass( 'active' )
-			.filter( '[data-flow-id=' + this.readingTopicId + ']' )
-				.addClass( 'active' )
-				.closest( 'li' )
-				.next();
-
-		if ( !$scrollTarget.length ) {
-			// we are at the last list item; use the current one instead
-			$scrollTarget = $scrollTarget.end();
-		}
-		// Scroll to the active item
-		if ( $scrollTarget.length ) {
-			$tocContainer.scrollTop( $scrollTarget.offset().top - $tocContainer.offset().top + $tocContainer.scrollTop() );
-			// the above may not trigger the scroll.flow-load-more event within the TOC if the $tocContainer
-			// does not have a scrollbar. If that happens you could have a TOC without a scrollbar
-			// that refuses to autoload anything else. Fire it again(wasteful) untill we find
-			// a better way.
-			// This does not seem to work for the initial load, that is handled in flow-boad-loadmore.js
-			// when it runs this same code.  This seems to be required for subsequent loads after
-			// the initial call.
-			if ( this.$loadMoreNodes ) {
-				this.$loadMoreNodes
-					.filter( '[data-flow-api-handler=topicList]' )
-					.trigger( 'scroll.flow-load-more', { forceNavigationUpdate: true } );
-			}
-		}
+		this.scrollTocToActiveItem();
 	}
 
 	// Mixin to FlowComponent
