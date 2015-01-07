@@ -65,7 +65,7 @@
 		     data-flow-load-handler="menu"
 		     data-flow-toc-target=".flow-list">
 			<div class="flow-menu-js-drop flow-menu-js-drop-hidden"><a href="javascript:void(0);" class="flow-board-header-menu-activator"></a></div>
-			<ul class="mw-ui-button-container flow-list flow-load-interactive"
+			<ul class="mw-ui-button-container flow-board-toc-list flow-list flow-load-interactive"
 			    data-flow-load-handler="tocMenu"
 			    data-flow-toc-target="li:not(.flow-load-more):last"
 			    data-flow-template="flow_board_toc_loop">
