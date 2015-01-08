@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee703fc5_fc4d8f40",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 19
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-01-08T18:21:01Z",
+      "side": 1,
+      "message": "with flow\u0027s storage, we have been careful to maintain both the array keys and the array order, making the multi calls roughly equivalent to array_map",
+      "revId": "e8e7b5069b0b2ea1dcb79e6ea13a7f2e748b7d60",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee703fc5_5c54bbc9",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 19
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-01-08T18:21:01Z",
+      "side": 1,
+      "message": "essentially when the \u0027sort\u0027 is unspecified it defaults to the primary key, which is what we want for the \u0027newest\u0027 sort order(sort by topic id newest to oldest). There should be no harm in making it more explicit though.  Without looking i just have to assume the \u0027order\u0027 key gets defaulted appropriatly,  yea we can probably be more explicit :)",
+      "revId": "e8e7b5069b0b2ea1dcb79e6ea13a7f2e748b7d60",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee703fc5_dced2bb6",
+        "filename": "modules/engine/components/board/features/flow-board-loadmore.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-01-08T18:21:01Z",
+      "side": 1,
+      "message": "i\u0027ll have to look closer at this, its not a bad idea and the current functionality does sound a bit off.",
+      "revId": "e8e7b5069b0b2ea1dcb79e6ea13a7f2e748b7d60",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee703fc5_dcd68bf6",
+        "filename": "modules/engine/components/board/features/flow-board-loadmore.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-01-08T18:21:01Z",
+      "side": 1,
+      "message": "I wish we didn\u0027t have to spread around the code to load data into this array into three different places, but not sure how to do better.",
+      "revId": "e8e7b5069b0b2ea1dcb79e6ea13a7f2e748b7d60",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee703fc5_3cca274b",
+        "filename": "modules/engine/components/board/features/flow-board-loadmore.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-01-08T18:21:01Z",
+      "side": 1,
+      "message": "this is a nop and can be removed, load more handled below.",
+      "revId": "e8e7b5069b0b2ea1dcb79e6ea13a7f2e748b7d60",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
