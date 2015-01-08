@@ -357,5 +357,11 @@
 	"flow-post-undo-hide": "(annuler masquage)",
 	"flow-post-undo-delete": "(annuler suppression)",
 	"apihelp-flow+edit-header-param-content": "Contenu de l'en-tête.",
-	"apihelp-flow+edit-header-example-1": "Modifier l'en-tête de [[Talk:Sandbox]]"
+	"apihelp-flow+edit-header-example-1": "Modifier l'en-tête de [[Talk:Sandbox]]",
+	"apihelp-flow+moderate-topic-param-reason": "Raison de la modération.",
+	"apihelp-flow+view-topiclist-param-savesortby": "Sauvegarder l'option de tri, si elle est définie.",
+	"apihelp-flow-parsoid-utils-param-from": "Format du contenu à convertir.",
+	"apihelp-flow-parsoid-utils-example-1": "Convertir le wikicode <nowiki>'''lorem''' ''blah''</nowiki> en HTML",
+	"flow-edited": "Modifié",
+	"flow-edited-by": "Modifié par $1"
 }
