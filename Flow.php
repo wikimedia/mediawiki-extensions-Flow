@@ -186,6 +186,10 @@ $wgFlowMaxLimit = 100;
 $wgDefaultUserOptions['echo-subscriptions-web-flow-discussion'] = true;
 $wgDefaultUserOptions['echo-subscriptions-email-flow-discussion'] = false;
 
+// Default sort order of a topiclist view. See TopicListBlock::getFindOptions()
+// for more information.
+$wgDefaultUserOptions['flow-topiclist-sortby'] = 'newest';
+
 // Maximum number of users that can be mentioned in one comment
 $wgFlowMaxMentionCount = 100;
 
