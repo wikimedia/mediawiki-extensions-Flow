@@ -58,7 +58,7 @@ class UrlGeneratorTest extends FlowTestCase {
 		if ( $sortBy !== null ) {
 			$this->assertEquals( $sortBy, $query['topiclist_sortby'] );
 			if ( $saveSortBy ) {
-				$this->assertEquals( '', $query['topiclist_savesortby'] );
+				$this->assertEquals( '1', $query['topiclist_savesortby'] );
 			}
 		}
 	}

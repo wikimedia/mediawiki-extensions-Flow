@@ -5,6 +5,7 @@ namespace Flow\Block;
 use Flow\Container;
 use Flow\Data\Pager\Pager;
 use Flow\Data\Pager\PagerPage;
+use Flow\Exception\FlowException;
 use Flow\Formatter\TocTopicListFormatter;
 use Flow\Formatter\TopicListFormatter;
 use Flow\Formatter\TopicListQuery;
@@ -182,13 +183,9 @@ class TopicListBlock extends AbstractBlock {
 		// @todo remove the 'api' => true, its always api
 		$findOptions = $this->getFindOptions( $options + array( 'api' => true ) );
 
-		// sortby option
-		if ( isset( $findOptions['sortby'] ) ) {
-			$response['sortby'] = $findOptions['sortby'];
-		// default is newest
-		} else {
-			$response['sortby'] = 'newest';
-		}
+		// include the current sortby option.  Note that when 'user' is either
+		// submitted or defaulted to this is the resulting sort. ex: newest
+		$response['sortby'] = $findOptions['sortby'];
 
 		if ( $this->workflow->isNew() ) {
 			return $response + $serializer->buildEmptyResult( $this->workflow );
@@ -259,9 +256,42 @@ class TopicListBlock extends AbstractBlock {
 			'offset' => false,
 			'api' => true,
 			'sortby' => 'user',
+			'savesortby' => false,
 		);
+
+		$user = $this->context->getUser();
 		if ( strlen( $requestOptions['sortby'] ) === 0 ) {
 			$requestOptions['sortby'] = 'user';
+		}
+		// the sortby option in $findOptions is not directly used for querying,
+		// but is needed by the pager to generate appropriate pagination links.
+		if ( $requestOptions['sortby'] === 'user' ) {
+			$requestOptions['sortby'] = $user->getOption( 'flow-topiclist-sortby' );
+		}
+		switch( $requestOptions['sortby'] ) {
+		case 'updated':
+			$findOptions = array(
+				'sortby' => 'updated',
+				'sort' => 'workflow_last_update_timestamp',
+				'order' => 'desc',
+			) + $findOptions;
+
+			if ( $requestOptions['offset-id'] ) {
+				throw new FlowException( 'The `updated` sort order does not allow the `offset-id` parameter. Please use `offset`.' );
+			}
+			break;
+
+		case 'newest':
+		default:
+			$findOptions = array(
+				'sortby' => 'newest',
+				'sort' => 'topic_id',
+				'order' => 'desc',
+			) + $findOptions;
+
+			if ( $requestOptions['offset'] ) {
+				throw new FlowException( 'The `newest` sort order does not allow the `offset` parameter.  Please use `offset-id`.' );
+			}
 		}
 
 		if ( $requestOptions['offset-id'] ) {
@@ -284,32 +314,13 @@ class TopicListBlock extends AbstractBlock {
 
 		$findOptions['pager-limit'] = $limit;
 
-		$sortByOption = '';
-		$user = $this->context->getUser();
-		if ( $requestOptions['sortby'] === 'user' && !$user->isAnon() ) {
-			$sortByOption = $user->getOption( 'flow-topiclist-sortby' );
-		} elseif ( $requestOptions['sortby'] === 'updated' ) {
-			$sortByOption = 'updated';
-		}
-
 		if (
-			isset( $requestOptions['savesortby'] )
+			$requestOptions['savesortby']
 			&& !$user->isAnon()
-			&& $user->getOption( 'flow-topiclist-sortby' ) != $sortByOption
+			&& $user->getOption( 'flow-topiclist-sortby' ) != $findOptions['sortby']
 		) {
-			$user->setOption( 'flow-topiclist-sortby', $sortByOption );
+			$user->setOption( 'flow-topiclist-sortby', $findOptions['sortby'] );
 			$user->saveSettings();
-		}
-
-		if ( $sortByOption === 'updated' ) {
-			$findOptions = array(
-				// TODO: Why is this only set for 'updated' order?  Is it redundant
-				// to storage.topic_list.indexes?
-				'sort' => 'workflow_last_update_timestamp',
-				'order' => 'desc',
-				// keep sortby so it can be used later for building links
-				'sortby' => 'updated',
-			) + $findOptions;
 		}
 
 		return $findOptions;
