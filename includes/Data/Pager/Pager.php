@@ -132,7 +132,7 @@ class Pager {
 				$results = array_merge( $results, $filtered );
 			}
 
-			if ( count( $found ) !== $numRequested ) {
+			if ( count( $found ) !== $options['limit'] ) {
 				// last page
 				break;
 			}
