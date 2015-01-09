@@ -96,10 +96,10 @@ class Pager {
 	 * @return PagerPage
 	 */
 	public function getPage( $filter = null ) {
-		$numRequested = $this->options['pager-limit'] + 1;
+		$numNeeded = $this->options['pager-limit'] + 1;
 		$options = $this->options + array(
 			// We need one item of leeway to determine if there are more items
-			'limit' => $numRequested,
+			'limit' => $numNeeded,
 			'offset-dir' => $this->options['pager-dir'],
 			'offset-id' => $this->options['pager-offset'],
 			'include-offset' => $this->options['pager-include-offset'],
@@ -112,7 +112,7 @@ class Pager {
 		do {
 			if ( $queries === 2 ) {
 				// if we hit a third query ask for more items
-				$options['limit'] = min( self::MAX_LIMIT, $options['limit'] * 3 );
+				$options['limit'] = min( self::MAX_LIMIT, $this->options['pager-limit'] * 3 );
 			}
 
 			// Retrieve results
@@ -134,7 +134,7 @@ class Pager {
 				$results = array_merge( $results, $filtered );
 			}
 
-			if ( count( $found ) !== $numRequested ) {
+			if ( count( $found ) !== $options['limit'] ) {
 				// last page
 				break;
 			}
@@ -147,7 +147,7 @@ class Pager {
 			}
 			$offset = $this->storage->serializeOffset( $last, $this->sort );
 
-		} while ( count( $results ) < $numRequested && ++$queries < self::MAX_QUERIES );
+		} while ( count( $results ) < $numNeeded && ++$queries < self::MAX_QUERIES );
 
 		if ( $queries >= self::MAX_QUERIES ) {
 			$count = count( $results );
