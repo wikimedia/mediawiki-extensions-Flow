@@ -405,7 +405,7 @@ class UrlGenerator {
 		if ( $sortBy !== null ) {
 			$options['topiclist_sortby'] = $sortBy;
 			if ( $saveSortBy ) {
-				$options['topiclist_savesortby'] = '';
+				$options['topiclist_savesortby'] = '1';
 			}
 		}
 
