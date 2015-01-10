@@ -40,7 +40,7 @@ class TopicHistoryQuery  extends AbstractQuery {
 					}
 				}
 			} catch ( FlowException $e ) {
-				\MWExceptionHandler::logException( $e );
+				\ExceptionHandler::logException( $e );
 			}
 		}
 

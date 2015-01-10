@@ -6,7 +6,7 @@ use DatabaseBase;
 use Flow\Exception\FlowException;
 use Flow\Repository\TitleRepository;
 use MovePage;
-use MWExceptionHandler;
+use ExceptionHandler;
 use Psr\Log\LoggerInterface;
 use Revision;
 use Title;
@@ -114,7 +114,7 @@ class Converter {
 
 				$this->doConversion( $title, $movedFrom );
 			} catch ( \Exception $e ) {
-				MWExceptionHandler::logException( $e );
+				ExceptionHandler::logException( $e );
 				$this->logger->error( "Exception while importing: {$title}" );
 				$this->logger->error( (string)$e );
 			}

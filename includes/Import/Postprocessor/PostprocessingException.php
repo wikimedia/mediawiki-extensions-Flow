@@ -2,7 +2,7 @@
 
 namespace Flow\Import\Postprocessor;
 
-use MWException;
+use Exception;
 
-class PostprocessingException extends MWException {
+class PostprocessingException extends Exception {
 }

@@ -78,7 +78,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 					}
 				}
 			} else {
-				throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
+				throw new \Exception( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
 		}
 
@@ -116,7 +116,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 					}
 				}
 			} else {
-				throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
+				throw new \Exception( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
 
 		}
@@ -154,7 +154,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 					}
 				}
 			} else {
-				throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
+				throw new \Exception( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
 		}
 	}
@@ -206,7 +206,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 			__METHOD__
 		);
 		if ( !$res ) {
-			throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
+			throw new \Exception( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 		}
 		$this->checkForSlave();
 
@@ -222,7 +222,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 				__METHOD__
 			);
 			if ( !$res ) {
-				throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
+				throw new \Exception( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
 			$this->checkForSlave();
 		}

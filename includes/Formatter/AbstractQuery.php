@@ -217,7 +217,7 @@ abstract class AbstractQuery {
 	/**
 	 * @param AbstractRevision $revision
 	 * @return Workflow
-	 * @throws \MWException
+	 * @throws \Exception
 	 */
 	protected function getWorkflow( AbstractRevision $revision ) {
 		if ( $revision instanceof PostRevision ) {
@@ -228,7 +228,7 @@ abstract class AbstractQuery {
 		} elseif ( $revision instanceof PostSummary ) {
 			return $this->getWorkflowById( $revision->getCollection()->getWorkflowId() );
 		} else {
-			throw new \MWException( 'Unsupported revision type ' . get_class( $revision ) );
+			throw new \Exception( 'Unsupported revision type ' . get_class( $revision ) );
 		}
 	}
 
@@ -275,7 +275,7 @@ abstract class AbstractQuery {
 	 * Retrieves the root post for a given PostRevision
 	 * @param  PostRevision $revision The revision to retrieve the root post for.
 	 * @return PostRevision           PostRevision of the root post.
-	 * @throws \MWException
+	 * @throws \Exception
 	 */
 	protected function getRootPost( PostRevision $revision ) {
 		if ( $revision->isTopicTitle() ) {
@@ -289,10 +289,10 @@ abstract class AbstractQuery {
 
 		$rootPost = $this->postCache[$rootPostId->getAlphadecimal()];
 		if ( !$rootPost ) {
-			throw new \MWException( 'Did not locate root post ' . $rootPostId->getAlphadecimal() );
+			throw new \Exception( 'Did not locate root post ' . $rootPostId->getAlphadecimal() );
 		}
 		if ( !$rootPost->isTopicTitle() ) {
-			throw new \MWException( "Not a topic title: " . $rootPost->getRevisionId() );
+			throw new \Exception( "Not a topic title: " . $rootPost->getRevisionId() );
 		}
 
 		return $rootPost;
@@ -302,7 +302,7 @@ abstract class AbstractQuery {
 	 * Gets the root post ID for a given PostRevision
 	 * @param  PostRevision $revision The revision to get the root post ID for.
 	 * @return UUID                   The UUID for the root post.
-	 * @throws \MWException
+	 * @throws \Exception
 	 */
 	protected function getRootPostId( PostRevision $revision ) {
 		$postId = $revision->getPostId();
@@ -311,7 +311,7 @@ abstract class AbstractQuery {
 		} elseif ( isset( $this->rootPostIdCache[$postId->getAlphadecimal()] ) ) {
 			return $this->rootPostIdCache[$postId->getAlphadecimal()];
 		} else {
-			throw new \MWException( "Unable to find root post ID for post " . $postId->getAlphadecimal() );
+			throw new \Exception( "Unable to find root post ID for post " . $postId->getAlphadecimal() );
 		}
 	}
 
@@ -351,11 +351,11 @@ class FormatterRow {
 
 	// protect against typos
 	public function __get( $attribute ) {
-		throw new \MWException( "Accessing non-existent parameter: $attribute" );
+		throw new \Exception( "Accessing non-existent parameter: $attribute" );
 	}
 
 	// protect against typos
 	public function __set( $attribute, $value ) {
-		throw new \MWException( "Accessing non-existent parameter: $attribute" );
+		throw new \Exception( "Accessing non-existent parameter: $attribute" );
 	}
 }

@@ -2,14 +2,14 @@
 
 namespace Flow\Exception;
 
-use MWException;
+use Exception;
 use OutputPage;
 use RequestContext;
 
 /**
  * Flow base exception
  */
-class FlowException extends MWException {
+class FlowException extends Exception {
 
 	/**
 	 * Flow exception error code
@@ -70,7 +70,7 @@ class FlowException extends MWException {
 	}
 
 	/**
-	 * Overrides MWException getHTML, adding a more human-friendly error message
+	 * Overrides Exception getHTML, adding a more human-friendly error message
 	 *
 	 * @return string
 	 */
@@ -107,7 +107,7 @@ class FlowException extends MWException {
 	}
 
 	/**
-	 * Exception from API/commandline will be handled by MWException::report(),
+	 * Exception from API/commandline will be handled by Exception::report(),
 	 * Overwrite the HTML display only
 	 */
 	public function reportHTML() {

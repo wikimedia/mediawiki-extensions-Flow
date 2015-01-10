@@ -38,7 +38,7 @@ interface OccupationController {
 	 * Gives a user object used to manage talk pages
 	 *
 	 * @return User User to manage talkpages
-	 * @throws MWException If a user cannot be created.
+	 * @throws Exception If a user cannot be created.
 	 */
 	public function getTalkpageManager();
 }
@@ -196,7 +196,7 @@ class TalkpageManager implements OccupationController {
 	 * Gives a user object used to manage talk pages
 	 *
 	 * @return User User to manage talkpages
-	 * @throws MWException If both of the names already exist, but are not properly
+	 * @throws Exception If both of the names already exist, but are not properly
 	 *  configured.
 	 */
 	public function getTalkpageManager() {

@@ -243,7 +243,7 @@ class Templating {
 					$content = $this->contentFixer->getContent( $revision );
 				} catch ( \Exception $e ) {
 					wfDebugLog( 'Flow', __METHOD__ . ': Failed fix content for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
-					\MWExceptionHandler::logException( $e );
+					\ExceptionHandler::logException( $e );
 
 					$content = wfMessage( 'flow-stub-post-content' )->parse();
 				}

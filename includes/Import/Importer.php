@@ -489,7 +489,7 @@ class TalkpageImportOperation {
 				$imported++;
 			} catch ( \Exception $e ) {
 				$state->rollback();
-				\MWExceptionHandler::logException( $e );
+				\ExceptionHandler::logException( $e );
 				$state->logger->error( 'Failed importing header' );
 				$state->logger->error( (string)$e );
 				$failed++;
@@ -505,7 +505,7 @@ class TalkpageImportOperation {
 				$imported++;
 			} catch ( \Exception $e ) {
 				$state->rollback();
-				\MWExceptionHandler::logException( $e );
+				\ExceptionHandler::logException( $e );
 				$state->logger->error( 'Failed importing topic' );
 				$state->logger->error( (string)$e );
 				$failed++;

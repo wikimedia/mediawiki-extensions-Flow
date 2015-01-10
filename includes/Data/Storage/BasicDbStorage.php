@@ -132,7 +132,7 @@ class BasicDbStorage extends DbStorage {
 		$attributes = $this->preprocessSqlArray( $attributes );
 
 		if ( ! $this->validateOptions( $options ) ) {
-			throw new \MWException( "Validation error in database options" );
+			throw new \Exception( "Validation error in database options" );
 		}
 
 		$res = $this->dbFactory->getDB( DB_MASTER )->select(

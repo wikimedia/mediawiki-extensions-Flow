@@ -177,11 +177,11 @@ abstract class ApiBackend {
 	 *
 	 * @param  array  $pageIds Page IDs to return data for.
 	 * @return array The query.pages part of the API response.
-	 * @throws \MWException
+	 * @throws \Exception
 	 */
 	public function retrievePageDataById( array $pageIds ) {
 		if ( !$pageIds ) {
-			throw new \MWException( 'At least one page id must be provided' );
+			throw new \Exception( 'At least one page id must be provided' );
 		}
 
 		return $this->retrievePageData( array(
@@ -195,12 +195,12 @@ abstract class ApiBackend {
 	 *
 	 * @param string[] $titles Titles to return data for
 	 * @return array The query.pages prt of the API response.
-	 * @throws \MWException
+	 * @throws \Exception
 	 * @throws ImportException
 	 */
 	public function retrieveTopRevisionByTitle( array $titles ) {
 		if ( !$titles ) {
-			throw new \MWException( 'At least one title must be provided' );
+			throw new \Exception( 'At least one title must be provided' );
 		}
 
 		return $this->retrievePageData( array(

@@ -5,7 +5,7 @@ namespace Flow\Formatter;
 use Flow\Model\Workflow;
 use Flow\Exception\FlowException;
 use Flow\Exception\InvalidDataException;
-use MWExceptionHandler;
+use ExceptionHandler;
 
 class BoardHistoryQuery extends AbstractQuery {
 	public function getResults( Workflow $workflow ) {
@@ -34,7 +34,7 @@ class BoardHistoryQuery extends AbstractQuery {
 				$result = $this->buildResult( $revision, 'rev_id' );
 			} catch ( FlowException $e ) {
 				$result = false;
-				MWExceptionHandler::logException( $e );
+				ExceptionHandler::logException( $e );
 			}
 			if ( $result ) {
 				$results[] = $result;

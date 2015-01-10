@@ -49,7 +49,7 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 				array( 'ORDER BY' => 'rev_type_id ASC', 'LIMIT' => $this->mBatchSize )
 			);
 			if ( !$res ) {
-				throw new \MWException( 'SQL error in maintenance script ' . __METHOD__ );
+				throw new \Exception( 'SQL error in maintenance script ' . __METHOD__ );
 			}
 			foreach ( $res as $row ) {
 				$count++;
@@ -89,7 +89,7 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 				array( 'ORDER BY' => 'tree_rev_id ASC', 'LIMIT' => $this->mBatchSize )
 			);
 			if ( !$res ) {
-				throw new \MWException( 'SQL error in maintenance script ' . __METHOD__ );
+				throw new \Exception( 'SQL error in maintenance script ' . __METHOD__ );
 			}
 			foreach ( $res as $row ) {
 				$count++;
