@@ -43,7 +43,10 @@
 		// Progressively enhance the board and its forms
 		// @todo Needs a ~"liveUpdateComponents" method, since the functionality in makeContentInteractive needs to also run when we receive new content or update old content.
 		// @todo move form stuff
-		this.emitWithReturn( 'makeContentInteractive', this );
+		if ( $container.data( 'flow-component' ) !== 'board' ) {
+			// Don't do this for FlowBoardComponent, because that runs makeContentInteractive in its own reinit
+			this.emitWithReturn( 'makeContentInteractive', this );
+		}
 
 		// We don't replace anything with this method (we do with flowBoardComponentReinitializeContainer)
 		return $();
@@ -64,7 +67,7 @@
 			// hide, delete, suppress
 			// @todo this could just be detected from the url
 			role = $this.data( 'role' ),
-			template = $this.data( 'template' ),
+			template = $this.data( 'flow-template' ),
 			params = {
 				editToken: mw.user.tokens.get( 'editToken' ), // might be unnecessary
 				submitted: {

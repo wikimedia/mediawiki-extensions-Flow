@@ -231,32 +231,6 @@
 		return $deferred.resolve().promise();
 	};
 
-	/**
-	 * Allows you to open a flow-menu from a secondary click handler elsewhere.
-	 * Uses data-flow-menu-target="< foo .flow-menu"
-	 * @param {Event} event
-	 * @returns {$.Promise}
-	 */
-	function flowEventsMixinMenuToggle( event ) {
-		var $this = $( this ),
-			flowComponent = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $this ),
-			target = $this.data( 'flowMenuTarget' ),
-			$target = $.findWithParent( $this, target ),
-			$deferred = $.Deferred();
-
-		event.preventDefault();
-
-		if ( !$target || !$target.length ) {
-			flowComponent.debug( 'Could not find openFlowMenu target', arguments );
-			return $deferred.reject().promise();
-		}
-
-		$target.find( '.flow-menu-js-drop' ).trigger( 'click' );
-
-		return $deferred.resolve().promise();
-	}
-	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.menuToggle = flowEventsMixinMenuToggle;
-
 	// @todo remove these data-flow handler forwarder callbacks when data-mwui handlers are implemented
 	$( [ 'close', 'prevOrClose', 'nextOrSubmit', 'prev', 'next' ] ).each( function ( i, fn ) {
 		// Assigns each handler with the prefix 'modal', eg. 'close' becomes 'modalClose'

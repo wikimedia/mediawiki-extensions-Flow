@@ -1,0 +1,23 @@
+{{#each roots}}
+{{!-- eachPost topiclist --}}
+	{{#eachPost @root this}}
+		<li class="flow-menu-section"><a class="mw-ui-button mw-ui-quiet mw-ui-progressive"
+		       href="javascript:void(0);"
+		       data-flow-interactive-handler="jumpToTopic"
+		       data-flow-id="{{../this}}">
+			<span class="wikiglyph wikiglyph-stripe-expanded"></span>
+			{{escapeContent content.format content.content~}}
+		</a></li>
+	{{/eachPost}}
+{{/each}}
+
+{{#if links.pagination.fwd}}
+	{{#unless noLoadMore}}
+		{{> flow_load_more this
+			loadMoreApiHandler="topicList"
+			loadMoreTarget="< .flow-list"
+			loadMoreContainer="< .flow-list"
+			loadMoreTemplate="flow_board_toc_loop"
+			loadMoreObject=links.pagination.fwd}}
+	{{/unless}}
+{{/if}}

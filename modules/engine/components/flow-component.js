@@ -8,8 +8,9 @@
 	/**
 	 * Inherited base class. Stores the instance in the class's instance registry.
 	 * @param {jQuery} $container
-	 * @extends FlowComponentEventsMixin
-	 * @extends FlowComponentEnginesMixin
+	 * @mixins FlowComponentEventsMixin
+	 * @mixins FlowComponentEnginesMixin
+	 * @mixins FlowComponentMenusFeatureMixin
 	 * @constructor
 	 */
 	function FlowComponent( $container ) {
@@ -79,6 +80,19 @@
 			// Otherwise, use console.log
 			console.log.apply( console, args );
 		}
+	};
+
+	/**
+	 * Converts a Flow UUID to a UNIX timestamp.
+	 * @param {String} uuid
+	 * @return {int} UNIX time
+	 */
+	mw.flow.uuidToTime = FlowComponent.prototype.uuidToTime = function ( uuid ) {
+		var timestamp = parseInt( uuid, 36 ).toString( 2 ); // Parse from base-36, then serialize to base-2
+		timestamp = Array( 88 + 1 - timestamp.length ).join( '0' ) + timestamp; // left pad 0 to 88 chars
+		timestamp = parseInt( timestamp.substr( 0, 46 ), 2 ); // first 46 chars base-2 to base-10
+
+		return timestamp;
 	};
 
 	/**
