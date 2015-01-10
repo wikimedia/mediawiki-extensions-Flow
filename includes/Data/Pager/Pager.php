@@ -51,6 +51,7 @@ class Pager {
 		$this->storage = $storage;
 		$this->query = $query;
 		$this->options = $options + array(
+			'pager-include-offset' => null,
 			'pager-offset' => null,
 			'pager-limit' => self::DEFAULT_LIMIT,
 			'pager-dir' => self::DEFAULT_DIRECTION,
@@ -101,6 +102,7 @@ class Pager {
 			'limit' => $numRequested,
 			'offset-dir' => $this->options['pager-dir'],
 			'offset-id' => $this->options['pager-offset'],
+			'include-offset' => $this->options['pager-include-offset'],
 			'offset-elastic' => true,
 		);
 		$offset = $this->options['pager-offset'];

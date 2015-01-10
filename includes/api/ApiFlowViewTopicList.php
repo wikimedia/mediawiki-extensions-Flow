@@ -42,6 +42,10 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => false,
 			),
+			'include-offset' => array(
+				ApiBase::PARAM_TYPE => 'boolean',
+				ApiBase::PARAM_DFLT => false,
+			),
 			'limit' => array(
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_DFLT => $wgFlowDefaultLimit,
@@ -71,6 +75,7 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 			'savesortby' => 'Save sortby option, if set',
 			'offset-id' => 'Offset value (in UUID format) to start fetching topics at',
 			'offset' => 'Offset value to start fetching topics at',
+			'include-offset' => 'Includes the offset item in the results as well',
 			'limit' => 'Amount of topics to fetch',
 			'render' => 'Renders (in HTML) the topics, if set',
 			'toconly' => 'Whether to respond with only the information required for the TOC',

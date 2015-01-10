@@ -40,7 +40,8 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 								'offset' => null,
 								'limit' => 2,
 								'render' => false,
-								'toconly' => true
+								'toconly' => true,
+								'include-offset' => false,
 							),
 							'errors' => array(),
 							'type' => 'topiclist',

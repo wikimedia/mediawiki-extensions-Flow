@@ -2,6 +2,10 @@
 
 namespace Flow\Tests\Data\Pager;
 
+use Flow\Data\BagOStuff;
+use Flow\Data\BagOStuff\LocalBufferedBagOStuff;
+use Flow\Data\BufferedCache;
+use Flow\Data\Index\TopKIndex;
 use Flow\Data\Pager\Pager;
 use stdClass;
 
@@ -356,6 +360,126 @@ class PagerTest extends \MediaWikiTestCase {
 			$this->assertArrayHasKey( $key, $options, $optionsString );
 			$this->assertEquals( $value, $options[$key], $optionsString );
 		}
+	}
+
+	public function includeOffsetProvider() {
+		return array(
+			array(
+				'',
+				// expected returned series of 'bar' values
+				array( 5, 4, 3, 2, 1 ),
+				// query options
+				array(
+					'offset-id' => 5,
+					'include-offset' => true,
+				),
+			),
+			array(
+				'',
+				// expected returned series of 'bar' values
+				array( 4, 3, 2, 1 ),
+				// query options
+				array(
+					'offset-id' => 5,
+					'include-offset' => false,
+				),
+			),
+			array(
+				'',
+				// expected returned series of 'bar' values
+				array( 9, 8, 7, 6, 5 ),
+				// query options
+				array(
+					'offset-id' => 5,
+					'include-offset' => true,
+					'offset-dir' => 'rev',
+					'offset-elastic' => false,
+				),
+			),
+			array(
+				'',
+				// expected returned series of 'bar' values
+				array( 9, 8, 7, 6 ),
+				// query options
+				array(
+					'offset-id' => 5,
+					'include-offset' => false,
+					'offset-dir' => 'rev',
+					'offset-elastic' => false,
+				),
+			),
+			array(
+				'',
+				// expected returned series of 'bar' values
+				array( 9, 8, 7, 6, 5, 4, 3, 2, 1 ),
+				// query options
+				array(
+					'offset-id' => 5,
+					'include-offset' => true,
+					'offset-dir' => 'rev',
+					'offset-elastic' => true,
+				),
+			),
+			array(
+				'',
+				// expected returned series of 'bar' values
+				array( 9, 8, 7, 6, 5, 4, 3, 2, 1 ),
+				// query options
+				array(
+					'offset-id' => 5,
+					'include-offset' => false,
+					'offset-dir' => 'rev',
+					'offset-elastic' => true,
+				),
+			),
+
+		);
+	}
+
+	/**
+	 * @dataProvider includeOffsetProvider
+	 */
+	public function testIncludeOffset( $message, $expect, $queryOptions ) {
+		global $wgFlowCacheVersion;
+
+		$bag = new \HashBagOStuff();
+		$innerCache = new LocalBufferedBagOStuff( $bag );
+		$cache = new BufferedCache( $innerCache );
+
+		// preload our answer
+		$bag->set( wfWikiId() . ":prefix:1:$wgFlowCacheVersion", array(
+			array( 'foo' => 1, 'bar' => 9 ),
+			array( 'foo' => 1, 'bar' => 8 ),
+			array( 'foo' => 1, 'bar' => 7 ),
+			array( 'foo' => 1, 'bar' => 6 ),
+			array( 'foo' => 1, 'bar' => 5 ),
+			array( 'foo' => 1, 'bar' => 4 ),
+			array( 'foo' => 1, 'bar' => 3 ),
+			array( 'foo' => 1, 'bar' => 2 ),
+			array( 'foo' => 1, 'bar' => 1 ),
+		) );
+
+		$storage = $this->getMock( 'Flow\Data\ObjectStorage' );
+
+		$index = new TopKIndex(
+			$cache,
+			$storage,
+			'prefix',
+			array( 'foo' ),
+			array(
+				'sort' => 'bar',
+			)
+		);
+
+		$result = $index->find( array( 'foo' => '1' ), $queryOptions );
+		foreach ( $result as $row ) {
+			$found[] = $row['bar'];
+		}
+
+		$this->assertEquals(
+			$expect,
+			$found
+		);
 	}
 
 	protected function mockObjectManager( array $found = array() ) {
