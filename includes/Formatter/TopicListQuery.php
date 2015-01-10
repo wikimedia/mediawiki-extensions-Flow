@@ -85,7 +85,7 @@ class TopicListQuery extends AbstractQuery {
 				}
 				$results[] = $row;
 			} catch ( FlowException $e ) {
-				\MWExceptionHandler::logException( $e );
+				\ExceptionHandler::logException( $e );
 			}
 		}
 

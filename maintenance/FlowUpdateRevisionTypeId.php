@@ -63,7 +63,7 @@ class FlowUpdateRevisionTypeId extends LoggedUpdateMaintenance {
 					}
 				}
 			} else {
-				throw new MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
+				throw new Exception( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
 			$dbFactory->waitForSlaves();
 		}
@@ -87,7 +87,7 @@ class FlowUpdateRevisionTypeId extends LoggedUpdateMaintenance {
 			__METHOD__
 		);
 		if ( !$res ) {
-			throw new MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
+			throw new Exception( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 		}
 	}
 

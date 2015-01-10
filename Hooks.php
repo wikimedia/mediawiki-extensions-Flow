@@ -222,7 +222,7 @@ class FlowHooks {
 				$changesList->isWatchlist()
 			);
 		} catch ( Exception $e ) {
-			MWExceptionHandler::logException( $e );
+			ExceptionHandler::logException( $e );
 		}
 		restore_error_handler();
 	}
@@ -320,7 +320,7 @@ class FlowHooks {
 			$line = $formatter->format( $row, $changesList, $topicOnly );
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting rc ' . $rc->getAttribute( 'rc_id' ) . ' ' . $e );
-			MWExceptionHandler::logException( $e );
+			ExceptionHandler::logException( $e );
 			restore_error_handler();
 			return false;
 		}
@@ -361,7 +361,7 @@ class FlowHooks {
 			}
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting cu ' . $cucId . ' ' . $e );
-			MWExceptionHandler::logException( $e );
+			ExceptionHandler::logException( $e );
 		}
 		restore_error_handler();
 
@@ -565,7 +565,7 @@ class FlowHooks {
 			$formatter = Container::get( 'formatter.contributions' );
 			$line = $formatter->format( $row, $pager );
 		} catch ( Exception $e ) {
-			MWExceptionHandler::logException( $e );
+			ExceptionHandler::logException( $e );
 			$line = false;
 		}
 		restore_error_handler();
@@ -639,7 +639,7 @@ class FlowHooks {
 			$listener->setEnabled( true );
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Failed contributions query' );
-			MWExceptionHandler::logException( $e );
+			ExceptionHandler::logException( $e );
 			$results = false;
 		}
 		restore_error_handler();
@@ -794,7 +794,7 @@ class FlowHooks {
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Failed formatting rc ' . $rc->getAttribute( 'rc_id' )
 				. ': ' . $e->getMessage() );
-			MWExceptionHandler::logException( $e );
+			ExceptionHandler::logException( $e );
 		}
 		restore_error_handler();
 
@@ -821,7 +821,7 @@ class FlowHooks {
 				$title->getFullText(),
 				$target->getFullText()
 			) );
-			MWExceptionHandler::logException( $e );
+			ExceptionHandler::logException( $e );
 		}
 		restore_error_handler();
 
@@ -964,7 +964,7 @@ class FlowHooks {
 		try {
 			$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
 		} catch ( Flow\Exception\InvalidInputException $e ) {
-			MWExceptionHandler::logException( $e );
+			ExceptionHandler::logException( $e );
 			wfDebugLog( 'Flow', __METHOD__ . ': Invalid title ' . $title->getPrefixedText() );
 			return true;
 		}

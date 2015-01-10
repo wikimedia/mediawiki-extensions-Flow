@@ -62,7 +62,7 @@ class PurgeAction extends \PurgeAction {
 			break;
 
 		default:
-			throw new \MWException( 'Unknown workflow type: ' . $workflow->getType() );
+			throw new \Exception( 'Unknown workflow type: ' . $workflow->getType() );
 		}
 
 		// delete all the keys we just visited

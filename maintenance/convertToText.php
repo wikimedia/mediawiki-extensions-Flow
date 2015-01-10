@@ -78,7 +78,7 @@ class ConvertToText extends Maintenance {
 	 * @param array $request
 	 * @param bool $requiredBlock
 	 * @return array
-	 * @throws MWException
+	 * @throws Exception
 	 */
 	public function flowApi( Title $title, $submodule, array $request, $requiredBlock = false ) {
 		$request = new FauxRequest( $request + array(
@@ -93,13 +93,13 @@ class ConvertToText extends Maintenance {
 		$apiResponse = $api->getResult()->getData();
 
 		if ( ! isset( $apiResponse['flow'] ) ) {
-			throw new MWException( "API response has no Flow data" );
+			throw new Exception( "API response has no Flow data" );
 		}
 
 		$flowData = $apiResponse['flow'][$submodule]['result'];
 
 		if( $requiredBlock !== false && ! isset( $flowData[$requiredBlock] ) ) {
-			throw new MWException( "No $requiredBlock block in API response" );
+			throw new Exception( "No $requiredBlock block in API response" );
 		}
 
 		return $flowData;

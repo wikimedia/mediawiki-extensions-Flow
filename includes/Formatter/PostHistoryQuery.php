@@ -30,7 +30,7 @@ class PostHistoryQuery extends AbstractQuery {
 				$results[] = $row = new FormatterRow;
 				$this->buildResult( $revision, null, $row );
 			} catch ( FlowException $e ) {
-				\MWExceptionHandler::logException( $e );
+				\ExceptionHandler::logException( $e );
 			}
 		}
 

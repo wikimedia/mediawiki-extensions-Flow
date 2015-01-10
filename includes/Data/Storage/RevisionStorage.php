@@ -10,7 +10,7 @@ use Flow\Data\ObjectManager;
 use Flow\DbFactory;
 use Flow\Exception\DataModelException;
 use Flow\Model\UUID;
-use MWException;
+use Exception;
 
 /**
  * Abstract storage implementation for models extending from AbstractRevision
@@ -119,7 +119,7 @@ abstract class RevisionStorage extends DbStorage {
 		$dbr = $this->dbFactory->getDB( DB_MASTER );
 
 		if ( ! $this->validateOptions( $options ) ) {
-			throw new MWException( "Validation error in database options" );
+			throw new Exception( "Validation error in database options" );
 		}
 
 		// Add rev_type if rev_type_id exists in query condition

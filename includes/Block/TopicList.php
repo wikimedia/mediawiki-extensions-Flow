@@ -103,7 +103,7 @@ class TopicListBlock extends AbstractBlock {
 	 * * $this->topicTitle
 	 * * $this->firstPost
 	 *
-	 * @throws \MWException
+	 * @throws \Exception
 	 * @throws \Flow\Exception\FailCommitException
 	 * @return array Array of [$topicWorkflow, $topicListEntry, $topicTitle, $firstPost]
 	 */

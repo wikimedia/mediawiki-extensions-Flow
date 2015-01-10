@@ -10,7 +10,7 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\View;
 use Flow\WorkflowLoaderFactory;
-use MWException;
+use Exception;
 use OutputPage;
 use ParserOptions;
 use ParserOutput;
@@ -30,7 +30,7 @@ class BoardContent extends \AbstractContent {
 			$workflow instanceof UUID ||
 			$workflow instanceof Workflow
 		) ) {
-			throw new MWException( "Invalid argument for 'workflow' parameter." );
+			throw new Exception( "Invalid argument for 'workflow' parameter." );
 		}
 
 		if (
@@ -219,7 +219,7 @@ class BoardContent extends \AbstractContent {
 		} elseif ( $this->workflow === null ) {
 			return null;
 		} else {
-			throw new MWException( "Unknown Workflow specifier" );
+			throw new Exception( "Unknown Workflow specifier" );
 		}
 	}
 }

@@ -31,7 +31,7 @@ class Contributions extends AbstractFormatter {
 			}
 			return $this->formatHtml( $row, $ctx );
 		} catch ( FlowException $e ) {
-			\MWExceptionHandler::logException( $e );
+			\ExceptionHandler::logException( $e );
 			return false;
 		}
 	}

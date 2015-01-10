@@ -51,7 +51,7 @@ class BadImageRemover implements Fixer {
 	 *
 	 * @param DOMNode $node
 	 * @param Title $title
-	 * @throws \MWException
+	 * @throws \Exception
 	 */
 	public function apply( DOMNode $node, Title $title ) {
 		if ( !$node instanceof DOMElement ) {
@@ -79,7 +79,7 @@ class BadImageRemover implements Fixer {
 			$nodeToRemove = $nodeToRemove->parentNode;
 		}
 		if ( !$nodeToRemove ) {
-			throw new \MWException( 'Did not find parent mw:Image to remove' );
+			throw new \Exception( 'Did not find parent mw:Image to remove' );
 		}
 		$nodeToRemove->parentNode->removeChild( $nodeToRemove );
 	}

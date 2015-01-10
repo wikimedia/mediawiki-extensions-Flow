@@ -55,7 +55,7 @@ class PostRevisionTestCase extends FlowTestCase {
 		foreach ( $this->revisions as $revision ) {
 			try {
 				$this->getStorage()->remove( $revision );
-			} catch ( \MWException $e ) {
+			} catch ( \Exception $e ) {
 				// ignore - lifecyclehandlers may cause issues with tests, where
 				// not all related stuff is loaded
 			}
@@ -198,7 +198,7 @@ class PostRevisionTestCase extends FlowTestCase {
 				// doing updates 1 by 1 so an exception doesn't break others in
 				// the queue
 				DeferredUpdates::doUpdates();
-			} catch ( \MWException $e ) {
+			} catch ( \Exception $e ) {
 				// ignoring exceptions for now, not all are phpunit-proof yet
 			}
 		}
