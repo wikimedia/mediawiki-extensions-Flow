@@ -18,8 +18,8 @@
 	 * @constructor
 	 */
 	function FlowBoardComponent( $container ) {
-		var uri = new mw.Uri( window.location.href ),
-			uid = String( window.location.hash.match( /[0-9a-z]{16,19}$/i ) || '' );
+		var uri = new mw.Uri( location.href ),
+			uid = String( location.hash.match( /[0-9a-z]{16,19}$/i ) || '' );
 
 		// Default API submodule for FlowBoard URLs is to fetch a topiclist
 		this.Api.setDefaultSubmodule( 'view-topiclist' );

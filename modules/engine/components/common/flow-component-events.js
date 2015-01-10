@@ -765,14 +765,14 @@
 	 * @param {String} msg The error that occurred. Currently hardcoded.
 	 */
 	function flowEventsMixinShowError( $node, msg ) {
-		var html = mw.flow.TemplateEngine.processTemplate( 'flow_errors', { errors: [ { message: msg } ] } );
+		var fragment = mw.flow.TemplateEngine.processTemplate( 'flow_errors', { errors: [ { message: msg } ] } );
 
 		if ( !$node.jquery ) {
 			$node = $node.$container;
 		}
 
 		_flowFindUpward( $node, '.flow-content-preview' ).hide();
-		_flowFindUpward( $node, '.flow-error-container' ).filter( ':first' ).replaceWith( html );
+		_flowFindUpward( $node, '.flow-error-container' ).filter( ':first' ).replaceWith( fragment );
 	}
 	FlowComponentEventsMixin.eventHandlers.showError = flowEventsMixinShowError;
 

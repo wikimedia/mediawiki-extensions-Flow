@@ -30,7 +30,9 @@
 	/**
 	 * After submit of a moderation form, process the response.
 	 *
-	 * @param {Object} info (status:done|fail, $target: jQuery)
+	 * @param {Object} info
+	 * @param {string} info.status "done" or "fail"
+	 * @param {jQuery} info.$target
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
 	 * @returns {$.Promise}
@@ -47,7 +49,7 @@
 		flowBoardHistory.emitWithReturn( 'cancelForm', $( this ).closest( 'form' ) );
 
 		// @todo implement dynamic updating of the history page instead of this
-		window.location.reload();
+		location.reload();
 
 		return $.Deferred().resolve().promise();
 	}

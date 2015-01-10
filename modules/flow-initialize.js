@@ -12,4 +12,3 @@
 		mw.flow.initComponent( $( '.flow-component' ) );
 	} );
 }( jQuery ) );
-
