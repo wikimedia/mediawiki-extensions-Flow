@@ -20,50 +20,6 @@
 	//
 
 	/**
-	 * Sets the Collapser state to newState, and will load this state on next page refresh.
-	 * @param {FlowBoardComponent} flowBoard
-	 * @param {String} [newState]
-	 */
-	FlowBoardComponentMiscMixin.prototype.collapserState = function ( flowBoard, newState ) {
-		var $heading,
-			$container = flowBoard.$container;
-
-		// Don't do collapser states on individual topic pages
-		if ( flowBoard.constructor.static.inTopicNamespace() ) {
-			return;
-		}
-
-		if ( !newState ) {
-			// Get last
-			newState = mw.flow.StorageEngine.localStorage.getItem( 'collapserState' ) || 'full'; // @todo genericize this
-		} else {
-			// Save
-			mw.flow.StorageEngine.localStorage.setItem( 'collapserState', newState ); // @todo genericize this
-			flowBoard.$board.find( '.flow-element-expanded, .flow-element-collapsed' )
-				// If moderated topics are currently collapsed, leave them that way
-				.not( '.flow-element-moderated.flow-element-collapsed' )
-				.not( '.flow-topic-moderated' )
-				.removeClass( 'flow-element-expanded flow-element-collapsed' );
-
-			// Remove individual topic states
-			mw.flow.StorageEngine.sessionStorage.removeItem( 'collapserStates' );
-		}
-
-		// @todo genericize this
-		$container
-			.removeClass( 'flow-board-collapsed-full flow-board-collapsed-topics flow-board-collapsed-compact' )
-			.addClass( 'flow-board-collapsed-' + newState );
-
-		$heading = $container.find( '.flow-topic-title' );
-		// In compact mode also truncate the text.
-		if ( newState === 'compact' ) {
-			$heading.addClass( 'flow-ui-text-truncated' );
-		} else {
-			$heading.removeClass( 'flow-ui-text-truncated' );
-		}
-	};
-
-	/**
 	 * Removes the preview and unhides the form fields.
 	 * @param {jQuery} $cancelButton
 	 * @return {bool} true if success

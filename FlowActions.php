@@ -502,7 +502,8 @@ $wgFlowActions = array(
 		'rc_insert' => false, // won't even be called, actually; only for writes
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',
-			PostRevision::MODERATED_HIDDEN => '', // visible for everyone (but will initially be collapsed)
+			// Everyone has permission to see this, but hidden comments are only visible (collapsed) on permalinks directly to them.
+			PostRevision::MODERATED_HIDDEN => '',
 			PostRevision::MODERATED_LOCKED => '',
 			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',

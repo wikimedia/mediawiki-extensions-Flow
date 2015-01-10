@@ -17,24 +17,6 @@
 	}
 }
 
-// ...but only when titlebar is active
-.flow-element-collapsible-active {
-	.flow-topic-titlebar {
-		cursor: pointer;
-
-		// Render a shadow
-		&:hover,
-		&:focus {
-			.box-shadow( ~"inset 0 -1px 0px 1px @{colorGrayLighter}, 0 1px 1px @{colorGrayLightest}" );
-		}
-
-		// Fade out the posts to show they will disappear
-		&:hover + .flow-post {
-			opacity: .85;
-		}
-	}
-}
-
 // needs extra specificity to override `div#content h2` from vector
 div#content .flow-topic-title {
 	padding: 0;

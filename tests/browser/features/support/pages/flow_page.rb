@@ -24,11 +24,6 @@ class FlowPage < WikiPage
   button(:comment_reply_save, css: "form.flow-topic-reply-form .flow-reply-submit")
   div(:flow_topics, class: "flow-topics")
 
-  # Collapse button
-  a(:topics_and_posts_view, href: "#topics/full")
-  a(:small_topics_view, href: "#topics/compact")
-  a(:topics_only_view, href: "#topics/topics")
-
   # Dialogs
   div(:dialog, css: ".flow-ui-modal")
   textarea(:dialog_input, name: "topic_reason")

@@ -840,24 +840,6 @@
 	FlowComponentEventsMixin.eventHandlers.showSubscribedTooltip = flowEventsMixinShowSubscribedTooltip;
 
 	/**
-	 * If a topic is collapsed, expand it.
-	 * @param  {Element|jQuery} topic The (single) topic element to show
-	 */
-	function flowEventsMixinExpandTopicIfNecessary( topic ) {
-		var $topic = $( topic ),
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $topic ),
-			isFullView = flowBoard.$container.hasClass( 'flow-board-collapsed-full' ),
-			isInverted = $topic.hasClass( 'flow-element-collapsed-invert' );
-
-		// Either full view and inverted (invisible)
-		// or compacted view and not inverted (invisible)
-		if ( isFullView === isInverted ) {
-			$topic.toggleClass( 'flow-element-collapsed-invert' );
-		}
-	}
-	FlowComponentEventsMixin.eventHandlers.expandTopicIfNecessary = flowEventsMixinExpandTopicIfNecessary;
-
-	/**
 	 * If a form has a cancelForm handler, we clear the form and trigger it. This allows easy cleanup
 	 * and triggering of form events after successful API calls.
 	 * @param {Element|jQuery} formElement

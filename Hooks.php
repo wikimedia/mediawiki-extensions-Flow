@@ -533,11 +533,6 @@ class FlowHooks {
 
 		$vars['wgFlowEditorList'] = $wgFlowEditorList;
 		$vars['wgFlowMaxTopicLength'] = Flow\Model\PostRevision::MAX_TOPIC_LENGTH;
-		$vars['wgFlowPageSize'] = array(
-			'expanded' => $wgFlowDefaultLimit,
-			'collapsed-full' => min( $wgFlowDefaultLimit * 2, $wgFlowMaxLimit ),
-			'collapsed-oneline' => min( $wgFlowDefaultLimit * 3, $wgFlowMaxLimit ),
-		);
 
 		return true;
 	}

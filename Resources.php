@@ -52,7 +52,6 @@ $wgResourceModules += array(
 			"flow_block_topicsummary_diff_view.handlebars",
 			"flow_block_topicsummary_edit.handlebars",
 			"flow_block_topicsummary_single_view.handlebars",
-			"flow_board_collapsers_subcomponent.handlebars",
 			"flow_board_navigation.handlebars",
 			"flow_edit_post.handlebars",
 			"flow_edit_post_ajax.handlebars",
@@ -277,7 +276,6 @@ $wgResourceModules += array(
 	) + $mobile,
 	'ext.flow.board.styles' => $flowResourceTemplate + array(
 		'styles' => array(
-			'styles/board/collapser.less',
 			'styles/board/header.less',
 			'styles/board/menu.less',
 			'styles/board/navigation.less',
