@@ -59,9 +59,62 @@
 		flowBoard.$loadMoreNodes = flowBoard.$loadMoreNodes.add( $button );
 	};
 
+	/**
+	 * Bind the navigation header bar to the window.scroll event.
+	 * @param {jQuery} $boardNavigation
+	 */
+	FlowBoardComponentLoadEventsMixin.UI.events.loadHandlers.boardNavigation = function ( $boardNavigation ) {
+		this.on( 'scroll', _flowBoardAdjustTopicNavigationHeader, [ $boardNavigation ] );
+
+		// The topic navigation header becomes fixed to the window beyond its position
+		_flowBoardAdjustTopicNavigationHeader( $boardNavigation, {} );
+	};
+
 	//
 	// Private functions
 	//
+
+	/**
+	 * On window.scroll, we clone the nav header bar and fix it to the window top.
+	 * We clone so that we have an original which always remains in the same place for calculation purposes,
+	 * as it can vary depending on whether or not new content is rendered or the window is resized.
+	 * @param {jQuery} $boardNavigation
+	 * @param {Event} event
+	 */
+	function _flowBoardAdjustTopicNavigationHeader( $boardNavigation, event ) {
+		var $clone = $boardNavigation.data( 'flowScrollClone' ),
+			boardNavigationPosition = $boardNavigation.offset();
+
+		if ( window.scrollY <= boardNavigationPosition.top ) {
+			// Board nav is still in view; don't affix it
+			if ( $clone ) {
+				// Remove the old clone if it exists
+				$clone.remove();
+				$boardNavigation.removeData( 'flowScrollClone' );
+			}
+			return;
+		}
+
+		if ( !$clone ) {
+			// Make a new clone
+			$clone = $boardNavigation.clone( true );
+			$clone
+				.addClass( 'flow-board-navigation-affixed' )
+				.removeClass( 'flow-load-interactive' );
+			$boardNavigation
+				// Store this
+				.data( 'flowScrollClone', $clone )
+				// Insert it
+				.after( $clone );
+		}
+
+		// The only thing that needs calculating is its left offset
+		if ( $clone.css( 'left' ) !== boardNavigationPosition.left ) {
+			$clone.css( {
+				left: boardNavigationPosition.left
+			} );
+		}
+	}
 
 	// Mixin to FlowBoardComponent
 	mw.flow.mixinComponent( 'board', FlowBoardComponentLoadEventsMixin );

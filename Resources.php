@@ -290,8 +290,6 @@ $wgResourceModules += array(
 	) + $mobile,
 	'ext.flow.board.topic.styles' => $flowResourceTemplate + array(
 		'styles' => array(
-			'styles/board/topic/navigation.less',
-			'styles/board/topic/navigator.less',
 			'styles/board/topic/titlebar.less',
 			'styles/board/topic/meta.less',
 			'styles/board/topic/post.less',
