@@ -17,10 +17,10 @@
 	"flow-rev-message-deleted-post": "Dzēsts ieraksts",
 	"flow-rev-message-suppressed-post": "Cenzēts ieraksts",
 	"flow-notification-reply": "$1 {{GENDER:$1|atbildēja}} par <span class=\"plainlinks\">[$5 $2]</span> lapā \"$4\".",
-	"flow-notification-reply-bundle": "$1 un $5 {{PLURAL:$6|cits|citi}} {{GENDER:$1|atbildēja}} par <span class=\"plainlinks\">[$4 $2]</span> lapā \"$3\".",
+	"flow-notification-reply-bundle": "$1 un $5 {{PLURAL:$6|citi|cits|citi}} {{GENDER:$1|atbildēja}} par <span class=\"plainlinks\">[$4 $2]</span> lapā \"$3\".",
 	"flow-notification-reply-email-subject": "$1 {{GENDER:$1|atbildēja}} par tēmu",
 	"flow-notification-reply-email-batch-body": "$1 {{GENDER:$1|atbildēja}} par \"$2\" lapā \"$3\"",
-	"flow-notification-reply-email-batch-bundle-body": "$1 un $4 {{PLURAL:$5|cits|citi}} {{GENDER:$1|atbildēja}} par \"$2\" lapā \"$3\"",
+	"flow-notification-reply-email-batch-bundle-body": "$1 un $4 {{PLURAL:$5|citi|cits|citi}} {{GENDER:$1|atbildēja}} par \"$2\" lapā \"$3\"",
 	"flow-link-topic": "tēma",
 	"flow-link-history": "vēsture",
 	"flow-load-more": "Ielādēt vairāk"

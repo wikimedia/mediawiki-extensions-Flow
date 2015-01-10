@@ -13,7 +13,8 @@
 			"Nirovulf",
 			"Sunpriat",
 			"Striking Blue",
-			"NBS"
+			"NBS",
+			"Максим777"
 		]
 	},
 	"flow-desc": "Система управления потоками работ",
@@ -29,6 +30,7 @@
 	"logentry-suppress-flow-suppress-topic": "$1 {{GENDER:$2|подавил|подавила}} [$4 тему] на странице [[$3]]",
 	"logentry-suppress-flow-restore-topic": "$1 {{GENDER:$2|удалил|удалила}} [$4 тему] на странице [[$3]]",
 	"flow-user-moderated": "Участник промодерирован",
+	"flow-board-header-browse-topics-link": "Обзор темы",
 	"flow-edit-header-link": "Изменить преамбулу",
 	"flow-post-moderated-toggle-hide-show": "Показать комментарий, скрытый {{GENDER:$1|участником|участницей}} $2",
 	"flow-post-moderated-toggle-delete-show": "Показать комментарий, удалённый {{GENDER:$1|участником|участницей}} $2",
@@ -285,9 +287,6 @@
 	"flow-compare-revisions-header-post": "На этой странице показаны {{GENDER:$3|изменения}} между двумя версиями сообщения от участника $3 в теме «[$5 $2]» на странице [$4 $1].\nВы можете посмотреть другие версии этого сообщения на его [$6 странице истории].",
 	"flow-compare-revisions-header-postsummary": "Эта страница показывает изменения между двумя версиями резюме в сообщении «[$4 $2]» на [$3 $1].\nВы можете увидеть другие версии этого сообщения на его [$5 странице истории].",
 	"flow-compare-revisions-header-header": "Эта страница показывает {{GENDER:$2|изменения}} между двумя версиями преамбулы на [$3 $1].\nВы можете увидеть другие версии преамбулы на её [$4 странице истории].",
-	"flow-topic-collapsed-one-line": "Компактный вид",
-	"flow-topic-collapsed-full": "Свёрнутый вид",
-	"flow-topic-complete": "Полный вид",
 	"right-flow-hide": "скрытие тем и сообщений Flow",
 	"right-flow-lock": "Блокировать Flow-темы",
 	"right-flow-delete": "удаление тем и сообщений Flow",

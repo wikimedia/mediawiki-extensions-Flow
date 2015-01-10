@@ -23,7 +23,8 @@
 			"Arkanosis",
 			"Dereckson",
 			"Macofe",
-			"0x010C"
+			"0x010C",
+			"Sam"
 		]
 	},
 	"flow-desc": "Système de gestion du flux de travail",
@@ -39,6 +40,7 @@
 	"logentry-suppress-flow-suppress-topic": "$1 {{GENDER:$2|a masqué}} une [$4 discussion] sur [[$3]]",
 	"logentry-suppress-flow-restore-topic": "$1 {{GENDER:$2|a supprimé}} une [$4 discussion] sur [[$3]]",
 	"flow-user-moderated": "Utilisateur modéré",
+	"flow-board-header-browse-topics-link": "Feuilleter des image",
 	"flow-edit-header-link": "Modifier l’entête",
 	"flow-post-moderated-toggle-hide-show": "Afficher le commentaire {{GENDER:$1|caché}} par $2",
 	"flow-post-moderated-toggle-delete-show": "Afficher le commentaire {{GENDER:$1|supprimé}} par $2",
@@ -311,9 +313,6 @@
 	"flow-compare-revisions-header-post": "Cette page affiche les {{GENDER:$3|modifications}} entre deux versions d’un message par $3 dans la discussion « [$5 $2] » sur [$4 $1].\nVous pouvez voir d’autres versions de ce message sur sa [$6 page d’historique].",
 	"flow-compare-revisions-header-postsummary": "Cette page affiche les modifications entre deux versions d’un résumé de message dans le message « [$4 $2] », lié à [$3 $1].\nVous pouvez voir d’autres versions de ce message sur sa [$5 page d’historique].",
 	"flow-compare-revisions-header-header": "Cette page affiche les {{GENDER:$2|modifications}} entre deux versions de l’entête sur [$3 $1].\nVous pouvez voir les autres versions de l’entête sur sa [$4 page d’historique].",
-	"flow-topic-collapsed-one-line": "Vue sur une ligne",
-	"flow-topic-collapsed-full": "Vue réduite",
-	"flow-topic-complete": "Vue complète",
 	"right-flow-hide": "Cacher les discussions et messages de Flow",
 	"right-flow-lock": "Verrouiller des discussion de Flow",
 	"right-flow-delete": "Supprimer les discussions et messages de Flow",
