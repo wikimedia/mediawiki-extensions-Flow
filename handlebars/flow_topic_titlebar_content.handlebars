@@ -1,4 +1,6 @@
-<h2 class="flow-topic-title">{{escapeContent content.format content.content}}</h2>
+<h2 class="flow-topic-title flow-load-interactive"
+    data-title="{{plaintextSnippet content.format content.content}}"
+    data-flow-load-handler="topicTitle">{{escapeContent content.format content.content}}</h2>
 <div class="flow-topic-meta">
 	{{#if actions.reply}}
 		<a href="{{actions.reply.url}}"

@@ -19,6 +19,7 @@
             'concat' => 'Flow\TemplateHelper::concat',
             'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
             'escapeContent' => 'Flow\TemplateHelper::escapeContent',
+            'plaintextSnippet' => 'Flow\TemplateHelper::plaintextSnippet',
 ),
         'blockhelpers' => Array(),
         'hbhelpers' => Array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -50,7 +51,9 @@
 		<br class="flow-ui-clear"/>
 	' : '').'
 </div>
-';},'flow_topic_titlebar_content' => function ($cx, $in) {return '<h2 class="flow-topic-title">'.LCRun3::ch($cx, 'escapeContent', Array(Array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),Array()), 'encq').'</h2>
+';},'flow_topic_titlebar_content' => function ($cx, $in) {return '<h2 class="flow-topic-title flow-load-interactive"
+    data-title="'.LCRun3::ch($cx, 'plaintextSnippet', Array(Array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),Array()), 'encq').'"
+    data-flow-load-handler="topicTitle">'.LCRun3::ch($cx, 'escapeContent', Array(Array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),Array()), 'encq').'</h2>
 <div class="flow-topic-meta">
 	'.((LCRun3::ifvar($cx, ((isset($in['actions']['reply']) && is_array($in['actions'])) ? $in['actions']['reply'] : null))) ? '
 		<a href="'.htmlentities((string)((isset($in['actions']['reply']['url']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['url'] : null), ENT_QUOTES, 'UTF-8').'"

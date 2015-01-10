@@ -4,9 +4,14 @@
 		{{!-- placeholder for javascript injected errors --}}
 	</div>
 	<div class="flow-board-navigation-inner">
+		<a href="javascript:void(0);"
+		   class="flow-board-navigator-active flow-board-navigator-first">
+			<span class="wikiglyph wikiglyph-stripe-toc"></span>
+			<span class="flow-load-interactive" data-flow-load-handler="boardNavigationTitle">{{l10n "flow-board-header-browse-topics-link"}}</span>
+		</a>
 		{{!-- Click for sorting options, not sure what this url should be --}}
 		<a href="javascript:void(0);"
-		   class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target"
+		   class="flow-board-navigator-last flow-ui-tooltip-target"
 		   data-tooltip-pointing="down"
 		   title="
 			{{~#ifCond sortby "===" "updated"~}}
