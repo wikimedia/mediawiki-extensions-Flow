@@ -76,7 +76,6 @@ $wgResourceModules += array(
 			"flow_block_loop.handlebars",
 			"form_element.handlebars",
 			"flow_load_more.handlebars",
-			"flow_no_more.handlebars",
 			"flow_tooltip.handlebars",
 			"flow_tooltip_subscribed.handlebars",
 			"flow_subscribed.handlebars",
@@ -335,6 +334,7 @@ $wgResourceModules += array(
 			'engine/components/board/base/flow-board-interactive-events.js',
 			'engine/components/board/base/flow-board-load-events.js',
 			'engine/components/board/base/flow-board-misc.js',
+			'engine/components/board/features/flow-board-loadmore.js',
 			// FlowBoardHistoryComponent
 			'engine/components/board/flow-boardhistory.js',
 			// This must be the last file loaded

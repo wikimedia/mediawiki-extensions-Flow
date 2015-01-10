@@ -1,9 +1,10 @@
-<div class="flow-topic
+<div class="flow-topic flow-load-interactive
             {{#if moderateState}}flow-topic-moderatestate-{{moderateState}}{{/if}}
             {{#if isModerated}}flow-topic-moderated{{/if}}
             "
      id="flow-topic-{{postId}}"
      data-flow-id="{{postId}}"
+     data-flow-load-handler="topic"
 >
 	{{>flow_topic_titlebar}}
 

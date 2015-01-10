@@ -1,11 +1,9 @@
-
 @import 'mediawiki.mixins';
 @import 'flow.colors';
 @import 'flow.helpers';
 
 // @todo: Find better home for this css
 .client-js {
-
 	/*
 	Fallback elements
 
@@ -19,12 +17,6 @@
 	.flow-ui-fallback-element {
 		visibility: hidden;
 		height: 0;
-	}
-
-	// API interaction indicator
-	div#content div#bodyContent .flow-api-inprogress {
-		opacity: 0.5;
-		cursor: wait;
 	}
 
 	// A preview version of a given block
@@ -55,4 +47,55 @@
 	.flow-js {
 		display: none;
 	}
+}
+
+// When the load more wrapper is being processed, show the spinning loading icon
+.flow-topics > .flow-load-more.flow-api-inprogress {
+	.flow-loading;
+}
+
+// Basic API interaction indicator
+div#content div#bodyContent .flow-api-inprogress {
+	opacity: 0.5;
+	cursor: wait;
+}
+
+// Spinning loading icon
+.flow-loading {
+	overflow: visible;
+
+	display: block;
+	width: 100%;
+	text-align: center;
+
+	&:before {
+		display: inline-block;
+		content: "\e018";
+		font-family: 'WikiFont-Glyphs';
+		font-size: 3em;
+		line-height: 1em;
+		-webkit-font-smoothing: antialiased;
+
+		-webkit-animation: spin infinite 2s linear;
+		-moz-animation: spin infinite 2s linear;
+		-ms-animation: spin infinite 2s linear;
+		-o-animation: spin infinite 2s linear;
+		animation: spin infinite 2s linear;
+	}
+}
+
+@-webkit-keyframes spin {
+	0% { -webkit-transform: rotate(0deg); opacity: .5; }
+	50% { opacity: .75; }
+	100% { -webkit-transform: rotate(360deg); opacity: .5; }
+}
+@-moz-keyframes spin {
+	0% { -moz-transform: rotate(0deg); opacity: .5; }
+	50% { opacity: .75; }
+	100% { -moz-transform: rotate(360deg); opacity: .5; }
+}
+@keyframes spin {
+	0% { transform:rotate(0deg); opacity: .5; }
+	50% { opacity: .75; }
+	100% { transform:rotate(360deg); opacity: .5; }
 }
