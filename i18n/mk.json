@@ -18,6 +18,7 @@
 	"logentry-suppress-flow-suppress-topic": "$1 {{GENDER:$2|притаи}} [$4 тема] на [[$3]]",
 	"logentry-suppress-flow-restore-topic": "$1 {{GENDER:$2|избриша}} [$4 тема] на [[$3]]",
 	"flow-user-moderated": "Модериран корисник",
+	"flow-board-header-browse-topics-link": "Прегледај теми",
 	"flow-edit-header-link": "Измени наслов",
 	"flow-post-moderated-toggle-hide-show": "Прикажи го коментарот што го {{GENDER:$1|скри}} $2",
 	"flow-post-moderated-toggle-delete-show": "Прикажи го коментарот што го {{GENDER:$1|избриша}} $2",
@@ -301,9 +302,6 @@
 	"flow-compare-revisions-header-post": "На страницава се прикажани {{GENDER:$3|разликите}} помеѓу две верзии на објава на $3 во темата „[$5 $2]“ на [$4 $1].\nМожете да ги погледате другите верзии на објавата во [$6 нејзината историја].",
 	"flow-compare-revisions-header-postsummary": "На страницава се прикажани разликите помеѓу две верзии на опис на објавата „[$4 $2]“ на [$3 $1].\nМожете да ги погледате другите верзии на објавата во [$5 нејзината историја].",
 	"flow-compare-revisions-header-header": "На страницава се прикажани {{GENDER:$2|промените}} помеѓу две верзии на заглавието на [$3 $1].\nДругите верзии на заглавието можете да ги видите во [$4 неговата историја].",
-	"flow-topic-collapsed-one-line": "Мал приказ",
-	"flow-topic-collapsed-full": "Расклопен приказ",
-	"flow-topic-complete": "Целосен приказ",
 	"right-flow-hide": "Скривање на теми и објави во „Тек“",
 	"right-flow-lock": "Заклучување на теми во „Тек“",
 	"right-flow-delete": "Бришење на теми и објави во „Тек“",
@@ -444,7 +442,7 @@
 	"flow-lqt-redirect-reason": "Пренасочување на повлечена објава во LiquidThreads кон нејзината претворана објава во Тек",
 	"flow-talk-conversion-move-reason": "Претворање на викитекстуален разговор во Тек од $1",
 	"flow-talk-conversion-archive-edit-reason": "Претворање на викитекстуален развговор во Тек",
-	"group-flow-bot": "Ботови на „Тек“",
+	"group-flow-bot": "Ботови за „Тек“",
 	"group-flow-bot-member": "Бот на „Тек“",
-	"grouppage-flow-bot": "Project:Бот на Тек"
+	"grouppage-flow-bot": "Project:Ботови за Тек"
 }
