@@ -6,6 +6,8 @@ use Flow\Formatter\RevisionFormatter;
 use Flow\Formatter\SearchQuery;
 use Flow\Search\Connection;
 use Flow\Search\SearchEngine;
+use Flow\Search\Searcher;
+use Elastica\Result;
 
 class ApiFlowSearch extends ApiFlowBaseGet {
 	/**
@@ -57,21 +59,36 @@ class ApiFlowSearch extends ApiFlowBaseGet {
 		}
 
 		/** @var \Elastica\ResultSet|null $result */
-		$result = $status->getValue();
+		$resultSet = $status->getValue();
 		// result can be null, if nothing was found
-		$results = $result === null ? array() : $result->getResults();
+		$results = $resultSet === null ? array() : $resultSet->getResults();
 
-/*
-		// @todo: this shows highlights; needs better integration, just test code for now ;)
+		// list of highlighted words
+		$highlights = array();
+		/** @var Result $result */
 		foreach ( $results as $result ) {
-			var_dump($result->getHighlights());
+			// there'll always be exactly 1 excerpt
+			// see Searcher.php, ...->setHighlight() config
+			$excerpt = $result->getHighlights();
+			$excerpt = $excerpt[Searcher::HIGHLIGHT_FIELD][0];
+
+			$pre = preg_quote( Searcher::HIGHLIGHT_PRE, '/' );
+			$post = preg_quote( Searcher::HIGHLIGHT_POST, '/' );
+			if ( preg_match_all( '/' . $pre . '(.*?)' . $post . '/', $excerpt, $matches ) ) {
+				$highlights += array_flip( $matches[1] );
+			}
 		}
-		exit;
-*/
+		$highlights = array_keys( $highlights );
+
+		// total term frequency
+		$ttf = $resultSet->getAggregation( 'ttf' );
+		$ttf = $ttf['value'];
 
 		$rows = $this->query->getResults( $results );
 		$results = array(
-			'total' => $result->getTotalHits(),
+			'total' => $resultSet->getTotalHits(),
+			'highlights' => $highlights,
+			'ttf' => $ttf,
 			'rows' => array(),
 		);
 
