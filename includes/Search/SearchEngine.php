@@ -6,6 +6,7 @@ use Elastica\Filter\Bool;
 use Elastica\Filter\Terms;
 use Elastica\Query;
 use Flow\Exception\InvalidInputException;
+use Status;
 
 class SearchEngine extends \SearchEngine {
 	/**
