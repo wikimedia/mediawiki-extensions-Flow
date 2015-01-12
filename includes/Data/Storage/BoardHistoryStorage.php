@@ -12,7 +12,7 @@ use Flow\Exception\DataModelException;
 class BoardHistoryStorage extends DbStorage {
 
 	public function find( array $attributes, array $options = array() ) {
-		$multi = $this->findMulti( $attributes, $options );
+		$multi = $this->findMulti( array( $attributes ), $options );
 		if ( $multi ) {
 			return reset( $multi );
 		}
