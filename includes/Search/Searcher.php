@@ -10,6 +10,10 @@ use ProfileSection;
 use Status;
 
 class Searcher {
+	const HIGHLIGHT_FIELD = 'revisions.text';
+	const HIGHLIGHT_PRE = '<span class="searchmatch">';
+	const HIGHLIGHT_POST = '</span>';
+
 	/**
 	 * @var string|false $type
 	 */
@@ -50,6 +54,29 @@ class Searcher {
 		$queryString->setFields( array( 'revisions.text' ) );
 		$this->query->setQuery( $queryString );
 
+		// add aggregation to determine exact amount of matching search terms
+		$this->query->addAggregation( $this->termsAggregation( $term ) );
+
+		// @todo: abstract-away this config (core/cirrus also has this - share it somehow?)
+		$this->query->setHighlight( array(
+			'fields' => array(
+				static::HIGHLIGHT_FIELD => array(
+					'type' => 'plain',
+					'order' => 'score',
+
+					// we want just 1 excerpt of result text, which includes all highlights
+					'number_of_fragments' => 1,
+					'fragment_size' => 10000, // We want the whole value but more than this is crazy
+
+					// @todo: how to use experimental highlighter instead of plain?
+//					'type' => 'experimental',
+//					'fragmenter' => 'none',
+				),
+			),
+			'pre_tags' => array( static::HIGHLIGHT_PRE ),
+			'post_tags' => array( static::HIGHLIGHT_POST ),
+		) );
+
 		// @todo: support insource: queries (and perhaps others)
 
 		$revisionType = Connection::getRevisionType( $this->indexBaseName, $this->type );
@@ -80,5 +107,36 @@ class Searcher {
 		wfProfileOut( __METHOD__ . '-execute' );
 
 		return $result;
+	}
+
+	/**
+	 * We can only do this if dynamic scripting is enabled. In elasticsearch.yml:
+	 * script.disable_dynamic: false
+	 * @see vendor/ruffin/elastica/test/bin/run_elasticsearch.sh
+	 *
+	 * @param string $term
+	 * @return \Elastica\Aggregation\Sum
+	 */
+	protected function termsAggregation( $term ) {
+		$terms = preg_split( '/\s+/', $term );
+		$terms = str_replace( '"', '\\"', $terms );
+
+		$script = '
+keywords = ["' . implode( '","', $terms ) . '"]
+total = 0
+for (term in keywords) {
+	total += _index["revisions.text"][term].tf()
+}
+return total';
+		$script = new \Elastica\Script( $script, null, 'groovy' );
+
+		$aggregation = new \Elastica\Aggregation\Sum( 'ttf' );
+		// $aggregation->setScript() doesn't seem to properly set 'lang': 'groovy'
+		// see https://github.com/ruflin/Elastica/pull/748
+		// $aggregation->setScript( $script );
+		$aggregation->setParams( array( 'lang' => 'groovy' ) );
+		$aggregation->setParam( 'script', $script->getScript() );
+
+		return $aggregation;
 	}
 }
