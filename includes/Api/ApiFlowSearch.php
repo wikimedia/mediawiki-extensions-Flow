@@ -10,6 +10,7 @@ use Flow\Formatter\TopicListQuery;
 use Flow\Model\UUID;
 use Flow\Search\Connection;
 use Flow\Search\SearchEngine;
+use Flow\Search\Searcher;
 use Flow\TalkpageManager;
 use MWNamespace;
 use Status;
@@ -28,7 +29,10 @@ class ApiFlowSearch extends ApiFlowBaseGet {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		$this->searchEngine->setType( $params['type'] );
+		if ( $params['type'] ) {
+			$this->searchEngine->setType( $params['type'] );
+		}
+
 		$this->searchEngine->setLimitOffset( $params['limit'], $params['offset'] );
 		$this->searchEngine->setSort( $params['sort'] );
 
@@ -55,10 +59,31 @@ class ApiFlowSearch extends ApiFlowBaseGet {
 			throw new InvalidDataException( $status->getMessage(), 'fail-search' );
 		}
 
-		/** @var \Elastica\ResultSet|null $result */
-		$result = $status->getValue();
-		// result can be null, if nothing was found
-		$results = $result === null ? array() : $result->getResults();
+		/** @var \Elastica\ResultSet|null $resultSet */
+		$resultSet = $status->getValue();
+		// $resultSet can be null, if nothing was found
+		$results = $resultSet === null ? array() : $resultSet->getResults();
+
+		// list of highlighted words
+		$highlights = array();
+		/** @var \Elastica\Result $result */
+		foreach ( $results as $result ) {
+			// there'll always be exactly 1 excerpt
+			// see Searcher.php, ...->setHighlight() config
+			$excerpt = $result->getHighlights();
+			$excerpt = $excerpt[Searcher::HIGHLIGHT_FIELD][0];
+
+			$pre = preg_quote( Searcher::HIGHLIGHT_PRE, '/' );
+			$post = preg_quote( Searcher::HIGHLIGHT_POST, '/' );
+			if ( preg_match_all( '/' . $pre . '(.*?)' . $post . '/', $excerpt, $matches ) ) {
+				$highlights += array_flip( $matches[1] );
+			}
+		}
+		$highlights = array_keys( $highlights );
+
+		// total term frequency
+		$ttf = $resultSet->getAggregation( 'ttf' );
+		$ttf = $ttf['value'];
 
 		$topicIds = array();
 		foreach ( $results as $topic ) {
@@ -68,7 +93,9 @@ class ApiFlowSearch extends ApiFlowBaseGet {
 		// output similar to view-topiclist
 		$results = $this->formatApi( $topicIds );
 		// search-specific output
-		$results['total'] = $result->getTotalHits();
+		$results['total'] = $resultSet->getTotalHits();
+		$results['highlights'] = $highlights;
+		$results['ttf'] = $ttf;
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $results );
 	}

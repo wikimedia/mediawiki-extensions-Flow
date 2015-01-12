@@ -42,7 +42,7 @@ class SearchEngine extends \SearchEngine {
 
 	/**
 	 * @param string $term text to search
-	 * @return Status
+	 * @return \Status
 	 */
 	public function searchText( $term ) {
 		$term = trim( $term );
