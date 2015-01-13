@@ -1,5 +1,8 @@
 When(/^I click Hide comment button$/) do
-  on(FlowPage).actions_link_hide_3rd_comment_element.click
+  on(FlowPage) do |page|
+    page.actions_link_hide_3rd_comment_element.when_present.focus
+    page.actions_link_hide_3rd_comment_element.click
+  end
 end
 
 When(/^I click the Hide button in the dialog$/) do
