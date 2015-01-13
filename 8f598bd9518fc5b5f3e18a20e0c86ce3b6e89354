@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee703fc5_91477522",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-01-13T20:11:59Z",
+      "side": 1,
+      "message": "Variable is now unused.",
+      "revId": "8f598bd9518fc5b5f3e18a20e0c86ce3b6e89354",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee703fc5_f1aef1e3",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-01-13T20:11:59Z",
+      "side": 1,
+      "message": "What are we supposed to do if they say sort-by user, but are an anon?\n\nWe can still read anonymous preferences, BTW.  It\u0027s just they\u0027ll always get the default (https://www.mediawiki.org/wiki/Manual:$wgDefaultUserOptions) preference (which apparently is not yet defined, but should be).\n\nSo a default preference, and unconditional read (for \u0027user\u0027) seems like the logical choice here.",
+      "revId": "8f598bd9518fc5b5f3e18a20e0c86ce3b6e89354",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee703fc5_b1de396f",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-01-13T20:11:59Z",
+      "side": 1,
+      "message": "The exceptions are backwards.  Actually, \u0027updated\u0027 has to use \u0027offset\u0027, and \u0027newest\u0027 has to use \u0027offset-id\u0027.\n\nThe current way, e.g. it throws on infinite scroll.",
+      "revId": "8f598bd9518fc5b5f3e18a20e0c86ce3b6e89354",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee703fc5_118cc531",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-01-13T20:11:59Z",
+      "side": 1,
+      "message": "I don\u0027t know if it should be part of this change, but this is not how boolean parameters should be checked.\n\nIt should actually check that it\u0027s true (as well as set).  It *should* be legal to pass a boolean parameter, and explicitly make it false.\n\nHowever, it looks like UrlGenerator.php may be relying on an empty string being true...",
+      "revId": "8f598bd9518fc5b5f3e18a20e0c86ce3b6e89354",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
