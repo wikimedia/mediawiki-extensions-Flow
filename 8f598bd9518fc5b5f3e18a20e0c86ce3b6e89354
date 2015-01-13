@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ee703fc5_810f22e4",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-01-13T21:03:08Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "ee703fc5_91477522",
+      "revId": "8f598bd9518fc5b5f3e18a20e0c86ce3b6e89354",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee703fc5_f1aef1e3",
         "filename": "includes/Block/TopicList.php",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2015-01-13T20:11:59Z",
       "side": 1,
       "message": "What are we supposed to do if they say sort-by user, but are an anon?\n\nWe can still read anonymous preferences, BTW.  It\u0027s just they\u0027ll always get the default (https://www.mediawiki.org/wiki/Manual:$wgDefaultUserOptions) preference (which apparently is not yet defined, but should be).\n\nSo a default preference, and unconditional read (for \u0027user\u0027) seems like the logical choice here.",
+      "revId": "8f598bd9518fc5b5f3e18a20e0c86ce3b6e89354",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee703fc5_81264262",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-01-13T21:03:08Z",
+      "side": 1,
+      "message": "due to the switch below everything thats not \u0027updated\u0027 is treated as \u0027newest\u0027, but i will make this explicit as suggested.",
+      "parentUuid": "ee703fc5_f1aef1e3",
       "revId": "8f598bd9518fc5b5f3e18a20e0c86ce3b6e89354",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "ee703fc5_818ac21a",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-01-13T21:03:08Z",
+      "side": 1,
+      "message": "doh, yea,  fixed.",
+      "parentUuid": "ee703fc5_b1de396f",
+      "revId": "8f598bd9518fc5b5f3e18a20e0c86ce3b6e89354",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee703fc5_118cc531",
         "filename": "includes/Block/TopicList.php",
         "patchSetId": 5
@@ -64,6 +118,24 @@
       "writtenOn": "2015-01-13T20:11:59Z",
       "side": 1,
       "message": "I don\u0027t know if it should be part of this change, but this is not how boolean parameters should be checked.\n\nIt should actually check that it\u0027s true (as well as set).  It *should* be legal to pass a boolean parameter, and explicitly make it false.\n\nHowever, it looks like UrlGenerator.php may be relying on an empty string being true...",
+      "revId": "8f598bd9518fc5b5f3e18a20e0c86ce3b6e89354",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee703fc5_416d8a2c",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-01-13T21:03:08Z",
+      "side": 1,
+      "message": "its easy enough we might as well fix it.",
+      "parentUuid": "ee703fc5_118cc531",
       "revId": "8f598bd9518fc5b5f3e18a20e0c86ce3b6e89354",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
