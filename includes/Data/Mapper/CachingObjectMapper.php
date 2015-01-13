@@ -120,6 +120,11 @@ class CachingObjectMapper implements ObjectMapper {
 		}
 	}
 
+	public function normalizeRow( array $row ) {
+		$object = call_user_func( $this->fromStorageRow, $row );
+		return call_user_func( $this->toStorageRow, $object );
+	}
+
 	public function clear() {
 		$this->loaded = new MultiDimArray;
 	}
