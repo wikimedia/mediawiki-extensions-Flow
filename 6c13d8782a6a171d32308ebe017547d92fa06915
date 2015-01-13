@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee703fc5_78e16b96",
+        "filename": "handlebars/flow_board_navigation.handlebars",
+        "patchSetId": 21
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-01-13T04:50:34Z",
+      "side": 1,
+      "message": "I just noticed this, but there is already a data attribute for this on the flow-board element.",
+      "revId": "6c13d8782a6a171d32308ebe017547d92fa06915",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee703fc5_b8fe2334",
+        "filename": "modules/engine/components/board/features/flow-board-loadmore.js",
+        "patchSetId": 21
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-01-13T04:50:34Z",
+      "side": 1,
+      "message": "Parenthesis in wrong place.  Should be:\n\n(e.g. by passing offset-id for \u0027updated\u0027, it doesn\u0027t even include the item requested despite include-offset).",
+      "revId": "6c13d8782a6a171d32308ebe017547d92fa06915",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee703fc5_38369301",
+        "filename": "modules/engine/components/board/features/flow-board-navigation.js",
+        "patchSetId": 21
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-01-13T04:50:34Z",
+      "side": 1,
+      "message": "Per my other comment, consider using the existing data attribute rather than adding a new one, if possible.",
+      "revId": "6c13d8782a6a171d32308ebe017547d92fa06915",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
