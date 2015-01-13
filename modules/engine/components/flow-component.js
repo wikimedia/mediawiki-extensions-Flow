@@ -153,7 +153,7 @@
 
 		// Forward all events (except mouse movement) to $eventTarget
 		$el.on(
-			'blur change click dblclick error focus focusin focusout hover keydown keypress keyup load mousedown mouseup resize scroll select submit',
+			'blur change click dblclick error focus focusin focusout keydown keypress keyup load mousedown mouseenter mouseleave mouseup resize scroll select submit',
 			'*',
 			{ flowSpawnedBy: this.$container, flowSpawnedFrom: $el },
 			function ( event ) {
