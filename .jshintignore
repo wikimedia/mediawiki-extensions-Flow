@@ -1,4 +1,3 @@
 modules/jquery.scroll.js
 modules/vendor/handlebars-v2.0.0-alpha.2.js
 modules/vendor/Storer.js
-modules/vendor/jquery.ba-throttle-debounce.js
