@@ -210,7 +210,7 @@ class FlowPage < WikiPage
   # No javascript elements
   button(:no_javascript_add_topic, text: "Add topic")
   div(:no_javascript_page_content_body, class: "flow-post-content")
-  div(:no_javascript_page_content_title, class: "flow-topic-titlebar flow-click-interactive")
+  div(:no_javascript_page_content_title, class: "flow-topic-titlebar")
   div(:no_javascript_page_flow_topics, class: "flow-topics")
   button(:no_javascript_reply, text: "Reply")
   textarea(:no_javascript_reply_form, name: "topic_content")
