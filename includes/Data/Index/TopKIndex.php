@@ -4,6 +4,7 @@ namespace Flow\Data\Index;
 
 use BagOStuff;
 use Flow\Data\BufferedCache;
+use Flow\Data\ObjectManager;
 use Flow\Data\ObjectStorage;
 use Flow\Data\Compactor\ShallowCompactor;
 use Flow\Data\Utils\SortArrayByKeys;
@@ -47,7 +48,7 @@ class TopKIndex extends FeatureIndex {
 			return false;
 		}
 		if ( isset( $options['sort'], $options['order'] ) ) {
-			return $options['sort'] === $this->options['sort']
+			return ObjectManager::makeArray( $options['sort'] ) === $this->options['sort']
 				&& strtoupper( $options['order'] ) === $this->options['order'];
 		}
 		return true;
