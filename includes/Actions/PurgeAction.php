@@ -58,7 +58,7 @@ class PurgeAction extends \PurgeAction {
 			break;
 
 		case 'topic':
-			$this->fetchTopics( array( $workflow ) );
+			$this->fetchTopics( array( $workflow->getId()->getAlphadecimal() => $workflow->getId() ) );
 			break;
 
 		default:
