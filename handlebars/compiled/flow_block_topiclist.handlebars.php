@@ -61,7 +61,7 @@
 
 	<div class="flow-board-header-menu">
 		
-		<div class="flow-menu flow-menu-inverted flow-board-toc-menu flow-load-interactive"
+		<div class="flow-menu flow-menu-inverted flow-menu-scrollable flow-board-toc-menu flow-load-interactive"
 		     data-flow-load-handler="menu"
 		     data-flow-toc-target=".flow-list">
 			<div class="flow-menu-js-drop flow-menu-js-drop-hidden"><a href="javascript:void(0);" class="flow-board-header-menu-activator"></a></div>
