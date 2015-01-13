@@ -359,7 +359,7 @@ $wgResourceModules += array(
 			'ext.flow.templating', // ResourceLoader templating
 			'ext.flow.handlebars', // prototype-based for progressiveEnhancement
 			'ext.flow.vendor.storer',
-			'ext.flow.vendor.jquery.ba-throttle-debounce',
+			'jquery.throttle-debounce',
 			'mediawiki.jqueryMsg',
 			'ext.flow.jquery.conditionalScroll',
 			'ext.flow.jquery.findWithParent',
@@ -380,11 +380,6 @@ $wgResourceModules += array(
 	'ext.flow.vendor.storer' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'vendor/Storer.js',
-		),
-	) + $mobile,
-	'ext.flow.vendor.jquery.ba-throttle-debounce' => $flowResourceTemplate + array(
-		'scripts' => array(
-			'vendor/jquery.ba-throttle-debounce.js',
 		),
 	) + $mobile,
 	'ext.flow.editor' => $flowResourceTemplate + array(
