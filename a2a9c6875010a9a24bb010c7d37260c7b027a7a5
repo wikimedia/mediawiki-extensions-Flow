@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee703fc5_e5806f4d",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 870,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-01-13T13:40:28Z",
+      "side": 1,
+      "message": "This change will refresh the entire topic.\n\nIf someone was writing a reply while editing the summary, it will be lost after the topic has refreshed (whereas old code would\u0027ve left that intact)\n\nWe already refresh entire topic after reply (so other WIP replies may be lost), so this may be a moot point - or we should address that too.",
+      "revId": "a2a9c6875010a9a24bb010c7d37260c7b027a7a5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
