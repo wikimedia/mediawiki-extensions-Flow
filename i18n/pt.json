@@ -23,6 +23,7 @@
 	"logentry-suppress-flow-suppress-topic": "$1 {{GENDER:$2|ocultou}} um [$4 tópico] em [[$3]]",
 	"logentry-suppress-flow-restore-topic": "$1 {{GENDER:$2|eliminou}} um [$4 tópico] em [[$3]]",
 	"flow-user-moderated": "Utilizador em moderação",
+	"flow-board-header-browse-topics-link": "Pesquisar tópicos",
 	"flow-edit-header-link": "Editar cabeçalho",
 	"flow-post-moderated-toggle-hide-show": "Mostrar comentário {{GENDER:$1|ocultado}} por $2",
 	"flow-post-moderated-toggle-delete-show": "Mostrar comentário {{GENDER:$1|eliminado}} por $2",
