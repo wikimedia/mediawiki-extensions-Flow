@@ -121,6 +121,7 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 											'topiclist_offset-dir' => 'fwd',
 											'topiclist_limit' => '2',
 											'topiclist_offset-id' => $topicData[1]['id'],
+											'topiclist_sortby' => 'newest',
 										) ),
 										'title' => 'fwd',
 									),
