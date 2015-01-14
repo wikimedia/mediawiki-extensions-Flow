@@ -1,6 +1,6 @@
 <?php return function ($in, $debugopt = 1) {
-    $cx = Array(
-        'flags' => Array(
+    $cx = array(
+        'flags' => array(
             'jstrue' => false,
             'jsobj' => false,
             'spvar' => true,
@@ -8,25 +8,25 @@
             'method' => false,
             'mustlok' => false,
             'mustsec' => false,
+            'echo' => false,
             'debug' => $debugopt,
         ),
-        'helpers' => Array(),
-        'blockhelpers' => Array(),
-        'hbhelpers' => Array(),
-        'partials' => Array(),
-        'scopes' => Array($in),
-        'sp_vars' => Array(),
+        'constants' => array(),
+        'helpers' => array(),
+        'blockhelpers' => array(),
+        'hbhelpers' => array(),
+        'partials' => array(),
+        'scopes' => array($in),
+        'sp_vars' => array('root' => $in),
 
     );
-    return ''.((LCRun3::ifvar($cx, ((isset($in['guid']) && is_array($in)) ? $in['guid'] : null))) ? '
-	<time datetime="'.htmlentities((string)((isset($in['time_iso']) && is_array($in)) ? $in['time_iso'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-timestamp">
-' : '
-	<time datetime="'.htmlentities((string)((isset($in['time_iso']) && is_array($in)) ? $in['time_iso'] : null), ENT_QUOTES, 'UTF-8').'"
+    
+    return ''.((LCRun3::ifvar($cx, ((isset($in['guid']) && is_array($in)) ? $in['guid'] : null))) ? '	<time datetime="'.htmlentities((string)((isset($in['time_iso']) && is_array($in)) ? $in['time_iso'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-timestamp">
+' : '	<time datetime="'.htmlentities((string)((isset($in['time_iso']) && is_array($in)) ? $in['time_iso'] : null), ENT_QUOTES, 'UTF-8').'"
 	      class="flow-timestamp flow-load-interactive"
 	      data-flow-load-handler="timestamp"
 	>
-').'
-	<span class="flow-timestamp-user-formatted">'.htmlentities((string)((isset($in['time_readable']) && is_array($in)) ? $in['time_readable'] : null), ENT_QUOTES, 'UTF-8').'</span>
+').'	<span class="flow-timestamp-user-formatted">'.htmlentities((string)((isset($in['time_readable']) && is_array($in)) ? $in['time_readable'] : null), ENT_QUOTES, 'UTF-8').'</span>
 	<span id="'.htmlentities((string)((isset($in['guid']) && is_array($in)) ? $in['guid'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-timestamp-ago">'.htmlentities((string)((isset($in['time_ago']) && is_array($in)) ? $in['time_ago'] : null), ENT_QUOTES, 'UTF-8').'</span>
 </time>
 ';
