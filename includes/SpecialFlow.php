@@ -91,11 +91,14 @@ class SpecialFlow extends FormSpecialPage {
 	}
 
 	protected function alterForm( HTMLForm $form ) {
-		// Style the form.
-		$form->setDisplayFormat( 'vform' );
-		$form->setWrapperLegend( false );
-
 		$form->setMethod( 'get' ); // This also submits the form every time the page loads.
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getDisplayFormat() {
+		return 'vform';
 	}
 
 	/**
