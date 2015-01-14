@@ -178,7 +178,7 @@ class HeaderBlock extends AbstractBlock {
 				// Reload $this->header for renderApi() after save
 				$this->header = $this->newRevision;
 				return array(
-					'revision-id' => $this->newRevision->getRevisionId(),
+					'header-revision-id' => $this->newRevision->getRevisionId(),
 				);
 
 			default:
