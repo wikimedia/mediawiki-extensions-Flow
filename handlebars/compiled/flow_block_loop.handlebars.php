@@ -1,6 +1,6 @@
 <?php return function ($in, $debugopt = 1) {
-    $cx = Array(
-        'flags' => Array(
+    $cx = array(
+        'flags' => array(
             'jstrue' => false,
             'jsobj' => false,
             'spvar' => true,
@@ -8,19 +8,21 @@
             'method' => false,
             'mustlok' => false,
             'mustsec' => false,
+            'echo' => false,
             'debug' => $debugopt,
         ),
-        'helpers' => Array(            'block' => 'Flow\TemplateHelper::block',
+        'constants' => array(),
+        'helpers' => array(            'block' => 'Flow\TemplateHelper::block',
 ),
-        'blockhelpers' => Array(),
-        'hbhelpers' => Array(),
-        'partials' => Array(),
-        'scopes' => Array($in),
-        'sp_vars' => Array(),
+        'blockhelpers' => array(),
+        'hbhelpers' => array(),
+        'partials' => array(),
+        'scopes' => array($in),
+        'sp_vars' => array('root' => $in),
 
     );
-    return ''.LCRun3::sec($cx, ((isset($in['blocks']) && is_array($in)) ? $in['blocks'] : null), $in, true, function($cx, $in) {return '
-	'.LCRun3::ch($cx, 'block', Array(Array($in),Array()), 'encq').'
+    
+    return ''.LCRun3::sec($cx, ((isset($in['blocks']) && is_array($in)) ? $in['blocks'] : null), $in, true, function($cx, $in) {return '	'.LCRun3::ch($cx, 'block', array(array($in),array()), 'encq').'
 ';}).'';
 }
 ?>
