@@ -120,10 +120,10 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 		$ids = $objs = array();
 		foreach ( $rows as $row ) {
 			$id = UUID::create( $row->rev_id );
-			$type = self::$types[$row->rev_id];
+			$type = self::$types[$row->rev_type];
 			$om = $this->storage->getStorage( $type );
 			$obj = $om->get( $id );
-			if ( $found ) {
+			if ( $obj ) {
 				$om->merge( $obj );
 				$ids[] = $row->rev_id;
 				$objs[] = $obj;
