@@ -1,9 +1,15 @@
 Given(/^I click the Lock topic button$/) do
-  on(FlowPage).topic_lock_button_element.when_present.click
+  on(FlowPage) do |page|
+    page.topic_lock_button_element.when_present.focus
+    page.topic_lock_button_element.click
+  end
 end
 
 Given(/^I click the Unlock topic button$/) do
-  on(FlowPage).topic_unlock_button_element.when_present.click
+  on(FlowPage) do |page|
+    page.topic_unlock_button_element.when_present.focus
+    page.topic_unlock_button_element.click
+  end
 end
 
 Given(/^the top post has been locked$/) do
