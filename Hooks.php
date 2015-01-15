@@ -587,6 +587,40 @@ class FlowHooks {
 	}
 
 	/**
+	 * Convert flow contributions entries into FeedItem instances
+	 * for ApiFeedContributions
+	 *
+	 * @param object $row Single row of data from ContribsPager
+	 * @param FeedItem &$feedItem Return value holder for created feed item.
+	 * @return bool
+	 */
+	public static function onContributionsFeedItem( $row, IContextSource $ctx, FeedItem &$feedItem = null ) {
+		if ( !$row instanceof Flow\Formatter\FormatterRow ) {
+			return true;
+		}
+
+		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
+		try {
+			/** @var Flow\Formatter\Contributions $formatter */
+			$formatter = Container::get( 'formatter.contributions.feeditem' );
+			$result = $formatter->format( $row, $ctx, 'feeditem' );
+		} catch ( Exception $e ) {
+			MWExceptionHandler::logException( $e );
+			$result = false;
+		}
+		restore_error_handler();
+
+		if ( $result instanceof FeedItem ) {
+			$feedItem = $result;
+			return true;
+		} else {
+			// If we failed to render a flow row, cancel it. This could be
+			// either permissions or bugs.
+			return false;
+		}
+	}
+
+	/**
 	 * Adds Flow contributions to the Contributions special page
 	 *
 	 * @param $data array an array of results of all contribs queries, to be
