@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae6ac7d6_3153401c",
+        "filename": "includes/Parsoid/Utils.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 24
+      },
+      "writtenOn": "2015-01-15T14:31:44Z",
+      "side": 1,
+      "message": "Missing global wgWikimediaJenkinsCI;  :]",
+      "revId": "d7fb688ab784c65644dcf4b684fef1e1b59a0d3e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
