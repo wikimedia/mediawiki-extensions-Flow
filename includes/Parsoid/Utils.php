@@ -185,7 +185,11 @@ abstract class Utils {
 			$wgVisualEditorParsoidURL, $wgVisualEditorParsoidPrefix, $wgVisualEditorParsoidTimeout,
 			$wgVisualEditorParsoidForwardCookies;
 
-		if ( !$wgFlowParsoidURL && !$wgVisualEditorParsoidURL ) {
+		if ( $wgFlowParsoidURL === false ) {
+			// explicitly disabled
+			throw new NoParsoidException( 'Flow Parsoid configuration is unavailable', 'process-wikitext' );
+		} elseif ( $wgFlowParsoidURL === null && !$wgVisualEditorParsoidURL ) {
+			// not set in Flow & no VE fallback
 			throw new NoParsoidException( 'Flow Parsoid configuration is unavailable', 'process-wikitext' );
 		}
 
