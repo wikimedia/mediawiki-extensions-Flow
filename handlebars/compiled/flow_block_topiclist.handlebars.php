@@ -213,11 +213,13 @@
 
 	'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-comments',((isset($in['reply_count']) && is_array($in)) ? $in['reply_count'] : null)),Array()), 'encq').' &bull;
 
-	'.((LCRun3::ifvar($cx, ((isset($in['last_updated']) && is_array($in)) ? $in['last_updated'] : null))) ? '
-		'.LCRun3::ch($cx, 'timestamp', Array(Array(((isset($in['last_updated']) && is_array($in)) ? $in['last_updated'] : null)),Array()), 'encq').'
-	' : '
-		'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((isset($in['postId']) && is_array($in)) ? $in['postId'] : null)),Array()), 'encq').'
-	').'
+	<a href="'.htmlentities((string)((isset($in['links']['topic-history']['url']) && is_array($in['links']['topic-history'])) ? $in['links']['topic-history']['url'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-timestamp-anchor">
+		'.((LCRun3::ifvar($cx, ((isset($in['last_updated']) && is_array($in)) ? $in['last_updated'] : null))) ? '
+			'.LCRun3::ch($cx, 'timestamp', Array(Array(((isset($in['last_updated']) && is_array($in)) ? $in['last_updated'] : null)),Array()), 'encq').'
+		' : '
+			'.LCRun3::ch($cx, 'uuidTimestamp', Array(Array(((isset($in['postId']) && is_array($in)) ? $in['postId'] : null)),Array()), 'encq').'
+		').'
+	</a>
 </div>
 '.((LCRun3::ifvar($cx, ((isset($in['isModerated']) && is_array($in)) ? $in['isModerated'] : null))) ? '
 	<div class="flow-moderated-topic-title flow-ui-text-truncated">'.htmlentities((string)((isset($in['noop']) && is_array($in)) ? $in['noop'] : null), ENT_QUOTES, 'UTF-8').''.LCRun3::p($cx, 'flow_topic_moderation_flag', Array(Array($in),Array())).'
