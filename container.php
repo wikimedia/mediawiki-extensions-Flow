@@ -918,6 +918,12 @@ $c['formatter.contributions'] = $c->share( function( $c ) {
 		$c['formatter.revision']
 	);
 } );
+$c['formatter.contributions.feeditem'] = $c->share( function( $c ) {
+	return new Flow\Formatter\FeedItemFormatter(
+		$c['permissions'],
+		$c['formatter.revision']
+	);
+} );
 $c['query.board-history'] = $c->share( function( $c ) {
 	return new Flow\Formatter\BoardHistoryQuery(
 		$c['storage'],

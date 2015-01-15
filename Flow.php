@@ -70,6 +70,7 @@ $wgHooks['UserGetReservedNames'][] = 'FlowHooks::onUserGetReservedNames';
 $wgHooks['ResourceLoaderGetConfigVars'][] = 'FlowHooks::onResourceLoaderGetConfigVars';
 $wgHooks['ContribsPager::reallyDoQuery'][] = 'FlowHooks::onContributionsQuery';
 $wgHooks['ContributionsLineEnding'][] = 'FlowHooks::onContributionsLineEnding';
+$wgHooks['ApiFeedContributions::feedItem'][] = 'FlowHooks::onContributionsFeedItem';
 $wgHooks['AbuseFilter-computeVariable'][] = 'FlowHooks::onAbuseFilterComputeVariable';
 $wgHooks['AbortEmailNotification'][] = 'FlowHooks::onAbortEmailNotification';
 $wgHooks['InfoAction'][] = 'FlowHooks::onInfoAction';
