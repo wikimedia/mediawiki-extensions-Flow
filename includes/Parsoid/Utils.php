@@ -183,9 +183,14 @@ abstract class Utils {
 		global
 			$wgFlowParsoidURL, $wgFlowParsoidPrefix, $wgFlowParsoidTimeout, $wgFlowParsoidForwardCookies,
 			$wgVisualEditorParsoidURL, $wgVisualEditorParsoidPrefix, $wgVisualEditorParsoidTimeout,
-			$wgVisualEditorParsoidForwardCookies;
+			$wgVisualEditorParsoidForwardCookies,
+			$wgWikimediaJenkinsCI;
 
-		if ( !$wgFlowParsoidURL && !$wgVisualEditorParsoidURL ) {
+		if ( isset( $wgWikimediaJenkinsCI ) && $wgWikimediaJenkinsCI ) {
+			// Parsoid not yet supported in CI. Any attempt to connect to
+			// Parsoid (whether via Flow or defaulting to VE config) would fail.
+			throw new NoParsoidException( 'Flow Parsoid configuration is unavailable', 'process-wikitext' );
+		} elseif ( !$wgFlowParsoidURL && !$wgVisualEditorParsoidURL ) {
 			throw new NoParsoidException( 'Flow Parsoid configuration is unavailable', 'process-wikitext' );
 		}
 
