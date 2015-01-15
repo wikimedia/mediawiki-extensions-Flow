@@ -7,6 +7,7 @@
 		]
 	},
 	"flow-desc": "Töövoo haldamise süsteem",
+	"flow-board-header-browse-topics-link": "Sirvi teemasid",
 	"flow-edit-header-link": "Redigeeri päist",
 	"flow-topic-moderated-reason-prefix": "Põhjus:",
 	"flow-hide-post-content": "$1 peitis selle kommentaari.",
@@ -65,6 +66,7 @@
 	"flow-topic-action-undo-moderation": "Võta tagasi",
 	"flow-topic-notification-subscribe-title": "See teema on lisatud {{GENDER:$1|sinu}} jälgimisloendisse.",
 	"flow-topic-notification-subscribe-description": "{{GENDER:$1|Saad}} teavituse iga selle teemaga seotud tegevuse kohta.",
+	"flow-edit-header-placeholder": "Kirjelda seda arutelukohta",
 	"flow-edit-header-submit": "Salvesta päis",
 	"flow-summarize-topic-submit": "Võta kokku",
 	"flow-lock-topic-submit": "Lukusta teema",
