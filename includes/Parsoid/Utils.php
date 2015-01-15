@@ -181,21 +181,17 @@ abstract class Utils {
 	 */
 	protected static function parsoidConfig() {
 		global
-			$wgFlowParsoidURL, $wgFlowParsoidPrefix, $wgFlowParsoidTimeout, $wgFlowParsoidForwardCookies,
-			$wgVisualEditorParsoidURL, $wgVisualEditorParsoidPrefix, $wgVisualEditorParsoidTimeout,
-			$wgVisualEditorParsoidForwardCookies;
+			$wgFlowParsoidURL, $wgFlowParsoidPrefix, $wgFlowParsoidTimeout, $wgFlowParsoidForwardCookies;
 
-		if ( !$wgFlowParsoidURL && !$wgVisualEditorParsoidURL ) {
+		if ( !$wgFlowParsoidURL ) {
 			throw new NoParsoidException( 'Flow Parsoid configuration is unavailable', 'process-wikitext' );
 		}
 
 		return array(
-			$wgFlowParsoidURL ?: $wgVisualEditorParsoidURL,
-			$wgFlowParsoidPrefix ?: $wgVisualEditorParsoidPrefix,
-			$wgFlowParsoidTimeout ?: $wgVisualEditorParsoidTimeout,
-			isset( $wgFlowParsoidForwardCookies )
-				? $wgFlowParsoidForwardCookies
-				: $wgVisualEditorParsoidForwardCookies,
+			$wgFlowParsoidURL,
+			$wgFlowParsoidPrefix,
+			$wgFlowParsoidTimeout,
+			$wgFlowParsoidForwardCookies,
 		);
 	}
 
