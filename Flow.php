@@ -165,10 +165,23 @@ $wgFlowExternalStore = false;
 $wgFlowContentFormat = 'html'; // possible values: html|wikitext XXX bug 70148 with wikitext
 
 // Flow Parsoid config
-// If null, VE's defaults (if available) will be used
-$wgFlowParsoidURL = null; // defaults to $wgVisualEditorParsoidURL
-$wgFlowParsoidPrefix = null; // defaults to $wgVisualEditorParsoidPrefix
-$wgFlowParsoidTimeout = null; // defaults to $wgVisualEditorParsoidTimeout
+// Please note that this configuration is separate from VE's Parsoid config:
+// you'll have to fill out these variables too if you want to use Parsoid.
+$wgFlowParsoidURL = null; // also see $wgVisualEditorParsoidURL
+$wgFlowParsoidPrefix = null; // also see $wgVisualEditorParsoidPrefix
+$wgFlowParsoidTimeout = null; // also see $wgVisualEditorParsoidTimeout
+// Forward users' Cookie: headers to Parsoid. Required for private wikis (login required to read).
+// If the wiki is not private (i.e. $wgGroupPermissions['*']['read'] is true) this configuration
+// variable will be ignored.
+//
+// This feature requires a non-locking session store. The default session store will not work and
+// will cause deadlocks when trying to use this feature. If you experience deadlock issues, enable
+// $wgSessionsInObjectCache.
+//
+// WARNING: ONLY enable this on private wikis and ONLY IF you understand the SECURITY IMPLICATIONS
+// of sending Cookie headers to Parsoid over HTTP. For security reasons, it is strongly recommended
+// that $wgVisualEditorParsoidURL be pointed to localhost if this setting is enabled.
+$wgFlowParsoidForwardCookies = false;
 
 // Flow Configuration for EventLogging
 $wgFlowConfig = array(
@@ -276,19 +289,6 @@ $wgFlowCoreActionWhitelist = array( 'info', 'protect', 'unprotect', 'unwatch', '
 // on every run.  When set to false Flow will use the versions already written
 // to disk. Production should always have this set to false.
 $wgFlowServerCompileTemplates = false;
-
-// Forward users' Cookie: headers to Parsoid. Required for private wikis (login required to read).
-// If the wiki is not private (i.e. $wgGroupPermissions['*']['read'] is true) this configuration
-// variable will be ignored.
-//
-// This feature requires a non-locking session store. The default session store will not work and
-// will cause deadlocks when trying to use this feature. If you experience deadlock issues, enable
-// $wgSessionsInObjectCache.
-//
-// WARNING: ONLY enable this on private wikis and ONLY IF you understand the SECURITY IMPLICATIONS
-// of sending Cookie headers to Parsoid over HTTP. For security reasons, it is strongly recommended
-// that $wgVisualEditorParsoidURL be pointed to localhost if this setting is enabled.
-$wgFlowParsoidForwardCookies = false;
 
 // Enable/disable event logging
 $wgFlowEventLogging = true;
