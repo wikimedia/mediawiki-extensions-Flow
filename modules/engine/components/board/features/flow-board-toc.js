@@ -221,6 +221,8 @@
 		var $this = $( this ),
 			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $this );
 
+		event.preventDefault();
+
 		// Load and scroll to topic
 		flowBoard.jumpToTopic( $this.data( 'flow-id' ) );
 	}

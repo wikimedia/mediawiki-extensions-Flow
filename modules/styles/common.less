@@ -63,14 +63,8 @@
 
 // Decorate as a pipelist, ex: (foo | bar | baz)
 .flow-pipelist {
-	&:not(:empty):before {
-		content: ' (';
-	}
 	span ~ span:before {
 		content: ' | ';
-	}
-	&:not(:empty):after {
-		content: ') ';
 	}
 }
 

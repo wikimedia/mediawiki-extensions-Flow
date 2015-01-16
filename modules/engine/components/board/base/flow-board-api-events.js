@@ -670,7 +670,7 @@
 		$button
 			.data( 'flow-return-to-edit', {
 				text: $button.text(),
-				$nodes: $previewContainer,
+				$nodes: $previewContainer
 			} )
 			.text( flowBoard.constructor.static.TemplateEngine.l10n( 'flow-preview-return-edit-post' ) )
 			.one( 'click', function() {

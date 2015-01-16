@@ -62,7 +62,7 @@
 
 					delete flowBoard.infiniteScrollDisabled;
 				} else {
-					this.debug( 'Rendered topic not found when attempting to scroll!' );
+					flowBoard.debug( 'Rendered topic not found when attempting to scroll!' );
 				}
 			};
 
@@ -126,6 +126,7 @@
 			} )
 			// On fail, render an error
 			.fail( function( code, data ) {
+				flowBoard.debug( true, 'Failed to load topics: ' + code );
 				// Failed fetching the new data to be displayed.
 				// @todo render the error at topic position and scroll to it
 				// @todo how do we render this?
@@ -568,6 +569,7 @@
 					topicsData
 				) ).children();
 			} catch( e ) {
+				flowBoard.debug( true, 'Failed to render new topic' );
 				$newTopics = $();
 			}
 
