@@ -4,6 +4,7 @@
 			{{#each revisions}}
 				<li>
 					<span class="flow-pipelist">
+						(
 						{{~noop~}}
 						<span>
 							{{~#if links.diff-cur~}}
@@ -11,7 +12,7 @@
 									{{~links.diff-cur.title~}}
 								</a>
 							{{~else~}}
-								{{l10n "cur"}}
+								{{~l10n "cur"~}}
 							{{/if}}
 						</span>
 						<span>
@@ -20,7 +21,7 @@
 									{{~links.diff-prev.title~}}
 								</a>
 							{{~else~}}
-								{{l10n "last"}}
+								{{~l10n "last"~}}
 							{{~/if~}}
 						</span>
 						{{~#if links.topic}}
@@ -28,6 +29,7 @@
 								{{~links.topic.title~}}
 							</a></span>
 						{{~/if~}}
+						)
 					</span>
 
 					{{historyTimestamp this}}
