@@ -257,7 +257,7 @@
 	};
 
 	/**
-	 * Updates one <time> node at a time every 100ms, until finishing, and then sleeps 5s.
+	 * Updates one flow-timestamp node at a time every 100ms, until finishing, and then sleeps 5s.
 	 * Nodes do not get updated again until they have changed.
 	 * @todo Perhaps only update elements within the viewport?
 	 * @todo Maybe updating elements every few seconds is distracting? Think about this.
