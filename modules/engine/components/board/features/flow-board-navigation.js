@@ -166,11 +166,12 @@
 	function _flowBoardAdjustTopicNavigationHeader( $boardNavigation, event, extraParameters ) {
 		var bottomScrollPosition, topicText, newReadingTopicId,
 			self = this,
-			boardNavigationPosition = ( this.$boardNavigationClone || $boardNavigation ).offset();
+			boardNavigationPosition = ( this.$boardNavigationClone || $boardNavigation ).offset(),
+			windowVerticalScroll = $( window ).scrollTop();
 
 		extraParameters = extraParameters || {};
 
-		if ( window.scrollY <= boardNavigationPosition.top ) {
+		if ( windowVerticalScroll <= boardNavigationPosition.top ) {
 			// Board nav is still in view; don't affix it
 			if ( this.$boardNavigationClone ) {
 				// Un-affix this
@@ -221,7 +222,9 @@
 		}
 
 		// Find out what the bottom of the board nav is touching
-		bottomScrollPosition = window.scrollY + $boardNavigation.outerHeight( true );
+		// XXX: One of the IE 8 problems seems to be that $boardNavigation.outerHeight( true ) is about 10 times too big (35 on Firefox, 349 on IE 8).
+		// I think this also causes visual problems.
+		bottomScrollPosition = windowVerticalScroll + $boardNavigation.outerHeight( true );
 
 		$.each( this.orderedTopicIds || [], function ( idx, topicId, $topic ) {
 			$topic = self.renderedTopics[ topicId ];

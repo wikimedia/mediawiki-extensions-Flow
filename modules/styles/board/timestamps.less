@@ -33,7 +33,24 @@
 	margin-top: -1em;
 }
 
-// inherit the gray color if not hovered, doesn't work in ie8
-a.flow-timestamp-anchor:not(:hover) {
-	color: inherit;
+a.flow-timestamp-anchor {
+	&, &:visited {
+		color: inherit;
+	}
+}
+
+// Colors are from mediawiki.skinning/elements.css
+// Could use a.flow-timestamp-anchor:not(:hover) to set color to gray
+// only when *not* hovering (and avoid the copied colors), but we can't
+// use :not for now due to old IE.
+a.flow-timestamp-anchor:hover {
+	color: #0645ad;
+
+	&:visited {
+		color: #0b0080;
+	}
+
+	&:active {
+		color: #faa700;
+	}
 }
