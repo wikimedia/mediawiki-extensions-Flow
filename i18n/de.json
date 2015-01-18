@@ -377,6 +377,7 @@
 	"apihelp-flow+moderate-topic-example-1": "Löscht das Thema [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+new-topic-param-topic": "Text für die neue Themenüberschrift.",
 	"apihelp-flow+new-topic-param-content": "Inhalt für das neue Thema.",
+	"apihelp-flow+new-topic-example-1": "Erstellt ein neues Thema auf [[Talk:Sandbox]]",
 	"apihelp-flow+reply-description": "Antwortet auf einen Beitrag.",
 	"apihelp-flow+reply-param-replyTo": "Kennung des Beitrags, auf den geantwortet werden soll.",
 	"apihelp-flow+reply-param-content": "Inhalt für den neuen Beitrag.",

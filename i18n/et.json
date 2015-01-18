@@ -156,6 +156,7 @@
 	"flow-terms-of-use-reply": "Kui klõpsad \"{{int:flow-reply-submit}}\", nõustud selle viki kasutustingimustega.",
 	"flow-terms-of-use-edit": "Kui muudatused salvestad, nõustud selle viki kasutustingimustega.",
 	"flow-anon-warning": "Sa pole sisse logitud. Et postitus omistataks sulle nime, mitte IP-aadressi järgi, saad [$1 sisse logida] või [$2 konto luua].",
+	"flow-cancel-warning": "Oled sellesse vormi teksti sisestanud. Kas oled kindel, et tahad sellest tekstist loobuda?",
 	"flow-topic-first-heading": "Teema leheküljel \"$1\"",
 	"flow-no-more-fwd": "Vanemaid teemasid pole.",
 	"flow-newest-topics": "Uusimad teemad",
@@ -173,6 +174,6 @@
 	"flow-special-type-workflow": "Töövoog",
 	"flow-preview-warning": "Näed praegu eelvaadet. Salvesta, et postitamine lõpule viia, või klõpsa \"{{int:flow-preview-return-edit-post}}\", et kirjutamist jätkata.",
 	"flow-preview-return-edit-post": "Redigeeri edasi",
-	"flow-edited": "Redigeeritud",
+	"flow-edited": "Redigeeritud:",
 	"flow-edited-by": "Redigeerinud $1"
 }
