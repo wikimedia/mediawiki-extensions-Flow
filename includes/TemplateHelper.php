@@ -135,7 +135,14 @@ class TemplateHelper {
 				'flags' => LightnCandy::FLAG_ERROR_EXCEPTION
 					| LightnCandy::FLAG_EXTHELPER
 					| LightnCandy::FLAG_SPVARS
-					| LightnCandy::FLAG_HANDLEBARS // FLAG_THIS + FLAG_WITH + FLAG_PARENT + FLAG_JSQUOTE + FLAG_ADVARNAME + FLAG_NAMEDARGS
+					// Commented LightnCandy::FLAG_HANDLEBARS because it includes
+					// FLAG_MUSTACHEPAIN, which currently causes issues. Below
+					// line can be uncommented & the one below (spelling out all
+					// options excluding FLAG_MUSTACHEPAIN) can be removed once
+					// https://github.com/zordius/lightncandy/pull/126 or similar
+					// lands.
+//					| LightnCandy::FLAG_HANDLEBARS // FLAG_THIS + FLAG_WITH + FLAG_PARENT + FLAG_JSQUOTE + FLAG_ADVARNAME + FLAG_SPACECTL + FLAG_NAMEDARG + FLAG_SPVARS + FLAG_SLASH + FLAG_ELSE + FLAG_MUSTACHESP + FLAG_MUSTACHEPAIN
+					| LightnCandy::FLAG_THIS | LightnCandy::FLAG_WITH | LightnCandy::FLAG_PARENT | LightnCandy::FLAG_JSQUOTE | LightnCandy::FLAG_ADVARNAME | LightnCandy::FLAG_SPACECTL | LightnCandy::FLAG_NAMEDARG | LightnCandy::FLAG_SPVARS | LightnCandy::FLAG_SLASH | LightnCandy::FLAG_ELSE | LightnCandy::FLAG_MUSTACHESP
 					| LightnCandy::FLAG_RUNTIMEPARTIAL,
 				'basedir' => array( $templateDir ),
 				'fileext' => array( '.handlebars' ),
