@@ -284,9 +284,6 @@
 	"flow-compare-revisions-header-post": "此頁面顯示由 $3 於 [$4 $1] 發表的主題 \"[$5 $2]\" 兩個版本之間的變更。\n您可以於 [$6 歷史頁面] 查看此文章的其他版本。",
 	"flow-compare-revisions-header-postsummary": "此頁面顯示於 [$3 $1] 的文章 \"[$4 $2]\" 中文章摘要兩個版本之間的變更。\n您可以於 [$5 歷史頁面] 查看此文章的其他版本。",
 	"flow-compare-revisions-header-header": "此頁面顯示於 [$3 $1] 中標題兩個版本之間的{{GENDER:$2|變更}}。\n您可以於 [$4 歷史頁面] 查看該標題的其他版本。",
-	"flow-topic-collapsed-one-line": "摘要檢視",
-	"flow-topic-collapsed-full": "摺疊檢視",
-	"flow-topic-complete": "完整檢視",
 	"right-flow-hide": "隱藏 Flow 主題和文章",
 	"right-flow-lock": "鎖定 Flow 主題",
 	"right-flow-delete": "刪除 Flow 主題和文章",
@@ -326,5 +323,6 @@
 	"flow-preview-return-edit-post": "繼續編輯",
 	"flow-anonymous": "匿名",
 	"flow-embedding-unsupported": "無法嵌入討論。",
-	"mw-ui-unsubmitted-confirm": "您在此頁面有未送出的變更，您確定要離開此頁面並放棄您的修改？"
+	"mw-ui-unsubmitted-confirm": "您在此頁面有未送出的變更，您確定要離開此頁面並放棄您的修改？",
+	"apihelp-flow-example-1": "編輯 [[Talk:Sandbox]] 的頁首"
 }

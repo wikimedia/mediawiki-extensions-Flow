@@ -367,6 +367,7 @@
 	"apihelp-flow+edit-topic-summary-param-summary": "Inhalt für die Zusammenfassung.",
 	"apihelp-flow+edit-topic-summary-example-1": "Bearbeitet die Zusammenfassung von [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+lock-topic-description": "Sperrt ein Flow-Thema oder gibt es wieder frei.",
+	"apihelp-flow+lock-topic-param-reason": "Grund für das Sperren oder Freigeben des Themas.",
 	"apihelp-flow+lock-topic-example-1": "Sperrt [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+moderate-post-description": "Moderiert einen Flow-Beitrag.",
 	"apihelp-flow+moderate-post-param-reason": "Grund für die Moderation.",

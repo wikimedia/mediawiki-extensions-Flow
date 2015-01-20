@@ -353,7 +353,7 @@
 	"flow-embedding-unsupported": "As discussões ainda não podem ser incorporadas.",
 	"mw-ui-unsubmitted-confirm": "Esta página possui alterações que ainda não foram gravadas. Tem a certeza que pretende continuar a navegar e perder todo o seu trabalho?",
 	"flow-post-undo-hide": "(desfazer ocultar)",
-	"flow-post-undo-delete": "(desfazer excluir)",
+	"flow-post-undo-delete": "(desfazer eliminação)",
 	"flow-post-undo-suppress": "(desfazer supressão)",
 	"flow-importer-lqt-converted-template": "Página LQT convertida para Flow",
 	"flow-importer-lqt-converted-archive-template": "Arquivo da página LQT convertida",
