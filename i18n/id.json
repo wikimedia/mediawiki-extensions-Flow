@@ -1,11 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ahdan"
+			"Ahdan",
+			"William Surya Permana"
 		]
 	},
 	"flow-topic-moderated-reason-prefix": "Alasan:",
 	"flow-topic-action-undo-moderation": "Batal",
+	"echo-pref-tooltip-flow-discussion": "Beritahu saya saat ada tindakan yang berhubungan dengan saya terjadi di Flow.",
 	"flow-moderation-confirmation-suppress-topic": "Topik ini telah dipadamkan",
 	"flow-moderation-confirmation-delete-topic": "Topik ini telah dihapus",
 	"flow-moderation-confirmation-hide-topic": "Topik ini telah disembunyikan"
