@@ -16,6 +16,24 @@
       "revId": "8591cc7c2b05f9d6f66c13c8b7aafa74139c2c5e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae6ac7d6_6da3fd3f",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-01-21T00:03:23Z",
+      "side": 1,
+      "message": "Indeed we do need to update those as well.  I also double checked the rest of the codebase by grepping for getTitle, surprisingly we dont call it that many times, mostly against page but almost never against the Workflow object.",
+      "parentUuid": "0e6cb3ef_2583dcd2",
+      "revId": "8591cc7c2b05f9d6f66c13c8b7aafa74139c2c5e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
