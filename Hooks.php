@@ -1117,7 +1117,7 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onNamespaceIsMovable( $namespace, &$movable ) {
-		$movable &= $namespace !== NS_TOPIC;
+		//$movable &= $namespace !== NS_TOPIC;
 		return true;
 	}
 }

@@ -78,6 +78,11 @@ class TalkpageManager implements OccupationController {
 			return false;
 		}
 
+		// XXX: Live hack to repair problem from before we had the below check (last two lines),
+		if ( $title->getNamespace() === NS_TOPIC && $title->getDBkey() === 'Kuttiattoor_Thittayil_Sree_Daivathar_Temple' ) {
+			return false;
+		}
+
 		if ( $title->isRedirect() ) {
 			return false;
 		}
