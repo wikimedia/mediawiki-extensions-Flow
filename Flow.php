@@ -92,6 +92,7 @@ $wgHooks['AbortMove'][] = 'FlowHooks::onAbortMove';
 $wgHooks['TitleSquidURLs'][] = 'FlowHooks::onTitleSquidURLs';
 $wgHooks['WatchlistEditorBuildRemoveLine'][] = 'FlowHooks::onWatchlistEditorBuildRemoveLine';
 $wgHooks['WatchlistEditorBeforeFormRender'][] = 'FlowHooks::onWatchlistEditorBeforeFormRender';
+$wgHooks['NamespaceIsMovable'][] = 'FlowHooks::onNamespaceIsMovable';
 
 // Extension:UserMerge support
 $wgHooks['UserMergeAccountFields'][] = 'FlowHooks::onUserMergeAccountFields';
