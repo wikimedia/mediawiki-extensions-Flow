@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Subi"
+		]
+	},
+	"flow-topic-moderated-reason-prefix": "Arrazoia:",
+	"flow-reply-submit": "{{GENDER:$1|Erantzun}}",
+	"flow-reply-link": "{{GENDER:$1|Erantzun}}",
+	"flow-thank-link": "{{GENDER:$1|Eskertu}}",
+	"flow-history-action-delete-post": "ezabatu",
+	"flow-history-action-hide-post": "ezkutatu",
+	"flow-post-action-post-history": "Historia",
+	"flow-post-action-undo-moderation": "Desegin",
+	"flow-topic-action-undo-moderation": "Desegin",
+	"flow-history-day": "Gaur",
+	"flow-moderation-confirm-delete-post": "Ezabatu",
+	"flow-moderation-confirm-hide-post": "Ezkutatu",
+	"flow-moderation-confirm-delete-topic": "Ezabatu",
+	"flow-moderation-confirm-hide-topic": "Ezkutatu"
+}
