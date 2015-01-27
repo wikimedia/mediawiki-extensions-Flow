@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e7fc396_1c809d4a",
+        "filename": "i18n/en.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2015-01-27T21:57:55Z",
+      "side": 1,
+      "message": "Should \"Flow\" be capitalised? Alternatively, remove \"flow\".",
+      "revId": "89f7ad7129a9e82ebe46d951798f3225f9c43a77",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e7fc396_dc99c5c9",
+        "filename": "i18n/en.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2015-01-27T21:57:55Z",
+      "side": 1,
+      "message": "Should have correct punctuation. Same for the 3 error messages below.",
+      "revId": "89f7ad7129a9e82ebe46d951798f3225f9c43a77",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
