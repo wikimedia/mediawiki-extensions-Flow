@@ -46,4 +46,8 @@ class BasicObjectMapper implements ObjectMapper {
 		$object = $this->fromStorageRow( $row );
 		return $this->toStorageRow( $object );
 	}
+
+	public function clear() {
+		// noop
+	}
 }
