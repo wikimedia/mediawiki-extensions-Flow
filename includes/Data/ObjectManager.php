@@ -99,6 +99,7 @@ class ObjectManager extends ObjectLocator {
 	 */
 	public function clear() {
 		$this->loaded = new SplObjectStorage;
+		$this->mapper->clear();
 	}
 
 	/**

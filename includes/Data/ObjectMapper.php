@@ -44,4 +44,9 @@ interface ObjectMapper {
 	 * @return array Normalized row
 	 */
 	function normalizeRow( array $row );
+
+	/**
+	 * Clear any internally cached information
+	 */
+	function clear();
 }
