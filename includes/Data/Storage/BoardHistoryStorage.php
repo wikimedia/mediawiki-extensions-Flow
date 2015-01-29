@@ -23,11 +23,23 @@ class BoardHistoryStorage extends DbStorage {
 		if ( count( $queries ) > 1 ) {
 			throw new DataModelException( __METHOD__ . ' expects only one value in $queries', 'process-data' );
 		}
+
 		$merged = $this->findHeaderHistory( $queries, $options ) +
 			$this->findTopicListHistory( $queries, $options ) +
 			$this->findTopicSummaryHistory( $queries, $options );
-		// newest items at the beginning of the list
-		krsort( $merged );
+
+		// Having merged data from 3 sources, we now have to combine it
+		// (according to the current sort & limit)
+		$order = isset( $options['ORDER BY'][0] ) && preg_match( '/ASC$/', $options['ORDER BY'][0] ) ? 'ASC' : 'DESC';
+		if ( $order === 'DESC' ) {
+			krsort( $merged );
+		} else {
+			ksort( $merged );
+		}
+
+		if ( isset( $options['LIMIT'] ) ) {
+			$merged = array_splice( $merged, 0, $options['LIMIT'] );
+		}
 
 		// Merge data from external store & get rid of failures
 		$res = array( $merged );
