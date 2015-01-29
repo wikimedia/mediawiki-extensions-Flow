@@ -3,7 +3,7 @@
 namespace Flow\Block;
 
 use Flow\Container;
-use Flow\Data\Pager\BoardHistoryPager;
+use Flow\Data\Pager\HistoryPager;
 use Flow\Exception\DataModelException;
 use Flow\Formatter\BoardHistoryQuery;
 use Flow\Formatter\RevisionFormatter;
@@ -55,7 +55,7 @@ class BoardHistoryBlock extends AbstractBlock {
 		$offset = $wgRequest->getText( 'offset' );
 		$offset = $offset ? UUID::create( $offset ) : null;
 
-		$pager = new BoardHistoryPager( $query, $this->workflow );
+		$pager = new HistoryPager( $query, $this->workflow->getId() );
 		$pager->setLimit( $limit );
 		$pager->setOffset( $offset );
 		$pager->doQuery();

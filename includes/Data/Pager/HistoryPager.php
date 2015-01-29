@@ -6,19 +6,20 @@ use Flow\Exception\FlowException;
 use Flow\Exception\InvalidDataException;
 use Flow\Formatter\BoardHistoryQuery;
 use Flow\Formatter\FormatterRow;
+use Flow\Formatter\TopicHistoryQuery;
+use Flow\Formatter\PostHistoryQuery;
 use Flow\Model\UUID;
-use Flow\Model\Workflow;
 
-class BoardHistoryPager extends \ReverseChronologicalPager {
+class HistoryPager extends \ReverseChronologicalPager {
 	/**
-	 * @var BoardHistoryQuery
+	 * @var BoardHistoryQuery|TopicHistoryQuery|PostHistoryQuery
 	 */
 	protected $query;
 
 	/**
-	 * @var Workflow
+	 * @var UUID
 	 */
-	protected $workflow;
+	protected $id;
 
 	/**
 	 * @var UUID|null
@@ -31,12 +32,12 @@ class BoardHistoryPager extends \ReverseChronologicalPager {
 	public $mResult;
 
 	/**
-	 * @param BoardHistoryQuery $query
-	 * @param Workflow $workflow
+	 * @param BoardHistoryQuery|TopicHistoryQuery|PostHistoryQuery $query
+	 * @param UUID $id
 	 */
-	public function __construct( BoardHistoryQuery $query, Workflow $workflow ) {
+	public function __construct( /* BoardHistoryQuery|TopicHistoryQuery|PostHistoryQuery */ $query, UUID $id ) {
 		$this->query = $query;
-		$this->workflow = $workflow;
+		$this->id = $id;
 
 		$this->mDefaultLimit = $this->getUser()->getIntOption( 'rclimit' );
 		$this->mIsBackwards = $this->getRequest()->getVal( 'dir' ) == 'prev';
@@ -46,10 +47,10 @@ class BoardHistoryPager extends \ReverseChronologicalPager {
 		$direction = $this->mIsBackwards ? 'rev' : 'fwd';
 
 		// over-fetch so we can figure out if there's anything after what we're showing
-		$this->mResult = $this->query->getResults( $this->workflow, $this->getLimit() + 1, $this->mOffset, $direction );
+		$this->mResult = $this->query->getResults( $this->id, $this->getLimit() + 1, $this->mOffset, $direction );
 		if ( !$this->mResult ) {
 			throw new InvalidDataException(
-				'Unable to load topic list history for ' . $this->workflow->getId()->getAlphadecimal(),
+				'Unable to load history for ' . $this->id->getAlphadecimal(),
 				'fail-load-history'
 			);
 		}
@@ -81,7 +82,7 @@ class BoardHistoryPager extends \ReverseChronologicalPager {
 		$nextOffset = UUID::create( $nextOffset );
 		$reverseDirection = $this->mIsBackwards ? 'fwd' : 'rev';
 		$this->mIsLast = !$overfetched;
-		$this->mIsFirst = !$this->mOffset || count( $this->query->getResults( $this->workflow, 1, $nextOffset, $reverseDirection ) ) === 0;
+		$this->mIsFirst = !$this->mOffset || count( $this->query->getResults( $this->id, 1, $nextOffset, $reverseDirection ) ) === 0;
 
 		if ( $this->mIsBackwards ) {
 			// swap values if we're going backwards

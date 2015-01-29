@@ -4,22 +4,21 @@ namespace Flow\Formatter;
 
 use Flow\Exception\FlowException;
 use Flow\Model\UUID;
-use Flow\Model\Workflow;
 use MWExceptionHandler;
 
 class BoardHistoryQuery extends AbstractQuery {
 	/**
-	 * @param Workflow $workflow
+	 * @param UUID $workflowId
 	 * @param int $limit
 	 * @param UUID|null $offset
 	 * @param string $direction 'rev' or 'fwd'
-	 * @return array
+	 * @return FormatterRow[]
 	 */
-	public function getResults( Workflow $workflow, $limit = 50, UUID $offset = null, $direction = 'fwd' ) {
+	public function getResults( UUID $workflowId, $limit = 50, UUID $offset = null, $direction = 'fwd' ) {
 		// Load the history
 		$history = $this->storage->find(
 			'BoardHistoryEntry',
-			array( 'topic_list_id' => $workflow->getId() ),
+			array( 'topic_list_id' => $workflowId ),
 			array(
 				'sort' => 'rev_id',
 				'order' => 'DESC',
@@ -35,8 +34,6 @@ class BoardHistoryQuery extends AbstractQuery {
 			return array();
 		}
 
-		// pre-load our workflow
-		$this->workflowCache[$workflow->getId()->getAlphadecimal()] = $workflow;
 		// fetch any necessary metadata
 		$this->loadMetadataBatch( $history );
 		// build rows with the extra metadata
