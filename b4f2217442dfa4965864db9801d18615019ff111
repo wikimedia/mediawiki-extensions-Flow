@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e7fc396_add9232e",
+        "filename": "includes/Search/maintenance/MappingConfigBuilder.php",
+        "patchSetId": 24
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-01-29T22:01:36Z",
+      "side": 1,
+      "message": "it seems like that is some custom mapping that turned out to work better for certain queries?  I think we will probably be ok just keeping it simple for now  until we find out that some queries give less than desirable results.",
+      "revId": "b4f2217442dfa4965864db9801d18615019ff111",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e7fc396_6de30bd5",
+        "filename": "includes/api/ApiFlowSearch.php",
+        "patchSetId": 24
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-01-29T22:01:36Z",
+      "side": 1,
+      "message": ":)",
+      "revId": "b4f2217442dfa4965864db9801d18615019ff111",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e7fc396_ad9123fd",
+        "filename": "maintenance/FlowSearchConfig.php",
+        "patchSetId": 24
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-01-29T22:01:36Z",
+      "side": 1,
+      "message": "looking at the cirrus search history, i\u0027m going to guess we will need this but maybe not on day 1.  The initial patch implementing it in cirrus search (Iec6a96e) is pretty trivial we can  get to it later i suppose?",
+      "revId": "b4f2217442dfa4965864db9801d18615019ff111",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e7fc396_4da96f20",
+        "filename": "maintenance/FlowSearchConfig.php",
+        "patchSetId": 24
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-01-29T22:01:36Z",
+      "side": 1,
+      "message": "i\u0027m going to agree, lets leave this out until we run into use cases that can benefit.",
+      "revId": "b4f2217442dfa4965864db9801d18615019ff111",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
