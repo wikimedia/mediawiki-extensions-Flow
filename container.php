@@ -439,13 +439,6 @@ $c['storage.post_summary'] = $c->share( function( $c ) {
 $c['storage.topic_list.class'] = 'Flow\Model\TopicListEntry';
 $c['storage.topic_list.table'] = 'flow_topic_list';
 $c['storage.topic_list.primary_key'] = array( 'topic_list_id', 'topic_id' );
-$c['storage.topic_list.backend'] = $c->share( function( $c ) {
-	return new TopicListStorage(
-		$c['db.factory'],
-		$c['storage.topic_list.table'],
-		$c['storage.topic_list.primary_key']
-	);
-} );
 $c['storage.topic_list.indexes.last_updated.backend'] = $c->share( function( $c ) {
 	return new TopicListLastUpdatedStorage(
 		$c['db.factory'],
