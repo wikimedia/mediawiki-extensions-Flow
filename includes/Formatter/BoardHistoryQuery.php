@@ -2,25 +2,37 @@
 
 namespace Flow\Formatter;
 
-use Flow\Model\Workflow;
 use Flow\Exception\FlowException;
-use Flow\Exception\InvalidDataException;
+use Flow\Model\UUID;
+use Flow\Model\Workflow;
 use MWExceptionHandler;
 
 class BoardHistoryQuery extends AbstractQuery {
-	public function getResults( Workflow $workflow ) {
+	/**
+	 * @param Workflow $workflow
+	 * @param int $limit
+	 * @param UUID|null $offset
+	 * @param string $direction 'rev' or 'fwd'
+	 * @return array
+	 */
+	public function getResults( Workflow $workflow, $limit = 50, UUID $offset = null, $direction = 'fwd' ) {
 		// Load the history
 		$history = $this->storage->find(
 			'BoardHistoryEntry',
 			array( 'topic_list_id' => $workflow->getId() ),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 300 )
+			array(
+				'sort' => 'rev_id',
+				'order' => 'DESC',
+				'limit' => $limit,
+				'offset-id' => $offset,
+				'offset-dir' => $direction,
+				'offset-include' => false,
+				'offset-elastic' => false,
+			)
 		);
 
 		if ( !$history ) {
-			throw new InvalidDataException(
-				'Unable to load topic list history for ' . $workflow->getId()->getAlphadecimal(),
-				'fail-load-history'
-			);
+			return array();
 		}
 
 		// pre-load our workflow

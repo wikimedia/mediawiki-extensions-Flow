@@ -3,9 +3,11 @@
 namespace Flow\Block;
 
 use Flow\Container;
+use Flow\Data\Pager\BoardHistoryPager;
+use Flow\Exception\DataModelException;
 use Flow\Formatter\BoardHistoryQuery;
 use Flow\Formatter\RevisionFormatter;
-use Flow\Exception\DataModelException;
+use Flow\Model\UUID;
 
 class BoardHistoryBlock extends AbstractBlock {
 	protected $supportedGetActions = array( 'history' );
@@ -30,6 +32,8 @@ class BoardHistoryBlock extends AbstractBlock {
 	}
 
 	public function renderApi( array $options ) {
+		global $wgRequest;
+
 		if ( $this->workflow->isNew() ) {
 			return array(
 				'type' => $this->getName(),
@@ -41,10 +45,21 @@ class BoardHistoryBlock extends AbstractBlock {
 
 		/** @var BoardHistoryQuery $query */
 		$query = Container::get( 'query.board-history' );
-		$history = $query->getResults( $this->workflow );
 		/** @var RevisionFormatter $formatter */
 		$formatter = Container::get( 'formatter.revision' );
 		$formatter->setIncludeHistoryProperties( true );
+
+		list( $limit, /* $offset */ ) = $wgRequest->getLimitOffset();
+		// don't use offset from getLimitOffset - that assumes an int, which our
+		// UUIDs are not
+		$offset = $wgRequest->getText( 'offset' );
+		$offset = $offset ? UUID::create( $offset ) : null;
+
+		$pager = new BoardHistoryPager( $query, $this->workflow );
+		$pager->setLimit( $limit );
+		$pager->setOffset( $offset );
+		$pager->doQuery();
+		$history = $pager->getResult();
 
 		$revisions = array();
 		foreach ( $history as $row ) {
@@ -57,6 +72,7 @@ class BoardHistoryBlock extends AbstractBlock {
 		return array(
 			'type' => $this->getName(),
 			'revisions' => $revisions,
+			'navbar' => $pager->getNavigationBar(),
 			'links' => array(
 			),
 		);
