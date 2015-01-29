@@ -2,6 +2,91 @@
   "comments": [
     {
       "key": {
+        "uuid": "ae6ac7d6_1ffdb5d1",
+        "filename": "includes/Search/Searcher.php",
+        "patchSetId": 38
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-01-29T22:02:56Z",
+      "side": 1,
+      "message": "it feels like this should just be taking a Query as a  constructor argument rather than offset/limit,",
+      "revId": "5c4c8bee92df7d4c6d3a3c9b612dd805d99ebbd6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae6ac7d6_ff5481cb",
+        "filename": "includes/Search/Searcher.php",
+        "patchSetId": 38
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-01-29T22:02:56Z",
+      "side": 1,
+      "message": "ProfileSection is also soft deprecated,  the new way is:\n\n               $ps \u003d Profiler::instance()-\u003escopedProfileIn( __METHOD__ );",
+      "revId": "5c4c8bee92df7d4c6d3a3c9b612dd805d99ebbd6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae6ac7d6_7f5151dc",
+        "filename": "includes/Search/Searcher.php",
+        "patchSetId": 38
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-01-29T22:02:56Z",
+      "side": 1,
+      "message": "wfProfileIn/Out are soft deprecated.  The new more verbose way is:\n\n    $profiler \u003d Profiler::instance();\n    $profile \u003d $profiler-\u003escopedProfileIn( __METHOD__ . \u0027-execute\u0027 )\n    $result \u003d $work-\u003eexecute();\n    $profiler-\u003escopedProfileOut( $profile );",
+      "revId": "5c4c8bee92df7d4c6d3a3c9b612dd805d99ebbd6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae6ac7d6_b4fe3034",
+        "filename": "includes/Search/TopicUpdater.php",
+        "patchSetId": 38
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-01-29T22:02:56Z",
+      "side": 1,
+      "message": "can simplify to:\n\n    $revision-\u003egetCollectionId()-\u003egetTimestamp( TS_ISO_8601 )\n\nHere and the other places than generate timestamps below.",
+      "revId": "5c4c8bee92df7d4c6d3a3c9b612dd805d99ebbd6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae6ac7d6_b485d0b3",
+        "filename": "includes/Search/TopicUpdater.php",
+        "patchSetId": 38
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-01-29T22:02:56Z",
+      "side": 1,
+      "message": "this feels more like a distinction we should make inside the getRevisionType() method, but that would of course require a bunch of other updates.\n\nSomething for another day perhaps.",
+      "revId": "5c4c8bee92df7d4c6d3a3c9b612dd805d99ebbd6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae6ac7d6_3430e052",
         "filename": "includes/api/ApiFlowSearch.php",
         "patchSetId": 38
