@@ -126,7 +126,7 @@
 	"flow-error-missing-postId": "No \"postId\" parameter was supplied. This parameter is required to manipulate a post.",
 	"flow-error-invalid-postId": "\"postId\" parameter was invalid. The specified post ($1) could not be found.",
 	"flow-error-restore-failure": "Restoration of this item failed.",
-	"flow-error-invalid-moderation-state": "An invalid value was provided for moderationState.",
+	"flow-error-invalid-moderation-state": "An invalid value for a parameter ('moderationState') was submitted to the Flow API.",
 	"flow-error-invalid-moderation-reason": "Please provide a reason for the moderation.",
 	"flow-error-not-allowed": "Insufficient permissions to execute this action.",
 	"flow-error-not-allowed-hide": "This topic has been hidden.",

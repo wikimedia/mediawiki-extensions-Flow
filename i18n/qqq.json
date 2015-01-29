@@ -131,7 +131,7 @@
 	"flow-error-missing-postId": "Used as error message when deleting/restoring a post.\n\n\"manipulate\" refers either \"delete\" or \"restore\".",
 	"flow-error-invalid-postId": "Used as error message when deleting/restoring a post.\n\nThe variable name \"postId\" is invisible to users, so \"postId\" can be translated.\n\nParameters:\n* $1 - contains the postId that was specified",
 	"flow-error-restore-failure": "Used as error message when restoring a post.\n\n\"this item\" seems to refer \"this post\".",
-	"flow-error-invalid-moderation-state": "Used as error message.\n\nUsually indicates a code bug, so technical terminology is okay.\n\nValid values for moderationState are: (none), hidden, deleted, suppressed",
+	"flow-error-invalid-moderation-state": "Used as error message.\n\nUsually indicates a code bug (possibly in a third-party use of the Flow API), so technical terminology is okay.\n\nValid values for moderationState are: (none), hidden, deleted, suppressed.  Do not translate the string 'moderationState'.",
 	"flow-error-invalid-moderation-reason": "Used as error message when no reason is given for the moderation of a post.",
 	"flow-error-not-allowed": "Error message when the user has insufficient permissions to execute this action",
 	"flow-error-not-allowed-hide": "Error message when the user has insufficient permissions to execute this action because the topic is hidden.",
