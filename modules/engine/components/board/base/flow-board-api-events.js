@@ -990,10 +990,10 @@
 			var $replacement,
 				flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) );
 			if ( revision.isModerated && !flowBoard.constructor.static.inTopicNamespace( $target ) ) {
-				$replacement = $( mw.flow.TemplateEngine.processTemplate(
+				$replacement = $( $.parseHTML( mw.flow.TemplateEngine.processTemplate(
 					'flow_moderate_topic_confirmation',
 					revision
-				) );
+				) ) );
 
 				$target.closest( '.flow-topic' ).replaceWith( $replacement );
 				flowBoard.emitWithReturn( 'makeContentInteractive', $replacement );
@@ -1013,10 +1013,10 @@
 				flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) );
 
 			if ( revision.isModerated ) {
-				$replacement = $( flowBoard.constructor.static.TemplateEngine.processTemplate(
+				$replacement = $( $.parseHTML( flowBoard.constructor.static.TemplateEngine.processTemplate(
 					'flow_moderate_post_confirmation',
 					revision
-				) );
+				) ) );
 				$target.closest( '.flow-post-main' ).replaceWith( $replacement );
 				flowBoard.emitWithReturn( 'makeContentInteractive', $replacement );
 			} else {

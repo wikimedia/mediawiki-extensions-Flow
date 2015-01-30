@@ -548,7 +548,7 @@
 	FlowHandlebars.prototype.plaintextSnippet = function ( contentFormat, content ) {
 		var retval;
 		if ( contentFormat === 'html' ) {
-			retval = $( content ).text();
+			retval = $( $.parseHTML( content ) ).text();
 		} else {
 			// @todo handle wikitext -> plaintext?
 			retval = content;
