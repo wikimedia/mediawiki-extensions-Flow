@@ -356,7 +356,7 @@ abstract class AbstractRevision {
 					$sourceFormat,
 					$format,
 					$raw,
-					$this->getCollection()->getTitle()
+					$this->getCollection()->getOwnerTitle()
 				);
 			}
 		}
@@ -428,7 +428,7 @@ abstract class AbstractRevision {
 				$inputFormat,
 				$storageFormat,
 				$content,
-				$title ?: $this->getCollection()->getTitle()
+				$title ?: $this->getCollection()->getOwnerTitle()
 			);
 		}
 
