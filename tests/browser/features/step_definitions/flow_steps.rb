@@ -18,6 +18,8 @@ Given(/^I have created a Flow topic with title "(.+)"$/) do |title|
   step "I type \"" + title + "\" into the new topic title field"
   step "I type \"" + title + "\" into the new topic content field"
   step "I click New topic save"
+  @topic_id_value = on(FlowPage).permalink_button_element.href.match(/\w+$/)
+  puts @topic_id_value
 end
 
 Given(/^the author link is visible$/) do
