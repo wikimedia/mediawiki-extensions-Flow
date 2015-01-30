@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_de28d998",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-01-30T23:26:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e7fc396_3e269bca",
+      "revId": "e21be4056d03f6391803f9bb619e1d0b547bb9bf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e7fc396_99ed8925",
         "filename": "Hooks.php",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_3e446d6e",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 603,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-01-30T23:26:48Z",
+      "side": 1,
+      "message": "I suppose the difference is that the inner one catches FlowException, and this outer one catches Exception.   The Exception is thrown by the RecoverableErrorHandler.\n\nI\u0027ve never really understood which exceptions to throw where, when to catch them.  I know the rule is supposed to be no pokemon exceptions(gotta catch em all) but I always end up back at catching the top level exception...\n\nFor now i suppose will just adjust the formatter to catch \\Exception and remove this here.",
+      "parentUuid": "8e7fc396_99ed8925",
+      "revId": "e21be4056d03f6391803f9bb619e1d0b547bb9bf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e7fc396_39979595",
         "filename": "Hooks.php",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2015-01-30T01:45:44Z",
       "side": 1,
       "message": "There is no 3rd argument for that method",
+      "revId": "e21be4056d03f6391803f9bb619e1d0b547bb9bf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_fe2595bd",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-01-30T23:26:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e7fc396_39979595",
       "revId": "e21be4056d03f6391803f9bb619e1d0b547bb9bf",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
