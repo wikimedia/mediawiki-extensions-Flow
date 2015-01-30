@@ -2,7 +2,7 @@
 	{{!-- Topic only --}}
 	{{~#if actions.edit~}}
 		<li class="{{moderationContainerClass}}-edit-action">
-			{{~null~}}
+			{{~noop~}}
 			<a class="{{moderationMwUiClass}} mw-ui-quiet"
 			   href="{{actions.edit.url}}"
 			   title="{{actions.edit.title}}"
@@ -13,36 +13,36 @@
 				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-pencil"></span> {{/if~}}
 				{{~l10n (concat "flow-" moderationType "-action-edit-title")~}}
 			</a>
-			{{~null~}}
+			{{~noop~}}
 		</li>
 	{{~/if~}}
 	{{~#if links.topic-history~}}
 		<li>
-			{{~null~}}
+			{{~noop~}}
 			<a class="{{moderationMwUiClass}} mw-ui-quiet"
 			   href="{{links.topic-history.url}}"
 			   title="{{links.topic-history.title}}">
 				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-clock"></span> {{/if~}}
 				{{~l10n (concat "flow-" moderationType "-action-history")~}}
 			</a>
-			{{~null~}}
+			{{~noop~}}
 		</li>
 	{{~/if~}}
 	{{~#if links.topic~}}
 		<li>
-			{{~null~}}
+			{{~noop~}}
 			<a class="{{moderationMwUiClass}} mw-ui-quiet"
 			   href="{{links.topic.url}}"
 			   title="{{links.topic.title}}">
 				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-link"></span> {{/if~}}
 				{{~l10n (concat "flow-" moderationType "-action-view")~}}
 			</a>
-			{{~null~}}
+			{{~noop~}}
 		</li>
 	{{~/if~}}
 	{{~#if actions.summarize~}}
 		<li class="{{moderationContainerClass}}-edit-action">
-			{{~null~}}
+			{{~noop~}}
 			<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet"
 			   data-flow-interactive-handler="apiRequest"
 			   data-flow-api-handler="activateSummarizeTopic"
@@ -56,7 +56,7 @@
 					{{~l10n (concat "flow-" moderationType "-action-summarize-topic")~}}
 				{{~/if~}}
 			</a>
-			{{~null~}}
+			{{~noop~}}
 		</li>
 	{{~/if~}}
 {{~/ifCond~}}
@@ -65,21 +65,21 @@
 	{{!-- Post only --}}
 	{{~#if links.post~}}
 		<li>
-			{{~null~}}
+			{{~noop~}}
 			<a class="{{moderationMwUiClass}} mw-ui-quiet"
 			   href="{{links.post.url}}"
 			   title="{{links.post.title}}">
 				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-link"></span> {{/if~}}
 				{{~l10n (concat "flow-" moderationType "-action-view")~}}
 			</a>
-			{{~null~}}
+			{{~noop~}}
 		</li>
 	{{~/if~}}
 {{~/ifCond~}}
 
 {{~#if actions.hide~}}
 	<li class="{{moderationContainerClass}}-moderation-action">
-		{{~null~}}
+		{{~noop~}}
 		<a class="{{moderationMwUiClass}} mw-ui-quiet"
 		   href="{{actions.hide.url}}"
 		   title="{{actions.hide.title}}"
@@ -89,12 +89,12 @@
 			{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-flag"></span> {{/if~}}
 			{{~l10n (concat "flow-" moderationType "-action-hide-" moderationTemplate)~}}
 		</a>
-		{{~null~}}
+		{{~noop~}}
 	</li>
 {{~/if~}}
 {{~#if actions.unhide~}}
 	<li class="{{moderationContainerClass}}-moderation-action">
-		{{~null~}}
+		{{~noop~}}
 		<a class="{{moderationMwUiClass}} mw-ui-quiet"
 		   href="{{actions.unhide.url}}"
 		   title="{{actions.unhide.title}}"
@@ -104,12 +104,12 @@
 			{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-flag"></span> {{/if~}}
 			{{~l10n (concat "flow-" moderationType "-action-unhide-" moderationTemplate)~}}
 		</a>
-		{{~null~}}
+		{{~noop~}}
 	</li>
 {{~/if~}}
 {{~#if actions.delete~}}
 	<li class="{{moderationContainerClass}}-moderation-action">
-		{{~null~}}
+		{{~noop~}}
 		<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
 		   href="{{actions.delete.url}}"
 		   title="{{actions.delete.title}}"
@@ -119,12 +119,12 @@
 			{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-trash"></span> {{/if~}}
 			{{~l10n (concat "flow-" moderationType "-action-delete-" moderationTemplate)~}}
 		</a>
-		{{~null~}}
+		{{~noop~}}
 	</li>
 {{~/if~}}
 {{~#if actions.undelete~}}
 	<li class="{{moderationContainerClass}}-moderation-action">
-		{{~null~}}
+		{{~noop~}}
 		<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
 		   href="{{actions.undelete.url}}"
 		   title="{{actions.undelete.title}}"
@@ -134,12 +134,12 @@
 			{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-trash"></span> {{/if~}}
 			{{~l10n (concat "flow-" moderationType "-action-undelete-" moderationTemplate)~}}
 		</a>
-		{{~null~}}
+		{{~noop~}}
 	</li>
 {{~/if~}}
 {{~#if actions.suppress~}}
 	<li class="{{moderationContainerClass}}-moderation-action">
-		{{~null~}}
+		{{~noop~}}
 		<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
 		   href="{{actions.suppress.url}}"
 		   title="{{actions.suppress.title}}"
@@ -149,12 +149,12 @@
 			{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-block"></span> {{/if~}}
 			{{~l10n (concat "flow-" moderationType "-action-suppress-" moderationTemplate)~}}
 		</a>
-		{{~null~}}
+		{{~noop~}}
 	</li>
 {{~/if~}}
 {{~#if actions.unsuppress~}}
 	<li class="{{moderationContainerClass}}-moderation-action">
-		{{~null~}}
+		{{~noop~}}
 		<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
 		   href="{{actions.unsuppress.url}}"
 		   title="{{actions.unsuppress.title}}"
@@ -164,7 +164,7 @@
 			{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-block"></span> {{/if~}}
 			{{~l10n (concat "flow-" moderationType "-action-unsuppress-" moderationTemplate)~}}
 		</a>
-		{{~null~}}
+		{{~noop~}}
 	</li>
 {{~/if~}}
 
@@ -172,7 +172,7 @@
 	{{!-- The history page uses a modal, while the topic view puts this in the title bar --}}
 	{{~#if actions.lock~}}
 		<li class="{{moderationContainerClass}}-moderation-action">
-			{{~null~}}
+			{{~noop~}}
 			<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
 			   data-flow-interactive-handler="moderationDialog"
 			   data-flow-template="flow_moderate_topic"
@@ -183,12 +183,12 @@
 				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-lock"></span> {{/if~}}
 				{{~l10n (concat "flow-" moderationType "-action-lock-topic")~}}
 			</a>
-			{{~null~}}
+			{{~noop~}}
 		</li>
 	{{~/if~}}
 	{{~#if actions.unlock~}}
 		<li class="{{moderationContainerClass}}-moderation-action">
-			{{~null~}}
+			{{~noop~}}
 			<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
 			   data-flow-interactive-handler="moderationDialog"
 			   data-flow-template="flow_moderate_topic"
@@ -199,14 +199,14 @@
 				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-unlock"></span> {{/if~}}
 				{{~l10n (concat "flow-" moderationType "-action-unlock-topic")~}}
 			</a>
-			{{~null~}}
+			{{~noop~}}
 		</li>
 	{{~/if~}}
 {{else}}
 	{{!-- @todo Maybe we should change the topic view so that it also uses this modal? Consistency! --}}
 	{{~#if actions.lock~}}
 		<li class="{{moderationContainerClass}}-moderation-action">
-			{{~null~}}
+			{{~noop~}}
 			<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
 			   data-flow-interactive-handler="apiRequest"
 			   data-flow-api-handler="activateLockTopic"
@@ -217,12 +217,12 @@
 				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-lock"></span> {{/if~}}
 				{{~l10n (concat "flow-" moderationType "-action-lock-topic")~}}
 			</a>
-			{{~null~}}
+			{{~noop~}}
 		</li>
 	{{~/if~}}
 	{{~#if actions.unlock~}}
 		<li class="{{moderationContainerClass}}-moderation-action">
-			{{~null~}}
+			{{~noop~}}
 			<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
 			   data-flow-interactive-handler="apiRequest"
 			   data-flow-api-handler="activateLockTopic"
@@ -233,7 +233,7 @@
 				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-unlock"></span> {{/if~}}
 				{{~l10n (concat "flow-" moderationType "-action-unlock-topic")~}}
 			</a>
-			{{~null~}}
+			{{~noop~}}
 		</li>
 	{{~/if~}}
 {{~/ifCond~}}

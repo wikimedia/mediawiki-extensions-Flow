@@ -13,7 +13,8 @@
 		{{~#if links.userpage~}}</a>{{~/if~}}
 
 		<span class="mw-usertoollinks flow-pipelist">
-			{{~#if links.talk~}}
+			(
+                        {{~#if links.talk~}}
 				<span><a href="{{links.talk.url}}"
 				    class="{{#unless links.talk.exists}}new {{/unless}}"
 				    title="{{links.talk.title}}">
@@ -21,11 +22,9 @@
 				</a></span>
 			{{~/if~}}
 			{{~#if links.contribs~}}
-				<span>
-					<a href="{{links.contribs.url}}" title="{{links.contribs.title}}">
+				<span><a href="{{links.contribs.url}}" title="{{links.contribs.title}}">
 						{{~l10n "contribslink"~}}
-					</a>
-				</span>
+				</a></span>
 			{{~/if~}}
 			{{~#if links.block~}}
 				<span><a class="{{#unless links.block.exists}}new {{/unless}}"
@@ -34,6 +33,7 @@
 				   	{{~l10n "blocklink"~}}
 				</a></span>
 			{{~/if~}}
+                        )
 		</span>
 	{{/if}}
 </span>
