@@ -103,7 +103,7 @@
 
 		// @todo scrap data-role? use submit types? or a single role=action?
 		$form.find( '.mw-ui-button' ).filter( '[data-role=action], [data-role=submit]' )
-			.attr( 'disabled', !ready );
+			.prop( 'disabled', !ready );
 	}
 	/*
 	 * Disable / enable preview and submit buttons without/with text in field.
@@ -140,8 +140,9 @@
 		 *  tooltipClosable=Boolean
 		 *  tooltipContentCallback=Function
 		 *
-		 * @param {Element} target
-		 * @param {Element|String} [content]
+		 * @param {jQuery|Element} target
+		 * @param {jQuery|Element|String} [content] A jQuery set, an element, or a string of
+		 *  HTML.  If omitted, first tries tooltipContentCallback, then	target.title
 		 * @param {Object} [options]
 		 */
 		function mwUiTooltipShow( target, content, options ) {
@@ -208,7 +209,11 @@
 			if ( !$tooltip ) {
 				// See if content itself is a tooltip
 				try {
-					$tooltip = $( content );
+					if ( $.type( content ) === 'string' ) {
+						$tooltip = $( $.parseHTML( content ) );
+					} else {
+						$tooltip = $( content );
+					}
 				} catch ( e ) {}
 				if ( !$tooltip || !$tooltip.is( '.flow-ui-tooltip' ) && !$tooltip.find( '.flow-ui-tooltip' ).length ) {
 					// Content is not and does not contain a tooltip, so instead, put content inside a new tooltip wrapper
@@ -392,7 +397,7 @@
 		};
 
 		/**
-		 * Event handler for mouse entering on a .mw-ui-tooltip-target
+		 * Event handler for mouse entering on a .flow-ui-tooltip-target
 		 * @param {Event} event
 		 */
 		function onMwUiTooltipFocus( event ) {
@@ -400,7 +405,7 @@
 		}
 
 		/**
-		 * Event handler for mouse leaving a .mw-ui-tooltip-target
+		 * Event handler for mouse leaving a .flow-ui-tooltip-target
 		 * @param {Event} event
 		 */
 		function onMwUiTooltipBlur( event ) {
