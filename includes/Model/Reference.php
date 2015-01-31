@@ -120,14 +120,6 @@ abstract class Reference {
 	}
 
 	/**
-	 * Returns the name of the table that stores this
-	 * reference in core MediaWiki
-	 *
-	 * @return string
-	 */
-	abstract public function getWikiTableName();
-
-	/**
 	 * @return string Unique string identifier for the target of this reference.
 	 */
 	abstract public function getTargetIdentifier();
@@ -222,25 +214,6 @@ class WikiReference extends Reference {
 		}
 	}
 
-	/**
-	 * @return string
-	 * @throws InvalidInputException
-	 */
-	public function getWikiTableName() {
-		switch( $this->getType() ) {
-			case 'link':
-				return 'pagelinks';
-				break;
-			case 'file':
-				return 'imagelinks';
-				break;
-			case 'template':
-				return 'templatelinks';
-				break;
-			default:
-				throw new InvalidInputException( 'Invalid type ' . $this->getType() . ' specified for reference ' . get_class( $this ) );		}
-	}
-
 	public function getTitle() {
 		return $this->target;
 	}
@@ -308,19 +281,6 @@ class URLReference extends Reference {
 	 */
 	public static function toStorageRow( URLReference $object ) {
 		return $object->getStorageRow();
-	}
-
-	/**
-	 * @return string
-	 * @throws InvalidInputException
-	 */
-	public function getWikiTableName() {
-		switch( $this->getType() ) {
-			case 'link':
-				return 'externallinks';
-				break;
-			default:
-				throw new InvalidInputException( 'Invalid type ' . $this->getType() . ' specified for reference ' . get_class( $this ) );		}
 	}
 
 	public function getUrl() {
