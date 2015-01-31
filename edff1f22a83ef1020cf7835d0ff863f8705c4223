@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_84b770d3",
+        "filename": "includes/Parsoid/Utils.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-01-31T03:03:44Z",
+      "side": 1,
+      "message": "No longer true.",
+      "revId": "edff1f22a83ef1020cf7835d0ff863f8705c4223",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
