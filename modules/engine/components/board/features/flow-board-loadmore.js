@@ -585,9 +585,7 @@
 		for ( i = 0; i < topicsData.roots.length; i++ ) {
 			topicId = topicsData.roots[ i ];
 
-			if ( flowBoard.renderedTopics[ topicId ] ) {
-				// already rendered, update?
-			} else {
+			if ( !flowBoard.renderedTopics[ topicId ] ) {
 				flowBoard.renderedTopics[ topicId ] = _render( [ topicId ] );
 				$allRendered.push( flowBoard.renderedTopics[ topicId ][0] );
 				toInsert.push( topicId );
@@ -625,8 +623,6 @@
 				// Put the new topic after the found topic above it
 				if ( j >= 0 ) {
 					$topic.after( flowBoard.renderedTopics[ flowBoard.orderedTopicIds[ i ] ] );
-				} else {
-					// @todo log something about failures?
 				}
 			}
 

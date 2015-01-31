@@ -64,7 +64,8 @@
 	 */
 	function flowBoardComponentTocFeatureMixinTopicListApiPreHandler( event, info, extraParameters ) {
 		var $this = $( this ),
-			isLoadMoreButton = $this.data( 'flow-load-handler' ) === 'loadMore';
+			isLoadMoreButton = $this.data( 'flow-load-handler' ) === 'loadMore',
+			overrides;
 
 		if ( !isLoadMoreButton && !( extraParameters || {} ).skipMenuToggle ) {
 			// Re-scroll the TOC (in case the scroll that tracks the page scroll failed
@@ -82,7 +83,7 @@
 		}
 
 		// Send some overrides to this API request
-		var overrides = {
+		overrides = {
 			topiclist_sortby: info.component.$board.data( 'flow-sortby' ),
 			topiclist_limit: 50,
 			topiclist_toconly: true
@@ -302,11 +303,10 @@
 	function flowBoardComponentTocFeatureScrollTocToActiveItem() {
 		// Set TOC active item
 		var $tocContainer = this.$tocMenu,
-			requestedScrollTop, afterScrollTop; // For debugging
-
-		var $scrollTarget = $tocContainer.find( 'a[data-flow-id]' )
-			.removeClass( 'active' )
-			.filter( '[data-flow-id=' + this.readingTopicId + ']' )
+			requestedScrollTop, afterScrollTop, // For debugging
+			$scrollTarget = $tocContainer.find( 'a[data-flow-id]' )
+				.removeClass( 'active' )
+				.filter( '[data-flow-id=' + this.readingTopicId + ']' )
 				.addClass( 'active' )
 				.closest( 'li' )
 				.next();

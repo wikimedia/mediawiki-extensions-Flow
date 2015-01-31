@@ -44,8 +44,7 @@ module.exports = function ( grunt ) {
 		}
 	} );
 
-	// XXX jscs not passing in this patch
-	grunt.registerTask( 'lint', [ 'jshint', 'csslint', 'banana' ] );
+	grunt.registerTask( 'lint', [ 'jscs', 'jshint', 'csslint', 'banana' ] );
 	grunt.registerTask( 'test', 'lint' );
 	grunt.registerTask( 'default', 'test' );
 };

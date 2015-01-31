@@ -542,7 +542,7 @@
 
 		var args = Array.prototype.slice.call( arguments, 0 ),
 			$context = $( event.currentTarget || event.delegateTarget || event.target ),
-		        // Have either of these been forced via trigger extraParameters?
+			// Have either of these been forced via trigger extraParameters?
 			interactiveHandlerName = ( extraParameters || {} ).interactiveHandler || $context.data( 'flow-interactive-handler' ),
 			apiHandlerName = ( extraParameters || {} ).apiHandler || $context.data( 'flow-api-handler' );
 
