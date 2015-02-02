@@ -280,5 +280,7 @@
 	"flow-special-type-workflow": "워크플로우",
 	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "종류와 UUID에 맞는 콘텐츠를 찾을 수 없습니다.",
-	"group-flow-bot": "흐름 봇"
+	"group-flow-bot": "플로 봇",
+	"group-flow-bot-member": "플로 봇",
+	"grouppage-flow-bot": "Project:플로 봇"
 }
