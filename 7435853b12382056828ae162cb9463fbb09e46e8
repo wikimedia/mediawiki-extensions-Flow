@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_eceabd04",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-02T23:18:13Z",
+      "side": 1,
+      "message": "Maybe change \"string\" to \"word\" (string may be a bit technical?)",
+      "revId": "7435853b12382056828ae162cb9463fbb09e46e8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
