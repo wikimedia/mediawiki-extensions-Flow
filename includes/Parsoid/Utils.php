@@ -172,25 +172,30 @@ abstract class Utils {
 	}
 
 	/**
-	 * Returns Flow's Parsoid config. $wgFlowParsoid* variables are used to
-	 * specify how to connect to Parsoid.
+	 * Returns Flow's Parsoid config. $wgFlowParsoid* variables can be used to
+	 * specify a certain Parsoid installation. If none specified, we'll piggy-
+	 * back on VisualEditor's Parsoid setup.
 	 *
 	 * @return array Parsoid config, in array(URL, prefix, timeout, forwardCookies) format
 	 * @throws NoParsoidException When parsoid is unconfigured
 	 */
 	protected static function parsoidConfig() {
 		global
-			$wgFlowParsoidURL, $wgFlowParsoidPrefix, $wgFlowParsoidTimeout, $wgFlowParsoidForwardCookies;
+			$wgFlowParsoidURL, $wgFlowParsoidPrefix, $wgFlowParsoidTimeout, $wgFlowParsoidForwardCookies,
+			$wgVisualEditorParsoidURL, $wgVisualEditorParsoidPrefix, $wgVisualEditorParsoidTimeout,
+			$wgVisualEditorParsoidForwardCookies;
 
-		if ( !$wgFlowParsoidURL ) {
+		if ( !$wgFlowParsoidURL && !$wgVisualEditorParsoidURL ) {
 			throw new NoParsoidException( 'Flow Parsoid configuration is unavailable', 'process-wikitext' );
 		}
 
 		return array(
-			$wgFlowParsoidURL,
-			$wgFlowParsoidPrefix,
-			$wgFlowParsoidTimeout,
-			$wgFlowParsoidForwardCookies,
+			$wgFlowParsoidURL ?: $wgVisualEditorParsoidURL,
+			$wgFlowParsoidPrefix ?: $wgVisualEditorParsoidPrefix,
+			$wgFlowParsoidTimeout ?: $wgVisualEditorParsoidTimeout,
+			isset( $wgFlowParsoidForwardCookies )
+				? $wgFlowParsoidForwardCookies
+				: $wgVisualEditorParsoidForwardCookies,
 		);
 	}
 
