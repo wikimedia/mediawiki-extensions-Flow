@@ -94,6 +94,8 @@ $wgHooks['TitleSquidURLs'][] = 'FlowHooks::onTitleSquidURLs';
 $wgHooks['WatchlistEditorBuildRemoveLine'][] = 'FlowHooks::onWatchlistEditorBuildRemoveLine';
 $wgHooks['WatchlistEditorBeforeFormRender'][] = 'FlowHooks::onWatchlistEditorBeforeFormRender';
 $wgHooks['NamespaceIsMovable'][] = 'FlowHooks::onNamespaceIsMovable';
+$wgHooks['CategoryViewer::doCategoryQuery'][] = 'FlowHooks::onCategoryViewerDoCategoryQuery';
+$wgHooks['CategoryViewer::generateLink'][] = 'FlowHooks::onCategoryViewerGenerateLink';
 
 // Extension:UserMerge support
 $wgHooks['UserMergeAccountFields'][] = 'FlowHooks::onUserMergeAccountFields';
