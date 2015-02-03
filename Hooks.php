@@ -4,6 +4,7 @@ use Flow\Collection\PostCollection;
 use Flow\Container;
 use Flow\Exception\FlowException;
 use Flow\Formatter\CheckUserQuery;
+use Flow\Model\UUID;
 use Flow\NotificationController;
 use Flow\OccupationController;
 use Flow\SpamFilter\AbuseFilter;
@@ -1148,6 +1149,39 @@ class FlowHooks {
 	 */
 	public static function onNamespaceIsMovable( $namespace, &$movable ) {
 		$movable &= $namespace !== NS_TOPIC;
+		return true;
+	}
+
+	public static function onCategoryViewerDoCategoryQuery( $type, $res ) {
+		if ( $type !== 'page' ) {
+			return true;
+		}
+
+		/** @var Flow\Formatter\CategoryViewerQuery */
+		$query = Container::get( 'query.categoryviewer' );
+		$query->loadMetadataBatch( $res );
+
+		return true;
+	}
+
+	public static function onCategoryViewerGenerateLink( $type, Title $title, $html, &$link ) {
+		if ( $type !== 'page' || $title->getNamespace() !== NS_TOPIC ) {
+			return true;
+		}
+		$uuid = UUID::create( strtolower( $title->getDBkey() ) );
+		if ( !$uuid ) {
+			return true;
+		}
+		/** @var Flow\Formatter\CategoryViewerQuery */
+		$query = Container::get( 'query.categoryviewer' );
+		$row = $query->getResult( $uuid );
+		/** @var Flow\Formatter\CategoryViewerFormatter */
+		$formatter = Container::get( 'formatter.categoryviewer' );
+		$result = $formatter->format( $row );
+		if ( $result ) {
+			$link = $result;
+		}
+
 		return true;
 	}
 }
