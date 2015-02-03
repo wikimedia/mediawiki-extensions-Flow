@@ -15,14 +15,16 @@ use MWException;
  */
 class ReferenceExtractor {
 	/**
-	 * @var Extractor[]
+	 * @var Extractor[][] Map from revision type (AbstractRevision::getRevisionType())
+	 *  to list of Extractor objects to use.
 	 */
 	protected $extractors;
 
 	/**
-	 * @param Extractor[] $extractors
+	 * @param Extractor[][] $extractors Map from revision type (AbstractRevision::getRevisionType())
+	 *  to a list of extractors to use.
 	 */
-	public function __construct( $extractors ) {
+	public function __construct( array $extractors ) {
 		$this->extractors = $extractors;
 	}
 
@@ -34,27 +36,34 @@ class ReferenceExtractor {
 	 * @return array
 	 */
 	public function getReferences( Workflow $workflow, $objectType, UUID $objectId, $text ) {
-		return $this->extractReferences(
-			new ReferenceFactory( $workflow, $objectType, $objectId ),
-			$text
-		);
+		if ( isset( $this->extractors[$objectType] ) ) {
+			return $this->extractReferences(
+				new ReferenceFactory( $workflow, $objectType, $objectId ),
+				$this->extractors[$objectType],
+				$text
+			);
+		} else {
+			throw new \Exception( "No extractors available for $objectType" );
+			return array();
+		}
 	}
 
 	/**
 	 * @param ReferenceFactory $factory
+	 * @param Extractor[] $extractors
 	 * @param string $text
 	 * @return Reference[]
 	 * @throws MWException
 	 * @throws \Flow\Exception\WikitextException
 	 */
-	protected function extractReferences( ReferenceFactory $factory, $text ) {
+	protected function extractReferences( ReferenceFactory $factory, array $extractors, $text ) {
 		$dom = Utils::createDOM( '<?xml encoding="utf-8" ?>' . $text );
 
 		$output = array();
 
 		$xpath = new DOMXPath( $dom );
 
-		foreach( $this->extractors as $extractor ) {
+		foreach( $extractors as $extractor ) {
 			$elements = $xpath->query( $extractor->getXPath() );
 
 			if ( !$elements ) {

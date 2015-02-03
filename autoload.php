@@ -245,6 +245,7 @@ $wgAutoloadClasses += array(
 	'Flow\\OccupationController' => __DIR__ . '/includes/TalkpageManager.php',
 	'Flow\\Parsoid\\ContentFixer' => __DIR__ . '/includes/Parsoid/ContentFixer.php',
 	'Flow\\Parsoid\\Extractor' => __DIR__ . '/includes/Parsoid/Extractor.php',
+	'Flow\\Parsoid\\Extractor\\CategoryExtractor' => __DIR__ . '/includes/Parsoid/Extractor/CategoryExtractor.php',
 	'Flow\\Parsoid\\Extractor\\ExtLinkExtractor' => __DIR__ . '/includes/Parsoid/Extractor/ExtLinkExtractor.php',
 	'Flow\\Parsoid\\Extractor\\ImageExtractor' => __DIR__ . '/includes/Parsoid/Extractor/ImageExtractor.php',
 	'Flow\\Parsoid\\Extractor\\PlaceholderExtractor' => __DIR__ . '/includes/Parsoid/Extractor/PlaceholderExtractor.php',
