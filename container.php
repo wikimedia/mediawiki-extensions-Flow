@@ -387,6 +387,7 @@ $c['storage.post_summary.listeners'] = function( $c ) {
 		// belongs to, not just its parent. TopicHistoryIndex is a slight tweak to TopKIndex
 		// using TreeRepository for extra information and stuffing it into topic_root while indexing
 		$c['storage.topic_history.indexes.primary'],
+		$c['reference.recorder'],
 	);
 };
 $c['storage.post_summary.backend'] = $c->share( function( $c ) {
@@ -969,18 +970,6 @@ $c['logger'] = $c->share( function( $c ) {
 	);
 } );
 
-$c['reference.extractor'] = $c->share( function( $c ) {
-	return new Flow\Parsoid\ReferenceExtractor(
-		array(
-			new Flow\Parsoid\Extractor\ImageExtractor,
-			new Flow\Parsoid\Extractor\PlaceholderExtractor,
-			new Flow\Parsoid\Extractor\WikiLinkExtractor,
-			new Flow\Parsoid\Extractor\ExtLinkExtractor,
-			new Flow\Parsoid\Extractor\TransclusionExtractor,
-		)
-	);
-} );
-
 $c['storage.wiki_reference.class'] = 'Flow\Model\WikiReference';
 $c['storage.wiki_reference.table'] = 'flow_wiki_ref';
 $c['storage.wiki_reference.primary_key'] = array(
@@ -1120,6 +1109,26 @@ $c['reference.updater.links-tables'] = $c->share( function( $c ) {
 
 $c['reference.clarifier'] = $c->share( function( $c ) {
 	return new Flow\ReferenceClarifier( $c['storage'], $c['url_generator'] );
+} );
+
+$c['reference.extractor'] = $c->share( function( $c ) {
+	$default = array(
+		new Flow\Parsoid\Extractor\ImageExtractor,
+		new Flow\Parsoid\Extractor\PlaceholderExtractor,
+		new Flow\Parsoid\Extractor\WikiLinkExtractor,
+		new Flow\Parsoid\Extractor\ExtLinkExtractor,
+		new Flow\Parsoid\Extractor\TransclusionExtractor,
+	);
+	$extractors = array(
+		'header' => $default,
+		'post-summary' => $default,
+		'post' => $default,
+	);
+	// In addition to the defaults header and summaries collect
+	// the related categories.
+	$extractors['header'][] = $extractors['post-summary'][] = new Flow\Parsoid\Extractor\CategoryExtractor;
+
+	return new Flow\Parsoid\ReferenceExtractor( $extractors );
 } );
 
 $c['reference.recorder'] = $c->share( function( $c ) {
