@@ -302,7 +302,7 @@ $c['storage.header.listeners.username'] = $c->share( function( $c ) {
 } );
 $c['storage.header.listeners'] = $c->share( function( $c ) {
 	return array(
-		$c['reference.recorder'],
+		$c['reference.recorder.default'],
 		$c['storage.board_history.indexes.primary'],
 		$c['storage.header.listeners.username'],
 		$c['listener.recentchanges']
@@ -387,6 +387,7 @@ $c['storage.post_summary.listeners'] = function( $c ) {
 		// belongs to, not just its parent. TopicHistoryIndex is a slight tweak to TopKIndex
 		// using TreeRepository for extra information and stuffing it into topic_root while indexing
 		$c['storage.topic_history.indexes.primary'],
+		$c['reference.recorder.default'],
 	);
 };
 $c['storage.post_summary.backend'] = $c->share( function( $c ) {
@@ -563,7 +564,7 @@ $c['storage.post.listeners.notification'] = $c->share( function( $c ) {
 } );
 $c['storage.post.listeners'] = function( $c ) {
 	return array(
-		$c['reference.recorder'],
+		$c['reference.recorder.post'],
 		$c['collection.cache'],
 		$c['storage.post.listeners.username'],
 		$c['storage.post.listeners.watch_topic'],
@@ -969,18 +970,6 @@ $c['logger'] = $c->share( function( $c ) {
 	);
 } );
 
-$c['reference.extractor'] = $c->share( function( $c ) {
-	return new Flow\Parsoid\ReferenceExtractor(
-		array(
-			new Flow\Parsoid\Extractor\ImageExtractor,
-			new Flow\Parsoid\Extractor\PlaceholderExtractor,
-			new Flow\Parsoid\Extractor\WikiLinkExtractor,
-			new Flow\Parsoid\Extractor\ExtLinkExtractor,
-			new Flow\Parsoid\Extractor\TransclusionExtractor,
-		)
-	);
-} );
-
 $c['storage.wiki_reference.class'] = 'Flow\Model\WikiReference';
 $c['storage.wiki_reference.table'] = 'flow_wiki_ref';
 $c['storage.wiki_reference.primary_key'] = array(
@@ -1122,9 +1111,38 @@ $c['reference.clarifier'] = $c->share( function( $c ) {
 	return new Flow\ReferenceClarifier( $c['storage'], $c['url_generator'] );
 } );
 
-$c['reference.recorder'] = $c->share( function( $c ) {
+// Posts get a slightly modified reference extractor, they
+// do not collect categories
+$c['reference.extractors.post'] = $c->share( function( $c ) {
+	return array(
+		new Flow\Parsoid\Extractor\ImageExtractor,
+		new Flow\Parsoid\Extractor\PlaceholderExtractor,
+		new Flow\Parsoid\Extractor\WikiLinkExtractor,
+		new Flow\Parsoid\Extractor\ExtLinkExtractor,
+		new Flow\Parsoid\Extractor\TransclusionExtractor,
+	);
+} );
+// This is the generic reference extractor.  In addition
+// to the extractors used on posts we collect and record
+// categories.
+$c['reference.extractors.default'] = $c->share( function( $c ) {
+	$extractors = $c['reference.extractors.post'];
+	$extractors[] = new Flow\Parsoid\Extractor\CategoryExtractor;
+	return $extractors;
+} );
+
+$c['reference.recorder.default'] = $c->share( function( $c ) {
 	return new Flow\Data\Listener\ReferenceRecorder(
-		$c['reference.extractor'],
+		new Flow\Parsoid\ReferenceExtractor( $c['reference.extractors.default'] ),
+		$c['reference.updater.links-tables'],
+		$c['storage']
+	);
+} );
+// posts get a slightly different reference recorder, their extractor
+// list does not include categories
+$c['reference.recorder.post'] = $c->share( function( $c ) {
+	return new Flow\Data\Listener\ReferenceRecorder(
+		new Flow\Parsoid\ReferenceExtractor( $c['reference.extractors.post'] ),
 		$c['reference.updater.links-tables'],
 		$c['storage']
 	);

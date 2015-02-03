@@ -11,6 +11,7 @@ use ContextSource;
 use Html;
 use IContextSource;
 use Message;
+use Title;
 use WebRequest;
 
 
@@ -163,11 +164,14 @@ class View extends ContextSource {
 		} );
 		wfProfileOut( __CLASS__ . '-serialize' );
 
-		// Update newtalk and watchlist notification status on view action of any workflow
-		// since the normal page view that resets notification status is not accessiable
-		// anymore due to Flow occupation
 		if ( $action === 'view' ) {
+			// Update newtalk and watchlist notification status on view action of any workflow
+			// since the normal page view that resets notification status is not accessiable
+			// anymore due to Flow occupation
 			$user->clearNotification( $title );
+
+			// attach categories that would be shown on a normal page
+			$out->addCategoryLinks( $this->getCategories( $title ) );
 		}
 
 		/**
@@ -266,5 +270,22 @@ class View extends ContextSource {
 		}
 
 		return $result;
+	}
+
+	protected function getCategories( Title $title ) {
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select(
+			/* from */ 'categorylinks',
+			/* select */ array( 'cl_to', 'cl_sortkey' ),
+			/* conditions */ array( 'cl_from' => $title->getArticleId() ),
+			__METHOD__
+		);
+
+		$categories = array();
+		foreach ( $res as $row ) {
+			$categories[$row->cl_to] = $row->cl_sortkey;
+		}
+
+		return $categories;
 	}
 }
