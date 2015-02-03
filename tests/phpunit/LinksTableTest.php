@@ -49,7 +49,7 @@ class LinksTableTest extends PostRevisionTestCase {
 		parent::setUp();
 		$this->storage = Container::get( 'storage' );
 		$this->extractor = Container::get( 'reference.extractor' );
-		$this->recorder = Container::get( 'reference.recorder' );
+		$this->recorder = Container::get( 'reference.recorder.default' );
 		$this->updater = Container::get( 'reference.updater.links-tables' );
 
 		// Check for Parsoid
