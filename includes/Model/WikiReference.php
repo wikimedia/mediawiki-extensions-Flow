@@ -8,6 +8,7 @@ use Title;
 class WikiReference extends Reference {
 	const TYPE_FILE = 'file';
 	const TYPE_TEMPLATE = 'template';
+	const TYPE_CATEGORY = 'category';
 
 	protected $target;
 
@@ -26,6 +27,7 @@ class WikiReference extends Reference {
 			array(
 				self::TYPE_FILE,
 				self::TYPE_TEMPLATE,
+				self::TYPE_CATEGORY,
 			)
 		);
 
