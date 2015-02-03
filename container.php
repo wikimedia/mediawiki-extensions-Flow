@@ -1135,7 +1135,8 @@ $c['reference.recorder.default'] = $c->share( function( $c ) {
 	return new Flow\Data\Listener\ReferenceRecorder(
 		new Flow\Parsoid\ReferenceExtractor( $c['reference.extractors.default'] ),
 		$c['reference.updater.links-tables'],
-		$c['storage']
+		$c['storage'],
+		$c['repository.tree']
 	);
 } );
 // posts get a slightly different reference recorder, their extractor
@@ -1144,7 +1145,8 @@ $c['reference.recorder.post'] = $c->share( function( $c ) {
 	return new Flow\Data\Listener\ReferenceRecorder(
 		new Flow\Parsoid\ReferenceExtractor( $c['reference.extractors.post'] ),
 		$c['reference.updater.links-tables'],
-		$c['storage']
+		$c['storage'],
+		$c['repository.tree']
 	);
 } );
 
