@@ -41,6 +41,11 @@ class ReferenceClarifier {
 		// * flow-whatlinkshere-post
 		// Topic and Summary are plain text and do not have links.
 		foreach( $references as $reference ) {
+			if ( $reference->getType() === 'category' ) {
+				// While it might make sense to have backlinks from categories to
+				// a page in what links here, thats not what mediawiki currently does.
+				continue;
+			}
 			try {
 				$url = $this->getObjectLink( $reference->getWorkflowId(), $reference->getObjectType(), $reference->getObjectId() );
 				$props[] = wfMessage( 'flow-whatlinkshere-' . $reference->getObjectType(), $url )->parse();

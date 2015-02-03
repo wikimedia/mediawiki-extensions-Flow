@@ -63,6 +63,15 @@ class LinksTableUpdater {
 					$internalLinks[$reference->getTitle()->getPrefixedDBkey()] = $reference->getTitle();
 					$linkBatch->addObj( $reference->getTitle() );
 				}
+			} elseif ( $reference->getType() === WikiReference::TYPE_CATEGORY ) {
+				if ( $reference instanceof WikiReference ) {
+					$title = $reference->getTitle();
+					$parserOutput->addCategory(
+						$title->getDBkey(),
+						// parsoid moves the sort key into the fragment
+						$title->getFragment()
+					);
+				}
 			} elseif ( $reference->getType() === 'file' ) {
 				if ( $reference instanceof WikiReference ) {
 					// Only local images supported
