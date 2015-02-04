@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_e221589b",
+        "filename": "Hooks.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-04T19:20:30Z",
+      "side": 1,
+      "message": "Shouldn\u0027t be changing these",
+      "revId": "e2aa5a9b9d859ea12186c49f567e65cba170f57d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_622d488b",
+        "filename": "includes/Exception/ExceptionHandling.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-04T19:20:30Z",
+      "side": 1,
+      "message": "One of the reasons we\u0027re extending from MWException here is it\u0027s report() function, which makes for a better-formatted error msg",
+      "revId": "e2aa5a9b9d859ea12186c49f567e65cba170f57d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
