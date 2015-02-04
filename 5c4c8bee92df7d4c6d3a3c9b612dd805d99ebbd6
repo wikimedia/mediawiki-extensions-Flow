@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_fcbee1d0",
+        "filename": "includes/Search/Searcher.php",
+        "patchSetId": 38
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-04T14:58:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae6ac7d6_1ffdb5d1",
+      "revId": "5c4c8bee92df7d4c6d3a3c9b612dd805d99ebbd6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae6ac7d6_ff5481cb",
         "filename": "includes/Search/Searcher.php",
         "patchSetId": 38
@@ -30,6 +48,24 @@
       "writtenOn": "2015-01-29T22:02:56Z",
       "side": 1,
       "message": "ProfileSection is also soft deprecated,  the new way is:\n\n               $ps \u003d Profiler::instance()-\u003escopedProfileIn( __METHOD__ );",
+      "revId": "5c4c8bee92df7d4c6d3a3c9b612dd805d99ebbd6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_fc282134",
+        "filename": "includes/Search/Searcher.php",
+        "patchSetId": 38
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-04T14:58:08Z",
+      "side": 1,
+      "message": "Good to know. Does it still make sense to do this kind of profiling anyway?\n\nSince ProfileSection is now no-op instead of deprecated-with-back-compat, I would assume we have some other decent enough infrastructure, and we don\u0027t really need to manually add these bits in?",
+      "parentUuid": "ae6ac7d6_ff5481cb",
       "revId": "5c4c8bee92df7d4c6d3a3c9b612dd805d99ebbd6",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -70,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_bc80694c",
+        "filename": "includes/Search/TopicUpdater.php",
+        "patchSetId": 38
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-04T14:58:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae6ac7d6_b4fe3034",
+      "revId": "5c4c8bee92df7d4c6d3a3c9b612dd805d99ebbd6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae6ac7d6_b485d0b3",
         "filename": "includes/Search/TopicUpdater.php",
         "patchSetId": 38
@@ -81,6 +135,24 @@
       "writtenOn": "2015-01-29T22:02:56Z",
       "side": 1,
       "message": "this feels more like a distinction we should make inside the getRevisionType() method, but that would of course require a bunch of other updates.\n\nSomething for another day perhaps.",
+      "revId": "5c4c8bee92df7d4c6d3a3c9b612dd805d99ebbd6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_dc85255c",
+        "filename": "includes/Search/TopicUpdater.php",
+        "patchSetId": 38
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-04T14:58:08Z",
+      "side": 1,
+      "message": "I\u0027ll ignore this for now :)",
+      "parentUuid": "ae6ac7d6_b485d0b3",
       "revId": "5c4c8bee92df7d4c6d3a3c9b612dd805d99ebbd6",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
