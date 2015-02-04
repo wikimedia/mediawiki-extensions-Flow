@@ -118,7 +118,7 @@
 	"flow-error-missing-postId": "Es wurde kein Parameter „postId“ angegeben. Dieser Parameter ist zum Löschen/Wiederherstellen eines Beitrags erforderlich.",
 	"flow-error-invalid-postId": "Der Parameter „postId“ war ungültig. Der angegebene Beitrag ($1) konnte nicht gefunden werden.",
 	"flow-error-restore-failure": "Das Wiederherstellen dieses Objektes ist fehlgeschlagen.",
-	"flow-error-invalid-moderation-state": "Für moderationState wurde ein ungültiger Wert angegeben",
+	"flow-error-invalid-moderation-state": "An die Flow-API wurde ein ungültiger Wert für einen Parameter („moderationState“) übermittelt.",
 	"flow-error-invalid-moderation-reason": "Bitte gib einen Grund für die Moderation an",
 	"flow-error-not-allowed": "Keine ausreichenden Berechtigungen zum Ausführen dieser Aktion",
 	"flow-error-not-allowed-hide": "Dieses Thema wurde versteckt.",
