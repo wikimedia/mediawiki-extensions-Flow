@@ -5,12 +5,12 @@ namespace Flow\Content;
 use DerivativeContext;
 use FauxRequest;
 use Flow\Container;
+use Flow\Exception\FlowException;
 use Flow\LinksTableUpdater;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\View;
 use Flow\WorkflowLoaderFactory;
-use MWException;
 use OutputPage;
 use ParserOptions;
 use ParserOutput;
@@ -30,7 +30,7 @@ class BoardContent extends \AbstractContent {
 			$workflow instanceof UUID ||
 			$workflow instanceof Workflow
 		) ) {
-			throw new MWException( "Invalid argument for 'workflow' parameter." );
+			throw new FlowException( "Invalid argument for 'workflow' parameter." );
 		}
 
 		if (
@@ -219,7 +219,7 @@ class BoardContent extends \AbstractContent {
 		} elseif ( $this->workflow === null ) {
 			return null;
 		} else {
-			throw new MWException( "Unknown Workflow specifier" );
+			throw new FlowException( "Unknown Workflow specifier" );
 		}
 	}
 }

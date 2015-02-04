@@ -1,5 +1,6 @@
 <?php
 
+use Flow\Exception\FlowException;
 use Flow\Parsoid\Utils;
 
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
@@ -78,7 +79,7 @@ class ConvertToText extends Maintenance {
 	 * @param array $request
 	 * @param bool $requiredBlock
 	 * @return array
-	 * @throws MWException
+	 * @throws FlowException
 	 */
 	public function flowApi( Title $title, $submodule, array $request, $requiredBlock = false ) {
 		$request = new FauxRequest( $request + array(
@@ -93,19 +94,19 @@ class ConvertToText extends Maintenance {
 		if ( defined( 'ApiResult::META_CONTENT' ) ) {
 			$flowData = $api->getResult()->getResultData( array( 'flow', $submodule, 'result' ) );
 			if ( $flowData === null ) {
-				throw new MWException( "API response has no Flow data" );
+				throw new FlowException( "API response has no Flow data" );
 			}
 			$flowData = ApiResult::removeMetadata( $flowData );
 		} else {
 			$apiResponse = $api->getResult()->getData();
 			if ( ! isset( $apiResponse['flow'] ) ) {
-				throw new MWException( "API response has no Flow data" );
+				throw new FlowException( "API response has no Flow data" );
 			}
 			$flowData = $apiResponse['flow'][$submodule]['result'];
 		}
 
 		if( $requiredBlock !== false && ! isset( $flowData[$requiredBlock] ) ) {
-			throw new MWException( "No $requiredBlock block in API response" );
+			throw new FlowException( "No $requiredBlock block in API response" );
 		}
 
 		return $flowData;

@@ -4,13 +4,13 @@ namespace Flow\Data\Index;
 
 use Flow\Data\BufferedCache;
 use Flow\Data\Storage\TopicHistoryStorage;
+use Flow\Exception\FlowException;
 use Flow\Exception\InvalidInputException;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\Workflow;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
-use MWException;
 
 /**
  * Slight tweak to the TopKIndex uses additional info from TreeRepository to build the cache
@@ -21,7 +21,7 @@ class TopicHistoryIndex extends TopKIndex {
 
 	public function __construct( BufferedCache $cache, TopicHistoryStorage $storage, TreeRepository $treeRepo, $prefix, array $indexed, array $options = array() ) {
 		if ( $indexed !== array( 'topic_root_id' ) ) {
-			throw new \MWException( __CLASS__ . ' is hardcoded to only index topic_root_id: ' . print_r( $indexed, true ) );
+			throw new FlowException( __CLASS__ . ' is hardcoded to only index topic_root_id: ' . print_r( $indexed, true ) );
 		}
 		parent::__construct( $cache, $storage, $prefix, $indexed, $options );
 		$this->treeRepository = $treeRepo;
