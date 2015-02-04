@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_7c99717f",
+        "filename": "includes/api/ApiFlowSearchUpdate.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-04T15:10:59Z",
+      "side": 1,
+      "message": "Probably not, but was the easiest way to let anyone refresh the search cache on flow-tests.wmflabs.\n\nIf we\u0027re going to consider merging this for real, I\u0027m going to make this functionality (part of) some maintenance script \u0026 remove the API.",
+      "parentUuid": "6e7c4fa4_e90e3d37",
+      "revId": "54f37d6ea54ab252769b2c575df644e4838dc4c8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_69fb0d12",
         "filename": "includes/api/ApiFlowSearchUpdate.php",
         "patchSetId": 13
