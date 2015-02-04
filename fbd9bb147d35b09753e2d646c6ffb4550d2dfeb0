@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_bf537b19",
+        "filename": "includes/Search/TopicUpdater.php",
+        "patchSetId": 39
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-04T17:34:58Z",
+      "side": 1,
+      "message": "You fetch the work flow on line 118 anyways :)",
+      "revId": "fbd9bb147d35b09753e2d646c6ffb4550d2dfeb0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_dc4d259d",
+        "filename": "includes/Search/Updater.php",
+        "patchSetId": 39
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-04T17:34:58Z",
+      "side": 1,
+      "message": "We should probably log these, it shouldn\u0027t regularly happen?",
+      "revId": "fbd9bb147d35b09753e2d646c6ffb4550d2dfeb0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
