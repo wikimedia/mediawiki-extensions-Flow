@@ -21,6 +21,7 @@ interface ImportSourceStore {
 
 	/**
 	 * Save any associations that have been added
+	 * @throws ImportSourceStoreException When save fails
 	 */
 	function save();
 
@@ -50,7 +51,9 @@ class FileImportSourceStore implements ImportSourceStore {
 	}
 
 	public function save() {
-		file_put_contents( $this->filename, json_encode( $this->data ) );
+		if ( !file_put_contents( $this->filename, json_encode( $this->data ) ) ) {
+			throw new ImportSourceStoreException( 'Could not write out source store to ' . $this->filename );
+		}
 	}
 
 	public function rollback() {
@@ -82,3 +85,4 @@ class NullImportSourceStore implements ImportSourceStore {
 	public function rollback() {
 	}
 }
+
