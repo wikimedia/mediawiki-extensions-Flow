@@ -6,6 +6,7 @@ use BagOStuff;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Data\Pager\Pager;
+use Flow\Exception\FlowException;
 use Flow\Formatter\TopicListQuery;
 use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
@@ -62,7 +63,7 @@ class PurgeAction extends \PurgeAction {
 			break;
 
 		default:
-			throw new \MWException( 'Unknown workflow type: ' . $workflow->getType() );
+			throw new FlowException( 'Unknown workflow type: ' . $workflow->getType() );
 		}
 
 		// delete all the keys we just visited

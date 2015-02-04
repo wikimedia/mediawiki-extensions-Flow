@@ -442,7 +442,7 @@ class TopicBlock extends AbstractBlock {
 			// @todo make more explicit
 			try {
 				$newRevision->getChildren();
-			} catch ( \MWException $e ) {
+			} catch ( \Exception $e ) {
 				$newRevision->setChildren( array() );
 			}
 

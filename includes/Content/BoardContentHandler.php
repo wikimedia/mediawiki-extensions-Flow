@@ -3,15 +3,15 @@
 namespace Flow\Content;
 
 use Flow\Container;
+use Flow\Exception\FlowException;
 use Flow\FlowActions;
 use Flow\Model\UUID;
 use FormatJson;
-use MWException;
 
 class BoardContentHandler extends \ContentHandler {
 	public function __construct( $modelId ) {
 		if ( $modelId !== CONTENT_MODEL_FLOW_BOARD ) {
-			throw new MWException( __CLASS__." initialised for invalid content model" );
+			throw new FlowException( __CLASS__ . " initialised for invalid content model" );
 		}
 
 		parent::__construct( CONTENT_MODEL_FLOW_BOARD, array( CONTENT_FORMAT_JSON ) );
@@ -35,11 +35,11 @@ class BoardContentHandler extends \ContentHandler {
 	 * @param \Content $content The Content object to serialize
 	 * @param string|null $format The desired serialization format
 	 * @return string Serialized form of the content
-	 * @throws MWException
+	 * @throws FlowException
 	 */
 	public function serializeContent( \Content $content, $format = null ) {
 		if ( ! $content instanceof BoardContent ) {
-			throw new MWException( "Expected a BoardContent object, got a " . get_class( $content ) );
+			throw new FlowException( "Expected a BoardContent object, got a " . get_class( $content ) );
 		}
 
 		$info = array();

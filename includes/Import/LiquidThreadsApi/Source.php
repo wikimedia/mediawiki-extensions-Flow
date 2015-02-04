@@ -7,6 +7,7 @@ use ApiMain;
 use Exception;
 use FauxRequest;
 use Flow\Container;
+use Flow\Exception\FlowException;
 use Flow\Import\ImportException;
 use Flow\Import\IImportSource;
 use Http;
@@ -177,11 +178,13 @@ abstract class ApiBackend {
 	 *
 	 * @param  array  $pageIds Page IDs to return data for.
 	 * @return array The query.pages part of the API response.
-	 * @throws \MWException
+	 * @throws ApiNotFoundException
+	 * @throws FlowException
+	 * @throws ImportException
 	 */
 	public function retrievePageDataById( array $pageIds ) {
 		if ( !$pageIds ) {
-			throw new \MWException( 'At least one page id must be provided' );
+			throw new FlowException( 'At least one page id must be provided' );
 		}
 
 		return $this->retrievePageData( array(
@@ -195,12 +198,13 @@ abstract class ApiBackend {
 	 *
 	 * @param string[] $titles Titles to return data for
 	 * @return array The query.pages prt of the API response.
-	 * @throws \MWException
+	 * @throws ApiNotFoundException
+	 * @throws FlowException
 	 * @throws ImportException
 	 */
 	public function retrieveTopRevisionByTitle( array $titles ) {
 		if ( !$titles ) {
-			throw new \MWException( 'At least one title must be provided' );
+			throw new FlowException( 'At least one title must be provided' );
 		}
 
 		return $this->retrievePageData( array(
