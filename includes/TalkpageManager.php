@@ -119,8 +119,6 @@ class TalkpageManager implements OccupationController {
 	 * @throws InvalidInputException
 	 */
 	public function ensureFlowRevision( Article $article, Workflow $workflow ) {
-		$title = $article->getTitle();
-
 		// Break loops (because doEditContent requires rendering, which will load the workflow, which will call this function)
 		static $doing = false;
 		if ( $doing ) {
