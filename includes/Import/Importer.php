@@ -343,12 +343,6 @@ class PageImportState {
 		return $this->sourceStore->getImportedId( $object->getObjectKey() );
 	}
 
-	/**
-	 * Commits the association map.
-	 */
-	public function saveAssociations() {
-	}
-
 	public function createUser( $name ) {
 		if ( IP::isIPAddress( $name ) ) {
 			return User::newFromName( $name, false );
@@ -487,6 +481,12 @@ class TalkpageImportOperation {
 				$this->importHeader( $state, $header );
 				$state->commit();
 				$imported++;
+			} catch ( ImportSourceStoreException $e ) {
+				// errors from the source store are more serious and should
+				// not just be logged and swallowed.  This may indicate that
+				// we are not properly recording progress.
+				$state->rollback();
+				throw $e;
 			} catch ( \Exception $e ) {
 				$state->rollback();
 				\MWExceptionHandler::logException( $e );
@@ -503,6 +503,12 @@ class TalkpageImportOperation {
 				$this->importTopic( $state, $topic );
 				$state->commit();
 				$imported++;
+			} catch ( ImportSourceStoreException $e ) {
+				// errors from the source store are more serious and shuld
+				// not juts be logged and swallowed.  This may indicate that
+				// we are not properly recording progress.
+				$state->rollback();
+				throw $e;
 			} catch ( \Exception $e ) {
 				$state->rollback();
 				\MWExceptionHandler::logException( $e );
@@ -576,10 +582,8 @@ class TalkpageImportOperation {
 		}
 
 		$topicState->commitLastModified();
-		$topicState->parent->saveAssociations();
 		$topicId = $topicState->topicWorkflow->getId();
 		$pageState->postprocessor->afterTopicImported( $importTopic, $topicId );
-		// $database->commit();
 	}
 
 	/**
