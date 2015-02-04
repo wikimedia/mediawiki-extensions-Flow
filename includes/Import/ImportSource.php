@@ -71,5 +71,3 @@ interface IImportHeader extends IRevisionableObject {
 interface IImportSummary extends IRevisionableObject {
 }
 
-class ImportException extends FlowException {
-}

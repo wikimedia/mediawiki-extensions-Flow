@@ -9,8 +9,13 @@ use FauxRequest;
 use Flow\Container;
 use Flow\Import\ImportException;
 use Flow\Import\IImportSource;
+use Flow\Import\ApiNullResponseException;
+use Flow\Import\ApiNotFoundException;
 use Http;
 use RequestContext;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use UsageException;
 use User;
 
@@ -137,14 +142,27 @@ class ImportSource implements IImportSource {
 	}
 }
 
-abstract class ApiBackend {
+abstract class ApiBackend implements LoggerAwareInterface {
+
+	/**
+	 * @var LoggerInterface
+	 */
+	protected $logger;
+
+	public function __construct( LoggerInterface $logger = null ) {
+		$this->logger = new NullLogger;
+	}
+
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
+	}
 	/**
 	 * Retrieves LiquidThreads data from the API
 	 *
 	 * @param  array  $conditions The parameters to pass to select the threads. Usually used in two ways: with thstartid/thpage, or with ththreadid
 	 * @return array Data as returned under query.threads by the API
 	 * @throws ApiNotFoundException
-	 * @throws ImportException
+	 * @throws ApiNullResponseException
 	 */
 	public function retrieveThreadData( array $conditions ) {
 		$params = array(
@@ -160,7 +178,8 @@ abstract class ApiBackend {
 			if ( $this->isNotFoundError( $data ) ) {
 				throw new ApiNotFoundException( "Did not find thread with conditions: " . json_encode( $conditions ) );
 			} else {
-				throw new ImportException( "Null response from API module:" . json_encode( $data ) );
+				$this->logger->error( __METHOD__ . ': Failed API call against ' . $this->getKey() . ' with conditions : ' . json_encode( $conditions ) );
+				throw new ApiNullResponseException( "Null response from API module:" . json_encode( $data ) );
 			}
 		}
 
@@ -221,7 +240,7 @@ abstract class ApiBackend {
 	 * @throws ImportException
 	 */
 	public function retrievePageData( array $conditions, $expectContinue = false ) {
-		$data = $this->apiCall( $conditions + array(
+		$conditions += array(
 			'action' => 'query',
 			'prop' => 'revisions',
 			'rvprop' => 'timestamp|user|content|ids',
@@ -230,13 +249,15 @@ abstract class ApiBackend {
 			'rvdir' => 'newer',
 			'continue' => '',
 			'limit' => ApiBase::LIMIT_BIG1,
-		) );
+		);
+		$data = $this->apiCall( $conditions );
 
 		if ( ! isset( $data['query'] ) ) {
+			$this->logger->error( __METHOD__ . ': Failed API call against ' . $this->getKey() . ' with conditions : ' . json_encode( $conditions ) );
 			if ( $this->isNotFoundError( $data ) ) {
 				throw new ApiNotFoundException( "Did not find pages: " . json_encode( $conditions ) );
 			} else {
-				throw new ImportException( "Null response from API module: " . json_encode( $data ) );
+				throw new ApiNullResponseException( "Null response from API module: " . json_encode( $data ) );
 			}
 		} elseif ( !$expectContinue && isset( $data['continue'] ) ) {
 			wfWarn( "More revisions than can be retrieved for conditions: " . json_encode( $conditions ) );
@@ -271,6 +292,7 @@ abstract class ApiBackend {
 
 class RemoteApiBackend extends ApiBackend {
 	public function __construct( $apiUrl ) {
+		parent::__construct();
 		$this->apiUrl = $apiUrl;
 	}
 
@@ -302,6 +324,7 @@ class LocalApiBackend extends ApiBackend {
 	protected $user;
 
 	public function __construct( User $user = null ) {
+		parent::__construct();
 		$this->user = $user;
 	}
 
@@ -337,7 +360,4 @@ class LocalApiBackend extends ApiBackend {
 	public function getKey() {
 		return 'local';
 	}
-}
-
-class ApiNotFoundException extends ImportException {
 }

@@ -38,11 +38,6 @@ class ConvertLqt extends Maintenance {
 		}
 
 		$importer = Flow\Container::get( 'importer' );
-		if ( $this->getOption( 'verbose' ) ) {
-			$logger = new MaintenanceDebugLogger( $this );
-			$importer->setLogger( $logger );
-			$logger->info( "Starting LQT import from $srcPageName to $dstPageName" );
-		}
 		if ( $this->getOption( 'allowunknownusernames' ) ) {
 			$importer->setAllowUnknownUsernames( true );
 		}
@@ -65,6 +60,13 @@ class ConvertLqt extends Maintenance {
 			$user = Flow\Container::get( 'occupation_controller' )->getTalkpageManager();
 			$redirector = new LqtRedirector( $urlGenerator, $user );
 			$importer->addPostprocessor( $redirector );
+		}
+
+		if ( $this->getOption( 'verbose' ) ) {
+			$logger = new MaintenanceDebugLogger( $this );
+			$importer->setLogger( $logger );
+			$api->setLogger( $logger );
+			$logger->info( "Starting LQT import from $srcPageName to $dstPageName" );
 		}
 
 		$importer->import( $source, $title, $sourceStore );
