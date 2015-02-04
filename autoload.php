@@ -354,8 +354,6 @@ $wgAutoloadClasses += array(
 	'Flow\\WatchedTopicItems' => __DIR__ . '/includes/WatchedTopicItems.php',
 	'Flow\\WorkflowLoader' => __DIR__ . '/includes/WorkflowLoader.php',
 	'Flow\\WorkflowLoaderFactory' => __DIR__ . '/includes/WorkflowLoaderFactory.php',
-	'LCRun3' => __DIR__ . '/vendor/lightncandy.php',
-	'LightnCandy' => __DIR__ . '/vendor/lightncandy.php',
 	'MaintenanceDebugLogger' => __DIR__ . '/maintenance/MaintenanceDebugLogger.php',
 	'Pimple' => __DIR__ . '/vendor/Pimple.php',
 );
