@@ -4,6 +4,7 @@ namespace Flow\Parsoid\Fixer;
 
 use DOMElement;
 use DOMNode;
+use Flow\Exception\FlowException;
 use Flow\Model\PostRevision;
 use Flow\Parsoid\Fixer;
 use Flow\Parsoid\Utils;
@@ -51,7 +52,7 @@ class BadImageRemover implements Fixer {
 	 *
 	 * @param DOMNode $node
 	 * @param Title $title
-	 * @throws \MWException
+	 * @throws FlowException
 	 */
 	public function apply( DOMNode $node, Title $title ) {
 		if ( !$node instanceof DOMElement ) {
@@ -79,7 +80,7 @@ class BadImageRemover implements Fixer {
 			$nodeToRemove = $nodeToRemove->parentNode;
 		}
 		if ( !$nodeToRemove ) {
-			throw new \MWException( 'Did not find parent mw:Image to remove' );
+			throw new FlowException( 'Did not find parent mw:Image to remove' );
 		}
 		$nodeToRemove->parentNode->removeChild( $nodeToRemove );
 	}

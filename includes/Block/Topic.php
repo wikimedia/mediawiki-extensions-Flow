@@ -5,6 +5,7 @@ namespace Flow\Block;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Data\Pager\HistoryPager;
+use Flow\Exception\DataModelException;
 use Flow\Exception\FailCommitException;
 use Flow\Exception\FlowException;
 use Flow\Exception\InvalidActionException;
@@ -449,7 +450,7 @@ class TopicBlock extends AbstractBlock {
 			// @todo make more explicit
 			try {
 				$newRevision->getChildren();
-			} catch ( \MWException $e ) {
+			} catch ( DataModelException $e ) {
 				$newRevision->setChildren( array() );
 			}
 
