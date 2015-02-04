@@ -79,6 +79,11 @@ class RecentChangesListener implements LifecycleHandler {
 	public function onAfterInsert( $revision, array $row, array $metadata ) {
 		global $wgRCFeeds;
 
+		// No action on imported revisions
+		if ( isset( $metadata['imported'] ) && $metadata['imported'] ) {
+			return;
+		}
+
 		$action = $revision->getChangeType();
 		$revisionId = $revision->getRevisionId()->getAlphadecimal();
 		$timestamp = $revision->getRevisionId()->getTimestamp();
