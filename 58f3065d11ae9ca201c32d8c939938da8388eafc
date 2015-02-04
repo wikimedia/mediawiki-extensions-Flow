@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_1c8cfd88",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 640
+      },
+      "writtenOn": "2015-02-04T14:18:55Z",
+      "side": 1,
+      "message": "Missed this one?",
+      "revId": "58f3065d11ae9ca201c32d8c939938da8388eafc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_5c91159b",
+        "filename": "tests/phpunit/PostRevisionTestCase.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 640
+      },
+      "writtenOn": "2015-02-04T14:18:55Z",
+      "side": 1,
+      "message": "Isn\u0027t it possible to be more specific here? Even multiple catch clauses would be better. If that is not possible MWException should still work, because FlowException is extending that, right?",
+      "revId": "58f3065d11ae9ca201c32d8c939938da8388eafc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_fced8123",
+        "filename": "tests/phpunit/PostRevisionTestCase.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 640
+      },
+      "writtenOn": "2015-02-04T14:18:55Z",
+      "side": 1,
+      "message": "Same as above.",
+      "revId": "58f3065d11ae9ca201c32d8c939938da8388eafc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
