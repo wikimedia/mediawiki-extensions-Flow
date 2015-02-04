@@ -1135,7 +1135,8 @@ $c['importer'] = $c->share( function( $c ) {
 		$c['storage'],
 		$c['factory.loader.workflow'],
 		$c['memcache.buffered'],
-		$c['db.factory']
+		$c['db.factory'],
+		$c['deferred_queue']
 	);
 } );
 

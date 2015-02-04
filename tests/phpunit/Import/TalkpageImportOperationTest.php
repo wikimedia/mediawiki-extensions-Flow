@@ -19,6 +19,7 @@ use Flow\Tests\Mock\MockImportSource;
 use Flow\Tests\Mock\MockImportSummary;
 use Flow\Tests\Mock\MockImportTopic;
 use Psr\Log\NullLogger;
+use SplQueue;
 use Title;
 use User;
 
@@ -105,7 +106,8 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 				->disableOriginalConstructor()
 				->getMock(),
 			Container::get( 'db.factory' ),
-			new ProcessorGroup
+			new ProcessorGroup,
+			new SplQueue
 		) );
 
 		// Count what actually came through

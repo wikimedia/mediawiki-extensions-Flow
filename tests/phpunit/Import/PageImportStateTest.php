@@ -8,6 +8,7 @@ use Flow\Import\Postprocessor\ProcessorGroup;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Psr\Log\NullLogger;
+use SplQueue;
 use Title;
 use User;
 
@@ -37,7 +38,8 @@ class PageImportStateTest extends \MediaWikiTestCase {
 			$this->getMockBuilder( 'Flow\DbFactory' )
 				->disableOriginalConstructor()
 				->getMock(),
-			new ProcessorGroup
+			new ProcessorGroup,
+			new SplQueue
 		);
 		if ( $returnAll ) {
 			return array( $state, $workflow, $storage );
