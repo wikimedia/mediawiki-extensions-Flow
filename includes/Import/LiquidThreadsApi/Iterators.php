@@ -4,6 +4,7 @@ namespace Flow\Import\LiquidThreadsApi;
 
 use ArrayIterator;
 use Flow\Import\IImportObject;
+use Flow\Import\ApiNotFoundException;
 use Iterator;
 
 class TopicIterator implements Iterator {
