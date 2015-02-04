@@ -585,7 +585,9 @@ class TalkpageImportOperation {
 			$pageState->boardWorkflow->getArticleTitle()
 		);
 
-		$pageState->put( $revisions, array() );
+		$pageState->put( $revisions, array(
+			'workflow' => $this->boardWorkflow,
+		) );
 		$pageState->recordAssociation(
 			reset( $revisions )->getCollectionId(),
 			$importHeader
