@@ -2,7 +2,6 @@
 
 namespace Flow\Import;
 
-use Flow\Exception\FlowException;
 use Iterator;
 
 interface IImportSource {
@@ -71,5 +70,3 @@ interface IImportHeader extends IRevisionableObject {
 interface IImportSummary extends IRevisionableObject {
 }
 
-class ImportException extends FlowException {
-}

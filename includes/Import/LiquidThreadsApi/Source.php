@@ -9,8 +9,12 @@ use FauxRequest;
 use Flow\Container;
 use Flow\Import\ImportException;
 use Flow\Import\IImportSource;
+use Flow\Import\ApiNullResponseException;
 use Http;
 use RequestContext;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use UsageException;
 use User;
 
@@ -137,14 +141,30 @@ class ImportSource implements IImportSource {
 	}
 }
 
-abstract class ApiBackend {
+abstract class ApiBackend implements LoggerAwareInterface {
+
+	/**
+	 * @var LoggerInterface
+	 */
+	protected $logger;
+
+	public function __construct() {
+		$this->logger = new NullLogger;
+	}
+
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
+	}
+
 	/**
 	 * Retrieves LiquidThreads data from the API
 	 *
 	 * @param  array  $conditions The parameters to pass to select the threads. Usually used in two ways: with thstartid/thpage, or with ththreadid
 	 * @return array Data as returned under query.threads by the API
-	 * @throws ApiNotFoundException
-	 * @throws ImportException
+	 * @throws ApiNotFoundException Thrown when the remote api reports that the provided conditions
+	 *  have no matching records.
+	 * @throws ImportException When an error is received from the remote api.  This is often either
+	 *  a bad request or lqt threw an exception trying to respond to a valid request.
 	 */
 	public function retrieveThreadData( array $conditions ) {
 		$params = array(
@@ -158,8 +178,11 @@ abstract class ApiBackend {
 
 		if ( ! isset( $data['query']['threads'] ) ) {
 			if ( $this->isNotFoundError( $data ) ) {
-				throw new ApiNotFoundException( "Did not find thread with conditions: " . json_encode( $conditions ) );
+				$message = "Did not find thread with conditions: " . json_encode( $conditions );
+				$this->logger->debug( __METHOD__ . ": $message" );
+				throw new ApiNotFoundException( $message );
 			} else {
+				$this->logger->error( __METHOD__ . ': Failed API call against ' . $this->getKey() . ' with conditions : ' . json_encode( $conditions ) );
 				throw new ImportException( "Null response from API module:" . json_encode( $data ) );
 			}
 		}
@@ -217,11 +240,15 @@ abstract class ApiBackend {
 	 * @param bool  $expectContinue Pass true here when caller expects more revisions to exist than
 	 *  they are requesting information about.
 	 * @return array The query.pages part of the API response.
-	 * @throws ApiNotFoundException
-	 * @throws ImportException
+	 * @throws ApiNotFoundException Thrown when the remote api reports that the provided conditions
+	 *  have no matching records.
+	 * @throws ImportException When an error is received from the remote api.  This is often either
+	 *  a bad request or lqt threw an exception trying to respond to a valid request.
+	 * @throws ImportException When more revisions are available than can be returned in a single
+	 *  query and the calling code does not set $expectContinue to true.
 	 */
 	public function retrievePageData( array $conditions, $expectContinue = false ) {
-		$data = $this->apiCall( $conditions + array(
+		$conditions += array(
 			'action' => 'query',
 			'prop' => 'revisions',
 			'rvprop' => 'timestamp|user|content|ids',
@@ -230,16 +257,20 @@ abstract class ApiBackend {
 			'rvdir' => 'newer',
 			'continue' => '',
 			'limit' => ApiBase::LIMIT_BIG1,
-		) );
+		);
+		$data = $this->apiCall( $conditions );
 
 		if ( ! isset( $data['query'] ) ) {
+			$this->logger->error( __METHOD__ . ': Failed API call against ' . $this->getKey() . ' with conditions : ' . json_encode( $conditions ) );
 			if ( $this->isNotFoundError( $data ) ) {
-				throw new ApiNotFoundException( "Did not find pages: " . json_encode( $conditions ) );
+				$message = "Did not find pages: " . json_encode( $conditions );
+				$this->logger->debug( __METHOD__ . ": $message" );
+				throw new ApiNotFoundException( $message );
 			} else {
 				throw new ImportException( "Null response from API module: " . json_encode( $data ) );
 			}
 		} elseif ( !$expectContinue && isset( $data['continue'] ) ) {
-			wfWarn( "More revisions than can be retrieved for conditions: " . json_encode( $conditions ) );
+			throw new ImportException( "More revisions than can be retrieved for conditions, import would be incomplete: " . json_encode( $conditions ) );
 		}
 
 		return $data['query']['pages'];
@@ -264,13 +295,16 @@ abstract class ApiBackend {
 	 * @return bool
 	 */
 	protected function isNotFoundError( $apiResponse ) {
+		// LQT has some bugs where not finding the requested item in the database throws
+		// returns this exception.
 		$expect = 'Exception Caught: DatabaseBase::makeList: empty input for field thread_parent';
-		return $apiResponse['error']['info'] === $expect;
+		return false !== strpos( $apiResponse['error']['info'], $expect );
 	}
 }
 
 class RemoteApiBackend extends ApiBackend {
 	public function __construct( $apiUrl ) {
+		parent::__construct();
 		$this->apiUrl = $apiUrl;
 	}
 
@@ -287,10 +321,11 @@ class RemoteApiBackend extends ApiBackend {
 		$params['format'] = 'json';
 		$url = wfAppendQuery( $this->apiUrl, $params );
 
-		$result = Http::get( $url );
-		if ( $result === false && $retry > 0 ) {
-			return $this->apiCall( $params, $retry - 1 );
-		}
+		$this->logger->debug( __METHOD__ . ": $url" );
+		do {
+			$result = Http::get( $url );
+		} while ( $result === false && --$retry >= 0 );
+
 		return json_decode( $result, true );
 	}
 }
@@ -302,7 +337,12 @@ class LocalApiBackend extends ApiBackend {
 	protected $user;
 
 	public function __construct( User $user = null ) {
+		parent::__construct();
 		$this->user = $user;
+	}
+
+	public function getKey() {
+		return 'local';
 	}
 
 	public function apiCall( array $params, $retry = 1 ) {
@@ -333,11 +373,4 @@ class LocalApiBackend extends ApiBackend {
 			);
 		}
 	}
-
-	public function getKey() {
-		return 'local';
-	}
-}
-
-class ApiNotFoundException extends ImportException {
 }

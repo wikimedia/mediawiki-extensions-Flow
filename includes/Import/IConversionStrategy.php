@@ -2,7 +2,7 @@
 
 namespace Flow\Import;
 
-use Flow\Exception\FlowException;
+use Flow\Import\ImportException;
 use Flow\Import\Postprocessor\Postprocessor;
 use Title;
 use WikitextContent;
@@ -59,7 +59,7 @@ interface IConversionStrategy {
 	 *
 	 * @param Title $source The title to be archived
 	 * @return Title The title to archive $source to
-	 * @throws FlowException When no title can be decided upon
+	 * @throws ImportException When no title can be decided upon
 	 */
 	function decideArchiveTitle( Title $source );
 

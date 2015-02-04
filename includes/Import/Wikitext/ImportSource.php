@@ -4,7 +4,7 @@ namespace Flow\Import\Wikitext;
 
 use ArrayIterator;
 use FlowHooks;
-use Flow\Exception\FlowException;
+use Flow\Import\ImportException;
 use Flow\Import\Plain\ImportHeader;
 use Flow\Import\Plain\ObjectRevision;
 use Flow\Import\IImportSource;
@@ -25,11 +25,11 @@ class ImportSource implements IImportSource {
 	/**
 	 * @param Title $title
 	 * @param Parser|StubObject $parser
-	 * @throws FlowException When $title is an external title
+	 * @throws ImportException When $title is an external title
 	 */
 	public function __construct( Title $title, $parser ) {
 		if ( $title->isExternal() ) {
-			throw new FlowException( "Invalid non-local title: {$title->getPrefixedText()}" );
+			throw new ImportException( "Invalid non-local title: $title" );
 		}
 		$this->title = $title;
 		$this->parser = $parser;
