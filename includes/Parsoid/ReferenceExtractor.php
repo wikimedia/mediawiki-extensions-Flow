@@ -4,10 +4,10 @@ namespace Flow\Parsoid;
 
 use DOMXPath;
 use Flow\Exception\InvalidReferenceException;
+use Flow\Exception\FlowException;
 use Flow\Model\Reference;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use MWException;
 
 /**
  * Extracts references to templates, files and pages (in the form of links)
@@ -53,7 +53,7 @@ class ReferenceExtractor {
 	 * @param Extractor[] $extractors
 	 * @param string $text
 	 * @return Reference[]
-	 * @throws MWException
+	 * @throws FlowException
 	 * @throws \Flow\Exception\WikitextException
 	 */
 	protected function extractReferences( ReferenceFactory $factory, array $extractors, $text ) {
@@ -68,7 +68,7 @@ class ReferenceExtractor {
 
 			if ( !$elements ) {
 				$class = get_class( $extractor );
-				throw new MWException( "Malformed xpath from $class: " . $extractor->getXPath() );
+				throw new FlowException( "Malformed xpath from $class: " . $extractor->getXPath() );
 			}
 
 			foreach( $elements as $element ) {

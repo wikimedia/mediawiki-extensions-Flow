@@ -153,7 +153,7 @@ class ContributionsQuery extends AbstractQuery {
 	 * @param int $limit
 	 * @param string $revisionClass Storage type (e.g. "PostRevision", "Header")
 	 * @return ResultWrapper|false false on failure
-	 * @throws \MWException
+	 * @throws FlowException
 	 */
 	protected function queryRevisions( $conditions, $limit, $revisionClass ) {
 		$dbr = $this->dbFactory->getDB( DB_SLAVE );
@@ -232,7 +232,7 @@ class ContributionsQuery extends AbstractQuery {
 				break;
 
 			default:
-				throw new \MWException( 'Unsupported revision type ' . $revisionClass );
+				throw new FlowException( 'Unsupported revision type ' . $revisionClass );
 				break;
 		}
 	}

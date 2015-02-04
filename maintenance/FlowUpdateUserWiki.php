@@ -1,6 +1,7 @@
 <?php
 
 use Flow\Container;
+use Flow\Exception\FlowException;
 use Flow\Model\UUID;
 use Flow\Model\PostRevision;
 
@@ -78,7 +79,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 					}
 				}
 			} else {
-				throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
+				throw new FlowException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
 		}
 
@@ -116,7 +117,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 					}
 				}
 			} else {
-				throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
+				throw new FlowException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
 
 		}
@@ -154,7 +155,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 					}
 				}
 			} else {
-				throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
+				throw new FlowException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
 		}
 	}
@@ -206,7 +207,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 			__METHOD__
 		);
 		if ( !$res ) {
-			throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
+			throw new FlowException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 		}
 		$this->checkForSlave();
 
@@ -222,7 +223,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 				__METHOD__
 			);
 			if ( !$res ) {
-				throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
+				throw new FlowException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
 			$this->checkForSlave();
 		}

@@ -10,7 +10,6 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\View;
 use Flow\WorkflowLoaderFactory;
-use MWException;
 use OutputPage;
 use ParserOptions;
 use ParserOutput;

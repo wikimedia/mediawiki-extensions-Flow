@@ -57,12 +57,7 @@ class PostRevisionTestCase extends FlowTestCase {
 		parent::tearDown();
 
 		foreach ( $this->revisions as $revision ) {
-			try {
-				$this->getStorage()->multiRemove( array( $revision ) );
-			} catch ( \MWException $e ) {
-				// ignore - lifecyclehandlers may cause issues with tests, where
-				// not all related stuff is loaded
-			}
+			$this->getStorage()->multiRemove( array( $revision ) );
 		}
 
 		foreach ( $this->workflows as $workflow ) {
@@ -238,15 +233,11 @@ class PostRevisionTestCase extends FlowTestCase {
 		/** @var SplQueue $deferredQueue */
 		$deferredQueue = Container::get( 'deferred_queue' );
 		while( !$deferredQueue->isEmpty() ) {
-			try {
-				DeferredUpdates::addCallableUpdate( $deferredQueue->dequeue() );
+			DeferredUpdates::addCallableUpdate( $deferredQueue->dequeue() );
 
-				// doing updates 1 by 1 so an exception doesn't break others in
-				// the queue
-				DeferredUpdates::doUpdates();
-			} catch ( \MWException $e ) {
-				// ignoring exceptions for now, not all are phpunit-proof yet
-			}
+			// doing updates 1 by 1 so an exception doesn't break others in
+			// the queue
+			DeferredUpdates::doUpdates();
 		}
 
 		// save for removal at end of tests
