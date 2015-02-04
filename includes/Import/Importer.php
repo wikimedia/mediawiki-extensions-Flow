@@ -253,6 +253,7 @@ class PageImportState {
 	 * @param array           $metadata
 	 */
 	public function put( $object, array $metadata ) {
+		$metadata['imported'] = true;
 		if ( is_array( $object ) ) {
 			$this->storage->multiPut( $object, $metadata );
 		} else {
