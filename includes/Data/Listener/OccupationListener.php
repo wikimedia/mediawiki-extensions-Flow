@@ -55,7 +55,12 @@ class OccupationListener implements LifecycleHandler {
 			return;
 		}
 		if ( $object->getType() === $this->defaultType ) {
-			$this->ensureOccupation( $object );
+			// We don't want to defer the load event, the request
+			// may require this to actually exist to render properly.
+			$this->occupationController->ensureFlowRevision(
+				new Article( $object->getArticleTitle() ),
+				$object
+			);
 		}
 	}
 
