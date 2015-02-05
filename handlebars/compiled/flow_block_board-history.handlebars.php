@@ -13,6 +13,7 @@
         ),
         'constants' => array(),
         'helpers' => array(            'l10n' => 'Flow\TemplateHelper::l10n',
+            'html' => 'Flow\TemplateHelper::htmlHelper',
             'historyTimestamp' => 'Flow\TemplateHelper::historyTimestamp',
             'historyDescription' => 'Flow\TemplateHelper::historyDescription',
             'showCharacterDifference' => 'Flow\TemplateHelper::showCharacterDifference',
@@ -120,6 +121,8 @@
 '.LCRun3::p($cx, 'flow_moderation_actions_list', array(array($in),array('moderationType'=>'history','moderationTarget'=>'post','moderationTemplate'=>'post','moderationContainerClass'=>'flow-history','moderationMwUiClass'=>'mw-ui-anchor','moderationIcons'=>false))).'				</ul>
 			</li>
 ';}).'	</ul>
+
+	'.LCRun3::ch($cx, 'html', array(array(((isset($in['navbar']) && is_array($in)) ? $in['navbar'] : null)),array()), 'encq').'
 </div>
 ';
 }
