@@ -166,7 +166,10 @@ abstract class FeatureIndex implements Index {
 	protected function getOffsetLimit( $rows, $options ) {
 		$limit = isset( $options['limit'] ) ? $options['limit'] : $this->getLimit();
 
-		if ( !isset( $options['offset-id'] ) ) {
+		// not using isset because offset-id could also just be null (in which
+		// case we'll still not want to fallback to 0, because offset-dir may
+		// need to to start from the end of the rows)
+		if ( !array_key_exists( 'offset-id', $options ) ) {
 			$offset = isset( $options['offset'] ) ? $options['offset'] : 0;
 			return array( $offset, $limit );
 		}
@@ -182,6 +185,11 @@ abstract class FeatureIndex implements Index {
 			$options['offset-dir'] === 'rev'
 		) {
 			$dir = 'rev';
+		}
+
+		if ( $offsetId === null ) {
+			$offset = $dir === 'fwd' ? 0 : count( $rows ) - $limit;
+			return array( $offset, $limit );
 		}
 
 		$offset = $this->getOffsetFromKey( $rows, $offsetId );
