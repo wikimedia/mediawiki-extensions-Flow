@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_cc8c8602",
+        "filename": "handlebars/flow_block_board-history.handlebars",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-05T22:00:10Z",
+      "side": 1,
+      "message": "I think we should also put the navbar at the top for consistency with core.  Not a blocker to merge, though.",
+      "revId": "e5ca4598e621c1cdf8ddc962c587b8b6196fcb8c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
