@@ -226,7 +226,11 @@ class TalkpageManager implements OccupationController {
 
 				// If it exists, but is not a bot, someone created this
 				// without setting it up as expected, so go on to the next
-				// user.
+				// user. Except unit tests which get a free pass.
+				if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+					$candidateUser->addGroup( 'bot' );
+					return $candidateUser;
+				}
 			}
 		}
 
