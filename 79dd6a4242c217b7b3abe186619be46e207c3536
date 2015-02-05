@@ -34,6 +34,24 @@
       "revId": "79dd6a4242c217b7b3abe186619be46e207c3536",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_0c06fe89",
+        "filename": "includes/Data/Index/FeatureIndex.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-05T21:21:01Z",
+      "side": 1,
+      "message": "Disregard.  I had a brain fart.",
+      "parentUuid": "6e7c4fa4_512d738a",
+      "revId": "79dd6a4242c217b7b3abe186619be46e207c3536",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
