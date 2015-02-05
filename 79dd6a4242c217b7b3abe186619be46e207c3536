@@ -16,6 +16,24 @@
       "revId": "79dd6a4242c217b7b3abe186619be46e207c3536",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_512d738a",
+        "filename": "includes/Data/Index/FeatureIndex.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-05T19:06:18Z",
+      "side": 1,
+      "message": "You lost me :) This returns, so the code below won\u0027t be executed?",
+      "parentUuid": "6e7c4fa4_96554155",
+      "revId": "79dd6a4242c217b7b3abe186619be46e207c3536",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
