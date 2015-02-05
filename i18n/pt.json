@@ -127,7 +127,7 @@
 	"flow-error-missing-postId": "Não foi fornecido nenhum parâmetro \"IDpost\". Este parâmetro é necessário para a manutenção da mensagem.",
 	"flow-error-invalid-postId": "Parâmetro \"postID\" inválido. A mensagem especificada ($1) não pôde ser encontrada.",
 	"flow-error-restore-failure": "A restauração deste item falhou.",
-	"flow-error-invalid-moderation-state": "Foi fornecido um valor inválido para o estado de moderação.",
+	"flow-error-invalid-moderation-state": "Um valor inválido para o parâmetro ('moderationState') foi fornecido ao API do Flow.",
 	"flow-error-invalid-moderation-reason": "Por favor, indique um motivo para a moderação.",
 	"flow-error-not-allowed": "Permissões insuficientes para executar esta acção.",
 	"flow-error-not-allowed-hide": "Este tópico foi ocultado.",

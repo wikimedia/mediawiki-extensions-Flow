@@ -132,7 +132,7 @@
 	"flow-error-missing-postId": "没有指定“回复至”参数。需要此参数才能操控一个帖子。",
 	"flow-error-invalid-postId": "“回复至”参数无效。找不到指定帖子（$1）。",
 	"flow-error-restore-failure": "恢复此项失败。",
-	"flow-error-invalid-moderation-state": "moderationState 提供了无效的值。",
+	"flow-error-invalid-moderation-state": "用于参数“moderationState”的无效值被提交到了Flow API。",
 	"flow-error-invalid-moderation-reason": "请提供限制操作的原因。",
 	"flow-error-not-allowed": "没有足够权限执行此操作。",
 	"flow-error-not-allowed-hide": "此主题已被隐藏。",

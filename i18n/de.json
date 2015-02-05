@@ -350,6 +350,7 @@
 	"flow-importer-lqt-converted-archive-template": "Archiv für konvertierte LiquidThreads-Seite",
 	"flow-importer-wt-converted-template": "Wikitext-Diskussionsseite zu Flow konvertiert",
 	"flow-importer-wt-converted-archive-template": "Archiv für konvertierte Wikitext-Diskussionsseite",
+	"apihelp-flow-param-submodule": "Das aufzurufende Flow-Submodul.",
 	"apihelp-flow-param-page": "Die Seite, auf die die Aktion angewandt werden soll.",
 	"apihelp-flow-example-1": "Bearbeitet die Überschrift von [[Talk:Sandbox]]",
 	"apihelp-flow+close-open-topic-param-reason": "Grund für das Sperren oder Freigeben des Themas.",
