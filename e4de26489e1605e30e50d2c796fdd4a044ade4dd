@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_0701f907",
+        "filename": "handlebars/flow_block_topic_history.handlebars",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-06T01:53:10Z",
+      "side": 1,
+      "message": "Should probably be at top and bottom to match core",
+      "revId": "e4de26489e1605e30e50d2c796fdd4a044ade4dd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
