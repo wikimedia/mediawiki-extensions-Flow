@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_e76e3c2a",
+        "filename": "includes/Data/Pager/HistoryPager.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-06T01:48:17Z",
+      "side": 1,
+      "message": "Using UUIDs for the links results in a notice from the wfWarn in UUID-\u003e__toString.  This can be avoided by making $this-\u003emPastTheEndIndex and $this-\u003emOffset strings (see getLimitLinks).\n\nI found this when testing with Zend (so I could use XDebug); I think it\u0027s a notice either way, though, it\u0027s just that Zend shows it by default in the HTML output.",
+      "revId": "42488d057825332d941f5bd2327b04ae85ea20e8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
