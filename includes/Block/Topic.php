@@ -4,13 +4,15 @@ namespace Flow\Block;
 
 use Flow\Container;
 use Flow\Data\ManagerGroup;
+use Flow\Data\Pager\HistoryPager;
 use Flow\Exception\FailCommitException;
 use Flow\Exception\FlowException;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\PermissionException;
-use Flow\Formatter\FormatterRow;
+use Flow\Formatter\TopicHistoryQuery;
+use Flow\Formatter\PostHistoryQuery;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
@@ -658,43 +660,57 @@ class TopicBlock extends AbstractBlock {
 		if ( $this->workflow->isNew() ) {
 			throw new FlowException( 'No topic history can exist for non-existent topic' );
 		}
-		$found = Container::get( 'query.topic.history' )->getResults( $this->workflow->getId() );
-		return $this->processHistoryResult( $found, $options );
+		return $this->processHistoryResult( Container::get( 'query.topic.history' ), $this->workflow->getId(), $options );
 	}
 
 	protected function renderPostHistoryApi( array $options, UUID $postId ) {
 		if ( $this->workflow->isNew() ) {
 			throw new FlowException( 'No post history can exist for non-existent topic' );
 		}
-		$found = Container::get( 'query.post.history' )->getResults( $postId );
-		return $this->processHistoryResult( $found, $options );
+		return $this->processHistoryResult( Container::get( 'query.post.history' ), $postId, $options );
 	}
 
 	/**
 	 * Process the history result for either topic or post
 	 *
-	 * @param FormatterRow[] $found
+	 * @param TopicHistoryQuery|PostHistoryQuery $query
+	 * @param UUID $uuid
 	 * @param array $options
 	 * @return array
 	 */
-	protected function processHistoryResult( $found, $options ) {
+	protected function processHistoryResult( /* TopicHistoryQuery|PostHistoryQuery */ $query, UUID $uuid, $options ) {
+		global $wgRequest;
+
 		$serializer = $this->getRevisionFormatter();
 		if ( isset( $options['contentFormat'] ) ) {
 			$serializer->setContentFormat( $options['contentFormat'] );
 		}
 		$serializer->setIncludeHistoryProperties( true );
 
-		$result = array();
-		foreach ( $found as $row ) {
+		list( $limit, /* $offset */ ) = $wgRequest->getLimitOffset();
+		// don't use offset from getLimitOffset - that assumes an int, which our
+		// UUIDs are not
+		$offset = $wgRequest->getText( 'offset' );
+		$offset = $offset ? UUID::create( $offset ) : null;
+
+		$pager = new HistoryPager( $query, $uuid );
+		$pager->setLimit( $limit );
+		$pager->setOffset( $offset );
+		$pager->doQuery();
+		$history = $pager->getResult();
+
+		$revisions = array();
+		foreach ( $history as $row ) {
 			$serialized = $serializer->formatApi( $row, $this->context );
 			// if the user is not allowed to see this row it will return empty
 			if ( $serialized ) {
-				$result[$serialized['revisionId']] = $serialized;
+				$revisions[$serialized['revisionId']] = $serialized;
 			}
 		}
 
 		return array(
-			'revisions' => $result
+			'revisions' => $revisions,
+			'navbar' => $pager->getNavigationBar(),
 		);
 	}
 

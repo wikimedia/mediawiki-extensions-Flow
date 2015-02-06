@@ -13,6 +13,7 @@
         ),
         'constants' => array(),
         'helpers' => array(            'l10n' => 'Flow\TemplateHelper::l10n',
+            'html' => 'Flow\TemplateHelper::htmlHelper',
             'historyTimestamp' => 'Flow\TemplateHelper::historyTimestamp',
             'historyDescription' => 'Flow\TemplateHelper::historyDescription',
             'showCharacterDifference' => 'Flow\TemplateHelper::showCharacterDifference',
@@ -59,6 +60,8 @@
 ' : '').'					</span>
 				</li>
 ';}).'		</ul>
+
+		'.LCRun3::ch($cx, 'html', array(array(((isset($in['navbar']) && is_array($in)) ? $in['navbar'] : null)),array()), 'encq').'
 	</div>
 </div>
 ';

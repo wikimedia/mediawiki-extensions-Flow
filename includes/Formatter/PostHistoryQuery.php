@@ -3,24 +3,33 @@
 namespace Flow\Formatter;
 
 use Flow\Exception\FlowException;
-use Flow\Exception\InvalidDataException;
 use Flow\Model\UUID;
 
 class PostHistoryQuery extends AbstractQuery {
 
 	/**
 	 * @param UUID $postId
+	 * @param int $limit
+	 * @param UUID|null $offset
+	 * @param string $direction 'rev' or 'fwd'
 	 * @return FormatterRow[]
-	 * @throws InvalidDataException
 	 */
-	public function getResults( UUID $postId ) {
+	public function getResults( UUID $postId, $limit = 50, UUID $offset = null, $direction = 'fwd' ) {
 		$history = $this->storage->find(
 			'PostRevision',
 			array( 'rev_type_id' => $postId ),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 100 )
+			array(
+				'sort' => 'rev_id',
+				'order' => 'DESC',
+				'limit' => $limit,
+				'offset-id' => $offset,
+				'offset-dir' => $direction,
+				'offset-include' => false,
+				'offset-elastic' => false,
+			)
 		);
 		if ( !$history ) {
-			throw new InvalidDataException( 'Unable to load topic history for post ' . $postId->getAlphadecimal(), 'fail-load-history' );
+			return array();
 		}
 
 		$this->loadMetadataBatch( $history );
