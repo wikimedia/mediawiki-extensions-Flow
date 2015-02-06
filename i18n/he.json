@@ -120,7 +120,7 @@
 	"flow-error-missing-postId": "לא ניתן פרמטר \"postId\". הפרמטר הזה דרוש כדי לשנות רשומה.",
 	"flow-error-invalid-postId": "פרמטר \"postId\" שנשלח היה בלתי־תקין. הרשומה שצוינה ($1) לא נמצאה.",
 	"flow-error-restore-failure": "שחזור הפריט הזה נכשל.",
-	"flow-error-invalid-moderation-state": "ערך בלתי־תקין ניתן לפרמטר moderationState",
+	"flow-error-invalid-moderation-state": "ערך בלתי־תקין לפרמטר ('moderationState') נשלח ל־API של Flow.",
 	"flow-error-invalid-moderation-reason": "נא לתת סיבה להחלת הפיקוח",
 	"flow-error-not-allowed": "אין הרשאות מספיקות לביצוע הפעולה הזאת.",
 	"flow-error-not-allowed-hide": "הנושא הזה הוסתר.",
