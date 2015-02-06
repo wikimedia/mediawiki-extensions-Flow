@@ -28,6 +28,8 @@
     
     return '<div class="flow-board">
 	<div class="flow-topic-histories">
+		'.LCRun3::ch($cx, 'html', array(array(((isset($in['navbar']) && is_array($in)) ? $in['navbar'] : null)),array()), 'encq').'
+
 		<ul>
 '.LCRun3::sec($cx, ((isset($in['revisions']) && is_array($in)) ? $in['revisions'] : null), $in, true, function($cx, $in) {return '				<li>
 					<span class="flow-pipelist">
