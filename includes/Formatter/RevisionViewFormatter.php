@@ -46,6 +46,8 @@ class RevisionViewFormatter {
 		$res['rev_view_links'] = $this->buildLinks( $row );
 		$res['human_timestamp'] = $this->getHumanTimestamp( $res['timestamp'] );
 		if ( $row->revision instanceof PostRevision ) {
+			// XXX: Is this reachable?  If so, is isTopicTitle exposed in the public API
+			// or used internally?
 			$res['isTopicTitle'] = $row->revision->isTopicTitle();
 			$res['properties']['topic-of-post'] = $this->serializer->processParam(
 				'topic-of-post',
