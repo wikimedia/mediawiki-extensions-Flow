@@ -112,7 +112,7 @@
 	"flow-error-missing-postId": "Ingen \"postId\"-parameter ble sendt inn. Parameteren er påkrevd for å redigere et innlegg.",
 	"flow-error-invalid-postId": "Parameteren «postId» var ugyldig. Det angitte innlegget ($1) ble ikke funnet.",
 	"flow-error-restore-failure": "Gjenoppretting av dette innlegget feilet.",
-	"flow-error-invalid-moderation-state": "En ugyldig verdi ble gitt for moderationState",
+	"flow-error-invalid-moderation-state": "En ugyldig verdi ble gitt for en parameter ('moderationState') ble gitt til Flow-APIet.",
 	"flow-error-invalid-moderation-reason": "Vennligst oppgi en grunn for modereringen",
 	"flow-error-not-allowed": "Manglende rettigheter til å utføre denne handlingen",
 	"flow-error-title-too-long": "Diskusjonstitler er begrenset til {{PLURAL:$1|én byte|$1 bytes}}.",
@@ -274,10 +274,8 @@
 	"flow-compare-revisions-header-post": "Denne siden viser {{GENDER:$3|endringer}} mellom to versjoner av et innlegg av $3 i diskusjonen «[$5 $2]» på [$4 $1].\nDu kan se andre versjoner av dette innlegget i [$6 innleggshistorikken].",
 	"flow-compare-revisions-header-postsummary": "Denne siden viser endringer mellom to versjoner av en sammenfatning av innlegget «[$4 $2]» på [$3 $1].\nDu kan vise andre versjoner av innlegget i [$5 historikken].",
 	"flow-compare-revisions-header-header": "Denne siden viser {{GENDER:$2|endringer}} mellom to versjoner av overskriften [$3 $1].\nDu kan se andre versjoner av denne overskriften i [$4 innleggshistorikken].",
-	"flow-topic-collapsed-one-line": "Liten visning",
-	"flow-topic-collapsed-full": "Sammenslått visning",
-	"flow-topic-complete": "Full visning",
 	"right-flow-hide": "Skjul Flow-diskusjoner og innlegg",
+	"right-flow-lock": "Lås Flow-diskusjoner",
 	"right-flow-delete": "Slett Flow-diskusjoner og innlegg",
 	"right-flow-edit-post": "Rediger innlegg av andre brukere",
 	"right-flow-suppress": "Sensurer revisjoner",
@@ -314,5 +312,8 @@
 	"flow-preview-return-edit-post": "Fortsett å redigere",
 	"flow-anonymous": "Anonym",
 	"flow-embedding-unsupported": "Diskusjoner kan ikke bygges inn enda.",
-	"mw-ui-unsubmitted-confirm": "Du har ulagrede endringer på denne siden. Er du sikker på at du vil navigere vekk og miste arbeidet ditt?"
+	"mw-ui-unsubmitted-confirm": "Du har ulagrede endringer på denne siden. Er du sikker på at du vil navigere vekk og miste arbeidet ditt?",
+	"flow-post-undo-hide": "(angre skjuling)",
+	"flow-post-undo-delete": "(angre sletting)",
+	"apihelp-flow+edit-post-param-postId": "Innleggs-ID."
 }
