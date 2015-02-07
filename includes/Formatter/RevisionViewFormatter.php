@@ -46,7 +46,7 @@ class RevisionViewFormatter {
 		$res['rev_view_links'] = $this->buildLinks( $row );
 		$res['human_timestamp'] = $this->getHumanTimestamp( $res['timestamp'] );
 		if ( $row->revision instanceof PostRevision ) {
-			$res['isTopicTitle'] = $row->revision->isTopicTitle();
+			// TODO: Is this block reachable?
 			$res['properties']['topic-of-post'] = $this->serializer->processParam(
 				'topic-of-post',
 				$row->revision,
