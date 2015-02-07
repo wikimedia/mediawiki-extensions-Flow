@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_7368a984",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2015-02-07T13:46:44Z",
+      "side": 1,
+      "message": "It\u0027d be preferable to use the ApiResult::META_BC_BOOLS constant, although I realize that makes an awkward dependency with the core change or else a bit of extra compatibility-checking code.",
+      "revId": "26d794ab9246261ed5823cced4773feba6f5e9a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_5307adcd",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2015-02-07T13:46:44Z",
+      "side": 1,
+      "message": "If you\u0027d rather, ApiResult won\u0027t care if you set these in META_BC_BOOLS unconditionally (even if the actual fields aren\u0027t present). For that matter, it won\u0027t care if you set it on something that\u0027s not a boolean either, so if you\u0027d find it easier just setting $res[ApiResult::META_BC_BOOLS] \u003d array_keys( $res ) at the end should work fine.",
+      "revId": "26d794ab9246261ed5823cced4773feba6f5e9a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
