@@ -184,6 +184,11 @@ class RevisionFormatter {
 		$moderatedRevision = $this->templating->getModeratedRevision( $row->revision );
 		$ts = $row->revision->getRevisionId()->getTimestampObj();
 		$res = array(
+			'_BC_bools' => array(
+				// https://gerrit.wikimedia.org/r/#/c/182858/
+				'isOriginalContent',
+				'isModerated',
+			),
 			'workflowId' => $row->workflow->getId()->getAlphadecimal(),
 			'revisionId' => $row->revision->getRevisionId()->getAlphadecimal(),
 			'timestamp' => $ts->getTimestamp( TS_MW ),
@@ -243,6 +248,13 @@ class RevisionFormatter {
 		}
 
 		if ( $row instanceof TopicRow ) {
+			$res['_BC_bools'] = array_merge(
+				$res['_BC_bools'],
+				array(
+					'isWatched',
+					'watchable',
+				)
+			);
 			if (
 				$row->summary &&
 				$this->permissions->isAllowed( $row->summary, 'view' )
@@ -265,6 +277,13 @@ class RevisionFormatter {
 		}
 
 		if ( $row->revision instanceof PostRevision ) {
+			$res['_BC_bools'] = array_merge(
+				$res['_BC_bools'],
+				array(
+					'isMaxThreadingDepth',
+				)
+			);
+
 			$replyTo = $row->revision->getReplyToId();
 			$res['replyToId'] = $replyTo ? $replyTo->getAlphadecimal() : null;
 			$res['postId'] = $row->revision->getPostId()->getAlphadecimal();
@@ -311,17 +330,22 @@ class RevisionFormatter {
 		$blockTitle = \SpecialPage::getTitleFor( 'Block', $name );
 
 		$userContribsTitle = \SpecialPage::getTitleFor( 'Contributions', $name );
+		$userLinksBCBools = array(
+			'_BC_bools' => array(
+				'exists',
+			),
+		);
 		$links = array(
 			'contribs' => array(
 				'url' => $userContribsTitle->getLinkURL(),
 				'title' => $userContribsTitle->getText(),
 				'exists' => true,
-			),
+			) + $userLinksBCBools,
 			'userpage' => array(
 				'url' => $userTitle->getLinkURL(),
 				'title' => $userTitle->getText(),
 				'exists' => $userTitle->exists(),
-			)
+			) + $userLinksBCBools,
 		);
 
 		if ( $talkPageTitle ) {
@@ -329,7 +353,7 @@ class RevisionFormatter {
 				'url' => $talkPageTitle->getLinkURL(),
 				'title' => $talkPageTitle->getPrefixedText(),
 				'exists' => $talkPageTitle->exists()
-			);
+			) + $userLinksBCBools;
 		}
 		// is this right permissions? typically this would
 		// be sourced from Linker::userToolLinks, but that
@@ -341,7 +365,7 @@ class RevisionFormatter {
 					'url' => $blockTitle->getLinkURL(),
 					'title' => wfMessage( 'blocklink' ),
 					'exists' => true
-				),
+				) + $userLinksBCBools,
 			);
 		}
 
