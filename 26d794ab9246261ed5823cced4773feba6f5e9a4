@@ -33,6 +33,24 @@
       "revId": "26d794ab9246261ed5823cced4773feba6f5e9a4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_a4eb55da",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-08T05:34:51Z",
+      "side": 1,
+      "message": "It\u0027s mainly like this so it\u0027s localized (the _BC_bools is in the same place as the fields).\n\nIf I used array_keys, I would still have to do it at every applicable level.  I think this might be a little more clear.",
+      "parentUuid": "6e7c4fa4_5307adcd",
+      "revId": "26d794ab9246261ed5823cced4773feba6f5e9a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
