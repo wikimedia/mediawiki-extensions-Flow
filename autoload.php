@@ -81,6 +81,7 @@ $wgAutoloadClasses += array(
 	'Flow\\Data\\LifecycleHandler' => __DIR__ . '/includes/Data/LifecycleHandler.php',
 	'Flow\\Data\\Listener\\AbstractTopicInsertListener' => __DIR__ . '/includes/Data/Listener/WatchTopicListener.php',
 	'Flow\\Data\\Listener\\DeferredInsertLifecycleHandler' => __DIR__ . '/includes/Data/Listener/DeferredInsertLifecycleHandler.php',
+	'Flow\\Data\\Listener\\EditCountListener' => __DIR__ . '/includes/Data/Listener/EditCountListener.php',
 	'Flow\\Data\\Listener\\ImmediateWatchTopicListener' => __DIR__ . '/includes/Data/Listener/WatchTopicListener.php',
 	'Flow\\Data\\Listener\\NotificationListener' => __DIR__ . '/includes/Data/Listener/NotificationListener.php',
 	'Flow\\Data\\Listener\\OccupationListener' => __DIR__ . '/includes/Data/Listener/OccupationListener.php',
