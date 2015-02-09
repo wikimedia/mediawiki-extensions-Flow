@@ -4,6 +4,7 @@ namespace Flow\Data\Listener;
 
 use Article;
 use Flow\Data\LifecycleHandler;
+use Flow\Exception\FlowException;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
 use SplQueue;
@@ -65,6 +66,13 @@ class OccupationListener implements LifecycleHandler {
 	}
 
 	public function onAfterInsert( $object, array $new, array $metadata ) {
+		if ( !$object instanceof Workflow ) {
+			return;
+		}
+		if ( isset( $metadata['imported'] ) && $metadata['imported'] ) {
+			$this->occupationController->allowCreation( $object->getArticleTitle() );
+		}
+
 		$this->ensureOccupation( $object );
 	}
 
