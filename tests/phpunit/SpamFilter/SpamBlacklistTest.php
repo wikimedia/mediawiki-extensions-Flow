@@ -72,11 +72,9 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 			$this->markTestSkipped( 'SpamBlacklist not enabled' );
 		}
 
-		// alter $wgMemc & write empty shared blacklist, to prevent an attempt
-		// to fetch spam blacklist over network
-		$this->setMwGlobals( 'wgMemc', new \HashBagOStuff() );
-		global $wgMemc, $wgDBname;
-		$wgMemc->set( "$wgDBname:spam_blacklist_regexes", array() );
+		$this->setMwGlobals( 'wgBlacklistSettings', array(
+			'files' => array(),
+		) );
 
 		// local spam lists are read from spam-blacklist & spam-whitelist
 		// messages, so change them for this test
