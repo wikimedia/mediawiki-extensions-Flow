@@ -5,6 +5,7 @@ use Flow\Import\FileImportSourceStore;
 use Flow\Import\LiquidThreadsApi\ConversionStrategy;
 use Flow\Import\LiquidThreadsApi\LocalApiBackend;
 use Flow\Utils\PagesWithPropertyIterator;
+use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
 
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
@@ -22,12 +23,20 @@ class ConvertLqt extends Maintenance {
 		$this->mDescription = "Converts LiquidThreads data to Flow data";
 		$this->addOption( 'logfile', 'File to read and store associations between imported items and their sources. This is required for the import to be idempotent.', true, true );
 		$this->addOption( 'verbose', 'Report on import progress to stdout' );
+		$this->addOption( 'debug', 'Include debug information with progress report' );
 	}
 
 	public function execute() {
-		$logger = $this->getOption( 'verbose' )
-			? new MaintenanceDebugLogger( $this )
-			: new NullLogger;
+		if ( $this->getOption( 'verbose' ) ) {
+			$logger = new MaintenanceDebugLogger( $this );
+			if ( $this->getOption( 'debug' ) ) {
+				$logger->setMaximumLevel( LogLevel::DEBUG );
+			} else {
+				$logger->setMaximumLevel( LogLevel::INFO );
+			}
+		} else {
+			$logger = new NullLogger;
+		}
 		$importer = Flow\Container::get( 'importer' );
 		$talkpageManagerUser = FlowHooks::getOccupationController()->getTalkpageManager();
 
