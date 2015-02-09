@@ -183,10 +183,17 @@ class TalkpageManager implements OccupationController {
 			return false;
 		}
 
-		// tracks which titles are allowed so that when
-		// BoardContentHandler::canBeUsedOn is called for this
-		// title, it can call self::isTalkpageOccupied and get
-		// a successful result.
+		$this->allowCreation( $title );
+
+		return true;
+	}
+
+	/**
+	 * tracks which titles are allowed so that when
+	 * BoardContentHandler::canBeUsedOn is called for this title, it
+	 * can call self::isTalkpageOccupied and get a successful result.
+	 */
+	public function allowCreation( Title $title ) {
 		$this->occupiedPages[] = $title->getPrefixedText();
 
 		return true;
