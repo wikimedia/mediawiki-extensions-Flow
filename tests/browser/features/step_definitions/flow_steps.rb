@@ -99,7 +99,7 @@ end
 Then(/^I am on my user page$/) do
   # Get the title of the page without '_' characters
   text = 'User:' + ENV["MEDIAWIKI_USER"].gsub(/_/, ' ')
-  expect(on(UserPage).page_title_element.text).to eq(text)
+  expect(on(UserPage).first_heading_element.text).to match(text)
 end
 
 Then(/^I should see a Delete button$/) do
