@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_666bfcb5",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 640
+      },
+      "writtenOn": "2015-02-09T21:28:25Z",
+      "side": 1,
+      "message": "Why not DataModelException with use Flow\\Exception\\DataModelException ?",
+      "revId": "8e3205a25f8f10e6445f1789840e993d36f8bede",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_6c72fbe3",
+        "filename": "tests/phpunit/PostRevisionTestCase.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 640
+      },
+      "writtenOn": "2015-02-09T21:28:25Z",
+      "side": 1,
+      "message": "How about catching the specific exception that gets thrown here? (Remove the catch, see what phpunit complains about.)\n\nOr is there a reason that is not a better idea than suppressing any exception that would indicate programmer error and all notices, warnings and errors?",
+      "revId": "8e3205a25f8f10e6445f1789840e993d36f8bede",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_4c77ffcf",
+        "filename": "tests/phpunit/PostRevisionTestCase.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 640
+      },
+      "writtenOn": "2015-02-09T21:28:25Z",
+      "side": 1,
+      "message": "Same as above.",
+      "revId": "8e3205a25f8f10e6445f1789840e993d36f8bede",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
