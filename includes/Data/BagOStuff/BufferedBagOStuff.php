@@ -231,7 +231,7 @@ class BufferedBagOStuff extends HashBagOStuff {
 	 * @param int $exptime
 	 * @return bool
 	 */
-	public function cas( $casToken, $key, $value, $exptime = 0 ) {
+	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
 		$cache = $this->cache;
 		$originalValue = isset( $this->casTokens[$casToken] ) ? $this->casTokens[$casToken] : null;
 
@@ -254,6 +254,14 @@ class BufferedBagOStuff extends HashBagOStuff {
 			// Check if the value we just read from real cache is still the same
 			// as the one we saved when doing the original fetch
 			if ( serialize( $current ) === $originalValue ) {
+				/*
+				 * Note that all BagOStuff::cas implementations are protected!
+				 * We can still call it from here because this class too extends
+				 * from BagOStuff, where the cas method is defined. PHP will
+				 * allow us access because "because the implementation specific
+				 * details are already known."
+				 */
+
 				// Everything still checked out, let's CAS the value for real now
 				return $cache->cas( $casToken, $key, $value, $exptime );
 			}

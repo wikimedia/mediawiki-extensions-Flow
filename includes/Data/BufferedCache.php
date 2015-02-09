@@ -74,16 +74,6 @@ class BufferedCache {
 	}
 
 	/**
-	 * @param mixed $casToken
-	 * @param string $key
-	 * @param mixed $value
-	 * @return bool
-	 */
-	public function cas( $casToken, $key, $value ) {
-		return $this->cache->cas( $casToken, $key, $value, $this->exptime );
-	}
-
-	/**
 	 * @param string $key
 	 * @param int $time
 	 * @return bool
