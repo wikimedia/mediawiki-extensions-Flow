@@ -231,7 +231,8 @@ class BufferedBagOStuff extends HashBagOStuff {
 	 * @param int $exptime
 	 * @return bool
 	 */
-	public function cas( $casToken, $key, $value, $exptime = 0 ) {
+	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
+		$that = $this;
 		$cache = $this->cache;
 		$originalValue = isset( $this->casTokens[$casToken] ) ? $this->casTokens[$casToken] : null;
 
@@ -242,7 +243,9 @@ class BufferedBagOStuff extends HashBagOStuff {
 		 * @param int $exptime
 		 * @return bool
 		 */
-		$cas = function ( $casToken, $key, $value, $exptime = 0 ) use ( $cache, $originalValue ) {
+		$cas = function ( $casToken, $key, $value, $exptime = 0 )
+			use ( $that, $cache, $originalValue )
+		{
 			// Check if given (local) CAS token was known
 			if ( $originalValue === null ) {
 				return false;
@@ -254,8 +257,16 @@ class BufferedBagOStuff extends HashBagOStuff {
 			// Check if the value we just read from real cache is still the same
 			// as the one we saved when doing the original fetch
 			if ( serialize( $current ) === $originalValue ) {
+				/*
+				 * Note that all BagOStuff::cas implementations are protected!
+				 * We can still call it from here because this class too extends
+				 * from BagOStuff, where the cas method is defined. PHP will
+				 * allow us access because "because the implementation specific
+				 * details are already known."
+				 */
+
 				// Everything still checked out, let's CAS the value for real now
-				return $cache->cas( $casToken, $key, $value, $exptime );
+				return $that->immediateCasInternal( $casToken, $key, $value, $exptime );
 			}
 
 			return false;
@@ -274,6 +285,19 @@ class BufferedBagOStuff extends HashBagOStuff {
 		}
 
 		return $success;
+	}
+
+	/**
+	 * Internal function to let closures access protected cache object methods
+	 *
+	 * @param mixed $casToken
+	 * @param string $key
+	 * @param mixed $value
+	 * @param int $exptime
+	 * @return type
+	 */
+	public function immediateCasInternal( $casToken, $key, $value, $exptime ) {
+		return $this->cache->cas( $casToken, $key, $value, $exptime );
 	}
 
 	/**
