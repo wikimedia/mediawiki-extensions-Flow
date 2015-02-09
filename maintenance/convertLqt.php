@@ -22,12 +22,16 @@ class ConvertLqt extends Maintenance {
 		$this->mDescription = "Converts LiquidThreads data to Flow data";
 		$this->addOption( 'logfile', 'File to read and store associations between imported items and their sources. This is required for the import to be idempotent.', true, true );
 		$this->addOption( 'verbose', 'Report on import progress to stdout' );
+		$this->addOption( 'debug', 'Include debug information with progress report' );
 	}
 
 	public function execute() {
-		$logger = $this->getOption( 'verbose' )
-			? new MaintenanceDebugLogger( $this )
-			: new NullLogger;
+		if ( $this->getOption( 'verbose' ) ) {
+			$logger = new MaintenanceDebugLogger( $this );
+			$logger->outputDebug( $this->getOption( 'debug' ) );
+		} else {
+			$logger = new NullLogger;
+		}
 		$importer = Flow\Container::get( 'importer' );
 		$talkpageManagerUser = FlowHooks::getOccupationController()->getTalkpageManager();
 
