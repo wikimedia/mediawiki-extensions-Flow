@@ -22,6 +22,9 @@ abstract class ApiTestCase extends BaseApiTestCase {
 			// blank for testing read operations on unused (but occupied) pages.
 			'Talk:Intentionally blank',
 		) );
+
+		Flow\Tests\FlowTestCase::useTestObjectsInContainer( $this );
+
 		parent::setUp();
 	}
 
