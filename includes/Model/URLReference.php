@@ -2,7 +2,7 @@
 
 namespace Flow\Model;
 
-use Flow\Exception\InvalidInputException;
+use Flow\Exception\InvalidReferenceException;
 use Title;
 
 class URLReference extends Reference {
@@ -15,13 +15,13 @@ class URLReference extends Reference {
 	 * @param UUID   $objectId    Unique identifier for the revisioned object containing the reference.
 	 * @param string $type        Type of reference
 	 * @param string $url         URL of the reference's target.
-	 * @throws InvalidInputException
+	 * @throws InvalidReferenceException
 	 */
 	public function __construct( UUID $srcWorkflow, Title $srcTitle, $objectType, UUID $objectId, $type, $url ) {
 		$this->url = $url;
 
 		if ( !is_array( wfParseUrl( $url ) ) ) {
-			throw new InvalidInputException(
+			throw new InvalidReferenceException(
 				"Invalid URL $url specified for reference " . get_class( $this )
 			);
 		}
