@@ -384,6 +384,7 @@
 	"flow-post-undo-hide": "Automatic moderation summary when undoing a hide that was just performed.",
 	"flow-post-undo-delete": "Automatic moderation summary when undoing a delete that was just performed.",
 	"flow-post-undo-suppress": "Automatic moderation summary when undoing a suppress that was just performed.",
+	"flow-importer-lqt-moved-thread": "Name of a wikitet template that is used as the content of LQT moved thread stubs when they are imported to Flow.",
 	"flow-importer-lqt-converted-template": "Name of a wikitext template that is added to the header of Flow boards that were converted from LiquidThreads",
 	"flow-importer-lqt-converted-archive-template": "Name of a wikitext template that is added to the archived copy of a LiquidThreads page converted to Flow.",
 	"flow-importer-wt-converted-template": "Name of a wikitext template that is added to the header of a Flow boards that were converted from Wikitext",
