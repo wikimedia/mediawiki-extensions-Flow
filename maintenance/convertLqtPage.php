@@ -18,6 +18,7 @@ class ConvertLqt extends Maintenance {
 		$this->addArg( 'dstpage', 'Page name of the local page to import to', true );
 		$this->addOption( 'srcpage', 'Page name of the remote page to import from. If not specified defaults to dstpage', false, true );
 		$this->addOption( 'remoteapi', 'Remote API URL to read from', false, true );
+		$this->addOption( 'cacheremoteapidir', 'Cache remote api calls to the specified directory', false, true );
 		$this->addOption( 'logfile', 'File to read and store associations between imported items and their sources', false, true );
 		$this->addOption( 'verbose', 'Report on import progress to stdout' );
 		$this->addOption( 'debug', 'Include debug information to progress report' );
@@ -33,7 +34,20 @@ class ConvertLqt extends Maintenance {
 		}
 
 		if ( $this->hasOption( 'remoteapi' ) ) {
-			$api = new RemoteApiBackend( $this->getOption( 'remoteapi' ) );
+			if ( $this->hasOption( 'cacheremoteapidir' ) ) {
+				$cacheDir = $this->getOption( 'cacheremoteapidir' );
+				if ( !is_dir( $cacheDir ) ) {
+					if ( !mkdir( $cacheDir ) ) {
+						throw new Flow\Exception\FlowException( 'Provided dir for caching remote api calls is not creatable.' );
+					}
+				}
+				if ( !is_writable( $cacheDir ) ) {
+					throw new Flow\Exception\FlowException( 'Provided dir for caching remote api calls is not writable.' );
+				}
+			} else {
+				$cacheDir = null;
+			}
+			$api = new RemoteApiBackend( $this->getOption( 'remoteapi' ), $cacheDir );
 		} else {
 			$api = new LocalApiBackend;
 		}
