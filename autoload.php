@@ -125,6 +125,7 @@ $wgAutoloadClasses += array(
 	'Flow\\Exception\\InvalidActionException' => __DIR__ . '/includes/Exception/ExceptionHandling.php',
 	'Flow\\Exception\\InvalidDataException' => __DIR__ . '/includes/Exception/ExceptionHandling.php',
 	'Flow\\Exception\\InvalidInputException' => __DIR__ . '/includes/Exception/ExceptionHandling.php',
+	'Flow\\Exception\\InvalidReferenceException' => __DIR__ . '/includes/Exception/ExceptionHandling.php',
 	'Flow\\Exception\\InvalidTopicUuidException' => __DIR__ . '/includes/Exception/ExceptionHandling.php',
 	'Flow\\Exception\\NoIndexException' => __DIR__ . '/includes/Exception/ExceptionHandling.php',
 	'Flow\\Exception\\NoParsoidException' => __DIR__ . '/includes/Exception/ExceptionHandling.php',
