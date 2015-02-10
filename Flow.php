@@ -125,6 +125,13 @@ $wgFlowGroupPermissions['oversight']['flow-suppress'] = true;
 $wgFlowGroupPermissions['flow-bot']['flow-create-board'] = true;
 $wgGroupPermissions = array_merge_recursive( $wgGroupPermissions, $wgFlowGroupPermissions );
 
+$wgAvailableRights[] = 'flow-hide';
+$wgAvailableRights[] = 'flow-lock';
+$wgAvailableRights[] = 'flow-delete';
+$wgAvailableRights[] = 'flow-suppress';
+$wgAvailableRights[] = 'flow-edit-post';
+$wgAvailableRights[] = 'flow-create-board';
+
 // Register Flow import paths
 $wgResourceLoaderLESSImportPaths = array_merge( $wgResourceLoaderLESSImportPaths, array(
 	$dir . "modules/styles/flow.less/",
