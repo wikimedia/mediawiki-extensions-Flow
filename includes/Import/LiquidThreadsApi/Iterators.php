@@ -18,9 +18,14 @@ class TopicIterator implements Iterator {
 	protected $threadData;
 
 	/**
-	 * @var integer|false|null Id of the current topic, false if no current topic, null if unknown.
+	 * @var integer|false|null Lqt id of the current topic, false if no current topic, null if unknown.
 	 */
 	protected $current = false;
+
+	/**
+	 * @var ImportTopic The current topic.
+	 */
+	protected $currentTopic = null;
 
 	/**
 	 * @var string Name of the remote page the topics exist on
@@ -58,7 +63,7 @@ class TopicIterator implements Iterator {
 		if ( $this->current === false ) {
 			return null;
 		}
-		return $this->importSource->getTopic( $this->current );
+		return $this->currentTopic;
 	}
 
 	/**
@@ -79,10 +84,20 @@ class TopicIterator implements Iterator {
 				$topicId = $this->topicIdIterator->current();
 				$this->topicIdIterator->next();
 
-				if ( $topicId > $lastOffset ) {
-					$this->current = $topicId;
-					return;
+				// this topic id has been seen before.
+				if ( $topicId <= $lastOffset ) {
+					continue;
 				}
+
+				// hidden and deleted threads come back as null
+				$topic = $this->importSource->getTopic( $topicId );
+				if ( $topic === null ) {
+					continue;
+				}
+
+				$this->current = $topicId;
+				$this->currentTopic = $topic;
+				return;
 			}
 		} while( $this->loadMore() );
 
@@ -195,10 +210,13 @@ class RevisionIterator implements Iterator {
 	/** @var IImportObject **/
 	protected $parent;
 
-	public function __construct( array $pageData, IImportObject $parent ) {
+	public function __construct( array $pageData, IImportObject $parent, $factory = null ) {
 		$this->pageData = $pageData;
 		$this->pointer = 0;
 		$this->parent = $parent;
+		$this->factory = $factory ?: function( $data, $parent ) {
+			return new ImportRevision( $data, $parent );
+		};
 	}
 
 	protected function getRevisionCount() {
@@ -226,6 +244,10 @@ class RevisionIterator implements Iterator {
 	}
 
 	public function current() {
-		return new ImportRevision( $this->pageData['revisions'][$this->pointer], $this->parent );
+		return call_user_func(
+			$this->factory,
+			$this->pageData['revisions'][$this->pointer],
+			$this->parent
+		);
 	}
 }

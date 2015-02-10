@@ -19,6 +19,12 @@ use UsageException;
 use User;
 
 class ImportSource implements IImportSource {
+	// Thread types defined by LQT which are returned via api
+	const THREAD_TYPE_NORMAL = 0;
+	const THREAD_TYPE_MOVED = 1;
+	const THREAD_TYPE_DELETED = 2;
+	const THREAD_TYPE_HIDDEN = 4;
+
 	/**
 	 * @var ApiBackend
 	 */
@@ -69,10 +75,31 @@ class ImportSource implements IImportSource {
 
 	/**
 	 * @param integer $id
-	 * @return ImportTopic
+	 * @return ImportTopic|null
 	 */
 	public function getTopic( $id ) {
-		return new ImportTopic( $this, $this->threadData->get( $id ) );
+		$data = $this->threadData->get( $id );
+		switch ( $data['type'] ) {
+		// Standard thread
+		case self::THREAD_TYPE_NORMAL:
+			return new ImportTopic( $this, $data );
+
+		// The topic no longer exists at the queried location, but
+		// a stub was left behind pointing to it. This modified
+		// version of ImportTopic gracefully adjusts the #REDIRECT
+		// into a template to keep a similar output to lqt.
+		case self::THREAD_TYPE_MOVED:
+			return new MovedImportTopic( $this, $data );
+
+		// To get these back from the api we would have to send the `showdeleted`
+		// query param.  As we are not requesting them, just ignore for now.
+		case self::THREAD_TYPE_DELETED:
+			return null;
+
+		// Was assigned but never used by LQT.
+		case self::THREAD_TYPE_HIDDEN:
+			return null;
+		}
 	}
 
 	/**
