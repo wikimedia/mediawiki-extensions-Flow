@@ -188,6 +188,27 @@ class ImportTopic extends ImportPost implements IImportTopic, IObjectRevision {
 	}
 }
 
+class MovedImportTopic extends ImportTopic {
+	public function getText() {
+		$content = \ContentHandler::makeContent( parent::getText(), null, CONTENT_MODEL_WIKITEXT );
+		$target = $content->getRedirectTarget();
+		if ( !$target ) {
+			throw new ImportException( '...' );
+		}
+
+		// To get the new talk page that this belongs to we would need to query the api
+		// for the new topic, for now not bothering.
+		$template = wfMessage( 'flow-importer-lqt-moved-thread' )->inContentLanguage()->plain();
+		$arguments = implode( '|', array(
+			'author=' . parent::getAuthor(),
+			'date=' . MWTimestamp::getInstance( $this->apiResponse['created'] )->timestamp->format( 'Y-m-d' ),
+			'title=' . $target->getPrefixedText(),
+		) );
+
+		return "{{{$template}|$arguments}}";
+	}
+}
+
 class ImportSummary extends PageRevisionedObject implements IImportSummary {
 	/** @var ImportSource **/
 	protected $source;

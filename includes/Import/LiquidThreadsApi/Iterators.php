@@ -19,9 +19,14 @@ class TopicIterator implements Iterator {
 	protected $threadData;
 
 	/**
-	 * @var integer|false|null Id of the current topic, false if no current topic, null if unknown.
+	 * @var ImportTopic|false|null Obj of the current topic, false if no current topic, null if unknown.
 	 */
 	protected $current = false;
+
+	/**
+	 * @var int Id of the current topic.
+	 */
+	protected $currentId = 0;
 
 	/**
 	 * @var string Name of the remote page the topics exist on
@@ -59,14 +64,14 @@ class TopicIterator implements Iterator {
 		if ( $this->current === false ) {
 			return null;
 		}
-		return $this->importSource->getTopic( $this->current );
+		return $this->current;
 	}
 
 	/**
 	 * @return integer
 	 */
 	public function key() {
-		return $this->current;
+		return $this->currentId;
 	}
 
 	public function next() {
@@ -80,10 +85,20 @@ class TopicIterator implements Iterator {
 				$topicId = $this->topicIdIterator->current();
 				$this->topicIdIterator->next();
 
-				if ( $topicId > $lastOffset ) {
-					$this->current = $topicId;
-					return;
+				// this topic id has been seen before.
+				if ( $topicId < $lastOffset ) {
+					continue;
 				}
+
+				// hidden and deleted threads come back as null
+				$topic = $this->importSource->getTopic( $topicId );
+				if ( $topic === null ) {
+					continue;
+				}
+
+				$this->currentId = $topicId;
+				$this->current = $topic;
+				return;
 			}
 		} while( $this->loadMore() );
 
