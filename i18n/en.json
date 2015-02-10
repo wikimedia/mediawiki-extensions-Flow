@@ -379,6 +379,7 @@
 	"flow-post-undo-hide": "(undo hide)",
 	"flow-post-undo-delete": "(undo delete)",
 	"flow-post-undo-suppress": "(undo suppress)",
+	"flow-importer-lqt-moved-thread-template": "LQT Moved thread stub converted to Flow",
 	"flow-importer-lqt-converted-template": "LQT page converted to Flow",
 	"flow-importer-lqt-converted-archive-template": "Archive for converted LQT page",
 	"flow-importer-wt-converted-template": "Wikitext talk page converted to Flow",
