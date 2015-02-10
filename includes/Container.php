@@ -18,7 +18,12 @@ class Container extends \Pimple {
 	 */
 	public static function getContainer() {
 		if ( self::$container === null ) {
-			self::$container = include __DIR__ . '/../container.php';
+			if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+				$file = 'container-test.php';
+			} else {
+				$file = 'container.php';
+			}
+			self::$container = include __DIR__ . "/../$file";
 		}
 		return self::$container;
 	}
