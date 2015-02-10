@@ -38,7 +38,6 @@ class PostRevisionTestCase extends FlowTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		Container::reset();
 		$this->generateWorkflowForPost();
 		$this->revision = $this->generateObject();
 		// Revisions must be blanked here otherwise phpunit run with --repeat will remember
