@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_a6ad8fe9",
+        "filename": "tests/phpunit/Data/BagOStuff/BufferedBagOStuffTest.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2015-02-10T00:36:01Z",
+      "side": 1,
+      "message": "This creates an integer value instead of a boolean.\n\nWhat\u0027s the added value of \u0026\u003d  here over plain \u0026\u0026 and || expressions? With \u0027and\u0027/\u0027or\u0027 expressions, logic is naturally terminated early if steps are redundant.\n\nThis also arguably makes the code harder to read. While it may be more natural in languages like C, I think in PHP it\u0027s a bit counter-intuitive to write statements this way unless there\u0027s a good reason to.\n\nSee also T89063.",
+      "revId": "1ddf13b059e41ca80e105a06f13d2bc76d7eb403",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
