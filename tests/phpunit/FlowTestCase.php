@@ -9,8 +9,8 @@ use Flow\Model\UUID;
 
 class FlowTestCase extends \MediaWikiTestCase {
 	protected function setUp() {
+		Container::reset();
 		self::useTestObjectsInContainer( $this );
-
 		parent::setUp();
 	}
 

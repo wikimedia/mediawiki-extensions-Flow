@@ -23,6 +23,7 @@ abstract class ApiTestCase extends BaseApiTestCase {
 			'Talk:Intentionally blank',
 		) );
 
+		Container::reset();
 		\Flow\Tests\FlowTestCase::useTestObjectsInContainer( $this );
 
 		parent::setUp();
@@ -51,6 +52,7 @@ abstract class ApiTestCase extends BaseApiTestCase {
 		// reset flow state before each request
 		FlowHooks::resetFlowExtension();
 		Container::reset();
+		\Flow\Tests\FlowTestCase::useTestObjectsInContainer( $this );
 		$container = Container::getContainer();
 		$container['user'] = $user;
 		return parent::doApiRequest( $params, $session, $appendModule, $user );
