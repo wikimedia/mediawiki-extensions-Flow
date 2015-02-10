@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_eb902850",
+        "filename": "includes/Data/BagOStuff/BufferedBagOStuff.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 16
+      },
+      "writtenOn": "2015-02-10T19:08:42Z",
+      "side": 1,
+      "message": "This gives a visibility error since 5.3 closures have no scope. It won\u0027t effect prod since hhvm is like 5.4.\n\nI guess the callback could be made a non-closure to deal with that. I\u0027ll make core take non-closures.",
+      "revId": "2974cf67cc58aeb6231777161aab6a6ccfe1f847",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
