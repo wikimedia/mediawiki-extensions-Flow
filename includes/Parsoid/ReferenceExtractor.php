@@ -3,6 +3,7 @@
 namespace Flow\Parsoid;
 
 use DOMXPath;
+use Flow\Exception\InvalidReferenceException;
 use Flow\Model\Reference;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
@@ -62,7 +63,12 @@ class ReferenceExtractor {
 			}
 
 			foreach( $elements as $element ) {
-				$ref = $extractor->perform( $factory, $element );
+				try {
+					$ref = $extractor->perform( $factory, $element );
+				} catch ( InvalidReferenceException $e ) {
+					wfDebugLog( 'Flow', 'Invalid reference detected, skipping element' );
+					$ref = null;
+				}
 				// no reference was generated
 				if ( $ref === null ) {
 					continue;

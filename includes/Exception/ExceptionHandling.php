@@ -163,6 +163,9 @@ class InvalidInputException extends FlowException {
 	}
 }
 
+class InvalidReferenceException extends InvalidInputException {
+}
+
 /**
  * Category: invalid action exception
  */
