@@ -7,8 +7,18 @@
 			   data-flow-interactive-handler="activateReplyPost"
 
 			   {{!--
-				   Initialize EventLogging: see flow_topic_titlebar_content for
-				   more details on how this works.
+				   Initialize EventLogging:
+				   * action: name of the action param
+				   * schema: name of the schema (will be forwarded)
+				   * entrypoint: name of the entrypoint (will be forwarded)
+				   * forward: nodes to forward this funnel to
+				   We want to keep track of multiple actions in the same "funnel".
+				   Having a node without data-flow-eventlog-funnel-id (this node)
+				   will result in a funnel being created. That funnel id will then
+				   be forwarded to all specified nodes, so if you later click on one
+				   of the forwarded nodes, it'll recognize and find the funnel. All
+				   that is needed there, is a specific data-flow-eventlog-action,
+				   all other details (log, entrypoint, funnel id, ...) are inherited
 			   --}}
 			   data-flow-eventlog-schema="FlowReplies"
 			   data-flow-eventlog-action="initiate"

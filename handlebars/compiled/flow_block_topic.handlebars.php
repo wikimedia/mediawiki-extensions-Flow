@@ -48,22 +48,6 @@
     data-flow-topic-title="'.LCRun3::ch($cx, 'plaintextSnippet', array(array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),array()), 'encq').'"
     data-flow-load-handler="topicTitle">'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),array()), 'encq').'</h2>
 <div class="flow-topic-meta">
-'.((LCRun3::ifvar($cx, ((isset($in['actions']['reply']) && is_array($in['actions'])) ? $in['actions']['reply'] : null))) ? '		<a href="'.htmlentities((string)((isset($in['actions']['reply']['url']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['url'] : null), ENT_QUOTES, 'UTF-8').'"
-		   title="'.htmlentities((string)((isset($in['actions']['reply']['title']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'"
-		   class="mw-ui-anchor mw-ui-progressive mw-ui-quiet"
-		   data-flow-interactive-handler="activateForm"
-
-		   data-flow-eventlog-schema="FlowReplies"
-		   data-flow-eventlog-action="initiate"
-		   data-flow-eventlog-entrypoint="reply-top"
-		   data-flow-eventlog-forward="
-		       < .flow-topic .flow-reply-form:last [data-role=\'cancel\'],
-		       < .flow-topic .flow-reply-form:last [data-role=\'action\'][name=\'preview\'],
-		       < .flow-topic .flow-reply-form:last [data-role=\'submit\']
-		   "
-		>'.htmlentities((string)((isset($in['actions']['reply']['title']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'</a>
-		&bull;
-' : '').'
 	'.LCRun3::ch($cx, 'l10n', array(array('flow-topic-comments',((isset($in['reply_count']) && is_array($in)) ? $in['reply_count'] : null)),array()), 'encq').' &bull;
 
 	<a href="'.htmlentities((string)((isset($in['links']['topic-history']['url']) && is_array($in['links']['topic-history'])) ? $in['links']['topic-history']['url'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-timestamp-anchor">
