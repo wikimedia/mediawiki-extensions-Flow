@@ -6,7 +6,7 @@ use Flow\Model\UUID;
 use Flow\Parsoid\Utils;
 use Message;
 
-class Formatter extends \LogFormatter {
+class ActionFormatter extends \LogFormatter {
 	/**
 	 * Formats an activity log entry.
 	 *
