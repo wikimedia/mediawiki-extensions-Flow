@@ -21,6 +21,7 @@
 	"logentry-delete-flow-restore-topic": "$1 {{GENDER:$2|restored}} a [$4 topic] on [[$3]]",
 	"logentry-suppress-flow-suppress-topic": "$1 {{GENDER:$2|suppressed}} a [$4 topic] on [[$3]]",
 	"logentry-suppress-flow-restore-topic": "$1 {{GENDER:$2|deleted}} a [$4 topic] on [[$3]]",
+	"logentry-import-lqt-to-flow-topic": "[[$1|<nowiki>$2</nowiki>]] on [[$3]] was imported from LiquidThreads to Flow",
 	"flow-user-moderated": "Moderated user",
 	"flow-board-header-browse-topics-link": "Browse topics",
 	"flow-edit-header-link": "Edit header",
