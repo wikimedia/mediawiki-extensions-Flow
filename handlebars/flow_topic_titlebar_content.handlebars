@@ -2,40 +2,6 @@
     data-flow-topic-title="{{plaintextSnippet content.format content.content}}"
     data-flow-load-handler="topicTitle">{{escapeContent content.format content.content}}</h2>
 <div class="flow-topic-meta">
-	{{#if actions.reply}}
-		<a href="{{actions.reply.url}}"
-		   title="{{actions.reply.title}}"
-		   class="mw-ui-anchor mw-ui-progressive mw-ui-quiet"
-		   data-flow-interactive-handler="activateForm"
-
-		   {{!--
-		       Initialize EventLogging:
-		       * action: name of the action param
-		       * schema: name of the schema (will be forwarded)
-		       * entrypoint: name of the entrypoint (will be forwarded)
-		       * forward: nodes to forward this funnel to
-		       We want to keep track of multiple actions in the same "funnel".
-		       Having a node without data-flow-eventlog-funnel-id (this node)
-		       will result in a funnel being created. That funnel id will then
-		       be forwarded to all specified nodes, so if you later click on one
-		       of the forwarded nodes, it'll recognize and find the funnel. All
-		       that is needed there, is a specific data-flow-eventlog-action,
-		       all other details (log, entrypoint, funnel id, ...) are inherited
-		   --}}
-		   data-flow-eventlog-schema="FlowReplies"
-		   data-flow-eventlog-action="initiate"
-		   data-flow-eventlog-entrypoint="reply-top"
-		   data-flow-eventlog-forward="
-		       < .flow-topic .flow-reply-form:last [data-role='cancel'],
-		       < .flow-topic .flow-reply-form:last [data-role='action'][name='preview'],
-		       < .flow-topic .flow-reply-form:last [data-role='submit']
-		   "
-		>
-			{{~actions.reply.title~}}
-		</a>
-		&bull;
-	{{/if}}
-
 	{{l10n "flow-topic-comments" reply_count}} &bull;
 
 	<a href="{{links.topic-history.url}}" class="flow-timestamp-anchor">
