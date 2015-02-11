@@ -32,6 +32,20 @@ class MockImportTopic extends MockImportPost implements IImportTopic {
 	/**
 	 * {@inheritDoc}
 	 */
+	public function getLogType() {
+		"mock-flow-topic-import";
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function getLogParameters() {
+		return array();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public function getObjectKey() {
 		return 'mock-topic:1';
 	}
