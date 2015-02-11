@@ -16,6 +16,24 @@
       "revId": "2974cf67cc58aeb6231777161aab6a6ccfe1f847",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_0018da21",
+        "filename": "includes/Data/BagOStuff/BufferedBagOStuff.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-11T16:44:46Z",
+      "side": 1,
+      "message": "I\u0027m not sure exactly what in here poses a problem for 5.3? We already feed the closuse $cache instead of $this-\u003ecache?\n\nI guess I\u0027m missing something obvious - even after looking at the diff :D",
+      "parentUuid": "6e7c4fa4_eb902850",
+      "revId": "2974cf67cc58aeb6231777161aab6a6ccfe1f847",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
