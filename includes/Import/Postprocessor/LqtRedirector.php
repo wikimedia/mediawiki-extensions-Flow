@@ -6,6 +6,7 @@ use Flow\Import\IImportPost;
 use Flow\Import\IImportTopic;
 use Flow\Import\LiquidThreadsApi\ImportPost;
 use Flow\Import\LiquidThreadsApi\ImportTopic;
+use Flow\Import\TopicImportState;
 use Flow\Model\UUID;
 use Flow\UrlGenerator;
 use Title;
@@ -28,15 +29,22 @@ class LqtRedirector implements Postprocessor {
 		$this->user = $user;
 	}
 
-	public function afterTopicImported( IImportTopic $topic, UUID $newTopicId ) {
+	public function afterTopicImported( TopicImportState $state, IImportTopic $topic ) {
 		if ( $topic instanceof ImportTopic /* LQT */ ) {
-			$this->redirectsToDo[] = array( $topic->getTitle(), $newTopicId );
+			$this->redirectsToDo[] = array(
+				$topic->getTitle(),
+				$state->topicWorkflow->getId()
+			);
 		}
 	}
 
-	public function afterPostImported( IImportPost $post, UUID $topicId, UUID $newPostId ) {
+	public function afterPostImported( TopicImportState $state, IImportPost $post, UUID $newPostId ) {
 		if ( $post instanceof ImportPost /* LQT */ ) {
-			$this->redirectsToDo[] = array( $post->getTitle(), $topicId, $newPostId );
+			$this->redirectsToDo[] = array(
+				$post->getTitle(),
+				$state->topicWorkflow->getId(),
+				$newPostId
+			);
 		}
 	}
 

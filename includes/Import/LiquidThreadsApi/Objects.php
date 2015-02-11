@@ -186,6 +186,18 @@ class ImportTopic extends ImportPost implements IImportTopic, IObjectRevision {
 	public function getObjectKey() {
 		return 'topic' . $this->importSource->getObjectKey( 'thread_id', $this->apiResponse['id'] );
 	}
+
+	public function getLogType() {
+		return "lqt-to-flow";
+	}
+
+	public function getLogParameters() {
+		return array(
+			'lqt_thread_id' => $this->apiResponse['id'],
+			'lqt_orig_title' => $this->getTitle()->getPrefixedText(),
+			'lqt_subject' => $this->getText(),
+		);
+	}
 }
 
 class ImportSummary extends PageRevisionedObject implements IImportSummary {
