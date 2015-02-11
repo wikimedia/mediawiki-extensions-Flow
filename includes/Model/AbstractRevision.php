@@ -439,7 +439,12 @@ abstract class AbstractRevision {
 		$this->flags = array_filter( explode( ',', \Revision::compressRevisionText( $this->content ) ) );
 		$this->flags[] = $storageFormat;
 
-		$this->contentLength = mb_strlen( $this->getContent( 'wikitext' ) );
+		// all moderation levels past lock report a size of 0
+		if ( $this->isModerated() && !$this->isLocked() ) {
+			$this->contentLength = 0;
+		} else {
+			$this->contentLength = mb_strlen( $this->getContent( 'wikitext' ) );
+		}
 	}
 
 	/**

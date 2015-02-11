@@ -51,7 +51,7 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 	}
 
 	public function getUpdateKey() {
-		return __CLASS__;
+		return __CLASS__ . ':version2';
 	}
 
 	public function doDBUpdates() {
@@ -80,11 +80,6 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 			/* primary key = */'rev_id',
 			$this->mBatchSize
 		);
-		// Only fetch rows with current and previous content length set to 0
-		$it->addConditions( array(
-			'rev_content_length' => 0,
-			'rev_previous_content_length' => 0,
-		) );
 		// We only need the id and type field
 		$it->setFetchColumns( array( 'rev_id', 'rev_type' ) );
 
@@ -132,13 +127,21 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 	protected function updateRevision( AbstractRevision $revision, AbstractRevision $previous = null ) {
 		$this->contentLengthProperty->setValue(
 			$revision,
-			mb_strlen( $revision->getContent( 'wikitext' ) )
+			$this->calcContentLength( $revision )
 		);
 		if ( $previous !== null ) {
 			$this->previousContentLengthProperty->setValue(
 				$revision,
-				mb_strlen( $previous->getContent( 'wikitext' ) )
+				$this->calcContentLength( $previous )
 			);
+		}
+	}
+
+	protected function calcContentLength( AbstractRevision $revision ) {
+		if ( $revision->isModerated() && !$revision->isLocked() ) {
+			return 0;
+		} else {
+			return mb_strlen( $revision->getContent( 'wikitext' ) );
 		}
 	}
 }
