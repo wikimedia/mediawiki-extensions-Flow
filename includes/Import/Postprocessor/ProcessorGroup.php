@@ -5,6 +5,7 @@ namespace Flow\Import\Postprocessor;
 use Flow\Model\UUID;
 use Flow\Import\IImportPost;
 use Flow\Import\IImportTopic;
+use Flow\Import\TopicImportState;
 
 class ProcessorGroup implements Postprocessor {
 	/** @var array<Postprocessor> **/
@@ -18,11 +19,11 @@ class ProcessorGroup implements Postprocessor {
 		$this->processors[] = $proc;
 	}
 
-	public function afterTopicImported( IImportTopic $topic, UUID $newTopicId ) {
+	public function afterTopicImported( TopicImportState $state, IImportTopic $topic ) {
 		$this->call( 'afterTopicImported', func_get_args() );
 	}
 
-	public function afterPostImported( IImportPost $post, UUID $topicId, UUID $postId ) {
+	public function afterPostImported( TopicImportState $state, IImportPost $post, UUID $newPostId ) {
 		$this->call( 'afterPostImported', func_get_args() );
 	}
 

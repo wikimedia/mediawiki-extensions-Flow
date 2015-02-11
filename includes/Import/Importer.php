@@ -521,7 +521,7 @@ class TalkpageImportOperation {
 			} catch ( \Exception $e ) {
 				$state->rollback();
 				\MWExceptionHandler::logException( $e );
-				$state->logger->error( 'Failed importing header' );
+				$state->logger->error( 'Failed importing header: ' . $header->getObjectKey() );
 				$state->logger->error( (string)$e );
 				$failed++;
 			}
@@ -543,7 +543,7 @@ class TalkpageImportOperation {
 			} catch ( \Exception $e ) {
 				$state->rollback();
 				\MWExceptionHandler::logException( $e );
-				$state->logger->error( 'Failed importing topic' );
+				$state->logger->error( 'Failed importing topic: ' . $topic->getObjectKey() );
 				$state->logger->error( (string)$e );
 				$failed++;
 			}
@@ -610,18 +610,13 @@ class TalkpageImportOperation {
 			$this->importSummary( $topicState, $summary );
 		}
 
-		try {
-			foreach ( $importTopic->getReplies() as $post ) {
-				$this->importPost( $topicState, $post, $topicState->topicTitle );
-			}
-		} catch ( ImportException $e ) {
-			$pageState->logger->error( "Failed while importing topic " . $importTopic->getObjectKey() );
-			throw $e;
+		foreach ( $importTopic->getReplies() as $post ) {
+			$this->importPost( $topicState, $post, $topicState->topicTitle );
 		}
 
 		$topicState->commitLastModified();
 		$topicId = $topicState->topicWorkflow->getId();
-		$pageState->postprocessor->afterTopicImported( $importTopic, $topicId );
+		$pageState->postprocessor->afterTopicImported( $topicState, $importTopic );
 	}
 
 	/**
@@ -813,12 +808,10 @@ class TalkpageImportOperation {
 				$post
 			);
 			$state->parent->logger->info( $logPrefix . "Finished importing post with " . count( $replyRevisions ) . " revisions" );
+			$state->parent->postprocessor->afterPostImported( $state, $post, $topRevision->getPostId() );
 		}
 
 		$state->recordModificationTime( $topRevision->getRevisionId() );
-
-		$topicId = $state->topicWorkflow->getId();
-		$state->parent->postprocessor->afterPostImported( $post, $topicId, $topRevision->getPostId() );
 
 		foreach ( $post->getReplies() as $subReply ) {
 			$this->importPost( $state, $subReply, $topRevision, $logPrefix . ' ' );
