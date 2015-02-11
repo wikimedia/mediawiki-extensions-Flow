@@ -79,7 +79,10 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 
 		// block a user
 		$blockedUser = $this->blockedUser();
-		$this->block = new Block( $blockedUser->getName(), $blockedUser->getID() );
+		$this->block = new Block( array(
+			'address' => $blockedUser->getName(),
+			'user' => $blockedUser->getID()
+		) );
 		$this->block->insert();
 		// ensure that block made it into the database
 		wfGetDB( DB_MASTER )->commit( __METHOD__, 'flush' );
