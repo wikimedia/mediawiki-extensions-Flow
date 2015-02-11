@@ -286,6 +286,15 @@ abstract class AbstractRevision {
 			$obj->moderationTimestamp = $obj->revId->getTimestamp();
 		}
 
+		// all moderation levels past lock report a size of 0
+		if ( $obj->isModerated() && !$obj->isLocked() ) {
+			$obj->contentLength = 0;
+		} else {
+			// reset content length (we may be restoring, in which case $obj's
+			// current length will be 0)
+			$obj->contentLength = mb_strlen( $this->getContent( 'wikitext' ) );
+		}
+
 		return $obj;
 	}
 
