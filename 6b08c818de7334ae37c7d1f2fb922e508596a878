@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_d57cd8b6",
+        "filename": "includes/Import/Exception.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-12T21:18:38Z",
+      "side": 1,
+      "message": "hmm, this is currently an LQT specific exception, nothing else throws or handles it.  I will move it into the LQT dir.",
+      "parentUuid": "6e7c4fa4_a86b08ed",
+      "revId": "6b08c818de7334ae37c7d1f2fb922e508596a878",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_2825b8bc",
         "filename": "includes/Import/ImportSourceStore.php",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_f55eb447",
+        "filename": "includes/Import/ImportSourceStore.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-12T21:18:38Z",
+      "side": 1,
+      "message": "we can be strict, usually better.  Updating this.  Tangentially i wish we could use yoda conditions:\n\n    if ( false \u003d\u003d\u003d file_put_contents( ... ) )",
+      "parentUuid": "6e7c4fa4_2825b8bc",
+      "revId": "6b08c818de7334ae37c7d1f2fb922e508596a878",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_c330a7e7",
         "filename": "includes/Import/LiquidThreadsApi/Source.php",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2015-02-12T00:57:36Z",
       "side": 1,
       "message": "Should this be an error?  It seems it could lead to missing data.",
+      "revId": "6b08c818de7334ae37c7d1f2fb922e508596a878",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_9048ae61",
+        "filename": "includes/Import/LiquidThreadsApi/Source.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-12T21:18:38Z",
+      "side": 1,
+      "message": "it should, making this an exception.",
+      "parentUuid": "6e7c4fa4_c330a7e7",
       "revId": "6b08c818de7334ae37c7d1f2fb922e508596a878",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
