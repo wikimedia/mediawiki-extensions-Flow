@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_161ed663",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-12T23:45:50Z",
+      "side": 1,
+      "message": "Remove return true, since it is not documented and is no longer necessary.",
+      "revId": "7b71f2959eadb3250db1b309b270a38b92cdf6a6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
