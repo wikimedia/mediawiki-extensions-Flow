@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_35b74c83",
+        "filename": "maintenance/MaintenanceDebugLogger.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-12T21:08:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_a84d4877",
+      "revId": "c1986c29f9b39533161a2bb6fcb8e46187c780ea",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_884acc5d",
         "filename": "maintenance/MaintenanceDebugLogger.php",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_7582a4ce",
+        "filename": "maintenance/MaintenanceDebugLogger.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-12T21:08:55Z",
+      "side": 1,
+      "message": "i agree this was a horrible name, setDebugMode still feels iffy, I feel something more like setMaximumLevel( LogLevel::DEBUG ) or something would make more sense, i only avoided it initially because php doesn\u0027t have enum\u0027s, so the log levels arn\u0027t comparable.\n\nI will make this slightly more generic so can have a setMaximumLevel method.",
+      "parentUuid": "6e7c4fa4_884acc5d",
+      "revId": "c1986c29f9b39533161a2bb6fcb8e46187c780ea",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_88a64cbd",
         "filename": "maintenance/MaintenanceDebugLogger.php",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2015-02-12T00:07:08Z",
       "side": 1,
       "message": "Document, please.",
+      "revId": "c1986c29f9b39533161a2bb6fcb8e46187c780ea",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_15b4907c",
+        "filename": "maintenance/MaintenanceDebugLogger.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-12T21:08:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_88a64cbd",
       "revId": "c1986c29f9b39533161a2bb6fcb8e46187c780ea",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
