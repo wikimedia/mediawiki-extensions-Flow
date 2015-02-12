@@ -2,6 +2,7 @@
 
 namespace Flow\Import;
 
+use DeferredUpdates;
 use Flow\Data\BufferedCache;
 use Flow\Data\ManagerGroup;
 use Flow\DbFactory;
@@ -20,6 +21,7 @@ use MWCryptRand;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use ReflectionProperty;
+use SplQueue;
 use Title;
 use UIDGenerator;
 use User;
@@ -44,18 +46,22 @@ class Importer {
 	protected $allowUnknownUsernames;
 	/** @var ProcessorGroup **/
 	protected $postprocessors;
+	/** @var SplQueue Callbacks for DeferredUpdate that are queue'd up by the commit process */
+	protected $deferredQueue;
 
 	public function __construct(
 		ManagerGroup $storage,
 		WorkflowLoaderFactory $workflowLoaderFactory,
 		BufferedCache $cache,
-		DbFactory $dbFactory
+		DbFactory $dbFactory,
+		SplQueue $deferredQueue
 	) {
 		$this->storage = $storage;
 		$this->workflowLoaderFactory = $workflowLoaderFactory;
 		$this->cache = $cache;
 		$this->dbFactory = $dbFactory;
 		$this->postprocessors = new ProcessorGroup;
+		$this->deferredQueue = $deferredQueue;
 	}
 
 	public function addPostprocessor( Postprocessor $proc ) {
@@ -99,6 +105,7 @@ class Importer {
 			$this->cache,
 			$this->dbFactory,
 			$this->postprocessors,
+			$this->deferredQueue,
 			$this->allowUnknownUsernames
 		) );
 	}
@@ -202,6 +209,11 @@ class PageImportState {
 	 */
 	public $postprocessor;
 
+	/**
+	 * @var SplQueue
+	 */
+	protected $deferredQueue;
+
 	public function __construct(
 		Workflow $boardWorkflow,
 		ManagerGroup $storage,
@@ -210,6 +222,7 @@ class PageImportState {
 		BufferedCache $cache,
 		DbFactory $dbFactory,
 		Postprocessor $postprocessor,
+		SplQueue $deferredQueue,
 		$allowUnknownUsernames = false
 	) {
 		$this->storage = $storage;;
@@ -219,6 +232,7 @@ class PageImportState {
 		$this->cache = $cache;
 		$this->dbw = $dbFactory->getDB( DB_MASTER );
 		$this->postprocessor = $postprocessor;
+		$this->deferredQueue = $deferredQueue;
 		$this->allowUnknownUsernames = $allowUnknownUsernames;
 
 		// Get our workflow UUID property
@@ -358,6 +372,7 @@ class PageImportState {
 	}
 
 	public function begin() {
+		$this->flushDeferredQueue();
 		$this->dbw->begin();
 		$this->cache->begin();
 	}
@@ -367,13 +382,28 @@ class PageImportState {
 		$this->cache->commit();
 		$this->sourceStore->save();
 		$this->postprocessor->afterTalkpageImported();
+		$this->flushDeferredQueue();
 	}
 
 	public function rollback() {
 		$this->dbw->rollback();
 		$this->cache->rollback();
 		$this->sourceStore->rollback();
+		$this->clearDeferredQueue();
 		$this->postprocessor->talkpageImportAborted();
+	}
+
+	protected function flushDeferredQueue() {
+		while ( !$this->deferredQueue->isEmpty() ) {
+			DeferredUpdates::addCallableUpdate( $this->deferredQueue->dequeue() );
+		}
+		DeferredUpdates::doUpdates();
+	}
+
+	protected function clearDeferredQueue() {
+		while ( !$this->deferredQueue->isEmpty() ) {
+			$this->deferredQueue->dequeue();
+		}
 	}
 }
 
