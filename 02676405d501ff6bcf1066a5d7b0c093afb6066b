@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_beffc2a6",
+        "filename": "handlebars/flow_topic_titlebar_content.handlebars",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-12T07:47:09Z",
+      "side": 0,
+      "message": "I\u0027ll copy this comment over to flow_post_meta_actions, which was referencing this comment :p",
+      "revId": "02676405d501ff6bcf1066a5d7b0c093afb6066b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
