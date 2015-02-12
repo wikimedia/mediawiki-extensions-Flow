@@ -117,8 +117,6 @@ class TemplateHelper {
 		/** @var callable $renderer */
 		$renderer = require $filenames['compiled'];
 		return $this->renderers[$templateName] = function( $args, array $scopes = array() ) use ( $templateName, $renderer ) {
-			/** @noinspection PhpUnusedLocalVariableInspection */
-			$section = new \ProfileSection( __CLASS__ . " $templateName" );
 			return $renderer( $args, $scopes );
 		};
 	}

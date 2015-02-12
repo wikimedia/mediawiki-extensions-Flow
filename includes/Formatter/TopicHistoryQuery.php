@@ -15,8 +15,6 @@ class TopicHistoryQuery  extends AbstractQuery {
 	 * @return FormatterRow[]
 	 */
 	public function getResults( UUID $postId, $limit = 50, UUID $offset = null, $direction = 'fwd' ) {
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$section = new \ProfileSection( __METHOD__ );
 		$history = $this->storage->find(
 			'TopicHistoryEntry',
 			array( 'topic_root_id' => $postId ),

@@ -36,8 +36,6 @@ class TopicListQuery extends AbstractQuery {
 	 * @return FormatterRow[]
 	 */
 	public function getResults( array $topicIdsOrEntries ) {
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$section = new \ProfileSection( __METHOD__ );
 		$topicIds = $this->getTopicIds( $topicIdsOrEntries );
 		$allPostIds = $this->collectPostIds( $topicIds );
 		$topicSummary = $this->collectSummary( $topicIds );

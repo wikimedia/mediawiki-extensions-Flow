@@ -172,8 +172,6 @@ class RevisionFormatter {
 			return false;
 		}
 
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$section = new \ProfileSection( __METHOD__ );
 		$isContentAllowed = $this->includeContent && $this->permissions->isAllowed( $row->revision, 'view' );
 		$isHistoryAllowed = $isContentAllowed ?: $this->permissions->isAllowed( $row->revision, 'history' );
 
@@ -349,8 +347,6 @@ class RevisionFormatter {
 	}
 
 	public function serializeUser( $userWiki, $userId, $userIp ) {
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$section = new \ProfileSection( __METHOD__ );
 		$res = array(
 			'name' => $this->usernames->get( $userWiki, $userId, $userIp ),
 			'wiki' => $userWiki,
@@ -380,8 +376,6 @@ class RevisionFormatter {
 			return array();
 		}
 
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$section = new \ProfileSection( __METHOD__ );
 		$timestamp = $revision->getRevisionId()->getTimestampObj()->getTimestamp( TS_MW );
 		$user = $ctx->getUser();
 		$lang = $ctx->getLanguage();
@@ -399,8 +393,6 @@ class RevisionFormatter {
 	 * @throws FlowException
 	 */
 	public function buildActions( FormatterRow $row ) {
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$section = new \ProfileSection( __METHOD__ );
 		$user = $this->permissions->getUser();
 		$workflow = $row->workflow;
 		$title = $workflow->getArticleTitle();
@@ -603,8 +595,6 @@ class RevisionFormatter {
 	 * @throws FlowException
 	 */
 	public function buildLinks( FormatterRow $row ) {
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$section = new \ProfileSection( __METHOD__ );
 		$workflow = $row->workflow;
 		$revision = $row->revision;
 		$title = $workflow->getArticleTitle();
@@ -766,8 +756,6 @@ class RevisionFormatter {
 			return array();
 		}
 
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$section = new \ProfileSection( __METHOD__ );
 		$changeType = $revision->getChangeType();
 		$actions = $this->permissions->getActions();
 		$params = $actions->getValue( $changeType, 'history', 'i18n-params' );

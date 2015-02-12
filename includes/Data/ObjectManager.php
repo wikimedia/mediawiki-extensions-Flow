@@ -176,7 +176,6 @@ class ObjectManager extends ObjectLocator {
 	 *  listeners to operate on.
 	 */
 	public function remove( $object, array $metadata = array() ) {
-		$section = new \ProfileSection( __METHOD__ );
 		if ( !isset( $this->loaded[$object] ) ) {
 			throw new FlowException( 'Object was not loaded through this object manager, use ObjectManager::merge if necessary' );
 		}
@@ -239,7 +238,6 @@ class ObjectManager extends ObjectLocator {
 	 * @param array $metadata
 	 */
 	protected function insert( array $objects, array $metadata ) {
-		$section = new \ProfileSection( __METHOD__ );
 		$rows = array_map( array( $this->mapper, 'toStorageRow' ), $objects );
 		$storedRows = $this->storage->insert( $rows );
 		if ( !$storedRows ) {
@@ -271,7 +269,6 @@ class ObjectManager extends ObjectLocator {
 	 * @param array $metadata
 	 */
 	protected function update( array $objects, array $metadata ) {
-		$section = new \ProfileSection( __METHOD__ );
 		foreach( $objects as $object ) {
 			$this->updateSingle( $object, $metadata );
 		}

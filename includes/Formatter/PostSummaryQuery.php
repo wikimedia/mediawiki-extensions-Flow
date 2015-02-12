@@ -10,8 +10,6 @@ class PostSummaryQuery extends AbstractQuery {
 	 * @return FormatterRow
 	 */
 	public function getResult( UUID $postId ) {
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$section = new \ProfileSection( __METHOD__ );
 		$found = $this->storage->find(
 			'PostSummary',
 			array( 'rev_type_id' => $postId ),

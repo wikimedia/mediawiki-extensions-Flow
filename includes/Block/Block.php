@@ -184,8 +184,6 @@ abstract class AbstractBlock implements Block {
 	 *  null when this action does not support submission.
 	 */
 	public function onSubmit( array $data ) {
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$section = new \ProfileSection( __METHOD__ );
 		if ( !$this->canSubmit( $this->action ) ) {
 			return null;
 		}

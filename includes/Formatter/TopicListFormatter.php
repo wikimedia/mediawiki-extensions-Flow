@@ -38,8 +38,6 @@ class TopicListFormatter extends BaseTopicListFormatter {
 		PagerPage $page,
 		IContextSource $ctx
 	) {
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$section = new \ProfileSection( __METHOD__ );
 		$res = $this->buildResult( $listWorkflow, $workflows, $found, $ctx ) +
 			$this->buildEmptyResult( $listWorkflow );
 		$pagingOption = $page->getPagingLinksOptions();

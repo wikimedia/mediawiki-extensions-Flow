@@ -32,9 +32,6 @@ abstract class Utils {
 			return $content;
 		}
 
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$section = new \ProfileSection( __METHOD__ );
-
 		try {
 			self::parsoidConfig();
 		} catch ( NoParsoidException $e ) {
