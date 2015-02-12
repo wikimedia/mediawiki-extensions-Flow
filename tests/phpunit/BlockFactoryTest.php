@@ -45,8 +45,6 @@ class BlockFactoryTest extends FlowTestCase {
 	}
 
 	protected function createBlockFactory() {
-		global $wgLang;
-
 		$storage = $this->getMockBuilder( '\Flow\Data\ManagerGroup' )
 			->disableOriginalConstructor()
 			->getMock();
