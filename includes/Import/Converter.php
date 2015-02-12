@@ -3,7 +3,6 @@
 namespace Flow\Import;
 
 use DatabaseBase;
-use Flow\Exception\FlowException;
 use Flow\Repository\TitleRepository;
 use MovePage;
 use MWExceptionHandler;
@@ -68,7 +67,7 @@ class Converter {
 	 * @param User $user Administrative user for moves and edits related
 	 *  to the conversion process.
 	 * @param IConversionStrategy $strategy
-	 * @throws FlowException When $user does not have an Id
+	 * @throws ImportException When $user does not have an Id
 	 */
 	public function __construct(
 		DatabaseBase $dbr,
@@ -78,7 +77,7 @@ class Converter {
 		IConversionStrategy $strategy
 	) {
 		if ( !$user->getId() ) {
-			throw new FlowException( 'User must have id' );
+			throw new ImportException( 'User must have id' );
 		}
 		$this->dbr = $dbr;
 		$this->importer = $importer;
@@ -223,13 +222,14 @@ class Converter {
 	 *
 	 * @param Title $from
 	 * @param Title $to
-	 * @throws FlowException on failed import
+	 * @throws ImportException on failed import
 	 */
 	protected function movePage( Title $from, Title $to ) {
 		$mp = new MovePage( $from, $to );
 		$valid = $mp->isValidMove();
 		if ( !$valid->isOK() ) {
-			throw new FlowException( "It is not valid to move {$from} to {$to}" );
+			$this->logger->error( $valid->getMessage()->text() );
+			throw new ImportException( "It is not valid to move {$from} to {$to}" );
 		}
 
 		// Note that this comment must match the regex in self::getPageMovedFrom
@@ -240,7 +240,8 @@ class Converter {
 		);
 
 		if ( !$status->isGood() ) {
-			throw new FlowException( "Failed moving {$from} to {$to}" );
+			$this->logger->error( $status->getMessage()->text() );
+			throw new ImportException( "Failed moving {$from} to {$to}" );
 		}
 	}
 
@@ -252,19 +253,19 @@ class Converter {
 	 *
 	 * @param Title $title Previous location of the page, before moving
 	 * @param Title $archiveTitle Current location of the page, after moving
-	 * @throws FlowException
+	 * @throws ImportException
 	 */
 	protected function createArchiveCleanupRevision( Title $title, Title $archiveTitle ) {
 		$page = WikiPage::factory( $archiveTitle );
 		$revision = $page->getRevision();
 		if ( $revision === null ) {
-			throw new FlowException( "Expected a revision at {$archiveTitle}" );
+			throw new ImportException( "Expected a revision at {$archiveTitle}" );
 		}
 
 		// Do not create revisions based on rev_deleted revisions.
 		$content = $revision->getContent( Revision::FOR_PUBLIC );
 		if ( !$content instanceof WikitextContent ) {
-			throw new FlowException( "Expected wikitext content at: {$archiveTitle}" );
+			throw new ImportException( "Expected wikitext content at: {$archiveTitle}" );
 		}
 
 		$newContent = $this->strategy->createArchiveCleanupRevisionContent( $content, $title );
@@ -281,7 +282,8 @@ class Converter {
 		);
 
 		if ( !$status->isGood() ) {
-			throw new FlowException( "Failed creating archive cleanup revision at {$archiveTitle}" );
+			$this->logger->error( $status->getMessage()->text() );
+			throw new ImportException( "Failed creating archive cleanup revision at {$archiveTitle}" );
 		}
 	}
 
@@ -301,7 +303,7 @@ class Converter {
 	 * @param string[] $formats
 	 * @param TitleRepository|null $titleRepo
 	 * @return Title
-	 * @throws FlowException
+	 * @throws ImportException
 	 */
 	static public function decideArchiveTitle( Title $source, array $formats, TitleRepository $titleRepo = null ) {
 		if ( $titleRepo === null ) {
@@ -329,6 +331,6 @@ class Converter {
 			}
 		}
 
-		throw new FlowException( "All titles 1 through 20 exist for format: $format" );
+		throw new ImportException( "All titles 1 through 20 exist for format: $format" );
 	}
 }
