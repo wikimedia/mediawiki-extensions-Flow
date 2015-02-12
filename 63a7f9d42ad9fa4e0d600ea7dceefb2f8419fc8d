@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_70915251",
+        "filename": "includes/Formatter/RevisionViewFormatter.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-12T21:57:01Z",
+      "side": 1,
+      "message": "At one time the isTopicTitle was used, it was added in I533da49 and removed in I928373284.  Should be safe to remove.  The topic-of-post is still used in flow_topic and flow_reply_form.",
+      "revId": "63a7f9d42ad9fa4e0d600ea7dceefb2f8419fc8d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
