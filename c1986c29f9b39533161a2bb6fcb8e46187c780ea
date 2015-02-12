@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_a84d4877",
+        "filename": "maintenance/MaintenanceDebugLogger.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-12T00:07:08Z",
+      "side": 1,
+      "message": "Document",
+      "revId": "c1986c29f9b39533161a2bb6fcb8e46187c780ea",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_884acc5d",
+        "filename": "maintenance/MaintenanceDebugLogger.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-12T00:07:08Z",
+      "side": 1,
+      "message": "The function name makes it sound like you\u0027re outputting a line of debug text (specified by the parameter).\n\nMaybe:\n\nsetDebugMode\n\n?",
+      "revId": "c1986c29f9b39533161a2bb6fcb8e46187c780ea",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_88a64cbd",
+        "filename": "maintenance/MaintenanceDebugLogger.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-12T00:07:08Z",
+      "side": 1,
+      "message": "Document, please.",
+      "revId": "c1986c29f9b39533161a2bb6fcb8e46187c780ea",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
