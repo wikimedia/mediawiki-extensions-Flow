@@ -26,7 +26,7 @@ interface ImportSourceStore {
 	function save();
 
 	/**
-	 * Forged any recorded associations since last save
+	 * Forget any recorded associations since last save
 	 */
 	function rollback();
 }

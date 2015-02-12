@@ -244,7 +244,7 @@ foreach( $wgFlowActions as $action => $options ) {
 		}
 	}
 }
-// Manually add that more complex actions
+// Manually add the more complex actions
 $wgLogActionsHandlers['delete/flow-restore-post'] = 'Flow\Log\Formatter';
 $wgLogActionsHandlers['suppress/flow-restore-post'] = 'Flow\Log\Formatter';
 $wgLogActionsHandlers['delete/flow-restore-topic'] = 'Flow\Log\Formatter';
@@ -266,7 +266,7 @@ foreach( $wgFlowActions as $action => $options ) {
 // will be the queries necessary to fill the cache rather than only the queries
 // needed to answer the request.  A bit of a refactor in ObjectManager::findMulti
 // to allow query without indexes, along with adjusting container.php to only
-// include the indexes when this is true, would get most of the way twords making
+// include the indexes when this is true, would get most of the way towards making
 // this a reasonably performant option.
 $wgFlowUseMemcache = true;
 
