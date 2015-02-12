@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_a86b08ed",
+        "filename": "includes/Import/Exception.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-12T00:57:36Z",
+      "side": 1,
+      "message": "Should this be in the LQT-specific portion?  Or maybe the comment should be changed.",
+      "revId": "6b08c818de7334ae37c7d1f2fb922e508596a878",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_2825b8bc",
+        "filename": "includes/Import/ImportSourceStore.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-12T00:57:36Z",
+      "side": 1,
+      "message": "Normally, \u003d\u003d\u003d should be used for testing the return value of this, since it returns 0 when no bytes were written.\n\nIn this case, it should be okay, as long as json_encode returns valid JSON.",
+      "revId": "6b08c818de7334ae37c7d1f2fb922e508596a878",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_c330a7e7",
+        "filename": "includes/Import/LiquidThreadsApi/Source.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-12T00:57:36Z",
+      "side": 1,
+      "message": "Should this be an error?  It seems it could lead to missing data.",
+      "revId": "6b08c818de7334ae37c7d1f2fb922e508596a878",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
