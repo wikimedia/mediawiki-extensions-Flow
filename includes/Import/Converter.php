@@ -297,7 +297,7 @@ class Converter {
 	 * It will iterate through the formats looking for an existing format.  If no
 	 * formats are currently in use the first format will be returned with n=1.
 	 * If a format is currently in used we will look for the first unused page
-	 * between n=2 and n=20.
+	 * >= to n=1 and <= to n=20.
 	 *
 	 * @param Title $source
 	 * @param string[] $formats
@@ -324,13 +324,14 @@ class Converter {
 			// assumes this creates a valid title
 			return Title::newFromText( sprintf( $formats[0], $text, $n ) );
 		}
-		for ( ++$n; $n < 20; ++$n ) {
+
+		for ( $n = 2; $n <= 20; ++$n ) {
 			$title = Title::newFromText( sprintf( $format, $text, $n ) );
 			if ( $title && !$titleRepo->exists( $title ) ) {
 				return $title;
 			}
 		}
 
-		throw new ImportException( "All titles 1 through 20 exist for format: $format" );
+		throw new ImportException( "All titles 1 through 20 (inclusive) exist for format: $format" );
 	}
 }
