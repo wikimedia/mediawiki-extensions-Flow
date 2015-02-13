@@ -6,13 +6,14 @@ use Flow\Import\IImportPost;
 use Flow\Import\IImportTopic;
 use Flow\Import\LiquidThreadsApi\ImportPost;
 use Flow\Import\LiquidThreadsApi\ImportTopic;
+use Flow\Import\PostImportState;
+use Flow\Import\TopicImportState;
 use Flow\Model\UUID;
 use Flow\UrlGenerator;
 use Title;
 use User;
 use WatchedItem;
 use WikiPage;
-use WikitextContent;
 
 class LqtRedirector implements Postprocessor {
 	/** @var UrlGenerator **/
@@ -28,19 +29,29 @@ class LqtRedirector implements Postprocessor {
 		$this->user = $user;
 	}
 
-	public function afterTopicImported( IImportTopic $topic, UUID $newTopicId ) {
-		if ( $topic instanceof ImportTopic /* LQT */ ) {
-			$this->redirectsToDo[] = array( $topic->getTitle(), $newTopicId );
-		}
+	public function afterHeaderImported( PageImportState $state, IImportHeader $header ) {
+		// not a thing to do, yet
 	}
 
-	public function afterPostImported( IImportPost $post, UUID $topicId, UUID $newPostId ) {
+
+	public function afterPostImported( TopicImportState $state, IImportPost $post, UUID $newPostId ) {
 		if ( $post instanceof ImportPost /* LQT */ ) {
-			$this->redirectsToDo[] = array( $post->getTitle(), $topicId, $newPostId );
+			$this->redirectsToDo[] = array(
+				$post->getTitle(),
+				$state->topicWorkflow->getId(),
+				$newPostId
+			);
 		}
 	}
 
-	public function afterTalkpageImported() {
+	public function afterTopicImported( TopicImportState $state, IImportTopic $topic ) {
+		if ( !$topic instanceof ImportTopic /* LQT */ ) {
+			return;
+		}
+		$this->doRedirect(
+			$topic->getTitle(),
+			$state->topicWorkflow->getId()
+		);
 		foreach( $this->redirectsToDo as $args ) {
 			call_user_func_array( array( $this, 'doRedirect' ), $args );
 		}
@@ -48,7 +59,7 @@ class LqtRedirector implements Postprocessor {
 		$this->redirectsToDo = array();
 	}
 
-	public function talkpageImportAborted() {
+	public function importAborted() {
 		$this->redirectsToDo = array();
 	}
 
