@@ -74,6 +74,14 @@ class UserNameBatch {
 	}
 
 	/**
+	 * @param UserTuple $tuple
+	 * @return string|boolean false if username is not found or display is suppressed
+	 */
+	public function getFromTuple( UserTuple $tuple ) {
+		return $this->get( $tuple->wiki, $tuple->userId, $tuple->userIp );
+	}
+
+	/**
 	 * Resolve all queued user ids to usernames for the given wiki
 	 *
 	 * @param string $wiki
