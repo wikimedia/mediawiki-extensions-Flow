@@ -561,6 +561,7 @@ $c['storage.post.listeners'] = function( $c ) {
 		$c['storage.post.listeners.username'],
 		$c['storage.post.listeners.watch_topic'],
 		$c['storage.post.listeners.notification'],
+		$c['storage.post.listeners.moderation_logger'],
 		$c['listener.recentchanges'],
 		// topic history -- to keep a history by topic we have to know what topic every post
 		// belongs to, not just its parent. TopicHistoryIndex is a slight tweak to TopKIndex
