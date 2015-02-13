@@ -316,10 +316,15 @@ class TreeRepository {
 	}
 
 	/**
-	 * Fetch a node and all its descendants.
+	 * Fetch a node and all its descendants. Children are returned in the
+	 * same order they were inserted.
 	 *
 	 * @param UUID|UUID[] $roots
-	 * @return array Multi-dimensional tree
+	 * @return array Multi-dimensional tree. The top level is a map from the uuid of a node
+	 *  to attributes about that node.  The top level contains not just the parents, but all nodes
+	 *  within this tree. Within each node there is a 'children' key that contains a map from
+	 *  the child uuid's to references back to the top level of this identity map. As such this
+	 *  result can be read either as a list or a tree.
 	 * @throws DataModelException When invalid data is received from self::fetchSubtreeNodeList
 	 */
 	public function fetchSubtreeIdentityMap( $roots ) {
@@ -337,14 +342,18 @@ class TreeRepository {
 		}
 		$identityMap = array();
 		foreach ( $parentMap as $child => $parent ) {
-			if ( !isset( $identityMap[$child] ) ) {
+			if ( !array_key_exists( $child, $identityMap ) ) {
 				$identityMap[$child] = array( 'children' => array() );
 			}
 			// Root nodes have no parent
 			if ( $parent !== null ) {
-				$identityMap[$parent]['children'][] =& $identityMap[$child];
+				$identityMap[$parent->getAlphadecimal()]['children'][$child] =& $identityMap[$child];
 			}
 		}
+		foreach ( array_keys( $identityMap ) as $parent ) {
+			ksort( $identityMap[$parent]['children'] );
+		}
+
 		return $identityMap;
 	}
 

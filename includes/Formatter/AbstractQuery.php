@@ -57,6 +57,8 @@ abstract class AbstractQuery {
 	 */
 	protected $currentRevisionsCache = array();
 
+	protected $identityMap = array();
+
 	/**
 	 * @param ManagerGroup $storage
 	 * @param TreeRepository $treeRepository
@@ -110,11 +112,17 @@ abstract class AbstractQuery {
 
 		// map from post Id to the related root post id
 		$rootPostIds = array_filter( $this->treeRepository->findRoots( $postIds ) );
-
 		$rootPostRequests = array();
 		foreach( $rootPostIds as $postId ) {
 			$rootPostRequests[] = array( 'rev_type_id' => $postId );
 		}
+
+		// these tree identity maps are required for determining where a reply goes when
+		//
+		// replying to a specific post.
+		$identityMap = $this->treeRepository->fetchSubtreeIdentityMap(
+			array_unique( $rootPostIds, SORT_REGULAR )
+		);
 
 		$rootPostResult = $this->storage->findMulti(
 			'PostRevision',
@@ -175,6 +183,7 @@ abstract class AbstractQuery {
 		$this->postCache = array_merge( $this->postCache, $rootPosts );
 		$this->rootPostIdCache = array_merge( $this->rootPostIdCache, $rootPostIds );
 		$this->workflowCache = array_merge( $this->workflowCache, $workflows );
+		$this->identityMap = array_merge( $this->identityMap, $identityMap );
 	}
 
 	/**
@@ -213,9 +222,24 @@ abstract class AbstractQuery {
 		if ( $revision instanceof PostRevision ) {
 			$row->rootPost = $this->getRootPost( $revision );
 			$revision->setRootPost( $row->rootPost );
+			$row->isLastReply = $this->isLastReply( $revision );
 		}
 
 		return $row;
+	}
+
+	protected function isLastReply( PostRevision $revision ) {
+		if ( $revision->isTopicTitle() ) {
+			return false;
+		}
+		$reply = $revision->getReplyToId()->getAlphadecimal();
+		if ( !isset( $this->identityMap[$reply] ) ) {
+			wfDebugLog( 'Flow', __METHOD__ . ": Missing $reply in identity map" );
+			return false;
+		}
+		$parent = $this->identityMap[$revision->getReplyToId()->getAlphadecimal()];
+		$keys = array_keys( $parent['children'] );
+		return end( $keys ) === $revision->getPostId()->getAlphadecimal();
 	}
 
 	/**
@@ -364,6 +388,8 @@ class FormatterRow {
 	public $indexFieldValue;
 	/** @var PostRevision|null */
 	public $rootPost;
+	/** @var bool */
+	public $isLastReply = false;
 
 	// protect against typos
 	public function __get( $attribute ) {
@@ -375,3 +401,4 @@ class FormatterRow {
 		throw new \MWException( "Accessing non-existent parameter: $attribute" );
 	}
 }
+
