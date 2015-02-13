@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_4d96f8f4",
+        "filename": "includes/Templating.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-13T12:51:27Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we still keep the permissions-check around and throw an exception?",
+      "revId": "628a4e0dc154f0921cd83753ef95bbf17ae310fc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
