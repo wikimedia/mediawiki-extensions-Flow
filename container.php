@@ -826,8 +826,7 @@ $c['formatter.checkuser'] = $c->share( function( $c ) {
 $c['formatter.revisionview'] = $c->share( function( $c ) {
 	return new Flow\Formatter\RevisionViewFormatter(
 		$c['url_generator'],
-		$c['formatter.revision'],
-		$c['templating']
+		$c['formatter.revision']
 	);
 } );
 $c['formatter.revision.diff.view'] = $c->share( function( $c ) {

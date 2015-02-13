@@ -5,7 +5,6 @@ namespace Flow\Formatter;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
-use Flow\Templating;
 use Flow\UrlGenerator;
 use IContextSource;
 
@@ -21,19 +20,12 @@ class RevisionViewFormatter {
 	protected $serializer;
 
 	/**
-	 * @var Templating
-	 */
-	protected $templating;
-
-	/**
 	 * @param UrlGenerator $urlGenerator
 	 * @param RevisionFormatter $serializer
-	 * @param Templating $templating
 	 */
-	public function __construct( UrlGenerator $urlGenerator, RevisionFormatter $serializer, Templating $templating ) {
+	public function __construct( UrlGenerator $urlGenerator, RevisionFormatter $serializer ) {
 		$this->urlGenerator = $urlGenerator;
 		$this->serializer = $serializer;
-		$this->templating = $templating;
 	}
 
 	/**
