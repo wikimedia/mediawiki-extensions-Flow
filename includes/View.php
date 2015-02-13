@@ -220,7 +220,7 @@ class View extends ContextSource {
 	}
 
 	protected function redirect( Workflow $workflow ) {
-		$link = $this->templating->getUrlGenerator()->workflowLink(
+		$link = $this->urlGenerator->workflowLink(
 			$workflow->getArticleTitle(),
 			$workflow->getId()
 		);
