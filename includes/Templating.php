@@ -129,53 +129,22 @@ class Templating {
 			);
 		}
 
-		if ( $allowed ) {
-			// html format
-			if ( $format === 'html' ) {
-				// Parsoid doesn't render redlinks & doesn't strip bad images
-				try {
-					$content = $this->contentFixer->getContent( $revision );
-				} catch ( \Exception $e ) {
-					wfDebugLog( 'Flow', __METHOD__ . ': Failed fix content for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
-					\MWExceptionHandler::logException( $e );
+		if ( !$allowed ) {
+			throw new FlowException( 'Insufficient permissions to see content for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
+		}
 
-					$content = wfMessage( 'flow-stub-post-content' )->parse();
-				}
-			// all other formats
-			} else {
-				$content = $revision->getContent( $format );
-			}
+		if ( $format !== 'html' ) {
+			return $revision->getContent( $format );
+		}
 
-			return $content;
-		} else {
-			$revision = $this->getModeratedRevision( $revision );
-			$username = $this->usernames->get(
-				wfWikiId(),
-				$revision->getModeratedByUserId(),
-				$revision->getModeratedByUserIp()
-			);
+		// Parsoid doesn't render redlinks & doesn't strip bad images
+		try {
+			return $this->contentFixer->getContent( $revision );
+		} catch ( \Exception $e ) {
+			wfDebugLog( 'Flow', __METHOD__ . ': Failed fix content for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
+			\MWExceptionHandler::logException( $e );
 
-			// get revision type to make more precise message
-			$state = $revision->getModerationState();
-			$type = $revision->getRevisionType();
-			if ( $revision instanceof PostRevision && $revision->isTopicTitle() ) {
-				$type = 'title';
-			}
-
-			// Messages: flow-hide-post-content, flow-delete-post-content, flow-suppress-post-content
-			//           flow-hide-title-content, flow-delete-title-content, flow-suppress-title-content
-			$message = wfMessage( "flow-$state-$type-content", $username )->rawParams( $this->getUserLinks( $revision ) );
-			if ( !$message->exists() ) {
-				wfDebugLog( 'Flow', __METHOD__ . ': Failed to locate message for moderated content: ' . $message->getKey() );
-
-				$message = wfMessage( 'flow-error-other' );
-			}
-
-			if ( $format === 'html' ) {
-				return $message->escaped();
-			} else {
-				return $message->text();
-			}
+			return wfMessage( 'flow-stub-post-content' )->parse();
 		}
 	}
 
