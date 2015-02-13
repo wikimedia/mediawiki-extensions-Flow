@@ -64,6 +64,7 @@
 	"flow-reply-topic-title-placeholder": "Reply to \"$1\"",
 	"flow-reply-submit": "{{GENDER:$1|Reply}}",
 	"flow-reply-link": "{{GENDER:$1|Reply}}",
+	"flow-comment-link": "{{GENDER:$1|Comment}}",
 	"flow-thank-link": "{{GENDER:$1|Thank}}",
 	"flow-lock-link": "{{GENDER:$1|Lock}}",
 	"flow-history-action-suppress-post": "suppress",
