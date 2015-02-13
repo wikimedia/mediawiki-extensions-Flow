@@ -75,58 +75,6 @@ class Templating {
 		return $this->urlGenerator;
 	}
 
-	public function userToolLinks( $userId, $userText ) {
-		static $cache = array();
-		if ( isset( $cache[$userId][$userText] ) ) {
-			return $cache[$userId][$userText];
-		}
-
-		if ( $userText instanceof Message ) {
-			// username was moderated away, we dont know who this is
-			$res = '';
-		} else {
-			$res = Linker::userLink( $userId, $userText ) . Linker::userToolLinks( $userId, $userText );
-		}
-		return $cache[$userId][$userText] = $res;
-	}
-
-	/**
-	 * Formats a revision's usertext for displaying. Usually, the revision's
-	 * usertext can just be displayed. In the event of moderation, however, that
-	 * info should not be exposed.
-	 *
-	 * If a specific i18n message is available for a certain moderation level,
-	 * that message will be returned (well, unless the user actually has the
-	 * required permissions to view the full username). Otherwise, in normal
-	 * cases, the full username will be returned.
-	 *
-	 * @param AbstractRevision $revision Revision to display usertext for
-	 * @return string
-	 */
-	public function getUserText( AbstractRevision $revision ) {
-		// if this specific revision is moderated, its usertext can always be
-		// displayed, since it will be the moderator user
-		if ( $revision->isModerated() || $this->permissions->isAllowed( $revision, 'view' ) ) {
-			return $this->usernames->get( wfWikiId(), $revision->getUserId(), $revision->getUserIp() ) ?: '';
-		} else {
-			$revision = $this->getModeratedRevision( $revision );
-			$username = $this->usernames->get(
-				wfWikiId(),
-				$revision->getModeratedByUserId(),
-				$revision->getModeratedByUserIp()
-			);
-			$state = $revision->getModerationState();
-			// Messages: flow-hide-usertext, flow-delete-usertext, flow-suppress-usertext
-			$message = wfMessage( "flow-$state-usertext", $username );
-			if ( $message->exists() ) {
-				return $message->text();
-			} else {
-				wfWarn( __METHOD__ . ': Failed to locate message for moderated content: ' . $message->getKey() );
-				return wfMessage( 'flow-error-other' )->text();
-			}
-		}
-	}
-
 	/**
 	 * Returns pretty-printed user links + user tool links for history and
 	 * RecentChanges pages.
@@ -152,46 +100,6 @@ class Templating {
 		}
 		$username = $this->usernames->get( wfWikiId(), $userid, $userip );
 		return $cache[$userid][$userip] = Linker::userLink( $userid, $username ) . Linker::userToolLinks( $userid, $username );
-	}
-
-	/**
-	 * Formats a post's creator name for displaying. Usually, the post's creator
-	 * name can just be displayed. In the event of moderation, however, that
-	 * info should not be exposed.
-	 *
-	 * If a specific i18n message is available for a certain moderation level,
-	 * that message will be returned (well, unless the user actually has the
-	 * required permissions to view the full username). Otherwise, in normal
-	 * cases, the full creator name will be returned.
-	 *
-	 * @param PostRevision $revision Revision to display creator name for
-	 * @return string
-	 */
-	public function getCreatorText( PostRevision $revision ) {
-		if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
-			return $this->usernames->get(
-				wfWikiId(),
-				$revision->getCreatorId(),
-				$revision->getCreatorIp()
-			) ?: '';
-		} else {
-			$revision = $this->getModeratedRevision( $revision );
-			$state = $revision->getModerationState();
-			$username = $this->usernames->get(
-				wfWikiId(),
-				$revision->getModeratedByUserId(),
-				$revision->getModeratedByUserIp()
-			);
-			// Messages: flow-hide-usertext, flow-delete-usertext, flow-suppress-usertext
-			$message = wfMessage( "flow-$state-usertext", $username );
-
-			if ( $message->exists() ) {
-				return $message->text();
-			} else {
-				wfWarn( __METHOD__ . ': Failed to locate message for moderated content: ' . $message->getKey() );
-				return wfMessage( 'flow-error-other' )->text();
-			}
-		}
 	}
 
 	/**
