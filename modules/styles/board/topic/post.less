@@ -12,7 +12,7 @@
 }
 
 // Comments
-form.flow-post {
+.flow-post {
 	margin-left: @topicIndent - (@textareaPadding * 2);
 }
 
@@ -122,6 +122,12 @@ form.flow-post {
 			opacity: 1;
 		}
 	}
+}
+
+// Hide the very last top-level reply link, prefering the topic level reply form.
+// Not supported in IE8, but all that happens is they see an extra reply link.
+.flow-topic > .flow-post:last-of-type > .flow-post-main .flow-ui-hide-last-reply {
+	display: none;
 }
 
 // Comment metadata

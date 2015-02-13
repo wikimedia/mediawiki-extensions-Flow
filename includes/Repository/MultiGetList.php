@@ -35,7 +35,8 @@ class MultiGetList {
 			if ( $id instanceof UUID ) {
 				$cacheId = $id->getAlphadecimal();
 			} elseif ( !is_scalar( $id ) ) {
-				throw new InvalidInputException( 'Not scalar:' . gettype( $id ), 'invalid-input' );
+				$type = is_object( $id ) ? get_class( $id ) : gettype( $id );
+				throw new InvalidInputException( 'Not scalar:' . $type, 'invalid-input' );
 			} else {
 				$cacheId = $id;
 			}
