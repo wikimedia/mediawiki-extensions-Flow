@@ -796,13 +796,13 @@ class RevisionFormatter {
 		switch ( $param ) {
 		case 'creator-text':
 			if ( $revision instanceof PostRevision ) {
-				return $this->templating->getCreatorText( $revision );
+				return $this->usernames->getFromTuple( $revision->getCreatorTuple() );
 			} else {
 				return '';
 			}
 
 		case 'user-text':
-			return $this->templating->getUserText( $revision );
+			return $this->usernames->getFromTuple( $revision->getUserTuple() );
 
 		case 'user-links':
 			return Message::rawParam( $this->templating->getUserLinks( $revision ) );
