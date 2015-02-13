@@ -316,7 +316,8 @@ class TreeRepository {
 	}
 
 	/**
-	 * Fetch a node and all its descendants.
+	 * Fetch a node and all its descendants. Children are returned in the
+	 * same order they were inserted.
 	 *
 	 * @param UUID $root
 	 * @return array Multi-dimensional tree
@@ -333,14 +334,18 @@ class TreeRepository {
 		}
 		$identityMap = array();
 		foreach ( $parentMap as $child => $parent ) {
-			if ( !isset( $identityMap[$child] ) ) {
+			if ( !array_key_exists( $child, $identityMap ) ) {
 				$identityMap[$child] = array( 'children' => array() );
 			}
 			// Root nodes have no parent
 			if ( $parent !== null ) {
-				$identityMap[$parent]['children'][] =& $identityMap[$child];
+				$identityMap[$parent->getAlphadecimal()]['children'][$child] =& $identityMap[$child];
 			}
 		}
+		foreach ( array_keys( $identityMap ) as $parent ) {
+			ksort( $identityMap[$parent]['children'] );
+		}
+
 		return $identityMap;
 	}
 

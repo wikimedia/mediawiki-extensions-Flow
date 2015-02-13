@@ -453,11 +453,20 @@ class RevisionFormatter {
 				}
 
 				/*
-				 * If the post being replied to is at or exceeds the max
-				 * threading depth, the reply link should point to parent.
+				 * If the post being replied to is the most recent post
+				 * of its depth, the reply link should point to parent
 				 */
 				$replyToId = $postId;
 				$replyToRevision = $revision;
+				if ( $row->isLastReply ) {
+					$replyToId = $replyToRevision->getReplyToId();
+					$replyToRevision = PostCollection::newFromId( $replyToId )->getLastRevision();
+				}
+
+				/*
+				 * If the post being replied to is at or exceeds the max
+				 * threading depth, the reply link should point to parent.
+				 */
 				while ( $replyToRevision->getDepth() >= $this->maxThreadingDepth ) {
 					$replyToId = $replyToRevision->getReplyToId();
 					$replyToRevision = PostCollection::newFromId( $replyToId )->getLastRevision();
