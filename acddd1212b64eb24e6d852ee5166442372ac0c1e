@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_b6904299",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-13T01:33:56Z",
+      "side": 1,
+      "message": "The others have -template as the suffix, which makes it clearer.\n\nAlso, \"Name of a wikitext template\".",
+      "revId": "acddd1212b64eb24e6d852ee5166442372ac0c1e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_f6c47a96",
+        "filename": "includes/Import/LiquidThreadsApi/Iterators.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-13T01:33:56Z",
+      "side": 1,
+      "message": "Is this the LQT ID?",
+      "revId": "acddd1212b64eb24e6d852ee5166442372ac0c1e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_9652e6e0",
+        "filename": "includes/Import/LiquidThreadsApi/Iterators.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-13T01:33:56Z",
+      "side": 1,
+      "message": "This should be \u003c\u003d , right?  Otherwise, when $topicId \u003d\u003d\u003d $lastOffset/$this-\u003ecurrent, it will keep going, and even set:\n\n$this-\u003ecurrent \u003d $topicId/$lastOffset/$this-\u003ecurrent",
+      "revId": "acddd1212b64eb24e6d852ee5166442372ac0c1e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
