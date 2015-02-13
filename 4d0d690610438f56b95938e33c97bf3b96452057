@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_63c3c58c",
+        "filename": "Flow.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-13T16:44:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_0a10e602",
+      "revId": "4d0d690610438f56b95938e33c97bf3b96452057",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_8a12b6ff",
         "filename": "Flow.php",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2015-02-13T05:15:32Z",
       "side": 1,
       "message": "Should it be import/lqt-to-flow-topic to be more future-proof?",
+      "revId": "4d0d690610438f56b95938e33c97bf3b96452057",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_83be21f9",
+        "filename": "Flow.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-13T16:44:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_8a12b6ff",
       "revId": "4d0d690610438f56b95938e33c97bf3b96452057",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_2335cda3",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-13T16:44:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_6a171af3",
+      "revId": "4d0d690610438f56b95938e33c97bf3b96452057",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_0a63063c",
         "filename": "includes/Import/ImportSource.php",
         "patchSetId": 4
@@ -64,6 +118,24 @@
       "writtenOn": "2015-02-13T05:20:11Z",
       "side": 1,
       "message": "The test mocks need these new methods.",
+      "revId": "4d0d690610438f56b95938e33c97bf3b96452057",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_e33ef586",
+        "filename": "includes/Import/ImportSource.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-13T16:44:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_0a63063c",
       "revId": "4d0d690610438f56b95938e33c97bf3b96452057",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -139,6 +211,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_cd3208ef",
+        "filename": "includes/Import/Postprocessor/SpecialLogTopic.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-13T16:44:52Z",
+      "side": 1,
+      "message": "yea, i wrote this code believing what the interface said, then noticed the mislabeled method which kinda makes the rest of this unnecessary.\n\nThis patch could actually already be split up into a refactor of this interface, and then the new log feature. It\u0027s now submitted as a precursor to this patch.",
+      "parentUuid": "6e7c4fa4_0abd46d1",
+      "revId": "4d0d690610438f56b95938e33c97bf3b96452057",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_6aa4faaf",
         "filename": "includes/Import/Postprocessor/SpecialLogTopic.php",
         "patchSetId": 4
@@ -184,6 +274,24 @@
       "writtenOn": "2015-02-13T05:15:32Z",
       "side": 1,
       "message": "I think you should use $this-\u003emsg instead of the language-choosing logic below.  But like I said in the other patch, I might be missing something.\n\nThat in turn uses the super-secret so-undocumented-it\u0027s-not-even-a-defined-field $this-\u003econtext, then you can call getLanguage() on that. (I defined it in https://gerrit.wikimedia.org/r/#/c/190411/ ).\n\nLogs are supposed to be in user language, not content language (which wgContLang is): https://en.wikipedia.org/wiki/Special:Log?uselang\u003des (it\u0027s the same if you change it in your user preferences).\n\nI\u0027ve done the same in ActionFormatter in https://gerrit.wikimedia.org/r/190415 .",
+      "revId": "4d0d690610438f56b95938e33c97bf3b96452057",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_4306c9d2",
+        "filename": "includes/Log/ImportFormatter.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-13T16:44:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_ca7c2e1e",
       "revId": "4d0d690610438f56b95938e33c97bf3b96452057",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
