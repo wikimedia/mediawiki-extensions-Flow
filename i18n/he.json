@@ -4,7 +4,9 @@
 			"Amire80",
 			"Guycn2",
 			"Lokal Profil",
-			"Orsa"
+			"Orsa",
+			"Danny-w",
+			"YaronSh"
 		]
 	},
 	"flow-desc": "מערכת לניהול זרימת עבודה",
@@ -352,6 +354,10 @@
 	"flow-importer-lqt-converted-archive-template": "ארכיון לדף LQT מאורכב",
 	"flow-importer-wt-converted-template": "דף קוד ויקי מומר לזרימה",
 	"flow-importer-wt-converted-archive-template": "ארכיון לדף קוד ויקי מומר",
+	"apihelp-flow-param-submodule": "איזה תת-מודול של זרימה להפעיל.",
+	"apihelp-flow-param-page": "באיזה דף ברצונך לפעול.",
+	"apihelp-flow+edit-header-param-content": "תוכן לכותרת",
+	"apihelp-flow+edit-title-param-content": "תוכן לכותרת.",
 	"flow-edited": "נערכה",
 	"flow-edited-by": "נערכה על־ידי $1",
 	"flow-lqt-redirect-reason": "הפניה של רשומת LiquidThreads מיושנת לרשומת זרימה מומרת",
