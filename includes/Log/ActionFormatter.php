@@ -38,8 +38,6 @@ class ActionFormatter extends \LogFormatter {
 	 * @return string The log entry
 	 */
 	protected function getActionMessage() {
-		global $wgContLang;
-
 		/*
 		 * At this point, all log entries will already have been created & we've
 		 * gathered all uuids in constructor: we can now batch-load all of them.
@@ -69,7 +67,6 @@ class ActionFormatter extends \LogFormatter {
 		$type = $this->entry->getType();
 		$action = $this->entry->getSubtype();
 		$title = $this->entry->getTarget();
-		$skin = $this->plaintext ? null : $this->context->getSkin();
 		$params = $this->entry->getParameters();
 
 		// @todo: we should probably check if user isAllowed( <this-revision>, 'log' )
@@ -94,8 +91,7 @@ class ActionFormatter extends \LogFormatter {
 		// logentry-suppress-flow-restore-post, logentry-suppress-flow-suppress-post,
 		// logentry-delete-flow-delete-topic, logentry-delete-flow-restore-topic,
 		// logentry-suppress-flow-restore-topic, logentry-suppress-flow-suppress-topic,
-		$language = $skin === null ? $wgContLang : $skin->getLanguage();
-		$message = wfMessage( "logentry-$type-$action" )
+		$message = $this->msg( "logentry-$type-$action" )
 			->params( array(
 				Message::rawParam( $this->getPerformerElement() ),
 				$this->entry->getPerformer()->getName(),
@@ -109,7 +105,7 @@ class ActionFormatter extends \LogFormatter {
 
 		$message->params( $root->getWorkflow()->getOwnerTitle() ); // board title object
 
-		$message->inLanguage( $language )->parse();
+		$message->parse();
 
 		return \Html::rawElement(
 			'span',
