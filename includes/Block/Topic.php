@@ -18,7 +18,6 @@ use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Repository\RootPostLoader;
-use Flow\Templating;
 use Message;
 
 class TopicBlock extends AbstractBlock {
@@ -890,13 +889,12 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	/**
-	 * @param Templating $templating
 	 * @param \OutputPage $out
 	 *
 	 * @todo Provide more informative page title for actions other than view,
      *       e.g. "Hide post in <TITLE>", "Unlock <TITLE>", etc.
 	 */
-	public function setPageTitle( Templating $templating, \OutputPage $out ) {
+	public function setPageTitle( \OutputPage $out ) {
 		$topic = $this->loadTopicTitle( $this->action === 'history' ? 'history' : 'view' );
 		if ( !$topic ) {
 			return;
@@ -904,12 +902,16 @@ class TopicBlock extends AbstractBlock {
 
 		$title = $this->workflow->getOwnerTitle();
 		$out->setPageTitle( $out->msg( 'flow-topic-first-heading', $title->getPrefixedText() ) );
-		$out->setHtmlTitle( $out->msg( 'flow-topic-html-title', array(
-			// This must be a rawParam to not expand {{foo}} in the title, it must
-			// not be htmlspecialchar'd because OutputPage::setHtmlTitle handles that.
-			Message::rawParam( $templating->getContent( $topic, 'wikitext' ) ),
-			$title->getPrefixedText()
-		) ) );
+		if ( $this->permissions->isAllowed( $topic, 'view' ) ) {
+			$out->setHtmlTitle( $out->msg( 'flow-topic-html-title', array(
+				// This must be a rawParam to not expand {{foo}} in the title, it must
+				// not be htmlspecialchar'd because OutputPage::setHtmlTitle handles that.
+				Message::rawParam( $topic->getContent( 'wikitext' ) ),
+				$title->getPrefixedText()
+			) ) );
+		} else {
+			$out->setHtmlTitle( $title->getPrefixedText() );
+		}
 		$out->setSubtitle( '&lt; ' . \Linker::link( $title ) );
 	}
 }

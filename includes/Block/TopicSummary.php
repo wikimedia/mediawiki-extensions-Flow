@@ -13,7 +13,6 @@ use Flow\Formatter\PostSummaryQuery;
 use Flow\Formatter\RevisionViewFormatter;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
-use Flow\Templating;
 use IContextSource;
 use Message;
 
@@ -321,19 +320,22 @@ class TopicSummaryBlock extends AbstractBlock {
 	}
 
 	/**
-	 * @param Templating $templating
 	 * @param \OutputPage $out
 	 */
-	public function setPageTitle( Templating $templating, \OutputPage $out ) {
+	public function setPageTitle( \OutputPage $out ) {
 		$topic = $this->findTopicTitle();
 		$title = $this->workflow->getOwnerTitle();
 		$out->setPageTitle( $out->msg( 'flow-topic-first-heading', $title->getPrefixedText() ) );
-		$out->setHtmlTitle( $out->msg( 'flow-topic-html-title', array(
-			// This must be a rawParam to not expand {{foo}} in the title, it must
-			// not be htmlspecialchar'd because OutputPage::setHtmlTitle handles that.
-			Message::rawParam( $templating->getContent( $topic, 'wikitext' ) ),
-			$title->getPrefixedText()
-		) ) );
+		if ( $this->permissions->isAllowed( $topic, 'view' ) ) {
+			$out->setHtmlTitle( $out->msg( 'flow-topic-html-title', array(
+				// This must be a rawParam to not expand {{foo}} in the title, it must
+				// not be htmlspecialchar'd because OutputPage::setHtmlTitle handles that.
+				Message::rawParam( $topic->getContent( 'wikitext' ) ),
+				$title->getPrefixedText()
+			) ) );
+		} else {
+			$out->setHtmlTitle( $title->getPrefixedText() );
+		}
 
 		$out->setSubtitle( '&lt; ' . \Linker::link( $title ) );
 	}
