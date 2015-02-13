@@ -1,7 +1,5 @@
 {{~#if replyToId~}}
-	{{!-- Messages: flow-hide-post-content, flow-delete-post-content, flow-suppress-post-content --}}
 	{{l10n (concat "flow-" moderateState "-post-content") moderator.name}}
 {{~else~}}
-	{{!-- Messages: flow-hide-title-content, flow-delete-title-content, flow-suppress-title-content --}}
 	{{l10n (concat "flow-" moderateState "-title-content") moderator.name}}
 {{~/if~}}
