@@ -382,7 +382,6 @@ class PageImportState {
 		$this->dbw->commit();
 		$this->cache->commit();
 		$this->sourceStore->save();
-		$this->postprocessor->afterTalkpageImported();
 		$this->flushDeferredQueue();
 	}
 
@@ -391,7 +390,7 @@ class PageImportState {
 		$this->cache->rollback();
 		$this->sourceStore->rollback();
 		$this->clearDeferredQueue();
-		$this->postprocessor->talkpageImportAborted();
+		$this->postprocessor->importAborted();
 	}
 
 	protected function flushDeferredQueue() {
@@ -511,6 +510,7 @@ class TalkpageImportOperation {
 				$state->begin();
 				$this->importHeader( $state, $header );
 				$state->commit();
+				$state->postprocessor->afterHeaderImported( $state, $header );
 				$imported++;
 			} catch ( ImportSourceStoreException $e ) {
 				// errors from the source store are more serious and should
@@ -521,7 +521,7 @@ class TalkpageImportOperation {
 			} catch ( \Exception $e ) {
 				$state->rollback();
 				\MWExceptionHandler::logException( $e );
-				$state->logger->error( 'Failed importing header' );
+				$state->logger->error( 'Failed importing header: ' . $header->getObjectKey() );
 				$state->logger->error( (string)$e );
 				$failed++;
 			}
@@ -531,8 +531,10 @@ class TalkpageImportOperation {
 			try {
 				// @todo this may be too large of a chunk for one commit, unsure
 				$state->begin();
-				$this->importTopic( $state, $topic );
+				$topicState = $this->getTopicState( $state, $topic );
+				$this->importTopic( $topicState, $topic );
 				$state->commit();
+				$state->postprocessor->afterTopicImported( $topicState, $topic );
 				$imported++;
 			} catch ( ImportSourceStoreException $e ) {
 				// errors from the source store are more serious and shuld
@@ -543,7 +545,7 @@ class TalkpageImportOperation {
 			} catch ( \Exception $e ) {
 				$state->rollback();
 				\MWExceptionHandler::logException( $e );
-				$state->logger->error( 'Failed importing topic' );
+				$state->logger->error( 'Failed importing topic: ' . $topic->getObjectKey() );
 				$state->logger->error( (string)$e );
 				$failed++;
 			}
@@ -598,13 +600,10 @@ class TalkpageImportOperation {
 	}
 
 	/**
-	 * @param PageImportState $pageState
+	 * @param TopicImportState $pageState
 	 * @param IImportTopic    $importTopic
 	 */
-	public function importTopic( PageImportState $pageState, IImportTopic $importTopic ) {
-		// $database->begin();
-		$topicState = $this->getTopicState( $pageState, $importTopic );
-
+	public function importTopic( TopicImportState $topicState, IImportTopic $importTopic ) {
 		$summary = $importTopic->getTopicSummary();
 		if ( $summary ) {
 			$this->importSummary( $topicState, $summary );
@@ -616,7 +615,6 @@ class TalkpageImportOperation {
 
 		$topicState->commitLastModified();
 		$topicId = $topicState->topicWorkflow->getId();
-		$pageState->postprocessor->afterTopicImported( $importTopic, $topicId );
 	}
 
 	/**
@@ -808,12 +806,10 @@ class TalkpageImportOperation {
 				$post
 			);
 			$state->parent->logger->info( $logPrefix . "Finished importing post with " . count( $replyRevisions ) . " revisions" );
+			$state->parent->postprocessor->afterPostImported( $state, $post, $topRevision->getPostId() );
 		}
 
 		$state->recordModificationTime( $topRevision->getRevisionId() );
-
-		$topicId = $state->topicWorkflow->getId();
-		$state->parent->postprocessor->afterPostImported( $post, $topicId, $topRevision->getPostId() );
 
 		foreach ( $post->getReplies() as $subReply ) {
 			$this->importPost( $state, $subReply, $topRevision, $logPrefix . ' ' );
