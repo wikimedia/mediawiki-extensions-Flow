@@ -70,7 +70,6 @@ class FlowAction extends Action {
 
 		// @todo much of this seems to duplicate BoardContent::getParserOutput
 		$view = new View(
-			$container['templating'],
 			$container['url_generator'],
 			$container['lightncandy'],
 			$output
