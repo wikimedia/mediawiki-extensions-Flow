@@ -318,7 +318,7 @@ class RevisionFormatter {
 			'userpage' => array(
 				'url' => $userTitle->getLinkURL(),
 				'title' => $userTitle->getText(),
-				'exists' => $userTitle->exists(),
+				'exists' => $userTitle->isKnown(),
 			)
 		);
 
@@ -326,7 +326,7 @@ class RevisionFormatter {
 			$links['talk'] = array(
 				'url' => $talkPageTitle->getLinkURL(),
 				'title' => $talkPageTitle->getPrefixedText(),
-				'exists' => $talkPageTitle->exists()
+				'exists' => $talkPageTitle->isKnown()
 			);
 		}
 		// is this right permissions? typically this would
