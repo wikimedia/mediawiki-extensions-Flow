@@ -3,8 +3,11 @@
 namespace Flow\Import\Postprocessor;
 
 use Flow\Model\UUID;
+use Flow\Import\IImportHeader;
 use Flow\Import\IImportPost;
 use Flow\Import\IImportTopic;
+use Flow\Import\TopicImportState;
+use Flow\Import\PageImportState;
 
 class ProcessorGroup implements Postprocessor {
 	/** @var array<Postprocessor> **/
@@ -18,20 +21,19 @@ class ProcessorGroup implements Postprocessor {
 		$this->processors[] = $proc;
 	}
 
-	public function afterTopicImported( IImportTopic $topic, UUID $newTopicId ) {
-		$this->call( 'afterTopicImported', func_get_args() );
+	public function afterHeaderImported( PageImportState $state, IImportHeader $header ) {
+		$this->call( __FUNCTION__, func_get_args() );
+	}
+	public function afterTopicImported( TopicImportState $state, IImportTopic $topic ) {
+		$this->call( __FUNCTION__, func_get_args() );
 	}
 
-	public function afterPostImported( IImportPost $post, UUID $topicId, UUID $postId ) {
-		$this->call( 'afterPostImported', func_get_args() );
+	public function afterPostImported( TopicImportState $state, IImportPost $post, UUID $newPostId ) {
+		$this->call( __FUNCTION__, func_get_args() );
 	}
 
-	public function afterTalkpageImported() {
-		$this->call( 'afterTalkpageImported', func_get_args() );
-	}
-
-	public function talkpageImportAborted() {
-		$this->call( 'talkpageImportAborted', func_get_args() );
+	public function importAborted() {
+		$this->call( __FUNCTION__, func_get_args() );
 	}
 
 	protected function call( $name, $args ) {
