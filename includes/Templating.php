@@ -135,37 +135,23 @@ class Templating {
 	 *
 	 * @param  AbstractRevision $revision        Revision to display
 	 * @return string                            HTML
+	 * @throws FlowException
 	 */
 	public function getUserLinks( AbstractRevision $revision ) {
+		if ( !$revision->isModerated() && !$this->permissions->isAllowed( $revision, 'view' ) ) {
+			throw new FlowException( 'Insufficient permissions to see userlinks for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
+		}
+
 		// if this specific revision is moderated, its usertext can always be
 		// displayed, since it will be the moderator user
-		if ( $revision->isModerated() || $this->permissions->isAllowed( $revision, 'view' ) ) {
-			static $cache;
-			$userid = $revision->getUserId();
-			$userip = $revision->getUserIp();
-			if ( isset( $cache[$userid][$userip] ) ) {
-				return $cache[$userid][$userip];
-			}
-			$username = $this->usernames->get( wfWikiId(), $userid, $userip );
-			return $cache[$userid][$userip] = Linker::userLink( $userid, $username ) . Linker::userToolLinks( $userid, $username );
-		} else {
-			$revision = $this->getModeratedRevision( $revision );
-			$state = $revision->getModerationState();
-			$username = $this->usernames->get(
-				wfWikiId(),
-				$revision->getModeratedByUserId(),
-				$revision->getModeratedByUserIp()
-			);
-
-			// Messages: flow-hide-usertext, flow-delete-usertext, flow-suppress-usertext
-			$message = wfMessage( "flow-$state-usertext", $username );
-			if ( $message->exists() ) {
-				return $message->escaped();
-			} else {
-				wfWarn( __METHOD__ . ': Failed to locate message for moderated content: ' . $message->getKey() );
-				return wfMessage( 'flow-error-other' )->escaped();
-			}
+		static $cache;
+		$userid = $revision->getUserId();
+		$userip = $revision->getUserIp();
+		if ( isset( $cache[$userid][$userip] ) ) {
+			return $cache[$userid][$userip];
 		}
+		$username = $this->usernames->get( wfWikiId(), $userid, $userip );
+		return $cache[$userid][$userip] = Linker::userLink( $userid, $username ) . Linker::userToolLinks( $userid, $username );
 	}
 
 	/**
