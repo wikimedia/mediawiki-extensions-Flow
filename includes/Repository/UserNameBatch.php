@@ -5,6 +5,7 @@
  */
 namespace Flow\Repository;
 
+use Flow\Model\UserTuple;
 use User;
 
 /**
@@ -52,6 +53,13 @@ class UserNameBatch {
 	}
 
 	/**
+	 * @param UserTuple $tuple
+	 */
+	public function addFromTuple( UserTuple $tuple ) {
+		$this->add( $tuple->wiki, $tuple->id, $tuple->ip );
+	}
+
+	/**
 	 * Get the displayable username
 	 *
 	 * @param string $wiki
@@ -71,6 +79,14 @@ class UserNameBatch {
 			$this->resolve( $wiki );
 		}
 		return $this->usernames[$wiki][$userId];
+	}
+
+	/**
+	 * @param UserTuple $tuple
+	 * @return string|boolean false if username is not found or display is suppressed
+	 */
+	public function getFromTuple( UserTuple $tuple ) {
+		return $this->get( $tuple->wiki, $tuple->id, $tuple->ip );
 	}
 
 	/**
