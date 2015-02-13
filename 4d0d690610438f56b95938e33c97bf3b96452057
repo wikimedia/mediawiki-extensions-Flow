@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_0a10e602",
+        "filename": "Flow.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-13T05:15:32Z",
+      "side": 1,
+      "message": "Should be ActionFormatter",
+      "revId": "4d0d690610438f56b95938e33c97bf3b96452057",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_8a12b6ff",
+        "filename": "Flow.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-13T05:15:32Z",
+      "side": 1,
+      "message": "Should it be import/lqt-to-flow-topic to be more future-proof?",
+      "revId": "4d0d690610438f56b95938e33c97bf3b96452057",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_6a171af3",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-13T05:15:32Z",
+      "side": 1,
+      "message": "Now it seems to be:\n\n$1 - The article within the topic namespace the topic was\nimported to\n$2 - Topic title\n$3 - The board that was converted from LiquidThreads to Flow (note typo fix)",
+      "revId": "4d0d690610438f56b95938e33c97bf3b96452057",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_cae74e0c",
+        "filename": "includes/Import/LiquidThreadsApi/Objects.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-13T05:15:32Z",
+      "side": 1,
+      "message": "TODO: Does it include the page_id of the new Flow topic somewhere else?",
+      "revId": "4d0d690610438f56b95938e33c97bf3b96452057",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_eab9eae6",
+        "filename": "includes/Import/Postprocessor/SpecialLogTopic.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-13T05:15:32Z",
+      "side": 1,
+      "message": "To a boolean, set (to true) if and only if a post has been imported.",
+      "revId": "4d0d690610438f56b95938e33c97bf3b96452057",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_0abd46d1",
+        "filename": "includes/Import/Postprocessor/SpecialLogTopic.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-13T05:15:32Z",
+      "side": 1,
+      "message": "More than slightly.  I\u0027ll submit a followup.\n\nDoesn\u0027t this also mean there\u0027s only going to be one topic at most in the queue, so it could just set topicWorkflow and topic as fields (would also be clearer than $args[0] and $args[1])?",
+      "revId": "4d0d690610438f56b95938e33c97bf3b96452057",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_6aa4faaf",
+        "filename": "includes/Import/Postprocessor/SpecialLogTopic.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-13T05:15:32Z",
+      "side": 1,
+      "message": "You TODID this.",
+      "revId": "4d0d690610438f56b95938e33c97bf3b96452057",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_8a9f1662",
+        "filename": "includes/Log/ImportFormatter.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-13T05:15:32Z",
+      "side": 1,
+      "message": "I think Title is the only one of these that is really used.",
+      "revId": "4d0d690610438f56b95938e33c97bf3b96452057",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_ca7c2e1e",
+        "filename": "includes/Log/ImportFormatter.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-13T05:15:32Z",
+      "side": 1,
+      "message": "I think you should use $this-\u003emsg instead of the language-choosing logic below.  But like I said in the other patch, I might be missing something.\n\nThat in turn uses the super-secret so-undocumented-it\u0027s-not-even-a-defined-field $this-\u003econtext, then you can call getLanguage() on that. (I defined it in https://gerrit.wikimedia.org/r/#/c/190411/ ).\n\nLogs are supposed to be in user language, not content language (which wgContLang is): https://en.wikipedia.org/wiki/Special:Log?uselang\u003des (it\u0027s the same if you change it in your user preferences).\n\nI\u0027ve done the same in ActionFormatter in https://gerrit.wikimedia.org/r/190415 .",
+      "revId": "4d0d690610438f56b95938e33c97bf3b96452057",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
