@@ -6,10 +6,17 @@
 // @todo: Give more generic name
 // TOU should be tiny and grey
 .flow-terms-of-use {
-	display: table-cell;
+	display: block;
+	clear: both;
 	height: 3.6em;
 	vertical-align: middle;
 	color: @colorTextLight;
 	font-size: .75em;
 	line-height: 1.4;
+}
+
+@media all and (min-width: @wgFlowDeviceWidthTablet) {
+	.flow-terms-of-use {
+		clear: none;
+	}
 }
