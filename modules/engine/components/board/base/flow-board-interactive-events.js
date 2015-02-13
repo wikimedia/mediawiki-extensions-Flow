@@ -176,10 +176,13 @@
 		event.preventDefault();
 
 		var $form,
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) ),
-			$post = $( this ).closest( '.flow-post' ),
-			$targetPost = $( this ).closest( '.flow-post:not(.flow-post-max-depth)' ),
-			postId = $targetPost.data( 'flow-id' ),
+			$this = $( this ),
+			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $this ),
+			$post = $this.closest( '.flow-post' ),
+			href = $this.attr( 'href' ),
+			uri = new mw.Uri( href ),
+			postId = uri.query.topic_postId,
+			$targetPost = $( '#flow-post-' + postId ),
 			topicTitle = $post.closest( '.flow-topic' ).find( '.flow-topic-title' ).text(),
 			replyToContent = $post.find( '.flow-post-content' ).filter( ':first' ).text() || topicTitle,
 			author = $.trim( $post.find( '.flow-author' ).filter( ':first' ).find( '.mw-userlink' ).text() ),
@@ -197,7 +200,7 @@
 			{
 				actions: {
 					reply: {
-						url: $( this ).attr( 'href' ),
+						url: href,
 						title: mw.msg( 'flow-reply-link', author )
 					}
 				},

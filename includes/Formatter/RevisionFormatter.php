@@ -453,11 +453,22 @@ class RevisionFormatter {
 				}
 
 				/*
-				 * If the post being replied to is at or exceeds the max
-				 * threading depth, the reply link should point to parent.
+				 * If the post being replied to is the most recent post
+				 * of its depth, the reply link should point to parent
 				 */
 				$replyToId = $postId;
 				$replyToRevision = $revision;
+				$comment = false;
+				if ( $row->isLastReply ) {
+					$replyToId = $replyToRevision->getReplyToId();
+					$replyToRevision = PostCollection::newFromId( $replyToId )->getLastRevision();
+					$comment = true;
+				}
+
+				/*
+				 * If the post being replied to is at or exceeds the max
+				 * threading depth, the reply link should point to parent.
+				 */
 				while ( $replyToRevision->getDepth() >= $this->maxThreadingDepth ) {
 					$replyToId = $replyToRevision->getReplyToId();
 					$replyToRevision = PostCollection::newFromId( $replyToId )->getLastRevision();
@@ -469,6 +480,9 @@ class RevisionFormatter {
 					$replyToId,
 					$revision->isTopicTitle()
 				);
+				if ( $comment ) {
+					$links['reply']->setMessage( wfMessage( 'flow-comment-link' ) );
+				}
 				break;
 
 			case 'edit-header':
