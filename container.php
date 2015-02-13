@@ -209,7 +209,6 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 	);
 } );
 $c['listener.recentchanges'] = $c->share( function( $c ) {
-	global $wgContLang;
 	// Recent change listeners go out to external services and
 	// as such must only be run after the transaction is commited.
 	return new Flow\Data\Listener\DeferredInsertLifecycleHandler(

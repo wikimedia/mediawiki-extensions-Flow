@@ -13,8 +13,6 @@ class Formatter extends \LogFormatter {
 	 * @return string The log entry
 	 */
 	protected function getActionMessage() {
-		global $wgContLang;
-
 		$type = $this->entry->getType();
 		$action = $this->entry->getSubtype();
 		$title = $this->entry->getTarget();
@@ -55,15 +53,13 @@ class Formatter extends \LogFormatter {
 		// logentry-suppress-flow-restore-post, logentry-suppress-flow-suppress-post,
 		// logentry-delete-flow-delete-topic, logentry-delete-flow-restore-topic,
 		// logentry-suppress-flow-restore-topic, logentry-suppress-flow-suppress-topic,
-		$language = $skin === null ? $wgContLang : $skin->getLanguage();
-		$message = wfMessage( "logentry-$type-$action" )
+		$message = $this->msg( "logentry-$type-$action" )
 			->params( array(
 				Message::rawParam( $this->getPerformerElement() ),
 				$this->entry->getPerformer()->getId(),
 				$title,
 				$title->getFullUrl( $params ),
 			) )
-			->inLanguage( $language )
 			->parse();
 
 		return \Html::rawElement(
