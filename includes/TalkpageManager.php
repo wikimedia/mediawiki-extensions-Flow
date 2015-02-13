@@ -69,7 +69,8 @@ class TalkpageManager implements OccupationController {
 	 * Internally, determines whether or not 1% of the talk page contains
 	 * 99% of the discussions.
 	 *
-	 * @param  Title  $title Title object to check for occupation status
+	 * @param Title $title Title object to check for occupation status
+	 * @param boolean $checkContentModel
 	 * @return boolean True if the talk page is occupied, False otherwise.
 	 */
 	public function isTalkpageOccupied( $title, $checkContentModel = true ) {
@@ -119,8 +120,6 @@ class TalkpageManager implements OccupationController {
 	 * @throws InvalidInputException
 	 */
 	public function ensureFlowRevision( Article $article, Workflow $workflow ) {
-		$title = $article->getTitle();
-
 		// Break loops (because doEditContent requires rendering, which will load the workflow, which will call this function)
 		static $doing = false;
 		if ( $doing ) {
