@@ -73,7 +73,7 @@
 	<span class="flow-post-meta-actions">
 '.((LCRun3::ifvar($cx, ((isset($in['actions']['reply']) && is_array($in['actions'])) ? $in['actions']['reply'] : null))) ? '			<a href="'.htmlentities((string)((isset($in['actions']['reply']['url']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 			   title="'.htmlentities((string)((isset($in['actions']['reply']['title']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'"
-			   class="mw-ui-anchor mw-ui-progressive mw-ui-quiet"
+			   class="mw-ui-anchor mw-ui-progressive mw-ui-quiet flow-ui-hide-last-reply"
 			   data-flow-interactive-handler="activateReplyPost"
 
 			   data-flow-eventlog-schema="FlowReplies"
