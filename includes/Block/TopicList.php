@@ -13,7 +13,6 @@ use Flow\Model\PostRevision;
 use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use Flow\Templating;
 use Flow\Exception\FailCommitException;
 
 class TopicListBlock extends AbstractBlock {
@@ -379,13 +378,12 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	/**
-	 * @param Templating $templating
 	 * @param \OutputPage $out
 	 */
-	public function setPageTitle( Templating $templating, \OutputPage $out ) {
+	public function setPageTitle( \OutputPage $out ) {
 		if ( $this->action !== 'new-topic' ) {
 			// Only new-topic should override page title, rest should default
-			parent::setPageTitle( $templating, $out );
+			parent::setPageTitle( $out );
 			return;
 		}
 

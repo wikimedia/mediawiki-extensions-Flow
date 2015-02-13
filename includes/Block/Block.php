@@ -11,7 +11,6 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\RevisionActionPermissions;
 use Flow\SpamFilter\Controller as SpamFilterController;
-use Flow\Templating;
 use IContextSource;
 
 interface Block {
@@ -325,10 +324,9 @@ abstract class AbstractBlock implements Block {
 	}
 
 	/**
-	 * @param Templating $templating
 	 * @param \OutputPage $out
 	 */
-	public function setPageTitle( Templating $templating, \OutputPage $out ) {
+	public function setPageTitle( \OutputPage $out ) {
 		if ( $out->getPageTitle() ) {
 			// Don't override page title if another block has already set it.
 			// If this should *really* be done, the specific block extending

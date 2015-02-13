@@ -16,11 +16,6 @@ use WebRequest;
 
 class View extends ContextSource {
 	/**
-	 * @var Templating $templating
-	 */
-	protected $templating;
-
-	/**
 	 * @var UrlGenerator $urlGenerator
 	 */
 	protected $urlGenerator;
@@ -31,12 +26,10 @@ class View extends ContextSource {
 	protected $lightncandy;
 
 	function __construct(
-		Templating $templating,
 		UrlGenerator $urlGenerator,
 		TemplateHelper $lightncandy,
 		IContextSource $requestContext
 	) {
-		$this->templating = $templating;
 		$this->urlGenerator = $urlGenerator;
 		$this->lightncandy = $lightncandy;
 		$this->setContext( $requestContext );
@@ -137,7 +130,7 @@ class View extends ContextSource {
 		// Please note that all blocks can set page title, which may cause them
 		// to override one another's titles
 		foreach ( $blocks as $block ) {
-			$block->setPageTitle( $this->templating, $this->getOutput() );
+			$block->setPageTitle( $this->getOutput() );
 		}
 
 		if ( count( $apiResponse['blocks'] ) === 0 ) {

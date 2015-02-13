@@ -185,7 +185,6 @@ class BoardContent extends \AbstractContent {
 
 			// Create a View set up to output to our derivative context
 			$view = new View(
-				Container::get('templating'), // Should this also use the output page? I think it's okay
 				Container::get('url_generator'),
 				Container::get('lightncandy'),
 				$childContext->getOutput()
