@@ -251,14 +251,21 @@
 	 * @param {jQuery} $topicTitle
 	 */
 	function flowBoardComponentTocFeatureElementLoadTopicTitle( $topicTitle ) {
-		var currentTopicId = $topicTitle.closest( '[data-flow-id]' ).data( 'flowId' ),
-			topicData = {
-				posts: {},
-				revisions: {},
-				roots: [ currentTopicId ],
-				noLoadMore: true
-			},
-			$kids, $target;
+		var currentTopicId, topicData, $kids, $target;
+
+		if ( !this.$tocMenu ) {
+			// No TOC (expected if we're on Topic page)
+
+			return;
+		}
+
+		currentTopicId = $topicTitle.closest( '[data-flow-id]' ).data( 'flowId' );
+		topicData = {
+			posts: {},
+			revisions: {},
+			roots: [ currentTopicId ],
+			noLoadMore: true
+		};
 
 		if ( !this.topicIdsInToc[ currentTopicId ] ) {
 			// If we get in here, this must have been loaded by topics infinite scroll and NOT by jumpTo
