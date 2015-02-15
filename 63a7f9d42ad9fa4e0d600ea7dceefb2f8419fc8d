@@ -16,6 +16,24 @@
       "revId": "63a7f9d42ad9fa4e0d600ea7dceefb2f8419fc8d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_0331a856",
+        "filename": "includes/Formatter/RevisionViewFormatter.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-15T03:27:51Z",
+      "side": 1,
+      "message": "isTopicTitle is the issue for purposes of this change.\n\ntopic-of-post is definitely in the public API (and used).\n\nBut it\u0027s not clear whether the RevisionViewFormatter topic-of-post value (here) is used anywhere.\n\nQuick testing shows view-topic and view-topiclist get it from somewhere else.\n\nAt any rate, if you agree isTopicTItle is not reachable, I\u0027ll remove that.\n\nI\u0027ll leave a note until we confirm whether the whole block is reachable.",
+      "parentUuid": "6e7c4fa4_70915251",
+      "revId": "63a7f9d42ad9fa4e0d600ea7dceefb2f8419fc8d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
