@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_037f68de",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-15T21:03:40Z",
+      "side": 1,
+      "message": "I think you forgot to do this one.  The only change is the message\u0027s name.  The parameters are also wrong, and there is a typo.  See https://gerrit.wikimedia.org/r/#/c/189909/4/i18n/qqq.json",
+      "revId": "fe4c9e4933c3570683b92a6431edfd711c831fdf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_49c33f8c",
+        "filename": "includes/Import/Postprocessor/Postprocessor.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-15T21:03:40Z",
+      "side": 1,
+      "message": "permanent",
+      "revId": "fe4c9e4933c3570683b92a6431edfd711c831fdf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_e941eb0e",
+        "filename": "includes/Import/Postprocessor/SpecialLogTopic.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-15T21:03:40Z",
+      "side": 1,
+      "message": "In theory, it doesn\u0027t need an array (since only one topic is imported at a time, so a boolean could do).\n\nI guess this works if you want it as a sanity check",
+      "revId": "fe4c9e4933c3570683b92a6431edfd711c831fdf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_2938439a",
+        "filename": "includes/Import/Postprocessor/SpecialLogTopic.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-15T21:03:40Z",
+      "side": 1,
+      "message": "Single quotes when not using interpolation",
+      "revId": "fe4c9e4933c3570683b92a6431edfd711c831fdf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_a3547457",
+        "filename": "includes/Import/Postprocessor/SpecialLogTopic.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-15T21:03:40Z",
+      "side": 1,
+      "message": "I was wrong about this being done.  I got it confused with logentry-import-lqt-to-flow-topic (the formatter i18n message).",
+      "revId": "fe4c9e4933c3570683b92a6431edfd711c831fdf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_23c86424",
+        "filename": "includes/Log/LqtImportFormatter.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-15T21:03:40Z",
+      "side": 1,
+      "message": "See top of https://gerrit.wikimedia.org/r/#/c/189909/4/includes/Log/ImportFormatter.php.  Looks like the fixes to this part did not make it in.",
+      "revId": "fe4c9e4933c3570683b92a6431edfd711c831fdf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
