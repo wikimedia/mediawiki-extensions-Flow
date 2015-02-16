@@ -273,6 +273,12 @@
 	"flow-anonymous": "Anónimo",
 	"flow-embedding-unsupported": "Las discusiones todavía no pueden ser incrustadas.",
 	"mw-ui-unsubmitted-confirm": "Tienes cambios no enviados en esta página. ¿Estás seguro que deseas salir y perder tu trabajo?",
+	"flow-post-undo-hide": "deshacer ocultar",
+	"flow-post-undo-delete": "deshacer borrar",
+	"flow-post-undo-suppress": "deshacer suprimir",
+	"flow-topic-undo-hide": "deshacer ocultar",
+	"flow-topic-undo-delete": "deshacer borrar",
+	"flow-topic-undo-suppress": "deshacer suprimir",
 	"apihelp-flow+edit-post-param-content": "Contenido para publicar.",
 	"flow-edited": "Editada"
 }

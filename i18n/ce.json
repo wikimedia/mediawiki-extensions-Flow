@@ -75,5 +75,6 @@
 	"flow-topic-first-heading": "$1 чура хьедар",
 	"flow-topic-html-title": "$1 $2 тӀе",
 	"flow-recent-topics": "Дукху хан йоцуш жигара хьедарш",
-	"flow-spam-confirmedit-form": "Хьой адам делахь сурт тӀера йоза язде: $1"
+	"flow-spam-confirmedit-form": "Хьой адам делахь сурт тӀера йоза язде: $1",
+	"flow-post-undo-delete": "юхадаккха дӀадаккхар"
 }

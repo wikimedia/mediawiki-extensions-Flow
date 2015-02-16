@@ -14,7 +14,8 @@
 			"Sunpriat",
 			"Striking Blue",
 			"NBS",
-			"Максим777"
+			"Максим777",
+			"Batumski brodyaga"
 		]
 	},
 	"flow-desc": "Система управления потоками работ",
@@ -345,9 +346,11 @@
 	"flow-anonymous": "Аноним",
 	"flow-embedding-unsupported": "Обсуждения пока не могут быть вставленным куда-либо ещё.",
 	"mw-ui-unsubmitted-confirm": "У вас есть неприменённые изменения на этой странице. Вы уверены, что хотите уйти и потерять изменения?",
-	"flow-post-undo-hide": "(отмена сокрытия)",
-	"flow-post-undo-delete": "(отмена удаления)",
-	"flow-post-undo-suppress": "(отмена подавления)",
+	"flow-post-undo-hide": "отмена сокрытия",
+	"flow-post-undo-delete": "отмена удаления",
+	"flow-post-undo-suppress": "отмена подавления",
+	"flow-topic-undo-hide": "отменить скрытие",
+	"flow-topic-undo-delete": "отменить удаление",
 	"apihelp-flow+close-open-topic-param-reason": "Основание для блокировки или разблокировки темы.",
 	"apihelp-flow+lock-topic-description": "Заблокировать или разблокировать Flow-тему.",
 	"apihelp-flow+moderate-post-param-reason": "Причина модерации.",

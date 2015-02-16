@@ -313,7 +313,11 @@
 	"flow-anonymous": "Anonym",
 	"flow-embedding-unsupported": "Diskusjoner kan ikke bygges inn enda.",
 	"mw-ui-unsubmitted-confirm": "Du har ulagrede endringer på denne siden. Er du sikker på at du vil navigere vekk og miste arbeidet ditt?",
-	"flow-post-undo-hide": "(angre skjuling)",
-	"flow-post-undo-delete": "(angre sletting)",
+	"flow-post-undo-hide": "angre skjuling",
+	"flow-post-undo-delete": "angre sletting",
+	"flow-post-undo-suppress": "angre undertrykking",
+	"flow-topic-undo-hide": "angre skjuling",
+	"flow-topic-undo-delete": "angre sletting",
+	"flow-topic-undo-suppress": "angre undertrykking",
 	"apihelp-flow+edit-post-param-postId": "Innleggs-ID."
 }

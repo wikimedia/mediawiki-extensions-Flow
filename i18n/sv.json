@@ -9,7 +9,8 @@
 			"Platinawolf",
 			"Bittin",
 			"Albinomamba",
-			"Stens51"
+			"Stens51",
+			"Jenniesarina"
 		]
 	},
 	"flow-desc": "Arbetsflödeshanteringssystem",
@@ -308,9 +309,6 @@
 	"flow-compare-revisions-header-post": "Denna sida visar {{GENDER:$3|förändringar}} mellan två versioner av ett inlägg av $3 i ämnet \"[$5 $2]\" på [$4 $1].\nDu kan se andra versioner av detta inlägg genom dess [$6 historiksida].",
 	"flow-compare-revisions-header-postsummary": "Denna sida visar förändringarna mellan två versioner av en inläggssammanfattning i inlägget \"[$4 $2]\" på [$3 $1].\nDu kan se andra versioner av detta inlägg genom dess [$5 historiksida].",
 	"flow-compare-revisions-header-header": "Denna sida visar {{GENDER:$2|förändringarna}} mellan två sidor av sidhuvudet på [$3 $1].\nDu kan se andra versioner av sidhuvudet på dess [$4 historiksida].",
-	"flow-topic-collapsed-one-line": "Liten vy",
-	"flow-topic-collapsed-full": "Komprimerad vy",
-	"flow-topic-complete": "Full vy",
 	"right-flow-hide": "Dölj ämnen och inlägg i Flow",
 	"right-flow-lock": "Lås ämnen i Flow",
 	"right-flow-delete": "Radera ämnen och inlägg i Flow",
@@ -352,9 +350,11 @@
 	"flow-anonymous": "Anonym",
 	"flow-embedding-unsupported": "Diskussioner kan ännu inte bäddas in.",
 	"mw-ui-unsubmitted-confirm": "Du har osparade ändringar på denna sida. Är du säker du vill lämna sidan och förlora ändringarna?",
-	"flow-post-undo-hide": "(ångra dölj)",
-	"flow-post-undo-delete": "(ångra radera)",
+	"flow-post-undo-hide": "ångra dölj",
+	"flow-post-undo-delete": "ångra radera",
 	"flow-post-undo-suppress": "(ångra censurera)",
+	"flow-topic-undo-hide": "ångra dölj",
+	"flow-topic-undo-delete": "ångra radera",
 	"flow-importer-lqt-converted-template": "LQT-sida konverterad till Flow",
 	"flow-importer-lqt-converted-archive-template": "Arkiv för konverterad LQT-sida",
 	"flow-importer-wt-converted-template": "Wikitextdiskussionssida konverterad till Flow",

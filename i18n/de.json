@@ -349,6 +349,7 @@
 	"flow-topic-undo-hide": "Verstecken rückgängig gemacht",
 	"flow-topic-undo-delete": "Löschen rückgängig gemacht",
 	"flow-topic-undo-suppress": "Unterdrücken rückgängig gemacht",
+	"flow-importer-lqt-moved-thread-template": "Durch LQT verschobenen Thread-Stub zu Flow konvertiert",
 	"flow-importer-lqt-converted-template": "LiquidThreads-Seite nach Flow konvertiert",
 	"flow-importer-lqt-converted-archive-template": "Archiv für konvertierte LiquidThreads-Seite",
 	"flow-importer-wt-converted-template": "Wikitext-Diskussionsseite zu Flow konvertiert",
