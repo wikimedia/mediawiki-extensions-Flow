@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_5f5a0386",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-17T22:58:56Z",
+      "side": 1,
+      "message": "actually done this time :)",
+      "parentUuid": "6e7c4fa4_037f68de",
+      "revId": "fe4c9e4933c3570683b92a6431edfd711c831fdf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_49c33f8c",
         "filename": "includes/Import/Postprocessor/Postprocessor.php",
         "patchSetId": 5
@@ -53,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_3fc70769",
+        "filename": "includes/Import/Postprocessor/SpecialLogTopic.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-17T22:58:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_e941eb0e",
+      "revId": "fe4c9e4933c3570683b92a6431edfd711c831fdf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_2938439a",
         "filename": "includes/Import/Postprocessor/SpecialLogTopic.php",
         "patchSetId": 5
@@ -64,6 +100,24 @@
       "writtenOn": "2015-02-15T21:03:40Z",
       "side": 1,
       "message": "Single quotes when not using interpolation",
+      "revId": "fe4c9e4933c3570683b92a6431edfd711c831fdf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_ffac2f9f",
+        "filename": "includes/Import/Postprocessor/SpecialLogTopic.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-17T22:58:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_2938439a",
       "revId": "fe4c9e4933c3570683b92a6431edfd711c831fdf",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +141,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_5f9be378",
+        "filename": "includes/Import/Postprocessor/SpecialLogTopic.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-17T22:58:56Z",
+      "side": 1,
+      "message": "decided to ust remove the comment rather than create one.  We are already saying everything we want to with the normal formatting, and it gracefully handles not having a comment.",
+      "parentUuid": "6e7c4fa4_a3547457",
+      "revId": "fe4c9e4933c3570683b92a6431edfd711c831fdf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_23c86424",
         "filename": "includes/Log/LqtImportFormatter.php",
         "patchSetId": 5
@@ -98,6 +170,24 @@
       "writtenOn": "2015-02-15T21:03:40Z",
       "side": 1,
       "message": "See top of https://gerrit.wikimedia.org/r/#/c/189909/4/includes/Log/ImportFormatter.php.  Looks like the fixes to this part did not make it in.",
+      "revId": "fe4c9e4933c3570683b92a6431edfd711c831fdf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_7f981f7b",
+        "filename": "includes/Log/LqtImportFormatter.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-17T22:58:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_23c86424",
       "revId": "fe4c9e4933c3570683b92a6431edfd711c831fdf",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
