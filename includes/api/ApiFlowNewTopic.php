@@ -34,8 +34,8 @@ class ApiFlowNewTopic extends ApiFlowBasePost {
 	 */
 	public function getParamDescription() {
 		return array(
-			'topic' => 'Text for new topic header',
-			'content' => 'Content for new topic',
+			'topic' => 'Text for new topic title',
+			'content' => 'Content for the topic\'s initial reply',
 		);
 	}
 
