@@ -76,7 +76,7 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 			'offset-id' => 'Offset value (in UUID format) to start fetching topics at',
 			'offset' => 'Offset value to start fetching topics at',
 			'include-offset' => 'Includes the offset item in the results as well',
-			'limit' => 'Amount of topics to fetch',
+			'limit' => 'Number of topics to fetch',
 			'render' => 'Renders (in HTML) the topics, if set',
 			'toconly' => 'Whether to respond with only the information required for the TOC',
 		);
