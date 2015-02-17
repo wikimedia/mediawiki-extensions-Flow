@@ -396,7 +396,7 @@
 	"apihelp-flow-param-submodule": "{{doc-apihelp-param|flow|submodule}}",
 	"apihelp-flow-param-page": "{{doc-apihelp-param|flow|page}}",
 	"apihelp-flow-param-render": "{{doc-apihelp-param|flow|render}}",
-	"apihelp-flow-example-1": "{{doc-apihelp-example|flow}}",
+	"apihelp-flow-example-1": "{{doc-apihelp-example|flow}} (don't translate the [[Talk:Sandbox]] part, that's the name of the page for the API example)",
 	"apihelp-flow+close-open-topic-description": "{{doc-apihelp-description|flow+close-open-topic}}",
 	"apihelp-flow+close-open-topic-param-moderationState": "{{doc-apihelp-param|flow+close-open-topic|moderationState}}",
 	"apihelp-flow+close-open-topic-param-reason": "{{doc-apihelp-param|flow+close-open-topic|reason}}",
