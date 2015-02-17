@@ -305,7 +305,8 @@ $c['storage.header.listeners'] = $c->share( function( $c ) {
 		$c['reference.recorder'],
 		$c['storage.board_history.indexes.primary'],
 		$c['storage.header.listeners.username'],
-		$c['listener.recentchanges']
+		$c['listener.recentchanges'],
+		$c['listener.editcount'],
 	);
 } );
 $c['storage.header.primary_key'] = array( 'rev_id' );
@@ -383,6 +384,7 @@ $c['storage.post_summary.listeners'] = function( $c ) {
 		$c['listener.recentchanges'],
 		$c['storage.post_summary.listeners.username'],
 		$c['storage.board_history.indexes.primary'],
+		$c['listener.editcount'],
 		// topic history -- to keep a history by topic we have to know what topic every post
 		// belongs to, not just its parent. TopicHistoryIndex is a slight tweak to TopKIndex
 		// using TreeRepository for extra information and stuffing it into topic_root while indexing
@@ -562,6 +564,7 @@ $c['storage.post.listeners'] = function( $c ) {
 		$c['storage.post.listeners.watch_topic'],
 		$c['storage.post.listeners.notification'],
 		$c['listener.recentchanges'],
+		$c['listener.editcount'],
 		// topic history -- to keep a history by topic we have to know what topic every post
 		// belongs to, not just its parent. TopicHistoryIndex is a slight tweak to TopKIndex
 		// using TreeRepository for extra information and stuffing it into topic_root while indexing
@@ -1139,4 +1142,7 @@ $c['importer'] = $c->share( function( $c ) {
 	);
 } );
 
+$c['listener.editcount'] = $c->share( function( $c ) {
+	return new \Flow\Data\Listener\EditCountListener( $c['flow_actions'] );
+} );
 return $c;

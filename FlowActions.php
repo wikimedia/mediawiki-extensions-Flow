@@ -34,6 +34,7 @@ use Flow\Data\Listener\RecentChangesListener;
  *   * immediate: watchlist the title in the current process
  * * rc_title: Either 'article' or 'owner' to select between Workflow::getArticleTitle
  *     or Workflow::getOwnerTitle being used as the related recentchanges entry on insert
+ * * editcount: True to increment user's edit count for this action
  */
 $wgFlowActions = array(
 	'create-header' => array(
@@ -53,6 +54,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-create-header',
 		),
+		'editcount' => true,
 	),
 
 	'edit-header' => array(
@@ -73,6 +75,7 @@ $wgFlowActions = array(
 			'class' => 'flow-history-edit-header',
 		),
 		'handler-class' => 'Flow\Actions\EditHeaderAction',
+		'editcount' => true,
 	),
 
 	'create-topic-summary' => array(
@@ -97,6 +100,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-create-topic-summary',
 		),
+		'editcount' => true,
 	),
 
 	'edit-topic-summary' => array(
@@ -122,6 +126,7 @@ $wgFlowActions = array(
 			'class' => 'flow-history-edit-topic-summary',
 		),
 		'handler-class' => 'Flow\Actions\EditTopicSummaryAction',
+		'editcount' => true,
 	),
 
 	'edit-title' => array(
@@ -148,6 +153,7 @@ $wgFlowActions = array(
 		'watch' => array(
 			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
 		),
+		'editcount' => true,
 	),
 
 	// Normal posts are the 'reply' type.
@@ -175,6 +181,7 @@ $wgFlowActions = array(
 		'watch' => array(
 			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
 		),
+		'editcount' => true,
 	),
 
 	'edit-post' => array(
@@ -206,6 +213,7 @@ $wgFlowActions = array(
 		'watch' => array(
 			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
 		),
+		'editcount' => true,
 	),
 
 	'hide-post' => array(
@@ -548,6 +556,7 @@ $wgFlowActions = array(
 		'watch' => array(
 			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
 		),
+		'editcount' => true,
 	),
 
 	'history' => array(
