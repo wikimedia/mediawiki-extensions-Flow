@@ -363,6 +363,7 @@
 	"flow-topic-undo-hide": "撤销隐藏",
 	"flow-topic-undo-delete": "撤销删除",
 	"flow-topic-undo-suppress": "撤销锁定",
+	"flow-importer-lqt-moved-thread-template": "LQT移动了帖子存档，并转换成Flow",
 	"flow-importer-lqt-converted-template": "LQT页面已转换为Flow",
 	"flow-importer-lqt-converted-archive-template": "已转换的LQT页面的存档",
 	"flow-importer-wt-converted-template": "从Wiki文本讨论页转换为Flow页面",

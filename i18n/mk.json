@@ -349,6 +349,7 @@
 	"flow-topic-undo-hide": "откажи го скривањето",
 	"flow-topic-undo-delete": "откажи го бришењето",
 	"flow-topic-undo-suppress": "откажи го притајувањето",
+	"flow-importer-lqt-moved-thread-template": "LQT премести нишка-никулец претворена во Тек",
 	"flow-importer-lqt-converted-template": "LQT-страница пертворена во Тек",
 	"flow-importer-lqt-converted-archive-template": "Архив за претворената LQT-страница",
 	"flow-importer-wt-converted-template": "Бикитекстуална страница за разговор што треба да се претвори во Тек",
