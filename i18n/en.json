@@ -462,7 +462,7 @@
 	"apihelp-flow+view-topiclist-param-savesortby": "Save sortby option, if set.",
 	"apihelp-flow+view-topiclist-param-offset-id": "Offset value (in UUID format) to start fetching topics at.",
 	"apihelp-flow+view-topiclist-param-offset": "Offset value to start fetching topics at.",
-	"apihelp-flow+view-topiclist-param-limit": "Amount of topics to fetch.",
+	"apihelp-flow+view-topiclist-param-limit": "Number of topics to fetch.",
 	"apihelp-flow+view-topiclist-param-render": "Render the topics in HTML.",
 	"apihelp-flow+view-topiclist-example-1": "List topics on [[Talk:Sandbox]]",
 	"apihelp-flow-parsoid-utils-description": "Convert text between wikitext and HTML.",
