@@ -57,11 +57,7 @@
 	 * @param {...*} args
 	 */
 	mw.flow.debug = FlowComponent.prototype.debug = function ( isError, args ) {
-		if ( window.console && (
-			window.flow_debug ||
-			( window.localStorage && localStorage.getItem( 'flow_debug' ) ) ||
-			( mw.user && !mw.user.isAnon() && mw.user.getName().match( /(^Admin$)|\(WMF\)/ ) )
-		) ) {
+		if ( window.console ) {
 			args = Array.prototype.slice.call( arguments, 0 );
 
 			if ( typeof isError === 'boolean' ) {
