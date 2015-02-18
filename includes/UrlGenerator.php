@@ -724,7 +724,7 @@ class UrlGenerator {
 
 	public function thankAction( UUID $postId ) {
 		return new Anchor(
-			wfMessage( 'thanks-thank' ),
+			wfMessage( 'flow-thank-link' ),
 			SpecialPage::getTitleFor( 'Thanks', 'Flow/' . $postId->getAlphadecimal() )
 		);
 	}
