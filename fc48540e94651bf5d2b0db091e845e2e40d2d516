@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_51a4379e",
+        "filename": "includes/Import/Postprocessor/SpecialLogTopic.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-18T05:08:03Z",
+      "side": 1,
+      "message": "Minor typo, will fix before merge.",
+      "revId": "fc48540e94651bf5d2b0db091e845e2e40d2d516",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_f1b463d1",
+        "filename": "includes/Import/Postprocessor/SpecialLogTopic.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-18T05:08:03Z",
+      "side": 1,
+      "message": "This includes the root post, right?",
+      "revId": "fc48540e94651bf5d2b0db091e845e2e40d2d516",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
