@@ -127,6 +127,7 @@
 		/>
 		<textarea name="topiclist_content"
 			data-flow-preview-template="flow_topic"
+			data-flow-preview-title-generator="newTopic"
 			class="mw-ui-input flow-form-collapsible mw-ui-input-large"
 			'.((LCRun3::ifvar($cx, ((isset($in['isOnFlowBoard']) && is_array($in)) ? $in['isOnFlowBoard'] : null))) ? 'style="display:none;"' : '').'
 			placeholder="'.LCRun3::ch($cx, 'l10n', array(array('flow-newtopic-content-placeholder',((isset($cx['sp_vars']['root']['title']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['title'] : null)),array()), 'encq').'"
@@ -275,6 +276,7 @@
 				name="topic_content"
 				required
 				data-flow-preview-template="flow_post"
+				data-flow-preview-title="'.htmlentities((string)((isset($in['articleTitle']) && is_array($in)) ? $in['articleTitle'] : null), ENT_QUOTES, 'UTF-8').'"
 				data-flow-expandable="true"
 				class="mw-ui-input flow-click-interactive"
 				type="text"

@@ -164,10 +164,31 @@
 	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.preview = function ( event ) {
 		var callback,
 			$this = $( this ),
+			$target = $this.findWithParent( $this.data( 'flow-api-target' ) ),
+			previewTitleGenerator = $target.data( 'flow-preview-title-generator' ),
+			previewTitle = $target.data( 'flow-preview-title' ),
 			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $this ),
-			schemaName = $( this ).data( 'flow-eventlog-schema' ),
-			funnelId = $( this ).data( 'flow-eventlog-funnel-id' ),
-			logAction = $( this ).data( 'flow-return-to-edit' ) ? 'keep-editing' : 'preview';
+			schemaName = $this.data( 'flow-eventlog-schema' ),
+			funnelId = $this.data( 'flow-eventlog-funnel-id' ),
+			logAction = $this.data( 'flow-return-to-edit' ) ? 'keep-editing' : 'preview',
+			generators = {
+				newTopic: function() {
+					// Convert current timestamp to base-2
+					var namespace = mw.config.get( 'wgFormattedNamespaces' )[2600],
+						timestamp = mw.flow.baseConvert( Date.now(), 10, 2 );
+					// Pad base-2 out to 88 bits (@todo why 84?)
+					timestamp += [ 84 - timestamp.length ].join( '0' );
+					// convert base-2 to base-36
+					return namespace + ':' + mw.flow.baseConvert( timestamp, 2, 36 );
+				},
+				wgPageName: function() {
+					return mw.config.get( 'wgPageName' );
+				}
+			};
+
+		if ( !previewTitleGenerator || !generators.hasOwnProperty( previewTitleGenerator ) ) {
+			previewTitleGenerator = 'wgPageName';
+		}
 
 		flowBoard.logEvent( schemaName, { action: logAction, funnelId: funnelId } );
 
@@ -192,9 +213,14 @@
 				'action':  'flow-parsoid-utils',
 				'from':    'wikitext',
 				'to':      'html',
-				'content': content,
-				'title':   mw.config.get( 'wgPageName' )
+				'content': content
 			};
+
+			if ( previewTitle ) {
+				queryMap.title = previewTitle;
+			} else {
+				queryMap.title = generators[previewTitleGenerator]();
+			}
 
 			return queryMap;
 		};

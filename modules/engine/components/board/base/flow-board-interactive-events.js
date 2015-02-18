@@ -177,6 +177,8 @@
 
 		var $form,
 			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) ),
+			$topic = $( this ).closest( '.flow-topic' ),
+			topicId = $topic.data( 'flow-id' ),
 			$post = $( this ).closest( '.flow-post' ),
 			$targetPost = $( this ).closest( '.flow-post:not(.flow-post-max-depth)' ),
 			postId = $targetPost.data( 'flow-id' ),
@@ -208,7 +210,9 @@
 				// text for flow-reply-topic-title-placeholder placeholder
 				properties: {
 					'topic-of-post': $.trim( replyToContent ).substr( 0, 200 )
-				}
+				},
+				// Topic:UUID
+				articleTitle: mw.config.get( 'wgFormattedNamespaces' )[2600] + ':' + topicId[0].toUpperCase() + topicId.slice(1)
 			}
 		) ).children();
 
