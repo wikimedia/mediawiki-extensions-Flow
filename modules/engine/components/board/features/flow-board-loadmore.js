@@ -50,17 +50,27 @@
 				if ( $renderedTopic && $renderedTopic.length ) {
 					flowBoard.infiniteScrollDisabled = true;
 
-					// We want to get out of the way of the affixed navigation, but
-					// without showing or triggering the infinite scroll above the new
-					// topic.  With:
-					// .scrollTop( $renderedTopic.offset().top - $( '.flow-board-navigation' ).height() )
-					// the 'load more' above becomes visible.
-					$( 'html, body' ).scrollTop( $renderedTopic.offset().top - 10 );
+					// Get out of the way of the affixed navigation
+					// Not going the full $( '.flow-board-navigation' ).height()
+					// because then the load more button (above the new topic)
+					// would get in sight and any scroll would fire it
+					$( 'html, body' ).scrollTop( $renderedTopic.offset().top - 20 );
 
 					// Focus on given topic
 					$renderedTopic.click().focus();
 
-					delete flowBoard.infiniteScrollDisabled;
+					/*
+					 * Re-enable infinite scroll. Only doing that after a couple
+					 * of milliseconds because we've just executed some
+					 * scrolling (to the selected topic) and the very last
+					 * scroll event may only just still be getting fired.
+					 * To prevent an immediate scroll (above the new topic),
+					 * let's only re-enable infinite scroll until we're sure
+					 * that event has been fired.
+					 */
+					setTimeout( function() {
+						delete flowBoard.infiniteScrollDisabled;
+					}, 1 );
 				} else {
 					flowBoard.debug( 'Rendered topic not found when attempting to scroll!' );
 				}
@@ -474,8 +484,11 @@
 				return;
 			}
 
+			// @todo: this ignores that TOC also obscures the button: load more
+			// also shouldn't be triggered if it's still behind TOC!
+
 			// Is this element in the viewport?
-			if ( nodeOffset - nodeHeight <= calculationContainerThreshold + calculationContainerHeight ) {
+			if ( nodeOffset - nodeHeight <= calculationContainerThreshold.top + calculationContainerHeight ) {
 				// Element is almost in viewport, click it.
 				$( this ).trigger( 'click' );
 			}
@@ -498,7 +511,6 @@
 			flowBoard.debug( 'No topics returned from API', arguments );
 			return;
 		}
-		$insertAt = false; // @todo debug
 
 		/** @private
 		 */
