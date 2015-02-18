@@ -17,6 +17,7 @@
 	"logentry-delete-flow-restore-topic": "$1 {{GENDER:$2|поврати}} [$4 тема] на [[$3]]",
 	"logentry-suppress-flow-suppress-topic": "$1 {{GENDER:$2|притаи}} [$4 тема] на [[$3]]",
 	"logentry-suppress-flow-restore-topic": "$1 {{GENDER:$2|избриша}} [$4 тема] на [[$3]]",
+	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] на [[$3]] е увезена во Flow од LiquidThreads",
 	"flow-user-moderated": "Модериран корисник",
 	"flow-board-header-browse-topics-link": "Прегледај теми",
 	"flow-edit-header-link": "Измени наслов",

@@ -17,6 +17,7 @@
 	"logentry-delete-flow-restore-topic": "$1 {{GENDER:$2|stellte}} ein [$4 Thema] auf [[$3]] wieder her",
 	"logentry-suppress-flow-suppress-topic": "$1 {{GENDER:$2|unterdrückte}} ein [$4 Thema] auf [[$3]]",
 	"logentry-suppress-flow-restore-topic": "$1 {{GENDER:$2|löschte}} ein [$4 Thema] auf [[$3]]",
+	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] auf [[$3]] wurde von LiquidThreads zu Flow importiert",
 	"flow-user-moderated": "Moderierter Benutzer",
 	"flow-board-header-browse-topics-link": "Themen durchsuchen",
 	"flow-edit-header-link": "Kopfbereich bearbeiten",
