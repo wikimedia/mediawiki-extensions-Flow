@@ -321,6 +321,8 @@ $wgResourceModules += array(
 			'engine/misc/flow-api.js',
 			// FlowEventLog
 			'engine/misc/flow-eventlog.js',
+			// wfBaseConvert ported to js
+			'engine/misc/flow-baseconvert.js',
 			// Component registry
 			'engine/components/flow-registry.js',
 			// FlowComponent must come before actual components
@@ -350,7 +352,6 @@ $wgResourceModules += array(
 
 			// Component: FlowBoardHistoryComponent
 			'engine/components/board/flow-boardhistory.js',
-
 			// This must be the last file loaded
 			'flow-initialize.js',
 		),

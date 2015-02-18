@@ -185,6 +185,7 @@
 				name="topic_content"
 				required
 				data-flow-preview-template="flow_post"
+				data-flow-preview-title="'.htmlentities((string)((isset($in['articleTitle']) && is_array($in)) ? $in['articleTitle'] : null), ENT_QUOTES, 'UTF-8').'"
 				data-flow-expandable="true"
 				class="mw-ui-input flow-click-interactive"
 				type="text"

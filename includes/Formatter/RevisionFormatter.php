@@ -183,6 +183,7 @@ class RevisionFormatter {
 		$ts = $row->revision->getRevisionId()->getTimestampObj();
 		$res = array(
 			'workflowId' => $row->workflow->getId()->getAlphadecimal(),
+			'articleTitle' => $row->workflow->getArticleTitle()->getPrefixedText(),
 			'revisionId' => $row->revision->getRevisionId()->getAlphadecimal(),
 			'timestamp' => $ts->getTimestamp( TS_MW ),
 			'changeType' => $row->revision->getChangeType(),
