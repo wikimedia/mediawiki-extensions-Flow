@@ -240,15 +240,16 @@ foreach( $wgFlowActions as $action => $options ) {
 
 		// Some actions are more complex closures - to be added manually.
 		if ( is_string( $log ) ) {
-			$wgLogActionsHandlers["$log/flow-$action"] = 'Flow\Log\Formatter';
+			$wgLogActionsHandlers["$log/flow-$action"] = 'Flow\Log\ActionFormatter';
 		}
 	}
 }
-// Manually add the more complex actions
-$wgLogActionsHandlers['delete/flow-restore-post'] = 'Flow\Log\Formatter';
-$wgLogActionsHandlers['suppress/flow-restore-post'] = 'Flow\Log\Formatter';
-$wgLogActionsHandlers['delete/flow-restore-topic'] = 'Flow\Log\Formatter';
-$wgLogActionsHandlers['suppress/flow-restore-topic'] = 'Flow\Log\Formatter';
+// Manually add that more complex actions
+$wgLogActionsHandlers['delete/flow-restore-post'] = 'Flow\Log\ActionFormatter';
+$wgLogActionsHandlers['suppress/flow-restore-post'] = 'Flow\Log\ActionFormatter';
+$wgLogActionsHandlers['delete/flow-restore-topic'] = 'Flow\Log\ActionFormatter';
+$wgLogActionsHandlers['suppress/flow-restore-topic'] = 'Flow\Log\ActionFormatter';
+$wgLogActionsHandlers['import/lqt-to-flow-topic'] = 'Flow\Log\LqtImportFormatter';
 
 // Register URL actions
 foreach( $wgFlowActions as $action => $options ) {

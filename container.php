@@ -1133,13 +1133,19 @@ $c['user_merger'] = $c->share( function( $c ) {
 } );
 
 $c['importer'] = $c->share( function( $c ) {
-	return new Flow\Import\Importer(
+	$importer = new Flow\Import\Importer(
 		$c['storage'],
 		$c['factory.loader.workflow'],
 		$c['memcache.buffered'],
 		$c['db.factory'],
 		$c['deferred_queue']
 	);
+
+	$importer->addPostprocessor( new Flow\Import\Postprocessor\SpecialLogTopic(
+		$c['occupation_controller']->getTalkpageManager()
+	) );
+
+	return $importer;
 } );
 
 $c['listener.editcount'] = $c->share( function( $c ) {
