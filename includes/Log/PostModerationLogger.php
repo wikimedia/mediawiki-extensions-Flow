@@ -67,7 +67,7 @@ class PostModerationLogger implements LifecycleHandler {
 		}
 	}
 
-	protected static function getModerationChangeTypes() {
+	public static function getModerationChangeTypes() {
 		static $changeTypes = false;
 
 		if ( ! $changeTypes ) {

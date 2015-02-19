@@ -508,6 +508,11 @@ $c['storage.topic_list'] = $c->share( function( $c ) {
 		$c['storage.topic_list.indexes']
 	);
 } );
+
+// TODO: Use the storage.rev-type.class values everywheree
+// (They are currently specified redundantly)
+$c['storage.header.class'] = 'Flow\Model\Header';
+
 $c['storage.post.class'] = 'Flow\Model\PostRevision';
 $c['storage.post.primary_key'] = array( 'rev_id' );
 $c['storage.post.mapper'] = $c->share( function( $c ) {
@@ -615,6 +620,9 @@ $c['storage.post'] = $c->share( function( $c ) {
 		$c['storage.post.listeners']
 	);
 } );
+
+$c['storage.post-summary.class'] = 'Flow\Model\PostSummary';
+
 $c['storage.topic_history.primary_key'] = array( 'rev_id' );
 $c['storage.topic_history.backend'] = $c->share( function( $c ) {
 	global $wgFlowExternalStore;
