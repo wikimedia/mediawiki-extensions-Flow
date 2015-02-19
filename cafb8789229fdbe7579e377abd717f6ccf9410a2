@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_5cdf5e40",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-19T16:00:18Z",
+      "side": 1,
+      "message": "Doesn\u0027t appear to work.\n\nWhen moderating, we don\u0027t even call this method. We just do a newNextRevision, which just clones the existing rev object.\n\nWe should probably move this logic to moderate()",
+      "revId": "cafb8789229fdbe7579e377abd717f6ccf9410a2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
