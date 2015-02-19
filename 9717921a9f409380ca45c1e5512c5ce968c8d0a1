@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_fca74a06",
+        "filename": "includes/Formatter/CategoryViewerQuery.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-19T15:36:53Z",
+      "side": 1,
+      "message": "Needs text",
+      "revId": "9717921a9f409380ca45c1e5512c5ce968c8d0a1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_1cad66e7",
+        "filename": "includes/Formatter/CategoryViewerQuery.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-19T15:36:53Z",
+      "side": 1,
+      "message": "Needs text",
+      "revId": "9717921a9f409380ca45c1e5512c5ce968c8d0a1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
