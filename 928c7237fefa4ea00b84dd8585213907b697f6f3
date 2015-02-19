@@ -69,6 +69,23 @@
       "revId": "928c7237fefa4ea00b84dd8585213907b697f6f3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_682b7578",
+        "filename": "maintenance/FlowSearchConfig.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-19T13:39:16Z",
+      "side": 1,
+      "message": "Note: seems like this method is becoming static, so this will probably have to change to ConfigUtils::parsePotentialPercent\n\nSee https://gerrit.wikimedia.org/r/#/c/179924/8/includes/Maintenance/ConfigUtils.php,unified",
+      "revId": "928c7237fefa4ea00b84dd8585213907b697f6f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
