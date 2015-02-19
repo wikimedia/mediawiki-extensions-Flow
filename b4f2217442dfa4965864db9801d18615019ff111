@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_1cab9d87",
+        "filename": "includes/Search/maintenance/MappingConfigBuilder.php",
+        "patchSetId": 24
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-19T13:37:17Z",
+      "side": 1,
+      "message": "\"Better because theoretically tf/idf based scoring works better this way\" is part of the comment in Cirrus. I guess we\u0027ll display stuff based on dates (created \u0026 last modifier), however, so then we probably don\u0027t need this indeed.",
+      "parentUuid": "8e7fc396_add9232e",
+      "revId": "b4f2217442dfa4965864db9801d18615019ff111",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e7fc396_6de30bd5",
         "filename": "includes/api/ApiFlowSearch.php",
         "patchSetId": 24
