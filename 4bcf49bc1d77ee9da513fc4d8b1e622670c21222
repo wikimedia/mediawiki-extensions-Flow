@@ -16,6 +16,24 @@
       "revId": "4bcf49bc1d77ee9da513fc4d8b1e622670c21222",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_7fa7aca4",
+        "filename": "modules/engine/misc/flow-baseconvert.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-19T18:19:57Z",
+      "side": 1,
+      "message": "hmm, i suppose we could. I\u0027ve submitted a patch to add it to mw.utils at https://gerrit.wikimedia.org/r/191660\n\nI think we should send this through as is because that might take some time to merge, we can then drop this file if its accepted.",
+      "parentUuid": "6e7c4fa4_dc992ec8",
+      "revId": "4bcf49bc1d77ee9da513fc4d8b1e622670c21222",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
