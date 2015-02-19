@@ -75,6 +75,7 @@ class View extends ContextSource {
 		$wasPosted = $request->wasPosted();
 		if ( $wasPosted ) {
 			wfProfileIn( __CLASS__ . '-submit' );
+			$out->enableClientCache( false );
 			$blocksToCommit = $loader->handleSubmit( $this, $action, $parameters );
 			if ( $blocksToCommit ) {
 				if ( !$user->matchEditToken( $request->getVal( 'wpEditToken' ) ) ) {
