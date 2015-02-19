@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_d2283797",
+        "filename": "includes/Data/Listener/ReferenceRecorder.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-19T20:59:04Z",
+      "side": 1,
+      "message": "I\u0027m not sure I like this.  At a minimum we should probably check defined( \u0027MW_PHPUNIT_TEST\u0027 ) before swallowing the exception.\n\nMore importantly though, we need to get these failing tests running in jenkins.  I\u0027m imagining this is due to us not contacting parsoid, perhaps if i find some time i will work on refactoring that so we can use fixtures in unit tests( i submitted a basic patch at https://gerrit.wikimedia.org/r/191697 but it still has issues and it didn\u0027t seem like i should spend the day figuring them out)",
+      "revId": "a3c10c692de719bdeeb9fc44ae5eba02115d7a7e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
