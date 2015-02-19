@@ -13,7 +13,7 @@ use User;
  */
 class ApiFlowModerateTopicTest extends ApiTestCase {
 
-	protected $tablesUsed = array( 'flow_revision' );
+	protected $tablesUsed = array( 'flow_revision', 'logging' );
 
 	public function testModerateTopic() {
 		$workflowId = $this->createTopic();
@@ -22,7 +22,7 @@ class ApiFlowModerateTopicTest extends ApiTestCase {
 			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'moderate-topic',
-			'mtmoderationState' => AbstractRevision::MODERATED_HIDDEN,
+			'mtmoderationState' => AbstractRevision::MODERATED_DELETED,
 			'mtreason' => '<>&{};'
 		) );
 
@@ -35,17 +35,27 @@ class ApiFlowModerateTopicTest extends ApiTestCase {
 		$revision = $result['revisions'][$newRevisionId];
 		$debug = json_encode( $revision );
 		$this->assertArrayHasKey( 'changeType', $revision, $debug );
-		$this->assertEquals( 'hide-topic', $revision['changeType'], $debug );
+		$this->assertEquals( 'delete-topic', $revision['changeType'], $debug );
 		$this->assertArrayHasKey( 'isModerated', $revision, $debug );
 		$this->assertTrue( $revision['isModerated'], $debug );
 		$this->assertArrayHasKey( 'actions', $revision, $debug );
-		$this->assertArrayHasKey( 'unhide', $revision['actions'], $debug );
+		$this->assertArrayHasKey( 'undelete', $revision['actions'], $debug );
 		$this->assertArrayHasKey( 'moderateState', $revision, $debug );
-		$this->assertEquals( AbstractRevision::MODERATED_HIDDEN, $revision['moderateState'], $debug );
+		$this->assertEquals( AbstractRevision::MODERATED_DELETED, $revision['moderateState'], $debug );
 		$this->assertArrayHasKey( 'moderateReason', $revision, $debug );
 		$this->assertArrayHasKey( 'content', $revision['moderateReason'], $debug );
 		$this->assertEquals( '<>&{};', $revision['moderateReason']['content'], $debug );
 		$this->assertArrayHasKey( 'format', $revision['moderateReason'], $debug );
 		$this->assertEquals( 'plaintext', $revision['moderateReason']['format'], $debug );
+
+		// make sure our moderated topic made it into Special:Log
+		$data = $this->doApiRequest( array(
+			'action' => 'query',
+			'list' => 'logevents',
+		) );
+		$debug = json_encode( $data );
+		$logEntry = $data[0]['query']['logevents'][0];
+		$this->assertArrayHasKey( 'topicId', $logEntry, $debug );
+		$this->assertEquals( $workflowId, $logEntry['topicId']->getAlphadecimal(), $debug );
 	}
 }
