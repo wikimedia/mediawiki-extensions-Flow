@@ -45,7 +45,7 @@ class Logger {
 	}
 
 	/**
-	 * Adds an activity item to the log under the flow|suppress.
+	 * Adds a moderation activity item to the log under the appropriate action
 	 *
 	 * @param PostRevision $post
 	 * @param string $action The action we'll be logging
@@ -83,6 +83,8 @@ class Logger {
 		$logEntry->setPerformer( $this->user );
 		$logEntry->setParameters( $params );
 		$logEntry->setComment( $reason );
+		$logEntry->setTimestamp( $post->getModerationTimestamp() );
+
 		$logId = $logEntry->insert();
 
 		if ( $error ) {
