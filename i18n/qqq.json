@@ -69,7 +69,7 @@
 	"flow-reply-topic-title-placeholder": "Used as placeholder for the content textarea when replying. Parameters:\n* $1 - When writing a top-level reply, the topic title. When replying to a comment, the first words of the comment to which the reply is being written.\n{{Identical|Reply to}}",
 	"flow-reply-submit": "Used as label for the Submit button. Parameters:\n* $1 - username, can be used for GENDER\nAlso used in:\n* {{msg-mw|Flow-terms-of-use-reply}}\n* {{msg-mw|Wikimedia-flow-terms-of-use-reply}}\n{{Identical|Reply}}",
 	"flow-reply-link": "Text for the link that appears near the post and offers the user to reply to it. Clicking the link will display the reply editor. Parameters:\n* $1 - username, can be used for GENDER\n{{Identical|Reply}}",
-	"flow-thank-link": "Link text of the button that will (when clicked) thank the editor of the comment Parameters:\n* $1 - username, can be used for GENDER\n{{Identical|Thank}}",
+	"flow-thank-link": "Link and title text of the button that will (when clicked) thank the editor of the comment Parameters:\n* $1 - username, can be used for GENDER\n{{Identical|Thank}}",
 	"flow-lock-link": "Text for the link for closing topic/post. Parameters:\n* $1 - username, can be used for GENDER\n{{Identical|Lock}}",
 	"flow-history-action-suppress-post": "Text link for suppressing a post or topic from the board history page.\n\nFor meaning of \"suppress\" see [[Thread:Support/About MediaWiki:Flow-post-action-suppress-post/qqq]] and [[Thread:Support/About MediaWiki:Flow-suppress-post-content/sv]].\n\n{{Identical|Suppress}}",
 	"flow-history-action-delete-post": "Text link for deleting a post or topic from the board history page.\n{{Identical|Delete}}",
