@@ -31,6 +31,7 @@
 	"logentry-delete-flow-restore-topic": "$1{{GENDER:$2|还原}}[[$3]]的一个[$4 话题]",
 	"logentry-suppress-flow-suppress-topic": "$1{{GENDER:$2|锁定}}[[$3]]一个[$4 话题]",
 	"logentry-suppress-flow-restore-topic": "$1{{GENDER:$2|删除}}[[$3]]的一个[$4 话题]",
+	"logentry-import-lqt-to-flow-topic": "在[[$3]]上的[[$1|$2]]已从LiquidThreads导入至Flow",
 	"flow-user-moderated": "限制用户",
 	"flow-board-header-browse-topics-link": "浏览话题",
 	"flow-edit-header-link": "编辑页眉",
