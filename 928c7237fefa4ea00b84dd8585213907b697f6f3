@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_a80e6d34",
+        "filename": "includes/Search/maintenance/MappingConfigBuilder.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-19T13:36:42Z",
+      "side": 1,
+      "message": "\u0027title\u0027 is page title - it\u0027s not represented in the nested revisions.\n\nProbably not really needed since we have pageid as well (just like namespace_text)",
+      "parentUuid": "6e7c4fa4_9f19df29",
+      "revId": "928c7237fefa4ea00b84dd8585213907b697f6f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_9fe8ffde",
         "filename": "includes/Search/maintenance/MappingConfigBuilder.php",
         "patchSetId": 26
@@ -30,6 +48,24 @@
       "writtenOn": "2015-02-04T18:00:48Z",
       "side": 1,
       "message": "we intend to allow topics to be on multiple pages, it looks like we might be investigating that soon.  I\u0027m thinking to facilitate that this should be a nested list of objects like revisions is below, eg:\n\n    \u0027titles\u0027 \u003d\u003e array(\n        \u0027type\u0027 \u003d\u003e \u0027object\u0027,\n        \u0027properties\u0027 \u003d\u003e array(\n            \u0027namespace\u0027 \u003d\u003e ...,\n            \u0027namespace_text\u0027 \u003d\u003e ...,\n            ...\n        ),\n    ),\n\nI know the end result is they get flattened out into what we already have here, as if we submitted a list for each property, but it seems like it would be a bit clearer to generate and maintain?  Headers can still only be one one title, but i suppose for consistency they could still use this config as well.",
+      "revId": "928c7237fefa4ea00b84dd8585213907b697f6f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_6814d544",
+        "filename": "includes/Search/maintenance/MappingConfigBuilder.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-19T13:36:42Z",
+      "side": 1,
+      "message": "You\u0027re right, we should probably do something along those lines!",
+      "parentUuid": "6e7c4fa4_9fe8ffde",
       "revId": "928c7237fefa4ea00b84dd8585213907b697f6f3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
