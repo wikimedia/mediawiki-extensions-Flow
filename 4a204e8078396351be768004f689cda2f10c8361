@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_e81305b7",
+        "filename": "includes/Data/Listener/ReferenceRecorder.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-19T15:01:39Z",
+      "side": 1,
+      "message": "Missing from PHPDoc",
+      "revId": "4a204e8078396351be768004f689cda2f10c8361",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_484b19cd",
+        "filename": "includes/Data/Listener/ReferenceRecorder.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-19T15:01:39Z",
+      "side": 1,
+      "message": "PHPDoc doesn\u0027t match method signature",
+      "revId": "4a204e8078396351be768004f689cda2f10c8361",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_a842edae",
+        "filename": "includes/Data/Listener/ReferenceRecorder.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-19T15:01:39Z",
+      "side": 1,
+      "message": "FlowException not used",
+      "revId": "4a204e8078396351be768004f689cda2f10c8361",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_0832015c",
+        "filename": "includes/Data/Listener/ReferenceRecorder.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-19T15:01:39Z",
+      "side": 1,
+      "message": "Missing from PHPDoc",
+      "revId": "4a204e8078396351be768004f689cda2f10c8361",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_c885e9d4",
+        "filename": "includes/Data/Listener/ReferenceRecorder.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-19T15:01:39Z",
+      "side": 1,
+      "message": "This makes some tests fail (where those revisions are created on the fly \u0026 have no root)",
+      "revId": "4a204e8078396351be768004f689cda2f10c8361",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
