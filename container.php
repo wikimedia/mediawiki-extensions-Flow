@@ -697,15 +697,18 @@ $c['storage.manager_list'] = $c->share( function( $c ) {
 
 		'Flow\\Model\\PostRevision' => 'storage.post',
 		'PostRevision' => 'storage.post',
+		'post' => 'storage.post',
 
 		'Flow\\Model\\PostSummary' => 'storage.post_summary',
 		'PostSummary' => 'storage.post_summary',
+		'post-summary' => 'storage.post_summary',
 
 		'Flow\\Model\\TopicListEntry' => 'storage.topic_list',
 		'TopicListEntry' => 'storage.topic_list',
 
 		'Flow\\Model\\Header' => 'storage.header',
 		'Header' => 'storage.header',
+		'header' => 'storage.header',
 
 		'BoardHistoryEntry' => 'storage.board_history',
 
