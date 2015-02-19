@@ -1162,4 +1162,20 @@ $c['importer'] = $c->share( function( $c ) {
 $c['listener.editcount'] = $c->share( function( $c ) {
 	return new \Flow\Data\Listener\EditCountListener( $c['flow_actions'] );
 } );
+
+$c['content_converter'] = $c->share( function( $c ) {
+	global $wgFlowParsoidURL, $wgFlowParsoidPrefix, $wgFlowParsoidTimeout, $wgFlowParsoidForwardCookies;
+
+	if ( $wgFlowParsoidURL ) {
+		return new Flow\Parsoid\Converter\ParsoidConverter(
+			$wgFlowParsoidURL,
+			$wgFlowParsoidPrefix,
+			$wgFlowParsoidTimeout,
+			$wgFlowParsoidForwardCookies
+		);
+	} else {
+		return new Flow\Parsoid\Converter\PHPConverter();
+	}
+} );
+
 return $c;

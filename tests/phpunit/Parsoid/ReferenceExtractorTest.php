@@ -164,12 +164,7 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 		$extractors = $reflProperty->getValue( $referenceExtractor );
 
 		$html = Utils::convert( 'wt', 'html', $wikitext, Title::newFromText( $page ) );
-		$result = $reflMethod->invoke(
-			$referenceExtractor,
-			$factory,
-			$extractors['post'],
-			$html
-		);
+		$result = $reflMethod->invoke( $referenceExtractor, $factory, $extractors['post'], $html );
 		$this->assertCount( 1, $result, $html );
 
 		$result = reset( $result );
