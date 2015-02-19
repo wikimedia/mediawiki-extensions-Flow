@@ -72,7 +72,10 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 				'rev_change_type' => $countableActions,
 			),
 			__METHOD__,
-			array( 'ORDER BY' => 'rev_id ASC' )
+			array(
+				'ORDER BY' => 'rev_id ASC',
+				'LIMIT' => $this->mBatchSize,
+			)
 		);
 
 		// end of data
