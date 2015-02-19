@@ -28,18 +28,9 @@ abstract class Utils {
 	 * @throws InvalidDataException When $title does not exist
 	 */
 	public static function convert( $from, $to, $content, Title $title ) {
-		if ( $from === $to || $content === '' ) {
-			return $content;
-		}
-
-		try {
-			self::parsoidConfig();
-		} catch ( NoParsoidException $e ) {
-			// If we have no parsoid config, fallback to the parser.
-			return self::parser( $from, $to, $content, $title );
-		}
-
-		return self::parsoid( $from, $to, $content, $title );
+		/** @var Converter */
+		$converter = Container::get( 'content_converter' );
+		return $converter->convert( $from, $to, $content, $title );
 	}
 
 	/**
@@ -63,132 +54,6 @@ abstract class Utils {
 			$lang = $lang ?: $wgLang;
 			return $lang->truncate( $plain, $truncateLength );
 		}
-	}
-
-	/**
-	 * Convert from/to wikitext/html via Parsoid.
-	 *
-	 * This will assume Parsoid is installed.
-	 *
-	 * @param string $from Format of content to convert: html|wikitext
-	 * @param string $to Format to convert to: html|wikitext
-	 * @param string $content
-	 * @param Title $title
-	 * @return string
-	 * @throws NoParsoidException When parsoid configuration is not available
-	 * @throws WikitextException When conversion is unsupported
-	 */
-	protected static function parsoid( $from, $to, $content, Title $title ) {
-		list( $parsoidURL, $parsoidPrefix, $parsoidTimeout, $parsoidForwardCookies ) = self::parsoidConfig();
-
-		if ( $from == 'html' ) {
-			$from = 'html';
-		} elseif ( in_array( $from, array( 'wt', 'wikitext' ) ) ) {
-			$from = 'wt';
-		} else {
-			throw new WikitextException( 'Unknown source format: ' . $from, 'process-wikitext' );
-		}
-
-		$request = \MWHttpRequest::factory(
-			$parsoidURL . '/' . $parsoidPrefix . '/' . $title->getPrefixedDBkey(),
-			array(
-				'method' => 'POST',
-				'postData' => wfArrayToCgi( array( $from => $content ) ),
-				'body' => true,
-				'timeout' => $parsoidTimeout,
-				'connectTimeout' => 'default',
-			)
-		);
-		if ( $parsoidForwardCookies && !User::isEveryoneAllowed( 'read' ) ) {
-			if ( PHP_SAPI === 'cli' ) {
-				// From the command line we need to generate a cookie
-				$cookies = self::generateForwardedCookieForCli();
-			} else {
-				$cookies = RequestContext::getMain()->getRequest()->getHeader( 'Cookie' );
-			}
-			$request->setHeader( 'Cookie', $cookies );
-		}
-		$status = $request->execute();
-		if ( !$status->isOK() ) {
-			wfDebugLog( 'Flow', __METHOD__ . ': Failed contacting parsoid: ' . $status->getMessage()->text() );
-			throw new NoParsoidException( 'Failed contacting Parsoid', 'process-wikitext' );
-		}
-		$response = $request->getContent();
-
-		// HTML is wrapped in <body> tag, undo that.
-		// unless $response is empty
-		if ( $to == 'html' && $response ) {
-			/*
-			 * Workaround because DOMDocument can't guess charset.
-			 * Parsoid provides utf-8. Alternative "workarounds" would be to
-			 * provide the charset in $response, as either:
-			 * * <?xml encoding="utf-8" ?>
-			 * * <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-			 */
-			$response = mb_convert_encoding( $response, 'HTML-ENTITIES', 'UTF-8' );
-
-			$dom = self::createDOM( $response );
-			$body = $dom->getElementsByTagName( 'body' )->item(0);
-
-			$response = '';
-			foreach( $body->childNodes as $child ) {
-				$response .= $child->ownerDocument->saveHTML( $child );
-			}
-		} elseif ( !in_array( $to, array( 'wt', 'wikitext' ) ) ) {
-			throw new WikitextException( "Unknown format requested: " . $to, 'process-wikitext' );
-		}
-
-		return $response;
-	}
-
-	/**
-	 * Convert from/to wikitext/html using Parser.
-	 *
-	 * This only supports wikitext to HTML.
-	 *
-	 * @param string $from Format of content to convert: wikitext
-	 * @param string $to Format to convert to: html
-	 * @param string $content
-	 * @param Title $title
-	 * @return string
-	 * @throws WikitextException When the conversion is unsupported
-	 */
-	protected static function parser( $from, $to, $content, Title $title ) {
-		if ( $from !== 'wikitext' && $to !== 'html' ) {
-			throw new WikitextException( 'Parser only supports wikitext to HTML conversion', 'process-wikitext' );
-		}
-
-		global $wgParser;
-
-		$options = new \ParserOptions;
-		$options->setTidy( true );
-		$options->setEditSection( false );
-
-		$output = $wgParser->parse( $content, $title, $options );
-		return $output->getText();
-	}
-
-	/**
-	 * Returns Flow's Parsoid config. $wgFlowParsoid* variables are used to
-	 * specify how to connect to Parsoid.
-	 *
-	 * @return array Parsoid config, in array(URL, prefix, timeout, forwardCookies) format
-	 * @throws NoParsoidException When parsoid is unconfigured
-	 */
-	protected static function parsoidConfig() {
-		global
-			$wgFlowParsoidURL, $wgFlowParsoidPrefix, $wgFlowParsoidTimeout, $wgFlowParsoidForwardCookies;
-
-		if ( !$wgFlowParsoidURL ) {
-			throw new NoParsoidException( 'Flow Parsoid configuration is unavailable', 'process-wikitext' );
-		}
-
-		return array(
-			$wgFlowParsoidURL,
-			$wgFlowParsoidPrefix,
-			$wgFlowParsoidTimeout,
-			$wgFlowParsoidForwardCookies,
-		);
 	}
 
 	/**
@@ -253,14 +118,11 @@ abstract class Utils {
 	 * @return bool
 	 */
 	public static function onFlowAddModules( OutputPage $out ) {
-
-		try {
-			self::parsoidConfig();
-			// XXX We only need the Parsoid CSS if some content being
-			// rendered has getContentFormat() === 'html'.
-			$out->addModules( 'mediawiki.skinning.content.parsoid' );
-		} catch ( NoParsoidException $e ) {
-			// The module is only necessary when we are using parsoid.
+		/** @var Converter */
+		$converter = Container::get( 'content_converter' );
+		$modules = $converter->getRequiredModules();
+		if ( $modules ) {
+			$out->addModules( $modules );
 		}
 
 		return true;
