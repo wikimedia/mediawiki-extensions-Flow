@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_c8f5e9ea",
+        "filename": "includes/Parsoid/ReferenceExtractor.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-19T14:34:18Z",
+      "side": 1,
+      "message": "ReferenceExtractorTest also invokes this method - needs to be changed in there",
+      "revId": "6f95df6cb314eb52d33aa2fb0dce5900cdd54523",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_c87e4967",
+        "filename": "includes/ReferenceClarifier.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-19T14:34:18Z",
+      "side": 1,
+      "message": "WikiReference::TYPE_CATEGORY",
+      "revId": "6f95df6cb314eb52d33aa2fb0dce5900cdd54523",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
