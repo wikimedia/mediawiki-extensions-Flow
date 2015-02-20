@@ -488,7 +488,7 @@
 			// also shouldn't be triggered if it's still behind TOC!
 
 			// Is this element in the viewport?
-			if ( nodeOffset - nodeHeight <= calculationContainerThreshold.top + calculationContainerHeight ) {
+			if ( nodeOffset - nodeHeight <= calculationContainerThreshold + calculationContainerHeight ) {
 				// Element is almost in viewport, click it.
 				$( this ).trigger( 'click' );
 			}
