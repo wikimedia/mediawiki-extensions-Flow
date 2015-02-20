@@ -392,7 +392,7 @@
 	"apihelp-flow-param-submodule": "The Flow submodule to invoke.",
 	"apihelp-flow-param-page": "The page to take the action on.",
 	"apihelp-flow-param-render": "Set this to something to include a block-specific rendering in the output.",
-	"apihelp-flow-example-1": "Edit the header of [[Talk:Sandbox]]",
+	"apihelp-flow-example-1": "Edit the header of \"[[Talk:Sandbox]]\"",
 	"apihelp-flow+close-open-topic-description": "Deprecated in favor of [[Special:ApiHelp/flow+lock-topic|action=flow&submodule=lock-topic]].",
 	"apihelp-flow+close-open-topic-param-moderationState": "State to put topic in, either locked or unlocked.",
 	"apihelp-flow+close-open-topic-param-reason": "Reason for locking or unlocking the topic.",
