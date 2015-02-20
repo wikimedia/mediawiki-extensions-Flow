@@ -86,7 +86,7 @@ class Templating {
 	 * @throws FlowException
 	 */
 	public function getUserLinks( AbstractRevision $revision ) {
-		if ( !$revision->isModerated() && !$this->permissions->isAllowed( $revision, 'view' ) ) {
+		if ( !$revision->isModerated() && !$this->permissions->isAllowed( $revision, 'history' ) ) {
 			throw new FlowException( 'Insufficient permissions to see userlinks for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
 		}
 
