@@ -6,8 +6,8 @@ use DeferredUpdates;
 use Flow\Container;
 use Flow\Data\Index\BoardHistoryIndex;
 use Flow\Data\Listener\NotificationListener;
+use Flow\Data\Listener\RecentChangesListener;
 use Flow\Data\ObjectManager;
-use Flow\Data\RecentChanges\RecentChanges as RecentChangesListener;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
@@ -133,7 +133,6 @@ class PostRevisionTestCase extends FlowTestCase {
 		if ( $this->workflow ) {
 			return $this->workflow;
 		}
-		$tuple = UserTuple::newFromUser( User::newFromName( 'UTSysop' ) );
 
 		$row = array(
 			'workflow_id' => UUID::create()->getBinary(),
@@ -224,7 +223,7 @@ class PostRevisionTestCase extends FlowTestCase {
 						// scope of these tests
 						&& !$handler instanceof NotificationListener
 						// BoardHistory requires we also wire together TopicListEntry objects for
-						// each revision, but thats also beyond our scope.
+						// each revision, but that's also beyond our scope.
 						&& !$handler instanceof BoardHistoryIndex;
 				}
 			);
