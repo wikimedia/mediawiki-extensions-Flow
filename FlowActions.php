@@ -233,7 +233,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => '',
 			PostRevision::MODERATED_HIDDEN => '',
 		),
-		'links' => array( 'topic', 'post', 'post-history', 'post-revision' ),
+		'links' => array( 'topic', 'post', 'post-history', 'topic-history', 'post-revision' ),
 		'actions' => array( 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-hid-post',
@@ -280,7 +280,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => array( 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_HIDDEN => array( 'flow-delete', 'flow-suppress' ),
 		),
-		'links' => array( 'topic', 'post', 'post-history', 'post-revision', 'watch-topic', 'unwatch-topic' ),
+		'links' => array( 'topic', 'post', 'post-history', 'topic-history', 'post-revision', 'watch-topic', 'unwatch-topic' ),
 		'actions' => array( 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-deleted-post',

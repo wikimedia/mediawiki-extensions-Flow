@@ -121,7 +121,7 @@ class Templating {
 	 */
 	public function getContent( AbstractRevision $revision, $format = 'html' ) {
 		$allowed = $this->permissions->isAllowed( $revision, 'view' );
-		// Post's require view access to the topic title as well
+		// Posts require view access to the topic title as well
 		if ( $allowed && $revision instanceof PostRevision && !$revision->isTopicTitle() ) {
 			$allowed = $this->permissions->isAllowed(
 				$revision->getRootPost(),
@@ -148,6 +148,8 @@ class Templating {
 
 			return $content;
 		} else {
+			// @todo: I think this block of code is currently unused - can we get rid of it? (perhaps just return empty string?)
+
 			$revision = $this->getModeratedRevision( $revision );
 			$username = $this->usernames->get(
 				wfWikiId(),
@@ -162,9 +164,14 @@ class Templating {
 				$type = 'title';
 			}
 
+			$historyLink = $this->urlGenerator->workflowHistoryLink( null, $revision->getRootPost()->getPostId() );
+
 			// Messages: flow-hide-post-content, flow-delete-post-content, flow-suppress-post-content
 			//           flow-hide-title-content, flow-delete-title-content, flow-suppress-title-content
-			$message = wfMessage( "flow-$state-$type-content", $username )->rawParams( $this->getUserLinks( $revision ) );
+			$message = wfMessage( "flow-$state-$type-content", $username )
+				->rawParams( $this->getUserLinks( $revision ) )
+				->params( $historyLink );
+
 			if ( !$message->exists() ) {
 				wfDebugLog( 'Flow', __METHOD__ . ': Failed to locate message for moderated content: ' . $message->getKey() );
 
