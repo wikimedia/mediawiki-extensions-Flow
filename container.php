@@ -802,6 +802,17 @@ $c['controller.spamfilter'] = $c->share( function( $c ) {
 	);
 } );
 
+$c['query.categoryviewer'] = $c->share( function( $c ) {
+	return new Flow\Formatter\CategoryViewerQuery(
+		$c['storage'],
+		$c['repository.tree']
+	);
+} );
+$c['formatter.categoryviewer'] = $c->share( function( $c ) {
+	return new Flow\Formatter\CategoryViewerFormatter(
+		$c['permissions']
+	);
+} );
 $c['query.singlepost'] = $c->share( function( $c ) {
 	return new Flow\Formatter\SinglePostQuery(
 		$c['storage'],
