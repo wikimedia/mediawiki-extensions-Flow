@@ -524,9 +524,9 @@ $c['storage.post.backend'] = $c->share( function( $c ) {
 		$c['repository.tree']
 	);
 } );
-$c['storage.post.listeners.moderation_logger'] = $c->share( function( $c ) {
-	return new Flow\Log\PostModerationLogger(
-		$c['logger']
+$c['storage.post.listeners.moderation_logging'] = $c->share( function( $c ) {
+	return new Flow\Data\Listener\ModerationLoggingListener(
+		$c['logger.moderation']
 	);
 } );
 $c['storage.post.listeners.username'] = $c->share( function( $c ) {
@@ -564,7 +564,7 @@ $c['storage.post.listeners'] = function( $c ) {
 		$c['storage.post.listeners.username'],
 		$c['storage.post.listeners.watch_topic'],
 		$c['storage.post.listeners.notification'],
-		$c['storage.post.listeners.moderation_logger'],
+		$c['storage.post.listeners.moderation_logging'],
 		$c['listener.recentchanges'],
 		$c['listener.editcount'],
 		// topic history -- to keep a history by topic we have to know what topic every post
@@ -973,8 +973,8 @@ $c['formatter.topic'] = $c->share( function( $c ) {
 		$c['formatter.revision']
 	);
 } );
-$c['logger'] = $c->share( function( $c ) {
-	return new Flow\Log\Logger(
+$c['logger.moderation'] = $c->share( function( $c ) {
+	return new Flow\Log\ModerationLogger(
 		$c['flow_actions'],
 		$c['user']
 	);
