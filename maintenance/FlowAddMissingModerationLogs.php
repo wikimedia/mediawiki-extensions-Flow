@@ -1,7 +1,7 @@
 <?php
 
 use Flow\Container;
-use Flow\Log\PostModerationLogger;
+use Flow\Data\Listener\ModerationLoggingListener;
 use Flow\Model\UUID;
 
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
@@ -37,7 +37,7 @@ class FlowAddMissingModerationLogs extends LoggedUpdateMaintenance {
 
 		$storage = $container['storage'];
 
-		$moderationLogger = $container['storage.post.listeners.moderation_logger'];
+		$moderationLoggingListener = $container['storage.post.listeners.moderation_logging'];
 
 		$rowIterator = new EchoBatchRowIterator(
 			$dbw,
@@ -53,7 +53,7 @@ class FlowAddMissingModerationLogs extends LoggedUpdateMaintenance {
 
 		// Fetch rows that are a moderation action
 		$rowIterator->addConditions( array(
-			'rev_change_type' => PostModerationLogger::getModerationChangeTypes(),
+			'rev_change_type' => ModerationLoggingListener::getModerationChangeTypes(),
 		) );
 
 		$start = $this->getOption( 'start' );
@@ -87,7 +87,7 @@ class FlowAddMissingModerationLogs extends LoggedUpdateMaintenance {
 					continue;
 				}
 
-				$moderationLogger->onAfterInsert( $obj, array(), array() );
+				$moderationLoggingListener->onAfterInsert( $obj, array(), array() );
 			}
 
 			$dbw->commit();

@@ -1,20 +1,21 @@
 <?php
 
-namespace Flow\Log;
+namespace Flow\Data\Listener;
 
 use Flow\Data\LifecycleHandler;
+use Flow\Log\ModerationLogger;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 
-class PostModerationLogger implements LifecycleHandler {
+class ModerationLoggingListener implements LifecycleHandler {
 
 	/**
-	 * @var Logger
+	 * @var ModerationLogger
 	 */
-	protected $logger;
+	protected $moderationLogger;
 
-	function __construct( Logger $logger ) {
-		$this->logger = $logger;
+	function __construct( ModerationLogger $moderationLogger ) {
+		$this->moderationLogger = $moderationLogger;
 	}
 
 	/**
@@ -47,7 +48,7 @@ class PostModerationLogger implements LifecycleHandler {
 			return;
 		}
 
-		if ( $this->logger->canLog( $post, $post->getChangeType() ) ) {
+		if ( $this->moderationLogger->canLog( $post, $post->getChangeType() ) ) {
 			$workflowId = $post->getRootPost()->getPostId();
 			$logParams = array();
 
@@ -57,7 +58,7 @@ class PostModerationLogger implements LifecycleHandler {
 				$logParams['postId'] = $post->getRevisionId();
 			}
 
-			$this->logger->log(
+			$this->moderationLogger->log(
 				$post,
 				$post->getChangeType(),
 				$post->getModeratedReason(),
