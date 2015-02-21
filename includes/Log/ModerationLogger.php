@@ -12,7 +12,7 @@ use ManualLogEntry;
 use Title;
 use User;
 
-class Logger {
+class ModerationLogger {
 
 	/**
 	 * @var User
