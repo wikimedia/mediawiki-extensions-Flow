@@ -12,7 +12,7 @@ use ManualLogEntry;
 use Title;
 use User;
 
-class Logger {
+class ModerationLogger {
 
 	/**
 	 * @var User
@@ -51,12 +51,19 @@ class Logger {
 	 * @param string $action The action we'll be logging
 	 * @param string $reason Comment, reason for the moderation
 	 * @param UUID $workflowId Workflow being worked on
-	 * @param array $params Additional parameters to be saved
 	 * @return int The id of the newly inserted log entry
 	 */
-	public function log( PostRevision $post, $action, $reason, UUID $workflowId, $params = array() ) {
+	public function log( PostRevision $post, $action, $reason, UUID $workflowId ) {
 		if ( !$this->canLog( $post, $action ) ) {
 			return null;
+		}
+
+		$params = array();
+
+		if ( $post->isTopicTitle() ) {
+			$params['topicId'] = $workflowId;
+		} else {
+			$params['postId'] = $post->getPostId();
 		}
 
 		$logType = $this->getLogType( $post, $action );
