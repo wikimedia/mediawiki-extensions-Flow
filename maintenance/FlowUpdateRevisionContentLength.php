@@ -81,9 +81,11 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 			$this->mBatchSize
 		);
 		// Only fetch rows with current and previous content length set to 0
+		// created by users from the current wiki.
 		$it->addConditions( array(
 			'rev_content_length' => 0,
 			'rev_previous_content_length' => 0,
+			'rev_user_wiki' => wfWikiId(),
 		) );
 		// We only need the id and type field
 		$it->setFetchColumns( array( 'rev_id', 'rev_type' ) );
