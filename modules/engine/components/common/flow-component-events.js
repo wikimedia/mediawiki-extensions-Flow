@@ -697,7 +697,9 @@
 	 */
 	function flowEventsMixinCompressTextarea( $textarea ) {
 		$textarea.addClass( 'flow-input-compressed' );
-		mw.flow.editor.destroy( $textarea );
+		if ( mw.flow.editor && mw.flow.editor.exists( $editor ) ) {
+			mw.flow.editor.destroy( $textarea );
+		}
 	}
 	FlowComponentEventsMixin.eventHandlers.compressTextarea = flowEventsMixinCompressTextarea;
 
