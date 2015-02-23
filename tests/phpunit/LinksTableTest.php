@@ -265,12 +265,15 @@ class LinksTableTest extends PostRevisionTestCase {
 					$references['fooLink'],
 				),
 				array(
-					$references['fooLink2'],
+					$references['FooLink'],
 				),
 				array(
 				),
 				array(
 				),
+				array( // test is only valid if Foo and foo are same page
+					'wgCapitalLinks' => true,
+				)
 			),
 			// Inequality robustness
 			array(
@@ -293,7 +296,10 @@ class LinksTableTest extends PostRevisionTestCase {
 	/**
 	 * @dataProvider provideReferenceDiff
 	 */
-	public function testReferenceDiff( $old, $new, $expectedAdded, $expectedRemoved ) {
+	public function testReferenceDiff( $old, $new, $expectedAdded, $expectedRemoved, $globals = array() ) {
+		if ( $globals ) {
+			$this->setMwGlobals( $globals );
+		}
 		list( $workflow, $revision, $title ) = $this->getBlandTestObjects();
 
 		foreach( array( 'old', 'new', 'expectedAdded', 'expectedRemoved' ) as $varName ) {
@@ -414,7 +420,7 @@ class LinksTableTest extends PostRevisionTestCase {
 				'refType' => 'link',
 				'value' => '/Subpage',
 			),
-			'fooLink2' => array(
+			'FooLink' => array(
 				'factoryMethod' => 'createWikiReference',
 				'refType' => 'link',
 				'value' => 'foo',
