@@ -2,6 +2,7 @@
 
 namespace Flow\Parsoid;
 
+use DOMDocument;
 use DOMXPath;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
@@ -61,18 +62,7 @@ class ContentFixer {
 		// resolve all registered recursive callbacks
 		$this->resolveRecursive();
 
-		/*
-		 * Workaround because DOMDocument can't guess charset.
-		 * Content should be utf-8. Alternative "workarounds" would be to
-		 * provide the charset in $response, as either:
-		 * * <?xml encoding="utf-8" ?>
-		 * * <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		 * * mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' );
-		 *
-		 * The body tag is required otherwise <meta> tags at the top are
-		 * magic'd into <head> rather than kept with the content.
-		 */
-		$dom = Utils::createDOM( '<?xml encoding="utf-8"?><body>' . $content . '</body>' );
+		$dom = self::createDOM( $content );
 		$xpath = new DOMXPath( $dom );
 		foreach ( $this->contentFixers as $i => $contentFixer ) {
 			$found = $xpath->query( $contentFixer->getXPath() );
@@ -119,8 +109,7 @@ class ContentFixer {
 	 * @return array
 	 */
 	public function recursive( PostRevision $post, $result ) {
-		$content = $post->getContent( 'html' );
-		$dom = Utils::createDOM( '<?xml encoding="utf-8"?><body>' . $content . '</body>' );
+		$dom = self::createDOM( $post->getContent( 'html' ) );
 		$xpath = new DOMXPath( $dom );
 		foreach ( $this->contentFixers as $i => $contentFixer ) {
 			if ( !$contentFixer->isRecursive( $post ) ) {
@@ -176,5 +165,32 @@ class ContentFixer {
 		foreach ( $this->contentFixers as $contentFixer ) {
 			$contentFixer->resolve();
 		}
+	}
+
+	/**
+	 * Helper functions creates a DOM extra considerations for BC with
+	 * previous parsoid content and encoding issues.
+	 *
+	 * @param string $content
+	 * @return DOMDocument
+	 */
+	static public function createDOM( $content ) {
+		/*
+		 * Workaround because DOMDocument can't guess charset.
+		 * Content should be utf-8. Alternative "workarounds" would be to
+		 * provide the charset in $response, as either:
+		 * * <?xml encoding="utf-8" ?>
+		 * * <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		 * * mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' );
+		 *
+		 * The body tag is required otherwise <meta> tags at the top are
+		 * magic'd into <head> rather than kept with the content.
+		 */
+		if ( substr( $content, 0, 5 ) !== '<body' ) {
+			// BC: content currently comes from parsoid and is stored wrapped in <body> tags, but prior
+			// to feb 2015 we were storing only the contents and not the body tag itself.
+			$content = "<body>$content</body>";
+		}
+		return Utils::createDOM( '<?xml encoding="utf-8"?>' . $content );
 	}
 }
