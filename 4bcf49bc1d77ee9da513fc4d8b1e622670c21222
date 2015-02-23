@@ -2,6 +2,74 @@
   "comments": [
     {
       "key": {
+        "uuid": "6e7c4fa4_97193a8b",
+        "filename": "handlebars/flow_block_topicsummary_edit.handlebars",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-23T14:47:55Z",
+      "side": 1,
+      "message": "Should be revision.articleTitle",
+      "revId": "4bcf49bc1d77ee9da513fc4d8b1e622670c21222",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_3a112b57",
+        "filename": "handlebars/flow_reply_form.handlebars",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-23T14:47:55Z",
+      "side": 1,
+      "message": "For post-replies, this template gets generated from JS (FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.activateReplyPost) where this value is not being assigned.",
+      "revId": "4bcf49bc1d77ee9da513fc4d8b1e622670c21222",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_f778aeef",
+        "filename": "handlebars/flow_topic_titlebar_lock.handlebars",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-23T14:47:55Z",
+      "side": 1,
+      "message": "Nitpick: aligned differently (spaces vs tabs)",
+      "revId": "4bcf49bc1d77ee9da513fc4d8b1e622670c21222",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_776fbef9",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-23T14:47:55Z",
+      "side": 1,
+      "message": "new Array (or [])",
+      "revId": "4bcf49bc1d77ee9da513fc4d8b1e622670c21222",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_dc992ec8",
         "filename": "modules/engine/misc/flow-baseconvert.js",
         "patchSetId": 1
