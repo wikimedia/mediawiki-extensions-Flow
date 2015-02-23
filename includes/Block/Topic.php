@@ -186,7 +186,7 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 		if ( !$this->permissions->isAllowed( $topicTitle, 'edit-title' ) ) {
-			$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
+			$this->addError( 'permissions', $this->getDisallowedErrorMessage( $topicTitle ) );
 			return;
 		}
 		if ( $topicTitle->getRevisionId()->getAlphadecimal() !== $this->submitted['prev_revision'] ) {
@@ -233,7 +233,7 @@ class TopicBlock extends AbstractBlock {
 			return; // loadRequestedPost adds its own errors
 		}
 		if ( !$this->permissions->isAllowed( $post, 'reply' ) ) {
-			$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
+			$this->addError( 'permissions', $this->getDisallowedErrorMessage( $post ) );
 			return;
 		}
 		$this->newRevision = $post->reply(
@@ -329,7 +329,7 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 		if ( !$this->permissions->isAllowed( $post, $action ) ) {
-			$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
+			$this->addError( 'permissions', $this->getDisallowedErrorMessage( $post ) );
 			return;
 		}
 
@@ -365,7 +365,7 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 		if ( !$this->permissions->isAllowed( $post, 'edit-post' ) ) {
-			$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
+			$this->addError( 'permissions', $this->getDisallowedErrorMessage( $post ) );
 			return;
 		}
 		if ( $post->getRevisionId()->getAlphadecimal() !== $this->submitted['prev_revision'] ) {
@@ -762,18 +762,7 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		if ( !$this->permissions->isAllowed( $this->topicTitle, $action ) ) {
-			if ( in_array( $this->action, array( 'moderate-topic', 'moderate-post' ) ) ) {
-				/*
-				 * When failing to moderate an already moderated action (like
-				 * undo), show the more general "you have insufficient
-				 * permissions for this action" message, rather than the
-				 * specialized "this topic is <hidden|deleted|suppressed>" msg.
-				 */
-				$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
-			} else {
-				$this->addError( 'permissions', $this->getDisallowedErrorMessage( $this->topicTitle ) );
-			}
-
+			$this->addError( 'permissions', $this->getDisallowedErrorMessage( $this->topicTitle ) );
 			return null;
 		}
 
@@ -781,54 +770,82 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	/**
+	 * @todo Move this to AbstractBlock and use for summary/header/etc.
 	 * @param AbstractRevision $revision
 	 * @return Message
 	 */
 	protected function getDisallowedErrorMessage( AbstractRevision $revision ) {
+		if ( in_array( $this->action, array( 'moderate-topic', 'moderate-post' ) ) ) {
+			/*
+			 * When failing to moderate an already moderated action (like
+			 * undo), show the more general "you have insufficient
+			 * permissions for this action" message, rather than the
+			 * specialized "this topic is <hidden|deleted|suppressed>" msg.
+			 */
+			return $this->context->msg( 'flow-error-not-allowed' );
+		}
+
 		$state = $revision->getModerationState();
 
-		// state doesn't exist in log, display simple
-		if ( !\LogPage::isLogType( $state ) ) {
-			return $this->context->msg( 'flow-error-not-allowed-' . $state );
-		}
+		// Show a snippet of the relevant log entry if available.
+		if ( \LogPage::isLogType( $state ) ) {
+			// check if user has sufficient permissions to see log
+			$logPage = new \LogPage( $state );
+			if ( $this->context->getUser()->isAllowed( $logPage->getRestriction() ) ) {
+				// LogEventsList::showLogExtract will write to OutputPage, but we
+				// actually just want that text, to write it ourselves wherever we want,
+				// so let's create an OutputPage object to then get the content from.
+				$rc = new \RequestContext();
+				$output = $rc->getOutput();
 
-		// check if user has sufficient permissions to see log
-		$logPage = new \LogPage( $state );
-		if ( !$this->context->getUser()->isAllowed( $logPage->getRestriction() ) ) {
-			return $this->context->msg( 'flow-error-not-allowed-' . $state );
-		}
+				// get log extract
+				$entries = \LogEventsList::showLogExtract(
+					$output,
+					array( $state ),
+					$this->workflow->getArticleTitle()->getPrefixedText(),
+					'',
+					array(
+						'lim' => 10,
+						'showIfEmpty' => false,
+						// i18n messages:
+						//  flow-error-not-allowed-delete-extract
+						//  flow-error-not-allowed-reply-to-delete-topic-extract
+						//  flow-error-not-allowed-suppress-extract
+						//  flow-error-not-allowed-reply-to-suppress-topic-extract
+						'msgKey' => array(
+							"flow-error-not-allowed-{$this->action}-to-$start-$type",
+							"flow-error-not-allowed-$state-extract",
+						)
+					)
+				);
 
-		// LogEventsList::showLogExtract will write to OutputPage, but we
-		// actually just want that text, to write it ourselves wherever we want,
-		// so let's create an OutputPage object to then get the content from.
-		$rc = new \RequestContext();
-		$output = $rc->getOutput();
-
-		// get log extract
-		$entries = \LogEventsList::showLogExtract(
-			$output,
-			array( $state ),
-			$this->workflow->getArticleTitle()->getPrefixedText(),
-			'',
-			array(
-				'lim' => 10,
-				'showIfEmpty' => false,
-				// i18n messages: flow-error-not-allowed-hide-extract,
-				// flow-error-not-allowed-delete-extract, flow-error-not-allowed-suppress-extract
-				'msgKey' => array( 'flow-error-not-allowed-' . $state . '-extract' )
-			)
-		);
-
-		// check if there were any log extracts
-		if ( $entries ) {
-			$message = new \RawMessage( '$1' );
-			return $message->rawParams( $output->getHTML() );
+				// check if there were any log extracts
+				if ( $entries ) {
+					$message = new \RawMessage( '$1' );
+					return $message->rawParams( $output->getHTML() );
+				}
+			}
 		}
 
 		// display simple message
-		// i18n messages: flow-error-not-allowed-hide,
-		// flow-error-not-allowed-delete, flow-error-not-allowed-suppress
-		return $this->context->msg( 'flow-error-not-allowed-' . $state );
+		// i18n messages:
+		//  flow-error-not-allowed-hide,
+		//  flow-error-not-allowed-reply-to-hide-topic
+		//  flow-error-not-allowed-delete
+		//  flow-error-not-allowed-reply-to-delete-topic
+		//  flow-error-not-allowed-suppress
+		//  flow-error-not-allowed-reply-to-suppress-topic
+		if ( $revision instanceof PostRevision ) {
+			$type = $revision->isTopicTitle() ? 'topic' : 'post';
+		} else {
+			$type = $revision->getType();
+		}
+		return $this->context->msg( array(
+			// set of keys to try in order
+			"flow-error-not-allowed-{$this->action}-to-$state-$type",
+			"flow-error-not-allowed-$state",
+			"flow-error-not-allowed"
+		) );
 	}
 
 	/**
