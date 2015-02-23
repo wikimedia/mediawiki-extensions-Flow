@@ -93,8 +93,10 @@ abstract class Utils {
 			$parsoidURL . '/' . $parsoidPrefix . '/' . $title->getPrefixedDBkey(),
 			array(
 				'method' => 'POST',
-				'postData' => wfArrayToCgi( array( $from => $content ) ),
-				'body' => true,
+				'postData' => wfArrayToCgi( array(
+					$from => $content,
+					'body' => true,
+				) ),
 				'timeout' => $parsoidTimeout,
 				'connectTimeout' => 'default',
 			)
@@ -113,32 +115,8 @@ abstract class Utils {
 			wfDebugLog( 'Flow', __METHOD__ . ': Failed contacting parsoid: ' . $status->getMessage()->text() );
 			throw new NoParsoidException( 'Failed contacting Parsoid', 'process-wikitext' );
 		}
-		$response = $request->getContent();
 
-		// HTML is wrapped in <body> tag, undo that.
-		// unless $response is empty
-		if ( $to == 'html' && $response ) {
-			/*
-			 * Workaround because DOMDocument can't guess charset.
-			 * Parsoid provides utf-8. Alternative "workarounds" would be to
-			 * provide the charset in $response, as either:
-			 * * <?xml encoding="utf-8" ?>
-			 * * <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-			 */
-			$response = mb_convert_encoding( $response, 'HTML-ENTITIES', 'UTF-8' );
-
-			$dom = self::createDOM( $response );
-			$body = $dom->getElementsByTagName( 'body' )->item(0);
-
-			$response = '';
-			foreach( $body->childNodes as $child ) {
-				$response .= $child->ownerDocument->saveHTML( $child );
-			}
-		} elseif ( !in_array( $to, array( 'wt', 'wikitext' ) ) ) {
-			throw new WikitextException( "Unknown format requested: " . $to, 'process-wikitext' );
-		}
-
-		return $response;
+		return $request->getContent();
 	}
 
 	/**

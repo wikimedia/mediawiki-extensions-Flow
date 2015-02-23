@@ -72,7 +72,12 @@ class ContentFixer {
 		 * The body tag is required otherwise <meta> tags at the top are
 		 * magic'd into <head> rather than kept with the content.
 		 */
-		$dom = Utils::createDOM( '<?xml encoding="utf-8"?><body>' . $content . '</body>' );
+		if ( substr( $content, 0, 5 ) !== '<body' ) {
+			// BC: content currently comes from parsoid and is stored wrapped in <body> tags, but prior
+			// to feb 2015 we were storing only the contents and not the body tag itself.
+			$content = "<body>$content</body>";
+		}
+		$dom = Utils::createDOM( '<?xml encoding="utf-8"?>' . $content );
 		$xpath = new DOMXPath( $dom );
 		foreach ( $this->contentFixers as $i => $contentFixer ) {
 			$found = $xpath->query( $contentFixer->getXPath() );
@@ -120,6 +125,11 @@ class ContentFixer {
 	 */
 	public function recursive( PostRevision $post, $result ) {
 		$content = $post->getContent( 'html' );
+		// BC: content currently comes from parsoid and is stored wrapped in <body> tags, but prior
+		// to feb 2015 we were storing only the contents and not the body tag itself.
+		if ( substr( $content, 0, 5 ) !== '<body' ) {
+			$content = "<body>$content</body>";
+		}
 		$dom = Utils::createDOM( '<?xml encoding="utf-8"?><body>' . $content . '</body>' );
 		$xpath = new DOMXPath( $dom );
 		foreach ( $this->contentFixers as $i => $contentFixer ) {
