@@ -16,6 +16,24 @@
       "revId": "085568d31a1a5ab48f8e9073f4b44796b005428e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_e002220c",
+        "filename": "includes/Parsoid/Extractor/ImageExtractor.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-23T17:36:27Z",
+      "side": 1,
+      "message": "I introduced it thinking it was necessary, then realised i didn\u0027t need it and deleted it :)  Will remove from here too.",
+      "parentUuid": "6e7c4fa4_bad69b52",
+      "revId": "085568d31a1a5ab48f8e9073f4b44796b005428e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
