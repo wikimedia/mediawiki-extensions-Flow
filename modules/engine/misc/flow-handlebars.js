@@ -554,7 +554,7 @@
 			retval = content;
 		}
 
-		return retval ? $.trim( retval ).slice( 0, 200 ) : '';
+		return retval ? $.trim( retval ) : '';
 	};
 
 	/**

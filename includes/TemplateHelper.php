@@ -778,10 +778,10 @@ class TemplateHelper {
 		}
 		list( $contentFormat, $content ) = $args;
 		if ( $contentFormat === 'html' ) {
-			return Utils::htmlToPlaintext( $content, 200 );
+			// This path is unused.
+			return Utils::htmlToPlaintext( $content, null );
 		} else {
-			global $wgLang;
-			return $wgLang->truncate( trim( $content ), 200 );
+			return trim( $content );
 		}
 	}
 }
