@@ -184,3 +184,7 @@ compiled/flow_tooltip.handlebars.php: \
 compiled/timestamp.handlebars.php: \
 		timestamp.handlebars
 	$(COMPILE) timestamp
+
+compiled/revision_diff_header.handlebars: \
+		revision_diff_header.handlebars
+	$(COMPILE) flow_revision_diff_header
