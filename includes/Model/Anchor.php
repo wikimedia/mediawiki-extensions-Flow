@@ -51,6 +51,14 @@ class Anchor {
 	public function getLinkURL() {
 		return $this->resolveTitle()->getLinkURL( $this->query );
 	}
+
+	/**
+	 * @return string
+	 */
+	public function getLocalURL() {
+		return $this->resolveTitle()->getLocalURL( $this->query );
+	}
+
 	/**
 	 * @return string
 	 */
