@@ -186,6 +186,9 @@ class FlowHooks {
 		require_once __DIR__.'/maintenance/FlowUpdateRevisionContentLength.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateRevisionContentLength' );
 
+		require_once __DIR__.'/maintenance/FlowFixLog.php';
+		$updater->addPostDatabaseUpdateMaintenance( 'FlowFixLog' );
+
 		return true;
 	}
 
