@@ -9,12 +9,41 @@ use Message;
 
 class ActionFormatter extends \LogFormatter {
 	/**
+	 * @var UUID[]
+	 */
+	static $uuids = array();
+
+	/**
+	 * @param \LogEntry $entry
+	 */
+	public function __construct( \LogEntry $entry ) {
+		parent::__construct( $entry );
+
+		$params = $this->entry->getParameters();
+		// serialized topicId or postId can be stored
+		foreach ( $params as $key => $value ) {
+			if ( $value instanceof UUID ) {
+				static::$uuids[$value->getAlphadecimal()] = $value;
+			}
+		}
+	}
+
+	/**
 	 * Formats an activity log entry.
 	 *
 	 * @return string The log entry
 	 */
 	protected function getActionMessage() {
 		global $wgContLang;
+
+		// at this point, all log entries will already have been created & we've
+		// gathered all uuids in constructor: we can now batchload all of them
+		static $loaded = false;
+		if ( !$loaded ) {
+			$query = new LogQuery();
+			$query->loadMetadataBatch( static::$uuids );
+			$loaded = true;
+		}
 
 		$root = $this->getRoot();
 		if ( !$root ) {
