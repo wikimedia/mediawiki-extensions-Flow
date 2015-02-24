@@ -113,9 +113,8 @@ class BoardContentHandler extends \ContentHandler {
 	 * @return array Always an empty array.
 	 */
 	public function getActionOverrides() {
-		$container = Container::getContainer();
 		/** @var FlowActions $actions */
-		$actions = $container['flow_actions'];
+		$actions = Container::get( 'flow_actions' );
 		$output = array();
 
 		foreach( $actions->getActions() as $action ) {
