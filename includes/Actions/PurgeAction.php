@@ -42,9 +42,12 @@ class PurgeAction extends \PurgeAction {
 		// We then extract the complete list of keys updated from this hash bag o stuff
 		// and delete them from the real memcache.
 		$container = Container::getContainer();
-		$this->realMemcache = $container['memcache'];
-		$this->hashBag = new HashBagOStuff;
-		$container['memcache'] = $this->hashBag;
+		$container->extend( 'memcache', function( $memcache, $c ) {
+			$c['memcache.purge_backup'] = $memcache;
+			return new HashBagOStuff;
+		} );
+		$this->hashBag = $container['memcache'];
+		$this->realMemcache = $container['memcache.purge_backup'];
 
 		/** @var WorkflowLoaderFactory $loader */
 		$loader = $container['factory.loader.workflow'];
