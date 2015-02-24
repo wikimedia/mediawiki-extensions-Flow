@@ -3,11 +3,34 @@
 namespace Flow\Log;
 
 use Flow\Collection\PostCollection;
+use Flow\Container;
+use Flow\Formatter\AbstractQuery;
+use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Parsoid\Utils;
 use Message;
 
 class ActionFormatter extends \LogFormatter {
+	/**
+	 * @var UUID[]
+	 */
+	static $uuids = array();
+
+	/**
+	 * @param \LogEntry $entry
+	 */
+	public function __construct( \LogEntry $entry ) {
+		parent::__construct( $entry );
+
+		$params = $this->entry->getParameters();
+		// serialized topicId or postId can be stored
+		foreach ( $params as $key => $value ) {
+			if ( $value instanceof UUID ) {
+				static::$uuids[$value->getAlphadecimal()] = $value;
+			}
+		}
+	}
+
 	/**
 	 * Formats an activity log entry.
 	 *
@@ -15,6 +38,15 @@ class ActionFormatter extends \LogFormatter {
 	 */
 	protected function getActionMessage() {
 		global $wgContLang;
+
+		// at this point, all log entries will already have been created & we've
+		// gathered all uuids in constructor: we can now batchload all of them
+		static $loaded = false;
+		if ( !$loaded ) {
+			$query = new LogQuery();
+			$query->loadMetadataBatch( static::$uuids );
+			$loaded = true;
+		}
 
 		$root = $this->getRoot();
 		if ( !$root ) {
@@ -123,5 +155,54 @@ class ActionFormatter extends \LogFormatter {
 		// something wrong with logging data, should have topicId or postId
 		wfWarn( __METHOD__ . ': Failed to locate root for: ' . serialize( $params ) . '(potentially invalid log data)' );
 		return false;
+	}
+}
+
+class LogQuery extends AbstractQuery {
+	/**
+	 * LogQuery is kind of a hack; I want to call loadMetadataBatch from
+	 * Flow\Log\ActionFormatter, but that one extends core's way of doing
+	 * log formatting already.
+	 * I'm just gonna pull in whatever I need from container, not expect these
+	 * dependencies to be properly passed along (because core creates the
+	 * objects where we'd need this data)
+	 */
+	public function __construct() {
+		$this->storage = Container::get( 'storage' );
+		$this->treeRepository = Container::get( 'repository.tree' );
+	}
+
+	/**
+	 * @param UUID[] $uuids
+	 */
+	public function loadMetadataBatch( $uuids ) {
+		$posts = $this->loadPostsBatch( $uuids );
+		parent::loadMetadataBatch( $posts );
+	}
+
+	/**
+	 * @param UUID[] $uuids
+	 * @return PostRevision[]
+	 */
+	protected function loadPostsBatch( array $uuids ) {
+		$queries = array();
+		foreach ( $uuids as $uuid ) {
+			$queries[] = array( 'rev_type_id' => $uuid );
+		}
+
+		$found = $this->storage->findMulti(
+			'PostRevision',
+			$queries,
+			array( 'limit' => 1 )
+		);
+
+		$revisions = array();
+		foreach ( $found as $result ) {
+			/** @var PostRevision $revision */
+			$revision = reset( $result );
+			$revisions[$revision->getPostId()->getAlphadecimal()] = $revision;
+		}
+
+		return $revisions;
 	}
 }
