@@ -24,7 +24,7 @@ class PlaceholderExtractor implements Extractor {
 	 * {@inheritDoc}
 	 */
 	public function getXPath() {
-		return '//*[starts-with(@typeof, "mw:Placeholder")]';
+		return '//*[contains(concat(" ", @typeof, " "), " mw:Placeholder" )]';
 	}
 
 	/**

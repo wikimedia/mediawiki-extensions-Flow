@@ -15,7 +15,7 @@ class ImageExtractor implements Extractor {
 	 * {@inheritDoc}
 	 */
 	public function getXPath() {
-		return '//*[starts-with(@typeof, "mw:Image")]';
+		return '//*[contains(concat(" ", @typeof, " "), " mw:Image " )]';
 	}
 
 	/**
@@ -30,7 +30,7 @@ class ImageExtractor implements Extractor {
 			if ( $resource !== '' ) {
 				return $factory->createWikiReference(
 					WikiReference::TYPE_FILE,
-					$resource
+					urldecode( $resource )
 				);
 			}
 		}
