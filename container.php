@@ -850,7 +850,8 @@ $c['formatter.revisionview'] = $c->share( function( $c ) {
 } );
 $c['formatter.revision.diff.view'] = $c->share( function( $c ) {
 	return new Flow\Formatter\RevisionDiffViewFormatter(
-		$c['formatter.revisionview']
+		$c['formatter.revisionview'],
+		$c['url_generator']
 	);
 } );
 $c['query.topiclist'] = $c->share( function( $c ) {

@@ -1,0 +1,9 @@
+<div><a href="{{link}}" class="flow-diff-revision-link">
+	{{l10nParse "flow-compare-revisions-revision-header" timestamp author}}
+</a></div>
+{{#if previous}}
+	<div><a href="{{previous}}">{{l10n "flow-previous-diff"}}</a></div>
+{{/if}}
+{{#if next}}
+	<div><a href="{{next}}">{{l10n "flow-next-diff"}}</a></div>
+{{/if}}
