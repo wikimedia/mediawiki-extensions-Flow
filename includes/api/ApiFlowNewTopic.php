@@ -43,7 +43,7 @@ class ApiFlowNewTopic extends ApiFlowBasePost {
 	 * @deprecated since MediaWiki core 1.25
 	 */
 	public function getDescription() {
-		return 'Creates a new Flow topic on the given workflow';
+		return 'Creates a new Flow topic on the given page, or workflow';
 	}
 
 	/**
