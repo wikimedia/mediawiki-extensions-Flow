@@ -397,6 +397,14 @@ $wgResourceModules += array(
 			'editor/editors/ext.flow.editors.none.js',
 		),
 	) + $mobile,
+	'ext.flow.editors.visualeditor' => $flowResourceTemplate + array(
+		'scripts' => 'editor/editors/ext.flow.editors.visualeditor.js',
+		'dependencies' => array(
+			'jquery.spinner',
+			// ve dependencies will be loaded via JS
+		),
+       ),
+
 	'ext.flow.parsoid' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'editor/ext.flow.parsoid.js',
