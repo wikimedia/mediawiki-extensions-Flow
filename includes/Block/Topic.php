@@ -556,7 +556,7 @@ class TopicBlock extends AbstractBlock {
 		}
 		$oldRevision = '';
 		if ( isset( $options['oldRevision'] ) ) {
-			$oldRevision = $options['newRevision'];
+			$oldRevision = $options['oldRevision'];
 		}
 		list( $new, $old ) = Container::get( 'query.post.view' )->getDiffViewResult( $options['newRevision'], $oldRevision );
 
