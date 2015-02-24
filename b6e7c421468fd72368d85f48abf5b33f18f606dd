@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_54e2b398",
+        "filename": "maintenance/FlowFixLog.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-24T17:44:00Z",
+      "side": 1,
+      "message": "i think we should consider using EchoBatchRowIterator over re-implementing batched queries for each maintenance script.  Just a bit more DRY and less to review.",
+      "revId": "b6e7c421468fd72368d85f48abf5b33f18f606dd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_f4473fbd",
+        "filename": "maintenance/FlowFixLog.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-24T17:44:00Z",
+      "side": 1,
+      "message": "Its probably not a standard yet, but i think we should aim for no pokemon exceptions(gotta catch em all). It looks like for revision not found we are throwing Flow\\Exception\\InvalidDataException",
+      "revId": "b6e7c421468fd72368d85f48abf5b33f18f606dd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
