@@ -2,20 +2,41 @@
 
 namespace Flow\Formatter;
 
+use Flow\Model\UUID;
+use Flow\UrlGenerator;
 use IContextSource;
 
 class RevisionDiffViewFormatter {
 
+	/**
+	 * @var RevisionViewFormatter
+	 */
 	protected $revisionViewFormatter;
 
-	public function __construct( RevisionViewFormatter $revisionViewFormatter ) {
+	/**
+	 * @var UrlGenerator
+	 */
+	protected $urlGenerator;
+
+	public function __construct(
+		RevisionViewFormatter $revisionViewFormatter,
+		UrlGenerator $urlGenerator
+	) {
 		$this->revisionViewFormatter = $revisionViewFormatter;
+		$this->urlGenerator = $urlGenerator;
 	}
 
 	/**
 	 * Diff would format against two revisions
 	 */
 	public function formatApi( FormatterRow $newRow, FormatterRow $oldRow, IContextSource $ctx ) {
+		$oldTs = $oldRow->revision->getRevisionId()->getTimestamp();
+		$newTs = $newRow->revision->getRevisionId()->getTimestamp();
+		if ( $oldTs > $newTs ) {
+			die ( 'switched!' );
+			list( $oldRow, $newRow ) = array( $newRow, $oldRow );
+		}
+
 		$oldRes = $this->revisionViewFormatter->formatApi( $oldRow, $ctx );
 		$newRes = $this->revisionViewFormatter->formatApi( $newRow, $ctx );
 
@@ -29,6 +50,40 @@ class RevisionDiffViewFormatter {
 			new \TextContent( $newContent )
 		);
 
-		return array( 'new' => $newRes, 'old' => $oldRes, 'diff_content' => $differenceEngine->getDiffBody() );
+		if ( $oldRow->revision->isFirstRevision() ) {
+			$prevLink = null;
+		} else {
+			$prevLink = $this->urlGenerator->diffLink(
+				$oldRow->revision,
+				$ctx->getTitle(), // is this right?
+				UUID::create( $oldRes['workflowId'] ),
+				$oldRow->revision->getPrevRevisionId()
+			)->getFullURL();
+		}
+
+		// this is probably a network request which typically goes in the query
+		// half, but we don't have to worry about batching because we only show
+		// one diff at a time so just do it.
+		$nextRevision = $newRow->revision->getCollection()->getNextRevision( $newRow->revision );
+		if ( $nextRevision === null ) {
+			$nextLink = null;
+		} else {
+			$nextLink = $this->urlGenerator->diffLink(
+				$nextRevision,
+				$ctx->getTitle(),
+				UUID::create( $newRes['workflowId'] ),
+				UUID::create( $newRes['revisionId'] )
+			)->getFullURL();
+		}
+
+		return array(
+			'new' => $newRes,
+			'old' => $oldRes,
+			'diff_content' => $differenceEngine->getDiffBody(),
+			'links' => array(
+				'previous' => $prevLink,
+				'next' => $nextLink,
+			),
+		);
 	}
 }
