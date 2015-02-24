@@ -138,6 +138,7 @@
 	"flow-error-not-allowed-reply-to-suppress-topic": "Não pode responder porque o tópico foi eliminado.",
 	"flow-error-not-allowed-hide-extract": "Este tópico foi ocultado. O registo para o tópico é fornecido abaixo para referência.",
 	"flow-error-not-allowed-delete-extract": "Este tópico foi eliminado. O registo de eliminação para o tópico é fornecido abaixo para referência.",
+	"flow-error-not-allowed-reply-to-delete-topic-extract": "Não pode responder porque este tópico foi eliminado. O registo de eliminação para o tópico é fornecido abaixo para referência.",
 	"flow-error-not-allowed-suppress-extract": "Este tópico foi eliminado. O registo de eliminação para o tópico é fornecido abaixo para referência.",
 	"flow-error-not-allowed-reply-to-suppress-topic-extract": "Não pode responder porque este tópico foi suprimido. O registo de supressão para o tópico é fornecido abaixo para referência.",
 	"flow-error-title-too-long": "Os títulos dos tópicos estão restritos a {{PLURAL:$1|byte|bytes}}.",
