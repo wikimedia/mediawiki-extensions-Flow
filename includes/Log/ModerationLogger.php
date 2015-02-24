@@ -51,9 +51,8 @@ class ModerationLogger {
 
 		$params = array();
 
-		if ( $post->isTopicTitle() ) {
-			$params['topicId'] = $workflowId;
-		} else {
+		$params['topicId'] = $workflowId;
+		if ( !$post->isTopicTitle() ) {
 			$params['postId'] = $post->getPostId();
 		}
 
