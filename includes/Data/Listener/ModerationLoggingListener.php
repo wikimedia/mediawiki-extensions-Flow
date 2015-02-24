@@ -52,6 +52,11 @@ class ModerationLoggingListener implements LifecycleHandler {
 		if ( $this->moderationLogger->canLog( $post, $post->getChangeType() ) ) {
 			$workflowId = $workflow->getId();
 
+			$logParams['topicId'] = $workflowId;
+			if ( !$post->isTopicTitle() ) {
+				$logParams['postId'] = $post->getPostId();
+			}
+
 			$this->moderationLogger->log(
 				$post,
 				$post->getChangeType(),
