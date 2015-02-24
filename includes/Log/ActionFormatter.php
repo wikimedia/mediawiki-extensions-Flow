@@ -4,12 +4,34 @@ namespace Flow\Log;
 
 use Flow\Collection\PostCollection;
 use Flow\Container;
+use Flow\Data\ManagerGroup;
 use Flow\Model\UUID;
 use Flow\Parsoid\Utils;
+use Flow\Repository\TreeRepository;
 use Flow\UrlGenerator;
 use Message;
 
 class ActionFormatter extends \LogFormatter {
+	/**
+	 * @var UUID[]
+	 */
+	static $uuids = array();
+
+	/**
+	 * @param \LogEntry $entry
+	 */
+	public function __construct( \LogEntry $entry ) {
+		parent::__construct( $entry );
+
+		$params = $this->entry->getParameters();
+		// serialized topicId or postId can be stored
+		foreach ( $params as $key => $value ) {
+			if ( $value instanceof UUID ) {
+				static::$uuids[$value->getAlphadecimal()] = $value;
+			}
+		}
+	}
+
 	/**
 	 * Formats an activity log entry.
 	 *
@@ -17,6 +39,26 @@ class ActionFormatter extends \LogFormatter {
 	 */
 	protected function getActionMessage() {
 		global $wgContLang;
+
+		/*
+		 * At this point, all log entries will already have been created & we've
+		 * gathered all uuids in constructor: we can now batch-load all of them.
+		 * We won't directly be using that batch-loaded data (nothing will even
+		 * be returned) but it'll ensure that everything we need will be
+		 * retrieved from cache/storage efficiently & waiting in memory for when
+		 * we request it again.
+		 */
+		static $loaded = false;
+		if ( !$loaded ) {
+			/** @var ManagerGroup storage */
+			$storage = Container::get( 'storage' );
+			/** @var TreeRepository $treeRepository */
+			$treeRepository = Container::get( 'repository.tree' );
+
+			$query = new LogQuery( $storage, $treeRepository );
+			$query->loadMetadataBatch( static::$uuids );
+			$loaded = true;
+		}
 
 		$root = $this->getRoot();
 		if ( !$root ) {
