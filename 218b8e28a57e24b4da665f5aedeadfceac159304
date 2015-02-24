@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_cfc94a7d",
+        "filename": "tests/phpunit/api/ApiFlowModerateTopicTest.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2015-02-24T18:41:49Z",
+      "side": 1,
+      "message": "Something gotten from an API query should not have a \"getAlphadecimal()\" method to be called. This is causing test failures for I7b37295e8862b188d1f3b0cd07f66ac34629678f, see \u003chttps://integration.wikimedia.org/ci/job/mediawiki-extensions-hhvm/4428/console\u003e.",
+      "revId": "218b8e28a57e24b4da665f5aedeadfceac159304",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
