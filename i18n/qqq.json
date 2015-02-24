@@ -490,6 +490,8 @@
 	"flow-lqt-redirect-reason": "Edit summary used to redirect old LQT thread pages to Flow topics",
 	"flow-talk-conversion-move-reason": "Message used as an edit summary when moving an existing talk page to an archive location in preparation for enabling flow on that page.\nParameters:\n* $1 - Title the page was moved from",
 	"flow-talk-conversion-archive-edit-reason": "Message used as an edit summary when appending a template to a wikitext talk page after archiving it in preparation for conversion to Flow.",
+	"flow-previous-diff": "Text used on diff pages to link to the previous diff",
+	"flow-next-diff": "Text used on diff pages to link to the next diff",
 	"group-flow-bot": "{{doc-group|flow-bot}}",
 	"group-flow-bot-member": "{{doc-group|flow-bot|member}}",
 	"grouppage-flow-bot": "{{doc-group|flow-bot|page}}"
