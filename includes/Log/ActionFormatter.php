@@ -2,8 +2,11 @@
 
 namespace Flow\Log;
 
+use Flow\Collection\PostCollection;
+use Flow\Container;
 use Flow\Model\UUID;
 use Flow\Parsoid\Utils;
+use Flow\UrlGenerator;
 use Message;
 
 class ActionFormatter extends \LogFormatter {
@@ -15,6 +18,12 @@ class ActionFormatter extends \LogFormatter {
 	protected function getActionMessage() {
 		global $wgContLang;
 
+		$root = $this->getRoot();
+		if ( !$root ) {
+			// failed to load required data
+			return '';
+		}
+
 		$type = $this->entry->getType();
 		$action = $this->entry->getSubtype();
 		$title = $this->entry->getTarget();
@@ -24,8 +33,6 @@ class ActionFormatter extends \LogFormatter {
 		// @todo: we should probably check if user isAllowed( <this-revision>, 'log' )
 		// unlike RC, Contributions, ... this one does not batch-load all Flow
 		// revisions & does not use the same Formatter, i18n message text, etc
-		// I assume this will change with https://trello.com/c/S10KfqBm/62-8-history-watchlist-rc-and-contribs-changes
-		// Then, we should also add in the isAllowed check!
 
 		// FIXME this is ugly. Why were we treating log parameters as
 		// URL GET parameters in the first place?
@@ -36,18 +43,13 @@ class ActionFormatter extends \LogFormatter {
 				$postId = $postId->getAlphadecimal();
 			}
 			$title->setFragment( '#flow-post-' . $postId );
-			unset( $params['postId'] );
-		}
-
-		if ( isset( $params['topicId'] ) ) {
+		} elseif ( isset( $params['topicId'] ) ) {
 			$title = clone $title;
 			$topicId = $params['topicId'];
 			if ( $topicId instanceof UUID ) {
 				$topicId = $topicId->getAlphadecimal();
 			}
-
 			$title->setFragment( '#flow-topic-' . $topicId );
-			unset( $params['topicId'] );
 		}
 
 		// Give grep a chance to find the usages:
@@ -60,8 +62,10 @@ class ActionFormatter extends \LogFormatter {
 			->params( array(
 				Message::rawParam( $this->getPerformerElement() ),
 				$this->entry->getPerformer()->getId(),
-				$title,
-				$title->getFullUrl( $params ),
+				$title, // link to topic
+				$title->getFullUrl(), // link to topic, higlighted post
+				$root->getLastRevision()->getContent(), // topic title
+				$root->getWorkflow()->getOwnerTitle() // board title object
 			) )
 			->inLanguage( $language )
 			->parse();
@@ -82,5 +86,31 @@ class ActionFormatter extends \LogFormatter {
 	public function getActionText() {
 		$text = $this->getActionMessage();
 		return $this->plaintext ? Utils::htmlToPlaintext( $text ) : $text;
+	}
+
+	/**
+	 * @return PostCollection|bool
+	 */
+	protected function getRoot() {
+		$params = $this->entry->getParameters();
+
+		try {
+			if ( !isset( $params['topicId'] ) ) {
+				// failed finding the expected data in storage
+				wfWarn( __METHOD__ . ': Failed to locate topicId in log_params for: ' . serialize( $params ) . ' (forgot to run FlowFixLog.php?)' );
+				return false;
+			}
+
+			$uuid = UUID::create( $params['topicId'] );
+			$collection = PostCollection::newFromId( $uuid );
+
+			// see if this post is valid
+			$collection->getLastRevision();
+			return $collection;
+		} catch ( \Exception $e ) {
+			// failed finding the expected data in storage
+			wfWarn( __METHOD__ . ': Failed to locate root for: ' . serialize( $params ) . ' (potentially storage issue)' );
+			return false;
+		}
 	}
 }
