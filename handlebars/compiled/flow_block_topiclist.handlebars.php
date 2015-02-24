@@ -21,7 +21,6 @@
             'concat' => 'Flow\TemplateHelper::concat',
             'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
             'escapeContent' => 'Flow\TemplateHelper::escapeContent',
-            'plaintextSnippet' => 'Flow\TemplateHelper::plaintextSnippet',
 ),
         'blockhelpers' => array(),
         'hbhelpers' => array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -153,7 +152,7 @@
 		<br class="flow-ui-clear"/>
 ' : '').'</div>
 ';},'flow_topic_titlebar_content' => function ($cx, $in) {return '<h2 class="flow-topic-title flow-load-interactive"
-    data-flow-topic-title="'.LCRun3::ch($cx, 'plaintextSnippet', array(array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),array()), 'encq').'"
+    data-flow-topic-title="'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),array()), 'encq').'"
     data-flow-load-handler="topicTitle">'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),array()), 'encq').'</h2>
 <div class="flow-topic-meta">
 	'.LCRun3::ch($cx, 'l10n', array(array('flow-topic-comments',((isset($in['reply_count']) && is_array($in)) ? $in['reply_count'] : null)),array()), 'encq').' &bull;

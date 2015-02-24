@@ -162,7 +162,6 @@ class TemplateHelper {
 					'user' => 'Flow\TemplateHelper::user',
 					'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
 					'escapeContent' => 'Flow\TemplateHelper::escapeContent',
-					'plaintextSnippet' => 'Flow\TemplateHelper::plaintextSnippet',
 				),
 				'hbhelpers' => array(
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -761,27 +760,5 @@ class TemplateHelper {
 				'content' => $fn(),
 			) )
 		);
-	}
-
-	/**
-	 * Returns the provided content as a plaintext string. Commonly for
-	 * injecting into an i18n message.
-	 *
-	 * @param array $args Expects string $contentFormat, string $content
-	 * @param array $named No named arguments expected
-	 * @return string plaintext
-	 * @throws WrongNumberArgumentsException
-	 */
-	static public function plaintextSnippet( array $args, array $named ) {
-		if ( count( $args ) !== 2 ) {
-			throw new WrongNumberArgumentsException( $args, 'two' );
-		}
-		list( $contentFormat, $content ) = $args;
-		if ( $contentFormat === 'html' ) {
-			return Utils::htmlToPlaintext( $content, 200 );
-		} else {
-			global $wgLang;
-			return $wgLang->truncate( trim( $content ), 200 );
-		}
 	}
 }
