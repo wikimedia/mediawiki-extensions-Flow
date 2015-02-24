@@ -51,10 +51,9 @@ class PostModerationLogger implements LifecycleHandler {
 			$workflowId = $post->getRootPost()->getPostId();
 			$logParams = array();
 
-			if ( $post->isTopicTitle() ) {
-				$logParams['topicId'] = $workflowId;
-			} else {
-				$logParams['postId'] = $post->getRevisionId();
+			$logParams['topicId'] = $workflowId;
+			if ( !$post->isTopicTitle() ) {
+				$logParams['postId'] = $post->getPostId();
 			}
 
 			$this->logger->log(
