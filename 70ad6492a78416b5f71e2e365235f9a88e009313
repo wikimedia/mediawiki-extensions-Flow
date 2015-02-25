@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_591dfec5",
+        "filename": "includes/Data/Listener/ModerationLoggingListener.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-25T23:32:53Z",
+      "side": 1,
+      "message": "Alright.  This will always be the right workflow, right (not the board when we expect the topic, or something)?",
+      "parentUuid": "6e7c4fa4_a08d0530",
+      "revId": "70ad6492a78416b5f71e2e365235f9a88e009313",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_60aa8d6a",
         "filename": "includes/Data/Listener/ModerationLoggingListener.php",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2015-02-24T00:56:39Z",
       "side": 1,
       "message": "I\u0027m left wondering if these log params are really best set here, it would seem for consistency they should be set in the ModerationLogger.  The general idea imo is that a listener just wires things together with whatever conditions trigger the behaviour, the the specific object they take in should be the one that has everything necessary to test inputs/outputs against.",
+      "revId": "70ad6492a78416b5f71e2e365235f9a88e009313",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_398122c9",
+        "filename": "includes/Data/Listener/ModerationLoggingListener.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-25T23:32:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_60aa8d6a",
       "revId": "70ad6492a78416b5f71e2e365235f9a88e009313",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
