@@ -713,10 +713,12 @@
 		var $context = $( event.currentTarget || event.delegateTarget || event.target ),
 			component = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $context );
 
-		// Expand this textarea
-		component.emitWithReturn( 'expandTextarea', $context );
+		// Expand this if it's a textarea
+		if ( $context.is( 'textarea' ) ) {
+			component.emitWithReturn( 'expandTextarea', $context );
+		}
 
-		// Show the form (and swap it for textarea if needed)
+		// Show the form (and initialize editors)
 		component.emitWithReturn( 'showForm', $context.closest( 'form' ) );
 	}
 	FlowComponentEventsMixin.eventHandlers.focusField = flowEventsMixinFocusField;
@@ -758,11 +760,11 @@
 	 * smaller.
 	 * @param {jQuery} $textarea
 	 */
-	function flowEventsMixinexpandTextarea( $textarea ) {
+	function flowEventsMixinExpandTextarea( $textarea ) {
 		$textarea.removeClass( 'flow-input-compressed' );
 		mw.flow.editor.load( $textarea, $textarea.val(), 'wikitext' );
 	}
-	FlowComponentEventsMixin.eventHandlers.expandTextarea = flowEventsMixinexpandTextarea;
+	FlowComponentEventsMixin.eventHandlers.expandTextarea = flowEventsMixinExpandTextarea;
 
 	/**
 	 * Initialize all editors, turning them from textareas into editor objects.
@@ -770,7 +772,7 @@
 	 * @param {jQuery} $container
 	 */
 	function flowEventsMixinInitializeEditors( $container ) {
-		var flowComponent = this;
+		var flowComponent = this, $form;
 
 		mw.loader.using( 'ext.flow.editor', function() {
 			var $editors = $container.find( 'textarea:not(.flow-input-compressed)' );
@@ -778,13 +780,16 @@
 			$editors.each( function() {
 				var $editor = $( this );
 
+				$form = $editor.closest( 'form' );
 				// All editors already have their content in wikitext-format
 				// (mostly because we need to prefill them server-side so that
 				// JS-less users can interact)
-				mw.flow.editor.load( $editor, $editor.val(), 'wikitext' );
+				mw.flow.editor.load( $editor, $editor.val(), 'wikitext' ).done( function () {
+					$form.toggleClass( 'flow-editor-supports-preview', mw.flow.editor.editor.static.usesPreview() );
+				} );
 
 				// Kill editor instance when the form it's in is cancelled
-				flowComponent.emitWithReturn( 'addFormCancelCallback', $editor.closest( 'form' ), function() {
+				flowComponent.emitWithReturn( 'addFormCancelCallback', $form, function() {
 					if ( mw.flow.editor.exists( $editor ) ) {
 						mw.flow.editor.destroy( $editor );
 					}
