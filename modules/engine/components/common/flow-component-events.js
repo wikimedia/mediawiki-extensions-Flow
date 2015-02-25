@@ -713,10 +713,12 @@
 		var $context = $( event.currentTarget || event.delegateTarget || event.target ),
 			component = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $context );
 
-		// Expand this textarea
-		component.emitWithReturn( 'expandTextarea', $context );
+		// Expand this if it's a textarea
+		if ( $context.is( 'textarea' ) ) {
+			component.emitWithReturn( 'expandTextarea', $context );
+		}
 
-		// Show the form (and swap it for textarea if needed)
+		// Show the form (and initialize editors)
 		component.emitWithReturn( 'showForm', $context.closest( 'form' ) );
 	}
 	FlowComponentEventsMixin.eventHandlers.focusField = flowEventsMixinFocusField;
@@ -770,7 +772,7 @@
 	 * @param {jQuery} $container
 	 */
 	function flowEventsMixinInitializeEditors( $container ) {
-		var flowComponent = this;
+		var flowComponent = this, $form;
 
 		mw.loader.using( 'ext.flow.editor', function() {
 			var $editors = $container.find( 'textarea:not(.flow-input-compressed)' );
@@ -783,8 +785,11 @@
 				// JS-less users can interact)
 				mw.flow.editor.load( $editor, $editor.val(), 'wikitext' );
 
+				$form = $editor.closest( 'form' );
+				$form.toggleClass( 'flow-editor-supports-preview', mw.flow.editor.editor.static.usesPreview() );
+
 				// Kill editor instance when the form it's in is cancelled
-				flowComponent.emitWithReturn( 'addFormCancelCallback', $editor.closest( 'form' ), function() {
+				flowComponent.emitWithReturn( 'addFormCancelCallback', $form, function() {
 					if ( mw.flow.editor.exists( $editor ) ) {
 						mw.flow.editor.destroy( $editor );
 					}

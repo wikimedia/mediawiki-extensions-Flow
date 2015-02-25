@@ -3,6 +3,9 @@
 
 	mw.flow = mw.flow || {}; // create mw.flow globally
 	mw.flow.editors = {};
+
+	// This is more of an EditorFacade/EditorDispatcher or something, and should be renamed.
+	// It's not the base class, nor is it an actual editor.
 	mw.flow.editor = {
 		/**
 		 * Specific editor to be used.
@@ -43,10 +46,7 @@
 
 			mw.loader.using( 'ext.flow.editors.' + editor, function () {
 				// Some editors only work under certain circumstances
-				if (
-					$.isFunction( mw.flow.editors[editor].isSupported ) &&
-					!mw.flow.editors[editor].isSupported()
-				) {
+				if ( !mw.flow.editors[editor].static.isSupported() ) {
 					mw.flow.editor.loadEditor( editorIndex + 1 );
 				} else {
 					mw.flow.editor.editor = mw.flow.editors[editor];
@@ -62,7 +62,7 @@
 		 */
 		load: function ( $node, content, contentFormat ) {
 			/**
-			 * When calling load(), init() may nog yet have completed loading the
+			 * When calling load(), init() may not yet have completed loading the
 			 * dependencies. To make sure it doesn't break, this will in interval,
 			 * check for it and only start loading once initialization is complete.
 			 */
@@ -127,7 +127,7 @@
 		 * @return {string}
 		 */
 		getFormat: function () {
-			return mw.flow.editor.editor.format;
+			return mw.flow.editor.editor.static.format;
 		},
 
 		/**

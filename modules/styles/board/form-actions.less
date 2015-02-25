@@ -30,6 +30,20 @@ textarea.mw-ui-input.flow-input-compressed {
 	width: 15em;
 }
 
+.client-js {
+	// We determine in JS whether their editor has a preview mode.
+	// We assume all no-JS compatible editors do.
+	// The extra specificity is to override the normal .flow-js behavior
+
+	.flow-js.flow-form-action-preview {
+		display: none;
+	}
+
+	.flow-editor-supports-preview .flow-js.flow-form-action-preview {
+		display: block;
+	}
+}
+
 @media all and (min-width: @wgFlowDeviceWidthTablet) {
 	.flow-anon-warning-mobile {
 		display: none;
