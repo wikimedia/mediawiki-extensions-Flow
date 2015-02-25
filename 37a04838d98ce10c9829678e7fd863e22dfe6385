@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_5414f350",
+        "filename": "includes/Log/ActionFormatter.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-25T22:02:12Z",
+      "side": 1,
+      "message": "generally prefer one class per file.  If the directory is getting too full we can consider better ways to divide those classes.",
+      "revId": "37a04838d98ce10c9829678e7fd863e22dfe6385",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_964cc5cc",
+        "filename": "includes/Log/ActionFormatter.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-25T22:02:12Z",
+      "side": 1,
+      "message": "this should specify sort(rev_id) and direction(desc) as well when loading by post id.",
+      "revId": "37a04838d98ce10c9829678e7fd863e22dfe6385",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
