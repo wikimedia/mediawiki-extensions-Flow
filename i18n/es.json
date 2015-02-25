@@ -127,6 +127,7 @@
 	"flow-error-invalid-moderation-state": "Se envió un valor de parámetro no válido («moderationState») a la API de Flow.",
 	"flow-error-invalid-moderation-reason": "Proporciona el motivo de la moderación.",
 	"flow-error-not-allowed": "Permisos insuficientes para ejecutar esta acción.",
+	"flow-error-not-allowed-suppress": "Este tema se eliminó.",
 	"flow-error-title-too-long": "Los títulos del tema han sido restringidos a $1 {{PLURAL:$1|byte|bytes}}.",
 	"flow-error-no-existing-workflow": "Este flujo de trabajo todavía no existe.",
 	"flow-error-not-a-post": "El título del tema no pudo ser guardado como una publicación.",
