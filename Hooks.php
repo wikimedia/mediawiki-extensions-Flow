@@ -405,23 +405,20 @@ class FlowHooks {
 			// FIXME: Find more elegant standard way of doing this.
 			$wgMFPageActions = array();
 
-			$skname = $template->getSkinName();
-
-			$selected = $template->getRequest()->getVal( 'action' ) == 'history';
-
 			// watch star links are inside the topic itself
 			if ( $title->getNamespace() === NS_TOPIC ) {
 				unset( $links['actions']['watch'] );
 				unset( $links['actions']['unwatch'] );
 			}
 
-			$links['views'] = array( array(
-				'class' => $selected ? 'selected' : '',
-				'text' => wfMessageFallback( "$skname-view-history", "history_short" )->text(),
-				'href' => $title->getLinkURL( 'action=history' ),
-			) );
+			// hide all views unless whitelisted
+			foreach ( $links['views'] as $action => $data ) {
+				if ( !in_array( $action, $wgFlowCoreActionWhitelist ) ) {
+					unset( $links['views'][$action] );
+				}
+			}
 
-			// hide all ?action= links unless whitelisted
+			// hide all actions unless whitelisted
 			foreach ( $links['actions'] as $action => $data ) {
 				if ( !in_array( $action, $wgFlowCoreActionWhitelist ) ) {
 					unset( $links['actions'][$action] );

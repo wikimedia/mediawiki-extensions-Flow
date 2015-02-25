@@ -298,7 +298,7 @@ $wgFlowAbuseFilterEmergencyDisableCount = 50;
 $wgFlowAbuseFilterEmergencyDisableAge = 86400; // One day.
 
 // Actions that must pass through to MediaWiki on flow enabled pages
-$wgFlowCoreActionWhitelist = array( 'info', 'protect', 'unprotect', 'unwatch', 'watch' );
+$wgFlowCoreActionWhitelist = array( 'info', 'protect', 'unprotect', 'unwatch', 'watch', 'history', 'wikilove' );
 
 // When set to true Flow will compile templates into their intermediate forms
 // on every run.  When set to false Flow will use the versions already written
