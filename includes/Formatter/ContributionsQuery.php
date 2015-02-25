@@ -311,7 +311,3 @@ class ContributionsQuery extends AbstractQuery {
 		return !isset( $row['rev_content'] ) || $row['rev_content'] !== false;
 	}
 }
-
-class ContributionsRow extends FormatterRow {
-	public $rev_timestamp;
-}

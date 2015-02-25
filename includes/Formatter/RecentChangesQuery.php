@@ -209,10 +209,3 @@ class RecentChangesQuery extends AbstractQuery {
 		return ' <span class="mw-changeslist-separator">. .</span> ';
 	}
 }
-
-class RecentChangesRow extends FormatterRow {
-	/**
-	 * @var RecentChange
-	 */
-	public $recentChange;
-}

@@ -134,10 +134,3 @@ class CheckUserQuery extends AbstractQuery {
 		return array( $workflowId, $revisionId, $postId );
 	}
 }
-
-class CheckUserRow extends FormatterRow {
-	/**
-	 * @var CheckUser
-	 */
-	public $checkUser;
-}
