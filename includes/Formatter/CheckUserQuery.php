@@ -135,9 +135,3 @@ class CheckUserQuery extends AbstractQuery {
 	}
 }
 
-class CheckUserRow extends FormatterRow {
-	/**
-	 * @var CheckUser
-	 */
-	public $checkUser;
-}
