@@ -133,7 +133,7 @@ class HistoricalUIDGenerator extends UIDGenerator {
 			// seconds
 			wfTimestamp( TS_UNIX, $timestamp ),
 			// milliseconds
-			mt_rand( 0, 1000 )
+			mt_rand( 0, 999 )
 		);
 
 		// The UIDGenerator is implemented very specifically to have
