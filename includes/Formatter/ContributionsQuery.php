@@ -312,6 +312,3 @@ class ContributionsQuery extends AbstractQuery {
 	}
 }
 
-class ContributionsRow extends FormatterRow {
-	public $rev_timestamp;
-}
