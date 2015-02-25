@@ -96,7 +96,12 @@
 			ready = true;
 
 		$fields.each( function () {
-			if ( this.value === '' ) {
+			var $this = $( this );
+			if ( mw.flow.editor.exists( $this ) ) {
+				if ( mw.flow.editor.getEditor( $this ).isEmpty() ) {
+					ready = false;
+				}
+			} else if ( this.value === '' ) {
 				ready = false;
 			}
 		} );
@@ -110,6 +115,7 @@
 	 * Usage: field needs required attribute
 	 */
 	$( document ).ready( function () {
+		// We should probably not use this change detection method for VE
 		$( document ).on( 'keyup.flow-actions-disabler', '.mw-ui-input', function () {
 			enableFormWithRequiredFields( $( this ).closest( 'form' ) );
 		} );

@@ -373,6 +373,7 @@ $wgResourceModules += array(
 		),
 		'dependencies' => array(
 			'ext.flow.components',
+			'ext.flow.editor',
 			'jquery.throttle-debounce',
 			'mediawiki.jqueryMsg',
 			'ext.flow.jquery.conditionalScroll',
@@ -394,9 +395,11 @@ $wgResourceModules += array(
 	) + $mobile,
 	'ext.flow.editor' => $flowResourceTemplate + array(
 		'scripts' => array(
+			'editor/editors/ext.flow.editors.AbstractEditor.js',
 			'editor/ext.flow.editor.js',
 		),
 		'dependencies' => array(
+			'oojs',
 			'ext.flow.parsoid',
 			// specific editor (ext.flow.editors.*) dependencies (if any) will be loaded via JS
 		),
