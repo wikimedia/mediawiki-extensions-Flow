@@ -357,6 +357,7 @@ $wgResourceModules += array(
 		),
 		'dependencies' => array(
 			'oojs',
+			'ext.flow.editor',
 			'ext.flow.templating', // ResourceLoader templating
 			'ext.flow.handlebars', // prototype-based for progressiveEnhancement
 			'ext.flow.vendor.storer',
@@ -385,9 +386,11 @@ $wgResourceModules += array(
 	) + $mobile,
 	'ext.flow.editor' => $flowResourceTemplate + array(
 		'scripts' => array(
+			'editor/editors/ext.flow.editors.AbstractEditor.js',
 			'editor/ext.flow.editor.js',
 		),
 		'dependencies' => array(
+			'oojs',
 			'ext.flow.parsoid',
 			// specific editor (ext.flow.editors.*) dependencies (if any) will be loaded via JS
 		),

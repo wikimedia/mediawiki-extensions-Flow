@@ -2,6 +2,11 @@
 	'use strict';
 
 	/**
+	 * Editor class that uses a simple wikitext textarea
+	 *
+	 * @class
+	 * @constructor
+	 *
 	 * @param {jQuery} $node
 	 * @param {string} [content='']
 	 */
@@ -20,12 +25,15 @@
 		this.autoExpand.call( this.$node.get( 0 ) );
 	};
 
+	OO.inheritClass( mw.flow.editors.none, mw.flow.editors.AbstractEditor );
+
+	// Static properties
 	/**
 	 * Type of content to use (html or wikitext)
 	 *
 	 * @var string
 	 */
-	mw.flow.editors.none.format = 'wikitext';
+	mw.flow.editors.none.static.format = 'wikitext';
 
 	mw.flow.editors.none.prototype.destroy = function () {
 		// unset min-height that was set for auto-expansion
@@ -41,6 +49,15 @@
 	 */
 	mw.flow.editors.none.prototype.getRawContent = function () {
 		return this.$node.val();
+	};
+
+	/**
+	 * Checks whether the field is empty
+	 *
+	 * @return {boolean} True if and only if it's empty
+	 */
+	mw.flow.editors.none.prototype.isEmpty = function () {
+		return this.getRawContent() === '';
 	};
 
 	/**
