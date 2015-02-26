@@ -2,6 +2,7 @@
 
 namespace Flow\Model;
 
+use ApiSerializable;
 use Html;
 use Message;
 use RawMessage;
@@ -11,7 +12,7 @@ use Title;
  * Represents a mutable anchor as a Message instance along with
  * a title, query parameters, and a fragment.
  */
-class Anchor {
+class Anchor implements ApiSerializable {
 	/**
 	 * @var Message
 	 */
