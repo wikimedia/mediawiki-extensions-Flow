@@ -151,7 +151,7 @@ QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.preview', 3, function( ass
 QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.preview (summary)', 3, function( assert ) {
 	var $container = this.$el,
 		$form = $( '<form>' ).appendTo( $container ),
-		$textarea = $( '<textarea data-flow-preview-template="flow_topic_titlebar_summary" data-flow-preview-node="summary">text</textarea>' ).appendTo( $form ),
+		$textarea = $( '<textarea data-flow-preview-template="flow_topic_titlebar_summary.partial" data-flow-preview-node="summary">text</textarea>' ).appendTo( $form ),
 		$btn = $( '<button name="preview">' ).
 			appendTo( $form ),
 		info = {

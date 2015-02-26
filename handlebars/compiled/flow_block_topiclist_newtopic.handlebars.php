@@ -35,7 +35,8 @@
 
 '.LCRun3::hbch($cx, 'progressiveEnhancement', array(array(),array()), $in, false, function($cx, $in) {return '		<div class="flow-anon-warning-desktop">
 '.LCRun3::hbch($cx, 'tooltip', array(array(),array('positionClass'=>'left','contextClass'=>'progressive','extraClass'=>'flow-form-collapsible','isBlock'=>true)), $in, false, function($cx, $in) {return ''.LCRun3::ch($cx, 'l10nParse', array(array('flow-anon-warning',LCRun3::ch($cx, 'linkWithReturnTo', array(array('Special:UserLogin'),array()), 'raw'),LCRun3::ch($cx, 'linkWithReturnTo', array(array('Special:UserLogin/signup'),array()), 'raw')),array()), 'encq').'';}).'		</div>
-';}).'</div>';},'flow_form_buttons' => function ($cx, $in) {return '<button data-flow-api-handler="preview"
+';}).'</div>
+';},'flow_form_buttons' => function ($cx, $in) {return '<button data-flow-api-handler="preview"
         data-flow-api-target="< form textarea"
         name="preview"
         data-role="action"
@@ -63,7 +64,7 @@
 			data-flow-interactive-handler-focus="activateNewTopic"
 		/>
 		<textarea name="topiclist_content"
-			data-flow-preview-template="flow_topic"
+			data-flow-preview-template="flow_topic.partial"
 			data-flow-preview-title-generator="newTopic"
 			class="mw-ui-input flow-form-collapsible mw-ui-input-large"
 			'.((LCRun3::ifvar($cx, ((isset($in['isOnFlowBoard']) && is_array($in)) ? $in['isOnFlowBoard'] : null))) ? 'style="display:none;"' : '').'

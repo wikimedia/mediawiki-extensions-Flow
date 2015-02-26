@@ -819,7 +819,7 @@
 	 * @param {String} msg The error that occurred. Currently hardcoded.
 	 */
 	function flowEventsMixinShowError( $node, msg ) {
-		var fragment = mw.flow.TemplateEngine.processTemplate( 'flow_errors', { errors: [ { message: msg } ] } );
+		var fragment = mw.flow.TemplateEngine.processTemplate( 'flow_errors.partial', { errors: [ { message: msg } ] } );
 
 		if ( !$node.jquery ) {
 			$node = $node.$container;
@@ -844,7 +844,7 @@
 			$tooltipTarget,
 			// tooltipTarget will not always be part of a FlowBoardComponent
 			$( mw.flow.TemplateEngine.processTemplateGetFragment(
-					'flow_tooltip_subscribed',
+					'flow_tooltip_subscribed.partial',
 					{
 						unsubscribe: false,
 						type: type,

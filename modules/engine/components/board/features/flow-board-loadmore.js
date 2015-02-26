@@ -528,7 +528,7 @@
 
 			$allRendered = $allRendered.add(
 				$( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-					'flow_load_more',
+					'flow_load_more.partial',
 					{
 						loadMoreObject: topicsData.links.pagination.rev,
 						loadMoreApiHandler: 'loadMoreTopics',
@@ -548,7 +548,7 @@
 				// Add the load more to the end of the stack
 				$allRendered = $allRendered.add(
 					$( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-						'flow_load_more',
+						'flow_load_more.partial',
 						{
 							loadMoreObject: topicsData.links.pagination.fwd,
 							loadMoreApiHandler: 'loadMoreTopics',
