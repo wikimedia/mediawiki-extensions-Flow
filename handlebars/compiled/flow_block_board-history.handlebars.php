@@ -96,6 +96,23 @@
 				   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
 				   href="'.htmlentities((string)((isset($in['actions']['unlock']['url']) && is_array($in['actions']['unlock'])) ? $in['actions']['unlock']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 				   title="'.htmlentities((string)((isset($in['actions']['unlock']['title']) && is_array($in['actions']['unlock'])) ? $in['actions']['unlock']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.((LCRun3::ifvar($cx, ((isset($in['moderationIcons']) && is_array($in)) ? $in['moderationIcons'] : null))) ? '<span class="wikiglyph wikiglyph-unlock"></span> ' : '').''.LCRun3::ch($cx, 'l10n', array(array(LCRun3::ch($cx, 'concat', array(array('flow-',((isset($in['moderationType']) && is_array($in)) ? $in['moderationType'] : null),'-action-unlock-topic'),array()), 'raw')),array()), 'encq').'</a>'.htmlentities((string)((isset($in['noop']) && is_array($in)) ? $in['noop'] : null), ENT_QUOTES, 'UTF-8').'</li>' : '').'';}).'</section>
+';},'flow_history_line' => function ($cx, $in) {return '<span class="flow-pipelist">
+	('.htmlentities((string)((isset($in['noop']) && is_array($in)) ? $in['noop'] : null), ENT_QUOTES, 'UTF-8').'<span>'.((LCRun3::ifvar($cx, ((isset($in['links']['diff-cur']) && is_array($in['links'])) ? $in['links']['diff-cur'] : null))) ? '<a href="'.htmlentities((string)((isset($in['links']['diff-cur']['url']) && is_array($in['links']['diff-cur'])) ? $in['links']['diff-cur']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities((string)((isset($in['links']['diff-cur']['title']) && is_array($in['links']['diff-cur'])) ? $in['links']['diff-cur']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.htmlentities((string)((isset($in['links']['diff-cur']['text']) && is_array($in['links']['diff-cur'])) ? $in['links']['diff-cur']['text'] : null), ENT_QUOTES, 'UTF-8').'</a>' : ''.LCRun3::ch($cx, 'l10n', array(array('cur'),array()), 'encq').'').'</span>
+	<span>
+'.((LCRun3::ifvar($cx, ((isset($in['links']['diff-prev']) && is_array($in['links'])) ? $in['links']['diff-prev'] : null))) ? '			<a href="'.htmlentities((string)((isset($in['links']['diff-prev']['url']) && is_array($in['links']['diff-prev'])) ? $in['links']['diff-prev']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities((string)((isset($in['links']['diff-prev']['title']) && is_array($in['links']['diff-prev'])) ? $in['links']['diff-prev']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.htmlentities((string)((isset($in['links']['diff-prev']['text']) && is_array($in['links']['diff-prev'])) ? $in['links']['diff-prev']['text'] : null), ENT_QUOTES, 'UTF-8').'</a>' : ''.LCRun3::ch($cx, 'l10n', array(array('last'),array()), 'encq').'').'</span>'.((LCRun3::ifvar($cx, ((isset($in['links']['topic']) && is_array($in['links'])) ? $in['links']['topic'] : null))) ? '		<span><a href="'.htmlentities((string)((isset($in['links']['topic']['url']) && is_array($in['links']['topic'])) ? $in['links']['topic']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities((string)((isset($in['links']['topic']['title']) && is_array($in['links']['topic'])) ? $in['links']['topic']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.htmlentities((string)((isset($in['links']['topic']['text']) && is_array($in['links']['topic'])) ? $in['links']['topic']['text'] : null), ENT_QUOTES, 'UTF-8').'</a></span>' : '').')
+</span>
+
+'.LCRun3::ch($cx, 'historyTimestamp', array(array($in),array()), 'encq').'
+
+<span class="mw-changeslist-separator">. .</span>
+'.LCRun3::ch($cx, 'historyDescription', array(array($in),array()), 'encq').'
+
+'.((LCRun3::ifvar($cx, ((isset($in['size']) && is_array($in)) ? $in['size'] : null))) ? '	<span class="mw-changeslist-separator">. .</span>
+	'.LCRun3::ch($cx, 'showCharacterDifference', array(array(((isset($in['size']['old']) && is_array($in['size'])) ? $in['size']['old'] : null),((isset($in['size']['new']) && is_array($in['size'])) ? $in['size']['new'] : null)),array()), 'encq').'
+' : '').'
+
+<ul class="flow-history-moderation-menu">
+'.LCRun3::p($cx, 'flow_moderation_actions_list', array(array($in),array('moderationType'=>'history','moderationTarget'=>'post','moderationTemplate'=>'post','moderationMwUiClass'=>'mw-ui-anchor','moderationIcons'=>false))).'</ul>
 ';},),
         'scopes' => array($in),
         'sp_vars' => array('root' => $in),
@@ -106,25 +123,7 @@
 	'.LCRun3::ch($cx, 'html', array(array(((isset($in['navbar']) && is_array($in)) ? $in['navbar'] : null)),array()), 'encq').'
 
 	<ul>
-'.LCRun3::sec($cx, ((isset($in['revisions']) && is_array($in)) ? $in['revisions'] : null), $in, true, function($cx, $in) {return '			<li>
-				<span class="flow-pipelist">
-					('.htmlentities((string)((isset($in['noop']) && is_array($in)) ? $in['noop'] : null), ENT_QUOTES, 'UTF-8').'<span>'.((LCRun3::ifvar($cx, ((isset($in['links']['diff-cur']) && is_array($in['links'])) ? $in['links']['diff-cur'] : null))) ? '<a href="'.htmlentities((string)((isset($in['links']['diff-cur']['url']) && is_array($in['links']['diff-cur'])) ? $in['links']['diff-cur']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities((string)((isset($in['links']['diff-cur']['title']) && is_array($in['links']['diff-cur'])) ? $in['links']['diff-cur']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.htmlentities((string)((isset($in['links']['diff-cur']['text']) && is_array($in['links']['diff-cur'])) ? $in['links']['diff-cur']['text'] : null), ENT_QUOTES, 'UTF-8').'</a>' : ''.LCRun3::ch($cx, 'l10n', array(array('cur'),array()), 'encq').'').'</span>
-					<span>
-'.((LCRun3::ifvar($cx, ((isset($in['links']['diff-prev']) && is_array($in['links'])) ? $in['links']['diff-prev'] : null))) ? '							<a href="'.htmlentities((string)((isset($in['links']['diff-prev']['url']) && is_array($in['links']['diff-prev'])) ? $in['links']['diff-prev']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities((string)((isset($in['links']['diff-prev']['title']) && is_array($in['links']['diff-prev'])) ? $in['links']['diff-prev']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.htmlentities((string)((isset($in['links']['diff-prev']['text']) && is_array($in['links']['diff-prev'])) ? $in['links']['diff-prev']['text'] : null), ENT_QUOTES, 'UTF-8').'</a>' : ''.LCRun3::ch($cx, 'l10n', array(array('last'),array()), 'encq').'').'</span>'.((LCRun3::ifvar($cx, ((isset($in['links']['topic']) && is_array($in['links'])) ? $in['links']['topic'] : null))) ? '						<span><a href="'.htmlentities((string)((isset($in['links']['topic']['url']) && is_array($in['links']['topic'])) ? $in['links']['topic']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities((string)((isset($in['links']['topic']['title']) && is_array($in['links']['topic'])) ? $in['links']['topic']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.htmlentities((string)((isset($in['links']['topic']['text']) && is_array($in['links']['topic'])) ? $in['links']['topic']['text'] : null), ENT_QUOTES, 'UTF-8').'</a></span>' : '').')
-				</span>
-
-				'.LCRun3::ch($cx, 'historyTimestamp', array(array($in),array()), 'encq').'
-
-				<span class="mw-changeslist-separator">. .</span>
-				'.LCRun3::ch($cx, 'historyDescription', array(array($in),array()), 'encq').'
-
-'.((LCRun3::ifvar($cx, ((isset($in['size']) && is_array($in)) ? $in['size'] : null))) ? '					<span class="mw-changeslist-separator">. .</span>
-					'.LCRun3::ch($cx, 'showCharacterDifference', array(array(((isset($in['size']['old']) && is_array($in['size'])) ? $in['size']['old'] : null),((isset($in['size']['new']) && is_array($in['size'])) ? $in['size']['new'] : null)),array()), 'encq').'
-' : '').'
-
-				<ul class="flow-history-moderation-menu">
-'.LCRun3::p($cx, 'flow_moderation_actions_list', array(array($in),array('moderationType'=>'history','moderationTarget'=>'post','moderationTemplate'=>'post','moderationMwUiClass'=>'mw-ui-anchor','moderationIcons'=>false))).'				</ul>
-			</li>
+'.LCRun3::sec($cx, ((isset($in['revisions']) && is_array($in)) ? $in['revisions'] : null), $in, true, function($cx, $in) {return '			<li>'.LCRun3::p($cx, 'flow_history_line', array(array($in),array())).'</li>
 ';}).'	</ul>
 
 	'.LCRun3::ch($cx, 'html', array(array(((isset($in['navbar']) && is_array($in)) ? $in['navbar'] : null)),array()), 'encq').'
