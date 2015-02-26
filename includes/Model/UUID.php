@@ -2,6 +2,7 @@
 
 namespace Flow\Model;
 
+use ApiSerializable;
 use Blob;
 use Flow\Data\ObjectManager;
 use Flow\Exception\FlowException;
@@ -17,7 +18,7 @@ use User;
  *
  * @todo probably should be UID since these dont match the UUID standard
  */
-class UUID {
+class UUID implements ApiSerializable {
 	/**
 	 * @var UUID[][][]
 	 */
