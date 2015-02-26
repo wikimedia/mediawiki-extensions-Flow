@@ -32,6 +32,8 @@ class ActionFormatter extends \LogFormatter {
 		if ( isset( $params['postId'] ) ) {
 			$title = clone $title;
 			$postId = $params['postId'];
+			// we currently store plain strings in the log, but at one point UUID objects
+			// were serialized into there.  This remains for BC reasons.
 			if ( $postId instanceof UUID ) {
 				$postId = $postId->getAlphadecimal();
 			}
@@ -42,6 +44,8 @@ class ActionFormatter extends \LogFormatter {
 		if ( isset( $params['topicId'] ) ) {
 			$title = clone $title;
 			$topicId = $params['topicId'];
+			// we currently store plain strings in the log, but at one point UUID objects
+			// were serialized into there.  This remains for BC reasons.
 			if ( $topicId instanceof UUID ) {
 				$topicId = $topicId->getAlphadecimal();
 			}
