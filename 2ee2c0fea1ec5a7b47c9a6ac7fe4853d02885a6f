@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_41b73c35",
+        "filename": "includes/Templating.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-26T20:21:28Z",
+      "side": 1,
+      "message": "i\u0027d prefer to not put two types into one variable (Anchor then string)\n\nLets just make it a single expresion:\n\n    $historyLink \u003d $this-\u003eurlGenerator\n        -\u003eworkflowHistoryLink( ... )\n        -\u003egetLinkURL()",
+      "revId": "2ee2c0fea1ec5a7b47c9a6ac7fe4853d02885a6f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
