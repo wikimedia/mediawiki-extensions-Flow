@@ -37,6 +37,7 @@ all:  \
 
 compiled/flow_block_board-history.handlebars.php: \
 		flow_block_board-history.handlebars \
+		flow_history_line.handlebars \
 		flow_moderation_actions_list.handlebars
 	$(COMPILE) flow_block_board-history
 
@@ -92,7 +93,9 @@ compiled/flow_block_topic_edit_title.handlebars.php: \
 	$(COMPILE) flow_block_topic_edit_title
 
 compiled/flow_block_topic_history.handlebars.php: \
-		flow_block_topic_history.handlebars
+		flow_block_topic_history.handlebars \
+		flow_history_line.handlebars \
+		flow_moderation_actions_list.handlebars
 	$(COMPILE) flow_block_topic_history
 
 compiled/flow_block_topic_lock.handlebars.php: \
