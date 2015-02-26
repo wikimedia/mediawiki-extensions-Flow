@@ -165,6 +165,7 @@ class Templating {
 			}
 
 			$historyLink = $this->urlGenerator->workflowHistoryLink( null, $revision->getRootPost()->getPostId() );
+			$historyLink = $historyLink->getLinkURL();
 
 			// Messages: flow-hide-post-content, flow-delete-post-content, flow-suppress-post-content
 			//           flow-hide-title-content, flow-delete-title-content, flow-suppress-title-content
