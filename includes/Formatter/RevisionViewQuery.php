@@ -44,7 +44,7 @@ abstract class RevisionViewQuery extends AbstractQuery {
 	 * @throws InvalidInputException
 	 * @throws PermissionException
 	 */
-	public function getDiffViewResult( $curId, $prevId = null ) {
+	public function getDiffViewResult( UUID $curId, UUID $prevId = null ) {
 		$cur = $this->createRevision( $curId );
 		if ( !$cur ) {
 			throw new InvalidInputException( 'Could not find revision: ' . $curId, 'missing-revision' );

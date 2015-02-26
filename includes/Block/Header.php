@@ -10,6 +10,7 @@ use Flow\Formatter\RevisionDiffViewFormatter;
 use Flow\Formatter\RevisionViewFormatter;
 use Flow\Formatter\FormatterRow;
 use Flow\Model\Header;
+use Flow\Model\UUID;
 use Flow\RevisionActionPermissions;
 use Flow\UrlGenerator;
 use IContextSource;
@@ -240,7 +241,7 @@ class HeaderBlock extends AbstractBlock {
 		}
 		/** @var HeaderViewQuery $query */
 		$query = Container::get( 'query.header.view' );
-		list( $new, $old ) = $query->getDiffViewResult( $options['newRevision'], $oldRevision );
+		list( $new, $old ) = $query->getDiffViewResult( UUID::create( $options['newRevision'] ), UUID::create( $oldRevision ) );
 		/** @var RevisionDiffViewFormatter $formatter */
 		$formatter = Container::get( 'formatter.revision.diff.view' );
 

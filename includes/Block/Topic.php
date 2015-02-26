@@ -554,11 +554,11 @@ class TopicBlock extends AbstractBlock {
 		if ( !isset( $options['newRevision'] ) ) {
 			throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
 		}
-		$oldRevision = '';
+		$oldRevision = null;
 		if ( isset( $options['oldRevision'] ) ) {
 			$oldRevision = $options['oldRevision'];
 		}
-		list( $new, $old ) = Container::get( 'query.post.view' )->getDiffViewResult( $options['newRevision'], $oldRevision );
+		list( $new, $old ) = Container::get( 'query.post.view' )->getDiffViewResult( UUID::create( $options['newRevision'] ), UUID::create( $oldRevision ) );
 
 		return array(
 			'revision' => Container::get( 'formatter.revision.diff.view' )->formatApi( $new, $old, $this->context )

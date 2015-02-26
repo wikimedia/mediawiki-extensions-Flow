@@ -13,6 +13,7 @@ use Flow\Formatter\PostSummaryQuery;
 use Flow\Formatter\RevisionViewFormatter;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
+use Flow\Model\UUID;
 use IContextSource;
 use Message;
 
@@ -269,11 +270,11 @@ class TopicSummaryBlock extends AbstractBlock {
 				if ( !isset( $options['newRevision'] ) ) {
 					throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
 				}
-				$oldRevision = '';
+				$oldRevision = null;
 				if ( isset( $options['oldRevision'] ) ) {
 					$oldRevision = $options['newRevision'];
 				}
-				list( $new, $old ) = Container::get( 'query.postsummary.view' )->getDiffViewResult( $options['newRevision'], $oldRevision );
+				list( $new, $old ) = Container::get( 'query.postsummary.view' )->getDiffViewResult( UUID::create( $options['newRevision'] ), UUID::create( $oldRevision ) );
 				$output['revision'] = Container::get( 'formatter.revision.diff.view' )->formatApi( $new, $old, $this->context );
 				break;
 		}
