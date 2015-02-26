@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_8f1b3b72",
+        "filename": "container.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-26T22:31:39Z",
+      "side": 1,
+      "message": "This was not shared before, but I think it can be, since it\u0027s just an array depending on shared services.  There are some more like this, but I\u0027m not going to flag them.",
+      "revId": "12749f8490b940191ca91c9bb8b22a7a1a5506a1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_6f981fc3",
+        "filename": "vendor/Pimple/Container.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-26T22:31:39Z",
+      "side": 1,
+      "message": "ServiceProviderInterface should probably be committed, right?",
+      "revId": "12749f8490b940191ca91c9bb8b22a7a1a5506a1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
