@@ -14,31 +14,51 @@ require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
  * @ingroup Maintenance
  */
 class CompileLightncandy extends Maintenance {
+	protected $lightncandy;
+
 	public function execute() {
 		global $wgFlowServerCompileTemplates;
 
+		// make sure we are actually compiling
 		$wgFlowServerCompileTemplates = true;
+		$this->lightncandy = Container::get( 'lightncandy' );
 
-		$templateName = $this->getArg( 0 );
-		$lightncandy = Container::get( 'lightncandy' );
+		// looking for 664 permissions on the final files
+		umask( 0002 );
 
-		$filenames = $lightncandy->getTemplateFilenames( $templateName );
+		$dir = __DIR__ . '/../handlebars';
+
+		// clean out the compiled directory
+		foreach ( glob( $dir . '/compiled/*' ) as $file ) {
+			if ( !unlink( $file ) ) {
+				$this->error( "Failed to unlink previously compiled code: $file" );
+			}
+		}
+
+		// compile all non-partials
+		$skipPrefix = '.partial.handlebars';
+		$len = strlen( $skipPrefix );
+		foreach ( glob( $dir . '/*.handlebars' ) as $file ) {
+			if ( substr( $file, -$len ) !== $skipPrefix ) {
+				$this->compile( basename( $file, '.handlebars' ) );
+			}
+		}
+		$this->output( "\n" );
+	}
+
+	protected function compile( $templateName ) {
+		$filenames = $this->lightncandy->getTemplateFilenames( $templateName );
 
 		if ( !file_exists( $filenames['template'] ) ) {
 			$this->error( "Could not find template at: {$filenames['template']}" );
 		}
-		if ( file_exists( $filenames['compiled'] ) ) {
-			if ( !unlink( $filenames['compiled'] ) ) {
-				$this->error( "Failed to unlink previously compiled code: {$filenames['compiled']}" );
-			}
-		}
 
-		$lightncandy->getTemplate( $templateName );
+		$this->lightncandy->getTemplate( $templateName );
 		if ( !file_exists( $filenames['compiled'] ) ) {
 			$this->error( "Template compilation completed, but no compiled code found on disk" );
+		} else {
+			$this->output( "Successfully compiled $templateName to {$filenames['compiled']}\n" );
 		}
-
-		echo "\nSuccessfully compiled $templateName to {$filenames['compiled']}\n\n";
 	}
 }
 
