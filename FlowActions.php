@@ -5,7 +5,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\Header;
 use Flow\RevisionActionPermissions;
-use Flow\Log\Logger;
+use Flow\Log\ModerationLogger;
 use Flow\Data\Listener\RecentChangesListener;
 
 /**
@@ -399,7 +399,7 @@ $wgFlowActions = array(
 
 	'restore-post' => array(
 		'performs-writes' => true,
-		'log_type' => function( PostRevision $revision, Logger $logger ) {
+		'log_type' => function( PostRevision $revision, ModerationLogger $logger ) {
 			$post = $revision->getCollection();
 			$previousRevision = $post->getPrevRevision( $revision );
 			if ( $previousRevision ) {
@@ -452,7 +452,7 @@ $wgFlowActions = array(
 
 	'restore-topic' => array(
 		'performs-writes' => true,
-		'log_type' => function( PostRevision $revision, Logger $logger ) {
+		'log_type' => function( PostRevision $revision, ModerationLogger $logger ) {
 			$post = $revision->getCollection();
 			$previousRevision = $post->getPrevRevision( $revision );
 			if ( $previousRevision ) {

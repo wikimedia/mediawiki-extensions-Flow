@@ -1,30 +1,32 @@
 <?php
 
-namespace Flow\Log;
+namespace Flow\Data\Listener;
 
 use Flow\Data\LifecycleHandler;
+use Flow\Log\ModerationLogger;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
+use Flow\Model\Workflow;
 
-class PostModerationLogger implements LifecycleHandler {
+class ModerationLoggingListener implements LifecycleHandler {
 
 	/**
-	 * @var Logger
+	 * @var ModerationLogger
 	 */
-	protected $logger;
+	protected $moderationLogger;
 
-	function __construct( Logger $logger ) {
-		$this->logger = $logger;
+	function __construct( ModerationLogger $moderationLogger ) {
+		$this->moderationLogger = $moderationLogger;
 	}
 
 	/**
 	 * @param PostRevision $object
 	 * @param array $row
-	 * @param array $metadata
+	 * @param array $metadata (must contain 'workflow' key with a Workflow object)
 	 */
 	function onAfterInsert( $object, array $row, array $metadata ) {
 		if ( $object instanceof PostRevision ) {
-			$this->log( $object );
+			$this->log( $object, $metadata['workflow'] );
 		}
 	}
 
@@ -40,29 +42,21 @@ class PostModerationLogger implements LifecycleHandler {
 		// Move along
 	}
 
-	protected function log( PostRevision $post ) {
+	protected function log( PostRevision $post, Workflow $workflow ) {
 		$moderationChangeTypes = self::getModerationChangeTypes();
 		if ( ! in_array( $post->getChangeType(), $moderationChangeTypes ) ) {
 			// Do nothing for non-moderation actions
 			return;
 		}
 
-		if ( $this->logger->canLog( $post, $post->getChangeType() ) ) {
-			$workflowId = $post->getRootPost()->getPostId();
-			$logParams = array();
+		if ( $this->moderationLogger->canLog( $post, $post->getChangeType() ) ) {
+			$workflowId = $workflow->getId();
 
-			if ( $post->isTopicTitle() ) {
-				$logParams['topicId'] = $workflowId;
-			} else {
-				$logParams['postId'] = $post->getRevisionId();
-			}
-
-			$this->logger->log(
+			$this->moderationLogger->log(
 				$post,
 				$post->getChangeType(),
 				$post->getModeratedReason(),
-				$workflowId,
-				$logParams
+				$workflowId
 			);
 		}
 	}
