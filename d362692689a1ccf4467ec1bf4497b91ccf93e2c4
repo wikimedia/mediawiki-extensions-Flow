@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_e48f762d",
+        "filename": "includes/Log/PostModerationLogger.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-26T21:05:33Z",
+      "side": 1,
+      "message": "This causes the postId to be ignored by the formatter (and your formatter change aspect does not appear to affect that).  When a comment is deleted, it\u0027s supposed to link to that.",
+      "revId": "d362692689a1ccf4467ec1bf4497b91ccf93e2c4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
