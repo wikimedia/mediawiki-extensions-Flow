@@ -208,6 +208,13 @@ class UUID {
 	}
 
 	/**
+	 * @return mixed
+	 */
+	public function serializeForApiResult() {
+		return $this->getAlphadecimal();
+	}
+
+	/**
 	 * @return Blob|string UUID encoded in binary format for database storage
 	 * @throws FlowException
 	 */
