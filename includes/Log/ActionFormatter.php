@@ -81,7 +81,11 @@ class ActionFormatter extends \LogFormatter {
 			$urlGenerator = Container::get( 'url_generator' );
 
 			// generate link that highlights the post
-			$anchor = $urlGenerator->postLink( $title, $params['topicId'], $params['postId'] );
+			$anchor = $urlGenerator->postLink(
+				$title,
+				UUID::create( $params['topicId'] ),
+				UUID::create( $params['postId'] )
+			);
 			$title = $anchor->resolveTitle();
 		}
 
