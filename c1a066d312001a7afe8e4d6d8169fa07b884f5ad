@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_4f12035d",
+        "filename": "includes/Log/ModerationLogger.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-26T22:10:16Z",
+      "side": 1,
+      "message": "as you mentioend in IRC, this needs to be updated to be $post-\u003egetUserTuple()-\u003ecreateUser() and no longer pass in User in constructor",
+      "revId": "c1a066d312001a7afe8e4d6d8169fa07b884f5ad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
