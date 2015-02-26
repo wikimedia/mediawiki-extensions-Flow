@@ -15,7 +15,8 @@
 			"Striking Blue",
 			"NBS",
 			"Максим777",
-			"Batumski brodyaga"
+			"Batumski brodyaga",
+			"Dicto23456"
 		]
 	},
 	"flow-desc": "Система управления потоками работ",
@@ -135,8 +136,14 @@
 	"flow-error-invalid-moderation-reason": "Пожалуйста, введите причину модерации.",
 	"flow-error-not-allowed": "Недостаточно прав для выполнения этого действия",
 	"flow-error-not-allowed-hide": "Эта тема была скрыта.",
+	"flow-error-not-allowed-reply-to-hide-topic": "Вы не можете ответить, потому что эта тема была скрыта.",
 	"flow-error-not-allowed-delete": "Эта тема была удалена.",
+	"flow-error-not-allowed-reply-to-delete-topic": "Вы не можете ответить, потому что эта тема была удалена.",
 	"flow-error-not-allowed-suppress": "Эта тема была подавлена.",
+	"flow-error-not-allowed-reply-to-suppress-topic": "Вы не можете ответить, потому что эта тема была удалена.",
+	"flow-error-not-allowed-reply-to-delete-topic-extract": "Вы не можете ответить, потому что эта тема была удалена. Удаление журнала по этой теме приводится ниже для справки.",
+	"flow-error-not-allowed-suppress-extract": "Эта тема была удалена. Удаление журнала по этой теме приводится ниже для справки.",
+	"flow-error-not-allowed-reply-to-suppress-topic-extract": "Вы не можете ответить, потому что эта тема была подавлена. Подавление журнала по этой теме приводится ниже для справки.",
 	"flow-error-title-too-long": "Заголовки тем ограничены $1 {{PLURAL:$1|байтом|байтами}}.",
 	"flow-error-no-existing-workflow": "Этот поток работ ещё не существует.",
 	"flow-error-not-a-post": "Название темы не может быть сохранено как сообщение.",

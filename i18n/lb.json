@@ -75,6 +75,7 @@
 	"flow-error-hide-failure": "Verstoppe vun dësem Element huet net funktionéiert.",
 	"flow-error-restore-failure": "D'Restauréiere vun dësem Element huet net funktionéiert.",
 	"flow-error-not-allowed": "Net genuch Rechter fir dës Aktioun ze maachen",
+	"flow-error-not-allowed-suppress": "Dëst Thema gouf geläscht.",
 	"flow-error-not-a-post": "Den Titel vum Thema kann net als Matdeelung gespäichert ginn.",
 	"flow-error-missing-header-content": "D'Iwwerschrëft huet keen Inhalt. Den Inhalt ass obligatoresch fir eng Iwwerschrëft ze späicheren.",
 	"flow-error-prev-revision-mismatch": "En anere Benotzer huet dës Matdeelung virun e puer Sekonne geännert. Sidd {{GENDER:$3|Dir}} sécher datt Dir déi rezent Ännerung iwwerschreiwe wëllt?",

@@ -26,7 +26,8 @@
 			"0x010C",
 			"Sam",
 			"McDutchie",
-			"Nicolapps"
+			"Nicolapps",
+			"Hercule"
 		]
 	},
 	"flow-desc": "Système de gestion du flux de travail",
@@ -129,7 +130,7 @@
 	"flow-error-http": "Une erreur s’est produite en communiquant avec le serveur.",
 	"flow-error-other": "Une erreur inattendue s’est produite.",
 	"flow-error-external": "Une erreur s’est produite.<br />Le message d’erreur reçu était : $1",
-	"flow-error-edit-restricted": "Vous n’êtes pas autorisé(e) à modifier cette publication.",
+	"flow-error-edit-restricted": "Vous n’êtes pas autorisé{{GENDER:||e}} à modifier cette publication.",
 	"flow-error-topic-is-locked": "Ce sujet est verrouillé pour toute autre activité.",
 	"flow-error-lock-moderated-post": "Vous ne pouvez pas verrouiller un message modéré.",
 	"flow-error-external-multi": "Des erreurs se sont produites.<br />$1",
@@ -330,7 +331,7 @@
 	"flow-terms-of-use-new-topic": "En cliquant sur « {{int:flow-newtopic-save}} », vous acceptez les conditions d’utilisation de ce wiki.",
 	"flow-terms-of-use-reply": "En cliquant sur « {{int:flow-reply-submit}} », vous acceptez les conditions d’utilisation de ce wiki.",
 	"flow-terms-of-use-edit": "En enregistrant vos modifications, vous acceptez les conditions d’utilisation de ce wiki.",
-	"flow-anon-warning": "Vous n’êtes pas connecté(e). Pour que vos modifications soient associées à votre nom d'utilisateur plutôt qu'à votre adresse IP, vous pouvez [$1 vous connecter] ou [$2 créer un compte].",
+	"flow-anon-warning": "Vous n’êtes pas connecté. Pour que vos modifications soient associées à votre nom d'utilisateur plutôt qu'à votre adresse IP, vous pouvez [$1 vous connecter] ou [$2 créer un compte].",
 	"flow-cancel-warning": "Vous avez saisi du texte dans ce formulaire. Confirmez-vous l'abandon de la saisie ?",
 	"flow-topic-first-heading": "Discussion sur $1",
 	"flow-topic-html-title": "$1 sur $2",
