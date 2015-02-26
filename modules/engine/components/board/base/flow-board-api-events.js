@@ -416,7 +416,7 @@
 
 		// Enable the editable summary
 		$target = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-			'flow_topic_titlebar_lock', revision
+			'flow_topic_titlebar_lock.partial', revision
 		) ).children();
 
 		// Ensure that on a cancel the form gets destroyed.
@@ -488,7 +488,7 @@
 		} ).done( function( result ) {
 			// Update view of the full topic
 			$replacement = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-				'flow_topiclist_loop',
+				'flow_topiclist_loop.partial',
 				result.flow['view-topic'].result.topic
 			) ).children();
 
@@ -540,7 +540,7 @@
 		rootId = topicData.roots[0];
 		revisionId = topicData.posts[rootId][0];
 		$newTopicTitleBar = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-			'flow_topic_titlebar',
+			'flow_topic_titlebar.partial',
 			topicData.revisions[revisionId]
 		) ).children();
 
@@ -732,7 +732,7 @@
 
 		// render only the new topic
 		result.roots = [result.roots[0]];
-		fragment = mw.flow.TemplateEngine.processTemplateGetFragment( 'flow_topiclist_loop', result );
+		fragment = mw.flow.TemplateEngine.processTemplateGetFragment( 'flow_topiclist_loop.partial', result );
 
 		flowBoard.emitWithReturn( 'cancelForm', $( this ).closest( 'form' ) );
 
@@ -936,7 +936,7 @@
 
 			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $link );
 			$form = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-				'flow_edit_topic_title',
+				'flow_edit_topic_title.partial',
 				{
 					'actions' : {
 						'edit' : {
@@ -985,7 +985,7 @@
 		rootBlock = data.flow['view-post'].result.topic;
 		$rendered = $(
 			flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-				'flow_edit_post_ajax',
+				'flow_edit_post_ajax.partial',
 				{
 					revision: rootBlock.revisions[rootBlock.posts[rootBlock.roots[0]]],
 					rootBlock: rootBlock
@@ -1017,7 +1017,7 @@
 				flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) );
 			if ( revision.isModerated && !flowBoard.constructor.static.inTopicNamespace( $target ) ) {
 				$replacement = $( $.parseHTML( mw.flow.TemplateEngine.processTemplate(
-					'flow_moderate_topic_confirmation',
+					'flow_moderate_topic_confirmation.partial',
 					revision
 				) ) );
 
@@ -1040,7 +1040,7 @@
 
 			if ( revision.isModerated ) {
 				$replacement = $( $.parseHTML( flowBoard.constructor.static.TemplateEngine.processTemplate(
-					'flow_moderate_post_confirmation',
+					'flow_moderate_post_confirmation.partial',
 					revision
 				) ) );
 				$target.closest( '.flow-post-main' ).replaceWith( $replacement );
@@ -1105,7 +1105,7 @@
 		var $target = $targetElement.closest( '.flow-topic' ),
 			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $targetElement ),
 			$newContent = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-				'flow_topiclist_loop',
+				'flow_topiclist_loop.partial',
 				apiResult
 			) ).children();
 

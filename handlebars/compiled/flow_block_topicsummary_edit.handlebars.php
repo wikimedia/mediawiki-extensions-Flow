@@ -56,7 +56,7 @@
 				  required
 				  name="'.htmlentities((string)((isset($in['type']) && is_array($in)) ? $in['type'] : null), ENT_QUOTES, 'UTF-8').'_summary"
 				  data-flow-preview-node="summary"
-				  data-flow-preview-template="flow_topic_titlebar_summary"
+				  data-flow-preview-template="flow_topic_titlebar_summary.partial"
 				  data-flow-preview-title="'.htmlentities((string)((isset($in['revision']['articleTitle']) && is_array($in['revision'])) ? $in['revision']['articleTitle'] : null), ENT_QUOTES, 'UTF-8').'"
 				  type="text"
 					  data-role="content">'.((LCRun3::ifvar($cx, ((isset($in['submitted']['summary']) && is_array($in['submitted'])) ? $in['submitted']['summary'] : null))) ? ''.htmlentities((string)((isset($in['submitted']['summary']) && is_array($in['submitted'])) ? $in['submitted']['summary'] : null), ENT_QUOTES, 'UTF-8').'' : ''.((LCRun3::ifvar($cx, ((isset($in['revision']['revisionId']) && is_array($in['revision'])) ? $in['revision']['revisionId'] : null))) ? ''.htmlentities((string)((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null), ENT_QUOTES, 'UTF-8').'' : '').'').'</textarea>

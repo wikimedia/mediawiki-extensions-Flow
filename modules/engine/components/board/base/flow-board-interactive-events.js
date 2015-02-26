@@ -194,7 +194,7 @@
 		$post.data( 'flow-replying', true );
 
 		$form = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-			'flow_reply_form',
+			'flow_reply_form.partial',
 			// arguments can be empty: we just want an empty reply form
 			{
 				actions: {
