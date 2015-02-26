@@ -92,7 +92,8 @@ compiled/flow_block_topic_edit_title.handlebars.php: \
 	$(COMPILE) flow_block_topic_edit_title
 
 compiled/flow_block_topic_history.handlebars.php: \
-		flow_block_topic_history.handlebars
+		flow_block_topic_history.handlebars \
+		flow_topic_history_line.handlebars
 	$(COMPILE) flow_block_topic_history
 
 compiled/flow_block_topic_lock.handlebars.php: \
