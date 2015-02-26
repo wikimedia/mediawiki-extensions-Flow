@@ -4,69 +4,7 @@
 
 		<ul>
 			{{#each revisions}}
-				<li>
-					<span class="flow-pipelist">
-						(
-						{{~noop~}}
-						<span>
-							{{~#if links.diff-cur~}}
-								<a href="{{links.diff-cur.url}}" title="{{links.diff-cur.title}}">
-									{{~links.diff-cur.title~}}
-								</a>
-							{{~else~}}
-								{{~l10n "cur"~}}
-							{{/if}}
-						</span>
-						<span>
-							{{#if links.diff-prev}}
-								<a href="{{links.diff-prev.url}}" title="{{links.diff-prev.title}}">
-									{{~links.diff-prev.title~}}
-								</a>
-							{{~else~}}
-								{{~l10n "last"~}}
-							{{~/if~}}
-						</span>
-						{{~#if links.topic}}
-							<span><a href="{{links.topic.url}}" title="{{links.topic.title}}">
-								{{~links.topic.title~}}
-							</a></span>
-						{{~/if~}}
-						)
-					</span>
-
-					{{historyTimestamp this}}
-
-					<span class="mw-changeslist-separator">. .</span>
-					{{historyDescription this}}
-
-					{{#if size}}
-						<span class="mw-changeslist-separator">. .</span>
-						{{showCharacterDifference size.old size.new}}
-					{{/if}}
-
-					<span class="flow-history-moderation-action">
-						{{#if actions.hide}}
-							(<a href="{{actions.hide.url}}"
-							   title="{{actions.hide.title}}"
-							   data-flow-interactive-handler="moderationDialog"
-							   data-flow-template="flow_moderate_post"
-							   data-role="hide"
-							>
-								{{~l10n "flow-post-action-hide-post"~}}
-							</a>)
-						{{/if}}
-						{{#if actions.unhide}}
-							(<a href="{{actions.unhide.url}}"
-							   title="{{actions.unhide.title}}"
-							   data-flow-interactive-handler="moderationDialog"
-							   data-flow-template="flow_moderate_post"
-							   data-role="unhide"
-							>
-								{{~l10n "flow-post-action-restore-post"~}}
-							</a>)
-						{{/if}}
-					</span>
-				</li>
+				<li>{{> flow_history_line}}</li>
 			{{/each}}
 		</ul>
 
