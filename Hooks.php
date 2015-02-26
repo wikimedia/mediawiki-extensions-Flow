@@ -345,6 +345,54 @@ class FlowHooks {
 		return true;
 	}
 
+	/**
+	 * Alter the enhanced RC links: (n changes | history)
+	 * The default diff links are incorrect!
+	 *
+	 * @param EnhancedChangesList $changesList
+	 * @param array $links
+	 * @param RecentChange[] $block
+	 * @return bool
+	 */
+	public static function onGetLogText( $changesList, &$links, $block ) {
+		$rc = $block[0];
+
+		// quit if non-flow
+		$source = $block[0]->getAttribute( 'rc_source' );
+		if ( $source === null ) {
+			$rcType = (int) $block[0]->getAttribute( 'rc_type' );
+			if ( $rcType !== RC_FLOW ) {
+				return true;
+			}
+		} elseif ( $source !== Flow\Data\Listener\RecentChangesListener::SRC_FLOW ) {
+			return true;
+		}
+
+		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
+		try {
+			/** @var Flow\Formatter\RecentChangesQuery $query */
+			$query = Container::get( 'query.recentchanges' );
+
+			$row = $query->getResult( $changesList, $rc, $changesList->isWatchlist() );
+			if ( $row === false ) {
+				restore_error_handler();
+				return false;
+			}
+
+			/** @var Flow\Formatter\RecentChanges $formatter */
+			$formatter = Container::get( 'formatter.recentchanges' );
+			$links = $formatter->getLogTextLinks( $row, $changesList, $block, $links );
+		} catch ( Exception $e ) {
+			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting rc logtext ' . $rc->getAttribute( 'rc_id' ) . ' ' . $e );
+			MWExceptionHandler::logException( $e );
+			restore_error_handler();
+			return false;
+		}
+		restore_error_handler();
+
+		return true;
+	}
+
 	public static function onSpecialCheckUserGetLinksFromRow( CheckUser $checkUser, $row, &$links ) {
 		if ( !$row->cuc_type == RC_FLOW ) {
 			return true;

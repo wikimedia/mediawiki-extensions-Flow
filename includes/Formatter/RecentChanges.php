@@ -157,4 +157,38 @@ class RecentChanges extends AbstractFormatter {
 		// now pass it on to parent with the new, updated, link ;)
 		return parent::getTitleLink( $data, $row, $ctx );
 	}
+
+	/**
+	 * @param RecentChangesRow $row
+	 * @param IContextSource $ctx
+	 * @param array $block
+	 * @param array $links
+	 * @return array
+	 * @throws FlowException
+	 * @throws \Flow\Exception\InvalidInputException
+	 */
+	public function getLogTextLinks( RecentChangesRow $row, IContextSource $ctx, array $block, array $links = array() ) {
+		$old = unserialize( $block[count( $block ) - 1]->mAttribs['rc_params'] );
+		$oldId = $old ? UUID::create( $old['flow-workflow-change']['revision'] ) : $row->revision->getRevisionId();
+
+		$data = $this->serializer->formatApi( $row, $ctx );
+		if ( !$data ) {
+			throw new FlowException( 'Could not format data for row ' . $row->revision->getRevisionId()->getAlphadecimal() );
+		}
+
+		// add highlight details to anchor
+		/** @var Anchor $anchor */
+		$anchor = clone $data['links']['topic'];
+		$anchor->query['fromnotif'] = '1';
+		$anchor->fragment = '#flow-post-' . $oldId->getAlphadecimal();
+
+		$changes = count($block);
+		// link text: "n changes"
+		$text = $ctx->msg( 'nchanges' )->numParams( $changes )->escaped();
+
+		// override total changes link
+		$links['total-changes'] = $anchor->toHtml( $text );
+
+		return $links;
+	}
 }
