@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_84d562bc",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-26T21:51:46Z",
+      "side": 1,
+      "message": "I think this should be isUnchanged? or something like that\n\nThe only caller looks to be the code that determines if the buttons should be disabled or not.  The buttons should be disabled both if the user is editing something but has not changed anything, or if the field is completely empty",
+      "revId": "4d4456dfc2d0511f727920b068e6143749caff3e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_244c8ee3",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-26T21:51:46Z",
+      "side": 1,
+      "message": "might as well make this a one line if statement",
+      "revId": "4d4456dfc2d0511f727920b068e6143749caff3e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
