@@ -16,6 +16,6 @@
 	<div class="flow-topics">
 		{{> flow_topiclist_loop}}
 
-		{{> flow_load_more this loadMoreApiHandler="loadMoreTopics" loadMoreTarget="window" loadMoreContainer="< .flow-topics" loadMoreTemplate="flow_topiclist_loop" loadMoreObject=links.pagination.fwd}}
+		{{> flow_load_more this loadMoreApiHandler="loadMoreTopics" loadMoreTarget="window" loadMoreContainer="< .flow-topics" loadMoreTemplate="flow_topiclist_loop.partial" loadMoreObject=links.pagination.fwd}}
 	</div>
 </div>
