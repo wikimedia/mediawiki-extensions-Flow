@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_6ac57663",
+        "filename": "handlebars/Makefile",
+        "patchSetId": 3
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-26T04:30:36Z",
+      "side": 1,
+      "message": ".php",
+      "revId": "c2727249a312fd9ee6cc686e59daff515cd8f0de",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_8aa252a2",
+        "filename": "includes/Formatter/RevisionDiffViewFormatter.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-26T04:30:36Z",
+      "side": 1,
+      "message": "It seems that it\u0027s always the topic, except for the header, when it\u0027s the board.  Not sure the best way to get that.  This should work as long as it\u0027s right to begin with (then the generated links will also be right).",
+      "revId": "c2727249a312fd9ee6cc686e59daff515cd8f0de",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_4a90ba4e",
+        "filename": "includes/Formatter/RevisionDiffViewFormatter.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-26T04:30:36Z",
+      "side": 1,
+      "message": "I think maybe this should be getLocalURL() (same for new below).  In core, the links start with /w, e.g.:\n\n\u003ca href\u003d\"/w/index.php?title\u003dEarth\u0026amp;diff\u003dprev\u0026amp;oldid\u003d648597028\" title\u003d\"Earth\" id\u003d\"differences-prevlink\"\u003e← Previous edit\u003c/a\u003e",
+      "revId": "c2727249a312fd9ee6cc686e59daff515cd8f0de",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
