@@ -10,15 +10,8 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use ManualLogEntry;
 use Title;
-use User;
 
 class ModerationLogger {
-
-	/**
-	 * @var User
-	 */
-	protected $user;
-
 	/**
 	 * @var FlowActions
 	 */
@@ -26,11 +19,9 @@ class ModerationLogger {
 
 	/**
 	 * @param FlowActions $actions
-	 * @param User $user
 	 */
-	public function __construct( FlowActions $actions, User $user ) {
+	public function __construct( FlowActions $actions ) {
 		$this->actions = $actions;
-		$this->user = $user;
 	}
 
 	/**
@@ -87,7 +78,7 @@ class ModerationLogger {
 		// insert logging entry
 		$logEntry = new ManualLogEntry( $logType, "flow-$action" );
 		$logEntry->setTarget( $title );
-		$logEntry->setPerformer( $this->user );
+		$logEntry->setPerformer( $post->getUserTuple()->createUser() );
 		$logEntry->setParameters( $params );
 		$logEntry->setComment( $reason );
 		$logEntry->setTimestamp( $post->getModerationTimestamp() );
