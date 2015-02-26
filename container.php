@@ -975,8 +975,7 @@ $c['formatter.topic'] = $c->share( function( $c ) {
 } );
 $c['logger.moderation'] = $c->share( function( $c ) {
 	return new Flow\Log\ModerationLogger(
-		$c['flow_actions'],
-		$c['user']
+		$c['flow_actions']
 	);
 } );
 
