@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_d051d43b",
+        "filename": "modules/editor/editors/ext.flow.editors.AbstractEditor.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-27T15:09:14Z",
+      "side": 1,
+      "message": "We should probably add OO in here too, instead of reaching out to global OO?",
+      "revId": "be631489e7bb828e95154989385287e06985bada",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
