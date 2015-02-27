@@ -248,7 +248,7 @@
 	"flow-workflow": "workflow",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|responded}} on '''$4'''.",
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 and $5 {{PLURAL:$6|other|others}} {{GENDER:$1|responded}} on '''$3'''.",
-	"flow-notification-edit": "$1 {{GENDER:$1|edited}} a <span class=\"plainlinks\">[$5 post]</span> in \"$2\" on [[$3|$4]].",
+	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 has {{GENDER:$1|edited}} your <span class=\"plainlinks\">[$5 post ]</span> on [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 and $5 {{PLURAL:$6|other|others}} {{GENDER:$1|edited}} a <span class=\"plainlinks\">[$4 post]</span> in \"$2\" on \"$3\".",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|created}} a new topic on '''$3'''.",
 	"flow-notification-newtopic-bundle": "{{PLURAL:$1|$1|250=250+}} new {{PLURAL:$1|topic|topics}} on '''<span class=\"plainlinks\">[$3 $2]</span>'''",
