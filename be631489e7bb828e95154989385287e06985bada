@@ -16,6 +16,23 @@
       "revId": "be631489e7bb828e95154989385287e06985bada",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_c46915bd",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 789,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-02-27T16:20:30Z",
+      "side": 1,
+      "message": "TypeError: mw.flow.editor.static is undefined\n\nFor perf reasons, we don\u0027t load editor JS until a user actually starts to edit.\nthis mw.flow.editor.load will first load editor JS, async, before it populates mw.flow.editor.editor.\nmw.flow.editor.load returns a promise, though, so we can do:\n\n    mw.flow.editor.load( $editor, $editor.val(), \u0027wikitext\u0027 )\n        .done( function() {\n            $form.toggleClass( \u0027flow-editor-supports-preview\u0027, mw.flow.editor.editor.static.usesPreview() );\n        } );",
+      "revId": "be631489e7bb828e95154989385287e06985bada",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
