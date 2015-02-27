@@ -308,6 +308,7 @@
 	"flow-compare-revisions-header-post": "Diese Seite zeigt die {{GENDER:$3|Änderungen}} zwischen zwei Versionen eines Beitrags von $3 im Thema „[$5 $2]“ auf [$4 $1] an.\nDu kannst andere Versionen dieses Beitrags im [$6 Verlauf] ansehen.",
 	"flow-compare-revisions-header-postsummary": "Diese Seite zeigt die Änderungen zwischen zwei Versionen einer Beitragszusammenfassung im Beitrag „[$4 $2]“ auf [$3 $1].\nDu kannst andere Versionen dieses Beitrags in seiner [$5 Verlaufsseite] ansehen.",
 	"flow-compare-revisions-header-header": "Diese Seite zeigt die {{GENDER:$2|Änderungen}} zwischen zwei Versionen der Überschrift von [$3 $1] an.\nDu kannst andere Versionen der Überschrift in ihrem [$4 Verlauf] einsehen.",
+	"right-flow-create-board": "Flow-Boards an jedem Ort erstellen",
 	"right-flow-hide": "Flow-Themen und -Beiträge verstecken",
 	"right-flow-lock": "Flow-Themen sperren",
 	"right-flow-delete": "Flow-Themen und -Beiträge löschen",

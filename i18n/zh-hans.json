@@ -322,6 +322,7 @@
 	"flow-compare-revisions-header-post": "此页面显示由$3于[$4 $1]在主题“[$5 $2]”发布帖子的两个版本之间的{{GENDER:$3|更改}}。您可在它的[$6 历史页面]查看此帖子的其它版本。",
 	"flow-compare-revisions-header-postsummary": "本页面显示在[$3 $1]的帖子“[$4 $2]”摘要两个版本之间的更改。您可点击[$5 历史页面]查看此帖子的其他版本。",
 	"flow-compare-revisions-header-header": "此页面显示[$3 $1]上的标头两个版本间的{{GENDER:$2|更改}}。您可通过它的[$4 历史页面]查看其它版本。",
+	"right-flow-create-board": "在任意位置创建Flow版块",
 	"right-flow-hide": "隐藏Flow话题和帖子",
 	"right-flow-lock": "关闭Flow话题",
 	"right-flow-delete": "删除Flow话题和帖子",
