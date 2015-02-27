@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_cf89337b",
+        "filename": "handlebars/Makefile",
+        "patchSetId": 3
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-27T00:31:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_6ac57663",
+      "revId": "c2727249a312fd9ee6cc686e59daff515cd8f0de",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_8aa252a2",
         "filename": "includes/Formatter/RevisionDiffViewFormatter.php",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_ef8c2f8b",
+        "filename": "includes/Formatter/RevisionDiffViewFormatter.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-27T00:31:30Z",
+      "side": 1,
+      "message": "yea i\u0027m fairly sure now this is going to be always correct,  the current page is the place that owns this diff.",
+      "parentUuid": "6e7c4fa4_8aa252a2",
+      "revId": "c2727249a312fd9ee6cc686e59daff515cd8f0de",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_4a90ba4e",
         "filename": "includes/Formatter/RevisionDiffViewFormatter.php",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2015-02-26T04:30:36Z",
       "side": 1,
       "message": "I think maybe this should be getLocalURL() (same for new below).  In core, the links start with /w, e.g.:\n\n\u003ca href\u003d\"/w/index.php?title\u003dEarth\u0026amp;diff\u003dprev\u0026amp;oldid\u003d648597028\" title\u003d\"Earth\" id\u003d\"differences-prevlink\"\u003e← Previous edit\u003c/a\u003e",
+      "revId": "c2727249a312fd9ee6cc686e59daff515cd8f0de",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_4f9d23b3",
+        "filename": "includes/Formatter/RevisionDiffViewFormatter.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-27T00:31:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_4a90ba4e",
       "revId": "c2727249a312fd9ee6cc686e59daff515cd8f0de",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
