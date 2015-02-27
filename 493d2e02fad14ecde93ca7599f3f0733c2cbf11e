@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_1ac52664",
+        "filename": "includes/Log/ActionFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-27T20:03:56Z",
+      "side": 1,
+      "message": "I would like to have less of these if possible :) I\u0027ve submitted https://gerrit.wikimedia.org/r/193421 to core so we can perform dependency injection at construction time, but no need to block this patch waiting for it.",
+      "revId": "493d2e02fad14ecde93ca7599f3f0733c2cbf11e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_5ac63e6c",
+        "filename": "includes/Log/ActionFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-27T20:03:56Z",
+      "side": 1,
+      "message": "$anchor-\u003egetFullURL(), otherwise we lose the query parameters.",
+      "revId": "493d2e02fad14ecde93ca7599f3f0733c2cbf11e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
