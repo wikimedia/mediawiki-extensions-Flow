@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_1a50c60c",
+        "filename": "maintenance/FlowFixLog.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-02-27T19:51:51Z",
+      "side": 1,
+      "message": "should probably be an else clause, with the isset condition coming first?",
+      "revId": "e21cc2d4f70f8b2aaa155f9dc113b70a7d5622cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
