@@ -593,7 +593,6 @@ class UrlGenerator {
 				'topic_revId' => $revId->getAlphadecimal(),
 			),
 			'#flow-post-' . $postId->getAlphadecimal()
-
 		);
 	}
 

@@ -66,19 +66,12 @@ class ActionFormatter extends \LogFormatter {
 		// FIXME this is ugly. Why were we treating log parameters as
 		// URL GET parameters in the first place?
 		if ( isset( $params['postId'] ) ) {
-			$title = clone $title;
-			$postId = $params['postId'];
-			if ( $postId instanceof UUID ) {
-				$postId = $postId->getAlphadecimal();
-			}
-			$title->setFragment( '#flow-post-' . $postId );
-		} elseif ( isset( $params['topicId'] ) ) {
-			$title = clone $title;
-			$topicId = $params['topicId'];
-			if ( $topicId instanceof UUID ) {
-				$topicId = $topicId->getAlphadecimal();
-			}
-			$title->setFragment( '#flow-topic-' . $topicId );
+			/** @var UrlGenerator $urlGenerator */
+			$urlGenerator = Container::get( 'url_generator' );
+
+			// generate link that highlights the post
+			$anchor = $urlGenerator->postLink( $title, $params['topicId'], $params['postId'] );
+			$title = $anchor->resolveTitle();
 		}
 
 		// Give grep a chance to find the usages:
