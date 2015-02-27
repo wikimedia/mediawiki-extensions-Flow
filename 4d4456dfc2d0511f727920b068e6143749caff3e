@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_aa186585",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-27T02:08:16Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem to be enforced at all for editing currently (in production).\n\nFor new posts/new headers/new summaries/new topics, it should be disabled if there are any empty fields.\n\nWhen editing, it should be disabled if the field is unchanged (we only ever edit one field at a time, I think).\n\nHowever, blanking the field should be allowed, if only for summary and header (there is no \"hide summary\" or \"hide header\", so if you want to blank, there\u0027s only one way).  People might expect to blank their post as well.  That\u0027s debatable, but we should probably forbid it in favor of the hide action.\n\nThe different desired behavior between header/summary and post suggests that the editor shouldn\u0027t have to understand this logic, but that it should be elsewhere.  We can make isUnchanged later (which should do what it says, and not check for emptiness)",
+      "parentUuid": "6e7c4fa4_84d562bc",
+      "revId": "4d4456dfc2d0511f727920b068e6143749caff3e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_244c8ee3",
         "filename": "modules/editor/ext.flow.editor.js",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2015-02-26T21:51:46Z",
       "side": 1,
       "message": "might as well make this a one line if statement",
+      "revId": "4d4456dfc2d0511f727920b068e6143749caff3e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_15bc1e19",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-02-27T02:08:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_244c8ee3",
       "revId": "4d4456dfc2d0511f727920b068e6143749caff3e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
