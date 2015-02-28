@@ -5,9 +5,11 @@
 		]
 	},
 	"flow-hide-title-content": "{{GENDER:$1|پټ شو}} د $1 لخوا",
+	"flow-delete-post-content": "دا تبصره د $1 لخوا {{GENDER:$1|ړنگه شوې}} ([$2 پېښليک])",
 	"flow-delete-title-content": "{{GENDER:$1|ړنگ شو}} د $1 لخوا",
 	"flow-delete-header-content": "{{GENDER:$1|ړنگ شو}} د $2 لخوا",
 	"flow-post-edited": "ليکنه د $1 لخوا په $2 {{GENDER:$1|سمه شوه}}",
 	"flow-notification-edit-email-subject": "$1 ستاسې ليکنه {{GENDER:$1|سمه کړه}}",
-	"flow-notification-rename-email-subject": "$1 ستاسې سرليک {{GENDER:$1|نوم بدل کړ}}"
+	"flow-notification-rename-email-subject": "$1 ستاسې سرليک {{GENDER:$1|نوم بدل کړ}}",
+	"apihelp-flow+new-topic-param-topic": "د نوې موضوع د سرليک متن."
 }
