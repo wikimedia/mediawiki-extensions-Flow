@@ -1181,4 +1181,60 @@ class FlowHooks {
 
 		return true;
 	}
+
+	/**
+	 * Gets error HTML for attempted NS_TOPIC deletion using core interface
+	 *
+	 * @param Title $title Topic title they are attempting to delete
+	 * @return string Error html
+	 */
+	protected static function getTopicDeletionError( Title $title ) {
+		$error = wfMessage( 'flow-error-core-topic-deletion', $title->getFullURL() )->parse();
+		$wrappedError = Html::rawElement( 'span', array(
+			'class' => 'plainlinks',
+		), $error );
+		return $wrappedError;
+	}
+
+	// This should block them from wasting their time filling the form, but it won't
+	// without a core change.  However, it does show the message.
+	/**
+	 * Shows an error message when the user visits the deletion form if the page is in
+	 * the Topic namespace.
+	 *
+	 * @param WikiPage $article Page the user requested to delete
+	 * @param OutputPage $out Output page
+	 * @param string &$reason Pre-filled reason given for deletion (note, this could
+	 *   be used to customize this for boards and/or topics later)
+	 * @return bool False if it is a Topic; otherwise, true
+	 */
+	public static function onArticleConfirmDelete( $article, $output, &$reason ) {
+		$title = $article->getTitle();
+		if ( $title->inNamespace( NS_TOPIC ) ) {
+			$output->addHTML( FlowHooks::getTopicDeletionError( $title ) );
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Blocks topics from being deleted using the core deletion process, since it
+	 * doesn't work.
+	 *
+	 * @param WikiPage &$article Page the user requested to delete
+	 * @param User &$user User who requested to delete the article
+	 * @param string &$reason Reason given for deletion
+	 * @param string &$error Error explaining why we are not allowing the deletion
+	 * @return bool False if it is a Topic (to block it); otherwise, true
+	 */
+	public static function onArticleDelete( WikiPage &$article, User &$user, &$reason, &$error ) {
+		$title = $article->getTitle();
+		if ( $title->inNamespace( NS_TOPIC ) ) {
+			$error = FlowHooks::getTopicDeletionError( $title );
+			return false;
+		}
+
+		return true;
+	}
 }

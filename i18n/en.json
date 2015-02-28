@@ -148,6 +148,7 @@
 	"flow-error-missing-prev-revision-identifier": "Previous revision identifier is missing.",
 	"flow-error-prev-revision-mismatch": "Another user just edited this post a few seconds ago. Are {{GENDER:$3|you}} sure you want to overwrite the recent change?",
 	"flow-error-prev-revision-does-not-exist": "Could not find the previous revision.",
+	"flow-error-core-topic-deletion": "To delete a topic, use the ... menu on the Flow board or [$1 topic page].  Do not visit action=delete for the topic directly.",
 	"flow-error-default": "An error has occurred.",
 	"flow-error-invalid-input": "Invalid value was provided for loading Flow content.",
 	"flow-error-invalid-title": "Invalid page title was provided.",
