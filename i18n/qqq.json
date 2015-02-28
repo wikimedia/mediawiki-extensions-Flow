@@ -153,6 +153,7 @@
 	"flow-error-missing-prev-revision-identifier": "Error message when the identifier for the previous header revision is missing.",
 	"flow-error-prev-revision-mismatch": "Error message when the provided previous revision identifier does not match the last stored revision.",
 	"flow-error-prev-revision-does-not-exist": "Error message when the provided previous revision identifier could not be found.",
+	"flow-error-core-topic-deletion": "Error message when the user tries to use core's deletion mechanism for a Topic (this is not exposed in the UI, and should not be used currently).  Parameters:\n* $1 - Full URL of topic page.",
 	"flow-error-default": "General error message for flow.",
 	"flow-error-invalid-input": "Error message when invalid input is provided.",
 	"flow-error-invalid-title": "Error message when invalid title is provided.",
