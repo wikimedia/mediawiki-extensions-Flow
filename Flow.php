@@ -136,6 +136,8 @@ $wgHooks['WatchlistEditorBeforeFormRender'][] = 'FlowHooks::onWatchlistEditorBef
 $wgHooks['NamespaceIsMovable'][] = 'FlowHooks::onNamespaceIsMovable';
 $wgHooks['CategoryViewer::doCategoryQuery'][] = 'FlowHooks::onCategoryViewerDoCategoryQuery';
 $wgHooks['CategoryViewer::generateLink'][] = 'FlowHooks::onCategoryViewerGenerateLink';
+$wgHooks['ArticleConfirmDelete'][] = 'FlowHooks::onArticleConfirmDelete';
+$wgHooks['ArticleDelete'][] = 'FlowHooks::onArticleDelete';
 
 // Extension:UserMerge support
 $wgHooks['UserMergeAccountFields'][] = 'FlowHooks::onUserMergeAccountFields';
