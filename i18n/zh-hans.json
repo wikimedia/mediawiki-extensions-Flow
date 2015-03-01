@@ -378,6 +378,7 @@
 	"apihelp-flow-description": "允许对Flow页面的操作。",
 	"apihelp-flow-param-submodule": "要调用的Flow子模块。",
 	"apihelp-flow-param-page": "要进行操作的页面。",
+	"apihelp-flow-param-render": "将此设置成输出渲染时包含特定讨论块的一些。",
 	"apihelp-flow-example-1": "编辑“[[Talk:Sandbox]]”的页顶",
 	"apihelp-flow+close-open-topic-description": "由于[[Special:ApiHelp/flow+lock-topic|action=flow&submodule=lock-topic]]而弃用。",
 	"apihelp-flow+close-open-topic-param-moderationState": "提交话题的情形，要么锁定要么未锁定。",

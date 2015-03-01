@@ -18,7 +18,7 @@
 	"flow-hide-title-content": "$1 on {{GENDER:$1|piilottanut}} tämän aiheen.",
 	"flow-hide-header-content": "{{GENDER:$1|Piilottanut}} $2",
 	"flow-delete-header-content": "{{GENDER:$1|Poistanut}} $2",
-	"flow-suppress-header-content": "käyttäjän $2 {{GENDER:$1|häivyttämä}}",
+	"flow-suppress-header-content": "{{GENDER:$1|Häivyttänyt}} $2",
 	"flow-suppress-usertext": "<em>Käyttäjänimi häivytetty</em>",
 	"flow-post-actions": "Toiminnot",
 	"flow-topic-actions": "Toiminnot",
@@ -108,9 +108,9 @@
 	"flow-moderation-title-delete-topic": "Poista aihe?",
 	"flow-moderation-title-hide-topic": "Piilota aihe?",
 	"flow-moderation-title-unhide-topic": "Tuo näkyviin aihe?",
-	"flow-moderation-placeholder-undelete-topic": "{{GENDER:$3|Kerro}} miksi palautat tämän ketjun.",
+	"flow-moderation-placeholder-undelete-topic": "{{GENDER:$3|Kerro}} miksi palautat tämän ketjun takaisin.",
 	"flow-topic-permalink-warning": "Tämä aihe aloitettiin sivulla [$2 $1]",
-	"flow-compare-revisions-revision-header": "Versio, jota muokannut {{GENDER:$2|$2}} $1",
+	"flow-compare-revisions-revision-header": "Versio, jonka tehnyt {{GENDER:$2|$2}} $1",
 	"flow-compare-revisions-header-post": "Tämä sivu näyttää {{GENDER:$3|muutokset}} kahden version välillä viestistä käyttäjältä $3 aiheessa \"[$5 $2]\" sivulla [$4 $1].\nVoit nähdä muut versiot tästä aiheesta sen [$6 historiasivulla].",
 	"flow-terms-of-use-new-topic": "Napsauttamalla \"{{int:flow-newtopic-save}}\", hyväksyt tämän wikin käyttöehdot."
 }
