@@ -16,6 +16,24 @@
       "revId": "e21cc2d4f70f8b2aaa155f9dc113b70a7d5622cc",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_c51906dd",
+        "filename": "maintenance/FlowFixLog.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-02T11:05:18Z",
+      "side": 1,
+      "message": "I try to not trust the data as much as possible, so assuming topicId or postId may not exist.\n\nThis version doesn\u0027t suffice if topicId doesn\u0027t exist (which is the case for older entries - only logged postId):\n\n    if ( isset( $params[\u0027postId\u0027] ) ) {\n        $post \u003d $this-\u003eloadPost( $params[\u0027postId\u0027] );\n    }\n    $topic \u003d $this-\u003eloadTopic( $params[\u0027topicId\u0027] );\n\nThis version is slower if topicId already exists, because it does a tree repo lookup that could be avoided:\n\n    if ( isset( $params[\u0027postId\u0027] ) ) {\n        $post \u003d $this-\u003eloadPost( $params[\u0027postId\u0027] );\n        $topic \u003d $post-\u003egetRoot();\n    } else {\n        $topic \u003d $this-\u003eloadTopic( $params[\u0027topicId\u0027] );\n    }\n\nI guess I really want to treat them separately (not in an else-statement) unless I misunderstood the comment :)",
+      "parentUuid": "6e7c4fa4_1a50c60c",
+      "revId": "e21cc2d4f70f8b2aaa155f9dc113b70a7d5622cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
