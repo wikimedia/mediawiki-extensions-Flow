@@ -33,6 +33,24 @@
       "revId": "493d2e02fad14ecde93ca7599f3f0733c2cbf11e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_e5352243",
+        "filename": "includes/Log/ActionFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-02T10:58:05Z",
+      "side": 1,
+      "message": "It\u0027s meant to do that - the next param is getFullUrl",
+      "parentUuid": "6e7c4fa4_5ac63e6c",
+      "revId": "493d2e02fad14ecde93ca7599f3f0733c2cbf11e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
