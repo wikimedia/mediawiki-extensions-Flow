@@ -191,27 +191,43 @@ class HeaderBlock extends AbstractBlock {
 		$output = array(
 			'type' => $this->getName(),
 			'editToken' => $this->getEditToken(),
+			'modules' => array( 'ext.flow' ),
+			'moduleStyles' => array(
+				'mediawiki.ui',
+				'mediawiki.ui.anchor',
+				'mediawiki.ui.button',
+				'mediawiki.ui.input',
+				'mediawiki.ui.text',
+				'ext.flow.styles',
+				'ext.flow.mediawiki.ui.tooltips',
+				'ext.flow.mediawiki.ui.form',
+				'ext.flow.mediawiki.ui.modal',
+				'ext.flow.mediawiki.ui.text',
+				'ext.flow.icons.styles',
+				'ext.flow.board.styles',
+				'ext.flow.board.topic.styles',
+			),
 		);
 
 		switch ( $this->action ) {
 			case 'view':
 			case 'edit-header':
-				$output += $this->renderRevisionApi();
+				$output = $this->renderRevisionApi() + $output;
 				break;
 
 			case 'view-header':
 				if ( isset( $options['revId'] ) && $options['revId'] ) {
-					$output += $this->renderSingleViewApi( $options['revId'] );
+					$output = $this->renderSingleViewApi( $options['revId'] ) + $output;
 				} else {
 					if ( isset( $options['contentFormat'] ) && $options['contentFormat'] === 'wikitext' ) {
 						$this->requiresWikitext[] = 'view-header';
 					}
-					$output += $this->renderRevisionApi();
+					$output = $this->renderRevisionApi() + $output;
 				}
 				break;
 
 			case 'compare-header-revisions':
-				$output += $this->renderDiffviewApi( $options );
+				$output = $this->renderDiffviewApi( $options ) + $output;
 				break;
 		}
 

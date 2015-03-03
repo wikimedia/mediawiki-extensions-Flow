@@ -75,6 +75,22 @@ class BoardHistoryBlock extends AbstractBlock {
 			'navbar' => $pager->getNavigationBar(),
 			'links' => array(
 			),
+			'modules' => array( 'ext.flow' ),
+			'moduleStyles' => array(
+				'mediawiki.ui',
+				'mediawiki.ui.anchor',
+				'mediawiki.ui.button',
+				'mediawiki.ui.input',
+				'mediawiki.ui.text',
+				'ext.flow.styles',
+				'ext.flow.mediawiki.ui.tooltips',
+				'ext.flow.mediawiki.ui.form',
+				'ext.flow.mediawiki.ui.modal',
+				'ext.flow.mediawiki.ui.text',
+				'ext.flow.icons.styles',
+				'ext.flow.board.styles',
+				'ext.flow.board.topic.styles',
+			),
 		);
 	}
 
