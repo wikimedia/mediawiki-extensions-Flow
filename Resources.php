@@ -275,6 +275,20 @@ $wgResourceModules += array(
 			'styles/errors.less',
 			'styles/history/history-line.less',
 		),
+		'dependencies' => array(
+			'mediawiki.ui',
+			'mediawiki.ui.anchor',
+			'mediawiki.ui.button',
+			'mediawiki.ui.input',
+			'mediawiki.ui.text',
+			'ext.flow.mediawiki.ui.tooltips',
+			'ext.flow.mediawiki.ui.form',
+			'ext.flow.mediawiki.ui.modal',
+			'ext.flow.mediawiki.ui.text',
+			'ext.flow.icons.styles',
+			'ext.flow.board.styles',
+			'ext.flow.board.topic.styles',
+		),
 	) + $mobile,
 	'ext.flow.board.styles' => $flowResourceTemplate + array(
 		'styles' => array(

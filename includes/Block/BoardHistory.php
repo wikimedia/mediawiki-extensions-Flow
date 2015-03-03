@@ -75,6 +75,8 @@ class BoardHistoryBlock extends AbstractBlock {
 			'navbar' => $pager->getNavigationBar(),
 			'links' => array(
 			),
+			'modules' => array( 'ext.flow' ),
+			'moduleStyles' => array( 'ext.flow.styles' ),
 		);
 	}
 

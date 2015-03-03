@@ -231,7 +231,11 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * @throws InvalidInputException
 	 */
 	public function renderApi( array $options ) {
-		$output = array( 'type' => $this->getName() );
+		$output = array(
+			'type' => $this->getName(),
+			'modules' => array( 'ext.flow' ),
+			'moduleStyles' => array( 'ext.flow.styles' ),
+		 );
 
 		if ( $this->wasSubmitted() ) {
 			$output += array(
@@ -259,11 +263,11 @@ class TopicSummaryBlock extends AbstractBlock {
 					if ( isset( $options['contentFormat'] ) && $options['contentFormat'] === 'wikitext' ) {
 						$this->requiresWikitext[] = 'view-topic-summary';
 					}
-					$output += $this->renderNewestTopicSummary();
+					$output = $this->renderNewestTopicSummary() + $output;
 				}
 				break;
 			case 'edit-topic-summary':
-				$output += $this->renderNewestTopicSummary();
+				$output = $this->renderNewestTopicSummary() + $output;
 				break;
 			case 'compare-postsummary-revisions':
 				// @Todo - duplicated logic in other diff view block

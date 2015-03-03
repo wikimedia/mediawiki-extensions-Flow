@@ -49,6 +49,8 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 							),
 							'errors' => array(),
 							'type' => 'topiclist',
+							'modules' => array( 'ext.flow' ),
+							'moduleStyles' => array( 'ext.flow.styles' ),
 						),
 					),
 					'status' => 'ok',

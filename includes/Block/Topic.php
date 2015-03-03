@@ -462,7 +462,11 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	public function renderApi( array $options ) {
-		$output = array( 'type' => $this->getName() );
+		$output = array(
+			'type' => $this->getName(),
+			'modules' => array( 'ext.flow' ),
+			'moduleStyles' => array( 'ext.flow.styles' ),
+		);
 
 		$topic = $this->loadTopicTitle( $this->action === 'history' ? 'history' : 'view' );
 		if ( !$topic ) {
@@ -476,10 +480,10 @@ class TopicBlock extends AbstractBlock {
 			// single post history or full topic?
 			if ( isset( $options['postId'] ) ) {
 				// singular post history
-				$output += $this->renderPostHistoryApi( $options, UUID::create( $options['postId'] ) );
+				$output = $this->renderPostHistoryApi( $options, UUID::create( $options['postId'] ) ) + $output;
 			} else {
 				// post history for full topic
-				$output += $this->renderTopicHistoryApi( $options );
+				$output = $this->renderTopicHistoryApi( $options ) + $output;
 			}
 		} elseif ( $this->action === 'single-view' ) {
 			if ( isset( $options['revId'] ) ) {
@@ -487,22 +491,22 @@ class TopicBlock extends AbstractBlock {
 			} else {
 				throw new InvalidInputException( 'A revision must be provided', 'invalid-input' );
 			}
-			$output += $this->renderSingleViewApi( $revId );
+			$output = $this->renderSingleViewApi( $revId ) + $output;
 		} elseif ( $this->action === 'lock-topic' ) {
 			// Treat topic as a post, only the post + summary are needed
 			$result = $this->renderPostApi( $options, $this->workflow->getId() );
 			$topicId = $result['roots'][0];
 			$revisionId = $result['posts'][$topicId][0];
-			$output += $result['revisions'][$revisionId];
+			$output = $result['revisions'][$revisionId] + $output;
 		} elseif ( $this->action === 'compare-post-revisions' ) {
-			$output += $this->renderDiffViewApi( $options );
+			$output = $this->renderDiffViewApi( $options ) + $output;
 		} elseif ( $this->shouldRenderTopicApi( $options ) ) {
 			// view full topic
-			$output += $this->renderTopicApi( $options );
+			$output = $this->renderTopicApi( $options ) + $output;
 		} else {
 			// view single post, possibly specific revision
 			// @todo this isn't valid for the topic title
-			$output += $this->renderPostApi( $options );
+			$output = $this->renderPostApi( $options ) + $output;
 		}
 
 		return $output + $this->finalizeApiOutput($options);
