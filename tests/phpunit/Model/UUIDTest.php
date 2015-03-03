@@ -156,7 +156,6 @@ class UUIDTest extends FlowTestCase {
 	}
 
 	public function testConversionToTimestamp() {
-		// @todo assert now +-1?
-		$this->assertEquals( wfTimestampNow(), UUID::create()->getTimestamp() );
+		$this->assertEquals( '20150303221220', UUID::create( 'scv3pvbt40kcyy4g' )->getTimestamp() );
 	}
 }

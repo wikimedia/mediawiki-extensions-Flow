@@ -2,6 +2,7 @@
 
 namespace Flow\Tests\Api;
 
+use Flow\Model\UUID;
 use Title;
 
 /**
@@ -187,7 +188,7 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 			$responseTopic = $replyResponse['flow']['reply']['result']['topic'];
 			$topicRevisionId = $topicData[$topicDataInd]['revisionId'];
 			$newPostId = end( $responseTopic['revisions'][$topicRevisionId]['replies'] );
-			$topicData[$topicDataInd]['updateTimestamp'] = $responseTopic['revisions'][$newPostId]['timestamp'];
+			$topicData[$topicDataInd]['updateTimestamp'] = UUID::create( $newPostId )->getTimestamp();
 			$topicData[$topicDataInd]['expectedRevision']['last_updated'] = wfTimestamp( TS_UNIX, $topicData[$topicDataInd]['updateTimestamp'] ) * 1000;
 		}
 
