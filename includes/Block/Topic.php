@@ -11,8 +11,9 @@ use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\PermissionException;
-use Flow\Formatter\TopicHistoryQuery;
 use Flow\Formatter\PostHistoryQuery;
+use Flow\Formatter\RevisionViewQuery;
+use Flow\Formatter\TopicHistoryQuery;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
@@ -63,6 +64,7 @@ class TopicBlock extends AbstractBlock {
 		'lock-topic',
 		// Other stuff
 		'edit-title',
+		'undo-edit-post',
 		// psuedo-action, we don't do anything but we return
 		// information about the topic in the api response
 		'edit-topic-summary',
@@ -70,7 +72,7 @@ class TopicBlock extends AbstractBlock {
 
 	protected $supportedGetActions = array(
 		'reply', 'view', 'history', 'edit-post', 'edit-title', 'compare-post-revisions', 'single-view',
-		'view-topic', 'view-post',
+		'view-topic', 'view-post', 'undo-edit-post',
 		'moderate-topic', 'moderate-post', 'lock-topic',
 	);
 
@@ -81,6 +83,7 @@ class TopicBlock extends AbstractBlock {
 		'reply' => '',
 		'history' => 'history',
 		'edit-post' => '',
+		'undo-edit-post' => 'undo_edit',
 		'edit-title' => 'edit_title',
 		'compare-post-revisions' => 'diff_view',
 		'moderate-topic' => 'moderate_topic',
@@ -145,6 +148,7 @@ class TopicBlock extends AbstractBlock {
 			$this->validateModeratePost();
 			break;
 
+		case 'undo-edit-post':
 		case 'edit-post':
 			$this->validateEditPost();
 			break;
@@ -393,7 +397,7 @@ class TopicBlock extends AbstractBlock {
 		$this->newRevision = $post->newNextRevision(
 			$this->context->getUser(),
 			$this->submitted['content'],
-			'edit-post',
+			$this->action,
 			$this->workflow->getArticleTitle()
 		);
 		if ( !$this->checkSpamFilters( $post, $this->newRevision ) ) {
@@ -414,6 +418,7 @@ class TopicBlock extends AbstractBlock {
 		case 'restore-post':
 		case 'moderate-post':
 		case 'edit-title':
+		case 'undo-edit-post':
 		case 'edit-post':
 			if ( $this->newRevision === null ) {
 				throw new FailCommitException( 'Attempt to save null revision', 'fail-commit' );
@@ -514,6 +519,8 @@ class TopicBlock extends AbstractBlock {
 			$output = $result['revisions'][$revisionId] + $output;
 		} elseif ( $this->action === 'compare-post-revisions' ) {
 			$output = $this->renderDiffViewApi( $options ) + $output;
+		} elseif ( $this->action === 'undo-edit-post' ) {
+			$output = $this->renderUndoApi( $options ) + $output;
 		} elseif ( $this->shouldRenderTopicApi( $options ) ) {
 			// view full topic
 			$output = $this->renderTopicApi( $options ) + $output;
@@ -662,6 +669,26 @@ class TopicBlock extends AbstractBlock {
 				$serialized['revisionId'] => $serialized,
 			)
 		);
+	}
+
+	protected function renderUndoApi( array $options ) {
+		if ( $this->workflow->isNew() ) {
+			throw new FlowException( 'No posts can exist for non-existent topic' );
+		}
+
+		if ( !isset( $options['startId'], $options['endId'] ) ) {
+			throw new FlowException( '???' );
+		}
+
+		/** @var RevisionViewQuery */
+		$query = Container::get( 'query.post.view' );
+		$rows = $query->getUndoDiffResult( $options['startId'], $options['endId'] );
+		if ( !$rows ) {
+			throw new FlowException( 'Could not load revision to undo' );
+		}
+
+		$serializer = Container::get( 'formatter.undoedit' );
+		return $serializer->formatApi( $rows[0], $rows[1], $rows[2], $this->context );
 	}
 
 	protected function getRevisionFormatter() {
@@ -938,7 +965,12 @@ class TopicBlock extends AbstractBlock {
 		$title = $this->workflow->getOwnerTitle();
 		$out->setPageTitle( $out->msg( 'flow-topic-first-heading', $title->getPrefixedText() ) );
 		if ( $this->permissions->isAllowed( $topic, 'view' ) ) {
-			$out->setHtmlTitle( $out->msg( 'flow-topic-html-title', array(
+			if ( $this->action === 'undo-edit-post' ) {
+				$key = 'flow-undo-edit-post';
+			} else {
+				$key = 'flow-topic-html-title';
+			}
+			$out->setHtmlTitle( $out->msg( $key, array(
 				// This must be a rawParam to not expand {{foo}} in the title, it must
 				// not be htmlspecialchar'd because OutputPage::setHtmlTitle handles that.
 				Message::rawParam( $topic->getContent( 'wikitext' ) ),
