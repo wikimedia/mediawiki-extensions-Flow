@@ -311,24 +311,32 @@ $wgResourceModules += array(
 			'moment',
 		),
 	) + $mobile,
+	'ext.flow.components' => $flowResourceTemplate + array(
+		'scripts' => array(
+			'engine/components/flow-registry.js',
+			'engine/components/flow-component.js',
+			// FlowApi
+			'engine/misc/flow-api.js',
+			// FlowEventLog
+			'engine/misc/flow-eventlog.js',
+			// FlowComponent must come before actual components
+			'engine/components/common/flow-component-engines.js',
+			'engine/components/common/flow-component-events.js',
+		),
+		'dependencies' => array(
+			'oojs',
+			'ext.flow.vendor.storer',
+			'mediawiki.user',
+		),
+	) + $mobile,
 	'ext.flow' => $flowResourceTemplate + array(
 		'scripts' => array( // Component order is important
 			// MW UI
 			'engine/misc/mw-ui.enhance.js',
 			'engine/misc/mw-ui.modal.js',
 
-			// FlowApi
-			'engine/misc/flow-api.js',
-			// FlowEventLog
-			'engine/misc/flow-eventlog.js',
 			// wfBaseConvert ported to js
 			'engine/misc/flow-baseconvert.js',
-			// Component registry
-			'engine/components/flow-registry.js',
-			// FlowComponent must come before actual components
-			'engine/components/flow-component.js',
-			'engine/components/common/flow-component-engines.js',
-			'engine/components/common/flow-component-events.js',
 			// Feature: flow-menu
 			'engine/components/common/flow-component-menus.js',
 
@@ -356,10 +364,9 @@ $wgResourceModules += array(
 			'flow-initialize.js',
 		),
 		'dependencies' => array(
-			'oojs',
+			'ext.flow.components',
 			'ext.flow.templating', // ResourceLoader templating
 			'ext.flow.handlebars', // prototype-based for progressiveEnhancement
-			'ext.flow.vendor.storer',
 			'jquery.throttle-debounce',
 			'mediawiki.jqueryMsg',
 			'ext.flow.jquery.conditionalScroll',
@@ -367,7 +374,6 @@ $wgResourceModules += array(
 			'mediawiki.api',
 			'mediawiki.Uri',
 			'mediawiki.Title',
-			'mediawiki.user',
 			'mediawiki.util',
 		),
 		'messages' => array(
@@ -377,6 +383,15 @@ $wgResourceModules += array(
 			'mw-ui-unsubmitted-confirm',
 			'flow-reply-link',
 		)
+	) + $mobile,
+	'ext.flow.undo' => $flowResourceTemplate + array(
+		'scripts' => array(
+			'engine/components/undo/flow-undo.js',
+		),
+		'dependencies' => array(
+			'ext.flow.components',
+			'ext.flow.handlebars'
+		),
 	) + $mobile,
 	'ext.flow.vendor.storer' => $flowResourceTemplate + array(
 		'scripts' => array(
