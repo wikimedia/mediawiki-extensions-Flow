@@ -125,7 +125,7 @@
 			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $form ),
 			$titleField = $form.find( 'input' ).filter( '[data-role=title]' ),
 			$target = info.$target,
-			username = mw.user.getName(),
+			username = $target.data( 'flow-creator' ) || mw.user.getName(),
 			id = Math.random(),
 			previewTemplate = $target.data( 'flow-preview-template' ),
 			contentNode = $target.data( 'flow-preview-node' ) || 'content';
