@@ -1,0 +1,45 @@
+<div class="flow-board">
+	{{#if undo.possible}}
+		<p>{{l10n "flow-undo-edit-content"}}</p>
+	{{else}}
+		<p class="error">{{l10n "flow-undo-edit-failure"}}</p>
+	{{/if}}
+
+	{{> flow_errors}}
+
+	{{#if undo.possible}}
+		{{diffUndo undo.diff_content}}
+	{{/if}}
+
+	<form method="POST" action="{{links.undo-edit-header.url}}">
+		<input type="hidden" name="wpEditToken" value="{{@root.rootBlock.editToken}}" />
+		<input type="hidden" name="header_prev_revision" value="{{current.revisionId}}" />
+
+		<textarea name="topic_content"
+		          data-role="content"
+		          data-flow-preview-template="flow_header_detail.partial"
+				  data-flow-preview-title="{{articleTitle}}"
+		>
+			{{~#if submitted.content~}}
+				{{~submitted.content~}}
+			{{~else~}}
+				{{~#if undo.possible~}}
+					{{~undo.content~}}
+				{{~else~}}
+					{{~current.content.content~}}
+				{{~/if~}}
+			{{~/if~}}
+		</textarea>
+
+		<div class="flow-form-actions flow-form-collapsible">
+			<button class="mw-ui-button mw-ui-constructive">
+				{{~l10n "flow-edit-header-submit"~}}
+			</button>
+			{{> flow_form_buttons}}
+			<small class="flow-terms-of-use plainlinks">
+				{{~l10nParse "flow-terms-of-use-edit"}}
+			</small>
+		</div>
+	</form>
+</div>
+

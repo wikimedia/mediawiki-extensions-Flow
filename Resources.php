@@ -414,6 +414,19 @@ $wgResourceModules += array(
 			'ext.flow.components'
 		),
 	) + $mobile,
+	'ext.flow.undo' => $flowResourceTemplate + array(
+		'scripts' => array(
+			// this must be last (of everything loaded.  otherwise a components
+			// can be initialized before all the mixins are loaded.  Can we mixin
+			// after initialization?)
+			'flow-initialize.js',
+		),
+		// minimal subset for the undo pages
+		'dependencies' => array(
+			'ext.flow.components',
+			'ext.flow.preview',
+		),
+	) + $mobile,
 	'ext.flow.editor' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'editor/ext.flow.editor.js',
