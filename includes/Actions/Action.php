@@ -72,7 +72,8 @@ class FlowAction extends Action {
 		$view = new View(
 			$container['url_generator'],
 			$container['lightncandy'],
-			$output
+			$output,
+			$container['flow_actions']
 		);
 
 		$request = $this->context->getRequest();
