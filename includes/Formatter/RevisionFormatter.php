@@ -518,6 +518,15 @@ class RevisionFormatter {
 					->editPostAction( $title, $workflowId, $postId, $revId );
 				break;
 
+			case 'undo-edit-header':
+			case 'undo-edit-post':
+			case 'undo-edit-topic-summary':
+				if ( !$revision->isFirstRevision() ) {
+					$links['undo'] = $this->urlGenerator->undoAction( $revision, $title, $workflowId );
+				}
+				break;
+
+
 			case 'hide-post':
 				if ( !$postId ) {
 					throw new FlowException( "$type called without \$postId" );
