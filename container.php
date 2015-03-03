@@ -893,19 +893,22 @@ $c['query.postsummary'] = $c->share( function( $c ) {
 $c['query.header.view'] = $c->share( function( $c ) {
 	return new Flow\Formatter\HeaderViewQuery(
 		$c['storage'],
-		$c['repository.tree']
+		$c['repository.tree'],
+		$c['permissions']
 	);
 } );
 $c['query.post.view'] = $c->share( function( $c ) {
 	return new Flow\Formatter\PostViewQuery(
 		$c['storage'],
-		$c['repository.tree']
+		$c['repository.tree'],
+		$c['permissions']
 	);
 } );
 $c['query.postsummary.view'] = $c->share( function( $c ) {
 	return new Flow\Formatter\PostSummaryViewQuery(
 		$c['storage'],
-		$c['repository.tree']
+		$c['repository.tree'],
+		$c['permissions']
 	);
 } );
 $c['formatter.recentchanges'] = $c->share( function( $c ) {
@@ -1175,5 +1178,11 @@ $c['importer'] = $c->share( function( $c ) {
 
 $c['listener.editcount'] = $c->share( function( $c ) {
 	return new \Flow\Data\Listener\EditCountListener( $c['flow_actions'] );
+} );
+
+$c['formatter.undoedit'] = $c->share( function( $c ) {
+	return new Flow\Formatter\RevisionUndoViewFormatter(
+		$c['formatter.revisionview']
+	);
 } );
 return $c;
