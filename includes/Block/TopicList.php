@@ -164,6 +164,8 @@ class TopicListBlock extends AbstractBlock {
 		$response = array(
 			'submitted' => $this->wasSubmitted() ? $this->submitted : $options,
 			'errors' => $this->errors,
+			'modules' => array( 'ext.flow' ),
+			'moduleStyles' => array( 'ext.flow.styles' ),
 		);
 
 		// Repeating the default until we use the API for everything (bug 72659)

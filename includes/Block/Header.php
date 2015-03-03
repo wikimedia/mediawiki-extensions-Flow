@@ -191,27 +191,29 @@ class HeaderBlock extends AbstractBlock {
 		$output = array(
 			'type' => $this->getName(),
 			'editToken' => $this->getEditToken(),
+			'modules' => array( 'ext.flow' ),
+			'moduleStyles' => array( 'ext.flow.styles' ),
 		);
 
 		switch ( $this->action ) {
 			case 'view':
 			case 'edit-header':
-				$output += $this->renderRevisionApi();
+				$output = $this->renderRevisionApi() + $output;
 				break;
 
 			case 'view-header':
 				if ( isset( $options['revId'] ) && $options['revId'] ) {
-					$output += $this->renderSingleViewApi( $options['revId'] );
+					$output = $this->renderSingleViewApi( $options['revId'] ) + $output;
 				} else {
 					if ( isset( $options['contentFormat'] ) && $options['contentFormat'] === 'wikitext' ) {
 						$this->requiresWikitext[] = 'view-header';
 					}
-					$output += $this->renderRevisionApi();
+					$output = $this->renderRevisionApi() + $output;
 				}
 				break;
 
 			case 'compare-header-revisions':
-				$output += $this->renderDiffviewApi( $options );
+				$output = $this->renderDiffviewApi( $options ) + $output;
 				break;
 		}
 

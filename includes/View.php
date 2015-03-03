@@ -40,8 +40,6 @@ class View extends ContextSource {
 	public function show( WorkflowLoader $loader, $action ) {
 		wfProfileIn( __CLASS__ . '-init' );
 
-		$this->addModules( $this->getOutput() );
-
 		$blocks = $loader->getBlocks();
 		wfProfileOut( __CLASS__ . '-init' );
 
@@ -71,32 +69,35 @@ class View extends ContextSource {
 		die( $data );
 		**/
 
+		$output = $this->getOutput();
+		$this->addModules( $output, $apiResponse );
 		// Please note that all blocks can set page title, which may cause them
 		// to override one another's titles
 		foreach ( $blocks as $block ) {
-			$block->setPageTitle( $this->getOutput() );
+			$block->setPageTitle( $output );
 		}
+
 
 		$this->renderApiResponse( $apiResponse );
 	}
 
-	protected function addModules( OutputPage $out ) {
-		$out->addModuleStyles( array(
-			'mediawiki.ui',
-			'mediawiki.ui.anchor',
-			'mediawiki.ui.button',
-			'mediawiki.ui.input',
-			'mediawiki.ui.text',
-			'ext.flow.styles',
-			'ext.flow.mediawiki.ui.tooltips',
-			'ext.flow.mediawiki.ui.form',
-			'ext.flow.mediawiki.ui.modal',
-			'ext.flow.mediawiki.ui.text',
-			'ext.flow.icons.styles',
-			'ext.flow.board.styles',
-			'ext.flow.board.topic.styles'
-		) );
-		$out->addModules( array( 'ext.flow' ) );
+	protected function addModules( OutputPage $out, array $apiResponse ) {
+		$modules = $moduleStyles = array();
+		foreach ( $apiResponse['blocks'] as $block ) {
+			if ( isset( $block['modules'] ) ) {
+				$modules = array_merge( $modules, $block['modules'] );
+			}
+			if ( isset( $block['moduleStyles'] ) ) {
+				$moduleStyles = array_merge( $moduleStyles, $block['moduleStyles'] );
+			}
+		}
+
+		if ( $moduleStyles ) {
+			$out->addModuleStyles( array_unique( $moduleStyles ) );
+		}
+		if ( $modules ) {
+			$out->addModules( array_unique( $modules ) );
+		}
 
 		// Allow other extensions to add modules
 		wfRunHooks( 'FlowAddModules', array( $out ) );
