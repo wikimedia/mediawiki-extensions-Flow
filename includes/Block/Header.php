@@ -36,7 +36,7 @@ class HeaderBlock extends AbstractBlock {
 	/**
 	 * @var string[]
 	 */
-	protected $supportedPostActions = array( 'edit-header' );
+	protected $supportedPostActions = array( 'edit-header', 'undo-edit-header' );
 
 	/**
 	 * @var string[]
@@ -46,13 +46,14 @@ class HeaderBlock extends AbstractBlock {
 	/**
 	 * @var string[]
 	 */
-	protected $supportedGetActions = array( 'view', 'compare-header-revisions', 'edit-header', 'view-header' );
+	protected $supportedGetActions = array( 'view', 'compare-header-revisions', 'edit-header', 'view-header', 'undo-edit-header' );
 
 	// @Todo - fill in the template names
 	protected $templates = array(
 		'view' => '',
 		'compare-header-revisions' => 'diff_view',
 		'edit-header' => 'edit',
+		'undo-edit-header' => 'undo_edit',
 		'view-header' => 'single_view',
 	);
 
@@ -203,6 +204,10 @@ class HeaderBlock extends AbstractBlock {
 				$output += $this->renderRevisionApi();
 				break;
 
+			case 'undo-edit-header':
+				$output = $this->renderUndoApi( $options ) + $output;
+				break;
+
 			case 'view-header':
 				if ( isset( $options['revId'] ) && $options['revId'] ) {
 					$output += $this->renderSingleViewApi( $options['revId'] );
@@ -217,6 +222,7 @@ class HeaderBlock extends AbstractBlock {
 			case 'compare-header-revisions':
 				$output += $this->renderDiffviewApi( $options );
 				break;
+
 		}
 
 		if ( $this->wasSubmitted() ) {
@@ -295,6 +301,26 @@ class HeaderBlock extends AbstractBlock {
 			$output['revision'] = $serializer->formatApi( $row, $this->context );
 		}
 		return $output;
+	}
+
+	protected function renderUndoApi( array $options ) {
+		if ( $this->workflow->isNew() ) {
+			throw new FlowException( 'No header exists to undo' );
+		}
+
+		if ( !isset( $options['startId'], $options['endId'] ) ) {
+			throw new InvalidInputException( 'Both startId and endId must be provided' );
+		}
+
+		/** @var RevisionViewQuery */
+		$query = Container::get( 'query.header.view' );
+		$rows = $query->getUndoDiffResult( $options['startId'], $options['endId'] );
+		if ( !$rows ) {
+			throw new InvalidInputException( 'Could not load revision to undo' );
+		}
+
+		$serializer = Container::get( 'formatter.undoedit' );
+		return $serializer->formatApi( $rows[0], $rows[1], $rows[2], $this->context );
 	}
 
 	public function getName() {

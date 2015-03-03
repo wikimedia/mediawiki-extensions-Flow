@@ -157,6 +157,7 @@ class TemplateHelper {
 					'showCharacterDifference' => 'Flow\TemplateHelper::showCharacterDifference',
 					'l10nParse' => 'Flow\TemplateHelper::l10nParse',
 					'diffRevision' => 'Flow\TemplateHelper::diffRevision',
+					'diffUndo' => 'Flow\TemplateHelper::diffUndo',
 					'moderationAction' => 'Flow\TemplateHelper::moderationAction',
 					'concat' => 'Flow\TemplateHelper::concat',
 					'user' => 'Flow\TemplateHelper::user',
@@ -547,6 +548,31 @@ class TemplateHelper {
 				'link' => $newLink,
 				'next' => $nextLink,
 			) ),
+			$multi,
+			$notice
+		) );
+	}
+
+	static public function diffUndo( array $args, array $named ) {
+		if ( count( $args ) !== 1 ) {
+			throw new WrongNumberArgumentsException( $args, 'one' );
+		}
+		list( $diffContent ) = $args;
+
+		$differenceEngine = new \DifferenceEngine();
+		$multi = $differenceEngine->getMultiNotice();
+		$notice = '';
+		if ( $diffContent === '' ) {
+			$notice = '<div class="mw-diff-empty">' .
+				wfMessage( 'diff-empty' )->parse() .
+				"</div>\n";
+		}
+		$differenceEngine->showDiffStyle();
+
+		return self::html( $differenceEngine->addHeader(
+			$diffContent,
+			wfMessage( 'flow-undo-latest-revision' ),
+			wfMessage( 'flow-undo-your-text' ),
 			$multi,
 			$notice
 		) );
