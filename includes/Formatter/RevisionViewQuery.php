@@ -2,14 +2,34 @@
 
 namespace Flow\Formatter;
 
-use Flow\Container;
+use Flow\Data\ManagerGroup;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\PermissionException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
+use Flow\Repository\TreeRepository;
 use Flow\RevisionActionPermissions;
 
 abstract class RevisionViewQuery extends AbstractQuery {
+
+	/**
+	 * @var RevisionActionPermissions
+	 */
+	protected $permissions;
+
+	/**
+	 * @param ManagerGroup $storage
+	 * @param TreeRepository $treeRepository
+	 * @param RevisionActionPermissions $permissions
+	 */
+	public function __construct(
+		ManagerGroup $storage,
+		TreeRepository $treeRepository,
+		RevisionActionPermissions $permissions
+	) {
+		parent::__construct( $storage, $treeRepository );
+		$this->permissions = $permissions;
+	}
 
 	/**
 	 * Create a revision based on revisionId
@@ -73,9 +93,10 @@ abstract class RevisionViewQuery extends AbstractQuery {
 		}
 
 		/** @var RevisionActionPermissions $permission */
-		$permission = Container::get( 'permissions' );
-		// Todo - Check the permission before invoking this function?
-		if ( !$permission->isAllowed( $oldRev, 'view' ) || !$permission->isAllowed( $newRev, 'view' ) ) {
+		if (
+			!$this->permission->isAllowed( $oldRev, 'view' ) ||
+			!$this->permission->isAllowed( $newRev, 'view' )
+		) {
 			throw new PermissionException( 'Insufficient permission to compare revisions', 'insufficient-permission' );
 		}
 
@@ -84,6 +105,40 @@ abstract class RevisionViewQuery extends AbstractQuery {
 		return array(
 			$this->buildResult( $newRev, null ),
 			$this->buildResult( $oldRev, null ),
+		);
+	}
+
+	public function getUndoDiffResult( $startUndoId, $endUndoId ) {
+		$start = $this->createRevision( $startUndoId );
+		if ( !$start ) {
+			throw new InvalidInputException( 'Could not find revision: ' . $startUndoId, 'missing-revision' );
+		}
+		$end = $this->createRevision( $endUndoId );
+		if ( !$end ) {
+			throw new InvalidInputException( 'Could not find revision: ' . $endUndoId, 'missing-revision' );
+		}
+
+		// the two revision must have the same revision type id
+		if ( !$start->getCollectionId()->equals( $end->getCollectionId() ) ) {
+			throw new InvalidInputException( 'start and end are not from the same set' );
+		}
+
+		$current = $start->getCollection()->getLastRevision();
+
+		if (
+			!$this->permissions->isAllowed( $start, 'view' ) ||
+			!$this->permissions->isAllowed( $end, 'view' ) ||
+			!$this->permissions->isAllowed( $current, 'view' )
+		) {
+			throw new PermissionException( 'Insufficient permission to undo revisions', 'insufficient-permission' );
+		}
+
+		$this->loadMetadataBatch( array( $start, $end, $current ) );
+
+		return array(
+			$this->buildResult( $start, null ),
+			$this->buildResult( $end, null ),
+			$this->buildResult( $current, null ),
 		);
 	}
 

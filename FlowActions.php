@@ -67,7 +67,7 @@ $wgFlowActions = array(
 			Header::MODERATED_NONE => '',
 		),
 		'links' => array( 'board-history', 'diff-header', 'workflow', 'header-revision' ),
-		'actions' => array( 'edit-header' ),
+		'actions' => array( 'edit-header', 'undo-edit-header' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-header',
 			'i18n-params' => array(
@@ -77,6 +77,29 @@ $wgFlowActions = array(
 			'class' => 'flow-history-edit-header',
 		),
 		'handler-class' => 'Flow\Actions\EditHeaderAction',
+		'editcount' => true,
+	),
+
+	// @todo this is almost copy/paste from edit-header except the handler-class. find
+	// a way to share.
+	'undo-edit-header' => array(
+		'performs-writes' => true,
+		'log_type' => false,
+		'rc_insert' => true,
+		'permissions' => array(
+			Header::MODERATED_NONE => '',
+		),
+		'links' => array( 'board-history', 'diff-header', 'workflow', 'header-revision' ),
+		'actions' => array( 'edit-header', 'undo-edit-header' ),
+		'history' => array(
+			'i18n-message' => 'flow-rev-message-edit-header',
+			'i18n-params' => array(
+				'user-links',
+				'user-text',
+			),
+			'class' => 'flow-history-edit-header',
+		),
+		'handler-class' => 'Flow\Actions\UndoEditHeaderAction',
 		'editcount' => true,
 	),
 
@@ -117,7 +140,7 @@ $wgFlowActions = array(
 			PostSummary::MODERATED_SUPPRESSED => array( 'flow-suppress' ),
 		),
 		'links' => array( 'topic', 'topic-history', 'diff-post-summary', 'watch-topic', 'unwatch-topic' ),
-		'actions' => array( 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
+		'actions' => array( 'edit-topic-summary', 'lock-topic', 'restore-topic', 'undo-edit-topic-summary' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-topic-summary',
 			'i18n-params' => array(
@@ -128,6 +151,34 @@ $wgFlowActions = array(
 			'class' => 'flow-history-edit-topic-summary',
 		),
 		'handler-class' => 'Flow\Actions\EditTopicSummaryAction',
+		'editcount' => true,
+	),
+
+	// @todo this is almost copy/paste from edit-topic-summary except the handler class. find a
+	// way to share
+	'undo-edit-topic-summary' => array(
+		'performs-writes' => true,
+		'log_type' => false,
+		'rc_insert' => true,
+		'permissions' => array(
+			PostSummary::MODERATED_NONE => '',
+			PostSummary::MODERATED_LOCKED => array( 'flow-lock', 'flow-delete', 'flow-suppress' ),
+			PostSummary::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
+			PostSummary::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
+			PostSummary::MODERATED_SUPPRESSED => array( 'flow-suppress' ),
+		),
+		'links' => array( 'topic', 'topic-history', 'diff-post-summary', 'watch-topic', 'unwatch-topic' ),
+		'actions' => array( 'edit-topic-summary', 'lock-topic', 'restore-topic', 'undo-edit-topic-summary' ),
+		'history' => array(
+			'i18n-message' => 'flow-rev-message-edit-topic-summary',
+			'i18n-params' => array(
+				'user-links',
+				'user-text',
+				'post-of-summary',
+			),
+			'class' => 'flow-history-edit-topic-summary',
+		),
+		'handler-class' => 'Flow\Actions\UndoEditTopicSummaryAction',
 		'editcount' => true,
 	),
 
@@ -200,7 +251,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => '',
 		),
 		'links' => array( 'post-history', 'topic-history', 'topic', 'post', 'diff-post', 'post-revision' ),
-		'actions' => array( 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
+		'actions' => array( 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post', 'undo-edit-post' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-post',
 			'i18n-params' => array(
@@ -212,6 +263,36 @@ $wgFlowActions = array(
 			'class' => 'flow-history-edit-post',
 		),
 		'handler-class' => 'Flow\Actions\EditPostAction',
+		'watch' => array(
+			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
+		),
+		'editcount' => true,
+	),
+
+	// @todo this is almost (but not quite) copy/paste from 'edit-post'. find a way to share?
+	'undo-edit-post' => array(
+		'performs-writes' => true,
+		'log_type' => false, // maybe?
+		'rc_insert' => true,
+		'permissions' => array(
+			PostRevision::MODERATED_NONE => '',
+		),
+		'root-permissions' => array(
+			PostRevision::MODERATED_NONE => '',
+		),
+		'links' => array( 'post-history', 'topic-history', 'topic', 'post', 'diff-post', 'post-revision' ),
+		'actions' => array( 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post', 'undo-edit-post' ),
+		'history' => array(
+			'i18n-message' => 'flow-rev-message-edit-post',
+			'i18n-params' => array(
+				'user-links',
+				'user-text',
+				'post-url',
+				'topic-of-post',
+			),
+			'class' => 'flow-history-edit-post',
+		),
+		'handler-class' => 'Flow\Actions\UndoEditPostAction',
 		'watch' => array(
 			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
 		),

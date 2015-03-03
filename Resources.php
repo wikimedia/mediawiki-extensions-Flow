@@ -269,7 +269,7 @@ $wgResourceModules += array(
 			'wikiglyph/flow-override.less',
 		),
 	) + $mobile,
-	'ext.flow.styles' => $flowResourceTemplate + array(
+	'ext.flow.styles.base' => $flowResourceTemplate + array(
 		'styles' => array(
 			'styles/common.less',
 			'styles/errors.less',
@@ -397,7 +397,29 @@ $wgResourceModules += array(
 			'engine/misc/flow-baseconvert.js',
 		),
 		'dependencies' => array(
-			'ext.flow.components'
+			'ext.flow.components',
+		),
+	) + $mobile,
+	'ext.flow.preview.styles' => $flowResourceTemplate + array(
+		'dependencies' => array(
+			'mediawiki.ui.button',
+			'mediawiki.ui.input',
+			'ext.flow.styles.base',
+			'ext.flow.board.styles',
+			'ext.flow.board.topic.styles',
+		),
+	) + $mobile,
+	'ext.flow.undo' => $flowResourceTemplate + array(
+		'scripts' => array(
+			// this must be last (of everything loaded.  otherwise a components
+			// can be initialized before all the mixins are loaded.  Can we mixin
+			// after initialization?)
+			'flow-initialize.js',
+		),
+		// minimal subset for the undo pages
+		'dependencies' => array(
+			'ext.flow.components',
+			'ext.flow.preview',
 		),
 	) + $mobile,
 	'ext.flow.editor' => $flowResourceTemplate + array(
