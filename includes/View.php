@@ -72,6 +72,9 @@ class View extends ContextSource {
 		wfProfileOut( __CLASS__ . '-init' );
 
 		$parameters = $this->extractBlockParameters( $action, $request, $blocks );
+		foreach ( $loader->getBlocks() as $block ) {
+			$block->init( $this, $action );
+		}
 
 		$wasPosted = $request->wasPosted();
 		if ( $wasPosted ) {
@@ -93,10 +96,6 @@ class View extends ContextSource {
 				}
 			}
 			wfProfileOut( __CLASS__ . '-submit' );
-		} else {
-			foreach ( $blocks as $block ) {
-				$block->init( $this, $action );
-			}
 		}
 
 		wfProfileIn( __CLASS__ . '-serialize' );

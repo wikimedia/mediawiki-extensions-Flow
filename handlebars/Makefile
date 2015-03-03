@@ -14,6 +14,7 @@ all:  \
 		compiled/flow_block_header_diff_view.handlebars.php \
 		compiled/flow_block_header_edit.handlebars.php \
 		compiled/flow_block_header_single_view.handlebars.php \
+		compiled/flow_block_header_undo_edit.handlebars.php \
 		compiled/flow_block_loop.handlebars.php \
 		compiled/flow_block_topic.handlebars.php \
 		compiled/flow_block_topic_diff_view.handlebars.php \
@@ -23,12 +24,14 @@ all:  \
 		compiled/flow_block_topic_moderate_post.handlebars.php \
 		compiled/flow_block_topic_moderate_topic.handlebars.php \
 		compiled/flow_block_topic_single_view.handlebars.php \
+		compiled/flow_block_topic_undo_edit.handlebars.php \
 		compiled/flow_block_topiclist.handlebars.php \
 		compiled/flow_block_topiclist_newtopic.handlebars.php \
 		compiled/flow_block_topicsummary_diff_view.handlebars.php \
 		compiled/flow_block_topicsummary_edit.handlebars.php \
 		compiled/flow_block_topicsummary_lock.handlebars.php \
 		compiled/flow_block_topicsummary_single_view.handlebars.php \
+		compiled/flow_block_topicsummary_undo_edit.handlebars.php \
 		compiled/flow_form_buttons.handlebars.php \
 		compiled/flow_post.handlebars.php \
 		compiled/flow_tooltip.handlebars.php \
@@ -60,6 +63,11 @@ compiled/flow_block_header_edit.handlebars.php: \
 compiled/flow_block_header_single_view.handlebars.php: \
 		flow_block_header_single_view.handlebars
 	$(COMPILE) flow_block_header_single_view
+
+compiled/flow_block_header_undo_edit.handlebars.php: \
+		flow_block_header_undo_edit.handlebars \
+		flow_errors.handlebars
+	$(COMPILE) flow_block_header_undo_edit
 
 compiled/flow_block_loop.handlebars.php: \
 		flow_block_loop.handlebars
@@ -145,6 +153,11 @@ compiled/flow_block_topic_single_view.handlebars.php: \
 		flow_block_topic_single_view.handlebars
 	$(COMPILE) flow_block_topic_single_view
 
+compiled/flow_block_topic_undo_edit.handlebars.php: \
+		flow_block_topic_undo_edit.handlebars \
+		flow_errors.handlebars
+	$(COMPILE) flow_block_topic_undo_edit
+
 compiled/flow_block_topiclist.handlebars.php: \
 		flow_block_topiclist.handlebars \
 		flow_board_navigation.handlebars \
@@ -191,6 +204,11 @@ compiled/flow_block_topicsummary_lock.handlebars.php: \
 compiled/flow_block_topicsummary_single_view.handlebars.php: \
 		flow_block_topicsummary_single_view.handlebars
 	$(COMPILE) flow_block_topicsummary_single_view
+
+compiled/flow_block_topicsummary_undo_edit.handlebars.php: \
+		flow_block_topicsummary_undo_edit.handlebars \
+		flow_errors.handlebars
+	$(COMPILE) flow_block_topicsummary_undo_edit
 
 compiled/flow_form_buttons.handlebars.php: \
 		flow_form_buttons.handlebars
