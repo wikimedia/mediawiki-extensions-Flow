@@ -41,22 +41,23 @@ class TopicSummaryBlock extends AbstractBlock {
 	/**
 	 * @var string[]
 	 */
-	protected $supportedPostActions = array( 'edit-topic-summary' );
+	protected $supportedPostActions = array( 'edit-topic-summary', 'undo-edit-topic-summary' );
 
 	/**
 	 * @var string[]
 	 */
-	protected $supportedGetActions = array( 'view-topic-summary', 'compare-postsummary-revisions', 'edit-topic-summary' );
+	protected $supportedGetActions = array( 'view-topic-summary', 'compare-postsummary-revisions', 'edit-topic-summary', 'undo-edit-topic-summary' );
 
 	/**
 	 * @var string[]
 	 */
-	protected $requiresWikitext = array( 'edit-topic-summary' );
+	protected $requiresWikitext = array( 'edit-topic-summary', 'undo-edit-topic-summary' );
 
 	protected $templates = array(
 		'view-topic-summary' => 'single_view',
 		'compare-postsummary-revisions' => 'diff_view',
 		'edit-topic-summary' => 'edit',
+		'undo-edit-topic-summary' => 'undo_edit',
 	);
 
 	/**
@@ -81,6 +82,7 @@ class TopicSummaryBlock extends AbstractBlock {
 	 */
 	public function validate() {
 		switch( $this->action ) {
+			case 'undo-edit-topic-summary':
 			case 'edit-topic-summary':
 				$this->validateTopicSummary();
 			break;
@@ -214,6 +216,7 @@ class TopicSummaryBlock extends AbstractBlock {
 	 */
 	public function commit() {
 		switch( $this->action ) {
+			case 'undo-edit-topic-summary':
 			case 'edit-topic-summary':
 				return $this->saveTopicSummary();
 			break;
@@ -269,6 +272,9 @@ class TopicSummaryBlock extends AbstractBlock {
 			case 'edit-topic-summary':
 				$output = $this->renderNewestTopicSummary() + $output;
 				break;
+			case 'undo-edit-topic-summary':
+				$output = $this->renderUndoApi( $options ) + $output;
+				break;
 			case 'compare-postsummary-revisions':
 				// @Todo - duplicated logic in other diff view block
 				if ( !isset( $options['newRevision'] ) ) {
@@ -320,6 +326,26 @@ class TopicSummaryBlock extends AbstractBlock {
 		return $output;
 	}
 
+	protected function renderUndoApi( array $options ) {
+		if ( $this->workflow->isNew() ) {
+			throw new FlowException( 'No header exists to undo' );
+		}
+
+		if ( !isset( $options['startId'], $options['endId'] ) ) {
+			throw new InvalidInputException( 'Both startId and endId must be provided' );
+		}
+
+		/** @var RevisionViewQuery */
+		$query = Container::get( 'query.postsummary.view' );
+		$rows = $query->getUndoDiffResult( $options['startId'], $options['endId'] );
+		if ( !$rows ) {
+			throw new InvalidInputException( 'Could not load revision to undo' );
+		}
+
+		$serializer = Container::get( 'formatter.undoedit' );
+		return $serializer->formatApi( $rows[0], $rows[1], $rows[2], $this->context );
+	}
+
 	public function getName() {
 		return 'topicsummary';
 	}
@@ -332,7 +358,12 @@ class TopicSummaryBlock extends AbstractBlock {
 		$title = $this->workflow->getOwnerTitle();
 		$out->setPageTitle( $out->msg( 'flow-topic-first-heading', $title->getPrefixedText() ) );
 		if ( $this->permissions->isAllowed( $topic, 'view' ) ) {
-			$out->setHtmlTitle( $out->msg( 'flow-topic-html-title', array(
+			if ( $this->action === 'undo-edit-topic-summary' ) {
+				$key = 'flow-undo-edit-topic-summary';
+			} else {
+				$key = 'flow-topic-html-title';
+			}
+			$out->setHtmlTitle( $out->msg( $key, array(
 				// This must be a rawParam to not expand {{foo}} in the title, it must
 				// not be htmlspecialchar'd because OutputPage::setHtmlTitle handles that.
 				Message::rawParam( $topic->getContent( 'wikitext' ) ),
