@@ -2,6 +2,57 @@
   "comments": [
     {
       "key": {
+        "uuid": "6e7c4fa4_13797ac2",
+        "filename": "includes/Data/Listener/ModerationLoggingListener.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-03T21:44:38Z",
+      "side": 1,
+      "message": "This should go into ModerationLogger.php.  We\u0027re trying to keep this listener minimal.\n\nSee https://gerrit.wikimedia.org/r/#/c/192054/1/includes/Data/Listener/ModerationLoggingListener.php",
+      "revId": "e21cc2d4f70f8b2aaa155f9dc113b70a7d5622cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_88031579",
+        "filename": "maintenance/FlowFixLog.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-03T21:44:38Z",
+      "side": 1,
+      "message": "Does this need to be DB_MASTER as well since it feeds into a write (so it\u0027s not working on out of date data)?",
+      "revId": "e21cc2d4f70f8b2aaa155f9dc113b70a7d5622cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_73ed4e89",
+        "filename": "maintenance/FlowFixLog.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-03T21:44:38Z",
+      "side": 1,
+      "message": "Failure should be logged with $this-\u003eerror",
+      "revId": "e21cc2d4f70f8b2aaa155f9dc113b70a7d5622cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_1a50c60c",
         "filename": "maintenance/FlowFixLog.php",
         "patchSetId": 4
@@ -31,6 +82,23 @@
       "side": 1,
       "message": "I try to not trust the data as much as possible, so assuming topicId or postId may not exist.\n\nThis version doesn\u0027t suffice if topicId doesn\u0027t exist (which is the case for older entries - only logged postId):\n\n    if ( isset( $params[\u0027postId\u0027] ) ) {\n        $post \u003d $this-\u003eloadPost( $params[\u0027postId\u0027] );\n    }\n    $topic \u003d $this-\u003eloadTopic( $params[\u0027topicId\u0027] );\n\nThis version is slower if topicId already exists, because it does a tree repo lookup that could be avoided:\n\n    if ( isset( $params[\u0027postId\u0027] ) ) {\n        $post \u003d $this-\u003eloadPost( $params[\u0027postId\u0027] );\n        $topic \u003d $post-\u003egetRoot();\n    } else {\n        $topic \u003d $this-\u003eloadTopic( $params[\u0027topicId\u0027] );\n    }\n\nI guess I really want to treat them separately (not in an else-statement) unless I misunderstood the comment :)",
       "parentUuid": "6e7c4fa4_1a50c60c",
+      "revId": "e21cc2d4f70f8b2aaa155f9dc113b70a7d5622cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_33e3569d",
+        "filename": "maintenance/FlowFixLog.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-03T21:44:38Z",
+      "side": 1,
+      "message": "Failure should be logged with $this-\u003eerror",
       "revId": "e21cc2d4f70f8b2aaa155f9dc113b70a7d5622cc",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
