@@ -35,6 +35,8 @@ use Flow\Data\Listener\RecentChangesListener;
  * * rc_title: Either 'article' or 'owner' to select between Workflow::getArticleTitle
  *     or Workflow::getOwnerTitle being used as the related recentchanges entry on insert
  * * editcount: True to increment user's edit count for this action
+ * * modules: Modules to insert with RL to html page for this action instead of the defaults
+ * * moduleStyles: Style modules to insert with RL to html page for this action instead of the defaults
  */
 $wgFlowActions = array(
 	'create-header' => array(

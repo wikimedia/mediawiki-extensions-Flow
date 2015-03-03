@@ -18,29 +18,34 @@ use WebRequest;
 
 class View extends ContextSource {
 	/**
-	 * @var UrlGenerator $urlGenerator
+	 * @var UrlGenerator
 	 */
 	protected $urlGenerator;
 
 	/**
-	 * @var TemplateHelper $lightncandy
+	 * @var TemplateHelper
 	 */
 	protected $lightncandy;
+
+	/**
+	 * @var FlowActions
+	 */
+	protected $actions;
 
 	function __construct(
 		UrlGenerator $urlGenerator,
 		TemplateHelper $lightncandy,
-		IContextSource $requestContext
+		IContextSource $requestContext,
+		FlowActions $actions
 	) {
 		$this->urlGenerator = $urlGenerator;
 		$this->lightncandy = $lightncandy;
 		$this->setContext( $requestContext );
+		$this->actions = $actions;
 	}
 
 	public function show( WorkflowLoader $loader, $action ) {
 		wfProfileIn( __CLASS__ . '-init' );
-
-		$this->addModules( $this->getOutput() );
 
 		$blocks = $loader->getBlocks();
 		wfProfileOut( __CLASS__ . '-init' );
@@ -71,32 +76,44 @@ class View extends ContextSource {
 		die( $data );
 		**/
 
+		$output = $this->getOutput();
+		$this->addModules( $output, $action );
 		// Please note that all blocks can set page title, which may cause them
 		// to override one another's titles
 		foreach ( $blocks as $block ) {
-			$block->setPageTitle( $this->getOutput() );
+			$block->setPageTitle( $output );
 		}
+
 
 		$this->renderApiResponse( $apiResponse );
 	}
 
-	protected function addModules( OutputPage $out ) {
-		$out->addModuleStyles( array(
-			'mediawiki.ui',
-			'mediawiki.ui.anchor',
-			'mediawiki.ui.button',
-			'mediawiki.ui.input',
-			'mediawiki.ui.text',
-			'ext.flow.styles',
-			'ext.flow.mediawiki.ui.tooltips',
-			'ext.flow.mediawiki.ui.form',
-			'ext.flow.mediawiki.ui.modal',
-			'ext.flow.mediawiki.ui.text',
-			'ext.flow.icons.styles',
-			'ext.flow.board.styles',
-			'ext.flow.board.topic.styles'
-		) );
-		$out->addModules( array( 'ext.flow' ) );
+	protected function addModules( OutputPage $out, $action ) {
+		if ( $this->actions->hasValue( $action, 'modules' ) ) {
+			$out->addModuleStyles( $this->actions->getValue( $action, 'modules' ) );
+		} else {
+			$out->addModules( array( 'ext.flow' ) );
+		}
+
+		if ( $this->actions->hasValue( $action, 'moduleStyles' ) ) {
+			$out->addModuleStyles( $this->actions->getValue( $action, 'moduleStyles' ) );
+		} else {
+			$out->addModuleStyles( array(
+				'mediawiki.ui',
+				'mediawiki.ui.anchor',
+				'mediawiki.ui.button',
+				'mediawiki.ui.input',
+				'mediawiki.ui.text',
+				'ext.flow.styles' ,
+				'ext.flow.mediawiki.ui.tooltips',
+				'ext.flow.mediawiki.ui.form',
+				'ext.flow.mediawiki.ui.modal',
+				'ext.flow.mediawiki.ui.text',
+				'ext.flow.icons.styles',
+				'ext.flow.board.styles',
+				'ext.flow.board.topic.styles',
+			) );
+		}
 
 		// Allow other extensions to add modules
 		wfRunHooks( 'FlowAddModules', array( $out ) );
