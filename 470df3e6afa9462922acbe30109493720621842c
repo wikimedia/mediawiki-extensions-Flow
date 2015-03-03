@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_ae313902",
+        "filename": "includes/Log/ActionFormatter.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-03T23:19:45Z",
+      "side": 1,
+      "message": "It would be good to also mention here what you said in the commit message (that it doesn\u0027t directly use the batch-loaded data, but that it ensures the cache is primed).",
+      "revId": "470df3e6afa9462922acbe30109493720621842c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_d9124158",
+        "filename": "includes/Log/Query.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-03T23:19:45Z",
+      "side": 1,
+      "message": "I think the normal approach to call the container at the Flow entry-point, which is ActionFormatter in this case.",
+      "revId": "470df3e6afa9462922acbe30109493720621842c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_2e3e89d7",
+        "filename": "includes/Log/Query.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-03T23:19:45Z",
+      "side": 1,
+      "message": "Define the fields, with docs (at least @var and the type).",
+      "revId": "470df3e6afa9462922acbe30109493720621842c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
