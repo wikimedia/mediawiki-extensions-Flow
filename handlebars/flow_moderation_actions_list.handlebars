@@ -78,9 +78,24 @@
 			</li>
 		{{~/if~}}
 	{{~/ifCond~}}
+
 </section>
 
 <section>
+	{{~#ifCond moderationType "===" "history"~}}
+		{{!-- Board history only --}}
+		{{~#if actions.undo~}}
+			<li>
+				{{~noop~}}
+				<a class="{{moderationMwUiClass}} mw-ui-quiet"
+				   href="{{actions.undo.url}}"
+				>
+					{{~actions.undo.title~}}
+				</a>
+				{{~noop~}}
+			</li>
+		{{~/if~}}
+	{{~/ifCond~}}
 	{{~#if actions.hide~}}
 		<li>
 			{{~noop~}}
