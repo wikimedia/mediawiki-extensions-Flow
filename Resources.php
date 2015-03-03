@@ -388,6 +388,14 @@ $wgResourceModules += array(
 			'vendor/Storer.js',
 		),
 	) + $mobile,
+	'ext.flow.undo' => $flowResourceTemplate + array(
+		'scripts' => array(
+			'engine/components/undo/flow-undo.js',
+		),
+		'dependencies' => array(
+			'ext.flow.components',
+		),
+	) + $mobile,
 	'ext.flow.editor' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'editor/ext.flow.editor.js',
