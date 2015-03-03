@@ -311,26 +311,17 @@ $wgResourceModules += array(
 			'moment',
 		),
 	) + $mobile,
-	'ext.flow' => $flowResourceTemplate + array(
-		'scripts' => array( // Component order is important
-			// MW UI
-			'engine/misc/mw-ui.enhance.js',
-			'engine/misc/mw-ui.modal.js',
-
+	'ext.flow.components' => $flowResourceTemplate + array(
+		'scripts' => array(
+			'engine/components/flow-registry.js',
+			'engine/components/flow-component.js',
 			// FlowApi
 			'engine/misc/flow-api.js',
 			// FlowEventLog
 			'engine/misc/flow-eventlog.js',
-			// wfBaseConvert ported to js
-			'engine/misc/flow-baseconvert.js',
-			// Component registry
-			'engine/components/flow-registry.js',
 			// FlowComponent must come before actual components
-			'engine/components/flow-component.js',
 			'engine/components/common/flow-component-engines.js',
 			'engine/components/common/flow-component-events.js',
-			// Feature: flow-menu
-			'engine/components/common/flow-component-menus.js',
 
 			// Component: BoardAndHistoryBase
 			// Base class for both FlowBoardComponent and FlowBoardHistoryComponent
@@ -339,10 +330,31 @@ $wgResourceModules += array(
 
 			// Component: FlowBoardComponent
 			'engine/components/board/flow-board.js',
+			// Also needed for event log
+			'engine/components/board/base/flow-board-misc.js',
+		),
+		'dependencies' => array(
+			'oojs',
+			'ext.flow.handlebars', // prototype-based for progressiveEnhancement
+			'ext.flow.jquery.findWithParent',
+			'ext.flow.vendor.storer',
+			'mediawiki.Title',
+			'mediawiki.user',
+			'mediawiki.Uri',
+		),
+	) + $mobile,
+	'ext.flow' => $flowResourceTemplate + array(
+		'scripts' => array( // Component order is important
+			// MW UI
+			'engine/misc/mw-ui.enhance.js',
+			'engine/misc/mw-ui.modal.js',
+
+			// Feature: flow-menu
+			'engine/components/common/flow-component-menus.js',
+
 			'engine/components/board/base/flow-board-api-events.js',
 			'engine/components/board/base/flow-board-interactive-events.js',
 			'engine/components/board/base/flow-board-load-events.js',
-			'engine/components/board/base/flow-board-misc.js',
 			// Feature: Load More
 			'engine/components/board/features/flow-board-loadmore.js',
 			// Feature: Board Navigation Header
@@ -352,22 +364,17 @@ $wgResourceModules += array(
 
 			// Component: FlowBoardHistoryComponent
 			'engine/components/board/flow-boardhistory.js',
-			// This must be the last file loaded
+			// this must be last (of everything loaded.  otherwise a components
+			// can be initialized before all the mixins are loaded.  Can we mixin
+			// after initialization?)
 			'flow-initialize.js',
 		),
 		'dependencies' => array(
-			'oojs',
-			'ext.flow.templating', // ResourceLoader templating
-			'ext.flow.handlebars', // prototype-based for progressiveEnhancement
-			'ext.flow.vendor.storer',
+			'ext.flow.components',
 			'jquery.throttle-debounce',
 			'mediawiki.jqueryMsg',
 			'ext.flow.jquery.conditionalScroll',
-			'ext.flow.jquery.findWithParent',
 			'mediawiki.api',
-			'mediawiki.Uri',
-			'mediawiki.Title',
-			'mediawiki.user',
 			'mediawiki.util',
 		),
 		'messages' => array(
@@ -381,6 +388,16 @@ $wgResourceModules += array(
 	'ext.flow.vendor.storer' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'vendor/Storer.js',
+		),
+	) + $mobile,
+	'ext.flow.preview' => $flowResourceTemplate + array(
+		'scripts' => array(
+			'engine/components/board/features/flow-board-preview.js',
+			// wfBaseConvert ported to js
+			'engine/misc/flow-baseconvert.js',
+		),
+		'dependencies' => array(
+			'ext.flow.components'
 		),
 	) + $mobile,
 	'ext.flow.editor' => $flowResourceTemplate + array(
@@ -403,7 +420,7 @@ $wgResourceModules += array(
 			'jquery.spinner',
 			// ve dependencies will be loaded via JS
 		),
-       ),
+	),
 
 	'ext.flow.parsoid' => $flowResourceTemplate + array(
 		'scripts' => array(
