@@ -2,15 +2,16 @@
 
 namespace Flow;
 
+use ContextSource;
 use Flow\Block\AbstractBlock;
 use Flow\Exception\InvalidActionException;
 use Flow\Model\Anchor;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use ContextSource;
 use Html;
 use IContextSource;
 use Message;
+use OutputPage;
 use Title;
 use WebRequest;
 
@@ -39,8 +40,47 @@ class View extends ContextSource {
 	public function show( WorkflowLoader $loader, $action ) {
 		wfProfileIn( __CLASS__ . '-init' );
 
-		$out = $this->getOutput();
-		$styles = array(
+		$this->addModules( $this->getOutput() );
+
+		$blocks = $loader->getBlocks();
+		wfProfileOut( __CLASS__ . '-init' );
+
+		$parameters = $this->extractBlockParameters( $action, $blocks );
+		foreach ( $loader->getBlocks() as $block ) {
+			$block->init( $this, $action );
+		}
+
+		if ( $this->getRequest()->wasPosted() ) {
+			$retval = $this->handleSubmit( $loader, $action, $parameters );
+			// successfull submission
+			if ( $retval === true ) {
+				return;
+			// only render the returned subset of blocks
+			} elseif ( is_array( $retval ) ) {
+				$blocks = $retval;
+			}
+		}
+
+		$apiResponse = $this->buildApiResponse( $loader, $blocks, $action, $parameters );
+
+		/**
+		header( 'Content-Type: application/json; content=utf-8' );
+		$data = json_encode( $apiResponse );
+		//return;
+		die( $data );
+		**/
+
+		// Please note that all blocks can set page title, which may cause them
+		// to override one another's titles
+		foreach ( $blocks as $block ) {
+			$block->setPageTitle( $this->getOutput() );
+		}
+
+		$this->renderApiResponse( $apiResponse );
+	}
+
+	protected function addModules( OutputPage $out ) {
+		$out->addModuleStyles( array(
 			'mediawiki.ui',
 			'mediawiki.ui.anchor',
 			'mediawiki.ui.button',
@@ -54,52 +94,39 @@ class View extends ContextSource {
 			'ext.flow.icons.styles',
 			'ext.flow.board.styles',
 			'ext.flow.board.topic.styles'
-		);
-		$out->addModuleStyles( $styles );
+		) );
 		$out->addModules( array( 'ext.flow' ) );
 
 		// Allow other extensions to add modules
 		wfRunHooks( 'FlowAddModules', array( $out ) );
+	}
 
-		$workflow = $loader->getWorkflow();
+	protected function handleSubmit( WorkflowLoader $loader, $action, array $parameters ) {
+		$this->getOutput()->enableClientCache( false );
 
-		$title = $workflow->getArticleTitle();
-
-		$request = $this->getRequest();
-		$user = $this->getUser();
-
-		$blocks = $loader->getBlocks();
-		wfProfileOut( __CLASS__ . '-init' );
-
-		$parameters = $this->extractBlockParameters( $action, $request, $blocks );
-
-		$wasPosted = $request->wasPosted();
-		if ( $wasPosted ) {
-			wfProfileIn( __CLASS__ . '-submit' );
-			$out->enableClientCache( false );
-			$blocksToCommit = $loader->handleSubmit( $this, $action, $parameters );
-			if ( $blocksToCommit ) {
-				if ( !$user->matchEditToken( $request->getVal( 'wpEditToken' ) ) ) {
-					// only render the failed blocks
-					$blocks = $blocksToCommit;
-					foreach ( $blocks as $block ) {
-						$block->addError( 'edit-token', $this->msg( 'sessionfailure' ) );
-					}
-				} else {
-					$loader->commit( $workflow, $blocksToCommit );
-					$this->redirect( $workflow, 'view' );
-					wfProfileOut( __CLASS__ . '-submit' );
-					return;
-				}
-			}
-			wfProfileOut( __CLASS__ . '-submit' );
-		} else {
-			foreach ( $blocks as $block ) {
-				$block->init( $this, $action );
-			}
+		$blocksToCommit = $loader->handleSubmit( $this, $action, $parameters );
+		if ( !$blocksToCommit ) {
+			return false;
 		}
 
-		wfProfileIn( __CLASS__ . '-serialize' );
+		if ( !$user->matchEditToken( $this->getRequest()->getVal( 'wpEditToken' ) ) ) {
+			// this uses the above $blocks reference to only render the failed blocks
+			foreach ( $blocks as $block ) {
+				$block->addError( 'edit-token', $this->msg( 'sessionfailure' ) );
+			}
+			return $blocksToCommit;
+		}
+
+		$loader->commit( $blocksToCommit );
+		$this->redirect( $loader->getWorkflow(), 'view' );
+		return true;
+	}
+
+	protected function buildApiResponse( WorkflowLoader $loader, array $blocks, $action, array $parameters ) {
+		$workflow = $loader->getWorkflow();
+		$title = $workflow->getArticleTitle();
+		$user = $this->getUser();
+
 		// @todo This and API should use same code
 		$apiResponse = array(
 			'title' => $title->getPrefixedText(),
@@ -118,6 +145,7 @@ class View extends ContextSource {
 		);
 
 		$editToken = $user->getEditToken();
+		$wasPosted = $this->getRequest()->wasPosted();
 		foreach ( $blocks as $block ) {
 			if ( $wasPosted ? $block->canSubmit( $action ) : $block->canRender( $action ) ) {
 				$apiResponse['blocks'][] = $block->renderApi( $parameters[$block->getName()] )
@@ -127,12 +155,6 @@ class View extends ContextSource {
 									'editToken' => $editToken,
 								);
 			}
-		}
-
-		// Please note that all blocks can set page title, which may cause them
-		// to override one another's titles
-		foreach ( $blocks as $block ) {
-			$block->setPageTitle( $this->getOutput() );
 		}
 
 		if ( count( $apiResponse['blocks'] ) === 0 ) {
@@ -156,65 +178,47 @@ class View extends ContextSource {
 				$value = $value->getAlphadecimal();
 			}
 		} );
-		wfProfileOut( __CLASS__ . '-serialize' );
 
-		if ( $action === 'view' ) {
-			// Update newtalk and watchlist notification status on view action of any workflow
-			// since the normal page view that resets notification status is not accessiable
-			// anymore due to Flow occupation
-			$user->clearNotification( $title );
+		return $apiResponse;
+	}
 
-			// attach categories that would be shown on a normal page
-			$out->addCategoryLinks( $this->getCategories( $title ) );
-		}
-
-		/**
-		header( 'Content-Type: application/json; content=utf-8' );
-		$data = json_encode( $apiResponse );
-		//return;
-		die( $data );
-		**/
-
-		// Render with lightncandy. The exact template to render
-		// will likely need to vary, but not yet.
-		wfProfileIn( __CLASS__ . '-render' );
-
+	protected function renderApiResponse( array $apiResponse ) {
 		// Render the flow-component wrapper
-		if ( !empty( $apiResponse['blocks'] ) ) {
-			$renderedBlocks = array();
-
-			foreach ( $apiResponse['blocks'] as $block ) {
-				// @todo find a better way to do this; potentially make all blocks their own components
-				switch ( $block['type'] ) {
-					case 'board-history':
-						$flowComponent = 'boardHistory';
-						break;
-					default:
-						$flowComponent = 'board';
-				}
-
-				// Don't re-render a block type twice in one page
-				if ( isset( $renderedBlocks[$flowComponent] ) ) {
-					continue;
-				}
-				$renderedBlocks[$flowComponent] = true;
-
-				// Get the block loop template
-				$template = $this->lightncandy->getTemplate( 'flow_block_loop' );
-				// Output the component, with the rendered blocks inside it
-				$out->addHTML( Html::rawElement(
-					'div',
-					array(
-						'class'               => 'flow-component',
-						'data-flow-component' => $flowComponent,
-						'data-flow-id'        => $apiResponse['workflow'],
-					),
-					$template( $apiResponse )
-				) );
-			}
+		if ( empty( $apiResponse['blocks'] ) ) {
+			return array();
 		}
 
-		wfProfileOut( __CLASS__ . '-render' );
+		$out = $this->getOutput();
+		$renderedBlocks = array();
+		foreach ( $apiResponse['blocks'] as $block ) {
+			// @todo find a better way to do this; potentially make all blocks their own components
+			switch ( $block['type'] ) {
+				case 'board-history':
+					$flowComponent = 'boardHistory';
+					break;
+				default:
+					$flowComponent = 'board';
+			}
+
+			// Don't re-render a block type twice in one page
+			if ( isset( $renderedBlocks[$flowComponent] ) ) {
+				continue;
+			}
+			$renderedBlocks[$flowComponent] = true;
+
+			// Get the block loop template
+			$template = $this->lightncandy->getTemplate( 'flow_block_loop' );
+			// Output the component, with the rendered blocks inside it
+			$out->addHTML( Html::rawElement(
+				'div',
+				array(
+					'class'               => 'flow-component',
+					'data-flow-component' => $flowComponent,
+					'data-flow-id'        => $apiResponse['workflow'],
+				),
+				$template( $apiResponse )
+			) );
+		}
 	}
 
 	protected function redirect( Workflow $workflow ) {
@@ -233,7 +237,8 @@ class View extends ContextSource {
 	 * @param AbstractBlock[] $blocks
 	 * @return array
 	 */
-	public function extractBlockParameters( $action, WebRequest $request, array $blocks ) {
+	public function extractBlockParameters( $action, array $blocks ) {
+		$request = $this->getRequest();
 		$result = array();
 		// BC for old parameters enclosed in square brackets
 		foreach ( $blocks as $block ) {
@@ -264,27 +269,5 @@ class View extends ContextSource {
 		}
 
 		return $result;
-	}
-
-	protected function getCategories( Title $title ) {
-		$id = $title->getArticleId();
-		if ( !$id ) {
-			return array();
-		}
-
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select(
-			/* from */ 'categorylinks',
-			/* select */ array( 'cl_to', 'cl_sortkey' ),
-			/* conditions */ array( 'cl_from' => $id ),
-			__METHOD__
-		);
-
-		$categories = array();
-		foreach ( $res as $row ) {
-			$categories[$row->cl_to] = $row->cl_sortkey;
-		}
-
-		return $categories;
 	}
 }
