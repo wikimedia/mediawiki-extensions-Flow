@@ -231,7 +231,25 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * @throws InvalidInputException
 	 */
 	public function renderApi( array $options ) {
-		$output = array( 'type' => $this->getName() );
+		$output = array(
+			'type' => $this->getName(),
+			'modules' => array( 'ext.flow' ),
+			'moduleStyles' => array(
+				'mediawiki.ui',
+				'mediawiki.ui.anchor',
+				'mediawiki.ui.button',
+				'mediawiki.ui.input',
+				'mediawiki.ui.text',
+				'ext.flow.styles',
+				'ext.flow.mediawiki.ui.tooltips',
+				'ext.flow.mediawiki.ui.form',
+				'ext.flow.mediawiki.ui.modal',
+				'ext.flow.mediawiki.ui.text',
+				'ext.flow.icons.styles',
+				'ext.flow.board.styles',
+				'ext.flow.board.topic.styles',
+			),
+		 );
 
 		if ( $this->wasSubmitted() ) {
 			$output += array(
@@ -259,11 +277,11 @@ class TopicSummaryBlock extends AbstractBlock {
 					if ( isset( $options['contentFormat'] ) && $options['contentFormat'] === 'wikitext' ) {
 						$this->requiresWikitext[] = 'view-topic-summary';
 					}
-					$output += $this->renderNewestTopicSummary();
+					$output = $this->renderNewestTopicSummary() + $output;
 				}
 				break;
 			case 'edit-topic-summary':
-				$output += $this->renderNewestTopicSummary();
+				$output = $this->renderNewestTopicSummary() + $output;
 				break;
 			case 'compare-postsummary-revisions':
 				// @Todo - duplicated logic in other diff view block
