@@ -63,7 +63,7 @@ class WorkflowLoader {
 			->handleSubmit( $this->workflow, $context, $this->blocks, $action, $parameters );
 	}
 
-	public function commit( Workflow $workflow, array $blocks ) {
-		return $this->submissionHandler->commit( $workflow, $blocks );
+	public function commit( array $blocks ) {
+		return $this->submissionHandler->commit( $this->workflow, $blocks );
 	}
 }
