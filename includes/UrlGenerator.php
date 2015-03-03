@@ -246,6 +246,87 @@ class UrlGenerator {
 	}
 
 	/**
+	 * Generate a link to undo the specified revision.  Note that this will only work if
+	 * that is the most recent content edit against the revision type.
+	 *
+	 * @param AbstractRevision $revision The revision to undo.
+	 * @param Title|null $title The title the revision belongs to
+	 * @param UUID $workflowId The workflow id the revision belongs to
+	 * @return Anchor
+	 * @throws FlowException When the provided revision is not known
+	 */
+	public function undoAction( AbstractRevision $revision, Title $title = null, UUID $workflowId ) {
+		$startId = $revision->getPrevRevisionId();
+		$endId = $revision->getRevisionId();
+		if ( $revision instanceof PostRevision ) {
+			return $this->undoEditPostAction( $title, $workflowId, $startId, $endId );
+		} elseif ( $revision instanceof Header ) {
+			return $this->undoEditHeaderAction( $title, $workflowId, $startId, $endId );
+		} elseif ( $revision instanceof PostSummary ) {
+			return $this->undoEditSummaryAction( $title, $workflowId, $startId, $endId );
+		} else {
+			throw new FlowException( 'Unknown revision type: ' . get_class( $revision ) );
+		}
+	}
+
+	/**
+	 * @param Title|null $title The title the post belongs to, or null
+	 * @param UUID $workflowId The workflowId the post belongs to
+	 * @param UUID $startId The revision to start undo from.
+	 * @param UUID $endId The revision to stop undoing at
+	 * @return Anchor
+	 */
+	public function undoEditPostAction( Title $title = null, UUID $workflowId, UUID $startId, UUID $endId ) {
+		return new Anchor(
+			wfMessage( 'flow-undo' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'undo-edit-post',
+				'topic_startId' => $startId->getAlphadecimal(),
+				'topic_endId' => $endId->getAlphadecimal(),
+			)
+		);
+	}
+
+	/**
+	 * @param Title|null $title The title the header belongs to, or null
+	 * @param UUID $workflowId The workflowId the header belongs to
+	 * @param UUID $startId The revision to start undo from.
+	 * @param UUID $endId The revision to stop undoing at
+	 * @return Anchor
+	 */
+	public function undoEditHeaderAction( Title $title = null, UUID $workflowId, UUID $startId, UUID $endId ) {
+		return new Anchor(
+			wfMessage( 'flow-undo' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'undo-edit-header',
+				'header_startId' => $startId->getAlphadecimal(),
+				'header_endId' => $endId->getAlphadecimal(),
+			)
+		);
+	}
+
+	/**
+	 * @param Title|null $title The title the summary belongs to, or null
+	 * @param UUID $workflowId The workflowId the summary belongs to
+	 * @param UUID $startId The revision to start undo from.
+	 * @param UUID $endId The revision to stop undoing at
+	 * @return Anchor
+	 */
+	public function undoEditSummaryAction( Title $title = null, UUID $workflowId, UUID $startId, UUID $endId ) {
+		return new Anchor(
+			wfMessage( 'flow-undo' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'undo-edit-topic-summary',
+				'topicsummary_startId' => $startId->getAlphadecimal(),
+				'topicsummary_endId' => $endId->getAlphadecimal(),
+			)
+		);
+	}
+
+	/**
 	 * @param AbstractRevision $revision
 	 * @param Title|null $title
 	 * @param UUID $workflowId

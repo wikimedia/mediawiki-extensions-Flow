@@ -898,19 +898,22 @@ $c['query.postsummary'] = function( $c ) {
 $c['query.header.view'] = function( $c ) {
 	return new Flow\Formatter\HeaderViewQuery(
 		$c['storage'],
-		$c['repository.tree']
+		$c['repository.tree'],
+		$c['permissions']
 	);
 };
 $c['query.post.view'] = function( $c ) {
 	return new Flow\Formatter\PostViewQuery(
 		$c['storage'],
-		$c['repository.tree']
+		$c['repository.tree'],
+		$c['permissions']
 	);
 };
 $c['query.postsummary.view'] = function( $c ) {
 	return new Flow\Formatter\PostSummaryViewQuery(
 		$c['storage'],
-		$c['repository.tree']
+		$c['repository.tree'],
+		$c['permissions']
 	);
 };
 $c['formatter.recentchanges'] = function( $c ) {
@@ -1179,6 +1182,12 @@ $c['importer'] = function( $c ) {
 
 $c['listener.editcount'] = function( $c ) {
 	return new \Flow\Data\Listener\EditCountListener( $c['flow_actions'] );
+};
+
+$c['formatter.undoedit'] = function( $c ) {
+	return new Flow\Formatter\RevisionUndoViewFormatter(
+		$c['formatter.revisionview']
+	);
 };
 
 return $c;
