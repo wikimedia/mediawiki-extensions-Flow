@@ -83,7 +83,7 @@ class ActionFormatter extends \LogFormatter {
 		$message = wfMessage( "logentry-$type-$action" )
 			->params( array(
 				Message::rawParam( $this->getPerformerElement() ),
-				$this->entry->getPerformer()->getId(),
+				$this->entry->getPerformer()->getName(),
 				$title, // link to topic
 				$title->getFullUrl(), // link to topic, higlighted post
 				$root->getLastRevision()->getContent(), // topic title
