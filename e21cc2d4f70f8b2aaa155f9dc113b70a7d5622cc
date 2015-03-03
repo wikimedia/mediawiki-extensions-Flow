@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_99a5a902",
+        "filename": "includes/Data/Listener/ModerationLoggingListener.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-03T23:29:20Z",
+      "side": 1,
+      "message": "Also, there\u0027s some conflicting code already there.",
+      "parentUuid": "6e7c4fa4_13797ac2",
+      "revId": "e21cc2d4f70f8b2aaa155f9dc113b70a7d5622cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_88031579",
         "filename": "maintenance/FlowFixLog.php",
         "patchSetId": 4
