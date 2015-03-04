@@ -760,7 +760,9 @@
 	 */
 	function flowEventsMixinexpandTextarea( $textarea ) {
 		$textarea.removeClass( 'flow-input-compressed' );
-		mw.flow.editor.load( $textarea, $textarea.val(), 'wikitext' );
+		mw.loader.using( 'ext.flow.editor', function() {
+			mw.flow.editor.load( $textarea, $textarea.val(), 'wikitext' );
+		} );
 	}
 	FlowComponentEventsMixin.eventHandlers.expandTextarea = flowEventsMixinexpandTextarea;
 
