@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_c8b908c2",
+        "filename": "includes/Data/Listener/ModerationLoggingListener.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-04T08:38:52Z",
+      "side": 1,
+      "message": "Makes sense! Done.",
+      "parentUuid": "6e7c4fa4_99a5a902",
+      "revId": "e21cc2d4f70f8b2aaa155f9dc113b70a7d5622cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_88031579",
         "filename": "maintenance/FlowFixLog.php",
         "patchSetId": 4
@@ -54,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_682b142f",
+        "filename": "maintenance/FlowFixLog.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-04T08:38:52Z",
+      "side": 1,
+      "message": "WaitRowWriter will wfWaitForSlaves after every write, so DB_SLAVE should be fine here.",
+      "parentUuid": "6e7c4fa4_88031579",
+      "revId": "e21cc2d4f70f8b2aaa155f9dc113b70a7d5622cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_73ed4e89",
         "filename": "maintenance/FlowFixLog.php",
         "patchSetId": 4
@@ -65,6 +101,24 @@
       "writtenOn": "2015-03-03T21:44:38Z",
       "side": 1,
       "message": "Failure should be logged with $this-\u003eerror",
+      "revId": "e21cc2d4f70f8b2aaa155f9dc113b70a7d5622cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_28851c0b",
+        "filename": "maintenance/FlowFixLog.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-04T08:38:52Z",
+      "side": 1,
+      "message": "This is no longer the maintenance class, but a separate for batch updater - $this-\u003eerror doens\u0027t exist here.\n\nBut I\u0027ll pass maintenance class to this one\u0027s constructor and make a public version of Maintenace::error, so it can be called here.",
+      "parentUuid": "6e7c4fa4_73ed4e89",
       "revId": "e21cc2d4f70f8b2aaa155f9dc113b70a7d5622cc",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -117,6 +171,24 @@
       "writtenOn": "2015-03-03T21:44:38Z",
       "side": 1,
       "message": "Failure should be logged with $this-\u003eerror",
+      "revId": "e21cc2d4f70f8b2aaa155f9dc113b70a7d5622cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_48889822",
+        "filename": "maintenance/FlowFixLog.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-04T08:38:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_33e3569d",
       "revId": "e21cc2d4f70f8b2aaa155f9dc113b70a7d5622cc",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
