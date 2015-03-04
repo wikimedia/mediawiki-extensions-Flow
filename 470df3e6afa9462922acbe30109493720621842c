@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_2838bc38",
+        "filename": "includes/Log/ActionFormatter.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-04T08:53:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_ae313902",
+      "revId": "470df3e6afa9462922acbe30109493720621842c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_d9124158",
         "filename": "includes/Log/Query.php",
         "patchSetId": 6
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_082860db",
+        "filename": "includes/Log/Query.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-04T08:53:30Z",
+      "side": 1,
+      "message": "Yeah, I don\u0027t know. I originally put it here because all of this is rather hacky \u0026 I\u0027d like to contain the workarounds as much as possible, instead of having them bubble up to parent classes where we don\u0027t need them, just so we can pass them down.\n\nBut Erik also has a patch in to core that would allow us to properly construct ActionFormatter ahead of time and DI these 2 objects in there.\n\nSo yeah, it definitely makes more sense having them in ActionFormatter - I\u0027m moving them.",
+      "parentUuid": "6e7c4fa4_d9124158",
+      "revId": "470df3e6afa9462922acbe30109493720621842c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_2e3e89d7",
         "filename": "includes/Log/Query.php",
         "patchSetId": 6
@@ -47,6 +83,24 @@
       "writtenOn": "2015-03-03T23:19:45Z",
       "side": 1,
       "message": "Define the fields, with docs (at least @var and the type).",
+      "revId": "470df3e6afa9462922acbe30109493720621842c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_a84b6ccb",
+        "filename": "includes/Log/Query.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-04T08:53:30Z",
+      "side": 1,
+      "message": "The properties are already defined in parent class, but I\u0027ll @var-doc those 2 here.\n\n-\n\nupdate: I\u0027m moving them to ActionFormatter \u0026 @var-doc them over there.",
+      "parentUuid": "6e7c4fa4_2e3e89d7",
       "revId": "470df3e6afa9462922acbe30109493720621842c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
