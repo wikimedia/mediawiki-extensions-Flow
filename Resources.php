@@ -370,6 +370,7 @@ $wgResourceModules += array(
 		),
 		'dependencies' => array(
 			'ext.flow.components',
+			'ext.flow.preview',
 			'jquery.throttle-debounce',
 			'mediawiki.jqueryMsg',
 			'ext.flow.jquery.conditionalScroll',
@@ -398,7 +399,7 @@ $wgResourceModules += array(
 		'dependencies' => array(
 			'ext.flow.components'
 		),
-	) + $mobile,
+	),
 	'ext.flow.editor' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'editor/ext.flow.editor.js',
