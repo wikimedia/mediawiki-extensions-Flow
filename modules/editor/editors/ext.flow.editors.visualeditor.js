@@ -35,9 +35,8 @@
 	 * @param {string} [content='']
 	 */
 	mw.flow.editors.visualeditor.prototype.init = function ( content ) {
-		var $veNode, htmlDoc, dmDoc, target,
-			$focusedElement = $( ':focus' ),
-			flowEditor = this;
+		var target, surface, $veNode,
+			$focusedElement = $( ':focus' );
 
 		// ve.createDocumentFromHtml documents support for an empty string
 		// to create an empty document, but does not mention other falsy values.
@@ -46,74 +45,45 @@
 		// add i18n messages to VE
 		ve.init.platform.addMessages( mw.messages.values );
 
+		target = new ve.init.sa.Target( 'desktop' );
+		surface = target.addSurface(
+			ve.dm.converter.getModelFromDom(
+				ve.createDocumentFromHtml( content ),
+				null,
+				mw.config.get( 'wgVisualEditor' ).pageLanguageCode,
+				mw.config.get( 'wgVisualEditor' ).pageLanguageDir
+			)
+		);
+
 		$.removeSpinner( 'flow-editor-loading' );
 
-		// init ve, save target object
-		//
-		// We need at least some MW-specific stuff (e.g. links, MW-style files).
-		//
-		// But for now we're using standalone, since
-		// ve.init.mw.Target has some stuff that is not applicable
-		// to us (e.g. submitUrl, this.$checkboxes), and there
-		// were glitches when I tried to use it.
-		//
-		// However, we will have to look at this later.
-		target = this.target = new ve.init.sa.Target(
-			'desktop'
+		// attach VE to DOM
+		target.setSurface( surface );
+		surface.$element.parent().insertAfter( this.$node );
+
+		// Add appropriately mw-content-ltr or mw-content-rtl class
+		surface.getView().getDocument().getDocumentNode().$element.addClass(
+			'mw-content-' + mw.config.get( 'wgVisualEditor' ).pageLanguageDir
 		);
 
-		htmlDoc = ve.createDocumentFromHtml( content ); // HTMLDocument
+		// focus VE instance if textarea had focus
+		if ( !$focusedElement.length || this.$node.is( $focusedElement ) ) {
+			surface.getView().focus();
+		}
 
-		// Based on ve.init.mw.Target.prototype.setupSurface
-		dmDoc = this.dmDoc = ve.dm.converter.getModelFromDom(
-			htmlDoc,
-			null,
-			mw.config.get( 'wgVisualEditor' ).pageLanguageCode,
-			mw.config.get( 'wgVisualEditor' ).pageLanguageDir
-		);
-		dmDoc.buildNodeTree();
+		// add class to editor, to give it our desired look & feel
+		$veNode = surface.$element.find( '.ve-ce-documentNode' );
+		$veNode.addClass( 'mw-ui-input' );
 
-		setTimeout( function () {
-			var surface = target.addSurface( dmDoc ),
-				surfaceView = surface.getView(),
-				$documentNode = surfaceView.getDocument().getDocumentNode().$element;
+		// simulate a keyup event on the original node, so the validation code will
+		// pick up changes in the new node
+		$veNode.keyup( $.proxy( function () {
+			this.$node.keyup();
+		}, this ) );
 
-			$( '<div>' ).insertAfter( flowEditor.$node ).append( target.$element );
-			surface.$element.appendTo( target.$element );
-
-			$documentNode.addClass(
-			// Add appropriately mw-content-ltr or mw-content-rtl class
-				'mw-content-' + mw.config.get( 'wgVisualEditor' ).pageLanguageDir
-			);
-
-			target.setSurface( surface );
-			setTimeout( function () {
-				surface.getContext().toggle( true ); // Visible
-				target.active = true;
-
-				// focus VE instance if textarea had focus
-				if ( !$focusedElement.length || flowEditor.$node.is( $focusedElement ) ) {
-					flowEditor.focus();
-				} else {
-					$focusedElement.focus();
-				}
-
-				$veNode = surface.$element.find( '.ve-ce-documentNode' );
-
-				$veNode.addClass( 'mw-ui-input' );
-
-				// simulate a keyup event on the original node, so the validation code will
-				// pick up changes in the new node
-				$veNode.keyup( $.proxy( function () {
-					this.$node.keyup();
-				}, flowEditor ) );
-
-				$.each( flowEditor.initCallbacks, $.proxy( function( k, callback ) {
-					callback.apply( this );
-				}, flowEditor ) );
-
-			} );
-		} );
+		$.each( this.initCallbacks, $.proxy( function ( k, callback ) {
+			callback.apply( this );
+		}, this ) );
 	};
 
 	mw.flow.editors.visualeditor.prototype.destroy = function () {
@@ -130,7 +100,7 @@
 	 * @return {array}
 	 */
 	mw.flow.editors.visualeditor.prototype.getModules = function () {
-		var core, standalone, messages, icons, specific;
+		var core, standalone, messages, icons, plugins, specific;
 
 		// core setup
 		core = ['ext.visualEditor.core.desktop'];
@@ -148,10 +118,11 @@
 		icons = ['ext.visualEditor.icons'];
 
 		// plugins
-		//
-		// No plugins supported for now.  Later, we can figure out which plugins we want.
-
-		// plugins = mw.config.get( 'wgVisualEditorConfig' ).pluginModules || [],
+		plugins = [
+			'ext.visualEditor.mwlink',
+			'ext.visualEditor.mwgallery',
+			'ext.visualEditor.mwtransclusion'
+		];
 
 		// site & user
 		specific = ['site', 'user'];
@@ -161,7 +132,7 @@
 			standalone,
 			messages,
 			icons,
-			// plugins,
+			plugins,
 			specific
 		);
 	};

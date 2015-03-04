@@ -401,12 +401,15 @@ $wgResourceModules += array(
 		),
 	) + $mobile,
 	'ext.flow.editors.visualeditor' => $flowResourceTemplate + array(
-		'scripts' => 'editor/editors/ext.flow.editors.visualeditor.js',
+		'scripts' => array(
+			'editor/editors/ext.flow.editors.visualeditor.js',
+		),
 		'dependencies' => array(
 			'jquery.spinner',
-			// ve dependencies will be loaded via JS
+			'ext.visualEditor.core',
+			// rest of VE dependencies will be loaded via JS
 		),
-       ),
+	),
 
 	'ext.flow.parsoid' => $flowResourceTemplate + array(
 		'scripts' => array(
