@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_9e834a9b",
+        "filename": "modules/editor/editors/ext.flow.editors.visualeditor.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-04T16:13:23Z",
+      "side": 1,
+      "message": "Doesn\u0027t appear to be necessary - still works just fine if this is removed \u0026 is also missing in VisualEditor/lib/ve/demos/ve/demo.js",
+      "revId": "a7f2e06ff73274f4e554a7dd0f7d389de34a47a5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_fec59e90",
+        "filename": "modules/editor/editors/ext.flow.editors.visualeditor.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-04T16:13:23Z",
+      "side": 1,
+      "message": "What exactly are these 2 setTimeouts for?",
+      "revId": "a7f2e06ff73274f4e554a7dd0f7d389de34a47a5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_1e3e5ad7",
+        "filename": "modules/editor/editors/ext.flow.editors.visualeditor.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-04T16:13:23Z",
+      "side": 1,
+      "message": "We no longer need to create a \u003cdiv\u003e ourselves. The original code did that because VE \"converted\" that node into an editor, so we first had to create an empty one instead of the textarea.\n\nWe can probably do:\n\n    surface.$element.parent().insertAfter( this.$node );",
+      "revId": "a7f2e06ff73274f4e554a7dd0f7d389de34a47a5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_deca22a2",
+        "filename": "modules/editor/editors/ext.flow.editors.visualeditor.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-04T16:13:23Z",
+      "side": 1,
+      "message": "What exactly do we need this for? We already pass mw-content-\u003cdir\u003e tove.dm.converter.getModelFromDom.\n\nI would assume VE takes care of this? Or if it doesn\u0027t, should it?",
+      "revId": "a7f2e06ff73274f4e554a7dd0f7d389de34a47a5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_fe0d9e41",
+        "filename": "modules/editor/editors/ext.flow.editors.visualeditor.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-04T16:13:23Z",
+      "side": 1,
+      "message": "Any chance you could comment what these 2 lines do?\n\nThe first line seems to add an ugly arrow near the cursor (not sure we want that?), not sure what the second does?",
+      "revId": "a7f2e06ff73274f4e554a7dd0f7d389de34a47a5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_fe26fec7",
+        "filename": "modules/editor/editors/ext.flow.editors.visualeditor.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-04T16:13:23Z",
+      "side": 1,
+      "message": "There\u0027s:\n\n    surface.getView().focus()\n\nI haven\u0027t exactly checkout out that method, though, but judging from the name it does exactly this :)",
+      "revId": "a7f2e06ff73274f4e554a7dd0f7d389de34a47a5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
