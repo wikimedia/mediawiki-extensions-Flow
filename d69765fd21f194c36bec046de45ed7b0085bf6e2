@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_21521716",
+        "filename": "Resources.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-04T16:21:01Z",
+      "side": 1,
+      "message": "This appears to suffice to get rid of the plugins\u0027:\n\n    TypeError: ve.init.platform.linkCache is undefined",
+      "revId": "d69765fd21f194c36bec046de45ed7b0085bf6e2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_c1400338",
+        "filename": "modules/editor/editors/ext.flow.editors.visualeditor.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-04T16:21:01Z",
+      "side": 1,
+      "message": "Ignore all of the changes in here. I redid most of this while looking into the plugins, but what was here originally works just fine!\n\nI posted questions to the parent patch about most of the differences; then I\u0027ll discard whatever changes I made here \u0026 use whatever is in parent patch; just didn\u0027t feel like cleaning up yet :)",
+      "revId": "d69765fd21f194c36bec046de45ed7b0085bf6e2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
