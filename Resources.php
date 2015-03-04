@@ -318,8 +318,6 @@ $wgResourceModules += array(
 			'engine/misc/flow-api.js',
 			// FlowEventLog
 			'engine/misc/flow-eventlog.js',
-			// wfBaseConvert ported to js
-			'engine/misc/flow-baseconvert.js',
 			// FlowComponent must come before actual components
 			'engine/components/common/flow-component-engines.js',
 			'engine/components/common/flow-component-events.js',
@@ -372,6 +370,7 @@ $wgResourceModules += array(
 		),
 		'dependencies' => array(
 			'ext.flow.components',
+			'ext.flow.preview',
 			'jquery.throttle-debounce',
 			'mediawiki.jqueryMsg',
 			'ext.flow.jquery.conditionalScroll',
@@ -389,6 +388,16 @@ $wgResourceModules += array(
 	'ext.flow.vendor.storer' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'vendor/Storer.js',
+		),
+	) + $mobile,
+	'ext.flow.preview' => $flowResourceTemplate + array(
+		'scripts' => array(
+			'engine/components/board/features/flow-board-preview.js',
+			// wfBaseConvert ported to js
+			'engine/misc/flow-baseconvert.js',
+		),
+		'dependencies' => array(
+			'ext.flow.components'
 		),
 	) + $mobile,
 	'ext.flow.editor' => $flowResourceTemplate + array(
