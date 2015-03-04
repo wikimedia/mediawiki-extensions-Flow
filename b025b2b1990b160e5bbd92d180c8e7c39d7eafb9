@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_598951ed",
+        "filename": "includes/Parsoid/ContentFixer.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-04T01:05:38Z",
+      "side": 1,
+      "message": "This method could really use documentation.  I guess it is running all content fixers.",
+      "revId": "b025b2b1990b160e5bbd92d180c8e7c39d7eafb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_196f5927",
+        "filename": "includes/Parsoid/ContentFixer.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-04T01:05:38Z",
+      "side": 1,
+      "message": "This is implemented in plenty of subclasses, but seems to be called only by itself (naturally) and in RedlinkerTest.\n\nThus, it seems not to be used in the non-test code at all...\n\nAlso, document.",
+      "revId": "b025b2b1990b160e5bbd92d180c8e7c39d7eafb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_5960712d",
+        "filename": "includes/Parsoid/ContentFixer.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-04T01:05:38Z",
+      "side": 1,
+      "message": "How about:\n\n\"Creates a DOM with extra consideration for BC with previous Parsoid content, and for encoding issues.\"",
+      "revId": "b025b2b1990b160e5bbd92d180c8e7c39d7eafb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_f95a9d83",
+        "filename": "includes/Parsoid/ContentFixer.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-04T01:05:38Z",
+      "side": 1,
+      "message": "Document what it actually is.  I.E. Parsoid-format HTML, or something along those lines.",
+      "revId": "b025b2b1990b160e5bbd92d180c8e7c39d7eafb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_79c68d1b",
+        "filename": "includes/Parsoid/ContentFixer.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-04T01:05:38Z",
+      "side": 1,
+      "message": "Update the month, or maybe just put the Gerrit URL.",
+      "revId": "b025b2b1990b160e5bbd92d180c8e7c39d7eafb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
