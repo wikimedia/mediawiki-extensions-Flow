@@ -66,6 +66,7 @@
 	"flow-reply-link": "{{GENDER:$1|Reply}}",
 	"flow-thank-link": "{{GENDER:$1|Thank}}",
 	"flow-lock-link": "{{GENDER:$1|Lock}}",
+	"flow-thank-link-title": "Publicly thank the poster",
 	"flow-history-action-suppress-post": "suppress",
 	"flow-history-action-delete-post": "delete",
 	"flow-history-action-hide-post": "hide",
