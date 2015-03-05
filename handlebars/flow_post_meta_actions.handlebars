@@ -29,7 +29,7 @@
 				   < .flow-post:not([data-flow-post-max-depth='1']) .flow-reply-form [data-role='submit']
 			   "
 			>
-				{{~actions.reply.title~}}
+				{{~actions.reply.text~}}
 			</a>
 		{{/if}}
 		{{#if actions.edit}}
@@ -50,7 +50,7 @@
 			<a class="mw-ui-anchor mw-ui-constructive mw-ui-quiet mw-thanks-flow-thank-link"
 			   href="{{actions.thank.url}}"
 			   title="{{actions.thank.title}}">
-				{{~actions.thank.title~}}
+				{{~actions.thank.text~}}
 			</a>
 		{{/if}}
 	</span>
