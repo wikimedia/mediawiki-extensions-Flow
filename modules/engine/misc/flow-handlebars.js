@@ -538,26 +538,6 @@
 	};
 
 	/**
-	 * Returns the provided content as a plaintext string. Commonly for
-	 * injecting into an i18n message.
-	 *
-	 * @param {string} contentFormat html|wikitext|plaintext
-	 * @param {string} content
-	 * @return {string} plaintext
-	 */
-	FlowHandlebars.prototype.plaintextSnippet = function ( contentFormat, content ) {
-		var retval;
-		if ( contentFormat === 'html' ) {
-			retval = $( $.parseHTML( content ) ).text();
-		} else {
-			// @todo handle wikitext -> plaintext?
-			retval = content;
-		}
-
-		return retval ? $.trim( retval ).slice( 0, 200 ) : '';
-	};
-
-	/**
 	 * Outputs debugging information
 	 *
 	 * For development use only
@@ -592,7 +572,6 @@
 	Handlebars.registerHelper( 'moderationAction', FlowHandlebars.prototype.moderationAction );
 	Handlebars.registerHelper( 'concat', FlowHandlebars.prototype.concat );
 	Handlebars.registerHelper( 'ifCond', FlowHandlebars.prototype.ifCond );
-	Handlebars.registerHelper( 'plaintextSnippet', FlowHandlebars.prototype.plaintextSnippet );
 	Handlebars.registerHelper( 'debug', FlowHandlebars.prototype.debug );
 
 }( jQuery, moment ) );
