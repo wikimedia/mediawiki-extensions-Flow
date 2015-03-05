@@ -25,6 +25,11 @@ class ApiFlowEditPost extends ApiFlowBasePost {
 			'content' => array(
 				ApiBase::PARAM_REQUIRED => true,
 			),
+			'format' => array(
+				ApiBase::PARAM_REQUIRED => true,
+				ApiBase::PARAM_DFLT => 'wikitext',
+				ApiBase::PARAM_TYPE => array( 'html', 'wikitext' ),
+			),
 		) + parent::getAllowedParams();
 	}
 
@@ -36,6 +41,7 @@ class ApiFlowEditPost extends ApiFlowBasePost {
 			'postId' => 'Post ID',
 			'prev_revision' => 'Revision id of the current post revision to check for edit conflicts',
 			'content' => 'Content for post',
+			'format' => 'Format of the content (wikitext|html)',
 		);
 	}
 
@@ -51,7 +57,7 @@ class ApiFlowEditPost extends ApiFlowBasePost {
 	 */
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=edit-post&page=Topic:S2tycnas4hcucw8w&eppostId=???&epprev_revision=???&epcontent=Nice%20to&20meet%20you',
+			'api.php?action=flow&submodule=edit-post&page=Topic:S2tycnas4hcucw8w&eppostId=???&epprev_revision=???&epcontent=Nice%20to&20meet%20you&epformat=wikitext',
 		);
 	}
 
@@ -60,7 +66,7 @@ class ApiFlowEditPost extends ApiFlowBasePost {
 	 */
 	protected function getExamplesMessages() {
 		return array(
-			'action=flow&submodule=edit-post&page=Topic:S2tycnas4hcucw8w&eppostId=???&epprev_revision=???&epcontent=Nice%20to&20meet%20you'
+			'action=flow&submodule=edit-post&page=Topic:S2tycnas4hcucw8w&eppostId=???&epprev_revision=???&epcontent=Nice%20to&20meet%20you&epformat=wikitext'
 				=> 'apihelp-flow+edit-post-example-1',
 		);
 	}
