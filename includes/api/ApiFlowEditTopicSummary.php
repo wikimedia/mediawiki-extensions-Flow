@@ -23,6 +23,10 @@ class ApiFlowEditTopicSummary extends ApiFlowBasePost {
 			'summary' => array(
 				ApiBase::PARAM_REQUIRED => true,
 			),
+			'format' => array(
+				ApiBase::PARAM_REQUIRED => true,
+				ApiBase::PARAM_DFLT => 'wikitext',
+			),
 		) + parent::getAllowedParams();
 	}
 
@@ -33,6 +37,7 @@ class ApiFlowEditTopicSummary extends ApiFlowBasePost {
 		return array(
 			'prev_revision' => 'Revision id of the current topic summary revision to check for edit conflicts. Null for a new topic summary revision',
 			'summary' => 'Content for the summary',
+			'format' => 'Format of the summary (wikitext|html)',
 		);
 	}
 
@@ -48,7 +53,7 @@ class ApiFlowEditTopicSummary extends ApiFlowBasePost {
 	 */
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=edit-topic-summary&page=Topic:S2tycnas4hcucw8w&wetsprev_revision=???&etssummary=Nice%20to&20meet%20you',
+			'api.php?action=flow&submodule=edit-topic-summary&page=Topic:S2tycnas4hcucw8w&wetsprev_revision=???&etssummary=Nice%20to&20meet%20you&etsformat=wikitext',
 		);
 	}
 
@@ -57,7 +62,7 @@ class ApiFlowEditTopicSummary extends ApiFlowBasePost {
 	 */
 	protected function getExamplesMessages() {
 		return array(
-			'action=flow&submodule=edit-topic-summary&page=Topic:S2tycnas4hcucw8w&wetsprev_revision=???&etssummary=Nice%20to&20meet%20you'
+			'action=flow&submodule=edit-topic-summary&page=Topic:S2tycnas4hcucw8w&wetsprev_revision=???&etssummary=Nice%20to&20meet%20you&etsformat=wikitext'
 				=> 'apihelp-flow+edit-topic-summary-example-1',
 		);
 	}
