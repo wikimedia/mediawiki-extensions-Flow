@@ -38,7 +38,7 @@ class ApiFlowEditTitle extends ApiFlowBasePost {
 	 */
 	public function getParamDescription() {
 		return array(
-			'prev_revision' => 'Revision id of the current header revision to check for edit conflicts',
+			'prev_revision' => 'Revision id of the current title revision to check for edit conflicts',
 			'content' => 'Content for title',
 			'format' => 'Format of the content (wikitext|html)',
 		);
