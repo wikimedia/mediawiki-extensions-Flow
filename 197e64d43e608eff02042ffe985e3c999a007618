@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_e159712e",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-05T23:46:24Z",
+      "side": 1,
+      "message": "I\u0027m thinking this should instead be\n\n    mw.loader.using( \u0027ext.flow.editor\u0027, function() {\n        mw.flow.editor.load( $textarea, $textarea.val(), \u0027wikitext\u0027 );\n    } );\n\nor if we wanted to get all functional\n\n    mw.loader.using( \u0027ext.flow.editor\u0027, $.proxy(\n        mw.flow.editor.load,\n        mw.flow.editor,\n        [ $textarea, $textarea.val(), \u0027wikitext\u0027 ]\n     ) );",
+      "revId": "197e64d43e608eff02042ffe985e3c999a007618",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
