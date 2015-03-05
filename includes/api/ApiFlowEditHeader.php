@@ -25,6 +25,10 @@ class ApiFlowEditHeader extends ApiFlowBasePost {
 			'content' => array(
 				ApiBase::PARAM_REQUIRED => true,
 			),
+			'format' => array(
+				ApiBase::PARAM_REQUIRED => true,
+				ApiBase::PARAM_DFLT => 'wikitext',
+			),
 		) + parent::getAllowedParams();
 	}
 
@@ -35,6 +39,7 @@ class ApiFlowEditHeader extends ApiFlowBasePost {
 		return array(
 			'prev_revision' => 'Revision id of the current header revision to check for edit conflicts',
 			'content' => 'Content for header',
+			'format' => 'Format of the content (wikitext|html)',
 		);
 	}
 
@@ -50,7 +55,7 @@ class ApiFlowEditHeader extends ApiFlowBasePost {
 	 */
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=edit-header&page=Talk:Sandbox&ehprev_revision=???&ehcontent=Nice%20to&20meet%20you',
+			'api.php?action=flow&submodule=edit-header&page=Talk:Sandbox&ehprev_revision=???&ehcontent=Nice%20to&20meet%20you&ehformat=wikitext',
 		);
 	}
 
@@ -59,7 +64,7 @@ class ApiFlowEditHeader extends ApiFlowBasePost {
 	 */
 	protected function getExamplesMessages() {
 		return array(
-			'action=flow&submodule=edit-header&page=Talk:Sandbox&ehprev_revision=???&ehcontent=Nice%20to&20meet%20you'
+			'action=flow&submodule=edit-header&page=Talk:Sandbox&ehprev_revision=???&ehcontent=Nice%20to&20meet%20you&ehformat=wikitext'
 				=> 'apihelp-flow+edit-header-example-1',
 		);
 	}

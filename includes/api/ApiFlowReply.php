@@ -25,6 +25,10 @@ class ApiFlowReply extends ApiFlowBasePost {
 			'content' => array(
 				ApiBase::PARAM_REQUIRED => true,
 			),
+			'format' => array(
+				ApiBase::PARAM_REQUIRED => true,
+				ApiBase::PARAM_DFLT => 'wikitext',
+			),
 		) + parent::getAllowedParams();
 	}
 
@@ -35,6 +39,7 @@ class ApiFlowReply extends ApiFlowBasePost {
 		return array(
 			'replyTo' => 'Post ID to reply to',
 			'content' => 'Content for new post',
+			'format' => 'Format of the content (wikitext|html)',
 		);
 	}
 
@@ -50,7 +55,7 @@ class ApiFlowReply extends ApiFlowBasePost {
 	 */
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=reply&page=Topic:S2tycnas4hcucw8w&repreplyTo=050e554490c2b269143b080027630f57&repcontent=Nice%20to&20meet%20you',
+			'api.php?action=flow&submodule=reply&page=Topic:S2tycnas4hcucw8w&repreplyTo=050e554490c2b269143b080027630f57&repcontent=Nice%20to&20meet%20you&repformat=wikitext',
 		);
 	}
 
@@ -59,7 +64,7 @@ class ApiFlowReply extends ApiFlowBasePost {
 	 */
 	protected function getExamplesMessages() {
 		return array(
-			'action=flow&submodule=reply&page=Topic:S2tycnas4hcucw8w&repreplyTo=050e554490c2b269143b080027630f57&repcontent=Nice%20to&20meet%20you'
+			'action=flow&submodule=reply&page=Topic:S2tycnas4hcucw8w&repreplyTo=050e554490c2b269143b080027630f57&repcontent=Nice%20to&20meet%20you&repformat=wikitext'
 				=> 'apihelp-flow+reply-example-1',
 		);
 	}

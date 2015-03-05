@@ -26,7 +26,11 @@ class ApiFlowNewTopic extends ApiFlowBasePost {
 			'content' => array(
 				ApiBase::PARAM_REQUIRED => true,
 			),
-		) + parent::getAllowedParams();;
+			'format' => array(
+				ApiBase::PARAM_REQUIRED => true,
+				ApiBase::PARAM_DFLT => 'wikitext',
+			),
+		) + parent::getAllowedParams();
 	}
 
 	/**
@@ -36,6 +40,7 @@ class ApiFlowNewTopic extends ApiFlowBasePost {
 		return array(
 			'topic' => 'Text for new topic title',
 			'content' => 'Content for the topic\'s initial reply',
+			'format' => 'Format of the content (wikitext|html)',
 		);
 	}
 
@@ -51,7 +56,7 @@ class ApiFlowNewTopic extends ApiFlowBasePost {
 	 */
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=new-topic&page=Talk:Sandbox&nttopic=Hi&ntcontent=Nice%20to&20meet%20you',
+			'api.php?action=flow&submodule=new-topic&page=Talk:Sandbox&nttopic=Hi&ntcontent=Nice%20to&20meet%20you&ntformat=wikitext',
 		);
 	}
 
@@ -60,7 +65,7 @@ class ApiFlowNewTopic extends ApiFlowBasePost {
 	 */
 	protected function getExamplesMessages() {
 		return array(
-			'action=flow&submodule=new-topic&page=Talk:Sandbox&nttopic=Hi&ntcontent=Nice%20to&20meet%20you'
+			'action=flow&submodule=new-topic&page=Talk:Sandbox&nttopic=Hi&ntcontent=Nice%20to&20meet%20you&ntformat=wikitext'
 				=> 'apihelp-flow+new-topic-example-1',
 		);
 	}
