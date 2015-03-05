@@ -580,6 +580,7 @@ class TalkpageImportOperation {
 					$pageState->boardWorkflow,
 					$pageState->createUser( $rev->getAuthor() ),
 					$rev->getText(),
+					'wikitext',
 					'create-header'
 				);
 			},
@@ -666,7 +667,8 @@ class TalkpageImportOperation {
 				return PostRevision::create(
 					$topicWorkflow,
 					$state->createUser( $rev->getAuthor() ),
-					$rev->getText()
+					$rev->getText(),
+					'wikitext'
 				);
 			},
 			'edit-title',
@@ -734,6 +736,7 @@ class TalkpageImportOperation {
 					$state->topicTitle,
 					$state->parent->createUser( $rev->getAuthor() ),
 					$rev->getText(),
+					'wikitext',
 					'create-topic-summary'
 				);
 			},
@@ -858,6 +861,7 @@ class TalkpageImportOperation {
 				$lastRevision->newNextRevision(
 					$state->createUser( $importRevision->getAuthor() ),
 					$importRevision->getText(),
+					'wikitext',
 					$editChangeType,
 					$title
 				);

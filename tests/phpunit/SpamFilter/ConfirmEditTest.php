@@ -21,8 +21,8 @@ class ConfirmEditTest extends \MediaWikiTestCase {
 		$title = Title::newMainPage();
 		$workflow = Workflow::create( 'topic', $title );
 
-		$oldRevision = PostRevision::create( $workflow, $user, 'foo' );
-		$newRevision = $oldRevision->newNextRevision( $user, 'bar', 'change-type', $title );
+		$oldRevision = PostRevision::create( $workflow, $user, 'foo', 'wikitext' );
+		$newRevision = $oldRevision->newNextRevision( $user, 'bar', 'wikitext', 'change-type', $title );
 
 		$status = $filter->validate( $newRevision, $oldRevision, $title );
 		$this->assertInstanceOf( 'Status', $status );

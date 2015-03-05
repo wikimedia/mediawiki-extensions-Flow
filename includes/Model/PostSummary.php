@@ -13,17 +13,18 @@ class PostSummary extends AbstractSummary {
 	 * @param PostRevision $post
 	 * @param User $user
 	 * @param string $content
+	 * @param string $format wikitext|html
 	 * @param string $changeType
 	 * @return PostSummary
 	 */
-	static public function create( Title $title, PostRevision $post, User $user, $content, $changeType ) {
+	static public function create( Title $title, PostRevision $post, User $user, $content, $format, $changeType ) {
 		$obj = new self;
 		$obj->revId = UUID::create();
 		$obj->user = UserTuple::newFromUser( $user );
 		$obj->prevRevision = null;
 		$obj->changeType = $changeType;
 		$obj->summaryTargetId = $post->getPostId();
-		$obj->setContent( $content, $title );
+		$obj->setContent( $content, $format, $title );
 		return $obj;
 	}
 

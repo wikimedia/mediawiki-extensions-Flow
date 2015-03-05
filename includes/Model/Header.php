@@ -21,16 +21,17 @@ class Header extends AbstractRevision {
 	 * @param Workflow $workflow
 	 * @param User $user
 	 * @param string $content
+	 * @param string $format wikitext|html
 	 * @param string[optional] $changeType
 	 * @return Header
 	 */
-	static public function create( Workflow $workflow, User $user, $content, $changeType = 'create-header' ) {
+	static public function create( Workflow $workflow, User $user, $content, $format, $changeType = 'create-header' ) {
 		$obj = new self;
 		$obj->revId = UUID::create();
 		$obj->workflowId = $workflow->getId();
 		$obj->user = UserTuple::newFromUser( $user );
 		$obj->prevRevision = null; // no prior revision
-		$obj->setContent( $content, $workflow->getArticleTitle() );
+		$obj->setContent( $content, $format, $workflow->getArticleTitle() );
 		$obj->changeType = $changeType;
 		return $obj;
 	}

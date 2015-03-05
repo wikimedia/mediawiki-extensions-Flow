@@ -22,7 +22,7 @@ class RecentChangesListenerTest extends \MediaWikiTestCase {
 				NS_MAIN,
 				// something
 				function( $workflow, $user ) {
-					return PostRevision::create( $workflow, $user, 'blah blah' );
+					return PostRevision::create( $workflow, $user, 'blah blah', 'wikitext' );
 				}
 			),
 
@@ -30,8 +30,8 @@ class RecentChangesListenerTest extends \MediaWikiTestCase {
 				'Reply recent change goes to the topic',
 				NS_TOPIC,
 				function( $workflow, $user ) {
-					$first = PostRevision::create( $workflow, $user, 'blah blah' );
-					return $first->reply( $workflow, $user, 'fofofo' );
+					$first = PostRevision::create( $workflow, $user, 'blah blah', 'wikitext' );
+					return $first->reply( $workflow, $user, 'fofofo', 'wikitext' );
 				},
 			),
 		);
