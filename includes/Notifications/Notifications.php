@@ -65,7 +65,7 @@ $notifications = array(
 			'destination' => 'flow-post'
 		),
 		'title-message' => 'flow-notification-edit',
-		'title-params' => array( 'agent', 'subject', 'flow-title', 'title', 'post-permalink' ),
+		'title-params' => array( 'agent', 'subject', 'flow-title', 'title', 'post-permalink', 'topic-permalink' ),
 		'bundle' => array(
 			'web' => true,
 			'email' => true,
