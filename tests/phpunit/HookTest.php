@@ -28,20 +28,20 @@ class HookTest extends \MediaWikiTestCase {
 			$workflow = Workflow::create( 'discussion', Title::newMainPage() );
 			return array(
 				'workflow' => $workflow,
-				'revision' => Header::create( $workflow, $user, 'header content' ),
+				'revision' => Header::create( $workflow, $user, 'header content', 'wikitext' ),
 			);
 		};
 		$freshTopic = function() use( $user ) {
 			$workflow = Workflow::create( 'topic', Title::newMainPage() );
 			return array(
 				'workflow' => $workflow,
-				'revision' => PostRevision::create( $workflow, $user, 'some content' ),
+				'revision' => PostRevision::create( $workflow, $user, 'some content', 'wikitext' ),
 			);
 		};
 		$replyToTopic = function() use( $freshTopic, $user ) {
 			$metadata = $freshTopic();
 			return array(
-				'revision' => $metadata['revision']->reply( $metadata['workflow'], $user, 'ffuts dna ylper' ),
+				'revision' => $metadata['revision']->reply( $metadata['workflow'], $user, 'ffuts dna ylper', 'wikitext' ),
 			) + $metadata;
 		};
 
@@ -71,7 +71,7 @@ class HookTest extends \MediaWikiTestCase {
 					$metadata = $freshTopic();
 
 					return array(
-						'revision' => $metadata['revision']->newNextRevision( $user, 'gnihtemos gnihtemos', 'edit-title', $title ),
+						'revision' => $metadata['revision']->newNextRevision( $user, 'gnihtemos gnihtemos', 'wikitext', 'edit-title', $title ),
 					) + $metadata;
 				},
 				array(
@@ -84,7 +84,7 @@ class HookTest extends \MediaWikiTestCase {
 				function() use( $replyToTopic, $user, $title ) {
 					$metadata = $replyToTopic();
 					return array(
-						'revision' => $metadata['revision']->newNextRevision( $user, 'IT\'S CAPS LOCKS DAY!', 'edit-post', $title ),
+						'revision' => $metadata['revision']->newNextRevision( $user, 'IT\'S CAPS LOCKS DAY!', 'wikitext', 'edit-post', $title ),
 					) + $metadata;
 				},
 				array(
@@ -97,7 +97,7 @@ class HookTest extends \MediaWikiTestCase {
 				function() use ( $newHeader, $user, $title ) {
 					$metadata = $newHeader();
 					return array(
-						'revision' => $metadata['revision']->newNextRevision( $user, 'STILL CAPS LOCKS DAY!', 'edit-header', $title ),
+						'revision' => $metadata['revision']->newNextRevision( $user, 'STILL CAPS LOCKS DAY!', 'wikitext', 'edit-header', $title ),
 					) + $metadata;
 				},
 				array(
