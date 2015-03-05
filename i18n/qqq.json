@@ -383,7 +383,7 @@
 	"flow-special-uuid": "Label for the UUID field on the redirector special page.\n\nUUID is unique identifier for the revisioned object containing the reference.",
 	"flow-special-invalid-uuid": "Error message shown on the redirector special page if the specified type / UUID combination is invalid",
 	"flow-spam-confirmedit-form": "Error message when ConfirmEdit flagged the submitted content (because an anonymous user submitted external links, possibly spam). A captcha will be displayed after this error message. Parameters:\n* $1 - the HTML for the captcha form.",
-	"flow-preview-warning": "Refers to {{msg-mw|Flow-preview-return-edit-post}} (Keep editing).",
+	"flow-preview-warning": "Refers to {{msg-mw|flow-newtopic-save}} (Add topic) and {{msg-mw|Flow-preview-return-edit-post}} (Keep editing).",
 	"flow-preview-return-edit-post": "Used as text for a button that hides previewed text and returns to the editing view",
 	"flow-anonymous": "{{Identical|Anonymous}}",
 	"flow-embedding-unsupported": "Error message displayed if a user tries to transclude a Flow page.",
