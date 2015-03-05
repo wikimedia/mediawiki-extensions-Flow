@@ -48,8 +48,8 @@ class ContentLengthFilterTest extends \MediaWikiTestCase {
 		$title = Title::newFromText( 'UTPage' );
 		$user = User::newFromName( '127.0.0.1', false );
 		$workflow = Workflow::create( 'topic', $title );
-		$topic = PostRevision::create( $workflow, $user, 'title content' );
-		$reply = $topic->reply( $workflow, $user, $content );
+		$topic = PostRevision::create( $workflow, $user, 'title content', 'wikitext' );
+		$reply = $topic->reply( $workflow, $user, $content, 'wikitext' );
 
 		$spamFilter = new ContentLengthFilter( $maxLength );
 		$status = $spamFilter->validate( $reply, null, $title );

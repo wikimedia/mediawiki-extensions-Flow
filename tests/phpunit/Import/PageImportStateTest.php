@@ -76,7 +76,8 @@ class PageImportStateTest extends \MediaWikiTestCase {
 		$topicTitle = PostRevision::create(
 			$topicWorkflow,
 			User::newFromName( '127.0.0.1', false ),
-			'sing song'
+			'sing song',
+			'wikitext'
 		);
 
 		$now = time();
@@ -96,8 +97,8 @@ class PageImportStateTest extends \MediaWikiTestCase {
 		$user = User::newFromName( '127.0.0.1', false );
 		$title = Title::newMainPage();
 		$topicWorkflow = Workflow::create( 'topic', $title );
-		$topicTitle = PostRevision::create( $topicWorkflow, $user, 'sing song' );
-		$reply = $topicTitle->reply( $topicWorkflow, $user, 'fantastic!' );
+		$topicTitle = PostRevision::create( $topicWorkflow, $user, 'sing song', 'wikitext' );
+		$reply = $topicTitle->reply( $topicWorkflow, $user, 'fantastic!', 'wikitext' );
 
 		$now = time();
 

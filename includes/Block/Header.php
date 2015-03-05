@@ -131,6 +131,8 @@ class HeaderBlock extends AbstractBlock {
 		$this->newRevision = $this->header->newNextRevision(
 			$this->context->getUser(),
 			$this->submitted['content'],
+			// default to wikitext when not specified, for old API requests
+			isset( $this->submitted['format'] ) ? $this->submitted['format'] : 'wikitext',
 			'edit-header',
 			$this->workflow->getArticleTitle()
 		);
@@ -158,6 +160,8 @@ class HeaderBlock extends AbstractBlock {
 			$this->workflow,
 			$this->context->getUser(),
 			$this->submitted['content'],
+			// default to wikitext when not specified, for old API requests
+			isset( $this->submitted['format'] ) ? $this->submitted['format'] : 'wikitext',
 			'create-header'
 		);
 
