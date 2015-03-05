@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_fe5d954c",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 735,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-05T18:05:47Z",
+      "side": 1,
+      "message": "Since getTitleMessage() will return the message if not set, it seems we don\u0027t need both calls here? (and below)",
+      "revId": "b7c8829d45a3e730a3335947461687982bd181f8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
