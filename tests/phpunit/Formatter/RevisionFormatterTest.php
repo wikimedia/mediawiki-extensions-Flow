@@ -36,6 +36,7 @@ class RevisionFormatterTest extends \MediaWikiTestCase {
 		$row->revision = $row->revision->newNextRevision(
 			$this->user,
 			'replacement content',
+			'wikitext',
 			'edit-title',
 			$row->workflow->getArticleTitle()
 		);
@@ -68,6 +69,7 @@ class RevisionFormatterTest extends \MediaWikiTestCase {
 		$row->revision = $row->currentRevision = $row->revision->newNextRevision(
 			$this->user,
 			$nextContent,
+			'wikitext',
 			'edit-title',
 			$row->workflow->getArticleTitle()
 		);
@@ -87,7 +89,7 @@ class RevisionFormatterTest extends \MediaWikiTestCase {
 	public function generateRow( $plaintext = 'titlebar content' ) {
 		$row = new FormatterRow;
 		$row->workflow = Workflow::create( 'topic', Title::newMainPage() );
-		$row->rootPost = PostRevision::create( $row->workflow, $this->user, $plaintext );
+		$row->rootPost = PostRevision::create( $row->workflow, $this->user, $plaintext, 'wikitext' );
 		$row->revision = $row->currentRevision = $row->rootPost;
 
 		return $row;

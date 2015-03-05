@@ -112,11 +112,23 @@ class TopicListBlock extends AbstractBlock {
 		$user = $this->context->getUser();
 		$topicWorkflow = Workflow::create( 'topic', $title );
 		$topicListEntry = TopicListEntry::create( $this->workflow, $topicWorkflow );
-		$topicTitle = PostRevision::create( $topicWorkflow, $user, $this->submitted['topic'] );
+		$topicTitle = PostRevision::create(
+			$topicWorkflow,
+			$user,
+			$this->submitted['topic'],
+			// topic title is never parsed
+			'wikitext'
+		);
 
 		$firstPost = null;
 		if ( !empty( $this->submitted['content'] ) ) {
-			$firstPost = $topicTitle->reply( $topicWorkflow, $user, $this->submitted['content'] );
+			$firstPost = $topicTitle->reply(
+				$topicWorkflow,
+				$user,
+				$this->submitted['content'],
+				// default to wikitext when not specified, for old API requests
+				isset( $this->submitted['format'] ) ? $this->submitted['format'] : 'wikitext'
+			);
 			$topicTitle->setChildren( array( $firstPost ) );
 		}
 
