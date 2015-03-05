@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_c92b4177",
+        "filename": "includes/Block/Header.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-05T18:19:15Z",
+      "side": 1,
+      "message": "we should probably validate the format parameter is one of the expected values",
+      "revId": "f1516492f58332783dafb1003aeaf4205efc315d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_49573106",
+        "filename": "includes/Block/Header.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-05T18:19:15Z",
+      "side": 1,
+      "message": "sic, validate format",
+      "revId": "f1516492f58332783dafb1003aeaf4205efc315d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_696f8dc4",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-05T18:19:15Z",
+      "side": 1,
+      "message": "I\u0027ve started to try and call this \u0027plaintext\u0027 rather than misrepresenting it as wikitext",
+      "revId": "f1516492f58332783dafb1003aeaf4205efc315d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_a95cc51f",
+        "filename": "includes/Formatter/TopicListQuery.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-05T18:19:15Z",
+      "side": 1,
+      "message": "per the above Message::text() call, this should also be plaintext",
+      "revId": "f1516492f58332783dafb1003aeaf4205efc315d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_c959012f",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-05T18:19:15Z",
+      "side": 1,
+      "message": "plaintext again for titles",
+      "revId": "f1516492f58332783dafb1003aeaf4205efc315d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
