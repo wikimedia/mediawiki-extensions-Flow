@@ -11,7 +11,7 @@
 						<span>
 							{{~#if links.diff-cur~}}
 								<a href="{{links.diff-cur.url}}" title="{{links.diff-cur.title}}">
-									{{~links.diff-cur.title~}}
+									{{~links.diff-cur.text~}}
 								</a>
 							{{~else~}}
 								{{~l10n "cur"~}}
@@ -20,7 +20,7 @@
 						<span>
 							{{#if links.diff-prev}}
 								<a href="{{links.diff-prev.url}}" title="{{links.diff-prev.title}}">
-									{{~links.diff-prev.title~}}
+									{{~links.diff-prev.text~}}
 								</a>
 							{{~else~}}
 								{{~l10n "last"~}}
@@ -28,7 +28,7 @@
 						</span>
 						{{~#if links.topic}}
 							<span><a href="{{links.topic.url}}" title="{{links.topic.title}}">
-								{{~links.topic.title~}}
+								{{~links.topic.text~}}
 							</a></span>
 						{{~/if~}}
 						)
