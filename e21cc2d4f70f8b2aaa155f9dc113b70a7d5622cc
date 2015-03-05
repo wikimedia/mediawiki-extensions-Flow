@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_754d2875",
+        "filename": "maintenance/FlowFixLog.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-05T03:55:49Z",
+      "side": 1,
+      "message": "There is still the initial write, but I think it\u0027s fine as long as we don\u0027t run the script immediately after deployment (so any rows falling within the master-slave gap when the script starts will already have the new data).",
+      "parentUuid": "6e7c4fa4_682b142f",
+      "revId": "e21cc2d4f70f8b2aaa155f9dc113b70a7d5622cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_73ed4e89",
         "filename": "maintenance/FlowFixLog.php",
         "patchSetId": 4
