@@ -496,6 +496,8 @@ class TalkpageImportOperation {
 	/**
 	 * @param PageImportState $state
 	 * @return bool True if import completed successfully
+	 * @throws ImportSourceStoreException
+	 * @throws \Exception
 	 */
 	public function import( PageImportState $state ) {
 		$state->logger->info( 'Importing to ' . $state->boardWorkflow->getArticleTitle()->getPrefixedText() );
@@ -600,7 +602,7 @@ class TalkpageImportOperation {
 	}
 
 	/**
-	 * @param TopicImportState $pageState
+	 * @param TopicImportState $topicState
 	 * @param IImportTopic    $importTopic
 	 */
 	public function importTopic( TopicImportState $topicState, IImportTopic $importTopic ) {
@@ -614,7 +616,6 @@ class TalkpageImportOperation {
 		}
 
 		$topicState->commitLastModified();
-		$topicId = $topicState->topicWorkflow->getId();
 	}
 
 	/**
