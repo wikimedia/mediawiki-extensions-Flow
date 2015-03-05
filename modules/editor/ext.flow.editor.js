@@ -144,6 +144,9 @@
 		/**
 		 * Get the content, in wikitext format.
 		 *
+		 * @deprecated API now also accepts html content, as long as the format
+		 * parameter is set. It's encouraged to use getRawContent + getFormat.
+		 *
 		 * @param {jQuery} $node
 		 * @return {string}
 		 */
