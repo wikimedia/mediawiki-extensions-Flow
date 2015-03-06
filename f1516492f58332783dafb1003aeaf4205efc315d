@@ -70,6 +70,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_d2be85ab",
+        "filename": "includes/Formatter/TopicListQuery.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-06T14:14:06Z",
+      "side": 1,
+      "message": "Mmh. I agree, but I\u0027d rather do that separately.\n\nAbstractRevision::getStorageFormat \u0026 AbstractRevision::getContentFormat should probably also reflect that change. And a maintenance script to fix old entries would also be preferable.\n\nIt\u0027s going to get ugly to start messing with that here :p",
+      "parentUuid": "6e7c4fa4_a95cc51f",
+      "revId": "f1516492f58332783dafb1003aeaf4205efc315d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_c959012f",
         "filename": "includes/Import/Importer.php",
         "patchSetId": 3
