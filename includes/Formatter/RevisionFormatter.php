@@ -730,7 +730,9 @@ class RevisionFormatter {
 					 * ?action=history has "prev" ($links['prev']).
 					 */
 					$links['diff-prev'] = clone $links['diff'];
-					$links['diff-prev']->message = wfMessage( 'last' );
+					$lastMsg = new Message( 'last' );
+					$links['diff-prev']->setTitleMessage( $lastMsg );
+					$links['diff-prev']->setMessage( $lastMsg );
 				}
 
 				/*
@@ -743,7 +745,9 @@ class RevisionFormatter {
 				$cur = $row->currentRevision;
 				if ( !$revId->equals( $cur->getRevisionId() ) ) {
 					$links['diff-cur'] = call_user_func( $diffCallback, $title, $workflowId, $cur->getRevisionId(), $revId );
-					$links['diff-cur']->message = wfMessage( 'cur' );
+					$curMsg = new Message( 'cur' );
+					$links['diff-cur']->setTitleMessage( $curMsg );
+					$links['diff-cur']->setMessage( $curMsg );
 				}
 				break;
 
