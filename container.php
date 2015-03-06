@@ -854,7 +854,8 @@ $c['formatter.revisionview'] = function( $c ) {
 };
 $c['formatter.revision.diff.view'] = function( $c ) {
 	return new Flow\Formatter\RevisionDiffViewFormatter(
-		$c['formatter.revisionview']
+		$c['formatter.revisionview'],
+		$c['url_generator']
 	);
 };
 $c['query.topiclist'] = function( $c ) {

@@ -509,15 +509,17 @@ class TemplateHelper {
 	 *	   string $newAuthor Creator of the `new` content
 	 *	   string $oldLink Url pointing to `old` content
 	 *	   string $newLink Url pointing to `new` content
+	 *	   string $prevLink Url pointing to diff between `old` and its previous revision
+	 *	   string $nextLink Url pointing to diff between `new` and its next revision
 	 * @param array $named No named arguments expected
 	 * @return string[] HTML wrapped in array to prevent lightncandy from escaping
 	 * @throws WrongNumberArgumentsException
 	 */
 	static public function diffRevision( array $args, array $named ) {
-		if ( count( $args ) !== 7 ) {
-			throw new WrongNumberArgumentsException( $args, 'seven' );
+		if ( count( $args ) !== 9 ) {
+			throw new WrongNumberArgumentsException( $args, 'nine' );
 		}
-		list ( $diffContent, $oldTimestamp, $newTimestamp, $oldAuthor, $newAuthor, $oldLink, $newLink ) = $args;
+		list ( $diffContent, $oldTimestamp, $newTimestamp, $oldAuthor, $newAuthor, $oldLink, $newLink, $prevLink, $nextLink ) = $args;
 		$differenceEngine = new \DifferenceEngine();
 		$multi = $differenceEngine->getMultiNotice();
 		// Display a message when the diff is empty
@@ -529,37 +531,25 @@ class TemplateHelper {
 		}
 		$differenceEngine->showDiffStyle();
 
+		$renderer = Container::get( 'lightncandy' )->getTemplate( 'flow_revision_diff_header' );
+
 		return self::html( $differenceEngine->addHeader(
 			$diffContent,
-			self::generateDiffViewTitle( array( $oldTimestamp, $oldAuthor, $oldLink ), array() ),
-			self::generateDiffViewTitle( array( $newTimestamp, $newAuthor, $newLink ), array() ),
+			$renderer( array(
+				'timestamp' => $oldTimestamp,
+				'author' => $oldAuthor,
+				'link' => $oldLink,
+				'previous' => $prevLink,
+			) ),
+			$renderer( array(
+				'timestamp' => $newTimestamp,
+				'author' => $newAuthor,
+				'link' => $newLink,
+				'next' => $nextLink,
+			) ),
 			$multi,
 			$notice
 		) );
-	}
-
-	/**
-	 * @param array $args Expects string $timestamp, string $user, string $link
-	 * @param array $named No named arguments expected
-	 * @return string
-	 * @throws WrongNumberArgumentsException
-	 */
-	static public function generateDiffViewTitle( array $args, array $named ) {
-		if ( count( $args ) !== 3 ) {
-			throw new WrongNumberArgumentsException( $args, 'three' );
-		}
-		list( $timestamp, $user, $link ) = $args;
-		$message = wfMessage( 'flow-compare-revisions-revision-header' )
-			->params( $timestamp )
-			->params( $user );
-
-		return \Html::rawElement( 'a',
-			array(
-				'class' => 'flow-diff-revision-link',
-				'href' => $link,
-			),
-			$message->parse()
-		);
 	}
 
 	/**

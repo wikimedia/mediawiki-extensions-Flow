@@ -486,6 +486,8 @@
 	"flow-lqt-redirect-reason": "Redirecting retired LiquidThreads post to its converted Flow post",
 	"flow-talk-conversion-move-reason": "Conversion of wikitext talk to Flow from $1",
 	"flow-talk-conversion-archive-edit-reason": "Wikitext talk to Flow conversion",
+	"flow-previous-diff": "← Older edit",
+	"flow-next-diff": "Newer edit →",
 	"group-flow-bot": "Flow bots",
 	"group-flow-bot-member": "Flow bot",
 	"grouppage-flow-bot": "Project:Flow bots"
