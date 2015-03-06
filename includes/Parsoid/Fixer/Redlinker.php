@@ -45,47 +45,6 @@ class Redlinker implements Fixer {
 	}
 
 	/**
-	 * @param PostRevision $post
-	 * @return bool
-	 */
-	public function isRecursive( PostRevision $post ) {
-		return $post->isFormatted();
-	}
-
-	/**
-	 * Collect referenced Title's from html content and add to LinkBatch
-	 *
-	 * @param DOMNode $node html to check for titles
-	 */
-	public function recursive( DOMNode $node ) {
-		if ( !$node instanceof DOMElement ) {
-			return;
-		}
-
-		$href = $node->getAttribute( 'href' );
-		if ( $href === '' ) {
-			return;
-		}
-		// @todo Get proper title in here.  doesn't matter currently due to
-		// the html from parsoid using '../../' style of relative
-		// that don't strictly require the title its relative from.
-		$title = Utils::createRelativeTitle( urldecode( $href ), Title::newMainPage() );
-		if ( $title !== null ) {
-			$this->batch->addObj( $title );
-		}
-	}
-
-	/**
-	 * Execute pending batched title lookup.
-	 */
-	public function resolve() {
-		if ( !$this->batch->isEmpty() ) {
-			$this->batch->execute();
-			$this->batch->setArray( array() );
-		}
-	}
-
-	/**
 	 * Parsoid ignores red links. With good reason: redlinks should only be
 	 * applied when rendering the content, not when it's created.
 	 *
@@ -114,9 +73,6 @@ class Redlinker implements Fixer {
 		if ( $title === null ) {
 			return;
 		}
-
-		// finish any batch loading
-		$this->resolve();
 
 		// gather existing link attributes
 		$attributes = array();

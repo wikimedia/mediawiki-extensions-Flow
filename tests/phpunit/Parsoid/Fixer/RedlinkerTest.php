@@ -71,53 +71,6 @@ class RedlinkerTest extends PostRevisionTestCase {
 		$result = $fixer->apply( $anchor, Title::newMainPage() );
 		$this->assertContains( $expect, $result, $message );
 	}
-
-	public function testRegistersPost() {
-		$anchor = Html::element( 'a', array(
-			'rel' => 'mw:WikiLink',
-			'href' => './Main_Page',
-		), 'Main Page' );
-
-		$post = $this->generateObject( array(
-			// pretend not to be topic title (they're not parsed, so ignored)
-			'tree_parent_id' => UUID::create()->getBinary(),
-			// set content with link
-			'rev_content' => $anchor,
-			'rev_flags' => 'html'
-		) );
-
-		$batch = $this->getMock( 'LinkBatch' );
-		$batch->expects( $this->once() )
-			->method( 'addObj' )
-			->with( new MethodReturnsConstraint(
-				'getDBkey',
-				$this->matches( 'Main_Page' )
-			) );
-
-		$fixer = new ContentFixer( new Redlinker( $batch ) );
-		$fixer->registerRecursive( $post );
-		$fixer->resolveRecursive();
-	}
-
-	public function testCollectsLinks() {
-		$anchor = Html::element( 'a', array(
-			'rel' => 'mw:WikiLink',
-			'href' => './Main_Page',
-		), 'Main Page' );
-
-		$batch = $this->getMock( 'LinkBatch' );
-		$batch->expects( $this->once() )
-			->method( 'addObj' )
-			->with( new MethodReturnsConstraint(
-				'getDBkey',
-				$this->matches( 'Main_Page' )
-			) );
-
-		$dom = Utils::createDOM( '<?xml encoding="utf-8"?>' . $anchor );
-		$redlink =  new Redlinker( $batch );
-		$redlink->recursive( $dom->getElementsByTagName( 'a' )->item( 0 ) );
-		$redlink->resolve();
-	}
 }
 
 class MethodReturnsConstraint extends \PHPUnit_Framework_Constraint {

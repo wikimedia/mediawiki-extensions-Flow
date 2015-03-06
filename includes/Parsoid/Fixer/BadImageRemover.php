@@ -83,28 +83,4 @@ class BadImageRemover implements Fixer {
 		}
 		$nodeToRemove->parentNode->removeChild( $nodeToRemove );
 	}
-
-	/**
-	 * @param PostRevision $post
-	 * @return bool
-	 */
-	public function isRecursive( PostRevision $post ) {
-		return false;
-	}
-
-	/**
-	 * Recursing doesn't make sense here, nothing to batch-load.
-	 *
-	 * @param DOMNode $node
-	 */
-	public function recursive( DOMNode $node ) {
-		// nothing to do
-	}
-
-	/**
-	 * Recursing doesn't make sense here, nothing to batch-load.
-	 */
-	public function resolve() {
-		// nothing to do
-	}
 }
