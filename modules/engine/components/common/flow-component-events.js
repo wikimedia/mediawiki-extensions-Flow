@@ -713,12 +713,7 @@
 		var $context = $( event.currentTarget || event.delegateTarget || event.target ),
 			component = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $context );
 
-		// Expand this if it's a textarea
-		if ( $context.is( 'textarea' ) ) {
-			component.emitWithReturn( 'expandTextarea', $context );
-		}
-
-		// Show the form (and initialize editors)
+		// Show the form (and swap it for textarea if needed)
 		component.emitWithReturn( 'showForm', $context.closest( 'form' ) );
 	}
 	FlowComponentEventsMixin.eventHandlers.focusField = flowEventsMixinFocusField;
@@ -762,7 +757,6 @@
 	 */
 	function flowEventsMixinExpandTextarea( $textarea ) {
 		$textarea.removeClass( 'flow-input-compressed' );
-		mw.flow.editor.load( $textarea, $textarea.val(), 'wikitext' );
 	}
 	FlowComponentEventsMixin.eventHandlers.expandTextarea = flowEventsMixinExpandTextarea;
 
