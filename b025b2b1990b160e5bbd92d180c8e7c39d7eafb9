@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_61b001d9",
+        "filename": "includes/Parsoid/ContentFixer.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-06T00:21:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_598951ed",
+      "revId": "b025b2b1990b160e5bbd92d180c8e7c39d7eafb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_196f5927",
         "filename": "includes/Parsoid/ContentFixer.php",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2015-03-04T01:05:38Z",
       "side": 1,
       "message": "This is implemented in plenty of subclasses, but seems to be called only by itself (naturally) and in RedlinkerTest.\n\nThus, it seems not to be used in the non-test code at all...\n\nAlso, document.",
+      "revId": "b025b2b1990b160e5bbd92d180c8e7c39d7eafb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_e1a411a1",
+        "filename": "includes/Parsoid/ContentFixer.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-06T00:21:16Z",
+      "side": 1,
+      "message": "Indeed it looks like registerRecursive is no longer called. it\u0027s last caller was removed in I3148e40, which was just eliminating dead code.  I will add a followup to kill more of this unused code.",
+      "parentUuid": "6e7c4fa4_196f5927",
       "revId": "b025b2b1990b160e5bbd92d180c8e7c39d7eafb9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_81b19de1",
+        "filename": "includes/Parsoid/ContentFixer.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-06T00:21:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_5960712d",
+      "revId": "b025b2b1990b160e5bbd92d180c8e7c39d7eafb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_f95a9d83",
         "filename": "includes/Parsoid/ContentFixer.php",
         "patchSetId": 3
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_a1b619d6",
+        "filename": "includes/Parsoid/ContentFixer.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-06T00:21:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_f95a9d83",
+      "revId": "b025b2b1990b160e5bbd92d180c8e7c39d7eafb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_79c68d1b",
         "filename": "includes/Parsoid/ContentFixer.php",
         "patchSetId": 3
@@ -81,6 +153,24 @@
       "writtenOn": "2015-03-04T01:05:38Z",
       "side": 1,
       "message": "Update the month, or maybe just put the Gerrit URL.",
+      "revId": "b025b2b1990b160e5bbd92d180c8e7c39d7eafb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_41ab856d",
+        "filename": "includes/Parsoid/ContentFixer.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-06T00:21:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_79c68d1b",
       "revId": "b025b2b1990b160e5bbd92d180c8e7c39d7eafb9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
