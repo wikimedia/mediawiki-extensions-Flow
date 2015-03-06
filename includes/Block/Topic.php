@@ -869,8 +869,8 @@ class TopicBlock extends AbstractBlock {
 			if ( !$topicTitle ) {
 				return null;
 			}
-			$post = $root->getRecursiveResult( $root->registerDescendant( $postId ) );
-			if ( !$post ) {
+			$post = $root->getDescendant( $postId );
+			if ( $post === null ) {
 				// The requested postId is not a member of the current workflow
 				$this->addError( 'post', $this->context->msg( 'flow-error-invalid-postId', $postId->getAlphadecimal() ) );
 				return null;
