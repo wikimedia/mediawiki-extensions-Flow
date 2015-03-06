@@ -49,34 +49,6 @@ class PostRevision extends AbstractRevision {
 	protected $rootPost;
 
 	/**
-	 * Variables to which callback functions and their results will be saved.
-	 *
-	 * We have some functionality to defer recursive processing through the post
-	 * tree up until the moment we actually need to. This makes it possible to
-	 * register multiple callback functions that need to be run recursively, and
-	 * execute them all one once, so we only have to go recursive once.
-	 *
-	 * Callbacks & initial result value will be saved when calling
-	 * $this->registerRecursive(), final result will be saved after calling
-	 * $this->descendRecursive().
-	 * $this->getRecursiveResult() will return the result in $recursiveResults.
-	 *
-	 * @see PostRevision::registerRecursive()
-	 * @see PostRevision::getRecursiveResult()
-	 * @see PostRevision::descendRecursive()
-	 *
-	 * @var array
-	 */
-	protected $recursiveCallbacks = array();
-
-	/**
-	 * @see PostRevision::$recursiveCallbacks
-	 *
-	 * @var array
-	 */
-	protected $recursiveResults = array();
-
-	/**
 	 * Create a brand new root post for a brand new topic.  Creating replies to
 	 * an existing post(incl topic root) should use self::reply.
 	 *
@@ -350,183 +322,27 @@ class PostRevision extends AbstractRevision {
 	}
 
 	/**
-	 * Runs all registered callback on every descendant of this post.
-	 *
-	 * Used to defer going recursive more than once: if all recursive
-	 * functionality is first registered, we can fetch all results in one go.
-	 *
-	 * @param callable $callback The callback to call. 2 parameters:
-	 * PostRevision (the post being iterated) & $result (the current result at
-	 * time of iteration). They must respond with [ $result, $continue ],
-	 * where $result is the result after that post's iteration & $continue a
-	 * boolean value indicating if the iteration still needs to continue
-	 *
-	 * @param mixed $init The initial $result value to be fed to the callback
-	 * @param string[optional] $label Can be used to make the identifier
-	 * slightly more descriptive (just simple integers can be quite opaque when
-	 * debugging)
-	 * @return int Identifier to pass to getRecursiveResult() to retrieve
-	 * the callback's result
-	 */
-	public function registerRecursive( $callback, $init, $label = '' ) {
-		$i = count( $this->recursiveResults );
-		$identifier = "$i-$label";
-
-		$this->recursiveCallbacks[$identifier] = $callback;
-		$this->recursiveResults[$identifier] = $init;
-
-		return $identifier;
-	}
-
-	/**
-	 * Returns the result of a specific callback, after having iterated over
-	 * all children.
-	 *
-	 * @param int $registered The identifier that was returned when registering
-	 * the callback via PostRevision::registerRecursive()
-	 * @return mixed
-	 */
-	public function getRecursiveResult( $registered ) {
-		$results = $this->descendRecursive( $this->recursiveCallbacks, $this->recursiveResults );
-		$this->recursiveResults = end( $results );
-
-		// Once all callbacks have run, null the callbacks to make sure they won't run again
-		$this->recursiveCallbacks = array_fill( 0, count( $this->recursiveResults ), null );
-
-		return $this->recursiveResults[$registered];
-	}
-
-	/**
-	 * Runs all registered callback on this post and all descendants to a
-	 * maximum depth of $maxDepth
-	 *
-	 * @param array $callbacks Array of callbacks to execute. Callbacks are fed
-	 * 2 parameters: PostRevision (the post being iterated) & $result (the current
-	 * result at time of iteration). They must respond with [ $result, $continue ],
-	 * where $result is the result after that post's iteration & $continue a
-	 * boolean value indicating if the iteration still needs to continue
-	 * @param array $results Array of (initial or temporary) results per callback
-	 * @param int[optional] $maxDepth The maximum depth to travel
-	 * @return array $results All final results of the callbacks
-	 */
-	protected function descendRecursive( array $callbacks, array $results, $maxDepth = 10 ) {
-		if ( $maxDepth <= 0 ) {
-			return array( $callbacks, $results );
-		}
-
-		$continue = false;
-		foreach ( $callbacks as $i => $callback ) {
-			if ( is_callable( $callback ) ) {
-				$return = call_user_func( $callback, $this, $results[$i] );
-
-				// Callbacks respond with: [ result, continue ]
-				// Continue can be set to false if a callback has completed
-				// what it set out to do, then we can stop running it.
-				$results[$i] = $return[0];
-				$continue |= $return[1];
-
-				// If this specific callback has responded it should no longer
-				// continue, get rid of it.
-				if ( $return[1] === false ) {
-					$callbacks[$i] = null;
-				}
-			}
-		}
-
-		// All of the callbacks have completed what they set out to do = quit
-		if ( $continue ) {
-			foreach ( $this->getChildren() as $child ) {
-				// Also fetch callbacks from children, some may have been nulled to
-				// prevent further execution.
-				list( $callbacks, $results ) = $child->descendRecursive( $callbacks, $results, $maxDepth - 1 );
-
-				// Check to see if we should exit
-				if ( ! count( array_filter( $callbacks ) ) ) {
-					break;
-				}
-			}
-		}
-
-		return array( $callbacks, $results );
-	}
-
-	/**
-	 * Registers callback function to calculate the total number of descendants.
-	 *
-	 * @return int $registered The identifier that was returned when registering
-	 * the callback via PostRevision::registerRecursive()
-	 */
-	public function registerDescendantCount() {
-		/**
-		 * Adds 1 to the total value per post that's iterated over.
-		 *
-		 * @param PostRevision $post
-		 * @param int $result
-		 * @return array Return array in the format of [result, continue]
-		 */
-		$callback = function( PostRevision $post, $result ) {
-			return array( $result + 1, true );
-		};
-
-		// Start at -1 because parent doesn't count as "descendant"
-		return $this->registerRecursive( $callback, -1, 'count' );
-	}
-
-	/**
-	 * Registers callback function to compile a list of participants.
-	 *
-	 * @return int $registered The identifier that was returned when registering
-	 * the callback via PostRevision::registerRecursive()
-	 */
-	public function registerParticipants() {
-		/**
-		 * Adds the user object of this post's creator.
-		 *
-		 * @param PostRevision $post
-		 * @param int $result
-		 * @return array Return array in the format of [result, continue]
-		 */
-		$callback = function( PostRevision $post, $result ) {
-			$id = $post->getCreatorId();
-			$ip = $post->getCreatorIp();
-			// key is used to prevent duplication
-			$key = $id ?: $ip;
-			// store id, ip, and (@todo) wiki
-			$result[$key] = array( $id, $ip );
-
-			return array( $result, true );
-		};
-
-		return $this->registerRecursive( $callback, array(), 'participants' );
-	}
-
-	/**
-	 * Registers callback function to find a specific post within a post's children.
+	 * Finds the provided postId within this posts descendants
 	 *
 	 * @param UUID $postId The id of the post to find.
-	 * @return int $registered The identifier that was returned when registering
-	 * the callback via PostRevision::registerRecursive()
+	 * @return PostRevision|null
+	 * @throws SomethingException
 	 */
-	public function registerDescendant( $postId ) {
-		if ( !$postId instanceof UUID ) {
-			$postId = UUID::create( $postId );
+	public function getDescendant( UUID $postId ) {
+		if ( $this->children === null ) {
+			throw new Exception;
+		}
+		foreach ( $this->children as $child ) {
+			if ( $child->getPostId()->equals( $postId ) ) {
+				return $child;
+			}
+			$found = $child->getDescendant( $postId );
+			if ( $found !== null ) {
+				return $found;
+			}
 		}
 
-		/**
-		 * Returns the found post.
-		 *
-		 * @param PostRevision $post
-		 * @param int $result
-		 * @return array Return array in the format of [result, continue]
-		 */
-		$callback = function( PostRevision $post, $result ) use ( &$postId ) {
-			if ( $post->getPostId()->equals( $postId ) ) {
-				return array( $post, false );
-			}
-			return array( false, true );
-		};
-
-		return $this->registerRecursive( $callback, false, 'descendant-' . $postId->getAlphadecimal() );
+		return null;
 	}
 
 	/**
