@@ -58,7 +58,7 @@
 		 * @param {jQuery} $node
 		 * @param {string} [content] Existing content to load, in any format
 		 * @param {string} [contentFormat] The format that content is in, or null (defaults to wikitext)
-		 * @return {jQuery.Deferred} Will resolve once editor instance is loaded
+		 * @return {jQuery.Promise} Will resolve once editor instance is loaded
 		 */
 		load: function ( $node, content, contentFormat ) {
 			/**
@@ -83,19 +83,14 @@
 					return;
 				}
 
-				if ( content ) {
-					try {
-						content = mw.flow.parsoid.convert( contentFormat, mw.flow.editor.getFormat(), content );
-					} catch ( e ) {
-						$( '<div>' ).flow( 'showError', e.getErrorInfo() ).insertAfter( $node );
-						return;
-					}
-				} else {
-					content = '';
-				}
-
-				mw.flow.editor.create( $node, content );
-				deferred.resolve();
+				mw.flow.parsoid.convert( contentFormat, mw.flow.editor.getFormat(), content )
+					.done( function( content ) {
+						mw.flow.editor.create( $node, content );
+						deferred.resolve();
+					})
+					.fail( function() {
+						deferred.reject();
+					});
 			},
 			deferred = $.Deferred(),
 			interval = setInterval( $.proxy( load, this, $node, content, contentFormat ), 10 );
@@ -139,25 +134,6 @@
 		getRawContent: function ( $node ) {
 			var editor = mw.flow.editor.getEditor( $node );
 			return editor.getRawContent() || '';
-		},
-
-		/**
-		 * Get the content, in wikitext format.
-		 *
-		 * @deprecated API now also accepts html content, as long as the format
-		 * parameter is set. It's encouraged to use getRawContent + getFormat.
-		 *
-		 * @param {jQuery} $node
-		 * @return {string}
-		 */
-		getContent: function ( $node ) {
-			var content = mw.flow.editor.getRawContent( $node ), convertedContent = '';
-			try {
-				convertedContent = mw.flow.parsoid.convert( mw.flow.editor.getFormat(), 'wikitext', content );
-			} catch ( e ) {
-				$( '<div>' ).flow( 'showError', e.getErrorInfo() ).insertAfter( $node );
-			}
-			return convertedContent;
 		},
 
 		/**
