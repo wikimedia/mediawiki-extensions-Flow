@@ -4,7 +4,7 @@
 			"פוילישער"
 		]
 	},
-	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|האט אויסגעמעקט}} א [[$4 פאסט]] אויף [[$3]]",
+	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|האט אויסגעמעקט}} א [$4 פאסט] אויף \"[[$3|$5]]\" אויף [[$6]]",
 	"flow-user-moderated": "מאדערירטער באניצער",
 	"flow-edit-header-link": "רעדאקטירט קעפל",
 	"flow-post-actions": "אַקציעס",

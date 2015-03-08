@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Jewel457"
+			"Jewel457",
+			"Leeheonjin"
 		]
 	},
 	"flow-post-moderated-toggle-hide-show": "Ipakita ang pagpuna.",
@@ -10,5 +11,7 @@
 	"flow-post-moderated-toggle-delete-hide": "Itago ang pagpuna.",
 	"flow-post-moderated-toggle-suppress-hide": "Itago ang mungkahi",
 	"flow-post-action-post-history": "Kasaysayan",
-	"flow-post-action-edit-post": "Baguhin"
+	"flow-post-action-edit-post": "Baguhin",
+	"flow-previous-diff": "← Mas lumang pagbabago",
+	"flow-next-diff": "Mas bagong pagbabago →"
 }

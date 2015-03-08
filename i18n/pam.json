@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Leeheonjin"
+		]
+	},
+	"flow-error-not-allowed-suppress": "Mebura ne ing paksang ini.",
+	"flow-error-not-allowed-suppress-extract": "Mebura ne ing paksang ini. Ati yu king lalam ing deletion log para king reperensya.",
+	"apihelp-flow+new-topic-param-topic": "Ing tekstu para king bayung bansag ning paksa.",
+	"flow-previous-diff": "Mas minunang edit",
+	"flow-next-diff": "Mas bayung pamanalili (edit) →"
+}

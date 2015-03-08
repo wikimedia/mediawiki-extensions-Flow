@@ -124,5 +124,7 @@
 	"flow-preview-warning": "Widzisz teraz podgląd. Wyślij formularz, aby opublikować swój wpis albo kliknij \"{{int:flow-preview-return-edit-post}}\", aby kontynuować pisanie.",
 	"flow-preview-return-edit-post": "Wróć do edytowania",
 	"apihelp-flow+moderate-post-param-reason": "Powód moderacji.",
-	"apihelp-flow+moderate-topic-param-reason": "Powód moderacji."
+	"apihelp-flow+moderate-topic-param-reason": "Powód moderacji.",
+	"flow-previous-diff": "← Poprzednia edycja",
+	"flow-next-diff": "Następna edycja →"
 }

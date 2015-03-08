@@ -76,5 +76,7 @@
 	"flow-topic-html-title": "$1 $2 тӀе",
 	"flow-recent-topics": "Дукху хан йоцуш жигара хьедарш",
 	"flow-spam-confirmedit-form": "Хьой адам делахь сурт тӀера йоза язде: $1",
-	"flow-post-undo-delete": "юхадаккха дӀадаккхар"
+	"flow-post-undo-delete": "юхадаккха дӀадаккхар",
+	"flow-previous-diff": "← Хьалхдоьда нисдинарг",
+	"flow-next-diff": "ТӀаьхьа догӀа нисдинарг →"
 }

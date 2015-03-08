@@ -2,12 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"Shirayuki",
-			"Mdann52"
+			"Mdann52",
+			"Caliburn"
 		]
 	},
 	"flow-summarize-topic-placeholder": "Please summarise this discussion",
 	"flow-topic-action-summarize-topic": "Summarise",
 	"flow-error-no-render": "The specified action was not recognised.",
 	"flow-summarize-topic-submit": "Summarise",
-	"flow-notification-mention-email-batch-body": "$1 {{GENDER:$1|mentioned}} {{GENDER:$4|you}} in {{GENDER:$1|his|her|their}} post in \"$2\" on \"$3\""
+	"flow-notification-mention-email-batch-body": "$1 {{GENDER:$1|mentioned}} {{GENDER:$4|you}} in {{GENDER:$1|his|her|their}} post in \"$2\" on \"$3\"",
+	"flow-previous-diff": "← Older edit",
+	"flow-next-diff": "Newer edit →"
 }
