@@ -79,7 +79,18 @@ class ObjectLocator {
 			$index = $this->getIndexFor( $keys, $options );
 			$res = $index->findMulti( $queries, $options );
 		} catch ( NoIndexException $e ) {
-			wfDebugLog( 'FlowDebug', __METHOD__ . ': ' . $e->getMessage() );
+			if ( array_search( 'topic_root_id', $keys ) ) {
+				wfDebugLog(
+					'Flow',
+					__METHOD__ . ': '
+					. json_encode( $keys ) . ' : '
+					. json_encode( $options ) . ' : '
+					. json_encode( array_map( 'get_class', $this->indexes ) )
+				);
+				\MWExceptionHandler::logException( $e );
+			} else {
+				wfDebugLog( 'FlowDebug', __METHOD__ . ': ' . $e->getMessage() );
+			}
 			$res = $this->storage->findMulti( $queries, $this->convertToDbOptions( $options ) );
 		}
 
