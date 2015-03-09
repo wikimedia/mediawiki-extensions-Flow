@@ -248,7 +248,12 @@ class ImportRevision implements IObjectRevision {
 			$contentKey = '*';
 		}
 
-		return $this->apiResponse[$contentKey];
+		if ( isset( $this->apiResponse[$contentKey] ) ) {
+			return $this->apiResponse[$contentKey];
+		} else {
+			$encoded = json_encode( $this->apiResponse );
+			throw new ImportException( "Specified content key ($contentKey) not available: $encoded" );
+		}
 	}
 
 	public function getTimestamp() {
