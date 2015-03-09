@@ -32,15 +32,14 @@ class PurgeAction extends \PurgeAction {
 	 * {@inheritDoc}
 	 */
 	public function onSubmit( $data ) {
-		if ( !parent::onSubmit( array() ) ) {
-			return false;
-		}
-
 		// Replace $c['memcache'] with a hash bag o stuff.  This will look to the
 		// application layer like an empty cache, and as such it will populate this
 		// empty cache with all the cache keys required to reload this page.
 		// We then extract the complete list of keys updated from this hash bag o stuff
 		// and delete them from the real memcache.
+		// The container must be reset prior to this because the TitleSquidURLs hook
+		// will initialize memcache before this is run when UseSquid is enabled.
+		Container::reset();
 		$container = Container::getContainer();
 		$container->extend( 'memcache', function( $memcache, $c ) {
 			$c['memcache.purge_backup'] = $memcache;
@@ -48,6 +47,10 @@ class PurgeAction extends \PurgeAction {
 		} );
 		$this->hashBag = $container['memcache'];
 		$this->realMemcache = $container['memcache.purge_backup'];
+
+		if ( !parent::onSubmit( array() ) ) {
+			return false;
+		}
 
 		/** @var WorkflowLoaderFactory $loader */
 		$loader = $container['factory.loader.workflow'];
