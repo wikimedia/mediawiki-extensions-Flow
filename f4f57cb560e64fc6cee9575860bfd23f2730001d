@@ -1,0 +1,242 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_affef264",
+        "filename": "FlowActions.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-09T14:21:18Z",
+      "side": 1,
+      "message": "Also add a small todo here, so this doesn\u0027t get lost.\n\n    // @todo this is almost (but not quite) copy/paste from \u0027edit-topic-summary\u0027. find a way to share?",
+      "revId": "f4f57cb560e64fc6cee9575860bfd23f2730001d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_0feda6b4",
+        "filename": "autoload.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-09T14:21:18Z",
+      "side": 1,
+      "message": "Shouldn\u0027t override existing entry. Classname of new API should be fixed.",
+      "revId": "f4f57cb560e64fc6cee9575860bfd23f2730001d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_8f3e96d6",
+        "filename": "handlebars/flow_block_header_undo_edit.handlebars",
+        "patchSetId": 9
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-09T14:21:18Z",
+      "side": 1,
+      "message": "class\u003d\"flow-post\" so there\u0027s the same padding above \u0026 left of the form.\n\nSame goed for the other templates.",
+      "revId": "f4f57cb560e64fc6cee9575860bfd23f2730001d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_ef394af0",
+        "filename": "handlebars/flow_block_header_undo_edit.handlebars",
+        "patchSetId": 9
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-09T14:21:18Z",
+      "side": 1,
+      "message": "class\u003d\"mw-ui-input\" for that fancy blue left-border (+ add dependency \u0027mediawiki.ui.input\u0027 which contains that CSS)",
+      "revId": "f4f57cb560e64fc6cee9575860bfd23f2730001d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_6f81baa3",
+        "filename": "includes/Block/Header.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-09T14:21:18Z",
+      "side": 1,
+      "message": "* Need exception text\n* InvalidInputException instead of FlowException\n\nAlso applies to Topic.php \u0026 TopicSummary.php",
+      "revId": "f4f57cb560e64fc6cee9575860bfd23f2730001d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_2f8bc2c5",
+        "filename": "includes/Block/Header.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-09T14:21:18Z",
+      "side": 1,
+      "message": "InvalidDataException?",
+      "revId": "f4f57cb560e64fc6cee9575860bfd23f2730001d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_cf66ce26",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-09T14:21:18Z",
+      "side": 1,
+      "message": "In Header.php \u0026 TopicSummary.php, this just remains \u0027edit-header\u0027 \u0026 \u0027edit-topic-summary\u0027.\n\nEither we change the other 2, or we change this back to also keep logging it as an edit-post instead of undo-edit-post.\n\nUnless there are good reasons to diverge, I would just stick to edit-post \u0026 not create a new changetype (because lots of things are tied to those changetypes)",
+      "revId": "f4f57cb560e64fc6cee9575860bfd23f2730001d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_620b1127",
+        "filename": "includes/Formatter/RevisionViewQuery.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-09T14:21:18Z",
+      "side": 1,
+      "message": "Unused $permissions; you already have it at $this-\u003epermissions now",
+      "revId": "f4f57cb560e64fc6cee9575860bfd23f2730001d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_0f328606",
+        "filename": "includes/api/ApiFlowUndoEditHeader.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-09T14:21:18Z",
+      "side": 1,
+      "message": "As far as I can tell, these API\u0027s are currently unused, right? (as in: no-JS workflow is currently used; there\u0027s no fancy JS yet)\n\nI don\u0027t think we\u0027ll need both (startId \u0026 endId) and content. startid \u0026 endId are used to generate the undo-content, so either we would accept startid \u0026 endId, or accept the undo content, correct? (in case of just submitting content, we could just submit it to existing edit-* APIs)",
+      "revId": "f4f57cb560e64fc6cee9575860bfd23f2730001d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_2f818292",
+        "filename": "includes/api/ApiFlowUndoEditHeader.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-09T14:21:18Z",
+      "side": 1,
+      "message": "It seems these should now also be added to i18n/en.json. See \"apihelp-flow+...-param-...\" messages.\n\nSame goes for other API files.",
+      "revId": "f4f57cb560e64fc6cee9575860bfd23f2730001d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_cf4d6ea0",
+        "filename": "includes/api/ApiFlowUndoEditHeader.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-09T14:21:18Z",
+      "side": 1,
+      "message": "It seems these should now also be added to i18n/en.json. See \"apihelp-flow+...-description\" messages.",
+      "revId": "f4f57cb560e64fc6cee9575860bfd23f2730001d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_ef52aa3e",
+        "filename": "includes/api/ApiFlowUndoEditHeader.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-09T14:21:18Z",
+      "side": 1,
+      "message": "Missing apihelp-flow+undo-edit-header-example-1 in i18n/en.json",
+      "revId": "f4f57cb560e64fc6cee9575860bfd23f2730001d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_8f47767c",
+        "filename": "includes/api/ApiFlowUndoEditPost.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-09T14:21:18Z",
+      "side": 1,
+      "message": "Missing?",
+      "revId": "f4f57cb560e64fc6cee9575860bfd23f2730001d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_cf632e3d",
+        "filename": "includes/api/ApiFlowUndoEditTopicSummary.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-09T14:21:18Z",
+      "side": 1,
+      "message": "Should be renamed to ApiFlowUndoEditTopicSummary",
+      "revId": "f4f57cb560e64fc6cee9575860bfd23f2730001d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
