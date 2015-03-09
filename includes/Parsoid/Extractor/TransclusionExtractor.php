@@ -24,11 +24,22 @@ class TransclusionExtractor implements Extractor {
 	 * {@inheritDoc}
 	 */
 	public function perform( ReferenceFactory $factory, DOMElement $element ) {
-		$data = FormatJson::decode( $element->getAttribute( 'data-mw' ) );
-		$templateTarget = Title::newFromText(
-			$data->parts[0]->template->target->wt,
-			NS_TEMPLATE
-		);
+		$orig = $element->getAttribute( 'data-mw' );
+		$data = FormatJson::decode( $orig );
+		if ( !isset( $data->parts ) || !is_array( $data->parts ) ) {
+			throw new \Exception( "Missing template target: $orig"  );
+		}
+		$target = null;
+		foreach ( $data->parts as $part ) {
+			if ( isset( $part->template->target->wt ) ) {
+				$target = $part->template->target->wt;
+				break;
+			}
+		}
+		if ( $target === null ) {
+			throw new \Exception( "Missing template target: $orig"  );
+		}
+		$templateTarget = Title::newFromText( $target, NS_TEMPLATE );
 
 		if ( !$templateTarget ) {
 			return null;
