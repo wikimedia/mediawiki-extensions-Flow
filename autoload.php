@@ -367,5 +367,5 @@ $wgAutoloadClasses += array(
 	'Flow\\WorkflowLoader' => __DIR__ . '/includes/WorkflowLoader.php',
 	'Flow\\WorkflowLoaderFactory' => __DIR__ . '/includes/WorkflowLoaderFactory.php',
 	'MaintenanceDebugLogger' => __DIR__ . '/maintenance/MaintenanceDebugLogger.php',
-	'Pimple\\Container' => __DIR__ . '/vendor/Pimple/Container.php',
+	'Pimple' => __DIR__ . '/vendor/Pimple.php',
 );

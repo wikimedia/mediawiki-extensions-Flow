@@ -2,7 +2,7 @@
 
 namespace Flow;
 
-class Container extends \Pimple\Container {
+class Container extends \Pimple {
 	static private $container;
 
 	/**

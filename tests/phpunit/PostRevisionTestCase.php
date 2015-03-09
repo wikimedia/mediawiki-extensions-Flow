@@ -213,22 +213,20 @@ class PostRevisionTestCase extends FlowTestCase {
 			if ( !isset( $c["$key.listeners"] ) ) {
 				continue;
 			}
-			$c->extend( "$key.listeners", function( $listeners ) use ( $key ) {
-				return array_filter(
-					$listeners,
-					function( $handler ) {
-						// Recent changes logging is outside the scope of this test, and
-						// causes interaction issues
-						return !$handler instanceof RecentChangesListener
-							// putting together the right metadata for a commit is beyond the
-							// scope of these tests
-							&& !$handler instanceof NotificationListener
-							// BoardHistory requires we also wire together TopicListEntry objects for
-							// each revision, but that's also beyond our scope.
-							&& !$handler instanceof BoardHistoryIndex;
-					}
-				);
-			} );
+			$c["$key.listeners"] = array_filter(
+				$c["$key.listeners"],
+				function( $handler ) {
+					// Recent changes logging is outside the scope of this test, and
+					// causes interaction issues
+					return !$handler instanceof RecentChangesListener
+						// putting together the right metadata for a commit is beyond the
+						// scope of these tests
+						&& !$handler instanceof NotificationListener
+						// BoardHistory requires we also wire together TopicListEntry objects for
+						// each revision, but that's also beyond our scope.
+						&& !$handler instanceof BoardHistoryIndex;
+				}
+			);
 		}
 	}
 }

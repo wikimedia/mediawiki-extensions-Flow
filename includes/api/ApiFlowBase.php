@@ -54,12 +54,20 @@ abstract class ApiFlowBase extends ApiBase {
 	abstract protected function getAction();
 
 	/**
+	 * @return Container
+	 */
+	protected function getContainer() {
+		return Container::getContainer();
+	}
+
+	/**
 	 * @return WorkflowLoader
 	 */
 	protected function getLoader() {
 		if ( $this->loader === null ) {
+			$container = $this->getContainer();
  			/** @var WorkflowLoaderFactory $factory */
-			$factory = Container::get( 'factory.loader.workflow' );
+			$factory = $container['factory.loader.workflow'];
 			$this->loader = $factory->createWorkflowLoader( $this->page );
 		}
 
@@ -70,7 +78,8 @@ abstract class ApiFlowBase extends ApiBase {
 	 * @return TalkpageManager
 	 */
 	protected function getOccupationController() {
-		return Container::get( 'occupation_controller' );
+		$container = $this->getContainer();
+		return $container['occupation_controller'];
 	}
 
 	/**

@@ -176,7 +176,9 @@ class NotificationFormatter extends EchoBasicFormatter {
 	 */
 	protected function getUrlGenerator() {
 		if ( ! $this->urlGenerator ) {
-			$this->urlGenerator = Container::get( 'url_generator' );
+			$container = Container::getContainer();
+
+			$this->urlGenerator = $container['url_generator'];
 		}
 
 		return $this->urlGenerator;
