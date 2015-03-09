@@ -34,7 +34,7 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 			);
 		}
 
-		$commitMetadata = $loader->commit( $workflow, $blocksToCommit );
+		$commitMetadata = $loader->commit( $blocksToCommit );
 		$savedBlocks = array();
 		$result->setIndexedTagName( $savedBlocks, 'block' );
 
