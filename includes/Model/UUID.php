@@ -160,13 +160,13 @@ class UUID {
 				} elseif ( $len >= self::MIN_ALNUM_LEN && $len <= self::ALNUM_LEN && ctype_alnum( $input ) ) {
 					$value = $input;
 					$type = static::INPUT_ALNUM;
-				} elseif ( $len === self::HEX_LEN && preg_match( '/^[a-fA-F0-9]+$/', $input ) ) {
+				} elseif ( $len === self::HEX_LEN && ctype_xdigit( $input ) ) {
 					$value = $input;
 					$type = static::INPUT_HEX;
 				} elseif ( $len === self::OLD_BIN_LEN ) {
 					$value = substr( $input, 0, self::BIN_LEN );
 					$type = static::INPUT_BIN;
-				} elseif ( $len === self::OLD_HEX_LEN ) {
+				} elseif ( $len === self::OLD_HEX_LEN && ctype_xdigit( $input ) ) {
 					$value = substr( $input, 0, self::HEX_LEN );
 					$type = static::INPUT_HEX;
 				} elseif ( is_numeric( $input ) ) {
