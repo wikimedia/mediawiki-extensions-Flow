@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_ef2cea47",
+        "filename": "includes/View.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-09T12:16:43Z",
+      "side": 1,
+      "message": "If we add these things to $wgResourceModules, we can simplify this to something along these lines:\n\n    global $wgResourceModules;\n    foreach ( $apiResponse[\u0027blocks\u0027] as $block ) {\n        $name \u003d \u0027ext.flow.output.\u0027 . $block-\u003egetName();\n        $out-\u003eaddModule($name);\n    }",
+      "revId": "41cee67dff4d29f9123a1e84576b76a6a751536b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
