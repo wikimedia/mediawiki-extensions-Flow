@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_0c5b7458",
+        "filename": "includes/View.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-09T09:19:00Z",
+      "side": 1,
+      "message": "$blocks doesn\u0027t exist in this method. Looks like this should be $blocksToCommit?",
+      "revId": "b6967558e9c7d825ff0913ccf292293b2f54a46a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_2c58b058",
+        "filename": "includes/View.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-09T09:19:00Z",
+      "side": 1,
+      "message": "Perhaps move the redirect to whatever if calling this method:\n\n    if (handleSubmit() \u003d\u003d\u003d true) {\n        redirect;\n    } else ...\n\nOtherwise, it\u0027s unclear that calling this method might actually end this request.",
+      "revId": "b6967558e9c7d825ff0913ccf292293b2f54a46a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
