@@ -82,7 +82,7 @@
 	"flow-workflow": "fluxo de traballo",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 \"$2\"]</span><br />$1 {{GENDER:$1|respondeu}} en \"'''$4'''\".",
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 \"$2\"]</span><br />$1 e {{PLURAL:$6|outra persoa|outras $5 persoas}} {{GENDER:$1|responderon}} en \"'''$3'''\".",
-	"flow-notification-edit": "$1 {{GENDER:$1|editou}} a <span class=\"plainlinks\">[$5 mensaxe]</span> de \"$2\" en \"[[$3|$4]]\".",
+	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 {{GENDER:$1|editou}} a súa <span class=\"plainlinks\">[$5 mensaxe]</span> en [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 e {{PLURAL:$6|outra persoa|outras $5 persoas}} {{GENDER:$1|responderon}} á <span class=\"plainlinks\">[$4 mensaxe]</span> de \"$2\" en \"$3\".",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 \"$4\"]</span><br />$1 {{GENDER:$1|creou}} un novo tema en \"'''$3'''\".",
 	"flow-notification-rename": "$1 {{GENDER:$1|cambiou}} o título de \"<span class=\"plainlinks\">[$2 $3]</span>\" a \"$4\" en \"[[$5|$6]]\".",
