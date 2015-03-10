@@ -36,6 +36,15 @@ abstract class PageRevisionedObject implements IRevisionableObject {
 
 	public function getRevisions() {
 		$pageData = $this->importSource->getPageData( $this->pageId );
+		// filter revisions without content (deleted)
+		foreach ( $pageData['revisions'] as $key => $value ) {
+			if ( isset( $value['texthidden'] ) ) {
+				unset( $pageData['revisions'][$key] );
+			}
+		}
+		// the iterators expect this to be a 0 indexed list
+		$pageData['revisions'] = array_values( $pageData['revisions'] );
+
 		return new RevisionIterator( $pageData, $this );
 	}
 }
