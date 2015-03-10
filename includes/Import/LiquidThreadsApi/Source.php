@@ -46,6 +46,16 @@ class ImportSource implements IImportSource {
 	protected $pageData;
 
 	/**
+	 * @var int
+	 */
+	protected $maxRequestedId = -1;
+
+	/**
+	 * @var int
+	 */
+	protected $cachedTopics = 0;
+
+	/**
 	 * @param ApiBackend $apiBackend
 	 * @param string $pageName
 	 */
@@ -78,6 +88,19 @@ class ImportSource implements IImportSource {
 	 * @return ImportTopic|null
 	 */
 	public function getTopic( $id ) {
+		// reset our internal cached data every 100 topics. Otherwise imports
+		// of any considerable size will take up large amounts of memory for
+		// no reason, running into swap on smaller machines.
+		if ( $id > $this->maxRequestedId ) {
+			$this->maxRequestedId = $id;
+			$this->cachedTopics++;
+			if ( $this->cachedTopics > 100 ) {
+				$this->threadData->reset();
+				$this->pageData->reset();
+				$this->cachedTopics = 0;
+			}
+		}
+
 		$data = $this->threadData->get( $id );
 		switch ( $data['type'] ) {
 		// Standard thread

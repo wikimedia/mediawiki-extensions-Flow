@@ -11,6 +11,10 @@ use Iterator;
 abstract class CachedData {
 	protected $data = array();
 
+	public function reset() {
+		$this->data = array();
+	}
+
 	/**
 	 * Get the value for a given ID
 	 *
