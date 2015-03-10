@@ -16,6 +16,24 @@
       "revId": "cc61748d2551b35c57fbb2ec30184ea5d0e12495",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_c80f9b8c",
+        "filename": "includes/SubmissionHandler.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-10T16:11:14Z",
+      "side": 1,
+      "message": "Yes, but we handle that through the TitleSquidURLs hook.  When a topic page is purged the owner title squid urls are also merged in to the set.",
+      "parentUuid": "6e7c4fa4_0849136a",
+      "revId": "cc61748d2551b35c57fbb2ec30184ea5d0e12495",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
