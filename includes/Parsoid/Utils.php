@@ -176,6 +176,7 @@ abstract class Utils {
 	 * ignored will throw a WikitextException.
 	 *
 	 * The default error codes allowed are:
+	 * 	 76 - allow unexpected end tag. This is typically old wikitext using deprecated tags.
 	 * 	513 - allow multiple tags with same id
 	 * 	801 - allow unrecognized tags like figcaption
 	 *
@@ -185,7 +186,7 @@ abstract class Utils {
 	 * @throws WikitextException
 	 * @see http://www.xmlsoft.org/html/libxml-xmlerror.html
 	 */
-	public static function createDOM( $content, $ignoreErrorCodes = array( 513, 801 ) ) {
+	public static function createDOM( $content, $ignoreErrorCodes = array( 76, 513, 801 ) ) {
 		$dom = new DOMDocument();
 
 		// Otherwise the parser may attempt to load the dtd from an external source.
