@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_acf6eaf4",
+        "filename": "includes/Search/TopicUpdater.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-11T13:38:57Z",
+      "side": 1,
+      "message": "TBD: this may change to an array of titles (given that we some day plan to allow 1 topic on multiple pages, some day)\n\nProposed:\n\n    \u0027titles\u0027 \u003d\u003e array(\n        array(\n            \u0027namespace\u0027 \u003d\u003e $title-\u003egetNamespace(),\n            \u0027pageid\u0027 \u003d\u003e $title-\u003egetArticleID(),\n            // perhaps also namespace_text \u0026 title, but they\u0027re currently unused\n        ),\n    ),\n\nThat way, when we eventually add multiple titles, we can easily change this.",
+      "revId": "068bb40b71727c2dd793904795f4b4c55e29ed5c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_cc848661",
+        "filename": "includes/Search/TopicUpdater.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-11T13:38:57Z",
+      "side": 1,
+      "message": "TBD: do we want to index moderated posts or not?\n\nIn this patch, they are being indexed, with content and all.\nA very early mockup (by May) had the possibility to filter posts based on moderation state. Not knowing what new mockups would be like, I decided to leave the possibility open.\n\nWe may want to:\n* not index moderated revisions at all\n* strip the content of moderated revisions so it\u0027s not searchable by text\n* not change a thing \u0026 just filter on output",
+      "revId": "068bb40b71727c2dd793904795f4b4c55e29ed5c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
