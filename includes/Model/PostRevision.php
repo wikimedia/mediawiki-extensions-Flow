@@ -55,10 +55,11 @@ class PostRevision extends AbstractRevision {
 	 * @param Workflow $topic
 	 * @param User $user
 	 * @param string $content The title of the topic(they are Collection as well)
+	 * @param string $format wikitext|html
 	 * @return PostRevision
 	 */
-	static public function create( Workflow $topic, User $user, $content ) {
-		$obj = static::newFromId( $topic->getId(), $user, $content, $topic->getArticleTitle() );
+	static public function create( Workflow $topic, User $user, $content, $format ) {
+		$obj = static::newFromId( $topic->getId(), $user, $content, $format, $topic->getArticleTitle() );
 
 		$obj->changeType = 'new-post';
 		// A newly created post has no children, a depth of 0, and
@@ -90,10 +91,11 @@ class PostRevision extends AbstractRevision {
 	 * @param UUID $uuid
 	 * @param User $user
 	 * @param string $content
+	 * @param string $format wikitext|html
 	 * @param Title|null $title
 	 * @return PostRevision
 	 */
-	static public function newFromId( UUID $uuid, User $user, $content, Title $title = null ) {
+	static public function newFromId( UUID $uuid, User $user, $content, $format, Title $title = null ) {
 		$obj = new self;
 		$obj->revId = UUID::create();
 		$obj->postId = $uuid;
@@ -103,7 +105,7 @@ class PostRevision extends AbstractRevision {
 
 		$obj->setReplyToId( null ); // not a reply to anything
 		$obj->prevRevision = null; // no parent revision
-		$obj->setContent( $content, $title );
+		$obj->setContent( $content, $format, $title );
 
 		return $obj;
 	}
@@ -154,10 +156,11 @@ class PostRevision extends AbstractRevision {
 	 * @param Workflow $workflow
 	 * @param User $user
 	 * @param string $content
+	 * @param string $format wikitext|html
 	 * @param string[optional] $changeType
 	 * @return PostRevision
 	 */
-	public function reply( Workflow $workflow, User $user, $content, $changeType = 'reply' ) {
+	public function reply( Workflow $workflow, User $user, $content, $format, $changeType = 'reply' ) {
 		$reply = new self;
 
 		// UUIDs should not be reused for different entities/entity types in the future.
@@ -168,7 +171,7 @@ class PostRevision extends AbstractRevision {
 		$reply->user = UserTuple::newFromUser( $user );
 		$reply->origUser = $reply->user;
 		$reply->replyToId = $this->postId;
-		$reply->setContent( $content, $workflow->getArticleTitle() );
+		$reply->setContent( $content, $format, $workflow->getArticleTitle() );
 		$reply->changeType = $changeType;
 		$reply->setChildren( array() );
 		$reply->setDepth( $this->getDepth() + 1 );

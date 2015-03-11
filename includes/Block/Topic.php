@@ -210,6 +210,8 @@ class TopicBlock extends AbstractBlock {
 		$this->newRevision = $topicTitle->newNextRevision(
 			$this->context->getUser(),
 			$this->submitted['content'],
+			// default to wikitext when not specified, for old API requests
+			isset( $this->submitted['format'] ) ? $this->submitted['format'] : 'wikitext',
 			'edit-title',
 			$this->workflow->getArticleTitle()
 		);
@@ -239,7 +241,9 @@ class TopicBlock extends AbstractBlock {
 		$this->newRevision = $post->reply(
 			$this->workflow,
 			$this->context->getUser(),
-			$this->submitted['content']
+			$this->submitted['content'],
+			// default to wikitext when not specified, for old API requests
+			isset( $this->submitted['format'] ) ? $this->submitted['format'] : 'wikitext'
 		);
 		if ( !$this->checkSpamFilters( null, $this->newRevision ) ) {
 			return;
@@ -393,6 +397,8 @@ class TopicBlock extends AbstractBlock {
 		$this->newRevision = $post->newNextRevision(
 			$this->context->getUser(),
 			$this->submitted['content'],
+			// default to wikitext when not specified, for old API requests
+			isset( $this->submitted['format'] ) ? $this->submitted['format'] : 'wikitext',
 			'edit-post',
 			$this->workflow->getArticleTitle()
 		);

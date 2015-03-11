@@ -122,6 +122,8 @@ class TopicSummaryBlock extends AbstractBlock {
 				$this->findTopicTitle(),
 				$this->context->getUser(),
 				$this->submitted['summary'],
+				// default to wikitext when not specified, for old API requests
+				isset( $this->submitted['format'] ) ? $this->submitted['format'] : 'wikitext',
 				'create-topic-summary'
 			);
 		// Edit topic summary
@@ -150,6 +152,8 @@ class TopicSummaryBlock extends AbstractBlock {
 			$this->nextRevision = $this->topicSummary->newNextRevision(
 				$this->context->getUser(),
 				$this->submitted['summary'],
+				// default to wikitext when not specified, for old API requests
+				isset( $this->submitted['format'] ) ? $this->submitted['format'] : 'wikitext',
 				'edit-topic-summary',
 				$this->workflow->getArticleTitle()
 			);

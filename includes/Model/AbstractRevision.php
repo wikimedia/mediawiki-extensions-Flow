@@ -246,13 +246,14 @@ abstract class AbstractRevision {
 	 *
 	 * @param User $user
 	 * @param string $content
+	 * @param string $format wikitext|html
 	 * @param string $changeType
 	 * @param Title $title The article title of the related workflow
 	 * @return AbstractRevision
 	 */
-	public function newNextRevision( User $user, $content, $changeType, Title $title ) {
+	public function newNextRevision( User $user, $content, $format, $changeType, Title $title ) {
 		$obj = $this->newNullRevision( $user );
-		$obj->setNextContent( $user, $content, $title );
+		$obj->setNextContent( $user, $content, $format, $title );
 		$obj->changeType = $changeType;
 		return $obj;
 	}
@@ -412,29 +413,35 @@ abstract class AbstractRevision {
 	 * Should only be used for setting the initial content.  To set subsequent content
 	 * use self::setNextContent
 	 *
-	 * @param string $content Content in wikitext format
+	 * @param string $content
+	 * @param string $format wikitext|html
 	 * @param Title|null $title When null the related workflow will be lazy-loaded to locate the title
 	 * @throws DataModelException
 	 */
-	protected function setContent( $content, Title $title = null ) {
+	protected function setContent( $content, $format, Title $title = null ) {
 		if ( $this->moderationState !== self::MODERATED_NONE ) {
 			throw new DataModelException( 'TODO: Cannot change content of restricted revision', 'process-data' );
 		}
 
-		// TODO: How is this guarantee of only receiving wikitext made?
-		$inputFormat = 'wikitext';
 		if ( $this->content !== null ) {
 			throw new DataModelException( 'Updating content must use setNextContent method', 'process-data' );
 		}
+
+		// never trust incoming html - roundtrip to wikitext first
+		if ( $format !== 'wikitext' ) {
+			$content = Utils::convert( $format, 'wikitext', $content, $title ?: $this->getCollection()->getTitle() );
+			$format = 'wikitext';
+		}
+
 		// Keep consistent with normal edit page, trim only trailing whitespaces
 		$content = rtrim( $content );
-		$this->convertedContent = array( $inputFormat => $content );
+		$this->convertedContent = array( $format => $content );
 
 		// convert content to desired storage format
 		$storageFormat = $this->getStorageFormat();
-		if ( $this->isFormatted() && $storageFormat !== $inputFormat ) {
+		if ( $this->isFormatted() && $storageFormat !== $format ) {
 			$this->convertedContent[$storageFormat] = Utils::convert(
-				$inputFormat,
+				$format,
 				$storageFormat,
 				$content,
 				$title ?: $this->getCollection()->getTitle()
@@ -456,16 +463,17 @@ abstract class AbstractRevision {
 	 *
 	 * @param User $user
 	 * @param string $content
+	 * @param string $format wikitext|html
 	 * @param Title|null $title When null the related workflow will be lazy-loaded to locate the title
 	 * @throws DataModelException
 	 */
-	protected function setNextContent( User $user, $content, Title $title = null ) {
+	protected function setNextContent( User $user, $content, $format, Title $title = null ) {
 		if ( $this->moderationState !== self::MODERATED_NONE ) {
 			throw new DataModelException( 'Cannot change content of restricted revision', 'process-data' );
 		}
 		if ( $content !== $this->getContent() ) {
 			$this->content = null;
-			$this->setContent( $content, $title );
+			$this->setContent( $content, $format, $title );
 			$this->lastEditId = $this->getRevisionId();
 			$this->lastEditUser = UserTuple::newFromUser( $user );
 		}
