@@ -979,6 +979,12 @@ $c['formatter.topic'] = function( $c ) {
 		$c['formatter.revision']
 	);
 };
+$c['query.search'] = function( $c ) {
+	return new Flow\Formatter\SearchQuery(
+		$c['storage'],
+		$c['repository.tree']
+	);
+};
 $c['searchindex.updaters'] = function( $c ) {
 	return array(
 		'topic' => new \Flow\Search\TopicUpdater( $c['db.factory'], $c['loader.root_post'] ),
