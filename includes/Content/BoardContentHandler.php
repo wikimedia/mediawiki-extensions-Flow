@@ -2,11 +2,14 @@
 
 namespace Flow\Content;
 
+use Flow\Actions\FlowAction;
 use Flow\Container;
 use Flow\FlowActions;
 use Flow\Model\UUID;
 use FormatJson;
+use IContextSource;
 use MWException;
+use Page;
 
 class BoardContentHandler extends \ContentHandler {
 	public function __construct( $modelId ) {
@@ -119,7 +122,19 @@ class BoardContentHandler extends \ContentHandler {
 
 		foreach( $actions->getActions() as $action ) {
 			$actionData = $actions->getValue( $action );
-			if ( is_array( $actionData ) && isset( $actionData['handler-class'] ) ) {
+			if ( !is_array( $actionData ) ) {
+				continue;
+			}
+
+			if ( !isset( $actionData['handler-class'] ) ) {
+				continue;
+			}
+
+			if ( $actionData['handler-class'] === 'Flow\Actions\FlowAction' ) {
+				$output[$action] = function( Page $page, IContextSource $source ) use ( $action ) {
+					return new FlowAction( $page, $source, $action );
+				};
+			} else {
 				$output[$action] = $actionData['handler-class'];
 			}
 		}
