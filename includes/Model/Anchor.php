@@ -60,6 +60,13 @@ class Anchor {
 	}
 
 	/**
+	 * @return mixed
+	 */
+	public function serializeForApiResult() {
+		return $this->toArray();
+	}
+
+	/**
 	 * @return string
 	 */
 	public function getLinkURL() {
