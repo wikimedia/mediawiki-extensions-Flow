@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_2c673ab6",
+        "filename": "includes/Block/TopicSummary.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-11T13:54:19Z",
+      "side": 1,
+      "message": "Still not a big fan of this :p\n\nI don\u0027t think these belong in our API output.\n\nCan\u0027t we come up with some naming convention and let View.php just automatically load it based on the block/action?\nOr maybe we can add the modules \u0026 styles to load to FlowActions \u0026 let View.php read it from there?",
+      "revId": "377fd7929ea2eeb137d1a7ed8cb57f7b59144461",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
