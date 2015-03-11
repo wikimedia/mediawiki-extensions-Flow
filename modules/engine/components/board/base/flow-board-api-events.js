@@ -46,7 +46,8 @@
 			// Doublecheck that this textarea is actually an editor instance
 			// (the editor may have added a textarea itself...)
 			if ( mw.flow.editor && mw.flow.editor.exists( $editor ) ) {
-				override[$editor.attr( 'name' )] = mw.flow.editor.getContent( $editor );
+				override[$editor.attr( 'name' )] = mw.flow.editor.getRawContent( $editor );
+				override.flow_format = mw.flow.editor.getFormat();
 			}
 
 			// @todo: we have to make sure we get rid of all unwanted data
