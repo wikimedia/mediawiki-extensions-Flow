@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_3151d765",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-11T10:35:00Z",
+      "side": 1,
+      "message": "I don\u0027t like this. We should make sure JS isn\u0027t loaded at all on any of the no-JS pages.",
+      "revId": "2ea3e7e11c1b7d8e0ad918383851b359fa55dc9f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_d162e336",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 788,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-11T10:35:00Z",
+      "side": 1,
+      "message": "flow_edit_post.handlebars will prefill the textarea with the requested content, in whatever format we requested it.\n\nThat doesn\u0027t really make sense for HTML, and I would rather initialize the editor with the content from the API result, than reaching into the textarea and getting it.\n\nIt works, but it\u0027s meh... But then again, it\u0027s pretty hard to reach out to the API call (that prompted this editor to be initialized) from here, so it\u0027ll have to do for now.",
+      "revId": "2ea3e7e11c1b7d8e0ad918383851b359fa55dc9f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
