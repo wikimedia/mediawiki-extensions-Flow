@@ -417,7 +417,7 @@
 	"apihelp-flow+edit-post-example-1": "Edit a post in [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+edit-post-param-metadataonly": "Whether to include only metadata about the new content, excluding everything else",
 	"apihelp-flow+edit-title-description": "Edits a topic's title.",
-	"apihelp-flow+edit-title-param-prev_revision": "Revision ID of the current header revision, to check for edit conflicts.",
+	"apihelp-flow+edit-title-param-prev_revision": "Revision ID of the current title revision, to check for edit conflicts.",
 	"apihelp-flow+edit-title-param-content": "Content for title.",
 	"apihelp-flow+edit-title-param-format": "Format of the summary (wikitext|html)",
 	"apihelp-flow+edit-title-example-1": "Edit the title of [[Topic:S2tycnas4hcucw8w]]",
