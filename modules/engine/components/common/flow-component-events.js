@@ -768,16 +768,24 @@
 	function flowEventsMixinInitializeEditors( $container ) {
 		var flowComponent = this;
 
+
+		if ( mw.config.get( 'wgAction' ).match( /edit-/ ) ) {
+			/*
+			 * Edit pages exist for no-JS uses; no editor should show up.
+			 * We really don't want to load an editor here, since it might load
+			 * with an incorrect content format.
+			 */
+			return;
+		}
+
+		// @todo: IIRC, VE patch ensures this dependency is loaded already, in which case we can remove this mw.loader.using
 		mw.loader.using( 'ext.flow.editor', function() {
 			var $editors = $container.find( 'textarea:not(.flow-input-compressed)' );
 
 			$editors.each( function() {
 				var $editor = $( this );
 
-				// All editors already have their content in wikitext-format
-				// (mostly because we need to prefill them server-side so that
-				// JS-less users can interact)
-				mw.flow.editor.load( $editor, $editor.val(), 'wikitext' );
+				mw.flow.editor.load( $editor, $editor.val() );
 
 				// Kill editor instance when the form it's in is cancelled
 				flowComponent.emitWithReturn( 'addFormCancelCallback', $editor.closest( 'form' ), function() {

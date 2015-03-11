@@ -388,7 +388,6 @@ $wgResourceModules += array(
 			'editor/ext.flow.editor.js',
 		),
 		'dependencies' => array(
-			'ext.flow.parsoid',
 			// specific editor (ext.flow.editors.*) dependencies (if any) will be loaded via JS
 		),
 	) + $mobile,
@@ -403,13 +402,7 @@ $wgResourceModules += array(
 			'jquery.spinner',
 			// ve dependencies will be loaded via JS
 		),
-       ),
-
-	'ext.flow.parsoid' => $flowResourceTemplate + array(
-		'scripts' => array(
-			'editor/ext.flow.parsoid.js',
-		),
-	) + $mobile,
+	),
 	'ext.flow.jquery.conditionalScroll' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'engine/misc/jquery.conditionalScroll.js',

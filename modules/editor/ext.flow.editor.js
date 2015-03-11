@@ -57,24 +57,19 @@
 		/**
 		 * @param {jQuery} $node
 		 * @param {string} [content] Existing content to load, in any format
-		 * @param {string} [contentFormat] The format that content is in, or null (defaults to wikitext)
 		 * @return {jQuery.Promise} Will resolve once editor instance is loaded
 		 */
-		load: function ( $node, content, contentFormat ) {
+		load: function ( $node, content ) {
 			/**
 			 * When calling load(), init() may nog yet have completed loading the
 			 * dependencies. To make sure it doesn't break, this will in interval,
 			 * check for it and only start loading once initialization is complete.
 			 */
-			var load = function ( $node, content, contentFormat ) {
+			var load = function ( $node, content ) {
 				if ( mw.flow.editor.editor === null ) {
 					return;
 				} else {
 					clearTimeout( interval );
-				}
-
-				if ( contentFormat === undefined ) {
-					contentFormat = 'wikitext';
 				}
 
 				// quit early if editor is already loaded
@@ -83,17 +78,11 @@
 					return;
 				}
 
-				mw.flow.parsoid.convert( contentFormat, mw.flow.editor.getFormat(), content )
-					.done( function( content ) {
-						mw.flow.editor.create( $node, content );
-						deferred.resolve();
-					})
-					.fail( function() {
-						deferred.reject();
-					});
+				mw.flow.editor.create( $node, content || '' );
+				deferred.resolve();
 			},
 			deferred = $.Deferred(),
-			interval = setInterval( $.proxy( load, this, $node, content, contentFormat ), 10 );
+			interval = setInterval( $.proxy( load, this, $node, content ), 10 );
 
 			return deferred.promise();
 		},
