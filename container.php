@@ -199,9 +199,9 @@ $c['storage.workflow.listeners.topiclist'] = function( $c ) {
 };
 $c['storage.workflow.listeners'] = function( $c ) {
 	return array(
-		$c['listener.occupation'],
-		$c['listener.url_generator'],
-		$c['storage.workflow.listeners.topiclist'],
+		'listener.occupation' => $c['listener.occupation'],
+		'listener.url_generator' => $c['listener.url_generator'],
+		'storage.workflow.listeners.topiclist' => $c['storage.workflow.listeners.topiclist'],
 	);
 };
 $c['storage.workflow'] = function( $c ) {
@@ -306,11 +306,11 @@ $c['storage.header.listeners.username'] = function( $c ) {
 };
 $c['storage.header.listeners'] = function( $c ) {
 	return array(
-		$c['reference.recorder'],
-		$c['storage.board_history.indexes.primary'],
-		$c['storage.header.listeners.username'],
-		$c['listener.recentchanges'],
-		$c['listener.editcount'],
+		'reference.recorder' => $c['reference.recorder'],
+		'storage.board_history.indexes.primary' => $c['storage.board_history.indexes.primary'],
+		'storage.header.listeners.username' => $c['storage.header.listeners.username'],
+		'listener.recentchanges' => $c['listener.recentchanges'],
+		'listener.editcount' => $c['listener.editcount'],
 	);
 };
 $c['storage.header.primary_key'] = array( 'rev_id' );
@@ -385,15 +385,15 @@ $c['storage.post_summary.listeners.username'] = function( $c ) {
 };
 $c['storage.post_summary.listeners'] = function( $c ) {
 	return array(
-		$c['listener.recentchanges'],
-		$c['storage.post_summary.listeners.username'],
-		$c['storage.board_history.indexes.primary'],
-		$c['listener.editcount'],
+		'listener.recentchanges' => $c['listener.recentchanges'],
+		'storage.post_summary.listeners.username' => $c['storage.post_summary.listeners.username'],
+		'storage.board_history.indexes.primary' => $c['storage.board_history.indexes.primary'],
+		'listener.editcount' => $c['listener.editcount'],
 		// topic history -- to keep a history by topic we have to know what topic every post
 		// belongs to, not just its parent. TopicHistoryIndex is a slight tweak to TopKIndex
 		// using TreeRepository for extra information and stuffing it into topic_root while indexing
-		$c['storage.topic_history.indexes.primary'],
-		$c['reference.recorder'],
+		'storage.topic_history.indexes.primary' => $c['storage.topic_history.indexes.primary'],
+		'reference.recorder' => $c['reference.recorder'],
 	);
 };
 $c['storage.post_summary.backend'] = function( $c ) {
@@ -563,19 +563,19 @@ $c['storage.post.listeners.notification'] = function( $c ) {
 };
 $c['storage.post.listeners'] = function( $c ) {
 	return array(
-		$c['reference.recorder'],
-		$c['collection.cache'],
-		$c['storage.post.listeners.username'],
-		$c['storage.post.listeners.watch_topic'],
-		$c['storage.post.listeners.notification'],
-		$c['storage.post.listeners.moderation_logging'],
-		$c['listener.recentchanges'],
-		$c['listener.editcount'],
+		'reference.recorder' => $c['reference.recorder'],
+		'collection.cache' => $c['collection.cache'],
+		'storage.post.listeners.username' => $c['storage.post.listeners.username'],
+		'storage.post.listeners.watch_topic' => $c['storage.post.listeners.watch_topic'],
+		'storage.post.listeners.notification' => $c['storage.post.listeners.notification'],
+		'storage.post.listeners.moderation_logging' => $c['storage.post.listeners.moderation_logging'],
+		'listener.recentchanges' => $c['listener.recentchanges'],
+		'listener.editcount' => $c['listener.editcount'],
 		// topic history -- to keep a history by topic we have to know what topic every post
 		// belongs to, not just its parent. TopicHistoryIndex is a slight tweak to TopKIndex
 		// using TreeRepository for extra information and stuffing it into topic_root while indexing
-		$c['storage.board_history.indexes.primary'],
-		$c['storage.topic_history.indexes.primary'],
+		'storage.board_history.indexes.primary' => $c['storage.board_history.indexes.primary'],
+		'storage.topic_history.indexes.primary' => $c['storage.topic_history.indexes.primary'],
 	);
 };
 $c['storage.post.indexes.primary'] = function( $c ) {
