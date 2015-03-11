@@ -329,6 +329,15 @@ $wgFlowCacheTime = 60 * 60 * 24 * 3;
 // Flow code; WMF sometimes overrides this globally in wmf-config/CommonSettings.php
 $wgFlowCacheVersion = '4.5';
 
+// ElasticSearch servers
+$wgFlowSearchServers = array( 'localhost' );
+
+// Flow search config setting - akin to CirrusSearch
+// See CirrusSearch.php for documentation for these params, which have similar
+// variable names (s/FlowSearch/CirrusSearch/)
+$wgFlowSearchConnectionAttempts = 1; // see $wgCirrusSearchConnectionAttempts
+$wgFlowSearchMaintenanceTimeout = 3600; // see $wgCirrusSearchMaintenanceTimeout
+
 // Custom group name for AbuseFilter
 // Acceptable values:
 // * a specific value for flow-specific filters
