@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_97f1df00",
+        "filename": "modules/editor/editors/ext.flow.editors.visualeditor.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-11T01:36:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_9e834a9b",
+      "revId": "a7f2e06ff73274f4e554a7dd0f7d389de34a47a5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_fec59e90",
         "filename": "modules/editor/editors/ext.flow.editors.visualeditor.js",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2015-03-04T16:13:23Z",
       "side": 1,
       "message": "What exactly are these 2 setTimeouts for?",
+      "revId": "a7f2e06ff73274f4e554a7dd0f7d389de34a47a5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_b7e97b12",
+        "filename": "modules/editor/editors/ext.flow.editors.visualeditor.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-11T01:36:21Z",
+      "side": 1,
+      "message": "No idea.  It\u0027s one of the structures from ve.init.mw.Target.prototype.setupSurface (see above) in modules/ve-mw/init/ve.init.mw.Target.js",
+      "parentUuid": "6e7c4fa4_fec59e90",
       "revId": "a7f2e06ff73274f4e554a7dd0f7d389de34a47a5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_06b91a29",
+        "filename": "modules/editor/editors/ext.flow.editors.visualeditor.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-11T01:36:21Z",
+      "side": 1,
+      "message": "surface.$element.parent() is probably target.$element, right?  Changed to use that.",
+      "parentUuid": "6e7c4fa4_1e3e5ad7",
+      "revId": "a7f2e06ff73274f4e554a7dd0f7d389de34a47a5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_deca22a2",
         "filename": "modules/editor/editors/ext.flow.editors.visualeditor.js",
         "patchSetId": 3
@@ -64,6 +118,24 @@
       "writtenOn": "2015-03-04T16:13:23Z",
       "side": 1,
       "message": "What exactly do we need this for? We already pass mw-content-\u003cdir\u003e tove.dm.converter.getModelFromDom.\n\nI would assume VE takes care of this? Or if it doesn\u0027t, should it?",
+      "revId": "a7f2e06ff73274f4e554a7dd0f7d389de34a47a5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_667fae64",
+        "filename": "modules/editor/editors/ext.flow.editors.visualeditor.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-11T01:36:21Z",
+      "side": 1,
+      "message": "VE does it for MW target (where I got this code), but we\u0027re not using that.  Anything with mw- prefix should be specific to MW (and indeed, there are no matches for mw- inside lib/ve, the standalone code, except one in qqq).\n\nIt\u0027s probably needed for styling.",
+      "parentUuid": "6e7c4fa4_deca22a2",
       "revId": "a7f2e06ff73274f4e554a7dd0f7d389de34a47a5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_46ddd272",
+        "filename": "modules/editor/editors/ext.flow.editors.visualeditor.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-11T01:36:21Z",
+      "side": 1,
+      "message": "I don\u0027t remember how it ended up true.  ve.init.mw.Target.js has it, but it\u0027s false.  Removing.\n\nLooking further, it seems target.active is not defined for the sa target.",
+      "parentUuid": "6e7c4fa4_fe0d9e41",
+      "revId": "a7f2e06ff73274f4e554a7dd0f7d389de34a47a5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_fe26fec7",
         "filename": "modules/editor/editors/ext.flow.editors.visualeditor.js",
         "patchSetId": 3
@@ -98,6 +188,24 @@
       "writtenOn": "2015-03-04T16:13:23Z",
       "side": 1,
       "message": "There\u0027s:\n\n    surface.getView().focus()\n\nI haven\u0027t exactly checkout out that method, though, but judging from the name it does exactly this :)",
+      "revId": "a7f2e06ff73274f4e554a7dd0f7d389de34a47a5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_86d20a5c",
+        "filename": "modules/editor/editors/ext.flow.editors.visualeditor.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-11T01:36:21Z",
+      "side": 1,
+      "message": "I think we need to keep our focus method (flowEditor.focus), but we can re-define it to call that, and call it directly here.",
+      "parentUuid": "6e7c4fa4_fe26fec7",
       "revId": "a7f2e06ff73274f4e554a7dd0f7d389de34a47a5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
