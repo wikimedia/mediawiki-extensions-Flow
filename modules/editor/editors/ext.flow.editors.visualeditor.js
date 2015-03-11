@@ -59,7 +59,8 @@
 		//
 		// However, we will have to look at this later.
 		target = this.target = new ve.init.sa.Target(
-			'desktop'
+			'desktop',
+			{ floatable: false }
 		);
 
 		htmlDoc = ve.createDocumentFromHtml( content ); // HTMLDocument
