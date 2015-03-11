@@ -76,7 +76,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-edit-header',
 		),
-		'handler-class' => 'Flow\Actions\EditHeaderAction',
+		'handler-class' => 'Flow\Actions\FlowAction',
 		'editcount' => true,
 	),
 
@@ -99,7 +99,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-edit-header',
 		),
-		'handler-class' => 'Flow\Actions\UndoEditHeaderAction',
+		'handler-class' => 'Flow\Actions\FlowAction',
 		'editcount' => true,
 		// theis modules/moduleStyles is repeated in all the undo-* actions. Find a way to share.
 		'modules' => array( 'ext.flow.undo' ),
@@ -159,7 +159,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-edit-topic-summary',
 		),
-		'handler-class' => 'Flow\Actions\EditTopicSummaryAction',
+		'handler-class' => 'Flow\Actions\FlowAction',
 		'editcount' => true,
 	),
 
@@ -187,7 +187,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-edit-topic-summary',
 		),
-		'handler-class' => 'Flow\Actions\UndoEditTopicSummaryAction',
+		'handler-class' => 'Flow\Actions\FlowAction',
 		'editcount' => true,
 		'modules' => array( 'ext.flow.undo' ),
 		'moduleStyles' => array(
@@ -219,7 +219,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-edit-title',
 		),
-		'handler-class' => 'Flow\Actions\EditTitleAction',
+		'handler-class' => 'Flow\Actions\FlowAction',
 		'watch' => array(
 			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
 		),
@@ -247,7 +247,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-new-post',
 		),
-		'handler-class' => 'Flow\Actions\NewTopicAction',
+		'handler-class' => 'Flow\Actions\FlowAction',
 		'watch' => array(
 			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
 		),
@@ -279,7 +279,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-edit-post',
 		),
-		'handler-class' => 'Flow\Actions\EditPostAction',
+		'handler-class' => 'Flow\Actions\FlowAction',
 		'watch' => array(
 			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
 		),
@@ -309,7 +309,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-edit-post',
 		),
-		'handler-class' => 'Flow\Actions\UndoEditPostAction',
+		'handler-class' => 'Flow\Actions\FlowAction',
 		'watch' => array(
 			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
 		),
@@ -502,7 +502,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-locked-topic',
 		),
-		'handler-class' => 'Flow\Actions\LockTopicAction',
+		'handler-class' => 'Flow\Actions\FlowAction',
 	),
 
 	'restore-post' => array(
@@ -555,7 +555,7 @@ $wgFlowActions = array(
 				return "flow-history-un$state-post";
 			}
 		),
-		'handler-class' => 'Flow\Actions\RestorePostAction',
+		'handler-class' => 'Flow\Actions\FlowAction',
 	),
 
 	'restore-topic' => array(
@@ -609,7 +609,7 @@ $wgFlowActions = array(
 				return "flow-history-un$state-topic";
 			}
 		),
-		'handler-class' => 'Flow\Actions\RestoreTopicAction',
+		'handler-class' => 'Flow\Actions\FlowAction',
 	),
 
 	'view' => array(
@@ -660,7 +660,7 @@ $wgFlowActions = array(
 				'class' => 'flow-history-bundle',
 			),
 		),
-		'handler-class' => 'Flow\Actions\ReplyAction',
+		'handler-class' => 'Flow\Actions\FlowAction',
 		'watch' => array(
 			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
 		),
@@ -732,7 +732,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
 		'history' => array(), // views don't generate history
-		'handler-class' => 'Flow\Actions\HistoryAction',
+		'handler-class' => 'Flow\Actions\FlowAction',
 	),
 
 	// Pseudo-action to determine when to show thank links,
@@ -752,29 +752,29 @@ $wgFlowActions = array(
 	// Actions not tied to a particular revision change_type
 	// or just move these to a different file
 	'compare-header-revisions' => array(
-		'handler-class' => 'Flow\Actions\CompareHeaderRevisionsAction',
+		'handler-class' => 'Flow\Actions\FlowAction',
 	),
 	'view-header' => array(
-		'handler-class' => 'Flow\Actions\ViewHeaderAction',
+		'handler-class' => 'Flow\Actions\FlowAction',
 	),
 	'compare-post-revisions' => array(
-		'handler-class' => 'Flow\Actions\ComparePostRevisionsAction',
+		'handler-class' => 'Flow\Actions\FlowAction',
 	),
 	// @todo - This is a very bad action name, consolidate with view-post action
 	'single-view' => array(
-		'handler-class' => 'Flow\Actions\PostSingleViewAction',
+		'handler-class' => 'Flow\Actions\FlowAction',
 	),
 	'view-topic-summary' => array(
-		'handler-class' => 'Flow\Actions\ViewTopicSummaryAction',
+		'handler-class' => 'Flow\Actions\FlowAction',
 	),
 	'compare-postsummary-revisions' => array(
-		'handler-class' => 'Flow\Actions\ComparePostSummaryRevisionsAction',
+		'handler-class' => 'Flow\Actions\FlowAction',
 	),
 	'moderate-topic' => array(
-		'handler-class' => 'Flow\Actions\ModerateTopicAction',
+		'handler-class' => 'Flow\Actions\FlowAction',
 	),
 	'moderate-post' => array(
-		'handler-class' => 'Flow\Actions\ModeratePostAction',
+		'handler-class' => 'Flow\Actions\FlowAction',
 	),
 	'purge' => array(
 		'handler-class' => 'Flow\Actions\PurgeAction',
