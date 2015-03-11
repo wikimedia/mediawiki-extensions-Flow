@@ -49,11 +49,11 @@ class ModerationLogger {
 			return null;
 		}
 
-		$params = array();
-
-		$params['topicId'] = $workflowId;
+		$params = array(
+			'topicId' => $workflowId->getAlphadecimal(),
+		);
 		if ( !$post->isTopicTitle() ) {
-			$params['postId'] = $post->getPostId();
+			$params['postId'] = $post->getPostId()->getAlphadecimal();
 		}
 
 		$logType = $this->getLogType( $post, $action );
