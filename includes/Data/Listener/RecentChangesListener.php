@@ -130,7 +130,7 @@ class RecentChangesListener implements LifecycleHandler {
 		// Override the IRC formatter with our own formatter
 		foreach ( array_keys( $feeds ) as $name ) {
 			$feeds[$name]['original_formatter'] = $feeds[$name]['formatter'];
-			$feeds[$name]['formatter'] = Container::get( 'formatter.irclineurl' );
+			$feeds[$name]['formatter'] = $this->ircFormatter;
 		}
 		// pre-load the irc formatter which will be triggered via hook
 		$this->ircFormatter->associate( $rc, array(
