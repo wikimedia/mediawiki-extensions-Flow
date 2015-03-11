@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_2ceada05",
+        "filename": "includes/Search/SearchEngine.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-11T13:39:03Z",
+      "side": 1,
+      "message": "See https://gerrit.wikimedia.org/r/#/c/195889/1/includes/Search/TopicUpdater.php\n\nThis could change to:\n\n    $filter-\u003eaddMust( new Terms( \u0027titles.namespace\u0027, $this-\u003enamespaces ) );",
+      "revId": "29de1c7ab5caf765d40918cda7f918063a37c0c2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_4ce7163c",
+        "filename": "includes/Search/SearchEngine.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-11T13:39:03Z",
+      "side": 1,
+      "message": "See https://gerrit.wikimedia.org/r/#/c/195889/1/includes/Search/TopicUpdater.php\n\nThis could change to:\n\n    $filter-\u003eaddMust( new Terms( \u0027titles.pageid\u0027, $this-\u003epageIds ) );",
+      "revId": "29de1c7ab5caf765d40918cda7f918063a37c0c2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
