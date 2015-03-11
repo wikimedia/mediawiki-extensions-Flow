@@ -208,26 +208,26 @@ class PostRevisionTestCase extends FlowTestCase {
 	}
 
 	protected function clearExtraLifecycleHandlers() {
-		$c = Container::getContainer();
-		foreach( array_unique( $c['storage.manager_list'] ) as $key ) {
-			if ( !isset( $c["$key.listeners"] ) ) {
+		$container = Container::getContainer();
+		foreach( array_unique( $container['storage.manager_list'] ) as $storage ) {
+			if ( !isset( $container["$storage.listeners"] ) ) {
 				continue;
 			}
-			$c->extend( "$key.listeners", function( $listeners ) use ( $key ) {
-				return array_filter(
-					$listeners,
-					function( $handler ) {
-						// Recent changes logging is outside the scope of this test, and
-						// causes interaction issues
-						return !$handler instanceof RecentChangesListener
-							// putting together the right metadata for a commit is beyond the
-							// scope of these tests
-							&& !$handler instanceof NotificationListener
-							// BoardHistory requires we also wire together TopicListEntry objects for
-							// each revision, but that's also beyond our scope.
-							&& !$handler instanceof BoardHistoryIndex;
-					}
+
+			$container->extend( "$storage.listeners", function( $listeners ) {
+				unset(
+					// putting together the right metadata for a commit is beyond the
+					// scope of these tests
+					$listeners['storage.post.listeners.notification'],
+					// Recent changes logging is outside the scope of tests, and
+					// causes interaction issues
+					$listeners['listener.recentchanges'],
+					// BoardHistory requires we also wire together TopicListEntry objects for
+					// each revision, but that's also beyond our scope.
+					$listeners['storage.board_history.indexes.primary']
 				);
+
+				return $listeners;
 			} );
 		}
 	}
