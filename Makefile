@@ -102,9 +102,12 @@ compile-lightncandy:
 	+make -C handlebars all
 
 ###
-# Compile class autoloader for $wgAutoloadClasses
+# Automatically rename/move files based on fully-qualified classname &
+# compile class autoloader for $wgAutoloadClasses
 ###
 autoload:
+	if [ ! -d "vendor/PHP-Parser" ]; then git clone https://github.com/nikic/PHP-Parser.git vendor/PHP-Parser; fi
+	@${PHP} scripts/one-class-per-file.php
 	@${PHP} scripts/gen-autoload.php
 
 ###
