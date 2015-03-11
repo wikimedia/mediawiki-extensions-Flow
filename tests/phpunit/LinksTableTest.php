@@ -58,9 +58,6 @@ class LinksTableTest extends PostRevisionTestCase {
 		} catch ( WikitextException $excep ) {
 			$this->markTestSkipped( 'Parsoid not enabled' );
 		}
-
-		// These tests don't provide sufficient data to properly run all listeners
-		$this->clearExtraLifecycleHandlers();
 	}
 
 	protected function generatePost( $overrides ) {
