@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_acb10a8f",
+        "filename": "includes/Log/ActionFormatter.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-11T15:08:23Z",
+      "side": 1,
+      "message": "Maybe add a comment that those ids can be UUID objects (old data) or alphanumeric strings (new data)\n\n(or write a maintenance script :P)",
+      "revId": "68c0e806e3c608b260824ec4a40e1d3a11709c84",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
