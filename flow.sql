@@ -17,6 +17,7 @@ CREATE TABLE /*_*/flow_workflow (
 ) /*$wgDBTableOptions*/;
 
 CREATE INDEX /*i*/flow_workflow_lookup ON /*_*/flow_workflow (workflow_wiki, workflow_namespace, workflow_title_text);
+CREATE INDEX /*i*/flow_workflow_update_timestamp ON /*_*/flow_workflow (workflow_last_update_timestamp);
 
 CREATE TABLE /*_*/flow_subscription (
   subscription_workflow_id int unsigned not null,
