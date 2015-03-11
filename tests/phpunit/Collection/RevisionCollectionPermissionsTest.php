@@ -58,8 +58,6 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->clearExtraLifecycleHandlers();
-
 		// We don't want local config getting in the way of testing whether or
 		// not our permissions implementation works well.
 		// This will load default $wgGroupPermissions + Flow settings, so we can
