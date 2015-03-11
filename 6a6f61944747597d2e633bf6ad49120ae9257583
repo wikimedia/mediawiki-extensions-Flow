@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_8cf1aedc",
+        "filename": "modules/editor/editors/ext.flow.editors.AbstractEditor.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2015-03-11T14:00:46Z",
+      "side": 1,
+      "message": "Other existing code does this already, but: Unexpected space between \u0027}\u0027 and \u0027(\u0027. This is an invocation, like \u0027foo( .. )\u0027 or \u0027expression[ 0 ]( .. )\u0027. When JSCS is enabled this will need resolving. May wanna start with new code.",
+      "revId": "6a6f61944747597d2e633bf6ad49120ae9257583",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
