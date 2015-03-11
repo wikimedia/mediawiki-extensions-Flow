@@ -143,7 +143,7 @@ class TemplateHelper {
 					| LightnCandy::FLAG_THIS | LightnCandy::FLAG_WITH | LightnCandy::FLAG_PARENT | LightnCandy::FLAG_JSQUOTE | LightnCandy::FLAG_ADVARNAME | LightnCandy::FLAG_SPACECTL | LightnCandy::FLAG_NAMEDARG | LightnCandy::FLAG_SPVARS | LightnCandy::FLAG_SLASH | LightnCandy::FLAG_ELSE | LightnCandy::FLAG_MUSTACHESP
 					| LightnCandy::FLAG_RUNTIMEPARTIAL,
 				'basedir' => array( $templateDir ),
-				'fileext' => array( '.handlebars' ),
+				'fileext' => array( '.partial.handlebars' ),
 				'helpers' => array(
 					'l10n' => 'Flow\TemplateHelper::l10n',
 					'uuidTimestamp' => 'Flow\TemplateHelper::uuidTimestamp',
@@ -752,3 +752,4 @@ class TemplateHelper {
 		);
 	}
 }
+

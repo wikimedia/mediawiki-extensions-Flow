@@ -180,7 +180,7 @@
 			if ( options.tag === 'watch-self' && $( '#ca-watch' ).length ) {
 				// Render a div telling the user that they have subscribed
 				message = $( mw.flow.TemplateEngine.processTemplateGetFragment(
-					'flow_subscribed',
+					'flow_subscribed.partial',
 					{
 						type: 'board',
 						username: mw.user.getName()

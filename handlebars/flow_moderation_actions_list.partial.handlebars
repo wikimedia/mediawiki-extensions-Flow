@@ -87,7 +87,7 @@
 			   href="{{actions.hide.url}}"
 			   title="{{actions.hide.title}}"
 			   data-flow-interactive-handler="moderationDialog"
-			   data-flow-template="flow_moderate_{{moderationTemplate}}"
+			   data-flow-template="flow_moderate_{{moderationTemplate}}.partial"
 			   data-role="hide">
 				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-flag"></span> {{/if~}}
 				{{~l10n (concat "flow-" moderationType "-action-hide-" moderationTemplate)~}}
@@ -102,7 +102,7 @@
 			   href="{{actions.unhide.url}}"
 			   title="{{actions.unhide.title}}"
 			   data-flow-interactive-handler="moderationDialog"
-			   data-flow-template="flow_moderate_{{moderationTemplate}}"
+			   data-flow-template="flow_moderate_{{moderationTemplate}}.partial"
 			   data-role="unhide">
 				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-flag"></span> {{/if~}}
 				{{~l10n (concat "flow-" moderationType "-action-unhide-" moderationTemplate)~}}
@@ -117,7 +117,7 @@
 			   href="{{actions.delete.url}}"
 			   title="{{actions.delete.title}}"
 			   data-flow-interactive-handler="moderationDialog"
-			   data-flow-template="flow_moderate_{{moderationTemplate}}"
+			   data-flow-template="flow_moderate_{{moderationTemplate}}.partial"
 			   data-role="delete">
 				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-trash"></span> {{/if~}}
 				{{~l10n (concat "flow-" moderationType "-action-delete-" moderationTemplate)~}}
@@ -132,7 +132,7 @@
 			   href="{{actions.undelete.url}}"
 			   title="{{actions.undelete.title}}"
 			   data-flow-interactive-handler="moderationDialog"
-			   data-flow-template="flow_moderate_{{moderationTemplate}}"
+			   data-flow-template="flow_moderate_{{moderationTemplate}}.partial"
 			   data-role="undelete">
 				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-trash"></span> {{/if~}}
 				{{~l10n (concat "flow-" moderationType "-action-undelete-" moderationTemplate)~}}
@@ -147,7 +147,7 @@
 			   href="{{actions.suppress.url}}"
 			   title="{{actions.suppress.title}}"
 			   data-flow-interactive-handler="moderationDialog"
-			   data-flow-template="flow_moderate_{{moderationTemplate}}"
+			   data-flow-template="flow_moderate_{{moderationTemplate}}.partial"
 			   data-role="suppress">
 				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-block"></span> {{/if~}}
 				{{~l10n (concat "flow-" moderationType "-action-suppress-" moderationTemplate)~}}
@@ -162,7 +162,7 @@
 			   href="{{actions.unsuppress.url}}"
 			   title="{{actions.unsuppress.title}}"
 			   data-flow-interactive-handler="moderationDialog"
-			   data-flow-template="flow_moderate_{{moderationTemplate}}"
+			   data-flow-template="flow_moderate_{{moderationTemplate}}.partial"
 			   data-role="unsuppress">
 				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-block"></span> {{/if~}}
 				{{~l10n (concat "flow-" moderationType "-action-unsuppress-" moderationTemplate)~}}
@@ -178,7 +178,7 @@
 				{{~noop~}}
 				<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
 				   data-flow-interactive-handler="moderationDialog"
-				   data-flow-template="flow_moderate_topic"
+				   data-flow-template="flow_moderate_topic.partial"
 				   data-role="lock"
 				   data-flow-id="{{postId}}"
 				   href="{{actions.lock.url}}"
@@ -194,7 +194,7 @@
 				{{~noop~}}
 				<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet"
 				   data-flow-interactive-handler="moderationDialog"
-				   data-flow-template="flow_moderate_topic"
+				   data-flow-template="flow_moderate_topic.partial"
 				   data-role="unlock"
 				   data-flow-id="{{postId}}"
 				   href="{{actions.unlock.url}}"
