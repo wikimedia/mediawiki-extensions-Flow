@@ -31,7 +31,6 @@ $wgResourceModules += array(
 	),
 	'ext.flow.templating' => $flowTemplatingResourceTemplate + array(
 		'dependencies' => array(
-			'ext.mantle.handlebars',
 			'moment',
 		),
 		'templates' => array(
@@ -301,10 +300,12 @@ $wgResourceModules += array(
 	) + $mobile,
 	'ext.flow.handlebars' => $flowResourceTemplate + array(
 		'scripts' => array(
+			'vendor/handlebars.js',
+			'handlebars.js',
 			'engine/misc/flow-handlebars.js',
 		),
 		'dependencies' => array(
-			'ext.mantle.handlebars',
+			'mediawiki.template',
 			// the timestamp helper uses the timestamp template
 			'ext.flow.templating',
 			'moment',
