@@ -57,7 +57,11 @@ class ConvertLqt extends Maintenance {
 		if ( $this->getOption( 'allowunknownusernames' ) ) {
 			$importer->setAllowUnknownUsernames( true );
 		}
-		$source = new LiquidThreadsApiImportSource( $api, $srcPageName );
+		$source = new LiquidThreadsApiImportSource(
+			$api,
+			$srcPageName,
+			\FlowHooks::getOccupationController()->getTalkpageManager()
+		);
 		$title = Title::newFromText( $dstPageName );
 
 		if ( $this->hasOption( 'logfile' ) ) {
