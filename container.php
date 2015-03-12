@@ -72,10 +72,15 @@ $c['bad_image_remover'] = function( $c ) {
 	return new Flow\Parsoid\Fixer\BadImageRemover( 'wfIsBadImage' );
 };
 
+$c['base_href_fixer'] = function( $c ) {
+	return new Flow\Parsoid\Fixer\BaseHrefFixer();
+};
+
 $c['content_fixer'] = function( $c ) {
 	return new Flow\Parsoid\ContentFixer(
 		$c['redlinker'],
-		$c['bad_image_remover']
+		$c['bad_image_remover'],
+		$c['base_href_fixer']
 	);
 };
 
