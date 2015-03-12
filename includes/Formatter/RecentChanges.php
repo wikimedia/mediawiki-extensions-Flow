@@ -176,13 +176,20 @@ class RecentChanges extends AbstractFormatter {
 			throw new FlowException( 'Could not format data for row ' . $row->revision->getRevisionId()->getAlphadecimal() );
 		}
 
-		// add highlight details to anchor
-		/** @var Anchor $anchor */
-		$anchor = clone $data['links']['topic'];
-		$anchor->query['fromnotif'] = '1';
-		$anchor->fragment = '#flow-post-' . $oldId->getAlphadecimal();
+		if ( isset( $data['links']['topic'] ) ) {
+			// add highlight details to anchor
+			/** @var Anchor $anchor */
+			$anchor = clone $data['links']['topic'];
+			$anchor->query['fromnotif'] = '1';
+			$anchor->fragment = '#flow-post-' . $oldId->getAlphadecimal();
+		} elseif ( isset( $data['links']['workflow'] ) ) {
+			$anchor = $data['links']['workflow'];
+		} else {
+			// this will be caught and logged by the RC hook, it will not fatal the page.
+			throw new FlowException( "No anchor available for revision $oldId" );
+		}
 
-		$changes = count($block);
+		$changes = count( $block );
 		// link text: "n changes"
 		$text = $ctx->msg( 'nchanges' )->numParams( $changes )->escaped();
 
