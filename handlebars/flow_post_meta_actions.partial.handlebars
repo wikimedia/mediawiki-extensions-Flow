@@ -32,16 +32,6 @@
 				{{~actions.reply.text~}}
 			</a>
 		{{/if}}
-		{{#if actions.edit}}
-			<a href="{{actions.edit.url}}"
-			   title="{{actions.edit.title}}"
-			   data-flow-api-handler="activateEditPost"
-			   data-flow-api-target="< .flow-post-main"
-			   data-flow-interactive-handler="apiRequest"
-			   class="mw-ui-anchor mw-ui-progressive mw-ui-quiet">
-				{{l10n "flow-post-action-edit-post"}}
-			</a>
-		{{/if}}
 		{{#if actions.thank}}
 			{{!--
 				progressive enhancement happens in the Thank extension

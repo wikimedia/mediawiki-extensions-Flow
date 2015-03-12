@@ -170,6 +170,22 @@
 			{{~noop~}}
 		</li>
 	{{~/if~}}
+	{{~#ifCond moderationType "===" "post"~}}
+		{{~#if actions.edit~}}
+			<li>
+				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet"
+				   href="{{actions.edit.url}}"
+				   title="{{actions.edit.title}}"
+				   data-flow-api-handler="activateEditPost"
+				   data-flow-api-target="< .flow-post-main"
+				   data-flow-interactive-handler="apiRequest"
+				>
+					{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-pencil"></span> {{/if~}}
+					{{~l10n "flow-post-action-edit-post"~}}
+				</a>
+			</li>
+		{{~/if~}}
+	{{~/ifCond~}}
 
 	{{~#ifCond moderationType "===" "history"~}}
 		{{!-- The history page uses a modal, while the topic view puts this in the title bar --}}
