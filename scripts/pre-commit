@@ -39,7 +39,7 @@ fi
 
 if file_changed_in_commit '\.js$'; then
 	if [ "$IGNORE_JSHINT" != "1" ]; then
-		COMMANDS="jshint $COMMANDS"
+		COMMANDS="grunt $COMMANDS"
 	fi
 fi
 
