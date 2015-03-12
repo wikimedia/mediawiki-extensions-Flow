@@ -400,6 +400,7 @@
 	"flow-importer-lqt-converted-archive-template": "Name of a wikitext template that is added to the archived copy of a LiquidThreads page converted to Flow.",
 	"flow-importer-wt-converted-template": "Name of a wikitext template that is added to the header of a Flow boards that were converted from Wikitext",
 	"flow-importer-wt-converted-archive-template": "Name of a wikitext template that is added to the archived copy of a wikitext talk page converted to Flow.",
+	"flow-importer-lqt-suppressed-user-template": "Name of a wikitext template that is added to a revision imported from liquidthreads that is owned by a suppressed user.",
 	"apihelp-flow-description": "{{doc-apihelp-description|flow}}",
 	"apihelp-flow-param-submodule": "{{doc-apihelp-param|flow|submodule}}",
 	"apihelp-flow-param-page": "{{doc-apihelp-param|flow|page}}",

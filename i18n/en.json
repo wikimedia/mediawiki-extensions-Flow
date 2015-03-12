@@ -395,6 +395,7 @@
 	"flow-importer-lqt-converted-archive-template": "Archive for converted LQT page",
 	"flow-importer-wt-converted-template": "Wikitext talk page converted to Flow",
 	"flow-importer-wt-converted-archive-template": "Archive for converted wikitext talk page",
+	"flow-importer-lqt-suppressed-user-template": "This revision was imported from LiquidThreads with a supressed user.  It has been reassigned to the current user.",
 	"apihelp-flow-description": "Allows actions to be taken on Flow pages.",
 	"apihelp-flow-param-submodule": "The Flow submodule to invoke.",
 	"apihelp-flow-param-page": "The page to take the action on.",

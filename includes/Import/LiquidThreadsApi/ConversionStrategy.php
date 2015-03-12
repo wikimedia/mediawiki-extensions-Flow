@@ -86,7 +86,7 @@ class ConversionStrategy implements IConversionStrategy {
 	}
 
 	public function createImportSource( Title $title ) {
-		return new ImportSource( $this->api, $title->getPrefixedText() );
+		return new ImportSource( $this->api, $title->getPrefixedText(), $this->talkpageUser );
 	}
 
 	/**
