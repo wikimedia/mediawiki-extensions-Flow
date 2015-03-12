@@ -56,24 +56,38 @@ class ImportSource implements IImportSource {
 	protected $cachedTopics = 0;
 
 	/**
+	 * @var User Used for scripted actions and occurances (such as suppression)
+	 *  where the original user is not available.
+	 */
+	protected $scriptUser;
+
+	/**
 	 * @param ApiBackend $apiBackend
 	 * @param string $pageName
 	 */
-	public function __construct( ApiBackend $apiBackend, $pageName ) {
+	public function __construct( ApiBackend $apiBackend, $pageName, User $scriptUser ) {
 		$this->api = $apiBackend;
 		$this->pageName = $pageName;
+		$this->scriptUser = $scriptUser;
 
 		$this->threadData = new CachedThreadData( $this->api );
 		$this->pageData = new CachedPageData( $this->api );
 	}
 
 	/**
+	 * Returns a system user suitable for assigning programatic actions to.
+	 *
+	 * @return User
+	 */
+	public function getScriptUser() {
+		return $this->scriptUser;
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	public function getHeader() {
-		$controller = Container::get( 'occupation_controller' );
-
-		return new ImportHeader( $this->api, $this, $this->pageName, $controller->getTalkpageManager() );
+		return new ImportHeader( $this->api, $this, $this->pageName );
 	}
 
 	/**
