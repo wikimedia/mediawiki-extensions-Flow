@@ -43,7 +43,7 @@
 
 		_tplcache[ templateName ] = mw.template.get( 'ext.flow.templating', templateName + '.handlebars' );
 		if ( _tplcache[ templateName ] ) {
-			// Try to get this template via Mantle
+			// Try to get this template
 			_tplcache[ templateName ] = _tplcache[ templateName ].render;
 		}
 
