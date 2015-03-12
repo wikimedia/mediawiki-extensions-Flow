@@ -200,7 +200,7 @@
 				actions: {
 					reply: {
 						url: $( this ).attr( 'href' ),
-						title: mw.msg( 'flow-reply-link', author )
+						text: mw.msg( 'flow-reply-link', author )
 					}
 				},
 				postId: postId,
