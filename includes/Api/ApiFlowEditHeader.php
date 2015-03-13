@@ -1,26 +1,30 @@
 <?php
 
-class ApiFlowReply extends ApiFlowBasePost {
+namespace Flow\Api;
+
+use ApiBase;
+
+class ApiFlowEditHeader extends ApiFlowBasePost {
 
 	public function __construct( $api, $modName ) {
-		parent::__construct( $api, $modName, 'rep' );
+		parent::__construct( $api, $modName, 'eh' );
 	}
 
 	/**
+	 * Taken from ext.flow.base.js
 	 * @return array
 	 */
 	protected function getBlockParams() {
-		return array( 'topic' => $this->extractRequestParams() );
+		return array( 'header' => $this->extractRequestParams() );
 	}
 
 	protected function getAction() {
-		return 'reply';
+		return 'edit-header';
 	}
 
 	public function getAllowedParams() {
 		return array(
-			'replyTo' => array(
-				ApiBase::PARAM_REQUIRED => true,
+			'prev_revision' => array(
 			),
 			'content' => array(
 				ApiBase::PARAM_REQUIRED => true,
@@ -38,8 +42,8 @@ class ApiFlowReply extends ApiFlowBasePost {
 	 */
 	public function getParamDescription() {
 		return array(
-			'replyTo' => 'Post ID to reply to',
-			'content' => 'Content for new post',
+			'prev_revision' => 'Revision id of the current header revision to check for edit conflicts',
+			'content' => 'Content for header',
 			'format' => 'Format of the content (wikitext|html)',
 		);
 	}
@@ -48,7 +52,7 @@ class ApiFlowReply extends ApiFlowBasePost {
 	 * @deprecated since MediaWiki core 1.25
 	 */
 	public function getDescription() {
-		return 'Replies to a post';
+		return 'Edits a topic\'s header';
 	}
 
 	/**
@@ -56,7 +60,7 @@ class ApiFlowReply extends ApiFlowBasePost {
 	 */
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=reply&page=Topic:S2tycnas4hcucw8w&repreplyTo=050e554490c2b269143b080027630f57&repcontent=Nice%20to&20meet%20you&repformat=wikitext',
+			'api.php?action=flow&submodule=edit-header&page=Talk:Sandbox&ehprev_revision=???&ehcontent=Nice%20to&20meet%20you&ehformat=wikitext',
 		);
 	}
 
@@ -65,8 +69,8 @@ class ApiFlowReply extends ApiFlowBasePost {
 	 */
 	protected function getExamplesMessages() {
 		return array(
-			'action=flow&submodule=reply&page=Topic:S2tycnas4hcucw8w&repreplyTo=050e554490c2b269143b080027630f57&repcontent=Nice%20to&20meet%20you&repformat=wikitext'
-				=> 'apihelp-flow+reply-example-1',
+			'action=flow&submodule=edit-header&page=Talk:Sandbox&ehprev_revision=???&ehcontent=Nice%20to&20meet%20you&ehformat=wikitext'
+				=> 'apihelp-flow+edit-header-example-1',
 		);
 	}
 }
