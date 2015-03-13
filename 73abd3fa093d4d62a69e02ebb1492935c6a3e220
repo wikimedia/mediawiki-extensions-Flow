@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_064c8842",
+        "filename": "includes/Parsoid/Fixer/BaseHrefFixer.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-13T00:50:58Z",
+      "side": 1,
+      "message": "@return string",
+      "revId": "73abd3fa093d4d62a69e02ebb1492935c6a3e220",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_c65d30f1",
+        "filename": "includes/Parsoid/Fixer/BaseHrefFixer.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-13T00:50:58Z",
+      "side": 1,
+      "message": "probably doesn\u0027t matter, but this and the step below could be done just one time in the constructor instead of for each application.",
+      "revId": "73abd3fa093d4d62a69e02ebb1492935c6a3e220",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
