@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_b2706ea4",
+        "filename": "Resources.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-13T15:48:43Z",
+      "side": 1,
+      "message": "Why does this need to be loaded here?  The purpose of loading it dynamically is so browsers without VE support don\u0027t need to load the VE code.",
+      "parentUuid": "6e7c4fa4_21521716",
+      "revId": "d69765fd21f194c36bec046de45ed7b0085bf6e2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_c1400338",
         "filename": "modules/editor/editors/ext.flow.editors.visualeditor.js",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2015-03-04T16:21:01Z",
       "side": 1,
       "message": "Ignore all of the changes in here. I redid most of this while looking into the plugins, but what was here originally works just fine!\n\nI posted questions to the parent patch about most of the differences; then I\u0027ll discard whatever changes I made here \u0026 use whatever is in parent patch; just didn\u0027t feel like cleaning up yet :)",
+      "revId": "d69765fd21f194c36bec046de45ed7b0085bf6e2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_d273aaad",
+        "filename": "modules/editor/editors/ext.flow.editors.visualeditor.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-13T15:48:43Z",
+      "side": 1,
+      "message": "I would like to try to simplify the code in my patch at some point, though.",
+      "parentUuid": "6e7c4fa4_c1400338",
       "revId": "d69765fd21f194c36bec046de45ed7b0085bf6e2",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
