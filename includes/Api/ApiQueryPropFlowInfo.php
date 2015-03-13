@@ -1,6 +1,10 @@
 <?php
 
-use \Flow\Container;
+namespace Flow\Api;
+
+use ApiQueryBase;
+use Flow\Container;
+use Title;
 
 class ApiQueryPropFlowInfo extends ApiQueryBase {
 

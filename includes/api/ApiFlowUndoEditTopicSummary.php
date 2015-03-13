@@ -1,7 +1,10 @@
 <?php
 
-class ApiFlowUndoEditTopicSummary extends ApiFlowBasePost {
+namespace Flow\Api;
 
+use ApiBase;
+
+class ApiFlowUndoEditTopicSummary extends ApiFlowBasePost {
 	public function __construct( $api ) {
 		parent::__construct( $api, 'edit-topic-summary', 'uets' );
 	}

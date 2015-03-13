@@ -1,6 +1,12 @@
 <?php
 
+namespace Flow\Api;
+
+use ApiBase;
+use ApiMain;
+use ApiModuleManager;
 use Flow\Container;
+use Title;
 
 class ApiFlow extends ApiBase {
 
@@ -9,25 +15,25 @@ class ApiFlow extends ApiBase {
 
 	private static $modules = array(
 		// POST
-		'new-topic' => 'ApiFlowNewTopic',
-		'edit-header' => 'ApiFlowEditHeader',
-		'edit-post' => 'ApiFlowEditPost',
-		'edit-topic-summary' => 'ApiFlowEditTopicSummary',
-		'reply' => 'ApiFlowReply',
-		'moderate-post' => 'ApiFlowModeratePost',
-		'moderate-topic' => 'ApiFlowModerateTopic',
-		'edit-title' => 'ApiFlowEditTitle',
-		'lock-topic' => 'ApiFlowLockTopic',
-		'close-open-topic' => 'ApiFlowLockTopic', // BC: has been renamed to lock-topic
+		'new-topic' => 'Flow\Api\ApiFlowNewTopic',
+		'edit-header' => 'Flow\Api\ApiFlowEditHeader',
+		'edit-post' => 'Flow\Api\ApiFlowEditPost',
+		'edit-topic-summary' => 'Flow\Api\ApiFlowEditTopicSummary',
+		'reply' => 'Flow\Api\ApiFlowReply',
+		'moderate-post' => 'Flow\Api\ApiFlowModeratePost',
+		'moderate-topic' => 'Flow\Api\ApiFlowModerateTopic',
+		'edit-title' => 'Flow\Api\ApiFlowEditTitle',
+		'lock-topic' => 'Flow\Api\ApiFlowLockTopic',
+		'close-open-topic' => 'Flow\Api\ApiFlowLockTopic', // BC: has been renamed to lock-topic
 
 		// GET
 		// action 'view' exists in Topic.php & TopicList.php, for topic, post &
 		// topiclist - we'll want to know topic-/post- or topiclist-view ;)
-		'view-topiclist' => 'ApiFlowViewTopicList',
-		'view-post' => 'ApiFlowViewPost',
-		'view-topic' => 'ApiFlowViewTopic',
-		'view-header' => 'ApiFlowViewHeader',
-		'view-topic-summary' => 'ApiFlowViewTopicSummary',
+		'view-topiclist' => 'Flow\Api\ApiFlowViewTopicList',
+		'view-post' => 'Flow\Api\ApiFlowViewPost',
+		'view-topic' => 'Flow\Api\ApiFlowViewTopic',
+		'view-header' => 'Flow\Api\ApiFlowViewHeader',
+		'view-topic-summary' => 'Flow\Api\ApiFlowViewTopicSummary',
 	);
 
 	public function __construct( $main, $action ) {
@@ -92,7 +98,7 @@ class ApiFlow extends ApiBase {
 		if ( !$page ) {
 			$this->dieUsage( 'Invalid page provided', 'invalid-page' );
 		}
-		/** @var Flow\TalkpageManager $controller */
+		/** @var \Flow\TalkpageManager $controller */
 		$controller = Container::get( 'occupation_controller' );
 		if ( !$controller->isTalkpageOccupied( $page ) ) {
 			// just check for permissions, nothing else to do. if the commit

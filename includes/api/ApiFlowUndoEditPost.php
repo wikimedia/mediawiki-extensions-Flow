@@ -1,7 +1,10 @@
 <?php
 
-class ApiFlowUndoEditPost extends ApiFlowBasePost {
+namespace Flow\Api;
 
+use ApiBase;
+
+class ApiFlowUndoEditPost extends ApiFlowBasePost {
 	public function __construct( $api ) {
 		parent::__construct( $api, 'undo-edit-post', 'uep' );
 	}
