@@ -64,8 +64,8 @@ $c['link_batch'] = function() {
 	return new LinkBatch;
 };
 
-$c['redlinker'] = function( $c ) {
-	return new Flow\Parsoid\Fixer\Redlinker( $c['link_batch'] );
+$c['wiki_link_fixer'] = function( $c ) {
+	return new Flow\Parsoid\Fixer\WikiLinkFixer( $c['link_batch'] );
 };
 
 $c['bad_image_remover'] = function( $c ) {
@@ -80,7 +80,7 @@ $c['base_href_fixer'] = function( $c ) {
 
 $c['content_fixer'] = function( $c ) {
 	return new Flow\Parsoid\ContentFixer(
-		$c['redlinker'],
+		$c['wiki_link_fixer'],
 		$c['bad_image_remover'],
 		$c['base_href_fixer']
 	);

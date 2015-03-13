@@ -11,7 +11,7 @@ use Flow\Parsoid\Fixer;
  *
  * For now, we just apply this transformation to our own user
  * Parsoid content.  It does not need to be done for WikiLink, since
- * that is handled by Redlinker in another way.
+ * that is handled by WikiLinkFixer in another way.
  */
 class BaseHrefFixer implements Fixer {
 	/**
@@ -33,7 +33,7 @@ class BaseHrefFixer implements Fixer {
 	 * @return string XPath of elements this acts on
 	 */
 	public function getXPath() {
-		// Redlinker handles mw:WikiLink
+		// WikiLinkFixer handles mw:WikiLink
 		return '//a[@href and not(@rel="mw:WikiLink")]';
 	}
 
