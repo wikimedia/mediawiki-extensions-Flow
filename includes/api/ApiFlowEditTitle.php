@@ -26,11 +26,6 @@ class ApiFlowEditTitle extends ApiFlowBasePost {
 			'content' => array(
 				ApiBase::PARAM_REQUIRED => true,
 			),
-			'format' => array(
-				ApiBase::PARAM_REQUIRED => true,
-				ApiBase::PARAM_DFLT => 'wikitext',
-				ApiBase::PARAM_TYPE => array( 'html', 'wikitext' ),
-			),
 		) + parent::getAllowedParams();
 	}
 
@@ -41,7 +36,6 @@ class ApiFlowEditTitle extends ApiFlowBasePost {
 		return array(
 			'prev_revision' => 'Revision id of the current title revision to check for edit conflicts',
 			'content' => 'Content for title',
-			'format' => 'Format of the content (wikitext|html)',
 		);
 	}
 
@@ -57,7 +51,7 @@ class ApiFlowEditTitle extends ApiFlowBasePost {
 	 */
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=edit-title&page=Topic:S2tycnas4hcucw8w&ehprev_revision=???&ehtcontent=Nice%20to&20meet%20you&ehtformat=wikitext',
+			'api.php?action=flow&submodule=edit-title&page=Topic:S2tycnas4hcucw8w&etprev_revision=???&etcontent=Nice%20to&20meet%20you',
 		);
 	}
 
@@ -66,7 +60,7 @@ class ApiFlowEditTitle extends ApiFlowBasePost {
 	 */
 	protected function getExamplesMessages() {
 		return array(
-			'action=flow&submodule=edit-title&page=Topic:S2tycnas4hcucw8w&ehprev_revision=???&ehtcontent=Nice%20to&20meet%20you&ehtformat=wikitext'
+			'action=flow&submodule=edit-title&page=Topic:S2tycnas4hcucw8w&etprev_revision=???&ehtcontent=Nice%20to&20meet%20you'
 				=> 'apihelp-flow+edit-title-example-1',
 		);
 	}
