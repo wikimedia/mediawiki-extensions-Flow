@@ -1,9 +1,13 @@
 <?php
 
-class ApiFlowEditHeader extends ApiFlowBasePost {
+namespace Flow\Api;
+
+use ApiBase;
+
+class ApiFlowNewTopic extends ApiFlowBasePost {
 
 	public function __construct( $api, $modName ) {
-		parent::__construct( $api, $modName, 'eh' );
+		parent::__construct( $api, $modName, 'nt' );
 	}
 
 	/**
@@ -11,16 +15,17 @@ class ApiFlowEditHeader extends ApiFlowBasePost {
 	 * @return array
 	 */
 	protected function getBlockParams() {
-		return array( 'header' => $this->extractRequestParams() );
+		return array( 'topiclist' => $this->extractRequestParams() );
 	}
 
 	protected function getAction() {
-		return 'edit-header';
+		return 'new-topic';
 	}
 
 	public function getAllowedParams() {
 		return array(
-			'prev_revision' => array(
+			'topic' => array(
+				ApiBase::PARAM_REQUIRED => true,
 			),
 			'content' => array(
 				ApiBase::PARAM_REQUIRED => true,
@@ -38,8 +43,8 @@ class ApiFlowEditHeader extends ApiFlowBasePost {
 	 */
 	public function getParamDescription() {
 		return array(
-			'prev_revision' => 'Revision id of the current header revision to check for edit conflicts',
-			'content' => 'Content for header',
+			'topic' => 'Text for new topic title',
+			'content' => 'Content for the topic\'s initial reply',
 			'format' => 'Format of the content (wikitext|html)',
 		);
 	}
@@ -48,7 +53,7 @@ class ApiFlowEditHeader extends ApiFlowBasePost {
 	 * @deprecated since MediaWiki core 1.25
 	 */
 	public function getDescription() {
-		return 'Edits a topic\'s header';
+		return 'Creates a new Flow topic on the given page, or workflow';
 	}
 
 	/**
@@ -56,7 +61,7 @@ class ApiFlowEditHeader extends ApiFlowBasePost {
 	 */
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=edit-header&page=Talk:Sandbox&ehprev_revision=???&ehcontent=Nice%20to&20meet%20you&ehformat=wikitext',
+			'api.php?action=flow&submodule=new-topic&page=Talk:Sandbox&nttopic=Hi&ntcontent=Nice%20to&20meet%20you&ntformat=wikitext',
 		);
 	}
 
@@ -65,8 +70,8 @@ class ApiFlowEditHeader extends ApiFlowBasePost {
 	 */
 	protected function getExamplesMessages() {
 		return array(
-			'action=flow&submodule=edit-header&page=Talk:Sandbox&ehprev_revision=???&ehcontent=Nice%20to&20meet%20you&ehformat=wikitext'
-				=> 'apihelp-flow+edit-header-example-1',
+			'action=flow&submodule=new-topic&page=Talk:Sandbox&nttopic=Hi&ntcontent=Nice%20to&20meet%20you&ntformat=wikitext'
+				=> 'apihelp-flow+new-topic-example-1',
 		);
 	}
 }
