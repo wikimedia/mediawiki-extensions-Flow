@@ -991,7 +991,8 @@ $c['storage.wiki_reference.primary_key'] = array(
 	'ref_src_title',
 	'ref_src_object_id',
 	'ref_type',
-	'ref_target_namespace', 'ref_target_title'
+	'ref_target_namespace',
+	'ref_target_title'
 );
 $c['storage.wiki_reference.mapper'] = function( $c ) {
 	return Flow\Data\Mapper\BasicObjectMapper::model(

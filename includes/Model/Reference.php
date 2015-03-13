@@ -134,4 +134,18 @@ abstract class Reference {
 				$this->getObjectId()->getAlphadecimal() . '|' .
 				$this->getIdentifier();
 	}
+
+
+	/**
+	 * We don't have a real PK (see comment in
+	 * ReferenceClarifier::loadReferencesForPage) but I'll do a array_unique on
+	 * multiple Reference objects, just to make sure we have no duplicates.
+	 * But to be able to do an array_unique, the objects will be compared as
+	 * strings.
+	 *
+	 * @return string
+	 */
+	public function __toString() {
+		return $this->getUniqueIdentifier();
+	}
 }

@@ -131,7 +131,7 @@ class BasicDbStorage extends DbStorage {
 	public function find( array $attributes, array $options = array() ) {
 		$attributes = $this->preprocessSqlArray( $attributes );
 
-		if ( ! $this->validateOptions( $options ) ) {
+		if ( !$this->validateOptions( $options ) ) {
 			throw new \MWException( "Validation error in database options" );
 		}
 
