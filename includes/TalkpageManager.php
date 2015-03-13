@@ -161,6 +161,16 @@ class TalkpageManager implements OccupationController {
 		return null;
 	}
 
+	// TODO: This is confusing.  An is...Allowed method should not be mutating state.
+	/**
+	 * Checks whether the given user is allowed to create a board at the given
+	 * title.
+	 *
+	 * If so, changes the state of the talk page manager to record this fact.
+	 *
+	 * @param Title $title Title to check
+	 * @param User $user User who wants to create a board
+	 */
 	public function isCreationAllowed( Title $title, User $user ) {
 		global $wgContentHandlerUseDB;
 
