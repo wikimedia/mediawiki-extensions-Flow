@@ -1,5 +1,9 @@
 <?php
 
+namespace Flow\Api;
+
+use ApiBase;
+
 class ApiFlowViewTopicList extends ApiFlowBaseGet {
 	public function __construct( $api, $modName ) {
 		parent::__construct( $api, $modName, 'vtl' );

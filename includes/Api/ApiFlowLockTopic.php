@@ -1,5 +1,8 @@
 <?php
 
+namespace Flow\Api;
+
+use ApiBase;
 use Flow\Model\AbstractRevision;
 
 class ApiFlowLockTopic extends ApiFlowBasePost {
