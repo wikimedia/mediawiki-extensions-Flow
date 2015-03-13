@@ -1,5 +1,8 @@
 <?php
 
+namespace Flow\Api;
+
+use ApiBase;
 use Flow\Container;
 use Flow\Parsoid\ContentFixer;
 use Flow\Parsoid\Utils;

@@ -1,24 +1,27 @@
 <?php
 
-class ApiFlowUndoEditPost extends ApiFlowBasePost {
+namespace Flow\Api;
 
+use ApiBase;
+
+class ApiFlowUndoEditTopicSummary extends ApiFlowBasePost {
 	public function __construct( $api ) {
-		parent::__construct( $api, 'undo-edit-post', 'uep' );
+		parent::__construct( $api, 'edit-topic-summary', 'uets' );
 	}
 
 	protected function getAction() {
-		return 'undo-edit-post';
+		return 'undo-edit-topic-summary';
 	}
 
 	protected function getBlockParams() {
-		return array( 'topic' => $this->extractRequestParams() );
+		return array(
+			'topicsummary' => $this->extractRequestParams(),
+			'topic' => array(),
+		);
 	}
 
 	public function getAllowedParams() {
 		return array(
-			'postId' => array(
-				ApiBase::PARAM_REQUIRED => true,
-			),
 			'startId' => array(
 				ApiBase::PARAM_REQUIRED => true,
 			),
@@ -33,8 +36,8 @@ class ApiFlowUndoEditPost extends ApiFlowBasePost {
 	 */
 	protected function getExamplesMessages() {
 		return array(
-			'action=flow&submodule=undo-edit-post&page=Topic:S2tycnas4hcucw8w&uaepostId=???&uaestartId=???&uaeendId=???'
-				=> 'apihelp-flow+undo-edit-post-example-1',
+			'action=flow&submodule=undo-edit-topic-summary&page=Topic:S2tycnas4hcucw8w&uetsstartId=???&uetsendId=???'
+				=> 'apihelp-flow+undo-edit-topic-summary-example-1',
 		);
 	}
 }

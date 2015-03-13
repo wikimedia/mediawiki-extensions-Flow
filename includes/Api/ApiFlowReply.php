@@ -1,13 +1,16 @@
 <?php
 
-class ApiFlowEditTitle extends ApiFlowBasePost {
+namespace Flow\Api;
+
+use ApiBase;
+
+class ApiFlowReply extends ApiFlowBasePost {
 
 	public function __construct( $api, $modName ) {
-		parent::__construct( $api, $modName, 'et' );
+		parent::__construct( $api, $modName, 'rep' );
 	}
 
 	/**
-	 * Taken from ext.flow.base.js
 	 * @return array
 	 */
 	protected function getBlockParams() {
@@ -15,16 +18,21 @@ class ApiFlowEditTitle extends ApiFlowBasePost {
 	}
 
 	protected function getAction() {
-		return 'edit-title';
+		return 'reply';
 	}
 
 	public function getAllowedParams() {
 		return array(
-			'prev_revision' => array(
+			'replyTo' => array(
 				ApiBase::PARAM_REQUIRED => true,
 			),
 			'content' => array(
 				ApiBase::PARAM_REQUIRED => true,
+			),
+			'format' => array(
+				ApiBase::PARAM_REQUIRED => true,
+				ApiBase::PARAM_DFLT => 'wikitext',
+				ApiBase::PARAM_TYPE => array( 'html', 'wikitext' ),
 			),
 		) + parent::getAllowedParams();
 	}
@@ -34,8 +42,9 @@ class ApiFlowEditTitle extends ApiFlowBasePost {
 	 */
 	public function getParamDescription() {
 		return array(
-			'prev_revision' => 'Revision id of the current title revision to check for edit conflicts',
-			'content' => 'Content for title',
+			'replyTo' => 'Post ID to reply to',
+			'content' => 'Content for new post',
+			'format' => 'Format of the content (wikitext|html)',
 		);
 	}
 
@@ -43,7 +52,7 @@ class ApiFlowEditTitle extends ApiFlowBasePost {
 	 * @deprecated since MediaWiki core 1.25
 	 */
 	public function getDescription() {
-		return 'Edits a topic\'s title';
+		return 'Replies to a post';
 	}
 
 	/**
@@ -51,7 +60,7 @@ class ApiFlowEditTitle extends ApiFlowBasePost {
 	 */
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=edit-title&page=Topic:S2tycnas4hcucw8w&etprev_revision=???&etcontent=Nice%20to&20meet%20you',
+			'api.php?action=flow&submodule=reply&page=Topic:S2tycnas4hcucw8w&repreplyTo=050e554490c2b269143b080027630f57&repcontent=Nice%20to&20meet%20you&repformat=wikitext',
 		);
 	}
 
@@ -60,8 +69,8 @@ class ApiFlowEditTitle extends ApiFlowBasePost {
 	 */
 	protected function getExamplesMessages() {
 		return array(
-			'action=flow&submodule=edit-title&page=Topic:S2tycnas4hcucw8w&etprev_revision=???&ehtcontent=Nice%20to&20meet%20you'
-				=> 'apihelp-flow+edit-title-example-1',
+			'action=flow&submodule=reply&page=Topic:S2tycnas4hcucw8w&repreplyTo=050e554490c2b269143b080027630f57&repcontent=Nice%20to&20meet%20you&repformat=wikitext'
+				=> 'apihelp-flow+reply-example-1',
 		);
 	}
 }

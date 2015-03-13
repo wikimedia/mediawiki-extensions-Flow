@@ -1,7 +1,10 @@
 <?php
 
-class ApiFlowUndoEditHeader extends ApiFlowBasePost {
+namespace Flow\Api;
 
+use ApiBase;
+
+class ApiFlowUndoEditHeader extends ApiFlowBasePost {
 	public function __construct( $api, $modName ) {
 		parent::__construct( $api, $modName, 'ueh' );
 	}
