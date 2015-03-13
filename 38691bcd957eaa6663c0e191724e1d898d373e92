@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_a63354bf",
+        "filename": "includes/Parsoid/Fixer/BaseHrefFixer.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-13T00:49:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_63f76ef3",
+      "revId": "38691bcd957eaa6663c0e191724e1d898d373e92",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_e3c13e84",
         "filename": "includes/Parsoid/Fixer/BaseHrefFixer.php",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2015-03-12T23:14:33Z",
       "side": 1,
       "message": "unused",
+      "revId": "38691bcd957eaa6663c0e191724e1d898d373e92",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_c63690af",
+        "filename": "includes/Parsoid/Fixer/BaseHrefFixer.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-13T00:49:10Z",
+      "side": 1,
+      "message": "Done.  It still works like this, but I intended to use the full URL to more closely match how the actual base href (see view-source:http://parsoid-lb.eqiad.wikimedia.org/enwiki/Earth?oldid\u003d633608085) works.",
+      "parentUuid": "6e7c4fa4_e3c13e84",
       "revId": "38691bcd957eaa6663c0e191724e1d898d373e92",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
