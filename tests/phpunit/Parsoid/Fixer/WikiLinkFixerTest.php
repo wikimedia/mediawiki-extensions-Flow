@@ -4,7 +4,7 @@ namespace Flow\Tests\Parsoid\Fixer;
 
 use Flow\Model\UUID;
 use Flow\Parsoid\ContentFixer;
-use Flow\Parsoid\Fixer\Redlinker;
+use Flow\Parsoid\Fixer\WikiLinkFixer;
 use Flow\Parsoid\Utils;
 use Flow\Tests\PostRevisionTestCase;
 use Html;
@@ -13,7 +13,7 @@ use Title;
 /**
  * @group Flow
  */
-class RedlinkerTest extends PostRevisionTestCase {
+class WikiLinkFixerTest extends PostRevisionTestCase {
 
 	static public function redLinkProvider() {
 		return array(
@@ -67,7 +67,7 @@ class RedlinkerTest extends PostRevisionTestCase {
 	 * @dataProvider redLinkProvider
 	 */
 	public function testAppliesRedLinks( $message, $anchor, $expect ) {
-		$fixer = new ContentFixer( new Redlinker( $this->getMock( 'LinkBatch' ) ) );
+		$fixer = new ContentFixer( new WikiLinkFixer( $this->getMock( 'LinkBatch' ) ) );
 		$result = $fixer->apply( $anchor, Title::newMainPage() );
 		$this->assertContains( $expect, $result, $message );
 	}
