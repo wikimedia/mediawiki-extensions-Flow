@@ -14,6 +14,7 @@
 			"Nemo bis"
 		]
 	},
+	"enableflow": "{{doc-special|EnableFlow}}",
 	"flow-desc": "{{desc|name=Flow|url=http://www.mediawiki.org/wiki/Extension:Flow}}",
 	"flow-talk-taken-over": "Content to replace existing page content by for pages that are turned into Flow boards.",
 	"flow-talk-username": "Username used for the revision added when Flow takes over a talk page.  Avoid changing this unnecessarily, as it will cause a new user to be used for future actions.",
@@ -347,6 +348,7 @@
 	"flow-compare-revisions-header-post": "Header for a page showing a \"diff\" between two revisions of a Flow post. Parameters:\n* $1 - the title of the Board on which this post sits. Example: User talk:Andrew\n* $2 - the subject of the Topic in which this post sits\n* $3 - the username of the author of the post\n* $4 - URL to the Board, with the fragment set to the post in question\n* $5 - URL to the Topic, with the fragment set to the post in question\n* $6 - URL to the history page for this post\n{{Related|Flow-compare-revisions-header}}",
 	"flow-compare-revisions-header-postsummary": "Header for a page showing a \"diff\" between two revisions of a Flow post summary. Parameters:\n* $1 - the title of the Board on which this post sits. Example: User talk:Andrew\n* $2 - the subject of the Topic in which this post sits\n* $3 - URL to the Board, with the fragment set to the post in question\n* $4 - URL to the Topic, with the fragment set to the post in question\n* $5 - URL to the history page for this post\n{{Related|Flow-compare-revisions-header}}",
 	"flow-compare-revisions-header-header": "Header for a page showing a \"diff\" between two revisions of a Flow board header. Parameters:\n* $1 - the title of the Board on which this header sits. Example: User talk:Andrew\n* $2 - the username of the author of the header\n* $3 - URL to the Board, with the fragment set to the post in question\n* $4 - URL to the history page for this post\n{{Related|Flow-compare-revisions-header}}",
+	"action-flow-create-board": "{{doc-action|flow-create-board}}",
 	"right-flow-create-board": "{{doc-right|flow-create-board}}",
 	"right-flow-hide": "{{doc-right|flow-hide}}",
 	"right-flow-lock": "{{doc-right|flow-lock}}",
@@ -383,6 +385,12 @@
 	"flow-special-type-workflow": "Label for Workflow in the type dropdown.\n{{Identical|Workflow}}",
 	"flow-special-uuid": "Label for the UUID field on the redirector special page.\n\nUUID is unique identifier for the revisioned object containing the reference.",
 	"flow-special-invalid-uuid": "Error message shown on the redirector special page if the specified type / UUID combination is invalid",
+	"flow-special-enableflow-legend": "Legend for Special:EnableFlow form",
+	"flow-special-enableflow-page": "Label for the page field of Special:EnableFlow",
+	"flow-special-enableflow-header": "Label for the header field of Special:EnableFlow",
+	"flow-special-enableflow-confirmation": "Confirmation message on Special:EnableFlow saying that you have successfully created a board  Parameters:\n$1 - Page name of new Flow board",
+	"flow-special-enableflow-board-already-exists": "Error given on Special:EnableFlow if board already exists at requested page name.  Parameters:\n$1 - Page name where user requested to put Flow board",
+	"flow-special-enableflow-page-already-exists": "Error given on Special:EnableFlow if a non-Flow page already exists at requested page name.  Parameters:\n$1 - Page name where user requested to put Flow board",
 	"flow-spam-confirmedit-form": "Error message when ConfirmEdit flagged the submitted content (because an anonymous user submitted external links, possibly spam). A captcha will be displayed after this error message. Parameters:\n* $1 - the HTML for the captcha form.",
 	"flow-preview-warning": "Refers to {{msg-mw|flow-newtopic-save}} (Add topic) and {{msg-mw|Flow-preview-return-edit-post}} (Keep editing).",
 	"flow-preview-return-edit-post": "Used as text for a button that hides previewed text and returns to the editing view",

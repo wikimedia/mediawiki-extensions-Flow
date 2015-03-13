@@ -4,7 +4,7 @@
  * A special page that redirects to a workflow or PostRevision given a UUID
  */
 
-namespace Flow;
+namespace Flow\Specials;
 
 use Flow\Data\ObjectManager;
 use Flow\Exception\FlowException;

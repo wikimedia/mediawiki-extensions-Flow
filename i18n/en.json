@@ -9,6 +9,7 @@
 			"Amir E. Aharoni"
 		]
 	},
+	"enableflow": "Enable Flow",
 	"flow-desc": "Workflow management system",
 	"flow-talk-taken-over": "This talk page is using [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow].",
 	"flow-talk-username": "Flow talk page manager",
@@ -342,6 +343,7 @@
 	"flow-compare-revisions-header-post": "This page shows the {{GENDER:$3|changes}} between two versions of a post by $3 in the topic \"[$5 $2]\" on [$4 $1].\nYou can see other versions of this post at its [$6 history page].",
 	"flow-compare-revisions-header-postsummary": "This page shows the changes between two versions of a post summary in the post \"[$4 $2]\" on [$3 $1].\nYou can see other versions of this post at its [$5 history page].",
 	"flow-compare-revisions-header-header": "This page shows the {{GENDER:$2|changes}} between two versions of the header on [$3 $1].\nYou can see other versions of the header at its [$4 history page].",
+	"action-flow-create-board": "create Flow boards in any location",
 	"right-flow-create-board": "Create Flow boards in any location",
 	"right-flow-hide": "Hide Flow topics and posts",
 	"right-flow-lock": "Lock Flow topics",
@@ -378,6 +380,12 @@
 	"flow-special-type-workflow": "Workflow",
 	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Could not find content matching the type and the UUID.",
+	"flow-special-enableflow-legend": "Enable Flow on a new page",
+	"flow-special-enableflow-page": "Page to enable Flow on",
+	"flow-special-enableflow-header": "Initial header of Flow board (wikitext)",
+	"flow-special-enableflow-board-already-exists": "There is already a Flow board at [[$1]].",
+	"flow-special-enableflow-page-already-exists": "There is already a non-Flow page at [[$1]].  If you still want to locate a Flow board there, please move the existing page to an archive, delete the redirect, then use Special:EnableFlow again.  Include the archive name in the header",
+	"flow-special-enableflow-confirmation": "You have successfully created a Flow board at [[$1]].",
 	"flow-spam-confirmedit-form": "Please confirm you are a human by solving the below captcha: $1",
 	"flow-preview-warning": "You are seeing a preview. Click \"{{int:flow-newtopic-save}}\" to post, or click \"{{int:flow-preview-return-edit-post}}\" to continue writing.",
 	"flow-preview-return-edit-post": "Keep editing",
