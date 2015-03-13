@@ -1,5 +1,9 @@
 <?php
 
+namespace Flow\Api;
+
+use ApiBase;
+
 class ApiFlowEditTopicSummary extends ApiFlowBasePost {
 
 	public function __construct( $api ) {

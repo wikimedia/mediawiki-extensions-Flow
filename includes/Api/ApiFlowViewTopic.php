@@ -1,5 +1,7 @@
 <?php
 
+namespace Flow\Api;
+
 class ApiFlowViewTopic extends ApiFlowBaseGet {
 	public function __construct( $api, $modName ) {
 		parent::__construct( $api, $modName, 'vt' );

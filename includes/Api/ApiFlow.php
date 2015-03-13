@@ -1,6 +1,12 @@
 <?php
 
+namespace Flow\Api;
+
+use ApiBase;
+use ApiMain;
+use ApiModuleManager;
 use Flow\Container;
+use Title;
 
 class ApiFlow extends ApiBase {
 
@@ -92,7 +98,7 @@ class ApiFlow extends ApiBase {
 		if ( !$page ) {
 			$this->dieUsage( 'Invalid page provided', 'invalid-page' );
 		}
-		/** @var Flow\TalkpageManager $controller */
+		/** @var \Flow\TalkpageManager $controller */
 		$controller = Container::get( 'occupation_controller' );
 		if ( !$controller->isTalkpageOccupied( $page ) ) {
 			// just check for permissions, nothing else to do. if the commit

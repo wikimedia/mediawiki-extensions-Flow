@@ -51,6 +51,39 @@ interface Block {
 	 * @return UUID
 	 */
 	function getWorkflowId();
+
+	/**
+	 * Returns an array of all error types encountered in this block. The values
+	 * in the returned array can be used to pass to getErrorMessage() or
+	 * getErrorExtra() to respectively fetch the specific error message or
+	 * additional details.
+	 *
+	 * @return array
+	 */
+	function getErrors();
+
+	/**
+	 * Checks if any errors have occurred in the block (no argument), or if a
+	 * specific error has occurred (argument being the error type)
+	 *
+	 * @param string[optional] $type
+	 * @return bool
+	 */
+	function hasErrors( $type = null );
+
+	/**
+	 * Returns true if the block can render the requested action, or false
+	 * otherwise.
+	 *
+	 * @param string $action
+	 * @return bool
+	 */
+	public function canRender( $action );
+
+	/**
+	 * @param string $action
+	 */
+	public function unsetRequiresWikitext( $action );
 }
 
 abstract class AbstractBlock implements Block {

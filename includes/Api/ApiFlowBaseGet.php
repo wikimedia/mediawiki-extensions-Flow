@@ -1,8 +1,11 @@
 <?php
 
-use Flow\Block\AbstractBlock;
+namespace Flow\Api;
+
+use Flow\Block\Block;
 use Flow\Model\Anchor;
 use Flow\Model\UUID;
+use Message;
 
 abstract class ApiFlowBaseGet extends ApiFlowBase {
 	public function execute() {
@@ -17,7 +20,7 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 			'status' => 'ok',
 		) );
 
-		/** @var AbstractBlock $block */
+		/** @var Block $block */
 		foreach( $blocks as $block ) {
 			$block->init( $context, $action );
 
