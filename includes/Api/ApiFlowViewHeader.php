@@ -1,8 +1,12 @@
 <?php
 
-class ApiFlowViewTopicSummary extends ApiFlowBaseGet {
+namespace Flow\Api;
+
+use ApiBase;
+
+class ApiFlowViewHeader extends ApiFlowBaseGet {
 	public function __construct( $api, $modName ) {
-		parent::__construct( $api, $modName, 'vts' );
+		parent::__construct( $api, $modName, 'vh' );
 	}
 
 	/**
@@ -10,11 +14,11 @@ class ApiFlowViewTopicSummary extends ApiFlowBaseGet {
 	 * @return array
 	 */
 	protected function getBlockParams() {
-		return array( 'topicsummary' => $this->extractRequestParams() );
+		return array( 'header' => $this->extractRequestParams() );
 	}
 
 	protected function getAction() {
-		return 'view-topic-summary';
+		return 'view-header';
 	}
 
 	public function getAllowedParams() {
@@ -43,7 +47,7 @@ class ApiFlowViewTopicSummary extends ApiFlowBaseGet {
 	 * @deprecated since MediaWiki core 1.25
 	 */
 	public function getDescription() {
-		return 'View a topic summary';
+		return 'View a board header';
 	}
 
 	/**
@@ -51,7 +55,7 @@ class ApiFlowViewTopicSummary extends ApiFlowBaseGet {
 	 */
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=view-topic-summary&page=Topic:S2tycnas4hcucw8w&vtscontentFormat=wikitext&revId=',
+			'api.php?action=flow&submodule=view-header&page=Talk:Sandbox&vhcontentFormat=wikitext&revId=',
 		);
 	}
 
@@ -60,8 +64,8 @@ class ApiFlowViewTopicSummary extends ApiFlowBaseGet {
 	 */
 	protected function getExamplesMessages() {
 		return array(
-			'action=flow&submodule=view-topic-summary&page=Topic:S2tycnas4hcucw8w&vtscontentFormat=wikitext&revId='
-				=> 'apihelp-flow+view-topic-summary-example-1',
+			'action=flow&submodule=view-header&page=Talk:Sandbox&vhcontentFormat=wikitext&revId='
+				=> 'apihelp-flow+view-header-example-1',
 		);
 	}
 }
