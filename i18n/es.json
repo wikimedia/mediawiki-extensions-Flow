@@ -291,7 +291,15 @@
 	"flow-topic-undo-hide": "deshacer ocultar",
 	"flow-topic-undo-delete": "deshacer borrar",
 	"flow-topic-undo-suppress": "deshacer suprimir",
+	"apihelp-flow+edit-header-param-format": "Formato del resumen (wikitexto|html)",
 	"apihelp-flow+edit-post-param-content": "Contenido para publicar.",
+	"apihelp-flow+edit-post-param-format": "Formato del resumen (wikitexto|html)",
+	"apihelp-flow+edit-title-param-format": "Formato del resumen (wikitexto|html)",
+	"apihelp-flow+edit-topic-summary-param-format": "Formato del resumen (wikitexto|html)",
+	"apihelp-flow+new-topic-param-format": "Formato del contenido (wikitexto|html)",
+	"apihelp-flow+reply-param-format": "Formato del contenido (wikitexto|html)",
 	"apihelp-flow-parsoid-utils-param-content": "El contenido que se convertirá.",
-	"flow-edited": "Editada"
+	"flow-edited": "Editada",
+	"flow-previous-diff": "← Edición anterior",
+	"flow-next-diff": "Edición siguiente →"
 }
