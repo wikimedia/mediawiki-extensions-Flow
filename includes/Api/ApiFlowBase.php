@@ -1,11 +1,15 @@
 <?php
 
-use Flow\Block\AbstractBlock;
+namespace Flow\Api;
+
+use ApiBase;
+use Flow\Block\Block;
 use Flow\Container;
 use Flow\Model\AbstractRevision;
 use Flow\TalkpageManager;
 use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
+use Title;
 
 abstract class ApiFlowBase extends ApiBase {
 
@@ -95,7 +99,7 @@ abstract class ApiFlowBase extends ApiBase {
 	 *   outputting all encountered errors might still not cover everything
 	 *   that's wrong with the request
 	 *
-	 * @param AbstractBlock[] $blocks
+	 * @param Block[] $blocks
 	 */
 	protected function processError( $blocks ) {
 		foreach( $blocks as $block ) {

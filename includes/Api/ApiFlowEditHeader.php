@@ -1,26 +1,30 @@
 <?php
 
-class ApiFlowEditPost extends ApiFlowBasePost {
+namespace Flow\Api;
 
-	public function __construct( $api ) {
-		parent::__construct( $api, 'edit-post', 'ep' );
+use ApiBase;
+
+class ApiFlowEditHeader extends ApiFlowBasePost {
+
+	public function __construct( $api, $modName ) {
+		parent::__construct( $api, $modName, 'eh' );
+	}
+
+	/**
+	 * Taken from ext.flow.base.js
+	 * @return array
+	 */
+	protected function getBlockParams() {
+		return array( 'header' => $this->extractRequestParams() );
 	}
 
 	protected function getAction() {
-		return 'edit-post';
-	}
-
-	protected function getBlockParams() {
-		return array( 'topic' => $this->extractRequestParams() );
+		return 'edit-header';
 	}
 
 	public function getAllowedParams() {
 		return array(
-			'postId' => array(
-				ApiBase::PARAM_REQUIRED => true,
-			),
 			'prev_revision' => array(
-				ApiBase::PARAM_REQUIRED => true,
 			),
 			'content' => array(
 				ApiBase::PARAM_REQUIRED => true,
@@ -38,9 +42,8 @@ class ApiFlowEditPost extends ApiFlowBasePost {
 	 */
 	public function getParamDescription() {
 		return array(
-			'postId' => 'Post ID',
-			'prev_revision' => 'Revision id of the current post revision to check for edit conflicts',
-			'content' => 'Content for post',
+			'prev_revision' => 'Revision id of the current header revision to check for edit conflicts',
+			'content' => 'Content for header',
 			'format' => 'Format of the content (wikitext|html)',
 		);
 	}
@@ -49,7 +52,7 @@ class ApiFlowEditPost extends ApiFlowBasePost {
 	 * @deprecated since MediaWiki core 1.25
 	 */
 	public function getDescription() {
-		return 'Edits a post\'s content';
+		return 'Edits a topic\'s header';
 	}
 
 	/**
@@ -57,7 +60,7 @@ class ApiFlowEditPost extends ApiFlowBasePost {
 	 */
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=edit-post&page=Topic:S2tycnas4hcucw8w&eppostId=???&epprev_revision=???&epcontent=Nice%20to&20meet%20you&epformat=wikitext',
+			'api.php?action=flow&submodule=edit-header&page=Talk:Sandbox&ehprev_revision=???&ehcontent=Nice%20to&20meet%20you&ehformat=wikitext',
 		);
 	}
 
@@ -66,8 +69,8 @@ class ApiFlowEditPost extends ApiFlowBasePost {
 	 */
 	protected function getExamplesMessages() {
 		return array(
-			'action=flow&submodule=edit-post&page=Topic:S2tycnas4hcucw8w&eppostId=???&epprev_revision=???&epcontent=Nice%20to&20meet%20you&epformat=wikitext'
-				=> 'apihelp-flow+edit-post-example-1',
+			'action=flow&submodule=edit-header&page=Talk:Sandbox&ehprev_revision=???&ehcontent=Nice%20to&20meet%20you&ehformat=wikitext'
+				=> 'apihelp-flow+edit-header-example-1',
 		);
 	}
 }

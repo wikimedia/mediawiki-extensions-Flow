@@ -1,9 +1,13 @@
 <?php
 
-class ApiFlowModeratePost extends ApiFlowBasePost {
+namespace Flow\Api;
+
+use ApiBase;
+
+class ApiFlowModerateTopic extends ApiFlowBasePost {
 
 	public function __construct( $api, $modName ) {
-		parent::__construct( $api, $modName, 'mp' );
+		parent::__construct( $api, $modName, 'mt' );
 	}
 
 	protected function getBlockParams() {
@@ -11,7 +15,7 @@ class ApiFlowModeratePost extends ApiFlowBasePost {
 	}
 
 	protected function getAction() {
-		return 'moderate-post';
+		return 'moderate-topic';
 	}
 
 	public function getAllowedParams() {
@@ -21,9 +25,6 @@ class ApiFlowModeratePost extends ApiFlowBasePost {
 				ApiBase::PARAM_TYPE => $this->getModerationStates(),
 			),
 			'reason' => array(
-				ApiBase::PARAM_REQUIRED => true,
-			),
-			'postId' => array(
 				ApiBase::PARAM_REQUIRED => true,
 			),
 		) + parent::getAllowedParams();
@@ -36,7 +37,6 @@ class ApiFlowModeratePost extends ApiFlowBasePost {
 		return array(
 			'moderationState' => 'What level to moderate at',
 			'reason' => 'Reason for moderation',
-			'postId' => 'Id of post to moderate',
 		);
 	}
 
@@ -44,7 +44,7 @@ class ApiFlowModeratePost extends ApiFlowBasePost {
 	 * @deprecated since MediaWiki core 1.25
 	 */
 	public function getDescription() {
-		return 'Moderates a Flow post';
+		return 'Moderates a Flow topic';
 	}
 
 	/**
@@ -52,7 +52,7 @@ class ApiFlowModeratePost extends ApiFlowBasePost {
 	 */
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=moderate-post&page=Topic:S2tycnas4hcucw8w&mppostId=050f30e34c87beebcd54080027630f57&mpmoderationState=delete&mpreason=Ahhhh',
+			'api.php?action=flow&submodule=moderate-topic&page=Topic:S2tycnas4hcucw8w&mtmoderationState=delete&mtreason=Ahhhh',
 		);
 	}
 
@@ -61,8 +61,8 @@ class ApiFlowModeratePost extends ApiFlowBasePost {
 	 */
 	protected function getExamplesMessages() {
 		return array(
-			'action=flow&submodule=moderate-post&page=Topic:S2tycnas4hcucw8w&mppostId=050f30e34c87beebcd54080027630f57&mpmoderationState=delete&mpreason=Ahhhh'
-				=> 'apihelp-flow+moderate-post-example-1',
+			'action=flow&submodule=moderate-topic&page=Topic:S2tycnas4hcucw8w&mtmoderationState=delete&mtreason=Ahhhh'
+				=> 'apihelp-flow+moderate-topic-example-1',
 		);
 	}
 }

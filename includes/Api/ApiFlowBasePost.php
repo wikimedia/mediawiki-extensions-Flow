@@ -1,7 +1,11 @@
 <?php
 
+namespace Flow\Api;
+
+use ApiBase;
 use Flow\Model\Anchor;
 use Flow\Model\UUID;
+use Message;
 
 abstract class ApiFlowBasePost extends ApiFlowBase {
 	public function execute() {
