@@ -186,6 +186,8 @@
 	"apihelp-flow-parsoid-utils-param-to": "Format an deen den Inhalt ëmgewandelt soll ginn.",
 	"flow-edited": "Geännert",
 	"flow-edited-by": "Geännert vum $1",
+	"flow-previous-diff": "← Méi al Ännerung",
+	"flow-next-diff": "Méi nei Ännerung →",
 	"group-flow-bot": "Flow-Botten",
 	"group-flow-bot-member": "Flow-Bot",
 	"grouppage-flow-bot": "Project:Flow-Botten"
