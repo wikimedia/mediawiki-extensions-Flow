@@ -533,5 +533,11 @@
 	"flow-undo-edit-failure": "Error message shown on undo pages when the revision cannot be directly undone.",
 	"group-flow-bot": "{{doc-group|flow-bot}}",
 	"group-flow-bot-member": "{{doc-group|flow-bot|member}}",
-	"grouppage-flow-bot": "{{doc-group|flow-bot|page}}"
+	"grouppage-flow-bot": "{{doc-group|flow-bot|page}}",
+	"flow-ve-mention-context-item-label": "Label of context items for user mentions in Flow's VisualEditor",
+	"flow-ve-mention-inspector-title": "Title for the user mention inspector in Flow's VisualEditor",
+	"flow-ve-mention-inspector-remove-label": "Text of remove button on Flow's user mention inspector in the VisualEditor",
+	"flow-ve-mention-tool-title": "Title text for the user mention tool on Flow's VisualEditor toolbar",
+	"flow-ve-mention-template": "Name of on-wiki template used for user mentions.  The template should accept a call in the form {{templatename|Username]], to mention Username.  It will use content language.",
+	"flow-ve-mention-inspector-invalid-user": "Error shown when the poster attempts to mention a user that does not exist.  Parameters:\n$1: Username.  The username is not registered; thus, gender is unknown."
 }
