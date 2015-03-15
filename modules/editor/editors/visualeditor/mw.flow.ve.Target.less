@@ -1,0 +1,17 @@
+@import 'mediawiki.mixins';
+
+// Override another * rule in common.less back to browser default
+// box-sizing is not inherited.
+.flow-component .ve-init-target {
+	.box-sizing(content-box);
+
+	* {
+		.box-sizing(content-box);
+	}
+
+	// VE and OOjs UI do use other models in some cases, so we
+	// have to re-override them again as needed.
+	.oo-ui-textInputWidget input {
+		.box-sizing(border-box);
+	}
+}
