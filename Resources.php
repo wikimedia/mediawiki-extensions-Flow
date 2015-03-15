@@ -408,6 +408,44 @@ $wgResourceModules += array(
 			'editor/editors/ext.flow.editors.none.js',
 		),
 	) + $mobile,
+
+	// Basically this is just all the Flow-specific VE stuff, except ext.flow.editors.visualeditor.js,
+	// That needs to register itself even if the browser doesn't support VE (so we can tell
+	// the editor dispatcher that).  But we want to reduce what we load if the browser can't actually
+	// use VE.
+	'ext.flow.visualEditor' => $flowResourceTemplate + array(
+		'scripts' => array(
+			'editor/editors/visualeditor/mw.flow.ve.Target.js',
+			'editor/editors/visualeditor/ui/inspectors/mw.flow.ve.ui.MentionInspector.js',
+			'editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.MentionInspectorTool.js',
+			// MentionInspectorTool must be before MentionContextItem.
+			'editor/editors/visualeditor/ui/contextitem/mw.flow.ve.ui.MentionContextItem.js',
+			'editor/editors/visualeditor/ui/widgets/mw.flow.ve.ui.MentionTargetInputWidget.js',
+			'editor/editors/visualeditor/mw.flow.ve.CommandRegistry.js',
+		),
+		'styles' => array(
+			'editor/editors/visualeditor/ui/mw.flow.ve.ui.Icons.css',
+		),
+		'dependencies' => array(
+			'ext.visualEditor.core',
+			'ext.visualEditor.core.desktop',
+			'ext.visualEditor.data',
+			'ext.visualEditor.icons',
+			'ext.visualEditor.mwlink',
+			'ext.visualEditor.mwtransclusion',
+			'ext.visualEditor.standalone',
+			'site',
+			'user',
+			'mediawiki.api',
+		),
+		'messages' => array(
+			'flow-ve-mention-context-item-label',
+			'flow-ve-mention-inspector-title',
+			'flow-ve-mention-inspector-remove-label',
+			'flow-ve-mention-tool-title',
+		),
+	),
+
 	'ext.flow.editors.visualeditor' => $flowResourceTemplate + array(
 		'scripts' => 'editor/editors/ext.flow.editors.visualeditor.js',
 		'dependencies' => array(

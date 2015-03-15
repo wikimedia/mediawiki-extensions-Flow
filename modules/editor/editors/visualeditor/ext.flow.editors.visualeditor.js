@@ -1,5 +1,4 @@
-
-( function ( $, mw, ve ) {
+( function ( $, mw, OO, ve ) {
 	'use strict';
 
 	/**
@@ -19,7 +18,7 @@
 		} );
 
 		// load dependencies & init editor
-		mw.loader.using( this.getModules(), $.proxy( this.init, this, content || '' ) );
+		mw.loader.using( 'ext.flow.visualEditor', $.proxy( this.init, this, content || '' ) );
 	};
 
 	OO.inheritClass( mw.flow.editors.visualeditor, mw.flow.editors.AbstractEditor );
@@ -48,20 +47,7 @@
 
 		$.removeSpinner( 'flow-editor-loading' );
 
-		// init ve, save target object
-		//
-		// We need at least some MW-specific stuff (e.g. links, MW-style files).
-		//
-		// But for now we're using standalone, since
-		// ve.init.mw.Target has some stuff that is not applicable
-		// to us (e.g. submitUrl, this.$checkboxes), and there
-		// were glitches when I tried to use it.
-		//
-		// However, we will have to look at this later.
-		target = this.target = new ve.init.sa.Target(
-			'desktop',
-			{ floatable: false }
-		);
+		target = this.target = new mw.flow.ve.Target();
 
 		htmlDoc = ve.createDocumentFromHtml( content ); // HTMLDocument
 
@@ -86,7 +72,6 @@
 				'mw-content-' + mw.config.get( 'wgVisualEditor' ).pageLanguageDir
 			);
 
-			target.setSurface( surface );
 			setTimeout( function () {
 				// focus VE instance if textarea had focus
 				if ( !$focusedElement.length || flowEditor.$node.is( $focusedElement ) ) {
@@ -119,48 +104,6 @@
 
 		// re-display original node
 		this.$node.show();
-	};
-
-	/**
-	 * Get all resourceloader modules that should be loaded.
-	 *
-	 * @return {array}
-	 */
-	mw.flow.editors.visualeditor.prototype.getModules = function () {
-		var core, standalone, messages, icons, specific;
-
-		// core setup
-		core = ['ext.visualEditor.core.desktop'];
-		if ( mw.config.get( 'wgVisualEditorConfig' ).enableExperimentalCode ) {
-			core.push( 'ext.visualEditor.experimental' );
-		}
-
-		// Standalone
-		standalone = ['ext.visualEditor.standalone'];
-
-		// data module
-		messages = ['ext.visualEditor.data'];
-
-		// icons
-		icons = ['ext.visualEditor.icons'];
-
-		// plugins
-		//
-		// No plugins supported for now.  Later, we can figure out which plugins we want.
-
-		// plugins = mw.config.get( 'wgVisualEditorConfig' ).pluginModules || [],
-
-		// site & user
-		specific = ['site', 'user'];
-
-		return [].concat(
-			core,
-			standalone,
-			messages,
-			icons,
-			// plugins,
-			specific
-		);
 	};
 
 	/**
@@ -237,6 +180,13 @@
 	mw.flow.editors.visualeditor.static.isSupported = function () {
 		return !!(
 			mw.user.options.get( 'visualeditor-enable' ) &&
+
+			// ES5 support, from es5-skip.js
+			( function () {
+				'use strict';
+				return !this && !!Function.prototype.bind;
+			}() ) &&
+
 			// Since VE commit e2fab2f1ebf2a28f18b8ead08c478c4fc95cd64e, SVG is required
 			document.createElementNS &&
 			document.createElementNS( 'http://www.w3.org/2000/svg', 'svg' ).createSVGRect
@@ -246,4 +196,4 @@
 	mw.flow.editors.visualeditor.static.usesPreview = function () {
 		return false;
 	};
-} ( jQuery, mediaWiki, ve ) );
+} ( jQuery, mediaWiki, OO, ve ) );

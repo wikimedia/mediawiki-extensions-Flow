@@ -497,5 +497,9 @@
 	"flow-next-diff": "Newer edit →",
 	"group-flow-bot": "Flow bots",
 	"group-flow-bot-member": "Flow bot",
-	"grouppage-flow-bot": "Project:Flow bots"
+	"grouppage-flow-bot": "Project:Flow bots",
+	"flow-ve-mention-context-item-label": "Mention",
+	"flow-ve-mention-inspector-title": "Mention",
+	"flow-ve-mention-inspector-remove-label": "Remove",
+	"flow-ve-mention-tool-title": "Mention a user"
 }
