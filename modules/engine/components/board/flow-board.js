@@ -16,6 +16,8 @@
 	 * @mixins FlowBoardComponentLoadEventsMixin
 	 * @mixins FlowBoardComponentMiscMixin
 	 * @mixins FlowBoardComponentLoadMoreFeatureMixin
+	 * @mixins FlowBoardComponentVisualEditorFeatureMixin
+	 *
 	 * @constructor
 	 */
 	function FlowBoardComponent( $container ) {
