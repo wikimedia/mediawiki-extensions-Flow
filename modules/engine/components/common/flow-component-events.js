@@ -761,6 +761,8 @@
 	 * @param {jQuery} $textarea
 	 */
 	function flowEventsMixinExpandTextarea( $textarea ) {
+		var context;
+
 		$textarea.removeClass( 'flow-input-compressed' );
 		mw.flow.editor.load( $textarea, $textarea.val(), 'wikitext' );
 	}
