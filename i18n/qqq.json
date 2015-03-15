@@ -496,5 +496,9 @@
 	"flow-next-diff": "Text used on diff pages to link to the next diff. For right-to-left languages use ←.",
 	"group-flow-bot": "{{doc-group|flow-bot}}",
 	"group-flow-bot-member": "{{doc-group|flow-bot|member}}",
-	"grouppage-flow-bot": "{{doc-group|flow-bot|page}}"
+	"grouppage-flow-bot": "{{doc-group|flow-bot|page}}",
+	"flow-ve-mention-context-item-label": "Label of context items for user mentions in Flow's VisualEditor",
+	"flow-ve-mention-inspector-title": "Title for the user mention inspector in Flow's VisualEditor",
+	"flow-ve-mention-inspector-remove-label": "Text of remove button on Flow's user mention inspector in the VisualEditor",
+	"flow-ve-mention-tool-title": "Title text for the user mention tool on Flow's VisualEditor toolbar"
 }
