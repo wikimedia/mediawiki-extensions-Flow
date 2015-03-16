@@ -99,7 +99,7 @@ analyze: analyze-hhvm analyze-phpstorm
 # Compile lightncandy templates
 ###
 compile-lightncandy:
-	+make -C handlebars all
+	@${PHP} maintenance/compileLightncandy.php
 
 ###
 # Compile class autoloader for $wgAutoloadClasses
