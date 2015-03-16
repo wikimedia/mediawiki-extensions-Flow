@@ -74,7 +74,7 @@ class TopicListQuery extends AbstractQuery {
 				if ( $post->isTopicTitle() ) {
 					// Attach the summary
 					if ( isset( $topicSummary[$postId] ) ) {
-						$row->summary = $topicSummary[$postId];
+						$row->summary = $this->buildResult( $topicSummary[$postId], 'rev_id' );
 					}
 					// Attach the watch status
 					if ( isset( $watchStatus[$postId] ) && $watchStatus[$postId] ) {

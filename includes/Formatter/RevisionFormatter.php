@@ -258,11 +258,11 @@ class RevisionFormatter {
 			);
 			if (
 				$row->summary &&
-				$this->permissions->isAllowed( $row->summary, 'view' )
+				$this->permissions->isAllowed( $row->summary->revision, 'view' )
 			) {
-				$res['summary']['content'] = $this->templating->getContent( $row->summary, $this->contentFormat );
-				$res['summary']['format'] = $this->contentFormat;
-				$res['summary']['revId'] = $row->summary->getRevisionId()->getAlphadecimal();
+				$res['summary'] = array(
+					'revision' =>  $this->formatApi( $row->summary, $ctx )
+				);
 			}
 
 			// Only non-anon users can watch/unwatch a flow topic
