@@ -3,7 +3,6 @@
 namespace Flow\Formatter;
 
 use Flow\Model\PostRevision;
-use Flow\Model\PostSummary;
 
 class TopicRow extends FormatterRow {
 	/**
@@ -12,7 +11,7 @@ class TopicRow extends FormatterRow {
 	public $replies;
 
 	/**
-	 * @var PostSummary
+	 * @var FormatterRow
 	 */
 	public $summary;
 
