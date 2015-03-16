@@ -16,6 +16,24 @@
       "revId": "213a79c873ab13087f8c56e46d662ee24a5338b8",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_f44c83cd",
+        "filename": "includes/Import/LiquidThreadsApi/Source.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-16T19:56:00Z",
+      "side": 1,
+      "message": "I think i was seeing something where a topic would be requested more than once,  but looking back at the code i\u0027m not sure how since this is only called by the LQT TopicIterator::next() which should always be increasing.  Will look closer.",
+      "parentUuid": "6e7c4fa4_dfd645c8",
+      "revId": "213a79c873ab13087f8c56e46d662ee24a5338b8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
