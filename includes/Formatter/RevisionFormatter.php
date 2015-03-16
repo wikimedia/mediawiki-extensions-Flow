@@ -684,6 +684,11 @@ class RevisionFormatter {
 					->postRevisionLink( $title, $workflowId, $postId, $revId );
 				break;
 
+			case 'summary-revision':
+				$links['summary-revision'] = $this->urlGenerator
+					->summaryRevisionLink( $title, $workflowId, $revId );
+				break;
+
 			case 'post-history':
 				if ( !$postId ) {
 					wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render post-history link' );
