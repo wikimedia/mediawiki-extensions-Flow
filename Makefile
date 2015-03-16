@@ -48,17 +48,20 @@ messagecheck: remotes
 ###
 # Lints
 ###
-lint: jshint phplint checkless messagecheck
+lint: grunt phplint checkless messagecheck
 
 phplint:
 	@find ./ -type f -iname '*.php' -print0 | xargs -0 -P 12 -L 1 ${PHP} -l
 
 nodecheck:
 	@which npm > /dev/null && npm install \
-		|| (echo "You need to install Node.JS! See http://nodejs.org/" && false)
+		|| (echo "You need to install Node.JS and npm! See http://nodejs.org/" && false)
 
-jshint: nodecheck
-	@node_modules/.bin/jshint modules/* tests/qunit/* --config .jshintrc
+gruntcheck: nodecheck
+	@which grunt > /dev/null || sudo npm install -g grunt-cli
+
+grunt: gruntcheck
+	@grunt test
 
 checkless:
 	@${PHP} ../../maintenance/checkLess.php
