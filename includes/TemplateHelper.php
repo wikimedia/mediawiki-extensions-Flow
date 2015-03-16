@@ -429,6 +429,10 @@ class TemplateHelper {
 			throw new WrongNumberArgumentsException( $args, 'one' );
 		}
 		$revision = $args[0];
+		if ( !isset( $revision['properties']['_key'] ) ) {
+			return '';
+		}
+
 		$i18nKey = $revision['properties']['_key'];
 		unset( $revision['properties']['_key'] );
 
