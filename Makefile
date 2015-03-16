@@ -96,12 +96,6 @@ analyze-phpstorm:
 analyze: analyze-hhvm analyze-phpstorm
 
 ###
-# Compile lightncandy templates
-###
-compile-lightncandy:
-	+make -C handlebars all
-
-###
 # Compile class autoloader for $wgAutoloadClasses
 ###
 autoload:
