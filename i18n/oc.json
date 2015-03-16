@@ -8,7 +8,7 @@
 	"flow-talk-taken-over": "Aquesta pagina de discussion es estada remplaçada per un [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal ''Flow board''].",
 	"log-name-flow": "Jornal de flux d’activitat",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|a suprimit}} una [$4 nòta] sus [[$3]]",
-	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|a restablit}} una [$4 nòta] sus [[$3]]",
+	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|a restablit}} una [$4 nòta] sus  \"[[$3|$5]]\" lo [[$6]]",
 	"logentry-suppress-flow-suppress-post": "$1 {{GENDER:$2|a suprimit}} una [$4 nòta] sus [[$3]]",
 	"logentry-suppress-flow-restore-post": "$1 {{GENDER:$2|a suprimit}} una [$4 nòta] sus [[$3]]",
 	"logentry-delete-flow-delete-topic": "$1 {{GENDER:$2|a suprimit}} un [$4 subjècte] sus [[$3]]",
@@ -26,7 +26,7 @@
 	"flow-hide-post-content": "Aqueste comentari es estat {{GENDER:$1|amagat}} per $1",
 	"flow-hide-title-content": "Lo subjècte es estat {{GENDER:$1|amagat}} per $1",
 	"flow-hide-header-content": "{{GENDER:$1|Amagat}} per $2",
-	"flow-delete-post-content": "Aqueste comentari es estat {{GENDER:$1|suprimit}} per $1",
+	"flow-delete-post-content": "Aqueste comentari es estat {{GENDER:$1|suprimit}} per $1 ([$2 istoric])",
 	"flow-delete-title-content": "Lo subjècte es estat {{GENDER:$1|suprimit}} per $1",
 	"flow-delete-header-content": "{{GENDER:$1|Suprimit}} per $2",
 	"flow-suppress-post-content": "Aqueste comentari es estat {{GENDER:$1|suprimit}} per $1",
@@ -116,5 +116,7 @@
 	"flow-moderation-confirm-hide-post": "Amagar",
 	"flow-moderation-confirm-suppress-topic": "Suprimir",
 	"flow-moderation-confirm-delete-topic": "Suprimir",
-	"flow-moderation-confirm-hide-topic": "Amagar"
+	"flow-moderation-confirm-hide-topic": "Amagar",
+	"flow-previous-diff": "← Cambiament precedent",
+	"flow-next-diff": "Cambiament seguent →"
 }

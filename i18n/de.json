@@ -245,6 +245,7 @@
 	"flow-link-post-revision": "Version des Beitrags",
 	"flow-link-topic-revision": "Version des Themas",
 	"flow-link-header-revision": "Version der Überschrift",
+	"flow-link-summary-revision": "Zusammenfassungsversion",
 	"flow-moderation-title-suppress-post": "Beitrag unterdrücken?",
 	"flow-moderation-title-delete-post": "Beitrag löschen?",
 	"flow-moderation-title-hide-post": "Beitrag verstecken?",
