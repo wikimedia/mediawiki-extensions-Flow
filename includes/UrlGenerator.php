@@ -162,6 +162,25 @@ class UrlGenerator {
 	}
 
 	/**
+	 * View a specific revision of topic summary.
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param UUID $revId
+	 * @return Anchor
+	 */
+	public function summaryRevisionLink( Title $title = null, UUID $workflowId, UUID $revId ) {
+		return new Anchor(
+			wfMessage( 'flow-link-summary-revision' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'topicsummary_revId' => $revId->getAlphadecimal(),
+				'action' => 'view-topic-summary'
+			)
+		);
+	}
+
+	/**
 	 * View the topic at the specified workflow.
 	 *
 	 * @param Title|null $title

@@ -283,6 +283,7 @@
 	"flow-link-post-revision": "Tooltip text used when linking to a specific revision of a post. This means \"revision of a post\".\n{{Related|Flow-link-revision}}",
 	"flow-link-topic-revision": "Tooltip text used when linking to a specific revision of a topic. This means \"revision of a topic\".\n{{Related|Flow-link-revision}}",
 	"flow-link-header-revision": "Tooltip text used when linking to a specific revision of a header. This means \"revision of a header\".\n{{Related|Flow-link-revision}}",
+	"flow-link-summary-revision": "Tooltip text used when linking to a specific revision of a topic summary. This means \"revision of a topic summary\".\n{{Related|Flow-link-revision}}",
 	"flow-moderation-title-suppress-post": "Title for the moderation confirmation dialog when a post is having its suppressed status removed.\n{{Related|Flow-moderation-title}}",
 	"flow-moderation-title-delete-post": "Title for the moderation confirmation dialog when a post is being deleted.\n{{Related|Flow-moderation-title}}\n{{Identical|Delete post}}",
 	"flow-moderation-title-hide-post": "Title for the moderation confirmation dialog when a post is being hidden.\n{{Related|Flow-moderation-title}}\n{{Identical|Hide post}}",
