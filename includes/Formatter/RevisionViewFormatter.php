@@ -91,7 +91,14 @@ class RevisionViewFormatter {
 				$row->revision->getRevisionId()
 			);
 			$links['single-view']->setMessage( $title->getPrefixedText() );
-		} elseif ( !$row->revision instanceof PostSummary ) {
+		} elseif ( $row->revision instanceof PostSummary ) {
+			$links['single-view'] = $this->urlGenerator->summaryRevisionLink(
+				$title,
+				$workflowId,
+				$row->revision->getRevisionId()
+			);
+			$links['single-view']->setMessage( $title->getPrefixedText() );
+		} else {
 			wfDebugLog( 'Flow', __METHOD__ . ': Received unknown revision type ' . get_class( $row->revision ) );
 		}
 

@@ -385,7 +385,7 @@ class TemplateHelper {
 		$revision = $args[0];
 		$raw = false;
 		$formattedTime = $revision['dateFormats']['timeAndDate'];
-		$linkKeys = array( 'header-revision', 'topic-revision', 'post-revision' );
+		$linkKeys = array( 'header-revision', 'topic-revision', 'post-revision', 'summary-revision' );
 		foreach ( $linkKeys as $linkKey ) {
 			if ( isset( $revision['links'][$linkKey] ) ) {
 				$link = $revision['links'][$linkKey];

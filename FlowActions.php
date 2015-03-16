@@ -89,7 +89,7 @@ $wgFlowActions = array(
 			PostSummary::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_SUPPRESSED => array( 'flow-suppress' ),
 		),
-		'links' => array( 'topic', 'topic-history', 'watch-topic', 'unwatch-topic' ),
+		'links' => array( 'topic', 'topic-history', 'watch-topic', 'unwatch-topic', 'summary-revision' ),
 		'actions' => array( 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-create-topic-summary',
@@ -114,7 +114,7 @@ $wgFlowActions = array(
 			PostSummary::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_SUPPRESSED => array( 'flow-suppress' ),
 		),
-		'links' => array( 'topic', 'topic-history', 'diff-post-summary', 'watch-topic', 'unwatch-topic' ),
+		'links' => array( 'topic', 'topic-history', 'diff-post-summary', 'watch-topic', 'unwatch-topic', 'summary-revision' ),
 		'actions' => array( 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-topic-summary',
