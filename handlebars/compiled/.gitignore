@@ -1,0 +1,5 @@
+# JS-only scripts; it makes no sense to compile these (they'll never be used),
+# but if they do get compiled (maintenance/compileLightncandy.php), we
+# definitely don't want to commit it
+flow_board_toc_loop.handlebars.php
+flow_preview_warning.handlebars.php
