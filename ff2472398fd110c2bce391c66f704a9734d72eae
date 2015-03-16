@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_34251b05",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-16T19:50:40Z",
+      "side": 1,
+      "message": "instead of not possible, it seems this can happen when the template has errors.  This doesn\u0027t catch all errors though, there are a number of possibilities that just generate invalid php code without erroring out.",
+      "revId": "ff2472398fd110c2bce391c66f704a9734d72eae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_5410d7ac",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-16T19:50:40Z",
+      "side": 1,
+      "message": "i suppose we could use a better error string here :)",
+      "revId": "ff2472398fd110c2bce391c66f704a9734d72eae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
