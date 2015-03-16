@@ -33,7 +33,7 @@ class SinglePostQuery extends AbstractQuery {
 			);
 			if ( $summary ) {
 				$formatterRow = new TopicRow();
-				$formatterRow->summary = reset( $summary );
+				$formatterRow->summary = $this->buildResult( reset( $summary ), 'rev_id' );
 			}
 		}
 

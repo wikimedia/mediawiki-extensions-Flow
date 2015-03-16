@@ -199,7 +199,7 @@
 			// XXX: Find the content parameter
 			$.each( queryMap, function( key, value ) {
 				var piece = key.slice( -7 );
-				if ( piece === 'content' || piece === 'summary' ) {
+				if ( piece === 'content' ) {
 					content = value;
 					return false;
 				}
@@ -644,8 +644,6 @@
 			content: data['flow-parsoid-utils'].content,
 			format: data['flow-parsoid-utils'].format
 		};
-		// This fixes summarize which expects a key "summary"
-		templateParams[contentNode] = revision[contentNode];
 
 		$.extend( templateParams, {
 			// This fixes titlebar which expects a key "content" for title
@@ -894,11 +892,16 @@
 			return $.Deferred().reject().promise();
 		}
 
-		_flowBoardComponentRefreshTopic(
-			info.$target,
-			data.flow['edit-topic-summary'].result.topic,
-			'.flow-topic-titlebar'
-		);
+		var $this = $( this ),
+			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $this ),
+			$oldSummary = info.$target,
+			$newSummary = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
+				'flow_topic_titlebar_summary.partial',
+				data.flow['edit-topic-summary'].result.topicsummary
+			) ).children();
+
+		$oldSummary.replaceWith( $newSummary );
+		flowBoard.emitWithReturn( 'makeContentInteractive', $newSummary );
 
 		return $.Deferred().resolve().promise();
 	};
