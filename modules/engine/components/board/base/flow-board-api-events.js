@@ -667,7 +667,7 @@
 
 		// Render the preview warning
 		$previewContainer = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-			'flow_preview_warning'
+			'flow_preview_warning.partial'
 		) ).children();
 
 		// @todo Perhaps this should be done in each template, and not here?
