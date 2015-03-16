@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "6e7c4fa4_ca23dcfe",
+        "filename": "Resources.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-16T21:48:32Z",
+      "side": 1,
+      "message": "this should no longer exist, also because of OutputPage::addModuleStyles and dependency handling.",
+      "revId": "89a4efd64d31a76a4647864da7f600d8f1efaa40",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_b4fe10aa",
         "filename": "Resources.php",
         "patchSetId": 14
@@ -13,6 +30,24 @@
       "writtenOn": "2015-03-16T09:56:53Z",
       "side": 1,
       "message": "Going to need mediawiki.ui.input (for the blue border-left on the textarea)",
+      "revId": "89a4efd64d31a76a4647864da7f600d8f1efaa40",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_6a13a8b9",
+        "filename": "Resources.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-16T21:48:32Z",
+      "side": 1,
+      "message": "Thats listed in FlowActions.php under moduleStyles.  The reason is that when using OutputPage::addModuleStyles() dependencies are not taken into account.  Because of this we need to explicitly state all the dependencies from there.  See T63577 for more details",
+      "parentUuid": "6e7c4fa4_b4fe10aa",
       "revId": "89a4efd64d31a76a4647864da7f600d8f1efaa40",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -36,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_8ac3a409",
+        "filename": "includes/api/ApiFlowUndoEditHeader.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-16T21:48:32Z",
+      "side": 1,
+      "message": "Is there any reason to have these anywhere in Flow then?  Not sure why they are marked deprecated elsewhere since we only support 1.25.\n\n(also Done).",
+      "parentUuid": "6e7c4fa4_b15ab0f7",
+      "revId": "89a4efd64d31a76a4647864da7f600d8f1efaa40",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_d4f94cc2",
         "filename": "includes/api/ApiFlowUndoEditHeader.php",
         "patchSetId": 14
@@ -47,6 +100,24 @@
       "writtenOn": "2015-03-16T09:56:53Z",
       "side": 1,
       "message": "uehprev_revision \u0026 uehcontent no longer exist",
+      "revId": "89a4efd64d31a76a4647864da7f600d8f1efaa40",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_4ae4aca3",
+        "filename": "includes/api/ApiFlowUndoEditHeader.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-16T21:48:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_d4f94cc2",
       "revId": "89a4efd64d31a76a4647864da7f600d8f1efaa40",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -70,6 +141,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_0afeb435",
+        "filename": "includes/api/ApiFlowUndoEditPost.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-16T21:48:32Z",
+      "side": 1,
+      "message": "method removed",
+      "parentUuid": "6e7c4fa4_74287832",
+      "revId": "89a4efd64d31a76a4647864da7f600d8f1efaa40",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_942bd42d",
         "filename": "includes/api/ApiFlowUndoEditPost.php",
         "patchSetId": 14
@@ -87,6 +176,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_caf75c55",
+        "filename": "includes/api/ApiFlowUndoEditPost.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-16T21:48:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_942bd42d",
+      "revId": "89a4efd64d31a76a4647864da7f600d8f1efaa40",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_34220051",
         "filename": "includes/api/ApiFlowUndoEditTopicSummary.php",
         "patchSetId": 14
@@ -98,6 +205,24 @@
       "writtenOn": "2015-03-16T09:56:53Z",
       "side": 1,
       "message": "uetsprev_revision \u0026 uetssummary no longer exist",
+      "revId": "89a4efd64d31a76a4647864da7f600d8f1efaa40",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_eaf25864",
+        "filename": "includes/api/ApiFlowUndoEditTopicSummary.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-16T21:48:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_34220051",
       "revId": "89a4efd64d31a76a4647864da7f600d8f1efaa40",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
