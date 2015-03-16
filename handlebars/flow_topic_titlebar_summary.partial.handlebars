@@ -1,8 +1,8 @@
 <div class="flow-topic-summary-container">
 	{{> flow_errors }}
-	{{#if summary}}
+	{{#if revision.content}}
 		<div class="flow-topic-summary">
-			{{escapeContent summary.format summary.content}}
+			{{escapeContent revision.content.format revision.content.content}}
 		</div>
 		<br class="flow-ui-clear"/>
 	{{/if}}
