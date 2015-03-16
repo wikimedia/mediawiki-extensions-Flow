@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_dfd645c8",
+        "filename": "includes/Import/LiquidThreadsApi/Source.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-16T14:43:09Z",
+      "side": 1,
+      "message": "What exactly is the maxRequestedId part for?",
+      "revId": "213a79c873ab13087f8c56e46d662ee24a5338b8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
