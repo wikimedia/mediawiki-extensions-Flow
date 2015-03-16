@@ -109,9 +109,15 @@ class TemplateHelper {
 			$code = self::compile( file_get_contents( $filenames['template'] ), $this->templateDir );
 
 			if ( !$code ) {
-				throw new \Exception( 'Not possible?' );
+				throw new FlowException( 'Not possible?' );
 			}
-			file_put_contents( $filenames['compiled'], $code );
+			$success = @file_put_contents( $filenames['compiled'], $code );
+
+			// failed to recompile template (OS permissions?); unless the
+			// content hasn't changes, throw an exception!
+			if ( !$success && file_get_contents( $filenames['compiled'] ) !== $code ) {
+				throw new FlowException( 'Not possible?' );
+			}
 		}
 
 		/** @var callable $renderer */
