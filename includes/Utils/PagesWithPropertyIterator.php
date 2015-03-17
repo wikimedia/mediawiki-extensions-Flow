@@ -24,12 +24,30 @@ class PagesWithPropertyIterator implements IteratorAggregate {
 	protected $propName;
 
 	/**
+	 * Page id to start at (inclusive)
+	 *
+	 * @var int|null
+	 */
+	protected $startId = null;
+
+	/**
+	 * Page id to stop at (exclusive)
+	 *
+	 * @var int|null
+	 */
+	protected $stopId = null;
+
+	/**
 	 * @param DatabaseBase $db
 	 * @param string $propName
+	 * @param int|null $startId Page id to start at (inclusive)
+	 * @param int|null $stopId Page id to stop at (exclusive)
 	 */
-	public function __construct( DatabaseBase $db, $propName ) {
+	public function __construct( DatabaseBase $db, $propName, $startId = null, $stopId = null ) {
 		$this->db = $db;
 		$this->propName = $propName;
+		$this->startId = $startId;
+		$this->stopId = $stopId;
 	}
 
 	/**
@@ -42,9 +60,16 @@ class PagesWithPropertyIterator implements IteratorAggregate {
 			/* pk */ 'pp_page',
 			/* rows per batch */ 500
 		);
-		$it->addConditions( array(
-			'pp_propname' => $this->propName
-		) );
+
+		$conditions = array( 'pp_propname' => $this->propName );
+		if ( $this->startId !== null ) {
+			$conditions[] = 'pp_page >= ' . $this->db->addQuotes( $this->startId );
+		}
+		if ( $this->stopId !== null ) {
+			$conditions[] = 'pp_page < ' . $this->db->addQuotes( $this->stopId );
+		}
+		$it->addConditions( $conditions );
+
 		$it->addJoinConditions( array(
 			'page' => array( 'JOIN', 'pp_page=page_id' ),
 		) );

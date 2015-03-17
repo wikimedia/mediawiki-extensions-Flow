@@ -24,6 +24,8 @@ class ConvertLqt extends Maintenance {
 		$this->addOption( 'logfile', 'File to read and store associations between imported items and their sources. This is required for the import to be idempotent.', true, true );
 		$this->addOption( 'verbose', 'Report on import progress to stdout' );
 		$this->addOption( 'debug', 'Include debug information with progress report' );
+		$this->addOption( 'startId', 'Page id to start importing at (inclusive)' );
+		$this->addOption( 'stopId', 'Page id to stop importing at (exclusive)' );
 	}
 
 	public function execute() {
@@ -57,12 +59,14 @@ class ConvertLqt extends Maintenance {
 			$strategy
 		);
 
+		$startId = $this->getOption( 'startId' );
+		$stopId = $this->getOption( 'stopId' );
+
 		$logger->info( "Starting full wiki LQT conversion" );
-		$titles = new PagesWithPropertyIterator( $dbr, 'use-liquid-threads' );
+		$titles = new PagesWithPropertyIterator( $dbr, 'use-liquid-threads', $startId, $stopId );
 		$converter->convert( $titles );
 	}
 }
 
 $maintClass = "ConvertLqt";
 require_once ( RUN_MAINTENANCE_IF_MAIN );
-
