@@ -210,13 +210,11 @@ class RevisionIterator implements Iterator {
 	/** @var IImportObject **/
 	protected $parent;
 
-	public function __construct( array $pageData, IImportObject $parent, $factory = null ) {
+	public function __construct( array $pageData, IImportObject $parent, $factory ) {
 		$this->pageData = $pageData;
 		$this->pointer = 0;
 		$this->parent = $parent;
-		$this->factory = $factory ?: function( $data, $parent ) {
-			return new ImportRevision( $data, $parent );
-		};
+		$this->factory = $factory;
 	}
 
 	protected function getRevisionCount() {

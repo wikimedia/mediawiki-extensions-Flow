@@ -45,7 +45,10 @@ abstract class PageRevisionedObject implements IRevisionableObject {
 		// the iterators expect this to be a 0 indexed list
 		$pageData['revisions'] = array_values( $pageData['revisions'] );
 
-		return new RevisionIterator( $pageData, $this );
+		$scriptUser = $this->importSource->getScriptUser();
+		return new RevisionIterator( $pageData, $this, function( $data, $parent ) use ( $scriptUser ) {
+			return new ImportRevision( $data, $parent, $scriptUser );
+		} );
 	}
 }
 
@@ -235,14 +238,21 @@ class ImportRevision implements IObjectRevision {
 	protected $apiResponse;
 
 	/**
+	 * @var User Account used when the imported revision is by a supressed user
+	 */
+	protected $scriptUser;
+
+	/**
 	 * Creates an ImportRevision based on a MW page revision
 	 *
 	 * @param array         $apiResponse  An element from api.query.revisions
 	 * @param IImportObject $parentObject
+	 * @param User          $user Account used when the imported revision is by a suppressed user
 	 */
-	function __construct( array $apiResponse, IImportObject $parentObject ) {
+	function __construct( array $apiResponse, IImportObject $parentObject, User $scriptUser ) {
 		$this->apiResponse = $apiResponse;
 		$this->parent = $parentObject;
+		$this->scriptUser = $scriptUser;
 	}
 
 	/**
@@ -257,12 +267,20 @@ class ImportRevision implements IObjectRevision {
 			$contentKey = '*';
 		}
 
-		if ( isset( $this->apiResponse[$contentKey] ) ) {
-			return $this->apiResponse[$contentKey];
-		} else {
+		if ( !isset( $this->apiResponse[$contentKey] ) ) {
 			$encoded = json_encode( $this->apiResponse );
 			throw new ImportException( "Specified content key ($contentKey) not available: $encoded" );
 		}
+
+		$content = $this->apiResponse[$contentKey];
+
+		if ( isset( $this->apiResponse['userhidden'] ) ) {
+			$template = wfMessage( 'flow-importer-lqt-suppressed-user-template' )->inContentLanguage()->plain();
+
+			$content .= "\n\n{{{$template}}}";
+		}
+
+		return $content;
 	}
 
 	public function getTimestamp() {
@@ -270,7 +288,11 @@ class ImportRevision implements IObjectRevision {
 	}
 
 	public function getAuthor() {
-		return $this->apiResponse['user'];
+		if ( isset( $this->apiResponse['userhidden'] ) ) {
+			return $this->scriptUser->getName();
+		} else {
+			return $this->apiResponse['user'];
+		}
 	}
 
 	public function getObjectKey() {
@@ -385,20 +407,12 @@ class ImportHeader extends PageRevisionedObject implements IImportHeader {
 	protected $pageData;
 	/** @var ImportSource **/
 	protected $source;
-	/**
-	 *  User used for script-originated actions, such as cleanup edits.
-	 *  Does not apply to actual posts, which retain their original users.
-	 *
-	 *  @var User
-	 */
-	protected $destinationScriptUser;
 
-	public function __construct( ApiBackend $api, ImportSource $source, $title, User $destinationScriptUser ) {
+	public function __construct( ApiBackend $api, ImportSource $source, $title ) {
 		$this->api = $api;
 		$this->title = $title;
 		$this->source = $source;
 		$this->pageData = null;
-		$this->destinationScriptUser = $destinationScriptUser;
 	}
 
 	public function getRevisions() {
@@ -412,7 +426,11 @@ class ImportHeader extends PageRevisionedObject implements IImportHeader {
 		$revisions = array();
 
 		if ( isset( $this->pageData['revisions'] ) && count( $this->pageData['revisions'] ) > 0 ) {
-			$lastLqtRevision = new ImportRevision( end( $this->pageData['revisions'] ), $this );
+			$lastLqtRevision = new ImportRevision(
+				end( $this->pageData['revisions'] ),
+				$this,
+				$this->source->getScriptUser()
+			);
 
 			$titleObject = Title::newFromText( $this->title );
 			$cleanupRevision = $this->createHeaderCleanupRevision( $lastLqtRevision, $titleObject );
@@ -447,7 +465,7 @@ class ImportHeader extends PageRevisionedObject implements IImportHeader {
 		$newWikitext .= "\n\n{{{$templateName}|$arguments}}";
 		$cleanupRevision = new ScriptedImportRevision(
 			$this,
-			$this->destinationScriptUser,
+			$this->source->getScriptUser(),
 			$newWikitext,
 			$lastRevision->getTimestamp()
 		);
