@@ -146,10 +146,10 @@ CREATE TABLE /*_*/flow_wiki_ref (
 	ref_type varbinary(16) not null
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/flow_wiki_ref_pk ON /*_*/flow_wiki_ref
+CREATE INDEX /*i*/flow_wiki_ref_idx ON /*_*/flow_wiki_ref
 	(ref_src_namespace, ref_src_title, ref_type, ref_target_namespace, ref_target_title, ref_src_object_type, ref_src_object_id);
 
-CREATE UNIQUE INDEX /*i*/flow_wiki_ref_revision ON /*_*/flow_wiki_ref
+CREATE INDEX /*i*/flow_wiki_ref_revision ON /*_*/flow_wiki_ref
 	(ref_src_namespace, ref_src_title, ref_src_object_type, ref_src_object_id, ref_type, ref_target_namespace, ref_target_title);
 
 CREATE TABLE /*_*/flow_ext_ref (
@@ -162,7 +162,7 @@ CREATE TABLE /*_*/flow_ext_ref (
 	ref_type varbinary(16) not null
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/flow_ext_ref_pk ON /*_*/flow_ext_ref
+CREATE UNIQUE INDEX /*i*/flow_ext_ref_idx ON /*_*/flow_ext_ref
 	(ref_src_namespace, ref_src_title, ref_type, ref_target, ref_src_object_type, ref_src_object_id);
 
 CREATE UNIQUE INDEX /*i*/flow_ext_ref_revision ON /*_*/flow_ext_ref
