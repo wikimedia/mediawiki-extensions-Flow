@@ -32,7 +32,7 @@ interface OccupationController {
 	 * @return bool Returns true when the provided user has the rights to
 	 *  convert $title from whatever it is now to a flow board.
 	 */
-	public function isCreationAllowed( Title $title, User $user );
+	public function allowCreation( Title $title, User $user );
 
 	/**
 	 * Gives a user object used to manage talk pages
@@ -53,6 +53,11 @@ class TalkpageManager implements OccupationController {
 	 * @var string[]
 	 */
 	protected $occupiedPages;
+
+	/**
+	 * @var Title[]
+	 */
+	protected $allowCreation = array();
 
 	/**
 	 * @param int[] $occupiedNamespaces See documentation for $wgFlowOccupyNamespaces
@@ -161,17 +166,15 @@ class TalkpageManager implements OccupationController {
 		return null;
 	}
 
-	// TODO: This is confusing.  An is...Allowed method should not be mutating state.
 	/**
 	 * Checks whether the given user is allowed to create a board at the given
-	 * title.
-	 *
-	 * If so, changes the state of the talk page manager to record this fact.
+	 * title and allows it to be created.
 	 *
 	 * @param Title $title Title to check
 	 * @param User $user User who wants to create a board
+	 * @return bool
 	 */
-	public function isCreationAllowed( Title $title, User $user ) {
+	public function allowCreation( Title $title, User $user ) {
 		global $wgContentHandlerUseDB;
 
 		// Arbitrary pages can only be enabled when content handler
@@ -192,18 +195,27 @@ class TalkpageManager implements OccupationController {
 			return false;
 		}
 
-		$this->allowCreation( $title );
+		/*
+		 * tracks which titles are allowed so that when
+		 * BoardContentHandler::canBeUsedOn is called for this title, it
+		 * can call self::isTalkpageOccupied and get a successful result.
+		 */
+		$this->allowCreation[] = $title->getPrefixedDBkey();
 
 		return true;
 	}
 
 	/**
-	 * tracks which titles are allowed so that when
-	 * BoardContentHandler::canBeUsedOn is called for this title, it
-	 * can call self::isTalkpageOccupied and get a successful result.
+	 * Before creating a flow board, BoardContentHandler::canBeUsedOn will be
+	 * called to verify it's ok to create it.
+	 * That, in turn, will call this, which will check if the title we want to
+	 * turn into a Flow board was allowed to create (with static::allowCreation)
+	 *
+	 * @param Title $title
+	 * @return bool
 	 */
-	public function allowCreation( Title $title ) {
-		$this->occupiedPages[] = $title->getPrefixedText();
+	public function canBeUsedOn( Title $title ) {
+		return in_array( $title->getPrefixedDBkey(), $this->allowCreation );
 	}
 
 	/**
