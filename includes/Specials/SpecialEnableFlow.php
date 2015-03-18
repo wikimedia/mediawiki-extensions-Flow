@@ -13,11 +13,11 @@ use Flow\Container;
  */
 class SpecialEnableFlow extends FormSpecialPage {
 	/**
-	 * @var WorkflowLoaderFactory $loaderFactory
+	 * @var \Flow\WorkflowLoaderFactory $loaderFactory
 	 */
 	protected $loaderFactory;
 
-	/** @var Flow\TalkpageManager $controller */
+	/** @var \Flow\TalkpageManager $controller */
 	protected $occupationController;
 
 	/**
@@ -108,7 +108,7 @@ class SpecialEnableFlow extends FormSpecialPage {
 			}
 		}
 
-		$commitMetadata = $loader->commit( $blocksToCommit );
+		$loader->commit( $blocksToCommit );
 
 		$this->page = $data['page'];
 		return $status;
