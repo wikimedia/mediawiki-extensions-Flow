@@ -54,6 +54,7 @@
 	"flow-topic-action-history": "చరిత్ర",
 	"flow-topic-action-resummarize-topic": "దిద్దుబాటు సారాంశం",
 	"flow-topic-action-undo-moderation": "రద్దుచెయ్యి",
+	"flow-error-not-allowed-suppress": "ఈ చర్చాహారాన్ని తొలగించాం.",
 	"flow-edit-header-submit-overwrite": "శీర్షాన్ని తిరగరాయి",
 	"flow-edit-title-submit-overwrite": "పేరును తిరగరాయి",
 	"flow-edit-post-submit-overwrite": "మార్పులను తిరగరాయి",

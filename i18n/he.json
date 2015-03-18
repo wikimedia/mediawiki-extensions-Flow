@@ -9,6 +9,7 @@
 			"YaronSh"
 		]
 	},
+	"enableflow": "הפעלת זרימה",
 	"flow-desc": "מערכת לניהול זרימת עבודה",
 	"flow-talk-taken-over": "דף השיחה משתמש ב[https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal זרימה].",
 	"flow-talk-username": "מנהל דפי השיחה של זרימה",

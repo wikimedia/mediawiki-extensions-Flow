@@ -24,6 +24,11 @@ $specialPageAliases['arz'] = array(
 	'Flow' => array( 'سريان' ),
 );
 
+/** German (Deutsch) */
+$specialPageAliases['de'] = array(
+	'EnableFlow' => array( 'Flow_aktivieren' ),
+);
+
 /** Zazaki (Zazaki) */
 $specialPageAliases['diq'] = array(
 	'Flow' => array( 'Rodayış' ),
