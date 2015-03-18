@@ -5,7 +5,6 @@ namespace Flow;
 use Flow\Exception\FlowException;
 use Flow\Exception\WrongNumberArgumentsException;
 use Flow\Model\UUID;
-use Flow\Parsoid\Utils;
 use Closure;
 use HTML;
 use LightnCandy;
@@ -60,7 +59,8 @@ class TemplateHelper {
 	 * and the compiled php code that goes with it.
 	 *
 	 * @param string $templateName
-	 * @return array
+	 *
+	 * @return string[]
 	 * @throws FlowException Disallows upwards directory traversal via $templateName
 	 */
 	public function getTemplateFilenames( $templateName ) {
@@ -89,9 +89,11 @@ class TemplateHelper {
 
 	/**
 	 * Returns a given template function if found, otherwise throws an exception.
+	 *
 	 * @param string $templateName
+	 *
 	 * @return Closure
-	 * @throws Exception\FlowException
+	 * @throws FlowException
 	 * @throws \Exception
 	 */
 	public function getTemplate( $templateName ) {
@@ -130,6 +132,7 @@ class TemplateHelper {
 	/**
 	 * @param string $code Handlebars code
 	 * @param string $templateDir Directory templates are stored in
+	 *
 	 * @return string PHP code
 	 */
 	static public function compile( $code, $templateDir ) {
@@ -182,9 +185,11 @@ class TemplateHelper {
 
 	/**
 	 * Returns HTML for a given template by calling the template function with the given args.
+	 *
 	 * @param string $templateName
-	 * @param mixed $args
+	 * @param array $args
 	 * @param array $scopes
+	 *
 	 * @return string
 	 */
 	static public function processTemplate( $templateName, $args, array $scopes = array() ) {
@@ -204,8 +209,10 @@ class TemplateHelper {
 
 	/**
 	 * Generates a timestamp using the UUID, then calls the timestamp helper with it.
+	 *
 	 * @param array $args Expects string $uuid, string $str, bool $timeAgoOnly = false
 	 * @param array $named No named arguments expected
+	 *
 	 * @return null|string
 	 * @throws WrongNumberArgumentsException
 	 */
@@ -228,6 +235,7 @@ class TemplateHelper {
 	/**
 	 * @param array $args Expects string $timestamp, string $str, bool $timeAgoOnly = false
 	 * @param array $named No named arguments expected
+	 *
 	 * @return string
 	 * @throws WrongNumberArgumentsException
 	 */
@@ -243,6 +251,7 @@ class TemplateHelper {
 
 	/**
 	 * @param integer $timestamp milliseconds since the unix epoch
+	 *
 	 * @return string|false
 	 */
 	static protected function timestamp( $timestamp ) {
@@ -273,6 +282,7 @@ class TemplateHelper {
 	 * variable into a template or helper.
 	 *
 	 * @param string $string
+	 *
 	 * @return string[] array(html, 'raw')
 	 */
 	static protected function html( $string ) {
@@ -282,6 +292,7 @@ class TemplateHelper {
 	/**
 	 * @param array $args Expects one string argument to be output unescaped.
 	 * @param array $named unused
+	 *
 	 * @return string[] array(html, 'raw')
 	 */
 	static public function htmlHelper( array $args, array $named ) {
@@ -291,6 +302,7 @@ class TemplateHelper {
 	/**
 	 * @param array $args Expects one array $block
 	 * @param array $named No named arguments expected
+	 *
 	 * @return string[]
 	 * @throws WrongNumberArgumentsException
 	 */
@@ -314,8 +326,6 @@ class TemplateHelper {
 	 * @param array $postIds List of ids (roots)
 	 * @param array $options blockhelper specific invocation options
 	 *
-	 * @throws Exception\FlowException
-	 * @internal param array $arguments Arguments passed into the helper
 	 * @return null|string HTML
 	 * @throws FlowException When callbacks are not Closure instances
 	 */
@@ -364,6 +374,7 @@ class TemplateHelper {
 	 *
 	 * @param array $args Expects array $rootBlock, array $revision
 	 * @param array $named No named arguments expected
+	 *
 	 * @return string[]
 	 * @throws WrongNumberArgumentsException
 	 */
@@ -381,6 +392,7 @@ class TemplateHelper {
 	/**
 	 * @param array $args Expects array $revision, string $key = 'timeAndDate'
 	 * @param array $named No named arguments expected
+	 *
 	 * @return string[]
 	 * @throws WrongNumberArgumentsException
 	 */
@@ -427,6 +439,7 @@ class TemplateHelper {
 	/**
 	 * @param array $args Expects array $revision
 	 * @param array $named No named arguments expected
+	 *
 	 * @return string[]
 	 * @throws WrongNumberArgumentsException
 	 */
@@ -449,6 +462,7 @@ class TemplateHelper {
 	/**
 	 * @param array $args Expects string $old, string $new
 	 * @param array $named No named arguments expected
+	 *
 	 * @return string[]
 	 * @throws WrongNumberArgumentsException
 	 */
@@ -465,7 +479,9 @@ class TemplateHelper {
 	 * the front-end to "progressively enhance" the page with more content which isn't needed in a non-JS state.
 	 *
 	 * @see FlowHandlebars.prototype.progressiveEnhancement in flow-handlebars.js for more details.
+	 *
 	 * @param array $options
+	 *
 	 * @return string[]
 	 */
 	static public function progressiveEnhancement( array $options ) {
@@ -491,6 +507,7 @@ class TemplateHelper {
 	/**
 	 * @param array $args one or more arguments, i18n key and parameters
 	 * @param array $named unused
+	 *
 	 * @return string Plaintext
 	 */
 	static public function l10n( array $args, array $named ) {
@@ -502,6 +519,7 @@ class TemplateHelper {
 	/**
 	 * @param array $args one or more arguments, i18n key and parameters
 	 * @param array $named unused
+	 *
 	 * @return string[] HTML
 	 */
 	static public function l10nParse( array $args, array $named ) {
@@ -522,6 +540,7 @@ class TemplateHelper {
 	 *	   string $prevLink Url pointing to diff between `old` and its previous revision
 	 *	   string $nextLink Url pointing to diff between `new` and its next revision
 	 * @param array $named No named arguments expected
+	 *
 	 * @return string[] HTML wrapped in array to prevent lightncandy from escaping
 	 * @throws WrongNumberArgumentsException
 	 */
@@ -565,6 +584,7 @@ class TemplateHelper {
 	/**
 	 * @param array $args Expects array $actions, string $moderationState
 	 * @param array $named No named arguments expected
+	 *
 	 * @return string
 	 * @throws WrongNumberArgumentsException
 	 */
@@ -579,6 +599,7 @@ class TemplateHelper {
 	/**
 	 * @param array $args Expects one or more strings to join
 	 * @param array $named No named arguments expected
+	 *
 	 * @return string all unnamed arguments joined together
 	 */
 	static public function concat( array $args, array $named ) {
@@ -588,8 +609,9 @@ class TemplateHelper {
 	/**
 	 * Return information about given user
 	 *
-	 * @param array $args Expects string $feature e.g. name, id
+	 * @param string[] $args Expects string $feature e.g. name, id
 	 * @param array $named No named arguments expected
+	 *
 	 * @return string value of property
 	 */
 	static public function user( array $args, array $named ) {
@@ -605,7 +627,9 @@ class TemplateHelper {
 
 	/**
 	 * Runs a callback when user is anonymous
+	 *
 	 * @param array $options which must contain fn and inverse key mapping to functions.
+	 *
 	 * @return mixed result of callback
 	 * @throws FlowException Fails when callbacks are not Closure instances
 	 */
@@ -629,6 +653,7 @@ class TemplateHelper {
 
 	/**
 	 * Adds returnto parameter pointing to current page to existing URL
+	 *
 	 * @param string $url to modify
 	 *
 	 * @return string modified url
@@ -655,8 +680,10 @@ class TemplateHelper {
 
 	/**
 	 * Adds returnto parameter pointing to given Title to an existing URL
-	 * @param array $args Expects string $title
+	 *
+	 * @param string[] $args Expects string $title
 	 * @param array $named No named arguments expected
+	 *
 	 * @return string modified url
 	 * @throws WrongNumberArgumentsException
 	 */
@@ -682,8 +709,9 @@ class TemplateHelper {
 	 * It is expected that all content with contentType of html has been
 	 * processed by parsoid and is safe for direct output into the document.
 	 *
-	 * @param array $args Expects string $contentType, string $content
+	 * @param string[] $args Expects string $contentType, string $content
 	 * @param array $named No named arguments expected
+	 *
 	 * @return string
 	 * @throws WrongNumberArgumentsException
 	 */
@@ -697,13 +725,14 @@ class TemplateHelper {
 
 	/**
 	 * Only perform action when conditions match
+	 *
 	 * @param string $value
 	 * @param string $operator e.g. 'or'
 	 * @param string $value2 to compare with
 	 * @param array $options lightncandy hbhelper options
+	 *
 	 * @return mixed result of callback
 	 * @throws FlowException Fails when callbacks are not Closure instances
-	 * @param array @options
 	 */
 	static public function ifCond( $value, $operator, $value2, $options ) {
 		$doCallback = false;
@@ -745,6 +774,7 @@ class TemplateHelper {
 
 	/**
 	 * @param array $options
+	 *
 	 * @return string tooltip
 	 */
 	static public function tooltip( $options ) {
