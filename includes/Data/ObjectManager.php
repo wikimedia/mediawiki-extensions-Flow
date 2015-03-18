@@ -321,7 +321,8 @@ class ObjectManager extends ObjectLocator {
 	 * over casting with (array)$value because that will cast an
 	 * object to an array rather than wrap it.
 	 *
-	 * @param mixed @input
+	 * @param mixed $input
+	 *
 	 * @return array
 	 */
 	static public function makeArray( $input ) {
