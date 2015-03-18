@@ -70,8 +70,7 @@ class SpecialEnableFlow extends FormSpecialPage {
 			return Status::newFatal( 'flow-special-enableflow-board-already-exists', $page );
 		}
 
-		// This also *records* that it's allowed.
-		if ( !$this->occupationController->isCreationAllowed( $title, $this->getUser() ) ) {
+		if ( !$this->occupationController->allowCreation( $title, $this->getUser() ) ) {
 			// This is the only plausible reason this method would return false here.
 			// If there is another possible reason, we should have the method return a
 			// Status.

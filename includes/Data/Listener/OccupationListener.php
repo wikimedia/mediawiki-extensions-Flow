@@ -69,8 +69,10 @@ class OccupationListener implements LifecycleHandler {
 		if ( !$object instanceof Workflow ) {
 			return;
 		}
+
 		if ( isset( $metadata['imported'] ) && $metadata['imported'] ) {
-			$this->occupationController->allowCreation( $object->getArticleTitle() );
+			$user = $this->occupationController->getTalkpageManager();
+			$this->occupationController->allowCreation( $object->getArticleTitle(), $user );
 		}
 
 		$this->ensureOccupation( $object );
