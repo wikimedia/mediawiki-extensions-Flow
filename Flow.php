@@ -217,6 +217,9 @@ $wgDefaultUserOptions['echo-subscriptions-email-flow-discussion'] = false;
 // for more information.
 $wgDefaultUserOptions['flow-topiclist-sortby'] = 'newest';
 
+// Default editor to use in Flow
+$wgDefaultUserOptions['flow-editor'] = 'none';
+
 // Maximum number of users that can be mentioned in one comment
 $wgFlowMaxMentionCount = 100;
 
