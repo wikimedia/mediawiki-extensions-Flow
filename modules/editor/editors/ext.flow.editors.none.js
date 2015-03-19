@@ -23,6 +23,9 @@
 		// initialize at height of existing content & update on every keyup
 		this.$node.keyup( this.autoExpand );
 		this.autoExpand.call( this.$node.get( 0 ) );
+
+		// note sure this is the best place ...
+		attachSwitcher( $node );
 	};
 
 	OO.inheritClass( mw.flow.editors.none, mw.flow.editors.AbstractEditor );
@@ -43,6 +46,8 @@
 	mw.flow.editors.none.static.name = 'none';
 
 	mw.flow.editors.none.prototype.destroy = function () {
+		// remove the help+switcher information
+		this.$node.siblings( '.flow-switcher-controls' ).remove();
 		// unset min-height that was set for auto-expansion
 		this.$node.css( 'min-height', '' );
 		// unset height that was set by auto-expansion
@@ -116,6 +121,24 @@
 		}
 	};
 
+	function attachSwitcher( $node ) {
+		var board = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $node ),
+			$switcher = $( mw.flow.TemplateEngine.processTemplateGetFragment(
+				'flow_editor_switcher.partial',
+				{
+					help_text: mw.message( 'flow-wikitext-editor-help' ).params( [
+						mw.message( 'flow-wikitext-editor-help-uses-wikitext' ).parse(),
+						// preview just switches from wikitext to visual editor.
+						// @todo should this get put in a template of its own?
+						'<a href="javascript:void(0)" data-flow-interactive-handler="switchEditor" data-flow-target="< form textarea">' + mw.message( 'flow-wikitext-editor-help-preview-the-result' ).text() + '</a>'
+					] ).parse()
+				}
+			) ).children();
+
+		// insert help information + editor switcher, and make it interactive
+		board.emitWithReturn( 'makeContentInteractive', $switcher.insertAfter( $node ) );
+
+	}
 	mw.flow.editors.none.prototype.focus = function() {
 		return this.$node.focus();
 	};
