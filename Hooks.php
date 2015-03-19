@@ -917,6 +917,10 @@ class FlowHooks {
 			'type' => 'api',
 		);
 
+		$preferences['flow-editor'] = array(
+			'type' => 'api'
+		);
+
 		return true;
 	}
 
