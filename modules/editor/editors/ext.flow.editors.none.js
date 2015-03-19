@@ -23,6 +23,9 @@
 		// initialize at height of existing content & update on every keyup
 		this.$node.keyup( this.autoExpand );
 		this.autoExpand.call( this.$node.get( 0 ) );
+
+		// note sure this is the best place ...
+		attachSwitcher( $node );
 	};
 
 	OO.inheritClass( mw.flow.editors.none, mw.flow.editors.AbstractEditor );
@@ -35,7 +38,16 @@
 	 */
 	mw.flow.editors.none.static.format = 'wikitext';
 
+	/**
+	 * Name of this editor
+	 *
+	 * @var string
+	 */
+	mw.flow.editors.none.static.name = 'none';
+
 	mw.flow.editors.none.prototype.destroy = function () {
+		// remove the help+switcher information
+		this.$node.siblings( '.flow-switcher-controls' ).remove();
 		// unset min-height that was set for auto-expansion
 		this.$node.css( 'min-height', '' );
 		// unset height that was set by auto-expansion
@@ -109,6 +121,16 @@
 		}
 	};
 
+	function attachSwitcher( $node ) {
+		var board = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $node ),
+			$switcher = $( mw.flow.TemplateEngine.processTemplateGetFragment(
+				'flow_editor_switcher.partial'
+			) ).children();
+
+		// insert help information + editor switcher, and make it interactive
+		board.emitWithReturn( 'makeContentInteractive', $switcher.insertAfter( $node ) );
+
+	}
 	mw.flow.editors.none.prototype.focus = function() {
 		return this.$node.focus();
 	};
