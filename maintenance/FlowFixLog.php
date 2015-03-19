@@ -101,10 +101,10 @@ class LogRowUpdateGenerator implements EchoRowUpdateGenerator {
 		$topic = false;
 		$post = false;
 		if ( isset( $params['topicId'] ) ) {
-			$topic = $this->loadTopic( $params['topicId'] );
+			$topic = $this->loadTopic( UUID::create( $params['topicId'] ) );
 		}
 		if ( isset( $params['postId'] ) ) {
-			$post = $this->loadPost( $params['postId'] );
+			$post = $this->loadPost( UUID::create( $params['postId'] ) );
 			$topic = $topic ?: $post->getRoot();
 		}
 
