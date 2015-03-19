@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_25893ecb",
+        "filename": "modules/editor/editors/visualeditor/ui/inspectors/mw.flow.ve.ui.MentionInspector.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-03-19T23:43:01Z",
+      "side": 1,
+      "message": "Stray tab",
+      "revId": "8cc654b5ec3bb629fb76256cfd8c7765d9e8ab18",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
