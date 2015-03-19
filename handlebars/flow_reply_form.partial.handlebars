@@ -13,36 +13,40 @@
 			{{> flow_anon_warning }}
 		{{/ifAnonymous}}
 
-		<textarea id="flow-post-{{postId}}-form-content"
-				name="topic_content"
-				required
-				data-flow-preview-template="flow_post"
-				data-flow-preview-title="{{articleTitle}}"
-				data-flow-expandable="true"
-				class="mw-ui-input flow-click-interactive"
-				type="text"
-				placeholder="{{l10n "flow-reply-topic-title-placeholder" properties.topic-of-post}}"
-				data-role="content"
+		<div class="flow-editor-switcher">
+			<textarea id="flow-post-{{postId}}-form-content"
+					name="topic_content"
+					required
+					data-flow-preview-template="flow_post"
+					data-flow-preview-title="{{articleTitle}}"
+					data-flow-expandable="true"
+					class="mw-ui-input flow-click-interactive"
+					type="text"
+					placeholder="{{l10n "flow-reply-topic-title-placeholder" properties.topic-of-post}}"
+					data-role="content"
 
-				{{!--
-					You'd expect data-flow-eventlog-* data here (this one
-					needs to be clicked to expand the form).
-					However, this form is used in multiple places: as topic-
-					level reply form (activated by clicking the textarea to
-					expand), or to reply to a post (activated by clicking the
-					"reply" link).
-					We only want to track the former, so we'll do that in JS so
-					we can ignore all focuses for this textarea when it's not
-					used to activate the topic-level reply form.
-				--}}
-				data-flow-interactive-handler-focus="activateReplyTopic"
-		>
-			{{~#if @root.submitted~}}
-				{{~#ifCond @root.submitted.postId "===" postId~}}
-					{{~@root.submitted.content~}}
-				{{~/ifCond~}}
-			{{~/if~}}
-		</textarea>
+					{{!--
+						You'd expect data-flow-eventlog-* data here (this one
+						needs to be clicked to expand the form).
+						However, this form is used in multiple places: as topic-
+						level reply form (activated by clicking the textarea to
+						expand), or to reply to a post (activated by clicking the
+						"reply" link).
+						We only want to track the former, so we'll do that in JS so
+						we can ignore all focuses for this textarea when it's not
+						used to activate the topic-level reply form.
+					--}}
+					data-flow-interactive-handler-focus="activateReplyTopic"
+			>
+				{{~#if @root.submitted~}}
+					{{~#ifCond @root.submitted.postId "===" postId~}}
+						{{~@root.submitted.content~}}
+					{{~/ifCond~}}
+				{{~/if~}}
+			</textarea>
+
+			{{> flow_editor_switcher}}
+		</div>
 
 		<div class="flow-form-actions flow-form-collapsible">
 			<button data-role="submit"

@@ -1,3 +1,4 @@
+@import 'mediawiki.ui/variables';
 @import 'mediawiki.mixins';
 @import 'flow.colors';
 @import 'flow.helpers';
@@ -28,6 +29,20 @@ textarea.mw-ui-input.flow-input-compressed {
 	position: absolute;
 	right: -15em;
 	width: 15em;
+}
+
+// extra specificity is needed to override .mw-ui-button.mw-ui-*
+.flow-editor-color.flow-editor-color {
+	// i'm not convinced this is our best way to set these, what else could we do?
+	.flow-editor-none & {
+		color: white;
+		background-color: @colorConstructive;
+	}
+
+	.flow-editor-visualeditor & {
+		color: @colorText;
+		background-color: white;
+	}
 }
 
 .client-js {

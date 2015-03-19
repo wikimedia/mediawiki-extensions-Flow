@@ -175,6 +175,13 @@
 	 */
 	mw.flow.editors.visualeditor.static.format = 'html';
 
+	/**
+	 * Name of this editor
+	 *
+	 * @var string
+	 */
+	mw.flow.editors.visualeditor.static.name = 'visualeditor';
+
 	// Static methods
 
 	mw.flow.editors.visualeditor.static.isSupported = function () {

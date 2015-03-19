@@ -35,6 +35,13 @@
 	 */
 	mw.flow.editors.none.static.format = 'wikitext';
 
+	/**
+	 * Name of this editor
+	 *
+	 * @var string
+	 */
+	mw.flow.editors.none.static.name = 'none';
+
 	mw.flow.editors.none.prototype.destroy = function () {
 		// unset min-height that was set for auto-expansion
 		this.$node.css( 'min-height', '' );

@@ -1,0 +1,26 @@
+@import 'mediawiki.mixins';
+@import 'flow.colors';
+
+.flow-editor-switcher {
+	.flow-switcher-controls{
+		border: 1px solid #CCC;
+		border-top: 0px;
+		padding: .25em;
+	}
+
+	textarea {
+		border-bottom: 0px;
+	}
+
+	.flow-wikitext-editor-help {
+		float: left;
+		vertical-align: middle;
+		color: @colorTextLight;
+		font-size: .75em;
+		line-height: 1.4;
+	}
+
+	a.mw-ui-button {
+		float: right;
+	}
+}

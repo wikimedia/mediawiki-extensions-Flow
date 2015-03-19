@@ -25,6 +25,19 @@
 ';}).'		</ul>
 	</div>
 ' : '').'</div>
+';},'flow_editor_switcher' => function ($cx, $in) {return '<div>
+	'.LCRun3::ch($cx, 'l10n', array(array('flow-wikitext-editor-help'),array()), 'encq').'
+
+	<a href="#"
+	   class="mw-ui-button mw-ui-constructive flow-js flow-editor-color"
+	   data-flow-interactive-handler="switchEditor"
+	   data-flow-load-handler="switchEditor"
+	   data-flow-target="< form textarea"
+	>
+		&lt; / &gt;
+	</a>
+</div>
+
 ';},'flow_form_buttons' => function ($cx, $in) {return '<button data-flow-api-handler="preview"
         data-flow-api-target="< form textarea"
         name="preview"
@@ -60,6 +73,8 @@
 				  data-flow-preview-title="'.htmlentities((string)((isset($in['revision']['articleTitle']) && is_array($in['revision'])) ? $in['revision']['articleTitle'] : null), ENT_QUOTES, 'UTF-8').'"
 				  type="text"
 					  data-role="content">'.((LCRun3::ifvar($cx, ((isset($in['submitted']['summary']) && is_array($in['submitted'])) ? $in['submitted']['summary'] : null))) ? ''.htmlentities((string)((isset($in['submitted']['summary']) && is_array($in['submitted'])) ? $in['submitted']['summary'] : null), ENT_QUOTES, 'UTF-8').'' : ''.((LCRun3::ifvar($cx, ((isset($in['revision']['revisionId']) && is_array($in['revision'])) ? $in['revision']['revisionId'] : null))) ? ''.htmlentities((string)((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null), ENT_QUOTES, 'UTF-8').'' : '').'').'</textarea>
+
+'.LCRun3::p($cx, 'flow_editor_switcher', array(array($in),array())).'
 			<div class="flow-form-actions flow-form-collapsible">
 				<button
 					data-role="submit"

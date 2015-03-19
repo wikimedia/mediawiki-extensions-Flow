@@ -500,5 +500,6 @@
 	"flow-ve-mention-context-item-label": "Label of context items for user mentions in Flow's VisualEditor",
 	"flow-ve-mention-inspector-title": "Title for the user mention inspector in Flow's VisualEditor",
 	"flow-ve-mention-inspector-remove-label": "Text of remove button on Flow's user mention inspector in the VisualEditor",
-	"flow-ve-mention-tool-title": "Title text for the user mention tool on Flow's VisualEditor toolbar"
+	"flow-ve-mention-tool-title": "Title text for the user mention tool on Flow's VisualEditor toolbar",
+	"flow-wikitext-editor-help": "Text shown at the bottom of a wikitext editing box"
 }
