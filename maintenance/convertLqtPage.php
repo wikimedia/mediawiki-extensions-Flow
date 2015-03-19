@@ -12,7 +12,7 @@ require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
 	: dirname( __FILE__ ) . '/../../../maintenance/Maintenance.php' );
 
-class ConvertLqt extends Maintenance {
+class ConvertLqtPage extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Converts LiquidThreads data to Flow data";
@@ -100,5 +100,5 @@ class ConvertLqt extends Maintenance {
 	}
 }
 
-$maintClass = "ConvertLqt";
+$maintClass = "ConvertLqtPage";
 require_once ( RUN_MAINTENANCE_IF_MAIN );
