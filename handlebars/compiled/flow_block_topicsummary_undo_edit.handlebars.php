@@ -57,13 +57,15 @@
 		<input type="hidden" name="wpEditToken" value="'.htmlentities((string)((isset($cx['sp_vars']['root']['rootBlock']['editToken']) && is_array($cx['sp_vars']['root']['rootBlock'])) ? $cx['sp_vars']['root']['rootBlock']['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
 		<input type="hidden" name="topicsummary_prev_revision" value="'.htmlentities((string)((isset($in['current']['revisionId']) && is_array($in['current'])) ? $in['current']['revisionId'] : null), ENT_QUOTES, 'UTF-8').'" />
 
-		<textarea name="topicsummary_summary"
-		          class="mw-ui-input"
-		          data-role="content"
-		          data-flow-preview-node="summary"
-		          data-flow-preview-template="flow_topic_titlebar_summary.partial"
-		          data-flow-preview-title="'.htmlentities((string)((isset($in['articleTitle']) && is_array($in)) ? $in['articleTitle'] : null), ENT_QUOTES, 'UTF-8').'"
-		>'.((LCRun3::ifvar($cx, ((isset($in['submitted']['content']) && is_array($in['submitted'])) ? $in['submitted']['content'] : null))) ? ''.htmlentities((string)((isset($in['submitted']['content']) && is_array($in['submitted'])) ? $in['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.((LCRun3::ifvar($cx, ((isset($in['undo']['possible']) && is_array($in['undo'])) ? $in['undo']['possible'] : null))) ? ''.htmlentities((string)((isset($in['undo']['content']) && is_array($in['undo'])) ? $in['undo']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities((string)((isset($in['current']['content']['content']) && is_array($in['current']['content'])) ? $in['current']['content']['content'] : null), ENT_QUOTES, 'UTF-8').'').'').'</textarea>
+		<div class="flow-editor">
+			<textarea name="topicsummary_summary"
+			          class="mw-ui-input"
+			          data-role="content"
+			          data-flow-preview-node="summary"
+			          data-flow-preview-template="flow_topic_titlebar_summary.partial"
+			          data-flow-preview-title="'.htmlentities((string)((isset($in['articleTitle']) && is_array($in)) ? $in['articleTitle'] : null), ENT_QUOTES, 'UTF-8').'"
+			>'.((LCRun3::ifvar($cx, ((isset($in['submitted']['content']) && is_array($in['submitted'])) ? $in['submitted']['content'] : null))) ? ''.htmlentities((string)((isset($in['submitted']['content']) && is_array($in['submitted'])) ? $in['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.((LCRun3::ifvar($cx, ((isset($in['undo']['possible']) && is_array($in['undo'])) ? $in['undo']['possible'] : null))) ? ''.htmlentities((string)((isset($in['undo']['content']) && is_array($in['undo'])) ? $in['undo']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities((string)((isset($in['current']['content']['content']) && is_array($in['current']['content'])) ? $in['current']['content']['content'] : null), ENT_QUOTES, 'UTF-8').'').'').'</textarea>
+		</div>
 
 		<div class="flow-form-actions flow-form-collapsible">
 			<button class="mw-ui-button mw-ui-constructive">'.LCRun3::ch($cx, 'l10n', array(array('flow-topic-action-summarize-topic'),array()), 'encq').'</button>
