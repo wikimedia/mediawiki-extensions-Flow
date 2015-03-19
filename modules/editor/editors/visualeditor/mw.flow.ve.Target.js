@@ -34,7 +34,9 @@
 
 		{ include: [ 'link' ] },
 
-		{ include: [ 'flowMention' ] }
+		{ include: [ 'flowMention' ] },
+
+		{ include: [ 'flowSwitchEditor' ] }
 	];
 
 	// This is a workaround.
