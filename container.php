@@ -616,6 +616,7 @@ $c['storage.post.indexes'] = function( $c ) {
 	return array(
 		$c['storage.post.indexes.primary'],
 		$c['storage.post.indexes.post_lookup'],
+		$c['storage.topic_history.indexes.topic_lookup']
 	);
 };
 $c['storage.post'] = function( $c ) {
