@@ -537,5 +537,6 @@
 	"flow-ve-mention-inspector-title": "Mention",
 	"flow-ve-mention-inspector-remove-label": "Remove",
 	"flow-ve-mention-tool-title": "Mention a user",
-	"flow-ve-mention-template": "ping"
+	"flow-ve-mention-template": "ping",
+	"flow-wikitext-editor-help": "Wikitext [[mw:Help:Formatting|uses markup]] and you can preview the result anytime."
 }
