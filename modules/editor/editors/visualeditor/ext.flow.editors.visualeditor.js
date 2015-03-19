@@ -99,8 +99,7 @@
 
 	mw.flow.editors.visualeditor.prototype.destroy = function () {
 		if ( this.target ) {
-			this.target.surface.destroy();
-			this.target.toolbar.destroy();
+			this.target.destroy();
 		}
 
 		// re-display original node

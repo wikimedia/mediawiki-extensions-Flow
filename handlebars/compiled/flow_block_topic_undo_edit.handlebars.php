@@ -26,15 +26,7 @@
 ';}).'		</ul>
 	</div>
 ' : '').'</div>
-';},'flow_form_buttons' => function ($cx, $in) {return '<button data-flow-api-handler="preview"
-        data-flow-api-target="< form textarea"
-        name="preview"
-        data-role="action"
-        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-form-action-preview flow-js"
-
->'.LCRun3::ch($cx, 'l10n', array(array('flow-preview'),array()), 'encq').'</button>
-
-<button data-flow-interactive-handler="cancelForm"
+';},'flow_form_buttons' => function ($cx, $in) {return '<button data-flow-interactive-handler="cancelForm"
         data-role="cancel"
         type="reset"
         class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"

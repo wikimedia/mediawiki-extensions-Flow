@@ -36,15 +36,7 @@
 '.LCRun3::hbch($cx, 'progressiveEnhancement', array(array(),array()), $in, false, function($cx, $in) {return '		<div class="flow-anon-warning-desktop">
 '.LCRun3::hbch($cx, 'tooltip', array(array(),array('positionClass'=>'left','contextClass'=>'progressive','extraClass'=>'flow-form-collapsible','isBlock'=>true)), $in, false, function($cx, $in) {return ''.LCRun3::ch($cx, 'l10nParse', array(array('flow-anon-warning',LCRun3::ch($cx, 'linkWithReturnTo', array(array('Special:UserLogin'),array()), 'raw'),LCRun3::ch($cx, 'linkWithReturnTo', array(array('Special:UserLogin/signup'),array()), 'raw')),array()), 'encq').'';}).'		</div>
 ';}).'</div>
-';},'flow_form_buttons' => function ($cx, $in) {return '<button data-flow-api-handler="preview"
-        data-flow-api-target="< form textarea"
-        name="preview"
-        data-role="action"
-        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-form-action-preview flow-js"
-
->'.LCRun3::ch($cx, 'l10n', array(array('flow-preview'),array()), 'encq').'</button>
-
-<button data-flow-interactive-handler="cancelForm"
+';},'flow_form_buttons' => function ($cx, $in) {return '<button data-flow-interactive-handler="cancelForm"
         data-role="cancel"
         type="reset"
         class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"

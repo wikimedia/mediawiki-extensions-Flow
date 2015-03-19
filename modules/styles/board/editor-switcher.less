@@ -1,0 +1,52 @@
+@import 'mediawiki.mixins';
+@import 'mediawiki.ui/variables';
+@import 'flow.colors';
+
+// extra specificity is needed to override .mw-ui-button.mw-ui-*
+.mw-ui-button.flow-editor-color {
+	.flow-editor-none & {
+		color: white;
+		background-color: @colorConstructive;
+	}
+
+	.flow-editor-visualeditor & {
+		color: @colorText;
+		background-color: white;
+	}
+}
+
+.flow-editor {
+	.flow-switcher-controls {
+		background-color: white;
+		border: 1px solid @colorFieldBorder;
+		border-top: 0;
+		padding: .25em;
+	}
+
+	textarea {
+		border-bottom: 0;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+		margin-bottom: 0;
+	}
+
+	// would prefer textarea:not(.flow-input-compressed) above, but ie8 wont do it
+	// so here we re-apply the border from .mw-ui-input that was removed above.
+	textarea.flow-input-compressed {
+		border-bottom: 1px solid @colorFieldBorder;
+	}
+
+	// @todo this is basically the terms of use, come up with a shared
+	// name for all but the float
+	.flow-wikitext-editor-help {
+		float: left;
+		vertical-align: middle;
+		color: @colorTextLight;
+		font-size: .75em;
+		line-height: 1.4;
+	}
+
+	a.flow-editor-color {
+		float: right;
+	}
+}
