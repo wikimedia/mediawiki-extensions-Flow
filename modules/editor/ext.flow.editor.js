@@ -113,7 +113,8 @@
 				mw.flow.editor.editors[$.inArray( editor, mw.flow.editor.editors )] = null;
 				$node
 					.removeData( 'flow-editor' )
-					.show();
+					.show()
+					.closest( '.flow-editor' ).removeClass( 'flow-editor-' + editor.constructor.static.name );
 			}
 		},
 
@@ -165,7 +166,9 @@
 		 * @return {object}
 		 */
 		create: function ( $node, content ) {
-			$node.data( 'flow-editor', mw.flow.editor.editors.length );
+			$node.data( 'flow-editor', mw.flow.editor.editors.length )
+				.closest( '.flow-editor' ).addClass( 'flow-editor-' + mw.flow.editor.editor.static.name );
+
 			mw.flow.editor.editors.push( new mw.flow.editor.editor( $node, content ) );
 			return mw.flow.editor.getEditor( $node );
 		},
