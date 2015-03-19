@@ -57,6 +57,7 @@ $wgResourceModules += array(
 			"flow_edit_post_ajax.partial.handlebars",
 			"flow_edit_post.partial.handlebars",
 			"flow_edit_topic_title.partial.handlebars",
+			"flow_editor_switcher.partial.handlebars",
 			"flow_errors.partial.handlebars",
 			"flow_form_buttons.partial.handlebars",
 			"flow_header_detail.partial.handlebars",
@@ -236,6 +237,8 @@ $wgResourceModules += array(
 			'flow-edited-by',
 			// Board header
 			"flow-board-header-browse-topics-link",
+			// editor switching
+			"flow-wikitext-editor-help"
 		),
 	),
 	// @todo: upstream to mediawiki ui
@@ -287,6 +290,7 @@ $wgResourceModules += array(
 			'styles/board/content-preview.less',
 			'styles/board/form-actions.less',
 			'styles/board/terms-of-use.less',
+			'styles/board/editor-switcher.less',
 		),
 	) + $mobile,
 	'ext.flow.board.topic.styles' => $flowResourceTemplate + array(
@@ -365,6 +369,8 @@ $wgResourceModules += array(
 			'engine/components/board/features/flow-board-toc.js',
 			// Feature: VisualEditor
 			'engine/components/board/features/flow-board-visualeditor.js',
+			// Feature: Switch between editors
+			'engine/components/board/features/flow-board-switcheditor.js',
 
 			// Component: FlowBoardHistoryComponent
 			'engine/components/board/flow-boardhistory.js',
@@ -381,6 +387,7 @@ $wgResourceModules += array(
 			'ext.flow.jquery.conditionalScroll',
 			'mediawiki.api',
 			'mediawiki.util',
+			'mediawiki.api.options', // required by switch-editor feature
 		),
 		'messages' => array(
 			'flow-error-external',

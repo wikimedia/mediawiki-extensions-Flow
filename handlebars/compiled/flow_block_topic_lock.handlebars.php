@@ -25,15 +25,7 @@
 ';}).'		</ul>
 	</div>
 ' : '').'</div>
-';},'flow_form_buttons' => function ($cx, $in) {return '<button data-flow-api-handler="preview"
-        data-flow-api-target="< form textarea"
-        name="preview"
-        data-role="action"
-        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-form-action-preview flow-js"
-
->'.LCRun3::ch($cx, 'l10n', array(array('flow-preview'),array()), 'encq').'</button>
-
-<button data-flow-interactive-handler="cancelForm"
+';},'flow_form_buttons' => function ($cx, $in) {return '<button data-flow-interactive-handler="cancelForm"
         data-role="cancel"
         type="reset"
         class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
@@ -44,14 +36,16 @@
 		<form class="flow-edit-form" data-flow-initial-state="collapsed" method="POST"
 			  action="'.((LCRun3::ifvar($cx, ((isset($in['isModerated']) && is_array($in)) ? $in['isModerated'] : null))) ? ''.htmlentities((string)((isset($in['actions']['unlock']['url']) && is_array($in['actions']['unlock'])) ? $in['actions']['unlock']['url'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities((string)((isset($in['actions']['lock']['url']) && is_array($in['actions']['lock'])) ? $in['actions']['lock']['url'] : null), ENT_QUOTES, 'UTF-8').'').'">
 '.LCRun3::p($cx, 'flow_errors', array(array($in),array())).'			<input type="hidden" name="wpEditToken" value="'.htmlentities((string)((isset($cx['sp_vars']['root']['editToken']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
-			<textarea name="flow_reason"
-			          class="mw-ui-input"
-			          type="text"
-			          required
-			          data-flow-preview-node="moderateReason"
-			          data-flow-preview-template="flow_topic_titlebar.partial"
-					  data-flow-preview-title="'.htmlentities((string)((isset($in['articleTitle']) && is_array($in)) ? $in['articleTitle'] : null), ENT_QUOTES, 'UTF-8').'"
-			>'.((LCRun3::ifvar($cx, ((isset($cx['sp_vars']['root']['submitted']['reason']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['reason'] : null))) ? ''.htmlentities((string)((isset($cx['sp_vars']['root']['submitted']['reason']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['reason'] : null), ENT_QUOTES, 'UTF-8').'' : '').'</textarea>
+			<div class="flow-editor">
+				<textarea name="flow_reason"
+				          class="mw-ui-input"
+				          type="text"
+				          required
+				          data-flow-preview-node="moderateReason"
+				          data-flow-preview-template="flow_topic_titlebar.partial"
+				          data-flow-preview-title="'.htmlentities((string)((isset($in['articleTitle']) && is_array($in)) ? $in['articleTitle'] : null), ENT_QUOTES, 'UTF-8').'"
+				>'.((LCRun3::ifvar($cx, ((isset($cx['sp_vars']['root']['submitted']['reason']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['reason'] : null))) ? ''.htmlentities((string)((isset($cx['sp_vars']['root']['submitted']['reason']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['reason'] : null), ENT_QUOTES, 'UTF-8').'' : '').'</textarea>
+			</div>
 			<div class="flow-form-actions flow-form-collapsible">
 				<button data-role="submit"
 				        class="mw-ui-button mw-ui-constructive"
