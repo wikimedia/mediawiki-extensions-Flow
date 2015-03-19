@@ -37,6 +37,12 @@
 		{ include: [ 'flowMention' ] }
 	];
 
+	mw.flow.ve.Target.static.actionGroups = [
+		{ include: [ 'flowSwitchEditor' ] }
+	];
+
+	// Methods
+
 	mw.flow.ve.Target.prototype.attachToolbar = function() {
 		this.getToolbar().$element.insertAfter( this.getToolbar().getSurface().$element );
 	};

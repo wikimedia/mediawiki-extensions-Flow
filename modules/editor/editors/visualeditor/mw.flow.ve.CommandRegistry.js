@@ -10,4 +10,13 @@
 			{ supportedSelections: ['linear'] }
 		)
 	);
+
+	ve.ui.commandRegistry.register(
+		new ve.ui.Command(
+			'flowSwitchEditor',
+			'flowSwitchEditor',
+			'switch',  // method to call on action
+			{ args: [] } // arguments to pass to action
+		)
+	);
 } ( ve ) );
