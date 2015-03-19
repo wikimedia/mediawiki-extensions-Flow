@@ -1,17 +1,20 @@
 <form method="POST" action="{{moderationAction actions @root.submitted.moderationState}}">
 	{{> flow_errors}}
 	<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
-	<textarea name="topic_reason"
-	          required
-	          data-flow-expandable="true"
-	          class="mw-ui-input"
-	          data-role="content"
-	          placeholder="{{l10n (concat "flow-moderation-placeholder-" @root.submitted.moderationState "-topic")}}"
-	          autofocus>
-		{{~#if @root.submitted.reason~}}
-			{{~@root.submitted.reason~}}
-		{{~/if~}}
-	</textarea>
+	<div class="flow-editor">
+		<textarea name="topic_reason"
+		          required
+		          data-flow-expandable="true"
+		          class="mw-ui-input"
+		          data-role="content"
+		          placeholder="{{l10n (concat "flow-moderation-placeholder-" @root.submitted.moderationState "-topic")}}"
+		          autofocus
+		>
+			{{~#if @root.submitted.reason~}}
+				{{~@root.submitted.reason~}}
+			{{~/if~}}
+		</textarea>
+	</div>
 	<div class="flow-form-actions flow-form-collapsible">
 		<button class="mw-ui-button mw-ui-constructive"
 		        data-flow-interactive-handler="apiRequest"

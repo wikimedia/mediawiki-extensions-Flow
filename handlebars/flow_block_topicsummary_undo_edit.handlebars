@@ -15,23 +15,25 @@
 		<input type="hidden" name="wpEditToken" value="{{@root.rootBlock.editToken}}" />
 		<input type="hidden" name="topicsummary_prev_revision" value="{{current.revisionId}}" />
 
-		<textarea name="topicsummary_summary"
-		          class="mw-ui-input"
-		          data-role="content"
-		          data-flow-preview-node="summary"
-		          data-flow-preview-template="flow_topic_titlebar_summary.partial"
-		          data-flow-preview-title="{{articleTitle}}"
-		>
-			{{~#if submitted.content~}}
-				{{~submitted.content~}}
-			{{~else~}}
-				{{~#if undo.possible~}}
-					{{~undo.content~}}
+		<div class="flow-editor">
+			<textarea name="topicsummary_summary"
+			          class="mw-ui-input"
+			          data-role="content"
+			          data-flow-preview-node="summary"
+			          data-flow-preview-template="flow_topic_titlebar_summary.partial"
+			          data-flow-preview-title="{{articleTitle}}"
+			>
+				{{~#if submitted.content~}}
+					{{~submitted.content~}}
 				{{~else~}}
-					{{~current.content.content~}}
+					{{~#if undo.possible~}}
+						{{~undo.content~}}
+					{{~else~}}
+						{{~current.content.content~}}
+					{{~/if~}}
 				{{~/if~}}
-			{{~/if~}}
-		</textarea>
+			</textarea>
+		</div>
 
 		<div class="flow-form-actions flow-form-collapsible">
 			<button class="mw-ui-button mw-ui-constructive">
