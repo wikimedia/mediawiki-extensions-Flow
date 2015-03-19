@@ -6,15 +6,22 @@
 			{{#if revision.revisionId}}
 				<input type="hidden" name="header_prev_revision" value="{{revision.revisionId}}" />
 			{{/if}}
-			<textarea name="header_content" class="mw-ui-input"
-				data-flow-preview-template="flow_header_detail.partial"
-				placeholder="{{l10n "flow-edit-header-placeholder"}}" data-role="content">
-				{{~#if submitted.content~}}
-					{{~submitted.content~}}
-				{{~else~}}
-					{{~revision.content.content~}}
-				{{~/if~}}
-			</textarea>
+
+			<div class="flow-editor">
+				<textarea name="header_content"
+				          class="mw-ui-input"
+				          data-flow-preview-template="flow_header_detail.partial"
+				          placeholder="{{l10n "flow-edit-header-placeholder"}}"
+				          data-role="content"
+				>
+					{{~#if submitted.content~}}
+						{{~submitted.content~}}
+					{{~else~}}
+						{{~revision.content.content~}}
+					{{~/if~}}
+				</textarea>
+			</div>
+
 			<div class="flow-form-actions flow-form-collapsible">
 				<button data-role="submit"
 					class="mw-ui-button mw-ui-constructive"
