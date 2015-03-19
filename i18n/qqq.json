@@ -517,5 +517,6 @@
 	"flow-ve-mention-inspector-title": "Title for the user mention inspector in Flow's VisualEditor",
 	"flow-ve-mention-inspector-remove-label": "Text of remove button on Flow's user mention inspector in the VisualEditor",
 	"flow-ve-mention-tool-title": "Title text for the user mention tool on Flow's VisualEditor toolbar",
-	"flow-ve-mention-template": "Name of on-wiki template used for user mentions.  The template should accept a call in the form {{templatename|Username]], to mention Username.  It will use content language."
+	"flow-ve-mention-template": "Name of on-wiki template used for user mentions.  The template should accept a call in the form {{templatename|Username]], to mention Username.  It will use content language.",
+	"flow-wikitext-editor-help": "Text shown at the bottom of a wikitext editing box"
 }
