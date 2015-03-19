@@ -37,6 +37,19 @@
 		{ include: [ 'flowMention' ] }
 	];
 
+	mw.flow.ve.Target.static.actionGroups = [
+		{ include: [ 'flowSwitchEditor' ] }
+	];
+
+	// Methods
+
+	mw.flow.ve.Target.prototype.setupToolbar = function ( surface ) {
+		mw.flow.ve.Target.super.prototype.setupToolbar.call( this, surface );
+
+		// submitted to VE as Ie8df94d
+		this.actions.setup( this.constructor.static.actionGroups, this.getSurface() );
+	};
+
 	mw.flow.ve.Target.prototype.attachToolbar = function() {
 		this.getToolbar().$element.insertAfter( this.getToolbar().getSurface().$element );
 	};
