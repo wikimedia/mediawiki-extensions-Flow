@@ -23,6 +23,8 @@
 		// initialize at height of existing content & update on every keyup
 		this.$node.keyup( this.autoExpand );
 		this.autoExpand.call( this.$node.get( 0 ) );
+
+		this.attachSwitcher();
 	};
 
 	OO.inheritClass( mw.flow.editors.none, mw.flow.editors.AbstractEditor );
@@ -43,6 +45,8 @@
 	mw.flow.editors.none.static.name = 'none';
 
 	mw.flow.editors.none.prototype.destroy = function () {
+		// remove the help+switcher information
+		this.$node.siblings( '.flow-switcher-controls' ).remove();
 		// unset min-height that was set for auto-expansion
 		this.$node.css( 'min-height', '' );
 		// unset height that was set by auto-expansion
@@ -114,6 +118,26 @@
 				'overflow-y': 'hidden'
 			} );
 		}
+	};
+
+	mw.flow.editors.none.prototype.attachSwitcher = function() {
+		var board = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( this.$node ),
+			$switcher = $( mw.flow.TemplateEngine.processTemplateGetFragment(
+				'flow_editor_switcher.partial',
+				{
+					help_text: mw.message( 'flow-wikitext-editor-help' ).params( [
+						mw.message( 'flow-wikitext-editor-help-uses-wikitext' ).parse(),
+						$( '<a>' ).attr( {
+							href: '#',
+							'data-flow-interactive-handler': 'switchEditor',
+							'data-flow-target': '< form textarea'
+						} ).text( mw.message( 'flow-wikitext-editor-help-preview-the-result' ).text() )
+					] ).parse()
+				}
+			) ).children();
+
+		// insert help information + editor switcher, and make it interactive
+		board.emitWithReturn( 'makeContentInteractive', $switcher.insertAfter( this.$node ) );
 	};
 
 	mw.flow.editors.none.prototype.focus = function() {
