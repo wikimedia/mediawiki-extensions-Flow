@@ -37,6 +37,18 @@
 		{ include: [ 'flowMention' ] }
 	];
 
+	mw.flow.ve.Target.static.actionGroups = [
+		{ include: [ 'flowSwitchEditor' ] }
+	];
+
+	// Methods
+
+	mw.flow.ve.Target.prototype.setupToolbar = function ( surface ) {
+		mw.flow.ve.Target.super.prototype.setupToolbar.call( this, surface );
+
+		this.actions.setup( this.constructor.static.actionGroups, this.getSurface() );
+	};
+
 	// This is a workaround.
 	//
 	// We need to make sure the MW platform wins (we need it for e.g. linkCache), because our
