@@ -23,15 +23,18 @@
 		editors: [null],
 
 		init: function () {
+			var editorList = mw.config.get( 'wgFlowEditorList' ),
+				index = editorList.indexOf( mw.user.options.get( 'flow-editor' ) );
+
 			// determine editor instance to use, depending on availability
-			mw.flow.editor.loadEditor();
+			mw.flow.editor.loadEditor( index );
 		},
 
 		loadEditor: function ( editorIndex ) {
 			var editorList = mw.config.get( 'wgFlowEditorList' ),
 				editor;
 
-			if ( !editorIndex ) {
+			if ( !editorIndex || editorIndex < 0 || editorIndex >= editorList.length ) {
 				editorIndex = 0;
 			}
 
@@ -82,7 +85,11 @@
 
 				if ( content ) {
 					try {
-						content = mw.flow.parsoid.convert( contentFormat, mw.flow.editor.getFormat(), content );
+						content = mw.flow.parsoid.convert(
+							contentFormat,
+							mw.flow.editor.getFormat(),
+							content
+						);
 					} catch ( e ) {
 						$( '<div>' ).flow( 'showError', e.getErrorInfo() ).insertAfter( $node );
 						return;
@@ -211,6 +218,64 @@
 		 */
 		exists: function ( $node ) {
 			return mw.flow.editor.editors.hasOwnProperty( $node.data( 'flow-editor' ) );
+		},
+
+		/**
+		 * Changes the default editor to desiredEditor and converts $node to that
+		 * type of editor.
+		 *
+		 * @todo Should support $node containing multiple items
+		 *
+		 * @param {jQuery} $node
+		 * @return {jQuery.Deferred} Will resolve once editor instance is loaded
+		 */
+		switchEditor: function ( $node, desiredEditor ) {
+			var content, format,
+				editorList = mw.config.get( 'wgFlowEditorList' ),
+				editor = mw.flow.editor.getEditor( $node ),
+				deferred = $.Deferred(),
+				performSwitch = function () {
+					if ( mw.flow.editors[desiredEditor].static.isSupported() ) {
+						content = editor.getRawContent();
+						format = editor.constructor.static.format;
+
+						mw.flow.editor.editor = mw.flow.editors[desiredEditor];
+
+						mw.flow.editor.destroy( $node );
+						mw.flow.editor.load( $node, content, format );
+
+						deferred.resolve();
+					} else {
+						deferred.reject();
+					}
+				};
+
+			if ( !editor ) {
+				// $node is not an editor
+				deferred.reject();
+			} else if ( editorList.indexOf( desiredEditor ) === -1 ) {
+				// desiredEditor does not exist
+				deferred.reject();
+			} else {
+				mw.loader.using( 'ext.flow.editors.' + desiredEditor ).then(
+					performSwitch,
+					deferred.reject
+				);
+			}
+
+			deferred.then(
+				function() {
+					// update the user preferences
+					new mw.Api().saveOption( 'flow-editor', desiredEditor );
+					// ensure we also see that preference in the current page
+					mw.user.options.set( 'flow-editor', desiredEditor );
+				},
+				function() {
+					mw.flow.debug( '[switchEditor] oh noes!' );
+				}
+			);
+
+			return deferred.promise();
 		},
 
 		focus: function( $node ) {
