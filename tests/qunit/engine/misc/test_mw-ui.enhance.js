@@ -1,5 +1,9 @@
 ( function ( $ ) {
-	QUnit.module( 'ext.flow: mediawiki.ui.enhance' );
+	QUnit.module( 'ext.flow: mediawiki.ui.enhance', QUnit.newMwEnvironment( {
+		setup: function () {
+			this.clock = this.sandbox.useFakeTimers();
+		}
+	} ) );
 
 	QUnit.test( 'Forms with required fields have certain buttons disabled by default', 6, function ( assert ) {
 		var $forms = [
@@ -15,6 +19,9 @@
 			this.appendTo( '#qunit-fixture' );
 			this.find( '.mw-ui-input' ).trigger( 'keyup' );
 		} );
+
+		// See mw-ui.enhance.js for why setTimeout is used.
+		this.clock.tick( 1000 );
 
 		assert.strictEqual( $forms[0].find( 'button' ).is( ':disabled' ), true,
 			'Buttons with data-role=action are disabled when required fields are empty.' );
