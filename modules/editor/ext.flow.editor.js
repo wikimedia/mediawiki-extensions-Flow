@@ -80,7 +80,7 @@
 					return;
 				}
 
-				mw.flow.parsoid.convert( contentFormat, mw.flow.editor.getFormat(), content )
+				mw.flow.parsoid.convert( contentFormat, mw.flow.editor.getFormat( $node ), content )
 					.done( function( content ) {
 						mw.flow.editor.create( $node, content );
 						deferred.resolve();
@@ -119,8 +119,18 @@
 		 * @param {jQuery} $node
 		 * @return {string}
 		 */
-		getFormat: function () {
-			return mw.flow.editor.editor.static.format;
+		getFormat: function ( $node ) {
+			var editor;
+
+			if ( $node ) {
+				editor = mw.flow.editor.getEditor( $node );
+			}
+
+			if ( editor ) {
+				return editor.constructor.static.format;
+			} else {
+				return mw.flow.editor.editor.static.format;
+			}
 		},
 
 		/**
