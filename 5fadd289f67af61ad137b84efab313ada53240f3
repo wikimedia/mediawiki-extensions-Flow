@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_64440fbe",
+        "filename": "Resources.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2015-03-20T23:14:09Z",
+      "side": 1,
+      "message": "also an invalid group - defaults to other\nI doubt you need this.\nYou only really need it when the content of the module is only used for logged in users or being on a special page and rarely loaded.",
+      "revId": "5fadd289f67af61ad137b84efab313ada53240f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
