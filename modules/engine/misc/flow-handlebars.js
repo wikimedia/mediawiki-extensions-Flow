@@ -2,7 +2,7 @@
  * Implements a Handlebars layer for FlowBoard.TemplateEngine
  */
 
-( function ( $, moment, undefined ) {
+( function ( mw, $, moment, Handlebars ) {
 	window.mw = window.mw || {}; // mw-less testing
 	mw.flow = mw.flow || {}; // create mw.flow globally
 
@@ -41,7 +41,7 @@
 			return _tplcache[ templateName ];
 		}
 
-		_tplcache[ templateName ] = mw.template.get( 'ext.flow.templating', templateName + '.handlebars' );
+		_tplcache[ templateName ] = mw.template.get( 'ext.flow.templating', 'handlebars/' + templateName + '.handlebars' );
 		if ( _tplcache[ templateName ] ) {
 			// Try to get this template
 			_tplcache[ templateName ] = _tplcache[ templateName ].render;
@@ -550,8 +550,13 @@
 	$.each( mw.templates.values, function( moduleName ) {
 		$.each( this, function( name ) {
 			// remove extension
-			var partialName = name.split( '.' )[0];
-			Handlebars.partials[ partialName ] = mw.template.get( moduleName, name ).render;
+			var partialMatch, partialName;
+
+			partialMatch = name.match( /handlebars\/(.*).partial.handlebars$/ );
+			if ( partialMatch ) {
+				partialName = partialMatch[1];
+				Handlebars.partials[ partialName ] = mw.template.get( moduleName, name ).render;
+			}
 		} );
 	} );
 
@@ -574,4 +579,4 @@
 	Handlebars.registerHelper( 'ifCond', FlowHandlebars.prototype.ifCond );
 	Handlebars.registerHelper( 'debug', FlowHandlebars.prototype.debug );
 
-}( jQuery, moment ) );
+}( mediaWiki, jQuery, moment, Handlebars ) );
