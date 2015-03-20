@@ -124,8 +124,18 @@
 		 * @param {jQuery} $node
 		 * @return {string}
 		 */
-		getFormat: function () {
-			return mw.flow.editor.editor.static.format;
+		getFormat: function ( $node ) {
+			var editor;
+
+			if ( $node ) {
+				editor = mw.flow.editor.getEditor( $node );
+			}
+
+			if ( editor ) {
+				return editor.constructor.static.format;
+			} else {
+				return mw.flow.editor.editor.static.format;
+			}
 		},
 
 		/**
@@ -151,7 +161,11 @@
 		getContent: function ( $node ) {
 			var content = mw.flow.editor.getRawContent( $node ), convertedContent = '';
 			try {
-				convertedContent = mw.flow.parsoid.convert( mw.flow.editor.getFormat(), 'wikitext', content );
+				convertedContent = mw.flow.parsoid.convert(
+					mw.flow.editor.getFormat( $node ),
+					'wikitext',
+					content
+				);
 			} catch ( e ) {
 				$( '<div>' ).flow( 'showError', e.getErrorInfo() ).insertAfter( $node );
 			}
