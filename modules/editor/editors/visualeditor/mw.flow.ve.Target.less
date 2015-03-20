@@ -4,14 +4,29 @@
 // box-sizing is not inherited.
 .flow-component .ve-init-target {
 	.box-sizing(content-box);
+	border: 1px solid #CCC;
 
 	* {
 		.box-sizing(content-box);
+	}
+
+	.ve-ce-documentNode {
+		// I'm not entirely sure why, but when using content-box on the top level
+		// documentNode it doesn't end up fitting inside its parent appropriatly
+		.box-sizing(border-box);
+		// undo the default border, it is applied above to .ve-init-target
+		border: none
 	}
 
 	// VE and OOjs UI do use other models in some cases, so we
 	// have to re-override them again as needed.
 	.oo-ui-textInputWidget input {
 		.box-sizing(border-box);
+	}
+
+	// The default border is only appropriate in the default ve, with
+	// the toolbar above the editing surface.
+	.oo-ui-toolbar-bar {
+		border: none;
 	}
 }
