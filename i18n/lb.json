@@ -179,7 +179,9 @@
 	"flow-topic-undo-delete": "läsche réckgängeg maachen",
 	"apihelp-flow+edit-header-param-content": "Inhalt fir d'Iwwerschrëft.",
 	"apihelp-flow+edit-title-param-content": "Inhalt fir den Titel.",
+	"apihelp-flow+edit-title-param-format": "Format vum Resumé (wikitext|html)",
 	"apihelp-flow+edit-topic-summary-param-summary": "Inhalt fir de Resumé.",
+	"apihelp-flow+edit-topic-summary-param-format": "Format vum Resumé (wikitext|html)",
 	"apihelp-flow+edit-topic-summary-example-1": "Ännert de Resumé vu(n) [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+moderate-post-param-reason": "Grond fir Moderatioun.",
 	"apihelp-flow+view-topic-description": "En Thema weisen.",
@@ -188,6 +190,8 @@
 	"flow-edited-by": "Geännert vum $1",
 	"flow-previous-diff": "← Méi al Ännerung",
 	"flow-next-diff": "Méi nei Ännerung →",
+	"flow-undo-your-text": "Ären Text",
+	"flow-undo-edit-header": "Iwwerschrëft änneren",
 	"group-flow-bot": "Flow-Botten",
 	"group-flow-bot-member": "Flow-Bot",
 	"grouppage-flow-bot": "Project:Flow-Botten"

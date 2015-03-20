@@ -1,11 +1,21 @@
 {
 	"@metadata": {
 		"authors": [
-			"Babanwalia"
+			"Babanwalia",
+			"Satdeep gill"
 		]
 	},
+	"enableflow": "ਫਲੋ ਲਾਗੂ ਕਰੋ",
 	"flow-topic-moderated-reason-prefix": "ਕਾਰਨ:",
+	"flow-newtopic-save": "ਵਿਸ਼ਾ ਜੋੜੋ",
+	"flow-newtopic-start-placeholder": "ਨਵਾਂ ਵਿਸ਼ਾ ਸ਼ੁਰੂ ਕਰੋ",
+	"flow-newtopic-first-heading": "$1 ਉੱਤੇ ਨਵਾਂ ਵਿਸ਼ਾ ਸ਼ੁਰੂ ਕਰੋ",
 	"flow-summarize-topic-placeholder": "ਇਸ ਚਰਚਾ ਦਾ ਸਾਰ ਕੱਢੋ",
+	"flow-history-action-delete-post": "ਮਿਟਾਓ",
+	"flow-history-action-hide-post": "ਓਹਲੇ",
+	"flow-history-action-restore-post": "ਮੁੜ-ਸਟੋਰ",
+	"flow-post-action-edit-post": "ਸੋਧੋ",
+	"flow-topic-action-history": "ਅਤੀਤ",
 	"flow-topic-action-summarize-topic": "ਸਾਰ ਕੱਢੋ",
 	"flow-topic-action-undo-moderation": "ਅਣਕੀਤਾ ਕਰੋ",
 	"flow-summarize-topic-submit": "ਸਾਰ ਕੱਢੋ",
@@ -13,5 +23,15 @@
 	"flow-moderation-confirmation-suppress-topic": "ਇਹ ਵਿਸ਼ਾ ਦਬਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।",
 	"flow-moderation-confirmation-delete-topic": "ਇਹ ਵਿਸ਼ਾ ਮਿਟਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।",
 	"flow-moderation-confirmation-hide-topic": "ਇਹ ਵਿਸ਼ਾ ਲੁਕਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।",
-	"flow-topic-html-title": "$2 'ਤੇ $1"
+	"flow-topic-permalink-warning": "ਇਹ ਵਿਸ਼ਾ [$2 $1] ਨੂੰ ਸ਼ੁਰੂ ਕੀਤਾ ਗਿਆ ਸੀ",
+	"flow-topic-first-heading": "$1 ਉੱਤੇ ਵਿਸ਼ਾ",
+	"flow-topic-html-title": "$2 'ਤੇ $1",
+	"flow-topic-count": "ਵਿਸ਼ਾ ($1)",
+	"flow-newest-topics": "ਸਭ ਤੋਂ ਨਵੇਂ ਵਿਸ਼ੇ",
+	"flow": "ਫਲੋ",
+	"flow-special-type": "ਕਿਸਮ",
+	"flow-undo-your-text": "ਤੁਹਾਡੀ ਲਿਖਤ",
+	"group-flow-bot": "ਫਲੋ ਬੌਟਸ",
+	"group-flow-bot-member": "ਫਲੋ ਬੌਟ",
+	"grouppage-flow-bot": "ਯੋਜਨਾ:ਫਲੋ ਬੌਟਸ"
 }

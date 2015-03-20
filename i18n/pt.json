@@ -14,6 +14,7 @@
 			"Imperadeiro90"
 		]
 	},
+	"enableflow": "Ativar Flow",
 	"flow-desc": "Sistema de gestão do fluxo de trabalho",
 	"flow-talk-taken-over": "Esta página de discussão usa o [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow].",
 	"flow-talk-username": "Gestor de páginas de discussão do Flow",
@@ -253,6 +254,7 @@
 	"flow-link-post-revision": "revisão de mensagem",
 	"flow-link-topic-revision": "revisão de tópico",
 	"flow-link-header-revision": "revisão de cabeçalho",
+	"flow-link-summary-revision": "resumo da revisão",
 	"flow-moderation-title-suppress-post": "Suprimir mensagem?",
 	"flow-moderation-title-delete-post": "Eliminar mensagem?",
 	"flow-moderation-title-hide-post": "Ocultar mensagem?",
@@ -462,6 +464,14 @@
 	"flow-talk-conversion-archive-edit-reason": "Conversão de página de discussão em wikitexto para Flow",
 	"flow-previous-diff": "← Edição anterior",
 	"flow-next-diff": "Edição posterior →",
+	"flow-undo": "desfazer",
+	"flow-undo-latest-revision": "Última revisão",
+	"flow-undo-your-text": "O seu texto",
+	"flow-undo-edit-header": "A editar cabeçalho",
+	"flow-undo-edit-topic-summary": "A editar o resumo do tópico",
+	"flow-undo-edit-post": "A editar mensagem",
+	"flow-undo-edit-content": "É possível desfazer a edição. Verifique a comparação abaixo, para se certificar que corresponde ao que pretende fazer. Depois grave as alterações, para finalizar e desfazer a edição.",
+	"flow-undo-edit-failure": "Não foi possível desfazer a edição por conflito com alterações intermédias.",
 	"group-flow-bot": "Flow bots",
 	"group-flow-bot-member": "Flow bot",
 	"grouppage-flow-bot": "Project:Flow bots"

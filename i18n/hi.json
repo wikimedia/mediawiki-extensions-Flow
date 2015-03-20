@@ -13,5 +13,7 @@
 	"flow-notification-reply-email-subject": "$3 पर $2",
 	"flow-link-summary-revision": "सारांश संशोधन",
 	"action-flow-create-board": "किसी भी स्थान में फ्लो बोर्ड बनाए",
-	"flow-special-enableflow-header": "फ्लो बोर्ड की प्रारंभिक हैडर (विकिटेक्स्ट)"
+	"flow-special-enableflow-header": "फ्लो बोर्ड की प्रारंभिक हैडर (विकिटेक्स्ट)",
+	"flow-undo": "पूर्ववत करें",
+	"flow-undo-your-text": "आपका पाठ"
 }

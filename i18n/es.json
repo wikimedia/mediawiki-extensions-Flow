@@ -336,14 +336,15 @@
 	"apihelp-flow+edit-header-param-format": "Formato de la cabecera (wikitexto|html)",
 	"apihelp-flow+edit-post-param-postId": "ID de la publicación.",
 	"apihelp-flow+edit-post-param-content": "Contenido para publicar.",
-	"apihelp-flow+edit-post-param-format": "Formato del resumen (wikitexto|html)",
+	"apihelp-flow+edit-post-param-format": "Formato del contenido de la publicación (wikitexto|html)",
 	"apihelp-flow+edit-title-param-format": "Formato del resumen (wikitexto|html)",
 	"apihelp-flow+edit-topic-summary-param-format": "Formato del resumen (wikitexto|html)",
-	"apihelp-flow+new-topic-param-format": "Formato del contenido (wikitexto|html)",
-	"apihelp-flow+reply-param-format": "Formato del contenido (wikitexto|html)",
+	"apihelp-flow+new-topic-param-format": "Formato de la respuesta inicial del nuevo tema (wikitexto|html)",
+	"apihelp-flow+reply-param-format": "Formato de la publicación nueva (wikitexto|html)",
 	"apihelp-flow-parsoid-utils-param-content": "El contenido que se convertirá.",
 	"flow-edited": "Editada",
 	"flow-edited-by": "Editado por $1",
 	"flow-previous-diff": "← Edición anterior",
-	"flow-next-diff": "Edición siguiente →"
+	"flow-next-diff": "Edición siguiente →",
+	"flow-undo": "deshacer"
 }

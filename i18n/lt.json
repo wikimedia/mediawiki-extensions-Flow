@@ -1,8 +1,22 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robotukas11"
+			"Robotukas11",
+			"Pofka"
 		]
 	},
-	"flow-error-external": "Įvyko klaida.<br>Gautas klaidos pranešimas: $1"
+	"flow-error-external": "Įvyko klaida.<br>Gautas klaidos pranešimas: $1",
+	"flow-error-not-allowed-reply-to-hide-topic": "Jūs negalite atsakyti, nes ši tema buvo paslėpta.",
+	"flow-error-not-allowed-reply-to-delete-topic": "Jūs negalite atsakyti, nes ši tema buvo ištrinta.",
+	"flow-error-not-allowed-suppress": "Ši tema buvo ištrinta.",
+	"flow-error-not-allowed-reply-to-suppress-topic": "Jūs negalite atsakyti, nes ši tema buvo ištrinta.",
+	"flow-link-summary-revision": "santraukos peržiūra",
+	"apihelp-flow+edit-header-param-format": "Antraštės formatas (wikitext|html)",
+	"apihelp-flow+edit-title-param-format": "Santraukos formatas (wikitext|html)",
+	"apihelp-flow+reply-param-format": "Naujo pranešimo formatas (wikitext|html)",
+	"flow-undo": "atšaukti",
+	"flow-undo-latest-revision": "Dabartinė versija",
+	"flow-undo-your-text": "Jūsų tekstas",
+	"flow-undo-edit-topic-summary": "Temos santraukos redagavimas",
+	"flow-undo-edit-post": "Pranešimo redagavimas"
 }
