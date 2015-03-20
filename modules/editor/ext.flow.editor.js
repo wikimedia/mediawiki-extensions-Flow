@@ -92,6 +92,12 @@
 				}
 
 				mw.flow.editor.create( $node, content );
+
+				$node.closest( 'form' ).toggleClass(
+					'flow-editor-supports-preview',
+					mw.flow.editor.editor.static.usesPreview()
+				);
+
 				deferred.resolve();
 			},
 			deferred = $.Deferred(),
