@@ -447,6 +447,7 @@ $wgResourceModules += array(
 			'editor/editors/visualeditor/ui/contextitem/mw.flow.ve.ui.MentionContextItem.js',
 			'editor/editors/visualeditor/ui/widgets/mw.flow.ve.ui.MentionTargetInputWidget.js',
 			'editor/editors/visualeditor/mw.flow.ve.CommandRegistry.js',
+			'editor/editors/visualeditor/mw.flow.ve.TriggerRegistry.js',
 		),
 		'styles' => array(
 			'editor/editors/visualeditor/mw.flow.ve.Target.less',
