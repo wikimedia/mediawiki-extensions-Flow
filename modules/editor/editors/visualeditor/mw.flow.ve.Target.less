@@ -4,6 +4,7 @@
 // box-sizing is not inherited.
 .flow-component .ve-init-target {
 	.box-sizing(content-box);
+	border: 1px solid #CCC;
 
 	* {
 		.box-sizing(content-box);
@@ -13,5 +14,11 @@
 	// have to re-override them again as needed.
 	.oo-ui-textInputWidget input {
 		.box-sizing(border-box);
+	}
+
+	// The default border is only appropriate in the default ve, with
+	// the toolbar above the editing surface.
+	.oo-ui-toolbar-bar {
+		border: none;
 	}
 }
