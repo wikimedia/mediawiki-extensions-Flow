@@ -65,7 +65,6 @@
 				$documentNode = surfaceView.getDocument().getDocumentNode().$element;
 
 			$( target.$element ).insertAfter( flowEditor.$node );
-			surface.$element.appendTo( target.$element );
 
 			$documentNode.addClass(
 			// Add appropriately mw-content-ltr or mw-content-rtl class
