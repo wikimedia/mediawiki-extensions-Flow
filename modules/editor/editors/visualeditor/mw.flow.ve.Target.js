@@ -37,6 +37,10 @@
 		{ include: [ 'flowMention' ] }
 	];
 
+	mw.flow.ve.Target.prototype.attachToolbar = function() {
+		this.getToolbar().$element.insertAfter( this.getToolbar().getSurface().$element );
+	};
+
 	// This is a workaround.
 	//
 	// We need to make sure the MW platform wins (we need it for e.g. linkCache), because our
