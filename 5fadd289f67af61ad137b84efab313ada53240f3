@@ -34,6 +34,24 @@
       "revId": "5fadd289f67af61ad137b84efab313ada53240f3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_82c91bb0",
+        "filename": "Resources.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-21T04:23:41Z",
+      "side": 1,
+      "message": "Removed in a follow-up: https://gerrit.wikimedia.org/r/198465",
+      "parentUuid": "6e7c4fa4_22a6070e",
+      "revId": "5fadd289f67af61ad137b84efab313ada53240f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
