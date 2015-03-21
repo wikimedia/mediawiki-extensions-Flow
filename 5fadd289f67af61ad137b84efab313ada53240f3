@@ -16,6 +16,24 @@
       "revId": "5fadd289f67af61ad137b84efab313ada53240f3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_22a6070e",
+        "filename": "Resources.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2015-03-21T03:43:09Z",
+      "side": 1,
+      "message": "\"ext.flow\" is not invalid and doesn\u0027t default to other. That\u0027s not how ResourceLoader works.\n\nIt turns out, \"group\" is the only module property not documented on mediawiki.org. I\u0027ve fixed that: https://www.mediawiki.org/wiki/ResourceLoader/Features#Groups\n\nGroups are a fine-tune mechanism for cache fragmentation.\n\nIt\u0027s interesting how people start using a property purely based on its name. There was nothing that called for this property here, nor did it have any useful effect.\n\nBy default modules have no group (null). Note that even VisualEditor does not use any cache groups. Modules are loaded asynchronously by the ve-init module in their own mw.loader.load() call.\n\nThere is one reserved group, \"private\"  for security purposes to prevent CSRF.\n\nIn one place, OutputPage::buildCssLinks has to speculate how ResourceLoader would make separate http requests and as such hardcodes a subset of known group names used by MediaWiki core (mostly legacy modules, the rest are folded in a fake group \"other\"). This however is not the primary use of groups.",
+      "parentUuid": "6e7c4fa4_64440fbe",
+      "revId": "5fadd289f67af61ad137b84efab313ada53240f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
