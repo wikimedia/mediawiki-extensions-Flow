@@ -78,5 +78,7 @@
 	"flow-spam-confirmedit-form": "Хьой адам делахь сурт тӀера йоза язде: $1",
 	"flow-post-undo-delete": "юхадаккха дӀадаккхар",
 	"flow-previous-diff": "← Хьалхдоьда нисдинарг",
-	"flow-next-diff": "ТӀаьхьа догӀа нисдинарг →"
+	"flow-next-diff": "ТӀаьхьа догӀа нисдинарг →",
+	"flow-undo": "йохо",
+	"flow-undo-your-text": "Хьан йоза"
 }

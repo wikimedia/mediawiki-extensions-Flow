@@ -126,5 +126,8 @@
 	"apihelp-flow+moderate-post-param-reason": "Powód moderacji.",
 	"apihelp-flow+moderate-topic-param-reason": "Powód moderacji.",
 	"flow-previous-diff": "← Poprzednia edycja",
-	"flow-next-diff": "Następna edycja →"
+	"flow-next-diff": "Następna edycja →",
+	"flow-undo": "cofnij",
+	"flow-undo-latest-revision": "Aktualna wersja",
+	"flow-undo-your-text": "Twój tekst"
 }

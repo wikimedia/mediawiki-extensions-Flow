@@ -37,6 +37,7 @@ $specialPageAliases['diq'] = array(
 /** Hebrew (עברית) */
 $specialPageAliases['he'] = array(
 	'Flow' => array( 'זרימה' ),
+	'EnableFlow' => array( 'הפעלת_זרימה' ),
 );
 
 /** Korean (한국어) */

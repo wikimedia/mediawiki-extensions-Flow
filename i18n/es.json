@@ -342,9 +342,15 @@
 	"apihelp-flow+new-topic-param-format": "Formato de la respuesta inicial del nuevo tema (wikitexto|html)",
 	"apihelp-flow+reply-param-format": "Formato de la publicación nueva (wikitexto|html)",
 	"apihelp-flow-parsoid-utils-param-content": "El contenido que se convertirá.",
+	"apihelp-flow+undo-edit-header-description": "Obtener la información necesaria para deshacer ediciones de cabeceras.",
 	"flow-edited": "Editada",
 	"flow-edited-by": "Editado por $1",
 	"flow-previous-diff": "← Edición anterior",
 	"flow-next-diff": "Edición siguiente →",
-	"flow-undo": "deshacer"
+	"flow-undo": "deshacer",
+	"flow-undo-latest-revision": "Última revisión",
+	"flow-undo-your-text": "Tu texto",
+	"flow-undo-edit-header": "Edición de la cabecera",
+	"flow-undo-edit-topic-summary": "Edición del resumen del tema",
+	"flow-undo-edit-post": "Edición de una publicación"
 }
