@@ -596,7 +596,7 @@ class FlowHooks {
 	 * @param array &$classes the classes to add to the surrounding <li>
 	 * @return bool
 	 */
-	public static function onContributionsLineEnding( $pager, &$ret, $row, &$classes ) {
+	public static function onDeletedContributionsLineEnding( $pager, &$ret, $row, &$classes ) {
 		global $wgHooks;
 		static $javascriptIncluded = false;
 
@@ -637,6 +637,19 @@ class FlowHooks {
 	}
 
 	/**
+	 * Intercept contribution entries and format those belonging to Flow
+	 *
+	 * @param ContribsPager $pager Contributions object
+	 * @param string &$ret The HTML line
+	 * @param stdClass $row The data for this line
+	 * @param array &$classes the classes to add to the surrounding <li>
+	 * @return bool
+	 */
+	public static function onContributionsLineEnding( $pager, &$ret, $row, &$classes ) {
+		return static::onDeletedContributionsLineEnding( $pager, $ret, $row, $classes );
+	}
+
+	/**
 	 * Convert flow contributions entries into FeedItem instances
 	 * for ApiFeedContributions
 	 *
@@ -667,7 +680,7 @@ class FlowHooks {
 	}
 
 	/**
-	 * Adds Flow contributions to the Contributions special page
+	 * Adds Flow contributions to the DeletedContributions special page
 	 *
 	 * @param $data array an array of results of all contribs queries, to be
 	 *  merged to form all contributions data
@@ -677,13 +690,8 @@ class FlowHooks {
 	 * @param bool $descending Query direction, false for ascending, true for descending
 	 * @return bool
 	 */
-	public static function onContributionsQuery( &$data, $pager, $offset, $limit, $descending ) {
+	public static function onDeletedContributionsQuery( &$data, $pager, $offset, $limit, $descending ) {
 		global $wgFlowOccupyNamespaces, $wgFlowOccupyPages;
-
-		// Flow has nothing to do with the tag filter, so ignore tag searches
-		if ( $pager->tagFilter != false ) {
-			return true;
-		}
 
 		// Ignore when looking in a specific namespace where there is no Flow
 		if ( $pager->namespace !== '' ) {
@@ -726,6 +734,26 @@ class FlowHooks {
 		$data[] = $results;
 
 		return true;
+	}
+
+	/**
+	 * Adds Flow contributions to the Contributions special page
+	 *
+	 * @param $data array an array of results of all contribs queries, to be
+	 *  merged to form all contributions data
+	 * @param ContribsPager $pager Object hooked into
+	 * @param string $offset Index offset, inclusive
+	 * @param int $limit Exact query limit
+	 * @param bool $descending Query direction, false for ascending, true for descending
+	 * @return bool
+	 */
+	public static function onContributionsQuery( &$data, $pager, $offset, $limit, $descending ) {
+		// Flow has nothing to do with the tag filter, so ignore tag searches
+		if ( $pager->tagFilter != false ) {
+			return true;
+		}
+
+		return static::onDeletedContributionsQuery( $data, $pager, $offset, $limit, $descending );
 	}
 
 	/**

@@ -557,6 +557,13 @@ abstract class AbstractRevision {
 	/**
 	 * @return boolean
 	 */
+	public function isDeleted() {
+		return $this->moderationState === self::MODERATED_DELETED;
+	}
+
+	/**
+	 * @return boolean
+	 */
 	public function isSuppressed() {
 		return $this->moderationState === self::MODERATED_SUPPRESSED;
 	}
