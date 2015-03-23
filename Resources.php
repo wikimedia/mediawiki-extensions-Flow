@@ -7,7 +7,6 @@ $mobile = array(
 $flowResourceTemplate = array(
 	'localBasePath' => $dir . 'modules',
 	'remoteExtPath' => 'Flow/modules',
-	'group' => 'ext.flow', // TODO: Why do we need a group?
 );
 
 $wgResourceModules += array(
@@ -24,7 +23,6 @@ $wgResourceModules += array(
 	'ext.flow.templating' => array(
 		'localBasePath' => __DIR__,
 		'remoteExtPath' => 'Flow',
-		'group' => 'ext.flow',
 		'scripts' => array(
 			'modules/engine/misc/flow-handlebars.js',
 		),
