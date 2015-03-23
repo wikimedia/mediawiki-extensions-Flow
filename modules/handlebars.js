@@ -15,7 +15,7 @@
 		compile: function( src ) {
 			return {
 				/* @param {*} data */
-				render: Handlebars.compile( src )
+				render: Handlebars.compile( src, { preventIndent: true } )
 			};
 		}
 	};
