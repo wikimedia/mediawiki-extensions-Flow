@@ -454,7 +454,7 @@
 	/**
 	 * Accepts the contentType and content properties returned from the api
 	 * for individual revisions and ensures that content is included in the
-	 * final html page in an XSS safe maner.
+	 * final html page in an XSS safe manner.
 	 *
 	 * It is expected that all content with contentType of html has been
 	 * processed by parsoid and is safe for direct output into the document.

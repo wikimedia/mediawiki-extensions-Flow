@@ -300,7 +300,7 @@ $wgResourceModules += array(
 	) + $mobile,
 	'ext.flow.handlebars' => $flowResourceTemplate + array(
 		'scripts' => array(
-			'vendor/handlebars.js',
+			'vendor/handlebars-v3.0.0.js',
 			'handlebars.js',
 			'engine/misc/flow-handlebars.js',
 		),
