@@ -4,6 +4,7 @@ namespace Flow\Formatter;
 
 use BagOStuff;
 use ContribsPager;
+use DeletedContribsPager;
 use Flow\Container;
 use Flow\Data\Storage\RevisionStorage;
 use Flow\DbFactory;
@@ -39,13 +40,13 @@ class ContributionsQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param ContribsPager $pager Object hooked into
+	 * @param ContribsPager|DeletedContribsPager $pager Object hooked into
 	 * @param string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
 	 * @param bool $descending Query direction, false for ascending, true for descending
 	 * @return FormatterRow[]
 	 */
-	public function getResults( ContribsPager $pager, $offset, $limit, $descending ) {
+	public function getResults( $pager, $offset, $limit, $descending ) {
 		// build DB query conditions
 		$conditions = $this->buildConditions( $pager, $offset, $descending );
 
@@ -70,8 +71,22 @@ class ContributionsQuery extends AbstractQuery {
 			$this->loadMetadataBatch( $revisions );
 			foreach ( $revisions as $revision ) {
 				try {
-					$result = new ContributionsRow;
+					$result = $pager instanceof ContribsPager ? new ContributionsRow : new DeletedContributionsRow;
 					$result = $this->buildResult( $revision, $pager->getIndexField(), $result );
+
+					// @todo: below code should also check status of board: if that's been deleted, it's posts should also be considered deleted
+					if (
+						$result instanceof ContributionsRow &&
+						( $result->currentRevision->isDeleted() || $result->currentRevision->isSuppressed() )
+					) {
+						// don't show deleted or suppressed entries in Special:Contributions
+						continue;
+					}
+					if ( $result instanceof DeletedContributionsRow && !$result->currentRevision->isDeleted() ) {
+						// only show deleted entries in Special:DeletedContributions
+						continue;
+					}
+
 					$results[] = $result;
 				} catch ( FlowException $e ) {
 					\MWExceptionHandler::logException( $e );
@@ -83,16 +98,16 @@ class ContributionsQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param ContribsPager $pager Object hooked into
+	 * @param ContribsPager|DeletedContribsPager $pager Object hooked into
 	 * @param string $offset Index offset, inclusive
 	 * @param bool $descending Query direction, false for ascending, true for descending
 	 * @return array Query conditions
 	 */
-	protected function buildConditions( ContribsPager $pager, $offset, $descending ) {
+	protected function buildConditions( $pager, $offset, $descending ) {
 		$conditions = array();
 
 		// Work out user condition
-		if ( $pager->contribs == 'newbie' ) {
+		if ( property_exists( $pager, 'contribs' ) && $pager->contribs == 'newbie' ) {
 			list( $minUserId, $excludeUserIds ) = $this->getNewbieConditionInfo( $pager );
 
 			$conditions['rev_user_wiki'] = wfWikiId();
@@ -255,10 +270,10 @@ class ContributionsQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param ContribsPager $pager
+	 * @param ContribsPager|DeletedContribsPager $pager
 	 * @return array [minUserId, excludeUserIds]
 	 */
-	protected function getNewbieConditionInfo( ContribsPager $pager ) {
+	protected function getNewbieConditionInfo( $pager ) {
 		// unlike most of Flow, this one doesn't use wfForeignMemcKey; needs
 		// to be wiki-specific
 		$key = wfMemcKey( 'flow', '', 'maxUserId', Container::get( 'cache.version' ) );
@@ -314,4 +329,8 @@ class ContributionsQuery extends AbstractQuery {
 
 class ContributionsRow extends FormatterRow {
 	public $rev_timestamp;
+}
+
+class DeletedContributionsRow extends FormatterRow {
+	public $ar_timestamp;
 }
