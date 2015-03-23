@@ -4,6 +4,7 @@ namespace Flow\Formatter;
 
 use BagOStuff;
 use ContribsPager;
+use DeletedContribsPager;
 use Flow\Container;
 use Flow\Data\Storage\RevisionStorage;
 use Flow\DbFactory;
@@ -39,13 +40,13 @@ class ContributionsQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param ContribsPager $pager Object hooked into
+	 * @param ContribsPager|DeletedContribsPager $pager Object hooked into
 	 * @param string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
 	 * @param bool $descending Query direction, false for ascending, true for descending
 	 * @return FormatterRow[]
 	 */
-	public function getResults( ContribsPager $pager, $offset, $limit, $descending ) {
+	public function getResults( $pager, $offset, $limit, $descending ) {
 		// build DB query conditions
 		$conditions = $this->buildConditions( $pager, $offset, $descending );
 
@@ -70,7 +71,7 @@ class ContributionsQuery extends AbstractQuery {
 			$this->loadMetadataBatch( $revisions );
 			foreach ( $revisions as $revision ) {
 				try {
-					$result = new ContributionsRow;
+					$result = $pager instanceof ContribsPager ? new ContributionsRow : new DeletedContributionsRow;
 					$result = $this->buildResult( $revision, $pager->getIndexField(), $result );
 					$results[] = $result;
 				} catch ( FlowException $e ) {
@@ -83,16 +84,16 @@ class ContributionsQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param ContribsPager $pager Object hooked into
+	 * @param ContribsPager|DeletedContribsPager $pager Object hooked into
 	 * @param string $offset Index offset, inclusive
 	 * @param bool $descending Query direction, false for ascending, true for descending
 	 * @return array Query conditions
 	 */
-	protected function buildConditions( ContribsPager $pager, $offset, $descending ) {
+	protected function buildConditions( $pager, $offset, $descending ) {
 		$conditions = array();
 
 		// Work out user condition
-		if ( $pager->contribs == 'newbie' ) {
+		if ( property_exists( $pager, 'contribs' ) && $pager->contribs == 'newbie' ) {
 			list( $minUserId, $excludeUserIds ) = $this->getNewbieConditionInfo( $pager );
 
 			$conditions['rev_user_wiki'] = wfWikiId();
@@ -128,6 +129,17 @@ class ContributionsQuery extends AbstractQuery {
 		$conditions['workflow_wiki'] = wfWikiId();
 		if ( $pager->namespace !== '' ) {
 			$conditions['workflow_namespace'] = $pager->namespace;
+		}
+
+		// find only deletion/suppression revisions (Special:DeletedContributions)
+		// or only the rest (Special:Contributions)
+		$deletionChangeTypes = array( 'delete-post', 'suppress-post', 'delete-topic', 'suppress-topic' );
+		if ( $pager instanceof DeletedContribsPager ) {
+			$conditions['rev_change_type'] = $deletionChangeTypes;
+		} else {
+			// @todo: optimize this!
+			$dbr = $this->dbFactory->getDB( DB_SLAVE );
+			$conditions[] = 'rev_change_type NOT IN (' . $dbr->makeList( $deletionChangeTypes ) . ')';
 		}
 
 		return $conditions;
@@ -255,10 +267,10 @@ class ContributionsQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param ContribsPager $pager
+	 * @param ContribsPager|DeletedContribsPager $pager
 	 * @return array [minUserId, excludeUserIds]
 	 */
-	protected function getNewbieConditionInfo( ContribsPager $pager ) {
+	protected function getNewbieConditionInfo( $pager ) {
 		// unlike most of Flow, this one doesn't use wfForeignMemcKey; needs
 		// to be wiki-specific
 		$key = wfMemcKey( 'flow', '', 'maxUserId', Container::get( 'cache.version' ) );
@@ -314,4 +326,8 @@ class ContributionsQuery extends AbstractQuery {
 
 class ContributionsRow extends FormatterRow {
 	public $rev_timestamp;
+}
+
+class DeletedContributionsRow extends FormatterRow {
+	public $ar_timestamp;
 }
