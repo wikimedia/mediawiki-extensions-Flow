@@ -11,11 +11,12 @@
 			"Withoutaname",
 			"Robby",
 			"Liuxinyu970226",
-			"Nemo bis"
+			"Nemo bis",
+			"Umherirrender"
 		]
 	},
 	"enableflow": "{{doc-special|EnableFlow}}",
-	"flow-desc": "{{desc|name=Flow|url=http://www.mediawiki.org/wiki/Extension:Flow}}",
+	"flow-desc": "{{desc|name=Flow|url=https://www.mediawiki.org/wiki/Extension:Flow}}",
 	"flow-talk-taken-over": "Content to replace existing page content by for pages that are turned into Flow boards.",
 	"flow-talk-username": "Username used for the revision added when Flow takes over a talk page.  Avoid changing this unnecessarily, as it will cause a new user to be used for future actions.",
 	"log-name-flow": "{{doc-logpage}}\nName of the Flow log filter on the [[Special:Log]] page.",

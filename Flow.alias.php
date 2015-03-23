@@ -68,4 +68,5 @@ $specialPageAliases['sv'] = array(
 /** Traditional Chinese (中文（繁體）‎) */
 $specialPageAliases['zh-hant'] = array(
 	'Flow' => array( '流動量' ),
+	'EnableFlow' => array( '啟用流動量' ),
 );
