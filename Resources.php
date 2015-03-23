@@ -228,6 +228,9 @@ $wgResourceModules += array(
 			'flow-post-undo-hide',
 			'flow-post-undo-delete',
 			'flow-post-undo-suppress',
+			'flow-topic-undo-hide',
+			'flow-topic-undo-delete',
+			'flow-topic-undo-suppress',
 			// Timestamps
 			'flow-edited',
 			'flow-edited-by',
