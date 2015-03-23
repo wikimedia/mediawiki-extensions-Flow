@@ -77,7 +77,9 @@ CREATE TABLE /*_*/flow_revision (
 	rev_id binary(11) not null,
 	-- What kind of revision is this: tree/header/etc.
 	rev_type varchar(16) binary not null,
-	-- The id of the revision_type, post_id/workflow_id/etc
+	-- The id of the object this is a revision of
+	-- For example, if rev_type is header, rev_type_id is the header's id.
+	-- If rev_type is post, it is the post's id, etc.
 	rev_type_id binary(11) not null default '',
 	-- user id creating the revision
 	rev_user_id bigint unsigned not null,
