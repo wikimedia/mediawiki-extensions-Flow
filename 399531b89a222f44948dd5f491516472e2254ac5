@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_bf48e432",
+        "filename": "modules/editor/editors/visualeditor/ui/contextitem/mw.flow.ve.ui.MentionContextItem.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-23T22:38:21Z",
+      "side": 1,
+      "message": "Not necessarily more intuitive, but this looks like the same information that we have from parsoid (mw.parts[x].template.params...) in the TransclusionExtractor.  In that case we need to loop through parts and find the first part that has template set, not just take 0.",
+      "revId": "399531b89a222f44948dd5f491516472e2254ac5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_10b54778",
+        "filename": "modules/editor/editors/visualeditor/ui/inspectors/mw.flow.ve.ui.MentionInspector.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-23T22:38:21Z",
+      "side": 1,
+      "message": "spurious tab",
+      "revId": "399531b89a222f44948dd5f491516472e2254ac5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_30508336",
+        "filename": "modules/editor/editors/visualeditor/ui/inspectors/mw.flow.ve.ui.MentionInspector.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-23T22:38:21Z",
+      "side": 1,
+      "message": "as before, i\u0027m not sure if its safe to just take parts[0].  It worked in most cases but ran into errors eventually handling the wide variety of user content.  I asked subbu about this, he said:\n\n    15:03 \u003c ebernhardson\u003e under which circumstances will data-mw information about a transclusion have the template information in a part other than 0 ?\n    15:03 \u003c ebernhardson\u003e or, more generically i suppose just how is that parts determined?\n    15:05 \u003c+subbu\u003e ebernhardson, echo \"\u003cdiv {{echo|foo\u003c/div\u003e}}\" | node parse\n    15:06 \u003c+subbu\u003e so, basically, whenever the template output range is expanded to include the entire DOM subtree in which it occurs, any preceding wikitext content will show up earlier in data-mw parts array\n    15:06 \u003c+subbu\u003e while that is a concocted example .. there are various templating scenarios where this shows up a lot.\n    15:07 \u003c+subbu\u003e ebernhardson, see description of https://phabricator.wikimedia.org/T88495 for example.\n    15:09 \u003c+subbu\u003e the the other canonical form where multiple entries show up in the data-mw parts array is the set of templates used to build tables ...\n    15:10 \u003c+subbu\u003e ebernhardson, {{table-begin}} {{table-row|..}} {{table-row|..}} ... {{table-end}} ..  I am using made up names there, but there are several of these template sets. i don\u0027t remember the specific ones off-hand.\n\nSo it looks like we can safely assume that since we are building this, it will always be in parts[0]?",
+      "revId": "399531b89a222f44948dd5f491516472e2254ac5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_0b567609",
+        "filename": "modules/editor/editors/visualeditor/ui/inspectors/mw.flow.ve.ui.MentionInspector.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-23T22:38:21Z",
+      "side": 1,
+      "message": "I poked around a bit hoping it could perhaps at least be injected from mw.flow.ve.CommandRegistry, but didn\u0027t find anything useful. :(",
+      "revId": "399531b89a222f44948dd5f491516472e2254ac5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_4bac6e9d",
+        "filename": "modules/editor/editors/visualeditor/ui/inspectors/mw.flow.ve.ui.MentionInspector.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-23T22:38:21Z",
+      "side": 1,
+      "message": "spurious tab",
+      "revId": "399531b89a222f44948dd5f491516472e2254ac5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_08fd2104",
+        "filename": "modules/editor/editors/visualeditor/ui/widgets/mw.flow.ve.ui.MentionTargetInputWidget.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-23T22:38:21Z",
+      "side": 1,
+      "message": "I poked around and talked to krenair, it looks like this doesn\u0027t really do anything at all.  It sets an \u0027invalid\u0027 flag on the element, but that has no effect unless we specifically wire something up.  \n\nIt looks like we are explicitly calling this from the MentionInspector, so we can probably call this todone?",
+      "revId": "399531b89a222f44948dd5f491516472e2254ac5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_ed4a3783",
+        "filename": "modules/engine/components/board/features/flow-board-visualeditor.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-23T22:38:21Z",
+      "side": 1,
+      "message": "there is a somewhat recently added `data-flow-creator` attribute that could be used",
+      "revId": "399531b89a222f44948dd5f491516472e2254ac5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
