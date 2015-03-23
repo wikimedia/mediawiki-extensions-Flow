@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_cdac1b9f",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-23T18:52:06Z",
+      "side": 1,
+      "message": "we now have a way to do that, via modules/moduleStyles entrys in FlowActions",
+      "parentUuid": "6e7c4fa4_3151d765",
+      "revId": "2ea3e7e11c1b7d8e0ad918383851b359fa55dc9f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_d162e336",
         "filename": "modules/engine/components/common/flow-component-events.js",
         "patchSetId": 1
