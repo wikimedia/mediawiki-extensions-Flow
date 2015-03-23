@@ -52,6 +52,23 @@
       "revId": "5fadd289f67af61ad137b84efab313ada53240f3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_396159a4",
+        "filename": "modules/engine/misc/flow-handlebars.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2015-03-23T05:50:10Z",
+      "side": 1,
+      "message": "Unrelated change, but that makes the line below unused as it no longer references the global window.mw in this scope but uses the passed variable. That\u0027s fine since this code shouldn\u0027t be concerned about mw existing, but this change does enforce it.",
+      "revId": "5fadd289f67af61ad137b84efab313ada53240f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
