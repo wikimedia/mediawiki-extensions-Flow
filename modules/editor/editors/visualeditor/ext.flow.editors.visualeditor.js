@@ -29,6 +29,16 @@
 	mw.flow.editors.visualeditor.prototype.initCallbacks = [];
 
 	/**
+	 * Provides a list of extra resource loader dependencies needed to fully
+	 * initialize an editor for the user.
+	 *
+	 * @return {Array}
+	 */
+	mw.flow.editors.visualeditor.static.getModuleDependencies = function () {
+		return ['ext.flow.visualeditor'];
+	};
+
+	/**
 	 * Callback function, executed after all VE dependencies have been loaded.
 	 *
 	 * @param {string} [content='']
