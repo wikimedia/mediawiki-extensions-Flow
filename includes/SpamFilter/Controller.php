@@ -4,6 +4,7 @@ namespace Flow\SpamFilter;
 
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
+use IContextSource;
 use Title;
 use Status;
 
@@ -31,18 +32,19 @@ class Controller {
 	}
 
 	/**
+	 * @param IContextSource $context
 	 * @param AbstractRevision $newRevision
 	 * @param AbstractRevision|null $oldRevision
 	 * @param Title $title
 	 * @return Status
 	 */
-	public function validate( AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title ) {
+	public function validate( IContextSource $context, AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title ) {
 		foreach ( $this->spamfilters as $spamfilter ) {
 			if ( !$spamfilter->enabled() ) {
 				continue;
 			}
 
-			$status = $spamfilter->validate( $newRevision, $oldRevision, $title );
+			$status = $spamfilter->validate( $context, $newRevision, $oldRevision, $title );
 
 			// no need to go through other filters when invalid data is discovered
 			if ( !$status->isOK() ) {
