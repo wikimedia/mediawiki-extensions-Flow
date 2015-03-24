@@ -652,15 +652,6 @@
 		// Store state
 		$form.data( 'flow-state', 'hidden' );
 
-		// If any preview is visible cancel it
-		// Must be done before compressing text areas because
-		// the preview may have manipulated them.
-		if ( $form.parent().find( '.flow-preview-warning' ).length ) {
-			component.resetPreview(
-				$form.find( 'button[data-role="cancel"]' )
-			);
-		}
-
 		$form.find( 'textarea' ).each( function () {
 			var $editor = $( this );
 
@@ -824,7 +815,6 @@
 			$node = $node.$container;
 		}
 
-		_flowFindUpward( $node, '.flow-content-preview' ).hide();
 		_flowFindUpward( $node, '.flow-error-container' ).filter( ':first' ).replaceWith( fragment );
 	}
 	FlowComponentEventsMixin.eventHandlers.showError = flowEventsMixinShowError;
