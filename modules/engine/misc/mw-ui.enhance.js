@@ -111,7 +111,7 @@
 			.prop( 'disabled', !ready );
 	}
 	/*
-	 * Disable / enable preview and submit buttons without/with text in field.
+	 * Disable / enable submit buttons without/with text in field.
 	 * Usage: field needs required attribute
 	 */
 	$( document ).ready( function () {

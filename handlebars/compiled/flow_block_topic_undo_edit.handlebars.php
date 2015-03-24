@@ -26,15 +26,7 @@
 ';}).'		</ul>
 	</div>
 ' : '').'</div>
-';},'flow_form_buttons' => function ($cx, $in) {return '<button data-flow-api-handler="preview"
-        data-flow-api-target="< form textarea"
-        name="preview"
-        data-role="action"
-        class="mw-ui-button mw-ui-progressive mw-ui-quiet mw-ui-flush-right flow-form-action-preview flow-js"
-
->'.LCRun3::ch($cx, 'l10n', array(array('flow-preview'),array()), 'encq').'</button>
-
-<button data-flow-interactive-handler="cancelForm"
+';},'flow_form_buttons' => function ($cx, $in) {return '<button data-flow-interactive-handler="cancelForm"
         data-role="cancel"
         type="reset"
         class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
@@ -59,13 +51,7 @@
 		<input type="hidden" name="topic_postId" value="'.htmlentities((string)((isset($in['current']['postId']) && is_array($in['current'])) ? $in['current']['postId'] : null), ENT_QUOTES, 'UTF-8').'" />
 
 		<div class="flow-editor">
-			<textarea name="topic_content"
-			          class="mw-ui-input"
-			          data-role="content"
-			          data-flow-preview-template="flow_post"
-			          data-flow-preview-title="'.htmlentities((string)((isset($in['articleTitle']) && is_array($in)) ? $in['articleTitle'] : null), ENT_QUOTES, 'UTF-8').'"
-			          data-flow-username="'.htmlentities((string)((isset($in['current']['creator']['name']) && is_array($in['current']['creator'])) ? $in['current']['creator']['name'] : null), ENT_QUOTES, 'UTF-8').'"
-			>'.((LCRun3::ifvar($cx, ((isset($in['submitted']['content']) && is_array($in['submitted'])) ? $in['submitted']['content'] : null))) ? ''.htmlentities((string)((isset($in['submitted']['content']) && is_array($in['submitted'])) ? $in['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.((LCRun3::ifvar($cx, ((isset($in['undo']['possible']) && is_array($in['undo'])) ? $in['undo']['possible'] : null))) ? ''.htmlentities((string)((isset($in['undo']['content']) && is_array($in['undo'])) ? $in['undo']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities((string)((isset($in['current']['content']['content']) && is_array($in['current']['content'])) ? $in['current']['content']['content'] : null), ENT_QUOTES, 'UTF-8').'').'').'</textarea>
+			<textarea name="topic_content" class="mw-ui-input" data-role="content">'.((LCRun3::ifvar($cx, ((isset($in['submitted']['content']) && is_array($in['submitted'])) ? $in['submitted']['content'] : null))) ? ''.htmlentities((string)((isset($in['submitted']['content']) && is_array($in['submitted'])) ? $in['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.((LCRun3::ifvar($cx, ((isset($in['undo']['possible']) && is_array($in['undo'])) ? $in['undo']['possible'] : null))) ? ''.htmlentities((string)((isset($in['undo']['content']) && is_array($in['undo'])) ? $in['undo']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities((string)((isset($in['current']['content']['content']) && is_array($in['current']['content'])) ? $in['current']['content']['content'] : null), ENT_QUOTES, 'UTF-8').'').'').'</textarea>
 		</div>
 
 		<div class="flow-form-actions flow-form-collapsible">
