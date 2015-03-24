@@ -19,36 +19,6 @@
 	//
 
 	/**
-	 * Removes the preview and unhides the form fields.
-	 * @param {jQuery} $cancelButton
-	 * @return {bool} true if success
-	 * @todo genericize into FlowComponent
-	 */
-	function flowBoardComponentResetPreview( $cancelButton ) {
-		var $form = $cancelButton.closest( 'form' ),
-			$button = $form.find( '[name=preview]' ),
-			oldData = $button.data( 'flow-return-to-edit' );
-
-		if ( oldData ) {
-			// We're in preview mode. Revert it back.
-			$button.text( oldData.text );
-
-			// Show the inputs again
-			$form.find( '.flow-preview-target-hidden' ).removeClass( 'flow-preview-target-hidden' ).focus();
-
-			// Remove the preview
-			oldData.$nodes.remove();
-
-			// Remove this reset info
-			$button.removeData( 'flow-return-to-edit' );
-
-			return true;
-		}
-		return false;
-	}
-	FlowBoardComponentMiscMixin.prototype.resetPreview = flowBoardComponentResetPreview;
-
-	/**
 	 * This will trigger an eventLog call to the given schema with the given
 	 * parameters (along with other info about the user & page.)
 	 * A unique funnel ID will be created for all new EventLog calls.

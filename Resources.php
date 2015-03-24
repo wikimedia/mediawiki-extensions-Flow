@@ -72,7 +72,6 @@ $wgResourceModules += array(
 			'handlebars/flow_post_moderation_state.partial.handlebars',
 			'handlebars/flow_post_replies.partial.handlebars',
 			'handlebars/flow_post.handlebars',
-			'handlebars/flow_preview_warning.partial.handlebars',
 			'handlebars/flow_reply_form.partial.handlebars',
 			'handlebars/flow_subscribed.partial.handlebars',
 			'handlebars/flow_tooltip_subscribed.partial.handlebars',
@@ -111,8 +110,6 @@ $wgResourceModules += array(
 			'flow-post-action-unsuppress-post',
 			'flow-post-action-restore-post',
 			'flow-post-action-undo-moderation',
-			"flow-preview-return-edit-post",
-			'flow-preview',
 			'flow-recent-topics',
 			'flow-reply-submit',
 			'flow-reply-topic-title-placeholder',
@@ -161,9 +158,6 @@ $wgResourceModules += array(
 			'flow-delete-post-content',
 			'flow-suppress-title-content',
 			'flow-suppress-post-content',
-			// Previews
-			'flow-preview-warning',
-			'flow-anonymous',
 			// Core messages needed
 			'blocklink',
 			'contribslink',
@@ -286,7 +280,6 @@ $wgResourceModules += array(
 			'styles/board/timestamps.less',
 			'styles/board/replycount.less',
 			'styles/js.less',
-			'styles/board/content-preview.less',
 			'styles/board/form-actions.less',
 			'styles/board/terms-of-use.less',
 			'styles/board/editor-switcher.less',
@@ -376,7 +369,6 @@ $wgResourceModules += array(
 		'dependencies' => array(
 			'ext.flow.components',
 			'ext.flow.editor',
-			'ext.flow.preview',
 			'jquery.throttle-debounce',
 			'mediawiki.jqueryMsg',
 			'ext.flow.jquery.conditionalScroll',
@@ -397,16 +389,6 @@ $wgResourceModules += array(
 			'vendor/Storer.js',
 		),
 	) + $mobile,
-	'ext.flow.preview' => $flowResourceTemplate + array(
-		'scripts' => array(
-			'engine/components/board/features/flow-board-preview.js',
-			// wfBaseConvert ported to js
-			'engine/misc/flow-baseconvert.js',
-		),
-		'dependencies' => array(
-			'ext.flow.components',
-		),
-	) + $mobile,
 	'ext.flow.undo' => $flowResourceTemplate + array(
 		'scripts' => array(
 			// this must be last (of everything loaded.  otherwise a components
@@ -417,7 +399,6 @@ $wgResourceModules += array(
 		// minimal subset for the undo pages
 		'dependencies' => array(
 			'ext.flow.components',
-			'ext.flow.preview',
 		),
 	) + $mobile,
 	'ext.flow.editor' => $flowResourceTemplate + array(

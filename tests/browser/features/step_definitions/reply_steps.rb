@@ -13,21 +13,6 @@ When(/^I click the Cancel button and confirm the dialog$/) do
   end
 end
 
-When(/^I click the Keep editing button$/) do
-  on(FlowPage) do |page|
-    page.keep_editing_element.when_present.click
-    # Keep editing returns to the Preview button.
-    page.wait_until { page.new_reply_preview_element.visible? }
-  end
-end
-
-When(/^I click the Preview button$/) do
-  on(FlowPage) do |page|
-    page.new_reply_preview_element.when_present.click
-    page.wait_until { page.preview_warning_element.visible? }
-  end
-end
-
 When(/^I reply with comment "(.*?)"$/) do |content|
   on(FlowPage) do |page|
     page.new_reply_save_element.when_not_present

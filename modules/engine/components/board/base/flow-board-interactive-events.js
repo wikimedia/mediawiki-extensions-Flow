@@ -127,7 +127,6 @@
 			// nodes to forward funnel to
 			$( this ).findWithParent(
 				'< .flow-reply-form [data-role="cancel"],' +
-				'< .flow-reply-form [data-role="action"][name="preview"],' +
 				'< .flow-reply-form [data-role="submit"]'
 			)
 		);
@@ -161,7 +160,6 @@
 			// nodes to forward funnel to
 			$( this ).findWithParent(
 				'< .flow-newtopic-form [data-role="cancel"],' +
-				'< .flow-newtopic-form [data-role="action"][name="preview"],' +
 				'< .flow-newtopic-form [data-role="submit"]'
 			)
 		);

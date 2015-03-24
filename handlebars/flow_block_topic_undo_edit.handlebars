@@ -17,13 +17,7 @@
 		<input type="hidden" name="topic_postId" value="{{current.postId}}" />
 
 		<div class="flow-editor">
-			<textarea name="topic_content"
-			          class="mw-ui-input"
-			          data-role="content"
-			          data-flow-preview-template="flow_post"
-			          data-flow-preview-title="{{articleTitle}}"
-			          data-flow-username="{{current.creator.name}}"
-			>
+			<textarea name="topic_content" class="mw-ui-input" data-role="content">
 				{{~#if submitted.content~}}
 					{{~submitted.content~}}
 				{{~else~}}

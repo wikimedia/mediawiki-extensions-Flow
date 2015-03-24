@@ -28,18 +28,6 @@ form.flow-post {
 		margin-left: @topicIndent;
 		padding-left: 0.5em;
 		border-left: 1px dotted @colorGrayLighter;
-
-		// Remove tangent preview nesting (no IE6 support, but acceptable degradation)
-		&.flow-preview {
-			margin-left: 0;
-			padding-left: 0;
-			border-left-width: 0;
-
-			.flow-post-main {
-				padding-left: 0;
-				border-left-width: 0;
-			}
-		}
 	}
 
 	&.flow-post-max-depth .flow-replies {
