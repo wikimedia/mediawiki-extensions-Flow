@@ -3,8 +3,9 @@
 namespace Flow\SpamFilter;
 
 use Flow\Model\AbstractRevision;
-use Title;
+use IContextSource;
 use Status;
+use Title;
 use User;
 
 class AbuseFilter implements SpamFilter {
@@ -62,12 +63,13 @@ class AbuseFilter implements SpamFilter {
 	}
 
 	/**
+	 * @param IContextSource $context
 	 * @param AbstractRevision $newRevision
 	 * @param AbstractRevision|null $oldRevision
 	 * @param Title $title
 	 * @return Status
 	 */
-	public function validate( AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title ) {
+	public function validate( IContextSource $context, AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title ) {
 		$vars = \AbuseFilter::getEditVars( $title );
 		$vars->addHolders( \AbuseFilter::generateUserVars( $this->user ), \AbuseFilter::generateTitleVars( $title , 'ARTICLE' ) );
 		$vars->setVar( 'ACTION', $newRevision->getChangeType() );
