@@ -182,7 +182,6 @@ class FlowPage < WikiPage
   text_field(:new_topic_title, name: "topiclist_topic")
   textarea(:new_topic_body, name: "topiclist_content")
   button(:new_topic_cancel, css: ".flow-newtopic-form .mw-ui-destructive")
-  button(:new_topic_preview, css: ".flow-newtopic-form .mw-ui-progressive")
   # FIXME: Remove flow-ui-constructive reference when cache has cleared
   button(:new_topic_save, css: ".flow-newtopic-form .mw-ui-constructive, .flow-newtopic-form .flow-ui-constructive")
 
@@ -193,16 +192,13 @@ class FlowPage < WikiPage
   # Is an input when not focused, textarea when focused
   textarea(:new_reply_input, css: ".flow-reply-form .mw-ui-input")
   button(:new_reply_cancel, css: ".flow-reply-form .mw-ui-destructive")
-  button(:new_reply_preview, css: ".flow-reply-form .mw-ui-progressive")
   button(:new_reply_save, css: ".flow-reply-form .mw-ui-constructive")
   button(:keep_editing, text: "Keep editing")
-  div(:preview_warning, css: ".flow-preview-warning")
 
   # Editing post workflow
   text_area(:post_edit, css: ".flow-edit-post-form textarea")
   button(:change_post_save, css: ".flow-edit-post-form .mw-ui-constructive")
 
-  button(:preview_button, class: "mw-ui-button flow-preview-submit")
   div(:small_spinner, class: "mw-spinner mw-spinner-small mw-spinner-inline")
 
   button(:edit_header_save, text: "Save header")

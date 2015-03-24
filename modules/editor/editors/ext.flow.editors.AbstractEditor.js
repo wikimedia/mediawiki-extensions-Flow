@@ -21,15 +21,6 @@
 	// Static methods
 
 	/**
-	 * Returns whether this editor uses a preview mode
-	 *
-	 * @return {boolean}
-	 */
-	mw.flow.editors.AbstractEditor.static.usesPreview = function () {
-		return true;
-	};
-
-	/**
 	 * Determines if this editor is supported for the current user and
 	 * environment (browser, etc.)
 	 *
