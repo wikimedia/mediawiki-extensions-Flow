@@ -46,7 +46,6 @@
 			<div class="flow-editor">
 				<textarea name="header_content"
 				          class="mw-ui-input"
-				          data-flow-preview-template="flow_header_detail.partial"
 				          placeholder="'.LCRun3::ch($cx, 'l10n', array(array('flow-edit-header-placeholder'),array()), 'encq').'"
 				          data-role="content"
 				>'.((LCRun3::ifvar($cx, ((isset($in['submitted']['content']) && is_array($in['submitted'])) ? $in['submitted']['content'] : null))) ? ''.htmlentities((string)((isset($in['submitted']['content']) && is_array($in['submitted'])) ? $in['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities((string)((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null), ENT_QUOTES, 'UTF-8').'').'</textarea>

@@ -16,12 +16,7 @@
 		<input type="hidden" name="header_prev_revision" value="{{current.revisionId}}" />
 
 		<div class="flow-editor">
-			<textarea name="topic_content"
-			          class="mw-ui-input"
-			          data-role="content"
-			          data-flow-preview-template="flow_header_detail.partial"
-			          data-flow-preview-title="{{articleTitle}}"
-			>
+			<textarea name="topic_content" class="mw-ui-input" data-role="content">
 				{{~#if submitted.content~}}
 					{{~submitted.content~}}
 				{{~else~}}
