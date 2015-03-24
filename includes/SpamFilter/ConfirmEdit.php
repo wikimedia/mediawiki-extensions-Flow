@@ -4,6 +4,7 @@ namespace Flow\SpamFilter;
 
 use ConfirmEditHooks;
 use Flow\Model\AbstractRevision;
+use IContextSource;
 use SimpleCaptcha;
 use Status;
 use Title;
@@ -11,12 +12,13 @@ use WikiPage;
 
 class ConfirmEdit implements SpamFilter {
 	/**
+	 * @param IContextSource $context
 	 * @param AbstractRevision $newRevision
 	 * @param AbstractRevision|null $oldRevision
 	 * @param Title $title
 	 * @return Status
 	 */
-	public function validate( AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title ) {
+	public function validate( IContextSource $context, AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title ) {
 		global $wgOut;
 		$newContent = $newRevision->getContent( 'wikitext' );
 
