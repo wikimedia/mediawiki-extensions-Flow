@@ -25,56 +25,6 @@
 	//
 
 	/**
-	 * The activateForm handler will expand, scroll to, and then focus onto a form (target = field).
-	 * @param {Event} event
-	 * @returns {$.Promise}
-	 */
-	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.activateForm = function ( event ) {
-		var $el, $form,
-			href = $( this ).prop( 'href' ),
-			hash = href.match( /#.+$/ ),
-			$target = hash ? $( hash ) : false,
-			flowBoard,
-			$deferred = $.Deferred();
-
-		// Can't find target.
-		if ( !$target || !$target.length ) {
-			return $deferred.reject().promise();
-		}
-
-		$el = $( hash[0] );
-		$form = $el.closest( 'form' );
-
-		// Can't find form to activate
-		if ( !$el.length || !$form.length ) {
-			return $deferred.reject().promise();
-		}
-
-		flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $form );
-
-		// Is this a hidden form or invisible field? Make it visible.
-		flowBoard.emitWithReturn( 'showForm', $form );
-
-		// Is this a form field? Scroll to the form instead of jumping.
-		$form.conditionalScrollIntoView().queue( function ( next ) {
-			var $el = $( hash[0] );
-
-			// After scroll, focus onto the form field itself
-			if ( $el.is( 'textarea, :text' ) ) {
-				$el.focus();
-			}
-
-			// jQuery.dequeue
-			next();
-		});
-
-		// OK, we're done here. Don't use the hard link.
-		event.preventDefault();
-
-		return $deferred.resolve().promise();
-	};
-
-	/**
 	 * Toggles collapse state
 	 *
 	 * @param {Event} event
