@@ -22,35 +22,76 @@
 		 */
 		editors: [null],
 
+		/**
+		 * List of editor names that are valid for use
+		 *
+		 * @property {Array}
+		 */
+		available: [],
+
+		/**
+		 * Deferred that resolves after initialization
+		 *
+		 * @property {$.Deferred}
+		 */
+		initPromise: null,
+
 		init: function () {
 			var editorList = mw.config.get( 'wgFlowEditorList' ),
-				index = editorList.indexOf( mw.user.options.get( 'flow-editor' ) );
+				modules = $.map( editorList, function ( value, key ) {
+					return 'ext.flow.editors.' + value;
+				} );
 
-			// determine editor instance to use, depending on availability
-			mw.flow.editor.loadEditor( index );
-		},
 
-		loadEditor: function ( editorIndex ) {
-			var editorList = mw.config.get( 'wgFlowEditorList' ),
-				editor;
-
-			if ( !editorIndex || editorIndex < 0 || editorIndex >= editorList.length ) {
-				editorIndex = 0;
+			if ( mw.flow.editor.initPromise !== null ) {
+				// already initialied
+				return;
 			}
 
-			if ( editorList[editorIndex] ) {
-				editor = editorList[editorIndex];
-			} else {
-				editor = 'none';
-			}
+			mw.flow.editor.initPromise = $.Deferred();
 
-			mw.loader.using( 'ext.flow.editors.' + editor, function () {
-				// Some editors only work under certain circumstances
-				if ( !mw.flow.editors[editor].static.isSupported() ) {
-					mw.flow.editor.loadEditor( editorIndex + 1 );
-				} else {
-					mw.flow.editor.editor = mw.flow.editors[editor];
+			mw.loader.using( modules, function() {
+				var i,
+					desiredEditor = mw.user.options.get( 'flow-editor' );
+
+				mw.flow.editor.available = [];
+
+				for ( i = 0; i < editorList.length; ++i ) {
+					if ( !mw.flow.editors[editorList[i]] ) {
+						// editor failed to load
+						mw.flow.debug( "[mw.flow.editor] failed to load " + editorList[i] );
+						continue;
+					}
+					if ( mw.flow.editors[editorList[i]].static.isSupported() ) {
+						mw.flow.editor.available.push( editorList[i] );
+					}
 				}
+
+				if ( mw.flow.editor.available.indexOf( desiredEditor ) !== -1 ) {
+					// users prefered editor is available
+					mw.flow.editor.editor = mw.flow.editors[desiredEditor];
+				} else if ( mw.flow.editor.available.length === 0 ) {
+					// no valid editors were found
+					mw.flow.debug( "[mw.flow.editor] No valid editors found" );
+					mw.flow.editor.initPromise.reject();
+					return;
+				} else {
+					// fallback to first available editor
+					mw.flow.editor.editor = mw.flow.editors[mw.flow.editor.available[0]];
+				}
+
+				// Some editors, like VE, have a bit of extra code to load.  This
+				// optimistically loads other dependent modules
+				if ( mw.flow.editor.editor.static.getModuleDependencies().length ) {
+					setTimeout(
+						function () {
+							mw.loader.using( mw.flow.editor.editor.static.getModuleDependencies() );
+						},
+						20000
+					);
+				}
+
+				mw.flow.editor.initPromise.resolve();
 			} );
 		},
 
@@ -61,18 +102,14 @@
 		 * @return {jQuery.Promise} Will resolve once editor instance is loaded
 		 */
 		load: function ( $node, content, contentFormat ) {
-			/**
-			 * When calling load(), init() may not yet have completed loading the
-			 * dependencies. To make sure it doesn't break, this will in interval,
-			 * check for it and only start loading once initialization is complete.
-			 */
-			var load = function ( $node, content, contentFormat ) {
-				if ( mw.flow.editor.editor === null ) {
-					return;
-				} else {
-					clearTimeout( interval );
-				}
+			var deferred = $.Deferred();
 
+			/**
+			 * When calling load(), init() may not yet have completed loading
+			 * the dependencies. The initPromise ensures we always run after
+			 * initialization is complete.
+			 */
+			mw.flow.editor.initPromise.done( function() {
 				if ( contentFormat === undefined ) {
 					contentFormat = 'wikitext';
 				}
@@ -97,9 +134,7 @@
 					.fail( function() {
 						deferred.reject();
 					});
-			},
-			deferred = $.Deferred(),
-			interval = setInterval( $.proxy( load, this, $node, content, contentFormat ), 10 );
+			} );
 
 			return deferred.promise();
 		},
@@ -198,52 +233,29 @@
 		 * @return {jQuery.Deferred} Will resolve once editor instance is loaded
 		 */
 		switchEditor: function ( $node, desiredEditor ) {
-			var content, format,
-				editorList = mw.config.get( 'wgFlowEditorList' ),
-				editor = mw.flow.editor.getEditor( $node ),
-				deferred = $.Deferred(),
-				performSwitch = function () {
-					if ( mw.flow.editors[desiredEditor].static.isSupported() ) {
-						content = editor.getRawContent();
-						format = editor.constructor.static.format;
+			var content, format, deferred,
+				editor = mw.flow.editor.getEditor( $node );
 
-						mw.flow.editor.editor = mw.flow.editors[desiredEditor];
-
-						mw.flow.editor.destroy( $node );
-						mw.flow.editor.load( $node, content, format );
-
-						deferred.resolve();
-					} else {
-						deferred.reject();
-					}
-				};
-
-			if ( !editor ) {
-				// $node is not an editor
-				deferred.reject();
-			} else if ( editorList.indexOf( desiredEditor ) === -1 ) {
-				// desiredEditor does not exist
-				deferred.reject();
-			} else {
-				mw.loader.using( 'ext.flow.editors.' + desiredEditor ).then(
-					performSwitch,
-					deferred.reject
-				);
+			// either $node is not an editor, or the desiredEditor is
+			// not available.
+			if ( !editor || mw.flow.editor.available.indexOf( desiredEditor ) === -1 ) {
+				return $.Deferred().reject().promise();
 			}
 
-			deferred.then(
-				function() {
-					// update the user preferences
-					new mw.Api().saveOption( 'flow-editor', desiredEditor );
-					// ensure we also see that preference in the current page
-					mw.user.options.set( 'flow-editor', desiredEditor );
-				},
-				function() {
-					mw.flow.debug( '[switchEditor] oh noes!' );
-				}
-			);
+			content = editor.getRawContent();
+			format = editor.constructor.static.format;
 
-			return deferred.promise();
+			mw.flow.editor.editor = mw.flow.editors[desiredEditor];
+
+			mw.flow.editor.destroy( $node );
+			deferred = mw.flow.editor.load( $node, content, format );
+
+			// update the user preferences
+			new mw.Api().saveOption( 'flow-editor', desiredEditor );
+			// ensure we also see that preference in the current page
+			mw.user.options.set( 'flow-editor', desiredEditor );
+
+			return deferred;
 		},
 
 		focus: function( $node ) {
@@ -266,5 +278,6 @@
 			}
 		}
 	};
-	$( mw.flow.editor.init );
+
+	$( document ).ready( mw.flow.editor.init );
 } ( jQuery, mediaWiki ) );
