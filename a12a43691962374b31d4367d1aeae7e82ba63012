@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_a33be2e6",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-24T17:15:07Z",
+      "side": 1,
+      "message": "I think this should:\n\n* be done before reinitializeContainer (\u003d before editors are attached, which will read focus state and re-apply according to how it needs to be done for the editor)\n* be mw.flow.editor.focus( $rendered.find( \u0027textarea\u0027 ) );",
+      "revId": "a12a43691962374b31d4367d1aeae7e82ba63012",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
