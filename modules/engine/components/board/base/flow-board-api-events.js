@@ -599,7 +599,7 @@
 
 		if ( $tooltipTarget.is( '.flow-topic-watchlist' ) ) {
 			watchType = 'topic';
-			watchLinkTemplate = 'flow_topic_titlebar_watch';
+			watchLinkTemplate = 'flow_topic_titlebar_watch.partial';
 		}
 
 		if ( data.watch[0].watched !== undefined ) {
