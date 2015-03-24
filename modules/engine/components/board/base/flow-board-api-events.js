@@ -274,6 +274,8 @@
 		// Reinitialize the whole board with these nodes, and hold onto the replaced header
 		$oldBoardNodes = flowBoard.reinitializeContainer( $rendered );
 
+		mw.flow.editor.focus( $rendered.find( 'textarea' ) );
+
 		return $.Deferred().resolve().promise();
 	};
 
