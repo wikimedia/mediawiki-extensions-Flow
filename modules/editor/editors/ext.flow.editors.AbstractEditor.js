@@ -38,4 +38,14 @@
 	mw.flow.editors.AbstractEditor.static.isSupported = function () {
 		return true;
 	};
+
+	/**
+	 * Provides a list of extra resource loader dependencies needed to fully
+	 * initialize an editor for the user.
+	 *
+	 * @return {Array}
+	 */
+	mw.flow.editors.AbstractEditor.static.getModuleDependencies = function () {
+		return [];
+	};
 }( mediaWiki, OO ) );
