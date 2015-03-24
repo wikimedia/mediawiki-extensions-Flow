@@ -13,5 +13,6 @@
 	"flow-workflow": "कार्य बहाव",
 	"flow-moderation-confirm-suppress-post": "दबाउने",
 	"flow-moderation-confirm-delete-post": "मेट्ने",
-	"flow-moderation-confirm-hide-post": "लुकाउनुहोस्"
+	"flow-moderation-confirm-hide-post": "लुकाउनुहोस्",
+	"flow-undo-your-text": "तपाईँको पाठ"
 }
