@@ -747,9 +747,6 @@
 			self.emitWithReturn( 'expandTextarea', $( this ) );
 		} );
 
-		// Initialize editors, turning them from textareas into editor objects
-		self.emitWithReturn( 'initializeEditors', $form );
-
 		// Store state
 		$form.data( 'flow-state', 'visible' );
 	}
@@ -765,37 +762,6 @@
 		mw.flow.editor.load( $textarea, $textarea.val(), 'wikitext' );
 	}
 	FlowComponentEventsMixin.eventHandlers.expandTextarea = flowEventsMixinExpandTextarea;
-
-	/**
-	 * Initialize all editors, turning them from textareas into editor objects.
-	 *
-	 * @param {jQuery} $container
-	 */
-	function flowEventsMixinInitializeEditors( $container ) {
-		var flowComponent = this, $form;
-
-		mw.loader.using( 'ext.flow.editor', function() {
-			var $editors = $container.find( 'textarea:not(.flow-input-compressed)' );
-
-			$editors.each( function() {
-				var $editor = $( this );
-
-				$form = $editor.closest( 'form' );
-				// All editors already have their content in wikitext-format
-				// (mostly because we need to prefill them server-side so that
-				// JS-less users can interact)
-				mw.flow.editor.load( $editor, $editor.val(), 'wikitext' );
-
-				// Kill editor instance when the form it's in is cancelled
-				flowComponent.emitWithReturn( 'addFormCancelCallback', $form, function() {
-					if ( mw.flow.editor.exists( $editor ) ) {
-						mw.flow.editor.destroy( $editor );
-					}
-				} );
-			} );
-		} );
-	}
-	FlowComponentEventsMixin.eventHandlers.initializeEditors = flowEventsMixinInitializeEditors;
 
 	/**
 	 * Adds a flow-cancel-callback to a given form, to be triggered on click of the "cancel" button.
