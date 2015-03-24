@@ -173,7 +173,7 @@ class RevisionFormatter {
 		}
 
 		$isContentAllowed = $this->includeContent && $this->permissions->isAllowed( $row->revision, 'view' );
-		$isHistoryAllowed = $isContentAllowed ?: $this->permissions->isAllowed( $row->revision, 'history' );
+		$isHistoryAllowed = $this->permissions->isAllowed( $row->revision, 'history' );
 
 		if ( !$isHistoryAllowed ) {
 			return array();
