@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_d5fed334",
+        "filename": "includes/SpamFilter/ConfirmEdit.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-24T21:19:08Z",
+      "side": 1,
+      "message": "Drop wgOut.",
+      "revId": "def71b73d38c672066714b979c96e736019a65c8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
