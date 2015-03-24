@@ -52,7 +52,7 @@ class ContentLengthFilterTest extends \MediaWikiTestCase {
 		$reply = $topic->reply( $workflow, $user, $content, 'wikitext' );
 
 		$spamFilter = new ContentLengthFilter( $maxLength );
-		$status = $spamFilter->validate( $reply, null, $title );
+		$status = $spamFilter->validate( $this->getMock( 'IContextSource' ), $reply, null, $title );
 		$this->assertEquals( $expect, $status->isOK() );
 	}
 }

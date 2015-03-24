@@ -2,19 +2,21 @@
 
 namespace Flow\SpamFilter;
 
-use Flow\Model\AbstractRevision;
-use Title;
-use Status;
 use BaseBlacklist;
+use Flow\Model\AbstractRevision;
+use IContextSource;
+use Status;
+use Title;
 
 class SpamBlacklist implements SpamFilter {
 	/**
+	 * @param IContextSource $context
 	 * @param AbstractRevision $newRevision
 	 * @param AbstractRevision|null $oldRevision
 	 * @param Title $title
 	 * @return Status
 	 */
-	public function validate( AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title ) {
+	public function validate( IContextSource $context, AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title ) {
 		$spamObj = BaseBlacklist::getInstance( 'spam' );
 		if ( !$spamObj instanceof \SpamBlacklist ) {
 			wfWarn( __METHOD__ . ': Expected a SpamBlacklist instance but instead received: ' . get_class( $spamObj ) );

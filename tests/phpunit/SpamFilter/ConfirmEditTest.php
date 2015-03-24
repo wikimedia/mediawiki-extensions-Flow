@@ -24,7 +24,12 @@ class ConfirmEditTest extends \MediaWikiTestCase {
 		$oldRevision = PostRevision::create( $workflow, $user, 'foo', 'wikitext' );
 		$newRevision = $oldRevision->newNextRevision( $user, 'bar', 'wikitext', 'change-type', $title );
 
-		$status = $filter->validate( $newRevision, $oldRevision, $title );
+		$context = $this->getMock( 'IContextSource' );
+		$context->expects( $this->any() )
+			->method( 'getUser' )
+			->will( $this->returnValue( $user ) );
+
+		$status = $filter->validate( $context, $newRevision, $oldRevision, $title );
 		$this->assertInstanceOf( 'Status', $status );
 		$this->assertTrue( $status->isGood() );
 	}
