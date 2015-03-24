@@ -202,7 +202,4 @@
 		);
 	};
 
-	mw.flow.editors.visualeditor.static.usesPreview = function () {
-		return false;
-	};
 } ( jQuery, mediaWiki, OO, ve ) );

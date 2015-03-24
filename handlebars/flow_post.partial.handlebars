@@ -25,9 +25,6 @@
 			{{/ifCond}}
 		{{/if}}
 
-		{{!-- This stuff is also not needed in preview mode --}}
-		{{#unless isPreview}}
-			{{> flow_post_replies}}
-		{{/unless}}
+		{{> flow_post_replies}}
 	</div>
 {{/with}}
