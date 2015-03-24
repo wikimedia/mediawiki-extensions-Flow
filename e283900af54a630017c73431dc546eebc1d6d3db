@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_6665d340",
+        "filename": "handlebars/flow_post_meta_actions.partial.handlebars",
+        "patchSetId": 10
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-24T23:23:22Z",
+      "side": 1,
+      "message": "flow-ui-hide-last-reply is unused.",
+      "revId": "e283900af54a630017c73431dc546eebc1d6d3db",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_6692b301",
+        "filename": "i18n/en.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-24T23:23:22Z",
+      "side": 1,
+      "message": "Unused",
+      "revId": "e283900af54a630017c73431dc546eebc1d6d3db",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_c1129158",
+        "filename": "includes/Repository/TreeRepository.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-24T23:23:22Z",
+      "side": 1,
+      "message": "Explain the format of the returned array.",
+      "revId": "e283900af54a630017c73431dc546eebc1d6d3db",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_013ba9c4",
+        "filename": "modules/engine/components/board/base/flow-board-interactive-events.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-24T23:23:22Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be resolve()?  It seems like happy path for top-level replies.",
+      "revId": "e283900af54a630017c73431dc546eebc1d6d3db",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_2167c5e9",
+        "filename": "modules/styles/board/topic/post.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-24T23:23:22Z",
+      "side": 1,
+      "message": "Merge with below .flow-post.  Note that there already is a margin (in fact, left is already specified), so it would be best to put it in there (maybe using a temp variable).",
+      "revId": "e283900af54a630017c73431dc546eebc1d6d3db",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
