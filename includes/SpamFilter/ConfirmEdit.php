@@ -19,6 +19,7 @@ class ConfirmEdit implements SpamFilter {
 	public function validate( AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title ) {
 		global $wgOut;
 		$newContent = $newRevision->getContent( 'wikitext' );
+		$oldContent = isset( $oldRevision ) ? $oldRevision->getContent( 'wikitext' ) : '';
 
 		/** @var SimpleCaptcha $captcha */
 		$captcha = ConfirmEditHooks::getInstance();
@@ -26,7 +27,7 @@ class ConfirmEdit implements SpamFilter {
 
 		// first check if the submitted content is offensive (as flagged by
 		// ConfirmEdit), next check for a (valid) captcha to have been entered
-		if ( $captcha->shouldCheck( $wikiPage, $newContent, false, $wgOut->getContext(), false ) && !$captcha->passCaptcha() ) {
+		if ( $captcha->shouldCheck( $wikiPage, $newContent, false, $wgOut->getContext(), false, $oldContent ) && !$captcha->passCaptcha() ) {
 			// getting here means we submitted bad content without good captcha
 			// result (or any captcha result at all) - let's get the captcha
 			// HTML to display as error message!
