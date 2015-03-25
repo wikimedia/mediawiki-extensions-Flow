@@ -133,7 +133,7 @@ abstract class Utils {
 	 */
 	protected static function parser( $from, $to, $content, Title $title ) {
 		if ( $from !== 'wikitext' && $to !== 'html' ) {
-			throw new WikitextException( 'Parser only supports wikitext to HTML conversion', 'process-wikitext' );
+			throw new WikitextException( "Conversion from '$from' to '$to' was requested, but core's Parser only supports 'wikitext' to 'html' conversion", 'process-wikitext' );
 		}
 
 		global $wgParser;
