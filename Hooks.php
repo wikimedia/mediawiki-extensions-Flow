@@ -134,6 +134,9 @@ class FlowHooks {
 			$updater->modifyExtensionField( 'flow_workflow', 'workflow_id', "$dir/db_patches/patch-88bit_uuids.sql" );
 			$updater->addExtensionField( 'flow_workflow', 'workflow_type', "$dir/db_patches/patch-add_workflow_type.sql" );
 			$updater->modifyExtensionField( 'flow_workflow', 'workflow_user_id', "$dir/db_patches/patch-default_null_workflow_user.sql" );
+
+			// Doesn't need SQLite support, since SQLite doesn't care about text widths.
+			$updater->modifyExtensionField( 'flow_workflow', 'workflow_wiki', "$dir/db_patches/patch-increase_width_wiki_fields.sql" );
 		}
 
 		$updater->addExtensionIndex( 'flow_workflow', 'flow_workflow_lookup', "$dir/db_patches/patch-workflow_lookup_idx.sql" );

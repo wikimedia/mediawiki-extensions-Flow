@@ -3,7 +3,7 @@
 
 CREATE TABLE /*_*/flow_workflow (
 	workflow_id binary(11) not null,
-	workflow_wiki varchar(16) binary not null,
+	workflow_wiki varchar(64) binary not null,
 	workflow_namespace int not null,
 	workflow_page_id int unsigned not null,
 	workflow_title_text varchar(255) binary not null,
@@ -21,7 +21,7 @@ CREATE INDEX /*i*/flow_workflow_lookup ON /*_*/flow_workflow (workflow_wiki, wor
 CREATE TABLE /*_*/flow_subscription (
   subscription_workflow_id int unsigned not null,
   subscription_user_id bigint unsigned not null,
-  subscription_user_wiki varchar(32) binary not null,
+  subscription_user_wiki varchar(64) binary not null,
   subscription_create_timestamp varchar(14) binary not null,
   subscription_last_updated varchar(14) binary not null
 ) /*$wgDBTableOptions*/;
@@ -48,7 +48,7 @@ CREATE TABLE /*_*/flow_tree_revision (
 	-- denormalized so we don't need to keep finding the first revision of a post
 	tree_orig_user_id bigint unsigned not null,
 	tree_orig_user_ip varbinary(39) default null,
-	tree_orig_user_wiki varchar(32) binary not null,
+	tree_orig_user_wiki varchar(64) binary not null,
 	-- denormalize post parent as well? Prevents an extra query when building
 	-- tree from closure table.  unnecessary?
 	tree_parent_id binary(11),
@@ -82,7 +82,7 @@ CREATE TABLE /*_*/flow_revision (
 	-- user id creating the revision
 	rev_user_id bigint unsigned not null,
 	rev_user_ip varbinary(39) default null,
-	rev_user_wiki varchar(32) binary not null,
+	rev_user_wiki varchar(64) binary not null,
 	-- rev_id of parent or null if no previous revision
 	rev_parent_id binary(11) null,
 	-- comma separated set of ascii flags.
@@ -97,7 +97,7 @@ CREATE TABLE /*_*/flow_revision (
 	-- moderated by who?
 	rev_mod_user_id bigint unsigned,
 	rev_mod_user_ip varbinary(39) default null,
-	rev_mod_user_wiki varchar(32) binary default null,
+	rev_mod_user_wiki varchar(64) binary default null,
 	rev_mod_timestamp varchar(14) binary,
 	-- moderated why? (coming soon: how?, where? and what?)
 	rev_mod_reason varchar(255) binary,
@@ -106,7 +106,7 @@ CREATE TABLE /*_*/flow_revision (
 	rev_last_edit_id binary(11) null,
 	rev_edit_user_id bigint unsigned,
 	rev_edit_user_ip varbinary(39) default null,
-	rev_edit_user_wiki varchar(32) binary default null,
+	rev_edit_user_wiki varchar(64) binary default null,
 
 	rev_content_length int not null default 0,
 	rev_previous_content_length int not null default 0,
