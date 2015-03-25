@@ -16,6 +16,24 @@
       "revId": "6dc682358734ee7c516a6721266e7d985eb013b4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_1aef8fe5",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.TriggerRegistry.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-25T14:48:05Z",
+      "side": 1,
+      "message": "http://static.commentcamarche.net/en.kioskea.net/faq/images/0-Vuskup12-azerty-s-.png\n\nIt\u0027s even alt+0 in that example",
+      "parentUuid": "6e7c4fa4_fafbb3b8",
+      "revId": "6dc682358734ee7c516a6721266e7d985eb013b4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
