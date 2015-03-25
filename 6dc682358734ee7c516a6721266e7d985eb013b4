@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_fafbb3b8",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.TriggerRegistry.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-25T14:46:14Z",
+      "side": 1,
+      "message": "On French (azerty) keyboards, shift+2 is just \u00272\u0027 (@ is alt+2, IIRC). This would mean those can no longer type \u00272\u0027 then?\n\nPretty sure there are many other keyboard flavors out there where \u0027@\u0027 isn\u0027t just shift+2",
+      "revId": "6dc682358734ee7c516a6721266e7d985eb013b4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
