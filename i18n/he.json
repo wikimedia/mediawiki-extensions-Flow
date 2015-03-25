@@ -400,7 +400,6 @@
 	"apihelp-flow+edit-title-description": "עריכת כותרת של נושא",
 	"apihelp-flow+edit-title-param-prev_revision": "מזהה גרסה של גרסת הכותרת הנוכחית, כדי לבדוק התנגשויות עריכה.",
 	"apihelp-flow+edit-title-param-content": "תוכן לכותרת.",
-	"apihelp-flow+edit-title-param-format": "תסדיר התקציר (wikitext|html)",
 	"apihelp-flow+edit-title-example-1": "עריכת הכותרת של [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+edit-title-param-metadataonly": "האם לכלול רק מטא־נתונים על התוכן החדש, ולא לכלול שום דבר אחר",
 	"apihelp-flow+edit-topic-summary-description": "עריכת תוכן סיכום נושא",

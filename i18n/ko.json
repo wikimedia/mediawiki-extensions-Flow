@@ -12,7 +12,8 @@
 			"Keysuck",
 			"Revi",
 			"Gusdud25",
-			"Infinity"
+			"Infinity",
+			"SeoJeongHo"
 		]
 	},
 	"flow-desc": "워크플로우 관리 시스템",
@@ -280,6 +281,11 @@
 	"flow-special-type-workflow": "워크플로우",
 	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "종류와 UUID에 맞는 콘텐츠를 찾을 수 없습니다.",
+	"apihelp-flow+undo-edit-post-param-endId": "끝으로 아이디 수정이 취소되었습니다.",
+	"apihelp-flow+undo-edit-topic-summary-param-endId": "끝으로 아이디 수정이 취소되었습니다.",
+	"flow-undo": "취소",
+	"flow-undo-your-text": "당신의 텍스트",
+	"flow-undo-edit-header": "헤더 편집",
 	"group-flow-bot": "플로 봇",
 	"group-flow-bot-member": "플로 봇",
 	"grouppage-flow-bot": "Project:플로 봇"

@@ -338,7 +338,6 @@
 	"apihelp-flow+edit-post-param-postId": "ID de la publicación.",
 	"apihelp-flow+edit-post-param-content": "Contenido para publicar.",
 	"apihelp-flow+edit-post-param-format": "Formato del contenido de la publicación (wikitexto|html)",
-	"apihelp-flow+edit-title-param-format": "Formato del resumen (wikitexto|html)",
 	"apihelp-flow+edit-topic-summary-param-format": "Formato del resumen (wikitexto|html)",
 	"apihelp-flow+new-topic-param-format": "Formato de la respuesta inicial del nuevo tema (wikitexto|html)",
 	"apihelp-flow+reply-param-format": "Formato de la publicación nueva (wikitexto|html)",

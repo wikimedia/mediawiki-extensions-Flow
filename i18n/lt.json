@@ -12,7 +12,6 @@
 	"flow-error-not-allowed-reply-to-suppress-topic": "Jūs negalite atsakyti, nes ši tema buvo ištrinta.",
 	"flow-link-summary-revision": "santraukos peržiūra",
 	"apihelp-flow+edit-header-param-format": "Antraštės formatas (wikitext|html)",
-	"apihelp-flow+edit-title-param-format": "Santraukos formatas (wikitext|html)",
 	"apihelp-flow+reply-param-format": "Naujo pranešimo formatas (wikitext|html)",
 	"flow-undo": "atšaukti",
 	"flow-undo-latest-revision": "Dabartinė versija",

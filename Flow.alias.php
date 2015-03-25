@@ -65,6 +65,11 @@ $specialPageAliases['sv'] = array(
 	'Flow' => array( 'Flöde' ),
 );
 
+/** Simplified Chinese (中文（简体）‎) */
+$specialPageAliases['zh-hans'] = array(
+	'EnableFlow' => array( '启用Flow' ),
+);
+
 /** Traditional Chinese (中文（繁體）‎) */
 $specialPageAliases['zh-hant'] = array(
 	'Flow' => array( '流動量' ),

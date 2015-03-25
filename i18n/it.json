@@ -7,7 +7,8 @@
 			"Maria victoria",
 			"Rosh",
 			"FRacco",
-			"Macofe"
+			"Macofe",
+			"Giuseppe Forte"
 		]
 	},
 	"flow-desc": "Sistema di gestione del flusso di lavoro",
@@ -317,5 +318,14 @@
 	"flow-preview-return-edit-post": "Continua a modificare",
 	"flow-anonymous": "Anonimo",
 	"flow-embedding-unsupported": "Gli argomenti non possono essere incorporati, ancora.",
-	"mw-ui-unsubmitted-confirm": "Ci sono modifiche non salvate su questa pagina. Sei sicuro di vole uscire e perderle?"
+	"mw-ui-unsubmitted-confirm": "Ci sono modifiche non salvate su questa pagina. Sei sicuro di vole uscire e perderle?",
+	"apihelp-flow+undo-edit-header-description": "Recupera le informazioni necessarie per annullare le modifiche dell'intestazione.",
+	"apihelp-flow+undo-edit-post-description": "Recuperare le informazioni necessarie per annullare la post-modifica.",
+	"flow-undo": "annulla",
+	"flow-undo-latest-revision": "Ultima revisione",
+	"flow-undo-your-text": "Il tuo testo",
+	"flow-undo-edit-header": "Modificare l'intestazione",
+	"flow-undo-edit-post": "Modificare un post",
+	"flow-undo-edit-content": "Questa modifica può essere annullata.\nControlla le differenze mostrate sotto fra le due versioni per verificare che il contenuto corrisponda a quanto desiderato, e quindi salvare le modifiche per completare la procedura di annullamento.",
+	"flow-undo-edit-failure": "Impossibile annullare la modifica a causa di un conflitto con modifiche intermedie."
 }

@@ -396,7 +396,6 @@
 	"apihelp-flow+edit-title-description": "Уредува наслов на објава.",
 	"apihelp-flow+edit-title-param-prev_revision": "Назнака на тековната преработка на насловот, за проверка на можни спротиставености во уредувањето.",
 	"apihelp-flow+edit-title-param-content": "Содржина на насловот.",
-	"apihelp-flow+edit-title-param-format": "Формат на описот (викитекст|HTML)",
 	"apihelp-flow+edit-title-example-1": "Уреди го насловот на [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+edit-title-param-metadataonly": "Дали да се вклучат само метаподатоци за нова содржина, изземајќи сè друго",
 	"apihelp-flow+edit-topic-summary-description": "Уреди ја содржината на краткиот преглед на темата.",

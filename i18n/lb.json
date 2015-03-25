@@ -183,7 +183,6 @@
 	"apihelp-flow+edit-header-param-content": "Inhalt fir d'Iwwerschrëft.",
 	"apihelp-flow+edit-header-param-format": "Format vun der Iwwerschrëft (wikitext|html)",
 	"apihelp-flow+edit-title-param-content": "Inhalt fir den Titel.",
-	"apihelp-flow+edit-title-param-format": "Format vum Resumé (wikitext|html)",
 	"apihelp-flow+edit-topic-summary-param-summary": "Inhalt fir de Resumé.",
 	"apihelp-flow+edit-topic-summary-param-format": "Format vum Resumé (wikitext|html)",
 	"apihelp-flow+edit-topic-summary-example-1": "Ännert de Resumé vu(n) [[Topic:S2tycnas4hcucw8w]]",
