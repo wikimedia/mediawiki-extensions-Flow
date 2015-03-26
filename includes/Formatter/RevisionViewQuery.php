@@ -94,8 +94,8 @@ abstract class RevisionViewQuery extends AbstractQuery {
 
 		/** @var RevisionActionPermissions $permission */
 		if (
-			!$this->permission->isAllowed( $oldRev, 'view' ) ||
-			!$this->permission->isAllowed( $newRev, 'view' )
+			!$this->permissions->isAllowed( $oldRev, 'view' ) ||
+			!$this->permissions->isAllowed( $newRev, 'view' )
 		) {
 			throw new PermissionException( 'Insufficient permission to compare revisions', 'insufficient-permission' );
 		}
