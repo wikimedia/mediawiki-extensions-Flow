@@ -69,6 +69,24 @@
       "revId": "5fadd289f67af61ad137b84efab313ada53240f3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_5383a49b",
+        "filename": "modules/engine/misc/flow-handlebars.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-26T22:13:08Z",
+      "side": 1,
+      "message": "True.  Fixed in https://gerrit.wikimedia.org/r/#/c/200046/ .  This code didn\u0027t really  make sense anyway.",
+      "parentUuid": "6e7c4fa4_396159a4",
+      "revId": "5fadd289f67af61ad137b84efab313ada53240f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
