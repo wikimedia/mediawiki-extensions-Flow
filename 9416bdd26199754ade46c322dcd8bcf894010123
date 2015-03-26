@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_ed876d11",
+        "filename": "includes/SpamFilter/ConfirmEdit.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2015-03-26T19:29:39Z",
+      "side": 1,
+      "message": "isset shouldn\u0027t be used to check for null.",
+      "revId": "9416bdd26199754ade46c322dcd8bcf894010123",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
