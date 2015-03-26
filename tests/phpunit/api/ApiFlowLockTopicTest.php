@@ -11,11 +11,6 @@ use User;
  * @group medium
  */
 class ApiFlowLockTopicTest extends ApiTestCase {
-	/**
-	 * @var array
-	 */
-	protected $tablesUsed = array( 'flow_revision', 'flow_tree_revision' );
-
 	public function testLockTopic() {
 		$workflowId = $this->createTopic();
 		$data = $this->doApiRequest( array(

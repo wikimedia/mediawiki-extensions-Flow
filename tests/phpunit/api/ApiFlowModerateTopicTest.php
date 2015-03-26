@@ -12,8 +12,17 @@ use User;
  * @group medium
  */
 class ApiFlowModerateTopicTest extends ApiTestCase {
-
-	protected $tablesUsed = array( 'flow_revision', 'logging' );
+	protected $tablesUsed = array(
+		'flow_ext_ref',
+		'flow_revision',
+		'flow_subscription',
+		'flow_topic_list',
+		'flow_tree_node',
+		'flow_tree_revision',
+		'flow_wiki_ref',
+		'flow_workflow',
+		'logging',
+	);
 
 	public function testModerateTopic() {
 		$workflowId = $this->createTopic();

@@ -11,9 +11,6 @@ use User;
  * @group medium
  */
 class ApiFlowReplyTest extends ApiTestCase {
-
-	protected $tablesUsed = array( 'flow_revision', 'flow_tree_revision', 'flow_tree_node' );
-
 	public function testTopLevelReply() {
 		$result = $this->createTopic( 'result' );
 		$workflowId = $result['roots'][0];
