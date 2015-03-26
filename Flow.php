@@ -166,15 +166,12 @@ $wgFlowDefaultWikiDb = false;
 //     $wgFlowExternalStore = array( 'DB://cluster24', 'DB://cluster25' );
 $wgFlowExternalStore = false;
 
-// By default, Flow will store data in wikitext format. It's also the format supported
-// by the most basic "editor": none; in which case no conversion (Parsoid) will be needed.
-// the only conversion needed it wikitext -> HTML for outputting the content, which will
-// then be handled by the parser.
-// On high-volume wikis, it's beneficial to save HTML to the database (to avoid having to
-// parse it every time for output), but then you'll have to make sure Parsoid is up and
-// running, as it'll be necessary to convert HTML to wikitext for the basic editor.
+// By default, Flow will store content in HTML.  However, this requires having Parsoid up
+// and running, as it'll be necessary to convert HTML to wikitext for the basic editor.
 // (n.b. to use VisualEditor, you'll definitely need Parsoid, so if you do support VE,
 // might as well set this to HTML right away)
+//
+// The 'wikitext' format is likely to be deprecated in the future.
 $wgFlowContentFormat = 'html'; // possible values: html|wikitext XXX bug 70148 with wikitext
 
 // Flow Parsoid config
