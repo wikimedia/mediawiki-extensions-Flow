@@ -4,9 +4,9 @@ namespace Flow\Tests;
 
 use Flow\Container;
 use Flow\Data\Listener\RecentChangesListener;
-use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
+use Flow\Model\TopicListEntry;
 use Flow\Model\Workflow;
 use FlowHooks;
 use RecentChange;
@@ -17,6 +17,14 @@ use User;
  * @group Flow
  */
 class HookTest extends \MediaWikiTestCase {
+	protected $tablesUsed = array(
+		'flow_revision',
+		'flow_topic_list',
+		'flow_tree_node',
+		'flow_tree_revision',
+		'flow_workflow',
+	);
+
 	static public function onIRCLineURLProvider() {
 		$user = User::newFromName( '127.0.0.1', false );
 		$title = Title::newMainPage();
@@ -26,23 +34,49 @@ class HookTest extends \MediaWikiTestCase {
 		// pass closures into the test that create the objects within the correct context.
 		$newHeader = function() use( $user ) {
 			$workflow = Workflow::create( 'discussion', Title::newMainPage() );
-			return array(
+			$header = Header::create( $workflow, $user, 'header content', 'wikitext' );
+			$metadata = array(
 				'workflow' => $workflow,
-				'revision' => Header::create( $workflow, $user, 'header content', 'wikitext' ),
+				'revision' => $header,
 			);
+
+			Container::get( 'storage' )->put( $workflow, $metadata );
+
+			return $metadata;
 		};
 		$freshTopic = function() use( $user ) {
-			$workflow = Workflow::create( 'topic', Title::newMainPage() );
-			return array(
-				'workflow' => $workflow,
-				'revision' => PostRevision::create( $workflow, $user, 'some content', 'wikitext' ),
+			$boardWorkflow = Workflow::create( 'discussion', Title::newMainPage() );
+			$topicWorkflow = Workflow::create( 'topic', $boardWorkflow->getArticleTitle() );
+			$topicList = TopicListEntry::create( $boardWorkflow, $topicWorkflow );
+			$topicTitle = PostRevision::create( $topicWorkflow, $user, 'some content', 'wikitext' );
+			$metadata = array(
+				'workflow' => $topicWorkflow,
+				'board-workflow' => $boardWorkflow,
+				'topic-title' => $topicTitle,
+
+				'revision' => $topicTitle,
 			);
+
+			$storage = Container::get( 'storage' );
+			$storage->put( $topicWorkflow, $metadata );
+			$storage->put( $boardWorkflow, $metadata );
+			$storage->put( $topicList, $metadata );
+			$storage->put( $topicTitle, $metadata );
+
+			return $metadata;
 		};
 		$replyToTopic = function() use( $freshTopic, $user ) {
 			$metadata = $freshTopic();
-			return array(
-				'revision' => $metadata['revision']->reply( $metadata['workflow'], $user, 'ffuts dna ylper', 'wikitext' ),
+			$firstPost = $metadata['topic-title']->reply( $metadata['workflow'], $user, 'ffuts dna ylper', 'wikitext' );
+			$metadata = array(
+				'first-post' => $firstPost,
+
+				'revision' => $firstPost,
 			) + $metadata;
+
+			Container::get( 'storage.post' )->put( $firstPost, $metadata );
+
+			return $metadata;
 		};
 
 		return array(
