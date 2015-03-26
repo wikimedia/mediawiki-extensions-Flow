@@ -12,9 +12,6 @@ use User;
  * @group medium
  */
 class ApiFlowModeratePostTest extends ApiTestCase {
-
-	protected $tablesUsed = array( 'flow_revision' );
-
 	public function testModeratePost() {
 		$result = $this->createTopic( 'result' );
 		$workflowId = $result['roots'][0];

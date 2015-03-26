@@ -11,9 +11,6 @@ use User;
  * @group medium
  */
 class ApiFlowEditHeaderTest extends ApiTestCase {
-
-	protected $tablesUsed = array( 'flow_revision' );
-
 	public function testEditHeader() {
 		$data = $this->doApiRequest( array(
 			'page' => "Talk:Flow_QA",

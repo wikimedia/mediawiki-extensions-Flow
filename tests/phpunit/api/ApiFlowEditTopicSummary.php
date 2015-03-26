@@ -11,9 +11,6 @@ use User;
  * @group medium
  */
 class ApiFlowEditTopicSummaryTest extends ApiTestCase {
-
-	protected $tablesUsed = array( 'flow_revision' );
-
 	public function testEditTopicSummary() {
 		$workflowId = $this->createTopic();
 		$data = $this->doApiRequest( array(

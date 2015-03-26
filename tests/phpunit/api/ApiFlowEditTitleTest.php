@@ -11,9 +11,6 @@ use User;
  * @group medium
  */
 class ApiFlowEditTitleTest extends ApiTestCase {
-
-	protected $tablesUsed = array( 'flow_revision' );
-
 	public function testEditTitle() {
 		$result = $this->createTopic( 'result' );
 		$workflowId = $result['roots'][0];

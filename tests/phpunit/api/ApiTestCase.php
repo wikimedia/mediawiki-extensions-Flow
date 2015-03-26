@@ -13,6 +13,17 @@ use User;
  * @group medium
  */
 abstract class ApiTestCase extends BaseApiTestCase {
+	protected $tablesUsed = array(
+		'flow_ext_ref',
+		'flow_revision',
+		'flow_subscription',
+		'flow_topic_list',
+		'flow_tree_node',
+		'flow_tree_revision',
+		'flow_wiki_ref',
+		'flow_workflow',
+	);
+
 	protected function setUp() {
 		$this->setMwGlobals( 'wgFlowOccupyPages', array(
 			// For testing use; shared with browser tests
