@@ -52,6 +52,7 @@ class ApiFlowViewHeaderTest extends ApiTestCase {
 			'page' => "Talk:Flow_QA",
 			'action' => 'flow',
 			'submodule' => 'view-header',
+			'vhcontentFormat' => 'html',
 		) );
 		$result = $data[0]['flow']['view-header']['result']['header'];
 		$debug = json_encode( $result );
