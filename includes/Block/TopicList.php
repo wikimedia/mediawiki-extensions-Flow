@@ -149,6 +149,7 @@ class TopicListBlock extends AbstractBlock {
 			'first-post' => $this->firstPost,
 		);
 
+		$storage->put( $this->topicWorkflow, $metadata );
 		$storage->put( $this->topicListEntry, $metadata );
 		$storage->put( $this->topicTitle, $metadata );
 		if ( $this->firstPost !== null ) {
@@ -156,10 +157,6 @@ class TopicListBlock extends AbstractBlock {
 				'reply-to' => $this->topicTitle
 			) );
 		}
-		// must be last because this will trigger OccupationController::ensureFlowRevision
-		// to create the page within topic namespace, that will try and render, so the above
-		// stuff needs to be in cache at least.
-		$storage->put( $this->topicWorkflow, $metadata );
 
 		$output = array(
 			'topic-page' => $this->topicWorkflow->getArticleTitle()->getPrefixedText(),
