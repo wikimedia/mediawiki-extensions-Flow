@@ -2,6 +2,27 @@
 /**
  * MediaWiki Extension: Flow
  *
+ * Flow, a discussion system for MediaWiki
+ * Copyright (C) 2013-2015 Flow contributors
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * ---
+ * Older parts of Flow are also available under the terms:
+ *
+ * ---
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -13,13 +34,15 @@
  * all copies or substantial portions of the Software.
  *
  * This program is distributed WITHOUT ANY WARRANTY.
+ * ---
+ *
+ * Third-party libraries are under their own licenses.  See vendor and modules/vendor.
  */
 
 /**
  *
  * @file
  * @ingroup Extensions
- * @author Andrew Garrett
  */
 
 // Extension credits that will show up on Special:Version
@@ -27,8 +50,22 @@ $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
 	'name' => 'Flow',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:Flow',
-	'author' => array( 'Erik Bernhardson', 'Matthias Mullie', 'Benny Situ', 'Andrew Garrett' ),
+	'author' => array(
+		// Alphabetical by last name
+		'Erik Bernhardson',
+		'Matthew Flaschen',
+		'Andrew Garrett',
+		'Shahyar Ghobadpour',
+		'Pau Giner',
+		'Chris McMahon',
+		'Kunal Mehta',
+		'Matthias Mullie',
+		'S Page',
+		'Jon Robson',
+		'Benny Situ',
+	),
 	'descriptionmsg' => 'flow-desc',
+	'license-name' => 'GPL-2.0+', // Appears with link to COPYING on Special:Version
 );
 
 require_once __DIR__ . '/defines.php';
