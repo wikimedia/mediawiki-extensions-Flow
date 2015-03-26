@@ -390,6 +390,7 @@
 	"flow-special-enableflow-legend": "Legend for Special:EnableFlow form",
 	"flow-special-enableflow-page": "Label for the page field of Special:EnableFlow",
 	"flow-special-enableflow-header": "Label for the header field of Special:EnableFlow",
+	"flow-special-enableflow-invalid-title": "Error given on Special:EnableFlow if the provided page is not a valid page name.",
 	"flow-special-enableflow-board-already-exists": "Error given on Special:EnableFlow if board already exists at requested page name.  Parameters:\n$1 - Page name where user requested to put Flow board",
 	"flow-special-enableflow-page-already-exists": "Error given on Special:EnableFlow if a non-Flow page already exists at requested page name.  Parameters:\n$1 - Page name where user requested to put Flow board",
 	"flow-special-enableflow-confirmation": "Confirmation message on Special:EnableFlow saying that you have successfully created a board  Parameters:\n$1 - Page name of new Flow board",
