@@ -24,6 +24,11 @@ class NotificationListener implements LifecycleHandler {
 			return;
 		}
 
+		if ( isset( $metadata['imported'] ) && $metadata['imported'] ) {
+			// Don't send any notifications by default for imports
+			return;
+		}
+
 		switch( $row['rev_change_type'] ) {
 		// Actually new-topic @todo rename
 		case 'new-post':
