@@ -3,7 +3,6 @@
  */
 
 ( function ( mw, $, moment, Handlebars ) {
-	window.mw = window.mw || {}; // mw-less testing
 	mw.flow = mw.flow || {}; // create mw.flow globally
 
 	var _tplcache = {},
