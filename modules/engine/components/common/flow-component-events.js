@@ -474,6 +474,8 @@
 
 			if ( initialState === 'collapsed' ) {
 				component.emitWithReturn( 'hideForm', $this );
+			} else if ( initialState === 'expanded' ) {
+				component.emitWithReturn( 'showForm', $this );
 			}
 		} );
 	}
