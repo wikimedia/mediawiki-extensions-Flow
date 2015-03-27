@@ -6,6 +6,7 @@ use Flow\Import\LiquidThreadsApi\LocalApiBackend;
 use Flow\Import\LiquidThreadsApi\RemoteApiBackend;
 use Flow\Import\LiquidThreadsApi\ImportSource as LiquidThreadsApiImportSource;
 use Flow\Import\Postprocessor\LqtRedirector;
+use Flow\Import\Postprocessor\LqtNotifications;
 use Psr\Log\LogLevel;
 
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
@@ -25,6 +26,7 @@ class ConvertLqt extends Maintenance {
 		$this->addOption( 'debug', 'Include debug information to progress report' );
 		$this->addOption( 'allowunknownusernames', 'Allow import of usernames that do not exist on this wiki.  DO NOT USE IN PRODUCTION. This simplifies testing imports of production data to a test wiki' );
 		$this->addOption( 'redirect', 'Add redirects from LQT posts to their Flow equivalents and update watchlists' );
+		$this->addOption( 'convertnotifications', 'Convert LQT notifications into Echo notifications' );
 	}
 
 	public function execute() {
@@ -80,6 +82,13 @@ class ConvertLqt extends Maintenance {
 			$user = Flow\Container::get( 'occupation_controller' )->getTalkpageManager();
 			$redirector = new LqtRedirector( $urlGenerator, $user );
 			$importer->addPostprocessor( $redirector );
+		}
+
+		if ( $this->hasOption( 'convertnotifications' ) ) {
+			$importer->addPostprocessor( new LqtNotifications(
+				Flow\Container::get( 'controller.notification' ),
+				wfGetDB( DB_MASTER )
+			) );
 		}
 
 		if ( $this->getOption( 'verbose' ) ) {
