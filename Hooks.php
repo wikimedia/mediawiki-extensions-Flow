@@ -588,11 +588,13 @@ class FlowHooks {
 		return true;
 	}
 
+	// Static variables that do not vary by request
 	public static function onResourceLoaderGetConfigVars( &$vars ) {
 		global $wgFlowEditorList;
 
 		$vars['wgFlowEditorList'] = $wgFlowEditorList;
 		$vars['wgFlowMaxTopicLength'] = Flow\Model\PostRevision::MAX_TOPIC_LENGTH;
+		$vars['wgFlowMentionTemplate'] = wfMessage( 'flow-ve-mention-template' )->inContentLanguage()->plain();
 
 		return true;
 	}
