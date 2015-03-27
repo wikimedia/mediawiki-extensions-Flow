@@ -9,9 +9,10 @@
 		.box-sizing(content-box);
 	}
 
-	// VE and OOjs UI do use other models in some cases, so we
+	// Core, VE and OOjs UI do use other models in some cases, so we
 	// have to re-override them again as needed.
-	.oo-ui-textInputWidget input {
+	.oo-ui-textInputWidget input,
+	.mw-ui-input {
 		.box-sizing(border-box);
 	}
 }
