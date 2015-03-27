@@ -130,10 +130,12 @@ EOD
 	}
 
 	public function testGetPostprocessor() {
-		$result = $this->createStrategy()->getPostprocessor();
-
-		$this->assertEquals( get_class( $result ), 'Flow\Import\Postprocessor\LqtRedirector');
+		$this->assertInstanceOf(
+			'Flow\Import\Postprocessor\Postprocessor',
+			$this->createStrategy()->getPostprocessor()
+		);
 	}
+
 
 	protected function createStrategy(
 		DatabaseBase $dbr = null,
@@ -150,6 +152,9 @@ EOD
 				->disableOriginalConstructor()
 				->getMock(),
 			$this->getMockBuilder( 'User' )
+				->disableOriginalConstructor()
+				->getMock(),
+			$this->getMockBuilder( 'Flow\NotificationController' )
 				->disableOriginalConstructor()
 				->getMock()
 		);

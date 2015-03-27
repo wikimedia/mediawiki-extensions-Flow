@@ -48,7 +48,8 @@ class ConvertLqt extends Maintenance {
 			new FileImportSourceStore( $this->getOption( 'logfile' ) ),
 			new LocalApiBackend( $talkpageManagerUser ),
 			Container::get( 'url_generator' ),
-			$talkpageManagerUser
+			$talkpageManagerUser,
+			Container::get( 'controller.notifications' )
 		);
 
 		$converter = new \Flow\Import\Converter(
