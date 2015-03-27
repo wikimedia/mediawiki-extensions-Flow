@@ -657,9 +657,7 @@
 			) ).children();
 
 			flowBoard.emitWithReturn( 'addFormCancelCallback', $form, cancelCallback );
-			$form
-				.data( 'flow-initial-state', 'hidden' )
-				.prependTo( info.$target );
+			$form.prependTo( info.$target );
 		}
 
 		$form.find( '.mw-ui-input' ).focus();
