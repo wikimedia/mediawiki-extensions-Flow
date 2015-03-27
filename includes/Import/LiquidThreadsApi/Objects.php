@@ -210,6 +210,10 @@ class ImportTopic extends ImportPost implements IImportTopic, IObjectRevision {
 			'lqt_subject' => $this->getText(),
 		);
 	}
+
+	public function getLqtThreadId() {
+		return $this->apiResponse['id'];
+	}
 }
 
 class ImportSummary extends PageRevisionedObject implements IImportSummary {

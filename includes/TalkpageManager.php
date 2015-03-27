@@ -174,7 +174,7 @@ class TalkpageManager implements OccupationController {
 	 * @param User $user User who wants to create a board
 	 * @return bool
 	 */
-	public function allowCreation( Title $title, User $user ) {
+	public function allowCreation( Title $title, User $user, $mustNotExist = true ) {
 		global $wgContentHandlerUseDB;
 
 		// Arbitrary pages can only be enabled when content handler
@@ -184,7 +184,7 @@ class TalkpageManager implements OccupationController {
 		}
 
 		// Only allow converting a non-existent page to flow
-		if ( $title->exists() ) {
+		if ( $mustNotExist && $title->exists() ) {
 			return false;
 		}
 
