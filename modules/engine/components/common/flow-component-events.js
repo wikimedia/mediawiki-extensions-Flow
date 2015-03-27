@@ -653,9 +653,6 @@
 	function flowEventsMixinHideForm( $form ) {
 		var component = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $form );
 
-		// Store state
-		$form.data( 'flow-state', 'hidden' );
-
 		// If any preview is visible cancel it
 		// Must be done before compressing text areas because
 		// the preview may have manipulated them.
@@ -733,9 +730,6 @@
 
 		// Initialize editors, turning them from textareas into editor objects
 		self.emitWithReturn( 'initializeEditors', $form );
-
-		// Store state
-		$form.data( 'flow-state', 'visible' );
 	}
 	FlowComponentEventsMixin.eventHandlers.showForm = flowEventsMixinShowForm;
 
