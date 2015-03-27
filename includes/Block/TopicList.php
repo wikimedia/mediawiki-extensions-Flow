@@ -132,7 +132,6 @@ class TopicListBlock extends AbstractBlock {
 			$topicTitle->setChildren( array( $firstPost ) );
 		}
 
-
 		return array( $topicWorkflow, $topicListEntry, $topicTitle, $firstPost );
 	}
 
@@ -170,6 +169,8 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	public function renderApi( array $options ) {
+		$options = $this->preloadTexts( $options );
+
 		$response = array(
 			'submitted' => $this->wasSubmitted() ? $this->submitted : $options,
 			'errors' => $this->errors,
@@ -231,6 +232,35 @@ class TopicListBlock extends AbstractBlock {
 		}, $workflowIds ) ) );
 
 		return $response + $serializer->formatApi( $this->workflow, $workflows, $found, $page, $this->context );
+	}
+
+	/**
+	 * Transforms preload params into proper options we can assign to template.
+	 *
+	 * @param array $options
+	 * @return array
+	 * @throws \MWException
+	 */
+	protected function preloadTexts( $options ) {
+		if ( isset( $options['preload'] ) ) {
+			$title = \Title::newFromText( $options['preload'] );
+			$page = \WikiPage::factory( $title );
+			if ( $page->isRedirect() ) {
+				$title = $page->getRedirectTarget();
+				$page = \WikiPage::factory( $title );
+			}
+
+			if ( $page->exists() ) {
+				$content = $page->getContent( \Revision::RAW );
+				$options['content'] = $content->serialize();
+			}
+		}
+
+		if ( isset( $options['preloadtitle'] ) ) {
+			$options['topic'] = $options['preloadtitle'];
+		}
+
+		return $options;
 	}
 
 	public function getName() {
