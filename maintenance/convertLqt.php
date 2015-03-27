@@ -42,15 +42,16 @@ class ConvertLqt extends Maintenance {
 		$importer = Flow\Container::get( 'importer' );
 		$talkpageManagerUser = FlowHooks::getOccupationController()->getTalkpageManager();
 
-		$dbr = wfGetDB( DB_SLAVE );
 		$strategy = new ConversionStrategy(
-			$dbr,
+			wfGetDB( DB_MASTER ),
 			new FileImportSourceStore( $this->getOption( 'logfile' ) ),
 			new LocalApiBackend( $talkpageManagerUser ),
 			Container::get( 'url_generator' ),
-			$talkpageManagerUser
+			$talkpageManagerUser,
+			Container::get( 'controller.notifications' )
 		);
 
+		$dbr = wfGetDB( DB_SLAVE );
 		$converter = new \Flow\Import\Converter(
 			$dbr,
 			$importer,
