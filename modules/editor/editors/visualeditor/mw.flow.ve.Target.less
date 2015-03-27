@@ -23,11 +23,27 @@
 		// this border comes from .mw-ui-input on the same div, but i dont think
 		// we want to remove this for all inputs just the documentNode
 		border: none;
+		// This creates a space for the toolbar, a matching negative margin-top
+		// shifts the toolbar into this location.
+		// @todo where did this 40 come from, could it be calculated?
+		padding-bottom: 40px;
 	}
 
-	// The default border is only appropriate in the default ve, with
-	// the toolbar above the editing surface.
+	.oo-ui-toolbar {
+		// The -40 matches the padding-bottom on .ve-ce-documentNode to put the toolbar inside
+		// the editing area. The 2px of positive margin gives room for the blue border of the
+		// documentNode (via .mw-ui-input)
+		margin: -40px 2px 0 2px;
+	}
+
+	// Due to this being floated, it needs a matching top margin to still display inside the bar
+	.oo-ui-toolbar-actions {
+		margin-top: 38px;
+	}
+
 	.oo-ui-toolbar-bar {
+		// The default border is only appropriate in the default ve, with
+		// the toolbar above the editing surface.
 		border: none;
 	}
 }
