@@ -1,9 +1,3 @@
-/*!
- *
- */
-
-window.mw = window.mw || {}; // mw-less testing
-
 ( function ( mw, $ ) {
 	mw.flow = mw.flow || {}; // create mw.flow globally
 

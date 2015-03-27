@@ -8,7 +8,6 @@
  */
 
 ( function ( $, mw ) {
-	window.mw = window.mw || {}; // mw-less testing
 	mw.flow = mw.flow || {}; // create mw.flow globally
 
 	var _componentRegistry = new OO.Registry();
