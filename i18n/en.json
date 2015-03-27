@@ -418,7 +418,7 @@
 	"apihelp-flow+close-open-topic-description": "Deprecated in favor of [[Special:ApiHelp/flow+lock-topic|action=flow&submodule=lock-topic]].",
 	"apihelp-flow+close-open-topic-param-moderationState": "State to put topic in, either locked or unlocked.",
 	"apihelp-flow+close-open-topic-param-reason": "Reason for locking or unlocking the topic.",
-	"apihelp-flow+edit-header-description": "Edits a topic's header.",
+	"apihelp-flow+edit-header-description": "Edits a board's header.",
 	"apihelp-flow+edit-header-param-prev_revision": "Revision ID of the current header revision, to check for edit conflicts.",
 	"apihelp-flow+edit-header-param-content": "Content for header.",
 	"apihelp-flow+edit-header-param-format": "Format of the header (wikitext|html)",
