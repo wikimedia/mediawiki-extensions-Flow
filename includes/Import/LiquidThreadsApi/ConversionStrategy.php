@@ -6,7 +6,10 @@ use DatabaseBase;
 use Flow\Import\Converter;
 use Flow\Import\IConversionStrategy;
 use Flow\Import\ImportSourceStore;
+use Flow\Import\Postprocessor\ProcessorGroup;
+use Flow\Import\Postprocessor\LqtNotifications;
 use Flow\Import\Postprocessor\LqtRedirector;
+use Flow\NotificationController;
 use Flow\UrlGenerator;
 use LqtDispatch;
 use MWTimestamp;
@@ -50,18 +53,25 @@ class ConversionStrategy implements IConversionStrategy {
 	 */
 	protected $talkpageUser;
 
+	/**
+	 * @var NotificationController
+	 */
+	protected $notificationController;
+
 	public function __construct(
 		DatabaseBase $dbr,
 		ImportSourceStore $sourceStore,
 		ApiBackend $api,
 		UrlGenerator $urlGenerator,
-		User $talkpageUser
+		User $talkpageUser,
+		NotificationController $notificationController
 	) {
 		$this->dbr = $dbr;
 		$this->sourceStore = $sourceStore;
 		$this->api = $api;
 		$this->urlGenerator = $urlGenerator;
 		$this->talkpageUser = $talkpageUser;
+		$this->notificationController = $notificationController;
 	}
 
 	public function getSourceStore() {
@@ -127,7 +137,13 @@ class ConversionStrategy implements IConversionStrategy {
 	}
 
 	public function getPostprocessor() {
-		$redirector = new LqtRedirector( $this->urlGenerator, $this->talkpageUser );
-		return $redirector;
+		$group = new ProcessorGroup;
+		$group->add( new LqtRedirector( $this->urlGenerator, $this->talkpageUser ) );
+		$group->add( new LqtNotifications(
+			$this->notificationController,
+			$this->dbr
+		) );
+
+		return $group;
 	}
 }
