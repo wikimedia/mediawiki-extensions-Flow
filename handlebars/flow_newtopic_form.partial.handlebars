@@ -1,5 +1,5 @@
 {{#if actions.newtopic}}
-	<form action="{{actions.newtopic.url}}" method="POST" class="flow-newtopic-form" data-flow-initial-state="collapsed">
+	<form action="{{actions.newtopic.url}}" method="POST" class="flow-newtopic-form" data-flow-initial-state="{{#if submitted.content}}expanded{{else}}collapsed{{/if}}">
 		{{> flow_errors}}
 
 		{{#ifAnonymous}}
