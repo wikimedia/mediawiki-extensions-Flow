@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_16519a3a",
+        "filename": "modules/editor/editors/visualeditor/ui/contextitem/mw.flow.ve.ui.MentionContextItem.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-27T01:38:10Z",
+      "side": 1,
+      "message": "Isn\u0027t that covered by isCompatibleWith (see https://gerrit.wikimedia.org/r/#/c/196866/12/modules/editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.MentionInspectorTool.js)?\n\nIf it isn\u0027t a single-template transclusion, we shouldn\u0027t even be calling this method.",
+      "parentUuid": "6e7c4fa4_bf48e432",
+      "revId": "399531b89a222f44948dd5f491516472e2254ac5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_10b54778",
         "filename": "modules/editor/editors/visualeditor/ui/inspectors/mw.flow.ve.ui.MentionInspector.js",
         "patchSetId": 10
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_9664ca12",
+        "filename": "modules/editor/editors/visualeditor/ui/inspectors/mw.flow.ve.ui.MentionInspector.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-27T01:38:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_10b54778",
+      "revId": "399531b89a222f44948dd5f491516472e2254ac5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_30508336",
         "filename": "modules/editor/editors/visualeditor/ui/inspectors/mw.flow.ve.ui.MentionInspector.js",
         "patchSetId": 10
@@ -47,6 +83,24 @@
       "writtenOn": "2015-03-23T22:38:21Z",
       "side": 1,
       "message": "as before, i\u0027m not sure if its safe to just take parts[0].  It worked in most cases but ran into errors eventually handling the wide variety of user content.  I asked subbu about this, he said:\n\n    15:03 \u003c ebernhardson\u003e under which circumstances will data-mw information about a transclusion have the template information in a part other than 0 ?\n    15:03 \u003c ebernhardson\u003e or, more generically i suppose just how is that parts determined?\n    15:05 \u003c+subbu\u003e ebernhardson, echo \"\u003cdiv {{echo|foo\u003c/div\u003e}}\" | node parse\n    15:06 \u003c+subbu\u003e so, basically, whenever the template output range is expanded to include the entire DOM subtree in which it occurs, any preceding wikitext content will show up earlier in data-mw parts array\n    15:06 \u003c+subbu\u003e while that is a concocted example .. there are various templating scenarios where this shows up a lot.\n    15:07 \u003c+subbu\u003e ebernhardson, see description of https://phabricator.wikimedia.org/T88495 for example.\n    15:09 \u003c+subbu\u003e the the other canonical form where multiple entries show up in the data-mw parts array is the set of templates used to build tables ...\n    15:10 \u003c+subbu\u003e ebernhardson, {{table-begin}} {{table-row|..}} {{table-row|..}} ... {{table-end}} ..  I am using made up names there, but there are several of these template sets. i don\u0027t remember the specific ones off-hand.\n\nSo it looks like we can safely assume that since we are building this, it will always be in parts[0]?",
+      "revId": "399531b89a222f44948dd5f491516472e2254ac5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_d63d62db",
+        "filename": "modules/editor/editors/visualeditor/ui/inspectors/mw.flow.ve.ui.MentionInspector.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-27T01:38:10Z",
+      "side": 1,
+      "message": "Per other comment, I think it should be safe since we\u0027re either building it or limiting ourselves to only recognize this one scenario (https://gerrit.wikimedia.org/r/#/c/196866/12/modules/editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.MentionInspectorTool.js).\n\nConfirmation would be great, though.",
+      "parentUuid": "6e7c4fa4_30508336",
       "revId": "399531b89a222f44948dd5f491516472e2254ac5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +141,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_b626a6c7",
+        "filename": "modules/editor/editors/visualeditor/ui/inspectors/mw.flow.ve.ui.MentionInspector.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-27T01:38:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_4bac6e9d",
+      "revId": "399531b89a222f44948dd5f491516472e2254ac5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_08fd2104",
         "filename": "modules/editor/editors/visualeditor/ui/widgets/mw.flow.ve.ui.MentionTargetInputWidget.js",
         "patchSetId": 10
@@ -98,6 +170,24 @@
       "writtenOn": "2015-03-23T22:38:21Z",
       "side": 1,
       "message": "I poked around and talked to krenair, it looks like this doesn\u0027t really do anything at all.  It sets an \u0027invalid\u0027 flag on the element, but that has no effect unless we specifically wire something up.  \n\nIt looks like we are explicitly calling this from the MentionInspector, so we can probably call this todone?",
+      "revId": "399531b89a222f44948dd5f491516472e2254ac5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_b60d4643",
+        "filename": "modules/editor/editors/visualeditor/ui/widgets/mw.flow.ve.ui.MentionTargetInputWidget.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-27T01:38:10Z",
+      "side": 1,
+      "message": "Yeah, only the comment was out of date here.  It was already done by PS 10.",
+      "parentUuid": "6e7c4fa4_08fd2104",
       "revId": "399531b89a222f44948dd5f491516472e2254ac5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
