@@ -40,8 +40,7 @@ class NotificationController {
 		 * Load notification definitions from file.
 		 * @var $notifications array[]
 		 */
-		require( __DIR__ . "/Notifications.php" );
-		$wgEchoNotifications += $notifications;
+		$wgEchoNotifications += require( __DIR__ . "/Notifications.php" );
 
 		$wgEchoNotificationIcons['flow-discussion'] = array(
 			'path' => array(
@@ -79,7 +78,11 @@ class NotificationController {
 			return array();
 		}
 
-		$extraData = array();
+		if ( isset( $data['extra-data'] ) ) {
+			$extraData = $data['extra-data'];
+		} else {
+			$extraData = array();
+		}
 
 		$revision = $data['revision'];
 		if ( !$revision instanceof PostRevision ) {

@@ -72,7 +72,7 @@ class OccupationListener implements LifecycleHandler {
 
 		if ( isset( $metadata['imported'] ) && $metadata['imported'] ) {
 			$user = $this->occupationController->getTalkpageManager();
-			$this->occupationController->allowCreation( $object->getArticleTitle(), $user );
+			$this->occupationController->allowCreation( $object->getArticleTitle(), $user, false );
 		}
 
 		$this->ensureOccupation( $object );
