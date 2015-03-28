@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_05e2b5cf",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.less",
+        "patchSetId": 12
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-28T00:40:32Z",
+      "side": 1,
+      "message": "This probably doesn\u0027t need to be so nested.\n\nThis will generate:\n\n.flow-component .ve-init-target .ve-ce-documentNode\n\nHowever:\n\n.flow-component .ve-ce-documentNode\n\nshould be enough.",
+      "revId": "88e936337013badee0454e8526747d57a5ee8ab8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_25e571d6",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.less",
+        "patchSetId": 12
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-03-28T00:40:32Z",
+      "side": 1,
+      "message": "Same as above.",
+      "revId": "88e936337013badee0454e8526747d57a5ee8ab8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
