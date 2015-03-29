@@ -15,5 +15,6 @@
 	"action-flow-create-board": "किसी भी स्थान पर प्रवाह-पट्ट बनायें",
 	"flow-special-enableflow-header": "प्रवाह-पट्ट की प्रारम्भिक शीर्षणी (विकिपाठ)",
 	"flow-undo": "पूर्ववत करें",
+	"flow-undo-latest-revision": "सद्य अवतरण",
 	"flow-undo-your-text": "आपका पाठ"
 }

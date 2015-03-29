@@ -156,6 +156,7 @@
 	"flow-error-missing-prev-revision-identifier": "上一版本标识符丢失。",
 	"flow-error-prev-revision-mismatch": "另一位用户已于几秒钟前编辑了此帖子。{{GENDER:$3|您}}确信继续重写最近更新？",
 	"flow-error-prev-revision-does-not-exist": "无法找到上一版本。",
+	"flow-error-core-topic-deletion": "要删除一个话题，在Flow板块或[$1 话题页]上使用...菜单。不要直接访问话题的action=delete。",
 	"flow-error-default": "出现错误。",
 	"flow-error-invalid-input": "提供了无效的正在载入的flow内容的值。",
 	"flow-error-invalid-title": "提供了无效的页面标题。",
@@ -508,5 +509,10 @@
 	"flow-undo-edit-failure": "因存在冲突的中间编辑，本编辑不能撤销。",
 	"group-flow-bot": "Flow机器人",
 	"group-flow-bot-member": "Flow机器人",
-	"grouppage-flow-bot": "Project:Flow机器人"
+	"grouppage-flow-bot": "Project:Flow机器人",
+	"flow-ve-mention-inspector-title": "提及",
+	"flow-ve-mention-inspector-remove-label": "移除",
+	"flow-ve-mention-tool-title": "提及一位用户",
+	"flow-ve-mention-template": "ping",
+	"flow-ve-mention-inspector-invalid-user": "用户名“$1”未注册。"
 }

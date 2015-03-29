@@ -13,5 +13,7 @@
 	"flow-notification-rename-email-subject": "$1 ستاسې سرليک {{GENDER:$1|نوم بدل کړ}}",
 	"apihelp-flow+new-topic-param-topic": "د نوې موضوع د سرليک متن.",
 	"flow-previous-diff": "→ زوړ سمون",
-	"flow-next-diff": "نوی سمون ←"
+	"flow-next-diff": "نوی سمون ←",
+	"flow-undo": "ناکړل",
+	"flow-undo-your-text": "ستاسې متن"
 }

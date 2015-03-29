@@ -48,6 +48,7 @@ $specialPageAliases['ko'] = array(
 /** Macedonian (македонски) */
 $specialPageAliases['mk'] = array(
 	'Flow' => array( 'Тек' ),
+	'EnableFlow' => array( 'ОвозможиТек' ),
 );
 
 /** Malayalam (മലയാളം) */

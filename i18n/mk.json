@@ -142,6 +142,7 @@
 	"flow-error-missing-prev-revision-identifier": "Недостасува назнака на претходната преработка.",
 	"flow-error-prev-revision-mismatch": "Објавава ја измени друг корисник пред неколку секунди. Дали {{GENDER:$3|сте}} сигурни дека сакате да презапишете врз оваа последна промена?",
 	"flow-error-prev-revision-does-not-exist": "Не можев да ја надам претходната преработка.",
+	"flow-error-core-topic-deletion": "За да избришете тема, послужете се со менито ... на таблата на Тек или на [$1 страницата на темата]. Не го посетувајте action=delete за темата непосредно.",
 	"flow-error-default": "Се појави грешка.",
 	"flow-error-invalid-input": "Укажана е неважечка вредност за вчитување на содржините на текот.",
 	"flow-error-invalid-title": "Укажан е неважечки наслов на страницата.",
@@ -380,7 +381,7 @@
 	"apihelp-flow+close-open-topic-description": "Застарено и заменето со [[Special:ApiHelp/flow+lock-topic|action=flow&submodule=lock-topic]].",
 	"apihelp-flow+close-open-topic-param-moderationState": "Која состојба да ѝ се зададе на темата: заклучена или отклучена.",
 	"apihelp-flow+close-open-topic-param-reason": "Причина за заклучување или отклучување на темата.",
-	"apihelp-flow+edit-header-description": "Уредува заглавие на тема.",
+	"apihelp-flow+edit-header-description": "Уредува заглавие на таблата.",
 	"apihelp-flow+edit-header-param-prev_revision": "Назнака на тековната преработка на заглавието, за проверка на можни спротиставености во уредувањето.",
 	"apihelp-flow+edit-header-param-content": "Содржина на заглавието.",
 	"apihelp-flow+edit-header-param-format": "Формат на заглавието (викитекст|HTML)",
@@ -494,5 +495,11 @@
 	"flow-undo-edit-failure": "Уредувањето не можеше да се отповика заради меѓувремени спротиставени уредувања.",
 	"group-flow-bot": "Ботови за „Тек“",
 	"group-flow-bot-member": "Бот на „Тек“",
-	"grouppage-flow-bot": "Project:Ботови за Тек"
+	"grouppage-flow-bot": "Project:Ботови за Тек",
+	"flow-ve-mention-context-item-label": "Спомнување",
+	"flow-ve-mention-inspector-title": "Спомнување",
+	"flow-ve-mention-inspector-remove-label": "Отстрани",
+	"flow-ve-mention-tool-title": "Спомни корисник",
+	"flow-ve-mention-template": "пинг",
+	"flow-ve-mention-inspector-invalid-user": "Корисничкото име „$1“ не е регистрирано."
 }

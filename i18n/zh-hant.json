@@ -16,7 +16,7 @@
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|已刪除}}一篇 [$4 文章] 於 [[$3]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|已還原}}一篇 [$4 文章] 於 [[$3]]",
 	"logentry-suppress-flow-suppress-post": "$1 {{GENDER:$2|已封鎖}}一篇 [$4 文章] 於 [[$3]]",
-	"logentry-suppress-flow-restore-post": "$1 {{GENDER:$2|已刪除}}一篇 [$4 文章] 於 [[$3]]",
+	"logentry-suppress-flow-restore-post": "$1 {{GENDER:$2|已刪除}}於 \"[[$3|$5]]\" 之 [[$6]] 的一篇 [$4 文章]",
 	"logentry-delete-flow-delete-topic": "$1 {{GENDER:$2|已刪除}}一個 [$4 主題] 於 [[$3]]",
 	"logentry-delete-flow-restore-topic": "$1 {{GENDER:$2|已還原}}一個 [$4 主題] 於 [[$3]]",
 	"logentry-suppress-flow-suppress-topic": "$1 {{GENDER:$2|已封鎖}}一個 [$4 主題] 於 [[$3]]",

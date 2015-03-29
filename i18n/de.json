@@ -143,6 +143,7 @@
 	"flow-error-missing-prev-revision-identifier": "Eine Kennung der vorherigen Version fehlt.",
 	"flow-error-prev-revision-mismatch": "Ein anderer Benutzer hat diesen Beitrag soeben vor einigen Sekunden bearbeitet. Bist {{GENDER:$3|du}} sicher, dass du die letzte Änderung überschreiben möchtest?",
 	"flow-error-prev-revision-does-not-exist": "Die vorherige Version konnte nicht gefunden werden.",
+	"flow-error-core-topic-deletion": "Um ein Thema zu löschen, verwende das Menü „…“ auf dem Flow-Board oder der [$1 Themenseite]. Besuche nicht direkt action=delete für das Thema.",
 	"flow-error-default": "Es ist ein Fehler aufgetreten.",
 	"flow-error-invalid-input": "Für das Laden des Flow-Inhalts wurde ein ungültiger Wert angegeben.",
 	"flow-error-invalid-title": "Es wurde ein ungültiger Seitentitel angegeben.",
@@ -464,5 +465,11 @@
 	"flow-undo-edit-failure": "Die Bearbeitung konnte aufgrund kollidierender dazwischenliegender Bearbeitungen nicht rückgängig gemacht werden.",
 	"group-flow-bot": "Flow-Bots",
 	"group-flow-bot-member": "Flow-Bot",
-	"grouppage-flow-bot": "Project:Flow-Bots"
+	"grouppage-flow-bot": "Project:Flow-Bots",
+	"flow-ve-mention-context-item-label": "Erwähnung",
+	"flow-ve-mention-inspector-title": "Erwähnung",
+	"flow-ve-mention-inspector-remove-label": "Entfernen",
+	"flow-ve-mention-tool-title": "Einen Benutzer erwähnen",
+	"flow-ve-mention-template": "ping",
+	"flow-ve-mention-inspector-invalid-user": "Der Benutzername „$1“ ist nicht registriert."
 }

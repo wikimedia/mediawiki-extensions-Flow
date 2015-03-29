@@ -76,6 +76,7 @@
 	"flow-topic-html-title": "$1 op $2",
 	"flow-load-more": "Mih lahde",
 	"flow-special-type": "Zoot",
+	"flow-preview-warning": "Do sühs en onjeseschte Ußjahb vöraf. Donn op „{{int:flow-newtopic-save}}“ kleke zom Veröffentlesche, udder „{{int:flow-preview-return-edit-post}}“, öm mem Schrihve wigger ze maache.",
 	"flow-preview-return-edit-post": "Blihv beim Ändere",
 	"flow-anonymous": "Nahmeloßß",
 	"flow-post-undo-hide": "et Verschteijsche ophävve",

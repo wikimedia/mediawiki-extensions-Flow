@@ -5,7 +5,8 @@
 			"Minh Nguyen",
 			"Withoutaname",
 			"Trần Nguyễn Minh Huy",
-			"Max20091"
+			"Max20091",
+			"Dinhxuanduyet"
 		]
 	},
 	"flow-desc": "Hệ thống quản lý luồng làm việc",
@@ -351,6 +352,8 @@
 	"flow-importer-lqt-converted-archive-template": "Lưu trữ trang LQT chuyển đổi",
 	"flow-importer-wt-converted-template": "Trang thảo luận mã wiki chuyển đổi qua Flow",
 	"flow-importer-wt-converted-archive-template": "Lưu trữ trang thảo luận mã wiki chuyển đổi",
+	"apihelp-flow+undo-edit-header-description": "Lấy lại thông tin cần thiết để hoàn tác chỉnh sửa tiêu đề.",
+	"apihelp-flow+undo-edit-topic-summary-description": "Lấy lại thông tin cần thiết để hoàn tác chỉnh sửa tóm tắt bài viết.",
 	"flow-edited": "Đã sửa đổi",
 	"flow-edited-by": "Sửa đổi bởi $1",
 	"flow-lqt-redirect-reason": "Đang đổi hướng bài đăng LiquidThreads cũ đến bài đăng Flow đã được chuyển đổi",
@@ -358,6 +361,9 @@
 	"flow-talk-conversion-archive-edit-reason": "Chuyển đổi thảo luận dưới dạng mã wiki đến Flow",
 	"flow-previous-diff": "← Sửa đổi cũ",
 	"flow-next-diff": "Sửa đổi sau →",
+	"flow-undo": "Hoàn tác",
+	"flow-undo-edit-content": "Các sửa đổi có thể được lùi lại. Xin hãy kiểm tra phần so sánh bên dưới để xác nhận lại những gì bạn muốn làm, sau đó lưu thay đổi ở dưới để hoàn tất việc hoàn tác các sửa đổi.",
+	"flow-undo-edit-failure": "Sửa đổi không thể phục hồi vì đã có những sửa đổi mới ở sau.",
 	"group-flow-bot": "Bot Flow",
 	"group-flow-bot-member": "bot Flow",
 	"grouppage-flow-bot": "Project:Bot Flow"
