@@ -147,6 +147,7 @@ abstract class AbstractQuery {
 		// So any post IDs that *are* root posts + found root post IDs + header workflow IDs
 		// should cover the lot.
 		$workflows = $this->storage->getMulti( 'Workflow', array_merge( $rootPostIds, $workflowIds ) );
+		$workflows = $workflows ?: array();
 
 		// preload all requested previous revisions
 		foreach ( $previousRevisionIds as $revisionType => $ids ) {
