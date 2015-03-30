@@ -237,9 +237,13 @@ class UUID {
 	}
 
 	/**
+	 * Gets the UUID in hexadecimal format.
+	 * Should not be used in Flow itself, but is useful in the PHP debug shell
+	 * in conjunction with LOWER(HEX('...')) in MySQL.
+	 *
 	 * @return string
 	 */
-	protected function getHex() {
+	public function getHex() {
 		if ( $this->hexValue !== null ) {
 			return $this->hexValue;
 		} elseif ( $this->binaryValue !== null ) {
