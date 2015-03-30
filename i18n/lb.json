@@ -5,6 +5,7 @@
 			"Soued031"
 		]
 	},
+	"enableflow": "Flow aktivéieren",
 	"flow-desc": "Workflow-Management-System",
 	"flow-talk-taken-over": "Dës Diskussiounssäit benotzt [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow].",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|huet}} eng [$4 Matdeelung] iwwer \"[[$3|$5]]\" op [[$6]] geläscht",
@@ -200,5 +201,11 @@
 	"flow-undo-edit-topic-summary": "De Resumé vum Thema änneren",
 	"group-flow-bot": "Flow-Botten",
 	"group-flow-bot-member": "Flow-Bot",
-	"grouppage-flow-bot": "Project:Flow-Botten"
+	"grouppage-flow-bot": "Project:Flow-Botten",
+	"flow-ve-mention-context-item-label": "Ernimmen",
+	"flow-ve-mention-inspector-title": "Ernimmen",
+	"flow-ve-mention-inspector-remove-label": "Ewechhuelen",
+	"flow-ve-mention-tool-title": "E Benotzer ernimmen",
+	"flow-ve-mention-template": "ping",
+	"flow-ve-mention-inspector-invalid-user": "De Benotzernumm '$1' ass net registréiert."
 }

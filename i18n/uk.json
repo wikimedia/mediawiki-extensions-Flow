@@ -6,7 +6,8 @@
 			"Максим Підліснюк",
 			"Base",
 			"Mykola Swarnyk",
-			"Olion"
+			"Olion",
+			"Капитан Джон Шепард"
 		]
 	},
 	"flow-desc": "Система управління робочими процесами",
@@ -278,9 +279,6 @@
 	"flow-compare-revisions-header-post": "Ця сторінка відображає зміни між двома версіями допису від $3 у розділі \"[$5 $2]\" на [$4 $1].\nВи можете побачити інші версії цього допису на його [сторінці історії $6].",
 	"flow-compare-revisions-header-postsummary": "Ця сторінка відображає зміни між двома версіями підсумку допису у дописі «[$4 $2]» на [$3 $1].\nВи можете побачити інші версії цього допису на його [$5 сторінці історії].",
 	"flow-compare-revisions-header-header": "На цій сторінці відображаються {{GENDER:$2|зміни}} між двома версіями заголовку на [$3  $1].\nВи можете побачити інші версії заголовку на його [$4  сторінці історії].",
-	"flow-topic-collapsed-one-line": "Малий вигляд",
-	"flow-topic-collapsed-full": "Згорнутий вигляд",
-	"flow-topic-complete": "Повний вигляд",
 	"right-flow-hide": "Приховати теми і дописи Flow",
 	"right-flow-lock": "Закривати теми Flow",
 	"right-flow-delete": "Вилучити теми і дописи Flow",
@@ -320,5 +318,11 @@
 	"flow-preview-return-edit-post": "Продовжити редагування",
 	"flow-anonymous": "Анонім",
 	"flow-embedding-unsupported": "Обговорення іще не можна вставити.",
-	"mw-ui-unsubmitted-confirm": "У вас є невідправлені зміни на цій сторінці. Ви впевнені, що хочете піти і втратити роботу?"
+	"mw-ui-unsubmitted-confirm": "У вас є невідправлені зміни на цій сторінці. Ви впевнені, що хочете піти і втратити роботу?",
+	"apihelp-flow+edit-header-description": "Правки преамбули дошки.",
+	"flow-ve-mention-inspector-title": "Згадка",
+	"flow-ve-mention-inspector-remove-label": "Прибрати",
+	"flow-ve-mention-tool-title": "Згадати учасника",
+	"flow-ve-mention-template": "пінг",
+	"flow-ve-mention-inspector-invalid-user": "Учасник '$1' не зареєстрований."
 }

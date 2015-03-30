@@ -23,5 +23,7 @@
 	"flow-notification-reply-email-batch-bundle-body": "$1 un $4 {{PLURAL:$5|citi|cits|citi}} {{GENDER:$1|atbildēja}} par \"$2\" lapā \"$3\"",
 	"flow-link-topic": "tēma",
 	"flow-link-history": "vēsture",
-	"flow-load-more": "Ielādēt vairāk"
+	"flow-load-more": "Ielādēt vairāk",
+	"flow-undo": "atcelt",
+	"flow-ve-mention-inspector-remove-label": "Noņemt"
 }

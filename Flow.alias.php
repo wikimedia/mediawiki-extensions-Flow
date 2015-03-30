@@ -61,6 +61,11 @@ $specialPageAliases['pt'] = array(
 	'Flow' => array( 'Fluência', 'Fluencia' ),
 );
 
+/** Brazilian Portuguese (português do Brasil) */
+$specialPageAliases['pt-br'] = array(
+	'EnableFlow' => array( 'Habilitar_Flow' ),
+);
+
 /** Swedish (svenska) */
 $specialPageAliases['sv'] = array(
 	'Flow' => array( 'Flöde' ),

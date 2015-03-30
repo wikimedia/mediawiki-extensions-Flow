@@ -15,5 +15,6 @@
 	"flow-previous-diff": "→ زوړ سمون",
 	"flow-next-diff": "نوی سمون ←",
 	"flow-undo": "ناکړل",
-	"flow-undo-your-text": "ستاسې متن"
+	"flow-undo-your-text": "ستاسې متن",
+	"flow-ve-mention-inspector-remove-label": "غورځول"
 }

@@ -13,7 +13,8 @@
 			"WTM",
 			"Tar Lócesilion",
 			"Darellur",
-			"Py64"
+			"Py64",
+			"VerMa"
 		]
 	},
 	"flow-edit-header-link": "Edytuj nagłówek",
@@ -129,5 +130,9 @@
 	"flow-next-diff": "Następna edycja →",
 	"flow-undo": "cofnij",
 	"flow-undo-latest-revision": "Aktualna wersja",
-	"flow-undo-your-text": "Twój tekst"
+	"flow-undo-your-text": "Twój tekst",
+	"flow-ve-mention-inspector-title": "Oznacz",
+	"flow-ve-mention-inspector-remove-label": "Usuń",
+	"flow-ve-mention-tool-title": "Oznacz użytkownika",
+	"flow-ve-mention-inspector-invalid-user": "Nazwa użytkownika '$1' nie jest zarejestrowana."
 }
