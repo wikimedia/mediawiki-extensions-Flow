@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_9037dc49",
+        "filename": "includes/Import/LiquidThreadsApi/ConversionStrategy.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-30T17:27:26Z",
+      "side": 1,
+      "message": "indeed it should, switching over.",
+      "parentUuid": "6e7c4fa4_058635e0",
+      "revId": "77b259ea1c68a1918fc60e01ad38eadc3155872b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_a57421f9",
         "filename": "includes/Import/Postprocessor/LqtNotifications.php",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2015-03-28T01:36:51Z",
       "side": 1,
       "message": "It might be better to pass the thread ID in the EchoEvent, using $extraData, to avoid shared state.\n\nThis could go wrong if something goes in a deferred update or such.",
+      "revId": "77b259ea1c68a1918fc60e01ad38eadc3155872b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_1022ecfb",
+        "filename": "includes/Import/Postprocessor/LqtNotifications.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-30T17:27:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_a57421f9",
       "revId": "77b259ea1c68a1918fc60e01ad38eadc3155872b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_505aa485",
+        "filename": "includes/Import/Postprocessor/LqtNotifications.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-30T17:27:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_e56e9929",
+      "revId": "77b259ea1c68a1918fc60e01ad38eadc3155872b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_055dd57d",
         "filename": "includes/Notifications/Notifications.php",
         "patchSetId": 2
@@ -64,6 +118,24 @@
       "writtenOn": "2015-03-28T01:36:51Z",
       "side": 1,
       "message": "Controller.php should also use the return value (this is a better approach than a magic variable name).",
+      "revId": "77b259ea1c68a1918fc60e01ad38eadc3155872b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_f01bb0d1",
+        "filename": "includes/Notifications/Notifications.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-30T17:27:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_055dd57d",
       "revId": "77b259ea1c68a1918fc60e01ad38eadc3155872b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
