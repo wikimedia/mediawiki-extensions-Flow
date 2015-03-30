@@ -410,7 +410,6 @@ class FlowHooks {
 
 		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
 		$replacement = null;
-		$cucId = $row->cuc_id;
 		try {
 			/** @var CheckUserQuery $query */
 			$query = Container::get( 'query.checkuser' );
@@ -423,7 +422,7 @@ class FlowHooks {
 				$replacement = $formatter->format( $row, $checkUser->getContext() );
 			}
 		} catch ( Exception $e ) {
-			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting cu ' . $cucId . ' ' . $e );
+			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting cu ' . json_encode( $row ) . ' ' . $e );
 			MWExceptionHandler::logException( $e );
 		}
 		restore_error_handler();
