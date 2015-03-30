@@ -78,8 +78,8 @@ class PurgeAction extends \PurgeAction {
 	}
 
 	/**
-	 * Load the topics from the requested discussion.  Does not return anything, the goal
-	 * here is to populate $this->hashBag.
+	 * Load the header and topics from the requested discussion.  Does not return
+	 * anything, the goal here is to populate $this->hashBag.
 	 *
 	 * @param Workflow $workflow
 	 */
@@ -105,6 +105,13 @@ class PurgeAction extends \PurgeAction {
 				'sort' => 'workflow_last_update_timestamp',
 				'order' => 'desc',
 			)
+		);
+
+		// Based on Header::init.
+		$storage->find(
+			'Header',
+			array( 'rev_type_id' => $workflow->getId() ),
+			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
 		);
 
 		foreach ( $pagers as $pager ) {
