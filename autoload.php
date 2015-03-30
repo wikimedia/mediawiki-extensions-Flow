@@ -133,6 +133,7 @@ $wgAutoloadClasses += array(
 	'Flow\\Formatter\\Contributions' => __DIR__ . '/includes/Formatter/Contributions.php',
 	'Flow\\Formatter\\ContributionsQuery' => __DIR__ . '/includes/Formatter/ContributionsQuery.php',
 	'Flow\\Formatter\\ContributionsRow' => __DIR__ . '/includes/Formatter/ContributionsQuery.php',
+	'Flow\\Formatter\\DeletedContributionsRow' => __DIR__ . '/includes/Formatter/ContributionsQuery.php',
 	'Flow\\Formatter\\FeedItemFormatter' => __DIR__ . '/includes/Formatter/FeedItemFormatter.php',
 	'Flow\\Formatter\\FormatterRow' => __DIR__ . '/includes/Formatter/AbstractQuery.php',
 	'Flow\\Formatter\\HeaderViewQuery' => __DIR__ . '/includes/Formatter/RevisionViewQuery.php',
