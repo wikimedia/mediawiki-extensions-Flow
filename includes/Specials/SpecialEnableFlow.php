@@ -62,6 +62,9 @@ class SpecialEnableFlow extends FormSpecialPage {
 	public function onSubmit( array $data ) {
 		$page = $data['page'];
 		$title = Title::newFromText( $page );
+		if ( !$title ) {
+			return Status::newFatal( 'flow-special-enableflow-invalid-title', $page );
+		}
 
 		// Canonicalize so the error or confirmation message looks nicer (no underscores).
 		$page = $title->getPrefixedText();
