@@ -353,5 +353,10 @@
 	"flow-undo-your-text": "Tu texto",
 	"flow-undo-edit-header": "Edición de la cabecera",
 	"flow-undo-edit-topic-summary": "Edición del resumen del tema",
-	"flow-undo-edit-post": "Edición de una publicación"
+	"flow-undo-edit-post": "Edición de una publicación",
+	"flow-ve-mention-context-item-label": "Mencionar",
+	"flow-ve-mention-inspector-title": "Mención",
+	"flow-ve-mention-inspector-remove-label": "Eliminar",
+	"flow-ve-mention-tool-title": "Mencionar a un usuario",
+	"flow-ve-mention-inspector-invalid-user": "El nombre de usuario '$1' no está registrado."
 }
