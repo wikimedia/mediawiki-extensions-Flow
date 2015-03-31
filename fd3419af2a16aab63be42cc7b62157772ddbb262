@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_e902e274",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-31T13:25:26Z",
+      "side": 1,
+      "message": "typo: initialized",
+      "revId": "fd3419af2a16aab63be42cc7b62157772ddbb262",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_8927ae0c",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-31T13:25:26Z",
+      "side": 1,
+      "message": "Should probably change the var name since it\u0027s a $.Deferred, not a $.Promise",
+      "revId": "fd3419af2a16aab63be42cc7b62157772ddbb262",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_a985cad4",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-31T13:25:26Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this only resolve after getModuleDependencies are resolved (which can be 20 seconds later)?",
+      "revId": "fd3419af2a16aab63be42cc7b62157772ddbb262",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_09063e89",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-31T13:25:26Z",
+      "side": 1,
+      "message": "Should be {jQuery.Promise}",
+      "revId": "fd3419af2a16aab63be42cc7b62157772ddbb262",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_89f1ee93",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-03-31T13:25:26Z",
+      "side": 1,
+      "message": "Call the var `promise`? I was confused about returning a promise earlier in this method, and returning a deferred here, but turns out mw.flow.editor.load returns a promise as well.",
+      "revId": "fd3419af2a16aab63be42cc7b62157772ddbb262",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
