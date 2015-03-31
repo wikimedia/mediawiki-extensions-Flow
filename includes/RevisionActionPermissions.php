@@ -64,12 +64,12 @@ class RevisionActionPermissions {
 
 		// if there was no revision object, it's pointless to find last revision
 		// if we already fail, no need in checking most recent revision status
-		if ( $allowed && $revision !== null  ) {
+		if ( $allowed && $revision !== null ) {
 			try {
-				// Also check if the user would be allowed to perform this against
+				// Also check if the user would be allowed to perform this
 				// against the most recent revision - the last revision is the
-				// current state of an object, so checking against a revision at one
-				// point in time alone isn't enough.
+				// current state of an object, so checking against a revision at
+				// one point in time alone isn't enough.
 				/** @var CollectionCache $cache */
 				$cache = Container::get( 'collection.cache' );
 				$last = $cache->getLastRevisionFor( $revision );
@@ -79,6 +79,15 @@ class RevisionActionPermissions {
 				// If data is not in storage, just return that revision's status
 			}
 		}
+
+		if ( $allowed && $revision !== null ) {
+			$workflow = $revision->getCollection()->getWorkflow();
+			$title = $workflow->getOwnerTitle();
+
+			// if the board is deleted, nothing is allowed
+			$allowed = !$title->isDeleted() || $this->user->isAllowed( 'deletedhistory' );
+		}
+
 		return $allowed;
 	}
 
@@ -110,7 +119,7 @@ class RevisionActionPermissions {
 	/**
 	 * Check if a user is allowed to perform a certain action, against the latest
 	 * root(topic) post related to the provided revision.  This is required for
-	 * things like preventing replys to locked topics.
+	 * things like preventing replies to locked topics.
 	 *
 	 * @param PostRevision $revision
 	 * @param string $action
