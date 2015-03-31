@@ -820,6 +820,20 @@ class TopicBlock extends AbstractBlock {
 
 		$state = $revision->getModerationState();
 
+		// display simple message
+		// i18n messages:
+		//  flow-error-not-allowed-hide,
+		//  flow-error-not-allowed-reply-to-hide-topic
+		//  flow-error-not-allowed-delete
+		//  flow-error-not-allowed-reply-to-delete-topic
+		//  flow-error-not-allowed-suppress
+		//  flow-error-not-allowed-reply-to-suppress-topic
+		if ( $revision instanceof PostRevision ) {
+			$type = $revision->isTopicTitle() ? 'topic' : 'post';
+		} else {
+			$type = $revision->getRevisionType();
+		}
+
 		// Show a snippet of the relevant log entry if available.
 		if ( \LogPage::isLogType( $state ) ) {
 			// check if user has sufficient permissions to see log
@@ -860,19 +874,6 @@ class TopicBlock extends AbstractBlock {
 			}
 		}
 
-		// display simple message
-		// i18n messages:
-		//  flow-error-not-allowed-hide,
-		//  flow-error-not-allowed-reply-to-hide-topic
-		//  flow-error-not-allowed-delete
-		//  flow-error-not-allowed-reply-to-delete-topic
-		//  flow-error-not-allowed-suppress
-		//  flow-error-not-allowed-reply-to-suppress-topic
-		if ( $revision instanceof PostRevision ) {
-			$type = $revision->isTopicTitle() ? 'topic' : 'post';
-		} else {
-			$type = $revision->getType();
-		}
 		return $this->context->msg( array(
 			// set of keys to try in order
 			"flow-error-not-allowed-{$this->action}-to-$state-$type",
