@@ -73,16 +73,17 @@ class ContributionsQuery extends AbstractQuery {
 				try {
 					$result = $pager instanceof ContribsPager ? new ContributionsRow : new DeletedContributionsRow;
 					$result = $this->buildResult( $revision, $pager->getIndexField(), $result );
+					// comparing article ID to 0 to check if title is deleted
+					$deleted = $result->currentRevision->isDeleted() || $result->workflow->getOwnerTitle()->getArticleID() === 0;
 
-					// @todo: below code should also check status of board: if that's been deleted, it's posts should also be considered deleted
 					if (
 						$result instanceof ContributionsRow &&
-						( $result->currentRevision->isDeleted() || $result->currentRevision->isSuppressed() )
+						( $deleted || $result->currentRevision->isSuppressed() )
 					) {
 						// don't show deleted or suppressed entries in Special:Contributions
 						continue;
 					}
-					if ( $result instanceof DeletedContributionsRow && !$result->currentRevision->isDeleted() ) {
+					if ( $result instanceof DeletedContributionsRow && !$deleted ) {
 						// only show deleted entries in Special:DeletedContributions
 						continue;
 					}
