@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_005a8c52",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-31T23:03:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_80a77c07",
+      "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_6044a01c",
         "filename": "modules/editor/editors/ext.flow.editors.none.js",
         "patchSetId": 20
@@ -30,6 +48,24 @@
       "writtenOn": "2015-03-31T21:31:53Z",
       "side": 1,
       "message": "Either use a template or construct the HTML safely.\n\nSimplest way to construct the HTML safely is:\n\n$( \u0027\u003ca\u003e\u0027 ).attr( {\n  href: \u0027...\u0027,\n  \u0027data-flow-interactive-handler\u0027: \u0027...\u0027,\n  // etc.\n} ).text( mw.message( \u0027flow-wikitext-editor-help-preview-the-result\u0027 ).text() )\n\nThat will give you a jQuery element.  You can then use $element[0].outerHTML to get the HTML.\n\nmw.message( \u0027something\u0027 ).text() is never safe to be used in an HTML context (e.g. directly within a tag like the current code).\n\nOnly .parse() and .escaped() can be used there.  However, it can be used with jQuery\u0027s text() method, since that treats it as text.",
+      "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_80b0dc89",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-31T23:03:46Z",
+      "side": 1,
+      "message": "gah, i\u0027ve gotten after many people for this not sure how i could forget. Done.",
+      "parentUuid": "6e7c4fa4_6044a01c",
       "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_4b3f45b1",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.CommandRegistry.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-31T23:03:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_4070846e",
+      "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_c00334c0",
         "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.js",
         "patchSetId": 20
@@ -64,6 +118,24 @@
       "writtenOn": "2015-03-31T21:31:53Z",
       "side": 1,
       "message": "Merged",
+      "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_eb75f192",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-31T23:03:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_c00334c0",
       "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_8bcc7dc1",
+        "filename": "modules/editor/editors/visualeditor/ui/actions/mw.flow.ve.ui.SwitchEditorAction.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-31T23:03:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_20d0e8f6",
+      "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_004b6ccd",
         "filename": "modules/editor/editors/visualeditor/ui/actions/mw.flow.ve.ui.SwitchEditorAction.js",
         "patchSetId": 20
@@ -98,6 +188,24 @@
       "writtenOn": "2015-03-31T21:31:53Z",
       "side": 1,
       "message": "Unused parameters are not needed.  See e.g. AnnotationAction#clearAll.",
+      "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_cbd6f553",
+        "filename": "modules/editor/editors/visualeditor/ui/actions/mw.flow.ve.ui.SwitchEditorAction.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-31T23:03:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_004b6ccd",
       "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_0b4f0d3a",
+        "filename": "modules/editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.SwitchEditorTool.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-31T23:03:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_e02d1042",
+      "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_c02a542a",
         "filename": "modules/editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.SwitchEditorTool.js",
         "patchSetId": 20
@@ -132,6 +258,24 @@
       "writtenOn": "2015-03-31T21:31:53Z",
       "side": 1,
       "message": "Here too.",
+      "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_2b4a0928",
+        "filename": "modules/editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.SwitchEditorTool.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-31T23:03:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_c02a542a",
       "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_eb5f31e6",
+        "filename": "modules/editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.SwitchEditorTool.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-31T23:03:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_401e4412",
+      "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_60190026",
         "filename": "modules/editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.SwitchEditorTool.js",
         "patchSetId": 20
@@ -166,6 +328,24 @@
       "writtenOn": "2015-03-31T21:31:53Z",
       "side": 1,
       "message": "Not needed.  This is specific to the mention functionality.",
+      "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_8b523ddc",
+        "filename": "modules/editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.SwitchEditorTool.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-31T23:03:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_60190026",
       "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -189,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_4b1e6512",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-31T23:03:46Z",
+      "side": 1,
+      "message": "In a followup patch, I26c61927, i remove the three references and bring it down to just this single access in init, which will populate this.availableEditors.  From there only this.availableEditors is used.  Sound reasonable enough?",
+      "parentUuid": "6e7c4fa4_20eea8e8",
+      "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_40ede4ec",
         "filename": "modules/editor/ext.flow.editor.js",
         "patchSetId": 20
@@ -200,6 +398,24 @@
       "writtenOn": "2015-03-31T21:31:53Z",
       "side": 1,
       "message": "What kind of items?",
+      "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_0b662db8",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-31T23:03:46Z",
+      "side": 1,
+      "message": "Multiple editing nodes, such as selecting all open editors and switching them.  Will update @todo.",
+      "parentUuid": "6e7c4fa4_40ede4ec",
       "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -223,6 +439,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_8bad5d9a",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-31T23:03:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_c0c01457",
+      "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_40d40417",
         "filename": "modules/editor/ext.flow.editor.js",
         "patchSetId": 20
@@ -234,6 +468,24 @@
       "writtenOn": "2015-03-31T21:31:53Z",
       "side": 1,
       "message": "It\u0027s good to pass rejection codes in parameters for debugging.  E.g. \u0027editor-not-supported\u0027 or \u0027invalid-node\u0027.",
+      "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_ebaad180",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-31T23:03:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_40d40417",
       "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -257,6 +509,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_abb059f0",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-31T23:03:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_00ca8c70",
+      "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_e0919052",
         "filename": "modules/engine/components/board/features/flow-board-switcheditor.js",
         "patchSetId": 20
@@ -274,6 +544,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_0b506d5f",
+        "filename": "modules/engine/components/board/features/flow-board-switcheditor.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-31T23:03:46Z",
+      "side": 1,
+      "message": "seems sane, i wasn\u0027t sure the right way to go about that though.  Will save for another day.",
+      "parentUuid": "6e7c4fa4_e0919052",
+      "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_e0aaf080",
         "filename": "modules/engine/components/board/features/flow-board-switcheditor.js",
         "patchSetId": 20
@@ -285,6 +573,24 @@
       "writtenOn": "2015-03-31T21:31:53Z",
       "side": 1,
       "message": "Fix comment.",
+      "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_2b4be9b4",
+        "filename": "modules/engine/components/board/features/flow-board-switcheditor.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-31T23:03:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_e0aaf080",
       "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -319,6 +625,24 @@
       "writtenOn": "2015-03-31T21:31:53Z",
       "side": 1,
       "message": "This reads a little general.  How about:\n\na.flow-editor-color",
+      "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_2bf1a95f",
+        "filename": "modules/styles/board/editor-switcher.less",
+        "patchSetId": 20
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-03-31T23:03:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_c0b494d1",
       "revId": "1d83acd02ae516d1cd338c9d7d9de0a912e7d388",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
