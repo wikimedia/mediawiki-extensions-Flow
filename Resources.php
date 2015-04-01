@@ -54,6 +54,7 @@ $wgResourceModules += array(
 			'handlebars/flow_edit_post_ajax.partial.handlebars',
 			'handlebars/flow_edit_post.partial.handlebars',
 			'handlebars/flow_edit_topic_title.partial.handlebars',
+			'handlebars/flow_editor_switcher.partial.handlebars',
 			'handlebars/flow_errors.partial.handlebars',
 			'handlebars/flow_form_buttons.partial.handlebars',
 			'handlebars/flow_header_detail.partial.handlebars',
@@ -236,6 +237,10 @@ $wgResourceModules += array(
 			'flow-edited-by',
 			// Board header
 			"flow-board-header-browse-topics-link",
+			// editor switching
+			"flow-wikitext-editor-help",
+			"flow-wikitext-editor-help-uses-wikitext",
+			"flow-wikitext-editor-help-preview-the-result",
 		),
 	) + $mobile,
 	// @todo: upstream to mediawiki ui
@@ -287,6 +292,7 @@ $wgResourceModules += array(
 			'styles/board/content-preview.less',
 			'styles/board/form-actions.less',
 			'styles/board/terms-of-use.less',
+			'styles/board/editor-switcher.less',
 		),
 	) + $mobile,
 	'ext.flow.board.topic.styles' => $flowResourceTemplate + array(
@@ -360,6 +366,8 @@ $wgResourceModules += array(
 			'engine/components/board/features/flow-board-toc.js',
 			// Feature: VisualEditor
 			'engine/components/board/features/flow-board-visualeditor.js',
+			// Feature: Switch between editors
+			'engine/components/board/features/flow-board-switcheditor.js',
 
 			// Component: FlowBoardHistoryComponent
 			'engine/components/board/flow-boardhistory.js',
@@ -377,6 +385,7 @@ $wgResourceModules += array(
 			'ext.flow.jquery.conditionalScroll',
 			'mediawiki.api',
 			'mediawiki.util',
+			'mediawiki.api.options', // required by switch-editor feature
 		),
 		'messages' => array(
 			'flow-error-external',
@@ -421,6 +430,7 @@ $wgResourceModules += array(
 		),
 		'dependencies' => array(
 			'oojs',
+			'mediawiki.user',
 			'ext.flow.parsoid',
 			// specific editor (ext.flow.editors.*) dependencies (if any) will be loaded via JS
 		),
@@ -428,6 +438,9 @@ $wgResourceModules += array(
 	'ext.flow.editors.none' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'editor/editors/ext.flow.editors.none.js',
+		),
+		'messages' => array(
+			'flow-wikitext-switch-editor-tooltip',
 		),
 	) + $mobile,
 
@@ -443,6 +456,8 @@ $wgResourceModules += array(
 			// MentionInspectorTool must be after MentionInspector and before MentionContextItem.
 			'editor/editors/visualeditor/ui/contextitem/mw.flow.ve.ui.MentionContextItem.js',
 			'editor/editors/visualeditor/ui/widgets/mw.flow.ve.ui.MentionTargetInputWidget.js',
+			'editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.SwitchEditorTool.js',
+			'editor/editors/visualeditor/ui/actions/mw.flow.ve.ui.SwitchEditorAction.js',
 			'editor/editors/visualeditor/mw.flow.ve.CommandRegistry.js',
 			'editor/editors/visualeditor/mw.flow.ve.SequenceRegistry.js',
 		),
@@ -470,6 +485,7 @@ $wgResourceModules += array(
 			'flow-ve-mention-inspector-remove-label',
 			'flow-ve-mention-inspector-invalid-user',
 			'flow-ve-mention-tool-title',
+			'flow-ve-switch-editor-tool-title',
 		),
 	),
 
