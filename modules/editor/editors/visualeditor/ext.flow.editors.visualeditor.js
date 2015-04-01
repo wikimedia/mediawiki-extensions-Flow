@@ -186,8 +186,6 @@
 
 	mw.flow.editors.visualeditor.static.isSupported = function () {
 		return !!(
-			mw.user.options.get( 'visualeditor-enable' ) &&
-
 			// ES5 support, from es5-skip.js
 			( function () {
 				// This test is based on 'use strict',
