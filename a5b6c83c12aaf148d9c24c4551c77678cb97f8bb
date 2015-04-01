@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_3ab0143d",
+        "filename": "modules/editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.SwitchEditorTool.js",
+        "patchSetId": 23
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-01T01:10:56Z",
+      "side": 1,
+      "message": "This needs to be defined and passed through to JS.",
+      "revId": "a5b6c83c12aaf148d9c24c4551c77678cb97f8bb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_1ab5182f",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 23
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-01T01:10:56Z",
+      "side": 1,
+      "message": "It should skip trying to do this if the user is not logged in, since it will just fail.",
+      "revId": "a5b6c83c12aaf148d9c24c4551c77678cb97f8bb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
