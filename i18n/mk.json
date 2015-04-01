@@ -353,6 +353,7 @@
 	"flow-special-enableflow-page": "На која страница да се вклучи Тек",
 	"flow-special-enableflow-header": "Првично заглавие на таблата со Тек (викитекст)",
 	"flow-special-enableflow-board-already-exists": "Веќе има табла со Тек на [[$1]].",
+	"flow-special-enableflow-invalid-title": "Укажаната страница не претставува важечки наслов на страница",
 	"flow-special-enableflow-page-already-exists": "Веќе има страница без Тек на [[$1]]. Ако сепак сакате да има табла и таму, тогаш преместете ја постоечката страница во архивата, избришете го пренасочувањаето, па повторно послужете се Special:EnableFlow. Во заглавието ставете го името на архивата",
 	"flow-special-enableflow-confirmation": "Успешно создадовте табла со Тек на [[$1]].",
 	"flow-spam-confirmedit-form": "Поврдете дека не сте робот, внесувајќи го прикажаното во полето: $1",

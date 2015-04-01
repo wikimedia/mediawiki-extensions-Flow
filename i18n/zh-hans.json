@@ -367,6 +367,7 @@
 	"flow-special-enableflow-page": "要启用Flow的页面",
 	"flow-special-enableflow-header": "Flow板块的最初页眉（wiki文本）",
 	"flow-special-enableflow-board-already-exists": "在[[$1]]已存在Flow板块。",
+	"flow-special-enableflow-invalid-title": "提供的页面不是一个有效的页面标题",
 	"flow-special-enableflow-page-already-exists": "在[[$1]]已存在一个非Flow页面。如果您仍然希望在此创建Flow板块，请将现有页面移动至一个存档，删除重定向，之后再次使用Special:EnableFlow。在页眉处包含存档名称",
 	"flow-special-enableflow-confirmation": "您已成功在[[$1]]创建一个Flow板块。",
 	"flow-spam-confirmedit-form": "请输入下面的验证码已确认您是真人：$1",

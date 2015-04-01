@@ -76,6 +76,7 @@
 	"flow-topic-html-title": "$1 op $2",
 	"flow-load-more": "Mih lahde",
 	"flow-special-type": "Zoot",
+	"flow-special-enableflow-invalid-title": "The provided page is not a valid page title\n<!-- \nhttps://translatewiki.net/wiki/Thread:Support/About_MediaWiki:Flow-special-enableflow-invalid-title/en\n-->",
 	"flow-preview-warning": "Do sühs en onjeseschte Ußjahb vöraf. Donn op „{{int:flow-newtopic-save}}“ kleke zom Veröffentlesche, udder „{{int:flow-preview-return-edit-post}}“, öm mem Schrihve wigger ze maache.",
 	"flow-preview-return-edit-post": "Blihv beim Ändere",
 	"flow-anonymous": "Nahmeloßß",

@@ -93,7 +93,7 @@
 	"flow-topic-action-lock-topic": "Thema sperren",
 	"flow-topic-action-unlock-topic": "Thema freigeben",
 	"flow-topic-action-summarize-topic": "Zusammenfassen",
-	"flow-topic-action-resummarize-topic": "Bearbeitungszusammenfassung",
+	"flow-topic-action-resummarize-topic": "Zusammenfassung bearbeiten",
 	"flow-topic-action-suppress-topic": "Thema unterdrücken",
 	"flow-topic-action-unhide-topic": "Thema einblenden",
 	"flow-topic-action-undelete-topic": "Thema wiederherstellen",
@@ -354,6 +354,7 @@
 	"flow-special-enableflow-page": "Seite, auf der Flow aktiviert werden soll",
 	"flow-special-enableflow-header": "Erste Überschrift des Flow-Boards (Wikitext)",
 	"flow-special-enableflow-board-already-exists": "Es gibt bereits ein Flow-Board unter [[$1]].",
+	"flow-special-enableflow-invalid-title": "Die angegebene Seite ist kein gültiger Seitentitel",
 	"flow-special-enableflow-page-already-exists": "Es gibt bereits eine Nicht-Flow-Seite unter [[$1]]. Falls du hier ein Flow-Board erstellen möchtest, verschiebe bitte die vorhandene Seite in ein Archiv, lösche die Weiterleitung und benutze erneut „Spezial:Flow aktivieren“. Schließe den Namen des Archivs in der Überschrift ein.",
 	"flow-special-enableflow-confirmation": "Du hast erfolgreich ein Flow-Board unter [[$1]] erstellt.",
 	"flow-spam-confirmedit-form": "Bitte bestätige, dass du ein Mensch bist, indem du das unten stehende Captcha löst: $1",
@@ -471,5 +472,10 @@
 	"flow-ve-mention-inspector-remove-label": "Entfernen",
 	"flow-ve-mention-tool-title": "Einen Benutzer erwähnen",
 	"flow-ve-mention-template": "ping",
-	"flow-ve-mention-inspector-invalid-user": "Der Benutzername „$1“ ist nicht registriert."
+	"flow-ve-mention-inspector-invalid-user": "Der Benutzername „$1“ ist nicht registriert.",
+	"flow-wikitext-editor-help": "Wikitext $1 und du kannst jederzeit $2.",
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|verwendet Markup]]",
+	"flow-wikitext-editor-help-preview-the-result": "das Ergebnis vorschauen",
+	"flow-wikitext-switch-editor-tooltip": "Zum VisualEditor wechseln",
+	"flow-ve-switch-editor-tool-title": "Zum Wikitext-Editor wechseln"
 }
