@@ -23,12 +23,6 @@ class ApiParsoidUtilsFlow extends ApiBase {
 			return; // helps static analysis know execution does not continue past self::dieUsage
 		}
 
-		if ( $params['to'] === 'html' ) {
-			/** @var ContentFixer $contentFixer */
-			$contentFixer = Container::get( 'content_fixer' );
-			$content = $contentFixer->apply( $content, $page->getTitle() );
-		}
-
 		$result = array(
 			'format' => $params['to'],
 			'content' => $content,
