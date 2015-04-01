@@ -24,7 +24,9 @@
 		this.$node.keyup( this.autoExpand );
 		this.autoExpand.call( this.$node.get( 0 ) );
 
-		this.attachSwitcher();
+		// only attach switcher if VE is actually supported
+		// code to figure out if that VE is supported is in that module
+		mw.loader.using( 'ext.flow.editors.visualeditor', $.proxy( this.attachControls, this ) );
 	};
 
 	OO.inheritClass( mw.flow.editors.none, mw.flow.editors.AbstractEditor );
@@ -120,25 +122,41 @@
 		}
 	};
 
-	mw.flow.editors.none.prototype.attachSwitcher = function() {
-		var board = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( this.$node ),
+	mw.flow.editors.none.prototype.attachControls = function() {
+		var $preview, $controls, templateArgs,
+			board = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( this.$node );
+
+		if ( mw.flow.editors.visualeditor.static.isSupported() ) {
 			$preview = $( '<a>' ).attr( {
 				href: '#',
 				'data-flow-interactive-handler': 'switchEditor',
 				'data-flow-target': '< form textarea'
-			} ).text( mw.message( 'flow-wikitext-editor-help-preview-the-result' ).text() ),
-			$switcher = $( mw.flow.TemplateEngine.processTemplateGetFragment(
-				'flow_editor_switcher.partial',
-				{
-					help_text: mw.message( 'flow-wikitext-editor-help' ).params( [
-						mw.message( 'flow-wikitext-editor-help-uses-wikitext' ).parse(),
-						$preview[0].outerHTML
-					] ).parse()
-				}
-			) ).children();
+			} ).text( mw.message( 'flow-wikitext-editor-help-preview-the-result' ).text() );
+
+			templateArgs = {
+				enable_switcher: true,
+				help_text: mw.message( 'flow-wikitext-editor-help-and-preview' ).params( [
+					mw.message( 'flow-wikitext-editor-help-uses-wikitext' ).parse(),
+					$preview[0].outerHTML
+				] ).parse()
+			};
+		} else {
+			// render just a basic help text
+			templateArgs = {
+				enable_switcher: false,
+				help_text: mw.message( 'flow-wikitext-editor-help' ).params( [
+					mw.message( 'flow-wikitext-editor-help-uses-wikitext' ).parse()
+				] ).parse()
+			};
+		}
+
+		$controls = $( mw.flow.TemplateEngine.processTemplateGetFragment(
+			'flow_editor_switcher.partial',
+			templateArgs
+		) ).children();
 
 		// insert help information + editor switcher, and make it interactive
-		board.emitWithReturn( 'makeContentInteractive', $switcher.insertAfter( this.$node ) );
+		board.emitWithReturn( 'makeContentInteractive', $controls.insertAfter( this.$node ) );
 	};
 
 	mw.flow.editors.none.prototype.focus = function() {

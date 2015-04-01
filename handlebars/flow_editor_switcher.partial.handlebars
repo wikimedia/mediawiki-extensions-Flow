@@ -3,15 +3,16 @@
 		{{! this message is manually constructed in ext.flow.editors.none.js !}}
 		<p class="flow-wikitext-editor-help">{{html help_text}}</p>
 
-		<a href="#"
-		   title="{{l10n "flow-wikitext-switch-editor-tooltip"}}"
-		   class="mw-ui-button mw-ui-constructive flow-js flow-editor-color"
-		   data-flow-interactive-handler="switchEditor"
-		   data-flow-load-handler="requiresVisualEditor"
-		   data-flow-target="< form textarea"
-		>
-			&lt;/&gt;
-		</a>
+		{{#if enable_switcher}}
+			<a href="#"
+			   title="{{l10n "flow-wikitext-switch-editor-tooltip"}}"
+			   class="mw-ui-button mw-ui-constructive flow-js flow-editor-color"
+			   data-flow-interactive-handler="switchEditor"
+			   data-flow-target="< form textarea"
+			>
+				&lt;/&gt;
+			</a>
+		{{/if}}
 	</div>
 	<div class="flow-ui-clear"></div>
 </div>

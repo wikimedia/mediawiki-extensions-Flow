@@ -37,9 +37,11 @@
 		{ include: [ 'flowMention' ] }
 	];
 
-	mw.flow.ve.Target.static.actionGroups = [
-		{ include: [ 'flowSwitchEditor' ] }
-	];
+	if ( mw.flow.editors.none.static.isSupported() ) {
+		mw.flow.ve.Target.static.actionGroups = [
+			{ include: [ 'flowSwitchEditor' ] }
+		];
+	}
 
 	// Methods
 

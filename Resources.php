@@ -239,6 +239,7 @@ $wgResourceModules += array(
 			"flow-board-header-browse-topics-link",
 			// editor switching
 			"flow-wikitext-editor-help",
+			"flow-wikitext-editor-help-and-preview",
 			"flow-wikitext-editor-help-uses-wikitext",
 			"flow-wikitext-editor-help-preview-the-result",
 		),
@@ -478,6 +479,7 @@ $wgResourceModules += array(
 			'site',
 			'user',
 			'mediawiki.api',
+			'ext.flow.editors.none', // needed to figure out if that editor is supported, for switch button
 		),
 		'messages' => array(
 			'flow-ve-mention-context-item-label',
