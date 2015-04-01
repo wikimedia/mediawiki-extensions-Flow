@@ -121,6 +121,11 @@
 	};
 
 	mw.flow.editors.none.prototype.attachSwitcher = function() {
+		if ( !mw.flow.editors.visualeditor.static.isSupported() ) {
+			// don't attach switcher is VE isn't supported
+			return;
+		}
+
 		var board = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( this.$node ),
 			$preview = $( '<a>' ).attr( {
 				href: '#',

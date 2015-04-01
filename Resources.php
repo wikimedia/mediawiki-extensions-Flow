@@ -439,6 +439,10 @@ $wgResourceModules += array(
 		'scripts' => array(
 			'editor/editors/ext.flow.editors.none.js',
 		),
+		'dependencies' => array(
+			'ext.flow.editors.visualeditor', // needed to figure out if that editor is supported, for switch button
+			// @todo this should be refactored - I'd prefer editors to not have to know about each other
+		),
 		'messages' => array(
 			'flow-wikitext-switch-editor-tooltip',
 		),
@@ -478,6 +482,7 @@ $wgResourceModules += array(
 			'site',
 			'user',
 			'mediawiki.api',
+			'ext.flow.editors.none', // needed to figure out if that editor is supported, for switch button
 		),
 		'messages' => array(
 			'flow-ve-mention-context-item-label',
