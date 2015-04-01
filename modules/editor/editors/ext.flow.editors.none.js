@@ -24,7 +24,9 @@
 		this.$node.keyup( this.autoExpand );
 		this.autoExpand.call( this.$node.get( 0 ) );
 
-		this.attachSwitcher();
+		// only attach switcher is VE is actually supported
+		// code to figure out if that VE is supported is in that module
+		mw.loader.using( 'ext.flow.editors.visualeditor', $.proxy( this.attachSwitcher, this ) );
 	};
 
 	OO.inheritClass( mw.flow.editors.none, mw.flow.editors.AbstractEditor );
@@ -121,6 +123,11 @@
 	};
 
 	mw.flow.editors.none.prototype.attachSwitcher = function() {
+		if ( !mw.flow.editors.visualeditor.static.isSupported() ) {
+			// don't attach switcher is VE isn't supported
+			return;
+		}
+
 		var board = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( this.$node ),
 			$preview = $( '<a>' ).attr( {
 				href: '#',

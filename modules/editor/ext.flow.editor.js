@@ -192,6 +192,7 @@
 		 *  and call switchEditor for each iteration.
 		 *
 		 * @param {jQuery} $node
+		 * @param {string} desiredEditor
 		 * @return {jQuery.Promise} Will resolve once editor instance is loaded
 		 */
 		switchEditor: function ( $node, desiredEditor ) {

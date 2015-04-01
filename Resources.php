@@ -478,6 +478,7 @@ $wgResourceModules += array(
 			'site',
 			'user',
 			'mediawiki.api',
+			'ext.flow.editors.none', // needed to figure out if that editor is supported, for switch button
 		),
 		'messages' => array(
 			'flow-ve-mention-context-item-label',
