@@ -104,7 +104,7 @@
 	"flow-topic-action-lock-topic": "Lock topic",
 	"flow-topic-action-unlock-topic": "Unlock topic",
 	"flow-topic-action-summarize-topic": "Summarize",
-	"flow-topic-action-resummarize-topic": "Edit the summary",
+	"flow-topic-action-resummarize-topic": "Edit the topic summary",
 	"flow-topic-action-suppress-topic": "Suppress topic",
 	"flow-topic-action-unhide-topic": "Unhide topic",
 	"flow-topic-action-undelete-topic": "Undelete topic",
