@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_29ca0ca3",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-01T16:56:45Z",
+      "side": 1,
+      "message": "s/is/if/",
+      "revId": "8189ed89db1fb62504681ae03d84678bea597003",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_e9bf34f5",
+        "filename": "modules/engine/components/board/features/flow-board-switcheditor.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-01T16:56:45Z",
+      "side": 1,
+      "message": "this was supposed to be what hides the switcher, but aparently its not working?",
+      "revId": "8189ed89db1fb62504681ae03d84678bea597003",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
