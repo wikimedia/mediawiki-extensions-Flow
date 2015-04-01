@@ -191,7 +191,7 @@
 			// ES5 support, from es5-skip.js
 			( function () {
 				// This test is based on 'use strict',
-				// which is inherited from the top-leve function.
+				// which is inherited from the top-level function.
 				return !this && !!Function.prototype.bind;
 			}() ) &&
 
