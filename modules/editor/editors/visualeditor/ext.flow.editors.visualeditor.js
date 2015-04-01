@@ -191,13 +191,16 @@
 			// ES5 support, from es5-skip.js
 			( function () {
 				// This test is based on 'use strict',
-				// which is inherited from the top-leve function.
+				// which is inherited from the top-level function.
 				return !this && !!Function.prototype.bind;
 			}() ) &&
 
 			// Since VE commit e2fab2f1ebf2a28f18b8ead08c478c4fc95cd64e, SVG is required
 			document.createElementNS &&
-			document.createElementNS( 'http://www.w3.org/2000/svg', 'svg' ).createSVGRect
+			document.createElementNS( 'http://www.w3.org/2000/svg', 'svg' ).createSVGRect &&
+
+			// ve needs to be turned on as a valid editor
+			mw.config.get( 'wgFlowEditorList' ).indexOf( 'visualeditor' ) !== -1
 		);
 	};
 
