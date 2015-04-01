@@ -486,6 +486,18 @@ $wgResourceModules += array(
 			'editor/ext.flow.parsoid.js',
 		),
 	) + $mobile,
+	// This integrates with core mediawiki.messagePoster, and the module name
+	// must be exactly this.
+	'mediawiki.messagePoster.flow-board' => $flowResourceTemplate + array(
+		'scripts' => array(
+			'messagePoster/ext.flow.messagePoster.js',
+		),
+		'dependencies' => array(
+			'oojs',
+			'mediawiki.api',
+			'mediawiki.messagePoster',
+		),
+	) + $mobile,
 	'ext.flow.jquery.conditionalScroll' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'engine/misc/jquery.conditionalScroll.js',
