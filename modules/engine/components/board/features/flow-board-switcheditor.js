@@ -30,8 +30,8 @@
 	 * code for switching, so this is only run by clicking the switch button from 'none'.
 	 * If we add more editors later this will have to be revisited.
 	 *
-	 * @param {Event}
-	 * @returns {$.Promise}
+	 * @param {Event} event
+	 * @returns {jQuery.Promise}
 	 */
 	FlowBoardComponentSwitchEditorFeatureMixin.UI.events.interactiveHandlers.switchEditor = function ( event ) {
 		var $this = $( this ),
@@ -45,25 +45,6 @@
 		}
 
 		return mw.flow.editor.switchEditor( $target, 'visualeditor' );
-	};
-
-	/**
-	 * Hide wikitext editor switchEditor controls on load if visualeditor is not available.
-	 *
-	 * @param {jQuery} event
-	 */
-	FlowBoardComponentSwitchEditorFeatureMixin.UI.events.loadHandlers.requiresVisualEditor = function ( $switcher ) {
-		if ( mw.config.get( 'wgFlowEditorList' ).indexOf( 'visualeditor' ) === -1 ) {
-			$switcher.hide();
-		} else {
-			// this just pulls in a small bit of code, the full VE is not pulled in until
-			// the editor is initialized.
-			mw.loader.using( 'ext.flow.editors.visualeditor', function() {
-				if ( !mw.flow.editors.visualeditor.static.isSupported() ) {
-					$switcher.hide();
-				}
-			} );
-		}
 	};
 
 	// Mixin to FlowComponent
