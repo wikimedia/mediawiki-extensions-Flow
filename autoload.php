@@ -40,6 +40,7 @@ $wgAutoloadClasses += array(
 	'Flow\\Block\\TopicBlock' => __DIR__ . '/includes/Block/Topic.php',
 	'Flow\\Block\\TopicListBlock' => __DIR__ . '/includes/Block/TopicList.php',
 	'Flow\\Block\\TopicSummaryBlock' => __DIR__ . '/includes/Block/TopicSummary.php',
+	'Flow\\BoardMover' => __DIR__ . '/includes/BoardMover.php',
 	'Flow\\Collection\\AbstractCollection' => __DIR__ . '/includes/Collection/AbstractCollection.php',
 	'Flow\\Collection\\CollectionCache' => __DIR__ . '/includes/Collection/CollectionCache.php',
 	'Flow\\Collection\\HeaderCollection' => __DIR__ . '/includes/Collection/HeaderCollection.php',

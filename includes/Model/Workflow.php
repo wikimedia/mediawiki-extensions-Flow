@@ -88,7 +88,7 @@ class Workflow {
 		$obj->isNew = false;
 		$obj->type = $row['workflow_type'];
 		$obj->wiki = $row['workflow_wiki'];
-		$obj->pageId = $row['workflow_page_id'];
+		$obj->pageId = (int)$row['workflow_page_id'];
 		$obj->namespace = (int) $row['workflow_namespace'];
 		$obj->titleText = $row['workflow_title_text'];
 		$obj->lastModified = $row['workflow_last_update_timestamp'];
@@ -143,6 +143,30 @@ class Workflow {
 		$obj->updateLastModified( $obj->id );
 
 		return $obj;
+	}
+
+	/**
+	 * Update the workflow after a page move.
+	 *
+	 * @param Title $oldTitle The title the workflow is currently located at
+	 * @param Title $newTitle The title the workflow is moving to. During the page move
+	 *  process this has not yet been written out to DB and does not have an articleId()
+	 * @throws DataModelException
+	 */
+	public function updateFromTitle( Title $oldTitle, Title $newTitle ) {
+		// temporary hack. @todo write maintenance script to fix all of these
+		if ( $this->pageId === 0 ) {
+			if ( $this->getOwnerTitle()->equals( $oldTitle ) ) {
+				$this->pageId = $oldTitle->getArticleID();
+			} else {
+				throw new DataModelException( "The provided oldTitle ({$oldTitle}) does not match this workflow." );
+			}
+		} elseif ( $oldTitle->getArticleID() !== $this->pageId ) {
+			throw new DataModelException( 'Must update from title with same page id. ' . $this->pageId . ' !== ' . $title->getArticleID() );
+		}
+
+		$this->namespace = $newTitle->getNamespace();
+		$this->titleText = $newTitle->getDBkey();
 	}
 
 	/**
