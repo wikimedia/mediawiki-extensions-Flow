@@ -119,7 +119,7 @@
 		/**
 		 * Get the editor's text format.
 		 *
-		 * @param {jQuery} $node
+		 * @param {jQuery} [$node]
 		 * @return {string}
 		 */
 		getFormat: function ( $node ) {
