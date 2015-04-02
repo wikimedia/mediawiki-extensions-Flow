@@ -34,6 +34,11 @@ class WorkflowLoaderFactory {
 	protected $defaultWorkflowName;
 
 	/**
+	 * @var bool
+	 */
+	protected $pageMoveInProgress = false;
+
+	/**
 	 * @param ManagerGroup $storage
 	 * @param BlockFactory $blockFactory
 	 * @param SubmissionHandler $submissionHandler
@@ -49,6 +54,10 @@ class WorkflowLoaderFactory {
 		$this->blockFactory = $blockFactory;
 		$this->submissionHandler = $submissionHandler;
 		$this->defaultWorkflowName = $defaultWorkflowName;
+	}
+
+	public function pageMoveInProgress() {
+		$this->pageMoveInProgress = true;
 	}
 
 	/**
@@ -118,7 +127,7 @@ class WorkflowLoaderFactory {
 		if ( !$workflow ) {
 			throw new UnknownWorkflowIdException( 'Invalid workflow requested by id', 'invalid-input' );
 		}
-		if ( $title !== false && !$workflow->matchesTitle( $title ) ) {
+		if ( $title !== false && $this->pageMoveInProgress === false && !$workflow->matchesTitle( $title ) ) {
 			throw new InvalidInputException( 'Flow workflow is for different page', 'invalid-input' );
 		}
 
