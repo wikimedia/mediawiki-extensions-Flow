@@ -92,7 +92,7 @@
 	"flow-topic-action-lock-topic": "Заклучи теми",
 	"flow-topic-action-unlock-topic": "Отклучи тема",
 	"flow-topic-action-summarize-topic": "Дај краток опис",
-	"flow-topic-action-resummarize-topic": "Измени опис",
+	"flow-topic-action-resummarize-topic": "Уреди опис на темата",
 	"flow-topic-action-suppress-topic": "Притај тема",
 	"flow-topic-action-unhide-topic": "Откриј тема",
 	"flow-topic-action-undelete-topic": "Обнови тема",
@@ -502,5 +502,11 @@
 	"flow-ve-mention-inspector-remove-label": "Отстрани",
 	"flow-ve-mention-tool-title": "Спомни корисник",
 	"flow-ve-mention-template": "пинг",
-	"flow-ve-mention-inspector-invalid-user": "Корисничкото име „$1“ не е регистрирано."
+	"flow-ve-mention-inspector-invalid-user": "Корисничкото име „$1“ не е регистрирано.",
+	"flow-wikitext-editor-help": "Викитекстот $1.",
+	"flow-wikitext-editor-help-and-preview": "Викитекстот $1 и можете да го $2 во секое време.",
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|користи означување]]",
+	"flow-wikitext-editor-help-preview-the-result": "прегледате исходот",
+	"flow-wikitext-switch-editor-tooltip": "Префрли на ВизуеленУредник",
+	"flow-ve-switch-editor-tool-title": "Префрли на викитекст"
 }

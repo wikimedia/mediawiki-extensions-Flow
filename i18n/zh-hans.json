@@ -106,7 +106,7 @@
 	"flow-topic-action-lock-topic": "锁定话题",
 	"flow-topic-action-unlock-topic": "解锁话题",
 	"flow-topic-action-summarize-topic": "摘要",
-	"flow-topic-action-resummarize-topic": "编辑摘要",
+	"flow-topic-action-resummarize-topic": "编辑话题摘要",
 	"flow-topic-action-suppress-topic": "锁定主题",
 	"flow-topic-action-unhide-topic": "显示话题",
 	"flow-topic-action-undelete-topic": "还原话题",
@@ -516,5 +516,11 @@
 	"flow-ve-mention-inspector-remove-label": "移除",
 	"flow-ve-mention-tool-title": "提及一位用户",
 	"flow-ve-mention-template": "ping",
-	"flow-ve-mention-inspector-invalid-user": "用户名“$1”未注册。"
+	"flow-ve-mention-inspector-invalid-user": "用户名“$1”未注册。",
+	"flow-wikitext-editor-help": "Wiki文本$1。",
+	"flow-wikitext-editor-help-and-preview": "Wiki文本$1并且您随时都可以$2。",
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|使用标记]]",
+	"flow-wikitext-editor-help-preview-the-result": "预览结果",
+	"flow-wikitext-switch-editor-tooltip": "切换为可视化编辑器",
+	"flow-ve-switch-editor-tool-title": "切换为Wiki文本编辑器"
 }

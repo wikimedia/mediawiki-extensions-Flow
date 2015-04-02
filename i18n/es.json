@@ -106,7 +106,7 @@
 	"flow-topic-action-lock-topic": "Bloquear tema",
 	"flow-topic-action-unlock-topic": "Desbloquear tema",
 	"flow-topic-action-summarize-topic": "Resumir",
-	"flow-topic-action-resummarize-topic": "Editar resumen",
+	"flow-topic-action-resummarize-topic": "Editar el resumen del tema",
 	"flow-topic-action-suppress-topic": "Suprimir el tema",
 	"flow-topic-action-unhide-topic": "Mostrar tema",
 	"flow-topic-action-undelete-topic": "Restaurar tema",
@@ -320,6 +320,7 @@
 	"flow-special-enableflow-page": "Página donde se activará Flow",
 	"flow-special-enableflow-header": "Cabecera inicial del panel de discusión Flow (wikitexto)",
 	"flow-special-enableflow-board-already-exists": "Ya existe un panel de mensajes Flow en [[$1]]",
+	"flow-special-enableflow-invalid-title": "La página dada no es un título de página válido",
 	"flow-special-enableflow-page-already-exists": "En estos momentos hay una página en [[$1]] que no es parte de Flow. Si quieres colocar un panel de discusión aquí debes mover la página actual a un archivo, borrar la redirección, y volver a usar esta funcionalidad. Incluye el nombre de la página archivada en la cabecera",
 	"flow-special-enableflow-confirmation": "Has creado un nuevo panel de discusión en [[$1]].",
 	"flow-spam-confirmedit-form": "Confirma que eres un humano resolviendo el siguiente captha: $1",
@@ -358,5 +359,10 @@
 	"flow-ve-mention-inspector-title": "Mención",
 	"flow-ve-mention-inspector-remove-label": "Eliminar",
 	"flow-ve-mention-tool-title": "Mencionar a un usuario",
-	"flow-ve-mention-inspector-invalid-user": "El nombre de usuario '$1' no está registrado."
+	"flow-ve-mention-inspector-invalid-user": "El nombre de usuario '$1' no está registrado.",
+	"flow-wikitext-editor-help": "El wikitexto $1.",
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|usa marcado (\"markup\")]]",
+	"flow-wikitext-editor-help-preview-the-result": "previsualiza el resultado",
+	"flow-wikitext-switch-editor-tooltip": "Cambiar al editor visual",
+	"flow-ve-switch-editor-tool-title": "Cambiar al editor de wikitexto"
 }

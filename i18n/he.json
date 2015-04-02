@@ -96,7 +96,7 @@
 	"flow-topic-action-lock-topic": "נעילת נושא",
 	"flow-topic-action-unlock-topic": "ביטול נעילת נושא",
 	"flow-topic-action-summarize-topic": "לסכם",
-	"flow-topic-action-resummarize-topic": "עריכת הסיכום",
+	"flow-topic-action-resummarize-topic": "עריכת סיכום הנושא",
 	"flow-topic-action-suppress-topic": "להעלים נושא",
 	"flow-topic-action-unhide-topic": "ביטול הסתרת נושא",
 	"flow-topic-action-undelete-topic": "ביטול מחיקת נושא",
@@ -506,5 +506,11 @@
 	"flow-ve-mention-inspector-remove-label": "הסרה",
 	"flow-ve-mention-tool-title": "אזכור משתמש",
 	"flow-ve-mention-template": "ping",
-	"flow-ve-mention-inspector-invalid-user": "שם המשתמש \"$1\" אינו רשום."
+	"flow-ve-mention-inspector-invalid-user": "שם המשתמש \"$1\" אינו רשום.",
+	"flow-wikitext-editor-help": "קוד ויקי $1.",
+	"flow-wikitext-editor-help-and-preview": "קוד ויקי $1 ובאפשרותך $2 בכל זמן.",
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|משתמש בשפת עיצוב]]",
+	"flow-wikitext-editor-help-preview-the-result": "לראות תצוגה מקדימה של התוצאה",
+	"flow-wikitext-switch-editor-tooltip": "מעבר לעורך החזותי",
+	"flow-ve-switch-editor-tool-title": "מעבר לעורך קוד ויקי"
 }

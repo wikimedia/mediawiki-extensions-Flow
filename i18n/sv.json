@@ -446,5 +446,9 @@
 	"flow-talk-conversion-archive-edit-reason": "Konvertering av diskussion i wikitext till Flow",
 	"group-flow-bot": "Flow-bot",
 	"group-flow-bot-member": "Flow-Bot",
-	"grouppage-flow-bot": "Project:Flow-bot"
+	"grouppage-flow-bot": "Project:Flow-bot",
+	"flow-wikitext-editor-help": "Wikitext $1.",
+	"flow-wikitext-editor-help-preview-the-result": "förhandsgranska resultatet",
+	"flow-wikitext-switch-editor-tooltip": "Byt till VisualEditor",
+	"flow-ve-switch-editor-tool-title": "Byt till wikitext-redigeraren"
 }
