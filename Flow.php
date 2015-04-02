@@ -132,6 +132,8 @@ $wgHooks['UnwatchArticle'][] = 'FlowHooks::onWatchArticle';
 $wgHooks['CanonicalNamespaces'][] = 'FlowHooks::onCanonicalNamespaces';
 $wgHooks['MovePageIsValidMove'][] = 'FlowHooks::onMovePageIsValidMove';
 $wgHooks['AbortMove'][] = 'FlowHooks::onAbortMove';
+$wgHooks['TitleMove'][] = 'FlowHooks::onTitleMove';
+$wgHooks['TitleMoveComplete'][] = 'FlowHooks::onTitleMoveComplete';
 $wgHooks['TitleSquidURLs'][] = 'FlowHooks::onTitleSquidURLs';
 $wgHooks['WatchlistEditorBuildRemoveLine'][] = 'FlowHooks::onWatchlistEditorBuildRemoveLine';
 $wgHooks['WatchlistEditorBeforeFormRender'][] = 'FlowHooks::onWatchlistEditorBeforeFormRender';
@@ -343,7 +345,7 @@ $wgFlowAbuseFilterEmergencyDisableCount = 50;
 $wgFlowAbuseFilterEmergencyDisableAge = 86400; // One day.
 
 // Actions that must pass through to MediaWiki on flow enabled pages
-$wgFlowCoreActionWhitelist = array( 'info', 'protect', 'unprotect', 'unwatch', 'watch', 'history', 'wikilove' );
+$wgFlowCoreActionWhitelist = array( 'info', 'protect', 'unprotect', 'unwatch', 'watch', 'history', 'wikilove', 'move' );
 
 // When set to true Flow will compile templates into their intermediate forms
 // on every run.  When set to false Flow will use the versions already written
