@@ -1199,4 +1199,13 @@ $c['formatter.undoedit'] = function( $c ) {
 	);
 };
 
+$c['board_mover'] = function( $c ) {
+	return new Flow\BoardMover(
+		$c['db.factory'],
+		$c['memcache.buffered'],
+		$c['storage'],
+		$c['occupation_controller']->getTalkpageManager()
+	);
+};
+
 return $c;

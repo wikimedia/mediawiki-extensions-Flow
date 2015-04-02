@@ -1041,8 +1041,28 @@ class FlowHooks {
 	}
 
 	public static function onMovePageIsValidMove( Title $oldTitle, Title $newTitle, Status $status ) {
-		if ( self::$occupationController->isTalkpageOccupied( $oldTitle ) ) {
+		global $wgFlowOccupyNamespaces, $wgUser;
+
+		// We only care about moving flow boards
+		if ( $oldTitle->getContentModel() !== CONTENT_MODEL_FLOW_BOARD ) {
+			return true;
+		}
+
+		// pages within the Topic namespace are not movable
+		if ( $oldTitle->getNamespace() === NS_TOPIC ) {
 			$status->fatal( 'flow-error-move' );
+			return false;
+		}
+
+		$occupationController = Container::get( 'occupation_controller' );
+		if (
+			// If the destination is not already a valid flow location
+			!$occupationController->isTalkpageOccupied( $newTitle, false )
+			&&
+			// and the user is not allowed to create new flow boards
+			!$wgUser->isAllowed( 'flow-create-board' )
+		) {
+			$status->fatal( 'flow-error-move-no-create-permissions' );
 			return false;
 		}
 
@@ -1324,6 +1344,31 @@ class FlowHooks {
 		if ( $title->inNamespace( NS_TOPIC ) ) {
 			$error = FlowHooks::getTopicDeletionError( $title );
 			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Occurs at the begining of the MovePage process. Perhaps ContentModel should be
+	 * extended to be notified about moves explicitly.
+	 */
+	public static function onTitleMove( Title $oldTitle, Title $newTitle, User $user ) {
+		if ( $oldTitle->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
+			// complete hack to make sure that when the page is saved to new
+			// location and rendered it doesn't throw an error about the wrong title
+			Container::get( 'factory.loader.workflow' )->pageMoveInProgress();
+			// open a database transaction and prepare everything for the move, but
+			// don't commit yet. That is done below in self::onTitleMoveComplete
+			Container::get( 'board_mover' )->prepareMove( $oldTitle, $newTitle );
+		}
+
+		return true;
+	}
+
+	public static function onTitleMoveComplete( Title $oldTitle, Title $newTitle, User $user, $pageid, $redirid, $reason ) {
+		if ( $newTitle->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
+			Container::get( 'board_mover' )->commit();
 		}
 
 		return true;
