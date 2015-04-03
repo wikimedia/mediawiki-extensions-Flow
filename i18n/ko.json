@@ -84,7 +84,7 @@
 	"flow-topic-action-hide-topic": "주제 숨기기",
 	"flow-topic-action-delete-topic": "주제 삭제",
 	"flow-topic-action-summarize-topic": "요약",
-	"flow-topic-action-resummarize-topic": "편집 요약",
+	"flow-topic-action-resummarize-topic": "주제 요약 편집",
 	"flow-topic-action-suppress-topic": "주제 숨겨놓기",
 	"flow-topic-action-unhide-topic": "주제 숨기기",
 	"flow-topic-action-undelete-topic": "주제 삭제 취소",
@@ -296,5 +296,9 @@
 	"flow-undo-edit-failure": "중간 충돌 편집으로 인해 편집을 취소 할수 없습니다.",
 	"group-flow-bot": "플로 봇",
 	"group-flow-bot-member": "플로 봇",
-	"grouppage-flow-bot": "Project:플로 봇"
+	"grouppage-flow-bot": "Project:플로 봇",
+	"flow-wikitext-editor-help": "위키텍스트 $1",
+	"flow-wikitext-editor-help-preview-the-result": "결과를 미리보기",
+	"flow-wikitext-switch-editor-tooltip": "시각 편집기로 변환",
+	"flow-ve-switch-editor-tool-title": "위키 텍스트 에디터로 변경"
 }

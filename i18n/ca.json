@@ -246,5 +246,7 @@
 	"flow-ve-mention-inspector-remove-label": "Suprimeix",
 	"flow-ve-mention-tool-title": "Menciona un usuari",
 	"flow-ve-mention-template": "ping",
-	"flow-ve-mention-inspector-invalid-user": "L'usuari «$1» no està registrat."
+	"flow-ve-mention-inspector-invalid-user": "L'usuari «$1» no està registrat.",
+	"flow-wikitext-editor-help-preview-the-result": "previsualitza el resultat",
+	"flow-wikitext-switch-editor-tooltip": "Canvia a l'editor visual"
 }

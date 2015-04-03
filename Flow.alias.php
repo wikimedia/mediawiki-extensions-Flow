@@ -45,6 +45,11 @@ $specialPageAliases['ko'] = array(
 	'Flow' => array( '플로우' ),
 );
 
+/** لوری (لوری) */
+$specialPageAliases['lrc'] = array(
+	'Flow' => array( 'جریان' ),
+);
+
 /** Macedonian (македонски) */
 $specialPageAliases['mk'] = array(
 	'Flow' => array( 'Тек' ),
