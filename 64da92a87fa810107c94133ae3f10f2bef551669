@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_b24af7ad",
+        "filename": "includes/Formatter/ContributionsQuery.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-03T11:40:00Z",
+      "side": 1,
+      "message": "Apparently, Title::isDeleted() is not what I expected it to be...",
+      "revId": "64da92a87fa810107c94133ae3f10f2bef551669",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
