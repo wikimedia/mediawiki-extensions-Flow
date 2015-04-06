@@ -59,9 +59,6 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 			$output[$action]['result'] = array();
 			foreach( $blocksToCommit as $block ) {
 				// Always return parsed text to client after successful submission?
-				// @Todo - hacky, maybe have format in the request to overwrite
-				// requiredWikitext
-				$block->unsetRequiresWikitext( $action );
 				$output[$action]['result'][$block->getName()] = $block->renderApi( $params[$block->getName()] );
 			}
 		}

@@ -41,11 +41,6 @@ class HeaderBlock extends AbstractBlock {
 	/**
 	 * @var string[]
 	 */
-	protected $requiresWikitext = array( 'edit-header', 'compare-header-revisions' );
-
-	/**
-	 * @var string[]
-	 */
 	protected $supportedGetActions = array( 'view', 'compare-header-revisions', 'edit-header', 'view-header', 'undo-edit-header' );
 
 	// @Todo - fill in the template names
@@ -200,8 +195,13 @@ class HeaderBlock extends AbstractBlock {
 
 		switch ( $this->action ) {
 			case 'view':
+				$format = isset( $options['format'] ) ? $options['format'] : 'html';
+				$output += $this->renderRevisionApi( $format );
+				break;
+
 			case 'edit-header':
-				$output += $this->renderRevisionApi();
+				// noJS-only action
+				$output += $this->renderRevisionApi( 'wikitext' );
 				break;
 
 			case 'undo-edit-header':
@@ -212,13 +212,8 @@ class HeaderBlock extends AbstractBlock {
 				if ( isset( $options['revId'] ) && $options['revId'] ) {
 					$output += $this->renderSingleViewApi( $options['revId'] );
 				} else {
-					if ( isset( $options['contentFormat'] ) && $options['contentFormat'] === 'wikitext' ) {
-						// @deprecated - to be removed once ApiFlowViewHeader.php no longer accepts 'contentFormat' param
-						$this->requiresWikitext[] = 'view-header';
-					} elseif ( isset( $options['format'] ) && $options['format'] === 'wikitext' ) {
-						$this->requiresWikitext[] = 'view-header';
-					}
-					$output += $this->renderRevisionApi();
+					$format = isset( $options['format'] ) ? $options['format'] : 'html';
+					$output += $this->renderRevisionApi( $format );
 				}
 				break;
 
@@ -276,7 +271,11 @@ class HeaderBlock extends AbstractBlock {
 		);
 	}
 
-	protected function renderRevisionApi() {
+	/**
+	 * @param string $format Content format (html|wikitext)
+	 * @return array
+	 */
+	protected function renderRevisionApi( $format ) {
 		$output = array();
 		if ( $this->header === null ) {
 			/** @var UrlGenerator $urlGenerator */
@@ -297,9 +296,7 @@ class HeaderBlock extends AbstractBlock {
 			$row->currentRevision = $this->header;
 
 			$serializer = Container::get( 'formatter.revision' );
-			if ( false !== array_search( $this->action, $this->requiresWikitext ) ) {
-				$serializer->setContentFormat( 'wikitext' );
-			}
+			$serializer->setContentFormat( $format );
 
 			$output['revision'] = $serializer->formatApi( $row, $this->context );
 		}

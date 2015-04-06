@@ -79,11 +79,6 @@ interface Block {
 	 * @return bool
 	 */
 	public function canRender( $action );
-
-	/**
-	 * @param string $action
-	 */
-	public function unsetRequiresWikitext( $action );
 }
 
 abstract class AbstractBlock implements Block {
@@ -120,9 +115,6 @@ abstract class AbstractBlock implements Block {
 	 * @var array
 	 */
 	protected $supportedGetActions = array();
-
-	/** @var array */
-	protected $requiresWikitext = array();
 
 	/**
 	 * Templates for each view actions
@@ -342,16 +334,6 @@ abstract class AbstractBlock implements Block {
 	 */
 	public function getEditToken() {
 		return $this->context->getUser()->getEditToken();
-	}
-
-	/**
-	 * @param string $action
-	 */
-	public function unsetRequiresWikitext( $action ) {
-		$key = array_search( $action, $this->requiresWikitext );
-		if ( $key !== false ) {
-			unset( $this->requiresWikitext[$key] );
-		}
 	}
 
 	/**
