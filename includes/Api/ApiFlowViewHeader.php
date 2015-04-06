@@ -25,11 +25,15 @@ class ApiFlowViewHeader extends ApiFlowBaseGet {
 		global $wgFlowContentFormat;
 
 		return array(
-			'contentFormat' => array(
+			'format' => array(
 				ApiBase::PARAM_TYPE => array( 'html', 'wikitext' ),
 				ApiBase::PARAM_DFLT => $wgFlowContentFormat,
 			),
 			'revId' => null,
+			'contentFormat' => array(
+				ApiBase::PARAM_TYPE => array( 'html', 'wikitext' ),
+				ApiBase::PARAM_DEPRECATED => true
+			),
 		);
 	}
 
@@ -38,7 +42,7 @@ class ApiFlowViewHeader extends ApiFlowBaseGet {
 	 */
 	public function getParamDescription() {
 		return array(
-			'contentFormat' => 'Format to return the content in',
+			'format' => 'Format to return the content in',
 			'revId' => 'load a specific revision if provided, otherwise, load the most recent',
 		);
 	}
@@ -55,7 +59,7 @@ class ApiFlowViewHeader extends ApiFlowBaseGet {
 	 */
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=view-header&page=Talk:Sandbox&vhcontentFormat=wikitext&revId=',
+			'api.php?action=flow&submodule=view-header&page=Talk:Sandbox&vhformat=wikitext&revId=',
 		);
 	}
 
@@ -64,7 +68,7 @@ class ApiFlowViewHeader extends ApiFlowBaseGet {
 	 */
 	protected function getExamplesMessages() {
 		return array(
-			'action=flow&submodule=view-header&page=Talk:Sandbox&vhcontentFormat=wikitext&revId='
+			'action=flow&submodule=view-header&page=Talk:Sandbox&vhformat=wikitext&revId='
 				=> 'apihelp-flow+view-header-example-1',
 		);
 	}

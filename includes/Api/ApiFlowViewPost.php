@@ -29,9 +29,13 @@ class ApiFlowViewPost extends ApiFlowBaseGet {
 			'postId' => array(
 				ApiBase::PARAM_REQUIRED => true,
 			),
-			'contentFormat' => array(
+			'format' => array(
 				ApiBase::PARAM_TYPE => array( 'html', 'wikitext' ),
 				ApiBase::PARAM_DFLT => $wgFlowContentFormat,
+			),
+			'contentFormat' => array(
+				ApiBase::PARAM_TYPE => array( 'html', 'wikitext' ),
+				ApiBase::PARAM_DEPRECATED => true
 			),
 		);
 	}
@@ -42,7 +46,7 @@ class ApiFlowViewPost extends ApiFlowBaseGet {
 	public function getParamDescription() {
 		return array(
 			'postId' => 'Id of the post to view',
-			'contentFormat' => 'Format to return the content in',
+			'format' => 'Format to return the content in',
 		);
 	}
 
@@ -58,7 +62,7 @@ class ApiFlowViewPost extends ApiFlowBaseGet {
 	 */
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=view-post&page=Topic:S2tycnas4hcucw8w&vppostId=???&vpcontentFormat=wikitext',
+			'api.php?action=flow&submodule=view-post&page=Topic:S2tycnas4hcucw8w&vppostId=???&vpformat=wikitext',
 		);
 	}
 
@@ -67,7 +71,7 @@ class ApiFlowViewPost extends ApiFlowBaseGet {
 	 */
 	protected function getExamplesMessages() {
 		return array(
-			'action=flow&submodule=view-post&page=Topic:S2tycnas4hcucw8w&vppostId=???&vpcontentFormat=wikitext'
+			'action=flow&submodule=view-post&page=Topic:S2tycnas4hcucw8w&vppostId=???&vpformat=wikitext'
 				=> 'apihelp-flow+view-post-example-1',
 		);
 	}

@@ -25,11 +25,15 @@ class ApiFlowViewTopicSummary extends ApiFlowBaseGet {
 		global $wgFlowContentFormat;
 
 		return array(
-			'contentFormat' => array(
+			'format' => array(
 				ApiBase::PARAM_TYPE => array( 'html', 'wikitext' ),
 				ApiBase::PARAM_DFLT => $wgFlowContentFormat,
 			),
 			'revId' => null,
+			'contentFormat' => array(
+				ApiBase::PARAM_TYPE => array( 'html', 'wikitext' ),
+				ApiBase::PARAM_DEPRECATED => true
+			),
 		);
 	}
 
@@ -38,7 +42,7 @@ class ApiFlowViewTopicSummary extends ApiFlowBaseGet {
 	 */
 	public function getParamDescription() {
 		return array(
-			'contentFormat' => 'Format to return the content in',
+			'format' => 'Format to return the content in',
 			'revId' => 'load a specific revision if provided, otherwise, load the most recent',
 		);
 	}
@@ -55,7 +59,7 @@ class ApiFlowViewTopicSummary extends ApiFlowBaseGet {
 	 */
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=view-topic-summary&page=Topic:S2tycnas4hcucw8w&vtscontentFormat=wikitext&revId=',
+			'api.php?action=flow&submodule=view-topic-summary&page=Topic:S2tycnas4hcucw8w&vtsformat=wikitext&revId=',
 		);
 	}
 
@@ -64,7 +68,7 @@ class ApiFlowViewTopicSummary extends ApiFlowBaseGet {
 	 */
 	protected function getExamplesMessages() {
 		return array(
-			'action=flow&submodule=view-topic-summary&page=Topic:S2tycnas4hcucw8w&vtscontentFormat=wikitext&revId='
+			'action=flow&submodule=view-topic-summary&page=Topic:S2tycnas4hcucw8w&vtsformat=wikitext&revId='
 				=> 'apihelp-flow+view-topic-summary-example-1',
 		);
 	}

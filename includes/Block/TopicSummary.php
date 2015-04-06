@@ -264,6 +264,9 @@ class TopicSummaryBlock extends AbstractBlock {
 					$output['revision'] = $formatter->formatApi( $row, $this->context );
 				} else {
 					if ( isset( $options['contentFormat'] ) && $options['contentFormat'] === 'wikitext' ) {
+						// @deprecated - to be removed once ApiFlowViewTopicSummary.php no longer accepts 'contentFormat' param
+						$this->requiresWikitext[] = 'view-topic-summary';
+					} elseif ( isset( $options['format'] ) && $options['format'] === 'wikitext' ) {
 						$this->requiresWikitext[] = 'view-topic-summary';
 					}
 					$output += $this->renderNewestTopicSummary();
