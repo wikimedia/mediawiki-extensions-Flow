@@ -27,7 +27,8 @@ class ApiFlowEditPostTest extends ApiTestCase {
 			'submodule' => 'edit-post',
 			'eppostId' => $replyPostId,
 			'epprev_revision' => $replyRevisionId,
-			'epcontent' => '⎛ ﾟ∩ﾟ⎞⎛ ⍜⌒⍜⎞⎛ ﾟ⌒ﾟ⎞'
+			'epcontent' => '⎛ ﾟ∩ﾟ⎞⎛ ⍜⌒⍜⎞⎛ ﾟ⌒ﾟ⎞',
+			'epformat' => 'wikitext',
 		) );
 
 		$result = $data[0]['flow']['edit-post']['result']['topic'];
@@ -44,6 +45,6 @@ class ApiFlowEditPostTest extends ApiTestCase {
 			trim( strip_tags( $revision['content']['content'] ) ),
 			$debug
 		);
-		$this->assertEquals( 'html', $revision['content']['format'], $debug );
+		$this->assertEquals( 'wikitext', $revision['content']['format'], $debug );
 	}
 }

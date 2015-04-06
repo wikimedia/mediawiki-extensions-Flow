@@ -18,7 +18,8 @@ class ApiFlowEditHeaderTest extends ApiTestCase {
 			'action' => 'flow',
 			'submodule' => 'edit-header',
 			'ehprev_revision' => '',
-			'ehcontent' => '(._.)'
+			'ehcontent' => '(._.)',
+			'ehformat' => 'wikitext',
 		) );
 
 		$result = $data[0]['flow']['edit-header']['result']['header'];
@@ -35,6 +36,6 @@ class ApiFlowEditHeaderTest extends ApiTestCase {
 			trim( strip_tags( $revision['content']['content'] ) ),
 			$debug
 		);
-		$this->assertEquals( 'html', $revision['content']['format'], $debug );
+		$this->assertEquals( 'wikitext', $revision['content']['format'], $debug );
 	}
 }
