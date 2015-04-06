@@ -19,7 +19,8 @@ class ApiFlowEditTopicSummaryTest extends ApiTestCase {
 			'action' => 'flow',
 			'submodule' => 'edit-topic-summary',
 			'etsprev_revision' => '',
-			'etssummary' => '( ●_●)-((⌼===((() ≍≍≍≍≍ ♒ ✺ ♒ ZAP!'
+			'etssummary' => '( ●_●)-((⌼===((() ≍≍≍≍≍ ♒ ✺ ♒ ZAP!',
+			'etsformat' => 'wikitext',
 		) );
 
 		$result = $data[0]['flow']['edit-topic-summary']['result']['topicsummary'];
@@ -35,6 +36,6 @@ class ApiFlowEditTopicSummaryTest extends ApiTestCase {
 			trim( strip_tags( $revision['content']['content'] ) ),
 			$debug
 		);
-		$this->assertEquals( 'html', $revision['content']['format'], $debug );
+		$this->assertEquals( 'wikitext', $revision['content']['format'], $debug );
 	}
 }

@@ -22,7 +22,8 @@ class ApiFlowReplyTest extends ApiTestCase {
 			'action' => 'flow',
 			'submodule' => 'reply',
 			'repreplyTo' => $workflowId,
-			'repcontent' => '⎛ ﾟ∩ﾟ⎞⎛ ⍜⌒⍜⎞⎛ ﾟ⌒ﾟ⎞'
+			'repcontent' => '⎛ ﾟ∩ﾟ⎞⎛ ⍜⌒⍜⎞⎛ ﾟ⌒ﾟ⎞',
+			'repformat' => 'wikitext',
 		) );
 
 		$result = $data[0]['flow']['reply']['result']['topic'];
@@ -40,6 +41,6 @@ class ApiFlowReplyTest extends ApiTestCase {
 			trim( strip_tags( $revision['content']['content'] ) ),
 			$debug
 		);
-		$this->assertEquals( 'html', $revision['content']['format'], $debug );
+		$this->assertEquals( 'wikitext', $revision['content']['format'], $debug );
 	}
 }

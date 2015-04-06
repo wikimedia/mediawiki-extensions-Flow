@@ -39,6 +39,7 @@ class ApiFlowViewHeaderTest extends ApiTestCase {
 			'submodule' => 'edit-header',
 			'ehprev_revision' => '',
 			'ehcontent' => 'swimmingly',
+			'ehformat' => 'wikitext',
 		) );
 		$result = $data[0]['flow']['edit-header']['result']['header'];
 		$debug = json_encode( $result );
