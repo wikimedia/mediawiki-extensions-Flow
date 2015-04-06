@@ -775,10 +775,7 @@
 				var $editor = $( this );
 
 				$form = $editor.closest( 'form' );
-				// All editors already have their content in wikitext-format
-				// (mostly because we need to prefill them server-side so that
-				// JS-less users can interact)
-				mw.flow.editor.load( $editor, $editor.val(), 'wikitext' ).done( function () {
+				mw.flow.editor.load( $editor, $editor.val() ).done( function () {
 					$form.toggleClass( 'flow-editor-supports-preview', mw.flow.editor.editor.static.usesPreview() );
 				} );
 
