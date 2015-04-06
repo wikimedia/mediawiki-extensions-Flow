@@ -32,7 +32,7 @@ class ConvertToText extends Maintenance {
 		$topics = array();
 		$headerContent = '';
 
-		$headerData = $this->flowApi( $this->pageTitle, 'view-header', array( 'vhcontentFormat' => 'wikitext' ), 'header' );
+		$headerData = $this->flowApi( $this->pageTitle, 'view-header', array( 'vhformat' => 'wikitext' ), 'header' );
 
 		$headerRevision = $headerData['header']['revision'];
 		if ( isset( $headerRevision['content'] ) ) {

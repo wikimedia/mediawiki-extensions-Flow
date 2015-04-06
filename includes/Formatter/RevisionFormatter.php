@@ -974,5 +974,4 @@ class RevisionFormatter {
 
 		return $this->contentFormat;
 	}
-
 }

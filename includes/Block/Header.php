@@ -213,6 +213,9 @@ class HeaderBlock extends AbstractBlock {
 					$output += $this->renderSingleViewApi( $options['revId'] );
 				} else {
 					if ( isset( $options['contentFormat'] ) && $options['contentFormat'] === 'wikitext' ) {
+						// @deprecated - to be removed once ApiFlowViewHeader.php no longer accepts 'contentFormat' param
+						$this->requiresWikitext[] = 'view-header';
+					} elseif ( isset( $options['format'] ) && $options['format'] === 'wikitext' ) {
 						$this->requiresWikitext[] = 'view-header';
 					}
 					$output += $this->renderRevisionApi();

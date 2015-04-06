@@ -641,7 +641,10 @@ class TopicBlock extends AbstractBlock {
 		$row = Container::get( 'query.singlepost' )->getResult( UUID::create( $postId ) );
 		$serializer = $this->getRevisionFormatter();
 		if ( isset( $options['contentFormat'] ) ) {
+			// @deprecated - to be removed once ApiFlowViewPost.php no longer accepts 'contentFormat' param
 			$serializer->setContentFormat( $options['contentFormat'] );
+		} else if ( isset( $options['format'] ) ) {
+			$serializer->setContentFormat( $options['format'] );
 		}
 		$serialized = $serializer->formatApi( $row, $this->context );
 		if ( !$serialized ) {
@@ -715,7 +718,10 @@ class TopicBlock extends AbstractBlock {
 
 		$serializer = $this->getRevisionFormatter();
 		if ( isset( $options['contentFormat'] ) ) {
+			// @deprecated - to be removed once ApiFlowViewPost.php no longer accepts 'contentFormat' param
 			$serializer->setContentFormat( $options['contentFormat'] );
+		} elseif ( isset( $options['format'] ) ) {
+			$serializer->setContentFormat( $options['format'] );
 		}
 		$serializer->setIncludeHistoryProperties( true );
 
