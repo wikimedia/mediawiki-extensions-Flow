@@ -184,7 +184,7 @@
 	"flow-edit-header-placeholder": "Опишите эту доску обсуждений",
 	"flow-edit-header-submit": "Сохранить описание",
 	"flow-edit-header-submit-overwrite": "Перезаписать описание",
-	"flow-summarize-topic-submit": "Сохранить содержание",
+	"flow-summarize-topic-submit": "Записать краткое содержание",
 	"flow-summarize-topic-submit-overwrite": "Перезаписать краткое содержание",
 	"flow-lock-topic-submit": "Закрыть тему",
 	"flow-lock-topic-submit-overwrite": "Перезаписать краткое содержание закрытой темы",
@@ -519,8 +519,8 @@
 	"flow-ve-mention-inspector-invalid-user": "Участник '$1' не зарегистрирован.",
 	"flow-wikitext-editor-help": "Вики-текст $1.",
 	"flow-wikitext-editor-help-and-preview": "Вики-текст $1 и вы можете $2 в любое время.",
-	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|использовать разметку]]",
-	"flow-wikitext-editor-help-preview-the-result": "просмотр результата",
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting/ru|использует разметку]]",
+	"flow-wikitext-editor-help-preview-the-result": "предварительно просмотреть результат",
 	"flow-wikitext-switch-editor-tooltip": "Переключить на Визуальный редактор",
 	"flow-ve-switch-editor-tool-title": "Переключить на редактор вики-текста"
 }

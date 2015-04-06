@@ -7,7 +7,8 @@
 			"Unapersona",
 			"QuimGil",
 			"Lluis tgn",
-			"Toniher"
+			"Toniher",
+			"Xavier Dengra"
 		]
 	},
 	"enableflow": "Habilita el Flow",
@@ -153,6 +154,7 @@
 	"flow-rev-message-edit-header": "$1 {{GENDER:$2|ha modificat}} l'encapçalament",
 	"flow-rev-message-create-topic-summary": "$1 {{GENDER:$2|ha creat}} un resum del tema a $3",
 	"flow-rev-message-edit-topic-summary": "$1 {{GENDER:$2|ha modificat}} el resum del tema a $3",
+	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|ha tancat}} el [$4 tema] $6 (<em>$5</em>)",
 	"flow-rc-topic-of-board": "$1 a $2",
 	"flow-board-history-empty": "Aquest tauler no té actualment cap historial.",
 	"flow-topic-history": "Historial del tema «$1»",

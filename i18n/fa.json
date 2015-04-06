@@ -8,7 +8,8 @@
 			"Reza1615",
 			"درفش کاویانی",
 			"Alirezaaa",
-			"Hosseinblue"
+			"Hosseinblue",
+			"Danialbehzadi"
 		]
 	},
 	"flow-desc": "سامانهٔ مدیریت گردش کار",
@@ -76,7 +77,7 @@
 	"flow-topic-action-hide-topic": "پنهان کردن موضوع",
 	"flow-topic-action-delete-topic": "حذف موضوع",
 	"flow-topic-action-summarize-topic": "خلاصه‌سازی",
-	"flow-topic-action-resummarize-topic": "خلاصهٔ ویرایش",
+	"flow-topic-action-resummarize-topic": "ویرایش خلاصه موضوع",
 	"flow-topic-action-suppress-topic": "سرکوب موضوع",
 	"flow-topic-action-unhide-topic": "آشکارنمودن موضوع",
 	"flow-topic-action-undelete-topic": "احیاء عنوان",
@@ -241,9 +242,6 @@
 	"flow-compare-revisions-revision-header": "نسخه توسط {{GENDER:$2|$2}} از $1",
 	"flow-compare-revisions-header-post": "این صفحه {{GENDER:$3|تغییرات}} را بین دو نسخه از یک پست توسط $3 در موضوع \"[$5 $2]\" بر  [$4 $1] نمایش می‌دهد.\nشما می‌توانید نسخه‌های دیگری از این پست را در [$6 صفحهٔ تاریخچه] مشاهده کنید.",
 	"flow-compare-revisions-header-header": "این صفحه {{GENDER:$2|تغییرات}} بین دو نسخهٔ سرفصل را در [$3 $1] نشان می‌دهد.\nشما می‌توانید نسخه‌های دیگر سرفصل را در این [$4 صفحهٔ تاریخچه] مشاهده کنید.",
-	"flow-topic-collapsed-one-line": "مشاهدهٔ کوچک",
-	"flow-topic-collapsed-full": "مشاهده با شکست روبه‌رو شده",
-	"flow-topic-complete": "مشاهدهٔ کامل",
 	"flow-terms-of-use-new-topic": "با کلیک کردن \"{{int:flow-newtopic-save}}\"، شما با شرایط استفاده برای این ویکی موافقت می‌کنید.",
 	"flow-terms-of-use-reply": "با کلیک کردن \"{{int:flow-reply-submit}}\"، شما با شرایط استفاده برای این ویکی موافقت می‌کنید.",
 	"flow-terms-of-use-edit": "با ذخیرهٔ تغییرات شما،  شما با شرایط استفاده برای این ویکی موافقت می‌کنید.",
@@ -252,5 +250,8 @@
 	"flow-special-type": "نوع",
 	"flow-special-type-post": "ارسال",
 	"flow-preview-return-edit-post": "به ویرایش ادامه‌دادن",
-	"flow-anonymous": "ناشناس"
+	"flow-anonymous": "ناشناس",
+	"flow-wikitext-editor-help-preview-the-result": "پیش‌نمایش نتیجه",
+	"flow-wikitext-switch-editor-tooltip": "رفتن به ویرایشگر بصری",
+	"flow-ve-switch-editor-tool-title": "رفتن به ویرایشگر متن ویکی"
 }

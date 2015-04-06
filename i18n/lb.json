@@ -60,7 +60,7 @@
 	"flow-topic-action-delete-topic": "Thema läschen",
 	"flow-topic-action-lock-topic": "Thema spären",
 	"flow-topic-action-summarize-topic": "Resuméieren",
-	"flow-topic-action-resummarize-topic": "Resumé vun der Ännerung",
+	"flow-topic-action-resummarize-topic": "De Resumé vum Thema änneren",
 	"flow-topic-action-restore-topic": "Thema restauréieren",
 	"flow-topic-action-undo-moderation": "Réckgängeg maachen",
 	"flow-topic-notification-subscribe-title": "Dëst Thema gouf op {{GENDER:$1|Är}} Iwwerwaachungslëscht dobäigesat.",
@@ -207,5 +207,9 @@
 	"flow-ve-mention-inspector-remove-label": "Ewechhuelen",
 	"flow-ve-mention-tool-title": "E Benotzer ernimmen",
 	"flow-ve-mention-template": "ping",
-	"flow-ve-mention-inspector-invalid-user": "De Benotzernumm '$1' ass net registréiert."
+	"flow-ve-mention-inspector-invalid-user": "De Benotzernumm '$1' ass net registréiert.",
+	"flow-wikitext-editor-help": "Wikitext $1.",
+	"flow-wikitext-editor-help-preview-the-result": "D'Resultat kucken ouni ze späicheren",
+	"flow-wikitext-switch-editor-tooltip": "Op de VisualEditor wiesselen",
+	"flow-ve-switch-editor-tool-title": "Op de Wikitext-Editeur wiesselen"
 }

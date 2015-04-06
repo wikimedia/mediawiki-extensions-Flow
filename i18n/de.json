@@ -476,7 +476,7 @@
 	"flow-wikitext-editor-help": "Wikitext $1.",
 	"flow-wikitext-editor-help-and-preview": "Wikitext $1 und du kannst jederzeit $2.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|verwendet Markup]]",
-	"flow-wikitext-editor-help-preview-the-result": "das Ergebnis vorschauen",
+	"flow-wikitext-editor-help-preview-the-result": "eine Vorschau des Ergebnisses anzeigen",
 	"flow-wikitext-switch-editor-tooltip": "Zum VisualEditor wechseln",
 	"flow-ve-switch-editor-tool-title": "Zum Wikitext-Editor wechseln"
 }
