@@ -19,7 +19,8 @@ class ApiFlowEditTopicSummaryTest extends ApiTestCase {
 			'action' => 'flow',
 			'submodule' => 'edit-topic-summary',
 			'etsprev_revision' => '',
-			'etssummary' => '( ●_●)-((⌼===((() ≍≍≍≍≍ ♒ ✺ ♒ ZAP!'
+			'etssummary' => '( ●_●)-((⌼===((() ≍≍≍≍≍ ♒ ✺ ♒ ZAP!',
+			'etsformat' => 'html',
 		) );
 
 		$result = $data[0]['flow']['edit-topic-summary']['result']['topicsummary'];

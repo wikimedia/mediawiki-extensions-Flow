@@ -48,11 +48,6 @@ class TopicSummaryBlock extends AbstractBlock {
 	 */
 	protected $supportedGetActions = array( 'view-topic-summary', 'compare-postsummary-revisions', 'edit-topic-summary', 'undo-edit-topic-summary' );
 
-	/**
-	 * @var string[]
-	 */
-	protected $requiresWikitext = array( 'edit-topic-summary', 'undo-edit-topic-summary' );
-
 	protected $templates = array(
 		'view-topic-summary' => 'single_view',
 		'compare-postsummary-revisions' => 'diff_view',
@@ -263,17 +258,14 @@ class TopicSummaryBlock extends AbstractBlock {
 					$formatter = Container::get( 'formatter.revisionview' );
 					$output['revision'] = $formatter->formatApi( $row, $this->context );
 				} else {
-					if ( isset( $options['contentFormat'] ) && $options['contentFormat'] === 'wikitext' ) {
-						// @deprecated - to be removed once ApiFlowViewTopicSummary.php no longer accepts 'contentFormat' param
-						$this->requiresWikitext[] = 'view-topic-summary';
-					} elseif ( isset( $options['format'] ) && $options['format'] === 'wikitext' ) {
-						$this->requiresWikitext[] = 'view-topic-summary';
-					}
-					$output += $this->renderNewestTopicSummary();
+					$format = isset( $options['format'] ) ? $options['format'] : 'html';
+					$output += $this->renderNewestTopicSummary( $format );
 				}
 				break;
 			case 'edit-topic-summary':
-				$output += $this->renderNewestTopicSummary();
+				// default to wikitext for no-JS
+				$format = isset( $options['format'] ) ? $options['format'] : 'wikitext';
+				$output += $this->renderNewestTopicSummary( $format );
 				break;
 			case 'undo-edit-topic-summary':
 				$output = $this->renderUndoApi( $options ) + $output;
@@ -295,13 +287,15 @@ class TopicSummaryBlock extends AbstractBlock {
 		return $output;
 	}
 
-	protected function renderNewestTopicSummary() {
+	/**
+	 * @param string $format Content format (wikitext|html)
+	 * @return array
+	 */
+	protected function renderNewestTopicSummary( $format ) {
 		$output = array();
 		$formatter = Container::get( 'formatter.revision' );
+		$formatter->setContentFormat( $format );
 
-		if ( in_array( $this->action, $this->requiresWikitext ) ) {
-			$formatter->setContentFormat( 'wikitext' );
-		}
 		if ( $this->formatterRow ) {
 			$output['revision'] = $formatter->formatApi(
 				$this->formatterRow,

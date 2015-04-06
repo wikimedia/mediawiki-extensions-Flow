@@ -18,7 +18,8 @@ class ApiFlowEditHeaderTest extends ApiTestCase {
 			'action' => 'flow',
 			'submodule' => 'edit-header',
 			'ehprev_revision' => '',
-			'ehcontent' => '(._.)'
+			'ehcontent' => '(._.)',
+			'ehformat' => 'html',
 		) );
 
 		$result = $data[0]['flow']['edit-header']['result']['header'];

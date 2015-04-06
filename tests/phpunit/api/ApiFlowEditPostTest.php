@@ -27,7 +27,8 @@ class ApiFlowEditPostTest extends ApiTestCase {
 			'submodule' => 'edit-post',
 			'eppostId' => $replyPostId,
 			'epprev_revision' => $replyRevisionId,
-			'epcontent' => '⎛ ﾟ∩ﾟ⎞⎛ ⍜⌒⍜⎞⎛ ﾟ⌒ﾟ⎞'
+			'epcontent' => '⎛ ﾟ∩ﾟ⎞⎛ ⍜⌒⍜⎞⎛ ﾟ⌒ﾟ⎞',
+			'epformat' => 'html',
 		) );
 
 		$result = $data[0]['flow']['edit-post']['result']['topic'];

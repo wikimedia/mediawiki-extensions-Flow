@@ -22,7 +22,8 @@ class ApiFlowReplyTest extends ApiTestCase {
 			'action' => 'flow',
 			'submodule' => 'reply',
 			'repreplyTo' => $workflowId,
-			'repcontent' => '⎛ ﾟ∩ﾟ⎞⎛ ⍜⌒⍜⎞⎛ ﾟ⌒ﾟ⎞'
+			'repcontent' => '⎛ ﾟ∩ﾟ⎞⎛ ⍜⌒⍜⎞⎛ ﾟ⌒ﾟ⎞',
+			'repformat' => 'html',
 		) );
 
 		$result = $data[0]['flow']['reply']['result']['topic'];

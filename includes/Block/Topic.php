@@ -12,6 +12,7 @@ use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\PermissionException;
 use Flow\Formatter\PostHistoryQuery;
+use Flow\Formatter\RevisionFormatter;
 use Flow\Formatter\RevisionViewQuery;
 use Flow\Formatter\TopicHistoryQuery;
 use Flow\Model\AbstractRevision;
@@ -90,8 +91,6 @@ class TopicBlock extends AbstractBlock {
 		'moderate-post' => 'moderate_post',
 		'lock-topic' => 'lock',
 	);
-
-	protected $requiresWikitext = array( 'edit-post', 'edit-title', 'lock-topic' );
 
 	public function __construct( Workflow $workflow, ManagerGroup $storage, $root ) {
 		parent::__construct( $workflow, $storage );
@@ -483,39 +482,62 @@ class TopicBlock extends AbstractBlock {
 		// there's probably some OO way to turn this stack of if/else into
 		// something nicer. Consider better ways before extending this with
 		// more conditionals
-		if ( $this->action === 'history' ) {
-			// single post history or full topic?
-			if ( isset( $options['postId'] ) ) {
-				// singular post history
-				$output += $this->renderPostHistoryApi( $options, UUID::create( $options['postId'] ) );
-			} else {
-				// post history for full topic
-				$output += $this->renderTopicHistoryApi( $options );
-			}
-		} elseif ( $this->action === 'single-view' ) {
-			if ( isset( $options['revId'] ) ) {
-				$revId = $options['revId'];
-			} else {
-				throw new InvalidInputException( 'A revision must be provided', 'invalid-input' );
-			}
-			$output += $this->renderSingleViewApi( $revId );
-		} elseif ( $this->action === 'lock-topic' ) {
-			// Treat topic as a post, only the post + summary are needed
-			$result = $this->renderPostApi( $options, $this->workflow->getId() );
-			$topicId = $result['roots'][0];
-			$revisionId = $result['posts'][$topicId][0];
-			$output += $result['revisions'][$revisionId];
-		} elseif ( $this->action === 'compare-post-revisions' ) {
-			$output += $this->renderDiffViewApi( $options );
-		} elseif ( $this->action === 'undo-edit-post' ) {
-			$output += $this->renderUndoApi( $options );
-		} elseif ( $this->shouldRenderTopicApi( $options ) ) {
-			// view full topic
-			$output += $this->renderTopicApi( $options );
-		} else {
-			// view single post, possibly specific revision
-			// @todo this isn't valid for the topic title
-			$output += $this->renderPostApi( $options );
+		switch ( $this->action ) {
+			case 'history':
+				// single post history or full topic?
+				if ( isset( $options['postId'] ) ) {
+					// singular post history
+					$output += $this->renderPostHistoryApi( $options, UUID::create( $options['postId'] ) );
+				} else {
+					// post history for full topic
+					$output += $this->renderTopicHistoryApi( $options );
+				}
+				break;
+
+			case 'single-view':
+				if ( isset( $options['revId'] ) ) {
+					$revId = $options['revId'];
+				} else {
+					throw new InvalidInputException( 'A revision must be provided', 'invalid-input' );
+				}
+				$output += $this->renderSingleViewApi( $revId );
+				break;
+
+			case 'lock-topic':
+				// Treat topic as a post, only the post + summary are needed
+				$result = $this->renderPostApi( $options, $this->workflow->getId() );
+				$topicId = $result['roots'][0];
+				$revisionId = $result['posts'][$topicId][0];
+				$output += $result['revisions'][$revisionId];
+				break;
+
+			case 'compare-post-revisions':
+				$output += $this->renderDiffViewApi( $options );
+				break;
+
+			case 'undo-edit-post':
+				$output += $this->renderUndoApi( $options );
+				break;
+
+			// Any actions require (re)rendering the whole topic
+			case 'edit-post':
+			case 'moderate-post':
+			case 'restore-post':
+			case 'reply':
+			case 'moderate-topic':
+			case 'view-topic':
+			case 'view' && !isset( $options['postId'] ) && !isset( $options['revId'] );
+				// view full topic
+				$output += $this->renderTopicApi( $options );
+				break;
+
+			case 'view-post':
+			case 'view':
+			default:
+				// view single post, possibly specific revision
+				// @todo this isn't valid for the topic title
+				$output += $this->renderPostApi( $options );
+				break;
 		}
 
 		return $output + $this->finalizeApiOutput($options);
@@ -538,28 +560,6 @@ class TopicBlock extends AbstractBlock {
 				'errors' => $this->errors,
 			);
 		}
-	}
-
-	protected function shouldRenderTopicApi( array $options ) {
-		switch( $this->action ) {
-		// Any actions require rerendering the whole topic
-		case 'edit-post':
-		case 'moderate-post':
-		case 'restore-post':
-		case 'reply':
-		case 'moderate-topic':
-			return true;
-
-		// View actions
-		case 'view-topic':
-			return true;
-		case 'view-post':
-			return false;
-		case 'view':
-			return !isset( $options['postId'] ) && !isset( $options['revId'] );
-		}
-
-		return true;
 	}
 
 	// @Todo - duplicated logic in other diff view block
@@ -589,6 +589,9 @@ class TopicBlock extends AbstractBlock {
 
 	protected function renderTopicApi( array $options, $workflowId = '' ) {
 		$serializer = Container::get( 'formatter.topic' );
+		$format = isset( $options['format'] ) ? $options['format'] : 'html';
+		$serializer->setContentFormat( $format );
+
 		if ( !$workflowId ) {
 			if ( $this->workflow->isNew() ) {
 				return $serializer->buildEmptyResult( $this->workflow );
@@ -599,11 +602,10 @@ class TopicBlock extends AbstractBlock {
 		if ( $this->submitted !== null ) {
 			$options += $this->submitted;
 		}
-		if ( !empty( $options['revId'] ) &&
-			false !== array_search( $this->action, $this->requiresWikitext )
-		) {
-			// In the topic level responses we only want to force a single revision
-			// to wikitext, not the entire thing.
+
+		// In the topic level responses we only want to force a single revision
+		// to wikitext (the one we're editing), not the entire thing.
+		if ( $this->action === 'edit-post' && !empty( $options['revId'] ) ) {
 			$uuid = UUID::create( $options['revId'] );
 			if ( $uuid ) {
 				$serializer->setContentFormat( 'wikitext', $uuid );
@@ -627,6 +629,9 @@ class TopicBlock extends AbstractBlock {
 			throw new FlowException( 'No posts can exist for non-existent topic' );
 		}
 
+		$format = isset( $options['format'] ) ? $options['format'] : 'html';
+		$serializer = $this->getRevisionFormatter( $format );
+
 		if ( !$postId ) {
 			if ( isset( $options['postId'] ) ) {
 				$postId = $options['postId'];
@@ -636,16 +641,14 @@ class TopicBlock extends AbstractBlock {
 				// newly added revision
 				$postId = $this->newRevision->getPostId();
 			}
+		} else {
+			// $postId is only set for lock-topic, which should default to
+			// wikitext instead of html
+			$format = isset( $options['format'] ) ? $options['format'] : 'wikitext';
+			$serializer->setContentFormat( $format, UUID::create( $postId ) );
 		}
 
 		$row = Container::get( 'query.singlepost' )->getResult( UUID::create( $postId ) );
-		$serializer = $this->getRevisionFormatter();
-		if ( isset( $options['contentFormat'] ) ) {
-			// @deprecated - to be removed once ApiFlowViewPost.php no longer accepts 'contentFormat' param
-			$serializer->setContentFormat( $options['contentFormat'] );
-		} else if ( isset( $options['format'] ) ) {
-			$serializer->setContentFormat( $options['format'] );
-		}
 		$serialized = $serializer->formatApi( $row, $this->context );
 		if ( !$serialized ) {
 			return null;
@@ -682,11 +685,13 @@ class TopicBlock extends AbstractBlock {
 		return $serializer->formatApi( $rows[0], $rows[1], $rows[2], $this->context );
 	}
 
-	protected function getRevisionFormatter() {
+	/**
+	 * @param string $format Content format (html|wikitext)
+	 * @return RevisionFormatter
+	 */
+	protected function getRevisionFormatter( $format ) {
 		$serializer = Container::get( 'formatter.revision' );
-		if ( false !== array_search( $this->action, $this->requiresWikitext ) ) {
-			$serializer->setContentFormat( 'wikitext' );
-		}
+		$serializer->setContentFormat( $format );
 
 		return $serializer;
 	}
@@ -716,13 +721,8 @@ class TopicBlock extends AbstractBlock {
 	protected function processHistoryResult( /* TopicHistoryQuery|PostHistoryQuery */ $query, UUID $uuid, $options ) {
 		global $wgRequest;
 
-		$serializer = $this->getRevisionFormatter();
-		if ( isset( $options['contentFormat'] ) ) {
-			// @deprecated - to be removed once ApiFlowViewPost.php no longer accepts 'contentFormat' param
-			$serializer->setContentFormat( $options['contentFormat'] );
-		} elseif ( isset( $options['format'] ) ) {
-			$serializer->setContentFormat( $options['format'] );
-		}
+		$format = isset( $options['format'] ) ? $options['format'] : 'html';
+		$serializer = $this->getRevisionFormatter( $format );
 		$serializer->setIncludeHistoryProperties( true );
 
 		list( $limit, /* $offset */ ) = $wgRequest->getLimitOffset();
