@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_23a7694f",
+        "filename": "modules/messagePoster/ext.flow.messagePoster.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-06T21:25:41Z",
+      "side": 1,
+      "message": "spurious tab",
+      "revId": "7fdbe99659f21a34b8523d908a2f55688d8653c7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
