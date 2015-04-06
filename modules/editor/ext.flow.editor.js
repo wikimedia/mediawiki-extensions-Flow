@@ -57,43 +57,30 @@
 		/**
 		 * @param {jQuery} $node
 		 * @param {string} [content] Existing content to load, in any format
-		 * @param {string} [contentFormat] The format that content is in, or null (defaults to wikitext)
 		 * @return {jQuery.Promise} Will resolve once editor instance is loaded
 		 */
-		load: function ( $node, content, contentFormat ) {
+		load: function ( $node, content ) {
 			/**
-			 * When calling load(), init() may not yet have completed loading the
+			 * When calling load(), loadEditor() may not yet have completed loading the
 			 * dependencies. To make sure it doesn't break, this will in interval,
 			 * check for it and only start loading once initialization is complete.
 			 */
-			var load = function ( $node, content, contentFormat ) {
+			var load = function ( $node, content ) {
 				if ( mw.flow.editor.editor === null ) {
 					return;
 				} else {
 					clearTimeout( interval );
 				}
 
-				if ( contentFormat === undefined ) {
-					contentFormat = 'wikitext';
+				// doublecheck if editor doesn't already exist for this node
+				if ( !mw.flow.editor.getEditor( $node ) ) {
+					mw.flow.editor.create( $node, content );
 				}
 
-				// quit early if editor is already loaded
-				if ( mw.flow.editor.getEditor( $node ) ) {
-					deferred.resolve();
-					return;
-				}
-
-				mw.flow.parsoid.convert( contentFormat, mw.flow.editor.getFormat( $node ), content )
-					.done( function( content ) {
-						mw.flow.editor.create( $node, content );
-						deferred.resolve();
-					})
-					.fail( function() {
-						deferred.reject();
-					});
+				deferred.resolve();
 			},
 			deferred = $.Deferred(),
-			interval = setInterval( $.proxy( load, this, $node, content, contentFormat ), 10 );
+			interval = setInterval( $.proxy( load, this, $node, content ), 10 );
 
 			return deferred.promise();
 		},
@@ -196,19 +183,26 @@
 		 * @return {jQuery.Promise} Will resolve once editor instance is loaded
 		 */
 		switchEditor: function ( $node, desiredEditor ) {
-			var content, format,
+			var content, oldFormat, newFormat,
 				editorList = mw.config.get( 'wgFlowEditorList' ),
 				editor = mw.flow.editor.getEditor( $node ),
 				deferred = $.Deferred(),
 				performSwitch = function () {
 					if ( mw.flow.editors[desiredEditor].static.isSupported() ) {
 						content = editor.getRawContent();
-						format = editor.constructor.static.format;
 
+						oldFormat = editor.constructor.static.format;
 						mw.flow.editor.editor = mw.flow.editors[desiredEditor];
+						newFormat = mw.flow.editor.editor.static.format;
 
 						mw.flow.editor.destroy( $node );
-						mw.flow.editor.load( $node, content, format );
+
+						// convert content from current editor's format to the
+						// one we're switching to, then fire up that editor
+						mw.flow.parsoid.convert( oldFormat, newFormat, content )
+							.done( function( content ) {
+								mw.flow.editor.load( $node, content );
+							});
 
 						deferred.resolve();
 					} else {

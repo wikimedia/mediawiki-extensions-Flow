@@ -100,7 +100,7 @@
 	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.activateEditHeader = function () {
 		return {
 			submodule: 'view-header', // href submodule is edit-header
-			vhcontentFormat: 'wikitext' // href does not have this param
+			vhcontentFormat: mw.flow.editor.getFormat() // href does not have this param
 		};
 	};
 
@@ -116,7 +116,7 @@
 		return {
 			submodule: "view-post",
 			vppostId: $( this ).closest( '.flow-topic' ).data( 'flow-id' ),
-			vpcontentFormat: "wikitext"
+			vpcontentFormat: mw.flow.editor.getFormat()
 		};
 	};
 
@@ -129,7 +129,7 @@
 		return {
 			submodule: 'view-post',
 			vppostId: $( this ).closest( '.flow-post' ).data( 'flow-id' ),
-			vpcontentFormat: 'wikitext'
+			vpcontentFormat: mw.flow.editor.getFormat()
 		};
 	};
 
@@ -173,7 +173,7 @@
 			// href submodule is edit-topic-summary
 			submodule: 'view-topic-summary',
 			// href does not have this param
-			vtscontentFormat: 'wikitext'
+			vtscontentFormat: mw.flow.editor.getFormat()
 		};
 	};
 
