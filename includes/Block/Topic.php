@@ -589,7 +589,7 @@ class TopicBlock extends AbstractBlock {
 
 	protected function renderTopicApi( array $options, $workflowId = '' ) {
 		$serializer = Container::get( 'formatter.topic' );
-		$format = isset( $options['format'] ) ? $options['format'] : 'html';
+		$format = isset( $options['format'] ) ? $options['format'] : 'fixed-html';
 		$serializer->setContentFormat( $format );
 
 		if ( !$workflowId ) {
@@ -629,7 +629,7 @@ class TopicBlock extends AbstractBlock {
 			throw new FlowException( 'No posts can exist for non-existent topic' );
 		}
 
-		$format = isset( $options['format'] ) ? $options['format'] : 'html';
+		$format = isset( $options['format'] ) ? $options['format'] : 'fixed-html';
 		$serializer = $this->getRevisionFormatter( $format );
 
 		if ( !$postId ) {
@@ -721,7 +721,7 @@ class TopicBlock extends AbstractBlock {
 	protected function processHistoryResult( /* TopicHistoryQuery|PostHistoryQuery */ $query, UUID $uuid, $options ) {
 		global $wgRequest;
 
-		$format = isset( $options['format'] ) ? $options['format'] : 'html';
+		$format = isset( $options['format'] ) ? $options['format'] : 'fixed-html';
 		$serializer = $this->getRevisionFormatter( $format );
 		$serializer->setIncludeHistoryProperties( true );
 
