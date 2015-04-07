@@ -3,11 +3,13 @@
 namespace Flow\Block;
 
 use Flow\Container;
+use Flow\Exception\FlowException;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidInputException;
 use Flow\Formatter\HeaderViewQuery;
 use Flow\Formatter\RevisionDiffViewFormatter;
 use Flow\Formatter\RevisionViewFormatter;
+use Flow\Formatter\RevisionViewQuery;
 use Flow\Formatter\FormatterRow;
 use Flow\Model\Header;
 use Flow\Model\UUID;
