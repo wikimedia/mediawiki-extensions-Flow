@@ -30,15 +30,6 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 					$blockParams = $passedParams[$block->getName()];
 				}
 
-				// @deprecated
-				// BC override: to be removed once ApiFlowViewHeader.php, ApiFlowViewPost &
-				// ApiFlowViewTopicSummary.php no longer accept 'contentFormat' param
-				if ( isset( $blockParams['format'] ) ) {
-					// override default 'format' value by old 'contentFormat',
-					// if it was specified
-					$blockParams['format'] = isset( $blockParams['contentFormat'] ) ? $blockParams['contentFormat'] : $blockParams['format'];
-				}
-
 				$output[$action]['result'][$block->getName()] = $block->renderApi( $blockParams );
 			}
 		}

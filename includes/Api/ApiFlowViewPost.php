@@ -33,10 +33,6 @@ class ApiFlowViewPost extends ApiFlowBaseGet {
 				ApiBase::PARAM_TYPE => array( 'html', 'wikitext', 'fixed-html' ),
 				ApiBase::PARAM_DFLT => $wgFlowContentFormat,
 			),
-			'contentFormat' => array(
-				ApiBase::PARAM_TYPE => array( 'html', 'wikitext' ),
-				ApiBase::PARAM_DEPRECATED => true
-			),
 		);
 	}
 
