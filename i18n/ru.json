@@ -519,7 +519,7 @@
 	"flow-ve-mention-inspector-invalid-user": "Участник '$1' не зарегистрирован.",
 	"flow-wikitext-editor-help": "Вики-текст $1.",
 	"flow-wikitext-editor-help-and-preview": "Вики-текст $1 и вы можете $2 в любое время.",
-	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting/ru|использует разметку]]",
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|использует разметку]]",
 	"flow-wikitext-editor-help-preview-the-result": "предварительно просмотреть результат",
 	"flow-wikitext-switch-editor-tooltip": "Переключить на Визуальный редактор",
 	"flow-ve-switch-editor-tool-title": "Переключить на редактор вики-текста"

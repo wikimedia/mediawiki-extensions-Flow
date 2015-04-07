@@ -37,7 +37,7 @@
 	"flow-topic-action-edit-title": "Editar o título",
 	"flow-topic-action-history": "Historial",
 	"flow-topic-action-summarize-topic": "Resumir",
-	"flow-topic-action-resummarize-topic": "Modificar o resumo",
+	"flow-topic-action-resummarize-topic": "Modificar o resumo do tema",
 	"flow-topic-action-undo-moderation": "Desfacer",
 	"flow-error-http": "Produciuse un erro ao contactar co servidor.",
 	"flow-error-other": "Produciuse un erro inesperado.",
