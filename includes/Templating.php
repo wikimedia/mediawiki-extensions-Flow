@@ -2,6 +2,7 @@
 
 namespace Flow;
 
+use Flow\Exception\InvalidInputException;
 use Flow\Repository\UserNameBatch;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
@@ -111,15 +112,16 @@ class Templating {
 	 * required permissions to view the full content). Otherwise, in normal
 	 * cases, the full content will be returned.
 	 *
-	 * The content-type of the return value varys on the $format parameter.
+	 * The content-type of the return value varies on the $format parameter.
 	 * Further processing in the final output stage must escape all formats
 	 * other than the default 'html'.
 	 *
 	 * @param AbstractRevision $revision Revision to display content for
-	 * @param string[optional] $format Format to output content in (html|wikitext)
+	 * @param string[optional] $format Format to output content in (fixed-html|html|wikitext|plaintext)
 	 * @return string HTML if requested, otherwise plain text
+	 * @throws InvalidInputException
 	 */
-	public function getContent( AbstractRevision $revision, $format = 'html' ) {
+	public function getContent( AbstractRevision $revision, $format = 'fixed-html' ) {
 		$allowed = $this->permissions->isAllowed( $revision, 'view' );
 		// Posts require view access to the topic title as well
 		if ( $allowed && $revision instanceof PostRevision && !$revision->isTopicTitle() ) {
@@ -130,8 +132,8 @@ class Templating {
 		}
 
 		if ( $allowed ) {
-			// html format
-			if ( $format === 'html' ) {
+			// fixed html format
+			if ( $format === 'fixed-html' ) {
 				// Parsoid doesn't render redlinks & doesn't strip bad images
 				try {
 					$content = $this->contentFixer->getContent( $revision );
@@ -142,8 +144,14 @@ class Templating {
 					$content = wfMessage( 'flow-stub-post-content' )->parse();
 				}
 			// all other formats
-			} else {
+			} elseif ( in_array( $format, array( 'html', 'plaintext', 'wikitext' ) ) ) {
+				if ( $format === 'plaintext' ) {
+					$format = 'wikitext';
+				}
+
 				$content = $revision->getContent( $format );
+			} else {
+				throw new InvalidInputException( 'Invalid format: ' . $format );
 			}
 
 			return $content;
@@ -180,7 +188,7 @@ class Templating {
 				$message = wfMessage( 'flow-error-other' );
 			}
 
-			if ( $format === 'html' ) {
+			if ( in_array( $format, array( 'fixed-html', 'html' ) ) ) {
 				return $message->escaped();
 			} else {
 				return $message->text();
