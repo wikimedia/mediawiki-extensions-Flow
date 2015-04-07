@@ -27,7 +27,7 @@ class FlowFixLog extends LoggedUpdateMaintenance {
 	}
 
 	protected function getUpdateKey() {
-		return 'FlowFixLog';
+		return 'FlowFixLog:version2';
 	}
 
 	protected function doDBUpdates() {
@@ -132,6 +132,12 @@ class LogRowUpdateGenerator implements EchoRowUpdateGenerator {
 			// posts didn't use to also store topicId, but we'll be using it to
 			// enrich log entries' output - might as well store it right away
 			$params['topicId'] = $topic->getId();
+		}
+
+		// we used to save (serialized) UUID objects; now we just save the
+		// alphanumeric representation
+		foreach ( $params as $key => $value ) {
+			$params[$key] = $value instanceof UUID ? $value->getAlphadecimal() : $value;
 		}
 
 		// re-serialize params (UUID used to serialize more verbose; might
