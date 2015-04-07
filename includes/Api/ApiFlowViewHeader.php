@@ -30,10 +30,6 @@ class ApiFlowViewHeader extends ApiFlowBaseGet {
 				ApiBase::PARAM_DFLT => $wgFlowContentFormat,
 			),
 			'revId' => null,
-			'contentFormat' => array(
-				ApiBase::PARAM_TYPE => array( 'html', 'wikitext' ),
-				ApiBase::PARAM_DEPRECATED => true
-			),
 		);
 	}
 
