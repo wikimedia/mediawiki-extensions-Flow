@@ -730,7 +730,7 @@ class TemplateHelper {
 			throw new WrongNumberArgumentsException( $args, 'two' );
 		}
 		list( $contentType, $content ) = $args;
-		return $contentType === 'html' ? self::html( $content ) : $content;
+		return in_array( $contentType, array( 'html', 'fixed-html' ) ) ? self::html( $content ) : $content;
 	}
 
 	/**

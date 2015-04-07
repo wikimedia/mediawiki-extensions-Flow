@@ -466,7 +466,7 @@
 	 * @return {string}
 	 */
 	FlowHandlebars.prototype.escapeContent = function ( contentType, content ) {
-		if ( contentType === 'html' ) {
+		if ( contentType === 'html' || contentType === 'fixed-html' ) {
 			return FlowHandlebars.prototype.html( content );
 		}
 		return content;
