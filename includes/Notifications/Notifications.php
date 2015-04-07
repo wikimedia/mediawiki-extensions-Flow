@@ -104,3 +104,5 @@ $notifications = array(
 		'email-body-batch-params' => array( 'agent', 'subject', 'title', 'user' ),
 	) + $notificationTemplate,
 );
+
+return $notifications;
