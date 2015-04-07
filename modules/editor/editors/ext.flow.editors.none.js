@@ -33,7 +33,7 @@
 
 	// Static properties
 	/**
-	 * Type of content to use (html or wikitext)
+	 * Type of content to use
 	 *
 	 * @var string
 	 */
