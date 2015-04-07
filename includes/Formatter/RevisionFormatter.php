@@ -66,12 +66,12 @@ class RevisionFormatter {
 	/**
 	 * @var string[]
 	 */
-	protected $allowedContentFormats = array( 'html', 'wikitext' );
+	protected $allowedContentFormats = array( 'html', 'wikitext', 'fixed-html', 'plaintext' );
 
 	/**
 	 * @var string Default content format for revision output
 	 */
-	protected $contentFormat = 'html';
+	protected $contentFormat = 'fixed-html';
 
 	/**
 	 * @var array Map from alphadeicmal revision id to content format ovverride
@@ -868,7 +868,7 @@ class RevisionFormatter {
 			 * Parsoid roundtrip is needed then (and if it *is*, it'll already
 			 * be needed to render Flow discussions, so this is manageable)
 			 */
-			$content = $this->templating->getContent( $revision, 'html' );
+			$content = $this->templating->getContent( $revision, 'fixed-html' );
 			// strip html tags and decode to plaintext
 			$content = Utils::htmlToPlaintext( $content, 140, $ctx->getLanguage() );
 			return Message::plaintextParam( $content );
@@ -935,7 +935,7 @@ class RevisionFormatter {
 			if ( $post->isTopicTitle() ) {
 				return Message::plaintextParam( $this->templating->getContent( $post, 'wikitext' ) );
 			} else {
-				return Message::rawParam( $this->templating->getContent( $post, 'html' ) );
+				return Message::rawParam( $this->templating->getContent( $post, 'fixed-html' ) );
 			}
 
 		case 'bundle-count':

@@ -195,7 +195,7 @@ class HeaderBlock extends AbstractBlock {
 
 		switch ( $this->action ) {
 			case 'view':
-				$format = isset( $options['format'] ) ? $options['format'] : 'html';
+				$format = isset( $options['format'] ) ? $options['format'] : 'fixed-html';
 				$output += $this->renderRevisionApi( $format );
 				break;
 
@@ -212,7 +212,7 @@ class HeaderBlock extends AbstractBlock {
 				if ( isset( $options['revId'] ) && $options['revId'] ) {
 					$output += $this->renderSingleViewApi( $options['revId'] );
 				} else {
-					$format = isset( $options['format'] ) ? $options['format'] : 'html';
+					$format = isset( $options['format'] ) ? $options['format'] : 'fixed-html';
 					$output += $this->renderRevisionApi( $format );
 				}
 				break;

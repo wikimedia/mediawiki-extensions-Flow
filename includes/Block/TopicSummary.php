@@ -258,7 +258,7 @@ class TopicSummaryBlock extends AbstractBlock {
 					$formatter = Container::get( 'formatter.revisionview' );
 					$output['revision'] = $formatter->formatApi( $row, $this->context );
 				} else {
-					$format = isset( $options['format'] ) ? $options['format'] : 'html';
+					$format = isset( $options['format'] ) ? $options['format'] : 'fixed-html';
 					$output += $this->renderNewestTopicSummary( $format );
 				}
 				break;
