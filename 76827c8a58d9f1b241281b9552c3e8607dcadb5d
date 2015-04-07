@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_fbfcacb4",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-07T21:23:01Z",
+      "side": 1,
+      "message": "kinda trivial, but changing this to else rather than early return might be clearer.",
+      "revId": "76827c8a58d9f1b241281b9552c3e8607dcadb5d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_fbc90c7d",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-07T21:23:01Z",
+      "side": 1,
+      "message": "Based on the docblock for switchEditor, we shouldn\u0027t resolve until the promise returned by mw.flow.editor.load resolves.",
+      "revId": "76827c8a58d9f1b241281b9552c3e8607dcadb5d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
