@@ -16,6 +16,7 @@ use Title;
 use User;
 use WatchedItem;
 use WikiPage;
+use WikitextContent;
 
 class LqtRedirector implements Postprocessor {
 	/** @var UrlGenerator **/
