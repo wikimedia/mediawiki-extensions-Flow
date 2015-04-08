@@ -183,32 +183,75 @@
 		 * @return {jQuery.Promise} Will resolve once editor instance is loaded
 		 */
 		switchEditor: function ( $node, desiredEditor ) {
-			var content, oldFormat, newFormat,
-				editorList = mw.config.get( 'wgFlowEditorList' ),
+			var editorList = mw.config.get( 'wgFlowEditorList' ),
 				editor = mw.flow.editor.getEditor( $node ),
-				deferred = $.Deferred(),
-				performSwitch = function () {
-					if ( mw.flow.editors[desiredEditor].static.isSupported() ) {
-						content = editor.getRawContent();
+				deferred = $.Deferred();
 
-						oldFormat = editor.constructor.static.format;
-						mw.flow.editor.editor = mw.flow.editors[desiredEditor];
-						newFormat = mw.flow.editor.editor.static.format;
+			/*
+			 * A lot of these steps are async & they'll be chained together.
+			 * .then() takes callback functions (for done & fail, but only using
+			 * done callbacks here). The difference when compared to .done is
+			 * that it can return something that will then be fed to the next
+			 * callback, so 1 callback can use the result of the previous.
+			 * Instead of a value, a callback can also return a promise, in
+			 * which case the next callback will only be called once that promise
+			 * is resolved, receiving the value the promise was resolved with.
+			 * If any callback fails (returns a deferred.reject()), it'll be
+			 * "caught" by the .fail() callback at the end.
+			 */
+			deferred
+				// load requested editor
+				.then( function ( desiredEditor ) {
+					return mw.loader.using( 'ext.flow.editors.' + desiredEditor );
+				} )
 
-						mw.flow.editor.destroy( $node );
-
-						// convert content from current editor's format to the
-						// one we're switching to, then fire up that editor
-						mw.flow.parsoid.convert( oldFormat, newFormat, content )
-							.done( function( content ) {
-								mw.flow.editor.load( $node, content );
-							});
-
-						deferred.resolve();
-					} else {
-						deferred.reject( 'editor-not-supported' );
+				// kill existing editor
+				.then( function () {
+					if ( !mw.flow.editors[desiredEditor].static.isSupported() ) {
+						return $.Deferred().reject( 'editor-not-supported' );
 					}
-				};
+
+					var content = editor.getRawContent(),
+						oldFormat = editor.constructor.static.format,
+						newFormat;
+
+					mw.flow.editor.editor = mw.flow.editors[desiredEditor];
+					newFormat = mw.flow.editor.editor.static.format;
+
+					mw.flow.editor.destroy( $node );
+
+					// prepare data to feed into conversion
+					return {
+						'from': oldFormat,
+						'to': newFormat,
+						'content': content
+					};
+				} )
+
+				// convert content to new editor format
+				.then( function ( data ) {
+					return mw.flow.parsoid.convert( data.from, data.to, data.content );
+				} )
+
+				// load new editor with converted data
+				.then( function ( content ) {
+					return mw.flow.editor.load( $node, content );
+				} )
+
+				// store editor preference
+				.then( function () {
+					if ( !mw.user.isAnon() ) {
+						// update the user preferences; no preferences for anons
+						new mw.Api().saveOption( 'flow-editor', desiredEditor );
+						// ensure we also see that preference in the current page
+						mw.user.options.set( 'flow-editor', desiredEditor );
+					}
+				} )
+
+				// anything that results in a reject() will be logged
+				.fail( function( rejectionCode ) {
+					mw.flow.debug( '[switchEditor] Could not switch to ' + desiredEditor + ' : ' + rejectionCode );
+				} );
 
 			if ( !editor ) {
 				// $node is not an editor
@@ -217,27 +260,8 @@
 				// desiredEditor does not exist
 				deferred.reject( 'unknown-editor-type' );
 			} else {
-				mw.loader.using( 'ext.flow.editors.' + desiredEditor ).then(
-					performSwitch,
-					function() {
-						deferred.reject( 'fail-loading-editor' );
-					}
-				);
+				deferred.resolve( desiredEditor );
 			}
-
-			deferred.then(
-				function() {
-					if ( !mw.user.isAnon() ) {
-						// update the user preferences; no preferences for anons
-						new mw.Api().saveOption( 'flow-editor', desiredEditor );
-						// ensure we also see that preference in the current page
-						mw.user.options.set( 'flow-editor', desiredEditor );
-					}
-				},
-				function( rejectionCode ) {
-					mw.flow.debug( '[switchEditor] Could not switch to ' + desiredEditor + ' : ' + rejectionCode );
-				}
-			);
 
 			return deferred.promise();
 		},
