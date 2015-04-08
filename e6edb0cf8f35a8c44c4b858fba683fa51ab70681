@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_ed838955",
+        "filename": "Hooks.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 1057,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-08T13:40:35Z",
+      "side": 1,
+      "message": "self::$occupationController",
+      "revId": "e6edb0cf8f35a8c44c4b858fba683fa51ab70681",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_6de69941",
+        "filename": "Hooks.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 1060,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-08T13:40:35Z",
+      "side": 1,
+      "message": "It seems that core allows you to overwrite existing pages (it\u0027ll ask you to confirm if the page can be removed)\n\nWe should (some day) probably also allow users to overwrite existing pages, once our board deletion is solid. Some day... :)",
+      "revId": "e6edb0cf8f35a8c44c4b858fba683fa51ab70681",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_8ddf756d",
+        "filename": "i18n/en.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-08T13:40:35Z",
+      "side": 1,
+      "message": "Should probably be a new i18n message (old translations might otherwise stick around)",
+      "revId": "e6edb0cf8f35a8c44c4b858fba683fa51ab70681",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_0d3285bc",
+        "filename": "includes/BoardMover.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-08T13:40:35Z",
+      "side": 1,
+      "message": "We may have multiple (deleted) workflows per board some day. We either have to omit them entirely (check for workflow_page_id in L79?) or make $discussionWorkflow an array \u0026 update all of those headers.",
+      "revId": "e6edb0cf8f35a8c44c4b858fba683fa51ab70681",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
