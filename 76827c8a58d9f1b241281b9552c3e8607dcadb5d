@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_3f220bfd",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-08T11:48:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_fbfcacb4",
+      "revId": "76827c8a58d9f1b241281b9552c3e8607dcadb5d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_fbc90c7d",
         "filename": "modules/editor/ext.flow.editor.js",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2015-04-07T21:23:01Z",
       "side": 1,
       "message": "Based on the docblock for switchEditor, we shouldn\u0027t resolve until the promise returned by mw.flow.editor.load resolves.",
+      "revId": "76827c8a58d9f1b241281b9552c3e8607dcadb5d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_e2fab8d9",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-08T11:48:04Z",
+      "side": 1,
+      "message": "Existing code already resolved too early, so there\u0027s no regression.\n\nFor code review reasons I\u0027ll do that refactoring into a separate patch: https://gerrit.wikimedia.org/r/#/c/202706/",
+      "parentUuid": "6e7c4fa4_fbc90c7d",
       "revId": "76827c8a58d9f1b241281b9552c3e8607dcadb5d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
