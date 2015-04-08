@@ -37,7 +37,7 @@
 				deferred.resolve( data['flow-parsoid-utils'].content );
 			} )
 			.fail( function () {
-				deferred.reject();
+				deferred.reject( 'failed-parsoid-convert' );
 			} );
 
 			return deferred.promise();
