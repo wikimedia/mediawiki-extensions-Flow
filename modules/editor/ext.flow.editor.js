@@ -230,11 +230,18 @@
 
 				// convert content to new editor format
 				.then( function ( data ) {
-					return mw.flow.parsoid.convert( data.from, data.to, data.content );
+					return new mw.Api().post( {
+						action: 'flow-parsoid-utils',
+						from: data.from,
+						to: data.to,
+						content: data.content,
+						title: mw.config.get( 'wgPageName' )
+					} );
 				} )
 
 				// load new editor with converted data
-				.then( function ( content ) {
+				.then( function ( data ) {
+					var content = data['flow-parsoid-utils'].content;
 					return mw.flow.editor.load( $node, content );
 				} )
 
