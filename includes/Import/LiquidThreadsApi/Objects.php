@@ -317,7 +317,7 @@ class MovedImportTopic extends ImportTopic {
 class MovedImportPost extends ImportPost {
 	public function getRevisions() {
 		$factory = function( $data, $parent ) {
-			return new MovedImportRevision( $data, $parent );
+			return new MovedImportRevision( $data, $parent, $this->importSource->getScriptUser() );
 		};
 		$pageData = $this->importSource->getPageData( $this->pageId );
 		return new RevisionIterator( $pageData, $this, $factory );

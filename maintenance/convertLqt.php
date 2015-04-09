@@ -22,38 +22,34 @@ class ConvertLqt extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Converts LiquidThreads data to Flow data";
 		$this->addOption( 'logfile', 'File to read and store associations between imported items and their sources. This is required for the import to be idempotent.', true, true );
-		$this->addOption( 'verbose', 'Report on import progress to stdout' );
 		$this->addOption( 'debug', 'Include debug information with progress report' );
 		$this->addOption( 'startId', 'Page id to start importing at (inclusive)' );
 		$this->addOption( 'stopId', 'Page id to stop importing at (exclusive)' );
 	}
 
 	public function execute() {
-		if ( $this->getOption( 'verbose' ) ) {
-			$logger = new MaintenanceDebugLogger( $this );
-			if ( $this->getOption( 'debug' ) ) {
-				$logger->setMaximumLevel( LogLevel::DEBUG );
-			} else {
-				$logger->setMaximumLevel( LogLevel::INFO );
-			}
+		$logger = new MaintenanceDebugLogger( $this );
+		if ( $this->getOption( 'debug' ) ) {
+			$logger->setMaximumLevel( LogLevel::DEBUG );
 		} else {
-			$logger = new NullLogger;
+			$logger->setMaximumLevel( LogLevel::INFO );
 		}
+
 		$importer = Flow\Container::get( 'importer' );
 		$talkpageManagerUser = FlowHooks::getOccupationController()->getTalkpageManager();
 
+		$dbw = wfGetDB( DB_MASTER );
 		$strategy = new ConversionStrategy(
-			wfGetDB( DB_MASTER ),
+			$dbw
 			new FileImportSourceStore( $this->getOption( 'logfile' ) ),
 			new LocalApiBackend( $talkpageManagerUser ),
 			Container::get( 'url_generator' ),
 			$talkpageManagerUser,
-			Container::get( 'controller.notifications' )
+			Container::get( 'controller.notification' )
 		);
 
-		$dbr = wfGetDB( DB_SLAVE );
 		$converter = new \Flow\Import\Converter(
-			$dbr,
+			$dbw,
 			$importer,
 			$logger,
 			$talkpageManagerUser,
@@ -64,6 +60,7 @@ class ConvertLqt extends Maintenance {
 		$stopId = $this->getOption( 'stopId' );
 
 		$logger->info( "Starting full wiki LQT conversion" );
+		$dbr = wfGetDB( DB_SLAVE );
 		$titles = new PagesWithPropertyIterator( $dbr, 'use-liquid-threads', $startId, $stopId );
 		$converter->convert( $titles );
 	}
