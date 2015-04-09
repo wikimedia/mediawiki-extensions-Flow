@@ -36,6 +36,9 @@ class LqtRedirector implements Postprocessor {
 		// not a thing to do, yet
 	}
 
+	public function afterPageArchived( $archiveTitle ) {
+		// not a thing to do, yet
+	}
 
 	public function afterPostImported( TopicImportState $state, IImportPost $post, UUID $newPostId ) {
 		if ( $post instanceof ImportPost /* LQT */ ) {
