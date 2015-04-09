@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_96f0d8c5",
+        "filename": "includes/Import/LiquidThreadsApi/Objects.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-09T19:17:27Z",
+      "side": 1,
+      "message": "This wont work in php 5.3.  I don\u0027t think anyone is using 5.3 anymore, but we officially support php \u003e\u003d 5.3.3.  Easiest would be to grab the user outside the Closure, and the use( $user ).",
+      "revId": "5b4386ad9fa62aded358a5e583e8e264cecd9b68",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_76cadc72",
+        "filename": "maintenance/convertLqt.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-09T19:17:27Z",
+      "side": 1,
+      "message": "missing comma",
+      "revId": "5b4386ad9fa62aded358a5e583e8e264cecd9b68",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
