@@ -200,6 +200,7 @@ $wgAutoloadClasses += array(
 	'Flow\\Import\\PageImportState' => __DIR__ . '/includes/Import/Importer.php',
 	'Flow\\Import\\Plain\\ImportHeader' => __DIR__ . '/includes/Import/Plain/ImportHeader.php',
 	'Flow\\Import\\Plain\\ObjectRevision' => __DIR__ . '/includes/Import/Plain/ObjectRevision.php',
+	'Flow\\Import\\Postprocessor\\LqtMoveUpdater' => __DIR__ . '/includes/Import/Postprocessor/LqtMoveUpdater.php',
 	'Flow\\Import\\Postprocessor\\LqtNotifications' => __DIR__ . '/includes/Import/Postprocessor/LqtNotifications.php',
 	'Flow\\Import\\Postprocessor\\LqtRedirector' => __DIR__ . '/includes/Import/Postprocessor/LqtRedirector.php',
 	'Flow\\Import\\Postprocessor\\PostprocessingException' => __DIR__ . '/includes/Import/Postprocessor/PostprocessingException.php',

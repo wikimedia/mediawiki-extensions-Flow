@@ -9,6 +9,8 @@ use Flow\Import\IImportTopic;
 use Flow\Import\PageImportState;
 use Flow\Import\TopicImportState;
 
+// We might want to implement a no-op AbstractPostprocessor, so you can extend that and
+// implement what you want, without 'not a thing to do yet'
 interface Postprocessor {
 	/**
 	 * Called after the successfull commit of a header. This is
@@ -19,6 +21,13 @@ interface Postprocessor {
 	 */
 	function afterHeaderImported( PageImportState $state, IImportHeader $header );
 
+	/**
+	 * Called after the page is archived (to make way for the Flow board)
+	 *
+	 * @param {string} $archiveTitle Destination page that talk page was archived to
+	 */
+	function afterPageArchived( $archiveTitle );
+	
 	/**
 	 * Called after the import of a single post. This has not yet been
 	 * commited, and serves to inform the postprocessor about topic
@@ -42,7 +51,7 @@ interface Postprocessor {
 	function afterTopicImported( TopicImportState $state, IImportTopic $topic );
 
 	/**
-	 * Callled when there has been an error in the import process.
+	 * Called when there has been an error in the import process.
 	 * Any information the postprocessor has received since the last
 	 * commit operation should be discarded as it will not be written
 	 * to permenant storage.

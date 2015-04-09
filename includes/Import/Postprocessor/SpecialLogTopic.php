@@ -33,6 +33,10 @@ class SpecialLogTopic implements PostProcessor {
 		// nothing to do
 	}
 
+	public function afterPageArchived( $archiveTitle ) {
+		// nothing to do
+	}
+	
 	public function afterPostImported( TopicImportState $state, IImportPost $post, UUID $newPostId ) {
 		$this->newPosts = true;
 	}

@@ -69,6 +69,15 @@ class Importer {
 	}
 
 	/**
+	 * Returns the ProcessorGroup (calling this triggers all the postprocessors
+	 *
+	 * @return Postprocessor
+	 */
+	public function getPostprocessor() {
+		return $this->postprocessors;
+	}
+
+	/**
 	 * @param LoggerInterface $logger
 	 */
 	public function setLogger( LoggerInterface $logger ) {

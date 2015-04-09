@@ -7,6 +7,7 @@ use Flow\Import\Converter;
 use Flow\Import\IConversionStrategy;
 use Flow\Import\ImportSourceStore;
 use Flow\Import\Postprocessor\ProcessorGroup;
+use Flow\Import\Postprocessor\LqtMoveUpdater;
 use Flow\Import\Postprocessor\LqtNotifications;
 use Flow\Import\Postprocessor\LqtRedirector;
 use Flow\NotificationController;
@@ -140,7 +141,8 @@ class ConversionStrategy implements IConversionStrategy {
 		$group = new ProcessorGroup;
 		$group->add( new LqtRedirector( $this->urlGenerator, $this->talkpageUser ) );
 		$group->add( new LqtNotifications( $this->notificationController, $this->dbw ) );
-
+		$group->add( new LqtMoveUpdater() );
+		
 		return $group;
 	}
 }

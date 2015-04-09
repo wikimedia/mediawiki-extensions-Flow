@@ -34,7 +34,7 @@ class Converter {
 	 * @var DatabaseBase Slave database of the current wiki. Required
 	 *  to lookup past page moves.
 	 */
-	protected $dbr;
+	protected $dbw;
 
 	/**
 	 * @var Importer Service capable of turning an IImportSource into
@@ -61,7 +61,7 @@ class Converter {
 	protected $strategy;
 
 	/**
-	 * @param DatabaseBase $dbr Slave wiki database to read from
+	 * @param DatabaseBase $dbw Master wiki database to read from
 	 * @param Importer $importer
 	 * @param LoggerInterface $logger
 	 * @param User $user Administrative user for moves and edits related
@@ -70,7 +70,7 @@ class Converter {
 	 * @throws ImportException When $user does not have an Id
 	 */
 	public function __construct(
-		DatabaseBase $dbr,
+		DatabaseBase $dbw,
 		Importer $importer,
 		LoggerInterface $logger,
 		User $user,
@@ -79,7 +79,7 @@ class Converter {
 		if ( !$user->getId() ) {
 			throw new ImportException( 'User must have id' );
 		}
-		$this->dbr = $dbr;
+		$this->dbw = $dbw;
 		$this->importer = $importer;
 		$this->logger = $logger;
 		$this->user = $user;
@@ -126,6 +126,11 @@ class Converter {
 			return false;
 		}
 
+		if ( !$title->exists() ) {
+			$this->logger->warning( "WARNING: The title '" . $title->getPrefixedDBkey() . "' is being skipped because it does not exist." );
+			return false;
+		}
+
 		// At some point we may want to handle these, but for now just
 		// let them be
 		if ( $title->isRedirect() ) {
@@ -161,6 +166,7 @@ class Converter {
 			$archiveTitle = $this->strategy->decideArchiveTitle( $title );
 			$this->logger->info( "Archiving page from $title to $archiveTitle" );
 			$this->movePage( $title, $archiveTitle );
+			$this->importer->getPostprocessor()->afterPageArchived( $archiveTitle );
 		}
 
 		$source = $this->strategy->createImportSource( $archiveTitle );
@@ -186,7 +192,7 @@ class Converter {
 	 * @return Title|null
 	 */
 	protected function getPageMovedFrom( Title $title ) {
-		$row = $this->dbr->selectRow(
+		$row = $this->dbw->selectRow(
 			array( 'logging', 'page' ),
 			array( 'log_namespace', 'log_title', 'log_user' ),
 			array(

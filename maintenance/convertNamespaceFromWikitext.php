@@ -17,7 +17,6 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Converts a single namespace of wikitext talk pages to Flow";
 		$this->addArg( 'namespace', 'Name of the namespace to convert' );
-		$this->addOption( 'verbose', 'Report on import progress to stdout' );
 	}
 
 	public function execute() {
@@ -31,13 +30,11 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 		}
 
 		// @todo send to prod logger?
-		$logger = $this->getOption( 'verbose' )
-			? new MaintenanceDebugLogger( $this )
-			: new NullLogger();
+		$logger = new MaintenanceDebugLogger( $this );
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbw = wfGetDB( DB_MASTER );
 		$converter = new \Flow\Import\Converter(
-			$dbr,
+			$dbw,
 			Flow\Container::get( 'importer' ),
 			$logger,
 			FlowHooks::getOccupationController()->getTalkpageManager(),
@@ -51,7 +48,7 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 		$logger->info( "Starting conversion of $namespaceName namespace" );
 
 		// Iterate over all existing pages of the namespace.
-		$it = new NamespaceIterator( $dbr, $namespace );
+		$it = new NamespaceIterator( $dbw, $namespace );
 		// NamespaceIterator is an IteratorAggregate. Get an Iterator
 		// so we can wrap that.
 		$it = $it->getIterator();
@@ -76,4 +73,3 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 
 $maintClass = "ConvertNamespaceFromWikitext";
 require_once ( RUN_MAINTENANCE_IF_MAIN );
-
