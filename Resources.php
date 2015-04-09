@@ -308,7 +308,7 @@ $wgResourceModules += array(
 	// MediaWiki Handlebars provider.  Should not have anything Flow-specific
 	'mediawiki.template.handlebars' => $flowResourceTemplate + array(
 		'scripts' => array(
-			'vendor/handlebars.js',
+			'vendor/handlebars-v3.0.0.js',
 			'handlebars.js',
 		),
 		'dependencies' => array(
