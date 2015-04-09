@@ -51,6 +51,23 @@
       "revId": "068bb40b71727c2dd793904795f4b4c55e29ed5c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_acdfca3e",
+        "filename": "maintenance/FlowForceSearchIndex.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-09T09:16:52Z",
+      "side": 1,
+      "message": "If you try running this script here \u0026 get stuck in an infinite loop, you\u0027ll pull follow-up patch https://gerrit.wikimedia.org/r/#/c/195890/, where this script has been moved to.",
+      "revId": "068bb40b71727c2dd793904795f4b4c55e29ed5c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
