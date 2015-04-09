@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_6dd8cb7f",
+        "filename": "includes/RevisionActionPermissions.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-09T16:11:36Z",
+      "side": 1,
+      "message": "Stephane figured out this causes issues on new boards (where the page doesn\u0027t yet exist) when you try to submit a new topic.",
+      "revId": "5012329dc65739abe34bf0b32c087f94ff1d44f0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
