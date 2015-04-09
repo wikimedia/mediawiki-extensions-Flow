@@ -31,7 +31,7 @@
 	"flow-topic-action-edit-title": "De Övverschreff ändere",
 	"flow-topic-action-history": "Väsjohne",
 	"flow-topic-action-summarize-topic": "Zosammefaßße",
-	"flow-topic-action-resummarize-topic": "De Zosammefaßßong ändere",
+	"flow-topic-action-resummarize-topic": "De Zosammefaßßong ändere\n<!-- https://translatewiki.net/wiki/Thread:Support/About_MediaWiki:Gather-editfeed-show/qqq\n-->",
 	"flow-topic-action-undo-moderation": "Zeröknämme",
 	"flow-error-not-allowed-reply-to-hide-topic": "Do kanns nit antwoote, weil heh dä  topic verschtoche woode es.",
 	"flow-error-not-allowed-reply-to-delete-topic": "Do kanns nit antwoote, weil heh dä  topic fottjeschmeße wohd.",
@@ -119,5 +119,11 @@
 	"flow-undo-your-text": "Dinge Täx",
 	"flow-undo-edit-header": "Övverschreff",
 	"flow-undo-edit-content": "De Änderong künnte mer zerök nämme. Beloor Der de Ungerscheide un dann donn di Sigg avspeichere, wann De dengks, et es en Oodenong esu.",
-	"flow-undo-edit-failure": "Dat kunnt mer nit zerök nämme, weil et enzwesche ald widder beärbeidt wood."
+	"flow-undo-edit-failure": "Dat kunnt mer nit zerök nämme, weil et enzwesche ald widder beärbeidt wood.",
+	"flow-ve-mention-context-item-label": "Ä'wähne",
+	"flow-ve-mention-inspector-title": "Ä'wähne",
+	"flow-ve-mention-inspector-remove-label": "Nemm fott!",
+	"flow-ve-mention-tool-title": "Ene Metmaacher ä'wähne",
+	"flow-ve-mention-template": "ping",
+	"flow-ve-mention-inspector-invalid-user": "Ene Metmaacher met däm Nahme „$1“ es nit aanjemäldt."
 }
