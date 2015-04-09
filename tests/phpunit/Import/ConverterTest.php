@@ -80,14 +80,14 @@ class ConverterTest extends \MediaWikiTestCase {
 	}
 
 	protected function createConverter(
-		DatabaseBase $dbr = null,
+		DatabaseBase $dbw = null,
 		Importer $importer = null,
 		LoggerInterface $logger = null,
 		User $user = null,
 		IConversionStrategy $strategy = null
 	) {
 		return new Converter(
-			$dbr ?: wfGetDB( DB_SLAVE ),
+			$dbw ?: wfGetDB( DB_MASTER ),
 			$importer ?: $this->getMockBuilder( 'Flow\Import\Importer' )
 				->disableOriginalConstructor()
 				->getMock(),
