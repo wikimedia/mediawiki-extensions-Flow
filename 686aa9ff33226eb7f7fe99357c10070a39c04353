@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_564c8943",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 692,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-09T00:54:14Z",
+      "side": 1,
+      "message": "doesn\u0027t have to happen in this patch, but this same pattern is used in Header, and maybe other blocks, perhaps we just shuffle this method up to the parent Block class. I\u0027m also really getting tired of the Block name, filed T95504 to rename it.",
+      "revId": "686aa9ff33226eb7f7fe99357c10070a39c04353",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
