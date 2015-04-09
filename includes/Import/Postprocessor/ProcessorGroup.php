@@ -24,6 +24,7 @@ class ProcessorGroup implements Postprocessor {
 	public function afterHeaderImported( PageImportState $state, IImportHeader $header ) {
 		$this->call( __FUNCTION__, func_get_args() );
 	}
+
 	public function afterTopicImported( TopicImportState $state, IImportTopic $topic ) {
 		$this->call( __FUNCTION__, func_get_args() );
 	}
