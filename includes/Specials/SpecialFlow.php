@@ -6,6 +6,7 @@
 
 namespace Flow\Specials;
 
+use Flow\Container;
 use Flow\Data\ObjectManager;
 use Flow\Exception\FlowException;
 use Flow\Model\Workflow;
