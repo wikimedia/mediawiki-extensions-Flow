@@ -164,7 +164,7 @@
 	 *   active item and TOC scroll.
 	 */
 	function _flowBoardAdjustTopicNavigationHeader( $boardNavigation, event, extraParameters ) {
-		var bottomScrollPosition, topicText, newReadingTopicId,
+		var bottomScrollPosition, topicText, newReadingTopicId, navBarRect,
 			self = this,
 			boardNavigationPosition = ( this.$boardNavigationClone || $boardNavigation ).offset(),
 			windowVerticalScroll = $( window ).scrollTop();
@@ -177,7 +177,8 @@
 				// Un-affix this
 				$boardNavigation
 					.removeClass( 'flow-board-navigation-affixed' )
-					.css( 'left', '' );
+					.css( 'left', '' )
+					.css( 'width', 'inherit' );
 				// Remove the old clone if it exists
 				this.$boardNavigationClone.remove();
 				delete this.$boardNavigationClone;
@@ -214,10 +215,13 @@
 
 		boardNavigationPosition = this.$boardNavigationClone.offset();
 
-		// The only thing that needs calculating is its left offset
-		if ( parseInt( $boardNavigation.css( 'left' ) ) !== boardNavigationPosition.left ) {
+		// keep both banners (inline, fixed) the same width and horizontal position
+		navBarRect = this.$boardNavigationClone[0].getBoundingClientRect();
+		if ( parseInt( $boardNavigation.css( 'left' ) ) !== boardNavigationPosition.left ||
+			parseInt( $boardNavigation.css( 'width' ) ) !== navBarRect.width ) {
 			$boardNavigation.css( {
-				left: boardNavigationPosition.left
+				left: boardNavigationPosition.left,
+				width: navBarRect.width
 			} );
 		}
 
