@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_75a4099f",
+        "filename": "includes/Data/Storage/RevisionStorage.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-10T23:30:48Z",
+      "side": 1,
+      "message": "Can you add the actual lengths to the exception, so it\u0027s clear what the mismatch is?",
+      "revId": "11c2229e4e34d5caca9c76c5f44dfcaeb36caea5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
