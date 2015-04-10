@@ -177,7 +177,8 @@
 				// Un-affix this
 				$boardNavigation
 					.removeClass( 'flow-board-navigation-affixed' )
-					.css( 'left', '' );
+					.css( 'left', '' )
+					.css( 'right', '' );
 				// Remove the old clone if it exists
 				this.$boardNavigationClone.remove();
 				delete this.$boardNavigationClone;
@@ -216,8 +217,11 @@
 
 		// The only thing that needs calculating is its left offset
 		if ( parseInt( $boardNavigation.css( 'left' ) ) !== boardNavigationPosition.left ) {
+			var navBarRect = this.$boardNavigationClone[0].getBoundingClientRect();
+			var right = document.documentElement.clientWidth - navBarRect.right;
 			$boardNavigation.css( {
-				left: boardNavigationPosition.left
+				left: boardNavigationPosition.left,
+				right: right
 			} );
 		}
 
