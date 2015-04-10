@@ -417,9 +417,17 @@ abstract class RevisionStorage extends DbStorage {
 	}
 
 	protected function insertExternalStore( array $row ) {
+		if ( $row['rev_content'] === null || strlen( $row['rev_content'] ) === 0 ) {
+			throw new DataModelException( "Must have data to write to external storage", 'process-data' );
+		}
 		$url = ExternalStore::insertWithFallback( $this->externalStore, $row['rev_content'] );
 		if ( !$url ) {
 			throw new DataModelException( "Unable to store text to external storage", 'process-data' );
+		}
+
+		// debugging for T95580
+		if ( strlen( ExternalStore::fetchFromURL( $url ) ) !== strlen( $row['rev_content'] ) ) {
+			throw new DataModelException( "Error reading back data written to external store" );
 		}
 		$row['rev_content_url'] = $url;
 		if ( $row['rev_flags'] ) {
