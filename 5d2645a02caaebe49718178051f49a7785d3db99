@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_1aa4e2b4",
+        "filename": "includes/Import/Converter.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-10T22:50:32Z",
+      "side": 1,
+      "message": "$title is the main title (destination title if and only if there was a move, with movedFrom being source).  $title may be in the archive location (e.g. if it was found by iterating all LQT pages), but it should still exist.\n\nI think this would only trigger after a move if the target page had been deleted after being moved.",
+      "parentUuid": "6e7c4fa4_048b29e9",
+      "revId": "5d2645a02caaebe49718178051f49a7785d3db99",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_6479bdf1",
         "filename": "includes/Import/LiquidThreadsApi/ConversionStrategy.php",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2015-04-10T18:50:42Z",
       "side": 1,
       "message": "red bar of doom!!11!",
+      "revId": "5d2645a02caaebe49718178051f49a7785d3db99",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_9a56b25f",
+        "filename": "includes/Import/LiquidThreadsApi/ConversionStrategy.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-10T22:50:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_6479bdf1",
       "revId": "5d2645a02caaebe49718178051f49a7785d3db99",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_5aa1fa9d",
+        "filename": "includes/Import/LiquidThreadsApi/Objects.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-10T22:50:32Z",
+      "side": 1,
+      "message": "Now that you mention it, I think it\u0027s:\n\nfunction ( $data, $parent ) use (\n\nto indicate they\u0027re keywords.",
+      "parentUuid": "6e7c4fa4_c453f16d",
+      "revId": "5d2645a02caaebe49718178051f49a7785d3db99",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_24c2e506",
         "filename": "includes/Import/Postprocessor/LqtNotifications.php",
         "patchSetId": 2
@@ -64,6 +118,24 @@
       "writtenOn": "2015-04-10T18:50:42Z",
       "side": 1,
       "message": "moar doom.  These should be caught by `scripts/pre-commit` if thats wired up.  You can use `make installhooks` to do that.  If there are issues with how these git hooks work that prevent you from using them we can revisit and make them work for everyone.",
+      "revId": "5d2645a02caaebe49718178051f49a7785d3db99",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_fa3c862f",
+        "filename": "includes/Import/Postprocessor/LqtNotifications.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-10T22:50:32Z",
+      "side": 1,
+      "message": "Normally, they are (I do have it wired).   Sorry about that, I was dealing with something else in the change, and didn\u0027t come back to this part.",
+      "parentUuid": "6e7c4fa4_24c2e506",
       "revId": "5d2645a02caaebe49718178051f49a7785d3db99",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_7a4dd6c6",
+        "filename": "includes/Import/Postprocessor/Postprocessor.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-10T22:50:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_e4cb8d1f",
+      "revId": "5d2645a02caaebe49718178051f49a7785d3db99",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_04d1e9cf",
         "filename": "includes/Import/Postprocessor/ProcessorGroup.php",
         "patchSetId": 2
@@ -98,6 +188,24 @@
       "writtenOn": "2015-04-10T18:50:42Z",
       "side": 1,
       "message": "red bar of DOOM!1!!!11\n\nIn vim i use aproximatly this regex to clear these when saving:\n\n    %s/[ \\t]+$//",
+      "revId": "5d2645a02caaebe49718178051f49a7785d3db99",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_1ac2a206",
+        "filename": "includes/Import/Postprocessor/ProcessorGroup.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-10T22:50:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_04d1e9cf",
       "revId": "5d2645a02caaebe49718178051f49a7785d3db99",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_fa61e632",
+        "filename": "includes/Import/Postprocessor/SpecialLogTopic.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-10T22:50:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_c4d211d3",
+      "revId": "5d2645a02caaebe49718178051f49a7785d3db99",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_64df7ddc",
         "filename": "maintenance/convertLqt.php",
         "patchSetId": 2
@@ -132,6 +258,24 @@
       "writtenOn": "2015-04-10T18:50:42Z",
       "side": 1,
       "message": "unused",
+      "revId": "5d2645a02caaebe49718178051f49a7785d3db99",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_dacbca1f",
+        "filename": "maintenance/convertLqt.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-10T22:50:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_64df7ddc",
       "revId": "5d2645a02caaebe49718178051f49a7785d3db99",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_9ad552be",
+        "filename": "maintenance/convertLqtPageFromRemoteApiForTesting.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-10T22:50:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_24e9857e",
+      "revId": "5d2645a02caaebe49718178051f49a7785d3db99",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_44ee0188",
         "filename": "maintenance/convertLqtPageFromRemoteApiForTesting.php",
         "patchSetId": 2
@@ -172,6 +334,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_bad28ed1",
+        "filename": "maintenance/convertLqtPageFromRemoteApiForTesting.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-10T22:50:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_44ee0188",
+      "revId": "5d2645a02caaebe49718178051f49a7785d3db99",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_e46f0df8",
         "filename": "maintenance/convertLqtPageOnLocalWiki.php",
         "patchSetId": 2
@@ -183,6 +363,24 @@
       "writtenOn": "2015-04-10T18:50:42Z",
       "side": 1,
       "message": "since we arn\u0027t type hinting Traversable, only using it in the docblock, we can probably just pass the array here.",
+      "revId": "5d2645a02caaebe49718178051f49a7785d3db99",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_5af6da5b",
+        "filename": "maintenance/convertLqtPageOnLocalWiki.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-10T22:50:32Z",
+      "side": 1,
+      "message": "I\u0027ll just document that arrays are allowed, then do it.",
+      "parentUuid": "6e7c4fa4_e46f0df8",
       "revId": "5d2645a02caaebe49718178051f49a7785d3db99",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
