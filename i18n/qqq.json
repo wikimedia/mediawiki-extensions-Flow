@@ -14,7 +14,8 @@
 			"Nemo bis",
 			"Umherirrender",
 			"Sunpriat",
-			"Purodha"
+			"Purodha",
+			"Metalhead64"
 		]
 	},
 	"enableflow": "{{doc-special|EnableFlow}}",
@@ -191,7 +192,7 @@
 	"flow-summarize-topic-submit-overwrite": "Used as label for the Summarize button, when submitting will overwrite a more recent summary.",
 	"flow-lock-topic-submit": "Used as label for the Lock topic button.\n\nAlso used in:\n* {{msg-mw|Flow-terms-of-use-lock-topic}}\n* {{msg-mw|Flow-terms-of-use-lock-topic}}",
 	"flow-lock-topic-submit-overwrite": "Used as label for the Lock topic button, when submitting will overwrite a more recent summary.",
-	"flow-unlock-topic-submit": "Used as label for the Restore topic button.\n\nAlso used in:\n* {{msg-mw|Flow-terms-of-use-unlock-topic}}\n* {{msg-mw:Wikimedia-flow-terms-of-use-unlock-topic}}",
+	"flow-unlock-topic-submit": "Used as label for the Restore topic button.\n\nAlso used in:\n* {{msg-mw|Flow-terms-of-use-unlock-topic}}\n* {{msg-mw|Wikimedia-flow-terms-of-use-unlock-topic}}",
 	"flow-unlock-topic-submit-overwrite": "Used as label for the Restore topic button, when submitting will overwrite a more recent summary.",
 	"flow-edit-title-submit": "Used as label for the Submit button.",
 	"flow-edit-title-submit-overwrite": "Used as label for the Submit button, when submitting will overwrite a more recent change.",

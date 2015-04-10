@@ -125,5 +125,7 @@
 	"flow-ve-mention-inspector-remove-label": "Nemm fott!",
 	"flow-ve-mention-tool-title": "Ene Metmaacher ä'wähne",
 	"flow-ve-mention-template": "ping",
-	"flow-ve-mention-inspector-invalid-user": "Ene Metmaacher met däm Nahme „$1“ es nit aanjemäldt."
+	"flow-ve-mention-inspector-invalid-user": "Ene Metmaacher met däm Nahme „$1“ es nit aanjemäldt.",
+	"flow-wikitext-editor-help": "Wikkitäx $1.",
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|Befähle]]"
 }

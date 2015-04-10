@@ -3,7 +3,8 @@
 		"authors": [
 			"Danmichaelo",
 			"Jeblad",
-			"Laaknor"
+			"Laaknor",
+			"Kingu"
 		]
 	},
 	"flow-desc": "Styringssystem for arbeidsflyt",
@@ -211,6 +212,7 @@
 	"flow-link-post-revision": "innleggsrevisjon",
 	"flow-link-topic-revision": "diskusjonsrevisjon",
 	"flow-link-header-revision": "overskriftrevisjon",
+	"flow-link-summary-revision": "sammendrag revisjon",
 	"flow-moderation-title-suppress-post": "Sensurer innlegg?",
 	"flow-moderation-title-delete-post": "Slett innlegg?",
 	"flow-moderation-title-hide-post": "Skjul innlegg?",
@@ -319,5 +321,12 @@
 	"flow-topic-undo-hide": "angre skjuling",
 	"flow-topic-undo-delete": "angre sletting",
 	"flow-topic-undo-suppress": "angre undertrykking",
-	"apihelp-flow+edit-post-param-postId": "Innleggs-ID."
+	"apihelp-flow+edit-post-param-postId": "Innleggs-ID.",
+	"apihelp-flow+edit-post-param-format": "Format for postens innhold (wikitext|html)",
+	"flow-undo": "angre",
+	"flow-undo-your-text": "Din tekst",
+	"flow-ve-mention-context-item-label": "Nevn",
+	"flow-ve-mention-inspector-title": "Nevn",
+	"flow-ve-mention-inspector-remove-label": "Fjern",
+	"flow-ve-mention-tool-title": "Nevn en bruker"
 }
