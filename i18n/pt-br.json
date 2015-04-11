@@ -10,7 +10,8 @@
 			"Teles",
 			"Jefersonmoraes",
 			"Ptrke",
-			"Diego Queiroz"
+			"Diego Queiroz",
+			"TheEduGobi"
 		]
 	},
 	"flow-desc": "Sistema de gerenciamento do fluxo de trabalho",
@@ -96,7 +97,7 @@
 	"flow-topic-action-lock-topic": "Trancar tópico",
 	"flow-topic-action-unlock-topic": "Destrancar tópico",
 	"flow-topic-action-summarize-topic": "Resumir",
-	"flow-topic-action-resummarize-topic": "Editar resumo",
+	"flow-topic-action-resummarize-topic": "Editar o sumário do tópico",
 	"flow-topic-action-suppress-topic": "Suprimir tópico",
 	"flow-topic-action-unhide-topic": "Mostrar tópico",
 	"flow-topic-action-undelete-topic": "Restaurar tópico",

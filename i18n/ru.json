@@ -84,7 +84,7 @@
 	"flow-history-action-restore-post": "восстановить",
 	"flow-history-action-lock-topic": "закрыть",
 	"flow-history-action-unlock-topic": "отменить закрытие",
-	"flow-post-edited": "Сообщение отредактировано {{GENDER:$1|участником|участницей}} $1 $2",
+	"flow-post-edited": "Сообщение отредактировал{{GENDER:$1||а}} $1 $2",
 	"flow-post-action-view": "Постоянная ссылка",
 	"flow-post-action-post-history": "История",
 	"flow-post-action-suppress-post": "Подавить",
