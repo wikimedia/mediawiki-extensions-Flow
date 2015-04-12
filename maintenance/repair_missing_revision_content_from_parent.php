@@ -1,0 +1,96 @@
+<?php
+
+require_once "$IP/maintenance/commandLine.inc";
+require_once "$IP/extensions/Flow/FlowActions.php";
+
+$moderationChangeTypes = array(
+        'hide-post',
+        'hide-topic',
+        'delete-post',
+        'delete-topic',
+        'suppress-post',
+        'suppress-topic',
+        'lock-topic',
+        'restore-post',
+        'restore-topic',
+);
+
+$csvOutput = fopen( 'repair_results_from_parent_' . wfWikiId() . '.csv', 'w' );
+if ( !$csvOutput ) {
+	die( "Could not open results file\n" );
+}
+fputcsv( $csvOutput, array( "uuid", "esurl" ) );
+
+$dbr = Flow\Container::get( 'db.factory' )->getDB( DB_SLAVE );
+$it = new EchoBatchRowIterator(
+	$dbr,
+	'flow_revision',
+	array( 'rev_id' ),
+	10
+);
+$it->addConditions( array( 'rev_user_wiki' => wfWikiId() ) );
+$it->setFetchColumns( array( 'rev_change_type', 'rev_parent_id' ) );
+
+$totalNullContentWithParent = 0;
+$totalNullParentContent = 0;
+$totalBadQueryResult = 0;
+$totalMatched = 0;
+foreach ( $it as $batch ) {
+	foreach ( $batch as $rev ) {
+		$item = ExternalStore::fetchFromURL( $rev->rev_content );
+		if ( $item ) {
+			// contains valid data
+			continue;
+		}
+
+		$changeType = $rev->rev_change_type;
+		while( is_string( $wgFlowActions[$changeType] ) ) {
+			$changeType = $wgFlowActions[$changeType];
+		}
+		if ( !in_array( $changeType, $moderationChangeTypes ) ) {
+			// doesn't inherit content
+			continue;
+		}
+
+		$uuid = Flow\Model\UUID::create( $rev->rev_id );
+		echo "\n********************\n\nProcessing revision " . $uuid->getAlphadecimal() . "\n";
+
+		++$totalNullContentWithParent;
+		$res = iterator_to_array( $dbr->select(
+			/* from */ 'flow_revision',
+			/* select */ 'rev_content',
+			/* where */ array(
+				'rev_id' => $dbr->encodeBlob( $rev->rev_parent_id ),
+			),
+			__FILE__
+		) );
+		// not likely ... but lets be careful
+		if ( !$res ) {
+			echo "No parent found?\n";
+			$totalBadQueryResult++;
+			continue;
+		} elseif ( count ( $res ) > 1 ) {
+			echo "Multiple parents found?\n";
+			$totalBadQueryResult++;
+			continue;
+		}
+
+		$parentItem = ExternalStore::fetchFromURL( $res[0]->rev_content );
+		if ( $parentItem ) {
+			echo "MATCHED\n";
+			fputcsv( $csvOutput, array( $uuid->getAlphadecimal(), $res[0]->rev_content ) );
+			++$totalMatched;
+		} else {
+			echo "Parent item is null\n";
+			++$totalNullParentContent;
+		}
+	}
+}
+
+
+echo "Considered $totalNullContentWithParent revisions with parents and no content\n";
+if ( $totalNullContentWithParent > 0 ) {
+	echo "Could not fix $totalNullParentContent (" . number_format( 100 * $totalNullParentContent / $totalNullContentWithParent ) . "%) due to parent not having content\n";
+	echo "Could not fix $totalBadQueryResult (" . number_format( 100 * $totalBadQueryResult / $totalNullContentWithParent ) . "%) due to not finding the parent revision\n";
+	echo "Found matches for $totalMatched (" . number_format( 100 * $totalMatched / $totalNullContentWithParent ) . "%)\n";
+}
