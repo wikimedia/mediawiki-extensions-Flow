@@ -20,6 +20,6 @@ class PostSummaryQuery extends AbstractQuery {
 		}
 		$this->loadMetadataBatch( $found );
 
-		return $this->buildResult( reset( $found ), null );
+		return $this->buildResult( reset( $found ), 'rev_id' );
 	}
 }

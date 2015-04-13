@@ -689,11 +689,16 @@
 			return $.Deferred().reject().promise();
 		}
 
-		_flowBoardComponentRefreshTopic(
-			info.$target,
-			data.flow['edit-topic-summary'].result.topic,
-			'.flow-topic-titlebar'
-		);
+		var $this = $( this ),
+			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $this ),
+			$oldSummary = info.$target,
+			$newSummary = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
+				'flow_topic_titlebar_summary.partial',
+				data.flow['edit-topic-summary'].result.topicsummary
+			) ).children();
+
+		$oldSummary.replaceWith( $newSummary );
+		flowBoard.emitWithReturn( 'makeContentInteractive', $newSummary );
 
 		return $.Deferred().resolve().promise();
 	};

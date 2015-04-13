@@ -66,9 +66,6 @@ class TopicBlock extends AbstractBlock {
 		// Other stuff
 		'edit-title',
 		'undo-edit-post',
-		// psuedo-action, we don't do anything but we return
-		// information about the topic in the api response
-		'edit-topic-summary',
 	);
 
 	protected $supportedGetActions = array(
