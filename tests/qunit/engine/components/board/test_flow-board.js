@@ -97,29 +97,37 @@ QUnit.module( 'ext.flow: FlowBoardComponent', {
 
 QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.lockTopic - perform unlock', 2, function( assert ) {
 	var
+		$el = this.$el,
 		$topic = $( '<div class="flow-topic" data-flow-id="s18cjkj1bs3rkt13">' ).
 			addClass( 'flow-topic-moderatestate-lock flow-topic-moderated' ).
-			appendTo( this.$el ),
+			appendTo( $el ),
 		$titleBar = $( '<div class="flow-topic-titlebar">' ).appendTo( $topic ),
-		info = { status: 'done', $target: $topic };
+		info = { status: 'done', $target: $topic},
+		returns;
 
-	this.triggerEvent( 'apiHandlers', 'lockTopic', $titleBar, info );
-	$topic = this.$el.children( '.flow-topic' );
-	assert.strictEqual( $topic.hasClass( 'flow-topic-moderated' ), false, 'No longer has the moderated state.' );
-	assert.strictEqual( $topic.hasClass( 'flow-topic-moderatestate-lock' ), false, 'No longer has the moderated lock state.' );
+	returns = this.triggerEvent( 'apiHandlers', 'lockTopic', $titleBar, info );
+	returns[0].done( function() {
+		$topic = $el.children( '.flow-topic' );
+		assert.strictEqual( $topic.hasClass( 'flow-topic-moderated' ), false, 'No longer has the moderated state.' );
+		assert.strictEqual( $topic.hasClass( 'flow-topic-moderatestate-lock' ), false, 'No longer has the moderated lock state.' );
+	} );
 } );
 
 QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.lockTopic - perform lock', 2, function( assert ) {
 	var
+		$el = this.$el,
 		$topic = $( '<div class="flow-topic" data-flow-id="t18cjkj1bs3rkt13">' ).
-			appendTo( this.$el ),
+			appendTo( $el ),
 		$titleBar = $( '<div class="flow-topic-titlebar">' ).appendTo( $topic ),
-		info = { status: 'done', $target: $topic };
+		info = { status: 'done', $target: $topic},
+		returns;
 
-	this.triggerEvent( 'apiHandlers', 'lockTopic', $titleBar, info );
-	$topic = this.$el.children( '.flow-topic' );
-	assert.strictEqual( $topic.hasClass( 'flow-topic-moderated' ), true, 'Has the moderated state.' );
-	assert.strictEqual( $topic.hasClass( 'flow-topic-moderatestate-lock' ), true, 'Has the moderated lock state.' );
+	returns = this.triggerEvent( 'apiHandlers', 'lockTopic', $titleBar, info );
+	returns[0].done( function() {
+		$topic = $el.children( '.flow-topic' );
+		assert.strictEqual( $topic.hasClass( 'flow-topic-moderated' ), true, 'Has the moderated state.' );
+		assert.strictEqual( $topic.hasClass( 'flow-topic-moderatestate-lock' ), true, 'Has the moderated lock state.' );
+	} );
 } );
 
 QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.preview', 3, function( assert ) {
