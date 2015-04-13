@@ -338,11 +338,13 @@ class ObjectManager extends ObjectLocator {
 	 * $old and $new. Expects $old and $new to be representations of
 	 * database rows and contain only strings and numbers.
 	 *
+	 * It does not validate that it is a legal update (See DbStorage->calcUpdates).
+	 *
 	 * @param array $old
 	 * @param array $new
 	 * @return array
 	 */
-	static public function calcUpdates( array $old, array $new ) {
+	static public function calcUpdatesWithoutValidation( array $old, array $new ) {
 		$updates = array();
 		foreach ( array_keys( $new ) as $key ) {
 			if ( !array_key_exists( $key, $old ) || $old[$key] !== $new[$key] ) {
