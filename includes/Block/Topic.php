@@ -426,7 +426,6 @@ class TopicBlock extends AbstractBlock {
 				throw new FailCommitException( 'Attempt to save null revision', 'fail-commit' );
 			}
 
-
 			$metadata = $this->extraCommitMetadata + array(
 				'workflow' => $this->workflow,
 				'topic-title' => $this->loadTopicTitle(),
@@ -455,11 +454,9 @@ class TopicBlock extends AbstractBlock {
 			}
 
 			$returnMetadata = array(
+				'post-id' => $this->newRevision->getPostId(),
 				'post-revision-id' => $this->newRevision->getRevisionId(),
 			);
-			if ( $this->newRevision->isFirstRevision() ) {
-				$returnMetadata['post-id'] = $this->newRevision->getPostId();
-			}
 
 			return $returnMetadata;
 
