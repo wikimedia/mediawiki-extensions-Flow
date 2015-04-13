@@ -139,6 +139,24 @@
       "revId": "e6edb0cf8f35a8c44c4b858fba683fa51ab70681",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_b54a9382",
+        "filename": "includes/BoardMover.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-13T21:28:53Z",
+      "side": 1,
+      "message": "I\u0027ve added a maint script that will update the page id, but that actually only partially solves the problem.  As long as we are still creating new stuff without a page_id this check would fail.\n\nFor now making L79 allow both the real page id and 0, seem reasonable?",
+      "parentUuid": "6e7c4fa4_553c5fbc",
+      "revId": "e6edb0cf8f35a8c44c4b858fba683fa51ab70681",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
