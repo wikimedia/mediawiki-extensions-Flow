@@ -4,6 +4,7 @@
 global $wgAutoloadClasses;
 
 $wgAutoloadClasses += array(
+	'ExternalStoreFlowMock' => __DIR__ . '/tests/phpunit/Mock/ExternalStoreFlowMock.php',
 	'FlowHooks' => __DIR__ . '/Hooks.php',
 	'Flow\\Actions\\EditAction' => __DIR__ . '/includes/Actions/EditAction.php',
 	'Flow\\Actions\\FlowAction' => __DIR__ . '/includes/Actions/Action.php',
@@ -300,7 +301,6 @@ $wgAutoloadClasses += array(
 	'Flow\\Tests\\Data\\ManagerGroupTest' => __DIR__ . '/tests/phpunit/Data/ManagerGroupTest.php',
 	'Flow\\Tests\\Data\\ObjectLocatorTest' => __DIR__ . '/tests/phpunit/Data/ObjectLocatorTest.php',
 	'Flow\\Tests\\Data\\Pager\\PagerTest' => __DIR__ . '/tests/phpunit/Data/Pager/PagerTest.php',
-	'Flow\\Tests\\Data\\RevisionStorageTest' => __DIR__ . '/tests/phpunit/Data/RevisionStorageTest.php',
 	'Flow\\Tests\\Data\\Storage\\RevisionStorageTest' => __DIR__ . '/tests/phpunit/Data/Storage/RevisionStorageTest.php',
 	'Flow\\Tests\\Data\\UserNameBatchTest' => __DIR__ . '/tests/phpunit/Data/UserNameBatchTest.php',
 	'Flow\\Tests\\Data\\UserNameListenerTest' => __DIR__ . '/tests/phpunit/Data/UserNameListenerTest.php',
