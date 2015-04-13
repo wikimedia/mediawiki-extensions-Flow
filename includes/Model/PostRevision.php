@@ -5,6 +5,7 @@ namespace Flow\Model;
 use Flow\Collection\PostCollection;
 use Flow\Container;
 use Flow\Exception\DataModelException;
+use Flow\Exception\FlowException;
 use Flow\Repository\TreeRepository;
 use Title;
 use User;
@@ -329,11 +330,11 @@ class PostRevision extends AbstractRevision {
 	 *
 	 * @param UUID $postId The id of the post to find.
 	 * @return PostRevision|null
-	 * @throws SomethingException
+	 * @throws FlowException
 	 */
 	public function getDescendant( UUID $postId ) {
 		if ( $this->children === null ) {
-			throw new Exception;
+			throw new FlowException( 'Attempted to access post descendant, but children haven\'t yet been loaded.' );
 		}
 		foreach ( $this->children as $child ) {
 			if ( $child->getPostId()->equals( $postId ) ) {
