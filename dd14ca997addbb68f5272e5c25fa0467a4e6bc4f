@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_1fc6066c",
+        "filename": "modules/engine/misc/flow-api.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-13T18:09:03Z",
+      "side": 1,
+      "message": "return promise",
+      "revId": "dd14ca997addbb68f5272e5c25fa0467a4e6bc4f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
