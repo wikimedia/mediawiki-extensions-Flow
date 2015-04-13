@@ -483,10 +483,10 @@
 	 * @returns {$.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.newTopic = function ( info, data, jqxhr ) {
-		var result, fragment,
-			schemaName = $( this ).data( 'flow-eventlog-schema' ),
+		var schemaName = $( this ).data( 'flow-eventlog-schema' ),
 			funnelId = $( this ).data( 'flow-eventlog-funnel-id' ),
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) );
+			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) ),
+			$stub;
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
@@ -495,26 +495,17 @@
 
 		flowBoard.logEvent( schemaName, { action: 'save-success', funnelId: funnelId } );
 
-		result = data.flow['new-topic'].result.topiclist;
-
-		// render only the new topic
-		result.roots = [result.roots[0]];
-		fragment = mw.flow.TemplateEngine.processTemplateGetFragment( 'flow_topiclist_loop.partial', result );
-
 		flowBoard.emitWithReturn( 'cancelForm', $( this ).closest( 'form' ) );
-
-		// Everything must be reset before re-initializing
-		// @todo un-hardcode
-		flowBoard.reinitializeContainer(
-			flowBoard.$container.find( '.flow-topics' ).prepend( fragment )
-		);
 
 		// remove focus - title input field may still have focus
 		// (submitted via enter key), which it needs to lose:
 		// the form will only re-activate if re-focused
 		document.activeElement.blur();
 
-		return $.Deferred().resolve().promise();
+		// _flowBoardComponentRefreshTopic relies on finding a .flow-topic node
+		// to replace, so let's pretend to have one here!
+		$stub = $( '<div class="flow-topic"><div></div></div>' ).prependTo( flowBoard.$container.find( '.flow-topics' ) );
+		return _flowBoardComponentRefreshTopic( $stub.find( 'div' ), data.flow['new-topic'].committed.topiclist['topic-id'] );
 	};
 
 	/**
