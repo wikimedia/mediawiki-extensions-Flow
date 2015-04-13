@@ -485,21 +485,13 @@
 	 * @returns {$.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitEditPost = function( info, data, jqxhr ) {
-		var result;
-
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
 			return $.Deferred().reject().promise();
 		}
 
-		result = data.flow['edit-post'].result.topic;
-		// clear out submitted data, otherwise it would re-trigger an edit
-		// form in the refreshed topic
-		result.submitted = {};
-
-		_flowBoardComponentRefreshTopic( info.$target, result );
-
-		return $.Deferred().resolve().promise();
+		// @todo: add 3rd argument (target selector); there's no need to refresh entire topic
+		return _flowBoardComponentRefreshTopic( info.$target, data.flow['edit-post'].workflow );
 	};
 
 	/**
@@ -569,9 +561,8 @@
 		flowBoard.emitWithReturn( 'cancelForm', $form );
 
 		// Target should be flow-topic
-		_flowBoardComponentRefreshTopic( info.$target, data.flow.reply.result.topic );
-
-		return $.Deferred().resolve().promise();
+		// @todo: add 3rd argument (target selector); there's no need to refresh entire topic
+		return _flowBoardComponentRefreshTopic( info.$target, data.flow.reply.workflow );
 	};
 
 	/**
@@ -689,13 +680,11 @@
 			return $.Deferred().reject().promise();
 		}
 
-		_flowBoardComponentRefreshTopic(
+		return _flowBoardComponentRefreshTopic(
 			info.$target,
-			data.flow['edit-topic-summary'].result.topic,
+			data.flow['edit-topic-summary'].workflow,
 			'.flow-topic-titlebar'
 		);
-
-		return $.Deferred().resolve().promise();
 	};
 
 	/**
@@ -808,20 +797,25 @@
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.moderateTopic = _genModerateHandler(
 		'moderate-topic',
-		function ( $target, revision, apiResult ) {
-			var $replacement,
-				flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) );
-			if ( revision.isModerated && !flowBoard.constructor.static.inTopicNamespace( $target ) ) {
-				$replacement = $( $.parseHTML( mw.flow.TemplateEngine.processTemplate(
-					'flow_moderate_topic_confirmation.partial',
-					revision
-				) ) );
+		function ( flowBoard, revision ) {
+			var $replacement, $target;
 
-				$target.closest( '.flow-topic' ).replaceWith( $replacement );
-				flowBoard.emitWithReturn( 'makeContentInteractive', $replacement );
-			} else {
-				_flowBoardComponentRefreshTopic( $target, apiResult );
+			if ( !revision.isModerated ) {
+				return;
 			}
+
+			$target = flowBoard.$container.find( '#flow-topic-' + revision.postId );
+			if ( flowBoard.constructor.static.inTopicNamespace( $target ) ) {
+				return;
+			}
+
+			$replacement = $( $.parseHTML( mw.flow.TemplateEngine.processTemplate(
+				'flow_moderate_topic_confirmation.partial',
+				revision
+			) ) );
+
+			$target.replaceWith( $replacement );
+			flowBoard.emitWithReturn( 'makeContentInteractive', $replacement );
 		}
 	);
 
@@ -830,20 +824,22 @@
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.moderatePost = _genModerateHandler(
 		'moderate-post',
-		function ( $target, revision, apiResult ) {
-			var $replacement,
-				flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) );
+		function ( flowBoard, revision ) {
+			var $replacement, $target;
 
-			if ( revision.isModerated ) {
-				$replacement = $( $.parseHTML( flowBoard.constructor.static.TemplateEngine.processTemplate(
-					'flow_moderate_post_confirmation.partial',
-					revision
-				) ) );
-				$target.closest( '.flow-post-main' ).replaceWith( $replacement );
-				flowBoard.emitWithReturn( 'makeContentInteractive', $replacement );
-			} else {
-				_flowBoardComponentRefreshTopic( $target, apiResult );
+			if ( !revision.isModerated ) {
+				return;
 			}
+
+			$replacement = $( $.parseHTML( flowBoard.constructor.static.TemplateEngine.processTemplate(
+				'flow_moderate_post_confirmation.partial',
+				revision
+			) ) );
+
+			$target = flowBoard.$container.find( '#flow-post-' + revision.postId + ' > .flow-post-main' );
+			$target.replaceWith( $replacement );
+
+			flowBoard.emitWithReturn( 'makeContentInteractive', $replacement );
 		}
 	);
 
@@ -854,8 +850,8 @@
 	/**
 	 * Generate a moderation handler callback
 	 *
-	 * @param {string} Action to expect in api response
-	 * @param {Function} Method to call on api success
+	 * @param {string} action Action to expect in api response
+	 * @param {Function} successCallback Method to call on api success
 	 */
 	function _genModerateHandler( action, successCallback ) {
 		/**
@@ -872,47 +868,64 @@
 				return $.Deferred().reject().promise();
 			}
 
-			var result = data.flow[action].result.topic,
-				$this = $( this ),
+			var $this = $( this ),
 				$form = $this.closest( 'form' ),
-				id = result.submitted.postId || result.postId || result.roots[0],
+				revisionId = data.flow[action].committed.topic['post-revision-id'],
+				$target = $form.data( 'flow-dialog-owner' ) || $form,
 				flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $this );
 
-			successCallback.call(
-				this,
-				$form.data( 'flow-dialog-owner' ) || $form,
-				result.revisions[result.posts[id]],
-				result
-			);
-
-			flowBoard.emitWithReturn( 'cancelForm', $form );
-
-			return $.Deferred().resolve().promise();
+			// @todo: add 3rd argument (target selector); there's no need to refresh entire topic if only post was moderated
+			return _flowBoardComponentRefreshTopic( $target, data.flow[action].workflow )
+				.done( function( result ) {
+					successCallback(flowBoard, result.flow['view-topic'].result.topic.revisions[revisionId] );
+				} )
+				.done( function() {
+					// we're done here, close moderation pop-up
+					flowBoard.emitWithReturn( 'cancelForm', $form );
+				} );
 		};
 	}
 
 	/**
-	 * Refreshes the titlebar of a topic given an API response.
+	 * Refreshes (part of) a topic.
+	 *
 	 * @param  {jQuery} $targetElement An element in the topic.
-	 * @param  {Object} apiResult      Plain object containing the API response to build from.
+	 * @param  {string} workflowId     Plain object containing the API response to build from.
 	 * @param  {String} [selector]     Select specific element to replace
+	 * @returns {$.Promise}
 	 */
-	function _flowBoardComponentRefreshTopic( $targetElement, apiResult, selector ) {
+	function _flowBoardComponentRefreshTopic( $targetElement, workflowId, selector ) {
 		var $target = $targetElement.closest( '.flow-topic' ),
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $targetElement ),
-			$newContent = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
+			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $targetElement );
+
+		return flowBoard.Api.apiCall( {
+			action: 'flow',
+			submodule: 'view-topic',
+			workflow: workflowId,
+			// Flow topic title, in Topic:<topicId> format (2600 is topic namespace id)
+			page: ( new mw.Title( workflowId, 2600 ) ).getPrefixedDb()
+		} ).done( function( result ) {
+			// Update view of the full topic
+			var $replacement = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
 				'flow_topiclist_loop.partial',
-				apiResult
+				result.flow['view-topic'].result.topic
 			) ).children();
 
-		if ( selector ) {
-			$newContent = $newContent.find( selector );
-			$target = $target.find( selector );
-		}
+			if ( selector ) {
+				$replacement = $replacement.find( selector );
+				$target = $target.find( selector );
+			}
 
-		$target.replaceWith( $newContent );
-		// Run loadHandlers
-		flowBoard.emitWithReturn( 'makeContentInteractive', $newContent );
+			$target.replaceWith( $replacement );
+			// Run loadHandlers
+			flowBoard.emitWithReturn( 'makeContentInteractive', $replacement );
+		} ).fail( function( code, result ) {
+			var errorMsg = flowBoard.constructor.static.getApiErrorMessage( code, result );
+			errorMsg = mw.msg( 'flow-error-fetch-after-open-lock', errorMsg );
+
+			flowBoard.emitWithReturn( 'removeError', $target );
+			flowBoard.emitWithReturn( 'showError', $target, errorMsg );
+		} );
 	}
 
 	// Mixin to FlowBoardComponent
