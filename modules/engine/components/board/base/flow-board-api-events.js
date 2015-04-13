@@ -441,37 +441,16 @@
 	 * @returns {$.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitTopicTitle = function( info, data, jqxhr ) {
-		var
-			topicData,
-			rootId,
-			revisionId,
-			$this = $( this ),
-			$topic = info.$target,
-			$oldTopicTitleBar, $newTopicTitleBar,
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $this );
-
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
 			return $.Deferred().reject().promise();
 		}
 
-		$oldTopicTitleBar = $topic.find( '.flow-topic-titlebar' );
-		topicData = data.flow['edit-title'].result.topic;
-		rootId = topicData.roots[0];
-		revisionId = topicData.posts[rootId][0];
-		$newTopicTitleBar = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-			'flow_topic_titlebar.partial',
-			topicData.revisions[revisionId]
-		) ).children();
-
-		$oldTopicTitleBar
-			.replaceWith( $newTopicTitleBar );
-
-		flowBoard.emitWithReturn( 'makeContentInteractive', $newTopicTitleBar );
-
-		$newTopicTitleBar.conditionalScrollIntoView();
-
-		return $.Deferred().resolve().promise();
+		return _flowBoardComponentRefreshTopic(
+			info.$target,
+			data.flow['edit-title'].workflow,
+			'.flow-topic-titlebar'
+		);
 	};
 
 	/**
