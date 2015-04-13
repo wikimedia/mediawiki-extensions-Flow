@@ -432,13 +432,12 @@ abstract class RevisionStorage extends DbStorage {
 	}
 
 	// This is to *UPDATE* a revision.  It should hardly ever be used.
-	// For the most part should insert a new revision.  This will only be called
-	// for suppressing?
+	// For the most part should insert a new revision.  This should only be called
+	// by maintenance scripts and (future) suppression features.
 	public function update( array $old, array $new ) {
 		$changeSet = $this->calcUpdates( $old, $new );
 
 		$rev = $this->splitUpdate( $changeSet, 'rev' );
-		$rev = $this->processExternalStore( $rev );
 
 		if ( $rev ) {
 			$dbw = $this->dbFactory->getDB( DB_MASTER );
