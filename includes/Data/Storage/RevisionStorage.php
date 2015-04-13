@@ -400,9 +400,29 @@ abstract class RevisionStorage extends DbStorage {
 		return $this->insertRelated( $rows );
 	}
 
+	/**
+	 * Checks whether updating content for an existing revision is allowed.
+	 * This is only needed for rare actions like fixing XSS.  Normally a new revision
+	 * is made.
+	 *
+	 * @return {bool} True if and only if updating existing content is allowed
+	 */
+	public function isUpdatingExistingRevisionContentAllowed() {
+		// All of these are required to do a consistent mechanical update.
+		return
+			in_array( 'rev_content', $this->allowedUpdateColumns, true ) &&
+			in_array( 'rev_content_length', $this->allowedUpdateColumns, true ) &&
+			in_array( 'rev_previous_content_length', $this->allowedUpdateColumns, true );
+	}
+
+	// If this is a new row (new rows should always have content) or part of an update
+	// involving a content change, inserts into external store.
 	protected function processExternalStore( array $row ) {
 		// Check if we need to insert new content
-		if ( $this->externalStore && !isset( $row['rev_content_url'] ) ) {
+		if (
+			$this->externalStore &&
+			isset( $row['rev_content'] )
+		) {
 			$row = $this->insertExternalStore( $row );
 		}
 
@@ -431,14 +451,46 @@ abstract class RevisionStorage extends DbStorage {
 		return $row;
 	}
 
+	/**
+	 * Gets the required updates.  Any changes to External Store will be reflected in
+	 * the returned array.
+	 *
+	 * @param array $old Associative array mapping prior columns to old values
+	 * @param array $new Associative array mapping updated columns to new values
+	 *
+	 * @return array Validated change set as associative array, mapping columns to
+	 *   change to their new values
+	 */
+	public function calcUpdates( $old, $new ) {
+		// First, see if there are any changes to content at all.
+		// If not, processExternalStore will know not to insert a useless row for
+		// unchanged content (if updating content is allowed).
+		$unvalidatedChangeset = ObjectManager::calcUpdatesWithoutValidation( $old, $new );
+
+		// We check here so if it's not allowed, we don't insert a wasted External
+		// Store entry, then throw an exception in the parent calcUpdates.
+		if ( $this->isUpdatingExistingRevisionContentAllowed() ) {
+			$unvalidatedChangeset = $this->processExternalStore( $unvalidatedChangeset );
+		}
+
+		// The parent calcUpdates does the validation that we're not changing a non-allowed
+		// field, regardless of whether explicitly passed in, or done by processExternalStore.
+		$validatedChangeset = $this->calcUpdates( array(), $unvalidatedChangeset );
+		return $validatedChangeset;
+	}
+
 	// This is to *UPDATE* a revision.  It should hardly ever be used.
-	// For the most part should insert a new revision.  This will only be called
-	// for suppressing?
+	// For the most part should insert a new revision.  This should only be called
+	// by maintenance scripts and (future) suppression features.
+	//
+	// It supports updating content, which is only intended for required mechanical
+	// transformations, such as XSS fixes.  However, since this is only intended for
+	// maintenance scripts, these columns must first be temporarily added to
+	// allowedUpdateColumns.
 	public function update( array $old, array $new ) {
 		$changeSet = $this->calcUpdates( $old, $new );
 
 		$rev = $this->splitUpdate( $changeSet, 'rev' );
-		$rev = $this->processExternalStore( $rev );
 
 		if ( $rev ) {
 			$dbw = $this->dbFactory->getDB( DB_MASTER );
