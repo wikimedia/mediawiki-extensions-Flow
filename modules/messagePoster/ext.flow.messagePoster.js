@@ -40,8 +40,7 @@
 			page: this.title.getPrefixedDb(),
 			nttopic: subject,
 			ntcontent: body,
-			ntformat: 'wikitext',
-			ntmetadataonly: 1
+			ntformat: 'wikitext'
 		}, {
 			// IE 8 seems to have cached some POST requests without this
 			cache: false
