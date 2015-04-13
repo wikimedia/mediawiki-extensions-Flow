@@ -36,7 +36,7 @@
 		 * Makes the actual API call and returns
 		 * @param {Object|String} [params] May be a JSON object string
 		 * @param {String} [pageName]
-		 * @returns {$.Deferred}
+		 * @returns {$.Promise}
 		 */
 		function flowApiCall( params, method ) {
 			var mwApi, tokenType,
@@ -60,11 +60,11 @@
 
 			if ( !params.action ) {
 				mw.flow.debug( '[FlowApi] apiCall error: missing action string', arguments );
-				return $deferred.rejectWith({ error: 'Invalid action' });
+				return $deferred.rejectWith({ error: 'Invalid action' }).promise();
 			}
 			if ( !params.page ) {
 				mw.flow.debug( '[FlowApi] apiCall error: missing page string', [ mw.config.get( 'wgPageName' ) ], arguments );
-				return $deferred.rejectWith({ error: 'Invalid title' });
+				return $deferred.rejectWith({ error: 'Invalid title' } ).promise();
 			}
 
 			if ( method === 'POST' ) {
@@ -78,7 +78,7 @@
 
 				return mwApi.postWithToken( tokenType, params );
 			} else if ( method !== 'GET' ) {
-				return $deferred.rejectWith({ error: 'Unknown submission method: ' + method });
+				return $deferred.rejectWith({ error: 'Unknown submission method: ' + method }).promise();
 			} else {
 				return mwApi.get( params );
 			}
