@@ -52,14 +52,24 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 			'committed' => $commitMetadata,
 		) );
 
-		// User frontends need this data, but bots do not.  When they
-		// pass metadataonly=1 we will skip this data and return a slimmer
-		// response in a shorter timeframe.
-		if ( !$this->getParameter( 'metadataonly' ) ) {
+		// We used to provide render data along with these POST APIs because we
+		// needed them to render JS. Now we have view-* API's and JS is using
+		// them - we don't need this hack anymore.
+		// We'll let this live on for a little while and warn users who were not
+		// already requesting only metadata that this is soon changing.
+		if ( $this->getParameter( 'metadataonly' ) !== true ) {
 			$output[$action]['result'] = array();
 			foreach( $blocksToCommit as $block ) {
 				// Always return parsed text to client after successful submission?
 				$output[$action]['result'][$block->getName()] = $block->renderApi( $params[$block->getName()] );
+			}
+
+			if ( $this->getParameter( 'metadataonly' ) === null ) {
+				$this->setWarning(
+					'This API will soon stop providing detailed render data in ' .
+					'flow.[action].result. Start getting that data from view-*' .
+					'API submodules.'
+				);
 			}
 		}
 
@@ -80,8 +90,11 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 	public function getAllowedParams() {
 		return array(
 			'metadataonly' => array(
-				ApiBase::PARAM_TYPE => 'boolean',
-				ApiBase::PARAM_DFLT => false,
+				// going to deprecate this (it's becoming default behavior) and
+				// I want to warn people who DON'T set this param, so I don't
+				// want it to default to anything (so I can check for null)
+				// ApiBase::PARAM_TYPE => 'boolean',
+				// ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_REQUIRED => false,
 			),
 		);
