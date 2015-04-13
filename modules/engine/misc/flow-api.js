@@ -36,7 +36,7 @@
 		 * Makes the actual API call and returns
 		 * @param {Object|String} [params] May be a JSON object string
 		 * @param {String} [pageName]
-		 * @returns {$.Deferred}
+		 * @returns {$.Promise}
 		 */
 		function flowApiCall( params, method ) {
 			var mwApi, tokenType,
