@@ -208,7 +208,7 @@ abstract class DbStorage implements ObjectStorage {
 	 * @throws DataModelException
 	 */
 	public function calcUpdates( array $old, array $new ) {
-		$changeSet = ObjectManager::calcUpdates( $old, $new );
+		$changeSet = ObjectManager::calcUpdatesWithoutValidation( $old, $new );
 
 		foreach ( $this->obsoleteUpdateColumns as $val ) {
 			// Need to use array_key_exists to check null value

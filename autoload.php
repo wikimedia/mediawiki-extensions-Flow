@@ -4,6 +4,7 @@
 global $wgAutoloadClasses;
 
 $wgAutoloadClasses += array(
+	'ExternalStoreFlowMock' => __DIR__ . '/tests/phpunit/Mock/ExternalStoreFlowMock.php',
 	'FlowHooks' => __DIR__ . '/Hooks.php',
 	'Flow\\Actions\\EditAction' => __DIR__ . '/includes/Actions/EditAction.php',
 	'Flow\\Actions\\FlowAction' => __DIR__ . '/includes/Actions/Action.php',
