@@ -368,68 +368,15 @@
 	 * @returns {$.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.lockTopic = function ( info, data ) {
-		var $replacement,
-			$target = info.$target,
-			$this = $( this ),
-			$deferred = $.Deferred(),
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $this ),
-			flowId = $this.closest( '.flow-topic' ).data( 'flow-id' );
-
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
-			return $deferred.reject().promise();
+			return $.Deferred().reject().promise();
 		}
 
-		// We couldn't make lock-topic to return topic data after a successful
-		// post submission because lock-topic is used for no-js support as well.
-		// If we make it return topic data, that means it has to return wikitext format
-		// for edit form in no-js mode.  This is a performance problem for wikitext
-		// conversion since topic data returns all children data as well.  So we need to
-		// make lock-topic return a single post for topic then fire
-		// another request to topic data in html format
-		//
-		// @todo the html could json encode the parameters including topics, the js
-		// could then import that and continuously update it with new revisions from
-		// api calls.  Rendering a topic would then just be pointing the template at
-		// the right part of that data instead of requesting it.
-		flowBoard.Api.apiCall( {
-			action: 'flow',
-			submodule: 'view-topic',
-			workflow: flowId,
-			// Flow topic title, in Topic:<topicId> format (2600 is topic namespace id)
-			page: mw.Title.newFromText( flowId, 2600 ).getPrefixedDb()
-			// @todo fixme
-			// - mw.Title.newFromText can return null. If you're not going to check its return
-			//   value, use 'new mw.Title' instead so that you get an exception for 'invalid title'
-			//   instead of an exception for 'property of null'.
-			// - The second parameter to mw.Title is 'defaultNamespace' not 'namespace'.
-			//   E.g. mw.Title.newFromText( 'User:Example', 6 ) -> 'User:Example', not 'File:
-			//   If you need to prefix/enforce a namespace, use the canonical prefix instead.
-		} ).done( function( result ) {
-			// Update view of the full topic
-			$replacement = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-				'flow_topiclist_loop.partial',
-				result.flow['view-topic'].result.topic
-			) ).children();
-
-			$target.replaceWith( $replacement );
-			flowBoard.emitWithReturn( 'makeContentInteractive', $replacement );
-
-			$deferred.resolve();
-		} ).fail( function( code, result ) {
-			/*
-			 * At this point, the lock/unlock actually worked, but failed
-			 * fetching the new data to be displayed.
-			 */
-			flowBoard.emitWithReturn( 'removeError', $target );
-			var errorMsg = flowBoard.constructor.static.getApiErrorMessage( code, result );
-			errorMsg = mw.msg( 'flow-error-fetch-after-open-lock', errorMsg );
-			flowBoard.emitWithReturn( 'showError', $target, errorMsg );
-
-			$deferred.reject();
-		} );
-
-		return $deferred.promise();
+		return _flowBoardComponentRefreshTopic(
+			info.$target,
+			$( this ).closest( '.flow-topic' ).data( 'flow-id' )
+		);
 	};
 
 	/**
