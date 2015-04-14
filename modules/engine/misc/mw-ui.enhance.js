@@ -429,10 +429,16 @@
 	 */
 	var _oldOnBeforeUnload = window.onbeforeunload;
 	window.onbeforeunload = function () {
-		var uncommitted;
+		var uncommitted,
+			hasValue, currentValue, defaultValue, placeholderText;
 
 		$( 'input, textarea' ).filter( '.mw-ui-input:visible' ).each( function () {
-			if ( $.trim( this.value ) && this.value !== this.defaultValue ) {
+			hasValue = !!$.trim( this.value );
+			currentValue = this.value;
+			defaultValue = this.defaultValue;
+			placeholderText = $( this ).attr( 'placeholder' );
+
+			if ( hasValue && currentValue !== defaultValue && currentValue !== placeholderText ) {
 				uncommitted = true;
 				return false;
 			}
