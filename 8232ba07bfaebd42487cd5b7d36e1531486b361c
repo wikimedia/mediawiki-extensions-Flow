@@ -2,6 +2,176 @@
   "comments": [
     {
       "key": {
+        "uuid": "6e7c4fa4_8b8654df",
+        "filename": "maintenance/repair_missing_revision_content.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-14T02:09:11Z",
+      "side": 1,
+      "message": "Can get this from ModerationLoggingListener .",
+      "revId": "8232ba07bfaebd42487cd5b7d36e1531486b361c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_abcf902b",
+        "filename": "maintenance/repair_missing_revision_content.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-14T02:09:11Z",
+      "side": 1,
+      "message": "Since this doesn\u0027t count ones that are valid to begin with, maybe totalMissingConsidered?",
+      "revId": "8232ba07bfaebd42487cd5b7d36e1531486b361c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_2ba06031",
+        "filename": "maintenance/repair_missing_revision_content.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-14T02:09:11Z",
+      "side": 1,
+      "message": "There will need to be special logic in the restore script to make sure the moderated revisions are restored, right?",
+      "revId": "8232ba07bfaebd42487cd5b7d36e1531486b361c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_6b0ad82b",
+        "filename": "maintenance/repair_missing_revision_content.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-14T02:09:11Z",
+      "side": 1,
+      "message": "These aren\u0027t really URLs, so please rename.",
+      "revId": "8232ba07bfaebd42487cd5b7d36e1531486b361c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_0b324406",
+        "filename": "maintenance/repair_missing_revision_content.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-14T02:09:11Z",
+      "side": 1,
+      "message": "guillemet of doom.",
+      "revId": "8232ba07bfaebd42487cd5b7d36e1531486b361c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_2b04e019",
+        "filename": "maintenance/repair_missing_revision_content.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-14T02:09:11Z",
+      "side": 1,
+      "message": "So basically this is checking that we haven\u0027t found a missing one yet.\n\nMaybe write as:\n\nif ( $id \u003d\u003d\u003d $lastId || $id \u003d\u003d\u003d ( $lastId + 1) ) {\n\n}\n\nThe code kind of suggests $id could be less than $lastId.",
+      "revId": "8232ba07bfaebd42487cd5b7d36e1531486b361c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_2b04df16",
+        "filename": "maintenance/repair_missing_revision_content.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-14T02:09:11Z",
+      "side": 1,
+      "message": "Given this is a core revision, why does this need special handling?  Shouldn\u0027t it already be excluded above?",
+      "revId": "8232ba07bfaebd42487cd5b7d36e1531486b361c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_eb0d873b",
+        "filename": "maintenance/repair_missing_revision_content.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-14T02:09:11Z",
+      "side": 1,
+      "message": "Add ... to indicate it\u0027s truncated for display.",
+      "revId": "8232ba07bfaebd42487cd5b7d36e1531486b361c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_ab178f49",
+        "filename": "maintenance/repair_missing_revision_content.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-14T02:09:11Z",
+      "side": 1,
+      "message": "Same as above.",
+      "revId": "8232ba07bfaebd42487cd5b7d36e1531486b361c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_4b6cbbcb",
+        "filename": "maintenance/repair_missing_revision_content.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-14T02:09:11Z",
+      "side": 1,
+      "message": "Can you clarify this part?",
+      "revId": "8232ba07bfaebd42487cd5b7d36e1531486b361c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_8b7094da",
         "filename": "maintenance/repair_missing_revision_content.php",
         "patchSetId": 3
@@ -13,6 +183,23 @@
       "writtenOn": "2015-04-14T00:48:28Z",
       "side": 1,
       "message": "this is wrong, $match[1] is the content, we want the es URL here",
+      "revId": "8232ba07bfaebd42487cd5b7d36e1531486b361c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_ebc6e79d",
+        "filename": "maintenance/repair_missing_revision_content.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-14T02:09:11Z",
+      "side": 1,
+      "message": "Separate return statements into two lines.",
       "revId": "8232ba07bfaebd42487cd5b7d36e1531486b361c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
