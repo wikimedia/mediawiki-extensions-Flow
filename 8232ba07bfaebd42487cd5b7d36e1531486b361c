@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_8b7094da",
+        "filename": "maintenance/repair_missing_revision_content.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-14T00:48:28Z",
+      "side": 1,
+      "message": "this is wrong, $match[1] is the content, we want the es URL here",
+      "revId": "8232ba07bfaebd42487cd5b7d36e1531486b361c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
