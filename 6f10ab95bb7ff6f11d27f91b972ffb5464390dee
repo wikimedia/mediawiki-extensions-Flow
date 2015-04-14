@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_d1ee3ee8",
+        "filename": "includes/Search/Searcher.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-14T13:55:16Z",
+      "side": 1,
+      "message": "TODO: make sure this scales ok - email Nik?",
+      "revId": "6f10ab95bb7ff6f11d27f91b972ffb5464390dee",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
