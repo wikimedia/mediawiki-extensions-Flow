@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_9188c676",
+        "filename": "includes/Search/TopicUpdater.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-14T13:23:03Z",
+      "side": 1,
+      "message": "TBD: do we want to index moderated posts or not?\n\nIn this patch, they are being indexed, with content and all.\nA very early mockup (by May) had the possibility to filter posts based on moderation state. Not knowing what new mockups would be like, I decided to leave the possibility open.\n\nWe may want to:\n* not index moderated revisions at all\n* strip the content of moderated revisions so it\u0027s not searchable by text\n* not change a thing \u0026 just filter on output",
+      "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_f1981ac6",
+        "filename": "maintenance/FlowForceSearchIndex.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-14T13:23:03Z",
+      "side": 1,
+      "message": "If you try running this script here \u0026 get stuck in an infinite loop, you\u0027ll pull follow-up patch https://gerrit.wikimedia.org/r/#/c/195890/, where this script has been moved to.",
+      "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
