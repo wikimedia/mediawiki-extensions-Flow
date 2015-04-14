@@ -73,8 +73,10 @@ class ContributionsQuery extends AbstractQuery {
 				try {
 					$result = $pager instanceof ContribsPager ? new ContributionsRow : new DeletedContributionsRow;
 					$result = $this->buildResult( $revision, $pager->getIndexField(), $result );
-					// comparing article ID to 0 to check if title is deleted
-					$deleted = $result->currentRevision->isDeleted() || $result->workflow->getOwnerTitle()->getArticleID() === 0;
+					// comparing article ID to 0 to check if title doesn't currently
+					// exist & isDeleted to see if it ever existed (but now deleted)
+					$title = $result->workflow->getOwnerTitle();
+					$deleted = $result->currentRevision->isDeleted() || ($title->getArticleID() === 0 && $title->isDeleted() > 0);
 
 					if (
 						$result instanceof ContributionsRow &&
