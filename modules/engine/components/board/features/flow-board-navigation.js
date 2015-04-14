@@ -165,6 +165,7 @@
 	 */
 	function _flowBoardAdjustTopicNavigationHeader( $boardNavigation, event, extraParameters ) {
 		var bottomScrollPosition, topicText, newReadingTopicId,
+			inlineBarWidth, inlineBarLeft, fixedBarWidth, fixedBarLeft,
 			self = this,
 			boardNavigationPosition = ( this.$boardNavigationClone || $boardNavigation ).offset(),
 			windowVerticalScroll = $( window ).scrollTop();
@@ -177,7 +178,8 @@
 				// Un-affix this
 				$boardNavigation
 					.removeClass( 'flow-board-navigation-affixed' )
-					.css( 'left', '' );
+					.css( 'left', '' )
+					.css( 'width', 'inherit' );
 				// Remove the old clone if it exists
 				this.$boardNavigationClone.remove();
 				delete this.$boardNavigationClone;
@@ -214,10 +216,16 @@
 
 		boardNavigationPosition = this.$boardNavigationClone.offset();
 
-		// The only thing that needs calculating is its left offset
-		if ( parseInt( $boardNavigation.css( 'left' ) ) !== boardNavigationPosition.left ) {
+		// keep both banners (inline, fixed) the same width and horizontal position
+		inlineBarWidth = this.$boardNavigationClone.outerWidth(true);
+		fixedBarWidth = parseInt( $boardNavigation.css( 'width' ) );
+		inlineBarLeft = boardNavigationPosition.left;
+		fixedBarLeft = parseInt( $boardNavigation.css( 'left' ) );
+
+		if ( inlineBarWidth !== fixedBarWidth || inlineBarLeft !== fixedBarLeft ) {
 			$boardNavigation.css( {
-				left: boardNavigationPosition.left
+				left: inlineBarLeft,
+				width: inlineBarWidth
 			} );
 		}
 
