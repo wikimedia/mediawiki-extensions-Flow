@@ -2,6 +2,57 @@
   "comments": [
     {
       "key": {
+        "uuid": "6e7c4fa4_a0500662",
+        "filename": "includes/Search/TopicUpdater.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-14T23:09:22Z",
+      "side": 1,
+      "message": "usually these go in the other order, calling the parent constructor first. There is no practical difference though.",
+      "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_a0d566eb",
+        "filename": "includes/Search/TopicUpdater.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-14T23:09:22Z",
+      "side": 1,
+      "message": "not a big deal, php will \"do the right thing\", but typically we define a variable before appending to it.  Its ugly but can also use $data \u003darray( array( ... ) );",
+      "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_8002aa73",
+        "filename": "includes/Search/TopicUpdater.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-14T23:09:22Z",
+      "side": 1,
+      "message": "we could just use AbstractRevision::getContentRaw(). That wouldn\u0027t work quite right if wikitext storage worked, but it doesn\u0027t and i dont think we have any plans to fix it.\n\ncompletely unrelated, but i wonder if we should be using this Sanitizer elsewhere insted of our homegrown Flow\\Parsoid\\Utils::htmlToPlaintext",
+      "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_9188c676",
         "filename": "includes/Search/TopicUpdater.php",
         "patchSetId": 5
@@ -19,6 +70,92 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_c061829f",
+        "filename": "includes/Search/TopicUpdater.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-14T23:09:22Z",
+      "side": 1,
+      "message": "Based on the various mockups and slide decks that have been put together by may, and then later pau, we will 100% want to index locked topics which are a form of moderation.  \n\nWhat we dont ever want to index is deleted or suppressed content.  Hidden content is up in the air, but for standard wiki pages the equivilent to hidden content is not indexed.",
+      "parentUuid": "6e7c4fa4_9188c676",
+      "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_80186ad8",
+        "filename": "includes/Search/TopicUpdater.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-14T23:09:22Z",
+      "side": 1,
+      "message": "i don\u0027t particularly care, but randomly thought this would be clearer with a single return statement and\n\n    if ( $revision instanceof PostRevision ) {\n        foreach ...\n    }\n\n    return $data;",
+      "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_e0603eff",
+        "filename": "maintenance/FlowForceSearchIndex.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-14T23:09:22Z",
+      "side": 1,
+      "message": "limit sounds too much like a limit for the number per query, even though that is mBatchSize. maybe this could have a more verbose name? $numRevisionsToIndex or some such.",
+      "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_c003c211",
+        "filename": "maintenance/FlowForceSearchIndex.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-14T23:09:22Z",
+      "side": 1,
+      "message": "I don\u0027t think this should be optional, the query should always have a limit of at least $this-\u003emBatchSize",
+      "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_604d0e9e",
+        "filename": "maintenance/FlowForceSearchIndex.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-14T23:09:22Z",
+      "side": 1,
+      "message": "i\u0027m still not the biggest fan of re-implementing batched queries all over the place.  I havn\u0027t thought too deeply about if EchoBatchRowIterator fits here or not though.",
+      "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_f1981ac6",
         "filename": "maintenance/FlowForceSearchIndex.php",
         "patchSetId": 5
@@ -30,6 +167,23 @@
       "writtenOn": "2015-04-14T13:23:03Z",
       "side": 1,
       "message": "If you try running this script here \u0026 get stuck in an infinite loop, you\u0027ll pull follow-up patch https://gerrit.wikimedia.org/r/#/c/195890/, where this script has been moved to.",
+      "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_2015d64d",
+        "filename": "maintenance/FlowForceSearchIndex.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-14T23:09:22Z",
+      "side": 1,
+      "message": "should probably use end() rather than array_pop(),  the distinctive things about array_pop() is that it actually removes the element from the array, but that has no effect inside this function.",
       "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
