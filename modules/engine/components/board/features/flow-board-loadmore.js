@@ -129,7 +129,7 @@
 					null,
 					'',
 					'',
-					'flow_topiclist_loop' // @todo clean up the way we pass these 3 params ^
+					'flow_topiclist_loop.partial' // @todo clean up the way we pass these 3 params ^
 				);
 
 				_scrollWithoutInfinite();
