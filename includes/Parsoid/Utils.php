@@ -112,8 +112,9 @@ abstract class Utils {
 		}
 		$status = $request->execute();
 		if ( !$status->isOK() ) {
-			wfDebugLog( 'Flow', __METHOD__ . ': Failed contacting parsoid: ' . $status->getMessage()->text() );
-			throw new NoParsoidException( 'Failed contacting Parsoid', 'process-wikitext' );
+			$statusMsg = $status->getMessage()->text();
+			wfDebugLog( 'Flow', __METHOD__ . ": Failed contacting parsoid: $statusMsg" );
+			throw new NoParsoidException( "Failed contacting Parsoid: $statusMsg", 'process-wikitext' );
 		}
 
 		return $request->getContent();
