@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_cef1b961",
+        "filename": "includes/Data/Storage/RevisionStorage.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-14T11:18:16Z",
+      "side": 1,
+      "message": "I\u0027m not a fan of deliberately \"breaking\" functions because they may result in an error if improperly used. Especially if they\u0027re several layers of abstraction deep.\n\nI think it\u0027s reasonable to assume that insert() would work similar to update(). If anyone ever wants/needs to update content (e.g. XSS has been stored, ...), this could cause new cases of data loss because update() (which is hidden behind layers of abstraction) wouldn\u0027t just do what I\u0027d expect.\n\nI\u0027m sure all of us will remember \"that time we lost some data\" and would likely figure our this problem soon. But others coming into this codebase likely won\u0027t. And we should strive to have as few as possible \"I have to tread carefully here because I know this particular part of code I\u0027m touching is special\".\n\nI\u0027d rather see:\n\n* us properly patch the real problem (making sure the ExternalStore stuff doesn\u0027t go out unless the content really changes) \u0026 put a bunch of tests in place. I\u0027m not sure exactly how this ended up here, but we should probably have had safeguards in place elsewhere.\n\n* or move the ExternalStore-related code somewhere else, so we can at least keep insert() \u0026 update() similar.\n\n* or keep this functionality in, but optional, hidden behind some optional global/argument/...\n\n* or at the very least write an elaborate comment in here, explaining exactly why this method doesn\u0027t do the ExternalStore stuff.\n\nAdditionally, I\u0027m not even sure we can safely get rid of processExternalStore() here. Not only does it write the data to ExternalStore, it also alters rev_content, rev_content_url \u0026 rev_flags. I\u0027m not 100% confident that that difference will not cause any other issues (likely not, but still, maybe some day)",
+      "revId": "e6d8c8e96ccd8456296cddf21bc120e3433fd5d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
