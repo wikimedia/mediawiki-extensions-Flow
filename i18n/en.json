@@ -380,6 +380,7 @@
 	"flow-terms-of-use-unlock-topic": "By clicking \"{{int:flow-unlock-topic-submit}}\", you agree to the terms of use for this wiki.",
 	"flow-whatlinkshere-post": "from a [$1 post]",
 	"flow-whatlinkshere-header": "from the [$1 header]",
+	"flow-whatlinkshere-post-summary": "from the [$1 summary]",
 	"flow": "Flow",
 	"flow-special-desc": "This special page redirects to a Flow workflow or a Flow post given a UUID.",
 	"flow-special-type": "Type",
