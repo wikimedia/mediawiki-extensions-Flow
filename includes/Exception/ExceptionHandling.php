@@ -242,6 +242,7 @@ class InvalidDataException extends FlowException {
 			'invalid-title',
 			'fail-load-data',
 			'fail-load-history',
+			'fail-search',
 			'missing-topic-title',
 			'missing-metadata'
 		);
