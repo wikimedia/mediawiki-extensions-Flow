@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_4a04ac17",
+        "filename": "includes/Data/Storage/RevisionStorage.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-15T06:15:33Z",
+      "side": 1,
+      "message": "I added the isset because otherwise the unit test failed (and in theory the pre-existing code was supposed to support it being omitted).\n\nBut should it actually be flexible here, or require it be set?  This field also got corrupted in production (it hit the fallback and ended up with \u0027external\u0027).",
+      "revId": "959620379d7552bc29d306e4f8ffab5d790598b4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
