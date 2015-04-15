@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_431b3773",
+        "filename": "includes/Content/BoardContentHandler.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-15T16:38:09Z",
+      "side": 1,
+      "message": "canBeUsedOn shouldn\u0027t create a page. It interferes with core\u0027s deletion-related code. This results in the page being recreated when viewing the archive version.\n\nDeletion stuff isn\u0027t exposed (or even finished) yet, so this is ok for now, but we\u0027ll have to fix this some place else (working on it)",
+      "revId": "a036e38b4e6ab83c3f651fd6d759886ae5731159",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
