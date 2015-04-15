@@ -105,7 +105,7 @@
 	"flow-topic-action-edit-title": "Used as title for the link which is used to edit the title.",
 	"flow-topic-action-history": "Used as text for the link which is used to view topic-history.\n{{Identical|History}}",
 	"flow-topic-action-hide-topic": "Used as a link in a dropdown menu to hide a topic.\n{{Related|Flow-action}}",
-	"flow-topic-action-delete-topic": "Used as a link in a dropdown menu to delete a topic.\n{{Related|Flow-action}}",
+	"flow-topic-action-delete-topic": "Used as a link in a dropdown menu to delete a topic.\n{{Related|Flow-action}}\n{{Identical|Delete topic}}",
 	"flow-topic-action-lock-topic": "Used as a link in a dropdown menu to lock a topic.\n{{Related|Flow-action}}",
 	"flow-topic-action-unlock-topic": "Used as a link in a dropdown menu to unlock a topic.\n{{Related:Flow-action}}",
 	"flow-topic-action-summarize-topic": "Used as a link in a dropdown menu to summarize a topic.\n{{Related|Flow-action}}\n{{Identical|Summarize}}",

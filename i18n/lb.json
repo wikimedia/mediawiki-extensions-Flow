@@ -89,7 +89,7 @@
 	"flow-error-insufficient-permission": "Net genuch Rechter fir op den Inhalt zouzegräifen.",
 	"flow-error-no-render": "Déi spzifizéiert Aktioun gouf net erkannt.",
 	"flow-error-no-commit": "Déi spezifiséiert Aktioun konnt net gespäichert ginn",
-	"flow-error-move": "D'Réckel vun engem Diskussiouns-Forum gëtt elo net ënnerstëtzt",
+	"flow-error-move-topic": "D'Réckele vun enger Theme-Säit gëtt elo net ënnerstëtzt",
 	"flow-error-invalid-topic-uuid-title": "Schlechten Titel",
 	"flow-error-unknown-workflow-id-title": "Onbekannt Thema",
 	"flow-edit-header-placeholder": "Dësen Diskussiouns-Board beschreiwen",
