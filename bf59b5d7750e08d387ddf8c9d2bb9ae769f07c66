@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_0a3554d7",
+        "filename": "includes/Data/Storage/RevisionStorage.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-15T07:27:22Z",
+      "side": 1,
+      "message": "phpdoc doesn\u0027t need the {}",
+      "revId": "bf59b5d7750e08d387ddf8c9d2bb9ae769f07c66",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_0a3c74bb",
+        "filename": "includes/Data/Storage/RevisionStorage.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-15T07:27:22Z",
+      "side": 1,
+      "message": "Took me a bit to figure out what exactly happens from here on. Wouldn\u0027t it be simpler to do something like this?\n\n    // compare required column names against allowedUpdateColumns\n    $diff \u003d array_diff( $requiredColumnNames, $this-\u003eallowedUpdateColumns );\n\n    // we\u0027re able to update all columns we need: go ahead!\n    if ( empty( $diff ) ) {\n        return true;\n    }\n\n    // we\u0027re only able to update part of the columns required to update content\n    if ( $diff !\u003d\u003d $requiredColumnNames ) {\n        throw new DataModelException( \"Allowed update column configuration is inconsistent\", \u0027allowed-update-inconsistent\u0027 );\n    }\n\n     // content changes aren\u0027t allowed\n     return false;",
+      "revId": "bf59b5d7750e08d387ddf8c9d2bb9ae769f07c66",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_8a488467",
+        "filename": "tests/phpunit/Data/Storage/RevisionStorageTest.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-15T07:27:22Z",
+      "side": 1,
+      "message": "Currently unused",
+      "revId": "bf59b5d7750e08d387ddf8c9d2bb9ae769f07c66",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_aa4b0061",
+        "filename": "tests/phpunit/Data/Storage/RevisionStorageTest.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-15T07:27:22Z",
+      "side": 1,
+      "message": "Nitpicking, but should be \\Flow\\Exception\\DataModelException (we\u0027re inside \\Flow\\Tests\\Data\\Storage here)",
+      "revId": "bf59b5d7750e08d387ddf8c9d2bb9ae769f07c66",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_ea29f87f",
+        "filename": "tests/phpunit/Data/Storage/RevisionStorageTest.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-15T07:27:22Z",
+      "side": 1,
+      "message": "Nitpicking, but no need to assign to unused $diff",
+      "revId": "bf59b5d7750e08d387ddf8c9d2bb9ae769f07c66",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_4a526c17",
+        "filename": "tests/phpunit/Data/Storage/RevisionStorageTest.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-15T07:27:22Z",
+      "side": 1,
+      "message": "Nitpicking, but should be \\Flow\\Exception\\DataModelException (we\u0027re inside \\Flow\\Tests\\Data\\Storage here)",
+      "revId": "bf59b5d7750e08d387ddf8c9d2bb9ae769f07c66",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_6a55e8fb",
+        "filename": "tests/phpunit/Data/Storage/RevisionStorageTest.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-15T07:27:22Z",
+      "side": 1,
+      "message": "Nitpicking, but there\u0027s a missing `*` on this line :p",
+      "revId": "bf59b5d7750e08d387ddf8c9d2bb9ae769f07c66",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
