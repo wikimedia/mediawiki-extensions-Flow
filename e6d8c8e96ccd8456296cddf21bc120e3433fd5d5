@@ -16,6 +16,24 @@
       "revId": "e6d8c8e96ccd8456296cddf21bc120e3433fd5d5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_85d95c5d",
+        "filename": "includes/Data/Storage/RevisionStorage.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-15T00:19:26Z",
+      "side": 1,
+      "message": "I should have explained my intention that it not be used for content changes.  I was considering this more of a documented limitation, but didn\u0027t explain it enough in the actual code.\n\n\u003e And we should strive to have as few as possible \"I have to tread carefully here because I know this particular part of code I\u0027m touching is special\".\n\nAgreed.\n\n\u003e Not only does it write the data to ExternalStore, it also alters rev_content, rev_content_url \u0026 rev_flags.\n\nIt only does that when it inserts content.",
+      "parentUuid": "6e7c4fa4_cef1b961",
+      "revId": "e6d8c8e96ccd8456296cddf21bc120e3433fd5d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
