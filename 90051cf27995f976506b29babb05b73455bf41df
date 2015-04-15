@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7c4fa4_c34f4738",
+        "filename": "includes/Api/ApiFlowBasePost.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-15T17:09:38Z",
+      "side": 1,
+      "message": "i feel like we should perhaps just warn everyone receiving the full render data?",
+      "revId": "90051cf27995f976506b29babb05b73455bf41df",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_433c978e",
+        "filename": "includes/Api/ApiFlowBasePost.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-15T17:09:38Z",
+      "side": 1,
+      "message": "might as well just remove the commented lines all together",
+      "revId": "90051cf27995f976506b29babb05b73455bf41df",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
