@@ -176,7 +176,7 @@
 	"flow-error-fetch-after-lock": "An error was encountered when requesting the new data. The lock/unlock operation succeeded just fine, though. The error message was: $1",
 	"flow-error-content-too-long": "The content is too large. Content after expansion is limited to $1 {{PLURAL:$1|byte|bytes}}.",
 	"flow-error-move-topic": "Moving a topic page is currently not supported.",
-	"flow-error-move-no-create-permissions": "The `flow-create-board` permission is required to move a flow board.",
+	"flow-error-move-no-create-permissions": "The \"flow-create-board\" permission is required to move a Flow board.",
 	"flow-error-invalid-topic-uuid-title": "Bad title",
 	"flow-error-invalid-topic-uuid": "The requested page title was invalid. Pages in the Topic namespace are automatically created by Flow.",
 	"flow-error-unknown-workflow-id-title": "Unknown topic",
