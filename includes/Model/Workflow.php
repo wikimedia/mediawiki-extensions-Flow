@@ -160,10 +160,10 @@ class Workflow {
 			if ( $this->getOwnerTitle()->equals( $oldTitle ) ) {
 				$this->pageId = $oldTitle->getArticleID();
 			} else {
-				throw new DataModelException( "The provided oldTitle ({$oldTitle}) does not match this workflow." );
+				throw new DataModelException( "The provided oldTitle ({$oldTitle->getPrefixedDBkey()}) does not match this workflow." );
 			}
 		} elseif ( $oldTitle->getArticleID() !== $this->pageId ) {
-			throw new DataModelException( 'Must update from title with same page id. ' . $this->pageId . ' !== ' . $title->getArticleID() );
+			throw new DataModelException( 'Must update from title with same page id. ' . $this->pageId . ' !== ' . $oldTitle->getArticleID() );
 		}
 
 		$this->namespace = $newTitle->getNamespace();
