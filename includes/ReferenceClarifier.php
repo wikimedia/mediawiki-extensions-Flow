@@ -39,7 +39,8 @@ class ReferenceClarifier {
 		// Messages that can be used here:
 		// * flow-whatlinkshere-header
 		// * flow-whatlinkshere-post
-		// Topic and Summary are plain text and do not have links.
+		// * flow-whatlinkshere-post-summary
+		// Topic is plain text and do not have links.
 		foreach( $references as $reference ) {
 			if ( $reference->getType() === WikiReference::TYPE_CATEGORY ) {
 				// While it might make sense to have backlinks from categories to
