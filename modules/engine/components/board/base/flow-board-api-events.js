@@ -294,17 +294,21 @@
 			return $.Deferred().reject();
 		}
 
-		$rendered = $(
-			flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-				'flow_block_loop',
-				{ blocks: data.flow[ 'edit-header' ].result }
-			)
-		).children();
+		return flowBoard.Api.apiCall( {
+			action: 'flow',
+			submodule: 'view-header',
+			page: mw.config.get( 'wgPageName' )
+		} ).done( function( result ) {
+			$rendered = $(
+				flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
+					'flow_block_loop',
+					{ blocks: result.flow['view-header'].result }
+				)
+			).children();
 
-		// Reinitialize the whole board with these nodes
-		flowBoard.reinitializeContainer( $rendered );
-
-		return $.Deferred().resolve();
+			// Reinitialize the whole board with these nodes
+			flowBoard.reinitializeContainer( $rendered );
+		} );
 	};
 
 	/**
