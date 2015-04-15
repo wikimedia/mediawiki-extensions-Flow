@@ -75,10 +75,11 @@ foreach ( $it as $batch ) {
 			continue;
 		}
 
-		$parentItem = ExternalStore::fetchFromURL( $res[0]->rev_content );
+		$parent = reset( $res );
+		$parentItem = ExternalStore::fetchFromURL( $parent->rev_content );
 		if ( $parentItem ) {
 			echo "MATCHED\n";
-			fputcsv( $csvOutput, array( $uuid->getAlphadecimal(), $res[0]->rev_content, $res[0]->rev_flags ) );
+			fputcsv( $csvOutput, array( $uuid->getAlphadecimal(), $parent->rev_content, $parent->rev_flags ) );
 			++$totalMatched;
 		} else {
 			echo "Parent item is null\n";
