@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_8de97e80",
+        "filename": "includes/Search/TopicUpdater.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-15T14:44:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_a0500662",
+      "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_a0d566eb",
         "filename": "includes/Search/TopicUpdater.php",
         "patchSetId": 5
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_edf11261",
+        "filename": "includes/Search/TopicUpdater.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-15T14:44:11Z",
+      "side": 1,
+      "message": "Glad you noticed; I hate how PHP does \"the right thing\", it should be more strict; wouldn\u0027t have overlooked it then ^^",
+      "parentUuid": "6e7c4fa4_a0d566eb",
+      "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_8002aa73",
         "filename": "includes/Search/TopicUpdater.php",
         "patchSetId": 5
@@ -47,6 +83,24 @@
       "writtenOn": "2015-04-14T23:09:22Z",
       "side": 1,
       "message": "we could just use AbstractRevision::getContentRaw(). That wouldn\u0027t work quite right if wikitext storage worked, but it doesn\u0027t and i dont think we have any plans to fix it.\n\ncompletely unrelated, but i wonder if we should be using this Sanitizer elsewhere insted of our homegrown Flow\\Parsoid\\Utils::htmlToPlaintext",
+      "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_adba3a6a",
+        "filename": "includes/Search/TopicUpdater.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-15T14:44:11Z",
+      "side": 1,
+      "message": "Is there a particular reason you\u0027d rather use getContentRaw?\n\nI\u0027d rather stick with getContent() instead of assuming our current broken thing will stay that way :p\n\nAnd yes, we probably should use Sanitizer instead of our htmlToPlaintext. Should be easy. I\u0027ll file a task.",
+      "parentUuid": "6e7c4fa4_8002aa73",
       "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -88,6 +142,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_4d9a8618",
+        "filename": "includes/Search/TopicUpdater.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-15T14:44:11Z",
+      "side": 1,
+      "message": "I\u0027m going to check RevisionActionPermissions::isAllowed for a view action by an anon user. If not allowed, it\u0027s not going to get indexed.",
+      "parentUuid": "6e7c4fa4_c061829f",
+      "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_80186ad8",
         "filename": "includes/Search/TopicUpdater.php",
         "patchSetId": 5
@@ -99,6 +171,24 @@
       "writtenOn": "2015-04-14T23:09:22Z",
       "side": 1,
       "message": "i don\u0027t particularly care, but randomly thought this would be clearer with a single return statement and\n\n    if ( $revision instanceof PostRevision ) {\n        foreach ...\n    }\n\n    return $data;",
+      "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_6d9d020d",
+        "filename": "includes/Search/TopicUpdater.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-15T14:44:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_80186ad8",
       "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -122,6 +212,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_88216c9f",
+        "filename": "maintenance/FlowForceSearchIndex.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-15T14:44:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_e0603eff",
+      "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_c003c211",
         "filename": "maintenance/FlowForceSearchIndex.php",
         "patchSetId": 5
@@ -139,6 +247,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_2d238aba",
+        "filename": "maintenance/FlowForceSearchIndex.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-15T14:44:11Z",
+      "side": 1,
+      "message": "It already gets mBatchSize LIMIT on L41; this just makes the LIMIT smaller when $limit is less than batchsize.\n\nMaybe I should move that line down here. It\u0027ll be inside 2 loops even though it doesn\u0027t have to, but it\u0027s just an assignment (even if we loop it a million times, it\u0027ll still be fast) \u0026 will make the code more straightforward.",
+      "parentUuid": "6e7c4fa4_c003c211",
+      "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_604d0e9e",
         "filename": "maintenance/FlowForceSearchIndex.php",
         "patchSetId": 5
@@ -150,6 +276,24 @@
       "writtenOn": "2015-04-14T23:09:22Z",
       "side": 1,
       "message": "i\u0027m still not the biggest fan of re-implementing batched queries all over the place.  I havn\u0027t thought too deeply about if EchoBatchRowIterator fits here or not though.",
+      "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_e8290080",
+        "filename": "maintenance/FlowForceSearchIndex.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-15T14:44:11Z",
+      "side": 1,
+      "message": "I probably hadn\u0027t considered it when I initially wrote it, so valid point.\n\nBut I don\u0027t think EchoBatchRowIterator makes a lot of sense here. The queries span multiple tables, load data from other places (RootPostLoader), check permissions, ...\nIt could probably all be made to fit inside EchoBatchRowIterator, but not sure it\u0027s an obvious solution here, it might also get ugly :p",
+      "parentUuid": "6e7c4fa4_604d0e9e",
       "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -184,6 +328,24 @@
       "writtenOn": "2015-04-14T23:09:22Z",
       "side": 1,
       "message": "should probably use end() rather than array_pop(),  the distinctive things about array_pop() is that it actually removes the element from the array, but that has no effect inside this function.",
+      "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_ed2cb2a9",
+        "filename": "maintenance/FlowForceSearchIndex.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-15T14:44:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_2015d64d",
       "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
