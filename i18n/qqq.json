@@ -372,7 +372,6 @@
 	"flow-topic-count": "Message displayed at the top of the sidebar showing the number of topics loaded on the page\n{{Identical|Topic}}",
 	"flow-load-more": "Message displayed inside a button that fetches more topics and appends them to the bottom of the page\n{{Identical|Load more}}",
 	"flow-no-more-fwd": "Displayed instead of 'flow-load-more' when there are no more topics to show in the forward direction",
-	"flow-add-topic": "Button text for submitting a new topic to the page\n{{Identical|Add topic}}",
 	"flow-newest-topics": "Filter label text for \"Newest topics\".\n\nSee also:\n* {{msg-mw|Flow-recent-topics}}",
 	"flow-recent-topics": "Filter label text for \"Recent active topics\".\n\nSee also:\n* {{msg-mw|Flow-newest-topics}}",
 	"flow-sorting-tooltip-newest": "Tooltip displayed when mouse hovering over the sorting drop down menu and '{{msg-mw|flow-newest-topics}}' is selected.",
