@@ -24,7 +24,7 @@ $csvOutput = fopen( 'repair_results_' . wfWikiId() . '.csv', 'w' );
 if ( !$csvOutput ) {
 	die( "Could not open results file\n" );
 }
-fputcsv( $csvOutput, array( "uuid", "esurl" ) );
+fputcsv( $csvOutput, array( "uuid", "esurl", "flags" ) );
 
 $it = new EchoBatchRowIterator(
 	Flow\Container::get( 'db.factory' )->getDB( DB_SLAVE ),
@@ -91,10 +91,19 @@ foreach ( $it as $batch ) {
 		// find any gaps in ES within this area
 		$matches = $lengths = array();
 		$invalid = false;
+
+		$flags = 'utf-8,gzip,external';
+		if ( in_array( $changeType, $plaintextChangeTypes ) ) {
+			$flags .= ',wikitext';
+		} else {
+			$flags .= ',html';
+		}
 		echo "Expected length: " . $rev->rev_content_length . "\n";
 		foreach ( array_keys( $esIdsForCluster ) as $cluster ) {
 			sort( $esIdsForCluster[$cluster] );
 			$lastId = reset( $esIdsForCluster[$cluster] );
+
+
 			foreach ( $esIdsForCluster[$cluster] as $id ) {
 				if ( $id === $lastId || $id === $lastId + 1 ) {
 					$lastId = $id;
@@ -138,7 +147,7 @@ foreach ( $it as $batch ) {
 							}
 						}
 						if ( $doAppend ) {
-							$matches[] = array( $url, $content, md5( $content ) );
+							$matches[] = array( $url, $content, $flags );
 						}
 					} else {
 						$lengths[] = $len;
@@ -156,16 +165,16 @@ foreach ( $it as $batch ) {
 			var_dump( $lengths );
 			++$totalNoMatch;
 		} elseif ( count( $matches ) === 1 ) {
-			list( $url, $content ) = reset( $matches );
+			list( $url, $content, $flags ) = reset( $matches );
 			echo "SINGLE DIRECT MATCH: $url : " . truncate( $content, 1024 ) . "\n";
 			++$totalCompleteMatch;
-			fputcsv( $csvOutput, array( $uuid->getAlphadecimal(), $url ) );
+			fputcsv( $csvOutput, array( $uuid->getAlphadecimal(), $url, $flags ) );
 		} else {
 			echo "MULTIPLE POTENTIAL MATCHES:\n";
 			++$totalMultipleMatches;
 			$multipleMatches[$uuid->getAlphadecimal()] = $matches;
 			foreach ( $matches as $match ) {
-				list( $url, $content ) = $match;
+				list( $url, $content, $flags ) = $match;
 				echo "\t$url : " . truncate( $content, 1024 ) . "\n";
 			}
 		}
@@ -230,7 +239,8 @@ if ( $multipleMatches ) {
 			echo "declare victory!\n";
 			foreach ( array_keys( $group ) as $uuid ) {
 				$match = array_shift( $expectedMatches );
-				fputcsv( $csvOutput, array( $uuid, $match[0] ) );
+				list( $url, $content, $flags ) = $match;
+				fputcsv( $csvOutput, array( $uuid, $url, $flags ) );
 				--$totalMultipleMatches;
 				++$totalResolvedMultipleMatches;
 			}
