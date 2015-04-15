@@ -16,6 +16,24 @@
       "revId": "959620379d7552bc29d306e4f8ffab5d790598b4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_4aa82cd8",
+        "filename": "includes/Data/Storage/RevisionStorage.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-15T08:11:11Z",
+      "side": 1,
+      "message": "I think this change is fine. Can\u0027t really think of any good reason why we should require it to be set already (other than the checks that have now been added to isUpdatingExistingRevisionContentAllowed)",
+      "parentUuid": "6e7c4fa4_4a04ac17",
+      "revId": "959620379d7552bc29d306e4f8ffab5d790598b4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
