@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_176d8196",
+        "filename": "includes/Data/Storage/RevisionStorage.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-15T00:53:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_b48dab2f",
+      "revId": "cb6d7a9d556ce58657ea2bf07b510f46ea776034",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_d4ece7ba",
         "filename": "includes/Data/Storage/RevisionStorage.php",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2015-04-14T23:39:16Z",
       "side": 1,
       "message": "one thing that worries me here is that a misconfiguration could still cause an error.  Say for example rev_content was allowed, but not everything necessary is allowed.  In that case the raw rev_content would be inserted rather than erroring out.",
+      "revId": "cb6d7a9d556ce58657ea2bf07b510f46ea776034",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e7c4fa4_37375dd9",
+        "filename": "includes/Data/Storage/RevisionStorage.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-15T00:53:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_d4ece7ba",
       "revId": "cb6d7a9d556ce58657ea2bf07b510f46ea776034",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
