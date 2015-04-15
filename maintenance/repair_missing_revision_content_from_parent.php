@@ -19,7 +19,7 @@ $csvOutput = fopen( 'repair_results_from_parent_' . wfWikiId() . '.csv', 'w' );
 if ( !$csvOutput ) {
 	die( "Could not open results file\n" );
 }
-fputcsv( $csvOutput, array( "uuid", "esurl" ) );
+fputcsv( $csvOutput, array( "uuid", "esurl", "flags" ) );
 
 $dbr = Flow\Container::get( 'db.factory' )->getDB( DB_SLAVE );
 $it = new EchoBatchRowIterator(
@@ -58,7 +58,7 @@ foreach ( $it as $batch ) {
 		++$totalNullContentWithParent;
 		$res = iterator_to_array( $dbr->select(
 			/* from */ 'flow_revision',
-			/* select */ 'rev_content',
+			/* select */ array( 'rev_content', 'rev_flags' ),
 			/* where */ array(
 				'rev_id' => $dbr->encodeBlob( $rev->rev_parent_id ),
 			),
@@ -78,7 +78,7 @@ foreach ( $it as $batch ) {
 		$parentItem = ExternalStore::fetchFromURL( $res[0]->rev_content );
 		if ( $parentItem ) {
 			echo "MATCHED\n";
-			fputcsv( $csvOutput, array( $uuid->getAlphadecimal(), $res[0]->rev_content ) );
+			fputcsv( $csvOutput, array( $uuid->getAlphadecimal(), $res[0]->rev_content, $res[0]->rev_flags ) );
 			++$totalMatched;
 		} else {
 			echo "Parent item is null\n";
