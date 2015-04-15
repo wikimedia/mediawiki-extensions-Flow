@@ -80,11 +80,35 @@
 
 	/**
 	 * Converts a Flow UUID to a UNIX timestamp.
+	 *
+	 * Example: sfhzxr5a00jkf405 -> 1429101316919
+	 *
 	 * @param {String} uuid
 	 * @return {int} UNIX time
 	 */
 	mw.flow.uuidToTime = FlowComponent.prototype.uuidToTime = function ( uuid ) {
-		var timestamp = parseInt( uuid, 36 ).toString( 2 ); // Parse from base-36, then serialize to base-2
+
+		var timestamp,
+			_expandScientificNotation = function ( timestamp ) {
+				var parts, first, zeroes;
+
+				if ( timestamp.indexOf( 'e' ) !== -1 ) {
+					parts = timestamp.split( '(e+' );
+					first = parts[0].replace( '.', '' );
+					zeroes = parseInt( parts[1], 10 ) - (first.length - 1);
+					first += Array( zeroes + 1 ).join( '0' );
+
+					return first;
+				}
+
+				return timestamp;
+			};
+
+		timestamp = parseInt( uuid, 36 ).toString( 2 ); // Parse from base-36, then serialize to base-2
+
+		// IE's toString converts large numbers to scientific notation ( 1.1001110011(e+23) )
+		timestamp = _expandScientificNotation( timestamp );
+
 		timestamp = Array( 88 + 1 - timestamp.length ).join( '0' ) + timestamp; // left pad 0 to 88 chars
 		timestamp = parseInt( timestamp.substr( 0, 46 ), 2 ); // first 46 chars base-2 to base-10
 
