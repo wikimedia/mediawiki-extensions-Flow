@@ -2,9 +2,14 @@
 
 namespace Flow\Model;
 
+use Article;
+use Flow\Container;
 use Flow\Exception\CrossWikiException;
 use Flow\Exception\DataModelException;
+use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidInputException;
+use Flow\Exception\PermissionException;
+use Flow\OccupationController;
 use MapCacheLRU;
 use MWTimestamp;
 use Title;
@@ -88,7 +93,7 @@ class Workflow {
 		$obj->isNew = false;
 		$obj->type = $row['workflow_type'];
 		$obj->wiki = $row['workflow_wiki'];
-		$obj->pageId = (int)$row['workflow_page_id'];
+		$obj->pageId = (int) $row['workflow_page_id'];
 		$obj->namespace = (int) $row['workflow_namespace'];
 		$obj->titleText = $row['workflow_title_text'];
 		$obj->lastModified = $row['workflow_last_update_timestamp'];
@@ -101,6 +106,24 @@ class Workflow {
 	 * @return array
 	 */
 	static public function toStorageRow( Workflow $obj ) {
+		if ( $obj->pageId === 0 ) {
+			$title = $obj->getOwnerTitle();
+
+			/** @var OccupationController $occupationController */
+			$occupationController = Container::get( 'occupation_controller' );
+			// Don't allowCreation() here: a board has to be explicitly created,
+			// or allowed via the occupyNamespace & occupyPages globals, in
+			// which case allowCreation() won't be needed
+			$revision = $occupationController->ensureFlowRevision( new Article( $title ), $obj );
+
+			if ( $revision === null ) {
+				throw new FailCommitException( 'Failed to create page for workflow: ' . serialize( $obj ) );
+			}
+
+			// store ID of newly created page
+			$obj->pageId = $revision->getPage();
+		}
+
 		return array(
 			'workflow_id' => $obj->id->getAlphadecimal(),
 			'workflow_type' => $obj->type,
@@ -137,6 +160,8 @@ class Workflow {
 		$obj->isNew = true; // has not been persisted
 		$obj->type = $type;
 		$obj->wiki = $wiki;
+
+		// for new pages, article id will be 0; it'll be created in toStorageRow
 		$obj->pageId = $title->getArticleID();
 		$obj->namespace = $title->getNamespace();
 		$obj->titleText = $title->getDBkey();

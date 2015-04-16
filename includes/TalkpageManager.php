@@ -140,12 +140,12 @@ class TalkpageManager implements OccupationController {
 		if ( $revision !== null ) {
 			if ( $revision->getComment( Revision::RAW ) == $comment ) {
 				// Revision was created by this process
-				return null;
+				return $revision;
 			}
 			$content = $revision->getContent();
 			if ( $content instanceof BoardContent && $content->getWorkflowId() ) {
 				// Revision is already a valid BoardContent
-				return null;
+				return $revision;
 			}
 		}
 
@@ -217,7 +217,11 @@ class TalkpageManager implements OccupationController {
 	 * @return bool
 	 */
 	public function canBeUsedOn( Title $title ) {
-		return in_array( $title->getPrefixedDBkey(), $this->allowCreation );
+		return
+			// automatically allowed (occupiedNamespaces & occupiedPages)
+			$this->isTalkpageOccupied( $title, false ) ||
+			// explicitly allowed via allowCreation()
+			in_array( $title->getPrefixedDBkey(), $this->allowCreation );
 	}
 
 	/**
