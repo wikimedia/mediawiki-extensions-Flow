@@ -29,11 +29,6 @@ class HeaderBlock extends AbstractBlock {
 	protected $newRevision;
 
 	/**
-	 * @var boolean
-	 */
-	protected $needCreate = false;
-
-	/**
 	 * @var string[]
 	 */
 	protected $supportedPostActions = array( 'edit-header', 'undo-edit-header' );
@@ -62,7 +57,6 @@ class HeaderBlock extends AbstractBlock {
 
 		// Basic initialisation done -- now, load data if applicable
 		if ( $this->workflow->isNew() ) {
-			$this->needCreate = true;
 			return;
 		}
 
@@ -164,10 +158,6 @@ class HeaderBlock extends AbstractBlock {
 		if ( !$this->checkSpamFilters( null, $this->newRevision ) ) {
 			return;
 		}
-	}
-
-	public function needCreate() {
-		return $this->needCreate;
 	}
 
 	public function commit() {
