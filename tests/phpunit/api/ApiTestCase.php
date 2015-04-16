@@ -22,6 +22,9 @@ abstract class ApiTestCase extends BaseApiTestCase {
 		'flow_tree_revision',
 		'flow_wiki_ref',
 		'flow_workflow',
+		'page',
+		'revision',
+		'text',
 	);
 
 	protected function setUp() {
