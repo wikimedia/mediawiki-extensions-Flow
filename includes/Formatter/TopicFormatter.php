@@ -62,10 +62,12 @@ class TopicFormatter {
 
 		$alpha = $listWorkflow->getId()->getAlphadecimal();
 		$workflows = array( $alpha => $listWorkflow );
-		// Metadata that requires everything to be serialied first
-		$metadata = $this->generateTopicMetadata( $posts, $revisions, $workflows, $alpha );
-		foreach ( $posts[$alpha] as $revId ) {
-			$revisions[$revId] += $metadata;
+		if ( isset( $posts[$alpha] ) ) {
+			// Metadata that requires everything to be serialized first
+			$metadata = $this->generateTopicMetadata( $posts, $revisions, $workflows, $alpha );
+			foreach ( $posts[$alpha] as $revId ) {
+				$revisions[$revId] += $metadata;
+			}
 		}
 
 		return array(
