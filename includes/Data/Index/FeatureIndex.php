@@ -360,6 +360,13 @@ abstract class FeatureIndex implements Index {
 	/**
 	 * {@inheritDoc}
 	 */
+	public function onAfterClear() {
+		// nothing to do
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public function find( array $attributes, array $options = array() ) {
 		$results = $this->findMulti( array( $attributes ), $options );
 		return reset( $results );

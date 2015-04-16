@@ -38,6 +38,11 @@ class UserNameBatch {
 		}
 	}
 
+	public function clear() {
+		$this->queued = array();
+		$this->usernames = array();
+	}
+
 	/**
 	 * @param string $wiki
 	 * @param integer $userId

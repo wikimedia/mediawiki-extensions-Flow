@@ -40,4 +40,10 @@ class AbstractListener implements LifecycleHandler {
 	 */
 	public function onAfterInsert( $revision, array $row, array $metadata ) {
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function onAfterClear() {
+	}
 }
