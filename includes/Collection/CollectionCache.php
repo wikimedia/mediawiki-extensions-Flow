@@ -2,7 +2,7 @@
 
 namespace Flow\Collection;
 
-use Flow\Data\LifecycleHandler;
+use Flow\Data\Listener\AbstractListener;
 use Flow\Model\AbstractRevision;
 use MapCacheLRU;
 
@@ -11,7 +11,7 @@ use MapCacheLRU;
  * insert/update/remove to keep the internal cache up to date and reduce
  * requests deeper into the stack.
  */
-class CollectionCache implements LifecycleHandler {
+class CollectionCache extends AbstractListener {
 
 	/**
 	 * Max to cache collection's last revision
@@ -57,8 +57,6 @@ class CollectionCache implements LifecycleHandler {
 	protected function getLastRevCacheKey( AbstractRevision $revision ) {
 		return $revision->getCollectionId()->getAlphadecimal() . '-' . $revision->getRevisionType() . '-last-rev';
 	}
-
-	public function onAfterLoad( $object, array $row ) {}
 
 	public function onAfterInsert( $object, array $new, array $metadata ) {
 		if ( $object instanceof AbstractRevision ) {

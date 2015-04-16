@@ -5,7 +5,6 @@ namespace Flow\Data\Listener;
 use Flow\Exception\FlowException;
 use Flow\Exception\InvalidDataException;
 use Flow\LinksTableUpdater;
-use Flow\Data\LifecycleHandler;
 use Flow\Data\ManagerGroup;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
@@ -21,7 +20,7 @@ use Flow\Repository\TreeRepository;
  * references(URLs, images, etc) between this new version and the previous
  * revision. Uses calculated difference to update links tables to match the new revision.
  */
-class ReferenceRecorder implements LifecycleHandler {
+class ReferenceRecorder extends AbstractListener {
 	/**
 	 * @var ReferenceExtractor
 	 */
@@ -291,13 +290,5 @@ class ReferenceRecorder implements LifecycleHandler {
 		}
 
 		return array( $addReferences, $removeReferences );
-	}
-
-	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
-		// Nuthin
-	}
-
-	public function onAfterRemove( $object, array $old, array $metadata ) {
-		// Nuthin
 	}
 }

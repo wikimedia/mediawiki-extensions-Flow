@@ -3,7 +3,6 @@
 namespace Flow\Data\Listener;
 
 use Article;
-use Flow\Data\LifecycleHandler;
 use Flow\Exception\FlowException;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
@@ -13,7 +12,7 @@ use SplQueue;
  * Ensures that a given workflow is occupied.  This will be unnecssary
  * once we deprecate the OccupationController white list.
  */
-class OccupationListener implements LifecycleHandler {
+class OccupationListener extends AbstractListener {
 	/** @var OccupationController **/
 	protected $occupationController;
 
@@ -88,13 +87,5 @@ class OccupationListener implements LifecycleHandler {
 				);
 			} );
 		}
-	}
-
-	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
-		// Nothing
-	}
-
-	public function onAfterRemove( $object, array $old, array $metadata ) {
-		// Nothing
 	}
 }

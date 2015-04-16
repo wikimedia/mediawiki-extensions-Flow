@@ -2,13 +2,12 @@
 
 namespace Flow\Data\Listener;
 
-use Flow\Data\LifecycleHandler;
 use Flow\Exception\InvalidDataException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
 
-class NotificationListener implements LifecycleHandler {
+class NotificationListener extends AbstractListener {
 
 	/**
 	 * @var NotificationController
@@ -92,8 +91,4 @@ class NotificationListener implements LifecycleHandler {
 			'topic-title' => $metadata['topic-title'],
 		) );
 	}
-
-	public function onAfterLoad( $object, array $row ) {}
-	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {}
-	public function onAfterRemove( $object, array $row, array $metadata ) {}
 }
