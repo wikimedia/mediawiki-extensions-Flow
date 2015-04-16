@@ -14,6 +14,7 @@ use Flow\Parsoid\Utils;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\UrlGenerator;
+use ApiResult;
 use GenderCache;
 use IContextSource;
 use Message;
@@ -182,8 +183,10 @@ class RevisionFormatter {
 		$moderatedRevision = $this->templating->getModeratedRevision( $row->revision );
 		$ts = $row->revision->getRevisionId()->getTimestampObj();
 		$res = array(
-			// Change all '_BC_bools' to ApiResult::META_BC_BOOLS when core
-			// change is merged.
+			// Change all '_BC_bools' to ApiResult::META_BC_BOOLS, and remove
+			// checks for ApiResult::META_CONTENT (it should always be true)
+			// when core change (https://gerrit.wikimedia.org/r/#/c/182858/) rolls out
+			// everywhere.
 			'_BC_bools' => array(
 				// https://gerrit.wikimedia.org/r/#/c/182858/
 				'isOriginalContent',
