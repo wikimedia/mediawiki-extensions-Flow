@@ -11,4 +11,5 @@ interface LifecycleHandler {
 	function onAfterInsert( $object, array $new, array $metadata );
 	function onAfterUpdate( $object, array $old, array $new, array $metadata );
 	function onAfterRemove( $object, array $old, array $metadata );
+	function onAfterClear();
 }

@@ -58,6 +58,10 @@ class CollectionCache extends AbstractListener {
 		return $revision->getCollectionId()->getAlphadecimal() . '-' . $revision->getRevisionType() . '-last-rev';
 	}
 
+	public function onAfterClear() {
+		$this->lastRevCache = new MapCacheLRU( self::LAST_REV_CACHE_MAX );
+	}
+
 	public function onAfterInsert( $object, array $new, array $metadata ) {
 		if ( $object instanceof AbstractRevision ) {
 			$this->lastRevCache->clear( $this->getLastRevCacheKey( $object ) );
