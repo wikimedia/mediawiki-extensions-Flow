@@ -4,7 +4,6 @@ namespace Flow\Data\Listener;
 
 use Closure;
 use Flow\Container;
-use Flow\Data\LifecycleHandler;
 use Flow\Data\Utils\RecentChangeFactory;
 use Flow\FlowActions;
 use Flow\Formatter\IRCLineUrlFormatter;
@@ -15,7 +14,7 @@ use Flow\Repository\UserNameBatch;
 /**
  * Inserts mw recentchange rows for flow AbstractRevision instances.
  */
-class RecentChangesListener implements LifecycleHandler {
+class RecentChangesListener extends AbstractListener {
 
 	// Value used in rc_source field of recentchanges to identify flow specific changes
 	const SRC_FLOW = "flow";
@@ -56,19 +55,6 @@ class RecentChangesListener implements LifecycleHandler {
 		$this->usernames = $usernames;
 		$this->rcFactory = $rcFactory;
 		$this->ircFormatter = $ircFormatter;
-	}
-
-	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
-		// Moderation.  Doesn't need to log anything because all moderation also inserts
-		// a new null revision to track who and when.
-	}
-
-	public function onAfterRemove( $object, array $old, array $metadata ) {
-		// Deletion. Not kinda-sorta deleted, like 100% GONE. Should never happen.
-	}
-
-	public function onAfterLoad( $object, array $row ) {
-		// nothing to do
 	}
 
 	/**

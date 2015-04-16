@@ -2,7 +2,6 @@
 
 namespace Flow\Data\Listener;
 
-use Flow\Data\LifecycleHandler;
 use Flow\Model\Workflow;
 use Flow\UrlGenerator;
 
@@ -10,7 +9,7 @@ use Flow\UrlGenerator;
  * The url generator needs to know about loaded workflow instances so it
  * can generate urls pointing to the correct pages.
  */
-class UrlGenerationListener implements LifecycleHandler {
+class UrlGenerationListener extends AbstractListener {
 	/**
 	 * @var UrlGenerator
 	 */
@@ -33,13 +32,5 @@ class UrlGenerationListener implements LifecycleHandler {
 		if ( $object instanceof Workflow ) {
 			$this->urlGenerator->withWorkflow( $object );
 		}
-	}
-
-	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
-		// Nothing
-	}
-
-	public function onAfterRemove( $object, array $old, array $metadata ) {
-		// Nothing
 	}
 }

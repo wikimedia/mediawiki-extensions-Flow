@@ -3,7 +3,6 @@
 namespace Flow\Data\Listener;
 
 use Flow\Container;
-use Flow\Data\LifecycleHandler;
 use Flow\Exception\InvalidDataException;
 use Flow\FlowActions;
 use Flow\Model\PostRevision;
@@ -17,7 +16,7 @@ use WatchedItem;
  * Auto-watch topics when the user performs one of the actions specified
  * in the constructor.
  */
-abstract class AbstractTopicInsertListener implements LifecycleHandler {
+abstract class AbstractTopicInsertListener extends AbstractListener {
 	/**
 	 * @param string $changeType
 	 * @param Workflow $workflow
@@ -85,11 +84,6 @@ abstract class AbstractTopicInsertListener implements LifecycleHandler {
 
 		return $users;
 	}
-
-	// do nothing
-	public function onAfterLoad( $object, array $new ) {}
-	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {}
-	public function onAfterRemove( $object, array $old, array $metadata ) {}
 }
 
 /**

@@ -3,7 +3,6 @@
 namespace Flow\Data\Listener;
 
 use Flow\Data\Index\TopKIndex;
-use Flow\Data\LifecycleHandler;
 use Flow\Data\ObjectManager;
 use Flow\Model\TopicListEntry;
 
@@ -13,7 +12,7 @@ use Flow\Model\TopicListEntry;
  * passes that updated timestamp along to the topic list last updated index
  * so that it can reorder any lists this workflow is in.
  */
-class WorkflowTopicListListener implements LifecycleHandler {
+class WorkflowTopicListListener extends AbstractListener {
 
 	/**
 	 * @param ObjectManager
@@ -75,7 +74,4 @@ class WorkflowTopicListListener implements LifecycleHandler {
 			);
 		}
 	}
-
-	public function onAfterLoad( $object, array $row ) {}
-	public function onAfterRemove( $object, array $old, array $metadata ) {}
 }
