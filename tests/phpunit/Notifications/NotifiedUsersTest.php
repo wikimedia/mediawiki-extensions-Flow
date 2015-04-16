@@ -6,6 +6,7 @@ use Flow\Container;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
+use Flow\OccupationController;
 use EchoNotificationController;
 use User;
 use WatchedItem;
@@ -106,24 +107,14 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 
 		$notificationController = Container::get( 'controller.notification' );
 
-		// The data of this global varaible is loaded into occupationListener
-		// even before the test starts, so modifying this global in setUP()
-		// won't have any effect on the occupationListener.  The trick is to
-		// fake the workflow to have a title in the global varaible
-		global $wgFlowOccupyPages;
+		$title = \Title::newFromText( 'Talk:Hook_test' );
+		$boardWorkflow = Workflow::create( 'discussion', $title );
+		$topicWorkflow = Workflow::create( 'topic', $boardWorkflow->getArticleTitle() );
 
-		$page = reset( $wgFlowOccupyPages );
-		if ( !$page ) {
-			return false;
-		}
-		$title = \Title::newFromText( $page );
-		if ( !$title ) {
-			return false;
-		}
-		$object = new \ReflectionObject( $topicWorkflow );
-		$ownerTitle = $object->getProperty( 'ownerTitle' );
-		$ownerTitle->setAccessible( true );
-		$ownerTitle->setValue( $topicWorkflow, $title );
+		/** @var OccupationController $occupationController */
+		$occupationController = Container::get( 'occupation_controller' );
+		$occupationController->allowCreation( $title, $user );
+		$occupationController->ensureFlowRevision( new \Article( $title ), $boardWorkflow );
 
 		$boardWorkflow = Container::get( 'factory.loader.workflow' )
 			->createWorkflowLoader( $topicWorkflow->getOwnerTitle() )

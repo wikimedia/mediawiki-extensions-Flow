@@ -2,9 +2,14 @@
 
 namespace Flow\Model;
 
+use Article;
+use Flow\Container;
 use Flow\Exception\CrossWikiException;
 use Flow\Exception\DataModelException;
+use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidInputException;
+use Flow\Exception\PermissionException;
+use Flow\OccupationController;
 use MapCacheLRU;
 use MWTimestamp;
 use Title;
@@ -88,7 +93,7 @@ class Workflow {
 		$obj->isNew = false;
 		$obj->type = $row['workflow_type'];
 		$obj->wiki = $row['workflow_wiki'];
-		$obj->pageId = (int)$row['workflow_page_id'];
+		$obj->pageId = (int) $row['workflow_page_id'];
 		$obj->namespace = (int) $row['workflow_namespace'];
 		$obj->titleText = $row['workflow_title_text'];
 		$obj->lastModified = $row['workflow_last_update_timestamp'];
@@ -99,8 +104,28 @@ class Workflow {
 	/**
 	 * @param Workflow $obj
 	 * @return array
+	 * @throws FailCommitException
 	 */
 	static public function toStorageRow( Workflow $obj ) {
+		if ( $obj->pageId === 0 ) {
+			/*
+			 * We try to defer creating a new page as long as possible, which
+			 * means that a new board page won't have been created by the time
+			 * Workflow object was created: new workflows will have a 0 pageId.
+			 * This method is called when the workflow is about to be inserted.
+			 * By now, the page has been inserted & we should store the real
+			 * page_id this workflow is associated with.
+			 */
+
+			// store ID of newly created page
+			$title = $obj->getOwnerTitle();
+			$obj->pageId = $title->getArticleID( Title::GAID_FOR_UPDATE );
+
+			if ( $obj->pageId === 0 ) {
+				throw new FailCommitException( 'No page for workflow: ' . serialize( $obj ) );
+			}
+		}
+
 		return array(
 			'workflow_id' => $obj->id->getAlphadecimal(),
 			'workflow_type' => $obj->type,
@@ -137,6 +162,8 @@ class Workflow {
 		$obj->isNew = true; // has not been persisted
 		$obj->type = $type;
 		$obj->wiki = $wiki;
+
+		// for new pages, article id will be 0; it'll be created in toStorageRow
 		$obj->pageId = $title->getArticleID();
 		$obj->namespace = $title->getNamespace();
 		$obj->titleText = $title->getDBkey();

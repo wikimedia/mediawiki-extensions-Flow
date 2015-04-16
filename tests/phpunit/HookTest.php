@@ -8,6 +8,7 @@ use Flow\Model\Header;
 use Flow\Model\PostRevision;
 use Flow\Model\TopicListEntry;
 use Flow\Model\Workflow;
+use Flow\OccupationController;
 use FlowHooks;
 use RecentChange;
 use Title;
@@ -23,6 +24,9 @@ class HookTest extends \MediaWikiTestCase {
 		'flow_tree_node',
 		'flow_tree_revision',
 		'flow_workflow',
+		'page',
+		'revision',
+		'text',
 	);
 
 	static public function onIRCLineURLProvider() {
@@ -33,19 +37,26 @@ class HookTest extends \MediaWikiTestCase {
 		// can't create Title objects because they can have the wrong wikiID.  Instead we
 		// pass closures into the test that create the objects within the correct context.
 		$newHeader = function() use( $user ) {
-			$workflow = Workflow::create( 'discussion', Title::newMainPage() );
+			$title = Title::newFromText( 'Talk:Hook_test' );
+			$workflow = Workflow::create( 'discussion', $title );
 			$header = Header::create( $workflow, $user, 'header content', 'wikitext' );
 			$metadata = array(
 				'workflow' => $workflow,
 				'revision' => $header,
 			);
 
+			/** @var OccupationController $occupationController */
+			$occupationController = Container::get( 'occupation_controller' );
+			$occupationController->allowCreation( $title, $user );
+			$occupationController->ensureFlowRevision( new \Article( $title ), $workflow );
+
 			Container::get( 'storage' )->put( $workflow, $metadata );
 
 			return $metadata;
 		};
 		$freshTopic = function() use( $user ) {
-			$boardWorkflow = Workflow::create( 'discussion', Title::newMainPage() );
+			$title = Title::newFromText( 'Talk:Hook_test' );
+			$boardWorkflow = Workflow::create( 'discussion', $title );
 			$topicWorkflow = Workflow::create( 'topic', $boardWorkflow->getArticleTitle() );
 			$topicList = TopicListEntry::create( $boardWorkflow, $topicWorkflow );
 			$topicTitle = PostRevision::create( $topicWorkflow, $user, 'some content', 'wikitext' );
@@ -53,13 +64,19 @@ class HookTest extends \MediaWikiTestCase {
 				'workflow' => $topicWorkflow,
 				'board-workflow' => $boardWorkflow,
 				'topic-title' => $topicTitle,
-
 				'revision' => $topicTitle,
 			);
 
+			/** @var OccupationController $occupationController */
+			$occupationController = Container::get( 'occupation_controller' );
+			// make sure user has rights to create board
+			$user->mRights = array_merge( $user->getRights(), array( 'flow-create-board' ) );
+			$occupationController->allowCreation( $title, $user );
+			$occupationController->ensureFlowRevision( new \Article( $title ), $boardWorkflow );
+
 			$storage = Container::get( 'storage' );
-			$storage->put( $topicWorkflow, $metadata );
 			$storage->put( $boardWorkflow, $metadata );
+			$storage->put( $topicWorkflow, $metadata );
 			$storage->put( $topicList, $metadata );
 			$storage->put( $topicTitle, $metadata );
 
@@ -70,7 +87,6 @@ class HookTest extends \MediaWikiTestCase {
 			$firstPost = $metadata['topic-title']->reply( $metadata['workflow'], $user, 'ffuts dna ylper', 'wikitext' );
 			$metadata = array(
 				'first-post' => $firstPost,
-
 				'revision' => $firstPost,
 			) + $metadata;
 

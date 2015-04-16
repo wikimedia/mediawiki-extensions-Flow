@@ -776,7 +776,7 @@ $c['factory.loader.workflow'] = function( $c ) {
 		$wgFlowDefaultWorkflow
 	);
 };
-// Initialized in FlowHooks to faciliate only loading the flow container
+// Initialized in FlowHooks to facilitate only loading the flow container
 // when flow is specifically requested to run. Extension initialization
 // must always happen before calling flow code.
 $c['occupation_controller'] = FlowHooks::getOccupationController();
