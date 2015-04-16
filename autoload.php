@@ -272,7 +272,6 @@ $wgAutoloadClasses += array(
 	'Flow\\SpamFilter\\SpamRegex' => __DIR__ . '/includes/SpamFilter/SpamRegex.php',
 	'Flow\\Specials\\SpecialEnableFlow' => __DIR__ . '/includes/Specials/SpecialEnableFlow.php',
 	'Flow\\Specials\\SpecialFlow' => __DIR__ . '/includes/Specials/SpecialFlow.php',
-	'Flow\\Specials\\SpecialFlowExport' => __DIR__ . '/includes/Specials/SpecialFlowExport.php',
 	'Flow\\SubmissionHandler' => __DIR__ . '/includes/SubmissionHandler.php',
 	'Flow\\TalkpageManager' => __DIR__ . '/includes/TalkpageManager.php',
 	'Flow\\TemplateHelper' => __DIR__ . '/includes/TemplateHelper.php',

@@ -92,7 +92,6 @@ $wgAPIPropModules['flowinfo'] = 'Flow\Api\ApiQueryPropFlowInfo';
 $wgExtensionMessagesFiles['FlowAlias'] = $dir . 'Flow.alias.php';
 $wgSpecialPages['Flow'] = 'Flow\Specials\SpecialFlow';
 $wgSpecialPages['EnableFlow'] = 'Flow\Specials\SpecialEnableFlow';
-$wgSpecialPages['FlowExport'] = 'Flow\SpecialFlowExport';
 $wgSpecialPageGroups['Flow'] = 'redirects';
 $wgSpecialPageGroups['EnableFlow'] = 'wiki';
 

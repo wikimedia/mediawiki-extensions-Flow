@@ -546,12 +546,5 @@
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|uses markup]]",
 	"flow-wikitext-editor-help-preview-the-result": "preview the result",
 	"flow-wikitext-switch-editor-tooltip": "Switch to VisualEditor",
-	"flow-ve-switch-editor-tool-title": "Switch to Wikitext editor",
-	"flowexport": "Flow export",
-	"flow-special-export-desc": "Export flow board to wikitext",
-	"flow-special-export-title-label": "Page to export",
-	"flow-special-export-error-invalid-title": "An invalid title was provided",
-	"flow-special-export-error-non-existant-title": "The provided page does not exist",
-	"flow-special-export-error-wrong-content-model": "The provided page is not a flow board",
-	"flow-special-export-error-topic-not-implemented": "Export of individual topics not yet implemented"
+	"flow-ve-switch-editor-tool-title": "Switch to Wikitext editor"
 }
