@@ -121,8 +121,6 @@ class SubmissionHandler {
 		try {
 			$dbw->begin();
 			$cache->begin();
-			// @todo doesn't feel right to have this here
-			$this->storage->getStorage( 'Workflow' )->put( $workflow );
 			$results = array();
 			foreach ( $blocks as $block ) {
 				$results[$block->getName()] = $block->commit();
