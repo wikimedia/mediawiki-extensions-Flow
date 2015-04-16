@@ -26,7 +26,7 @@
 	mw.flow.ve.Target.static.toolbarGroups = [
 		{
 			type: 'list',
-			icon: 'text-style',
+			icon: 'textStyle',
 			title: OO.ui.deferMsg( 'visualeditor-toolbar-style-tooltip' ),
 			include: [ 'bold', 'italic' ],
 			forceExpand: [ 'bold', 'italic' ]
