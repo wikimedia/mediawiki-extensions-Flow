@@ -163,6 +163,7 @@ class HeaderBlock extends AbstractBlock {
 	public function commit() {
 		switch( $this->action ) {
 			case 'edit-header':
+				$this->storage->put( $this->workflow, array() ); // 'discussion' workflow
 				$this->storage->put( $this->newRevision, array(
 					'workflow' => $this->workflow,
 				) );

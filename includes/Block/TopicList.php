@@ -140,7 +140,6 @@ class TopicListBlock extends AbstractBlock {
 			throw new FailCommitException( 'Unknown commit action', 'fail-commit' );
 		}
 
-		$storage = $this->storage;
 		$metadata = array(
 			'workflow' => $this->topicWorkflow,
 			'board-workflow' => $this->workflow,
@@ -148,11 +147,12 @@ class TopicListBlock extends AbstractBlock {
 			'first-post' => $this->firstPost,
 		);
 
-		$storage->put( $this->topicWorkflow, $metadata );
-		$storage->put( $this->topicListEntry, $metadata );
-		$storage->put( $this->topicTitle, $metadata );
+		$this->storage->put( $this->workflow, array() ); // 'discussion' workflow
+		$this->storage->put( $this->topicWorkflow, $metadata ); // 'topic' workflow
+		$this->storage->put( $this->topicListEntry, $metadata );
+		$this->storage->put( $this->topicTitle, $metadata );
 		if ( $this->firstPost !== null ) {
-			$storage->put( $this->firstPost, $metadata + array(
+			$this->storage->put( $this->firstPost, $metadata + array(
 				'reply-to' => $this->topicTitle
 			) );
 		}
