@@ -4,6 +4,7 @@ namespace Flow\Data\Listener;
 
 use Article;
 use Flow\Data\LifecycleHandler;
+use Flow\Data\ManagerGroup;
 use Flow\Exception\FlowException;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
@@ -23,21 +24,29 @@ class OccupationListener implements LifecycleHandler {
 	/** @var string **/
 	protected $defaultType;
 
+	/**
+	 * @var ManagerGroup
+	 */
+	protected $storage;
+
 	/** @var bool **/
 	protected $enabled = true;
 
 	/**
 	 * @param OccupationController $occupationController The OccupationController to occupy the page with.
-	 * @param SplQueue             $deferredQueue        Queue of callbacks to run only if commit succedes
+	 * @param SplQueue             $deferredQueue        Queue of callbacks to run only if commit succeeds
+	 * @param ManagerGroup         $storage
 	 * @param string               $defaultType          The workflow type to look for
 	 */
 	public function __construct(
 		OccupationController $occupationController,
 		SplQueue $deferredQueue,
+		ManagerGroup $storage,
 		$defaultType
 	) {
 		$this->occupationController = $occupationController;
 		$this->deferredQueue = $deferredQueue;
+		$this->storage = $storage;
 		$this->defaultType = $defaultType;
 	}
 
@@ -75,15 +84,31 @@ class OccupationListener implements LifecycleHandler {
 			$this->occupationController->allowCreation( $object->getArticleTitle(), $user, false );
 		}
 
-		$this->ensureOccupation( $object );
+		$this->ensureOccupation( $object, $object->getArticleTitle() );
+
+		if ( $new['workflow_page_id'] === 0 ) {
+			// Don't allowCreation() here: a board has to be explicitly created,
+			// or allowed via the occupyNamespace & occupyPages globals, in
+			// which case allowCreation() won't be needed
+			$this->ensureOccupation( $object, $object->getOwnerTitle() );
+
+			$storage = $this->storage;
+			$this->deferredQueue->push( function() use ( $object, $storage ) {
+				// fetch id from newly inserted page, update workflow_page_id &
+				// re-save the workflow
+				$pageId = $object->getOwnerTitle()->getArticleID( \Title::GAID_FOR_UPDATE );
+				$object->setPageId( $pageId );
+				$storage->put( $object, array() );
+			} );
+		}
 	}
 
-	protected function ensureOccupation( Workflow $workflow ) {
+	protected function ensureOccupation( Workflow $workflow, \Title $title ) {
 		if ( $this->enabled ) {
 			$controller = $this->occupationController;
-			$this->deferredQueue->push( function() use ( $controller, $workflow ) {
+			$this->deferredQueue->push( function() use ( $controller, $workflow, $title ) {
 				$controller->ensureFlowRevision(
-					new Article( $workflow->getArticleTitle() ),
+					new Article( $title ),
 					$workflow
 				);
 			} );

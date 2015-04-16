@@ -88,7 +88,7 @@ class Workflow {
 		$obj->isNew = false;
 		$obj->type = $row['workflow_type'];
 		$obj->wiki = $row['workflow_wiki'];
-		$obj->pageId = (int)$row['workflow_page_id'];
+		$obj->pageId = (int) $row['workflow_page_id'];
 		$obj->namespace = (int) $row['workflow_namespace'];
 		$obj->titleText = $row['workflow_title_text'];
 		$obj->lastModified = $row['workflow_last_update_timestamp'];
@@ -168,6 +168,14 @@ class Workflow {
 
 		$this->namespace = $newTitle->getNamespace();
 		$this->titleText = $newTitle->getDBkey();
+	}
+
+	/**
+	 * @param int $pageId
+	 * @deprecated
+	 */
+	public function setPageId( $pageId ) {
+		$this->pageId = $pageId;
 	}
 
 	/**

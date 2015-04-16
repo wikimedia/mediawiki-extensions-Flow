@@ -239,6 +239,7 @@ $c['listener.occupation'] = function( $c ) {
 	return new Flow\Data\Listener\OccupationListener(
 		$c['occupation_controller'],
 		$c['deferred_queue'],
+		$c['storage'],
 		$wgFlowDefaultWorkflow
 	);
 };
