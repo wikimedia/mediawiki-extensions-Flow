@@ -115,8 +115,25 @@ class SubmissionHandler {
 	 * @throws \Exception
 	 */
 	public function commit( Workflow $workflow, array $blocks ) {
-		$cache = $this->bufferedCache;
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
+		$cache = $this->bufferedCache;
+
+		$title = $workflow->getOwnerTitle();
+		if ( $title->getArticleID() === 0 ) {
+			/**
+			 * Ideally, I'd create the page in Workflow::toStorageRow, but
+			 * WikiPage::doEditContent uses transactions & our DB wrapper
+			 * doesn't allow nested transactions, so that part has moved.
+			 *
+			 * Don't allowCreation() here: a board has to be explicitly created,
+			 * or allowed via the occupyNamespace & occupyPages globals, in
+			 * which case allowCreation() won't be needed.
+			 *
+			 * @var OccupationController $occupationController
+			 */
+			$occupationController = Container::get( 'occupation_controller' );
+			$occupationController->ensureFlowRevision( new \Article( $title ), $workflow );
+		}
 
 		try {
 			$dbw->begin();
@@ -126,7 +143,6 @@ class SubmissionHandler {
 				$results[$block->getName()] = $block->commit();
 			}
 			$dbw->commit();
-
 			// Now commit to cache. If this fails, cache keys should have been
 			// invalidated, but still log the failure.
 			if ( !$cache->commit() ) {

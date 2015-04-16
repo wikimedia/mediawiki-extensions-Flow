@@ -102,8 +102,7 @@ class BoardContentHandler extends \ContentHandler {
 	public function canBeUsedOn( \Title $title ) {
 		/** @var \Flow\TalkpageManager $manager */
 		$manager = Container::get( 'occupation_controller' );
-		return $manager->canBeUsedOn( $title )
-			|| $manager->isTalkpageOccupied( $title );
+		return $manager->canBeUsedOn( $title );
 	}
 
 	/**
@@ -140,7 +139,7 @@ class BoardContentHandler extends \ContentHandler {
 			}
 		}
 
-		// Flow has its own handlling for action=edit
+		// Flow has its own handling for action=edit
 		$output['edit'] = 'Flow\Actions\EditAction';
 
 		return $output;

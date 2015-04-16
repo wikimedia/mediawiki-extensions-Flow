@@ -57,7 +57,7 @@ class View extends ContextSource {
 
 		if ( $this->getRequest()->wasPosted() ) {
 			$retval = $this->handleSubmit( $loader, $action, $parameters );
-			// successfull submission
+			// successful submission
 			if ( $retval === true ) {
 				$this->redirect( $loader->getWorkflow(), 'view' );
 				return;
