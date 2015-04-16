@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "6e7c4fa4_2413a0ba",
+        "filename": "includes/Data/Storage/RevisionStorage.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-16T00:23:22Z",
+      "side": 1,
+      "message": "Just realized this breaks the consistency check.  The tests don\u0027t catch it because they force it to the desired settings (and test \"all there\"/\"all not there\").",
+      "revId": "959620379d7552bc29d306e4f8ffab5d790598b4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_4a04ac17",
         "filename": "includes/Data/Storage/RevisionStorage.php",
         "patchSetId": 8
