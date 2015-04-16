@@ -167,7 +167,6 @@
 	"flow-anon-warning": "Dir sidd net ageloggt. Fir a Plaz vun enger Verbindung mat Ärer IP-Adress eng Verbindung mat Ärem Numm ze kréie musst Dir Iech [$1 aloggen] oder [$2 e Benotzerkont opmaachen].",
 	"flow-topic-count": "Themen ($1)",
 	"flow-load-more": "Méi lueden",
-	"flow-add-topic": "Thema derbäisetzen",
 	"flow-newest-topics": "Neisten Themen",
 	"flow-recent-topics": "Rezent aktiv Themen",
 	"flow-sorting-tooltip-newest": "{{GENDER:|Dir}} liest elo déi neist Theme fir d'éischt. Klickt fir méi Zortéierungsoptiounen.",

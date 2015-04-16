@@ -328,7 +328,6 @@
 	"flow-topic-count": "Temas ($1)",
 	"flow-load-more": "Cargar máis",
 	"flow-no-more-fwd": "Non hai temas máis antigos",
-	"flow-add-topic": "Engadir tema",
 	"flow-newest-topics": "Temas máis recentes",
 	"flow-recent-topics": "Últimos temas activos",
 	"flow-sorting-tooltip-newest": "{{GENDER:|Está}} lendo os temas creados máis recentemente primeiro. Prema para ver máis opcións de clasificación.",

@@ -335,7 +335,6 @@
 	"flow-topic-count": "נושאים ($1)",
 	"flow-load-more": "לטעון עוד",
 	"flow-no-more-fwd": "אין נושאים ישנים יותר",
-	"flow-add-topic": "הוספת נושא",
 	"flow-newest-topics": "הנושאים החדשים ביותר",
 	"flow-recent-topics": "נושאים פעילים לאחרונה",
 	"flow-sorting-tooltip-newest": "{{GENDER:|אתה קורא|את קוראת}} עכשיו את הנושאים החדשים ביותר תחילה. נא ללחוץ כאן לאפשרויות מיון נוספות.",

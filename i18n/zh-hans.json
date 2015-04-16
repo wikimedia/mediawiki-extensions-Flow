@@ -17,7 +17,8 @@
 			"Impersonator 1",
 			"Duolaimi",
 			"御坂美琴",
-			"Shizhao"
+			"Shizhao",
+			"LNDDYL"
 		]
 	},
 	"enableflow": "启用Flow",
@@ -345,7 +346,6 @@
 	"flow-topic-count": "话题（$1）",
 	"flow-load-more": "载入更多",
 	"flow-no-more-fwd": "没有更早的话题",
-	"flow-add-topic": "添加话题",
 	"flow-newest-topics": "最新话题",
 	"flow-recent-topics": "最近活跃的话题",
 	"flow-sorting-tooltip-newest": "{{GENDER:|您}}正在首选阅读最新话题。点此获取更多排序选项。",

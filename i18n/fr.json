@@ -357,7 +357,6 @@
 	"flow-topic-count": "Discussions ($1)",
 	"flow-load-more": "Charger davantage",
 	"flow-no-more-fwd": "Il n’y a pas de discussions plus anciennes",
-	"flow-add-topic": "Ajouter une discussion",
 	"flow-newest-topics": "Discussions les plus récentes",
 	"flow-recent-topics": "Discussions actives récemment",
 	"flow-sorting-tooltip-newest": "{{GENDER:|Vous}} lisez les discussions les plus récentes d’abord. Cliquez pour plus d’options de tri.",

@@ -225,7 +225,6 @@
 	"flow-topic-count": "Temes ($1)",
 	"flow-load-more": "Carrega'n més",
 	"flow-no-more-fwd": "Cap més tema anterior",
-	"flow-add-topic": "Afegeix el tema",
 	"flow-newest-topics": "Temes més recents",
 	"flow-recent-topics": "Temes amb activitat més recent",
 	"flow-sorting-tooltip-newest": "{{GENDER:|Esteu}} veient primer els temes més recents. Cliqueu per altres opcions d'ordenació.",
