@@ -115,17 +115,20 @@ class SubmissionHandler {
 	 * @throws \Exception
 	 */
 	public function commit( Workflow $workflow, array $blocks ) {
+		$coreDbw = wfGetDB( DB_MASTER );
+		$flowDbw = $this->dbFactory->getDB( DB_MASTER );
 		$cache = $this->bufferedCache;
-		$dbw = $this->dbFactory->getDB( DB_MASTER );
 
 		try {
-			$dbw->begin();
+			$coreDbw->begin();
+			$flowDbw->begin();
 			$cache->begin();
 			$results = array();
 			foreach ( $blocks as $block ) {
 				$results[$block->getName()] = $block->commit();
 			}
-			$dbw->commit();
+			$coreDbw->commit();
+			$flowDbw->commit();
 
 			// Now commit to cache. If this fails, cache keys should have been
 			// invalidated, but still log the failure.
@@ -136,7 +139,8 @@ class SubmissionHandler {
 			while( !$this->deferredQueue->isEmpty() ) {
 				$this->deferredQueue->dequeue();
 			}
-			$dbw->rollback();
+			$coreDbw->rollback();
+			$flowDbw->rollback();
 			$cache->rollback();
 			throw $e;
 		}
