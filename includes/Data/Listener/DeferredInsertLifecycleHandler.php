@@ -63,4 +63,9 @@ class DeferredInsertLifecycleHandler implements LifecycleHandler {
 	public function onAfterLoad( $object, array $old ) {
 		$this->nested->onAfterLoad( $object, $old );
 	}
+
+	public function onAfterClear() {
+		// Not clearing $this->queue, this is not data but actual code
+		// that needs to be run.
+	}
 }

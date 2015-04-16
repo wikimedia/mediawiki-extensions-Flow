@@ -33,6 +33,10 @@ class UserNameListener extends AbstractListener {
 		}
 	}
 
+	public function onAfterClear() {
+		$this->batch->clear();
+	}
+
 	/**
 	 * Load any user ids in $row into the username batch
 	 */
