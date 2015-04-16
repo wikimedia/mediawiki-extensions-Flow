@@ -367,7 +367,6 @@
 	"flow-topic-count": "Topics ($1)",
 	"flow-load-more": "Load more",
 	"flow-no-more-fwd": "There are no older topics",
-	"flow-add-topic": "Add Topic ",
 	"flow-newest-topics": "Newest topics",
 	"flow-recent-topics": "Recently active topics",
 	"flow-sorting-tooltip-newest": "{{GENDER:|You}} are currently reading the newest topics first. Click for more sorting options.",
