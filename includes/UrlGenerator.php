@@ -2,6 +2,7 @@
 
 namespace Flow;
 
+use Flow\Data\Mapper\CachingObjectMapper;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
@@ -23,16 +24,9 @@ use Title;
  * Anchor instances..
  */
 class UrlGenerator {
-	/**
-	 * @var Workflow[] Map from alphadecimal workflow id to Workflow instance
-	 */
-	protected $workflows = array();
 
-	/**
-	 * @param Workflow $workflow
-	 */
-	public function withWorkflow( Workflow $workflow ) {
-		$this->workflows[$workflow->getId()->getAlphadecimal()] = $workflow;
+	public function __construct( CachingObjectMapper $workflowMapper ) {
+		$this->workflowMapper = $workflowMapper;
 	}
 
 	/**
@@ -50,11 +44,13 @@ class UrlGenerator {
 		}
 
 		$alpha = $workflowId->getAlphadecimal();
-		if ( !isset( $this->workflows[$alpha] ) ) {
+		$workflow = $this->workflowMapper->get( array(
+			'workflow_id' => $alpha,
+		) );
+		if ( $workflow === null ) {
 			throw new InvalidInputException( 'Unloaded workflow:' . $alpha, 'invalid-workflow' );
 		}
-
-		return $this->workflows[$alpha]->getArticleTitle();
+		return $workflow->getArticleTitle();
 	}
 
 	/**

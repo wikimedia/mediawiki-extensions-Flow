@@ -43,13 +43,8 @@ $c['repository.tree'] = function( $c ) {
 };
 
 $c['url_generator'] = function( $c ) {
-	return new Flow\UrlGenerator();
-};
-// listener is attached to storage.workflow, it
-// notifies the url generator about all loaded workflows.
-$c['listener.url_generator'] = function( $c ) {
-	return new Flow\Data\Listener\UrlGenerationListener(
-		$c['url_generator']
+	return new Flow\UrlGenerator(
+		$c['storage.workflow.mapper']
 	);
 };
 
@@ -207,7 +202,6 @@ $c['storage.workflow.listeners.topiclist'] = function( $c ) {
 $c['storage.workflow.listeners'] = function( $c ) {
 	return array(
 		'listener.occupation' => $c['listener.occupation'],
-		'listener.url_generator' => $c['listener.url_generator'],
 		'storage.workflow.listeners.topiclist' => $c['storage.workflow.listeners.topiclist'],
 	);
 };
