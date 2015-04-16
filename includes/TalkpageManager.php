@@ -125,12 +125,6 @@ class TalkpageManager implements OccupationController {
 	 * @throws InvalidInputException
 	 */
 	public function ensureFlowRevision( Article $article, Workflow $workflow ) {
-		// Break loops (because doEditContent requires rendering, which will load the workflow, which will call this function)
-		static $doing = false;
-		if ( $doing ) {
-			return null;
-		}
-
 		// Comment to add to the Revision to indicate Flow taking over
 		$comment = '/* Taken over by Flow */';
 
@@ -149,7 +143,6 @@ class TalkpageManager implements OccupationController {
 			}
 		}
 
-		$doing = true;
 		$status = $page->doEditContent(
 			new BoardContent( CONTENT_MODEL_FLOW_BOARD, $workflow ),
 			$comment,
@@ -157,7 +150,6 @@ class TalkpageManager implements OccupationController {
 			false,
 			$this->getTalkpageManager()
 		);
-		$doing = false;
 
 		if ( $status->isGood() && isset( $status->value['revision'] ) ) {
 			return $status->value['revision'];
@@ -217,7 +209,11 @@ class TalkpageManager implements OccupationController {
 	 * @return bool
 	 */
 	public function canBeUsedOn( Title $title ) {
-		return in_array( $title->getPrefixedDBkey(), $this->allowCreation );
+		return
+			// automatically allowed (occupiedNamespaces & occupiedPages)
+			$this->isTalkpageOccupied( $title, false ) ||
+			// explicitly allowed via allowCreation()
+			in_array( $title->getPrefixedDBkey(), $this->allowCreation );
 	}
 
 	/**
