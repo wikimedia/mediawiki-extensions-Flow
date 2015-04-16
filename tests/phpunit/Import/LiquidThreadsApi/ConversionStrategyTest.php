@@ -16,6 +16,14 @@ use WikitextContent;
  * @group Flow
  */
 class ConversionStrategyTest extends \MediaWikiTestCase {
+	public function setUp() {
+		parent::setUp();
+
+		// Stash existing $wgEchoNotifications and provide a dummy for these
+		// tests:  LqtNotifications::overrideUsersToNotify will override it
+		global $wgEchoNotifications;
+		$this->setMwGlobals( 'wgEchoNotifications', $wgEchoNotifications );
+	}
 
 	public function testCanConstruct() {
 		$this->assertInstanceOf(
