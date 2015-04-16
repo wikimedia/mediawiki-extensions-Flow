@@ -135,6 +135,23 @@
       "revId": "96f1ffedac9741f8f6d2ed833f9315d5d6d31ca4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e76d7c5_56ea7274",
+        "filename": "maintenance/FlowForceSearchIndex.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-16T21:37:45Z",
+      "side": 1,
+      "message": "i\u0027m not sure what the right point to call it is, but we will want to run ObjectManager::clear() at various points through this run, otherwise the entire flow database will get sucked into memory. We could clear it on every loop, i don\u0027t think there is much shared data being loaded? Otherwise we could keep a counter of the number of times we\u0027ve looped and clear every 10 times through or some such.",
+      "revId": "96f1ffedac9741f8f6d2ed833f9315d5d6d31ca4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
