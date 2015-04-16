@@ -3,7 +3,6 @@
 namespace Flow\Data\Listener;
 
 use Article;
-use Flow\Exception\FlowException;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
 use SplQueue;
@@ -27,7 +26,7 @@ class OccupationListener extends AbstractListener {
 
 	/**
 	 * @param OccupationController $occupationController The OccupationController to occupy the page with.
-	 * @param SplQueue             $deferredQueue        Queue of callbacks to run only if commit succedes
+	 * @param SplQueue             $deferredQueue        Queue of callbacks to run only if commit succeeds
 	 * @param string               $defaultType          The workflow type to look for
 	 */
 	public function __construct(
