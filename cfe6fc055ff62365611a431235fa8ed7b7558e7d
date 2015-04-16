@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_04e304d5",
+        "filename": "includes/Search/TopicUpdater.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-16T05:46:34Z",
+      "side": 1,
+      "message": "I suppose its fine, i was just thinking too much code knows it has to check isFormatted and then choose between html/plaintext (except it doesn\u0027t really, AbstractRevision::getContent() always returns raw content for isFormatted() \u003d\u003d\u003d false)",
+      "parentUuid": "6e7c4fa4_adba3a6a",
+      "revId": "cfe6fc055ff62365611a431235fa8ed7b7558e7d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_9188c676",
         "filename": "includes/Search/TopicUpdater.php",
         "patchSetId": 5
