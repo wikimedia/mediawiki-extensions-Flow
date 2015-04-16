@@ -33,10 +33,7 @@ class BoardContent extends \AbstractContent {
 			throw new MWException( "Invalid argument for 'workflow' parameter." );
 		}
 
-		if (
-			$workflow instanceof UUID ||
-			( $workflow instanceof Workflow && !$workflow->isNew() )
-		) {
+		if ( $workflow instanceof UUID || $workflow instanceof Workflow ) {
 			$this->workflow = $workflow;
 		}
 	}
@@ -82,7 +79,7 @@ class BoardContent extends \AbstractContent {
 	 * @return string The summary text.
 	 */
 	public function getTextForSummary( $maxLength = 250 ) {
-		return '[Flow board ' . $this->getWorkflowId()->getAlphaDecimal() . ']';
+		return '[Flow board ' . $this->getWorkflowId()->getAlphadecimal() . ']';
 	}
 
 	/**
@@ -191,10 +188,7 @@ class BoardContent extends \AbstractContent {
 				Container::get( 'flow_actions' )
 			);
 
-			// Load workflow and run View.
-			/** @var WorkflowLoaderFactory $factory */
-			$factory = Container::get('factory.loader.workflow');
-			$loader = $factory->createWorkflowLoader( $title, $this->getWorkflowId() );
+			$loader = $this->getWorkflowLoader( $title );
 			$view->show( $loader, 'view' );
 
 			// Extract data from derivative context
@@ -209,6 +203,26 @@ class BoardContent extends \AbstractContent {
 		$updater->mutateParserOutput( $title, $parserOutput );
 
 		return $parserOutput;
+	}
+
+	/**
+	 * @param Title $title
+	 * @return \Flow\WorkflowLoader
+	 * @throws MWException
+	 * @throws \Flow\Exception\CrossWikiException
+	 * @throws \Flow\Exception\InvalidInputException
+	 */
+	protected function getWorkflowLoader( Title $title ) {
+		if ( $this->workflow && $this->workflow->isNew() ) {
+			// as long as workflow is new, we shouldn't rely on its id
+			$workflowId = null;
+		} else {
+			$workflowId = $this->getWorkflowId();
+		}
+
+		/** @var WorkflowLoaderFactory $factory */
+		$factory = Container::get( 'factory.loader.workflow' );
+		return $factory->createWorkflowLoader( $title, $workflowId );
 	}
 
 	public function getWorkflowId() {
