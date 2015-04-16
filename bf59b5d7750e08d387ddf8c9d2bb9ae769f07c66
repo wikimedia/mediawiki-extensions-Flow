@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_048784dd",
+        "filename": "includes/Data/Storage/RevisionStorage.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-16T00:28:40Z",
+      "side": 1,
+      "message": "Good idea using array_diff for this.",
+      "parentUuid": "6e7c4fa4_0a3c74bb",
+      "revId": "bf59b5d7750e08d387ddf8c9d2bb9ae769f07c66",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_8a488467",
         "filename": "tests/phpunit/Data/Storage/RevisionStorageTest.php",
         "patchSetId": 11
