@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e7c4fa4_ca70b309",
+        "filename": "includes/Search/TopicUpdater.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-17T07:10:31Z",
+      "side": 1,
+      "message": "The exception can be thrown when trying to fetch the summary. The false-check is because the array of generated revision data for the summary can be empty (because of permissions)",
+      "parentUuid": "6e7c4fa4_a4d1f0fd",
+      "revId": "96f1ffedac9741f8f6d2ed833f9315d5d6d31ca4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_6a32bf5c",
         "filename": "includes/Search/Updater.php",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2015-04-16T06:16:39Z",
       "side": 1,
       "message": "document that this is a Connection::*_TYPE_NAME constant",
+      "revId": "96f1ffedac9741f8f6d2ed833f9315d5d6d31ca4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e76d7c5_a846ff52",
+        "filename": "includes/Search/Updater.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-17T07:10:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_6a32bf5c",
       "revId": "96f1ffedac9741f8f6d2ed833f9315d5d6d31ca4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "2e76d7c5_6870e7a3",
+        "filename": "includes/Search/Updater.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-17T07:10:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_ca2993e3",
+      "revId": "96f1ffedac9741f8f6d2ed833f9315d5d6d31ca4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_aaba17b4",
         "filename": "includes/Search/Updater.php",
         "patchSetId": 6
@@ -64,6 +118,24 @@
       "writtenOn": "2015-04-16T06:16:39Z",
       "side": 1,
       "message": "based on the calling code in FlowForceSearchIndex, this is int|null",
+      "revId": "96f1ffedac9741f8f6d2ed833f9315d5d6d31ca4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e76d7c5_286aefb1",
+        "filename": "includes/Search/Updater.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-17T07:10:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_aaba17b4",
       "revId": "96f1ffedac9741f8f6d2ed833f9315d5d6d31ca4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "2e76d7c5_486f2bc1",
+        "filename": "includes/Search/Updater.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-17T07:10:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_0ae1cbfa",
+      "revId": "96f1ffedac9741f8f6d2ed833f9315d5d6d31ca4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_4ad9032b",
         "filename": "includes/Search/Updater.php",
         "patchSetId": 6
@@ -98,6 +188,24 @@
       "writtenOn": "2015-04-16T06:16:39Z",
       "side": 1,
       "message": "if we do keep null, this should also be a !\u003d\u003d null check so the two checks are consistent",
+      "revId": "96f1ffedac9741f8f6d2ed833f9315d5d6d31ca4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e76d7c5_e86397d8",
+        "filename": "includes/Search/Updater.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-17T07:10:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_4ad9032b",
       "revId": "96f1ffedac9741f8f6d2ed833f9315d5d6d31ca4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "2e76d7c5_086133d0",
+        "filename": "includes/Search/Updater.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-17T07:10:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_2ae607e4",
+      "revId": "96f1ffedac9741f8f6d2ed833f9315d5d6d31ca4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_4a16e3ad",
         "filename": "includes/Search/Updater.php",
         "patchSetId": 6
@@ -138,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "2e76d7c5_a85d9f1c",
+        "filename": "includes/Search/Updater.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-17T07:10:31Z",
+      "side": 1,
+      "message": "I\u0027ll change $this-\u003egetType() to getTypeName().\n\nProblem with getRevisionType() is it doesn\u0027t always return an Elastica\\Type: if typename is omitted, it searches the entire index, not a specific type. I realize that\u0027s a horrible method name :D\nI\u0027ll remove the part that fetches the particular type \u0026 just make a \"getFlowIndex\" method. Whoever needs the specific type can just call -\u003egetType() on it then.",
+      "parentUuid": "6e7c4fa4_4a16e3ad",
+      "revId": "96f1ffedac9741f8f6d2ed833f9315d5d6d31ca4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e76d7c5_56ea7274",
         "filename": "maintenance/FlowForceSearchIndex.php",
         "patchSetId": 6
@@ -149,6 +293,24 @@
       "writtenOn": "2015-04-16T21:37:45Z",
       "side": 1,
       "message": "i\u0027m not sure what the right point to call it is, but we will want to run ObjectManager::clear() at various points through this run, otherwise the entire flow database will get sucked into memory. We could clear it on every loop, i don\u0027t think there is much shared data being loaded? Otherwise we could keep a counter of the number of times we\u0027ve looped and clear every 10 times through or some such.",
+      "revId": "96f1ffedac9741f8f6d2ed833f9315d5d6d31ca4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e76d7c5_689f87ba",
+        "filename": "maintenance/FlowForceSearchIndex.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-17T07:10:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e76d7c5_56ea7274",
       "revId": "96f1ffedac9741f8f6d2ed833f9315d5d6d31ca4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
