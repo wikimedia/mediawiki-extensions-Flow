@@ -168,7 +168,7 @@
 	"flow-error-fetch-after-lock": "אירעה שגיאה בעת בקשת נתונים חדשים. עם זאת, פעולת הנעילה או ביטולה הצליחה. הודעת השגיאה הייתה: $1",
 	"flow-error-content-too-long": "התוכן גדול מדי. תוכן אחרי פענוח מוגבל {{PLURAL:$1|לבית אחד|ל־$1 בתים}}.",
 	"flow-error-move-topic": "העברת דף נושא אינה נתמכת כעת.",
-	"flow-error-move-no-create-permissions": "ההרשאה \"flow-create-board\" נדרשת כדי להעביר לוח זרימה.",
+	"flow-error-move-no-create-permissions": "ההרשאה \"{{int:right-flow-create-board}}\" נדרשת כדי להעביר לוח זרימה.",
 	"flow-error-invalid-topic-uuid-title": "כותרת שגויה",
 	"flow-error-invalid-topic-uuid": "כותרת הדף שביקשת אינה חוקית. דפים במרחב השם \"נושא\" נוצרים באופן אוטומטי.",
 	"flow-error-unknown-workflow-id-title": "נושא לא יודע",
