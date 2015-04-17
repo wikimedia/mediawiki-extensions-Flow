@@ -65,16 +65,9 @@ class Connection extends \ElasticaConnection {
 
 	/**
 	 * @param string $name
-	 * @param string|bool $type Type name or false to search entire index
-	 * @return SearchableInterface
+	 * @return \Elastica\Index
 	 */
-	public static function getRevisionType( $name, $type = false ) {
-		$index = static::getSingleton()->getIndex2( $name, static::FLOW_INDEX_TYPE );
-
-		if ( $type ) {
-			$index = $index->getType( $type );
-		}
-
-		return $index;
+	public static function getFlowIndex( $name ) {
+		return static::getSingleton()->getIndex2( $name, static::FLOW_INDEX_TYPE );
 	}
 }
