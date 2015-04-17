@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e76d7c5_2248d08b",
+        "filename": "includes/Formatter/SearchQuery.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-17T00:30:31Z",
+      "side": 1,
+      "message": "MWExceptionHandler::logException too, or we wont have the stack trace",
+      "revId": "4c24fa80cccf0dfc28e0151acf42d87c0661935d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e76d7c5_424dcc9a",
+        "filename": "includes/Formatter/SearchQuery.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-17T00:30:31Z",
+      "side": 1,
+      "message": "sic, logException",
+      "revId": "4c24fa80cccf0dfc28e0151acf42d87c0661935d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
