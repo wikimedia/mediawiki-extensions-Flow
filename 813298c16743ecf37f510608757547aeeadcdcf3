@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e76d7c5_c85a5b22",
+        "filename": "includes/Search/Searcher.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-17T09:48:03Z",
+      "side": 1,
+      "message": "Removing this method in one of the parent patches. Instead:\n\n    $searchable \u003d Connection::getFlowIndex( $this-\u003eindexBaseName );\n    if ( $this-\u003etype !\u003d\u003d false ) {\n        $searchable \u003d $searchable-\u003egetType( $this-\u003etype );\n    }",
+      "revId": "813298c16743ecf37f510608757547aeeadcdcf3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
