@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e76d7c5_cbc1f084",
+        "filename": "includes/Search/SearchEngine.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-17T19:12:54Z",
+      "side": 1,
+      "message": "i think an empty array is better than allowing null",
+      "revId": "7404d7c03b036e535641cc9fe35c21b27e13b1dd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e76d7c5_cbfed0ab",
+        "filename": "includes/Search/Searcher.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-17T19:12:54Z",
+      "side": 1,
+      "message": "I took a look at this file, but i don\u0027t see what we would need to add to it?",
+      "revId": "7404d7c03b036e535641cc9fe35c21b27e13b1dd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e76d7c5_2b6bc483",
+        "filename": "includes/Search/Searcher.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-17T19:12:54Z",
+      "side": 1,
+      "message": "doesn\u0027t seem necessary yet, seems like we could come back to it later if we want",
+      "revId": "7404d7c03b036e535641cc9fe35c21b27e13b1dd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
