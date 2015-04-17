@@ -990,6 +990,12 @@ $c['formatter.topic'] = function( $c ) {
 		$c['formatter.revision']
 	);
 };
+$c['query.search'] = function( $c ) {
+	return new Flow\Formatter\SearchQuery(
+		$c['storage'],
+		$c['repository.tree']
+	);
+};
 $c['searchindex.updaters'] = function( $c ) {
 	// permissions for anon user
 	$anonPermissions = new Flow\RevisionActionPermissions( $c['flow_actions'], new User );

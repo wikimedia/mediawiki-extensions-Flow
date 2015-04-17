@@ -34,6 +34,7 @@ class ApiFlow extends ApiBase {
 		'view-topic' => 'Flow\Api\ApiFlowViewTopic',
 		'view-header' => 'Flow\Api\ApiFlowViewHeader',
 		'view-topic-summary' => 'Flow\Api\ApiFlowViewTopicSummary',
+		'search' => 'Flow\Api\ApiFlowSearch',
 	);
 
 	public function __construct( $main, $action ) {
@@ -82,7 +83,9 @@ class ApiFlow extends ApiBase {
 
 		$module->extractRequestParams();
 		$module->profileIn();
-		$module->setPage( $this->getPage( $params ) );
+		if ( $module->needsPage() ) {
+			$module->setPage( $this->getPage( $params ) );
+		}
 		$module->doRender( $params['render'] );
 		$module->execute();
 		wfRunHooks( 'APIFlowAfterExecute', array( $module ) );
@@ -127,7 +130,9 @@ class ApiFlow extends ApiBase {
 				ApiBase::PARAM_TYPE => $submodulesType,
 			),
 			'page' => array(
-				ApiBase::PARAM_REQUIRED => true
+				ApiBase::PARAM_REQUIRED => true,
+				// supply bogus default - not every action may *need* ?page=
+				ApiBase::PARAM_DFLT => Title::newFromText( 'Flow-enabled page', NS_TOPIC )->getPrefixedDBkey(),
 			),
 			'token' => '',
 			'render' => array(
