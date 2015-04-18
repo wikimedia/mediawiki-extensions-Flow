@@ -169,6 +169,7 @@
 	"flow-error-invalid-topic-uuid": "Der angeforderte Seitentitel war ungültig. Seiten im Themennamensraum werden von Flow automatisch erstellt.",
 	"flow-error-unknown-workflow-id-title": "Unbekanntes Thema",
 	"flow-error-unknown-workflow-id": "Das angeforderte Thema ist nicht vorhanden.",
+	"flow-error-search": "Wir konnten aufgrund eines vorübergehenden Problems deine Suche nicht vervollständigen. Bitte später erneut versuchen.",
 	"flow-edit-header-placeholder": "Dieses Diskussions-Board beschreiben",
 	"flow-edit-header-submit": "Kopfbereich speichern",
 	"flow-edit-header-submit-overwrite": "Überschrift überschreiben",

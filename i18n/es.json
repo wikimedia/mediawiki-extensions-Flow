@@ -170,6 +170,7 @@
 	"flow-error-invalid-topic-uuid-title": "Título incorrecto",
 	"flow-error-unknown-workflow-id-title": "Tema desconocido",
 	"flow-error-unknown-workflow-id": "El tema solicitado no existe.",
+	"flow-error-search": "No pudimos completar tu búsqueda debido a un problema temporal. Intenta de nuevo más tarde.",
 	"flow-edit-header-placeholder": "Describir este panel de discusión",
 	"flow-edit-header-submit": "Guardar cabecera",
 	"flow-edit-header-submit-overwrite": "Sobrescribir cabecera",

@@ -168,6 +168,7 @@
 	"flow-error-invalid-topic-uuid": "Побараниот наслов е неважечки. Страниците во именскиот простор „Тема“ се создаваат автоматски од страна на Тек.",
 	"flow-error-unknown-workflow-id-title": "Непозната тема",
 	"flow-error-unknown-workflow-id": "Бараната тема не постои.",
+	"flow-error-search": "Не можам наполно да го изведам пребарувањето поради привремен проблем. Обидете се подоцна.",
 	"flow-edit-header-placeholder": "Опишете ја разговорницава",
 	"flow-edit-header-submit": "Зачувај заглавие",
 	"flow-edit-header-submit-overwrite": "Презапиши врз заглавието",
