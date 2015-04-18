@@ -14,6 +14,7 @@ use Flow\Parsoid\Utils;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\UrlGenerator;
+use ApiResult;
 use GenderCache;
 use IContextSource;
 use Message;
@@ -182,10 +183,7 @@ class RevisionFormatter {
 		$moderatedRevision = $this->templating->getModeratedRevision( $row->revision );
 		$ts = $row->revision->getRevisionId()->getTimestampObj();
 		$res = array(
-			// Change all '_BC_bools' to ApiResult::META_BC_BOOLS when core
-			// change is merged.
-			'_BC_bools' => array(
-				// https://gerrit.wikimedia.org/r/#/c/182858/
+			ApiResult::META_BC_BOOLS => array(
 				'isOriginalContent',
 				'isModerated',
 			),
@@ -249,8 +247,8 @@ class RevisionFormatter {
 		}
 
 		if ( $row instanceof TopicRow ) {
-			$res['_BC_bools'] = array_merge(
-				$res['_BC_bools'],
+			$res[ApiResult::META_BC_BOOLS] = array_merge(
+				$res[ApiResult::META_BC_BOOLS],
 				array(
 					'isWatched',
 					'watchable',
@@ -278,8 +276,8 @@ class RevisionFormatter {
 		}
 
 		if ( $row->revision instanceof PostRevision ) {
-			$res['_BC_bools'] = array_merge(
-				$res['_BC_bools'],
+			$res[ApiResult::META_BC_BOOLS] = array_merge(
+				$res[ApiResult::META_BC_BOOLS],
 				array(
 					'isMaxThreadingDepth',
 				)
