@@ -52,12 +52,10 @@
 		htmlDoc = ve.createDocumentFromHtml( content ); // HTMLDocument
 
 		// Based on ve.init.mw.Target.prototype.setupSurface
-		dmDoc = this.dmDoc = ve.dm.converter.getModelFromDom(
-			htmlDoc,
-			null,
-			mw.config.get( 'wgVisualEditor' ).pageLanguageCode,
-			mw.config.get( 'wgVisualEditor' ).pageLanguageDir
-		);
+		dmDoc = this.dmDoc = ve.dm.converter.getModelFromDom( htmlDoc, {
+			lang: mw.config.get( 'wgVisualEditor' ).pageLanguageCode,
+			dir: mw.config.get( 'wgVisualEditor' ).pageLanguageDir
+		} );
 
 		setTimeout( function () {
 			var surface = target.addSurface( dmDoc ),
