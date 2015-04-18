@@ -163,7 +163,6 @@ class RevisionFormatter {
 	 * @return array|false
 	 */
 	public function formatApi( FormatterRow $row, IContextSource $ctx ) {
-		$language = $ctx->getLanguage();
 		$user = $ctx->getUser();
 		// @todo the only permissions currently checked in this class are prev-revision
 		// mostly permissions is used for the actions,  figure out how permissions should
