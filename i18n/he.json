@@ -173,6 +173,7 @@
 	"flow-error-invalid-topic-uuid": "כותרת הדף שביקשת אינה חוקית. דפים במרחב השם \"נושא\" נוצרים באופן אוטומטי.",
 	"flow-error-unknown-workflow-id-title": "נושא לא יודע",
 	"flow-error-unknown-workflow-id": "הנושא המבוקש לא נמצא.",
+	"flow-error-search": "לא הצלחנו להשלים את החיפוש שלך בשל בעיה זמנית. נא לנסות שוב מאוחר יותר.",
 	"flow-edit-header-placeholder": "נא לתאר את לוח הדיונים הזה",
 	"flow-edit-header-submit": "שמירת התיאור",
 	"flow-edit-header-submit-overwrite": "דריסת התיאור",
