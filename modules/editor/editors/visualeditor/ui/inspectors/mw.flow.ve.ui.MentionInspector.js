@@ -27,6 +27,7 @@
 		this.targetInput = null;
 		this.errorWidget = null;
 		this.errorFieldsetLayout = null;
+		this.selectedAt = false;
 	};
 
 	OO.inheritClass( mw.flow.ve.ui.MentionInspector, ve.ui.NodeInspector );
@@ -195,10 +196,11 @@
 	 * @inheritdoc
 	 */
 	mw.flow.ve.ui.MentionInspector.prototype.getActionProcess = function ( action ) {
-		var surfaceModel = this.getFragment().getSurface(), dfd, inspector;
+		var deferred, inspector,
+			surfaceModel = this.getFragment().getSurface();
 
 		if ( action === 'done' ) {
-			dfd = $.Deferred();
+			deferred = $.Deferred();
 			inspector = this;
 
 			this.targetInput.isValid().done( function ( isValid ) {
@@ -211,19 +213,24 @@
 					if ( inspector.selectedNode instanceof ve.dm.MWTransclusionNode ) {
 						inspector.transclusionModel.updateTransclusionNode( surfaceModel, inspector.selectedNode );
 					} else if ( transclusionModelPlain !== null ) {
-						inspector.fragment = inspector.getFragment().collapseToEnd();
+						// Unless we have selected the '@' symbol using a sequence command, insert
+						// at the end of the fragment. Otherwise replace the '@'.
+						if ( !inspector.selectedAt ) {
+							inspector.fragment = inspector.getFragment().collapseToEnd();
+						}
 						inspector.transclusionModel.insertTransclusionNode( inspector.getFragment() );
-						surfaceModel.setSelection( surfaceModel.getSelection().collapseToEnd() );
+						// After insertion move cursor to end of template
+						inspector.fragment.collapseToEnd().select();
 					}
 
 					inspector.close( { action: action } );
-					dfd.resolve();
+					deferred.resolve();
 				} else {
-					dfd.reject( new OO.ui.Error( OO.ui.msg( 'flow-ve-mention-inspector-invalid-user', inspector.targetInput.getValue() ) ) );
+					deferred.reject( new OO.ui.Error( OO.ui.msg( 'flow-ve-mention-inspector-invalid-user', inspector.targetInput.getValue() ) ) );
 				}
 			} );
 
-			return new OO.ui.Process( dfd.promise() );
+			return new OO.ui.Process( deferred.promise() );
 		} else if ( action === 'remove' ) {
 			return new OO.ui.Process( function () {
 				var doc, nodeRange;
@@ -281,7 +288,7 @@
 	mw.flow.ve.ui.MentionInspector.prototype.getSetupProcess = function ( data ) {
 		return mw.flow.ve.ui.MentionInspector.parent.prototype.getSetupProcess.call( this, data )
 			.next( function () {
-				var templateModel, promise;
+				var templateModel, promise, atFragment;
 
 				this.loaded = false;
 				this.altered = false;
@@ -312,6 +319,14 @@
 					// Load existing ping
 					promise = this.transclusionModel
 						.load( ve.copy( this.selectedNode.getAttribute( 'mw' ) ) );
+				}
+
+				if ( data.selectAt ) {
+					atFragment = this.getFragment().adjustLinearSelection( -1, 0 );
+					if ( atFragment.getText() === '@' ) {
+						this.fragment = atFragment.select();
+						this.selectedAt = true;
+					}
 				}
 
 				// Don't allow saving until we're sure it's valid.
@@ -347,6 +362,11 @@
 				this.targetInput.disconnect( this );
 
 				this.targetInput.setValue( '' );
+				if ( this.selectedAt ) {
+					this.fragment.collapseToEnd().select();
+				}
+				this.selectedAt = false;
+
 			}, this );
 	};
 
