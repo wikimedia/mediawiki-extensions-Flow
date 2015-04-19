@@ -6,7 +6,7 @@
 			'flowMention',
 			'window',
 			'open',
-			{ args: ['flowMention'] },
+			{ args: ['flowMention', { 'selectAt': true } ] },
 			{ supportedSelections: ['linear'] }
 		)
 	);

@@ -5,8 +5,7 @@
 		new ve.ui.Sequence(
 			'flowAtCharMention',
 			'flowMention',
-			'@',
-			1
+			'@'
 		)
 	);
 } ( ve ) );
