@@ -4,9 +4,8 @@
 	ve.ui.sequenceRegistry.register(
 		new ve.ui.Sequence(
 			'flowAtCharMention',
-			'flowMention',
-			'@',
-			1
+			'flowMentionAt',
+			'@'
 		)
 	);
 } ( ve ) );
