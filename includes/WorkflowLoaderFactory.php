@@ -2,12 +2,12 @@
 
 namespace Flow;
 
+use Flow\Content\BoardContent;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Data\ManagerGroup;
 use Flow\Exception\CrossWikiException;
 use Flow\Exception\InvalidInputException;
-use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidTopicUuidException;
 use Flow\Exception\UnknownWorkflowIdException;
 use Title;
@@ -76,13 +76,26 @@ class WorkflowLoaderFactory {
 			throw new CrossWikiException( 'Interwiki to ' . $pageTitle->getInterwiki() . ' not implemented ', 'default' );
 		}
 
-		if ( $pageTitle->getNamespace() === NS_TOPIC ) {
-			$workflowId = self::uuidFromTitle( $pageTitle );
+		// @todo: ideally, workflowId is always set and this stuff is done in the places that call this
+		if ( $workflowId === null ) {
+			if ( $pageTitle->getNamespace() === NS_TOPIC ) {
+				// topic page: workflow UUID is page title
+				$workflowId = self::uuidFromTitle( $pageTitle );
+			} else {
+				// board page: workflow UUID is inside content model
+				$page = \WikiPage::factory( $pageTitle );
+				$content = $page->getContent();
+				if ( $content instanceof BoardContent ) {
+					$workflowId = $content->getWorkflowId();
+				}
+			}
 		}
-		if ( $workflowId !== null ) {
-			$workflow = $this->loadWorkflowById( $pageTitle, $workflowId );
+
+		if ( $workflowId === null ) {
+			// no existing workflow found, create new one
+			$workflow = Workflow::create( $this->defaultWorkflowName, $pageTitle );
 		} else {
-			$workflow = $this->loadWorkflow( $pageTitle );
+			$workflow = $this->loadWorkflowById( $pageTitle, $workflowId );
 		}
 
 		return new WorkflowLoader(
@@ -90,29 +103,6 @@ class WorkflowLoaderFactory {
 			$this->blockFactory->createBlocks( $workflow ),
 			$this->submissionHandler
 		);
-	}
-
-	/**
-	 * @param Title $title
-	 * @return Workflow
-	 * @throws InvalidDataException
-	 */
-	protected function loadWorkflow( \Title $title ) {
-		$storage = $this->storage->getStorage( 'Workflow' );
-
-		$found = $storage->find( array(
-			'workflow_type' => $this->defaultWorkflowName,
-			'workflow_wiki' => $title->isLocal() ? wfWikiId() : $title->getTransWikiID(),
-			'workflow_namespace' => $title->getNamespace(),
-			'workflow_title_text' => $title->getDBkey(),
-		) );
-		if ( $found ) {
-			$workflow = reset( $found );
-		} else {
-			$workflow = Workflow::create( $this->defaultWorkflowName, $title );
-		}
-
-		return $workflow;
 	}
 
 	/**
