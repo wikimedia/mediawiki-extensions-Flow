@@ -95,7 +95,7 @@ class ConvertToText extends Maintenance {
 			if ( $flowData === null ) {
 				throw new MWException( "API response has no Flow data" );
 			}
-			$flowData = ApiResult::removeMetadata( $flowData );
+			$flowData = ApiResult::stripMetadata( $flowData );
 		} else {
 			$apiResponse = $api->getResult()->getData();
 			if ( ! isset( $apiResponse['flow'] ) ) {
