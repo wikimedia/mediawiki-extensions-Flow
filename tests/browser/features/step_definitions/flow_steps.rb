@@ -61,8 +61,8 @@ When(/^I click the Hide topic button$/) do
   on(FlowPage).topic_hide_button_element.when_present.click
 end
 
-When(/^I click the Post Actions link$/) do
-  on(FlowPage).post_actions_link_element.when_present.click
+When(/^I hover on the Post Actions link$/) do
+  on(FlowPage).post_actions_link_element.when_present.hover
 end
 
 When(/^I click the Suppress topic button$/) do

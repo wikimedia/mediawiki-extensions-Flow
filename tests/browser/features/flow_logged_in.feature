@@ -21,7 +21,7 @@ Feature: Create new topic logged in
       And the block author link should be visible
 
   Scenario: Post Actions
-    When I click the Post Actions link
+    When I hover on the Post Actions link
     Then I should see a Hide button
       And I should see a Delete button
       And I should see a Suppress button
