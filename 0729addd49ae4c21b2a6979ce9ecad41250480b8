@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_28967450",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-20T16:56:14Z",
+      "side": 1,
+      "message": "i might just be mis-understanding how jquery promises work, but doesn\u0027t this resolve immediately in the above if/else if/else block, rather than when the chain of promises is complete?  If so i think it should only be resolving when the switch is finished.",
+      "revId": "0729addd49ae4c21b2a6979ce9ecad41250480b8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
