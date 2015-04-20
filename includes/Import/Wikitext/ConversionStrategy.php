@@ -38,12 +38,39 @@ class ConversionStrategy implements IConversionStrategy {
 	protected $parser;
 
 	/**
+	 * @var array $archiveTitleSuggestions
+	 */
+	protected $archiveTitleSuggestions;
+
+	/**
+	 * @var string $headerSuffix
+	 */
+	protected $headerSuffix;
+
+	/**
 	 * @param Parser|StubObject $parser
 	 * @param ImportSourceStore $sourceStore
 	 */
-	public function __construct( $parser, ImportSourceStore $sourceStore ) {
+	public function __construct(
+		$parser,
+		ImportSourceStore $sourceStore,
+		$preferredArchiveTitle = null,
+		$headerSuffix = null
+	) {
 		$this->parser = $parser;
 		$this->sourceStore = $sourceStore;
+		$this->headerSuffix = $headerSuffix;
+
+		if ( isset( $preferredArchiveTitle ) && !empty( $preferredArchiveTitle ) ) {
+			$this->archiveTitleSuggestions = array( $preferredArchiveTitle );
+		} else {
+			$this->archiveTitleSuggestions = array(
+				'%s/Archive %d',
+				'%s/Archive%d',
+				'%s/archive %d',
+				'%s/archive%d',
+			);
+		}
 	}
 
 	/**
@@ -83,19 +110,14 @@ class ConversionStrategy implements IConversionStrategy {
 	 * {@inheritDoc}
 	 */
 	public function createImportSource( Title $title ) {
-		return new ImportSource( $title, $this->parser );
+		return new ImportSource( $title, $this->parser, $this->headerSuffix );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public function decideArchiveTitle( Title $source ) {
-		return Converter::decideArchiveTitle( $source, array(
-			'%s/Archive %d',
-			'%s/Archive%d',
-			'%s/archive %d',
-			'%s/archive%d',
-		) );
+		return Converter::decideArchiveTitle( $source, $this->archiveTitleSuggestions );
 	}
 
 	/**
