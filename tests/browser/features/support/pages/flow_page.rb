@@ -126,9 +126,6 @@ class FlowPage < WikiPage
 
   ### Post meta actions
   span(:post_meta_actions, css: ".flow-post .flow-post-meta-actions", index: 0)
-  a(:edit_post) do |page|
-    page.post_meta_actions_element.link_element(title: "Edit")
-  end
   a(:thank_button) do |page|
     page.post_meta_actions_element.link_element(css: ".mw-thanks-flow-thank-link", index: 0)
   end
@@ -147,6 +144,9 @@ class FlowPage < WikiPage
   end
   a(:suppress_button) do |page|
     page.post_actions_menu_element.link_element(title: "Suppress")
+  end
+  a(:edit_post_button) do |page|
+    page.post_actions_menu_element.link_element(title: "Edit")
   end
 
   ### Replies to top post

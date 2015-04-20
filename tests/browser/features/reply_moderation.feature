@@ -8,7 +8,7 @@ Feature: Reply moderation
   Scenario: Hiding a comment
     Given I have created a Flow topic with title "Hide comment test"
       And I add 3 comments to the Topic
-    When I click the Post Actions link on the 3rd comment on the topic
+    When I hover on the Post Actions link on the 3rd comment on the topic
         And I click Hide comment button
         And I see a dialog box
         And I give reason for hiding as being "Shhhh!"
