@@ -1224,4 +1224,13 @@ $c['board_mover'] = function( $c ) {
 	);
 };
 
+$c['parser'] = function() {
+	global $wgParser;
+	return $wgParser;
+};
+
+$c['default_logger'] = function() {
+	return new Flow\Log\DefaultLogger();
+};
+
 return $c;

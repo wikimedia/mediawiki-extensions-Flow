@@ -31,7 +31,7 @@ use WikitextContent;
  */
 class Converter {
 	/**
-	 * @var DatabaseBase Slave database of the current wiki. Required
+	 * @var DatabaseBase Master database of the current wiki. Required
 	 *  to lookup past page moves.
 	 */
 	protected $dbw;
