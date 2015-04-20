@@ -4,7 +4,6 @@ namespace Flow\Import\LiquidThreadsApi;
 
 use ApiBase;
 use ApiMain;
-use ApiResult;
 use Exception;
 use FauxRequest;
 use Flow\Import\ImportException;
@@ -430,7 +429,7 @@ class LocalApiBackend extends ApiBackend {
 			$api = new ApiMain( $context );
 			$api->execute();
 			if ( defined( 'ApiResult::META_CONTENT' ) ) {
-				return ApiResult::removeMetadata( $api->getResult()->getResultData() );
+				return $api->getResult()->getResultData( null, array( 'Strip' => 'all' ) );
 			} else {
 				return $api->getResult()->getData();
 			}
