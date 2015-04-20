@@ -40,6 +40,11 @@
 	};
 
 	// Export
-	mw.flow.FlowEventLog = FlowEventLog;
-	mw.flow.FlowEventLogRegistry = FlowEventLogRegistry;
+	/**
+	 * EventLogging wrapper
+	 * @type {FlowEventLog}
+	 */
+	mw.flow.EventLog = FlowEventLog;
+
+	mw.flow.EventLogRegistry = FlowEventLogRegistry;
 }( mw, jQuery ) );
