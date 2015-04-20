@@ -100,15 +100,22 @@ class WorkflowLoaderFactory {
 	protected function loadWorkflow( \Title $title ) {
 		$storage = $this->storage->getStorage( 'Workflow' );
 
+		// board doesn't currently exist
+		if ( $title->getArticleID() === 0 ) {
+			return Workflow::create( $this->defaultWorkflowName, $title );
+		}
+
 		$found = $storage->find( array(
 			'workflow_type' => $this->defaultWorkflowName,
 			'workflow_wiki' => $title->isLocal() ? wfWikiId() : $title->getTransWikiID(),
+			'workflow_page_id' => $title->getArticleID(),
 			'workflow_namespace' => $title->getNamespace(),
 			'workflow_title_text' => $title->getDBkey(),
 		) );
 		if ( $found ) {
 			$workflow = reset( $found );
 		} else {
+			// workflow for this board couldn't be found
 			$workflow = Workflow::create( $this->defaultWorkflowName, $title );
 		}
 
