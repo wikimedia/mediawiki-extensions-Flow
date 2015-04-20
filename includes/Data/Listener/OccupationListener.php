@@ -51,17 +51,7 @@ class OccupationListener implements LifecycleHandler {
 	}
 
 	public function onAfterLoad( $object, array $old ) {
-		if ( !$object instanceof Workflow ) {
-			return;
-		}
-		if ( $object->getType() === $this->defaultType ) {
-			// We don't want to defer the load event, the request
-			// may require this to actually exist to render properly.
-			$this->occupationController->ensureFlowRevision(
-				new Article( $object->getArticleTitle() ),
-				$object
-			);
-		}
+		// Nothing
 	}
 
 	public function onAfterInsert( $object, array $new, array $metadata ) {
