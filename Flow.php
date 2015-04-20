@@ -169,6 +169,7 @@ $wgFlowGroupPermissions['user']['flow-lock'] = true;
 $wgFlowGroupPermissions['sysop']['flow-lock'] = true;
 $wgFlowGroupPermissions['sysop']['flow-delete'] = true;
 $wgFlowGroupPermissions['sysop']['flow-edit-post'] = true;
+$wgFlowGroupPermissions['sysop']['flow-suppress'] = true;
 $wgFlowGroupPermissions['oversight']['flow-suppress'] = true;
 $wgFlowGroupPermissions['flow-bot']['flow-create-board'] = true;
 $wgGroupPermissions = array_merge_recursive( $wgGroupPermissions, $wgFlowGroupPermissions );

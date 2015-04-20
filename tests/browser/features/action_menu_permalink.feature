@@ -16,8 +16,8 @@ Feature: Actions menu Permalink
   Scenario: Actions menu Permalink
     Given I have created a Flow topic with title "PermalinkReplyTest"
       And I add 3 comments to the Topic
-    When I click the Post Actions link on the 3rd comment on the topic
-      And I click the Post Actions link on the 3rd comment on the topic
+    When I hover on the Post Actions link on the 3rd comment on the topic
+      And I hover on the Post Actions link on the 3rd comment on the topic
       And I click Permalink from the 3rd comment Post Actions menu
       And I am viewing Topic page
     Then I see only one topic on the page
