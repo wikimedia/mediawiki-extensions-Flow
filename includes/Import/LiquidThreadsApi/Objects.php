@@ -2,6 +2,7 @@
 
 namespace Flow\Import\LiquidThreadsApi;
 
+use ApiResult;
 use ArrayIterator;
 use Flow\Import\IImportHeader;
 use Flow\Import\IImportObject;
