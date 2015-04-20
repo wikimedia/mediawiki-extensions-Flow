@@ -25,14 +25,16 @@ class ImportSource implements IImportSource {
 	/**
 	 * @param Title $title
 	 * @param Parser|StubObject $parser
+	 * @param string $headerSuffix
 	 * @throws ImportException When $title is an external title
 	 */
-	public function __construct( Title $title, $parser ) {
+	public function __construct( Title $title, $parser, $headerSuffix = null ) {
 		if ( $title->isExternal() ) {
 			throw new ImportException( "Invalid non-local title: $title" );
 		}
 		$this->title = $title;
 		$this->parser = $parser;
+		$this->headerSuffix = $headerSuffix;
 	}
 
 	/**
@@ -66,6 +68,10 @@ class ImportSource implements IImportSource {
 			'date=' . MWTimestamp::getInstance()->timestamp->format( 'Y-m-d' ),
 		) );
 		$content .= "\n\n{{{$template}|$arguments}}";
+
+		if ( $this->headerSuffix && !empty( $this->headerSuffix ) ) {
+			$content .= "\n\n{$this->headerSuffix}";
+		}
 
 		return new ImportHeader(
 			array( new ObjectRevision(

@@ -4,6 +4,7 @@ namespace Flow\Import;
 
 use DatabaseBase;
 use Flow\Repository\TitleRepository;
+use Flow\Exception\FlowException;
 use MovePage;
 use MWExceptionHandler;
 use Psr\Log\LoggerInterface;
@@ -31,7 +32,7 @@ use WikitextContent;
  */
 class Converter {
 	/**
-	 * @var DatabaseBase Slave database of the current wiki. Required
+	 * @var DatabaseBase Master database of the current wiki. Required
 	 *  to lookup past page moves.
 	 */
 	protected $dbw;
@@ -96,28 +97,40 @@ class Converter {
 	}
 
 	/**
+	 * Converts multiple pages into Flow boards
+	 *
 	 * @param Traversable<Title>|array $titles
 	 */
-	public function convert( $titles ) {
+	public function convertAll( $titles ) {
 		/** @var Title $title */
 		foreach ( $titles as $title ) {
 			try {
-				$movedFrom = $this->getPageMovedFrom( $title );
-				if ( ! $this->isAllowed( $title, $movedFrom ) ) {
-					continue;
-				}
-
-				if ( $this->strategy->isConversionFinished( $title, $movedFrom ) ) {
-					continue;
-				}
-
-				$this->doConversion( $title, $movedFrom );
+				$this->convert( $title );
 			} catch ( \Exception $e ) {
 				MWExceptionHandler::logException( $e );
 				$this->logger->error( "Exception while importing: {$title}" );
 				$this->logger->error( (string)$e );
 			}
 		}
+	}
+
+	/**
+	 * Converts a page into a Flow board
+	 *
+	 * @param Title $title
+	 */
+	public function convert( $title ) {
+		$movedFrom = $this->getPageMovedFrom( $title );
+		if ( ! $this->isAllowed( $title, $movedFrom ) ) {
+			throw new FlowException( "Not allowed to convert: {$title}" );
+		}
+
+		// convertion is already done
+		if ( $this->strategy->isConversionFinished( $title, $movedFrom ) ) {
+			return;
+		}
+
+		$this->doConversion( $title, $movedFrom );
 	}
 
 	protected function isAllowed( Title $title, Title $movedFrom = null ) {

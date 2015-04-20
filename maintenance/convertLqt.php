@@ -60,7 +60,7 @@ class ConvertLqt extends Maintenance {
 
 		$logger->info( "Starting full wiki LQT conversion" );
 		$titles = new PagesWithPropertyIterator( $dbw, 'use-liquid-threads', $startId, $stopId );
-		$converter->convert( $titles );
+		$converter->convertAll( $titles );
 	}
 }
 

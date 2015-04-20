@@ -72,7 +72,7 @@ class ConvertLqtPageOnLocalWiki extends Maintenance {
 		$logger->info( "Starting LQT conversion of page $srcPageName" );
 
 		$srcTitle = \Title::newFromText( $srcPageName );
-		$converter->convert( array(
+		$converter->convertAll( array(
 			$srcTitle,
 		) );
 	}

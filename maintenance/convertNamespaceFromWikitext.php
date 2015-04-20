@@ -67,7 +67,7 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 			} );
 		}
 
-		$converter->convert( $it );
+		$converter->convertAll( $it );
 	}
 }
 
