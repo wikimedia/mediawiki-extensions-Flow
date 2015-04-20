@@ -6,6 +6,9 @@ use FormSpecialPage;
 use Status;
 use Title;
 use Flow\Container;
+use Flow\Import\Converter;
+use Flow\Import\Wikitext\ConversionStrategy;
+use Flow\Import\NullImportSourceStore;
 
 /**
  * A special page that allows users with the flow-create-board right to create
@@ -38,6 +41,11 @@ class SpecialEnableFlow extends FormSpecialPage {
 				'type' => 'text',
 				'label-message' => 'flow-special-enableflow-page',
 			),
+			'archive-title-format' => array(
+				'type' => 'text',
+				'label-message' => 'flow-special-enableflow-archive-title-format',
+				'default' => wfMessage( 'flow-special-enableflow-archive-title-format-default-value' ),
+			),
 			'header' => array(
 				'type' => 'textarea',
 				'label-message' => 'flow-special-enableflow-header'
@@ -54,7 +62,8 @@ class SpecialEnableFlow extends FormSpecialPage {
 	}
 
 	/**
-	 * Check that Flow board does not exist, then create it
+	 * Creates a flow board.
+	 * Archives any pre-existing wikitext talk page.
 	 *
 	 * @param array $data Form data
 	 * @return Status Status indicating result
@@ -73,44 +82,63 @@ class SpecialEnableFlow extends FormSpecialPage {
 			return Status::newFatal( 'flow-special-enableflow-board-already-exists', $page );
 		}
 
-		if ( !$this->occupationController->allowCreation( $title, $this->getUser() ) ) {
-			// This is the only plausible reason this method would return false here.
-			// If there is another possible reason, we should have the method return a
-			// Status.
-			return Status::newFatal( 'flow-special-enableflow-page-already-exists', $page );
+		if ( !$this->occupationController->allowCreation( $title, $this->getUser(), false ) ) {
+			return Status::newFatal( 'flow-special-enableflow-board-creation-not-allowed', $page );
 		}
-
-		$loader = $this->loaderFactory->createWorkflowLoader( $title );
-		$blocks = $loader->getBlocks();
-
-		$action = 'edit-header';
-
-		$params = array(
-			'header' => array(
-				'content' => $data['header'],
-				'format' => 'wikitext',
-			),
-		);
-
-		$blocksToCommit = $loader->handleSubmit(
-			$this->getContext(),
-			$action,
-			$params
-		);
 
 		$status = Status::newGood();
 
-		foreach( $blocks as $block ) {
-			if ( $block->hasErrors() ) {
-				$errors = $block->getErrors();
+		if ( $title->exists() ) {
 
-				foreach( $errors as $errorKey ) {
-					$status->fatal( $block->getErrorMessage( $errorKey ) );
+			if ( class_exists( 'LqtDispatch' ) && LqtDispatch::isLqtPage( $title ) ) {
+				return Status::newFatal( 'flow-special-enableflow-page-is-liquidthreads', $page );
+			}
+
+			$converter = new Converter(
+				wfGetDB( DB_MASTER ),
+				Container::get( 'importer' ),
+				Container::get( 'default_logger' ),
+				$this->occupationController->getTalkpageManager(),
+				new ConversionStrategy(
+					Container::get( 'parser' ),
+					new NullImportSourceStore(),
+					$data['archive-title-format'],
+					$data['header']
+				)
+			);
+
+			$converter->convert( array( $title ) );
+
+		} else {
+			$loader = $this->loaderFactory->createWorkflowLoader( $title );
+			$blocks = $loader->getBlocks();
+
+			$action = 'edit-header';
+			$params = array(
+				'header' => array(
+					'content' => $data['header'],
+					'format' => 'wikitext',
+				),
+			);
+
+			$blocksToCommit = $loader->handleSubmit(
+				$this->getContext(),
+				$action,
+				$params
+			);
+
+			foreach( $blocks as $block ) {
+				if ( $block->hasErrors() ) {
+					$errors = $block->getErrors();
+
+					foreach( $errors as $errorKey ) {
+						$status->fatal( $block->getErrorMessage( $errorKey ) );
+					}
 				}
 			}
-		}
 
-		$loader->commit( $blocksToCommit );
+			$loader->commit( $blocksToCommit );
+		}
 
 		$this->page = $data['page'];
 		return $status;
