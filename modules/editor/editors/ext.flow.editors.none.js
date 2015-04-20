@@ -24,9 +24,11 @@
 		this.$node.keyup( this.autoExpand );
 		this.autoExpand.call( this.$node.get( 0 ) );
 
-		// only attach switcher if VE is actually supported
+		// only attach switcher if VE is actually enabled and supported
 		// code to figure out if that VE is supported is in that module
-		mw.loader.using( 'ext.flow.editors.visualeditor', $.proxy( this.attachControls, this ) );
+		if ( mw.config.get( 'wgFlowEditorList' ).indexOf( 'visualeditor' ) !== -1 ) {
+			mw.loader.using( 'ext.flow.editors.visualeditor', $.proxy( this.attachControls, this ) );
+		}
 	};
 
 	OO.inheritClass( mw.flow.editors.none, mw.flow.editors.AbstractEditor );
