@@ -16,6 +16,24 @@
       "revId": "0729addd49ae4c21b2a6979ce9ecad41250480b8",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_63581d36",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-20T17:35:58Z",
+      "side": 1,
+      "message": "You\u0027re right, but that\u0027s ok. Callbacks are always executed in order, so whatever you attach will only be executed after all of this code has run.",
+      "parentUuid": "0ed113e2_28967450",
+      "revId": "0729addd49ae4c21b2a6979ce9ecad41250480b8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
