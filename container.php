@@ -1224,4 +1224,9 @@ $c['board_mover'] = function( $c ) {
 	);
 };
 
+$c['parser'] = function() {
+	global $wgParser;
+	return $wgParser;
+};
+
 return $c;
