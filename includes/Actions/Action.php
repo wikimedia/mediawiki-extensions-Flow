@@ -6,8 +6,10 @@ use Action;
 use Article;
 use ErrorPageError;
 use Flow\Container;
+use Flow\Data\ManagerGroup;
 use Flow\Exception\FlowException;
 use Flow\Model\UUID;
+use Flow\Model\Workflow;
 use Flow\View;
 use Flow\WorkflowLoaderFactory;
 use IContextSource;
@@ -96,18 +98,12 @@ class FlowAction extends Action {
 				throw new FlowException( 'Invalid title: uuid is not a topic' );
 			}
 
-			if ( !$loader->getWorkflow()->isNew() ) {
-				// Workflow currently exists, make sure a revision also exists
-				$occupationController->ensureFlowRevision( $this->page, $loader->getWorkflow() );
-			}
-
 			$view->show( $loader, $action );
 		} catch( FlowException $e ) {
 			$e->setOutput( $output );
 			throw $e;
 		}
 	}
-
 
 	/**
 	 * Flow used to output some permalink urls with workflow ids in them. Each
