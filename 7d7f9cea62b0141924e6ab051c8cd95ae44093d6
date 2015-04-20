@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_065b5c27",
+        "filename": "includes/Specials/SpecialEnableFlow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-20T20:42:26Z",
+      "side": 1,
+      "message": "This should probably use the depedency injection container and be injected in the constructor, similar to \u0027output\u0027 and \u0027request\u0027 (see container.php).",
+      "revId": "7d7f9cea62b0141924e6ab051c8cd95ae44093d6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_46b0843e",
+        "filename": "includes/Specials/SpecialEnableFlow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-20T20:42:26Z",
+      "side": 1,
+      "message": "Not defined yet, and \u0027flow-special-enableflow-page-is-liquidthreads\u0027 (s at the end) would be better.",
+      "revId": "7d7f9cea62b0141924e6ab051c8cd95ae44093d6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_e6bc181d",
+        "filename": "includes/Specials/SpecialEnableFlow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-20T20:42:26Z",
+      "side": 1,
+      "message": "When you rebase, Converter now takes  wfGetDB( DB_MASTER )",
+      "revId": "7d7f9cea62b0141924e6ab051c8cd95ae44093d6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_e693b8a4",
+        "filename": "includes/Specials/SpecialEnableFlow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-20T20:42:26Z",
+      "side": 1,
+      "message": "It would be good to provide a real logger (LoggerInterface) in the container that fed into somewhere appropriate (probably wfDebugLog( \u0027Flow\u0027, ... ) for now).\n\nNot necessarily a blocker.",
+      "revId": "7d7f9cea62b0141924e6ab051c8cd95ae44093d6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_a6d4d04c",
+        "filename": "includes/Specials/SpecialEnableFlow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-20T20:42:26Z",
+      "side": 1,
+      "message": "What about the header they entered in the form?\n\nMaybe do the import, then append the new header text at the end.\n\nThe existing header edit code below would then be a special case where the old header was \u0027\u0027 (i.e. the same append-then-edit can be used for both).",
+      "revId": "7d7f9cea62b0141924e6ab051c8cd95ae44093d6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
