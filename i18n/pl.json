@@ -62,6 +62,7 @@
 	"flow-error-default": "Wystąpił błąd.",
 	"flow-error-content-too-long": "Treść jest zbyt duża. Po rozbudowie treść jest ograniczona do $1 {{PLURAL:$1|bajta|bajtów}}.",
 	"flow-error-invalid-topic-uuid-title": "Niepoprawny tytuł",
+	"flow-error-search": "Nie udało nam się zakończyć wyszukiwania z powodu przejściowego problemu. Proszę spróbować później.",
 	"flow-edit-header-submit": "Zapisz nagłówek",
 	"flow-edit-header-submit-overwrite": "Nadpisz nagłówek",
 	"flow-summarize-topic-submit": "Podsumuj",
