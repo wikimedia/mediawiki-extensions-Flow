@@ -2,12 +2,11 @@
 
 namespace Flow\Data\Listener;
 
-use Flow\Data\LifecycleHandler;
 use Flow\Exception\InvalidDataException;
 use Flow\FlowActions;
 use Flow\Model\AbstractRevision;
 
-class EditCountListener implements LifecycleHandler {
+class EditCountListener extends AbstractListener {
 	/**
 	 * @var FlowActions
 	 */
@@ -15,10 +14,6 @@ class EditCountListener implements LifecycleHandler {
 
 	public function __construct( FlowActions $actions ) {
 		$this->actions = $actions;
-	}
-
-	public function onAfterLoad( $object, array $old ) {
-		// Nuthin
 	}
 
 	public function onAfterInsert( $revision, array $new, array $metadata ) {
@@ -32,13 +27,5 @@ class EditCountListener implements LifecycleHandler {
 		if ( $increase ) {
 			$revision->getUser()->incEditCount();
 		}
-	}
-
-	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
-		// Nuthin
-	}
-
-	public function onAfterRemove( $object, array $old, array $metadata ) {
-		// Nuthin
 	}
 }

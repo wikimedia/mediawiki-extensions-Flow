@@ -5,14 +5,13 @@
  */
 namespace Flow\Data\Listener;
 
-use Flow\Data\LifecycleHandler;
 use Flow\Repository\UserNameBatch;
 
 /**
  * Listen for loaded objects and pre-load their user id fields into
  * a batch username loader.
  */
-class UserNameListener implements LifecycleHandler {
+class UserNameListener extends AbstractListener {
 	protected $batch;
 	protected $keys;
 	protected $wikiKey;
@@ -58,8 +57,4 @@ class UserNameListener implements LifecycleHandler {
 			}
 		}
 	}
-
-	public function onAfterInsert( $object, array $new, array $metadata ) {}
-	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {}
-	public function onAfterRemove( $object, array $old, array $metadata ) {}
 }

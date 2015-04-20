@@ -2,13 +2,12 @@
 
 namespace Flow\Data\Listener;
 
-use Flow\Data\LifecycleHandler;
 use Flow\Log\ModerationLogger;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 
-class ModerationLoggingListener implements LifecycleHandler {
+class ModerationLoggingListener extends AbstractListener {
 
 	/**
 	 * @var ModerationLogger
@@ -28,18 +27,6 @@ class ModerationLoggingListener implements LifecycleHandler {
 		if ( $object instanceof PostRevision ) {
 			$this->log( $object, $metadata['workflow'] );
 		}
-	}
-
-	function onAfterLoad( $object, array $old ) {
-		 // You don't need to see my identification
-	}
-
-	function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
-		// These aren't the droids you're looking for
-	}
-
-	function onAfterRemove( $object, array $old, array $metadata ) {
-		// Move along
 	}
 
 	protected function log( PostRevision $post, Workflow $workflow ) {
