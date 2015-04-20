@@ -18,6 +18,7 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
 use Flow\WorkflowLoaderFactory;
+use Flow\Container;
 use IP;
 use MWCryptRand;
 use Psr\Log\LoggerInterface;
@@ -522,6 +523,7 @@ class TalkpageImportOperation {
 	public function import( PageImportState $state ) {
 		$destinationTitle = $state->boardWorkflow->getArticleTitle();
 		$state->logger->info( 'Importing to ' . $destinationTitle->getPrefixedText() );
+
 		if ( $state->boardWorkflow->isNew() ) {
 			$this->occupationController->allowCreation(
 				$destinationTitle,
@@ -531,6 +533,7 @@ class TalkpageImportOperation {
 				new Article( $destinationTitle ),
 				$state->boardWorkflow
 			);
+
 			$state->put( $state->boardWorkflow, array() );
 		}
 
