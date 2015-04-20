@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_3cac7e84",
+        "filename": "modules/editor/editors/visualeditor/ui/inspectors/mw.flow.ve.ui.MentionInspector.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-20T01:33:37Z",
+      "side": 1,
+      "message": "This sentence doesn\u0027t make sense to me: \"Unless X, do Y. Otherwise, do Z.\" Does this mean \"If !X, do Y. If X, do Z.\"?",
+      "revId": "d52d5f4f3958232447862c2d531d14d6a8b1968b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_1cc3ba3e",
+        "filename": "modules/editor/editors/visualeditor/ui/inspectors/mw.flow.ve.ui.MentionInspector.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-20T01:33:37Z",
+      "side": 1,
+      "message": "Document data.selectAt",
+      "revId": "d52d5f4f3958232447862c2d531d14d6a8b1968b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
