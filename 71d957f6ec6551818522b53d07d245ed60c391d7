@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_7459b200",
+        "filename": "includes/WorkflowLoaderFactory.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-04-21T01:00:27Z",
+      "side": 1,
+      "message": "i wonder if we should just kill this method entirely, and force flow to always load based on the BoardContent stored in core\u0027s revision table.  I feel like we would have much stronger guarantees against \u0027spooky action at a distance\u0027 if we refuse to search for workflows based on wiki/ns/titletext here",
+      "revId": "71d957f6ec6551818522b53d07d245ed60c391d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
