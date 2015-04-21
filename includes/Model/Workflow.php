@@ -270,6 +270,13 @@ class Workflow {
 	public function getType() { return $this->type; }
 
 	/**
+	 * @return bool
+	 */
+	public function isDeleted() {
+		return Title::newFromID( $this->pageId ) !== null;
+	}
+
+	/**
 	 * Returns true if the workflow is new as of this request (regardless of
 	 * whether or not is it already saved yet - that's unknown).
 	 *
