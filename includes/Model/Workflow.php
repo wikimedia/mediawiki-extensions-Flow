@@ -182,14 +182,7 @@ class Workflow {
 	 * @throws DataModelException
 	 */
 	public function updateFromTitle( Title $oldTitle, Title $newTitle ) {
-		// temporary hack. @todo write maintenance script to fix all of these
-		if ( $this->pageId === 0 ) {
-			if ( $this->getOwnerTitle()->equals( $oldTitle ) ) {
-				$this->pageId = $oldTitle->getArticleID();
-			} else {
-				throw new DataModelException( "The provided oldTitle ({$oldTitle->getPrefixedDBkey()}) does not match this workflow." );
-			}
-		} elseif ( $oldTitle->getArticleID() !== $this->pageId ) {
+		if ( $oldTitle->getArticleID() !== $this->pageId ) {
 			throw new DataModelException( 'Must update from title with same page id. ' . $this->pageId . ' !== ' . $oldTitle->getArticleID() );
 		}
 

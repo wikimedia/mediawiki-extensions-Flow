@@ -75,11 +75,7 @@ class BoardMover {
 		// revisit this.
 		$found = $this->storage->find( 'Workflow', array(
 			'workflow_wiki' => wfWikiId(),
-			// @todo once workflow_page_id is reliable we can search for only
-			// the page id and skip the namespace/title text
-			'workflow_namespace' => $oldTitle->getNamespace(),
-			'workflow_title_text' => $oldTitle->getDBkey(),
-			'workflow_page_id' => array( 0, $oldTitle->getArticleID() ),
+			'workflow_page_id' => $oldTitle->getArticleID(),
 		) );
 		if ( !$found ) {
 			throw new FlowException( "Could not locate workflow for $oldTitle" );
