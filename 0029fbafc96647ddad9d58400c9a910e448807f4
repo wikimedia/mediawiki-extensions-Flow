@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_3561e4d0",
+        "filename": "includes/Content/BoardContent.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-21T11:01:32Z",
+      "side": 1,
+      "message": "$workflow-\u003eisNew() should now be accepted because we first insert the page \u0026 page needs some data from the workflow (see getTextForSummary \u0026 getNativeData)\n\nWe used to do that later, when $workflow was not new anymore.",
+      "revId": "0029fbafc96647ddad9d58400c9a910e448807f4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_55a908db",
+        "filename": "includes/Content/BoardContent.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-21T11:01:32Z",
+      "side": 1,
+      "message": "We now save $this-\u003eworkflow even if it\u0027s -\u003eisNew().\n\nHowever, the code that saves the page (WikiPage::doEditContent) ends up calling this class\u0027 getParserOutput, trying to render the page. Because we first save the page \u0026 haven\u0027t yet stored any workflow/topic/..., we should not yet pass the workflowId to workflowLoader (it would fail to load b/c workflow hasn\u0027t yet been stored)",
+      "revId": "0029fbafc96647ddad9d58400c9a910e448807f4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_35b0043e",
+        "filename": "includes/Content/BoardContentHandler.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-21T11:01:32Z",
+      "side": 1,
+      "message": "isTalkpageOccupied can\u0027t be checked here. This would result in new empty page being created when trying to view a deleted page, IIRC.",
+      "revId": "0029fbafc96647ddad9d58400c9a910e448807f4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_15c860a9",
+        "filename": "includes/Formatter/TopicFormatter.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-21T11:01:32Z",
+      "side": 1,
+      "message": "Because we now store page first, workflow later (and attempt to get output when storing the page), this was failing because we haven\u0027t yet stored everything.",
+      "revId": "0029fbafc96647ddad9d58400c9a910e448807f4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_159aa0bd",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-21T11:01:32Z",
+      "side": 1,
+      "message": "We no longer need this $doing stuff.\n\nWe used to need this because we also has ensure-calls where workflows were being loaded (because we weren\u0027t reliably ensuring pages when workflows were created) \u0026 that would cause recursion because part of storing a revision is rendering (and loading all the stuff) it afterwards.\n\nThis $doing stuff which was a bit incorrect anyway, it has only true or false \u0026 couldn\u0027t distinguish multiple different articles being ensured.",
+      "revId": "0029fbafc96647ddad9d58400c9a910e448807f4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_d593b8a4",
+        "filename": "tests/phpunit/HookTest.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-21T11:01:32Z",
+      "side": 1,
+      "message": "Discovered some problems now that workflow is throwing an exception when it\u0027s stored without a proper page_id.",
+      "revId": "0029fbafc96647ddad9d58400c9a910e448807f4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_f5903c9a",
+        "filename": "tests/phpunit/Import/LiquidThreadsApi/ConversionStrategyTest.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-21T11:01:32Z",
+      "side": 1,
+      "message": "I have no idea exactly why this showed up while working on this patch, but hey.",
+      "revId": "0029fbafc96647ddad9d58400c9a910e448807f4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_95ed3025",
+        "filename": "tests/phpunit/Notifications/NotifiedUsersTest.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-21T11:01:32Z",
+      "side": 1,
+      "message": "Discovered some problems now that workflow is throwing an exception when it\u0027s stored without a proper page_id.\n\nWe shouldn\u0027t rely on $wgFlowOccupyPages default values in the first place.",
+      "revId": "0029fbafc96647ddad9d58400c9a910e448807f4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
