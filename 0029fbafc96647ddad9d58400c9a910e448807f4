@@ -135,6 +135,24 @@
       "revId": "0029fbafc96647ddad9d58400c9a910e448807f4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_95a530b4",
+        "filename": "tests/phpunit/Notifications/NotifiedUsersTest.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-21T11:50:10Z",
+      "side": 1,
+      "message": "Those problems were caused by the interplay with ConversionStrategyTest.php, which has also been fixed.\n\nThese changes don\u0027t necessarily have to go into this patch, so I\u0027ve split them into https://gerrit.wikimedia.org/r/#/c/205579/",
+      "parentUuid": "0ed113e2_95ed3025",
+      "revId": "0029fbafc96647ddad9d58400c9a910e448807f4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
