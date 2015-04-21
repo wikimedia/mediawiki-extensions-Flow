@@ -70,6 +70,9 @@ $wgExtensionCredits['other'][] = array(
 
 require_once __DIR__ . '/defines.php';
 
+// Only matters when $wgCapitalLinks has non-default setting, but always safe
+$wgCapitalLinkOverrides[NS_TOPIC] = true;
+
 define( 'CONTENT_MODEL_FLOW_BOARD', 'flow-board' );
 $wgNamespacesWithSubpages[NS_TOPIC] = false;
 $wgNamespaceContentModels[NS_TOPIC] = CONTENT_MODEL_FLOW_BOARD;
