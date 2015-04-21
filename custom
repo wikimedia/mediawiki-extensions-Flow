@@ -1,0 +1,39 @@
+[dashboard]
+  title = Collaboration Team code review
+  description = Custom CR dashboard for the Collaboration Team
+[section "Flow"]
+  query = status:open project:mediawiki/extensions/Flow -message:WIP limit:20
+[section "Echo"]
+  query = status:open project:mediawiki/extensions/Echo -message:WIP limit:20
+[section "Thanks"]
+  query = status:open project:mediawiki/extensions/Thanks -message:WIP limit:20
+[section "LQT, WikiLove, etc."]
+  query = status:open (project:mediawiki/extensions/LiquidThreads OR
+  project:mediawiki/extensions/WikiLove OR project:mediawiki/extensions/MassMessage OR
+  project:mediawiki/extensions/MoodBar) -message:WIP limit:10
+[section "WIPs"]
+  query = status:open (project:mediawiki/extensions/Flow OR project:mediawiki/extensions/Echo OR
+  project:mediawiki/extensions/Thanks OR project:mediawiki/extensions/LiquidThreads OR
+  project:mediawiki/extensions/WikiLove OR project:mediawiki/extensions/MassMessage OR
+  project:mediawiki/extensions/MoodBar) message:WIP limit:20
+[section "Team MW core"]
+  query = status:open project:mediawiki/core (owner:catrope OR owner:mattflaschen OR
+  owner:mmullie OR owner:sbisson OR owner:mooeypoo OR owner:legoktm OR owner:pginer) limit:10
+[section "Team config"]
+  query = status:open project:operations/mediawiki-config (owner:catrope OR owner:mattflaschen OR
+  owner:mmullie OR owner:sbisson OR owner:mooeypoo OR owner:legoktm OR owner:pginer) limit:10
+[section "Other stuff"]
+  query = status:open NOT (project:mediawiki/extensions/Flow OR project:mediawiki/extensions/Echo OR
+  project:mediawiki/extensions/Thanks OR project:mediawiki/extensions/LiquidThreads OR
+  project:mediawiki/extensions/WikiLove OR project:mediawiki/extensions/MassMessage OR
+  project:mediawiki/extensions/MoodBar OR project:mediawiki/core OR
+  project:operations/mediawiki-config) AND (owner:catrope OR owner:mattflaschen OR owner:mmullie OR
+  owner:sbisson OR owner:mooeypoo OR owner:legoktm OR owner:pginer) limit:20
+[section "Team and repos merged, touched in the last week"]
+  query = status:merged ( (owner:catrope OR owner:mattflaschen OR owner:mmullie OR
+  owner:sbisson OR owner:mooeypoo OR owner:legoktm OR owner:pginer) OR
+  (project:mediawiki/extensions/Flow OR project:mediawiki/extensions/Echo OR
+  project:mediawiki/extensions/Thanks OR project:mediawiki/extensions/LiquidThreads OR
+  project:mediawiki/extensions/WikiLove OR project:mediawiki/extensions/MassMessage OR
+  project:mediawiki/extensions/MoodBar OR project:mediawiki/core OR
+  project:operations/mediawiki-config) ) -age:1w
