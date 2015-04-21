@@ -1,0 +1,2 @@
+[section "Team and repos merged, touched in the last week"]
+  query = status:merged ( (owner:catrope OR owner:mattflaschen OR owner:mmullie OR owner:sbisson OR owner:mooeypoo OR owner:legoktm OR owner:pginer) OR (project:mediawiki/extensions/Flow OR project:mediawiki/extensions/Echo OR project:mediawiki/extensions/Thanks OR project:mediawiki/extensions/LiquidThreads OR project:mediawiki/extensions/WikiLove OR project:mediawiki/extensions/MassMessage OR project:mediawiki/extensions/MoodBar OR project:mediawiki/core OR project:operations/mediawiki-config) ) -age:1w
