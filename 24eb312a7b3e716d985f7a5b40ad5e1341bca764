@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_fdfee2aa",
+        "filename": "i18n/en.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2015-04-21T17:57:07Z",
+      "side": 1,
+      "message": "$1 should probably be preceded by colon if it can be a category or file link. Same thing below:\n\n [[:$1]]",
+      "revId": "24eb312a7b3e716d985f7a5b40ad5e1341bca764",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_9d27965f",
+        "filename": "includes/Import/Wikitext/ConversionStrategy.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2015-04-21T17:57:07Z",
+      "side": 1,
+      "message": "Should this list be localised in content language, i.e. be in a message?",
+      "revId": "24eb312a7b3e716d985f7a5b40ad5e1341bca764",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
