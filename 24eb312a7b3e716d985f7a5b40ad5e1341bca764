@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_7dac3285",
+        "filename": "i18n/en.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-04-21T20:10:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ed113e2_fdfee2aa",
+      "revId": "24eb312a7b3e716d985f7a5b40ad5e1341bca764",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_9d27965f",
         "filename": "includes/Import/Wikitext/ConversionStrategy.php",
         "patchSetId": 7
@@ -30,6 +48,24 @@
       "writtenOn": "2015-04-21T17:57:07Z",
       "side": 1,
       "message": "Should this list be localised in content language, i.e. be in a message?",
+      "revId": "24eb312a7b3e716d985f7a5b40ad5e1341bca764",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_e0a4f506",
+        "filename": "includes/Import/Wikitext/ConversionStrategy.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-04-21T20:10:28Z",
+      "side": 1,
+      "message": "These are really just a fallback. Maybe they shouldn\u0027t be there at all. \n\nThere is a form field allowing the user to specify the archive naming pattern. It has a default value, which should probably be localized.",
+      "parentUuid": "0ed113e2_9d27965f",
       "revId": "24eb312a7b3e716d985f7a5b40ad5e1341bca764",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
