@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_469c0460",
+        "filename": "includes/Specials/SpecialEnableFlow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-04-21T13:49:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ed113e2_065b5c27",
+      "revId": "7d7f9cea62b0141924e6ab051c8cd95ae44093d6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_46b0843e",
         "filename": "includes/Specials/SpecialEnableFlow.php",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_e6a89876",
+        "filename": "includes/Specials/SpecialEnableFlow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-04-21T13:49:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ed113e2_46b0843e",
+      "revId": "7d7f9cea62b0141924e6ab051c8cd95ae44093d6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_e6bc181d",
         "filename": "includes/Specials/SpecialEnableFlow.php",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2015-04-20T20:42:26Z",
       "side": 1,
       "message": "When you rebase, Converter now takes  wfGetDB( DB_MASTER )",
+      "revId": "7d7f9cea62b0141924e6ab051c8cd95ae44093d6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_06a6fca7",
+        "filename": "includes/Specials/SpecialEnableFlow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-04-21T13:49:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ed113e2_e6bc181d",
       "revId": "7d7f9cea62b0141924e6ab051c8cd95ae44093d6",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -81,6 +135,24 @@
       "writtenOn": "2015-04-20T20:42:26Z",
       "side": 1,
       "message": "What about the header they entered in the form?\n\nMaybe do the import, then append the new header text at the end.\n\nThe existing header edit code below would then be a special case where the old header was \u0027\u0027 (i.e. the same append-then-edit can be used for both).",
+      "revId": "7d7f9cea62b0141924e6ab051c8cd95ae44093d6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_a76fe7bf",
+        "filename": "includes/Specials/SpecialEnableFlow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-04-21T13:49:50Z",
+      "side": 1,
+      "message": "I added a header suffix in the import process as it seemed simpler but I am willing to rework it with some guidance.",
+      "parentUuid": "0ed113e2_a6d4d04c",
       "revId": "7d7f9cea62b0141924e6ab051c8cd95ae44093d6",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
