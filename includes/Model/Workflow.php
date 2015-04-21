@@ -173,21 +173,23 @@ class Workflow {
 	}
 
 	/**
-	 * Update the workflow after a page move.
+	 * Update the workflow after a change to title or ID (such as page move or
+	 * restoration).
 	 *
-	 * @param Title $oldTitle The title the workflow is currently located at
-	 * @param Title $newTitle The title the workflow is moving to. The way the move process
-	 *  works post-move we still have $oldTitles pageId, this $newTitle will not have that
-	 *  pageId yet.
+	 * @param int $oldPageId The page_id the workflow is currently located at
+	 * @param int $newPageId The page_id the workflow is moving to
 	 * @throws DataModelException
 	 */
-	public function updateFromTitle( Title $oldTitle, Title $newTitle ) {
-		if ( $oldTitle->getArticleID() !== $this->pageId ) {
-			throw new DataModelException( 'Must update from title with same page id. ' . $this->pageId . ' !== ' . $oldTitle->getArticleID() );
+	public function updateFromPageId( $oldPageId, $newPageId ) {
+		if ( $oldPageId !== $this->pageId ) {
+			throw new DataModelException( 'Must update from same page id. ' . $this->pageId . ' !== ' . $oldPageId );
 		}
 
-		$this->namespace = $newTitle->getNamespace();
-		$this->titleText = $newTitle->getDBkey();
+		$this->pageId = $newPageId;
+
+		$title = Title::newFromID( $this->pageId, Title::GAID_FOR_UPDATE );
+		$this->namespace = $title->getNamespace();
+		$this->titleText = $title->getDBkey();
 	}
 
 	/**
@@ -338,4 +340,3 @@ class Workflow {
 		return $allowed;
 	}
 }
-

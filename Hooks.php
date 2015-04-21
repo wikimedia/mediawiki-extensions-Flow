@@ -1350,6 +1350,27 @@ class FlowHooks {
 	}
 
 	/**
+	 * @param Title $title Title corresponding to the article restored
+	 * @param bool $create Whether or not the restoration caused the page to be created (i.e. it didn't exist before).
+	 * @param string $comment The comment associated with the undeletion.
+	 * @param int $oldPageId ID of page previously deleted (from archive table)
+	 * @return bool
+	 */
+	public static function onArticleUndelete( Title $title, $created, $comment, $oldPageId ) {
+		if ( $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
+			// complete hack to make sure that when the page is saved to new
+			// location and rendered it doesn't throw an error about the wrong title
+			Container::get( 'factory.loader.workflow' )->pageMoveInProgress();
+			// open a database transaction and prepare everything for the move & commit
+			$boardMover = Container::get( 'board_mover' );
+			$boardMover->prepareMove( $oldPageId, $title->getArticleID() );
+			$boardMover->commit();
+		}
+
+		return true;
+	}
+
+	/**
 	 * Occurs at the begining of the MovePage process. Perhaps ContentModel should be
 	 * extended to be notified about moves explicitly.
 	 */
@@ -1360,7 +1381,7 @@ class FlowHooks {
 			Container::get( 'factory.loader.workflow' )->pageMoveInProgress();
 			// open a database transaction and prepare everything for the move, but
 			// don't commit yet. That is done below in self::onTitleMoveComplete
-			Container::get( 'board_mover' )->prepareMove( $oldTitle, $newTitle );
+			Container::get( 'board_mover' )->prepareMove( $oldTitle->getArticleID(), $newTitle->getArticleID() );
 		}
 
 		return true;
