@@ -37,7 +37,6 @@
 	"flow-post-actions": "Aiciones",
 	"flow-topic-actions": "Aiciones",
 	"flow-cancel": "Encaboxar",
-	"flow-preview": "Vista previa",
 	"flow-show-change": "Amosar cambeos",
 	"flow-last-modified-by": "Últimu {{GENDER:$1|cambiu}} por $1",
 	"flow-stub-post-content": "''Por un fallu téunicu, esti mensaxe nun pudo recuperase.''",
