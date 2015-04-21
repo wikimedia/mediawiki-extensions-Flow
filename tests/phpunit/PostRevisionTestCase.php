@@ -5,6 +5,7 @@ namespace Flow\Tests;
 use DeferredUpdates;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
+use Flow\Exception\DataModelException;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
@@ -118,7 +119,7 @@ class PostRevisionTestCase extends FlowTestCase {
 			'rev_parent_id' => null,
 			'rev_flags' => 'html',
 			'rev_content' => 'test content',
-			'rev_change_type' => 'new-post',
+			'rev_change_type' => 'new-topic',
 			'rev_mod_state' => AbstractRevision::MODERATED_NONE,
 			'rev_mod_user_wiki' => null,
 			'rev_mod_user_id' => null,
@@ -201,7 +202,12 @@ class PostRevisionTestCase extends FlowTestCase {
 	 * @param PostRevision $revision
 	 */
 	protected function store( PostRevision $revision ) {
-		$topicWorkflow = $this->workflows[$revision->getCollectionId()->getAlphadecimal()];
+		try {
+			$root = $revision->getRootPost();
+		} catch ( DataModelException $e ) {
+			$root = $revision;
+		}
+		$topicWorkflow = $this->workflows[$root->getCollectionId()->getAlphadecimal()];
 		$boardWorkflow = Container::get( 'factory.loader.workflow' )
 			->createWorkflowLoader( $topicWorkflow->getOwnerTitle() )
 			->getWorkflow();

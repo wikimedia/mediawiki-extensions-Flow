@@ -4,6 +4,7 @@ namespace Flow\Tests;
 
 use Flow\Container;
 use Flow\Model\PostRevision;
+use Flow\Model\UserTuple;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
 use EchoNotificationController;
@@ -14,6 +15,19 @@ use WatchedItem;
  * @group Flow
  */
 class NotifiedUsersTest extends PostRevisionTestCase {
+	protected $tablesUsed = array(
+		'echo_event',
+		'echo_notification',
+		'flow_revision',
+		'flow_topic_list',
+		'flow_tree_node',
+		'flow_tree_revision',
+		'flow_workflow',
+		'page',
+		'revision',
+		'text',
+	);
+
 	public function setUp() {
 		parent::setUp();
 
@@ -95,47 +109,46 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 	 * }
 	 */
 	protected function getTestData() {
-		$topicWorkflow = $this->generateWorkflow();
-		$post = $this->generateObject( array(), array(), 1 );
-		$topic = $this->generateObject( array(), array( $post ) );
 		$user = User::newFromName( 'Flow Test User' );
 		$user->addToDatabase();
 		$agent = User::newFromName( 'Flow Test Agent' );
 		$agent->addToDatabase();
 
-		$notificationController = Container::get( 'controller.notification' );
+		$tuple = UserTuple::newFromUser( $agent );
+		$topicTitle = $this->generateObject( array(
+			'rev_user_wiki' => $tuple->wiki,
+			'rev_user_id' => $tuple->id,
+			'rev_user_ip' => $tuple->ip,
 
-		// The data of this global varaible is loaded into occupationListener
-		// even before the test starts, so modifying this global in setUP()
-		// won't have any effect on the occupationListener.  The trick is to
-		// fake the workflow to have a title in the global varaible
-		global $wgFlowOccupyPages;
+			'rev_flags' => 'wikitext',
+			'rev_content' => 'some content',
+		) );
 
-		$page = reset( $wgFlowOccupyPages );
-		if ( !$page ) {
-			return false;
-		}
-		$title = \Title::newFromText( $page );
-		if ( !$title ) {
-			return false;
-		}
-		$object = new \ReflectionObject( $topicWorkflow );
-		$ownerTitle = $object->getProperty( 'ownerTitle' );
-		$ownerTitle->setAccessible( true );
-		$ownerTitle->setValue( $topicWorkflow, $title );
+		/*
+		 * We don't really *have* to store everything for this test. We could
+		 * just work off of the object we have here.
+		 * However, our current CI setup forces use to not use Parsoid & write
+		 * wikitext instead.
+		 * Notifications need to convert the content to HTML & in order to do so
+		 * have to know the title of the board the post is on (to resolve links
+		 * & stuff).
+		 * For those combined reasons, we'll store everything.
+		 */
+		$this->store( $topicTitle );
 
-		$boardWorkflow = Container::get( 'factory.loader.workflow' )
-			->createWorkflowLoader( $topicWorkflow->getOwnerTitle() )
-			->getWorkflow();
+		$boardWorkflow = $topicTitle->getCollection()->getBoardWorkflow();
+		$topicWorkflow = $topicTitle->getCollection()->getWorkflow();
+		$firstPost = $topicTitle->reply( $topicWorkflow, $agent, 'ffuts dna ylper', 'wikitext' );
+		$this->store( $firstPost );
 
 		return array(
 			'boardWorkflow' => $boardWorkflow,
 			'topicWorkflow' => $topicWorkflow,
-			'post' => $post,
-			'topic' => $topic,
+			'post' => $firstPost,
+			'topic' => $topicTitle,
 			'user' => $user,
 			'agent' => $agent,
-			'notificationController' => $notificationController,
+			'notificationController' => Container::get( 'controller.notification' ),
 		);
 	}
 }
