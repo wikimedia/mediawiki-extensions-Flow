@@ -45,20 +45,15 @@ class BoardMover {
 	/**
 	 * Collects the workflow and header (if it exists) and puts them into the database. Does
 	 * not commit yet. It is intended for prepareMove to be called from the TitleMove hook,
-	 * and commited from TitleMoveComplete hook. This ensures that if some error prevents the
-	 * core transaction from commiting this transaction is also not commited.
+	 * and committed from TitleMoveComplete hook. This ensures that if some error prevents the
+	 * core transaction from committing this transaction is also not committed.
+	 *
+	 * @param int $oldPageId Page ID before move/change
+	 * @param int $newPageId Page ID after move/change
 	 */
-	public function prepareMove( Title $oldTitle, Title $newTitle ) {
+	public function prepareMove( $oldPageId, $newPageId ) {
 		if ( $this->dbw !== null ) {
-			throw new FlowException( "Already prepared for move from {$oldTitle} to {$newTitle}" );
-		}
-		if ( $oldTitle->getContentModel() !== CONTENT_MODEL_FLOW_BOARD ) {
-			throw new FlowException( "$oldTitle is not a flow board" );
-		}
-		// @todo someday NS_TOPIC should be made CONTENT_MODEL_FLOW_TOPIC instead of approximating
-		// like this.
-		if ( $oldTitle->getNamespace() === NS_TOPIC ) {
-			throw new FlowException( "$oldTitle is a topic, not a board" );
+			throw new FlowException( "Already prepared for move from {$oldPageId} to {$newPageId}" );
 		}
 
 		// All reads must go through master to help ensure consistency
@@ -75,10 +70,10 @@ class BoardMover {
 		// revisit this.
 		$found = $this->storage->find( 'Workflow', array(
 			'workflow_wiki' => wfWikiId(),
-			'workflow_page_id' => $oldTitle->getArticleID(),
+			'workflow_page_id' => $oldPageId,
 		) );
 		if ( !$found ) {
-			throw new FlowException( "Could not locate workflow for $oldTitle" );
+			throw new FlowException( "Could not locate workflow for $oldPageId" );
 		}
 
 		$discussionWorkflow = null;
@@ -86,11 +81,11 @@ class BoardMover {
 			if ( $workflow->getType() === 'discussion' ) {
 				$discussionWorkflow = $workflow;
 			}
-			$workflow->updateFromTitle( $oldTitle, $newTitle );
+			$workflow->updateFromPageId( $oldPageId, $newPageId );
 			$this->storage->put( $workflow, array() );
 		}
 		if ( $discussionWorkflow === null ) {
-			throw new FlowException( "Main discussion workflow for $oldTitle not found" );
+			throw new FlowException( "Main discussion workflow for $oldPageId not found" );
 		}
 
 		$found = $this->storage->find(
@@ -106,7 +101,7 @@ class BoardMover {
 				$this->header->getContentRaw(),
 				$this->header->getContentFormat(),
 				'edit-header',
-				$newTitle
+				Title::newFromID( $newPageId )
 			);
 			$this->storage->put( $nextHeader, array(
 				'workflow' => $discussionWorkflow,
