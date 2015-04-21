@@ -7,3 +7,7 @@
   query = status:open project:mediawiki/extensions/Echo -message:WIP limit:20
 [section "Thanks"]
   query = status:open project:mediawiki/extensions/Thanks -message:WIP limit:20
+[section "LQT, WikiLove, etc."]
+  query = status:open (project:mediawiki/extensions/LiquidThreads OR
+  project:mediawiki/extensions/WikiLove OR project:mediawiki/extensions/MassMessage OR
+  project:mediawiki/extensions/MoodBar) -message:WIP limit:10
