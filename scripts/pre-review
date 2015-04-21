@@ -1,4 +1,6 @@
 #!/bin/sh
+# Enable this pre-commit hook by executing the following from the project root directory
+# $ make installhooks
 
 # Work out location of Flow/scripts/ directory
 dir=$(php -r "echo dirname( realpath( '$0' ) ), \"\\n\";")
