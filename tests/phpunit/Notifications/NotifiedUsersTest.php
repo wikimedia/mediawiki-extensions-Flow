@@ -4,8 +4,11 @@ namespace Flow\Tests;
 
 use Flow\Container;
 use Flow\Model\PostRevision;
+use Flow\Model\TopicListEntry;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
+use Flow\OccupationController;
+use Flow\Data\ManagerGroup;
 use EchoNotificationController;
 use User;
 use WatchedItem;
@@ -14,6 +17,19 @@ use WatchedItem;
  * @group Flow
  */
 class NotifiedUsersTest extends PostRevisionTestCase {
+	protected $tablesUsed = array(
+		'echo_event',
+		'echo_notification',
+		'flow_revision',
+		'flow_topic_list',
+		'flow_tree_node',
+		'flow_tree_revision',
+		'flow_workflow',
+		'page',
+		'revision',
+		'text',
+	);
+
 	public function setUp() {
 		parent::setUp();
 
@@ -95,10 +111,6 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 	 * }
 	 */
 	protected function getTestData() {
-		$this->generateWorkflowForPost();
-		$topicWorkflow = $this->workflow;
-		$post = $this->generateObject( array(), array(), 1 );
-		$topic = $this->generateObject( array(), array( $post ) );
 		$user = User::newFromName( 'Flow Test User' );
 		$user->addToDatabase();
 		$agent = User::newFromName( 'Flow Test Agent' );
@@ -106,34 +118,45 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 
 		$notificationController = Container::get( 'controller.notification' );
 
-		// The data of this global varaible is loaded into occupationListener
-		// even before the test starts, so modifying this global in setUP()
-		// won't have any effect on the occupationListener.  The trick is to
-		// fake the workflow to have a title in the global varaible
-		global $wgFlowOccupyPages;
+		$title = \Title::newFromText( 'Talk:Notification_test' );
+		$boardWorkflow = Workflow::create( 'discussion', $title );
+		$topicWorkflow = Workflow::create( 'topic', $boardWorkflow->getArticleTitle() );
+		$topicList = TopicListEntry::create( $boardWorkflow, $topicWorkflow );
+		$topicTitle = PostRevision::create( $topicWorkflow, $agent, 'some content', 'wikitext' );
+		$firstPost = $topicTitle->reply( $boardWorkflow, $agent, 'ffuts dna ylper', 'wikitext' );
 
-		$page = reset( $wgFlowOccupyPages );
-		if ( !$page ) {
-			return false;
-		}
-		$title = \Title::newFromText( $page );
-		if ( !$title ) {
-			return false;
-		}
-		$object = new \ReflectionObject( $topicWorkflow );
-		$ownerTitle = $object->getProperty( 'ownerTitle' );
-		$ownerTitle->setAccessible( true );
-		$ownerTitle->setValue( $topicWorkflow, $title );
+		/*
+		 * We don't really *have* to store everything for this test. We could
+		 * just work off of the object we have here.
+		 * However, our current CI setup forces use to not use Parsoid & write
+		 * wikitext instead.
+		 * Notifications need to convert the content to HTML & in order to do so
+		 * have to know the title of the board the post is on (to resolve links
+		 * & stuff).
+		 * For those combined reasons, we'll store everything.
+		 *
+		 * @var OccupationController $occupationController
+		 * @var ManagerGroup $storage
+		 */
+		$occupationController = Container::get( 'occupation_controller' );
+		$storage = Container::get( 'storage' );
 
-		$boardWorkflow = Container::get( 'factory.loader.workflow' )
-			->createWorkflowLoader( $topicWorkflow->getOwnerTitle() )
-			->getWorkflow();
+		// make sure user has rights to create board
+		$agent->mRights = array_merge( $agent->getRights(), array( 'flow-create-board' ) );
+		$occupationController->allowCreation( $title, $agent );
+		$occupationController->ensureFlowRevision( new \Article( $title ), $boardWorkflow );
+
+		$storage->put( $boardWorkflow, array( 'workflow' => $boardWorkflow ) );
+		$storage->put( $topicWorkflow, array( 'workflow' => $topicWorkflow ) );
+		$storage->put( $topicList, array( 'workflow' => $topicWorkflow ) );
+		$storage->put( $topicTitle, array( 'workflow' => $topicWorkflow ) );
+		$storage->put( $firstPost, array( 'workflow' => $topicWorkflow ) );
 
 		return array(
 			'boardWorkflow' => $boardWorkflow,
 			'topicWorkflow' => $topicWorkflow,
-			'post' => $post,
-			'topic' => $topic,
+			'post' => $firstPost,
+			'topic' => $topicTitle,
 			'user' => $user,
 			'agent' => $agent,
 			'notificationController' => $notificationController,
