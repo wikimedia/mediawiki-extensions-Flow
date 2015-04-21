@@ -79,12 +79,7 @@ class RevisionActionPermissions {
 
 			if ( $allowed && $revision !== null ) {
 				$workflow = $revision->getCollection()->getWorkflow();
-				$title = $workflow->getOwnerTitle();
-
-				// if the board is deleted, nothing is allowed
-				// comparing article ID to 0 to check if title doesn't currently
-				// exist & isDeleted to see if it ever existed (but now deleted)
-				$allowed = $this->user->isAllowed( 'deletedhistory' ) || $title->getArticleID() !== 0 || $title->isDeleted() === 0;
+				$allowed = $this->user->isAllowed( 'deletedhistory' ) || !$workflow->isDeleted();
 			}
 		} catch ( InvalidDataException $e ) {
 			// If data is not in storage, just return that revision's status
