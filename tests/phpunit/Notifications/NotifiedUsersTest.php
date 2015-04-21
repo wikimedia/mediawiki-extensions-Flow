@@ -6,6 +6,7 @@ use Flow\Container;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
+use Flow\OccupationController;
 use EchoNotificationController;
 use User;
 use WatchedItem;
@@ -14,6 +15,14 @@ use WatchedItem;
  * @group Flow
  */
 class NotifiedUsersTest extends PostRevisionTestCase {
+	protected $tablesUsed = array(
+		'echo_event',
+		'echo_notification',
+		'page',
+		'revision',
+		'text',
+	);
+
 	public function setUp() {
 		parent::setUp();
 
@@ -95,10 +104,6 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 	 * }
 	 */
 	protected function getTestData() {
-		$this->generateWorkflowForPost();
-		$topicWorkflow = $this->workflow;
-		$post = $this->generateObject( array(), array(), 1 );
-		$topic = $this->generateObject( array(), array( $post ) );
 		$user = User::newFromName( 'Flow Test User' );
 		$user->addToDatabase();
 		$agent = User::newFromName( 'Flow Test Agent' );
@@ -106,34 +111,24 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 
 		$notificationController = Container::get( 'controller.notification' );
 
-		// The data of this global varaible is loaded into occupationListener
-		// even before the test starts, so modifying this global in setUP()
-		// won't have any effect on the occupationListener.  The trick is to
-		// fake the workflow to have a title in the global varaible
-		global $wgFlowOccupyPages;
+		$title = \Title::newFromText( 'Talk:Notification_test' );
+		$boardWorkflow = Workflow::create( 'discussion', $title );
+		$topicWorkflow = Workflow::create( 'topic', $boardWorkflow->getArticleTitle() );
+		$topicTitle = PostRevision::create( $topicWorkflow, $agent, 'some content', 'wikitext' );
+		$firstPost = $topicTitle->reply( $boardWorkflow, $agent, 'ffuts dna ylper', 'wikitext' );
 
-		$page = reset( $wgFlowOccupyPages );
-		if ( !$page ) {
-			return false;
-		}
-		$title = \Title::newFromText( $page );
-		if ( !$title ) {
-			return false;
-		}
-		$object = new \ReflectionObject( $topicWorkflow );
-		$ownerTitle = $object->getProperty( 'ownerTitle' );
-		$ownerTitle->setAccessible( true );
-		$ownerTitle->setValue( $topicWorkflow, $title );
-
-		$boardWorkflow = Container::get( 'factory.loader.workflow' )
-			->createWorkflowLoader( $topicWorkflow->getOwnerTitle() )
-			->getWorkflow();
+		/** @var OccupationController $occupationController */
+		$occupationController = Container::get( 'occupation_controller' );
+		// make sure user has rights to create board
+		$agent->mRights = array_merge( $agent->getRights(), array( 'flow-create-board' ) );
+		$occupationController->allowCreation( $title, $agent );
+		$occupationController->ensureFlowRevision( new \Article( $title ), $boardWorkflow );
 
 		return array(
 			'boardWorkflow' => $boardWorkflow,
 			'topicWorkflow' => $topicWorkflow,
-			'post' => $post,
-			'topic' => $topic,
+			'post' => $firstPost,
+			'topic' => $topicTitle,
 			'user' => $user,
 			'agent' => $agent,
 			'notificationController' => $notificationController,
