@@ -2,19 +2,6 @@
 @import 'mediawiki.ui/variables';
 @import 'flow.colors';
 
-// extra specificity is needed to override .mw-ui-button.mw-ui-*
-.mw-ui-button.flow-editor-color {
-	.flow-editor-none & {
-		color: white;
-		background-color: @colorConstructive;
-	}
-
-	.flow-editor-visualeditor & {
-		color: @colorText;
-		background-color: white;
-	}
-}
-
 .flow-editor {
 	// because we're attaching switcher controls below the textarea & we
 	// want them to look unified with the textarea, we'll have to take away
@@ -48,7 +35,7 @@
 		line-height: 1.4;
 	}
 
-	a.flow-editor-color {
+	a.flow-editor-switcher {
 		float: right;
 	}
 }
