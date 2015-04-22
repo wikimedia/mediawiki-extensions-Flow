@@ -13,7 +13,7 @@ When(/^I click Permalink from the 3rd comment Post Actions menu$/) do
   on(FlowPage).actions_link_permalink_3rd_comment_element.when_present.click
 end
 
-When(/^I click the Post Actions link on the 3rd comment on the topic$/) do
+When(/^I hover on the Post Actions link on the 3rd comment on the topic$/) do
   on(FlowPage) do |page|
     page.third_post_actions_link_element.when_present.focus
     page.third_post_actions_link_element.click

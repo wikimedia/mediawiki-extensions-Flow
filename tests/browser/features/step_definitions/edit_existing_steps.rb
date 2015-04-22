@@ -1,6 +1,7 @@
 When(/^I click Edit post$/) do
   on(FlowPage) do |page|
-    page.edit_post_element.when_present.click
+    page.post_actions_link_element.when_present.hover
+    page.edit_post_button_element.when_present.click
   end
 end
 
