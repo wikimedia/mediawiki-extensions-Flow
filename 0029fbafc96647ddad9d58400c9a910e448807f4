@@ -53,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_2c43d6b7",
+        "filename": "includes/Content/BoardContentHandler.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-22T04:09:59Z",
+      "side": 1,
+      "message": "However, $manager-\u003ecanBeUsed now calls isTalkpageOccupied, but with a different second parameter (only taking into account which empty pages can be created, which looks correct).",
+      "parentUuid": "0ed113e2_35b0043e",
+      "revId": "0029fbafc96647ddad9d58400c9a910e448807f4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_15c860a9",
         "filename": "includes/Formatter/TopicFormatter.php",
         "patchSetId": 12
