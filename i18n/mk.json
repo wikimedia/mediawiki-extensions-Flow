@@ -371,7 +371,7 @@
 	"flow-importer-lqt-converted-archive-template": "Архив за претворената LQT-страница",
 	"flow-importer-wt-converted-template": "Бикитекстуална страница за разговор што треба да се претвори во Тек",
 	"flow-importer-wt-converted-archive-template": "Архива за претворени викитекстуални страници за разговор",
-	"flow-importer-lqt-suppressed-user-template": "Оваа преработка е увезена од LiquidThreads со притаен корисник. Сега е му доделена на тековниот корисник.",
+	"flow-importer-lqt-suppressed-user-template": "Објава од LiquidThreads увезена со со притаен корисник.",
 	"apihelp-flow-description": "Овозможува вршење дејства брз страници со Тек.",
 	"apihelp-flow-param-submodule": "Подмодулот на Тек што треба да се повика.",
 	"apihelp-flow-param-page": "Врз која страница да се изврши дејството.",
