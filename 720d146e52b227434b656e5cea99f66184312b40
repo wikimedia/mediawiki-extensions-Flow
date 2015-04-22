@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_0ceb72a1",
+        "filename": "includes/SubmissionHandler.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-22T04:27:45Z",
+      "side": 1,
+      "message": "It looks like startAtomic in core may essentially allow nested transactions.  Not a blocker for this patch.",
+      "revId": "720d146e52b227434b656e5cea99f66184312b40",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
