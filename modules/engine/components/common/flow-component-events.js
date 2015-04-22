@@ -833,7 +833,7 @@
 						unsubscribe: false,
 						type: type,
 						direction: dir,
-						username: mw.user.getName()
+						user: mw.user
 					}
 				)
 			).children(),

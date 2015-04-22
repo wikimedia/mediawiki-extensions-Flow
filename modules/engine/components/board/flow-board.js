@@ -185,7 +185,7 @@
 					'flow_subscribed.partial',
 					{
 						type: 'board',
-						username: mw.user.getName()
+						user: mw.user
 					}
 				) ).children();
 			}
