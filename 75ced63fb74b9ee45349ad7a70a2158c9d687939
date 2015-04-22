@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_5159125c",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2015-04-22T14:29:15Z",
+      "side": 0,
+      "message": "This was create an *MW* platform, whereas the flow target extends the *SA* platform, so this will cause problems. I think Flow should be extending MW.",
+      "revId": "75ced63fb74b9ee45349ad7a70a2158c9d687939",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
