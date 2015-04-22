@@ -2,6 +2,57 @@
   "comments": [
     {
       "key": {
+        "uuid": "0ed113e2_c33f70d2",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-22T21:54:39Z",
+      "side": 1,
+      "message": "We should look at ways to integrate this with ve.init.mw.TargetLoader for the VE case.",
+      "revId": "0729addd49ae4c21b2a6979ce9ecad41250480b8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_8329689c",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-22T21:54:39Z",
+      "side": 1,
+      "message": "Can we do this in parallel with loading the new editor, rather than in series?",
+      "revId": "0729addd49ae4c21b2a6979ce9ecad41250480b8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_a326ecc7",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-22T21:54:39Z",
+      "side": 1,
+      "message": "This too could happen in parallel as soon as we know the editor switch is actually going to happen.",
+      "revId": "0729addd49ae4c21b2a6979ce9ecad41250480b8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_28967450",
         "filename": "modules/editor/ext.flow.editor.js",
         "patchSetId": 3
@@ -31,6 +82,41 @@
       "side": 1,
       "message": "You\u0027re right, but that\u0027s ok. Callbacks are always executed in order, so whatever you attach will only be executed after all of this code has run.",
       "parentUuid": "0ed113e2_28967450",
+      "revId": "0729addd49ae4c21b2a6979ce9ecad41250480b8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_8362c804",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-22T21:54:39Z",
+      "side": 1,
+      "message": "Please don\u0027t rely on jQuery\u0027s implementation detail of executing promise callbacks in order. It leads to confusing and fragile code that\u0027s easy to break.\n\nInstead, you should write this function like:\n\n    return mw.loader.using( stuff )\n        .then( function () {\n            ...\n            return something;\n        } )\n        .then( function ( data ) {\n            return blah;\n        } )\n        .....\n        .then( function () {\n            return finalResult;\n         } );\n\nand that\u0027ll return a promise that is resolved with finalResult only after all the steps are complete. This explicitly guarantees the execution order.\n\nIf you need to reject the promise from a success handler, you can do that by returning a new rejected promise:\n\n    // we succeeded so far\n    .then( function () {\n        if ( some condition ) {\n            return $.Deferred().reject( some data );\n        }\n    } )\n    // now we\u0027re failing\n\nIf you need to act on failures or remap failure data, you can do that by passing the second parameter to then:\n\n    .then( null, function ( failureData ) {\n        log( failureData );\n        return newFailureData;\n     } );",
+      "parentUuid": "0ed113e2_63581d36",
+      "revId": "0729addd49ae4c21b2a6979ce9ecad41250480b8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_031d7878",
+        "filename": "modules/editor/ext.flow.parsoid.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-22T21:54:39Z",
+      "side": 1,
+      "message": "You shouldn\u0027t need to put this here. Instead, remap the rejection data in switchEditor",
       "revId": "0729addd49ae4c21b2a6979ce9ecad41250480b8",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
