@@ -190,7 +190,7 @@
 				) ).children();
 			}
 
-			_notify.apply( this, arguments );
+			return _notify.apply( this, arguments );
 		};
 	}
 }( jQuery, mediaWiki ) );
