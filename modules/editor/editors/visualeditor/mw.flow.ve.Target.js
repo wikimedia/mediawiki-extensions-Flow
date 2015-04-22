@@ -27,6 +27,7 @@
 		{
 			type: 'list',
 			icon: 'textStyle',
+			indicator: 'down',
 			title: OO.ui.deferMsg( 'visualeditor-toolbar-style-tooltip' ),
 			include: [ 'bold', 'italic' ],
 			forceExpand: [ 'bold', 'italic' ]
