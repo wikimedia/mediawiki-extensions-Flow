@@ -20,11 +20,6 @@ abstract class AbstractCollection {
 	protected $uuid;
 
 	/**
-	 * @var \Flow\Data\ObjectManager[]
-	 */
-	protected $storage = array();
-
-	/**
 	 * Array of revisions for this object.
 	 *
 	 * @var AbstractRevision[]
@@ -100,13 +95,9 @@ abstract class AbstractCollection {
 			$class = $this->getRevisionClass();
 		}
 
-		if ( !isset( $this->storage[$class] ) ) {
-			/** @var ManagerGroup $storage */
-			$storage = Container::get( 'storage' );
-			$this->storage[$class] = $storage->getStorage( $class );
-		}
-
-		return $this->storage[$class];
+		/** @var ManagerGroup $storage */
+		$storage = Container::get( 'storage' );
+		return $storage->getStorage( $class );
 	}
 
 	/**
