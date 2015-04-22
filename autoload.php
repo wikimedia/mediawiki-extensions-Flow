@@ -76,7 +76,6 @@ $wgAutoloadClasses += array(
 	'Flow\\Data\\Listener\\OccupationListener' => __DIR__ . '/includes/Data/Listener/OccupationListener.php',
 	'Flow\\Data\\Listener\\RecentChangesListener' => __DIR__ . '/includes/Data/Listener/RecentChangesListener.php',
 	'Flow\\Data\\Listener\\ReferenceRecorder' => __DIR__ . '/includes/Data/Listener/ReferenceRecorder.php',
-	'Flow\\Data\\Listener\\UrlGenerationListener' => __DIR__ . '/includes/Data/Listener/UrlGenerationListener.php',
 	'Flow\\Data\\Listener\\UserNameListener' => __DIR__ . '/includes/Data/Listener/UserNameListener.php',
 	'Flow\\Data\\Listener\\WorkflowTopicListListener' => __DIR__ . '/includes/Data/Listener/WorkflowTopicListListener.php',
 	'Flow\\Data\\ManagerGroup' => __DIR__ . '/includes/Data/ManagerGroup.php',
