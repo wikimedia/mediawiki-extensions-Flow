@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_2ea98b78",
+        "filename": "i18n/en.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2015-04-22T09:53:03Z",
+      "side": 1,
+      "message": "This also needs a colon: \n\n [[:$1]]",
+      "revId": "bc44918b2645e1a2de82fee5be9c3ed005b1a07a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_4ea64fa9",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2015-04-22T09:53:03Z",
+      "side": 1,
+      "message": "Maybe add some more explanation as to why %s and %d are needed? If translators omit them, things may break I assume...",
+      "revId": "bc44918b2645e1a2de82fee5be9c3ed005b1a07a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
