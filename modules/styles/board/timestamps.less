@@ -4,6 +4,7 @@
 
 .flow-timestamp {
 	text-align: left;
+	padding-left: 0.5em;
 
 	span {
 		unicode-bidi: embed;
@@ -14,6 +15,8 @@
 	}
 	.flow-timestamp-ago {
 		display: inline;
+		// This should flip with interface language
+		direction: ltr;
 	}
 
 	&:hover {
