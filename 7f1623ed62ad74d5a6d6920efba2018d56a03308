@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_c9b78e80",
+        "filename": "includes/Log/DefaultLogger.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-04-23T14:26:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ed113e2_c99a2e66",
+      "revId": "7f1623ed62ad74d5a6d6920efba2018d56a03308",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_e9d9322d",
         "filename": "includes/Log/DefaultLogger.php",
         "patchSetId": 11
@@ -53,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_69ac6233",
+        "filename": "includes/Log/DefaultLogger.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-04-23T14:26:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ed113e2_0991164a",
+      "revId": "7f1623ed62ad74d5a6d6920efba2018d56a03308",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_89f18694",
         "filename": "includes/Specials/SpecialEnableFlow.php",
         "patchSetId": 11
@@ -70,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_096d9601",
+        "filename": "includes/Specials/SpecialEnableFlow.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-04-23T14:26:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ed113e2_89f18694",
+      "revId": "7f1623ed62ad74d5a6d6920efba2018d56a03308",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_694302b7",
         "filename": "includes/Specials/SpecialEnableFlow.php",
         "patchSetId": 11
@@ -81,6 +135,24 @@
       "writtenOn": "2015-04-23T13:48:32Z",
       "side": 1,
       "message": "This method returns a Status object to represent success/failure.\nConverter::convert seems to throw an exception when things go bad.\nShould probably try/catch this one \u0026 turn it into $status-\u003efatal(...) if exception is thrown.",
+      "revId": "7f1623ed62ad74d5a6d6920efba2018d56a03308",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_895f4644",
+        "filename": "includes/Specials/SpecialEnableFlow.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-04-23T14:26:47Z",
+      "side": 1,
+      "message": "The converter has a try/catch inside already and it logs to the injected logger. I think both the try/catch and the loop on $titles should be removed from the converter to allow the caller to decide what to do when things go wrong. What do you think?",
+      "parentUuid": "0ed113e2_694302b7",
       "revId": "7f1623ed62ad74d5a6d6920efba2018d56a03308",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
