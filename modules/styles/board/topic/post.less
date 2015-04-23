@@ -18,47 +18,8 @@ form.flow-post {
 
 .flow-post {
 	position: relative;
-	margin: .5em 0 0 .75em;
-	padding: 0 .5em 0 0;
 	color: @colorText;
 	word-wrap: break-word;
-
-	// Nested comments (replies & reply forms)
-	.flow-replies {
-		margin-left: @topicIndent;
-		padding-left: 0.5em;
-		border-left: 1px dotted @colorGrayLighter;
-	}
-
-	&.flow-post-max-depth .flow-replies {
-		margin-left: 0;
-		padding-left: 0;
-		border-left-width: 0;
-
-		.flow-post-max-depth {
-			margin-left: 0;
-		}
-	}
-
-	.flow-post-main {
-		margin-left: 0.1em;
-	}
-
-	// Highlights a post (no IE6 support, but acceptable degradation)
-	&.flow-post-highlighted {
-		 > .flow-post-main {
-			 @highlightedIndent: @topicIndent - 0.75em;
-			 padding-left: @highlightedIndent;
-			 border-left: solid @highlightedIndent @colorHighlight;
-		}
-	}
-
-	// Highlights all posts newer than a specific post
-	&.flow-post-highlight-newer {
-		.flow-post-content {
-			border-left: solid @highlightedIndent @colorHighlightNewer;
-		}
-	}
 
 	&.flow-post-highlight-newer {
 		.flow-post-content {
@@ -110,6 +71,115 @@ form.flow-post {
 			opacity: 1;
 		}
 	}
+
+	.mw-content-ltr & {
+		/* @noflip */
+		margin: .5em 0 0 .75em;
+
+		// Nested comments (replies & reply forms)
+		.flow-replies {
+			/* @noflip */
+			margin-left: @topicIndent;
+			/* @noflip */
+			padding-left: 0.5em;
+			/* @noflip */
+			border-left: 1px dotted @colorGrayLighter;
+		}
+
+		&.flow-post-max-depth .flow-replies {
+			/* @noflip */
+			margin-left: 0;
+			/* @noflip */
+			padding-left: 0;
+			/* @noflip */
+			border-left-width: 0;
+
+			.flow-post-max-depth {
+				/* @noflip */
+				margin-left: 0;
+			}
+		}
+
+		.flow-post-main {
+			/* @noflip */
+			margin-left: 0.1em;
+		}
+
+		// Highlights a post (no IE6 support, but acceptable degradation)
+		&.flow-post-highlighted {
+			 > .flow-post-main {
+				/* @noflip */
+				@highlightedIndent: @topicIndent - 0.75em;
+				/* @noflip */
+				padding-left: @highlightedIndent;
+				/* @noflip */
+				border-left: solid @highlightedIndent @colorHighlight;
+			}
+		}
+
+		// Highlights all posts newer than a specific post
+		&.flow-post-highlight-newer {
+			.flow-post-content {
+				/* @noflip */
+				border-left: solid @highlightedIndent @colorHighlightNewer;
+			}
+		}
+	}
+
+	.mw-content-rtl & {
+		/* @noflip */
+		margin: .5em 0.75em 0 0;
+
+		// Nested comments (replies & reply forms)
+		.flow-replies {
+			/* @noflip */
+			margin-right: @topicIndent;
+			/* @noflip */
+			padding-right: 0.5em;
+			/* @noflip */
+			border-right: 1px dotted @colorGrayLighter;
+		}
+
+		&.flow-post-max-depth .flow-replies {
+			/* @noflip */
+			margin-right: 0;
+			/* @noflip */
+			padding-right: 0;
+			/* @noflip */
+			border-right-width: 0;
+
+			.flow-post-max-depth {
+				/* @noflip */
+				margin-right: 0;
+			}
+		}
+
+		.flow-post-main {
+			/* @noflip */
+			margin-right: 0.1em;
+		}
+
+		// Highlights a post (no IE6 support, but acceptable degradation)
+		&.flow-post-highlighted {
+			 > .flow-post-main {
+				/* @noflip */
+				@highlightedIndent: @topicIndent - 0.75em;
+				/* @noflip */
+				padding-right: @highlightedIndent;
+				/* @noflip */
+				border-right: solid @highlightedIndent @colorHighlight;
+			}
+		}
+
+		// Highlights all posts newer than a specific post
+		&.flow-post-highlight-newer {
+			.flow-post-content {
+				/* @noflip */
+				border-right: solid @highlightedIndent @colorHighlightNewer;
+			}
+		}
+	}
+
 }
 
 // Comment metadata
@@ -117,11 +187,29 @@ form.flow-post {
 	// @todo needs overflow: hidden but crops button border at bottom
 	color: @colorGrayDark;
 	font-size: .875em;
-	text-align: right;
+
+	.mw-content-ltr & {
+		/* @noflip */
+		text-align: right;
+	}
+	.mw-content-rtl & {
+		/* @noflip */
+		text-align: left;
+	}
 }
 
 .flow-post-meta-actions {
-	float: left;
+
+	.mw-content-ltr & {
+		/* @noflip */
+		float: left;
+	}
+
+	.mw-content-rtl & {
+		/* @noflip */
+		float: right;
+	}
+
 	a {
 		&::after {
 			content: "\2022";

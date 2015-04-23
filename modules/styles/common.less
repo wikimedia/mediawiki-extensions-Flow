@@ -4,6 +4,8 @@
 @import 'flow.variables';
 
 .flow-component {
+	// This should flip with interface directionality
+	float: left;
 
 	.flow-list {
 		list-style: none;
@@ -55,6 +57,9 @@
 .flow-undo {
 	font-size: .875em;
 	color: #777777;
+	// These two will flip in RTL interface
+	text-align: left;
+	direction: ltr;
 }
 
 .flow-topic-meta {

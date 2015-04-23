@@ -8,7 +8,6 @@
 	top: 0;
 	clear: both;
 	position: static;
-	right: 0;
 	bottom: 0;
 
 	ul {
@@ -30,6 +29,24 @@
 	// Hide the menu trigger completely in no-js mode
 	.flow-menu-js-drop {
 		display: none;
+	}
+
+	// Correctly display positions based on content language
+	.mw-content-ltr & {
+		/* @noflip */
+		right: 0;
+	}
+
+	// Correctly display positions based on content language
+	.mw-content-rtl & {
+		/* @noflip */
+		left: 0;
+	}
+	// This is the TOC popup for browsing topics, and we want this
+	// to flip in interface language because the TOC flips too
+	&.flow-board-sort-menu {
+		left: auto;
+		right: 0;
 	}
 }
 
@@ -114,7 +131,6 @@ div > .flow-menu {
 	// This is the menu opener handler; it contains an anchor which triggers the menu in touch devices, without JS
 	.flow-menu-js-drop {
 		display: block;
-		text-align: right;
 		text-indent: 0;
 		cursor: pointer;
 
@@ -126,6 +142,17 @@ div > .flow-menu {
 			border-width: 0;
 			color: @colorTextLight;
 		}
+	}
+
+	// Correct positioning for ltr/rtl content direction
+	.mw-content-ltr & .flow-menu-js-drop {
+		/* @noflip */
+		text-align: right;
+	}
+	// Correct positioning for ltr/rtl content direction
+	.mw-content-rtl & .flow-menu-js-drop {
+		/* @noflip */
+		text-align: left;
 	}
 
 	// This is a hidden menu trigger; used when the menu is opened from a secondary handler via menuToggle
@@ -150,5 +177,9 @@ div.flow-post > .flow-menu {
 	// On desktop, the flow-menu is no longer inline
 	.flow-menu {
 		position: absolute;
+		li a .wikiglyph {
+			// This will be flipped in RTL
+			float: left;
+		}
 	}
 }
