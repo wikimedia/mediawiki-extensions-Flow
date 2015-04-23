@@ -8,7 +8,6 @@
 	top: 0;
 	clear: both;
 	position: static;
-	right: 0;
 	bottom: 0;
 
 	ul {
@@ -32,6 +31,26 @@
 		display: none;
 	}
 }
+
+// Correctly display positions based on content language
+div#content .mw-content-ltr .flow-menu {
+	/* @noflip */
+	right: 0;
+}
+
+// Correctly display positions based on content language
+div#content .mw-content-rtl .flow-menu {
+	/* @noflip */
+	left: 0;
+}
+
+// This is the TOC popup for browsing topics, and we want this
+// to flip in interface language because the TOC flips too
+div#content .flow-menu.flow-board-sort-menu {
+	left: auto;
+	right: 0;
+}
+
 
 div.flow-menu-inverted {
 	right: auto;
@@ -114,7 +133,6 @@ div > .flow-menu {
 	// This is the menu opener handler; it contains an anchor which triggers the menu in touch devices, without JS
 	.flow-menu-js-drop {
 		display: block;
-		text-align: right;
 		text-indent: 0;
 		cursor: pointer;
 
@@ -135,6 +153,19 @@ div > .flow-menu {
 		height: 0;
 	}
 }
+
+// Correct positioning for ltr/rtl content direction
+div#content .mw-content-ltr div > .flow-menu .flow-menu-js-drop {
+	/* @noflip */
+	text-align: right;
+}
+
+// Correct positioning for ltr/rtl content direction
+div#content .mw-content-rtl div > .flow-menu .flow-menu-js-drop {
+	/* @noflip */
+	text-align: left;
+}
+
 
 // @todo move this
 div.flow-post > .flow-menu {
