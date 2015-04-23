@@ -6,4 +6,18 @@
 // Topic metadata
 .flow-topic-meta {
 	color: @colorTextLight;
+	// This should flip in regards to interface language
+	direction: ltr;
+
+	// This placement depends on content language
+	.mw-content-ltr & {
+		/* @noflip */
+		text-align: left;
+	}
+
+	// This placement depends on content language
+	.mw-content-rtl & {
+		/* @noflip */
+		text-align: right;
+	}
 }
