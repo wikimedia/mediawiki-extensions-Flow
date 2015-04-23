@@ -96,13 +96,9 @@ class ImportPost extends PageRevisionedObject implements IImportPost {
 	public function getText() {
 		$pageData = $this->importSource->getPageData( $this->apiResponse['rootid'] );
 		$revision = $pageData['revisions'][0];
-		if ( defined( 'ApiResult::META_CONTENT' ) ) {
-			$contentKey = isset( $revision[ApiResult::META_CONTENT] )
-				? $revision[ApiResult::META_CONTENT]
-				: '*';
-		} else {
-			$contentKey = '*';
-		}
+		$contentKey = isset( $revision[ApiResult::META_CONTENT] )
+			? $revision[ApiResult::META_CONTENT]
+			: '*';
 
 		return $revision[$contentKey];
 	}
@@ -260,18 +256,7 @@ class ImportRevision implements IObjectRevision {
 	 * @return string
 	 */
 	public function getText() {
-		if ( defined( 'ApiResult::META_CONTENT' ) ) {
-			$contentKey = isset( $this->apiResponse[ApiResult::META_CONTENT] )
-				? $this->apiResponse[ApiResult::META_CONTENT]
-				: '*';
-		} else {
-			$contentKey = '*';
-		}
-
-		if ( !isset( $this->apiResponse[$contentKey] ) ) {
-			$encoded = json_encode( $this->apiResponse );
-			throw new ImportException( "Specified content key ($contentKey) not available: $encoded" );
-		}
+		$contentKey = 'content';
 
 		$content = $this->apiResponse[$contentKey];
 
