@@ -760,7 +760,7 @@
 		var flowComponent = this, $form;
 
 		mw.loader.using( 'ext.flow.editor', function() {
-			var $editors = $container.find( 'textarea:not(.flow-input-compressed)' );
+			var $editors = $container.find( '.flow-editor textarea:not(.flow-input-compressed)' );
 
 			$editors.each( function() {
 				var $editor = $( this );

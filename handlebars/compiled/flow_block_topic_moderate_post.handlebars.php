@@ -38,16 +38,14 @@
 ' : '').'</div>
 ';},'flow_moderate_post' => function ($cx, $in) {return '<form method="POST" action="'.LCRun3::ch($cx, 'moderationAction', array(array(((isset($in['actions']) && is_array($in)) ? $in['actions'] : null),((isset($cx['sp_vars']['root']['submitted']['moderationState']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['moderationState'] : null)),array()), 'encq').'">
 '.LCRun3::p($cx, 'flow_errors', array(array($in),array())).'	<input type="hidden" name="wpEditToken" value="'.htmlentities((string)((isset($cx['sp_vars']['root']['editToken']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
-	<div class="flow-editor">
-		<textarea name="topic_reason"
-		          required
-		          data-flow-expandable="true"
-		          class="mw-ui-input"
-		          data-role="content"
-		          placeholder="'.LCRun3::ch($cx, 'l10n', array(array(LCRun3::ch($cx, 'concat', array(array('flow-moderation-placeholder-',((isset($cx['sp_vars']['root']['submitted']['moderationState']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['moderationState'] : null),'-post'),array()), 'raw')),array()), 'encq').'"
-		          autofocus
-		>'.((LCRun3::ifvar($cx, ((isset($cx['sp_vars']['root']['submitted']['reason']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['reason'] : null))) ? ''.htmlentities((string)((isset($cx['sp_vars']['root']['submitted']['reason']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['reason'] : null), ENT_QUOTES, 'UTF-8').'' : '').'</textarea>
-	</div>
+	<textarea name="topic_reason"
+	          required
+	          data-flow-expandable="true"
+	          class="mw-ui-input"
+	          data-role="content"
+	          placeholder="'.LCRun3::ch($cx, 'l10n', array(array(LCRun3::ch($cx, 'concat', array(array('flow-moderation-placeholder-',((isset($cx['sp_vars']['root']['submitted']['moderationState']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['moderationState'] : null),'-post'),array()), 'raw')),array()), 'encq').'"
+	          autofocus
+	>'.((LCRun3::ifvar($cx, ((isset($cx['sp_vars']['root']['submitted']['reason']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['reason'] : null))) ? ''.htmlentities((string)((isset($cx['sp_vars']['root']['submitted']['reason']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['reason'] : null), ENT_QUOTES, 'UTF-8').'' : '').'</textarea>
 	<div class="flow-form-actions flow-form-collapsible">
 		<button data-flow-interactive-handler="apiRequest"
 		        data-flow-api-handler="moderatePost"
