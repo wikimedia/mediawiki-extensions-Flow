@@ -89,14 +89,19 @@ abstract class Utils {
 			throw new WikitextException( 'Unknown source format: ' . $from, 'process-wikitext' );
 		}
 
+		$params = array(
+			$from => $content,
+			'body' => true,
+		);
+		if ( $from === 'html' ) {
+			$params['scrubWikitext'] = 'true';
+		}
+
 		$request = \MWHttpRequest::factory(
 			$parsoidURL . '/' . $parsoidPrefix . '/' . $title->getPrefixedDBkey(),
 			array(
 				'method' => 'POST',
-				'postData' => wfArrayToCgi( array(
-					$from => $content,
-					'body' => true,
-				) ),
+				'postData' => wfArrayToCgi( $params ),
 				'timeout' => $parsoidTimeout,
 				'connectTimeout' => 'default',
 			)
