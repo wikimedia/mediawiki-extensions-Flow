@@ -21,12 +21,23 @@
 div#content .flow-topic-title {
 	padding: 0;
 	border-bottom: none;
-	margin: 0 2.5em .15em 0;
 	font-family: sans-serif;
 	font-weight: bold;
 	word-break: break-word;
 	word-wrap: break-word;
 	overflow: visible;
+}
+
+// Correct positioning for ltr/rtl content direction
+div#content .mw-content-ltr .flow-topic-title {
+	/* @noflip */
+	margin: 0 2.5em .15em 0;
+}
+
+// Correct positioning for ltr/rtl content direction
+div#content .mw-content-rtl .flow-topic-title {
+	/* @noflip */
+	margin: 0 0 .15em 2.5em;
 }
 
 .flow-moderated-topic-title {
