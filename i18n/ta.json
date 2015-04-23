@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"ElangoRamanujam"
+			"ElangoRamanujam",
+			"கலைவாணன்"
 		]
 	},
 	"flow-history-action-delete-post": "நீக்கவும்",
@@ -10,5 +11,6 @@
 	"flow-unlock-topic-submit": "தலைப்பைத் திறக்கவும்",
 	"flow-topic-html-title": "$2ல் $1",
 	"flow-edited": "தொகுக்கப்பட்டது",
-	"flow-edited-by": "$1ஆல் தொகுக்கப்பட்டது"
+	"flow-edited-by": "$1ஆல் தொகுக்கப்பட்டது",
+	"flow-ve-mention-inspector-invalid-user": "பயனர்பெயர் \"$1\" பதிவு செய்யப்படவில்லை."
 }
