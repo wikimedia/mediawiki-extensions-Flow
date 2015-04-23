@@ -15,9 +15,23 @@
 		padding: 0.2em 0.3em;
 	}
 
+	// We need these because CSSJanus will flip it in rtl
+	a.flow-board-navigator-first {
+		float: left;
+		position: static;
+	}
+
 	a.flow-board-navigator-last {
 		float: right;
 		position: static;
+	}
+
+	a.flow-board-navigator-first .wikiglyph {
+		float: left;
+	}
+
+	a.flow-board-navigator-last .wikiglyph {
+		float: right;
 	}
 
 	.flow-board-navigation-inner {
