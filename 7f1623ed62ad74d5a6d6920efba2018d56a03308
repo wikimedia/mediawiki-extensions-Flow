@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_c99a2e66",
+        "filename": "includes/Log/DefaultLogger.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-23T13:48:32Z",
+      "side": 1,
+      "message": "Unused?",
+      "revId": "7f1623ed62ad74d5a6d6920efba2018d56a03308",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_e9d9322d",
+        "filename": "includes/Log/DefaultLogger.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-23T13:48:32Z",
+      "side": 1,
+      "message": "$logLevel isn\u0027t LogLevel, but string (one of the LogLevel::* consts, like LogLevel::WARNING \u003d \u0027warning\u0027)",
+      "revId": "7f1623ed62ad74d5a6d6920efba2018d56a03308",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_0991164a",
+        "filename": "includes/Log/DefaultLogger.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-23T13:48:32Z",
+      "side": 1,
+      "message": "Nitpicking: needs spaces inside ():\n\n    log( $logLevel, $message, array $context \u003d array() ) {",
+      "revId": "7f1623ed62ad74d5a6d6920efba2018d56a03308",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_89f18694",
+        "filename": "includes/Specials/SpecialEnableFlow.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-23T13:48:32Z",
+      "side": 1,
+      "message": "Just `use` it, that\u0027s cleaner :p\nSame for 2 more fqcn below.",
+      "revId": "7f1623ed62ad74d5a6d6920efba2018d56a03308",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_694302b7",
+        "filename": "includes/Specials/SpecialEnableFlow.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-23T13:48:32Z",
+      "side": 1,
+      "message": "This method returns a Status object to represent success/failure.\nConverter::convert seems to throw an exception when things go bad.\nShould probably try/catch this one \u0026 turn it into $status-\u003efatal(...) if exception is thrown.",
+      "revId": "7f1623ed62ad74d5a6d6920efba2018d56a03308",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
