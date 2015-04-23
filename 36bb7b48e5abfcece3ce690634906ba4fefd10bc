@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_bfe83cb0",
+        "filename": "includes/Import/Converter.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-23T17:53:54Z",
+      "side": 1,
+      "message": "Needs spaces inside ()\n\nShould throw FlowException (or one of the classes extending from it) instead of \\Exception: those exceptions are displayed to users more nicely than \\Exceptions.",
+      "revId": "36bb7b48e5abfcece3ce690634906ba4fefd10bc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_9f39b840",
+        "filename": "includes/Specials/SpecialEnableFlow.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-23T17:53:54Z",
+      "side": 1,
+      "message": "Could probably use a more specific i18n message, but meh. But do $e-\u003egetMessage() instead of passing it into a string \u0026 relying on __toString() :p",
+      "revId": "36bb7b48e5abfcece3ce690634906ba4fefd10bc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
