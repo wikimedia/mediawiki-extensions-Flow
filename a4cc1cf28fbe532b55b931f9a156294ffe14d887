@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_46f05d62",
+        "filename": "modules/styles/board/menu.less",
+        "patchSetId": 8
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-24T22:31:26Z",
+      "side": 1,
+      "message": "You don\u0027t need div#content everywhere; it\u0027s only needed in places where the original code already used it to override a stronger selector from MW core. In the majority of cases, just prefixing with .mw-content-ltr is enough,",
+      "revId": "a4cc1cf28fbe532b55b931f9a156294ffe14d887",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_267e79e2",
+        "filename": "modules/styles/board/terms-of-use.less",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-24T22:31:26Z",
+      "side": 1,
+      "message": "There\u0027s a T in interface",
+      "revId": "a4cc1cf28fbe532b55b931f9a156294ffe14d887",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_e68711db",
+        "filename": "modules/styles/board/topic/meta.less",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-24T22:31:26Z",
+      "side": 1,
+      "message": "So the direction of topic-meta depends on the interface but the text alignment depends on the content direction? What is in topic-meta?",
+      "revId": "a4cc1cf28fbe532b55b931f9a156294ffe14d887",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_06ea5570",
+        "filename": "modules/styles/board/topic/post.less",
+        "patchSetId": 8
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-24T22:31:26Z",
+      "side": 1,
+      "message": "This would be an especially nice place to not have to break out a bunch of stuff from where it really belongs.\n\nWe should also figure out if we can write a LESS mixin to reduce this duplication.",
+      "revId": "a4cc1cf28fbe532b55b931f9a156294ffe14d887",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_068d75fb",
+        "filename": "modules/styles/board/topic/post.less",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-24T22:31:26Z",
+      "side": 1,
+      "message": "Commented-out code",
+      "revId": "a4cc1cf28fbe532b55b931f9a156294ffe14d887",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_667b21ec",
+        "filename": "modules/styles/board/topic/post.less",
+        "patchSetId": 8
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-24T22:31:26Z",
+      "side": 1,
+      "message": "Commented-out code",
+      "revId": "a4cc1cf28fbe532b55b931f9a156294ffe14d887",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_c6d44dc1",
+        "filename": "modules/styles/board/topic/post.less",
+        "patchSetId": 8
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-24T22:31:26Z",
+      "side": 1,
+      "message": "Missing noflip",
+      "revId": "a4cc1cf28fbe532b55b931f9a156294ffe14d887",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_a6fee933",
+        "filename": "modules/styles/board/topic/titlebar.less",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-24T22:31:26Z",
+      "side": 1,
+      "message": "This is the one place you do need div#content, as indicated by this comment",
+      "revId": "a4cc1cf28fbe532b55b931f9a156294ffe14d887",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}

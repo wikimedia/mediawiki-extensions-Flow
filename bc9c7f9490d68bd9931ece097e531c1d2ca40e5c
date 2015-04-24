@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_86de45dd",
+        "filename": "modules/styles/board/menu.less",
+        "patchSetId": 8
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-24T22:31:26Z",
+      "side": 0,
+      "message": "You should ask someone more familiar with LESS (or try it out), but I think you can avoid having to split this out far away by writing something like:\n\n    .mw-content-ltr \u0026 {\n        /* @noflip */\n        text-align: right;\n    }",
+      "revId": "bc9c7f9490d68bd9931ece097e531c1d2ca40e5c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
