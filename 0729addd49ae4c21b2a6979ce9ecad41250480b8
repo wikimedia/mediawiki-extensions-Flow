@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_ebb27f91",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-24T14:21:52Z",
+      "side": 1,
+      "message": "Unfortunately, we first need to load it to figure out which content format it wants the content in, so not without another refactor.",
+      "parentUuid": "0ed113e2_8329689c",
+      "revId": "0729addd49ae4c21b2a6979ce9ecad41250480b8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_a326ecc7",
         "filename": "modules/editor/ext.flow.editor.js",
         "patchSetId": 3
@@ -100,6 +118,24 @@
       "side": 1,
       "message": "Please don\u0027t rely on jQuery\u0027s implementation detail of executing promise callbacks in order. It leads to confusing and fragile code that\u0027s easy to break.\n\nInstead, you should write this function like:\n\n    return mw.loader.using( stuff )\n        .then( function () {\n            ...\n            return something;\n        } )\n        .then( function ( data ) {\n            return blah;\n        } )\n        .....\n        .then( function () {\n            return finalResult;\n         } );\n\nand that\u0027ll return a promise that is resolved with finalResult only after all the steps are complete. This explicitly guarantees the execution order.\n\nIf you need to reject the promise from a success handler, you can do that by returning a new rejected promise:\n\n    // we succeeded so far\n    .then( function () {\n        if ( some condition ) {\n            return $.Deferred().reject( some data );\n        }\n    } )\n    // now we\u0027re failing\n\nIf you need to act on failures or remap failure data, you can do that by passing the second parameter to then:\n\n    .then( null, function ( failureData ) {\n        log( failureData );\n        return newFailureData;\n     } );",
       "parentUuid": "0ed113e2_63581d36",
+      "revId": "0729addd49ae4c21b2a6979ce9ecad41250480b8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_cb78dbc1",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-24T14:21:52Z",
+      "side": 1,
+      "message": "I\u0027m probably not seeing something here.\n\nHow is:\n\n    return mw.loader.using( stuff )\n        .then( function () {\n            ...\n            return something;\n        } )\n        .then( function ( data ) {\n            return blah;\n        } )\n        .....\n        .then( function () {\n            return finalResult;\n         } );\n\ndifferent from:\n\n    deferred\n        .then( function () {\n            return mw.loader.using( stuff );\n        } )\n        .then( function () {\n            ...\n            return something;\n        } )\n        .then( function ( data ) {\n            return blah;\n        } )\n        .....\n        .then( function () {\n            return finalResult;\n         } );\n\n    return deferred.promise();\n\nBoth of them just return a promise object with some .then handlers attached to them. I don\u0027t see how either of them guarantees execution other while the other doesn\u0027t - both of them are the same thing.\n\nOr am I missing some other point?",
+      "parentUuid": "0ed113e2_8362c804",
       "revId": "0729addd49ae4c21b2a6979ce9ecad41250480b8",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
