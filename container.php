@@ -73,11 +73,16 @@ $c['base_href_fixer'] = function( $c ) {
 	return new Flow\Parsoid\Fixer\BaseHrefFixer( $wgArticlePath );
 };
 
+$c['ext_link_fixer'] = function ( $c ) {
+	return new Flow\Parsoid\Fixer\ExtLinkFixer();
+};
+
 $c['content_fixer'] = function( $c ) {
 	return new Flow\Parsoid\ContentFixer(
 		$c['wiki_link_fixer'],
 		$c['bad_image_remover'],
-		$c['base_href_fixer']
+		$c['base_href_fixer'],
+		$c['ext_link_fixer']
 	);
 };
 
