@@ -16,6 +16,24 @@
       "revId": "69ac43fc7fc46e578649253f0a8f8ae688ef63ac",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_b6805efa",
+        "filename": "modules/styles/board/topic/titlebar.less",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-04-24T17:09:43Z",
+      "side": 1,
+      "message": "Yep, I missed that one. Thanks!",
+      "parentUuid": "0ed113e2_4bc94b28",
+      "revId": "69ac43fc7fc46e578649253f0a8f8ae688ef63ac",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
