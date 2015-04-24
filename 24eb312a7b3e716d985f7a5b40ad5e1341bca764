@@ -69,6 +69,24 @@
       "revId": "24eb312a7b3e716d985f7a5b40ad5e1341bca764",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_10113208",
+        "filename": "includes/Import/Wikitext/ConversionStrategy.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-24T03:24:02Z",
+      "side": 1,
+      "message": "For now it needs to stay (because this is used for more than just the special page).\n\nHowever, this will be solved properly; our current plan for this is T93395.",
+      "parentUuid": "0ed113e2_e0a4f506",
+      "revId": "24eb312a7b3e716d985f7a5b40ad5e1341bca764",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
