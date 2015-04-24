@@ -2,6 +2,7 @@
 
 use Flow\Container;
 use Flow\Model\UUID;
+use Flow\OccupationController;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
@@ -43,7 +44,6 @@ class FlowUpdateWorkflowPageId extends Maintenance {
 			'workflow_wiki' => wfWikiId(),
 			'workflow_page_id' => 0,
 		) );
-
 
 		$gen = new WorkflowPageIdUpdateGenerator( $wgLang );
 		$writer = new EchoBatchRowWriter( $dbw, 'flow_workflow', $wgFlowCluster );
@@ -87,7 +87,31 @@ class WorkflowPageIdUpdateGenerator implements EchoRowUpdateGenerator {
 			) );
 		}
 
-		if ( $title->getArticleID() !== (int)$row->workflow_page_id ) {
+		// title doesn't exist, so create it
+		if ( $title->getArticleID() === 0 ) {
+			// build workflow object (yes, loading them piecemeal is suboptimal, but
+			// this is just a one-time script; considering the alternative is
+			// creating a derivative EchoBatchRowIterator that returns workflows,
+			// it doesn't really matter)
+			$storage = Container::get( 'storage' );
+			$workflow = $storage->get( 'Workflow', UUID::create( $row->workflow_id ) );
+
+			try {
+				/** @var OccupationController $occupationController */
+				$occupationController = Container::get( 'occupation_controller' );
+				$occupationController->allowCreation( $title, $occupationController->getTalkpageManager() );
+				$occupationController->ensureFlowRevision( new Article( $title ), $workflow );
+
+				// force article id to be refetched from db
+				$title->getArticleID( Title::GAID_FOR_UPDATE );
+			} catch ( \Exception $e ) {
+				// catch all exception to keep going with the rest we want to
+				// iterate over, we'll report on the failed entries at the end
+				$this->failed[] = $row;
+			}
+		}
+
+		if ( $title->getArticleID() !== (int) $row->workflow_page_id ) {
 			// This makes the assumption the page has not moved or been deleted?
 			++$this->fixedCount;
 			return array(
