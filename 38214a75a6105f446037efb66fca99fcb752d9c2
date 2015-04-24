@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_d0f2cade",
+        "filename": "i18n/en.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-24T03:57:34Z",
+      "side": 1,
+      "message": "If we do T93395, this will be redundant and removed later, but that\u0027s okay.",
+      "revId": "38214a75a6105f446037efb66fca99fcb752d9c2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_90fc42b3",
+        "filename": "includes/Import/Converter.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-24T03:57:34Z",
+      "side": 1,
+      "message": "Add type information to the signature:\n\nTitle $title",
+      "revId": "38214a75a6105f446037efb66fca99fcb752d9c2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_3029d636",
+        "filename": "includes/Import/Converter.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-24T03:57:34Z",
+      "side": 1,
+      "message": "conversion",
+      "revId": "38214a75a6105f446037efb66fca99fcb752d9c2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_b01ce619",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-24T03:57:34Z",
+      "side": 1,
+      "message": "I implemented a similar version at https://gerrit.wikimedia.org/r/#/c/206314/3/includes/Import/Importer.php (merged), except that it uses the same title as above (article title) and calls allowCreation.",
+      "revId": "38214a75a6105f446037efb66fca99fcb752d9c2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_50dd7a46",
+        "filename": "includes/Specials/SpecialEnableFlow.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-24T03:57:34Z",
+      "side": 1,
+      "message": "Always specify the output mode.  See https://www.mediawiki.org/wiki/Manual:Messages_API#Output_modes_and_escaping .  In this case, you want -\u003etext() because the escaping is done for you elsewhere, and you don\u0027t need parsing (the default).\n\nAlso, since you\u0027re in a special page, you should use $this-\u003emsg: https://doc.wikimedia.org/mediawiki-core/master/php/classSpecialPage.html#ac85b5877f62c962de24fd5683ce30a93 .",
+      "revId": "38214a75a6105f446037efb66fca99fcb752d9c2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_f0e10efc",
+        "filename": "maintenance/convertLqtPageOnLocalWiki.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-24T03:57:34Z",
+      "side": 1,
+      "message": "This should use convert now.",
+      "revId": "38214a75a6105f446037efb66fca99fcb752d9c2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
