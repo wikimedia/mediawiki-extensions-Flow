@@ -860,8 +860,10 @@ class TopicBlock extends AbstractBlock {
 						//  flow-error-not-allowed-suppress-extract
 						//  flow-error-not-allowed-reply-to-suppress-topic-extract
 						'msgKey' => array(
-							"flow-error-not-allowed-{$this->action}-to-$state-$type",
-							"flow-error-not-allowed-$state-extract",
+							array(
+								"flow-error-not-allowed-{$this->action}-to-$state-$type",
+								"flow-error-not-allowed-$state-extract",
+							),
 						)
 					)
 				);
