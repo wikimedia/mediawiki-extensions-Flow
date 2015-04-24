@@ -248,6 +248,7 @@ $wgAutoloadClasses += array(
 	'Flow\\Parsoid\\Fixer' => __DIR__ . '/includes/Parsoid/Fixer.php',
 	'Flow\\Parsoid\\Fixer\\BadImageRemover' => __DIR__ . '/includes/Parsoid/Fixer/BadImageRemover.php',
 	'Flow\\Parsoid\\Fixer\\BaseHrefFixer' => __DIR__ . '/includes/Parsoid/Fixer/BaseHrefFixer.php',
+	'Flow\\Parsoid\\Fixer\\ExtLinkFixer' => __DIR__ . '/includes/Parsoid/Fixer/ExtLinkFixer.php',
 	'Flow\\Parsoid\\Fixer\\WikiLinkFixer' => __DIR__ . '/includes/Parsoid/Fixer/WikiLinkFixer.php',
 	'Flow\\Parsoid\\ReferenceExtractor' => __DIR__ . '/includes/Parsoid/ReferenceExtractor.php',
 	'Flow\\Parsoid\\ReferenceFactory' => __DIR__ . '/includes/Parsoid/ReferenceFactory.php',
