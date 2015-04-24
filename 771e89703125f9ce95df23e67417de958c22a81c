@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_4b970bf0",
+        "filename": "includes/Parsoid/Fixer/ExtLinkFixer.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-24T14:10:40Z",
+      "side": 1,
+      "message": "Incorrect comment",
+      "revId": "771e89703125f9ce95df23e67417de958c22a81c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_eb9b5f19",
+        "filename": "includes/Parsoid/Fixer/ExtLinkFixer.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-24T14:10:40Z",
+      "side": 1,
+      "message": "It won\u0027t error out, but inspection won\u0027t know DOMNode or Title. Should be `use`d, or changed in here to \\DOMNode or \\Title too.",
+      "revId": "771e89703125f9ce95df23e67417de958c22a81c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
