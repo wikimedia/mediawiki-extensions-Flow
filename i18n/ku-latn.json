@@ -1,10 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Bikarhêner"
+			"Bikarhêner",
+			"George Animal"
 		]
 	},
+	"flow-edit-header-link": "Danasînê biguherîne",
+	"flow-edit-header-submit": "Danasînê tomar bike",
+	"apihelp-flow-example-1": "Danasîna \"[[Talk:Sandbox]]\" biguherîne",
+	"apihelp-flow+edit-header-param-content": "Naveroka danasînê",
 	"flow-undo-your-text": "Nivîsara te",
-	"flow-undo-edit-header": "Bikeyskirina sernavê",
+	"flow-undo-edit-header": "Danasîn tê guherandin",
 	"flow-ve-mention-inspector-remove-label": "Jê bibe"
 }

@@ -339,7 +339,7 @@
 	"flow-terms-of-use-lock-topic": "點選 \"{{int:flow-lock-topic-submit}}\"，代表您同意此 Wiki 的使用條款。",
 	"flow-terms-of-use-unlock-topic": "點選 \"{{int:flow-unlock-topic-submit}}\"，代表您同意此 Wiki 的使用條款。",
 	"flow-whatlinkshere-post": "來自一筆 [$1 貼文]",
-	"flow-whatlinkshere-header": "來自 [$1 頁首]",
+	"flow-whatlinkshere-header": "來自 [$1 描述]",
 	"flow": "Flow",
 	"flow-special-desc": "此特殊頁面會重新導向至指定 UUID 的 Flow 工作流程或 Flow 貼文。",
 	"flow-special-type": "類型",
