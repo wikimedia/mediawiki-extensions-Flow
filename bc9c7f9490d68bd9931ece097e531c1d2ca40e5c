@@ -16,6 +16,24 @@
       "revId": "bc9c7f9490d68bd9931ece097e531c1d2ca40e5c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_d95432cc",
+        "filename": "modules/styles/board/menu.less",
+        "patchSetId": 8
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-04-25T00:31:20Z",
+      "side": 0,
+      "message": "From what I understand from the LESS documentation (and a bit of experimentation), that\u0027s not how LESS works. (It\u0027s how sass works, not less.) \n\nLess is hierarchical. The \u0026 is used if you want to connect a rule. So, this:\n\np {\n    .class-a {\n         color: red;\n    }\n    \n    \u0026.class-b {\n         color: blue;\n    }\n}\n\nwill compile to this:\n \n  p .class-a { color: red; }\n  p.class-b { color: blue; }\n\nFrom my understanding, the only bubbling that can be done is through directives, like @media, etc.\n(more info: http://lesscss.org/features/#features-overview-feature-nested-rules )\n\nWhat I might be able to do is cheat a bit and find something to attach the \u0026 to. Maybe something like this:\n\n.flow-menu {\n    ...\n    div#content .mw-content-ltr div \u003e div.\u0026 .flow-menu-js-drop {\n        ...\n    }\n...\n}\n\nBut that\u0027s a little convoluted too.",
+      "parentUuid": "0ed113e2_86de45dd",
+      "revId": "bc9c7f9490d68bd9931ece097e531c1d2ca40e5c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }

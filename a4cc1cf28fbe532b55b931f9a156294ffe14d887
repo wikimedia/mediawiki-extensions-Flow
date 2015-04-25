@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_f959f601",
+        "filename": "modules/styles/board/menu.less",
+        "patchSetId": 8
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-04-25T00:31:20Z",
+      "side": 1,
+      "message": "I wanted to make sure we override things, so the extra strong selector seemed safer. I will go over these and see which we need it in, though.",
+      "parentUuid": "0ed113e2_46f05d62",
+      "revId": "a4cc1cf28fbe532b55b931f9a156294ffe14d887",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_267e79e2",
         "filename": "modules/styles/board/terms-of-use.less",
         "patchSetId": 8
@@ -30,6 +48,24 @@
       "writtenOn": "2015-04-24T22:31:26Z",
       "side": 1,
       "message": "There\u0027s a T in interface",
+      "revId": "a4cc1cf28fbe532b55b931f9a156294ffe14d887",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_996eaa92",
+        "filename": "modules/styles/board/terms-of-use.less",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-04-25T00:31:20Z",
+      "side": 1,
+      "message": "And yet, there isn\u0027t.\n\n(Fixing)",
+      "parentUuid": "0ed113e2_267e79e2",
       "revId": "a4cc1cf28fbe532b55b931f9a156294ffe14d887",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_b9192e29",
+        "filename": "modules/styles/board/topic/meta.less",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-04-25T00:31:20Z",
+      "side": 1,
+      "message": "This is where the meta info appears under each topic. For instance:\n\n\"1 comment • 7 hours ago\"\n\nThis is interface dependent; so, it must be direction ltr in interface-ltr and direction rtl in interface-rtl so that this looks good regardless of content. If we\u0027d read this in hebrew interface, we\u0027d get this:\n\n1 הערה * 7 שעות\n\nThe above does *not* look good in an Gerrit comment because it\u0027s an RTL text with numbers (always fun) inside an LTR container. This is why the directionality of this bit must depend on interface language.\n\nThe position of that, however, should be near the beginning of the sentence (\"Start\" of sentence, which is left for ltr and right for rtl) so that rule should depend on content and not flip with interface.\n\nThat\u0027s why you have two different rules one with @noflip and one without.\n\nThis is true for a couple of other rules in the other files, too.",
+      "parentUuid": "0ed113e2_e68711db",
+      "revId": "a4cc1cf28fbe532b55b931f9a156294ffe14d887",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_06ea5570",
         "filename": "modules/styles/board/topic/post.less",
         "patchSetId": 8
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_39dd3e48",
+        "filename": "modules/styles/board/topic/post.less",
+        "patchSetId": 8
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-04-25T00:31:20Z",
+      "side": 1,
+      "message": "Yeah I might write a mixin, then. The hierarchy in less (see previous comment) is not really straight forward. It\u0027s either going to be cheating a bit with ways to figure out rules with \u0026 or creating a mixin.\n\nAnd maybe we should do this with @variables where we simply change them at the intialization of the less file based on current existing classes. \n\nI\u0027m going to investigate more into what we can do with LESS for that.",
+      "parentUuid": "0ed113e2_06ea5570",
+      "revId": "a4cc1cf28fbe532b55b931f9a156294ffe14d887",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_068d75fb",
         "filename": "modules/styles/board/topic/post.less",
         "patchSetId": 8
@@ -81,6 +153,24 @@
       "writtenOn": "2015-04-24T22:31:26Z",
       "side": 1,
       "message": "Commented-out code",
+      "revId": "a4cc1cf28fbe532b55b931f9a156294ffe14d887",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_d9e192fc",
+        "filename": "modules/styles/board/topic/post.less",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-04-25T00:31:20Z",
+      "side": 1,
+      "message": "whoops.",
+      "parentUuid": "0ed113e2_068d75fb",
       "revId": "a4cc1cf28fbe532b55b931f9a156294ffe14d887",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
