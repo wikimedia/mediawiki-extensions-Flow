@@ -330,7 +330,7 @@
 	"flow-topic-undo-hide": "deshacer ocultar",
 	"flow-topic-undo-delete": "deshacer borrar",
 	"flow-topic-undo-suppress": "deshacer suprimir",
-	"apihelp-flow-example-1": "Editar la descripción de \"[[Talk:Sandbox]]\"",
+	"apihelp-flow-example-1": "Editar la descripción de «[[Talk:Sandbox]]»",
 	"apihelp-flow+edit-header-param-format": "Formato de la cabecera (wikitexto|html)",
 	"apihelp-flow+edit-post-param-postId": "ID de la publicación.",
 	"apihelp-flow+edit-post-param-content": "Contenido para publicar.",
