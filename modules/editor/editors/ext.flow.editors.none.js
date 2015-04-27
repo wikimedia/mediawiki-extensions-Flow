@@ -11,6 +11,7 @@
 	 * @param {string} [content='']
 	 */
 	mw.flow.editors.none = function ( $node, content ) {
+		var $editor = $node.closest( '.flow-editor' );
 		this.$node = $node;
 		this.$node.val( content || '' );
 
@@ -23,6 +24,19 @@
 		// initialize at height of existing content & update on every keyup
 		this.$node.keyup( this.autoExpand );
 		this.autoExpand.call( this.$node.get( 0 ) );
+
+		// Add focused class when textarea is focused
+		this.$node
+			.on( 'focus', function () {
+				$editor.addClass( 'focused' );
+			} )
+			.on( 'blur', function () {
+				$editor.removeClass( 'focused' );
+			} );
+		// Add focused class if textarea is already focused
+		if ( this.$node.is( ':focus' ) ) {
+			$editor.addClass( 'focused' );
+		}
 
 		// only attach switcher if VE is actually enabled and supported
 		// code to figure out if that VE is supported is in that module
