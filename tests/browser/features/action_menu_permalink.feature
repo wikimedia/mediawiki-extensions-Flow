@@ -7,7 +7,7 @@ Feature: Actions menu Permalink
 
   Scenario: Topic Actions menu Permalink
     Given I have created a Flow topic with title "Permalinktest"
-    When I click the Topic Actions link
+    When I hover on the Topic Actions link
       And I click Permalink from the Actions menu
       And I am viewing Topic page
     Then I see only one topic on the page

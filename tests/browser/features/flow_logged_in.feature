@@ -27,7 +27,7 @@ Feature: Create new topic logged in
       And I should see a Suppress button
 
   Scenario: Topic Actions
-    When I click the Topic Actions link
+    When I hover on the Topic Actions link
     Then I should see a Hide topic button
       And I should see a Delete topic button
       And I should see a Suppress topic button
