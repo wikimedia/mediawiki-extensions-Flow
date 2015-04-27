@@ -34,6 +34,24 @@
       "revId": "bc9c7f9490d68bd9931ece097e531c1d2ca40e5c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_84571205",
+        "filename": "modules/styles/board/menu.less",
+        "patchSetId": 8
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-04-27T21:42:28Z",
+      "side": 0,
+      "message": "The documentation says no, but testing says yes. This:\n\n.foo {\n\t.something \u0026 {\n\t\tfont-size: 10px;\n\t}\n}\n\noutputs this css:\n\n.something .foo {\n\tfont-size: 10px;\n}\n\nSo I\u0027ll fix up the rules accordingly.",
+      "parentUuid": "0ed113e2_d95432cc",
+      "revId": "bc9c7f9490d68bd9931ece097e531c1d2ca40e5c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
