@@ -105,7 +105,7 @@
 
 	/**
 	 * Same as OO.EventEmitter.emit, except that it returns an array of results.
-	 * If something returns false (or an object with _abort:true), we stop processing the rest of the callbacks, if any.
+	 * If something returns false, we stop processing the rest of the callbacks, if any.
 	 * @param {String} event Name of the event to trigger
 	 * @param {...*} [args] Arguments to pass to event callback
 	 * @returns {Array}
@@ -137,7 +137,7 @@
 				// Add this result to our list of return vals
 				returns.push( retVal );
 
-				if ( retVal === false || ( retVal && retVal._abort === true ) ) {
+				if ( retVal === false ) {
 					// Returned false; stop running callbacks
 					break;
 				}
@@ -319,13 +319,13 @@
 				preHandlerReturn = callbackFn.apply( self, args );
 				preHandlerReturns.push( preHandlerReturn );
 
-				if ( preHandlerReturn === false || ( preHandlerReturn && preHandlerReturn._abort === true ) ) {
+				if ( preHandlerReturn === false ) {
 					// Callback returned false; break out of this loop
 					return false;
 				}
 			} );
 
-			if ( preHandlerReturn === false || ( preHandlerReturn && preHandlerReturn._abort === true ) ) {
+			if ( preHandlerReturn === false ) {
 				// Last callback returned false
 				flowComponent.debug( false, 'apiPreHandler returned false', handlerName, args );
 
