@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_44f04a8e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-27T22:27:02Z",
+      "side": 1,
+      "message": "There should be a blank line between the commit title and the body of the message. See https://www.mediawiki.org/wiki/Gerrit/Commit_message_guidelines",
+      "revId": "b941b433ccff28a44018c4aa8bc018909a4d4fb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_24d8a6f3",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-27T22:27:02Z",
+      "side": 1,
+      "message": "You can combine the two lines above into padding: 1px 8px 40px;\n\nAlso, why are you adding 1px of top padding and 8px of left/right padding? (The commit message doesn\u0027t say.) Is there a reason you don\u0027t also need to add 1px to the bottom padding? (making it 41px instead of 40px)",
+      "revId": "b941b433ccff28a44018c4aa8bc018909a4d4fb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_c4c75a14",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-27T22:27:02Z",
+      "side": 1,
+      "message": "This stuff should really all be in em, not in px :( . That\u0027s not this commit\u0027s fault, the rest of this stuff is all in px too, just saying we should fix that at some point.",
+      "revId": "b941b433ccff28a44018c4aa8bc018909a4d4fb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_44d36ad7",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-27T22:27:02Z",
+      "side": 1,
+      "message": "Why is this here?",
+      "revId": "b941b433ccff28a44018c4aa8bc018909a4d4fb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_04dd62e1",
+        "filename": "modules/styles/board/editor-switcher.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-27T22:27:02Z",
+      "side": 1,
+      "message": "Can we use ems here?\n\nAdd comment explaining why the bottom padding is different (I\u0027m guessing it\u0027s because of the 2px box-shadow?)",
+      "revId": "b941b433ccff28a44018c4aa8bc018909a4d4fb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_44812aa3",
+        "filename": "modules/styles/board/editor-switcher.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-27T22:27:02Z",
+      "side": 1,
+      "message": "I\u0027ll add that",
+      "revId": "b941b433ccff28a44018c4aa8bc018909a4d4fb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_84e87278",
+        "filename": "modules/styles/board/editor-switcher.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-27T22:27:02Z",
+      "side": 1,
+      "message": "Why is the top padding 2px less?",
+      "revId": "b941b433ccff28a44018c4aa8bc018909a4d4fb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_248666bf",
+        "filename": "modules/styles/board/form-actions.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-27T22:27:02Z",
+      "side": 1,
+      "message": "Why is this being converted from em to px? :(",
+      "revId": "b941b433ccff28a44018c4aa8bc018909a4d4fb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
