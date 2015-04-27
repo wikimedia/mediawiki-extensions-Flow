@@ -38,9 +38,10 @@
 	 * @param {Event} event
 	 * @param {Object} info
 	 * @param {jQuery} info.$target
+	 * @param {object} queryMap
 	 * @param {FlowBoardComponent} info.component
 	 */
-	function flowBoardComponentTocFeatureMixinBoardApiPreHandler( event, info ) {
+	function flowBoardComponentTocFeatureMixinBoardApiPreHandler( event, info, queryMap ) {
 		info.component.topicIdsInTocBackup = info.component.topicIdsInToc;
 		info.component.lastTopicIdInTocBackup = info.component.lastTopicIdInToc;
 
@@ -60,9 +61,10 @@
 	 * @param {Event} event
 	 * @param {Object} info
 	 * @param {jQuery} info.$target
+	 * @param {object} queryMap
 	 * @param {FlowBoardComponent} info.component
 	 */
-	function flowBoardComponentTocFeatureMixinTopicListApiPreHandler( event, info, extraParameters ) {
+	function flowBoardComponentTocFeatureMixinTopicListApiPreHandler( event, info, queryMap, extraParameters ) {
 		var $this = $( this ),
 			isLoadMoreButton = $this.data( 'flow-load-handler' ) === 'loadMore',
 			overrides;
@@ -99,7 +101,7 @@
 			delete overrides.topiclist_sortby;
 		}
 
-		return overrides;
+		return $.extend( queryMap, overrides );
 	}
 	FlowBoardComponentTocFeatureMixin.UI.events.apiPreHandlers.topicList = flowBoardComponentTocFeatureMixinTopicListApiPreHandler;
 

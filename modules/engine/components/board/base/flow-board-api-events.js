@@ -34,9 +34,11 @@
 	 * real editor can be anything, depending on the type of editor)
 	 *
 	 * @param {Event} event
+	 * @param {object} info
+	 * @param {object} queryMap
 	 * @return {Object}
 	 */
-	FlowBoardComponentApiEventsMixin.UI.events.globalApiPreHandlers.prepareEditor = function ( event ) {
+	FlowBoardComponentApiEventsMixin.UI.events.globalApiPreHandlers.prepareEditor = function ( event, info, queryMap ) {
 		var $textareas = $( this ).closest( 'form' ).find( 'textarea' ),
 			override = {};
 
@@ -59,7 +61,7 @@
 			// add its own nodes, which may be picked up by serializeArray()
 		} );
 
-		return override;
+		return $.extend( queryMap, override );
 	};
 
 	/**
@@ -68,14 +70,16 @@
 	 * This will prepare the data-to-be-submitted so that the override is
 	 * submitted against the most current revision ID.
 	 * @param {Event} event
+	 * @param {object} info
+	 * @param {object} queryMap
 	 * @return {Object}
 	 */
-	FlowBoardComponentApiEventsMixin.UI.events.globalApiPreHandlers.prepareEditConflict = function ( event ) {
+	FlowBoardComponentApiEventsMixin.UI.events.globalApiPreHandlers.prepareEditConflict = function ( event, info, queryMap ) {
 		var $form = $( this ).closest( 'form' ),
 			prevRevisionId = $form.data( 'flow-prev-revision' );
 
 		if ( !prevRevisionId ) {
-			return {};
+			return queryMap;
 		}
 
 		// Get rid of the temp-saved new revision ID
@@ -87,81 +91,89 @@
 		 * be properly applied for the respective API call; e.g.
 		 * epprev_revision (for edit post)
 		 */
-		return {
+		return $.extend( queryMap, {
 			flow_prev_revision: prevRevisionId
-		};
+		} );
 	};
 
 	/**
 	 * Before activating header, sends an overrideObject to the API to modify the request params.
 	 * @param {Event} event
+	 * @param {object} info
+	 * @param {object} queryMap
 	 * @return {Object}
 	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.activateEditHeader = function () {
-		return {
+	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.activateEditHeader = function ( event, info, queryMap ) {
+		return $.extend( queryMap, {
 			submodule: 'view-header', // href submodule is edit-header
 			vhformat: mw.flow.editor.getFormat() // href does not have this param
-		};
+		} );
 	};
 
 	/**
 	 * Before activating topic, sends an overrideObject to the API to modify the request params.
 	 *
 	 * @param {Event} event
+	 * @param {object} info
+	 * @param {object} queryMap
 	 * @return {Object}
 	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.activateEditTitle = function ( event ) {
+	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.activateEditTitle = function ( event, info, queryMap ) {
 		// Use view-post API for topic as well; we only want this on
 		// particular (title) post revision, not the full topic
-		return {
+		return $.extend( queryMap, {
 			submodule: "view-post",
 			vppostId: $( this ).closest( '.flow-topic' ).data( 'flow-id' ),
 			vpformat: mw.flow.editor.getFormat()
-		};
+		} );
 	};
 
 	/**
 	 * Before activating post, sends an overrideObject to the API to modify the request params.
 	 * @param {Event} event
+	 * @param {object} info
+	 * @param {object} queryMap
 	 * @return {Object}
 	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.activateEditPost = function ( event ) {
-		return {
+	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.activateEditPost = function ( event, info, queryMap ) {
+		return $.extend( queryMap, {
 			submodule: 'view-post',
 			vppostId: $( this ).closest( '.flow-post' ).data( 'flow-id' ),
 			vpformat: mw.flow.editor.getFormat()
-		};
+		} );
 	};
 
 	/**
 	 * Adjusts query params to use global watch action, and specifies it should use a watch token.
 	 * @param {Event} event
+	 * @param {object} info
+	 * @param {object} queryMap
 	 * @returns {Function}
 	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.watchItem = function ( event ) {
-		return function ( queryMap ) {
-			var params = {
-				action: 'watch',
-				titles: queryMap.page,
-				_internal: {
-					tokenType: 'watch'
-				}
-			};
-			if ( queryMap.submodule === 'unwatch' ) {
-				params.unwatch = 1;
+	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.watchItem = function ( event, info, queryMap ) {
+		var params = {
+			action: 'watch',
+			titles: queryMap.page,
+			_internal: {
+				tokenType: 'watch'
 			}
-			return params;
 		};
+		if ( queryMap.submodule === 'unwatch' ) {
+			params.unwatch = 1;
+		}
+
+		return params;
 	};
 
 	/**
 	 * Before activating summarize topic, sends an overrideObject to the
 	 * API to modify the request params.
 	 * @param {Event} event
-	 * @param {Object} info
+	 * @param {object} info
+	 * @param {object} queryMap
 	 * @return {Object}
 	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.activateSummarizeTopic = function ( event, info ) {
+	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.activateSummarizeTopic = function ( event, info, queryMap ) {
 		if ( info.$target.find( 'form' ).length ) {
 			// Form already open; cancel the old form
 			var flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) );
@@ -169,29 +181,31 @@
 			return false;
 		}
 
-		return {
+		return $.extend( queryMap, {
 			// href submodule is edit-topic-summary
 			submodule: 'view-topic-summary',
 			// href does not have this param
 			vtsformat: mw.flow.editor.getFormat()
-		};
+		} );
 	};
 
 	/**
 	 * Before activating lock/unlock edit form, sends an overrideObject
 	 * to the API to modify the request params.
 	 * @param {Event} event
+	 * @param {object} info
+	 * @param {object} queryMap
 	 * @return {Object}
 	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.activateLockTopic = function ( event ) {
-		return {
+	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.activateLockTopic = function ( event, info, queryMap ) {
+		return $.extend( queryMap, {
 			// href submodule is lock-topic
 			submodule: 'view-post',
 			// href does not have this param
 			vpformat: 'wikitext',
 			// request just the data for this topic
 			vppostId: $( this ).data( 'flow-id' )
-		};
+		} );
 	};
 
 	//
