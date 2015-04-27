@@ -13,7 +13,7 @@ Given(/^I click the Unlock topic button$/) do
 end
 
 Given(/^the top post has been locked$/) do
-  step 'I click the Topic Actions link'
+  step 'I hover on the Topic Actions link'
   step 'I click the Lock topic button'
   step 'I type "This is a bikeshed" as the reason'
   step 'I submit the lock/unlock topic form'

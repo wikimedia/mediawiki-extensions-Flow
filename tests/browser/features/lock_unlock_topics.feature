@@ -17,7 +17,7 @@ Feature: Lock and unlock topics
   Scenario: Locking a topic and then changing your mind
     Given I am on Flow page
         And I have created a Flow topic
-    When I click the Topic Actions link
+    When I hover on the Topic Actions link
         And I click the Lock topic button
         And I cancel the lock/unlock topic form
     Then the top post should be an open discussion
@@ -27,7 +27,7 @@ Feature: Lock and unlock topics
   Scenario: Locking a topic
     Given I am on Flow page
         And I have created a Flow topic
-    When I click the Topic Actions link
+    When I hover on the Topic Actions link
         And I click the Lock topic button
         And I type "This is a bikeshed" as the reason
         And I submit the lock/unlock topic form
@@ -40,7 +40,7 @@ Feature: Lock and unlock topics
     Given I am on Flow page
         And I have created a Flow topic
         And the top post has been locked
-        And I click the Topic Actions link
+        And I hover on the Topic Actions link
         And I click the Unlock topic button
     When I type "Fun discussion" as the reason
         And I submit the lock/unlock topic form
