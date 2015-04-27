@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_64ad4e80",
+        "filename": "modules/styles/board/topic/post.less",
+        "patchSetId": 9
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-27T21:57:47Z",
+      "side": 1,
+      "message": "Missing noflip",
+      "revId": "a5822fa39464f91a9233cfdd8fbb8a99c7b3582a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_4495aa41",
+        "filename": "modules/styles/board/topic/post.less",
+        "patchSetId": 9
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-27T21:57:47Z",
+      "side": 1,
+      "message": "Remove commented-out code",
+      "revId": "a5822fa39464f91a9233cfdd8fbb8a99c7b3582a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_24c7464c",
+        "filename": "modules/styles/board/topic/titlebar.less",
+        "patchSetId": 9
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-27T21:57:47Z",
+      "side": 1,
+      "message": "There was no div#content here before, so you shouldn\u0027t need to add it",
+      "revId": "a5822fa39464f91a9233cfdd8fbb8a99c7b3582a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
