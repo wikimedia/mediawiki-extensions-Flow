@@ -3,7 +3,8 @@
 		"authors": [
 			"Kghbln",
 			"Metalhead64",
-			"Inkowik"
+			"Inkowik",
+			"Andreasburmeister"
 		]
 	},
 	"enableflow": "Flow aktivieren",
@@ -168,7 +169,7 @@
 	"flow-error-invalid-topic-uuid": "Der angeforderte Seitentitel war ungültig. Seiten im Themennamensraum werden von Flow automatisch erstellt.",
 	"flow-error-unknown-workflow-id-title": "Unbekanntes Thema",
 	"flow-error-unknown-workflow-id": "Das angeforderte Thema ist nicht vorhanden.",
-	"flow-error-search": "Wir konnten aufgrund eines vorübergehenden Problems deine Suche nicht vervollständigen. Bitte später erneut versuchen.",
+	"flow-error-search": "Aufgrund eines vorübergehenden Problems konnten wir deine Suche nicht abschließen. Bitte versuche es später erneut.",
 	"flow-edit-header-placeholder": "Dieses Diskussions-Board beschreiben",
 	"flow-edit-header-submit": "Beschreibung speichern",
 	"flow-edit-header-submit-overwrite": "Beschreibung überschreiben",
@@ -378,7 +379,7 @@
 	"flow-importer-lqt-suppressed-user-template": "LQT-Beitrag wurde mit einem unterdrückten Benutzer importiert",
 	"apihelp-flow-param-submodule": "Das aufzurufende Flow-Submodul.",
 	"apihelp-flow-param-page": "Die Seite, auf die die Aktion angewandt werden soll.",
-	"apihelp-flow-example-1": "Bearbeitet die Beschreibung von „[[Talk:Sandbox]]“",
+	"apihelp-flow-example-1": "Die Beschreibung von „[[Talk:Sandbox]]“ bearbeiten",
 	"apihelp-flow+close-open-topic-param-reason": "Grund für das Sperren oder Freigeben des Themas.",
 	"apihelp-flow+edit-header-description": "Bearbeitet die Beschreibung eines Boards.",
 	"apihelp-flow+edit-header-param-content": "Inhalt für die Beschreibung.",
@@ -416,7 +417,7 @@
 	"apihelp-flow+reply-param-content": "Inhalt für den neuen Beitrag.",
 	"apihelp-flow+reply-param-format": "Format des neuen Beitrags (wikitext oder html)",
 	"apihelp-flow+reply-example-1": "Antwortet auf einen Beitrag auf [[Topic:S2tycnas4hcucw8w]]",
-	"apihelp-flow+view-header-description": "Betrachtet eine Board-Beschreibung.",
+	"apihelp-flow+view-header-description": "Board-Beschreibung ansehen.",
 	"apihelp-flow+view-header-param-revId": "Lädt diese anstelle der aktuellsten Version.",
 	"apihelp-flow+view-post-description": "Betrachtet einen Beitrag.",
 	"apihelp-flow+view-post-param-postId": "Kennung des anzuzeigenden Beitrags.",
@@ -437,7 +438,7 @@
 	"apihelp-flow-parsoid-utils-param-pageid": "Kennung der Seite. Kann nicht zusammen mit $1title verwendet werden.",
 	"apihelp-flow-parsoid-utils-example-1": "Wandelt den Wikitext <nowiki>'''lorem''' ''blah''</nowiki> in HTML um",
 	"apihelp-query+flowinfo-description": "Ruft Basis-Flow-Informationen über eine Seite ab.",
-	"apihelp-flow+undo-edit-header-description": "Bezieht die zum Rückgängigmachen von Bearbeitungen der Beschreibung nötigen Informationen.",
+	"apihelp-flow+undo-edit-header-description": "Informationen beziehen, die zum Rückgängigmachen der Bearbeitung der Beschreibung nötig sind.",
 	"apihelp-flow+undo-edit-header-param-startId": "Versionskennung, bei der mit dem Rückgängigmachen begonnen werden soll.",
 	"apihelp-flow+undo-edit-header-param-endId": "Versionskennung, auf die zurückgesetzt werden soll.",
 	"apihelp-flow+undo-edit-header-example-1": "Bezieht Informationen zum Rückgängigmachen einer Bearbeitung in der Beschreibung von [[Talk:Sandbox]]",
