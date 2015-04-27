@@ -8,14 +8,24 @@
 	// it's border and re-apply on the parent node that contains both
 	&.flow-editor-none {
 		border: 1px solid @colorFieldBorder;
-
+		padding: 2px;
+		background-color: white;
 		textarea {
 			border: 0;
+			background: white;
+			padding: 6px 6px 4px 6px;
+			&:focus {
+				box-shadow: none;
+			}
+		}
+
+		&.flow-ui-focused {
+			box-shadow: inset 0 0 0 2px @colorProgressive;
 		}
 
 		.flow-switcher-controls {
-			background-color: white;
-			padding: .25em;
+			padding: 4px 6px 6px 6px;
+			position: relative;
 		}
 	}
 
@@ -28,11 +38,10 @@
 	// @todo this is basically the terms of use, come up with a shared
 	// name for all but the float
 	.flow-wikitext-editor-help {
-		float: left;
-		vertical-align: middle;
 		color: @colorTextLight;
 		font-size: .75em;
-		line-height: 1.4;
+		position: absolute;
+		bottom: 0;
 	}
 
 	a.flow-editor-switcher {
