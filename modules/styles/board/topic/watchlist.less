@@ -6,7 +6,6 @@
 .flow-watch-link {
 	position: absolute;
 	top: 0;
-	right: 0;
 
 	&.flow-board-watch-link {
 		font-size: 1.5em;
@@ -48,6 +47,19 @@
 			display: none;
 		}
 	}
+
+	// Correct positioning for ltr/rtl content direction
+	.mw-content-ltr & {
+		/* @noflip */
+		right: 0;
+	}
+
+	// Correct positioning for ltr/rtl content direction
+	.mw-content-rtl & {
+		/* @noflip */
+		left: 0;
+	}
+
 }
 
 .flow-topic-watchlist {
