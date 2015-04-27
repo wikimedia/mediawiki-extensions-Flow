@@ -9,7 +9,7 @@ Feature: Moderation
 
   Scenario: Deleting a topic
     Given I have created a Flow topic with title "Deletemeifyoudare"
-    When I click the Topic Actions link
+    When I hover on the Topic Actions link
         And I click the Delete topic button
         And I see a dialog box
         And I give reason for deletion as being "He's a naughty boy"
@@ -18,7 +18,7 @@ Feature: Moderation
 
   Scenario: Suppressing a topic
     Given I have created a Flow topic with title "Suppressmeifyoudare"
-    When I click the Topic Actions link
+    When I hover on the Topic Actions link
         And I click the Suppress topic button
         And I see a dialog box
         And I give reason for suppression as being "Quelling the peasants"
@@ -27,7 +27,7 @@ Feature: Moderation
 
   Scenario: Cancelling a dialog without text
     Given I have created a Flow topic with title "Testing cancel deletion of topic"
-    When I click the Topic Actions link
+    When I hover on the Topic Actions link
         And I click the Delete topic button
         And I see a dialog box
         And I cancel the dialog
@@ -35,7 +35,7 @@ Feature: Moderation
 
   Scenario: Cancelling a dialog with text
     Given I have created a Flow topic with title "Testing cancel deletion of topic"
-    When I click the Topic Actions link
+    When I hover on the Topic Actions link
         And I click the Delete topic button
         And I see a dialog box
         And I give reason for suppression as being "About to change my mind"

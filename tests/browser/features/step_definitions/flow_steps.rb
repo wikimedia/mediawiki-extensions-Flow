@@ -69,8 +69,8 @@ When(/^I click the Suppress topic button$/) do
   on(FlowPage).topic_suppress_button_element.when_present.click
 end
 
-When(/^I click the Topic Actions link$/) do
-  on(FlowPage).topic_actions_link_element.when_present.click
+When(/^I hover on the Topic Actions link$/) do
+  on(FlowPage).topic_actions_link_element.when_present.hover
 end
 
 When(/^I hover over the author link$/) do
