@@ -66,7 +66,7 @@ class WikiLinkFixer implements Fixer {
 			return;
 		}
 
-		$title = Utils::createRelativeTitle( urldecode( $href ), $title );
+		$title = Utils::createRelativeTitle( rawurldecode( $href ), $title );
 		if ( $title === null ) {
 			return;
 		}
