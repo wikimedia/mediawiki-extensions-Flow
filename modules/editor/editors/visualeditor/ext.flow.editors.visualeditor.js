@@ -50,6 +50,8 @@
 		target = this.target = new mw.flow.ve.Target();
 
 		htmlDoc = ve.createDocumentFromHtml( content ); // HTMLDocument
+		// Fix missing base URL
+		ve.init.mw.Target.static.fixBase( htmlDoc );
 
 		// Based on ve.init.mw.Target.prototype.setupSurface
 		dmDoc = this.dmDoc = ve.dm.converter.getModelFromDom( htmlDoc, {
