@@ -16,6 +16,24 @@
       "revId": "75ced63fb74b9ee45349ad7a70a2158c9d687939",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_df0ac728",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-28T00:54:17Z",
+      "side": 0,
+      "message": "It should be. There\u0027s already a task for that.\n\nHowever, ensuring that mw.Platform wins is no longer needed. Platforms don\u0027t self-instantiate any more, and we load ve.init.mw.Platform.init.js (which instantiates it) but we don\u0027t load anything that does the equivalent for sa.Platform (such code doesn\u0027t even exist outside of the demos and tests). So there is no competition, mw.Platform is the only thing that tries to be instantiated, so ve.init.platform will end up being an mw.Platform.",
+      "parentUuid": "0ed113e2_5159125c",
+      "revId": "75ced63fb74b9ee45349ad7a70a2158c9d687939",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
