@@ -22,7 +22,7 @@
 			{{else}}
 				{{l10n "flow-newest-topics"}}
 			{{/ifCond}}
-			<span class="wikiglyph wikiglyph-caret-down"></span>
+			<span class="mw-ui-icon mw-ui-icon-after mw-ui-icon-caretDown"></span>
 		</a>
 
 		<a href=""
@@ -31,7 +31,9 @@
 		   data-flow-api-handler="topicList" {{!-- also triggers menuToggle --}}
 		   data-flow-menu-target="< .flow-board-navigation .flow-board-toc-menu"
 		   class="flow-board-navigator-active flow-board-navigator-first">
-			<span class="wikiglyph wikiglyph-stripe-toc"></span>
+
+			<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-stripeToC"></span>
+
 			<span class="flow-load-interactive" data-flow-load-handler="boardNavigationTitle">{{l10n "flow-board-header-browse-topics-link"}}</span>
 		</a>
 	</div>
@@ -60,13 +62,13 @@
 					       href="{{links.board-sort.newest}}"
 					       data-flow-interactive-handler="apiRequest"
 					       data-flow-api-target="< .flow-component"
-					       data-flow-api-handler="board"><span class="wikiglyph wikiglyph-star-circle"></span> {{l10n "flow-newest-topics"}}</a></li>
+					       data-flow-api-handler="board"><span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-beta"></span> {{l10n "flow-newest-topics"}}</a></li>
 					{{else}}
 					<li><a class="mw-ui-button mw-ui-quiet"
 					       href="{{links.board-sort.updated}}"
 					       data-flow-interactive-handler="apiRequest"
 					       data-flow-api-target="< .flow-component"
-					       data-flow-api-handler="board"><span class="wikiglyph wikiglyph-clock"></span> {{l10n "flow-recent-topics"}}</a></li>
+					       data-flow-api-handler="board"><span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-clock"></span> {{l10n "flow-recent-topics"}}</a></li>
 					{{/ifCond}}
 				</ul>
 			{{/if}}
