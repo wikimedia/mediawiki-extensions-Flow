@@ -1,7 +1,4 @@
-class WikiPage
-  include PageObject
-  a(:logout, css: "#pt-logout a")
-end
+require_relative 'wiki_page'
 
 class FlowPage < WikiPage
   include URL
@@ -44,6 +41,10 @@ class FlowPage < WikiPage
   # Posts
   ## Highlighted post
   div(:highlighted_post, css: ".flow-post-highlighted")
+
+  def topic_with_title (title)
+    div_element(text: title)
+  end
 
   ## First topic
   div(:flow_first_topic, css: ".flow-topic", index: 0)
@@ -252,4 +253,10 @@ class FlowPage < WikiPage
 
   a(:board_unwatch_link, href: /Flow_QA&action=unwatch/)
   a(:board_watch_link, href: /Flow_QA&action=watch/)
+
+  # undo suppression
+  button(:undo_suppression_button, text: "Undo")
+
+  # history
+  a(:view_history, text: 'View history')
 end
