@@ -23,7 +23,7 @@
 				<a class="{{moderationMwUiClass}} mw-ui-quiet"
 				   href="{{links.topic-history.url}}"
 				   title="{{links.topic-history.title}}">
-					{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-clock"></span> {{/if~}}
+					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-clock"></span> {{/if~}}
 					{{~l10n (concat "flow-" moderationType "-action-history")~}}
 				</a>
 				{{~noop~}}
@@ -35,7 +35,7 @@
 				<a class="{{moderationMwUiClass}} mw-ui-quiet"
 				   href="{{links.topic.url}}"
 				   title="{{links.topic.title}}">
-					{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-link"></span> {{/if~}}
+					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-link"></span> {{/if~}}
 					{{~l10n (concat "flow-" moderationType "-action-view")~}}
 				</a>
 				{{~noop~}}
@@ -84,7 +84,7 @@
 				<a class="{{moderationMwUiClass}} mw-ui-quiet"
 				   href="{{links.post.url}}"
 				   title="{{links.post.title}}">
-					{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-link"></span> {{/if~}}
+					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-link"></span> {{/if~}}
 					{{~l10n (concat "flow-" moderationType "-action-view")~}}
 				</a>
 				{{~noop~}}
@@ -118,7 +118,7 @@
 			   data-flow-interactive-handler="moderationDialog"
 			   data-flow-template="flow_moderate_{{moderationTemplate}}.partial"
 			   data-role="hide">
-				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-flag"></span> {{/if~}}
+				{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-flag"></span> {{/if~}}
 				{{~l10n (concat "flow-" moderationType "-action-hide-" moderationTemplate)~}}
 			</a>
 			{{~noop~}}
@@ -133,7 +133,7 @@
 			   data-flow-interactive-handler="moderationDialog"
 			   data-flow-template="flow_moderate_{{moderationTemplate}}.partial"
 			   data-role="unhide">
-				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-flag"></span> {{/if~}}
+				{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-flag"></span> {{/if~}}
 				{{~l10n (concat "flow-" moderationType "-action-unhide-" moderationTemplate)~}}
 			</a>
 			{{~noop~}}
@@ -148,7 +148,7 @@
 			   data-flow-interactive-handler="moderationDialog"
 			   data-flow-template="flow_moderate_{{moderationTemplate}}.partial"
 			   data-role="delete">
-				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-trash"></span> {{/if~}}
+				{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-trash"></span> {{/if~}}
 				{{~l10n (concat "flow-" moderationType "-action-delete-" moderationTemplate)~}}
 			</a>
 			{{~noop~}}
@@ -163,7 +163,7 @@
 			   data-flow-interactive-handler="moderationDialog"
 			   data-flow-template="flow_moderate_{{moderationTemplate}}.partial"
 			   data-role="undelete">
-				{{~#if moderationIcons}}<span class="wikiglyph wikiglyph-trash"></span> {{/if~}}
+				{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-trash"></span> {{/if~}}
 				{{~l10n (concat "flow-" moderationType "-action-undelete-" moderationTemplate)~}}
 			</a>
 			{{~noop~}}

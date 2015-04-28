@@ -182,12 +182,21 @@ Styleguide 4.0.
 	&[class] {
 		&.mw-ui-progressive {
 			.flow-ui-tooltip-color( @colorProgressive );
+			.mw-ui-icon {
+				fill: @colorProgressive;
+			}
 		}
 		&.mw-ui-constructive {
 			.flow-ui-tooltip-color( @colorConstructive );
+			.mw-ui-icon {
+				fill: @colorConstructive;
+			}
 		}
 		&.mw-ui-destructive {
 			.flow-ui-tooltip-color( @colorDestructive );
+			.mw-ui-button.mw-ui-destructive.mw-ui-quiet:hover, .mw-ui-button.&.mw-ui-quiet:focus span {
+				fill: @colorDestructive;
+			}
 		}
 		&.flow-ui-tooltip-small {
 			font-size: .75em;
