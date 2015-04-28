@@ -69,7 +69,7 @@
 				if ( mw.flow.editor.editor === null ) {
 					return;
 				} else {
-					clearTimeout( interval );
+					clearInterval( interval );
 				}
 
 				// doublecheck if editor doesn't already exist for this node
