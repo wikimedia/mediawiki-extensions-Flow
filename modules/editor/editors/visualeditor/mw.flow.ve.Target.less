@@ -35,7 +35,9 @@
 		// This creates a space for the toolbar, a matching negative margin-top
 		// shifts the toolbar into this location.
 		// @todo where did this 40 come from, could it be calculated?
+		padding: 1px 8px;
 		padding-bottom: 40px;
+		min-height: 163px; // (112 + 51) wikitext text area min-height (inline style) + actions
 	}
 
 	.oo-ui-toolbar {
@@ -54,5 +56,9 @@
 		// The default border is only appropriate in the default ve, with
 		// the toolbar above the editing surface.
 		border: none;
+	}
+
+	.oo-ui-toolGroup {
+		margin-bottom: 2px;
 	}
 }
