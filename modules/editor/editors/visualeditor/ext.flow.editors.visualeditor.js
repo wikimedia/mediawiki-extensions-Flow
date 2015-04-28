@@ -9,13 +9,12 @@
 		// node the editor is associated with.
 		this.$node = $node;
 
-		// Replace the node with a spinner
-		$node.hide();
-		$node.injectSpinner( {
-			'size' : 'large',
-			'type' : 'block',
-			'id' : 'flow-editor-loading'
-		} );
+		// HACK: make textarea look pending
+		// Once this is an OO.ui.TextInputWidget we'll be able to use real PendingElement
+		// functionality for this
+		$node
+			.prop( 'disabled', true )
+			.addClass( 'oo-ui-texture-pending' );
 
 		// load dependencies & init editor
 		mw.loader.using( 'ext.flow.visualEditor', $.proxy( this.init, this, content || '' ) );
@@ -45,8 +44,6 @@
 		// add i18n messages to VE
 		ve.init.platform.addMessages( mw.messages.values );
 
-		$.removeSpinner( 'flow-editor-loading' );
-
 		target = this.target = new mw.flow.ve.Target();
 
 		htmlDoc = ve.createDocumentFromHtml( content ); // HTMLDocument
@@ -63,6 +60,10 @@
 				$documentNode = surfaceView.getDocument().getDocumentNode().$element;
 
 			$( target.$element ).insertAfter( flowEditor.$node );
+			flowEditor.$node
+				.hide()
+				.removeClass( 'oo-ui-texture-pending' )
+				.prop( 'disabled', false );
 
 			$documentNode.addClass(
 			// Add appropriately mw-content-ltr or mw-content-rtl class
