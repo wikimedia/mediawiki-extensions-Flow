@@ -65,10 +65,6 @@ When(/^I hover on the Post Actions link$/) do
   on(FlowPage).post_actions_link_element.when_present.hover
 end
 
-When(/^I click the Suppress topic button$/) do
-  on(FlowPage).topic_suppress_button_element.when_present.click
-end
-
 When(/^I hover on the Topic Actions link$/) do
   on(FlowPage).topic_actions_link_element.when_present.hover
 end
@@ -82,18 +78,39 @@ When(/^I see a flow creator element$/) do
 end
 
 When(/^I type "(.+)" into the new topic content field$/) do |flow_body|
-  body_string = flow_body + @random_string + @automated_test_marker
+  body_string = @data_manager.get flow_body
   on(FlowPage).new_topic_body_element.when_present.send_keys(body_string)
 end
 
 When(/^I type "(.+)" into the new topic title field$/) do |flow_title|
-  @automated_test_marker = " browsertest edit"
   on(FlowPage) do |page|
-    @topic_string = flow_title + @random_string + @automated_test_marker
+    @topic_string = @data_manager.get flow_title
     page.new_topic_title_element.when_present.click
     page.new_topic_title_element.when_present.focus
     page.new_topic_title_element.when_present.send_keys(@topic_string)
   end
+end
+
+When(/I log out/) do
+  on(FlowPage) do |page|
+    page.logout
+    page.logout_element.when_not_visible
+  end
+end
+
+When(/^I visit the board history page$/) do
+  visit BoardHistoryPage
+  on(BoardHistoryPage).flow_board_history_element.when_present
+end
+
+When(/^I visit the topic history page$/) do
+  step 'I hover on the Topic Actions link'
+  step 'I click History from the Actions menu'
+  on(TopicHistoryPage).flow_topic_history_element.when_present
+end
+
+When(/^I click History from the Actions menu$/) do
+  on(FlowPage).topic_history_button_element.when_present.click
 end
 
 Then(/^I am on my user page$/) do
@@ -164,4 +181,59 @@ end
 
 Then(/^the top post should not have a heading which contains "(.+)"$/) do |text|
   expect(on(FlowPage).flow_first_topic_heading).not_to match(text)
+end
+
+Then(/^I see the topic "(.*?)" on the board$/) do |title|
+  full_title = @data_manager.get title
+  on(FlowPage).topic_with_title(full_title).when_present
+end
+
+Then(/^everybody sees the topic "(.*?)" on the board$/) do |title|
+  step 'I log out'
+  step 'I am on Flow page'
+  step "I see the topic \"#{title}\" on the board"
+end
+
+Then(/^I see the following entries in board history$/) do |table|
+  on(BoardHistoryPage) do |page|
+    table.hashes.each do |row|
+      action = row['action']
+      topic = @data_manager.get row['topic']
+      entry = %(#{action} "#{topic}")
+      expect(page.flow_board_history).to match(entry)
+    end
+  end
+end
+
+Then(/^I see the following entries in topic history$/) do |table|
+  on(TopicHistoryPage) do |page|
+    table.hashes.each do |row|
+      action = row['action']
+      topic = @data_manager.get row['topic']
+      entry = %(#{action} "#{topic}")
+      expect(page.flow_topic_history).to match(entry)
+    end
+  end
+end
+
+Then(/^I do not see the following entries in board history$/) do |table|
+  on(BoardHistoryPage) do |page|
+    table.hashes.each do |row|
+      action = row['action']
+      topic = @data_manager.get row['topic']
+      entry = %(#{action} "#{topic}")
+      expect(page.flow_board_history).to_not match(entry)
+    end
+  end
+end
+
+Then(/^I do not see the following entries in topic history$/) do |table|
+  on(TopicHistoryPage) do |page|
+    table.hashes.each do |row|
+      action = row['action']
+      topic = @data_manager.get row['topic']
+      entry = %(#{action} "#{topic}")
+      expect(page.flow_topic_history).to_not match(entry)
+    end
+  end
 end

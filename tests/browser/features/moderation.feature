@@ -16,15 +16,6 @@ Feature: Moderation
         And I click Delete topic
     Then the top post should be marked as deleted
 
-  Scenario: Suppressing a topic
-    Given I have created a Flow topic with title "Suppressmeifyoudare"
-    When I hover on the Topic Actions link
-        And I click the Suppress topic button
-        And I see a dialog box
-        And I give reason for suppression as being "Quelling the peasants"
-        And I click Suppress topic
-    Then the top post should be marked as suppressed
-
   Scenario: Cancelling a dialog without text
     Given I have created a Flow topic with title "Testing cancel deletion of topic"
     When I hover on the Topic Actions link
@@ -38,7 +29,7 @@ Feature: Moderation
     When I hover on the Topic Actions link
         And I click the Delete topic button
         And I see a dialog box
-        And I give reason for suppression as being "About to change my mind"
+        And I give reason for deletion as being "About to change my mind"
         And I cancel the dialog
         And I confirm
     Then I do not see the dialog box
