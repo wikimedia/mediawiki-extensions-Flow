@@ -3,7 +3,8 @@
 		"authors": [
 			"Michaelbrabec",
 			"Mormegil",
-			"Paxt"
+			"Paxt",
+			"Cvanca"
 		]
 	},
 	"flow-post-moderated-toggle-hide-show": "Ukázat komentář {{GENDER:$1|skrytý}} od $2",
@@ -17,5 +18,6 @@
 	"flow-post-action-post-history": "Historie",
 	"flow-post-action-edit-post": "Editovat",
 	"flow-topic-action-edit-title": "Upravit název",
-	"flow-topic-action-history": "Historie"
+	"flow-topic-action-history": "Historie",
+	"flow-edit-header-submit-overwrite": "Přepsat popis"
 }
