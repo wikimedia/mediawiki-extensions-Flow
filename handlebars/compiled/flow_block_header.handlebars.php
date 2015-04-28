@@ -35,7 +35,7 @@
 			   data-flow-interactive-handler="apiRequest"
 			   class="mw-ui-button mw-ui-progressive  mw-ui-quiet flow-board-header-icon flow-ui-tooltip-target"
 			   title="'.htmlentities((string)((isset($in['revision']['actions']['edit']['title']) && is_array($in['revision']['actions']['edit'])) ? $in['revision']['actions']['edit']['title'] : null), ENT_QUOTES, 'UTF-8').'">
-					<span class="wikiglyph wikiglyph-pencil"></span>
+					<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-edit"></span>
 			</a>
 ' : '').'	</div>
 </div>
