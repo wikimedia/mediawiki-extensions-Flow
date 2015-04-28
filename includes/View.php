@@ -103,6 +103,7 @@ class View extends ContextSource {
 				'mediawiki.ui.anchor',
 				'mediawiki.ui.button',
 				'mediawiki.ui.input',
+				'mediawiki.ui.icon',
 				'mediawiki.ui.text',
 				'ext.flow.styles.base' ,
 				'ext.flow.styles' ,
@@ -113,6 +114,12 @@ class View extends ContextSource {
 				'ext.flow.icons.styles',
 				'ext.flow.board.styles',
 				'ext.flow.board.topic.styles',
+				'oojs-ui.styles.icons',
+				'oojs-ui.styles.icons-layout',
+				'oojs-ui.styles.icons-movement',
+				'oojs-ui.styles.icons-interactions',
+				'oojs-ui.styles.icons-editing-core',
+				'oojs-ui.styles.icons-moderation'
 			) );
 		}
 
