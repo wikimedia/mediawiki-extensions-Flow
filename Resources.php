@@ -473,7 +473,8 @@ $wgResourceModules += array(
 	'ext.flow.editors.visualeditor' => $flowResourceTemplate + array(
 		'scripts' => 'editor/editors/visualeditor/ext.flow.editors.visualeditor.js',
 		'dependencies' => array(
-			'jquery.spinner',
+			// Needed for pending texture while switching editors
+			'oojs-ui.styles.textures'
 			// ve dependencies will be loaded via JS
 		),
 	),
