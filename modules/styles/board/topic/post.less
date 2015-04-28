@@ -230,7 +230,16 @@ form.flow-post {
 @media all and (min-width: @wgFlowDeviceWidthTablet) {
 	.flow-post {
 		/* left margin provided by highlighting zone */
-		margin: 1em 0 0 @topicIndent;
+		.mw-content-ltr & {
+			/* @noflip */
+			margin: 1em 0 0 @topicIndent;
+		}
+
+		.mw-content-rtl & {
+			/* @noflip */
+			margin: 1em @topicIndent 0 0;
+		}
+
 		padding: 0;
 
 		.flow-author {
