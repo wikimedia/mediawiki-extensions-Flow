@@ -104,6 +104,41 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_7f8b9be8",
+        "filename": "modules/styles/board/editor-switcher.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-28T00:03:39Z",
+      "side": 1,
+      "message": "Done in the commit underneath",
+      "parentUuid": "0ed113e2_44812aa3",
+      "revId": "b941b433ccff28a44018c4aa8bc018909a4d4fb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_ff76ab00",
+        "filename": "modules/styles/board/editor-switcher.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-28T00:03:39Z",
+      "side": 1,
+      "message": "I just noticed that the equivalent blue border for VE is animated (with a CSS transition) while this one isn\u0027t. So I suggest we either add the same transition here, or get rid of the one for VE.",
+      "revId": "b941b433ccff28a44018c4aa8bc018909a4d4fb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_84e87278",
         "filename": "modules/styles/board/editor-switcher.less",
         "patchSetId": 2
