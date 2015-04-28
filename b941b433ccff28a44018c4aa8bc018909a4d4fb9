@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_51548b56",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 386
+      },
+      "writtenOn": "2015-04-28T05:51:32Z",
+      "side": 1,
+      "message": "Good catch. Thanks.",
+      "parentUuid": "0ed113e2_44f04a8e",
+      "revId": "b941b433ccff28a44018c4aa8bc018909a4d4fb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_24d8a6f3",
         "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.less",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2015-04-27T22:27:02Z",
       "side": 1,
       "message": "You can combine the two lines above into padding: 1px 8px 40px;\n\nAlso, why are you adding 1px of top padding and 8px of left/right padding? (The commit message doesn\u0027t say.) Is there a reason you don\u0027t also need to add 1px to the bottom padding? (making it 41px instead of 40px)",
+      "revId": "b941b433ccff28a44018c4aa8bc018909a4d4fb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_513fab20",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 386
+      },
+      "writtenOn": "2015-04-28T05:51:32Z",
+      "side": 1,
+      "message": "The final goal is to have a separation of 8px between the text and the lines of the editing area. Since the whole thing is made of boxes inside of other boxes that each adds its own margin/paddings. It needed one more pixel to achieve the general 8px distance I tried to use consistently to separate elements.\n\nIt would be great to refactor the layout so that the code could communicate that better, but that seems out of what I can do with the current patchset, and I welcome any engineer to refactor, cross-browser test, etc.",
+      "parentUuid": "0ed113e2_24d8a6f3",
       "revId": "b941b433ccff28a44018c4aa8bc018909a4d4fb9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_f1249f09",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 386
+      },
+      "writtenOn": "2015-04-28T05:51:32Z",
+      "side": 1,
+      "message": "Why em? Em is a unit that depends on font-size and the container relationship of HTML elements. It introduces hard to spot issues and makes it hard to move elements around. I illustrated that with this example: http://codepen.io/anon/pen/JdoZRG\n\nPixels are not really an absolute unit ( http://inamidst.com/stuff/notes/csspx ). Avoiding them because old IE would not be able to properly zoom and introducing all kinds of misalignments Em result in, seems not a good tradeoff to me. More on this at http://snook.ca/archives/html_and_css/font-size-with-rem",
+      "parentUuid": "0ed113e2_c4c75a14",
+      "revId": "b941b433ccff28a44018c4aa8bc018909a4d4fb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_44d36ad7",
         "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.less",
         "patchSetId": 2
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_112043f1",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 386
+      },
+      "writtenOn": "2015-04-28T05:51:32Z",
+      "side": 1,
+      "message": "I wanted to move the icons to be closer to the bottom line of the text area. Ideally at 8px. It turns out that those controls are composed of many elements that add up different margin/padding. I tried to reduce it from one of those, but I\u0027m not sure if the right one. I don\u0027t have any preference, just wanted the icons to be close to the bottom border (at a consistent distance if possible).",
+      "parentUuid": "0ed113e2_44d36ad7",
+      "revId": "b941b433ccff28a44018c4aa8bc018909a4d4fb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_04dd62e1",
         "filename": "modules/styles/board/editor-switcher.less",
         "patchSetId": 2
@@ -81,6 +153,24 @@
       "writtenOn": "2015-04-27T22:27:02Z",
       "side": 1,
       "message": "Can we use ems here?\n\nAdd comment explaining why the bottom padding is different (I\u0027m guessing it\u0027s because of the 2px box-shadow?)",
+      "revId": "b941b433ccff28a44018c4aa8bc018909a4d4fb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_1177e3fe",
+        "filename": "modules/styles/board/editor-switcher.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 386
+      },
+      "writtenOn": "2015-04-28T05:51:32Z",
+      "side": 1,
+      "message": "Regarding the bottom padding, yes it is because of the 2px box shadow. It would be great to keep those calculations explicit in LESS but I\u0027m not familiar with the convention for organising and naming those variables (the original file was not following that approach, so a refactoring task may be considered).\n\nRegardign Em vs. px:\nEm is a unit that depends on font-size and the container relationship of HTML elements. It introduces hard to spot issues and makes it hard to move elements around. I illustrated that with this example: http://codepen.io/anon/pen/JdoZRG\nPixels are not really an absolute unit ( http://inamidst.com/stuff/notes/csspx ). Avoiding them because old IE would not be able to properly zoom and introducing all kinds of misalignments Em result in, seems not a good tradeoff to me. More on this at http://snook.ca/archives/html_and_css/font-size-with-rem",
+      "parentUuid": "0ed113e2_04dd62e1",
       "revId": "b941b433ccff28a44018c4aa8bc018909a4d4fb9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -139,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_b165b743",
+        "filename": "modules/styles/board/editor-switcher.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 386
+      },
+      "writtenOn": "2015-04-28T05:51:32Z",
+      "side": 1,
+      "message": "Since we are using Less, it would be great to be able to use the same exact mixin. In that way, if it changes in the future, it will remain consistent everywhere.",
+      "parentUuid": "0ed113e2_ff76ab00",
+      "revId": "b941b433ccff28a44018c4aa8bc018909a4d4fb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_84e87278",
         "filename": "modules/styles/board/editor-switcher.less",
         "patchSetId": 2
@@ -156,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_3159c790",
+        "filename": "modules/styles/board/editor-switcher.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 386
+      },
+      "writtenOn": "2015-04-28T05:51:32Z",
+      "side": 1,
+      "message": "This element is perceived by the user as part of the text area. The separation between both is 8px (4px for each element). The rest of the 6px elements are surrounded by the 2px distance of their container (to accommodate the highlight border) which results into the 8px distance I tried to use everywhere.",
+      "parentUuid": "0ed113e2_84e87278",
+      "revId": "b941b433ccff28a44018c4aa8bc018909a4d4fb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_248666bf",
         "filename": "modules/styles/board/form-actions.less",
         "patchSetId": 2
@@ -167,6 +293,24 @@
       "writtenOn": "2015-04-27T22:27:02Z",
       "side": 1,
       "message": "Why is this being converted from em to px? :(",
+      "revId": "b941b433ccff28a44018c4aa8bc018909a4d4fb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_d1815bc9",
+        "filename": "modules/styles/board/form-actions.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 386
+      },
+      "writtenOn": "2015-04-28T05:51:32Z",
+      "side": 1,
+      "message": "Em is a unit that depends on font-size and the container relationship of HTML elements. It introduces hard to spot issues and makes it hard to move elements around. I illustrated that with this example: http://codepen.io/anon/pen/JdoZRG\n\nPixels are not really an absolute unit ( http://inamidst.com/stuff/notes/csspx ). Avoiding them because old IE would not be able to properly zoom and introducing all kinds of misalignments Em result in, seems not a good tradeoff to me. More on this at http://snook.ca/archives/html_and_css/font-size-with-rem",
+      "parentUuid": "0ed113e2_248666bf",
       "revId": "b941b433ccff28a44018c4aa8bc018909a4d4fb9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
