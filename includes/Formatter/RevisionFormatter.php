@@ -162,7 +162,7 @@ class RevisionFormatter {
 	 * @param IContextSource $ctx
 	 * @return array|false
 	 */
-	public function formatApi( FormatterRow $row, IContextSource $ctx ) {
+	public function formatApi( FormatterRow $row, IContextSource $ctx, $action = 'view' ) {
 		$user = $ctx->getUser();
 		// @todo the only permissions currently checked in this class are prev-revision
 		// mostly permissions is used for the actions,  figure out how permissions should
@@ -172,12 +172,9 @@ class RevisionFormatter {
 			return false;
 		}
 
-		$isContentAllowed = $this->includeContent && $this->permissions->isAllowed( $row->revision, 'view' );
-		$isHistoryAllowed = $this->permissions->isAllowed( $row->revision, 'history' );
-
-		if ( !$isHistoryAllowed ) {
-			return array();
-		}
+        if ( !$this->permissions->isAllowed( $row->revision, $action ) ) {
+            return false;
+        }
 
 		$moderatedRevision = $this->templating->getModeratedRevision( $row->revision );
 		$ts = $row->revision->getRevisionId()->getTimestampObj();
@@ -234,7 +231,7 @@ class RevisionFormatter {
 			);
 		}
 
-		if ( $isContentAllowed ) {
+		if ( $this->includeContent ) {
 			// topic titles are always forced to plain text
 			$contentFormat = $this->decideContentFormat( $row->revision );
 
