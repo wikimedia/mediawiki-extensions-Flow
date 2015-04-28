@@ -731,6 +731,9 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_DELETED => '',
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
+		'root-permissions' => array(
+			PostRevision::MODERATED_NONE => '',
+		),
 		'history' => array(), // views don't generate history
 		'handler-class' => 'Flow\Actions\FlowAction',
 	),
