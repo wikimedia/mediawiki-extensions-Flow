@@ -468,7 +468,7 @@ class TopicBlock extends AbstractBlock {
 	public function renderApi( array $options ) {
 		$output = array( 'type' => $this->getName() );
 
-		$topic = $this->loadTopicTitle( $this->action === 'history' ? 'history' : 'view' );
+		$topic = $this->loadTopicTitle();
 		if ( !$topic ) {
 			return $output + $this->finalizeApiOutput($options);
 		}
@@ -733,7 +733,7 @@ class TopicBlock extends AbstractBlock {
 
 		$revisions = array();
 		foreach ( $history as $row ) {
-			$serialized = $serializer->formatApi( $row, $this->context );
+			$serialized = $serializer->formatApi( $row, $this->context, 'history' );
 			// if the user is not allowed to see this row it will return empty
 			if ( $serialized ) {
 				$revisions[$serialized['revisionId']] = $serialized;
@@ -767,11 +767,10 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	/**
-	 * @param string $action Permissions action to require to return revision
 	 * @return AbstractRevision|null
 	 * @throws InvalidDataException
 	 */
-	public function loadTopicTitle( $action = 'view' ) {
+	public function loadTopicTitle() {
 		if ( $this->workflow->isNew() ) {
 			throw new InvalidDataException( 'New workflows do not have any related content', 'missing-topic-title' );
 		}
@@ -794,7 +793,7 @@ class TopicBlock extends AbstractBlock {
 			$this->topicTitle->setRootPost( $this->topicTitle );
 		}
 
-		if ( !$this->permissions->isAllowed( $this->topicTitle, $action ) ) {
+		if ( !$this->permissions->isAllowed( $this->topicTitle, 'view' ) ) {
 			$this->addError( 'permissions', $this->getDisallowedErrorMessage( $this->topicTitle ) );
 			return null;
 		}
@@ -948,7 +947,7 @@ class TopicBlock extends AbstractBlock {
      *       e.g. "Hide post in <TITLE>", "Unlock <TITLE>", etc.
 	 */
 	public function setPageTitle( \OutputPage $out ) {
-		$topic = $this->loadTopicTitle( $this->action === 'history' ? 'history' : 'view' );
+		$topic = $this->loadTopicTitle();
 		if ( !$topic ) {
 			return;
 		}
