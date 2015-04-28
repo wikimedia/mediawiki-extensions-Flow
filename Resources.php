@@ -16,6 +16,7 @@ $wgResourceModules += array(
 		),
 	),
 	'ext.flow.contributions.styles' => $flowResourceTemplate + array(
+		'position' => 'top',
 		'styles' => array(
 			'styles/history/history-line.less',
 		),
@@ -240,35 +241,41 @@ $wgResourceModules += array(
 	) + $mobile,
 	// @todo: upstream to mediawiki ui
 	'ext.flow.mediawiki.ui.modal' => $flowResourceTemplate + array(
+		'position' => 'top',
 		'styles' => array(
 			'styles/mediawiki.ui/modal.less',
 		),
 	) + $mobile,
 	// @todo: upstream to mediawiki ui
 	'ext.flow.mediawiki.ui.text' => $flowResourceTemplate + array(
+		'position' => 'top',
 		'styles' => array(
 			'styles/mediawiki.ui/text.less',
 		),
 	) + $mobile,
 	// @todo: upstream to mediawiki ui
 	'ext.flow.mediawiki.ui.form' => $flowResourceTemplate + array(
+		'position' => 'top',
 		'styles' => array(
 			'styles/mediawiki.ui/forms.less',
 		),
 	) + $mobile,
 	// @todo: upstream to mediawiki ui
 	'ext.flow.mediawiki.ui.tooltips' => $flowResourceTemplate + array(
+		'position' => 'top',
 		'styles' => array(
 			'styles/mediawiki.ui/tooltips.less',
 		),
 	) + $mobile,
 	'ext.flow.icons.styles' => $flowResourceTemplate + array(
+		'position' => 'top',
 		'styles' => array(
 			'wikiglyph/wikiglyphs.css',
 			'wikiglyph/flow-override.less',
 		),
 	) + $mobile,
 	'ext.flow.styles.base' => $flowResourceTemplate + array(
+		'position' => 'top',
 		'styles' => array(
 			'styles/common.less',
 			'styles/errors.less',
@@ -276,6 +283,7 @@ $wgResourceModules += array(
 		),
 	) + $mobile,
 	'ext.flow.board.styles' => $flowResourceTemplate + array(
+		'position' => 'top',
 		'styles' => array(
 			'styles/board/header.less',
 			'styles/board/menu.less',
@@ -290,6 +298,7 @@ $wgResourceModules += array(
 		),
 	) + $mobile,
 	'ext.flow.board.topic.styles' => $flowResourceTemplate + array(
+		'position' => 'top',
 		'styles' => array(
 			'styles/board/topic/titlebar.less',
 			'styles/board/topic/meta.less',
