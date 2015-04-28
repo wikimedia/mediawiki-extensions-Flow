@@ -142,6 +142,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_368695bf",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-28T20:48:17Z",
+      "side": 1,
+      "message": ".then() doesn\u0027t just attach a handler, it also returns a new promise that wraps the old one.\n\nConsider:\n\n    dfdA \u003d $.Deferred();\n    promiseA \u003d dfdA.promise();\n    promiseB \u003d promiseA.then( function () {\n        console.log(\u0027then\u0027);\n        return $.ajax( .... );\n    } );\n    promiseA.done( function()  { console.log(\u0027A done\u0027); } );\n    promiseB.done( function () { console.log(\u0027B done\u0027); } );\n    dfdA.resolve();\n\nThe output of this will be:\n\n    then\n    A done\n    [a few seconds pass]\n    B done\n\nBecause what the .then call does is it waits for promiseA to resolve, then runs the callback, and because that returns another promise (the AJAX request), it first waits for that promise to resolve before resolving promiseB. However, in the meantime, the promiseA.done callback can execute. It does execute after the .then callback because it was registered later, but it doesn\u0027t wait for the AJAX request.\n\nIn your case, the promise you return is resolved immediately, whereas the .then() chain contains async operations (mw.loader.using is sometimes async, mw.flow.parsoid.convert is always async). So the promise returned by this function will resolve before pretty much anything has happened.\n\nI think it would be helpful to have the promise resolve with the *instance* of the loaded editor, rather than its name. The instance won\u0027t be available until the editor has fully finished loading, so that will force us to do it right.",
+      "parentUuid": "0ed113e2_cb78dbc1",
+      "revId": "0729addd49ae4c21b2a6979ce9ecad41250480b8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_031d7878",
         "filename": "modules/editor/ext.flow.parsoid.js",
         "patchSetId": 3
