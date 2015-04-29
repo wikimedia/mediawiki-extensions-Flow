@@ -50,17 +50,4 @@
 		this.getToolbar().$element.insertAfter( this.getToolbar().getSurface().$element );
 	};
 
-	// This is a workaround.
-	//
-	// We need to make sure the MW platform wins (we need it for e.g. linkCache), because our
-	// dependencies do not agree.
-	//
-	// ext.visualEditor.data depends on ext.visualEditor.mediawiki, which provides
-	// ve.init.mw.Platform.js.  However, we also use ext.visualEditor.standalone, which
-	// provides ve.init.sa.Platform.  Both of these self-initialize ve.init.platform.
-	ve.init.platform = new ve.init.mw.Platform();
-
-	OO.ui.getUserLanguages = ve.init.platform.getUserLanguages.bind( ve.init.platform );
-
-	OO.ui.msg = ve.init.platform.getMessage.bind( ve.init.platform );
 } ( mediaWiki, OO, ve ) );
