@@ -34,6 +34,24 @@
       "revId": "75ced63fb74b9ee45349ad7a70a2158c9d687939",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_320f7ae6",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2015-04-29T14:31:51Z",
+      "side": 0,
+      "message": "You can\u0027t say \u0027already\u0027 when you file the bug two days after my comment :)",
+      "parentUuid": "0ed113e2_df0ac728",
+      "revId": "75ced63fb74b9ee45349ad7a70a2158c9d687939",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
