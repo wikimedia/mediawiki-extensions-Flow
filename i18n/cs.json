@@ -19,5 +19,7 @@
 	"flow-post-action-edit-post": "Editovat",
 	"flow-topic-action-edit-title": "Upravit název",
 	"flow-topic-action-history": "Historie",
-	"flow-edit-header-submit-overwrite": "Přepsat popis"
+	"flow-edit-header-submit": "Uložit popis",
+	"flow-edit-header-submit-overwrite": "Přepsat popis",
+	"flow-ve-switch-editor-tool-title": "Přepnout do Wikitext editoru"
 }

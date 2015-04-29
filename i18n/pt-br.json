@@ -49,7 +49,6 @@
 	"flow-post-actions": "Ações",
 	"flow-topic-actions": "Ações",
 	"flow-cancel": "Cancelar",
-	"flow-preview": "Pré-visualizar",
 	"flow-show-change": "Mostrar alterações",
 	"flow-last-modified-by": "{{GENDER:$1|Modificado}} pela última vez por $1",
 	"flow-stub-post-content": "\"Devido a um erro técnico, esta mensagem não pode ser recuperada.\"",
@@ -132,7 +131,7 @@
 	"flow-error-not-allowed-delete": "Este tópico foi eliminado.",
 	"flow-error-not-allowed-suppress": "Este tópico foi suprimido.",
 	"flow-error-not-a-post": "O título do tópico não pode ser salvo como uma publicação.",
-	"flow-error-missing-header-content": "O cabeçalho não tem conteúdo. É necessário haver conteúdo para salvar um cabeçalho.",
+	"flow-error-missing-header-content": "A descrição não tem conteúdo. É necessário haver conteúdo para gravar uma descrição.",
 	"flow-error-missing-prev-revision-identifier": "O identificador da revisão anterior está em falta.",
 	"flow-error-prev-revision-mismatch": "Outro usuário editou esta mensagem há poucos segundos. {{GENDER:$3|Você}} tem certeza de que pretende substituir esta alteração recente?",
 	"flow-error-prev-revision-does-not-exist": "Não foi possível encontrar a revisão anterior.",
@@ -183,6 +182,5 @@
 	"flow-topic-html-title": "$1 em $2",
 	"flow-special-type": "Tipo",
 	"flow-special-type-post": "Publicação",
-	"flow-special-type-workflow": "Fluxo de Trabalho",
-	"flow-preview-warning": "Você está vendo uma pré-visualização. Submeta o formulário para concluir seu envio, ou clique \"{{int:flow-preview-return-edit-post}} para continuar escrevendo."
+	"flow-special-type-workflow": "Fluxo de Trabalho"
 }

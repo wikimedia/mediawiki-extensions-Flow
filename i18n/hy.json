@@ -3,10 +3,15 @@
 		"authors": [
 			"M hamlet",
 			"Vadgt",
-			"Xelgen"
+			"Xelgen",
+			"Aram1985"
 		]
 	},
-	"flow-preview": "Նախադիտել",
+	"flow-edit-header-link": "Խմբագրել նկարագրությունը",
+	"flow-edit-header-submit": "Պահպանել նկարագրությունը:",
 	"flow-notification-edit": "$1 մասնակիցը {{GENDER:$1|խմբագրեց}} <span class=\"plainlinks\">[$5 գրառումը]</span> [[$3|$4]] էջի «$2» թեմայում։",
-	"flow-notification-rename": "$1՝ {{GENDER:$1|փոխեց}} վերնագրիրը [$2 $3]-ի \"$4\"-ում [[$5|$6]]-ի վրա:"
+	"flow-notification-rename": "$1՝ {{GENDER:$1|փոխեց}} վերնագրիրը [$2 $3]-ի \"$4\"-ում [[$5|$6]]-ի վրա:",
+	"flow-revision-permalink-warning-header-first": "Սա ժամանակավոր հղում է դեպի նկարագրության առաջին տարբերակ:\nԴուք կարող եք դիտել ավելի ուշ տարբերակները [$2 էջի պատմության ցուցակ]ում.",
+	"flow-special-enableflow-archive-title-format-default-value": "%s/Պահոց_%d",
+	"flow-undo-edit-header": "Նկարագրությունը խմբագրվում է"
 }
