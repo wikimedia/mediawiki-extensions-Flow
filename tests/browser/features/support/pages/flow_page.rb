@@ -8,6 +8,15 @@ class FlowPage < WikiPage
   # MEDIAWIKI_URL must have this in $wgFlowOccupyPages array or $wgFlowOccupyNamespaces.
   page_url URL.url("Talk:Flow_QA")
 
+  def visualeditor_or_textarea(parent_form_class)
+    parent = form_element(class: parent_form_class).when_present
+    if parent.div_element(class: 'flow-editor-visualeditor').exists?
+      parent.div_element(class: 've-ce-documentNode')
+    else
+      parent.text_area_element
+    end
+  end
+
   # board header
   a(:edit_header_link, title: "Edit header")
   div(:header_content, css: ".flow-board-header-detail-view p", index: 0)
@@ -180,7 +189,11 @@ class FlowPage < WikiPage
   # New topic creation
   form(:new_topic_form, css: ".flow-newtopic-form")
   text_field(:new_topic_title, name: "topiclist_topic")
-  textarea(:new_topic_body, name: "topiclist_content")
+
+  def new_topic_body_element
+    visualeditor_or_textarea 'flow-newtopic-form'
+  end
+
   button(:new_topic_cancel, css: ".flow-newtopic-form .mw-ui-destructive")
   # FIXME: Remove flow-ui-constructive reference when cache has cleared
   button(:new_topic_save, css: ".flow-newtopic-form .mw-ui-constructive, .flow-newtopic-form .flow-ui-constructive")
@@ -189,14 +202,21 @@ class FlowPage < WikiPage
   # TODO (mattflaschen, 2014-06-24): Should distinguish between
   # top-level replies to the topic, and replies to regular posts
   form(:new_reply_form, css: ".flow-reply-form")
-  # Is an input when not focused, textarea when focused
-  textarea(:new_reply_input, css: ".flow-reply-form .mw-ui-input")
+
+  def new_reply_input_element
+    visualeditor_or_textarea 'flow-reply-form'
+  end
+
   button(:new_reply_cancel, css: ".flow-reply-form .mw-ui-destructive")
   button(:new_reply_save, css: ".flow-reply-form .mw-ui-constructive")
   button(:keep_editing, text: "Keep editing")
 
   # Editing post workflow
-  text_area(:post_edit, css: ".flow-edit-post-form textarea")
+
+  def post_edit_element
+    visualeditor_or_textarea 'flow-edit-post-form'
+  end
+
   button(:change_post_save, css: ".flow-edit-post-form .mw-ui-constructive")
 
   div(:small_spinner, class: "mw-spinner mw-spinner-small mw-spinner-inline")
