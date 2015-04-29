@@ -1070,7 +1070,8 @@ class FlowHooks {
 	}
 
 	/**
-	 * Moving a Flow page is not yet supported; make sure it can't be done.
+	 * Moves of Flow topic pages (NS_TOPIC) are never permitted, and board moves
+	 * are not always permitted.
 	 *
 	 * @param Title $oldTitle
 	 * @param Title $newTitle
