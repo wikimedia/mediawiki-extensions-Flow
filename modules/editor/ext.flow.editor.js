@@ -183,63 +183,70 @@
 		 * @return {jQuery.Promise} Will resolve once editor instance is loaded
 		 */
 		switchEditor: function ( $node, desiredEditor ) {
-			var content, oldFormat, newFormat,
-				editorList = mw.config.get( 'wgFlowEditorList' ),
-				editor = mw.flow.editor.getEditor( $node ),
-				deferred = $.Deferred(),
-				performSwitch = function () {
-					if ( mw.flow.editors[desiredEditor].static.isSupported() ) {
-						content = editor.getRawContent();
-
-						oldFormat = editor.constructor.static.format;
-						mw.flow.editor.editor = mw.flow.editors[desiredEditor];
-						newFormat = mw.flow.editor.editor.static.format;
-
-						mw.flow.editor.destroy( $node );
-
-						// convert content from current editor's format to the
-						// one we're switching to, then fire up that editor
-						mw.flow.parsoid.convert( oldFormat, newFormat, content )
-							.done( function( content ) {
-								mw.flow.editor.load( $node, content );
-							});
-
-						deferred.resolve();
-					} else {
-						deferred.reject( 'editor-not-supported' );
-					}
-				};
+			var editorList = mw.config.get( 'wgFlowEditorList' ),
+				editor = mw.flow.editor.getEditor( $node );
 
 			if ( !editor ) {
 				// $node is not an editor
-				deferred.reject( 'not-an-editor' );
+				return $.Deferred().reject( 'not-an-editor' ).promise();
 			} else if ( editorList.indexOf( desiredEditor ) === -1 ) {
 				// desiredEditor does not exist
-				deferred.reject( 'unknown-editor-type' );
-			} else {
-				mw.loader.using( 'ext.flow.editors.' + desiredEditor ).then(
-					performSwitch,
-					function() {
-						deferred.reject( 'fail-loading-editor' );
-					}
-				);
+				return $.Deferred().reject( 'unknown-editor-type' ).promise();
 			}
 
-			deferred.then(
-				function() {
+			return mw.loader.using( 'ext.flow.editors.' + desiredEditor )
+
+				// kill existing editor
+				.then( function () {
+					if ( !mw.flow.editors[desiredEditor].static.isSupported() ) {
+						return $.Deferred().reject( 'editor-not-supported' );
+					}
+
+					var content = editor.getRawContent(),
+						oldFormat = editor.constructor.static.format,
+						newFormat;
+
+					mw.flow.editor.editor = mw.flow.editors[desiredEditor];
+					newFormat = mw.flow.editor.editor.static.format;
+
+					mw.flow.editor.destroy( $node );
+
+					// prepare data to feed into conversion
+					return {
+						'from': oldFormat,
+						'to': newFormat,
+						'content': content
+					};
+				} )
+
+				// convert content to new editor format
+				.then( function ( data ) {
+					return mw.flow.parsoid.convert( data.from, data.to, data.content );
+				} )
+				.then( null, function () {
+					// Map Parsoid failure to 'failed-parsoid-convert'
+					return 'failed-parsoid-convert';
+				} )
+
+				// load new editor with converted data
+				.then( function ( content ) {
+					return mw.flow.editor.load( $node, content );
+				} )
+
+				// store editor preference
+				.then( function () {
 					if ( !mw.user.isAnon() ) {
 						// update the user preferences; no preferences for anons
 						new mw.Api().saveOption( 'flow-editor', desiredEditor );
 						// ensure we also see that preference in the current page
 						mw.user.options.set( 'flow-editor', desiredEditor );
 					}
-				},
-				function( rejectionCode ) {
-					mw.flow.debug( '[switchEditor] Could not switch to ' + desiredEditor + ' : ' + rejectionCode );
-				}
-			);
+				} )
 
-			return deferred.promise();
+				// anything that results in a reject() will be logged
+				.fail( function( rejectionCode ) {
+					mw.flow.debug( '[switchEditor] Could not switch to ' + desiredEditor + ' : ' + rejectionCode );
+				} );
 		},
 
 		focus: function( $node ) {
