@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_4c8dc535",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-29T06:39:40Z",
+      "side": 1,
+      "message": "The original reason I wanted to have these inside the deferred chain is so that this rejection would also trigger the .fail() at the end of the chain.\n\nAll that one does is a console.log, though, so I don\u0027t really mind it not going through that fail handler at this point.",
+      "revId": "4bdf77696a1570d0f2205d902d5cdffedb5666cf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
