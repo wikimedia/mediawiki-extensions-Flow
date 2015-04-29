@@ -160,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_ec94b948",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-29T06:39:31Z",
+      "side": 1,
+      "message": "Ooh! I hadn\u0027t noticed (yes, even after you pointed it out) that the result of the .then wasn\u0027t re-assigned to `deferred`. In my mind, the `deferred` being returned was the one after executing all .then()s.\n\n    deferred \u003d deferred.then().then().then();\n    return deferred;\n\nAnyway, I see you\u0027ve already cleaned it up in a follow-up patchset :)",
+      "parentUuid": "0ed113e2_368695bf",
+      "revId": "0729addd49ae4c21b2a6979ce9ecad41250480b8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_031d7878",
         "filename": "modules/editor/ext.flow.parsoid.js",
         "patchSetId": 3
