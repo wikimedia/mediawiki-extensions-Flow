@@ -420,7 +420,6 @@ $wgResourceModules += array(
 		'dependencies' => array(
 			'oojs',
 			'mediawiki.user',
-			'ext.flow.parsoid',
 			// specific editor (ext.flow.editors.*) dependencies (if any) will be loaded via JS
 		),
 	) + $mobile,
@@ -488,11 +487,6 @@ $wgResourceModules += array(
 		),
 	),
 
-	'ext.flow.parsoid' => $flowResourceTemplate + array(
-		'scripts' => array(
-			'editor/ext.flow.parsoid.js',
-		),
-	) + $mobile,
 	// This integrates with core mediawiki.messagePoster, and the module name
 	// must be exactly this.
 	'mediawiki.messagePoster.flow-board' => $flowResourceTemplate + array(
