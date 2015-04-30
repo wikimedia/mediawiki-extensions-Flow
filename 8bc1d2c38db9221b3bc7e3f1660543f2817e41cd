@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_4f004904",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 877,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-30T17:23:59Z",
+      "side": 1,
+      "message": "jsduck throws an error if you use String instead of string. jsduck validation hasn\u0027t been run on this repo in a while; I ran it yesterday and got 357 errors. I\u0027m now working on a patch to fix all these and make jsduck run on every commit so we can\u0027t reintroduce these errors.",
+      "parentUuid": "0ed113e2_e49a85bc",
+      "revId": "8bc1d2c38db9221b3bc7e3f1660543f2817e41cd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_cefa02b6",
         "filename": "modules/engine/components/common/flow-component-events.js",
         "patchSetId": 1
