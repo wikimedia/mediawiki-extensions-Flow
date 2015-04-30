@@ -468,7 +468,7 @@ class TopicBlock extends AbstractBlock {
 	public function renderApi( array $options ) {
 		$output = array( 'type' => $this->getName() );
 
-		$topic = $this->loadTopicTitle( $this->action === 'history' ? 'history' : 'view' );
+		$topic = $this->loadTopicTitle();
 		if ( !$topic ) {
 			return $output + $this->finalizeApiOutput($options);
 		}
@@ -733,7 +733,7 @@ class TopicBlock extends AbstractBlock {
 
 		$revisions = array();
 		foreach ( $history as $row ) {
-			$serialized = $serializer->formatApi( $row, $this->context );
+			$serialized = $serializer->formatApi( $row, $this->context, 'history' );
 			// if the user is not allowed to see this row it will return empty
 			if ( $serialized ) {
 				$revisions[$serialized['revisionId']] = $serialized;
