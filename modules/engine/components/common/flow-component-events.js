@@ -265,13 +265,13 @@
 			flowComponent = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $this ),
 			dataParams = $this.data(),
 			handlerName = dataParams.flowApiHandler,
-			preHandlerReturns = [],
 			info = {
 				$target: null,
 				status: null,
 				component: flowComponent
 			},
-			args = Array.prototype.slice.call( arguments, 0 );
+			args = Array.prototype.slice.call( arguments, 0 ),
+			queryMap = flowComponent.Api.getQueryMap( self.href || self );
 
 		event.preventDefault();
 
@@ -285,8 +285,10 @@
 			$target = $this;
 		}
 
+		// insert queryMap & info into args for prehandler
 		info.$target = $target;
-		args.splice( 1, 0, info ); // insert info into args for prehandler
+		args.splice( 1, 0, info );
+		args.splice( 2, 0, queryMap );
 
 		// Make sure an API call is not already in progress for this target
 		if ( $target.closest( '.flow-api-inprogress' ).length ) {
@@ -301,7 +303,7 @@
 		// Let generic pre-handler take care of edit conflicts
 		$.each( flowComponent.UI.events.globalApiPreHandlers, function( key, callbackArray ) {
 			$.each( callbackArray, function ( i, callbackFn ) {
-				preHandlerReturns.push( callbackFn.apply( self, args ) );
+				queryMap = callbackFn.apply( self, args );
 			} );
 		} );
 
@@ -313,15 +315,18 @@
 		if ( flowComponent.UI.events.apiPreHandlers[ handlerName ] ) {
 			// apiPreHandlers can return FALSE to prevent processing,
 			// nothing at all to proceed,
-			// or OBJECT to add param overrides to the API
-			// or FUNCTION to modify API params
+			// or new queryMap (= API params)
 			$.each( flowComponent.UI.events.apiPreHandlers[ handlerName ], function ( i, callbackFn ) {
+				// make sure queryMap is up to date (may have been altered by
+				// previous preHandler)
+				args.splice( 2, 1, queryMap );
 				preHandlerReturn = callbackFn.apply( self, args );
-				preHandlerReturns.push( preHandlerReturn );
 
 				if ( preHandlerReturn === false ) {
 					// Callback returned false; break out of this loop
 					return false;
+				} else {
+					queryMap = preHandlerReturn;
 				}
 			} );
 
@@ -330,7 +335,7 @@
 				flowComponent.debug( false, 'apiPreHandler returned false', handlerName, args );
 
 				// Abort any old request in flight; this is normally done automatically by requestFromNode
-				flowComponent.Api.abortOldRequestFromNode( self, null, null, preHandlerReturns );
+				flowComponent.Api.abortOldRequestFromNode( self, queryMap, null );
 
 				// @todo support for multiple indicators on same target
 				$target.removeClass( 'flow-api-inprogress' );
@@ -341,7 +346,7 @@
 		}
 
 		// Make the request
-		$deferred = flowComponent.Api.requestFromNode( self, preHandlerReturns );
+		$deferred = flowComponent.Api.requestFromNode( self, queryMap );
 		if ( !$deferred ) {
 			mw.flow.debug( '[FlowApi] [interactiveHandlers] apiRequest element is not anchor or form element' );
 			$deferred = $.Deferred();
