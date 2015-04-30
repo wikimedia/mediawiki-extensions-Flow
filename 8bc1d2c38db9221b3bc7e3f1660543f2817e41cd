@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_e4e1252a",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-30T10:32:05Z",
+      "side": 1,
+      "message": "Yup, missed that. Should\u0027ve indeed been reassigned to $deferred.",
+      "parentUuid": "0ed113e2_eef586c8",
+      "revId": "8bc1d2c38db9221b3bc7e3f1660543f2817e41cd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_0ef1ead9",
         "filename": "modules/engine/components/common/flow-component-events.js",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2015-04-30T00:53:42Z",
       "side": 1,
       "message": "Note that the returned promise does not cover the apiHandlers. Is that intended? If you do need to cover the apiHandlers (which at first glance seems more sensible to me), you need to return the result of $.when.apply() instead.",
+      "revId": "8bc1d2c38db9221b3bc7e3f1660543f2817e41cd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_64d53547",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-30T10:32:05Z",
+      "side": 1,
+      "message": "Mhh yeah; I originally chained apiHandlers, but figured out later that they weren\u0027t properly chainable \u0026 changed that approach. Guess I forgot to come back and fix this return here; should indeed return the $.when result",
+      "parentUuid": "0ed113e2_0ef1ead9",
       "revId": "8bc1d2c38db9221b3bc7e3f1660543f2817e41cd",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_e49a85bc",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 877,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-30T10:32:05Z",
+      "side": 1,
+      "message": "Out of curiosity: Is there any reason it should be lowercase? https://github.com/senchalabs/jsduck/wiki/@param also has it with uppercase S\n(I just copied it from existing code elsewhere, so I have no idea)",
+      "parentUuid": "0ed113e2_aeff7ea6",
+      "revId": "8bc1d2c38db9221b3bc7e3f1660543f2817e41cd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_cefa02b6",
         "filename": "modules/engine/components/common/flow-component-events.js",
         "patchSetId": 1
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_848a996c",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 878,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-30T10:32:05Z",
+      "side": 1,
+      "message": "I always wondered why it was @returns in JS (IDE fill that out)\nTurns out both are acceptable (https://github.com/senchalabs/jsduck/wiki/@return) but I definitely prefer singular too!\n\nAlso, no idea where I got {Array\u003cFunction\u003e} from, definitely prefer Function[] too",
+      "parentUuid": "0ed113e2_cefa02b6",
+      "revId": "8bc1d2c38db9221b3bc7e3f1660543f2817e41cd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_cec76266",
         "filename": "modules/engine/components/common/flow-component-events.js",
         "patchSetId": 1
@@ -81,6 +153,24 @@
       "writtenOn": "2015-04-30T00:53:42Z",
       "side": 1,
       "message": "Instead of doing\n\n    $.each( preHandlers, function ( key, callback ) {\n         ...\n        preHandlers[key] \u003d somethingNew;\n    } );\n\nyou can also do\n    preHandlers \u003d $.map( preHandlers, function ( callback ) {\n        return somethingNew;\n    } );",
+      "revId": "8bc1d2c38db9221b3bc7e3f1660543f2817e41cd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_a451ddde",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 903,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-30T10:32:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ed113e2_cec76266",
       "revId": "8bc1d2c38db9221b3bc7e3f1660543f2817e41cd",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
