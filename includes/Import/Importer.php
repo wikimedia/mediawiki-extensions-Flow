@@ -526,10 +526,15 @@ class TalkpageImportOperation {
 		$isNew = $state->boardWorkflow->isNew();
 		$state->logger->debug( 'Workflow isNew: ' . var_export( $isNew, true ) );
 		if ( $isNew ) {
-			$this->occupationController->allowCreation(
+			$allowCreationStatus = $this->occupationController->allowCreation(
 				$destinationTitle,
-				$this->occupationController->getTalkpageManager()
+				$this->occupationController->getTalkpageManager(),
+				/* $mustNotExist = */ true
 			);
+			if ( !$allowCreationStatus->isGood() ) {
+				throw new ImportException( "allowCreation failed to allow the import destination, with the following error:\n" . $allowCreationStatus->getWikiText() );
+			}
+
 			$status = $this->occupationController->ensureFlowRevision(
 				new Article( $destinationTitle ),
 				$state->boardWorkflow

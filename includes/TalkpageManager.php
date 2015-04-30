@@ -30,10 +30,13 @@ interface OccupationController {
 	/**
 	 * @param Title $title
 	 * @param User $user
-	 * @return bool Returns true when the provided user has the rights to
-	 *  convert $title from whatever it is now to a flow board.
+	 * @param bool $mustNotExist Whether the page is required to not exist; defaults to
+	 *   true.
+	 * @return Status Returns successful status when the provided user has the rights to
+	 *  convert $title from whatever it is now to a flow board; otherwise, specifies
+	 *  the error.
 	 */
-	public function allowCreation( Title $title, User $user );
+	public function allowCreation( Title $title, User $user, $mustNotExist = true );
 
 	/**
 	 * Gives a user object used to manage talk pages
@@ -169,7 +172,9 @@ class TalkpageManager implements OccupationController {
 	 * @param User $user User who wants to create a board
 	 * @param bool $mustNotExist Whether the page is required to not exist; defaults to
 	 *   true.
-	 * @return bool
+	 * @return Status Returns successful status when the provided user has the rights to
+	 *  convert $title from whatever it is now to a flow board; otherwise, specifies
+	 *  the error.
 	 */
 	public function allowCreation( Title $title, User $user, $mustNotExist = true ) {
 		global $wgContentHandlerUseDB;
@@ -177,19 +182,24 @@ class TalkpageManager implements OccupationController {
 		// Arbitrary pages can only be enabled when content handler
 		// can store that content model in the database.
 		if ( !$wgContentHandlerUseDB ) {
-			return false;
+			return Status::newFatal( 'flow-error-allowcreation-no-usedb' );
 		}
 
 		// Only allow converting a non-existent page to flow
-		if ( $mustNotExist && $title->exists() ) {
-			return false;
+		if ( $mustNotExist ) {
+			// Make sure existence status is up to date
+			$title->getArticleID( Title::GAID_FOR_UPDATE );
+
+			if ( $title->exists() ) {
+				return Status::newFatal( 'flow-error-allowcreation-already-exists' );
+			}
 		}
 
 		// Gate this on the flow-create-board right, essentially giving
 		// wiki communities control over if flow board creation is allowed
 		// to everyone or just a select few.
 		if ( !$user->isAllowedAll( 'flow-create-board' ) ) {
-			return false;
+			return Status::newFatal( 'flow-error-allowcreation-flow-create-board' );
 		}
 
 		/*
@@ -199,7 +209,7 @@ class TalkpageManager implements OccupationController {
 		 */
 		$this->allowCreation[] = $title->getPrefixedDBkey();
 
-		return true;
+		return Status::newGood();
 	}
 
 	/**
