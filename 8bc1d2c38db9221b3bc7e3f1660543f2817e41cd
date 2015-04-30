@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_eef586c8",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-30T00:53:42Z",
+      "side": 1,
+      "message": "Please stick to the following convention: only use .then() if you\u0027re chaining / wrapping promises, use .done() otherwise. It sounds like you might want $deferred \u003d $deferred.then( ... ); here?",
+      "revId": "8bc1d2c38db9221b3bc7e3f1660543f2817e41cd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_0ef1ead9",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-30T00:53:42Z",
+      "side": 1,
+      "message": "Note that the returned promise does not cover the apiHandlers. Is that intended? If you do need to cover the apiHandlers (which at first glance seems more sensible to me), you need to return the result of $.when.apply() instead.",
+      "revId": "8bc1d2c38db9221b3bc7e3f1660543f2817e41cd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_aeff7ea6",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 877,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-30T00:53:42Z",
+      "side": 1,
+      "message": "Lowercase s string",
+      "revId": "8bc1d2c38db9221b3bc7e3f1660543f2817e41cd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_cefa02b6",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 878,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-30T00:53:42Z",
+      "side": 1,
+      "message": "@return singular, syntax for an array is Function[]",
+      "revId": "8bc1d2c38db9221b3bc7e3f1660543f2817e41cd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_cec76266",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 903,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-30T00:53:42Z",
+      "side": 1,
+      "message": "Instead of doing\n\n    $.each( preHandlers, function ( key, callback ) {\n         ...\n        preHandlers[key] \u003d somethingNew;\n    } );\n\nyou can also do\n    preHandlers \u003d $.map( preHandlers, function ( callback ) {\n        return somethingNew;\n    } );",
+      "revId": "8bc1d2c38db9221b3bc7e3f1660543f2817e41cd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
