@@ -194,9 +194,17 @@
 				return $.Deferred().reject( 'unknown-editor-type' ).promise();
 			}
 
+			function markPending( pending ) {
+				// Make editor disabled and pending while switching
+				// HACK: when these things are OOUI widgets we'll be able to use real OOUI facilities for this
+				$node.prop( 'disabled', pending );
+				$node.closest( '.flow-editor' ).toggleClass( 'oo-ui-texture-pending', pending );
+			}
+
+			markPending( true );
+
 			return mw.loader.using( 'ext.flow.editors.' + desiredEditor )
 
-				// kill existing editor
 				.then( function () {
 					if ( !mw.flow.editors[desiredEditor].static.isSupported() ) {
 						return $.Deferred().reject( 'editor-not-supported' );
@@ -208,8 +216,6 @@
 
 					mw.flow.editor.editor = mw.flow.editors[desiredEditor];
 					newFormat = mw.flow.editor.editor.static.format;
-
-					mw.flow.editor.destroy( $node );
 
 					// prepare data to feed into conversion
 					return {
@@ -236,12 +242,15 @@
 
 				// load new editor with converted data
 				.then( function ( data ) {
-					var content = data['flow-parsoid-utils'].content;
-					return mw.flow.editor.load( $node, content );
+					// Destroy old editor
+					mw.flow.editor.destroy( $node );
+					// Load new editor
+					return mw.flow.editor.load( $node, data['flow-parsoid-utils'].content );
 				} )
 
-				// store editor preference
+				// Unmark pending, store editor preference
 				.then( function () {
+					markPending( false );
 					if ( !mw.user.isAnon() ) {
 						// update the user preferences; no preferences for anons
 						new mw.Api().saveOption( 'flow-editor', desiredEditor );
@@ -253,6 +262,7 @@
 				// anything that results in a reject() will be logged
 				.fail( function( rejectionCode ) {
 					mw.flow.debug( '[switchEditor] Could not switch to ' + desiredEditor + ' : ' + rejectionCode );
+					markPending( false );
 				} );
 		},
 
