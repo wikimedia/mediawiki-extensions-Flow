@@ -112,6 +112,8 @@ class View extends ContextSource {
 				'ext.flow.icons.styles',
 				'ext.flow.board.styles',
 				'ext.flow.board.topic.styles',
+				// Needed for pending texture while switching editors
+				'oojs-ui.styles.textures'
 			) );
 		}
 

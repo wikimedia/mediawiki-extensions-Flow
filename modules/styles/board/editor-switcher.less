@@ -12,7 +12,9 @@
 		background-color: white;
 		textarea {
 			border: 0;
-			background: white;
+			// When we apply a pending texture to the editor, we don't want the toolbar to display
+			// in solid white on top of that.
+			background: transparent;
 			padding: 6px 6px 4px 6px;
 			&:focus {
 				box-shadow: none;
