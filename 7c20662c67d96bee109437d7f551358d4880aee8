@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_892cf190",
+        "filename": "includes/Content/Content.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-30T16:56:02Z",
+      "side": 1,
+      "message": "Done.  I kept it roughly the same for now (excluding already-existed as well as failures, like before).\n\nI added one more thing (the isset check) to make it even closer to what was previously in TalkPageManager.",
+      "parentUuid": "0ed113e2_e43da5b9",
+      "revId": "7c20662c67d96bee109437d7f551358d4880aee8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_24540d01",
         "filename": "includes/Import/Importer.php",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2015-04-30T10:09:14Z",
       "side": 1,
       "message": "This may have to be -\u003egetArticleId( Title::GAID_FOR_UPDATE ) to make sure it doesn\u0027t fetch article id from linkcache",
+      "revId": "7c20662c67d96bee109437d7f551358d4880aee8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_c9af59dd",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-04-30T16:56:02Z",
+      "side": 1,
+      "message": "Good catch.",
+      "parentUuid": "0ed113e2_24540d01",
       "revId": "7c20662c67d96bee109437d7f551358d4880aee8",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
