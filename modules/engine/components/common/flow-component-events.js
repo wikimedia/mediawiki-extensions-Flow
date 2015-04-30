@@ -732,25 +732,29 @@
 	 * @param {jQuery} $container
 	 */
 	function flowEventsMixinInitializeEditors( $container ) {
-		var flowComponent = this, $form;
+		var flowComponent = this;
 
-		mw.loader.using( 'ext.flow.editor', function() {
-			var $editors = $container.find( '.flow-editor textarea:not(.flow-input-compressed)' );
+		$container
+			.find( '.flow-editor textarea:not(.flow-input-compressed)' )
+			.each( function () {
+				var $editor = $( this ),
+					$form = $editor.closest( 'form' ),
+					content = $editor.val();
 
-			$editors.each( function() {
-				var $editor = $( this );
+				// Blank editor while loading
+				$editor.val( '' );
 
-				$form = $editor.closest( 'form' );
-				mw.flow.editor.load( $editor, $editor.val() );
+				mw.loader.using( 'ext.flow.editor', function() {
+					mw.flow.editor.load( $editor, content );
 
-				// Kill editor instance when the form it's in is cancelled
-				flowComponent.emitWithReturn( 'addFormCancelCallback', $form, function() {
-					if ( mw.flow.editor.exists( $editor ) ) {
-						mw.flow.editor.destroy( $editor );
-					}
+					// Kill editor instance when the form it's in is cancelled
+					flowComponent.emitWithReturn( 'addFormCancelCallback', $form, function() {
+						if ( mw.flow.editor.exists( $editor ) ) {
+							mw.flow.editor.destroy( $editor );
+						}
+					} );
 				} );
 			} );
-		} );
 	}
 	FlowComponentEventsMixin.eventHandlers.initializeEditors = flowEventsMixinInitializeEditors;
 
