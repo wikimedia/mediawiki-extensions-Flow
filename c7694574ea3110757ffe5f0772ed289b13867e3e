@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_043f8921",
+        "filename": "includes/Data/Listener/RecentChangesListener.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-04-30T11:25:48Z",
+      "side": 1,
+      "message": "$user \u003d $revision-\u003egetUser();",
+      "revId": "c7694574ea3110757ffe5f0772ed289b13867e3e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
