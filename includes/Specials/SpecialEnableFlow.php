@@ -82,7 +82,8 @@ class SpecialEnableFlow extends FormSpecialPage {
 			return Status::newFatal( 'flow-special-enableflow-board-already-exists', $page );
 		}
 
-		if ( !$this->occupationController->allowCreation( $title, $this->getUser(), false ) ) {
+		$allowCreationStatus = $this->occupationController->allowCreation( $title, $this->getUser(), false );
+		if ( !$allowCreationStatus->isGood() ) {
 			return Status::newFatal( 'flow-special-enableflow-board-creation-not-allowed', $page );
 		}
 

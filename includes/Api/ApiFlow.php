@@ -107,8 +107,9 @@ class ApiFlow extends ApiBase {
 			// just check for permissions, nothing else to do. if the commit
 			// is successful the OccupationListener will see the new revision
 			// and put the flow board in place.
-			if ( !$controller->allowCreation( $page, $this->getUser() ) ) {
-				$this->dieUsage( 'Page provided does not have Flow enabled', 'invalid-page' );
+			$status = $controller->allowCreation( $page, $this->getUser() );
+			if ( !$status->isGood() ) {
+				$this->dieUsage( "Page provided does not have Flow enabled and allowCreation failed with: " . $status->getMessage()->parse(), 'invalid-page' );
 			}
 		}
 
