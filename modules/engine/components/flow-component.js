@@ -53,12 +53,11 @@
 	/**
 	 * Takes any length of arguments, and passes it off to console.log.
 	 * Only renders if window.flow_debug OR localStorage.flow_debug == true OR user is Admin or (WMF).
-	 * @param {Boolean} [isError=true]
-	 * @param {...*} args
+	 * @param {boolean} [isError=true]
 	 */
-	mw.flow.debug = FlowComponent.prototype.debug = function ( isError, args ) {
+	mw.flow.debug = FlowComponent.prototype.debug = function ( isError ) {
 		if ( window.console ) {
-			args = Array.prototype.slice.call( arguments, 0 );
+			var args = Array.prototype.slice.call( arguments, 0 );
 
 			if ( typeof isError === 'boolean' ) {
 				args.shift();
@@ -84,7 +83,7 @@
 	 * Example: sfhzxr5a00jkf405 -> 1429101316919
 	 *
 	 * @param {String} uuid
-	 * @return {int} UNIX time
+	 * @return {number} UNIX time
 	 */
 	mw.flow.uuidToTime = FlowComponent.prototype.uuidToTime = function ( uuid ) {
 
@@ -127,7 +126,7 @@
 	/**
 	 * Goes up the DOM tree to find which FlowComponent $el belongs to, via .flow-component[flow-id].
 	 * @param {jQuery} $el
-	 * @returns {FlowComponent|bool}
+	 * @returns {FlowComponent|boolean}
 	 */
 	FlowComponent.prototype.getInstanceByElement = function ( $el ) {
 		var $container = $el.closest( '.flow-component' ),
@@ -206,10 +205,10 @@
 	 * jQuery itself doesn't allow for this, as the context (this & event.currentTarget) become the actual element you
 	 * are triggering an event on, instead of the element which matched the selector.
 	 *
-	 * @example _eventForwardDispatch.call( Element, Event, Element );
+	 *     _eventForwardDispatch.call( Element, Event, Element );
 	 *
 	 * @param {jQuery.Event} event
-	 * @param {Element} container
+	 * @param {HTMLElement} container
 	 * @returns {*}
 	 * @private
 	 */

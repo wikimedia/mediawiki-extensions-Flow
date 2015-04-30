@@ -64,14 +64,14 @@
 	 * initial logged event.
 	 *
 	 * @param {string} schemaName
-	 * @param {object} data Data to be logged
+	 * @param {Object} data Data to be logged
 	 * @param {string} data.action Schema's action parameter. Always required!
 	 * @param {string} [data.entrypoint] Schema's entrypoint parameter (can be
 	 *   omitted if already logged in funnel - will inherit)
 	 * @param {string} [data.funnelId] Schema's funnelId parameter (can be
 	 *   omitted if starting new funnel - will be generated)
 	 * @param {jQuery} [$forward] Nodes to forward funnel to
-	 * @returns {object} Logged data
+	 * @returns {Object} Logged data
 	 */
 	FlowBoardAndHistoryComponentBase.prototype.logEvent = function ( schemaName, data, $forward ) {
 		var // Get existing (forwarded) funnel id, or generate a new one if it does not yet exist
@@ -130,7 +130,7 @@
 
 	/**
 	 * @param {Event} event
-	 * @returns {$.Promise}
+	 * @returns {jQuery.Promise}
 	 */
 	FlowBoardAndHistoryComponentBase.UI.events.interactiveHandlers.moderationDialog = function ( event ) {
 		var $form,
@@ -182,7 +182,7 @@
 	/**
 	 * Cancels and closes a form. If text has been entered, issues a warning first.
 	 * @param {Event} event
-	 * @returns {$.Promise}
+	 * @returns {jQuery.Promise}
 	 */
 	FlowBoardAndHistoryComponentBase.UI.events.interactiveHandlers.cancelForm = function ( event ) {
 		var target = this,

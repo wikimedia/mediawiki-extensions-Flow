@@ -8,6 +8,7 @@
  */
 
 ( function ( $, mw ) {
+	/** @class mw.flow */
 	mw.flow = mw.flow || {}; // create mw.flow globally
 
 	var _componentRegistry = new OO.Registry();
@@ -21,42 +22,44 @@
 	 *  array of FlowComponent instances, or boolean false in case of an error.
 	 */
 	function initFlowComponent( $container ) {
-		var a, i, componentName, componentBase,
-			/** @private
-			 * Deep magic: This crazy little function becomes the "real" top-level constructor
-			 * It recursively calls every parent so that we don't have to do it manually in a Component constructor
-			 * @returns {FlowComponent}
-			 */
-			_RecursiveConstructor = function () {
-				var constructors = [],
-					parent = this.constructor.parent,
-					i, j, parentReturn;
+		var a, i, componentName, componentBase;
 
-				// Find each parent class
-				while ( parent ) {
-					constructors.push( parent );
-					parent = parent.parent;
+		/**
+		 * @private
+		 * Deep magic: This crazy little function becomes the "real" top-level constructor
+		 * It recursively calls every parent so that we don't have to do it manually in a Component constructor
+		 * @returns {FlowComponent}
+		 */
+		function _RecursiveConstructor() {
+			var constructors = [],
+				parent = this.constructor.parent,
+				i, j, parentReturn;
+
+			// Find each parent class
+			while ( parent ) {
+				constructors.push( parent );
+				parent = parent.parent;
+			}
+
+			// Call each parent in reverse (starting with the base class and moving up the chain)
+			for ( i = constructors.length; i--; ) {
+				// Call each mixin constructor
+				for ( j = 0; j < constructors[i].static.mixinConstructors.length; j++ ) {
+					constructors[i].static.mixinConstructors[j].apply( this, arguments );
 				}
 
-				// Call each parent in reverse (starting with the base class and moving up the chain)
-				for ( i = constructors.length; i--; ) {
-					// Call each mixin constructor
-					for ( j = 0; j < constructors[i].static.mixinConstructors.length; j++ ) {
-						constructors[i].static.mixinConstructors[j].apply( this, arguments );
-					}
+				// Call this class constructor
+				parentReturn = constructors[i].apply( this, arguments );
 
-					// Call this class constructor
-					parentReturn = constructors[i].apply( this, arguments );
-
-					if ( parentReturn && parentReturn.constructor ) {
-						// If the parent returned an instantiated class (cached), return that instead
-						return parentReturn;
-					}
+				if ( parentReturn && parentReturn.constructor ) {
+					// If the parent returned an instantiated class (cached), return that instead
+					return parentReturn;
 				}
+			}
 
-				// Run any post-instantiation handlers
-				this.emitWithReturn( 'instantiationComplete', this );
-			};
+			// Run any post-instantiation handlers
+			this.emitWithReturn( 'instantiationComplete', this );
+		}
 
 		if ( !$container || !$container.length ) {
 			// No containers found
@@ -116,7 +119,9 @@
 
 	/**
 	 * For when you want to call a specific function from a class's prototype.
-	 * @example mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $el );
+	 *
+	 *     mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $el );
+	 *
 	 * @param {String} className
 	 * @param {String} methodName
 	 * @param {*} [context]

@@ -38,7 +38,7 @@
 	 * @param {Event} event
 	 * @param {Object} info
 	 * @param {jQuery} info.$target
-	 * @param {object} queryMap
+	 * @param {Object} queryMap
 	 * @param {FlowBoardComponent} info.component
 	 */
 	function flowBoardComponentTocFeatureMixinBoardApiPreHandler( event, info, queryMap ) {
@@ -61,7 +61,7 @@
 	 * @param {Event} event
 	 * @param {Object} info
 	 * @param {jQuery} info.$target
-	 * @param {object} queryMap
+	 * @param {Object} queryMap
 	 * @param {FlowBoardComponent} info.component
 	 */
 	function flowBoardComponentTocFeatureMixinTopicListApiPreHandler( event, info, queryMap, extraParameters ) {

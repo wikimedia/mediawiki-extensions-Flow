@@ -2,6 +2,9 @@
 	'use strict';
 
 	/**
+	 * @class
+	 * @extends mw.flow.editors.AbstractEditor
+	 * @constructor
 	 * @param {jQuery} $node Node to replace with a VisualEditor
 	 * @param {string} [content='']
 	 */

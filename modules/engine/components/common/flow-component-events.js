@@ -10,7 +10,8 @@
 	/**
 	 * This implements functionality for being able to capture the return value from a called event.
 	 * In addition, this handles Flow event triggering and binding.
-	 * @extends oo.EventEmitter
+	 * @class
+	 * @extends OO.EventEmitter
 	 * @constructor
 	 */
 	function FlowComponentEventsMixin( $container ) {
@@ -250,9 +251,11 @@
 
 	/**
 	 * Triggers an API request based on URL and form data, and triggers the callbacks based on flow-api-handler.
-	 * @example <a data-flow-interactive-handler="apiRequest" data-flow-api-handler="loadMore" data-flow-api-target="< .flow-component div" href="...">...</a>
+	 *
+	 *     <a data-flow-interactive-handler="apiRequest" data-flow-api-handler="loadMore" data-flow-api-target="< .flow-component div" href="...">...</a>
+	 *
 	 * @param {Event} event
-	 * @returns {$.Promise}
+	 * @returns {jQuery.Promise}
 	 */
 	function flowEventsMixinApiRequestInteractiveHandler( event ) {
 		var $deferred = $.Deferred(),
@@ -491,7 +494,7 @@
 	/**
 	 * Executes interactive handlers.
 	 *
-	 * @param {array} args
+	 * @param {Array} args
 	 * @param {jQuery} $context
 	 * @param {string} interactiveHandlerName
 	 * @param {string} apiHandlerName
@@ -857,7 +860,7 @@
 	/**
 	 * If a form has a cancelForm handler, we clear the form and trigger it. This allows easy cleanup
 	 * and triggering of form events after successful API calls.
-	 * @param {Element|jQuery} formElement
+	 * @param {HTMLElement|jQuery} formElement
 	 */
 	function flowEventsMixinCancelForm( formElement ) {
 		var $form = $( formElement ),
@@ -903,7 +906,7 @@
 	}
 
 	/**
-	 * @param {Element} target
+	 * @param {HTMLElement} target
 	 * @param {string} handlerName
 	 * @return {Function[]}
 	 * @private
@@ -921,14 +924,11 @@
 		}
 
 		preHandlers = $.map( preHandlers, function ( callback ) {
-			/**
+			/*
 			 * apiPreHandlers aren't properly set up to serve as chained promise
 			 * callbacks (they'll return false instead of returning a rejected
 			 * promise, the incoming & outgoing params don't line up)
 			 * This will wrap all those callbacks into callbacks we can chain.
-			 *
-			 * @param {object} args
-			 * @returns {object}
 			 */
 			return function ( args ) {
 				var queryMap = callback.apply( target, args );

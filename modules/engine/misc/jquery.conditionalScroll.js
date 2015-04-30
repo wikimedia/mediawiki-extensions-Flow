@@ -1,10 +1,11 @@
+/** @class jQuery.fn */
 ( function ( $ ) {
 	/**
 	 * Scrolls the viewport to fit $el into view only if necessary. Scenarios:
 	 * 1. If el starts above viewport, scrolls to put top of el at top of viewport.
 	 * 2. If el ends below viewport and fits into viewport, scrolls to put bottom of el at bottom of viewport.
 	 * 3. If el ends below viewport but is taller than the viewport, scrolls to put top of el at top of viewport.
-	 * @param {string|int} [speed='fast']
+	 * @param {string|number} [speed='fast']
 	 */
 	$.fn.conditionalScrollIntoView = function ( speed ) {
 		speed = speed !== undefined ? speed : 'fast';

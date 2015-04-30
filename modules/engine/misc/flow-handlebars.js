@@ -102,8 +102,8 @@
 	 * Finds scripts of x-handlebars-template-progressive-enhancement type, compiles its innerHTML as a Handlebars
 	 * template, and then replaces the whole script tag with it. This is used to "progressively enhance" a page with
 	 * elements that are only necessary with JavaScript. On a non-JS page, these elements are never rendered at all.
-	 * @param {Element|jQuery} target
-	 * @todo Lacks args, lacks functionality, full support. (see also FlowHandlebars.prototype.progressiveEnhancement)
+	 * @param {HTMLElement|jQuery} target
+	 * @todo Lacks args, lacks functionality, full support. (see also FlowHandlebars#progressiveEnhancement)
 	 */
 	FlowHandlebars.prototype.processProgressiveEnhancement = function ( target ) {
 		$( target ).find( 'script' ).addBack( 'script' ).filter( '[type="text/x-handlebars-template-progressive-enhancement"]' ).each( function () {
@@ -181,8 +181,10 @@
 
 	/**
 	 * Calls flowMessages to get localized message strings.
+	 *
+	 * Example: `{{l10n "reply_count" 12}}`
+	 *
 	 * @todo use mw.message
-	 * @example {{l10n "reply_count" 12}}
 	 * @param {String} str
 	 * @param {...*} [args]
 	 * @param {Object} [options]
@@ -197,7 +199,7 @@
 
 	/**
 	 * HTML-safe version of l10n.
-	 * @returns {String|Handlebars.SafeString}
+	 * @returns {string|Handlebars.SafeString}
 	 */
 	FlowHandlebars.prototype.l10nParse = function ( str /*, args..., options */ ) {
 		var args = flowNormalizeL10nParameters( Array.prototype.slice.call( arguments, 1, -1 ) );
@@ -209,10 +211,12 @@
 
 	/**
 	 * Parses the timestamp out of a base-36 UUID, and calls timestamp with it.
-	 * @example {{uuidTimestamp id "flow-message-x-"}}
-	 * @param {String} uuid id
-	 * @param {bool} [timeAgoOnly]
-	 * @returns {String}
+	 *
+	 * Example: `{{uuidTimestamp id "flow-message-x-"}}`
+	 *
+	 * @param {string} uuid id
+	 * @param {boolean} [timeAgoOnly]
+	 * @returns {string}
 	 */
 	FlowHandlebars.prototype.uuidTimestamp = function ( uuid, timeAgoOnly ) {
 		var timestamp = mw.flow.uuidToTime( uuid );
@@ -222,9 +226,11 @@
 
 	/**
 	 * Generates markup for an "nnn sssss ago" and date/time string.
-	 * @example {{timestamp start_time}}
-	 * @param {int} timestamp milliseconds
-	 * @returns {String}
+	 *
+	 * Example: `{{timestamp start_time}}`
+	 *
+	 * @param {number} timestamp milliseconds
+	 * @returns {string}
 	 */
 	FlowHandlebars.prototype.timestamp = function ( timestamp ) {
 		if ( isNaN( timestamp ) ) {
@@ -325,9 +331,11 @@
 
 	/**
 	 * Do not escape HTML string. Used as a Handlebars helper.
-	 * @example {{html "<div/>"}}
-	 * @param {String} string
-	 * @returns {String|Handlebars.SafeString}
+	 *
+	 * Example: `{{html "<div/>"}}`
+	 *
+	 * @param {string} string
+	 * @returns {string|Handlebars.SafeString}
 	 */
 	FlowHandlebars.prototype.html = function ( string ) {
 		return new Handlebars.SafeString( string );
@@ -335,7 +343,8 @@
 
 	/**
 	 *
-	 * @example {{block this}}
+	 * Example: `{{block this}}`
+	 *
 	 * @param {Object} context
 	 * @param {Object} options
 	 * @returns {String}
@@ -348,7 +357,7 @@
 	};
 
 	/**
-	 * @example {{post ../../../../rootBlock this}}
+	 * Example: `{{post ../../../../rootBlock this}}`
 	 * @param {Object} context
 	 * @param {Object} revision
 	 * @param {Object} options
@@ -365,7 +374,7 @@
 	};
 
 	/**
-	 * @example {{#each topics}}{{#eachPost this}}{{content}}{{/eachPost}}{{/each}}
+	 * Example: `{{#each topics}}{{#eachPost this}}{{content}}{{/eachPost}}{{/each}}`
 	 * @param {String} context
 	 * @param {String} postId
 	 * @param {Object} options
@@ -397,7 +406,9 @@
 	 * * type=String (replace, content, insert)
 	 * * target=String (jQuery selector; needed for replace and content -- defaults to self)
 	 * * id=String
-	 * @example {{#progressiveEnhancement type="content"}}{{> ok}}{{/progressiveEnhancement}}
+	 *
+	 * Example: `{{#progressiveEnhancement type="content"}}{{> ok}}{{/progressiveEnhancement}}`
+	 *
 	 * @param {Object} options
 	 * @return {String}
 	 * @todo Implement support for full functionality, perhaps revisit the implementation.
@@ -474,7 +485,9 @@
 
 	/**
 	 * Renders a tooltip node.
-	 * @example {{#tooltip positionClass="up" contextClass="progressive" extraClass="flow-my-tooltip"}}what{{/tooltip}}
+	 *
+	 * Example: `{{#tooltip positionClass="up" contextClass="progressive" extraClass="flow-my-tooltip"}}what{{/tooltip}}`
+	 *
 	 * @param {Object} options
 	 * @returns {String}
 	 */
@@ -497,8 +510,8 @@
 	 * Return url for putting post into the specified moderation state.  If the user
 	 * cannot put the post into the specified state a blank string is returned.
 	 *
-	 * @param {Object}
-	 * @param {string}
+	 * @param {Object} actions
+	 * @param {string} moderationState
 	 * @return {string}
 	 */
 	FlowHandlebars.prototype.moderationAction = function ( actions, moderationState ) {
@@ -521,7 +534,7 @@
 	 *
 	 * @param {string} value
 	 * @param {string} operator supported values: 'or'
-	 * @param {string} value
+	 * @param {string} value2
 	 */
 	FlowHandlebars.prototype.ifCond = function ( value, operator, value2, options ) {
 		if ( operator === 'or' ) {

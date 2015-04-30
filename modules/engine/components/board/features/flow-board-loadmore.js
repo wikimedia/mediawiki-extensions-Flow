@@ -159,7 +159,7 @@
 	 * @param {Event} event
 	 * @param {Object} info
 	 * @param {jQuery} info.$target
-	 * @param {object} queryMap
+	 * @param {Object} queryMap
 	 * @param {FlowBoardComponent} info.component
 	 */
 	function flowBoardComponentLoadMoreFeatureBoardApiPreHandler( event, info, queryMap ) {
@@ -186,7 +186,7 @@
 	 * @param {FlowBoardComponent} info.component
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
-	 * @returns {$.Promise}
+	 * @returns {jQuery.Promise}
 	 */
 	function flowBoardComponentLoadMoreFeatureBoardApiCallback( info, data, jqxhr ) {
 		if ( info.status !== 'done' ) {
@@ -339,7 +339,9 @@
 
 	/**
 	 * Stores the load more button for use with infinite scroll.
-	 * @example <button data-flow-scroll-target="< ul"></button>
+	 *
+	 *     <button data-flow-scroll-target="< ul"></button>
+	 *
 	 * @param {jQuery} $button
 	 */
 	function flowBoardComponentLoadMoreFeatureElementLoadCallback( $button ) {

@@ -17,17 +17,28 @@
 	 * - title String
 	 * - disableCloseOnOutsideClick Boolean (if true, ESC and background clicks do not close it)
 	 *
+	 * Simple modal:
+	 *
+	 *     @example
+	 *     modal1 = mw.Modal();
+	 *
+	 * Modal with contents and title:
+	 *
+	 *     @example
+	 *     modal2 = mw.Modal( { open: 'Contents!!', title: 'Title!!' } );
+	 *
+	 * Named modal:
+	 *
+	 *     @example
+	 *     modal3 = mw.Modal( 'special_modal' );
+	 *
 	 * @todo Implement multi-step
 	 * @todo Implement data-mwui handlers
 	 * @todo Implement OOJS & events
-	 *
-	 * @example modal = mw.Modal();
-	 * @example modal = mw.Modal( { open: 'Contents!!', title: 'Title!!' } );
-	 * @example modal = mw.Modal( 'special_modal' );
-	 *
+	 * @class
+	 * @constructor
 	 * @param {String} [name] Name of modal (may be omitted)
 	 * @param {Object} [settings]
-	 * @return MwUiModal
 	 */
 	function MwUiModal( name, settings ) {
 		// allow calling this method with or without "new" keyword
@@ -115,10 +126,10 @@
 	 * - Multi-step modals with an Object to have named step keys. Pass this for three steps:
 	 *   { steps: [ 'first', 'second', 'foobar' ], first: Element, second: Element, foobar: Element }
 	 *
-	 * @todo Currently only supports String|jQuery|Element. Implement multi-step modals.
+	 * @todo Currently only supports string|jQuery|HTMLElement. Implement multi-step modals.
 	 *
-	 * @param {Array|Object|Element|jQuery|String} [contents]
-	 * @return MwUiModal
+	 * @param {Object|HTMLElement|HTMLElement[]|jQuery|string} [contents]
+	 * @return {MwUiModal}
 	 */
 	MwUiModal.prototype.open = function ( contents ) {
 		var $node = this.getNode(),
@@ -260,8 +271,8 @@
 	 *
 	 * @todo Implement multi-step.
 	 *
-	 * @param {Array|Object|Element|jQuery|String} contents
-	 * @return MwUiModal
+	 * @param {Object|HTMLElement|HTMLElement[]|jQuery|string} contents
+	 * @return {MwUiModal}
 	 */
 	MwUiModal.prototype.addSteps = function ( contents ) {
 		return false;
@@ -274,9 +285,9 @@
 	 *
 	 * @todo Implement multi-step.
 	 *
-	 * @param {int|String} to
-	 * @param {Element|jQuery|String} contents
-	 * @return MwUiModal
+	 * @param {number|string} to
+	 * @param {HTMLElement|jQuery|String} contents
+	 * @return {MwUiModal}
 	 */
 	MwUiModal.prototype.setStep = function ( to, contents ) {
 		return false;
@@ -287,7 +298,7 @@
 	 *
 	 * @todo Implement multi-step.
 	 *
-	 * @return Object
+	 * @return {Object}
 	 */
 	MwUiModal.prototype.getSteps = function ( to, contents ) {
 		return {};
@@ -298,7 +309,7 @@
 	/**
 	 * For a multi-step modal, goes to the previous step, otherwise, closes the modal.
 	 *
-	 * @return {MwUiModal|Boolean} false if none, MwUiModal on prev, true on close
+	 * @return {MwUiModal|boolean} false if none, MwUiModal on prev, true on close
 	 */
 	MwUiModal.prototype.prevOrClose = function () {
 		if ( this.prev() === false ) {
@@ -309,7 +320,7 @@
 	/**
 	 * For a multi-step modal, goes to the next step (if any), otherwise, submits the form.
 	 *
-	 * @return {MwUiModal|Boolean} false if no next step and no button to click, MwUiModal on success
+ * @return {MwUiModal|boolean} false if no next step and no button to click, MwUiModal on success
 	 */
 	MwUiModal.prototype.nextOrSubmit = function () {
 		var $button;
@@ -353,8 +364,8 @@
 	 *
 	 * @todo Implement multi-step.
 	 *
-	 * @param {int|String} to
-	 * @return {MwUiModal|Boolean} false if invalid step, MwUiModal on success
+	 * @param {number|string} to
+	 * @return {MwUiModal|boolean} false if invalid step, MwUiModal on success
 	 */
 	MwUiModal.prototype.go = function ( to ) {
 		return false;
@@ -362,7 +373,8 @@
 
 	/**
 	 * MW UI Modal access through JS API.
-	 * @example mw.Modal( "<p>lorem</p>" );
+	 *
+	 *    mw.Modal( "<p>lorem</p>" );
 	 */
 	mw.Modal = MwUiModal;
 
@@ -371,7 +383,7 @@
 	 * If node is given, tries to find which modal (if any) that node is within.
 	 * Returns false if none found.
 	 *
-	 * @param {Element|jQuery} [node]
+	 * @param {HTMLElement|jQuery} [node]
 	 * @return {Boolean|MwUiModal}
 	 */
 	mw.Modal.getModal = function ( node ) {

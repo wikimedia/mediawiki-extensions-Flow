@@ -2,11 +2,12 @@
  * Enhances mediawiki-ui style elements with JavaScript.
  */
 
+/** @class mw.ui.enhance */
 ( function ( mw, $ ) {
 	/*
 	* Reduce eye-wandering due to adjacent colorful buttons
 	* This will make unhovered and unfocused sibling buttons become faded and blurred
-		* Usage: Buttons must be in a form, or in a parent with mw-ui-button-container, or they must be siblings
+	* Usage: Buttons must be in a form, or in a parent with mw-ui-button-container, or they must be siblings
 	*/
 	$( document ).ready( function () {
 		function onMwUiButtonFocus( event ) {
@@ -146,8 +147,8 @@
 		 *  tooltipClosable=Boolean
 		 *  tooltipContentCallback=Function
 		 *
-		 * @param {jQuery|Element} target
-		 * @param {jQuery|Element|String} [content] A jQuery set, an element, or a string of
+		 * @param {jQuery|HTMLElement} target
+		 * @param {jQuery|HTMLElement|String} [content] A jQuery set, an element, or a string of
 		 *  HTML.  If omitted, first tries tooltipContentCallback, then target.title
 		 * @param {Object} [options]
 		 */
@@ -343,7 +344,7 @@
 
 		/**
 		 * Hides the tooltip associated with target instantly.
-		 * @param {Element|jQuery} target
+		 * @param {HTMLElement|jQuery} target
 		 */
 		function mwUiTooltipHide( target ) {
 			var $target = $( target ),

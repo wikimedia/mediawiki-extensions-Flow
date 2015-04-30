@@ -7,7 +7,7 @@
 	 * Abstract editor class for Flow content
 	 * Sets certain defaults, but most have to be implemented in subclasses
 	 *
-	 * @class
+	 * @class mw.flow.editors.AbstractEditor
 	 * @abstract
 	 *
 	 * @constructor

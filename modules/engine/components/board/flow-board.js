@@ -6,7 +6,9 @@
 ( function ( $, mw ) {
 	/**
 	 * Constructor class for instantiating a new Flow board.
-	 * @example <div class="flow-component" data-flow-component="board" data-flow-id="rqx495tvz888x5ur">...</div>
+	 *
+	 *    <div class="flow-component" data-flow-component="board" data-flow-id="rqx495tvz888x5ur">...</div>
+	 *
 	 * @param {jQuery} $container
 	 * @extends FlowBoardAndHistoryComponentBase
 	 * @mixins FlowComponentEventsMixin
@@ -14,7 +16,6 @@
 	 * @mixins FlowBoardComponentApiEventsMixin
 	 * @mixins FlowBoardComponentInteractiveEventsMixin
 	 * @mixins FlowBoardComponentLoadEventsMixin
-	 * @mixins FlowBoardComponentMiscMixin
 	 * @mixins FlowBoardComponentLoadMoreFeatureMixin
 	 * @mixins FlowBoardComponentVisualEditorFeatureMixin
 	 *
