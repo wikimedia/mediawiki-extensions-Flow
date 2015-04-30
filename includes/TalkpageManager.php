@@ -8,6 +8,7 @@ use Flow\Exception\InvalidInputException;
 use Flow\Model\Workflow;
 use Article;
 use Revision;
+use Status;
 use Title;
 use User;
 
@@ -22,7 +23,7 @@ interface OccupationController {
 	/**
 	 * @param Article $title
 	 * @param Workflow $workflow
-	 * @return Revision|null
+	 * @return Status
 	 */
 	public function ensureFlowRevision( Article $title, Workflow $workflow );
 
@@ -121,7 +122,11 @@ class TalkpageManager implements OccupationController {
 	 *
 	 * @param \Article $article
 	 * @param Workflow $workflow
-	 * @return Revision|null
+	 * @return Status Status for revision creation; On success (including if it already
+	 *  had a top-most Flow revision), it will return a good status with an associative
+	 *  array value.  $status->getValue()['revision'] will be a Revision
+	 *  $status->getValue()['already-existed'] will be set to true if no revision needed
+	 *  to be created
 	 * @throws InvalidInputException
 	 */
 	public function ensureFlowRevision( Article $article, Workflow $workflow ) {
@@ -132,14 +137,13 @@ class TalkpageManager implements OccupationController {
 		$revision = $page->getRevision();
 
 		if ( $revision !== null ) {
-			if ( $revision->getComment( Revision::RAW ) == $comment ) {
-				// Revision was created by this process
-				return null;
-			}
 			$content = $revision->getContent();
 			if ( $content instanceof BoardContent && $content->getWorkflowId() ) {
 				// Revision is already a valid BoardContent
-				return null;
+				return Status::newGood( array(
+					'revision' => $revision,
+					'already-existed' => true,
+				) );
 			}
 		}
 
@@ -150,12 +154,11 @@ class TalkpageManager implements OccupationController {
 			false,
 			$this->getTalkpageManager()
 		);
+		$value = $status->getValue();
+		$value['already-existed'] = false;
+		$status->setResult( $status->isOK(), $value );
 
-		if ( $status->isGood() && isset( $status->value['revision'] ) ) {
-			return $status->value['revision'];
-		}
-
-		return null;
+		return $status;
 	}
 
 	/**

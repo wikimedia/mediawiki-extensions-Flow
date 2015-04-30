@@ -35,7 +35,7 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 	public function testImportDoesntCompletelyFail() {
 		$workflow = Workflow::create(
 			'discussion',
-			Title::newMainPage()
+			Title::newFromText( 'TalkpageImportOperationTest' )
 		);
 		$storage = $this->getMockBuilder( 'Flow\Data\ManagerGroup' )
 			->disableOriginalConstructor()
