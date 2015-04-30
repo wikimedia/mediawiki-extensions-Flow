@@ -523,18 +523,32 @@ class TalkpageImportOperation {
 	public function import( PageImportState $state ) {
 		$destinationTitle = $state->boardWorkflow->getArticleTitle();
 		$state->logger->info( 'Importing to ' . $destinationTitle->getPrefixedText() );
-
-		if ( $state->boardWorkflow->isNew() ) {
+		$isNew = $state->boardWorkflow->isNew();
+		$state->logger->debug( 'Workflow isNew: ' . var_export( $isNew, true ) );
+		if ( $isNew ) {
 			$this->occupationController->allowCreation(
 				$destinationTitle,
 				$this->occupationController->getTalkpageManager()
 			);
-			$this->occupationController->ensureFlowRevision(
+			$status = $this->occupationController->ensureFlowRevision(
 				new Article( $destinationTitle ),
 				$state->boardWorkflow
 			);
+			$state->logger->debug( 'ensureFlowRevision status isOK: ' . var_export( $status->isOK(), true ) );
+			$state->logger->debug( 'ensureFlowRevision status isGood: ' . var_export( $status->isGood(), true ) );
 
-			$state->put( $state->boardWorkflow, array() );
+			if ( $status->isOK() ) {
+				$ensureValue = $status->getValue();
+				$revision = $ensureValue['revision'];
+				$state->logger->debug( 'ensureFlowRevision already-existed: ' . var_export( $ensureValue['already-existed'], true ) );
+				$revisionId = $revision->getId();
+				$pageId = $revision->getTitle()->getArticleId();
+				$state->logger->debug( "ensureFlowRevision revision ID: $revisionId, page ID: $pageId" );
+
+				$state->put( $state->boardWorkflow, array() );
+			} else {
+				throw new ImportException( "ensureFlowRevision failed to create the Flow board" );
+			}
 		}
 
 		$imported = $failed = 0;
