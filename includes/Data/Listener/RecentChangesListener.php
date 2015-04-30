@@ -75,6 +75,7 @@ class RecentChangesListener extends AbstractListener {
 		$timestamp = $revision->getRevisionId()->getTimestamp();
 		/** @var Workflow $workflow */
 		$workflow = $metadata['workflow'];
+		$user = \User::newFromId( $row['rev_user_id'] );
 
 		if ( !$this->isAllowed( $revision, $action ) ) {
 			return;
@@ -90,7 +91,7 @@ class RecentChangesListener extends AbstractListener {
 			'rc_source' => self::SRC_FLOW,
 			'rc_minor' => 0,
 			'rc_bot' => 0, // TODO: is revision by bot
-			'rc_patrolled' => 0,
+			'rc_patrolled' => $user->isAllowed( 'autopatrol' ) ? 1 : 0,
 			'rc_old_len' => $revision->getPreviousContentLength(),
 			'rc_new_len' => $revision->getContentLength(),
 			'rc_this_oldid' => 0,
