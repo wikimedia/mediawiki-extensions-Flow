@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_f86eb092",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-30T00:23:38Z",
+      "side": 1,
+      "message": "Capital O Object (as in the @return below)\n\nSame for the rest of the additions in this file",
+      "revId": "d3ded3bbaa503e998cafdcb61abc9f7bea8759d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_b8682885",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-30T00:23:38Z",
+      "side": 1,
+      "message": "Note that this modifies queryMap, which is a parameter to this function. If that\u0027s intended, it should be documented. If it\u0027s not intended, you can use $.extend( {}, queryMap, override );",
+      "revId": "d3ded3bbaa503e998cafdcb61abc9f7bea8759d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_380c38f0",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-30T00:23:38Z",
+      "side": 1,
+      "message": "Same thing about queryMap being modified; there are lots of these throughout the file.",
+      "revId": "d3ded3bbaa503e998cafdcb61abc9f7bea8759d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_18f134da",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-30T00:23:38Z",
+      "side": 1,
+      "message": "This doesn\u0027t return a function any more",
+      "revId": "d3ded3bbaa503e998cafdcb61abc9f7bea8759d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_4ed2925e",
+        "filename": "modules/engine/components/board/features/flow-board-toc.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-04-30T00:23:38Z",
+      "side": 1,
+      "message": "More queryMap modification",
+      "revId": "d3ded3bbaa503e998cafdcb61abc9f7bea8759d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
