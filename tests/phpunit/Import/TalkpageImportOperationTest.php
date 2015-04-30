@@ -19,6 +19,7 @@ use Flow\Tests\Mock\MockImportSource;
 use Flow\Tests\Mock\MockImportSummary;
 use Flow\Tests\Mock\MockImportTopic;
 use Psr\Log\NullLogger;
+use Article;
 use SplQueue;
 use Title;
 use User;
@@ -33,10 +34,16 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 	 * and sees if it falls over.
 	 */
 	public function testImportDoesntCompletelyFail() {
+		$title = Title::newFromText( 'Talk:TalkpageImportOperationTest' );
 		$workflow = Workflow::create(
 			'discussion',
-			Title::newMainPage()
+			$title
 		);
+		$occupationController = Container::get( 'occupation_controller' );
+		$user = User::newFromName( '127.0.0.1', false );
+		$user->mRights = array_merge( $user->getRights(), array( 'flow-create-board' ) );
+		$occupationController->allowCreation( $title, $user );
+
 		$storage = $this->getMockBuilder( 'Flow\Data\ManagerGroup' )
 			->disableOriginalConstructor()
 			->getMock();
@@ -95,7 +102,7 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 			)
 		);
 
-		$op = new TalkpageImportOperation( $source, Container::get( 'occupation_controller' ) );
+		$op = new TalkpageImportOperation( $source, $occupationController );
 		$store = new NullImportSourceStore;
 		$op->import( new PageImportState(
 			$workflow,

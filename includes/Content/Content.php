@@ -53,9 +53,11 @@ abstract class Content {
 			$factory = Container::get( 'factory.loader.workflow' );
 			$loader = $factory->createWorkflowLoader( $title );
 
-			$newRev = $occupationController->ensureFlowRevision( $article, $loader->getWorkflow() );
+			$status = $occupationController->ensureFlowRevision( $article, $loader->getWorkflow() );
 
-			if ( $newRev ) {
+			if ( $status->isGood() ) {
+				$value = $status->getValue();
+				$newRev = $value['revision'];
 				/** @noinspection PhpUndefinedFieldInspection */
 				$article->getPage()->mRevision = $newRev;
 				/** @noinspection PhpUndefinedFieldInspection */
