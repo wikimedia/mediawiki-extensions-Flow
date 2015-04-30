@@ -44,7 +44,7 @@
 
 	/**
 	 * @param {Event} event
-	 * @returns {$.Promise}
+	 * @returns {jQuery.Promise}
 	 */
 	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.activateReplyTopic = function ( event ) {
 		var $topic = $( this ).closest( '.flow-topic' ),

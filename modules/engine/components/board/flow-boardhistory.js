@@ -5,10 +5,12 @@
 ( function ( $, mw ) {
 	/**
 	 *
-	 * @example <div class="flow-component" data-flow-component="boardHistory" data-flow-id="rqx495tvz888x5ur">...</div>
-	 * @param {jQuery} $container
+	 *    <div class="flow-component" data-flow-component="boardHistory" data-flow-id="rqx495tvz888x5ur">...</div>
+	 *
+	 * @class
 	 * @extends FlowBoardAndHistoryComponentBase
 	 * @constructor
+	 * @param {jQuery} $container
 	 */
 	function FlowBoardHistoryComponent( $container ) {
 		this.bindNodeHandlers( FlowBoardHistoryComponent.UI.events );
@@ -35,7 +37,7 @@
 	 * @param {jQuery} info.$target
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
-	 * @returns {$.Promise}
+	 * @returns {jQuery.Promise}
 	 */
 	function flowBoardHistoryModerationCallback( info, data, jqxhr ) {
 		if ( info.status !== 'done' ) {

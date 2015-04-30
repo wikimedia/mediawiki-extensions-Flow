@@ -5,7 +5,7 @@
 	 * Creates an input widget with auto-completion for users to be mentioned
 	 *
 	 * @class
-	 * @extends oo.ui.TextInputWidget
+	 * @extends OO.ui.TextInputWidget
 	 * @mixins OO.ui.LookupElement
 	 *
 	 * @constructor
@@ -37,9 +37,6 @@
 
 	OO.mixinClass( mw.flow.ve.ui.MentionTargetInputWidget, OO.ui.LookupElement );
 
-	/**
-	 * @inheritdoc
-	 */
 	mw.flow.ve.ui.MentionTargetInputWidget.prototype.isValid = function () {
 		var api = new mw.Api(),
 			dfd = $.Deferred(),
@@ -118,9 +115,6 @@
 		return dfd.promise( abortObject );
 	};
 
-	/**
-	 * @inheritdoc
-	 */
 	mw.flow.ve.ui.MentionTargetInputWidget.prototype.getLookupCacheDataFromResponse = function ( data ) {
 		return data;
 	};
@@ -148,9 +142,6 @@
 	};
 
 	// Based on ve.ui.MWLinkTargetInputWidget.prototype.initializeLookupMenuSelection
-	/**
-	 * @inheritdoc
-	 */
 	mw.flow.ve.ui.MentionTargetInputWidget.prototype.initializeLookupMenuSelection = function () {
 		var item;
 		if ( this.username ) {

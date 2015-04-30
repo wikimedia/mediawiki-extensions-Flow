@@ -28,9 +28,6 @@
 		mw.messagePoster.MessagePoster
 	);
 
-	/**
-	 * @inheritdoc
-	 */
 	mw.flow.MessagePoster.prototype.post = function ( subject, body ) {
 		mw.flow.MessagePoster.parent.prototype.post.call( this, subject, body );
 

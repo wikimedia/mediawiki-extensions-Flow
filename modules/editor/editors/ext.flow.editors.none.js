@@ -51,14 +51,16 @@
 	/**
 	 * Type of content to use
 	 *
-	 * @var string
+	 * @property {string}
+	 * @static
 	 */
 	mw.flow.editors.none.static.format = 'wikitext';
 
 	/**
 	 * Name of this editor
 	 *
-	 * @var string
+	 * @property {string}
+	 * @static
 	 */
 	mw.flow.editors.none.static.name = 'none';
 

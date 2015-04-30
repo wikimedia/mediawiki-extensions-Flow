@@ -5,9 +5,10 @@
 ( function ( $, mw ) {
 	/**
 	 * Binds handlers for the board header itself.
+	 * @class
+	 * @constructor
 	 * @param {jQuery} $container
 	 * @this FlowComponent
-	 * @constructor
 	 */
 	function FlowBoardComponentBoardHeaderFeatureMixin( $container ) {
 		// Bind element handlers
@@ -127,14 +128,12 @@
 	 * Also note that this is a reverse sort from newest to oldest.
 	 * @param {Object} board Object from which to source
 	 *  timestamps which map from topicId to its last updated timestamp
-	 * @return {Function}
+	 * @return {Function} Sort callback
+	 * @return {string} return.a
+	 * @return {string} return.b
+	 * @return {number} return.return Per Array#sort callback rules
 	 */
 	function flowBoardTopicIdGenerateSortRecentlyActive( board ) {
-		/**
-		 * @param {String} a
-		 * @param {String} b
-		 * @return {integer} Per Array#sort callback rules
-		 */
 		return function ( a, b ) {
 			var aTimestamp = board.updateTimestampsByTopicId[a],
 				bTimestamp = board.updateTimestampsByTopicId[b];

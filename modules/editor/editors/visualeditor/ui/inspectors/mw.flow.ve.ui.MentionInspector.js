@@ -192,9 +192,6 @@
 		this.form.$element.append( this.targetInput.$element );
 	};
 
-	/**
-	 * @inheritdoc
-	 */
 	mw.flow.ve.ui.MentionInspector.prototype.getActionProcess = function ( action ) {
 		var deferred, inspector,
 			surfaceModel = this.getFragment().getSurface();
@@ -255,9 +252,7 @@
 	//
 	// It would be nice to implement a general solution for this that covers all inspectors (or
 	// maybe a mixin for inline errors next to form elements).
-	/**
-	 * @inherit
-	 */
+
 	mw.flow.ve.ui.MentionInspector.prototype.showErrors = function ( errors ) {
 		var errorText;
 
@@ -271,9 +266,6 @@
 		this.setSize( 'large' );
 	};
 
-	/**
-	 * @inherit
-	 */
 	mw.flow.ve.ui.MentionInspector.prototype.hideErrors = function () {
 		this.errorFieldsetLayout.toggle( false );
 		this.errorWidget.setLabel( '' );
@@ -337,9 +329,6 @@
 			}, this );
 	};
 
-	/**
-	 * @inheritdoc
-	 */
 	mw.flow.ve.ui.MentionInspector.prototype.getReadyProcess = function ( data ) {
 		return mw.flow.ve.ui.MentionInspector.parent.prototype.getReadyProcess.call( this, data )
 			.next( function () {
@@ -347,9 +336,6 @@
 			}, this );
 	};
 
-	/**
-	 * @inheritdoc
-	 */
 	mw.flow.ve.ui.MentionInspector.prototype.getTeardownProcess = function ( data ) {
 		data = data || {};
 		return mw.flow.ve.ui.MentionInspector.parent.prototype.getTeardownProcess.call( this, data )

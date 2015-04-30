@@ -12,7 +12,7 @@
 
 	/**
 	 * Contains Storer.js's (fallback) storage engines.
-	 * @type {{ cookieStorage: Storer.cookieStorage, memoryStorage: Storer.memoryStorage, sessionStorage: Storer.sessionStorage, localStorage: Storer.localStorage }}
+	 * @type {Object} { cookieStorage: Storer.cookieStorage, memoryStorage: Storer.memoryStorage, sessionStorage: Storer.sessionStorage, localStorage: Storer.localStorage }}
 	 */
 	mw.flow.StorageEngine = FlowComponentEnginesMixin.static.StorageEngine = initStorer( { 'prefix': '_WMFLOW_' } );
 

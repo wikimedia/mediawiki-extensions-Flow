@@ -5,9 +5,10 @@
 ( function ( $, mw ) {
 	/**
 	 * Binds API events to FlowBoardComponent
-	 * @param {jQuery} $container
+	 * @class
 	 * @extends FlowComponent
 	 * @constructor
+	 * @param {jQuery} $container
 	 */
 	function FlowBoardComponentApiEventsMixin( $container ) {
 		// Bind event callbacks
@@ -27,6 +28,8 @@
 	//
 	// pre-api callback handlers, to do things before the API call
 	//
+
+	/** @class FlowBoardComponentApiEventsMixin.UI.events.globalApiPreHandlers */
 
 	/**
 	 * Textareas are turned into editor objects, so we can't rely on
@@ -95,6 +98,8 @@
 			flow_prev_revision: prevRevisionId
 		} );
 	};
+
+	/** @class FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers */
 
 	/**
 	 * Before activating header, sends an overrideObject to the API to modify the request params.
@@ -212,6 +217,8 @@
 	// api callback handlers
 	//
 
+	/** @class FlowBoardComponentApiEventsMixin.UI.events.apiHandlers */
+
 	/**
 	 * On complete board reprocessing through view-topiclist (eg. change topic sort order), re-render any given blocks.
 	 * @param {Object} info
@@ -219,7 +226,7 @@
 	 * @param {jQuery} info.$target
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
-	 * @returns {$.Promise}
+	 * @returns {jQuery.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.board = function ( info, data, jqxhr ) {
 		var $rendered,
@@ -250,16 +257,13 @@
 	};
 
 	/**
-	 * @returns {$.Promise}
-
-		return $.Deferred().resolve().promise();
 	 * Renders the editable board header with the given API response.
 	 * @param {Object} info
 	 * @param {string} info.status "done" or "fail"
 	 * @param {jQuery} info.$target
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
-	 * @returns {$.Promise}
+	 * @returns {jQuery.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.activateEditHeader = function ( info, data, jqxhr ) {
 		var $rendered,
@@ -297,7 +301,7 @@
 	 * @param {Object} info (status:done|fail, $target: jQuery)
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
-	 * @returns {$.Deferred}
+	 * @returns {jQuery.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitHeader = function ( info, data, jqxhr ) {
 		var $rendered,
@@ -331,7 +335,7 @@
 	 * @param {Object} info
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
-	 * @returns {$.Promise}
+	 * @returns {jQuery.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.activateLockTopic = function ( info, data ) {
 		var result, revision, postId, revisionId,
@@ -383,7 +387,7 @@
 	 * @param {String} status
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
-	 * @returns {$.Promise}
+	 * @returns {jQuery.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.lockTopic = function ( info, data ) {
 		if ( info.status !== 'done' ) {
@@ -403,7 +407,7 @@
 	 * @param {jQuery} info.$target
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
-	 * @returns {$.Promise}
+	 * @returns {jQuery.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitTopicTitle = function( info, data, jqxhr ) {
 		if ( info.status !== 'done' ) {
@@ -426,7 +430,7 @@
 	 * @param {jQuery} info.$target
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
-	 * @returns {$.Promise}
+	 * @returns {jQuery.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitEditPost = function( info, data, jqxhr ) {
 		if ( info.status !== 'done' ) {
@@ -445,7 +449,7 @@
 	 * @param {jQuery} info.$target
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
-	 * @returns {$.Promise}
+	 * @returns {jQuery.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.newTopic = function ( info, data, jqxhr ) {
 		var schemaName = $( this ).data( 'flow-eventlog-schema' ),
@@ -477,7 +481,7 @@
 	 * @param {Object} info (status:done|fail, $target: jQuery)
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
-	 * @returns {$.Promise}
+	 * @returns {jQuery.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitReply = function ( info, data, jqxhr ) {
 		var $form = $( this ).closest( 'form' ),
@@ -506,7 +510,7 @@
 	 * @param {jQuery} info.$target
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
-	 * @returns {$.Promise}
+	 * @returns {jQuery.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.watchItem = function ( info, data, jqxhr ) {
 		var watchUrl, unwatchUrl,
@@ -566,7 +570,7 @@
 	 * @param {Object} info (status:done|fail, $target: jQuery)
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
-	 * @returns {$.Promise}
+	 * @returns {jQuery.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.activateSummarizeTopic = function ( info, data, jqxhr ) {
 		var $target = info.$target,
@@ -607,7 +611,7 @@
 	 * @param {jQuery} info.$target
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
-	 * @returns {$.Promise}
+	 * @returns {jQuery.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.summarizeTopic = function ( info, data, jqxhr ) {
 		if ( info.status !== 'done' ) {
@@ -628,7 +632,7 @@
 	 * @param {Object} info (status:done|fail, $target: jQuery)
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
-	 * @returns {$.Promise}
+	 * @returns {jQuery.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.activateEditTitle = function ( info, data, jqxhr ) {
 		var flowBoard, $form, cancelCallback,
@@ -688,7 +692,7 @@
 	 * @param {jQuery} info.$target
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
-	 * @returns {$.Promise}
+	 * @returns {jQuery.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.activateEditPost = function ( info, data, jqxhr ) {
 		var $rendered, rootBlock,
@@ -782,21 +786,21 @@
 	// Private functions
 	//
 
+	/** @class FlowBoardComponentApiEventsMixin */
+
 	/**
 	 * Generate a moderation handler callback
 	 *
+	 * @private
 	 * @param {string} action Action to expect in api response
 	 * @param {Function} successCallback Method to call on api success
+	 * @return {Function} Callback processing the response after submit of a moderation form
+	 * @return {Object} return.info `{status: done|fail, $target: jQuery}`
+	 * @return {Object} return.data
+	 * @return {jqXHR} return.jqxhr
+	 * @return {jQuery.Promise} return.return
 	 */
 	function _genModerateHandler( action, successCallback ) {
-		/**
-		 * After submit of a moderation form, process the response.
-		 *
-		 * @param {Object} info (status:done|fail, $target: jQuery)
-		 * @param {Object} data
-		 * @param {jqXHR} jqxhr
-		 * @returns {$.Promise}
-		 */
 		return function ( info, data, jqxhr ) {
 			if ( info.status !== 'done' ) {
 				// Error will be displayed by default, nothing else to wrap up
@@ -824,10 +828,11 @@
 	/**
 	 * Refreshes (part of) a topic.
 	 *
+	 * @private
 	 * @param  {jQuery} $targetElement An element in the topic.
 	 * @param  {string} workflowId     Plain object containing the API response to build from.
 	 * @param  {String} [selector]     Select specific element to replace
-	 * @returns {$.Promise}
+	 * @returns {jQuery.Promise}
 	 */
 	function _flowBoardComponentRefreshTopic( $targetElement, workflowId, selector ) {
 		var $target = $targetElement.closest( '.flow-topic' ),

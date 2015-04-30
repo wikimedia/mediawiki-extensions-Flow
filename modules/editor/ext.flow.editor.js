@@ -1,13 +1,16 @@
 ( function ( $, mw ) {
 	'use strict';
 
-	// This is more of an EditorFacade/EditorDispatcher or something, and should be renamed.
-	// It's not the base class, nor is it an actual editor.
+	/**
+	 * This is more of an EditorFacade/EditorDispatcher or something, and should be renamed.
+	 * It's not the base class, nor is it an actual editor.
+	 * @class
+	 */
 	mw.flow.editor = {
 		/**
 		 * Specific editor to be used.
 		 *
-		 * @property {object}
+		 * @property {Object}
 		 */
 		editor: null,
 
@@ -18,7 +21,7 @@
 		 * attribute is never index 0; a 0-value will make :data(flow-editor)
 		 * selector not find a result.
 		 *
-		 * @property {object}
+		 * @property {Object}
 		 */
 		editors: [null],
 
@@ -64,8 +67,10 @@
 			 * When calling load(), loadEditor() may not yet have completed loading the
 			 * dependencies. To make sure it doesn't break, this will in interval,
 			 * check for it and only start loading once initialization is complete.
+			 *
+			 * @private
 			 */
-			var load = function ( $node, content ) {
+			var tryLoad = function ( $node, content ) {
 				if ( mw.flow.editor.editor === null ) {
 					return;
 				} else {
@@ -80,7 +85,7 @@
 				deferred.resolve();
 			},
 			deferred = $.Deferred(),
-			interval = setInterval( $.proxy( load, this, $node, content ), 10 );
+			interval = setInterval( $.proxy( tryLoad, this, $node, content ), 10 );
 
 			return deferred.promise();
 		},
@@ -139,7 +144,7 @@
 		 *
 		 * @param {jQuery} $node
 		 * @param {string} content
-		 * @return {object}
+		 * @return {Object}
 		 */
 		create: function ( $node, content ) {
 			$node.data( 'flow-editor', mw.flow.editor.editors.length )
@@ -153,7 +158,7 @@
 		 * Returns editor object associated with a given node.
 		 *
 		 * @param {jQuery} $node
-		 * @return {object}
+		 * @return {Object}
 		 */
 		getEditor: function ( $node ) {
 			return mw.flow.editor.editors[$node.data( 'flow-editor' )];
@@ -163,7 +168,7 @@
 		 * Returns true if the given $node has an associated editor instance.
 		 *
 		 * @param {jQuery} $node
-		 * @return {bool}
+		 * @return {boolean}
 		 */
 		exists: function ( $node ) {
 			return mw.flow.editor.editors.hasOwnProperty( $node.data( 'flow-editor' ) );

@@ -10,9 +10,9 @@
 		this.eventInstance = eventInstance || {};
 
 		/**
-		 * @param {object} eventInstance Additional event instance data for this
+		 * @param {Object} eventInstance Additional event instance data for this
 		 *   particular event.
-		 * @returns {$.Deferred}
+		 * @returns {jQuery.Promise}
 		 */
 		function logEvent( eventInstance ) {
 			// Ensure eventLog & this schema exist, or return a stub deferred

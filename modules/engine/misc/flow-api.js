@@ -36,7 +36,7 @@
 		 * Makes the actual API call and returns
 		 * @param {Object|String} [params] May be a JSON object string
 		 * @param {String} [method]
-		 * @returns {$.Promise}
+		 * @returns {jQuery.Promise}
 		 */
 		function flowApiCall( params, method ) {
 			var mwApi, tokenType,
@@ -156,7 +156,7 @@
 
 	/**
 	 * With a url (a://b.c/d?e=f&g#h) will return an object of key-value pairs ({e:'f', g:''}).
-	 * @param {String|Element} url
+	 * @param {string|HTMLElement} url
 	 * @param {Object} [queryMap]
 	 * @returns {Object}
 	 */
@@ -245,9 +245,9 @@
 	 * Using a given form, parses its action, serializes the data, and sends it as GET or POST depending on form method.
 	 * With button, its name=value is serialized in. If button is an Event, it will attempt to find the clicked button.
 	 * Additional params can be set with data-flow-api-params on both the clicked button or the form.
-	 * @param {Event|Element} button
+	 * @param {Event|HTMLElement} button
 	 * @param {Object} queryMap
-	 * @return {$.Deferred}
+	 * @return {jQuery.Promise}
 	 */
 	function flowApiRequestFromForm( button, queryMap ) {
 		var $button = $( button ),
@@ -262,9 +262,9 @@
 	/**
 	 * Using a given anchor, parses its URL and sends it as a GET (default) or POST depending on data-flow-api-method.
 	 * Additional params can be set with data-flow-api-params.
-	 * @param {Element} anchor
+	 * @param {HTMLElement} anchor
 	 * @param {Object} queryMap
-	 * @return {$.Deferred}
+	 * @return {jQuery.Promise}
 	 */
 	function flowApiRequestFromAnchor( anchor, queryMap ) {
 		var $anchor = $( anchor ),
@@ -278,9 +278,9 @@
 
 	/**
 	 * Automatically calls requestFromAnchor or requestFromForm depending on the type of node given.
-	 * @param {Element} node
+	 * @param {HTMLElement} node
 	 * @param {Object} queryMap
-	 * @return {$.Deferred}
+	 * @return {jQuery.Promise}
 	 */
 	function flowApiRequestFromNode( node, queryMap ) {
 		var $node = $( node );
@@ -299,10 +299,10 @@
 	/**
 	 * Handles aborting an old in-flight API request.
 	 * If startNewMethod is given, this method also STARTS a new API call and stores it for later abortion if needed.
-	 * @param {jQuery|Element} $node
+	 * @param {jQuery|HTMLElement} $node
 	 * @param {Object} queryMap
 	 * @param {String} [startNewMethod] If given: starts, stores, and returns a new API call
-	 * @return {undefined|$.Deferred}
+	 * @return {undefined|jQuery.Promise}
 	 */
 	function flowApiAbortOldRequestFromNode( $node, queryMap, startNewMethod ) {
 		$node = $( $node );
