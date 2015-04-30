@@ -17,6 +17,7 @@ $specialPageAliases['en'] = array(
 /** Arabic (العربية) */
 $specialPageAliases['ar'] = array(
 	'Flow' => array( 'سريان' ),
+	'EnableFlow' => array( 'فعل_سريان' ),
 );
 
 /** Egyptian Spoken Arabic (مصرى) */

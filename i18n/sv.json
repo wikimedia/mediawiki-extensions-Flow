@@ -347,6 +347,7 @@
 	"flow-special-type-workflow": "Arbetsflöde",
 	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Kunde inte hitta innehåll som matchar typen och UUID:et.",
+	"flow-special-enableflow-archive-title-format-default-value": "%s/Arkiv_%d",
 	"flow-spam-confirmedit-form": "Vänligen bekräfta att du är en människa genom att lösa nedanstående captcha: $1",
 	"flow-embedding-unsupported": "Diskussioner kan ännu inte bäddas in.",
 	"mw-ui-unsubmitted-confirm": "Du har osparade ändringar på denna sida. Är du säker du vill lämna sidan och förlora ändringarna?",
