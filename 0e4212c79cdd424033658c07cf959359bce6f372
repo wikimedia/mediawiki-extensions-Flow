@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_f28a391b",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 950,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-01T21:37:36Z",
+      "side": 1,
+      "message": "Should this also be done here, and if so should the parameter be dropped?",
+      "revId": "0e4212c79cdd424033658c07cf959359bce6f372",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
