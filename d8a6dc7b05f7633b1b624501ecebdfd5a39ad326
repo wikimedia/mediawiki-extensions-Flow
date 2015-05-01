@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_32a44104",
+        "filename": "tests/browser/features/support/pages/topic_history_page.rb",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-01T20:54:05Z",
+      "side": 1,
+      "message": "This probably is not necessary, since goto is never called.",
+      "revId": "d8a6dc7b05f7633b1b624501ecebdfd5a39ad326",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_f2ad59e8",
+        "filename": "tests/browser/features/support/pages/topic_page.rb",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-01T20:54:05Z",
+      "side": 1,
+      "message": "Same",
+      "revId": "d8a6dc7b05f7633b1b624501ecebdfd5a39ad326",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
