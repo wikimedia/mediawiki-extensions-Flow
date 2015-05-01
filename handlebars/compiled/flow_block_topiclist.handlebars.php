@@ -21,6 +21,7 @@
             'concat' => 'Flow\TemplateHelper::concat',
             'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
             'escapeContent' => 'Flow\TemplateHelper::escapeContent',
+            'oouify' => 'Flow\TemplateHelper::oouify',
 ),
         'blockhelpers' => array(),
         'hbhelpers' => array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -98,12 +99,6 @@
 '.LCRun3::hbch($cx, 'progressiveEnhancement', array(array(),array()), $in, false, function($cx, $in) {return '		<div class="flow-anon-warning-desktop">
 '.LCRun3::hbch($cx, 'tooltip', array(array(),array('positionClass'=>'left','contextClass'=>'progressive','extraClass'=>'flow-form-collapsible','isBlock'=>true)), $in, false, function($cx, $in) {return ''.LCRun3::ch($cx, 'l10nParse', array(array('flow-anon-warning',LCRun3::ch($cx, 'linkWithReturnTo', array(array('Special:UserLogin'),array()), 'raw'),LCRun3::ch($cx, 'linkWithReturnTo', array(array('Special:UserLogin/signup'),array()), 'raw')),array()), 'encq').'';}).'		</div>
 ';}).'</div>
-';},'flow_form_buttons' => function ($cx, $in) {return '<button data-flow-interactive-handler="cancelForm"
-        data-role="cancel"
-        type="reset"
-        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
-
->'.LCRun3::ch($cx, 'l10n', array(array('flow-cancel'),array()), 'encq').'</button>
 ';},'flow_newtopic_form' => function ($cx, $in) {return ''.((LCRun3::ifvar($cx, ((isset($in['actions']['newtopic']) && is_array($in['actions'])) ? $in['actions']['newtopic'] : null))) ? '	<form action="'.htmlentities((string)((isset($in['actions']['newtopic']['url']) && is_array($in['actions']['newtopic'])) ? $in['actions']['newtopic']['url'] : null), ENT_QUOTES, 'UTF-8').'" method="POST" class="flow-newtopic-form" data-flow-initial-state="collapsed">
 '.LCRun3::p($cx, 'flow_errors', array(array($in),array())).'
 '.LCRun3::hbch($cx, 'ifAnonymous', array(array(),array()), $in, false, function($cx, $in) {return ''.LCRun3::p($cx, 'flow_anon_warning', array(array($in),array())).'';}).'
@@ -130,11 +125,15 @@
 
 		<div class="flow-form-actions flow-form-collapsible"
 			'.((LCRun3::ifvar($cx, ((isset($in['isOnFlowBoard']) && is_array($in)) ? $in['isOnFlowBoard'] : null))) ? 'style="display:none;"' : '').'>
-			<button data-role="submit" data-flow-api-handler="newTopic"
+			'.LCRun3::ch($cx, 'oouify', array(array(((isset($cx['sp_vars']['root']['editToken']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['editToken'] : null),((isset($in['workflowId']) && is_array($in)) ? $in['workflowId'] : null)),array('type'=>'buttonWidget','buttonType'=>'submit','name'=>'flow-newtopic-save','classes'=>'flow-ui-button','l10n'=>'flow-newtopic-save','flags'=>'primary constructive','handler'=>'apiRequest','apiHandler'=>'newTopic')), 'raw').'
+			<!-- button data-role="submit" data-flow-api-handler="newTopic"
 				data-flow-interactive-handler="apiRequest"
 				data-flow-eventlog-action="save-attempt"
-				class="mw-ui-button mw-ui-constructive mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', array(array('flow-newtopic-save'),array()), 'encq').'</button>
-'.LCRun3::p($cx, 'flow_form_buttons', array(array($in),array())).'			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-new-topic'),array()), 'encq').'</small>
+				class="mw-ui-button mw-ui-constructive mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', array(array('flow-newtopic-save'),array()), 'encq').'</button -->
+			'.LCRun3::ch($cx, 'oouify', array(array(),array('type'=>'buttonWidget','buttonType'=>'reset','name'=>'flow-newtopic-cancel','frameless'=>'true','classes'=>'flow-ui-button','l10n'=>'flow-cancel','flags'=>'destructive','handler'=>'cancelForm')), 'raw').'
+
+
+			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-new-topic'),array()), 'encq').'</small>
 		</div>
 	</form>
 ' : '').'';},'flow_topic_moderation_flag' => function ($cx, $in) {return '<span class="wikiglyph'.LCRun3::hbch($cx, 'ifCond', array(array(((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null),'===','lock'),array()), $in, false, function($cx, $in) {return ' wikiglyph-lock';}).''.LCRun3::hbch($cx, 'ifCond', array(array(((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null),'===','hide'),array()), $in, false, function($cx, $in) {return ' wikiglyph-flag';}).''.LCRun3::hbch($cx, 'ifCond', array(array(((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null),'===','delete'),array()), $in, false, function($cx, $in) {return ' wikiglyph-trash';}).'"></span>
@@ -265,6 +264,12 @@
 '.LCRun3::p($cx, 'flow_moderation_actions_list', array(array($in),array('moderationType'=>'topic','moderationTarget'=>'title','moderationTemplate'=>'topic','moderationContainerClass'=>'flow-menu','moderationMwUiClass'=>'mw-ui-button','moderationIcons'=>true))).'		</ul>
 	</div>
 </div>
+';},'flow_form_buttons' => function ($cx, $in) {return '<button data-flow-interactive-handler="cancelForm"
+        data-role="cancel"
+        type="reset"
+        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
+
+>'.LCRun3::ch($cx, 'l10n', array(array('flow-cancel'),array()), 'encq').'</button>
 ';},'flow_reply_form' => function ($cx, $in) {return ''.((LCRun3::ifvar($cx, ((isset($in['actions']['reply']) && is_array($in['actions'])) ? $in['actions']['reply'] : null))) ? '	<form class="flow-post flow-reply-form"
 	      method="POST"
 	      action="'.htmlentities((string)((isset($in['actions']['reply']['url']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['url'] : null), ENT_QUOTES, 'UTF-8').'"

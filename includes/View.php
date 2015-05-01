@@ -77,6 +77,7 @@ class View extends ContextSource {
 		**/
 
 		$output = $this->getOutput();
+		$output->enableOOUI();
 		$this->addModules( $output, $action );
 		// Please note that all blocks can set page title, which may cause them
 		// to override one another's titles
