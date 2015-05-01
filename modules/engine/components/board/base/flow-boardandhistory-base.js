@@ -71,7 +71,7 @@
 	 * @param {string} [data.funnelId] Schema's funnelId parameter (can be
 	 *   omitted if starting new funnel - will be generated)
 	 * @param {jQuery} [$forward] Nodes to forward funnel to
-	 * @returns {Object} Logged data
+	 * @return {Object} Logged data
 	 */
 	FlowBoardAndHistoryComponentBase.prototype.logEvent = function ( schemaName, data, $forward ) {
 		var // Get existing (forwarded) funnel id, or generate a new one if it does not yet exist
@@ -130,7 +130,7 @@
 
 	/**
 	 * @param {Event} event
-	 * @returns {jQuery.Promise}
+	 * @return {jQuery.Promise}
 	 */
 	FlowBoardAndHistoryComponentBase.UI.events.interactiveHandlers.moderationDialog = function ( event ) {
 		var $form,
@@ -182,7 +182,7 @@
 	/**
 	 * Cancels and closes a form. If text has been entered, issues a warning first.
 	 * @param {Event} event
-	 * @returns {jQuery.Promise}
+	 * @return {jQuery.Promise}
 	 */
 	FlowBoardAndHistoryComponentBase.UI.events.interactiveHandlers.cancelForm = function ( event ) {
 		var target = this,
@@ -251,7 +251,7 @@
 	 * Return true page is in topic namespace,
 	 * and if $el is given, that if $el is also within .flow-post.
 	 * @param {jQuery} [$el]
-	 * @returns {boolean}
+	 * @return {boolean}
 	 */
 	function flowBoardInTopicNamespace( $el ) {
 		return inTopicNamespace && ( !$el || $el.closest( '.flow-post' ).length === 0 );

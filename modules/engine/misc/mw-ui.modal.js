@@ -14,8 +14,8 @@
 	 * modal will start in hidden state.
 	 * Settings keys:
 	 * - open (same arguments as open method)
-	 * - title String
-	 * - disableCloseOnOutsideClick Boolean (if true, ESC and background clicks do not close it)
+	 * - title string
+	 * - disableCloseOnOutsideClick boolean (if true, ESC and background clicks do not close it)
 	 *
 	 * Simple modal:
 	 *
@@ -37,7 +37,7 @@
 	 * @todo Implement OOJS & events
 	 * @class
 	 * @constructor
-	 * @param {String} [name] Name of modal (may be omitted)
+	 * @param {string} [name] Name of modal (may be omitted)
 	 * @param {Object} [settings]
 	 */
 	function MwUiModal( name, settings ) {
@@ -103,7 +103,7 @@
 	/**
 	 * Closes and destroys the given instance of mw.Modal.
 	 *
-	 * @return {Boolean} false on failure, true on success
+	 * @return {boolean} false on failure, true on success
 	 */
 	MwUiModal.prototype.close = function () {
 		// Remove references
@@ -182,7 +182,7 @@
 	/**
 	 * Changes the title of the modal.
 	 *
-	 * @param {String|null} title
+	 * @param {string|null} title
 	 * @return MwUiModal
 	 */
 	MwUiModal.prototype.setTitle = function ( title ) {
@@ -229,7 +229,7 @@
 
 	/**
 	 * Returns the modal's wrapper Element, which contains the header node and content node.
-	 * @returns {jQuery}
+	 * @return {jQuery}
 	 */
 	MwUiModal.prototype.getNode = function () {
 		var self = this,
@@ -257,7 +257,7 @@
 
 	/**
 	 * Returns the wrapping Element on which you can bind bubbling events for your content.
-	 * @returns {jQuery}
+	 * @return {jQuery}
 	 */
 	MwUiModal.prototype.getContentNode = function () {
 		return this.getNode().find( this.contentSelector );
@@ -286,7 +286,7 @@
 	 * @todo Implement multi-step.
 	 *
 	 * @param {number|string} to
-	 * @param {HTMLElement|jQuery|String} contents
+	 * @param {HTMLElement|jQuery|string} contents
 	 * @return {MwUiModal}
 	 */
 	MwUiModal.prototype.setStep = function ( to, contents ) {
@@ -342,7 +342,7 @@
 	 *
 	 * @todo Implement multi-step.
 	 *
-	 * @return {MwUiModal|Boolean} false if invalid step, MwUiModal on success
+	 * @return {MwUiModal|boolean} false if invalid step, MwUiModal on success
 	 */
 	MwUiModal.prototype.prev = function () {
 		return false;
@@ -353,7 +353,7 @@
 	 *
 	 * @todo Implement multi-step.
 	 *
-	 * @return {MwUiModal|Boolean} false if invalid step, MwUiModal on success
+	 * @return {MwUiModal|boolean} false if invalid step, MwUiModal on success
 	 */
 	MwUiModal.prototype.next = function () {
 		return false;
@@ -384,7 +384,7 @@
 	 * Returns false if none found.
 	 *
 	 * @param {HTMLElement|jQuery} [node]
-	 * @return {Boolean|MwUiModal}
+	 * @return {boolean|MwUiModal}
 	 */
 	mw.Modal.getModal = function ( node ) {
 		if ( node ) {

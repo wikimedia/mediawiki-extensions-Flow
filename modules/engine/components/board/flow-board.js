@@ -58,7 +58,7 @@
 	 * Sets up the board and base properties on this class.
 	 * Returns either FALSE for failure, or jQuery object of old nodes that were replaced.
 	 * @param {jQuery|boolean} $container
-	 * @return {Boolean|jQuery}
+	 * @return {boolean|jQuery}
 	 */
 	function flowBoardComponentReinitializeContainer( $container ) {
 		if ( $container === false ) {

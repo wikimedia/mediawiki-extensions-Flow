@@ -31,7 +31,7 @@
 	 * If we add more editors later this will have to be revisited.
 	 *
 	 * @param {Event} event
-	 * @returns {jQuery.Promise}
+	 * @return {jQuery.Promise}
 	 */
 	FlowBoardComponentSwitchEditorFeatureMixin.UI.events.interactiveHandlers.switchEditor = function ( event ) {
 		var $this = $( this ),

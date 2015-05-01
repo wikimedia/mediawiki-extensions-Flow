@@ -9,7 +9,7 @@
 		 * Compiler source code into a template object
 		 *
 		 * @method
-		 * @param {String} src the source of a template
+		 * @param {string} src the source of a template
 		 * @return {HandleBars.Template} template object
 		 */
 		compile: function( src ) {

@@ -1,8 +1,8 @@
 ( function ( mw, $ ) {
 	/**
-	 * @param {String} schemaName Canonical schema name.
+	 * @param {string} schemaName Canonical schema name.
 	 * @param {Object} [eventInstance] Shared event instance data.
-	 * @returns {FlowEventLog}
+	 * @return {FlowEventLog}
 	 * @constructor
 	 */
 	function FlowEventLog( schemaName, eventInstance ) {
@@ -12,7 +12,7 @@
 		/**
 		 * @param {Object} eventInstance Additional event instance data for this
 		 *   particular event.
-		 * @returns {jQuery.Promise}
+		 * @return {jQuery.Promise}
 		 */
 		function logEvent( eventInstance ) {
 			// Ensure eventLog & this schema exist, or return a stub deferred
@@ -34,7 +34,7 @@
 		/**
 		 * Generates a unique id.
 		 *
-		 * @returns {string}
+		 * @return {string}
 		 */
 		generateFunnelId: mw.user.generateRandomSessionId
 	};

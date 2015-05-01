@@ -10,7 +10,7 @@
 	 * @method findWithParent
 	 * @param {jQuery|HTMLElement|string} $context
 	 * @param {string} selector
-	 * @returns {jQuery}
+	 * @return {jQuery}
 	 */
 	function jQueryFindWithParent( $context, selector ) {
 		var matches;

@@ -82,7 +82,7 @@
 	 *
 	 * Example: sfhzxr5a00jkf405 -> 1429101316919
 	 *
-	 * @param {String} uuid
+	 * @param {string} uuid
 	 * @return {number} UNIX time
 	 */
 	mw.flow.uuidToTime = FlowComponent.prototype.uuidToTime = function ( uuid ) {
@@ -116,7 +116,7 @@
 
 	/**
 	 * Returns all the registered instances of a given FlowComponent.
-	 * @returns {FlowComponent[]}
+	 * @return {FlowComponent[]}
 	 */
 	FlowComponent.prototype.getInstances = function () {
 		// Use the correct context (instance vs prototype)
@@ -126,7 +126,7 @@
 	/**
 	 * Goes up the DOM tree to find which FlowComponent $el belongs to, via .flow-component[flow-id].
 	 * @param {jQuery} $el
-	 * @returns {FlowComponent|boolean}
+	 * @return {FlowComponent|boolean}
 	 */
 	FlowComponent.prototype.getInstanceByElement = function ( $el ) {
 		var $container = $el.closest( '.flow-component' ),
@@ -209,7 +209,7 @@
 	 *
 	 * @param {jQuery.Event} event
 	 * @param {HTMLElement} container
-	 * @returns {*}
+	 * @return {*}
 	 * @private
 	 */
 	function _eventForwardDispatch( event, container ) {

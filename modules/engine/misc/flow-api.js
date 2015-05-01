@@ -22,9 +22,9 @@
 	/**
 	 * Handles Flow API calls. Each FlowComponent has its own instance of FlowApi as component.Api,
 	 * so that it can store a workflowId and pageName permanently for simplicity.
-	 * @param {String} [workflowId]
-	 * @param {String} [pageName]
-	 * @returns {FlowApi}
+	 * @param {string} [workflowId]
+	 * @param {string} [pageName]
+	 * @return {FlowApi}
 	 * @constructor
 	 */
 	function FlowApi( storageEngine, workflowId, pageName ) {
@@ -34,9 +34,9 @@
 
 		/**
 		 * Makes the actual API call and returns
-		 * @param {Object|String} [params] May be a JSON object string
-		 * @param {String} [method]
-		 * @returns {jQuery.Promise}
+		 * @param {Object|string} [params] May be a JSON object string
+		 * @param {string} [method]
+		 * @return {jQuery.Promise}
 		 */
 		function flowApiCall( params, method ) {
 			var mwApi, tokenType,
@@ -89,16 +89,16 @@
 
 	/** @type {Storer} */
 	FlowApi.prototype.StorageEngine = null;
-	/** @type {String} */
+	/** @type {string} */
 	FlowApi.prototype.pageName = null;
-	/** @type {String} */
+	/** @type {string} */
 	FlowApi.prototype.workflowId = null;
-	/** @type {String} */
+	/** @type {string} */
 	FlowApi.prototype.defaultSubmodule = null;
 
 	/**
 	 * Sets the fixed pageName for this API instance.
-	 * @param {String} pageName
+	 * @param {string} pageName
 	 */
 	function flowApiSetPageName( pageName ) {
 		this.pageName = pageName;
@@ -108,7 +108,7 @@
 
 	/**
 	 * Sets the fixed workflowId for this API instance.
-	 * @param {String} workflowId
+	 * @param {string} workflowId
 	 */
 	function flowApiSetWorkflowId( workflowId ) {
 		this.workflowId = workflowId;
@@ -120,7 +120,7 @@
 	 * Transforms URL request parameters into API params
 	 * @todo fix it server-side so we don't need this client-side
 	 * @param {Object} queryMap
-	 * @returns {Object}
+	 * @return {Object}
 	 */
 	function flowApiTransformMap( queryMap ) {
 		var key,
@@ -146,7 +146,7 @@
 
 	/**
 	 * Sets the fixed defaultSubmodule for this API instance.
-	 * @param {String} defaultSubmodule
+	 * @param {string} defaultSubmodule
 	 */
 	function flowApiSetDefaultSubmodule( defaultSubmodule ) {
 		this.defaultSubmodule = defaultSubmodule;
@@ -158,7 +158,7 @@
 	 * With a url (a://b.c/d?e=f&g#h) will return an object of key-value pairs ({e:'f', g:''}).
 	 * @param {string|HTMLElement} url
 	 * @param {Object} [queryMap]
-	 * @returns {Object}
+	 * @return {Object}
 	 */
 	function flowApiGetQueryMap( url, queryMap ) {
 		var uri,
@@ -301,7 +301,7 @@
 	 * If startNewMethod is given, this method also STARTS a new API call and stores it for later abortion if needed.
 	 * @param {jQuery|HTMLElement} $node
 	 * @param {Object} queryMap
-	 * @param {String} [startNewMethod] If given: starts, stores, and returns a new API call
+	 * @param {string} [startNewMethod] If given: starts, stores, and returns a new API call
 	 * @return {undefined|jQuery.Promise}
 	 */
 	function flowApiAbortOldRequestFromNode( $node, queryMap, startNewMethod ) {
