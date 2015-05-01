@@ -1,0 +1,13 @@
+{
+	"--title": "Flow - Documentation",
+	"--processes": "0",
+	"--warnings-exit-nonzero": true,
+	"--external": "OO.*,ve.*,DocumentFragment,Storer",
+	"--output": "docs",
+	"--tags": "jsduck-customtags.rb",
+	"--": [
+		"jsduck.external.js",
+		"modules",
+		"tests"
+	]
+}
