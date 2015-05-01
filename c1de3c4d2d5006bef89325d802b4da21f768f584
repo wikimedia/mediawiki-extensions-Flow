@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_3c341a46",
+        "filename": "modules/styles/mediawiki.ui/tooltips.less",
+        "patchSetId": 5
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-01T19:47:52Z",
+      "side": 1,
+      "message": "Why is this needed? For the watch star?",
+      "revId": "c1de3c4d2d5006bef89325d802b4da21f768f584",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
