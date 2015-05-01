@@ -19,8 +19,7 @@ module.exports = function ( grunt ) {
 			},
 			all: [
 				'*.js',
-				'modules/**/*.js',
-				'!modules/vendor/*.js'
+				'modules/**/*.js'
 			]
 		},
 		jscs: {

@@ -308,10 +308,12 @@ $wgResourceModules += array(
 		),
 	) + $mobile,
 	// MediaWiki Handlebars provider.  Should not have anything Flow-specific
-	'mediawiki.template.handlebars' => $flowResourceTemplate + array(
+	'mediawiki.template.handlebars' => array(
+		'localBasePath' => __DIR__,
+		'remoteExtPath' => 'Flow',
 		'scripts' => array(
-			'vendor/handlebars-v3.0.0.js',
-			'handlebars.js',
+			'vendor/modules/handlebars-v3.0.0.js',
+			'modules/handlebars.js',
 		),
 		'dependencies' => array(
 			'mediawiki.template',
@@ -395,9 +397,11 @@ $wgResourceModules += array(
 			'flow-reply-link',
 		)
 	) + $mobile,
-	'ext.flow.vendor.storer' => $flowResourceTemplate + array(
+	'ext.flow.vendor.storer' => array(
+		'localBasePath' => __DIR__,
+		'remoteExtPath' => 'Flow',
 		'scripts' => array(
-			'vendor/Storer.js',
+			'vendor/modules/Storer.js',
 		),
 	) + $mobile,
 	'ext.flow.undo' => $flowResourceTemplate + array(
