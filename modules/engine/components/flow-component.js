@@ -43,6 +43,9 @@
 			parent = parent.parent; // and add it to every instance registry
 		}
 		_totalInstanceCount++;
+
+		// Initialize OOUI
+		this.ooui = new mw.flow.ooui();
 	}
 	OO.initClass( FlowComponent );
 
