@@ -514,7 +514,6 @@
 		if ( event.type === 'keypress' && ( event.charCode !== 13 || event.metaKey || event.shiftKey || event.ctrlKey || event.altKey )) {
 			return;
 		}
-
 		var args = Array.prototype.slice.call( arguments, 0 ),
 			$context = $( event.currentTarget || event.delegateTarget || event.target ),
 			// Have either of these been forced via trigger extraParameters?
@@ -534,7 +533,6 @@
 			$context = $( event.currentTarget || event.delegateTarget || event.target ),
 			interactiveHandlerName = $context.data( 'flow-interactive-handler-focus' ),
 			apiHandlerName = $context.data( 'flow-api-handler-focus' );
-
 		return flowExecuteInteractiveHandler.call( this, args, $context, interactiveHandlerName, apiHandlerName );
 	}
 	FlowComponentEventsMixin.eventHandlers.interactiveHandlerFocus = flowInteractiveHandlerFocusCallback;
