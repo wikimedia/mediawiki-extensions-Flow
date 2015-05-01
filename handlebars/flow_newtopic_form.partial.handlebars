@@ -37,11 +37,35 @@
 
 		<div class="flow-form-actions flow-form-collapsible"
 			{{#if isOnFlowBoard}}style="display:none;"{{/if}}>
-			<button data-role="submit" data-flow-api-handler="newTopic"
+			{{{ oouify
+				@root.editToken
+				workflowId
+				type="buttonWidget"
+				buttonType="submit"
+				name="flow-newtopic-save"
+				classes="flow-ui-button"
+				l10n="flow-newtopic-save"
+				flags="primary constructive"
+				handler="apiRequest"
+				apiHandler="newTopic"
+			}}}
+			<!-- button data-role="submit" data-flow-api-handler="newTopic"
 				data-flow-interactive-handler="apiRequest"
 				data-flow-eventlog-action="save-attempt"
-				class="mw-ui-button mw-ui-constructive mw-ui-flush-right">{{l10n "flow-newtopic-save"}}</button>
-			{{> flow_form_buttons }}
+				class="mw-ui-button mw-ui-constructive mw-ui-flush-right">{{l10n "flow-newtopic-save"}}</button -->
+			{{!-- > flow_form_buttons --}}
+			{{{ oouify
+				type="buttonWidget"
+				buttonType="reset"
+				name="flow-newtopic-cancel"
+				frameless="true"
+				classes="flow-ui-button"
+				l10n="flow-cancel"
+				flags="destructive"
+				handler="cancelForm"
+			}}}
+
+
 			<small class="flow-terms-of-use plainlinks">{{l10nParse "flow-terms-of-use-new-topic"}}</small>
 		</div>
 	</form>

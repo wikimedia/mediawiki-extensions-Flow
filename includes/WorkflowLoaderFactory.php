@@ -118,7 +118,7 @@ class WorkflowLoaderFactory {
 			throw new UnknownWorkflowIdException( 'Invalid workflow requested by id', 'invalid-input' );
 		}
 		if ( $title !== false && $this->pageMoveInProgress === false && !$workflow->matchesTitle( $title ) ) {
-			throw new InvalidInputException( 'Flow workflow is for different page', 'invalid-input' );
+			throw new InvalidInputException( 'Flow workflow is for different page'.$title." ".$workflowId, 'invalid-input' );
 		}
 
 		return $workflow;
