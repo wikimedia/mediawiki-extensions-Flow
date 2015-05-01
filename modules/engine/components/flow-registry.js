@@ -18,7 +18,7 @@
 	 * Uses data-flow-component to find the right class, and returns that new instance.
 	 * Accepts one or more container elements in $container. If multiple, returns an array of FlowBoardComponents.
 	 * @param {jQuery} $container
-	 * @returns {FlowComponent|boolean|Array} The created FlowComponent instance, or an
+	 * @return {FlowComponent|boolean|Array} The created FlowComponent instance, or an
 	 *  array of FlowComponent instances, or boolean false in case of an error.
 	 */
 	function initFlowComponent( $container ) {
@@ -28,7 +28,7 @@
 		 * @private
 		 * Deep magic: This crazy little function becomes the "real" top-level constructor
 		 * It recursively calls every parent so that we don't have to do it manually in a Component constructor
-		 * @returns {FlowComponent}
+		 * @return {FlowComponent}
 		 */
 		function _RecursiveConstructor() {
 			var constructors = [],
@@ -92,9 +92,9 @@
 	/**
 	 * Registers a given FlowComponent into the component registry, and also has it inherit another class using the
 	 * prototypeName argument (defaults to 'component', which returns FlowComponent).
-	 * @param {String} name Name of component to register
+	 * @param {string} name Name of component to register
 	 * @param {Function} constructorClass Actual class to link to that name
-	 * @param {String} [prototypeName='component'] A base class which this one will inherit
+	 * @param {string} [prototypeName='component'] A base class which this one will inherit
 	 */
 	function registerFlowComponent( name, constructorClass, prototypeName ) {
 		if ( name !== 'component' ) {
@@ -122,8 +122,8 @@
 	 *
 	 *     mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $el );
 	 *
-	 * @param {String} className
-	 * @param {String} methodName
+	 * @param {string} className
+	 * @param {string} methodName
 	 * @param {*} [context]
 	 * @return {Function}
 	 */
@@ -148,7 +148,7 @@
 
 	/**
 	 * Mixes in the given mixinClass to be copied to an existing class, by name.
-	 * @param {String} targetName Target component
+	 * @param {string} targetName Target component
 	 * @param {Function} mixinClass Class with extension to add to target
 	 */
 	function mixinFlowComponent( targetName, mixinClass ) {

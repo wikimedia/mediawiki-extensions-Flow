@@ -107,9 +107,9 @@
 	/**
 	 * Same as OO.EventEmitter.emit, except that it returns an array of results.
 	 * If something returns false, we stop processing the rest of the callbacks, if any.
-	 * @param {String} event Name of the event to trigger
+	 * @param {string} event Name of the event to trigger
 	 * @param {...*} [args] Arguments to pass to event callback
-	 * @returns {Array}
+	 * @return {Array}
 	 */
 	function emitWithReturn( event, args ) {
 		var i, len, binding, bindings, method,
@@ -202,8 +202,8 @@
 	 * Returns a callback function which passes off arguments to the emitter.
 	 * This only exists to clean up the FlowComponentEventsMixin constructor,
 	 * by preventing it from having too many anonymous functions.
-	 * @param {String} name
-	 * @returns {Function}
+	 * @param {string} name
+	 * @return {Function}
 	 * @private
 	 */
 	function flowComponentGetDispatchCallback( name ) {
@@ -229,7 +229,7 @@
 	 *
 	 * @param {string} code
 	 * @param {Object} result
-	 * @returns string
+	 * @return string
 	 */
 	function flowGetApiErrorMessage( code, result ) {
 		if ( result.error && result.error.info ) {
@@ -255,7 +255,7 @@
 	 *     <a data-flow-interactive-handler="apiRequest" data-flow-api-handler="loadMore" data-flow-api-target="< .flow-component div" href="...">...</a>
 	 *
 	 * @param {Event} event
-	 * @returns {jQuery.Promise}
+	 * @return {jQuery.Promise}
 	 */
 	function flowEventsMixinApiRequestInteractiveHandler( event ) {
 		var $deferred = $.Deferred(),
@@ -528,8 +528,8 @@
 	 * To manually trigger a handler on an element, you can use extraParameters via $el.trigger.
 	 * @param {Event} event
 	 * @param {Object} [extraParameters]
-	 * @param {String} [extraParameters.interactiveHandler]
-	 * @param {String} [extraParameters.apiHandler]
+	 * @param {string} [extraParameters.interactiveHandler]
+	 * @param {string} [extraParameters.apiHandler]
 	 */
 	function flowInteractiveHandlerCallback( event, extraParameters ) {
 		// Only trigger with enter key & no modifier keys, if keypress
@@ -809,7 +809,7 @@
 
 	/**
 	 * @param {FlowBoardComponent|jQuery} $node or entire FlowBoard
-	 * @param {String} msg The error that occurred. Currently hardcoded.
+	 * @param {string} msg The error that occurred. Currently hardcoded.
 	 */
 	function flowEventsMixinShowError( $node, msg ) {
 		var fragment = mw.flow.TemplateEngine.processTemplate( 'flow_errors.partial', { errors: [ { message: msg } ] } );
@@ -889,8 +889,8 @@
 	 * locate the first result in a common ancestor.
 	 *
 	 * @param {jQuery} $node
-	 * @param {String} selector
-	 * @returns jQuery
+	 * @param {string} selector
+	 * @return jQuery
 	 */
 	function _flowFindUpward( $node, selector ) {
 		// first check if result can already be found inside $node
