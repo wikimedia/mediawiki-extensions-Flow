@@ -156,6 +156,7 @@ class TemplateHelper {
 					'user' => 'Flow\TemplateHelper::user',
 					'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
 					'escapeContent' => 'Flow\TemplateHelper::escapeContent',
+					'oouify' => 'Flow\TemplateHelper::oouify'
 				),
 				'hbhelpers' => array(
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -487,6 +488,51 @@ class TemplateHelper {
 				str_replace( '</script>', '</flowprogressivescript>', $fn() ) .
 			'</script>'
 		);
+	}
+
+	/**
+	 * @param array $args one or more arguments, i18n key and parameters
+	 * @param array $named unused
+	 *
+	 * @return string Plaintext representation of the ooui widget DOM
+	 */
+	static public function oouify( array $args, array $named ) {
+		$widgetType = $named['type'];
+		$widget = "";
+		$acceptableDataArgs = array( 'handler', 'apiHandler', 'wpEditToken' );
+		$data = array();
+
+		// Parse label
+		$label = $named[ 'label' ];
+		if ( empty( $label ) && !empty( $named['l10n'] ) ) {
+			$label = TemplateHelper::l10n( explode( ' ', $named['l10n'] ), array() );
+		}
+
+		// Assemble data
+		for ($i = 0; $i < count( $acceptableDataArgs ); ++$i) {
+			if ( $named[$acceptableDataArgs[$i]] ) {
+				$data[$acceptableDataArgs[$i]] = $named[$acceptableDataArgs[$i]];
+			}
+		}
+
+		// Push raw arguments
+		$data['args'] = $args;
+
+		switch( $widgetType ) {
+			case "buttonWidget":
+				$widget = new \OOUI\ButtonInputWidget( array(
+					'infusable' => true,
+					'id' => $named['name'],
+					'type' => 'submit',
+					'classes' => explode( ' ', $named[ 'classes' ] ),
+					'label' => $label,
+					'flags' => explode( ' ', $named['flags'] ),
+					'data' => $data
+				) );
+				break;
+		}
+
+		return $widget;
 	}
 
 	/**

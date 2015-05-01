@@ -21,6 +21,7 @@
             'concat' => 'Flow\TemplateHelper::concat',
             'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
             'escapeContent' => 'Flow\TemplateHelper::escapeContent',
+            'oouify' => 'Flow\TemplateHelper::oouify',
 ),
         'blockhelpers' => array(),
         'hbhelpers' => array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -130,10 +131,11 @@
 
 		<div class="flow-form-actions flow-form-collapsible"
 			'.((LCRun3::ifvar($cx, ((isset($in['isOnFlowBoard']) && is_array($in)) ? $in['isOnFlowBoard'] : null))) ? 'style="display:none;"' : '').'>
-			<button data-role="submit" data-flow-api-handler="newTopic"
+			'.LCRun3::ch($cx, 'oouify', array(array(((isset($cx['sp_vars']['root']['editToken']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['editToken'] : null),((isset($in['workflowId']) && is_array($in)) ? $in['workflowId'] : null)),array('type'=>'buttonWidget','name'=>'flow-newtopic-save','classes'=>'flow-ui-button','l10n'=>'flow-newtopic-save','flags'=>'primary constructive','handler'=>'apiRequest','apiHandler'=>'newTopic')), 'raw').'
+			<!-- button data-role="submit" data-flow-api-handler="newTopic"
 				data-flow-interactive-handler="apiRequest"
 				data-flow-eventlog-action="save-attempt"
-				class="mw-ui-button mw-ui-constructive mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', array(array('flow-newtopic-save'),array()), 'encq').'</button>
+				class="mw-ui-button mw-ui-constructive mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', array(array('flow-newtopic-save'),array()), 'encq').'</button -->
 '.LCRun3::p($cx, 'flow_form_buttons', array(array($in),array())).'			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-new-topic'),array()), 'encq').'</small>
 		</div>
 	</form>
