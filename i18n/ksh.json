@@ -33,6 +33,8 @@
 	"flow-topic-action-summarize-topic": "Zosammefaßße",
 	"flow-topic-action-resummarize-topic": "De Zosammefaßßong vum Jähjeschtand ändere \n<!-- https://translatewiki.net/wiki/Thread:Support/About_MediaWiki:Gather-editfeed-show/qqq\n-->",
 	"flow-topic-action-undo-moderation": "Zeröknämme",
+	"flow-error-allowcreation-already-exists": "Di Sigg jidd_et alld, sulld ävver noch nit doh sin.",
+	"flow-error-allowcreation-flow-create-board": "Dä metmaacher hät nit et Rääsch „{{int:right-flow-create-board}}“",
 	"flow-error-not-allowed-reply-to-hide-topic": "Do kanns nit antwoote, weil heh dä  topic verschtoche woode es.",
 	"flow-error-not-allowed-reply-to-delete-topic": "Do kanns nit antwoote, weil heh dä  topic fottjeschmeße wohd.",
 	"flow-error-not-allowed-suppress": "Heh dä  topic wohd fottjeschmeße.",

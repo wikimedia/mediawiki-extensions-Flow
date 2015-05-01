@@ -47,7 +47,7 @@
 	"flow-post-moderated-toggle-delete-hide": "Ocultar comentario {{GENDER:$1|eliminado}} por $2",
 	"flow-post-moderated-toggle-suppress-hide": "Ocultar comentario {{GENDER:$1|suprimido}} por $2",
 	"flow-topic-moderated-reason-prefix": "Motivo:",
-	"flow-hide-post-content": "$1 {{GENDER:$1|ocultó}} este tema ([$2 historial])",
+	"flow-hide-post-content": "$1 {{GENDER:$1|ocultó}} este comentario ([$2 historial])",
 	"flow-hide-title-content": "$1 {{GENDER:$1|ocultó}} este tema",
 	"flow-lock-title-content": "$1 {{GENDER:$1|bloqueó}} el tema",
 	"flow-hide-header-content": "{{GENDER:$1|Ocultado}} por $2",
@@ -116,6 +116,7 @@
 	"flow-topic-notification-subscribe-description": "{{GENDER:$1|Recibirás}} notificaciones de todas las actividades sobre este tema.",
 	"flow-board-notification-subscribe-title": "{{GENDER:$1|Te}} has suscrito a este panel de discusión.",
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Recibirás}} una notificación cuando se cree un tema nuevo en este panel de discusión.",
+	"flow-error-allowcreation-flow-create-board": "El usuario no tiene el permiso de \"{{int:right-flow-create-board}}\"",
 	"flow-error-http": "Ha ocurrido un error mientras se contactaba al servidor.",
 	"flow-error-other": "Ha ocurrido un error inesperado.",
 	"flow-error-external": "Se ha producido un error.<br />El mensaje de error recibido es: $1",
@@ -358,8 +359,9 @@
 	"flow-ve-mention-tool-title": "Mencionar a un usuario",
 	"flow-ve-mention-inspector-invalid-user": "El nombre de usuario «$1» no está registrado.",
 	"flow-wikitext-editor-help": "El wikitexto $1.",
+	"flow-wikitext-editor-help-and-preview": "El wikitexto $1 y en cualquier momento puedes $2.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|usa marcado (\"markup\")]]",
-	"flow-wikitext-editor-help-preview-the-result": "previsualiza el resultado",
+	"flow-wikitext-editor-help-preview-the-result": "previsualizar el resultado",
 	"flow-wikitext-switch-editor-tooltip": "Cambiar al editor visual",
 	"flow-ve-switch-editor-tool-title": "Cambiar al editor de wikitexto"
 }

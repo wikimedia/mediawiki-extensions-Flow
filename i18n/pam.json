@@ -8,5 +8,6 @@
 	"flow-error-not-allowed-suppress-extract": "Mebura ne ing paksang ini. Ati yu king lalam ing deletion log para king reperensya.",
 	"apihelp-flow+new-topic-param-topic": "Ing tekstu para king bayung bansag ning paksa.",
 	"flow-previous-diff": "Mas minunang edit",
-	"flow-next-diff": "Mas bayung pamanalili (edit) →"
+	"flow-next-diff": "Mas bayung pamanalili (edit) →",
+	"flow-ve-mention-inspector-invalid-user": "Ing lagyung talagamit \"$1\" ali ya maka-reyistru"
 }
