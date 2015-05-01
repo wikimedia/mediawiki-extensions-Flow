@@ -328,6 +328,7 @@ $wgResourceModules += array(
 			// FlowComponent must come before actual components
 			'engine/components/common/flow-component-engines.js',
 			'engine/components/common/flow-component-events.js',
+			'engine/components/common/flow-component-ooui.js',
 
 			// Component: BoardAndHistoryBase
 			// Base class for both FlowBoardComponent and FlowBoardHistoryComponent
@@ -339,6 +340,7 @@ $wgResourceModules += array(
 		),
 		'dependencies' => array(
 			'oojs',
+			'oojs-ui',
 			'ext.flow.templating', // prototype-based for progressiveEnhancement
 			'ext.flow.jquery.findWithParent',
 			'ext.flow.vendor.storer',
