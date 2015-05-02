@@ -20,6 +20,7 @@ module.exports = function ( grunt ) {
 			all: [
 				'*.js',
 				'modules/**/*.js',
+				'tests/qunit/**/*.js',
 				'!modules/vendor/*.js'
 			]
 		},
