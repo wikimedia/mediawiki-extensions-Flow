@@ -906,10 +906,8 @@
 					return $.Deferred().reject( 'fail-prehandler', { error: { info: 'apiPreHandler returned false' } } );
 				}
 
-				if ( $.isPlainObject( queryMap ) ) {
-					args[2] = queryMap;
-				}
-
+				// update changed queryMap
+				args.splice( 2, 0, queryMap );
 				return args;
 			};
 		} );
