@@ -1,8 +1,16 @@
 {
 	"preset": "wikimedia",
 
+	"requireSpaceAfterLineComment": null,
+	"requireSpacesInsideParentheses": null,
+	"requireSpaceBeforeKeywords": null,
+	"disallowImplicitTypeConversion": null,
+	"disallowSpacesInCallExpression": null,
+	"disallowOperatorBeforeLineBreak": null,
+
 	"requireSpaceAfterKeywords": null,
 	"requireSpacesInsideArrayBrackets": null,
+	"requireLineBreakAfterVariableAssignment": null,
 	"disallowQuotedKeysInObjects": null,
 	"disallowDanglingUnderscores": null,
 	"disallowSpaceAfterObjectKeys": null,
