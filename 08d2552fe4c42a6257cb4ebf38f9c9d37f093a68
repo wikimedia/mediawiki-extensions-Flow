@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_340bce2e",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 1365,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-02T01:07:01Z",
+      "side": 1,
+      "message": "I would prefer the container only be called once per object.",
+      "revId": "08d2552fe4c42a6257cb4ebf38f9c9d37f093a68",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_b706e01e",
+        "filename": "includes/Model/Workflow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-02T01:07:01Z",
+      "side": 1,
+      "message": "or restoration",
+      "revId": "08d2552fe4c42a6257cb4ebf38f9c9d37f093a68",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
