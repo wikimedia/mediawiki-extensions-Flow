@@ -393,7 +393,7 @@
 	"apihelp-flow+close-open-topic-param-reason": "סיבה לנעילה או פתיחת נעילה של נושא.",
 	"apihelp-flow+edit-header-description": "עריכת תיאור לוח.",
 	"apihelp-flow+edit-header-param-prev_revision": "מזהה הגרסה של גרסת התיאור הנוכחית, כדי לבדוק אם יש התנגשויות עריכה.",
-	"apihelp-flow+edit-header-param-content": "תוכן לכותרת",
+	"apihelp-flow+edit-header-param-content": "תוכן לתיאור",
 	"apihelp-flow+edit-header-param-format": "תסדיר התיאור (wikitext|html)",
 	"apihelp-flow+edit-header-example-1": "עריכת התיאור של [[Talk:Sandbox]]",
 	"apihelp-flow+edit-post-description": "עריכת תוכן של רשומה.",

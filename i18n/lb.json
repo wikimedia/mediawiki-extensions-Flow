@@ -66,6 +66,7 @@
 	"flow-topic-notification-subscribe-description": "{{GENDER:$1|Dir}} gitt vun allen Aktivitéiten zu dësem Thema informéiert.",
 	"flow-board-notification-subscribe-title": "{{GENDER:$1|Dir}} sidd an dësen Diskussiouns-Board ageschriwwen!",
 	"flow-error-allowcreation-already-exists": "Säit gëtt et schonn, awer et dierft se net ginn",
+	"flow-error-allowcreation-flow-create-board": "De Benotzer huetd'Recht \"{{int:right-flow-create-board}}\" net",
 	"flow-error-other": "En onerwaarte Feeler ass geschitt.",
 	"flow-error-external": "Et ass e Feeler geschitt.<br />De Feelermessage war:$1</ small>",
 	"flow-error-edit-restricted": "Dir däerft dës Matdeelung net änneren.",
