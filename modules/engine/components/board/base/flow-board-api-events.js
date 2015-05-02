@@ -228,7 +228,7 @@
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return dfd.reject().promise();
+			return dfd.resolve().promise();
 		}
 
 		$rendered = $(
@@ -268,7 +268,7 @@
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
-			return $.Deferred().reject().promise();
+			return $.Deferred().resolve().promise();
 		}
 
 		// Change "header" to "header_edit" so that it loads up flow_block_header_edit
@@ -305,7 +305,7 @@
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
-			return $.Deferred().reject();
+			return $.Deferred().resolve().promise();
 		}
 
 		return flowBoard.Api.apiCall( {
@@ -343,7 +343,7 @@
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
-			return $.Deferred().reject().promise();
+			return $.Deferred().resolve().promise();
 		}
 
 		// FIXME: API should take care of this for me.
@@ -388,7 +388,7 @@
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.lockTopic = function ( info, data ) {
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
-			return $.Deferred().reject().promise();
+			return $.Deferred().resolve().promise();
 		}
 
 		return _flowBoardComponentRefreshTopic(
@@ -408,7 +408,7 @@
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitTopicTitle = function( info, data, jqxhr ) {
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
-			return $.Deferred().reject().promise();
+			return $.Deferred().resolve().promise();
 		}
 
 		return _flowBoardComponentRefreshTopic(
@@ -431,7 +431,7 @@
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitEditPost = function( info, data, jqxhr ) {
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
-			return $.Deferred().reject().promise();
+			return $.Deferred().resolve().promise();
 		}
 
 		// @todo: add 3rd argument (target selector); there's no need to refresh entire topic
@@ -455,7 +455,7 @@
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return $.Deferred().reject().promise();
+			return $.Deferred().resolve().promise();
 		}
 
 		flowBoard.logEvent( schemaName, { action: 'save-success', funnelId: funnelId } );
@@ -487,7 +487,7 @@
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return $.Deferred().reject().promise();
+			return $.Deferred().resolve().promise();
 		}
 
 		flowBoard.logEvent( schemaName, { action: 'save-success', funnelId: funnelId } );
@@ -520,7 +520,7 @@
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return $.Deferred().reject().promise();
+			return $.Deferred().resolve().promise();
 		}
 
 		if ( $tooltipTarget.is( '.flow-topic-watchlist' ) ) {
@@ -575,7 +575,7 @@
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return $.Deferred().reject().promise();
+			return $.Deferred().resolve().promise();
 		}
 
 		// Create the new topic_summary_edit template
@@ -612,7 +612,7 @@
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.summarizeTopic = function ( info, data, jqxhr ) {
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return $.Deferred().reject().promise();
+			return $.Deferred().resolve().promise();
 		}
 
 		return _flowBoardComponentRefreshTopic(
@@ -639,7 +639,7 @@
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return $.Deferred().reject().promise();
+			return $.Deferred().resolve().promise();
 		}
 
 		$form = info.$target.find( 'form' );
@@ -697,7 +697,7 @@
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return $.Deferred().reject().promise();
+			return $.Deferred().resolve().promise();
 		}
 
 		// The API returns with the entire topic, but we only want to render the edit form
@@ -800,7 +800,7 @@
 		return function ( info, data, jqxhr ) {
 			if ( info.status !== 'done' ) {
 				// Error will be displayed by default, nothing else to wrap up
-				return $.Deferred().reject().promise();
+				return $.Deferred().resolve().promise();
 			}
 
 			var $this = $( this ),

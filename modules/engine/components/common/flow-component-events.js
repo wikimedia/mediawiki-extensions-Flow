@@ -291,6 +291,14 @@
 
 		$deferred.resolve( args );
 
+		// chain apiPreHandler callbacks
+		preHandlers = _getApiPreHandlers( self, handlerName );
+		$.each( preHandlers, function ( i, callback ) {
+			$deferred = $deferred.then( callback );
+		} );
+
+		// mark the element as "in progress" (we're only doing this after running
+		// preHandlers since they may reject the API call)
 		$deferred = $deferred.then( function ( args ) {
 			// Protect against repeated or nested API calls for the same handler
 			var inProgress = $target.data( 'inProgress' ) || [];
@@ -310,72 +318,68 @@
 			return args;
 		} );
 
-		// chain apiPreHandler callbacks
-		preHandlers = _getApiPreHandlers( self, handlerName );
-		$.each( preHandlers, function ( i, callback ) {
-			$deferred = $deferred.then( callback );
-		} );
-
 		// execute API call
 		$deferred = $deferred.then( function ( args ) {
 			var queryMap = args[2];
-			return flowComponent.Api.requestFromNode( self, queryMap );
+			return flowComponent.Api.requestFromNode( self, queryMap ).then(
+				// alter API response: apiHandler expects a 1st param info (that
+				// includes 'status') & `this` being the target element
+				function () {
+					var args = Array.prototype.slice.call( arguments, 0 );
+					info.status = 'done';
+					args.unshift( info );
+					return $.Deferred().resolveWith( self, args );
+				},
+				// failure: display the error message to end-user & turn the rejected
+				// deferred back into resolve: apiHandlers may want to wrap up
+				function ( code, result ) {
+					var errorMsg,
+						args = Array.prototype.slice.call( arguments, 0 ),
+						$form = $this.closest( 'form' );
+
+					if ( code === 'http' && result.textStatus === 'abort' ) {
+						// don't show error for aborted API requests & don't turn
+						// into resolved: we don't want callbacks to run here!
+						return $.Deferred().rejectWith( self, args );
+					}
+
+					info.status = 'fail';
+					args.unshift( info );
+
+					/*
+					 * In the event of edit conflicts, store the previous
+					 * revision id so we can re-submit an edit against the
+					 * current id later.
+					 */
+					if ( result.error && result.error.prev_revision ) {
+						$form.data( 'flow-prev-revision', result.error.prev_revision.revision_id );
+					}
+
+					/*
+					 * Generic error handling: displays error message in the
+					 * nearest error container.
+					 *
+					 * Errors returned by MW/Flow should always be in the
+					 * same format. If the request failed without a specific
+					 * error message, just fall back to some default error.
+					 */
+					errorMsg = flowComponent.constructor.static.getApiErrorMessage( code, result );
+					flowComponent.emitWithReturn( 'showError', $this, errorMsg );
+
+					flowComponent.Api.abortOldRequestFromNode( self, queryMap, null );
+
+					// keep going & process those apiHandlers; based on info.status,
+					// they'll know if they're dealing with successful submissions,
+					// or cleaning up after error
+					return $.Deferred().resolveWith( self, args );
+				}
+			);
 		} );
 
-		// alter API response: apiHandler expects a 1st param info (that
-		// includes 'status') & `this` being the target element
-		$deferred = $deferred.then(
-			// success
-			function () {
-				var args = Array.prototype.slice.call( arguments, 0 );
-				info.status = 'done';
-				args.unshift( info );
-				return $.Deferred().resolveWith( self, args );
-			},
-			// failure
-			function ( code, result ) {
-				var errorMsg,
-					args = Array.prototype.slice.call( arguments, 0 ),
-					$form = $this.closest( 'form' );
-
-				info.status = 'fail';
-				args.unshift( info );
-
-				/*
-				 * In the event of edit conflicts, store the previous
-				 * revision id so we can re-submit an edit against the
-				 * current id later.
-				 */
-				if ( result.error && result.error.prev_revision ) {
-					$form.data( 'flow-prev-revision', result.error.prev_revision.revision_id );
-				}
-
-				/*
-				 * Generic error handling: displays error message in the
-				 * nearest error container.
-				 *
-				 * Errors returned by MW/Flow should always be in the
-				 * same format. If the request failed without a specific
-				 * error message, just fall back to some default error.
-				 */
-				errorMsg = flowComponent.constructor.static.getApiErrorMessage( code, result );
-				flowComponent.debug( false, errorMsg, handlerName, args );
-				flowComponent.emitWithReturn( 'showError', $this, errorMsg );
-
-				flowComponent.Api.abortOldRequestFromNode( self, queryMap, null );
-
-				// keep going & process those apiHandlers; based on info.status,
-				// they'll know if they're dealing with successful submissions,
-				// or cleaning up after error
-				return $.Deferred().rejectWith( self, args );
-			}
-		);
-
-		// chain apiHandler callbacks: run apiHandlers in both success & failure
-		// cases, it can distinguish in how it needs to wrap up depending on
-		// info.status
-		if ( flowComponent.UI.events.apiHandlers[ handlerName ] ) {
-			$.each( flowComponent.UI.events.apiHandlers[ handlerName ], function ( i, callback ) {
+		// chain apiHandler callbacks (it can distinguish in how it needs to wrap up
+		// depending on info.status)
+		if ( flowComponent.UI.events.apiHandlers[handlerName] ) {
+			$.each( flowComponent.UI.events.apiHandlers[handlerName], function ( i, callback ) {
 				/*
 				 * apiHandlers will return promises that won't resolve until
 				 * the apiHandler has completed all it needs to do.
@@ -386,12 +390,18 @@
 				 * have completed, we'll combine them in an array which we can
 				 * keep tabs on until all of these promises are done ($.when)
 				 */
-				deferreds.push( $deferred.then( callback, callback ) );
+				deferreds.push( $deferred.then( callback ) );
 			} );
 		}
 
-		// cleanup
-		return $.when.apply( $, deferreds ).always( function () {
+		// all-purpose error handling: whichever step in this chain rejects, we'll send it to console
+		$deferred.fail( function ( code, result ) {
+			var errorMsg = flowComponent.constructor.static.getApiErrorMessage( code, result );
+			flowComponent.debug( false, errorMsg, handlerName, args );
+		} );
+
+		// cleanup after successfully completing the request & handler(s)
+		return $.when.apply( $, deferreds ).done( function () {
 			var inProgress = $target.data( 'inProgress' ) || [];
 			inProgress.splice( inProgress.indexOf( handlerName ), 1 );
 			$target.data( 'inProgress', inProgress );

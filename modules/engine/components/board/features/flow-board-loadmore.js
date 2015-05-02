@@ -215,7 +215,7 @@
 	function flowBoardComponentLoadMoreFeatureTopicsApiCallback( info, data, jqxhr ) {
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return $.Deferred().reject().promise();
+			return $.Deferred().resolve().promise();
 		}
 
 		var $this = $( this ),
@@ -289,7 +289,7 @@
 	function flowBoardComponentLoadMoreFeatureTopicListApiCallback( info, data, jqxhr ) {
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return;
+			return $.Deferred().resolve().promise();
 		}
 
 		var i = 0,

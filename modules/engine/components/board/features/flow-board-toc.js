@@ -155,7 +155,7 @@
 	function flowBoardComponentTocFeatureMixinTopicListApiHandler( info, data, jqxhr ) {
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return;
+			return $.Deferred().resolve().promise();
 		}
 
 		var $kids, i,
