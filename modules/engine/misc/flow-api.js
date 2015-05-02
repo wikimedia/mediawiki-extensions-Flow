@@ -307,9 +307,6 @@
 	function flowApiAbortOldRequestFromNode( $node, queryMap, startNewMethod ) {
 		$node = $( $node );
 
-		// transform flow_* params into (nt_*, rep_*, ...)
-		queryMap = flowApiTransformMap( queryMap );
-
 		// If this anchor already has a request in flight, abort it
 		var str = 'flow-api-query-temp-' + queryMap.action + '-' + queryMap.submodule,
 			prevApiCall = $node.data( str ),
