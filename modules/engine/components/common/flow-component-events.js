@@ -226,8 +226,8 @@
 	/**
 	 * Utility to get error message for API result.
 	 *
-	 * @param {string} code
-	 * @param {Object} result
+	 * @param string code
+	 * @param Object result
 	 * @returns string
 	 */
 	function flowGetApiErrorMessage( code, result ) {
@@ -255,9 +255,11 @@
 	 * @returns {$.Promise}
 	 */
 	function flowEventsMixinApiRequestInteractiveHandler( event ) {
-		var $deferred = $.Deferred(),
-			deferreds = [$deferred],
+		var $deferred,
+			$handlerDeferred,
+			handlerPromises = [],
 			$target,
+			preHandlerReturn,
 			self = event.currentTarget || event.delegateTarget || event.target,
 			$this = $( self ),
 			flowComponent = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $this ),
@@ -269,8 +271,7 @@
 				component: flowComponent
 			},
 			args = Array.prototype.slice.call( arguments, 0 ),
-			queryMap = flowComponent.Api.getQueryMap( self.href || self ),
-			preHandlers = [];
+			queryMap = flowComponent.Api.getQueryMap( self.href || self );
 
 		event.preventDefault();
 
@@ -291,107 +292,136 @@
 
 		// Make sure an API call is not already in progress for this target
 		if ( $target.closest( '.flow-api-inprogress' ).length ) {
-			$deferred.reject( 'fail-api-inprogress', { error: { info: 'apiRequest already in progress' } } );
-		} else {
-			$deferred.resolve( args );
+			flowComponent.debug( false, 'apiRequest already in progress', arguments );
+			return $.Deferred().reject().promise();
 		}
 
-		$deferred = $deferred.then( function ( args ) {
-			// Mark the target node as "in progress" to disallow any further API calls until it finishes
-			$target.addClass( 'flow-api-inprogress' );
-			$this.addClass( 'flow-api-inprogress' );
+		// Mark the target node as "in progress" to disallow any further API calls until it finishes
+		$target.addClass( 'flow-api-inprogress' );
+		$this.addClass( 'flow-api-inprogress' );
 
-			// Remove existing errors from previous attempts
-			flowComponent.emitWithReturn( 'removeError', $this );
-
-			return args;
+		// Let generic pre-handler take care of edit conflicts
+		$.each( flowComponent.UI.events.globalApiPreHandlers, function( key, callbackArray ) {
+			$.each( callbackArray, function ( i, callbackFn ) {
+				queryMap = callbackFn.apply( self, args );
+			} );
 		} );
 
-		// chain apiPreHandler callbacks
-		preHandlers = _getApiPreHandlers( self, handlerName );
-		$.each( preHandlers, function ( i, callback ) {
-			$deferred = $deferred.then( callback );
-		} );
+		// We'll return a deferred object that won't resolve before apiHandlers
+		// are resolved
+		$handlerDeferred = $.Deferred();
 
-		// execute API call
-		$deferred = $deferred.then( function ( args ) {
-			var queryMap = args[2];
-			return flowComponent.Api.requestFromNode( self, queryMap );
-		} );
+		// Use the pre-callback to find out if we should process this
+		if ( flowComponent.UI.events.apiPreHandlers[ handlerName ] ) {
+			// apiPreHandlers can return FALSE to prevent processing,
+			// nothing at all to proceed,
+			// or new queryMap (= API params)
+			$.each( flowComponent.UI.events.apiPreHandlers[ handlerName ], function ( i, callbackFn ) {
+				// make sure queryMap is up to date (may have been altered by
+				// previous preHandler)
+				args.splice( 2, 1, queryMap );
+				preHandlerReturn = callbackFn.apply( self, args );
 
-		// alter API response: apiHandler expects a 1st param info (that
-		// includes 'status') & `this` being the target element
-		$deferred = $deferred.then(
-			// success
-			function () {
-				var args = Array.prototype.slice.call( arguments, 0 );
-				info.status = 'done';
-				args.unshift( info );
-				return $.Deferred().resolveWith( self, args );
-			},
-			// failure
-			function ( code, result ) {
-				var errorMsg,
-					args = Array.prototype.slice.call( arguments, 0 ),
-					$form = $this.closest( 'form' );
-
-				info.status = 'fail';
-				args.unshift( info );
-
-				/*
-				 * In the event of edit conflicts, store the previous
-				 * revision id so we can re-submit an edit against the
-				 * current id later.
-				 */
-				if ( result.error && result.error.prev_revision ) {
-					$form.data( 'flow-prev-revision', result.error.prev_revision.revision_id );
+				if ( preHandlerReturn === false ) {
+					// Callback returned false; break out of this loop
+					return false;
+				} else {
+					queryMap = preHandlerReturn;
 				}
+			} );
 
-				/*
-				 * Generic error handling: displays error message in the
-				 * nearest error container.
-				 *
-				 * Errors returned by MW/Flow should always be in the
-				 * same format. If the request failed without a specific
-				 * error message, just fall back to some default error.
-				 */
-				errorMsg = flowComponent.constructor.static.getApiErrorMessage( code, result );
-				flowComponent.debug( false, errorMsg, handlerName, args );
-				flowComponent.emitWithReturn( 'showError', $this, errorMsg );
+			if ( preHandlerReturn === false ) {
+				// Last callback returned false
+				flowComponent.debug( false, 'apiPreHandler returned false', handlerName, args );
 
+				// Abort any old request in flight; this is normally done automatically by requestFromNode
 				flowComponent.Api.abortOldRequestFromNode( self, queryMap, null );
 
-				// keep going & process those apiHandlers; based on info.status,
-				// they'll know if they're dealing with successful submissions,
-				// or cleaning up after error
-				return $.Deferred().rejectWith( self, args );
-			}
-		);
+				// @todo support for multiple indicators on same target
+				$target.removeClass( 'flow-api-inprogress' );
+				$this.removeClass( 'flow-api-inprogress' );
 
-		// chain apiHandler callbacks: run apiHandlers in both success & failure
-		// cases, it can distinguish in how it needs to wrap up depending on
-		// info.status
-		if ( flowComponent.UI.events.apiHandlers[ handlerName ] ) {
-			$.each( flowComponent.UI.events.apiHandlers[ handlerName ], function ( i, callback ) {
-				/*
-				 * apiHandlers will return promises that won't resolve until
-				 * the apiHandler has completed all it needs to do.
-				 * These handlers aren't chainable, though (although we only
-				 * have 1 per call, AFAIK), they don't return the same data the
-				 * next handler assumes.
-				 * In order to suspend something until all of these apiHandlers
-				 * have completed, we'll combine them in an array which we can
-				 * keep tabs on until all of these promises are done ($.when)
-				 */
-				deferreds.push( $deferred.then( callback, callback ) );
-			} );
+				return $.Deferred().reject().promise();
+			}
 		}
 
-		// cleanup
-		return $.when.apply( $, deferreds ).always( function() {
+		// Make the request
+		$deferred = flowComponent.Api.requestFromNode( self, queryMap );
+		if ( !$deferred ) {
+			mw.flow.debug( '[FlowApi] [interactiveHandlers] apiRequest element is not anchor or form element' );
+			$deferred = $.Deferred();
+			$deferred.rejectWith( { error: { info: 'Not an anchor or form' } } );
+		}
+
+		// Remove the load indicator
+		$deferred.always( function () {
+			// @todo support for multiple indicators on same target
 			$target.removeClass( 'flow-api-inprogress' );
 			$this.removeClass( 'flow-api-inprogress' );
 		} );
+
+		// Remove existing errors from previous attempts
+		flowComponent.emitWithReturn( 'removeError', $this );
+
+		// We'll return a deferred object that won't resolve before apiHandlers
+		// are resolved
+		$handlerDeferred = $.Deferred();
+
+		// If this has a special api handler, bind it to the callback.
+		if ( flowComponent.UI.events.apiHandlers[ handlerName ] ) {
+			$deferred
+				.done( function () {
+					var args = Array.prototype.slice.call( arguments, 0 );
+					info.status = 'done';
+					args.unshift( info );
+					$.each( flowComponent.UI.events.apiHandlers[ handlerName ], function ( i, callbackFn ) {
+						handlerPromises.push( callbackFn.apply( self, args ) );
+					} );
+				} )
+				.fail( function ( code, result ) {
+					var errorMsg,
+						args = Array.prototype.slice.call( arguments, 0 ),
+						$form = $this.closest( 'form' );
+
+					info.status = 'fail';
+					args.unshift( info );
+
+					/*
+					 * In the event of edit conflicts, store the previous
+					 * revision id so we can re-submit an edit against the
+					 * current id later.
+					 */
+					if ( result.error && result.error.prev_revision ) {
+						$form.data( 'flow-prev-revision', result.error.prev_revision.revision_id );
+					}
+
+					/*
+					 * Generic error handling: displays error message in the
+					 * nearest error container.
+					 *
+					 * Errors returned by MW/Flow should always be in the
+					 * same format. If the request failed without a specific
+					 * error message, just fall back to some default error.
+					 */
+					errorMsg = flowComponent.constructor.static.getApiErrorMessage( code, result );
+					flowComponent.emitWithReturn( 'showError', $this, errorMsg );
+
+					$.each( flowComponent.UI.events.apiHandlers[ handlerName ], function ( i, callbackFn ) {
+						handlerPromises.push( callbackFn.apply( self, args ) );
+					} );
+				} )
+				.always( function() {
+					// Resolve/reject the promised deferreds when all apiHandler
+					// deferreds have been resolved/rejected
+					$.when.apply( $, handlerPromises )
+						.done( $handlerDeferred.resolve )
+						.fail( $handlerDeferred.reject );
+				} );
+		}
+
+		// Return an aggregate promise that resolves when all are resolved, or
+		// rejects once one of them is rejected
+		return $handlerDeferred.promise();
 	}
 	FlowComponentEventsMixin.UI.events.interactiveHandlers.apiRequest = flowEventsMixinApiRequestInteractiveHandler;
 
@@ -870,49 +900,6 @@
 		}
 
 		return $result;
-	}
-
-	/**
-	 * @param {Element} target
-	 * @param {string} handlerName
-	 * @return {Function[]}
-	 * @private
-	 */
-	function _getApiPreHandlers( target, handlerName ) {
-		var flowComponent = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $( target ) ),
-			preHandlers = [];
-
-		// Compile a list of all preHandlers to be run
-		$.each( flowComponent.UI.events.globalApiPreHandlers, function( key, callbackArray ) {
-			preHandlers.concat( callbackArray );
-		} );
-		if ( flowComponent.UI.events.apiPreHandlers[ handlerName ] ) {
-			preHandlers = flowComponent.UI.events.apiPreHandlers[ handlerName ];
-		}
-
-		preHandlers = $.map( preHandlers, function ( callback ) {
-			/**
-			 * apiPreHandlers aren't properly set up to serve as chained promise
-			 * callbacks (they'll return false instead of returning a rejected
-			 * promise, the incoming & outgoing params don't line up)
-			 * This will wrap all those callbacks into callbacks we can chain.
-			 *
-			 * @param {object} args
-			 * @returns {object}
-			 */
-			return function ( args ) {
-				var queryMap = callback.apply( target, args );
-				if ( queryMap === false ) {
-					return $.Deferred().reject( 'fail-prehandler', { error: { info: 'apiPreHandler returned false' } } );
-				}
-
-				// update changed queryMap
-				args.splice( 2, 0, queryMap );
-				return args;
-			};
-		} );
-
-		return preHandlers;
 	}
 
 	// Copy static and prototype from mixin to main class

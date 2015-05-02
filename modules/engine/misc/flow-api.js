@@ -35,7 +35,7 @@
 		/**
 		 * Makes the actual API call and returns
 		 * @param {Object|String} [params] May be a JSON object string
-		 * @param {String} [method]
+		 * @param {String} [pageName]
 		 * @returns {$.Promise}
 		 */
 		function flowApiCall( params, method ) {
@@ -60,11 +60,11 @@
 
 			if ( !params.action ) {
 				mw.flow.debug( '[FlowApi] apiCall error: missing action string', arguments );
-				return $deferred.reject( 'fail-apirequest', { error: { info: 'Invalid action' } } ).promise();
+				return $deferred.rejectWith({ error: 'Invalid action' }).promise();
 			}
 			if ( !params.page ) {
 				mw.flow.debug( '[FlowApi] apiCall error: missing page string', [ mw.config.get( 'wgPageName' ) ], arguments );
-				return $deferred.reject( 'fail-apirequest', { error: { info: 'Invalid title' } } ).promise();
+				return $deferred.rejectWith({ error: 'Invalid title' } ).promise();
 			}
 
 			if ( method === 'POST' ) {
@@ -78,7 +78,7 @@
 
 				return mwApi.postWithToken( tokenType, params );
 			} else if ( method !== 'GET' ) {
-				return $deferred.reject( 'fail-apirequest', { error: { info: 'Unknown submission method: ' + method } } ).promise();
+				return $deferred.rejectWith({ error: 'Unknown submission method: ' + method }).promise();
 			} else {
 				return mwApi.get( params );
 			}
@@ -290,7 +290,7 @@
 		} else if ( $node.is( 'form, input, button, textarea, select, option' ) ) {
 			return this.requestFromForm.apply( this, arguments );
 		} else {
-			return $.Deferred().reject( 'fail-apirequest', { error: { info: 'apiRequest element is not anchor or form element' } } );
+			return $.Deferred().reject();
 		}
 	}
 
