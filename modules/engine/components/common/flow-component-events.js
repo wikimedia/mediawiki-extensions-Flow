@@ -884,10 +884,10 @@
 
 		// Compile a list of all preHandlers to be run
 		$.each( flowComponent.UI.events.globalApiPreHandlers, function( key, callbackArray ) {
-			Array.prototype.push.apply( preHandlers, callbackArray );
+			preHandlers.concat( callbackArray );
 		} );
 		if ( flowComponent.UI.events.apiPreHandlers[ handlerName ] ) {
-			Array.prototype.push.apply( preHandlers, flowComponent.UI.events.apiPreHandlers[ handlerName ] );
+			preHandlers = flowComponent.UI.events.apiPreHandlers[ handlerName ];
 		}
 
 		preHandlers = $.map( preHandlers, function ( callback ) {
