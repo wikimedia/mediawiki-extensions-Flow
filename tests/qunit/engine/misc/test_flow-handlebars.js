@@ -1,16 +1,16 @@
 ( function ( $ ) {
 QUnit.module( 'ext.flow: Handlebars helpers', {
-	setup: function() {
+	setup: function () {
 		var stub = this.sandbox.stub( mw.template, 'get' ),
 			stubUser;
 
-		stub.withArgs( 'ext.flow.templating', 'foo.handlebars' ).returns ( {
-			render: function( data ) {
+		stub.withArgs( 'ext.flow.templating', 'foo.handlebars' ).returns( {
+			render: function ( data ) {
 				return data && data.val ? '<div>Magic.</div>' : 'Stubbed.';
 			}
 		} );
 		this.handlebarsProto = mw.flow.FlowHandlebars.prototype;
-		this.handlebarsProto._qunit_helper_test = function( a, b ) {
+		this.handlebarsProto._qunit_helper_test = function ( a, b ) {
 			return a + b;
 		};
 
@@ -19,38 +19,38 @@ QUnit.module( 'ext.flow: Handlebars helpers', {
 		stubUser.onCall( 0 ).returns( true );
 		stubUser.onCall( 1 ).returns( false );
 		this.opts = {
-			fn: function() {
+			fn: function () {
 				return 'ok';
 			},
-			inverse: function() {
+			inverse: function () {
 				return 'nope';
 			}
 		};
 	}
 } );
 
-QUnit.test( 'Handlebars.prototype.processTemplate', 1, function( assert ) {
+QUnit.test( 'Handlebars.prototype.processTemplate', 1, function ( assert ) {
 	assert.strictEqual( this.handlebarsProto.processTemplate( 'foo', { val: 'Hello' } ),
 		'<div>Magic.</div>', 'Getting a template works.' );
 } );
 
-QUnit.test( 'Handlebars.prototype.processTemplateGetFragment', 1, function( assert ) {
+QUnit.test( 'Handlebars.prototype.processTemplateGetFragment', 1, function ( assert ) {
 	assert.strictEqual( this.handlebarsProto.processTemplateGetFragment( 'foo', { val: 'Hello' } ).childNodes.length,
 		1, 'Return a fragment with the div child node' );
 } );
 
-QUnit.test( 'Handlebars.prototype.getTemplate', 2, function( assert ) {
+QUnit.test( 'Handlebars.prototype.getTemplate', 2, function ( assert ) {
 	assert.strictEqual( this.handlebarsProto.getTemplate( 'foo' )(), 'Stubbed.', 'Getting a template works.' );
 	assert.strictEqual( this.handlebarsProto.getTemplate( 'foo' )(), 'Stubbed.', 'Getting a template from cache works.' );
 } );
 
 // Helpers
-QUnit.test( 'Handlebars.prototype.callHelper', 1, function( assert ) {
+QUnit.test( 'Handlebars.prototype.callHelper', 1, function ( assert ) {
 	assert.strictEqual( this.handlebarsProto.callHelper( '_qunit_helper_test', 1, 2 ),
 		3, 'Check the helper was called.' );
 } );
 
-QUnit.test( 'Handlebars.prototype.eachPost', 3, function( assert ) {
+QUnit.test( 'Handlebars.prototype.eachPost', 3, function ( assert ) {
 	var ctx = {
 		posts: {
 			1: [ 300 ],
@@ -67,7 +67,7 @@ QUnit.test( 'Handlebars.prototype.eachPost', 3, function( assert ) {
 	assert.deepEqual( this.handlebarsProto.eachPost( ctx, 2, {} ), { content: null }, 'Missing revision id.' );
 } );
 
-QUnit.test( 'Handlebars.prototype.ifCond', 8, function( assert ) {
+QUnit.test( 'Handlebars.prototype.ifCond', 8, function ( assert ) {
 	assert.strictEqual( this.handlebarsProto.ifCond( 'foo', '===', 'bar', this.opts ), 'nope', 'not equal' );
 	assert.strictEqual( this.handlebarsProto.ifCond( 'foo', '===', 'foo', this.opts ), 'ok', 'equal' );
 	assert.strictEqual( this.handlebarsProto.ifCond( true, 'or', false, this.opts ), 'ok', 'true || false' );
@@ -78,17 +78,17 @@ QUnit.test( 'Handlebars.prototype.ifCond', 8, function( assert ) {
 	assert.strictEqual( this.handlebarsProto.ifCond( 'foo', '!==', 'bar', this.opts ), 'ok' );
 } );
 
-QUnit.test( 'Handlebars.prototype.ifAnonymous', 2, function() {
+QUnit.test( 'Handlebars.prototype.ifAnonymous', 2, function () {
 	strictEqual( this.handlebarsProto.ifAnonymous( this.opts ), 'ok', 'User should be anonymous first time.' );
 	strictEqual( this.handlebarsProto.ifAnonymous( this.opts ), 'nope', 'User should be logged in on second call.' );
 } );
 
-QUnit.test( 'Handlebars.prototype.concat', 2, function() {
+QUnit.test( 'Handlebars.prototype.concat', 2, function () {
 	strictEqual( this.handlebarsProto.concat( 'a', 'b', 'c', this.opts ), 'abc', 'Check concat working fine.' );
 	strictEqual( this.handlebarsProto.concat( this.opts ), '', 'Without arguments.' );
 } );
 
-QUnit.test( 'Handlebars.prototype.progressiveEnhancement', 5, function() {
+QUnit.test( 'Handlebars.prototype.progressiveEnhancement', 5, function () {
 	var opts = $.extend( { hash: { type: 'insert', target: 'abc', id: 'def' } }, this.opts ),
 		$div = $( document.createElement( 'div' ) );
 
@@ -98,7 +98,7 @@ QUnit.test( 'Handlebars.prototype.progressiveEnhancement', 5, function() {
 		'<scr' + 'ipt' +
 			' type="text/x-handlebars-template-progressive-enhancement"' +
 			' data-type="' + opts.hash.type + '"' +
-			' data-target="' + opts.hash.target +'"' +
+			' data-target="' + opts.hash.target + '"' +
 			' id="' + opts.hash.id + '">' +
 			'ok' +
 			'</scr' + 'ipt>',
@@ -107,7 +107,7 @@ QUnit.test( 'Handlebars.prototype.progressiveEnhancement', 5, function() {
 
 	// Replace itself: no target (default to self), no type (default to insert)
 	$div.empty().append( this.handlebarsProto.processTemplateGetFragment(
-		Handlebars.compile( "{{#progressiveEnhancement}}hello{{/progressiveEnhancement}}" )
+		Handlebars.compile( '{{#progressiveEnhancement}}hello{{/progressiveEnhancement}}' )
 	) );
 	strictEqual(
 		$div.html(),
@@ -150,4 +150,4 @@ QUnit.test( 'Handlebars.prototype.progressiveEnhancement', 5, function() {
 	);
 } );
 
-} ( jQuery ) );
+}( jQuery ) );

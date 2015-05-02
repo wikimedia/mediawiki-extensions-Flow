@@ -19,7 +19,8 @@ module.exports = function ( grunt ) {
 			},
 			all: [
 				'*.js',
-				'modules/**/*.js'
+				'modules/**/*.js',
+				'tests/qunit/**/*.js'
 			]
 		},
 		jscs: {

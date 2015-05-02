@@ -1,12 +1,12 @@
 ( function ( $ ) {
 QUnit.module( 'ext.flow: Flow board' );
 
-QUnit.test( 'Check Flow is running', 1, function() {
+QUnit.test( 'Check Flow is running', 1, function () {
 	strictEqual( 1, 1, 'Test to see if Flow has a qunit test.' );
 } );
 
 QUnit.module( 'ext.flow: FlowBoardComponent', {
-	setup: function() {
+	setup: function () {
 		var stub, events;
 
 		this.$el = $( '<div class="flow-component" data-flow-component="board">' );
@@ -28,12 +28,12 @@ QUnit.module( 'ext.flow: FlowBoardComponent', {
 									s18cjkj1bs3rkt13: '4'
 								},
 								revisions: {
-									'4': {
+									4: {
 										content: {
 											format: 'html',
 											content: 'Hi'
 										},
-										changeType: "lock-topic",
+										changeType: 'lock-topic',
 										isModerated: false
 									}
 								}
@@ -58,8 +58,8 @@ QUnit.module( 'ext.flow: FlowBoardComponent', {
 									t18cjkj1bs3rkt13: '4'
 								},
 								revisions: {
-									'4': {
-										changeType: "restore-topic",
+									4: {
+										changeType: 'restore-topic',
 										content: {
 											format: 'html',
 											content: 'Hi'
@@ -93,39 +93,36 @@ QUnit.module( 'ext.flow: FlowBoardComponent', {
 	}
 } );
 
-QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.lockTopic - perform unlock', 2, function( assert ) {
+QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.lockTopic - perform unlock', 2, function ( assert ) {
 	var
 		$el = this.$el,
-		$topic = $( '<div class="flow-topic" data-flow-id="s18cjkj1bs3rkt13">' ).
-			addClass( 'flow-topic-moderatestate-lock flow-topic-moderated' ).
-			appendTo( $el ),
+		$topic = $( '<div class="flow-topic" data-flow-id="s18cjkj1bs3rkt13">' ). addClass( 'flow-topic-moderatestate-lock flow-topic-moderated' ). appendTo( $el ),
 		$titleBar = $( '<div class="flow-topic-titlebar">' ).appendTo( $topic ),
 		info = { status: 'done', $target: $topic },
 		returns;
 
 	returns = this.triggerEvent( 'apiHandlers', 'lockTopic', $titleBar, info );
-	returns[0].done( function() {
+	returns[0].done( function () {
 		$topic = $el.children( '.flow-topic' );
 		assert.strictEqual( $topic.hasClass( 'flow-topic-moderated' ), false, 'No longer has the moderated state.' );
 		assert.strictEqual( $topic.hasClass( 'flow-topic-moderatestate-lock' ), false, 'No longer has the moderated lock state.' );
 	} );
 } );
 
-QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.lockTopic - perform lock', 2, function( assert ) {
+QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.lockTopic - perform lock', 2, function ( assert ) {
 	var
 		$el = this.$el,
-		$topic = $( '<div class="flow-topic" data-flow-id="t18cjkj1bs3rkt13">' ).
-			appendTo( $el ),
+		$topic = $( '<div class="flow-topic" data-flow-id="t18cjkj1bs3rkt13">' ). appendTo( $el ),
 		$titleBar = $( '<div class="flow-topic-titlebar">' ).appendTo( $topic ),
 		info = { status: 'done', $target: $topic },
 		returns;
 
 	returns = this.triggerEvent( 'apiHandlers', 'lockTopic', $titleBar, info );
-	returns[0].done( function() {
+	returns[0].done( function () {
 		$topic = $el.children( '.flow-topic' );
 		assert.strictEqual( $topic.hasClass( 'flow-topic-moderated' ), true, 'Has the moderated state.' );
 		assert.strictEqual( $topic.hasClass( 'flow-topic-moderatestate-lock' ), true, 'Has the moderated lock state.' );
 	} );
 } );
 
-} ( jQuery ) );
+}( jQuery ) );
