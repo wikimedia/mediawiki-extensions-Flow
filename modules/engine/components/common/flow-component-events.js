@@ -289,14 +289,17 @@
 		args.splice( 1, 0, info );
 		args.splice( 2, 0, queryMap );
 
-		// Make sure an API call is not already in progress for this target
-		if ( $target.closest( '.flow-api-inprogress' ).length ) {
-			$deferred.reject( 'fail-api-inprogress', { error: { info: 'apiRequest already in progress' } } );
-		} else {
-			$deferred.resolve( args );
-		}
+		$deferred.resolve( args );
 
 		$deferred = $deferred.then( function ( args ) {
+			// Protect against repeated or nested API calls for the same handler
+			var data = $target.data( 'inProgress' ) || [];
+			if ( data.indexOf( handlerName ) !== -1 ) {
+				return $.Deferred().reject( 'fail-api-inprogress', { error: { info: 'apiRequest already in progress' } } );
+			}
+			data.push( handlerName );
+			$target.data( 'inProgress', data );
+
 			// Mark the target node as "in progress" to disallow any further API calls until it finishes
 			$target.addClass( 'flow-api-inprogress' );
 			$this.addClass( 'flow-api-inprogress' );
@@ -389,8 +392,14 @@
 
 		// cleanup
 		return $.when.apply( $, deferreds ).always( function() {
-			$target.removeClass( 'flow-api-inprogress' );
-			$this.removeClass( 'flow-api-inprogress' );
+			var data = $target.data( 'inProgress' ) || [];
+			data.splice( data.indexOf( handlerName ), 1 );
+			$target.data( 'inProgress', data );
+
+			if ( data.length === 0 ) {
+				$target.removeClass( 'flow-api-inprogress' );
+				$this.removeClass( 'flow-api-inprogress' );
+			}
 		} );
 	}
 	FlowComponentEventsMixin.UI.events.interactiveHandlers.apiRequest = flowEventsMixinApiRequestInteractiveHandler;
