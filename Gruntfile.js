@@ -19,12 +19,11 @@ module.exports = function ( grunt ) {
 			},
 			all: [
 				'*.js',
-				'modules/**/*.js',
-				'!modules/vendor/*.js'
+				'modules/**/*.js'
 			]
 		},
 		jscs: {
-			src: [ '<%= jshint.all %>', '!modules/vendor/**' ]
+			src: '<%= jshint.all %>'
 		},
 		csslint: {
 			options: {
