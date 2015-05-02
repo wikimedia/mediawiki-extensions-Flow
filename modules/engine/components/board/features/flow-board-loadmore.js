@@ -159,10 +159,9 @@
 	 * @param {Event} event
 	 * @param {Object} info
 	 * @param {jQuery} info.$target
-	 * @param {object} queryMap
 	 * @param {FlowBoardComponent} info.component
 	 */
-	function flowBoardComponentLoadMoreFeatureBoardApiPreHandler( event, info, queryMap ) {
+	function flowBoardComponentLoadMoreFeatureBoardApiPreHandler( event, info ) {
 		// Backup the topic data
 		info.component.renderedTopicsBackup = info.component.renderedTopics;
 		info.component.topicTitlesByIdBackup = info.component.topicTitlesById;

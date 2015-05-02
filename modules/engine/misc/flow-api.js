@@ -155,12 +155,39 @@
 	FlowApi.prototype.setDefaultSubmodule = flowApiSetDefaultSubmodule;
 
 	/**
+	 * Overrides (values of) queryMap with a provided override, which can come
+	 * in the form of an object (which the queryMap will be extended with) or as
+	 * a function (whose return value will replace queryMap)
+	 *
+	 * @param {Object} [queryMap]
+	 * @param {Function|Object} [override]
+	 * @returns {Object}
+	 */
+	function flowOverrideQueryMap( queryMap, override ) {
+		if ( override ) {
+			switch ( typeof override ) {
+				// If given an override object, extend our queryMap with it
+				case 'object':
+					$.extend( queryMap, override );
+					break;
+				// If given an override function, call it and make it return the new queryMap
+				case 'function':
+					queryMap = override( queryMap );
+					break;
+			}
+		}
+
+		return queryMap;
+	}
+
+	/**
 	 * With a url (a://b.c/d?e=f&g#h) will return an object of key-value pairs ({e:'f', g:''}).
 	 * @param {String|Element} url
 	 * @param {Object} [queryMap]
+	 * @param {Array<(Function|Object)>} [overrides]
 	 * @returns {Object}
 	 */
-	function flowApiGetQueryMap( url, queryMap ) {
+	function flowApiGetQueryMap( url, queryMap, overrides ) {
 		var uri,
 			queryKey,
 			queryValue,
@@ -168,6 +195,7 @@
 			$node, $form, formData;
 
 		queryMap = queryMap || {};
+		overrides = overrides || [];
 
 		// If URL is an Element...
 		if ( typeof url !== 'string' ) {
@@ -233,6 +261,11 @@
 		// Default action is flow
 		queryMap.action = queryMap.action || 'flow';
 
+		// Override the automatically generated queryMap
+		for ( i = 0; i < overrides.length; i++ ) {
+			queryMap = flowOverrideQueryMap( queryMap, overrides[i] );
+		}
+
 		// Use the API map to transform this data if necessary, eg.
 		queryMap = flowApiTransformMap( queryMap );
 
@@ -245,13 +278,24 @@
 	 * Using a given form, parses its action, serializes the data, and sends it as GET or POST depending on form method.
 	 * With button, its name=value is serialized in. If button is an Event, it will attempt to find the clicked button.
 	 * Additional params can be set with data-flow-api-params on both the clicked button or the form.
-	 * @param {Event|Element} button
-	 * @param {Object} queryMap
+	 * @param {Event|Element} [button]
+	 * @param {Array<(Function|Object)>} [overrides]
 	 * @return {$.Deferred}
 	 */
-	function flowApiRequestFromForm( button, queryMap ) {
-		var $button = $( button ),
-			method = $button.closest( 'form' ).attr( 'method' ) || 'GET';
+	function flowApiRequestFromForm( button, overrides ) {
+		var $deferred = $.Deferred(),
+			$button = $( button ),
+			method = $button.closest( 'form' ).attr( 'method' ) || 'GET',
+			queryMap;
+
+		// Parse the form action to get the rest of the queryMap
+		if ( !( queryMap = this.getQueryMap( button, null, overrides ) ) ) {
+			return $deferred.rejectWith( { error: 'Invalid form action' } );
+		}
+
+		if ( !( queryMap.action ) ) {
+			return $deferred.rejectWith( { error: 'Unknown action for form' } );
+		}
 
 		// Cancel any old form request, and also trigger a new one
 		return this.abortOldRequestFromNode( $button, queryMap, method );
@@ -263,12 +307,20 @@
 	 * Using a given anchor, parses its URL and sends it as a GET (default) or POST depending on data-flow-api-method.
 	 * Additional params can be set with data-flow-api-params.
 	 * @param {Element} anchor
-	 * @param {Object} queryMap
+	 * @param {Array<(Function|Object)>} [overrides]
 	 * @return {$.Deferred}
 	 */
-	function flowApiRequestFromAnchor( anchor, queryMap ) {
+	function flowApiRequestFromAnchor( anchor, overrides ) {
 		var $anchor = $( anchor ),
+			$deferred = $.Deferred(),
+			queryMap,
 			method = $anchor.data( 'flow-api-method' ) || 'GET';
+
+		// Build the query map from this anchor's HREF
+		if ( !( queryMap = this.getQueryMap( anchor.href, null, overrides ) ) ) {
+			mw.flow.debug( '[FlowApi] requestFromAnchor error: invalid href', arguments );
+			return $deferred.rejectWith( { error: 'Invalid href' } );
+		}
 
 		// Abort any old requests, and have it issue a new one via GET or POST
 		return this.abortOldRequestFromNode( $anchor, queryMap, method );
@@ -279,10 +331,10 @@
 	/**
 	 * Automatically calls requestFromAnchor or requestFromForm depending on the type of node given.
 	 * @param {Element} node
-	 * @param {Object} queryMap
-	 * @return {$.Deferred}
+	 * @param {Array<(Function|Object)>} [overrides]
+	 * @return {$.Deferred|bool}
 	 */
-	function flowApiRequestFromNode( node, queryMap ) {
+	function flowApiRequestFromNode( node, overrides ) {
 		var $node = $( node );
 
 		if ( $node.is( 'a' ) ) {
@@ -290,7 +342,7 @@
 		} else if ( $node.is( 'form, input, button, textarea, select, option' ) ) {
 			return this.requestFromForm.apply( this, arguments );
 		} else {
-			return $.Deferred().reject();
+			return false;
 		}
 	}
 
@@ -300,12 +352,21 @@
 	 * Handles aborting an old in-flight API request.
 	 * If startNewMethod is given, this method also STARTS a new API call and stores it for later abortion if needed.
 	 * @param {jQuery|Element} $node
-	 * @param {Object} queryMap
+	 * @param {Object} [queryMap]
 	 * @param {String} [startNewMethod] If given: starts, stores, and returns a new API call
+	 * @param {Array<(Function|Object)>} [overrides]
 	 * @return {undefined|$.Deferred}
 	 */
-	function flowApiAbortOldRequestFromNode( $node, queryMap, startNewMethod ) {
+	function flowApiAbortOldRequestFromNode( $node, queryMap, startNewMethod, overrides ) {
 		$node = $( $node );
+
+		if ( !queryMap ) {
+			// Get the queryMap automatically if one wasn't given
+			if ( !( queryMap = this.getQueryMap( $node, null, overrides ) ) ) {
+				mw.flow.debug( '[FlowApi] abortOldRequestFromNode failed to find a queryMap', arguments );
+				return;
+			}
+		}
 
 		// If this anchor already has a request in flight, abort it
 		var str = 'flow-api-query-temp-' + queryMap.action + '-' + queryMap.submodule,
