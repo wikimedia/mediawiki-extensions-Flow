@@ -7,6 +7,7 @@
 			"Cvanca"
 		]
 	},
+	"flow-edit-header-link": "Editovat popis",
 	"flow-post-moderated-toggle-hide-show": "Ukázat komentář {{GENDER:$1|skrytý}} od $2",
 	"flow-post-moderated-toggle-delete-show": "Ukázat komentář {{GENDER:$1|odstraněný}} od $2",
 	"flow-post-moderated-toggle-suppress-show": "Ukázat komentář {{GENDER:$1|odstraněný}} od $2",
@@ -21,5 +22,6 @@
 	"flow-topic-action-history": "Historie",
 	"flow-edit-header-submit": "Uložit popis",
 	"flow-edit-header-submit-overwrite": "Přepsat popis",
+	"flow-ve-mention-inspector-invalid-user": "Uživatelské jméno „$1“ není zaregistrováno.",
 	"flow-ve-switch-editor-tool-title": "Přepnout do Wikitext editoru"
 }
