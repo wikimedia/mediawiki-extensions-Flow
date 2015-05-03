@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_2395ce89",
+        "filename": "tests/phpunit/Notifications/NotifiedUsersTest.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-03T03:15:06Z",
+      "side": 0,
+      "message": "Now that we have this boilerplate (giving user \u0027flow-create-board\u0027, allowCreation, ensureFlowRevision, etc.) it would be good to add that to PostRevisionTestCase (maybe replacing generateWorkflowForPost) so it can be reused.",
+      "revId": "720d146e52b227434b656e5cea99f66184312b40",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
