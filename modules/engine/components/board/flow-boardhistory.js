@@ -40,7 +40,7 @@
 	function flowBoardHistoryModerationCallback( info, data, jqxhr ) {
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
-			return $.Deferred().reject().promise();
+			return $.Deferred().resolve().promise();
 		}
 
 		var flowBoardHistory = mw.flow.getPrototypeMethod( 'boardHistory', 'getInstanceByElement' )( $( this ) );
