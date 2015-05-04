@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_2f2fec9d",
+        "filename": "FlowActions.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-04T17:53:16Z",
+      "side": 1,
+      "message": "In theory it still is; but in practice we\u0027ve already loaded it because we display the pending texture while loading the VE module.\n\nI didn\u0027t keep it as a dependency because there\u0027s currently a bug in ResourceLoader that would cause those styles to be loaded twice.",
+      "parentUuid": "0ed113e2_be1a347c",
+      "revId": "83a998610dc1465f2dc1659995c27316edaae16c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_fe399cef",
         "filename": "modules/editor/ext.flow.editor.js",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2015-05-04T12:26:33Z",
       "side": 1,
       "message": "Instead of repeating this in both .then \u0026 .fail, do markPending in an .always()?",
+      "revId": "83a998610dc1465f2dc1659995c27316edaae16c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_cf1d007a",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-04T17:53:16Z",
+      "side": 1,
+      "message": "Good catch",
+      "parentUuid": "0ed113e2_fe399cef",
       "revId": "83a998610dc1465f2dc1659995c27316edaae16c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
