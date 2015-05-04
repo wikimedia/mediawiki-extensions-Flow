@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_c898936f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-05-04T23:11:37Z",
+      "side": 1,
+      "message": "the main purpose of putting this all together is so one can type `make lint` and all the different linters run, not to type \u0027make grunt\u0027 on its own.",
+      "revId": "039cd4893aafa1effd5317daf1670ea035f60de9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
