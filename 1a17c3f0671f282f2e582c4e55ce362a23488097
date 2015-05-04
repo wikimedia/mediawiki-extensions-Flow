@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_2514e8ec",
+        "filename": "maintenance/FlowUpdateWorkflowPageId.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-04T21:19:53Z",
+      "side": 1,
+      "message": "If a board is deleted, this will cause it to get set to 0 (article ID of a deleted page).  Then, if this is re-run, it will be automatically re-created above.",
+      "revId": "1a17c3f0671f282f2e582c4e55ce362a23488097",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
