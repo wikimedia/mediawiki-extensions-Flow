@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_be1a347c",
+        "filename": "FlowActions.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-05-04T12:26:33Z",
+      "side": 1,
+      "message": "Out of curiosity: any reason it\u0027s no longer a dependency for VE module (and now ext.flow.editor.js too)?",
+      "revId": "83a998610dc1465f2dc1659995c27316edaae16c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_fe399cef",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-05-04T12:26:33Z",
+      "side": 1,
+      "message": "Instead of repeating this in both .then \u0026 .fail, do markPending in an .always()?",
+      "revId": "83a998610dc1465f2dc1659995c27316edaae16c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
