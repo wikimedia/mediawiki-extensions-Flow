@@ -141,7 +141,7 @@
 	};
 
 	mw.flow.editors.none.prototype.attachControls = function() {
-		var $preview, $controls, templateArgs,
+		var $preview, $usesWikitext, $controls, templateArgs,
 			board = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( this.$node );
 
 		if ( mw.flow.editors.visualeditor.static.isSupported() ) {
@@ -151,10 +151,16 @@
 				'data-flow-target': '< form textarea'
 			} ).text( mw.message( 'flow-wikitext-editor-help-preview-the-result' ).text() );
 
+			$usesWikitext = $( '<div>' )
+				.html( mw.message( 'flow-wikitext-editor-help-uses-wikitext' ).parse() )
+				.find( 'a' )
+					.attr( 'target', '_blank' )
+				.end();
+
 			templateArgs = {
 				enable_switcher: true,
 				help_text: mw.message( 'flow-wikitext-editor-help-and-preview' ).params( [
-					mw.message( 'flow-wikitext-editor-help-uses-wikitext' ).parse(),
+					$usesWikitext.html(),
 					$preview[0].outerHTML
 				] ).parse()
 			};
