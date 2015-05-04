@@ -57,11 +57,8 @@ nodecheck:
 	@which npm > /dev/null && npm install \
 		|| (echo "You need to install Node.JS and npm! See http://nodejs.org/" && false)
 
-gruntcheck: nodecheck
-	@which grunt > /dev/null || sudo npm install -g grunt-cli
-
-grunt: gruntcheck
-	@grunt test
+grunt: nodecheck
+	@npm test
 
 checkless:
 	@${PHP} ../../maintenance/checkLess.php
