@@ -50,4 +50,4 @@
 	};
 
 	mw.messagePoster.factory.register( 'flow-board', mw.flow.MessagePoster );
-} ( jQuery, mediaWiki, OO ) );
+}( jQuery, mediaWiki, OO ) );

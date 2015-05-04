@@ -7,7 +7,7 @@
 		'new-topic': [ 'topiclist_', 'nt' ],
 		'edit-header': [ 'header_', 'eh' ],
 		'edit-post': [ 'topic_', 'ep' ],
-		'reply': [ 'topic_', 'rep' ],
+		reply: [ 'topic_', 'rep' ],
 		'moderate-topic': [ 'topic_', 'mt' ],
 		'edit-title': [ 'topic_', 'et' ],
 		'lock-topic': [ 'topic_', 'cot' ],

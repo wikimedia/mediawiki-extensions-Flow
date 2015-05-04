@@ -46,8 +46,8 @@
 
 	// Methods
 
-	mw.flow.ve.Target.prototype.attachToolbar = function() {
+	mw.flow.ve.Target.prototype.attachToolbar = function () {
 		this.getToolbar().$element.insertAfter( this.getToolbar().getSurface().$element );
 	};
 
-} ( mediaWiki, OO, ve ) );
+}( mediaWiki, OO, ve ) );

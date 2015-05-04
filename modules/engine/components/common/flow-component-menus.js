@@ -101,7 +101,6 @@
 			$target = $.findWithParent( $this, target ),
 			$deferred = $.Deferred();
 
-
 		event.preventDefault();
 
 		if ( !$target || !$target.length ) {

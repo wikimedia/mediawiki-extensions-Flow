@@ -153,7 +153,7 @@
 		if ( option === 'newer' ) {
 			$target.addClass( 'flow-post-highlight-newer' );
 			if ( uid ) {
-				$container.find( '.flow-post' ).each( function( idx, el ) {
+				$container.find( '.flow-post' ).each( function ( idx, el ) {
 					var $el = $( el ),
 						id = $el.data( 'flow-id' );
 					if ( id && id > uid ) {
@@ -178,7 +178,7 @@
 	 */
 	function _overrideWatchlistNotification() {
 		var _notify = mw.notify;
-		mw.notify = function( message, options ) {
+		mw.notify = function ( message, options ) {
 			// override message when we've just watched the board
 			if ( options.tag === 'watch-self' && $( '#ca-watch' ).length ) {
 				// Render a div telling the user that they have subscribed

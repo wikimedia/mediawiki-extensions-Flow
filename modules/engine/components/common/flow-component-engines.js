@@ -14,7 +14,7 @@
 	 * Contains Storer.js's (fallback) storage engines.
 	 * @type {Object} { cookieStorage: Storer.cookieStorage, memoryStorage: Storer.memoryStorage, sessionStorage: Storer.sessionStorage, localStorage: Storer.localStorage }}
 	 */
-	mw.flow.StorageEngine = FlowComponentEnginesMixin.static.StorageEngine = initStorer( { 'prefix': '_WMFLOW_' } );
+	mw.flow.StorageEngine = FlowComponentEnginesMixin.static.StorageEngine = initStorer( { prefix: '_WMFLOW_' } );
 
 	/**
 	 * Contains the Flow templating engine translation class (in case we change templating engines).

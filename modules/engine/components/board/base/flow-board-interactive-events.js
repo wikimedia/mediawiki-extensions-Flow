@@ -172,7 +172,7 @@
 					'topic-of-post': $.trim( replyToContent ).substr( 0, 200 )
 				},
 				// Topic:UUID
-				articleTitle: mw.config.get( 'wgFormattedNamespaces' )[2600] + ':' + topicId[0].toUpperCase() + topicId.slice(1)
+				articleTitle: mw.config.get( 'wgFormattedNamespaces' )[2600] + ':' + topicId[0].toUpperCase() + topicId.slice( 1 )
 			}
 		) ).children();
 
@@ -190,7 +190,7 @@
 		$form.conditionalScrollIntoView();
 
 		// focus the input
-		$form.find('textarea').focus();
+		$form.find( 'textarea' ).focus();
 
 		return $deferred.resolve().promise();
 	};
@@ -198,7 +198,7 @@
 	// @todo remove these data-flow handler forwarder callbacks when data-mwui handlers are implemented
 	$( [ 'close', 'prevOrClose', 'nextOrSubmit', 'prev', 'next' ] ).each( function ( i, fn ) {
 		// Assigns each handler with the prefix 'modal', eg. 'close' becomes 'modalClose'
-		FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers[ 'modal' + fn.charAt(0).toUpperCase() + fn.substr( 1 ) ] = function ( event ) {
+		FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers[ 'modal' + fn.charAt( 0 ).toUpperCase() + fn.substr( 1 ) ] = function ( event ) {
 			event.preventDefault();
 
 			// eg. call mw.Modal.close( this );

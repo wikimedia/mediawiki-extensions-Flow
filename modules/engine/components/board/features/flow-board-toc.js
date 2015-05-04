@@ -92,10 +92,10 @@
 		};
 
 		// @todo verify that this works
-		//if ( info.component.lastTopicIdInToc ) {
-		//	overrides.topiclist_offset = false;
-		//	overrides['topiclist_offset-id'] = info.component.lastTopicIdInToc;
-		//}
+		// if ( info.component.lastTopicIdInToc ) {
+		// 	overrides.topiclist_offset = false;
+		// 	overrides['topiclist_offset-id'] = info.component.lastTopicIdInToc;
+		// }
 
 		if ( !overrides.topiclist_sortby ) {
 			delete overrides.topiclist_sortby;

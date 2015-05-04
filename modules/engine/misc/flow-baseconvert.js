@@ -5,20 +5,20 @@
 	// Integer.toString because javascript uses doubles for math, giving only
 	// 53 bits of precision.
 	mw.flow.baseConvert = function ( input, sourceBase, destBase ) {
-		var regex = new RegExp( "^[" + '0123456789abcdefghijklmnopqrstuvwxyz'.substr( 0, sourceBase ) + "]+$" ),
+		var regex = new RegExp( '^[' + '0123456789abcdefghijklmnopqrstuvwxyz'.substr( 0, sourceBase ) + ']+$' ),
 			baseChars = {
-				'10': 'a', '11': 'b', '12': 'c', '13': 'd', '14': 'e', '15': 'f',
-				'16': 'g', '17': 'h', '18': 'i', '19': 'j', '20': 'k', '21': 'l',
-				'22': 'm', '23': 'n', '24': 'o', '25': 'p', '26': 'q', '27': 'r',
-				'28': 's', '29': 't', '30': 'u', '31': 'v', '32': 'w', '33': 'x',
-				'34': 'y', '35': 'z',
+				10: 'a', 11: 'b', 12: 'c', 13: 'd', 14: 'e', 15: 'f',
+				16: 'g', 17: 'h', 18: 'i', 19: 'j', 20: 'k', 21: 'l',
+				22: 'm', 23: 'n', 24: 'o', 25: 'p', 26: 'q', 27: 'r',
+				28: 's', 29: 't', 30: 'u', 31: 'v', 32: 'w', 33: 'x',
+				34: 'y', 35: 'z',
 
-				'0':  0, '1':  1, '2':  2, '3':  3, '4':  4, '5': 5,
-				'6':  6, '7':  7, '8':  8, '9':  9, 'a': 10, 'b': 11,
-				'c': 12, 'd': 13, 'e': 14, 'f': 15, 'g': 16, 'h': 17,
-				'i': 18, 'j': 19, 'k': 20, 'l': 21, 'm': 22, 'n': 23,
-				'o': 24, 'p': 25, 'q': 26, 'r': 27, 's': 28, 't': 29,
-				'u': 30, 'v': 31, 'w': 32, 'x': 33, 'y': 34, 'z': 35
+				0:  0, 1:  1, 2:  2, 3:  3, 4:  4, 5: 5,
+				6:  6, 7:  7, 8:  8, 9:  9, a: 10, b: 11,
+				c: 12, d: 13, e: 14, f: 15, g: 16, h: 17,
+				i: 18, j: 19, k: 20, l: 21, m: 22, n: 23,
+				o: 24, p: 25, q: 26, r: 27, s: 28, t: 29,
+				u: 30, v: 31, w: 32, x: 33, y: 34, z: 35
 			},
 			inDigits = [],
 			result = [],
@@ -42,7 +42,7 @@
 
 		// Iterate over the input, modulo-ing out an output digit
 		// at a time until input is gone.
-		while( inDigits.length ) {
+		while ( inDigits.length ) {
 			work = 0;
 			workDigits = [];
 
@@ -65,6 +65,6 @@
 			inDigits = workDigits;
 		}
 
-		return result.reverse().join("");
+		return result.reverse().join( '' );
 	};
 }( mw, jQuery ) );

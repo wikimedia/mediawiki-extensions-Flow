@@ -112,8 +112,8 @@
 	 * @returns {Array}
 	 */
 	function emitWithReturn( event, args ) {
-		var i, len, binding, bindings, method,
-			returns = [], retVal;
+		var i, len, binding, bindings, method, retVal,
+			returns = [];
 
 		if ( event in this.bindings ) {
 			// Slicing ensures that we don't get tripped up by event handlers that add/remove bindings
@@ -259,7 +259,7 @@
 	 */
 	function flowEventsMixinApiRequestInteractiveHandler( event ) {
 		var $deferred = $.Deferred(),
-			deferreds = [$deferred],
+			deferreds = [ $deferred ],
 			$target,
 			self = event.currentTarget || event.delegateTarget || event.target,
 			$this = $( self ),
@@ -480,7 +480,7 @@
 	 * Triggers load handlers.
 	 */
 	function flowLoadHandlerCallback( handlerName, args, context ) {
-		args = $.isArray( args ) ? args : ( args ? [args] : [] );
+		args = $.isArray( args ) ? args : ( args ? [ args ] : [] );
 		context = context || this;
 
 		if ( this.UI.events.loadHandlers[handlerName] ) {
@@ -533,7 +533,7 @@
 	 */
 	function flowInteractiveHandlerCallback( event, extraParameters ) {
 		// Only trigger with enter key & no modifier keys, if keypress
-		if ( event.type === 'keypress' && ( event.charCode !== 13 || event.metaKey || event.shiftKey || event.ctrlKey || event.altKey )) {
+		if ( event.type === 'keypress' && ( event.charCode !== 13 || event.metaKey || event.shiftKey || event.ctrlKey || event.altKey ) ) {
 			return;
 		}
 
@@ -583,7 +583,7 @@
 	 */
 	function flowEventLogCallback( event ) {
 		// Only trigger with enter key & no modifier keys, if keypress
-		if ( event.type === 'keypress' && ( event.charCode !== 13 || event.metaKey || event.shiftKey || event.ctrlKey || event.altKey )) {
+		if ( event.type === 'keypress' && ( event.charCode !== 13 || event.metaKey || event.shiftKey || event.ctrlKey || event.altKey ) ) {
 			return;
 		}
 
@@ -617,7 +617,7 @@
 
 		// Promise resolves once all interactiveHandlers/apiHandlers are done,
 		// so all nodes we want to forward to are bound to be there
-		$promise.always( function() {
+		$promise.always( function () {
 			// Now find all nodes to forward to
 			var $forward = data.flowEventlogForward ? $context.findWithParent( data.flowEventlogForward ) : $();
 
@@ -635,7 +635,6 @@
 		$( window ).trigger( 'scroll.flow-window-scroll' );
 	}
 	FlowComponentEventsMixin.eventHandlers.instantiationComplete = flowEventsMixinInstantiationComplete;
-
 
 	/**
 	 * Compress and hide a flow form and/or its actions, depending on data-flow-initial-state.
@@ -773,11 +772,11 @@
 				// Blank editor while loading
 				$editor.val( '' );
 
-				mw.loader.using( 'ext.flow.editor', function() {
+				mw.loader.using( 'ext.flow.editor', function () {
 					mw.flow.editor.load( $editor, content );
 
 					// Kill editor instance when the form it's in is cancelled
-					flowComponent.emitWithReturn( 'addFormCancelCallback', $form, function() {
+					flowComponent.emitWithReturn( 'addFormCancelCallback', $form, function () {
 						if ( mw.flow.editor.exists( $editor ) ) {
 							mw.flow.editor.destroy( $editor );
 						}
@@ -869,7 +868,7 @@
 		if ( $button.length ) {
 			// Clear contents to not trigger the "are you sure you want to
 			// discard your text" warning
-			$form.find( 'textarea, :text' ).each( function() {
+			$form.find( 'textarea, :text' ).each( function () {
 				$( this ).val( this.defaultValue );
 			} );
 
@@ -916,7 +915,7 @@
 			preHandlers = [];
 
 		// Compile a list of all preHandlers to be run
-		$.each( flowComponent.UI.events.globalApiPreHandlers, function( key, callbackArray ) {
+		$.each( flowComponent.UI.events.globalApiPreHandlers, function ( key, callbackArray ) {
 			Array.prototype.push.apply( preHandlers, callbackArray );
 		} );
 		if ( flowComponent.UI.events.apiPreHandlers[ handlerName ] ) {

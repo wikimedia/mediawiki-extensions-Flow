@@ -94,7 +94,7 @@
 	/**
 	 * Auto-expand/shrink as content changes.
 	 */
-	mw.flow.editors.none.prototype.autoExpand = function() {
+	mw.flow.editors.none.prototype.autoExpand = function () {
 		var scrollHeight, $form, formBottom, windowBottom, maxHeightIncrease,
 			$this = $( this ),
 			height = $this.height(),
@@ -140,7 +140,7 @@
 		}
 	};
 
-	mw.flow.editors.none.prototype.attachControls = function() {
+	mw.flow.editors.none.prototype.attachControls = function () {
 		var $preview, $controls, templateArgs,
 			board = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( this.$node );
 
@@ -177,7 +177,7 @@
 		board.emitWithReturn( 'makeContentInteractive', $controls.insertAfter( this.$node ) );
 	};
 
-	mw.flow.editors.none.prototype.focus = function() {
+	mw.flow.editors.none.prototype.focus = function () {
 		return this.$node.focus();
 	};
-} ( jQuery, mediaWiki ) );
+}( jQuery, mediaWiki ) );
