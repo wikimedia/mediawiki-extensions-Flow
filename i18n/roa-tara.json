@@ -24,7 +24,6 @@
 	"flow-post-actions": "Aziune",
 	"flow-topic-actions": "Aziune",
 	"flow-cancel": "Annulle",
-	"flow-preview": "Andeprime",
 	"flow-show-change": "Fa vedè le cangiaminde",
 	"flow-last-modified-by": "Urteme {{GENDER:$1|cangiate}} da $1",
 	"flow-newtopic-title-placeholder": "Argomende nuève",

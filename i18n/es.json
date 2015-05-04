@@ -361,7 +361,7 @@
 	"flow-ve-mention-inspector-invalid-user": "El nombre de usuario «$1» no está registrado.",
 	"flow-wikitext-editor-help": "El wikitexto $1.",
 	"flow-wikitext-editor-help-and-preview": "El wikitexto $1 y en cualquier momento puedes $2.",
-	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|usa marcado (\"markup\")]]",
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|usa un lenguaje de marcado]]",
 	"flow-wikitext-editor-help-preview-the-result": "previsualizar el resultado",
 	"flow-wikitext-switch-editor-tooltip": "Cambiar al editor visual",
 	"flow-ve-switch-editor-tool-title": "Cambiar al editor de wikitexto"

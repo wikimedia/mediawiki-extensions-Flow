@@ -28,7 +28,6 @@
 	"flow-post-actions": "Toiminnot",
 	"flow-topic-actions": "Toiminnot",
 	"flow-cancel": "Peruuta",
-	"flow-preview": "Esikatselu",
 	"flow-show-change": "Näytä muutokset",
 	"flow-last-modified-by": "Viimeksi {{GENDER:$1|muokannut}} $1",
 	"flow-newtopic-title-placeholder": "Uusi aihe",

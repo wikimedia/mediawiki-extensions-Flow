@@ -44,7 +44,6 @@
 	"flow-post-actions": "പ്രവൃത്തികൾ",
 	"flow-topic-actions": "പ്രവൃത്തികൾ",
 	"flow-cancel": "റദ്ദാക്കുക",
-	"flow-preview": "എങ്ങനെയുണ്ടെന്നു കാണുക",
 	"flow-show-change": "മാറ്റങ്ങൾ കാണിക്കുക",
 	"flow-last-modified-by": "അവസാനം {{GENDER:$1|പുതുക്കിയത്}} $1 ആണ്",
 	"flow-stub-post-content": "\"ഒരു സാങ്കേതിക പിഴവുണ്ടായതിനാൽ, ഈ കുറിപ്പ് എടുക്കാനായില്ല.\"",
@@ -200,11 +199,9 @@
 	"flow-topic-count": "വിഷയങ്ങൾ ($1)",
 	"flow-load-more": "കൂടുതൽ എടുക്കുക",
 	"flow-no-more-fwd": "പഴയ വിഷയങ്ങൾ ഒന്നുമില്ല",
-	"flow-add-topic": "വിഷയം ചേർക്കുക",
 	"flow-newest-topics": "ഏറ്റവും പുതിയ വിഷയങ്ങൾ",
 	"flow-recent-topics": "സമീപകാലത്ത് സജീവമായ വിഷയങ്ങൾ",
 	"flow": "പ്രവാഹം",
 	"flow-special-type": "തരം",
-	"flow-special-type-post": "കുറിപ്പ്",
-	"flow-anonymous": "അജ്ഞാതം"
+	"flow-special-type-post": "കുറിപ്പ്"
 }
