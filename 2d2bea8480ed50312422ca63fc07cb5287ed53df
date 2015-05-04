@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_a2e20e96",
+        "filename": "includes/BoardMover.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-04T20:45:18Z",
+      "side": 1,
+      "message": "Title::GAID_FOR_UPDATE",
+      "revId": "2d2bea8480ed50312422ca63fc07cb5287ed53df",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_c23cf22f",
+        "filename": "includes/Model/Workflow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-04T20:45:18Z",
+      "side": 1,
+      "message": "Title::GAID_FOR_UPDATE",
+      "revId": "2d2bea8480ed50312422ca63fc07cb5287ed53df",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
