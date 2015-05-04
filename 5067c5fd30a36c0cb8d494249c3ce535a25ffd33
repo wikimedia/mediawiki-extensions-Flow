@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_d18da937",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-05-04T14:23:58Z",
+      "side": 1,
+      "message": "Maybe renaming \"data\" to something more specific would make the code easier to understand.",
+      "revId": "5067c5fd30a36c0cb8d494249c3ce535a25ffd33",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
