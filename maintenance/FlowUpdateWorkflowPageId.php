@@ -42,7 +42,6 @@ class FlowUpdateWorkflowPageId extends Maintenance {
 		$it->setFetchColumns( array( '*' ) );
 		$it->addConditions( array(
 			'workflow_wiki' => wfWikiId(),
-			'workflow_page_id' => 0,
 		) );
 
 		$gen = new WorkflowPageIdUpdateGenerator( $wgLang );
@@ -87,8 +86,10 @@ class WorkflowPageIdUpdateGenerator implements EchoRowUpdateGenerator {
 			) );
 		}
 
-		// title doesn't exist, so create it
-		if ( $title->getArticleID() === 0 ) {
+		// at some point, we failed to create page entries for new workflows: only
+		// create that page if the workflow was stored with a 0 page id (otherwise,
+		// we could mistake the $title for a deleted page)
+		if ( $row->workflow_page_id === 0 && $title->getArticleID() === 0 ) {
 			// build workflow object (yes, loading them piecemeal is suboptimal, but
 			// this is just a one-time script; considering the alternative is
 			// creating a derivative EchoBatchRowIterator that returns workflows,
@@ -111,6 +112,7 @@ class WorkflowPageIdUpdateGenerator implements EchoRowUpdateGenerator {
 			}
 		}
 
+		// re-associate the workflow with the correct page
 		if ( $title->getArticleID() !== (int) $row->workflow_page_id ) {
 			// This makes the assumption the page has not moved or been deleted?
 			++$this->fixedCount;
