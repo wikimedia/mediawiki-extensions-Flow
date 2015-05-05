@@ -131,69 +131,34 @@ class Templating {
 			);
 		}
 
-		if ( $allowed ) {
-			// fixed html format
-			if ( $format === 'fixed-html' ) {
-				// Parsoid doesn't render redlinks & doesn't strip bad images
-				try {
-					$content = $this->contentFixer->getContent( $revision );
-				} catch ( \Exception $e ) {
-					wfDebugLog( 'Flow', __METHOD__ . ': Failed fix content for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
-					\MWExceptionHandler::logException( $e );
-
-					$content = wfMessage( 'flow-stub-post-content' )->parse();
-				}
-			// all other formats
-			} elseif ( in_array( $format, array( 'html', 'plaintext', 'wikitext' ) ) ) {
-				if ( $format === 'plaintext' ) {
-					$format = 'wikitext';
-				}
-
-				$content = $revision->getContent( $format );
-			} else {
-				throw new InvalidInputException( 'Invalid format: ' . $format );
-			}
-
-			return $content;
-		} else {
-			// @todo: I think this block of code is currently unused - can we get rid of it? (perhaps just return empty string?)
-
-			$revision = $this->getModeratedRevision( $revision );
-			$username = $this->usernames->get(
-				wfWikiId(),
-				$revision->getModeratedByUserId(),
-				$revision->getModeratedByUserIp()
-			);
-
-			// get revision type to make more precise message
-			$state = $revision->getModerationState();
-			$type = $revision->getRevisionType();
-			if ( $revision instanceof PostRevision && $revision->isTopicTitle() ) {
-				$type = 'title';
-			}
-
-			$historyLink = $this->urlGenerator
-				->workflowHistoryLink( null, $revision->getRootPost()->getPostId() )
-				->getLinkURL();
-
-			// Messages: flow-hide-post-content, flow-delete-post-content, flow-suppress-post-content
-			//           flow-hide-title-content, flow-delete-title-content, flow-suppress-title-content
-			$message = wfMessage( "flow-$state-$type-content", $username )
-				->rawParams( $this->getUserLinks( $revision ) )
-				->params( $historyLink );
-
-			if ( !$message->exists() ) {
-				wfDebugLog( 'Flow', __METHOD__ . ': Failed to locate message for moderated content: ' . $message->getKey() );
-
-				$message = wfMessage( 'flow-error-other' );
-			}
-
-			if ( in_array( $format, array( 'fixed-html', 'html' ) ) ) {
-				return $message->escaped();
-			} else {
-				return $message->text();
-			}
+		if ( !$allowed ) {
+			// failsafe - never output content if permissions aren't satisfied!
+			return '';
 		}
+
+		// fixed html format
+		if ( $format === 'fixed-html' ) {
+			// Parsoid doesn't render redlinks & doesn't strip bad images
+			try {
+				$content = $this->contentFixer->getContent( $revision );
+			} catch ( \Exception $e ) {
+				wfDebugLog( 'Flow', __METHOD__ . ': Failed fix content for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
+				\MWExceptionHandler::logException( $e );
+
+				$content = wfMessage( 'flow-stub-post-content' )->parse();
+			}
+		// all other formats
+		} elseif ( in_array( $format, array( 'html', 'plaintext', 'wikitext' ) ) ) {
+			if ( $format === 'plaintext' ) {
+				$format = 'wikitext';
+			}
+
+			$content = $revision->getContent( $format );
+		} else {
+			throw new InvalidInputException( 'Invalid format: ' . $format );
+		}
+
+		return $content;
 	}
 
 	public function getModeratedRevision( AbstractRevision $revision ) {

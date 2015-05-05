@@ -50,6 +50,8 @@ class TocTopicListFormatter extends BaseTopicListFormatter {
 				// topic titles.
 
 				'content' => array(
+					// no need to check permissions before fetching content; that should've
+					// been done by whatever caller supplies $topicRootRevisionsByWorkflowId,
 					'content' => $this->templating->getContent(
 						$postRevision,
 						$contentFormat

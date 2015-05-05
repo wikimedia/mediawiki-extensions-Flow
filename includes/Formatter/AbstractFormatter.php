@@ -304,7 +304,7 @@ abstract class AbstractFormatter {
 
 		// generated link has generic link text, should be actual topic title
 		$root = $row->revision->getRootPost();
-		if ( $root ) {
+		if ( $root && $this->permissions->isAllowed( $root, 'view' ) ) {
 			$topic->setMessage( Container::get( 'templating' )->getContent( $root, 'wikitext' ) );
 		}
 
