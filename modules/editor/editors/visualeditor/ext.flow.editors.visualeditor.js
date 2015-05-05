@@ -12,7 +12,7 @@
 		// node the editor is associated with.
 		this.$node = $node;
 
-		// HACK: make textarea look pending
+		// HACK: make textarea look pending in case we didn't come from an editor switch
 		// Once this is an OO.ui.TextInputWidget we'll be able to use real PendingElement
 		// functionality for this
 		$node

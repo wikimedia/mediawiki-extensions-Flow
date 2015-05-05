@@ -109,6 +109,8 @@ $wgFlowActions = array(
 			'ext.flow.styles.base',
 			'ext.flow.board.styles',
 			'ext.flow.board.topic.styles',
+			// Needed for pending texture while switching editors
+			'oojs-ui.styles.textures'
 		),
 	),
 
@@ -196,6 +198,8 @@ $wgFlowActions = array(
 			'ext.flow.styles.base',
 			'ext.flow.board.styles',
 			'ext.flow.board.topic.styles',
+			// Needed for pending texture while switching editors
+			'oojs-ui.styles.textures'
 		),
 	),
 
@@ -321,6 +325,8 @@ $wgFlowActions = array(
 			'ext.flow.styles.base',
 			'ext.flow.board.styles',
 			'ext.flow.board.topic.styles',
+			// Needed for pending texture while switching editors
+			'oojs-ui.styles.textures'
 		),
 	),
 
