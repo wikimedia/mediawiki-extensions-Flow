@@ -17,8 +17,8 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 	public function setUp() {
 		parent::setUp();
 
+		$this->markTestSkipped();
 		if ( !class_exists( 'EchoEvent' ) ) {
-			$this->markTestSkipped();
 			return;
 		}
 	}
