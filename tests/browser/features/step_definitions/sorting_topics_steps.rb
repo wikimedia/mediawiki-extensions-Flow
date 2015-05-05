@@ -18,17 +18,17 @@ When(/^I click Recently active topics link$/) do
 end
 
 Then(/^the Flow page should not show Recently active topics link$/) do
-  expect(on(FlowPage).recently_active_topics_link_element.when_not_visible(10)).not_to be_visible
+  expect(on(FlowPage).recently_active_topics_link_element.when_not_visible).not_to be_visible
 end
 
 Then(/^the Flow page should show Recently active topics link$/) do
-  expect(on(FlowPage).recently_active_topics_link_element.when_present(10)).to be_visible
+  expect(on(FlowPage).recently_active_topics_link_element.when_present).to be_visible
 end
 
 Then(/^the Flow page should not show Newest topics link$/) do
-  expect(on(FlowPage).newest_topics_link_element.when_not_visible(10)).not_to be_visible
+  expect(on(FlowPage).newest_topics_link_element.when_not_visible).not_to be_visible
 end
 
 Then(/^the Flow page should show Newest topics link$/) do
-  expect(on(FlowPage).newest_topics_link_element.when_present(10)).to be_visible
+  expect(on(FlowPage).newest_topics_link_element.when_present).to be_visible
 end

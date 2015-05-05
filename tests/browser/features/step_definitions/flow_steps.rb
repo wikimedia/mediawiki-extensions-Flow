@@ -30,7 +30,9 @@ Given(/^the block author link is not visible$/) do
 end
 
 Given(/^The Flow page is fully loaded$/) do
-  on(FlowPage).new_topic_body_element.when_not_visible
+  # wait for javascript to remove the new topic link
+  # and replace it with a click handler on the new topic text_field
+  on(FlowPage).new_topic_link_element.when_not_visible
 end
 
 Given(/^the talk to author link is not visible$/) do
