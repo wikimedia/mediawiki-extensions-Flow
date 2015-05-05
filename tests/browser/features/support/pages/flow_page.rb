@@ -191,6 +191,7 @@ class FlowPage < WikiPage
   end
 
   # New topic creation
+  a(:new_topic_link, text: "Start a new topic")
   form(:new_topic_form, css: ".flow-newtopic-form")
   text_field(:new_topic_title, name: "topiclist_topic")
 
