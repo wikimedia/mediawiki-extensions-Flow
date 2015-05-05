@@ -1,5 +1,5 @@
 // Register the Handlebars compiler with MediaWiki.
-( function() {
+( function () {
 	/*
 	 * @class HandlebarsTemplateCompiler
 	 * @singleton
@@ -12,7 +12,7 @@
 		 * @param {String} src the source of a template
 		 * @return {HandleBars.Template} template object
 		 */
-		compile: function( src ) {
+		compile: function ( src ) {
 			return {
 				/* @param {*} data */
 				render: Handlebars.compile( src, { preventIndent: true } )

@@ -23,7 +23,7 @@
 		 *
 		 * @property {Object}
 		 */
-		editors: [null],
+		editors: [ null ],
 
 		init: function () {
 			var editorList = mw.config.get( 'wgFlowEditorList' ),
@@ -218,9 +218,9 @@
 
 					// prepare data to feed into conversion
 					return {
-						'from': oldFormat,
-						'to': newFormat,
-						'content': content
+						from: oldFormat,
+						to: newFormat,
+						content: content
 					};
 				} )
 
@@ -256,12 +256,12 @@
 				} )
 
 				// anything that results in a reject() will be logged
-				.fail( function( rejectionCode ) {
+				.fail( function ( rejectionCode ) {
 					mw.flow.debug( '[switchEditor] Could not switch to ' + desiredEditor + ' : ' + rejectionCode );
 				} );
 		},
 
-		focus: function( $node ) {
+		focus: function ( $node ) {
 			var editor = mw.flow.editor.getEditor( $node );
 
 			if ( editor && editor.focus ) {
@@ -271,7 +271,7 @@
 			}
 		},
 
-		moveCursorToEnd : function( $node ) {
+		moveCursorToEnd: function ( $node ) {
 			var editor = mw.flow.editor.getEditor( $node );
 
 			if ( editor && editor.moveCursorToEnd ) {
@@ -282,4 +282,4 @@
 		}
 	};
 	$( mw.flow.editor.init );
-} ( jQuery, mediaWiki ) );
+}( jQuery, mediaWiki ) );

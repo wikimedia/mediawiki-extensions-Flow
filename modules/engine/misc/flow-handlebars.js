@@ -11,7 +11,6 @@
 		currentIndex: 0
 	};
 
-
 	/**
 	 * Instantiates a FlowHandlebars instance for TemplateEngine.
 	 * @param {Object} FlowStorageEngine
@@ -441,7 +440,7 @@
 	 *
 	 * @return mixed result of callback
 	 */
-	FlowHandlebars.prototype.ifAnonymous = function( options ) {
+	FlowHandlebars.prototype.ifAnonymous = function ( options ) {
 		if ( mw.user.isAnon() ) {
 			return options.fn( this );
 		}
@@ -454,7 +453,7 @@
 	 *
 	 * @return string modified url
 	 */
-	FlowHandlebars.prototype.linkWithReturnTo = function( title ) {
+	FlowHandlebars.prototype.linkWithReturnTo = function ( title ) {
 		return mw.util.getUrl( title, {
 			returntoquery: encodeURIComponent( window.location.search ),
 			returnto: mw.config.get( 'wgPageName' )
@@ -559,8 +558,8 @@
 	};
 
 	// Load partials
-	$.each( mw.templates.values, function( moduleName ) {
-		$.each( this, function( name ) {
+	$.each( mw.templates.values, function ( moduleName ) {
+		$.each( this, function ( name ) {
 			// remove extension
 			var partialMatch, partialName;
 

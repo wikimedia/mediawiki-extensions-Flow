@@ -122,7 +122,6 @@
 		} );
 	} );
 
-
 	/*
 	 * mw-ui-tooltip
 	 * Renders tooltips on over, and also via mw.tooltip.

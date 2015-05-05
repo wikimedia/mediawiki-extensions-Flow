@@ -104,8 +104,10 @@
 	 * @returns {jQuery.Promise}
 	 */
 	mw.flow.ve.ui.MentionTargetInputWidget.prototype.getLookupRequest = function () {
-		var abortObject = { abort: $.noop }, dfd = $.Deferred(),
-			lowerValue = this.value.toLowerCase(), matches;
+		var matches,
+			abortObject = { abort: $.noop },
+			dfd = $.Deferred(),
+			lowerValue = this.value.toLowerCase();
 
 		matches = $.grep( this.loggedInTopicPosters, function ( poster ) {
 			return poster.toLowerCase().indexOf( lowerValue ) >= 0;
@@ -126,7 +128,8 @@
 	 * @return {OO.ui.MenuOptionWidget[]} Menu items
 	 */
 	mw.flow.ve.ui.MentionTargetInputWidget.prototype.getLookupMenuOptionsFromData = function ( users ) {
-		var items = [], user, i;
+		var user, i,
+			items = [];
 
 		for ( i = 0; i < users.length; i++ ) {
 			user = users[i];
@@ -158,4 +161,4 @@
 			this.username = item.getData();
 		}
 	};
-} ( jQuery, mediaWiki, OO, ve ) );
+}( jQuery, mediaWiki, OO, ve ) );

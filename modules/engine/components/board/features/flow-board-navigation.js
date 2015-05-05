@@ -71,7 +71,7 @@
 		// as a sibling of the topiclist component.  The topiclist component includes
 		// information about how it is currently sorted, so we can maintain that in the
 		// TOC. This is typically either 'newest' or 'updated'.
-		this.topicIdSort = $boardNavigation.siblings('[data-flow-sortby]').data( 'flow-sortby' );
+		this.topicIdSort = $boardNavigation.siblings( '[data-flow-sortby]' ).data( 'flow-sortby' );
 		this.updateTopicIdSortCallback();
 
 		// This allows the toc to initialize eagerly before the user looks at it.
@@ -216,7 +216,7 @@
 		boardNavigationPosition = this.$boardNavigationClone.offset();
 
 		// keep both banners (inline, fixed) the same width and horizontal position
-		inlineBarWidth = this.$boardNavigationClone.outerWidth(true);
+		inlineBarWidth = this.$boardNavigationClone.outerWidth( true );
 		fixedBarWidth = parseInt( $boardNavigation.css( 'width' ) );
 		inlineBarLeft = boardNavigationPosition.left;
 		fixedBarLeft = parseInt( $boardNavigation.css( 'left' ) );
@@ -243,7 +243,7 @@
 			var target = $topic.data( 'flow-toc-scroll-target' ),
 				$target = $.findWithParent( $topic, target );
 
-			if ( $target.offset().top - parseInt( $target.css( "padding-top" ) ) > bottomScrollPosition ) {
+			if ( $target.offset().top - parseInt( $target.css( 'padding-top' ) ) > bottomScrollPosition ) {
 				return false; // stop, this topic is too far
 			}
 

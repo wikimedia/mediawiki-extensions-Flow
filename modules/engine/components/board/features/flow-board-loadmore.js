@@ -42,7 +42,8 @@
 	 */
 	function flowBoardComponentLoadMoreFeatureJumpTo( topicId ) {
 		/** @type FlowBoardComponent*/
-		var flowBoard = this, apiParameters,
+		var apiParameters,
+			flowBoard = this,
 			// Scrolls to the given topic, but disables infinite scroll loading while doing so
 			_scrollWithoutInfinite = function () {
 				var $renderedTopic = flowBoard.renderedTopics[ topicId ];
@@ -68,7 +69,7 @@
 					 * let's only re-enable infinite scroll until we're sure
 					 * that event has been fired.
 					 */
-					setTimeout( function() {
+					setTimeout( function () {
 						delete flowBoard.infiniteScrollDisabled;
 					}, 1 );
 				} else {
@@ -117,11 +118,11 @@
 			// Remove the load indicator
 			.always( function () {
 				// @todo support for multiple indicators on same target
-				//$target.removeClass( 'flow-api-inprogress' );
-				//$this.removeClass( 'flow-api-inprogress' );
+				// $target.removeClass( 'flow-api-inprogress' );
+				// $this.removeClass( 'flow-api-inprogress' );
 			} )
 			// On success, render the topic
-			.done( function( data ) {
+			.done( function ( data ) {
 				_flowBoardComponentLoadMoreFeatureRenderTopics(
 					flowBoard,
 					data.flow[ 'view-topiclist' ].result.topiclist,
@@ -135,7 +136,7 @@
 				_scrollWithoutInfinite();
 			} )
 			// On fail, render an error
-			.fail( function( code, data ) {
+			.fail( function ( code, data ) {
 				flowBoard.debug( true, 'Failed to load topics: ' + code );
 				// Failed fetching the new data to be displayed.
 				// @todo render the error at topic position and scroll to it
@@ -438,7 +439,6 @@
 	// Private functions
 	//
 
-
 	/**
 	 * Re-sorts the orderedTopicIds after insert
 	 *
@@ -583,7 +583,7 @@
 					scrollTemplate,
 					topicsData
 				) ).children();
-			} catch( e ) {
+			} catch ( e ) {
 				flowBoard.debug( true, 'Failed to render new topic' );
 				$newTopics = $();
 			}

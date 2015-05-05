@@ -39,7 +39,6 @@
 	mw.flow.ve.ui.MentionContextItem.static.isCompatibleWith =
 		mw.flow.ve.ui.MentionInspectorTool.static.isCompatibleWith;
 
-
 	// Instance Methods
 
 	/**
@@ -55,4 +54,4 @@
 	};
 
 	ve.ui.contextItemFactory.register( mw.flow.ve.ui.MentionContextItem );
-} ( mediaWiki, OO, ve ) );
+}( mediaWiki, OO, ve ) );

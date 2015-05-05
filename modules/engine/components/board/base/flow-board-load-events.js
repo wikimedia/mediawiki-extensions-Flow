@@ -32,7 +32,7 @@
 		$time.replaceWith(
 			mw.flow.TemplateEngine.callHelper(
 				'timestamp',
-				parseInt( $time.attr( 'datetime' ), 10) * 1000
+				parseInt( $time.attr( 'datetime' ), 10 ) * 1000
 			)
 		);
 	};

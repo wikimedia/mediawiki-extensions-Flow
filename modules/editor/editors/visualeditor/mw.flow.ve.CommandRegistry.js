@@ -6,8 +6,8 @@
 			'flowMention',
 			'window',
 			'open',
-			{ args: ['flowMention' ] },
-			{ supportedSelections: ['linear'] }
+			{ args: [ 'flowMention' ] },
+			{ supportedSelections: [ 'linear' ] }
 		)
 	);
 
@@ -16,8 +16,8 @@
 			'flowMentionAt',
 			'window',
 			'open',
-			{ args: ['flowMention', { 'selectAt': true } ] },
-			{ supportedSelections: ['linear'] }
+			{ args: [ 'flowMention', { selectAt: true } ] },
+			{ supportedSelections: [ 'linear' ] }
 		)
 	);
 
@@ -29,4 +29,4 @@
 			{ args: [] } // arguments to pass to action
 		)
 	);
-} ( ve ) );
+}( ve ) );

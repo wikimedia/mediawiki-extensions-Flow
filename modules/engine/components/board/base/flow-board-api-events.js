@@ -45,7 +45,7 @@
 		var $textareas = $( this ).closest( 'form' ).find( 'textarea' ),
 			override = {};
 
-		$textareas.each( function() {
+		$textareas.each( function () {
 			var $editor = $( this );
 
 			// Doublecheck that this textarea is actually an editor instance
@@ -127,7 +127,7 @@
 		// Use view-post API for topic as well; we only want this on
 		// particular (title) post revision, not the full topic
 		return $.extend( {}, queryMap, {
-			submodule: "view-post",
+			submodule: 'view-post',
 			vppostId: $( this ).closest( '.flow-topic' ).data( 'flow-id' ),
 			vpformat: mw.flow.editor.getFormat()
 		} );
@@ -316,7 +316,7 @@
 			action: 'flow',
 			submodule: 'view-header',
 			page: mw.config.get( 'wgPageName' )
-		} ).done( function( result ) {
+		} ).done( function ( result ) {
 			$rendered = $(
 				flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
 					'flow_block_loop',
@@ -409,7 +409,7 @@
 	 * @param {jqXHR} jqxhr
 	 * @returns {jQuery.Promise}
 	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitTopicTitle = function( info, data, jqxhr ) {
+	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitTopicTitle = function ( info, data, jqxhr ) {
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
 			return $.Deferred().resolve().promise();
@@ -432,7 +432,7 @@
 	 * @param {jqXHR} jqxhr
 	 * @returns {jQuery.Promise}
 	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitEditPost = function( info, data, jqxhr ) {
+	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitEditPost = function ( info, data, jqxhr ) {
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
 			return $.Deferred().resolve().promise();
@@ -540,8 +540,8 @@
 			watchUrl = url.replace( 'unwatch', 'watch' );
 			unwatchUrl = url;
 		}
-		links['unwatch-' + watchType] = { url : unwatchUrl };
-		links['watch-' + watchType] = { url : watchUrl };
+		links['unwatch-' + watchType] = { url: unwatchUrl };
+		links['watch-' + watchType] = { url: watchUrl };
 
 		// Render new icon
 		// This will hide any tooltips if present
@@ -589,7 +589,7 @@
 		) ).children();
 
 		// On cancel, put the old topicsummary back
-		flowBoard.emitWithReturn( 'addFormCancelCallback', $target.find( 'form' ), function() {
+		flowBoard.emitWithReturn( 'addFormCancelCallback', $target.find( 'form' ), function () {
 			$target.before( $old ).remove();
 		} );
 
@@ -653,7 +653,7 @@
 			// current title in CSS)
 			info.$target.addClass( activeClass );
 
-			cancelCallback = function() {
+			cancelCallback = function () {
 				$form.remove();
 				info.$target.removeClass( activeClass );
 			};
@@ -662,15 +662,15 @@
 			$form = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
 				'flow_edit_topic_title.partial',
 				{
-					'actions' : {
-						'edit' : {
-							'url' : $link.attr( 'href' )
+					actions: {
+						edit: {
+							url: $link.attr( 'href' )
 						}
 					},
-					'content': {
-						'content' : revision.content.content
+					content: {
+						content: revision.content.content
 					},
-					'revisionId' : revision.revisionId
+					revisionId: revision.revisionId
 				}
 			) ).children();
 
@@ -815,10 +815,10 @@
 
 			// @todo: add 3rd argument (target selector); there's no need to refresh entire topic if only post was moderated
 			return _flowBoardComponentRefreshTopic( $target, data.flow[action].workflow )
-				.done( function( result ) {
-					successCallback(flowBoard, result.flow['view-topic'].result.topic.revisions[revisionId] );
+				.done( function ( result ) {
+					successCallback( flowBoard, result.flow['view-topic'].result.topic.revisions[revisionId] );
 				} )
-				.done( function() {
+				.done( function () {
 					// we're done here, close moderation pop-up
 					flowBoard.emitWithReturn( 'cancelForm', $form );
 				} );
@@ -843,7 +843,7 @@
 			submodule: 'view-topic',
 			// Flow topic title, in Topic:<topicId> format (2600 is topic namespace id)
 			page: ( new mw.Title( workflowId, 2600 ) ).getPrefixedDb()
-		} ).done( function( result ) {
+		} ).done( function ( result ) {
 			// Update view of the full topic
 			var $replacement = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
 				'flow_topiclist_loop.partial',
@@ -858,7 +858,7 @@
 			$target.replaceWith( $replacement );
 			// Run loadHandlers
 			flowBoard.emitWithReturn( 'makeContentInteractive', $replacement );
-		} ).fail( function( code, result ) {
+		} ).fail( function ( code, result ) {
 			var errorMsg = flowBoard.constructor.static.getApiErrorMessage( code, result );
 			errorMsg = mw.msg( 'flow-error-fetch-after-open-lock', errorMsg );
 

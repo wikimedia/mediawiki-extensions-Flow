@@ -47,7 +47,7 @@
 		{
 			action: 'remove',
 			label: OO.ui.deferMsg( 'flow-ve-mention-inspector-remove-label' ),
-			flags: ['destructive'],
+			flags: [ 'destructive' ],
 			modes: 'edit'
 		}
 	].concat( mw.flow.ve.ui.MentionInspector.parent.static.actions );
@@ -257,7 +257,7 @@
 		var errorText;
 
 		if ( errors instanceof OO.ui.Error ) {
-			errors = [errors];
+			errors = [ errors ];
 		}
 
 		errorText = errors[0].getMessageText();
@@ -376,4 +376,4 @@
 	};
 
 	ve.ui.windowFactory.register( mw.flow.ve.ui.MentionInspector );
-} ( jQuery, mediaWiki, OO, ve ) );
+}( jQuery, mediaWiki, OO, ve ) );

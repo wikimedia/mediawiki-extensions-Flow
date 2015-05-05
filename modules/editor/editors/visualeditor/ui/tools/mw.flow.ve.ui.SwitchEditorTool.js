@@ -24,6 +24,5 @@
 	mw.flow.ve.ui.SwitchEditorTool.static.icon = 'flow-switch-editor';
 	mw.flow.ve.ui.SwitchEditorTool.static.title = OO.ui.deferMsg( 'flow-ve-switch-editor-tool-title' );
 
-
 	ve.ui.toolFactory.register( mw.flow.ve.ui.SwitchEditorTool );
-} ( mediaWiki, OO, ve ) );
+}( mediaWiki, OO, ve ) );

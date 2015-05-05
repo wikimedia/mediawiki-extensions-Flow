@@ -37,4 +37,4 @@
 	};
 
 	ve.ui.toolFactory.register( mw.flow.ve.ui.MentionInspectorTool );
-} ( mediaWiki, OO, ve ) );
+}( mediaWiki, OO, ve ) );

@@ -94,7 +94,7 @@
 				if ( timestamp.indexOf( 'e' ) !== -1 ) {
 					parts = timestamp.split( '(e+' );
 					first = parts[0].replace( '.', '' );
-					zeroes = parseInt( parts[1], 10 ) - (first.length - 1);
+					zeroes = parseInt( parts[1], 10 ) - ( first.length - 1 );
 					first += Array( zeroes + 1 ).join( '0' );
 
 					return first;

@@ -93,7 +93,7 @@
 					this.$node.keyup();
 				}, flowEditor ) );
 
-				$.each( flowEditor.initCallbacks, $.proxy( function( k, callback ) {
+				$.each( flowEditor.initCallbacks, $.proxy( function ( k, callback ) {
 					callback.apply( this );
 				}, flowEditor ) );
 
@@ -145,9 +145,9 @@
 		return this.dmDoc.data.countNonInternalElements() <= 2;
 	};
 
-	mw.flow.editors.visualeditor.prototype.focus = function() {
+	mw.flow.editors.visualeditor.prototype.focus = function () {
 		if ( !this.target ) {
-			this.initCallbacks.push( function() {
+			this.initCallbacks.push( function () {
 				this.focus();
 			} );
 			return;
@@ -158,7 +158,7 @@
 
 	mw.flow.editors.visualeditor.prototype.moveCursorToEnd = function () {
 		if ( !this.target ) {
-			this.initCallbacks.push( function() {
+			this.initCallbacks.push( function () {
 				this.moveCursorToEnd();
 			} );
 			return;
@@ -206,4 +206,4 @@
 		);
 	};
 
-} ( jQuery, mediaWiki, OO, ve ) );
+}( jQuery, mediaWiki, OO, ve ) );

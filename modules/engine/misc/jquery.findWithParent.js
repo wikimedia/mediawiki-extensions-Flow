@@ -18,7 +18,7 @@
 		$context = $( $context );
 		selector = $.trim( selector );
 
-		while ( selector && ( matches = selector.match(/(.*?(?:^|[>\s+~]))(<\s*[^>\s+~]+)(.*?)$/) ) ) {
+		while ( selector && ( matches = selector.match( /(.*?(?:^|[>\s+~]))(<\s*[^>\s+~]+)(.*?)$/ ) ) ) {
 			if ( $.trim( matches[ 1 ] ) ) {
 				$context = $context.find( matches[ 1 ] );
 			}
@@ -48,7 +48,7 @@
 			$elements = $(),
 			self = this;
 
-		$.each( selectors, function( i, selector ) {
+		$.each( selectors, function ( i, selector ) {
 			$elements = $elements.add( jQueryFindWithParent( self, selector ) );
 		} );
 
