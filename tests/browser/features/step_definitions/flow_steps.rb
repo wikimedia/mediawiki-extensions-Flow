@@ -15,9 +15,10 @@ end
 
 Given(/^I have created a Flow topic with title "(.+)"$/) do |title|
   step "I am on Flow page"
-  step "I type \"" + title + "\" into the new topic title field"
-  step "I type \"" + title + "\" into the new topic content field"
+  step "I type \"#{title}\" into the new topic title field"
+  step "I type \"#{title}\" into the new topic content field"
   step "I click New topic save"
+  step "topic \"#{title}\" is saved"
 end
 
 Given(/^the author link is visible$/) do
@@ -43,9 +44,15 @@ end
 When(/^I click New topic save$/) do
   on(FlowPage) do |page|
     page.new_topic_save_element.when_present.click
+  end
+end
 
-    # Wait for the save to finish, at which point the button will hide
-    page.new_topic_save_element.when_not_visible(10); # Bug 71476 - Saving a new topic can take >5s on beta labs
+When(/^topic "(.+)" is saved$/) do |title|
+  on(FlowPage) do |page|
+    page.new_topic_save_element.when_not_visible(10)
+
+    full_title = @data_manager.get title
+    page.topic_with_title(full_title).when_present
   end
 end
 
