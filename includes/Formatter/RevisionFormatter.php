@@ -857,6 +857,10 @@ class RevisionFormatter {
 			return Message::rawParam( $this->templating->getUserLinks( $revision ) );
 
 		case 'summary':
+			if ( !$this->permissions->isAllowed( $revision, 'view' ) ) {
+				return '';
+			}
+
 			/*
 			 * Fetch in HTML; unparsed wikitext in summary is pointless.
 			 * Larger-scale wikis will likely also store content in html, so no
@@ -869,6 +873,10 @@ class RevisionFormatter {
 			return Message::plaintextParam( $content );
 
 		case 'wikitext':
+			if ( !$this->permissions->isAllowed( $revision, 'view' ) ) {
+				return '';
+			}
+
 			$content = $this->templating->getContent( $revision, 'wikitext' );
 			// This must be escaped and marked raw to prevent special chars in
 			// content, like $1, from changing the i18n result
@@ -916,7 +924,12 @@ class RevisionFormatter {
 			if ( !$revision instanceof PostRevision ) {
 				throw new FlowException( 'Expected PostRevision but received ' . get_class( $revision ) );
 			}
+
 			$root = $revision->getRootPost();
+			if ( !$this->permissions->isAllowed( $root, 'view' ) ) {
+				return '';
+			}
+
 			$content = $this->templating->getContent( $root, 'wikitext' );
 
 			return Message::plaintextParam( $content );
@@ -925,8 +938,13 @@ class RevisionFormatter {
 			if ( !$revision instanceof PostSummary ) {
 				throw new FlowException( 'Expected PostSummary but received ' . get_class( $revision ) );
 			}
+
 			/** @var PostRevision $post */
 			$post = $revision->getCollection()->getPost()->getLastRevision();
+			if ( !$this->permissions->isAllowed( $post, 'view' ) ) {
+				return '';
+			}
+
 			if ( $post->isTopicTitle() ) {
 				return Message::plaintextParam( $this->templating->getContent( $post, 'wikitext' ) );
 			} else {
