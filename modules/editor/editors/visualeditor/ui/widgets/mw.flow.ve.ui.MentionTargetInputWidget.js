@@ -26,14 +26,15 @@
 		OO.ui.LookupElement.call( this, $.extend( { allowSuggestionsWhenEmpty: true }, config ) );
 
 		// Properties
+		this.username = null;
 		// Exclude anonymous users, since they do not receive pings.
 		this.loggedInTopicPosters = $.grep( config.topicPosters || [], function ( poster ) {
 			return !mw.util.isIPAddress( poster, false );
 		} );
-		this.username = null;
-		// Username to validity promise (promise resolves with true/false for existent/non-existent
-		this.isUsernameValidCache = {};
+		// TODO do this in a more sensible place in the future
+		mw.flow.ve.userCache.setAsExisting( this.loggedInTopicPosters );
 
+		// Initialization
 		this.$element.addClass( 'flow-ve-ui-mentionTargetInputWidget' );
 		this.lookupMenu.$element.addClass( 'flow-ve-ui-mentionTargetInputWidget-menu' );
 	};
@@ -42,84 +43,70 @@
 
 	OO.mixinClass( mw.flow.ve.ui.MentionTargetInputWidget, OO.ui.LookupElement );
 
+	/**
+	 * Check if the value of the input corresponds to a username that exists.
+	 *
+	 * Note that this doesn't just check whether the user name is valid (could possibly exist),
+	 * it checks whether the user name actually exists. The user is prevented from creating
+	 * a mention that points to a nonexistent user.
+	 *
+	 * @return {jQuery.Promise} Promise resolved with true or false
+	 */
 	mw.flow.ve.ui.MentionTargetInputWidget.prototype.isValid = function () {
-		var api = new mw.Api(),
-			dfd = $.Deferred(),
-			promise = dfd.promise(),
-			username = this.getValue(),
-			widget = this,
-			isValid;
-
-		if ( $.trim( username ) === '' ) {
-			dfd.resolve( false );
-			return promise;
+		var username = this.value,
+			userNamespace = mw.config.get( 'wgNamespaceIds' ).user,
+			title = mw.Title.newFromText( username, userNamespace );
+		// First check username is valid (can possibly exist)
+		if ( !title || title.getNamespace() !== userNamespace ) {
+			return $.Deferred().resolve( false ).promise();
 		}
-
-		username = username[0].toUpperCase() + username.slice( 1 );
-		if ( this.isUsernameValidCache[username] !== undefined ) {
-			return this.isUsernameValidCache[username];
-		}
-
-		// Note that we delete this below if it turns out to get an error.
-		this.isUsernameValidCache[username] = promise;
-
-		api.get( {
-			action: 'query',
-			list: 'users',
-			ususers: username
-		} ).done( function ( resp ) {
-			if (
-				resp &&
-				resp.query &&
-				resp.query.users &&
-				resp.query.users.length > 0
-			) {
-				// This is the normal path for either existent or non-existent users.
-				isValid = resp.query.users[0].missing === undefined;
-				dfd.resolve( isValid );
-			} else {
-				// This means part of the response is missing, which again shouldn't
-				// happen (it could for empty string user, but we're not supposed to
-				// send the request at all then). See explanation under fail.
-				dfd.resolve( true );
-				delete widget.isUsernameValidCache[username];
-			}
-		} ).fail( function () {
-			// This should only happen on error cases.  Even if the user doesn't exist,
-			// we should still enter done.  Since this is an unforseen error, return true
-			// so we don't block submission, and evict cache.
-			dfd.resolve( true );
-			delete widget.isUsernameValidCache[username];
-		} );
-
-		return promise;
+		// Then check the user exists
+		return mw.flow.ve.userCache.get( this.value ).then(
+			function ( user ) {
+				return !user.missing;
+			},
+			function () {
+				// If the API is down or behaving strangely, we shouldn't prevent
+				// people from inserting mentions, so if the existence check fails
+				// to produce a result, return true so as to not hold things up.
+				// We can't get here due to invalid input, because we already checked
+				// for that above.
+				return $.Deferred().resolve( true ).promise();
+			} );
 	};
 
 	/**
 	 * Gets a promise representing the auto-complete.
-	 * Right now, the auto-complete is based on the users who have already posted to the topic.
 	 *
-	 * It does a case-insensitive search for a string (anywhere in the poster's username)
-	 * matching what the user has typed in so far.
+	 * If the input is empty, we suggest the list of users who have already posted to the topic.
+	 * If the input is not empty, we use an API call to do a prefix search.
 	 *
-	 * E.g. if one of the posters is "Mary Jane Smith", that will be a suggestion if the user has
-	 * entered e.g. "Mary", "jane", or 'Smi'.
-	 *
-	 * @method
 	 * @return {jQuery.Promise}
 	 */
 	mw.flow.ve.ui.MentionTargetInputWidget.prototype.getLookupRequest = function () {
-		var matches,
-			abortObject = { abort: $.noop },
-			dfd = $.Deferred(),
-			lowerValue = this.value.toLowerCase();
+		var xhr,
+			initialUpperValue = this.value.charAt( 0 ).toUpperCase() + this.value.slice( 1 );
 
-		matches = $.grep( this.loggedInTopicPosters, function ( poster ) {
-			return poster.toLowerCase().indexOf( lowerValue ) >= 0;
+		if ( this.value === '' ) {
+			return $.Deferred()
+				.resolve( this.loggedInTopicPosters.slice() )
+				.promise( { abort: $.noop } );
+		}
+
+		xhr = new mw.Api().get( {
+			action: 'query',
+			list: 'allusers',
+			auprefix: initialUpperValue,
+			aulimit: 5
 		} );
-
-		dfd.resolve( matches );
-		return dfd.promise( abortObject );
+		return xhr
+			.then( function ( data ) {
+				return $.map( OO.getProp( data, 'query', 'allusers' ) || [], function ( user ) {
+					mw.flow.ve.userCache.setFromApiData( user );
+					return user.name;
+				} );
+			} )
+			.promise( { abort: xhr.abort } );
 	};
 
 	mw.flow.ve.ui.MentionTargetInputWidget.prototype.getLookupCacheDataFromResponse = function ( data ) {
@@ -129,23 +116,16 @@
 	/**
 	 * Converts the raw data to UI objects
 	 *
-	 * @param Array list of users
+	 * @param {string[]} data User names
 	 * @return {OO.ui.MenuOptionWidget[]} Menu items
 	 */
-	mw.flow.ve.ui.MentionTargetInputWidget.prototype.getLookupMenuOptionsFromData = function ( users ) {
-		var user, i,
-			items = [];
-
-		for ( i = 0; i < users.length; i++ ) {
-			user = users[i];
-
-			items.push( new OO.ui.MenuOptionWidget( {
-				data: user,
-				label: user
-			} ) );
-		}
-
-		return items;
+	mw.flow.ve.ui.MentionTargetInputWidget.prototype.getLookupMenuOptionsFromData = function ( data ) {
+		return $.map( data, function ( username ) {
+			return new OO.ui.MenuOptionWidget( {
+				data: username,
+				label: username
+			} );
+		} );
 	};
 
 	// Based on ve.ui.MWLinkTargetInputWidget.prototype.initializeLookupMenuSelection

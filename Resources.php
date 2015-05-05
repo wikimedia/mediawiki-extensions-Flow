@@ -443,6 +443,7 @@ $wgResourceModules += array(
 	'ext.flow.visualEditor' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'editor/editors/visualeditor/mw.flow.ve.Target.js',
+			'editor/editors/visualeditor/mw.flow.ve.UserCache.js',
 			'editor/editors/visualeditor/ui/inspectors/mw.flow.ve.ui.MentionInspector.js',
 			'editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.MentionInspectorTool.js',
 			// MentionInspectorTool must be after MentionInspector and before MentionContextItem.
