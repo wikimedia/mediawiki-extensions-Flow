@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_763f08b2",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-05T04:05:36Z",
+      "side": 1,
+      "message": "It\u0027s also used here.",
+      "revId": "67bd24e9c00b27be667c9be17951e53f97f6dd98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
