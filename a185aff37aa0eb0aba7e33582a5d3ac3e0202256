@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_70314200",
+        "filename": "includes/RevisionActionPermissions.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-05-06T16:44:27Z",
+      "side": 1,
+      "message": "I was just thinking: the reason I didn\u0027t originally include this one is because these permissions checks are also executed in places like Special:DeletedContributions, ... (places where one doesn\u0027t really need deletedtext permissions for)\n\nWe should probably not check for deletedtext here, but in the places that specifically output content. From the top of my head: the blocks \u0026 RevisionFormatter::processParam. There may be more.",
+      "revId": "a185aff37aa0eb0aba7e33582a5d3ac3e0202256",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
