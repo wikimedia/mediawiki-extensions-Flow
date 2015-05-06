@@ -10,5 +10,8 @@
 	 */
 	$( document ).ready( function () {
 		mw.flow.initComponent( $( '.flow-component' ) );
+
+		// Load data model
+		mw.flow.Initialize( $( '.flow-component' ) );
 	} );
 }( jQuery ) );
