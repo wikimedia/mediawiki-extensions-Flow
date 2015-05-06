@@ -36,7 +36,7 @@
 	<div class="flow-board-navigation-inner">
 		<a href="javascript:void(0);"
 		   class="flow-board-navigator-last flow-ui-tooltip-target"
-		   data-tooltip-pointing="down"
+		   data-tooltip-pointing="right"
 		   title="'.LCRun3::hbch($cx, 'ifCond', array(array(((isset($in['sortby']) && is_array($in)) ? $in['sortby'] : null),'===','updated'),array()), $in, false, function($cx, $in) {return ''.LCRun3::ch($cx, 'l10n', array(array('flow-sorting-tooltip-recent'),array()), 'encq').'';}, function($cx, $in) {return ''.LCRun3::ch($cx, 'l10n', array(array('flow-sorting-tooltip-newest'),array()), 'encq').'';}).'"
 		   data-flow-interactive-handler="menuToggle"
 		   data-flow-menu-target="< .flow-board-navigation .flow-board-sort-menu">'.LCRun3::hbch($cx, 'ifCond', array(array(((isset($in['sortby']) && is_array($in)) ? $in['sortby'] : null),'===','updated'),array()), $in, false, function($cx, $in) {return '				'.LCRun3::ch($cx, 'l10n', array(array('flow-recent-topics'),array()), 'encq').'
