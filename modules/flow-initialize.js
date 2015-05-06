@@ -10,5 +10,14 @@
 	 */
 	$( document ).ready( function () {
 		mw.flow.initComponent( $( '.flow-component' ) );
+
+		// Load data model
+		mw.flow.system = new mw.flow.dm.System( {
+			pageTitle: mw.Title.newFromText( mw.config.get( 'wgPageName' ) ),
+			tocPostLimit: 20,
+			boardId: $( '.flow-component' ).data( 'flow-id' )
+		} );
+
+		mw.flow.system.populateBoardFromApi();
 	} );
 }( jQuery ) );
