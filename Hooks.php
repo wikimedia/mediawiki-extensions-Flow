@@ -1000,7 +1000,6 @@ class FlowHooks {
 				}
 			}
 		}
-
 		return true;
 	}
 
