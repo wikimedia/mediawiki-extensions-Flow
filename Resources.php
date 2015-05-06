@@ -477,6 +477,8 @@ $wgResourceModules += array(
 			'flow-ve-mention-inspector-title',
 			'flow-ve-mention-inspector-remove-label',
 			'flow-ve-mention-inspector-invalid-user',
+			'flow-ve-mention-inspector-suggestions-topic',
+			'flow-ve-mention-inspector-suggestions-other',
 			'flow-ve-mention-tool-title',
 			'flow-ve-switch-editor-tool-title',
 		),
