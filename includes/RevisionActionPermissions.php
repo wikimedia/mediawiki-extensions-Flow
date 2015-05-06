@@ -79,7 +79,7 @@ class RevisionActionPermissions {
 
 			if ( $allowed && $revision !== null ) {
 				$workflow = $revision->getCollection()->getWorkflow();
-				$allowed = $this->user->isAllowed( 'deletedhistory' ) || !$workflow->isDeleted();
+				$allowed = $this->user->isAllowedAll( 'deletedtext', 'deletedhistory' ) || !$workflow->isDeleted();
 			}
 		} catch ( InvalidDataException $e ) {
 			// If data is not in storage, just return that revision's status
