@@ -4,7 +4,7 @@
   "private": true,
   "description": "Build tools for Flow.",
   "scripts": {
-    "test": "grunt test",
+    "test": "grunt test && make compile-lightncandy",
     "doc": "jsduck"
   },
   "devDependencies": {
