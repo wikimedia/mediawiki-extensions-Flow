@@ -355,18 +355,19 @@ class ScriptedImportRevision implements IObjectRevision {
 	protected $timestamp;
 
 	/**
-	 * Creates a ScriptedImportRevision with the current timestamp, given a script user
+	 * Creates a ScriptedImportRevision with the given timestamp, given a script user
 	 * and arbitrary text.
 	 *
 	 * @param IImportObject $parentObject Object this is a revision of
 	 * @param User $destinationScriptUser User that performed this scripted edit
 	 * @param string $revisionText Text of revision
+	 * @param string $timestamp Timestamp of generated revision
 	 */
-	function __construct( IImportObject $parentObject, User $destinationScriptUser, $revisionText ) {
+	function __construct( IImportObject $parentObject, User $destinationScriptUser, $revisionText, $timestamp ) {
 		$this->parent = $parentObject;
 		$this->destinationScriptUser = $destinationScriptUser;
 		$this->revisionText = $revisionText;
-		$this->timestamp = wfTimestampNow();
+		$this->timestamp = $timestamp;
 	}
 
 	public function getText() {
@@ -454,11 +455,18 @@ class ImportHeader extends PageRevisionedObject implements IImportHeader {
 		) );
 
 		$newWikitext .= "\n\n{{{$templateName}|$arguments}}";
+		$initialHeaderTimestamp = wfTimestamp( TS_UNIX, $lastRevision->getTimestamp() );
+
+		// Set a minute after.  If it uses the current timestamp, there can be time
+		// collisions with the first generated header ID, which can cause wrong UID
+		// ordering.
+		$cleanupTimestamp = wfTimestamp( TS_UNIX, $initialHeaderTimestamp + 60 );
+
 		$cleanupRevision = new ScriptedImportRevision(
 			$this,
 			$this->source->getScriptUser(),
 			$newWikitext,
-			$lastRevision->getTimestamp()
+			$cleanupTimestamp
 		);
 		return $cleanupRevision;
 	}

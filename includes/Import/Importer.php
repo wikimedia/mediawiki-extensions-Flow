@@ -21,6 +21,7 @@ use Flow\WorkflowLoaderFactory;
 use Flow\Container;
 use IP;
 use MWCryptRand;
+use MWTimestamp;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use ReflectionProperty;
@@ -919,7 +920,11 @@ class TalkpageImportOperation {
 					$title
 				);
 
-			if ( $importRevision->getTimestamp() < $lastTimestamp ) {
+			$importTimestampObj = new MWTimestamp( $importRevision->getTimestamp() );
+			$lastTimestampObj = new MWTimestamp( $lastTimestamp );
+			$timeDiff = $lastTimestampObj->diff( $importTimestampObj );
+			// If $import - last < 0
+			if ( $timeDiff->invert ) {
 				throw new ImportException( "Revision listing is not sorted from oldest to newest" );
 			}
 
