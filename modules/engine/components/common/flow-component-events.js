@@ -456,7 +456,8 @@
 		// Find all the forms
 		// @todo move this into a flow-load-handler
 		$container.find( 'form' ).add( $container.filter( 'form' ) ).each( function () {
-			var $this = $( this );
+			var $this = $( this ),
+				initialState = $this.data( 'flow-initial-state' );
 
 			// Trigger for flow-actions-disabler
 			$this.find( 'input, textarea' ).trigger( 'keyup' );
@@ -471,7 +472,9 @@
 				}
 			} );
 
-			component.emitWithReturn( 'hideForm', $this );
+			if ( initialState === 'collapsed' ) {
+				component.emitWithReturn( 'hideForm', $this );
+			}
 		} );
 	}
 	FlowComponentEventsMixin.eventHandlers.makeContentInteractive = flowMakeContentInteractiveCallback;
@@ -637,13 +640,12 @@
 	FlowComponentEventsMixin.eventHandlers.instantiationComplete = flowEventsMixinInstantiationComplete;
 
 	/**
-	 * Compress and hide a flow form and/or its actions, depending on data-flow-initial-state.
+	 * Compress a flow form and/or its actions.
 	 * @param {jQuery} $form
 	 * @todo Move this to a separate file
 	 */
 	function flowEventsMixinHideForm( $form ) {
-		var initialState = $form.data( 'flow-initial-state' ),
-			component = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $form );
+		var component = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $form );
 
 		// Store state
 		$form.data( 'flow-state', 'hidden' );
@@ -664,15 +666,9 @@
 			}
 		} );
 
-		if ( initialState === 'collapsed' ) {
-			// Hide its actions
-			// @todo Use TemplateEngine to find and hide actions?
-			$form.find( '.flow-form-collapsible' ).hide();
-			$form.data( 'flow-form-collapse-state', 'collapsed' );
-		} else if ( initialState === 'hidden' ) {
-			// Hide the form itself
-			$form.hide();
-		}
+		// Hide its actions
+		// @todo Use TemplateEngine to find and hide actions?
+		$form.find( '.flow-form-collapsible' ).hide();
 	}
 	FlowComponentEventsMixin.eventHandlers.hideForm = flowEventsMixinHideForm;
 
@@ -706,23 +702,14 @@
 	FlowComponentEventsMixin.eventHandlers.focusField = flowEventsMixinFocusField;
 
 	/**
-	 * Expand and make visible a flow form and/or its actions, depending on data-flow-initial-state.
+	 * Expand a flow form and/or its actions.
 	 * @param {jQuery} $form
 	 */
 	function flowEventsMixinShowForm( $form ) {
-		var initialState = $form.data( 'flow-initial-state' ),
-			self = this;
+		var self = this;
 
-		if ( initialState === 'collapsed' ) {
-			// Show its actions
-			if ( $form.data( 'flow-form-collapse-state' ) === 'collapsed' ) {
-				$form.removeData( 'flow-form-collapse-state' );
-				$form.find( '.flow-form-collapsible' ).show();
-			}
-		} else if ( initialState === 'hidden' ) {
-			// Show the form itself
-			$form.show();
-		}
+		// Show its actions
+		$form.find( '.flow-form-collapsible' ).show();
 
 		// Expand all textareas if needed
 		$form.find( '.flow-input-compressed' ).each( function () {
