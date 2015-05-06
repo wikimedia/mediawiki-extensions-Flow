@@ -535,6 +535,8 @@
 	"flow-ve-mention-tool-title": "Mention a user",
 	"flow-ve-mention-template": "ping",
 	"flow-ve-mention-inspector-invalid-user": "The username \"$1\" is not registered.",
+	"flow-ve-mention-inspector-suggestions-topic": "Participants in this conversation",
+	"flow-ve-mention-inspector-suggestions-other": "Other users",
 	"flow-wikitext-editor-help": "Wikitext $1.",
 	"flow-wikitext-editor-help-and-preview": "Wikitext $1 and you can $2 anytime.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|uses markup]]",

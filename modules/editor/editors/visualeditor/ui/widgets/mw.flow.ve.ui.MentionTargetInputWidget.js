@@ -107,12 +107,26 @@
 	 * @return {OO.ui.MenuOptionWidget[]} Menu items
 	 */
 	mw.flow.ve.ui.MentionTargetInputWidget.prototype.getLookupMenuOptionsFromData = function ( data ) {
-		return $.map( data.localMatches.concat( data.apiMatches ), function ( username ) {
+		function makeOption( username ) {
 			return new OO.ui.MenuOptionWidget( {
 				data: username,
 				label: username
 			} );
-		} );
+		}
+
+		var items = [];
+
+		if ( data.localMatches.length > 0 ) {
+			items.push( new OO.ui.MenuSectionOptionWidget( { label: mw.msg( 'flow-ve-mention-inspector-suggestions-topic' ) } ) );
+			items = items.concat( $.map( data.localMatches, makeOption ) );
+		}
+
+		if ( data.apiMatches.length > 0 ) {
+			items.push( new OO.ui.MenuSectionOptionWidget( { label: mw.msg( 'flow-ve-mention-inspector-suggestions-other' ) } ) );
+			items = items.concat( $.map( data.apiMatches, makeOption ) );
+		}
+
+		return items;
 	};
 
 	// Based on ve.ui.MWLinkTargetInputWidget.prototype.initializeLookupMenuSelection
