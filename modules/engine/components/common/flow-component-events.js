@@ -649,9 +649,6 @@
 	function flowEventsMixinHideForm( $form ) {
 		var component = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $form );
 
-		// Store state
-		$form.data( 'flow-state', 'hidden' );
-
 		$form.find( 'textarea' ).each( function () {
 			var $editor = $( this );
 
@@ -720,9 +717,6 @@
 
 		// Initialize editors, turning them from textareas into editor objects
 		self.emitWithReturn( 'initializeEditors', $form );
-
-		// Store state
-		$form.data( 'flow-state', 'visible' );
 	}
 	FlowComponentEventsMixin.eventHandlers.showForm = flowEventsMixinShowForm;
 
