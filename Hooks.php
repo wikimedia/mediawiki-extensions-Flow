@@ -459,10 +459,11 @@ class FlowHooks {
 			// FIXME: Find more elegant standard way of doing this.
 			$wgMFPageActions = array();
 
-			// watch star links are inside the topic itself
+			// watch star & delete links are inside the topic itself
 			if ( $title->getNamespace() === NS_TOPIC ) {
 				unset( $links['actions']['watch'] );
 				unset( $links['actions']['unwatch'] );
+				unset( $links['actions']['delete'] );
 			}
 
 			// hide all views unless whitelisted
