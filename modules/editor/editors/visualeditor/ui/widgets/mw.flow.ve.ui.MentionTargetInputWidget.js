@@ -14,7 +14,13 @@
 	 *   without duplicates.
 	 */
 	mw.flow.ve.ui.MentionTargetInputWidget = function FlowVeUiMentionTargetInputWidget( config ) {
-		mw.flow.ve.ui.MentionTargetInputWidget.parent.call( this, config );
+		mw.flow.ve.ui.MentionTargetInputWidget.parent.call(
+			this,
+			$.extend(
+				{ placeholder: mw.msg( 'flow-ve-mention-placeholder' ) },
+				config
+			)
+		);
 
 		// Mixin constructor
 		config.allowSuggestionsWhenEmpty = true;
