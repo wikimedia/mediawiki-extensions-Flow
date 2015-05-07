@@ -1,6 +1,6 @@
 <?php
 
-use Flow\Container;
+use Flow\TemplateHelper;
 
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
@@ -14,19 +14,15 @@ require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
  * @ingroup Maintenance
  */
 class CompileLightncandy extends Maintenance {
+	/** @var  Flow\TemplateHelper */
 	protected $lightncandy;
 
 	public function execute() {
-		global $wgFlowServerCompileTemplates;
-
-		// make sure we are actually compiling
-		$wgFlowServerCompileTemplates = true;
-		$this->lightncandy = Container::get( 'lightncandy' );
+		$dir = __DIR__ . '/../handlebars';
+		$this->lightncandy = new TemplateHelper( $dir, /* $forceRecompile = */ true );
 
 		// looking for 664 permissions on the final files
 		umask( 0002 );
-
-		$dir = __DIR__ . '/../handlebars';
 
 		// clean out the compiled directory
 		foreach ( glob( $dir . '/compiled/*' ) as $file ) {
