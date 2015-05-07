@@ -97,8 +97,7 @@ class TemplateHelper {
 			if ( !$code ) {
 				throw new FlowException( "Failed to compile template '$templateName'." );
 			}
-			// @FIXME: Using @ is bad.
-			$success = @file_put_contents( $filenames['compiled'], $code );
+			$success = file_put_contents( $filenames['compiled'], $code );
 
 			// failed to recompile template (OS permissions?); unless the
 			// content hasn't changes, throw an exception!
@@ -803,4 +802,3 @@ class TemplateHelper {
 		);
 	}
 }
-
