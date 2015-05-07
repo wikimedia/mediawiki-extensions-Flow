@@ -10,15 +10,14 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @param {Array} [config.topicPosters] Array of usernames representing posters to this thread,
+	 * @param {string[]} [config.topicPosters] Array of usernames representing posters to this thread,
 	 *   without duplicates.
 	 */
 	mw.flow.ve.ui.MentionTargetInputWidget = function FlowVeUiMentionTargetInputWidget( config ) {
 		mw.flow.ve.ui.MentionTargetInputWidget.parent.call( this, config );
 
 		// Mixin constructor
-		config.allowSuggestionsWhenEmpty = true;
-		OO.ui.LookupElement.call( this, config );
+		OO.ui.LookupElement.call( this, $.extend( { allowSuggestionsWhenEmpty: true }, config ) );
 
 		// Properties
 		// Exclude anonymous users, since they do not receive pings.
@@ -135,7 +134,6 @@
 			user = users[i];
 
 			items.push( new OO.ui.MenuOptionWidget( {
-				$: this.lookupMenu.$,
 				data: user,
 				label: user
 			} ) );
