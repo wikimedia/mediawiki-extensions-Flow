@@ -2,6 +2,7 @@
 
 namespace Flow;
 
+use Flow\Data\ManagerGroup;
 use Flow\Data\Mapper\CachingObjectMapper;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\FlowException;
@@ -25,8 +26,9 @@ use Title;
  */
 class UrlGenerator {
 
-	public function __construct( CachingObjectMapper $workflowMapper ) {
+	public function __construct( CachingObjectMapper $workflowMapper, ManagerGroup $managerGroup ) {
 		$this->workflowMapper = $workflowMapper;
+		$this->storage = $managerGroup;
 	}
 
 	/**
@@ -819,12 +821,19 @@ class UrlGenerator {
 	}
 
 	public function thankAction( UUID $postId ) {
+		global $wgUser;
+		$recipient = '';
+		$postRevision = $this->storage->get( 'PostRevision', $postId );
+		if ( $postRevision !== null ) {
+			$recipient = $postRevision->getCreatorTuple()->createUser()->getName();
+		}
+
 		return new Anchor(
-			wfMessage( 'flow-thank-link' ),
+			wfMessage( 'flow-thank-link', $wgUser, $recipient )->text(),
 			SpecialPage::getTitleFor( 'Thanks', 'Flow/' . $postId->getAlphadecimal() ),
 			array(),
 			null,
-			wfMessage( 'flow-thank-link-title' )
+			wfMessage( 'flow-thank-link-title', $wgUser, $recipient )->text()
 		);
 	}
 }
