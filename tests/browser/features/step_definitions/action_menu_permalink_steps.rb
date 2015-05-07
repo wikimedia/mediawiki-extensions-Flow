@@ -15,6 +15,7 @@ end
 
 When(/^I hover on the Post Actions link on the 3rd comment on the topic$/) do
   on(FlowPage) do |page|
+    page.scroll_to_top
     page.third_post_actions_link_element.when_present.focus
     page.third_post_actions_link_element.click
   end

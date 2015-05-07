@@ -11,7 +11,8 @@ Feature: Flow updates are in Recent Changes
     Then the new topic should be in the Recent Changes page
 
   Scenario: Edited topic is in Recent Changes
-    When I click the Edit title action
+    When I hover on the Topic Actions link
+      And I click the Edit title action
       And I edit the title field with Title should be in Recent Changes
       And I save the new title
       And I navigate to the Recent Changes page

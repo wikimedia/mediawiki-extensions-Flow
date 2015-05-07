@@ -71,14 +71,17 @@ When(/^I click the Hide topic button$/) do
 end
 
 When(/^I hover on the Post Actions link$/) do
+  on(FlowPage).scroll_to_top
   on(FlowPage).post_actions_link_element.when_present.hover
 end
 
 When(/^I hover on the Topic Actions link$/) do
+  on(FlowPage).scroll_to_top
   on(FlowPage).topic_actions_link_element.when_present.hover
 end
 
 When(/^I hover over the author link$/) do
+  on(FlowPage).scroll_to_top
   on(FlowPage).author_link_element.hover
 end
 
