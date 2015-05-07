@@ -2,6 +2,7 @@
 
 namespace Flow;
 
+use Flow\Data\ManagerGroup;
 use Flow\Data\Mapper\CachingObjectMapper;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\FlowException;
@@ -14,6 +15,7 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use SpecialPage;
 use Title;
+use RequestContext;
 
 /**
  * Provides url generation capabilities for Flow. Ties together an
@@ -25,8 +27,9 @@ use Title;
  */
 class UrlGenerator {
 
-	public function __construct( CachingObjectMapper $workflowMapper ) {
+	public function __construct( CachingObjectMapper $workflowMapper, ManagerGroup $managerGroup ) {
 		$this->workflowMapper = $workflowMapper;
+		$this->storage = $managerGroup;
 	}
 
 	/**
@@ -819,12 +822,19 @@ class UrlGenerator {
 	}
 
 	public function thankAction( UUID $postId ) {
+		$sender = RequestContext::getMain()->getUser();
+		$recipient = $sender; // Default to current user's gender if we can't find the recipient
+		$postRevision = $this->storage->get( 'PostRevision', $postId );
+		if ( $postRevision !== null ) {
+			$recipient = $postRevision->getCreatorTuple()->createUser();
+		}
+
 		return new Anchor(
-			wfMessage( 'flow-thank-link' ),
+			wfMessage( 'flow-thank-link', $sender, $recipient )->text(),
 			SpecialPage::getTitleFor( 'Thanks', 'Flow/' . $postId->getAlphadecimal() ),
 			array(),
 			null,
-			wfMessage( 'flow-thank-link-title' )
+			wfMessage( 'flow-thank-link-title', $sender, $recipient )->text()
 		);
 	}
 }
