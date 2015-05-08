@@ -109,6 +109,8 @@ class View extends ContextSource {
 				'ext.flow.mediawiki.ui.form',
 				'ext.flow.mediawiki.ui.modal',
 				'ext.flow.mediawiki.ui.text',
+				'oojs-ui.styles.icons',
+				'oojs-ui.styles.icons-layout',
 				'ext.flow.icons.styles',
 				'ext.flow.board.styles',
 				'ext.flow.board.topic.styles',
