@@ -64,13 +64,13 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 				$output[$action]['result'][$block->getName()] = $block->renderApi( $params[$block->getName()] );
 			}
 
-			if ( $this->getParameter( 'metadataonly' ) === null ) {
-				$this->setWarning(
-					'This API will soon stop providing detailed render data in ' .
-					'flow.[action].result. Start getting that data from view-*' .
-					'API submodules.'
-				);
-			}
+			$this->setWarning(
+				'The API will soon stop providing detailed render data in ' .
+				'flow.[action].result. The metadataonly option will be ' .
+				'removed, and the API will always only provide metadata. ' .
+				'It will behave as it currently does when metadataonly is true. ' .
+				'Start getting render data from view-* API submodules.'
+			);
 		}
 
 		// required until php5.4 which has the JsonSerializable interface
@@ -93,8 +93,8 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 				// going to deprecate this (it's becoming default behavior) and
 				// I want to warn people who DON'T set this param, so I don't
 				// want it to default to anything (so I can check for null)
-				// ApiBase::PARAM_TYPE => 'boolean',
-				// ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_TYPE => 'boolean',
+				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_REQUIRED => false,
 			),
 		);
