@@ -1,0 +1,44 @@
+// This should be replaced completely by the navigation widget
+.flow-board-navigation {
+	// This is a hack, we really should, instead, work with
+	// overlays.
+	z-index: 1;
+}
+
+.flow-ui-navigationWidget {
+	width: 100%;
+	z-index: 1;
+	margin-bottom: 1em;
+
+	&-affixed {
+		position: fixed;
+		z-index: 2;
+		top: 0;
+		background: #fff;
+	}
+
+	.flow-ui-tocWidget {
+		display: inline-block;
+		float: left;
+
+		&-wrapper {
+			max-height: 400px;
+			position: absolute;
+			overflow: hidden;
+//			overflow-y: auto;
+		}
+	}
+
+	.flow-ui-latestTopicsWidget {
+		display: inline-block;
+		float: right;
+	}
+
+	.flow-ui-latestTopicsWidget-menu {
+		// Override the display:none in oo-ui-mediawiki.css
+		.oo-ui-menuOptionWidget.oo-ui-optionWidget-selected .oo-ui-iconElement-icon {
+			display: block;
+		}
+	}
+}
+
