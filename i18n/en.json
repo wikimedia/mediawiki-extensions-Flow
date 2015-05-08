@@ -530,6 +530,7 @@
 	"flow-ve-mention-context-item-label": "Mention",
 	"flow-ve-mention-inspector-title": "Mention",
 	"flow-ve-mention-inspector-remove-label": "Remove",
+	"flow-ve-mention-placeholder": "User name",
 	"flow-ve-mention-tool-title": "Mention a user",
 	"flow-ve-mention-template": "ping",
 	"flow-ve-mention-inspector-invalid-user": "The username \"$1\" is not registered.",
