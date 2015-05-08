@@ -15,6 +15,9 @@ mw.flow.dm.System = function MwFlowDmSystem( config ) {
 
 	config = config || {};
 
+	// Mixin constructor
+	OO.EventEmitter.call( this );
+
 	this.pageTitle =  config.pageTitle || mw.Title.newFromText( mw.config.get( 'wgPageName' ) );
 	this.tocPostsLimit = config.tocPostsLimit || 10;
 
@@ -26,21 +29,28 @@ mw.flow.dm.System = function MwFlowDmSystem( config ) {
 		limit: this.getToCPostLimit(),
 		threshhold: 5
 	} );
-	this.topicQueue.addProvider(
-		new mw.flow.dm.APITopicsProvider(
-			this.getPageTitle().getPrefixedDb(),
-			mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + '/api.php',
-			{
-				fetchLimit: this.getToCPostLimit()
-			}
-		)
+	this.topicProvider = new mw.flow.dm.APITopicsProvider(
+		this.getPageTitle().getPrefixedDb(),
+		mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + '/api.php',
+		{
+			fetchLimit: this.getToCPostLimit(),
+			toconly: true
+		}
 	);
+
+	this.topicQueue.addProvider( this.topicProvider );
 
 	// Initialize board
 	this.board = new mw.flow.dm.Board( {
 		id: this.boardId,
 		pageTitle: this.getPageTitle(),
 		isDeleted: mw.config.get( 'wgArticleId' ) === 0
+	} );
+
+	this.board.connect( this, {
+		add: 'updateProviderOffsetId',
+		remove: 'updateProviderOffsetId',
+		clear: 'updateProviderOffsetId'
 	} );
 };
 
@@ -52,34 +62,58 @@ OO.mixinClass( mw.flow.dm.System, OO.EventEmitter );
 /* Methods */
 
 /**
+ * Update the topic provider offset id for the next
+ * queue call.
+ */
+mw.flow.dm.System.prototype.updateProviderOffsetId = function () {
+	var topics = this.board.getItems();
+
+	this.topicProvider.setOffsetId(
+		topics.length > 0 ?
+			topics[ topics.length - 1 ].getId() :
+			null
+	);
+};
+
+/**
  * Populate the board by querying the Api
  *
+ * @param {string} [sortBy] A sort option, either 'newest' or 'updated' or unused
  * @return {jQuery.Promise} Promise that is resolved when the
  *  board is populated
  */
-mw.flow.dm.System.prototype.populateBoardFromApi = function () {
-	var system = this;
+mw.flow.dm.System.prototype.populateBoardFromApi = function ( sortBy ) {
+	var system = this,
+		apiParams = {
+			action: 'flow',
+			submodule: 'view-topiclist',
+			page: this.getPageTitle().getPrefixedDb(),
+			vtloffset: 0,
+			vtllimit: this.getToCPostLimit()
+		};
 
-	return ( new mw.Api() ).get( {
-		action: 'flow',
-		submodule: 'view-topiclist',
-		page: this.getPageTitle().getPrefixedDb(),
-		vtloffset: 0,
-		vtllimit: this.getToCPostLimit()
-	} )
+	if ( sortBy ) {
+		apiParams.vtlsortby = sortBy;
+		apiParams.vtlsavesortby = 1;
+	}
+
+	return ( new mw.Api() ).get( apiParams )
 		.then( function ( data ) {
-			system.populateBoardTopicsFromJson(
-				OO.getProp( data.flow, 'view-topiclist', 'result', 'topiclist' )
-			);
-			return ( new mw.Api() ).get( {
-				action: 'flow',
-				submodule: 'view-header',
-				page: system.getPageTitle().getPrefixedDb()
-			} );
+			var result = data.flow[ 'view-topiclist' ].result;
+			system.populateBoardTopicsFromJson( result.topiclist );
+			// HACK: This return value should go away. It is only
+			// here so that we can initialize the board with
+			// handlebars while we migrate things to ooui
+			return result;
+			// return ( new mw.Api() ).get( {
+			// 	action: 'flow',
+			// 	submodule: 'view-header',
+			// 	page: system.getPageTitle().getPrefixedDb()
+			// } );
 		} );
+	// TODO: Add MW Posts and then add the header as a post
 	/*	.then( function ( result ) {
 			var headerData = OO.getProp( data.flow, 'view-header', 'result', 'header' );
-			// TODO: Add MW Posts and then add the header as a post
 			header = new mw.flow.dm.Post( headerData );
 			system.getBoard().setDescription( header );
 		} );
@@ -122,8 +156,7 @@ mw.flow.dm.System.prototype.populateBoardFromDom = function ( $container ) {
  */
 mw.flow.dm.System.prototype.populateBoardTopicsFromJson = function ( topiclist ) {
 	var i, len, postId, topic,
-		topics = [],
-		roots = topiclist.roots;
+		topics = [];
 
 	for ( i = 0, len = topiclist.roots.length; i < len; i++ ) {
 		postId = topiclist.posts[ topiclist.roots[i] ];
@@ -133,9 +166,58 @@ mw.flow.dm.System.prototype.populateBoardTopicsFromJson = function ( topiclist )
 	}
 	// Add to board
 	this.getBoard().addItems( topics );
+};
 
-	// Set offset Id
-	this.setOffsetId( roots[ roots.length - 1 ] );
+/**
+ * Reset the board per the new sorting
+ *
+ * @param {string} sortBy Sorting option 'newest' or 'updated'
+ * @return {jQuery.Promise} Promise that resolves with the api result
+ * @fires resetBoardStart
+ * @fires resetBoardEnd
+ */
+mw.flow.dm.System.prototype.resetBoard = function ( sortBy ) {
+	var system = this;
+
+	sortBy = sortBy || 'newest';
+
+	this.emit( 'resetBoardStart' );
+
+	this.getBoard().clearItems();
+	return this.populateBoardFromApi( sortBy )
+		.then( function ( result ) {
+			// HACK: This parameter should go away. It is only
+			// here so that we can initialize the board with
+			// handlebars while we migrate things to ooui
+			system.emit( 'resetBoardEnd', result );
+			return result;
+		} );
+};
+
+/**
+ * Get more topics from the queue
+ *
+ * @return {jQuery.Promise} Promise that is resolved when all
+ *  available topics in the response have been added to the
+ *  flow.dm.Board
+ */
+mw.flow.dm.System.prototype.getToCTopics = function () {
+	var system = this;
+
+	// If there are no more topics, this is a noop
+	return this.topicQueue.get()
+		.then( function ( data ) {
+			var topic, postId,
+				topics = [],
+				result = data[ 0 ];
+
+			for ( postId in result ) {
+				topic = new mw.flow.dm.Topic( postId, result[ postId ] );
+				topics.push( topic );
+			}
+			// Add to board
+			system.getBoard().addItems( topics );
+		} );
 };
 
 /**
@@ -172,22 +254,4 @@ mw.flow.dm.System.prototype.getTopicQueue = function () {
  */
 mw.flow.dm.System.prototype.getBoard = function () {
 	return this.board;
-};
-
-/**
- * Get the current offset id
- *
- * @return {string} Offset id
- */
-mw.flow.dm.System.prototype.getOffsetId = function () {
-	return this.offsetId;
-};
-
-/**
- * Set the current offset id
- *
- * @param {string} offsetId Offset id
- */
-mw.flow.dm.System.prototype.setOffsetId = function ( offsetId ) {
-	this.offsetId = offsetId;
 };

@@ -14,6 +14,8 @@ mw.flow.dm.APITopicsProvider = function MwFlowDmAPITopicsProvider( page, apiurl,
 	config = config || {};
 
 	this.page = page;
+	this.offsetId = null;
+	this.toconly = !!config.toconly;
 
 	// Parent constructor
 	mw.flow.dm.APITopicsProvider.super.call(
@@ -51,9 +53,14 @@ mw.flow.dm.APITopicsProvider.prototype.fetchAPIresults = function ( howMany ) {
 		{},
 		this.getUserParams(),
 		{
-			vtloffset: this.getOffset(),
-			vtllimit: howMany
-		} );
+			vtllimit: howMany,
+			vtltoconly: this.toconly
+		}
+	);
+
+	if ( this.getOffsetId() ) {
+		apiCallConfig[ 'vtloffset-id' ] = this.getOffsetId();
+	}
 
 	xhr = new mw.Api().get( $.extend( this.getStaticParams(), apiCallConfig ), this.getAjaxSettings() );
 	return xhr
@@ -71,7 +78,7 @@ mw.flow.dm.APITopicsProvider.prototype.fetchAPIresults = function ( howMany ) {
 			if ( Object.keys( topiclist.roots ).length < howMany ) {
 				provider.toggleDepleted( true );
 			} else {
-				provider.setOffset( provider.getOffset() + howMany );
+				provider.setOffsetId( topiclist.roots[ topiclist.roots.length - 1 ] );
 			}
 
 			// Connect the information to the topic
@@ -83,4 +90,20 @@ mw.flow.dm.APITopicsProvider.prototype.fetchAPIresults = function ( howMany ) {
 			return result;
 		} )
 		.promise( { abort: xhr.abort } );
+};
+
+/**
+ * Set the offsetId for the next call
+ * @param {string} id Topic offset Id
+ */
+mw.flow.dm.APITopicsProvider.prototype.setOffsetId = function ( id ) {
+	this.offsetId = id;
+};
+
+/**
+ * Get the offset Id
+ * @return {string} Topic offset Id
+ */
+mw.flow.dm.APITopicsProvider.prototype.getOffsetId = function () {
+	return this.offsetId;
 };

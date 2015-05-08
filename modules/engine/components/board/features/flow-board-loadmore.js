@@ -41,6 +41,7 @@
 	 * @param {String} topicId
 	 */
 	function flowBoardComponentLoadMoreFeatureJumpTo( topicId ) {
+debugger;
 		/** @type FlowBoardComponent*/
 		var apiParameters,
 			flowBoard = this,
@@ -288,6 +289,7 @@
 	 * @param {jqXHR} jqxhr
 	 */
 	function flowBoardComponentLoadMoreFeatureTopicListApiCallback( info, data, jqxhr ) {
+debugger;
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
 			return $.Deferred().resolve().promise();
@@ -514,7 +516,7 @@
 			flowBoard.debug( 'No topics returned from API', arguments );
 			return;
 		}
-
+debugger;
 		/** @private
 		 */
 		function _createRevPagination( $target ) {

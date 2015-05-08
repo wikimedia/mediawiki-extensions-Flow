@@ -167,4 +167,5 @@
 		}
 	}
 	mw.flow.mixinComponent = mixinFlowComponent;
+	mw.flow.registry = _componentRegistry;
 }( jQuery, mediaWiki ) );

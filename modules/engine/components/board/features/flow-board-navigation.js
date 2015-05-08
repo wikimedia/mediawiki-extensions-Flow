@@ -163,7 +163,7 @@
 	 *   active item and TOC scroll.
 	 */
 	function _flowBoardAdjustTopicNavigationHeader( $boardNavigation, event, extraParameters ) {
-		var bottomScrollPosition, topicText, newReadingTopicId,
+/*		var bottomScrollPosition, topicText, newReadingTopicId,
 			inlineBarWidth, inlineBarLeft, fixedBarWidth, fixedBarLeft,
 			self = this,
 			boardNavigationPosition = ( this.$boardNavigationClone || $boardNavigation ).offset(),
@@ -281,7 +281,7 @@
 			return;
 		}
 
-		this.scrollTocToActiveItem();
+		this.scrollTocToActiveItem();*/
 	}
 
 	// Mixin to FlowComponent
