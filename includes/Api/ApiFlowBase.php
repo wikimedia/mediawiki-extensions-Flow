@@ -19,9 +19,6 @@ abstract class ApiFlowBase extends ApiBase {
 	/** @var Title $page */
 	protected $page;
 
-	/** @var bool $render */
-	protected $render;
-
 	/** @var ApiFlow $apiFlow */
 	protected $apiFlow;
 
@@ -39,10 +36,6 @@ abstract class ApiFlowBase extends ApiBase {
 	 * @return array
 	 */
 	abstract protected function getBlockParams();
-
-	public function doRender( $do = null ) {
-		return wfSetVar( $this->render, $do );
-	}
 
 	/**
 	 * Returns true if the submodule required the page parameter to be set.
