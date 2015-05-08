@@ -178,7 +178,7 @@
 				$boardNavigation
 					.removeClass( 'flow-board-navigation-affixed' )
 					.css( 'left', '' )
-					.css( 'width', 'inherit' );
+					.css( 'width', '' );
 				// Remove the old clone if it exists
 				this.$boardNavigationClone.remove();
 				delete this.$boardNavigationClone;

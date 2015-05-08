@@ -1,19 +1,28 @@
 <div class="flow-board-header-detail-view">
-	{{#if revision.content}}
-		{{escapeContent revision.content.format revision.content.content}}
-	{{/if}}
-	&nbsp;
-
+	<h2 class="flow-board-header-title">
+		<span class="wikiglyph wikiglyph-speech-bubbles"></span>
+		About this discussion
+		<a href="javascript:void(0);"
+		   class="mw-ui-button mw-ui-quiet"
+		   data-flow-interactive-handler="toggleSideRail">
+			<span class="wikiglyph wikiglyph-x pull-right"></span>
+		</a>
+	</h2>
 	<div class="flow-board-header-nav">
 		{{#if revision.actions.edit}}
 			<a href="{{revision.actions.edit.url}}"
 			   data-flow-api-handler="activateEditHeader"
 			   data-flow-api-target="< .flow-board-header"
 			   data-flow-interactive-handler="apiRequest"
-			   class="mw-ui-button mw-ui-progressive  mw-ui-quiet flow-board-header-icon flow-ui-tooltip-target"
+			   class="mw-ui-button mw-ui-progressive  mw-ui-quiet flow-ui-tooltip-target"
 			   title="{{revision.actions.edit.title}}">
-					<span class="wikiglyph wikiglyph-pencil"></span>
+					<span class="wikiglyph wikiglyph-pencil flow-board-header-icon"></span>Edit board details
 			</a>
 		{{/if}}
 	</div>
+	{{#if revision.content}}
+		<div class="flow-board-header-content">
+			{{escapeContent revision.content.format revision.content.content}}
+		</div>
+	{{/if}}
 </div>

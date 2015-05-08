@@ -26,17 +26,18 @@
 	padding-top: 1.5em;
 }
 
-// Top board header
-.flow-board-header,
 // board navigation
 .flow-board-navigation,
-// The sort navigation
-.flow-board-header-menu,
 // The whole board content wrapper
 .flow-board {
 	font-size: .875em;
 	width: 100%;
-	max-width: 850px;
+	max-width: 700px;
+	padding: 0 20px 0 0;
+}
+
+.flow-board {
+	padding-bottom: 24px;
 }
 
 // Individual topic containers
@@ -79,13 +80,11 @@
 	line-height: 0;
 }
 
-@media all and (min-width: @wgFlowDeviceWidthTablet) {
+@media all and (min-width: @small) {
 	.flow-topic-meta {
 		font-size: 1em;
 	}
 
-	// Top board header
-	.flow-board-header,
 	// The sort navigation
 	.flow-board-header-menu,
 	// board navigation
@@ -95,6 +94,59 @@
 		// Set a fixed font-size from which everything else can use a relative amount
 		font-size: 1em;
 		line-height: 1.4;
+	}
+}
+
+@media all and (min-width: @medium) {
+	// Top board header
+	.flow-board-header {
+		padding-left: 20px;
+		float: right;
+		width: 33%;
+		background-color: @colorGrayLightest;
+	}
+
+	// board navigation
+	.flow-board-navigation,
+	// The whole board content wrapper
+	.flow-board {
+		float: left;
+		clear: left;
+		width: 66%;
+		max-width: 1200px;
+		padding-right: 20px;
+	}
+
+	div#content h2.flow-board-header-title {
+		display: block;
+	}
+}
+
+@media all and (min-width: @large) {
+	.flow-topic-meta {
+		//font-size: 1.4em;
+	}
+
+	// The sort navigation
+	.flow-board-header-menu,
+	// board navigation
+	.flow-board-navigation,
+	// The whole board content wrapper
+	.flow-board {
+	// Set a fixed font-size from which everything else can use a relative amount
+	//font-size: 1.4em;
+	//line-height: 1.8;
+	}
+}
+
+@media all and (min-width: @xlarge) {
+	// The sort navigation
+	//.flow-board-header-menu,
+	// board navigation
+	.flow-board-navigation,
+	// The whole board content wrapper
+	.flow-board {
+		margin: auto;
 	}
 }
 
@@ -126,5 +178,24 @@
 				content: ')';
 			}
 		}
+	}
+}
+
+.pull-right {
+	float: right;
+}
+
+// vector theme overrides
+div#content.mw-body {
+	margin-right: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+
+	h1.firstHeading {
+		margin-bottom: 0;
+	}
+
+	div#contentSub {
+		display: none;
 	}
 }
