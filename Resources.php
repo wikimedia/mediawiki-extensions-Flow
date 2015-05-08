@@ -373,6 +373,25 @@ $wgResourceModules += array(
 			'oojs'
 		)
 	) + $mobile,
+	'ext.flow.ui' => $flowResourceTemplate + array(
+		'scripts' => array(
+			'flow/ui/mw.flow.ui.js',
+
+			'flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js',
+			'flow/ui/widgets/mw.flow.ui.ToCWidget.js',
+			'flow/ui/widgets/mw.flow.ui.ReorderTopicsWidget.js',
+			'flow/ui/widgets/mw.flow.ui.NavigationWidget.js',
+		),
+		'styles' => array(
+//			'styles/flow/mw.flow.ui.less',
+			'styles/flow/widgets/mw.flow.ui.NavigationWidget.less',
+			'styles/flow/widgets/mw.flow.ui.TopicMenuSelectWidget.less',
+		),
+		'dependencies' => array (
+			'oojs-ui',
+			'ext.flow.dm',
+		)
+	),
 	'ext.flow' => $flowResourceTemplate + array(
 		'scripts' => array( // Component order is important
 			// MW UI
@@ -412,6 +431,7 @@ $wgResourceModules += array(
 			'mediawiki.jqueryMsg',
 			'ext.flow.jquery.conditionalScroll',
 			'ext.flow.dm',
+			'ext.flow.ui',
 			'mediawiki.api',
 			'mediawiki.util',
 			'mediawiki.api.options', // required by switch-editor feature
