@@ -66,15 +66,16 @@ mw.flow.dm.List.prototype.getItemCount = function () {
  * @chainable
  */
 mw.flow.dm.List.prototype.addItems = function ( items, index ) {
-	var i, at, len, item, currentIndex;
+	var i, at, len, item, currentIndex, existingItem;
 
 	// Support adding existing items at new locations
 	for ( i = 0, len = items.length; i < len; i++ ) {
 		item = items[i];
+		existingItem = this.getItemById( item.getId() );
 		// Check if item exists then remove it first, effectively "moving" it
-		currentIndex = this.items.indexOf( item );
+		currentIndex = this.items.indexOf( existingItem );
 		if ( currentIndex >= 0 ) {
-			this.removeItems( [ item ] );
+			this.removeItems( [ existingItem ] );
 			// Adjust index to compensate for removal
 			if ( currentIndex < index ) {
 				index--;
@@ -82,7 +83,7 @@ mw.flow.dm.List.prototype.addItems = function ( items, index ) {
 		}
 
 		// Add by reference
-		this.references[ items[i].getId() ] = items[i];
+		this.references[ item.getId() ] = items[i];
 	}
 
 	if ( index === undefined || index < 0 || index >= this.items.length ) {
@@ -116,11 +117,32 @@ mw.flow.dm.List.prototype.removeItems = function ( items ) {
 		index = this.items.indexOf( item );
 		if ( index !== -1 ) {
 			removed = removed.concat( this.items.splice( index, 1 ) );
+			item.disconnect( this );
 			// Remove reference by Id
 			delete this.references[ item.getId() ];
 		}
 	}
 	this.emit( 'remove', removed );
+
+	return this;
+};
+
+/**
+ * Clear all items
+ */
+mw.flow.dm.List.prototype.clearItems = function () {
+	var i, len;
+
+	// Disconnect events
+	for ( i = 0, len = this.items.length; i < len; i++ ) {
+		this.items[i].disconnect( this );
+	}
+
+	// Clear all references
+	this.references = {};
+	this.items = [];
+
+	this.emit( 'clear' );
 
 	return this;
 };

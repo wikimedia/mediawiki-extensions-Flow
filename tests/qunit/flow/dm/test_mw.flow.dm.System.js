@@ -289,7 +289,7 @@ QUnit.test( 'Initialize flow system', function ( assert ) {
 				msg: 'Get page title'
 			},
 			{
-				method: 'getTopicQueue',
+				method: 'getToCQueue',
 				operation: 'instanceof',
 				expected: mw.flow.dm.APIResultsQueue,
 				msg: 'Initialize topic queue'
