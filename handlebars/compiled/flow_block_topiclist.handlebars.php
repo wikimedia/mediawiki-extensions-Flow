@@ -46,9 +46,6 @@
 
 		<a href=""
 		   data-flow-interactive-handler="apiRequest"
-		   data-flow-api-target="< .flow-board-navigation .flow-board-toc-menu .flow-list"
-		   data-flow-api-handler="topicList" 
-		   data-flow-menu-target="< .flow-board-navigation .flow-board-toc-menu"
 		   class="flow-board-navigator-active flow-board-navigator-first">
 			<span class="wikiglyph wikiglyph-stripe-toc"></span>
 			<span class="flow-load-interactive" data-flow-load-handler="boardNavigationTitle">'.LCRun3::ch($cx, 'l10n', array(array('flow-board-header-browse-topics-link'),array()), 'encq').'</span>
