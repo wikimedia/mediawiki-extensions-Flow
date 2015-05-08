@@ -15,6 +15,9 @@ mw.flow.dm.System = function MwFlowDmSystem( config ) {
 
 	config = config || {};
 
+	// Mixin constructor
+	OO.EventEmitter.call( this );
+
 	this.pageTitle =  config.pageTitle || mw.Title.newFromText( mw.config.get( 'wgPageName' ) );
 	this.tocPostsLimit = config.tocPostsLimit || 10;
 
@@ -54,28 +57,38 @@ OO.mixinClass( mw.flow.dm.System, OO.EventEmitter );
 /**
  * Populate the board by querying the Api
  *
+ * @param {string} [sortBy] A sort option, either 'newest' or 'updated' or unused
  * @return {jQuery.Promise} Promise that is resolved when the
  *  board is populated
  */
-mw.flow.dm.System.prototype.populateBoardFromApi = function () {
-	var system = this;
+mw.flow.dm.System.prototype.populateBoardFromApi = function ( sortBy ) {
+	var system = this,
+		apiParams = {
+			action: 'flow',
+			submodule: 'view-topiclist',
+			page: this.getPageTitle().getPrefixedDb(),
+			vtloffset: 0,
+			vtllimit: this.getToCPostLimit()
+		};
 
-	return ( new mw.Api() ).get( {
-		action: 'flow',
-		submodule: 'view-topiclist',
-		page: this.getPageTitle().getPrefixedDb(),
-		vtloffset: 0,
-		vtllimit: this.getToCPostLimit()
-	} )
+	if ( sortBy ) {
+		apiParams.vtlsortby = sortBy;
+		apiParams.vtlsavesortby = 1;
+	}
+
+	return ( new mw.Api() ).get( apiParams )
 		.then( function ( data ) {
-			system.populateBoardTopicsFromJson(
-				OO.getProp( data.flow, 'view-topiclist', 'result', 'topiclist' )
-			);
-			return ( new mw.Api() ).get( {
-				action: 'flow',
-				submodule: 'view-header',
-				page: system.getPageTitle().getPrefixedDb()
-			} );
+			var result = data.flow[ 'view-topiclist' ].result;
+			system.populateBoardTopicsFromJson( result.topiclist );
+			// HACK: This return value should go away. It is only
+			// here so that we can initialize the board with
+			// handlebars while we migrate things to ooui
+			return result;
+			// return ( new mw.Api() ).get( {
+			// 	action: 'flow',
+			// 	submodule: 'view-header',
+			// 	page: system.getPageTitle().getPrefixedDb()
+			// } );
 		} );
 	/*	.then( function ( result ) {
 			var headerData = OO.getProp( data.flow, 'view-header', 'result', 'header' );
@@ -138,6 +151,22 @@ mw.flow.dm.System.prototype.populateBoardTopicsFromJson = function ( topiclist )
 	this.setOffsetId( roots[ roots.length - 1 ] );
 };
 
+mw.flow.dm.System.prototype.resetBoard = function ( sortBy ) {
+	var system = this;
+
+	sortBy = sortBy || 'newest';
+
+	this.emit( 'resetBoardStart' );
+
+	this.getBoard().clearItems();
+	return this.populateBoardFromApi( sortBy )
+		.then( function ( result ) {
+			// HACK: This parameter should go away. It is only
+			// here so that we can initialize the board with
+			// handlebars while we migrate things to ooui
+			system.emit( 'resetBoardEnd', result );
+		} );
+};
 /**
  * Get the page title
  *

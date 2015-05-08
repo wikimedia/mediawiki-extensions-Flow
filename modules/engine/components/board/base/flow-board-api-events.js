@@ -232,7 +232,7 @@
 		var $rendered,
 			flowBoard = info.component,
 			dfd = $.Deferred();
-
+debugger;
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
 			return dfd.resolve().promise();
