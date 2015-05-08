@@ -341,8 +341,7 @@
 
     );
     
-    return ''.LCRun3::p($cx, 'flow_board_navigation', array(array($in),array())).'
-<div class="flow-board" data-flow-sortby="'.htmlentities((string)((isset($in['sortby']) && is_array($in)) ? $in['sortby'] : null), ENT_QUOTES, 'UTF-8').'">
+    return ''.LCRun3::p($cx, 'flow_board_navigation', array(array($in),array())).'<div class="flow-board board-page" data-flow-sortby="'.htmlentities((string)((isset($in['sortby']) && is_array($in)) ? $in['sortby'] : null), ENT_QUOTES, 'UTF-8').'">
 	<div class="flow-newtopic-container">
 		<div class="flow-nojs">
 			<a class="mw-ui-input mw-ui-input-large flow-ui-input-replacement-anchor"
