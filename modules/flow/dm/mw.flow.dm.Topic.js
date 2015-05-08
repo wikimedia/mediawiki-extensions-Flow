@@ -4,7 +4,7 @@
 	 *
 	 * @constructor
 	 *
-	 * @extends mw.flow.dm.Item
+	 * @extends mw.flow.dm.RevisionedContent
 	 * @mixins mw.flow.dm.List
 	 *
 	 * @param {string} id Topic Id
@@ -60,6 +60,30 @@
 		var revisionId = topiclist.posts[ topicId ] && topiclist.posts[ topicId ][ 0 ];
 
 		return topiclist.revisions[ revisionId ];
+	};
+
+	/**
+	 * Get an array of topic objects from a topiclist api response.
+	 *
+	 * @param {Object} topiclist API data for topiclist
+	 * @param {string} topicId Topic id
+	 * @return {mw.flow.dm.Topic[]} Array of topic models
+	 */
+	mw.flow.dm.Topic.static.extractTopicsFromAPI = function ( topiclist ) {
+		var i, len, topicId,
+			topics = [];
+
+		for ( i = 0, len = topiclist.roots.length; i < len; i++ ) {
+			topicId = topiclist.roots[ i ];
+			topics.push(
+				new mw.flow.dm.Topic(
+					topicId,
+					this.getTopicRevisionFromApi( topiclist, topicId )
+				)
+			);
+		}
+
+		return topics;
 	};
 
 	/* Methods */
@@ -218,4 +242,5 @@
 		this.summary = summary;
 		this.emit( 'summaryChange', this.summary );
 	};
+
 }( jQuery ) );
