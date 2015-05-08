@@ -131,7 +131,7 @@ class ConversionStrategy implements IConversionStrategy {
 			$content->getNativeData()
 		);
 		$template = wfMessage( 'flow-importer-lqt-converted-archive-template' )->inContentLanguage()->plain();
-		$newWikitext .= "\n\n{{{$template}|$arguments}}";
+		$newWikitext = "{{{$template}|$arguments}}\n\n" . $newWikitext;
 
 		return new WikitextContent( $newWikitext );
 	}
