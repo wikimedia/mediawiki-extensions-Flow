@@ -51,7 +51,6 @@ $wgResourceModules += array(
 			'handlebars/flow_block_topicsummary_edit.handlebars',
 			'handlebars/flow_block_topicsummary_single_view.handlebars',
 			'handlebars/flow_board_navigation.partial.handlebars',
-			'handlebars/flow_board_toc_loop.partial.handlebars',
 			'handlebars/flow_edit_post_ajax.partial.handlebars',
 			'handlebars/flow_edit_post.partial.handlebars',
 			'handlebars/flow_edit_topic_title.partial.handlebars',
@@ -358,6 +357,7 @@ $wgResourceModules += array(
 			'flow/dm/mw.flow.dm.js',
 			'flow/dm/mw.flow.dm.Item.js',
 			'flow/dm/mixins/mw.flow.dm.List.js',
+			'flow/dm/api/mw.flow.dm.APIHandler.js',
 			'flow/dm/mw.flow.dm.RevisionedContent.js',
 			'flow/dm/mw.flow.dm.BoardDescription.js',
 			'flow/dm/mw.flow.dm.System.js',
@@ -368,6 +368,25 @@ $wgResourceModules += array(
 			'oojs'
 		)
 	) + $mobile,
+	'ext.flow.ui' => $flowResourceTemplate + array(
+		'scripts' => array(
+			'flow/ui/mw.flow.ui.js',
+
+			'flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js',
+			'flow/ui/widgets/mw.flow.ui.ToCWidget.js',
+			'flow/ui/widgets/mw.flow.ui.ReorderTopicsWidget.js',
+			'flow/ui/widgets/mw.flow.ui.NavigationWidget.js',
+		),
+		'styles' => array(
+//			'styles/flow/mw.flow.ui.less',
+			'styles/flow/widgets/mw.flow.ui.NavigationWidget.less',
+			'styles/flow/widgets/mw.flow.ui.TopicMenuSelectWidget.less',
+		),
+		'dependencies' => array (
+			'oojs-ui',
+			'ext.flow.dm',
+		)
+	),
 	'ext.flow' => $flowResourceTemplate + array(
 		'scripts' => array( // Component order is important
 			// MW UI
@@ -384,8 +403,6 @@ $wgResourceModules += array(
 			'engine/components/board/features/flow-board-loadmore.js',
 			// Feature: Board Navigation Header
 			'engine/components/board/features/flow-board-navigation.js',
-			// Feature: Table of Contents
-			'engine/components/board/features/flow-board-toc.js',
 			// Feature: Side Rail
 			'engine/components/board/features/flow-board-side-rail.js',
 			// Feature: VisualEditor
@@ -407,6 +424,7 @@ $wgResourceModules += array(
 			'mediawiki.jqueryMsg',
 			'ext.flow.jquery.conditionalScroll',
 			'ext.flow.dm',
+			'ext.flow.ui',
 			'mediawiki.api',
 			'mediawiki.util',
 			'mediawiki.api.options', // required by switch-editor feature
