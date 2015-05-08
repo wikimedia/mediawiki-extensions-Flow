@@ -1,7 +1,7 @@
 ( function ( $ ) {
 	QUnit.module( 'ext.flow: mediawiki.ui.enhance' );
 
-	QUnit.test( 'Forms with required fields have certain buttons disabled by default', 6, function( assert ) {
+	QUnit.test( 'Forms with required fields have certain buttons disabled by default', 6, function ( assert ) {
 		var $forms = [
 			$( '<form><input class="mw-ui-input" required><button data-role="action" class="mw-ui-button">go</button></form>' ),
 			$( '<form><input class="mw-ui-input" required><button data-role="submit" class="mw-ui-button">go</button></form>' ),
@@ -11,7 +11,7 @@
 			$( '<form><textarea class="mw-ui-input" required>foo</textarea><input class="mw-ui-input" required><button data-role="submit" class="mw-ui-button">go</button></form>' )
 		];
 
-		$.each( $forms, function() {
+		$.each( $forms, function () {
 			this.appendTo( '#qunit-fixture' );
 			this.find( '.mw-ui-input' ).trigger( 'keyup' );
 		} );
@@ -30,21 +30,21 @@
 			'Buttons are disabled when required textarea but required input does not.' );
 	} );
 
-	QUnit.test( 'mw-ui-tooltip', 4, function( assert ) {
+	QUnit.test( 'mw-ui-tooltip', 4, function ( assert ) {
 		assert.ok( mw.tooltip, 'mw.tooltip exists' );
 
 		// Create a tooltip using body
 		$( 'body' ).attr( 'title', 'test' );
 		assert.ok( mw.tooltip.show( $( 'body' ) ), 'mw.ui.tooltip.show returned something' );
-		assert.strictEqual( $('.flow-ui-tooltip-content' ).filter(':contains("test"):visible').length, 1,
+		assert.strictEqual( $( '.flow-ui-tooltip-content' ).filter( ':contains("test"):visible' ).length, 1,
 			'Tooltip with text "test" is visible' );
 		mw.tooltip.hide( $( 'body' ) );
-		assert.strictEqual( $('.flow-ui-tooltip-content' ).filter(':contains("test")').length, 0,
+		assert.strictEqual( $( '.flow-ui-tooltip-content' ).filter( ':contains("test")' ).length, 0,
 			'Tooltip with text "test" is removed' );
 		$( 'body' ).attr( 'title', '' );
 	} );
 
-	QUnit.test( 'mw-ui-modal', 15, function( assert ) {
+	QUnit.test( 'mw-ui-modal', 15, function ( assert ) {
 		var modal, $node;
 
 		assert.ok( mw.tooltip, 'mw.Modal exists' );
@@ -125,4 +125,4 @@
 		// @todo go
 	} );
 
-} ( jQuery ) );
+}( jQuery ) );
