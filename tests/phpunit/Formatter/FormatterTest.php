@@ -127,7 +127,10 @@ class FormatterTest extends FlowTestCase {
 		$workflowMapper = $this->getMockBuilder( 'Flow\Data\Mapper\CachingObjectMapper' )
 			->disableOriginalConstructor()
 			->getMock();
-		$urlGenerator = new UrlGenerator( $workflowMapper, $occupier );
+		$managerGroup = $this->getMockBuilder( 'Flow\Data\ManagerGroup' )
+			->disableOriginalConstructor()
+			->getMock();
+		$urlGenerator = new UrlGenerator( $workflowMapper, $managerGroup, $occupier );
 		$templating->expects( $this->any() )
 			->method( 'getUrlGenerator' )
 			->will( $this->returnValue( $urlGenerator ) );
