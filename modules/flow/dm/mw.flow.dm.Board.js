@@ -27,10 +27,9 @@
 		this.pageTitle = data.pageTitle;
 		this.deleted = !!data.isDeleted;
 
-		// TODO: Aggregate events for all topics so we can let
-		// widgets listen to events like 'content' change
-		// (For example, the ToC widget should respond and update
-		// itself in case a topic title changes)
+		// PROBLEM: AGGREGATE EVENTS SEEM TO NOT BE WORKING...
+		this.aggregate( { contentChange: 'topicContentChange' } );
+		this.connect( this, { topicContentChange: [ 'emit', 'topicContentChange' ] } );
 	};
 
 	/* Initialization */
@@ -52,6 +51,15 @@
 	 *
 	 * @event reset
 	 * @param {string} order The order of the topics; 'newest' or 'updated'
+	 */
+
+	/**
+	 * One of the board's topic content changed
+	 *
+	 * @event topicContentChange
+	 * @param {string} topicId Topic UUID
+	 * @param {string} content Topic content
+	 * @param {string} format Content format
 	 */
 
 	/* Methods */

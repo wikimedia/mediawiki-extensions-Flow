@@ -133,11 +133,13 @@
 	 * either directly or through the API method.
 	 *
 	 * @param {Object} topiclist API object for the board and topic list
+	 * @param {number} [index] The position to enter the items in.
 	 * @fires populate
 	 */
-	mw.flow.dm.System.prototype.populateBoardTopicsFromJson = function ( topiclist ) {
+	mw.flow.dm.System.prototype.populateBoardTopicsFromJson = function ( topiclist, index ) {
 		var i, len, topicId, revisionData, topic,
 			topicTitlesById = {},
+			updateTimestampsByTopicId = {},
 			topics = [];
 
 		for ( i = 0, len = topiclist.roots.length; i < len; i++ ) {
@@ -150,11 +152,21 @@
 
 			// HACK: While we use both systems (new ooui and old flow-event system)
 			// We need to make sure that the old system is updated too
-			topicTitlesById[ topiclist.roots[i] ] = topic.getContent();
+			topicTitlesById[ topicId ] = topic.getContent();
+			updateTimestampsByTopicId[ topicId ] = topic.getLastUpdate();
 		}
 		// Add to board
-		this.getBoard().addItems( topics );
-		this.emit( 'populate', topicTitlesById );
+		this.getBoard().addItems( topics, index );
+
+		// Both of these should be safe to update with extend, since only the latest data should be needed.
+		this.emit( 'populate', {
+			topicTitlesById: topicTitlesById,
+
+			// FIXME: This also needs to be done on re-order, somehow, so this might be
+			// the wrong place.  We need all the data in the current TOC (but it's fine if there
+			// is extraneous data).  This will also go away when we have topic widgets.
+			updateTimestampsByTopicId: updateTimestampsByTopicId
+		} );
 	};
 
 	/**

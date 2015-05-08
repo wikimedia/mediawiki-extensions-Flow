@@ -182,8 +182,10 @@
 	 * @fires contentChange
 	 */
 	mw.flow.dm.RevisionedContent.prototype.setContent = function ( content ) {
-		this.content = content;
-		this.emit( 'contentChange', this.content, this.contentFormat );
+		if ( this.content !== content ) {
+			this.content = content;
+			this.emit( 'contentChange', this.id, this.content, this.contentFormat );
+		}
 	};
 
 	/**
@@ -206,7 +208,10 @@
 	 * @param {string} contentFormat Content format
 	 */
 	mw.flow.dm.RevisionedContent.prototype.setContentFormat = function ( contentFormat ) {
-		this.contentFormat = contentFormat;
+		if ( this.contentFormat !== contentFormat ) {
+			this.contentFormat = contentFormat;
+			this.emit( 'contentChange', this.id, this.content, this.contentFormat );
+		}
 	};
 
 	/**
