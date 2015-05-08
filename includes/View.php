@@ -104,6 +104,9 @@ class View extends ContextSource {
 				'ext.flow.mediawiki.ui.form',
 				'ext.flow.mediawiki.ui.modal',
 				'ext.flow.mediawiki.ui.text',
+				'oojs-ui.styles.icons',
+				'oojs-ui.styles.icons-layout',
+				'oojs-ui.styles.icons-interactions',
 				'ext.flow.icons.styles',
 				'ext.flow.board.styles',
 				'ext.flow.board.topic.styles',
@@ -112,7 +115,7 @@ class View extends ContextSource {
 				'oojs-ui.styles.icons-content',
 				'oojs-ui.styles.icons-layout',
 				'oojs-ui.styles.icons-movement',
-				'oojs-ui.styles.icons-interactions',
+				'oojs-ui.styles.icons-indicators',
 				'oojs-ui.styles.icons-editing-core',
 				'oojs-ui.styles.icons-moderation',
 				// Needed for pending texture while switching editors

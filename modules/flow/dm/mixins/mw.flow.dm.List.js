@@ -54,6 +54,16 @@
 	};
 
 	/**
+	 * Get the index of a specific item
+	 *
+	 * @param {mw.flow.dm.Item} item Requested item
+	 * @return {number} Index of the item
+	 */
+	mw.flow.dm.List.prototype.getItemIndex = function ( item ) {
+		return this.items.indexOf( item );
+	};
+
+	/**
 	 * Get number of items
 	 *
 	 * @return {number} Number of items in the list
@@ -139,6 +149,10 @@
 	mw.flow.dm.List.prototype.addItems = function ( items, index ) {
 		var i, len, item, event, events, currentIndex, existingItem, at;
 
+		if ( items.length === 0 ) {
+			return this;
+		}
+
 		// Support adding existing items at new locations
 		for ( i = 0, len = items.length; i < len; i++ ) {
 			item = items[i];
@@ -192,6 +206,10 @@
 	mw.flow.dm.List.prototype.removeItems = function ( items ) {
 		var i, len, item, index, remove, itemEvent,
 			removed = [];
+
+		if ( items.length === 0 ) {
+			return this;
+		}
 
 		// Remove specific items
 		for ( i = 0, len = items.length; i < len; i++ ) {

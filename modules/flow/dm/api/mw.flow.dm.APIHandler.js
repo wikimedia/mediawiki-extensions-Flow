@@ -45,4 +45,39 @@
 				return data.flow[ submodule ].result;
 			} );
 	};
+
+	/**
+	 * Send a request to get topic list
+	 *
+	 * @param {string} orderType Sort order type, 'newest' or 'updated'
+	 * @cfg {string} [offset] Topic offset id or timestamp offset
+	 *  if given, the topic list will be returned with topics that
+	 *  are after (and including) the topic with the given uuid or
+	 *  after the given timestamp.
+	 * @cfg {string} [toconly] Receive a stripped reply that fits the ToC. For more information
+	 *  see 'toconly' in the API documentation.
+	 * @return {jQuery.Promise} Promise that is resolved with the topiclist response
+	 */
+	mw.flow.dm.APIHandler.prototype.getTopicList = function ( orderType, config ) {
+		var params = {
+			page: this.page
+		};
+
+		config = config || {};
+
+		params.vtltoconly = !!config.toconly;
+		params.vtllimit = config.toconly ? 50 : 10;
+
+		if ( orderType === 'newest' ) {
+			params[ 'vtloffset-id' ] = config.offset;
+		} else if ( orderType === 'updated' ) {
+			// Translate api/object-given offset to MW offset for the API request
+			params.vtloffset = moment.utc( config.offset ).format( 'YYYYMMDDHHmmss' );
+		}
+
+		return this.get( 'view-topiclist', params )
+			.then( function ( data ) {
+				return data.topiclist;
+			} );
+	};
 }( jQuery ) );
