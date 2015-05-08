@@ -25,21 +25,30 @@
 	</div>
 ' : '').'</div>
 ';},'flow_header_detail' => function ($cx, $in) {return '<div class="flow-board-header-detail-view">
-'.((LCRun3::ifvar($cx, ((isset($in['revision']['content']) && is_array($in['revision'])) ? $in['revision']['content'] : null))) ? '		'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['revision']['content']['format']) && is_array($in['revision']['content'])) ? $in['revision']['content']['format'] : null),((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null)),array()), 'encq').'
-' : '').'	&nbsp;
-
+	<h2 class="flow-board-header-title">
+		<span class="wikiglyph wikiglyph-speech-bubbles"></span>
+		About this discussion
+	</h2>
 	<div class="flow-board-header-nav">
 '.((LCRun3::ifvar($cx, ((isset($in['revision']['actions']['edit']) && is_array($in['revision']['actions'])) ? $in['revision']['actions']['edit'] : null))) ? '			<a href="'.htmlentities((string)((isset($in['revision']['actions']['edit']['url']) && is_array($in['revision']['actions']['edit'])) ? $in['revision']['actions']['edit']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 			   data-flow-api-handler="activateEditHeader"
 			   data-flow-api-target="< .flow-board-header"
 			   data-flow-interactive-handler="apiRequest"
-			   class="mw-ui-button mw-ui-progressive  mw-ui-quiet flow-board-header-icon flow-ui-tooltip-target"
+			   class="mw-ui-button mw-ui-progressive  mw-ui-quiet flow-ui-tooltip-target"
 			   title="'.htmlentities((string)((isset($in['revision']['actions']['edit']['title']) && is_array($in['revision']['actions']['edit'])) ? $in['revision']['actions']['edit']['title'] : null), ENT_QUOTES, 'UTF-8').'">
-					<span class="wikiglyph wikiglyph-pencil"></span>
+					<span class="wikiglyph wikiglyph-pencil flow-board-header-icon"></span>Edit board details
 			</a>
 ' : '').'	</div>
-</div>
-';},),
+'.((LCRun3::ifvar($cx, ((isset($in['revision']['content']) && is_array($in['revision'])) ? $in['revision']['content'] : null))) ? '		<div class="flow-board-header-content">
+			'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['revision']['content']['format']) && is_array($in['revision']['content'])) ? $in['revision']['content']['format'] : null),((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null)),array()), 'encq').'
+		</div>
+' : '').'</div>
+<a href="javascript:void(0);"
+   class="mw-ui-button mw-ui-quiet"
+   id="side-rail-toggle-button"
+   data-flow-interactive-handler="toggleSideRail">
+    <span class="wikiglyph wikiglyph-x pull-right"></span>
+</a>';},),
         'scopes' => array($in),
         'sp_vars' => array('root' => $in),
 

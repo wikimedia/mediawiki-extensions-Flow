@@ -367,6 +367,8 @@ $wgResourceModules += array(
 			'engine/components/board/features/flow-board-navigation.js',
 			// Feature: Table of Contents
 			'engine/components/board/features/flow-board-toc.js',
+			// Feature: Side Rail
+			'engine/components/board/features/flow-board-side-rail.js',
 			// Feature: VisualEditor
 			'engine/components/board/features/flow-board-visualeditor.js',
 			// Feature: Switch between editors
