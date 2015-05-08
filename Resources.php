@@ -58,6 +58,7 @@ $wgResourceModules += array(
 			'handlebars/flow_editor_switcher.partial.handlebars',
 			'handlebars/flow_errors.partial.handlebars',
 			'handlebars/flow_form_buttons.partial.handlebars',
+			'handlebars/flow_header_title.partial.handlebars',
 			'handlebars/flow_header_detail.partial.handlebars',
 			'handlebars/flow_load_more.partial.handlebars',
 			'handlebars/flow_moderate_post_confirmation.partial.handlebars',
@@ -91,6 +92,7 @@ $wgResourceModules += array(
 		'messages' => array(
 			'flow-anon-warning',
 			'flow-cancel',
+			'flow-board-header',
 			'flow-edit-header-placeholder',
 			'flow-edit-header-submit',
 			'flow-edit-title-submit',
@@ -367,6 +369,8 @@ $wgResourceModules += array(
 			'engine/components/board/features/flow-board-navigation.js',
 			// Feature: Table of Contents
 			'engine/components/board/features/flow-board-toc.js',
+			// Feature: Side Rail
+			'engine/components/board/features/flow-board-side-rail.js',
 			// Feature: VisualEditor
 			'engine/components/board/features/flow-board-visualeditor.js',
 			// Feature: Switch between editors
