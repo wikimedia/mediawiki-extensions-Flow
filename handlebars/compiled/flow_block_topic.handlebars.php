@@ -45,7 +45,7 @@
 '.$sp.'' : '').'</div>
 ';},'flow_topic_titlebar_content' => function ($cx, $in, $sp) {return ''.$sp.'<h2 class="flow-topic-title flow-load-interactive"
 '.$sp.'    data-flow-topic-title="'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),array()), 'encq').'"
-'.$sp.'    data-flow-load-handler="topicTitle">'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),array()), 'encq').'</h2>
+'.$sp.'    >'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),array()), 'encq').'</h2>
 '.$sp.'<div class="flow-topic-meta">
 '.$sp.'	'.LCRun3::ch($cx, 'l10n', array(array('flow-topic-comments',((isset($in['reply_count']) && is_array($in)) ? $in['reply_count'] : null)),array()), 'encq').' &bull;
 '.$sp.'
