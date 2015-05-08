@@ -14,6 +14,7 @@ mw.flow.dm.APITopicsProvider = function MwFlowDmAPITopicsProvider( page, apiurl,
 	config = config || {};
 
 	this.page = page;
+	this.offsetId = null;
 
 	// Parent constructor
 	mw.flow.dm.APITopicsProvider.super.call(
@@ -51,9 +52,13 @@ mw.flow.dm.APITopicsProvider.prototype.fetchAPIresults = function ( howMany ) {
 		{},
 		this.getUserParams(),
 		{
-			vtloffset: this.getOffset(),
 			vtllimit: howMany
-		} );
+		}
+	);
+
+	if ( this.getOffsetId() ) {
+		apiCallConfig[ 'vtloffset-id' ] = this.getOffsetId();
+	}
 
 	xhr = new mw.Api().get( $.extend( this.getStaticParams(), apiCallConfig ), this.getAjaxSettings() );
 	return xhr
@@ -71,7 +76,7 @@ mw.flow.dm.APITopicsProvider.prototype.fetchAPIresults = function ( howMany ) {
 			if ( Object.keys( topiclist.roots ).length < howMany ) {
 				provider.toggleDepleted( true );
 			} else {
-				provider.setOffset( provider.getOffset() + howMany );
+				provider.setOffsetId( topiclist.roots[ topiclist.roots.length - 1 ] );
 			}
 
 			// Connect the information to the topic
@@ -83,4 +88,12 @@ mw.flow.dm.APITopicsProvider.prototype.fetchAPIresults = function ( howMany ) {
 			return result;
 		} )
 		.promise( { abort: xhr.abort } );
+};
+
+mw.flow.dm.APITopicsProvider.prototype.setOffsetId = function ( id ) {
+	this.offsetId = id;
+};
+
+mw.flow.dm.APITopicsProvider.prototype.getOffsetId = function () {
+	return this.offsetId;
 };

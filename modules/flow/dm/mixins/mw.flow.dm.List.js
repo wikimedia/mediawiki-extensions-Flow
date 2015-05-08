@@ -116,11 +116,32 @@ mw.flow.dm.List.prototype.removeItems = function ( items ) {
 		index = this.items.indexOf( item );
 		if ( index !== -1 ) {
 			removed = removed.concat( this.items.splice( index, 1 ) );
+			item.disconnect( this );
 			// Remove reference by Id
 			delete this.references[ item.getId() ];
 		}
 	}
 	this.emit( 'remove', removed );
+
+	return this;
+};
+
+/**
+ * Clear all items
+ */
+mw.flow.dm.List.prototype.clearItems = function () {
+	var i, len;
+
+	// Disconnect events
+	for ( i = 0, len = this.items.length; i < len; i++ ) {
+		this.items[i].disconnect( this );
+	}
+
+	// Clear all references
+	this.references = {};
+	this.items = [];
+
+	this.emit( 'clear' );
 
 	return this;
 };

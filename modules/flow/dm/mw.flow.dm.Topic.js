@@ -16,7 +16,7 @@ mw.flow.dm.Topic = function mwFlowDmTopic( id, data, config ) {
 	// Parent constructor
 	mw.flow.dm.Topic.super.call( this, config );
 
-	// Mixing constructor
+	// Mixin constructor
 	mw.flow.dm.List.call( this, config );
 
 	this.setId( id );

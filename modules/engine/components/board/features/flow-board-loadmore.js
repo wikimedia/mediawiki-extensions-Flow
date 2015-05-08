@@ -514,7 +514,7 @@
 			flowBoard.debug( 'No topics returned from API', arguments );
 			return;
 		}
-
+debugger;
 		/** @private
 		 */
 		function _createRevPagination( $target ) {
