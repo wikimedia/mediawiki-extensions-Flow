@@ -214,9 +214,15 @@ class View extends ContextSource {
 			switch ( $block['type'] ) {
 				case 'board-history':
 					$flowComponent = 'boardHistory';
+					$page = 'history';
+					break;
+				case 'topic':
+					$flowComponent = 'board';
+					$page = 'topic';
 					break;
 				default:
 					$flowComponent = 'board';
+					$page = 'board';
 			}
 
 			// Don't re-render a block type twice in one page
@@ -231,7 +237,7 @@ class View extends ContextSource {
 			$out->addHTML( Html::rawElement(
 				'div',
 				array(
-					'class'               => 'flow-component',
+					'class'               => "$page-page flow-component",
 					'data-flow-component' => $flowComponent,
 					'data-flow-id'        => $apiResponse['workflow'],
 				),

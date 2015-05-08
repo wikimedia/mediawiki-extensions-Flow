@@ -18,7 +18,11 @@
 ),
         'blockhelpers' => array(),
         'hbhelpers' => array(),
-        'partials' => array('flow_errors' => function ($cx, $in) {return '<div class="flow-error-container">
+        'partials' => array('flow_header_title' => function ($cx, $in) {return '<h2 class="flow-board-header-title">
+	<span class="wikiglyph wikiglyph-speech-bubbles"></span>
+	'.LCRun3::ch($cx, 'l10n', array(array('flow-board-header'),array()), 'encq').'
+</h2>
+';},'flow_errors' => function ($cx, $in) {return '<div class="flow-error-container">
 '.((LCRun3::ifvar($cx, ((isset($cx['sp_vars']['root']['errors']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['errors'] : null))) ? '	<div class="flow-errors errorbox">
 		<ul>
 '.LCRun3::sec($cx, ((isset($cx['sp_vars']['root']['errors']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['errors'] : null), $in, true, function($cx, $in) {return '				<li>'.LCRun3::ch($cx, 'html', array(array(((isset($in['message']) && is_array($in)) ? $in['message'] : null)),array()), 'encq').'</li>
@@ -38,7 +42,7 @@
     );
     
     return '<div class="flow-board-header">
-	<div class="flow-board-header-edit-view">
+'.LCRun3::p($cx, 'flow_header_title', array(array($in),array())).'	<div class="flow-board-header-edit-view">
 		<form method="POST" action="'.htmlentities((string)((isset($in['revision']['actions']['edit']['url']) && is_array($in['revision']['actions']['edit'])) ? $in['revision']['actions']['edit']['url'] : null), ENT_QUOTES, 'UTF-8').'" flow-api-action="edit-header">
 '.LCRun3::p($cx, 'flow_errors', array(array($in),array())).'			<input type="hidden" name="wpEditToken" value="'.htmlentities((string)((isset($cx['sp_vars']['root']['editToken']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
 '.((LCRun3::ifvar($cx, ((isset($in['revision']['revisionId']) && is_array($in['revision'])) ? $in['revision']['revisionId'] : null))) ? '				<input type="hidden" name="header_prev_revision" value="'.htmlentities((string)((isset($in['revision']['revisionId']) && is_array($in['revision'])) ? $in['revision']['revisionId'] : null), ENT_QUOTES, 'UTF-8').'" />
@@ -60,7 +64,6 @@
 			</div>
 		</form>
 	</div>
-</div>
-';
+</div>';
 }
 ?>
