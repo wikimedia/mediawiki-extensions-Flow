@@ -167,11 +167,9 @@
 		// Backup the topic data
 		info.component.renderedTopicsBackup = info.component.renderedTopics;
 		info.component.topicTitlesByIdBackup = info.component.topicTitlesById;
-		info.component.orderedTopicIdsBackup = info.component.orderedTopicIds;
 		// Reset the topic data
 		info.component.renderedTopics = {};
 		info.component.topicTitlesById = {};
-		info.component.orderedTopicIds = [];
 	}
 	FlowBoardComponentLoadMoreFeatureMixin.UI.events.apiPreHandlers.board = flowBoardComponentLoadMoreFeatureBoardApiPreHandler;
 
@@ -194,13 +192,11 @@
 			// Failed; restore the topic data
 			info.component.renderedTopics = info.component.renderedTopicsBackup;
 			info.component.topicTitlesById = info.component.topicTitlesByIdBackup;
-			info.component.orderedTopicIds = info.component.orderedTopicIdsBackup;
 		}
 
 		// Delete the backups
 		delete info.component.renderedTopicsBackup;
 		delete info.component.topicTitlesByIdBackup;
-		delete info.component.orderedTopicIdsBackup;
 	}
 	FlowBoardComponentLoadMoreFeatureMixin.UI.events.apiHandlers.board = flowBoardComponentLoadMoreFeatureBoardApiCallback;
 
@@ -274,65 +270,6 @@
 		return $.Deferred().resolve().promise();
 	}
 	FlowBoardComponentLoadMoreFeatureMixin.UI.events.apiHandlers.loadMoreTopics = flowBoardComponentLoadMoreFeatureTopicsApiCallback;
-
-	/**
-	 * Loads up the topic titles list.
-	 * Saves the topic titles to topicTitlesById and orderedTopicIds, and adds timestamps
-	 * to updateTimestampsByTopicId.
-	 *
-	 * @param {Object} info
-	 * @param {string} info.status "done" or "fail"
-	 * @param {jQuery} info.$target
-	 * @param {FlowBoardComponent} info.component
-	 * @param {Object} data
-	 * @param {jqXHR} jqxhr
-	 */
-	function flowBoardComponentLoadMoreFeatureTopicListApiCallback( info, data, jqxhr ) {
-		if ( info.status !== 'done' ) {
-			// Error will be displayed by default, nothing else to wrap up
-			return $.Deferred().resolve().promise();
-		}
-
-		var i = 0,
-			topicsData = data.flow[ 'view-topiclist' ].result.topiclist,
-			topicId, revisionId,
-			flowBoard = info.component;
-
-		// Iterate over every topic
-		for ( ; i < topicsData.roots.length; i++ ) {
-			// Get the topic ID
-			topicId = topicsData.roots[ i ];
-			// Get the revision ID
-			revisionId = topicsData.posts[ topicId ][0];
-
-			if ( $.inArray( topicId, flowBoard.orderedTopicIds ) === -1 ) {
-				// Append to the end, we will sort after the insert loop.
-				flowBoard.orderedTopicIds.push( topicId );
-			}
-
-			if ( flowBoard.topicTitlesById[ topicId ] === undefined ) {
-				// Store the title from the revision object
-				flowBoard.topicTitlesById[ topicId ] = topicsData.revisions[ revisionId ].content.content;
-			}
-
-			if ( flowBoard.updateTimestampsByTopicId[ topicId ] === undefined ) {
-				flowBoard.updateTimestampsByTopicId[ topicId ] = topicsData.revisions[ revisionId ].last_updated;
-			}
-		}
-
-		_flowBoardSortTopicIds( flowBoard );
-
-		// we need to re-trigger scroll.flow-load-more if there are not enough items in the
-		// toc for it to scroll and trigger on its own. Without this TOC never triggers
-		// the initial loadmore to expand from the number of topics on page to topics
-		// available from the api.
-		if ( this.$loadMoreNodes ) {
-			this.$loadMoreNodes
-				.filter( '[data-flow-api-handler=topicList]' )
-				.trigger( 'scroll.flow-load-more', { forceNavigationUpdate: true } );
-		}
-	}
-	FlowBoardComponentLoadMoreFeatureMixin.UI.events.apiHandlers.topicList = flowBoardComponentLoadMoreFeatureTopicListApiCallback;
 
 	//
 	// On element-load handlers
@@ -414,26 +351,6 @@
 		} );
 	}
 	FlowBoardComponentLoadMoreFeatureMixin.UI.events.loadHandlers.topic = flowBoardComponentLoadMoreFeatureElementLoadTopic;
-
-	/**
-	 * Stores a list of all topics titles currently visible on the page.
-	 * @param {jQuery} $topicTitle
-	 */
-	function flowBoardComponentLoadMoreFeatureElementLoadTopicTitle( $topicTitle ) {
-		var currentTopicId = $topicTitle.closest( '[data-flow-id]' ).data( 'flowId' );
-
-		// If topic doesn't exist in topic titles list, add it (only happens at page load)
-		// @todo this puts the wrong order
-		if ( this.topicTitlesById[ currentTopicId ] === undefined ) {
-			this.topicTitlesById[ currentTopicId ] = $topicTitle.data( 'flow-topic-title' );
-
-			if ( $.inArray( currentTopicId, this.orderedTopicIds ) === -1 ) {
-				this.orderedTopicIds.push( currentTopicId );
-				_flowBoardSortTopicIds( this );
-			}
-		}
-	}
-	FlowBoardComponentLoadMoreFeatureMixin.UI.events.loadHandlers.topicTitle = flowBoardComponentLoadMoreFeatureElementLoadTopicTitle;
 
 	//
 	// Private functions
