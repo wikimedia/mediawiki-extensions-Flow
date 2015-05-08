@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_32eaccd6",
+        "filename": "modules/editor/editors/visualeditor/ui/widgets/mw.flow.ve.ui.MentionTargetInputWidget.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-08T18:48:01Z",
+      "side": 1,
+      "message": "This paragraph is no longer applicable.",
+      "revId": "2072055fb68e2d8f240b24396ccced6ac0768119",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_72e4d40a",
+        "filename": "modules/editor/editors/visualeditor/ui/widgets/mw.flow.ve.ui.MentionTargetInputWidget.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-08T18:48:01Z",
+      "side": 1,
+      "message": "This is unnecessary, since it only shows the full list when empty.  It never does substring match.  So it can just resolve with this.loggedInTopicPosters.",
+      "revId": "2072055fb68e2d8f240b24396ccced6ac0768119",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_12d46816",
+        "filename": "modules/editor/editors/visualeditor/ui/widgets/mw.flow.ve.ui.MentionTargetInputWidget.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-08T18:48:01Z",
+      "side": 1,
+      "message": "Out of date",
+      "revId": "2072055fb68e2d8f240b24396ccced6ac0768119",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
