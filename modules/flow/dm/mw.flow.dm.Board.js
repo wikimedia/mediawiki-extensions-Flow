@@ -140,6 +140,28 @@
 	};
 
 	/**
+	 * Get the last offset for the API's offsetId
+	 */
+	mw.flow.dm.Board.prototype.getOffsetId = function () {
+		var topics = this.getItems();
+
+		return topics.length > 0 ?
+			topics[ topics.length - 1 ].getId() :
+			null;
+	};
+
+	/**
+	 * Get the last offset for the API's offset timestamp
+	 */
+	mw.flow.dm.Board.prototype.getOffset = function () {
+		var topics = this.getItems();
+
+		return topics.length > 0 ?
+			topics[ topics.length - 1 ].getLastUpdate() :
+			null;
+	};
+
+	/**
 	 * Reset the board
 	 *
 	 * @param {string} order The order of the topics; 'newest' or 'updated'

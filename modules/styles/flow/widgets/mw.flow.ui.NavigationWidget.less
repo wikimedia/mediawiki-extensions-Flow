@@ -1,0 +1,46 @@
+// This should be replaced completely by the navigation widget
+.flow-board-navigation {
+	// This is a hack, we really should, instead, work with
+	// overlays.
+	z-index: 1;
+}
+
+.flow-ui-navigationWidget {
+	width: 100%;
+	z-index: 1;
+	position: relative;
+	border-bottom: 1px solid #ccc;
+
+	&-affixed {
+		position: fixed;
+		z-index: 2;
+		top: 0;
+		background: white;
+	}
+
+	&-clear {
+		clear: both;
+	}
+
+	.flow-ui-tocWidget {
+		display: inline-block;
+		float: left;
+
+		&-wrapper {
+			width: 100%;
+			max-height: 400px;
+			position: absolute;
+			overflow: hidden;
+		}
+	}
+
+	.flow-ui-reorderTopicsWidget {
+		display: inline-block;
+		float: right;
+		position: relative;
+		.flow-ui-reorderTopicsWidget-menu {
+			right: 0;
+		}
+	}
+}
+
