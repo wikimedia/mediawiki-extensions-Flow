@@ -5,23 +5,55 @@
 
 .flow-board-header {
 	word-break: break-word;
+	font-size: .875em;
+	width: 100%;
+	max-width: 700px;
+	padding-top: 10px;
+	padding-right: 15px;
+	padding-left: 5px;
+	position: relative;
 }
 
 // Top board header
 .flow-board-header-nav {
-	position: relative;
-	text-align: right;
+	text-align: left;
+	font-size: 1.15em;
+	margin-bottom: 10px;
+	.mw-ui-button {
+		padding: 0;
+	}
 }
 
 // Top board header edit icon
 .flow-board-header-icon {
-	position: absolute;
-	bottom: 0;
-	right: 0;
 	opacity: .33;
 
 	&:hover,
 	&:focus {
 		opacity: 1;
+	}
+}
+
+// need to be specific to override this h2
+div#content h2.flow-board-header-title {
+	display: none;
+
+	margin-top: 0;
+	margin-bottom: 10px;
+	border-bottom: none;
+	font-family: sans-serif;
+	font-weight: bold;
+	font-size: 1.15em;
+}
+
+#side-rail-toggle-button {
+	visibility: hidden;
+	position: absolute;
+	top: 8px;
+	right: 2px;
+	font-size: 1.3em;
+
+	&.mw-ui-button {
+		padding: 0;
 	}
 }
