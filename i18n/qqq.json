@@ -34,6 +34,7 @@
 	"logentry-import-lqt-to-flow-topic": "Text for an import log entry when a topic has been imported from LiquidThreads to Flow. Parameters:\n* $1 - The page within the topic namespace to which the topic was imported.\n* $2 - The title of the LiquidThreads thread being imported.\n* $3 - The board that was converted from LiquidThreads to Flow.",
 	"flow-user-moderated": "Name to display when the current user is not allowed to see the users name due to moderation",
 	"flow-board-header-browse-topics-link": "Text to show in the board description which links to the topics list.",
+	"flow-board-header": "Used as title for the board description in the side rail.",
 	"flow-edit-header-link": "Used as text for the button that either allows editing the description in place or brings the user to a page for editing the description.",
 	"flow-post-moderated-toggle-hide-show": "Message to display instead of content when a hidden post has been hidden.\n\nParameters:\n* $1 - username that hid the title, can be used for GENDER\n* $2 - user link and tool links for the user\n{{Related|Flow-post-moderated-toggle}}",
 	"flow-post-moderated-toggle-delete-show": "Message to display instead of content when a deleted post has been hidden.\n\nParameters:\n* $1 - username that hid the title, can be used for GENDER\n* $2 - user link and tool links for the user\n{{Related|Flow-post-moderated-toggle}}",
