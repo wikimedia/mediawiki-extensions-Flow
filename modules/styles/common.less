@@ -4,10 +4,6 @@
 @import 'flow.variables';
 
 .flow-component {
-	// This should flip with interface directionality
-	float: left;
-	width: 100%;
-
 	.flow-list {
 		list-style: none;
 		margin: 0;
@@ -30,17 +26,29 @@
 	padding-top: 1.5em;
 }
 
-// Top board header
-.flow-board-header,
 // board navigation
 .flow-board-navigation,
-// The sort navigation
-.flow-board-header-menu,
 // The whole board content wrapper
 .flow-board {
 	font-size: .875em;
 	width: 100%;
+	padding-left: 0;
+	padding-top: 0;
+}
+
+.flow-board-navigation,
+.flow-board.board-page {
+	max-width: 700px;
+
+}
+
+.flow-board.topic-page {
 	max-width: 850px;
+}
+
+.flow-board {
+	padding-right: 20px;
+	padding-bottom: 24px;
 }
 
 // Individual topic containers
@@ -83,13 +91,11 @@
 	line-height: 0;
 }
 
-@media all and (min-width: @wgFlowDeviceWidthTablet) {
+@media all and (min-width: @small) {
 	.flow-topic-meta {
 		font-size: 1em;
 	}
 
-	// Top board header
-	.flow-board-header,
 	// The sort navigation
 	.flow-board-header-menu,
 	// board navigation
@@ -100,6 +106,90 @@
 		font-size: 1em;
 		line-height: 1.4;
 	}
+}
+
+@media all and (min-width: @medium) {
+
+	.side-rail-toggle-button {
+		visibility: visible;
+	}
+
+	// Top board header
+	.flow-board-header {
+		padding-left: 10px;
+		float: right;
+		width: 33%;
+		background-color: @colorGrayLightest;
+		box-shadow: -2px 0 0 0 rgba(0,0,0,0.10);
+
+		// this is a hack to make sure the side rail always
+		// stretches all the way to the bottom of the page
+		padding-bottom: 9999999px;
+		margin-bottom: -9999999px;
+	}
+
+	// board navigation
+	.flow-board-navigation,
+	// The whole board content wrapper
+	.flow-board.board-page {
+		float: left;
+		clear: left;
+		width: 66%;
+		max-width: 1200px;
+		padding-right: 20px;
+	}
+
+	.flow-component {
+		overflow: hidden;
+
+		.flow-board-header-title {
+			display: block;
+		}
+
+		.side-rail-toggle-button {
+			.collapse-button {
+				display: block;
+			}
+
+			.expand-button {
+				display: none;
+			}
+		}
+	}
+
+	.flow-component.expanded {
+		padding-right: 30px;
+
+		.flow-board-navigation,
+		.flow-board {
+			width: 100%;
+			max-width: none;
+		}
+		.flow-board-header {
+			width: 30px;
+			margin-right: -30px;
+			padding-left: 0;
+			padding-right: 0;
+			margin-left: 0;
+
+			.side-rail-toggle-button {
+				.collapse-button {
+					display: none;
+				}
+
+				.expand-button {
+					display: block;
+				}
+			}
+
+			.flow-board-header-title,
+			.flow-board-header-detail-view {
+				display: none;
+			}
+		}
+	}
+
+
 }
 
 .flow-history-moderation-menu {
@@ -130,5 +220,20 @@
 				content: ')';
 			}
 		}
+	}
+}
+
+.pull-right {
+	float: right;
+}
+
+// vector theme overrides
+div#content.mw-body {
+	margin-right: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+
+	h1.firstHeading {
+		margin-bottom: 0;
 	}
 }

@@ -237,7 +237,7 @@
 
     );
     
-    return '<div class="flow-board">
+    return '<div class="flow-board topic-page">
 	<div class="flow-topics">
 '.LCRun3::p($cx, 'flow_errors', array(array($in),array())).'
 '.LCRun3::p($cx, 'flow_topiclist_loop', array(array($in),array())).'	</div>
