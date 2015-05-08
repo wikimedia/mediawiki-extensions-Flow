@@ -33,56 +33,6 @@
 <div class="flow-board-navigation flow-load-interactive" data-flow-load-handler="boardNavigation">
 	<div class="flow-error-container">
 	</div>
-	<div class="flow-board-navigation-inner">
-		<a href="javascript:void(0);"
-		   class="flow-board-navigator-last flow-ui-tooltip-target"
-		   data-tooltip-pointing="right"
-		   title="'.LCRun3::hbch($cx, 'ifCond', array(array(((isset($in['sortby']) && is_array($in)) ? $in['sortby'] : null),'===','updated'),array()), $in, false, function($cx, $in) {return ''.LCRun3::ch($cx, 'l10n', array(array('flow-sorting-tooltip-recent'),array()), 'encq').'';}, function($cx, $in) {return ''.LCRun3::ch($cx, 'l10n', array(array('flow-sorting-tooltip-newest'),array()), 'encq').'';}).'"
-		   data-flow-interactive-handler="menuToggle"
-		   data-flow-menu-target="< .flow-board-navigation .flow-board-sort-menu">'.LCRun3::hbch($cx, 'ifCond', array(array(((isset($in['sortby']) && is_array($in)) ? $in['sortby'] : null),'===','updated'),array()), $in, false, function($cx, $in) {return '				'.LCRun3::ch($cx, 'l10n', array(array('flow-recent-topics'),array()), 'encq').'
-';}, function($cx, $in) {return '				'.LCRun3::ch($cx, 'l10n', array(array('flow-newest-topics'),array()), 'encq').'
-';}).'			<span class="wikiglyph wikiglyph-caret-down"></span>
-		</a>
-
-		<a href=""
-		   data-flow-interactive-handler="apiRequest"
-		   data-flow-api-target="< .flow-board-navigation .flow-board-toc-menu .flow-list"
-		   data-flow-api-handler="topicList" 
-		   data-flow-menu-target="< .flow-board-navigation .flow-board-toc-menu"
-		   class="flow-board-navigator-active flow-board-navigator-first">
-			<span class="wikiglyph wikiglyph-stripe-toc"></span>
-			<span class="flow-load-interactive" data-flow-load-handler="boardNavigationTitle">'.LCRun3::ch($cx, 'l10n', array(array('flow-board-header-browse-topics-link'),array()), 'encq').'</span>
-		</a>
-	</div>
-
-	<div class="flow-board-header-menu">
-		<div class="flow-menu flow-menu-inverted flow-menu-scrollable flow-board-toc-menu flow-load-interactive"
-		     data-flow-load-handler="menu"
-		     data-flow-toc-target=".flow-list">
-			<div class="flow-menu-js-drop flow-menu-js-drop-hidden"><a href="javascript:void(0);" class="flow-board-header-menu-activator"></a></div>
-			<ul class="mw-ui-button-container flow-board-toc-list flow-list flow-load-interactive"
-			    data-flow-load-handler="tocMenu"
-			    data-flow-toc-target="li:not(.flow-load-more):last"
-			    data-flow-template="flow_board_toc_loop.partial">
-			</ul>
-		</div>
-
-		<div class="flow-menu flow-board-sort-menu flow-load-interactive"
-		     data-flow-load-handler="menu">
-			<div class="flow-menu-js-drop flow-menu-js-drop-hidden"><a href="javascript:void(0);" class="flow-board-header-menu-activator"></a></div>
-'.((LCRun3::ifvar($cx, ((isset($in['links']['board-sort']) && is_array($in['links'])) ? $in['links']['board-sort'] : null))) ? '				<ul class="mw-ui-button-container flow-list">'.LCRun3::hbch($cx, 'ifCond', array(array(((isset($in['sortby']) && is_array($in)) ? $in['sortby'] : null),'===','updated'),array()), $in, false, function($cx, $in) {return '					<li><a class="mw-ui-button mw-ui-quiet"
-					       href="'.htmlentities((string)((isset($in['links']['board-sort']['newest']) && is_array($in['links']['board-sort'])) ? $in['links']['board-sort']['newest'] : null), ENT_QUOTES, 'UTF-8').'"
-					       data-flow-interactive-handler="apiRequest"
-					       data-flow-api-target="< .flow-component"
-					       data-flow-api-handler="board"><span class="wikiglyph wikiglyph-star-circle"></span> '.LCRun3::ch($cx, 'l10n', array(array('flow-newest-topics'),array()), 'encq').'</a></li>
-';}, function($cx, $in) {return '					<li><a class="mw-ui-button mw-ui-quiet"
-					       href="'.htmlentities((string)((isset($in['links']['board-sort']['updated']) && is_array($in['links']['board-sort'])) ? $in['links']['board-sort']['updated'] : null), ENT_QUOTES, 'UTF-8').'"
-					       data-flow-interactive-handler="apiRequest"
-					       data-flow-api-target="< .flow-component"
-					       data-flow-api-handler="board"><span class="wikiglyph wikiglyph-clock"></span> '.LCRun3::ch($cx, 'l10n', array(array('flow-recent-topics'),array()), 'encq').'</a></li>
-';}).'				</ul>
-' : '').'		</div>
-	</div>
 </div>
 ';},'flow_errors' => function ($cx, $in) {return '<div class="flow-error-container">
 '.((LCRun3::ifvar($cx, ((isset($cx['sp_vars']['root']['errors']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['errors'] : null))) ? '	<div class="flow-errors errorbox">
