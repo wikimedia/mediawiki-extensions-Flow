@@ -214,9 +214,15 @@ class View extends ContextSource {
 			switch ( $block['type'] ) {
 				case 'board-history':
 					$flowComponent = 'boardHistory';
+					$page = 'history';
+					break;
+				case 'topic':
+					$flowComponent = 'board';
+					$page = 'topic';
 					break;
 				default:
 					$flowComponent = 'board';
+					$page = 'board';
 			}
 
 			// Don't re-render a block type twice in one page
@@ -228,7 +234,7 @@ class View extends ContextSource {
 			// Get the block loop template
 			$template = $this->lightncandy->getTemplate( 'flow_block_loop' );
 
-			$classes = array( 'flow-component' );
+			$classes = array( 'flow-component', "$page-page" );
 			// Add mw-content-{ltr,rtl} text if necessary (MW core doesn't add it for action=reply)
 			if ( \Action::getActionName( $this ) === 'reply' ) {
 				$title = Title::newFromText( $apiResponse['title'] );
