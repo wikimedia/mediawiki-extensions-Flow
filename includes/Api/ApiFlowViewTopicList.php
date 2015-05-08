@@ -56,12 +56,6 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 				ApiBase::PARAM_MAX => $wgFlowMaxLimit,
 				ApiBase::PARAM_MAX2 => $wgFlowMaxLimit,
 			),
-			// @todo: I assume render parameter will soon be removed, after
-			// frontend rewrite
-			'render' => array(
-				ApiBase::PARAM_TYPE => 'boolean',
-				ApiBase::PARAM_DFLT => false,
-			),
 			'toconly' => array(
 				ApiBase::PARAM_TYPE => 'boolean',
 				ApiBase::PARAM_DFLT => false,
@@ -81,7 +75,6 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 			'offset' => 'Offset value to start fetching topics at',
 			'include-offset' => 'Includes the offset item in the results as well',
 			'limit' => 'Number of topics to fetch',
-			'render' => 'Renders (in HTML) the topics, if set',
 			'toconly' => 'Whether to respond with only the information required for the TOC',
 		);
 	}

@@ -86,7 +86,6 @@ class ApiFlow extends ApiBase {
 		if ( $module->needsPage() ) {
 			$module->setPage( $this->getPage( $params ) );
 		}
-		$module->doRender( $params['render'] );
 		$module->execute();
 		wfRunHooks( 'APIFlowAfterExecute', array( $module ) );
 		$module->profileOut();
@@ -136,10 +135,6 @@ class ApiFlow extends ApiBase {
 				ApiBase::PARAM_DFLT => Title::newFromText( 'Flow-enabled page', NS_TOPIC )->getPrefixedDBkey(),
 			),
 			'token' => '',
-			'render' => array(
-				ApiBase::PARAM_TYPE => 'boolean',
-				ApiBase::PARAM_DFLT => false,
-			),
 		);
 	}
 
@@ -158,7 +153,6 @@ class ApiFlow extends ApiBase {
 			'submodule' => 'The Flow submodule to invoke',
 			'page' => 'The page to take the action on',
 			'token' => 'An edit token',
-			'render' => 'Set this to something to include a block-specific rendering in the output',
 		);
 	}
 
