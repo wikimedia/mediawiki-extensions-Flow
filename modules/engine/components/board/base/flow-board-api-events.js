@@ -856,6 +856,10 @@
 			$target.replaceWith( $replacement );
 			// Run loadHandlers
 			flowBoard.emitWithReturn( 'makeContentInteractive', $replacement );
+
+			// HACK: Emit an event here so that the flow data model can update
+			// itself based on the API response
+			flowBoard.emit( 'refreshTopic', workflowId, result );
 		} ).fail( function ( code, result ) {
 			var errorMsg = flowBoard.constructor.static.getApiErrorMessage( code, result );
 			errorMsg = mw.msg( 'flow-error-fetch-after-open-lock', errorMsg );
