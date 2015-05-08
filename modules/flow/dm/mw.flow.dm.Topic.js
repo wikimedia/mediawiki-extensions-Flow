@@ -4,7 +4,7 @@
 	 *
 	 * @constructor
 	 *
-	 * @extends mw.flow.dm.Item
+	 * @extends mw.flow.dm.RevisionedContent
 	 * @mixins mw.flow.dm.List
 	 *
 	 * @param {string} id Topic Id
