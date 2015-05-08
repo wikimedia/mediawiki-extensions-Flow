@@ -459,6 +459,9 @@
 		}
 	}
 
+	// HACK: Expose this private method so we can call it from the new OOUI initialization
+	FlowBoardComponentLoadMoreFeatureMixin.prototype.flowBoardSortTopicIds = _flowBoardSortTopicIds;
+
 	/**
 	 * Called on scroll. Checks to see if a FlowBoard needs to have more content loaded.
 	 * @param {jQuery} $searchContainer Container to find 'load more' buttons in
