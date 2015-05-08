@@ -38,7 +38,7 @@
 	 * 1. If topic is rendered, scrolls to it.
 	 * 2. Otherwise, we load the topic itself
 	 * 3b. When the user scrolls up, we begin loading the topics in between.
-	 * @param {String} topicId
+	 * @param {string} topicId
 	 */
 	function flowBoardComponentLoadMoreFeatureJumpTo( topicId ) {
 		/** @type FlowBoardComponent*/
@@ -187,7 +187,7 @@
 	 * @param {FlowBoardComponent} info.component
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
-	 * @returns {jQuery.Promise}
+	 * @return {jQuery.Promise}
 	 */
 	function flowBoardComponentLoadMoreFeatureBoardApiCallback( info, data, jqxhr ) {
 		if ( info.status !== 'done' ) {
@@ -504,9 +504,9 @@
 	 * @param {Object} topicsData
 	 * @param {boolean} [forceShowLoadMore]
 	 * @param {jQuery} [$insertAt]
-	 * @param {String} [scrollTarget]
-	 * @param {String} [scrollContainer]
-	 * @param {String} [scrollTemplate]
+	 * @param {string} [scrollTarget]
+	 * @param {string} [scrollContainer]
+	 * @param {string} [scrollTemplate]
 	 * @private
 	 */
 	function _flowBoardComponentLoadMoreFeatureRenderTopics( flowBoard, topicsData, forceShowLoadMore, $insertAt, scrollTarget, scrollContainer, scrollTemplate ) {
@@ -568,7 +568,7 @@
 		/**
 		 * Renders topics by IDs from topicsData, and returns the elements.
 		 * @param {Array} toRender List of topic IDs in topicsData
-		 * @returns {jQuery}
+		 * @return {jQuery}
 		 * @private
 		 */
 		function _render( toRender ) {

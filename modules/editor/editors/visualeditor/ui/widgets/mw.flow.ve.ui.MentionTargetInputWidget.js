@@ -106,7 +106,7 @@
 	 * entered e.g. "Mary", "jane", or 'Smi'.
 	 *
 	 * @method
-	 * @returns {jQuery.Promise}
+	 * @return {jQuery.Promise}
 	 */
 	mw.flow.ve.ui.MentionTargetInputWidget.prototype.getLookupRequest = function () {
 		var matches,

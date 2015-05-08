@@ -14,7 +14,7 @@
 		// Bind element handlers
 		this.bindNodeHandlers( FlowBoardComponentBoardHeaderFeatureMixin.UI.events );
 
-		/** {String} topic ID currently being read in viewport */
+		/** {string} topic ID currently being read in viewport */
 		this.readingTopicId = null;
 
 		/** {Object} Map from topic id to its last update timestamp for sorting */

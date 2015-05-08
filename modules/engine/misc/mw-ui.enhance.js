@@ -147,7 +147,7 @@
 		 *  tooltipContentCallback=Function
 		 *
 		 * @param {jQuery|HTMLElement} target
-		 * @param {jQuery|HTMLElement|String} [content] A jQuery set, an element, or a string of
+		 * @param {jQuery|HTMLElement|string} [content] A jQuery set, an element, or a string of
 		 *  HTML.  If omitted, first tries tooltipContentCallback, then target.title
 		 * @param {Object} [options]
 		 */
