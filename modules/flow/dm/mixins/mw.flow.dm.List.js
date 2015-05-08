@@ -137,12 +137,14 @@
 	 * @fires add
 	 */
 	mw.flow.dm.List.prototype.addItems = function ( items, index ) {
-		var i, at, len, item, currentIndex, existingItem;
+		var i, len, item, event, events, currentIndex, existingItem, at,
+			itemElements = [];
 
 		// Support adding existing items at new locations
 		for ( i = 0, len = items.length; i < len; i++ ) {
 			item = items[i];
 			existingItem = this.getItemById( item.getId() );
+
 			// Check if item exists then remove it first, effectively "moving" it
 			currentIndex = this.items.indexOf( existingItem );
 			if ( currentIndex >= 0 ) {
@@ -151,6 +153,15 @@
 				if ( currentIndex < index ) {
 					index--;
 				}
+			}
+
+			// Add the item
+			if ( item.connect && item.disconnect && !$.isEmptyObject( this.aggregateItemEvents ) ) {
+				events = {};
+				for ( event in this.aggregateItemEvents ) {
+					events[ event ] = [ 'emit', this.aggregateItemEvents[ event ], item ];
+				}
+				item.connect( this, events );
 			}
 
 			// Add by reference

@@ -29,60 +29,8 @@
             'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
 ),
         'partials' => array('flow_board_navigation' => function ($cx, $in, $sp) {return ''.$sp.'
-'.$sp.'<div class="flow-board-navigation flow-load-interactive" data-flow-load-handler="boardNavigation">
+'.$sp.'<div class="flow-board-navigation" data-flow-load-handler="boardNavigation">
 '.$sp.'	<div class="flow-error-container">
-'.$sp.'	</div>
-'.$sp.'	<div class="flow-board-navigation-inner">
-'.$sp.'		<a href="javascript:void(0);"
-'.$sp.'		   class="flow-board-navigator-last flow-ui-tooltip-target"
-'.$sp.'		   data-tooltip-pointing="right"
-'.$sp.'		   title="'.LCRun3::hbch($cx, 'ifCond', array(array(((isset($in['sortby']) && is_array($in)) ? $in['sortby'] : null),'===','updated'),array()), $in, false, function($cx, $in)use($sp){return ''.LCRun3::ch($cx, 'l10n', array(array('flow-sorting-tooltip-recent'),array()), 'encq').'';}, function($cx, $in)use($sp){return ''.LCRun3::ch($cx, 'l10n', array(array('flow-sorting-tooltip-newest'),array()), 'encq').'';}).'"
-'.$sp.'		   data-flow-interactive-handler="menuToggle"
-'.$sp.'		   data-flow-menu-target="< .flow-board-navigation .flow-board-sort-menu">'.LCRun3::hbch($cx, 'ifCond', array(array(((isset($in['sortby']) && is_array($in)) ? $in['sortby'] : null),'===','updated'),array()), $in, false, function($cx, $in)use($sp){return '				'.LCRun3::ch($cx, 'l10n', array(array('flow-recent-topics'),array()), 'encq').'
-'.$sp.'';}, function($cx, $in)use($sp){return '				'.LCRun3::ch($cx, 'l10n', array(array('flow-newest-topics'),array()), 'encq').'
-'.$sp.'';}).'			<span class="mw-ui-icon mw-ui-icon-after mw-ui-icon-caretDown"></span>
-'.$sp.'		</a>
-'.$sp.'
-'.$sp.'		<a href=""
-'.$sp.'		   data-flow-interactive-handler="apiRequest"
-'.$sp.'		   data-flow-api-target="< .flow-board-navigation .flow-board-toc-menu .flow-list"
-'.$sp.'		   data-flow-api-handler="topicList" 
-'.$sp.'		   data-flow-menu-target="< .flow-board-navigation .flow-board-toc-menu"
-'.$sp.'		   class="flow-board-navigator-active flow-board-navigator-first">
-'.$sp.'
-'.$sp.'			<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-stripeToC"></span>
-'.$sp.'
-'.$sp.'			<span class="flow-load-interactive" data-flow-load-handler="boardNavigationTitle">'.LCRun3::ch($cx, 'l10n', array(array('flow-board-header-browse-topics-link'),array()), 'encq').'</span>
-'.$sp.'		</a>
-'.$sp.'	</div>
-'.$sp.'
-'.$sp.'	<div class="flow-board-header-menu">
-'.$sp.'		<div class="flow-menu flow-menu-inverted flow-menu-scrollable flow-board-toc-menu flow-load-interactive"
-'.$sp.'		     data-flow-load-handler="menu"
-'.$sp.'		     data-flow-toc-target=".flow-list">
-'.$sp.'			<div class="flow-menu-js-drop flow-menu-js-drop-hidden"><a href="javascript:void(0);" class="flow-board-header-menu-activator"></a></div>
-'.$sp.'			<ul class="mw-ui-button-container flow-board-toc-list flow-list flow-load-interactive"
-'.$sp.'			    data-flow-load-handler="tocMenu"
-'.$sp.'			    data-flow-toc-target="li:not(.flow-load-more):last"
-'.$sp.'			    data-flow-template="flow_board_toc_loop.partial">
-'.$sp.'			</ul>
-'.$sp.'		</div>
-'.$sp.'
-'.$sp.'		<div class="flow-menu flow-board-sort-menu flow-load-interactive"
-'.$sp.'		     data-flow-load-handler="menu">
-'.$sp.'			<div class="flow-menu-js-drop flow-menu-js-drop-hidden"><a href="javascript:void(0);" class="flow-board-header-menu-activator"></a></div>
-'.$sp.''.((LCRun3::ifvar($cx, ((isset($in['links']['board-sort']) && is_array($in['links'])) ? $in['links']['board-sort'] : null))) ? '				<ul class="mw-ui-button-container flow-list">'.LCRun3::hbch($cx, 'ifCond', array(array(((isset($in['sortby']) && is_array($in)) ? $in['sortby'] : null),'===','updated'),array()), $in, false, function($cx, $in)use($sp){return '					<li><a class="mw-ui-button mw-ui-quiet"
-'.$sp.'					       href="'.htmlentities((string)((isset($in['links']['board-sort']['newest']) && is_array($in['links']['board-sort'])) ? $in['links']['board-sort']['newest'] : null), ENT_QUOTES, 'UTF-8').'"
-'.$sp.'					       data-flow-interactive-handler="apiRequest"
-'.$sp.'					       data-flow-api-target="< .flow-component"
-'.$sp.'					       data-flow-api-handler="board"><span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-beta"></span> '.LCRun3::ch($cx, 'l10n', array(array('flow-newest-topics'),array()), 'encq').'</a></li>
-'.$sp.'';}, function($cx, $in)use($sp){return '					<li><a class="mw-ui-button mw-ui-quiet"
-'.$sp.'					       href="'.htmlentities((string)((isset($in['links']['board-sort']['updated']) && is_array($in['links']['board-sort'])) ? $in['links']['board-sort']['updated'] : null), ENT_QUOTES, 'UTF-8').'"
-'.$sp.'					       data-flow-interactive-handler="apiRequest"
-'.$sp.'					       data-flow-api-target="< .flow-component"
-'.$sp.'					       data-flow-api-handler="board"><span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-clock"></span> '.LCRun3::ch($cx, 'l10n', array(array('flow-recent-topics'),array()), 'encq').'</a></li>
-'.$sp.'';}).'				</ul>
-'.$sp.'' : '').'		</div>
 '.$sp.'	</div>
 '.$sp.'</div>
 ';},'flow_errors' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-error-container">
@@ -146,7 +94,7 @@
 '.$sp.'' : '').'</div>
 ';},'flow_topic_titlebar_content' => function ($cx, $in, $sp) {return ''.$sp.'<h2 class="flow-topic-title flow-load-interactive"
 '.$sp.'    data-flow-topic-title="'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),array()), 'encq').'"
-'.$sp.'    data-flow-load-handler="topicTitle">'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),array()), 'encq').'</h2>
+'.$sp.'    >'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),array()), 'encq').'</h2>
 '.$sp.'<div class="flow-topic-meta">
 '.$sp.'	'.LCRun3::ch($cx, 'l10n', array(array('flow-topic-comments',((isset($in['reply_count']) && is_array($in)) ? $in['reply_count'] : null)),array()), 'encq').' &bull;
 '.$sp.'
