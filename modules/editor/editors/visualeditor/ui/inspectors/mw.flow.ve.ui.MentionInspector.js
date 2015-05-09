@@ -167,7 +167,6 @@
 		// Properties
 		overlay = this.manager.getOverlay();
 		this.targetInput = new mw.flow.ve.ui.MentionTargetInputWidget( {
-			$: this.$,
 			$overlay: overlay ? overlay.$element : this.$frame,
 			topicPosters: flowBoard.getTopicPosters( this.$element )
 		} );
