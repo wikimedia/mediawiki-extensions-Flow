@@ -429,7 +429,6 @@
 	"apihelp-flow+view-topiclist-param-offset-id": "Förskjutningsvärde (i UUID-format) från vilket ämnen ska börja hämtas.",
 	"apihelp-flow+view-topiclist-param-offset": "Förskjutningsvärde från vilket ämnen ska börja hämtas.",
 	"apihelp-flow+view-topiclist-param-limit": "Antal ämnen att hämta.",
-	"apihelp-flow+view-topiclist-param-render": "Rendera ämnena som HTML.",
 	"apihelp-flow+view-topiclist-example-1": "Lista ämnen på [[Talk:Sandbox]]",
 	"apihelp-flow-parsoid-utils-description": "Konvertera text mellan wikitext och HTML.",
 	"apihelp-flow-parsoid-utils-param-from": "Format att konvertera innehållet från.",
