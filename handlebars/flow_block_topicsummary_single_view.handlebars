@@ -1,4 +1,5 @@
 <div class="flow-board">
+	{{> flow_errors }}
 	<div class="flow-revision-permalink-warning plainlinks">
 		{{#if revision.previousRevisionId}}
 			{{l10nParse "flow-revision-permalink-warning-postsummary"
