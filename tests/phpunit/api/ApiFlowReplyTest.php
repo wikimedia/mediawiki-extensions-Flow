@@ -12,28 +12,35 @@ use User;
  */
 class ApiFlowReplyTest extends ApiTestCase {
 	public function testTopLevelReply() {
-		$result = $this->createTopic( 'result' );
-		$workflowId = $result['roots'][0];
-		$topicRevId = $result['posts'][$workflowId][0];
+		$topic = $this->createTopic();
 
 		$data = $this->doApiRequest( array(
-			'page' => "Topic:$workflowId",
+			'page' => $topic['topic-page'],
 			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'reply',
-			'repreplyTo' => $workflowId,
+			'repreplyTo' => $topic['topic-id'],
 			'repcontent' => '⎛ ﾟ∩ﾟ⎞⎛ ⍜⌒⍜⎞⎛ ﾟ⌒ﾟ⎞',
 			'repformat' => 'wikitext',
 		) );
 
-		$result = $data[0]['flow']['reply']['result']['topic'];
-		$debug = json_encode( $result );
-		$this->assertArrayHasKey( 'errors', $result, $debug );
-		$this->assertCount( 0, $result['errors'], $result );
+		$debug = json_encode( $data );
+		$this->assertEquals( 'ok', $data[0]['flow']['reply']['status'], $debug );
+		$this->assertCount( 1, $data[0]['flow']['reply']['committed'], $debug );
 
-		$newPostId = end( $result['revisions'][$topicRevId]['replies'] );
-		$newRevisionId = $result['posts'][$newPostId][0];
-		$revision = $result['revisions'][$newRevisionId];
+		$replyPostId = $data[0]['flow']['reply']['committed']['topic']['post-id'];
+		$replyRevisionId = $data[0]['flow']['reply']['committed']['topic']['post-revision-id'];
+
+		$data = $this->doApiRequest( array(
+			'page' => $topic['topic-page'],
+			'action' => 'flow',
+			'submodule' => 'view-post',
+			'vppostId' => $replyPostId,
+			'vpformat' => 'html',
+		) );
+
+		$debug = json_encode( $data );
+		$revision = $data[0]['flow']['view-post']['result']['topic']['revisions'][$replyRevisionId];
 		$this->assertArrayHasKey( 'changeType', $revision, $debug );
 		$this->assertEquals( 'reply', $revision['changeType'], $debug );
 		$this->assertEquals(
@@ -41,7 +48,6 @@ class ApiFlowReplyTest extends ApiTestCase {
 			trim( strip_tags( $revision['content']['content'] ) ),
 			$debug
 		);
-		// @todo: below test is invalid with this patch, tests will be properly fixed in follow-up patch
-//		$this->assertEquals( 'wikitext', $revision['content']['format'], $debug );
+		$this->assertEquals( 'html', $revision['content']['format'], $debug );
 	}
 }

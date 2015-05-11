@@ -41,10 +41,10 @@ class ApiFlowViewHeaderTest extends ApiTestCase {
 			'ehcontent' => 'swimmingly',
 			'ehformat' => 'wikitext',
 		) );
-		$result = $data[0]['flow']['edit-header']['result']['header'];
-		$debug = json_encode( $result );
-		$this->assertArrayHasKey( 'errors', $result, $debug );
-		$this->assertCount( 0, $result['errors'], $debug );
+
+		$debug = json_encode( $data );
+		$this->assertEquals( 'ok', $data[0]['flow']['edit-header']['status'], $debug );
+		$this->assertCount( 1, $data[0]['flow']['edit-header']['committed'], $debug );
 
 		$data = $this->doApiRequest( array(
 			'page' => "Talk:Flow_QA",

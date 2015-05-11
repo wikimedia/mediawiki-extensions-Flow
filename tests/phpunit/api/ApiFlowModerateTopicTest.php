@@ -28,9 +28,10 @@ class ApiFlowModerateTopicTest extends ApiTestCase {
 	);
 
 	public function testModerateTopic() {
-		$workflowId = $this->createTopic();
+		$topic = $this->createTopic();
+
 		$data = $this->doApiRequest( array(
-			'page' => "Topic:$workflowId",
+			'page' => $topic['topic-page'],
 			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'moderate-topic',
@@ -38,14 +39,21 @@ class ApiFlowModerateTopicTest extends ApiTestCase {
 			'mtreason' => '<>&{};'
 		) );
 
-		$result = $data[0]['flow']['moderate-topic']['result']['topic'];
-		$debug = json_encode( $result );
-		$this->assertArrayHasKey( 'errors', $result );
-		$this->assertCount( 0, $result['errors'], json_encode( $result['errors'] ) );
+		$debug = json_encode( $data );
+		$this->assertEquals( 'ok', $data[0]['flow']['moderate-topic']['status'], $debug );
+		$this->assertCount( 1, $data[0]['flow']['moderate-topic']['committed'], $debug );
 
-		$newRevisionId = $result['posts'][$workflowId][0];
-		$revision = $result['revisions'][$newRevisionId];
-		$debug = json_encode( $revision );
+		$revisionId = $data[0]['flow']['moderate-topic']['committed']['topic']['post-revision-id'];
+
+		$data = $this->doApiRequest( array(
+			'page' => $topic['topic-page'],
+			'action' => 'flow',
+			'submodule' => 'view-topic',
+			'vpformat' => 'html',
+		) );
+
+		$debug = json_encode( $data );
+		$revision = $data[0]['flow']['view-topic']['result']['topic']['revisions'][$revisionId];
 		$this->assertArrayHasKey( 'changeType', $revision, $debug );
 		$this->assertEquals( 'delete-topic', $revision['changeType'], $debug );
 		$this->assertArrayHasKey( 'isModerated', $revision, $debug );
@@ -69,6 +77,6 @@ class ApiFlowModerateTopicTest extends ApiTestCase {
 		$logEntry = $data[0]['query']['logevents'][0];
 		$logParams = isset( $logEntry['params'] ) ? $logEntry['params'] : $logEntry;
 		$this->assertArrayHasKey( 'topicId', $logParams, $debug );
-		$this->assertEquals( $workflowId, $logParams['topicId'], $debug );
+		$this->assertEquals( $topic['topic-id'], $logParams['topicId'], $debug );
 	}
 }
