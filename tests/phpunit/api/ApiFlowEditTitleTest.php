@@ -12,26 +12,32 @@ use User;
  */
 class ApiFlowEditTitleTest extends ApiTestCase {
 	public function testEditTitle() {
-		$result = $this->createTopic( 'result' );
-		$workflowId = $result['roots'][0];
-		$revisionId = $result['posts'][$workflowId][0];
+		$topic = $this->createTopic();
+
 		$data = $this->doApiRequest( array(
-			'page' => "Topic:$workflowId",
+			'page' => $topic['topic-page'],
 			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'edit-title',
-			'etprev_revision' => $revisionId,
+			'etprev_revision' => $topic['topic-revision-id'],
 			'etcontent' => '(ﾉ◕ヮ◕)ﾉ*:･ ﾟ ﾟ ﾟ ﾟ ﾟ ﾟ ﾟ ﾟ✧'
 		) );
 
-		$result = $data[0]['flow']['edit-title']['result']['topic'];
+		$debug = json_encode( $data );
+		$this->assertEquals( 'ok', $data[0]['flow']['edit-title']['status'], $debug );
+		$this->assertCount( 1, $data[0]['flow']['edit-title']['committed'], $debug );
 
-		$this->assertArrayHasKey( 'errors', $result );
-		$this->assertCount( 0, $result['errors'], json_encode( $result['errors'] ) );
+		$revisionId = $data[0]['flow']['edit-title']['committed']['topic']['post-revision-id'];
 
-		$revisionId = $result['posts'][$workflowId][0];
-		$revision = $result['revisions'][$revisionId];
-		$debug = json_encode( $revision );
+		$data = $this->doApiRequest( array(
+			'page' => $topic['topic-page'],
+			'action' => 'flow',
+			'submodule' => 'view-topic',
+			'vpformat' => 'html',
+		) );
+
+		$debug = json_encode( $data );
+		$revision = $data[0]['flow']['view-topic']['result']['topic']['revisions'][$revisionId];
 		$this->assertArrayHasKey( 'changeType', $revision, $debug );
 		$this->assertEquals( 'edit-title', $revision['changeType'], $debug );
 		$this->assertEquals( '(ﾉ◕ヮ◕)ﾉ*:･ ﾟ ﾟ ﾟ ﾟ ﾟ ﾟ ﾟ ﾟ✧', $revision['content']['content'], $debug );

@@ -16,9 +16,18 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 		$topicData = array();
 		for ( $i = 0; $i < 3; $i++ ) {
 			$title = self::TITLE_PREFIX . $i;
-			$topicData[$i]['response'] = $this->createTopic( 'result', $title );
-			$topicData[$i]['id'] = $topicData[$i]['response']['roots'][0];
-			$topicData[$i]['revisionId'] = $topicData[$i]['response']['posts'][$topicData[$i]['id']][0];
+			$topic = $this->createTopic( $title );
+			$data = $this->doApiRequest( array(
+				'page' => $topic['topic-page'],
+				'action' => 'flow',
+				'submodule' => 'view-topic',
+				'vpformat' => 'html',
+			) );
+
+			$topicData[$i]['response'] = $data[0]['flow']['view-topic']['result']['topic'];
+			$topicData[$i]['page'] = $topic['topic-page'];
+			$topicData[$i]['id'] = $topic['topic-id'];
+			$topicData[$i]['revisionId'] = $topic['topic-revision-id'];
 			$actualRevision = $topicData[$i]['response']['revisions'][$topicData[$i]['revisionId']];
 			$topicData[$i]['expectedRevision'] = array(
 				'content' => array(
@@ -161,7 +170,7 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 			$replyResponse = $this->doApiRequest(
 				array(
 					'action' => 'flow',
-					'page' => Title::makeTitle( NS_TOPIC, $topicData[$topicDataInd]['id'] )->getPrefixedText(),
+					'page' => $topicData[$topicDataInd]['page'],
 					'submodule' => 'reply',
 					'token' => $this->getEditToken(),
 					'repreplyTo' => $topicData[$topicDataInd]['id'],
@@ -183,11 +192,7 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 				sleep( 1 );
 			}
 
-			$replyResponse = $replyResponse[0];
-
-			$responseTopic = $replyResponse['flow']['reply']['result']['topic'];
-			$topicRevisionId = $topicData[$topicDataInd]['revisionId'];
-			$newPostId = end( $responseTopic['revisions'][$topicRevisionId]['replies'] );
+			$newPostId = $replyResponse[0]['flow']['reply']['committed']['topic']['post-id'];
 			$topicData[$topicDataInd]['updateTimestamp'] = UUID::create( $newPostId )->getTimestamp();
 			$topicData[$topicDataInd]['expectedRevision']['last_updated'] = wfTimestamp( TS_UNIX, $topicData[$topicDataInd]['updateTimestamp'] ) * 1000;
 		}

@@ -13,30 +13,35 @@ use User;
  */
 class ApiFlowModeratePostTest extends ApiTestCase {
 	public function testModeratePost() {
-		$result = $this->createTopic( 'result' );
-		$workflowId = $result['roots'][0];
-		$topicRevisionId = $result['posts'][$workflowId][0];
-		$topic = $result['revisions'][$topicRevisionId];
-		$replyPostId = $topic['replies'][0];
+		$topic = $this->createTopic();
 
 		$data = $this->doApiRequest( array(
-			'page' => "Topic:$workflowId",
+			'page' => $topic['topic-page'],
 			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'moderate-post',
 			'mpmoderationState' => AbstractRevision::MODERATED_HIDDEN,
-			'mppostId' => $replyPostId,
+			'mppostId' => $topic['post-id'],
 			'mpreason' => '<>&{};'
 		) );
 
-		$result = $data[0]['flow']['moderate-post']['result']['topic'];
-		$debug = json_encode( $result );
-		$this->assertArrayHasKey( 'errors', $result );
-		$this->assertCount( 0, $result['errors'], json_encode( $result['errors'] ) );
+		$debug = json_encode( $data );
+		$this->assertEquals( 'ok', $data[0]['flow']['moderate-post']['status'], $debug );
+		$this->assertCount( 1, $data[0]['flow']['moderate-post']['committed'], $debug );
 
-		$newRevisionId = $result['posts'][$replyPostId][0];
-		$revision = $result['revisions'][$newRevisionId];
-		$debug = json_encode( $revision );
+		$postId = $data[0]['flow']['moderate-post']['committed']['topic']['post-id'];
+		$revisionId = $data[0]['flow']['moderate-post']['committed']['topic']['post-revision-id'];
+
+		$data = $this->doApiRequest( array(
+			'page' => $topic['topic-page'],
+			'action' => 'flow',
+			'submodule' => 'view-post',
+			'vppostId' => $postId,
+			'vpformat' => 'html',
+		) );
+
+		$debug = json_encode( $data );
+		$revision = $data[0]['flow']['view-post']['result']['topic']['revisions'][$revisionId];
 		$this->assertArrayHasKey( 'changeType', $revision, $debug );
 		$this->assertEquals( 'hide-post', $revision['changeType'], $debug );
 		$this->assertArrayHasKey( 'isModerated', $revision, $debug );

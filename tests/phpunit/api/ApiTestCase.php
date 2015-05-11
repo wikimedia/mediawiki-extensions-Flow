@@ -72,7 +72,7 @@ abstract class ApiTestCase extends BaseApiTestCase {
 	/**
 	 * Create a topic on a board using the default user
 	 */
-	protected function createTopic( $return = '', $topicTitle = 'Hi there!' ) {
+	protected function createTopic( $topicTitle = 'Hi there!' ) {
 		$data = $this->doApiRequest( array(
 			'page' => 'Talk:Flow QA',
 			'token' => $this->getEditToken(),
@@ -81,18 +81,12 @@ abstract class ApiTestCase extends BaseApiTestCase {
 			'nttopic' => $topicTitle,
 			'ntcontent' => '...',
 		) );
+
 		$this->assertTrue(
-			// @todo we should return the new id much more directly than this
-			isset( $data[0]['flow']['new-topic']['result']['topiclist']['roots'][0] ),
+			isset( $data[0]['flow']['new-topic']['committed']['topiclist']['topic-id'] ),
 			'Api response must contain new topic id'
 		);
 
-		if ( $return === 'all' ) {
-			return $data;
-		} elseif ( $return === 'result' ) {
-			return $data[0]['flow']['new-topic']['result']['topiclist'];
-		} else {
-			return $data[0]['flow']['new-topic']['result']['topiclist']['roots'][0];
-		}
+		return $data[0]['flow']['new-topic']['committed']['topiclist'];
 	}
 }

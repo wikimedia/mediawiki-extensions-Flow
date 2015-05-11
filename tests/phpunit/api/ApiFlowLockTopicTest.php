@@ -12,9 +12,10 @@ use User;
  */
 class ApiFlowLockTopicTest extends ApiTestCase {
 	public function testLockTopic() {
-		$workflowId = $this->createTopic();
+		$topic = $this->createTopic();
+
 		$data = $this->doApiRequest( array(
-			'page' => "Topic:$workflowId",
+			'page' => $topic['topic-page'],
 			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'lock-topic',
@@ -23,38 +24,52 @@ class ApiFlowLockTopicTest extends ApiTestCase {
 			'cotprev_revision' => null,
 		) );
 
-		$result = $data[0]['flow']['lock-topic']['result']['topic'];
-		$debug = json_encode( $result );
-		$this->assertArrayHasKey( 'errors', $result, $debug );
-		$this->assertCount( 0, $result['errors'], $debug );
-		$this->assertArrayHasKey( 'workflowId', $result, $debug );
-		$this->assertEquals( $workflowId, $result['workflowId'], $debug );
-		$this->assertArrayHasKey( 'changeType', $result, $debug );
-		$this->assertEquals( 'lock-topic', $result['changeType'], $debug );
-		$this->assertArrayHasKey( 'isModerated', $result, $debug );
-		$this->assertTrue( $result['isModerated'], $debug );
-		$this->assertArrayHasKey( 'actions', $result, $debug );
-		$this->assertArrayHasKey( 'unlock', $result['actions'], $debug );
-		$this->assertArrayHasKey( 'moderateReason', $result, $debug );
-		$this->assertEquals( 'fiddle faddle', $result['moderateReason']['content'], $debug );
-		$this->assertEquals( 'plaintext', $result['moderateReason']['format'], $debug );
+		$debug = json_encode( $data );
+		$this->assertEquals( 'ok', $data[0]['flow']['lock-topic']['status'], $debug );
+		$this->assertCount( 1, $data[0]['flow']['lock-topic']['committed'], $debug );
+
+		$revisionId = $data[0]['flow']['lock-topic']['committed']['topic']['post-revision-id'];
+
+		$data = $this->doApiRequest( array(
+			'page' => $topic['topic-page'],
+			'action' => 'flow',
+			'submodule' => 'view-topic',
+			'vpformat' => 'html',
+		) );
+
+		$debug = json_encode( $data );
+		$revision = $data[0]['flow']['view-topic']['result']['topic']['revisions'][$revisionId];
+		$this->assertArrayHasKey( 'workflowId', $revision, $debug );
+		$this->assertEquals( $topic['topic-id'], $revision['workflowId'], $debug );
+		$this->assertArrayHasKey( 'changeType', $revision, $debug );
+		$this->assertEquals( 'lock-topic', $revision['changeType'], $debug );
+		$this->assertArrayHasKey( 'isModerated', $revision, $debug );
+		$this->assertTrue( $revision['isModerated'], $debug );
+		$this->assertArrayHasKey( 'actions', $revision, $debug );
+		$this->assertArrayHasKey( 'unlock', $revision['actions'], $debug );
+		$this->assertArrayHasKey( 'moderateReason', $revision, $debug );
+		$this->assertEquals( 'fiddle faddle', $revision['moderateReason']['content'], $debug );
+		$this->assertEquals( 'plaintext', $revision['moderateReason']['format'], $debug );
 	}
 
 	public function testUnlockTopic() {
-		$workflowId = $this->createTopic();
+		$topic = $this->createTopic();
+
 		$data = $this->doApiRequest( array(
-			'page' => "Topic:$workflowId",
+			'page' => $topic['topic-page'],
 			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'lock-topic',
 			'cotmoderationState' => 'lock',
 			'cotreason' => 'fiddle faddle',
 		) );
-		$result = $data[0]['flow']['lock-topic']['result']['topic'];
-		$this->assertCount( 0, $result['errors'] );
+
+		$debug = json_encode( $data );
+		$this->assertEquals( 'ok', $data[0]['flow']['lock-topic']['status'], $debug );
+		$this->assertCount( 1, $data[0]['flow']['lock-topic']['committed'], $debug );
 
 		$data = $this->doApiRequest( array(
-			'page' => "Topic:$workflowId",
+			'page' => $topic['topic-page'],
 			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'lock-topic',
@@ -62,17 +77,29 @@ class ApiFlowLockTopicTest extends ApiTestCase {
 			'cotreason' => 'Ether',
 		) );
 
-		$result = $data[0]['flow']['lock-topic']['result']['topic'];
-		$this->assertArrayHasKey( 'errors', $result );
-		$this->assertCount( 0, $result['errors'] );
-		$this->assertArrayHasKey( 'changeType', $result );
-		$this->assertEquals( 'restore-topic', $result['changeType'] );
-		$this->assertArrayHasKey( 'isModerated', $result );
-		$this->assertFalse( $result['isModerated'] );
-		$this->assertArrayHasKey( 'actions', $result );
-		$this->assertArrayHasKey( 'lock', $result['actions'] );
+		$debug = json_encode( $data );
+		$this->assertEquals( 'ok', $data[0]['flow']['lock-topic']['status'], $debug );
+		$this->assertCount( 1, $data[0]['flow']['lock-topic']['committed'], $debug );
+
+		$revisionId = $data[0]['flow']['lock-topic']['committed']['topic']['post-revision-id'];
+
+		$data = $this->doApiRequest( array(
+			'page' => $topic['topic-page'],
+			'action' => 'flow',
+			'submodule' => 'view-topic',
+			'vpformat' => 'html',
+		) );
+
+		$debug = json_encode( $data );
+		$revision = $data[0]['flow']['view-topic']['result']['topic']['revisions'][$revisionId];
+		$this->assertArrayHasKey( 'changeType', $revision, $debug );
+		$this->assertEquals( 'restore-topic', $revision['changeType'], $debug );
+		$this->assertArrayHasKey( 'isModerated', $revision, $debug );
+		$this->assertFalse( $revision['isModerated'], $debug );
+		$this->assertArrayHasKey( 'actions', $revision, $debug );
+		$this->assertArrayHasKey( 'lock', $revision['actions'], $debug );
 		// Is this intentional? We don't display it by default
 		// but perhaps it should still be in the api output.
-		$this->assertArrayNotHasKey( 'moderateReason', $result );
+		$this->assertArrayNotHasKey( 'moderateReason', $revision, $debug );
 	}
 }

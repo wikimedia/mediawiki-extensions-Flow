@@ -12,32 +12,36 @@ use User;
  */
 class ApiFlowEditPostTest extends ApiTestCase {
 	public function testEditPost() {
-		$result = $this->createTopic( 'result' );
-		$workflowId = $result['roots'][0];
-		$topicRevisionId = $result['posts'][$workflowId][0];
-		$topic = $result['revisions'][$topicRevisionId];
-
-		$replyPostId = $topic['replies'][0];
-		$replyRevisionId = $result['posts'][$replyPostId][0];
+		$topic = $this->createTopic();
 
 		$data = $this->doApiRequest( array(
-			'page' => "Topic:$workflowId",
+			'page' => $topic['topic-page'],
 			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'edit-post',
-			'eppostId' => $replyPostId,
-			'epprev_revision' => $replyRevisionId,
+			'eppostId' => $topic['post-id'],
+			'epprev_revision' => $topic['post-revision-id'],
 			'epcontent' => '⎛ ﾟ∩ﾟ⎞⎛ ⍜⌒⍜⎞⎛ ﾟ⌒ﾟ⎞',
 			'epformat' => 'wikitext',
 		) );
 
-		$result = $data[0]['flow']['edit-post']['result']['topic'];
-		$debug = json_encode( $result );
-		$this->assertArrayHasKey( 'errors', $result, $debug );
-		$this->assertCount( 0, $result['errors'], $result );
+		$debug = json_encode( $data );
+		$this->assertEquals( 'ok', $data[0]['flow']['edit-post']['status'], $debug );
+		$this->assertCount( 1, $data[0]['flow']['edit-post']['committed'], $debug );
 
-		$newRevisionId = $result['posts'][$replyPostId][0];
-		$revision = $result['revisions'][$newRevisionId];
+		$replyPostId = $data[0]['flow']['edit-post']['committed']['topic']['post-id'];
+		$replyRevisionId = $data[0]['flow']['edit-post']['committed']['topic']['post-revision-id'];
+
+		$data = $this->doApiRequest( array(
+			'page' => $topic['topic-page'],
+			'action' => 'flow',
+			'submodule' => 'view-post',
+			'vppostId' => $replyPostId,
+			'vpformat' => 'html',
+		) );
+
+		$debug = json_encode( $data );
+		$revision = $data[0]['flow']['view-post']['result']['topic']['revisions'][$replyRevisionId];
 		$this->assertArrayHasKey( 'changeType', $revision, $debug );
 		$this->assertEquals( 'edit-post', $revision['changeType'], $debug );
 		$this->assertEquals(
@@ -45,7 +49,6 @@ class ApiFlowEditPostTest extends ApiTestCase {
 			trim( strip_tags( $revision['content']['content'] ) ),
 			$debug
 		);
-		// @todo: below test is invalid with this patch, tests will be properly fixed in follow-up patch
-//		$this->assertEquals( 'wikitext', $revision['content']['format'], $debug );
+		$this->assertEquals( 'html', $revision['content']['format'], $debug );
 	}
 }
