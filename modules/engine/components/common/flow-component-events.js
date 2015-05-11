@@ -667,7 +667,7 @@
 
 		// Hide its actions
 		// @todo Use TemplateEngine to find and hide actions?
-		$form.find( '.flow-form-collapsible' ).hide();
+		$form.find( '.flow-form-collapsible' ).toggleClass( 'flow-form-collapsible-collapsed', true );
 	}
 	FlowComponentEventsMixin.eventHandlers.hideForm = flowEventsMixinHideForm;
 
@@ -708,7 +708,7 @@
 		var self = this;
 
 		// Show its actions
-		$form.find( '.flow-form-collapsible' ).show();
+		$form.find( '.flow-form-collapsible' ).toggleClass( 'flow-form-collapsible-collapsed', false );
 
 		// Expand all textareas if needed
 		$form.find( '.flow-input-compressed' ).each( function () {

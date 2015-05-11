@@ -79,8 +79,6 @@
 				// focus VE instance if textarea had focus
 				if ( !$focusedElement.length || flowEditor.$node.is( $focusedElement ) ) {
 					surface.getView().focus();
-				} else {
-					$focusedElement.focus();
 				}
 
 				$veNode = surface.$element.find( '.ve-ce-documentNode' );
