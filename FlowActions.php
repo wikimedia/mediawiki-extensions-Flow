@@ -125,6 +125,9 @@ $wgFlowActions = array(
 			PostSummary::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_SUPPRESSED => array( 'flow-suppress' ),
 		),
+		'root-permissions' => array(
+			PostRevision::MODERATED_NONE => '',
+		),
 		'links' => array( 'topic', 'topic-history', 'watch-topic', 'unwatch-topic', 'summary-revision' ),
 		'actions' => array( 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
 		'history' => array(
@@ -149,6 +152,9 @@ $wgFlowActions = array(
 			PostSummary::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_SUPPRESSED => array( 'flow-suppress' ),
+		),
+		'root-permissions' => array(
+			PostRevision::MODERATED_NONE => '',
 		),
 		'links' => array( 'topic', 'topic-history', 'diff-post-summary', 'watch-topic', 'unwatch-topic', 'summary-revision' ),
 		'actions' => array( 'edit-topic-summary', 'lock-topic', 'restore-topic', 'undo-edit-topic-summary' ),
@@ -177,6 +183,9 @@ $wgFlowActions = array(
 			PostSummary::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_SUPPRESSED => array( 'flow-suppress' ),
+		),
+		'root-permissions' => array(
+			PostRevision::MODERATED_NONE => '',
 		),
 		'links' => array( 'topic', 'topic-history', 'diff-post-summary', 'watch-topic', 'unwatch-topic' ),
 		'actions' => array( 'edit-topic-summary', 'lock-topic', 'restore-topic', 'undo-edit-topic-summary' ),
