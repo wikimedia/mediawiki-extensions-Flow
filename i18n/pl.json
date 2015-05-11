@@ -136,6 +136,7 @@
 	"flow-undo-edit-header": "Edycja opisu",
 	"flow-ve-mention-inspector-title": "Oznacz",
 	"flow-ve-mention-inspector-remove-label": "Usuń",
+	"flow-ve-mention-placeholder": "Nazwa użytkownika",
 	"flow-ve-mention-tool-title": "Oznacz użytkownika",
 	"flow-ve-mention-inspector-invalid-user": "Nazwa użytkownika \"$1\" nie jest zarejestrowana.",
 	"flow-wikitext-editor-help": "Wikitekst $1."

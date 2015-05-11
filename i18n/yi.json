@@ -18,7 +18,7 @@
 	"flow-reply-topic-placeholder": "{{GENDER:$1|קאמענטירן}} אויף \"$2\"",
 	"flow-reply-submit": "{{GENDER:$1|ענטפערן}}",
 	"flow-reply-link": "{{GENDER:$1|ענטפערן}}",
-	"flow-thank-link": "{{GENDER:$1|דאַנקען}}",
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|דאַנקען}}}}",
 	"flow-post-action-view": "פערמאנענטער לינק",
 	"flow-post-action-suppress-post": "אונטערדריקן",
 	"flow-post-action-edit-post": "רעדאַקטירן",
@@ -53,5 +53,6 @@
 	"flow-link-history": "היסטאריע",
 	"flow-moderation-confirm-undelete-post": "מבטל זיין אויסמעקן",
 	"flow-moderation-confirm-undelete-topic": "מבטל זיין אויסמעקן",
-	"flow-undo-your-text": "אייער טעקסט"
+	"flow-undo-your-text": "אייער טעקסט",
+	"flow-ve-mention-placeholder": "באניצער־נאמען"
 }

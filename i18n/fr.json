@@ -29,7 +29,8 @@
 			"Nicolapps",
 			"Hercule",
 			"Weft",
-			"MPlauche"
+			"MPlauche",
+			"NemesisIII"
 		]
 	},
 	"enableflow": "Activer Flow",
@@ -84,9 +85,9 @@
 	"flow-reply-topic-title-placeholder": "Répondre à « $1 »",
 	"flow-reply-submit": "{{GENDER:$1|Répondre}}",
 	"flow-reply-link": "{{GENDER:$1|Répondre}}",
-	"flow-thank-link": "{{GENDER:$1|Remercier}}",
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Remercier}}}}",
 	"flow-lock-link": "{{GENDER:$1|Verrouiller}}",
-	"flow-thank-link-title": "Remercier publiquement l’auteur",
+	"flow-thank-link-title": "{{GENDER:$1|{{GENDER:$2|Remercier}}}} publiquement l’auteur",
 	"flow-history-action-suppress-post": "masquer",
 	"flow-history-action-delete-post": "supprimer",
 	"flow-history-action-hide-post": "masquer",
@@ -518,6 +519,7 @@
 	"flow-ve-mention-context-item-label": "Mentionner",
 	"flow-ve-mention-inspector-title": "Mentionner",
 	"flow-ve-mention-inspector-remove-label": "Supprimer",
+	"flow-ve-mention-placeholder": "Nom d’utilisateur",
 	"flow-ve-mention-tool-title": "Mentionner un utilisateur",
 	"flow-ve-mention-template": "appeler",
 	"flow-ve-mention-inspector-invalid-user": "Le nom d’utilisateur '$1' n’est pas enregistré.",

@@ -61,7 +61,7 @@
 	"flow-reply-topic-title-placeholder": "回覆至 \"$1\"",
 	"flow-reply-submit": "{{GENDER:$1|回覆}}",
 	"flow-reply-link": "{{GENDER:$1|回覆}}",
-	"flow-thank-link": "{{GENDER:$1|感謝}}",
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|感謝}}}}",
 	"flow-lock-link": "{{GENDER:$1|鎖定}}",
 	"flow-thank-link-title": "公開感謝發佈者",
 	"flow-history-action-suppress-post": "封鎖",
