@@ -3,10 +3,12 @@
 namespace Flow;
 
 use Flow\Collection\CollectionCache;
+use Flow\Collection\PostCollection;
 use Flow\Exception\InvalidDataException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Closure;
+use Flow\Model\PostSummary;
 use User;
 
 /**
@@ -56,11 +58,7 @@ class RevisionActionPermissions {
 	 * @return bool
 	 */
 	public function isAllowed( AbstractRevision $revision = null, $action ) {
-		$allowed = $this->isRevisionAllowed( $revision, $action );
-
-		if ( $allowed && $revision instanceof PostRevision ) {
-			$allowed = $this->isRootAllowed( $revision, $action );
-		}
+		$allowed = $this->isRevisionAllowed( $revision, $action ) && $this->isRootAllowed( $revision, $action );
 
 		try {
 			// if there was no revision object, it's pointless to find last revision
@@ -118,21 +116,32 @@ class RevisionActionPermissions {
 	 * root(topic) post related to the provided revision.  This is required for
 	 * things like preventing replies to locked topics.
 	 *
-	 * @param PostRevision $revision
+	 * @param AbstractRevision $revision
 	 * @param string $action
 	 * @return bool
 	 */
-	protected function isRootAllowed( PostRevision $revision, $action ) {
-		// If the revision is a root then this does not apply.
-		if ( $revision->isTopicTitle() ) {
+	protected function isRootAllowed( AbstractRevision $revision, $action ) {
+		if ( $revision instanceof PostRevision ) {
+			// If the revision is a root then this does not apply.
+			if ( $revision->isTopicTitle() ) {
+				return true;
+			} else {
+				$root = $revision->getRootPost();
+			}
+		} elseif ( $revision instanceof PostSummary ) {
+			$topicId = $revision->getSummaryTargetId();
+			$collection = PostCollection::newFromId( $topicId );
+			$root = $collection->getLastRevision();
+		} else {
+			// can't trace this type of revision back to topic, so this doesn't apply
 			return true;
 		}
+
 		// If the `root-permissions` key is not set then it is allowed
 		if ( !$this->actions->hasValue( $action, 'root-permissions' ) ) {
 			return true;
 		}
 
-		$root = $revision->getRootPost();
 		$permission = $this->getPermission( $root, $action, 'root-permissions' );
 
 		// If `root-permissions` is defined but not for the current state
