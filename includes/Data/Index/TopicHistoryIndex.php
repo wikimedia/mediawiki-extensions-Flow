@@ -86,49 +86,6 @@ class TopicHistoryIndex extends TopKIndex {
 	}
 
 	protected function backingStoreFindMulti( array $queries ) {
-		// all queries are for roots( guaranteed by constructor), so anything that falls
-		// through and has to be queried from storage will actually need to be doing a
-		// special condition either joining against flow_tree_node or first collecting the
-		// subtree node lists and then doing a big IN condition
-
-		// This isn't a hot path (should be pre-populated into index) but we still don't want
-		// horrible performance
-
-		$roots = array();
-		foreach ( $queries as $features ) {
-			$roots[] = UUID::create( $features['topic_root_id'] );
-		}
-		$nodeList = $this->treeRepository->fetchSubtreeNodeList( $roots );
-		if ( $nodeList === false ) {
-			// We can't return the existing $retval, that false data would be cached.
-			return array();
-		}
-
-		$descendantQueries = array();
-		foreach ( $queries as $idx => $features ) {
-			/** @var UUID $topicRootId */
-			$topicRootId = UUID::create( $features['topic_root_id'] );
-			$nodes = $nodeList[$topicRootId->getAlphadecimal()];
-			$descendantQueries[$idx] = array(
-				'rev_type_id' => UUID::convertUUIDs( $nodes ),
-			);
-		}
-
-		$options = $this->queryOptions();
-		$res = $this->storage->findMulti( $descendantQueries, $options );
-		if  ( !$res ) {
-			return array();
-		}
-
-		$results = array();
-
-		foreach ( $res as $idx => $rows ) {
-			$results[$idx] = $rows;
-			unset( $queries[$idx] );
-		}
-		if ( $queries ) {
-			// Log something about not finding everything?
-		}
-		return $results;
+		return $this->storage->findMulti( $queries, $this->queryOptions() );
 	}
 }

@@ -632,7 +632,8 @@ $c['storage.topic_history.backend'] = function( $c ) {
 	global $wgFlowExternalStore;
 	return new TopicHistoryStorage(
 		new PostRevisionStorage( $c['db.factory'], $wgFlowExternalStore, $c['repository.tree'] ),
-		new PostSummaryRevisionStorage( $c['db.factory'], $wgFlowExternalStore )
+		new PostSummaryRevisionStorage( $c['db.factory'], $wgFlowExternalStore ),
+		$c['repository.tree']
 	);
 };
 $c['storage.topic_history.indexes.primary'] = function( $c ) {
