@@ -143,8 +143,13 @@
 		for ( i = 0, len = topiclist.roots.length; i < len; i++ ) {
 			// The content of the topic is its first post
 			topicId = topiclist.roots[ i ];
-			revisionData = mw.flow.dm.Topic.static.getTopicRevisionFromApi( topiclist, topicId );
 
+			// Don't add topic if it's already there
+			if ( this.getBoard().getItemById( topicId ) ) {
+				continue;
+			}
+
+			revisionData = mw.flow.dm.Topic.static.getTopicRevisionFromApi( topiclist, topicId );
 			topic = new mw.flow.dm.Topic( topicId, revisionData );
 			topics.push( topic );
 
