@@ -181,6 +181,49 @@ class TopicListBlock extends AbstractBlock {
 		return $output;
 	}
 
+	public function renderToCApi( array $topicList, array $options ) {
+		$options = $this->preloadTexts( $options );
+		$tocApiParams = array_merge(
+			array(
+				'toconly' => true,
+				// TODO: Make this a constant
+				'limit' => 50
+			),
+			$options
+		);
+
+		// @todo remove the 'api' => true, its always api
+		$findOptions = $this->getFindOptions( $options );
+
+		// include the current sortby option.  Note that when 'user' is either
+		// submitted or defaulted to this is the resulting sort. ex: newest
+		$tocApiParams['sortby'] = $findOptions['sortby'];
+
+		// In the case of 'newest' sort, we could save ourselves trouble and only
+		// produce the necessary 40 topics that are missing from the ToC, by taking
+		// the latest UUID from the topic list.
+		// This is a bit harder for the case of 'updated' which requires a timestamp,
+		// so in that case, we can stick to having repeated topics and letting the
+		// data model sort through which ones it needs to update and which ones it
+		// may ignore.
+		if ( $tocApiParams['sortby'] === 'newest' ) {
+			// Make sure we found topiclist block
+			// and that it actually has roots in it
+			$existingRoots = !empty( $topicList ) &&
+				$topicList['roots'] !== null && is_array( $topicList['roots'] ) ?
+				$topicList['roots'] :
+				array();
+
+			if ( count( $existingRoots ) > 0 ) {
+				// Add new offset-id and limit to the api parameters and change the limit
+				$tocApiParams['offset-id'] = end( $existingRoots );
+				$tocApiParams['limit'] = 40;
+			}
+		}
+
+		return $this->renderApi( $tocApiParams );
+	}
+
 	public function renderApi( array $options ) {
 		$options = $this->preloadTexts( $options );
 
