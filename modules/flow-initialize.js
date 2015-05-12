@@ -29,7 +29,14 @@
 			renderedTopics: $( '.flow-topic' ).length,
 			boardId: $component.data( 'flow-id' )
 		} );
-		mw.flow.system.populateBoardFromApi();
+		if ( mw.flow.data && mw.flow.data.blocks[1] ) {
+			// Populate the rendered topics
+			mw.flow.system.populateBoardTopicsFromJson( mw.flow.data.blocks[1] );
+			// Populate the ToC topics
+			mw.flow.system.populateBoardTopicsFromJson( mw.flow.data.toc );
+		} else {
+			mw.flow.system.populateBoardFromApi();
+		}
 
 		// HACK: We need to populate the old code when the
 		// new is populated
