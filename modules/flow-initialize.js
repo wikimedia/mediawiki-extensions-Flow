@@ -9,7 +9,8 @@
 	 * @todo not like this
 	 */
 	$( document ).ready( function () {
-		var $component = $( '.flow-component' );
+		var dataBlob,
+			$component = $( '.flow-component' );
 
 		// HACK: If there is no component, we are not on a flow
 		// board at all, and there's no need to load anything.
@@ -29,9 +30,18 @@
 			renderedTopics: $( '.flow-topic' ).length,
 			boardId: $component.data( 'flow-id' )
 		} );
-		// FIXME don't wastefully initialize from the API while the DM is unused
-		// We should get initialization from JSON working before we start using the DM
-		// mw.flow.system.populateBoardFromApi();
+
+		dataBlob = mw.flow && mw.flow.data;
+		if ( dataBlob && dataBlob.blocks && dataBlob.toc ) {
+			// Populate the rendered topics
+			mw.flow.system.populateBoardTopicsFromJson( dataBlob.blocks.topiclist );
+			// Populate header
+			mw.flow.system.populateBoardDescriptionFromJson( dataBlob.blocks.header );
+			// Populate the ToC topics
+			mw.flow.system.populateBoardTopicsFromJson( dataBlob.toc );
+		} else {
+			mw.flow.system.populateBoardFromApi();
+		}
 
 		// HACK: We need to populate the old code when the
 		// new is populated
