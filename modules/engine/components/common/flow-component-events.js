@@ -760,6 +760,7 @@
 
 					// Kill editor instance when the form it's in is cancelled
 					flowComponent.emitWithReturn( 'addFormCancelCallback', $form, function () {
+						$editor.removeData( 'flow-initialized' );
 						if ( mw.flow.editor.exists( $editor ) ) {
 							mw.flow.editor.destroy( $editor );
 						}
