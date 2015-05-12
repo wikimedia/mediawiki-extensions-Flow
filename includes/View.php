@@ -8,6 +8,7 @@ use Flow\Exception\InvalidActionException;
 use Flow\Model\Anchor;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use FormatJson;
 use Html;
 use Hooks;
 use IContextSource;
@@ -15,7 +16,6 @@ use Message;
 use OutputPage;
 use Title;
 use WebRequest;
-
 
 class View extends ContextSource {
 	/**
@@ -69,13 +69,6 @@ class View extends ContextSource {
 		}
 
 		$apiResponse = $this->buildApiResponse( $loader, $blocks, $action, $parameters );
-
-		/**
-		header( 'Content-Type: application/json; content=utf-8' );
-		$data = json_encode( $apiResponse );
-		//return;
-		die( $data );
-		**/
 
 		$output = $this->getOutput();
 		$this->addModules( $output, $action );
@@ -172,20 +165,31 @@ class View extends ContextSource {
 				'unwatch-board' => array(
 					'url' => $title->getLocalUrl( 'action=unwatch' ),
 				),
-			),
+			)
 		);
 
 		$editToken = $user->getEditToken();
 		$wasPosted = $this->getRequest()->wasPosted();
+		$topicListBlock = null;
 		foreach ( $blocks as $block ) {
 			if ( $wasPosted ? $block->canSubmit( $action ) : $block->canRender( $action ) ) {
-				$apiResponse['blocks'][] = $block->renderApi( $parameters[$block->getName()] )
+				$apiResponse['blocks'][$block->getName()] = $block->renderApi( $parameters[$block->getName()] )
 								+ array(
 									'title' => $apiResponse['title'],
 									'block-action-template' => $block->getTemplate( $action ),
 									'editToken' => $editToken,
 								);
+				if ( $block->getName() == 'topiclist' ) {
+					$topicListBlock = $block;
+				}
 			}
+		}
+
+		if ( isset( $topicListBlock ) && isset( $parameters['topiclist'] ) ) {
+			$apiResponse['toc'] = $topicListBlock->renderToCApi(
+				$apiResponse['blocks']['topiclist'],
+				$parameters['topiclist']
+			);
 		}
 
 		if ( count( $apiResponse['blocks'] ) === 0 ) {
@@ -220,6 +224,13 @@ class View extends ContextSource {
 		}
 
 		$out = $this->getOutput();
+		// Add JSON blob for OOUI widgets
+		$out->addHTML( Html::inlineScript(
+			'mw.flow = mw.flow || {}; mw.flow.data = ' .
+			FormatJson::encode( $apiResponse ) .
+			';'
+		) );
+
 		$renderedBlocks = array();
 		foreach ( $apiResponse['blocks'] as $block ) {
 			// @todo find a better way to do this; potentially make all blocks their own components
