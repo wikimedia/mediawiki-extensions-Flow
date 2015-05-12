@@ -93,6 +93,10 @@
 
 	/**
 	 * Populate the revision object with available data.
+	 * Any missing data property (one that is set to undefined) will be
+	 * ignored. If the intent is to nullify a property, use explicit 'null'
+	 * value.
+	 *
 	 * @param {Object} data API data
 	 */
 	mw.flow.dm.RevisionedContent.prototype.populate = function ( data ) {
@@ -143,7 +147,9 @@
 	 * @param {string} author Revision author
 	 */
 	mw.flow.dm.RevisionedContent.prototype.setAuthor = function ( author ) {
-		this.author = author;
+		if ( author !== undefined ) {
+			this.author = author;
+		}
 	};
 
 	/**
@@ -161,7 +167,9 @@
 	 * @param {string} creator Revision creator
 	 */
 	mw.flow.dm.RevisionedContent.prototype.setCreator = function ( creator ) {
-		this.creator = creator;
+		if ( creator !== undefined ) {
+			this.creator = creator;
+		}
 	};
 
 	/**
@@ -182,8 +190,10 @@
 	 * @fires contentChange
 	 */
 	mw.flow.dm.RevisionedContent.prototype.setContent = function ( content ) {
-		this.content = content;
-		this.emit( 'contentChange', this.content, this.contentFormat );
+		if ( content !== undefined && this.content !== content ) {
+			this.content = content;
+			this.emit( 'contentChange', this.content, this.contentFormat );
+		}
 	};
 
 	/**
@@ -206,7 +216,10 @@
 	 * @param {string} contentFormat Content format
 	 */
 	mw.flow.dm.RevisionedContent.prototype.setContentFormat = function ( contentFormat ) {
-		this.contentFormat = contentFormat;
+		if ( contentFormat !== undefined && this.contentFormat !== contentFormat ) {
+			this.contentFormat = contentFormat;
+			this.emit( 'contentChange', this.content, this.contentFormat );
+		}
 	};
 
 	/**
@@ -224,7 +237,9 @@
 	 * @param {number} lastUpdate Topic last update
 	 */
 	mw.flow.dm.RevisionedContent.prototype.setLastUpdate = function ( lastUpdate ) {
-		this.lastUpdate = lastUpdate;
+		if ( this.lastUpdate !== undefined && this.lastUpdate !== lastUpdate ) {
+			this.lastUpdate = lastUpdate;
+		}
 	};
 
 	/**
@@ -242,7 +257,9 @@
 	 * @param {number} timestamp Topic timestamp
 	 */
 	mw.flow.dm.RevisionedContent.prototype.setTimestamp = function ( timestamp ) {
-		this.timestamp = timestamp;
+		if ( this.timestamp !== undefined && this.timestamp !== timestamp ) {
+			this.timestamp = timestamp;
+		}
 	};
 
 	/**
@@ -251,7 +268,9 @@
 	 * @param {string} Revision change type
 	 */
 	mw.flow.dm.RevisionedContent.prototype.setChangeType = function ( type ) {
-		this.changeType = type;
+		if ( this.changeType !== undefined && this.changeType !== type ) {
+			this.changeType = type;
+		}
 	};
 
 	/**
@@ -278,7 +297,9 @@
 	 * @param {string} id Revision Id
 	 */
 	mw.flow.dm.RevisionedContent.prototype.setRevisionId = function ( id ) {
-		this.revisionId = id;
+		if ( this.revisionId !== undefined && this.revisionId !== id ) {
+			this.revisionId = id;
+		}
 	};
 	/**
 	 * Get the previous revision id.
@@ -297,7 +318,9 @@
 	 * @param {string} id Previous revision Id
 	 */
 	mw.flow.dm.RevisionedContent.prototype.setPreviousRevisionId = function ( id ) {
-		this.previousRevisionId = id || '';
+		if ( this.previousRevisionId !== undefined && this.previousRevisionId !== id ) {
+			this.previousRevisionId = id || '';
+		}
 	};
 
 	/**
@@ -315,7 +338,9 @@
 	 * @param {string} id Workflow Id
 	 */
 	mw.flow.dm.RevisionedContent.prototype.setWorkflowId = function ( id ) {
-		this.workflowId = id;
+		if ( this.workflowId !== undefined && this.workflowId !== id ) {
+			this.workflowId = id;
+		}
 	};
 
 	/**
@@ -333,7 +358,9 @@
 	 * @param {string} id Last edit id
 	 */
 	mw.flow.dm.RevisionedContent.prototype.setLastEditId = function ( id ) {
-		this.lastEditId = id;
+		if ( this.lastEditId !== undefined && this.lastEditId !== id ) {
+			this.lastEditId = id;
+		}
 	};
 
 	/**
@@ -351,7 +378,9 @@
 	 * @param {Object} user Last edit user
 	 */
 	mw.flow.dm.RevisionedContent.prototype.setLastEditUser = function ( user ) {
-		this.lastEditUser = user;
+		if ( this.lastEditUser !== undefined && this.lastEditUser !== user ) {
+			this.lastEditUser = user;
+		}
 	};
 
 	/**
