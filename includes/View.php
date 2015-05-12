@@ -8,12 +8,14 @@ use Flow\Exception\InvalidActionException;
 use Flow\Model\Anchor;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use FormatJson;
 use Html;
 use IContextSource;
 use Message;
 use OutputPage;
 use Title;
 use WebRequest;
+use Xml;
 
 
 class View extends ContextSource {
@@ -68,13 +70,6 @@ class View extends ContextSource {
 		}
 
 		$apiResponse = $this->buildApiResponse( $loader, $blocks, $action, $parameters );
-
-		/**
-		header( 'Content-Type: application/json; content=utf-8' );
-		$data = json_encode( $apiResponse );
-		//return;
-		die( $data );
-		**/
 
 		$output = $this->getOutput();
 		$this->addModules( $output, $action );
@@ -215,6 +210,13 @@ class View extends ContextSource {
 		}
 
 		$out = $this->getOutput();
+		// Add JSON blob for OOUI widgets
+		$out->addHTML( Html::inlineScript(
+			'mw.flow = mw.flow || {}; mw.flow.data = ' .
+			FormatJson::encode( $apiResponse ) .
+			';'
+		) );
+
 		$renderedBlocks = array();
 		foreach ( $apiResponse['blocks'] as $block ) {
 			// @todo find a better way to do this; potentially make all blocks their own components
