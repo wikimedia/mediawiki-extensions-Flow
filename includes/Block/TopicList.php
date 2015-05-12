@@ -60,6 +60,13 @@ class TopicListBlock extends AbstractBlock {
 	 */
 	protected $topicRootRevisionCache = array();
 
+	/**
+	 * @constant(TOCLIMIT)
+	 *
+	 * The limit of Table of Contents topics that are rendered per request
+	 */
+	const TOCLIMIT = 50;
+
 	protected function validate() {
 		// for now, new topic is considered a new post; perhaps some day topic creation should get it's own permissions?
 		if ( !$this->permissions->isAllowed( null, 'new-post' ) ) {
@@ -179,6 +186,47 @@ class TopicListBlock extends AbstractBlock {
 		);
 
 		return $output;
+	}
+
+	public function renderTocApi( array $topicList, array $options ) {
+		global $wgFlowDefaultLimit;
+
+		$tocApiParams = array_merge(
+			$options,
+			array(
+				'toconly' => true,
+				// TODO: Make this a constant
+				'limit' => self::TOCLIMIT
+			)
+		);
+
+		$findOptions = $this->getFindOptions( $options );
+
+		// include the current sortby option.  Note that when 'user' is either
+		// submitted or defaulted to this is the resulting sort. ex: newest
+		$tocApiParams['sortby'] = $findOptions['sortby'];
+
+		// In the case of 'newest' sort, we could save ourselves trouble and only
+		// produce the necessary 40 topics that are missing from the ToC, by taking
+		// the latest UUID from the topic list.
+		// This is a bit harder for the case of 'updated' which requires a timestamp,
+		// so in that case, we can stick to having repeated topics and letting the
+		// data model sort through which ones it needs to update and which ones it
+		// may ignore.
+		if ( $tocApiParams['sortby'] === 'newest' ) {
+			// Make sure we found topiclist block
+			// and that it actually has roots in it
+			$existingRoots = isset( $topicList['roots'] ) && is_array( $topicList['roots'] ) ?
+				$topicList['roots'] : array();
+
+			if ( count( $existingRoots ) > 0 ) {
+				// Add new offset-id and limit to the api parameters and change the limit
+				$tocApiParams['offset-id'] = end( $existingRoots );
+				$tocApiParams['limit'] = self::TOCLIMIT - $wgFlowDefaultLimit;
+			}
+		}
+
+		return $this->renderApi( $tocApiParams );
 	}
 
 	public function renderApi( array $options ) {
