@@ -103,7 +103,9 @@
 				mw.flow.editor.editors[$.inArray( editor, mw.flow.editor.editors )] = null;
 				$node
 					.removeData( 'flow-editor' )
-					.show()
+					// instead of .show(), we just want to remove the .hide() we've applied since
+					// there may be other CSS rules still hiding this node
+					.css( 'display', '' )
 					.closest( '.flow-editor' ).removeClass( 'flow-editor-' + editor.constructor.static.name );
 			}
 		},
