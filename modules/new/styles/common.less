@@ -10,11 +10,6 @@
 		margin: 0;
 		padding: 0;
 	}
-
-	// Box-sizing: border-box is default in the Flow world
-	* {
-		.box-sizing(border-box);
-	}
 }
 
 // @todo: Find better home for this css
@@ -45,6 +40,7 @@
 .flow-board-header,
 // The whole board content wrapper
 .flow-board {
+	.box-sizing( border-box );
 	max-width: 100%;
 	font-size: .875em;
 	line-height: 1.2em;
