@@ -46,24 +46,25 @@
 		// The -40 matches the padding-bottom on .ve-ce-documentNode to put the toolbar inside
 		// the editing area. The 2px of positive margin gives room for the blue border of the
 		// documentNode (via .mw-ui-input)
-		margin: -40px 2px 0 2px;
+		margin: -42px 2px 0 2px;
 	}
 
 	// Due to this being floated, it needs a matching top margin to still display inside the bar
 	.oo-ui-toolbar-actions {
-		margin-top: 38px;
+		margin-top: 13px;
 	}
 
 	.oo-ui-toolbar-bar {
 		// The default border is only appropriate in the default ve, with
 		// the toolbar above the editing surface.
 		border: none;
+		box-shadow: none;
 		// When we apply a pending texture to the editor, we don't want the toolbar to display
 		// in solid white on top of that.
 		background: transparent;
 	}
 
 	.oo-ui-toolGroup {
-		margin-bottom: 2px;
+		border: none;
 	}
 }
