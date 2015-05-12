@@ -111,11 +111,7 @@
 			} )
 				.then( function ( result ) {
 					var headerData = OO.getProp( result.flow, 'view-header', 'result', 'header' );
-					if ( headerData.revision ) {
-						system.getBoard().setDescription(
-							new mw.flow.dm.BoardDescription( headerData.revision )
-						);
-					}
+					this.populateBoardDescriptionFromJson( headerData );
 				} )
 		];
 
@@ -125,6 +121,20 @@
 				return resultTopicList;
 			} );
 
+	};
+
+	/**
+	 * Set the board description according to the header data sent from
+	 * the API.
+	 *
+	 * @param {Object} headerData API object for the board header
+	 */
+	mw.flow.dm.System.prototype.populateBoardDescriptionFromJson = function ( headerData ) {
+		if ( headerData.revision ) {
+			this.getBoard().setDescription(
+				new mw.flow.dm.BoardDescription( headerData.revision )
+			);
+		}
 	};
 
 	/**
@@ -143,8 +153,13 @@
 		for ( i = 0, len = topiclist.roots.length; i < len; i++ ) {
 			// The content of the topic is its first post
 			topicId = topiclist.roots[ i ];
-			revisionData = mw.flow.dm.Topic.static.getTopicRevisionFromApi( topiclist, topicId );
 
+			// Don't add topic if it's already there
+			if ( this.getBoard().getItemById( topicId ) ) {
+				continue;
+			}
+
+			revisionData = mw.flow.dm.Topic.static.getTopicRevisionFromApi( topiclist, topicId );
 			topic = new mw.flow.dm.Topic( topicId, revisionData );
 			topics.push( topic );
 
