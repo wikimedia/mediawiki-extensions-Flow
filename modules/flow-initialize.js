@@ -29,9 +29,17 @@
 			renderedTopics: $( '.flow-topic' ).length,
 			boardId: $component.data( 'flow-id' )
 		} );
-		// FIXME don't wastefully initialize from the API while the DM is unused
-		// We should get initialization from JSON working before we start using the DM
-		// mw.flow.system.populateBoardFromApi();
+
+		if ( mw.flow.data && mw.flow.data.blocks.topiclist && mw.flow.data.blocks.header ) {
+			// Populate the rendered topics
+			mw.flow.system.populateBoardTopicsFromJson( mw.flow.data.blocks.topiclist );
+			// Populate header
+			mw.flow.system.populateBoardDescriptionFromJson( mw.flow.data.blocks.header );
+			// Populate the ToC topics
+			mw.flow.system.populateBoardTopicsFromJson( mw.flow.data.toc );
+		} else {
+			mw.flow.system.populateBoardFromApi();
+		}
 
 		// HACK: We need to populate the old code when the
 		// new is populated
