@@ -8,6 +8,7 @@ use Flow\Exception\InvalidActionException;
 use Flow\Model\Anchor;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use FormatJson;
 use Html;
 use Hooks;
 use IContextSource;
@@ -15,7 +16,6 @@ use Message;
 use OutputPage;
 use Title;
 use WebRequest;
-
 
 class View extends ContextSource {
 	/**
@@ -69,13 +69,6 @@ class View extends ContextSource {
 		}
 
 		$apiResponse = $this->buildApiResponse( $loader, $blocks, $action, $parameters );
-
-		/**
-		header( 'Content-Type: application/json; content=utf-8' );
-		$data = json_encode( $apiResponse );
-		//return;
-		die( $data );
-		**/
 
 		$output = $this->getOutput();
 		$this->addModules( $output, $action );
@@ -171,20 +164,60 @@ class View extends ContextSource {
 					'url' => $title->getLocalUrl( 'action=unwatch' ),
 				),
 			),
+			// The topics we need for the ToC
+			'toc' => array()
 		);
 
 		$editToken = $user->getEditToken();
 		$wasPosted = $this->getRequest()->wasPosted();
+		$topicList = null;
 		foreach ( $blocks as $block ) {
 			if ( $wasPosted ? $block->canSubmit( $action ) : $block->canRender( $action ) ) {
-				$apiResponse['blocks'][] = $block->renderApi( $parameters[$block->getName()] )
+				$blockData = $block->renderApi( $parameters[$block->getName()] )
 								+ array(
 									'title' => $apiResponse['title'],
 									'block-action-template' => $block->getTemplate( $action ),
 									'editToken' => $editToken,
 								);
+				$apiResponse['blocks'][$block->getName()] = $blockData;
+				if ( $block->getName() === 'topiclist' ) {
+					$topicList = $blockData;
+				}
 			}
 		}
+
+		// Get toconly info for the json blob
+		$tocApiParams = array_merge(
+			array(
+				'toconly' => true,
+				'limit' => 50,
+			),
+			$parameters['topiclist']
+		);
+
+		// In the case of 'newest' sort, we could save ourselves trouble and only
+		// produce the necessary 40 topics that are missing from the ToC, by taking
+		// the latest UUID from the topic list.
+		// This is a bit harder for the case of 'updated' which requires a timestamp,
+		// so in that case, we can stick to having repeated topics and letting the
+		// data model sort through which ones it needs to update and which ones it
+		// may ignore.
+		if ( $user->getOption( 'flow-topiclist-sortby' ) === 'newest' ) {
+			// Make sure we found topiclist block
+			// and that it actually has roots in it
+			$existingRoots = !empty( $topicList ) &&
+				!empty( $topicList['roots'] ) ?
+				$topicList['roots'] :
+				array();
+
+			if ( count( $existingRoots ) > 0 ) {
+				// Add new offset-id and limit to the api parameters and change the limit
+				$tocApiParams['offset-id'] = $existingRoots[ count( $existingRoots ) - 1 ];
+				$tocApiParams['limit'] = 40;
+			}
+		}
+
+		$apiResponse['toc'] = $blocks['topiclist']->renderApi( $tocApiParams );
 
 		if ( count( $apiResponse['blocks'] ) === 0 ) {
 			throw new InvalidActionException( "No blocks accepted action: $action" );
@@ -218,6 +251,13 @@ class View extends ContextSource {
 		}
 
 		$out = $this->getOutput();
+		// Add JSON blob for OOUI widgets
+		$out->addHTML( Html::inlineScript(
+			'mw.flow = mw.flow || {}; mw.flow.data = ' .
+			FormatJson::encode( $apiResponse ) .
+			';'
+		) );
+
 		$renderedBlocks = array();
 		foreach ( $apiResponse['blocks'] as $block ) {
 			// @todo find a better way to do this; potentially make all blocks their own components
