@@ -19,7 +19,11 @@
 			tocPostsLimit: 20,
 			boardId: $( '.flow-component' ).data( 'flow-id' )
 		} );
-		mw.flow.system.populateBoardFromApi();
+		if ( mw.flow.data && mw.flow.data.blocks[1] ) {
+			mw.flow.system.populateBoardTopicsFromJson( mw.flow.data.blocks[1] );
+		} else {
+			mw.flow.system.populateBoardFromApi();
+		}
 
 		navWidget = new mw.flow.ui.NavigationWidget( mw.flow.system );
 

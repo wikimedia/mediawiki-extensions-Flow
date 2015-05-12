@@ -30,7 +30,7 @@
             'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
 ),
         'partials' => array('flow_board_navigation' => function ($cx, $in) {return '
-<div class="flow-board-navigation flow-load-interactive" data-flow-load-handler="boardNavigation">
+<div class="flow-board-navigation" data-flow-load-handler="boardNavigation">
 	<div class="flow-error-container">
 	</div>
 </div>
