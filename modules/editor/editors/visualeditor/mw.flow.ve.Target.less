@@ -2,6 +2,12 @@
 
 // Override another * rule in common.less back to browser default
 // box-sizing is not inherited.
+.ve-init-target,
+.ve-init-target * {
+	.box-sizing(content-box);
+}
+
+
 .flow-component {
 	.ve-init-target {
 		.box-sizing(content-box);
@@ -14,10 +20,6 @@
 			// Return to .mw-body-content font-size
 			// TODO: Make this theme specific
 			font-size: 0.875/0.8em;
-		}
-
-		* {
-			.box-sizing(content-box);
 		}
 
 		// Core, VE and OOjs UI do use other models in some cases, so we
