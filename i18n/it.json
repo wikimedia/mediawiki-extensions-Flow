@@ -8,7 +8,8 @@
 			"Rosh",
 			"FRacco",
 			"Macofe",
-			"Giuseppe Forte"
+			"Giuseppe Forte",
+			"^musaz"
 		]
 	},
 	"enableflow": "Attiva Flow",
@@ -349,5 +350,6 @@
 	"flow-undo-edit-header": "Modificare l'intestazione",
 	"flow-undo-edit-post": "Modificare un post",
 	"flow-undo-edit-content": "Questa modifica può essere annullata.\nControlla le differenze mostrate sotto fra le due versioni per verificare che il contenuto corrisponda a quanto desiderato, e quindi salvare le modifiche per completare la procedura di annullamento.",
-	"flow-undo-edit-failure": "Impossibile annullare la modifica a causa di un conflitto con modifiche intermedie."
+	"flow-undo-edit-failure": "Impossibile annullare la modifica a causa di un conflitto con modifiche intermedie.",
+	"flow-ve-mention-placeholder": "Nome utente"
 }

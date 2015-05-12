@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Gmelfi"
+			"Gmelfi",
+			"Pippinu"
 		]
 	},
-	"flow-thank-link": "{{GENDER:$1|Arringràzzia}}"
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|ringràzzia}}}}"
 }

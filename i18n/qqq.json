@@ -75,7 +75,7 @@
 	"flow-reply-link": "Text for the link that appears near the post and offers the user to reply to it. Clicking the link will display the reply editor. Parameters:\n* $1 - username, can be used for GENDER\n{{Identical|Reply}}",
 	"flow-thank-link": "Link text of the button that will (when clicked) thank the editor of the comment Parameters:\n* $1 - The user that is thanking, for gender\n* $2 - The user that is being thanked, for gender\n{{Identical|Thank}}",
 	"flow-lock-link": "Text for the link for closing topic/post. Parameters:\n* $1 - username, can be used for GENDER\n{{Identical|Lock}}",
-	"flow-thank-link-title": "Tooltip text of the button that will (when clicked) thank the editor of the comment. (poster - one who posts a message, who has written a post)\n Parameters:\n* $1 - The user that is thanking, for gender\n* $2 - The user that is being thanked, for gender",
+	"flow-thank-link-title": "Tooltip text of the button that will (when clicked) thank the editor of the comment. (Poster - one who posts a message, who has written a post)\n\nParameters:\n* $1 - The user that is thanking, for gender\n* $2 - The poster, the user that is being thanked, for gender",
 	"flow-history-action-suppress-post": "Text link for suppressing a post or topic from the board history page.\n\nFor meaning of \"suppress\" see [[Thread:Support/About MediaWiki:Flow-post-action-suppress-post/qqq]] and [[Thread:Support/About MediaWiki:Flow-suppress-post-content/sv]].\n\n{{Identical|Suppress}}",
 	"flow-history-action-delete-post": "Text link for deleting a post or topic from the board history page.\n{{Identical|Delete}}",
 	"flow-history-action-hide-post": "Text link for hiding a post or topic from the board history page.\n{{Identical|Hide}}",

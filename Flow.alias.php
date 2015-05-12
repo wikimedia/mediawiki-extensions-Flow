@@ -20,7 +20,7 @@ $specialPageAliases['ar'] = array(
 	'EnableFlow' => array( 'فعل_سريان' ),
 );
 
-/** Egyptian Spoken Arabic (مصرى) */
+/** Egyptian Arabic (مصرى) */
 $specialPageAliases['arz'] = array(
 	'Flow' => array( 'سريان' ),
 );
@@ -46,7 +46,7 @@ $specialPageAliases['ko'] = array(
 	'Flow' => array( '플로우' ),
 );
 
-/** لوری (لوری) */
+/** لوری مینجایی (لوری مینجایی) */
 $specialPageAliases['lrc'] = array(
 	'Flow' => array( 'جریان' ),
 );
