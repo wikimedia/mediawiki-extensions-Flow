@@ -588,13 +588,14 @@ class FlowHooks {
 		return true;
 	}
 
-	// Static variables that do not vary by request
+	// Static variables that do not vary by request; delivered through startup module
 	public static function onResourceLoaderGetConfigVars( &$vars ) {
-		global $wgFlowEditorList;
+		global $wgFlowEditorList, $wgFlowAjaxTimeout;
 
 		$vars['wgFlowEditorList'] = $wgFlowEditorList;
 		$vars['wgFlowMaxTopicLength'] = Flow\Model\PostRevision::MAX_TOPIC_LENGTH;
 		$vars['wgFlowMentionTemplate'] = wfMessage( 'flow-ve-mention-template' )->inContentLanguage()->plain();
+		$vars['wgFlowAjaxTimeout'] = $wgFlowAjaxTimeout;
 
 		return true;
 	}

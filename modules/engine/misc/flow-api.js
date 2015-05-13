@@ -40,17 +40,23 @@
 		 */
 		function flowApiCall( params, method ) {
 			var mwApi, tokenType,
-				$deferred = $.Deferred();
+				$deferred = $.Deferred(),
+				ajaxTimeoutSec = mw.config.get( 'wgFlowAjaxTimeout' ),
+				apiConstructorParams = { ajax: {} };
+
+			if ( ajaxTimeoutSec !== null && ajaxTimeoutSec > 0 ) {
+				apiConstructorParams.ajax.timeout = ajaxTimeoutSec * 1000;
+			}
 
 			// IE8 caches POST under some conditions, prevent that here.
 			// IE8 is most likely the only browser we support that doesn't
 			// have addEventListener, and anything else that gets caught
 			// up isn't that bad off.
 			if ( !document.addEventListener ) {
-				mwApi = new mw.Api( { ajax: { cache: false } } );
-			} else {
-				mwApi = new mw.Api();
+				apiConstructorParams.ajax.cache = false;
 			}
+
+			mwApi = new mw.Api( apiConstructorParams );
 
 			params = params || {};
 			// Server is using page instead of title

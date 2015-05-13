@@ -377,6 +377,9 @@ $wgFlowAbuseFilterEmergencyDisableThreshold = 0.10;
 $wgFlowAbuseFilterEmergencyDisableCount = 50;
 $wgFlowAbuseFilterEmergencyDisableAge = 86400; // One day.
 
+// Timeout for Flow's AJAX requests (only affects ones that go through flow-api.js), in seconds
+$wgFlowAjaxTimeout = 30;
+
 // Actions that must pass through to MediaWiki on Flow-enabled pages
 $wgFlowCoreActionWhitelist = array( 'info', 'protect', 'unprotect', 'unwatch', 'watch', 'history', 'wikilove', 'move', 'delete' );
 
