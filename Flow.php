@@ -66,6 +66,7 @@ $wgExtensionCredits['other'][] = array(
 	),
 	'descriptionmsg' => 'flow-desc',
 	'license-name' => 'GPL-2.0+', // Appears with link to COPYING on Special:Version
+	'version' => '1.0',
 );
 
 require_once __DIR__ . '/defines.php';
