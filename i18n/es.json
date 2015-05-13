@@ -357,6 +357,7 @@
 	"flow-ve-mention-context-item-label": "Mencionar",
 	"flow-ve-mention-inspector-title": "Mención",
 	"flow-ve-mention-inspector-remove-label": "Eliminar",
+	"flow-ve-mention-placeholder": "Nombre de usuario",
 	"flow-ve-mention-tool-title": "Mencionar a un usuario",
 	"flow-ve-mention-inspector-invalid-user": "El nombre de usuario «$1» no está registrado.",
 	"flow-wikitext-editor-help": "El wikitexto $1.",
