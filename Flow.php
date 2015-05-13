@@ -242,11 +242,6 @@ $wgFlowParsoidTimeout = null; // also see $wgVisualEditorParsoidTimeout
 // that $wgVisualEditorParsoidURL be pointed to localhost if this setting is enabled.
 $wgFlowParsoidForwardCookies = false;
 
-// Flow Configuration for EventLogging
-$wgFlowConfig = array(
-	'version' => '0.1.0',
-);
-
 // When visiting the flow for an article but not specifying what type of workflow should be viewed,
 // use this workflow
 $wgFlowDefaultWorkflow = 'discussion';
