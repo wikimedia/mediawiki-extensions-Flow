@@ -27,15 +27,11 @@ class RecentChanges extends AbstractFormatter {
 		if ( !$this->permissions->isAllowed( $row->revision, 'recentchanges' ) ) {
 			return false;
 		}
-		if ( $row->revision instanceof PostRevision &&
-			!$this->permissions->isAllowed( $row->rootPost, 'recentchanges' ) ) {
-			return false;
-		}
 
 		$this->serializer->setIncludeHistoryProperties( true );
 		$this->serializer->setIncludeContent( false );
 
-		$data = $this->serializer->formatApi( $row, $ctx );
+		$data = $this->serializer->formatApi( $row, $ctx, 'recentchanges' );
 		if ( !$data ) {
 			throw new FlowException( 'Could not format data for row ' . $row->revision->getRevisionId()->getAlphadecimal() );
 		}
