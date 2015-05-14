@@ -36,12 +36,21 @@ class IRCLineUrlFormatter extends AbstractFormatter implements RCFeedFormatter {
 	/**
 	 * Allows us to set the rc_comment field
 	 */
+	/**
+	 * @param array $feed
+	 * @param RecentChange $rc
+	 * @param null|string $actionComment
+	 * @return string|null Text for IRC line, or null on failure
+	 */
 	public function getLine( array $feed, RecentChange $rc, $actionComment ) {
 		$ctx = \RequestContext::getMain();
-		$rc->mAttribs['rc_comment'] = $this->formatDescription(
-			$this->serializeRcRevision( $rc, $ctx ),
-			$ctx
-		);
+
+		$serialized = $this->serializeRcRevision( $rc, $ctx );
+		if ( !$serialized ) {
+			return null;
+		}
+
+		$rc->mAttribs['rc_comment'] = $this->formatDescription( $serialized, $ctx );
 
 		/** @var RCFeedFormatter $formatter */
 		$formatter = new $feed['original_formatter']();
@@ -58,12 +67,7 @@ class IRCLineUrlFormatter extends AbstractFormatter implements RCFeedFormatter {
 		$rcRow = $query->getResult( null, $rc );
 
 		$this->serializer->setIncludeHistoryProperties( true );
-		$data = $this->serializer->formatApi( $rcRow, $ctx );
-		if ( !$data ) {
-			throw new FlowException( 'Could not format data for row ' . $rcRow->revision->getRevisionId()->getAlphadecimal() );
-		}
-
-		return $data;
+		return $this->serializer->formatApi( $rcRow, $ctx, 'recentchanges' );
 	}
 
 	/**
