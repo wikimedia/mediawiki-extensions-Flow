@@ -333,5 +333,6 @@
 	"flow-undo-your-text": "Uw tekst",
 	"flow-undo-edit-header": "De beschrijving bewerken",
 	"flow-undo-edit-topic-summary": "Bewerken van de samenvatting van het onderwerp",
-	"flow-undo-edit-post": "Het bewerken van een bericht"
+	"flow-undo-edit-post": "Het bewerken van een bericht",
+	"flow-ve-mention-placeholder": "Gebruikersnaam"
 }
