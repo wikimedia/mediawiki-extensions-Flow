@@ -159,11 +159,15 @@ class RecentChanges extends AbstractFormatter {
 	 * @param IContextSource $ctx
 	 * @param array $block
 	 * @param array $links
-	 * @return array
+	 * @return array|false Links array, or false on failure
 	 * @throws FlowException
 	 * @throws \Flow\Exception\InvalidInputException
 	 */
 	public function getLogTextLinks( RecentChangesRow $row, IContextSource $ctx, array $block, array $links = array() ) {
+		if ( !$this->permissions->isAllowed( $row->revision, 'recentchanges' ) ) {
+			return false;
+		}
+
 		$old = unserialize( $block[count( $block ) - 1]->mAttribs['rc_params'] );
 		$oldId = $old ? UUID::create( $old['flow-workflow-change']['revision'] ) : $row->revision->getRevisionId();
 

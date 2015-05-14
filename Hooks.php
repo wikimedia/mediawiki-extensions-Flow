@@ -391,7 +391,7 @@ class FlowHooks {
 
 			/** @var Flow\Formatter\RecentChanges $formatter */
 			$formatter = Container::get( 'formatter.recentchanges' );
-			$links = $formatter->getLogTextLinks( $row, $changesList, $block, $links );
+			$logTextLinks = $formatter->getLogTextLinks( $row, $changesList, $block, $links );
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting rc logtext ' . $rc->getAttribute( 'rc_id' ) . ' ' . $e );
 			MWExceptionHandler::logException( $e );
@@ -400,6 +400,11 @@ class FlowHooks {
 		}
 		restore_error_handler();
 
+		if ($logTextLinks === false) {
+			return false;
+		}
+
+		$links = $logTextLinks;
 		return true;
 	}
 
