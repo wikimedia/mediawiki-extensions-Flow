@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_e4aa1b15",
+        "filename": "handlebars/flow_header_detail.partial.handlebars",
+        "patchSetId": 9
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-05-14T13:03:34Z",
+      "side": 1,
+      "message": "Very nitpicky, but there\u0027s some inconsistent indenting.\n\nIndentation is done with tabs. If you want some parts to line up, you can use spaces for those missing chars.\n\nSo the whitespace before `\u003cspan` should be a tab (1 more indentation level than parent `\u003ca\u003e`) \nWhitespace before `class\u003d` \u0026 `title\u003d` should be tab (same indentation in `\u003cspan`), followed by spaces to line up.",
+      "revId": "45d49c7fa7a1a5e4d5150757db183fa2dd7481b6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
