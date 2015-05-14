@@ -17,11 +17,6 @@
 			background: #eee;
 		}
 	}
-
-	// Box-sizing: border-box is default in the Flow world
-	* {
-		.box-sizing(border-box);
-	}
 }
 
 // Keep a fixed spacing between each individual flow section
@@ -38,6 +33,7 @@
 .flow-board-header-menu,
 // The whole board content wrapper
 .flow-board {
+	.box-sizing( border-box );
 	font-size: .875em;
 	width: 100%;
 	max-width: 850px;
