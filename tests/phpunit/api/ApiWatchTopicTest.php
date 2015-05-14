@@ -38,15 +38,16 @@ class ApiWatchTopicTest extends ApiTestCase {
 	 * @dataProvider watchTopicProvider
 	 */
 	public function testWatchTopic( $message, $expect, $init, array $request ) {
-		$topicWorkflowId = $this->createTopic();
-		$title = Title::newFromText( 'Topic:' . $topicWorkflowId );
+		$topic = $this->createTopic();
+
+		$title = Title::newFromText( $topic['topic-page'] );
 		$init( WatchedItem::fromUserTitle( self::$users['sysop']->user, $title, false ) );
 
 		// issue a watch api request
 		$data = $this->doApiRequest( $request + array(
 				'action' => 'watch',
 				'format' => 'json',
-				'titles' => "Topic:$topicWorkflowId",
+				'titles' => $topic['topic-page'],
 				'token' => $this->getEditToken( null, 'watchtoken' ),
 		) );
 		$this->assertArrayHasKey( $expect, $data[0]['watch'][0], $message );
