@@ -4,6 +4,7 @@ namespace Flow;
 
 use Flow\Data\ManagerGroup;
 use Flow\Data\Mapper\CachingObjectMapper;
+use Flow\Collection\PostCollection;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
@@ -824,10 +825,9 @@ class UrlGenerator {
 	public function thankAction( UUID $postId ) {
 		$sender = RequestContext::getMain()->getUser();
 		$recipient = $sender; // Default to current user's gender if we can't find the recipient
-		$postRevision = $this->storage->get( 'PostRevision', $postId );
-		if ( $postRevision !== null ) {
-			$recipient = $postRevision->getCreatorTuple()->createUser();
-		}
+		$postCollection = PostCollection::newFromId( $postId );
+		$postRevision = $postCollection->getLastRevision();
+		$recipient = $postRevision->getCreatorTuple()->createUser();
 
 		return new Anchor(
 			wfMessage( 'flow-thank-link', $sender, $recipient )->text(),
