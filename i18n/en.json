@@ -394,7 +394,7 @@
 	"flow-special-enableflow-page": "Page to enable Flow on",
 	"flow-special-enableflow-header": "Initial description of Flow board (wikitext)",
 	"flow-special-enableflow-board-already-exists": "There is already a Flow board at [[$1]].",
-	"flow-special-enableflow-invalid-title": "The provided page is not a valid page title",
+	"flow-special-enableflow-invalid-title": "An invalid page title was provided",
 	"flow-special-enableflow-archive-title-format": "Where to archive existing content",
 	"flow-special-enableflow-archive-title-format-default-value": "%s/Archive_%d",
 	"flow-special-enableflow-board-creation-not-allowed": "You are not allowed to create a Flow board at [[:$1]].",
