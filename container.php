@@ -44,8 +44,7 @@ $c['repository.tree'] = function( $c ) {
 
 $c['url_generator'] = function( $c ) {
 	return new Flow\UrlGenerator(
-		$c['storage.workflow.mapper'],
-		$c['storage']
+		$c['storage.workflow.mapper']
 	);
 };
 
