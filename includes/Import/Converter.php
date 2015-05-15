@@ -155,15 +155,8 @@ class Converter {
 			return true;
 		}
 
-		// Don't allow conversion of sub pages unless it is
-		// a talk page with matching subject page. For example
-		// we will convert User_talk:Foo/bar only if User:Foo/bar
-		// exists, and we will never convert User:Baz/bang.
-		if ( $title->isSubPage() && ( !$title->isTalkPage() || !$title->getSubjectPage()->exists() ) ) {
-			return false;
-		}
-
-		return true;
+		// Finally, check strategy-specific logic
+		return $this->strategy->shouldConvert( $title );
 	}
 
 	protected function doConversion( Title $title, Title $movedFrom = null ) {
