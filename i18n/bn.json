@@ -2,13 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Tauhid16",
-			"Aftab1995"
+			"Aftab1995",
+			"Aftabuzzaman"
 		]
 	},
 	"flow-post-moderated-toggle-delete-show": "$2-এর {{GENDER:$1|অপসারিত}} মন্তব্যসমূহ দেখাও।",
 	"flow-post-moderated-toggle-suppress-hide": "$2-এর {{GENDER:$1|গোপনকৃত}} মন্তব্যসমূহ লুকাও।",
 	"flow-newtopic-first-heading": "$1-এ নতুন প্রসঙ্গ শুরু করুন",
-	"flow-thank-link": "{{GENDER:$1|ধন্যবাদ}}",
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|ধন্যবাদ}}}}",
 	"flow-lock-link": "{{GENDER:$1|বন্দী করুন}}",
 	"flow-post-action-post-history": "ইতিহাস",
 	"flow-post-action-delete-post": "অপসারণ",

@@ -359,7 +359,7 @@
 	"flow-special-enableflow-page": "Seite, auf der Flow aktiviert werden soll",
 	"flow-special-enableflow-header": "Erste Beschreibung des Flow-Boards (Wikitext)",
 	"flow-special-enableflow-board-already-exists": "Es gibt bereits ein Flow-Board unter [[$1]].",
-	"flow-special-enableflow-invalid-title": "Die angegebene Seite ist kein gültiger Seitentitel",
+	"flow-special-enableflow-invalid-title": "Es wurde ein ungültiger Seitentitel angegeben",
 	"flow-special-enableflow-archive-title-format": "Wo der vorhandene Inhalt archiviert werden soll",
 	"flow-special-enableflow-archive-title-format-default-value": "%s/Archiv_%d",
 	"flow-special-enableflow-board-creation-not-allowed": "Du bist nicht berechtigt, ein Flow-Board unter [[:$1]] zu erstellen.",

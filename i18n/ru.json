@@ -365,7 +365,7 @@
 	"flow-special-enableflow-page": "Страница для включения Flow на ней",
 	"flow-special-enableflow-header": "Начальное описание доски Flow (викитекст)",
 	"flow-special-enableflow-board-already-exists": "Там уже доска Flow на [[$1]].",
-	"flow-special-enableflow-invalid-title": "Недопустимое название у предоставленной страницы",
+	"flow-special-enableflow-invalid-title": "Было предоставлено недопустимое название страницы",
 	"flow-special-enableflow-confirmation": "Вы успешно создали доску Flow на [[$1]].",
 	"flow-spam-confirmedit-form": "Пожалуйста, введите текст с картинки ниже, если вы не робот: $1",
 	"flow-embedding-unsupported": "Обсуждения пока не могут быть вставленным куда-либо ещё.",

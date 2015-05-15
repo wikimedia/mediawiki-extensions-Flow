@@ -358,7 +358,7 @@
 	"flow-special-enableflow-page": "Páxina donde se activará Flow",
 	"flow-special-enableflow-header": "Descrición inicial do taboleiro de conversa Flow (wikitexto)",
 	"flow-special-enableflow-board-already-exists": "Xa existe un taboleiro de mensaxes Flow en [[$1]]",
-	"flow-special-enableflow-invalid-title": "A páxina indicada non é un título de páxina válido",
+	"flow-special-enableflow-invalid-title": "Proporcionouse un título de páxina non válido",
 	"flow-special-enableflow-archive-title-format": "Onde gardar o contido existente",
 	"flow-special-enableflow-archive-title-format-default-value": "%s/Ficheiro_%d",
 	"flow-special-enableflow-board-creation-not-allowed": "Non ten permiso para crear un taboleiro Flow en [[:$1]].",

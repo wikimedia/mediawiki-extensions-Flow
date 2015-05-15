@@ -26,5 +26,7 @@
 	"flow-moderation-confirmation-delete-topic": "Bu konu silindi.",
 	"flow-moderation-confirmation-hide-topic": "Bu konu gizlenmiştir.",
 	"flow-anon-warning": "Oturum açmadınız.",
-	"flow-topic-html-title": "$1 sayfa $2"
+	"flow-topic-html-title": "$1 sayfa $2",
+	"flow-special-enableflow-invalid-title": "Geçersiz bir sayfa başlığı girildi",
+	"flow-ve-mention-placeholder": "Kullanıcı adı"
 }

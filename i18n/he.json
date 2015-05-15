@@ -362,7 +362,7 @@
 	"flow-special-enableflow-page": "באילו דפים להפעיל את זרימה",
 	"flow-special-enableflow-header": "תיאור התחלתי בלוח זרימה (קוד ויקי)",
 	"flow-special-enableflow-board-already-exists": "כבר יש לוח זרימה בדף [[$1]].",
-	"flow-special-enableflow-invalid-title": "הדף שנתין הוא לא כותרת דף תקינה",
+	"flow-special-enableflow-invalid-title": "ניתנה כותרת דף שגויה",
 	"flow-special-enableflow-archive-title-format": "איפה לארכב תוכן קיים",
 	"flow-special-enableflow-archive-title-format-default-value": "%s/ארכיון_%d",
 	"flow-special-enableflow-board-creation-not-allowed": "אין לך הרשאה ליצור לוח זרימה בדף [[:$1]].",

@@ -46,7 +46,7 @@ $specialPageAliases['ko'] = array(
 	'Flow' => array( '플로우' ),
 );
 
-/** لوری مینجایی (لوری مینجایی) */
+/** Northern Luri (لوری مینجایی) */
 $specialPageAliases['lrc'] = array(
 	'Flow' => array( 'جریان' ),
 );
