@@ -114,7 +114,7 @@
 	"flow-topic-notification-subscribe-description": "{{GENDER:$1|You}} will receive notifications on all activities on this topic.",
 	"flow-board-notification-subscribe-title": "{{GENDER:$1|You're}} subscribed to this discussion board!",
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|You}} will get a notification when a new topic is created on this board.",
-	"flow-error-allowcreation-no-usedb": "allowCreation requires $wgContentHandlerUseDB to be true",
+	"flow-error-allowcreation-no-usedb": "allowCreation requires <var>$wgContentHandlerUseDB</var> to be <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "Page already exists, but was required not to",
 	"flow-error-allowcreation-flow-create-board": "User does not have the \"{{int:right-flow-create-board}}\" permission",
 	"flow-error-http": "An error occurred while contacting the server.",
