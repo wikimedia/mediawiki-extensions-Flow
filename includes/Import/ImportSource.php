@@ -11,7 +11,8 @@ interface IImportSource {
 	function getTopics();
 
 	/**
-	 * @return IImportHeader|null
+	 * @return IImportHeader
+	 * @throws ImportException
 	 */
 	function getHeader();
 }
