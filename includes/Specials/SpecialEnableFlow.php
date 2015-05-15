@@ -97,6 +97,8 @@ class SpecialEnableFlow extends FormSpecialPage {
 
 			$logger = Container::get( 'default_logger' );
 
+			$logger = Container::get( 'default_logger' );
+
 			$converter = new Converter(
 				wfGetDB( DB_MASTER ),
 				Container::get( 'importer' ),
