@@ -227,11 +227,18 @@ class View extends ContextSource {
 
 			// Get the block loop template
 			$template = $this->lightncandy->getTemplate( 'flow_block_loop' );
+
+			$classes = array( 'flow-component' );
+			// Add mw-content-{ltr,rtl} text if necessary (MW core doesn't add it for action=reply)
+			if ( \Action::getActionName( $this ) === 'reply' ) {
+				$title = Title::newFromText( $apiResponse['title'] );
+				$classes[] = 'mw-content-' . $title->getPageViewLanguage()->getDir();
+			}
 			// Output the component, with the rendered blocks inside it
 			$out->addHTML( Html::rawElement(
 				'div',
 				array(
-					'class'               => 'flow-component',
+					'class'               => implode( ' ', $classes ),
 					'data-flow-component' => $flowComponent,
 					'data-flow-id'        => $apiResponse['workflow'],
 				),
