@@ -8,6 +8,7 @@ use Flow\Import\Converter;
 use Flow\Import\IConversionStrategy;
 use Flow\Import\ImportSourceStore;
 use Parser;
+use Psr\Log\LoggerInterface;
 use StubObject;
 use Title;
 use WikitextContent;
@@ -27,6 +28,11 @@ use WikitextContent;
  * existing comment.
  */
 class ConversionStrategy implements IConversionStrategy {
+	/**
+	 * @var LoggerInterface
+	 */
+	protected $logger;
+
 	/**
 	 * @var ImportSourceStore
 	 */
@@ -54,11 +60,13 @@ class ConversionStrategy implements IConversionStrategy {
 	public function __construct(
 		$parser,
 		ImportSourceStore $sourceStore,
+		LoggerInterface $logger,
 		$preferredArchiveTitle = null,
 		$headerSuffix = null
 	) {
 		$this->parser = $parser;
 		$this->sourceStore = $sourceStore;
+		$this->logger = $logger;
 		$this->headerSuffix = $headerSuffix;
 
 		if ( isset( $preferredArchiveTitle ) && !empty( $preferredArchiveTitle ) ) {
@@ -141,5 +149,45 @@ class ConversionStrategy implements IConversionStrategy {
 		$newWikitext = "{{{$template}|$arguments}}" . "\n\n" . $content->getNativeData();
 
 		return new WikitextContent( $newWikitext );
+	}
+
+	// Public only for unit testing
+	/**
+	 * Checks whether it meets the applicable subpage rules.  Meant to be overriden by
+	 * subclasses that do not have the same requirements
+	 *
+	 * @param Title $sourceTitle Title to check
+	 * @return bool Whether it meets the applicable subpage requirements
+	 */
+	public function meetsSubpageRequirements( $sourceTitle ) {
+		// Don't allow conversion of sub pages unless it is
+		// a talk page with matching subject page. For example
+		// we will convert User_talk:Foo/bar only if User:Foo/bar
+		// exists, and we will never convert User:Baz/bang.
+		if ( $sourceTitle->isSubPage() && ( !$sourceTitle->isTalkPage() || !$sourceTitle->getSubjectPage()->exists() ) ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function shouldConvert( Title $sourceTitle ) {
+		// If we have LiquidThreads filter out any pages with that enabled.  They should
+		// be converted separately.
+		if ( class_exists( 'LqtDispatch' ) ) {
+			if ( \LqtDispatch::isLqtPage( $sourceTitle ) ) {
+				$this->logger->info( "Skipping LQT enabled page, conversion must be done with convertLqt.php or convertLqtPageOnLocalWiki.php: $sourceTitle" );
+				return false;
+			}
+		}
+
+		if ( !$this->meetsSubpageRequirements( $sourceTitle ) ) {
+			return false;
+		}
+
+		return true;
 	}
 }
