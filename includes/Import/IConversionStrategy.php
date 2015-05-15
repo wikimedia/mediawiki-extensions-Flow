@@ -9,6 +9,7 @@ use WikitextContent;
 
 /**
  * Interface between the Converter and an implementation of IImportSource.
+ * Informs conversion behavior and which pages should be converted.
  */
 interface IConversionStrategy {
 	/**
@@ -79,4 +80,14 @@ interface IConversionStrategy {
 	 * @return Postprocessor|null
 	 */
 	function getPostprocessor();
+
+	/**
+	 * Checks whether the title should be converted.
+	 * This is a secondary filter in addition to the original list (which might be a
+	 * single title, a namespace, etc.) passed into convert/convertAll.
+	 *
+	 * @param Title $sourceTitle
+	 * @return bool True if and only if it should be converted
+	 */
+	function shouldConvert( Title $sourceTitle );
 }

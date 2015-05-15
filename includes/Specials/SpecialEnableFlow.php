@@ -7,7 +7,7 @@ use Status;
 use Title;
 use Flow\Container;
 use Flow\Import\Converter;
-use Flow\Import\Wikitext\ConversionStrategy;
+use Flow\Import\EnableFlow\EnableFlowWikitextConversionStrategy;
 use Flow\Import\NullImportSourceStore;
 
 /**
@@ -91,18 +91,21 @@ class SpecialEnableFlow extends FormSpecialPage {
 
 		if ( $title->exists() ) {
 
-			if ( class_exists( 'LqtDispatch' ) && LqtDispatch::isLqtPage( $title ) ) {
+			if ( class_exists( 'LqtDispatch' ) && \LqtDispatch::isLqtPage( $title ) ) {
 				return Status::newFatal( 'flow-special-enableflow-page-is-liquidthreads', $page );
 			}
+
+			$logger = Container::get( 'default_logger' );
 
 			$converter = new Converter(
 				wfGetDB( DB_MASTER ),
 				Container::get( 'importer' ),
-				Container::get( 'default_logger' ),
+				$logger,
 				$this->occupationController->getTalkpageManager(),
-				new ConversionStrategy(
+				new EnableFlowWikitextConversionStrategy(
 					Container::get( 'parser' ),
 					new NullImportSourceStore(),
+					$logger,
 					$data['archive-title-format'],
 					$data['header']
 				)

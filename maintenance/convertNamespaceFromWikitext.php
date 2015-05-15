@@ -40,7 +40,8 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 			FlowHooks::getOccupationController()->getTalkpageManager(),
 			new Flow\Import\Wikitext\ConversionStrategy(
 				$wgParser,
-				new Flow\Import\NullImportSourceStore()
+				new Flow\Import\NullImportSourceStore(),
+				$logger
 			)
 		);
 
@@ -53,19 +54,6 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 		// so we can wrap that.
 		$it = $it->getIterator();
 
-
-		// if we have liquid threads filter out any pages with that enabled.  They should
-		// be converted separately.
-		if ( class_exists( 'LqtDispatch' ) ) {
-			$it = new CallbackFilterIterator( $it, function( $title ) use ( $logger ) {
-				if ( LqtDispatch::isLqtPage( $title ) ) {
-					$logger->info( "Skipping LQT enabled page, conversion must be done with convertLqt.php or convertLqtPage.php: $title" );
-					return false;
-				} else {
-					return true;
-				}
-			} );
-		}
 
 		$converter->convertAll( $it );
 	}
