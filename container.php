@@ -804,7 +804,14 @@ $c['controller.confirmedit'] = function( $c ) {
 };
 
 $c['controller.contentlength'] = function( $c ) {
-	return new Flow\SpamFilter\ContentLengthFilter;
+	global $wgMaxArticleSize;
+
+	// wgMaxArticleSize is in kilobytes,
+	// whereas this really is characters (it uses
+	// mb_strlen), so it's not the exact same limit.
+	$maxCharCount = $wgMaxArticleSize * 1024;
+
+	return new Flow\SpamFilter\ContentLengthFilter( $maxCharCount );
 };
 
 $c['controller.spamfilter'] = function( $c ) {

@@ -12,7 +12,6 @@ use User;
 
 class PostRevision extends AbstractRevision {
 	const MAX_TOPIC_LENGTH = 260;
-	const MAX_POST_LENGTH = 25600;
 
 	/**
 	 * @var UUID
