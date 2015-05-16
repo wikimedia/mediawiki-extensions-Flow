@@ -1,0 +1,1109 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_aff2a094",
+        "filename": ".jshintrc",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Do we need both this and jQuery in the globals above?",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_cf38443c",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Maybe this should be an object, with topicTitlesById as one of the keys, so other data could be passed in when populated?\n\nAlternatively, that could be changed later if needed.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_ef3bc833",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "This is called twice.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_0f1accd0",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "This looks to be from ve.dm.APIResultsProvider, and should say that, and include the original copyright notice that (if we can\u0027t upstream it to OOJS).",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_8f46bcc4",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Why does the language need to be overridden?",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_af4140ad",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "If used, this will have to be non-numeric, since Flow uses GUIDs.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_6f47d8bf",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "This reads vaguely.  Maybe, \"settings passed in ajax field of mw.Api\u0027s options parameter\" or something like that.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_2f1d50c7",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "FlowDmAPIResultsProvider",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_6f1ef8bf",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "A different field name is used everywhere else in the class.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_4f4c54e4",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "ajaxSettings should support the new wgFlowAjaxTimeout.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_cf0fe48b",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "This contradicts the documentation, which says it will be rejected.  One of them should be changed (probably the docs).",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_ef12e8b3",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Shouldn\u0027t say \u0027search\u0027.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_8f2d5cf0",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Get",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_af2860dd",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "dynamic",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_4f23f4ff",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Asymmetrically.  Also, this is not actually clear.  I think it means, \"If any of the values passed in differ from the value we already have for that key\".",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_0f816cc8",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsQueue.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Include source and copyright notice.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_8f747cfc",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsQueue.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Update docs.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_2f8470d7",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsQueue.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "fileRepoPromise doesn\u0027t do anything (nor does it in the VE version of the code).",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_cf8604e0",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsQueue.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Shouldn\u0027t it fetch (howMany + this.threshold) - this.queue.length?  This is not taking into account what it already has.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_ef8988ef",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsQueue.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "If we have enough (queue.length \u003e\u003d howMany), and just don\u0027t have the threshold, shouldn\u0027t we return what we have already (and still kick off the request to build back our threshold, but not make the user wait)?",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_af6f0025",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsQueue.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "provider",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_4f7a14e8",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsQueue.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Get",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_6f7598f3",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APITopicsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "topics",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_0f688c18",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APITopicsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "apiUrl",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_2f6b1017",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APITopicsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Unused",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_0fc72c17",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APITopicsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Note there is also \u0027offset\u0027, which is a timestamp offset.\n\nAnd may want to set offset-dir, include-offset, and sortby explicitly.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_cf5da47f",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APITopicsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Undocumented.  Also, this can be added as static param, right?  I guess a TOC-only API call and a non-TOC only API call would use different providers.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_ef60a82f",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APITopicsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Not search",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_8f5b1c88",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APITopicsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "mw.Api objects should not be described as XHR (though they do provide the jqXHR in some cases as parameters).",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_6f4cb8cb",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APITopicsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "topicList",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_efcf482a",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Mixin",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_8fda3ceb",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "getPageTitle()",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_afd5c0bb",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Clarify format.  fixed-html?",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_4fe0d492",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Set",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_6fdb58ee",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Format, per above.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_0fee4c87",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "The description is really only one blob of HTML, though there are three possible formats (wikitext, Parsoid HTML, and \"fixed\" Parsoid HTML).\n\nAlso, it can have categories; not sure if that needs to be represented here (probably, not yet).",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_2ff1d065",
+        "filename": "modules/flow/dm/mw.flow.dm.Item.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Unclear if we need this class.  Is it just anything with a Flow UUID?",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_2f36b04f",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "It looks like you renamed this to renderedTopics.  renderedTopicCount would a be a little more clear, I think.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_cfe3649a",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Might be better to just always pass it in, especially for the title.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_efe668aa",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Is \u0027flow-generated\u0027 for empty boards?  Also, on master it is \u0027flow-generated-\u0027 + _totalInstanceCount, apparently to keep it unique.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_affce03b",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Offset is a timestamp (we should document this better), so 0 probably does not make sense.  It can be omitted, though.  See https://www.mediawiki.org/w/api.php?action\u003dflow\u0026format\u003djsonfm\u0026page\u003dTalk%3AFlow_QA\u0026submodule\u003dview-topiclist\u0026vtlsortby\u003dupdated .",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_4ff77456",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "This conflicts with the constructor.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_6ff27866",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "content of the topic title, to be precise.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_0f95ece6",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "There should probably be two kinds of widget:\n\n* TOC line, or something like that, for the line in the TOC.\n* Topic widget (for the actual full topic).  This should be able to assume it\u0027s not a stub.  It doesn\u0027t make sense to construct this for a given topic if we don\u0027t have the data it needs.\n\nIt seems the mw.flow.dm.Topic should represent it either way and keep track of whether it\u0027s a stub.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_2f98f01d",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "This is the same as i, right?",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_ef9d080e",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "If we\u0027re saying API, it should probably be TOC.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_8f88fcca",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Topic, not Post.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_6f8918ca",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Document",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_4f8e94d6",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "FlowDmTopic (this is more consistent with the scheme in our VE classes)",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_0fbc0c67",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Doesn\u0027t this depend on what\u0027s passed in?",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_2fbf905d",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "I\u0027m not sure if this should mixin List.  I think a tree is a better representation.  Everything is a reply/child of something else, except the topic title, which is the root.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_efb4287e",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "I like to use is (e.g. isModerated) or another similar indication (e.g. shouldRender) for boolean variables.\n\nBut I guess it has to be like this if you want to have a getter for isModerated.  Or we could have a data sub-object to avoid this problem.\n\nprototype.isModerated \u003d function() {\n  return this.data.isModerated;\n}",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_8faf9c26",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "It means it\u0027s never been edited after the original creation.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_afaaa013",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Is this the topic title?  This is an object, not a string.  Also, please add the sub-fields.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_4fa53442",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Maybe just getTopicTitle or something?  It\u0027s plaintext anyway (which should be documented here), so there\u0027s not really a non-raw version.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_6fa03832",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "This is e.g. Topic:S842ge5q4ggyxzwf ?",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_cf7044db",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Moderation is more of a state transition, and involves changing more than one field (e.g. it also creates a revision).  E.g.\n\n(old rev MODERATED_NONE) (delete-topic( reason ) \u003d\u003e) (new rev MODERATED_DELETED)\n\nAnd there are more than two possibilities (e.g. there\u0027s also MODERATED_SUPPRESSED and MODERATED_LOCKED, etc.).",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_ef73c8e2",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Not sure if this makes sense to change in isolation.  Same for below.  Maybe there should be one moderate method (if we decide to take the \u0027mirror the server\u0027s transitions\u0027 approach, see above).",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_8f7ebcab",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Set, but see above.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_af7940c4",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "I think this can be removed.  There\u0027s no way this can change without a full page reload.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_4f8454a3",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Document format.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_6f7fd8a6",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "Set, and document format.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_0f52cc3f",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "actions.  Needs more documentation.  Basically, this is the API telling us what API actions we\u0027re allowed to do (thank, reply, hide-topic, delete-topic, whatever) (which varies by permissions), and the no-JS fallback URL for the action.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_2f555026",
+        "filename": "modules/flow/dm/mw.flow.dm.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "No longer needed due to mw.flow.js.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_cf47e47a",
+        "filename": "tests/qunit/flow/dm/test_mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-16T04:19:20Z",
+      "side": 1,
+      "message": "\u0027This is the topic title\u0027 would be clearer.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
