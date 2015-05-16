@@ -358,7 +358,7 @@
 	"flow-special-enableflow-legend": "Ativar Flow numa página nova",
 	"flow-special-enableflow-header": "Descrição inicial do espaço de discussão Flow (wikitexto)",
 	"flow-special-enableflow-board-already-exists": "Já existe um espaço de discussão Flow em [[$1]].",
-	"flow-special-enableflow-invalid-title": "A página fornecida não possui um título válido",
+	"flow-special-enableflow-invalid-title": "Foi fornecido um título de página inválido",
 	"flow-special-enableflow-archive-title-format-default-value": "%s/Arquivo_%d",
 	"flow-special-enableflow-board-creation-not-allowed": "Não possui permissão para criar um espaço de discussão Flow em [[:$1]].",
 	"flow-special-enableflow-confirmation": "Criou com sucesso um espaço de discussão Flow em [[$1]].",

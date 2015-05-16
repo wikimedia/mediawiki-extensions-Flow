@@ -13,7 +13,8 @@
 			"Revi",
 			"Gusdud25",
 			"Infinity",
-			"SeoJeongHo"
+			"SeoJeongHo",
+			"Ysjbserver"
 		]
 	},
 	"flow-desc": "워크플로우 관리 시스템",
@@ -29,7 +30,7 @@
 	"logentry-suppress-flow-suppress-topic": "$1 사용자가 [[$3]] 문서의 [$4 주제]를 {{GENDER:$2|숨겼습니다}}",
 	"logentry-suppress-flow-restore-topic": "$1 사용자가 [[$3]] 문서의 [$4 주제]를 {{GENDER:$2|삭제했습니다}}",
 	"flow-user-moderated": "중재된 사용자",
-	"flow-edit-header-link": "머리말 고치기",
+	"flow-edit-header-link": "설명 편집",
 	"flow-post-moderated-toggle-hide-show": "$2 사용자가 {{GENDER:$1|표시 안 함으로 설정한}} 댓글 보이기",
 	"flow-post-moderated-toggle-delete-show": "$2 사용자가 {{GENDER:$1|삭제한}} 댓글 보이기",
 	"flow-post-moderated-toggle-suppress-show": "$2 사용자가 {{GENDER:$1|표시하지 않도록 한}} 덧글 보기",

@@ -373,7 +373,7 @@
 	"flow-special-enableflow-page": "要启用Flow的页面",
 	"flow-special-enableflow-header": "Flow板块的最初描述（wiki文本）",
 	"flow-special-enableflow-board-already-exists": "在[[$1]]已存在Flow板块。",
-	"flow-special-enableflow-invalid-title": "提供的页面不是一个有效的页面标题",
+	"flow-special-enableflow-invalid-title": "提供了一个无效的页面标题",
 	"flow-special-enableflow-archive-title-format": "在哪里存档现有内容",
 	"flow-special-enableflow-archive-title-format-default-value": "%s/存档_%d",
 	"flow-special-enableflow-board-creation-not-allowed": "您不被允许在[[:$1]]创建一个Flow板块。",

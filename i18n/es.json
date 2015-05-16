@@ -320,7 +320,7 @@
 	"flow-special-enableflow-page": "Página donde se activará Flow",
 	"flow-special-enableflow-header": "Descripción inicial del panel de discusión Flow (wikitexto)",
 	"flow-special-enableflow-board-already-exists": "Ya existe un panel de mensajes Flow en [[$1]]",
-	"flow-special-enableflow-invalid-title": "La página dada no es un título de página válido",
+	"flow-special-enableflow-invalid-title": "Se proporcionó un título de página no válido",
 	"flow-special-enableflow-archive-title-format-default-value": "%s/Archivo_%d",
 	"flow-special-enableflow-confirmation": "Has creado un nuevo panel de discusión en [[$1]].",
 	"flow-spam-confirmedit-form": "Confirma que eres un humano resolviendo el siguiente captha: $1",

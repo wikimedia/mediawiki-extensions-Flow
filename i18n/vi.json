@@ -6,7 +6,8 @@
 			"Withoutaname",
 			"Trần Nguyễn Minh Huy",
 			"Max20091",
-			"Dinhxuanduyet"
+			"Dinhxuanduyet",
+			"KhangND"
 		]
 	},
 	"flow-desc": "Hệ thống quản lý luồng làm việc",
@@ -333,6 +334,7 @@
 	"flow-special-type-workflow": "Luồng làm việc",
 	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Không tìm thấy nội dung ứng với kiểu và UUID.",
+	"flow-special-enableflow-invalid-title": "Tên trang đã cung cấp không hợp lệ.",
 	"flow-spam-confirmedit-form": "Xin vui lòng giải hình CAPTCHA bên dưới để xác nhận rằng bạn là con người: $1",
 	"flow-embedding-unsupported": "Chưa có thể nhúng thảo luận vào trang khác.",
 	"mw-ui-unsubmitted-confirm": "Bạn có thay đổi chưa được lưu trên trang này. Bạn có chắc chắn muốn rời trang và mất các thay đổi của bạn?",
