@@ -14,6 +14,11 @@ $namespaceNames['ast'] = array(
 	NS_TOPIC =>  'Asuntu',
 );
 
+/** Catalan */
+$namespaceNames['ca'] = array(
+	NS_TOPIC =>  'Tema',
+);
+
 /** German */
 $namespaceNames['de'] = array(
 	NS_TOPIC =>  'Thema',
