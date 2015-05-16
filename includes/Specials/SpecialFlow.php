@@ -193,4 +193,8 @@ class SpecialFlow extends FormSpecialPage {
 			return Status::newFatal( 'flow-special-invalid-uuid' );
 		}
 	}
+
+	protected function getGroupName() {
+		return 'redirects';
+	}
 }

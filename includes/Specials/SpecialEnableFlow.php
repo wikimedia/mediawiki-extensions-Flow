@@ -154,4 +154,8 @@ class SpecialEnableFlow extends FormSpecialPage {
 		$confirmationMessage = $this->msg( 'flow-special-enableflow-confirmation', $this->page )->parse();
 		$this->getOutput()->addHTML( $confirmationMessage );
 	}
+
+	protected function getGroupName() {
+		return 'wiki';
+	}
 }
