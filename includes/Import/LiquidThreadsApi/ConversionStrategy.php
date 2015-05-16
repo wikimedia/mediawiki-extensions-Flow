@@ -115,6 +115,12 @@ class ConversionStrategy implements IConversionStrategy {
 	}
 
 	/**
+	 * Creates a new revision that strips the LQT magic word (if any) and injects a
+	 * template about the move. With the magic word stripped, these pages will no
+	 * longer contain the use-liquid-threads page property.  Unless LQT applies for an
+	 * additional reason ($wgLqtTalkPages, $wgLqtNamespaces, $wgLqtPages), they will
+	 * effectively no longer be LQT pages.
+	 *
 	 * @param WikitextContent $content
 	 * @param Title $title
 	 * @return WikitextContent

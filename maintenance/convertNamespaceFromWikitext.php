@@ -9,8 +9,8 @@ require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 
 /**
  * Converts a single namespace from wikitext talk pages to flow talk pages.  Does not
- * modify liquid threads pages it comes across, use convertLqt.php for that.  Does not
- * modify sub-pages. Does not modify LiquidThreads enabled pages.
+ * modify LiquidThreads pages it comes across; use convertLqtPagesWithProp.php for that.  Does not
+ * modify sub-pages (except talk subpages with a corresponding subject page).
  */
 class ConvertNamespaceFromWikitext extends Maintenance {
 	public function __construct() {
