@@ -366,6 +366,7 @@
 	"flow-special-enableflow-header": "Начальное описание доски Flow (викитекст)",
 	"flow-special-enableflow-board-already-exists": "Там уже доска Flow на [[$1]].",
 	"flow-special-enableflow-invalid-title": "Было предоставлено недопустимое название страницы",
+	"flow-special-enableflow-archive-title-format-default-value": "%s/Archive_%d",
 	"flow-special-enableflow-confirmation": "Вы успешно создали доску Flow на [[$1]].",
 	"flow-spam-confirmedit-form": "Пожалуйста, введите текст с картинки ниже, если вы не робот: $1",
 	"flow-embedding-unsupported": "Обсуждения пока не могут быть вставленным куда-либо ещё.",

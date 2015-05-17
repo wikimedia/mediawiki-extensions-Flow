@@ -59,7 +59,7 @@
 	"flow-reply-topic-title-placeholder": "Trả lời “$1”",
 	"flow-reply-submit": "{{GENDER:$1}}Trả lời",
 	"flow-reply-link": "{{GENDER:$1}}Trả lời",
-	"flow-thank-link": "{{GENDER:$1}}Cảm ơn",
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Cảm ơn}}}}",
 	"flow-lock-link": "{{GENDER:$1}}Khóa",
 	"flow-history-action-suppress-post": "đàn áp",
 	"flow-history-action-delete-post": "xóa",
@@ -362,5 +362,6 @@
 	"flow-undo-edit-failure": "Sửa đổi không thể phục hồi vì đã có những sửa đổi mới ở sau.",
 	"group-flow-bot": "Bot Flow",
 	"group-flow-bot-member": "bot Flow",
-	"grouppage-flow-bot": "Project:Bot Flow"
+	"grouppage-flow-bot": "Project:Bot Flow",
+	"flow-ve-mention-placeholder": "Tên người dùng"
 }

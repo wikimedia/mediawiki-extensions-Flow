@@ -357,7 +357,7 @@
 	"flow-special-enableflow-page": "На која страница да се вклучи Тек",
 	"flow-special-enableflow-header": "Првичен опис на разговорница (викитекст)",
 	"flow-special-enableflow-board-already-exists": "Веќе има разговорница на [[$1]].",
-	"flow-special-enableflow-invalid-title": "Укажаната страница не претставува важечки наслов на страница",
+	"flow-special-enableflow-invalid-title": "Укажан е неважечки наслов на страницата",
 	"flow-special-enableflow-archive-title-format": "Каде да се архивира постоечката содржина",
 	"flow-special-enableflow-archive-title-format-default-value": "%s/Архива_%d",
 	"flow-special-enableflow-board-creation-not-allowed": "Не ви е дозволено да создадете разговорник на [[:$1]].",

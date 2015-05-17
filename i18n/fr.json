@@ -30,7 +30,9 @@
 			"Hercule",
 			"Weft",
 			"MPlauche",
-			"NemesisIII"
+			"NemesisIII",
+			"Urhixidur",
+			"Wladek92"
 		]
 	},
 	"enableflow": "Activer Flow",
@@ -131,6 +133,9 @@
 	"flow-topic-notification-subscribe-description": "{{GENDER:$1|Vous}} recevrez des notifications pour toutes les activités sur cette discussion.",
 	"flow-board-notification-subscribe-title": "Vous vous êtes {{GENDER:$1|abonné|abonnée}} à ce forum de discussion !",
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Vous}} recevrez une notification quand un nouveau sujet sera créé sur ce forum.",
+	"flow-error-allowcreation-no-usedb": "allowCreation exige que $wgContentHandlerUseDB soit vrai",
+	"flow-error-allowcreation-already-exists": "La page existe déjà, mais est nécessaire afin de ne pas",
+	"flow-error-allowcreation-flow-create-board": "L’utilisateur n’a pas l’autorisation « {{int:droit des flux de création de carte}} »",
 	"flow-error-http": "Une erreur s’est produite en communiquant avec le serveur.",
 	"flow-error-other": "Une erreur inattendue s’est produite.",
 	"flow-error-external": "Une erreur s’est produite.<br />Le message d’erreur reçu était : $1",
@@ -383,7 +388,7 @@
 	"flow-special-enableflow-page": "Page sur laquelle activer Flow",
 	"flow-special-enableflow-header": "Description initiale du tableau Flow (wikitexte)",
 	"flow-special-enableflow-board-already-exists": "Il y a déjà un tableau Flow sur [[$1]].",
-	"flow-special-enableflow-invalid-title": "La page fournie n’est pas un titre de page valide",
+	"flow-special-enableflow-invalid-title": "Un titre invalide de page a été fourni.",
 	"flow-special-enableflow-archive-title-format": "Où archiver le contenu existant",
 	"flow-special-enableflow-archive-title-format-default-value": "%s/Archive_%d",
 	"flow-special-enableflow-board-creation-not-allowed": "Vous n'êtes pas autorisé à créer un tableau Flux à [[:$1]].",

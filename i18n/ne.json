@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"सरोज कुमार ढकाल",
-			"Ganesh Paudel"
+			"Ganesh Paudel",
+			"Nirjal stha"
 		]
 	},
 	"flow-newtopic-title-placeholder": "नयाँ विषय",
@@ -14,5 +15,6 @@
 	"flow-moderation-confirm-suppress-post": "दबाउने",
 	"flow-moderation-confirm-delete-post": "मेट्ने",
 	"flow-moderation-confirm-hide-post": "लुकाउनुहोस्",
-	"flow-undo-your-text": "तपाईँको पाठ"
+	"flow-undo-your-text": "तपाईँको पाठ",
+	"flow-ve-mention-placeholder": "प्रयोगकर्ता नाम"
 }
