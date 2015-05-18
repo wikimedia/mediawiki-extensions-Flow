@@ -258,10 +258,7 @@ class Converter {
 	}
 
 	/**
-	 * Creates a new revision of the archived page that strips the LQT magic word
-	 * and injects a template about the move. With the magic word stripped these pages
-	 * will no longer contain the use-liquid-threads page property and will effectively
-	 * no longer be lqt pages.
+	 * Creates a new revision of the archived page with strategy-specific changes.
 	 *
 	 * @param Title $title Previous location of the page, before moving
 	 * @param Title $archiveTitle Current location of the page, after moving

@@ -179,7 +179,7 @@ class ConversionStrategy implements IConversionStrategy {
 		// be converted separately.
 		if ( class_exists( 'LqtDispatch' ) ) {
 			if ( \LqtDispatch::isLqtPage( $sourceTitle ) ) {
-				$this->logger->info( "Skipping LQT enabled page, conversion must be done with convertLqt.php or convertLqtPageOnLocalWiki.php: $sourceTitle" );
+				$this->logger->info( "Skipping LQT enabled page, conversion must be done with convertLqtPagesWithProp.php or convertLqtPageOnLocalWiki.php: $sourceTitle" );
 				return false;
 			}
 		}
