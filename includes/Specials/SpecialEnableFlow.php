@@ -82,16 +82,11 @@ class SpecialEnableFlow extends FormSpecialPage {
 			return Status::newFatal( 'flow-special-enableflow-board-already-exists', $page );
 		}
 
-		$allowCreationStatus = $this->occupationController->allowCreation( $title, $this->getUser(), false );
-		if ( !$allowCreationStatus->isGood() ) {
-			return Status::newFatal( 'flow-special-enableflow-board-creation-not-allowed', $page );
-		}
-
 		$status = Status::newGood();
 
-		if ( $title->exists() ) {
+		if ( $title->exists( Title::GAID_FOR_UPDATE ) ) {
 
-			if ( class_exists( 'LqtDispatch' ) && LqtDispatch::isLqtPage( $title ) ) {
+			if ( class_exists( 'LqtDispatch' ) && \LqtDispatch::isLqtPage( $title ) ) {
 				return Status::newFatal( 'flow-special-enableflow-page-is-liquidthreads', $page );
 			}
 
@@ -116,6 +111,11 @@ class SpecialEnableFlow extends FormSpecialPage {
 			}
 
 		} else {
+			$allowCreationStatus = $this->occupationController->allowCreation( $title, $this->getUser(), false );
+			if ( !$allowCreationStatus->isGood() ) {
+				return Status::newFatal( 'flow-special-enableflow-board-creation-not-allowed', $page );
+			}
+
 			$loader = $this->loaderFactory->createWorkflowLoader( $title );
 			$blocks = $loader->getBlocks();
 

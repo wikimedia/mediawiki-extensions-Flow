@@ -44,12 +44,13 @@ class ImportSource implements IImportSource {
 	 * occurred parameterized with the page the source lives at and the date
 	 * of conversion in GMT.
 	 *
-	 * @return ImportHeader|null
+	 * @return ImportHeader
+	 * @throws ImportException When source header revision can not be loaded
 	 */
 	public function getHeader() {
-		$revision = Revision::newFromTitle( $this->title );
+		$revision = Revision::newFromTitle( $this->title, /* $id= */ 0, Revision::READ_LATEST );
 		if ( !$revision ) {
-			return null;
+			throw new ImportException( "Failed to load revision for title: {$this->title->getPrefixedText()}" );
 		}
 
 

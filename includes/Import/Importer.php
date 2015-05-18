@@ -559,26 +559,24 @@ class TalkpageImportOperation {
 
 		$imported = $failed = 0;
 		$header = $this->importSource->getHeader();
-		if ( $header ) {
-			try {
-				$state->begin();
-				$this->importHeader( $state, $header );
-				$state->commit();
-				$state->postprocessor->afterHeaderImported( $state, $header );
-				$imported++;
-			} catch ( ImportSourceStoreException $e ) {
-				// errors from the source store are more serious and should
-				// not just be logged and swallowed.  This may indicate that
-				// we are not properly recording progress.
-				$state->rollback();
-				throw $e;
-			} catch ( \Exception $e ) {
-				$state->rollback();
-				\MWExceptionHandler::logException( $e );
-				$state->logger->error( 'Failed importing header: ' . $header->getObjectKey() );
-				$state->logger->error( (string)$e );
-				$failed++;
-			}
+		try {
+			$state->begin();
+			$this->importHeader( $state, $header );
+			$state->commit();
+			$state->postprocessor->afterHeaderImported( $state, $header );
+			$imported++;
+		} catch ( ImportSourceStoreException $e ) {
+			// errors from the source store are more serious and should
+			// not just be logged and swallowed.  This may indicate that
+			// we are not properly recording progress.
+			$state->rollback();
+			throw $e;
+		} catch ( \Exception $e ) {
+			$state->rollback();
+			\MWExceptionHandler::logException( $e );
+			$state->logger->error( 'Failed importing header: ' . $header->getObjectKey() );
+			$state->logger->error( (string)$e );
+			$failed++;
 		}
 
 		foreach( $this->importSource->getTopics() as $topic ) {
