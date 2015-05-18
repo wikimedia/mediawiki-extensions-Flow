@@ -7,14 +7,17 @@
 		]
 	},
 	"flow-newtopic-title-placeholder": "नयाँ विषय",
+	"flow-thank-link": "{{GENDER:$1|{{लिङ्ग:$2|धन्यवाद}}}}",
 	"flow-post-action-suppress-post": "दबाउने",
 	"flow-post-action-delete-post": "हटाउने",
 	"flow-post-action-hide-post": "लुकाउनुहोस्",
+	"flow-error-allowcreation-already-exists": "पृष्ठ पहिला देखि नै उपलब्ध छ, तर पहिला आवश्यक थिएन",
 	"flow-rev-message-reply-bundle": "<strong>$1 {{PLURAL:$1|टिप्पणी|टिप्पणीहरू}}</strong> {{PLURAL:$1|थपिएको|थपिएका}} थिए ।",
 	"flow-workflow": "कार्य बहाव",
 	"flow-moderation-confirm-suppress-post": "दबाउने",
 	"flow-moderation-confirm-delete-post": "मेट्ने",
 	"flow-moderation-confirm-hide-post": "लुकाउनुहोस्",
+	"flow-special-enableflow-invalid-title": "अबैध पृष्ठ शिर्षक राखिएको थियो",
 	"flow-undo-your-text": "तपाईँको पाठ",
 	"flow-ve-mention-placeholder": "प्रयोगकर्ता नाम"
 }

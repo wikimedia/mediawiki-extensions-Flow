@@ -122,7 +122,7 @@
 	"flow-topic-notification-subscribe-description": "Description text for the overlay when a topic is added to watchlist.",
 	"flow-board-notification-subscribe-title": "Title text for the overlay when a board is added to watchlist.",
 	"flow-board-notification-subscribe-description": "Description text for the overlay when a board is added to watchlist.",
-	"flow-error-allowcreation-no-usedb": "Internal error when allowCreation is used and $wgContentHandlerUseDB is not set to true",
+	"flow-error-allowcreation-no-usedb": "Internal error when allowCreation is used and <var>$wgContentHandlerUseDB</var> is not set to <code>true</code>. Do not translate <code>true</code> as it a boolean value.",
 	"flow-error-allowcreation-already-exists": "Internal error when allowCreation is called with $mustNotExist true, but the page does already exist",
 	"flow-error-allowcreation-flow-create-board": "Internal error when allowCreation is called and user does not have flow-create-board",
 	"flow-error-http": "Used as error message on HTTP error.",

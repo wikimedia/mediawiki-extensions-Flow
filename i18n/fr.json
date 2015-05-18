@@ -133,7 +133,7 @@
 	"flow-topic-notification-subscribe-description": "{{GENDER:$1|Vous}} recevrez des notifications pour toutes les activités sur cette discussion.",
 	"flow-board-notification-subscribe-title": "Vous vous êtes {{GENDER:$1|abonné|abonnée}} à ce forum de discussion !",
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Vous}} recevrez une notification quand un nouveau sujet sera créé sur ce forum.",
-	"flow-error-allowcreation-no-usedb": "allowCreation exige que $wgContentHandlerUseDB soit vrai",
+	"flow-error-allowcreation-no-usedb": "allowCreation exige que <var>$wgContentHandlerUseDB</var> soit vrai",
 	"flow-error-allowcreation-already-exists": "La page existe déjà, mais est nécessaire afin de ne pas",
 	"flow-error-allowcreation-flow-create-board": "L’utilisateur n’a pas l’autorisation « {{int:droit des flux de création de carte}} »",
 	"flow-error-http": "Une erreur s’est produite en communiquant avec le serveur.",

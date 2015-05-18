@@ -118,7 +118,7 @@
 	"flow-topic-notification-subscribe-description": "此话题如有任何活动，{{GENDER:$1|您}}将收到通知。",
 	"flow-board-notification-subscribe-title": "{{GENDER:$1|您已}}订阅此讨论版。",
 	"flow-board-notification-subscribe-description": "当此版发起新话题时，{{GENDER:$1|您}}将收到通知。",
-	"flow-error-allowcreation-no-usedb": "允许创建需要$wgContentHandlerUseDB设置为真",
+	"flow-error-allowcreation-no-usedb": "允许创建需要<var>$wgContentHandlerUseDB</var>设置为真",
 	"flow-error-allowcreation-already-exists": "页面已存在，但不需要存在",
 	"flow-error-allowcreation-flow-create-board": "用户没有“{{int:right-flow-create-board}}”权限",
 	"flow-error-http": "与服务器联系时出错。",
