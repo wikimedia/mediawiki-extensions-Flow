@@ -16,6 +16,24 @@
       "revId": "1be080e8ea9462247c5dd3824f4fd3c64ad26ec8",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_eaf08b63",
+        "filename": "includes/View.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-18T17:57:28Z",
+      "side": 1,
+      "message": "I used Xml::something in an earlier version of this change, and then forgot to remove this line. Good catch.",
+      "parentUuid": "0ed113e2_63d12ffb",
+      "revId": "1be080e8ea9462247c5dd3824f4fd3c64ad26ec8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
