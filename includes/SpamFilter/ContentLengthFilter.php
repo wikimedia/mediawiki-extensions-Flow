@@ -14,7 +14,7 @@ class ContentLengthFilter implements SpamFilter {
 	 */
 	protected $maxLength;
 
-	public function __construct( $maxLength = 25600 ) {
+	public function __construct( $maxLength ) {
 		$this->maxLength = $maxLength;
 	}
 
