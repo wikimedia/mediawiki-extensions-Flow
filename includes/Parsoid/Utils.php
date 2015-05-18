@@ -243,7 +243,10 @@ abstract class Utils {
 			self::parsoidConfig();
 			// XXX We only need the Parsoid CSS if some content being
 			// rendered has getContentFormat() === 'html'.
-			$out->addModuleStyles( 'mediawiki.skinning.content.parsoid' );
+			$out->addModuleStyles( array(
+				'mediawiki.skinning.content.parsoid',
+				'ext.cite.style',
+			) );
 		} catch ( NoParsoidException $e ) {
 			// The module is only necessary when we are using parsoid.
 		}
