@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_dfb8ebc4",
+        "filename": ".jshintrc",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "Grunt objected, so I added this in, but we may not need the above one. I\u0027ll check.",
+      "parentUuid": "0ed113e2_aff2a094",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_cf38443c",
         "filename": "modules/flow-initialize.js",
         "patchSetId": 10
@@ -30,6 +48,24 @@
       "writtenOn": "2015-05-16T04:19:20Z",
       "side": 1,
       "message": "Maybe this should be an object, with topicTitlesById as one of the keys, so other data could be passed in when populated?\n\nAlternatively, that could be changed later if needed.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_3fd017fa",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "It already is an object within the flowBoard, and the system reads through the global flowBoard object right now, which is why I had to update that one (the \"old\" flowBoard object.\n\nI am now working on adding a topicIndex object to the dm.Board that will manage these (topics by Id, topics by date, etc) -- so when everything is DM\u0027ed, this bit of code would no longer be necessary, since it updates the \"old\" flowBoard object data. This was really done just to \"fill up the gap\" between the new and old code, especially for the action of clicking a ToC topic that has not yet been loaded.",
+      "parentUuid": "0ed113e2_cf38443c",
       "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_df06ab88",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "Yes, remnant of my re-splitting of the two commits, it cloned itself instead of moving. Whoops. Fixing.",
+      "parentUuid": "0ed113e2_ef3bc833",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_0f1accd0",
         "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
         "patchSetId": 10
@@ -64,6 +118,24 @@
       "writtenOn": "2015-05-16T04:19:20Z",
       "side": 1,
       "message": "This looks to be from ve.dm.APIResultsProvider, and should say that, and include the original copyright notice that (if we can\u0027t upstream it to OOJS).",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_7f38df39",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "Yeah, it is, I\u0027ll bring the copyright notice back. I was hoping to talk VE guys into making a shared library, maybe, but this one is in ve-core, so it might not really work out. The code duplication makes me cringe a bit, but I\u0027m not sure about an alternative.",
+      "parentUuid": "0ed113e2_0f1accd0",
       "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_7f0f7f8d",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "It doesn\u0027t have to, but it can. I should also implement it properly in the APITopicsProvider implementation. This allows users with a certain UI language to get messages and results from another language wiki through the API. It\u0027s specifically useful for search, which we may use this for later.",
+      "parentUuid": "0ed113e2_8f46bcc4",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_af4140ad",
         "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
         "patchSetId": 10
@@ -98,6 +188,24 @@
       "writtenOn": "2015-05-16T04:19:20Z",
       "side": 1,
       "message": "If used, this will have to be non-numeric, since Flow uses GUIDs.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_ff4b6fca",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "This isn\u0027t used in the specific implementation for Flow. Instead, I ignore it and use OffsetId to work with UUIDs.",
+      "parentUuid": "0ed113e2_af4140ad",
       "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -138,6 +246,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_5f287bdc",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "HAH. Whoops :)",
+      "parentUuid": "0ed113e2_2f1d50c7",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_6f1ef8bf",
         "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
         "patchSetId": 10
@@ -149,6 +275,24 @@
       "writtenOn": "2015-05-16T04:19:20Z",
       "side": 1,
       "message": "A different field name is used everywhere else in the class.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_9f8903f1",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "Oy vey. You\u0027re right.",
+      "parentUuid": "0ed113e2_6f1ef8bf",
       "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -172,6 +316,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_ff792ff2",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "I\u0027ll add it in. I wonder if I should implement it here in the base or \"above\" in the Flow-specific flow.dm.APITopicsProvider implementation",
+      "parentUuid": "0ed113e2_4f4c54e4",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_cf0fe48b",
         "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
         "patchSetId": 10
@@ -189,6 +351,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_df354b43",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "Yep, the docs. I should also check if this si the way it\u0027s done in the original version in VE and fix there.\n\nAll hail code duplication... :\\",
+      "parentUuid": "0ed113e2_cf0fe48b",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_ef12e8b3",
         "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
         "patchSetId": 10
@@ -200,6 +380,24 @@
       "writtenOn": "2015-05-16T04:19:20Z",
       "side": 1,
       "message": "Shouldn\u0027t say \u0027search\u0027.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_1f7513f4",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "Indeed.",
+      "parentUuid": "0ed113e2_ef12e8b3",
       "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -257,6 +455,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_dfc9cb29",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "Yep, you\u0027re right. Also, using \"ve.compare\" is not good... missed that (whoops) I should use \"OO.compare\" instead. In any case, the documentation for OO.compare state that the third parameter is \"asymmetric comparison\" which is why that therm is used here, but I can see how that\u0027s unclear.",
+      "parentUuid": "0ed113e2_4f23f4ff",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_0f816cc8",
         "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsQueue.js",
         "patchSetId": 10
@@ -308,6 +524,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_9fcfc32b",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsQueue.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "Yeah.. it is only relevant to the implementation of the queue in ve-mw, so \"oops\" on both ends.",
+      "parentUuid": "0ed113e2_2f8470d7",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_cf8604e0",
         "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsQueue.js",
         "patchSetId": 10
@@ -336,6 +570,24 @@
       "writtenOn": "2015-05-16T04:19:20Z",
       "side": 1,
       "message": "If we have enough (queue.length \u003e\u003d howMany), and just don\u0027t have the threshold, shouldn\u0027t we return what we have already (and still kick off the request to build back our threshold, but not make the user wait)?",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_7fe3ff9b",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIResultsQueue.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "Hm. Good question. This is mostly used for the ToC scroll. It might be good to dump whatever we have and continue the request to get more than let the user wait for both.",
+      "parentUuid": "0ed113e2_ef8988ef",
       "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -444,6 +696,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_bf9407ec",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APITopicsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "This is strictly used for the ToC, because the queue and providers can\u0027t really handle out of sync fetching (like getting a topic with a gap) So these are strictly for continuous fetching, and don\u0027t really require the offset-dir and sortby.\n\nI am working on a topicIndex object that will be able to handle all of those; if it works out well, we might want to get rid of the queue/provider structure and use a generalized form of the index. It\u0027s a bit challenging, since I need to make sure it handles gaps and reordering, though, so I didn\u0027t want to wait on it or count on it as a basic structure.",
+      "parentUuid": "0ed113e2_0fc72c17",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_cf5da47f",
         "filename": "modules/flow/dm/api/mw.flow.dm.APITopicsProvider.js",
         "patchSetId": 10
@@ -455,6 +725,24 @@
       "writtenOn": "2015-05-16T04:19:20Z",
       "side": 1,
       "message": "Undocumented.  Also, this can be added as static param, right?  I guess a TOC-only API call and a non-TOC only API call would use different providers.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_df978bed",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APITopicsProvider.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "We could instantiate two different providers with this config on or off, though, if it stays as a config option. Although at this rate, we\u0027re only using it for the ToC so it might as well be an \u0027always on\u0027 option. I was trying to cover my bases by letting use use a non-toc-only version if we need to.",
+      "parentUuid": "0ed113e2_cf5da47f",
       "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -563,6 +851,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_3f8817c9",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "Actually, this is a placeholder; the description seems to me to be a structure of a post/reply -- with revisions and all the parameters a post has. I was thinking of adding it as a flow.dm.Post once we have that in the DM.",
+      "parentUuid": "0ed113e2_afd5c0bb",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_4fe0d492",
         "filename": "modules/flow/dm/mw.flow.dm.Board.js",
         "patchSetId": 10
@@ -614,6 +920,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_5f839bac",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "Yeah that\u0027s why I was thinking of setting it up as a flow.dm.Post object, jst like replies, only without replies of its own.\n\nSince we don\u0027t have that yet, I kept it as a placeholder here. I can document that, though.",
+      "parentUuid": "0ed113e2_0fee4c87",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_2ff1d065",
         "filename": "modules/flow/dm/mw.flow.dm.Item.js",
         "patchSetId": 10
@@ -625,6 +949,24 @@
       "writtenOn": "2015-05-16T04:19:20Z",
       "side": 1,
       "message": "Unclear if we need this class.  Is it just anything with a Flow UUID?",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_dfbeab5f",
+        "filename": "modules/flow/dm/mw.flow.dm.Item.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "Yeah it\u0027s a basic class for any object with a Flow UUID, and perhaps other basic commonly shared attributes.\n\nThe main purpose of having this class is for the \"flow.dm.List\" object, to be able to state that its parameters accept and return flow.dm.Item objects.",
+      "parentUuid": "0ed113e2_2ff1d065",
       "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -682,6 +1024,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_9fb4a37d",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "It is, but as far as I understood, that\u0027s because \"flow-generated\" is true for all FlowComponent items (so, not just the board) -- so the instanceCount is good for separating newly created repetitive items. But there is only one single board, so I didn\u0027t think we needed that counter in this context. Since the other objects (dm.Topic and later dm.Posts) are all hierarchical under their parent (topics under board, posts under topics, etc) then there didn\u0027t seem to be a need to count anything anymore.",
+      "parentUuid": "0ed113e2_efe668aa",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_affce03b",
         "filename": "modules/flow/dm/mw.flow.dm.System.js",
         "patchSetId": 10
@@ -699,6 +1059,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_3fafb728",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "Gotcha. I went by the api request detail readout I saw in Chrome network tab with a lot of these to mimic what the current system\u0027s already doing. I\u0027ll take that off.",
+      "parentUuid": "0ed113e2_affce03b",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_4ff77456",
         "filename": "modules/flow/dm/mw.flow.dm.System.js",
         "patchSetId": 10
@@ -710,6 +1088,24 @@
       "writtenOn": "2015-05-16T04:19:20Z",
       "side": 1,
       "message": "This conflicts with the constructor.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_7f70dfd8",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "Yeah, this entire method is unfinished and unused. I was going to remove it completely before continuing. This was the first correction I made for the Ids.\n\nBTW -- it actually might make more sense to use \u0027flow-generated-board\u0027 above in the previous use of this rather than just \u0027flow-generated\u0027",
+      "parentUuid": "0ed113e2_4ff77456",
       "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -750,6 +1146,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_9f410360",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "Yes, that\u0027s exactly what I\u0027ve done in the other commit. The \u0027ToC line\u0027 is actually an OO.ui.MenuOptionWidget which fits into the ToC \"MenuWidget\".\n\nWe don\u0027t yet have a TopicWidget (which is the actual full topic) but when we do, the widget itself can tell the DM that it is being rendered, request the data from the API (we can then aggregate on multiple topics for a singly API) and then unstub the DM Topic.\n\nThe dm.Topic has isStub/unStub methods. We actually considered having it check itself and see if it\u0027s a stub or not, but there are so many potential parameters to fill that this might be a little insane to do. Instead, the widgets can \"tell\" the data model whether the data it now has is full or not.\n\nThis \u0027unstub\u0027 method should be done through the widgets, though, ideally.",
+      "parentUuid": "0ed113e2_0f95ece6",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_2f98f01d",
         "filename": "modules/flow/dm/mw.flow.dm.System.js",
         "patchSetId": 10
@@ -761,6 +1175,24 @@
       "writtenOn": "2015-05-16T04:19:20Z",
       "side": 1,
       "message": "This is the same as i, right?",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_1f2d13a3",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "ha. Yes it is... thanks :)",
+      "parentUuid": "0ed113e2_2f98f01d",
       "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -852,6 +1284,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_ff084f31",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "The idea is that all topics start as stubs and then can be unstubbed by whatever filled them up or created them, if the data is sufficient.\n\nI could set this up to be configurable, but I thought that the \"switch\" methodology -- start \u0027off\u0027, switch when done -- makes more sense.\n\nNot entirely married to the idea, though. If it doesn\u0027t make sense, I can switch it up to be a configuration option.",
+      "parentUuid": "0ed113e2_0fbc0c67",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_2fbf905d",
         "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
         "patchSetId": 10
@@ -863,6 +1313,24 @@
       "writtenOn": "2015-05-16T04:19:20Z",
       "side": 1,
       "message": "I\u0027m not sure if this should mixin List.  I think a tree is a better representation.  Everything is a reply/child of something else, except the topic title, which is the root.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_8a1bff71",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "Here\u0027s the idea I was thinking about:\n\nflow.dm.Topic contains flow.dm.Post[] items in its list (IE, replies to topics)\nflow.dm.Post contains flow.dm.Post[] items in its list (IE, replies to posts)\neach flow.dm.Post child also contains flow.dm.Post[] items as replies.\n\nThis effectively creates a tree, but each item only \"knows\" about its own decedents. This should make it easier in managing the structure and making things more general. For instance, widgets will be able to ask their DM about their children items, which will allow us to fetch replies hierarchically, style the indents and reorder replies still in context of their parent, or even do some smart infinite scrolls within topics if we wanted to.\n\nWe could also have limitation on the depth of the trees by adding the replies as a sibling rather than child, if that makes sense.",
+      "parentUuid": "0ed113e2_2fbf905d",
       "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -886,6 +1354,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_8a521f14",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "I don\u0027t mind either way. This is what I\u0027m used to, but I really don\u0027t mind. this.data.props could be easier to \"dump\" into a hash, too.",
+      "parentUuid": "0ed113e2_efb4287e",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_8faf9c26",
         "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
         "patchSetId": 10
@@ -897,6 +1383,24 @@
       "writtenOn": "2015-05-16T04:19:20Z",
       "side": 1,
       "message": "It means it\u0027s never been edited after the original creation.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_aa55a3fd",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "Why is that important? Are we displaying \"edited\" or \"original\" anywhere? The widget should know this?",
+      "parentUuid": "0ed113e2_8faf9c26",
       "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -920,6 +1424,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_8a69bfbd",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "Indeed, it\u0027s an object. I was also still trying to figure out exactly how to parse what information is given. The fact it\u0027s only the title makes more sense; the way the API is structured, it seemed like there\u0027s content beyond the title.\n\nI\u0027ll also split it into the two sub fields.",
+      "parentUuid": "0ed113e2_afaaa013",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_4fa53442",
         "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
         "patchSetId": 10
@@ -937,6 +1459,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_0a5dcf19",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "It could be html, though, no? I wasn\u0027t sure since there could be plaintext or html in the type (?)",
+      "parentUuid": "0ed113e2_4fa53442",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_6fa03832",
         "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
         "patchSetId": 10
@@ -948,6 +1488,24 @@
       "writtenOn": "2015-05-16T04:19:20Z",
       "side": 1,
       "message": "This is e.g. Topic:S842ge5q4ggyxzwf ?",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_eaa5eb00",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "Yes, that\u0027s from the API.",
+      "parentUuid": "0ed113e2_6fa03832",
       "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -988,6 +1546,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_6ab1fb40",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "Yeah. Hm. I\u0027ll change \u0027moderated\u0027 into a non boolean property and expand the logic of the moderate method with emitted events so other pieces of the DM could follow up on the moderation process (locking topics?) if needed.",
+      "parentUuid": "0ed113e2_ef73c8e2",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_8f7ebcab",
         "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
         "patchSetId": 10
@@ -1016,6 +1592,24 @@
       "writtenOn": "2015-05-16T04:19:20Z",
       "side": 1,
       "message": "I think this can be removed.  There\u0027s no way this can change without a full page reload.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_ea8c0b8b",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "Hm, I thought that watchable state can change if a topic is moderated or not -- if so, then it could be changed dynamically, no?\n\nIn any case, even if not, is this completely pointless to have as a static or read-only option? or just not as a toggle method?",
+      "parentUuid": "0ed113e2_af7940c4",
       "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -1067,6 +1661,24 @@
       "writtenOn": "2015-05-16T04:19:20Z",
       "side": 1,
       "message": "actions.  Needs more documentation.  Basically, this is the API telling us what API actions we\u0027re allowed to do (thank, reply, hide-topic, delete-topic, whatever) (which varies by permissions), and the no-JS fallback URL for the action.",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_8a7f7f62",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-18T17:02:53Z",
+      "side": 1,
+      "message": "Do we need these for the JS version? I kept it because I saw it existed, but I don\u0027t know if we actually need this for the DM and widgets.",
+      "parentUuid": "0ed113e2_0f52cc3f",
       "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
