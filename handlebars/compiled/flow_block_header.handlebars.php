@@ -37,7 +37,7 @@
 			   data-flow-interactive-handler="apiRequest"
 			   class="mw-ui-button mw-ui-progressive  mw-ui-quiet flow-ui-tooltip-target"
 			   title="'.htmlentities((string)((isset($in['revision']['actions']['edit']['title']) && is_array($in['revision']['actions']['edit'])) ? $in['revision']['actions']['edit']['title'] : null), ENT_QUOTES, 'UTF-8').'">
-					<span class="wikiglyph wikiglyph-pencil flow-board-header-icon"></span>'.LCRun3::ch($cx, 'l10n', array(array('flow-edit-header-link'),array()), 'encq').'
+					<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-edit flow-board-header-icon"></span>'.LCRun3::ch($cx, 'l10n', array(array('flow-edit-header-link'),array()), 'encq').'
 			</a>
 ' : '').'	</div>
 '.((LCRun3::ifvar($cx, ((isset($in['revision']['content']) && is_array($in['revision'])) ? $in['revision']['content'] : null))) ? '		<div class="flow-board-header-content">
@@ -51,7 +51,8 @@
 		  title="'.LCRun3::ch($cx, 'l10n', array(array('flow-board-collapse-description'),array()), 'encq').'"></span>
 	<span class="wikiglyph wikiglyph-speech-bubbles pull-right expand-button"
 		  title="'.LCRun3::ch($cx, 'l10n', array(array('flow-board-expand-description'),array()), 'encq').'"></span>
-</a>';},),
+</a>
+';},),
         'scopes' => array($in),
         'sp_vars' => array('root' => $in),
 
