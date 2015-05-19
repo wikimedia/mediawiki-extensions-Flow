@@ -18,6 +18,9 @@
 			"Devwebtel"
 		]
 	},
+	"flow-board-header": "O tej dyskusji",
+	"flow-board-collapse-description": "Ukryj opis",
+	"flow-board-expand-description": "Pokaż opis",
 	"flow-edit-header-link": "Edytuj opis",
 	"flow-topic-moderated-reason-prefix": "Powód:",
 	"flow-cancel": "Anuluj",

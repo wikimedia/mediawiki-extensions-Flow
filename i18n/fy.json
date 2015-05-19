@@ -7,11 +7,15 @@
 	},
 	"flow-topic-moderated-reason-prefix": "Reden:",
 	"flow-cancel": "Annulearje",
+	"flow-history-action-delete-post": "fuortsmite",
 	"flow-post-action-post-history": "Skiednis",
+	"flow-post-action-delete-post": "Fuortsmite",
 	"flow-post-action-edit-post": "Bewurkje",
 	"flow-topic-action-history": "Skiednis",
 	"flow-board-history": "\"$1\" skiednis",
 	"flow-history-day": "Hjoed",
 	"flow-link-history": "skiednis",
+	"flow-moderation-confirm-delete-post": "Fuortsmite",
+	"flow-moderation-confirm-delete-topic": "Fuortsmite",
 	"flow-load-more": "Mear laden"
 }

@@ -16,7 +16,8 @@
 			"NBS",
 			"Максим777",
 			"Batumski brodyaga",
-			"Dicto23456"
+			"Dicto23456",
+			"Дмитрий"
 		]
 	},
 	"enableflow": "Включить Flow",
@@ -35,6 +36,9 @@
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] в [[$3]] была импортирована из LiquidThreads в Flow",
 	"flow-user-moderated": "Участник промодерирован",
 	"flow-board-header-browse-topics-link": "Обзор тем",
+	"flow-board-header": "Об этой дискуссии",
+	"flow-board-collapse-description": "скрыть описание",
+	"flow-board-expand-description": "Показать описание",
 	"flow-edit-header-link": "Править описание",
 	"flow-post-moderated-toggle-hide-show": "Показать комментарий, скрытый {{GENDER:$1|участником|участницей}} $2",
 	"flow-post-moderated-toggle-delete-show": "Показать комментарий, {{GENDER:$1|удалённый}} $2",
@@ -498,6 +502,7 @@
 	"flow-ve-mention-context-item-label": "Упоминание",
 	"flow-ve-mention-inspector-title": "Упоминание",
 	"flow-ve-mention-inspector-remove-label": "Убрать",
+	"flow-ve-mention-placeholder": "Имя пользователя",
 	"flow-ve-mention-tool-title": "Упомянуть участника",
 	"flow-ve-mention-template": "пинг",
 	"flow-ve-mention-inspector-invalid-user": "Участник «$1» не зарегистрирован.",
