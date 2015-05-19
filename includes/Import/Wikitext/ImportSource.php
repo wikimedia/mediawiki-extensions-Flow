@@ -53,7 +53,6 @@ class ImportSource implements IImportSource {
 			throw new ImportException( "Failed to load revision for title: {$this->title->getPrefixedText()}" );
 		}
 
-
 		// If sections exist only take the content from the top of the page
 		// to the first section.
 		$content = $revision->getContent()->getNativeData();
@@ -61,6 +60,16 @@ class ImportSource implements IImportSource {
 		$sections = $output->getSections();
 		if ( $sections ) {
 			$content = substr( $content, 0, $sections[0]['byteoffset'] );
+		}
+
+		// Only extract templates to copy to Flow description.
+		// This regular expression based way of extracting the template is
+		// far from ideal, but it should probably be good enough and
+		// alternatives will be hacky/much more work for no apparent gain.
+		preg_match_all( '/\{\{.+?\}\}/s', $content, $matches, PREG_SET_ORDER );
+		$content = '';
+		foreach ( $matches as $match ) {
+			$content .= $match[0] . "\n";
 		}
 
 		$template = wfMessage( 'flow-importer-wt-converted-template' )->inContentLanguage()->plain();
