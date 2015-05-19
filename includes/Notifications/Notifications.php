@@ -34,7 +34,7 @@ $notifications = array(
 		'email-body-batch-message' => 'flow-notification-newtopic-email-batch-body',
 		'email-body-batch-params' => array( 'agent', 'subject', 'title' ),
 		'email-body-batch-bundle-message' => 'flow-notification-newtopic-bundle',
-		'email-body-batch-bundle-params' => array( 'event-count', 'title' ),
+		'email-body-batch-bundle-params' => array( 'event-count', 'title', 'new-topics-permalink' ),
 	) + $notificationTemplate,
 	'flow-post-reply' => array(
 		'user-locators' => array(
