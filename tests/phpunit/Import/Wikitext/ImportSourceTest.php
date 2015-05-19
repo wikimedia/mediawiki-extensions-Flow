@@ -18,14 +18,14 @@ class ImportSourceTest extends \MediaWikiTestCase {
 
 	protected $tablesUsed = array( 'page', 'revision' );
 
-	public function testGetHeader() {
-		$now = new DateTime( "now", new DateTimeZone( "GMT" ) );
-		$date = $now->format( 'Y-m-d' );
-
+	/**
+	 * @dataProvider getHeaderProvider
+	 */
+	public function testGetHeader( $content, $expect ) {
 		// create a page with some content
 		$status = WikiPage::factory( Title::newMainPage() )
 			->doEditContent(
-				new WikitextContent( "This is some content\n" ),
+				new WikitextContent( $content ),
 				"and an edit summary"
 			);
 		if ( !$status->isGood() ) {
@@ -42,9 +42,28 @@ class ImportSourceTest extends \MediaWikiTestCase {
 
 		$revision = reset( $revisions );
 		$this->assertInstanceOf( 'Flow\Import\IObjectRevision', $revision );
-		$this->assertEquals(
-			"This is some content\n\n{{Wikitext talk page converted to Flow|archive=Main Page|date=$date}}",
-			$revision->getText()
+		$this->assertEquals( $expect, $revision->getText() );
+	}
+
+	public function getHeaderProvider() {
+		$now = new DateTime( "now", new DateTimeZone( "GMT" ) );
+		$date = $now->format( 'Y-m-d' );
+
+		return array(
+			array(
+				// original page content
+				"This is some content\n",
+				// content to be stored to header
+				"\n\n{{Wikitext talk page converted to Flow|archive=Main Page|date=$date}}"
+			),
+			array(
+				"{{tpl}}\n",
+				"{{tpl}}\n\n\n{{Wikitext talk page converted to Flow|archive=Main Page|date=$date}}"
+			),
+			array(
+				"{{tpl\n|key=value}}\n",
+				"{{tpl\n|key=value}}\n\n\n{{Wikitext talk page converted to Flow|archive=Main Page|date=$date}}"
+			),
 		);
 	}
 }
