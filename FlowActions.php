@@ -125,6 +125,9 @@ $wgFlowActions = array(
 			PostSummary::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_SUPPRESSED => array( 'flow-suppress' ),
 		),
+		'root-permissions' => array(
+			PostRevision::MODERATED_NONE => '',
+		),
 		'links' => array( 'topic', 'topic-history', 'watch-topic', 'unwatch-topic', 'summary-revision' ),
 		'actions' => array( 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
 		'history' => array(
@@ -149,6 +152,9 @@ $wgFlowActions = array(
 			PostSummary::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_SUPPRESSED => array( 'flow-suppress' ),
+		),
+		'root-permissions' => array(
+			PostRevision::MODERATED_NONE => '',
 		),
 		'links' => array( 'topic', 'topic-history', 'diff-post-summary', 'watch-topic', 'unwatch-topic', 'summary-revision' ),
 		'actions' => array( 'edit-topic-summary', 'lock-topic', 'restore-topic', 'undo-edit-topic-summary' ),
@@ -177,6 +183,9 @@ $wgFlowActions = array(
 			PostSummary::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostSummary::MODERATED_SUPPRESSED => array( 'flow-suppress' ),
+		),
+		'root-permissions' => array(
+			PostRevision::MODERATED_NONE => '',
 		),
 		'links' => array( 'topic', 'topic-history', 'diff-post-summary', 'watch-topic', 'unwatch-topic' ),
 		'actions' => array( 'edit-topic-summary', 'lock-topic', 'restore-topic', 'undo-edit-topic-summary' ),
@@ -761,8 +770,30 @@ $wgFlowActions = array(
 		),
 	),
 
+	'view-topic-summary' => array(
+		'performs-writes' => false,
+		'log_type' => false, // don't log views
+		'rc_insert' => false, // won't even be called, actually; only for writes
+		'permissions' => array(
+			PostRevision::MODERATED_NONE => '',
+			// Everyone has permission to see this, but hidden comments are only visible (collapsed) on permalinks directly to them.
+			PostRevision::MODERATED_HIDDEN => '',
+			PostRevision::MODERATED_LOCKED => '',
+			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
+			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
+		),
+		'root-permissions' => array(
+			PostRevision::MODERATED_NONE => '',
+		),
+		'links' => array(), // @todo
+		'actions' => array(), // view is not a recorded change type, no actions will be requested
+		'history' => array(), // views don't generate history
+		'handler-class' => 'Flow\Actions\FlowAction',
+	),
+
 	// Actions not tied to a particular revision change_type
 	// or just move these to a different file
+	// @todo: we should probably at least add 'permissions' in these below
 	'compare-header-revisions' => array(
 		'handler-class' => 'Flow\Actions\FlowAction',
 	),
@@ -774,9 +805,6 @@ $wgFlowActions = array(
 	),
 	// @todo - This is a very bad action name, consolidate with view-post action
 	'single-view' => array(
-		'handler-class' => 'Flow\Actions\FlowAction',
-	),
-	'view-topic-summary' => array(
 		'handler-class' => 'Flow\Actions\FlowAction',
 	),
 	'compare-postsummary-revisions' => array(

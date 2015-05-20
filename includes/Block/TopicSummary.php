@@ -235,18 +235,6 @@ class TopicSummaryBlock extends AbstractBlock {
 	public function renderApi( array $options ) {
 		$output = array( 'type' => $this->getName() );
 
-		if ( $this->wasSubmitted() ) {
-			$output += array(
-				'submitted' => $this->submitted,
-				'errors' => $this->errors,
-			);
-		} else {
-			$output += array(
-				'submitted' => array(),
-				'errors' => array(),
-			);
-		}
-
 		switch ( $this->action ) {
 			case 'view-topic-summary':
 				// @Todo - duplicated logic in other single view block
@@ -254,6 +242,11 @@ class TopicSummaryBlock extends AbstractBlock {
 					/** @var PostSummaryViewQuery $query */
 					$query = Container::get( 'query.postsummary.view' );
 					$row = $query->getSingleViewResult( $options['revId'] );
+					if ( !$this->permissions->isAllowed( $row->revision, 'view-topic-summary' ) ) {
+						$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
+						break;
+					}
+
 					/** @var RevisionViewFormatter $formatter */
 					$formatter = Container::get( 'formatter.revisionview' );
 					$output['revision'] = $formatter->formatApi( $row, $this->context );
@@ -280,8 +273,27 @@ class TopicSummaryBlock extends AbstractBlock {
 					$oldRevision = $options['newRevision'];
 				}
 				list( $new, $old ) = Container::get( 'query.postsummary.view' )->getDiffViewResult( UUID::create( $options['newRevision'] ), UUID::create( $oldRevision ) );
+				if (
+					!$this->permissions->isAllowed( $new->revision, 'view-topic-summary' ) ||
+					!$this->permissions->isAllowed( $old->revision, 'view-topic-summary' )
+				) {
+					$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
+					break;
+				}
 				$output['revision'] = Container::get( 'formatter.revision.diff.view' )->formatApi( $new, $old, $this->context );
 				break;
+		}
+
+		if ( $this->wasSubmitted() ) {
+			$output += array(
+				'submitted' => $this->submitted,
+				'errors' => $this->errors,
+			);
+		} else {
+			$output += array(
+				'submitted' => array(),
+				'errors' => $this->errors,
+			);
 		}
 
 		return $output;
@@ -292,6 +304,11 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * @return array
 	 */
 	protected function renderNewestTopicSummary( $format ) {
+		if ( !$this->permissions->isAllowed( $this->formatterRow->revision, 'view-topic-summary' ) ) {
+			$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
+			return array();
+		}
+
 		$output = array();
 		$formatter = Container::get( 'formatter.revision' );
 		$formatter->setContentFormat( $format );
