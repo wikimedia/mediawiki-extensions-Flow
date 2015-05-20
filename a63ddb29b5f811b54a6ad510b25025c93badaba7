@@ -1164,6 +1164,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_4be3c802",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-20T21:05:44Z",
+      "side": 1,
+      "message": "We might want to talk a little more about this stub/unstub thing.  Ideally, the data model would just know if it has the full data without anything needing to explicitly tell it.\n\nAs long as we always give it *all* the extra information needed (replies, edit date, etc.) when it needs that, we could just use one marker property to check if it\u0027s a stub.",
+      "parentUuid": "0ed113e2_9f410360",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_2f98f01d",
         "filename": "modules/flow/dm/mw.flow.dm.System.js",
         "patchSetId": 10
@@ -1401,6 +1419,24 @@
       "side": 1,
       "message": "Why is that important? Are we displaying \"edited\" or \"original\" anywhere? The widget should know this?",
       "parentUuid": "0ed113e2_8faf9c26",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_0bd06020",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-20T21:05:44Z",
+      "side": 1,
+      "message": "Yes, posts are marked as edited in what will be the TopicWidget.",
+      "parentUuid": "0ed113e2_aa55a3fd",
       "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -1679,6 +1715,24 @@
       "side": 1,
       "message": "Do we need these for the JS version? I kept it because I saw it existed, but I don\u0027t know if we actually need this for the DM and widgets.",
       "parentUuid": "0ed113e2_0f52cc3f",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_2b944438",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-05-20T21:05:44Z",
+      "side": 1,
+      "message": "Yeah.  This is where it gets l10n data, as well as how it knows which actions are currently applicable.",
+      "parentUuid": "0ed113e2_8a7f7f62",
       "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
