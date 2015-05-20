@@ -29,6 +29,7 @@
 	"logentry-suppress-flow-restore-topic": "$1 {{GENDER:$2|ha cancellato}} l'argomento \"[[$3|$5]]\" su [[$6]]",
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] su [[$3]] è stato importato da LiquidThreads a Flow",
 	"flow-user-moderated": "Utente moderato",
+	"flow-board-header": "A proposito di questa discussione",
 	"flow-board-collapse-description": "Nascondi descrizione",
 	"flow-board-expand-description": "Mostra descrizione",
 	"flow-edit-header-link": "Modifica descrizione",

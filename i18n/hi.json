@@ -7,6 +7,8 @@
 		]
 	},
 	"enableflow": "प्रवाह को सक्षम करें",
+	"flow-board-collapse-description": "विवरण छिपाएं",
+	"flow-board-expand-description": "विवरण दिखाएं",
 	"flow-newtopic-first-heading": "$1 पर नया विषय आरम्भ करें",
 	"flow-rev-message-deleted-post": "$1 {{GENDER:$2|हटाया हुआ}} एक [ $4  टिप्पणी] पर  $6  (<em> $5 </em>)।",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|हटाया हुआ}} [ $4  विषय]  $6  (<em> $5 </em>)।",
