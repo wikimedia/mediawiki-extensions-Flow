@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_4ab749f2",
+        "filename": "i18n/en.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2015-05-20T07:51:21Z",
+      "side": 1,
+      "message": "Please follow https://www.mediawiki.org/wiki/API:Localisation#Message_formatting for formatting of messages. When using quotes, please use double quotes instead of single quotes, although here \u003ckbd\u003e appears to be more appropriate.\n\nPlease format the below changed messages according to the docs, too.",
+      "revId": "625099db1a80958aa681f3b522393ef59b0b7ab2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
