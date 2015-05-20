@@ -41,6 +41,11 @@
 			} else {
 				_flowHighlightPost( $container, uid );
 			}
+		} else {
+			// There is a weird bug with url ending with #flow-post-xxxx
+			// and full height side rail.
+			// We only enable the full height when we don't have such url.
+			$container.addClass( 'full-height-side-rail' );
 		}
 
 		_overrideWatchlistNotification();

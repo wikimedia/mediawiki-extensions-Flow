@@ -109,20 +109,14 @@
 
 @media all and (min-width: @medium) {
 	.flow-component.board-page {
-		overflow: hidden;
-
 		.flow-board-header {
 			padding-left: 10px;
 			float: right;
 			width: 34%;
+			min-height: 70vh;
 			box-sizing: border-box;
 			background-color: @colorGrayLightest;
 			box-shadow: -2px 0 0 0 rgba(0,0,0,0.10);
-
-			// this is a hack to make sure the side rail always
-			// stretches all the way to the bottom of the page
-			padding-bottom: 9999999px;
-			margin-bottom: -9999999px;
 
 			.flow-board-header-title {
 				display: block;
@@ -151,6 +145,16 @@
 			box-sizing: border-box;
 			max-width: 1200px;
 			padding-right: 26px;
+		}
+	}
+
+	.flow-component.board-page.full-height-side-rail {
+		overflow: hidden;
+		.flow-board-header {
+			// this is a hack to make sure the side rail always
+			// stretches all the way to the bottom of the page
+			padding-bottom: 9999999px;
+			margin-bottom: -9999999px;
 		}
 	}
 
