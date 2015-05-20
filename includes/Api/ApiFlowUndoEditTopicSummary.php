@@ -4,7 +4,7 @@ namespace Flow\Api;
 
 use ApiBase;
 
-class ApiFlowUndoEditTopicSummary extends ApiFlowBasePost {
+class ApiFlowUndoEditTopicSummary extends ApiFlowBaseGet {
 	public function __construct( $api ) {
 		parent::__construct( $api, 'edit-topic-summary', 'uets' );
 	}

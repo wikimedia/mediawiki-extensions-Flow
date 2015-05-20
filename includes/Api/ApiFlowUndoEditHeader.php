@@ -4,7 +4,7 @@ namespace Flow\Api;
 
 use ApiBase;
 
-class ApiFlowUndoEditHeader extends ApiFlowBasePost {
+class ApiFlowUndoEditHeader extends ApiFlowBaseGet {
 	public function __construct( $api, $modName ) {
 		parent::__construct( $api, $modName, 'ueh' );
 	}
