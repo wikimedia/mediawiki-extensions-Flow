@@ -117,8 +117,17 @@
 	 */
 	$( document ).ready( function () {
 		// We should probably not use this change detection method for VE
-		$( document ).on( 'keyup.flow-actions-disabler', '.mw-ui-input', function () {
-			enableFormWithRequiredFields( $( this ).closest( 'form' ) );
+		//
+		// Also, consider using the input event (which I think can replace all of these
+		// and paste) when we drop IE 8.
+		// https://developer.mozilla.org/en-US/docs/Web/Events/input
+		// setTimeout works around paste firing before the field is modified.
+		$( document ).on( 'keyup.flow-actions-disabler cut.flow-actions-disabler paste.flow-actions-disabler', '.mw-ui-input', function () {
+			var $el = $( this );
+
+			setTimeout( function () {
+				enableFormWithRequiredFields( $el.closest( 'form' ) );
+			} );
 		} );
 	} );
 
