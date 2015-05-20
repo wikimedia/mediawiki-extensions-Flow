@@ -162,6 +162,7 @@ class HeaderBlock extends AbstractBlock {
 
 	public function commit() {
 		switch( $this->action ) {
+			case 'undo-edit-header':
 			case 'edit-header':
 				$this->workflow->updateLastModified( $this->newRevision->getRevisionId() );
 				$this->storage->put( $this->workflow, array() ); // 'discussion' workflow
