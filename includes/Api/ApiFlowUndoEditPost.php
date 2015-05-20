@@ -4,7 +4,7 @@ namespace Flow\Api;
 
 use ApiBase;
 
-class ApiFlowUndoEditPost extends ApiFlowBasePost {
+class ApiFlowUndoEditPost extends ApiFlowBaseGet {
 	public function __construct( $api ) {
 		parent::__construct( $api, 'undo-edit-post', 'uep' );
 	}
@@ -19,9 +19,6 @@ class ApiFlowUndoEditPost extends ApiFlowBasePost {
 
 	public function getAllowedParams() {
 		return array(
-			'postId' => array(
-				ApiBase::PARAM_REQUIRED => true,
-			),
 			'startId' => array(
 				ApiBase::PARAM_REQUIRED => true,
 			),

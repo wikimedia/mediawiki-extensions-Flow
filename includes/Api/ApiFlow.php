@@ -25,6 +25,9 @@ class ApiFlow extends ApiBase {
 		'edit-title' => 'Flow\Api\ApiFlowEditTitle',
 		'lock-topic' => 'Flow\Api\ApiFlowLockTopic',
 		'close-open-topic' => 'Flow\Api\ApiFlowLockTopic', // BC: has been renamed to lock-topic
+		'undo-edit-header' => 'Flow\Api\ApiFlowUndoEditHeader',
+		'undo-edit-post' => 'Flow\Api\ApiFlowUndoEditPost',
+		'undo-edit-topic-summary' => 'Flow\Api\ApiFlowUndoEditTopicSummary',
 
 		// GET
 		// action 'view' exists in Topic.php & TopicList.php, for topic, post &

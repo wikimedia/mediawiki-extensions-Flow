@@ -65,7 +65,6 @@ class TopicBlock extends AbstractBlock {
 		'lock-topic',
 		// Other stuff
 		'edit-title',
-		'undo-edit-post',
 	);
 
 	protected $supportedGetActions = array(

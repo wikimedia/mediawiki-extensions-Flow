@@ -41,7 +41,7 @@ class TopicSummaryBlock extends AbstractBlock {
 	/**
 	 * @var string[]
 	 */
-	protected $supportedPostActions = array( 'edit-topic-summary', 'undo-edit-topic-summary' );
+	protected $supportedPostActions = array( 'edit-topic-summary' );
 
 	/**
 	 * @var string[]

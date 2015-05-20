@@ -31,7 +31,7 @@ class HeaderBlock extends AbstractBlock {
 	/**
 	 * @var string[]
 	 */
-	protected $supportedPostActions = array( 'edit-header', 'undo-edit-header' );
+	protected $supportedPostActions = array( 'edit-header' );
 
 	/**
 	 * @var string[]
