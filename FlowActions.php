@@ -305,7 +305,10 @@ $wgFlowActions = array(
 		'log_type' => false, // maybe?
 		'rc_insert' => true,
 		'permissions' => array(
-			PostRevision::MODERATED_NONE => '',
+			// no permissions needed for own posts
+			PostRevision::MODERATED_NONE => function( PostRevision $post, RevisionActionPermissions $permissions ) {
+					return $post->isCreator( $permissions->getUser() ) ? '' : 'flow-edit-post';
+				}
 		),
 		'root-permissions' => array(
 			PostRevision::MODERATED_NONE => '',
