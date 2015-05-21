@@ -76,12 +76,10 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 			'files' => array(),
 		) );
 
-		// local spam lists are read from spam-blacklist & spam-whitelist
-		// messages, so change them for this test
-		$msgCache = \MessageCache::singleton();
-		$msgCache->enable();
-		$msgCache->replace( 'Spam-blacklist', implode( "\n", $this->blacklist ) );
-		$msgCache->replace( 'Spam-whitelist', implode( "\n", $this->whitelist ) );
+		\MessageCache::singleton()->enable();
+		$this->insertPage( 'MediaWiki:Spam-blacklist', implode( "\n", $this->blacklist ) );
+		$this->insertPage( 'MediaWiki:Spam-whitelist', implode( "\n", $this->whitelist ) );
+
 		// That only works if the spam blacklist is really reset
 		$instance = BaseBlacklist::getInstance( 'spam' );
 		$reflProp = new \ReflectionProperty( $instance, 'regexes' );
@@ -90,10 +88,7 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 	}
 
 	protected function tearDown() {
-		// we don't have to restore the original messages, disable() will make
-		// sure they're ignored
-		$msgCache = \MessageCache::singleton();
-		$msgCache->disable();
+		\MessageCache::singleton()->disable();
 		parent::tearDown();
 	}
 }
