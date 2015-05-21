@@ -5,7 +5,11 @@
 			"George Animal"
 		]
 	},
+	"flow-board-header": "Di derbarê vê gotûbêjê de",
+	"flow-board-collapse-description": "Danasînê veşêre",
+	"flow-board-expand-description": "Danasînê nîşan bide",
 	"flow-edit-header-link": "Danasînê biguherîne",
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Spas}}}}",
 	"flow-edit-header-submit": "Danasînê tomar bike",
 	"apihelp-flow-example-1": "Danasîna \"[[Talk:Sandbox]]\" biguherîne",
 	"apihelp-flow+edit-header-param-content": "Naveroka danasînê",

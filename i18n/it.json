@@ -355,6 +355,11 @@
 	"apihelp-flow+close-open-topic-param-reason": "Motivo per bloccare o sbloccare l'argomento.",
 	"apihelp-flow+edit-header-param-content": "Contenuto per la descrizione.",
 	"apihelp-flow+edit-header-param-format": "Formato della descrizione (wikitext|html)",
+	"apihelp-flow+edit-title-param-content": "Contenuto per il titolo.",
+	"apihelp-flow+edit-title-example-1": "Modifica il titolo di [[Topic:S2tycnas4hcucw8w]]",
+	"apihelp-flow+lock-topic-param-reason": "Motivo per bloccare o sbloccare l'argomento.",
+	"apihelp-flow+lock-topic-example-1": "Blocca [[Topic:S2tycnas4hcucw8w]]",
+	"apihelp-flow+moderate-topic-example-1": "Elimina l'argomento [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+undo-edit-header-description": "Recupera le informazioni necessarie per annullare le modifiche dell'intestazione.",
 	"apihelp-flow+undo-edit-post-description": "Recuperare le informazioni necessarie per annullare la post-modifica.",
 	"flow-edited": "Modificato",
@@ -370,5 +375,8 @@
 	"flow-undo-edit-failure": "Impossibile annullare la modifica a causa di un conflitto con modifiche intermedie.",
 	"flow-ve-mention-placeholder": "Nome utente",
 	"flow-ve-mention-inspector-invalid-user": "Il nome utente \"$1\" non è registrato.",
+	"flow-wikitext-editor-help": "Wikitext $1.",
+	"flow-wikitext-editor-help-and-preview": "Wikitext $1 e si può fare $2 in qualsiasi momento.",
+	"flow-wikitext-editor-help-preview-the-result": "anteprima del risultato",
 	"flow-wikitext-switch-editor-tooltip": "Passa a VisualEditor"
 }
