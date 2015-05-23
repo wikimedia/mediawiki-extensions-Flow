@@ -3,9 +3,13 @@
 		"authors": [
 			"सरोज कुमार ढकाल",
 			"Ganesh Paudel",
-			"Nirjal stha"
+			"Nirjal stha",
+			"बिप्लब आनन्द"
 		]
 	},
+	"flow-board-header": "छलफलको बारेमा",
+	"flow-board-collapse-description": "वर्णन लुकाउने",
+	"flow-board-expand-description": "वर्णन देखाउने",
 	"flow-newtopic-title-placeholder": "नयाँ विषय",
 	"flow-thank-link": "{{GENDER:$1|{{लिङ्ग:$2|धन्यवाद}}}}",
 	"flow-post-action-suppress-post": "दबाउने",

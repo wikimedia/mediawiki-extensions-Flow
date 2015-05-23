@@ -4,10 +4,13 @@
 			"Rapsar",
 			"Rhinestorm",
 			"Sayginer",
-			"Violetanka"
+			"Violetanka",
+			"Meelo"
 		]
 	},
+	"flow-board-header-browse-topics-link": "Konulara göz at",
 	"flow-topic-moderated-reason-prefix": "Sebep:",
+	"flow-newtopic-start-placeholder": "Yeni bir konu başlat",
 	"flow-lock-link": "{{GENDER:$1|Kilitle}}",
 	"flow-topic-action-lock-topic": "Konuyu kilitle",
 	"flow-topic-action-unlock-topic": "Konunun kilidini aç",

@@ -16,7 +16,8 @@
 			"Romaine",
 			"Mar(c)",
 			"Mirolith",
-			"MedShot"
+			"MedShot",
+			"Robin0van0der0vliet"
 		]
 	},
 	"flow-desc": "Workflowmanagementsysteem",
@@ -337,7 +338,8 @@
 	"flow-terms-of-use-lock-topic": "Door te klikken op \"{{int:flow-lock-topic-submit}}\" gaat u akkoord met de gebruiksvoorwaarden van deze website.",
 	"flow-terms-of-use-unlock-topic": "Door te klikken op \"{{int:flow-unlock-topic-submit}}\" gaat u akkoord met de gebruiksvoorwaarden van deze website.",
 	"flow-whatlinkshere-post": "van een [$1 bericht]",
-	"flow-whatlinkshere-header": "van de [$1 koptekst]",
+	"flow-whatlinkshere-header": "van de [$1 beschrijving]",
+	"flow-whatlinkshere-post-summary": "van de [$1 samenvatting]",
 	"flow": "Flow",
 	"flow-special-desc": "Deze speciale pagina verwijst door naar een workflow van Flow of een bericht van Flow op basis van een UUID.",
 	"flow-special-type": "Type",
@@ -351,12 +353,20 @@
 	"flow-embedding-unsupported": "Overleg kan nog niet ingebed worden.",
 	"mw-ui-unsubmitted-confirm": "U hebt nog niet opgeslagen wijzigingen op deze pagina. Weet u zeker dat u door weg te gaan van deze pagina uw wijzigingen wilt verliezen?",
 	"apihelp-flow+edit-header-example-1": "De beschrijving van [[Talk:Sandbox]] bewerken",
+	"apihelp-flow+edit-post-param-postId": "Berichtnummer.",
+	"apihelp-flow+edit-post-param-content": "Inhoud voor bericht",
+	"apihelp-flow+edit-title-param-content": "Inhoud voor titel.",
+	"apihelp-flow+lock-topic-example-1": "[[Topic:S2tycnas4hcucw8w]] sluiten",
 	"flow-edited": "Bewerkt",
 	"flow-edited-by": "Bewerkt door $1",
+	"flow-previous-diff": "← Oudere bewerking",
+	"flow-next-diff": "Nieuwere bewerking →",
+	"flow-undo": "ongedaan maken",
 	"flow-undo-latest-revision": "Huidige versie",
 	"flow-undo-your-text": "Uw tekst",
 	"flow-undo-edit-header": "De beschrijving bewerken",
 	"flow-undo-edit-topic-summary": "Bewerken van de samenvatting van het onderwerp",
 	"flow-undo-edit-post": "Het bewerken van een bericht",
-	"flow-ve-mention-placeholder": "Gebruikersnaam"
+	"flow-ve-mention-placeholder": "Gebruikersnaam",
+	"flow-wikitext-editor-help": "Wikitekst $1."
 }
