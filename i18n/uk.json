@@ -8,7 +8,8 @@
 			"Mykola Swarnyk",
 			"Olion",
 			"Капитан Джон Шепард",
-			"Piramidion"
+			"Piramidion",
+			"Lxlalexlxl"
 		]
 	},
 	"enableflow": "Увімкнути Flow",
@@ -27,7 +28,9 @@
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] на [[$3]] було імпортовано з LiquidThreads у Flow",
 	"flow-user-moderated": "Обмежений користувач",
 	"flow-board-header-browse-topics-link": "Огляд тем",
-	"flow-edit-header-link": "Редагувати заголовок",
+	"flow-board-collapse-description": "Приховати опис",
+	"flow-board-expand-description": "Показати опис",
+	"flow-edit-header-link": "Редагувати опис",
 	"flow-post-moderated-toggle-hide-show": "Показати коментар, прихований {{GENDER:$1|користувачем|користувачкою}} $2",
 	"flow-post-moderated-toggle-delete-show": "Показати коментар, вилучений {{GENDER:$1|користувачем|користувачкою}} $2",
 	"flow-post-moderated-toggle-suppress-show": "Показати коментар, прибраний {{GENDER:$1|користувачем|користувачкою}} $2",
@@ -63,7 +66,7 @@
 	"flow-reply-topic-title-placeholder": "Відповісти на «$1»",
 	"flow-reply-submit": "{{GENDER:$1|Відповісти}}",
 	"flow-reply-link": "{{GENDER:$1|Відповісти}}",
-	"flow-thank-link": "{{GENDER:$1|Подякувати}}",
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Подякувати}}}}",
 	"flow-lock-link": "{{GENDER:$1|Закрити}}",
 	"flow-thank-link-title": "Публічно подякувати авторові допису",
 	"flow-history-action-suppress-post": "прибрати",
