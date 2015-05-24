@@ -176,6 +176,7 @@ $wgFlowGroupPermissions['oversight']['flow-suppress'] = true;
 $wgFlowGroupPermissions['flow-bot']['flow-create-board'] = true;
 $wgGroupPermissions = array_merge_recursive( $wgGroupPermissions, $wgFlowGroupPermissions );
 
+// Make sure all of these are granted via OAuth in Hooks.php
 $wgAvailableRights[] = 'flow-hide';
 $wgAvailableRights[] = 'flow-lock';
 $wgAvailableRights[] = 'flow-delete';
