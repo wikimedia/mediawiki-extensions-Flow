@@ -489,14 +489,16 @@ $wgResourceModules += array(
 			'flow-ve-mention-tool-title',
 			'flow-ve-switch-editor-tool-title',
 		),
-	),
+	) + $mobile,
 
+	// Actual VE is currently not supported on mobile since we use the desktop target, but we still
+	// need it to load (and reject it in isSupported)
 	'ext.flow.editors.visualeditor' => $flowResourceTemplate + array(
 		'scripts' => 'editor/editors/visualeditor/ext.flow.editors.visualeditor.js',
 		'dependencies' => array(
 			// ve dependencies will be loaded via JS
 		),
-	),
+	) + $mobile,
 
 	// This integrates with core mediawiki.messagePoster, and the module name
 	// must be exactly this.

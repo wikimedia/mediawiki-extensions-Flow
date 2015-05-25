@@ -144,18 +144,18 @@
 		var $preview, $usesWikitext, $controls, templateArgs,
 			board = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( this.$node );
 
+		$usesWikitext = $( '<div>' )
+			.html( mw.message( 'flow-wikitext-editor-help-uses-wikitext' ).parse() )
+			.find( 'a' )
+			.attr( 'target', '_blank' )
+			.end();
+
 		if ( mw.flow.editors.visualeditor.static.isSupported() ) {
 			$preview = $( '<a>' ).attr( {
 				href: '#',
 				'data-flow-interactive-handler': 'switchEditor',
 				'data-flow-target': '< form textarea'
 			} ).text( mw.message( 'flow-wikitext-editor-help-preview-the-result' ).text() );
-
-			$usesWikitext = $( '<div>' )
-				.html( mw.message( 'flow-wikitext-editor-help-uses-wikitext' ).parse() )
-				.find( 'a' )
-					.attr( 'target', '_blank' )
-				.end();
 
 			templateArgs = {
 				enable_switcher: true,
