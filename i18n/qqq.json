@@ -118,6 +118,8 @@
 	"flow-topic-action-unsuppress-topic": "Used as a link in a dropdown menu to unsuppress a topic.\n{{Related|Flow-action}}",
 	"flow-topic-action-restore-topic": "Used as a link in a dropdown menu to clear the moderation state of a topic.\n{{Related|Flow-action}}\n{{Identical|Restore}}",
 	"flow-topic-action-undo-moderation": "Used as link text to undo a recently performed moderation action.\n{{Identical|Undo}}",
+	"flow-topic-action-watchlist-add": "Title text for the hover state when a individual topic can be added to a watchlist.",
+	"flow-topic-action-watchlist-remove": "Title text for the hover state when a individual topic can be removed from a watchlist",
 	"flow-topic-notification-subscribe-title": "Title text for the overlay when a topic is added to watchlist.",
 	"flow-topic-notification-subscribe-description": "Description text for the overlay when a topic is added to watchlist.",
 	"flow-board-notification-subscribe-title": "Title text for the overlay when a board is added to watchlist.",
