@@ -21,5 +21,13 @@
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|pinagpura}} an [$4 na tema] $6 (<em>$5</em>).",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|pinag-untok}} an [$4 na tema] $6 (<em>$5</em>).",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|pinagbalikwat}} an [$4 na tema] $6 (<em>$5</em>).",
-	"flow-workflow": "taguytoy-nin-trabaho"
+	"flow-workflow": "taguytoy-nin-trabaho",
+	"flow-notification-reply-email-batch-body": "$1 {{GENDER:$1|nagsimbag}} sa \"$2\" kan petsa $3",
+	"flow-notification-reply-email-batch-bundle-body": "$1 asin $4 {{PLURAL:$5|iba|mga iba}} {{GENDER:$1|nagsimbag}} sa \"$2\" kan petsa $3",
+	"flow-notification-mention-email-subject": "$1 {{GENDER:$1|pinagsambit}} {{GENDER:$3|ka}} sa $2",
+	"flow-notification-mention-email-batch-body": "$1 {{GENDER:$1|pinagsambit}} {{GENDER:$4|ka}} sa {{GENDER:$1|saiyang|saiyang|saindang}} kinaag sa \"$2\" kan petsa $3",
+	"flow-notification-edit-email-batch-body": "$1 {{GENDER:$1|pinagliwat}} an sarong kinaag sa \"$2\" kan petsa $3",
+	"flow-notification-edit-email-batch-bundle-body": "$1 asin $4 {{PLURAL:$5|iba|mga iba}} {{GENDER:$1|pinagliwat}} sarong pinagkaag sa \"$2\" kan petsa $3",
+	"flow-notification-rename-email-batch-body": "$1 {{GENDER:$1|pinagribayan pangaran}} an saimong tema \"$2\" na magin \"$3\" kan petsa $4",
+	"flow-notification-newtopic-email-subject": "$1 {{GENDER:$1|pinagmukna}} an sarong baguhong tema kan petsa $2"
 }
