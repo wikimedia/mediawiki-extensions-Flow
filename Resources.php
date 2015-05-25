@@ -147,6 +147,8 @@ $wgResourceModules += array(
 			'flow-topic-action-unsuppress-topic',
 			'flow-topic-action-restore-topic',
 			'flow-topic-action-undo-moderation',
+			'flow-topic-action-watchlist-add',
+			'flow-topic-action-watchlist-remove',
 			'flow-hide-post-content',
 			'flow-delete-post-content',
 			'flow-suppress-post-content',
