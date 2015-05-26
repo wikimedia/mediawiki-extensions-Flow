@@ -1,0 +1,1306 @@
+{
+	"@doc": "Please read README for documentation with comments.",
+	"name": "Flow",
+	"version": "1.1",
+	"author": [
+		"Erik Bernhardson",
+		"Matthew Flaschen",
+		"Andrew Garrett",
+		"Shahyar Ghobadpour",
+		"Pau Giner",
+		"Chris McMahon",
+		"Kunal Mehta",
+		"Matthias Mullie",
+		"S Page",
+		"Jon Robson",
+		"Benny Situ"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:Flow",
+	"descriptionmsg": "flow-desc",
+	"license-name": "GPL-2.0+",
+	"type": "other",
+	"callback": "FlowHooks::registerExtension",
+	"DefaultUserOptions": {
+		"echo-subscriptions-web-flow-discussion": true,
+		"echo-subscriptions-email-flow-discussion": false,
+		"flow-topiclist-sortby": "newest",
+		"flow-editor": "none",
+		"flow-side-rail-state": "expanded"
+	},
+	"GroupPermissions": {
+		"*": {
+			"flow-hide": true
+		},
+		"user": {
+			"flow-lock": true
+		},
+		"sysop": {
+			"flow-lock": true,
+			"flow-delete": true,
+			"flow-edit-post": true
+		},
+		"oversight": {
+			"flow-suppress": true
+		},
+		"flow-bot": {
+			"flow-create-board": true
+		}
+	},
+	"AvailableRights": [
+		"flow-hide",
+		"flow-lock",
+		"flow-delete",
+		"flow-suppress",
+		"flow-edit-post",
+		"flow-create-board"
+	],
+	"ContentHandlers": {
+		"flow-board": "Flow\\Content\\BoardContentHandler"
+	},
+	"ExtensionFunctions": [
+		"FlowHooks::initFlowExtension"
+	],
+	"SpecialPages": {
+		"Flow": "Flow\\Specials\\SpecialFlow",
+		"EnableFlow": "Flow\\Specials\\SpecialEnableFlow"
+	},
+	"LogActionsHandlers": {
+		"delete/flow-delete-post": "Flow\\Log\\ActionFormatter",
+		"delete/flow-delete-topic": "Flow\\Log\\ActionFormatter",
+		"suppress/flow-suppress-post": "Flow\\Log\\ActionFormatter",
+		"suppress/flow-suppress-topic": "Flow\\Log\\ActionFormatter",
+		"lock/flow-lock-topic": "Flow\\Log\\ActionFormatter",
+		"delete/flow-restore-post": "Flow\\Log\\ActionFormatter",
+		"suppress/flow-restore-post": "Flow\\Log\\ActionFormatter",
+		"delete/flow-restore-topic": "Flow\\Log\\ActionFormatter",
+		"suppress/flow-restore-topic": "Flow\\Log\\ActionFormatter",
+		"import/lqt-to-flow-topic": "Flow\\Log\\LqtImportFormatter"
+	},
+	"Actions": {
+		"edit-header": true,
+		"undo-edit-header": true,
+		"edit-topic-summary": true,
+		"undo-edit-topic-summary": true,
+		"edit-title": true,
+		"new-topic": true,
+		"edit-post": true,
+		"undo-edit-post": true,
+		"lock-topic": true,
+		"restore-post": true,
+		"restore-topic": true,
+		"view": true,
+		"reply": true,
+		"history": true,
+		"view-topic-summary": true,
+		"compare-header-revisions": true,
+		"view-header": true,
+		"compare-post-revisions": true,
+		"single-view": true,
+		"compare-postsummary-revisions": true,
+		"moderate-topic": true,
+		"moderate-post": true,
+		"purge": true
+	},
+	"APIModules": {
+		"flow-parsoid-utils": "Flow\\Api\\ApiParsoidUtilsFlow",
+		"flow": "Flow\\Api\\ApiFlow"
+	},
+	"APIPropModules": {
+		"flowinfo": "Flow\\Api\\ApiQueryPropFlowInfo"
+	},
+	"MessagesDirs": {
+		"Flow": [
+			"i18n"
+		]
+	},
+	"ExtensionMessagesFiles": {
+		"FlowNamespaces": "Flow.namespaces.php",
+		"FlowAlias": "Flow.alias.php"
+	},
+	"AutoloadClasses": {
+		"ExternalStoreFlowMock": "tests/phpunit/Mock/ExternalStoreFlowMock.php",
+		"FlowHooks": "Hooks.php",
+		"Flow\\Actions\\EditAction": "includes/Actions/EditAction.php",
+		"Flow\\Actions\\FlowAction": "includes/Actions/Action.php",
+		"Flow\\Actions\\PurgeAction": "includes/Actions/PurgeAction.php",
+		"Flow\\Actions\\ViewAction": "includes/Actions/ViewAction.php",
+		"Flow\\Api\\ApiFlow": "includes/Api/ApiFlow.php",
+		"Flow\\Api\\ApiFlowBase": "includes/Api/ApiFlowBase.php",
+		"Flow\\Api\\ApiFlowBaseGet": "includes/Api/ApiFlowBaseGet.php",
+		"Flow\\Api\\ApiFlowBasePost": "includes/Api/ApiFlowBasePost.php",
+		"Flow\\Api\\ApiFlowEditHeader": "includes/Api/ApiFlowEditHeader.php",
+		"Flow\\Api\\ApiFlowEditPost": "includes/Api/ApiFlowEditPost.php",
+		"Flow\\Api\\ApiFlowEditTitle": "includes/Api/ApiFlowEditTitle.php",
+		"Flow\\Api\\ApiFlowEditTopicSummary": "includes/Api/ApiFlowEditTopicSummary.php",
+		"Flow\\Api\\ApiFlowLockTopic": "includes/Api/ApiFlowLockTopic.php",
+		"Flow\\Api\\ApiFlowModeratePost": "includes/Api/ApiFlowModeratePost.php",
+		"Flow\\Api\\ApiFlowModerateTopic": "includes/Api/ApiFlowModerateTopic.php",
+		"Flow\\Api\\ApiFlowNewTopic": "includes/Api/ApiFlowNewTopic.php",
+		"Flow\\Api\\ApiFlowReply": "includes/Api/ApiFlowReply.php",
+		"Flow\\Api\\ApiFlowSearch": "includes/Api/ApiFlowSearch.php",
+		"Flow\\Api\\ApiFlowUndoEditHeader": "includes/Api/ApiFlowUndoEditHeader.php",
+		"Flow\\Api\\ApiFlowUndoEditPost": "includes/Api/ApiFlowUndoEditPost.php",
+		"Flow\\Api\\ApiFlowUndoEditTopicSummary": "includes/Api/ApiFlowUndoEditTopicSummary.php",
+		"Flow\\Api\\ApiFlowViewHeader": "includes/Api/ApiFlowViewHeader.php",
+		"Flow\\Api\\ApiFlowViewPost": "includes/Api/ApiFlowViewPost.php",
+		"Flow\\Api\\ApiFlowViewTopic": "includes/Api/ApiFlowViewTopic.php",
+		"Flow\\Api\\ApiFlowViewTopicList": "includes/Api/ApiFlowViewTopicList.php",
+		"Flow\\Api\\ApiFlowViewTopicSummary": "includes/Api/ApiFlowViewTopicSummary.php",
+		"Flow\\Api\\ApiParsoidUtilsFlow": "includes/Api/ApiParsoidUtilsFlow.php",
+		"Flow\\Api\\ApiQueryPropFlowInfo": "includes/Api/ApiQueryPropFlowInfo.php",
+		"Flow\\BlockFactory": "includes/BlockFactory.php",
+		"Flow\\Block\\AbstractBlock": "includes/Block/Block.php",
+		"Flow\\Block\\Block": "includes/Block/Block.php",
+		"Flow\\Block\\BoardHistoryBlock": "includes/Block/BoardHistory.php",
+		"Flow\\Block\\HeaderBlock": "includes/Block/Header.php",
+		"Flow\\Block\\TopicBlock": "includes/Block/Topic.php",
+		"Flow\\Block\\TopicListBlock": "includes/Block/TopicList.php",
+		"Flow\\Block\\TopicSummaryBlock": "includes/Block/TopicSummary.php",
+		"Flow\\BoardMover": "includes/BoardMover.php",
+		"Flow\\Collection\\AbstractCollection": "includes/Collection/AbstractCollection.php",
+		"Flow\\Collection\\CollectionCache": "includes/Collection/CollectionCache.php",
+		"Flow\\Collection\\HeaderCollection": "includes/Collection/HeaderCollection.php",
+		"Flow\\Collection\\LocalCacheAbstractCollection": "includes/Collection/LocalCacheAbstractCollection.php",
+		"Flow\\Collection\\PostCollection": "includes/Collection/PostCollection.php",
+		"Flow\\Collection\\PostSummaryCollection": "includes/Collection/PostSummaryCollection.php",
+		"Flow\\Container": "includes/Container.php",
+		"Flow\\Content\\BoardContent": "includes/Content/BoardContent.php",
+		"Flow\\Content\\BoardContentHandler": "includes/Content/BoardContentHandler.php",
+		"Flow\\Data\\BagOStuff\\BufferedBagOStuff": "includes/Data/BagOStuff/BufferedBagOStuff.php",
+		"Flow\\Data\\BagOStuff\\LocalBufferedBagOStuff": "includes/Data/BagOStuff/LocalBufferedBagOStuff.php",
+		"Flow\\Data\\BufferedCache": "includes/Data/BufferedCache.php",
+		"Flow\\Data\\Compactor": "includes/Data/Compactor.php",
+		"Flow\\Data\\Compactor\\FeatureCompactor": "includes/Data/Compactor/FeatureCompactor.php",
+		"Flow\\Data\\Compactor\\ShallowCompactor": "includes/Data/Compactor/ShallowCompactor.php",
+		"Flow\\Data\\Index": "includes/Data/Index.php",
+		"Flow\\Data\\Index\\BoardHistoryIndex": "includes/Data/Index/BoardHistoryIndex.php",
+		"Flow\\Data\\Index\\FeatureIndex": "includes/Data/Index/FeatureIndex.php",
+		"Flow\\Data\\Index\\TopKIndex": "includes/Data/Index/TopKIndex.php",
+		"Flow\\Data\\Index\\TopicHistoryIndex": "includes/Data/Index/TopicHistoryIndex.php",
+		"Flow\\Data\\Index\\TopicListTopKIndex": "includes/Data/Index/TopicListTopKIndex.php",
+		"Flow\\Data\\Index\\UniqueFeatureIndex": "includes/Data/Index/UniqueFeatureIndex.php",
+		"Flow\\Data\\LifecycleHandler": "includes/Data/LifecycleHandler.php",
+		"Flow\\Data\\Listener\\AbstractListener": "includes/Data/Listener/AbstractListener.php",
+		"Flow\\Data\\Listener\\AbstractTopicInsertListener": "includes/Data/Listener/WatchTopicListener.php",
+		"Flow\\Data\\Listener\\DeferredInsertLifecycleHandler": "includes/Data/Listener/DeferredInsertLifecycleHandler.php",
+		"Flow\\Data\\Listener\\EditCountListener": "includes/Data/Listener/EditCountListener.php",
+		"Flow\\Data\\Listener\\ImmediateWatchTopicListener": "includes/Data/Listener/WatchTopicListener.php",
+		"Flow\\Data\\Listener\\ModerationLoggingListener": "includes/Data/Listener/ModerationLoggingListener.php",
+		"Flow\\Data\\Listener\\NotificationListener": "includes/Data/Listener/NotificationListener.php",
+		"Flow\\Data\\Listener\\OccupationListener": "includes/Data/Listener/OccupationListener.php",
+		"Flow\\Data\\Listener\\RecentChangesListener": "includes/Data/Listener/RecentChangesListener.php",
+		"Flow\\Data\\Listener\\ReferenceRecorder": "includes/Data/Listener/ReferenceRecorder.php",
+		"Flow\\Data\\Listener\\UserNameListener": "includes/Data/Listener/UserNameListener.php",
+		"Flow\\Data\\Listener\\WorkflowTopicListListener": "includes/Data/Listener/WorkflowTopicListListener.php",
+		"Flow\\Data\\ManagerGroup": "includes/Data/ManagerGroup.php",
+		"Flow\\Data\\Mapper\\BasicObjectMapper": "includes/Data/Mapper/BasicObjectMapper.php",
+		"Flow\\Data\\Mapper\\CachingObjectMapper": "includes/Data/Mapper/CachingObjectMapper.php",
+		"Flow\\Data\\ObjectLocator": "includes/Data/ObjectLocator.php",
+		"Flow\\Data\\ObjectManager": "includes/Data/ObjectManager.php",
+		"Flow\\Data\\ObjectMapper": "includes/Data/ObjectMapper.php",
+		"Flow\\Data\\ObjectStorage": "includes/Data/ObjectStorage.php",
+		"Flow\\Data\\Pager\\HistoryPager": "includes/Data/Pager/HistoryPager.php",
+		"Flow\\Data\\Pager\\Pager": "includes/Data/Pager/Pager.php",
+		"Flow\\Data\\Pager\\PagerPage": "includes/Data/Pager/PagerPage.php",
+		"Flow\\Data\\Storage\\BasicDbStorage": "includes/Data/Storage/BasicDbStorage.php",
+		"Flow\\Data\\Storage\\BoardHistoryStorage": "includes/Data/Storage/BoardHistoryStorage.php",
+		"Flow\\Data\\Storage\\DbStorage": "includes/Data/Storage/DbStorage.php",
+		"Flow\\Data\\Storage\\HeaderRevisionStorage": "includes/Data/Storage/HeaderRevisionStorage.php",
+		"Flow\\Data\\Storage\\PostRevisionStorage": "includes/Data/Storage/PostRevisionStorage.php",
+		"Flow\\Data\\Storage\\PostSummaryRevisionStorage": "includes/Data/Storage/PostSummaryRevisionStorage.php",
+		"Flow\\Data\\Storage\\RevisionStorage": "includes/Data/Storage/RevisionStorage.php",
+		"Flow\\Data\\Storage\\TopicHistoryStorage": "includes/Data/Storage/TopicHistoryStorage.php",
+		"Flow\\Data\\Storage\\TopicListLastUpdatedStorage": "includes/Data/Storage/TopicListLastUpdatedStorage.php",
+		"Flow\\Data\\Storage\\TopicListStorage": "includes/Data/Storage/TopicListStorage.php",
+		"Flow\\Data\\Utils\\Merger": "includes/Data/Utils/Merger.php",
+		"Flow\\Data\\Utils\\MultiDimArray": "includes/Data/Utils/MultiDimArray.php",
+		"Flow\\Data\\Utils\\RawSql": "includes/Data/Utils/RawSql.php",
+		"Flow\\Data\\Utils\\RecentChangeFactory": "includes/Data/Utils/RecentChangeFactory.php",
+		"Flow\\Data\\Utils\\ResultDuplicator": "includes/Data/Utils/ResultDuplicator.php",
+		"Flow\\Data\\Utils\\SortArrayByKeys": "includes/Data/Utils/SortArrayByKeys.php",
+		"Flow\\Data\\Utils\\UserMerger": "includes/Data/Utils/UserMerger.php",
+		"Flow\\DbFactory": "includes/DbFactory.php",
+		"Flow\\Exception\\CatchableFatalErrorException": "includes/Exception/CatchableFatalErrorException.php",
+		"Flow\\Exception\\CrossWikiException": "includes/Exception/ExceptionHandling.php",
+		"Flow\\Exception\\DataModelException": "includes/Exception/ExceptionHandling.php",
+		"Flow\\Exception\\DataPersistenceException": "includes/Exception/ExceptionHandling.php",
+		"Flow\\Exception\\FailCommitException": "includes/Exception/ExceptionHandling.php",
+		"Flow\\Exception\\FlowException": "includes/Exception/ExceptionHandling.php",
+		"Flow\\Exception\\InvalidActionException": "includes/Exception/ExceptionHandling.php",
+		"Flow\\Exception\\InvalidDataException": "includes/Exception/ExceptionHandling.php",
+		"Flow\\Exception\\InvalidInputException": "includes/Exception/ExceptionHandling.php",
+		"Flow\\Exception\\InvalidReferenceException": "includes/Exception/ExceptionHandling.php",
+		"Flow\\Exception\\InvalidTopicUuidException": "includes/Exception/ExceptionHandling.php",
+		"Flow\\Exception\\NoIndexException": "includes/Exception/ExceptionHandling.php",
+		"Flow\\Exception\\NoParsoidException": "includes/Exception/ExceptionHandling.php",
+		"Flow\\Exception\\PermissionException": "includes/Exception/ExceptionHandling.php",
+		"Flow\\Exception\\UnknownWorkflowIdException": "includes/Exception/ExceptionHandling.php",
+		"Flow\\Exception\\WikitextException": "includes/Exception/ExceptionHandling.php",
+		"Flow\\Exception\\WrongNumberArgumentsException": "includes/Exception/ExceptionHandling.php",
+		"Flow\\FlowActions": "includes/FlowActions.php",
+		"Flow\\Formatter\\AbstractFormatter": "includes/Formatter/AbstractFormatter.php",
+		"Flow\\Formatter\\AbstractQuery": "includes/Formatter/AbstractQuery.php",
+		"Flow\\Formatter\\BaseTopicListFormatter": "includes/Formatter/BaseTopicListFormatter.php",
+		"Flow\\Formatter\\BoardHistoryQuery": "includes/Formatter/BoardHistoryQuery.php",
+		"Flow\\Formatter\\CategoryViewerFormatter": "includes/Formatter/CategoryViewerFormatter.php",
+		"Flow\\Formatter\\CategoryViewerQuery": "includes/Formatter/CategoryViewerQuery.php",
+		"Flow\\Formatter\\CheckUserFormatter": "includes/Formatter/CheckUserFormatter.php",
+		"Flow\\Formatter\\CheckUserQuery": "includes/Formatter/CheckUserQuery.php",
+		"Flow\\Formatter\\CheckUserRow": "includes/Formatter/CheckUserQuery.php",
+		"Flow\\Formatter\\Contributions": "includes/Formatter/Contributions.php",
+		"Flow\\Formatter\\ContributionsQuery": "includes/Formatter/ContributionsQuery.php",
+		"Flow\\Formatter\\ContributionsRow": "includes/Formatter/ContributionsQuery.php",
+		"Flow\\Formatter\\DeletedContributionsRow": "includes/Formatter/ContributionsQuery.php",
+		"Flow\\Formatter\\FeedItemFormatter": "includes/Formatter/FeedItemFormatter.php",
+		"Flow\\Formatter\\FormatterRow": "includes/Formatter/AbstractQuery.php",
+		"Flow\\Formatter\\HeaderViewQuery": "includes/Formatter/RevisionViewQuery.php",
+		"Flow\\Formatter\\IRCLineUrlFormatter": "includes/Formatter/IRCLineUrlFormatter.php",
+		"Flow\\Formatter\\PostHistoryQuery": "includes/Formatter/PostHistoryQuery.php",
+		"Flow\\Formatter\\PostSummaryQuery": "includes/Formatter/PostSummaryQuery.php",
+		"Flow\\Formatter\\PostSummaryViewQuery": "includes/Formatter/RevisionViewQuery.php",
+		"Flow\\Formatter\\PostViewQuery": "includes/Formatter/RevisionViewQuery.php",
+		"Flow\\Formatter\\RecentChanges": "includes/Formatter/RecentChanges.php",
+		"Flow\\Formatter\\RecentChangesQuery": "includes/Formatter/RecentChangesQuery.php",
+		"Flow\\Formatter\\RecentChangesRow": "includes/Formatter/RecentChangesQuery.php",
+		"Flow\\Formatter\\RevisionDiffViewFormatter": "includes/Formatter/RevisionDiffViewFormatter.php",
+		"Flow\\Formatter\\RevisionFormatter": "includes/Formatter/RevisionFormatter.php",
+		"Flow\\Formatter\\RevisionUndoViewFormatter": "includes/Formatter/RevisionUndoViewFormatter.php",
+		"Flow\\Formatter\\RevisionViewFormatter": "includes/Formatter/RevisionViewFormatter.php",
+		"Flow\\Formatter\\RevisionViewQuery": "includes/Formatter/RevisionViewQuery.php",
+		"Flow\\Formatter\\SearchQuery": "includes/Formatter/SearchQuery.php",
+		"Flow\\Formatter\\SinglePostQuery": "includes/Formatter/SinglePostQuery.php",
+		"Flow\\Formatter\\TocTopicListFormatter": "includes/Formatter/TocTopicListFormatter.php",
+		"Flow\\Formatter\\TopicFormatter": "includes/Formatter/TopicFormatter.php",
+		"Flow\\Formatter\\TopicHistoryQuery": "includes/Formatter/TopicHistoryQuery.php",
+		"Flow\\Formatter\\TopicListFormatter": "includes/Formatter/TopicListFormatter.php",
+		"Flow\\Formatter\\TopicListQuery": "includes/Formatter/TopicListQuery.php",
+		"Flow\\Formatter\\TopicRow": "includes/Formatter/TopicRow.php",
+		"Flow\\Import\\Converter": "includes/Import/Converter.php",
+		"Flow\\Import\\EnableFlow\\EnableFlowWikitextConversionStrategy": "includes/Import/EnableFlow/EnableFlowWikitextConversionStrategy.php",
+		"Flow\\Import\\FileImportSourceStore": "includes/Import/ImportSourceStore.php",
+		"Flow\\Import\\HistoricalUIDGenerator": "includes/Import/Importer.php",
+		"Flow\\Import\\IConversionStrategy": "includes/Import/IConversionStrategy.php",
+		"Flow\\Import\\IImportHeader": "includes/Import/ImportSource.php",
+		"Flow\\Import\\IImportObject": "includes/Import/ImportSource.php",
+		"Flow\\Import\\IImportPost": "includes/Import/ImportSource.php",
+		"Flow\\Import\\IImportSource": "includes/Import/ImportSource.php",
+		"Flow\\Import\\IImportSummary": "includes/Import/ImportSource.php",
+		"Flow\\Import\\IImportTopic": "includes/Import/ImportSource.php",
+		"Flow\\Import\\IObjectRevision": "includes/Import/ImportSource.php",
+		"Flow\\Import\\IRevisionableObject": "includes/Import/ImportSource.php",
+		"Flow\\Import\\ImportException": "includes/Import/Exception.php",
+		"Flow\\Import\\ImportSourceStore": "includes/Import/ImportSourceStore.php",
+		"Flow\\Import\\ImportSourceStoreException": "includes/Import/Exception.php",
+		"Flow\\Import\\Importer": "includes/Import/Importer.php",
+		"Flow\\Import\\LiquidThreadsApi\\ApiBackend": "includes/Import/LiquidThreadsApi/Source.php",
+		"Flow\\Import\\LiquidThreadsApi\\ApiNotFoundException": "includes/Import/LiquidThreadsApi/Exception.php",
+		"Flow\\Import\\LiquidThreadsApi\\CachedApiData": "includes/Import/LiquidThreadsApi/CachedData.php",
+		"Flow\\Import\\LiquidThreadsApi\\CachedData": "includes/Import/LiquidThreadsApi/CachedData.php",
+		"Flow\\Import\\LiquidThreadsApi\\CachedPageData": "includes/Import/LiquidThreadsApi/CachedData.php",
+		"Flow\\Import\\LiquidThreadsApi\\CachedThreadData": "includes/Import/LiquidThreadsApi/CachedData.php",
+		"Flow\\Import\\LiquidThreadsApi\\ConversionStrategy": "includes/Import/LiquidThreadsApi/ConversionStrategy.php",
+		"Flow\\Import\\LiquidThreadsApi\\ImportHeader": "includes/Import/LiquidThreadsApi/Objects.php",
+		"Flow\\Import\\LiquidThreadsApi\\ImportPost": "includes/Import/LiquidThreadsApi/Objects.php",
+		"Flow\\Import\\LiquidThreadsApi\\ImportRevision": "includes/Import/LiquidThreadsApi/Objects.php",
+		"Flow\\Import\\LiquidThreadsApi\\ImportSource": "includes/Import/LiquidThreadsApi/Source.php",
+		"Flow\\Import\\LiquidThreadsApi\\ImportSummary": "includes/Import/LiquidThreadsApi/Objects.php",
+		"Flow\\Import\\LiquidThreadsApi\\ImportTopic": "includes/Import/LiquidThreadsApi/Objects.php",
+		"Flow\\Import\\LiquidThreadsApi\\LocalApiBackend": "includes/Import/LiquidThreadsApi/Source.php",
+		"Flow\\Import\\LiquidThreadsApi\\MovedImportPost": "includes/Import/LiquidThreadsApi/Objects.php",
+		"Flow\\Import\\LiquidThreadsApi\\MovedImportRevision": "includes/Import/LiquidThreadsApi/Objects.php",
+		"Flow\\Import\\LiquidThreadsApi\\MovedImportTopic": "includes/Import/LiquidThreadsApi/Objects.php",
+		"Flow\\Import\\LiquidThreadsApi\\PageRevisionedObject": "includes/Import/LiquidThreadsApi/Objects.php",
+		"Flow\\Import\\LiquidThreadsApi\\RemoteApiBackend": "includes/Import/LiquidThreadsApi/Source.php",
+		"Flow\\Import\\LiquidThreadsApi\\ReplyIterator": "includes/Import/LiquidThreadsApi/Iterators.php",
+		"Flow\\Import\\LiquidThreadsApi\\RevisionIterator": "includes/Import/LiquidThreadsApi/Iterators.php",
+		"Flow\\Import\\LiquidThreadsApi\\ScriptedImportRevision": "includes/Import/LiquidThreadsApi/Objects.php",
+		"Flow\\Import\\LiquidThreadsApi\\TopicIterator": "includes/Import/LiquidThreadsApi/Iterators.php",
+		"Flow\\Import\\NullImportSourceStore": "includes/Import/ImportSourceStore.php",
+		"Flow\\Import\\PageImportState": "includes/Import/Importer.php",
+		"Flow\\Import\\Plain\\ImportHeader": "includes/Import/Plain/ImportHeader.php",
+		"Flow\\Import\\Plain\\ObjectRevision": "includes/Import/Plain/ObjectRevision.php",
+		"Flow\\Import\\Postprocessor\\LqtNotifications": "includes/Import/Postprocessor/LqtNotifications.php",
+		"Flow\\Import\\Postprocessor\\LqtRedirector": "includes/Import/Postprocessor/LqtRedirector.php",
+		"Flow\\Import\\Postprocessor\\PostprocessingException": "includes/Import/Postprocessor/PostprocessingException.php",
+		"Flow\\Import\\Postprocessor\\Postprocessor": "includes/Import/Postprocessor/Postprocessor.php",
+		"Flow\\Import\\Postprocessor\\ProcessorGroup": "includes/Import/Postprocessor/ProcessorGroup.php",
+		"Flow\\Import\\Postprocessor\\SpecialLogTopic": "includes/Import/Postprocessor/SpecialLogTopic.php",
+		"Flow\\Import\\TalkpageImportOperation": "includes/Import/Importer.php",
+		"Flow\\Import\\TopicImportState": "includes/Import/Importer.php",
+		"Flow\\Import\\Wikitext\\ConversionStrategy": "includes/Import/Wikitext/ConversionStrategy.php",
+		"Flow\\Import\\Wikitext\\ImportSource": "includes/Import/Wikitext/ImportSource.php",
+		"Flow\\LinksTableUpdater": "includes/LinksTableUpdater.php",
+		"Flow\\Log\\ActionFormatter": "includes/Log/ActionFormatter.php",
+		"Flow\\Log\\LogQuery": "includes/Log/Query.php",
+		"Flow\\Log\\LqtImportFormatter": "includes/Log/LqtImportFormatter.php",
+		"Flow\\Log\\ModerationLogger": "includes/Log/ModerationLogger.php",
+		"Flow\\Model\\AbstractRevision": "includes/Model/AbstractRevision.php",
+		"Flow\\Model\\AbstractSummary": "includes/Model/AbstractSummary.php",
+		"Flow\\Model\\Anchor": "includes/Model/Anchor.php",
+		"Flow\\Model\\Header": "includes/Model/Header.php",
+		"Flow\\Model\\PostRevision": "includes/Model/PostRevision.php",
+		"Flow\\Model\\PostSummary": "includes/Model/PostSummary.php",
+		"Flow\\Model\\Reference": "includes/Model/Reference.php",
+		"Flow\\Model\\TopicListEntry": "includes/Model/TopicListEntry.php",
+		"Flow\\Model\\URLReference": "includes/Model/URLReference.php",
+		"Flow\\Model\\UUID": "includes/Model/UUID.php",
+		"Flow\\Model\\UserTuple": "includes/Model/UserTuple.php",
+		"Flow\\Model\\WikiReference": "includes/Model/WikiReference.php",
+		"Flow\\Model\\Workflow": "includes/Model/Workflow.php",
+		"Flow\\NewTopicFormatter": "includes/Notifications/Formatter.php",
+		"Flow\\NotificationController": "includes/Notifications/Controller.php",
+		"Flow\\NotificationFormatter": "includes/Notifications/Formatter.php",
+		"Flow\\NotificationsUserLocator": "includes/Notifications/UserLocator.php",
+		"Flow\\OccupationController": "includes/TalkpageManager.php",
+		"Flow\\Parsoid\\ContentFixer": "includes/Parsoid/ContentFixer.php",
+		"Flow\\Parsoid\\Extractor": "includes/Parsoid/Extractor.php",
+		"Flow\\Parsoid\\Extractor\\CategoryExtractor": "includes/Parsoid/Extractor/CategoryExtractor.php",
+		"Flow\\Parsoid\\Extractor\\ExtLinkExtractor": "includes/Parsoid/Extractor/ExtLinkExtractor.php",
+		"Flow\\Parsoid\\Extractor\\ImageExtractor": "includes/Parsoid/Extractor/ImageExtractor.php",
+		"Flow\\Parsoid\\Extractor\\PlaceholderExtractor": "includes/Parsoid/Extractor/PlaceholderExtractor.php",
+		"Flow\\Parsoid\\Extractor\\TransclusionExtractor": "includes/Parsoid/Extractor/TransclusionExtractor.php",
+		"Flow\\Parsoid\\Extractor\\WikiLinkExtractor": "includes/Parsoid/Extractor/WikiLinkExtractor.php",
+		"Flow\\Parsoid\\Fixer": "includes/Parsoid/Fixer.php",
+		"Flow\\Parsoid\\Fixer\\BadImageRemover": "includes/Parsoid/Fixer/BadImageRemover.php",
+		"Flow\\Parsoid\\Fixer\\BaseHrefFixer": "includes/Parsoid/Fixer/BaseHrefFixer.php",
+		"Flow\\Parsoid\\Fixer\\ExtLinkFixer": "includes/Parsoid/Fixer/ExtLinkFixer.php",
+		"Flow\\Parsoid\\Fixer\\WikiLinkFixer": "includes/Parsoid/Fixer/WikiLinkFixer.php",
+		"Flow\\Parsoid\\ReferenceExtractor": "includes/Parsoid/ReferenceExtractor.php",
+		"Flow\\Parsoid\\ReferenceFactory": "includes/Parsoid/ReferenceFactory.php",
+		"Flow\\Parsoid\\Utils": "includes/Parsoid/Utils.php",
+		"Flow\\RecoverableErrorHandler": "includes/RecoverableErrorHandler.php",
+		"Flow\\ReferenceClarifier": "includes/ReferenceClarifier.php",
+		"Flow\\Repository\\MultiGetList": "includes/Repository/MultiGetList.php",
+		"Flow\\Repository\\RootPostLoader": "includes/Repository/RootPostLoader.php",
+		"Flow\\Repository\\TitleRepository": "includes/Repository/TitleRepository.php",
+		"Flow\\Repository\\TreeRepository": "includes/Repository/TreeRepository.php",
+		"Flow\\Repository\\UserNameBatch": "includes/Repository/UserNameBatch.php",
+		"Flow\\Repository\\UserName\\OneStepUserNameQuery": "includes/Repository/UserName/OneStepUserNameQuery.php",
+		"Flow\\Repository\\UserName\\TwoStepUserNameQuery": "includes/Repository/UserName/TwoStepUserNameQuery.php",
+		"Flow\\Repository\\UserName\\UserNameQuery": "includes/Repository/UserName/UserNameQuery.php",
+		"Flow\\RevisionActionPermissions": "includes/RevisionActionPermissions.php",
+		"Flow\\Search\\Connection": "includes/Search/Connection.php",
+		"Flow\\Search\\HeaderUpdater": "includes/Search/HeaderUpdater.php",
+		"Flow\\Search\\Maintenance\\MappingConfigBuilder": "includes/Search/maintenance/MappingConfigBuilder.php",
+		"Flow\\Search\\SearchEngine": "includes/Search/SearchEngine.php",
+		"Flow\\Search\\Searcher": "includes/Search/Searcher.php",
+		"Flow\\Search\\TopicUpdater": "includes/Search/TopicUpdater.php",
+		"Flow\\Search\\Updater": "includes/Search/Updater.php",
+		"Flow\\SpamFilter\\AbuseFilter": "includes/SpamFilter/AbuseFilter.php",
+		"Flow\\SpamFilter\\ConfirmEdit": "includes/SpamFilter/ConfirmEdit.php",
+		"Flow\\SpamFilter\\ContentLengthFilter": "includes/SpamFilter/ContentLengthFilter.php",
+		"Flow\\SpamFilter\\Controller": "includes/SpamFilter/Controller.php",
+		"Flow\\SpamFilter\\SpamBlacklist": "includes/SpamFilter/SpamBlacklist.php",
+		"Flow\\SpamFilter\\SpamFilter": "includes/SpamFilter/SpamFilter.php",
+		"Flow\\SpamFilter\\SpamRegex": "includes/SpamFilter/SpamRegex.php",
+		"Flow\\Specials\\SpecialEnableFlow": "includes/Specials/SpecialEnableFlow.php",
+		"Flow\\Specials\\SpecialFlow": "includes/Specials/SpecialFlow.php",
+		"Flow\\SubmissionHandler": "includes/SubmissionHandler.php",
+		"Flow\\TalkpageManager": "includes/TalkpageManager.php",
+		"Flow\\TemplateHelper": "includes/TemplateHelper.php",
+		"Flow\\Templating": "includes/Templating.php",
+		"Flow\\Tests\\Api\\ApiFlowEditHeaderTest": "tests/phpunit/api/ApiFlowEditHeaderTest.php",
+		"Flow\\Tests\\Api\\ApiFlowEditPostTest": "tests/phpunit/api/ApiFlowEditPostTest.php",
+		"Flow\\Tests\\Api\\ApiFlowEditTitleTest": "tests/phpunit/api/ApiFlowEditTitleTest.php",
+		"Flow\\Tests\\Api\\ApiFlowEditTopicSummaryTest": "tests/phpunit/api/ApiFlowEditTopicSummaryTest.php",
+		"Flow\\Tests\\Api\\ApiFlowLockTopicTest": "tests/phpunit/api/ApiFlowLockTopicTest.php",
+		"Flow\\Tests\\Api\\ApiFlowModeratePostTest": "tests/phpunit/api/ApiFlowModeratePostTest.php",
+		"Flow\\Tests\\Api\\ApiFlowModerateTopicTest": "tests/phpunit/api/ApiFlowModerateTopicTest.php",
+		"Flow\\Tests\\Api\\ApiFlowReplyTest": "tests/phpunit/api/ApiFlowReplyTest.php",
+		"Flow\\Tests\\Api\\ApiFlowViewHeaderTest": "tests/phpunit/api/ApiFlowViewHeaderTest.php",
+		"Flow\\Tests\\Api\\ApiFlowViewTopicListTest": "tests/phpunit/api/ApiFlowViewTopicListTest.php",
+		"Flow\\Tests\\Api\\ApiTestCase": "tests/phpunit/api/ApiTestCase.php",
+		"Flow\\Tests\\Api\\ApiWatchTopicTest": "tests/phpunit/api/ApiWatchTopicTest.php",
+		"Flow\\Tests\\BlockFactoryTest": "tests/phpunit/BlockFactoryTest.php",
+		"Flow\\Tests\\Block\\TopicListTest": "tests/phpunit/Block/TopicListTest.php",
+		"Flow\\Tests\\BufferedBagOStuffTest": "tests/phpunit/Data/BagOStuff/BufferedBagOStuffTest.php",
+		"Flow\\Tests\\BufferedCacheTest": "tests/phpunit/Data/BufferedCacheTest.php",
+		"Flow\\Tests\\Collection\\PostCollectionTest": "tests/phpunit/Collection/PostCollectionTest.php",
+		"Flow\\Tests\\Collection\\RevisionCollectionPermissionsTest": "tests/phpunit/Collection/RevisionCollectionPermissionsTest.php",
+		"Flow\\Tests\\ContainerTest": "tests/phpunit/ContainerTest.php",
+		"Flow\\Tests\\Data\\CachingObjectManagerTest": "tests/phpunit/Data/CachingObjectMapperTest.php",
+		"Flow\\Tests\\Data\\FlowNothingTest": "tests/phpunit/Data/NothingTest.php",
+		"Flow\\Tests\\Data\\IndexTest": "tests/phpunit/Data/IndexTest.php",
+		"Flow\\Tests\\Data\\Index\\FeatureIndexTest": "tests/phpunit/Data/Index/FeatureIndexTest.php",
+		"Flow\\Tests\\Data\\Index\\MockFeatureIndex": "tests/phpunit/Data/Index/FeatureIndexTest.php",
+		"Flow\\Tests\\Data\\Listener\\RecentChangesListenerTest": "tests/phpunit/Data/Listener/RecentChangesListenerTest.php",
+		"Flow\\Tests\\Data\\ManagerGroupTest": "tests/phpunit/Data/ManagerGroupTest.php",
+		"Flow\\Tests\\Data\\ObjectLocatorTest": "tests/phpunit/Data/ObjectLocatorTest.php",
+		"Flow\\Tests\\Data\\Pager\\PagerTest": "tests/phpunit/Data/Pager/PagerTest.php",
+		"Flow\\Tests\\Data\\Storage\\RevisionStorageTest": "tests/phpunit/Data/Storage/RevisionStorageTest.php",
+		"Flow\\Tests\\Data\\UserNameBatchTest": "tests/phpunit/Data/UserNameBatchTest.php",
+		"Flow\\Tests\\Data\\UserNameListenerTest": "tests/phpunit/Data/UserNameListenerTest.php",
+		"Flow\\Tests\\FlowActionsTest": "tests/phpunit/FlowActionsTest.php",
+		"Flow\\Tests\\FlowTestCase": "tests/phpunit/FlowTestCase.php",
+		"Flow\\Tests\\Formatter\\FormatterTest": "tests/phpunit/Formatter/FormatterTest.php",
+		"Flow\\Tests\\Formatter\\RevisionFormatterTest": "tests/phpunit/Formatter/RevisionFormatterTest.php",
+		"Flow\\Tests\\Handlebars\\FlowPostMetaActionsTest": "tests/phpunit/../handlebars/FlowPostMetaActionsTest.php",
+		"Flow\\Tests\\HookTest": "tests/phpunit/HookTest.php",
+		"Flow\\Tests\\Import\\ConverterTest": "tests/phpunit/Import/ConverterTest.php",
+		"Flow\\Tests\\Import\\HistoricalUIDGeneratorTest": "tests/phpunit/Import/HistoricalUIDGeneratorTest.php",
+		"Flow\\Tests\\Import\\LiquidThreadsApi\\ConversionStrategyTest": "tests/phpunit/Import/LiquidThreadsApi/ConversionStrategyTest.php",
+		"Flow\\Tests\\Import\\PageImportStateTest": "tests/phpunit/Import/PageImportStateTest.php",
+		"Flow\\Tests\\Import\\TalkpageImportOperationTest": "tests/phpunit/Import/TalkpageImportOperationTest.php",
+		"Flow\\Tests\\Import\\Wikitext\\ConversionStrategyTest": "tests/phpunit/Import/Wikitext/ConversionStrategyTest.php",
+		"Flow\\Tests\\Import\\Wikitext\\ImportSourceTest": "tests/phpunit/Import/Wikitext/ImportSourceTest.php",
+		"Flow\\Tests\\LinksTableTest": "tests/phpunit/LinksTableTest.php",
+		"Flow\\Tests\\LocalBufferedBagOStuffTest": "tests/phpunit/Data/BagOStuff/LocalBufferedBagOStuffTest.php",
+		"Flow\\Tests\\Mock\\MockImportHeader": "tests/phpunit/Mock/MockImportHeader.php",
+		"Flow\\Tests\\Mock\\MockImportPost": "tests/phpunit/Mock/MockImportPost.php",
+		"Flow\\Tests\\Mock\\MockImportRevision": "tests/phpunit/Mock/MockImportRevision.php",
+		"Flow\\Tests\\Mock\\MockImportSource": "tests/phpunit/Mock/MockImportSource.php",
+		"Flow\\Tests\\Mock\\MockImportSummary": "tests/phpunit/Mock/MockImportSummary.php",
+		"Flow\\Tests\\Mock\\MockImportTopic": "tests/phpunit/Mock/MockImportTopic.php",
+		"Flow\\Tests\\Model\\PostRevisionTest": "tests/phpunit/Model/PostRevisionTest.php",
+		"Flow\\Tests\\Model\\UUIDTest": "tests/phpunit/Model/UUIDTest.php",
+		"Flow\\Tests\\Model\\UserTupleTest": "tests/phpunit/Model/UserTupleTest.php",
+		"Flow\\Tests\\NotifiedUsersTest": "tests/phpunit/Notifications/NotifiedUsersTest.php",
+		"Flow\\Tests\\PagerTest": "tests/phpunit/PagerTest.php",
+		"Flow\\Tests\\Parsoid\\BadImageRemoverTest": "tests/phpunit/Parsoid/Fixer/BadImageRemoverTest.php",
+		"Flow\\Tests\\Parsoid\\BaseHrefFixerTest": "tests/phpunit/Parsoid/Fixer/BaseHrefFixerTest.php",
+		"Flow\\Tests\\Parsoid\\Fixer\\MethodReturnsConstraint": "tests/phpunit/Parsoid/Fixer/WikiLinkFixerTest.php",
+		"Flow\\Tests\\Parsoid\\Fixer\\WikiLinkFixerTest": "tests/phpunit/Parsoid/Fixer/WikiLinkFixerTest.php",
+		"Flow\\Tests\\Parsoid\\ParsoidUtilsTest": "tests/phpunit/Parsoid/UtilsTest.php",
+		"Flow\\Tests\\Parsoid\\ReferenceExtractorTestCase": "tests/phpunit/Parsoid/ReferenceExtractorTest.php",
+		"Flow\\Tests\\Parsoid\\ReferenceFactoryTest": "tests/phpunit/Parsoid/ReferenceFactoryTest.php",
+		"Flow\\Tests\\PermissionsTest": "tests/phpunit/PermissionsTest.php",
+		"Flow\\Tests\\PostRevisionTestCase": "tests/phpunit/PostRevisionTestCase.php",
+		"Flow\\Tests\\Repository\\TreeRepositoryTest": "tests/phpunit/Repository/TreeRepositoryTest.php",
+		"Flow\\Tests\\Repository\\TreeRepositorydbTest": "tests/phpunit/Repository/TreeRepositoryDbTest.php",
+		"Flow\\Tests\\SpamFilter\\AbuseFilterTest": "tests/phpunit/SpamFilter/AbuseFilterTest.php",
+		"Flow\\Tests\\SpamFilter\\ConfirmEditTest": "tests/phpunit/SpamFilter/ConfirmEditTest.php",
+		"Flow\\Tests\\SpamFilter\\ContentLengthFilterTest": "tests/phpunit/SpamFilter/ContentLengthFilterTest.php",
+		"Flow\\Tests\\SpamFilter\\SpamBlacklistTest": "tests/phpunit/SpamFilter/SpamBlacklistTest.php",
+		"Flow\\Tests\\SpamFilter\\SpamRegexTest": "tests/phpunit/SpamFilter/SpamRegexTest.php",
+		"Flow\\Tests\\TemplateHelperTest": "tests/phpunit/TemplateHelperTest.php",
+		"Flow\\Tests\\TemplatingTest": "tests/phpunit/TemplatingTest.php",
+		"Flow\\Tests\\UrlGeneratorTest": "tests/phpunit/UrlGeneratorTest.php",
+		"Flow\\Tests\\WatchedTopicItemTest": "tests/phpunit/WatchedTopicItemsTest.php",
+		"Flow\\UrlGenerator": "includes/UrlGenerator.php",
+		"Flow\\Utils\\NamespaceIterator": "includes/Utils/NamespaceIterator.php",
+		"Flow\\Utils\\PagesWithPropertyIterator": "includes/Utils/PagesWithPropertyIterator.php",
+		"Flow\\View": "includes/View.php",
+		"Flow\\WatchedTopicItems": "includes/WatchedTopicItems.php",
+		"Flow\\WorkflowLoader": "includes/WorkflowLoader.php",
+		"Flow\\WorkflowLoaderFactory": "includes/WorkflowLoaderFactory.php",
+		"MaintenanceDebugLogger": "maintenance/MaintenanceDebugLogger.php",
+		"Pimple\\Container": "vendor/Pimple/Container.php",
+		"Pimple\\ServiceProviderInterface": "vendor/Pimple/ServiceProviderInterface.php"
+	},
+	"ResourceModules": {
+		"ext.flow.contributions": {
+			"scripts": [
+				"contributions/base.js"
+			]
+		},
+		"ext.flow.contributions.styles": {
+			"position": "top",
+			"styles": [
+				"styles/history/history-line.less"
+			]
+		},
+		"ext.flow.templating": {
+			"scripts": [
+				"modules/engine/misc/flow-handlebars.js"
+			],
+			"dependencies": [
+				"mediawiki.template.handlebars",
+				"moment"
+			],
+			"templates": [
+				"../handlebars/flow_anon_warning.partial.handlebars",
+				"../handlebars/flow_block_board-history.handlebars",
+				"../handlebars/flow_block_header.handlebars",
+				"../handlebars/flow_block_header_diff_view.handlebars",
+				"../handlebars/flow_block_header_edit.handlebars",
+				"../handlebars/flow_block_header_single_view.handlebars",
+				"../handlebars/flow_block_loop.handlebars",
+				"../handlebars/flow_block_topic.handlebars",
+				"../handlebars/flow_block_topic_diff_view.handlebars",
+				"../handlebars/flow_block_topic_edit_title.handlebars",
+				"../handlebars/flow_block_topic_history.handlebars",
+				"../handlebars/flow_block_topic_moderate_post.handlebars",
+				"../handlebars/flow_block_topic_moderate_topic.handlebars",
+				"../handlebars/flow_block_topic_single_view.handlebars",
+				"../handlebars/flow_block_topiclist.handlebars",
+				"../handlebars/flow_block_topicsummary_diff_view.handlebars",
+				"../handlebars/flow_block_topicsummary_edit.handlebars",
+				"../handlebars/flow_block_topicsummary_single_view.handlebars",
+				"../handlebars/flow_board_navigation.partial.handlebars",
+				"../handlebars/flow_board_toc_loop.partial.handlebars",
+				"../handlebars/flow_edit_post_ajax.partial.handlebars",
+				"../handlebars/flow_edit_post.partial.handlebars",
+				"../handlebars/flow_edit_topic_title.partial.handlebars",
+				"../handlebars/flow_editor_switcher.partial.handlebars",
+				"../handlebars/flow_errors.partial.handlebars",
+				"../handlebars/flow_form_cancel_button.partial.handlebars",
+				"../handlebars/flow_header_title.partial.handlebars",
+				"../handlebars/flow_header_detail.partial.handlebars",
+				"../handlebars/flow_load_more.partial.handlebars",
+				"../handlebars/flow_moderate_post_confirmation.partial.handlebars",
+				"../handlebars/flow_moderate_post.partial.handlebars",
+				"../handlebars/flow_moderate_topic_confirmation.partial.handlebars",
+				"../handlebars/flow_moderate_topic.partial.handlebars",
+				"../handlebars/flow_moderation_actions_list.partial.handlebars",
+				"../handlebars/flow_newtopic_form.partial.handlebars",
+				"../handlebars/flow_post_actions.partial.handlebars",
+				"../handlebars/flow_post_author.partial.handlebars",
+				"../handlebars/flow_post_inner.partial.handlebars",
+				"../handlebars/flow_post_meta_actions.partial.handlebars",
+				"../handlebars/flow_post_moderation_state.partial.handlebars",
+				"../handlebars/flow_post_replies.partial.handlebars",
+				"../handlebars/flow_post.handlebars",
+				"../handlebars/flow_reply_form.partial.handlebars",
+				"../handlebars/flow_subscribed.partial.handlebars",
+				"../handlebars/flow_tooltip_subscribed.partial.handlebars",
+				"../handlebars/flow_tooltip.handlebars",
+				"../handlebars/flow_topic.partial.handlebars",
+				"../handlebars/flow_topic_titlebar_content.partial.handlebars",
+				"../handlebars/flow_topic_titlebar_lock.partial.handlebars",
+				"../handlebars/flow_topic_titlebar_summary.partial.handlebars",
+				"../handlebars/flow_topic_titlebar_watch.partial.handlebars",
+				"../handlebars/flow_topic_titlebar.partial.handlebars",
+				"../handlebars/flow_topic_moderation_flag.partial.handlebars",
+				"../handlebars/flow_topiclist_loop.partial.handlebars",
+				"../handlebars/form_element.partial.handlebars",
+				"../handlebars/timestamp.handlebars"
+			],
+			"messages": [
+				"flow-anon-warning",
+				"flow-cancel",
+				"flow-skip-summary",
+				"flow-edit-summary-placeholder",
+				"flow-board-header",
+				"flow-board-collapse-description",
+				"flow-board-expand-description",
+				"flow-edit-header-link",
+				"flow-edit-header-placeholder",
+				"flow-edit-header-submit",
+				"flow-edit-title-submit",
+				"flow-load-more",
+				"flow-newest-topics",
+				"flow-newtopic-content-placeholder",
+				"flow-newtopic-save",
+				"flow-newtopic-start-placeholder",
+				"flow-post-action-delete-post",
+				"flow-post-action-undelete-post",
+				"flow-post-action-edit-post",
+				"flow-post-action-edit-post-submit",
+				"flow-post-action-hide-post",
+				"flow-post-action-unhide-post",
+				"flow-post-action-post-history",
+				"flow-post-action-view",
+				"flow-post-action-suppress-post",
+				"flow-post-action-unsuppress-post",
+				"flow-post-action-restore-post",
+				"flow-post-action-undo-moderation",
+				"flow-recent-topics",
+				"flow-reply-topic-title-placeholder",
+				"flow-sorting-tooltip-newest",
+				"flow-sorting-tooltip-recent",
+				"flow-toggle-small-topics",
+				"flow-toggle-topics",
+				"flow-toggle-topics-posts",
+				"flow-topic-comments",
+				"flow-show-comments-title",
+				"flow-hide-comments-title",
+				"flow-topic-action-hide-topic",
+				"flow-topic-action-lock-topic",
+				"flow-topic-action-delete-topic",
+				"flow-topic-action-edit-title",
+				"flow-topic-action-hide-topic",
+				"flow-topic-action-history",
+				"flow-topic-action-resummarize-topic",
+				"flow-topic-action-summarize-topic",
+				"flow-topic-action-update-topic-summary",
+				"flow-topic-action-unlock-topic",
+				"flow-topic-action-suppress-topic",
+				"flow-topic-action-view",
+				"flow-topic-action-hide-topic",
+				"flow-topic-action-unhide-topic",
+				"flow-topic-action-delete-topic",
+				"flow-topic-action-undelete-topic",
+				"flow-topic-action-suppress-topic",
+				"flow-topic-action-unsuppress-topic",
+				"flow-topic-action-restore-topic",
+				"flow-topic-action-undo-moderation",
+				"flow-topic-action-watchlist-add",
+				"flow-topic-action-watchlist-remove",
+				"flow-hide-post-content",
+				"flow-delete-post-content",
+				"flow-suppress-post-content",
+				"flow-hide-title-content",
+				"flow-delete-title-content",
+				"flow-suppress-title-content",
+				"talkpagelinktext",
+				"flow-cancel-warning",
+				"flow-lock-post-content",
+				"flow-hide-title-content",
+				"flow-hide-post-content",
+				"flow-delete-title-content",
+				"flow-delete-post-content",
+				"flow-suppress-title-content",
+				"flow-suppress-post-content",
+				"blocklink",
+				"contribslink",
+				"flow-terms-of-use-new-topic",
+				"flow-terms-of-use-reply",
+				"flow-terms-of-use-edit",
+				"flow-terms-of-use-summarize",
+				"flow-terms-of-use-lock-topic",
+				"flow-terms-of-use-unlock-topic",
+				"flow-no-more-fwd",
+				"flow-topic-notification-subscribe-title",
+				"flow-topic-notification-subscribe-description",
+				"flow-board-notification-subscribe-title",
+				"flow-board-notification-subscribe-description",
+				"flow-moderation-title-unhide-post",
+				"flow-moderation-title-undelete-post",
+				"flow-moderation-title-unsuppress-post",
+				"flow-moderation-title-unhide-topic",
+				"flow-moderation-title-undelete-topic",
+				"flow-moderation-title-unsuppress-topic",
+				"flow-moderation-title-hide-post",
+				"flow-moderation-title-delete-post",
+				"flow-moderation-title-suppress-post",
+				"flow-moderation-title-hide-topic",
+				"flow-moderation-title-delete-topic",
+				"flow-moderation-title-suppress-topic",
+				"flow-moderation-placeholder-unhide-post",
+				"flow-moderation-placeholder-undelete-post",
+				"flow-moderation-placeholder-unsuppress-post",
+				"flow-moderation-placeholder-unhide-topic",
+				"flow-moderation-placeholder-undelete-topic",
+				"flow-moderation-placeholder-unsuppress-topic",
+				"flow-moderation-placeholder-hide-post",
+				"flow-moderation-placeholder-delete-post",
+				"flow-moderation-placeholder-suppress-post",
+				"flow-moderation-placeholder-hide-topic",
+				"flow-moderation-placeholder-delete-topic",
+				"flow-moderation-placeholder-suppress-topic",
+				"flow-moderation-confirm-unhide-post",
+				"flow-moderation-confirm-undelete-post",
+				"flow-moderation-confirm-unsuppress-post",
+				"flow-moderation-confirm-unhide-topic",
+				"flow-moderation-confirm-undelete-topic",
+				"flow-moderation-confirm-unsuppress-topic",
+				"flow-moderation-confirm-hide-post",
+				"flow-moderation-confirm-delete-post",
+				"flow-moderation-confirm-suppress-post",
+				"flow-moderation-confirm-hide-topic",
+				"flow-moderation-confirm-delete-topic",
+				"flow-moderation-confirm-suppress-topic",
+				"flow-moderation-confirmation-hide-topic",
+				"flow-moderation-confirmation-delete-topic",
+				"flow-moderation-confirmation-suppress-topic",
+				"flow-topic-moderated-reason-prefix",
+				"flow-rev-message-lock-topic-reason",
+				"flow-rev-message-restore-topic-reason",
+				"flow-post-undo-hide",
+				"flow-post-undo-delete",
+				"flow-post-undo-suppress",
+				"flow-topic-undo-hide",
+				"flow-topic-undo-delete",
+				"flow-topic-undo-suppress",
+				"flow-edited",
+				"flow-edited-by",
+				"flow-board-header-browse-topics-link",
+				"flow-wikitext-editor-help",
+				"flow-wikitext-editor-help-and-preview",
+				"flow-wikitext-editor-help-uses-wikitext",
+				"flow-wikitext-editor-help-preview-the-result"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.flow.mediawiki.ui.modal": {
+			"position": "top",
+			"styles": [
+				"styles/mediawiki.ui/modal.less"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.flow.mediawiki.ui.text": {
+			"position": "top",
+			"styles": [
+				"styles/mediawiki.ui/text.less"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.flow.mediawiki.ui.form": {
+			"position": "top",
+			"styles": [
+				"styles/mediawiki.ui/forms.less"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.flow.mediawiki.ui.tooltips": {
+			"position": "top",
+			"styles": [
+				"styles/mediawiki.ui/tooltips.less"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.flow.icons.styles": {
+			"position": "top",
+			"styles": [
+				"wikiglyph/wikiglyphs.css",
+				"wikiglyph/flow-override.less"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.flow.styles.base": {
+			"position": "top",
+			"styles": [
+				"styles/common.less",
+				"styles/errors.less",
+				"styles/history/history-line.less"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.flow.board.styles": {
+			"position": "top",
+			"styles": [
+				"styles/board/header.less",
+				"styles/board/menu.less",
+				"styles/board/navigation.less",
+				"styles/board/moderated.less",
+				"styles/board/timestamps.less",
+				"styles/board/replycount.less",
+				"styles/js.less",
+				"styles/board/form-actions.less",
+				"styles/board/terms-of-use.less",
+				"styles/board/editor-switcher.less"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.flow.board.topic.styles": {
+			"position": "top",
+			"styles": [
+				"styles/board/topic/titlebar.less",
+				"styles/board/topic/meta.less",
+				"styles/board/topic/post.less",
+				"styles/board/topic/summary.less",
+				"styles/board/topic/watchlist.less"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"mediawiki.template.handlebars": {
+			"scripts": [
+				"../vendor/modules/handlebars-v3.0.0.js",
+				"handlebars.js"
+			],
+			"dependencies": [
+				"mediawiki.template"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.flow.components": {
+			"scripts": [
+				"engine/components/flow-registry.js",
+				"engine/components/flow-component.js",
+				"engine/misc/flow-api.js",
+				"engine/misc/flow-eventlog.js",
+				"engine/components/common/flow-component-engines.js",
+				"engine/components/common/flow-component-events.js",
+				"engine/components/board/base/flow-boardandhistory-base.js",
+				"engine/components/board/flow-board.js"
+			],
+			"dependencies": [
+				"oojs",
+				"ext.flow.templating",
+				"ext.flow.jquery.findWithParent",
+				"ext.flow.vendor.storer",
+				"mediawiki.Title",
+				"mediawiki.user",
+				"mediawiki.Uri"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.flow.dm": {
+			"scripts": [
+				"flow/mw.flow.js",
+				"flow/dm/mw.flow.dm.js",
+				"flow/dm/mw.flow.dm.Item.js",
+				"flow/dm/mixins/mw.flow.dm.List.js",
+				"flow/dm/mw.flow.dm.RevisionedContent.js",
+				"flow/dm/mw.flow.dm.BoardDescription.js",
+				"flow/dm/mw.flow.dm.System.js",
+				"flow/dm/mw.flow.dm.Topic.js",
+				"flow/dm/mw.flow.dm.Board.js"
+			],
+			"dependencies": [
+				"oojs"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.flow": {
+			"scripts": [
+				"engine/misc/mw-ui.enhance.js",
+				"engine/misc/mw-ui.modal.js",
+				"engine/components/common/flow-component-menus.js",
+				"engine/components/board/base/flow-board-api-events.js",
+				"engine/components/board/base/flow-board-interactive-events.js",
+				"engine/components/board/base/flow-board-load-events.js",
+				"engine/components/board/features/flow-board-loadmore.js",
+				"engine/components/board/features/flow-board-navigation.js",
+				"engine/components/board/features/flow-board-toc.js",
+				"engine/components/board/features/flow-board-side-rail.js",
+				"engine/components/board/features/flow-board-visualeditor.js",
+				"engine/components/board/features/flow-board-switcheditor.js",
+				"engine/components/board/flow-boardhistory.js",
+				"flow-initialize.js"
+			],
+			"dependencies": [
+				"ext.flow.components",
+				"ext.flow.editor",
+				"jquery.throttle-debounce",
+				"mediawiki.jqueryMsg",
+				"ext.flow.jquery.conditionalScroll",
+				"ext.flow.dm",
+				"mediawiki.api",
+				"mediawiki.util",
+				"mediawiki.api.options"
+			],
+			"messages": [
+				"flow-error-external",
+				"flow-error-http",
+				"mw-ui-unsubmitted-confirm",
+				"flow-reply-link"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.flow.vendor.storer": {
+			"scripts": [
+				"../vendor/modules/Storer.js"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.flow.undo": {
+			"position": "bottom",
+			"scripts": [
+				"flow-initialize.js"
+			],
+			"dependencies": [
+				"ext.flow.components"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.flow.editor": {
+			"scripts": [
+				"editor/editors/ext.flow.editors.AbstractEditor.js",
+				"editor/ext.flow.editor.js"
+			],
+			"dependencies": [
+				"oojs",
+				"mediawiki.user"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.flow.editors.none": {
+			"scripts": [
+				"editor/editors/ext.flow.editors.none.js"
+			],
+			"messages": [
+				"flow-wikitext-switch-editor-tooltip"
+			],
+			"dependencies": [
+				"oojs-ui"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.flow.visualEditor": {
+			"scripts": [
+				"editor/editors/visualeditor/mw.flow.ve.Target.js",
+				"editor/editors/visualeditor/mw.flow.ve.UserCache.js",
+				"editor/editors/visualeditor/ui/inspectors/mw.flow.ve.ui.MentionInspector.js",
+				"editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.MentionInspectorTool.js",
+				"editor/editors/visualeditor/ui/contextitem/mw.flow.ve.ui.MentionContextItem.js",
+				"editor/editors/visualeditor/ui/widgets/mw.flow.ve.ui.MentionTargetInputWidget.js",
+				"editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.SwitchEditorTool.js",
+				"editor/editors/visualeditor/ui/actions/mw.flow.ve.ui.SwitchEditorAction.js",
+				"editor/editors/visualeditor/mw.flow.ve.CommandRegistry.js",
+				"editor/editors/visualeditor/mw.flow.ve.SequenceRegistry.js"
+			],
+			"styles": [
+				"editor/editors/visualeditor/mw.flow.ve.Target.less",
+				"editor/editors/visualeditor/ui/mw.flow.ve.ui.Icons.less"
+			],
+			"dependencies": [
+				"ext.visualEditor.core",
+				"ext.visualEditor.core.desktop",
+				"ext.visualEditor.data",
+				"ext.visualEditor.icons",
+				"ext.visualEditor.mediawiki",
+				"ext.visualEditor.mwlink",
+				"ext.visualEditor.mwtransclusion",
+				"ext.visualEditor.standalone",
+				"site",
+				"user",
+				"mediawiki.api",
+				"ext.flow.editors.none"
+			],
+			"messages": [
+				"flow-ve-mention-context-item-label",
+				"flow-ve-mention-inspector-title",
+				"flow-ve-mention-inspector-remove-label",
+				"flow-ve-mention-inspector-invalid-user",
+				"flow-ve-mention-placeholder",
+				"flow-ve-mention-tool-title",
+				"flow-ve-switch-editor-tool-title"
+			]
+		},
+		"ext.flow.editors.visualeditor": {
+			"scripts": "editor/editors/visualeditor/ext.flow.editors.visualeditor.js",
+			"dependencies": [],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"mediawiki.messagePoster.flow-board": {
+			"scripts": [
+				"messagePoster/ext.flow.messagePoster.js"
+			],
+			"dependencies": [
+				"oojs",
+				"mediawiki.api",
+				"mediawiki.messagePoster"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.flow.jquery.conditionalScroll": {
+			"scripts": [
+				"engine/misc/jquery.conditionalScroll.js"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.flow.jquery.findWithParent": {
+			"scripts": [
+				"engine/misc/jquery.findWithParent.js"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "modules",
+		"remoteExtPath": "Flow/modules"
+	},
+	"Hooks": {
+		"ResourceLoaderRegisterModules": [
+			"FlowHooks::onResourceLoaderRegisterModules"
+		],
+		"LoadExtensionSchemaUpdates": [
+			"FlowHooks::getSchemaUpdates"
+		],
+		"GetPreferences": [
+			"FlowHooks::onGetPreferences"
+		],
+		"UnitTestsList": [
+			"FlowHooks::getUnitTests"
+		],
+		"OldChangesListRecentChangesLine": [
+			"FlowHooks::onOldChangesListRecentChangesLine"
+		],
+		"ChangesListInsertArticleLink": [
+			"FlowHooks::onChangesListInsertArticleLink"
+		],
+		"ChangesListInitRows": [
+			"FlowHooks::onChangesListInitRows"
+		],
+		"EnhancedChangesList::getLogText": [
+			"FlowHooks::onGetLogText"
+		],
+		"SkinTemplateNavigation::Universal": [
+			"FlowHooks::onSkinTemplateNavigation"
+		],
+		"Article::MissingArticleConditions": [
+			"FlowHooks::onMissingArticleConditions"
+		],
+		"SpecialWatchlistGetNonRevisionTypes": [
+			"FlowHooks::onSpecialWatchlistGetNonRevisionTypes"
+		],
+		"UserGetReservedNames": [
+			"FlowHooks::onUserGetReservedNames"
+		],
+		"ResourceLoaderGetConfigVars": [
+			"FlowHooks::onResourceLoaderGetConfigVars"
+		],
+		"ContribsPager::reallyDoQuery": [
+			"FlowHooks::onContributionsQuery"
+		],
+		"DeletedContribsPager::reallyDoQuery": [
+			"FlowHooks::onDeletedContributionsQuery"
+		],
+		"ContributionsLineEnding": [
+			"FlowHooks::onContributionsLineEnding"
+		],
+		"DeletedContributionsLineEnding": [
+			"FlowHooks::onDeletedContributionsLineEnding"
+		],
+		"ApiFeedContributions::feedItem": [
+			"FlowHooks::onContributionsFeedItem"
+		],
+		"AbuseFilter-computeVariable": [
+			"FlowHooks::onAbuseFilterComputeVariable"
+		],
+		"AbortEmailNotification": [
+			"FlowHooks::onAbortEmailNotification"
+		],
+		"InfoAction": [
+			"FlowHooks::onInfoAction"
+		],
+		"SpecialCheckUserGetLinksFromRow": [
+			"FlowHooks::onSpecialCheckUserGetLinksFromRow"
+		],
+		"CheckUserInsertForRecentChange": [
+			"FlowHooks::onCheckUserInsertForRecentChange"
+		],
+		"SkinMinervaDefaultModules": [
+			"FlowHooks::onSkinMinervaDefaultModules"
+		],
+		"IRCLineURL": [
+			"FlowHooks::onIRCLineURL"
+		],
+		"WhatLinksHereProps": [
+			"FlowHooks::onWhatLinksHereProps"
+		],
+		"ResourceLoaderTestModules": [
+			"FlowHooks::onResourceLoaderTestModules"
+		],
+		"ContentHandlerDefaultModelFor": [
+			"FlowHooks::onContentHandlerDefaultModelFor"
+		],
+		"ShowMissingArticle": [
+			"FlowHooks::onShowMissingArticle"
+		],
+		"MessageCache::get": [
+			"FlowHooks::onMessageCacheGet"
+		],
+		"WatchArticle": [
+			"FlowHooks::onWatchArticle"
+		],
+		"UnwatchArticle": [
+			"FlowHooks::onWatchArticle"
+		],
+		"CanonicalNamespaces": [
+			"FlowHooks::onCanonicalNamespaces"
+		],
+		"MovePageIsValidMove": [
+			"FlowHooks::onMovePageIsValidMove"
+		],
+		"AbortMove": [
+			"FlowHooks::onAbortMove"
+		],
+		"TitleMove": [
+			"FlowHooks::onTitleMove"
+		],
+		"TitleMoveComplete": [
+			"FlowHooks::onTitleMoveComplete"
+		],
+		"TitleSquidURLs": [
+			"FlowHooks::onTitleSquidURLs"
+		],
+		"WatchlistEditorBuildRemoveLine": [
+			"FlowHooks::onWatchlistEditorBuildRemoveLine"
+		],
+		"WatchlistEditorBeforeFormRender": [
+			"FlowHooks::onWatchlistEditorBeforeFormRender"
+		],
+		"NamespaceIsMovable": [
+			"FlowHooks::onNamespaceIsMovable"
+		],
+		"CategoryViewer::doCategoryQuery": [
+			"FlowHooks::onCategoryViewerDoCategoryQuery"
+		],
+		"CategoryViewer::generateLink": [
+			"FlowHooks::onCategoryViewerGenerateLink"
+		],
+		"ArticleConfirmDelete": [
+			"FlowHooks::onArticleConfirmDelete"
+		],
+		"ArticleDelete": [
+			"FlowHooks::onArticleDelete"
+		],
+		"ArticleUndelete": [
+			"FlowHooks::onArticleUndelete"
+		],
+		"UserMergeAccountFields": [
+			"FlowHooks::onUserMergeAccountFields"
+		],
+		"MergeAccountFromTo": [
+			"FlowHooks::onMergeAccountFromTo"
+		],
+		"LiquidThreadsIsLqtPage": [
+			"FlowHooks::onIsLiquidThreadsPage"
+		],
+		"BeforeCreateEchoEvent": [
+			"Flow\\NotificationController::onBeforeCreateEchoEvent"
+		],
+		"EchoGetDefaultNotifiedUsers": [
+			"Flow\\NotificationController::getDefaultNotifiedUsers"
+		],
+		"EchoGetBundleRules": [
+			"Flow\\NotificationController::onEchoGetBundleRules"
+		],
+		"ResourceLoaderRegisterModules": [
+			"FlowHooks::onResourceLoaderRegisterModules"
+		]
+	},
+	"config": {
+		"CapitalLinkOverrides": {
+			"2600": true
+		},
+		"NamespacesWithSubpages": {
+			"2600": false
+		},
+		"NamespaceContentModels": {
+			"2600": "flow-board"
+		},
+		"FlowGroupPermissions": {
+			"*": {
+				"flow-hide": true
+			},
+			"user": {
+				"flow-lock": true
+			},
+			"sysop": {
+				"flow-lock": true,
+				"flow-delete": true,
+				"flow-edit-post": true
+			},
+			"oversight": {
+				"flow-suppress": true
+			},
+			"flow-bot": {
+				"flow-create-board": true
+			}
+		},
+		"FlowHelpPage": "//www.mediawiki.org/wiki/Special:MyLanguage/Help:Extension:Flow",
+		"FlowCluster": false,
+		"FlowDefaultWikiDb": false,
+		"FlowExternalStore": false,
+		"FlowContentFormat": "html",
+		"FlowParsoidURL": null,
+		"FlowParsoidPrefix": null,
+		"FlowParsoidTimeout": null,
+		"FlowParsoidForwardCookies": false,
+		"FlowDefaultWorkflow": "discussion",
+		"FlowDefaultLimit": 10,
+		"FlowMaxLimit": 100,
+		"FlowMaxMentionCount": 100,
+		"FlowOccupyPages": [],
+		"FlowOccupyNamespaces": [],
+		"FlowMaxThreadingDepth": 8,
+		"FlowEditorList": [
+			"none"
+		],
+		"FlowUseMemcache": true,
+		"FlowCacheTime": 259200,
+		"FlowCacheVersion": "4.7",
+		"FlowSearchServers": [
+			"localhost"
+		],
+		"FlowSearchConnectionAttempts": 1,
+		"FlowSearchBannedPlugins": [],
+		"FlowSearchOptimizeIndexForExperimentalHighlighter": false,
+		"FlowSearchMaxShardsPerNode": [],
+		"FlowSearchRefreshInterval": 1,
+		"FlowSearchMaintenanceTimeout": 3600,
+		"FlowSearchReplicas": "0-2",
+		"FlowSearchShardCount": {
+			"flow": 4
+		},
+		"FlowSearchCacheWarmers": [],
+		"FlowSearchMergeSettings": {
+			"flow": {
+				"max_merge_at_once": 10,
+				"segments_per_tier": 10,
+				"reclaim_deletes_weight": 2,
+				"max_merged_segment": "5g"
+			}
+		},
+		"FlowSearchIndexAllocation": {
+			"include": [],
+			"exclude": [],
+			"require": []
+		},
+		"FlowAbuseFilterGroup": "flow",
+		"FlowAbuseFilterEmergencyDisableThreshold": 0.1,
+		"FlowAbuseFilterEmergencyDisableCount": 50,
+		"FlowAbuseFilterEmergencyDisableAge": 86400,
+		"FlowAjaxTimeout": 30,
+		"FlowCoreActionWhitelist": [
+			"info",
+			"protect",
+			"unprotect",
+			"unwatch",
+			"watch",
+			"history",
+			"wikilove",
+			"move",
+			"delete"
+		],
+		"FlowServerCompileTemplates": false,
+		"FlowEventLogging": false
+	}
+}
