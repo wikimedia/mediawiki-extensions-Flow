@@ -491,12 +491,14 @@ $wgResourceModules += array(
 		),
 	),
 
+	// Actual VE is currently not supported on mobile since we use the desktop target, but we still
+	// need this part to load (and reject it in isSupported)
 	'ext.flow.editors.visualeditor' => $flowResourceTemplate + array(
 		'scripts' => 'editor/editors/visualeditor/ext.flow.editors.visualeditor.js',
 		'dependencies' => array(
 			// ve dependencies will be loaded via JS
 		),
-	),
+	) + $mobile,
 
 	// This integrates with core mediawiki.messagePoster, and the module name
 	// must be exactly this.
@@ -521,22 +523,3 @@ $wgResourceModules += array(
 		),
 	) + $mobile,
 );
-
-$wgHooks['ResourceLoaderRegisterModules'][] = function ( ResourceLoader &$resourceLoader ) {
-	global $wgFlowEventLogging, $wgResourceModules;
-
-	// Only if EventLogging in Flow is enabled & EventLogging exists
-	if ( $wgFlowEventLogging && class_exists( 'ResourceLoaderSchemaModule' ) ) {
-		$resourceLoader->register( 'schema.FlowReplies', array(
-			'class' => 'ResourceLoaderSchemaModule',
-			'schema' => 'FlowReplies',
-			// See https://meta.wikimedia.org/wiki/Schema:FlowReplies, below title
-			'revision' => 10561344,
-		) );
-
-		// Add as dependency to Flow JS
-		$wgResourceModules['ext.flow']['dependencies'][] = 'schema.FlowReplies';
-	}
-
-	return true;
-};
