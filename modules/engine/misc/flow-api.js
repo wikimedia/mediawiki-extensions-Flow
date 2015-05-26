@@ -240,7 +240,9 @@
 		// We will do a separate view request afterwards, so we don't want view data
 		// to be returned from POST.
 		// Can be removed when Iddd999536d1c37eedf5c61938e0c2b2f4bc66827 is merged.
-		queryMap[apiTransformMap[queryMap.submodule][0] + 'metadataonly'] = true;
+		if (apiTransformMap[queryMap.submodule]) {
+			queryMap[apiTransformMap[queryMap.submodule][0] + 'metadataonly'] = true;
+		}
 
 		// Default action is flow
 		queryMap.action = queryMap.action || 'flow';
