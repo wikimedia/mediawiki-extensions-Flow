@@ -24,6 +24,70 @@ class FlowHooks {
 	 */
 	protected static $abuseFilter;
 
+	public static function registerExtension() {
+		global $wgResourceLoaderLESSImportPaths, $wgGroupPermissions, $wgFlowGroupPermissions, $wgAvailableRights,
+		$wgFlowActions, $wgLogActionsHandlers, $wgActions;
+
+		require_once __DIR__ . '/defines.php';
+
+		define( 'CONTENT_MODEL_FLOW_BOARD', 'flow-board' );
+
+		// User permissions
+		// Added to $wgFlowGroupPermissions instead of $wgGroupPermissions immediately,
+		// to easily fetch Flow-specific permissions in tests/PermissionsTest.php.
+		// If you wish to make local permission changes, add them to $wgGroupPermissions
+		// directly - tests will fail otherwise, since they'll be based on a different
+		// permissions config than what's assumed to test.
+		$wgFlowGroupPermissions = array();
+		$wgFlowGroupPermissions['*']['flow-hide'] = true;
+		$wgFlowGroupPermissions['user']['flow-lock'] = true;
+		$wgFlowGroupPermissions['sysop']['flow-lock'] = true;
+		$wgFlowGroupPermissions['sysop']['flow-delete'] = true;
+		$wgFlowGroupPermissions['sysop']['flow-edit-post'] = true;
+		$wgFlowGroupPermissions['oversight']['flow-suppress'] = true;
+		$wgFlowGroupPermissions['suppress']['flow-suppress'] = true;
+		$wgFlowGroupPermissions['flow-bot']['flow-create-board'] = true;
+		$wgGroupPermissions = array_merge_recursive( $wgGroupPermissions, $wgFlowGroupPermissions );
+
+		// Make sure all of these are granted via OAuth in Hooks.php
+		$wgAvailableRights[] = 'flow-hide';
+		$wgAvailableRights[] = 'flow-lock';
+		$wgAvailableRights[] = 'flow-delete';
+		$wgAvailableRights[] = 'flow-suppress';
+		$wgAvailableRights[] = 'flow-edit-post';
+		$wgAvailableRights[] = 'flow-create-board';
+
+		// Register Flow import paths
+		$wgResourceLoaderLESSImportPaths = array_merge( $wgResourceLoaderLESSImportPaths, array(
+			__DIR__ . "/modules/styles/flow.less/",
+		) );
+
+		// Action details config file
+		require __DIR__ . '/FlowActions.php';
+
+		// Register activity log formatter hooks
+		foreach( $wgFlowActions as $action => $options ) {
+			if ( is_string( $options ) ) {
+				continue;
+			}
+			if ( isset( $options['log_type'] ) ) {
+				$log = $options['log_type'];
+
+				// Some actions are more complex closures - to be added manually.
+				if ( is_string( $log ) ) {
+					$wgLogActionsHandlers["$log/flow-$action"] = 'Flow\Log\ActionFormatter';
+				}
+			}
+		}
+
+		// Register URL actions
+		foreach( $wgFlowActions as $action => $options ) {
+			if ( is_array( $options ) && isset( $options['handler-class'] ) ) {
+				$wgActions[$action] = true;
+			}
+		}
+	}
+
 	public static function onResourceLoaderRegisterModules( ResourceLoader &$resourceLoader ) {
 		global $wgFlowEventLogging, $wgResourceModules;
 
