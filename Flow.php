@@ -69,7 +69,9 @@ $wgExtensionCredits['other'][] = array(
 	'version' => '1.0',
 );
 
-require_once __DIR__ . '/defines.php';
+// Constants
+define( 'RC_FLOW', 142 ); // Random number chosen.  Can be replaced with rc_source; see bug 72157.
+define( 'NS_TOPIC', 2600 );
 
 // Only matters when $wgCapitalLinks has non-default setting, but always safe
 $wgCapitalLinkOverrides[NS_TOPIC] = true;
@@ -80,6 +82,8 @@ $wgNamespaceContentModels[NS_TOPIC] = CONTENT_MODEL_FLOW_BOARD;
 
 $dir = __DIR__ . '/';
 require $dir . 'Resources.php';
+
+$wgHooks['ResourceLoaderRegisterModules'][] = 'FlowHooks::onResourceLoaderRegisterModules';
 
 $wgMessagesDirs['Flow'] = __DIR__ . '/i18n';
 $wgExtensionMessagesFiles['Flow'] = $dir . 'Flow.i18n.php';
