@@ -22,6 +22,67 @@ class FlowHooks {
 	 */
 	protected static $abuseFilter;
 
+	public static function registerExtension() {
+		global $wgResourceLoaderLESSImportPaths, $wgGroupPermissions, $wgFlowGroupPermissions, $wgFlowActions, $wgLogActionsHandlers, $wgActions;
+
+		// Constants
+		define( 'RC_FLOW', 142 ); // Random number chosen.  Can be replaced with rc_source; see bug 72157.
+		define( 'NS_TOPIC', 2600 );
+
+		define( 'CONTENT_MODEL_FLOW_BOARD', 'flow-board' );
+
+		$wgGroupPermissions = array_merge_recursive( $wgGroupPermissions, $wgFlowGroupPermissions );
+
+		// Register Flow import paths
+		$wgResourceLoaderLESSImportPaths = array_merge( $wgResourceLoaderLESSImportPaths, array(
+			__DIR__ . "/modules/styles/flow.less/",
+		) );
+
+		// Action details config file
+		require __DIR__ . 'FlowActions.php';
+
+		// Register activity log formatter hooks
+		foreach( $wgFlowActions as $action => $options ) {
+			if ( is_string( $options ) ) {
+				continue;
+			}
+			if ( isset( $options['log_type'] ) ) {
+				$log = $options['log_type'];
+
+				// Some actions are more complex closures - to be added manually.
+				if ( is_string( $log ) ) {
+					$wgLogActionsHandlers["$log/flow-$action"] = 'Flow\Log\ActionFormatter';
+				}
+			}
+		}
+
+		// Register URL actions
+		foreach( $wgFlowActions as $action => $options ) {
+			if ( is_array( $options ) && isset( $options['handler-class'] ) ) {
+				$wgActions[$action] = true;
+			}
+		}
+	}
+
+	public static function onResourceLoaderRegisterModules ( ResourceLoader &$resourceLoader ) {
+		global $wgFlowEventLogging, $wgResourceModules;
+
+		// Only if EventLogging in Flow is enabled & EventLogging exists
+		if ( $wgFlowEventLogging && class_exists( 'ResourceLoaderSchemaModule' ) ) {
+			$resourceLoader->register( 'schema.FlowReplies', array(
+				'class' => 'ResourceLoaderSchemaModule',
+				'schema' => 'FlowReplies',
+				// See https://meta.wikimedia.org/wiki/Schema:FlowReplies, below title
+				'revision' => 10561344,
+			) );
+
+			// Add as dependency to Flow JS
+			$wgResourceModules['ext.flow']['dependencies'][] = 'schema.FlowReplies';
+		}
+
+		return true;
+	}
+
 	/**
 	 * Initialized during extension initialization rather than
 	 * in container so that non-flow pages don't load the container.
