@@ -22,6 +22,25 @@ class FlowHooks {
 	 */
 	protected static $abuseFilter;
 
+	public static function onResourceLoaderRegisterModules( ResourceLoader &$resourceLoader ) {
+		global $wgFlowEventLogging, $wgResourceModules;
+
+		// Only if EventLogging in Flow is enabled & EventLogging exists
+		if ( $wgFlowEventLogging && class_exists( 'ResourceLoaderSchemaModule' ) ) {
+			$resourceLoader->register( 'schema.FlowReplies', array(
+				'class' => 'ResourceLoaderSchemaModule',
+				'schema' => 'FlowReplies',
+				// See https://meta.wikimedia.org/wiki/Schema:FlowReplies, below title
+				'revision' => 10561344,
+			) );
+
+			// Add as dependency to Flow JS
+			$wgResourceModules['ext.flow']['dependencies'][] = 'schema.FlowReplies';
+		}
+
+		return true;
+	}
+
 	/**
 	 * Initialized during extension initialization rather than
 	 * in container so that non-flow pages don't load the container.

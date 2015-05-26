@@ -77,6 +77,8 @@ $wgNamespaceContentModels[NS_TOPIC] = CONTENT_MODEL_FLOW_BOARD;
 $dir = __DIR__ . '/';
 require $dir . 'Resources.php';
 
+$wgHooks['ResourceLoaderRegisterModules'][] = 'FlowHooks::onResourceLoaderRegisterModules';
+
 $wgMessagesDirs['Flow'] = __DIR__ . '/i18n';
 $wgExtensionMessagesFiles['Flow'] = $dir . 'Flow.i18n.php';
 $wgExtensionMessagesFiles['FlowNamespaces'] = $dir . '/Flow.namespaces.php';
