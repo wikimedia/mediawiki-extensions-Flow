@@ -187,7 +187,11 @@
 	// Static methods
 
 	mw.flow.editors.visualeditor.static.isSupported = function () {
+		var isMobileTarget = ( mw.config.get( 'skin' ) === 'minerva' );
+
 		return !!(
+			!isMobileTarget &&
+
 			// ES5 support, from es5-skip.js
 			( function () {
 				// This test is based on 'use strict',
