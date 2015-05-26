@@ -22,7 +22,45 @@ class FlowHooks {
 	 */
 	protected static $abuseFilter;
 
-	public static function onResourceLoaderRegisterModules( ResourceLoader &$resourceLoader ) {
+	public static function registerExtension() {
+		global $wgResourceLoaderLESSImportPaths, $wgGroupPermissions, $wgFlowGroupPermissions, $wgFlowActions, $wgLogActionsHandlers, $wgActions;
+
+		define( 'CONTENT_MODEL_FLOW_BOARD', 'flow-board' );
+
+		$wgGroupPermissions = array_merge_recursive( $wgGroupPermissions, $wgFlowGroupPermissions );
+
+		// Register Flow import paths
+		$wgResourceLoaderLESSImportPaths = array_merge( $wgResourceLoaderLESSImportPaths, array(
+			__DIR__ . "/modules/styles/flow.less/",
+		) );
+
+		// Action details config file
+		require __DIR__ . 'FlowActions.php';
+
+		// Register activity log formatter hooks
+		foreach( $wgFlowActions as $action => $options ) {
+			if ( is_string( $options ) ) {
+				continue;
+			}
+			if ( isset( $options['log_type'] ) ) {
+				$log = $options['log_type'];
+
+				// Some actions are more complex closures - to be added manually.
+				if ( is_string( $log ) ) {
+					$wgLogActionsHandlers["$log/flow-$action"] = 'Flow\Log\ActionFormatter';
+				}
+			}
+		}
+
+		// Register URL actions
+		foreach( $wgFlowActions as $action => $options ) {
+			if ( is_array( $options ) && isset( $options['handler-class'] ) ) {
+				$wgActions[$action] = true;
+			}
+		}
+	}
+
+	public static function onResourceLoaderRegisterModules ( ResourceLoader &$resourceLoader ) {
 		global $wgFlowEventLogging, $wgResourceModules;
 
 		// Only if EventLogging in Flow is enabled & EventLogging exists
