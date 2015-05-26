@@ -54,6 +54,7 @@ class TopicListTest extends \MediaWikiTestCase {
 		$this->assertEquals( 'updated', $res['sortby'], 'Request saving sortby option' );
 
 		$res = $block->renderApi( array(
+			'sortby' => 'updated',
 		) );
 		$this->assertEquals( 'updated', $res['sortby'], 'Default sortby now changed to updated' );
 
