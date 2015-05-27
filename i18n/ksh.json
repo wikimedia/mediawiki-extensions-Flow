@@ -133,6 +133,7 @@
 	"apihelp-flow+view-header-example-1": "Holl de Äkliehrong för „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">[[Talk:Sandbox]]</code>“ em Wikkitäx Fommaht.",
 	"apihelp-flow+view-topiclist-param-sortby": "Enschtällonge för et Zottehre vun de  topics, dadd es äntwehder „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">updated</kbd>“ för zem Zottehre noh de Zigg, woh dä  topic et läz jeändert wohd, udder „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">newest</kbd>“ för et Zottehre noh dä Zigg vum Aanläje.",
 	"apihelp-flow+view-topiclist-param-savesortby": "Donn de Enschtällong för woh noh ze zottehre en de Enschtällonge vum Metmaacher, wann jät ennjejovve es.",
+	"apihelp-flow+view-topiclist-param-offset-id": "Der Wäät för der Bejenn — em <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Universally unique identifier\">UUID</i>-Fommaht — vun woh aan  topics jehollt wähde sulle. Weed blohß beim Zottehre noh „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">newest</kbd>“ jebruch.",
 	"apihelp-flow-parsoid-utils-description": "Donn Täx zwesche Wikkitäx un <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"HyperText Markup Language\">HTML</i> wandelle.",
 	"apihelp-flow-parsoid-utils-param-content": "Der Enhalld zom Ömwandelle.",
 	"apihelp-flow+undo-edit-header-description": "Holl nühdejje Enfommazjuhne, öm de Änderong aan dä Äkliehrong retuhr ze nämme.",

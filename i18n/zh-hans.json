@@ -464,7 +464,7 @@
 	"apihelp-flow+view-topic-summary-example-1": "查看[[Topic:S2tycnas4hcucw8w]]的摘要作为wiki文本",
 	"apihelp-flow+view-topiclist-description": "查看话题列表。",
 	"apihelp-flow+view-topiclist-param-offset-dir": "排序话题的方向。",
-	"apihelp-flow+view-topiclist-param-sortby": "话题排序选项。",
+	"apihelp-flow+view-topiclist-param-sortby": "话题的排序选项，既可以是<kbd>updated</kbd>（按话题更新时间排序），又可以是<kbd>newest</kbd>（按话题创建时间排序）。",
 	"apihelp-flow+view-topiclist-param-savesortby": "保存排序方式选项至用户设置，如果设置。",
 	"apihelp-flow+view-topiclist-param-offset-id": "开始取得话题的抵消值（UUID格式），只与<kbd>newest</kbd>一起用于排序",
 	"apihelp-flow+view-topiclist-param-offset": "偏移值（作为一个<code>TS_MW</code>格式的话题更新时间戳（<code>YYYYMMDDHHMMSS</code>）），以开始取得话题；只与<kbd>updated</kbd>一起排序",

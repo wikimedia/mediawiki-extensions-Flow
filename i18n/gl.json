@@ -247,6 +247,7 @@
 	"flow-notification-rename-email-batch-body": "$1 {{GENDER:$1|renomeou}} o seu fío \"$2\" a \"$3\" en $4",
 	"flow-notification-newtopic-email-subject": "$1 {{GENDER:$1|creou}} un novo fío en $2",
 	"flow-notification-newtopic-email-batch-body": "$1 {{GENDER:$1|creou}} un novo fío co título \"$2\" en \"$3\"",
+	"flow-notification-newtopic-email-batch-bundle-body": "{{PLURAL:$1|$1 novo tema|$1 novos temas|250=+250 novos temas}} en $2",
 	"echo-category-title-flow-discussion": "Fluxo",
 	"echo-pref-tooltip-flow-discussion": "Notificádeme cando sucedan accións relacionadas comigo no fluxo.",
 	"flow-link-post": "mensaxe",
