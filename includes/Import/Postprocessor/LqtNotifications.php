@@ -97,6 +97,7 @@ class LqtNotifications implements Postprocessor {
 		);
 		$it->addConditions( array(
 			'ums_conversation' => $activeThreadId,
+			'ums_read_timestamp' => null,
 		) );
 
 		// flatten result into a stream of rows
