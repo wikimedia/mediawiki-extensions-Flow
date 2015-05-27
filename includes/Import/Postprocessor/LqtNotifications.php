@@ -131,6 +131,7 @@ class LqtNotifications implements Postprocessor {
 				'lqtThreadId' => $topic->getLqtThreadId(),
 				'notifyAgent' => true,
 			),
+			'timestamp' => $topic->getTimestamp(),
 		) );
 	}
 
