@@ -142,14 +142,19 @@ class NotificationController {
 			break;
 		}
 
-		$events = array(
-			EchoEvent::create( array(
-				'type' => $eventName,
-				'agent' => $user,
-				'title' => $title,
-				'extra' => $extraData,
-			) ),
+		$info = array(
+			'type' => $eventName,
+			'agent' => $user,
+			'title' => $title,
+			'extra' => $extraData,
 		);
+
+		// Allow a specific timestamp to be set - useful when importing existing data
+		if ( isset( $data['timestamp'] ) ){
+			$info['timestamp'] = $data['timestamp'];
+		}
+
+		$events = array( EchoEvent::create( $info ) );
 
 		if ( $newPost ) {
 			$events = array_merge( $events, $this->notifyNewPost( $newPost ) );
