@@ -391,7 +391,7 @@ class FlowHooks {
 
 			/** @var Flow\Formatter\RecentChanges $formatter */
 			$formatter = Container::get( 'formatter.recentchanges' );
-			$links = $formatter->getLogTextLinks( $row, $changesList, $block, $links );
+			$logTextLinks = $formatter->getLogTextLinks( $row, $changesList, $block, $links );
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting rc logtext ' . $rc->getAttribute( 'rc_id' ) . ' ' . $e );
 			MWExceptionHandler::logException( $e );
@@ -400,6 +400,11 @@ class FlowHooks {
 		}
 		restore_error_handler();
 
+		if ( $logTextLinks === false ) {
+			return false;
+		}
+
+		$links = $logTextLinks;
 		return true;
 	}
 
@@ -623,6 +628,7 @@ class FlowHooks {
 			$formatter = Container::get( 'formatter.contributions' );
 			$line = $formatter->format( $row, $pager );
 		} catch ( Exception $e ) {
+			wfDebugLog( 'Flow', __METHOD__ . ': Failed formatting contribution ' . json_encode( $row ) . ': ' . $e->getMessage() );
 			MWExceptionHandler::logException( $e );
 			$line = false;
 		}
@@ -677,9 +683,15 @@ class FlowHooks {
 		}
 
 		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
-		/** @var Flow\Formatter\Contributions $formatter */
-		$formatter = Container::get( 'formatter.contributions.feeditem' );
-		$result = $formatter->format( $row, $ctx );
+		try {
+			/** @var Flow\Formatter\FeedItemFormatter $formatter */
+			$formatter = Container::get( 'formatter.contributions.feeditem' );
+			$result = $formatter->format( $row, $ctx );
+		} catch ( Exception $e ) {
+			wfDebugLog( 'Flow', __METHOD__ . ': Failed formatting contribution ' . json_encode( $row ) . ': ' . $e->getMessage() );
+			MWExceptionHandler::logException( $e );
+			return false;
+		}
 		restore_error_handler();
 
 		if ( $result instanceof FeedItem ) {
@@ -908,8 +920,8 @@ class FlowHooks {
 			$formatter = Container::get( 'formatter.irclineurl' );
 			$result = $formatter->format( $rc );
 		} catch ( Exception $e ) {
-			wfDebugLog( 'Flow', __METHOD__ . ': Failed formatting rc ' . $rc->getAttribute( 'rc_id' )
-				. ': ' . $e->getMessage() );
+			$result = null;
+			wfDebugLog( 'Flow', __METHOD__ . ': Failed formatting rc ' . $rc->getAttribute( 'rc_id' ) . ': ' . $e->getMessage() );
 			MWExceptionHandler::logException( $e );
 		}
 		restore_error_handler();
