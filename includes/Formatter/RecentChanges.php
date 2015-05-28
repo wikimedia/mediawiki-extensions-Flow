@@ -24,16 +24,12 @@ class RecentChanges extends AbstractFormatter {
 	 * @throws FlowException
 	 */
 	public function format( RecentChangesRow $row, IContextSource $ctx, $linkOnly = false ) {
-		if ( !$this->permissions->isAllowed( $row->revision, 'recentchanges' ) ) {
-			return false;
-		}
-
 		$this->serializer->setIncludeHistoryProperties( true );
 		$this->serializer->setIncludeContent( false );
 
 		$data = $this->serializer->formatApi( $row, $ctx, 'recentchanges' );
 		if ( !$data ) {
-			throw new FlowException( 'Could not format data for row ' . $row->revision->getRevisionId()->getAlphadecimal() );
+			return false;
 		}
 
 		if ( $linkOnly ) {
@@ -159,18 +155,18 @@ class RecentChanges extends AbstractFormatter {
 	 * @param IContextSource $ctx
 	 * @param array $block
 	 * @param array $links
-	 * @return array
+	 * @return array|false Links array, or false on failure
 	 * @throws FlowException
 	 * @throws \Flow\Exception\InvalidInputException
 	 */
 	public function getLogTextLinks( RecentChangesRow $row, IContextSource $ctx, array $block, array $links = array() ) {
-		$old = unserialize( $block[count( $block ) - 1]->mAttribs['rc_params'] );
-		$oldId = $old ? UUID::create( $old['flow-workflow-change']['revision'] ) : $row->revision->getRevisionId();
-
 		$data = $this->serializer->formatApi( $row, $ctx, 'recentchanges' );
 		if ( !$data ) {
-			throw new FlowException( 'Could not format data for row ' . $row->revision->getRevisionId()->getAlphadecimal() );
+			return false;
 		}
+
+		$old = unserialize( $block[count( $block ) - 1]->mAttribs['rc_params'] );
+		$oldId = $old ? UUID::create( $old['flow-workflow-change']['revision'] ) : $row->revision->getRevisionId();
 
 		if ( isset( $data['links']['topic'] ) ) {
 			// add highlight details to anchor
