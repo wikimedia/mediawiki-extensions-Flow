@@ -105,6 +105,8 @@
 	"flow-topic-notification-subscribe-description": "Ќе {{GENDER:$1|добивате}} известувања за сите активности на темава.",
 	"flow-board-notification-subscribe-title": "Сега сте {{GENDER:$1|претплатени}} на разговорницава!",
 	"flow-board-notification-subscribe-description": "Ќе {{GENDER:$1|бидете}} автоматски известувани за сите нови теми создадени на разговорницава.",
+	"flow-topic-action-watchlist-add": "Додај ја темава во набљудуваните",
+	"flow-topic-action-watchlist-remove": "Отстрани ја темава од набљудуваните",
 	"flow-error-allowcreation-no-usedb": "allowCreation бара <var>$wgContentHandlerUseDB</var> за да биде <code>true</code>",
 	"flow-error-allowcreation-already-exists": "Страницата веќе постои, но се бараше да не постои",
 	"flow-error-allowcreation-flow-create-board": "Корисникот ја нема дозволата „{{int:right-flow-create-board}}“",
