@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_73ba53db",
+        "filename": ".jshintrc",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-28T22:48:12Z",
+      "side": 1,
+      "message": "Timo says this setting allows both the jQuery and $ globals, whereas what you\u0027re supposed to do is allow either one or the other and use it consistently. What Flow seems to do is allow the jQuery global and alias it to $ in closures, so we should keep doing that.",
+      "parentUuid": "0ed113e2_dfb8ebc4",
+      "revId": "a63ddb29b5f811b54a6ad510b25025c93badaba7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_cf38443c",
         "filename": "modules/flow-initialize.js",
         "patchSetId": 10
