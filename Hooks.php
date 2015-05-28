@@ -118,6 +118,27 @@ class FlowHooks {
 		if ( defined( 'MW_PHPUNIT_TEST' ) && file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 			require_once __DIR__ . '/vendor/autoload.php';
 		}
+
+		if ( class_exists( 'MediaWiki\Extensions\OAuth\MWOAuthUtils' ) ) {
+			global $wgMWOAuthGrantPermissions;
+
+			// This is semantically equivalent to editing a talk page and
+			// blanking an offending post or topic.
+			$wgMWOAuthGrantPermissions['editpage']['flow-hide'] = true;
+
+			// We might want to make a separate grant for this, so it can be
+			// given out without giving out core 'protect'.
+			$wgMWOAuthGrantPermissions['protect']['flow-lock'] = true;
+
+			$wgMWOAuthGrantPermissions['delete']['flow-delete'] = true;
+			$wgMWOAuthGrantPermissions['delete']['flow-suppress'] = true;
+			$wgMWOAuthGrantPermissions['editpage']['flow-edit-post'] = true;
+
+			// Creating a board somewhere it normally can't be created is sort
+			// of like creating a page that can't normally be edited.  But
+			// maybe make a grant.
+			$wgMWOAuthGrantPermissions['editprotected']['flow-create-board'] = true;
+		}
 	}
 
 	/**
