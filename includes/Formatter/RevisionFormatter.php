@@ -165,12 +165,12 @@ class RevisionFormatter {
 	 */
 	public function formatApi( FormatterRow $row, IContextSource $ctx, $action = 'view' ) {
 		$user = $ctx->getUser();
+
 		// @todo the only permissions currently checked in this class are prev-revision
 		// mostly permissions is used for the actions,  figure out how permissions should
 		// fit into this class either used more or not at all.
 		if ( $user->getName() !== $this->permissions->getUser()->getName() ) {
-			wfDebugLog( 'Flow', __METHOD__ . ': Formatting for wrong user' );
-			return false;
+			throw new FlowException( 'Formatting for wrong user' );
 		}
 
 		if ( !$this->permissions->isAllowed( $row->revision, $action ) ) {
@@ -251,13 +251,11 @@ class RevisionFormatter {
 					'watchable',
 				)
 			);
-			if (
-				$row->summary &&
-				$this->permissions->isAllowed( $row->summary->revision, 'view' )
-			) {
-				$res['summary'] = array(
-					'revision' =>  $this->formatApi( $row->summary, $ctx )
-				);
+			if ( $row->summary ) {
+				$summary = $this->formatApi( $row->summary, $ctx, $action );
+				if ( $summary ) {
+					$res['summary'] = $summary;
+				}
 			}
 
 			// Only non-anon users can watch/unwatch a flow topic
