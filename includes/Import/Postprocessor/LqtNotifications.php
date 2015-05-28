@@ -71,10 +71,14 @@ class LqtNotifications implements Postprocessor {
 		// Insert our own user locator to decide who should be notified.
 		// Note this has to be a closure rather than direct callback due to how
 		// echo considers an array to be extra parameters.
+		// Overrides existing user-locators, because we don't want unintended
+		// notifications to go out here.
 		$self = $this;
-		$wgEchoNotifications['flow-post-reply']['user-locators'][] = function( EchoEvent $event ) use ( $self ) {
-			return $self->locateUsersWithPendingLqtNotifications( $event );
-		};
+		$wgEchoNotifications['flow-post-reply']['user-locators'] = array(
+			function( EchoEvent $event ) use ( $self ) {
+				return $self->locateUsersWithPendingLqtNotifications( $event );
+			}
+		);
 	}
 
 	/**
@@ -97,6 +101,7 @@ class LqtNotifications implements Postprocessor {
 		);
 		$it->addConditions( array(
 			'ums_conversation' => $activeThreadId,
+			'ums_read_timestamp' => null,
 		) );
 
 		// flatten result into a stream of rows
