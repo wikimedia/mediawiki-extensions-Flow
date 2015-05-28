@@ -7,7 +7,6 @@
             'prop' => false,
             'method' => false,
             'mustlok' => false,
-            'mustsec' => false,
             'echo' => false,
             'debug' => $debugopt,
         ),
@@ -53,8 +52,9 @@
 		  title="'.LCRun3::ch($cx, 'l10n', array(array('flow-board-expand-description'),array()), 'encq').'"></span>
 </a>
 ';},),
-        'scopes' => array($in),
+        'scopes' => array(),
         'sp_vars' => array('root' => $in),
+        'lcrun' => 'LCRun3',
 
     );
     

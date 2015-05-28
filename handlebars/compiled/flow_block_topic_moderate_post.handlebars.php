@@ -7,7 +7,6 @@
             'prop' => false,
             'method' => false,
             'mustlok' => false,
-            'mustsec' => false,
             'echo' => false,
             'debug' => $debugopt,
         ),
@@ -286,8 +285,9 @@
 ';}).'' : ''.LCRun3::hbch($cx, 'ifCond', array(array(((isset($cx['sp_vars']['root']['rootBlock']['submitted']['action']) && is_array($cx['sp_vars']['root']['rootBlock']['submitted'])) ? $cx['sp_vars']['root']['rootBlock']['submitted']['action'] : null),'===','edit-post'),array()), $in, false, function($cx, $in) {return ''.LCRun3::hbch($cx, 'ifCond', array(array(((isset($cx['sp_vars']['root']['rootBlock']['submitted']['postId']) && is_array($cx['sp_vars']['root']['rootBlock']['submitted'])) ? $cx['sp_vars']['root']['rootBlock']['submitted']['postId'] : null),'===',((isset($in['postId']) && is_array($in)) ? $in['postId'] : null)),array()), $in, false, function($cx, $in) {return ''.LCRun3::p($cx, 'flow_edit_post', array(array($in),array())).'';}, function($cx, $in) {return ''.LCRun3::p($cx, 'flow_post_inner', array(array($in),array())).'';}).'';}, function($cx, $in) {return ''.LCRun3::p($cx, 'flow_post_inner', array(array($in),array())).'';}).'').'
 '.LCRun3::p($cx, 'flow_post_replies', array(array($in),array())).'	</div>
 ';}).'';},),
-        'scopes' => array($in),
+        'scopes' => array(),
         'sp_vars' => array('root' => $in),
+        'lcrun' => 'LCRun3',
 
     );
     

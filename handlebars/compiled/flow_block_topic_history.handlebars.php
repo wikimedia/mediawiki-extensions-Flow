@@ -7,7 +7,6 @@
             'prop' => false,
             'method' => false,
             'mustlok' => false,
-            'mustsec' => false,
             'echo' => false,
             'debug' => $debugopt,
         ),
@@ -123,8 +122,9 @@
 <ul class="flow-history-moderation-menu">
 '.LCRun3::p($cx, 'flow_moderation_actions_list', array(array($in),array('moderationType'=>'history','moderationTarget'=>'post','moderationTemplate'=>'post','moderationMwUiClass'=>'mw-ui-anchor','moderationIcons'=>false))).'</ul>
 ';},),
-        'scopes' => array($in),
+        'scopes' => array(),
         'sp_vars' => array('root' => $in),
+        'lcrun' => 'LCRun3',
 
     );
     

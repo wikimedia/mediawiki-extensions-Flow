@@ -7,7 +7,6 @@
             'prop' => false,
             'method' => false,
             'mustlok' => false,
-            'mustsec' => false,
             'echo' => false,
             'debug' => $debugopt,
         ),
@@ -232,8 +231,9 @@
 			>'.LCRun3::ch($cx, 'l10n', array(array('flow-reply-topic-title-placeholder',((isset($in['properties']['topic-of-post']) && is_array($in['properties'])) ? $in['properties']['topic-of-post'] : null)),array()), 'encq').'</a>
 ';}).'' : '').'</div>
 ';},'flow_topiclist_loop' => function ($cx, $in) {return ''.LCRun3::sec($cx, ((isset($in['roots']) && is_array($in)) ? $in['roots'] : null), $in, true, function($cx, $in) {return ''.LCRun3::hbch($cx, 'eachPost', array(array(((isset($cx['sp_vars']['root']) && is_array($cx['sp_vars'])) ? $cx['sp_vars']['root'] : null),$in),array()), $in, false, function($cx, $in) {return ''.LCRun3::p($cx, 'flow_topic', array(array($in),array())).'';}).'';}).'';},),
-        'scopes' => array($in),
+        'scopes' => array(),
         'sp_vars' => array('root' => $in),
+        'lcrun' => 'LCRun3',
 
     );
     
