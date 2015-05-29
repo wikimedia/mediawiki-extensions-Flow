@@ -242,8 +242,8 @@ class View extends ContextSource {
 			$template = $this->lightncandy->getTemplate( 'flow_block_loop' );
 
 			$classes = array( 'flow-component', "$page-page" );
-			// Add mw-content-{ltr,rtl} text if necessary (MW core doesn't add it for action=reply)
-			if ( \Action::getActionName( $this ) === 'reply' ) {
+			// Add mw-content-{ltr,rtl} text if necessary (MW core doesn't add it for non-view actions
+			if ( \Action::getActionName( $this ) !== 'view' ) {
 				$title = Title::newFromText( $apiResponse['title'] );
 				$classes[] = 'mw-content-' . $title->getPageViewLanguage()->getDir();
 			}
