@@ -1,0 +1,1041 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_36330ec2",
+        "filename": ".jshintrc",
+        "patchSetId": 19
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Per Timo: don\u0027t do this, instead wrap things in ( function ( $ ) { ... }( jQuery ) );",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_562d7240",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Why is this written this way? What\u0027s wrong with doing $.extend( flowBoard.topicTitlesById, topicTitlesById ); ? That would modify the existing object rather than creating a new one and replacing the old one with it.",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_9190c499",
+        "filename": "modules/flow/dm/mixins/mw.flow.dm.List.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "jsduck complains because you need to use mw.flow.dm.Item[]",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_31ed5823",
+        "filename": "modules/flow/dm/mixins/mw.flow.dm.List.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Here too",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_16b7ea82",
+        "filename": "modules/flow/dm/mixins/mw.flow.dm.List.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "There\u0027s a mistake on this line in the original code, see https://gerrit.wikimedia.org/r/214510\n\nThe things you discover by reviewing pre-existing code :)",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_36678e24",
+        "filename": "modules/flow/dm/mixins/mw.flow.dm.List.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Don\u0027t use $.inArray(). addItems() uses this.items.indexOf(), which is what you should use here as well.\n\n(I\u0027m guessing this code was probably copied from GroupElement? Do we want grouping and event aggregation to be in OOjs as opposed to OOUI?)",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_164daa9b",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Comma should be a dot.",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_7632f607",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Set, not get",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_d625e2bd",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "@param, not @return",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_51f25c04",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Add @event documentation",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_f1f6f0f5",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "I suggest renaming this to a more event-y name, like descriptionChange",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_b6285e97",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Document",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_11fcd4d4",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Document event",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_962f5a9c",
+        "filename": "modules/flow/dm/mw.flow.dm.BoardDescription.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "This is now inaccurate",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_161b6a83",
+        "filename": "modules/flow/dm/mw.flow.dm.Item.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "jsduck complains about object, you need to use Object",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_96067a22",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "You should explicitly merge with the parent class\u0027s hash, rather than manually duplicating the parent\u0027s behavior (which right now is only id: this.getId(), but you should account for that possibly changing in the future).",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_31fb1813",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Don\u0027t modify the parameter. Instead, use a local variable, like var content \u003d data.content || {};",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_d10bac24",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "For properties that have a setter, use the setter. That way, if any smartness is added to these setters in the future, you won\u0027t have to remember to update this function.\n\nCurrently you use the setters for two properties (lastEditId and lastEditUser) but not for the others, but those two setters don\u0027t actually appear to behave differently.",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_1121349a",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Document that this is (presumably) a user name",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_b135c8d9",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Document that getContentFormat() will tell you what the format is",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_91152443",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Add @event documentation for this event.\n\nAlso consider renaming this to something that sounds more event-like, like contentChange.",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_712f6086",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Document what these values mean",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_912c4491",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "What is the format of the returned string? Is it a timestamp? If so, why is this a string while getTimestamp() is a number?",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_3149d86a",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Document what timestamp. Presumably it\u0027s the timestamp it was posted?\n\nAlso misspells \"revision\"",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_5127bcb1",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Why is this a number rather than a Date or whatever? What is its format? UNIX timestamp?",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_11585434",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "I recommend calling this page title instead, because that\u0027s what you use in Board.",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_b13ce8bd",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Should this perhaps be an mw.Title?",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_f11b5071",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Document object structure",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_71468056",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Document possible values and what they mean",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_3170f8a2",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "What does \"previous\" mean exactly?",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_51757c91",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Document object format. Why is this not a string?",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_b16388d9",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Document what it means to be watched (I actually know this one, but a reader might not).\n\nAlso, this presumably means \"the revision is watched *by the current user*\"?",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_b1e06826",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Add @event docs",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_f16910bd",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Document what it means to be original",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_116ff4c1",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Copypasta",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_d1608cce",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "In what event does the watchability of a topic change?",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_71ea0007",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Add @event docs. Consider renaming to a more event-y name",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_915a0421",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Add class docs (e.g. @mixins OO.EventEmitter)",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_715d201a",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Unused",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_d1c40c97",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Undocumented config option",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_319f98bb",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "s/unused/unset/",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_d1af2cdd",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Use OO.getProp here too",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_b1b2a846",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "You should be able to parallelize these two requests, because the parameters of this one don\u0027t depend on the result of the first one. Even if the processing of the second one depends on the result of the first one (which I don\u0027t think it does, offhand), you should still fire the requests in parallel.",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_71bc401b",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Note that this causes the returned promise to resolve too early, without waiting for the second API request.",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_91b9a42b",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "You got rid of the DOM function",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_7193e0a6",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Add @fires populate and @event docs",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_91e7643b",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Add @event docs for these",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_31d4784b",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Either document as [sortBy\u003d\u0027newest\u0027] or remove this line",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_51d9fc81",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "What is the start event used for?",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_f1cd90bd",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Lies, it\u0027s an mw.Title",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_11d37462",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Fix the inconsistent usage of postLimit versus post*S*Limit",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_71c1a082",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Why is \u0027page\u0027 in scare quotes? It doesn\u0027t seem to mean a wiki page, so define what it does mean.",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_313318c2",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "number singular",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_518b3c72",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "There\u0027s a double space after the 0",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_f13cb090",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "OO.getProp can help here",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_11429413",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Document with @fires and @event. Also, unless there\u0027s a way to restub a topic, this event should simply be called unstub.\n\nAlso also, why is this event needed?",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_f615864e",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Should be named setModerationState, not setModerationReason a second time",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_d143ac13",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Add @event docs. Consider renaming to summaryChange or something.",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_7150c0d9",
+        "filename": "modules/flow/dm/mw.flow.dm.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Why is this here if it\u0027s also in mw.flow.js?",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_f15350e0",
+        "filename": "tests/qunit/flow/dm/test_mw.flow.dm.Board.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "Why not simply check for .expected !\u003d\u003d undefined? Then you could drop ignoreTest.",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_d16acc7d",
+        "filename": "tests/qunit/flow/dm/test_mw.flow.dm.Board.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T01:30:06Z",
+      "side": 1,
+      "message": "You\u0027re declaring the expect count after all the assertions have already been made? You can\u0027t do that, can you?\n\nI guess maybe you can, and I didn\u0027t realize? :)",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
