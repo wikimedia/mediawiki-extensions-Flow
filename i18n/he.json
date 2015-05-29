@@ -110,6 +110,8 @@
 	"flow-topic-notification-subscribe-description": "{{GENDER:$1|תקבל|תקבלי}} הודעות על כל פעילות בנושא הזה.",
 	"flow-board-notification-subscribe-title": "{{GENDER:$1|עשית}} מינוי ללוח הדיונים הזה!",
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|תקבל|תקבלי}} הודעה כאשר נושא חדש נוצר בלוח הזה.",
+	"flow-topic-action-watchlist-add": "הוספת הנושא הזה לרשימת המעקב שלך",
+	"flow-topic-action-watchlist-remove": "הסרת הנושא הזה מרשימת המעקב שלך",
 	"flow-error-allowcreation-no-usedb": "בעת שימוש ב־allowCreation, המשתנה ‎<var>$wgContentHandlerUseDB</var> חייב להיות <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "הדף כבר קיים, אבל לא היה צריך להיות",
 	"flow-error-allowcreation-flow-create-board": "למשתמש אין הרשאה \"{{int:right-flow-create-board}}\"",

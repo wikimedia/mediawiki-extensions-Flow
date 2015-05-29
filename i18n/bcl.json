@@ -9,6 +9,8 @@
 	"flow-board-collapse-description": "Tagoon an deskripsyon",
 	"flow-board-expand-description": "Ipahiling an deskripsyon",
 	"flow-board-notification-subscribe-title": "Ika nakasubskribo sa pisara kaining Daluydoy",
+	"flow-topic-action-watchlist-add": "Idugang ining tema sa saimong bantay-listahan",
+	"flow-topic-action-watchlist-remove": "Tangkason ining tema gikan sa saimong bantay-listahan",
 	"flow-rev-message-edit-post": "$1 {{GENDER:$2|pinagliwat}} an sarong [$3 komentaryo] kan $4.",
 	"flow-rev-message-reply": "$1 [$3 {{GENDER:$2|pinagkomentaryohan}}] on $4.",
 	"flow-rev-message-create-header": "$1 {{GENDER:$2|pinagmukna}} an kapamayuhan.",

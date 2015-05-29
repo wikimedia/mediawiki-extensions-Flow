@@ -27,6 +27,7 @@
 	"logentry-suppress-flow-restore-topic": "$1 {{GENDER:$2|ha esborrat}} el tema «[[$3|$5]]» de [[$6]]",
 	"flow-user-moderated": "Usuari moderat",
 	"flow-board-header-browse-topics-link": "Navega els temes",
+	"flow-board-header": "Sobre aquesta discussió",
 	"flow-board-expand-description": "Mostra la descripció",
 	"flow-edit-header-link": "Modifica la descripció",
 	"flow-post-moderated-toggle-hide-show": "Mostra el comentari {{GENDER:$1|amagat}} per $2",

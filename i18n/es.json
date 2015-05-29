@@ -124,6 +124,8 @@
 	"flow-topic-notification-subscribe-description": "{{GENDER:$1|Recibirás}} notificaciones de todas las actividades sobre este tema.",
 	"flow-board-notification-subscribe-title": "{{GENDER:$1|Te}} has suscrito a este panel de discusión.",
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Recibirás}} una notificación cuando se cree un tema nuevo en este panel de discusión.",
+	"flow-topic-action-watchlist-add": "Añadir este tema a tu lista de seguimiento",
+	"flow-topic-action-watchlist-remove": "Quitar este tema de tu lista de seguimiento",
 	"flow-error-allowcreation-no-usedb": "allowCreation requiere que <var>$wgContentHandlerUseDB</var> sea <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "La página ya exista, pero no es necesaria",
 	"flow-error-allowcreation-flow-create-board": "El usuario no tiene el permiso de \"{{int:right-flow-create-board}}\"",
