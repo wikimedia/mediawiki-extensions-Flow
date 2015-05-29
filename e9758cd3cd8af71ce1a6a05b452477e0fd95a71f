@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_e6cdd1bd",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "I wasn\u0027t entirely sure if that is the right way of modifying the object, but you\u0027re right. I\u0027ll change it.",
+      "parentUuid": "0ed113e2_562d7240",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_9190c499",
         "filename": "modules/flow/dm/mixins/mw.flow.dm.List.js",
         "patchSetId": 19
@@ -70,6 +88,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_46537d43",
+        "filename": "modules/flow/dm/mixins/mw.flow.dm.List.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "Oops.",
+      "parentUuid": "0ed113e2_31ed5823",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_16b7ea82",
         "filename": "modules/flow/dm/mixins/mw.flow.dm.List.js",
         "patchSetId": 19
@@ -81,6 +117,24 @@
       "writtenOn": "2015-05-29T01:30:06Z",
       "side": 1,
       "message": "There\u0027s a mistake on this line in the original code, see https://gerrit.wikimedia.org/r/214510\n\nThe things you discover by reviewing pre-existing code :)",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_264e799c",
+        "filename": "modules/flow/dm/mixins/mw.flow.dm.List.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "Ha :) As mentioned below, we might want to make this less of a code-copy by creating an OOJS element for a list which does the basics of OO.ui.GroupElement but without the $element stuff.",
+      "parentUuid": "0ed113e2_16b7ea82",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -104,6 +158,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_86816594",
+        "filename": "modules/flow/dm/mixins/mw.flow.dm.List.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "Yes, this was taken almost verbatim from ooui\u0027s OO.ui.GroupElement\n\nOOUI\u0027s GroupElement is great for this, but it\u0027s on the UI side, so it also appends the $elements of the items. In this structure in Flow we just needed the general structure of a list and event aggregation.\n\nI would love it if this would go to a base oojs element, if you think that it can be used in more projects. I think it has a lot of potential not just for us. It might be a good idea to great a base oojs list or something, and have OO.ui.GroupElement extend it to work with the $element stuff.",
+      "parentUuid": "0ed113e2_36678e24",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_164daa9b",
         "filename": "modules/flow/dm/mw.flow.dm.Board.js",
         "patchSetId": 19
@@ -115,6 +187,24 @@
       "writtenOn": "2015-05-29T01:30:06Z",
       "side": 1,
       "message": "Comma should be a dot.",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_e647117b",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "Oy, oops.",
+      "parentUuid": "0ed113e2_164daa9b",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -257,6 +347,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_8658855a",
+        "filename": "modules/flow/dm/mw.flow.dm.Item.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "Oy vey, I should know better.",
+      "parentUuid": "0ed113e2_161b6a83",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_96067a22",
         "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
         "patchSetId": 19
@@ -268,6 +376,24 @@
       "writtenOn": "2015-05-29T01:30:06Z",
       "side": 1,
       "message": "You should explicitly merge with the parent class\u0027s hash, rather than manually duplicating the parent\u0027s behavior (which right now is only id: this.getId(), but you should account for that possibly changing in the future).",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_463a9de5",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "Indeed. It will also save some merging in the extended objects.",
+      "parentUuid": "0ed113e2_96067a22",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -291,6 +417,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_0644956d",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "Oh, good point. Also, I could, instead, use OO.getProp() and avoid this whole line to begin with, now that I think about it.",
+      "parentUuid": "0ed113e2_31fb1813",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_d10bac24",
         "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
         "patchSetId": 19
@@ -308,6 +452,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_66324108",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "Yeah I actually missed that in this code, that was the plan as I slowly set up the setters.\n\nThe idea is also to have whatever relevant setters emit events when needed, so the widgets will automatically update. I\u0027ll change that now.",
+      "parentUuid": "0ed113e2_d10bac24",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_1121349a",
         "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
         "patchSetId": 19
@@ -319,6 +481,24 @@
       "writtenOn": "2015-05-29T01:30:06Z",
       "side": 1,
       "message": "Document that this is (presumably) a user name",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_d904321a",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "Actually, I need to change this. I am fairly sure the API gives us an object. Thanks, good catch.",
+      "parentUuid": "0ed113e2_1121349a",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -393,6 +573,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_f909f62f",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "You\u0027re right. It\u0027s a number, not a string.",
+      "parentUuid": "0ed113e2_912c4491",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_3149d86a",
         "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
         "patchSetId": 19
@@ -404,6 +602,24 @@
       "writtenOn": "2015-05-29T01:30:06Z",
       "side": 1,
       "message": "Document what timestamp. Presumably it\u0027s the timestamp it was posted?\n\nAlso misspells \"revision\"",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_b90b6e25",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "This is completely confusing. There\u0027s \"last update\" and \"timestamp\" and I was meaning to verify with the team what each is meant for. If I understand right, timestamp is the creation date (in which case, really, the API should say it this way rather than a confusing mix of \u0027timestamp\u0027 and \u0027last update\u0027 I think.)",
+      "parentUuid": "0ed113e2_3149d86a",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -427,6 +643,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_5918427a",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "Yes. Unix timestamp.",
+      "parentUuid": "0ed113e2_5127bcb1",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_11585434",
         "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
         "patchSetId": 19
@@ -438,6 +672,24 @@
       "writtenOn": "2015-05-29T01:30:06Z",
       "side": 1,
       "message": "I recommend calling this page title instead, because that\u0027s what you use in Board.",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_f9201698",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "Indeed. However, I wanted to fit this to the definition of the API, which calls it \u0027articleTitle\u0027.\n\nShould the consistency be inside the DM (inconsistent with some of the API) or should it be with the API (but then inconsistent with the DM)  ?",
+      "parentUuid": "0ed113e2_11585434",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -461,6 +713,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_b9328eed",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "It\u0027s plaintext \"Blah:Foo\", and I believe (iirc) that it is i18n\u0027ized.",
+      "parentUuid": "0ed113e2_b13ce8bd",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_f11b5071",
         "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
         "patchSetId": 19
@@ -472,6 +742,24 @@
       "writtenOn": "2015-05-29T01:30:06Z",
       "side": 1,
       "message": "Document object structure",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_394e9e73",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "I am not entirely sure if we even need this at all in the DM. According to Matt, we use this to know where to send actions (like new topic, etc) but the actions are urls with parameters that the PHP core then deconstructs. We shouldn\u0027t base the actions on the answer from the API, should we?\n\nI was meaning to talk to Matt more thoroughly about this, but yes, I\u0027ll document regardless.",
+      "parentUuid": "0ed113e2_f11b5071",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -512,6 +800,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_993c6abe",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "If the content (say, Topic) was ever modified, the previous revision would show up here. If it was updated multiple times, only the last/previous revision would appear.\n\nThis is good for DIFFs, though if I remember correctly, matt mentioned we should be able to generate diffs without needing it. The API gives it away, though, so I figured we could store it.\n\nIt\u0027s empty if the item is the original content.",
+      "parentUuid": "0ed113e2_3170f8a2",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_51757c91",
         "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
         "patchSetId": 19
@@ -529,6 +835,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_f96ed6c3",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "The API gives us an object defining the user:\n\n{\n  gender: \"unknown\",\n  id: xxx,\n  links: {contribs: {url: \"/wiki/Special:Contributions/Foo\", title: \"Contributions/Foo\", exists: true},…},\n  name: \"Foo\",\n  wiki: \"mediawikiwiki\"\n}\n\nSame goes for author and creator in the board, as well.",
+      "parentUuid": "0ed113e2_51757c91",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_b16388d9",
         "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
         "patchSetId": 19
@@ -540,6 +864,24 @@
       "writtenOn": "2015-05-29T01:30:06Z",
       "side": 1,
       "message": "Document what it means to be watched (I actually know this one, but a reader might not).\n\nAlso, this presumably means \"the revision is watched *by the current user*\"?",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_595da219",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "Yes. It comes from the API, as well. Should I call it something else to make it \u0027by the current user\u0027 or is that part clear by the fact we\u0027re in a user-side script? I am not sure either way.",
+      "parentUuid": "0ed113e2_b16388d9",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -597,6 +939,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_795ae623",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "Whoopsie.",
+      "parentUuid": "0ed113e2_116ff4c1",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_d1608cce",
         "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
         "patchSetId": 19
@@ -608,6 +968,24 @@
       "writtenOn": "2015-05-29T01:30:06Z",
       "side": 1,
       "message": "In what event does the watchability of a topic change?",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_199f1abb",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "As far as I understand, there could be several ways -- for example, if the topic is deleted or moderated. We should be able to do both of these when we have the widgets, so I left this as a toggled method.\n\nAlso, this opens the possibility of toggling stuff when we refresh instead of reloading the entire topic from scratch?",
+      "parentUuid": "0ed113e2_d1608cce",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -750,6 +1128,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_b9184e24",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "I know, but that was fine, since the second request could take longer.\n\nYou made a good point about parallelizing, though. I\u0027ll do that instead.",
+      "parentUuid": "0ed113e2_71bc401b",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_91b9a42b",
         "filename": "modules/flow/dm/mw.flow.dm.System.js",
         "patchSetId": 19
@@ -795,6 +1191,24 @@
       "writtenOn": "2015-05-29T01:30:06Z",
       "side": 1,
       "message": "Add @event docs for these",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_7912e602",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "These are such a hack, I was cringing to, but yes. I will. Do we have @hack notation?",
+      "parentUuid": "0ed113e2_91e7643b",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -869,6 +1283,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_59f4c2b9",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "And the worse case is that I keep getting them wrong in code. Fixing.",
+      "parentUuid": "0ed113e2_11d37462",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_71c1a082",
         "filename": "modules/flow/dm/mw.flow.dm.System.js",
         "patchSetId": 19
@@ -886,6 +1318,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_79f186c7",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "I meant in a paginated state --- in each scroll down, we load a certain amount of topics. In the current system, we load 10 topics at a time, so it\u0027s a sort of \"page\" of topics if we think of it as pagination.\n\nClearly that\u0027s unclear. Any other naming suggestions?",
+      "parentUuid": "0ed113e2_71c1a082",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_313318c2",
         "filename": "modules/flow/dm/mw.flow.dm.System.js",
         "patchSetId": 19
@@ -897,6 +1347,24 @@
       "writtenOn": "2015-05-29T01:30:06Z",
       "side": 1,
       "message": "number singular",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_f9bc96d7",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "... wow.",
+      "parentUuid": "0ed113e2_313318c2",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -954,6 +1422,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_b995ae44",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "I was thinking it could be needed for either the ToC (to know which of the topics it holds exists on the page) or the widget itself, to know when it is fully populated, but I think that might not be necessary. The ToC checks whether a topic is a stub when you choose an option, and the widget will populate itself.\n\nI\u0027ll remove this event.",
+      "parentUuid": "0ed113e2_11429413",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_f615864e",
         "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
         "patchSetId": 19
@@ -965,6 +1451,24 @@
       "writtenOn": "2015-05-29T01:30:06Z",
       "side": 1,
       "message": "Should be named setModerationState, not setModerationReason a second time",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_59a282a5",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "Oy, oops",
+      "parentUuid": "0ed113e2_f615864e",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -1033,6 +1537,24 @@
       "writtenOn": "2015-05-29T01:30:06Z",
       "side": 1,
       "message": "You\u0027re declaring the expect count after all the assertions have already been made? You can\u0027t do that, can you?\n\nI guess maybe you can, and I didn\u0027t realize? :)",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_198cfa39",
+        "filename": "tests/qunit/flow/dm/test_mw.flow.dm.Board.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-29T14:58:56Z",
+      "side": 1,
+      "message": "That\u0027s also how it\u0027s done in several tests in VE. It\u0027s very helpful, too, since I can downcount expectCount in the condition above.",
+      "parentUuid": "0ed113e2_d16acc7d",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
