@@ -435,6 +435,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_57c1e981",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T19:25:39Z",
+      "side": 1,
+      "message": "But then you\u0027d have to use OO.getProp() a zillion times, right? I think what you were doing here was actually the most sensible way to do it, apart from reassigning back to data.content.",
+      "parentUuid": "0ed113e2_0644956d",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_d10bac24",
         "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
         "patchSetId": 19
@@ -696,6 +714,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_77642daf",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T19:25:39Z",
+      "side": 1,
+      "message": "IMO the DM\u0027s job is to make the API data easier to work with, and that includes giving things more helpful names or massaging data to a reasonable (smallish) extent. That\u0027s not the only valid school of thought, but that\u0027s the one I favor.",
+      "parentUuid": "0ed113e2_f9201698",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_b13ce8bd",
         "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
         "patchSetId": 19
@@ -731,6 +767,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_170121b9",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T19:25:39Z",
+      "side": 1,
+      "message": "OK, so the API returns \"Talk:Foo\" with a localized namespace name. But what would be most helpful for callers? Would callers benefit from having this function return an mw.Title rather than a string?",
+      "parentUuid": "0ed113e2_b9328eed",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_f11b5071",
         "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
         "patchSetId": 19
@@ -760,6 +814,24 @@
       "side": 1,
       "message": "I am not entirely sure if we even need this at all in the DM. According to Matt, we use this to know where to send actions (like new topic, etc) but the actions are urls with parameters that the PHP core then deconstructs. We shouldn\u0027t base the actions on the answer from the API, should we?\n\nI was meaning to talk to Matt more thoroughly about this, but yes, I\u0027ll document regardless.",
       "parentUuid": "0ed113e2_f11b5071",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_d70ab9d4",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T19:25:39Z",
+      "side": 1,
+      "message": "If that\u0027s what I think it is, that sounds scary. It\u0027s worth getting to the bottom of this, and if it really is what it sounds like, figuring out a better way to handle this.",
+      "parentUuid": "0ed113e2_394e9e73",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -818,6 +890,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_97f431cd",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T19:25:39Z",
+      "side": 1,
+      "message": "OK, that makes sense. It would be nice to write a brief bit of documentation for that here, something like \"ID of previous revision, if ever modified. Empty string if item was never modified\"",
+      "parentUuid": "0ed113e2_993c6abe",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_51757c91",
         "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
         "patchSetId": 19
@@ -853,6 +943,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_b7f135dc",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T19:25:39Z",
+      "side": 1,
+      "message": "OK. Would an mw.User object allow the same features? That would be a clearer API from a caller\u0027s perspective.",
+      "parentUuid": "0ed113e2_f96ed6c3",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_b16388d9",
         "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
         "patchSetId": 19
@@ -882,6 +990,24 @@
       "side": 1,
       "message": "Yes. It comes from the API, as well. Should I call it something else to make it \u0027by the current user\u0027 or is that part clear by the fact we\u0027re in a user-side script? I am not sure either way.",
       "parentUuid": "0ed113e2_b16388d9",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_977f5111",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T19:25:39Z",
+      "side": 1,
+      "message": "I don\u0027t think it needs a different name (brevity is valuable too) but I think it deserves to be called out in the doc comment.",
+      "parentUuid": "0ed113e2_595da219",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -986,6 +1112,24 @@
       "side": 1,
       "message": "As far as I understand, there could be several ways -- for example, if the topic is deleted or moderated. We should be able to do both of these when we have the widgets, so I left this as a toggled method.\n\nAlso, this opens the possibility of toggling stuff when we refresh instead of reloading the entire topic from scratch?",
       "parentUuid": "0ed113e2_d1608cce",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_b77cd51c",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T19:25:39Z",
+      "side": 1,
+      "message": "OK yeah that makes sense.",
+      "parentUuid": "0ed113e2_199f1abb",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -1146,6 +1290,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_5779e928",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T19:25:39Z",
+      "side": 1,
+      "message": "Why is it OK for the second request to take longer? Not saying it isn\u0027t, but I want to understand.",
+      "parentUuid": "0ed113e2_b9184e24",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_91b9a42b",
         "filename": "modules/flow/dm/mw.flow.dm.System.js",
         "patchSetId": 19
@@ -1209,6 +1371,24 @@
       "side": 1,
       "message": "These are such a hack, I was cringing to, but yes. I will. Do we have @hack notation?",
       "parentUuid": "0ed113e2_91e7643b",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_77766d3b",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T19:25:39Z",
+      "side": 1,
+      "message": "haha, no I don\u0027t think we do. But for legacy reasons we do have @todo, and custom notation (like @todo) can be defined in jsduck_custom_tags.rb",
+      "parentUuid": "0ed113e2_7912e602",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -1330,6 +1510,24 @@
       "side": 1,
       "message": "I meant in a paginated state --- in each scroll down, we load a certain amount of topics. In the current system, we load 10 topics at a time, so it\u0027s a sort of \"page\" of topics if we think of it as pagination.\n\nClearly that\u0027s unclear. Any other naming suggestions?",
       "parentUuid": "0ed113e2_71c1a082",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_178b611c",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T19:25:39Z",
+      "side": 1,
+      "message": "Batch size? Maybe explicitly use the word pagination.",
+      "parentUuid": "0ed113e2_79f186c7",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -1555,6 +1753,24 @@
       "side": 1,
       "message": "That\u0027s also how it\u0027s done in several tests in VE. It\u0027s very helpful, too, since I can downcount expectCount in the condition above.",
       "parentUuid": "0ed113e2_d16acc7d",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_d794f93b",
+        "filename": "tests/qunit/flow/dm/test_mw.flow.dm.Board.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-05-29T19:25:39Z",
+      "side": 1,
+      "message": "I\u0027ve only ever seen VE code count the number of expected assertions up front, then start executing assertions, so I always thought you had to call QUnit.expect() before calling any of the assert.blah() functions. But apparently it\u0027s more flexible than I thought it was.",
+      "parentUuid": "0ed113e2_198cfa39",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
