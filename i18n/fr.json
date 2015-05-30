@@ -32,7 +32,8 @@
 			"MPlauche",
 			"NemesisIII",
 			"Urhixidur",
-			"Wladek92"
+			"Wladek92",
+			"Mattho69"
 		]
 	},
 	"enableflow": "Activer Flow",
@@ -51,6 +52,9 @@
 	"logentry-import-lqt-to-flow-topic": "Le sujet [[$1|$2]] de [[$3]] a été importé depuis LiquidThreads vers Flow.",
 	"flow-user-moderated": "Utilisateur modéré",
 	"flow-board-header-browse-topics-link": "Parcourir les discussions",
+	"flow-board-header": "À propos de cette discussion",
+	"flow-board-collapse-description": "Cacher la description",
+	"flow-board-expand-description": "Afficher la description",
 	"flow-edit-header-link": "Modifier la description",
 	"flow-post-moderated-toggle-hide-show": "Afficher le commentaire {{GENDER:$1|caché}} par $2",
 	"flow-post-moderated-toggle-delete-show": "Afficher le commentaire {{GENDER:$1|supprimé}} par $2",
@@ -133,7 +137,9 @@
 	"flow-topic-notification-subscribe-description": "{{GENDER:$1|Vous}} recevrez des notifications pour toutes les activités sur cette discussion.",
 	"flow-board-notification-subscribe-title": "Vous vous êtes {{GENDER:$1|abonné|abonnée}} à ce forum de discussion !",
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Vous}} recevrez une notification quand un nouveau sujet sera créé sur ce forum.",
-	"flow-error-allowcreation-no-usedb": "allowCreation exige que <var>$wgContentHandlerUseDB</var> soit vrai",
+	"flow-topic-action-watchlist-add": "Ajouter ce sujet à votre liste de suivi",
+	"flow-topic-action-watchlist-remove": "Supprimer ce sujet de votre liste de suivi",
+	"flow-error-allowcreation-no-usedb": "allowCreation nécessite <var>$wgContentHandlerUseDB</var> pour être <code>vrai</code>.",
 	"flow-error-allowcreation-already-exists": "La page existe déjà, mais est nécessaire afin de ne pas",
 	"flow-error-allowcreation-flow-create-board": "L’utilisateur n’a pas l’autorisation « {{int:droit des flux de création de carte}} »",
 	"flow-error-http": "Une erreur s’est produite en communiquant avec le serveur.",
@@ -274,6 +280,7 @@
 	"flow-notification-rename-email-batch-body": "$1 {{GENDER:$1|a renommé}} votre discussion « $2 » en « $3 » sur $4",
 	"flow-notification-newtopic-email-subject": "$1 {{GENDER:$1|a créé}} une nouvelle discussion sur $2",
 	"flow-notification-newtopic-email-batch-body": "$1 {{GENDER:$1|a créé}} une nouvelle discussion avec le titre « $2 » sur $3",
+	"flow-notification-newtopic-email-batch-bundle-body": "{{PLURAL:$1|$1 nouveau sujet|$1 nouveaux sujets|250=250+ nouveaux sujets}} sur $2",
 	"echo-category-title-flow-discussion": "Flux de discussion",
 	"echo-pref-tooltip-flow-discussion": "M’informer quand des actions me concernant ont lieu dans le flux de discussion.",
 	"flow-link-post": "message",

@@ -7,7 +7,8 @@
 			"Trần Nguyễn Minh Huy",
 			"Max20091",
 			"Dinhxuanduyet",
-			"KhangND"
+			"KhangND",
+			"Darcy Le"
 		]
 	},
 	"flow-desc": "Hệ thống quản lý luồng làm việc",
@@ -103,6 +104,8 @@
 	"flow-topic-notification-subscribe-description": "{{GENDER:$1}}Bạn sẽ nhận thông báo về tất cả hoạt động vào chủ đề này.",
 	"flow-board-notification-subscribe-title": "{{GENDER:$1}}Bạn hiện theo dõi bảng tin này!",
 	"flow-board-notification-subscribe-description": "{{GENDER:$1}}Bạn sẽ được thông báo khi nào một chủ đề mới được tạo ra trên bảng tin này.",
+	"flow-topic-action-watchlist-add": "Thêm chủ đề này vào danh sách theo dõi của bạn.",
+	"flow-topic-action-watchlist-remove": "Gỡ bỏ chủ đề này khỏi danh sách theo dõi của bạn?",
 	"flow-error-http": "Đã xuất hiện lỗi khi liên lạc với máy chủ.",
 	"flow-error-other": "Đã xuất hiện lỗi bất ngờ.",
 	"flow-error-external": "Đã xuất hiện lỗi.<br />Lỗi nhận được là: $1",
