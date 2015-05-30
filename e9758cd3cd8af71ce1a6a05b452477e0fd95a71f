@@ -540,6 +540,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_0a3d73b8",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-30T10:20:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ed113e2_b135c8d9",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_91152443",
         "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
         "patchSetId": 19
@@ -557,6 +575,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_2a3877c6",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-30T10:20:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ed113e2_91152443",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_712f6086",
         "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
         "patchSetId": 19
@@ -568,6 +604,24 @@
       "writtenOn": "2015-05-29T01:30:06Z",
       "side": 1,
       "message": "Document what these values mean",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_ca468b54",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-30T10:20:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ed113e2_712f6086",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -785,6 +839,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_ea410f3b",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-30T10:20:17Z",
+      "side": 1,
+      "message": "To be honest, I\u0027m not sure why we need this at all. The only place I could possibly think this is helpful is when you build an API call, instead of using mw.Title() ... to get localized namespace, you just pluck this out and use it. That\u0027s a little silly, though, because the board has the pageTitle as an mw.title which we can always use with the widgets, and if not, we can pass it down to the individual topic/reply items.\n\nI think it\u0027s redundant and we can get rid of it.",
+      "parentUuid": "0ed113e2_170121b9",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_f11b5071",
         "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
         "patchSetId": 19
@@ -832,6 +904,24 @@
       "side": 1,
       "message": "If that\u0027s what I think it is, that sounds scary. It\u0027s worth getting to the bottom of this, and if it really is what it sounds like, figuring out a better way to handle this.",
       "parentUuid": "0ed113e2_394e9e73",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_8a7083a4",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-30T10:20:17Z",
+      "side": 1,
+      "message": "I agree. I wanted to get rid of it completely here, but from my understanding, we are still using it for certain things.\n\nI\u0027m keeping it here with a \"TODO\" note at the top (in populate) and I\u0027ll make sure to talk to the team and see what exactly it\u0027s needed for. We should really use other means to manage these links rather than get them directly from the API.",
+      "parentUuid": "0ed113e2_d70ab9d4",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -961,6 +1051,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_aa7307ae",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-30T10:20:17Z",
+      "side": 1,
+      "message": "It would be, but from what I understand about the code, mw.User() only handles *current* user. I didn\u0027t see a way to create a whole new external user object. Am I wrong?\n\n(See for instance \"getId\" and \"getName\" in mediawiki.user.js ... they\u0027re both using return mw.config.get( \u0027wgUserId\u0027, 0 ); and return mw.config.get( \u0027wgUserName\u0027 ); respectively, which are *current* user. There doesn\u0027t seem to be a way for me to create a new user based on raw parameters..)",
+      "parentUuid": "0ed113e2_b7f135dc",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_b16388d9",
         "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
         "patchSetId": 19
@@ -1014,6 +1122,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_6a6d1fc7",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-30T10:20:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ed113e2_977f5111",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_b1e06826",
         "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
         "patchSetId": 19
@@ -1025,6 +1151,24 @@
       "writtenOn": "2015-05-29T01:30:06Z",
       "side": 1,
       "message": "Add @event docs",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_4a6a9bb2",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-30T10:20:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ed113e2_b1e06826",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -1204,6 +1348,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_ea582f2b",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-30T10:20:17Z",
+      "side": 1,
+      "message": "Actually, I just renamed \u0027visibleItems\u0027 (from the documentation above) and forgot to rename the documentation.",
+      "parentUuid": "0ed113e2_d1c40c97",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_319f98bb",
         "filename": "modules/flow/dm/mw.flow.dm.System.js",
         "patchSetId": 19
@@ -1302,6 +1464,24 @@
       "side": 1,
       "message": "Why is it OK for the second request to take longer? Not saying it isn\u0027t, but I want to understand.",
       "parentUuid": "0ed113e2_b9184e24",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_0a6493e0",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-30T10:20:17Z",
+      "side": 1,
+      "message": "For exactly the reason you said we should parallelize - the two requests are distinct; one asks for the topics and board internal data, and the other fills up the header. It is okay if they both get filled at different times for now, especially since both are already rendered for the user, so this is more for initialization of the dm.\n\nI would prefer, eventually, to have both of these come back from the same API response -- and also that both are given by the server in the JSON blob. When that happens, this whole method will be unnecessary anyways.\n\nI\u0027ll aggregate both requests anyways, though. At some point we\u0027ll also want to put up a spinner while everything loads.",
+      "parentUuid": "0ed113e2_5779e928",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -1423,6 +1603,24 @@
       "writtenOn": "2015-05-29T01:30:06Z",
       "side": 1,
       "message": "What is the start event used for?",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_4aa93bdb",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-30T10:20:17Z",
+      "side": 1,
+      "message": "I\u0027m using it to add the overlay instead of the old system in the ToC fix:\nhttps://gerrit.wikimedia.org/r/#/c/209671/21/modules/flow-initialize.js",
+      "parentUuid": "0ed113e2_51d9fc81",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -1724,6 +1922,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_4a805b4b",
+        "filename": "tests/qunit/flow/dm/test_mw.flow.dm.Board.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-30T10:20:17Z",
+      "side": 1,
+      "message": "Good point",
+      "parentUuid": "0ed113e2_f15350e0",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_d16acc7d",
         "filename": "tests/qunit/flow/dm/test_mw.flow.dm.Board.js",
         "patchSetId": 19
@@ -1771,6 +1987,24 @@
       "side": 1,
       "message": "I\u0027ve only ever seen VE code count the number of expected assertions up front, then start executing assertions, so I always thought you had to call QUnit.expect() before calling any of the assert.blah() functions. But apparently it\u0027s more flexible than I thought it was.",
       "parentUuid": "0ed113e2_198cfa39",
+      "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_aa89c77a",
+        "filename": "tests/qunit/flow/dm/test_mw.flow.dm.Board.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-30T10:20:17Z",
+      "side": 1,
+      "message": "Indeed. It\u0027s really useful. For examples, see ve.dm.Document.test.js lines 195-209 and 383-401 (in lib/ve tests)\nand ve.dm.Document.test.js line 237-255 (in ve-mw tests)",
+      "parentUuid": "0ed113e2_d794f93b",
       "revId": "e9758cd3cd8af71ce1a6a05b452477e0fd95a71f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
