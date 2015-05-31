@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_19acef31",
+        "filename": "handlebars/compiled/flow_block_topiclist.handlebars.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-05-31T19:52:57Z",
+      "side": 0,
+      "message": "We should be careful with removing load-related instructions. It seems to stop a lot of the initialization procedures that we may later need. I ran into a problem when I deleted a similar thing for the underlying DM, and had to carefully reproduce several actions that weren\u0027t done.\n\nI agree completely that it should go, but we should rigorously test to make sure we reproduce anything that may have not happened during the interactive-load process.",
+      "revId": "006a2cb22f66bb04028523cafb0e4b7d16b476d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
