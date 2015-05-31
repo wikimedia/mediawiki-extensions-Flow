@@ -115,6 +115,8 @@
 	"flow-topic-notification-subscribe-description": "{{GENDER:$1|Irá}} receber notificações sobre todas as atividades neste tópico.",
 	"flow-board-notification-subscribe-title": "Está {{GENDER:$1|inscrito|inscrita|inscrito(a)}} neste espaço de discussão!",
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Receberá}} uma notificação quando um novo tópico for adicionado.",
+	"flow-topic-action-watchlist-add": "Adicionar este tópico à lista de páginas vigiadas",
+	"flow-topic-action-watchlist-remove": "Remover este tópico da lista de páginas vigiadas",
 	"flow-error-http": "Ocorreu um erro ao contactar o servidor.",
 	"flow-error-other": "Ocorreu um erro inesperado.",
 	"flow-error-external": "Ocorreu um erro.<br />A mensagem de erro recebida é a seguinte: $1",
