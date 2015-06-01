@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_34f45583",
+        "filename": "modules/flow/dm/mixins/mw.flow.dm.List.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2015-06-01T15:08:42Z",
+      "side": 1,
+      "message": "This variable name describes the type, not the purpose. Should be this.itemsById.\n\nSeparately if I was keeping two lists like this (items \u0026\u0026 itemsByItem) I would be questioning if it was absolutely necessary, and if I could get away with just one.",
+      "revId": "d0425319969f92883b5402349f4ccb5e6e900080",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_d432a95a",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2015-06-01T15:08:42Z",
+      "side": 1,
+      "message": "mixin",
+      "revId": "d0425319969f92883b5402349f4ccb5e6e900080",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_f44c8de6",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2015-06-01T15:08:42Z",
+      "side": 1,
+      "message": "function mwFlow...",
+      "revId": "d0425319969f92883b5402349f4ccb5e6e900080",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_e715bdea",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2015-06-01T15:08:42Z",
+      "side": 1,
+      "message": "double space",
+      "revId": "d0425319969f92883b5402349f4ccb5e6e900080",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_a7bed5cf",
+        "filename": "modules/flow/mw.flow.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2015-06-01T15:08:42Z",
+      "side": 1,
+      "message": "why might this load twice, but not mw.flow.dm?",
+      "revId": "d0425319969f92883b5402349f4ccb5e6e900080",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
