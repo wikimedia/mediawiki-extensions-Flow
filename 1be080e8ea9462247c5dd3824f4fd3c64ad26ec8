@@ -34,6 +34,23 @@
       "revId": "1be080e8ea9462247c5dd3824f4fd3c64ad26ec8",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_f14c9fe6",
+        "filename": "includes/View.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-01T12:15:17Z",
+      "side": 1,
+      "message": "I\u0027ve experimented a bit, and, as a hack, we can add this line above the $apiResponse to get 50 topics for the ToC\n\n\t\t$parameters[\u0027topiclist\u0027][\u0027limit\u0027] \u003d 50;\n\nThis is clearly a hack, though. We should instead, ideally, create another block for ToC data that contains 40 more topics (after the 10 we have that are rendered) that are toconly, and are only meant for the json blob. However, to do that, we will need to set a \"type\" for the Blocks that tells the view not to render a json-only blob.\n\nIt\u0027s a bit convoluded. Maybe we should just stick to the hack for now? Then again, this above hack will give us *full* 50 topics (not toconly) for the json, which would make the json string pretty massive and wasteful, especially for noJS versions.\n\nThe other alternative, of course, is to have the js side do its own toconly api call *only* for the ToC widget. Seems meh as well, though, but maybe not as meh as the proposed hack(s).",
+      "revId": "1be080e8ea9462247c5dd3824f4fd3c64ad26ec8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
