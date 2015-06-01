@@ -3,13 +3,14 @@
 @import 'flow.colors';
 
 .flow-editor {
+	background-color: white;
+
 	// because we're attaching switcher controls below the textarea & we
 	// want them to look unified with the textarea, we'll have to take away
 	// it's border and re-apply on the parent node that contains both
 	&.flow-editor-none {
 		border: 1px solid @colorFieldBorder;
 		padding: 2px;
-		background-color: white;
 		textarea {
 			border: 0;
 			// When we apply a pending texture to the editor, we don't want the toolbar to display
