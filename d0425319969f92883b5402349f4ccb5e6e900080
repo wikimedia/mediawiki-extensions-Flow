@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_21864a19",
+        "filename": "modules/flow/dm/mixins/mw.flow.dm.List.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-02T09:02:09Z",
+      "side": 1,
+      "message": "This is a good point, but my problem was that I have to save both the order of the items and their reference to IDs. The \"normal\" way of fetching items from the list is by its Id. But JavaScript objects, as far as I understand, do not hold oldered keys and can\u0027t guarantee order of keys. Arrays can. So the items array preserves order, and the references (which, you\u0027re right, should be renamed) contains references from Id to Item.\n\nI was thinking of reproducnig what OO.ui.SelectWidget uses, but the lookup by Id there uses a loop -- which is okay if we usually don\u0027t need items by id, but in Flow, getItemById is the primary fetch method for all topics and posts.\n\nAre splitting the lists, in this case, not better than finding a combination? Any ideas?",
+      "parentUuid": "0ed113e2_34f45583",
+      "revId": "d0425319969f92883b5402349f4ccb5e6e900080",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_d432a95a",
         "filename": "modules/flow/dm/mw.flow.dm.Board.js",
         "patchSetId": 24
@@ -30,6 +48,24 @@
       "writtenOn": "2015-06-01T15:08:42Z",
       "side": 1,
       "message": "mixin",
+      "revId": "d0425319969f92883b5402349f4ccb5e6e900080",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_618bf21b",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-02T09:02:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ed113e2_d432a95a",
       "revId": "d0425319969f92883b5402349f4ccb5e6e900080",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_e17fe20f",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-02T09:02:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ed113e2_f44c8de6",
+      "revId": "d0425319969f92883b5402349f4ccb5e6e900080",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_e715bdea",
         "filename": "modules/flow/dm/mw.flow.dm.System.js",
         "patchSetId": 24
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_017b0625",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-02T09:02:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ed113e2_e715bdea",
+      "revId": "d0425319969f92883b5402349f4ccb5e6e900080",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_a7bed5cf",
         "filename": "modules/flow/mw.flow.js",
         "patchSetId": 24
@@ -81,6 +153,24 @@
       "writtenOn": "2015-06-01T15:08:42Z",
       "side": 1,
       "message": "why might this load twice, but not mw.flow.dm?",
+      "revId": "d0425319969f92883b5402349f4ccb5e6e900080",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_a179da2b",
+        "filename": "modules/flow/mw.flow.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-02T09:02:09Z",
+      "side": 1,
+      "message": "mw.flow is used in the \"old\" system too.Technically, this file should only exist *after* we get rid of the old system. But I had a problem with the order of initialization; the old system doesn\u0027t quite initializes this on time, so I am. But to make sure I\u0027m not overriding anything in case we change something in the underlying system, I added the safety of only initializing if it doesn\u0027t exist.\n\nmw.flow.dm on the other hand is new to the system, so it is just being initialized. I don\u0027t have any worries that I am erasing data.\n\nIt\u0027s a little backwards, but it seems to be a necessary hack unless I refactor a little of the old system.",
+      "parentUuid": "0ed113e2_a7bed5cf",
       "revId": "d0425319969f92883b5402349f4ccb5e6e900080",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
