@@ -106,8 +106,11 @@ class ConversionStrategy implements IConversionStrategy {
 	 * @{inheritDoc}
 	 */
 	public function isConversionFinished( Title $title, Title $movedFrom = null ) {
-		if ( $movedFrom ) {
-			// no good way to pick up where we left off
+		if ( $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
+			// page is a flow board already
+			return true;
+		} elseif ( $movedFrom ) {
+			// page was moved out of the way by import - leave it alone
 			return true;
 		} else {
 			return false;

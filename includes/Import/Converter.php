@@ -121,7 +121,12 @@ class Converter {
 	 * @throws FlowException
 	 */
 	public function convert( Title $title ) {
-		// conversion is already done
+		/*
+		 * $title is the title we're currently considering to import.
+		 * It could be a page we need to import, but could also e.g.
+		 * be an archive page of a previous import run (in which case
+		 * $movedFrom will be the Title object of that original page)
+		 */
 		$movedFrom = $this->getPageMovedFrom( $title );
 		if ( $this->strategy->isConversionFinished( $title, $movedFrom ) ) {
 			return;
