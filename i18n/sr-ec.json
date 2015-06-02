@@ -59,5 +59,8 @@
 	"flow-terms-of-use-edit": "Чувањем измена, прихватате услове коришћења на овом викију.",
 	"flow-cancel-warning": "Унели сте текст у овај оквир. Да ли сигурно желите да га одбаците?",
 	"flow-load-more": "Учитај још",
-	"flow-newest-topics": "Најновије теме"
+	"flow-newest-topics": "Најновије теме",
+	"flow-recent-topics": "Недавно активне теме",
+	"flow-ve-mention-placeholder": "Корисничко име",
+	"flow-ve-mention-tool-title": "Спомени корисника"
 }
