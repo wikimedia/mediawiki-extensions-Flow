@@ -26,32 +26,17 @@ class NotificationController {
 		$this->language = $language;
 	}
 
-	/**
-	 * Set up Echo notification for Flow extension
-	 */
-	public static function setup() {
-		global $wgHooks,
-			$wgEchoNotifications, $wgEchoNotificationIcons, $wgEchoNotificationCategories;
-
-		$wgHooks['EchoGetDefaultNotifiedUsers'][] = 'Flow\NotificationController::getDefaultNotifiedUsers';
-		$wgHooks['EchoGetBundleRules'][] = 'Flow\NotificationController::onEchoGetBundleRules';
-
-		/**
-		 * Load notification definitions from file.
-		 * @var $notifications array[]
-		 */
-		$wgEchoNotifications += require( __DIR__ . "/Notifications.php" );
-
-		$wgEchoNotificationIcons['flow-discussion'] = array(
+	public static function onBeforeCreateEchoEvent( &$notifs, &$categories, &$icons ) {
+		$notifs += require __DIR__ . "/Notifications.php";
+		$categories['flow-discussion'] = array(
+			'priority' => 3,
+			'tooltip' => 'echo-pref-tooltip-flow-discussion',
+		);
+		$icons['flow-discussion'] = array(
 			'path' => array(
 				'ltr' => 'Flow/modules/notification/icon/Talk-ltr.png',
 				'rtl' => 'Flow/modules/notification/icon/Talk-rtl.png'
 			)
-		);
-
-		$wgEchoNotificationCategories['flow-discussion'] = array(
-			'priority' => 3,
-			'tooltip' => 'echo-pref-tooltip-flow-discussion',
 		);
 	}
 
