@@ -98,11 +98,6 @@ class FlowHooks {
 		// needed to determine if a page is occupied by flow
 		self::getOccupationController();
 
-		// necessary to render flow notifications
-		if ( class_exists( 'EchoNotifier' ) ) {
-			NotificationController::setup();
-		}
-
 		// necessary to provide flow options in abuse filter on-wiki pages
 		global $wgFlowAbuseFilterGroup;
 		if ( $wgFlowAbuseFilterGroup ) {
