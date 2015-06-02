@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ed113e2_7e4cf379",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 25
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-02T01:38:20Z",
+      "side": 1,
+      "message": "This could probably just @inheritdoc? Also the word \"Topic\" is out of scope in this file.",
+      "revId": "ac69998e7de3898e62336d137c9ff0f7adc1ef38",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_1e53671b",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 25
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-02T01:38:20Z",
+      "side": 1,
+      "message": "Still doesn\u0027t document what this is or what it looks like. You said something about wanting to get rid of it, so in that case maybe there should be a TODO or FIXME comment saying so?",
+      "revId": "ac69998e7de3898e62336d137c9ff0f7adc1ef38",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_7e7393af",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 25
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-02T01:38:20Z",
+      "side": 1,
+      "message": "the the",
+      "revId": "ac69998e7de3898e62336d137c9ff0f7adc1ef38",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_1e6a87b1",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 25
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-02T01:38:20Z",
+      "side": 1,
+      "message": "the the",
+      "revId": "ac69998e7de3898e62336d137c9ff0f7adc1ef38",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_5e700fa3",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 25
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-02T01:38:20Z",
+      "side": 1,
+      "message": "s/unused/unset/ (from PS19 comments)",
+      "revId": "ac69998e7de3898e62336d137c9ff0f7adc1ef38",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_3e6d0bc8",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 25
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-02T01:38:20Z",
+      "side": 1,
+      "message": "I\u0027m almost certain you need .then(), not .done(), otherwise this won\u0027t work.",
+      "revId": "ac69998e7de3898e62336d137c9ff0f7adc1ef38",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
