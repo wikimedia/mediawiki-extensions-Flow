@@ -36,9 +36,8 @@
 	 * @param {string} [content='']
 	 */
 	mw.flow.editors.visualeditor.prototype.init = function ( content ) {
-		var $veNode, htmlDoc, dmDoc, target,
-			$focusedElement = $( ':focus' ),
-			flowEditor = this;
+		var $veNode, htmlDoc, surface, $documentNode,
+			$focusedElement = $( ':focus' );
 
 		// ve.createDocumentFromHtml documents support for an empty string
 		// to create an empty document, but does not mention other falsy values.
@@ -47,56 +46,51 @@
 		// add i18n messages to VE
 		ve.init.platform.addMessages( mw.messages.values );
 
-		target = this.target = new mw.flow.ve.Target();
+		this.target = new mw.flow.ve.Target();
 
-		htmlDoc = ve.createDocumentFromHtml( content ); // HTMLDocument
 		// Fix missing base URL
+		htmlDoc = ve.createDocumentFromHtml( content ); // HTMLDocument
 		ve.init.mw.Target.static.fixBase( htmlDoc );
 
 		// Based on ve.init.mw.Target.prototype.setupSurface
-		dmDoc = this.dmDoc = ve.dm.converter.getModelFromDom( htmlDoc, {
+		this.dmDoc = ve.dm.converter.getModelFromDom( htmlDoc, {
 			lang: mw.config.get( 'wgVisualEditor' ).pageLanguageCode,
 			dir: mw.config.get( 'wgVisualEditor' ).pageLanguageDir
 		} );
 
-		setTimeout( function () {
-			var surface = target.addSurface( dmDoc ),
-				surfaceView = surface.getView(),
-				$documentNode = surfaceView.getDocument().getDocumentNode().$element;
+		// attach VE to DOM
+		surface = this.target.addSurface( this.dmDoc );
+		this.target.setSurface( surface );
+		this.target.$element.insertAfter( this.$node );
 
-			$( target.$element ).insertAfter( flowEditor.$node );
-			flowEditor.$node
-				.hide()
-				.removeClass( 'oo-ui-texture-pending' )
-				.prop( 'disabled', false );
+		this.$node
+			.hide()
+			.removeClass( 'oo-ui-texture-pending' )
+			.prop( 'disabled', false );
 
-			$documentNode.addClass(
-			// Add appropriately mw-content-ltr or mw-content-rtl class
-				'mw-content-' + mw.config.get( 'wgVisualEditor' ).pageLanguageDir
-			);
+		// Add appropriately mw-content-ltr or mw-content-rtl class
+		$documentNode = surface.getView().getDocument().getDocumentNode().$element;
+		$documentNode.addClass(
+			'mw-content-' + mw.config.get( 'wgVisualEditor' ).pageLanguageDir
+		);
 
-			setTimeout( function () {
-				// focus VE instance if textarea had focus
-				if ( !$focusedElement.length || flowEditor.$node.is( $focusedElement ) ) {
-					surface.getView().focus();
-				}
+		// focus VE instance if textarea had focus
+		if ( !$focusedElement.length || this.$node.is( $focusedElement ) ) {
+			surface.getView().focus();
+		}
 
-				$veNode = surface.$element.find( '.ve-ce-documentNode' );
+		$veNode = surface.$element.find( '.ve-ce-documentNode' );
+		$veNode.addClass( 'mw-ui-input' );
 
-				$veNode.addClass( 'mw-ui-input' );
+		// simulate a keyup event on the original node, so the validation code will
+		// pick up changes in the new node
+		$veNode.keyup( $.proxy( function () {
+			this.$node.keyup();
+		}, this ) );
 
-				// simulate a keyup event on the original node, so the validation code will
-				// pick up changes in the new node
-				$veNode.keyup( $.proxy( function () {
-					this.$node.keyup();
-				}, flowEditor ) );
-
-				$.each( flowEditor.initCallbacks, $.proxy( function ( k, callback ) {
-					callback.apply( this );
-				}, flowEditor ) );
-
-			} );
-		} );
+		$.each( this.initCallbacks, $.proxy( function ( k, callback ) {
+			callback.apply( this );
+		}, this ) );
 	};
 
 	mw.flow.editors.visualeditor.prototype.destroy = function () {
