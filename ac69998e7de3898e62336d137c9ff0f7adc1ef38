@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "0ed113e2_deb2bf47",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 25
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-02T01:47:18Z",
+      "side": 1,
+      "message": "!$component is impossible, $() always returns a jQuery collection",
+      "revId": "ac69998e7de3898e62336d137c9ff0f7adc1ef38",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_9e5d171d",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 25
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-02T01:47:18Z",
+      "side": 1,
+      "message": "id is already provided by the parent class",
+      "revId": "ac69998e7de3898e62336d137c9ff0f7adc1ef38",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_7e4cf379",
         "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
         "patchSetId": 25
