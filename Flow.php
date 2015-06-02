@@ -266,6 +266,9 @@ $wgDefaultUserOptions['flow-topiclist-sortby'] = 'newest';
 // Default editor to use in Flow
 $wgDefaultUserOptions['flow-editor'] = 'none';
 
+// Default state of the side rail
+$wgDefaultUserOptions['flow-side-rail-state'] = 'expanded';
+
 // Maximum number of users that can be mentioned in one comment
 $wgFlowMaxMentionCount = 100;
 
