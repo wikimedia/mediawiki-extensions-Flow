@@ -118,24 +118,32 @@ class Converter {
 	 * Converts a page into a Flow board
 	 *
 	 * @param Title $title
+	 * @throws FlowException
 	 */
 	public function convert( Title $title ) {
-		$movedFrom = $this->getPageMovedFrom( $title );
-		if ( ! $this->isAllowed( $title, $movedFrom ) ) {
-			throw new FlowException( "Not allowed to convert: {$title}" );
-		}
-
 		// conversion is already done
+		$movedFrom = $this->getPageMovedFrom( $title );
 		if ( $this->strategy->isConversionFinished( $title, $movedFrom ) ) {
 			return;
+		}
+
+		if ( !$this->isAllowed( $title ) ) {
+			throw new FlowException( "Not allowed to convert: {$title}" );
 		}
 
 		$this->doConversion( $title, $movedFrom );
 	}
 
-	protected function isAllowed( Title $title, Title $movedFrom = null ) {
+	/**
+	 * Returns a boolean indicating if we're allowed to import $title.
+	 *
+	 * @param Title $title
+	 * @return bool
+	 */
+	protected function isAllowed( Title $title ) {
 		// Only make changes to wikitext pages
 		if ( $title->getContentModel() !== CONTENT_MODEL_WIKITEXT ) {
+			$this->logger->warning( "WARNING: The title '" . $title->getPrefixedDBkey() . "' is being skipped because it has content model '" . $title->getContentModel() . "''." );
 			return false;
 		}
 
@@ -147,12 +155,8 @@ class Converter {
 		// At some point we may want to handle these, but for now just
 		// let them be
 		if ( $title->isRedirect() ) {
+			$this->logger->warning( "WARNING: The title '" . $title->getPrefixedDBkey() . "' is being skipped because it is a redirect." );
 			return false;
-		}
-
-		// If we previously moved this page, continue the import
-		if ( $movedFrom !== null ) {
-			return true;
 		}
 
 		// Finally, check strategy-specific logic
