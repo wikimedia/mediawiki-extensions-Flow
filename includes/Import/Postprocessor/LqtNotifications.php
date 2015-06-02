@@ -66,6 +66,10 @@ class LqtNotifications implements Postprocessor {
 		$notifications = require __DIR__ . '/../../Notifications/Notifications.php';
 		foreach ( array_keys( $notifications ) as $type ) {
 			unset( $wgEchoNotifications[$type]['user-locators'] );
+
+			// The job queue causes our overrides to be lost since it
+			// has a separate execution context.
+			$wgEchoNotifications[$type]['use-jobqueue'] = false;
 		}
 
 		// Insert our own user locator to decide who should be notified.
