@@ -1007,6 +1007,10 @@ class FlowHooks {
 			'type' => 'api'
 		);
 
+		$preferences['side-rail-collapsed'] = array(
+			'type' => 'api'
+		);
+
 		return true;
 	}
 

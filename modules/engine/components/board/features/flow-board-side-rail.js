@@ -25,6 +25,23 @@
 	};
 
 	//
+	// Load handlers
+	//
+
+	/**
+	 *
+	 * @param {Event} event
+	 */
+	function FlowBoardComponentSideRailFeatureMixinLoadCallback( event ) {
+		if ( !mw.user.isAnon() ) {
+			if ( mw.user.options.get( 'side-rail-collapsed' ) ) {
+				$( '.flow-component' ).addClass( 'expanded' );
+			}
+		}
+	}
+	FlowBoardComponentSideRailFeatureMixin.UI.events.loadHandlers.loadSideRail = FlowBoardComponentSideRailFeatureMixinLoadCallback;
+
+	//
 	// On element-click handlers
 	//
 
@@ -33,7 +50,14 @@
 	 * @param {Event} event
 	 */
 	function FlowBoardComponentSideRailFeatureMixinToggleCallback( event ) {
-		$( '.flow-component' ).toggleClass( 'expanded' );
+		var sideRailCollapsed = $( '.flow-component' ).toggleClass( 'expanded' ).hasClass( 'expanded' );
+
+		if ( !mw.user.isAnon() ) {
+			// update the user preferences; no preferences for anons
+			new mw.Api().saveOption( 'side-rail-collapsed', sideRailCollapsed );
+			// ensure we also see that preference in the current page
+			mw.user.options.set( 'side-rail-collapsed', sideRailCollapsed );
+		}
 	}
 	FlowBoardComponentSideRailFeatureMixin.UI.events.interactiveHandlers.toggleSideRail = FlowBoardComponentSideRailFeatureMixinToggleCallback;
 

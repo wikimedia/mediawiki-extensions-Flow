@@ -58,7 +58,7 @@
 
     );
     
-    return '<div class="flow-board-header">
+    return '<div class="flow-board-header flow-load-interactive" data-flow-load-handler="loadSideRail">
 '.LCRun3::p($cx, 'flow_header_title', array(array($in),array()), '	').''.LCRun3::p($cx, 'flow_errors', array(array($in),array()), '	').''.LCRun3::p($cx, 'flow_header_detail', array(array($in),array()), '	').'</div>
 ';
 }
