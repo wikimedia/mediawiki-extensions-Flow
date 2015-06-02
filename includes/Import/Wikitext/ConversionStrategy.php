@@ -159,7 +159,7 @@ class ConversionStrategy implements IConversionStrategy {
 	 * @param Title $sourceTitle Title to check
 	 * @return bool Whether it meets the applicable subpage requirements
 	 */
-	public function meetsSubpageRequirements( $sourceTitle ) {
+	public function meetsSubpageRequirements( Title $sourceTitle ) {
 		// Don't allow conversion of sub pages unless it is
 		// a talk page with matching subject page. For example
 		// we will convert User_talk:Foo/bar only if User:Foo/bar
