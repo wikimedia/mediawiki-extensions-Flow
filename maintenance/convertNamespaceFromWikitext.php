@@ -54,7 +54,6 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 		// so we can wrap that.
 		$it = $it->getIterator();
 
-
 		$converter->convertAll( $it );
 	}
 }
