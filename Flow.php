@@ -155,6 +155,11 @@ $wgHooks['MergeAccountFromTo'][] = 'FlowHooks::onMergeAccountFromTo';
 // not be LiquidThreads talk pages.
 $wgHooks['LiquidThreadsIsLqtPage'][] = 'FlowHooks::onIsLiquidThreadsPage';
 
+// Echo integration
+$wgHooks['BeforeCreateEchoEvent'][] = 'Flow\NotificationController::onBeforeCreateEchoEvent';
+$wgHooks['EchoGetDefaultNotifiedUsers'][] = 'Flow\NotificationController::getDefaultNotifiedUsers';
+$wgHooks['EchoGetBundleRules'][] = 'Flow\NotificationController::onEchoGetBundleRules';
+
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
 
