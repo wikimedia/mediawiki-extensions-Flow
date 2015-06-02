@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_21b88ae1",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 25
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-02T08:59:55Z",
+      "side": 1,
+      "message": "So $component.length \u003d\u003d\u003d 0 is enough? I wasn\u0027t 100% sure.",
+      "parentUuid": "0ed113e2_deb2bf47",
+      "revId": "ac69998e7de3898e62336d137c9ff0f7adc1ef38",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_9e5d171d",
         "filename": "modules/flow/dm/mw.flow.dm.Board.js",
         "patchSetId": 25
@@ -30,6 +48,24 @@
       "writtenOn": "2015-06-02T01:47:18Z",
       "side": 1,
       "message": "id is already provided by the parent class",
+      "revId": "ac69998e7de3898e62336d137c9ff0f7adc1ef38",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_41bb4ede",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 25
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-02T08:59:55Z",
+      "side": 1,
+      "message": "Indeed. I added the parent class and forgot to take off the parameter it gives.",
+      "parentUuid": "0ed113e2_9e5d171d",
       "revId": "ac69998e7de3898e62336d137c9ff0f7adc1ef38",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_a1cb1a74",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 25
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-02T08:59:55Z",
+      "side": 1,
+      "message": "Copypasta.... which is probably why @inheritdoc is a good idea here....",
+      "parentUuid": "0ed113e2_7e4cf379",
+      "revId": "ac69998e7de3898e62336d137c9ff0f7adc1ef38",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_1e53671b",
         "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
         "patchSetId": 25
@@ -64,6 +118,24 @@
       "writtenOn": "2015-06-02T01:38:20Z",
       "side": 1,
       "message": "Still doesn\u0027t document what this is or what it looks like. You said something about wanting to get rid of it, so in that case maybe there should be a TODO or FIXME comment saying so?",
+      "revId": "ac69998e7de3898e62336d137c9ff0f7adc1ef38",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_c19dfe6a",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 25
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-02T08:59:55Z",
+      "side": 1,
+      "message": "I removed both actions and links. I can\u0027t see a reason why we would store them from the API and not have the widgets deal with creating / manipulating both.\n\nFor the record, this is how we get \"actions\" from the API:\n\n              \"actions\": {\n                \"reply\": {\n                  \"url\": \"/w/index.php?title\u003dTopic:xxx123xxx\u0026action\u003dreply\u0026topic_postId\u003dxxx123xxx#flow-post-xxx123xxx-form-content\",\n                  \"title\": \"Reply\",\n                  \"text\": \"Reply\"\n                },\n                \"edit\": {\n                  \"url\": \"/w/index.php?title\u003dTopic:xxx123xxx\u0026action\u003dedit-title\u0026topic_revId\u003dsh8t9q8qqeesjke3\",\n                  \"title\": \"Edit title\",\n                  \"text\": \"Edit title\"\n                }\n              }\n\n\nThese are good for the noJS version, but in the JS version we really shouldn\u0027t store those. The widgets should know to build those links and api requests themselves.",
+      "parentUuid": "0ed113e2_1e53671b",
       "revId": "ac69998e7de3898e62336d137c9ff0f7adc1ef38",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_41b26efa",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 25
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-02T08:59:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ed113e2_7e7393af",
+      "revId": "ac69998e7de3898e62336d137c9ff0f7adc1ef38",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_1e6a87b1",
         "filename": "modules/flow/dm/mw.flow.dm.System.js",
         "patchSetId": 25
@@ -98,6 +188,24 @@
       "writtenOn": "2015-06-02T01:38:20Z",
       "side": 1,
       "message": "the the",
+      "revId": "ac69998e7de3898e62336d137c9ff0f7adc1ef38",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_e198427e",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 25
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-02T08:59:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ed113e2_1e6a87b1",
       "revId": "ac69998e7de3898e62336d137c9ff0f7adc1ef38",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_01946645",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 25
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-02T08:59:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ed113e2_5e700fa3",
+      "revId": "ac69998e7de3898e62336d137c9ff0f7adc1ef38",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_3e6d0bc8",
         "filename": "modules/flow/dm/mw.flow.dm.System.js",
         "patchSetId": 25
@@ -132,6 +258,24 @@
       "writtenOn": "2015-06-02T01:38:20Z",
       "side": 1,
       "message": "I\u0027m almost certain you need .then(), not .done(), otherwise this won\u0027t work.",
+      "revId": "ac69998e7de3898e62336d137c9ff0f7adc1ef38",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed113e2_c1c65e6b",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 25
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-02T08:59:55Z",
+      "side": 1,
+      "message": "Oops, you\u0027re right, and the code in flow-initialize then uses .then() on it... Oy.",
+      "parentUuid": "0ed113e2_3e6d0bc8",
       "revId": "ac69998e7de3898e62336d137c9ff0f7adc1ef38",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
