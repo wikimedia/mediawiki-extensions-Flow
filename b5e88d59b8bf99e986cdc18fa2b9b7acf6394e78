@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "0ed113e2_cc0a0722",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 1011,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2015-06-03T17:45:55Z",
+      "side": 1,
+      "message": "This should have an accompanying $wgDefaultUserOptions setting.",
+      "revId": "b5e88d59b8bf99e986cdc18fa2b9b7acf6394e78",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ed113e2_754e499d",
         "filename": "modules/engine/components/board/features/flow-board-side-rail.js",
         "patchSetId": 2
