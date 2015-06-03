@@ -51,6 +51,24 @@
       "revId": "1be080e8ea9462247c5dd3824f4fd3c64ad26ec8",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aedf27f1_ef32c1ee",
+        "filename": "includes/View.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-03T23:07:50Z",
+      "side": 1,
+      "message": "Why don\u0027t we instead do a separate API \"call\" (buildApiResponse()) here for the metadata for the additional 40 topics, then don\u0027t pass that to handlebars and only put it in a blob?",
+      "parentUuid": "0ed113e2_f14c9fe6",
+      "revId": "1be080e8ea9462247c5dd3824f4fd3c64ad26ec8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
