@@ -5,7 +5,8 @@
 			"Nike",
 			"Pxos",
 			"Stryn",
-			"MrTapsa"
+			"MrTapsa",
+			"McSalama"
 		]
 	},
 	"enableflow": "Ota Flow käyttöön",
@@ -62,6 +63,7 @@
 	"flow-topic-action-undo-moderation": "Kumoa",
 	"flow-topic-notification-subscribe-title": "Tämä aihe on lisätty {{GENDER:$1|sinun}} tarkkailulistallesi.",
 	"flow-topic-notification-subscribe-description": "{{GENDER:$1|Saat}} ilmoituksen kaikista tapahtumista tässä aiheessa.",
+	"flow-topic-action-watchlist-remove": "Peruuta tilaus",
 	"flow-error-http": "Virhe muodostettaessa yhteyttä palvelimeen.",
 	"flow-error-other": "Tuntematon virhe tapahtui.",
 	"flow-error-external": "On tapahtunut virhe.<br />Vastaanotettu virheilmoitus: $1",

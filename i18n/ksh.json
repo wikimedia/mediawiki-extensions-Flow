@@ -37,6 +37,8 @@
 	"flow-topic-action-summarize-topic": "Zosammefaßße",
 	"flow-topic-action-resummarize-topic": "De Zosammefaßßong vum Jähjeschtand ändere",
 	"flow-topic-action-undo-moderation": "Zeröknämme",
+	"flow-topic-action-watchlist-add": "Don dat Tehma en Ding Oppaßleß opnämme",
+	"flow-topic-action-watchlist-remove": "Schmieß dat Tehma us Dinge eije Oppaßless erus",
 	"flow-error-allowcreation-already-exists": "Di Sigg jidd_et alld, sulld ävver noch nit doh sin.",
 	"flow-error-allowcreation-flow-create-board": "Dä metmaacher hät nit et Rääsch „{{int:right-flow-create-board}}“",
 	"flow-error-other": "Ene Fähler es opjetrodde, woh mer nit met jerääschnet hatte.",

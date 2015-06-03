@@ -11,7 +11,8 @@
 			"Giuseppe Forte",
 			"^musaz",
 			"F. Cosoleto",
-			"Ricordisamoa"
+			"Ricordisamoa",
+			"Alexmar983"
 		]
 	},
 	"enableflow": "Attiva Flow",
@@ -112,6 +113,8 @@
 	"flow-topic-notification-subscribe-description": "{{GENDER:$1|Riceverai}} notifiche per tutte le attività su questo argomento.",
 	"flow-board-notification-subscribe-title": "Ti sei {{GENDER:$1|iscritto|iscritta}} a questa bacheca di discussione!",
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Riceverai}} una notifica quando un nuovo argomento verrà creato su questa bacheca.",
+	"flow-topic-action-watchlist-add": "Iscriviti a questo argomento",
+	"flow-topic-action-watchlist-remove": "Cancella l'iscrizione",
 	"flow-error-allowcreation-no-usedb": "allowCreation richiede che <var>$wgContentHandlerUseDB</var> sia <code>true</code>.",
 	"flow-error-http": "Si è verificato un errore durante la comunicazione con il server.",
 	"flow-error-other": "Si è verificato un errore imprevisto.",
