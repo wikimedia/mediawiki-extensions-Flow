@@ -103,12 +103,8 @@
 		} else {
 			// TODO: It would seem to be safer to pass 'offset-id' for both (what happens
 			// if there are two posts at the same timestamp?).  (Also, that would avoid needing
-			// the timestamp in the TOC-only API response).  However,
-			// apparently, we must pass 'offset' for 'updated' order to get valid
-			// results (e.g. by passing offset-id for 'updated', it doesn't even include
-			// the item requested despite include-offset).  However, the server
-			// does not throw an exception for 'offset-id' + 'sortby'='updated', which it
-			// should if this analysis is correct.
+			// the timestamp in the TOC-only API response).  However, currently
+			// we must pass 'offset' for 'updated' order to get valid results.
 
 			apiParameters.vtloffset = moment.utc( this.updateTimestampsByTopicId[ topicId ] ).format( 'YYYYMMDDHHmmss' );
 		}
