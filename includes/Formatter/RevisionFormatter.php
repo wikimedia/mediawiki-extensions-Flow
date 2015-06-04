@@ -169,8 +169,8 @@ class RevisionFormatter {
 		// @todo the only permissions currently checked in this class are prev-revision
 		// mostly permissions is used for the actions,  figure out how permissions should
 		// fit into this class either used more or not at all.
-		if ( $user->getName() !== $this->permissions->getUser()->getName() ) {
-			throw new FlowException( 'Formatting for wrong user' );
+		if ( !$user->equals( $this->permissions->getUser() ) ) {
+			throw new PermissionException( 'Formatting for wrong user: ' . $user->getName() . ' instead of ' . $this->permissions->getUser()->getName() );
 		}
 
 		if ( !$this->permissions->isAllowed( $row->revision, $action ) ) {

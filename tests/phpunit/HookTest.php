@@ -32,6 +32,13 @@ class HookTest extends \MediaWikiTestCase {
 	static public function onIRCLineURLProvider() {
 		$user = User::newFromName( '127.0.0.1', false );
 
+		// reset flow state, so everything ($container['permissions'])
+		// uses this particular $user
+		\FlowHooks::resetFlowExtension();
+		Container::reset();
+		$container = Container::getContainer();
+		$container['user'] = $user;
+
 		// data providers do not run in the same context as the actual test, as such we
 		// can't create Title objects because they can have the wrong wikiID.  Instead we
 		// pass closures into the test that create the objects within the correct context.
