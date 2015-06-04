@@ -14,6 +14,13 @@ class TopicListTest extends \MediaWikiTestCase {
 		$user = User::newFromId( 1 );
 		$user->setOption( 'flow-topiclist-sortby', '' );
 
+		// reset flow state, so everything ($container['permissions'])
+		// uses this particular $user
+		\FlowHooks::resetFlowExtension();
+		Container::reset();
+		$container = Container::getContainer();
+		$container['user'] = $user;
+
 		$ctx = $this->getMock( 'IContextSource' );
 		$ctx->expects( $this->any() )
 			->method( 'getUser' )
