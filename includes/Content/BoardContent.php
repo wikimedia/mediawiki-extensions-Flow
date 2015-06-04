@@ -180,6 +180,15 @@ class BoardContent extends \AbstractContent {
 			$childContext->setOutput( new OutputPage( $childContext ) );
 			$childContext->setRequest( new FauxRequest );
 
+			// RequestContext::getMain() may not contain the correct user when
+			// doing an ApiTextCase::doApiRequest. $childContext->getUser()
+			// would still respond with the user from the main request (the one
+			// running the tests), not the user that launched the FauxRequest.
+			// Just override the context user to make sure it's the one for
+			// specific request.
+			global $wgUser;
+			$childContext->setUser( $wgUser );
+
 			// Create a View set up to output to our derivative context
 			$view = new View(
 				Container::get( 'url_generator' ),
