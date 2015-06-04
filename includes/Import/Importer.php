@@ -527,6 +527,7 @@ class TalkpageImportOperation {
 		$isNew = $state->boardWorkflow->isNew();
 		$state->logger->debug( 'Workflow isNew: ' . var_export( $isNew, true ) );
 		if ( $isNew ) {
+			// Explicitly allow creation of board, regardless of $wgFlowOccupyNamespaces etc
 			$allowCreationStatus = $this->occupationController->allowCreation(
 				$destinationTitle,
 				$this->occupationController->getTalkpageManager(),
@@ -536,6 +537,7 @@ class TalkpageImportOperation {
 				throw new ImportException( "allowCreation failed to allow the import destination, with the following error:\n" . $allowCreationStatus->getWikiText() );
 			}
 
+			// Makes sure the page exists and a Flow-specific revision has been inserted
 			$status = $this->occupationController->ensureFlowRevision(
 				new Article( $destinationTitle ),
 				$state->boardWorkflow
