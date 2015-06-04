@@ -9,14 +9,24 @@
 	 *
 	 * @class mw.flow.editors.AbstractEditor
 	 * @abstract
+	 * @mixins OO.EventEmitter
 	 *
 	 * @constructor
 	 */
 	mw.flow.editors = {
-		AbstractEditor: function () {}
+		AbstractEditor: function () {
+			// Mixin constructor
+			OO.EventEmitter.call( this );
+		}
 	};
 
 	OO.initClass( mw.flow.editors.AbstractEditor );
+	OO.mixinClass( mw.flow.editors.AbstractEditor, OO.EventEmitter );
+
+	/**
+	 * @event change
+	 * Fired when the user changes the content of the editor.
+	 */
 
 	// Static methods
 
