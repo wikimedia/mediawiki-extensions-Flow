@@ -16,6 +16,23 @@
       "revId": "cab54de4cfd145d0d3e0ea72026b471111a3e40d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aedf27f1_63d7ca29",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-06-04T14:58:42Z",
+      "side": 1,
+      "message": "That doesn\u0027t seem to fire often enough.\n\nTry this: type a key, change editor, type a key, change editor.... repeat",
+      "revId": "cab54de4cfd145d0d3e0ea72026b471111a3e40d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
