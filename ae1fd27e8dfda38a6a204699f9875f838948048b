@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aedf27f1_7b8c4a3b",
+        "filename": "includes/Content/BoardContent.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2015-06-04T22:34:35Z",
+      "side": 1,
+      "message": "This sounds like ApiTestCase::doApiRequest should be overriding RequestContext when running tests, not here.",
+      "revId": "ae1fd27e8dfda38a6a204699f9875f838948048b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
