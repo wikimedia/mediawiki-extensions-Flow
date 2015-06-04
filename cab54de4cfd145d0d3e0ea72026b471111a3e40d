@@ -33,6 +33,24 @@
       "revId": "cab54de4cfd145d0d3e0ea72026b471111a3e40d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aedf27f1_be64e5af",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-04T16:10:53Z",
+      "side": 1,
+      "message": "Hmm, maybe editors are reused or something. I\u0027ll investigate",
+      "parentUuid": "aedf27f1_63d7ca29",
+      "revId": "cab54de4cfd145d0d3e0ea72026b471111a3e40d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
