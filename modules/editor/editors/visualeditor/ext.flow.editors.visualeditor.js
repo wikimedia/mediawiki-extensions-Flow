@@ -9,6 +9,9 @@
 	 * @param {string} [content='']
 	 */
 	mw.flow.editors.visualeditor = function ( $node, content ) {
+		// Parent constructor
+		mw.flow.editors.visualeditor.parent.call( this );
+
 		// node the editor is associated with.
 		this.$node = $node;
 
@@ -82,11 +85,13 @@
 		$veNode = surface.$element.find( '.ve-ce-documentNode' );
 		$veNode.addClass( 'mw-ui-input' );
 
-		// simulate a keyup event on the original node, so the validation code will
+		// HACK: simulate a keyup event on the original node, so the validation code will
 		// pick up changes in the new node
 		$veNode.keyup( $.proxy( function () {
 			this.$node.keyup();
 		}, this ) );
+
+		surface.connect( this, { documentUpdate: [ 'emit', 'change' ] } );
 
 		$.each( this.initCallbacks, $.proxy( function ( k, callback ) {
 			callback.apply( this );

@@ -258,11 +258,14 @@
 				// Unmark pending, store editor preference
 				.then( function () {
 					markPending( false );
+
+					// If the user actually makes a change, set their editor preference to this editor
 					if ( !mw.user.isAnon() ) {
-						// update the user preferences; no preferences for anons
-						new mw.Api().saveOption( 'flow-editor', desiredEditor );
-						// ensure we also see that preference in the current page
-						mw.user.options.set( 'flow-editor', desiredEditor );
+						mw.flow.editor.getEditor( $node ).once( 'change', function () {
+							new mw.Api().saveOption( 'flow-editor', desiredEditor );
+							// ensure we also see that preference in the current page
+							mw.user.options.set( 'flow-editor', desiredEditor );
+						} );
 					}
 				} )
 
