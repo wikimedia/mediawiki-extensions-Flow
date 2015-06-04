@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aedf27f1_d2ea02d7",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2015-06-04T01:40:35Z",
+      "side": 1,
+      "message": "Assuming the \"change\" event listeners are not supposed to change the value, may wanna store it in a local variable instead having jQuery query/post-process the value twice.",
+      "revId": "cab54de4cfd145d0d3e0ea72026b471111a3e40d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
