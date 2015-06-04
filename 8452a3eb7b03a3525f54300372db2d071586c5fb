@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aedf27f1_158714de",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-04T11:18:45Z",
+      "side": 1,
+      "message": "In my destructive patchset (the one that \u0027ate\u0027 yours and was reverted), I also added topic id\u0027s to \u0027orderedTopicsId\u0027\n\nI have exposed the \u0027private\u0027 method _flowBoardSortTopicIds and then did two things:\n\n1. on dmBoard \u0027populate\u0027 event, which should be called each time we push topics into the board (including when we add the \u0027infinite scroll\u0027 feature) I have merged the new topic Ids into flowBoard.orderedTopicIds\n\n2. I exposed _flowBoardSortTopicIds so I can call it from flow-initialize after pushing in the new topics.\n\nsee for #1: \nhttps://gerrit.wikimedia.org/r/#/c/209671/24..26/modules/flow-initialize.js\n\nsee for #2: https://gerrit.wikimedia.org/r/#/c/209671/24..26/modules/engine/components/board/features/flow-board-loadmore.js\n\nBut you have deleted a lot of the functions from the old code. We really don\u0027t need to worry about orderedTopicIds at all? What happens if we load a topic from the ToC that is in the \"middle\" of a non loaded topic list? \n\nI thought that was a hack-fix (I described it as a superhack, really) but I just want to make sure we really don\u0027t need it anymore with your corrections.",
+      "revId": "8452a3eb7b03a3525f54300372db2d071586c5fb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
