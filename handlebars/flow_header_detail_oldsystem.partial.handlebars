@@ -1,0 +1,28 @@
+<div class="flow-board-header-detail-view">
+	<div class="flow-board-header-nav">
+		{{#if revision.actions.edit}}
+			<a href="{{revision.actions.edit.url}}"
+			   data-flow-api-handler="activateEditHeader"
+			   data-flow-api-target="< .flow-board-header"
+			   data-flow-interactive-handler="apiRequest"
+			   class="mw-ui-button mw-ui-progressive  mw-ui-quiet flow-ui-tooltip-target"
+			   title="{{revision.actions.edit.title}}">
+					<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-edit flow-board-header-icon"></span>{{l10n "flow-edit-header-link"}}
+			</a>
+		{{/if}}
+	</div>
+	{{#if revision.content}}
+		<div class="flow-board-header-content">
+			{{escapeContent revision.content.format revision.content.content}}
+		</div>
+	{{/if}}
+
+</div>
+<a href="javascript:void(0);"
+	class="mw-ui-button mw-ui-quiet side-rail-toggle-button"
+	data-flow-interactive-handler="toggleSideRail">
+	<span class="wikiglyph wikiglyph-x pull-right collapse-button"
+		  title="{{l10n "flow-board-collapse-description"}}"></span>
+	<span class="wikiglyph wikiglyph-speech-bubbles pull-right expand-button"
+		  title="{{l10n "flow-board-expand-description"}}"></span>
+</a>
