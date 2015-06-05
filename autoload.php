@@ -237,6 +237,7 @@ $wgAutoloadClasses += array(
 	'Flow\\NotificationFormatter' => __DIR__ . '/includes/Notifications/Formatter.php',
 	'Flow\\NotificationsUserLocator' => __DIR__ . '/includes/Notifications/UserLocator.php',
 	'Flow\\OccupationController' => __DIR__ . '/includes/TalkpageManager.php',
+	'Flow\\OOUI\\BoardDescriptionWidget' => __DIR__ . '/includes/OOUI/BoardDescriptionWidget.php',
 	'Flow\\Parsoid\\ContentFixer' => __DIR__ . '/includes/Parsoid/ContentFixer.php',
 	'Flow\\Parsoid\\Extractor' => __DIR__ . '/includes/Parsoid/Extractor.php',
 	'Flow\\Parsoid\\Extractor\\CategoryExtractor' => __DIR__ . '/includes/Parsoid/Extractor/CategoryExtractor.php',

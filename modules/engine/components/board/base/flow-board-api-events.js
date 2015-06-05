@@ -298,6 +298,11 @@
 			submodule: 'view-header',
 			page: mw.config.get( 'wgPageName' )
 		} ).done( function ( result ) {
+			// SUPERHACK: Add an indicator for handlebars to know to load the partial from
+			// the "old" system. This will go away when the OOUI widget in JS is operational
+			result.flow['view-header'].result.header.oldSystem = true;
+
+			// Render
 			$rendered = $(
 				flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
 					'flow_block_loop',
