@@ -58,11 +58,6 @@ class OccupationListener extends AbstractListener {
 			return;
 		}
 
-		if ( isset( $metadata['imported'] ) && $metadata['imported'] ) {
-			$user = $this->occupationController->getTalkpageManager();
-			$this->occupationController->allowCreation( $object->getArticleTitle(), $user, false );
-		}
-
 		$this->ensureOccupation( $object );
 	}
 
