@@ -9,7 +9,7 @@
 	 * @todo not like this
 	 */
 	$( document ).ready( function () {
-		var navWidget, flowBoard, dmBoard,
+		var descriptionWidget, navWidget, flowBoard, dmBoard,
 			$component = $( '.flow-component' );
 
 		// HACK: If there is no component, we are not on a flow
@@ -78,8 +78,15 @@
 		/* UI Widgets */
 		dmBoard = mw.flow.system.getBoard();
 		navWidget = new mw.flow.ui.NavigationWidget( dmBoard );
+		descriptionWidget = new mw.flow.ui.BoardDescriptionWidget( dmBoard.getDescription(), $( '.flow-board-header-content' ) );
 
 		$( '.flow-board-navigation' ).append( navWidget.$element );
+		$( '.flow-board-header-detail-view' )
+			// HACK: We will need to find a good way of creating the OOUI js widget
+			// out of the existing content, rather than rebuilding it. For the moment,
+			// however, this is done to make sure the widget can display properly
+			.empty()
+			.append( descriptionWidget.$element );
 
 		// Initialize the old system to accept the default
 		// 'newest' order for the topic order widget
