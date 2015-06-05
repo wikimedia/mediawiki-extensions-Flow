@@ -12,6 +12,8 @@ use User;
  */
 class ApiFlowEditTopicSummaryTest extends ApiTestCase {
 	public function testEditTopicSummary() {
+		$summaryText = '( ●_●)-((⌼===((() ≍≍≍≍≍ ♒ ✺ ♒ ZAP!';
+
 		$topic = $this->createTopic();
 
 		$data = $this->doApiRequest( array(
@@ -20,7 +22,7 @@ class ApiFlowEditTopicSummaryTest extends ApiTestCase {
 			'action' => 'flow',
 			'submodule' => 'edit-topic-summary',
 			'etsprev_revision' => '',
-			'etssummary' => '( ●_●)-((⌼===((() ≍≍≍≍≍ ♒ ✺ ♒ ZAP!',
+			'etssummary' => $summaryText,
 			'etsformat' => 'wikitext',
 		) );
 
@@ -40,10 +42,27 @@ class ApiFlowEditTopicSummaryTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'changeType', $revision, $debug );
 		$this->assertEquals( 'create-topic-summary', $revision['changeType'], $debug );
 		$this->assertEquals(
-			'( ●_●)-((⌼===((() ≍≍≍≍≍ ♒ ✺ ♒ ZAP!',
+			$summaryText,
 			trim( strip_tags( $revision['content']['content'] ) ),
 			$debug
 		);
 		$this->assertEquals( 'html', $revision['content']['format'], $debug );
+
+		$data = $this->doApiRequest( array(
+			'page' => $topic['topic-page'],
+			'action' => 'flow',
+			'submodule' => 'view-topic',
+		) );
+
+		$topicData = $data[0]['flow']['view-topic']['result']['topic'];
+		$rootPostId = $topicData['roots'][0];
+		$topicRevisionId = $topicData['posts'][$rootPostId][0];
+		$topicRevision = $topicData['revisions'][$topicRevisionId];
+
+		$this->assertEquals(
+			$summaryText,
+			trim( strip_tags( $topicRevision['summary']['revision']['content']['content'] ) ),
+			'Summary content present with correct structure in view-topic response'
+		);
 	}
 }
