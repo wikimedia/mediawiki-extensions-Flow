@@ -11,7 +11,11 @@
 	 * @param {string} [content='']
 	 */
 	mw.flow.editors.none = function ( $node, content ) {
-		var $editor = $node.closest( '.flow-editor' );
+		// Parent constructor
+		mw.flow.editors.none.parent.call( this );
+
+		var $editor = $node.closest( '.flow-editor' ),
+			prevContent = content;
 		this.$node = $node;
 		this.$node.val( content || '' );
 
@@ -43,6 +47,15 @@
 		if ( mw.config.get( 'wgFlowEditorList' ).indexOf( 'visualeditor' ) !== -1 ) {
 			mw.loader.using( 'ext.flow.editors.visualeditor', $.proxy( this.attachControls, this ) );
 		}
+
+		// HACK: we really need a TextInputWidget here
+		$node.on( 'keydown mouseup cut paste change input select', $.proxy( function () {
+			var newVal = $node.val();
+			if ( newVal !== prevContent ) {
+				prevContent = newVal;
+				this.emit( 'change' );
+			}
+		}, this ) );
 	};
 
 	OO.inheritClass( mw.flow.editors.none, mw.flow.editors.AbstractEditor );

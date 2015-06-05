@@ -208,6 +208,14 @@
 				$node.closest( '.flow-editor' ).toggleClass( 'oo-ui-texture-pending', pending );
 			}
 
+			function updateEditorPreference() {
+				if ( mw.user.options.get( 'flow-editor' ) !== desiredEditor ) {
+					new mw.Api().saveOption( 'flow-editor', desiredEditor );
+					// ensure we also see that preference in the current page
+					mw.user.options.set( 'flow-editor', desiredEditor );
+				}
+			}
+
 			markPending( true );
 
 			return mw.loader.using( 'ext.flow.editors.' + desiredEditor )
@@ -249,6 +257,8 @@
 
 				// load new editor with converted data
 				.then( function ( data ) {
+					// Stop listening for changes on old editor
+					mw.flow.editor.getEditor( $node ).off( 'change', updateEditorPreference );
 					// Destroy old editor
 					mw.flow.editor.destroy( $node );
 					// Load new editor
@@ -258,11 +268,11 @@
 				// Unmark pending, store editor preference
 				.then( function () {
 					markPending( false );
+
+					// If the user actually makes a change, set their editor preference to this editor
 					if ( !mw.user.isAnon() ) {
-						// update the user preferences; no preferences for anons
-						new mw.Api().saveOption( 'flow-editor', desiredEditor );
-						// ensure we also see that preference in the current page
-						mw.user.options.set( 'flow-editor', desiredEditor );
+						// Can't use .once() because that doesn't work well with .off()
+						mw.flow.editor.getEditor( $node ).on( 'change', updateEditorPreference );
 					}
 				} )
 
