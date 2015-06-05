@@ -26,11 +26,10 @@
 		this.setId( data.id );
 		this.pageTitle = data.pageTitle;
 		this.deleted = !!data.isDeleted;
+		this.sort = data.sort || 'updated';
 
-		// TODO: Aggregate events for all topics so we can let
-		// widgets listen to events like 'content' change
-		// (For example, the ToC widget should respond and update
-		// itself in case a topic title changes)
+		// PROBLEM: AGGREGATE EVENTS SEEM TO NOT BE WORKING...
+		this.aggregate( { contentChange: 'topicContentChange' } );
 	};
 
 	/* Initialization */
@@ -54,20 +53,29 @@
 	 * @param {string} order The order of the topics; 'newest' or 'updated'
 	 */
 
+	/**
+	 * One of the board's topic content changed
+	 *
+	 * @event topicContentChange
+	 * @param {string} topicId Topic UUID
+	 * @param {string} content Topic content
+	 * @param {string} format Content format
+	 */
+
 	/* Methods */
 
 	/**
 	 * @inheritdoc
 	 */
-	mw.flow.dm.Board.prototype.getHash = function () {
+	mw.flow.dm.Board.prototype.getHashObject = function () {
 		return $.extend( {
 			isDeleted: this.isDeleted(),
 			pagePrefixedDb: this.getPageTitle().getPrefixedDb(),
 			topicCount: this.getItemCount(),
-			description: this.getDescription() && this.getDescription().getHash()
+			description: this.getDescription() && this.getDescription().getHashObject()
 		},
 			// Parent
-			mw.flow.dm.Board.super.prototype.getHash.call( this )
+			mw.flow.dm.Board.super.prototype.getHashObject.call( this )
 		);
 	};
 
@@ -107,6 +115,28 @@
 	mw.flow.dm.Board.prototype.setDescription = function ( desc ) {
 		this.description = desc;
 		this.emit( 'descriptionChange', this.description );
+	};
+
+	/**
+	 * Get board sort order, 'newest' or 'updated'
+	 *
+	 * @return {string} Board sort order
+	 */
+	mw.flow.dm.Board.prototype.getSortOrder = function () {
+		return this.sort;
+	};
+
+	/**
+	 * Set board sort order, 'newest' or 'updated'
+	 *
+	 * @param {string} Board sort order
+	 * @fires sortOrderChange
+	 */
+	mw.flow.dm.Board.prototype.setSortOrder = function ( order ) {
+		if ( this.sort !== order ) {
+			this.sort = order;
+			this.emit( 'sortOrderChange', order );
+		}
 	};
 
 	/**

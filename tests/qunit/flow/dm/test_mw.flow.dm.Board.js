@@ -10,7 +10,7 @@ QUnit.test( 'Create board', function ( assert ) {
 		expectCount = 0,
 		cases = [
 			{
-				method: 'getHash',
+				method: 'getHashObject',
 				expected: {
 					id: 'xxx123xxx',
 					isDeleted: false,
@@ -68,7 +68,7 @@ QUnit.test( 'Create board', function ( assert ) {
 				]
 			},
 			{
-				method: 'getHash',
+				method: 'getHashObject',
 				expected: {
 					id: 'xxx123xxx',
 					isDeleted: false,

@@ -72,7 +72,7 @@
 	/**
 	 * @inheritdoc
 	 */
-	mw.flow.dm.RevisionedContent.prototype.getHash = function () {
+	mw.flow.dm.RevisionedContent.prototype.getHashObject = function () {
 		return $.extend( {
 			content: this.getContent(),
 			contentFormat: this.getContentFormat(),
@@ -88,7 +88,7 @@
 			originalContent: this.isOriginalContent(),
 			watched: this.isWatched(),
 			watchable: this.isWatchable()
-		}, mw.flow.dm.RevisionedContent.super.prototype.getHash.call( this ) );
+		}, mw.flow.dm.RevisionedContent.super.prototype.getHashObject.call( this ) );
 	};
 
 	/**
