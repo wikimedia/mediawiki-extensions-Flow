@@ -13,7 +13,7 @@
     "grunt-contrib-csslint": "0.2.0",
     "grunt-contrib-jshint": "0.10.0",
     "grunt-contrib-watch": "0.6.1",
-    "grunt-banana-checker": "0.2.0",
+    "grunt-banana-checker": "0.2.1",
     "grunt-jscs": "1.8.0"
   }
 }
