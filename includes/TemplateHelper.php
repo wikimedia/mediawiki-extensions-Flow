@@ -523,10 +523,10 @@ class TemplateHelper {
 	 * @throws WrongNumberArgumentsException
 	 */
 	static public function diffRevision( array $args, array $named ) {
-		if ( count( $args ) !== 9 ) {
-			throw new WrongNumberArgumentsException( $args, 'nine' );
+		if ( count( $args ) !== 10 ) {
+			throw new WrongNumberArgumentsException( $args, 'ten' );
 		}
-		list ( $diffContent, $oldTimestamp, $newTimestamp, $oldAuthor, $newAuthor, $oldLink, $newLink, $prevLink, $nextLink ) = $args;
+		list ( $diffContent, $oldTimestamp, $newTimestamp, $oldAuthor, $newAuthor, $oldLink, $newLink, $prevLink, $nextLink, $markPatrolLink ) = $args;
 		$differenceEngine = new \DifferenceEngine();
 		$multi = $differenceEngine->getMultiNotice();
 		// Display a message when the diff is empty
@@ -553,6 +553,7 @@ class TemplateHelper {
 				'author' => $newAuthor,
 				'link' => $newLink,
 				'next' => $nextLink,
+				'patrol' => $markPatrolLink,
 			) ),
 			$multi,
 			$notice
