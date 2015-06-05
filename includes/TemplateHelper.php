@@ -149,6 +149,7 @@ class TemplateHelper {
 					'user' => 'Flow\TemplateHelper::user',
 					'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
 					'escapeContent' => 'Flow\TemplateHelper::escapeContent',
+					'enablePatrollingLink' => 'Flow\TemplateHelper::enablePatrollingLink',
 				),
 				'hbhelpers' => array(
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -523,10 +524,10 @@ class TemplateHelper {
 	 * @throws WrongNumberArgumentsException
 	 */
 	static public function diffRevision( array $args, array $named ) {
-		if ( count( $args ) !== 9 ) {
-			throw new WrongNumberArgumentsException( $args, 'nine' );
+		if ( count( $args ) !== 10 ) {
+			throw new WrongNumberArgumentsException( $args, 'ten' );
 		}
-		list ( $diffContent, $oldTimestamp, $newTimestamp, $oldAuthor, $newAuthor, $oldLink, $newLink, $prevLink, $nextLink ) = $args;
+		list ( $diffContent, $oldTimestamp, $newTimestamp, $oldAuthor, $newAuthor, $oldLink, $newLink, $prevLink, $nextLink, $patrolLink ) = $args;
 		$differenceEngine = new \DifferenceEngine();
 		$multi = $differenceEngine->getMultiNotice();
 		// Display a message when the diff is empty
@@ -553,6 +554,7 @@ class TemplateHelper {
 				'author' => $newAuthor,
 				'link' => $newLink,
 				'next' => $nextLink,
+				'patrol' => $patrolLink,
 			) ),
 			$multi,
 			$notice
@@ -793,5 +795,15 @@ class TemplateHelper {
 				'content' => $fn(),
 			) )
 		);
+	}
+
+	/**
+	 * Adds required resource and protection for patrolling link.
+	 */
+	static public function enablePatrollingLink() {
+		$outputPage = RequestContext::getMain()->getOutput();
+
+		$outputPage->preventClickjacking();
+		$outputPage->addModules( 'mediawiki.page.patrol.ajax' );
 	}
 }

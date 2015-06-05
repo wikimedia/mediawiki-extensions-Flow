@@ -11,12 +11,22 @@
             'debug' => $debugopt,
         ),
         'constants' => array(),
-        'helpers' => array(            'l10nParse' => 'Flow\TemplateHelper::l10nParse',
+        'helpers' => array(            'l10n' => 'Flow\TemplateHelper::l10n',
+            'l10nParse' => 'Flow\TemplateHelper::l10nParse',
             'escapeContent' => 'Flow\TemplateHelper::escapeContent',
+            'enablePatrollingLink' => 'Flow\TemplateHelper::enablePatrollingLink',
 ),
         'blockhelpers' => array(),
         'hbhelpers' => array(),
-        'partials' => array(),
+        'partials' => array('flow_patrol_action' => function ($cx, $in, $sp) {return ''.$sp.''.((LCRun3::ifvar($cx, ((isset($in['revision']['rev_view_links']['markPatrolled']) && is_array($in['revision']['rev_view_links'])) ? $in['revision']['rev_view_links']['markPatrolled'] : null))) ? '<div class="patrollink">
+'.$sp.'        [<a class="mw-ui-quiet"
+'.$sp.'           href="'.htmlentities((string)((isset($in['revision']['rev_view_links']['markPatrolled']['url']) && is_array($in['revision']['rev_view_links']['markPatrolled'])) ? $in['revision']['rev_view_links']['markPatrolled']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+'.$sp.'           title="'.LCRun3::ch($cx, 'l10n', array(array('flow-mark-revision-patrolled-link-title'),array()), 'encq').'"
+'.$sp.'           data-role="patrol">
+'.$sp.'            '.LCRun3::ch($cx, 'l10n', array(array('flow-mark-revision-patrolled-link-text'),array()), 'encq').'
+'.$sp.'        </a>]
+'.$sp.'    </div>
+'.$sp.'    '.LCRun3::ch($cx, 'enablePatrollingLink', array(array(),array()), 'encq').'' : '').'';},),
         'scopes' => array(),
         'sp_vars' => array('root' => $in),
         'lcrun' => 'LCRun3',
@@ -31,7 +41,8 @@
 	<div class="flow-revision-content">
 		'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['revision']['content']['format']) && is_array($in['revision']['content'])) ? $in['revision']['content']['format'] : null),((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null)),array()), 'encq').'
 	</div>
-</div>
+
+'.LCRun3::p($cx, 'flow_patrol_action', array(array($in),array()), '	').'</div>
 
 
 ';
