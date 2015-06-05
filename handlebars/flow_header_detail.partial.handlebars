@@ -1,22 +1,12 @@
-<div class="flow-board-header-detail-view">
-	<div class="flow-board-header-nav">
-		{{#if revision.actions.edit}}
-			<a href="{{revision.actions.edit.url}}"
-			   data-flow-api-handler="activateEditHeader"
-			   data-flow-api-target="< .flow-board-header"
-			   data-flow-interactive-handler="apiRequest"
-			   class="mw-ui-button mw-ui-progressive  mw-ui-quiet flow-ui-tooltip-target"
-			   title="{{revision.actions.edit.title}}">
-					<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-edit flow-board-header-icon"></span>{{l10n "flow-edit-header-link"}}
-			</a>
-		{{/if}}
-	</div>
-	{{#if revision.content}}
-		<div class="flow-board-header-content">
-			{{escapeContent revision.content.format revision.content.content}}
-		</div>
-	{{/if}}
-</div>
+{{{ oouify
+	revision.content.format
+	revision.content.content
+	revision.actions.edit.url
+	revision.actions.edit.title
+	label=flow-edit-header-link
+	type="BoardDescriptionWidget"
+	name="flow-board-description"
+}}}
 <a href="javascript:void(0);"
 	class="mw-ui-button mw-ui-quiet side-rail-toggle-button"
 	data-flow-interactive-handler="toggleSideRail">

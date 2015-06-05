@@ -573,6 +573,7 @@
 
 	// Register helpers
 	Handlebars.registerHelper( 'l10n', FlowHandlebars.prototype.l10n );
+	Handlebars.registerHelper( 'oouify', FlowHandlebars.prototype.oouify );
 	Handlebars.registerHelper( 'l10nParse', FlowHandlebars.prototype.l10nParse );
 	Handlebars.registerHelper( 'uuidTimestamp', FlowHandlebars.prototype.uuidTimestamp );
 	Handlebars.registerHelper( 'timestamp', FlowHandlebars.prototype.timestamp );
