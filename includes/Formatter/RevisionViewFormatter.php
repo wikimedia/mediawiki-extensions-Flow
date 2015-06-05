@@ -7,6 +7,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\UrlGenerator;
 use IContextSource;
+use ChangesList;
 
 class RevisionViewFormatter {
 	/**
@@ -39,7 +40,7 @@ class RevisionViewFormatter {
 	 */
 	public function formatApi( FormatterRow $row, IContextSource $ctx ) {
 		$res = $this->serializer->formatApi( $row, $ctx );
-		$res['rev_view_links'] = $this->buildLinks( $row );
+		$res['rev_view_links'] = $this->buildLinks( $row, $ctx );
 		$res['human_timestamp'] = $this->getHumanTimestamp( $res['timestamp'] );
 		if ( $row->revision instanceof PostRevision ) {
 			$res['properties']['topic-of-post'] = $this->serializer->processParam(
@@ -61,11 +62,13 @@ class RevisionViewFormatter {
 	}
 
 	/**
-	 * Generate the links for single and diff vie actions
+	 * Generate the links for single and diff view actions
+	 *
 	 * @param FormatterRow $row
+	 * @param IContextSource $ctx
 	 * @return array
 	 */
-	public function buildLinks( FormatterRow $row ) {
+	public function buildLinks( FormatterRow $row, IContextSource $ctx ) {
 		$workflowId = $row->workflow->getId();
 
 		$boardTitle = $row->workflow->getOwnerTitle();
@@ -117,6 +120,15 @@ class RevisionViewFormatter {
 			$links['diff'] = array(
 				'url' => '',
 				'title' => ''
+			);
+		}
+
+		$recentChange = $row->revision->getRecentChange();
+		if ( ChangesList::isUnpatrolled( $recentChange, $ctx->getUser()  ) ) {
+			$links['markPatrolled'] = $this->urlGenerator->markRevisionPatrolledAction(
+				$title,
+				$workflowId,
+				$recentChange
 			);
 		}
 

@@ -414,6 +414,7 @@ $wgResourceModules += array(
 			'mediawiki.api',
 			'mediawiki.util',
 			'mediawiki.api.options', // required by switch-editor feature
+			'mediawiki.page.patrol.ajax',
 		),
 		'messages' => array(
 			'flow-error-external',

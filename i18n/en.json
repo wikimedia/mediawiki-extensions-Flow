@@ -545,5 +545,7 @@
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|uses markup]]",
 	"flow-wikitext-editor-help-preview-the-result": "preview the result",
 	"flow-wikitext-switch-editor-tooltip": "Switch to VisualEditor",
-	"flow-ve-switch-editor-tool-title": "Switch to Wikitext editor"
+	"flow-ve-switch-editor-tool-title": "Switch to Wikitext editor",
+	"flow-mark-revision-patrolled-link-text": "Mark this page as patrolled",
+	"flow-mark-revision-patrolled-link-title": "Mark this page as patrolled"
 }

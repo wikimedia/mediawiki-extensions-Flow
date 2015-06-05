@@ -30,6 +30,7 @@
 	<div class="flow-compare-revisions">
 		'.LCRun3::ch($cx, 'diffRevision', array(array(((isset($in['revision']['diff_content']) && is_array($in['revision'])) ? $in['revision']['diff_content'] : null),((isset($in['revision']['old']['human_timestamp']) && is_array($in['revision']['old'])) ? $in['revision']['old']['human_timestamp'] : null),((isset($in['revision']['new']['human_timestamp']) && is_array($in['revision']['new'])) ? $in['revision']['new']['human_timestamp'] : null),((isset($in['revision']['old']['author']['name']) && is_array($in['revision']['old']['author'])) ? $in['revision']['old']['author']['name'] : null),((isset($in['revision']['new']['author']['name']) && is_array($in['revision']['new']['author'])) ? $in['revision']['new']['author']['name'] : null),((isset($in['revision']['old']['rev_view_links']['single-view']['url']) && is_array($in['revision']['old']['rev_view_links']['single-view'])) ? $in['revision']['old']['rev_view_links']['single-view']['url'] : null),((isset($in['revision']['new']['rev_view_links']['single-view']['url']) && is_array($in['revision']['new']['rev_view_links']['single-view'])) ? $in['revision']['new']['rev_view_links']['single-view']['url'] : null),((isset($in['revision']['links']['previous']) && is_array($in['revision']['links'])) ? $in['revision']['links']['previous'] : null),((isset($in['revision']['links']['next']) && is_array($in['revision']['links'])) ? $in['revision']['links']['next'] : null)),array()), 'encq').'
 	</div>
+	<h1>ASDFASD</h1>
 </div>
 ';
 }
