@@ -9,6 +9,7 @@ use Flow\Parsoid\Utils;
 use Hooks;
 use Title;
 use User;
+use RecentChange;
 
 abstract class AbstractRevision {
 	const MODERATED_NONE = '';
@@ -698,6 +699,54 @@ abstract class AbstractRevision {
 	 */
 	public function getPreviousContentLength() {
 		return $this->previousContentLength;
+	}
+
+	/**
+	 * Finds the RecentChange object associated with this flow revision.
+	 *
+	 * @return null|RecentChange
+	 */
+	public function getRecentChange() {
+		$timestamp = $this->revId->getTimestamp();
+
+		$workflow = $this->getCollection()->getWorkflow();
+		if ( $this->changeType === 'new-post' ) {
+			$title = $workflow->getOwnerTitle();
+		} else {
+			$title = $workflow->getArticleTitle();
+		}
+		$namespace = $title->getNamespace();
+
+		$conditions = array(
+			'rc_title' => $title->getDBkey(),
+			'rc_timestamp' => $timestamp,
+			'rc_namespace' => $namespace
+		);
+		$options = array( 'USE INDEX' => 'rc_timestamp' );
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$rows = $dbr->select( 'recentchanges', RecentChange::selectFields(), $conditions, __METHOD__, $options );
+
+		if ( $rows === false ) {
+			return null;
+		}
+
+		if ( $rows->numRows() === 1 ) {
+			return RecentChange::newFromRow( $rows->fetchObject() );
+		}
+
+		// it is possible that more than 1 changes on the same page have the same timestamp
+		// the revision id is hidden in rc_params['flow-workflow-change']['revision']
+		$revId = $this->revId->getAlphadecimal();
+		while ( $row = $rows->next() ) {
+			$rc = RecentChange::newFromRow( $row );
+			$params = $rc->parseParams();
+			if ( $params && $params['flow-workflow-change']['revision'] === $revId ) {
+				return RecentChange::newFromRow( $row );
+			}
+		}
+
+		return null;
 	}
 
 	/**
