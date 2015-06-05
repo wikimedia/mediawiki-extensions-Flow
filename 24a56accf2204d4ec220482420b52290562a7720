@@ -34,6 +34,24 @@
       "revId": "24a56accf2204d4ec220482420b52290562a7720",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aedf27f1_e215eb41",
+        "filename": "includes/Formatter/RecentChanges.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-06-05T15:57:44Z",
+      "side": 1,
+      "message": "ChangesList::isUnpatrolled will nearly always return false for our entries.\n\nThe first couple of lines in that method are about figuring out if the rc entry is unpatrolled - this is fine.\n\nSecond half, it figures out if the user can see that it\u0027s unpatrolled, by matching either:\n* $user-\u003euseRCPatrol()\n* $user-\u003euseNPPatrol() \u0026\u0026 $rcType \u003d\u003d RC_NEW\n\nuseRCPatrol: User needs \u0027patrol\u0027 or \u0027patrolmarks\u0027 permissions and $wgUseRCPatrol needs to be enabled, which for most production wikis is not the case (see InitialiseSettings.php[1])\n\nuseNPPatrol: Same as above, but also works if $wgUseNPPatrol is enabled. But the rc type can only be RC_NEW (\u003d1)\n\nSo basically, isUnpatrolled will always return false for our Flow entries on most production wikis.\n\n1: https://github.com/wikimedia/operations-mediawiki-config/blob/master/wmf-config/InitialiseSettings.php, L6530",
+      "parentUuid": "aedf27f1_c78eb9d5",
+      "revId": "24a56accf2204d4ec220482420b52290562a7720",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
