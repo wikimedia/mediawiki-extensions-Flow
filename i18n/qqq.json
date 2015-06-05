@@ -538,5 +538,9 @@
 	"flow-wikitext-editor-help-uses-wikitext": "Link to wikitext help. Used in the following messages:\n* {{msg-mw|flow-wikitext-editor-help}}\n* {{msg-mw|flow-wikitext-editor-help-and-preview}}",
 	"flow-wikitext-editor-help-preview-the-result": "Text of link that will switch from wikitext editor to an html preview.  See also flow-wikitext-editor-help",
 	"flow-wikitext-switch-editor-tooltip": "Tooltip for button shown below a wikitext editor to switch to VisualEditor.",
-	"flow-ve-switch-editor-tool-title": "Tooltip for button in visualeditor toolbar to switch to the wikitext editor."
+	"flow-ve-switch-editor-tool-title": "Tooltip for button in visualeditor toolbar to switch to the wikitext editor.",
+	"flow-mark-revision-patrolled-link-text": "Text of the link to mark a revision as patrolled on a revision page.",
+	"flow-mark-revision-patrolled-link-title": "Title of the link to mark a revision as patrolled on a revision page.",
+	"flow-mark-diff-patrolled-link-text": "Text of the link to mark a revision as patrolled on a diff page.",
+	"flow-mark-diff-patrolled-link-title": "Title of the link to mark a revision as patrolled on a diff page."
 }

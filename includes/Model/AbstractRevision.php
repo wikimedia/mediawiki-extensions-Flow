@@ -8,6 +8,7 @@ use Flow\Exception\PermissionException;
 use Flow\Parsoid\Utils;
 use Title;
 use User;
+use RecentChange;
 
 abstract class AbstractRevision {
 	const MODERATED_NONE = '';
@@ -697,6 +698,33 @@ abstract class AbstractRevision {
 	 */
 	public function getPreviousContentLength() {
 		return $this->previousContentLength;
+	}
+
+	/**
+	 * Finds the RecentChange object associated with this flow revision.
+	 *
+	 * @return null|RecentChange
+	 */
+	public function getRecentChange() {
+		$timestamp = $this->revId->getTimestamp();
+
+		$workflow = $this->getCollection()->getWorkflow();
+		if ( $this->changeType === 'new-post' ) {
+			$title = $workflow->getOwnerTitle();
+		} else {
+			$title = $workflow->getArticleTitle();
+		}
+		$namespace = $title->getNamespace();
+
+		return RecentChange::newFromConds(
+			array(
+				'rc_title' => $title->getDBkey(),
+				'rc_timestamp' => $timestamp,
+				'rc_namespace' => $namespace
+			),
+			__METHOD__,
+			array( 'USE INDEX' => 'rc_timestamp' )
+		);
 	}
 
 	/**
