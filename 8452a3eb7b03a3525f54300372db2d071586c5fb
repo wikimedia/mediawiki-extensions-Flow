@@ -16,6 +16,24 @@
       "revId": "8452a3eb7b03a3525f54300372db2d071586c5fb",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aedf27f1_4ee9867a",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-05T03:43:13Z",
+      "side": 1,
+      "message": "Well, we definitely have to worry about it somewhat (otherwise, I wouldn\u0027t need this code). :)\n\nIf I did the removals right, it should only affect areas where the old code is being obsoleted by the new.  If I removed something that needs to stay, feel free to put it back.\n\n\"What happens if we load a topic from the ToC that is in the \"middle\" of a non loaded topic list? \"\n\nIf it\u0027s in the TOC, it should already be in orderedTopicIds (it would have gone through the \u0027add\u0027 event above).  So if you jump to any TOC element, it should already be in orderedTopicIds, as should be the ones above it (in fact, this is related to why this code was necessary).\n\nThe only part that might be missing in orderedTopicIds is the ones below both the TOC and the jumped to item.  For example, say the TOC is showing the first 50, and you jump to 48.\n\n48 through 57 will load in the page itself.  51 through 57 are missing from both the TOC and orderedTopicIds.\n\nAt this point, 51 through 100 should load in both TOC and orderedTopicIds.  It turns out this is essentially the same issue as updating the TOC on infinite scroll like we talked about.  On master, it always updates the TOC in chunks of 50, whether you infinite scroll the page itself or jump to 48 (using above example).\n\nIt doesn\u0027t necessarily have to work exactly the same in the OO-ified version, but there shouldn\u0027t be gaps in the TOC (for both UX reasons and for internal reasons).",
+      "parentUuid": "aedf27f1_158714de",
+      "revId": "8452a3eb7b03a3525f54300372db2d071586c5fb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
