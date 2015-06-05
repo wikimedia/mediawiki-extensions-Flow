@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aedf27f1_67e90d7b",
+        "filename": "includes/Formatter/RecentChanges.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-06-05T15:29:59Z",
+      "side": 1,
+      "message": "Looks like we won\u0027t be able to use ChangesList::isUnpatrolled as-is.\n\nTo figure out if an unpatrolled thing can be shown, it does this:\n\n    if ( $user-\u003euseNPPatrol() \u0026\u0026 $rcType \u003d\u003d RC_NEW ) {\n\nUnfortunately, Flow\u0027s entries have rc_type 142 (RC_FLOW).\nPreferably, we make core more accepting of other types (preferable, but not sure what else we could affect), or duplicate whatever core is doing. Up to you :)",
+      "revId": "24a56accf2204d4ec220482420b52290562a7720",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
