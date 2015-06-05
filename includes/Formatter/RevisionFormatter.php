@@ -254,7 +254,9 @@ class RevisionFormatter {
 			if ( $row->summary ) {
 				$summary = $this->formatApi( $row->summary, $ctx, $action );
 				if ( $summary ) {
-					$res['summary'] = $summary;
+					$res['summary'] = array(
+						'revision' =>  $summary,
+					);
 				}
 			}
 
