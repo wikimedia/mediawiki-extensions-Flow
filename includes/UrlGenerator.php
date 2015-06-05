@@ -12,10 +12,10 @@ use Flow\Model\Header;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\UUID;
-use Flow\Model\Workflow;
 use SpecialPage;
 use Title;
 use RequestContext;
+use RecentChange;
 
 /**
  * Provides url generation capabilities for Flow. Ties together an
@@ -833,6 +833,29 @@ class UrlGenerator {
 			array(),
 			null,
 			wfMessage( 'flow-thank-link-title', $sender, $recipient )->text()
+		);
+	}
+
+	/**
+	 * Mark a revision as patrolled
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param RecentChange $rc
+	 * @param string $token
+	 * @return Anchor
+	 * @throws FlowException
+	 * @throws InvalidInputException
+	 */
+	public function markRevisionPatrolledAction( Title $title = null, UUID $workflowId, RecentChange $rc, $token ) {
+		return new Anchor(
+			wfMessage( 'flow-mark-revision-patrolled-link-text' )->text(),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'markpatrolled',
+				'rcid' => $rc->getAttribute( 'rc_id' ),
+				'token' => $token
+			)
 		);
 	}
 }
