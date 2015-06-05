@@ -48,7 +48,7 @@ $specialPageAliases['ko'] = array(
 
 /** Northern Luri (لوری مینجایی) */
 $specialPageAliases['lrc'] = array(
-	'Flow' => array( 'جریان' ),
+	'Flow' => array( 'جأریان' ),
 );
 
 /** Macedonian (македонски) */
