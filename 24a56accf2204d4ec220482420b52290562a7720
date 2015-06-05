@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "8ec42329_ee0cff47",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2015-06-05T19:01:34Z",
+      "side": 1,
+      "message": "specify for RC patrol?",
+      "revId": "24a56accf2204d4ec220482420b52290562a7720",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aedf27f1_67e90d7b",
         "filename": "includes/Formatter/RecentChanges.php",
         "patchSetId": 1
@@ -49,6 +66,24 @@
       "side": 1,
       "message": "ChangesList::isUnpatrolled will nearly always return false for our entries.\n\nThe first couple of lines in that method are about figuring out if the rc entry is unpatrolled - this is fine.\n\nSecond half, it figures out if the user can see that it\u0027s unpatrolled, by matching either:\n* $user-\u003euseRCPatrol()\n* $user-\u003euseNPPatrol() \u0026\u0026 $rcType \u003d\u003d RC_NEW\n\nuseRCPatrol: User needs \u0027patrol\u0027 or \u0027patrolmarks\u0027 permissions and $wgUseRCPatrol needs to be enabled, which for most production wikis is not the case (see InitialiseSettings.php[1])\n\nuseNPPatrol: Same as above, but also works if $wgUseNPPatrol is enabled. But the rc type can only be RC_NEW (\u003d1)\n\nSo basically, isUnpatrolled will always return false for our Flow entries on most production wikis.\n\n1: https://github.com/wikimedia/operations-mediawiki-config/blob/master/wmf-config/InitialiseSettings.php, L6530",
       "parentUuid": "aedf27f1_c78eb9d5",
+      "revId": "24a56accf2204d4ec220482420b52290562a7720",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_2e1be783",
+        "filename": "includes/Formatter/RecentChanges.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2015-06-05T19:01:34Z",
+      "side": 1,
+      "message": "I don\u0027t think it makes sense to support NP patrol in Flow, the model just doesn\u0027t make sense (showing up on Special:NewPages, etc.).\n\nAIUI cawiki is the one that specifically asked for this, and they have RC patrol turned on.\n\nI don\u0027t know if the creation of new flow boards supports NP patrol, but that should probalby be handled as a separate patch.",
+      "parentUuid": "aedf27f1_e215eb41",
       "revId": "24a56accf2204d4ec220482420b52290562a7720",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
