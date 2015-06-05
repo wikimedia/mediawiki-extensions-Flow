@@ -1,5 +1,9 @@
 <div class="flow-board-header-detail-view">
-	<div class="flow-board-header-nav">
+	{{{ oouify
+		type="BoardDescriptionWidget"
+		name="flow-board-description"
+	}}}
+	<!--div class="flow-board-header-nav">
 		{{#if revision.actions.edit}}
 			<a href="{{revision.actions.edit.url}}"
 			   data-flow-api-handler="activateEditHeader"
@@ -10,12 +14,13 @@
 					<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-edit flow-board-header-icon"></span>{{l10n "flow-edit-header-link"}}
 			</a>
 		{{/if}}
-	</div>
+	</div-->
 	{{#if revision.content}}
-		<div class="flow-board-header-content">
+		<!--div class="flow-board-header-content">
 			{{escapeContent revision.content.format revision.content.content}}
-		</div>
+		</div -->
 	{{/if}}
+
 </div>
 <a href="javascript:void(0);"
 	class="mw-ui-button mw-ui-quiet side-rail-toggle-button"
