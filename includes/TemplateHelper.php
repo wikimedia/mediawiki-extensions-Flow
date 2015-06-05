@@ -150,6 +150,7 @@ class TemplateHelper {
 					'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
 					'escapeContent' => 'Flow\TemplateHelper::escapeContent',
 					'enablePatrollingLink' => 'Flow\TemplateHelper::enablePatrollingLink',
+					'oouify' => 'Flow\TemplateHelper::oouify',
 				),
 				'hbhelpers' => array(
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -481,6 +482,59 @@ class TemplateHelper {
 				str_replace( '</script>', '</flowprogressivescript>', $fn() ) .
 			'</script>'
 		);
+	}
+
+	/**
+	 * [oouify description]
+	 * @param array $args one or more arguments, i18n key and parameters
+	 * @param array $named named object for arguments given by handlebars
+	 * @return string Representation of an ooui widget dom
+	 */
+	static public function oouify( array $args, array $named ) {
+		$widgetType = $named[ 'type' ];
+		$data = array();
+		$acceptableDataArgs = array();
+
+		// Parse label
+		if ( isset( $named['label'] ) ) {
+			$label = $named[ 'label' ];
+		}
+		$classes = array();
+		if ( isset( $named['classes'] ) ) {
+			$classes = explode( ' ', $named[ 'classes' ] );
+		}
+
+		if ( empty( $label ) && !empty( $named['l10n'] ) ) {
+			$label = TemplateHelper::l10n( explode( ' ', $named['l10n'] ), array() );
+		}
+
+		// Assemble data
+		for ($i = 0; $i < count( $acceptableDataArgs ); ++$i) {
+			if ( $named[$acceptableDataArgs[$i]] ) {
+				$data[$acceptableDataArgs[$i]] = $named[$acceptableDataArgs[$i]];
+			}
+		}
+
+		// Push raw arguments
+		$data['args'] = $args;
+		$baseConfig = array(
+			'infusable' => true,
+			'id' => $named[ 'name' ],
+			'classes' => $classes,
+			'data' => $data
+		);
+		switch( $widgetType ) {
+			case 'BoardDescriptionWidget':
+				$dataArgs = array(
+					'descriptionFormat' => $args[0],
+					'description' => $args[1],
+					'editLink' => $args[2]
+				);
+				$widget = new OOUI\BoardDescriptionWidget( $dataArgs + $baseConfig );
+				break;
+		}
+
+		return $widget;
 	}
 
 	/**
