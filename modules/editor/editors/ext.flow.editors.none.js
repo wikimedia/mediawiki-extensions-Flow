@@ -108,48 +108,29 @@
 	 * Auto-expand/shrink as content changes.
 	 */
 	mw.flow.editors.none.prototype.autoExpand = function () {
-		var scrollHeight, $form, formBottom, windowBottom, maxHeightIncrease,
-			$this = $( this ),
-			height = $this.height(),
-			padding = $this.outerHeight() - $this.height() + 5;
+		var scrollHeight, innerHeight, outerHeight, maxInnerHeight, measurementError, idealHeight,
+			$this = $( this );
 
-		/*
-		 * Collapse to 0 height to get accurate scrollHeight for the content,
-		 * then restore height.
-		 * Without collapsing, scrollHeight would be the highest of:
-		 * * the content height
-		 * * the height the textarea already has
-		 * Since we're looking to also shrink the textarea when content shrinks,
-		 * we want to ignore that last case (hence the collapsing)
-		 */
-		$this.height( 0 );
-		scrollHeight = this.scrollHeight;
-		$this.height( height );
+		$this
+			.attr( 'rows', '' )
+			// Set inline height property to 0 to measure scroll height
+			.css( 'height', 0 );
 
-		/*
-		 * Only animate height change if there actually is a change; we don't
-		 * want every keystroke firing a 50ms animation.
-		 */
-		if ( scrollHeight === $this.data( 'flow-prev-scroll-height' ) ) {
-			// no change
-			return;
-		}
-		$this.data( 'flow-prev-scroll-height', scrollHeight );
+		scrollHeight = $this[0].scrollHeight;
 
-		$form = $this.closest( 'form' );
-		formBottom = $form.offset().top + $form.outerHeight( true );
-		windowBottom = $( window ).scrollTop() + $( window ).height();
-		// additional padding of 20px so the targeted form has breathing room
-		maxHeightIncrease = windowBottom - formBottom - 20;
+		// Remove inline height property to measure natural heights
+		$this.css( 'height', '' );
+		innerHeight = $this.innerHeight();
+		outerHeight = $this.outerHeight();
 
-		if ( scrollHeight - height - padding >= maxHeightIncrease ) {
-			// If we can't expand ensure overflow-y is set to auto
-			$this.css( 'overflow-y', 'auto' );
-		} else if ( scrollHeight !== $this.height() ) {
-			$this.css( {
-				height: scrollHeight,
-				'overflow-y': 'hidden'
-			} );
+		idealHeight = scrollHeight;
+
+		// Only apply inline height when expansion beyond natural height is needed
+		if ( idealHeight > innerHeight ) {
+			// Use the difference between the inner and outer height as a buffer
+			$this.css( 'height', idealHeight + ( outerHeight - innerHeight ) );
+		} else {
+			$this.css( 'height', '' );
 		}
 	};
 
@@ -194,6 +175,10 @@
 
 		// insert help information + editor switcher, and make it interactive
 		board.emitWithReturn( 'makeContentInteractive', $controls.insertAfter( this.$node ) );
+
+		// now that we've added a new element to the form, re-calculate the
+		// size of the textarea (we want the entire form to remain visible)
+		this.autoExpand.call( this.$node.get( 0 ) );
 	};
 
 	mw.flow.editors.none.prototype.focus = function () {
