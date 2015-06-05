@@ -60,6 +60,8 @@ $wgResourceModules += array(
 			'handlebars/flow_form_buttons.partial.handlebars',
 			'handlebars/flow_header_title.partial.handlebars',
 			'handlebars/flow_header_detail.partial.handlebars',
+			// HACK: Get rid of this when the description uses js ooui widgets
+			'handlebars/flow_header_detail_oldsystem.partial.handlebars',
 			'handlebars/flow_load_more.partial.handlebars',
 			'handlebars/flow_moderate_post_confirmation.partial.handlebars',
 			'handlebars/flow_moderate_post.partial.handlebars',
