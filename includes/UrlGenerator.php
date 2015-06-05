@@ -554,7 +554,7 @@ class UrlGenerator {
 	 */
 	public function editTopicSummaryAction( Title $title = null, UUID $workflowId ) {
 		return new Anchor(
-			wfMessage( 'flow-summarize-topic-submit' ),
+			wfMessage( 'flow-topic-action-summarize-topic' ),
 			$this->resolveTitle( $title, $workflowId ),
 			array( 'action' => 'edit-topic-summary' )
 		);
