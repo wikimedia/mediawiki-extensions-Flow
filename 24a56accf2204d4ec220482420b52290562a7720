@@ -16,6 +16,24 @@
       "revId": "24a56accf2204d4ec220482420b52290562a7720",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aedf27f1_c78eb9d5",
+        "filename": "includes/Formatter/RecentChanges.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-06-05T15:34:52Z",
+      "side": 1,
+      "message": "Makes sense but could you elaborate about which case would not be working correctly from the user\u0027s perspective?",
+      "parentUuid": "aedf27f1_67e90d7b",
+      "revId": "24a56accf2204d4ec220482420b52290562a7720",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
