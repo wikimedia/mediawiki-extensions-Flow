@@ -1007,6 +1007,10 @@ class FlowHooks {
 			'type' => 'api'
 		);
 
+		$preferences['flow-side-rail-state'] = array(
+			'type' => 'api'
+		);
+
 		return true;
 	}
 
