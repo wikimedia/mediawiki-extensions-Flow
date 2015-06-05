@@ -21,6 +21,17 @@
 			return;
 		}
 
+		// HACK: Bridge between the new oouified description and the old system. We have to
+		// do this before we're calling 'initComponent' so that initComponent will consider
+		// the apiHandler actions we are reattaching
+		$( '.flow-ui-boardDescriptionWidget' ).addClass( 'flow-board-header-detail-view' );
+		$( '.flow-ui-boardDescriptionWidget-editButton' ).addClass( 'flow-board-header-nav' );
+		$( '.flow-ui-boardDescriptionWidget-editButton a' )
+			.data( 'flow-api-handler', 'activateEditHeader' )
+			.data( 'flow-api-target', '< .flow-board-header' )
+			.data( 'flow-interactive-handler', 'apiRequest' );
+		$( '.flow-ui-boardDescriptionWidget-content' ).addClass( 'flow-board-header-content' );
+
 		mw.flow.initComponent( $component );
 		flowBoard = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $( '.flow-board' ) );
 
