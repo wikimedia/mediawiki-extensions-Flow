@@ -185,7 +185,7 @@
 		var _notify = mw.notify;
 		mw.notify = function ( message, options ) {
 			// override message when we've just watched the board
-			if ( options.tag === 'watch-self' && $( '#ca-watch' ).length ) {
+			if ( options && options.tag === 'watch-self' && $( '#ca-watch' ).length ) {
 				// Render a div telling the user that they have subscribed
 				message = $( mw.flow.TemplateEngine.processTemplateGetFragment(
 					'flow_subscribed.partial',
