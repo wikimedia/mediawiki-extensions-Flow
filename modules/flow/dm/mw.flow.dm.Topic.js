@@ -70,7 +70,7 @@
 	 *
 	 * @return {Object} Hash object
 	 */
-	mw.flow.dm.Topic.prototype.getHash = function () {
+	mw.flow.dm.Topic.prototype.getHashObject = function () {
 		return $.extend(
 			{
 				stub: this.isStub(),
@@ -80,7 +80,7 @@
 				moderator: this.getModerator()
 			},
 			// Parent
-			mw.flow.dm.Topic.super.prototype.getHash.call( this )
+			mw.flow.dm.Topic.super.prototype.getHashObject.call( this )
 		);
 	};
 

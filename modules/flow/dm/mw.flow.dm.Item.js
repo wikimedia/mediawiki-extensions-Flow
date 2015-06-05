@@ -25,7 +25,7 @@
 	 *
 	 * @return {Object} Hash object
 	 */
-	mw.flow.dm.Item.prototype.getHash = function () {
+	mw.flow.dm.Item.prototype.getHashObject = function () {
 		return {
 			id: this.getId()
 		};
@@ -66,7 +66,7 @@
 	 * be stored
 	 */
 	mw.flow.dm.Item.prototype.storeComparableHash = function ( hash ) {
-		this.comparableHash = hash || $.extend( {}, this.getHash() );
+		this.comparableHash = hash || $.extend( {}, this.getHashObject() );
 	};
 
 	/**
@@ -75,6 +75,6 @@
 	 * @return {boolean} Item has changed
 	 */
 	mw.flow.dm.Item.prototype.hasBeenChanged = function () {
-		return !OO.compare( this.comparableHash, this.getHash() );
+		return !OO.compare( this.comparableHash, this.getHashObject() );
 	};
 }( jQuery ) );

@@ -59,15 +59,15 @@
 	/**
 	 * @inheritdoc
 	 */
-	mw.flow.dm.Board.prototype.getHash = function () {
+	mw.flow.dm.Board.prototype.getHashObject = function () {
 		return $.extend( {
 			isDeleted: this.isDeleted(),
 			pagePrefixedDb: this.getPageTitle().getPrefixedDb(),
 			topicCount: this.getItemCount(),
-			description: this.getDescription() && this.getDescription().getHash()
+			description: this.getDescription() && this.getDescription().getHashObject()
 		},
 			// Parent
-			mw.flow.dm.Board.super.prototype.getHash.call( this )
+			mw.flow.dm.Board.super.prototype.getHashObject.call( this )
 		);
 	};
 
