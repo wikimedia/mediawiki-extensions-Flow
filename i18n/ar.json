@@ -3,11 +3,13 @@
 		"authors": [
 			"Claw eg",
 			"مشعل الحربي",
-			"Ms.Rainbow"
+			"Ms.Rainbow",
+			"محمد أحمد عبد الفتاح"
 		]
 	},
 	"flow-post-actions": "الإجراءات",
 	"flow-topic-actions": "الإجراءات",
+	"flow-show-change": "اعرض التغييرات",
 	"flow-error-http": "حدث خطأ أثناء الاتصال بالخادم.",
 	"flow-error-external": "حدث خطأ.<br />رسالة الخطأ المتلقاة هي: $1",
 	"flow-notification-mention": "$1 {{GENDER:$1|المشار إليه}} {{GENDER:$5|هو أنت}} في {{GENDER:$1}} <span class=\"plainlinks\">[$2 رسالة]</span> في\"$3\" في \"$4\".",
