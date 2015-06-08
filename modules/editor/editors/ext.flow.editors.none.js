@@ -16,20 +16,41 @@
 
 		var $editor = $node.closest( '.flow-editor' ),
 			prevContent = content;
+
+		// node the editor is associated with.
 		this.$node = $node;
-		this.$node.val( content || '' );
 
-		this.$node.css( 'overflow', 'hidden' );
-		this.$node.css( 'resize', 'none' );
+		this.widget = new OO.ui.TextInputWidget( {
+			value: content || '',
+			multiline: true,
+			autosize: true,
+			maxRows: 999
+		} );
 
-		// auto-expansion shouldn't shrink too much; set default height as min
-		this.$node.css( 'min-height', this.$node.outerHeight() );
+		// Hide textarea & attach widget instead
+		$editor
+			.hide()
+			/*
+			 * @todo only attaching AFTER (not inside) .flow-editor because
+			 * flowEventsMixinInitializeEditors tries to create these editor
+			 * objects for every .flow-editor textarea:not(.flow-input-compressed),
+			 * so every focus inside a textarea inside .flow-editor would create a
+			 * new object here...
+			 * However, we may want to be inside .flow-editor for some CSS?
+			 */
+			.after( this.widget.$element );
 
-		// initialize at height of existing content & update on every keyup
-		this.$node.keyup( this.autoExpand );
-		this.autoExpand.call( this.$node.get( 0 ) );
+		return; // @todo stuff below hasn't been addressed yet
 
 		// Add focused class when textarea is focused
+		/*
+		 * @todo the flow-ui-focused was to add a focus border on the div around
+		 * the textarea (which held textarea + legal text + switch button & make
+		 * it look like all of that is just 1 big area)
+		 * Now that this is a TextInputWidget, we'll probably still have to do
+		 * the same (but with another parent?) and undo the border-radius on the
+		 * TextInputWidget textarea element.
+		 */
 		this.$node
 			.on( 'focus', function () {
 				$editor.addClass( 'flow-ui-focused' );
@@ -48,7 +69,7 @@
 			mw.loader.using( 'ext.flow.editors.visualeditor', $.proxy( this.attachControls, this ) );
 		}
 
-		// HACK: we really need a TextInputWidget here
+		// @todo figure out how/where to attach this to...
 		$node.on( 'keydown mouseup cut paste change input select', $.proxy( function () {
 			var newVal = $node.val();
 			if ( newVal !== prevContent ) {
@@ -78,21 +99,20 @@
 	mw.flow.editors.none.static.name = 'none';
 
 	mw.flow.editors.none.prototype.destroy = function () {
+		var $editor = this.$node.closest( '.flow-editor' );
+
+		this.widget.$element.remove(); // @todo: destroy widget object entirely...
+		$editor.css( 'display', '' );
+
 		// remove the help+switcher information
 		this.$node.siblings( '.flow-switcher-controls' ).remove();
-		// unset min-height that was set for auto-expansion
-		this.$node.css( 'min-height', '' );
-		// unset height that was set by auto-expansion
-		this.$node.css( 'height', '' );
-		// clear content
-		this.$node.val( '' );
 	};
 
 	/**
 	 * @return {string}
 	 */
 	mw.flow.editors.none.prototype.getRawContent = function () {
-		return this.$node.val();
+		return this.widget.getInputElement().val();
 	};
 
 	/**
@@ -102,55 +122,6 @@
 	 */
 	mw.flow.editors.none.prototype.isEmpty = function () {
 		return this.getRawContent() === '';
-	};
-
-	/**
-	 * Auto-expand/shrink as content changes.
-	 */
-	mw.flow.editors.none.prototype.autoExpand = function () {
-		var scrollHeight, $form, formBottom, windowBottom, maxHeightIncrease,
-			$this = $( this ),
-			height = $this.height(),
-			padding = $this.outerHeight() - $this.height() + 5;
-
-		/*
-		 * Collapse to 0 height to get accurate scrollHeight for the content,
-		 * then restore height.
-		 * Without collapsing, scrollHeight would be the highest of:
-		 * * the content height
-		 * * the height the textarea already has
-		 * Since we're looking to also shrink the textarea when content shrinks,
-		 * we want to ignore that last case (hence the collapsing)
-		 */
-		$this.height( 0 );
-		scrollHeight = this.scrollHeight;
-		$this.height( height );
-
-		/*
-		 * Only animate height change if there actually is a change; we don't
-		 * want every keystroke firing a 50ms animation.
-		 */
-		if ( scrollHeight === $this.data( 'flow-prev-scroll-height' ) ) {
-			// no change
-			return;
-		}
-		$this.data( 'flow-prev-scroll-height', scrollHeight );
-
-		$form = $this.closest( 'form' );
-		formBottom = $form.offset().top + $form.outerHeight( true );
-		windowBottom = $( window ).scrollTop() + $( window ).height();
-		// additional padding of 20px so the targeted form has breathing room
-		maxHeightIncrease = windowBottom - formBottom - 20;
-
-		if ( scrollHeight - height - padding >= maxHeightIncrease ) {
-			// If we can't expand ensure overflow-y is set to auto
-			$this.css( 'overflow-y', 'auto' );
-		} else if ( scrollHeight !== $this.height() ) {
-			$this.css( {
-				height: scrollHeight,
-				'overflow-y': 'hidden'
-			} );
-		}
 	};
 
 	mw.flow.editors.none.prototype.attachControls = function () {
@@ -197,6 +168,7 @@
 	};
 
 	mw.flow.editors.none.prototype.focus = function () {
+		// @todo fixme
 		return this.$node.focus();
 	};
 }( jQuery, mediaWiki ) );
