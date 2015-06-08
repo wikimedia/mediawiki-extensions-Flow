@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_656a5ab3",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-08T18:11:26Z",
+      "side": 1,
+      "message": "this.widget.connect( this, { change: [ \u0027emit\u0027, \u0027change\u0027 ] } ); can replace lines 52-58",
+      "revId": "5d06e0a0a09872035ceca216d9cb260ed1270331",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_256452e1",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-08T18:11:26Z",
+      "side": 1,
+      "message": "Removing $element is enough for simple widgets. The only other thing we have to do here is this.widget.disconnect( this ); so our event binding doesn\u0027t keep the widget object alive.",
+      "revId": "5d06e0a0a09872035ceca216d9cb260ed1270331",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_45615ecf",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-08T18:11:26Z",
+      "side": 1,
+      "message": "this.widget.getValue()",
+      "revId": "5d06e0a0a09872035ceca216d9cb260ed1270331",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_e55dea1b",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-08T18:11:26Z",
+      "side": 1,
+      "message": "this.widget.focus() ?",
+      "revId": "5d06e0a0a09872035ceca216d9cb260ed1270331",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
