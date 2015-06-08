@@ -35,7 +35,6 @@ $c['db.factory'] = function( $c ) {
 
 // Database Access Layer external from main implementation
 $c['repository.tree'] = function( $c ) {
-	global $wgFlowCacheTime;
 	return new Flow\Repository\TreeRepository(
 		$c['db.factory'],
 		$c['memcache.buffered']
@@ -219,7 +218,6 @@ $c['storage.workflow'] = function( $c ) {
 	);
 };
 $c['listener.recentchanges'] = function( $c ) {
-	global $wgContLang;
 	// Recent change listeners go out to external services and
 	// as such must only be run after the transaction is commited.
 	return new Flow\Data\Listener\DeferredInsertLifecycleHandler(
