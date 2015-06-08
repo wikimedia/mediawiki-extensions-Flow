@@ -217,7 +217,6 @@ $wgAutoloadClasses += array(
 	'Flow\\Import\\Wikitext\\ImportSource' => __DIR__ . '/includes/Import/Wikitext/ImportSource.php',
 	'Flow\\LinksTableUpdater' => __DIR__ . '/includes/LinksTableUpdater.php',
 	'Flow\\Log\\ActionFormatter' => __DIR__ . '/includes/Log/ActionFormatter.php',
-	'Flow\\Log\\DefaultLogger' => __DIR__ . '/includes/Log/DefaultLogger.php',
 	'Flow\\Log\\LogQuery' => __DIR__ . '/includes/Log/Query.php',
 	'Flow\\Log\\LqtImportFormatter' => __DIR__ . '/includes/Log/LqtImportFormatter.php',
 	'Flow\\Log\\ModerationLogger' => __DIR__ . '/includes/Log/ModerationLogger.php',

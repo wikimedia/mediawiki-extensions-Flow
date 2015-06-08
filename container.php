@@ -1236,7 +1236,7 @@ $c['parser'] = function() {
 };
 
 $c['default_logger'] = function() {
-	return new Flow\Log\DefaultLogger();
+	return MediaWiki\Logger\LoggerFactory::getInstance( 'Flow' );
 };
 
 return $c;
