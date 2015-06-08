@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_49e182fa",
+        "filename": "includes/View.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-08T01:16:28Z",
+      "side": 1,
+      "message": "\u003d\u003d\u003d",
+      "revId": "57710a4609e8f2a04795ec51dbae7092df692090",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_c9f492bc",
+        "filename": "includes/View.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-08T01:16:28Z",
+      "side": 1,
+      "message": "This line is where the \"undefined index -1\" errors in the tests are coming from. Apparently $existingRoots is empty, so count($existingRoots) is 0. This happens in a bunch of test cases (21 of them), but the failures are sprinkled in between successes (there\u0027s one cluster of 7 successive failing tests and another cluster of 2, but the other 12 failures are separated from each other by 2-3 successes each) which suggests that there\u0027s a certain kind of data pattern that causes $existingRoots to be empty.",
+      "revId": "57710a4609e8f2a04795ec51dbae7092df692090",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
