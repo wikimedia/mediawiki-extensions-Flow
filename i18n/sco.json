@@ -20,9 +20,6 @@
 	"flow-topic-action-undelete-topic": "Ondelyte topíc",
 	"flow-topic-action-unsuppress-topic": "Onsuppress topíc",
 	"flow-error-prev-revision-mismatch": "Anither uiser jyst eidited this post ae few seiconts back. Ar ye sair ye wan tae owerwrite the recent chynge?",
-	"flow-edit-header-submit-overwrite": "Owerwrite heider",
-	"flow-edit-title-submit-overwrite": "Owerwrite title",
-	"flow-edit-post-submit-overwrite": "Owerwrite chynges",
 	"flow-rev-message-edit-post": "$1 {{GENDER:$2|eeditit}} ae [$3 comment] oan \"$4\".",
 	"flow-rev-message-reply": "$1 [$3 {{GENDER:$2|commentit}}] oan \"$4\" (<em>$5</em>).",
 	"flow-rev-message-new-post": "$1 {{GENDER:$2|cræftit}} the topeec \"[$3 $4]\".",
@@ -78,7 +75,7 @@
 	"flow-revision-permalink-warning-header-first": "This is ae permanant airtin til the firstwhile version o the heider.\nYe can see later versions oan the [$2 buird histerie page].",
 	"flow-compare-revisions-header-header": "This page shaws the {{GENDER:$2|chynges}} atween twa versions o the heider oan [$3 $1].\nYe can see ither versions o the heider at its [$4 histerie page].",
 	"flow-terms-of-use-new-topic": "Bi clapin on \"{{int:flow-newtopic-save}}\", ye'r agreein til the terms o uiss fer this wiki.",
-	"flow-terms-of-use-reply": "Bi clapin oan \"{{int:flow-reply-submit}}\", ye'r agreein til the terms o uiss fer this wiki.",
+	"flow-terms-of-use-reply": "Bi clapin oan \"{{int:flow-reply-link}}\", ye'r agreein til the terms o uiss fer this wiki.",
 	"flow-terms-of-use-edit": "Bi savin yer chynges, ye'r agreein til the terms o uiss fer this wiki.",
 	"flow-anon-warning": "Ye'r na loggi in. Tae receeve attreebution wi yer name in steid o yer IP address, ye can [$1 log in] or [$2 cræft aen accoont]."
 }

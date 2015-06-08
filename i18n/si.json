@@ -12,7 +12,7 @@
 	"flow-rev-message-reply": "$1 [$3 {{GENDER:$2|අදහස් දැක්වුවා}}] $4 පිළිබඳව.",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|ඉවත් කර ඇත.}}  [$4 මාතෘකාව] $6 (<em>$5</em>).",
 	"flow-terms-of-use-new-topic": "\"{{int:flow-newtopic-save}}\"ක්ලික් කිරීමෙන්, මෙම විකිය භාවිතාකිරීමට ඇති නීතිවලට ඔබ එකඟ වේ.",
-	"flow-terms-of-use-reply": "\"{{int:flow-reply-submit}}\"click කිරීමෙන්, මෙම විකිය භාවිතාකිරීමට ඇති නීතිවලට ඔබ එකඟ වේ.",
+	"flow-terms-of-use-reply": "\"{{int:flow-reply-link}}\"click කිරීමෙන්, මෙම විකිය භාවිතාකිරීමට ඇති නීතිවලට ඔබ එකඟ වේ.",
 	"flow-terms-of-use-edit": "ඔබගේ වෙනස්කම් සුරැකීමෙන්,ඔබ විකිය භාවිතා කිරීමට ඇති කොන්දේසි වලට එකඟ වේ.",
 	"flow-special-enableflow-invalid-title": "වැරදි පිටු ශීර්ෂයක් ලබා දෙන ලදී"
 }

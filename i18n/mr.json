@@ -14,13 +14,10 @@
 	"flow-error-missing-title": "विषयास मथळा नाही.एखाद्या विषयास जतन करावयाचे तर मथळा हवा.",
 	"flow-error-prev-revision-mismatch": "काही सेकंदांपूर्वी दुसऱ्या सदस्याने हे टपालन संपादन केले आहे.अलीकडील बदलांवर आपणास उपरीलेखन(ओव्हरराईट) करावयाचे हे नक्की काय?",
 	"flow-error-prev-revision-does-not-exist": "मागील आवृत्ती शोधता आली नाही.",
-	"flow-edit-header-submit-overwrite": "शीर्षाचे उपरीलेखन करा",
-	"flow-edit-title-submit-overwrite": "शीर्षकाचे उपरीलेखन करा",
-	"flow-edit-post-submit-overwrite": "बदलांवर उपरीलेखन करा",
 	"flow-notification-mention-email-subject": "$1 ने \"$2\"वर आपला {{GENDER:$1|उल्लेख केला}}",
 	"flow-notification-newtopic-email-subject": "$1 ने \"$2\" वर एक नविन विषय {{GENDER:$1|तयार केला}}",
 	"flow-terms-of-use-new-topic": "\"{{int:flow-newtopic-save}}\" टिचकण्याने,आपण या विकिच्या वापरण्याच्या अटी मान्य करीत आहात.",
-	"flow-terms-of-use-reply": "\"{{int:flow-reply-submit}}\" टिचकण्याने, आपण या विकिच्या 'वापरण्याच्या अटी' मान्य करीत आहात.",
+	"flow-terms-of-use-reply": "\"{{int:flow-reply-link}}\" टिचकण्याने, आपण या विकिच्या 'वापरण्याच्या अटी' मान्य करीत आहात.",
 	"flow-terms-of-use-edit": "आपले बदल 'जतन करण्याने',आपण या विकिच्या 'वापरण्याच्या अटी' मान्य करीत आहात.",
 	"flow-anon-warning": "आपण सनोंद प्रवेशित नाहीत."
 }
