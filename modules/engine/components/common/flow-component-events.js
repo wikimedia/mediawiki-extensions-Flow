@@ -739,30 +739,27 @@
 		var flowComponent = this;
 
 		$container
-			.find( '.flow-editor textarea:not(.flow-input-compressed)' )
+			.find( '.flow-editor:not(.flow-editor-initialized) textarea:not(.flow-input-compressed)' )
 			.each( function () {
-				var $editor = $( this ),
-					$form = $editor.closest( 'form' ),
-					content = $editor.val();
+				var $textarea = $( this ),
+					$editor = $textarea.closest( '.flow-editor' ),
+					$form = $textarea.closest( 'form' ),
+					content = $textarea.val();
 
-				if ( $editor.data( 'flow-initialized' ) ) {
-					// Editor is already initialized, don't initialize it again
-					return;
-				}
 				// Mark the editor as initialized so we don't try to init it again
-				$editor.data( 'flow-initialized', true );
+				$editor.addClass( 'flow-editor-initialized' );
 
 				// Blank editor while loading
-				$editor.val( '' );
+				$textarea.val( '' );
 
 				mw.loader.using( 'ext.flow.editor', function () {
-					mw.flow.editor.load( $editor, content );
+					mw.flow.editor.load( $textarea, content );
 
 					// Kill editor instance when the form it's in is cancelled
 					flowComponent.emitWithReturn( 'addFormCancelCallback', $form, function () {
-						$editor.removeData( 'flow-initialized' );
-						if ( mw.flow.editor.exists( $editor ) ) {
-							mw.flow.editor.destroy( $editor );
+						$editor.removeClass( 'flow-editor-initialized' );
+						if ( mw.flow.editor.exists( $textarea ) ) {
+							mw.flow.editor.destroy( $textarea );
 						}
 					} );
 				} );
