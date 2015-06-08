@@ -11,24 +11,27 @@
 	&.flow-editor-none {
 		border: 1px solid @colorFieldBorder;
 		padding: 2px;
-		textarea {
+
+		// Undo border & box-shadow on textarea and re-apply it on the
+		// div that contains textarea + legal text + switch button
+		&.flow-ui-focused {
+			box-shadow: inset 0 0 0 2px @colorProgressive;
+		}
+		.oo-ui-textInputWidget textarea {
 			border: 0;
-			// When we apply a pending texture to the editor, we don't want the toolbar to display
-			// in solid white on top of that.
-			background: transparent;
-			padding: 6px 6px 4px 6px;
 			&:focus {
 				box-shadow: none;
 			}
 		}
 
-		&.flow-ui-focused {
-			box-shadow: inset 0 0 0 2px @colorProgressive;
-		}
-
 		.flow-switcher-controls {
 			padding: 4px 6px 6px 6px;
 			position: relative;
+		}
+
+		// TextInputWidget is limited to a 50em max-width - don't want that!
+		.oo-ui-textInputWidget {
+			max-width: none;
 		}
 	}
 

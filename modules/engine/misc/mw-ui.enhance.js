@@ -122,13 +122,18 @@
 		// and paste) when we drop IE 8.
 		// https://developer.mozilla.org/en-US/docs/Web/Events/input
 		// setTimeout works around paste firing before the field is modified.
-		$( document ).on( 'keyup.flow-actions-disabler cut.flow-actions-disabler paste.flow-actions-disabler', '.mw-ui-input', function () {
-			var $el = $( this );
+		$( document ).on(
+			// @todo change this to listen to emitted change event once/if everything is OOUI thingies
+			'keyup.flow-actions-disabler cut.flow-actions-disabler paste.flow-actions-disabler',
+			'.mw-ui-input, .oo-ui-textInputWidget input, .oo-ui-textInputWidget textarea',
+			function () {
+				var $el = $( this );
 
-			setTimeout( function () {
-				enableFormWithRequiredFields( $el.closest( 'form' ) );
-			} );
-		} );
+				setTimeout( function () {
+					enableFormWithRequiredFields( $el.closest( 'form' ) );
+				} );
+			}
+		);
 	} );
 
 	/*
