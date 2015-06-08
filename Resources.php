@@ -455,6 +455,9 @@ $wgResourceModules += array(
 		'messages' => array(
 			'flow-wikitext-switch-editor-tooltip',
 		),
+		'dependencies' => array(
+			'oojs-ui',
+		)
 	) + $mobile,
 
 	// Basically this is just all the Flow-specific VE stuff, except ext.flow.editors.visualeditor.js,
