@@ -12,7 +12,7 @@
 				   data-flow-api-target="< .flow-topic-titlebar"
 				>
 					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-edit mw-ui-icon-edit-progressive-hover"></span> {{/if~}}
-					{{~l10n (concat "flow-" moderationType "-action-edit-title")~}}
+					{{~l10n (concat "flow-topic-action-edit-title")~}}
 				</a>
 				{{~noop~}}
 			</li>
@@ -24,7 +24,7 @@
 				   href="{{links.topic-history.url}}"
 				   title="{{links.topic-history.title}}">
 					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-clock"></span> {{/if~}}
-					{{~l10n (concat "flow-" moderationType "-action-history")~}}
+					{{~l10n (concat "flow-topic-action-history")~}}
 				</a>
 				{{~noop~}}
 			</li>
@@ -36,7 +36,7 @@
 				   href="{{links.topic.url}}"
 				   title="{{links.topic.title}}">
 					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-link"></span> {{/if~}}
-					{{~l10n (concat "flow-" moderationType "-action-view")~}}
+					{{~l10n (concat "flow-topic-action-view")~}}
 				</a>
 				{{~noop~}}
 			</li>
@@ -52,9 +52,9 @@
 				   title="{{actions.summarize.title}}">
 					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-stripeToC mw-ui-icon-stripeToC-progressive-hover"></span> {{/if~}}
 					{{~#if summary~}}
-						{{~l10n (concat "flow-" moderationType "-action-resummarize-topic")~}}
+						{{~l10n (concat "flow-topic-action-resummarize-topic")~}}
 					{{else~}}
-						{{~l10n (concat "flow-" moderationType "-action-summarize-topic")~}}
+						{{~l10n (concat "flow-topic-action-summarize-topic")~}}
 					{{~/if~}}
 				</a>
 				{{~noop~}}
@@ -85,7 +85,7 @@
 				   href="{{links.post.url}}"
 				   title="{{links.post.title}}">
 					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-link"></span> {{/if~}}
-					{{~l10n (concat "flow-" moderationType "-action-view")~}}
+					{{~l10n (concat "flow-post-action-view")~}}
 				</a>
 				{{~noop~}}
 			</li>

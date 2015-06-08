@@ -117,13 +117,9 @@ $wgResourceModules += array(
 			'flow-post-action-restore-post',
 			'flow-post-action-undo-moderation',
 			'flow-recent-topics',
-			'flow-reply-submit',
 			'flow-reply-topic-title-placeholder',
 			'flow-sorting-tooltip-newest',
 			'flow-sorting-tooltip-recent',
-			'flow-summarize-topic-submit',
-			'flow-unlock-topic-submit',
-			'flow-lock-topic-submit',
 			'flow-toggle-small-topics',
 			'flow-toggle-topics',
 			'flow-toggle-topics-posts',
@@ -418,7 +414,6 @@ $wgResourceModules += array(
 		'messages' => array(
 			'flow-error-external',
 			'flow-error-http',
-			'flow-error-fetch-after-lock',
 			'mw-ui-unsubmitted-confirm',
 			'flow-reply-link',
 		)
