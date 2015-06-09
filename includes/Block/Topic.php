@@ -337,12 +337,16 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 
-		if ( trim( $this->submitted['reason'] ) === '' ) {
+		if ( $action === 'lock-topic' ) {
+			$reason = $this->context->msg( 'flow-rev-message-lock-topic-reason' )->text();
+		} elseif ( $action === 'restore-topic' ) {
+			$reason = $this->context->msg( 'flow-rev-message-restore-topic-reason' )->text();
+		} elseif ( trim( $this->submitted['reason'] ) === '' ) {
 			$this->addError( 'moderate', $this->context->msg( 'flow-error-invalid-moderation-reason' ) );
 			return;
+		} else {
+			$reason = $this->submitted['reason'];
 		}
-
-		$reason = $this->submitted['reason'];
 
 		$this->newRevision = $post->moderate( $this->context->getUser(), $newState, $action, $reason );
 		if ( !$this->newRevision ) {

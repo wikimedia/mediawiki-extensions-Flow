@@ -34,11 +34,7 @@ class ApiFlowLockTopic extends ApiFlowBasePost {
 					AbstractRevision::MODERATED_LOCKED, 'unlock',
 					'close', 'reopen' // BC: now replaced by lock & unlock
 				),
-			),
-			'reason' => array(
-				ApiBase::PARAM_REQUIRED => true,
-				ApiBase::PARAM_TYPE => 'string',
-			),
+			)
 		) + parent::getAllowedParams();
 	}
 
@@ -47,8 +43,7 @@ class ApiFlowLockTopic extends ApiFlowBasePost {
 	 */
 	public function getParamDescription() {
 		return array(
-			'moderationState' => "State to put topic in, either locked or unlocked",
-			'reason' => 'Reason for locking or unlocking the topic',
+			'moderationState' => "State to put topic in, either 'lock' or 'unlock'",
 		);
 	}
 
@@ -64,7 +59,7 @@ class ApiFlowLockTopic extends ApiFlowBasePost {
 	 */
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=lock-topic&page=Topic:S2tycnas4hcucw8w&cotmoderationState=lock&cotsummary=Ahhhh',
+			'api.php?action=flow&submodule=lock-topic&page=Topic:S2tycnas4hcucw8w&cotmoderationState=lock',
 		);
 	}
 
@@ -73,7 +68,7 @@ class ApiFlowLockTopic extends ApiFlowBasePost {
 	 */
 	protected function getExamplesMessages() {
 		return array(
-			'action=flow&submodule=lock-topic&page=Topic:S2tycnas4hcucw8w&cotmoderationState=lock&cotsummary=Ahhhh'
+			'action=flow&submodule=lock-topic&page=Topic:S2tycnas4hcucw8w&cotmoderationState=lock'
 				=> 'apihelp-flow+lock-topic-example-1',
 		);
 	}
