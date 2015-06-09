@@ -127,6 +127,7 @@ $wgFlowActions = array(
 		),
 		'root-permissions' => array(
 			PostRevision::MODERATED_NONE => '',
+			PostRevision::MODERATED_LOCKED => '',
 		),
 		'links' => array( 'topic', 'topic-history', 'watch-topic', 'unwatch-topic', 'summary-revision' ),
 		'actions' => array( 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
@@ -155,6 +156,7 @@ $wgFlowActions = array(
 		),
 		'root-permissions' => array(
 			PostRevision::MODERATED_NONE => '',
+			PostRevision::MODERATED_LOCKED => '',
 		),
 		'links' => array( 'topic', 'topic-history', 'diff-post-summary', 'watch-topic', 'unwatch-topic', 'summary-revision' ),
 		'actions' => array( 'edit-topic-summary', 'lock-topic', 'restore-topic', 'undo-edit-topic-summary' ),
@@ -506,7 +508,7 @@ $wgFlowActions = array(
 			// Only non-moderated topic can be locked
 			PostRevision::MODERATED_NONE => array( 'flow-lock', 'flow-delete', 'flow-suppress' ),
 		),
-		'links' => array( 'topic', 'topic-history', 'watch-topic', 'unwatch-topic' ),
+		'links' => array( 'topic', 'topic-history', 'watch-topic', 'unwatch-topic', 'topic-revision' ),
 		'actions' => array( 'edit-topic-summary', 'restore-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-locked-topic',
@@ -787,6 +789,7 @@ $wgFlowActions = array(
 		),
 		'root-permissions' => array(
 			PostRevision::MODERATED_NONE => '',
+			PostRevision::MODERATED_LOCKED => '',
 		),
 		'links' => array(), // @todo
 		'actions' => array(), // view is not a recorded change type, no actions will be requested
