@@ -1,8 +1,25 @@
-<h2 class="flow-topic-title flow-load-interactive"
-    data-flow-topic-title="{{escapeContent content.format content.content}}"
-    data-flow-load-handler="topicTitle">{{escapeContent content.format content.content}}</h2>
+<h2 class="flow-topic-title flow-load-interactive {{#if isLocked}}flow-click-interactive{{/if}}"
+	data-flow-topic-title="{{escapeContent content.format content.content}}"
+	data-flow-load-handler="topicTitle"
+	{{#if isLocked}}
+	data-flow-interactive-handler="collapserCollapsibleToggle"
+	{{/if}}
+		>
+	{{#if isLocked}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-check"></span> {{/if}}
+	{{~escapeContent content.format content.content~}}
+</h2>
 <div class="flow-topic-meta">
-	{{l10n "flow-topic-comments" reply_count}} &bull;
+	{{#if isLocked~}}
+		<a class="expand-collapse-posts-link flow-click-interactive"
+		   href="javascript:void(0);"
+		   title="{{l10n "flow-show-comments-title" reply_count}}"
+		   data-collapsed-title="{{l10n "flow-show-comments-title" reply_count}}"
+		   data-expanded-title="{{l10n "flow-hide-comments-title" reply_count}}"
+		   data-flow-interactive-handler="collapserCollapsibleToggle"
+				>{{l10n "flow-topic-comments" reply_count}}</a>
+	{{~else~}}
+		{{l10n "flow-topic-comments" reply_count}}
+	{{~/if}} &bull;
 
 	<a href="{{links.topic-history.url}}" class="flow-timestamp-anchor">
 		{{#if last_updated}}
@@ -12,7 +29,7 @@
 		{{/if}}
 	</a>
 </div>
-{{#if isModerated}}
+{{#if isModeratedNotLocked}}
 	<div class="flow-moderated-topic-title flow-ui-text-truncated">
 		{{~noop~}}{{> flow_topic_moderation_flag}}
 		{{> flow_post_moderation_state}}
@@ -24,4 +41,4 @@
 {{/if}}
 <span class="flow-reply-count"><span class="flow-reply-count-number">{{reply_count}}</span></span>
 
-{{> flow_topic_titlebar_summary summary}}
+{{> flow_topic_titlebar_summary summary isLocked=isLocked}}

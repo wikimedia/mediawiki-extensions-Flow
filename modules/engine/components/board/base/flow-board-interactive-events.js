@@ -31,12 +31,23 @@
 	 */
 	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.collapserCollapsibleToggle = function ( event ) {
 		var $target = $( this ).closest( '.flow-element-collapsible' ),
-			$deferred = $.Deferred();
+			$deferred = $.Deferred(),
+			updateTitle = function ( element, state ) {
+				var titleDataAttribute = state + '-title',
+					$element = $( element ),
+					title = $element.data( titleDataAttribute );
+
+				if ( title ) {
+					$element.attr( 'title', title );
+				}
+			};
 
 		if ( $target.is( '.flow-element-collapsed' ) ) {
 			$target.removeClass( 'flow-element-collapsed' ).addClass( 'flow-element-expanded' );
+			updateTitle( this, 'expanded' );
 		} else {
 			$target.addClass( 'flow-element-collapsed' ).removeClass( 'flow-element-expanded' );
+			updateTitle( this, 'collapsed' );
 		}
 
 		return $deferred.resolve().promise();

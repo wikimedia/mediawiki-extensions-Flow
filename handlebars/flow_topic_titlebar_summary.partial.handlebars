@@ -1,8 +1,14 @@
-<div class="flow-topic-summary-container">
+<div class="flow-topic-summary-container {{#if isLocked}}flow-click-interactive{{/if}}"
+	{{#if isLocked}}
+		data-flow-interactive-handler="collapserCollapsibleToggle"
+	{{/if}}
+		>
 	{{> flow_errors }}
-	{{#if revision.content}}
+	{{#if revision.content.content}}
 		<div class="flow-topic-summary">
-			{{escapeContent revision.content.format revision.content.content}}
+			<div class="flow-topic-summary-content">
+				{{escapeContent revision.content.format revision.content.content}}
+			</div>
 		</div>
 		<br class="flow-ui-clear"/>
 	{{/if}}
