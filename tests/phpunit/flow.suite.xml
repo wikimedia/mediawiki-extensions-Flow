@@ -15,7 +15,7 @@
 		verbose="true">
 	<testsuites>
 		<testsuite name="extensions">
-			<file>../../../../tests/phpunit/suites/ExtensionsTestSuite.php</file>
+			<file>suites/ExtensionsTestSuite.php</file>
 		</testsuite>
 	</testsuites>
 	<groups>
