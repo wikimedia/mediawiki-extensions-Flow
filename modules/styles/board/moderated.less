@@ -2,15 +2,10 @@
 @import 'flow.colors';
 @import 'flow.helpers';
 
-// Visually mark moderated comments and posts
-// Locked and deleted are inverted (white bg)
-.flow-topic-moderatestate-lock,
-.flow-topic-moderatestate-delete {
-	color: @colorTextLight;
-
+// Visually mark locked topics and hide posts
+.flow-topic-moderatestate-lock {
 	.flow-topic-titlebar {
-		background-color: @colorWhite;
-		border: solid 1px @colorGrayLight;
+		background-color: @colorGray15;
 	}
 }
 
