@@ -20,4 +20,15 @@
 		/* @noflip */
 		text-align: right;
 	}
+
+	// This is not great. It doesn't work in IE8.
+	// It's the only way I could find to change the link
+	// color without affecting the hover style.
+	// The :link selector changes all 4 link states
+	// and requires that you redefine :hover.
+	// I did know want to hard code the hover color
+	// from the theme we're using.
+	a.expand-collapse-posts-link:not(:hover) {
+		color: @colorTextLight;
+	}
 }
