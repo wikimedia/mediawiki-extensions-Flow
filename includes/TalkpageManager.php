@@ -276,7 +276,9 @@ class TalkpageManager implements OccupationController {
 		}
 
 		// Some specialist permissions (like flow-create-board) apply
-		$user->addGroup( 'flow-bot' );
+		if ( !in_array( 'flow-bot', $user->getGroups() ) ) {
+			$user->addGroup( 'flow-bot' );
+		}
 		return $user;
 	}
 }
