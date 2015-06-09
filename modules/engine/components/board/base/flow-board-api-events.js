@@ -194,25 +194,6 @@
 		} );
 	};
 
-	/**
-	 * Before activating lock/unlock edit form, sends an overrideObject
-	 * to the API to modify the request params.
-	 * @param {Event} event
-	 * @param {Object} info
-	 * @param {Object} queryMap
-	 * @return {Object}
-	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.activateLockTopic = function ( event, info, queryMap ) {
-		return $.extend( {}, queryMap, {
-			// href submodule is lock-topic
-			submodule: 'view-post',
-			// href does not have this param
-			vpformat: 'wikitext',
-			// request just the data for this topic
-			vppostId: $( this ).data( 'flow-id' )
-		} );
-	};
-
 	//
 	// api callback handlers
 	//
@@ -330,75 +311,43 @@
 	};
 
 	/**
-	 * Renders the editable lock/unlock text area with the given API response.
-	 * Allows a user to lock or unlock an entire topic.
-	 * @param {Object} info
-	 * @param {Object} data
-	 * @param {jqXHR} jqxhr
-	 * @return {jQuery.Promise}
-	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.activateLockTopic = function ( info, data ) {
-		var result, revision, postId, revisionId,
-			$target = info.$target,
-			$old = $target,
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) );
-
-		$( this ).closest( '.flow-menu' ).removeClass( 'focus' );
-
-		if ( info.status !== 'done' ) {
-			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
-			return $.Deferred().resolve().promise();
-		}
-
-		// FIXME: API should take care of this for me.
-		result = data.flow[ 'view-post' ].result.topic;
-		postId = result.roots[0];
-		revisionId = result.posts[postId];
-		revision = result.revisions[revisionId];
-
-		// Enable the editable summary
-		$target = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-			'flow_topic_titlebar_lock.partial', revision
-		) ).children();
-
-		// Ensure that on a cancel the form gets destroyed.
-		flowBoard.emitWithReturn( 'addFormCancelCallback', $target.find( 'form' ), function () {
-			// xxx: Can this use replaceWith()? If so, use it because it saves the browser
-			// from having to reflow the document view twice (once with both elements on the
-			// page and then again after its removed, which causes bugs like losing your
-			// scroll offset on long pages).
-			$target.before( $old ).remove();
-		} );
-
-		// Replace the old one
-		$old.before( $target ).detach();
-
-		flowBoard.emitWithReturn( 'makeContentInteractive', $target );
-
-		// Focus on first form field
-		$target.find( 'input, textarea' ).filter( ':visible:first' ).focus();
-
-		return $.Deferred().resolve().promise();
-	};
-
-	/**
-	 * After submit of the lock/unlock topic form, process the new summary data and re-render
-	 * the title bar.
+	 * Lock/unlock a topic, update the UI and trigger summarize.
 	 * @param {string} status
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
 	 * @return {jQuery.Promise}
 	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.lockTopic = function ( info, data ) {
+	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.lockAndSummarizeTopic = function ( info, data ) {
+		var flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) ),
+			workflowId = $( this ).closest( '.flow-topic' ).data( 'flow-id' );
+
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
 			return $.Deferred().resolve().promise();
 		}
 
-		return _flowBoardComponentRefreshTopic(
-			info.$target,
-			$( this ).closest( '.flow-topic' ).data( 'flow-id' )
-		);
+		function summarize( result ) {
+			var root = result.topic.roots[0],
+				revId = result.topic.posts[root][0],
+				topic = result.topic.revisions[revId];
+
+			return flowBoard.Api.apiCall( {
+				action: 'flow',
+				submodule: 'view-topic-summary',
+				// Flow topic title, in Topic:<topicId> format (2600 is topic namespace id)
+				page: ( new mw.Title( workflowId, 2600 ) ).getPrefixedDb(),
+				vtsformat: mw.flow.editor.getFormat()
+			} ).done( function ( data ) {
+				return _activateSummarizeTopic(
+					result.$topic.find( '.flow-topic-titlebar .flow-topic-summary-container' ),
+					flowBoard,
+					data.flow['view-topic-summary'].result.topicsummary,
+					topic.isLocked ? 'lock' : 'unlock'
+				);
+			} );
+		}
+
+		return _flowBoardComponentRefreshTopic( info.$target, workflowId ).then( summarize );
 	};
 
 	/**
@@ -573,35 +522,19 @@
 	 * @return {jQuery.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.activateSummarizeTopic = function ( info, data, jqxhr ) {
-		var $target = info.$target,
-			$old = $target,
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) );
+		var flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) );
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
 			return $.Deferred().resolve().promise();
 		}
 
-		// Create the new topic_summary_edit template
-		$target = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-			'flow_block_topicsummary_edit',
-			data.flow[ 'view-topic-summary' ].result.topicsummary
-		) ).children();
-
-		// On cancel, put the old topicsummary back
-		flowBoard.emitWithReturn( 'addFormCancelCallback', $target.find( 'form' ), function () {
-			$target.before( $old ).remove();
-		} );
-
-		// Replace the old one
-		$old.before( $target ).detach();
-
-		flowBoard.emitWithReturn( 'makeContentInteractive', $target );
-
-		// Focus on first form field
-		$target.find( 'input, textarea' ).filter( ':visible:first' ).focus();
-
-		return $.Deferred().resolve().promise();
+		return _activateSummarizeTopic(
+			info.$target,
+			flowBoard,
+			data.flow[ 'view-topic-summary' ].result.topicsummary,
+			'summarize'
+		);
 	};
 
 	/**
@@ -856,6 +789,10 @@
 			$target.replaceWith( $replacement );
 			// Run loadHandlers
 			flowBoard.emitWithReturn( 'makeContentInteractive', $replacement );
+
+			// make new topic and $element accessible to downstream handlers
+			result.$topic = $replacement;
+			result.topic = result.flow['view-topic'].result.topic;
 		} ).fail( function ( code, result ) {
 			var errorMsg = flowBoard.constructor.static.getApiErrorMessage( code, result );
 			errorMsg = mw.msg( 'flow-error-fetch-after-open-lock', errorMsg );
@@ -863,6 +800,31 @@
 			flowBoard.emitWithReturn( 'removeError', $target );
 			flowBoard.emitWithReturn( 'showError', $target, errorMsg );
 		} );
+	}
+
+	function _activateSummarizeTopic( $target, flowBoard, topicSummary, action ) {
+		var $old = $target;
+
+		// Create the new flow_block_topicsummary_edit template
+		$target = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
+			'flow_block_topicsummary_edit',
+			$.extend( topicSummary, { action: action } )
+		) ).children();
+
+		// On cancel, put the old topicsummary back
+		flowBoard.emitWithReturn( 'addFormCancelCallback', $target.find( 'form' ), function () {
+			$target.before( $old ).remove();
+		} );
+
+		// Replace the old one
+		$old.before( $target ).detach();
+
+		flowBoard.emitWithReturn( 'makeContentInteractive', $target );
+
+		// Focus on first form field
+		$target.find( 'input, textarea' ).filter( ':visible:first' ).focus();
+
+		return $.Deferred().resolve().promise();
 	}
 
 	// Mixin to FlowBoardComponent
