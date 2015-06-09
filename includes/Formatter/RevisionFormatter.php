@@ -183,6 +183,8 @@ class RevisionFormatter {
 			ApiResult::META_BC_BOOLS => array(
 				'isOriginalContent',
 				'isModerated',
+				'isLocked',
+				'isModeratedNotLocked',
 			),
 			'workflowId' => $row->workflow->getId()->getAlphadecimal(),
 			'articleTitle' => $row->workflow->getArticleTitle()->getPrefixedText(),
@@ -230,7 +232,12 @@ class RevisionFormatter {
 				'content' => $moderatedRevision->getModeratedReason(),
 				'format' => 'plaintext',
 			);
+			$res['isLocked'] = $moderatedRevision->getModerationState() === AbstractRevision::MODERATED_LOCKED;
+		} else {
+			$res['isLocked'] = false;
 		}
+		// to avoid doing this check in handlebars
+		$res['isModeratedNotLocked'] = $res['isModerated'] && !$res['isLocked'];
 
 		if ( $this->includeContent ) {
 			// topic titles are always forced to plain text
