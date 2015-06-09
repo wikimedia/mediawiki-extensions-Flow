@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_0807e220",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.NavigationWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-09T21:55:01Z",
+      "side": 1,
+      "message": "This threshold is high enough to break the collapsed experience, and too low to unbreak the expanded experience.\n\nWhen the widget is collapsed, it\u0027s quite noticeable that the displayed topic title changes too early, when you haven\u0027t yet fully scrolled past the previous topic. When the widget is expanded (at least on my page with 5 topics), it\u0027s taller than 100px and so the elementFromPoint problem breaks topic detection completely and it just says \"Browse topics\".",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
