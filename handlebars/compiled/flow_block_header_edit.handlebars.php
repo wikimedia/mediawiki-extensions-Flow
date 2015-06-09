@@ -28,12 +28,13 @@
 '.$sp.'';}).'		</ul>
 '.$sp.'	</div>
 '.$sp.'' : '').'</div>
-';},'flow_form_buttons' => function ($cx, $in, $sp) {return ''.$sp.'<button data-flow-interactive-handler="cancelForm"
+';},'flow_form_cancel_button' => function ($cx, $in, $sp) {return ''.$sp.'<button data-flow-interactive-handler="cancelForm"
 '.$sp.'        data-role="cancel"
 '.$sp.'        type="reset"
 '.$sp.'        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
 '.$sp.'
-'.$sp.'>'.LCRun3::ch($cx, 'l10n', array(array('flow-cancel'),array()), 'encq').'</button>
+'.$sp.'>
+'.$sp.''.((LCRun3::ifvar($cx, ((isset($in['msg']) && is_array($in)) ? $in['msg'] : null))) ? ''.LCRun3::ch($cx, 'l10n', array(array(((isset($in['msg']) && is_array($in)) ? $in['msg'] : null)),array()), 'encq').'' : ''.LCRun3::ch($cx, 'l10n', array(array('flow-cancel'),array()), 'encq').'').'</button>
 ';},),
         'scopes' => array(),
         'sp_vars' => array('root' => $in),
@@ -60,7 +61,7 @@
 					class="mw-ui-button mw-ui-constructive"
 					data-flow-interactive-handler="apiRequest"
 					data-flow-api-handler="submitHeader">'.LCRun3::ch($cx, 'l10n', array(array('flow-edit-header-submit'),array()), 'encq').'</button>
-'.LCRun3::p($cx, 'flow_form_buttons', array(array($in),array()), '				').'				<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-edit'),array()), 'encq').'</small>
+'.LCRun3::p($cx, 'flow_form_cancel_button', array(array($in),array()), '				').'				<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-edit'),array()), 'encq').'</small>
 			</div>
 		</form>
 	</div>

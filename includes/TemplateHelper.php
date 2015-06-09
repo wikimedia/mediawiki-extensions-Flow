@@ -404,7 +404,7 @@ class TemplateHelper {
 		}
 
 		$class = array( 'mw-changeslist-date' );
-		if ( $revision['isModerated'] ) {
+		if ( $revision['isModeratedNotLocked'] ) {
 			$class[] = 'history-deleted';
 		}
 
