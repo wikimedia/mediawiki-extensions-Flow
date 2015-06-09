@@ -10,7 +10,6 @@
 
 			<div class="flow-editor">
 				<textarea class="mw-ui-input"
-				          required
 				          name="{{type}}_summary"
 				          type="text"
 				          data-role="content"
@@ -32,9 +31,14 @@
 					data-flow-interactive-handler="apiRequest"
 					data-flow-api-handler="summarizeTopic"
 					data-flow-api-target="< .flow-topic-summary-container">
-						{{l10n "flow-topic-action-summarize-topic"}}
+						{{l10n "flow-topic-action-update-topic-summary"}}
 				</button>
-				{{> flow_form_buttons }}
+
+				{{#ifCond action '===' 'summarize'}}
+					{{> flow_form_cancel_button }}
+				{{else}}
+					{{> flow_form_cancel_button msg='flow-skip-summary' }}
+				{{/ifCond}}
 				<small class="flow-terms-of-use plainlinks">{{l10nParse "flow-terms-of-use-summarize"}}</small>
 			</div>
 		</form>
