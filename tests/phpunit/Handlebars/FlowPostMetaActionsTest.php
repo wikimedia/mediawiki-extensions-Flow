@@ -83,7 +83,7 @@ class FlowPostMetaActionsTest extends \MediaWikiTestCase {
 		}
 
 		$crawler = $this->renderTemplate(
-			'flow_post_meta_actions',
+			'flow_post_meta_actions.partial',
 			array(
 				'actions' => array(),
 				'postId' => 's3chebds95i0atkw',
