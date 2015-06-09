@@ -223,6 +223,8 @@ $wgResourceModules += array(
 			'flow-moderation-confirmation-delete-topic',
 			'flow-moderation-confirmation-suppress-topic',
 			'flow-topic-moderated-reason-prefix',
+			'flow-rev-message-lock-topic-reason',
+			'flow-rev-message-restore-topic-reason',
 			// Undo actions
 			'flow-post-undo-hide',
 			'flow-post-undo-delete',

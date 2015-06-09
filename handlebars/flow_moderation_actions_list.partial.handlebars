@@ -212,7 +212,7 @@
 				   data-flow-id="{{postId}}"
 				   href="{{actions.lock.url}}"
 				   title="{{actions.lock.title}}">
-					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-lock mw-ui-icon-lock-destructive-hover"></span> {{/if~}}
+					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-check mw-ui-icon-check-destructive-hover"></span> {{/if~}}
 					{{~l10n (concat "flow-" moderationType "-action-lock-topic")~}}
 				</a>
 				{{~noop~}}
@@ -228,7 +228,7 @@
 				   data-flow-id="{{postId}}"
 				   href="{{actions.unlock.url}}"
 				   title="{{actions.unlock.title}}">
-					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-unLock mw-ui-icon-unLock-destructive-hover"></span> {{/if~}}
+					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-ongoingConversation"></span> {{/if~}}
 					{{~l10n (concat "flow-" moderationType "-action-unlock-topic")~}}
 				</a>
 				{{~noop~}}
@@ -241,12 +241,13 @@
 				{{~noop~}}
 				<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet mw-ui-hovericon"
 				   data-flow-interactive-handler="apiRequest"
-				   data-flow-api-handler="activateLockTopic"
+				   data-flow-api-handler="lockTopic"
 				   data-flow-id="{{postId}}"
 				   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
+				   data-flow-api-method="POST"
 				   href="{{actions.lock.url}}"
 				   title="{{actions.lock.title}}">
-					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-lock mw-ui-icon-lock-destructive-hover"></span> {{/if~}}
+					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-check mw-ui-icon-check-destructive-hover"></span> {{/if~}}
 					{{~l10n (concat "flow-" moderationType "-action-lock-topic")~}}
 				</a>
 				{{~noop~}}
@@ -257,12 +258,13 @@
 				{{~noop~}}
 				<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet mw-ui-hovericon"
 				   data-flow-interactive-handler="apiRequest"
-				   data-flow-api-handler="activateLockTopic"
+				   data-flow-api-handler="lockTopic"
 				   data-flow-id="{{postId}}"
 				   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
+				   data-flow-api-method="POST"
 				   href="{{actions.unlock.url}}"
 				   title="{{actions.unlock.title}}">
-					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-unLock mw-ui-icon-unLock-destructive-hover"></span> {{/if~}}
+					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-ongoingConversation"></span> {{/if~}}
 					{{~l10n (concat "flow-" moderationType "-action-unlock-topic")~}}
 				</a>
 				{{~noop~}}
