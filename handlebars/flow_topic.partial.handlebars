@@ -1,6 +1,7 @@
 <div class="flow-topic flow-load-interactive
             {{#if moderateState}}flow-topic-moderatestate-{{moderateState}}{{/if}}
             {{#if isModerated}}flow-topic-moderated{{/if}}
+            {{#if isLocked}}flow-element-collapsible flow-element-collapsed{{/if}}
             "
      id="flow-topic-{{postId}}"
      data-flow-id="{{postId}}"
