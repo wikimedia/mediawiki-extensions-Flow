@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_f21604ac",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2015-06-09T22:30:50Z",
+      "side": 1,
+      "message": "MachineReadableRCFeedFormatter::getLine() has some special handling for this that we probably? want to implement here...",
+      "revId": "823885af33d4e59a0c39402ddf4b729e2d0ccc9f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
