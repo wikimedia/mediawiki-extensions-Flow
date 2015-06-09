@@ -47,7 +47,7 @@ class ApiFlowLockTopic extends ApiFlowBasePost {
 	 */
 	public function getParamDescription() {
 		return array(
-			'moderationState' => "State to put topic in, either locked or unlocked",
+			'moderationState' => "State to put topic in, either 'lock' or 'unlock'",
 			'reason' => 'Reason for locking or unlocking the topic',
 		);
 	}
@@ -64,7 +64,7 @@ class ApiFlowLockTopic extends ApiFlowBasePost {
 	 */
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=lock-topic&page=Topic:S2tycnas4hcucw8w&cotmoderationState=lock&cotsummary=Ahhhh',
+			'api.php?action=flow&submodule=lock-topic&page=Topic:S2tycnas4hcucw8w&cotmoderationState=lock&cotsummary=Mark%20as%20resolved',
 		);
 	}
 
@@ -73,7 +73,7 @@ class ApiFlowLockTopic extends ApiFlowBasePost {
 	 */
 	protected function getExamplesMessages() {
 		return array(
-			'action=flow&submodule=lock-topic&page=Topic:S2tycnas4hcucw8w&cotmoderationState=lock&cotsummary=Ahhhh'
+			'action=flow&submodule=lock-topic&page=Topic:S2tycnas4hcucw8w&cotmoderationState=lock&cotsummary=Mark%20as%20resolved'
 				=> 'apihelp-flow+lock-topic-example-1',
 		);
 	}
