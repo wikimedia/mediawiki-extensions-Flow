@@ -6,5 +6,9 @@
         {{!-- No data-flow-eventlog-action here; we'll do that in code to make sure it's run before cancel-success & cancel-abort --}}
         {{!-- funnel id will have been forwarded to this button though, so we can access that from the code --}}
 >
-	{{~l10n "flow-cancel"~}}
+    {{#if msg}}
+        {{~l10n msg~}}
+    {{else}}
+        {{~l10n "flow-cancel"~}}
+    {{/if}}
 </button>

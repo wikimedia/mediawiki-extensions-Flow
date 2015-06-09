@@ -1,26 +1,33 @@
-<h2 class="flow-topic-title flow-load-interactive"
+<h2 class="flow-topic-title flow-load-interactive {{#if isLocked}}flow-click-interactive{{/if}}"
     data-flow-topic-title="{{escapeContent content.format content.content}}"
-    data-flow-load-handler="topicTitle">{{escapeContent content.format content.content}}</h2>
+    data-flow-load-handler="topicTitle"
+    {{#if isLocked}}
+    data-flow-interactive-handler="collapserCollapsibleToggle"
+    {{/if}}
+        >
+    {{#if isLocked}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-check"></span> {{/if}}
+    {{~escapeContent content.format content.content~}}
+</h2>
 <div class="flow-topic-meta">
-	{{l10n "flow-topic-comments" reply_count}} &bull;
+    {{l10n "flow-topic-comments" reply_count}} &bull;
 
-	<a href="{{links.topic-history.url}}" class="flow-timestamp-anchor">
-		{{#if last_updated}}
-			{{timestamp last_updated}}
-		{{else}}
-			{{uuidTimestamp postId}}
-		{{/if}}
-	</a>
+    <a href="{{links.topic-history.url}}" class="flow-timestamp-anchor">
+        {{#if last_updated}}
+            {{timestamp last_updated}}
+        {{else}}
+            {{uuidTimestamp postId}}
+        {{/if}}
+    </a>
 </div>
-{{#if isModerated}}
-	<div class="flow-moderated-topic-title flow-ui-text-truncated">
-		{{~noop~}}{{> flow_topic_moderation_flag}}
-		{{> flow_post_moderation_state}}
-	</div>
-	<div class="flow-moderated-topic-reason">
-		{{l10n "flow-topic-moderated-reason-prefix"}}
-		{{escapeContent moderateReason.format moderateReason.content}}
-	</div>
+{{#if isModeratedNotLocked}}
+    <div class="flow-moderated-topic-title flow-ui-text-truncated">
+        {{~noop~}}{{> flow_topic_moderation_flag}}
+        {{> flow_post_moderation_state}}
+    </div>
+    <div class="flow-moderated-topic-reason">
+        {{l10n "flow-topic-moderated-reason-prefix"}}
+        {{escapeContent moderateReason.format moderateReason.content}}
+    </div>
 {{/if}}
 <span class="flow-reply-count"><span class="flow-reply-count-number">{{reply_count}}</span></span>
 

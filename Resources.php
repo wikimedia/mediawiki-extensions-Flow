@@ -57,7 +57,7 @@ $wgResourceModules += array(
 			'handlebars/flow_edit_topic_title.partial.handlebars',
 			'handlebars/flow_editor_switcher.partial.handlebars',
 			'handlebars/flow_errors.partial.handlebars',
-			'handlebars/flow_form_buttons.partial.handlebars',
+			'handlebars/flow_form_cancel_button.partial.handlebars',
 			'handlebars/flow_header_title.partial.handlebars',
 			'handlebars/flow_header_detail.partial.handlebars',
 			'handlebars/flow_load_more.partial.handlebars',
@@ -92,6 +92,7 @@ $wgResourceModules += array(
 		'messages' => array(
 			'flow-anon-warning',
 			'flow-cancel',
+			'flow-skip-summary',
 			'flow-board-header',
 			'flow-board-collapse-description',
 			'flow-board-expand-description',
@@ -132,6 +133,7 @@ $wgResourceModules += array(
 			'flow-topic-action-history',
 			'flow-topic-action-resummarize-topic',
 			'flow-topic-action-summarize-topic',
+			'flow-topic-action-update-topic-summary',
 			'flow-topic-action-unlock-topic',
 			'flow-topic-action-suppress-topic',
 			'flow-topic-action-view',
@@ -223,6 +225,8 @@ $wgResourceModules += array(
 			'flow-moderation-confirmation-delete-topic',
 			'flow-moderation-confirmation-suppress-topic',
 			'flow-topic-moderated-reason-prefix',
+			'flow-rev-message-lock-topic-reason',
+			'flow-rev-message-restore-topic-reason',
 			// Undo actions
 			'flow-post-undo-hide',
 			'flow-post-undo-delete',
@@ -426,6 +430,7 @@ $wgResourceModules += array(
 		),
 	) + $mobile,
 	'ext.flow.undo' => $flowResourceTemplate + array(
+		'position' => 'bottom',
 		'scripts' => array(
 			// this must be last (of everything loaded.  otherwise a components
 			// can be initialized before all the mixins are loaded.  Can we mixin
