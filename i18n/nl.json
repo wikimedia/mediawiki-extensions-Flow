@@ -114,6 +114,8 @@
 	"flow-topic-notification-subscribe-description": "{{GENDER:$1|U}} ontvangt meldingen over alle activiteiten aangaande dit onderwerp.",
 	"flow-board-notification-subscribe-title": "{{GENDER:$1|U}} bent geabonneerd op dit discussiebord.",
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|U}} krijgt een melding als er een nieuw onderwerp wordt gemaakt op dit bord.",
+	"flow-topic-action-watchlist-add": "Op dit onderwerp abonneren",
+	"flow-topic-action-watchlist-remove": "Uitschrijven",
 	"flow-error-allowcreation-no-usedb": "Voor allowCreation moet <var>$wgContentHandlerUseDB</var> <code>true</code> zijn.",
 	"flow-error-http": "Er is een fout opgetreden in het contact met de server.",
 	"flow-error-other": "Er is een onverwachte fout opgetreden.",
