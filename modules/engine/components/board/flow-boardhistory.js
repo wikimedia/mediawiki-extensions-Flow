@@ -58,4 +58,22 @@
 
 	FlowBoardHistoryComponent.UI.events.apiHandlers.moderateTopic = flowBoardHistoryModerationCallback;
 	FlowBoardHistoryComponent.UI.events.apiHandlers.moderatePost = flowBoardHistoryModerationCallback;
+
+	/**
+	 * Reloads the history page after resolving or reopening a topic.
+	 * @param {Object} info
+	 * @param {Object} data
+	 * @returns {jQuery.Promise}
+	 */
+	FlowBoardHistoryComponent.UI.events.apiHandlers.lockTopic = function ( info, data ) {
+		if ( info.status !== 'done' ) {
+			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
+			return $.Deferred().resolve().promise();
+		}
+
+		location.reload();
+
+		return $.Deferred().resolve().promise();
+	};
+
 }( jQuery, mediaWiki ) );
