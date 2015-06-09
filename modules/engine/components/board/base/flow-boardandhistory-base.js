@@ -124,6 +124,25 @@
 		} );
 	};
 
+	/**
+	 * Adds a hardcoded moderation reason to the request when resolving and reopening a topic.
+	 * @param {Event} event
+	 * @param {Object} info
+	 * @param {Object} queryMap
+	 * @return {Object}
+	 */
+	function addLockRestoreReason( event, info, queryMap ) {
+		var msgKey = queryMap.cotmoderationState === 'lock' ?
+				'flow-rev-message-lock-topic-reason' :
+				'flow-rev-message-restore-topic-reason',
+			msg = mw.msg( msgKey );
+		return $.extend( {}, queryMap, {
+			cotreason: msg
+		} );
+	}
+	FlowBoardAndHistoryComponentBase.UI.events.apiPreHandlers.lockAndSummarizeTopic = addLockRestoreReason;
+	FlowBoardAndHistoryComponentBase.UI.events.apiPreHandlers.lockTopic = addLockRestoreReason;
+
 	//
 	// Interactive handlers
 	//

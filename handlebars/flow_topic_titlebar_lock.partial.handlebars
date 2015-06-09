@@ -2,22 +2,20 @@
 	<div class="flow-topic-summary">
 		<form class="flow-edit-form" data-flow-initial-state="collapsed" method="POST"
 			  action="
-				{{~#if isModerated~}}
+				{{~#if isLocked~}}
 					{{~actions.unlock.url~}}
 				{{~else~}}
 					{{~actions.lock.url~}}
 				{{~/if~}}">
 			{{> flow_errors }}
 			<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
-			<textarea name="flow_reason"
-			          class="mw-ui-input"
-			          type="text"
-			          required
-			>
-				{{~#if @root.submitted.reason~}}
-					{{~@root.submitted.reason~}}
-				{{~/if~}}
-			</textarea>
+			<input type="hidden" name="flow_reason" value="
+			{{~#if isLocked~}}
+				{{~l10n "flow-rev-message-restore-topic-reason"~}}
+			{{~else~}}
+				{{~l10n "flow-rev-message-lock-topic-reason"~}}
+			{{~/if~}}
+			" />
 			<div class="flow-form-actions flow-form-collapsible">
 				<button data-role="submit"
 				        class="mw-ui-button mw-ui-constructive"
@@ -25,15 +23,15 @@
 				        data-flow-api-target="< .flow-topic"
 				        data-flow-api-handler="lockTopic"
 				>
-					{{#if isModerated}}
+					{{#if isLocked}}
 						{{l10n "flow-topic-action-unlock-topic"}}
 					{{else}}
 						{{l10n "flow-topic-action-lock-topic"}}
 					{{/if}}
 				</button>
-				{{> flow_form_buttons }}
+				{{> flow_form_cancel_button }}
 				<small class="flow-terms-of-use plainlinks">
-					{{#if isModerated}}
+					{{#if isLocked}}
 						{{l10nParse "flow-terms-of-use-unlock-topic"}}
 					{{else}}
 						{{l10nParse "flow-terms-of-use-lock-topic"}}
