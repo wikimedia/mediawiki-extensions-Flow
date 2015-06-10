@@ -6,6 +6,7 @@ use ApiBase;
 use ApiMain;
 use ApiModuleManager;
 use Flow\Container;
+use Hooks;
 use Title;
 
 class ApiFlow extends ApiBase {
@@ -90,7 +91,7 @@ class ApiFlow extends ApiBase {
 			$module->setPage( $this->getPage( $params ) );
 		}
 		$module->execute();
-		wfRunHooks( 'APIFlowAfterExecute', array( $module ) );
+		Hooks::run( 'APIFlowAfterExecute', array( $module ) );
 		$module->profileOut();
 	}
 
