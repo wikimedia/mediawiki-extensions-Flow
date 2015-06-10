@@ -173,6 +173,6 @@ class CachedThreadData extends CachedApiData {
  */
 class CachedPageData extends CachedApiData {
 	protected function retrieve( array $ids ) {
-		return $this->backend->retrievePageDataByID( $ids );
+		return $this->backend->retrievePageDataById( $ids );
 	}
 }
