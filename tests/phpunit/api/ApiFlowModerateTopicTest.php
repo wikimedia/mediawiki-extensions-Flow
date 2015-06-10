@@ -72,6 +72,7 @@ class ApiFlowModerateTopicTest extends ApiTestCase {
 		$data = $this->doApiRequest( array(
 			'action' => 'query',
 			'list' => 'logevents',
+			'rawcontinue' => 1,
 		) );
 		$debug = json_encode( $data );
 		$logEntry = $data[0]['query']['logevents'][0];
