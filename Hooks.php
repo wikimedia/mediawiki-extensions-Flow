@@ -1456,4 +1456,43 @@ class FlowHooks {
 
 		return true;
 	}
+
+	/**
+	 * NS_TOPIC titles are created slightly after the topic has been stored,
+	 * in a listener.
+	 * Other things could try to figure out if that given title exists in the
+	 * meantime (e.g. Echo, when sending an email about the new topic), even
+	 * before we have created it.
+	 * This will make sure that Topic:xyz titles that exist but have yet to
+	 * be created are already recognized as pages that exist.
+	 *
+	 * @param Title $title
+	 * @param bool $exists
+	 * @return bool
+	 */
+	public static function onTitleExists( Title $title, &$exists ) {
+		if ( $exists ) {
+			// already known to exist, don't waste any more CPU
+			return true;
+		}
+
+		if ( $title->getNamespace() !== NS_TOPIC ) {
+			// we only care about "fixing" Topic:xyz titles
+			return true;
+		}
+
+		try {
+			$uuid = strtolower( $title->getDBkey() );
+			$uuid = UUID::create( $uuid );
+
+			// a topic should have a workflow with the same UUID
+			$collection = PostCollection::newFromId( $uuid );
+			$workflowId = $collection->getWorkflowId();
+			$exists = $workflowId->equals( $uuid );
+		} catch ( \Exception $e ) {
+			return true;
+		}
+
+		return true;
+	}
 }
