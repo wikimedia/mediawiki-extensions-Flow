@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_dc28b634",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2015-06-10T21:26:07Z",
+      "side": 1,
+      "message": "How is this $row different from the $row passed 2 lines up? Should this simply return $c?",
+      "revId": "c63ea5428e2f780f7bc27eb13e05e2445abed803",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
