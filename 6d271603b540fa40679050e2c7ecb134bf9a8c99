@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_8cd75fc4",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 1491,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-06-10T18:01:02Z",
+      "side": 1,
+      "message": "Note to self: this might not suffice if there is no cache (DB slave may be lagging) - take another look tomorrow!",
+      "revId": "6d271603b540fa40679050e2c7ecb134bf9a8c99",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
