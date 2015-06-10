@@ -742,7 +742,7 @@ abstract class AbstractRevision {
 			$rc = RecentChange::newFromRow( $row );
 			$params = $rc->parseParams();
 			if ( $params && $params['flow-workflow-change']['revision'] === $revId ) {
-				return RecentChange::newFromRow( $row );
+				return $rc;
 			}
 		}
 
