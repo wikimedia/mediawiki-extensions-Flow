@@ -123,7 +123,6 @@ $wgHooks['SpecialCheckUserGetLinksFromRow'][] = 'FlowHooks::onSpecialCheckUserGe
 $wgHooks['CheckUserInsertForRecentChange'][] = 'FlowHooks::onCheckUserInsertForRecentChange';
 $wgHooks['SkinMinervaDefaultModules'][] = 'FlowHooks::onSkinMinervaDefaultModules';
 $wgHooks['IRCLineURL'][] = 'FlowHooks::onIRCLineURL';
-$wgHooks['FlowAddModules'][] = 'Flow\Parsoid\Utils::onFlowAddModules';
 $wgHooks['WhatLinksHereProps'][] = 'FlowHooks::onWhatLinksHereProps';
 $wgHooks['ResourceLoaderTestModules'][] = 'FlowHooks::onResourceLoaderTestModules';
 $wgHooks['ContentHandlerDefaultModelFor'][] = 'Flow\Content\Content::onGetDefaultModel';
