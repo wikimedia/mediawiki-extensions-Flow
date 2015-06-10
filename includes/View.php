@@ -9,6 +9,7 @@ use Flow\Model\Anchor;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Html;
+use Hooks;
 use IContextSource;
 use Message;
 use OutputPage;
@@ -125,7 +126,7 @@ class View extends ContextSource {
 		}
 
 		// Allow other extensions to add modules
-		wfRunHooks( 'FlowAddModules', array( $out ) );
+		Hooks::run( 'FlowAddModules', array( $out ) );
 	}
 
 	protected function handleSubmit( WorkflowLoader $loader, $action, array $parameters ) {

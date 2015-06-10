@@ -6,6 +6,7 @@ use Flow\Collection\AbstractCollection;
 use Flow\Exception\DataModelException;
 use Flow\Exception\PermissionException;
 use Flow\Parsoid\Utils;
+use Hooks;
 use Title;
 use User;
 
@@ -348,7 +349,7 @@ abstract class AbstractRevision {
 		$sourceFormat = $this->getContentFormat();
 		if ( $this->xssCheck === null && $sourceFormat === 'html' ) {
 			// returns true if no handler aborted the hook
-			$this->xssCheck = wfRunHooks( 'FlowCheckHtmlContentXss', array( $raw ) );
+			$this->xssCheck = Hooks::run( 'FlowCheckHtmlContentXss', array( $raw ) );
 			if ( !$this->xssCheck ) {
 				wfDebugLog( 'Flow', __METHOD__ . ': XSS check prevented display of revision ' . $this->revId->getAlphadecimal() );
 				return '';
