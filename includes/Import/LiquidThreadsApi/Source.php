@@ -226,6 +226,7 @@ abstract class ApiBackend implements LoggerAwareInterface {
 			'action' => 'query',
 			'list' => 'threads',
 			'thprop' => 'id|subject|page|parent|ancestor|created|modified|author|summaryid|type|rootid|replies',
+			'rawcontinue' => 1, // We're doing continuation a different way, but this avoids a warning.
 			'format' => 'json',
 			'limit' => ApiBase::LIMIT_BIG1,
 		);
@@ -311,7 +312,6 @@ abstract class ApiBackend implements LoggerAwareInterface {
 			'rvlimit' => 5000,
 			'rvdir' => 'newer',
 			'continue' => '',
-			'limit' => ApiBase::LIMIT_BIG1,
 		);
 		$data = $this->apiCall( $conditions );
 
