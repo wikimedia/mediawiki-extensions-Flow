@@ -16,6 +16,24 @@
       "revId": "823885af33d4e59a0c39402ddf4b729e2d0ccc9f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_6677b236",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-06-10T12:45:28Z",
+      "side": 1,
+      "message": "Warning suppression seems to be the only meaningful thing there. The checks for null and serialized false don\u0027t seem to be needed. Or am I missing something?\n\nSee https://gerrit.wikimedia.org/r/217260",
+      "parentUuid": "8ec42329_f21604ac",
+      "revId": "823885af33d4e59a0c39402ddf4b729e2d0ccc9f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
