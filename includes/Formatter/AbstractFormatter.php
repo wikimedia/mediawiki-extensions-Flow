@@ -238,6 +238,7 @@ abstract class AbstractFormatter {
 
 		$key = $actions->getValue( $changeType, 'history', 'i18n-message' );
 		// find specialized message for this particular formatter type
+		// E.g. the -irc messages.
 		$msg = $ctx->msg( $key . '-' . $this->getHistoryType() );
 		if ( !$msg->exists() ) {
 			// fallback to default msg
