@@ -97,7 +97,8 @@
 			action: 'query',
 			list: 'allusers',
 			auprefix: initialUpperValue,
-			aulimit: 5
+			aulimit: 5,
+			rawcontinue: 1
 		} );
 		return xhr
 			.then( function ( data ) {
