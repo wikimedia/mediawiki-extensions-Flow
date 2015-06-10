@@ -2,6 +2,516 @@
   "comments": [
     {
       "key": {
+        "uuid": "8ec42329_7280d4f9",
+        "filename": "Resources.php",
+        "patchSetId": 35
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "?",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_522118f5",
+        "filename": "Resources.php",
+        "patchSetId": 35
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "You also need oojs-ui.styles.icons-layout (for the stripeToC icon in ToCWidget), oojs-ui.styles.indicators (for the down indicator in ReorderTopicsWidget) and oojs-ui.styles.icons-interactions (for the beta and clock icons in ReorderTopicsWidget once you uncomment that code)",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_35f556b6",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 859,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Add a // HACK comment here similar to the one in flow-board-loadmore",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_d5b412e7",
+        "filename": "modules/engine/components/flow-registry.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "This appears to be unused (grepping for \u0027flow.registry\u0027) only finds this line",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_35a316aa",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "boarddddddd",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_d58bb21e",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "You should generally try to avoid .appendTo(), especially when it\u0027s as easy to avoid as it is here.",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_957d2a1a",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Do you need to call navWidget.resize() here? Cause you call it when you first create it",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_7580bef9",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Is this to undo the addClass from line 146? That\u0027s not very clear. Maybe the resetBoardStart and resetBoardEnd event handlers could be moved to be right near each other, with start before end?",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_357a3620",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Why is this necessary? Does navWidget need an initialize method maybe?",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_15913a4a",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Hard-coding this seems like it\u0027s almost certainly wrong. In master, it defaults to the one the user used most recently (loaded from a hidden preference).",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_55a6e2a8",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Why ,0? Is it definitely accurate to add this topic at the start?",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_f5b26ee3",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Why is the flowBoard variable shadowed here? (By \"shadowed\" I mean that there\u0027s a local variable called flowBoard in the inner function that hides another variable also called flowBoard in the outer function.)",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_15b85ac2",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "And here too",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_15061a8a",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIHandler.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Why? No events are emitted anywhere",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_f5002e6f",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIHandler.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Missing OO.mixinClass for EventEmitter",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_554a62c9",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIHandler.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "You probably don\u0027t want to overwrite this.requestParams here. Instead, why not do $.extend( { submodule: submodule }, this.requestParams, requestParams ) down below?",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_b51066ae",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIHandler.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Doesn\u0027t match the actual parameter",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_d58c1202",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIHandler.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "toconly is undocumented",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_357b16ed",
+        "filename": "modules/flow/dm/mixins/mw.flow.dm.List.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "This should be done in a separate commit.",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_557822ed",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "This is fixed now, right?",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_f564ae47",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Let\u0027s try to keep the DM changes separate as much as possible. This could also be in a separate commit.",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_15f05a61",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "You should rebase this commit onto the JSON blob commit. This will then conflict, because we took different approaches to the same problem. The JSON blob commit silently ignores pre-existing topics, but this calls populate on them again. Maybe they have the same effect though: what I needed there was for populate( full topic data ); populate( sparse toc data ); to not overwrite the full version with the sparse version. I didn\u0027t look at the topic code closely enough to tell whether this achieves that too.",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_f5910efc",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Update event documentation for this format change",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_1597faf0",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.NavigationWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Undocumented config option",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_b59b861a",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.NavigationWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Write a destroy function that unbinds this",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_75ac3e33",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.NavigationWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "If you\u0027re feeling adventurous and clever, you can write this as:\n\n    this.tocWidget.connect( this, { loadTopic: [ \u0027emit\u0027, \u0027loadTopic\u0027 ] } );",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_55a3423f",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.NavigationWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "And same here",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_558ca2db",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.NavigationWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "PropAgate",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_35a6b651",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.NavigationWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "PropAgate",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_156dba01",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.NavigationWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Why is it necessary to explicitly copy the parent\u0027s width? I guess it\u0027s because it\u0027s absolutely positioned?",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_0807e220",
         "filename": "modules/flow/ui/widgets/mw.flow.ui.NavigationWidget.js",
         "patchSetId": 35
@@ -13,6 +523,567 @@
       "writtenOn": "2015-06-09T21:55:01Z",
       "side": 1,
       "message": "This threshold is high enough to break the collapsed experience, and too low to unbreak the expanded experience.\n\nWhen the widget is collapsed, it\u0027s quite noticeable that the displayed topic title changes too early, when you haven\u0027t yet fully scrolled past the previous topic. When the widget is expanded (at least on my page with 5 topics), it\u0027s taller than 100px and so the elementFromPoint problem breaks topic detection completely and it just says \"Browse topics\".",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_75851eb1",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.NavigationWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Regardless of how this widget is used in practice, it should still be robust against onWindowScroll being invoked on a detached widget.",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_358556a0",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.NavigationWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Why is this needed? AFAICT what this code does is it resizes the widget on every single scroll event, but only when it\u0027s affixed.",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_b548668d",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ReorderTopicsWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Function name mismatches",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_d54df29c",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ReorderTopicsWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "I can\u0027t find a config option called widget for MenuOptionWidget or its ancestors anywhere. I think you probably meant to pass this to the MenuSelectWidget constructor instead.",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_7562fe07",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ReorderTopicsWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Document event",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_f2284434",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ToCWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Undocumented config option",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_52fcb8b1",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ToCWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Why does this extend with the provided config? This breaks pretty badly if config.classes is set, because that overrides the class you specified here. Also, the fact that you\u0027re explicitly passing through config.tocPostLimit implies that you didn\u0027t intend to extend with config here.",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_d5441271",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ToCWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "The event handler is misnamed if it\u0027s not hooked into the choose event",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_5559025c",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ToCWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Why does this also need resize? Why are there resize calls all the way down? I\u0027m not sure offhand if the top-level resize (for NavigationWidget) can be eliminated, but surely for its children we should be able to use width: 100%;?",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_d2598802",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ToCWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "This button doesn\u0027t work very well because of the interaction between this handler and MenuSelectWidget\u0027s auto-closing behavior. When the menu is open and you click the button, first a mousedown occurs outside of the menu which causes the menu to close itself, then a click occurs on the button which toggles the now-closed menu back to open.\n\nYou can see this pretty clearly: clicking the button while the menu is open causes the menu to flicker, and if you hold down the mouse on the button for a while, the menu closes until you release the mouse.\n\nYou can solve this issue by passing{ widget: this } as a config param to MenuSelectWidget. I\u0027ll update the documentation for MenuSelectWidget to call out this pitfall explicitly.",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_553022fc",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ToCWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "This looks a bit scary. It would be safer to use $( document.getElementById( \u0027flow-topic-\u0027 + topicId );\n\nAlso please add a HACK/TODO about how this should be improved when topics are widgetized.",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_f51cae7e",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ToCWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Reuse $topic",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_15229ab1",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ToCWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Document event",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_d51bb280",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ToCWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Don\u0027t access this.originalButtonLabel here, exploit the fact that updateLabel() abstracts that for you.",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_3830ede4",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ToCWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "The data fields of the OptionWidgets in TopicSelectWidget are topic IDs, not topic objects",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_7510be5b",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Undocumented config option",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_350a362a",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Document (with // comments) what these mean",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_5507c21f",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Write a destructor that does this.board.disconnect( this )",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_f849056b",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Why not use this.topics[topic.getId()] here? That would be faster, too, since getItemFromData() is iterative and uses OO.getHash(). You would probably want to make this.topics more systematically reliable though, by updating it in addItems/removeItems overrides instead of in addTopics/removeTopics.\n\nI reported the fact that GroupElement\u0027s implementation isn\u0027t very useful as https://phabricator.wikimedia.org/T101922",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_3819cd7e",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Defer computing the height until after the \"do nothing if\" block. The \"do nothing if\" condition is common, and scroll fires often.",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_75299e99",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "The documentation (probably correctly) claims that this function takes an OptionWidget, but the function is written as if it takes a string.",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_5816194f",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Why is this method in flow.ui? It seems more like something that belongs in flow.dm.Board",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_f82265a1",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Same for this one",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_18289180",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Unindent this line and the next line by one tab. \"true\" is not part of the ternary",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_983321f3",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "I think it would be clearer to put this removeItems() call nearer the addItems() call",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_783675e6",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Should we have a helper function somewhere to extract an array of dm.Topics from an API response? Because this code here 1) seems to be repeated in a few places and 2) belongs in dm",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_f87025a5",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Same thing here about using this.topics",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_b86a9daf",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "This is a loop, right?",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_d86f69bf",
+        "filename": "modules/styles/flow/mw.flow.ui.less",
+        "patchSetId": 35
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "/* @embed */\n\nAlso, maybe we can use OOUI\u0027s pending texture, or something.",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_385ead18",
+        "filename": "modules/styles/flow/widgets/mw.flow.ui.NavigationWidget.less",
+        "patchSetId": 35
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "background: white;",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_786435e2",
+        "filename": "modules/styles/flow/widgets/mw.flow.ui.NavigationWidget.less",
+        "patchSetId": 35
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "?",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_9861e1d2",
+        "filename": "modules/styles/flow/widgets/mw.flow.ui.NavigationWidget.less",
+        "patchSetId": 35
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "Does this actually work to fix the icon problem? (Ignoring the fact that the setIcon() call for that widget is commented out right now)",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_585b7926",
+        "filename": "modules/styles/flow/widgets/mw.flow.ui.TopicMenuSelectWidget.less",
+        "patchSetId": 35
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-10T02:48:41Z",
+      "side": 1,
+      "message": "?",
       "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
