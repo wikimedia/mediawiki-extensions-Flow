@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_00b32897",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-11T18:57:34Z",
+      "side": 1,
+      "message": "I just realized: the PHP code in View.php takes pains to locate the topic list, whereas this JS code here just assumes that blocks[0] is the header and blocks[1] is the topic list. We should either formalize this assumption and make it everywhere, or we should preprocess the data in PHP and export a JSON blob with explicit \"header\" and \"topiclist\" keys.",
+      "revId": "6815c62df7ba1e56e3e6601bdfac6e250a24e27b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
