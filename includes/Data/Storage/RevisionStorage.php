@@ -163,6 +163,29 @@ abstract class RevisionStorage extends DbStorage {
 		$res = self::mergeExternalContent( $res );
 		foreach ( $res as $i => $result ) {
 			if ( $result ) {
+				foreach ( $result as $uuid => $revision ) {
+					/*
+					 * Below call to $this->validate() will remove all results for which
+					 * we were unable to retrieve data from ExternalStore. However, if
+					 * we're only missing the text content, instead of failing completely,
+					 * we might as well just show stub data, some error message, as we
+					 * already do under some other condition. And we still have the
+					 * hierarchy, user, date, ... Might as well show what we have instead
+					 * of breaking completely.
+					 * Especially since we lost some data (https://phabricator.wikimedia.org/T95580)
+					 * but it could even cover for ExternalStore downtime some day.
+					 */
+					if ( isset( $revision['rev_content'] ) && $revision['rev_content'] === false ) {
+						$result[$uuid]['rev_content'] = wfMessage( 'flow-stub-post-content' )->parse();
+
+						// we're adding fake HTML content, make sure it's not interpreted at wikitext or gzinflated!
+						$flags = explode( ',', $revision['rev_flags'] );
+						$flags = array_diff( $flags, array( 'wikitext', 'html', 'gzip' ) );
+						$flags[] = 'html';
+						$result[$uuid]['rev_flags'] = implode( ',', $flags );
+					}
+				}
+
 				$res[$i] = array_filter( $result, array( $this, 'validate' ) );
 			}
 		}
