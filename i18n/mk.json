@@ -496,5 +496,9 @@
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|користи означување]]",
 	"flow-wikitext-editor-help-preview-the-result": "прегледате исходот",
 	"flow-wikitext-switch-editor-tooltip": "Префрли на ВизуеленУредник",
-	"flow-ve-switch-editor-tool-title": "Префрли на викитекст"
+	"flow-ve-switch-editor-tool-title": "Префрли на викитекст",
+	"flow-mark-revision-patrolled-link-text": "Означи страницава како проверена",
+	"flow-mark-revision-patrolled-link-title": "Означи страницава како проверена",
+	"flow-mark-diff-patrolled-link-text": "Означи како проверено",
+	"flow-mark-diff-patrolled-link-title": "Означи како проверено"
 }

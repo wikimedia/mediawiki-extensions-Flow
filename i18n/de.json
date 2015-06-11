@@ -487,5 +487,9 @@
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|verwendet Markup]]",
 	"flow-wikitext-editor-help-preview-the-result": "eine Vorschau des Ergebnisses anzeigen",
 	"flow-wikitext-switch-editor-tooltip": "Zum VisualEditor wechseln",
-	"flow-ve-switch-editor-tool-title": "Zum Wikitext-Editor wechseln"
+	"flow-ve-switch-editor-tool-title": "Zum Wikitext-Editor wechseln",
+	"flow-mark-revision-patrolled-link-text": "Diese Seite als kontrolliert markieren",
+	"flow-mark-revision-patrolled-link-title": "Diese Seite als kontrolliert markieren",
+	"flow-mark-diff-patrolled-link-text": "Als kontrolliert markieren",
+	"flow-mark-diff-patrolled-link-title": "Als kontrolliert markieren"
 }
