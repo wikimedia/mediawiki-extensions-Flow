@@ -58,23 +58,17 @@ class OccupationListener extends AbstractListener {
 			return;
 		}
 
-		if ( isset( $metadata['imported'] ) && $metadata['imported'] ) {
-			$user = $this->occupationController->getTalkpageManager();
-			$this->occupationController->allowCreation( $object->getArticleTitle(), $user, false );
+		if ( !$this->enabled ) {
+			return;
 		}
 
-		$this->ensureOccupation( $object );
-	}
-
-	protected function ensureOccupation( Workflow $workflow ) {
-		if ( $this->enabled ) {
-			$controller = $this->occupationController;
-			$this->deferredQueue->push( function() use ( $controller, $workflow ) {
-				$controller->ensureFlowRevision(
-					new Article( $workflow->getArticleTitle() ),
-					$workflow
-				);
-			} );
-		}
+		// make sure this Topic:xyz page exists
+		$controller = $this->occupationController;
+		$this->deferredQueue->push( function() use ( $controller, $object ) {
+			$controller->ensureFlowRevision(
+				new Article( $object->getArticleTitle() ),
+				$object
+			);
+		} );
 	}
 }
