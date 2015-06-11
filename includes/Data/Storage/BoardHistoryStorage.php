@@ -41,16 +41,8 @@ class BoardHistoryStorage extends DbStorage {
 			$merged = array_splice( $merged, 0, $options['LIMIT'] );
 		}
 
-		// Merge data from external store & get rid of failures
 		$res = array( $merged );
-		$res = RevisionStorage::mergeExternalContent( $res );
-		foreach ( $res as $i => $result ) {
-			if ( $result ) {
-				$res[$i] = array_filter( $result, array( $this, 'validate' ) );
-			}
-		}
-
-		return $res;
+		return RevisionStorage::mergeExternalContent( $res );
 	}
 
 	protected function findHeaderHistory( array $queries, array $options = array() ) {
