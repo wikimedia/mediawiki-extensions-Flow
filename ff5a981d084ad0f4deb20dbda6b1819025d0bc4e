@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_d2865d6a",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-11T03:52:03Z",
+      "side": 1,
+      "message": "You also need to pass the placeholder text in here. In master, the placeholder text stays in place when you click into the textarea, but with this code it disappears.",
+      "revId": "ff5a981d084ad0f4deb20dbda6b1819025d0bc4e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_52b34d4c",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-11T03:52:03Z",
+      "side": 1,
+      "message": "s/held/holds/ or \"contains\"",
+      "revId": "ff5a981d084ad0f4deb20dbda6b1819025d0bc4e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_72b0c93e",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-11T03:52:03Z",
+      "side": 1,
+      "message": "Clever use of focusin/focusout, I hadn\u0027t thought of that",
+      "revId": "ff5a981d084ad0f4deb20dbda6b1819025d0bc4e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
