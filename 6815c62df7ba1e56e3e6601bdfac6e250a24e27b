@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "8ec42329_207744d3",
+        "filename": "includes/View.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-11T19:01:24Z",
+      "side": 1,
+      "message": "Instead of keeping a counter and using an index variable, you can simplify this by restructuring this code:\n\n\n    if ( $wasPosted \u0026\u0026 etc ) {\n        $blockData \u003d $block-\u003erenderApi( ... );\n        $apiResponse[\u0027blocks\u0027][] \u003d $blockData;\n        if ( $block-\u003egetName() \u003d\u003d\u003d \u0027topiclist\u0027 ) {\n            $topicList \u003d $blockData;\n        }\n    }\n\n    // Use $blockData instead of $apiResponse[\u0027blocks\u0027][$topiclistBlockIndex]",
+      "revId": "6815c62df7ba1e56e3e6601bdfac6e250a24e27b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_00b32897",
         "filename": "modules/flow-initialize.js",
         "patchSetId": 10
