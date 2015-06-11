@@ -709,6 +709,10 @@ abstract class AbstractRevision {
 	public function getRecentChange() {
 		$timestamp = $this->revId->getTimestamp();
 
+		if ( !RecentChange::isInRCLifespan( $timestamp ) ) {
+			// Too old to be in RC, don't even bother checking
+			return null;
+		}
 		$workflow = $this->getCollection()->getWorkflow();
 		if ( $this->changeType === 'new-post' ) {
 			$title = $workflow->getOwnerTitle();
