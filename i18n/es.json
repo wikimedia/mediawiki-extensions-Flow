@@ -352,7 +352,7 @@
 	"flow-toggle-small-topics": "Cambiar a la vista de temas pequeños",
 	"flow-toggle-topics": "Cambiar a la vista de solo temas",
 	"flow-toggle-topics-posts": "Cambiar a la vista de temas y publicaciones",
-	"flow-terms-of-use-summarize": "Al hacer clic en \"{{int:flow-topic-action-summarize-topic}}\", aceptas los términos de uso de este wiki.",
+	"flow-terms-of-use-summarize": "Al pulsar en «{{int:flow-topic-action-summarize-topic}}» aceptas los términos de uso de este wiki.",
 	"flow-terms-of-use-lock-topic": "Al pulsar en «{{int:flow-topic-action-lock-topic}}» aceptas los términos de uso de este wiki.",
 	"flow-terms-of-use-unlock-topic": "Al pulsar en «{{int:flow-topic-action-unlock-topic}}» aceptas los términos de uso de este wiki.",
 	"flow-whatlinkshere-post": "de una [$1 publicación]",
@@ -481,5 +481,9 @@
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|usa un lenguaje de marcado]]",
 	"flow-wikitext-editor-help-preview-the-result": "previsualizar el resultado",
 	"flow-wikitext-switch-editor-tooltip": "Cambiar al editor visual",
-	"flow-ve-switch-editor-tool-title": "Cambiar al editor de wikitexto"
+	"flow-ve-switch-editor-tool-title": "Cambiar al editor de wikitexto",
+	"flow-mark-revision-patrolled-link-text": "Marcar esta página como patrullada",
+	"flow-mark-revision-patrolled-link-title": "Marcar esta página como patrullada",
+	"flow-mark-diff-patrolled-link-text": "Marcar como patrullada",
+	"flow-mark-diff-patrolled-link-title": "Marcar como patrullada"
 }

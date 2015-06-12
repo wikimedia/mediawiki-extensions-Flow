@@ -64,5 +64,8 @@
 	"flow-topic-action-unsuppress-topic": "Téma felfedése",
 	"flow-topic-action-restore-topic": "Téma visszaállítása",
 	"flow-topic-action-undo-moderation": "Visszavonás",
-	"flow-edit-header-submit": "Leírás mentése"
+	"flow-edit-header-submit": "Leírás mentése",
+	"flow-mark-revision-patrolled-link-title": "A lap megjelölése ellenőrzöttként",
+	"flow-mark-diff-patrolled-link-text": "Ellenőrzöttnek jelölés",
+	"flow-mark-diff-patrolled-link-title": "Ellenőrzöttnek jelölés"
 }

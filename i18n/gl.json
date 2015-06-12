@@ -497,5 +497,9 @@
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|usa o etiquetado]]",
 	"flow-wikitext-editor-help-preview-the-result": "previsualizar o resultado",
 	"flow-wikitext-switch-editor-tooltip": "Cambiar ó Editor Visual",
-	"flow-ve-switch-editor-tool-title": "Cambiar ó editor de wikitexto"
+	"flow-ve-switch-editor-tool-title": "Cambiar ó editor de wikitexto",
+	"flow-mark-revision-patrolled-link-text": "Marcar esta páxina coma revisada",
+	"flow-mark-revision-patrolled-link-title": "Marcar esta páxina coma revisada",
+	"flow-mark-diff-patrolled-link-text": "Marcar coma revisada",
+	"flow-mark-diff-patrolled-link-title": "Marcar coma revisada"
 }

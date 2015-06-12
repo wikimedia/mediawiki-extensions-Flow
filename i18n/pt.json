@@ -472,5 +472,9 @@
 	"flow-ve-mention-inspector-invalid-user": "O nome de utilizador(a) \"$1\" não está registado.",
 	"flow-wikitext-editor-help-preview-the-result": "pré-visualizar o resultado",
 	"flow-wikitext-switch-editor-tooltip": "Mudar para o Editor Visual",
-	"flow-ve-switch-editor-tool-title": "Mudar para o editor de wikitexto"
+	"flow-ve-switch-editor-tool-title": "Mudar para o editor de wikitexto",
+	"flow-mark-revision-patrolled-link-text": "Marcar esta página como patrulhada",
+	"flow-mark-revision-patrolled-link-title": "Marcar esta página como patrulhada",
+	"flow-mark-diff-patrolled-link-text": "Marcar como patrulhada",
+	"flow-mark-diff-patrolled-link-title": "Marcar como patrulhada"
 }
