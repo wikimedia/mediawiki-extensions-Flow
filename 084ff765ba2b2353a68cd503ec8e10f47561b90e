@@ -1,0 +1,208 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_4f35db41",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIHandler.js",
+        "patchSetId": 36
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:40Z",
+      "side": 1,
+      "message": "Using @cfg is good but you do need to explicitly document the config parameter with a @param as well.",
+      "revId": "084ff765ba2b2353a68cd503ec8e10f47561b90e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_ef39273f",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 36
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:40Z",
+      "side": 1,
+      "message": "Add @return documentation, and remember |null",
+      "revId": "084ff765ba2b2353a68cd503ec8e10f47561b90e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_0f3fd323",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 36
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:40Z",
+      "side": 1,
+      "message": "Here too",
+      "revId": "084ff765ba2b2353a68cd503ec8e10f47561b90e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_af431fb5",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 36
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:40Z",
+      "side": 1,
+      "message": "Why is this a property of the board?\n\nAlso this should probably have a default value",
+      "revId": "084ff765ba2b2353a68cd503ec8e10f47561b90e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_6f4d37e0",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 36
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:40Z",
+      "side": 1,
+      "message": "This parameter isn\u0027t actually taken",
+      "revId": "084ff765ba2b2353a68cd503ec8e10f47561b90e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_8f4ae3c6",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.NavigationWidget.js",
+        "patchSetId": 36
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:40Z",
+      "side": 1,
+      "message": "Explain more clearly that this should be called right after #$element is attached to the document",
+      "revId": "084ff765ba2b2353a68cd503ec8e10f47561b90e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_8f2183f8",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 36
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:40Z",
+      "side": 1,
+      "message": "\"undergoing\" requires an object, like \"the track is undergoing maintenance\". I think you mean \"ongoing\": \"X is ongoing\" means that X started a while ago and is still happening.",
+      "revId": "084ff765ba2b2353a68cd503ec8e10f47561b90e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_4f839bd1",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 36
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:40Z",
+      "side": 1,
+      "message": "Document",
+      "revId": "084ff765ba2b2353a68cd503ec8e10f47561b90e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_ef87e7da",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 36
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:40Z",
+      "side": 1,
+      "message": "Nitpick of the century: the closing parenthesis should be on a separate line, indented one level less than this line",
+      "revId": "084ff765ba2b2353a68cd503ec8e10f47561b90e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_cf6eab2a",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 36
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:40Z",
+      "side": 1,
+      "message": "This doesn\u0027t work, does it?. this.items is a GroupElement property and it\u0027s an array, not an object keyed by ID like this.topics is.",
+      "revId": "084ff765ba2b2353a68cd503ec8e10f47561b90e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_4f6abb13",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 36
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:40Z",
+      "side": 1,
+      "message": "This line should be in a clearItems() override instead",
+      "revId": "084ff765ba2b2353a68cd503ec8e10f47561b90e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_2f65ef41",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 36
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:40Z",
+      "side": 1,
+      "message": "Don\u0027t add a description when using @inheritdoc, it overrides the entire description from the parent class.\n\nIf you want, I believe you can use @localdoc for this, but in practice people just put // comments in the function body.",
+      "revId": "084ff765ba2b2353a68cd503ec8e10f47561b90e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
