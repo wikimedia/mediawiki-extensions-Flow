@@ -17,6 +17,13 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Converts a single namespace of wikitext talk pages to Flow";
 		$this->addArg( 'namespace', 'Name of the namespace to convert' );
+		$this->addOption(
+			'no-convert-templates',
+			'Comma-separated list of templates that indicate a page should not be converted',
+			false, // not required
+			true, // takes argument
+			't'
+		);
 	}
 
 	public function execute() {
@@ -36,6 +43,21 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 			return;
 		}
 
+		$noConvertTemplates = explode( ',', $this->getOption( 'no-convert-templates', '' ) );
+		if ( $noConvertTemplates === array( '' ) ) {
+			// explode( ',', '' ) returns array( '' )
+			$noConvertTemplates = array();
+		}
+		// Convert to Title objects
+		foreach ( $noConvertTemplates as &$template ) {
+			$title = Title::newFromText( $template, NS_TEMPLATE );
+			if ( !$title ) {
+				$this->error( "Invalid template name: $template" );
+				return;
+			}
+			$template = $title;
+		}
+
 		// @todo send to prod logger?
 		$logger = new MaintenanceDebugLogger( $this );
 
@@ -48,7 +70,8 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 			new Flow\Import\Wikitext\ConversionStrategy(
 				$wgParser,
 				new Flow\Import\NullImportSourceStore(),
-				$logger
+				$logger,
+				$noConvertTemplates
 			)
 		);
 
