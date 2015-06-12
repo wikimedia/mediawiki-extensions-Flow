@@ -19,6 +19,40 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_cfca2b4a",
+        "filename": "includes/View.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:00:07Z",
+      "side": 1,
+      "message": "$topiclistBlockIndex is undefined here, which is causing all of your PHP unit test failures. The variable name you used above is $blockTopiclistIndex. As I said in my comment above, I recommend eliminating this index variable in favor of a simpler strategy.\n\nI haven\u0027t looked into why the QUnit tests are failing, but I wouldn\u0027t be surprised if that was caused by this as well. I tested and it turns out $array[$undefinedVariable] is equivalent to $array[\u0027\u0027]",
+      "revId": "6815c62df7ba1e56e3e6601bdfac6e250a24e27b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_6fd777f3",
+        "filename": "includes/View.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:00:07Z",
+      "side": 1,
+      "message": "I can\u0027t believe I didn\u0027t notice this when I looked earlier: undefined is not a keyword in PHP. Instead of $foo[$bar] !\u003d\u003d undefined you need isset( $foo[$bar] )",
+      "revId": "6815c62df7ba1e56e3e6601bdfac6e250a24e27b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_00b32897",
         "filename": "modules/flow-initialize.js",
         "patchSetId": 10
