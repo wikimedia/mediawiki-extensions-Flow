@@ -1456,4 +1456,65 @@ class FlowHooks {
 
 		return true;
 	}
+
+	public static function onContentHandlerDefaultModelFor( Title $title, &$model ) {
+		$occupationController = self::getOccupationController();
+
+		if ( $occupationController->isTalkpageOccupied( $title, false ) ) {
+			$model = CONTENT_MODEL_FLOW_BOARD;
+
+			return false;
+		}
+
+		return true;
+	}
+
+	public static function onShowMissingArticle( Article $article ) {
+		if ( $article->getPage()->getContentModel() !== CONTENT_MODEL_FLOW_BOARD ) {
+			return true;
+		}
+
+		if ( $article->getTitle()->getNamespace() === NS_TOPIC ) {
+			// @todo pretty message about invalid workflow
+			throw new FlowException( 'Non-existent topic' );
+		}
+
+		$emptyContent = ContentHandler::getForModelID( CONTENT_MODEL_FLOW_BOARD )->makeEmptyContent();
+
+		$parserOutput = $emptyContent->getParserOutput( $article->getTitle() );
+		$article->getContext()->getOutput()->addParserOutput( $parserOutput );
+
+		return false;
+	}
+
+	public static function onArticleAfterFetchContentObject( Article &$article, Content &$contentObject = null ) {
+		if ( $contentObject === null ) {
+			return true;
+		}
+
+		$occupationController = self::getOccupationController();
+		$title = $article->getTitle();
+
+		if ( $occupationController->isTalkpageOccupied( $title ) ) {
+			/** @var WorkflowLoaderFactory $factory */
+			$factory = Container::get( 'factory.loader.workflow' );
+			$loader = $factory->createWorkflowLoader( $title );
+
+			$status = $occupationController->ensureFlowRevision( $article, $loader->getWorkflow() );
+
+			if ( $status->isGood() ) {
+				$value = $status->getValue();
+				if ( isset( $value['revision'] ) && !$value['already-existed'] ) {
+					$newRev = $value['revision'];
+					/** @noinspection PhpUndefinedFieldInspection */
+					$article->getPage()->mRevision = $newRev;
+					/** @noinspection PhpUndefinedFieldInspection */
+					$article->getPage()->mContentObject = $newRev->getContent();
+					$contentObject = $newRev->getContent();
+				}
+			}
+		}
+
+		return true;
+	}
 }
