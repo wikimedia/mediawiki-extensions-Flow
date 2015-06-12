@@ -304,16 +304,16 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * @return array
 	 */
 	protected function renderNewestTopicSummary( $format ) {
-		if ( !$this->permissions->isAllowed( $this->formatterRow->revision, 'view-topic-summary' ) ) {
-			$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
-			return array();
-		}
-
 		$output = array();
 		$formatter = Container::get( 'formatter.revision' );
 		$formatter->setContentFormat( $format );
 
 		if ( $this->formatterRow ) {
+			if ( !$this->permissions->isAllowed( $this->formatterRow->revision, 'view-topic-summary' ) ) {
+				$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
+				return array();
+			}
+
 			$output['revision'] = $formatter->formatApi(
 				$this->formatterRow,
 				$this->context
