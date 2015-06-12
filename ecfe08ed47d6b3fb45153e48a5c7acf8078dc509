@@ -369,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_8febc39f",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:23Z",
+      "side": 1,
+      "message": "Oooh, I see, this is the code for when the user creates a new topic inline, not for loading more topics through infinite scroll. That makes sense.",
+      "parentUuid": "8ec42329_9b979b93",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_f5b26ee3",
         "filename": "modules/flow-initialize.js",
         "patchSetId": 35
@@ -503,6 +521,24 @@
       "side": 1,
       "message": "I can decide if that\u0027s amusing (because I don\u0027t even need EventEmitter) or extremely sad, because I did call its constructor.\n\nSomewhere in between, probably.",
       "parentUuid": "8ec42329_f5002e6f",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_2f308f52",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIHandler.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:23Z",
+      "side": 1,
+      "message": "If you ask me, it\u0027s impressive that the constructor didn\u0027t fail",
+      "parentUuid": "8ec42329_bbf7f7f1",
       "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -735,6 +771,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_cf40ebaa",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:23Z",
+      "side": 1,
+      "message": "The format of the object passed to the populate event changed. It technically still takes one param whose type is Object, so the type docs aren\u0027t wrong, but the text explaining what that object looks like is.",
+      "parentUuid": "8ec42329_db59a302",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_1597faf0",
         "filename": "modules/flow/ui/widgets/mw.flow.ui.NavigationWidget.js",
         "patchSetId": 35
@@ -908,6 +962,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_2f172faa",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.NavigationWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:23Z",
+      "side": 1,
+      "message": "Ugh, right. I\u0027d still like to experiment with width: 100% but I have no idea what that will do with absolute let alone fixed positioning.",
+      "parentUuid": "8ec42329_fb281f34",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_0807e220",
         "filename": "modules/flow/ui/widgets/mw.flow.ui.NavigationWidget.js",
         "patchSetId": 35
@@ -972,6 +1044,24 @@
       "side": 1,
       "message": "I am not sure I understand your comment; does this mean that the if statement is not a HACK (so, removing the hack comment) or does this mean I need to find a better way to guard against a detached widget?",
       "parentUuid": "8ec42329_75851eb1",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_4f1cfbcb",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.NavigationWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:23Z",
+      "side": 1,
+      "message": "I guess it still is a hack, because nothing catastrophic happens if the scroll event is received after the widget is permanently detached. If there had been a potential for a JS error or a massive miscalculation (due to all the dimension and position measurements returning 0) here, it would have been different.",
+      "parentUuid": "8ec42329_9be8fbde",
       "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -1118,6 +1208,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_ef1047af",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ReorderTopicsWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:23Z",
+      "side": 1,
+      "message": "And @fires, too",
+      "parentUuid": "8ec42329_7b80aff9",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_f2284434",
         "filename": "modules/flow/ui/widgets/mw.flow.ui.ToCWidget.js",
         "patchSetId": 35
@@ -1240,6 +1348,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_0f16f3a9",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ToCWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:23Z",
+      "side": 1,
+      "message": "Why do these need this though? For the outer container with position: absolute/fixed I understand, but for things inside that container, shouldn\u0027t width: 100%; in CSS suffice?",
+      "parentUuid": "8ec42329_9b9c7b61",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_d2598802",
         "filename": "modules/flow/ui/widgets/mw.flow.ui.ToCWidget.js",
         "patchSetId": 35
@@ -1269,6 +1395,24 @@
       "side": 1,
       "message": "Except, removing this results in the menu never being opened, even if I add widget: this.button to the this.topicSelect constructor.\n\nI will, however, change this to toggle( true ) -- this makes more sense, as clicking the button will always open the menu (and never close it if it\u0027s open) and clicking outside will close it.\n\nThere\u0027s either another issue here at work, or there\u0027s a bug in OO.ui.MenuSelectWidget\u0027s widget config option.",
       "parentUuid": "8ec42329_d2598802",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_af2a3fd5",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ToCWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:23Z",
+      "side": 1,
+      "message": "Sorry if my long comment was confusing. I think all that was needed was to add the widget: config option, and leave the .toggle() call as is (that should result in a click on the button closing the menu). My comment was long and winding because I only (re)discovered the existence of the widget config option halfway through writing it.",
+      "parentUuid": "8ec42329_1bb88bc2",
       "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -1380,6 +1524,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_cf278b0c",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ToCWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:23Z",
+      "side": 1,
+      "message": "And @fires, too",
+      "parentUuid": "8ec42329_c60b06d8",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_d51bb280",
         "filename": "modules/flow/ui/widgets/mw.flow.ui.ToCWidget.js",
         "patchSetId": 35
@@ -1409,6 +1571,24 @@
       "side": 1,
       "message": "I don\u0027t understand this comment. \u0027updateLabel\u0027 is a setter, and in this case, I need the item\u0027s label, and a fallback onto the originalButtonLabel. Basically, show me the title of the topic if there is one, and if there isn\u0027t, show me \"browse topics\".\n\nWhat do you mean about the updateLabel()?",
       "parentUuid": "8ec42329_d51bb280",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_6f245708",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ToCWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:23Z",
+      "side": 1,
+      "message": "You call updateLabel() two lines down from here. On this line, you compute the value that you\u0027re going to pass to updateLabel(), but that computation is redundant because it\u0027s exactly the same logic that updateLabel() uses internally.",
+      "parentUuid": "8ec42329_86f5fec9",
       "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -1549,6 +1729,24 @@
       "side": 1,
       "message": "Done, but where do I call it? We\u0027re never destroying the widget?",
       "parentUuid": "8ec42329_5507c21f",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_2f7e4fe2",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:23Z",
+      "side": 1,
+      "message": "Your particular use of TopicSelectWidget doesn\u0027t, because the widget you\u0027ve embedded it in lives forever, but it\u0027s generic enough (though not entirely; I\u0027m not sure I\u0027m too happy with the infinite scroll logic being inside this widget as opposed to driving this widget from the outside, but I don\u0027t have a great alternative idea right now) that it\u0027s realistic that someone would want to use it inside of a limited-lifetime widget one day.\n\nAlso, if we want entire boards to be embeddable, they also need to support destruction.",
+      "parentUuid": "8ec42329_c686a618",
       "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -1969,6 +2167,24 @@
       "side": 1,
       "message": "I will fix that, but out of curiosity, why? isn\u0027t it the same thing?",
       "parentUuid": "8ec42329_385ead18",
+      "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_ef5e077b",
+        "filename": "modules/styles/flow/widgets/mw.flow.ui.NavigationWidget.less",
+        "patchSetId": 35
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-12T05:36:23Z",
+      "side": 1,
+      "message": "Yes, it is, but \"white\" is a lot more readable than a hex number",
+      "parentUuid": "8ec42329_464dd6df",
       "revId": "ecfe08ed47d6b3fb45153e48a5c7acf8078dc509",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
