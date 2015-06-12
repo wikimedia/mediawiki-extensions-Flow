@@ -28,6 +28,13 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 			$this->error( "Invalid namespace provided: $provided" );
 			return;
 		}
+		$namespaceName = $wgLang->getNsText( $namespace );
+		if ( !MWNamespace::hasSubpages( $namespace ) ) {
+			$this->error( "Subpages are not enabled in the $namespaceName namespace." );
+			$this->error( "In order to convert this namespace to Flow, you must enable subpages using:" );
+			$this->error( "\$wgNamespacesWithSubpages[$namespace] = true;" );
+			return;
+		}
 
 		// @todo send to prod logger?
 		$logger = new MaintenanceDebugLogger( $this );
@@ -45,7 +52,6 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 			)
 		);
 
-		$namespaceName = $wgLang->getNsText( $namespace );
 		$logger->info( "Starting conversion of $namespaceName namespace" );
 
 		// Iterate over all existing pages of the namespace.
