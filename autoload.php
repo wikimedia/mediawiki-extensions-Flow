@@ -52,7 +52,6 @@ $wgAutoloadClasses += array(
 	'Flow\\Container' => __DIR__ . '/includes/Container.php',
 	'Flow\\Content\\BoardContent' => __DIR__ . '/includes/Content/BoardContent.php',
 	'Flow\\Content\\BoardContentHandler' => __DIR__ . '/includes/Content/BoardContentHandler.php',
-	'Flow\\Content\\Content' => __DIR__ . '/includes/Content/Content.php',
 	'Flow\\Data\\BagOStuff\\BufferedBagOStuff' => __DIR__ . '/includes/Data/BagOStuff/BufferedBagOStuff.php',
 	'Flow\\Data\\BagOStuff\\LocalBufferedBagOStuff' => __DIR__ . '/includes/Data/BagOStuff/LocalBufferedBagOStuff.php',
 	'Flow\\Data\\BufferedCache' => __DIR__ . '/includes/Data/BufferedCache.php',
