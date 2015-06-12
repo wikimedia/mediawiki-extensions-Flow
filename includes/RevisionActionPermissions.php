@@ -80,8 +80,13 @@ class RevisionActionPermissions {
 			}
 
 			if ( $allowed && $revision !== null ) {
-				$workflow = $revision->getCollection()->getWorkflow();
-				$allowed = $this->user->isAllowedAll( 'deletedtext', 'deletedhistory' ) || !$workflow->isDeleted();
+				$permissions = $this->actions->getValue( $action, 'core-delete-permissions' );
+				// If user is allowed to see deleted page content, there's no need to
+				// even check if it's been deleted (additional storage lookup)
+				if ( !$this->user->isAllowedAny( $permissions ) ) {
+					$workflow = $revision->getCollection()->getWorkflow();
+					$allowed = !$workflow->isDeleted();
+				}
 			}
 		} catch ( InvalidDataException $e ) {
 			// If data is not in storage, just return that revision's status
