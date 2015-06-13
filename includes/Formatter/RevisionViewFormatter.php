@@ -124,14 +124,16 @@ class RevisionViewFormatter {
 		}
 
 		$recentChange = $row->revision->getRecentChange();
-		$user = $ctx->getUser();
-		if ( ChangesList::isUnpatrolled( $recentChange, $user ) ) {
-			$links['markPatrolled'] = $this->urlGenerator->markRevisionPatrolledAction(
-				$title,
-				$workflowId,
-				$recentChange,
-				$user->getEditToken( $recentChange->getAttribute( 'rc_id' ) )
-			);
+		if ( $recentChange !== null ) {
+			$user = $ctx->getUser();
+			if ( ChangesList::isUnpatrolled( $recentChange, $user ) ) {
+				$links['markPatrolled'] = $this->urlGenerator->markRevisionPatrolledAction(
+					$title,
+					$workflowId,
+					$recentChange,
+					$user->getEditToken( $recentChange->getAttribute( 'rc_id' ) )
+				);
+			}
 		}
 
 		return $links;
