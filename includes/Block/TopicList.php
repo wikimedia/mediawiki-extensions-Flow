@@ -147,6 +147,19 @@ class TopicListBlock extends AbstractBlock {
 			'first-post' => $this->firstPost,
 		);
 
+		/*
+		 * Order of storage is important! We've been changing when we stored
+		 * workflow a couple of times. For now, it needs to be stored first:
+		 * * OccupationListener.php (workflow listener) must first create the
+		 *   board before NotificationListener.php (topic/post listeners)
+		 *   creates notifications (& mails) that link to the board
+		 * * ReferenceExtractor.php (run from ReferenceRecorder.php, a post
+		 *   listener) needs to parse content with Parsoid & for that it needs
+		 *   the board title. AbstractRevision::getContent() will figure out
+		 *   the title from the workflow: $this->getCollection()->getTitle()
+		 * If you even feel the need to change the order, make sure you come
+		 * up with a fix for the above things ;)
+		 */
 		$this->storage->put( $this->workflow, array() ); // 'discussion' workflow
 		$this->storage->put( $this->topicWorkflow, $metadata ); // 'topic' workflow
 		$this->storage->put( $this->topicListEntry, $metadata );
