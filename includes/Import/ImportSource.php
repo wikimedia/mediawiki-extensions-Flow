@@ -46,7 +46,7 @@ interface IObjectRevision extends IImportObject {
 	function getTimestamp();
 
 	/**
-	 * @return string The name of the user who created this summary.
+	 * @return string The name of the user who created this revision.
 	 */
 	function getAuthor();
 }

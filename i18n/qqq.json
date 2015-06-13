@@ -414,6 +414,7 @@
 	"flow-importer-wt-converted-template": "Name of a wikitext template that is added to the description of a Flow boards that were converted from Wikitext",
 	"flow-importer-wt-converted-archive-template": "Name of a wikitext template that is added to the archived copy of a wikitext talk page converted to Flow.",
 	"flow-importer-lqt-suppressed-user-template": "Name of a wikitext template that is added to a revision imported from liquidthreads that is owned by a suppressed user.",
+	"flow-importer-lqt-different-author-signature-template": "Name of a wikitext template used when the post author and post signature differ.  The template takes two parameters:\nauthorUser - Username (or IP) that posted the post.\nsignatureUser- Username (or IP) that the post is signed as",
 	"apihelp-flow-description": "{{doc-apihelp-description|flow}}",
 	"apihelp-flow-param-submodule": "{{doc-apihelp-param|flow|submodule}}",
 	"apihelp-flow-param-page": "{{doc-apihelp-param|flow|page}}",

@@ -409,6 +409,7 @@
 	"flow-importer-wt-converted-template": "Wikitext talk page converted to Flow",
 	"flow-importer-wt-converted-archive-template": "Archive for converted wikitext talk page",
 	"flow-importer-lqt-suppressed-user-template": "LQT post imported with supressed user",
+	"flow-importer-lqt-different-author-signature-template": "LQT post imported with different signature user",
 	"apihelp-flow-description": "Allows actions to be taken on Flow pages.",
 	"apihelp-flow-param-submodule": "The Flow submodule to invoke.",
 	"apihelp-flow-param-page": "The page to take the action on.",
