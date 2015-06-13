@@ -61,7 +61,7 @@
 	"flow-topic-notification-subscribe-title": "Ten wątek został dodany do {{GENDER:$1|twojej}} listy obserwowanych.",
 	"flow-topic-notification-subscribe-description": "Będziesz {{GENDER:$1|otrzymywał|otrzymywała}} powiadomienia, kiedy inni odpowiedzą w tym wątku.",
 	"flow-topic-action-watchlist-add": "Dodaj ten temat do listy obserwowanych",
-	"flow-topic-action-watchlist-remove": "Usuń ten temat z listy obserwowanych",
+	"flow-topic-action-watchlist-remove": "Usuń z listy obserwowanych",
 	"flow-error-allowcreation-flow-create-board": "Użytkownik nie posiada uprawnienia „{{int:right-flow-create-board}}”",
 	"flow-error-missing-header-content": "Opis nie ma treści. Treść jest wymagana, aby zapisać opis.",
 	"flow-error-prev-revision-mismatch": "Ktoś inny kilka sekund temu edytował ten wpis. Na pewno {{GENDER:$3|chcesz}} nadpisać jego zmiany?",
