@@ -4,6 +4,7 @@ namespace Flow\Block;
 
 use Flow\Container;
 use Flow\Exception\FailCommitException;
+use Flow\Exception\FlowException;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidInputException;
@@ -11,6 +12,7 @@ use Flow\Formatter\FormatterRow;
 use Flow\Formatter\PostSummaryViewQuery;
 use Flow\Formatter\PostSummaryQuery;
 use Flow\Formatter\RevisionViewFormatter;
+use Flow\Formatter\RevisionViewQuery;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\UUID;
@@ -342,7 +344,7 @@ class TopicSummaryBlock extends AbstractBlock {
 
 	protected function renderUndoApi( array $options ) {
 		if ( $this->workflow->isNew() ) {
-			throw new FlowException( 'No header exists to undo' );
+			throw new FlowException( 'No topic exists to undo' );
 		}
 
 		if ( !isset( $options['startId'], $options['endId'] ) ) {
