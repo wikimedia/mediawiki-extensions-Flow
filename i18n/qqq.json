@@ -541,6 +541,6 @@
 	"flow-ve-switch-editor-tool-title": "Tooltip for button in visualeditor toolbar to switch to the wikitext editor.",
 	"flow-mark-revision-patrolled-link-text": "Text of the link to mark a revision as patrolled on a revision page.",
 	"flow-mark-revision-patrolled-link-title": "Title of the link to mark a revision as patrolled on a revision page.",
-	"flow-mark-diff-patrolled-link-text": "Text of the link to mark a revision as patrolled on a diff page.",
-	"flow-mark-diff-patrolled-link-title": "Title of the link to mark a revision as patrolled on a diff page."
+	"flow-mark-diff-patrolled-link-text": "Text of the link to mark a revision as patrolled on a diff page.\n{{Identical|Mark as patrolled}}",
+	"flow-mark-diff-patrolled-link-title": "Title of the link to mark a revision as patrolled on a diff page.\n{{Identical|Mark as patrolled}}"
 }

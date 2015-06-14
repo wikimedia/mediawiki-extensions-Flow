@@ -107,6 +107,7 @@
 	"flow-special-enableflow-invalid-title": "The provided page is not a valid page title\n<!-- \nhttps://translatewiki.net/wiki/Thread:Support/About_MediaWiki:Flow-special-enableflow-invalid-title/en\n-->",
 	"flow-special-enableflow-archive-title-format": "Noh woh sull dat, wadd ald doh es en et Aschihv jonn?",
 	"flow-special-enableflow-archive-title-format-default-value": "%s/Aschihv_%d",
+	"flow-spam-confirmedit-form": "Bes esu johd un donn beschtähtejje, dat De ene Minsch bes, enämm dat de heh dat <span style=\"text-transform:uppercase\" title=\"Jät zom Ennjävve, öm ze zeije, dadd ene Minsch vör em Kompjuhter sez\">Kaptscha</span> löhse deihß: $1",
 	"flow-post-undo-hide": "et Verschteijsche ophävve",
 	"flow-post-undo-delete": "et Fottschmiiße ophävve",
 	"flow-post-undo-suppress": "de Ongerdrökong ophävve",

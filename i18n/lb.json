@@ -219,5 +219,9 @@
 	"flow-wikitext-editor-help": "Wikitext $1.",
 	"flow-wikitext-editor-help-preview-the-result": "D'Resultat kucken ouni ze späicheren",
 	"flow-wikitext-switch-editor-tooltip": "Op de VisualEditor wiesselen",
-	"flow-ve-switch-editor-tool-title": "Op de Wikitext-Editeur wiesselen"
+	"flow-ve-switch-editor-tool-title": "Op de Wikitext-Editeur wiesselen",
+	"flow-mark-revision-patrolled-link-text": "Dës Säit als nogekuckt markéieren",
+	"flow-mark-revision-patrolled-link-title": "Dës Säit als nogekuckt markéieren",
+	"flow-mark-diff-patrolled-link-text": "Als nogekuckt markéieren",
+	"flow-mark-diff-patrolled-link-title": "Als nogekuckt markéieren"
 }
