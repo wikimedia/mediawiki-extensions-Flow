@@ -18,24 +18,12 @@ use RequestContext;
 use Title;
 
 class BoardContent extends \AbstractContent {
-	/** @var Workflow|UUID|null */
-	protected $workflow;
+	/** @var UUID|null */
+	protected $workflowId;
 
-	public function __construct( $contentModel = CONTENT_MODEL_FLOW_BOARD, $workflow = null ) {
-		parent::__construct( CONTENT_MODEL_FLOW_BOARD );
-
-		// Allowed ways of loading a Workflow
-		if ( ! (
-			$workflow === null ||
-			$workflow instanceof UUID ||
-			$workflow instanceof Workflow
-		) ) {
-			throw new MWException( "Invalid argument for 'workflow' parameter." );
-		}
-
-		if ( $workflow instanceof UUID || $workflow instanceof Workflow ) {
-			$this->workflow = $workflow;
-		}
+	public function __construct( $contentModel = CONTENT_MODEL_FLOW_BOARD, UUID $workflowId = null ) {
+		parent::__construct( $contentModel );
+		$this->workflowId = $workflowId;
 	}
 
 	/**
@@ -208,32 +196,19 @@ class BoardContent extends \AbstractContent {
 	/**
 	 * @param Title $title
 	 * @return \Flow\WorkflowLoader
-	 * @throws MWException
 	 * @throws \Flow\Exception\CrossWikiException
 	 * @throws \Flow\Exception\InvalidInputException
 	 */
 	protected function getWorkflowLoader( Title $title ) {
-		if ( $this->workflow instanceof Workflow && $this->workflow->isNew() ) {
-			// as long as workflow is new, we shouldn't rely on its id
-			$workflowId = null;
-		} else {
-			$workflowId = $this->getWorkflowId();
-		}
-
 		/** @var WorkflowLoaderFactory $factory */
 		$factory = Container::get( 'factory.loader.workflow' );
-		return $factory->createWorkflowLoader( $title, $workflowId );
+		return $factory->createWorkflowLoader( $title, $this->getWorkflowId() );
 	}
 
+	/**
+	 * @return UUID|null
+	 */
 	public function getWorkflowId() {
-		if ( $this->workflow instanceof UUID ) {
-			return $this->workflow;
-		} elseif ( $this->workflow instanceof Workflow ) {
-			return $this->workflow->getId();
-		} elseif ( $this->workflow === null ) {
-			return null;
-		} else {
-			throw new MWException( "Unknown Workflow specifier" );
-		}
+		return $this->workflowId;
 	}
 }
