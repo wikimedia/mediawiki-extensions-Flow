@@ -275,12 +275,13 @@ class Workflow {
 	}
 
 	/**
-	 * Returns true if the workflow is new as of this request (regardless of
-	 * whether or not is it already saved yet - that's unknown).
+	 * Returns true if the workflow is new as of this request.
 	 *
 	 * @return boolean
 	 */
-	public function isNew() { return (bool) $this->isNew; }
+	public function isNew() {
+		return (bool) $this->isNew || $this->pageId === null;
+	}
 
 	/**
 	 * @return string
