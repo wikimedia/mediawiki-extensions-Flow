@@ -68,7 +68,7 @@ class BoardContentHandler extends \ContentHandler {
 		$info = FormatJson::decode( $blob, true );
 		$uuid = null;
 
-		if ( ! $info ) {
+		if ( !$info ) {
 			// For transition from wikitext-type pages
 			// Make a plain content object and then when we get a chance
 			// we can insert a proper object.
