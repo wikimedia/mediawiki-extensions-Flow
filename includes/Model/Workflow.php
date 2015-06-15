@@ -33,11 +33,6 @@ class Workflow {
 	protected $id;
 
 	/**
-	 * @var boolean false before writing to storage
-	 */
-	protected $isNew;
-
-	/**
 	 * @var string e.g. topic, discussion, etc.
 	 */
 	protected $type;
@@ -50,7 +45,7 @@ class Workflow {
 	/**
 	 * @var integer
 	 */
-	protected $pageId;
+	protected $pageId = 0;
 
 	/**
 	 * @var integer
@@ -90,7 +85,6 @@ class Workflow {
 			throw new DataModelException( 'Wrong obj type: ' . get_class( $obj ), 'process-data' );
 		}
 		$obj->id = UUID::create( $row['workflow_id'] );
-		$obj->isNew = false;
 		$obj->type = $row['workflow_type'];
 		$obj->wiki = $row['workflow_wiki'];
 		$obj->pageId = (int) $row['workflow_page_id'];
@@ -159,7 +153,6 @@ class Workflow {
 
 		$obj = new self;
 		$obj->id = UUID::create();
-		$obj->isNew = true; // has not been persisted
 		$obj->type = $type;
 		$obj->wiki = $wiki;
 
@@ -275,12 +268,13 @@ class Workflow {
 	}
 
 	/**
-	 * Returns true if the workflow is new as of this request (regardless of
-	 * whether or not is it already saved yet - that's unknown).
+	 * Returns true if the workflow is new as of this request.
 	 *
 	 * @return boolean
 	 */
-	public function isNew() { return (bool) $this->isNew; }
+	public function isNew() {
+		return $this->pageId === 0;
+	}
 
 	/**
 	 * @return string

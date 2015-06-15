@@ -33,9 +33,11 @@ class HookTest extends \MediaWikiTestCase {
 		// data providers do not run in the same context as the actual test, as such we
 		// can't create Title objects because they can have the wrong wikiID.  Instead we
 		// pass closures into the test that create the objects within the correct context.
-		$newHeader = function( $user ) {
+		$newHeader = function( User $user ) {
 			$title = Title::newFromText( 'Talk:Hook_test' );
-			$workflow = Workflow::create( 'discussion', $title );
+			$workflow = Container::get( 'factory.loader.workflow' )
+				->createWorkflowLoader( $title )
+				->getWorkflow();
 			$header = Header::create( $workflow, $user, 'header content', 'wikitext' );
 			$metadata = array(
 				'workflow' => $workflow,
@@ -53,9 +55,11 @@ class HookTest extends \MediaWikiTestCase {
 
 			return $metadata;
 		};
-		$freshTopic = function( $user ) {
+		$freshTopic = function( User $user ) {
 			$title = Title::newFromText( 'Talk:Hook_test' );
-			$boardWorkflow = Workflow::create( 'discussion', $title );
+			$boardWorkflow = Container::get( 'factory.loader.workflow' )
+				->createWorkflowLoader( $title )
+				->getWorkflow();
 			$topicWorkflow = Workflow::create( 'topic', $boardWorkflow->getArticleTitle() );
 			$topicList = TopicListEntry::create( $boardWorkflow, $topicWorkflow );
 			$topicTitle = PostRevision::create( $topicWorkflow, $user, 'some content', 'wikitext' );
@@ -81,7 +85,7 @@ class HookTest extends \MediaWikiTestCase {
 
 			return $metadata;
 		};
-		$replyToTopic = function( $user ) use( $freshTopic ) {
+		$replyToTopic = function( User $user ) use( $freshTopic ) {
 			$metadata = $freshTopic( $user );
 			$firstPost = $metadata['topic-title']->reply( $metadata['workflow'], $user, 'ffuts dna ylper', 'wikitext' );
 			$metadata = array(
