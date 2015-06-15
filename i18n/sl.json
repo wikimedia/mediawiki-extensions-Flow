@@ -2,13 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"Dbc334",
-			"Eleassar"
+			"Eleassar",
+			"Yerpo"
 		]
 	},
 	"flow-error-missing-replyto": "Podan ni bil noben parameter »odgovori na«. Ta parameter je za dejanje »odgovorite« obvezen.",
 	"flow-error-invalid-replyto": "Parameter »odgovori« je bil neveljaven. Navedene objave ni bilo mogoče najti.",
 	"flow-error-missing-postId": "Podan ni bil noben parameter »postId«. Ta parameter je za upravljanje z objavo obvezen.",
 	"flow-error-invalid-postId": "Parameter »postId« ni veljaven. Navedene objave ($1) ni bilo mogoče najti.",
+	"flow-error-search": "Zaradi začasne težave nam ni uspelo izvesti vašega iskanja. Prosimo, poskusite kasneje.",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 se je {{GENDER:$1|odzval|odzvala|odzval(-a)}} na <span class=\"plainlinks\">[$5 $2]</span> na strani '''$4'''.",
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 in $5 {{PLURAL:$6|drug|druga|drugi|drugih}} so se odzvali na <span class=\"plainlinks\">[$4 $2]</span> na strani '''$3'''.",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 je {{GENDER:$1|urejal|urejala}} vašo <span class=\"plainlinks\">[$5 objavo]</span> v razdelku »$2« na [[$3|$4]].",
