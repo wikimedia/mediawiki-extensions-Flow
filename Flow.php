@@ -127,7 +127,6 @@ $wgHooks['WhatLinksHereProps'][] = 'FlowHooks::onWhatLinksHereProps';
 $wgHooks['ResourceLoaderTestModules'][] = 'FlowHooks::onResourceLoaderTestModules';
 $wgHooks['ContentHandlerDefaultModelFor'][] = 'FlowHooks::onContentHandlerDefaultModelFor';
 $wgHooks['ShowMissingArticle'][] = 'FlowHooks::onShowMissingArticle';
-$wgHooks['ArticleAfterFetchContentObject'][] = 'FlowHooks::onArticleAfterFetchContentObject';
 $wgHooks['MessageCache::get'][] = 'FlowHooks::onMessageCacheGet';
 $wgHooks['WatchArticle'][] = 'FlowHooks::onWatchArticle';
 $wgHooks['UnwatchArticle'][] = 'FlowHooks::onWatchArticle';
