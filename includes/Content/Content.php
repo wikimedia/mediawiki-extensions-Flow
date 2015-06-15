@@ -39,35 +39,4 @@ abstract class Content {
 
 		return false;
 	}
-
-	static function onFetchContentObject( Article &$article, \Content &$contentObject = null ) {
-		if ( $contentObject === null ) {
-			return true;
-		}
-
-		$occupationController = \FlowHooks::getOccupationController();
-		$title = $article->getTitle();
-
-		if ( $occupationController->isTalkpageOccupied( $title ) ) {
-			/** @var WorkflowLoaderFactory $factory */
-			$factory = Container::get( 'factory.loader.workflow' );
-			$loader = $factory->createWorkflowLoader( $title );
-
-			$status = $occupationController->ensureFlowRevision( $article, $loader->getWorkflow() );
-
-			if ( $status->isGood() ) {
-				$value = $status->getValue();
-				if ( isset( $value['revision'] ) && !$value['already-existed'] ) {
-					$newRev = $value['revision'];
-					/** @noinspection PhpUndefinedFieldInspection */
-					$article->getPage()->mRevision = $newRev;
-					/** @noinspection PhpUndefinedFieldInspection */
-					$article->getPage()->mContentObject = $newRev->getContent();
-					$contentObject = $newRev->getContent();
-				}
-			}
-		}
-
-		return true;
-	}
 }
