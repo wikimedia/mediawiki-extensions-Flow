@@ -3,6 +3,7 @@
 namespace Flow\Import\LiquidThreadsApi;
 
 use ApiResult;
+use AppendIterator;
 use ArrayIterator;
 use Flow\Import\IImportHeader;
 use Flow\Import\IImportObject;
@@ -35,7 +36,13 @@ abstract class PageRevisionedObject implements IRevisionableObject {
 		$this->pageId = $pageId;
 	}
 
-	public function getRevisions() {
+	/**
+	 * Gets the raw revisions, after filtering but before being converted to
+	 * ImportRevision.
+	 *
+	 * @return Array Filtered revision array
+	 */
+	protected function getRevisionData() {
 		$pageData = $this->importSource->getPageData( $this->pageId );
 		// filter revisions without content (deleted)
 		foreach ( $pageData['revisions'] as $key => $value ) {
@@ -45,7 +52,11 @@ abstract class PageRevisionedObject implements IRevisionableObject {
 		}
 		// the iterators expect this to be a 0 indexed list
 		$pageData['revisions'] = array_values( $pageData['revisions'] );
+		return $pageData;
+	}
 
+	public function getRevisions() {
+		$pageData = $this->getRevisionData();
 		$scriptUser = $this->importSource->getScriptUser();
 		return new RevisionIterator( $pageData, $this, function( $data, $parent ) use ( $scriptUser ) {
 			return new ImportRevision( $data, $parent, $scriptUser );
@@ -77,6 +88,32 @@ class ImportPost extends PageRevisionedObject implements IImportPost {
 	}
 
 	/**
+	 * Gets the username (or IP) from the signature.
+	 *
+	 * @return string|null Returns username, IP, or null if none could be detected
+	 */
+	public function getSignatureUser() {
+		$signatureText = $this->apiResponse['signature'];
+
+		return self::extractUserFromSignature( $signatureText );
+	}
+
+	/**
+	 * Gets the username (or IP) from the provided signature.
+	 *
+	 * @return string|null Returns username, IP, or null if none could be detected
+	 */
+	public static function extractUserFromSignature( $signatureText ) {
+		$users = \EchoDiscussionParser::extractUsersFromLine( $signatureText );
+
+		if ( count( $users ) > 0 ) {
+			return $users[0];
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * @return string|false
 	 */
 	public function getCreatedTimestamp() {
@@ -88,19 +125,6 @@ class ImportPost extends PageRevisionedObject implements IImportPost {
 	 */
 	public function getModifiedTimestamp() {
 		return wfTimestamp( TS_MW, $this->apiResponse['modified'] );
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getText() {
-		$pageData = $this->importSource->getPageData( $this->apiResponse['rootid'] );
-		$revision = $pageData['revisions'][0];
-		$contentKey = isset( $revision[ApiResult::META_CONTENT] )
-			? $revision[ApiResult::META_CONTENT]
-			: '*';
-
-		return $revision[$contentKey];
 	}
 
 	public function getTitle() {
@@ -128,6 +152,58 @@ class ImportPost extends PageRevisionedObject implements IImportPost {
 	 */
 	public function getSource() {
 		return $this->importSource;
+	}
+
+	public function getRevisions() {
+		$authorUsername = $this->getAuthor();
+		$signatureUsername = $this->getSignatureUser();
+		if ( $signatureUsername !== null && $signatureUsername !== $authorUsername ) {
+			$originalRevisionData = $this->getRevisionData();
+
+			// This is not the same object as the last one in the original iterator,
+			// but it should be fungible.
+			$lastLqtRevision = new ImportRevision(
+				end( $originalRevisionData['revisions'] ),
+				$this,
+				$this->importSource->getScriptUser()
+			);
+			$signatureRevision = $this->createSignatureClarificationRevision( $lastLqtRevision, $authorUsername, $signatureUsername );
+
+			$originalRevisions = parent::getRevisions();
+			$iterator = new AppendIterator();
+			$iterator->append( $originalRevisions );
+			$iterator->append( new ArrayIterator( array( $signatureRevision ) ) );
+			return $iterator;
+		} else {
+			return parent::getRevisions();
+		}
+	}
+
+	/**
+	 * Creates revision clarifying signature difference
+	 *
+	 * @param string $authorUsername Author username
+	 * @param string $signatureUsername Username extracted from signature
+	 * @return ScriptedImportRevision Generated top import revision
+	 */
+	 protected function createSignatureClarificationRevision( IObjectRevision $lastRevision, $authorUsername, $signatureUsername ) {
+		$wikitextForLastRevision = $lastRevision->getText();
+		$newWikitext = $wikitextForLastRevision;
+
+		$templateName = wfMessage( 'flow-importer-lqt-different-author-signature-template' )->inContentLanguage()->plain();
+		$arguments = implode( '|', array(
+			"authorUser=$authorUsername",
+			"signatureUser=$signatureUsername",
+		) );
+
+		$newWikitext .= "\n\n{{{$templateName}|$arguments}}";
+		$clarificationRevision = new ScriptedImportRevision(
+			$this,
+			$this->importSource->getScriptUser(),
+			$newWikitext,
+			wfTimestamp( TS_UNIX )
+		);
+		return $clarificationRevision;
 	}
 
 	public function getObjectKey() {
