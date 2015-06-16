@@ -17,11 +17,6 @@ use User;
  */
 class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 	/**
-	 * @var array
-	 */
-	protected $tablesUsed = array( 'flow_revision', 'flow_tree_revision' );
-
-	/**
 	 * @var FlowActions
 	 */
 	protected $actions;
