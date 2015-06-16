@@ -181,11 +181,6 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 			$this->blockedUser->addToDatabase();
 			// note: the block will be added in setUp & deleted in tearDown;
 			// otherwise this is just any regular user
-
-			// this test is not checking board-level permissions (which is currently
-			// broken & will be fixed in follow-up patch); let's just bypass it for
-			// now by making sure this user has the required permissions
-			$this->blockedUser->mRights = array_merge( $this->blockedUser->getRights(), array( 'deletedtext', 'deletedhistory' ) );
 		}
 
 		return $this->blockedUser;
@@ -194,11 +189,6 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 	protected function anonUser() {
 		if ( !$this->anonUser ) {
 			$this->anonUser = new User;
-
-			// this test is not checking board-level permissions (which is currently
-			// broken & will be fixed in follow-up patch); let's just bypass it for
-			// now by making sure this user has the required permissions
-			$this->anonUser->mRights = array_merge( $this->anonUser->getRights(), array( 'deletedtext', 'deletedhistory' ) );
 		}
 
 		return $this->anonUser;
@@ -209,11 +199,6 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 			$this->unconfirmedUser = User::newFromName( 'UTFlowUnconfirmed' );
 			$this->unconfirmedUser->addToDatabase();
 			$this->unconfirmedUser->addGroup( 'user' );
-
-			// this test is not checking board-level permissions (which is currently
-			// broken & will be fixed in follow-up patch); let's just bypass it for
-			// now by making sure this user has the required permissions
-			$this->unconfirmedUser->mRights = array_merge( $this->unconfirmedUser->getRights(), array( 'deletedtext', 'deletedhistory' ) );
 		}
 
 		return $this->unconfirmedUser;
@@ -224,11 +209,6 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 			$this->confirmedUser = User::newFromName( 'UTFlowConfirmed' );
 			$this->confirmedUser->addToDatabase();
 			$this->confirmedUser->addGroup( 'autoconfirmed' );
-
-			// this test is not checking board-level permissions (which is currently
-			// broken & will be fixed in follow-up patch); let's just bypass it for
-			// now by making sure this user has the required permissions
-			$this->confirmedUser->mRights = array_merge( $this->confirmedUser->getRights(), array( 'deletedtext', 'deletedhistory' ) );
 		}
 
 		return $this->confirmedUser;
@@ -239,11 +219,6 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 			$this->sysopUser = User::newFromName( 'UTFlowSysop' );
 			$this->sysopUser->addToDatabase();
 			$this->sysopUser->addGroup( 'sysop' );
-
-			// this test is not checking board-level permissions (which is currently
-			// broken & will be fixed in follow-up patch); let's just bypass it for
-			// now by making sure this user has the required permissions
-			$this->sysopUser->mRights = array_merge( $this->sysopUser->getRights(), array( 'deletedtext', 'deletedhistory' ) );
 		}
 
 		return $this->sysopUser;
@@ -254,11 +229,6 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 			$this->oversightUser = User::newFromName( 'UTFlowOversight' );
 			$this->oversightUser->addToDatabase();
 			$this->oversightUser->addGroup( 'oversight' );
-
-			// this test is not checking board-level permissions (which is currently
-			// broken & will be fixed in follow-up patch); let's just bypass it for
-			// now by making sure this user has the required permissions
-			$this->oversightUser->mRights = array_merge( $this->oversightUser->getRights(), array( 'deletedtext', 'deletedhistory' ) );
 		}
 
 		return $this->oversightUser;
