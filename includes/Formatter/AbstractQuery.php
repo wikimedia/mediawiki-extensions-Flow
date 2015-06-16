@@ -333,7 +333,7 @@ abstract class AbstractQuery {
 			throw new \MWException( 'Did not locate root post ' . $rootPostId->getAlphadecimal() );
 		}
 		if ( !$rootPost->isTopicTitle() ) {
-			throw new \MWException( "Not a topic title: " . $rootPost->getRevisionId() );
+			throw new \MWException( "Not a topic title: " . $rootPost->getRevisionId()->getAlphadecimal() );
 		}
 
 		return $rootPost;
