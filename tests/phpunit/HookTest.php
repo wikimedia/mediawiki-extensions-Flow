@@ -30,12 +30,10 @@ class HookTest extends \MediaWikiTestCase {
 	);
 
 	static public function onIRCLineURLProvider() {
-		$user = User::newFromName( '127.0.0.1', false );
-
 		// data providers do not run in the same context as the actual test, as such we
 		// can't create Title objects because they can have the wrong wikiID.  Instead we
 		// pass closures into the test that create the objects within the correct context.
-		$newHeader = function() use( $user ) {
+		$newHeader = function( $user ) {
 			$title = Title::newFromText( 'Talk:Hook_test' );
 			$workflow = Workflow::create( 'discussion', $title );
 			$header = Header::create( $workflow, $user, 'header content', 'wikitext' );
@@ -55,7 +53,7 @@ class HookTest extends \MediaWikiTestCase {
 
 			return $metadata;
 		};
-		$freshTopic = function() use( $user ) {
+		$freshTopic = function( $user ) {
 			$title = Title::newFromText( 'Talk:Hook_test' );
 			$boardWorkflow = Workflow::create( 'discussion', $title );
 			$topicWorkflow = Workflow::create( 'topic', $boardWorkflow->getArticleTitle() );
@@ -83,8 +81,8 @@ class HookTest extends \MediaWikiTestCase {
 
 			return $metadata;
 		};
-		$replyToTopic = function() use( $freshTopic, $user ) {
-			$metadata = $freshTopic();
+		$replyToTopic = function( $user ) use( $freshTopic ) {
+			$metadata = $freshTopic( $user );
 			$firstPost = $metadata['topic-title']->reply( $metadata['workflow'], $user, 'ffuts dna ylper', 'wikitext' );
 			$metadata = array(
 				'first-post' => $firstPost,
@@ -118,8 +116,8 @@ class HookTest extends \MediaWikiTestCase {
 
 			array(
 				'Edit topic title',
-				function() use( $freshTopic, $user ) {
-					$metadata = $freshTopic();
+				function( $user ) use( $freshTopic ) {
+					$metadata = $freshTopic( $user );
 					$title = $metadata['workflow']->getArticleTitle();
 
 					return array(
@@ -133,8 +131,8 @@ class HookTest extends \MediaWikiTestCase {
 
 			array(
 				'Edit post',
-				function() use( $replyToTopic, $user ) {
-					$metadata = $replyToTopic();
+				function( $user ) use( $replyToTopic ) {
+					$metadata = $replyToTopic( $user );
 					$title = $metadata['workflow']->getArticleTitle();
 					return array(
 						'revision' => $metadata['revision']->newNextRevision( $user, 'IT\'S CAPS LOCKS DAY!', 'wikitext', 'edit-post', $title ),
@@ -147,8 +145,8 @@ class HookTest extends \MediaWikiTestCase {
 
 			array(
 				'Edit board header',
-				function() use ( $newHeader, $user ) {
-					$metadata = $newHeader();
+				function( $user ) use ( $newHeader ) {
+					$metadata = $newHeader( $user );
 					$title = $metadata['workflow']->getArticleTitle();
 					return array(
 						'revision' => $metadata['revision']->newNextRevision( $user, 'STILL CAPS LOCKS DAY!', 'wikitext', 'edit-header', $title ),
@@ -161,8 +159,8 @@ class HookTest extends \MediaWikiTestCase {
 
 			array(
 				'Moderate a post',
-				function() use ( $replyToTopic, $user ) {
-					$metadata = $replyToTopic();
+				function( $user ) use ( $replyToTopic ) {
+					$metadata = $replyToTopic( $user );
 					return array(
 						'revision' => $metadata['revision']->moderate(
 							$user,
@@ -179,8 +177,8 @@ class HookTest extends \MediaWikiTestCase {
 
 			array(
 				'Moderate a topic',
-				function() use ( $freshTopic, $user ) {
-					$metadata = $freshTopic();
+				function( $user ) use ( $freshTopic ) {
+					$metadata = $freshTopic( $user );
 					return array(
 						'revision' => $metadata['revision']->moderate(
 							$user,
@@ -201,13 +199,22 @@ class HookTest extends \MediaWikiTestCase {
 	 * @dataProvider onIRCLineUrlProvider
 	 */
 	public function testOnIRCLineUrl( $message, $metadataGen, $expectedQuery ) {
+		$user = User::newFromName( '127.0.0.1', false );
+
+		// reset flow state, so everything ($container['permissions'])
+		// uses this particular $user
+		\FlowHooks::resetFlowExtension();
+		Container::reset();
+		$container = Container::getContainer();
+		$container['user'] = $user;
+
 		$rc = new RecentChange;
 		$rc->mAttribs = array(
 			'rc_namespace' => 0,
 			'rc_title' => 'Main Page',
 			'rc_source' => RecentChangesListener::SRC_FLOW,
 		);
-		$metadata = $metadataGen();
+		$metadata = $metadataGen( $user );
 		Container::get( 'formatter.irclineurl' )->associate( $rc, $metadata );
 
 		$url = 'unset';

@@ -5,6 +5,7 @@ namespace Flow\Block;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Exception\InvalidInputException;
+use Flow\Exception\PermissionException;
 use Flow\FlowActions;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
@@ -145,8 +146,11 @@ abstract class AbstractBlock implements Block {
 	public function init( IContextSource $context, $action ) {
 		$this->context = $context;
 		$this->action = $action;
-		// @todo not guaranteed that $this->permissions->getUser() === $context->getUser();
+
 		$this->permissions = Container::get( 'permissions' );
+		if ( !$context->getUser()->equals( $this->permissions->getUser() ) ) {
+			throw new PermissionException( 'Formatting for wrong user: ' . $context->getUser()->getName() . ' instead of ' . $this->permissions->getUser()->getName() );
+		}
 	}
 
 	/**
