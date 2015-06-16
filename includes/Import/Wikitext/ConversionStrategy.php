@@ -7,6 +7,7 @@ use DateTimeZone;
 use Flow\Import\Converter;
 use Flow\Import\IConversionStrategy;
 use Flow\Import\ImportSourceStore;
+use LinkBatch;
 use Parser;
 use Psr\Log\LoggerInterface;
 use StubObject;
@@ -56,17 +57,21 @@ class ConversionStrategy implements IConversionStrategy {
 	/**
 	 * @param Parser|StubObject $parser
 	 * @param ImportSourceStore $sourceStore
+	 * @param LoggerInterface $logger
+	 * @param Title[] $noConvertTemplates List of templates that flag pages that shouldn't be converted
 	 */
 	public function __construct(
 		$parser,
 		ImportSourceStore $sourceStore,
 		LoggerInterface $logger,
+		array $noConvertTemplates = array(),
 		$preferredArchiveTitle = null,
 		$headerSuffix = null
 	) {
 		$this->parser = $parser;
 		$this->sourceStore = $sourceStore;
 		$this->logger = $logger;
+		$this->noConvertTemplates = $noConvertTemplates;
 		$this->headerSuffix = $headerSuffix;
 
 		if ( isset( $preferredArchiveTitle ) && !empty( $preferredArchiveTitle ) ) {
@@ -175,6 +180,32 @@ class ConversionStrategy implements IConversionStrategy {
 	}
 
 	/**
+	 * Check whether the given title has one of the templates that should protect it from
+	 * being converted.
+	 * @param Title $sourceTitle Title to check
+	 * @return bool Whether the title has such a template
+	 */
+	protected function hasNoConvertTemplate( Title $sourceTitle ) {
+		if ( count( $this->noConvertTemplates ) === 0 ) {
+			return false;
+		}
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$batch = new LinkBatch( $this->noConvertTemplates );
+		$result = $dbr->select(
+			'templatelinks',
+			'tl_from',
+			array(
+				'tl_from' => $sourceTitle->getArticleID(),
+				$batch->constructSet( 'tl', $dbr )
+			),
+			__METHOD__,
+			array( 'LIMIT' => 1 )
+		);
+		return $dbr->numRows( $result ) > 0;
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	public function shouldConvert( Title $sourceTitle ) {
@@ -187,7 +218,7 @@ class ConversionStrategy implements IConversionStrategy {
 			}
 		}
 
-		if ( !$this->meetsSubpageRequirements( $sourceTitle ) ) {
+		if ( !$this->meetsSubpageRequirements( $sourceTitle ) || $this->hasNoConvertTemplate( $sourceTitle ) ) {
 			return false;
 		}
 
