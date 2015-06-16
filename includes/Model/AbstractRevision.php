@@ -4,6 +4,7 @@ namespace Flow\Model;
 
 use Flow\Collection\AbstractCollection;
 use Flow\Exception\DataModelException;
+use Flow\Exception\InvalidDataException;
 use Flow\Exception\PermissionException;
 use Flow\Parsoid\Utils;
 use Hooks;
@@ -341,8 +342,12 @@ abstract class AbstractRevision {
 	 *
 	 * @param string[optional] $format Format to output content in (html|wikitext)
 	 * @return string
+	 * @throws InvalidDataException
 	 */
 	public function getContent( $format = 'html' ) {
+		if ( $this->content === false ) {
+			throw new InvalidDataException( 'Failed to load the content' );
+		}
 		if ( $this->xssCheck === false ) {
 			return '';
 		}

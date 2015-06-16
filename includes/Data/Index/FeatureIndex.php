@@ -404,6 +404,14 @@ abstract class FeatureIndex implements Index {
 
 			// store the data we've just retrieved to cache
 			foreach ( $fromStorage as $index => $rows ) {
+				// backing store returns data that may not be valid to cache (e.g.
+				// if we couldn't retrieve content from ExternalStore, we shouldn't
+				// cache that result)
+				$rows = array_filter( $rows, array( $this->storage, 'validate' ) );
+				if ( !$rows ) {
+					continue;
+				}
+
 				$compacted = $this->rowCompactor->compactRows( $rows );
 				$callback = function( \BagOStuff $cache, $key, $value ) use ( $compacted ) {
 					if ( $value !== false ) {

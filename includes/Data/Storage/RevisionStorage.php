@@ -159,15 +159,7 @@ abstract class RevisionStorage extends DbStorage {
 			$res = $this->findMultiInternal( $queries, $options );
 		}
 
-		// Merge data from external store & get rid of failures
-		$res = self::mergeExternalContent( $res );
-		foreach ( $res as $i => $result ) {
-			if ( $result ) {
-				$res[$i] = array_filter( $result, array( $this, 'validate' ) );
-			}
-		}
-
-		return $res;
+		return self::mergeExternalContent( $res );
 	}
 
 	protected function fallbackFindMulti( array $queries, array $options ) {
