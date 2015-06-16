@@ -1,0 +1,208 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_5d8c9932",
+        "filename": "Resources.php",
+        "patchSetId": 49
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-16T06:09:39Z",
+      "side": 1,
+      "message": "This file still exists.  Should it be uncommented?",
+      "revId": "3c40d592eef768615310c1eeb0e0e83d4fd73054",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_7d8f1527",
+        "filename": "handlebars/flow_board_navigation.partial.handlebars",
+        "patchSetId": 49
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-16T06:09:39Z",
+      "side": 1,
+      "message": "Can you cross-link T86844?",
+      "revId": "3c40d592eef768615310c1eeb0e0e83d4fd73054",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_bda49d9f",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 49
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-16T06:09:39Z",
+      "side": 1,
+      "message": "Updated ordering is based on last_updated, not the creation timestamp.",
+      "revId": "3c40d592eef768615310c1eeb0e0e83d4fd73054",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_5db339e8",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 49
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-16T06:09:39Z",
+      "side": 1,
+      "message": "populateBoardTopicsFromJson is called on re-order, right, so it should be fine (and my FIXME can be removed)?",
+      "revId": "3c40d592eef768615310c1eeb0e0e83d4fd73054",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_fdc1c534",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.NavigationWidget.js",
+        "patchSetId": 49
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-16T06:09:39Z",
+      "side": 1,
+      "message": "This is not the same behavior as the current version.\n\nThe current version finds the topic that the bottom of the board navigation is touching.  Alternatively phrased, the last topic where the top of the topic is not after (window\u0027s Y scroll position + board nav outer height ).  See https://git.wikimedia.org/blob/mediawiki%2Fextensions%2FFlow.git/192a9849726f966375cec19ca7cdc3d23b0c1e60/modules%2Fengine%2Fcomponents%2Fboard%2Ffeatures%2Fflow-board-navigation.js#L231 .\n\nWith a long topic like https://www.mediawiki.org/wiki/Topic:Sjbg86fqz4m00em9 you can see the difference.  Scroll it so no topic title bars or reply boxes are visible (you\u0027re fully within the long topic).\n\nWith the old implementation, it will say the topic name (\"Long topic\" for that example).\n\nWith the new one, it doesn\u0027t find it, so it says \"Browse topics\".",
+      "revId": "3c40d592eef768615310c1eeb0e0e83d4fd73054",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_1dfb7178",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 49
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-16T06:09:39Z",
+      "side": 1,
+      "message": "Can you document this.topics?",
+      "revId": "3c40d592eef768615310c1eeb0e0e83d4fd73054",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_3de74de1",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 49
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-16T06:09:39Z",
+      "side": 1,
+      "message": "Fix docs",
+      "revId": "3c40d592eef768615310c1eeb0e0e83d4fd73054",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_ddcde963",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 49
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-16T06:09:39Z",
+      "side": 1,
+      "message": "Would be clearer as topic.getData().getId()",
+      "revId": "3c40d592eef768615310c1eeb0e0e83d4fd73054",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_fdc8e552",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 49
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-16T06:09:39Z",
+      "side": 1,
+      "message": "Looks like it\u0027s TODONE?",
+      "revId": "3c40d592eef768615310c1eeb0e0e83d4fd73054",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_9dd761f2",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 49
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-16T06:09:39Z",
+      "side": 1,
+      "message": "Should check if this is a blocker.",
+      "revId": "3c40d592eef768615310c1eeb0e0e83d4fd73054",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_7d04f580",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 49
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-16T06:09:39Z",
+      "side": 1,
+      "message": "Removing topics shouldn\u0027t cause \u0027load more\u0027 to be in the wrong place.",
+      "revId": "3c40d592eef768615310c1eeb0e0e83d4fd73054",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_7d33955f",
+        "filename": "modules/styles/flow/mw.flow.ui.less",
+        "patchSetId": 49
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-16T06:09:39Z",
+      "side": 1,
+      "message": "Use .background-image (with dot).  See https://www.mediawiki.org/wiki/Manual:Coding_conventions/CSS#Less",
+      "revId": "3c40d592eef768615310c1eeb0e0e83d4fd73054",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
