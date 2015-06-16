@@ -80,8 +80,7 @@ class RevisionActionPermissions {
 			}
 
 			if ( $allowed && $revision !== null ) {
-				$workflow = $revision->getCollection()->getWorkflow();
-				$allowed = $this->user->isAllowedAll( 'deletedtext', 'deletedhistory' ) || !$workflow->isDeleted();
+				$allowed = $allowed && $this->isBoardAllowed( $revision, $action );
 			}
 		} catch ( InvalidDataException $e ) {
 			// If data is not in storage, just return that revision's status
@@ -158,6 +157,32 @@ class RevisionActionPermissions {
 			array( $this->user, 'isAllowedAny' ),
 			(array) $permission
 		);
+	}
+
+	/**
+	 * Check if a user is allowed to perform a certain action, depending on the
+	 * status (deleted?) of the board.
+	 *
+	 * @param PostRevision|PostSummary $revision
+	 * @param string $action
+	 * @return bool
+	 */
+	protected function isBoardAllowed( AbstractRevision $revision, $action ) {
+		$permissions = $this->actions->getValue( $action, 'core-delete-permissions' );
+		// If user is allowed to see deleted page content, there's no need to
+		// even check if it's been deleted (additional storage lookup)
+		if ( $this->user->isAllowedAny( $permissions ) ) {
+			return true;
+		}
+
+		try {
+			$collection = $revision->getCollection();
+			$workflow = $collection->getBoardWorkflow();
+		} catch ( \Exception $e ) {
+			return false;
+		}
+
+		return !$workflow->isDeleted();
 	}
 
 	/**
