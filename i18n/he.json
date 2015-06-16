@@ -377,6 +377,7 @@
 	"flow-importer-wt-converted-template": "דף קוד ויקי מומר לזרימה",
 	"flow-importer-wt-converted-archive-template": "ארכיון לדף קוד ויקי מומר",
 	"flow-importer-lqt-suppressed-user-template": "רשות LQT שיובאה עם משמש מועלם",
+	"flow-importer-lqt-different-author-signature-template": "רשומת LQT שיובאה עם חתימה של משתמש שונה",
 	"apihelp-flow-description": "מאפשר ביצוע פעולות על דפים זרימה.",
 	"apihelp-flow-param-submodule": "איזה תת-מודול של זרימה להפעיל.",
 	"apihelp-flow-param-page": "באיזה דף ברצונך לפעול.",

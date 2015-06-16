@@ -376,6 +376,7 @@
 	"flow-importer-wt-converted-template": "Wikitext-Diskussionsseite zu Flow konvertiert",
 	"flow-importer-wt-converted-archive-template": "Archiv für konvertierte Wikitext-Diskussionsseite",
 	"flow-importer-lqt-suppressed-user-template": "LQT-Beitrag wurde mit einem unterdrückten Benutzer importiert",
+	"flow-importer-lqt-different-author-signature-template": "LQT-Beitrag mit einem anderen Signaturbenutzer importiert",
 	"apihelp-flow-param-submodule": "Das aufzurufende Flow-Submodul.",
 	"apihelp-flow-param-page": "Die Seite, auf die die Aktion angewandt werden soll.",
 	"apihelp-flow-example-1": "Die Beschreibung von „[[Talk:Sandbox]]“ bearbeiten",
