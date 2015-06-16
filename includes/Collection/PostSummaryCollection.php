@@ -26,6 +26,10 @@ class PostSummaryCollection extends LocalCacheAbstractCollection {
 		return $this->rootId;
 	}
 
+	public function getBoardWorkflowId() {
+		return $this->getPost()->getBoardWorkflowId();
+	}
+
 	/**
 	 * Get the post collection for this summary
 	 * @return PostCollection
