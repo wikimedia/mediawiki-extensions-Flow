@@ -31,6 +31,9 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 	/**
 	 * This is a horrible test, it basically runs the whole thing
 	 * and sees if it falls over.
+	 *
+	 * Broken https://phabricator.wikimedia.org/T10262
+	 * @broken
 	 */
 	public function testImportDoesntCompletelyFail() {
 		$workflow = Workflow::create(
