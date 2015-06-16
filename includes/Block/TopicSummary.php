@@ -106,6 +106,7 @@ class TopicSummaryBlock extends AbstractBlock {
 
 		// Create topic summary
 		if ( !$this->topicSummary ) {
+			// @todo: check root!
 			if ( !$this->permissions->isAllowed( null, 'create-topic-summary' ) ) {
 				$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
 				return;
@@ -306,16 +307,18 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * @return array
 	 */
 	protected function renderNewestTopicSummary( $format ) {
+		// topicSummary can be null PostSummary object or null (doesn't exist yet)
+		// @todo: check root if topicSummary is null!
+		if ( !$this->permissions->isAllowed( $this->topicSummary, 'view-topic-summary' ) ) {
+			$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
+			return array();
+		}
+
 		$output = array();
 		$formatter = Container::get( 'formatter.revision' );
 		$formatter->setContentFormat( $format );
 
 		if ( $this->formatterRow ) {
-			if ( !$this->permissions->isAllowed( $this->formatterRow->revision, 'view-topic-summary' ) ) {
-				$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
-				return array();
-			}
-
 			$output['revision'] = $formatter->formatApi(
 				$this->formatterRow,
 				$this->context
