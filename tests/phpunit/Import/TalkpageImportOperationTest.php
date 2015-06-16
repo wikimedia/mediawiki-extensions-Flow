@@ -95,7 +95,7 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 			)
 		);
 
-		$op = new TalkpageImportOperation( $source );
+		$op = new TalkpageImportOperation( $source, Container::get( 'occupation_controller' ) );
 		$store = new NullImportSourceStore;
 		$op->import( new PageImportState(
 			$workflow,

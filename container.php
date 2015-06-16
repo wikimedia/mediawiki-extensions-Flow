@@ -1179,7 +1179,8 @@ $c['importer'] = function( $c ) {
 		$c['factory.loader.workflow'],
 		$c['memcache.buffered'],
 		$c['db.factory'],
-		$c['deferred_queue']
+		$c['deferred_queue'],
+		$c['occupation_controller']
 	);
 
 	$importer->addPostprocessor( new Flow\Import\Postprocessor\SpecialLogTopic(

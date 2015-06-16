@@ -2,6 +2,7 @@
 
 namespace Flow\Import;
 
+use Article;
 use DeferredUpdates;
 use Flow\Data\BufferedCache;
 use Flow\Data\ManagerGroup;
@@ -15,6 +16,7 @@ use Flow\Model\PostSummary;
 use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use Flow\OccupationController;
 use Flow\WorkflowLoaderFactory;
 use IP;
 use MWCryptRand;
@@ -48,13 +50,16 @@ class Importer {
 	protected $postprocessors;
 	/** @var SplQueue Callbacks for DeferredUpdate that are queue'd up by the commit process */
 	protected $deferredQueue;
+	/** @var OccupationController */
+	protected $occupationController;
 
 	public function __construct(
 		ManagerGroup $storage,
 		WorkflowLoaderFactory $workflowLoaderFactory,
 		BufferedCache $cache,
 		DbFactory $dbFactory,
-		SplQueue $deferredQueue
+		SplQueue $deferredQueue,
+		OccupationController $occupationController
 	) {
 		$this->storage = $storage;
 		$this->workflowLoaderFactory = $workflowLoaderFactory;
@@ -62,6 +67,7 @@ class Importer {
 		$this->dbFactory = $dbFactory;
 		$this->postprocessors = new ProcessorGroup;
 		$this->deferredQueue = $deferredQueue;
+		$this->occupationController = $occupationController;
 	}
 
 	public function addPostprocessor( Postprocessor $proc ) {
@@ -94,8 +100,8 @@ class Importer {
 	 * @return bool True When the import completes with no failures
 	 */
 	public function import( IImportSource $source, Title $targetPage, ImportSourceStore $sourceStore ) {
-		$operation = new TalkpageImportOperation( $source );
-		return $operation->import( new PageImportState(
+		$operation = new TalkpageImportOperation( $source, $this->occupationController );
+		$pageImportState = new PageImportState(
 			$this->workflowLoaderFactory
 				->createWorkflowLoader( $targetPage )
 				->getWorkflow(),
@@ -107,7 +113,8 @@ class Importer {
 			$this->postprocessors,
 			$this->deferredQueue,
 			$this->allowUnknownUsernames
-		) );
+		);
+		return $operation->import( $pageImportState );
 	}
 }
 
@@ -486,11 +493,15 @@ class TalkpageImportOperation {
 	 */
 	protected $importSource;
 
+	/** @var OccupationController */
+	protected $occupationController;
+
 	/**
 	 * @param IImportSource $source
 	 */
-	public function __construct( IImportSource $source ) {
+	public function __construct( IImportSource $source, OccupationController $occupationController ) {
 		$this->importSource = $source;
+		$this->occupationController = $occupationController;
 	}
 
 	/**
@@ -500,8 +511,17 @@ class TalkpageImportOperation {
 	 * @throws \Exception
 	 */
 	public function import( PageImportState $state ) {
-		$state->logger->info( 'Importing to ' . $state->boardWorkflow->getArticleTitle()->getPrefixedText() );
+		$destinationTitle = $state->boardWorkflow->getArticleTitle();
+		$state->logger->info( 'Importing to ' . $destinationTitle->getPrefixedText() );
 		if ( $state->boardWorkflow->isNew() ) {
+			$this->occupationController->allowCreation(
+				$destinationTitle,
+				$this->occupationController->getTalkpageManager()
+			);
+			$this->occupationController->ensureFlowRevision(
+				new Article( $destinationTitle ),
+				$state->boardWorkflow
+			);
 			$state->put( $state->boardWorkflow, array() );
 		}
 
