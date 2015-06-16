@@ -10,4 +10,8 @@ class HeaderCollection extends LocalCacheAbstractCollection {
 	public function getWorkflowId() {
 		return $this->getId();
 	}
+
+	public function getBoardWorkflowId() {
+		return $this->getId();
+	}
 }

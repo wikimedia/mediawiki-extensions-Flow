@@ -3,6 +3,8 @@
 namespace Flow\Collection;
 
 use Flow\Container;
+use Flow\Exception\InvalidDataException;
+use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 
 class PostCollection extends LocalCacheAbstractCollection {
@@ -28,6 +30,24 @@ class PostCollection extends LocalCacheAbstractCollection {
 		}
 
 		return $this->rootId;
+	}
+
+	/**
+	 * @return UUID
+	 * @throws InvalidDataException
+	 */
+	public function getBoardWorkflowId() {
+		$found = $this->getStorage( 'Flow\\Model\\TopicListEntry' )->find(
+			// uses flow_topic_list:topic index, for topic->board lookups
+			array( 'topic_id' => $this->getWorkflowId() )
+		);
+		if ( !$found) {
+			throw new InvalidDataException( 'No TopicListEntry founds for topic id ' . $this->getWorkflowId()->getAlphadecimal(), 'invalid-workflow' );
+		}
+
+		/** @var TopicListEntry $topicListEntry */
+		$topicListEntry = $found[0];
+		return $topicListEntry->getListId();
 	}
 
 	/**
