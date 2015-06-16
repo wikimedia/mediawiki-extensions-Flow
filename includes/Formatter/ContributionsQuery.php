@@ -253,11 +253,6 @@ class ContributionsQuery extends AbstractQuery {
 		// get content in external storage
 		$res = array( $revisions );
 		$res = RevisionStorage::mergeExternalContent( $res );
-		foreach ( $res as $i => $result ) {
-			if ( $result ) {
-				$res[$i] = array_filter( $result, array( $this, 'validate' ) );
-			}
-		}
 		$revisions = reset( $res );
 
 		// we have all required data to build revision
