@@ -47,6 +47,13 @@ abstract class AbstractCollection {
 	abstract public function getWorkflowId();
 
 	/**
+	 * Returns the id of the workflow of the board this collection is on.
+	 *
+	 * @return UUID
+	 */
+	abstract public function getBoardWorkflowId();
+
+	/**
 	 * Use the static methods to load an object from a given revision.
 	 *
 	 * @see AbstractCollection::newFromId
@@ -227,5 +234,9 @@ abstract class AbstractCollection {
 		}
 
 		return $this->workflow;
+	}
+
+	public function getBoardWorkflow() {
+		return $this->getStorage( 'Flow\\Model\\Workflow' )->get( $this->getBoardWorkflowId() );
 	}
 }
