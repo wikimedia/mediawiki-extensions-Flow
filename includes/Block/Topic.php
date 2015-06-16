@@ -468,7 +468,7 @@ class TopicBlock extends AbstractBlock {
 	public function renderApi( array $options ) {
 		$output = array( 'type' => $this->getName() );
 
-		$topic = $this->loadTopicTitle();
+		$topic = $this->loadTopicTitle( $this->action );
 		if ( !$topic ) {
 			return $output + $this->finalizeApiOutput($options);
 		}

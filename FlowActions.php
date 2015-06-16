@@ -19,6 +19,10 @@ use Flow\Data\Listener\RecentChangesListener;
  *     state and the value is the right required to execute the action.  A blank
  *     value means anyone can take the action.  However, an omitted key means
  *     no one can perform the action described by that key.
+ * * root-permissions: similar to 'permissions', but applies to the last revision
+ *   of the root post (= the topic) for the revision the action is executed against.
+ * * core-delete-permissions: array of rights, where any of those rights will
+ *   give you permission to do the action on a deleted board (isAllowedAny).
  * * links: the set of read links to generate and return in API responses
  * * actions: the set of write links to generate and return in API responses
  * * history: all history-related information:
@@ -644,6 +648,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
+		'core-delete-permissions' => array( 'deletedtext' ),
 		'links' => array(), // @todo
 		'actions' => array(), // view is not a recorded change type, no actions will be requested
 		'history' => array(), // views don't generate history
@@ -757,6 +762,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_LOCKED => '',
 			PostRevision::MODERATED_DELETED => '',
 		),
+		'core-delete-permissions' => array( 'deletedhistory' ),
 		'history' => array(), // views don't generate history
 		'handler-class' => 'Flow\Actions\FlowAction',
 	),
@@ -791,6 +797,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => '',
 			PostRevision::MODERATED_LOCKED => '',
 		),
+		'core-delete-permissions' => array( 'deletedtext' ),
 		'links' => array(), // @todo
 		'actions' => array(), // view is not a recorded change type, no actions will be requested
 		'history' => array(), // views don't generate history
