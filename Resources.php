@@ -272,13 +272,6 @@ $wgResourceModules += array(
 			'styles/mediawiki.ui/tooltips.less',
 		),
 	) + $mobile,
-	'ext.flow.icons.styles' => $flowResourceTemplate + array(
-		'position' => 'top',
-		'styles' => array(
-			'wikiglyph/wikiglyphs.css',
-			'wikiglyph/flow-override.less',
-		),
-	) + $mobile,
 	'ext.flow.styles.base' => $flowResourceTemplate + array(
 		'position' => 'top',
 		'styles' => array(
