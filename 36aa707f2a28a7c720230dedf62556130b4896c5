@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_072465ac",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-17T23:43:10Z",
+      "side": 1,
+      "message": "The correct format is @param {type} paramName Description string. You omitted the names, so now jsduck complains there are two params called \"Moderation\"",
+      "revId": "36aa707f2a28a7c720230dedf62556130b4896c5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
