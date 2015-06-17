@@ -7,10 +7,12 @@ use Flow\Exception\DataModelException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\PermissionException;
 use Flow\Parsoid\Utils;
+use ContentHandler;
 use Hooks;
 use Title;
 use User;
 use RecentChange;
+use WikiPage;
 
 abstract class AbstractRevision {
 	const MODERATED_NONE = '';
@@ -434,11 +436,24 @@ abstract class AbstractRevision {
 			throw new DataModelException( 'Updating content must use setNextContent method', 'process-data' );
 		}
 
+		if ( !$title ) {
+			$title = $this->getCollection()->getTitle();
+		}
+
 		// never trust incoming html - roundtrip to wikitext first
 		if ( $format !== 'wikitext' ) {
-			$content = Utils::convert( $format, 'wikitext', $content, $title ?: $this->getCollection()->getTitle() );
+			$content = Utils::convert( $format, 'wikitext', $content, $title  );
 			$format = 'wikitext';
 		}
+
+		// Run pre-save transform
+		$content = ContentHandler::makeContent( $content, $title, CONTENT_MODEL_WIKITEXT )
+			->preSaveTransform(
+				$title,
+				$this->getUser(),
+				WikiPage::factory( $title )->makeParserOptions( $this->getUser() )
+			)
+			->serialize( 'text/x-wiki' );
 
 		// Keep consistent with normal edit page, trim only trailing whitespaces
 		$content = rtrim( $content );
@@ -447,12 +462,7 @@ abstract class AbstractRevision {
 		// convert content to desired storage format
 		$storageFormat = $this->getStorageFormat();
 		if ( $this->isFormatted() && $storageFormat !== $format ) {
-			$this->convertedContent[$storageFormat] = Utils::convert(
-				$format,
-				$storageFormat,
-				$content,
-				$title ?: $this->getCollection()->getTitle()
-			);
+			$this->convertedContent[$storageFormat] = Utils::convert( $format, $storageFormat, $content, $title );
 		}
 
 		$this->content = $this->decompressedContent = $this->convertedContent[$storageFormat];
