@@ -115,6 +115,7 @@ class View extends ContextSource {
 				'ext.flow.board.styles',
 				'ext.flow.board.topic.styles',
 				'oojs-ui.styles.icons',
+				'oojs-ui.styles.icons-alerts',
 				'oojs-ui.styles.icons-layout',
 				'oojs-ui.styles.icons-movement',
 				'oojs-ui.styles.icons-interactions',
