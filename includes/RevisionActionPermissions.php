@@ -4,11 +4,13 @@ namespace Flow;
 
 use Flow\Collection\CollectionCache;
 use Flow\Collection\PostCollection;
-use Flow\Exception\InvalidDataException;
+use Flow\Exception\DataModelException;
+use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Closure;
 use Flow\Model\PostSummary;
+use Flow\Model\Workflow;
 use User;
 
 /**
@@ -53,40 +55,42 @@ class RevisionActionPermissions {
 	/**
 	 * Check if a user is allowed to perform a certain action.
 	 *
-	 * @param AbstractRevision|null $revision
+	 * @param AbstractRevision $revision
 	 * @param string $action
 	 * @return bool
 	 */
-	public function isAllowed( AbstractRevision $revision = null, $action ) {
-		$allowed = $this->isRevisionAllowed( $revision, $action );
-
-		if ( $allowed && $revision instanceof AbstractRevision ) {
-			$allowed = $allowed && $this->isRootAllowed( $revision, $action );
+	public function isAllowed( AbstractRevision $revision, $action ) {
+		// check if we're allowed to $action on this revision
+		if ( !$this->isRevisionAllowed( $revision, $action ) ) {
+			return false;
 		}
 
-		try {
-			// if there was no revision object, it's pointless to find last revision
-			// if we already fail, no need in checking most recent revision status
-			if ( $allowed && $revision !== null ) {
-				// Also check if the user would be allowed to perform this
-				// against the most recent revision - the last revision is the
-				// current state of an object, so checking against a revision at
-				// one point in time alone isn't enough.
-				/** @var CollectionCache $cache */
-				$cache = Container::get( 'collection.cache' );
-				$last = $cache->getLastRevisionFor( $revision );
-				$isLastRevision = $last->getRevisionId()->equals( $revision->getRevisionId() );
-				$allowed = $isLastRevision || $this->isRevisionAllowed( $last, $action );
-			}
-
-			if ( $allowed && $revision !== null ) {
-				$allowed = $this->isBoardAllowed( $revision, $action );
-			}
-		} catch ( InvalidDataException $e ) {
-			// If data is not in storage, just return that revision's status
+		// see if we're allowed to perform $action on anything inside this root
+		$root = $this->getRoot( $revision );
+		if ( !$revision->getRevisionId()->equals( $root->getRevisionId() ) && !$this->isRootAllowed( $root, $action ) ) {
+			return false;
 		}
 
-		return $allowed;
+		// see if we're allowed to perform $action on anything inside this board
+		$collection = $revision->getCollection();
+		$workflow = $collection->getBoardWorkflow();
+		if ( !$this->isBoardAllowed( $workflow, $action ) ) {
+			return false;
+		}
+
+		// Also check if the user would be allowed to perform this
+		// against the most recent revision - the last revision is the
+		// current state of an object, so checking against a revision at
+		// one point in time alone isn't enough.
+		/** @var CollectionCache $cache */
+		$cache = Container::get( 'collection.cache' );
+		$last = $cache->getLastRevisionFor( $revision );
+		$isLastRevision = $last->getRevisionId()->equals( $revision->getRevisionId() );
+		if ( !$isLastRevision && !$this->isRevisionAllowed( $last, $action ) ) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
@@ -119,29 +123,13 @@ class RevisionActionPermissions {
 	 * root(topic) post related to the provided revision.  This is required for
 	 * things like preventing replies to locked topics.
 	 *
-	 * @param PostRevision|PostSummary $revision
+	 * @param AbstractRevision $root
 	 * @param string $action
 	 * @return bool
 	 */
-	protected function isRootAllowed( AbstractRevision $revision, $action ) {
+	public function isRootAllowed( AbstractRevision $root, $action ) {
 		// If the `root-permissions` key is not set then it is allowed
 		if ( !$this->actions->hasValue( $action, 'root-permissions' ) ) {
-			return true;
-		}
-
-		if ( $revision instanceof PostRevision ) {
-			// If the revision is a root then this does not apply.
-			if ( $revision->isTopicTitle() ) {
-				return true;
-			} else {
-				$root = $revision->getRootPost();
-			}
-		} elseif ( $revision instanceof PostSummary ) {
-			$topicId = $revision->getSummaryTargetId();
-			$collection = PostCollection::newFromId( $topicId );
-			$root = $collection->getLastRevision();
-		} else {
-			// can't trace this type of revision back to topic, so this doesn't apply
 			return true;
 		}
 
@@ -163,11 +151,11 @@ class RevisionActionPermissions {
 	 * Check if a user is allowed to perform a certain action, depending on the
 	 * status (deleted?) of the board.
 	 *
-	 * @param PostRevision|PostSummary $revision
+	 * @param Workflow $workflow
 	 * @param string $action
 	 * @return bool
 	 */
-	protected function isBoardAllowed( AbstractRevision $revision, $action ) {
+	public function isBoardAllowed( Workflow $workflow, $action ) {
 		$permissions = $this->actions->getValue( $action, 'core-delete-permissions' );
 
 		// If user is allowed to see deleted page content, there's no need to
@@ -178,13 +166,6 @@ class RevisionActionPermissions {
 		);
 		if ( $allowed ) {
 			return true;
-		}
-
-		try {
-			$collection = $revision->getCollection();
-			$workflow = $collection->getBoardWorkflow();
-		} catch ( \Exception $e ) {
-			return false;
 		}
 
 		return !$workflow->isDeleted();
@@ -199,7 +180,7 @@ class RevisionActionPermissions {
 	 * @param string $action
 	 * @return bool
 	 */
-	protected function isRevisionAllowed( AbstractRevision $revision = null, $action ) {
+	public function isRevisionAllowed( AbstractRevision $revision = null, $action ) {
 		// Users must have the core 'edit' permission to perform any write action in flow
 		$performsWrites = $this->actions->getValue( $action, 'performs-writes' );
 		if ( $performsWrites && !$this->user->isAllowed( 'edit' ) ) {
@@ -246,6 +227,30 @@ class RevisionActionPermissions {
 		}
 
 		return $permission;
+	}
+
+	/**
+	 * @param AbstractRevision $revision
+	 * @return AbstractRevision
+	 */
+	protected function getRoot( AbstractRevision $revision ) {
+		if ( $revision instanceof PostSummary ) {
+			$topicId = $revision->getSummaryTargetId();
+		} elseif ( $revision instanceof PostRevision && !$revision->isTopicTitle() ) {
+			try {
+				$topicId = $revision->getCollection()->getWorkflowId();
+			} catch ( DataModelException $e ) {
+				// failed to locate root post (most likely in unit tests, where
+				// we didn't store the tree)
+				return $revision;
+			}
+		} else {
+			// if we can't the revision it back to a root, this revision is root
+			return $revision;
+		}
+
+		$collection = PostCollection::newFromId( $topicId );
+		return $collection->getLastRevision();
 	}
 
 	/**
