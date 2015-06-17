@@ -95,8 +95,7 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 	 * }
 	 */
 	protected function getTestData() {
-		$this->generateWorkflowForPost();
-		$topicWorkflow = $this->workflow;
+		$topicWorkflow = $this->generateWorkflow();
 		$post = $this->generateObject( array(), array(), 1 );
 		$topic = $this->generateObject( array(), array( $post ) );
 		$user = User::newFromName( 'Flow Test User' );

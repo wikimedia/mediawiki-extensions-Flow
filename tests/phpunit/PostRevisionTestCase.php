@@ -4,15 +4,15 @@ namespace Flow\Tests;
 
 use DeferredUpdates;
 use Flow\Container;
-use Flow\Data\Index\BoardHistoryIndex;
-use Flow\Data\Listener\NotificationListener;
-use Flow\Data\Listener\RecentChangesListener;
-use Flow\Data\ObjectManager;
+use Flow\Data\ManagerGroup;
+use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
+use Flow\Model\TopicListEntry;
 use Flow\Model\Workflow;
 use Flow\Model\UserTuple;
 use Flow\Model\UUID;
+use Flow\OccupationController;
 use SplQueue;
 use User;
 
@@ -21,10 +21,16 @@ use User;
  * @group Database
  */
 class PostRevisionTestCase extends FlowTestCase {
-	/**
-	 * @var PostRevision
-	 */
-	protected $revision;
+	protected $tablesUsed = array(
+		'flow_revision',
+		'flow_topic_list',
+		'flow_tree_node',
+		'flow_tree_revision',
+		'flow_workflow',
+		'page',
+		'revision',
+		'text',
+	);
 
 	/**
 	 * @var PostRevision[]
@@ -32,14 +38,13 @@ class PostRevisionTestCase extends FlowTestCase {
 	protected $revisions = array();
 
 	/**
-	 * @var Workflow
+	 * @var Workflow[]
 	 */
-	protected $workflow;
+	protected $workflows = array();
 
 	protected function setUp() {
 		parent::setUp();
-		$this->generateWorkflowForPost();
-		$this->revision = $this->generateObject();
+
 		// Revisions must be blanked here otherwise phpunit run with --repeat will remember
 		// ths revision list between multiple invocations of the test causing issues.
 		$this->revisions = array();
@@ -53,10 +58,23 @@ class PostRevisionTestCase extends FlowTestCase {
 
 		foreach ( $this->revisions as $revision ) {
 			try {
-				$this->getStorage()->remove( $revision );
+				$this->getStorage()->multiRemove( array( $revision ) );
 			} catch ( \MWException $e ) {
 				// ignore - lifecyclehandlers may cause issues with tests, where
 				// not all related stuff is loaded
+			}
+		}
+
+		foreach ( $this->workflows as $workflow ) {
+			try {
+				$this->getStorage()->multiRemove( array( $workflow ) );
+
+				$found = $this->getStorage()->find( 'TopicListEntry', array( 'topic_id' => $workflow->getId() ) );
+				if ( $found ) {
+					$this->getStorage()->multiRemove( $found );
+				}
+			} catch ( FlowException $e ) {
+				// nothing, was probably never stored...
 			}
 		}
 
@@ -65,10 +83,10 @@ class PostRevisionTestCase extends FlowTestCase {
 	}
 
 	/**
-	 * @return ObjectManager
+	 * @return ManagerGroup
 	 */
 	protected function getStorage() {
-		return Container::get( 'storage.post' );
+		return Container::get( 'storage' );
 	}
 
 	/**
@@ -83,7 +101,7 @@ class PostRevisionTestCase extends FlowTestCase {
 	 * @return array
 	 */
 	protected function generateRow( array $row = array() ) {
-		$this->generateWorkflowForPost();
+		$workflow = $this->generateWorkflow( array( 'workflow_type' => 'topic' ) );
 		$uuidRevision = UUID::create();
 
 		$user = User::newFromName( 'UTSysop' );
@@ -93,7 +111,7 @@ class PostRevisionTestCase extends FlowTestCase {
 			// flow_revision
 			'rev_id' => $uuidRevision->getBinary(),
 			'rev_type' => 'post',
-			'rev_type_id' => $this->workflow->getId()->getBinary(),
+			'rev_type_id' => $workflow->getId()->getBinary(),
 			'rev_user_wiki' => $tuple->wiki,
 			'rev_user_id' => $tuple->id,
 			'rev_user_ip' => $tuple->ip,
@@ -115,7 +133,7 @@ class PostRevisionTestCase extends FlowTestCase {
 			'rev_previous_content_length' => 0,
 
 			// flow_tree_revision
-			'tree_rev_descendant_id' => $this->workflow->getId()->getBinary(),
+			'tree_rev_descendant_id' => $workflow->getId()->getBinary(),
 			'tree_rev_id' => $uuidRevision->getBinary(),
 			'tree_orig_user_wiki' => $tuple->wiki,
 			'tree_orig_user_id' => $tuple->id,
@@ -127,14 +145,11 @@ class PostRevisionTestCase extends FlowTestCase {
 	/**
 	 * Populate a fake workflow in the unittest database
 	 *
+	 * @param array $row
 	 * @return Workflow
 	 */
-	protected function generateWorkflowForPost() {
-		if ( $this->workflow ) {
-			return $this->workflow;
-		}
-
-		$row = array(
+	protected function generateWorkflow( $row = array() ) {
+		$row = $row + array(
 			'workflow_id' => UUID::create()->getBinary(),
 			'workflow_type' => 'topic',
 			'workflow_wiki' => wfWikiId(),
@@ -146,9 +161,14 @@ class PostRevisionTestCase extends FlowTestCase {
 			'workflow_lock_state' => 0,
 			'workflow_last_update_timestamp' => wfTimestampNow(),
 		);
-		$this->workflow = Workflow::fromStorageRow( $row );
+		$workflow = Workflow::fromStorageRow( $row );
 
-		return $this->workflow;
+		// store workflow:
+		// * so we can retrieve it should we want to store it (see store())
+		// * so we can remove it on tearDown
+		$this->workflows[$workflow->getId()->getAlphadecimal()] = $workflow;
+
+		return $workflow;
 	}
 
 	/**
@@ -181,13 +201,39 @@ class PostRevisionTestCase extends FlowTestCase {
 	 * @param PostRevision $revision
 	 */
 	protected function store( PostRevision $revision ) {
-		$this->getStorage()->put(
-			$revision,
-			array(
-				'workflow' => $this->generateWorkflowForPost(),
-				// @todo: Topic.php also adds 'topic-title'
-			)
+		$topicWorkflow = $this->workflows[$revision->getCollectionId()->getAlphadecimal()];
+		$boardWorkflow = Container::get( 'factory.loader.workflow' )
+			->createWorkflowLoader( $topicWorkflow->getOwnerTitle() )
+			->getWorkflow();
+
+		$metadata = array(
+			'workflow' => $topicWorkflow,
+			'board-workflow' => $boardWorkflow,
+			// @todo: Topic.php also adds 'topic-title'
 		);
+
+		// check if this topic (+ workflow + board workflow + board page) have
+		// already been inserted or do so now
+		$found = $this->getStorage()->find( 'TopicListEntry', array( 'topic_id' => $topicWorkflow->getId() ) );
+		if ( !$found ) {
+			$title = $boardWorkflow->getOwnerTitle();
+			$user = User::newFromName( '127.0.0.1', false );
+
+			/** @var OccupationController $occupationController */
+			$occupationController = Container::get( 'occupation_controller' );
+			// make sure user has rights to create board
+			$user->mRights = array_merge( $user->getRights(), array( 'flow-create-board' ) );
+			$occupationController->allowCreation( $title, $user );
+			$occupationController->ensureFlowRevision( new \Article( $title ), $boardWorkflow );
+
+			$topicListEntry = TopicListEntry::create( $boardWorkflow, $topicWorkflow );
+
+			$this->getStorage()->put( $boardWorkflow, $metadata );
+			$this->getStorage()->put( $topicWorkflow, $metadata );
+			$this->getStorage()->put( $topicListEntry, $metadata );
+		}
+
+		$this->getStorage()->put( $revision, $metadata );
 
 		/** @var SplQueue $deferredQueue */
 		$deferredQueue = Container::get( 'deferred_queue' );

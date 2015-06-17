@@ -8,6 +8,7 @@ use Flow\Data\Listener\ReferenceRecorder;
 use Flow\Exception\WikitextException;
 use Flow\LinksTableUpdater;
 use Flow\Model\AbstractRevision;
+use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\Parsoid\ReferenceExtractor;
 use Flow\Parsoid\ReferenceFactory;
@@ -23,7 +24,18 @@ class LinksTableTest extends PostRevisionTestCase {
 	/**
 	 * @var array
 	 */
-	protected $tablesUsed = array( 'flow_ext_ref', 'flow_wiki_ref', 'flow_revision', 'flow_tree_revision', 'flow_workflow' );
+	protected $tablesUsed = array(
+		'flow_ext_ref',
+		'flow_revision',
+		'flow_topic_list',
+		'flow_tree_node',
+		'flow_tree_revision',
+		'flow_wiki_ref',
+		'flow_workflow',
+		'page',
+		'revision',
+		'text',
+	);
 
 	/**
 	 * @var ManagerGroup
@@ -45,8 +57,22 @@ class LinksTableTest extends PostRevisionTestCase {
 	 */
 	protected $updater;
 
+	/**
+	 * @var Workflow
+	 */
+	protected $workflow;
+
+	/**
+	 * @var PostRevision
+	 */
+	protected $revision;
+
 	public function setUp() {
 		parent::setUp();
+
+		// create a workflow & revision associated with it
+		$this->revision = $this->generateObject();
+		$this->workflow = $this->workflows[$this->revision->getCollectionId()->getAlphadecimal()];
 		$this->storage = Container::get( 'storage' );
 		$this->extractor = Container::get( 'reference.extractor' );
 		$this->recorder = Container::get( 'reference.recorder' );
@@ -152,7 +178,12 @@ class LinksTableTest extends PostRevisionTestCase {
 	 */
 	public function testGetReferencesFromRevisionContent( $content, $expectedReferences ) {
 		$content = Utils::convert( 'wikitext', 'html', $content, $this->workflow->getOwnerTitle() );
-		$revision = $this->generatePost( array( 'rev_content' => $content ) );
+		$revision = $this->generatePost( array(
+			'rev_content' => $content,
+			// make sure it's associated with $this->workflow
+			'rev_type_id' => $this->workflow->getId()->getBinary(),
+			'tree_rev_descendant_id' => $this->workflow->getId()->getBinary(),
+		) );
 
 		$expectedReferences = $this->expandReferences( $this->workflow, $revision, $expectedReferences );
 
@@ -166,7 +197,12 @@ class LinksTableTest extends PostRevisionTestCase {
 	 */
 	public function testGetReferencesAfterRevisionInsert( $content, $expectedReferences ) {
 		$content = Utils::convert( 'wikitext', 'html', $content, $this->workflow->getOwnerTitle() );
-		$revision = $this->generatePost( array( 'rev_content' => $content ) );
+		$revision = $this->generatePost( array(
+			'rev_content' => $content,
+			// make sure it's associated with $this->workflow
+			'rev_type_id' => $this->workflow->getId()->getBinary(),
+			'tree_rev_descendant_id' => $this->workflow->getId()->getBinary(),
+		) );
 
 		// Save to storage to test if ReferenceRecorder listener picks this up
 		$this->store( $revision );
