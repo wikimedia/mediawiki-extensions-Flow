@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_196ff3c1",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-17T18:33:03Z",
+      "side": 1,
+      "message": "I think a multi-param setModerate() is fine, but if you feel that there should be easier ways to do it, those ways (e.g. unmoderate(), lock(), etc.) should be wrappers around setModerated().",
+      "parentUuid": "8ec42329_19585334",
+      "revId": "4cbe07bb59e8e5fa161387c8220fd3282f5a0955",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_7ea7fd4c",
         "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
         "patchSetId": 2
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "It shouldn\u0027t... this.moderated is undefined in the beginning, and in a case of initialization of a topic, so is the \u0027moderated\u0027 value from the API. This means that they\u0027re equal, and the condition won\u0027t run.",
       "parentUuid": "8ec42329_7ea7fd4c",
+      "revId": "4cbe07bb59e8e5fa161387c8220fd3282f5a0955",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_d9608bce",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-17T18:33:03Z",
+      "side": 1,
+      "message": "Are you sure? Is it not possible to ever load a moderated topic from the API, even if you are an admin? Doesn\u0027t locked / marked as resolved count as moderated?",
+      "parentUuid": "8ec42329_5927bbb1",
       "revId": "4cbe07bb59e8e5fa161387c8220fd3282f5a0955",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
