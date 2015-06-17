@@ -25,8 +25,26 @@ use User;
 
 /**
  * @group Flow
+ * @group Database
  */
 class TalkpageImportOperationTest extends \MediaWikiTestCase {
+	protected $tablesUsed = array(
+		// importer will ensureFlowRevision(), which will insert into these core tables
+		'page',
+		'revision',
+		'text',
+	);
+
+	public function setUp() {
+		parent::setUp();
+
+		// reset flow state, so everything ($container['permissions'])
+		// uses this particular $user
+		\FlowHooks::resetFlowExtension();
+		Container::reset();
+		$container = Container::getContainer();
+		$container['user'] = User::newFromName( '127.0.0.1', false );
+	}
 
 	/**
 	 * This is a horrible test, it basically runs the whole thing
