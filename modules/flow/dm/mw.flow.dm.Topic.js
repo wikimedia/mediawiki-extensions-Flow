@@ -45,6 +45,17 @@
 	 * @param {string} New summary
 	 */
 
+	/**
+	 * Topic moderation state has changed. Topic is either
+	 * moderated or no longer moderated.
+	 *
+	 * @event moderated
+	 * @param {boolean} Topic is moderated
+	 * @param {string} Moderation state
+	 * @param {string} Moderation reason
+	 * @param {Object} Moderator
+	 */
+
 	/* Static methods */
 
 	/**
@@ -92,10 +103,7 @@
 	mw.flow.dm.Topic.prototype.populate = function ( data ) {
 		this.summary = OO.getProp( data, 'summary', 'revision', 'content' );
 
-		this.moderated = !!data.isModerated;
-		this.moderationReason = data.moderateReason;
-		this.moderationState = data.moderateState;
-		this.moderator = data.moderator;
+		this.setModerated( !!data.isModerated, data.moderateReason, data.moderateState, data.moderator );
 
 		// TODO: These should be added as dm.Post objects
 		this.replies = data.replies;
@@ -134,15 +142,23 @@
 
 	/**
 	 * Toggle the moderated state of a topic
-	 * @param {boolean} [moderate] Moderate the topic
+	 * @param {boolean} moderated Topic is moderated
+	 * @param {string} moderationState Moderation state
+	 * @param {string} moderationReason Moderation reason
+	 * @param {Object} moderator Moderator
 	 * @fires moderated
 	 */
-	mw.flow.dm.Topic.prototype.toggleModerated = function ( moderate ) {
-		this.moderated = moderate || !this.moderated;
-		if ( !this.moderated ) {
-			this.setModerationReason( '' );
+	mw.flow.dm.Topic.prototype.setModerated = function ( moderated, moderationState, moderationReason, moderator ) {
+		if ( this.moderated !== moderated ) {
+
+			this.moderated = moderated;
+			this.setModerationReason( moderationReason );
+			this.setModerationState( moderationState );
+			this.setModerator( moderator );
+
+			// Emit event
+			this.emit( 'moderated', this.isModerated(), this.getModerationState(), this.getModerationReason(), this.getModerator() );
 		}
-		this.emit( 'moderated', this.moderated );
 	};
 
 	/**
@@ -157,6 +173,7 @@
 	/**
 	 * Set topic moderation reason
 	 *
+	 * @private
 	 * @return {string} Moderation reason
 	 */
 	mw.flow.dm.Topic.prototype.setModerationReason = function ( reason ) {
@@ -175,7 +192,8 @@
 	/**
 	 * Set topic moderation state
 	 *
-	 * @return {string} Moderation state
+	 * @private
+	 * @param {string} state Moderation state
 	 */
 	mw.flow.dm.Topic.prototype.setModerationState = function ( state ) {
 		this.moderationState = state;
@@ -193,6 +211,7 @@
 	/**
 	 * Get topic moderator
 	 *
+	 * @private
 	 * @param {Object} mod Moderator
 	 */
 	mw.flow.dm.Topic.prototype.setModerator = function ( mod ) {

@@ -203,13 +203,23 @@ QUnit.test( 'Load topics', function ( assert ) {
 					msg: 'Check unmoderated topic moderation state'
 				},
 				{
-					method: 'toggleModerated',
-					params: [ true ]
+					method: 'setModerated',
+					params: [ true, 'suppressed', 'Some moderation reason', {} ]
 				},
 				{
 					method: 'isModerated',
 					expected: true,
 					msg: 'Moderate topic'
+				},
+				{
+					method: 'getModerationState',
+					expected: 'suppressed',
+					msg: 'Get moderated topic state'
+				},
+				{
+					method: 'getModerationReason',
+					expected: 'Some moderation reason',
+					msg: 'Get moderated topic reason'
 				},
 				{
 					method: 'isWatched',
