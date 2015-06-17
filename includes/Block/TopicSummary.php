@@ -106,8 +106,11 @@ class TopicSummaryBlock extends AbstractBlock {
 
 		// Create topic summary
 		if ( !$this->topicSummary ) {
-			// @todo: check root!
-			if ( !$this->permissions->isAllowed( null, 'create-topic-summary' ) ) {
+			if (
+				!$this->permissions->isRevisionAllowed( null, 'create-topic-summary' ) ||
+				!$this->permissions->isRootAllowed( $this->findTopicTitle(), 'create-topic-summary' ) ||
+				!$this->permissions->isBoardAllowed( $this->workflow, 'create-topic-summary' )
+			) {
 				$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
 				return;
 			}
@@ -307,9 +310,12 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * @return array
 	 */
 	protected function renderNewestTopicSummary( $format ) {
-		// topicSummary can be null PostSummary object or null (doesn't exist yet)
-		// @todo: check root if topicSummary is null!
-		if ( !$this->permissions->isAllowed( $this->topicSummary, 'view-topic-summary' ) ) {
+		if (
+			// topicSummary can be null PostSummary object or null (doesn't exist yet)
+			!$this->permissions->isRevisionAllowed( $this->topicSummary, 'view-topic-summary' ) ||
+			!$this->permissions->isRootAllowed( $this->findTopicTitle(), 'view-topic-summary' ) ||
+			!$this->permissions->isBoardAllowed( $this->workflow, 'view-topic-summary' )
+		) {
 			$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
 			return array();
 		}
