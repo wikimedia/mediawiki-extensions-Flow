@@ -107,7 +107,6 @@ class View extends ContextSource {
 				'oojs-ui.styles.icons',
 				'oojs-ui.styles.icons-layout',
 				'oojs-ui.styles.icons-interactions',
-				'ext.flow.icons.styles',
 				'ext.flow.board.styles',
 				'ext.flow.board.topic.styles',
 				'oojs-ui.styles.icons',
