@@ -132,11 +132,13 @@ class HeaderBlock extends AbstractBlock {
 		if ( !$this->checkSpamFilters( $this->header, $this->newRevision ) ) {
 			return;
 		}
-
 	}
 
 	protected function validateFirstRevision() {
-		if ( !$this->permissions->isAllowed( null, 'create-header' ) ) {
+		if (
+			!$this->permissions->isRevisionAllowed( null, 'create-header' ) ||
+			!$this->permissions->isBoardAllowed( $this->workflow, 'create-header' )
+		) {
 			$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
 			return;
 		}
