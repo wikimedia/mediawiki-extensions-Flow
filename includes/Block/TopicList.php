@@ -62,7 +62,7 @@ class TopicListBlock extends AbstractBlock {
 
 	protected function validate() {
 		// for now, new topic is considered a new post; perhaps some day topic creation should get it's own permissions?
-		if ( !$this->permissions->isAllowed( null, 'new-post' ) ) {
+		if ( !$this->permissions->isAllowed( null, 'new-post' /* @todo: how to check board permissions? */ ) ) {
 			$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
 			return;
 		}

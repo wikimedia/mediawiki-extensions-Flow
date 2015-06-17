@@ -136,7 +136,7 @@ class HeaderBlock extends AbstractBlock {
 	}
 
 	protected function validateFirstRevision() {
-		if ( !$this->permissions->isAllowed( null, 'create-header' ) ) {
+		if ( !$this->permissions->isAllowed( null, 'create-header' /* @todo: how to check board permissions? */ ) ) {
 			$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
 			return;
 		}
