@@ -231,6 +231,9 @@ class FlowHooks {
 		require_once __DIR__.'/maintenance/FlowFixLog.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowFixLog' );
 
+		require_once __DIR__.'/maintenance/FlowUpdateWorkflowPageId.php';
+		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateWorkflowPageId' );
+
 		return true;
 	}
 

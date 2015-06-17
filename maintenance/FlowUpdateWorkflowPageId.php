@@ -17,7 +17,7 @@ require_once __DIR__ . "/../../Echo/includes/BatchRowUpdate.php";
  *
  * @ingroup Maintenance
  */
-class FlowUpdateWorkflowPageId extends Maintenance {
+class FlowUpdateWorkflowPageId extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Update workflow_page_id with the page id of its specified ns/title";
@@ -28,7 +28,7 @@ class FlowUpdateWorkflowPageId extends Maintenance {
 	 * Assembles the update components, runs them, and reports
 	 * on what they did
 	 */
-	public function execute() {
+	public function doDbUpdates() {
 		global $wgFlowCluster, $wgLang;
 
 		$dbw = Container::get( 'db.factory' )->getDB( DB_MASTER );
@@ -53,6 +53,10 @@ class FlowUpdateWorkflowPageId extends Maintenance {
 		$this->output( $gen->report() );
 
 		return true;
+	}
+
+	protected function getUpdateKey() {
+		return __CLASS__;
 	}
 }
 
