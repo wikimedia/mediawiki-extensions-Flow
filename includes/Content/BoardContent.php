@@ -160,6 +160,7 @@ class BoardContent extends \AbstractContent {
 	{
 		$parserOutput = new ParserOutput();
 		$parserOutput->updateCacheExpiry( 0 );
+		$parserOutput->setTimestamp( wfTimestamp( TS_MW ) );
 
 		if ( $generateHtml ) {
 			// Set up a derivative context (which inherits the current request)
