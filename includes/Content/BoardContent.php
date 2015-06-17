@@ -15,7 +15,9 @@ use OutputPage;
 use ParserOptions;
 use ParserOutput;
 use RequestContext;
+use Revision;
 use Title;
+use WikiPage;
 
 class BoardContent extends \AbstractContent {
 	/** @var Workflow|UUID|null */
@@ -172,6 +174,15 @@ class BoardContent extends \AbstractContent {
 	{
 		$parserOutput = new ParserOutput();
 		$parserOutput->updateCacheExpiry( 0 );
+
+		if ( $revId === null ) {
+			$wikiPage = new WikiPage( $title );
+			$timestamp = $wikiPage->getTimestamp();
+		} else {
+			$timestamp = Revision::getTimestampFromId( $title, $revId );
+		}
+
+		$parserOutput->setTimestamp( $timestamp );
 
 		if ( $generateHtml ) {
 			// Set up a derivative context (which inherits the current request)
