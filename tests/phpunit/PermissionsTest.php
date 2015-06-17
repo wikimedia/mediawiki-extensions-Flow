@@ -220,7 +220,7 @@ class PermissionsTest extends PostRevisionTestCase {
 	 */
 	public function testPermissions( User $user, PostRevision $revision = null, $action, $expected ) {
 		$permissions = new RevisionActionPermissions( $this->actions, $user );
-		$this->assertEquals( $expected, $permissions->isAllowed( $revision, $action ) );
+		$this->assertEquals( $expected, $permissions->isRevisionAllowed( $revision, $action ) );
 	}
 
 	protected function anonUser() {
