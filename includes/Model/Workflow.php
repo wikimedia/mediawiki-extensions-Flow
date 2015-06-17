@@ -264,7 +264,9 @@ class Workflow {
 	 * @return bool
 	 */
 	public function isDeleted() {
-		return Title::newFromID( $this->pageId ) === null;
+		// a board that does not yet exist (because workflow has not yet
+		// been stored) is not deleted, it just doesn't exist yet
+		return !$this->isNew() && Title::newFromID( $this->pageId ) === null;
 	}
 
 	/**
