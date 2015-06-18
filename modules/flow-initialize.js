@@ -9,7 +9,7 @@
 	 * @todo not like this
 	 */
 	$( document ).ready( function () {
-		var dataBlob, navWidget, flowBoard, dmBoard, newTopicWidget, sidebarExpandWidget,
+		var dataBlob, navWidget, flowBoard, dmBoard, newTopicWidget, sidebarExpandWidget, descriptionWidget,
 			siderailCollapsed = mw.user.options.get( 'flow-side-rail-state' ) === 'collapsed',
 			pageTitle = mw.Title.newFromText( mw.config.get( 'wgPageName' ) ),
 			$component = $( '.flow-component' ),
@@ -28,17 +28,6 @@
 			finishLoading();
 			return;
 		}
-
-		// HACK: Bridge between the new oouified description and the old system. We have to
-		// do this before we're calling 'initComponent' so that initComponent will consider
-		// the apiHandler actions we are reattaching
-		$( '.flow-ui-boardDescriptionWidget' ).addClass( 'flow-board-header-detail-view' );
-		$( '.flow-ui-boardDescriptionWidget-editButton' ).addClass( 'flow-board-header-nav' );
-		$( '.flow-ui-boardDescriptionWidget-editButton a' )
-			.data( 'flow-api-handler', 'activateEditHeader' )
-			.data( 'flow-api-target', '< .flow-board-header' )
-			.data( 'flow-interactive-handler', 'apiRequest' );
-		$( '.flow-ui-boardDescriptionWidget-content' ).addClass( 'flow-board-header-content' );
 
 		mw.flow.initComponent( $component );
 
@@ -103,6 +92,12 @@
 		// We shouldn't have to worry about 'remove', since by the time we have filtering,
 		// orderedTopicIds should be gone.
 
+		// HACK: On load more, populate the board dm
+		flowBoard.on( 'loadmore', function ( topiclist ) {
+			// Add to the DM board
+			mw.flow.system.populateBoardTopicsFromJson( topiclist );
+		} );
+
 		// Initialize the old system to accept the default
 		// 'newest' order for the topic order widget
 		// Get the current default sort
@@ -113,6 +108,12 @@
 			defaultSort: flowBoard.topicIdSort
 		} );
 		$( '.flow-board-navigation' ).append( navWidget.$element );
+
+		// Board description widget
+		descriptionWidget = new mw.flow.ui.BoardDescriptionWidget( dmBoard, {
+			$existing: $( '.flow-ui-boardDescriptionWidget-content' ).contents()
+		} );
+		$( '.flow-ui-boardDescriptionWidget' ).replaceWith( descriptionWidget.$element );
 
 		// HACK: These event handlers should be in the prospective widgets
 		// they will move once we have Board UI and Topic UI widgets
