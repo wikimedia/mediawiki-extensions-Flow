@@ -233,7 +233,7 @@
 				widget.popPending();
 				newEditor.setDisabled( widget.isDisabled() );
 
-				widget.placeholderInput.$element.detach();
+				widget.placeholderInput.detach();
 				widget.$element.append( newEditor.$element );
 
 				newEditor.toggle( true );
@@ -409,12 +409,20 @@
 			mw.flow.ui.EditorSwitcherWidget.parent.prototype.isDisabled.apply( this, arguments );
 	};
 
+	/**
+	 * Toggle a disable state for the widget
+	 *
+	 * @param {boolean} disabled Widget is disabled
+	 */
 	mw.flow.ui.EditorSwitcherWidget.prototype.setDisabled = function ( disabled ) {
 		var activeEditor = this.getActiveEditor();
 
 		// Parent method
 		mw.flow.ui.EditorSwitcherWidget.parent.prototype.setDisabled.call( this, disabled );
 
+		if ( this.placeholderInput ) {
+			this.placeholderInput.setDisabled( this.isDisabled() );
+		}
 		if ( activeEditor ) {
 			activeEditor.setDisabled( this.isDisabled() );
 		}
