@@ -16,7 +16,23 @@ QUnit.test( 'Create board', function ( assert ) {
 					isDeleted: false,
 					pagePrefixedDb: 'Special:FlowTestBoardPage',
 					topicCount: 0,
-					description: undefined
+					description: {
+						// Empty description revision
+						author: null,
+						changeType: null,
+						content: null,
+						contentFormat: null,
+						creator: null,
+						id: null,
+						lastUpdate: null,
+						originalContent: true,
+						previousRevisionId: null,
+						revisionId: null,
+						timestamp: null,
+						watchable: true,
+						watched: false,
+						workflowId: null
+					}
 				},
 				msg: 'Get current board initial state'
 			},
@@ -61,7 +77,7 @@ QUnit.test( 'Create board', function ( assert ) {
 				params: [
 					new mw.flow.dm.BoardDescription( {
 						content: {
-							content: '<h1>This is test board description.</h1>',
+							content: '<h1>This is a test board description.</h1>',
 							format: 'html'
 						}
 					} )
@@ -77,7 +93,7 @@ QUnit.test( 'Create board', function ( assert ) {
 					description: {
 						author: null,
 						changeType: null,
-						content: '<h1>This is test board description.</h1>',
+						content: '<h1>This is a test board description.</h1>',
 						contentFormat: 'html',
 						creator: null,
 						id: null,
