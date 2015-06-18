@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_c11de267",
+        "filename": "includes/View.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-18T20:59:06Z",
+      "side": 1,
+      "message": "Per below, i think this should be moved to the TopicList block, and just called from View.",
+      "revId": "1c63194982a0455fc48e86bfb0473ad373aca63f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_3e1727f4",
+        "filename": "includes/View.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-18T20:59:06Z",
+      "side": 1,
+      "message": "I think you want the parameter order the other way around.  The limit specified here should override any limit specified in $parameters[\u0027topiclist\u0027].",
+      "revId": "1c63194982a0455fc48e86bfb0473ad373aca63f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_5e7793fd",
+        "filename": "includes/View.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-18T20:59:06Z",
+      "side": 1,
+      "message": "50 should not be hard-coded; it should at least be a constant.  It\u0027s also used by the JS, so may want to expose it in the JSON.",
+      "revId": "1c63194982a0455fc48e86bfb0473ad373aca63f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_febf5fcb",
+        "filename": "includes/View.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-18T20:59:06Z",
+      "side": 1,
+      "message": "This should be based on the current request\u0027s sortby, with the user\u0027s preference only being the fallback, like in TopicList (https://git.wikimedia.org/blob/mediawiki%2Fextensions%2FFlow.git/d400ebb56d0eaba343bdd31e58805e3f36328964/includes%2FBlock%2FTopicList.php#L295).\n\nSee https://www.mediawiki.org/w/index.php?title\u003dTalk:Sandbox\u0026topiclist_sortby\u003dnewest and https://www.mediawiki.org/w/index.php?title\u003dTalk:Sandbox\u0026topiclist_sortby\u003dupdated .  These will work regardless of the preference, and not change it.\n\nThis is an argument to move all this logic into TopicList (e.g. renderTocApi).  Then, the internal logic for defaulting sortby can all be within TopicList (probably factored out to a separate method).",
+      "revId": "1c63194982a0455fc48e86bfb0473ad373aca63f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_1eb7cbd4",
+        "filename": "includes/View.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-18T20:59:06Z",
+      "side": 1,
+      "message": "empty() is discouraged by the coding conventions.  $topicList !\u003d\u003d null \u0026\u0026 is_array( $topicList[\u0027roots\u0027] ) should work (if the roots array is empty, that\u0027s the same as the fallback anyway).",
+      "revId": "1c63194982a0455fc48e86bfb0473ad373aca63f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_1e058b7c",
+        "filename": "includes/View.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-18T20:59:06Z",
+      "side": 1,
+      "message": "end( $existingRoots ) is a little more idiomatic.",
+      "revId": "1c63194982a0455fc48e86bfb0473ad373aca63f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_7e592f8f",
+        "filename": "includes/View.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-18T20:59:06Z",
+      "side": 1,
+      "message": "Shouldn\u0027t be hard-coded.  It\u0027s (constant that replaces 50) - $wgFlowDefaultLimit.",
+      "revId": "1c63194982a0455fc48e86bfb0473ad373aca63f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_9e0c1b47",
+        "filename": "includes/View.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-18T20:59:06Z",
+      "side": 1,
+      "message": "I don\u0027t think it needs to be conditional.  This will always be the initial definition.",
+      "revId": "1c63194982a0455fc48e86bfb0473ad373aca63f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_e18b3ee6",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 16
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-18T20:59:06Z",
+      "side": 1,
+      "message": "It\u0027s probably worth adding a note that the non-stub ones have to come first.",
+      "revId": "1c63194982a0455fc48e86bfb0473ad373aca63f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
