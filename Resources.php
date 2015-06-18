@@ -376,10 +376,11 @@ $wgResourceModules += array(
 	'ext.flow.ui' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'flow/ui/mw.flow.ui.js',
+			'flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js',
 		),
 		'dependencies' => array (
 			'oojs-ui',
-			'ext.flow.dm'
+			'ext.flow.dm',
 		)
 	) + $mobile,
 	'ext.flow' => $flowResourceTemplate + array(
