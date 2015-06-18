@@ -97,14 +97,21 @@ class TalkpageManager implements OccupationController {
 			return false;
 		}
 
-		if ( in_array( $title->getPrefixedText(), $this->occupiedPages ) ) {
-			return true;
-		}
-		if ( !$title->isSubpage() && in_array( $title->getNamespace(), $this->occupiedNamespaces ) ) {
-			return true;
+		if ( !$title->exists() || !$checkContentModel ) {
+			// Only check hardcoded page lists if the page does not exist (T95592)
+			// If the page exists, check its content model in the DB, except if we're
+			// told not to. Specifically, while creating the first revision of a flow board,
+			// onContentHandlerDefaultModelFor calls this function, and $title->exists() is already
+			// true at that point but we are still deciding which content model to use.
+			if ( in_array( $title->getPrefixedText(), $this->occupiedPages ) ) {
+				return true;
+			}
+			if ( in_array( $title->getNamespace(), $this->occupiedNamespaces ) ) {
+				return true;
+			}
 		}
 
-		// If it was saved as a flow board, lets just believe the database.
+		// If it was saved as a flow board, let's just believe the database.
 		if ( $checkContentModel && $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
 			return true;
 		}
