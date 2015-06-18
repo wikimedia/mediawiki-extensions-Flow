@@ -97,11 +97,14 @@ class TalkpageManager implements OccupationController {
 			return false;
 		}
 
-		if ( in_array( $title->getPrefixedText(), $this->occupiedPages ) ) {
-			return true;
-		}
-		if ( !$title->isSubpage() && in_array( $title->getNamespace(), $this->occupiedNamespaces ) ) {
-			return true;
+		if ( !$title->exists() ) {
+			// Only check hardocded page lists if the page does not exist (T95592)
+			if ( in_array( $title->getPrefixedText(), $this->occupiedPages ) ) {
+				return true;
+			}
+			if ( in_array( $title->getNamespace(), $this->occupiedNamespaces ) ) {
+				return true;
+			}
 		}
 
 		// If it was saved as a flow board, lets just believe the database.
