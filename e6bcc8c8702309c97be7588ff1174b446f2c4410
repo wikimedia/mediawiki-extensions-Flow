@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_eee6e910",
+        "filename": "i18n/en.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2015-06-18T12:39:34Z",
+      "side": 1,
+      "message": "Suggestion for rephrase, to be more consistent in wording:\n\n You cannot mark a moderated post as resolved.",
+      "revId": "e6bcc8c8702309c97be7588ff1174b446f2c4410",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_aef0e1c4",
+        "filename": "i18n/en.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2015-06-18T12:39:34Z",
+      "side": 1,
+      "message": "Rephrase suggestion for consistency in wording:\n\n $1 {{GENDER:$2|marked}} the [$4 topic] $6 as resolved (\u003cem\u003e$5\u003c/em\u003e)",
+      "revId": "e6bcc8c8702309c97be7588ff1174b446f2c4410",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_4ebffdcd",
+        "filename": "i18n/en.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2015-06-18T12:39:34Z",
+      "side": 1,
+      "message": "Suggestion to rephrase for consistency:\n\n mark Flow topics as resolved",
+      "revId": "e6bcc8c8702309c97be7588ff1174b446f2c4410",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_0eb9f5e5",
+        "filename": "i18n/en.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2015-06-18T12:39:34Z",
+      "side": 1,
+      "message": "Please use double quotes for consistency in MediaWiki.",
+      "revId": "e6bcc8c8702309c97be7588ff1174b446f2c4410",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_6ea9998c",
+        "filename": "i18n/en.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2015-06-18T12:39:34Z",
+      "side": 1,
+      "message": "Now the wording is potentially confusing, as both \"lock\" and \"mark as resolved\" are being used for the same thing. That\u0027s not a good idea, as it will cause developers, product owners, and (power) users to develop a different perspective on things, causing all kinds of miscommunication. Please ensure that wording is consistent throughout the extension (!).",
+      "revId": "e6bcc8c8702309c97be7588ff1174b446f2c4410",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_2eb391fe",
+        "filename": "i18n/en.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2015-06-18T12:39:34Z",
+      "side": 1,
+      "message": "Please use double quotes for consistency.",
+      "revId": "e6bcc8c8702309c97be7588ff1174b446f2c4410",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
