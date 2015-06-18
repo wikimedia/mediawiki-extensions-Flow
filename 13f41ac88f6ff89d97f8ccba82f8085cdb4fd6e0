@@ -36,6 +36,23 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_2af28803",
+        "filename": "i18n/en.json",
+        "patchSetId": 18
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-18T02:24:34Z",
+      "side": 0,
+      "message": "Referenced in Resources.php and (concat \"flow-moderation-confirm-\" @root.submitted.moderationState \"-topic\").\n\nThe latter triggers a broken message (\u003cflow-moderation-confirm-lock-topic\u003e) by clicking \u0027resolve\u0027 on the history page.",
+      "revId": "13f41ac88f6ff89d97f8ccba82f8085cdb4fd6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_6a909098",
         "filename": "i18n/en.json",
         "patchSetId": 18
@@ -47,6 +64,23 @@
       "writtenOn": "2015-06-18T02:09:34Z",
       "side": 0,
       "message": "Also still exported, and even being used: https://i.imgur.com/J3WD2r3.png",
+      "revId": "13f41ac88f6ff89d97f8ccba82f8085cdb4fd6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_caf8a4e4",
+        "filename": "i18n/en.json",
+        "patchSetId": 18
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-18T02:24:34Z",
+      "side": 0,
+      "message": "Same as flow-moderation-confirm-lock-topic.",
       "revId": "13f41ac88f6ff89d97f8ccba82f8085cdb4fd6e0",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -70,6 +104,23 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_eafb20dc",
+        "filename": "i18n/en.json",
+        "patchSetId": 18
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-18T02:24:34Z",
+      "side": 0,
+      "message": "Referenced in Resources.php and via (concat \"flow-moderation-placeholder-\" @root.submitted.moderationState \"-topic\") in handlebars/flow_moderate_topic.partial.handlebars.  Latter triggers broken message in same history flow as above.",
+      "revId": "13f41ac88f6ff89d97f8ccba82f8085cdb4fd6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_ea848060",
         "filename": "i18n/en.json",
         "patchSetId": 18
@@ -81,6 +132,23 @@
       "writtenOn": "2015-06-18T02:09:34Z",
       "side": 0,
       "message": "Also still exported, and even being used: https://i.imgur.com/J3WD2r3.png",
+      "revId": "13f41ac88f6ff89d97f8ccba82f8085cdb4fd6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_8ae29c2c",
+        "filename": "i18n/en.json",
+        "patchSetId": 18
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-18T02:24:34Z",
+      "side": 0,
+      "message": "Same as flow-moderation-placeholder-lock-topic.",
       "revId": "13f41ac88f6ff89d97f8ccba82f8085cdb4fd6e0",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
