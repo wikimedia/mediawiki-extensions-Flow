@@ -387,6 +387,7 @@ $wgResourceModules += array(
 			'flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js',
 			'flow/ui/widgets/editor/mw.flow.ui.EditorControlsWidget.js',
 			'flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js',
+			'flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js',
 		),
 		'styles' => array(
 			'styles/flow/mw.flow.ui.less',
@@ -409,7 +410,7 @@ $wgResourceModules += array(
 			'oojs-ui',
 			'es5-shim',
 			'ext.flow.dm',
-		),
+		)
 	) + $mobile,
 	'ext.flow' => $flowResourceTemplate + array(
 		'scripts' => array( // Component order is important
@@ -447,7 +448,6 @@ $wgResourceModules += array(
 			'jquery.throttle-debounce',
 			'mediawiki.jqueryMsg',
 			'ext.flow.jquery.conditionalScroll',
-			'ext.flow.dm',
 			'ext.flow.ui',
 			'mediawiki.api',
 			'mediawiki.util',
