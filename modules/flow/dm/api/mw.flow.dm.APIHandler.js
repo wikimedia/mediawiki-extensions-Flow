@@ -8,6 +8,8 @@
 	 * @param {string} page Full page name with its namespace;
 	 *  for example: "User_talk:Foo"
 	 * @param {Object} [config] Configuration options
+	 * @cfg {Object} [currentRevision] Current revision Id. Mostly used
+	 *  for edit conflict check.
 	 * @cfg {Object} [apiConstructorParams] Parameters for mw.Api()
 	 * @cfg {Object} [requestParams] Parameters for the request
 	 */
@@ -22,6 +24,7 @@
 		}, config.apiConstructorParams );
 
 		this.page = page;
+		this.setCurrentRevision( config.currentRevision );
 
 		this.requestParams = $.extend( {
 			action: 'flow'
@@ -29,6 +32,16 @@
 	};
 
 	OO.initClass( mw.flow.dm.APIHandler );
+
+	/**
+	 * Set the current revision Id. this is mostly used for edit actions, to check
+	 * for edit conflicts.
+	 *
+	 * @param {string} revisionId Current revision id
+	 */
+	mw.flow.dm.APIHandler.prototype.setCurrentRevision = function ( revisionId ) {
+		this.currentRevision = revisionId;
+	};
 
 	/**
 	 * General get request
@@ -80,4 +93,46 @@
 				return data.topiclist;
 			} );
 	};
+
+	/**
+	 * Get the board description from the API.
+	 *
+	 * @param {string} [contentFormat='fixed-html'] Content format for board description
+	 * @return {jQuery.Promise} Promise that is resolved with the header response
+	 */
+	mw.flow.dm.APIHandler.prototype.getDescription = function ( contentFormat ) {
+		var params = {
+			page: this.page,
+			vhformat: contentFormat || 'fixed-html'
+		};
+
+		return this.get( 'view-header', params )
+			.then( function ( data ) {
+				return data.header.revision;
+			} );
+	};
+
+	/**
+	 * Save header information.
+	 *
+	 * @param {string} content Header content
+	 * @param {string} [format='fixed-html'] Content format for board description
+	 * @return {jQuery.Promise} Promise that is resolved with the save header response
+	 */
+	mw.flow.dm.APIHandler.prototype.saveDescription = function ( content, format, config ) {
+		var params = {
+				action: 'flow',
+				page: this.page,
+				submodule: 'edit-header',
+				ehcontent: content,
+				ehformat: format,
+				ehprev_revision: this.currentRevision
+			};
+
+		return ( new mw.Api() ).postWithToken( 'edit', params )
+			.then( function ( data ) {
+				return OO.getProp( data.flow, 'edit-header', 'committed', 'header', 'header-revision-id' );
+			} );
+	};
+
 }( jQuery ) );
