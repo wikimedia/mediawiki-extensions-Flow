@@ -247,6 +247,7 @@
 	 * @return {jQuery.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.activateEditHeader = function ( info, data, jqxhr ) {
+debugger;
 		var $rendered,
 			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) ),
 			$oldBoardNodes;

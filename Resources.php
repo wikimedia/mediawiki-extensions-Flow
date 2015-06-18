@@ -376,10 +376,14 @@ $wgResourceModules += array(
 	'ext.flow.ui' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'flow/ui/mw.flow.ui.js',
+			'flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js',
+		),
+		'styles' => array(
+			'styles/flow/widgets/mw.flow.ui.BoardDescriptionWidget.less',
 		),
 		'dependencies' => array (
 			'oojs-ui',
-			'ext.flow.dm'
+			'ext.flow.dm',
 		)
 	) + $mobile,
 	'ext.flow' => $flowResourceTemplate + array(
@@ -420,7 +424,6 @@ $wgResourceModules += array(
 			'jquery.throttle-debounce',
 			'mediawiki.jqueryMsg',
 			'ext.flow.jquery.conditionalScroll',
-			'ext.flow.dm',
 			'ext.flow.ui',
 			'mediawiki.api',
 			'mediawiki.util',
