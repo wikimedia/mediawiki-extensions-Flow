@@ -1460,12 +1460,12 @@ class FlowHooks {
 	public static function onContentHandlerDefaultModelFor( Title $title, &$model ) {
 		$occupationController = self::getOccupationController();
 
-		if ( $occupationController->isTalkpageOccupied( $title, false ) ) {
+		if ( $model !== CONTENT_MODEL_FLOW_BOARD
+			&& $occupationController->isTalkpageOccupied( $title, false )
+		) {
 			$model = CONTENT_MODEL_FLOW_BOARD;
-
 			return false;
 		}
-
 		return true;
 	}
 
