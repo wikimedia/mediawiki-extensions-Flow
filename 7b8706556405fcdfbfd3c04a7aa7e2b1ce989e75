@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_aa60b8cc",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 18
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-18T02:00:47Z",
+      "side": 1,
+      "message": "Is .done() correct here, or do you need .then()? With .done(), the returned promise will resolve as soon as RefreshTopic finishes. If you use .then(), the returned promise will only resolve once the view-topic-summary API call has finished and _activateSummarizeTopic has run.",
+      "revId": "7b8706556405fcdfbfd3c04a7aa7e2b1ce989e75",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_6a5ad023",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 18
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-18T02:00:47Z",
+      "side": 1,
+      "message": "Why jQuery.extend instead of $.extend?",
+      "revId": "7b8706556405fcdfbfd3c04a7aa7e2b1ce989e75",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
