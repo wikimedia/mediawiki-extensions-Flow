@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_c025e3bd",
+        "filename": "i18n/en.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-06-18T13:49:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_eee6e910",
+      "revId": "e6bcc8c8702309c97be7588ff1174b446f2c4410",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_aef0e1c4",
         "filename": "i18n/en.json",
         "patchSetId": 14
@@ -30,6 +48,24 @@
       "writtenOn": "2015-06-18T12:39:34Z",
       "side": 1,
       "message": "Rephrase suggestion for consistency in wording:\n\n $1 {{GENDER:$2|marked}} the [$4 topic] $6 as resolved (\u003cem\u003e$5\u003c/em\u003e)",
+      "revId": "e6bcc8c8702309c97be7588ff1174b446f2c4410",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_802fdb9b",
+        "filename": "i18n/en.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-06-18T13:49:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_aef0e1c4",
       "revId": "e6bcc8c8702309c97be7588ff1174b446f2c4410",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_600bcf2d",
+        "filename": "i18n/en.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-06-18T13:49:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_4ebffdcd",
+      "revId": "e6bcc8c8702309c97be7588ff1174b446f2c4410",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_0eb9f5e5",
         "filename": "i18n/en.json",
         "patchSetId": 14
@@ -64,6 +118,24 @@
       "writtenOn": "2015-06-18T12:39:34Z",
       "side": 1,
       "message": "Please use double quotes for consistency in MediaWiki.",
+      "revId": "e6bcc8c8702309c97be7588ff1174b446f2c4410",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_1b24c0ac",
+        "filename": "i18n/en.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-06-18T13:49:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_0eb9f5e5",
       "revId": "e6bcc8c8702309c97be7588ff1174b446f2c4410",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_fb577403",
+        "filename": "i18n/en.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-06-18T13:49:07Z",
+      "side": 1,
+      "message": "I agree, this is getting confusing. The API actions are lock/unlock. Resolving and reopening topics are actions presented on the UI but they are implemented using the lock/unlock API features.\n\nIt seems to make sense but we are not 100% sure about this.\n\nI have removed resolve and reopen from here since this is an API only help message.",
+      "parentUuid": "8ec42329_6ea9998c",
+      "revId": "e6bcc8c8702309c97be7588ff1174b446f2c4410",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_2eb391fe",
         "filename": "i18n/en.json",
         "patchSetId": 14
@@ -98,6 +188,24 @@
       "writtenOn": "2015-06-18T12:39:34Z",
       "side": 1,
       "message": "Please use double quotes for consistency.",
+      "revId": "e6bcc8c8702309c97be7588ff1174b446f2c4410",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_9b3750e0",
+        "filename": "i18n/en.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-06-18T13:49:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_2eb391fe",
       "revId": "e6bcc8c8702309c97be7588ff1174b446f2c4410",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
