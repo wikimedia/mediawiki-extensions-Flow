@@ -841,8 +841,10 @@ class FlowHooks {
 	}
 
 	/**
-	 * Abort notifications coming from RecentChange class, Flow has its
-	 * own notifications through Echo.
+	 * Abort notifications regarding occupied pages coming from the RecentChange class.
+	 * Flow has its own notifications through Echo.
+	 *
+	 * Also don't notify for actions made by the talk page manager.
 	 *
 	 * @param User $editor
 	 * @param Title $title
@@ -853,6 +855,11 @@ class FlowHooks {
 			// Since we are aborting the notification we need to manually update the watchlist
 			EmailNotification::updateWatchlistTimestamp( $editor, $title, wfTimestampNow() );
 
+			return false;
+		}
+
+		$talkPageManagerUser = self::$occupationController->getTalkpageManager();
+		if ( $editor->equals( $talkPageManagerUser ) ) {
 			return false;
 		}
 
