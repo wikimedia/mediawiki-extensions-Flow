@@ -9,7 +9,7 @@
 	 * @todo not like this
 	 */
 	$( document ).ready( function () {
-		var flowBoard, dmBoard,
+		var descriptionWidget, flowBoard, dmBoard,
 			$component = $( '.flow-component' );
 
 		// HACK: If there is no component, we are not on a flow
@@ -20,17 +20,6 @@
 		if ( $component.length === 0 ) {
 			return;
 		}
-
-		// HACK: Bridge between the new oouified description and the old system. We have to
-		// do this before we're calling 'initComponent' so that initComponent will consider
-		// the apiHandler actions we are reattaching
-		$( '.flow-ui-boardDescriptionWidget' ).addClass( 'flow-board-header-detail-view' );
-		$( '.flow-ui-boardDescriptionWidget-editButton' ).addClass( 'flow-board-header-nav' );
-		$( '.flow-ui-boardDescriptionWidget-editButton a' )
-			.data( 'flow-api-handler', 'activateEditHeader' )
-			.data( 'flow-api-target', '< .flow-board-header' )
-			.data( 'flow-interactive-handler', 'apiRequest' );
-		$( '.flow-ui-boardDescriptionWidget-content' ).addClass( 'flow-board-header-content' );
 
 		mw.flow.initComponent( $component );
 		flowBoard = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $( '.flow-board' ) );
@@ -73,6 +62,9 @@
 		// 'newest' order for the topic order widget
 		// Get the current default sort
 		flowBoard.topicIdSort = mw.flow.system.getBoard().getSortOrder();
+		/* UI Widgets */
+		dmBoard = mw.flow.system.getBoard();
+		descriptionWidget = new mw.flow.ui.BoardDescriptionWidget( dmBoard.getDescription(), $( '.flow-board-description' ) );
 
 		// HACK: On load more, populate the board dm
 		flowBoard.on( 'loadmore', function ( topiclist ) {
