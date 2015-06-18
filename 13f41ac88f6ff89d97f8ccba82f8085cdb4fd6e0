@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_8a9b7cc0",
+        "filename": "i18n/en.json",
+        "patchSetId": 18
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-18T02:09:34Z",
+      "side": 0,
+      "message": "You\u0027re deleting this message, but it\u0027s still being exported in Resources.php.",
+      "revId": "13f41ac88f6ff89d97f8ccba82f8085cdb4fd6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_4a959488",
+        "filename": "i18n/en.json",
+        "patchSetId": 18
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-18T02:09:34Z",
+      "side": 0,
+      "message": "Also still exported",
+      "revId": "13f41ac88f6ff89d97f8ccba82f8085cdb4fd6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_6a909098",
+        "filename": "i18n/en.json",
+        "patchSetId": 18
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-18T02:09:34Z",
+      "side": 0,
+      "message": "Also still exported, and even being used: https://i.imgur.com/J3WD2r3.png",
+      "revId": "13f41ac88f6ff89d97f8ccba82f8085cdb4fd6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_aa967895",
+        "filename": "i18n/en.json",
+        "patchSetId": 18
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-18T02:09:34Z",
+      "side": 0,
+      "message": "Also still exported",
+      "revId": "13f41ac88f6ff89d97f8ccba82f8085cdb4fd6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_ea848060",
+        "filename": "i18n/en.json",
+        "patchSetId": 18
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-18T02:09:34Z",
+      "side": 0,
+      "message": "Also still exported, and even being used: https://i.imgur.com/J3WD2r3.png",
+      "revId": "13f41ac88f6ff89d97f8ccba82f8085cdb4fd6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
