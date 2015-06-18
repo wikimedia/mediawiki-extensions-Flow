@@ -8,6 +8,8 @@
 	 * @param {string} page Full page name with its namespace;
 	 *  for example: "User_talk:Foo"
 	 * @param {Object} [config] Configuration options
+	 * @cfg {Object} [currentRevision] Current revision Id. Mostly used
+	 *  for edit conflict check.
 	 * @cfg {Object} [apiConstructorParams] Parameters for mw.Api()
 	 * @cfg {Object} [requestParams] Parameters for the request
 	 */
@@ -22,6 +24,7 @@
 		}, config.apiConstructorParams );
 
 		this.page = page;
+		this.setCurrentRevision( config.currentRevision );
 
 		this.requestParams = $.extend( {
 			action: 'flow'
@@ -31,6 +34,16 @@
 	OO.initClass( mw.flow.dm.APIHandler );
 
 	/**
+	 * Set the current revision Id. This is mostly used for edit actions, to check
+	 * for edit conflicts.
+	 *
+	 * @param {string} revisionId Current revision id
+	 */
+	mw.flow.dm.APIHandler.prototype.setCurrentRevision = function ( revisionId ) {
+		this.currentRevision = revisionId;
+	};
+
+	/**
 	 * General get request
 	 * @param {string} submodule The requested submodule
 	 * @param {Object} requestParams API request parameters
@@ -38,12 +51,29 @@
 	 *  is done, with the API result.
 	 */
 	mw.flow.dm.APIHandler.prototype.get = function ( submodule, requestParams ) {
-		var params = $.extend( { submodule: submodule }, this.requestParams, requestParams );
+		var xhr,
+			params = $.extend( { submodule: submodule }, this.requestParams, requestParams );
 
-		return ( new mw.Api() ).get( params )
+		xhr = ( new mw.Api() ).get( params );
+		return xhr
 			.then( function ( data ) {
 				return data.flow[ submodule ].result;
-			} );
+			} )
+			.promise( { abort: xhr.abort } );
+	};
+
+	/**
+	 * Post with edit token request
+	 *
+	 * @param {string} submodule The requested submodule
+	 * @param {Object} requestParams API request parameters
+	 * @return {jQuery.Promise} Promise that is resolved when the API request
+	 *  is done, with the API result.
+	 */
+	mw.flow.dm.APIHandler.prototype.postEdit = function ( submodule, requestParams ) {
+		var params = $.extend( { submodule: submodule }, this.requestParams, requestParams );
+
+		return ( new mw.Api() ).postWithToken( 'edit', params );
 	};
 
 	/**
@@ -80,4 +110,48 @@
 				return data.topiclist;
 			} );
 	};
+
+	/**
+	 * Get the board description from the API.
+	 *
+	 * @param {string} [contentFormat='fixed-html'] Content format for board description
+	 * @return {jQuery.Promise} Promise that is resolved with the header revision data
+	 */
+	mw.flow.dm.APIHandler.prototype.getDescription = function ( contentFormat ) {
+		var params = {
+			page: this.page,
+			vhformat: contentFormat || 'fixed-html'
+		};
+
+		return this.get( 'view-header', params )
+			.then( function ( data ) {
+				return data.header.revision;
+			} );
+	};
+
+	/**
+	 * Save header information.
+	 *
+	 * @param {string} content Header content
+	 * @param {string} [format='fixed-html'] Content format for board description
+	 * @return {jQuery.Promise} Promise that is resolved with the saved header revision id
+	 */
+	mw.flow.dm.APIHandler.prototype.saveDescription = function ( content, format ) {
+		var xhr,
+			params = {
+				page: this.page,
+				ehcontent: content,
+				ehformat: format,
+				ehprev_revision: this.currentRevision
+			};
+
+		// return ( new mw.Api() ).postWithToken( 'edit', params )
+		xhr = this.postEdit( 'edit-header', params )
+			.then( function ( data ) {
+				return OO.getProp( data.flow, 'edit-header', 'committed', 'header', 'header-revision-id' );
+			} );
+
+		return xhr.promise( { abort: xhr.abort } );
+	};
+
 }( jQuery ) );
