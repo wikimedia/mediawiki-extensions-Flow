@@ -64,6 +64,12 @@ class TalkpageManager implements OccupationController {
 	protected $allowCreation = array();
 
 	/**
+	 * Cached talk page manager user
+	 * @var User
+	 */
+	protected $talkPageManagerUser;
+
+	/**
 	 * @param int[] $occupiedNamespaces See documentation for $wgFlowOccupyNamespaces
 	 * @param string[] $occupiedPages See documentation for $wgFlowOccupyPages
 	 */
@@ -237,6 +243,10 @@ class TalkpageManager implements OccupationController {
 	 *  configured.
 	 */
 	public function getTalkpageManager() {
+		if ( $this->talkPageManagerUser !== null ) {
+			return $this->talkPageManagerUser;
+		}
+
 		$userNameCandidates = array(
 			wfMessage( 'flow-talk-username' )->inContentLanguage()->text(),
 			'Flow talk page manager',
@@ -279,6 +289,8 @@ class TalkpageManager implements OccupationController {
 		if ( !in_array( 'flow-bot', $user->getGroups() ) ) {
 			$user->addGroup( 'flow-bot' );
 		}
+
+		$this->talkPageManagerUser = $user;
 		return $user;
 	}
 }
