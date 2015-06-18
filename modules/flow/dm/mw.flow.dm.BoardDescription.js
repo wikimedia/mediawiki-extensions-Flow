@@ -1,11 +1,12 @@
 /**
  * Flow board description
  *
+ * @class
  * @constructor
  *
  * @extends mw.flow.dm.RevisionedContent
  *
- * @param {Object} data API data to build topic header with
+ * @param {Object} [data] API data to build topic header with
  * @param {Object} [config] Configuration options
  */
 mw.flow.dm.BoardDescription = function mwFlowDmBoardDescription( data, config ) {
@@ -14,7 +15,9 @@ mw.flow.dm.BoardDescription = function mwFlowDmBoardDescription( data, config ) 
 	// Parent constructor
 	mw.flow.dm.BoardDescription.parent.call( this, config );
 
-	this.populate( data );
+	if ( data ) {
+		this.populate( data );
+	}
 };
 
 /* Initialization */
