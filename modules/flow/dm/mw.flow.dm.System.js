@@ -133,9 +133,7 @@
 	 */
 	mw.flow.dm.System.prototype.populateBoardDescriptionFromJson = function ( headerData ) {
 		if ( headerData.revision ) {
-			this.getBoard().setDescription(
-				new mw.flow.dm.BoardDescription( headerData.revision )
-			);
+			this.getBoard().updateDescription( headerData.revision );
 		}
 	};
 

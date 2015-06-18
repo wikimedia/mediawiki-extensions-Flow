@@ -258,6 +258,7 @@
 	 * @return {jQuery.Promise}
 	 */
 	function flowEventsMixinApiRequestInteractiveHandler( event ) {
+debugger;
 		var $deferred = $.Deferred(),
 			deferreds = [ $deferred ],
 			$target,

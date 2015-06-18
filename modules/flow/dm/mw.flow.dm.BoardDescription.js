@@ -14,7 +14,9 @@ mw.flow.dm.BoardDescription = function mwFlowDmBoardDescription( data, config ) 
 	// Parent constructor
 	mw.flow.dm.BoardDescription.super.call( this, config );
 
-	this.populate( data );
+	if ( data ) {
+		this.populate( data );
+	}
 };
 
 /* Initialization */
