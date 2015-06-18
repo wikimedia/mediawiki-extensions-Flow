@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_ecb335e6",
+        "filename": "i18n/en.json",
+        "patchSetId": 25
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2015-06-18T21:49:32Z",
+      "side": 1,
+      "message": "This should be marked up per https://www.mediawiki.org/wiki/API:Localisation#Message_formatting. \"lock\" and \"unlock\" should be in \u003ckbd\u003e tags.",
+      "revId": "79c46ec5e0caee7abb3d5a0a5bd2abb687f3a0c4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_acad2d82",
+        "filename": "i18n/en.json",
+        "patchSetId": 25
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2015-06-18T21:49:32Z",
+      "side": 1,
+      "message": "Don\u0027t use double spaces between sentences.",
+      "revId": "79c46ec5e0caee7abb3d5a0a5bd2abb687f3a0c4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
