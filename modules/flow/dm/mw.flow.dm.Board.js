@@ -28,6 +28,7 @@
 		this.pageTitle = data.pageTitle;
 		this.deleted = !!data.isDeleted;
 		this.sort = data.defaultSort || 'newest';
+		this.description = new mw.flow.dm.BoardDescription();
 
 		this.aggregate( { contentChange: 'topicContentChange' } );
 	};
@@ -115,6 +116,21 @@
 	mw.flow.dm.Board.prototype.setDescription = function ( desc ) {
 		this.description = desc;
 		this.emit( 'descriptionChange', this.description );
+	};
+
+	/**
+	 * Update the description model
+	 *
+	 * @param {Object} header API response for view header revision
+	 */
+	mw.flow.dm.Board.prototype.updateDescription = function ( headerRevision ) {
+		if ( this.description ) {
+			this.description.populate( headerRevision );
+		} else {
+			this.setDescription(
+				new mw.flow.dm.BoardDescription( headerRevision )
+			);
+		}
 	};
 
 	/**
