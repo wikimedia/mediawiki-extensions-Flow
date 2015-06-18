@@ -32,21 +32,21 @@ QUnit.test( 'Create board', function ( assert ) {
 								content: 'Topic 1',
 								format: 'plaintext'
 							},
-							lastUpdated: '123123123'
+							last_updated: '123123123'
 						} ),
 						new mw.flow.dm.Topic( 'topic2', {
 							content: {
 								content: 'Topic 2',
 								format: 'plaintext'
 							},
-							lastUpdated: '123123321'
+							last_updated: '123123321'
 						} ),
 						new mw.flow.dm.Topic( 'topic3', {
 							content: {
 								content: 'Topic 3',
 								format: 'plaintext'
 							},
-							lastUpdated: '123123543'
+							last_updated: '123123543'
 						} )
 					]
 				]
@@ -81,7 +81,7 @@ QUnit.test( 'Create board', function ( assert ) {
 						contentFormat: 'html',
 						creator: undefined,
 						id: null,
-						lastUpdated: undefined,
+						last_updated: undefined,
 						originalContent: true,
 						previousRevisionId: '',
 						revisionId: undefined,
