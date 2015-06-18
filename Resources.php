@@ -374,17 +374,21 @@ $wgResourceModules += array(
 			'flow/ui/widgets/mw.flow.ui.ToCWidget.js',
 			'flow/ui/widgets/mw.flow.ui.ReorderTopicsWidget.js',
 			'flow/ui/widgets/mw.flow.ui.NavigationWidget.js',
+			'flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js',
 		),
 		'styles' => array(
 			'styles/flow/mw.flow.ui.less',
 			'styles/flow/widgets/mw.flow.ui.NavigationWidget.less',
 			'styles/flow/widgets/mw.flow.ui.TopicMenuSelectWidget.less',
 			'styles/flow/widgets/mw.flow.ui.ReorderTopicsWidget.less',
+			'styles/flow/widgets/mw.flow.ui.BoardDescriptionWidget.less',
+		),
+		'styles' => array(
 		),
 		'dependencies' => array (
 			'oojs-ui',
 			'ext.flow.dm',
-		),
+		)
 	) + $mobile,
 	'ext.flow' => $flowResourceTemplate + array(
 		'scripts' => array( // Component order is important
@@ -422,7 +426,6 @@ $wgResourceModules += array(
 			'jquery.throttle-debounce',
 			'mediawiki.jqueryMsg',
 			'ext.flow.jquery.conditionalScroll',
-			'ext.flow.dm',
 			'ext.flow.ui',
 			'mediawiki.api',
 			'mediawiki.util',
