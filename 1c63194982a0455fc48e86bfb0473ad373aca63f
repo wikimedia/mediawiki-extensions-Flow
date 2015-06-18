@@ -170,6 +170,24 @@
       "revId": "1c63194982a0455fc48e86bfb0473ad373aca63f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_61818e91",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 16
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-18T21:07:30Z",
+      "side": 1,
+      "message": "Yeah the order doesn\u0027t matter; the populate method will ignore anything that has an \u0027undefined\u0027 value (or that doesn\u0027t appear in the given result object) -- so we can add the full topic and on top of it a TOC topic and it will only update the information it actually has -- leaving the missing information alone.",
+      "parentUuid": "8ec42329_0193ea04",
+      "revId": "1c63194982a0455fc48e86bfb0473ad373aca63f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
