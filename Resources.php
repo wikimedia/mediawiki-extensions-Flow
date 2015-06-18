@@ -376,6 +376,7 @@ $wgResourceModules += array(
 			'flow/ui/widgets/mw.flow.ui.ToCWidget.js',
 			'flow/ui/widgets/mw.flow.ui.ReorderTopicsWidget.js',
 			'flow/ui/widgets/mw.flow.ui.NavigationWidget.js',
+			'flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js',
 		),
 		'styles' => array(
 			'styles/flow/mw.flow.ui.less',

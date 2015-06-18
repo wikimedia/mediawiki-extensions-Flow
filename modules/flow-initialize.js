@@ -9,7 +9,7 @@
 	 * @todo not like this
 	 */
 	$( document ).ready( function () {
-		var navWidget, flowBoard, dmBoard,
+		var descriptionWidget, navWidget, flowBoard, dmBoard,
 			$component = $( '.flow-component' );
 
 		// HACK: If there is no component, we are not on a flow
@@ -104,16 +104,20 @@
 
 		} );
 
-		// Initialize the old system to accept the default
-		// 'newest' order for the topic order widget
-		// Get the current default sort
-		flowBoard.topicIdSort = mw.flow.system.getBoard().getSortOrder();
-
 		/* UI Widgets */
+		/* UI Widgets */
+		dmBoard = mw.flow.system.getBoard();
+		descriptionWidget = new mw.flow.ui.BoardDescriptionWidget( dmBoard.getDescription(), $( '.flow-board-header-content' ) );
 		navWidget = new mw.flow.ui.NavigationWidget( dmBoard, {
 			defaultSort: flowBoard.topicIdSort
 		} );
 		$( '.flow-board-navigation' ).append( navWidget.$element );
+		$( '.flow-board-header-detail-view' )
+			// HACK: We will need to find a good way of creating the OOUI js widget
+			// out of the existing content, rather than rebuilding it. For the moment,
+			// however, this is done to make sure the widget can display properly
+//			.empty()
+			.append( descriptionWidget.$element );
 
 		// HACK: On load more, populate the board dm
 		flowBoard.on( 'loadmore', function ( topiclist ) {
