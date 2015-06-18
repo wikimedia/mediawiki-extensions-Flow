@@ -374,30 +374,30 @@ $wgResourceModules += array(
 			'flow/ui/widgets/mw.flow.ui.ToCWidget.js',
 			'flow/ui/widgets/mw.flow.ui.ReorderTopicsWidget.js',
 			'flow/ui/widgets/mw.flow.ui.NavigationWidget.js',
-
 			'flow/ui/widgets/editor/editors/mw.flow.ui.AbstractEditorWidget.js',
 			'flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js',
 			'flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js',
 			'flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js',
 			'flow/ui/widgets/editor/mw.flow.ui.EditorControlsWidget.js',
 			'flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js',
+			'flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js',
 		),
 		'styles' => array(
 			'styles/flow/mw.flow.ui.less',
 			'styles/flow/widgets/mw.flow.ui.NavigationWidget.less',
 			'styles/flow/widgets/mw.flow.ui.TopicMenuSelectWidget.less',
 			'styles/flow/widgets/mw.flow.ui.ReorderTopicsWidget.less',
-
 			'styles/flow/widgets/editor/mw.flow.ui.EditorControlsWidget.less',
 			'styles/flow/widgets/editor/mw.flow.ui.EditorSwitcherWidget.less',
 			'styles/flow/widgets/editor/mw.flow.ui.EditorWidget.less',
-			'styles/flow/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.less'
+			'styles/flow/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.less',
+			'styles/flow/widgets/mw.flow.ui.BoardDescriptionWidget.less',
 		),
 		'dependencies' => array (
 			'oojs-ui',
 			'es5-shim',
 			'ext.flow.dm',
-		),
+		)
 	) + $mobile,
 	'ext.flow' => $flowResourceTemplate + array(
 		'scripts' => array( // Component order is important
@@ -435,7 +435,6 @@ $wgResourceModules += array(
 			'jquery.throttle-debounce',
 			'mediawiki.jqueryMsg',
 			'ext.flow.jquery.conditionalScroll',
-			'ext.flow.dm',
 			'ext.flow.ui',
 			'mediawiki.api',
 			'mediawiki.util',
