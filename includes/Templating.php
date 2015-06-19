@@ -122,6 +122,10 @@ class Templating {
 	 * @throws InvalidInputException
 	 */
 	public function getContent( AbstractRevision $revision, $format = 'fixed-html' ) {
+		if ( !in_array( $format, array( 'fixed-html', 'html', 'plaintext', 'wikitext' ) ) ) {
+			throw new InvalidInputException( 'Invalid format: ' . $format );
+		}
+
 		$allowed = $this->permissions->isAllowed( $revision, 'view' );
 		// Posts require view access to the topic title as well
 		if ( $allowed && $revision instanceof PostRevision && !$revision->isTopicTitle() ) {
@@ -136,26 +140,23 @@ class Templating {
 			return '';
 		}
 
-		// fixed html format
-		if ( $format === 'fixed-html' ) {
-			// Parsoid doesn't render redlinks & doesn't strip bad images
-			try {
+		try {
+			if ( $format === 'fixed-html' ) {
+				// Parsoid doesn't render redlinks & doesn't strip bad images
 				$content = $this->contentFixer->getContent( $revision );
-			} catch ( \Exception $e ) {
-				wfDebugLog( 'Flow', __METHOD__ . ': Failed fix content for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
-				\MWExceptionHandler::logException( $e );
-
-				$content = wfMessage( 'flow-stub-post-content' )->parse();
+			} else {
+				// plaintext = wikitext
+				$format = $format === 'plaintext' ? 'wikitext' : $format;
+				$content = $revision->getContent( $format );
 			}
-		// all other formats
-		} elseif ( in_array( $format, array( 'html', 'plaintext', 'wikitext' ) ) ) {
-			if ( $format === 'plaintext' ) {
-				$format = 'wikitext';
-			}
+		} catch ( \Exception $e ) {
+			wfDebugLog( 'Flow', __METHOD__ . ': Failed to get content for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
+			\MWExceptionHandler::logException( $e );
 
-			$content = $revision->getContent( $format );
-		} else {
-			throw new InvalidInputException( 'Invalid format: ' . $format );
+			$content = wfMessage( 'flow-stub-post-content' )->parse();
+			if ( !in_array( $format, array( 'html', 'fixed-html' ) ) ) {
+				$content = strip_tags( $content );
+			}
 		}
 
 		return $content;
