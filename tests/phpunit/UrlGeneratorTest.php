@@ -51,7 +51,7 @@ class UrlGeneratorTest extends FlowTestCase {
 		$this->assertInstanceOf( '\Flow\Model\Anchor', $anchor );
 
 		$link = $anchor->getFullURL();
-		$option = parse_url( $link );
+		$option = wfParseUrl( $link );
 		$this->assertArrayHasKey( 'query', $option );
 		parse_str( $option['query'], $query );
 
@@ -92,7 +92,7 @@ class UrlGeneratorTest extends FlowTestCase {
 		$this->assertInstanceOf( '\Flow\Model\Anchor', $anchor );
 
 		$link = $anchor->getFullURL();
-		$option = parse_url( $link );
+		$option = wfParseUrl( $link );
 		$this->assertArrayHasKey( 'query', $option );
 		parse_str( $option['query'], $query );
 		$this->assertEquals( 'watch', $query['action'] );
@@ -106,7 +106,7 @@ class UrlGeneratorTest extends FlowTestCase {
 		$this->assertInstanceOf( '\Flow\Model\Anchor', $anchor );
 
 		$link = $anchor->getFullURL();
-		$option = parse_url( $link );
+		$option = wfParseUrl( $link );
 		$this->assertArrayHasKey( 'query', $option );
 		parse_str( $option['query'], $query );
 		$this->assertEquals( 'unwatch', $query['action'] );
