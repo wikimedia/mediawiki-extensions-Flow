@@ -85,6 +85,8 @@
 		$veNode = surface.$element.find( '.ve-ce-documentNode' );
 		$veNode.addClass( 'mw-ui-input' );
 
+		this.initialContent = this.getRawContent();
+
 		// HACK: simulate a keyup event on the original node, so the validation code will
 		// pick up changes in the new node
 		$veNode.keyup( $.proxy( function () {
@@ -105,6 +107,10 @@
 
 		// re-display original node
 		this.$node.show();
+	};
+
+	mw.flow.editors.visualeditor.prototype.isDirty = function () {
+		return this.getRawContent() !== this.initialContent;
 	};
 
 	/**

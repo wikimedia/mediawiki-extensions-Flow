@@ -27,6 +27,8 @@
 			placeholder: this.$node.attr( 'placeholder' )
 		} );
 
+		this.initialContent = this.getRawContent();
+
 		// Hide textarea & attach widget instead
 		this.$node
 			.hide()
@@ -94,6 +96,10 @@
 		return this.widget.getValue();
 	};
 
+	mw.flow.editors.none.prototype.isDirty = function () {
+		return this.getRawContent() !== this.initialContent;
+	};
+
 	/**
 	 * Checks whether the field is empty
 	 *
@@ -144,6 +150,9 @@
 
 		// insert help information + editor switcher, and make it interactive
 		board.emitWithReturn( 'makeContentInteractive', $controls.appendTo( this.$node.closest( '.flow-editor' ) ) );
+
+		// trigger validation of the containing form
+		this.$node.keyup();
 	};
 
 	mw.flow.editors.none.prototype.focus = function () {
