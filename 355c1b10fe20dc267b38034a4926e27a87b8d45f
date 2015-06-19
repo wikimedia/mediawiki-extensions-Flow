@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_1fa7c24d",
+        "filename": "FlowActions.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 807,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-06-19T12:04:42Z",
+      "side": 1,
+      "message": "Those seem more pseudo actions than anything else. AFAICT, they\u0027re never executed for permissions.\n\nAll of them end up calling RevisionFormatter::formatApi without 3rd argument, so $action defaults to \u0027view\u0027, which already has \u0027deletedtext\u0027",
+      "parentUuid": "8ec42329_126c9a04",
+      "revId": "355c1b10fe20dc267b38034a4926e27a87b8d45f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_328676ad",
         "filename": "includes/RevisionActionPermissions.php",
         "patchSetId": 7
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_3f495ed3",
+        "filename": "includes/RevisionActionPermissions.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-06-19T12:04:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_328676ad",
+      "revId": "355c1b10fe20dc267b38034a4926e27a87b8d45f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_92772acf",
         "filename": "includes/RevisionActionPermissions.php",
         "patchSetId": 7
@@ -47,6 +83,24 @@
       "writtenOn": "2015-06-19T05:52:47Z",
       "side": 1,
       "message": "It would be good to log the exception details.  default_logger could be passed in from the container.",
+      "revId": "355c1b10fe20dc267b38034a4926e27a87b8d45f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_5f59ca8e",
+        "filename": "includes/RevisionActionPermissions.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-06-19T12:04:42Z",
+      "side": 1,
+      "message": "Follow-up patch (https://gerrit.wikimedia.org/r/#/c/218929/4/includes/RevisionActionPermissions.php) will change it so that isAllowed will no longer allow null: it should always be a revision.\n\nSince we can then assume that we can always trace back a root/board from $revision, try/catching those no longer makes sense, so I\u0027m just going to let it blow up with exceptions.\n\nI would agree to log this exception, but given the current follow-up patch, we\u0027d be taking those exceptions away anyway, as we\u0027ll no longer be catching (or causing) them.",
+      "parentUuid": "8ec42329_92772acf",
       "revId": "355c1b10fe20dc267b38034a4926e27a87b8d45f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
