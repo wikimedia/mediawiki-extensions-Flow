@@ -30,21 +30,30 @@
 		zoom: 1;
 		padding: .25em .5em;
 
+		// mw-ui-quiet is set when the topic is not watched
+		// FIXME: this is a hack, use a better-named class for this
 		&.mw-ui-quiet {
-			// Quiet mode shows the outline star
-			.wikiglyph-star {
+			// When not watched, hide the unwatch icon and show the watch icon
+			.flow-unwatch {
 				display: none;
 			}
-			.wikiglyph-unstar {
+			.flow-watch {
 				display: inline-block;
 				*display: inline;
 				zoom: 1;
 			}
 		}
 
-		// Regular mode shows the full star
-		.wikiglyph-unstar {
+		// When watched, hide the watch icon and show the unwatch icon
+		.flow-watch {
 			display: none;
+		}
+
+		// HACK: mimic old mw-ui style (changing from #00af89 to #00f4bf on hover)
+		.flow-unwatch:hover {
+			// 0xf4/0xaf = 0xbf/0x89 = 1.394
+			-webkit-filter: brightness(1.4);
+			filter: brightness(1.4);
 		}
 	}
 
