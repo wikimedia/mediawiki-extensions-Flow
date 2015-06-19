@@ -436,14 +436,50 @@
 	//
 
 	/**
+	 * Generates Array#sort callback for sorting a list of topic ids
+	 * by the 'recently active' sort order. This is a numerical
+	 * comparison of related timestamps held within the board object.
+	 * Also note that this is a reverse sort from newest to oldest.
+	 *
+	 * @private
+	 *
+	 * @param {Object} board Object from which to source
+	 *  timestamps which map from topicId to its last updated timestamp
+	 * @return {Function} Sort callback
+	 * @return {string} return.a
+	 * @return {string} return.b
+	 * @return {number} return.return Per Array#sort callback rules
+	 */
+	function _flowBoardTopicIdGenerateSortRecentlyActive( board ) {
+		return function ( a, b ) {
+			var aTimestamp = board.updateTimestampsByTopicId[a],
+				bTimestamp = board.updateTimestampsByTopicId[b];
+
+			if ( aTimestamp === undefined && bTimestamp === undefined ) {
+				return 0;
+			} else if ( aTimestamp === undefined ) {
+				return 1;
+			} else if ( bTimestamp === undefined ) {
+				return -1;
+			} else {
+				return bTimestamp - aTimestamp;
+			}
+		};
+	}
+
+	/**
 	 * Re-sorts the orderedTopicIds after insert
 	 *
 	 * @param {Object} flowBoard
 	 */
 	function _flowBoardSortTopicIds( flowBoard ) {
-		if ( flowBoard.topicIdSortCallback ) {
+		var topicIdSortCallback;
+
+		if ( flowBoard.topicIdSort === 'updated' ) {
+			topicIdSortCallback = _flowBoardTopicIdGenerateSortRecentlyActive( flowBoard );
+
 			// Custom sorts
-			flowBoard.orderedTopicIds.sort( flowBoard.topicIdSortCallback );
+			flowBoard.orderedTopicIds.sort( topicIdSortCallback );
 		} else {
 			// Default sort, takes advantage of topic ids monotonically increasing
 			// which allows for the newest sort to be the default utf-8 string sort
@@ -454,6 +490,7 @@
 			flowBoard.orderedTopicIds.sort().reverse();
 		}
 	}
+	FlowBoardComponentLoadMoreFeatureMixin.prototype.sortTopicIds = _flowBoardSortTopicIds;
 
 	/**
 	 * Called on scroll. Checks to see if a FlowBoard needs to have more content loaded.
@@ -656,6 +693,10 @@
 
 		// Run loadHandlers
 		flowBoard.emitWithReturn( 'makeContentInteractive', $allRendered );
+
+		// HACK: Emit an event here so that the flow data model can populate
+		// itself based on the API response
+		flowBoard.emit( 'loadmore', topicsData );
 	}
 
 	// Mixin to FlowBoardComponent
