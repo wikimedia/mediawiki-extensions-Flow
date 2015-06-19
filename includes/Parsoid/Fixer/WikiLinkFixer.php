@@ -79,7 +79,7 @@ class WikiLinkFixer implements Fixer {
 		// let MW build link HTML based on Parsoid data
 		$html = Linker::link( $title, Utils::getInnerHtml( $node ), $attributes );
 		// create new DOM from this MW-built link
-		$replacementNode = Utils::createDOM( '<?xml encoding="utf-8"?>' . $html )
+		$replacementNode = Utils::createDOM( $html )
 			->getElementsByTagName( 'a' )
 			->item( 0 );
 		// import MW-built link node into content DOM

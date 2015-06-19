@@ -178,6 +178,12 @@ abstract class Utils {
 	/**
 	 * Turns given $content string into a DOMDocument object.
 	 *
+	 * Note that, by default, $content will be prefixed with <?xml encoding="utf-8"?> to force
+	 * libxml to interpret the content as UTF-8. If for some reason you don't want this to happen,
+	 * or you are certain that your input already has <?xml encoding="utf-8"?> or
+	 * <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> , then you can disable
+	 * this behavior by setting $utf8Fragment=false to disable this behavior.
+	 *
 	 * Some libxml errors are forgivable, libxml errors that aren't
 	 * ignored will throw a WikitextException.
 	 *
@@ -187,12 +193,13 @@ abstract class Utils {
 	 * 	801 - allow unrecognized tags like figcaption
 	 *
 	 * @param string $content
+	 * @param boolean[optional] $utf8Fragment If true, prefix $content with <?xml encoding="utf-8"?>
 	 * @param array[optional] $ignoreErrorCodes
 	 * @return DOMDocument
 	 * @throws WikitextException
 	 * @see http://www.xmlsoft.org/html/libxml-xmlerror.html
 	 */
-	public static function createDOM( $content, $ignoreErrorCodes = array( 76, 513, 801 ) ) {
+	public static function createDOM( $content, $utf8Fragment = true, $ignoreErrorCodes = array( 76, 513, 801 ) ) {
 		$dom = new DOMDocument();
 
 		// Otherwise the parser may attempt to load the dtd from an external source.
@@ -202,7 +209,10 @@ abstract class Utils {
 		// don't output warnings
 		$useErrors = libxml_use_internal_errors( true );
 
-		$dom->loadHTML( $content );
+		// Work around DOMDocument's morbid insistence on using iso-8859-1
+		// Even $dom = new DOMDocument( '1.0', 'utf-8' ); doesn't work, you have to specify
+		// encoding ="utf-8" in the string fed to loadHTML()
+		$dom->loadHTML( ( $utf8Fragment ? '<?xml encoding="utf-8"?>' : '' ) . $content );
 
 		libxml_disable_entity_loader( $loadEntities );
 

@@ -57,7 +57,7 @@ class ReferenceExtractor {
 	 * @throws \Flow\Exception\WikitextException
 	 */
 	protected function extractReferences( ReferenceFactory $factory, array $extractors, $text ) {
-		$dom = Utils::createDOM( '<?xml encoding="utf-8" ?>' . $text );
+		$dom = Utils::createDOM( $text );
 
 		$output = array();
 

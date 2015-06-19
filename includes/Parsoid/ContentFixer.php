@@ -71,21 +71,14 @@ class ContentFixer {
 	}
 
 	/**
-	 * creates a DOM with extra considerations for BC with
-	 * previous parsoid content, and for encoding issues.
+	 * Creates a DOM with extra considerations for BC with
+	 * previous parsoid content
 	 *
 	 * @param string $content HTML from parsoid
 	 * @return DOMDocument
 	 */
 	static public function createDOM( $content ) {
 		/*
-		 * Workaround because DOMDocument can't guess charset.
-		 * Content should be utf-8. Alternative "workarounds" would be to
-		 * provide the charset in $response, as either:
-		 * * <?xml encoding="utf-8" ?>
-		 * * <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		 * * mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' );
-		 *
 		 * The body tag is required otherwise <meta> tags at the top are
 		 * magic'd into <head> rather than kept with the content.
 		 */
@@ -95,6 +88,6 @@ class ContentFixer {
 			// storing only the contents and not the body tag itself.
 			$content = "<body>$content</body>";
 		}
-		return Utils::createDOM( '<?xml encoding="utf-8"?>' . $content );
+		return Utils::createDOM( $content );
 	}
 }
