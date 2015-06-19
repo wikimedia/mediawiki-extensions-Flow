@@ -17,7 +17,7 @@
 		<input type="hidden" name="topic_postId" value="{{current.postId}}" />
 
 		<div class="flow-editor">
-			<textarea name="topic_content" class="mw-ui-input" data-role="content">
+			<textarea name="topic_content" class="mw-ui-input" required data-role="content">
 				{{~#if submitted.content~}}
 					{{~submitted.content~}}
 				{{~else~}}

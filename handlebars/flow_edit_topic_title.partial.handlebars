@@ -3,7 +3,7 @@
 	<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
 	{{!-- @todo should this be a part of the url? --}}
 	<input type="hidden" name="topic_prev_revision" value="{{revisionId}}" />
-	<input name="topic_content" class="mw-ui-input" value="
+	<input name="topic_content" class="mw-ui-input" required value="
 			{{~#if @root.submitted.content~}}
 				{{~@root.submitted.content~}}
 			{{~else~}}

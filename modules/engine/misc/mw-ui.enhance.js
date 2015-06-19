@@ -92,24 +92,39 @@
 	 * @param {jQuery} $form jQuery object corresponding to a form element.
 	 */
 	function enableFormWithRequiredFields( $form ) {
-		var
-			$fields = $form.find( 'input, textarea' ).filter( '[required]' ),
-			ready = true;
+		var $fields = $form.find( 'input, textarea' ),
+			allValid = true,
+			validated = 0;
 
 		$fields.each( function () {
-			var $this = $( this );
+			var $this = $( this ),
+				required = !!$this.attr( 'required' ),
+				isEmpty,
+				isDirty,
+				valid,
+				editor;
+
 			if ( mw.flow.editor.exists( $this ) ) {
-				if ( mw.flow.editor.getEditor( $this ).isEmpty() ) {
-					ready = false;
-				}
-			} else if ( this.value === '' ) {
-				ready = false;
+				editor = mw.flow.editor.getEditor( $this );
+				isEmpty = editor.isEmpty();
+				isDirty = editor.isDirty();
+			} else if ( $this.is( ':visible' ) ) {
+				isEmpty = !this.value;
+				isDirty = this.value !== this.initialValue;
+			} else {
+				return;
 			}
+
+			valid = required ? !isEmpty && isDirty : isDirty;
+			allValid = allValid && valid;
+			validated++;
 		} );
+
+		allValid = allValid && validated > 0;
 
 		// @todo scrap data-role? use submit types? or a single role=action?
 		$form.find( '.mw-ui-button' ).filter( '[data-role=action], [data-role=submit]' )
-			.prop( 'disabled', !ready );
+			.prop( 'disabled', !allValid );
 	}
 	/*
 	 * Disable / enable submit buttons without/with text in field.

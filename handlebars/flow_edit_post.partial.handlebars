@@ -10,7 +10,7 @@
 	{{/ifAnonymous}}
 
 	<div class="flow-editor">
-		<textarea name="topic_content" class="mw-ui-input flow-form-collapsible" data-role="content">
+		<textarea name="topic_content" class="mw-ui-input flow-form-collapsible" required data-role="content">
 			{{~#if @root.rootBlock.submitted.content~}}
 				{{~@root.rootBlock.submitted.content~}}
 			{{~else~}}
