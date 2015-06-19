@@ -64,7 +64,7 @@ class ApiFlowLockTopic extends ApiFlowBasePost {
 	 */
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=lock-topic&page=Topic:S2tycnas4hcucw8w&cotmoderationState=lock&cotsummary=Ahhhh',
+			'api.php?action=flow&submodule=lock-topic&page=Topic:S2tycnas4hcucw8w&cotmoderationState=lock&cotreason=Ahhhh',
 		);
 	}
 
@@ -73,7 +73,7 @@ class ApiFlowLockTopic extends ApiFlowBasePost {
 	 */
 	protected function getExamplesMessages() {
 		return array(
-			'action=flow&submodule=lock-topic&page=Topic:S2tycnas4hcucw8w&cotmoderationState=lock&cotsummary=Ahhhh'
+			'action=flow&submodule=lock-topic&page=Topic:S2tycnas4hcucw8w&cotmoderationState=lock&cotreason=Ahhhh'
 				=> 'apihelp-flow+lock-topic-example-1',
 		);
 	}

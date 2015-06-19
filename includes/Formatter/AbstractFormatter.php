@@ -52,7 +52,7 @@ abstract class AbstractFormatter {
 	 * @see RevisionFormatter::buildLinks
 	 * @see RevisionFormatter::getDateFormats
 	 *
-	 * @param array $data Expects an array with keys 'dateFormats', 'isModerated'
+	 * @param array $data Expects an array with keys 'dateFormats', 'isModeratedNotLocked'
 	 *  and 'links'. The former should be an array having the key $key being
 	 *  tossed in here; the latter an array of links in the [key => [href, msg]]
 	 *  format, where 'key' corresponds with a $linksKeys value. The central is
@@ -79,7 +79,7 @@ abstract class AbstractFormatter {
 		}
 
 		$class = array( 'mw-changeslist-date' );
-		if ( $data['isModerated'] ) {
+		if ( $data['isModeratedNotLocked'] ) {
 			$class[] = 'history-deleted';
 		}
 
