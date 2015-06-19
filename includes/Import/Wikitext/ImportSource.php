@@ -96,7 +96,7 @@ class ImportSource implements IImportSource {
 	 */
 	protected function extractTemplates( $content ) {
 		$content = Utils::convert( 'wikitext', 'html', $content, $this->title );
-		$dom = Utils::createDOM( $content );
+		$dom = Utils::createDOM( '<?xml encoding="utf-8"?> ' . $content );
 		$xpath = new \DOMXPath( $dom );
 		$templates = $xpath->query( '//*[@typeof="mw:Transclusion"]' );
 
