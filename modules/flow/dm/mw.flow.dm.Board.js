@@ -11,6 +11,7 @@
 	 * @param {string} data.id Board Id
 	 * @param {mw.Title} data.pageTitle Current page title
 	 * @param {boolean} [data.isDeleted] Board is deleted
+	 * @param {string} [data.defaultSort='newest'] The initial default topic sorting
 	 * @param {Object} [config] Configuration options
 	 */
 	mw.flow.dm.Board = function mwFlowDmBoard( data, config ) {
@@ -26,11 +27,9 @@
 		this.setId( data.id );
 		this.pageTitle = data.pageTitle;
 		this.deleted = !!data.isDeleted;
+		this.sort = data.defaultSort || 'newest';
 
-		// TODO: Aggregate events for all topics so we can let
-		// widgets listen to events like 'content' change
-		// (For example, the ToC widget should respond and update
-		// itself in case a topic title changes)
+		this.aggregate( { contentChange: 'topicContentChange' } );
 	};
 
 	/* Initialization */
@@ -52,6 +51,15 @@
 	 *
 	 * @event reset
 	 * @param {string} order The order of the topics; 'newest' or 'updated'
+	 */
+
+	/**
+	 * One of the board's topic content changed
+	 *
+	 * @event topicContentChange
+	 * @param {string} topicId Topic UUID
+	 * @param {string} content Topic content
+	 * @param {string} format Content format
 	 */
 
 	/* Methods */
@@ -107,6 +115,28 @@
 	mw.flow.dm.Board.prototype.setDescription = function ( desc ) {
 		this.description = desc;
 		this.emit( 'descriptionChange', this.description );
+	};
+
+	/**
+	 * Get board sort order, 'newest' or 'updated'
+	 *
+	 * @return {string} Board sort order
+	 */
+	mw.flow.dm.Board.prototype.getSortOrder = function () {
+		return this.sort;
+	};
+
+	/**
+	 * Set board sort order, 'newest' or 'updated'
+	 *
+	 * @param {string} Board sort order
+	 * @fires sortOrderChange
+	 */
+	mw.flow.dm.Board.prototype.setSortOrder = function ( order ) {
+		if ( this.sort !== order ) {
+			this.sort = order;
+			this.emit( 'sortOrderChange', order );
+		}
 	};
 
 	/**
