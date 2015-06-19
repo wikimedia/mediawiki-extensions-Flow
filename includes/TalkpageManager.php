@@ -7,7 +7,6 @@ use Flow\Exception\FlowException;
 use Flow\Exception\InvalidInputException;
 use Flow\Model\Workflow;
 use Article;
-use Revision;
 use Status;
 use Title;
 use User;
