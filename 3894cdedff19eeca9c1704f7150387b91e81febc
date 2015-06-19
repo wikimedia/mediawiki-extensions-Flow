@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_4dc84377",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-06-19T08:21:05Z",
+      "side": 1,
+      "message": "Very annoying indeed. I would expect DOMDocument not to ignore it\u0027s constructor $encoding param loading data, but hey...",
+      "revId": "3894cdedff19eeca9c1704f7150387b91e81febc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
