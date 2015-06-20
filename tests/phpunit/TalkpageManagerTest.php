@@ -51,6 +51,13 @@ class TalkpageManagerTest extends MediaWikiLangTestCase {
 			array(
 				array(),
 				array( NS_USER_TALK ),
+				Title::newFromText( 'User talk:Foo/Bar' ),
+				false,
+				true
+			),
+			array(
+				array(),
+				array( NS_USER_TALK ),
 				Title::newFromText( 'Talk:Foo Bar' ),
 				false,
 				false
@@ -61,6 +68,27 @@ class TalkpageManagerTest extends MediaWikiLangTestCase {
 				$this->getMockTitle( false, 'wikitext', NS_USER_TALK, 'User talk:FooBar' ),
 				true,
 				true
+			),
+			array(
+				array(),
+				array( NS_USER_TALK ),
+				$this->getMockTitle( false, 'wikitext', NS_USER_TALK, 'User talk:Foo/Bar' ),
+				true,
+				true
+			),
+			array(
+				array(),
+				array( NS_USER_TALK ),
+				$this->getMockTitle( true, 'wikitext', NS_USER_TALK, 'User talk:FooBar' ),
+				true,
+				false
+			),
+			array(
+				array(),
+				array( NS_USER_TALK ),
+				$this->getMockTitle( true, 'wikitext', NS_USER_TALK, 'User talk:Foo/Bar' ),
+				true,
+				false
 			),
 			array(
 				array(),
@@ -80,6 +108,13 @@ class TalkpageManagerTest extends MediaWikiLangTestCase {
 				array(),
 				array(),
 				$this->getMockTitle( true, 'flow-board', NS_USER_TALK, 'User talk:FooBar' ),
+				true,
+				true
+			),
+			array(
+				array(),
+				array(),
+				$this->getMockTitle( true, 'flow-board', NS_USER_TALK, 'User talk:Foo/Bar' ),
 				true,
 				true
 			),
