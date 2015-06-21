@@ -122,6 +122,7 @@ use Flow\Data\Storage\PostSummaryRevisionStorage;
 use Flow\Data\Storage\TopicHistoryStorage;
 use Flow\Data\Index\UniqueFeatureIndex;
 use Flow\Data\Index\TopKIndex;
+use Flow\Data\Index\TopicListTopKIndex;
 use Flow\Data\Index\TopicHistoryIndex;
 use Flow\Data\Storage\BoardHistoryStorage;
 use Flow\Data\Index\BoardHistoryIndex;
@@ -206,6 +207,12 @@ $c['storage.workflow.listeners.topiclist'] = function( $c ) {
 $c['storage.workflow.listeners'] = function( $c ) {
 	return array(
 		'listener.occupation' => $c['listener.occupation'],
+
+		// The storage.topic_list.indexes are primarily for TopicListEntry insertions, but they
+		// also listen for discussion workflow insertions so they can initialize for new boards.
+		'storage.topic_list.indexes.reverse_lookup' => $c['storage.topic_list.indexes.reverse_lookup'],
+		'storage.topic_list.indexes.last_updated' => $c['storage.topic_list.indexes.last_updated'],
+
 		'storage.workflow.listeners.topiclist' => $c['storage.workflow.listeners.topiclist'],
 	);
 };
@@ -480,9 +487,11 @@ $c['storage.topic_list.indexes.primary'] = function( $c ) {
 		array( 'topic_id' )
 	);
 };
+
 // Lookup from board to contained topics
+/// In reverse order by topic_id
 $c['storage.topic_list.indexes.reverse_lookup'] = function( $c ) {
-	return new TopKIndex(
+	return new TopicListTopKIndex(
 		$c['memcache.buffered'],
 		$c['storage.topic_list.backend'],
 		'flow_topic_list:list',
@@ -490,8 +499,9 @@ $c['storage.topic_list.indexes.reverse_lookup'] = function( $c ) {
 		array( 'sort' => 'topic_id' )
 	);
 };
+/// In reverse order by topic last_updated
 $c['storage.topic_list.indexes.last_updated'] = function( $c ) {
-	return new TopKIndex(
+	return new TopicListTopKIndex(
 		$c['memcache.buffered'],
 		$c['storage.topic_list.indexes.last_updated.backend'],
 		'flow_topic_list_last_updated:list',
