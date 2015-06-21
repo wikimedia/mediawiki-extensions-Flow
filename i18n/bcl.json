@@ -31,5 +31,6 @@
 	"flow-notification-edit-email-batch-body": "$1 {{GENDER:$1|pinagliwat}} an sarong kinaag sa \"$2\" kan petsa $3",
 	"flow-notification-edit-email-batch-bundle-body": "$1 asin $4 {{PLURAL:$5|iba|mga iba}} {{GENDER:$1|pinagliwat}} sarong pinagkaag sa \"$2\" kan petsa $3",
 	"flow-notification-rename-email-batch-body": "$1 {{GENDER:$1|pinagribayan pangaran}} an saimong tema \"$2\" na magin \"$3\" kan petsa $4",
-	"flow-notification-newtopic-email-subject": "$1 {{GENDER:$1|pinagmukna}} an sarong baguhong tema kan petsa $2"
+	"flow-notification-newtopic-email-subject": "$1 {{GENDER:$1|pinagmukna}} an sarong baguhong tema kan petsa $2",
+	"flow-importer-lqt-different-author-signature-template": "An paskil kan LQT pinag-importa na igwang laen na pirma kan paragamit"
 }

@@ -24,5 +24,9 @@
 	"flow-undo": "ناکړل",
 	"flow-undo-your-text": "ستاسې متن",
 	"flow-ve-mention-inspector-remove-label": "غورځول",
-	"flow-wikitext-editor-help": "ويکي متن $1."
+	"flow-wikitext-editor-help": "ويکي متن $1.",
+	"flow-mark-revision-patrolled-link-text": "دا مخ څارل شوی په نخښه کول",
+	"flow-mark-revision-patrolled-link-title": "دا مخ څارل شوی په نخښه کول",
+	"flow-mark-diff-patrolled-link-text": "څارل شوی په نخښه کول",
+	"flow-mark-diff-patrolled-link-title": "څارل شوی په نخښه کول"
 }
