@@ -5,6 +5,13 @@ When(/^I add (\d+) comments to the Topic$/) do |number|
   end
 end
 
+When(/^I select the permalink for the second post of the first topic$/) do
+  on(FlowPage) do |page|
+    page.second_post_actions_link_element.when_present.click
+    page.actions_link_permalink_second_comment_element.when_present.click
+  end
+end
+
 When(/^I click Permalink from the Actions menu$/) do
   on(FlowPage).permalink_button_element.when_present.click
 end
@@ -35,6 +42,10 @@ Then(/^I see only one topic on the page$/) do
     # but this should match nothing - there is only one topic.
     expect(page.flow_second_topic_heading_element).not_to be_visible
   end
+end
+
+Then(/^the highlighted comment is "(.*?)"$/) do |post_text|
+  expect(on(FlowPage).highlighted_post).to match post_text
 end
 
 Then(/^the highlighted comment should contain the text for the 3rd comment$/) do

@@ -1,4 +1,6 @@
-@test2.wikipedia.org @en.wikipedia.beta.wmflabs.org @phantomjs
+@chrome @firefox @internet_explorer_10 @phantomjs
+@clean @login
+@en.wikipedia.beta.wmflabs.org
 Feature: Watching/Unwatching Boards and Topics
 
 	Scenario: Watch topic
