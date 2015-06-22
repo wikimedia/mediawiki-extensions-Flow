@@ -60,7 +60,7 @@ foreach ( $it as $batch ) {
 			/* from */ 'flow_revision',
 			/* select */ array( 'rev_content', 'rev_flags' ),
 			/* where */ array(
-				'rev_id' => $dbr->encodeBlob( $rev->rev_parent_id ),
+				'rev_id' => new \Flow\Model\UUIDBlob( $rev->rev_parent_id ),
 			),
 			__FILE__
 		) );
