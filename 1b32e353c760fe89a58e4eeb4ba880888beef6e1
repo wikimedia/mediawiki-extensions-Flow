@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_488d80d7",
+        "filename": "tests/browser/features/reopen_topic.feature",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-06-22T15:04:27Z",
+      "side": 1,
+      "message": "Ambiguous text, says \"first topic is resolved\", but it shouldn\u0027t be.\nI know it only tests presence \u0026 value of summary, but the text implies otherwise.",
+      "revId": "1b32e353c760fe89a58e4eeb4ba880888beef6e1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
