@@ -191,6 +191,7 @@ class RevisionStorageTest extends FlowTestCase {
 			$factory,
 			$this->MOCK_EXTERNAL_STORE_CONFIG
 		);
+
 		$this->setWhetherContentUpdatingAllowed( $storage, $isContentUpdatingAllowed );
 		$storage->update(
 			$old,
