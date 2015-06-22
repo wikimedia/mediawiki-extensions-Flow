@@ -16,6 +16,24 @@
       "revId": "1b32e353c760fe89a58e4eeb4ba880888beef6e1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_28c034e3",
+        "filename": "tests/browser/features/reopen_topic.feature",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-06-22T15:06:25Z",
+      "side": 1,
+      "message": "You\u0027re right, this is more than ambiguous, it is plain wrong. I\u0027ll fix it right away.",
+      "parentUuid": "8ec42329_488d80d7",
+      "revId": "1b32e353c760fe89a58e4eeb4ba880888beef6e1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
