@@ -360,6 +360,7 @@ $wgResourceModules += array(
 			'flow/dm/mw.flow.dm.js',
 			'flow/dm/mw.flow.dm.Item.js',
 			'flow/dm/mixins/mw.flow.dm.List.js',
+			'flow/dm/api/mw.flow.dm.APIHandler.js',
 			'flow/dm/mw.flow.dm.RevisionedContent.js',
 			'flow/dm/mw.flow.dm.BoardDescription.js',
 			'flow/dm/mw.flow.dm.System.js',
