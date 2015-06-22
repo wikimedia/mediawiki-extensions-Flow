@@ -10,7 +10,7 @@ class FlowPage < WikiPage
     if parent.div_element(class: 'flow-editor-visualeditor').exists?
       parent.div_element(class: 've-ce-documentNode')
     else
-      parent.text_area_element
+      parent.div_element(class: 'oo-ui-widget').text_area_element
     end
   end
 
@@ -55,9 +55,6 @@ class FlowPage < WikiPage
     page.flow_first_topic_element.div_element(css: "div.flow-topic-titlebar div.flow-moderated-topic-title")
   end
 
-  div(:flow_first_topic_summary) do |page|
-    page.flow_first_topic_element.div_element(css: ".flow-topic-summary")
-  end
   div(:flow_first_topic_original_post, css: ".flow-post", index: 0)
   a(:flow_first_topic_original_post_edit) do |page|
     page.flow_first_topic_original_post_element.link_element(text: "Edit")
@@ -119,19 +116,15 @@ class FlowPage < WikiPage
   a(:edit_title_button) do |page|
     page.topic_actions_menu_element.link_element(text: "Edit title")
   end
-  a(:topic_lock_button) do |page|
-    page.topic_actions_menu_element.link_element(title: "Lock topic")
+  a(:topic_resolve_button) do |page|
+    page.topic_actions_menu_element.link_element(text: "Mark as resolved")
   end
-  a(:topic_unlock_button) do |page|
-    page.topic_actions_menu_element.link_element(title: "Unlock topic")
+  a(:topic_reopen_button) do |page|
+    page.topic_actions_menu_element.link_element(text: "Reopen topic")
   end
-
-  ## Lock topic workflow
-  form(:topic_lock_form, css: ".flow-edit-form")
-  textarea(:topic_lock_form_reason, css: ".flow-edit-form textarea")
-  button(:topic_lock_form_lock_button, css: ".flow-edit-form .mw-ui-constructive")
-  button(:topic_lock_form_cancel_button, css: ".flow-edit-form .mw-ui-destructive")
-  div(:flow_reason, class: "flow-moderated-topic-reason")
+  a(:topic_summarize_button) do |page|
+    page.topic_actions_menu_element.link_element(text: "Summarize")
+  end
 
   ### Editing title of first topic
   text_field(:title_edit, css: ".flow-topic-titlebar form .mw-ui-input", index: 0)
@@ -144,6 +137,29 @@ class FlowPage < WikiPage
   end
   span(:thanked_button) do |page|
     page.post_meta_actions_element.span_element(css: ".mw-thanks-flow-thanked", index: 0)
+  end
+
+  ### summary of first topic
+  div(:summary) do |page|
+    page.flow_first_topic_element.div_element(css: '.flow-topic-summary')
+  end
+  div(:summary_content) do |page|
+    page.summary_element.div_element(css: '.flow-topic-summary-content')
+  end
+  button(:skip_summary_button) do |page|
+    page.summary_element.button_element(text: 'Skip summary')
+  end
+  button(:cancel_summary_button) do |page|
+    page.summary_element.button_element(text: 'Cancel')
+  end
+  button(:update_summary_button) do |page|
+    page.summary_element.button_element(text: 'Update summary')
+  end
+  def edit_summary_element
+    visualeditor_or_textarea 'flow-edit-form'
+  end
+  span(:first_topic_resolved_mark) do |page|
+    page.flow_first_topic_heading_element.span_element(css: '.mw-ui-icon-check')
   end
 
   ### First post of first topic actions menu
