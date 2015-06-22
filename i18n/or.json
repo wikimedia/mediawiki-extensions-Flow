@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nistha.aslp"
+		]
+	},
+	"flow-skip-summary": "ସାରାଂଶକୁ ବାଦ ଦିଅନ୍ତୁ",
+	"flow-edit-summary-placeholder": "ଆଲୋଚନାର ଫଳାଫଳ ସଂକ୍ଷେପରେ ବ୍ୟାଖ୍ୟା କରନ୍ତୁ",
+	"flow-history-action-lock-topic": "ସମାଧାନ କରନ୍ତୁ",
+	"flow-history-action-unlock-topic": "ପୁଣିଥରେ ଖୋଲନ୍ତୁ",
+	"flow-topic-action-lock-topic": "ସମାଧାନ ହୋଇଛି ବୋଲି ଚିହ୍ନିତ କରନ୍ତୁ",
+	"flow-topic-action-unlock-topic": "ବିଷୟ ପୁଣି ଖୋଲନ୍ତୁ",
+	"flow-topic-action-update-topic-summary": "ସାରାଂଶ ଅଦ୍ୟତନ କରନ୍ତୁ",
+	"flow-rev-message-lock-topic-reason": "ସମାଧାନ ହୋଇଛି ବୋଲି ଚିହ୍ନିତ କରନ୍ତୁ",
+	"flow-rev-message-restore-topic-reason": "ପୁଣିଥରେ ଖୋଲାହୋଇଛି",
+	"flow-show-comments-title": "{{PLURAL:$1|View comment|View comments}}",
+	"flow-hide-comments-title": "{{PLURAL:$1|Hide comment|Hide comments}}"
+}
