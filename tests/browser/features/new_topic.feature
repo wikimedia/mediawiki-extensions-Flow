@@ -1,4 +1,5 @@
-@chrome @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10 @phantomjs @test2.wikipedia.org
+@chrome @firefox @internet_explorer_10 @phantomjs
+@en.wikipedia.beta.wmflabs.org
 Feature: Creating a new topic
 
   Background:

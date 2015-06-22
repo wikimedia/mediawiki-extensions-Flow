@@ -12,13 +12,22 @@ When(/^I click the Hide button in the dialog$/) do
   end
 end
 
-Then(/^the 3rd comment should be marked as hidden$/) do
+When(/^I hide the second comment with reason "(.*?)"$/) do |reason|
   on(FlowPage) do |page|
-    page.third_reply_element.when_present
-    expect(page.third_reply_moderation_msg).to match('This comment was hidden')
+    page.second_post_actions_link_element.when_present.click
+    page.actions_link_hide_second_comment_element.when_present.click
+  end
+  step "I type \"#{reason}\" in the dialog box"
+  step 'I click the Hide button in the dialog'
+end
+
+Then(/^the second comment should be marked as hidden$/) do
+  on(FlowPage) do |page|
+    page.second_post_element.when_present
+    expect(page.second_post_moderation_msg).to match('This comment was hidden')
   end
 end
 
-Then(/^the content of the 3rd comment should not be visible$/) do
-  expect(on(FlowPage).third_reply_content_element).not_to be_visible
+Then(/^the content of the second comment should not be visible$/) do
+  expect(on(FlowPage).second_post_content_element).not_to be_visible
 end

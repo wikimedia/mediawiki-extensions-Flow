@@ -1,4 +1,6 @@
-@chrome @clean @ee-prototype.wmflabs.org @en.wikipedia.beta.wmflabs.org @firefox @login @test2.wikipedia.org
+@chrome @firefox
+@clean @login
+@en.wikipedia.beta.wmflabs.org
 Feature: Create new topic logged in
 
   It requires the cldr extension, a "Flow QA" page, and a "Selenium user" who has

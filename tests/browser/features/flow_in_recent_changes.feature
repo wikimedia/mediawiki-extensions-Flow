@@ -1,4 +1,6 @@
-@clean @ee-prototype.wmflabs.org @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10 @login @test2.wikipedia.org
+@chrome @firefox @internet_explorer_10
+@clean @login
+@en.wikipedia.beta.wmflabs.org
 Feature: Flow updates are in Recent Changes
 
   Background:

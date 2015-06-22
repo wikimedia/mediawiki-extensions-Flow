@@ -1,4 +1,6 @@
-@clean @ee-prototype.wmflabs.org @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10 @login @test2.wikipedia.org
+@chrome @firefox @internet_explorer_10
+@clean @login
+@en.wikipedia.beta.wmflabs.org
 Feature: Edit existing title
 
   Assumes that the test Flow page has at least two topics (with posts).
