@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_851ef10f",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-06-22T12:18:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7c4fa4_666bfcb5",
+      "revId": "8e3205a25f8f10e6445f1789840e993d36f8bede",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_6c72fbe3",
         "filename": "tests/phpunit/PostRevisionTestCase.php",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_a5ea0dd4",
+        "filename": "tests/phpunit/PostRevisionTestCase.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-06-22T12:18:26Z",
+      "side": 1,
+      "message": "try/catch shouldn\u0027t be relevant anymore - we\u0027re now now getting rid of those that could trigger exceptions ahead of time. Same for below.",
+      "parentUuid": "6e7c4fa4_6c72fbe3",
+      "revId": "8e3205a25f8f10e6445f1789840e993d36f8bede",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e7c4fa4_4c77ffcf",
         "filename": "tests/phpunit/PostRevisionTestCase.php",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2015-02-09T21:28:25Z",
       "side": 1,
       "message": "Same as above.",
+      "revId": "8e3205a25f8f10e6445f1789840e993d36f8bede",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_45f329d2",
+        "filename": "tests/phpunit/PostRevisionTestCase.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-06-22T12:18:26Z",
+      "side": 1,
+      "message": "No longer relevant, removing try/catch.",
+      "parentUuid": "6e7c4fa4_4c77ffcf",
       "revId": "8e3205a25f8f10e6445f1789840e993d36f8bede",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
