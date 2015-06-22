@@ -16,6 +16,24 @@
       "revId": "aacc6a63ea764d256d1fd45cd33648ac95fafa60",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_7887f1ba",
+        "filename": "includes/Import/LiquidThreadsApi/Objects.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-22T05:31:51Z",
+      "side": 1,
+      "message": "Thanks, done in https://gerrit.wikimedia.org/r/#/c/219780/",
+      "parentUuid": "8ec42329_bebd7018",
+      "revId": "aacc6a63ea764d256d1fd45cd33648ac95fafa60",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
