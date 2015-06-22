@@ -17,7 +17,7 @@
 		config = config || {};
 
 		// Parent constructor
-		mw.flow.dm.Board.super.call( this, config );
+		mw.flow.dm.Board.parent.call( this, config );
 
 		// Mixin constructor
 		mw.flow.dm.List.call( this, config );
@@ -67,7 +67,7 @@
 			description: this.getDescription() && this.getDescription().getHashObject()
 		},
 			// Parent
-			mw.flow.dm.Board.super.prototype.getHashObject.call( this )
+			mw.flow.dm.Board.parent.prototype.getHashObject.call( this )
 		);
 	};
 
