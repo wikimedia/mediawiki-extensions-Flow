@@ -182,6 +182,7 @@ class ImportPost extends PageRevisionedObject implements IImportPost {
 	/**
 	 * Creates revision clarifying signature difference
 	 *
+	 * @param IObjectRevision Last revision prior to the clarification revision
 	 * @param string $authorUsername Author username
 	 * @param string $signatureUsername Username extracted from signature
 	 * @return ScriptedImportRevision Generated top import revision
