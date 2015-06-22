@@ -15,7 +15,7 @@
 		config = config || {};
 
 		// Parent constructor
-		mw.flow.dm.Topic.super.call( this, config );
+		mw.flow.dm.Topic['super'].call( this, config );
 
 		// Mixin constructor
 		mw.flow.dm.List.call( this, config );
@@ -92,7 +92,7 @@
 				moderator: this.getModerator()
 			},
 			// Parent
-			mw.flow.dm.Topic.super.prototype.getHashObject.call( this )
+			mw.flow.dm.Topic['super'].prototype.getHashObject.call( this )
 		);
 	};
 

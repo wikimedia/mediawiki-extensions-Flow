@@ -13,7 +13,7 @@
 		config = config || {};
 
 		// Parent constructor
-		mw.flow.dm.RevisionedContent.super.call( this, config );
+		mw.flow.dm.RevisionedContent['super'].call( this, config );
 
 		// Initialize properties
 		this.content = null;
@@ -88,7 +88,7 @@
 			originalContent: this.isOriginalContent(),
 			watched: this.isWatched(),
 			watchable: this.isWatchable()
-		}, mw.flow.dm.RevisionedContent.super.prototype.getHashObject.call( this ) );
+		}, mw.flow.dm.RevisionedContent['super'].prototype.getHashObject.call( this ) );
 	};
 
 	/**
