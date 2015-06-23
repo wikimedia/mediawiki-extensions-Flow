@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_41378e4b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-23T16:17:53Z",
+      "side": 1,
+      "message": "Actually, I think it\u0027s because of the missing space between it and Change-Id.",
+      "parentUuid": "8ec42329_7245c246",
+      "revId": "87f323831eac9209cbc4b3c3542a7013b358e8f9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_324c1a7a",
         "filename": "includes/OOUI/BoardDescriptionWidget.php",
         "patchSetId": 12
@@ -30,6 +48,24 @@
       "writtenOn": "2015-06-23T01:53:50Z",
       "side": 1,
       "message": "Right now, you\u0027ve made the button infusable but you\u0027ve made this widget non-infusable. Is that deliberate?",
+      "revId": "87f323831eac9209cbc4b3c3542a7013b358e8f9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_c1429eb0",
+        "filename": "includes/OOUI/BoardDescriptionWidget.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-23T16:17:53Z",
+      "side": 1,
+      "message": "Actually, none of them should be infusable; I\u0027m overriding it anyways with the JS widget; the only thing I keep is the content.\n\nThe *plan* was to override the widget but extract the button so I don\u0027t have to re-render it again. But it seems unnecessary, and the JS button is slightly different anyways, as it has no link value.",
+      "parentUuid": "8ec42329_324c1a7a",
       "revId": "87f323831eac9209cbc4b3c3542a7013b358e8f9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_c1293ee2",
+        "filename": "includes/OOUI/BoardDescriptionWidget.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-23T16:17:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_5251a610",
+      "revId": "87f323831eac9209cbc4b3c3542a7013b358e8f9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_f251b211",
         "filename": "includes/TemplateHelper.php",
         "patchSetId": 12
@@ -64,6 +118,24 @@
       "writtenOn": "2015-06-23T01:53:50Z",
       "side": 1,
       "message": "[placeholder]",
+      "revId": "87f323831eac9209cbc4b3c3542a7013b358e8f9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_6122cafd",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-23T16:17:53Z",
+      "side": 1,
+      "message": "oops",
+      "parentUuid": "8ec42329_f251b211",
       "revId": "87f323831eac9209cbc4b3c3542a7013b358e8f9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_61796af1",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-23T16:17:53Z",
+      "side": 1,
+      "message": "It\u0027s a preparation for future acceptable arguments. I can take it off and add it when we actually need it, though.",
+      "parentUuid": "8ec42329_12579e06",
+      "revId": "87f323831eac9209cbc4b3c3542a7013b358e8f9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_b23faab0",
         "filename": "includes/TemplateHelper.php",
         "patchSetId": 12
@@ -98,6 +188,24 @@
       "writtenOn": "2015-06-23T01:53:50Z",
       "side": 1,
       "message": "This loop is a no-op because $acceptableDataArgs is empty. Also, missing space before $i \u003d 0",
+      "revId": "87f323831eac9209cbc4b3c3542a7013b358e8f9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_61508a61",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-23T16:17:53Z",
+      "side": 1,
+      "message": "Yeah I\u0027m removing it. It was supposed to be a preparation for when we have \"acceptableDataArgs\" which I had in the previous iteration of this method.\n\nHowever, I am not entirely sure it will actually be needed again, so I\u0027m removing it. I\u0027ll add it again when/if it\u0027s needed.",
+      "parentUuid": "8ec42329_b23faab0",
       "revId": "87f323831eac9209cbc4b3c3542a7013b358e8f9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
