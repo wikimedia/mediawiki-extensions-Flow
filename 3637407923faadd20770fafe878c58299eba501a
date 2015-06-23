@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_bb9ea556",
+        "filename": "container.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-06-23T12:38:09Z",
+      "side": 1,
+      "message": "\u0027create\u0027 \u003d\u003e function( array $row ) {\n        // check if this should create a new index\n        return true/false;\n    },\n\nBut seems pretty hard to figure out if this is a new discussion from here (without reaching out to db)",
+      "revId": "3637407923faadd20770fafe878c58299eba501a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
