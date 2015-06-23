@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_324c1a7a",
+        "filename": "includes/OOUI/BoardDescriptionWidget.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-23T01:53:50Z",
+      "side": 1,
+      "message": "Right now, you\u0027ve made the button infusable but you\u0027ve made this widget non-infusable. Is that deliberate?",
+      "revId": "87f323831eac9209cbc4b3c3542a7013b358e8f9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_5251a610",
+        "filename": "includes/OOUI/BoardDescriptionWidget.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-23T01:53:50Z",
+      "side": 1,
+      "message": "appendContent takes variadic arguments, like so:\n\n    $this-\u003eappendContent( $this-\u003eeditButton, $this-\u003econtentWrapper );",
+      "revId": "87f323831eac9209cbc4b3c3542a7013b358e8f9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_f251b211",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-23T01:53:50Z",
+      "side": 1,
+      "message": "[placeholder]",
+      "revId": "87f323831eac9209cbc4b3c3542a7013b358e8f9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_12579e06",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-23T01:53:50Z",
+      "side": 1,
+      "message": "Empty?!",
+      "revId": "87f323831eac9209cbc4b3c3542a7013b358e8f9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_b23faab0",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-23T01:53:50Z",
+      "side": 1,
+      "message": "This loop is a no-op because $acceptableDataArgs is empty. Also, missing space before $i \u003d 0",
+      "revId": "87f323831eac9209cbc4b3c3542a7013b358e8f9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
