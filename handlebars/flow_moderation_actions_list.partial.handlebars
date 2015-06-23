@@ -51,7 +51,7 @@
 				   href="{{actions.summarize.url}}"
 				   title="{{actions.summarize.title}}">
 					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-stripeToC mw-ui-icon-stripeToC-progressive-hover"></span> {{/if~}}
-					{{~#if summary~}}
+					{{~#if summary.revision.content.content~}}
 						{{~l10n (concat "flow-topic-action-resummarize-topic")~}}
 					{{else~}}
 						{{~l10n (concat "flow-topic-action-summarize-topic")~}}
