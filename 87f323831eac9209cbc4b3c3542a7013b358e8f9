@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "8ec42329_7245c246",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-23T01:54:19Z",
+      "side": 1,
+      "message": "The bot doesn\u0027t pick up on this, because you didn\u0027t put a space between the colon and the T",
+      "revId": "87f323831eac9209cbc4b3c3542a7013b358e8f9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_324c1a7a",
         "filename": "includes/OOUI/BoardDescriptionWidget.php",
         "patchSetId": 12
