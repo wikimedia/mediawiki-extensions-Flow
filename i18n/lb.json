@@ -126,6 +126,7 @@
 	"flow-history-day": "Haut",
 	"flow-history-week": "Lescht Woch",
 	"flow-topic-comments": "{{PLURAL:$1|Eng Bemierkung|$1 Bemierkungen|0=Sidd {{GENDER:$2|deen éischten deen|déi éischt déi}} eng Bemierkung mécht!}}",
+	"flow-show-comments-title": "{{PLURAL:$1|Bemierkung|Bemierkunge}} weisen",
 	"flow-hide-comments-title": "{{PLURAL:$1|Bemierkung|Bemierkunge}} verstoppen",
 	"flow-comment-restored": "Restauréiert Bemierkung",
 	"flow-comment-deleted": "Geläscht Bemierkung",

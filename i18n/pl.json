@@ -15,7 +15,8 @@
 			"Darellur",
 			"Py64",
 			"VerMa",
-			"Devwebtel"
+			"Devwebtel",
+			"Mbkgacek"
 		]
 	},
 	"flow-board-header": "O tej dyskusji",
@@ -82,6 +83,7 @@
 	"flow-rev-message-deleted-post": "$1 {{GENDER:$2|usunął|usunęła}} [$4 komentarz] w temacie „$6” (<em>$5</em>)",
 	"flow-rev-message-hid-topic": "$1 {{GENDER:$2|ukrył|ukryła}} [$4 wątek] „$6” (<em>$5</em>)",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|usunął|usunęła}} [$4 wątek] „$6” (<em>$5</em>)",
+	"flow-rev-message-restore-topic-reason": "Otworzony na nowo",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|przywrócił|przywróciła}} [$4 wątek] „$6” (<em>$5</em>)",
 	"flow-history-last4": "Ostatnie 4 godziny",
 	"flow-history-day": "Dzisiaj",
@@ -129,6 +131,7 @@
 	"flow-terms-of-use-summarize": "Klikając na „{{int:flow-topic-action-summarize-topic}}”, zgadzasz się na zasady użytkowania tej wiki.",
 	"flow-whatlinkshere-header": "z [$1 opisu]",
 	"apihelp-flow+edit-header-param-format": "Format opisu (wikitekst|html)",
+	"apihelp-flow+lock-topic-param-reason": "Powód zablokowania lub odblokowania tematu. Uwaga, istniejący na wiki program Flow używa  opcji \"Oznaczony jako zamknięty\" oraz nadaje opcjonalne informacje jako jego podsumowanie.",
 	"apihelp-flow+moderate-post-param-reason": "Powód moderacji.",
 	"apihelp-flow+moderate-topic-param-reason": "Powód moderacji.",
 	"flow-previous-diff": "← Poprzednia edycja",
