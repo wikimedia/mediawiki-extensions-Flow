@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_b3f32968",
+        "filename": "tests/phpunit/Notifications/NotifiedUsersTest.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-23T18:50:49Z",
+      "side": 1,
+      "message": "forces us*",
+      "revId": "f20d3fc676b539227da2dc099901e3b45a4c6146",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_733dc1da",
+        "filename": "tests/phpunit/PostRevisionTestCase.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-23T18:50:49Z",
+      "side": 1,
+      "message": "The documentations in PostRevision seem to claim that this is deprecated?\n\"@deprecated use PostCollection::getRoot\"\n\nUsing the ::getRoot method should also make the use of the try/catch block unnecessary, from what I could see.",
+      "revId": "f20d3fc676b539227da2dc099901e3b45a4c6146",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
