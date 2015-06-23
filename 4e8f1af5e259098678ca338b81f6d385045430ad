@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_3273bab1",
+        "filename": "modules/flow/dm/mw.flow.dm.BoardDescription.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-23T02:01:41Z",
+      "side": 1,
+      "message": "If data is optional, then mark it as such in the documentation",
+      "revId": "4e8f1af5e259098678ca338b81f6d385045430ad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_92594e2f",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-23T02:01:41Z",
+      "side": 1,
+      "message": "May need @class to prevent jshint from breaking",
+      "revId": "4e8f1af5e259098678ca338b81f6d385045430ad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_5278c68a",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-23T02:01:41Z",
+      "side": 1,
+      "message": "Undocumented parameter model",
+      "revId": "4e8f1af5e259098678ca338b81f6d385045430ad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_f268d2b9",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-23T02:01:41Z",
+      "side": 1,
+      "message": "It\u0027s conventional (and helps with correctness) not to do anything before the parent constructor call, except for config \u003d config || {} and var declarations",
+      "revId": "4e8f1af5e259098678ca338b81f6d385045430ad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_126ebec4",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-23T02:01:41Z",
+      "side": 1,
+      "message": "IE8 doesn\u0027t like .super, as Stephane pointed out today. Please use .parent in Flow OOjs code for now.",
+      "revId": "4e8f1af5e259098678ca338b81f6d385045430ad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_b266cae8",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-23T02:01:41Z",
+      "side": 1,
+      "message": "Document config option",
+      "revId": "4e8f1af5e259098678ca338b81f6d385045430ad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_d26356d7",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-23T02:01:41Z",
+      "side": 1,
+      "message": "Come up with a fallback for the case where config.$existing is not set",
+      "revId": "4e8f1af5e259098678ca338b81f6d385045430ad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_725ce21e",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-23T02:01:41Z",
+      "side": 1,
+      "message": "Why does the JS version get the nojs class?",
+      "revId": "4e8f1af5e259098678ca338b81f6d385045430ad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
