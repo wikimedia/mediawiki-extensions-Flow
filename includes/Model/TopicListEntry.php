@@ -28,10 +28,6 @@ class TopicListEntry {
 	 * @return TopicListEntry
 	 */
 	static public function create( Workflow $topicList, Workflow $topic ) {
-		// die( var_dump( array(
-		// 	'topicList' => $topicList,
-		// 	'topic' => $topic,
-		// )));
 		$obj = new self;
 		$obj->topicListId = $topicList->getId();
 		$obj->topicId = $topic->getId();

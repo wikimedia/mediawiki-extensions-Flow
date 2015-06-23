@@ -63,6 +63,7 @@ $wgAutoloadClasses += array(
 	'Flow\\Data\\Index\\FeatureIndex' => __DIR__ . '/includes/Data/Index/FeatureIndex.php',
 	'Flow\\Data\\Index\\TopKIndex' => __DIR__ . '/includes/Data/Index/TopKIndex.php',
 	'Flow\\Data\\Index\\TopicHistoryIndex' => __DIR__ . '/includes/Data/Index/TopicHistoryIndex.php',
+	'Flow\\Data\\Index\\TopicListTopKIndex' => __DIR__ . '/includes/Data/Index/TopicListTopKIndex.php',
 	'Flow\\Data\\Index\\UniqueFeatureIndex' => __DIR__ . '/includes/Data/Index/UniqueFeatureIndex.php',
 	'Flow\\Data\\LifecycleHandler' => __DIR__ . '/includes/Data/LifecycleHandler.php',
 	'Flow\\Data\\Listener\\AbstractListener' => __DIR__ . '/includes/Data/Listener/AbstractListener.php',

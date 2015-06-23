@@ -27,7 +27,7 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 		// request will terminate with an the error message)
 		$this->processError( $blocks );
 
-		// If nothing was committed, we'll consider that an error (at least some
+		// If nothing is ready to be committed, we'll consider that an error (at least some
 		// block should've been able to process the POST request)
 		if ( !count( $blocksToCommit ) ) {
 			$this->dieUsage(

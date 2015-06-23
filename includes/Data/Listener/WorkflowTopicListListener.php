@@ -7,7 +7,7 @@ use Flow\Data\ObjectManager;
 use Flow\Model\TopicListEntry;
 
 /**
- * Every time an action is performed against something within a workflow
+ * Every time an action is performed against something within a topic workflow
  * the workflow's last_update_timestamp is updated as well.  This listener
  * passes that updated timestamp along to the topic list last updated index
  * so that it can reorder any lists this workflow is in.
@@ -48,6 +48,9 @@ class WorkflowTopicListListener extends AbstractListener {
 		}
 	}
 
+	// Is this necessary?  It seems it doesn't find anything since the topic workflow is
+	// inserted before TopicListEntry (TLE), but then there is a direct listener on the
+	// TLE insertion so it shouldn't be needed.
 	public function onAfterInsert( $object, array $new, array $metadata ) {
 		$entry = $this->getTopicListEntry( $new['workflow_id'] );
 		if ( $entry ) {

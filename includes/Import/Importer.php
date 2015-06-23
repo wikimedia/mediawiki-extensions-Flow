@@ -732,14 +732,15 @@ class TalkpageImportOperation {
 		$topicState = new TopicImportState( $state, $topicWorkflow, end( $titleRevisions ) );
 		$topicMetadata = $topicState->getMetadata();
 
-		// TLE must be first, otherwise you get an error importing the Topic Title
+		// This should all match the order in TopicListBlock->commit (board/
+		// discussion workflow is inserted before this method is called).
+
+		$state->put( $topicWorkflow, $topicMetadata );
+		// TLE must be before topic title, otherwise you get an error importing the Topic Title
 		// Flow/includes/Data/Index/BoardHistoryIndex.php:
 		// No topic list contains topic XXX, called for revision YYY
 		$state->put( $topicListEntry, $topicMetadata );
-		// Topic title must be second, because inserting topicWorkflow requires
-		// the topic title to already be in place
 		$state->put( $titleRevisions, $topicMetadata );
-		$state->put( $topicWorkflow, $topicMetadata );
 
 		$state->recordAssociation( $topicWorkflow->getId(), $importTopic );
 
