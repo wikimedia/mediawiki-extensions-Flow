@@ -14,11 +14,13 @@ class FlowPage < WikiPage
     end
   end
 
-  # board header
-  a(:edit_header_link, title: "Edit header")
-  div(:header_content, css: ".flow-board-header-detail-view p", index: 0)
-  form(:edit_header_form, css: ".flow-board-header-edit-view form")
-  textarea(:edit_header_textbox, css: ".flow-board-header-edit-view textarea")
+  # board description
+  a(:edit_description_link, title: "Edit description")
+  div(:description_content, css: ".flow-board-header-detail-view")
+  form(:edit_description_form, css: ".edit-header-form")
+  def edit_description_textbox_element
+    visualeditor_or_textarea 'edit-header-form'
+  end
 
   a(:author_link, css: ".flow-author a", index: 0)
   a(:cancel_button, text: "Cancel")
@@ -242,7 +244,7 @@ class FlowPage < WikiPage
 
   div(:small_spinner, class: "mw-spinner mw-spinner-small mw-spinner-inline")
 
-  button(:edit_header_save, text: "Save header")
+  button(:edit_description_save, text: "Save description")
 
   # No javascript elements
   button(:no_javascript_add_topic, text: "Add topic")
