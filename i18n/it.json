@@ -195,6 +195,7 @@
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|ha cancellato}} [$4 l'argomento] \"$6\" (<em>$5</em>).",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|ha soppresso}} [$4 l'argomento] \"$6\" (<em>$5</em>).",
 	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|ha bloccato}} [$4 l'argomento] $6 (<em>$5</em>)",
+	"flow-rev-message-restore-topic-reason": "riaperto",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|ha ripristinato}} [$4 l'argomento] \"$6\" (<em>$5</em>).",
 	"flow-rc-topic-of-board": "$1 su $2",
 	"flow-board-history": "Cronologia di \"$1\"",
