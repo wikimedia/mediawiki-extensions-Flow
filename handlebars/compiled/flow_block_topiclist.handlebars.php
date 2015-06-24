@@ -38,9 +38,11 @@
 '.$sp.'		   data-tooltip-pointing="right"
 '.$sp.'		   title="'.LCRun3::hbch($cx, 'ifCond', array(array(((isset($in['sortby']) && is_array($in)) ? $in['sortby'] : null),'===','updated'),array()), $in, false, function($cx, $in)use($sp){return ''.LCRun3::ch($cx, 'l10n', array(array('flow-sorting-tooltip-recent'),array()), 'encq').'';}, function($cx, $in)use($sp){return ''.LCRun3::ch($cx, 'l10n', array(array('flow-sorting-tooltip-newest'),array()), 'encq').'';}).'"
 '.$sp.'		   data-flow-interactive-handler="menuToggle"
-'.$sp.'		   data-flow-menu-target="< .flow-board-navigation .flow-board-sort-menu">'.LCRun3::hbch($cx, 'ifCond', array(array(((isset($in['sortby']) && is_array($in)) ? $in['sortby'] : null),'===','updated'),array()), $in, false, function($cx, $in)use($sp){return '				'.LCRun3::ch($cx, 'l10n', array(array('flow-recent-topics'),array()), 'encq').'
-'.$sp.'';}, function($cx, $in)use($sp){return '				'.LCRun3::ch($cx, 'l10n', array(array('flow-newest-topics'),array()), 'encq').'
-'.$sp.'';}).'			<span class="mw-ui-icon mw-ui-icon-after mw-ui-icon-caretDown"></span>
+'.$sp.'		   data-flow-menu-target="< .flow-board-navigation .flow-board-sort-menu">
+'.$sp.'			<span>'.LCRun3::hbch($cx, 'ifCond', array(array(((isset($in['sortby']) && is_array($in)) ? $in['sortby'] : null),'===','updated'),array()), $in, false, function($cx, $in)use($sp){return '					'.LCRun3::ch($cx, 'l10n', array(array('flow-recent-topics'),array()), 'encq').'
+'.$sp.'';}, function($cx, $in)use($sp){return '					'.LCRun3::ch($cx, 'l10n', array(array('flow-newest-topics'),array()), 'encq').'
+'.$sp.'';}).'			</span>
+'.$sp.'			<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-caretDown">&nbsp;</span>
 '.$sp.'		</a>
 '.$sp.'
 '.$sp.'		<a href=""
