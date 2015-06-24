@@ -99,6 +99,7 @@
 	 * @param {Event} event
 	 */
 	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.activateNewTopic = function ( event ) {
+debugger;
 		var $form = $( this ).closest( '.flow-newtopic-form' ),
 			component;
 

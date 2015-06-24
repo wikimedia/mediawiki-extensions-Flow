@@ -60,9 +60,10 @@
 		/**
 		 * @param {jQuery} $node
 		 * @param {string} [content] Existing content to load, in any format
+		 * @param {FlowBoardComponent} [board] The board the editor is attached to
 		 * @return {jQuery.Promise} Will resolve once editor instance is loaded
 		 */
-		load: function ( $node, content ) {
+		load: function ( $node, content, board ) {
 			/**
 			 * When calling load(), loadEditor() may not yet have completed loading the
 			 * dependencies. To make sure it doesn't break, this will in interval,
@@ -79,7 +80,7 @@
 
 				// doublecheck if editor doesn't already exist for this node
 				if ( !mw.flow.editor.getEditor( $node ) ) {
-					mw.flow.editor.create( $node, content );
+					mw.flow.editor.create( $node, content, board );
 				}
 
 				deferred.resolve();
@@ -148,12 +149,12 @@
 		 * @param {string} content
 		 * @return {Object}
 		 */
-		create: function ( $node, content ) {
+		create: function ( $node, content, board ) {
 			$node.data( 'flow-editor', mw.flow.editor.editors.length )
 				.closest( '.flow-editor' ).addClass( 'flow-editor-' + mw.flow.editor.editor.static.name );
 
-			mw.flow.editor.editors.push( new mw.flow.editor.editor( $node, content ) );
-			return mw.flow.editor.getEditor( $node );
+			mw.flow.editor.editors.push( new mw.flow.editor.editor( $node, content, board ) );
+			return mw.flow.editor.getEditor( $node, board );
 		},
 
 		/**

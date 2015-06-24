@@ -1,0 +1,26 @@
+.flow-ui-editorWidget {
+	&.flow-ui-editorWidget-collapsed &-textarea,
+	&.flow-ui-editorWidget-collapsed &-footer {
+		display: none;
+	}
+
+	&-textarea {
+		border: 0;
+		background: transparent;
+		min-height: 8em;
+	}
+
+	&-footer {
+		position: relative;
+
+		.flow-ui-editorWidget-terms {
+			display: inline-block;
+		}
+
+		.flow-ui-editorWidget-buttons {
+			display: inline-block;
+			position: absolute;
+			right: 0;
+		}
+	}
+}

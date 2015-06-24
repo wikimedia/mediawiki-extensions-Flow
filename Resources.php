@@ -374,6 +374,10 @@ $wgResourceModules += array(
 	'ext.flow.ui' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'flow/ui/mw.flow.ui.js',
+			'flow/ui/widgets/mw.flow.ui.EditorWidget.js'
+		),
+		'styles' => array(
+			'styles/flow/widgets/mw.flow.ui.EditorWidget.less'
 		),
 		'dependencies' => array (
 			'oojs-ui',

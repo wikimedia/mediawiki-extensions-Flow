@@ -10,11 +10,13 @@
 	 * @param {jQuery} $node
 	 * @param {string} [content='']
 	 */
-	mw.flow.editors.none = function ( $node, content ) {
+	mw.flow.editors.none = function ( $node, content, board ) {
 		// Parent constructor
 		mw.flow.editors.none.parent.call( this );
 
 		var $editor = $node.closest( '.flow-editor' );
+
+		this.board = board;
 
 		// node the editor is associated with.
 		this.$node = $node;
@@ -53,7 +55,7 @@
 		// only attach switcher if VE is actually enabled and supported
 		// code to figure out if that VE is supported is in that module
 		if ( mw.config.get( 'wgFlowEditorList' ).indexOf( 'visualeditor' ) !== -1 ) {
-			mw.loader.using( 'ext.flow.editors.visualeditor', $.proxy( this.attachControls, this ) );
+			mw.loader.using( 'ext.flow.editors.visualeditor', this.attachControls.bind( this ) );
 		}
 
 		this.widget.connect( this, { change: [ 'emit', 'change' ] } );
@@ -104,8 +106,8 @@
 	};
 
 	mw.flow.editors.none.prototype.attachControls = function () {
-		var $preview, $usesWikitext, $controls, templateArgs,
-			board = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( this.$node );
+		var $preview, $usesWikitext, $controls, templateArgs;
+//			board = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( this.$node );
 
 		$usesWikitext = $( '<div>' )
 			.html( mw.message( 'flow-wikitext-editor-help-uses-wikitext' ).parse() )
@@ -142,8 +144,9 @@
 			templateArgs
 		) ).children();
 
+		this.$node.closest( '.flow-editor' ).append( $controls );
 		// insert help information + editor switcher, and make it interactive
-		board.emitWithReturn( 'makeContentInteractive', $controls.appendTo( this.$node.closest( '.flow-editor' ) ) );
+		// this.board.emitWithReturn( 'makeContentInteractive', $controls.appendTo( this.$node.closest( '.flow-editor' ) ) );
 	};
 
 	mw.flow.editors.none.prototype.focus = function () {
