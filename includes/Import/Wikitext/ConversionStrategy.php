@@ -58,7 +58,11 @@ class ConversionStrategy implements IConversionStrategy {
 	 * @param Parser|StubObject $parser
 	 * @param ImportSourceStore $sourceStore
 	 * @param LoggerInterface $logger
-	 * @param Title[] $noConvertTemplates List of templates that flag pages that shouldn't be converted
+	 * @param Title[] $noConvertTemplates List of templates that flag pages that
+	 *  shouldn't be converted (optional)
+	 * @param string $preferredArchiveTitle Archive title pattern (with %s placeholder
+	 *  for base, and %d for archive count) (optional)
+	 * @param string $headerSuffix Wikitext to add to the end of the header (optional)
 	 */
 	public function __construct(
 		$parser,
