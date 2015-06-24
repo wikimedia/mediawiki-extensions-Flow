@@ -442,7 +442,8 @@ $c['storage.post_summary.indexes.topic_lookup'] = function( $c ) {
 $c['storage.post_summary.indexes'] = function( $c ) {
 	return array(
 		$c['storage.post_summary.indexes.primary'],
-		$c['storage.post_summary.indexes.topic_lookup']
+		$c['storage.post_summary.indexes.topic_lookup'],
+		$c['storage.topic_history.indexes.topic_lookup']
 	);
 };
 $c['storage.post_summary'] = function( $c ) {
@@ -656,7 +657,7 @@ $c['storage.topic_history.indexes.topic_lookup'] = function( $c ) {
 		$c['memcache.buffered'],
 		$c['storage.topic_history.backend'],
 		$c['repository.tree'],
-		'flow_revision:topic',
+		'flow_revision:topic:v2',
 		array( 'topic_root_id' ),
 		array(
 			'limit' => 500,
