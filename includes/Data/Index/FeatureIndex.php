@@ -408,7 +408,7 @@ abstract class FeatureIndex implements Index {
 				// if we couldn't retrieve content from ExternalStore, we shouldn't
 				// cache that result)
 				$rows = array_filter( $rows, array( $this->storage, 'validate' ) );
-				if ( !$rows ) {
+				if ( $rows !== $fromStorage[$index] ) {
 					continue;
 				}
 
