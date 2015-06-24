@@ -17,12 +17,14 @@
 		   "
 		   data-flow-interactive-handler="menuToggle"
 		   data-flow-menu-target="< .flow-board-navigation .flow-board-sort-menu">
-			{{~#ifCond sortby "===" "updated"}}
-				{{l10n "flow-recent-topics"}}
-			{{else}}
-				{{l10n "flow-newest-topics"}}
-			{{/ifCond}}
-			<span class="mw-ui-icon mw-ui-icon-after mw-ui-icon-caretDown"></span>
+			<span>
+				{{~#ifCond sortby "===" "updated"}}
+					{{l10n "flow-recent-topics"}}
+				{{else}}
+					{{l10n "flow-newest-topics"}}
+				{{/ifCond}}
+			</span>
+			<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-caretDown">&nbsp;</span>
 		</a>
 
 		<a href=""
