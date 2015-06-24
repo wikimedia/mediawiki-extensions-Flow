@@ -77,13 +77,21 @@
 			'mw-content-' + mw.config.get( 'wgVisualEditor' ).pageLanguageDir
 		);
 
+		// Pass surface focus state to parent
+		surface.getView()
+			.on( 'focus', $.proxy( function () {
+				this.target.$element.addClass( 'flow-ui-focused' );
+			}, this ) )
+			.on( 'blur', $.proxy( function () {
+				this.target.$element.removeClass( 'flow-ui-focused' );
+			}, this ) );
+
 		// focus VE instance if textarea had focus
 		if ( !$focusedElement.length || this.$node.is( $focusedElement ) ) {
 			surface.getView().focus();
 		}
 
 		$veNode = surface.$element.find( '.ve-ce-documentNode' );
-		$veNode.addClass( 'mw-ui-input' );
 
 		// HACK: simulate a keyup event on the original node, so the validation code will
 		// pick up changes in the new node

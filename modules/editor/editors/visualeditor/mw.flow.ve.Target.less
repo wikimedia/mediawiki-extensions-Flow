@@ -1,4 +1,5 @@
 @import 'mediawiki.mixins';
+@import 'mediawiki.ui/variables';
 
 .flow-component {
 	.ve-init-target {
@@ -11,6 +12,11 @@
 			// Return to .mw-body-content font-size
 			// TODO: Make this theme specific
 			font-size: 0.875/0.8em;
+		}
+
+		&.flow-ui-focused {
+			border-color: @colorProgressive;
+			box-shadow: inset 0 0 0 2px @colorProgressive;
 		}
 	}
 
@@ -30,7 +36,7 @@
 		// The -40 matches the padding-bottom on .ve-ce-documentNode to put the toolbar inside
 		// the editing area. The 2px of positive margin gives room for the blue border of the
 		// documentNode (via .mw-ui-input)
-		margin: -42px 2px 0 2px;
+		margin: -42px 2px 1px 2px;
 	}
 
 	// Due to this being floated, it needs a matching top margin to still display inside the bar
