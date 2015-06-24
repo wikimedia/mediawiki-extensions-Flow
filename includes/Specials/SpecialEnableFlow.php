@@ -101,6 +101,7 @@ class SpecialEnableFlow extends FormSpecialPage {
 					Container::get( 'parser' ),
 					new NullImportSourceStore(),
 					$logger,
+					array(),
 					$data['archive-title-format'],
 					$data['header']
 				)
