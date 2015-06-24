@@ -34,6 +34,24 @@
       "revId": "b370fe7a90ff2f64b00f82b02295c23f3f99a115",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_c9b71634",
+        "filename": "modules/editor/editors/visualeditor/ext.flow.editors.visualeditor.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-24T21:31:06Z",
+      "side": 1,
+      "message": "I guess consistency of bad is better than bad consistency.",
+      "parentUuid": "8ec42329_6972a2ad",
+      "revId": "b370fe7a90ff2f64b00f82b02295c23f3f99a115",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
