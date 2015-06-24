@@ -519,28 +519,6 @@ class TopicBlock extends AbstractBlock {
 			case 'restore-post':
 			case 'reply':
 			case 'moderate-topic':
-				/*
-				 * @todo: below line is a hack and should be removed when 'metadataonly' API param is removed.
-				 * Some history:
-				 * * write APIs (reply, edit-post, ...) used to also output data needed for rendering (e.g. content)
-				 * * we used to have an API param 'format' to tell us what format content is submitted in (write APIs)
-				 * * we used to have an API param 'contentFormat' to us ask output in a certain format (read APIs)
-				 * * we never properly implemented 'contentFormat' in write APIs, the output always defaulted to storage
-				 *   format (which is HTML by default)
-				 * * we stopped letting write APIs output content and renamed both input & output format param to
-				     'format' for consistency
-				 * * ... but for B/C reasons, we're currently in an inconsistent state where 'contentFormat' is still
-				 *   accepted but autorenamed to 'format', and we still let write APIs output render data
-				 * * we plan to get rid of both of those later: https://gerrit.wikimedia.org/r/#/c/202346/ &
-				 *   https://gerrit.wikimedia.org/r/#/c/203826/
-				 * * even though we no longer use the write API render data, we still supply it, and because of the
-				 *   changes/fixes to 'format', it tries to parse all topics from html to wikitext, which slows down
-				 *   that request
-				 * * this 1-line hack will force output format to HTML, which is what we usually store content in, and
-				 *   what we used to output content in before we fixed up 'format' params - this should be fine until
-				 *   we get rid of deprecated BC-compat thingies
-				 */
-				$options['format'] = 'fixed-html';
 			case 'view-topic':
 			case 'view' && !isset( $options['postId'] ) && !isset( $options['revId'] );
 				// view full topic
