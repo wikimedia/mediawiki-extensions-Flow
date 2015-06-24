@@ -339,6 +339,8 @@
 '.$sp.'		<div class="flow-error-container">
 '.$sp.'		</div>
 '.$sp.'
+'.$sp.'		<div class="flow-ui-loading"><div class="mw-ui-icon mw-ui-icon-before mw-ui-icon-advanced"></div></div>
+'.$sp.'
 '.$sp.'		<a data-flow-interactive-handler="apiRequest"
 '.$sp.'		   data-flow-api-handler="'.htmlentities((string)((isset($in['loadMoreApiHandler']) && is_array($in)) ? $in['loadMoreApiHandler'] : null), ENT_QUOTES, 'UTF-8').'"
 '.$sp.'		   data-flow-api-target="< .flow-load-more"
