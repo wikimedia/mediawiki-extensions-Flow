@@ -65,6 +65,8 @@
 		surface = this.target.addSurface( this.dmDoc );
 		this.target.setSurface( surface );
 		this.target.$element.insertAfter( this.$node );
+		// Reattach the toolbar so it is before VE's debug bar
+		this.target.attachToolbar();
 
 		this.$node
 			.hide()
