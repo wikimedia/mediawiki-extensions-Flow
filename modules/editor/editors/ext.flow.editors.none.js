@@ -18,6 +18,8 @@
 
 		// node the editor is associated with.
 		this.$node = $node;
+		this.$controls = $( '<div>' )
+			.addClass( 'flow-switcher-controls' );
 
 		this.widget = new OO.ui.TextInputWidget( {
 			value: content || '',
@@ -53,7 +55,7 @@
 		// only attach switcher if VE is actually enabled and supported
 		// code to figure out if that VE is supported is in that module
 		if ( mw.config.get( 'wgFlowEditorList' ).indexOf( 'visualeditor' ) !== -1 ) {
-			mw.loader.using( 'ext.flow.editors.visualeditor', $.proxy( this.attachControls, this ) );
+			mw.loader.using( 'ext.flow.editors.visualeditor', this.attachControls.bind( this ) );
 		}
 
 		this.widget.connect( this, { change: [ 'emit', 'change' ] } );
@@ -104,8 +106,8 @@
 	};
 
 	mw.flow.editors.none.prototype.attachControls = function () {
-		var $preview, $usesWikitext, $controls, templateArgs,
-			board = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( this.$node );
+		var $preview, $usesWikitext, templateArgs,
+			$wrapper, $switcher;
 
 		$usesWikitext = $( '<div>' )
 			.html( mw.message( 'flow-wikitext-editor-help-uses-wikitext' ).parse() )
@@ -137,16 +139,42 @@
 			};
 		}
 
-		$controls = $( mw.flow.TemplateEngine.processTemplateGetFragment(
-			'flow_editor_switcher.partial',
-			templateArgs
-		) ).children();
+		// Don't attach controls if there already are controls
+		if (
+			this.$node.closest( '.flow-editor' ).length === 0 ||
+			this.$node.closest( '.flow-editor' ).find( '.flow-switcher-controls' )
+		) {
+			$wrapper = $( '<div>' )
+				.append(
+					$( '<p>' )
+						.addClass( 'flow-wikitext-editor-help' )
+						.html( templateArgs.help_text )
+				);
+			if ( templateArgs.enable_switcher ) {
+				$switcher = $( '<a>' )
+					.addClass( 'flow-editor-switcher' )
+					.attr( 'title', mw.msg( 'flow-wikitext-switch-editor-tooltip' ) )
+					.html( '&lt;/&gt;' );
 
-		// insert help information + editor switcher, and make it interactive
-		board.emitWithReturn( 'makeContentInteractive', $controls.appendTo( this.$node.closest( '.flow-editor' ) ) );
+				$switcher.on( 'click', this.onSwitcherClick.bind( this ) );
+
+				$wrapper.append( $switcher );
+			}
+
+			this.$controls.empty().append(
+					$wrapper,
+					$( '<div>' )
+						.addClass( 'flow-ui-clear' )
+				);
+			this.$node.closest( '.flow-editor' ).append( this.$controls );
+		}
 	};
 
 	mw.flow.editors.none.prototype.focus = function () {
 		return this.widget.focus();
+	};
+
+	mw.flow.editors.none.prototype.onSwitcherClick = function () {
+		mw.flow.editor.switchEditor( this.$node, 'visualeditor' );
 	};
 }( jQuery, mediaWiki ) );

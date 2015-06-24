@@ -9,7 +9,7 @@
 	 * @todo not like this
 	 */
 	$( document ).ready( function () {
-		var flowBoard, dmBoard,
+		var flowBoard, dmBoard, newTopicEditor,
 			$component = $( '.flow-component' );
 
 		// HACK: If there is no component, we are not on a flow
@@ -96,5 +96,11 @@
 		} else {
 			mw.flow.system.populateBoardFromApi();
 		}
+
+		newTopicEditor = new mw.flow.ui.EditorWidget( {
+			action: 'new-topic',
+			board: flowBoard
+		} );
+		$( '.flow-newtopic-container .flow-js' ).empty().html( newTopicEditor.$element );
 	} );
 }( jQuery ) );
