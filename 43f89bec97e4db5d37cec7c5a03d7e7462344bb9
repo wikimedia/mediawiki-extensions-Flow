@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_d677b834",
+        "filename": "includes/Import/Wikitext/ConversionStrategy.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-24T17:59:43Z",
+      "side": 1,
+      "message": "It would have been safer to add noConvertTemplates at the end.",
+      "revId": "43f89bec97e4db5d37cec7c5a03d7e7462344bb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
