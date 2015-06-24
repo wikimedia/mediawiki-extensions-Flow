@@ -229,8 +229,12 @@ class View extends ContextSource {
 					$page = 'history';
 					break;
 				case 'topic':
+					if ( $block['submitted']['action'] === 'history' ) {
+						$page = 'history';
+					} else {
+						$page = 'topic';
+					}
 					$flowComponent = 'board';
-					$page = 'topic';
 					break;
 				default:
 					$flowComponent = 'board';
