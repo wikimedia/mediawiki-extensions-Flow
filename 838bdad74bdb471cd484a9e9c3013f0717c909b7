@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_333ba398",
+        "filename": "handlebars/flow_block_header_edit.handlebars",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-06-25T12:36:15Z",
+      "side": 1,
+      "message": "Change should\u0027ve affected flow_block_header_edit.handlebars.php? (run make compile-lightncandy after changing handlebars files)",
+      "revId": "838bdad74bdb471cd484a9e9c3013f0717c909b7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
