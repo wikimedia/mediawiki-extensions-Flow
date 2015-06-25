@@ -159,6 +159,17 @@ class RecentChanges extends AbstractFormatter {
 	/**
 	 * @param RecentChangesRow $row
 	 * @param IContextSource $ctx
+	 * @return string
+	 * @throws PermissionException
+	 */
+	public function getTimestampLink( $row, $ctx ) {
+		$data = $this->serializer->formatApi( $row, $ctx, 'recentchanges' );
+		return $this->formatTimestamp( $data, 'time' );
+	}
+
+	/**
+	 * @param RecentChangesRow $row
+	 * @param IContextSource $ctx
 	 * @param array $block
 	 * @param array $links
 	 * @return array|false Links array, or false on failure
