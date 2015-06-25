@@ -414,7 +414,7 @@
 	"apihelp-flow+edit-topic-summary-param-format": "Formato del resumen (wikitexto|html)",
 	"apihelp-flow+edit-topic-summary-example-1": "Editar el resumen de [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+lock-topic-param-moderationState": "Estado en el que poner el tema, ya sea <kbd>lock</kbd> (abierto) o <kbd>unlock</kbd> (cerrado).",
-	"apihelp-flow+lock-topic-param-reason": "El motivo por el cual bloquear o desbloquear el tema. Ten en cuenta que el cliente Flow del wiki usa aquí «Marcar como resuelto», y opcionalmente añade información adicional en el resumen.",
+	"apihelp-flow+lock-topic-param-reason": "El motivo por el cual bloquear o desbloquear el tema. Ten en cuenta que el cliente Flow de la wiki usa aquí «Marcar como resuelto» y, opcionalmente, añade información adicional en el resumen.",
 	"apihelp-flow+lock-topic-example-1": "Bloquear [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+moderate-post-description": "Modera una publicación Flow.",
 	"apihelp-flow+moderate-post-param-moderationState": "A qué nivel moderar.",
