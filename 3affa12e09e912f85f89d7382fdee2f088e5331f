@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_8ab0118a",
+        "filename": "includes/Data/Storage/TopicHistoryStorage.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-25T23:02:28Z",
+      "side": 1,
+      "message": "This is a strangely named method since it doesn\u0027t actually traverse the tree to find descendants (it just expands pre-traversed entities), but it\u0027s not being changed, so it\u0027s fine.",
+      "revId": "3affa12e09e912f85f89d7382fdee2f088e5331f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
