@@ -16,7 +16,7 @@ class FlowPage < WikiPage
 
   # board description
   a(:edit_description_link, title: "Edit description")
-  div(:description_content, css: ".flow-board-header-detail-view")
+  div(:description_content, css: ".flow-board-header-content")
   form(:edit_description_form, css: ".edit-header-form")
   def edit_description_textbox_element
     visualeditor_or_textarea 'edit-header-form'
