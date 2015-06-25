@@ -5,11 +5,11 @@ use Flow\Container;
 use Flow\Exception\FlowException;
 use Flow\Formatter\CheckUserQuery;
 use Flow\Model\UUID;
-use Flow\NotificationController;
 use Flow\OccupationController;
 use Flow\SpamFilter\AbuseFilter;
 use Flow\TalkpageManager;
 use Flow\WorkflowLoaderFactory;
+use Flow\Data\Listener\RecentChangesListener;
 
 class FlowHooks {
 	/**
@@ -404,13 +404,7 @@ class FlowHooks {
 		$rc = $block[0];
 
 		// quit if non-flow
-		$source = $block[0]->getAttribute( 'rc_source' );
-		if ( $source === null ) {
-			$rcType = (int) $block[0]->getAttribute( 'rc_type' );
-			if ( $rcType !== RC_FLOW ) {
-				return true;
-			}
-		} elseif ( $source !== Flow\Data\Listener\RecentChangesListener::SRC_FLOW ) {
+		if ( !FlowHooks::isFlow( $rc ) ) {
 			return true;
 		}
 
@@ -442,6 +436,47 @@ class FlowHooks {
 
 		$links = $logTextLinks;
 		return true;
+	}
+
+	/**
+	 * @param EnhancedChangesList $changesList
+	 * @param array $data
+	 * @param RecentChange[] $block
+	 * @param RecentChange $rc
+	 * @return bool
+	 */
+	public static function onEnhancedChangesListGetRecentChangeEntryLineData( $changesList, &$data, $block, $rc ) {
+		// quit if non-flow
+		if ( !FlowHooks::isFlow( $rc ) ) {
+			return true;
+		}
+
+		$query = Container::get( 'query.recentchanges' );
+		$row = $query->getResult( $changesList, $rc, $changesList->isWatchlist() );
+		if ( $row === false ) {
+			return false;
+		}
+
+		/** @var Flow\Formatter\RecentChanges $formatter */
+		$formatter = Container::get( 'formatter.recentchanges' );
+		$data['timestampLink'] = $formatter->getTimestampLink( $row, $changesList );
+
+		return true;
+	}
+
+	/**
+	 * Checks if the given recent change entry is from Flow
+	 * @param RecentChange $rc
+	 * @return bool
+	 */
+	private static function isFlow( $rc ) {
+		$source = $rc->getAttribute( 'rc_source' );
+		if ( $source === null ) {
+			$rcType = (int) $rc->getAttribute( 'rc_type' );
+			return $rcType === RC_FLOW;
+		} else {
+			return $source === RecentChangesListener::SRC_FLOW;
+		}
 	}
 
 	public static function onSpecialCheckUserGetLinksFromRow( CheckUser $checkUser, $row, &$links ) {
