@@ -10,7 +10,7 @@ Feature: Board description
 
   Scenario: No description on a new board
     When I am on a new board
-    Then the description should be " "
+    Then the description should be empty
 
   Scenario: Edit description on a new board
     Given I am on a new board
