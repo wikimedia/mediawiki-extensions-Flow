@@ -1,7 +1,7 @@
 Then(/^the description should be "(.*?)"$/) do |content|
   on(FlowPage) do |page|
     page.description_content_element.when_present
-    page.description_content.should match Regexp.escape(content)
+    page.description_content.should eq(content)
   end
 end
 
@@ -12,5 +12,10 @@ When(/^I set the description to "(.*?)"$/) do |description_text|
     page.edit_description_textbox_element.when_present.clear
     page.edit_description_textbox_element.when_present.send_keys description_text
     page.edit_description_save_element.when_present.click
+    page.description_content_element.when_present
   end
+end
+
+Then(/^the description should be empty$/) do
+  step "the description should be \"\""
 end
