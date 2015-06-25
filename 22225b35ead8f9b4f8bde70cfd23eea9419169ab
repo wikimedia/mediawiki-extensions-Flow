@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_d0025275",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-06-25T15:58:41Z",
+      "side": 1,
+      "message": "Typehint: RecentChange $rc\n\nMaybe move this inside RecentChangesQuery (which is used in both places that need this anyway)",
+      "revId": "22225b35ead8f9b4f8bde70cfd23eea9419169ab",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
