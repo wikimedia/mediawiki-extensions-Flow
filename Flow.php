@@ -106,6 +106,7 @@ $wgHooks['OldChangesListRecentChangesLine'][] = 'FlowHooks::onOldChangesListRece
 $wgHooks['ChangesListInsertArticleLink'][] = 'FlowHooks::onChangesListInsertArticleLink';
 $wgHooks['ChangesListInitRows'][] = 'FlowHooks::onChangesListInitRows';
 $wgHooks['EnhancedChangesList::getLogText'][] = 'FlowHooks::onGetLogText';
+$wgHooks['EnhancedChangesList::getTimestampLink'][] = 'FlowHooks::onGetTimestampLink';
 $wgHooks['SkinTemplateNavigation::Universal'][] = 'FlowHooks::onSkinTemplateNavigation';
 $wgHooks['Article::MissingArticleConditions'][] = 'FlowHooks::onMissingArticleConditions';
 $wgHooks['SpecialWatchlistGetNonRevisionTypes'][] = 'FlowHooks::onSpecialWatchlistGetNonRevisionTypes';
