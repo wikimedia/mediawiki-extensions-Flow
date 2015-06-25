@@ -1,4 +1,6 @@
-@chrome @clean @ee-prototype.wmflabs.org @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10 @login @test2.wikipedia.org
+@chrome @firefox @internet_explorer_10
+@clean @login
+@en.wikipedia.beta.wmflabs.org
 Feature: Follow user links
 
   Scenario: User links takes me to the user page

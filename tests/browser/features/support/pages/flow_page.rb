@@ -10,7 +10,7 @@ class FlowPage < WikiPage
     if parent.div_element(class: 'flow-editor-visualeditor').exists?
       parent.div_element(class: 've-ce-documentNode')
     else
-      parent.div_element(class: 'oo-ui-widget').text_area_element
+      parent.div_element(class: 'oo-ui-textInputWidget').text_area_element
     end
   end
 
@@ -189,6 +189,26 @@ class FlowPage < WikiPage
     page.first_reply_element.div_element(css: '.flow-post-content')
   end
 
+  #### 2rd post
+  div(:second_post, css: '.flow-post', index: 1)
+  a(:second_post_actions_link, css: ".flow-topic .flow-post .flow-menu-js-drop a", index: 1)
+  ul(:second_post_actions_menu, css: ".flow-topic .flow-post .flow-menu ul", index: 1)
+
+  a(:actions_link_permalink_second_comment) do |page|
+    page.second_post_actions_menu_element.link_element(text: "Permalink")
+  end
+
+  a(:actions_link_hide_second_comment) do |page|
+    page.second_post_actions_menu_element.link_element(text: "Hide")
+  end
+
+  div(:second_post_content) do |page|
+    page.second_post_element.div_element(css: '.flow-post-content', index: 0)
+  end
+  div(:second_post_moderation_msg) do |page|
+    page.second_post_element.span_element(css: '.flow-moderated-post-content', index: 0)
+  end
+
   #### 3rd reply
   # @todo: Should be index: 2, but sadly no way to distinguish replies from original post
   div(:third_reply, css: '.flow-post', index: 3)
@@ -226,7 +246,11 @@ class FlowPage < WikiPage
   # top-level replies to the topic, and replies to regular posts
   form(:new_reply_form, css: ".flow-reply-form")
 
-  def new_reply_input_element
+  text_area(:new_reply_placeholder) do |page|
+    page.new_reply_form_element.text_area_element
+  end
+
+  def new_reply_editor_element
     visualeditor_or_textarea 'flow-reply-form'
   end
 
@@ -259,9 +283,9 @@ class FlowPage < WikiPage
   text_field(:no_javascript_topic_title_text, name: "topiclist_topic")
 
   # Sorting
-  a(:newest_topics_link, text: "Newest topics")
+  span(:newest_topics_link, text: "Newest topics")
   a(:recently_active_topics_choice, href: /topiclist_sortby=updated/)
-  a(:recently_active_topics_link, text: "Recently active topics")
+  span(:recently_active_topics_link, text: "Recently active topics")
   a(:newest_topics_choice, href: /topiclist_sortby=newest/)
 
   ## Watch and unwatch links

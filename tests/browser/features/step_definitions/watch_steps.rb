@@ -58,7 +58,6 @@ end
 
 Then(/^I should see the Watch Topic link$/) do
   on(FlowPage) do |page|
-    page.first_topic_unwatch_link_element.when_not_visible
-    expect(page.first_topic_watch_link_element).to be_visible
+    page.first_topic_watch_link_element.when_present
   end
 end

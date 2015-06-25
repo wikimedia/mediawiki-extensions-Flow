@@ -1,4 +1,6 @@
-@chrome @clean @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10 @login @test2.wikipedia.org
+@chrome @firefox @internet_explorer_10
+@clean @login
+@en.wikipedia.beta.wmflabs.org
 Feature: Replying
 
   Background:
