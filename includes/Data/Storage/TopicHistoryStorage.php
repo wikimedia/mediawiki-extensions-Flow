@@ -48,50 +48,58 @@ class TopicHistoryStorage implements ObjectStorage {
 		return null;
 	}
 
+	/**
+	 * This can be called with 2 different kinds of input:
+	 * * queries for 'topic_root_id': a "virtual" column that we'll interpret.
+	 *   Based on these root ids (=topic id), we'll fetch all revision (post &
+	 *   summary) inside that topic.
+	 * * queries for 'rev_id': by ShallowCompactor, when expanding: when caching
+	 *   lists like these, we only store the id & then expand the full list from
+	 *   other cache data. Shallow storage for TopicHistoryIndex is defined by
+	 *   storage.topic_history.indexes.primary (it's compacted by rev_id)
+	 *   rev_id can contain ids for both posts & summaries.
+	 *
+	 * @param array $queries
+	 * @param array $options
+	 * @return array
+	 */
 	public function findMulti( array $queries, array $options = array() ) {
-		// all queries are for roots( guaranteed by constructor), so anything that falls
-		// through and has to be queried from storage will actually need to be doing a
-		// special condition either joining against flow_tree_node or first collecting the
-		// subtree node lists and then doing a big IN condition
-
-		// This isn't a hot path (should be pre-populated into index) but we still don't want
-		// horrible performance
-
-		$roots = array();
-		foreach ( $queries as $features ) {
-			$roots[] = UUID::create( $features['topic_root_id'] );
+		foreach ( $queries as $idx => $query ) {
+			if ( isset( $query['topic_root_id'] ) ) {
+				$queries[$idx] = $this->findDescendantQuery( $query );
+			}
 		}
+
+		return $this->findDescendants( $queries, $options );
+	}
+
+	/**
+	 * All queries are for roots (guaranteed in findMulti), so anything that falls
+	 * through and has to be queried from storage will actually need to be doing a
+	 * special condition either joining against flow_tree_node or first collecting the
+	 * subtree node lists and then doing a big IN condition
+	 *
+	 * This isn't a hot path (should be pre-populated into index) but we still don't want
+	 * horrible performance
+	 *
+	 * @param array $queries
+	 * @return array
+	 * @throws \Flow\Exception\InvalidInputException
+	 */
+	protected function findDescendantQuery( array $query ) {
+		$roots = array( UUID::create( $query['topic_root_id'] ) );
 		$nodeList = $this->treeRepository->fetchSubtreeNodeList( $roots );
 		if ( $nodeList === false ) {
 			// We can't return the existing $retval, that false data would be cached.
 			return array();
 		}
 
-		$descendantQueries = array();
-		foreach ( $queries as $idx => $features ) {
-			/** @var UUID $topicRootId */
-			$topicRootId = UUID::create( $features['topic_root_id'] );
-			$nodes = $nodeList[$topicRootId->getAlphadecimal()];
-			$descendantQueries[$idx] = array(
-				'rev_type_id' => UUID::convertUUIDs( $nodes ),
-			);
-		}
-
-		$res = $this->findDescendants( $descendantQueries, $options );
-		if  ( !$res ) {
-			return array();
-		}
-
-		$results = array();
-
-		foreach ( $res as $idx => $rows ) {
-			$results[$idx] = $rows;
-			unset( $queries[$idx] );
-		}
-		if ( $queries ) {
-			// Log something about not finding everything?
-		}
-		return $results;
+		/** @var UUID $topicRootId */
+		$topicRootId = UUID::create( $query['topic_root_id'] );
+		$nodes = $nodeList[$topicRootId->getAlphadecimal()];
+		return array(
+			'rev_type_id' => UUID::convertUUIDs( $nodes ),
+		);
 	}
 
 	public function findDescendants( array $queries, array $options = array() ) {

@@ -665,12 +665,11 @@ $c['storage.topic_history.indexes.topic_lookup'] = function( $c ) {
 			'order' => 'DESC',
 			'shallow' => $c['storage.topic_history.indexes.primary'],
 			'create' => function( array $row ) {
-				// only create new indexes for post revisions
+				// only create new indexes for new topics, so it has to be
+				// of type 'post' and have no parent post & revision
 				if ( $row['rev_type'] !== 'post' ) {
 					return false;
 				}
-				// if the post has no parent and the revision has no parent
-				// then this is a brand new topic title
 				return $row['tree_parent_id'] === null && $row['rev_parent_id'] === null;
 			},
 		)

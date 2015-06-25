@@ -388,7 +388,8 @@ class TreeRepository {
 	 * Return the id's of all nodes which are a descendant of provided roots
 	 *
 	 * @param UUID[] $roots
-	 * @return array map from root id to its descendant list
+	 * @return array|bool map from root id to its descendant list or false
+	 * @throws \Flow\Exception\InvalidInputException
 	 */
 	public function fetchSubtreeNodeList( array $roots ) {
 		$list = new MultiGetList( $this->cache );
