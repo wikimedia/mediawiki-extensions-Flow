@@ -45,9 +45,7 @@ mw.flow.ve.ui.SwitchEditorAction.static.methods = [ 'switch' ];
  * @method
  */
 mw.flow.ve.ui.SwitchEditorAction.prototype.switch = function () {
-	var $node = this.surface.$element.closest( 'form' ).find( 'textarea' );
-
-	mw.flow.editor.switchEditor( $node, 'none' );
+	this.surface.emit( 'switchEditor' );
 };
 
 ve.ui.actionFactory.register( mw.flow.ve.ui.SwitchEditorAction );
