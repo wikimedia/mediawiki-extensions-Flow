@@ -1,0 +1,68 @@
+@import 'flow.colors';
+
+.flow-ui-editorSwitcherWidget {
+	display: block;
+	background-color: white;
+
+	&-trigger-input textarea {
+		// Comma-separating this rule doesn't work :(
+		// Placeholder text styling must be set individually for each browser @winter
+		&::-webkit-input-placeholder { // webkit
+			font-style: italic;
+		}
+		&::-moz-placeholder { // FF 4-18
+			font-style: italic;
+		}
+		&:-moz-placeholder { // FF >= 19
+			font-style: italic;
+		}
+		&:-ms-input-placeholder { // IE >= 10
+			font-style: italic;
+		}
+	}
+
+	// because we're attaching switcher controls below the textarea & we
+	// want them to look unified with the textarea, we'll have to take away
+	// it's border and re-apply on the parent node that contains both
+	.flow-ui-editorWidget-expanded & {
+		border: 1px solid @colorFieldBorder;
+		-webkit-transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+		-moz-transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+		-o-transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+		transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+		.oo-ui-textInputWidget textarea {
+			border: 0;
+			-webkit-appearance: none;
+			background: transparent;
+			min-height: 8em;
+			box-shadow: none;
+
+			&:focus {
+				box-shadow: none;
+			}
+
+			// Comma-separating this rule doesn't work :(
+			// Placeholder text styling must be set individually for each browser @winter
+			&::-webkit-input-placeholder { // webkit
+				font-style: italic;
+			}
+			&::-moz-placeholder { // FF 4-18
+				font-style: italic;
+			}
+			&:-moz-placeholder { // FF >= 19
+				font-style: italic;
+			}
+			&:-ms-input-placeholder { // IE >= 10
+				font-style: italic;
+			}
+		}
+
+		// Undo border & box-shadow on textarea and re-apply it on the
+		// div that contains textarea + legal text + switch button
+		&-focused {
+			border-color: @colorProgressive;
+			box-shadow: inset 0 0 0 2px @colorProgressive;
+		}
+	}
+}
