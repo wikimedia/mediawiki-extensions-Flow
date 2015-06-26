@@ -386,4 +386,11 @@ class PostRevision extends AbstractRevision {
 	public function getCollection() {
 		return PostCollection::newFromRevision( $this );
 	}
+
+	/**
+	 * @return bool
+	 */
+	public function isInitialTopicCreation() {
+		return $this->isTopicTitle() && $this->getChangeType() === 'new-post';
+	}
 }
