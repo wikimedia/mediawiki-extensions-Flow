@@ -48,6 +48,9 @@ class TalkpageManagerTest extends MediaWikiLangTestCase {
 				false,
 				true
 			),
+			/*
+			  Temporarily disabled for T103776
+
 			array(
 				array(),
 				array( NS_USER_TALK ),
@@ -55,6 +58,7 @@ class TalkpageManagerTest extends MediaWikiLangTestCase {
 				false,
 				true
 			),
+			*/
 			array(
 				array(),
 				array( NS_USER_TALK ),
