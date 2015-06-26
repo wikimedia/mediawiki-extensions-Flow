@@ -342,7 +342,7 @@
 	"flow-toggle-small-topics": "Переключиться в режим малых тем",
 	"flow-toggle-topics": "Переключиться в режим только тем",
 	"flow-toggle-topics-posts": "Переключитесь в режим тем и сообщений",
-	"flow-terms-of-use-summarize": "Нажимая «{{int:flow-topic-action-summarize-topic}}», вы соглашаетесь с условиями использования этой вики.",
+	"flow-terms-of-use-summarize": "Нажимая «{{int:flow-topic-action-update-topic-summary}}», вы соглашаетесь с условиями использования этой вики.",
 	"flow-terms-of-use-lock-topic": "Нажимая \"{{int:flow-topic-action-lock-topic}}\", вы соглашаетесь с условиями использования этой вики.",
 	"flow-terms-of-use-unlock-topic": "Нажимая \"{{int:flow-topic-action-unlock-topic}}\", вы соглашаетесь с условиями использования этой вики.",
 	"flow-whatlinkshere-post": "из [$1 сообщения]",

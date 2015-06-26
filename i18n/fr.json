@@ -369,7 +369,7 @@
 	"flow-toggle-small-topics": "Basculer vers l'affichage des titres uniquement",
 	"flow-toggle-topics": "Basculer vers l'affichage des discussions sans leur détail",
 	"flow-toggle-topics-posts": "Basculer vers l'affichage des discussions et de leur détail",
-	"flow-terms-of-use-summarize": "En cliquant sur « {{int:flow-topic-action-summarize-topic}} », vous acceptez les conditions d’utilisation de ce wiki.",
+	"flow-terms-of-use-summarize": "En cliquant sur « {{int:flow-topic-action-update-topic-summary}} », vous acceptez les conditions d’utilisation de ce wiki.",
 	"flow-terms-of-use-lock-topic": "En cliquant sur « {{int:flow-topic-action-lock-topic}} », vous acceptez les conditions d’utilisation de ce wiki.",
 	"flow-terms-of-use-unlock-topic": "En cliquant sur « {{int:flow-topic-action-unlock-topic}} », vous acceptez les conditions d’utilisation de ce wiki.",
 	"flow-whatlinkshere-post": "à partir d'un [$1 message]",

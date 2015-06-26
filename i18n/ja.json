@@ -257,7 +257,7 @@
 	"flow-recent-topics": "最近活発な話題",
 	"flow-toggle-topics": "話題のみの表示に切り替える",
 	"flow-toggle-topics-posts": "話題と投稿の表示に切り替える",
-	"flow-terms-of-use-summarize": "「{{int:flow-topic-action-summarize-topic}}」をクリックすると、このウィキの利用規約に同意したと見なされます。",
+	"flow-terms-of-use-summarize": "「{{int:flow-topic-action-update-topic-summary}}」をクリックすると、このウィキの利用規約に同意したと見なされます。",
 	"flow-whatlinkshere-post": "[$1 投稿]から",
 	"flow-whatlinkshere-header": "[$1 ヘッダー]から",
 	"flow": "Flow",

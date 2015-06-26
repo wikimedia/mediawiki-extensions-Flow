@@ -355,7 +355,7 @@
 	"flow-toggle-small-topics": "Cambiar a la vista de temas pequeños",
 	"flow-toggle-topics": "Cambiar a la vista de solo temas",
 	"flow-toggle-topics-posts": "Cambiar a la vista de temas y publicaciones",
-	"flow-terms-of-use-summarize": "Al pulsar en «{{int:flow-topic-action-summarize-topic}}» aceptas los términos de uso de este wiki.",
+	"flow-terms-of-use-summarize": "Al pulsar en «{{int:flow-topic-action-update-topic-summary}}» aceptas los términos de uso de este wiki.",
 	"flow-terms-of-use-lock-topic": "Al pulsar en «{{int:flow-topic-action-lock-topic}}» aceptas los términos de uso de este wiki.",
 	"flow-terms-of-use-unlock-topic": "Al pulsar en «{{int:flow-topic-action-unlock-topic}}» aceptas los términos de uso de este wiki.",
 	"flow-whatlinkshere-post": "de una [$1 publicación]",

@@ -331,7 +331,7 @@
 	"flow-toggle-small-topics": "Cambia á vista reducida de temas",
 	"flow-toggle-topics": "Cambia á vista pregada de temas",
 	"flow-toggle-topics-posts": "Cambia á vista de tema e mensaxes",
-	"flow-terms-of-use-summarize": "Ó premer en \"{{int:flow-topic-action-summarize-topic}}\", acepta os termos de uso desta wiki.",
+	"flow-terms-of-use-summarize": "Ó premer en \"{{int:flow-topic-action-update-topic-summary}}\", acepta os termos de uso desta wiki.",
 	"flow-terms-of-use-lock-topic": "Ó premer en «{{int:flow-topic-action-lock-topic}}» acepta os termos de uso desta wiki.",
 	"flow-terms-of-use-unlock-topic": "Ó premer en «{{int:flow-topic-action-unlock-topic}}» acepta os termos de uso desta wiki.",
 	"flow-whatlinkshere-post": "desde unha [$1 mensaxe]",

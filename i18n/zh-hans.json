@@ -352,7 +352,7 @@
 	"flow-toggle-small-topics": "切换为小话题视图",
 	"flow-toggle-topics": "切换为仅话题视图",
 	"flow-toggle-topics-posts": "切换为话题和帖子视图",
-	"flow-terms-of-use-summarize": "点击“{{int:flow-topic-action-summarize-topic}}”，即表示您认同本wiki的使用条款。",
+	"flow-terms-of-use-summarize": "点击“{{int:flow-topic-action-update-topic-summary}}”，即表示您认同本wiki的使用条款。",
 	"flow-terms-of-use-lock-topic": "点击“{{int:flow-topic-action-lock-topic}}”，即表示您认同本wiki的使用条款。",
 	"flow-terms-of-use-unlock-topic": "点击“{{int:flow-topic-action-unlock-topic}}”，即表示您认同本wiki的使用条款。",
 	"flow-whatlinkshere-post": "来自一个[$1 帖子]",

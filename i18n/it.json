@@ -325,7 +325,7 @@
 	"flow-toggle-small-topics": "Passa alla vista ridotta",
 	"flow-toggle-topics": "Passa alla vista degli argomenti",
 	"flow-toggle-topics-posts": "Passa alla vista degli argomenti e dei messaggi",
-	"flow-terms-of-use-summarize": "Cliccando su \"{{int:flow-topic-action-summarize-topic}}\", accetti le condizioni d'uso per questo wiki.",
+	"flow-terms-of-use-summarize": "Cliccando su \"{{int:flow-topic-action-update-topic-summary}}\", accetti le condizioni d'uso per questo wiki.",
 	"flow-terms-of-use-lock-topic": "Cliccando su \"{{int:flow-topic-action-lock-topic}}\", accetti le condizioni d'uso per questo wiki.",
 	"flow-terms-of-use-unlock-topic": "Cliccando su \"{{int:flow-topic-action-unlock-topic}}\", accetti le condizioni d'uso per questo wiki.",
 	"flow-whatlinkshere-post": "da un [$1 messaggio]",

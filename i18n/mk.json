@@ -336,7 +336,7 @@
 	"flow-toggle-small-topics": "Прејди на мал преглед на темите",
 	"flow-toggle-topics": "Прејди на преглед на само теми",
 	"flow-toggle-topics-posts": "Прејди на преглед на теми и објави",
-	"flow-terms-of-use-summarize": "Стискајќи на „{{int:flow-topic-action-summarize-topic}}“, се согласувате со условите на употреба на ова вики.",
+	"flow-terms-of-use-summarize": "Стискајќи на „{{int:flow-topic-action-update-topic-summary}}“, се согласувате со условите на употреба на ова вики.",
 	"flow-terms-of-use-lock-topic": "Стискајќи на „{{int:flow-topic-action-lock-topic}}“, се согласувате со условите на употреба на ова вики.",
 	"flow-terms-of-use-unlock-topic": "Стискајќи на „{{int:flow-topic-action-unlock-topic}}“, се согласувате со условите на употреба на ова вики.",
 	"flow-whatlinkshere-post": "од [$1 објава]",

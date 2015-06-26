@@ -341,7 +341,7 @@
 	"flow-toggle-small-topics": "מעבר לתצוגת נושאים קטנה",
 	"flow-toggle-topics": "מעבר לתצוגת נושאים בלבד",
 	"flow-toggle-topics-posts": "מעבר לתצוגת נושאים ורשומות",
-	"flow-terms-of-use-summarize": "לחיצה על \"{{int:flow-topic-action-summarize-topic}}\" מהווה את הסכמתך לתנאי השימוש של הוויקי הזה.",
+	"flow-terms-of-use-summarize": "לחיצה על \"{{int:flow-topic-action-update-topic-summary}}\" מהווה את הסכמתך לתנאי השימוש של הוויקי הזה.",
 	"flow-terms-of-use-lock-topic": "לחיצה על \"{{int:flow-topic-action-lock-topic}}\" מהווה את הסכמתך לתנאי השימוש של אתר הוויקי הזה.",
 	"flow-terms-of-use-unlock-topic": "לחיצה על \"{{int:flow-topic-action-unlock-topic}}\" מהווה את הסכמתך לתנאי השימוש של אתר הוויקי הזה.",
 	"flow-whatlinkshere-post": "מתוך [$1 רשומה]",

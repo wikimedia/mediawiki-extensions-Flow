@@ -340,7 +340,7 @@
 	"flow-toggle-small-topics": "Zur Kleine-Themen-Ansicht wechseln",
 	"flow-toggle-topics": "Zur Nur-Themen-Ansicht wechseln",
 	"flow-toggle-topics-posts": "Zur Themen-und-Beiträge-Ansicht wechseln",
-	"flow-terms-of-use-summarize": "Mit dem Klicken auf „{{int:flow-topic-action-summarize-topic}}“ stimmst du den Nutzungsbedingungen für dieses Wiki zu.",
+	"flow-terms-of-use-summarize": "Mit dem Klicken auf „{{int:flow-topic-action-update-topic-summary}}“ stimmst du den Nutzungsbedingungen für dieses Wiki zu.",
 	"flow-terms-of-use-lock-topic": "Mit dem Klicken auf „{{int:flow-topic-action-lock-topic}}“ stimmst du den Nutzungsbedingungen für dieses Wiki zu.",
 	"flow-terms-of-use-unlock-topic": "Mit dem Klicken auf „{{int:flow-topic-action-unlock-topic}}“ stimmst du den Nutzungsbedingungen für dieses Wiki zu.",
 	"flow-whatlinkshere-post": "von einem [$1 Beitrag]",
