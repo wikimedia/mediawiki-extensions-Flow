@@ -376,15 +376,34 @@ $wgResourceModules += array(
 			'flow/ui/widgets/mw.flow.ui.ToCWidget.js',
 			'flow/ui/widgets/mw.flow.ui.ReorderTopicsWidget.js',
 			'flow/ui/widgets/mw.flow.ui.NavigationWidget.js',
+
+			'flow/ui/widgets/editor/editors/mw.flow.ui.AbstractEditorWidget.js',
+			'flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js',
+			'flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js',
+			'flow/ui/widgets/editor/mw.flow.ui.AnonWarningWidget.js',
+			'flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js',
+			'flow/ui/widgets/editor/mw.flow.ui.EditorControlsWidget.js',
+			'flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js',
 		),
 		'styles' => array(
 			'styles/flow/mw.flow.ui.less',
 			'styles/flow/widgets/mw.flow.ui.NavigationWidget.less',
 			'styles/flow/widgets/mw.flow.ui.TopicMenuSelectWidget.less',
 			'styles/flow/widgets/mw.flow.ui.ReorderTopicsWidget.less',
+
+			'styles/flow/widgets/editor/mw.flow.ui.AnonWarningWidget.less',
+			'styles/flow/widgets/editor/mw.flow.ui.EditorControlsWidget.less',
+			'styles/flow/widgets/editor/mw.flow.ui.EditorSwitcherWidget.less',
+			'styles/flow/widgets/editor/mw.flow.ui.EditorWidget.less',
+			'styles/flow/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.less'
+		),
+		'messages' => array(
+			'flow-error-parsoid-failure',
+			'flow-error-default',
 		),
 		'dependencies' => array (
 			'oojs-ui',
+			'es5-shim',
 			'ext.flow.dm',
 		),
 	) + $mobile,
