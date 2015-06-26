@@ -374,6 +374,18 @@ $wgResourceModules += array(
 	'ext.flow.ui' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'flow/ui/mw.flow.ui.js',
+			'flow/ui/widgets/editor/editors/mw.flow.ui.AbstractEditorWidget.js',
+			'flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js',
+			'flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js',
+			'flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js',
+			'flow/ui/widgets/editor/mw.flow.ui.EditorControlsWidget.js',
+			'flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js',
+		),
+		'styles' => array(
+			'styles/flow/widgets/editor/mw.flow.ui.EditorControlsWidget.less',
+			'styles/flow/widgets/editor/mw.flow.ui.EditorSwitcherWidget.less',
+			'styles/flow/widgets/editor/mw.flow.ui.EditorWidget.less',
+			'styles/flow/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.less'
 		),
 		'dependencies' => array (
 			'oojs-ui',

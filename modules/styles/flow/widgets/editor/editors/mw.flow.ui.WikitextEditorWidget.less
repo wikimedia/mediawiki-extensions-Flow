@@ -1,0 +1,42 @@
+@import 'flow.colors';
+
+.flow-ui-wikitextEditorWidget {
+	padding: 4px 6px 6px 6px;
+	position: relative;
+
+	.oo-ui-textInputWidget textarea,
+	.oo-ui-textInputWidget textarea:focus {
+		box-shadow: none;
+		border: solid 1px transparent;
+	}
+
+	&-switcher {
+		display: inline-block;
+		float: right;
+		color: #555;
+
+		&.oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button {
+			background-color: #ccc;
+		}
+	}
+
+	&-label {
+		color: @colorTextLight;
+		font-size: 0.75em;
+		margin: 0.5em 0;
+	}
+
+	.flow-ui-editorWidget-compressed & {
+		textarea {
+			border-bottom: 1px solid @colorFieldBorder;
+			height: 2.25em;
+			min-height: 2.25em;
+			resize: none;
+		}
+
+		&-switcher,
+		&-label {
+			display: none;
+		}
+	}
+}
