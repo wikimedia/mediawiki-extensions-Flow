@@ -46,6 +46,9 @@
 			} else {
 				editor = 'none';
 			}
+			if ( editor === 'wikitext' ) {
+				editor = 'none';
+			}
 
 			mw.loader.using( 'ext.flow.editors.' + editor, function () {
 				// Some editors only work under certain circumstances
