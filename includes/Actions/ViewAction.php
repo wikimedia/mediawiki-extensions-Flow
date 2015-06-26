@@ -3,6 +3,7 @@
 namespace Flow\Actions;
 
 use IContextSource;
+use OutputPage;
 use Page;
 use Title;
 
