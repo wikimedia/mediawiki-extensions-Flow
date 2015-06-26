@@ -45,9 +45,14 @@ mw.flow.ve.ui.SwitchEditorAction.static.methods = [ 'switch' ];
  * @method
  */
 mw.flow.ve.ui.SwitchEditorAction.prototype.switch = function () {
-	var $node = this.surface.$element.closest( 'form' ).find( 'textarea' );
-
-	mw.flow.editor.switchEditor( $node, 'none' );
+	var $editor = this.surface.$element.closest( '.flow-editor' );
+	if ( $editor.length ) {
+		// Old editor
+		mw.flow.editor.switchEditor( $editor.find( 'textarea' ), 'none' );
+	} else {
+		// New editor
+		this.surface.emit( 'switchEditor' );
+	}
 };
 
 ve.ui.actionFactory.register( mw.flow.ve.ui.SwitchEditorAction );
