@@ -10,6 +10,7 @@
 	 */
 	$( document ).ready( function () {
 		var dataBlob, navWidget, flowBoard, dmBoard,
+			pageTitle = mw.Title.newFromText( mw.config.get( 'wgPageName' ) ),
 			$component = $( '.flow-component' ),
 			$board = $( '.flow-board' ),
 			finishLoading = function () {
@@ -41,7 +42,7 @@
 
 		// Load data model
 		mw.flow.system = new mw.flow.dm.System( {
-			pageTitle: mw.Title.newFromText( mw.config.get( 'wgPageName' ) ),
+			pageTitle: pageTitle,
 			tocPostsLimit: 50,
 			renderedTopics: $( '.flow-topic' ).length,
 			boardId: $component.data( 'flow-id' ),
@@ -151,6 +152,8 @@
 				revision = data.revisions[ revisionId ];
 				topic.populate( revision );
 			}
+
+			replaceReplyForms( topicData.$topic );
 		} );
 
 		// Load a topic from the ToC that isn't rendered on
@@ -162,6 +165,51 @@
 		navWidget.on( 'reorderTopics', function ( newOrder ) {
 			flowBoard.topicIdSort = newOrder;
 		} );
+
+		// Replace reply inputs with the editor widget
+		function replaceReplyForms( $element ) {
+			$element.find( '.flow-post.flow-reply-form' ).each( function () {
+				var $topic = $( this ).parent(),
+					placeholder = mw.msg( 'flow-reply-topic-title-placeholder', $topic.find( '.flow-topic-title' ).text().trim() ),
+					replyTo = $( this ).find( 'input[name="topic_replyTo"]' ).val(),
+					editorWidget = new mw.flow.ui.EditorWidget( {
+						placeholder: placeholder,
+						saveMsgKey: 'flow-reply-link'
+					} );
+
+				editorWidget.on( 'saveContent', function ( content, contentFormat ) {
+					editorWidget.pushPending();
+					new mw.Api().postWithToken( 'edit', {
+						action: 'flow',
+						submodule: 'reply',
+						page: 'Topic:' + replyTo, // Using pageTitle here doesn't work for some reason
+						repreplyTo: replyTo,
+						repcontent: content,
+						repformat: contentFormat
+					} )
+						.then( function ( data ) {
+							// HACK get the old system to rerender the topic
+							return flowBoard.flowBoardComponentRefreshTopic(
+								$topic,
+								data.flow.reply.workflow
+							);
+						} )
+						.then( function () {
+							// Destroy the editor
+							editorWidget.destroy();
+							editorWidget.$element.remove();
+							// refreshTopic event handler will call replaceReplyForms() on the
+							// rerendered topic, so the new reply form is also OOUIified
+						}, function () {
+							editorWidget.popPending();
+							//TODO display error
+						} );
+				} );
+				// Replace the reply form with the new editor widget
+				$( this ).replaceWith( editorWidget.$element );
+			} );
+		}
+		replaceReplyForms( $board );
 
 		dataBlob = mw.flow && mw.flow.data;
 		if ( dataBlob && dataBlob.blocks ) {
