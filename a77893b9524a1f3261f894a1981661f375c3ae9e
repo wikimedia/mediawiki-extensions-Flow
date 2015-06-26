@@ -33,6 +33,24 @@
       "revId": "a77893b9524a1f3261f894a1981661f375c3ae9e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_b979a3c4",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 21
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-06-26T21:56:46Z",
+      "side": 1,
+      "message": "Yes\u0027ish.\n\nWIth this, if a topic exists it will not be added again. So ti won\u0027t fail if ToC is added before the full topic, but it won\u0027t add the full data.\n\nThis behavior is fixed 2 commits above, when the data starts being important for the widgets; the reason I left this here is for brevity. \"Do this for now\" sort of thing.\n\nHere\u0027s where it\u0027s being fixed:\n\nhttps://gerrit.wikimedia.org/r/#/c/219402/5/modules/flow/dm/mw.flow.dm.System.js",
+      "parentUuid": "8ec42329_39f13366",
+      "revId": "a77893b9524a1f3261f894a1981661f375c3ae9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
