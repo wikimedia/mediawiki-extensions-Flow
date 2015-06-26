@@ -10,6 +10,7 @@ use Flow\Data\Storage\RevisionStorage;
 use Flow\DbFactory;
 use Flow\Data\ManagerGroup;
 use Flow\Model\UUID;
+use Flow\Model\PostRevision;
 use Flow\Repository\TreeRepository;
 use Flow\Exception\FlowException;
 use ResultWrapper;
@@ -71,6 +72,12 @@ class ContributionsQuery extends AbstractQuery {
 			$this->loadMetadataBatch( $revisions );
 			foreach ( $revisions as $revision ) {
 				try {
+					// hide topic creation from user contribution
+					// also not shown in RC or watchlist
+					if ( $revision instanceof PostRevision && $revision->isInitialTopicCreation() ) {
+						continue;
+					}
+
 					$result = $pager instanceof ContribsPager ? new ContributionsRow : new DeletedContributionsRow;
 					$result = $this->buildResult( $revision, $pager->getIndexField(), $result );
 					$deleted = $result->currentRevision->isDeleted() || $result->workflow->isDeleted();

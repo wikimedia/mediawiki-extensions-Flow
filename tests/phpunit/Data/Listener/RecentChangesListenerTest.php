@@ -17,16 +17,6 @@ class RecentChangesListenerTest extends \MediaWikiTestCase {
 	public function somethingProvider() {
 		return array(
 			array(
-				'New topic recent change goes to the board',
-				// expect
-				NS_MAIN,
-				// something
-				function( $workflow, $user ) {
-					return PostRevision::create( $workflow, $user, 'blah blah', 'wikitext' );
-				}
-			),
-
-			array(
 				'Reply recent change goes to the topic',
 				NS_TOPIC,
 				function( $workflow, $user ) {
