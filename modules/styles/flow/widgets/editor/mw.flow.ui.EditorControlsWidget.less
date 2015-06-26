@@ -1,0 +1,24 @@
+.flow-ui-editorControlsWidget {
+	display: inline-block;
+	width: 100%;
+	padding: 5px;
+	position: relative;
+	margin-top: 0;
+
+	&-buttons {
+		display: inline-block;
+		float: right;
+	}
+
+	&-label {
+		display: inline-block;
+		color: #666;
+		font-size: 0.75em;
+		position: absolute;
+		bottom: 0;
+	}
+
+	.flow-ui-editorWidget-collapsed & {
+		display: none;
+	}
+}
