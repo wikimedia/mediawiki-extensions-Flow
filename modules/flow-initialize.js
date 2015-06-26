@@ -86,6 +86,22 @@
 			}
 		} );
 
+		// Replace reply inputs with the editor widget
+		$( '.flow-post.flow-reply-form ' ).each( function () {
+			var $topic = $( this ).parent(),
+				placeholder = mw.msg( 'flow-reply-topic-title-placeholder', $topic.find( '.flow-topic-title' ).text().trim() ),
+				editorWidget = new mw.flow.ui.EditorWidget( {
+					placeholder: placeholder
+				} );
+			// HACK: While we don't have topic and reply widgets, we
+			// need to still keep a reference for the widget in relation
+			// to what topic it belongs to. For the moment, keep this
+			// reference in the data of the topic div
+			$topic.data( 'editorWidget', editorWidget );
+			// Replace the reply form with the new editor widget
+			$( this ).replaceWith( editorWidget.$element );
+		} );
+
 		if ( mw.flow.data && mw.flow.data.blocks.topiclist && mw.flow.data.blocks.header ) {
 			// Populate the rendered topics
 			mw.flow.system.populateBoardTopicsFromJson( mw.flow.data.blocks.topiclist );
