@@ -39,10 +39,9 @@
 '.$sp.'					<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-edit flow-board-header-icon"></span>'.LCRun3::ch($cx, 'l10n', array(array('flow-edit-header-link'),array()), 'encq').'
 '.$sp.'			</a>
 '.$sp.'' : '').'	</div>
-'.$sp.''.((LCRun3::ifvar($cx, ((isset($in['revision']['content']) && is_array($in['revision'])) ? $in['revision']['content'] : null))) ? '		<div class="flow-board-header-content">
-'.$sp.'			'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['revision']['content']['format']) && is_array($in['revision']['content'])) ? $in['revision']['content']['format'] : null),((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null)),array()), 'encq').'
-'.$sp.'		</div>
-'.$sp.'' : '').'</div>
+'.$sp.'	<div class="flow-board-header-content">
+'.$sp.''.((LCRun3::ifvar($cx, ((isset($in['revision']['content']) && is_array($in['revision'])) ? $in['revision']['content'] : null))) ? ''.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['revision']['content']['format']) && is_array($in['revision']['content'])) ? $in['revision']['content']['format'] : null),((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null)),array()), 'encq').'' : '').'	</div>
+'.$sp.'</div>
 '.$sp.'<a href="javascript:void(0);"
 '.$sp.'	class="mw-ui-button mw-ui-quiet side-rail-toggle-button"
 '.$sp.'	data-flow-interactive-handler="toggleSideRail">

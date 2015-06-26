@@ -10,9 +10,15 @@ Feature: Board description
 
   Scenario: No description on a new board
     When I am on a new board
-    Then the description should be " "
+    Then the description should be empty
 
-  Scenario: Edit description on a new board
+  Scenario: Create a description on a new board
     Given I am on a new board
-    When I set the description to "test12345"
-    Then the description should be "test12345"
+    When I set the description to "first version"
+    Then the description should be "first version"
+
+  Scenario: Edit the description on an existing board
+    Given I am on a new board
+    And I set the description to "first version"
+    When I set the description to "second version"
+    Then the description should be "second version"

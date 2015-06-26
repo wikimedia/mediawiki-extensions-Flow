@@ -11,11 +11,11 @@
 			</a>
 		{{/if}}
 	</div>
-	{{#if revision.content}}
-		<div class="flow-board-header-content">
-			{{escapeContent revision.content.format revision.content.content}}
-		</div>
-	{{/if}}
+	<div class="flow-board-header-content">
+		{{#if revision.content}}
+				{{~escapeContent revision.content.format revision.content.content~}}
+		{{/if}}
+	</div>
 </div>
 <a href="javascript:void(0);"
 	class="mw-ui-button mw-ui-quiet side-rail-toggle-button"
