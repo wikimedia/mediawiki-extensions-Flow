@@ -1,0 +1,84 @@
+( function ( $ ) {
+	/**
+	 * Flow editor controls widget
+	 *
+	 * @class
+	 * @extends OO.ui.Widget
+	 *
+	 * @constructor
+	 * @param {Object} [config] Configuration options
+	 * @cfg {string} [termsMsgKey='flow-terms-of-use-edit'] i18n message key for the footer message
+	 * @cfg {string} [saveMsgKey='flow-newtopic-save'] i18n message key for the save button
+	 * @cfg {string} [cancelMsgKey='flow-cancel'] i18n message key for the cancel button
+	 */
+	mw.flow.ui.EditorControlsWidget = function mwFlowUiEditorControlsWidget( config ) {
+		var $buttons = $( '<div>' )
+			.addClass( 'flow-ui-editorControlsWidget-buttons' );
+
+		config = config || {};
+
+		// Parent constructor
+		mw.flow.ui.EditorControlsWidget.parent.call( this, config );
+
+		this.termsLabel = new OO.ui.LabelWidget( {
+			classes: [ 'flow-ui-editorControlsWidget-termsLabel' ],
+			label: mw.msg( config.termsMsgKey || 'flow-terms-of-use-edit' )
+		} );
+
+		this.saveButton = new OO.ui.ButtonWidget( {
+			flags: [ 'primary', 'constructive' ],
+			label: mw.msg( config.saveMsgKey || 'flow-newtopic-save' ),
+			classes: [ 'flow-ui-editorControlsWidget-saveButton' ]
+		} );
+
+		this.cancelButton = new OO.ui.ButtonWidget( {
+			flags: 'destructive',
+			framed: false,
+			label: mw.msg( config.cancelMsgKey || 'flow-cancel' ),
+			classes: [ 'flow-ui-editorControlsWidget-cancelButton' ]
+		} );
+
+		$buttons.append(
+			this.cancelButton.$element,
+			this.saveButton.$element
+		);
+
+		// Events
+		this.saveButton.connect( this, { click: [ 'emit', 'save' ] } );
+		this.cancelButton.connect( this, { click: [ 'emit', 'cancel' ] } );
+
+		// Initialize
+		this.$element
+			.append(
+				this.termsLabel.$element,
+				$buttons,
+				$( '<div>' )
+					.css( 'clear', 'both' )
+			)
+			.addClass( 'flow-ui-editorControlsWidget' );
+	};
+
+	/* Initialization */
+
+	OO.inheritClass( mw.flow.ui.EditorControlsWidget, OO.ui.Widget );
+
+	/**
+	 * Set the content of the terms label
+	 *
+	 * @param {string} msg Terms message
+	 */
+	mw.flow.ui.EditorControlsWidget.prototype.setTermsLabel = function ( msg ) {
+		this.termsLabel.setLabel( msg );
+	};
+
+	mw.flow.ui.EditorControlsWidget.prototype.setDisabled = function ( disabled ) {
+		// Parent method
+		mw.flow.ui.EditorControlsWidget.parent.prototype.setDisabled.call( this, disabled );
+
+		if ( this.cancelButton && this.saveButton ) {
+			this.cancelButton.setDisabled( this.isDisabled() );
+			this.saveButton.setDisabled( this.isDisabled() );
+		}
+	};
+
+}( jQuery ) );
