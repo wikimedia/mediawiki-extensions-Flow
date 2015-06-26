@@ -9,9 +9,11 @@ use Flow\Container;
 use Flow\Data\Storage\RevisionStorage;
 use Flow\DbFactory;
 use Flow\Data\ManagerGroup;
+use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use Flow\Exception\FlowException;
+use Flow\FlowActions;
 use ResultWrapper;
 use User;
 
@@ -28,15 +30,28 @@ class ContributionsQuery extends AbstractQuery {
 	protected $dbFactory;
 
 	/**
+	 * @var FlowActions
+	 */
+	protected $actions;
+
+	/**
 	 * @param ManagerGroup $storage
 	 * @param BagOStuff $cache
 	 * @param TreeRepository $treeRepo
 	 * @param DbFactory $dbFactory
+	 * @param FlowActions $actions
 	 */
-	public function __construct( ManagerGroup $storage, TreeRepository $treeRepo, BagOStuff $cache, DbFactory $dbFactory ) {
+	public function __construct(
+		ManagerGroup $storage,
+		TreeRepository $treeRepo,
+		BagOStuff $cache,
+		DbFactory $dbFactory,
+		FlowActions $actions )
+	{
 		parent::__construct( $storage, $treeRepo );
 		$this->cache = $cache;
 		$this->dbFactory = $dbFactory;
+		$this->actions = $actions;
 	}
 
 	/**
@@ -71,6 +86,10 @@ class ContributionsQuery extends AbstractQuery {
 			$this->loadMetadataBatch( $revisions );
 			foreach ( $revisions as $revision ) {
 				try {
+					if ( $this->excludeFromContributions( $revision ) ) {
+						continue;
+					}
+
 					$result = $pager instanceof ContribsPager ? new ContributionsRow : new DeletedContributionsRow;
 					$result = $this->buildResult( $revision, $pager->getIndexField(), $result );
 					$deleted = $result->currentRevision->isDeleted() || $result->workflow->isDeleted();
@@ -95,6 +114,14 @@ class ContributionsQuery extends AbstractQuery {
 		}
 
 		return $results;
+	}
+
+	/**
+	 * @param AbstractRevision $revision
+	 * @return bool
+	 */
+	private function excludeFromContributions( AbstractRevision $revision ) {
+		return (bool) $this->actions->getValue( $revision->getChangeType(), 'exclude_from_contributions' );
 	}
 
 	/**
