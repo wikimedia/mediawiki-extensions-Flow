@@ -106,7 +106,7 @@ class TalkpageManager implements OccupationController {
 			if ( in_array( $title->getPrefixedText(), $this->occupiedPages ) ) {
 				return true;
 			}
-			if ( in_array( $title->getNamespace(), $this->occupiedNamespaces ) ) {
+			if ( !$title->isSubpage() && in_array( $title->getNamespace(), $this->occupiedNamespaces ) ) {
 				return true;
 			}
 		}
