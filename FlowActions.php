@@ -249,8 +249,9 @@ $wgFlowActions = array(
 	'new-topic' => array(
 		'performs-writes' => true,
 		'log_type' => false,
-		'rc_insert' => true,
-		'rc_title' => 'owner',
+		'rc_insert' => false,
+		'exclude_from_contributions' => true,
+		'exclude_from_history' => true,
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',
 		),

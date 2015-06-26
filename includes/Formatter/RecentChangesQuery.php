@@ -69,6 +69,9 @@ class RecentChangesQuery extends AbstractQuery {
 			if ( !isset( $changeData['revision_type'] ) ) {
 				continue;
 			}
+			if ( $this->excludeFromRecentChanges( $changeData['action'] ) ) {
+				continue;
+			}
 			if ( $isWatchlist && $this->isRecordHidden( $changeData ) ) {
 				continue;
 			}
@@ -97,6 +100,15 @@ class RecentChangesQuery extends AbstractQuery {
 	}
 
 	/**
+	 * @param string $action
+	 * @return mixed|null
+	 */
+	private function excludeFromRecentChanges ( $action ) {
+		$rcInsert = $this->actions->getValue( $action, 'rc_insert' );
+		return !$rcInsert;
+	}
+
+	/**
 	 * @param null $cl No longer used
 	 * @param RecentChange $rc
 	 * @param bool $isWatchlist
@@ -122,6 +134,14 @@ class RecentChangesQuery extends AbstractQuery {
 		 */
 		if ( !isset( $changeData['revision_type'] ) ) {
 			throw new FlowException( 'Corrupted rc without changeData: ' . $rc->getAttribute( 'rc_id' ) );
+		}
+
+		/**
+		 * RC entries are not being created for 'new-topic' action but
+		 * old records exists. This filters them out.
+		 */
+		if ( $this->excludeFromRecentChanges( $changeData['action'] ) ) {
+			return false;
 		}
 
 		// Only show most recent items for watchlist
