@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_6d205c47",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-06-26T07:02:10Z",
+      "side": 1,
+      "message": "This is causing the tests to (and breaking the actual API, AFAICT).  On master, there are only two possibilities, \u0027view\u0027 (default) and \u0027history\u0027 (used in one place):\n\nhttps://git.wikimedia.org/blob/mediawiki%2Fextensions%2FFlow.git/HEAD/includes%2FBlock%2FTopic.php;jsessionid\u003d154ji6ezrkjxkmy79q0wfusrm#L951\n\nE.g. view-post is not a permission, so this fails.",
+      "revId": "7de6821a0f7342c543ee815a1616d50671f253f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
