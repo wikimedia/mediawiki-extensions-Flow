@@ -38,7 +38,7 @@
 		{ include: [ 'flowMention' ] }
 	];
 
-	if ( mw.flow.editors.none.static.isSupported() ) {
+	if ( mw.flow.ui.WikitextEditorWidget.static.isSupported() ) {
 		mw.flow.ve.Target.static.actionGroups = [
 			{ include: [ 'flowSwitchEditor' ] }
 		];
