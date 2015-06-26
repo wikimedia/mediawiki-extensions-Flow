@@ -373,7 +373,7 @@
 	"flow-toggle-small-topics": "Switch to small topics view",
 	"flow-toggle-topics": "Switch to topics only view",
 	"flow-toggle-topics-posts": "Switch to topics and posts view",
-	"flow-terms-of-use-summarize": "By clicking \"{{int:flow-topic-action-summarize-topic}}\", you agree to the terms of use for this wiki.",
+	"flow-terms-of-use-summarize": "By clicking \"{{int:flow-topic-action-update-topic-summary}}\", you agree to the terms of use for this wiki.",
 	"flow-terms-of-use-lock-topic": "By clicking \"{{int:flow-topic-action-lock-topic}}\", you agree to the terms of use for this wiki.",
 	"flow-terms-of-use-unlock-topic": "By clicking \"{{int:flow-topic-action-unlock-topic}}\", you agree to the terms of use for this wiki.",
 	"flow-whatlinkshere-post": "from a [$1 post]",
