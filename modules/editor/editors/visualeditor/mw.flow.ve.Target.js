@@ -38,7 +38,9 @@
 		{ include: [ 'flowMention' ] }
 	];
 
-	if ( mw.flow.editors.none.static.isSupported() ) {
+	// FIXME this isn't supposed to be a global state thing, it's supposed to be
+	// variable per EditorWidget instance
+	if ( mw.flow.ui.WikitextEditorWidget.static.isSupported() ) {
 		mw.flow.ve.Target.static.actionGroups = [
 			{ include: [ 'flowSwitchEditor' ] }
 		];
@@ -53,6 +55,15 @@
 		// after the surface otherwise.
 		var surface = this.getToolbar().getSurface();
 		( surface.debugBar || surface ).$element.after( this.getToolbar().$element );
+	};
+
+	mw.flow.ve.Target.prototype.setDisabled = function ( disabled ) {
+		// TODO upstream this to ve.init.Target
+		var i, len;
+		for ( i = 0, len = this.surfaces.length; i < len; i++ ) {
+			// T106908: ve.ui.Surface doesn't support setDisabled()
+			this.surfaces[i][ disabled ? 'disable' : 'enable' ]();
+		}
 	};
 
 }( mediaWiki, OO, ve ) );

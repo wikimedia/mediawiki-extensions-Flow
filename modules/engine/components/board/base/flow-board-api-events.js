@@ -828,6 +828,8 @@
 		} );
 	}
 
+	FlowBoardComponentApiEventsMixin.prototype.flowBoardComponentRefreshTopic = _flowBoardComponentRefreshTopic;
+
 	function _activateSummarizeTopic( $target, flowBoard, topicSummary, action ) {
 		var $old = $target;
 

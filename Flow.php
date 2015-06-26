@@ -265,7 +265,7 @@ $wgDefaultUserOptions['echo-subscriptions-email-flow-discussion'] = false;
 $wgDefaultUserOptions['flow-topiclist-sortby'] = 'newest';
 
 // Default editor to use in Flow
-$wgDefaultUserOptions['flow-editor'] = 'none';
+$wgDefaultUserOptions['flow-editor'] = 'wikitext';
 
 // Default state of the side rail
 $wgDefaultUserOptions['flow-side-rail-state'] = 'expanded';
@@ -283,7 +283,7 @@ $wgFlowOccupyNamespaces = array();
 $wgFlowMaxThreadingDepth = 8;
 
 // A list of editors to use, in priority order
-$wgFlowEditorList = array( 'none' );  // EXPERIMENTAL prepend 'visualeditor'
+$wgFlowEditorList = array( 'wikitext' );  // EXPERIMENTAL prepend 'visualeditor'
 
 // Action details config file
 require $dir . 'FlowActions.php';
