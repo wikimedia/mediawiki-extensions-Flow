@@ -109,6 +109,7 @@
 	"flow-compare-revisions-revision-header": "De Väsjohn {{GENDER:$2|vum|vum|vumm Metmaacher|vun dä|vum}} „$1“ vum $2\n<!-- https://translatewiki.net/wiki/Thread:Support/About_MediaWiki:Flow-compare-revisions-revision-header/en\n-->",
 	"flow-topic-html-title": "$1 op $2",
 	"flow-load-more": "Mih lahde",
+	"flow-terms-of-use-summarize": "Wann De op „{{int:flow-topic-action-update-topic-summary}}“ kleks, schtemmps De dä Bedengonge för de Benözong för heh dat Wikki zoh.",
 	"flow-whatlinkshere-header": "vun dä [$1 Övverschreff]",
 	"flow-whatlinkshere-post-summary": "vun de [$1 Zersammefaßong]",
 	"flow-special-type": "Zoot",

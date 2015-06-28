@@ -55,6 +55,7 @@
 	"flow-topic-actions": "Azioni",
 	"flow-cancel": "Annulla",
 	"flow-skip-summary": "Salta il riepilogo",
+	"flow-edit-summary-placeholder": "Descrivi brevemente l'esito di questa discussione",
 	"flow-show-change": "Mostra modifiche",
 	"flow-last-modified-by": "Ultima {{GENDER:$1|modifica}} di $1",
 	"flow-stub-post-content": "''A causa di un errore tecnico, questo messaggio non può essere recuperato.''",
