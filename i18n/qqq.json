@@ -535,7 +535,7 @@
 	"flow-ve-mention-inspector-remove-label": "Text of remove button on Flow's user mention panel (inspector) in the VisualEditor.",
 	"flow-ve-mention-placeholder": "Placeholder text for the input field in the user mention tool where the user can type a user name.\n{{Identical|Username}}",
 	"flow-ve-mention-tool-title": "Title text for the user mention tool on Flow's VisualEditor toolbar.",
-	"flow-ve-mention-template": "Name of on-wiki template used for user mentions.  The template should accept a call in the form <nowiki>{{templatename|Username}}</nowiki>, to mention Username.  It uses the content language.",
+	"flow-ve-mention-wiki-template": "Name of on-wiki template used for user mentions.  The template should accept a call in the form <nowiki>{{templatename|Username}}</nowiki>, to mention Username.  It uses the content language.",
 	"flow-ve-mention-inspector-invalid-user": "Error shown when the poster attempts to mention a user that does not exist.  Parameters:\n$1: Username.  The username is not registered; thus, gender is unknown.",
 	"flow-wikitext-editor-help": "Text shown at the bottom of a wikitext editing box when visualeditor is not available to switch to.\n\n$1 is {{msg-mw|Flow-wikitext-editor-help-uses-wikitext}}.",
 	"flow-wikitext-editor-help-and-preview": "Text shown at the bottom of a wikitext editing box when visualeditor is available to switch to.\n* $1 is {{msg-mw|flow-wikitext-editor-help-uses-wikitext}}\n* $2 is {{msg-mw|flow-wikitext-editor-help-preview-the-result}}",

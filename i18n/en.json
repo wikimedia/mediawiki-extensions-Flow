@@ -529,7 +529,7 @@
 	"flow-ve-mention-inspector-remove-label": "Remove",
 	"flow-ve-mention-placeholder": "User name",
 	"flow-ve-mention-tool-title": "Mention a user",
-	"flow-ve-mention-template": "ping",
+	"flow-ve-mention-wiki-template": "U",
 	"flow-ve-mention-inspector-invalid-user": "The username \"$1\" is not registered.",
 	"flow-wikitext-editor-help": "Wikitext $1.",
 	"flow-wikitext-editor-help-and-preview": "Wikitext $1 and you can $2 anytime.",
