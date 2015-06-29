@@ -36,7 +36,7 @@
 	'.LCRun3::ch($cx, 'l10nParse', array(array('flow-compare-revisions-revision-header',((isset($in['revision']['human_timestamp']) && is_array($in['revision'])) ? $in['revision']['human_timestamp'] : null),((isset($in['revision']['author']['name']) && is_array($in['revision']['author'])) ? $in['revision']['author']['name'] : null)),array()), 'encq').'
 </a></div>
 '.((LCRun3::ifvar($cx, ((isset($in['links']['previous']) && is_array($in['links'])) ? $in['links']['previous'] : null))) ? '	<div><a href="'.htmlentities((string)((isset($in['links']['previous']) && is_array($in['links'])) ? $in['links']['previous'] : null), ENT_QUOTES, 'UTF-8').'">'.LCRun3::ch($cx, 'l10n', array(array('flow-previous-diff'),array()), 'encq').'</a></div>
-' : '').''.((LCRun3::ifvar($cx, ((isset($in['links']['next']) && is_array($in['links'])) ? $in['links']['next'] : null))) ? '	<div><a href="'.htmlentities((string)((isset($in['links']['next']) && is_array($in['links'])) ? $in['links']['next'] : null), ENT_QUOTES, 'UTF-8').'">'.LCRun3::ch($cx, 'l10n', array(array('flow-next-diff'),array()), 'encq').'</a>	</div>
+' : '').''.((LCRun3::ifvar($cx, ((isset($in['links']['next']) && is_array($in['links'])) ? $in['links']['next'] : null))) ? '	<div><a href="'.htmlentities((string)((isset($in['links']['next']) && is_array($in['links'])) ? $in['links']['next'] : null), ENT_QUOTES, 'UTF-8').'">'.LCRun3::ch($cx, 'l10n', array(array('flow-next-diff'),array()), 'encq').'</a></div>
 ' : '').''.LCRun3::p($cx, 'flow_patrol_diff', array(array($in),array())).'';
 }
 ?>
