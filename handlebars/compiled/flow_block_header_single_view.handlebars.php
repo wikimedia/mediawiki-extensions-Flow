@@ -13,7 +13,7 @@
         'constants' => array(),
         'helpers' => array(            'l10n' => 'Flow\TemplateHelper::l10n',
             'l10nParse' => 'Flow\TemplateHelper::l10nParse',
-            'escapeContent' => 'Flow\TemplateHelper::escapeContent',
+            'rawHtmlContent' => 'Flow\TemplateHelper::rawHtmlContent',
             'enablePatrollingLink' => 'Flow\TemplateHelper::enablePatrollingLink',
 ),
         'blockhelpers' => array(),
@@ -38,7 +38,7 @@
 ').'	</div>
 
 	<div class="flow-revision-content">
-		'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['revision']['content']['format']) && is_array($in['revision']['content'])) ? $in['revision']['content']['format'] : null),((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null)),array()), 'encq').'
+		'.LCRun3::ch($cx, 'rawHtmlContent', array(array(((isset($in['revision']['content']['format']) && is_array($in['revision']['content'])) ? $in['revision']['content']['format'] : null),((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null)),array()), 'encq').'
 	</div>
 
 '.LCRun3::p($cx, 'flow_patrol_action', array(array($in),array())).'</div>

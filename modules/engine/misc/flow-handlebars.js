@@ -461,21 +461,22 @@
 	};
 
 	/**
-	 * Accepts the contentType and content properties returned from the api
-	 * for individual revisions and ensures that content is included in the
-	 * final html page in an XSS safe manner.
+	 * Accepts the contentType and content properties returned from the API
+	 * for individual revisions and prevents Handlebars from escaping the content
+	 * if contentType is html. If contentType is not html, the input will not be
+	 * armored and Handlebars's normal escaping will kick in.
 	 *
-	 * It is expected that all content with contentType of html has been
-	 * processed by parsoid and is safe for direct output into the document.
+	 * It is expected that all content with a contentType of html has been
+	 * processed by Parsoid and is safe for direct output into the document.
 	 *
 	 * Usage:
-	 *   {{escapeContent revision.contentType revision.content}}
+	 *   {{rawHtmlContent revision.contentType revision.content}}
 	 *
 	 * @param {string} contentType
 	 * @param {string} content
 	 * @return {string}
 	 */
-	FlowHandlebars.prototype.escapeContent = function ( contentType, content ) {
+	FlowHandlebars.prototype.rawHtmlContent = function ( contentType, content ) {
 		if ( contentType === 'html' || contentType === 'fixed-html' ) {
 			return FlowHandlebars.prototype.html( content );
 		}
@@ -583,7 +584,7 @@
 	Handlebars.registerHelper( 'progressiveEnhancement', FlowHandlebars.prototype.progressiveEnhancement );
 	Handlebars.registerHelper( 'ifAnonymous', FlowHandlebars.prototype.ifAnonymous );
 	Handlebars.registerHelper( 'linkWithReturnTo', FlowHandlebars.prototype.linkWithReturnTo );
-	Handlebars.registerHelper( 'escapeContent', FlowHandlebars.prototype.escapeContent );
+	Handlebars.registerHelper( 'rawHtmlContent', FlowHandlebars.prototype.rawHtmlContent );
 	Handlebars.registerHelper( 'tooltip', FlowHandlebars.prototype.tooltip );
 	Handlebars.registerHelper( 'moderationAction', FlowHandlebars.prototype.moderationAction );
 	Handlebars.registerHelper( 'concat', FlowHandlebars.prototype.concat );

@@ -17,7 +17,7 @@
 		{{/if}}
 	</div>
 	<div class="flow-revision-content">
-		{{escapeContent revision.content.format revision.content.content}}
+		{{rawHtmlContent revision.content.format revision.content.content}}
 	</div>
 
 	{{> flow_patrol_action}}

@@ -6,7 +6,7 @@
 	{{/if}}
 		>
 	{{#if isLocked}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-check"></span> {{/if}}
-	{{~escapeContent content.format content.content~}}
+	{{~rawHtmlContent content.format content.content~}}
 </h2>
 <div class="flow-topic-meta">
 	{{#if isLocked~}}
@@ -36,7 +36,7 @@
 	</div>
 	<div class="flow-moderated-topic-reason">
 		{{l10n "flow-topic-moderated-reason-prefix"}}
-		{{escapeContent moderateReason.format moderateReason.content}}
+		{{rawHtmlContent moderateReason.format moderateReason.content}}
 	</div>
 {{/if}}
 <span class="flow-reply-count"><span class="flow-reply-count-number">{{reply_count}}</span></span>

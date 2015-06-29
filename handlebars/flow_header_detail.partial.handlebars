@@ -13,7 +13,7 @@
 	</div>
 	<div class="flow-board-header-content">
 		{{#if revision.content}}
-				{{~escapeContent revision.content.format revision.content.content~}}
+				{{~rawHtmlContent revision.content.format revision.content.content~}}
 		{{/if}}
 	</div>
 </div>

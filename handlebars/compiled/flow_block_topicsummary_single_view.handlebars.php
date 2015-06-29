@@ -13,7 +13,7 @@
         'constants' => array(),
         'helpers' => array(            'html' => 'Flow\TemplateHelper::htmlHelper',
             'l10nParse' => 'Flow\TemplateHelper::l10nParse',
-            'escapeContent' => 'Flow\TemplateHelper::escapeContent',
+            'rawHtmlContent' => 'Flow\TemplateHelper::rawHtmlContent',
 ),
         'blockhelpers' => array(),
         'hbhelpers' => array(),
@@ -37,7 +37,7 @@
 ' : '			'.LCRun3::ch($cx, 'l10nParse', array(array('flow-revision-permalink-warning-postsummary-first',((isset($in['revision']['human_timestamp']) && is_array($in['revision'])) ? $in['revision']['human_timestamp'] : null),((isset($in['revision']['rev_view_links']['board']['title']) && is_array($in['revision']['rev_view_links']['board'])) ? $in['revision']['rev_view_links']['board']['title'] : null),((isset($in['revision']['root']['content']) && is_array($in['revision']['root'])) ? $in['revision']['root']['content'] : null),((isset($in['revision']['rev_view_links']['hist']['url']) && is_array($in['revision']['rev_view_links']['hist'])) ? $in['revision']['rev_view_links']['hist']['url'] : null),((isset($in['revision']['rev_view_links']['diff']['url']) && is_array($in['revision']['rev_view_links']['diff'])) ? $in['revision']['rev_view_links']['diff']['url'] : null)),array()), 'encq').'
 ').'	</div>
 	<div class="flow-revision-content">
-		'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['revision']['content']['format']) && is_array($in['revision']['content'])) ? $in['revision']['content']['format'] : null),((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null)),array()), 'encq').'
+		'.LCRun3::ch($cx, 'rawHtmlContent', array(array(((isset($in['revision']['content']['format']) && is_array($in['revision']['content'])) ? $in['revision']['content']['format'] : null),((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null)),array()), 'encq').'
 	</div>
 </div>
 ';
