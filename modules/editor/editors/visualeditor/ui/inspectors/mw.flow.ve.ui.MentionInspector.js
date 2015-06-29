@@ -39,7 +39,7 @@
 	mw.flow.ve.ui.MentionInspector.static.title = OO.ui.deferMsg( 'flow-ve-mention-inspector-title' );
 	mw.flow.ve.ui.MentionInspector.static.modelClasses = [ ve.dm.MWTransclusionNode ];
 
-	mw.flow.ve.ui.MentionInspector.static.template = mw.config.get( 'wgFlowMentionTemplate' );
+	mw.flow.ve.ui.MentionInspector.static.template = 'FlowMention';
 	mw.flow.ve.ui.MentionInspector.static.templateParameterKey = '1'; // 1-indexed positional parameter
 
 	// Buttons
@@ -121,7 +121,7 @@
 	};
 
 	/**
-	 * Sets the abiliities based on the current status
+	 * Sets the abilities based on the current status
 	 *
 	 * If it's empty or invalid, it can not be inserted or updated.
 	 */
@@ -324,7 +324,7 @@
 				// Don't allow saving until we're sure it's valid.
 				this.actions.setAbilities( { done: false } );
 				this.pushPending();
-				promise.always(	this.onTransclusionReady.bind( this ) );
+				promise.always( this.onTransclusionReady.bind( this ) );
 			}, this );
 	};
 
@@ -359,8 +359,7 @@
 	/**
 	 * Gets the transclusion node representing this mention
 	 *
-	 * @param {Object} [data] Inspector opening data
-	 * @return {ve.dm.Node} Selected node
+	 * @return {ve.dm.Node|null} Selected node
 	 */
 	mw.flow.ve.ui.MentionInspector.prototype.getSelectedNode = function () {
 		// Checks the model class
