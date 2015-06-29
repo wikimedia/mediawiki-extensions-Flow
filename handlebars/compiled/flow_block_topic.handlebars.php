@@ -48,7 +48,7 @@
 '.$sp.'		<br class="flow-ui-clear"/>
 '.$sp.'' : '').'</div>
 ';},'flow_topic_titlebar_content' => function ($cx, $in, $sp) {return ''.$sp.'<h2 class="flow-topic-title flow-load-interactive '.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? 'flow-click-interactive' : '').'"
-'.$sp.'	data-flow-topic-title="'.htmlentities((string)((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null), ENT_QUOTES, 'UTF-8').'"
+'.$sp.'	data-flow-topic-title="'.htmlentities((string)((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null), ENT_QUOTES, 'UTF-8').'"
 '.$sp.'	data-flow-load-handler="topicTitle"
 '.$sp.''.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? '	data-flow-interactive-handler="collapserCollapsibleToggle"
 '.$sp.'' : '').'		>
