@@ -8,28 +8,31 @@
 		// TODO: Make this theme specific
 		font-size: 0.8/0.875em;
 
-		.ve-ce-documentNode {
-			// Return to .mw-body-content font-size
-			// TODO: Make this theme specific
-			font-size: 0.875/0.8em;
-		}
-
 		&.flow-ui-focused {
 			border-color: @colorProgressive;
 			box-shadow: inset 0 0 0 2px @colorProgressive;
 		}
 	}
 
+	.ve-ce-documentNode,
+	.ve-ui-surface-placeholder {
+		// Return to .mw-body-content font-size
+		// TODO: Make this theme specific
+		font-size: 0.875/0.8em;
+		padding: 1px 8px;
+
+	}
+
 	.ve-ce-documentNode {
-		// this border comes from .mw-ui-input on the same div, but i dont think
-		// we want to remove this for all inputs just the documentNode
-		border: none;
 		// This creates a space for the toolbar, a matching negative margin-top
 		// shifts the toolbar into this location.
 		// @todo where did this 40 come from, could it be calculated?
-		padding: 1px 8px;
 		padding-bottom: 40px;
 		min-height: 163px; // (112 + 51) wikitext text area min-height (inline style) + actions
+	}
+
+	.ve-ui-surface-placeholder {
+		font-style: italic;
 	}
 
 	.oo-ui-toolbar {
