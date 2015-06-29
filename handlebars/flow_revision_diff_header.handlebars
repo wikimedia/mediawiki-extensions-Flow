@@ -1,6 +1,18 @@
-<div><a href="{{revision.rev_view_links.single-view.url}}" class="flow-diff-revision-link">
-	{{l10nParse "flow-compare-revisions-revision-header" revision.human_timestamp revision.author.name}}
-</a></div>
+<div>
+	<a href="{{revision.rev_view_links.single-view.url}}" class="flow-diff-revision-link">
+		{{l10nParse "flow-compare-revisions-revision-header" revision.human_timestamp revision.author.name}}
+	</a>
+
+	{{~#if revision.actions.undo~}}
+	(
+		{{~noop~}}
+		<a class="mw-ui-anchor mw-ui-quiet" href="{{revision.actions.undo.url}}">
+			{{~revision.actions.undo.title~}}
+		</a>
+		{{~noop~}}
+	)
+	{{~/if~}}
+</div>
 {{#if links.previous}}
 	<div><a href="{{links.previous}}">{{l10n "flow-previous-diff"}}</a></div>
 {{/if}}
