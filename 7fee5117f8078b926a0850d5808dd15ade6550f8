@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_271fbd5f",
+        "filename": "FlowActions.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-06-29T15:24:26Z",
+      "side": 1,
+      "message": "We already have log_type (false won\u0027t log), rc_insert (false won\u0027t show up in RecentChanges)\n\nCan we do history \u0026 contributions in the same way, via some config var true/false here instead of manually adding exceptions for specific changetypes?",
+      "revId": "7fee5117f8078b926a0850d5808dd15ade6550f8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_47ff69fd",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-06-29T15:24:26Z",
+      "side": 1,
+      "message": "This used to be \u0027new-topic\u0027 (or vice versa), so you may have to account for more than 1 changetype for B/C.",
+      "revId": "7fee5117f8078b926a0850d5808dd15ade6550f8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
