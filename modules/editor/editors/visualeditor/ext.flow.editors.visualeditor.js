@@ -62,7 +62,7 @@
 		} );
 
 		// attach VE to DOM
-		surface = this.target.addSurface( this.dmDoc );
+		surface = this.target.addSurface( this.dmDoc, { placeholder: this.$node.attr( 'placeholder' ) } );
 		this.target.setSurface( surface );
 		this.target.$element.insertAfter( this.$node );
 
