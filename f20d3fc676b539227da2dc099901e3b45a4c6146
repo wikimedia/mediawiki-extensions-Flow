@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_11052313",
+        "filename": "tests/phpunit/Notifications/NotifiedUsersTest.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-06-29T12:08:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_b3f32968",
+      "revId": "f20d3fc676b539227da2dc099901e3b45a4c6146",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_733dc1da",
         "filename": "tests/phpunit/PostRevisionTestCase.php",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2015-06-23T18:50:49Z",
       "side": 1,
       "message": "The documentations in PostRevision seem to claim that this is deprecated?\n\"@deprecated use PostCollection::getRoot\"\n\nUsing the ::getRoot method should also make the use of the try/catch block unnecessary, from what I could see.",
+      "revId": "f20d3fc676b539227da2dc099901e3b45a4c6146",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_f10df739",
+        "filename": "tests/phpunit/PostRevisionTestCase.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-06-29T12:08:09Z",
+      "side": 1,
+      "message": "Damn removing that try/catch block was horrible, exposed a couple of other tests that weren\u0027t properly set up yet.\n\nAnyway, done :)",
+      "parentUuid": "8ec42329_733dc1da",
       "revId": "f20d3fc676b539227da2dc099901e3b45a4c6146",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
