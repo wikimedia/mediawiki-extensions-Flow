@@ -507,32 +507,24 @@ class TemplateHelper {
 	}
 
 	/**
-	 * @param array $args Expects seven arguments as follows:
-	 *	   array $named No named arguments expected
-	 *	   string $diffContent Plain text output of DifferenceEngine::getDiffBody
-	 *	   string $oldTimestamp Time when the `old` content was created
-	 *	   string $newTimestamp Time when the `new` content was created
-	 *	   string $oldAuthor Creator of the `old` content
-	 *	   string $newAuthor Creator of the `new` content
-	 *	   string $oldLink Url pointing to `old` content
-	 *	   string $newLink Url pointing to `new` content
-	 *	   string $prevLink Url pointing to diff between `old` and its previous revision
-	 *	   string $nextLink Url pointing to diff between `new` and its next revision
+	 * @param array $args Expects 1 argument:
+	 *	   array $data RevisionDiffViewFormatter::formatApi return value
 	 * @param array $named No named arguments expected
 	 *
 	 * @return string[] HTML wrapped in array to prevent lightncandy from escaping
 	 * @throws WrongNumberArgumentsException
 	 */
 	static public function diffRevision( array $args, array $named ) {
-		if ( count( $args ) !== 10 ) {
-			throw new WrongNumberArgumentsException( $args, 'ten' );
+		if ( count( $args ) !== 1 ) {
+			throw new WrongNumberArgumentsException( $args, 'one' );
 		}
-		list ( $diffContent, $oldTimestamp, $newTimestamp, $oldAuthor, $newAuthor, $oldLink, $newLink, $prevLink, $nextLink, $patrolLink ) = $args;
+
+		$data = $args[0];
 		$differenceEngine = new \DifferenceEngine();
 		$multi = $differenceEngine->getMultiNotice();
 		// Display a message when the diff is empty
 		$notice = '';
-		if ( $diffContent === '' ) {
+		if ( $data['diff_content'] === '' ) {
 			$notice .= '<div class="mw-diff-empty">' .
 				wfMessage( 'diff-empty' )->parse() .
 				"</div>\n";
@@ -542,19 +534,16 @@ class TemplateHelper {
 		$renderer = Container::get( 'lightncandy' )->getTemplate( 'flow_revision_diff_header' );
 
 		return self::html( $differenceEngine->addHeader(
-			$diffContent,
+			$data['diff_content'],
 			$renderer( array(
-				'timestamp' => $oldTimestamp,
-				'author' => $oldAuthor,
-				'link' => $oldLink,
-				'previous' => $prevLink,
+				'old' => true,
+				'revision' => $data['old'],
+				'links' => $data['links'],
 			) ),
 			$renderer( array(
-				'timestamp' => $newTimestamp,
-				'author' => $newAuthor,
-				'link' => $newLink,
-				'next' => $nextLink,
-				'patrol' => $patrolLink,
+				'new' => true,
+				'revision' => $data['new'],
+				'links' => $data['links'],
 			) ),
 			$multi,
 			$notice
