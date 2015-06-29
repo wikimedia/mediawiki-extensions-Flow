@@ -13,7 +13,7 @@
         'constants' => array(),
         'helpers' => array(            'l10n' => 'Flow\TemplateHelper::l10n',
             'html' => 'Flow\TemplateHelper::htmlHelper',
-            'escapeContent' => 'Flow\TemplateHelper::escapeContent',
+            'rawHtmlContent' => 'Flow\TemplateHelper::rawHtmlContent',
 ),
         'blockhelpers' => array(),
         'hbhelpers' => array(),
@@ -40,7 +40,7 @@
 '.$sp.'			</a>
 '.$sp.'' : '').'	</div>
 '.$sp.'	<div class="flow-board-header-content">
-'.$sp.''.((LCRun3::ifvar($cx, ((isset($in['revision']['content']) && is_array($in['revision'])) ? $in['revision']['content'] : null))) ? ''.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['revision']['content']['format']) && is_array($in['revision']['content'])) ? $in['revision']['content']['format'] : null),((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null)),array()), 'encq').'' : '').'	</div>
+'.$sp.''.((LCRun3::ifvar($cx, ((isset($in['revision']['content']) && is_array($in['revision'])) ? $in['revision']['content'] : null))) ? ''.LCRun3::ch($cx, 'rawHtmlContent', array(array(((isset($in['revision']['content']['format']) && is_array($in['revision']['content'])) ? $in['revision']['content']['format'] : null),((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null)),array()), 'encq').'' : '').'	</div>
 '.$sp.'</div>
 '.$sp.'<a href="javascript:void(0);"
 '.$sp.'	class="mw-ui-button mw-ui-quiet side-rail-toggle-button"

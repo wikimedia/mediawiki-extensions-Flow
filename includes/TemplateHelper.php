@@ -148,7 +148,7 @@ class TemplateHelper {
 					'concat' => 'Flow\TemplateHelper::concat',
 					'user' => 'Flow\TemplateHelper::user',
 					'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
-					'escapeContent' => 'Flow\TemplateHelper::escapeContent',
+					'rawHtmlContent' => 'Flow\TemplateHelper::rawHtmlContent',
 					'enablePatrollingLink' => 'Flow\TemplateHelper::enablePatrollingLink',
 				),
 				'hbhelpers' => array(
@@ -696,12 +696,13 @@ class TemplateHelper {
 	}
 
 	/**
-	 * Accepts the contentType and content properties returned from the api
-	 * for individual revisions and ensures that content is included in the
-	 * final html page in an xss safe maner.
+	 * Accepts the contentType and content properties returned from the API
+	 * for individual revisions and prevents Handlebars from escaping the content
+	 * if contentType is html. If contentType is not html, the input will not be
+	 * armored and Handlebars's normal escaping will kick in.
 	 *
-	 * It is expected that all content with contentType of html has been
-	 * processed by parsoid and is safe for direct output into the document.
+	 * It is expected that all content with a contentType of html has been
+	 * processed by Parsoid and is safe for direct output into the document.
 	 *
 	 * @param string[] $args Expects string $contentType, string $content
 	 * @param array $named No named arguments expected
@@ -709,7 +710,7 @@ class TemplateHelper {
 	 * @return string
 	 * @throws WrongNumberArgumentsException
 	 */
-	static public function escapeContent( array $args, array $named ) {
+	static public function rawHtmlContent( array $args, array $named ) {
 		if ( count( $args ) !== 2 ) {
 			throw new WrongNumberArgumentsException( $args, 'two' );
 		}

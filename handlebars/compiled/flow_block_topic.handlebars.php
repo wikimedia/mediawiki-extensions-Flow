@@ -19,7 +19,7 @@
             'l10nParse' => 'Flow\TemplateHelper::l10nParse',
             'concat' => 'Flow\TemplateHelper::concat',
             'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
-            'escapeContent' => 'Flow\TemplateHelper::escapeContent',
+            'rawHtmlContent' => 'Flow\TemplateHelper::rawHtmlContent',
 ),
         'blockhelpers' => array(),
         'hbhelpers' => array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -42,7 +42,7 @@
 '.$sp.'' : '').'		>
 '.$sp.''.LCRun3::p($cx, 'flow_errors', array(array($in),array()), '	').''.((LCRun3::ifvar($cx, ((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null))) ? '		<div class="flow-topic-summary">
 '.$sp.'			<div class="flow-topic-summary-content">
-'.$sp.'				'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['revision']['content']['format']) && is_array($in['revision']['content'])) ? $in['revision']['content']['format'] : null),((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null)),array()), 'encq').'
+'.$sp.'				'.LCRun3::ch($cx, 'rawHtmlContent', array(array(((isset($in['revision']['content']['format']) && is_array($in['revision']['content'])) ? $in['revision']['content']['format'] : null),((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null)),array()), 'encq').'
 '.$sp.'			</div>
 '.$sp.'		</div>
 '.$sp.'		<br class="flow-ui-clear"/>
@@ -52,7 +52,7 @@
 '.$sp.'	data-flow-load-handler="topicTitle"
 '.$sp.''.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? '	data-flow-interactive-handler="collapserCollapsibleToggle"
 '.$sp.'' : '').'		>
-'.$sp.'	'.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? '<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-check"></span> ' : '').''.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),array()), 'encq').'</h2>
+'.$sp.'	'.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? '<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-check"></span> ' : '').''.LCRun3::ch($cx, 'rawHtmlContent', array(array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),array()), 'encq').'</h2>
 '.$sp.'<div class="flow-topic-meta">
 '.$sp.''.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? '<a class="expand-collapse-posts-link flow-click-interactive"
 '.$sp.'		   href="javascript:void(0);"
@@ -71,7 +71,7 @@
 '.$sp.''.LCRun3::p($cx, 'flow_post_moderation_state', array(array($in),array()), '		').'	</div>
 '.$sp.'	<div class="flow-moderated-topic-reason">
 '.$sp.'		'.LCRun3::ch($cx, 'l10n', array(array('flow-topic-moderated-reason-prefix'),array()), 'encq').'
-'.$sp.'		'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['moderateReason']['format']) && is_array($in['moderateReason'])) ? $in['moderateReason']['format'] : null),((isset($in['moderateReason']['content']) && is_array($in['moderateReason'])) ? $in['moderateReason']['content'] : null)),array()), 'encq').'
+'.$sp.'		'.LCRun3::ch($cx, 'rawHtmlContent', array(array(((isset($in['moderateReason']['format']) && is_array($in['moderateReason'])) ? $in['moderateReason']['format'] : null),((isset($in['moderateReason']['content']) && is_array($in['moderateReason'])) ? $in['moderateReason']['content'] : null)),array()), 'encq').'
 '.$sp.'	</div>
 '.$sp.'' : '').'<span class="flow-reply-count"><span class="flow-reply-count-number">'.htmlentities((string)((isset($in['reply_count']) && is_array($in)) ? $in['reply_count'] : null), ENT_QUOTES, 'UTF-8').'</span></span>
 '.$sp.'

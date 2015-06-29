@@ -18,7 +18,7 @@
             'l10nParse' => 'Flow\TemplateHelper::l10nParse',
             'concat' => 'Flow\TemplateHelper::concat',
             'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
-            'escapeContent' => 'Flow\TemplateHelper::escapeContent',
+            'rawHtmlContent' => 'Flow\TemplateHelper::rawHtmlContent',
 ),
         'blockhelpers' => array(),
         'hbhelpers' => array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -178,7 +178,7 @@
 '.$sp.''.LCRun3::p($cx, 'flow_post_moderation_state', array(array($in),array()), '			').'		</div>
 '.$sp.'' : '').'
 '.$sp.'	<div class="flow-post-content">
-'.$sp.'		'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),array()), 'encq').'
+'.$sp.'		'.LCRun3::ch($cx, 'rawHtmlContent', array(array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),array()), 'encq').'
 '.$sp.'	</div>
 '.$sp.'
 '.$sp.''.LCRun3::p($cx, 'flow_post_meta_actions', array(array($in),array()), '	').''.LCRun3::p($cx, 'flow_post_actions', array(array($in),array()), '	').'</div>
