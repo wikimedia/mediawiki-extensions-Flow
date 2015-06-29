@@ -1,17 +1,15 @@
 <div class="flow-board">
 	{{> flow_errors}}
 
-	{{#if navbar}}
-		<div class="flow-topic-histories">
-			{{html navbar}}
+	<div class="flow-topic-histories">
+		{{#if navbar}}{{html navbar}}{{/if}}
 
-			<ul>
-				{{#each revisions}}
-					<li>{{> flow_history_line}}</li>
-				{{/each}}
-			</ul>
+		<ul>
+			{{#each revisions}}
+				<li>{{> flow_history_line}}</li>
+			{{/each}}
+		</ul>
 
-			{{html navbar}}
-		</div>
-	{{/if}}
+		{{#if navbar}}{{html navbar}}{{/if}}
+	</div>
 </div>

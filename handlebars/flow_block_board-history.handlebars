@@ -1,5 +1,7 @@
 <div class="flow-board-history">
-	{{html navbar}}
+	{{> flow_errors}}
+
+	{{#if navbar}}{{html navbar}}{{/if}}
 
 	<ul>
 		{{#each revisions}}
@@ -7,5 +9,5 @@
 		{{/each}}
 	</ul>
 
-	{{html navbar}}
+	{{#if navbar}}{{html navbar}}{{/if}}
 </div>

@@ -141,16 +141,16 @@
     
     return '<div class="flow-board">
 '.LCRun3::p($cx, 'flow_errors', array(array($in),array()), '	').'
-'.((LCRun3::ifvar($cx, ((isset($in['navbar']) && is_array($in)) ? $in['navbar'] : null))) ? '		<div class="flow-topic-histories">
-			'.LCRun3::ch($cx, 'html', array(array(((isset($in['navbar']) && is_array($in)) ? $in['navbar'] : null)),array()), 'encq').'
+	<div class="flow-topic-histories">
+		'.((LCRun3::ifvar($cx, ((isset($in['navbar']) && is_array($in)) ? $in['navbar'] : null))) ? ''.LCRun3::ch($cx, 'html', array(array(((isset($in['navbar']) && is_array($in)) ? $in['navbar'] : null)),array()), 'encq').'' : '').'
 
-			<ul>
-'.LCRun3::sec($cx, ((isset($in['revisions']) && is_array($in)) ? $in['revisions'] : null), $in, true, function($cx, $in) {return '					<li>'.LCRun3::p($cx, 'flow_history_line', array(array($in),array())).'</li>
-';}).'			</ul>
+		<ul>
+'.LCRun3::sec($cx, ((isset($in['revisions']) && is_array($in)) ? $in['revisions'] : null), $in, true, function($cx, $in) {return '				<li>'.LCRun3::p($cx, 'flow_history_line', array(array($in),array())).'</li>
+';}).'		</ul>
 
-			'.LCRun3::ch($cx, 'html', array(array(((isset($in['navbar']) && is_array($in)) ? $in['navbar'] : null)),array()), 'encq').'
-		</div>
-' : '').'</div>
+		'.((LCRun3::ifvar($cx, ((isset($in['navbar']) && is_array($in)) ? $in['navbar'] : null))) ? ''.LCRun3::ch($cx, 'html', array(array(((isset($in['navbar']) && is_array($in)) ? $in['navbar'] : null)),array()), 'encq').'' : '').'
+	</div>
+</div>
 ';
 }
 ?>
