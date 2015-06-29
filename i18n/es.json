@@ -425,7 +425,7 @@
 	"apihelp-flow+moderate-topic-param-moderationState": "A qué nivel moderar.",
 	"apihelp-flow+moderate-topic-param-reason": "Motivo de la moderación.",
 	"apihelp-flow+moderate-topic-example-1": "Eliminar el tema [[Topic:S2tycnas4hcucw8w]]",
-	"apihelp-flow+new-topic-description": "Crea un tema de Flow nuevo en el flujo de trabajo indicado.",
+	"apihelp-flow+new-topic-description": "Crea un nuevo tema de Flow en el flujo de trabajo indicado.",
 	"apihelp-flow+new-topic-param-topic": "Texto para el nuevo título del tema.",
 	"apihelp-flow+new-topic-param-content": "Contenido para la respuesta inicial del tema.",
 	"apihelp-flow+new-topic-param-format": "Formato de la respuesta inicial del nuevo tema (wikitexto|html)",
