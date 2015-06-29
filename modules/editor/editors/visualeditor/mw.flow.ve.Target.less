@@ -8,7 +8,8 @@
 		// TODO: Make this theme specific
 		font-size: 0.8/0.875em;
 
-		.ve-ce-documentNode {
+		.ve-ce-documentNode,
+		.ve-ui-surface-placeholder {
 			// Return to .mw-body-content font-size
 			// TODO: Make this theme specific
 			font-size: 0.875/0.8em;
@@ -30,6 +31,12 @@
 		padding: 1px 8px;
 		padding-bottom: 40px;
 		min-height: 163px; // (112 + 51) wikitext text area min-height (inline style) + actions
+	}
+
+	.ve-ui-surface-placeholder {
+		font-style: italic;
+		// Match padding of .ve-ce-documentNode
+		padding: 1px 8px;
 	}
 
 	.oo-ui-toolbar {

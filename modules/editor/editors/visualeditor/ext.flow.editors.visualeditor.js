@@ -49,7 +49,7 @@
 		// add i18n messages to VE
 		ve.init.platform.addMessages( mw.messages.values );
 
-		this.target = new mw.flow.ve.Target();
+		this.target = new mw.flow.ve.Target( { placeholder: this.$node.attr( 'placeholder' ) } );
 
 		// Fix missing base URL
 		htmlDoc = ve.createDocumentFromHtml( content ); // HTMLDocument

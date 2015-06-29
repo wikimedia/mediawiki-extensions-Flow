@@ -10,8 +10,15 @@
 	 *
 	 * @class
 	 * @extends ve.init.sa.Target
+	 * @constructor
+	 * @param {Object} [config] Configuration options
+	 * @cfg {string} [placeholder] Placeholder text
 	 */
-	mw.flow.ve.Target = function FlowVeTarget() {
+	mw.flow.ve.Target = function FlowVeTarget( config ) {
+		config = config || {};
+		this.placeholder = config.placeholder;
+
+		// Parent constructor
 		mw.flow.ve.Target.parent.call(
 			this,
 			'desktop',
@@ -48,6 +55,15 @@
 
 	mw.flow.ve.Target.prototype.attachToolbar = function () {
 		this.getToolbar().$element.insertAfter( this.getToolbar().getSurface().$element );
+	};
+
+	mw.flow.ve.Target.prototype.createSurface = function ( dmDoc, config ) {
+		config = config || {};
+		return mw.flow.ve.Target.parent.prototype.createSurface.call(
+			this,
+			dmDoc,
+			ve.extendObject( { placeholder: this.placeholder }, config )
+		);
 	};
 
 }( mediaWiki, OO, ve ) );
