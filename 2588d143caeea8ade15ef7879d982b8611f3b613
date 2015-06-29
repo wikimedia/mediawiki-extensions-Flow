@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_22256b56",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-06-29T17:53:44Z",
+      "side": 1,
+      "message": "This documentation is hilariously out of date then: you changed the number of args from 10 to 1 but this one says 7.",
+      "revId": "2588d143caeea8ade15ef7879d982b8611f3b613",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
