@@ -75,20 +75,20 @@ QUnit.test( 'Create board', function ( assert ) {
 					pagePrefixedDb: 'Special:FlowTestBoardPage',
 					topicCount: 3,
 					description: {
-						author: undefined,
-						changeType: undefined,
+						author: null,
+						changeType: null,
 						content: '<h1>This is test board description.</h1>',
 						contentFormat: 'html',
-						creator: undefined,
+						creator: null,
 						id: null,
-						lastUpdated: undefined,
+						lastUpdate: null,
 						originalContent: true,
-						previousRevisionId: '',
-						revisionId: undefined,
-						timestamp: undefined,
+						previousRevisionId: null,
+						revisionId: null,
+						timestamp: null,
 						watchable: true,
 						watched: false,
-						workflowId: undefined
+						workflowId: null
 					}
 				},
 				msg: 'Get current board state with description'
