@@ -486,6 +486,7 @@ $wgResourceModules += array(
 			'editor/editors/visualeditor/ui/mw.flow.ve.ui.Icons.less',
 		),
 		'dependencies' => array(
+			'es5-shim',
 			'ext.visualEditor.core',
 			'ext.visualEditor.core.desktop',
 			'ext.visualEditor.data',
