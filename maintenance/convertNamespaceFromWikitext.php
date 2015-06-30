@@ -24,6 +24,13 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 			true, // takes argument
 			't'
 		);
+		$this->addOption(
+			'archive-pattern',
+			'Naming pattern for archive pages; %s for page title, %d for sequence number',
+			false, // not required
+			true, // takes argument
+			'a'
+		);
 	}
 
 	public function execute() {
@@ -71,7 +78,8 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 				$wgParser,
 				new Flow\Import\NullImportSourceStore(),
 				$logger,
-				$noConvertTemplates
+				$noConvertTemplates,
+				$this->getOption( 'archive-pattern', null )
 			)
 		);
 
