@@ -425,11 +425,13 @@ class FlowSearchConfig extends Maintenance {
 	}
 
 	protected function getOldTopicType() {
-		return Connection::getRevisionType( $this->indexBaseName, Connection::TOPIC_TYPE_NAME );
+		$index = Connection::getFlowIndex( $this->indexBaseName );
+		return $index->getType( Connection::TOPIC_TYPE_NAME );
 	}
 
 	protected function getOldHeaderType() {
-		return Connection::getRevisionType( $this->indexBaseName, Connection::HEADER_TYPE_NAME );
+		$index = Connection::getFlowIndex( $this->indexBaseName );
+		return $index->getType( Connection::HEADER_TYPE_NAME );
 	}
 
 	protected function getAllIndices() {
