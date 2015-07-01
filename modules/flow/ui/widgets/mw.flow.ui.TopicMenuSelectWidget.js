@@ -6,18 +6,19 @@
 	 * @extends OO.ui.MenuSelectWidget
 	 *
 	 * @constructor
-	 * @param {mw.flow.dm.Board} Board model
+	 * @param {mw.flow.dm.System} system System model
 	 * @param {Object} [config]
 	 * @cfg {number} [tocPostLimit=50] The number of topics in the ToC per API request
 	 */
-	mw.flow.ui.TopicMenuSelectWidget = function mwFlowUiTopicMenuSelectWidget( model, config ) {
+	mw.flow.ui.TopicMenuSelectWidget = function mwFlowUiTopicMenuSelectWidget( system, config ) {
 		config = config || {};
 
 		// Parent constructor
 		mw.flow.ui.TopicMenuSelectWidget.super.call( this, config );
 
 		// Properties
-		this.board = model;
+		this.system = system;
+		this.board = this.system.getBoard();
 		this.tocPostLimit = config.tocPostLimit || 50;
 		// Keep a reference to the topic option widgets by the topic Id
 		// so we can call them directly
@@ -28,9 +29,6 @@
 		this.loadingMoreTopics = false;
 		// Mark whether there are no more topics available so we can stop triggering infinite scroll
 		this.noMoreTopics = false;
-
-		// API handler
-		this.api = new mw.flow.dm.APIHandler( this.board.getPageTitle().getPrefixedDb() );
 
 		// Load more option
 		this.loadingMoreOptionWidget = new OO.ui.MenuOptionWidget( {
@@ -142,28 +140,16 @@
 	 *  flow.dm.Board
 	 */
 	mw.flow.ui.TopicMenuSelectWidget.prototype.getMoreTopics = function () {
-		var widget = this,
-			sortOrder = this.board.getSortOrder();
+		var widget = this;
 
 		this.loadingMoreTopics = true;
-		return this.api.getTopicList(
-			sortOrder,
-			{
-				offset: sortOrder === 'newest' ?
-					this.board.getOffsetId() :
-					this.board.getOffset(),
-				toconly: true
-			} )
-			.then( function ( topiclist ) {
-				return mw.flow.dm.Topic.static.extractTopicsFromAPI( topiclist );
-			} )
-			.then( function ( topics ) {
-				// Remove the 'more topics' option
-				widget.removeItems( [ widget.loadingMoreOptionWidget ] );
-
-				widget.noMoreTopics = length < widget.tocPostLimit;
-				// Add the topics to the data model
-				widget.board.addItems( topics );
+		this.system.fetchMoreTopics()
+			.then( function ( hasMoreTopicsInApi ) {
+				widget.noMoreTopics = hasMoreTopicsInApi;
+				if ( !widget.noMoreTopics ) {
+					// Remove the load more widget
+					widget.removeItems( [ widget.loadingMoreOptionWidget ] );
+				}
 			} )
 			.always( function () {
 				widget.loadingMoreTopics = false;
@@ -196,9 +182,7 @@
 		// Move the 'load more' to the end
 		if ( !this.noMoreTopics ) {
 			this.addItems( [ this.loadingMoreOptionWidget ] );
-			if ( this.isLoadMoreVisible() ) {
-				this.getMoreTopics();
-			}
+			this.getMoreTopics();
 		}
 	};
 
