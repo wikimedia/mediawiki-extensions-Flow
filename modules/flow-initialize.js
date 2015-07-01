@@ -64,7 +64,7 @@
 		flowBoard.topicIdSort = mw.flow.system.getBoard().getSortOrder();
 
 		/* UI Widgets */
-		navWidget = new mw.flow.ui.NavigationWidget( dmBoard, {
+		navWidget = new mw.flow.ui.NavigationWidget( mw.flow.system, {
 			defaultSort: flowBoard.topicIdSort
 		} );
 		$( '.flow-board-navigation' ).append( navWidget.$element );
