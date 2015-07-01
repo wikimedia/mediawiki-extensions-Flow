@@ -37,6 +37,8 @@
 			isDeleted: mw.config.get( 'wgArticleId' ) === 0,
 			defaultSort: config.defaultSort
 		} );
+		this.api = new mw.flow.dm.APIHandler( this.board.getPageTitle().getPrefixedDb() );
+		this.moreTopicsExistInApi = true;
 
 		this.board.connect( this, { reset: 'resetBoard' } );
 	};
@@ -72,6 +74,51 @@
 	 */
 
 	/* Methods */
+
+	/**
+	 * Fetch more topics from the topiclist API, if more topics exist.
+	 * The method also preserves the state of whether more topics exist
+	 * to know whether to send a request to the API at all.
+	 *
+	 * @return {jQuery.Promise} Promise that is resolved with whether
+	 *  more topics exist or not.
+	 */
+	mw.flow.dm.System.prototype.fetchMoreTopics = function () {
+		var system = this,
+			sortOrder = this.board.getSortOrder();
+
+		if ( !this.moreTopicsExistInApi ) {
+			return $.Deferred().resolve( false ).promise();
+		}
+
+		return this.api.getTopicList(
+			sortOrder,
+			{
+				offset: sortOrder === 'newest' ?
+					this.board.getOffsetId() :
+					this.board.getOffset(),
+				toconly: true
+			} )
+			.then( function ( topiclist ) {
+				return mw.flow.dm.Topic.static.extractTopicsFromAPI( topiclist );
+			} )
+			.then( function ( topics ) {
+				// Add the topics to the data model
+				system.board.addItems( topics );
+				system.moreTopicsExistInApi = length === system.tocPostLimit;
+				return system.moreTopicsExistInApi;
+			} );
+	};
+
+	/**
+	 * Get the state of whether there are more topics to fethc from the
+	 * topiclist API.
+	 *
+	 * @return {boolean} There are more topics in the API
+	 */
+	mw.flow.dm.System.prototype.hasMoreTopicsInApi = function () {
+		return this.moreTopicsExistInApi;
+	};
 
 	/**
 	 * Populate the board by querying the Api
@@ -177,6 +224,11 @@
 		}
 		// Add to board
 		this.getBoard().addItems( topics, index );
+
+		this.moreTopicsExistInApi = (
+			topics.length !== this.renderedTopics &&
+			topics.length !== this.tocPostLimit
+		);
 
 		// Both of these should be safe to update with extend, since only the latest data should be needed.
 		this.emit( 'populate', {
