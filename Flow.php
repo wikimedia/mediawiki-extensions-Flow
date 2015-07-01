@@ -367,6 +367,12 @@ $wgFlowSearchIndexAllocation = array(
 	'require' => array(),
 ); // see $wgCirrusSearchIndexAllocation
 
+// This allows running Flow without the search functionality.  Right now, it's because
+// the search functionality isn't ready for production, but we need to test it locally.
+// We can decide later (after it's in production) whether to get rid of this setting.
+// For example, this controls whether ApiFlowSearch is available.
+$wgFlowSearchEnabled = false;
+
 // Custom group name for AbuseFilter
 // Acceptable values:
 // * a specific value for flow-specific filters
