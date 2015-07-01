@@ -1,0 +1,1058 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_da6c84cd",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "This should be replaced by the config option. The switcher widget tells each editor whether it is switchable when it is constructed; VisualEditorWidget will know this and can deliver this to ve.Target",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_1aa68c0d",
+        "filename": "modules/editor/editors/visualeditor/ui/actions/mw.flow.ve.ui.SwitchEditorAction.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Reconsider whether this is the right place to emit this action.",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_3abca819",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "We also need integration for the new topic editor at the top of the page here, which is a bit more complex because the trigger input that you click in isn\u0027t the one that gets replaced with the editor, it stays and becomes the title input. We should probably do this by supporting opening an editor widget as already expanded.\n\nWe also need integration for editing titles and posts, but that should be more straightforward.",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_fa89407a",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.AbstractEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Should use PendingElement or whatever it\u0027s called these days",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_1a08ccdb",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.AbstractEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Default implementation empty function",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_3ac10883",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "There is no textarea",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_5abc1401",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "inheritdoc",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_fa3620af",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "inheritdoc",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_ba3c188f",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Not a method, move to constructor.",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_5a4bb42b",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "initVE already coerces to \u0027\u0027",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_7a71d071",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Anecdotally this appears to turn into mw-content- a lot",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_1a61aca3",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Document events",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_9a6cbc9a",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "TODO implement me (hard)",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_7ae47039",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Not implemented at all; doesn\u0027t belong here? (In the switcher instead)",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_da56c4d0",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Add change event",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_7a9d50b3",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Reconsider",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_9a983cc4",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Does ButtonWidget not have a config option for this?",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_3a9348a7",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "In this code path, this is always true",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_daf9e4e5",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Document this requirement",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_5a8e547d",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Should be conditional",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_5ae5f430",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "inheritdoc (or omit entirely)",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_3aea6805",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "inheritdoc",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_9ac6fc9b",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "TODO implement me",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_7acb10a7",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Shouldn\u0027t take a parameter",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_fa04e0ca",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Add destroy? May or may not be necessary.",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_ba0ad8d2",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorControlsWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Use LabeledElement here?",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_da0d64ec",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorControlsWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "This needs to be configurable as well",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_7af8f0bf",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Explore making trigger not a text input? Maybe later?",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_3afee8ab",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Undocumented config option",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_9a9d9c5d",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Does this belong one layer up maybe?",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_5af974bf",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Document config options",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_baabb86b",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Call setEditorByKey here instead of in EditorWidget?",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_1a2f6c3b",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Maybe do this.getEditor( editorKey ) || this.getNextEditor() ? Or explicit exception if key invalid? Or nothing if key invalid?",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_ba21784c",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "PendingElement?",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_da24845c",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "But keep this? Or is it unnecessary?",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_dae32401",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "(startIndex + 1) % length",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_bae098f7",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Reevaluate the logic of this function and whether the parameter makes sense",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_5aef34e4",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Move up because it runs early",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_3acb4876",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "This modifies the global setting!!",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_1aac4c9c",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": ", true? (For pending, eww)",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_7a9c7070",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "editor is probably not the context we want to bind to",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_baae5893",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": ", false?",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_3aa268a4",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "{Function|null}",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_fa8f002d",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Excess assignment in the middle of the expression. Also centralize normalization",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_1a93ec5b",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "|| null",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_da880425",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Unused?",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_7a831006",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Normalization (and double assignment) again",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_9a7efc12",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "And again",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_3a79082a",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "!!",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_5a741430",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Document, or find an alternative to this structure",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_fa8e202a",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Gets modified",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_1a920c4f",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "grammar",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_ba94183a",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Then this doesn\u0027t need a default again one layer down",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_da97a43b",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Capital E Editor",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_7aa23097",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Analyze what side effects this has",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_fab5c0cb",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "lol",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_daaec47b",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "TODO call me",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_9ac4bc45",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "More pending",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_3abfc8a8",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Should we factor this out too?",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_1ae0ccc6",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Figure out if we can get by with only one of these two",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_5abad4b6",
+        "filename": "modules/styles/flow/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.less",
+        "patchSetId": 13
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "compressed was renamed to collapsed",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_bae2d8cd",
+        "filename": "modules/styles/flow/widgets/editor/mw.flow.ui.EditorSwitcherWidget.less",
+        "patchSetId": 13
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-01T00:56:57Z",
+      "side": 1,
+      "message": "Deduplicate placeholder stuff",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
