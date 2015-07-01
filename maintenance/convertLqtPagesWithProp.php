@@ -58,9 +58,10 @@ class ConvertLqt extends Maintenance {
 		$startId = $this->getOption( 'startId' );
 		$stopId = $this->getOption( 'stopId' );
 
-		$logger->info( "Starting full wiki LQT conversion" );
+		$logger->info( "Starting full wiki LQT conversion of all pages with use-liquid-threads property" );
 		$titles = new PagesWithPropertyIterator( $dbw, 'use-liquid-threads', $startId, $stopId );
 		$converter->convertAll( $titles );
+		$logger->info( "Finished conversion" );
 	}
 }
 

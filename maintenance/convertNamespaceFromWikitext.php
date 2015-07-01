@@ -92,6 +92,8 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 		$it = $it->getIterator();
 
 		$converter->convertAll( $it );
+
+		$logger->info( "Finished conversion of $namespaceName namespace" );
 	}
 }
 

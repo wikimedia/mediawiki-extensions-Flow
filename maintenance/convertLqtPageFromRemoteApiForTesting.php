@@ -80,6 +80,8 @@ class ConvertLqtPageFromRemoteApiForTesting extends Maintenance {
 		$logger->info( "Starting LQT conversion of page $srcPageName" );
 
 		$importer->import( $source, $dstTitle, $sourceStore );
+
+		$logger->info( "Finished LQT conversion of page $srcPageName" );
 	}
 }
 
