@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_9a56fc5d",
+        "filename": "includes/Api/ApiFlowSearch.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-01T04:30:26Z",
+      "side": 1,
+      "message": "resultSet can be null",
+      "revId": "dd15ae2ce3f87e14583c030258e2dbaaa60a9f87",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
