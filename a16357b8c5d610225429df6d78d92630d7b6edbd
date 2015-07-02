@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_46c66b9e",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-02T20:50:28Z",
+      "side": 0,
+      "message": "Why was this removed?",
+      "revId": "a16357b8c5d610225429df6d78d92630d7b6edbd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_2639dfd3",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-02T20:50:28Z",
+      "side": 1,
+      "message": "Document",
+      "revId": "e7014a0ede82a8d3a0e74c59d6242ad70d5805f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_a64cef7a",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-02T20:50:28Z",
+      "side": 1,
+      "message": "Commented-out code from a different class",
+      "revId": "e7014a0ede82a8d3a0e74c59d6242ad70d5805f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_46df4b6c",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-02T20:50:28Z",
+      "side": 1,
+      "message": "I\u0027m not usually a fan of resolving promises with a boolean value. I think we should have a getter for moreTopicsExist anyway, so maybe the caller can just use that.",
+      "revId": "e7014a0ede82a8d3a0e74c59d6242ad70d5805f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_866c53cc",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-02T20:50:28Z",
+      "side": 1,
+      "message": "Why is this checking against two values? It feels to me like it should be one or the other, not both.",
+      "revId": "e7014a0ede82a8d3a0e74c59d6242ad70d5805f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_a6a2aff7",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.NavigationWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-02T20:50:28Z",
+      "side": 1,
+      "message": "Musspelling",
+      "revId": "e7014a0ede82a8d3a0e74c59d6242ad70d5805f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_c6a57b01",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ToCWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-02T20:50:28Z",
+      "side": 1,
+      "message": "Musspelling",
+      "revId": "e7014a0ede82a8d3a0e74c59d6242ad70d5805f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_66a847d8",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-02T20:50:28Z",
+      "side": 1,
+      "message": "Musspelling",
+      "revId": "e7014a0ede82a8d3a0e74c59d6242ad70d5805f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_c6da5b77",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-02T20:50:28Z",
+      "side": 1,
+      "message": "Musspelled vurialbe nume",
+      "revId": "e7014a0ede82a8d3a0e74c59d6242ad70d5805f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_663cc78e",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-02T20:50:28Z",
+      "side": 1,
+      "message": "The way this is set up relies on all calls to this.system.fetchMoreTopics() to be routed through this.getMoreTopics(). Maybe an event-based thing could be set up instead so that this widget would update correctly even if something else called fetchMoreTopics(), and then this wrapper function could probably be removed.",
+      "revId": "e7014a0ede82a8d3a0e74c59d6242ad70d5805f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_a6f06ffb",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-02T20:50:28Z",
+      "side": 1,
+      "message": "is...Exist is ungrammatical, doubly so when \"...\" is plural",
+      "revId": "e7014a0ede82a8d3a0e74c59d6242ad70d5805f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
