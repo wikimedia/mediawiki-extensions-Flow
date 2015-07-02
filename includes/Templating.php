@@ -3,6 +3,7 @@
 namespace Flow;
 
 use Flow\Exception\InvalidInputException;
+use Flow\Exception\PermissionException;
 use Flow\Repository\UserNameBatch;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
@@ -84,11 +85,11 @@ class Templating {
 	 *
 	 * @param  AbstractRevision $revision        Revision to display
 	 * @return string                            HTML
-	 * @throws FlowException
+	 * @throws PermissionException
 	 */
 	public function getUserLinks( AbstractRevision $revision ) {
 		if ( !$revision->isModerated() && !$this->permissions->isAllowed( $revision, 'history' ) ) {
-			throw new FlowException( 'Insufficient permissions to see userlinks for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
+			throw new PermissionException( 'Insufficient permissions to see userlinks for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
 		}
 
 		// if this specific revision is moderated, its usertext can always be

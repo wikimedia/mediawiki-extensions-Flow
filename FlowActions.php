@@ -761,6 +761,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_HIDDEN => '',
 			PostRevision::MODERATED_LOCKED => '',
 			PostRevision::MODERATED_DELETED => '',
+			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
 		'core-delete-permissions' => array( 'deletedhistory' ),
 		'history' => array(), // views don't generate history
