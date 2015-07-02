@@ -2,6 +2,8 @@
 
 namespace Flow\Api;
 
+use ApiBase;
+
 class ApiFlowViewTopic extends ApiFlowBaseGet {
 	public function __construct( $api, $modName ) {
 		parent::__construct( $api, $modName, 'vt' );
@@ -20,6 +22,18 @@ class ApiFlowViewTopic extends ApiFlowBaseGet {
 		return 'view-topic';
 	}
 
+	public function getAllowedParams() {
+		global $wgFlowContentFormat;
+
+		return array(
+			'format' => array(
+				ApiBase::PARAM_TYPE => array( 'html', 'wikitext', 'fixed-html' ),
+				// never default to unfixed html, only serve that when specifically asked!
+				ApiBase::PARAM_DFLT => $wgFlowContentFormat === 'html' ? 'fixed-html' : $wgFlowContentFormat,
+			),
+		);
+	}
+
 	/**
 	 * @deprecated since MediaWiki core 1.25
 	 */
@@ -32,7 +46,7 @@ class ApiFlowViewTopic extends ApiFlowBaseGet {
 	 */
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=view-topic&page=Topic:S2tycnas4hcucw8w',
+			'api.php?action=flow&submodule=view-topic&page=Topic:S2tycnas4hcucw8w&vtformat=wikitext',
 		);
 	}
 

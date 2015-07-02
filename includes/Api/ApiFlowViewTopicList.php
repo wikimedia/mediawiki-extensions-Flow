@@ -23,7 +23,7 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 	}
 
 	public function getAllowedParams() {
-		global $wgFlowDefaultLimit, $wgFlowMaxLimit;
+		global $wgFlowDefaultLimit, $wgFlowMaxLimit, $wgFlowContentFormat;
 
 		return array(
 			'offset-dir' => array(
@@ -59,6 +59,11 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 			'toconly' => array(
 				ApiBase::PARAM_TYPE => 'boolean',
 				ApiBase::PARAM_DFLT => false,
+			),
+			'format' => array(
+				ApiBase::PARAM_TYPE => array( 'html', 'wikitext', 'fixed-html' ),
+				// never default to unfixed html, only serve that when specifically asked!
+				ApiBase::PARAM_DFLT => $wgFlowContentFormat === 'html' ? 'fixed-html' : $wgFlowContentFormat,
 			),
 		);
 	}
