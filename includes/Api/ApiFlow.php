@@ -14,7 +14,7 @@ class ApiFlow extends ApiBase {
 	/** @var ApiModuleManager $moduleManager */
 	private $moduleManager;
 
-	private static $modules = array(
+	private static $alwaysEnabledModules = array(
 		// POST
 		'new-topic' => 'Flow\Api\ApiFlowNewTopic',
 		'edit-header' => 'Flow\Api\ApiFlowEditHeader',
@@ -35,16 +35,29 @@ class ApiFlow extends ApiBase {
 		// topiclist - we'll want to know topic-/post- or topiclist-view ;)
 		'view-topiclist' => 'Flow\Api\ApiFlowViewTopicList',
 		'view-post' => 'Flow\Api\ApiFlowViewPost',
+		'view-post-history' => 'Flow\Api\ApiFlowViewPostHistory',
 		'view-topic' => 'Flow\Api\ApiFlowViewTopic',
+		'view-topic-history' => 'Flow\Api\ApiFlowViewTopicHistory',
 		'view-header' => 'Flow\Api\ApiFlowViewHeader',
 		'view-topic-summary' => 'Flow\Api\ApiFlowViewTopicSummary',
-//		'search' => 'Flow\Api\ApiFlowSearch', // @todo: uncomment once we're ready to expose search
+	);
+
+	private static $searchModules = array(
+		'search' => 'Flow\Api\ApiFlowSearch',
 	);
 
 	public function __construct( $main, $action ) {
+		global $wgFlowSearchEnabled;
+
 		parent::__construct( $main, $action );
 		$this->moduleManager = new ApiModuleManager( $this );
-		$this->moduleManager->addModules( self::$modules, 'submodule' );
+
+		$enabledModules = self::$alwaysEnabledModules;
+		if ( $wgFlowSearchEnabled ) {
+			$enabledModules += self::$searchModules;
+		}
+
+		$this->moduleManager->addModules( $enabledModules, 'submodule' );
 	}
 
 	public function getModuleManager() {

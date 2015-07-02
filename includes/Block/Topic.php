@@ -70,7 +70,7 @@ class TopicBlock extends AbstractBlock {
 
 	protected $supportedGetActions = array(
 		'reply', 'view', 'history', 'edit-post', 'edit-title', 'compare-post-revisions', 'single-view',
-		'view-topic', 'view-post', 'undo-edit-post',
+		'view-topic', 'view-topic-history', 'view-post', 'view-post-history', 'undo-edit-post',
 		'moderate-topic', 'moderate-post', 'lock-topic',
 	);
 
@@ -513,6 +513,16 @@ class TopicBlock extends AbstractBlock {
 				$output += $this->renderUndoApi( $options );
 				break;
 
+			case 'view-post-history':
+				// View entire history of single post
+				$output += $this->renderHistoryApi( Container::get( 'query.post.history' ), UUID::create( $options['postId'] ), $options );
+				break;
+
+			case 'view-topic-history':
+				// View entire histories of a topic's posts
+				$output += $this->renderHistoryApi( Container::get( 'query.topic.history' ), $this->workflow->getId(), $options );
+				break;
+
 			// Any actions require (re)rendering the whole topic
 			case 'edit-post':
 			case 'moderate-post':
@@ -743,6 +753,34 @@ class TopicBlock extends AbstractBlock {
 		return array(
 			'revisions' => $revisions,
 			'navbar' => $pager->getNavigationBar(),
+		);
+	}
+
+	/**
+	 * Process the history result for either topic or post, in a format more suitable for API consumers
+	 *
+	 * @param TopicHistoryQuery|PostHistoryQuery $query
+	 * @param UUID $uuid
+	 * @param array $options
+	 * @return array
+	 */
+	protected function renderHistoryApi( /* TopicHistoryQuery|PostHistoryQuery */ $query, UUID $uuid, $options ) {
+		$format = isset( $options['format'] ) ? $options['format'] : 'fixed-html';
+		$serializer = $this->getRevisionFormatter( $format );
+		$serializer->setIncludeHistoryProperties( true );
+
+		$history = $query->getResults( $uuid );
+		$revisions = array();
+		foreach ( $history as $row ) {
+			$serialized = $serializer->formatApi( $row, $this->context, 'history' );
+			// if the user is not allowed to see this row it will return empty
+			if ( $serialized ) {
+				$revisions[$serialized['revisionId']] = $serialized;
+			}
+		}
+
+		return array(
+			'revisions' => $revisions,
 		);
 	}
 
