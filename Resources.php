@@ -377,12 +377,15 @@ $wgResourceModules += array(
 			'flow/ui/widgets/mw.flow.ui.ToCWidget.js',
 			'flow/ui/widgets/mw.flow.ui.ReorderTopicsWidget.js',
 			'flow/ui/widgets/mw.flow.ui.NavigationWidget.js',
+			'flow/ui/widgets/mw.flow.ui.SearchInputWidget.js',
+			'flow/ui/widgets/mw.flow.ui.SearchWidget.js',
 		),
 		'styles' => array(
 			'styles/flow/mw.flow.ui.less',
 			'styles/flow/widgets/mw.flow.ui.NavigationWidget.less',
 			'styles/flow/widgets/mw.flow.ui.TopicMenuSelectWidget.less',
 			'styles/flow/widgets/mw.flow.ui.ReorderTopicsWidget.less',
+			'styles/flow/widgets/mw.flow.ui.SearchInputWidget.less',
 		),
 		'dependencies' => array (
 			'oojs-ui',
