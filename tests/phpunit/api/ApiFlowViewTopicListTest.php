@@ -21,7 +21,6 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 				'page' => $topic['topic-page'],
 				'action' => 'flow',
 				'submodule' => 'view-topic',
-				'vpformat' => 'html',
 			) );
 
 			$topicData[$i]['response'] = $data[0]['flow']['view-topic']['result']['topic'];
@@ -54,6 +53,7 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 								'limit' => 2,
 								'toconly' => true,
 								'include-offset' => false,
+								'format' => 'fixed-html',
 							),
 							'errors' => array(),
 							'type' => 'topiclist',
@@ -92,6 +92,7 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 				'submodule' => 'view-topiclist',
 				'vtllimit' => 2,
 				'vtltoconly' => true,
+				'vtlformat' => 'fixed-html',
 			)
 		);
 		$actualEmptyPageResponse = $actualEmptyPageResponse[0];
@@ -151,6 +152,7 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 				'vtllimit' => 2,
 				'vtlsortby' => 'newest',
 				'vtltoconly' => true,
+				'vtlformat' => 'fixed-html',
 			)
 		);
 		$actualNewestResponse = $actualNewestResponse[0];
@@ -246,6 +248,7 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 				'vtllimit' => 2,
 				'vtlsortby' => 'updated',
 				'vtltoconly' => true,
+				'vtlformat' => 'fixed-html',
 			)
 		);
 		$actualUpdatedResponse = $actualUpdatedResponse[0];

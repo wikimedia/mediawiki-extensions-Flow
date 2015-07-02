@@ -31,7 +31,8 @@ class ApiFlowViewPost extends ApiFlowBaseGet {
 			),
 			'format' => array(
 				ApiBase::PARAM_TYPE => array( 'html', 'wikitext', 'fixed-html' ),
-				ApiBase::PARAM_DFLT => $wgFlowContentFormat,
+				// never default to unfixed html, only serve that when specifically asked!
+				ApiBase::PARAM_DFLT => $wgFlowContentFormat === 'html' ? 'fixed-html' : $wgFlowContentFormat,
 			),
 		);
 	}
