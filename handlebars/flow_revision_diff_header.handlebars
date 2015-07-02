@@ -17,9 +17,13 @@
 	{{~/if~}}
 </div>
 {{#if links.previous}}
-	<div><a href="{{links.previous}}">{{l10n "flow-previous-diff"}}</a></div>
+	{{~#unless new~}}
+		<div><a href="{{links.previous}}">{{l10n "flow-previous-diff"}}</a></div>
+	{{~/unless~}}
 {{/if}}
 {{#if links.next}}
-	<div><a href="{{links.next}}">{{l10n "flow-next-diff"}}</a></div>
+	{{~#if new~}}
+		<div><a href="{{links.next}}">{{l10n "flow-next-diff"}}</a></div>
+	{{~/if~}}
 {{/if}}
 {{> flow_patrol_diff}}
