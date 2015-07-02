@@ -86,7 +86,7 @@
 	"flow-history-action-undelete-post": "Text link for undeleting a post or topic from the board history page.\n{{Identical|Undelete}}",
 	"flow-history-action-unhide-post": "Text link for unhiding a post or topic from the board history page.\n{{Identical|Unhide}}",
 	"flow-history-action-restore-post": "Text link for restoring a post or topic from the board history page.\n{{Identical|Restore}}",
-	"flow-history-action-lock-topic": "Text link for resolving a post or topic from the board history page.",
+	"flow-history-action-lock-topic": "Text link for resolving a post or topic from the board history page.\n{{Identical|Resolve}}",
 	"flow-history-action-unlock-topic": "Text link for reopening a post or topic from the board history page.",
 	"flow-post-interaction-separator": "{{optional}}",
 	"flow-post-edited": "Text displayed to notify the user a post has been modified. Parameters:\n* $1 - username that created the most recent revision of the post\n* $2 - humanized timestamp, relative to now, of when the edit occurred; rendered by MWTimestamp::getHumanTimestamp",
