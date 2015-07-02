@@ -10,7 +10,8 @@
 	 */
 	$( document ).ready( function () {
 		var dataBlob, navWidget, flowBoard, dmBoard,
-			$component = $( '.flow-component' );
+			$component = $( '.flow-component' ),
+			$board = $( '.flow-board' );
 
 		// HACK: If there is no component, we are not on a flow
 		// board at all, and there's no need to load anything.
@@ -22,7 +23,15 @@
 		}
 
 		mw.flow.initComponent( $component );
-		flowBoard = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $( '.flow-board' ) );
+
+		// HACK: Similarly to the above hack, if there is no board
+		// we shouldn't proceed. This is true mainly to history pages
+		// that have the component but not the board DOM element.
+		if ( $board.length === 0 ) {
+			return;
+		}
+
+		flowBoard = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $board );
 
 		// Load data model
 		mw.flow.system = new mw.flow.dm.System( {
@@ -30,7 +39,7 @@
 			tocPostsLimit: 50,
 			renderedTopics: $( '.flow-topic' ).length,
 			boardId: $component.data( 'flow-id' ),
-			defaultSort: $( '.flow-board' ).data( 'flow-sortby' )
+			defaultSort: $board.data( 'flow-sortby' )
 		} );
 
 		dmBoard = mw.flow.system.getBoard();
@@ -101,7 +110,7 @@
 			setTimeout( function () {
 				// Reinitialize the whole board with these nodes
 				// flowBoard.reinitializeContainer( $rendered );
-				$( '.flow-board' ).empty().append( $rendered[ 1 ] );
+				$board.empty().append( $rendered[ 1 ] );
 
 				// Since we've replaced the entire board, we need to reinitialize
 				// it. This also takes away the original navWidget, so we need to
