@@ -35,7 +35,9 @@ class ApiFlow extends ApiBase {
 		// topiclist - we'll want to know topic-/post- or topiclist-view ;)
 		'view-topiclist' => 'Flow\Api\ApiFlowViewTopicList',
 		'view-post' => 'Flow\Api\ApiFlowViewPost',
+		'view-post-history' => 'Flow\Api\ApiFlowViewPostHistory',
 		'view-topic' => 'Flow\Api\ApiFlowViewTopic',
+		'view-topic-history' => 'Flow\Api\ApiFlowViewTopicHistory',
 		'view-header' => 'Flow\Api\ApiFlowViewHeader',
 		'view-topic-summary' => 'Flow\Api\ApiFlowViewTopicSummary',
 	);
