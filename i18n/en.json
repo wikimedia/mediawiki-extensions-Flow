@@ -540,5 +540,6 @@
 	"flow-mark-revision-patrolled-link-text": "Mark this page as patrolled",
 	"flow-mark-revision-patrolled-link-title": "Mark this page as patrolled",
 	"flow-mark-diff-patrolled-link-text": "Mark as patrolled",
-	"flow-mark-diff-patrolled-link-title": "Mark as patrolled"
+	"flow-mark-diff-patrolled-link-title": "Mark as patrolled",
+	"flow-search-results-title": "Search results for '$1'"
 }

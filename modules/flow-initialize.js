@@ -9,7 +9,8 @@
 	 * @todo not like this
 	 */
 	$( document ).ready( function () {
-		var dataBlob, navWidget, flowBoard, dmBoard,
+		var dataBlob, navWidget, flowBoard, dmBoard, searchWidget,
+			overlay,
 			$component = $( '.flow-component' ),
 			$board = $( '.flow-board' );
 
@@ -155,6 +156,26 @@
 		navWidget.on( 'reorderTopics', function ( newOrder ) {
 			flowBoard.topicIdSort = newOrder;
 		} );
+
+		// Overlay
+		overlay = new mw.flow.ui.Overlay();
+		$( 'body' ).append( overlay.$element );
+
+		// Search
+		searchWidget = new mw.flow.ui.SearchWidget( overlay, {
+			pageTitle: mw.Title.newFromText( mw.config.get( 'wgPageName' ) )
+		} );
+		searchWidget.setFlowBoard( flowBoard );
+		// HACK: This is just a test placement for the widget! It should change
+		// to reflect the design.
+		$( '<div>' )
+			.addClass( 'flow-ui-searchWrapper' )
+			.css( {
+				position: 'relative',
+				height: '3em'
+			} )
+			.append( searchWidget.$element )
+			.insertBefore( '.flow-board-navigation' );
 
 		dataBlob = mw.flow && mw.flow.data;
 		if ( dataBlob && dataBlob.blocks && dataBlob.toc ) {

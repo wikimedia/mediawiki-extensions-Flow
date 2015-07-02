@@ -797,6 +797,7 @@
 			// Flow topic title, in Topic:<topicId> format (2600 is topic namespace id)
 			page: ( new mw.Title( workflowId, 2600 ) ).getPrefixedDb()
 		} ).done( function ( result ) {
+debugger;
 			// Update view of the full topic
 			var $replacement = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
 				'flow_topiclist_loop.partial',

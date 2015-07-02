@@ -21,7 +21,7 @@
 			}
 		}, config.apiConstructorParams );
 
-		this.page = page;
+		this.page = page || '';
 
 		this.requestParams = $.extend( {
 			action: 'flow'
@@ -38,12 +38,17 @@
 	 *  is done, with the API result.
 	 */
 	mw.flow.dm.APIHandler.prototype.get = function ( submodule, requestParams ) {
-		var params = $.extend( { submodule: submodule }, this.requestParams, requestParams );
+		var xhr,
+			params = $.extend( { submodule: submodule }, this.requestParams, requestParams );
 
-		return ( new mw.Api() ).get( params )
+		xhr = ( new mw.Api() ).get( params );
+		return xhr
 			.then( function ( data ) {
-				return data.flow[ submodule ].result;
-			} );
+				return data.flow ?
+					data.flow[ submodule ].result :
+					data;
+			} )
+			.promise( { abort: xhr.abort } );
 	};
 
 	/**
@@ -80,4 +85,48 @@
 				return data.topiclist;
 			} );
 	};
+
+	mw.flow.dm.APIHandler.prototype.getTopic = function ( topicId, config ) {
+		var xhr,
+			params = {
+				// TODO: i18n this.
+				// What is 'topic' definition in other languages and how do
+				// we get it from the wiki?
+				page: 'Topic:' + topicId
+			};
+
+		xhr = this.get( 'view-topic', params );
+		return xhr
+			.promise( { abort: xhr.abort } );
+	};
+
+	/**
+	 * Send a request to get search results
+	 *
+	 * @param {string} term Search term
+	 * @param {Object} config Configuration option
+	 * @cfg {string} [page] The page to search in. If omitted, the api will return results
+	 *  from all boards.
+	 * @return {jQuery.Promise} Promise that is resolved with the search result response
+	 */
+	mw.flow.dm.APIHandler.prototype.getSearchResults = function ( term, config ) {
+		var xhr,
+			params = {
+				qterm: term
+			};
+
+		config = config || {};
+
+		if ( config.page ) {
+			params.qtitle = config.page;
+		}
+
+		xhr = this.get( 'search', params );
+
+		return xhr.then( function ( data ) {
+				return data.search;
+			} )
+			.promise( { abort: xhr.abort } );
+	};
+
 }( jQuery ) );

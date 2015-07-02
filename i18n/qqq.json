@@ -546,5 +546,6 @@
 	"flow-mark-revision-patrolled-link-text": "Text of the link to mark a revision as patrolled on a revision page.",
 	"flow-mark-revision-patrolled-link-title": "Title of the link to mark a revision as patrolled on a revision page.",
 	"flow-mark-diff-patrolled-link-text": "Text of the link to mark a revision as patrolled on a diff page.\n{{Identical|Mark as patrolled}}",
-	"flow-mark-diff-patrolled-link-title": "Title of the link to mark a revision as patrolled on a diff page.\n{{Identical|Mark as patrolled}}"
+	"flow-mark-diff-patrolled-link-title": "Title of the link to mark a revision as patrolled on a diff page.\n{{Identical|Mark as patrolled}}",
+	"flow-search-results-title": "Title for the search results, showing the search term. $1 - The search term used.",
 }

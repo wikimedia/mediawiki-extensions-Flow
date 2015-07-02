@@ -241,6 +241,7 @@ $wgResourceModules += array(
 			"flow-wikitext-editor-help-and-preview",
 			"flow-wikitext-editor-help-uses-wikitext",
 			"flow-wikitext-editor-help-preview-the-result",
+			"flow-search-results-title",
 		),
 	) + $mobile,
 	// @todo: upstream to mediawiki ui
@@ -373,16 +374,23 @@ $wgResourceModules += array(
 	'ext.flow.ui' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'flow/ui/mw.flow.ui.js',
+			'flow/ui/mw.flow.ui.Overlay.js',
 			'flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js',
 			'flow/ui/widgets/mw.flow.ui.ToCWidget.js',
 			'flow/ui/widgets/mw.flow.ui.ReorderTopicsWidget.js',
 			'flow/ui/widgets/mw.flow.ui.NavigationWidget.js',
+			'flow/ui/widgets/mw.flow.ui.SearchInputWidget.js',
+			'flow/ui/widgets/mw.flow.ui.SearchResultsWidget.js',
+			'flow/ui/widgets/mw.flow.ui.SearchWidget.js',
 		),
 		'styles' => array(
 			'styles/flow/mw.flow.ui.less',
+			'styles/flow/mw.flow.ui.Overlay.less',
 			'styles/flow/widgets/mw.flow.ui.NavigationWidget.less',
 			'styles/flow/widgets/mw.flow.ui.TopicMenuSelectWidget.less',
 			'styles/flow/widgets/mw.flow.ui.ReorderTopicsWidget.less',
+			'styles/flow/widgets/mw.flow.ui.SearchResultsWidget.less',
+			'styles/flow/widgets/mw.flow.ui.SearchInputWidget.less',
 		),
 		'dependencies' => array (
 			'oojs-ui',
