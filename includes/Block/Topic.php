@@ -70,7 +70,7 @@ class TopicBlock extends AbstractBlock {
 
 	protected $supportedGetActions = array(
 		'reply', 'view', 'history', 'edit-post', 'edit-title', 'compare-post-revisions', 'single-view',
-		'view-topic', 'view-post', 'undo-edit-post',
+		'view-topic', 'view-topic-history', 'view-post', 'view-post-history', 'undo-edit-post',
 		'moderate-topic', 'moderate-post', 'lock-topic',
 	);
 
@@ -513,6 +513,16 @@ class TopicBlock extends AbstractBlock {
 				$output += $this->renderUndoApi( $options );
 				break;
 
+			case 'view-post-history':
+				// View entire history of single post
+				$output += $this->renderPostHistoryApi( $options, UUID::create( $options['postId'] ), false );
+				break;
+
+			case 'view-topic-history':
+				// View entire history of a topic's posts
+				$output += $this->renderTopicHistoryApi( $options, false );
+				break;
+
 			// Any actions require (re)rendering the whole topic
 			case 'edit-post':
 			case 'moderate-post':
@@ -690,18 +700,18 @@ class TopicBlock extends AbstractBlock {
 		return $serializer;
 	}
 
-	protected function renderTopicHistoryApi( array $options ) {
+	protected function renderTopicHistoryApi( array $options, $navbar = true ) {
 		if ( $this->workflow->isNew() ) {
 			throw new FlowException( 'No topic history can exist for non-existent topic' );
 		}
-		return $this->processHistoryResult( Container::get( 'query.topic.history' ), $this->workflow->getId(), $options );
+		return $this->processHistoryResult( Container::get( 'query.topic.history' ), $this->workflow->getId(), $options, $navbar );
 	}
 
-	protected function renderPostHistoryApi( array $options, UUID $postId ) {
+	protected function renderPostHistoryApi( array $options, UUID $postId, $navbar = true ) {
 		if ( $this->workflow->isNew() ) {
 			throw new FlowException( 'No post history can exist for non-existent topic' );
 		}
-		return $this->processHistoryResult( Container::get( 'query.post.history' ), $postId, $options );
+		return $this->processHistoryResult( Container::get( 'query.post.history' ), $postId, $options, $navbar );
 	}
 
 	/**
@@ -710,9 +720,10 @@ class TopicBlock extends AbstractBlock {
 	 * @param TopicHistoryQuery|PostHistoryQuery $query
 	 * @param UUID $uuid
 	 * @param array $options
+	 * @param bool $navbar Whether to include the page navbar
 	 * @return array
 	 */
-	protected function processHistoryResult( /* TopicHistoryQuery|PostHistoryQuery */ $query, UUID $uuid, $options ) {
+	protected function processHistoryResult( /* TopicHistoryQuery|PostHistoryQuery */ $query, UUID $uuid, $options, $navbar = true ) {
 		global $wgRequest;
 
 		$format = isset( $options['format'] ) ? $options['format'] : 'fixed-html';
@@ -740,10 +751,11 @@ class TopicBlock extends AbstractBlock {
 			}
 		}
 
-		return array(
-			'revisions' => $revisions,
-			'navbar' => $pager->getNavigationBar(),
-		);
+		$response = array( 'revisions' => $revisions );
+		if ( $navbar ) {
+			$response['navbar'] = $pager->getNavigationBar();
+		}
+		return $response;
 	}
 
 	/**
