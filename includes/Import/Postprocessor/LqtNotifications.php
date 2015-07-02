@@ -69,7 +69,7 @@ class LqtNotifications implements Postprocessor {
 
 			// The job queue causes our overrides to be lost since it
 			// has a separate execution context.
-			$wgEchoNotifications[$type]['use-jobqueue'] = false;
+			$wgEchoNotifications[$type]['immediate'] = true;
 		}
 
 		// Insert our own user locator to decide who should be notified.

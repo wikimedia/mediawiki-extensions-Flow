@@ -6,7 +6,7 @@ $notificationTemplate = array(
 	'section' => 'message',
 	'formatter-class' => 'Flow\NotificationFormatter',
 	'icon' => 'flow-discussion',
-	'use-jobqueue' => true,
+	'immediate' => false, // Default
 );
 
 $notifications = array(
