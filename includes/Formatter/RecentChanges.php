@@ -3,6 +3,7 @@
 namespace Flow\Formatter;
 
 use Flow\Exception\FlowException;
+use Flow\Exception\PermissionException;
 use Flow\Model\Anchor;
 use ChangesList;
 use Flow\Model\PostRevision;
@@ -164,6 +165,10 @@ class RecentChanges extends AbstractFormatter {
 	 */
 	public function getTimestampLink( $row, $ctx ) {
 		$data = $this->serializer->formatApi( $row, $ctx, 'recentchanges' );
+		if ( $data === false ) {
+			throw new PermissionException( 'Insufficient permissions for ' . $row->revision->getRevisionId()->getAlphadecimal() );
+		}
+
 		return $this->formatTimestamp( $data, 'time' );
 	}
 

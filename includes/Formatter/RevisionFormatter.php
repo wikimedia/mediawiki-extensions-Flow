@@ -3,6 +3,7 @@
 namespace Flow\Formatter;
 
 use Flow\Collection\PostCollection;
+use Flow\Exception\PermissionException;
 use Flow\Repository\UserNameBatch;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
