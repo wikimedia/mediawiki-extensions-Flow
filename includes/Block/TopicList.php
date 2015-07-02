@@ -248,6 +248,8 @@ class TopicListBlock extends AbstractBlock {
 			/** @var TopicListFormatter $serializer */
 			$serializer = Container::get( 'formatter.topiclist' );
 		}
+		$format = isset( $options['format'] ) ? $options['format'] : 'fixed-html';
+		$serializer->setContentFormat( $format );
 
 		// @todo remove the 'api' => true, its always api
 		$findOptions = $this->getFindOptions( $options + array( 'api' => true ) );
