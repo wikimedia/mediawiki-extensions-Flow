@@ -9,7 +9,7 @@
 	 * @todo not like this
 	 */
 	$( document ).ready( function () {
-		var dataBlob, navWidget, flowBoard, dmBoard,
+		var dataBlob, navWidget, flowBoard, dmBoard, searchWidget,
 			$component = $( '.flow-component' );
 
 		// HACK: If there is no component, we are not on a flow
@@ -146,6 +146,19 @@
 		navWidget.on( 'reorderTopics', function ( newOrder ) {
 			flowBoard.topicIdSort = newOrder;
 		} );
+
+		// Search
+		searchWidget = new mw.flow.ui.SearchWidget( {
+			pageTitle: mw.Title.newFromText( mw.config.get( 'wgPageName' ) )
+		} );
+		$( '<div>' )
+			.addClass( 'flow-ui-searchWrapper' )
+			.css( {
+				position: 'relative',
+				height: '3em'
+			} )
+			.append( searchWidget.$element )
+			.insertBefore( '.flow-board-navigation' );
 
 		dataBlob = mw.flow && mw.flow.data;
 		if ( dataBlob && dataBlob.blocks && dataBlob.toc ) {

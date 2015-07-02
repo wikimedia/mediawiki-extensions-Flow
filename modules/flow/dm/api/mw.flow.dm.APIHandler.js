@@ -21,7 +21,7 @@
 			}
 		}, config.apiConstructorParams );
 
-		this.page = page;
+		this.page = page || '';
 
 		this.requestParams = $.extend( {
 			action: 'flow'
@@ -38,12 +38,17 @@
 	 *  is done, with the API result.
 	 */
 	mw.flow.dm.APIHandler.prototype.get = function ( submodule, requestParams ) {
-		var params = $.extend( { submodule: submodule }, this.requestParams, requestParams );
+		var xhr,
+			params = $.extend( { submodule: submodule }, this.requestParams, requestParams );
 
-		return ( new mw.Api() ).get( params )
+		xhr = ( new mw.Api() ).get( params );
+		return xhr
 			.then( function ( data ) {
-				return data.flow[ submodule ].result;
-			} );
+				return data.flow ?
+					data.flow[ submodule ].result :
+					data;
+			} )
+			.promise( { abort: xhr.abort } );
 	};
 
 	/**
@@ -80,4 +85,35 @@
 				return data.topiclist;
 			} );
 	};
+
+	/**
+	 * Send a request to get search results
+	 *
+	 * @param {string} term Search term
+	 * @param {boolean} [searchInPage] Search in current page
+	 * @param {[type]} config Configuration option
+	 * @cfg {string} [page] The page to search in. If omitted, the api will return results
+	 *  from all boards.
+	 * @return {jQuery.Promise} Promise that is resolved with the search result response
+	 */
+	mw.flow.dm.APIHandler.prototype.getSearchResults = function ( term, searchInPage, config ) {
+		var xhr,
+			params = {
+				qterm: term
+			};
+
+		config = config || {};
+
+		if ( searchInPage ) {
+			params.qtitle = this.page;
+		}
+
+		xhr = this.get( 'search', params );
+
+		return xhr.then( function ( data ) {
+				return data.search;
+			} )
+			.promise( { abort: xhr.abort } );
+	};
+
 }( jQuery ) );
