@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_0b670be7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-03T01:14:27Z",
+      "side": 1,
+      "message": "If the implementation ends up keeping this cloned, the commit message should explain why.",
+      "revId": "42b001efdfd0297de5ce8231e1d7405c02cf825d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_2b6207d5",
+        "filename": "includes/Api/ApiFlow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-03T01:14:27Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be in here since it\u0027s not related to your change.  Instead, rebase.",
+      "revId": "42b001efdfd0297de5ce8231e1d7405c02cf825d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_8ba21bf8",
+        "filename": "includes/Api/ApiFlowViewPostHistory.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-03T01:14:27Z",
+      "side": 1,
+      "message": "\u0027Taken\u0027 comment doesn\u0027t need to be here (probably shouldn\u0027t be in the pre-existing modules, either, but don\u0027t change those in this change).",
+      "revId": "42b001efdfd0297de5ce8231e1d7405c02cf825d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_2bb1a741",
+        "filename": "includes/Api/ApiFlowViewPostHistory.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-03T01:14:27Z",
+      "side": 1,
+      "message": "Why is this different from the other ones (the others make it default to fixed-html if the format is \u0027html\u0027)?",
+      "revId": "42b001efdfd0297de5ce8231e1d7405c02cf825d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_cbbb4321",
+        "filename": "includes/Api/ApiFlowViewPostHistory.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-03T01:14:27Z",
+      "side": 1,
+      "message": "Deprecated way shouldn\u0027t be added.  Just do it using the i18n way (see existing examples in i18n/en.json).  See the ones with apihelp-flow+view-post as an example.",
+      "revId": "42b001efdfd0297de5ce8231e1d7405c02cf825d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_0bee2beb",
+        "filename": "includes/Api/ApiFlowViewTopicHistory.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-03T01:14:27Z",
+      "side": 1,
+      "message": "Remove \u0027Taken from ext.flow.base.js\u0027 part.",
+      "revId": "42b001efdfd0297de5ce8231e1d7405c02cf825d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_2be9a7e0",
+        "filename": "includes/Api/ApiFlowViewTopicHistory.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-03T01:14:27Z",
+      "side": 1,
+      "message": "See question in ApiFlowViewPostHistory.",
+      "revId": "42b001efdfd0297de5ce8231e1d7405c02cf825d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_ebee3fe7",
+        "filename": "includes/Api/ApiFlowViewTopicHistory.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-03T01:14:27Z",
+      "side": 1,
+      "message": "Remove deprecated versions.  Use i18n way.",
+      "revId": "42b001efdfd0297de5ce8231e1d7405c02cf825d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_abc4b768",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-03T01:14:27Z",
+      "side": 1,
+      "message": "history",
+      "revId": "42b001efdfd0297de5ce8231e1d7405c02cf825d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_6b6c8fcb",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-03T01:14:27Z",
+      "side": 1,
+      "message": "I get not needing \u0027navbar\u0027, but not sure this needs to be a totally separate implementation.",
+      "revId": "42b001efdfd0297de5ce8231e1d7405c02cf825d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_ab76f79c",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-03T01:14:27Z",
+      "side": 1,
+      "message": "This \u0027format\u0027 fallback should not be done.  It\u0027s only for backwards-compatibility, but not applicable for new API endpoints (or functions that previously were not accessible to the API).",
+      "revId": "42b001efdfd0297de5ce8231e1d7405c02cf825d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
