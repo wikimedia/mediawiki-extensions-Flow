@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"The Discoverer"
+		]
+	},
+	"flow-skip-summary": "Sar pollounk naka",
+	"flow-history-action-unlock-topic": "porot ugod",
+	"flow-topic-action-unlock-topic": "Vixoi porot ugod",
+	"flow-rev-message-restore-topic-reason": "porot ugodlele"
+}
