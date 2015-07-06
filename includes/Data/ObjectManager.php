@@ -350,12 +350,20 @@ class ObjectManager extends ObjectLocator {
 	static public function calcUpdatesWithoutValidation( array $old, array $new ) {
 		$updates = array();
 		foreach ( array_keys( $new ) as $key ) {
-			if ( !array_key_exists( $key, $old ) || $old[$key] !== $new[$key] ) {
+			/*
+			 * $old[$key] and $new[$key] could both be the same value going into the same
+			 * column, but represented as different data type here: one could be a string
+			 * and another an int, of even an object (e.g. Blob)
+			 * What we should be comparing is their "value", regardless of the data type
+			 * (different between them doesn't matter here, both are for the same database
+			 * column), so I'm casting them to string before performing comparison.
+			 */
+			if ( !array_key_exists( $key, $old ) || (string) $old[$key] !== (string) $new[$key] ) {
 				$updates[$key] = $new[$key];
 			}
 			unset( $old[$key] );
 		}
-		// These keys dont exist in $new
+		// These keys don't exist in $new
 		foreach ( array_keys( $old ) as $key ) {
 			$updates[$key] = null;
 		}

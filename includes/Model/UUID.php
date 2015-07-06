@@ -216,12 +216,13 @@ class UUID implements ApiSerializable {
 	}
 
 	/**
-	 * @return Blob|string UUID encoded in binary format for database storage
+	 * @return UUIDBlob UUID encoded in binary format for database storage. This value
+	 *  is a Blob object and unusable as an array key
 	 * @throws FlowException
 	 */
 	public function getBinary() {
 		if ( $this->binaryValue !== null ) {
-			return $this->encodeBlob( $this->binaryValue );
+			return new UUIDBlob( $this->binaryValue );
 		} elseif ( $this->hexValue !== null ) {
 			$this->binaryValue = static::hex2bin( $this->hexValue );
 		} elseif ( $this->alphadecimalValue !== null ) {
@@ -232,9 +233,7 @@ class UUID implements ApiSerializable {
 			throw new FlowException( 'No binary, hex or alphadecimal value available' );
 		}
 		self::$instances[self::INPUT_BIN][$this->binaryValue] = $this;
-		// finally, encode the blob for database storage.  This value
-		// may be a Blob object and unusable as an array key.
-		return $this->encodeBlob( $this->binaryValue );
+		return new UUIDBlob( $this->binaryValue );
 	}
 
 	/**
@@ -326,13 +325,13 @@ class UUID implements ApiSerializable {
 	 *
 	 * @param array $array
 	 * @param string $format
-	 * @return string[]|Blob[] Typically an array of strings.  If required by the database when
+	 * @return string[]|UUIDBlob[] Typically an array of strings.  If required by the database when
 	 *  $format === 'binary' uuid values will be represented as Blob objects.
 	 */
 	public static function convertUUIDs( $array, $format = 'binary' ) {
 		$array = ObjectManager::makeArray( $array );
 		foreach( $array as $key => $value ) {
-			if ( $value instanceof Blob ) {
+			if ( $value instanceof UUIDBlob ) {
 				// database encoded binary value
 				if ( $format === 'alphadecimal' ) {
 					$array[$key] = UUID::create( $value->fetch() )->getAlphadecimal();
@@ -445,20 +444,18 @@ class UUID implements ApiSerializable {
 		$msTimestamp = hexdec( substr( $hex, 0, 12 ) ) >> 2;
 		return intval( $msTimestamp / 1000 );
 	}
+}
 
+/**
+ * Extend Blob so we can identify UUID specific blobs
+ */
+class UUIDBlob extends \Blob {
 	/**
-	 * encode a binary string for database storage
+	 * We'll want to be able to compare the (string) value of 2 blobs.
 	 *
-	 * @param string
-	 * @return Blob|string
+	 * @return string
 	 */
-	protected function encodeBlob( $binary ) {
-		static $dbr;
-		if ( $dbr === null ) {
-			// assume the any potential database we connect to is
-			// the same as this slave.
-			$dbr = wfGetDB( DB_SLAVE );
-		}
-		return $dbr->encodeBlob( $binary );
+	public function __toString() {
+		return $this->fetch();
 	}
 }
