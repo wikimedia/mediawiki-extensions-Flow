@@ -3,6 +3,7 @@
 use Flow\Collection\PostCollection;
 use Flow\Container;
 use Flow\Exception\FlowException;
+use Flow\Exception\PermissionException;
 use Flow\Formatter\CheckUserQuery;
 use Flow\Model\UUID;
 use Flow\OccupationController;
@@ -446,6 +447,16 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onEnhancedChangesListModifyLineData( $changesList, &$data, $block, $rc ) {
+		return static::onEnhancedChangesListModifyBlockLineData( $changesList, $data, $rc );
+	}
+
+	/**
+	 * @param EnhancedChangesList $changesList
+	 * @param array $data
+	 * @param RecentChange $rc
+	 * @return bool
+	 */
+	public static function onEnhancedChangesListModifyBlockLineData( $changesList, &$data, $rc ) {
 		// quit if non-flow
 		if ( !FlowHooks::isFlow( $rc ) ) {
 			return true;
@@ -459,7 +470,11 @@ class FlowHooks {
 
 		/** @var Flow\Formatter\RecentChanges $formatter */
 		$formatter = Container::get( 'formatter.recentchanges' );
-		$data['timestampLink'] = $formatter->getTimestampLink( $row, $changesList );
+		try {
+			$data['timestampLink'] = $formatter->getTimestampLink( $row, $changesList );
+		} catch ( PermissionException $e ) {
+			return false;
+		}
 
 		return true;
 	}
