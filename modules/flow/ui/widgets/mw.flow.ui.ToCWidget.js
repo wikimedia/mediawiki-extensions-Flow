@@ -19,6 +19,7 @@
 		this.board = board;
 		this.originalButtonLabel = mw.msg( 'flow-board-header-browse-topics-link' );
 
+		// ToC
 		this.button = new OO.ui.ButtonWidget( {
 			framed: false,
 			icon: 'stripeToC',
@@ -30,6 +31,11 @@
 			tocPostLimit: config.tocPostLimit,
 			widget: this.button
 		} );
+		// Search
+		this.search = new mw.flow.ui.SearchInputWidget( {
+			icon: 'search',
+			classes: [ 'flow-ui-tocWidget-search' ]
+		} );
 
 		this.$wrapper = $( '<div>' )
 			.addClass( 'flow-ui-tocWidget-wrapper' );
@@ -37,11 +43,19 @@
 		// Events
 		this.topicSelect.connect( this, { topic: 'onTopicSelectTopic' } );
 		this.button.connect( this, { click: 'onButtonClick' } );
+		this.search.$input
+			.on( 'focusin', this.onSearchFocusIn.bind( this ) )
+			.on( 'focusout', this.onSearchFocusOut.bind( this ) );
 		// Initialize
 		this.$element
 			.addClass( 'flow-ui-tocWidget' )
 			.append(
-				this.button.$element,
+				$( '<div>' )
+					.addClass( 'flow-ui-tocWidget-searchtoc' )
+					.append(
+						this.search.$element,
+						this.button.$element
+					),
 				this.$wrapper.append( this.topicSelect.$element )
 			);
 	};
@@ -60,6 +74,52 @@
 	 */
 
 	/* Methods */
+
+	/**
+	 * Respond to search widget focusin event
+	 */
+	mw.flow.ui.ToCWidget.prototype.onSearchFocusIn = function () {
+		this.setState( 'search' );
+		this.toggleFocus( true );
+	};
+
+	mw.flow.ui.ToCWidget.prototype.setState = function ( state ) {
+		switch ( state ) {
+			case 'toc':
+				this.$element
+					.removeClass( 'flow-ui-tocWidget-state-search' )
+					.addClass( 'flow-ui-tocWidget-state-toc' );
+				break;
+			case 'search':
+				this.$element
+					.removeClass( 'flow-ui-tocWidget-state-toc' )
+					.addClass( 'flow-ui-tocWidget-state-search' );
+				break;
+			default:
+				this.$element
+					.removeClass( 'flow-ui-tocWidget-state-toc' )
+					.removeClass( 'flow-ui-tocWidget-state-search' );
+				break;
+		}
+	};
+
+	/**
+	 * Respond to search widget focusout event
+	 */
+	mw.flow.ui.ToCWidget.prototype.onSearchFocusOut = function () {
+		this.$element
+			.removeClass( 'flow-ui-tocWidget-state-search' );
+		this.toggleFocus( false );
+	};
+
+	/**
+	 * Change of focus on the widget or its elements.
+	 *
+	 * @param {boolean} isFocused Widget is focused
+	 */
+	mw.flow.ui.ToCWidget.prototype.toggleFocus = function ( isFocused ) {
+		this.$element.toggleClass( 'flow-ui-tocWidget-focused', !!isFocused );
+	};
 
 	/**
 	 * Respond to button click

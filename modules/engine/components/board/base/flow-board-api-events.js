@@ -213,7 +213,7 @@
 		var $rendered,
 			flowBoard = info.component,
 			dfd = $.Deferred();
-
+debugger;
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
 			return dfd.resolve().promise();
@@ -797,6 +797,7 @@
 			// Flow topic title, in Topic:<topicId> format (2600 is topic namespace id)
 			page: ( new mw.Title( workflowId, 2600 ) ).getPrefixedDb()
 		} ).done( function ( result ) {
+
 			// Update view of the full topic
 			var $replacement = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
 				'flow_topiclist_loop.partial',

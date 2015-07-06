@@ -27,7 +27,10 @@
 
 		// Events
 		$( window ).on( 'scroll resize', this.onWindowScroll.bind( this ) );
-		this.tocWidget.connect( this, { loadTopic: 'onToCWidgetLoadTopic' } );
+		this.tocWidget.connect( this, {
+			loadTopic: 'onToCWidgetLoadTopic',
+			goToTopic: 'onToCWidgetLoadTopic'
+		} );
 		this.reorderTopicsWidget.connect( this, { reorder: 'onReorderTopicsWidgetReorder' } );
 
 		// Initialize
@@ -139,9 +142,19 @@
 			// Copy width from parent, width: 100% doesn't do what we want when
 			// position: fixed; is set
 			this.$element.css( 'width', this.$element.parent().width() );
+
+			// Make the toc widget full width when scrolling
+			this.tocWidget.$element.css( 'width', '100%' );
+
+			// Change the toc widget's state
+			this.tocWidget.setState( 'toc' );
 		} else {
 			// Unset width when we no longer have position: fixed;
 			this.$element.css( 'width', '' );
+			// Change the toc widget's state
+			this.tocWidget.setState();
+			// Reset the toc widget's width
+			this.tocWidget.$element.css( 'width', '' );
 		}
 
 		this.reorderTopicsWidget.toggle( !isScrolledDown );

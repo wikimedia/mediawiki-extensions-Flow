@@ -374,6 +374,7 @@ $wgResourceModules += array(
 		'scripts' => array(
 			'flow/ui/mw.flow.ui.js',
 			'flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js',
+			'flow/ui/widgets/mw.flow.ui.SearchInputWidget.js',
 			'flow/ui/widgets/mw.flow.ui.ToCWidget.js',
 			'flow/ui/widgets/mw.flow.ui.ReorderTopicsWidget.js',
 			'flow/ui/widgets/mw.flow.ui.NavigationWidget.js',
