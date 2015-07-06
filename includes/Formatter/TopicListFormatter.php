@@ -3,6 +3,7 @@
 namespace Flow\Formatter;
 
 use Flow\Data\Pager\PagerPage;
+use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\UrlGenerator;
 use IContextSource;
@@ -30,6 +31,7 @@ class TopicListFormatter extends BaseTopicListFormatter {
 	public function buildEmptyResult( Workflow $workflow ) {
 		$title = $workflow->getArticleTitle();
 		return array(
+			'workflowId' => $workflow->getId()->getAlphadecimal(),
 			'title' => $title->getPrefixedText(),
 			'actions' => $this->buildApiActions( $workflow ),
 		) + parent::buildEmptyResult( $workflow );
@@ -42,7 +44,7 @@ class TopicListFormatter extends BaseTopicListFormatter {
 		PagerPage $page,
 		IContextSource $ctx
 	) {
-		$res = $this->buildResult( $listWorkflow, $workflows, $found, $ctx ) +
+		$res = $this->buildResult( $workflows, $found, $ctx ) +
 			$this->buildEmptyResult( $listWorkflow );
 		$pagingOption = $page->getPagingLinksOptions();
 		$res['links']['pagination'] = $this->buildPaginationLinks(
@@ -61,13 +63,16 @@ class TopicListFormatter extends BaseTopicListFormatter {
 	}
 
 	/**
+	 * Method is called from static::formatApi & ApiFlowSearch::formatApi, to ensure
+	 * both have similar output.
+	 *
 	 * @param Workflow $listWorkflow
 	 * @param Workflow[] $workflows
 	 * @param FormatterRow[] $found
 	 * @param IContextSource $ctx
 	 * @return array
 	 */
-	protected function buildResult( Workflow $listWorkflow, array $workflows, array $found, IContextSource $ctx ) {
+	public function buildResult( array $workflows, array $found, IContextSource $ctx ) {
 		$revisions = $posts = $replies = array();
 		foreach( $found as $formatterRow ) {
 			$serialized = $this->serializer->formatApi( $formatterRow, $ctx );
@@ -108,7 +113,6 @@ class TopicListFormatter extends BaseTopicListFormatter {
 		}
 
 		return array(
-			'workflowId' => $listWorkflow->getId()->getAlphadecimal(),
 			// array_values must be used to ensure 0-indexed array
 			'roots' => $list,
 			'posts' => $posts,

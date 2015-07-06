@@ -153,7 +153,6 @@ $wgAutoloadClasses += array(
 	'Flow\\Formatter\\RevisionUndoViewFormatter' => __DIR__ . '/includes/Formatter/RevisionUndoViewFormatter.php',
 	'Flow\\Formatter\\RevisionViewFormatter' => __DIR__ . '/includes/Formatter/RevisionViewFormatter.php',
 	'Flow\\Formatter\\RevisionViewQuery' => __DIR__ . '/includes/Formatter/RevisionViewQuery.php',
-	'Flow\\Formatter\\SearchQuery' => __DIR__ . '/includes/Formatter/SearchQuery.php',
 	'Flow\\Formatter\\SinglePostQuery' => __DIR__ . '/includes/Formatter/SinglePostQuery.php',
 	'Flow\\Formatter\\TocTopicListFormatter' => __DIR__ . '/includes/Formatter/TocTopicListFormatter.php',
 	'Flow\\Formatter\\TopicFormatter' => __DIR__ . '/includes/Formatter/TopicFormatter.php',
