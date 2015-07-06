@@ -16,6 +16,24 @@
       "revId": "a16357b8c5d610225429df6d78d92630d7b6edbd",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_280e8d3e",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-06T17:16:11Z",
+      "side": 0,
+      "message": "Because in the case where we add topics to the ToC while the ToC widget is closed, the widget is *not* visible, but we still want to check whether there are more topics to add. Sadly, there\u0027s no \u0027toggle\u0027 event to the OO.ui.MenuSelectWidget so there\u0027s no real way of triggering this only when the widget actually opens.\n\nThis will ask for more topics once and never more if there aren\u0027t any more, or, alternatively, it will fill the widget with more topics if those exist.",
+      "parentUuid": "8ec42329_46c66b9e",
+      "revId": "a16357b8c5d610225429df6d78d92630d7b6edbd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }

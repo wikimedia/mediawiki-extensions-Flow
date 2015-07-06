@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_0865d10c",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-06T17:16:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_2639dfd3",
+      "revId": "e7014a0ede82a8d3a0e74c59d6242ad70d5805f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_a64cef7a",
         "filename": "modules/flow/dm/mw.flow.dm.System.js",
         "patchSetId": 1
@@ -53,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_2860cdfa",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-06T17:16:11Z",
+      "side": 1,
+      "message": "I added the getter, but I think this makes the operation simpler; the caller doesn\u0027t need to do anything except ask for more topics. There\u0027s no need to get the new topics, because they were inserted to the dm.Board, which emits events on \u0027add\u0027, so the result of this method should be a clear yes/no for the caller.\n\nI could, instead of returning a boolean, use reject/resolve, but that would mean \u0027reject\u0027 is \"false\", which I thought was a little weird.",
+      "parentUuid": "8ec42329_46df4b6c",
+      "revId": "e7014a0ede82a8d3a0e74c59d6242ad70d5805f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_866c53cc",
         "filename": "modules/flow/dm/mw.flow.dm.System.js",
         "patchSetId": 1
@@ -64,6 +100,24 @@
       "writtenOn": "2015-07-02T20:50:28Z",
       "side": 1,
       "message": "Why is this checking against two values? It feels to me like it should be one or the other, not both.",
+      "revId": "e7014a0ede82a8d3a0e74c59d6242ad70d5805f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_f7cdb28a",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-06T17:16:11Z",
+      "side": 1,
+      "message": "Because we may get only 10 topics (the number of rendered topics) or 50 topics (the number of ToC). Any other state means no more topics exist.\n\nIf we get 30 topics, it must mean we asked for tocPostLimit (50) but there\u0027s no more left. If we get 9 topics, we asked for renderedTopics (10) but there are only 9 left. A result of 12 or 49 or anywhere in between would mean renderedTopics was called but not enough topics were received - hence, no more topics exist.",
+      "parentUuid": "8ec42329_866c53cc",
       "revId": "e7014a0ede82a8d3a0e74c59d6242ad70d5805f3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +141,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_c85a6952",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.NavigationWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-06T17:16:11Z",
+      "side": 1,
+      "message": "Dune",
+      "parentUuid": "8ec42329_a6a2aff7",
+      "revId": "e7014a0ede82a8d3a0e74c59d6242ad70d5805f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_c6a57b01",
         "filename": "modules/flow/ui/widgets/mw.flow.ui.ToCWidget.js",
         "patchSetId": 1
@@ -98,6 +170,24 @@
       "writtenOn": "2015-07-02T20:50:28Z",
       "side": 1,
       "message": "Musspelling",
+      "revId": "e7014a0ede82a8d3a0e74c59d6242ad70d5805f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_e855e520",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ToCWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-06T17:16:11Z",
+      "side": 1,
+      "message": "Dune",
+      "parentUuid": "8ec42329_c6a57b01",
       "revId": "e7014a0ede82a8d3a0e74c59d6242ad70d5805f3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -121,6 +211,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_a83b5de6",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-06T17:16:11Z",
+      "side": 1,
+      "message": "Dune",
+      "parentUuid": "8ec42329_66a847d8",
+      "revId": "e7014a0ede82a8d3a0e74c59d6242ad70d5805f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_c6da5b77",
         "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
         "patchSetId": 1
@@ -132,6 +240,24 @@
       "writtenOn": "2015-07-02T20:50:28Z",
       "side": 1,
       "message": "Musspelled vurialbe nume",
+      "revId": "e7014a0ede82a8d3a0e74c59d6242ad70d5805f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_8838e1ec",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-06T17:16:11Z",
+      "side": 1,
+      "message": "Dune",
+      "parentUuid": "8ec42329_c6da5b77",
       "revId": "e7014a0ede82a8d3a0e74c59d6242ad70d5805f3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -155,6 +281,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_4815194c",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-06T17:16:11Z",
+      "side": 1,
+      "message": "As we discussed offline, I think this works best for the caller; they don\u0027t need to do anything other than ask for more topics, and the promise resolves with either a true or false immediately. Since this state is cached in the system, the promise resolves immediately in case there are no more topics, so that behavior seems convenient.",
+      "parentUuid": "8ec42329_663cc78e",
+      "revId": "e7014a0ede82a8d3a0e74c59d6242ad70d5805f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_a6f06ffb",
         "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
         "patchSetId": 1
@@ -166,6 +310,24 @@
       "writtenOn": "2015-07-02T20:50:28Z",
       "side": 1,
       "message": "is...Exist is ungrammatical, doubly so when \"...\" is plural",
+      "revId": "e7014a0ede82a8d3a0e74c59d6242ad70d5805f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_68181585",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-06T17:16:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_a6f06ffb",
       "revId": "e7014a0ede82a8d3a0e74c59d6242ad70d5805f3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
