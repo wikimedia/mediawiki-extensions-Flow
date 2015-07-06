@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "8ec42329_778f8227",
+        "filename": "handlebars/flow_moderation_actions_list.handlebars",
+        "patchSetId": 8
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-06T17:22:38Z",
+      "side": 1,
+      "message": "Should use mw-ui-icon, as wikiglyph is being removed",
+      "revId": "52cc33a852de99375a3a980b686f1969935d44d3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_ac49ad91",
         "filename": "i18n/en.json",
         "patchSetId": 8
@@ -13,6 +30,23 @@
       "writtenOn": "2015-06-18T22:12:36Z",
       "side": 1,
       "message": "Please don\u0027t use Title Case, but:\n\n View source",
+      "revId": "52cc33a852de99375a3a980b686f1969935d44d3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_d79d165e",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-06T17:22:38Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem like a very sensible way of implementing view source to me. Why not add an API action that allows you to get the wikitext of a post given a post ID? That would make a no-JS version much easier to implement, and you wouldn\u0027t have to mess around with reversing ContentFixer changes.",
       "revId": "52cc33a852de99375a3a980b686f1969935d44d3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
