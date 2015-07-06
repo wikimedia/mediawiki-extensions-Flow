@@ -16,6 +16,24 @@
       "revId": "be016f0a9db3aad51c70df1d54d6ac0abdde5986",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_08d37bd8",
+        "filename": "build/tasks/typos.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 366
+      },
+      "writtenOn": "2015-07-06T21:14:20Z",
+      "side": 1,
+      "message": "T104916",
+      "parentUuid": "8ec42329_48d183cf",
+      "revId": "be016f0a9db3aad51c70df1d54d6ac0abdde5986",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
