@@ -1,6 +1,7 @@
 {
 	"caseSensitive": [
-		[ "@returns", "@return" ]
+		[ "@returns", "@return" ],
+		[ "\\.super", ".parent" ]
 	],
 	"caseInsensitive": [
 		[ "paralell", "parallel" ],
