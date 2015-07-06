@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_5115b69e",
+        "filename": "handlebars/flow_revision_diff_header.handlebars",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-07-06T12:57:38Z",
+      "side": 1,
+      "message": "there\u0027s also an \u0027old\u0027 :)",
+      "revId": "e58102fefcbd8ef1a8b4a3f11a710489a31887d9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
