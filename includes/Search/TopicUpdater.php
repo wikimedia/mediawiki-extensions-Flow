@@ -206,7 +206,7 @@ class TopicUpdater extends Updater {
 		if ( $revision instanceof PostRevision ) {
 			// get data from all child posts too
 			foreach ( $revision->getChildren() as $child ) {
-				$data = array_merge( $this->getRevisionsData( $child ) );
+				$data = array_merge( $data, $this->getRevisionsData( $child ) );
 			}
 		}
 
