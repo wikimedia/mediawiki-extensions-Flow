@@ -14,7 +14,7 @@
 		config = config || {};
 
 		// Parent constructor
-		mw.flow.ui.ToCWidget.super.call( this, config );
+		mw.flow.ui.ToCWidget.parent.call( this, config );
 
 		this.board = board;
 		this.originalButtonLabel = mw.msg( 'flow-board-header-browse-topics-link' );

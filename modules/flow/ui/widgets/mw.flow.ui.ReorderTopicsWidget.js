@@ -12,7 +12,7 @@ mw.flow.ui.ReorderTopicsWidget = function mwFlowUiReorderTopicsWidget( board, co
 	config = config || {};
 
 	// Parent constructor
-	mw.flow.ui.ReorderTopicsWidget.super.call( this, config );
+	mw.flow.ui.ReorderTopicsWidget.parent.call( this, config );
 
 	this.board = board;
 
