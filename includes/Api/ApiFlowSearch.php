@@ -5,8 +5,9 @@ namespace Flow\Api;
 use ApiBase;
 use Flow\Container;
 use Flow\Exception\InvalidDataException;
-use Flow\Formatter\RevisionFormatter;
-use Flow\Formatter\SearchQuery;
+use Flow\Formatter\TopicListFormatter;
+use Flow\Formatter\TopicListQuery;
+use Flow\Model\UUID;
 use Flow\Search\Connection;
 use Flow\Search\SearchEngine;
 use Flow\TalkpageManager;
@@ -15,18 +16,12 @@ use Status;
 
 class ApiFlowSearch extends ApiFlowBaseGet {
 	/**
-	 * @var SearchQuery
-	 */
-	protected $query;
-
-	/**
 	 * @var SearchEngine
 	 */
 	protected $searchEngine;
 
 	public function __construct( $api, $modName ) {
 		parent::__construct( $api, $modName, 'q' );
-		$this->query = Container::get( 'query.search' );
 		$this->searchEngine = new SearchEngine();
 	}
 
@@ -65,19 +60,37 @@ class ApiFlowSearch extends ApiFlowBaseGet {
 		// result can be null, if nothing was found
 		$results = $result === null ? array() : $result->getResults();
 
-		$rows = $this->query->getResults( $results );
-		$results = array(
-			'total' => $result->getTotalHits(),
-			'rows' => array(),
-		);
-
-		/** @var RevisionFormatter $formatter */
-		$formatter = Container::get( 'formatter.revision' );
-		foreach ( $rows as $row ) {
-			$results['rows'][] = $formatter->formatApi( $row, $this->getContext() );
+		$topicIds = array();
+		foreach ( $results as $topic ) {
+			$topicIds[] = UUID::create( $topic->getId() );
 		}
 
+		// output similar to view-topiclist
+		$results = $this->formatApi( $topicIds );
+		// search-specific output
+		$results['total'] = $result->getTotalHits();
+
 		$this->getResult()->addValue( null, $this->getModuleName(), $results );
+	}
+
+	/**
+	 * Given an array of topic UUIDs, we'll use TopicListQuery & TopicListFormatter
+	 * to return API output very similar to ApiFlowViewTopicList.
+	 *
+	 * @param array $topicIds
+	 * @return array
+	 */
+	protected function formatApi( array $topicIds ) {
+		/** @var TopicListQuery $query */
+		$query = Container::get( 'query.topiclist' );
+		$found = $query->getResults( $topicIds );
+
+		$storage = Container::get( 'storage' );
+		$workflows = $storage->getMulti( 'Workflow', $topicIds );
+
+		/** @var TopicListFormatter $serializer */
+		$serializer = Container::get( 'formatter.topiclist' );
+		return $serializer->buildResult( $workflows, $found, $this->getContext() );
 	}
 
 	/**
