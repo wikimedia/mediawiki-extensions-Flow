@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_978d4edb",
+        "filename": "modules/flow/dm/mw.flow.dm.System.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-06T17:59:26Z",
+      "side": 1,
+      "message": "Misspells \"fetch\"",
+      "revId": "eda064aac22ac03ba6e70d686f0e47f60c375a3e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
