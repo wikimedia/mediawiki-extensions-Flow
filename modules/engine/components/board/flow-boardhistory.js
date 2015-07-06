@@ -63,7 +63,7 @@
 	 * Reloads the history page after resolving or reopening a topic.
 	 * @param {Object} info
 	 * @param {Object} data
-	 * @returns {jQuery.Promise}
+	 * @return {jQuery.Promise}
 	 */
 	FlowBoardHistoryComponent.UI.events.apiHandlers.lockTopic = function ( info, data ) {
 		if ( info.status !== 'done' ) {

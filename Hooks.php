@@ -13,7 +13,7 @@ use Flow\Data\Listener\RecentChangesListener;
 
 class FlowHooks {
 	/**
-	 * @var OccupationController Initialized during extension intialization
+	 * @var OccupationController Initialized during extension initialization
 	 */
 	protected static $occupationController;
 

@@ -362,7 +362,7 @@
 	/**
 	 * Checks if a topic summary object actually contains a summary.
 	 * @param topicSummary
-	 * @returns {boolean}
+	 * @return {boolean}
 	 * @private
 	 */
 	function _hasSummary( topicSummary ) {

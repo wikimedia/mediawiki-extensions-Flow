@@ -15,7 +15,7 @@ class RevisionUndoViewFormatter {
 	}
 
 	/**
-	 * Undoes the change that occured between $start and $stop
+	 * Undoes the change that occurred between $start and $stop
 	 */
 	public function formatApi(
 		FormatterRow $start,
