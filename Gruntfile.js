@@ -12,8 +12,19 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
 	grunt.loadNpmTasks( 'grunt-jscs' );
+	grunt.loadTasks( 'build/tasks' );
 
 	grunt.initConfig( {
+		typos: {
+			options: {
+				typos: 'build/typos.json'
+			},
+			src: [
+				'**/*',
+				'!{node_modules,vendor}/**',
+				'!build/typos.json'
+			]
+		},
 		jshint: {
 			options: {
 				jshintrc: true
@@ -52,7 +63,7 @@ module.exports = function ( grunt ) {
 		}
 	} );
 
-	grunt.registerTask( 'lint', [ 'jscs', 'jshint', 'csslint', 'jsonlint', 'banana' ] );
+	grunt.registerTask( 'lint', [ 'typos', 'jscs', 'jshint', 'csslint', 'jsonlint', 'banana' ] );
 	grunt.registerTask( 'test', 'lint' );
 	grunt.registerTask( 'default', 'test' );
 };
