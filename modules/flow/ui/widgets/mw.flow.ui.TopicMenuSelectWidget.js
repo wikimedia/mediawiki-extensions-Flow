@@ -14,7 +14,7 @@
 		config = config || {};
 
 		// Parent constructor
-		mw.flow.ui.TopicMenuSelectWidget.super.call( this, config );
+		mw.flow.ui.TopicMenuSelectWidget.parent.call( this, config );
 
 		// Properties
 		this.board = model;
@@ -244,7 +244,7 @@
 		}
 
 		// Parent call
-		mw.flow.ui.TopicMenuSelectWidget.super.prototype.addItems.call( this, items, index );
+		mw.flow.ui.TopicMenuSelectWidget.parent.prototype.addItems.call( this, items, index );
 	};
 
 	/**
@@ -262,7 +262,7 @@
 		}
 
 		// Parent call
-		mw.flow.ui.TopicMenuSelectWidget.super.prototype.removeItems.call( this, items );
+		mw.flow.ui.TopicMenuSelectWidget.parent.prototype.removeItems.call( this, items );
 	};
 
 }( jQuery ) );
