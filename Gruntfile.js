@@ -12,8 +12,19 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
 	grunt.loadNpmTasks( 'grunt-jscs' );
+	grunt.loadTasks( 'build/tasks' );
 
 	grunt.initConfig( {
+		typos: {
+			options: {
+				typos: 'build/typos.json'
+			},
+			src: [
+				'**/*',
+				'!{node_modules,vendor}/**',
+				'!build/typos.json'
+			]
+		},
 		jshint: {
 			options: {
 				jshintrc: true
