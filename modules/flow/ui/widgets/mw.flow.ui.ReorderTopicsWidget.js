@@ -111,8 +111,10 @@ mw.flow.ui.ReorderTopicsWidget.prototype.toggleOrderType = function ( type ) {
 		this.board.setSortOrder( type );
 
 		// Change the icon
-		// TODO: This seems to not be working properly in OOUI itself
-		this.reorderMenuOptionWidget.setIcon( type === 'newest' ? 'beta' : 'clock' );
+		this.reorderMenuOptionWidget.setIcon( this.orderType === 'newest' ? 'clock' : 'beta' );
+
+		// Unselect the select item
+		this.reorderMenu.selectItem( null );
 
 		// Emit event
 		this.emit( 'reorder', this.orderType );
