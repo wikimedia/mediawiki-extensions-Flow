@@ -75,6 +75,8 @@ class ConvertLqtPageOnLocalWiki extends Maintenance {
 		$converter->convertAll( array(
 			$srcTitle,
 		) );
+
+		$logger->info( "Finished LQT conversion of page $srcPageName" );
 	}
 }
 
