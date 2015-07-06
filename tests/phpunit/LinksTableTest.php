@@ -9,6 +9,7 @@ use Flow\Exception\WikitextException;
 use Flow\LinksTableUpdater;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
+use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Parsoid\ReferenceExtractor;
 use Flow\Parsoid\ReferenceFactory;
@@ -89,14 +90,25 @@ class LinksTableTest extends PostRevisionTestCase {
 		$this->clearExtraLifecycleHandlers();
 	}
 
+	/**
+	 * Generate a reply to $this->revision (which is a topic title)
+	 *
+	 * @param array $overrides
+	 * @return PostRevision
+	 * @throws \Flow\Exception\FlowException
+	 */
 	protected function generatePost( $overrides ) {
-		$parentRevision = $this->generateObject();
+		$uuid = UUID::create();
+		return $this->generateObject( $overrides + array(
+			'rev_change_type' => 'reply',
 
-		$revision = $this->generateObject( $overrides + array(
-			'tree_parent_id' => $parentRevision->getRevisionId(),
+			// generate new post id
+			'tree_rev_descendant_id' => $uuid->getBinary(),
+			'rev_type_id' => $uuid->getBinary(),
+
+			// make sure it's a reply to $this->revision
+			'tree_parent_id' => $this->revision->getPostId(),
 		) );
-
-		return $revision;
 	}
 
 	protected static function getTestTitle() {
@@ -178,12 +190,7 @@ class LinksTableTest extends PostRevisionTestCase {
 	 */
 	public function testGetReferencesFromRevisionContent( $content, $expectedReferences ) {
 		$content = Utils::convert( 'wikitext', 'html', $content, $this->workflow->getOwnerTitle() );
-		$revision = $this->generatePost( array(
-			'rev_content' => $content,
-			// make sure it's associated with $this->workflow
-			'rev_type_id' => $this->workflow->getId()->getBinary(),
-			'tree_rev_descendant_id' => $this->workflow->getId()->getBinary(),
-		) );
+		$revision = $this->generatePost( array( 'rev_content' => $content ) );
 
 		$expectedReferences = $this->expandReferences( $this->workflow, $revision, $expectedReferences );
 
@@ -197,20 +204,16 @@ class LinksTableTest extends PostRevisionTestCase {
 	 */
 	public function testGetReferencesAfterRevisionInsert( $content, $expectedReferences ) {
 		$content = Utils::convert( 'wikitext', 'html', $content, $this->workflow->getOwnerTitle() );
-		$revision = $this->generatePost( array(
-			'rev_content' => $content,
-			// make sure it's associated with $this->workflow
-			'rev_type_id' => $this->workflow->getId()->getBinary(),
-			'tree_rev_descendant_id' => $this->workflow->getId()->getBinary(),
-		) );
+		$revision = $this->generatePost( array( 'rev_content' => $content ) );
 
 		// Save to storage to test if ReferenceRecorder listener picks this up
+		$this->store( $this->revision );
 		$this->store( $revision );
 
 		$expectedReferences = $this->expandReferences( $this->workflow, $revision, $expectedReferences );
 
 		// References will be stored as linked from Topic:<id>
-		$title = Title::newFromText( $revision->getPostId()->getAlphadecimal(), NS_TOPIC );
+		$title = Title::newFromText( $this->workflow->getId()->getAlphadecimal(), NS_TOPIC );
 
 		// Retrieve references from storage
 		$foundReferences = $this->updater->getReferencesForTitle( $title );
