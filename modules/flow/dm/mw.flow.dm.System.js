@@ -23,6 +23,8 @@
 		// Mixin constructor
 		OO.EventEmitter.call( this );
 
+		this.flowBoard = config.flowBoard;
+
 		this.pageTitle = config.pageTitle || mw.Title.newFromText( mw.config.get( 'wgPageName' ) );
 		this.tocPostsLimit = config.tocPostsLimit || 10;
 		this.renderedTopics = config.renderedTopics || 0;
@@ -233,6 +235,15 @@
 	 */
 	mw.flow.dm.System.prototype.getBoard = function () {
 		return this.board;
+	};
+
+	/**
+	 * Get the flow board component
+	 *
+	 * @return {_RecursiveConstructor} Flow board
+	 */
+	mw.flow.dm.System.prototype.getFlowBoard = function () {
+		return this.flowBoard;
 	};
 
 	/**
