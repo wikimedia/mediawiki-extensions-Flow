@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_7ab19ede",
+        "filename": "FlowActions.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-07-07T19:51:05Z",
+      "side": 1,
+      "message": "That\u0027s a good point. I\u0027ve added keys to control if it should be excluded from contribs and history. \nI have created some duplication but sharing it through the base class seems even worst. Let me know what you think.",
+      "parentUuid": "8ec42329_271fbd5f",
+      "revId": "7fee5117f8078b926a0850d5808dd15ade6550f8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_47ff69fd",
         "filename": "includes/Model/PostRevision.php",
         "patchSetId": 3
