@@ -45,7 +45,7 @@ class FlowPage < WikiPage
   div(:highlighted_post, css: ".flow-post-highlighted")
 
   def topic_with_title(title)
-    div_element(text: title)
+    h2_element(text: title)
   end
 
   ## First topic
@@ -284,9 +284,9 @@ class FlowPage < WikiPage
 
   # Sorting
   span(:newest_topics_link, text: "Newest topics")
-  a(:recently_active_topics_choice, href: /topiclist_sortby=updated/)
+  span(:recently_active_topics_choice, text: "Recently active topics")
   span(:recently_active_topics_link, text: "Recently active topics")
-  a(:newest_topics_choice, href: /topiclist_sortby=newest/)
+  span(:newest_topics_choice, text: "Newest topics")
 
   ## Watch and unwatch links
   div(:first_topic_watchlist_container, css: ".flow-topic-watchlist", index: 0)
