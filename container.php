@@ -204,6 +204,12 @@ $c['storage.workflow.listeners.topiclist'] = function( $c ) {
 		$c['storage.topic_list.indexes.last_updated']
 	);
 };
+$c['storage.workflow.listeners.pageprops_duplication'] = function( $c ) {
+	return new Flow\Data\Listener\PagePropsDuplicationListener(
+		wfGetDB( DB_MASTER ),
+		$c['deferred_queue']
+	);
+};
 $c['storage.workflow.listeners'] = function( $c ) {
 	return array(
 		'listener.occupation' => $c['listener.occupation'],
@@ -214,6 +220,7 @@ $c['storage.workflow.listeners'] = function( $c ) {
 		'storage.topic_list.indexes.last_updated' => $c['storage.topic_list.indexes.last_updated'],
 
 		'storage.workflow.listeners.topiclist' => $c['storage.workflow.listeners.topiclist'],
+		'storage.workflow.listeners.pageprops_duplication' => $c['storage.workflow.listeners.pageprops_duplication'],
 	);
 };
 $c['storage.workflow'] = function( $c ) {
