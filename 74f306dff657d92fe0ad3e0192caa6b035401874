@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_9fb6bcd6",
+        "filename": "maintenance/FlowCreateMentionTemplate.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-07T18:18:55Z",
+      "side": 1,
+      "message": "used to",
+      "revId": "74f306dff657d92fe0ad3e0192caa6b035401874",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
