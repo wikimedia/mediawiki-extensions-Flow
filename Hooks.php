@@ -233,6 +233,9 @@ class FlowHooks {
 		require_once __DIR__.'/maintenance/FlowUpdateWorkflowPageId.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateWorkflowPageId' );
 
+		require_once __DIR__.'/maintenance/FlowUpdateTimestampPageProp.php';
+		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateTimestampPageProp' );
+
 		return true;
 	}
 
