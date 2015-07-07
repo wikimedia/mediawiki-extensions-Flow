@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_78e9ae7d",
+        "filename": "tests/browser/features/step_definitions/flow_in_recent_changes_steps.rb",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2015-07-07T07:47:32Z",
+      "side": 1,
+      "message": "Using `sleep` is a smell. Is there an element on the page that the step could wait for to appear?",
+      "revId": "6bf6d9a469ea078603180018ac21d100471189ea",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
