@@ -106,7 +106,7 @@
 	"flow-error-missing-postId": "「投稿 ID」のパラメーターを指定していません。投稿を操作するには、このパラメーターが必要です。",
 	"flow-error-invalid-postId": "「投稿 ID」のパラメーターが無効です。指定した投稿 ($1) が見つかりませんでした。",
 	"flow-error-restore-failure": "この項目を復元できませんでした。",
-	"flow-error-invalid-moderation-state": "フローAPI に パラメータ('moderationState') の無効な値が、提出されました。",
+	"flow-error-invalid-moderation-state": "フローAPIにパラメータ ('moderationState') の無効な値が送信されました。",
 	"flow-error-not-allowed": "この操作を実行するのに十分な権限がありません。",
 	"flow-error-title-too-long": "話題の題名は $1 {{PLURAL:$1|バイト}}までに制限されています。",
 	"flow-error-no-existing-workflow": "このワークフローはまだ存在しません。",
