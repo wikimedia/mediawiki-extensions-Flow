@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "8ec42329_4b9f3a07",
+        "filename": "tests/browser/features/flow_no_javascript.feature",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-07-07T11:23:03Z",
+      "side": 1,
+      "message": "No sure what is the point of adding that. Fix it or remove it.",
+      "revId": "6bf6d9a469ea078603180018ac21d100471189ea",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_78e9ae7d",
         "filename": "tests/browser/features/step_definitions/flow_in_recent_changes_steps.rb",
         "patchSetId": 6
