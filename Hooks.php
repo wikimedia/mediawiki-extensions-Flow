@@ -233,9 +233,6 @@ class FlowHooks {
 		require_once __DIR__.'/maintenance/FlowUpdateWorkflowPageId.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateWorkflowPageId' );
 
-		require_once __DIR__.'/maintenance/FlowCreateMentionTemplate.php';
-		$updater->addPostDatabaseUpdateMaintenance( 'FlowCreateMentionTemplate' );
-
 		return true;
 	}
 
@@ -688,6 +685,7 @@ class FlowHooks {
 
 		$vars['wgFlowEditorList'] = $wgFlowEditorList;
 		$vars['wgFlowMaxTopicLength'] = Flow\Model\PostRevision::MAX_TOPIC_LENGTH;
+		$vars['wgFlowMentionTemplate'] = wfMessage( 'flow-ve-mention-template' )->inContentLanguage()->plain();
 		$vars['wgFlowAjaxTimeout'] = $wgFlowAjaxTimeout;
 
 		return true;
