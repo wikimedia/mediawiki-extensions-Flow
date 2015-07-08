@@ -1,0 +1,314 @@
+require_relative 'wiki_page'
+
+class AbstractFlowPage < WikiPage
+  def visualeditor_or_textarea(parent_form_class)
+    parent = form_element(class: parent_form_class).when_present
+    if parent.div_element(class: 'flow-editor-visualeditor').exists?
+      parent.div_element(class: 've-ce-documentNode')
+    else
+      parent.div_element(class: 'oo-ui-textInputWidget').text_area_element
+    end
+  end
+
+  # board component
+  div(:flow_component, class: 'flow-component')
+  div(:flow_board, class: 'flow-board')
+
+  # board description
+  a(:edit_description_link, title: "Edit description")
+  div(:description_content, css: ".flow-board-header-content")
+  form(:edit_description_form, css: ".edit-header-form")
+  a(:sidebar_toggle, class: "side-rail-toggle-button")
+  def edit_description_textbox_element
+    visualeditor_or_textarea 'edit-header-form'
+  end
+
+  # If page has an archive template from a flow conversion
+  # find the link
+  def description_archive_link
+    div_element(class: 'flow-board-header-content').link_element
+  end
+  a(:author_link, css: ".flow-author a", index: 0)
+  a(:cancel_button, text: "Cancel")
+
+  # XXX (mattflaschen, 2014-06-24): This is broken; there is no
+  # flow-topic-reply-form anywhere in Flow outside this file.
+  # Also, this should be named to distinguish between top-level posts and regular replies.
+  textarea(:comment_field, css: 'form.flow-topic-reply-form > textarea[name="topic_content"]')
+  button(:comment_reply_save, css: "form.flow-topic-reply-form .flow-reply-submit")
+  div(:flow_topics, class: "flow-topics")
+
+  # Dialogs
+  div(:dialog, css: ".flow-ui-modal")
+  textarea(:dialog_input, name: "topic_reason")
+  button(:dialog_cancel, css: "a.mw-ui-destructive:nth-child(2)")
+  button(:dialog_submit_delete, text: "Delete")
+  button(:dialog_submit_hide, text: "Hide")
+  button(:dialog_submit_suppress, text: "Suppress")
+
+  # Posts
+  ## Highlighted post
+  div(:highlighted_post, css: ".flow-post-highlighted")
+
+  def topic_with_title(title)
+    h2_element(text: title)
+  end
+
+  ## First topic
+  div(:flow_first_topic, css: ".flow-topic", index: 0)
+  h2(:flow_first_topic_heading, css: ".flow-topic h2", index: 0)
+  # todo this is poor naming, it's really the first_topic_first_post_content
+  div(:flow_first_topic_body, css: ".flow-topic .flow-post-content", index: 0)
+  div(:flow_first_topic_moderation_msg) do |page|
+    page.flow_first_topic_element.div_element(css: "div.flow-topic-titlebar div.flow-moderated-topic-title")
+  end
+
+  div(:flow_first_topic_original_post, css: ".flow-post", index: 0)
+  a(:flow_first_topic_original_post_edit) do |page|
+    page.flow_first_topic_original_post_element.link_element(text: "Edit")
+  end
+  a(:flow_first_topic_original_post_reply) do |page|
+    page.flow_first_topic_original_post_element.link_element(text: "Reply")
+  end
+  div(:flow_second_topic_heading, css: ".flow-topic", index: 1)
+
+  ### Hover over username behaviour
+  span(:usertools, css: '.mw-usertoollinks')
+  a(:usertools_talk_link) do |page|
+    page.usertools_element.link_element(text: 'Talk')
+  end
+  a(:usertools_block_user_link) do |page|
+    page.usertools_element.link_element(text: 'block')
+  end
+
+  ### First Topic actions menu
+
+  # For topic collapsing testing
+  # Works around CSS descendant selector problem (https://github.com/cheezy/page-object/issues/222)
+  div(:first_moderated_topic, css: '.flow-topic.flow-topic-moderated', index: 0)
+
+  div(:first_moderated_topic_titlebar) do |page|
+    page.first_moderated_topic_element.div_element(css: '.flow-topic-titlebar')
+  end
+
+  div(:first_moderated_message) do |page|
+    page.first_moderated_topic_titlebar_element.div_element(css: '.flow-moderated-topic-title')
+  end
+
+  h2(:first_moderated_topic_title) do |page|
+    page.first_moderated_topic_titlebar_element.h2_element(class: 'flow-topic-title')
+  end
+
+  div(:first_moderated_topic_post_content) do |page|
+    page.first_moderated_topic_element.div_element(class: 'flow-post', index: 0).div_element(class: 'flow-post-main').div_element(class: 'flow-post-content')
+  end
+
+  # Topic actions menu (all belonging to the first post)
+  a(:topic_actions_link, css: ".flow-topic .flow-topic-titlebar .flow-menu-js-drop a", index: 0)
+  ul(:topic_actions_menu, css: ".flow-topic .flow-topic-titlebar .flow-menu ul", index: 0)
+  a(:topic_hide_button) do |page|
+    page.topic_actions_menu_element.link_element(text: "Hide topic")
+  end
+  a(:topic_history_button) do |page|
+    page.topic_actions_menu_element.link_element(text: "History")
+  end
+  a(:topic_delete_button) do |page|
+    page.topic_actions_menu_element.link_element(text: "Delete topic")
+  end
+  a(:topic_suppress_button) do |page|
+    page.topic_actions_menu_element.link_element(text: "Suppress topic")
+  end
+  a(:permalink_button) do |page|
+    page.topic_actions_menu_element.link_element(text: "Permalink")
+  end
+  a(:edit_title_button) do |page|
+    page.topic_actions_menu_element.link_element(text: "Edit title")
+  end
+  a(:topic_resolve_button) do |page|
+    page.topic_actions_menu_element.link_element(text: "Mark as resolved")
+  end
+  a(:topic_reopen_button) do |page|
+    page.topic_actions_menu_element.link_element(text: "Reopen topic")
+  end
+  a(:topic_summarize_button) do |page|
+    page.topic_actions_menu_element.link_element(text: "Summarize")
+  end
+
+  ### Editing title of first topic
+  text_field(:title_edit, css: ".flow-topic-titlebar form .mw-ui-input", index: 0)
+  button(:change_title_save, css: ".flow-topic-titlebar form .mw-ui-constructive")
+
+  ### Post meta actions
+  span(:post_meta_actions, css: ".flow-post .flow-post-meta-actions", index: 0)
+  a(:thank_button) do |page|
+    page.post_meta_actions_element.link_element(css: ".mw-thanks-flow-thank-link", index: 0)
+  end
+  span(:thanked_button) do |page|
+    page.post_meta_actions_element.span_element(css: ".mw-thanks-flow-thanked", index: 0)
+  end
+
+  ### summary of first topic
+  div(:summary) do |page|
+    page.flow_first_topic_element.div_element(css: '.flow-topic-summary')
+  end
+  div(:summary_content) do |page|
+    page.summary_element.div_element(css: '.flow-topic-summary-content')
+  end
+  button(:skip_summary_button) do |page|
+    page.summary_element.button_element(text: 'Skip summary')
+  end
+  button(:cancel_summary_button) do |page|
+    page.summary_element.button_element(text: 'Cancel')
+  end
+  button(:update_summary_button) do |page|
+    page.summary_element.button_element(text: 'Update summary')
+  end
+  def edit_summary_element
+    visualeditor_or_textarea 'flow-edit-form'
+  end
+  span(:first_topic_resolved_mark) do |page|
+    page.flow_first_topic_heading_element.span_element(css: '.mw-ui-icon-check')
+  end
+
+  ### First post of first topic actions menu
+  a(:post_actions_link, css: ".flow-topic .flow-post .flow-menu-js-drop a", index: 0)
+  ul(:post_actions_menu, css: ".flow-topic .flow-post .flow-menu ul", index: 0)
+  a(:hide_button) do |page|
+    page.post_actions_menu_element.link_element(title: "Hide")
+  end
+  a(:delete_button) do |page|
+    page.post_actions_menu_element.link_element(title: "Delete")
+  end
+  a(:suppress_button) do |page|
+    page.post_actions_menu_element.link_element(title: "Suppress")
+  end
+  a(:edit_post_button) do |page|
+    page.post_actions_menu_element.link_element(title: "Edit")
+  end
+
+  ### Replies to top post
+  #### 1st reply
+  # @todo: This is broken. It should be clearly possible to distinguish between the top reply and
+  # the top post. There is an element .flow-replies which appears to be empty.
+  div(:first_reply, css: '.flow-post', index: 1)
+  div(:first_reply_body) do |page|
+    page.first_reply_element.div_element(css: '.flow-post-content')
+  end
+
+  #### 2rd post
+  div(:second_post, css: '.flow-post', index: 1)
+  a(:second_post_actions_link, css: ".flow-topic .flow-post .flow-menu-js-drop a", index: 1)
+  ul(:second_post_actions_menu, css: ".flow-topic .flow-post .flow-menu ul", index: 1)
+
+  a(:actions_link_permalink_second_comment) do |page|
+    page.second_post_actions_menu_element.link_element(text: "Permalink")
+  end
+
+  a(:actions_link_hide_second_comment) do |page|
+    page.second_post_actions_menu_element.link_element(text: "Hide")
+  end
+
+  div(:second_post_content) do |page|
+    page.second_post_element.div_element(css: '.flow-post-content', index: 0)
+  end
+  div(:second_post_moderation_msg) do |page|
+    page.second_post_element.span_element(css: '.flow-moderated-post-content', index: 0)
+  end
+
+  #### 3rd reply
+  # @todo: Should be index: 2, but sadly no way to distinguish replies from original post
+  div(:third_reply, css: '.flow-post', index: 3)
+  div(:third_reply_moderation_msg) do |page|
+    page.third_reply_element.span_element(css: '.flow-moderated-post-content', index: 0)
+  end
+  div(:third_reply_content) do |page|
+    page.third_reply_element.div_element(css: '.flow-post-content', index: 0)
+  end
+
+  a(:third_post_actions_link, css: ".flow-topic .flow-post .flow-menu-js-drop a", index: 3)
+  ul(:third_post_actions_menu, css: ".flow-topic .flow-post .flow-menu ul", index: 3)
+  a(:actions_link_permalink_3rd_comment) do |page|
+    page.third_post_actions_menu_element.link_element(text: "Permalink")
+  end
+  a(:actions_link_hide_3rd_comment) do |page|
+    page.third_post_actions_menu_element.link_element(text: "Hide")
+  end
+
+  # New topic creation
+  a(:new_topic_link, text: "Start a new topic")
+  form(:new_topic_form, css: ".flow-newtopic-form")
+  text_field(:new_topic_title, name: "topiclist_topic")
+
+  def new_topic_body_element
+    visualeditor_or_textarea 'flow-newtopic-form'
+  end
+
+  button(:new_topic_cancel, css: ".flow-newtopic-form .mw-ui-destructive")
+  # FIXME: Remove flow-ui-constructive reference when cache has cleared
+  button(:new_topic_save, css: ".flow-newtopic-form .mw-ui-constructive, .flow-newtopic-form .flow-ui-constructive")
+
+  # Replying
+  # TODO (mattflaschen, 2014-06-24): Should distinguish between
+  # top-level replies to the topic, and replies to regular posts
+  form(:new_reply_form, css: ".flow-reply-form")
+
+  text_area(:new_reply_placeholder) do |page|
+    page.new_reply_form_element.text_area_element
+  end
+
+  def new_reply_editor_element
+    visualeditor_or_textarea 'flow-reply-form'
+  end
+
+  button(:new_reply_cancel, css: ".flow-reply-form .mw-ui-destructive")
+  button(:new_reply_save, css: ".flow-reply-form .mw-ui-constructive")
+  button(:keep_editing, text: "Keep editing")
+
+  # Editing post workflow
+
+  def post_edit_element
+    visualeditor_or_textarea 'flow-edit-post-form'
+  end
+
+  button(:change_post_save, css: ".flow-edit-post-form .mw-ui-constructive")
+
+  div(:small_spinner, class: "mw-spinner mw-spinner-small mw-spinner-inline")
+
+  button(:edit_description_save, text: "Save description")
+
+  # No javascript elements
+  button(:no_javascript_add_topic, text: "Add topic")
+  div(:no_javascript_page_content_body, class: "flow-post-content")
+  div(:no_javascript_page_content_title, class: "flow-topic-titlebar")
+  div(:no_javascript_page_flow_topics, class: "flow-topics")
+  button(:no_javascript_reply, text: "Reply")
+  textarea(:no_javascript_reply_form, name: "topic_content")
+  a(:no_javascript_start_reply, href: /action=reply/)
+  a(:no_javascript_start_topic, href: /action=new-topic/)
+  textarea(:no_javascript_topic_body_text, name: "topiclist_content")
+  text_field(:no_javascript_topic_title_text, name: "topiclist_topic")
+
+  # Sorting
+  span(:newest_topics_link, text: "Newest topics")
+  span(:recently_active_topics_choice, text: "Recently active topics")
+  span(:recently_active_topics_link, text: "Recently active topics")
+  span(:newest_topics_choice, text: "Newest topics")
+
+  ## Watch and unwatch links
+  div(:first_topic_watchlist_container, css: ".flow-topic-watchlist", index: 0)
+  a(:first_topic_watch_link) do |page|
+    page.first_topic_watchlist_container_element.link_element(css: ".flow-watch-link-watch")
+  end
+  a(:first_topic_unwatch_link) do |page|
+    page.first_topic_watchlist_container_element.link_element(css: ".flow-watch-link-unwatch")
+  end
+
+  a(:board_unwatch_link, href: /Flow_QA&action=unwatch/)
+  a(:board_watch_link, href: /Flow_QA&action=watch/)
+
+  # undo suppression
+  button(:undo_suppression_button, text: "Undo")
+
+  # history
+  a(:view_history, text: 'View history')
+end
