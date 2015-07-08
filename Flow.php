@@ -120,6 +120,7 @@ $wgHooks['DeletedContributionsLineEnding'][] = 'FlowHooks::onDeletedContribution
 $wgHooks['ApiFeedContributions::feedItem'][] = 'FlowHooks::onContributionsFeedItem';
 $wgHooks['AbuseFilter-computeVariable'][] = 'FlowHooks::onAbuseFilterComputeVariable';
 $wgHooks['AbortEmailNotification'][] = 'FlowHooks::onAbortEmailNotification';
+$wgHooks['EchoAbortEmailNotification'][] = 'FlowHooks::onEchoAbortEmailNotification';
 $wgHooks['InfoAction'][] = 'FlowHooks::onInfoAction';
 $wgHooks['SpecialCheckUserGetLinksFromRow'][] = 'FlowHooks::onSpecialCheckUserGetLinksFromRow';
 $wgHooks['CheckUserInsertForRecentChange'][] = 'FlowHooks::onCheckUserInsertForRecentChange';

@@ -916,6 +916,23 @@ class FlowHooks {
 		return true;
 	}
 
+	/**
+	 * Don't send email notifications that are imported from LiquidThreads.  It will
+	 * still be in their web notifications (if enabled), but they will never be
+	 * notified via email (regardless of batching settings) for this particular
+	 * notification.
+	 *
+	 */
+	public static function onEchoAbortEmailNotification( User $user, EchoEvent $event ) {
+		$extra = $event->getExtra();
+		if ( isset( $extra['lqtThreadId'] ) && $extra['lqtThreadId'] !== null ) {
+			return false;
+		}
+
+		return true;
+	}
+
+
 	public static function onInfoAction( IContextSource $ctx, &$pageinfo ) {
 		if ( !self::$occupationController->isTalkpageOccupied( $ctx->getTitle() ) ) {
 			return true;
