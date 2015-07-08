@@ -84,7 +84,7 @@
 		if ( $topic.length > 0 ) {
 			// Scroll down to the topic
 			$( 'html, body' ).animate( {
-				scrollTop: $topic.offset().top + 'px'
+				scrollTop: ( $topic.offset().top - 20 ) + 'px'
 			}, 'fast' );
 		} else {
 			// TODO: Widgetize board, topic and post so we can do this
