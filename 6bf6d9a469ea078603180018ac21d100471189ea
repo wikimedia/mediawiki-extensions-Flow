@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_05903697",
+        "filename": "tests/browser/features/flow_no_javascript.feature",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-08T04:46:51Z",
+      "side": 1,
+      "message": "Removed; there is already a bug about it.",
+      "parentUuid": "8ec42329_4b9f3a07",
+      "revId": "6bf6d9a469ea078603180018ac21d100471189ea",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_78e9ae7d",
         "filename": "tests/browser/features/step_definitions/flow_in_recent_changes_steps.rb",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2015-07-07T07:47:32Z",
       "side": 1,
       "message": "Using `sleep` is a smell. Is there an element on the page that the step could wait for to appear?",
+      "revId": "6bf6d9a469ea078603180018ac21d100471189ea",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_85842660",
+        "filename": "tests/browser/features/step_definitions/flow_in_recent_changes_steps.rb",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-08T04:46:51Z",
+      "side": 1,
+      "message": "Waiting (for a time period or for an element) while already on Special:RecentChanges will have no effect, since Special:RecentChanges is not dynamic.\n\nAs I mentioned, it simply does not pass reliably if it navigates to Special:RecentChanges immediately (it isn\u0027t always there and would not be until a fresh load).  I made an informed guess why this is.",
+      "parentUuid": "8ec42329_78e9ae7d",
       "revId": "6bf6d9a469ea078603180018ac21d100471189ea",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
