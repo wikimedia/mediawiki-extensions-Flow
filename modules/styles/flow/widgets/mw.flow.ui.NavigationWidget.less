@@ -25,6 +25,20 @@
 	.flow-ui-tocWidget {
 		display: inline-block;
 		float: left;
+		width: 100%;
+
+		&-button {
+			width: 100%;
+			.oo-ui-buttonElement-button {
+				width: 100%;
+				.oo-ui-labelElement-label {
+					text-overflow: ellipsis;
+					overflow: hidden;
+					// Prevent less compiler from precalculating this expression
+					width: ~"calc(100% - 1.875em)";
+				}
+			}
+		}
 
 		&-wrapper {
 			width: 100%;
