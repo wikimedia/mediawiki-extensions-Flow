@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_82841c60",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ToCWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-08T00:28:45Z",
+      "side": 1,
+      "message": "Can we measure the amount of space we need here rather than hardcoding 20?",
+      "revId": "48bd249d6cde10e20846c0d8c7d5a83cfe69accf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
