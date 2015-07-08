@@ -46,13 +46,14 @@
 		dmBoard.on( 'add', function ( newItems ) {
 			var i, len, item, itemId;
 
-			// Items can be unstubbed anywhere, but they should only be added at the
-			// end (due to TOC infinite scroll or initial population).
 			for ( i = 0, len = newItems.length; i < len; i++ ) {
 				item = newItems[i];
 				itemId = item.getId();
 
-				flowBoard.orderedTopicIds.push( itemId );
+				if ( $.inArray(	itemId, flowBoard.orderedTopicIds ) === -1 ) {
+					flowBoard.orderedTopicIds.push( itemId );
+				}
+
 				flowBoard.topicTitlesById[ itemId ] = item.getContent();
 				flowBoard.updateTimestampsByTopicId[ itemId ] = item.getLastUpdate();
 			}
