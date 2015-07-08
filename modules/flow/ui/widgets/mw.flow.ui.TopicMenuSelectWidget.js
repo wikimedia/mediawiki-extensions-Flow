@@ -75,30 +75,11 @@
 	};
 
 	/**
-	 * Check whether the load more option is visible
-	 *
-	 * @return {Boolean} Load more is visible
-	 */
-	mw.flow.ui.TopicMenuSelectWidget.prototype.isLoadMoreVisible = function () {
-		var $loadMore = this.loadingMoreOptionWidget.$element,
-			top = $loadMore.offset().top,
-			widgetScrollTop = this.$element.scrollTop(),
-			widgetHeight = this.$element.height(),
-			widgetBottom = widgetScrollTop + widgetHeight;
-
-		return (
-			// Check if it is even attached
-			$loadMore.parent().length &&
-			top <= widgetBottom
-		);
-	};
-
-	/**
 	 * Respond to scrolling of the menu. If we are close to the
 	 * bottom, call for more topics.
 	 */
 	mw.flow.ui.TopicMenuSelectWidget.prototype.onMenuScroll = function () {
-		var scrollTop, isNearBottom, height, $loadMore;
+		var actualHeight, desiredHeight, scrollTop, isNearBottom;
 
 		// Do nothing if we're already fetching topics
 		// or if there are no more topics to fetch
@@ -106,13 +87,12 @@
 			return true;
 		}
 
-		// Calculate scroll
-		height = this.$element.height();
+		actualHeight = this.$element.height();
+		desiredHeight = this.$element[0].scrollHeight;
 		scrollTop = this.$element.scrollTop();
-		isNearBottom = ( scrollTop > height - 100 );
-		$loadMore = this.loadingMoreOptionWidget.$element;
+		isNearBottom = scrollTop + actualHeight > desiredHeight - 100;
 
-		if ( isNearBottom || this.isLoadMoreVisible() ) {
+		if ( isNearBottom ) {
 			this.getMoreTopics();
 		}
 	};
@@ -145,8 +125,8 @@
 		this.loadingMoreTopics = true;
 		this.system.fetchMoreTopics()
 			.then( function ( hasMoreTopicsInApi ) {
-				widget.noMoreTopics = hasMoreTopicsInApi;
-				if ( !widget.noMoreTopics ) {
+				widget.noMoreTopics = !hasMoreTopicsInApi;
+				if ( widget.noMoreTopics ) {
 					// Remove the load more widget
 					widget.removeItems( [ widget.loadingMoreOptionWidget ] );
 				}
@@ -182,7 +162,6 @@
 		// Move the 'load more' to the end
 		if ( !this.noMoreTopics ) {
 			this.addItems( [ this.loadingMoreOptionWidget ] );
-			this.getMoreTopics();
 		}
 	};
 
