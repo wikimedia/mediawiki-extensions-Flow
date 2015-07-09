@@ -6,7 +6,7 @@
 // Show that the topic titlebar is clickable
 .flow-topic-titlebar {
 	position: relative;
-	padding: .5em .75em;
+	padding: .5em 0;
 	background: @colorGrayLightest;
 	border-radius: 3px;
 	outline: none;
@@ -81,14 +81,24 @@ div#content h2.flow-topic-title {
 // MEDIA QUERIES
 @media all and (min-width: @small) {
 	.flow-topic-titlebar {
-		.mw-content-ltr & {
-			/* @noflip */
-			padding: 1em (@topicIndent + 1) 1em @topicIndent;
+		padding-top: 1em;
+		padding-bottom: 1em;
+
+		.flow-topic-titlebar-container,
+		.flow-topic-summary-container {
+
+			.mw-content-ltr & {
+				/* @noflip */
+				padding: 0 (@topicIndent + 1) 0 @topicIndent;
+			}
+
+			.mw-content-rtl & {
+				/* @noflip */
+				padding: 0 @topicIndent 0 (@topicIndent + 1);
+			}
+
 		}
 
-		.mw-content-rtl & {
-			/* @noflip */
-			padding: 1em @topicIndent 1em (@topicIndent + 1);
-		}
+
 	}
 }
