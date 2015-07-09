@@ -41,5 +41,4 @@ class PostSummary extends AbstractSummary {
 	public function getCollection() {
 		return PostSummaryCollection::newFromRevision( $this );
 	}
-
 }

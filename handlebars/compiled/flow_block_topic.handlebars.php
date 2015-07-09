@@ -37,45 +37,49 @@
 '.$sp.'' : '').'</div>
 ';},'flow_topic_moderation_flag' => function ($cx, $in, $sp) {return ''.$sp.'<span class="mw-ui-icon mw-ui-icon-before'.LCRun3::hbch($cx, 'ifCond', array(array(((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null),'===','lock'),array()), $in, false, function($cx, $in)use($sp){return ' mw-ui-icon-check';}).''.LCRun3::hbch($cx, 'ifCond', array(array(((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null),'===','hide'),array()), $in, false, function($cx, $in)use($sp){return ' mw-ui-icon-flag';}).''.LCRun3::hbch($cx, 'ifCond', array(array(((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null),'===','delete'),array()), $in, false, function($cx, $in)use($sp){return ' mw-ui-icon-remove';}).'"></span>
 ';},'flow_post_moderation_state' => function ($cx, $in, $sp) {return ''.$sp.'<span class="plainlinks">'.((LCRun3::ifvar($cx, ((isset($in['replyToId']) && is_array($in)) ? $in['replyToId'] : null))) ? ''.LCRun3::ch($cx, 'l10nParse', array(array(LCRun3::ch($cx, 'concat', array(array('flow-',((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null),'-post-content'),array()), 'raw'),((isset($in['moderator']['name']) && is_array($in['moderator'])) ? $in['moderator']['name'] : null),((isset($in['links']['topic-history']['url']) && is_array($in['links']['topic-history'])) ? $in['links']['topic-history']['url'] : null)),array()), 'encq').'' : ''.LCRun3::ch($cx, 'l10nParse', array(array(LCRun3::ch($cx, 'concat', array(array('flow-',((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null),'-title-content'),array()), 'raw'),((isset($in['moderator']['name']) && is_array($in['moderator'])) ? $in['moderator']['name'] : null),((isset($in['links']['topic-history']['url']) && is_array($in['links']['topic-history'])) ? $in['links']['topic-history']['url'] : null)),array()), 'encq').'').'</span>
-';},'flow_topic_titlebar_summary' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-topic-summary-container '.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? 'flow-click-interactive' : '').'"
+';},'flow_topic_titlebar_content' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-topic-titlebar-container">
+'.$sp.'    <h2 class="flow-topic-title flow-load-interactive '.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? 'flow-click-interactive' : '').'"
+'.$sp.'        data-flow-topic-title="'.htmlentities((string)((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null), ENT_QUOTES, 'UTF-8').'"
+'.$sp.'        data-flow-load-handler="topicTitle"
+'.$sp.''.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? '        data-flow-interactive-handler="collapserCollapsibleToggle"
+'.$sp.'' : '').'            >
+'.$sp.'		'.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? '<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-check"></span> ' : '').''.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),array()), 'encq').'</h2>
+'.$sp.'    <div class="flow-topic-meta">
+'.$sp.''.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? '<a class="expand-collapse-posts-link flow-click-interactive"
+'.$sp.'               href="javascript:void(0);"
+'.$sp.'               title="'.LCRun3::ch($cx, 'l10n', array(array('flow-show-comments-title',((isset($in['reply_count']) && is_array($in)) ? $in['reply_count'] : null)),array()), 'encq').'"
+'.$sp.'               data-collapsed-title="'.LCRun3::ch($cx, 'l10n', array(array('flow-show-comments-title',((isset($in['reply_count']) && is_array($in)) ? $in['reply_count'] : null)),array()), 'encq').'"
+'.$sp.'               data-expanded-title="'.LCRun3::ch($cx, 'l10n', array(array('flow-hide-comments-title',((isset($in['reply_count']) && is_array($in)) ? $in['reply_count'] : null)),array()), 'encq').'"
+'.$sp.'               data-flow-interactive-handler="collapserCollapsibleToggle"
+'.$sp.'                    >'.LCRun3::ch($cx, 'l10n', array(array('flow-topic-comments',((isset($in['reply_count']) && is_array($in)) ? $in['reply_count'] : null)),array()), 'encq').'</a>' : ''.LCRun3::ch($cx, 'l10n', array(array('flow-topic-comments',((isset($in['reply_count']) && is_array($in)) ? $in['reply_count'] : null)),array()), 'encq').'').' &bull;
+'.$sp.'
+'.$sp.'        <a href="'.htmlentities((string)((isset($in['links']['topic-history']['url']) && is_array($in['links']['topic-history'])) ? $in['links']['topic-history']['url'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-timestamp-anchor">
+'.$sp.''.((LCRun3::ifvar($cx, ((isset($in['last_updated']) && is_array($in)) ? $in['last_updated'] : null))) ? '				'.LCRun3::ch($cx, 'timestamp', array(array(((isset($in['last_updated']) && is_array($in)) ? $in['last_updated'] : null)),array()), 'encq').'
+'.$sp.'' : '				'.LCRun3::ch($cx, 'uuidTimestamp', array(array(((isset($in['postId']) && is_array($in)) ? $in['postId'] : null)),array()), 'encq').'
+'.$sp.'').'        </a>
+'.$sp.'    </div>
+'.$sp.''.((LCRun3::ifvar($cx, ((isset($in['isModeratedNotLocked']) && is_array($in)) ? $in['isModeratedNotLocked'] : null))) ? '        <div class="flow-moderated-topic-title flow-ui-text-truncated">'.htmlentities((string)((isset($in['noop']) && is_array($in)) ? $in['noop'] : null), ENT_QUOTES, 'UTF-8').''.LCRun3::p($cx, 'flow_topic_moderation_flag', array(array($in),array())).'
+'.$sp.''.LCRun3::p($cx, 'flow_post_moderation_state', array(array($in),array()), '			').'        </div>
+'.$sp.'        <div class="flow-moderated-topic-reason">
+'.$sp.'			'.LCRun3::ch($cx, 'l10n', array(array('flow-topic-moderated-reason-prefix'),array()), 'encq').'
+'.$sp.'			'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['moderateReason']['format']) && is_array($in['moderateReason'])) ? $in['moderateReason']['format'] : null),((isset($in['moderateReason']['content']) && is_array($in['moderateReason'])) ? $in['moderateReason']['content'] : null)),array()), 'encq').'
+'.$sp.'        </div>
+'.$sp.'' : '').'    <span class="flow-reply-count"><span class="flow-reply-count-number">'.htmlentities((string)((isset($in['reply_count']) && is_array($in)) ? $in['reply_count'] : null), ENT_QUOTES, 'UTF-8').'</span></span>
+'.$sp.'</div>';},'flow_topic_titlebar_summary' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-topic-summary-container '.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? 'flow-click-interactive' : '').'"
 '.$sp.''.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? '		data-flow-interactive-handler="collapserCollapsibleToggle"
 '.$sp.'' : '').'		>
 '.$sp.''.LCRun3::p($cx, 'flow_errors', array(array($in),array()), '	').''.((LCRun3::ifvar($cx, ((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null))) ? '		<div class="flow-topic-summary">
+'.$sp.'			<div class="flow-topic-summary-author">
+'.$sp.''.LCRun3::hbch($cx, 'ifCond', array(array(((isset($in['revision']['creator']['name']) && is_array($in['revision']['creator'])) ? $in['revision']['creator']['name'] : null),'===',((isset($in['revision']['author']['name']) && is_array($in['revision']['author'])) ? $in['revision']['author']['name'] : null)),array()), $in, false, function($cx, $in)use($sp){return '					'.LCRun3::ch($cx, 'l10n', array(array('flow-summary-authored',((isset($in['revision']['creator']['name']) && is_array($in['revision']['creator'])) ? $in['revision']['creator']['name'] : null)),array()), 'encq').'
+'.$sp.'';}, function($cx, $in)use($sp){return '					'.LCRun3::ch($cx, 'l10n', array(array('flow-summary-edited',((isset($in['revision']['author']['name']) && is_array($in['revision']['author'])) ? $in['revision']['author']['name'] : null)),array()), 'encq').'
+'.$sp.'					<a href="'.htmlentities((string)((isset($in['revision']['links']['diff-prev']['url']) && is_array($in['revision']['links']['diff-prev'])) ? $in['revision']['links']['diff-prev']['url'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-timestamp-anchor">'.LCRun3::ch($cx, 'uuidTimestamp', array(array(((isset($in['revision']['lastEditId']) && is_array($in['revision'])) ? $in['revision']['lastEditId'] : null)),array()), 'encq').'</a>
+'.$sp.'';}).'			</div>
 '.$sp.'			<div class="flow-topic-summary-content">
 '.$sp.'				'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['revision']['content']['format']) && is_array($in['revision']['content'])) ? $in['revision']['content']['format'] : null),((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null)),array()), 'encq').'
 '.$sp.'			</div>
 '.$sp.'		</div>
-'.$sp.'		<br class="flow-ui-clear"/>
 '.$sp.'' : '').'</div>
-';},'flow_topic_titlebar_content' => function ($cx, $in, $sp) {return ''.$sp.'<h2 class="flow-topic-title flow-load-interactive '.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? 'flow-click-interactive' : '').'"
-'.$sp.'	data-flow-topic-title="'.htmlentities((string)((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null), ENT_QUOTES, 'UTF-8').'"
-'.$sp.'	data-flow-load-handler="topicTitle"
-'.$sp.''.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? '	data-flow-interactive-handler="collapserCollapsibleToggle"
-'.$sp.'' : '').'		>
-'.$sp.'	'.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? '<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-check"></span> ' : '').''.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['content']['format']) && is_array($in['content'])) ? $in['content']['format'] : null),((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null)),array()), 'encq').'</h2>
-'.$sp.'<div class="flow-topic-meta">
-'.$sp.''.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? '<a class="expand-collapse-posts-link flow-click-interactive"
-'.$sp.'		   href="javascript:void(0);"
-'.$sp.'		   title="'.LCRun3::ch($cx, 'l10n', array(array('flow-show-comments-title',((isset($in['reply_count']) && is_array($in)) ? $in['reply_count'] : null)),array()), 'encq').'"
-'.$sp.'		   data-collapsed-title="'.LCRun3::ch($cx, 'l10n', array(array('flow-show-comments-title',((isset($in['reply_count']) && is_array($in)) ? $in['reply_count'] : null)),array()), 'encq').'"
-'.$sp.'		   data-expanded-title="'.LCRun3::ch($cx, 'l10n', array(array('flow-hide-comments-title',((isset($in['reply_count']) && is_array($in)) ? $in['reply_count'] : null)),array()), 'encq').'"
-'.$sp.'		   data-flow-interactive-handler="collapserCollapsibleToggle"
-'.$sp.'				>'.LCRun3::ch($cx, 'l10n', array(array('flow-topic-comments',((isset($in['reply_count']) && is_array($in)) ? $in['reply_count'] : null)),array()), 'encq').'</a>' : ''.LCRun3::ch($cx, 'l10n', array(array('flow-topic-comments',((isset($in['reply_count']) && is_array($in)) ? $in['reply_count'] : null)),array()), 'encq').'').' &bull;
-'.$sp.'
-'.$sp.'	<a href="'.htmlentities((string)((isset($in['links']['topic-history']['url']) && is_array($in['links']['topic-history'])) ? $in['links']['topic-history']['url'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-timestamp-anchor">
-'.$sp.''.((LCRun3::ifvar($cx, ((isset($in['last_updated']) && is_array($in)) ? $in['last_updated'] : null))) ? '			'.LCRun3::ch($cx, 'timestamp', array(array(((isset($in['last_updated']) && is_array($in)) ? $in['last_updated'] : null)),array()), 'encq').'
-'.$sp.'' : '			'.LCRun3::ch($cx, 'uuidTimestamp', array(array(((isset($in['postId']) && is_array($in)) ? $in['postId'] : null)),array()), 'encq').'
-'.$sp.'').'	</a>
-'.$sp.'</div>
-'.$sp.''.((LCRun3::ifvar($cx, ((isset($in['isModeratedNotLocked']) && is_array($in)) ? $in['isModeratedNotLocked'] : null))) ? '	<div class="flow-moderated-topic-title flow-ui-text-truncated">'.htmlentities((string)((isset($in['noop']) && is_array($in)) ? $in['noop'] : null), ENT_QUOTES, 'UTF-8').''.LCRun3::p($cx, 'flow_topic_moderation_flag', array(array($in),array())).'
-'.$sp.''.LCRun3::p($cx, 'flow_post_moderation_state', array(array($in),array()), '		').'	</div>
-'.$sp.'	<div class="flow-moderated-topic-reason">
-'.$sp.'		'.LCRun3::ch($cx, 'l10n', array(array('flow-topic-moderated-reason-prefix'),array()), 'encq').'
-'.$sp.'		'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['moderateReason']['format']) && is_array($in['moderateReason'])) ? $in['moderateReason']['format'] : null),((isset($in['moderateReason']['content']) && is_array($in['moderateReason'])) ? $in['moderateReason']['content'] : null)),array()), 'encq').'
-'.$sp.'	</div>
-'.$sp.'' : '').'<span class="flow-reply-count"><span class="flow-reply-count-number">'.htmlentities((string)((isset($in['reply_count']) && is_array($in)) ? $in['reply_count'] : null), ENT_QUOTES, 'UTF-8').'</span></span>
-'.$sp.'
-'.$sp.''.LCRun3::p($cx, 'flow_topic_titlebar_summary', array(array(((isset($in['summary']) && is_array($in)) ? $in['summary'] : null)),array('isLocked'=>((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null)))).'';},'flow_topic_titlebar_watch' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-topic-watchlist flow-watch-link">
+';},'flow_topic_titlebar_watch' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-topic-watchlist flow-watch-link">
 '.$sp.''.LCRun3::p($cx, 'flow_errors', array(array($in),array()), '	').'
 '.$sp.'	<a href="'.((LCRun3::ifvar($cx, ((isset($in['isWatched']) && is_array($in)) ? $in['isWatched'] : null))) ? ''.htmlentities((string)((isset($in['links']['unwatch-topic']['url']) && is_array($in['links']['unwatch-topic'])) ? $in['links']['unwatch-topic']['url'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities((string)((isset($in['links']['watch-topic']['url']) && is_array($in['links']['watch-topic'])) ? $in['links']['watch-topic']['url'] : null), ENT_QUOTES, 'UTF-8').'').'"
 '.$sp.'	   class="mw-ui-anchor mw-ui-hovericon mw-ui-constructive '.((!LCRun3::ifvar($cx, ((isset($in['isWatched']) && is_array($in)) ? $in['isWatched'] : null))) ? 'mw-ui-quiet' : '').'
@@ -173,8 +177,7 @@
 '.$sp.'				   href="'.htmlentities((string)((isset($in['actions']['unlock']['url']) && is_array($in['actions']['unlock'])) ? $in['actions']['unlock']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 '.$sp.'				   title="'.htmlentities((string)((isset($in['actions']['unlock']['title']) && is_array($in['actions']['unlock'])) ? $in['actions']['unlock']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.((LCRun3::ifvar($cx, ((isset($in['moderationIcons']) && is_array($in)) ? $in['moderationIcons'] : null))) ? '<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-ongoingConversation mw-ui-icon-ongoingConversation-progressive-hover"></span> ' : '').''.LCRun3::ch($cx, 'l10n', array(array(LCRun3::ch($cx, 'concat', array(array('flow-',((isset($in['moderationType']) && is_array($in)) ? $in['moderationType'] : null),'-action-unlock-topic'),array()), 'raw')),array()), 'encq').'</a>'.htmlentities((string)((isset($in['noop']) && is_array($in)) ? $in['noop'] : null), ENT_QUOTES, 'UTF-8').'</li>' : '').'';}).'</section>
 ';},'flow_topic_titlebar' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-topic-titlebar">
-'.$sp.''.LCRun3::p($cx, 'flow_topic_titlebar_content', array(array($in),array()), '	').'
-'.$sp.''.((LCRun3::ifvar($cx, ((isset($in['watchable']) && is_array($in)) ? $in['watchable'] : null))) ? ''.LCRun3::p($cx, 'flow_topic_titlebar_watch', array(array($in),array()), '		').'' : '').'	<div class="flow-menu flow-menu-hoverable">
+'.$sp.''.LCRun3::p($cx, 'flow_topic_titlebar_content', array(array($in),array()), '	').''.LCRun3::p($cx, 'flow_topic_titlebar_summary', array(array(((isset($in['summary']) && is_array($in)) ? $in['summary'] : null)),array('isLocked'=>((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))), '	').''.((LCRun3::ifvar($cx, ((isset($in['watchable']) && is_array($in)) ? $in['watchable'] : null))) ? ''.LCRun3::p($cx, 'flow_topic_titlebar_watch', array(array($in),array()), '		').'' : '').'	<div class="flow-menu flow-menu-hoverable">
 '.$sp.'		<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-ellipsis"></span></a></div>
 '.$sp.'		<ul class="mw-ui-button-container flow-list">
 '.$sp.''.LCRun3::p($cx, 'flow_moderation_actions_list', array(array($in),array('moderationType'=>'topic','moderationTarget'=>'title','moderationTemplate'=>'topic','moderationContainerClass'=>'flow-menu','moderationMwUiClass'=>'mw-ui-button','moderationIcons'=>true)), '			').'		</ul>

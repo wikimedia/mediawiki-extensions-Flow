@@ -6,10 +6,19 @@
 	{{> flow_errors }}
 	{{#if revision.content.content}}
 		<div class="flow-topic-summary">
+			<div class="flow-topic-summary-author">
+				{{#ifCond revision.creator.name '===' revision.author.name}}
+					{{l10n 'flow-summary-authored' revision.creator.name}}
+				{{else}}
+					{{l10n 'flow-summary-edited' revision.author.name}}
+					<a href="{{revision.links.diff-prev.url}}" class="flow-timestamp-anchor">
+						{{~uuidTimestamp revision.lastEditId~}}
+					</a>
+				{{/ifCond}}
+			</div>
 			<div class="flow-topic-summary-content">
 				{{escapeContent revision.content.format revision.content.content}}
 			</div>
 		</div>
-		<br class="flow-ui-clear"/>
 	{{/if}}
 </div>
