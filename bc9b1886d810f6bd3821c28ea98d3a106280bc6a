@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_5506e224",
+        "filename": "modules/styles/js.less",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-07-09T17:50:41Z",
+      "side": 1,
+      "message": "Maybe also add a cursor: wait; as long as it\u0027s not ready?",
+      "revId": "bc9b1886d810f6bd3821c28ea98d3a106280bc6a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
