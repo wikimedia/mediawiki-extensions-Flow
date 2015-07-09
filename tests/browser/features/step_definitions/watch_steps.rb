@@ -47,8 +47,7 @@ end
 
 Then(/^I should see the Unwatch Board link$/) do
   on(FlowPage) do |page|
-    page.board_watch_link_element.when_not_visible
-    expect(page.board_unwatch_link_element).to be_visible
+    page.board_unwatch_link_element.when_present
   end
 end
 

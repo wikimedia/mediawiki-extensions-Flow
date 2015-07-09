@@ -1,20 +1,11 @@
 Given(/^the "(.*?)" page has a new unmoderated topic created by me$/) do |title|
-  client = on(APIPage).client
-  client.log_in(ENV["MEDIAWIKI_USER"], ENV["MEDIAWIKI_PASSWORD"])
-  client.action('flow', token_type: 'edit', submodule: 'new-topic', page: title, nttopic: 'Thank me please!', ntcontent: 'Hello')
+  api.action('flow', submodule: 'new-topic', page: title, nttopic: 'Thank me please!', ntcontent: 'Hello')
 end
 
 Given(/^the most recent topic on "(.*?)" is written by another user$/) do |title|
-  client = on(APIPage).client
-  username = 'Selenium Flow user 2'
-  begin
-    client.create_account(username, ENV["MEDIAWIKI_PASSWORD"])
-  rescue MediawikiApi::ApiError
-    puts 'Assuming user ' + username + ' already exists since was unable to create.'
+  as_user(:b) do
+    api.action('flow', submodule: 'new-topic', page: title, nttopic: 'Thank me please!', ntcontent: 'Hello')
   end
-
-  client.log_in(username, ENV["MEDIAWIKI_PASSWORD"])
-  client.action('flow', token_type: 'edit', submodule: 'new-topic', page: title, nttopic: 'Thank me please!', ntcontent: 'Hello')
 end
 
 When(/^I click on the Thank button$/) do
