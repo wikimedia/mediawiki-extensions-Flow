@@ -5,8 +5,32 @@ namespace Flow\Formatter;
 use Flow\Exception\FlowException;
 use Flow\Model\UUID;
 use MWExceptionHandler;
+use Flow\Model\AbstractRevision;
+use Flow\Data\ManagerGroup;
+use Flow\Repository\TreeRepository;
+use Flow\FlowActions;
 
 class BoardHistoryQuery extends AbstractQuery {
+
+	/**
+	 * @var FlowActions
+	 */
+	protected $actions;
+
+	/**
+	 * @param ManagerGroup $storage
+	 * @param TreeRepository $treeRepo
+	 * @param FlowActions $actions
+	 */
+	public function __construct(
+		ManagerGroup $storage,
+		TreeRepository $treeRepo,
+		FlowActions $actions )
+	{
+		parent::__construct( $storage, $treeRepo );
+		$this->actions = $actions;
+	}
+
 	/**
 	 * @param UUID $workflowId
 	 * @param int $limit
@@ -40,6 +64,9 @@ class BoardHistoryQuery extends AbstractQuery {
 		$results = array();
 		foreach ( $history as $revision ) {
 			try {
+				if ( $this->excludeFromHistory( $revision ) ) {
+					continue;
+				}
 				$result = $this->buildResult( $revision, 'rev_id' );
 			} catch ( FlowException $e ) {
 				$result = false;
@@ -51,5 +78,13 @@ class BoardHistoryQuery extends AbstractQuery {
 		}
 
 		return $results;
+	}
+
+	/**
+	 * @param AbstractRevision $revision
+	 * @return bool
+	 */
+	private function excludeFromHistory( AbstractRevision $revision ) {
+		return (bool) $this->actions->getValue( $revision->getChangeType(), 'exclude_from_history' );
 	}
 }
