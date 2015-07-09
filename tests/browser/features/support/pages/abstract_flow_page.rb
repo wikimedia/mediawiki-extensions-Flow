@@ -303,12 +303,14 @@ class AbstractFlowPage < WikiPage
     page.first_topic_watchlist_container_element.link_element(css: ".flow-watch-link-unwatch")
   end
 
-  a(:board_unwatch_link, href: /Flow_QA&action=unwatch/)
-  a(:board_watch_link, href: /Flow_QA&action=watch/)
+  a(:board_unwatch_link, css: '#ca-unwatch a')
+  a(:board_watch_link, css: '#ca-watch a')
 
   # undo suppression
   button(:undo_suppression_button, text: "Undo")
 
   # history
   a(:view_history, text: 'View history')
+
+  div(:overlay, class: 'flow-ui-load-overlay')
 end
