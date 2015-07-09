@@ -1,9 +1,9 @@
 require_relative 'wiki_page'
 
 class FlowPage < WikiPage
-  include URL
+
   # MEDIAWIKI_URL must have this in $wgFlowOccupyPages array or $wgFlowOccupyNamespaces.
-  page_url URL.url("Talk:Flow_QA")
+  page_url "Talk:Flow_QA"
 
   def visualeditor_or_textarea(parent_form_class)
     parent = form_element(class: parent_form_class).when_present
