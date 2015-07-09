@@ -41,11 +41,15 @@
 '.$sp.''.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? '		data-flow-interactive-handler="collapserCollapsibleToggle"
 '.$sp.'' : '').'		>
 '.$sp.''.LCRun3::p($cx, 'flow_errors', array(array($in),array()), '	').''.((LCRun3::ifvar($cx, ((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null))) ? '		<div class="flow-topic-summary">
+'.$sp.'			<div class="flow-topic-summary-author">
+'.$sp.''.LCRun3::hbch($cx, 'ifCond', array(array(((isset($in['revision']['creator']['name']) && is_array($in['revision']['creator'])) ? $in['revision']['creator']['name'] : null),'===',((isset($in['revision']['author']['name']) && is_array($in['revision']['author'])) ? $in['revision']['author']['name'] : null)),array()), $in, false, function($cx, $in)use($sp){return '					'.LCRun3::ch($cx, 'l10n', array(array('flow-summary-authored',((isset($in['revision']['creator']['name']) && is_array($in['revision']['creator'])) ? $in['revision']['creator']['name'] : null)),array()), 'encq').'
+'.$sp.'';}, function($cx, $in)use($sp){return '					'.LCRun3::ch($cx, 'l10n', array(array('flow-summary-edited',((isset($in['revision']['author']['name']) && is_array($in['revision']['author'])) ? $in['revision']['author']['name'] : null)),array()), 'encq').'
+'.$sp.'                    <a href="'.htmlentities((string)((isset($in['revision']['links']['diff-prev']['url']) && is_array($in['revision']['links']['diff-prev'])) ? $in['revision']['links']['diff-prev']['url'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-timestamp-anchor">'.LCRun3::ch($cx, 'uuidTimestamp', array(array(((isset($in['revision']['lastEditId']) && is_array($in['revision'])) ? $in['revision']['lastEditId'] : null)),array()), 'encq').'</a>
+'.$sp.'';}).'			</div>
 '.$sp.'			<div class="flow-topic-summary-content">
 '.$sp.'				'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['revision']['content']['format']) && is_array($in['revision']['content'])) ? $in['revision']['content']['format'] : null),((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null)),array()), 'encq').'
 '.$sp.'			</div>
 '.$sp.'		</div>
-'.$sp.'		<br class="flow-ui-clear"/>
 '.$sp.'' : '').'</div>
 ';},'flow_topic_titlebar_content' => function ($cx, $in, $sp) {return ''.$sp.'<h2 class="flow-topic-title flow-load-interactive '.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? 'flow-click-interactive' : '').'"
 '.$sp.'	data-flow-topic-title="'.htmlentities((string)((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null), ENT_QUOTES, 'UTF-8').'"
