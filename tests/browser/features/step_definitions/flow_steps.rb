@@ -1,11 +1,13 @@
 Given(/^I am on a new board$/) do
   visit NewFlowPage
+  step 'The Flow page is fully loaded'
+  step 'page has no ResourceLoader errors'
 end
 
 Given(/^I am on Flow page$/) do
   visit FlowPage
-  step "The Flow page is fully loaded"
-  step "page has no ResourceLoader errors"
+  step 'The Flow page is fully loaded'
+  step 'page has no ResourceLoader errors'
 end
 
 # @todo: Rewrite to use more generic step below
@@ -30,9 +32,10 @@ Given(/^the block author link is not visible$/) do
 end
 
 Given(/^The Flow page is fully loaded$/) do
-  # wait for javascript to remove the new topic link
-  # and replace it with a click handler on the new topic text_field
-  on(FlowPage).new_topic_link_element.when_not_visible
+  on(FlowPage) do |page|
+    page.new_topic_link_element.when_not_visible
+    page.overlay_element.when_not_visible
+  end
 end
 
 Given(/^the talk to author link is not visible$/) do
@@ -127,7 +130,7 @@ end
 
 Then(/^I am on my user page$/) do
   # Get the title of the page without '_' characters
-  text = 'User:' + ENV["MEDIAWIKI_USER"].gsub(/_/, ' ')
+  text = 'User:' + user.gsub(/_/, ' ')
   expect(on(UserPage).first_heading_element.text).to match(text)
 end
 
