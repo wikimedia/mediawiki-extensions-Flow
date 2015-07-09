@@ -396,6 +396,7 @@
 	"flow-special-enableflow-board-creation-not-allowed": "You are not allowed to create a Flow board at [[:$1]].",
 	"flow-special-enableflow-page-is-liquidthreads": "There is a LiquidThreads page at [[:$1]].",
 	"flow-special-enableflow-confirmation": "You have successfully created a Flow board at [[$1]].",
+	"flow-conversion-archive-page-name-format": "%s/Archive_%d",
 	"flow-spam-confirmedit-form": "Please confirm you are a human by solving the below captcha: $1",
 	"flow-embedding-unsupported": "Discussions cannot be embedded yet.",
 	"mw-ui-unsubmitted-confirm": "You have unsubmitted changes on this page. Are you sure you want to navigate away and lose your work?",

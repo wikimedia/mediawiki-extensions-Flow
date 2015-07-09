@@ -41,11 +41,6 @@ class SpecialEnableFlow extends FormSpecialPage {
 				'type' => 'text',
 				'label-message' => 'flow-special-enableflow-page',
 			),
-			'archive-title-format' => array(
-				'type' => 'text',
-				'label-message' => 'flow-special-enableflow-archive-title-format',
-				'default' => $this->msg( 'flow-special-enableflow-archive-title-format-default-value' )->text(),
-			),
 			'header' => array(
 				'type' => 'textarea',
 				'label-message' => 'flow-special-enableflow-header'
@@ -102,7 +97,6 @@ class SpecialEnableFlow extends FormSpecialPage {
 					new NullImportSourceStore(),
 					$logger,
 					array(),
-					$data['archive-title-format'],
 					$data['header']
 				)
 			);
