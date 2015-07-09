@@ -195,32 +195,6 @@ class PostRevision extends AbstractRevision {
 	}
 
 	/**
-	 * Get the user ID of the user who created this post.
-	 *
-	 * @return integer The user ID
-	 */
-	public function getCreatorId() {
-		return $this->origUser->id;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getCreatorWiki() {
-		return $this->origUser->wiki;
-	}
-
-	/**
-	 * Get the user ip of the user who created this post if it
-	 * was created by an anonymous user
-	 *
-	 * @return string|null String if an creator is anon, or null if not.
-	 */
-	public function getCreatorIp() {
-		return $this->origUser->ip;
-	}
-
-	/**
 	 * @return boolean
 	 */
 	public function isTopicTitle() {
