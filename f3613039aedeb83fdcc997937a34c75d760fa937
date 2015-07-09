@@ -71,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_359316a8",
+        "filename": "tests/browser/features/support/pages/new_random_flow_page.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-07-09T16:40:32Z",
+      "side": 1,
+      "message": "If you don\u0027t visit(page), having a URL shouldn\u0027t do anything. You can still use FlowPage for assertion. Look at the description tests.\nBut I think your second option makes sense when we want to use different flow boards with different URLs.",
+      "parentUuid": "8ec42329_b504e618",
+      "revId": "f3613039aedeb83fdcc997937a34c75d760fa937",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_cd39ecf0",
         "filename": "tests/browser/features/support/pages/special_enable_flow_confirmation_page.rb",
         "patchSetId": 3
