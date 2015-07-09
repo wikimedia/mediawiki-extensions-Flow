@@ -2,9 +2,10 @@
 
 namespace Flow\Import\EnableFlow;
 
+use Flow\Import\Wikitext\ConversionStrategy;
 use Title;
 
-class EnableFlowWikitextConversionStrategy extends \Flow\Import\Wikitext\ConversionStrategy {
+class EnableFlowWikitextConversionStrategy extends ConversionStrategy {
 	/**
 	 * {@inheritDoc}
 	 */
