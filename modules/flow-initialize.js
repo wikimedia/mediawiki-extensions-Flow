@@ -11,7 +11,11 @@
 	$( document ).ready( function () {
 		var dataBlob, navWidget, flowBoard, dmBoard,
 			$component = $( '.flow-component' ),
-			$board = $( '.flow-board' );
+			$board = $( '.flow-board' ),
+			finishLoading = function () {
+				$component.addClass( 'flow-component-ready' );
+				$( '.flow-ui-load-overlay' ).hide();
+			};
 
 		// HACK: If there is no component, we are not on a flow
 		// board at all, and there's no need to load anything.
@@ -19,6 +23,7 @@
 		// fix this by telling ResourceLoader to not load
 		// flow-initialize at all on tests.
 		if ( $component.length === 0 ) {
+			finishLoading();
 			return;
 		}
 
@@ -28,6 +33,7 @@
 		// we shouldn't proceed. This is true mainly to history pages
 		// that have the component but not the board DOM element.
 		if ( $board.length === 0 ) {
+			finishLoading();
 			return;
 		}
 
@@ -168,5 +174,8 @@
 		} else {
 			mw.flow.system.populateBoardFromApi();
 		}
+
+		// Show the board
+		finishLoading();
 	} );
 }( jQuery ) );
