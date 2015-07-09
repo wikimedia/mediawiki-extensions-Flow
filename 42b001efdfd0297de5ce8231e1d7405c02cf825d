@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_52bcb8b1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 970
+      },
+      "writtenOn": "2015-07-09T15:55:41Z",
+      "side": 1,
+      "message": "Clone dumped.",
+      "parentUuid": "8ec42329_0b670be7",
+      "revId": "42b001efdfd0297de5ce8231e1d7405c02cf825d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_2b6207d5",
         "filename": "includes/Api/ApiFlow.php",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2015-07-03T01:14:27Z",
       "side": 1,
       "message": "This shouldn\u0027t be in here since it\u0027s not related to your change.  Instead, rebase.",
+      "revId": "42b001efdfd0297de5ce8231e1d7405c02cf825d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_b2e2bcce",
+        "filename": "includes/Api/ApiFlow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 970
+      },
+      "writtenOn": "2015-07-09T15:55:41Z",
+      "side": 1,
+      "message": "Hopefully rebased.",
+      "parentUuid": "8ec42329_2b6207d5",
       "revId": "42b001efdfd0297de5ce8231e1d7405c02cf825d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_b2f95c80",
+        "filename": "includes/Api/ApiFlowViewPostHistory.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 970
+      },
+      "writtenOn": "2015-07-09T15:55:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_8ba21bf8",
+      "revId": "42b001efdfd0297de5ce8231e1d7405c02cf825d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_2bb1a741",
         "filename": "includes/Api/ApiFlowViewPostHistory.php",
         "patchSetId": 1
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_1205d07c",
+        "filename": "includes/Api/ApiFlowViewPostHistory.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 970
+      },
+      "writtenOn": "2015-07-09T15:55:41Z",
+      "side": 1,
+      "message": "That might not have been in the version of ApiFlowViewPost I copied from. Fixed.",
+      "parentUuid": "8ec42329_2bb1a741",
+      "revId": "42b001efdfd0297de5ce8231e1d7405c02cf825d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_cbbb4321",
         "filename": "includes/Api/ApiFlowViewPostHistory.php",
         "patchSetId": 1
@@ -81,6 +153,24 @@
       "writtenOn": "2015-07-03T01:14:27Z",
       "side": 1,
       "message": "Deprecated way shouldn\u0027t be added.  Just do it using the i18n way (see existing examples in i18n/en.json).  See the ones with apihelp-flow+view-post as an example.",
+      "revId": "42b001efdfd0297de5ce8231e1d7405c02cf825d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_32232c02",
+        "filename": "includes/Api/ApiFlowViewPostHistory.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 970
+      },
+      "writtenOn": "2015-07-09T15:55:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_cbbb4321",
       "revId": "42b001efdfd0297de5ce8231e1d7405c02cf825d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -155,6 +245,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_b2215c4d",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 970
+      },
+      "writtenOn": "2015-07-09T15:55:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_abc4b768",
+      "revId": "42b001efdfd0297de5ce8231e1d7405c02cf825d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_6b6c8fcb",
         "filename": "includes/Block/Topic.php",
         "patchSetId": 1
@@ -172,6 +280,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_f2d6042c",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 970
+      },
+      "writtenOn": "2015-07-09T15:55:41Z",
+      "side": 1,
+      "message": "I added an optional parameter designating whether or not to return the navbar. It defaults to true.",
+      "parentUuid": "8ec42329_6b6c8fcb",
+      "revId": "42b001efdfd0297de5ce8231e1d7405c02cf825d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_ab76f79c",
         "filename": "includes/Block/Topic.php",
         "patchSetId": 1
@@ -183,6 +309,24 @@
       "writtenOn": "2015-07-03T01:14:27Z",
       "side": 1,
       "message": "This \u0027format\u0027 fallback should not be done.  It\u0027s only for backwards-compatibility, but not applicable for new API endpoints (or functions that previously were not accessible to the API).",
+      "revId": "42b001efdfd0297de5ce8231e1d7405c02cf825d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_b2e07cf8",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 970
+      },
+      "writtenOn": "2015-07-09T15:55:41Z",
+      "side": 1,
+      "message": "Moot point, since I\u0027m just going to use the original.",
+      "parentUuid": "8ec42329_ab76f79c",
       "revId": "42b001efdfd0297de5ce8231e1d7405c02cf825d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
