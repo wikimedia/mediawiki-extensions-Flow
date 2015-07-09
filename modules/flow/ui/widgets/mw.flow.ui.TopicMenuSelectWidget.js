@@ -48,6 +48,8 @@
 
 		// Initialize
 		this.$element.addClass( 'flow-ui-topicMenuSelectWidget' );
+		// Set max height to 400px
+		this.setIdealSize( undefined, 400 );
 	};
 
 	/* Initialization */
