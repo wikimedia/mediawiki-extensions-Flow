@@ -4,6 +4,25 @@
 
 // @todo: Find better home for this css
 .client-js {
+	// Hide the component while it is loading if Javascript
+	// is enabled.
+	.flow-component {
+		opacity: 0.5;
+
+		&-ready {
+			opacity: 1;
+			transition: opacity 0.5s;
+		}
+	}
+	.flow-ui-load-overlay {
+		z-index: 101;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
 	/*
 	Fallback elements
 
