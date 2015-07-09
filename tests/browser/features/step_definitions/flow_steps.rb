@@ -127,7 +127,7 @@ end
 
 Then(/^I am on my user page$/) do
   # Get the title of the page without '_' characters
-  text = 'User:' + ENV["MEDIAWIKI_USER"].gsub(/_/, ' ')
+  text = 'User:' + user.gsub(/_/, ' ')
   expect(on(UserPage).first_heading_element.text).to match(text)
 end
 
