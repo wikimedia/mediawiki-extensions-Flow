@@ -29,8 +29,8 @@ When(/^I hover on the Post Actions link on the 3rd comment on the topic$/) do
 end
 
 When(/^I go to an old style permalink to my topic$/) do
-  on(FlowPage) do |curPage|
-    work_flow_id = curPage.flow_first_topic_element.attribute('data-flow-id')
+  on(FlowPage) do |page|
+    work_flow_id = page.flow_first_topic_element.attribute('data-flow-id')
     visit(FlowOldPermalinkPage, using_params: { workflow_id: work_flow_id })
   end
 end
