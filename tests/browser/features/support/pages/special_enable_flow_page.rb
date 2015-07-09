@@ -1,8 +1,7 @@
 class EnableFlowPage
   include PageObject
 
-  include URL
-  page_url URL.url('Special:EnableFlow')
+  page_url 'Special:EnableFlow'
 
   # form elements
   div(:page_name_div, id: 'mw-input-wppage')
