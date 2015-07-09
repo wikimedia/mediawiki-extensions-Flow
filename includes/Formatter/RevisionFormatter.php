@@ -310,6 +310,12 @@ class RevisionFormatter {
 					$row
 				);
 			}
+		} elseif ( $row->revision instanceof PostSummary ) {
+			$res['creator'] = $this->serializeUser(
+				$row->revision->getCreatorWiki(),
+				$row->revision->getCreatorId(),
+				$row->revision->getCreatorIp()
+			);
 		}
 
 		return $res;

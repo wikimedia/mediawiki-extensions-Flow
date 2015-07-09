@@ -93,6 +93,8 @@ $wgResourceModules += array(
 			'flow-cancel',
 			'flow-skip-summary',
 			'flow-edit-summary-placeholder',
+			'flow-summary-authored',
+			'flow-summary-edited',
 			'flow-board-header',
 			'flow-board-collapse-description',
 			'flow-board-expand-description',
