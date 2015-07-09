@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_ed314802",
+        "filename": "tests/browser/features/special_enableflow.feature",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-07-09T12:37:25Z",
+      "side": 1,
+      "message": "Navigating to the page is not what we are testing. Being on the page is a pre-condition (given) and enabling a Flow board is the action under test (when).",
+      "revId": "f3613039aedeb83fdcc997937a34c75d760fa937",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_8d4c44a1",
+        "filename": "tests/browser/features/support/data_manager.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-07-09T12:37:25Z",
+      "side": 1,
+      "message": "You could also reuse get by calling get \"Talk:#{part}\"",
+      "revId": "f3613039aedeb83fdcc997937a34c75d760fa937",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_2d619001",
+        "filename": "tests/browser/features/support/pages/new_random_flow_page.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-07-09T12:37:25Z",
+      "side": 1,
+      "message": "If this is a flow page, you can extend flow_page and have access to all the elements.",
+      "revId": "f3613039aedeb83fdcc997937a34c75d760fa937",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_cd39ecf0",
+        "filename": "tests/browser/features/support/pages/special_enable_flow_confirmation_page.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-07-09T12:37:25Z",
+      "side": 1,
+      "message": "Generally speaking, when_present should not be in the page object as it forces resolution of the element and restricts what the step can do with it. \nFor example, you will not be able to write: expect(page.new_board_link).to_not be_visible\n\nYou can also use the block syntax for nested elements: https://github.com/cheezy/page-object/wiki/Nested-Elements",
+      "revId": "f3613039aedeb83fdcc997937a34c75d760fa937",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_8d43e466",
+        "filename": "tests/browser/features/support/pages/special_enable_flow_page.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-07-09T12:37:25Z",
+      "side": 1,
+      "message": "See previous comment.",
+      "revId": "f3613039aedeb83fdcc997937a34c75d760fa937",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
