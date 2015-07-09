@@ -54,7 +54,7 @@ class SpecialEnableFlow extends FormSpecialPage {
 	}
 
 	protected function getDisplayFormat() {
-		return 'vform';
+		return 'ooui';
 	}
 
 	protected function getMessagePrefix() {
