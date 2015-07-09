@@ -4,6 +4,21 @@
 
 // @todo: Find better home for this css
 .client-js {
+	// Hide the component while it is loading if Javascript
+	// is enabled.
+	.flow-component {
+		opacity: 0.5;
+		// This rule works in all browsers except for IE 8,9,10
+		// http://caniuse.com/#feat=pointer-events
+		pointer-events: none;
+
+		&-ready {
+			opacity: 1;
+			pointer-events: auto;
+			transition: opacity 0.5s;
+		}
+	}
+
 	/*
 	Fallback elements
 
