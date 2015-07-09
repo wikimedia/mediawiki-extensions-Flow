@@ -4,7 +4,7 @@ end
 
 Given(/^I have an existing talk page$/) do
   @new_board_page = @data_manager.get_talk 'Test_Prefilled_Random_Board'
-  on(APIPage).create @new_board_page, '<p class="flow-test-archive-content">Some wikitext here.</p>'
+  api.create_page @new_board_page, '<p class="flow-test-archive-content">Some wikitext here.</p>'
 end
 
 When(/^I enable a new Flow board on the talk page$/) do
