@@ -1,6 +1,6 @@
 Given(/^the "(.*?)" page has a new unmoderated topic created by me$/) do |title|
   client = on(APIPage).client
-  client.log_in(ENV["MEDIAWIKI_USER"], ENV["MEDIAWIKI_PASSWORD"])
+  client.log_in(user, password)
   client.action('flow', token_type: 'edit', submodule: 'new-topic', page: title, nttopic: 'Thank me please!', ntcontent: 'Hello')
 end
 

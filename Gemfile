@@ -5,5 +5,5 @@ source "https://rubygems.org"
 
 gem "csscss"
 gem "mediawiki_api"
-gem "mediawiki_selenium"
+gem 'mediawiki_selenium', '~> 1.4.0'
 gem "rubocop", require: false
