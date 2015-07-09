@@ -89,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_356796b6",
+        "filename": "tests/browser/features/support/pages/new_random_flow_page.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-09T17:05:59Z",
+      "side": 1,
+      "message": "Okay, that makes sense, I wasn\u0027t sure if the URL was part of the definition, and was worried that flow_page will just navigate to the hard-coded link.",
+      "parentUuid": "8ec42329_359316a8",
+      "revId": "f3613039aedeb83fdcc997937a34c75d760fa937",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_cd39ecf0",
         "filename": "tests/browser/features/support/pages/special_enable_flow_confirmation_page.rb",
         "patchSetId": 3
