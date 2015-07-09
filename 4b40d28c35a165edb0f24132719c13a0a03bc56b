@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_edf388d0",
+        "filename": "includes/Formatter/BoardHistoryQuery.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-07-09T11:23:18Z",
+      "side": 1,
+      "message": "Done.\n\nAlso: Typehint $revision",
+      "parentUuid": "8ec42329_d7373daa",
+      "revId": "4b40d28c35a165edb0f24132719c13a0a03bc56b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_773c498f",
         "filename": "includes/Formatter/ContributionsQuery.php",
         "patchSetId": 10
@@ -30,6 +48,24 @@
       "writtenOn": "2015-07-09T04:26:35Z",
       "side": 1,
       "message": "Same here (@return bool?)",
+      "revId": "4b40d28c35a165edb0f24132719c13a0a03bc56b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_cdc24c5d",
+        "filename": "includes/Formatter/ContributionsQuery.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-07-09T11:23:18Z",
+      "side": 1,
+      "message": "Done.\n\nAlso: Typehint $revision",
+      "parentUuid": "8ec42329_773c498f",
       "revId": "4b40d28c35a165edb0f24132719c13a0a03bc56b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_6de0f8f7",
+        "filename": "includes/Formatter/RecentChangesQuery.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-07-09T11:23:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_9741b510",
+      "revId": "4b40d28c35a165edb0f24132719c13a0a03bc56b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_f74fd937",
         "filename": "includes/Formatter/RecentChangesQuery.php",
         "patchSetId": 10
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_8de52409",
+        "filename": "includes/Formatter/RecentChangesQuery.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-07-09T11:23:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_f74fd937",
+      "revId": "4b40d28c35a165edb0f24132719c13a0a03bc56b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_174dc53f",
         "filename": "includes/Formatter/TopicHistoryQuery.php",
         "patchSetId": 10
@@ -81,6 +153,24 @@
       "writtenOn": "2015-07-09T04:26:35Z",
       "side": 1,
       "message": "@return bool?",
+      "revId": "4b40d28c35a165edb0f24132719c13a0a03bc56b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_ed786828",
+        "filename": "includes/Formatter/TopicHistoryQuery.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-07-09T11:23:18Z",
+      "side": 1,
+      "message": "Done.\n\nAlso: Typehint $revision",
+      "parentUuid": "8ec42329_174dc53f",
       "revId": "4b40d28c35a165edb0f24132719c13a0a03bc56b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
