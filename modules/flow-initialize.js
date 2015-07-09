@@ -168,5 +168,9 @@
 		} else {
 			mw.flow.system.populateBoardFromApi();
 		}
+
+		// Show the board
+		$component.addClass( 'flow-component-ready' );
+
 	} );
 }( jQuery ) );
