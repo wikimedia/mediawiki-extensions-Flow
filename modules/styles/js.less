@@ -4,6 +4,32 @@
 
 // @todo: Find better home for this css
 .client-js {
+	// Hide the component while it is loading if Javascript
+	// is enabled.
+	.flow-ui-load-overlay {
+		z-index: 101;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		cursor: wait;
+	}
+
+	.flow-component {
+		position: relative;
+		opacity: 0.5;
+
+		&-ready {
+			opacity: 1;
+
+			-moz-transition: opacity 0.5s;
+			-webkit-transition: opacity 0.5s;
+			-o-transition: opacity 0.5s;
+			transition: opacity 0.5s;
+		}
+	}
+
 	/*
 	Fallback elements
 
