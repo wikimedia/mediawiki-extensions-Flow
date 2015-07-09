@@ -32,9 +32,6 @@
 			widget: this.button
 		} );
 
-		this.$wrapper = $( '<div>' )
-			.addClass( 'flow-ui-tocWidget-wrapper' );
-
 		// Events
 		this.topicSelect.connect( this, { topic: 'onTopicSelectTopic' } );
 		this.button.connect( this, { click: 'onButtonClick' } );
@@ -44,7 +41,7 @@
 			.addClass( 'flow-ui-tocWidget' )
 			.append(
 				this.button.$element,
-				this.$wrapper.append( this.topicSelect.$element )
+				this.topicSelect.$element
 			);
 	};
 
