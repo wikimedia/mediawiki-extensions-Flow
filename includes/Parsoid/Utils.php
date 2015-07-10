@@ -98,7 +98,7 @@ abstract class Utils {
 		}
 
 		$request = \MWHttpRequest::factory(
-			$parsoidURL . '/' . $parsoidPrefix . '/' . $title->getPrefixedDBkey(),
+			$parsoidURL . '/' . $parsoidPrefix . '/' . urlencode( $title->getPrefixedDBkey() ),
 			array(
 				'method' => 'POST',
 				'postData' => wfArrayToCgi( $params ),
