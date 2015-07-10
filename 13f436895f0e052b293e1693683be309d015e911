@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_bce84a78",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-07-10T13:45:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_dc8af616",
+      "revId": "13f436895f0e052b293e1693683be309d015e911",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_fc8fb224",
         "filename": "includes/Model/AbstractRevision.php",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2015-07-10T12:55:52Z",
       "side": 1,
       "message": "I\u0027m slightly concerned about this one, where we could potentially be causing a lot of storage lookups.\n\nFor this particular feature, this likely won\u0027t cause any problem, since I assume most topics won\u0027t have summaries, and of those, I guess a lot will be isFirstRevision.\n\nBut now that we\u0027re bringing this into AbstractRevision, it could get dangerous.\n\nI\u0027m ok merging this now, but maybe create another ticket to optimize this?",
+      "revId": "13f436895f0e052b293e1693683be309d015e911",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_7cfae241",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 786,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-07-10T13:45:44Z",
+      "side": 1,
+      "message": "I agree it creates a lot of lookup. We could denormalize the original author. Any other idea how we can optimize this?",
+      "parentUuid": "8ec42329_fc8fb224",
       "revId": "13f436895f0e052b293e1693683be309d015e911",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_5c612600",
+        "filename": "modules/styles/board/topic/titlebar.less",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-07-10T13:45:44Z",
+      "side": 1,
+      "message": "Good catch. I had to change the structure to make the separator full-width. It had side effects.",
+      "parentUuid": "8ec42329_bcb04ad9",
+      "revId": "13f436895f0e052b293e1693683be309d015e911",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_bc992a73",
         "filename": "modules/styles/board/topic/titlebar.less",
         "patchSetId": 5
@@ -64,6 +118,24 @@
       "writtenOn": "2015-07-10T12:55:52Z",
       "side": 1,
       "message": "Redundant whitespace",
+      "revId": "13f436895f0e052b293e1693683be309d015e911",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_dc90b6f9",
+        "filename": "modules/styles/board/topic/titlebar.less",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-07-10T13:45:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_bc992a73",
       "revId": "13f436895f0e052b293e1693683be309d015e911",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
