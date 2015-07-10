@@ -291,7 +291,6 @@
 	"flow-ve-mention-inspector-remove-label": "Suprimeix",
 	"flow-ve-mention-placeholder": "Nom d'usuari",
 	"flow-ve-mention-tool-title": "Menciona un usuari",
-	"flow-ve-mention-template": "ping",
 	"flow-ve-mention-inspector-invalid-user": "L'usuari «$1» no està registrat.",
 	"flow-wikitext-editor-help": "El text wiki $1.",
 	"flow-wikitext-editor-help-and-preview": "El text wiki $1 i podeu $2 en qualsevol moment.",

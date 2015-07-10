@@ -52,6 +52,5 @@
 	"flow-terms-of-use-summarize": "Klikom na \"{{int:flow-topic-action-update-topic-summary}}\", prihvatate uslove korištenja na ovoj wikipediji.",
 	"apihelp-flow+edit-header-param-content": "Sadržaj za opis.",
 	"apihelp-flow+edit-header-example-1": "Uredi opis [[Talk:Sandbox]]",
-	"flow-ve-mention-placeholder": "Korisničko ime",
-	"flow-ve-mention-template": "ping"
+	"flow-ve-mention-placeholder": "Korisničko ime"
 }

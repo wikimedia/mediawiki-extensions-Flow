@@ -508,7 +508,6 @@
 	"flow-ve-mention-inspector-remove-label": "移除",
 	"flow-ve-mention-placeholder": "用户名",
 	"flow-ve-mention-tool-title": "提及一位用户",
-	"flow-ve-mention-template": "ping",
 	"flow-ve-mention-inspector-invalid-user": "用户名“$1”未注册。",
 	"flow-wikitext-editor-help": "Wiki文本$1。",
 	"flow-wikitext-editor-help-and-preview": "Wiki文本$1并且您随时都可以$2。",
