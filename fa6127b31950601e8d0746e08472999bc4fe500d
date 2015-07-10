@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_3cb9ba29",
+        "filename": "tests/browser/features/support/pages/special_enable_flow_archive_page.rb",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-07-10T11:42:07Z",
+      "side": 1,
+      "message": "Using this form would give you much more flexibility in the steps:\n\nparagraph(:content) do |page|\n  page.div_element(class: \u0027flow-board-header-content\u0027).paragraph_element\nend\n\npage.content would give you the text directly\npage.content_element.when_present.text would give would the text when it becomes available. Unfortunately we have to do that a lot with this app.",
+      "revId": "fa6127b31950601e8d0746e08472999bc4fe500d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
