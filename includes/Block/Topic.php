@@ -576,6 +576,11 @@ class TopicBlock extends AbstractBlock {
 	protected function renderSingleViewApi( $revId ) {
 		$row = Container::get( 'query.post.view' )->getSingleViewResult( $revId );
 
+		if ( !$this->permissions->isAllowed( $row->revision, 'view' ) ) {
+			$this->addError( 'permissions', $this->getDisallowedErrorMessage( $row->revision ) );
+			return array();
+		}
+
 		return array(
 			'revision' => Container::get( 'formatter.revisionview' )->formatApi( $row, $this->context )
 		);

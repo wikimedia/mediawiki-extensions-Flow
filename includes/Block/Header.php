@@ -218,21 +218,10 @@ class HeaderBlock extends AbstractBlock {
 			case 'compare-header-revisions':
 				$output += $this->renderDiffviewApi( $options );
 				break;
-
 		}
 
-		if ( $this->wasSubmitted() ) {
-			$output += array(
-				'submitted' => $this->submitted,
-				'errors' => $this->errors,
-			);
-		} else {
-			$output += array(
-				'submitted' => array(),
-				'errors' => array()
-			);
-		}
-
+		$output['submitted'] = $this->wasSubmitted() ? $this->submitted : array();
+		$output['errors'] = $this->errors;
 		return $output;
 	}
 
@@ -264,6 +253,11 @@ class HeaderBlock extends AbstractBlock {
 		/** @var RevisionViewFormatter $formatter */
 		$formatter = Container::get( 'formatter.revisionview' );
 
+		if ( !$this->permissions->isAllowed( $row->revision, 'view' ) ) {
+			$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
+			return array();
+		}
+
 		return array(
 			'revision' => $formatter->formatApi( $row, $this->context )
 		);
@@ -276,6 +270,14 @@ class HeaderBlock extends AbstractBlock {
 	protected function renderRevisionApi( $format ) {
 		$output = array();
 		if ( $this->header === null ) {
+			if (
+				!$this->permissions->isRevisionAllowed( null, 'view' ) ||
+				!$this->permissions->isBoardAllowed( $this->workflow, 'view' )
+			) {
+				$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
+				return array();
+			}
+
 			/** @var UrlGenerator $urlGenerator */
 			$urlGenerator = Container::get( 'url_generator' );
 			$output['revision'] = array(
@@ -293,11 +295,17 @@ class HeaderBlock extends AbstractBlock {
 			$row->revision = $this->header;
 			$row->currentRevision = $this->header;
 
+			if ( !$this->permissions->isAllowed( $row->revision, 'view' ) ) {
+				$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
+				return array();
+			}
+
 			$serializer = Container::get( 'formatter.revision' );
 			$serializer->setContentFormat( $format );
 
 			$output['revision'] = $serializer->formatApi( $row, $this->context );
 		}
+
 		return $output;
 	}
 

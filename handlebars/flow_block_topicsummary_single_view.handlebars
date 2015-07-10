@@ -1,23 +1,26 @@
 <div class="flow-board">
 	{{> flow_errors }}
-	<div class="flow-revision-permalink-warning plainlinks">
-		{{#if revision.previousRevisionId}}
-			{{l10nParse "flow-revision-permalink-warning-postsummary"
-				revision.human_timestamp
-				revision.rev_view_links.board.title
-				revision.root.content
-				revision.rev_view_links.hist.url
-				revision.rev_view_links.diff.url}}
-		{{else}}
-			{{l10nParse "flow-revision-permalink-warning-postsummary-first"
-				revision.human_timestamp
-				revision.rev_view_links.board.title
-				revision.root.content
-				revision.rev_view_links.hist.url
-				revision.rev_view_links.diff.url}}
-		{{/if}}
-	</div>
-	<div class="flow-revision-content">
-		{{escapeContent revision.content.format revision.content.content}}
-	</div>
+
+	{{#if revision}}
+		<div class="flow-revision-permalink-warning plainlinks">
+			{{#if revision.previousRevisionId}}
+				{{l10nParse "flow-revision-permalink-warning-postsummary"
+					revision.human_timestamp
+					revision.rev_view_links.board.title
+					revision.root.content
+					revision.rev_view_links.hist.url
+					revision.rev_view_links.diff.url}}
+			{{else}}
+				{{l10nParse "flow-revision-permalink-warning-postsummary-first"
+					revision.human_timestamp
+					revision.rev_view_links.board.title
+					revision.root.content
+					revision.rev_view_links.hist.url
+					revision.rev_view_links.diff.url}}
+			{{/if}}
+		</div>
+		<div class="flow-revision-content">
+			{{escapeContent revision.content.format revision.content.content}}
+		</div>
+	{{/if}}
 </div>
