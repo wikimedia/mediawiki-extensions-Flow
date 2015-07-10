@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "8ec42329_1cc15e83",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-07-10T11:51:55Z",
+      "side": 1,
+      "message": "Near the top of this file are 2 cases where we\u0027ll return from this function soon (\u003d when not on a valid board)\n\nThis will happen on ?action\u003dhistory, for example, and it\u0027ll cause the overlay \u0026 reduced opacity to stay :)",
+      "revId": "bc9b1886d810f6bd3821c28ea98d3a106280bc6a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_5506e224",
         "filename": "modules/styles/js.less",
         "patchSetId": 6
