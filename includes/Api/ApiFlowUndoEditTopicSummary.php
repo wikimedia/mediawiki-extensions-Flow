@@ -5,8 +5,8 @@ namespace Flow\Api;
 use ApiBase;
 
 class ApiFlowUndoEditTopicSummary extends ApiFlowBaseGet {
-	public function __construct( $api ) {
-		parent::__construct( $api, 'edit-topic-summary', 'uets' );
+	public function __construct( $api, $modName ) {
+		parent::__construct( $api, $modName, 'uets' );
 	}
 
 	protected function getAction() {
