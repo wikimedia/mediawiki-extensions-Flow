@@ -16,6 +16,24 @@
       "revId": "fa6127b31950601e8d0746e08472999bc4fe500d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_52282d96",
+        "filename": "tests/browser/features/support/pages/special_enable_flow_archive_page.rb",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-10T18:07:04Z",
+      "side": 1,
+      "message": "This is already in the archive page, though, so no .flow-board-header-content is available. My main issue here was that the paragraph also contains a table (which is the rendering of the template added) so I have to find a way to pull out *only* the content of the text after that table.\n\nI think I may solve this by adding a paragraph in the original wikitext rather than a simple sentence, and then I can grab the nested paragraph from within the content area.",
+      "parentUuid": "8ec42329_3cb9ba29",
+      "revId": "fa6127b31950601e8d0746e08472999bc4fe500d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
