@@ -497,7 +497,7 @@
 	"flow-ve-mention-inspector-remove-label": "הסרה",
 	"flow-ve-mention-placeholder": "שם המשתמש",
 	"flow-ve-mention-tool-title": "אזכור משתמש",
-	"flow-ve-mention-template": "ping",
+	"flow-ve-mention-template-title": "FlowMention",
 	"flow-ve-mention-inspector-invalid-user": "שם המשתמש \"$1\" אינו רשום.",
 	"flow-wikitext-editor-help": "קוד ויקי $1.",
 	"flow-wikitext-editor-help-and-preview": "קוד ויקי $1 ובאפשרותך $2 בכל זמן.",
