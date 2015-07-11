@@ -46,10 +46,7 @@ class View extends ContextSource {
 	}
 
 	public function show( WorkflowLoader $loader, $action ) {
-		wfProfileIn( __CLASS__ . '-init' );
-
 		$blocks = $loader->getBlocks();
-		wfProfileOut( __CLASS__ . '-init' );
 
 		$parameters = $this->extractBlockParameters( $action, $blocks );
 		foreach ( $loader->getBlocks() as $block ) {
