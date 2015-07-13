@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_3d05267d",
+        "filename": "modules/styles/js.less",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-13T23:03:44Z",
+      "side": 1,
+      "message": "Let\u0027s verify that this is really needed and wasn\u0027t somehow related to the problem that overflow: hidden; solves",
+      "revId": "37da9875f058a6be96600b377001ba1e2b526f26",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_7deace9d",
+        "filename": "modules/styles/js.less",
+        "patchSetId": 9
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-13T23:03:44Z",
+      "side": 1,
+      "message": "I\u0027ve discovered that you don\u0027t need to set overflow to hidden (and then back to visible) if instead you add \u003cdiv style\u003d\"clear: both;\"\u003e\u003c/div\u003e at the bottom of the flow-component div.\n\nIt would also be a good idea to relocate the overlay div to the bottom anyway; that way it naturally overlaps most elements, rather than relying on z-index for that (but you probably still need z-index to fight other z-indexes).",
+      "revId": "37da9875f058a6be96600b377001ba1e2b526f26",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
