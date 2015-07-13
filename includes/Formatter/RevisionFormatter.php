@@ -285,6 +285,7 @@ class RevisionFormatter {
 				$res[ApiResult::META_BC_BOOLS],
 				array(
 					'isMaxThreadingDepth',
+					'isNewPage',
 				)
 			);
 
@@ -310,6 +311,9 @@ class RevisionFormatter {
 					$row
 				);
 			}
+
+			$res['isNewPage'] = $row->isFirstReply && $row->revision->isFirstRevision();
+
 		} elseif ( $row->revision instanceof PostSummary ) {
 			$res['creator'] = $this->serializeUser(
 				$row->revision->getCreatorWiki(),

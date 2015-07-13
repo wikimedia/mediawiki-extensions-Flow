@@ -46,14 +46,11 @@ class RecentChanges extends AbstractFormatter {
 
 		$description = $this->formatDescription( $data, $ctx );
 
-		$unpatrolledFlag = '';
-		if ( ChangesList::isUnpatrolled( $row->recentChange, $ctx->getUser() ) ) {
-			$unpatrolledFlag = ChangesList::flag( 'unpatrolled' ) . ' ';
-		}
+		$flags = $this->getFlags( $row, $ctx );
 
 		return $this->formatAnchorsAsPipeList( $links, $ctx ) .
 			$separator .
-			$unpatrolledFlag .
+			$this->formatFlags( $flags ) .
 			$this->getTitleLink( $data, $row, $ctx ) .
 			$ctx->msg( 'semicolon-separator' )->escaped() .
 			' ' .
@@ -211,5 +208,33 @@ class RecentChanges extends AbstractFormatter {
 		$links['total-changes'] = $anchor->toHtml( $text );
 
 		return $links;
+	}
+
+	/**
+	 * @param RecentChangesRow $row
+	 * @param IContextSource $ctx
+	 * @return array
+	 */
+	public function getFlags( RecentChangesRow $row, IContextSource $ctx )
+	{
+		return array(
+			'newpage' => $row->isFirstReply && $row->revision->isFirstRevision(),
+			'minor' => false,
+			'unpatrolled' => ChangesList::isUnpatrolled( $row->recentChange, $ctx->getUser() ),
+			'bot' => false,
+		);
+	}
+
+	/**
+	 * @param array $flags
+	 * @return string
+	 */
+	protected function formatFlags( $flags ) {
+		$flagKeys = array_keys( array_filter( $flags ) );
+		if ( $flagKeys ) {
+			$formattedFlags = array_map( 'ChangesList::flag', $flagKeys );
+			return implode( ' ', $formattedFlags ) . ' ';
+		}
+		return '';
 	}
 }
