@@ -475,6 +475,7 @@ class FlowHooks {
 		$formatter = Container::get( 'formatter.recentchanges' );
 		try {
 			$data['timestampLink'] = $formatter->getTimestampLink( $row, $changesList );
+			$data['recentChangesFlags'] = $formatter->getFlags( $row, $changesList );
 		} catch ( PermissionException $e ) {
 			return false;
 		}

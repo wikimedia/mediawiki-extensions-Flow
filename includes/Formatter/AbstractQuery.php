@@ -223,13 +223,23 @@ abstract class AbstractQuery {
 		if ( $revision instanceof PostRevision ) {
 			$row->rootPost = $this->getRootPost( $revision );
 			$revision->setRootPost( $row->rootPost );
-			$row->isLastReply = $this->isLastReply( $revision );
+
+			$replyIds = $this->getAllReplyIds( $revision );
+			if ( $replyIds ) {
+				$postId = $revision->getPostId()->getAlphadecimal();
+				$row->isFirstReply = reset( $replyIds ) === $postId;
+				$row->isLastReply = end( $replyIds ) === $postId;
+			}
 		}
 
 		return $row;
 	}
 
-	protected function isLastReply( PostRevision $revision ) {
+	/**
+	 * @param PostRevision $revision
+	 * @return array|bool
+	 */
+	protected function getAllReplyIds( PostRevision $revision ) {
 		if ( $revision->isTopicTitle() ) {
 			return false;
 		}
@@ -239,8 +249,7 @@ abstract class AbstractQuery {
 			return false;
 		}
 		$parent = $this->identityMap[$revision->getReplyToId()->getAlphadecimal()];
-		$keys = array_keys( $parent['children'] );
-		return end( $keys ) === $revision->getPostId()->getAlphadecimal();
+		return array_keys( $parent['children'] );
 	}
 
 	/**
@@ -391,6 +400,8 @@ class FormatterRow {
 	public $rootPost;
 	/** @var bool */
 	public $isLastReply = false;
+	/** @var bool */
+	public $isFirstReply = false;
 
 	// protect against typos
 	public function __get( $attribute ) {
