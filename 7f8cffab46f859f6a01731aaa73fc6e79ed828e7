@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_49d95b2b",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-07-13T07:15:11Z",
+      "side": 1,
+      "message": "Near the top of this file are 2 cases where we\u0027ll return from this function soon (\u003d when not on a valid board)\n\nThis will happen on ?action\u003dhistory, for example, and it\u0027ll cause the overlay \u0026 reduced opacity to stay :)",
+      "revId": "7f8cffab46f859f6a01731aaa73fc6e79ed828e7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
