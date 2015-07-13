@@ -39,6 +39,7 @@
 		} );
 		this.api = new mw.flow.dm.APIHandler( this.board.getPageTitle().getPrefixedDb() );
 		this.moreTopicsExistInApi = true;
+		this.fetchPromise = null;
 
 		this.board.connect( this, { reset: 'resetBoard' } );
 	};
@@ -87,11 +88,15 @@
 		var system = this,
 			sortOrder = this.board.getSortOrder();
 
+		if ( this.fetchPromise ) {
+			return this.fetchPromise;
+		}
+
 		if ( !this.moreTopicsExistInApi ) {
 			return $.Deferred().resolve( false ).promise();
 		}
 
-		return this.api.getTopicList(
+		this.fetchPromise = this.api.getTopicList(
 			sortOrder,
 			{
 				offset: sortOrder === 'newest' ?
@@ -99,15 +104,15 @@
 					this.board.getOffset(),
 				toconly: true
 			} )
-			.then( function ( topiclist ) {
-				return mw.flow.dm.Topic.static.extractTopicsFromAPI( topiclist );
-			} )
-			.then( function ( topics ) {
+			.then( function ( topicList ) {
+				var topics = mw.flow.dm.Topic.static.extractTopicsFromAPI( topicList );
 				// Add the topics to the data model
 				system.board.addItems( topics );
 				system.moreTopicsExistInApi = length === system.tocPostLimit;
+				system.fetchPromise = null;
 				return system.moreTopicsExistInApi;
 			} );
+		return this.fetchPromise;
 	};
 
 	/**
