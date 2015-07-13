@@ -223,12 +223,38 @@ abstract class AbstractQuery {
 		if ( $revision instanceof PostRevision ) {
 			$row->rootPost = $this->getRootPost( $revision );
 			$revision->setRootPost( $row->rootPost );
+			$row->isFirstReply = $this->isFirstReply( $revision, $row->rootPost );
 			$row->isLastReply = $this->isLastReply( $revision );
 		}
 
 		return $row;
 	}
 
+	/**
+	 * @param PostRevision $revision
+	 * @param PostRevision $root
+	 * @return bool
+	 */
+	protected function isFirstReply( PostRevision $revision, PostRevision $root ) {
+		// check if it's a first-level reply (not topic title, but the level just below that)
+		if ( !$root->getPostId()->equals( $revision->getReplyToId() ) ) {
+			return false;
+		}
+
+		// we can use the timestamps to check if the reply was created at roughly the same time the topic was created
+		// if they're 0 or 1 seconds apart, they must have been created in the same request
+		// unless our servers are extremely slow and can't create topic + first reply in < 1 seconds, this should be a pretty safe method to detect first reply
+		if ( $revision->getPostId()->getTimestamp( TS_UNIX ) - $root->getPostId()->getTimestamp( TS_UNIX ) >= 2 ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * @param PostRevision $revision
+	 * @return bool
+	 */
 	protected function isLastReply( PostRevision $revision ) {
 		if ( $revision->isTopicTitle() ) {
 			return false;
@@ -391,6 +417,8 @@ class FormatterRow {
 	public $rootPost;
 	/** @var bool */
 	public $isLastReply = false;
+	/** @var bool */
+	public $isFirstReply = false;
 
 	// protect against typos
 	public function __get( $attribute ) {

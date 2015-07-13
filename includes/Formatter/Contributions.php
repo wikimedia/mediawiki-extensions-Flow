@@ -28,6 +28,12 @@ class Contributions extends AbstractFormatter {
 			return false;
 		}
 
+		$isNewPage = isset( $data['isNewPage'] ) && $data['isNewPage'];
+
+		if ( $ctx->newOnly && !$isNewPage ) {
+			return false;
+		}
+
 		$charDiff = ChangesList::showCharacterDifference(
 			$data['size']['old'],
 			$data['size']['new']
@@ -41,6 +47,11 @@ class Contributions extends AbstractFormatter {
 
 		$description = $this->formatDescription( $data, $ctx );
 
+		$flags = '';
+		if ( $isNewPage ) {
+			$flags .= ChangesList::flag( 'newpage' ) . ' ';
+		}
+
 		// Put it all together
 		return
 			$this->formatTimestamp( $data ) . ' ' .
@@ -48,6 +59,7 @@ class Contributions extends AbstractFormatter {
 			$separator .
 			$charDiff .
 			$separator .
+			$flags .
 			$this->getTitleLink( $data, $row, $ctx ) .
 			( Utils::htmlToPlaintext( $description ) ? $separator . $description : '' ) .
 			$this->getHideUnhide( $data, $row, $ctx );
