@@ -87,6 +87,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_faf34ee2",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.AbstractEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-13T23:48:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_1a08ccdb",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_3ac10883",
         "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
         "patchSetId": 13
@@ -98,6 +116,24 @@
       "writtenOn": "2015-07-01T00:56:57Z",
       "side": 1,
       "message": "There is no textarea",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_7a00beb5",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-13T23:48:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_3ac10883",
       "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -121,6 +157,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_da63f2a5",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-13T23:48:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_5abc1401",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_fa3620af",
         "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
         "patchSetId": 13
@@ -132,6 +186,24 @@
       "writtenOn": "2015-07-01T00:56:57Z",
       "side": 1,
       "message": "inheritdoc",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_ba6626b7",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-13T23:48:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_fa3620af",
       "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -155,6 +227,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_1a6ada7e",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-13T23:48:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_ba3c188f",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_5a4bb42b",
         "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
         "patchSetId": 13
@@ -166,6 +256,24 @@
       "writtenOn": "2015-07-01T00:56:57Z",
       "side": 1,
       "message": "initVE already coerces to \u0027\u0027",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_fa6cae9c",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-13T23:48:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_5a4bb42b",
       "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -206,6 +314,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_c104501a",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-13T23:48:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_1a61aca3",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_9a6cbc9a",
         "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
         "patchSetId": 13
@@ -240,6 +366,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_6889f5ed",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-13T23:48:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_7ae47039",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_da56c4d0",
         "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
         "patchSetId": 13
@@ -251,6 +395,24 @@
       "writtenOn": "2015-07-01T00:56:57Z",
       "side": 1,
       "message": "Add change event",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_0874f1f9",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-13T23:48:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_da56c4d0",
       "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -291,6 +453,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_286f6d27",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-13T23:48:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_9a983cc4",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_3a9348a7",
         "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
         "patchSetId": 13
@@ -302,6 +482,24 @@
       "writtenOn": "2015-07-01T00:56:57Z",
       "side": 1,
       "message": "In this code path, this is always true",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_c87909f3",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-13T23:48:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_3a9348a7",
       "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -325,6 +523,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_1af17ada",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-13T23:48:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_daf9e4e5",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_5a8e547d",
         "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
         "patchSetId": 13
@@ -336,6 +552,24 @@
       "writtenOn": "2015-07-01T00:56:57Z",
       "side": 1,
       "message": "Should be conditional",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_bafdc6b0",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-13T23:48:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_5a8e547d",
       "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -359,6 +593,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_dafa12b6",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-13T23:48:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_5ae5f430",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_3aea6805",
         "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
         "patchSetId": 13
@@ -370,6 +622,24 @@
       "writtenOn": "2015-07-01T00:56:57Z",
       "side": 1,
       "message": "inheritdoc",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_7a275e63",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-13T23:48:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_3aea6805",
       "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -404,6 +674,24 @@
       "writtenOn": "2015-07-01T00:56:57Z",
       "side": 1,
       "message": "Shouldn\u0027t take a parameter",
+      "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_3a21d64b",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-13T23:48:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_7acb10a7",
       "revId": "1ed90e18382be9236e66afc04d6699d12f234905",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
