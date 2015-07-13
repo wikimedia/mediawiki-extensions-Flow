@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_69b777d4",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 786,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-07-13T07:11:53Z",
+      "side": 1,
+      "message": "We could either denormalize it, or start using tree_*, like postRevision does (though we don\u0027t need most of the rest of tree_*). At least we\u0027d then be able to batchload it all at once.\n\nBut let\u0027s do that later - I filed T105663",
+      "parentUuid": "8ec42329_7cfae241",
+      "revId": "13f436895f0e052b293e1693683be309d015e911",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_bcb04ad9",
         "filename": "modules/styles/board/topic/titlebar.less",
         "patchSetId": 5
