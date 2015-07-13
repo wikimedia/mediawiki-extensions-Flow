@@ -3,15 +3,23 @@
 @import 'flow.helpers';
 @import 'flow.variables';
 
-.flow-topic-summary {
-	border-top: 1px dotted @colorGrayLight;
-	margin-top: .33em;
+.flow-topic-summary-container {
+	.flow-topic-summary {
+		border-top: 1px solid @colorGray13;
+		margin-top: .5em;
+		padding-top: .5em;
 
-	.flow-topic-summary-content {
-		p {
-			&:last-of-type {
-				// Remove margin-bottom from last p in summary, to remove excess bottom whitespace
-				margin-bottom: 0;
+		.flow-topic-summary-author {
+			font-weight: bold;
+			color: @colorTextLight
+		}
+
+		.flow-topic-summary-content {
+			p {
+				&:last-of-type {
+					// Remove margin-bottom from last p in summary, to remove excess bottom whitespace
+					margin-bottom: 0;
+				}
 			}
 		}
 	}
