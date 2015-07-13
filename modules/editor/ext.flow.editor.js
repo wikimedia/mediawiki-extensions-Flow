@@ -242,6 +242,17 @@
 
 				// convert content to new editor format
 				.then( function ( data ) {
+					// no need to fire API request if there's no content, or if
+					// content format doesn't change for new editor
+					if ( data.from === data.to || data.content === '' ) {
+						return $.Deferred().resolve( {
+							'flow-parsoid-utils': {
+								format: data.to,
+								content: data.content
+							}
+						} );
+					}
+
 					return new mw.Api().post( {
 						action: 'flow-parsoid-utils',
 						from: data.from,
