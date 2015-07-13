@@ -97,8 +97,9 @@ abstract class Utils {
 			$params['scrubWikitext'] = 'true';
 		}
 
+		$prefixedDbTitle = $title->getPrefixedDBkey();
 		$request = \MWHttpRequest::factory(
-			$parsoidURL . '/' . $parsoidPrefix . '/' . urlencode( $title->getPrefixedDBkey() ),
+			$parsoidURL . '/' . $parsoidPrefix . '/' . urlencode( $prefixedDbTitle ),
 			array(
 				'method' => 'POST',
 				'postData' => wfArrayToCgi( $params ),
@@ -118,8 +119,9 @@ abstract class Utils {
 		$status = $request->execute();
 		if ( !$status->isOK() ) {
 			$statusMsg = $status->getMessage()->text();
-			wfDebugLog( 'Flow', __METHOD__ . ": Failed contacting parsoid: $statusMsg" );
-			throw new NoParsoidException( "Failed contacting Parsoid: $statusMsg", 'process-wikitext' );
+			$msg = "Failed contacting Parsoid for title \"$prefixedDbTitle\": $statusMsg";
+			wfDebugLog( 'Flow', __METHOD__ . ": $msg" );
+			throw new NoParsoidException( "$msg", 'process-wikitext' );
 		}
 
 		return $request->getContent();
