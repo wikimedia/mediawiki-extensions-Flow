@@ -172,6 +172,12 @@ class ContributionsQuery extends AbstractQuery {
 			$conditions['workflow_namespace'] = $pager->namespace;
 		}
 
+//		if ( $pager->newOnly ) {
+//			$condition['rev_type'] = 'post';
+//			$condition['rev_change_type'] = 'new-post';
+////			$condition[] = 'rev_parent_id = 0';
+//		}
+
 		return $conditions;
 	}
 
