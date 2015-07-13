@@ -46,14 +46,17 @@ class RecentChanges extends AbstractFormatter {
 
 		$description = $this->formatDescription( $data, $ctx );
 
-		$unpatrolledFlag = '';
+		$flags = '';
+		if ( $row->isFirstReply && $row->revision->isFirstRevision() ) {
+			$flags .= ChangesList::flag( 'newpage' ) . ' ';
+		}
 		if ( ChangesList::isUnpatrolled( $row->recentChange, $ctx->getUser() ) ) {
-			$unpatrolledFlag = ChangesList::flag( 'unpatrolled' ) . ' ';
+			$flags .= ChangesList::flag( 'unpatrolled' ) . ' ';
 		}
 
 		return $this->formatAnchorsAsPipeList( $links, $ctx ) .
 			$separator .
-			$unpatrolledFlag .
+			$flags .
 			$this->getTitleLink( $data, $row, $ctx ) .
 			$ctx->msg( 'semicolon-separator' )->escaped() .
 			' ' .

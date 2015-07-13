@@ -41,6 +41,11 @@ class Contributions extends AbstractFormatter {
 
 		$description = $this->formatDescription( $data, $ctx );
 
+		$flags = '';
+		if ( isset( $data['isNewPage'] ) && $data['isNewPage'] ) {
+			$flags .= ChangesList::flag( 'newpage' ) . ' ';
+		}
+
 		// Put it all together
 		return
 			$this->formatTimestamp( $data ) . ' ' .
@@ -48,6 +53,7 @@ class Contributions extends AbstractFormatter {
 			$separator .
 			$charDiff .
 			$separator .
+			$flags .
 			$this->getTitleLink( $data, $row, $ctx ) .
 			( Utils::htmlToPlaintext( $description ) ? $separator . $description : '' ) .
 			$this->getHideUnhide( $data, $row, $ctx );
