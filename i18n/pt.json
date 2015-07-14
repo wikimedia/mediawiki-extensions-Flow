@@ -55,6 +55,8 @@
 	"flow-post-actions": "Ações",
 	"flow-topic-actions": "Ações",
 	"flow-cancel": "Cancelar",
+	"flow-summary-authored": "Resumo por $1",
+	"flow-summary-edited": "Resumo {{GENDER:$1|editado}} pela última vez por $1",
 	"flow-show-change": "Mostrar alterações",
 	"flow-last-modified-by": "Última {{GENDER:$1|modificação}} por $1",
 	"flow-stub-post-content": "\"Devido a um erro técnico, esta mensagem não pode ser recuperada.\"",

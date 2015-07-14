@@ -34,7 +34,8 @@
 			"Urhixidur",
 			"Wladek92",
 			"Mattho69",
-			"Yodaspirine"
+			"Yodaspirine",
+			"TomT0m"
 		]
 	},
 	"enableflow": "Activer Flow",
@@ -79,6 +80,8 @@
 	"flow-cancel": "Annuler",
 	"flow-skip-summary": "Résumé de modification",
 	"flow-edit-summary-placeholder": "Décrire brièvement le résultat de cette discussion",
+	"flow-summary-authored": "Résumé par $1",
+	"flow-summary-edited": "Résumé modifié en dernier par $1",
 	"flow-show-change": "Voir les modifications",
 	"flow-last-modified-by": "{{GENDER:$1|Modifié}} en dernier par $1",
 	"flow-stub-post-content": "« En raison d’une erreur technique, ce message n’a pas pu être récupéré. »",
@@ -390,6 +393,7 @@
 	"flow-special-enableflow-board-creation-not-allowed": "Vous n'êtes pas autorisé à créer un tableau Flux à [[:$1]].",
 	"flow-special-enableflow-page-is-liquidthreads": "Il existe une page LiquidThreads à [[:$1]].",
 	"flow-special-enableflow-confirmation": "Vous avez bien créé un tableau Flow sur [[$1]].",
+	"flow-conversion-archive-page-name-format": "%s/Archive %d\n%s/Archive%d\n%s/archive %d\n%s/archive%d",
 	"flow-spam-confirmedit-form": "Veuillez confirmer que vous êtes humain en résolvant le captcha ci-dessous : $1",
 	"flow-embedding-unsupported": "Les discussions ne peuvent pas encore être incorporées.",
 	"mw-ui-unsubmitted-confirm": "Vous avez des modifications non enregistrées sur cette page. Êtes-vous sûr de vouloir la quitter et perdre ainsi votre travail ?",
@@ -523,6 +527,7 @@
 	"flow-ve-mention-inspector-remove-label": "Supprimer",
 	"flow-ve-mention-placeholder": "Nom d’utilisateur",
 	"flow-ve-mention-tool-title": "Mentionner un utilisateur",
+	"flow-ve-mention-template-title": "Mention",
 	"flow-ve-mention-inspector-invalid-user": "Le nom d’utilisateur '$1' n’est pas enregistré.",
 	"flow-wikitext-editor-help": "$1 wikitexte.",
 	"flow-wikitext-editor-help-and-preview": "$1 wikitexte et vous pouvez $2 à tout moment.",

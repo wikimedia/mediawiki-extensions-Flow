@@ -120,6 +120,7 @@
 	"flow-special-type": "Zoot",
 	"flow-special-type-workflow": "Afflouf",
 	"flow-special-enableflow-invalid-title": "The provided page is not a valid page title\n<!-- \nhttps://translatewiki.net/wiki/Thread:Support/About_MediaWiki:Flow-special-enableflow-invalid-title/en\n-->",
+	"flow-conversion-archive-page-name-format": "%s/Aschihf %d\n%s/Aschihf/%d\n%s/Aschihv %d\n%s/Aschihv/%d",
 	"flow-spam-confirmedit-form": "Bes esu johd un donn beschtähtejje, dat De ene Minsch bes, enämm dat de heh dat <span style=\"text-transform:uppercase\" title=\"Jät zom Ennjävve, öm ze zeije, dadd ene Minsch vör em Kompjuhter sez\">Kaptscha</span> löhse deihß: $1",
 	"flow-post-undo-hide": "et Verschteijsche ophävve",
 	"flow-post-undo-delete": "et Fottschmiiße ophävve",

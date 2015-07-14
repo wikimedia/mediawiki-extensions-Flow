@@ -131,6 +131,7 @@
 	"flow-toggle-topics-posts": "Przełącz się na widok nagłówków i wpisów",
 	"flow-terms-of-use-summarize": "Klikając na „{{int:flow-topic-action-update-topic-summary}}”, zgadzasz się na zasady użytkowania tej wiki.",
 	"flow-whatlinkshere-header": "z [$1 opisu]",
+	"flow-conversion-archive-page-name-format": "%s/Archiwum %d\n%s/Archiwum%d\n%s/archiwum %d\n%s/archiwum%d",
 	"apihelp-flow+edit-header-param-format": "Format opisu (wikitekst|html)",
 	"apihelp-flow+lock-topic-param-reason": "Powód zablokowania lub odblokowania tematu. Uwaga, istniejący na wiki program Flow używa  opcji \"Oznaczony jako zamknięty\" oraz nadaje opcjonalne informacje jako jego podsumowanie.",
 	"apihelp-flow+moderate-post-param-reason": "Powód moderacji.",
