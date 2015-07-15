@@ -162,6 +162,7 @@
 	"flow-rev-message-create-topic-summary": "$1 {{GENDER:$2|ha creat}} un resum del tema a $3",
 	"flow-rev-message-edit-topic-summary": "$1 {{GENDER:$2|ha modificat}} el resum del tema $3",
 	"flow-rev-message-restored-post": "$1 {{GENDER:$2|ha restaurat}} un [$4 comentari] a «$6» (<em>$5</em>)",
+	"flow-rev-message-hid-topic": "$1 {{GENDER:$2|ha amagat}} el [$4 tema] \"$6\" (<em>$5</em>)",
 	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|ha marcat}} el [$4 tema] $6 com a resolt (<em>$5</em>)",
 	"flow-rev-message-lock-topic-reason": "marcat com a resolt",
 	"flow-rev-message-restore-topic-reason": "reobert",
