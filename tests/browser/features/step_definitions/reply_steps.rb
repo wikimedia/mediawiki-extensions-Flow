@@ -5,19 +5,11 @@ Given(/^I am not watching my new Flow topic$/) do
   end
 end
 
-When(/^I click the Cancel button and confirm the dialog$/) do
-  on(FlowPage) do |page|
-    page.confirm(true) do
-      page.new_reply_cancel_element.when_present.click
-    end
-  end
-end
-
 When(/^I reply with comment "(.*?)"$/) do |content|
   on(FlowPage) do |page|
     page.new_reply_save_element.when_not_present
     page.new_reply_placeholder_element.when_present.click
-    page.new_reply_editor_element.send_keys(content)
+    page.new_reply_editor_element.when_present.send_keys(content)
     page.new_reply_save_element.when_present.click
     page.new_reply_save_element.when_not_present
     page.flow_first_topic_element.paragraph_element(text: content).when_present

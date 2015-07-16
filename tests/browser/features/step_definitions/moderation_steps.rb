@@ -26,10 +26,6 @@ When(/^I type "(.*?)" in the dialog box$/) do |text|
   on(FlowPage).dialog_input_element.when_present.send_keys(text)
 end
 
-Then(/^I confirm$/) do
-  on(FlowPage).confirm(true) {}
-end
-
 Then(/^I do not see the dialog box$/) do
   on(FlowPage).dialog_element.when_not_present
 end
