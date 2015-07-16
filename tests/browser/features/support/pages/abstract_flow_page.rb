@@ -1,8 +1,9 @@
 require_relative 'wiki_page'
 
 class AbstractFlowPage < WikiPage
-  def visualeditor_or_textarea(parent_form_class)
-    parent = form_element(class: parent_form_class).when_present
+  def visualeditor_or_textarea(form)
+    parent = form.is_a?(String) ? form_element(css: form) : form
+    parent.when_present
     if parent.div_element(class: 'flow-editor-visualeditor').exists?
       parent.div_element(class: 've-ce-documentNode')
     else
@@ -20,7 +21,7 @@ class AbstractFlowPage < WikiPage
   form(:edit_description_form, css: ".edit-header-form")
   a(:sidebar_toggle, class: "side-rail-toggle-button")
   def edit_description_textbox_element
-    visualeditor_or_textarea 'edit-header-form'
+    visualeditor_or_textarea '.edit-header-form'
   end
 
   # If page has an archive template from a flow conversion
@@ -164,7 +165,7 @@ class AbstractFlowPage < WikiPage
     page.summary_element.button_element(text: 'Update summary')
   end
   def edit_summary_element
-    visualeditor_or_textarea 'flow-edit-form'
+    visualeditor_or_textarea '.flow-edit-form'
   end
   span(:first_topic_resolved_mark) do |page|
     page.flow_first_topic_heading_element.span_element(css: '.mw-ui-icon-check')
@@ -240,7 +241,7 @@ class AbstractFlowPage < WikiPage
   text_field(:new_topic_title, name: "topiclist_topic")
 
   def new_topic_body_element
-    visualeditor_or_textarea 'flow-newtopic-form'
+    visualeditor_or_textarea '.flow-newtopic-form'
   end
 
   button(:new_topic_cancel, css: ".flow-newtopic-form .mw-ui-destructive")
@@ -257,7 +258,8 @@ class AbstractFlowPage < WikiPage
   end
 
   def new_reply_editor_element
-    visualeditor_or_textarea 'flow-reply-form'
+    form = flow_first_topic_element.form_element(class: 'flow-reply-form')
+    visualeditor_or_textarea form
   end
 
   button(:new_reply_cancel, css: ".flow-reply-form .mw-ui-destructive")
@@ -267,7 +269,7 @@ class AbstractFlowPage < WikiPage
   # Editing post workflow
 
   def post_edit_element
-    visualeditor_or_textarea 'flow-edit-post-form'
+    visualeditor_or_textarea '.flow-edit-post-form'
   end
 
   button(:change_post_save, css: ".flow-edit-post-form .mw-ui-constructive")

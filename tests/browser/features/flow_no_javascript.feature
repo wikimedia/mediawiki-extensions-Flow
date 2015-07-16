@@ -1,5 +1,4 @@
-@custom-browser @firefox
-@login
+@firefox
 @en.wikipedia.beta.wmflabs.org
 Feature: Basic site for legacy devices
 
