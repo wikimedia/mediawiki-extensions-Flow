@@ -1,11 +1,10 @@
 @chrome @firefox @internet_explorer_10
-@clean @login
+@clean
 @en.wikipedia.beta.wmflabs.org
 Feature: Flow updates are in Recent Changes
 
   Background:
-    Given I am logged in
-    And I am on Flow page
+    Given I am on Flow page
     And I have created a Flow topic with title "New topic should be in Recent Changes"
 
   Scenario: New topic is in Recent Changes
