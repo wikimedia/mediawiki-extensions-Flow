@@ -4,9 +4,9 @@
 Feature: Reopen a resolved topic
 
   Background:
-    Given I am logged in
+    Given there is a new topic
+    And I am logged in
     And I am on Flow page
-    And I have created a Flow topic
 
   Scenario: Reopening a resolved topic and changing the summary
     Given I mark the first topic as resolved
