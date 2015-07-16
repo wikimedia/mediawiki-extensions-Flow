@@ -11,7 +11,8 @@
 			"Hosseinblue",
 			"Danialbehzadi",
 			"Mjbmr",
-			"Leyth"
+			"Leyth",
+			"Pirehelokan"
 		]
 	},
 	"enableflow": "فعال‌سازی فِلو",
@@ -50,6 +51,7 @@
 	"flow-topic-actions": "اقدامات",
 	"flow-cancel": "لغو",
 	"flow-edit-summary-placeholder": "توضیح مختصری از خروجی این بحث بدهید",
+	"flow-summary-authored": "خلاصه به وسیله $1",
 	"flow-show-change": "نمایش تغییرات",
 	"flow-last-modified-by": "آخرین {{GENDER:$1|modified}} توسط $1",
 	"flow-stub-post-content": "''به دلیل یک خطای فنی، این پست نتوانست بازیابی شود.''",
@@ -102,6 +104,7 @@
 	"flow-topic-notification-subscribe-description": "شما برای همه فعالیت‌ها در این مبحث اطلاعیه دریافت خواهید کرد.",
 	"flow-board-notification-subscribe-title": "شما به این بحث اشتراک دارید!",
 	"flow-board-notification-subscribe-description": "شما به طور خودکار به همه مباحث تازه ایجادشده در این بحث مشترک خواهید شد.",
+	"flow-topic-action-watchlist-remove": "لغو اشتراک",
 	"flow-error-http": "یک خطا هنگام تماس با سرور رخ داد.",
 	"flow-error-other": "یک خطای غیرمنتظره رخ داد.",
 	"flow-error-external": "خطایی رخ داده. <br /> پیغام خطای دریافت شده: $1 بود",
@@ -290,8 +293,6 @@
 	"flow-special-enableflow-header": "توضیحات اولیه از تخت فِلو (ویکی‌متن)",
 	"flow-special-enableflow-board-already-exists": "در حال حاضر تخت فلوئی در [[$1]] وجود دارد.",
 	"flow-special-enableflow-invalid-title": "عنوان نامعتبر داده شده است",
-	"flow-special-enableflow-archive-title-format": "کجا محتوای موجود را بایگانی کنیم",
-	"flow-special-enableflow-archive-title-format-default-value": "%s/بایگانی_%d",
 	"flow-special-enableflow-board-creation-not-allowed": "شما مجاز به ایجاد تخت فِلو در [[:$1]] نیستید.",
 	"flow-special-enableflow-page-is-liquidthreads": "صفحهٔ موضوعات روان (LiquidThreads) در [[:$1]] موجود است.",
 	"flow-special-enableflow-confirmation": "شما با موفقیت تخت فِلو در [[$1]] ایجاد کردید.",
@@ -338,11 +339,14 @@
 	"flow-ve-mention-inspector-remove-label": "حذف",
 	"flow-ve-mention-placeholder": "نام کاربری",
 	"flow-ve-mention-tool-title": "یاد کردن یک کاربر",
-	"flow-ve-mention-template": "پینگ",
 	"flow-ve-mention-inspector-invalid-user": "نا کاربری «$1» ثبت نشده است.",
 	"flow-wikitext-editor-help": "ویکی‌متن $1.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|از قالب‌بندی استفاده می‌کند]]",
 	"flow-wikitext-editor-help-preview-the-result": "پیش‌نمایش نتیجه",
 	"flow-wikitext-switch-editor-tooltip": "رفتن به ویرایشگر بصری",
-	"flow-ve-switch-editor-tool-title": "رفتن به ویرایشگر متن ویکی"
+	"flow-ve-switch-editor-tool-title": "رفتن به ویرایشگر متن ویکی",
+	"flow-mark-revision-patrolled-link-text": "به این صفحه برچسب گشت بزن",
+	"flow-mark-revision-patrolled-link-title": "به این صفحه برچسب گشت بزن",
+	"flow-mark-diff-patrolled-link-text": "برچسب گشت بزن",
+	"flow-mark-diff-patrolled-link-title": "برچسب گشت بزن"
 }
