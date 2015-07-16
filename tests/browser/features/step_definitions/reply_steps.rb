@@ -17,7 +17,7 @@ When(/^I reply with comment "(.*?)"$/) do |content|
   on(FlowPage) do |page|
     page.new_reply_save_element.when_not_present
     page.new_reply_placeholder_element.when_present.click
-    page.new_reply_editor_element.send_keys(content)
+    page.new_reply_editor_element.when_present.send_keys(content)
     page.new_reply_save_element.when_present.click
     page.new_reply_save_element.when_not_present
     page.flow_first_topic_element.paragraph_element(text: content).when_present
