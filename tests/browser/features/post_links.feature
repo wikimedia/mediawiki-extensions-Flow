@@ -1,14 +1,12 @@
 @chrome @firefox @internet_explorer_10
-@clean @login
+@clean
 @en.wikipedia.beta.wmflabs.org
 Feature: Follow user links
 
+  Background:
+    Given there is a new topic created by me
+
   Scenario: User links takes me to the user page
-    Given I am logged in
-      And I am on Flow page
-      And I have created a Flow topic
-      And I see a flow creator element
+    Given I am on Flow page
     When I click the flow creator element
     Then I am on my user page
-
-    

@@ -4,9 +4,9 @@
 Feature: Mark topic as resolved
 
   Background:
-    Given I am logged in
+    Given there is a new topic
+    And I am logged in
     And I am on Flow page
-    And I have created a Flow topic
 
   Scenario: Resolving a topic without a summary
     When I mark the first topic as resolved
