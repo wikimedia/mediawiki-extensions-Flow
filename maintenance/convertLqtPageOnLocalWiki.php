@@ -1,14 +1,10 @@
 <?php
 
 use Flow\Container;
+use Flow\Import\ApiBackend\LocalApiBackend;
 use Flow\Import\FileImportSourceStore;
-use Flow\Import\NullImportSourceStore;
+use Flow\Import\LiquidThreadsApi\Api;
 use Flow\Import\LiquidThreadsApi\ConversionStrategy as LiquidThreadsApiConversionStrategy;
-use Flow\Import\LiquidThreadsApi\LocalApiBackend;
-use Flow\Import\LiquidThreadsApi\RemoteApiBackend;
-use Flow\Import\LiquidThreadsApi\ImportSource as LiquidThreadsApiImportSource;
-use Flow\Import\Postprocessor\LqtRedirector;
-use Flow\Import\Postprocessor\LqtNotifications;
 use Psr\Log\LogLevel;
 
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
@@ -31,7 +27,8 @@ class ConvertLqtPageOnLocalWiki extends Maintenance {
 	public function execute() {
 		$talkPageManagerUser = \FlowHooks::getOccupationController()->getTalkpageManager();
 
-		$api = new LocalApiBackend( $talkPageManagerUser );
+		$apiBackend = new LocalApiBackend( $talkPageManagerUser );
+		$api = new Api( $apiBackend );
 
 		$importer = Container::get( 'importer' );
 
@@ -59,7 +56,7 @@ class ConvertLqtPageOnLocalWiki extends Maintenance {
 		);
 
 		$importer->setLogger( $logger );
-		$api->setLogger( $logger );
+		$apiBackend->setLogger( $logger );
 
 		$converter = new \Flow\Import\Converter(
 			$dbw,

@@ -6,9 +6,9 @@ use DatabaseBase;
 use DateTime;
 use DateTimeZone;
 use Flow\Import\ImportSourceStore;
-use Flow\Import\NullImportSourceStore;
+use Flow\Import\LiquidThreadsApi\Api;
 use Flow\Import\LiquidThreadsApi\ConversionStrategy;
-use Flow\Import\LiquidThreadsApi\ApiBackend;
+use Flow\Import\NullImportSourceStore;
 use Title;
 use WikitextContent;
 
@@ -144,16 +144,15 @@ EOD
 		);
 	}
 
-
 	protected function createStrategy(
 		DatabaseBase $dbr = null,
 		ImportSourceStore $sourceStore = null,
-		ApiBackend $api = null
+		Api $api = null
 	) {
 		return new ConversionStrategy(
 			$dbr ?: wfGetDB( DB_SLAVE ),
 			$sourceStore ?: new NullImportSourceStore,
-			$api ?: $this->getMockBuilder( 'Flow\Import\LiquidThreadsApi\ApiBackend' )
+			$api ?: $this->getMockBuilder( 'Flow\Import\LiquidThreadsApi\Api' )
 				->disableOriginalConstructor()
 				->getMock(),
 			$this->getMockBuilder( 'Flow\UrlGenerator' )

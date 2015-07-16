@@ -1,13 +1,9 @@
 <?php
 
+use Flow\Import\ApiBackend\RemoteApiBackend;
 use Flow\Import\FileImportSourceStore;
-use Flow\Import\LiquidThreadsApi\BaseConversionStrategy as LiquidThreadsApiBaseConversionStrategy;
-use Flow\Import\LiquidThreadsApi\RemoteConversionStrategy as LiquidThreadsApiRemoteConversionStrategy;
-use Flow\Import\LiquidThreadsApi\LocalApiBackend;
-use Flow\Import\LiquidThreadsApi\RemoteApiBackend;
+use Flow\Import\LiquidThreadsApi\Api;
 use Flow\Import\LiquidThreadsApi\ImportSource as LiquidThreadsApiImportSource;
-use Flow\Import\Postprocessor\LqtRedirector;
-use Flow\Import\Postprocessor\LqtNotifications;
 use Psr\Log\LogLevel;
 
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
@@ -43,7 +39,8 @@ class ConvertLqtPageFromRemoteApiForTesting extends Maintenance {
 			throw new Flow\Exception\FlowException( 'Provided dir for caching remote api calls is not writable.' );
 		}
 
-		$api = new RemoteApiBackend( $this->getOption( 'remoteapi' ), $cacheDir );
+		$apiBackend = new RemoteApiBackend( $this->getOption( 'remoteapi' ), $cacheDir );
+		$api = new Api( $apiBackend );
 
 		$importer = Flow\Container::get( 'importer' );
 		$importer->setAllowUnknownUsernames( true );
@@ -75,7 +72,7 @@ class ConvertLqtPageFromRemoteApiForTesting extends Maintenance {
 		}
 
 		$importer->setLogger( $logger );
-		$api->setLogger( $logger );
+		$apiBackend->setLogger( $logger );
 
 		$logger->info( "Starting LQT conversion of page $srcPageName" );
 

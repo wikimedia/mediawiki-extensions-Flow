@@ -2,7 +2,6 @@
 
 namespace Flow\Import\LiquidThreadsApi;
 
-use ApiResult;
 use AppendIterator;
 use ArrayIterator;
 use Flow\Import\IImportHeader;
@@ -182,7 +181,7 @@ class ImportPost extends PageRevisionedObject implements IImportPost {
 	/**
 	 * Creates revision clarifying signature difference
 	 *
-	 * @param IObjectRevision Last revision prior to the clarification revision
+	 * @param IObjectRevision $lastRevision Last revision prior to the clarification revision
 	 * @param string $authorUsername Author username
 	 * @param string $signatureUsername Username extracted from signature
 	 * @return ScriptedImportRevision Generated top import revision
@@ -468,7 +467,7 @@ class ScriptedImportRevision implements IObjectRevision {
 }
 
 class ImportHeader extends PageRevisionedObject implements IImportHeader {
-	/** @var ApiBackend **/
+	/** @var Api **/
 	protected $api;
 	/** @var string **/
 	protected $title;
@@ -477,7 +476,7 @@ class ImportHeader extends PageRevisionedObject implements IImportHeader {
 	/** @var ImportSource **/
 	protected $source;
 
-	public function __construct( ApiBackend $api, ImportSource $source, $title ) {
+	public function __construct( Api $api, ImportSource $source, $title ) {
 		$this->api = $api;
 		$this->title = $title;
 		$this->source = $source;

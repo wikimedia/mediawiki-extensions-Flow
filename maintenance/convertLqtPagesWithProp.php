@@ -1,9 +1,10 @@
 <?php
 
 use Flow\Container;
+use Flow\Import\ApiBackend\LocalApiBackend;
 use Flow\Import\FileImportSourceStore;
+use Flow\Import\LiquidThreadsApi\Api;
 use Flow\Import\LiquidThreadsApi\ConversionStrategy;
-use Flow\Import\LiquidThreadsApi\LocalApiBackend;
 use Flow\Utils\PagesWithPropertyIterator;
 use Psr\Log\LogLevel;
 
@@ -37,11 +38,14 @@ class ConvertLqt extends Maintenance {
 		$importer = Flow\Container::get( 'importer' );
 		$talkpageManagerUser = FlowHooks::getOccupationController()->getTalkpageManager();
 
+		$apiBackend = new LocalApiBackend( $talkpageManagerUser );
+		$api = new Api( $apiBackend );
+
 		$dbw = wfGetDB( DB_MASTER );
 		$strategy = new ConversionStrategy(
 			$dbw,
 			new FileImportSourceStore( $this->getOption( 'logfile' ) ),
-			new LocalApiBackend( $talkpageManagerUser ),
+			$api,
 			Container::get( 'url_generator' ),
 			$talkpageManagerUser,
 			Container::get( 'controller.notification' )

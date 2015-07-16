@@ -95,7 +95,7 @@ abstract class CachedData {
 abstract class CachedApiData extends CachedData {
 	protected $backend;
 
-	function __construct( ApiBackend $backend ) {
+	function __construct( Api $backend ) {
 		$this->backend = $backend;
 	}
 }

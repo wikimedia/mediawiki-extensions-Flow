@@ -2,19 +2,10 @@
 
 namespace Flow\Import\LiquidThreadsApi;
 
-use ApiBase;
-use ApiMain;
-use Exception;
-use FauxRequest;
-use Flow\Import\ImportException;
 use Flow\Import\IImportSource;
-use Flow\Import\ApiNullResponseException;
-use Http;
-use RequestContext;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use UsageException;
 use User;
 
 class ImportSource implements IImportSource {
@@ -25,7 +16,7 @@ class ImportSource implements IImportSource {
 	const THREAD_TYPE_HIDDEN = 4;
 
 	/**
-	 * @var ApiBackend
+	 * @var Api
 	 */
 	protected $api;
 
@@ -56,10 +47,11 @@ class ImportSource implements IImportSource {
 	protected $scriptUser;
 
 	/**
-	 * @param ApiBackend $apiBackend
+	 * @param Api $apiBackend
 	 * @param string $pageName
+	 * @param User $scriptUser
 	 */
-	public function __construct( ApiBackend $apiBackend, $pageName, User $scriptUser ) {
+	public function __construct( Api $apiBackend, $pageName, User $scriptUser ) {
 		$this->api = $apiBackend;
 		$this->pageName = $pageName;
 		$this->scriptUser = $scriptUser;
@@ -128,6 +120,8 @@ class ImportSource implements IImportSource {
 		case self::THREAD_TYPE_HIDDEN:
 			return null;
 		}
+
+		return null;
 	}
 
 	/**
@@ -176,7 +170,7 @@ class ImportSource implements IImportSource {
 	 * @return string Usually either a string 'local' or an API URL
 	 */
 	public function getApiKey() {
-		return $this->api->getKey();
+		return $this->api->getBackend()->getKey();
 	}
 
 	/**
@@ -196,250 +190,3 @@ class ImportSource implements IImportSource {
 	}
 }
 
-abstract class ApiBackend implements LoggerAwareInterface {
-
-	/**
-	 * @var LoggerInterface
-	 */
-	protected $logger;
-
-	public function __construct() {
-		$this->logger = new NullLogger;
-	}
-
-	public function setLogger( LoggerInterface $logger ) {
-		$this->logger = $logger;
-	}
-
-	/**
-	 * Retrieves LiquidThreads data from the API
-	 *
-	 * @param  array  $conditions The parameters to pass to select the threads. Usually used in two ways: with thstartid/thpage, or with ththreadid
-	 * @return array Data as returned under query.threads by the API
-	 * @throws ApiNotFoundException Thrown when the remote api reports that the provided conditions
-	 *  have no matching records.
-	 * @throws ImportException When an error is received from the remote api.  This is often either
-	 *  a bad request or lqt threw an exception trying to respond to a valid request.
-	 */
-	public function retrieveThreadData( array $conditions ) {
-		$params = array(
-			'action' => 'query',
-			'list' => 'threads',
-			'thprop' => 'id|subject|page|parent|ancestor|created|modified|author|summaryid|type|rootid|replies|signature',
-			'rawcontinue' => 1, // We're doing continuation a different way, but this avoids a warning.
-			'format' => 'json',
-			'limit' => ApiBase::LIMIT_BIG1,
-		);
-		$data = $this->apiCall( $params + $conditions );
-
-		if ( ! isset( $data['query']['threads'] ) ) {
-			if ( $this->isNotFoundError( $data ) ) {
-				$message = "Did not find thread with conditions: " . json_encode( $conditions );
-				$this->logger->debug( __METHOD__ . ": $message" );
-				throw new ApiNotFoundException( $message );
-			} else {
-				$this->logger->error( __METHOD__ . ': Failed API call against ' . $this->getKey() . ' with conditions : ' . json_encode( $conditions ) );
-				throw new ImportException( "Null response from API module:" . json_encode( $data ) );
-			}
-		}
-
-		$firstThread = reset( $data['query']['threads'] );
-		if ( ! isset( $firstThread['replies'] ) ) {
-			throw new ImportException( "Foreign API does not support reply exporting:" . json_encode( $data ) );
-		}
-
-		return $data['query']['threads'];
-	}
-
-	/**
-	 * Retrieves data about a set of pages from the API
-	 *
-	 * @param  array  $pageIds Page IDs to return data for.
-	 * @return array The query.pages part of the API response.
-	 * @throws \MWException
-	 */
-	public function retrievePageDataById( array $pageIds ) {
-		if ( !$pageIds ) {
-			throw new \MWException( 'At least one page id must be provided' );
-		}
-
-		return $this->retrievePageData( array(
-			'pageids' => implode( '|', $pageIds ),
-		) );
-	}
-
-	/**
-	 * Retrieves data about the latest revision of the titles
-	 * from the API
-	 *
-	 * @param string[] $titles Titles to return data for
-	 * @return array The query.pages prt of the API response.
-	 * @throws \MWException
-	 * @throws ImportException
-	 */
-	public function retrieveTopRevisionByTitle( array $titles ) {
-		if ( !$titles ) {
-			throw new \MWException( 'At least one title must be provided' );
-		}
-
-		return $this->retrievePageData( array(
-			'titles' => implode( '|', $titles ),
-			'rvlimit' => 1,
-			'rvdir' => 'older',
-		), true );
-	}
-
-	/**
-	 * Retrieves data about a set of pages from the API
-	 *
-	 * @param array $conditions     Conditions to retrieve pages by; to be sent to the API.
-	 * @param bool  $expectContinue Pass true here when caller expects more revisions to exist than
-	 *  they are requesting information about.
-	 * @return array The query.pages part of the API response.
-	 * @throws ApiNotFoundException Thrown when the remote api reports that the provided conditions
-	 *  have no matching records.
-	 * @throws ImportException When an error is received from the remote api.  This is often either
-	 *  a bad request or lqt threw an exception trying to respond to a valid request.
-	 * @throws ImportException When more revisions are available than can be returned in a single
-	 *  query and the calling code does not set $expectContinue to true.
-	 */
-	public function retrievePageData( array $conditions, $expectContinue = false ) {
-		$conditions += array(
-			'action' => 'query',
-			'prop' => 'revisions',
-			'rvprop' => 'timestamp|user|content|ids',
-			'format' => 'json',
-			'rvlimit' => 5000,
-			'rvdir' => 'newer',
-			'continue' => '',
-		);
-		$data = $this->apiCall( $conditions );
-
-		if ( ! isset( $data['query'] ) ) {
-			$this->logger->error( __METHOD__ . ': Failed API call against ' . $this->getKey() . ' with conditions : ' . json_encode( $conditions ) );
-			if ( $this->isNotFoundError( $data ) ) {
-				$message = "Did not find pages: " . json_encode( $conditions );
-				$this->logger->debug( __METHOD__ . ": $message" );
-				throw new ApiNotFoundException( $message );
-			} else {
-				throw new ImportException( "Null response from API module: " . json_encode( $data ) );
-			}
-		} elseif ( !$expectContinue && isset( $data['continue'] ) ) {
-			throw new ImportException( "More revisions than can be retrieved for conditions, import would be incomplete: " . json_encode( $conditions ) );
-		}
-
-		return $data['query']['pages'];
-	}
-
-	/**
-	 * Calls the remote API
-	 *
-	 * @param array $params The API request to send
-	 * @param int   $retry  Retry the request on failure this many times
-	 * @return array API return value, decoded from JSON into an array.
-	 */
-	abstract function apiCall( array $params, $retry = 1 );
-
-	/**
-	 * @return string A unique identifier for this backend.
-	 */
-	abstract function getKey();
-
-	/**
-	 * @param array $apiResponse
-	 * @return bool
-	 */
-	protected function isNotFoundError( $apiResponse ) {
-		// LQT has some bugs where not finding the requested item in the database throws
-		// returns this exception.
-		$expect = 'Exception Caught: DatabaseBase::makeList: empty input for field thread_parent';
-		return false !== strpos( $apiResponse['error']['info'], $expect );
-	}
-}
-
-class RemoteApiBackend extends ApiBackend {
-	/**
-	 * @param string
-	 */
-	protected $apiUrl;
-
-	/**
-	 * @param string|null
-	 */
-	protected $cacheDir;
-
-	/**
-	 * @param string $apiUrl
-	 * @param string|null $cacheDir
-	 */
-	public function __construct( $apiUrl, $cacheDir = null ) {
-		parent::__construct();
-		$this->apiUrl = $apiUrl;
-		$this->cacheDir = $cacheDir;
-	}
-
-	public function getKey() {
-		return $this->apiUrl;
-	}
-
-	public function apiCall( array $params, $retry = 1 ) {
-		$params['format'] = 'json';
-		$url = wfAppendQuery( $this->apiUrl, $params );
-		$file = $this->cacheDir . '/' . md5( $url ) . '.cache';
-		$this->logger->debug( __METHOD__ . ": $url" );
-		if ( $this->cacheDir && file_exists( $file ) ) {
-			$result = file_get_contents( $file );
-		} else {
-			do {
-				$result = Http::get( $url );
-			} while ( $result === false && --$retry >= 0 );
-
-			if ( $this->cacheDir && file_put_contents( $file, $result ) === false ) {
-				$this->logger->warning( "Failed writing cached api result to $file" );
-			}
-		}
-
-		return json_decode( $result, true );
-	}
-}
-
-class LocalApiBackend extends ApiBackend {
-	/**
-	 * @var User|null
-	 */
-	protected $user;
-
-	public function __construct( User $user = null ) {
-		parent::__construct();
-		$this->user = $user;
-	}
-
-	public function getKey() {
-		return 'local';
-	}
-
-	public function apiCall( array $params, $retry = 1 ) {
-		try {
-			$context = new RequestContext;
-			$context->setRequest( new FauxRequest( $params ) );
-			if ( $this->user ) {
-				$context->setUser( $this->user );
-			}
-
-			$api = new ApiMain( $context );
-			$api->execute();
-			return $api->getResult()->getResultData( null, array( 'Strip' => 'all' ) );
-		} catch ( UsageException $exception ) {
-			// Mimic the behaviour when called remotely
-			return array( 'error' => $exception->getMessageArray() );
-		} catch ( Exception $exception ) {
-			// Mimic behaviour when called remotely
-			return array(
-				'error' => array(
-					'code' => 'internal_api_error_' . get_class( $exception ),
-					'info' => 'Exception Caught: ' . $exception->getMessage(),
-				),
-			);
-		}
-	}
-}

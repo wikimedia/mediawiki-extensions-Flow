@@ -39,7 +39,7 @@ class ConversionStrategy implements IConversionStrategy {
 	protected $sourceStore;
 
 	/**
-	 * @var ApiBackend
+	 * @var Api
 	 */
 	public $api;
 
@@ -61,7 +61,7 @@ class ConversionStrategy implements IConversionStrategy {
 	public function __construct(
 		DatabaseBase $dbw,
 		ImportSourceStore $sourceStore,
-		ApiBackend $api,
+		Api $api,
 		UrlGenerator $urlGenerator,
 		User $talkpageUser,
 		NotificationController $notificationController
