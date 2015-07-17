@@ -106,7 +106,7 @@
 	"flow-notification-link-text-view-post": "Näytä viesti",
 	"flow-notification-link-text-view-topic": "Näytä aihe",
 	"flow-notification-reply-email-subject": "$1 {{GENDER:$1|vastasi}} aiheeseen",
-	"flow-notification-mention-email-subject": "$1 {{GENDER:$1|mainitsi}} {{GENDER:$3|sinut}} aiheessa $2",
+	"flow-notification-mention-email-subject": "$1 {{GENDER:$1|mainitsi}} {{GENDER:$3|sinut}} keskustelussa $2",
 	"echo-pref-tooltip-flow-discussion": "Ilmoita minulle, kun minuun liittyvää toimintaa tapahtuu Flowissa.",
 	"flow-link-post": "viesti",
 	"flow-link-topic": "aihe",
