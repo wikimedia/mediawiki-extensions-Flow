@@ -6,16 +6,16 @@
 
 /*jshint node:true */
 module.exports = function ( grunt ) {
+	grunt.loadNpmTasks( 'grunt-banana-checker' );
 	grunt.loadNpmTasks( 'grunt-contrib-csslint' );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
-	grunt.loadNpmTasks( 'grunt-jsonlint' );
-	grunt.loadNpmTasks( 'grunt-banana-checker' );
 	grunt.loadNpmTasks( 'grunt-jscs' );
-	grunt.loadTasks( 'build/tasks' );
+	grunt.loadNpmTasks( 'grunt-jsonlint' );
+	grunt.loadNpmTasks( 'grunt-tyops' );
 
 	grunt.initConfig( {
-		typos: {
+		tyops: {
 			options: {
 				typos: 'build/typos.json'
 			},
@@ -63,7 +63,7 @@ module.exports = function ( grunt ) {
 		}
 	} );
 
-	grunt.registerTask( 'lint', [ 'typos', 'jscs', 'jshint', 'csslint', 'jsonlint', 'banana' ] );
+	grunt.registerTask( 'lint', [ 'tyops', 'jscs', 'jshint', 'csslint', 'jsonlint', 'banana' ] );
 	grunt.registerTask( 'test', 'lint' );
 	grunt.registerTask( 'default', 'test' );
 };
