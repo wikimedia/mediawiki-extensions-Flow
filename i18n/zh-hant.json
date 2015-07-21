@@ -166,7 +166,7 @@
 	"flow-error-revision-comparison": "比較差異的操作僅可於相同貼文中的兩個修訂間使用。",
 	"flow-error-missing-topic-title": "目前的工作流程中查無此話題標題。",
 	"flow-error-missing-metadata": "查無此修訂必要的 Metadata 。",
-	"flow-error-fail-load-data": "讀取請求的資料失敗。",
+	"flow-error-fail-load-data": "請求的資料載入失敗。",
 	"flow-error-invalid-workflow": "查無請求的工作流程。",
 	"flow-error-process-data": "處理您請求的資料時發生錯誤。",
 	"flow-error-process-wikitext": "處理 HTML/WikiText 轉換時發生錯誤。",

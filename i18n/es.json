@@ -44,7 +44,7 @@
 	"flow-board-collapse-description": "Ocultar descripción",
 	"flow-board-expand-description": "Mostrar descripción",
 	"flow-edit-header-link": "Editar descripción",
-	"flow-post-moderated-toggle-hide-show": "Mostrar comentarios {{GENDER:$1|hidden}} por $2",
+	"flow-post-moderated-toggle-hide-show": "Mostrar comentario {{GENDER:$1|ocultado}} por $2",
 	"flow-post-moderated-toggle-delete-show": "Mostrar comentario {{GENDER:$1|deleted}} por $2",
 	"flow-post-moderated-toggle-suppress-show": "Mostrar comentario {{GENDER:$1|suppresed}} por $2",
 	"flow-post-moderated-toggle-hide-hide": "Ocultar comentario {{GENDER:$1|hidden}} por $2",
