@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_528f8278",
+        "filename": "tests/browser/features/step_definitions/flow_steps.rb",
+        "patchSetId": 10
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-07-22T12:43:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_81711a0d",
+      "revId": "327f74f6f9ebab137d9cc1df53b4d56d91bdda8d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_2c529d6a",
         "filename": "tests/browser/features/step_definitions/thank_steps.rb",
         "patchSetId": 10
@@ -30,6 +48,24 @@
       "writtenOn": "2015-07-22T00:44:24Z",
       "side": 1,
       "message": "For shared environments where we can\u0027t use the user factory (beta, basically) this should go in `environments.yml` as an \"alternative\" user,[1] and you should probably just make sure it exists manually.\n\nhttps://doc.wikimedia.org/rubygems/mediawiki-selenium/MediawikiSelenium/Environment.html\n\nWhen using the user factory, the first evaluation of `user(:b)` or `as_user(:b) { ... }` (or whatever you decide to call the \"alternative\" user) will result in it being created automatically.",
+      "revId": "327f74f6f9ebab137d9cc1df53b4d56d91bdda8d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_92172af3",
+        "filename": "tests/browser/features/step_definitions/thank_steps.rb",
+        "patchSetId": 10
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-07-22T12:43:49Z",
+      "side": 1,
+      "message": "Neat!\n\nI am not using user_factory anywhere yet. Some tests require to user to have special permissions. Is there a way to specify that?",
+      "parentUuid": "8ec42329_2c529d6a",
       "revId": "327f74f6f9ebab137d9cc1df53b4d56d91bdda8d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_1237baac",
+        "filename": "tests/browser/features/support/pages/flow_old_permalink_page.rb",
+        "patchSetId": 10
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-07-22T12:43:49Z",
+      "side": 1,
+      "message": "I just removed the @params, it is not useful. params in the erb refers to another object that is passed for evaluation.",
+      "parentUuid": "8ec42329_4cdcc9e5",
+      "revId": "327f74f6f9ebab137d9cc1df53b4d56d91bdda8d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_ecea5572",
         "filename": "tests/browser/features/support/pages/user_page.rb",
         "patchSetId": 10
@@ -64,6 +118,24 @@
       "writtenOn": "2015-07-22T00:44:24Z",
       "side": 1,
       "message": "We merged a patch recently that will allow you to reference the `Environment` object in `page_url` ERb (in this case, \"User talk:\u003c%\u003d env.user %\u003e\"), but it hasn\u0027t been released yet. (I\u0027ll try and get that cut tomorrow.)\n\nhttps://gerrit.wikimedia.org/r/#/c/224949/",
+      "revId": "327f74f6f9ebab137d9cc1df53b4d56d91bdda8d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_72471e23",
+        "filename": "tests/browser/features/support/pages/user_page.rb",
+        "patchSetId": 10
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-07-22T12:43:49Z",
+      "side": 1,
+      "message": "I removed the page_url since it is never being used to navigate.",
+      "parentUuid": "8ec42329_ecea5572",
       "revId": "327f74f6f9ebab137d9cc1df53b4d56d91bdda8d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
