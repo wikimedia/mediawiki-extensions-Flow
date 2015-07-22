@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_2d8ff7d2",
+        "filename": "tests/browser/features/step_definitions/thank_steps.rb",
+        "patchSetId": 10
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1731
+      },
+      "writtenOn": "2015-07-22T15:50:47Z",
+      "side": 1,
+      "message": "We can add users to groups via the API,[1] but AFAIK groups, and their associated rights, can only be defined in code (LocalSettings.php).[2]\n\nMaybe we can come up with a convention for including additional settings from the test suite, or possibly developing an extension for testing that adds additional capabilities to the API.\n\n[1] https://www.mediawiki.org/wiki/API:User_group_membership\n[2] https://www.mediawiki.org/wiki/Manual:User_rights",
+      "parentUuid": "8ec42329_92172af3",
+      "revId": "327f74f6f9ebab137d9cc1df53b4d56d91bdda8d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_4cdcc9e5",
         "filename": "tests/browser/features/support/pages/flow_old_permalink_page.rb",
         "patchSetId": 10
