@@ -1,0 +1,151 @@
+( function ( $ ) {
+	/**
+	 * Flow RevisionedContent class
+	 *
+	 * @abstract
+	 * @extends mw.flow.dm.Item
+	 *
+	 * @constructor
+	 * @param {Object} [config] Configuration options
+	 */
+	mw.flow.dm.ModeratedRevisionedContent = function mwFlowRevisionedContent( config ) {
+		// Configuration initialization
+		config = config || {};
+
+		// Parent constructor
+		mw.flow.dm.ModeratedRevisionedContent.parent.call( this, config );
+
+	};
+
+	/* Inheritance */
+	OO.inheritClass( mw.flow.dm.ModeratedRevisionedContent, mw.flow.dm.RevisionedContent );
+
+	/* Events */
+
+	/**
+	 * Moderation state has changed.
+	 * The content is either moderated, changed its moderation
+	 * status or reason, or is no longer moderated.
+	 *
+	 * @event moderated
+	 * @param {boolean} moderated Content is moderated
+	 * @param {string} moderationState Moderation state
+	 * @param {string} moderationReason Moderation reason
+	 * @param {Object} moderator Moderator
+	 */
+
+	/* Methods */
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.flow.dm.ModeratedRevisionedContent.prototype.getHashObject = function () {
+		return $.extend( {
+			moderated: this.isModerated(),
+			moderationReason: this.getModerationReason(),
+			moderationState: this.getModerationState(),
+			moderator: this.getModerator()
+		}, mw.flow.dm.ModeratedRevisionedContent.parent.prototype.getHashObject.call( this ) );
+	};
+
+	/**
+	 * Populate the revision object with available data.
+	 * Any missing data property (one that is set to undefined) will be
+	 * ignored. If the intent is to nullify a property, use explicit 'null'
+	 * value.
+	 *
+	 * @param {Object} data API data
+	 */
+	mw.flow.dm.ModeratedRevisionedContent.prototype.populate = function ( data ) {
+		this.setModerated( !!data.isModerated, data.moderateReason, data.moderateState, data.moderator );
+
+		// Parent method
+		mw.flow.dm.ModeratedRevisionedContent.parent.prototype.populate.call( this, data );
+	};
+
+	/**
+	 * Check if topic is moderated
+	 * @return {boolean} Topic is moderated
+	 */
+	mw.flow.dm.ModeratedRevisionedContent.prototype.isModerated = function () {
+		return this.moderated;
+	};
+
+	/**
+	 * Toggle the moderated state of a topic
+	 * @param {boolean} moderated Topic is moderated
+	 * @param {string} moderationState Moderation state
+	 * @param {string} moderationReason Moderation reason
+	 * @param {Object} moderator Moderator
+	 * @fires moderated
+	 */
+	mw.flow.dm.ModeratedRevisionedContent.prototype.setModerated = function ( moderated, moderationState, moderationReason, moderator ) {
+		if ( this.moderated !== moderated ) {
+			this.moderated = moderated;
+			this.setModerationReason( moderationReason );
+			this.setModerationState( moderationState );
+			this.setModerator( moderator );
+
+			// Emit event
+			this.emit( 'moderated', this.isModerated(), this.getModerationState(), this.getModerationReason(), this.getModerator() );
+		}
+	};
+
+	/**
+	 * Get topic moderation reason
+	 *
+	 * @return {string} Moderation reason
+	 */
+	mw.flow.dm.ModeratedRevisionedContent.prototype.getModerationReason = function () {
+		return this.moderationReason;
+	};
+
+	/**
+	 * Set topic moderation reason
+	 *
+	 * @private
+	 * @return {string} Moderation reason
+	 */
+	mw.flow.dm.ModeratedRevisionedContent.prototype.setModerationReason = function ( reason ) {
+		this.moderationReason = reason;
+	};
+
+	/**
+	 * Get topic moderation state
+	 *
+	 * @return {string} Moderation state
+	 */
+	mw.flow.dm.ModeratedRevisionedContent.prototype.getModerationState = function () {
+		return this.moderationState;
+	};
+
+	/**
+	 * Set topic moderation state
+	 *
+	 * @private
+	 * @param {string} state Moderation state
+	 */
+	mw.flow.dm.ModeratedRevisionedContent.prototype.setModerationState = function ( state ) {
+		this.moderationState = state;
+	};
+
+	/**
+	 * Get topic moderator
+	 *
+	 * @return {Object} Moderator
+	 */
+	mw.flow.dm.ModeratedRevisionedContent.prototype.getModerator = function () {
+		return this.moderator;
+	};
+
+	/**
+	 * Get topic moderator
+	 *
+	 * @private
+	 * @param {Object} mod Moderator
+	 */
+	mw.flow.dm.ModeratedRevisionedContent.prototype.setModerator = function ( mod ) {
+		this.moderator = mod;
+	};
+
+}( jQuery ) );
