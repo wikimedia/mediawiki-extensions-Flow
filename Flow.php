@@ -199,7 +199,7 @@ $wgResourceLoaderLESSImportPaths = array_merge( $wgResourceLoaderLESSImportPaths
 // Configuration
 
 // URL for more information about the Flow notification system
-$wgFlowHelpPage = '//www.mediawiki.org/wiki/Special:MyLanguage/Help:Extension:Flow';
+$wgFlowHelpPage = '//www.mediawiki.org/wiki/Special:MyLanguage/Extension:Flow';
 
 // $wgFlowCluster will define what external DB server should be used.
 // If set to false, the current database (wfGetDB) will be used to read/write
