@@ -164,13 +164,15 @@
 		} );
 
 		dataBlob = mw.flow && mw.flow.data;
-		if ( dataBlob && dataBlob.blocks && dataBlob.toc ) {
-			// Populate the rendered topics
-			mw.flow.system.populateBoardTopicsFromJson( dataBlob.blocks.topiclist );
+		if ( dataBlob && dataBlob.blocks ) {
+			// Populate the rendered topics or topic (if we are in a single-topic view)
+			mw.flow.system.populateBoardTopicsFromJson( dataBlob.blocks.topiclist || dataBlob.blocks.topic );
 			// Populate header
-			mw.flow.system.populateBoardDescriptionFromJson( dataBlob.blocks.header );
+			mw.flow.system.populateBoardDescriptionFromJson( dataBlob.blocks.header || {} );
 			// Populate the ToC topics
-			mw.flow.system.populateBoardTopicsFromJson( dataBlob.toc );
+			if ( dataBlob.toc ) {
+				mw.flow.system.populateBoardTopicsFromJson( dataBlob.toc );
+			}
 		} else {
 			mw.flow.system.populateBoardFromApi();
 		}
