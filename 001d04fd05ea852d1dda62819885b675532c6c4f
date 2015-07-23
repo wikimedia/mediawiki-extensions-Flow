@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_183a6d94",
+        "filename": "modules/flow/dm/mw.flow.dm.ModeratedRevisionedContent.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-23T22:45:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_78e2912f",
+      "revId": "001d04fd05ea852d1dda62819885b675532c6c4f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_b8f479ee",
         "filename": "modules/flow/dm/mw.flow.dm.Post.js",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2015-07-23T22:38:57Z",
       "side": 1,
       "message": "Use @inheritdoc, populate is already documented in the grandparent class",
+      "revId": "001d04fd05ea852d1dda62819885b675532c6c4f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_384e493e",
+        "filename": "modules/flow/dm/mw.flow.dm.Post.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-23T22:45:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_b8f479ee",
       "revId": "001d04fd05ea852d1dda62819885b675532c6c4f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_18610da4",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-23T22:45:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec42329_58e55531",
+      "revId": "001d04fd05ea852d1dda62819885b675532c6c4f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_78c931ad",
         "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
         "patchSetId": 3
@@ -64,6 +118,24 @@
       "writtenOn": "2015-07-23T22:38:57Z",
       "side": 1,
       "message": "Hmm, so topics and posts still share replyIds (and for topics the term \"reply\" is a bit strange). Could we and should we do more generalization here? Or is our use of dm.Item enough?",
+      "revId": "001d04fd05ea852d1dda62819885b675532c6c4f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_d85625d1",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-23T22:45:05Z",
+      "side": 1,
+      "message": "Hm. Not sure if all items have replies. But why is it weird? A topic has replies, and each reply has replies of its own...?\n\nAlso, that\u0027s the way it appears in the API. I could call it \"rootPostIds\" or something in the topic, and \"replies\" in the posts, but that would make it inconsistent with the API and, imho, more confusing.",
+      "parentUuid": "8ec42329_78c931ad",
       "revId": "001d04fd05ea852d1dda62819885b675532c6c4f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
