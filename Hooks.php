@@ -236,6 +236,9 @@ class FlowHooks {
 		require_once __DIR__.'/maintenance/FlowCreateMentionTemplate.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowCreateMentionTemplate' );
 
+		require_once __DIR__.'/maintenance/FlowExternalStoreToText.php';
+		$updater->addPostDatabaseUpdateMaintenance( 'FlowExternalStoreToText' );
+
 		return true;
 	}
 
