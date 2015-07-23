@@ -358,6 +358,7 @@ $wgResourceModules += array(
 			'flow/dm/mw.flow.dm.RevisionedContent.js',
 			'flow/dm/mw.flow.dm.BoardDescription.js',
 			'flow/dm/mw.flow.dm.System.js',
+			'flow/dm/mw.flow.dm.Post.js',
 			'flow/dm/mw.flow.dm.Topic.js',
 			'flow/dm/mw.flow.dm.Board.js',
 		),

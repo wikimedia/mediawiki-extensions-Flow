@@ -1,31 +1,30 @@
 ( function ( $ ) {
 	/**
-	 * Flow Topic
+	 * Flow Post
 	 *
 	 * @constructor
 	 *
 	 * @extends mw.flow.dm.RevisionedContent
 	 * @mixins mw.flow.dm.List
 	 *
-	 * @param {string} id Topic Id
-	 * @param {Object} revisionData API data to build topic with
+	 * @param {string} id Post Id
+	 * @param {Object} [revisionData] API data to build post with
 	 * @param {Object} [config] Configuration options
 	 */
-	mw.flow.dm.Topic = function mwFlowDmTopic( id, revisionData, config ) {
+	mw.flow.dm.Post = function mwFlowDmPost( id, revisionData, config ) {
 		config = config || {};
 
 		// Parent constructor
-		mw.flow.dm.Topic.parent.call( this, config );
+		mw.flow.dm.Post.parent.call( this, config );
 
 		// Mixin constructor
 		mw.flow.dm.List.call( this, config );
 
 		this.setId( id );
-		this.populate( revisionData );
+		this.populate( revisionData || {} );
 
 		// Configuration
 		this.highlighted = !!config.highlighted;
-		this.stub = true;
 
 		// Store comparable hash
 		this.storeComparableHash();
@@ -33,8 +32,8 @@
 
 	/* Initialization */
 
-	OO.inheritClass( mw.flow.dm.Topic, mw.flow.dm.RevisionedContent );
-	OO.mixinClass( mw.flow.dm.Topic, mw.flow.dm.List );
+	OO.inheritClass( mw.flow.dm.Post, mw.flow.dm.RevisionedContent );
+	OO.mixinClass( mw.flow.dm.Post, mw.flow.dm.List );
 
 	/* Events */
 
@@ -60,42 +59,42 @@
 	/* Static methods */
 
 	/**
-	 * Get the topic revision connected to the topic id from the
-	 * topiclist api response. This connects the topic id to the
-	 * post id and then returns the specific available revision.
+	 * Get the post revision by its topic Id from the topiclist
+	 * api response.
 	 *
 	 * @param {Object} topiclist API data for topiclist
-	 * @param {string} topicId Topic id
+	 * @param {string} postId Post id
 	 * @return {Object} Revision data
 	 */
-	mw.flow.dm.Topic.static.getTopicRevisionFromApi = function ( topiclist, topicId ) {
-		var revisionId = topiclist.posts[ topicId ] && topiclist.posts[ topicId ][ 0 ];
+	mw.flow.dm.Post.static.getPostRevision = function ( topiclist, postId ) {
+		var pid = OO.getProp( topiclist, 'posts', postId );
 
-		return topiclist.revisions[ revisionId ];
+		if ( pid[0] ) {
+			return topiclist.revisions[pid[0]];
+		}
+		return {};
 	};
 
 	/**
-	 * Get an array of topic objects from a topiclist api response.
+	 * Create a hierarchical construct of replies based on the parent reply list.
 	 *
-	 * @param {Object} topiclist API data for topiclist
-	 * @param {string} topicId Topic id
-	 * @return {mw.flow.dm.Topic[]} Array of topic models
+	 * @param {Object} topiclist API response for topic list
+	 * @param {string[]} parentReplyId Ids of the parent posts
+	 * @return {mw.flow.dm.Post[]} Array of posts
 	 */
-	mw.flow.dm.Topic.static.extractTopicsFromAPI = function ( topiclist ) {
-		var i, len, topicId,
-			topics = [];
+	mw.flow.dm.Post.static.createTopicReplyTree = function ( topiclist, parentReplyId ) {
+		var i, len, post, postRevision, replies,
+			result = [];
 
-		for ( i = 0, len = topiclist.roots.length; i < len; i++ ) {
-			topicId = topiclist.roots[ i ];
-			topics.push(
-				new mw.flow.dm.Topic(
-					topicId,
-					this.getTopicRevisionFromApi( topiclist, topicId )
-				)
-			);
+		for ( i = 0, len = parentReplyId.length; i < len; i++ ) {
+			postRevision = mw.flow.dm.Post.static.getPostRevision( topiclist, parentReplyId[i] );
+			post = new mw.flow.dm.Post( parentReplyId[i], postRevision );
+			// Populate sub-posts
+			replies = this.createTopicReplyTree( topiclist, post.getReplyIds() );
+			post.addItems( replies );
+			result.push( post );
 		}
-
-		return topics;
+		return result;
 	};
 
 	/* Methods */
@@ -106,17 +105,16 @@
 	 *
 	 * @return {Object} Hash object
 	 */
-	mw.flow.dm.Topic.prototype.getHashObject = function () {
+	mw.flow.dm.Post.prototype.getHashObject = function () {
 		return $.extend(
 			{
-				stub: this.isStub(),
 				moderated: this.isModerated(),
 				moderationReason: this.getModerationReason(),
 				moderationState: this.getModerationState(),
 				moderator: this.getModerator()
 			},
 			// Parent
-			mw.flow.dm.Topic.parent.prototype.getHashObject.call( this )
+			mw.flow.dm.Post.parent.prototype.getHashObject.call( this )
 		);
 	};
 
@@ -125,9 +123,7 @@
 	 *
 	 * @param {Object} data API data
 	 */
-	mw.flow.dm.Topic.prototype.populate = function ( data ) {
-		this.summary = OO.getProp( data, 'summary', 'revision', 'content' );
-
+	mw.flow.dm.Post.prototype.populate = function ( data ) {
 		this.setModerated( !!data.isModerated, data.moderateReason, data.moderateState, data.moderator );
 
 		// Store reply Ids
@@ -135,37 +131,17 @@
 
 		// Parent method
 		mw.flow.dm.RevisionedContent.prototype.populate.call( this, data );
-
-		if ( data.replies !== undefined ) {
-			this.unStub();
-		}
 	};
 
-	mw.flow.dm.Topic.prototype.getReplyIds = function () {
+	mw.flow.dm.Post.prototype.getReplyIds = function () {
 		return this.replyIds;
-	};
-
-	/**
-	 * Check if a topic is a stub
-	 * @return {Boolean} Topic is a stub
-	 */
-	mw.flow.dm.Topic.prototype.isStub = function () {
-		return this.stub;
-	};
-
-	/**
-	 * Unstub a topic when all available information exists on it
-	 * @private
-	 */
-	mw.flow.dm.Topic.prototype.unStub = function () {
-		this.stub = false;
 	};
 
 	/**
 	 * Check if topic is moderated
 	 * @return {boolean} Topic is moderated
 	 */
-	mw.flow.dm.Topic.prototype.isModerated = function () {
+	mw.flow.dm.Post.prototype.isModerated = function () {
 		return this.moderated;
 	};
 
@@ -177,7 +153,7 @@
 	 * @param {Object} moderator Moderator
 	 * @fires moderated
 	 */
-	mw.flow.dm.Topic.prototype.setModerated = function ( moderated, moderationState, moderationReason, moderator ) {
+	mw.flow.dm.Post.prototype.setModerated = function ( moderated, moderationState, moderationReason, moderator ) {
 		if ( this.moderated !== moderated ) {
 			this.moderated = moderated;
 			this.setModerationReason( moderationReason );
@@ -194,7 +170,7 @@
 	 *
 	 * @return {string} Moderation reason
 	 */
-	mw.flow.dm.Topic.prototype.getModerationReason = function () {
+	mw.flow.dm.Post.prototype.getModerationReason = function () {
 		return this.moderationReason;
 	};
 
@@ -204,7 +180,7 @@
 	 * @private
 	 * @return {string} Moderation reason
 	 */
-	mw.flow.dm.Topic.prototype.setModerationReason = function ( reason ) {
+	mw.flow.dm.Post.prototype.setModerationReason = function ( reason ) {
 		this.moderationReason = reason;
 	};
 
@@ -213,7 +189,7 @@
 	 *
 	 * @return {string} Moderation state
 	 */
-	mw.flow.dm.Topic.prototype.getModerationState = function () {
+	mw.flow.dm.Post.prototype.getModerationState = function () {
 		return this.moderationState;
 	};
 
@@ -223,7 +199,7 @@
 	 * @private
 	 * @param {string} state Moderation state
 	 */
-	mw.flow.dm.Topic.prototype.setModerationState = function ( state ) {
+	mw.flow.dm.Post.prototype.setModerationState = function ( state ) {
 		this.moderationState = state;
 	};
 
@@ -232,7 +208,7 @@
 	 *
 	 * @return {Object} Moderator
 	 */
-	mw.flow.dm.Topic.prototype.getModerator = function () {
+	mw.flow.dm.Post.prototype.getModerator = function () {
 		return this.moderator;
 	};
 
@@ -242,7 +218,7 @@
 	 * @private
 	 * @param {Object} mod Moderator
 	 */
-	mw.flow.dm.Topic.prototype.setModerator = function ( mod ) {
+	mw.flow.dm.Post.prototype.setModerator = function ( mod ) {
 		this.moderator = mod;
 	};
 
@@ -251,7 +227,7 @@
 	 *
 	 * @return {string} Topic summary
 	 */
-	mw.flow.dm.Topic.prototype.getSummary = function () {
+	mw.flow.dm.Post.prototype.getSummary = function () {
 		return this.summary;
 	};
 
@@ -261,7 +237,7 @@
 	 * @param {string} Topic summary
 	 * @fires summary
 	 */
-	mw.flow.dm.Topic.prototype.setSummary = function ( summary ) {
+	mw.flow.dm.Post.prototype.setSummary = function ( summary ) {
 		this.summary = summary;
 		this.emit( 'summaryChange', this.summary );
 	};
