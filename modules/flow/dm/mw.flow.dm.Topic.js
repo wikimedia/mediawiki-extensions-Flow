@@ -2,11 +2,11 @@
 	/**
 	 * Flow Topic
 	 *
-	 * @constructor
-	 *
-	 * @extends mw.flow.dm.RevisionedContent
+	 * @class
+	 * @extends mw.flow.dm.ModeratedRevisionedContent
 	 * @mixins mw.flow.dm.List
 	 *
+	 * @constructor
 	 * @param {string} id Topic Id
 	 * @param {Object} revisionData API data to build topic with
 	 * @param {Object} [config] Configuration options
@@ -33,7 +33,7 @@
 
 	/* Initialization */
 
-	OO.inheritClass( mw.flow.dm.Topic, mw.flow.dm.RevisionedContent );
+	OO.inheritClass( mw.flow.dm.Topic, mw.flow.dm.ModeratedRevisionedContent );
 	OO.mixinClass( mw.flow.dm.Topic, mw.flow.dm.List );
 
 	/* Events */
@@ -43,18 +43,6 @@
 	 *
 	 * @event summaryChange
 	 * @param {string} summary New summary
-	 */
-
-	/**
-	 * Topic moderation state has changed.
-	 * Topic is either moderated, changed its moderation
-	 * status or reason, or is no longer moderated.
-	 *
-	 * @event moderated
-	 * @param {boolean} moderated Topic is moderated
-	 * @param {string} moderationState Moderation state
-	 * @param {string} moderationReason Moderation reason
-	 * @param {Object} moderator Moderator
 	 */
 
 	/* Static methods */
@@ -110,10 +98,7 @@
 		return $.extend(
 			{
 				stub: this.isStub(),
-				moderated: this.isModerated(),
-				moderationReason: this.getModerationReason(),
-				moderationState: this.getModerationState(),
-				moderator: this.getModerator()
+				summary: this.getSummary()
 			},
 			// Parent
 			mw.flow.dm.Topic.parent.prototype.getHashObject.call( this )
@@ -128,17 +113,23 @@
 	mw.flow.dm.Topic.prototype.populate = function ( data ) {
 		this.summary = OO.getProp( data, 'summary', 'revision', 'content' );
 
-		this.setModerated( !!data.isModerated, data.moderateReason, data.moderateState, data.moderator );
-
-		// TODO: These should be added as dm.Post objects
-		this.replies = data.replies;
+		// Store reply Ids
+		this.replyIds = data.replies || [];
 
 		// Parent method
-		mw.flow.dm.RevisionedContent.prototype.populate.call( this, data );
+		mw.flow.dm.Topic.parent.prototype.populate.call( this, data );
 
 		if ( data.replies !== undefined ) {
 			this.unStub();
 		}
+	};
+
+	/**
+	 * Get an array of post ids attached to this topic
+	 * @return {string[]} Post reply ids
+	 */
+	mw.flow.dm.Topic.prototype.getReplyIds = function () {
+		return this.replyIds;
 	};
 
 	/**
@@ -155,91 +146,6 @@
 	 */
 	mw.flow.dm.Topic.prototype.unStub = function () {
 		this.stub = false;
-	};
-
-	/**
-	 * Check if topic is moderated
-	 * @return {boolean} Topic is moderated
-	 */
-	mw.flow.dm.Topic.prototype.isModerated = function () {
-		return this.moderated;
-	};
-
-	/**
-	 * Toggle the moderated state of a topic
-	 * @param {boolean} moderated Topic is moderated
-	 * @param {string} moderationState Moderation state
-	 * @param {string} moderationReason Moderation reason
-	 * @param {Object} moderator Moderator
-	 * @fires moderated
-	 */
-	mw.flow.dm.Topic.prototype.setModerated = function ( moderated, moderationState, moderationReason, moderator ) {
-		if ( this.moderated !== moderated ) {
-			this.moderated = moderated;
-			this.setModerationReason( moderationReason );
-			this.setModerationState( moderationState );
-			this.setModerator( moderator );
-
-			// Emit event
-			this.emit( 'moderated', this.isModerated(), this.getModerationState(), this.getModerationReason(), this.getModerator() );
-		}
-	};
-
-	/**
-	 * Get topic moderation reason
-	 *
-	 * @return {string} Moderation reason
-	 */
-	mw.flow.dm.Topic.prototype.getModerationReason = function () {
-		return this.moderationReason;
-	};
-
-	/**
-	 * Set topic moderation reason
-	 *
-	 * @private
-	 * @return {string} Moderation reason
-	 */
-	mw.flow.dm.Topic.prototype.setModerationReason = function ( reason ) {
-		this.moderationReason = reason;
-	};
-
-	/**
-	 * Get topic moderation state
-	 *
-	 * @return {string} Moderation state
-	 */
-	mw.flow.dm.Topic.prototype.getModerationState = function () {
-		return this.moderationState;
-	};
-
-	/**
-	 * Set topic moderation state
-	 *
-	 * @private
-	 * @param {string} state Moderation state
-	 */
-	mw.flow.dm.Topic.prototype.setModerationState = function ( state ) {
-		this.moderationState = state;
-	};
-
-	/**
-	 * Get topic moderator
-	 *
-	 * @return {Object} Moderator
-	 */
-	mw.flow.dm.Topic.prototype.getModerator = function () {
-		return this.moderator;
-	};
-
-	/**
-	 * Get topic moderator
-	 *
-	 * @private
-	 * @param {Object} mod Moderator
-	 */
-	mw.flow.dm.Topic.prototype.setModerator = function ( mod ) {
-		this.moderator = mod;
 	};
 
 	/**
