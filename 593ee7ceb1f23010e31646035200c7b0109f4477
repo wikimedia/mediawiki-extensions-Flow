@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_cdb185f5",
+        "filename": "modules/flow/dm/mw.flow.dm.Post.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-23T22:20:21Z",
+      "side": 1,
+      "message": "I was thinking about a case where we create empty objects; either an empty topic or empty post -- but I think that even if we do, we\u0027ll have to give it minimal info anyways. I\u0027ll make the above non optional, but if we run into a case where an empty post/topic is needed, we\u0027ll have to rethink it.",
+      "parentUuid": "8ec42329_674430be",
+      "revId": "593ee7ceb1f23010e31646035200c7b0109f4477",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_92b15c44",
         "filename": "modules/flow/dm/mw.flow.dm.Post.js",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_2da0499a",
+        "filename": "modules/flow/dm/mw.flow.dm.Post.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-23T22:20:21Z",
+      "side": 1,
+      "message": "Indeed. I copied it off of topic and left it here because posts can be moderated too. I\u0027ll create another inheritance level for both topic and post.",
+      "parentUuid": "8ec42329_92b15c44",
+      "revId": "593ee7ceb1f23010e31646035200c7b0109f4477",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_07844cd7",
         "filename": "modules/flow/dm/mw.flow.dm.Post.js",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2015-07-23T20:12:11Z",
       "side": 1,
       "message": "Name this parentReplyIds then, or something else that\u0027s plural, to make it more obvious that this is an array.",
+      "revId": "593ee7ceb1f23010e31646035200c7b0109f4477",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_ed8d6137",
+        "filename": "modules/flow/dm/mw.flow.dm.Post.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-23T22:20:21Z",
+      "side": 1,
+      "message": "Good point.",
+      "parentUuid": "8ec42329_07844cd7",
       "revId": "593ee7ceb1f23010e31646035200c7b0109f4477",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -104,6 +158,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_8d7e1d13",
+        "filename": "modules/flow/dm/mw.flow.dm.Post.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-23T22:20:21Z",
+      "side": 1,
+      "message": "Nope, I forgot to take it off from Topic. Good point about missing it from getHashObject, though -- it\u0027s not in Topic either. Oops.",
+      "parentUuid": "8ec42329_92987cc4",
+      "revId": "593ee7ceb1f23010e31646035200c7b0109f4477",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_72e2b02f",
         "filename": "tests/qunit/flow/dm/test_mw.flow.dm.Post.js",
         "patchSetId": 1
@@ -115,6 +187,24 @@
       "writtenOn": "2015-07-23T20:12:11Z",
       "side": 1,
       "message": "How did _BC_bools end up in your data? Did you use format\u003draw or something? Or some other way (not api.php) to get API data?",
+      "revId": "593ee7ceb1f23010e31646035200c7b0109f4477",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_0ddead44",
+        "filename": "tests/qunit/flow/dm/test_mw.flow.dm.Post.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-07-23T22:20:21Z",
+      "side": 1,
+      "message": "I loaded a topic (from its \u0027permalink\u0027) in the browser, and then grabbed mw.flow.data.blocks.topic in the console and stringified it -- then cleaned it up (turned \" to \u0027 and removed actions: {} and links: {} since they\u0027re huge and unnecessary here)\n\nShould this not be in mw.flow.data object?",
+      "parentUuid": "8ec42329_72e2b02f",
       "revId": "593ee7ceb1f23010e31646035200c7b0109f4477",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
