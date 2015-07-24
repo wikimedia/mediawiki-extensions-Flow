@@ -206,6 +206,11 @@
 			updateTimestampsByTopicId = {},
 			topics = [];
 
+		if ( !$.isPlainObject( topiclist ) ) {
+			return;
+		}
+		topiclist.roots = topiclist.roots || [];
+
 		for ( i = 0, len = topiclist.roots.length; i < len; i++ ) {
 			// The content of the topic is its first post
 			topicId = topiclist.roots[ i ];

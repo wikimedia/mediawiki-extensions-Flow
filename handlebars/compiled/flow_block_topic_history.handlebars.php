@@ -139,7 +139,7 @@
 
     );
     
-    return '<div class="flow-board">
+    return '<div class="flow-board-history">
 '.LCRun3::p($cx, 'flow_errors', array(array($in),array()), '	').'
 	<div class="flow-topic-histories">
 		'.((LCRun3::ifvar($cx, ((isset($in['navbar']) && is_array($in)) ? $in['navbar'] : null))) ? ''.LCRun3::ch($cx, 'html', array(array(((isset($in['navbar']) && is_array($in)) ? $in['navbar'] : null)),array()), 'encq').'' : '').'
