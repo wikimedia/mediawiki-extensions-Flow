@@ -201,7 +201,7 @@
 	 * @fires populate
 	 */
 	mw.flow.dm.System.prototype.populateBoardTopicsFromJson = function ( topiclist, index ) {
-		var i, len, topicId, revisionData, topic,
+		var i, len, topicId, revisionData, topic, posts,
 			topicTitlesById = {},
 			updateTimestampsByTopicId = {},
 			topics = [];
@@ -226,6 +226,10 @@
 				// Update topic
 				topic.populate( revisionData );
 			}
+
+			// Populate posts
+			posts = mw.flow.dm.Post.static.createTopicReplyTree( topiclist, topic.getReplyIds() );
+			topic.addItems( posts );
 
 			// HACK: While we use both systems (new ooui and old flow-event system)
 			// We need to make sure that the old system is updated too

@@ -2,6 +2,7 @@
 	/**
 	 * Flow RevisionedContent class
 	 *
+	 * @class
 	 * @abstract
 	 * @extends mw.flow.dm.Item
 	 *
