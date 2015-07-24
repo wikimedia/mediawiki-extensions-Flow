@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_8c58552a",
+        "filename": "modules/flow/dm/mw.flow.dm.ModeratedRevisionedContent.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-24T22:13:51Z",
+      "side": 1,
+      "message": "Should be param",
+      "revId": "9f6da8784355010fd27f44d4f9035ecf0a508a1a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_eca6b90b",
+        "filename": "modules/flow/dm/mw.flow.dm.ModeratedRevisionedContent.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-24T22:13:51Z",
+      "side": 1,
+      "message": "Set",
+      "revId": "9f6da8784355010fd27f44d4f9035ecf0a508a1a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_6ce8890c",
+        "filename": "modules/flow/dm/mw.flow.dm.Post.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-24T22:13:51Z",
+      "side": 1,
+      "message": "Might want to revisit this error-handling at some point",
+      "revId": "9f6da8784355010fd27f44d4f9035ecf0a508a1a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_4c082ddd",
+        "filename": "tests/qunit/flow/dm/test_mw.flow.dm.Post.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-24T22:13:51Z",
+      "side": 1,
+      "message": "This is not really part of the API (and doesn\u0027t appear in the api.php API); it\u0027s necessary due to changes to the core API code (apparently because Flow did not  use the \u0027\u0027 bools before).\n\nIt should probably be removed both from the test and the actual DM JSON, but is not a blocker.",
+      "revId": "9f6da8784355010fd27f44d4f9035ecf0a508a1a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
