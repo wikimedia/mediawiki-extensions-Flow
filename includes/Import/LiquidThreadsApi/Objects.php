@@ -202,7 +202,7 @@ class ImportPost extends PageRevisionedObject implements IImportPost {
 			$this,
 			$this->importSource->getScriptUser(),
 			$newWikitext,
-			wfTimestamp( TS_UNIX )
+			$lastRevision
 		);
 		return $clarificationRevision;
 	}
@@ -438,13 +438,18 @@ class ScriptedImportRevision implements IObjectRevision {
 	 * @param IImportObject $parentObject Object this is a revision of
 	 * @param User $destinationScriptUser User that performed this scripted edit
 	 * @param string $revisionText Text of revision
-	 * @param string $timestamp Timestamp of generated revision
+	 * @param IObjectRevision $baseRevision Base revision, used only for timestamp generation
 	 */
-	function __construct( IImportObject $parentObject, User $destinationScriptUser, $revisionText, $timestamp ) {
+	function __construct( IImportObject $parentObject, User $destinationScriptUser, $revisionText, $baseRevision ) {
 		$this->parent = $parentObject;
 		$this->destinationScriptUser = $destinationScriptUser;
 		$this->revisionText = $revisionText;
-		$this->timestamp = $timestamp;
+
+		$baseTimestamp = wfTimestamp( TS_UNIX, $baseRevision->getTimestamp() );
+
+		// Set a minute after.  If it uses $baseTimestamp again, there can be time
+		// collisions.
+		$this->timestamp = wfTimestamp( TS_UNIX, $baseTimestamp + 60 );
 	}
 
 	public function getText() {
@@ -532,18 +537,12 @@ class ImportHeader extends PageRevisionedObject implements IImportHeader {
 		) );
 
 		$newWikitext .= "\n\n{{{$templateName}|$arguments}}";
-		$initialHeaderTimestamp = wfTimestamp( TS_UNIX, $lastRevision->getTimestamp() );
-
-		// Set a minute after.  If it uses the current timestamp, there can be time
-		// collisions with the first generated header ID, which can cause wrong UID
-		// ordering.
-		$cleanupTimestamp = wfTimestamp( TS_UNIX, $initialHeaderTimestamp + 60 );
 
 		$cleanupRevision = new ScriptedImportRevision(
 			$this,
 			$this->source->getScriptUser(),
 			$newWikitext,
-			$cleanupTimestamp
+			$lastRevision
 		);
 		return $cleanupRevision;
 	}
