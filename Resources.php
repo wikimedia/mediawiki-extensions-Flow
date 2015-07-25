@@ -59,6 +59,7 @@ $wgResourceModules += array(
 			'handlebars/flow_form_cancel_button.partial.handlebars',
 			'handlebars/flow_header_title.partial.handlebars',
 			'handlebars/flow_header_detail.partial.handlebars',
+			'handlebars/flow_header_footer.partial.handlebars',
 			'handlebars/flow_load_more.partial.handlebars',
 			'handlebars/flow_moderate_post_confirmation.partial.handlebars',
 			'handlebars/flow_moderate_post.partial.handlebars',
@@ -236,6 +237,7 @@ $wgResourceModules += array(
 			// Timestamps
 			'flow-edited',
 			'flow-edited-by',
+			'flow-description-last-modified-at',
 			// Board header
 			"flow-board-header-browse-topics-link",
 			// editor switching
