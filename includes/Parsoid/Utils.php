@@ -124,7 +124,12 @@ abstract class Utils {
 			throw new NoParsoidException( "$msg", 'process-wikitext' );
 		}
 
-		return $request->getContent();
+		$content = $request->getContent();
+		// HACK remove trailing newline inserted by Parsoid (T106925)
+		if ( $to === 'wikitext' ) {
+			$content = preg_replace( '/\\n$/', '', $content );
+		}
+		return $content;
 	}
 
 	/**
