@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"DzWiki",
-			"Semso98"
+			"Semso98",
+			"Srdjan m"
 		]
 	},
 	"flow-board-collapse-description": "Sakrij opis",
@@ -27,12 +28,14 @@
 	"flow-post-action-delete-post": "Obriši",
 	"flow-post-action-hide-post": "Sakrij",
 	"flow-post-action-edit-post": "Uredi",
+	"flow-post-action-undo-moderation": "Vrati",
 	"flow-topic-action-edit-title": "Uredi naslov",
 	"flow-topic-action-history": "Historija",
 	"flow-topic-action-hide-topic": "Sakrij temu",
 	"flow-topic-action-delete-topic": "Obriši temu",
 	"flow-topic-action-lock-topic": "Označi kao riješeno",
 	"flow-topic-action-unlock-topic": "Ponovo otvori temu",
+	"flow-topic-action-undo-moderation": "Vrati",
 	"flow-edit-header-submit": "Sačuvaj opis",
 	"flow-edit-post-submit": "Pošalji promjene",
 	"flow-rc-topic-of-board": "$1 na $2",
@@ -52,5 +55,6 @@
 	"flow-terms-of-use-summarize": "Klikom na \"{{int:flow-topic-action-update-topic-summary}}\", prihvatate uslove korištenja na ovoj wikipediji.",
 	"apihelp-flow+edit-header-param-content": "Sadržaj za opis.",
 	"apihelp-flow+edit-header-example-1": "Uredi opis [[Talk:Sandbox]]",
+	"flow-undo": "vrati",
 	"flow-ve-mention-placeholder": "Korisničko ime"
 }
