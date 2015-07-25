@@ -50,7 +50,16 @@
 '.$sp.'	<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-speechBubbles pull-right expand-button"
 '.$sp.'		  title="'.LCRun3::ch($cx, 'l10n', array(array('flow-board-expand-description'),array()), 'encq').'"></span>
 '.$sp.'</a>
-';},),
+';},'flow_header_footer' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-board-header-footer">
+'.$sp.'  <hr />
+'.$sp.'  <p>
+'.$sp.'    '.LCRun3::ch($cx, 'l10n', array(array('flow-description-last-modified-at',((isset($in['revision']['dateFormats']['date']) && is_array($in['revision']['dateFormats'])) ? $in['revision']['dateFormats']['date'] : null),((isset($in['revision']['dateFormats']['time']) && is_array($in['revision']['dateFormats'])) ? $in['revision']['dateFormats']['time'] : null)),array()), 'encq').'
+'.$sp.'  </p>
+'.$sp.'
+'.$sp.'  <p>
+'.$sp.'    '.LCRun3::ch($cx, 'html', array(array(((isset($in['copyrightMessage']) && is_array($in)) ? $in['copyrightMessage'] : null)),array()), 'encq').'
+'.$sp.'  </p>
+'.$sp.'</div>';},),
         'scopes' => array(),
         'sp_vars' => array('root' => $in),
         'lcrun' => 'LCRun3',
@@ -58,7 +67,7 @@
     );
     
     return '<div class="flow-board-header flow-load-interactive" data-flow-load-handler="loadSideRail">
-'.LCRun3::p($cx, 'flow_header_title', array(array($in),array()), '	').''.LCRun3::p($cx, 'flow_errors', array(array($in),array()), '	').''.LCRun3::p($cx, 'flow_header_detail', array(array($in),array()), '	').'</div>
+'.LCRun3::p($cx, 'flow_header_title', array(array($in),array()), '	').''.LCRun3::p($cx, 'flow_errors', array(array($in),array()), '	').''.LCRun3::p($cx, 'flow_header_detail', array(array($in),array()), '	').''.LCRun3::p($cx, 'flow_header_footer', array(array($in),array()), '	').'</div>
 ';
 }
 ?>
