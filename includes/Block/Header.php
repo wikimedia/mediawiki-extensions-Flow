@@ -303,7 +303,12 @@ class HeaderBlock extends AbstractBlock {
 			$serializer = Container::get( 'formatter.revision' );
 			$serializer->setContentFormat( $format );
 
+			// For flow-description-last-modified-at
+			$serializer->setIncludeHistoryProperties( true );
+
 			$output['revision'] = $serializer->formatApi( $row, $this->context );
+
+			$output['copyrightMessage'] = $this->context->getSkin()->getCopyright();
 		}
 
 		return $output;
