@@ -47,7 +47,12 @@
 	// Methods
 
 	mw.flow.ve.Target.prototype.attachToolbar = function () {
-		this.getToolbar().$element.insertAfter( this.getToolbar().getSurface().$element );
+		// HACK ve.ui.Surface appends a debugBar *after* itself instead of putting it
+		// inside itself (T106927)
+		// Work around this by appending the toolbar after the debugBar if it's there, and
+		// after the surface otherwise.
+		var surface = this.getToolbar().getSurface();
+		( surface.debugBar || surface ).$element.after( this.getToolbar().$element );
 	};
 
 }( mediaWiki, OO, ve ) );
