@@ -341,6 +341,16 @@ class BufferedBagOStuff extends HashBagOStuff {
 		return $value !== false;
 	}
 
+	public function lock( $key, $timeout = 6, $expiry = 6 ) {
+		// Do not try to defer/buffer stuff
+		return $this->cache->lock( $key, $timeout, $expiry );
+	}
+
+	public function unlock( $key ) {
+		// Do not try to defer/buffer stuff
+		return $this->cache->unlock( $key );
+	}
+
 	/**
 	 * Initiate a transaction: this will defer all writes to real cache until
 	 * commit() is called.
