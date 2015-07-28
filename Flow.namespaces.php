@@ -86,7 +86,7 @@ $namespaceNames['oc'] = array(
 
 /** Polish */
 $namespaceNames['pl'] = array(
-	NS_TOPIC =>  'Temat',
+	NS_TOPIC =>  'Wątek',
 );
 
 /** Portuguese */
