@@ -35,7 +35,8 @@
 			"Wladek92",
 			"Mattho69",
 			"Yodaspirine",
-			"TomT0m"
+			"TomT0m",
+			"Thibaut120094"
 		]
 	},
 	"enableflow": "Activer Flow",
@@ -279,7 +280,7 @@
 	"flow-notification-newtopic-email-subject": "$1 {{GENDER:$1|a créé}} une nouvelle discussion sur $2",
 	"flow-notification-newtopic-email-batch-body": "$1 {{GENDER:$1|a créé}} une nouvelle discussion avec le titre « $2 » sur $3",
 	"flow-notification-newtopic-email-batch-bundle-body": "{{PLURAL:$1|$1 nouveau sujet|$1 nouveaux sujets|250=250+ nouveaux sujets}} sur $2",
-	"echo-category-title-flow-discussion": "Flux de discussion",
+	"echo-category-title-flow-discussion": "Flow",
 	"echo-pref-tooltip-flow-discussion": "M’informer quand des actions me concernant ont lieu dans le flux de discussion.",
 	"flow-link-post": "message",
 	"flow-link-topic": "discussion",
