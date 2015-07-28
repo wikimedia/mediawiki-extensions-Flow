@@ -223,10 +223,20 @@ class View extends ContextSource {
 		}
 
 		$out = $this->getOutput();
+
+		$jsonBlobResponse = $apiResponse;
+
+		// Temporary fix for T107170
+		array_walk_recursive( $jsonBlobResponse, function ( &$value, $key ) {
+			if ( stristr( $key, 'Token' ) !== false ) {
+				$value = null;
+			}
+		} );
+
 		// Add JSON blob for OOUI widgets
 		$out->addHTML( Html::inlineScript(
 			'mw.flow = mw.flow || {}; mw.flow.data = ' .
-			FormatJson::encode( $apiResponse ) .
+			FormatJson::encode( $jsonBlobResponse ) .
 			';'
 		) );
 
