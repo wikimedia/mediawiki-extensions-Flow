@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_cb76313a",
+        "filename": "modules/editor/editors/visualeditor/ext.flow.editors.visualeditor.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-28T16:14:32Z",
+      "side": 1,
+      "message": "I think you might have to use window.ve for this to work",
+      "revId": "2cd8402f21245fd030560450b319ad9197161d53",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
