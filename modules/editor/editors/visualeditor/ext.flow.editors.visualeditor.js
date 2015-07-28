@@ -215,4 +215,4 @@
 		);
 	};
 
-}( jQuery, mediaWiki, OO, ve ) );
+}( jQuery, mediaWiki, OO, ve ? ve : null ) );
