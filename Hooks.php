@@ -674,9 +674,7 @@ class FlowHooks {
 		}
 		$names[] = 'msg:flow-system-usertext';
 
-		// Reserve both the localized username and the English fallback for the
-		// taking-over revision.
-		$names[] = 'msg:flow-talk-username';
+		// Reserve the bot account we use during content model changes & LQT conversion
 		$names[] = 'Flow talk page manager';
 
 		return true;
