@@ -58,6 +58,8 @@ class ConversionStrategy implements IConversionStrategy {
 	 */
 	protected $notificationController;
 
+	const LQT_ENABLE_MAGIC_WORD_REGEX = '/{{\s*#useliquidthreads:\s*0*1\s*}}/i';
+
 	public function __construct(
 		DatabaseBase $dbw,
 		ImportSourceStore $sourceStore,
@@ -132,7 +134,7 @@ class ConversionStrategy implements IConversionStrategy {
 		) );
 
 		$newWikitext = preg_replace(
-			'/{{\s*#useliquidthreads:\s*1\s*}}/i',
+			self::LQT_ENABLE_MAGIC_WORD_REGEX,
 			'',
 			$content->getNativeData()
 		);

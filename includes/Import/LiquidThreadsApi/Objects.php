@@ -13,6 +13,7 @@ use Flow\Import\IImportTopic;
 use Flow\Import\ImportException;
 use Flow\Import\IObjectRevision;
 use Flow\Import\IRevisionableObject;
+use Flow\Import\LiquidThreadsApi\ConversionStrategy;
 use Iterator;
 use MWTimestamp;
 use Title;
@@ -526,7 +527,7 @@ class ImportHeader extends PageRevisionedObject implements IImportHeader {
 		// nowiki, etc.  It also ignores case and spaces in places where it doesn't
 		// matter.
 		$newWikitext = preg_replace(
-			'/{{\s*#useliquidthreads:\s*1\s*}}/i',
+			ConversionStrategy::LQT_ENABLE_MAGIC_WORD_REGEX,
 			'',
 			$wikitextForLastRevision
 		);
