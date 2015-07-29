@@ -33,7 +33,8 @@ class ExtLinkFixer implements Fixer {
 
 		global $wgNoFollowLinks, $wgNoFollowDomainExceptions;
 		if ( $wgNoFollowLinks && !wfMatchesDomainList( $node->getAttribute( 'href' ), $wgNoFollowDomainExceptions ) ) {
-			$node->setAttribute( 'rel', 'nofollow' );
+			$oldRel = $node->getAttribute( 'rel' );
+			$node->setAttribute( 'rel', 'nofollow' . ( $oldRel !== '' ? ' ' . $oldRel : '' ) );
 		}
 	}
 }
