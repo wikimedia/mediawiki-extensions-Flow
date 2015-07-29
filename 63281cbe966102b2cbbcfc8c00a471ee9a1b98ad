@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_7fc9f427",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-29T05:24:45Z",
+      "side": 1,
+      "message": "These could also reuse renderPostHistoryApi and renderTopicHistoryApi if they took navbar parameters.",
+      "revId": "63281cbe966102b2cbbcfc8c00a471ee9a1b98ad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_3f604c2d",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 723,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-29T05:24:45Z",
+      "side": 1,
+      "message": "I know the others don\u0027t have docs either, but please document the new parameter.",
+      "revId": "63281cbe966102b2cbbcfc8c00a471ee9a1b98ad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_bfdafce7",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 780,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-29T05:24:45Z",
+      "side": 1,
+      "message": "This should be changed to a numeric array, rather than using revisionId as the key:\n\n$revisions[] \u003d\n\nAfter that change, you\u0027ll need to test the existing history pages (i.e. board and topic) to make sure they work and have the correct order.",
+      "revId": "63281cbe966102b2cbbcfc8c00a471ee9a1b98ad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
