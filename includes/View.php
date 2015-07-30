@@ -82,7 +82,7 @@ class View extends ContextSource {
 
 	protected function addModules( OutputPage $out, $action ) {
 		if ( $this->actions->hasValue( $action, 'modules' ) ) {
-			$out->addModuleStyles( $this->actions->getValue( $action, 'modules' ) );
+			$out->addModules( $this->actions->getValue( $action, 'modules' ) );
 		} else {
 			$out->addModules( array( 'ext.flow' ) );
 		}
