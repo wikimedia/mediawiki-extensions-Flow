@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_4a722911",
+        "filename": "includes/Formatter/AbstractQuery.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-07-30T13:55:04Z",
+      "side": 1,
+      "message": "What you\u0027re saying makes sense but\n\n  - how can isLastReply ever be correct if we only look at the replies to the current revision?\n\n - both approaches give the same results with the test dataset I have in my local setup",
+      "parentUuid": "8ec42329_6a0da538",
+      "revId": "01c01ca76a597fbc3df668bef4aafc69e52164af",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_bf68b1f2",
         "filename": "includes/Formatter/RecentChanges.php",
         "patchSetId": 4
