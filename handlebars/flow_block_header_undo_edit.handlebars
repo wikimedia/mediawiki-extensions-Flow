@@ -11,7 +11,7 @@
 		{{diffUndo undo.diff_content}}
 	{{/if}}
 
-	<form method="POST" action="{{links.undo-edit-header.url}}" class="flow-post">
+	<form method="POST" action="{{links.undo-edit-header.url}}" class="flow-post posted" data-module="header">
 		<input type="hidden" name="wpEditToken" value="{{@root.rootBlock.editToken}}" />
 		<input type="hidden" name="header_prev_revision" value="{{current.revisionId}}" />
 
