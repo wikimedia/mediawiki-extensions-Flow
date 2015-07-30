@@ -11,7 +11,7 @@
 		{{diffUndo undo.diff_content}}
 	{{/if}}
 
-	<form method="POST" action="{{links.undo-edit-post.url}}" class="flow-post">
+	<form method="POST" action="{{links.undo-edit-post.url}}" class="flow-post" data-module="topic">
 		<input type="hidden" name="wpEditToken" value="{{@root.rootBlock.editToken}}" />
 		<input type="hidden" name="topic_prev_revision" value="{{current.revisionId}}" />
 		<input type="hidden" name="topic_postId" value="{{current.postId}}" />
