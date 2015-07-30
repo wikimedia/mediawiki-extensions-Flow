@@ -48,9 +48,6 @@ class RevisionUndoViewFormatter {
 				'diff_content' => $differenceEngine->getDiffBody(),
 			),
 			'articleTitle' => $start->workflow->getArticleTitle(),
-			// overrides the default modules list to only pull in ext.flow.undo
-			'modules' => array( 'ext.flow.undo' ),
-			'moduleStyles' => array( 'ext.flow.undo.styles' ),
 		);
 	}
 
