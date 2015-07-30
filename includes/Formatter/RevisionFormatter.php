@@ -162,7 +162,12 @@ class RevisionFormatter {
 	 * @param FormatterRow $row
 	 * @param IContextSource $ctx
 	 * @param string $action action from FlowActions
-	 * @return array|false
+	 * @return array|bool
+	 * @throws FlowException
+	 * @throws PermissionException
+	 * @throws \Exception
+	 * @throws \Flow\Exception\InvalidInputException
+	 * @throws \TimestampException
 	 */
 	public function formatApi( FormatterRow $row, IContextSource $ctx, $action = 'view' ) {
 		$user = $ctx->getUser();
@@ -285,6 +290,7 @@ class RevisionFormatter {
 				$res[ApiResult::META_BC_BOOLS],
 				array(
 					'isMaxThreadingDepth',
+					'isNewPage',
 				)
 			);
 
@@ -310,6 +316,9 @@ class RevisionFormatter {
 					$row
 				);
 			}
+
+			$res['isNewPage'] = $row->isFirstReply && $row->revision->isFirstRevision();
+
 		} elseif ( $row->revision instanceof PostSummary ) {
 			$res['creator'] = $this->serializeUser(
 				$row->revision->getCreatorWiki(),
