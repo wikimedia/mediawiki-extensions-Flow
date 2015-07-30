@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_102a0f74",
+        "filename": "includes/Formatter/AbstractQuery.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-07-30T19:23:40Z",
+      "side": 1,
+      "message": "You\u0027re right, I was testing with only 1 user.",
+      "parentUuid": "8ec42329_976cb9cc",
+      "revId": "01c01ca76a597fbc3df668bef4aafc69e52164af",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_bf68b1f2",
         "filename": "includes/Formatter/RecentChanges.php",
         "patchSetId": 4
