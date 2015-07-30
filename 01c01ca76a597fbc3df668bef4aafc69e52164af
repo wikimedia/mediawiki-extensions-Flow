@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_976cb9cc",
+        "filename": "includes/Formatter/AbstractQuery.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-07-30T16:36:51Z",
+      "side": 1,
+      "message": "- how can isLastReply ever be correct if we only look at the replies to the current revision?\n\nIDK, I haven\u0027t checked isLastReply. There may be reasons why it doesn\u0027t work. Or it may never have worked properly. Haven\u0027t checked that one ;)\n\n- both approaches give the same results with the test dataset I have in my local setup\n\nAny chance you were mostly testing with 1 user? When checking Special:Contributions for 1 particular user (who hadn\u0027t created the topic, but also left a reply on there), his most top-level reply was marked as new, even though it wasn\u0027t the initial topic post.",
+      "parentUuid": "8ec42329_4a722911",
+      "revId": "01c01ca76a597fbc3df668bef4aafc69e52164af",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_bf68b1f2",
         "filename": "includes/Formatter/RecentChanges.php",
         "patchSetId": 4
