@@ -54,14 +54,6 @@
 				override[$editor.attr( 'name' )] = mw.flow.editor.getRawContent( $editor );
 				override.flow_format = mw.flow.editor.getFormat( $editor );
 			}
-
-			// @todo: we have to make sure we get rid of all unwanted data
-			// in the form (whatever "editor instance" may have added)
-			// because we'll $form.serializeArray() to get the content.
-			// This is currently not an issue since we only have "none"
-			// editor type, which just uses the existing textarea. Someday,
-			// however, we may have VE (or wikieditor or ...) which could
-			// add its own nodes, which may be picked up by serializeArray()
 		} );
 
 		return $.extend( {}, queryMap, override );

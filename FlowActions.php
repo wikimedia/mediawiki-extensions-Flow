@@ -107,15 +107,6 @@ $wgFlowActions = array(
 		'editcount' => true,
 		// theis modules/moduleStyles is repeated in all the undo-* actions. Find a way to share.
 		'modules' => array( 'ext.flow.undo' ),
-		'moduleStyles' => array(
-			'mediawiki.ui.button',
-			'mediawiki.ui.input',
-			'ext.flow.styles.base',
-			'ext.flow.board.styles',
-			'ext.flow.board.topic.styles',
-			// Needed for pending texture while switching editors
-			'oojs-ui.styles.textures'
-		),
 	),
 
 	'create-topic-summary' => array(
