@@ -221,7 +221,7 @@ class RecentChanges extends AbstractFormatter {
 			'newpage' => $row->isFirstReply && $row->revision->isFirstRevision(),
 			'minor' => false,
 			'unpatrolled' => ChangesList::isUnpatrolled( $row->recentChange, $ctx->getUser() ),
-			'bot' => false,
+			'bot' => $row->revision->getUser()->isAllowed( 'bot' ),
 		);
 	}
 
