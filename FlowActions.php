@@ -106,7 +106,7 @@ $wgFlowActions = array(
 		'handler-class' => 'Flow\Actions\FlowAction',
 		'editcount' => true,
 		// theis modules/moduleStyles is repeated in all the undo-* actions. Find a way to share.
-		'modules' => array( 'ext.flow.undo' ),
+//		'modules' => array( 'ext.flow.undo' ),
 		'moduleStyles' => array(
 			'mediawiki.ui.button',
 			'mediawiki.ui.input',
