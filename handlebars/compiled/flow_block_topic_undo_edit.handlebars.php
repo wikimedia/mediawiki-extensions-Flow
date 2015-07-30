@@ -39,7 +39,7 @@
 '.LCRun3::p($cx, 'flow_errors', array(array($in),array()), '	').'
 '.((LCRun3::ifvar($cx, ((isset($in['undo']['possible']) && is_array($in['undo'])) ? $in['undo']['possible'] : null))) ? '		'.LCRun3::ch($cx, 'diffUndo', array(array(((isset($in['undo']['diff_content']) && is_array($in['undo'])) ? $in['undo']['diff_content'] : null)),array()), 'encq').'
 ' : '').'
-	<form method="POST" action="'.htmlentities((string)((isset($in['links']['undo-edit-post']['url']) && is_array($in['links']['undo-edit-post'])) ? $in['links']['undo-edit-post']['url'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-post">
+	<form method="POST" action="'.htmlentities((string)((isset($in['links']['undo-edit-post']['url']) && is_array($in['links']['undo-edit-post'])) ? $in['links']['undo-edit-post']['url'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-post" data-module="topic">
 		<input type="hidden" name="wpEditToken" value="'.htmlentities((string)((isset($cx['sp_vars']['root']['rootBlock']['editToken']) && is_array($cx['sp_vars']['root']['rootBlock'])) ? $cx['sp_vars']['root']['rootBlock']['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
 		<input type="hidden" name="topic_prev_revision" value="'.htmlentities((string)((isset($in['current']['revisionId']) && is_array($in['current'])) ? $in['current']['revisionId'] : null), ENT_QUOTES, 'UTF-8').'" />
 		<input type="hidden" name="topic_postId" value="'.htmlentities((string)((isset($in['current']['postId']) && is_array($in['current'])) ? $in['current']['postId'] : null), ENT_QUOTES, 'UTF-8').'" />
