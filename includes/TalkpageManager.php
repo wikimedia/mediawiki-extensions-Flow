@@ -7,6 +7,7 @@ use Flow\Exception\FlowException;
 use Flow\Exception\InvalidInputException;
 use Flow\Model\Workflow;
 use Article;
+use CentralAuthUser;
 use Status;
 use Title;
 use User;
@@ -245,55 +246,34 @@ class TalkpageManager implements OccupationController {
 	 * Gives a user object used to manage talk pages
 	 *
 	 * @return User User to manage talkpages
-	 * @throws FlowException If both of the names already exist, but are not properly
-	 *  configured.
 	 */
 	public function getTalkpageManager() {
 		if ( $this->talkPageManagerUser !== null ) {
 			return $this->talkPageManagerUser;
 		}
 
-		$userNameCandidates = array(
-			wfMessage( 'flow-talk-username' )->inContentLanguage()->text(),
-			'Flow talk page manager',
-		);
 
-		$user = null;
+		$user = User::newFromName( 'Flow talk page manager' );
 
-		foreach ( $userNameCandidates as $name ) {
-			$candidateUser = User::newFromName( $name );
-
-			if ( $candidateUser->getId() === 0 ) {
-				$user = User::createNew( $name );
-				$user->addGroup( 'bot' );
-				break;
-			} else {
-				// Exists
-				$groups = $candidateUser->getGroups();
-				if ( in_array( 'bot', $groups ) ) {
-					// We created this user earlier.
-					$user = $candidateUser;
-					break;
-				}
-
-				// If it exists, but is not a bot, someone created this
-				// without setting it up as expected, so go on to the next
-				// user. Except unit tests which get a free pass.
-				if ( defined( 'MW_PHPUNIT_TEST' ) ) {
-					$candidateUser->addGroup( 'bot' );
-					$user = $candidateUser;
-					break;
+		if ( $user->getId() === 0 ) {
+			// Does not exist, lets create it
+			$user->loadDefaults( 'Flow talk page manager' );
+			$user->addToDatabase();
+			if ( class_exists( 'CentralAuthUser' ) ) {
+				// Attach to CentralAuth if a global account already
+				// exists
+				$ca = CentralAuthUser::getInstance( $user );
+				if ( $ca->exists() ) {
+					$ca->attach( wfWikiID(), 'admin' );
 				}
 			}
 		}
 
-		if ( $user === null ) {
-			throw new FlowException( 'All of the candidate usernames exist, but they are not configured as expected.' );
-		}
-
-		// Some specialist permissions (like flow-create-board) apply
-		if ( !in_array( 'flow-bot', $user->getGroups() ) ) {
-			$user->addGroup( 'flow-bot' );
+		$groups = $user->getGroups();
+		foreach ( array( 'bot', 'flow-bot' ) as $group ) {
+			if ( !in_array( $group, $groups ) ) {
+				$user->addGroup( $group );
+			}
 		}
 
 		$this->talkPageManagerUser = $user;
