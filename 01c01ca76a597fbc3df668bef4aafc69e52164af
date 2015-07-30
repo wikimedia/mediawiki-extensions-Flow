@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_6a0da538",
+        "filename": "includes/Formatter/AbstractQuery.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-07-30T12:39:42Z",
+      "side": 1,
+      "message": "Something\u0027s wrong with the logic for first reply (possibly also for last reply - haven\u0027t checked that one)\n\nThe reply ids it retrieves are relative to the revision being rendered, not to the root post. That means that what is considered the first reply, bay just be the one relative to $revision, not relative to $row-\u003erootPost.\nThis logic would likely be correct if we were to $this-\u003egetAllReplyIds( $row-\u003erootPost ), but we probably don\u0027t want to do those additional lookups unless we really have to.\n\nSince we can\u0027t use getAllReplyIds, I would restore most of this code to its original state (isLastReply) and create a new function along these lines. It needs no additional data lookups and should be safe enough :p\n\n    protected function isFirstReply( PostRevision $revision, PostRevision $root ) {\n        // check if it\u0027s a first-level reply (not topic title, but the level just below that)\n        if ( !$root-\u003egetPostId()-\u003eequals( $revision-\u003egetReplyToId() ) {\n            return false;\n        }\n\n        // we can use the timestamps to check if the reply was created at roughly the same time the topic was created\n        // if they\u0027re 0 or 1 seconds apart, they must\u0027ve been created in the same request\n        // unless our servers are extremely slow and can\u0027t create topic + first reply in \u003c 1 seconds, this should be a pretty safe method to detect first reply\n        if ( $revision-\u003egetPostId()-\u003egetTimestamp( TS_UNIX ) - $row-\u003erootPost-\u003egetPostId()-\u003egetTimestamp( TS_UNIX ) \u003e\u003d 2 ) {\n            return false;\n        }\n\n        return true;\n    }",
+      "revId": "01c01ca76a597fbc3df668bef4aafc69e52164af",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_bf68b1f2",
+        "filename": "includes/Formatter/RecentChanges.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-07-30T12:39:42Z",
+      "side": 1,
+      "message": "We can probably make this:\n    $row-\u003erevision-\u003egetUser()-\u003eisAllowed( \u0027bot\u0027 );\n\nIt\u0027s irrelevant for this patch, though - I\u0027ll submit it in a new patch",
+      "revId": "01c01ca76a597fbc3df668bef4aafc69e52164af",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
