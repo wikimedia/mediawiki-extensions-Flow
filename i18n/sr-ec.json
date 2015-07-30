@@ -30,8 +30,8 @@
 	"flow-history-action-delete-post": "обриши",
 	"flow-history-action-hide-post": "сакриј",
 	"flow-history-action-undelete-post": "врати",
-	"flow-history-action-lock-topic": "закључај",
-	"flow-history-action-unlock-topic": "откључај",
+	"flow-history-action-lock-topic": "решено",
+	"flow-history-action-unlock-topic": "поново отвори",
 	"flow-post-action-view": "Трајна веза",
 	"flow-post-action-post-history": "Историја",
 	"flow-post-action-delete-post": "Обриши",
@@ -82,7 +82,6 @@
 	"flow-next-diff": "Новија измена →",
 	"flow-ve-mention-placeholder": "Корисничко име",
 	"flow-ve-mention-tool-title": "Спомени корисника",
-	"flow-ve-mention-template": "пинг",
 	"flow-wikitext-switch-editor-tooltip": "Пребаци ме на Визуелни уређивач",
 	"flow-ve-switch-editor-tool-title": "Пребаци ме на уређивач викитекста"
 }

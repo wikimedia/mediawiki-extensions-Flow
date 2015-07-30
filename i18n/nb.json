@@ -10,7 +10,6 @@
 	"enableflow": "Aktiver Flow",
 	"flow-desc": "Styringssystem for arbeidsflyt",
 	"flow-talk-taken-over": "Denne diskusjonssiden bruker [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow].",
-	"flow-talk-username": "Flow-diskusjonssideforvalter",
 	"log-name-flow": "Aktivitetslogg for Flyt",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|slettet}} et [$4 innlegg] på «[[$3|$5]]» på [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|gjenopprettet}} et [$4 innlegg] på «[[$3|$5]]» på [[$6]]",

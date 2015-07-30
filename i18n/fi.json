@@ -12,7 +12,6 @@
 	"enableflow": "Ota Flow käyttöön",
 	"flow-desc": "Asianhallintajärjestelmä",
 	"flow-talk-taken-over": "Tämä keskustelusivu käyttää [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow'ta].",
-	"flow-talk-username": "Flow-keskustelusivukäsittelijä",
 	"log-name-flow": "Flow-tapahtumaloki",
 	"flow-board-header-browse-topics-link": "Selaa aiheita",
 	"flow-board-header": "Tietoa tästä keskustelusta",

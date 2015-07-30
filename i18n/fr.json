@@ -42,7 +42,6 @@
 	"enableflow": "Activer Flow",
 	"flow-desc": "Système de gestion du flux de travail",
 	"flow-talk-taken-over": "Cette page de discussion utilise [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow].",
-	"flow-talk-username": "Gestionnaire de la page Flow",
 	"log-name-flow": "Journal d’activité de Flow",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|a supprimé}} une [$4 publication] sur « [[$3|$5]] » sur [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|a rétabli}} une [$4 publication] sur « [[$3|$5]] » sur [[$6]]",

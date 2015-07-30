@@ -12,7 +12,6 @@
 	"enableflow": "Flow aktivieren",
 	"flow-desc": "Ermöglicht ein Verwaltungssystem zu Benutzerdiskussionen",
 	"flow-talk-taken-over": "Diese Diskussionsseite verwendet [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow].",
-	"flow-talk-username": "Flow-Diskussionsseitenverwalter",
 	"log-name-flow": "Flow-Aktivitätslogbuch",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|löschte}} einen [$4 Beitrag] auf „[[$3|$5]]“ auf [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|stellte}} einen [$4 Beitrag] auf „[[$3|$5]]“ auf [[$6]] wieder her",
