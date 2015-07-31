@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_f0df383d",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-07-31T20:09:43Z",
+      "side": 1,
+      "message": "Yeah, I did this bit by bit, and thought it would also be easier to review like this instead of one huge chunk where everything changes :p",
+      "parentUuid": "8ec42329_c5335cf1",
+      "revId": "f08f854dd9f42e264e683d95141cb5b82ee4478d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_6a083730",
         "filename": "tests/phpunit/TalkpageManagerTest.php",
         "patchSetId": 2
@@ -48,6 +66,24 @@
       "writtenOn": "2015-07-31T19:28:55Z",
       "side": 1,
       "message": "Don\u0027t you need NS_TOPIC here too?",
+      "revId": "f08f854dd9f42e264e683d95141cb5b82ee4478d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_50ddec45",
+        "filename": "tests/phpunit/TalkpageManagerTest.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-07-31T20:09:43Z",
+      "side": 1,
+      "message": "Not for this particular test, which only checks $title (but this test is going away in follow-up patch anyway, now that wel\u0027ll just be using default ContentModel behavior)",
+      "parentUuid": "8ec42329_6a083730",
       "revId": "f08f854dd9f42e264e683d95141cb5b82ee4478d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
