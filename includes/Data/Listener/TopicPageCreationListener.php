@@ -7,11 +7,7 @@ use Flow\Model\Workflow;
 use Flow\OccupationController;
 use SplQueue;
 
-/**
- * Ensures that a given workflow is occupied.  This will be unnecssary
- * once we deprecate the OccupationController white list.
- */
-class OccupationListener extends AbstractListener {
+class TopicPageCreationListener extends AbstractListener {
 	/** @var OccupationController **/
 	protected $occupationController;
 
@@ -21,11 +17,8 @@ class OccupationListener extends AbstractListener {
 	/** @var string **/
 	protected $defaultType;
 
-	/** @var bool **/
-	protected $enabled = true;
-
 	/**
-	 * @param OccupationController $occupationController The OccupationController to occupy the page with.
+	 * @param OccupationController $occupationController The OccupationController to create the page with.
 	 * @param SplQueue             $deferredQueue        Queue of callbacks to run only if commit succeeds
 	 * @param string               $defaultType          The workflow type to look for
 	 */
@@ -39,26 +32,12 @@ class OccupationListener extends AbstractListener {
 		$this->defaultType = $defaultType;
 	}
 
-	/**
-	 * Disabling the listener is required if you want to load contributions
-	 * or other flow history from pages that were enabled but are not anymore.
-	 *
-	 * @param bool $enabled
-	 */
-	public function setEnabled( $enabled ) {
-		$this->enabled = (bool)$enabled;
-	}
-
 	public function onAfterLoad( $object, array $old ) {
 		// Nothing
 	}
 
 	public function onAfterInsert( $object, array $new, array $metadata ) {
 		if ( !$object instanceof Workflow ) {
-			return;
-		}
-
-		if ( !$this->enabled ) {
 			return;
 		}
 

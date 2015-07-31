@@ -64,8 +64,7 @@ class TalkpageManager implements OccupationController {
 	 *
 	 * This method does not do any security checks regarding content model changes
 	 * or the like.  Those happen much earlier in the request and should be checked
-	 * before even attempting to create revisions which, when written to the database,
-	 * trigger this method through the OccupationListener.
+	 * before even attempting to create revisions.
 	 *
 	 * @param \Article $article
 	 * @param Workflow $workflow
