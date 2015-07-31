@@ -16,6 +16,24 @@
       "revId": "147905092c5f4eeab85258562b3bb60bb70259d9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_30a86089",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 956,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-07-31T20:13:35Z",
+      "side": 1,
+      "message": "I have no reasons to believe this could be null as this is the user that created a revision.",
+      "parentUuid": "8ec42329_b0ed30f0",
+      "revId": "147905092c5f4eeab85258562b3bb60bb70259d9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
