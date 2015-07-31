@@ -253,11 +253,11 @@ class TalkpageManager implements OccupationController {
 		}
 
 
-		$user = User::newFromName( 'Flow talk page manager' );
+		$user = User::newFromName( FLOW_TALK_PAGE_MANAGER_USER );
 
 		if ( $user->getId() === 0 ) {
 			// Does not exist, lets create it
-			$user->loadDefaults( 'Flow talk page manager' );
+			$user->loadDefaults( FLOW_TALK_PAGE_MANAGER_USER );
 			$user->addToDatabase();
 			if ( class_exists( 'CentralAuthUser' ) ) {
 				// Attach to CentralAuth if a global account already

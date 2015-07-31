@@ -676,7 +676,7 @@ class FlowHooks {
 		$names[] = 'msg:flow-system-usertext';
 
 		// Reserve the bot account we use during content model changes & LQT conversion
-		$names[] = 'Flow talk page manager';
+		$names[] = FLOW_TALK_PAGE_MANAGER_USER;
 
 		return true;
 	}
@@ -953,8 +953,7 @@ class FlowHooks {
 	 * @return bool
 	 */
 	private static function isTalkpageManagerUser( User $user ) {
-		$talkPageManagerUser = self::$occupationController->getTalkpageManager();
-		return $user && $user->equals( $talkPageManagerUser );
+		return $user && $user->getName() === FLOW_TALK_PAGE_MANAGER_USER;
 	}
 
 	/**
