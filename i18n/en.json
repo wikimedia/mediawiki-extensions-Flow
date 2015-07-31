@@ -15,7 +15,7 @@
 	},
 	"enableflow": "Enable Flow",
 	"flow-desc": "Workflow management system",
-	"flow-talk-taken-over": "This talk page is using [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow].",
+	"flow-talk-taken-over-comment": "/* This page has been converted into a Flow discussion board */",
 	"log-name-flow": "Flow activity log",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|deleted}} a [$4 post] on \"[[$3|$5]]\" on [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|restored}} a [$4 post] on \"[[$3|$5]]\" on [[$6]]",
