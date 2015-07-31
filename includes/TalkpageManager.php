@@ -49,11 +49,6 @@ interface OccupationController {
 
 class TalkpageManager implements OccupationController {
 	/**
-	 * @var int[]
-	 */
-	protected $occupiedNamespaces;
-
-	/**
 	 * @var Title[]
 	 */
 	protected $allowCreation = array();
@@ -63,13 +58,6 @@ class TalkpageManager implements OccupationController {
 	 * @var User
 	 */
 	protected $talkPageManagerUser;
-
-	/**
-	 * @param int[] $occupiedNamespaces See documentation for $wgFlowOccupyNamespaces
-	 */
-	public function __construct( array $occupiedNamespaces ) {
-		$this->occupiedNamespaces = $occupiedNamespaces;
-	}
 
 	/**
 	 * Determines whether or not a talk page is "occupied" by Flow.
@@ -97,7 +85,11 @@ class TalkpageManager implements OccupationController {
 			// told not to. Specifically, while creating the first revision of a flow board,
 			// onContentHandlerDefaultModelFor calls this function, and $title->exists() is already
 			// true at that point but we are still deciding which content model to use.
-			if ( in_array( $title->getNamespace(), $this->occupiedNamespaces ) ) {
+			global $wgNamespaceContentModels;
+			if (
+				isset( $wgNamespaceContentModels[$title->getNamespace()] ) &&
+				$wgNamespaceContentModels[$title->getNamespace()] === CONTENT_MODEL_FLOW_BOARD
+			) {
 				return true;
 			}
 		}
@@ -226,7 +218,6 @@ class TalkpageManager implements OccupationController {
 	 */
 	public function canBeUsedOn( Title $title ) {
 		return
-			// automatically allowed (occupiedNamespaces)
 			$this->isTalkpageOccupied( $title, false ) ||
 			// explicitly allowed via allowCreation()
 			in_array( $title->getPrefixedDBkey(), $this->allowCreation );
