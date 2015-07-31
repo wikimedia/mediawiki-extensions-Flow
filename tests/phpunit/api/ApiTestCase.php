@@ -28,7 +28,10 @@ abstract class ApiTestCase extends BaseApiTestCase {
 	);
 
 	protected function setUp() {
-		$this->setMwGlobals( 'wgFlowOccupyNamespaces', array( 1 ) );
+		$this->setMwGlobals( 'wgNamespaceContentModels', array(
+			NS_TALK => CONTENT_MODEL_FLOW_BOARD,
+			NS_TOPIC => CONTENT_MODEL_FLOW_BOARD,
+		) );
 
 		Container::reset();
 		parent::setUp();

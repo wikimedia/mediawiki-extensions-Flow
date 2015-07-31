@@ -50,13 +50,7 @@ class FlowHooks {
 	 */
 	public static function getOccupationController() {
 		if ( self::$occupationController === null ) {
-			global $wgFlowOccupyNamespaces;
-
-			// NS_TOPIC is always occupied
-			$namespaces = $wgFlowOccupyNamespaces;
-			$namespaces[] = NS_TOPIC;
-
-			self::$occupationController = new TalkpageManager( array_unique( $namespaces ) );
+			self::$occupationController = new TalkpageManager();
 		}
 		return self::$occupationController;
 	}
@@ -1187,7 +1181,7 @@ class FlowHooks {
 	}
 
 	public static function onMovePageIsValidMove( Title $oldTitle, Title $newTitle, Status $status ) {
-		global $wgFlowOccupyNamespaces, $wgUser;
+		global $wgUser;
 
 		// We only care about moving flow boards
 		if ( $oldTitle->getContentModel() !== CONTENT_MODEL_FLOW_BOARD ) {
