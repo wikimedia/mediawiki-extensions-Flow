@@ -50,17 +50,13 @@ class FlowHooks {
 	 */
 	public static function getOccupationController() {
 		if ( self::$occupationController === null ) {
-			global $wgFlowOccupyNamespaces,
-				$wgFlowOccupyPages;
+			global $wgFlowOccupyNamespaces;
 
 			// NS_TOPIC is always occupied
 			$namespaces = $wgFlowOccupyNamespaces;
 			$namespaces[] = NS_TOPIC;
 
-			self::$occupationController = new TalkpageManager(
-				array_unique( $namespaces ),
-				$wgFlowOccupyPages
-			);
+			self::$occupationController = new TalkpageManager( array_unique( $namespaces ) );
 		}
 		return self::$occupationController;
 	}
@@ -804,24 +800,6 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onDeletedContributionsQuery( &$data, $pager, $offset, $limit, $descending ) {
-		global $wgFlowOccupyNamespaces, $wgFlowOccupyPages;
-
-		// Ignore when looking in a specific namespace where there is no Flow
-		if ( $pager->namespace !== '' ) {
-			// Flow enabled on entire namespace(s)
-			$namespaces = array_flip( $wgFlowOccupyNamespaces );
-
-			// Flow enabled on specific pages - get those namespaces
-			foreach ( $wgFlowOccupyPages as $page ) {
-				$title = Title::newFromText( $page );
-				$namespaces[$title->getNamespace()] = 1;
-			}
-
-			if ( !isset( $namespaces[$pager->namespace] ) ) {
-				return true;
-			}
-		}
-
 		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
 		try {
 			// Contributions may be on pages outside the set of currently

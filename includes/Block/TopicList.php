@@ -161,8 +161,8 @@ class TopicListBlock extends AbstractBlock {
 		 * Order of storage is important! We've been changing when we stored
 		 * workflow a couple of times. For now, it needs to be stored first:
 		 * * OccupationListener.php (workflow listener) must first create the
-		 *   board before NotificationListener.php (topic/post listeners)
-		 *   creates notifications (& mails) that link to the board
+		 *   Topic:Xyz page before NotificationListener.php (topic/post
+		 *   listeners) creates notifications (& mails) that link to it
 		 * * ReferenceExtractor.php (run from ReferenceRecorder.php, a post
 		 *   listener) needs to parse content with Parsoid & for that it needs
 		 *   the board title. AbstractRevision::getContent() will figure out
