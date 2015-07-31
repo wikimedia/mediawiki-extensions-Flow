@@ -118,9 +118,9 @@ class ApiFlow extends ApiBase {
 		/** @var \Flow\TalkpageManager $controller */
 		$controller = Container::get( 'occupation_controller' );
 		if ( $page->getContentModel() !== CONTENT_MODEL_FLOW_BOARD ) {
-			// just check for permissions, nothing else to do. if the commit
-			// is successful the OccupationListener will see the new revision
-			// and put the flow board in place.
+			// just check for permissions, nothing else to do. the flow board
+			// in place right before the rest of the data is stored, after
+			// everything's been validated.
 			$status = $controller->allowCreation( $page, $this->getUser() );
 			if ( !$status->isGood() ) {
 				$this->dieUsage( "Page provided does not have Flow enabled and allowCreation failed with: " . $status->getMessage()->parse(), 'invalid-page' );

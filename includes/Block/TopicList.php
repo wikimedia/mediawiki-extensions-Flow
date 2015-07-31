@@ -160,7 +160,7 @@ class TopicListBlock extends AbstractBlock {
 		/*
 		 * Order of storage is important! We've been changing when we stored
 		 * workflow a couple of times. For now, it needs to be stored first:
-		 * * OccupationListener.php (workflow listener) must first create the
+		 * * TopicPageCreationListener.php (post listener) must first create the
 		 *   Topic:Xyz page before NotificationListener.php (topic/post
 		 *   listeners) creates notifications (& mails) that link to it
 		 * * ReferenceExtractor.php (run from ReferenceRecorder.php, a post

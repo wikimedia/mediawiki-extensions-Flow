@@ -240,7 +240,7 @@ $c['listener.recentchanges'] = function( $c ) {
 $c['listener.occupation'] = function( $c ) {
 	global $wgFlowDefaultWorkflow;
 
-	return new Flow\Data\Listener\OccupationListener(
+	return new Flow\Data\Listener\TopicPageCreationListener(
 		$c['occupation_controller'],
 		$c['deferred_queue'],
 		$wgFlowDefaultWorkflow
