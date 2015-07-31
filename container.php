@@ -206,7 +206,7 @@ $c['storage.workflow.listeners.topiclist'] = function( $c ) {
 };
 $c['storage.workflow.listeners'] = function( $c ) {
 	return array(
-		'listener.occupation' => $c['listener.occupation'],
+		'listener.topicpagecreation' => $c['listener.topicpagecreation'],
 
 		// The storage.topic_list.indexes are primarily for TopicListEntry insertions, but they
 		// also listen for discussion workflow insertions so they can initialize for new boards.
@@ -237,10 +237,10 @@ $c['listener.recentchanges'] = function( $c ) {
 		)
 	);
 };
-$c['listener.occupation'] = function( $c ) {
+$c['listener.topicpagecreation'] = function( $c ) {
 	global $wgFlowDefaultWorkflow;
 
-	return new Flow\Data\Listener\OccupationListener(
+	return new Flow\Data\Listener\TopicPageCreationListener(
 		$c['occupation_controller'],
 		$c['deferred_queue'],
 		$wgFlowDefaultWorkflow
