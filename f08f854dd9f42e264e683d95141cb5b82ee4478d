@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_c5335cf1",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-31T19:29:25Z",
+      "side": 1,
+      "message": "Never mind, the next commit addresses this",
+      "parentUuid": "8ec42329_0a189383",
+      "revId": "f08f854dd9f42e264e683d95141cb5b82ee4478d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_6a083730",
         "filename": "tests/phpunit/TalkpageManagerTest.php",
         "patchSetId": 2
