@@ -12,8 +12,8 @@ class TalkpageManagerTest extends MediaWikiLangTestCase {
 	 * @covers TalkpageManager::isTalkpageOccupied
 	 * @dataProvider provideIsTalkpageOccupied
 	 */
-	public function testIsTalkpageOccupied( array $pages, array $ns, Title $title, $checkContentModel, $expected ) {
-		$manager = new TalkpageManager( $ns, $pages );
+	public function testIsTalkpageOccupied( array $ns, Title $title, $checkContentModel, $expected ) {
+		$manager = new TalkpageManager( $ns );
 		$actual = $manager->isTalkpageOccupied( $title, $checkContentModel );
 		$this->assertEquals( $expected, $actual );
 	}
@@ -35,63 +35,48 @@ class TalkpageManagerTest extends MediaWikiLangTestCase {
 	public function provideIsTalkpageOccupied() {
 		return array(
 			array(
-				array( 'Talk:Foo Bar' ),
-				array(),
-				Title::newFromText( 'Talk:Foo Bar' ),
-				false,
-				true
-			),
-			array(
-				array(),
 				array( NS_USER_TALK ),
 				Title::newFromText( 'User talk:Foo Bar' ),
 				false,
 				true
 			),
 			array(
-				array(),
 				array( NS_USER_TALK ),
 				Title::newFromText( 'User talk:Foo/Bar' ),
 				false,
 				true
 			),
 			array(
-				array(),
 				array( NS_USER_TALK ),
 				Title::newFromText( 'Talk:Foo Bar' ),
 				false,
 				false
 			),
 			array(
-				array(),
 				array( NS_USER_TALK ),
 				$this->getMockTitle( false, 'wikitext', NS_USER_TALK, 'User talk:FooBar' ),
 				true,
 				true
 			),
 			array(
-				array(),
 				array( NS_USER_TALK ),
 				$this->getMockTitle( false, 'wikitext', NS_USER_TALK, 'User talk:Foo/Bar' ),
 				true,
 				true
 			),
 			array(
-				array(),
 				array( NS_USER_TALK ),
 				$this->getMockTitle( true, 'wikitext', NS_USER_TALK, 'User talk:FooBar' ),
 				true,
 				false
 			),
 			array(
-				array(),
 				array( NS_USER_TALK ),
 				$this->getMockTitle( true, 'wikitext', NS_USER_TALK, 'User talk:Foo/Bar' ),
 				true,
 				false
 			),
 			array(
-				array(),
 				array( NS_TALK ),
 				$this->getMockTitle( false, 'wikitext', NS_USER_TALK, 'User talk:FooBar' ),
 				true,
@@ -99,20 +84,17 @@ class TalkpageManagerTest extends MediaWikiLangTestCase {
 			),
 			array(
 				array(),
-				array(),
 				$this->getMockTitle( false, 'wikitext', NS_USER_TALK, 'User talk:FooBar' ),
 				true,
 				false
 			),
 			array(
 				array(),
-				array(),
 				$this->getMockTitle( true, 'flow-board', NS_USER_TALK, 'User talk:FooBar' ),
 				true,
 				true
 			),
 			array(
-				array(),
 				array(),
 				$this->getMockTitle( true, 'flow-board', NS_USER_TALK, 'User talk:Foo/Bar' ),
 				true,
