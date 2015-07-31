@@ -87,6 +87,24 @@
       "revId": "f08f854dd9f42e264e683d95141cb5b82ee4478d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_f0b658f5",
+        "filename": "tests/phpunit/TalkpageManagerTest.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-07-31T20:12:53Z",
+      "side": 1,
+      "message": "D\u0027oh, right, this entire file dies in the next commit. Never mind then :)",
+      "parentUuid": "8ec42329_50ddec45",
+      "revId": "f08f854dd9f42e264e683d95141cb5b82ee4478d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
