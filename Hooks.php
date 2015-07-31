@@ -539,7 +539,7 @@ class FlowHooks {
 		$title = $template->getTitle();
 
 		// if Flow is enabled on this talk page, overrule talk page red link
-		if ( self::$occupationController->isTalkpageOccupied( $title ) ) {
+		if ( $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
 			// Turn off page actions in MobileFrontend.
 			// FIXME: Find more elegant standard way of doing this.
 			$wgMFPageActions = array();
@@ -588,13 +588,13 @@ class FlowHooks {
 	public static function onSkinMinervaDefaultModules( Skin $skin, array &$modules ) {
 		// Disable toggling on occupied talk pages in mobile
 		$title = $skin->getTitle();
-		if ( self::$occupationController->isTalkpageOccupied( $title ) ) {
+		if ( $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
 			$modules['toggling'] = array();
 		}
 		// Turn off default mobile talk overlay for these pages
 		if ( $title->canTalk() ) {
 			$talkPage = $title->getTalkPage();
-			if ( self::$occupationController->isTalkpageOccupied( $talkPage ) ) {
+			if ( $talkPage->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
 				// TODO: Insert lightweight JavaScript that opens flow via ajax
 				$modules['talk'] = array();
 			}
@@ -875,7 +875,7 @@ class FlowHooks {
 	 * @return bool false to abort email notification
 	 */
 	public static function onAbortEmailNotification( $editor, $title ) {
-		if ( self::$occupationController->isTalkpageOccupied( $title ) ) {
+		if ( $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
 			// Since we are aborting the notification we need to manually update the watchlist
 			EmailNotification::updateWatchlistTimestamp( $editor, $title, wfTimestampNow() );
 
@@ -908,7 +908,7 @@ class FlowHooks {
 
 
 	public static function onInfoAction( IContextSource $ctx, &$pageinfo ) {
-		if ( !self::$occupationController->isTalkpageOccupied( $ctx->getTitle() ) ) {
+		if ( $ctx->getTitle()->getContentModel() !== CONTENT_MODEL_FLOW_BOARD ) {
 			return true;
 		}
 
@@ -1156,14 +1156,15 @@ class FlowHooks {
 			return false;
 		}
 
+		// valid if the destination is already a valid flow location (=default flow-board model)
+		if ( ContentHandler::getDefaultModelFor( $newTitle ) === CONTENT_MODEL_FLOW_BOARD ) {
+			return true;
+		}
+
+		// valid if the user has permissions to create a new board wherever
 		$occupationController = self::getOccupationController();
-		if (
-			// If the destination is not already a valid flow location
-			!$occupationController->isTalkpageOccupied( $newTitle, false )
-			&&
-			// and the user is not allowed to create new flow boards
-			!$wgUser->isAllowed( 'flow-create-board' )
-		) {
+		$creationStatus = $occupationController->allowCreation( $newTitle, $wgUser );
+		if ( !$creationStatus->isGood() ) {
 			$status->fatal( 'flow-error-move-no-create-permissions' );
 			return false;
 		}
@@ -1346,7 +1347,7 @@ class FlowHooks {
 	 * Gives precedence to Flow over LQT.
 	 */
 	public static function onIsLiquidThreadsPage( Title $title, &$isLqtPage ) {
-		if ( $isLqtPage && self::$occupationController->isTalkpageOccupied( $title ) ) {
+		if ( $isLqtPage && $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
 			$isLqtPage = false;
 		}
 
@@ -1503,18 +1504,6 @@ class FlowHooks {
 			Container::get( 'board_mover' )->commit();
 		}
 
-		return true;
-	}
-
-	public static function onContentHandlerDefaultModelFor( Title $title, &$model ) {
-		$occupationController = self::getOccupationController();
-
-		if ( $model !== CONTENT_MODEL_FLOW_BOARD
-			&& $occupationController->isTalkpageOccupied( $title, false )
-		) {
-			$model = CONTENT_MODEL_FLOW_BOARD;
-			return false;
-		}
 		return true;
 	}
 
