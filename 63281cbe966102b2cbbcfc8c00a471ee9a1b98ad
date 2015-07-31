@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_81b46f7d",
+        "filename": "includes/Api/ApiFlowViewPostHistory.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-31T00:44:30Z",
+      "side": 1,
+      "message": "fixed-html is intended for views.  It handles things like the red link class (among others).\n\nhtml is intended for VE.\n\nIt\u0027s exposed in other API modules.  E.g. https://www.mediawiki.org/w/api.php?action\u003dflow\u0026format\u003djsonfm\u0026page\u003dTopic:Sm38y4qi2jqyosn4\u0026submodule\u003dview-post\u0026vppostId\u003dsm38y4qszesi23nk\u0026vpformat\u003dhtml vs. https://www.mediawiki.org/w/api.php?action\u003dflow\u0026format\u003djsonfm\u0026page\u003dTopic:Sm38y4qi2jqyosn4\u0026submodule\u003dview-post\u0026vppostId\u003dsm38y4qszesi23nk\u0026vpformat\u003dfixed-html",
+      "parentUuid": "8ec42329_26103152",
+      "revId": "63281cbe966102b2cbbcfc8c00a471ee9a1b98ad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_7fc9f427",
         "filename": "includes/Block/Topic.php",
         "patchSetId": 2
