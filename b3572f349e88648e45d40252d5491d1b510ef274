@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_5083acd0",
+        "filename": "includes/Api/ApiQueryPropFlowInfo.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2015-07-31T20:26:49Z",
+      "side": 0,
+      "message": "We can kill this entire API module now....mark it as deprecated for now and we\u0027ll get rid of it after announcing it?",
+      "revId": "b3572f349e88648e45d40252d5491d1b510ef274",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
