@@ -86,7 +86,7 @@ class BoardContentHandler extends \ContentHandler {
 	 *
 	 * @since 1.21
 	 *
-	 * @return Content
+	 * @return BoardContent
 	 */
 	public function makeEmptyContent() {
 		return new BoardContent;

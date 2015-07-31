@@ -42,7 +42,7 @@ interface OccupationController {
 	 * Gives a user object used to manage talk pages
 	 *
 	 * @return User User to manage talkpages
-	 * @throws MWException If a user cannot be created.
+	 * @throws \MWException If a user cannot be created.
 	 */
 	public function getTalkpageManager();
 }
@@ -52,11 +52,6 @@ class TalkpageManager implements OccupationController {
 	 * @var int[]
 	 */
 	protected $occupiedNamespaces;
-
-	/**
-	 * @var string[]
-	 */
-	protected $occupiedPages;
 
 	/**
 	 * @var Title[]
@@ -71,11 +66,9 @@ class TalkpageManager implements OccupationController {
 
 	/**
 	 * @param int[] $occupiedNamespaces See documentation for $wgFlowOccupyNamespaces
-	 * @param string[] $occupiedPages See documentation for $wgFlowOccupyPages
 	 */
-	public function __construct( array $occupiedNamespaces, array $occupiedPages ) {
+	public function __construct( array $occupiedNamespaces ) {
 		$this->occupiedNamespaces = $occupiedNamespaces;
-		$this->occupiedPages = $occupiedPages;
 	}
 
 	/**
@@ -104,9 +97,6 @@ class TalkpageManager implements OccupationController {
 			// told not to. Specifically, while creating the first revision of a flow board,
 			// onContentHandlerDefaultModelFor calls this function, and $title->exists() is already
 			// true at that point but we are still deciding which content model to use.
-			if ( in_array( $title->getPrefixedText(), $this->occupiedPages ) ) {
-				return true;
-			}
 			if ( in_array( $title->getNamespace(), $this->occupiedNamespaces ) ) {
 				return true;
 			}
@@ -236,7 +226,7 @@ class TalkpageManager implements OccupationController {
 	 */
 	public function canBeUsedOn( Title $title ) {
 		return
-			// automatically allowed (occupiedNamespaces & occupiedPages)
+			// automatically allowed (occupiedNamespaces)
 			$this->isTalkpageOccupied( $title, false ) ||
 			// explicitly allowed via allowCreation()
 			in_array( $title->getPrefixedDBkey(), $this->allowCreation );
