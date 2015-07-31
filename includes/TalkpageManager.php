@@ -3,7 +3,6 @@
 namespace Flow;
 
 use Flow\Content\BoardContent;
-use Flow\Exception\FlowException;
 use Flow\Exception\InvalidInputException;
 use Flow\Model\Workflow;
 use Article;
@@ -12,14 +11,7 @@ use Status;
 use Title;
 use User;
 
-// I got the feeling NinetyNinePercentController was a bit much.
 interface OccupationController {
-	/**
-	 * @param Title $title
-	 * @return bool
-	 */
-	public function isTalkpageOccupied( $title, $checkContentModel = true );
-
 	/**
 	 * @param Article $title
 	 * @param Workflow $workflow
@@ -60,49 +52,6 @@ class TalkpageManager implements OccupationController {
 	protected $talkPageManagerUser;
 
 	/**
-	 * Determines whether or not a talk page is "occupied" by Flow.
-	 *
-	 * Internally, determines whether or not 1% of the talk page contains
-	 * 99% of the discussions.
-	 *
-	 * @param Title $title Title object to check for occupation status
-	 * @param boolean $checkContentModel
-	 * @return boolean True if the talk page is occupied, False otherwise.
-	 */
-	public function isTalkpageOccupied( $title, $checkContentModel = true ) {
-		if ( !$title || !is_object( $title ) ) {
-			// Invalid parameter
-			return false;
-		}
-
-		if ( $title->isRedirect() ) {
-			return false;
-		}
-
-		if ( !$title->exists() || !$checkContentModel ) {
-			// Only check hardcoded page lists if the page does not exist (T95592)
-			// If the page exists, check its content model in the DB, except if we're
-			// told not to. Specifically, while creating the first revision of a flow board,
-			// onContentHandlerDefaultModelFor calls this function, and $title->exists() is already
-			// true at that point but we are still deciding which content model to use.
-			global $wgNamespaceContentModels;
-			if (
-				isset( $wgNamespaceContentModels[$title->getNamespace()] ) &&
-				$wgNamespaceContentModels[$title->getNamespace()] === CONTENT_MODEL_FLOW_BOARD
-			) {
-				return true;
-			}
-		}
-
-		// If it was saved as a flow board, let's just believe the database.
-		if ( $checkContentModel && $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
-			return true;
-		}
-
-		return false;
-	}
-
-	/**
 	 * When a page is taken over by Flow, add a revision.
 	 *
 	 * First, it provides a clearer history should Flow be disabled again later,
@@ -129,7 +78,7 @@ class TalkpageManager implements OccupationController {
 	 */
 	public function ensureFlowRevision( Article $article, Workflow $workflow ) {
 		// Comment to add to the Revision to indicate Flow taking over
-		$comment = '/* Taken over by Flow */';
+		$comment = '/* This page has been converted into a Flow discussion board */';
 
 		$page = $article->getPage();
 		$revision = $page->getRevision();
@@ -200,7 +149,7 @@ class TalkpageManager implements OccupationController {
 		/*
 		 * tracks which titles are allowed so that when
 		 * BoardContentHandler::canBeUsedOn is called for this title, it
-		 * can call self::isTalkpageOccupied and get a successful result.
+		 * can verify this title was explicitly allowed.
 		 */
 		$this->allowCreation[] = $title->getPrefixedDBkey();
 
@@ -218,7 +167,8 @@ class TalkpageManager implements OccupationController {
 	 */
 	public function canBeUsedOn( Title $title ) {
 		return
-			$this->isTalkpageOccupied( $title, false ) ||
+			// default content model already
+			\ContentHandler::getDefaultModelFor( $title ) === CONTENT_MODEL_FLOW_BOARD ||
 			// explicitly allowed via allowCreation()
 			in_array( $title->getPrefixedDBkey(), $this->allowCreation );
 	}
@@ -232,7 +182,6 @@ class TalkpageManager implements OccupationController {
 		if ( $this->talkPageManagerUser !== null ) {
 			return $this->talkPageManagerUser;
 		}
-
 
 		$user = User::newFromName( 'Flow talk page manager' );
 
