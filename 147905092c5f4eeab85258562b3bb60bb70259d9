@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_b0ed30f0",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 956,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2015-07-31T20:10:53Z",
+      "side": 1,
+      "message": "$user will always be a User object because of the type hint. If you want to accept null values, the hint should be \"User $user \u003d null\".",
+      "revId": "147905092c5f4eeab85258562b3bb60bb70259d9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
