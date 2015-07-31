@@ -71,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_e12f739b",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-31T00:57:56Z",
+      "side": 1,
+      "message": "So to be clear, renderPostHistoryApi and renderTopicHistoryApi should take $navbar parameters and pass them through to processHistoryResult",
+      "parentUuid": "8ec42329_7fc9f427",
+      "revId": "63281cbe966102b2cbbcfc8c00a471ee9a1b98ad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_3f604c2d",
         "filename": "includes/Block/Topic.php",
         "patchSetId": 2
@@ -82,6 +100,40 @@
       "writtenOn": "2015-07-29T05:24:45Z",
       "side": 1,
       "message": "I know the others don\u0027t have docs either, but please document the new parameter.",
+      "revId": "63281cbe966102b2cbbcfc8c00a471ee9a1b98ad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_412767c5",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 750,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-31T00:57:56Z",
+      "side": 1,
+      "message": "Actual change (re numeric array) should be here.",
+      "revId": "63281cbe966102b2cbbcfc8c00a471ee9a1b98ad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_212a5b8f",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-07-31T00:57:56Z",
+      "side": 1,
+      "message": "Get rid of this new method, as we discussed.",
       "revId": "63281cbe966102b2cbbcfc8c00a471ee9a1b98ad",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
