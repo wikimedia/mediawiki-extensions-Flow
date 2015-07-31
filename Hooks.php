@@ -798,15 +798,9 @@ class FlowHooks {
 	public static function onDeletedContributionsQuery( &$data, $pager, $offset, $limit, $descending ) {
 		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
 		try {
-			// Contributions may be on pages outside the set of currently
-			// enabled pages so we must disable to occupation listener
-			/** @var Flow\Data\Listener\OccupationListener $listener */
-			$listener = Container::get( 'listener.occupation' );
-			$listener->setEnabled( false );
 			/** @var Flow\Formatter\ContributionsQuery $query */
 			$query = Container::get( 'query.contributions' );
 			$results = $query->getResults( $pager, $offset, $limit, $descending );
-			$listener->setEnabled( true );
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Failed contributions query' );
 			MWExceptionHandler::logException( $e );
