@@ -75,13 +75,6 @@ abstract class ApiFlowBase extends ApiBase {
 	}
 
 	/**
-	 * @return TalkpageManager
-	 */
-	protected function getOccupationController() {
-		return Container::get( 'occupation_controller' );
-	}
-
-	/**
 	 * @param bool $addAliases
 	 * @return string[]
 	 */

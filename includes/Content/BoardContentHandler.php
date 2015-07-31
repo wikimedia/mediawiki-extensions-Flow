@@ -93,8 +93,9 @@ class BoardContentHandler extends \ContentHandler {
 	}
 
 	/**
-	 * Don't let people turn random pages into
-	 * Flow ones until we want them to.
+	 * Don't let people turn random pages into Flow ones. They either need to be:
+	 * * in a Flow-enabled namespace already (where content model is flow-board by default)
+	 * * explicitly allowed for a user, requiring special permissions
 	 *
 	 * @param \Title $title
 	 * @return bool
