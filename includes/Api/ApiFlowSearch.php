@@ -135,9 +135,7 @@ class ApiFlowSearch extends ApiFlowBaseGet {
 				$this->dieUsage( 'Invalid page provided', 'invalid-page' );
 			}
 
-			/** @var TalkpageManager $controller */
-			$controller = Container::get( 'occupation_controller' );
-			if ( !$controller->isTalkpageOccupied( $page->getTitle() ) ) {
+			if ( $page->getTitle()->getContentModel() !== CONTENT_MODEL_FLOW_BOARD ) {
 				$this->dieUsage( 'Page provided does not have Flow enabled', 'invalid-page' );
 			}
 
