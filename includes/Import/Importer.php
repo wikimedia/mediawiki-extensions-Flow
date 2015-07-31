@@ -527,7 +527,7 @@ class TalkpageImportOperation {
 		$isNew = $state->boardWorkflow->isNew();
 		$state->logger->debug( 'Workflow isNew: ' . var_export( $isNew, true ) );
 		if ( $isNew ) {
-			// Explicitly allow creation of board, regardless of $wgFlowOccupyNamespaces etc
+			// Explicitly allow creation of board
 			$allowCreationStatus = $this->occupationController->allowCreation(
 				$destinationTitle,
 				$this->occupationController->getTalkpageManager(),
