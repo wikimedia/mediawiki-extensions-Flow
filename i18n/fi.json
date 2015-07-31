@@ -39,6 +39,7 @@
 	"flow-newtopic-header": "Lisää uusi aihe",
 	"flow-newtopic-save": "Lisää aihe",
 	"flow-newtopic-start-placeholder": "Aloita uusi aihe",
+	"flow-summarize-topic-placeholder": "Kirjoita yhteenveto tästä keskustelusta",
 	"flow-reply-topic-placeholder": "{{GENDER:$1|Kommentoi}} aihetta \"$2\"",
 	"flow-reply-topic-title-placeholder": "Vastaa viestiin \"$1\"",
 	"flow-reply-link": "{{GENDER:$1|Vastaa}}",
@@ -66,7 +67,9 @@
 	"flow-topic-action-delete-topic": "Poista aihe",
 	"flow-topic-action-lock-topic": "Merkitse käsitellyksi",
 	"flow-topic-action-unlock-topic": "Avaa aihe uudelleen",
+	"flow-topic-action-summarize-topic": "Tee yhteenveto",
 	"flow-topic-action-resummarize-topic": "Muokkaa aiheen yhteenvetoa",
+	"flow-topic-action-update-topic-summary": "Päivitä yhteenveto",
 	"flow-topic-action-suppress-topic": "Häivytä aihe",
 	"flow-topic-action-restore-topic": "Palauta aihe",
 	"flow-topic-action-undo-moderation": "Kumoa",
@@ -149,6 +152,10 @@
 	"flow-sorting-tooltip-newest": "{{GENDER:|Näet}} tällä hetkellä uusimmat aiheet ylimpänä. Napsauta saadaksesi lisää lajitteluvaihtoehtoja.",
 	"flow-sorting-tooltip-recent": "{{GENDER:|Näet}} tällä hetkellä viimeksi aktiiviset aiheet ylimpänä. Napsauta saadaksesi lisää lajitteluvaihtoehtoja.",
 	"flow-ve-mention-context-item-label": "Mainitse",
+	"flow-ve-mention-inspector-title": "Mainitse",
+	"flow-ve-mention-inspector-remove-label": "Poista",
+	"flow-ve-mention-placeholder": "Käyttäjätunnus",
 	"flow-ve-mention-tool-title": "Mainitse käyttäjä",
-	"flow-wikitext-switch-editor-tooltip": "Vaihda Visuaaliseen muokkaimeen"
+	"flow-wikitext-switch-editor-tooltip": "Vaihda Visuaaliseen muokkaimeen",
+	"flow-ve-switch-editor-tool-title": "Vaihda wikitekstimuokkaimeen"
 }

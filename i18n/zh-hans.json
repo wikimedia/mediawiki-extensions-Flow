@@ -24,7 +24,6 @@
 	"enableflow": "启用Flow",
 	"flow-desc": "工作流管理系统",
 	"flow-talk-taken-over": "该讨论页正在使用[https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow]。",
-	"flow-talk-username": "Flow讨论页管理器",
 	"log-name-flow": "Flow活动日志",
 	"logentry-delete-flow-delete-post": "$1{{GENDER:$2|删除}}在[[$6]]中“[[$3|$5]]”的一个[$4 帖子]",
 	"logentry-delete-flow-restore-post": "$1{{GENDER:$2|还原}}在[[$6]]中“[[$3|$5]]”的一个[$4 帖子]",
