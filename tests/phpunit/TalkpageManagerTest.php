@@ -13,7 +13,10 @@ class TalkpageManagerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideIsTalkpageOccupied
 	 */
 	public function testIsTalkpageOccupied( array $ns, Title $title, $checkContentModel, $expected ) {
-		$manager = new TalkpageManager( $ns );
+		foreach ( $ns as $namespace ) {
+			$wgNamespaceContentModels[$namespace] = CONTENT_MODEL_FLOW_BOARD;
+		}
+		$manager = new TalkpageManager();
 		$actual = $manager->isTalkpageOccupied( $title, $checkContentModel );
 		$this->assertEquals( $expected, $actual );
 	}
