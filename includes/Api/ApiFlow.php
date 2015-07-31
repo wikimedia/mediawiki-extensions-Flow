@@ -119,7 +119,7 @@ class ApiFlow extends ApiBase {
 		}
 		/** @var \Flow\TalkpageManager $controller */
 		$controller = Container::get( 'occupation_controller' );
-		if ( !$controller->isTalkpageOccupied( $page ) ) {
+		if ( $page->getContentModel() !== CONTENT_MODEL_FLOW_BOARD ) {
 			// just check for permissions, nothing else to do. if the commit
 			// is successful the OccupationListener will see the new revision
 			// and put the flow board in place.
