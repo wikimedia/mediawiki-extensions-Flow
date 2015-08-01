@@ -58,7 +58,7 @@ class TocTopicListFormatter extends BaseTopicListFormatter {
 					),
 					'format' => $contentFormat,
 				),
-				'last_updated' => $workflow->getLastModifiedObj()->getTimestamp() * 1000,
+				'last_updated' => $workflow->getLastUpdatedObj()->getTimestamp() * 1000,
 			);
 		}
 

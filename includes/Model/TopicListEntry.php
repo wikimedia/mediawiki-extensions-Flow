@@ -31,7 +31,7 @@ class TopicListEntry {
 		$obj = new self;
 		$obj->topicListId = $topicList->getId();
 		$obj->topicId = $topic->getId();
-		$obj->topicWorkflowLastUpdated = $topic->getLastModified();
+		$obj->topicWorkflowLastUpdated = $topic->getLastUpdated();
 		return $obj;
 	}
 

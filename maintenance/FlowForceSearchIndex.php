@@ -112,7 +112,7 @@ class FlowForceSearchIndex extends Maintenance {
 		if ( $last instanceof \Flow\Model\Header ) {
 			$timestamp = $last->getRevisionId()->getTimestampObj();
 		} else {
-			$timestamp = $last->getCollection()->getWorkflow()->getLastModifiedObj();
+			$timestamp = $last->getCollection()->getWorkflow()->getLastUpdatedObj();
 		}
 
 		// $timestamp is the timestamp of the last revision we fetched. fromId

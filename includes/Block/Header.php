@@ -168,7 +168,7 @@ class HeaderBlock extends AbstractBlock {
 		switch( $this->action ) {
 			case 'undo-edit-header':
 			case 'edit-header':
-				$this->workflow->updateLastModified( $this->newRevision->getRevisionId() );
+				$this->workflow->updateLastUpdated( $this->newRevision->getRevisionId() );
 				$this->storage->put( $this->workflow, array() ); // 'discussion' workflow
 				$this->storage->put( $this->newRevision, array(
 					'workflow' => $this->workflow,

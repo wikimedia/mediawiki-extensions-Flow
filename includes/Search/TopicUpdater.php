@@ -90,7 +90,7 @@ class TopicUpdater extends Updater {
 		/** @var PostRevision $revision */
 
 		// get timestamp from the most recent revision
-		$updateTimestamp = $revision->getCollection()->getWorkflow()->getLastModifiedObj();
+		$updateTimestamp = $revision->getCollection()->getWorkflow()->getLastUpdatedObj();
 		// timestamp for initial topic post
 		$creationTimestamp = $revision->getCollectionId()->getTimestampObj();
 

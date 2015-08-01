@@ -60,7 +60,7 @@ class Workflow {
 	/**
 	 * @var string
 	 */
-	protected $lastModified;
+	protected $lastUpdated;
 
 	/**
 	 * @var Title
@@ -90,7 +90,7 @@ class Workflow {
 		$obj->pageId = (int) $row['workflow_page_id'];
 		$obj->namespace = (int) $row['workflow_namespace'];
 		$obj->titleText = $row['workflow_title_text'];
-		$obj->lastModified = $row['workflow_last_update_timestamp'];
+		$obj->lastUpdated = $row['workflow_last_update_timestamp'];
 
 		return $obj;
 	}
@@ -128,7 +128,7 @@ class Workflow {
 			'workflow_namespace' => $obj->namespace,
 			'workflow_title_text' => $obj->titleText,
 			'workflow_lock_state' => 0, // unused
-			'workflow_last_update_timestamp' => $obj->lastModified,
+			'workflow_last_update_timestamp' => $obj->lastUpdated,
 			// not used, but set it to empty string so it doesn't fail in strict mode
 			'workflow_name' => '',
 		);
@@ -160,7 +160,7 @@ class Workflow {
 		$obj->pageId = $title->getArticleID();
 		$obj->namespace = $title->getNamespace();
 		$obj->titleText = $title->getDBkey();
-		$obj->updateLastModified( $obj->id );
+		$obj->updateLastUpdated( $obj->id );
 
 		return $obj;
 	}
@@ -281,15 +281,15 @@ class Workflow {
 	/**
 	 * @return string
 	 */
-	public function getLastModified() { return $this->lastModified; }
+	public function getLastUpdated() { return $this->lastUpdated; }
 
 	/**
 	 * @return \MWTimestamp
 	 */
-	public function getLastModifiedObj() { return new MWTimestamp( $this->lastModified ); }
+	public function getLastUpdatedObj() { return new MWTimestamp( $this->lastUpdated ); }
 
-	public function updateLastModified( UUID $latestRevisionId ) {
-		$this->lastModified = $latestRevisionId->getTimestamp();
+	public function updateLastUpdated( UUID $latestRevisionId ) {
+		$this->lastUpdated = $latestRevisionId->getTimestamp();
 	}
 
 	/**
