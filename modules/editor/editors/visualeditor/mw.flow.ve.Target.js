@@ -14,8 +14,7 @@
 	mw.flow.ve.Target = function FlowVeTarget() {
 		mw.flow.ve.Target.parent.call(
 			this,
-			'desktop',
-			{ floatable: false }
+			{ toolbarConfig: { floatable: false } }
 		);
 	};
 
