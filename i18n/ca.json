@@ -10,13 +10,13 @@
 			"Toniher",
 			"Xavier Dengra",
 			"Macofe",
-			"Annamerida"
+			"Annamerida",
+			"Paucabot"
 		]
 	},
 	"enableflow": "Habilita el Flow",
 	"flow-desc": "Sistema de gestió del flux de treball",
 	"flow-talk-taken-over": "Aquesta pàgina de discussió utilitza [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow].",
-	"flow-talk-username": "Gestor de pàgines de discussió del Flow",
 	"log-name-flow": "Registre d'activitat del Flow",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|ha esborrat}} un [$4 missatge] sobre «[[$3|$5]]» a [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|ha restaurat}} un [$4 missatge] sobre «[[$3|$5]]» a [[$6]]",
@@ -297,8 +297,8 @@
 	"flow-ve-mention-inspector-invalid-user": "L'usuari «$1» no està registrat.",
 	"flow-wikitext-editor-help": "El text wiki $1.",
 	"flow-wikitext-editor-help-and-preview": "El text wiki $1 i podeu $2 en qualsevol moment.",
-	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|utilitza el marcatge]]",
-	"flow-wikitext-editor-help-preview-the-result": "previsualitza el resultat",
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting/ca|utilitza el marcatge]]",
+	"flow-wikitext-editor-help-preview-the-result": "previsualitzar el resultat",
 	"flow-wikitext-switch-editor-tooltip": "Canvia a l'editor visual",
 	"flow-ve-switch-editor-tool-title": "Canvia a l'editor de text wiki",
 	"flow-mark-revision-patrolled-link-text": "Marca la pàgina com a supervisada",
