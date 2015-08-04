@@ -14,6 +14,7 @@ use Hooks;
 use IContextSource;
 use Message;
 use OutputPage;
+use ResourceLoader;
 use Title;
 use WebRequest;
 
@@ -234,7 +235,7 @@ class View extends ContextSource {
 		} );
 
 		// Add JSON blob for OOUI widgets
-		$out->addHTML( Html::inlineScript(
+		$out->addHTML( ResourceLoader::makeInlineScript(
 			'mw.flow = mw.flow || {}; mw.flow.data = ' .
 			FormatJson::encode( $jsonBlobResponse ) .
 			';'
