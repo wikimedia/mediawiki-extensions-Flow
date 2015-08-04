@@ -24,6 +24,10 @@ When(/^I enable a new Flow board on article (.*?)$/) do |article|
 end
 
 Then(/^I get confirmation for enabling a new Flow board$/) do
+  on(EnableFlowConfirmationPage) do |page|
+    page.new_board_link.when_present
+    expect(page.new_board_link.text).to match(@new_board_page)
+  end
   expect(on(EnableFlowConfirmationPage).new_board_link.text).to match(@new_board_page)
 end
 
@@ -32,7 +36,7 @@ Then(/^I click on the new Flow board link$/) do
 end
 
 Then(/^The page I am on is a Flow board$/) do
-  expect(on(AbstractFlowPage).flow_board_element).to be_visible
+  expect(on(AbstractFlowPage).flow_board_element.when_present).to be_visible
 end
 
 Then(/^I click the archive link$/) do

@@ -130,7 +130,7 @@ end
 
 Then(/^I am on my user page$/) do
   text = "User:#{user_label}"
-  expect(on(UserPage).first_heading_element.text).to match(text)
+  expect(on(UserPage).first_heading_element.when_present.text).to match(text)
 end
 
 Then(/^I should see a Delete button$/) do

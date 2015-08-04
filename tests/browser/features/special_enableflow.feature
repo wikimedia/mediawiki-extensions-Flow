@@ -3,6 +3,9 @@
 @en.wikipedia.beta.wmflabs.org
 Feature: Flow Special:EnableFlow enables new flow boards
 
+  Assumes Template:Wikitext_talk_page_converted_to_Flow exists
+  and returns a link to the archive page.
+
   Background:
     Given I am logged in
     And I navigate to enable flow page
