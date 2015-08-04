@@ -18,22 +18,13 @@ class LocalBufferedBagOStuff extends BufferedBagOStuff {
 		return array_key_exists( $key, $this->bag );
 	}
 
-	/**
-	 * @param string $key
-	 * @param null $casToken
-	 * @return bool|mixed
-	 */
-	public function get( $key, &$casToken = null ) {
+	public function get( $key, &$casToken = null, $flags = 0 ) {
 		$value = parent::get( $key, $casToken );
 		$this->bag[$key] = array( $value, 0 );
 		return $value;
 	}
 
-	/**
-	 * @param array $keys
-	 * @return array
-	 */
-	public function getMulti( array $keys ) {
+	public function getMulti( array $keys, $flags = 0 ) {
 		$values = parent::getMulti( $keys );
 
 		foreach ( $values as $key => $value ) {
