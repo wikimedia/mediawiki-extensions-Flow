@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "8ec42329_3fdfbadc",
+        "filename": "includes/Content/BoardContentHandler.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-04T03:02:04Z",
+      "side": 1,
+      "message": "And the first one only applies to non-existent pages (except for the converter).",
+      "revId": "b4ecef83ee01750ef5841101f4a860d6c8b825af",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_b073f012",
         "filename": "includes/TalkpageManager.php",
         "patchSetId": 4
@@ -13,6 +30,23 @@
       "writtenOn": "2015-07-31T20:26:49Z",
       "side": 1,
       "message": "use ContentHandler; ?",
+      "revId": "b4ecef83ee01750ef5841101f4a860d6c8b825af",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_7f00e238",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-04T03:02:04Z",
+      "side": 1,
+      "message": "This will be true if there\u0027s a wikitext page in a Flow namespace, I believe (since the default is still Flow).\n\nBut we don\u0027t want people to convert that page to Flow unless they have flow-create-board.  Do we need to enforce that here (there was a check in isTalkPageOccupied that would only look at the namespace (i.e. default model) if it didn\u0027t exist)?\n\nIs edit-content-model required to *create* a page that differs from the default content model?",
       "revId": "b4ecef83ee01750ef5841101f4a860d6c8b825af",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
