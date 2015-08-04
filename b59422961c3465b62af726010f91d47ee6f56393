@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_df3a3631",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-04T02:35:20Z",
+      "side": 1,
+      "message": "I don\u0027t understand this change.\n\nThe (non-batched) email notification for new topics only links to the board.  I do agree that the NS_TOPIC page should also exist by then, but the original comment was explaining why the board also had to.\n\nMaybe it could mention both.",
+      "revId": "b59422961c3465b62af726010f91d47ee6f56393",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
