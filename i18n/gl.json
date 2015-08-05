@@ -9,7 +9,6 @@
 	"enableflow": "Activar Flow",
 	"flow-desc": "Sistema de xestión do fluxo de traballo",
 	"flow-talk-taken-over": "Esta páxina de conversa está usando [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow].",
-	"flow-talk-username": "Xestor de páxinas de conversa de Flow",
 	"log-name-flow": "Rexistro de actividade de Flow",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|borrou}} unha [$4 publicación] sobre «[[$3|$5]]» en [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|restaurou}} unha [$4 publicación] sobre «[[$3|$5]]» en [[$6]]",
@@ -505,5 +504,6 @@
 	"flow-mark-revision-patrolled-link-text": "Marcar esta páxina como revisada",
 	"flow-mark-revision-patrolled-link-title": "Marcar esta páxina como revisada",
 	"flow-mark-diff-patrolled-link-text": "Marcar como revisada",
-	"flow-mark-diff-patrolled-link-title": "Marcar como revisada"
+	"flow-mark-diff-patrolled-link-title": "Marcar como revisada",
+	"flow-description-last-modified-at": "A última modificación desta descrición foi o $1 ás $2."
 }

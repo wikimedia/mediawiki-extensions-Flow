@@ -435,5 +435,6 @@
 	"flow-mark-revision-patrolled-link-text": "Oznacz tę stronę jako „sprawdzoną”",
 	"flow-mark-revision-patrolled-link-title": "Oznacz tę stronę jako „sprawdzoną”",
 	"flow-mark-diff-patrolled-link-text": "Oznacz edycję jako „sprawdzoną”",
-	"flow-mark-diff-patrolled-link-title": "Oznacz edycję jako „sprawdzoną”"
+	"flow-mark-diff-patrolled-link-title": "Oznacz edycję jako „sprawdzoną”",
+	"flow-description-last-modified-at": "Ten opis ostatnio zmodyfikowano o $2, $1."
 }

@@ -8,7 +8,6 @@
 	"enableflow": "Вклучи го Тек",
 	"flow-desc": "Систем за раководење со работниот тек",
 	"flow-talk-taken-over": "Оваа страница за разговор користи [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Тек].",
-	"flow-talk-username": "Раководител на страница за разговор со Тек",
 	"log-name-flow": "Дневник на активности во текот",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|избриша}} [$4 објава] на „[[$3|$5]]“ на [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|поврати}} [$4 објава] на „[[$3|$5]]“ на [[$6]]",
@@ -504,5 +503,6 @@
 	"flow-mark-revision-patrolled-link-text": "Означи страницава како проверена",
 	"flow-mark-revision-patrolled-link-title": "Означи страницава како проверена",
 	"flow-mark-diff-patrolled-link-text": "Означи како проверено",
-	"flow-mark-diff-patrolled-link-title": "Означи како проверено"
+	"flow-mark-diff-patrolled-link-title": "Означи како проверено",
+	"flow-description-last-modified-at": "Последната промена во описов е извршена на $1 г. во $2 ч."
 }

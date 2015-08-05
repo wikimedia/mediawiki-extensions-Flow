@@ -494,5 +494,6 @@
 	"flow-mark-revision-patrolled-link-text": "Diese Seite als kontrolliert markieren",
 	"flow-mark-revision-patrolled-link-title": "Diese Seite als kontrolliert markieren",
 	"flow-mark-diff-patrolled-link-text": "Als kontrolliert markieren",
-	"flow-mark-diff-patrolled-link-title": "Als kontrolliert markieren"
+	"flow-mark-diff-patrolled-link-title": "Als kontrolliert markieren",
+	"flow-description-last-modified-at": "Diese Beschreibung wurde zuletzt geändert am $1 um $2."
 }

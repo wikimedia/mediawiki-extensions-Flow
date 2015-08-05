@@ -54,6 +54,7 @@
 	"flow-skip-summary": "Salta't el resum",
 	"flow-edit-summary-placeholder": "Descriviu breument el resultat d'aquesta discussió",
 	"flow-summary-authored": "Resum per $1",
+	"flow-summary-edited": "Darrera {{GENDER:$1|edició}} del resum per $1",
 	"flow-show-change": "Mostra els canvis",
 	"flow-last-modified-by": "Darrera {{GENDER:$1|modificació}} per $1",
 	"flow-stub-post-content": "\"A causa d'un error tècnic, aquesta publicació no s'ha pogut recuperar.\"",

@@ -538,5 +538,6 @@
 	"flow-mark-revision-patrolled-link-text": "Marquer cette page comme relue",
 	"flow-mark-revision-patrolled-link-title": "Marquer cette page comme relue",
 	"flow-mark-diff-patrolled-link-text": "Marquer comme relue",
-	"flow-mark-diff-patrolled-link-title": "Marquer comme relue"
+	"flow-mark-diff-patrolled-link-title": "Marquer comme relue",
+	"flow-description-last-modified-at": "La description a été modifiée la dernière fois le $1 à $2."
 }

@@ -519,5 +519,6 @@
 	"flow-mark-revision-patrolled-link-text": "标记此页面为已巡查",
 	"flow-mark-revision-patrolled-link-title": "标记此页面为已巡查",
 	"flow-mark-diff-patrolled-link-text": "标记为已巡查",
-	"flow-mark-diff-patrolled-link-title": "标记为已巡查"
+	"flow-mark-diff-patrolled-link-title": "标记为已巡查",
+	"flow-description-last-modified-at": "此描述最近于$1 $2修改。"
 }

@@ -14,7 +14,6 @@
 	"enableflow": "הפעלת זרימה",
 	"flow-desc": "מערכת ניהול תהליכי עבודה",
 	"flow-talk-taken-over": "דף השיחה משתמש ב[https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal זרימה].",
-	"flow-talk-username": "מנהל דפי שיחה של זרימה",
 	"log-name-flow": "יומן פעילות זרימה",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|מחק|מחקה}} [$4 רשומה] בנושא \"[[$3|$5]]\" בלוח [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|שחזר|שחזרה}} [$4 רשומה] בנושא \"[[$3|$5]]\" בלוח [[$6]]",
@@ -510,5 +509,6 @@
 	"flow-mark-revision-patrolled-link-text": "סימון דף זה כבדוק",
 	"flow-mark-revision-patrolled-link-title": "סימון דף זה כבדוק",
 	"flow-mark-diff-patrolled-link-text": "סימון השינוי כבדוק",
-	"flow-mark-diff-patrolled-link-title": "סימון השינוי כבדוק"
+	"flow-mark-diff-patrolled-link-title": "סימון השינוי כבדוק",
+	"flow-description-last-modified-at": "התיאור הזה שונה בפעם האחרונה ב־$1 ב־$2."
 }
