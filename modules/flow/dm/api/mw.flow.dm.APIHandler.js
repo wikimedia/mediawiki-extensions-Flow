@@ -80,4 +80,21 @@
 				return data.topiclist;
 			} );
 	};
+
+	mw.flow.dm.APIHandler.prototype.saveReply = function ( replyTo, content, format ) {
+		var params = {
+			action: 'flow',
+			submodule: 'reply',
+			page: 'Topic:' + replyTo,
+			repreplyTo: replyTo,
+			repcontent: content,
+			repformat: format
+		};
+
+		return ( new mw.Api() ).postWithToken( 'edit', params )
+			.then( function ( data ) {
+				return data.flow.reply.workflow;
+			} );
+	};
+
 }( jQuery ) );

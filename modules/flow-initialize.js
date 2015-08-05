@@ -172,43 +172,67 @@
 				var $topic = $( this ).parent(),
 					placeholder = mw.msg( 'flow-reply-topic-title-placeholder', $topic.find( '.flow-topic-title' ).text().trim() ),
 					replyTo = $( this ).find( 'input[name="topic_replyTo"]' ).val(),
-					editorWidget = new mw.flow.ui.EditorWidget( {
-						placeholder: placeholder,
-						saveMsgKey: 'flow-reply-link',
-						collapsed: true
+					replyWidget = new mw.flow.ui.ReplyWidget( replyTo, {
+						placeholder: placeholder
 					} );
 
-				editorWidget.on( 'saveContent', function ( content, contentFormat ) {
-					editorWidget.pushPending();
-					new mw.Api().postWithToken( 'edit', {
-						action: 'flow',
-						submodule: 'reply',
-						page: 'Topic:' + replyTo, // Using pageTitle here doesn't work for some reason
-						repreplyTo: replyTo,
-						repcontent: content,
-						repformat: contentFormat
-					} )
-						.then( function ( data ) {
-							// HACK get the old system to rerender the topic
-							return flowBoard.flowBoardComponentRefreshTopic(
-								$topic,
-								data.flow.reply.workflow
-							);
-						} )
-						.then( function () {
-							// Destroy the editor
-							editorWidget.destroy();
-							editorWidget.$element.remove();
-							// refreshTopic event handler will call replaceReplyForms() on the
-							// rerendered topic, so the new reply form is also OOUIified
-						}, function () {
-							editorWidget.popPending();
-							//TODO display error
-						} );
+				replyWidget.on( 'saveContent', function ( workflow ) {
+					replyWidget.destroy();
+					replyWidget.$element.remove();
+
+debugger;
+					// HACK get the old system to rerender the topic
+					return flowBoard.flowBoardComponentRefreshTopic(
+						$topic,
+						workflow
+					);
 				} );
+
 				// Replace the reply form with the new editor widget
-				$( this ).replaceWith( editorWidget.$element );
+				$( this ).replaceWith( replyWidget.$element );
 			} );
+
+			// $element.find( '.flow-post.flow-reply-form' ).each( function () {
+			// 	var $topic = $( this ).parent(),
+			// 		placeholder = mw.msg( 'flow-reply-topic-title-placeholder', $topic.find( '.flow-topic-title' ).text().trim() ),
+			// 		replyTo = $( this ).find( 'input[name="topic_replyTo"]' ).val(),
+			// 		editorWidget = new mw.flow.ui.EditorWidget( {
+			// 			placeholder: placeholder,
+			// 			saveMsgKey: 'flow-reply-link',
+			// 			collapsed: true
+			// 		} );
+
+			// 	editorWidget.on( 'saveContent', function ( content, contentFormat ) {
+			// 		editorWidget.pushPending();
+			// 		new mw.Api().postWithToken( 'edit', {
+			// 			action: 'flow',
+			// 			submodule: 'reply',
+			// 			page: 'Topic:' + replyTo, // Using pageTitle here doesn't work for some reason
+			// 			repreplyTo: replyTo,
+			// 			repcontent: content,
+			// 			repformat: contentFormat
+			// 		} )
+			// 			.then( function ( data ) {
+			// 				// HACK get the old system to rerender the topic
+			// 				return flowBoard.flowBoardComponentRefreshTopic(
+			// 					$topic,
+			// 					data.flow.reply.workflow
+			// 				);
+			// 			} )
+			// 			.then( function () {
+			// 				// Destroy the editor
+			// 				editorWidget.destroy();
+			// 				editorWidget.$element.remove();
+			// 				// refreshTopic event handler will call replaceReplyForms() on the
+			// 				// rerendered topic, so the new reply form is also OOUIified
+			// 			}, function () {
+			// 				editorWidget.popPending();
+			// 				//TODO display error
+			// 			} );
+			// 	} );
+			// 	// Replace the reply form with the new editor widget
+			// 	$( this ).replaceWith( editorWidget.$element );
+			// } );
 		}
 		replaceReplyForms( $board );
 
