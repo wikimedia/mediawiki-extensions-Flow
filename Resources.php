@@ -376,6 +376,7 @@ $wgResourceModules += array(
 			'flow/ui/widgets/mw.flow.ui.ToCWidget.js',
 			'flow/ui/widgets/mw.flow.ui.ReorderTopicsWidget.js',
 			'flow/ui/widgets/mw.flow.ui.NavigationWidget.js',
+			'flow/ui/widgets/mw.flow.ui.ReplyWidget.js',
 
 			'flow/ui/widgets/editor/editors/mw.flow.ui.AbstractEditorWidget.js',
 			'flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js',
