@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_ebf5e24d",
+        "filename": "db_patches/patch-reference_wiki-phase1.sql",
+        "patchSetId": 11
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-05T21:26:58Z",
+      "side": 1,
+      "message": "This was supposed to be NULLable I think.  It looks like instead there are a bunch of empty-string value in production.\n\nToo late for WMF, but I\u0027ll update it anyway.",
+      "revId": "2b74b2bc0e07c05ce11c2644d58fc94b91d44d72",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_4b0d1640",
+        "filename": "includes/Model/Reference.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-05T21:26:58Z",
+      "side": 1,
+      "message": "Fm",
+      "revId": "2b74b2bc0e07c05ce11c2644d58fc94b91d44d72",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_66036710",
+        "filename": "includes/Model/Reference.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-05T21:26:58Z",
+      "side": 1,
+      "message": "Fm",
+      "revId": "2b74b2bc0e07c05ce11c2644d58fc94b91d44d72",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_8606931d",
+        "filename": "includes/Model/Reference.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-05T21:26:58Z",
+      "side": 1,
+      "message": "Fm",
+      "revId": "2b74b2bc0e07c05ce11c2644d58fc94b91d44d72",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
