@@ -376,6 +376,7 @@ $wgResourceModules += array(
 			'flow/ui/widgets/mw.flow.ui.ToCWidget.js',
 			'flow/ui/widgets/mw.flow.ui.ReorderTopicsWidget.js',
 			'flow/ui/widgets/mw.flow.ui.NavigationWidget.js',
+			'flow/ui/widgets/mw.flow.ui.ReplyWidget.js',
 			'flow/ui/widgets/mw.flow.ui.SidebarExpandWidget.js',
 
 			'flow/ui/widgets/editor/editors/mw.flow.ui.AbstractEditorWidget.js',
@@ -391,6 +392,7 @@ $wgResourceModules += array(
 			'styles/flow/widgets/mw.flow.ui.NavigationWidget.less',
 			'styles/flow/widgets/mw.flow.ui.TopicMenuSelectWidget.less',
 			'styles/flow/widgets/mw.flow.ui.ReorderTopicsWidget.less',
+			'styles/flow/widgets/mw.flow.ui.ReplyWidget.less',
 			'styles/flow/widgets/mw.flow.ui.SidebarExpandWidget.less',
 
 			'styles/flow/widgets/editor/mw.flow.ui.AnonWarningWidget.less',
