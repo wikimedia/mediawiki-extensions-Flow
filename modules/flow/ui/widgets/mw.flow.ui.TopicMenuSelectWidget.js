@@ -151,7 +151,10 @@
 			if ( !optionWidget ) {
 				optionWidget = new OO.ui.MenuOptionWidget( {
 					data: items[ i ],
-					label: items[ i ].getContent()
+					label: items[ i ].getContent(),
+					classes: items[ i ].getModerationState() === 'lock' ?
+						[ 'flow-ui-topicMenuSelectWidget-locked' ] :
+						[]
 				} );
 			}
 			widgets.push( optionWidget );
