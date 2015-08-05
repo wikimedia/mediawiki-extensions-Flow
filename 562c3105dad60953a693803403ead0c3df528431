@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_a6ecef8e",
+        "filename": "modules/engine/components/flow-undo-page.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-05T22:25:58Z",
+      "side": 1,
+      "message": "You inject a hidden input with the same name as the textarea. Does that definitely work, i.e. does the hidden input \"win\" in all browsers?\n\nI would feel more comfortable with this if you either unset the name attribute on the textarea, or overwrote the content of the textarea (using $textarea.val( newValue ); ). IIRC both editors (wikitext and VE) use their own thing for displaying content, and hide $textarea, so you should be able to overwrite the contents of that textarea without the user seeing anything strange.",
+      "revId": "562c3105dad60953a693803403ead0c3df528431",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_e64f57bf",
+        "filename": "modules/engine/components/flow-undo-page.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-05T22:25:58Z",
+      "side": 1,
+      "message": "This looks a lot like an XSS vulnerability. To do this in a way that\u0027s clearly safe, use:\n\n    $( form )\n        .append( $( \u0027\u003cinput\u003e\u0027 ).attr( {\n            type: \u0027hidden\u0027,\n            name: contentParamName,\n            value: content\n        } ) )",
+      "revId": "562c3105dad60953a693803403ead0c3df528431",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
