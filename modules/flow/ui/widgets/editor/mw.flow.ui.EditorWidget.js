@@ -157,6 +157,13 @@
 	};
 
 	/**
+	 * Focus the current editor
+	 */
+	mw.flow.ui.EditorWidget.prototype.focus = function () {
+		this.editorSwitcherWidget.focus();
+	};
+
+	/**
 	 * Destroy the widget.
 	 */
 	mw.flow.ui.EditorWidget.prototype.destroy = function () {
