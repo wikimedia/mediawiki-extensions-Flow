@@ -80,4 +80,31 @@
 				return data.topiclist;
 			} );
 	};
+
+	/**
+	 * Send an edit request to the API to save a reply.
+	 *
+	 * @param {string} topicId Topic Id
+	 * @param {string} replyTo The parent of this reply
+	 * @param {string} content Reply content
+	 * @param {string} format Reply content format
+	 * @return {jQuery.Promise} Promise that is resolved with the id of the workflow
+	 *  that this reply belongs to
+	 */
+	mw.flow.dm.APIHandler.prototype.saveReply = function ( topicId, replyTo, content, format ) {
+		var params = {
+			action: 'flow',
+			submodule: 'reply',
+			page: 'Topic:' + topicId,
+			repreplyTo: replyTo,
+			repcontent: content,
+			repformat: format
+		};
+
+		return ( new mw.Api() ).postWithToken( 'edit', params )
+			.then( function ( data ) {
+				return data.flow.reply.workflow;
+			} );
+	};
+
 }( jQuery ) );

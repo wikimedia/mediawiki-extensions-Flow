@@ -828,6 +828,9 @@
 		} );
 	}
 
+	// HACK expose this so flow-initialize.js can rerender topics when it needs to
+	FlowBoardComponentApiEventsMixin.prototype.flowBoardComponentRefreshTopic = _flowBoardComponentRefreshTopic;
+
 	function _activateSummarizeTopic( $target, flowBoard, topicSummary, action ) {
 		var $old = $target;
 
