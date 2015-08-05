@@ -52,7 +52,7 @@
 	 * @inheritdoc
 	 */
 	mw.flow.dm.ModeratedRevisionedContent.prototype.populate = function ( data ) {
-		this.setModerated( !!data.isModerated, data.moderateReason, data.moderateState, data.moderator );
+		this.setModerated( !!data.isModerated, data.moderateState, data.moderateReason && data.moderateReason.content, data.moderator );
 
 		// Parent method
 		mw.flow.dm.ModeratedRevisionedContent.parent.prototype.populate.call( this, data );
