@@ -88,9 +88,10 @@ class BufferedBagOStuff extends HashBagOStuff {
 	/**
 	 * @param string $key
 	 * @param mixed $casToken [optional]
+	 * @param int $flags [optional]
 	 * @return bool|mixed
 	 */
-	public function get( $key, &$casToken = null ) {
+	public function get( $key, &$casToken = null, $flags = 0 ) {
 		if ( !isset( $this->bag[$key] ) ) {
 			// Unknown in local cache = fetch from source cache
 			$value = $this->cache->get( $key, $casToken );
@@ -112,9 +113,10 @@ class BufferedBagOStuff extends HashBagOStuff {
 
 	/**
 	 * @param array $keys
+	 * @param int $flags [optional]
 	 * @return array
 	 */
-	public function getMulti( array $keys ) {
+	public function getMulti( array $keys, $flags = 0 ) {
 		$values = array();
 
 		// Retrieve all that we can from local cache
