@@ -28,7 +28,7 @@
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] on [[$3]] was imported from LiquidThreads to Flow",
 	"flow-user-moderated": "Moderated user",
 	"flow-board-header-browse-topics-link": "Browse topics",
-	"flow-board-header": "About this discussion",
+	"flow-board-header": "About this board",
 	"flow-board-collapse-description": "Hide description",
 	"flow-board-expand-description": "Show description",
 	"flow-edit-header-link": "Edit description",
