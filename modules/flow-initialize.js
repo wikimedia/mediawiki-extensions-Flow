@@ -9,7 +9,7 @@
 	 * @todo not like this
 	 */
 	$( document ).ready( function () {
-		var dataBlob, navWidget, flowBoard, dmBoard,
+		var dataBlob, navWidget, flowBoard, dmBoard, sidebarExpandWidget,
 			$component = $( '.flow-component' ),
 			$board = $( '.flow-board' ),
 			finishLoading = function () {
@@ -38,6 +38,15 @@
 		}
 
 		flowBoard = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $board );
+
+		if ( $component.hasClass( 'topic-page' ) ) {
+			// We are in single-topic view. Initialize the sidebar expand widget
+			sidebarExpandWidget = new mw.flow.ui.SidebarExpandWidget();
+			sidebarExpandWidget.$element.insertAfter( $board );
+			sidebarExpandWidget.on( 'toggle', function ( collapsed ) {
+				$board.toggleClass( 'flow-board-expanded', collapsed );
+			} );
+		}
 
 		// Load data model
 		mw.flow.system = new mw.flow.dm.System( {
