@@ -444,7 +444,7 @@ class TopicImportState {
 	/**
 	 * @var string
 	 */
-	protected $lastModified;
+	protected $lastUpdated;
 
 	public function __construct(
 		PageImportState $parent,
@@ -455,11 +455,11 @@ class TopicImportState {
 		$this->topicWorkflow = $topicWorkflow;
 		$this->topicTitle = $topicTitle;
 
-		$this->workflowModifiedProperty = new ReflectionProperty( 'Flow\\Model\\Workflow', 'lastModified' );
-		$this->workflowModifiedProperty->setAccessible( true );
+		$this->workflowUpdatedProperty = new ReflectionProperty( 'Flow\\Model\\Workflow', 'lastUpdated' );
+		$this->workflowUpdatedProperty->setAccessible( true );
 
-		$this->lastModified = '';
-		$this->recordModificationTime( $topicWorkflow->getId() );
+		$this->lastUpdated = '';
+		$this->recordUpdateTime( $topicWorkflow->getId() );
 	}
 
 	public function getMetadata() {
@@ -475,23 +475,23 @@ class TopicImportState {
 	 *
 	 * @param UUID $uuid UUID of the modification revision.
 	 */
-	public function recordModificationTime( UUID $uuid ) {
+	public function recordUpdateTime( UUID $uuid ) {
 		$timestamp = $uuid->getTimestamp();
 		$timestamp = wfTimestamp( TS_MW, $timestamp );
 
-		if ( $timestamp > $this->lastModified ) {
-			$this->lastModified = $timestamp;
+		if ( $timestamp > $this->lastUpdated ) {
+			$this->lastUpdated = $timestamp;
 		}
 	}
 
 	/**
-	 * Saves the last modified timestamp based on calls to recordModificationTime
+	 * Saves the last updated timestamp based on calls to recordUpdateTime
 	 * XXX: Kind of icky; reaching through the parent and doing a second put().
 	 */
-	public function commitLastModified() {
-		$this->workflowModifiedProperty->setValue(
+	public function commitLastUpdated() {
+		$this->workflowUpdatedProperty->setValue(
 			$this->topicWorkflow,
-			$this->lastModified
+			$this->lastUpdated
 		);
 
 		$this->parent->put( $this->topicWorkflow, $this->getMetadata() );
@@ -668,7 +668,7 @@ class TalkpageImportOperation {
 			$this->importPost( $topicState, $post, $topicState->topicTitle );
 		}
 
-		$topicState->commitLastModified();
+		$topicState->commitLastUpdated();
 	}
 
 	/**
@@ -776,7 +776,7 @@ class TalkpageImportOperation {
 		if ( $existingId ) {
 			$summary = $state->parent->getTopRevision( 'PostSummary', $existingId );
 			if ( $summary ) {
-				$state->recordModificationTime( $summary->getRevisionId() );
+				$state->recordUpdateTime( $summary->getRevisionId() );
 				$state->parent->logger->info( "Summary previously imported" );
 				return;
 			}
@@ -808,7 +808,7 @@ class TalkpageImportOperation {
 			$importSummary
 		);
 
-		$state->recordModificationTime( end( $revisions )->getRevisionId() );
+		$state->recordUpdateTime( end( $revisions )->getRevisionId() );
 		$state->parent->logger->info( "Finished importing summary with " . count( $revisions ) . " revisions" );
 	}
 
@@ -867,7 +867,7 @@ class TalkpageImportOperation {
 			$state->parent->postprocessor->afterPostImported( $state, $post, $topRevision->getPostId() );
 		}
 
-		$state->recordModificationTime( $topRevision->getRevisionId() );
+		$state->recordUpdateTime( $topRevision->getRevisionId() );
 
 		foreach ( $post->getReplies() as $subReply ) {
 			$this->importPost( $state, $subReply, $topRevision, $logPrefix . ' ' );

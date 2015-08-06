@@ -114,7 +114,7 @@ class TopicFormatter {
 		return array(
 			'reply_count' => $replies,
 			// ms timestamp
-			'last_updated' => $workflow ? $workflow->getLastModifiedObj()->getTimestamp() * 1000 : null,
+			'last_updated' => $workflow ? $workflow->getLastUpdatedObj()->getTimestamp() * 1000 : null,
 		);
 	}
 }

@@ -144,7 +144,7 @@ class TopicListFormatter extends BaseTopicListFormatter {
 
 		/** @var Workflow|null $workflow */
 		$workflow = isset( $workflows[$postAlphaId] ) ? $workflows[$postAlphaId] : null;
-		$ts = $workflow ? $workflow->getLastModifiedObj()->getTimestamp() : 0;
+		$ts = $workflow ? $workflow->getLastUpdatedObj()->getTimestamp() : 0;
 		return array(
 			'reply_count' => $replies,
 			'last_updated_readable' => $language->userTimeAndDate( $ts, $user ),

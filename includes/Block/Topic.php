@@ -441,7 +441,7 @@ class TopicBlock extends AbstractBlock {
 			}
 
 			$this->storage->put( $this->newRevision, $metadata );
-			$this->workflow->updateLastModified( $this->newRevision->getRevisionId() );
+			$this->workflow->updateLastUpdated( $this->newRevision->getRevisionId() );
 			$this->storage->put( $this->workflow, $metadata );
 			$newRevision = $this->newRevision;
 
