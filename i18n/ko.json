@@ -307,6 +307,6 @@
 	"grouppage-flow-bot": "Project:플로 봇",
 	"flow-wikitext-editor-help": "위키텍스트 $1",
 	"flow-wikitext-editor-help-preview-the-result": "결과 미리 보기",
-	"flow-wikitext-switch-editor-tooltip": "시각 편집기로 변환",
-	"flow-ve-switch-editor-tool-title": "위키 텍스트 에디터로 변경"
+	"flow-wikitext-switch-editor-tooltip": "시각편집기로 변환",
+	"flow-ve-switch-editor-tool-title": "위키텍스트 편집기로 전환"
 }

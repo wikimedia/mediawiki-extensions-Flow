@@ -231,5 +231,6 @@
 	"flow-mark-revision-patrolled-link-text": "Dës Säit als nogekuckt markéieren",
 	"flow-mark-revision-patrolled-link-title": "Dës Säit als nogekuckt markéieren",
 	"flow-mark-diff-patrolled-link-text": "Als nogekuckt markéieren",
-	"flow-mark-diff-patrolled-link-title": "Als nogekuckt markéieren"
+	"flow-mark-diff-patrolled-link-title": "Als nogekuckt markéieren",
+	"flow-description-last-modified-at": "Dës Beschreiwung gouf de(n)$1 ëm $2 fir d'lescht geännert."
 }

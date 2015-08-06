@@ -412,5 +412,6 @@
 	"flow-mark-revision-patrolled-link-text": "標記此頁面為已巡查",
 	"flow-mark-revision-patrolled-link-title": "標記此頁面為已巡查",
 	"flow-mark-diff-patrolled-link-text": "標記為已巡查",
-	"flow-mark-diff-patrolled-link-title": "標記為已巡查"
+	"flow-mark-diff-patrolled-link-title": "標記為已巡查",
+	"flow-description-last-modified-at": "此描述最後修改於 $1 $2。"
 }
