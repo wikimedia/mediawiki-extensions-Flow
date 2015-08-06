@@ -107,4 +107,28 @@
 			} );
 	};
 
+	/**
+	 * Save new topic in the board
+	 *
+	 * @param {string} title Topic title
+	 * @param {string} content Topic content
+	 * @param {string} format Content format
+	 * @return {jQuery.Promise} Promise that is resolved with the new topic id
+	 */
+	mw.flow.dm.APIHandler.prototype.saveNewTopic = function ( title, content, format ) {
+		var params = {
+			action: 'flow',
+			submodule: 'new-topic',
+			page: this.page,
+			nttopic: title,
+			ntcontent: content,
+			ntformat: format
+		};
+
+		return ( new mw.Api() ).postWithToken( 'edit', params )
+			.then( function ( response ) {
+				return OO.getProp( response.flow, 'new-topic', 'committed', 'topiclist', 'topic-id' );
+			} );
+	};
+
 }( jQuery ) );

@@ -9,8 +9,9 @@
 	 * @todo not like this
 	 */
 	$( document ).ready( function () {
-		var dataBlob, navWidget, flowBoard, dmBoard, sidebarExpandWidget,
+		var dataBlob, navWidget, flowBoard, dmBoard, newTopicWidget, sidebarExpandWidget,
 			siderailCollapsed = mw.user.options.get( 'flow-side-rail-state' ) === 'collapsed',
+			pageTitle = mw.Title.newFromText( mw.config.get( 'wgPageName' ) ),
 			$component = $( '.flow-component' ),
 			$board = $( '.flow-board' ),
 			finishLoading = function () {
@@ -69,7 +70,7 @@
 
 		// Load data model
 		mw.flow.system = new mw.flow.dm.System( {
-			pageTitle: mw.Title.newFromText( mw.config.get( 'wgPageName' ) ),
+			pageTitle: pageTitle,
 			tocPostsLimit: 50,
 			renderedTopics: $( '.flow-topic' ).length,
 			boardId: $component.data( 'flow-id' ),
@@ -297,6 +298,15 @@
 			} );
 		}
 		deactivateReplyLinks( $board );
+
+		// New topic form
+		newTopicWidget = new mw.flow.ui.NewTopicWidget( pageTitle.getPrefixedDb() );
+		newTopicWidget.on( 'save', function ( newTopicId ) {
+			// Display the new topic with the old system
+			var $stub = $( '<div class="flow-topic"><div></div></div>' ).prependTo( flowBoard.$container.find( '.flow-topics' ) );
+			return flowBoard.flowBoardComponentRefreshTopic( $stub.find( 'div' ), newTopicId );
+		} );
+		$( 'form.flow-newtopic-form' ).replaceWith( newTopicWidget.$element );
 
 		dataBlob = mw.flow && mw.flow.data;
 		if ( dataBlob && dataBlob.blocks ) {
