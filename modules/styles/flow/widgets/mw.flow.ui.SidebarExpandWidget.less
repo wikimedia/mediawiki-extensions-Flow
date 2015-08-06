@@ -1,0 +1,48 @@
+.flow-ui-sidebarExpandWidget {
+	display: none;
+	margin-top: 1.6em;
+
+	@media (min-width: 1165px) {
+		padding-left: 10px;
+		display: block;
+		float: right;
+		width: 34%;
+		min-height: 70vh;
+		box-sizing: border-box;
+
+	}
+	&-collapsed {
+		@media (min-width: 1165px) {
+			display: block;
+			float: right;
+			width: 24px;
+			margin-left: -24px;
+		}
+	}
+
+	.oo-ui-buttonElement.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon.oo-ui-icon-topic-collapse {
+		background: url( '../images/topic-collapse.svg' ) no-repeat;
+	}
+	.oo-ui-buttonElement.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon.oo-ui-icon-topic-expand {
+		background: url( '../images/topic-expand.svg' ) no-repeat;
+	}
+}
+
+.flow-component.topic-page .flow-board {
+	@media (min-width: 1165px) {
+		display: block;
+		float: left;
+		clear: left;
+		width: 66%;
+		box-sizing: border-box;
+		max-width: 1200px;
+		padding-right: 26px;
+	}
+
+	&-expanded {
+		@media (min-width: 1165px) {
+			width: 100%;
+			max-width: none;
+		}
+	}
+}
