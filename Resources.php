@@ -380,6 +380,7 @@ $wgResourceModules += array(
 			'flow/ui/widgets/mw.flow.ui.NavigationWidget.js',
 			'flow/ui/widgets/mw.flow.ui.ReplyWidget.js',
 			'flow/ui/widgets/mw.flow.ui.SidebarExpandWidget.js',
+			'flow/ui/widgets/mw.flow.ui.NewTopicWidget.js',
 
 			'flow/ui/widgets/editor/editors/mw.flow.ui.AbstractEditorWidget.js',
 			'flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js',
@@ -396,6 +397,7 @@ $wgResourceModules += array(
 			'styles/flow/widgets/mw.flow.ui.ReorderTopicsWidget.less',
 			'styles/flow/widgets/mw.flow.ui.ReplyWidget.less',
 			'styles/flow/widgets/mw.flow.ui.SidebarExpandWidget.less',
+			'styles/flow/widgets/mw.flow.ui.NewTopicWidget.less',
 
 			'styles/flow/widgets/editor/mw.flow.ui.AnonWarningWidget.less',
 			'styles/flow/widgets/editor/mw.flow.ui.EditorControlsWidget.less',
