@@ -9,7 +9,7 @@
 	 * @todo not like this
 	 */
 	$( document ).ready( function () {
-		var dataBlob, navWidget, flowBoard, dmBoard,
+		var dataBlob, navWidget, flowBoard, dmBoard, newTopicWidget,
 			pageTitle = mw.Title.newFromText( mw.config.get( 'wgPageName' ) ),
 			$component = $( '.flow-component' ),
 			$board = $( '.flow-board' ),
@@ -211,6 +211,15 @@
 			} );
 		}
 		replaceReplyForms( $board );
+
+		// New topic form
+		newTopicWidget = new mw.flow.ui.NewTopicWidget( pageTitle.getPrefixedDb() );
+		newTopicWidget.on( 'save', function ( newTopicId ) {
+			// Display the new topic with the old system
+			var $stub = $( '<div class="flow-topic"><div></div></div>' ).prependTo( flowBoard.$container.find( '.flow-topics' ) );
+			return flowBoard.flowBoardComponentRefreshTopic( $stub.find( 'div' ), newTopicId );
+		} );
+		$( 'form.flow-newtopic-form' ).replaceWith( newTopicWidget.$element );
 
 		dataBlob = mw.flow && mw.flow.data;
 		if ( dataBlob && dataBlob.blocks ) {
