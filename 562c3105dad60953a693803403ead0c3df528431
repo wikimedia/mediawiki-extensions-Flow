@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8ec42329_fcada72e",
+        "filename": "modules/engine/components/flow-undo-page.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-06T14:28:07Z",
+      "side": 1,
+      "message": "I haven\u0027t tested in all the browsers yet but it seems indeed safer to set the value of the textarea.",
+      "parentUuid": "8ec42329_a6ecef8e",
+      "revId": "562c3105dad60953a693803403ead0c3df528431",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec42329_e64f57bf",
         "filename": "modules/engine/components/flow-undo-page.js",
         "patchSetId": 8
@@ -30,6 +48,24 @@
       "writtenOn": "2015-08-05T22:25:58Z",
       "side": 1,
       "message": "This looks a lot like an XSS vulnerability. To do this in a way that\u0027s clearly safe, use:\n\n    $( form )\n        .append( $( \u0027\u003cinput\u003e\u0027 ).attr( {\n            type: \u0027hidden\u0027,\n            name: contentParamName,\n            value: content\n        } ) )",
+      "revId": "562c3105dad60953a693803403ead0c3df528431",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec42329_1c40b3a6",
+        "filename": "modules/engine/components/flow-undo-page.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-06T14:28:07Z",
+      "side": 1,
+      "message": "Absolutely.",
+      "parentUuid": "8ec42329_e64f57bf",
       "revId": "562c3105dad60953a693803403ead0c3df528431",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
