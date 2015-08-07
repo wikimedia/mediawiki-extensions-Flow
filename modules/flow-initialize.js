@@ -114,6 +114,9 @@
 			$existing: $( '.flow-ui-boardDescriptionWidget-content' ).contents()
 		} );
 		$( '.flow-ui-boardDescriptionWidget' ).replaceWith( descriptionWidget.$element );
+		// The category widget is inside the board description widget.
+		// Remove it here
+		$( '.flow-board-header-category-view-nojs' ).detach();
 
 		// HACK: These event handlers should be in the prospective widgets
 		// they will move once we have Board UI and Topic UI widgets
