@@ -59,6 +59,7 @@ $wgResourceModules += array(
 			'handlebars/flow_form_cancel_button.partial.handlebars',
 			'handlebars/flow_header_title.partial.handlebars',
 			'handlebars/flow_header_detail.partial.handlebars',
+			'handlebars/flow_header_categories.partial.handlebars',
 			'handlebars/flow_header_footer.partial.handlebars',
 			// HACK: Get rid of this when the description uses js ooui widgets
 			'handlebars/flow_header_detail_oldsystem.partial.handlebars',
