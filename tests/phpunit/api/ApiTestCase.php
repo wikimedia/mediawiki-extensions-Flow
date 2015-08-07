@@ -58,7 +58,7 @@ abstract class ApiTestCase extends BaseApiTestCase {
 		User $user = null
 	) {
 		if ( $user === null ) {
-			$user = self::$users['sysop']->user;
+			$user = self::$users['sysop']->getUser();
 		}
 
 		// reset flow state before each request

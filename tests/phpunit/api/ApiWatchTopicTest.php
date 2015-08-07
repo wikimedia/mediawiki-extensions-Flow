@@ -41,7 +41,7 @@ class ApiWatchTopicTest extends ApiTestCase {
 		$topic = $this->createTopic();
 
 		$title = Title::newFromText( $topic['topic-page'] );
-		$init( WatchedItem::fromUserTitle( self::$users['sysop']->user, $title, false ) );
+		$init( WatchedItem::fromUserTitle( self::$users['sysop']->getUser(), $title, false ) );
 
 		// issue a watch api request
 		$data = $this->doApiRequest( $request + array(
