@@ -209,7 +209,42 @@
 					replyTo = $( this ).find( 'input[name="topic_replyTo"]' ).val(),
 					replyWidget = new mw.flow.ui.ReplyWidget( $topic.data( 'flowId' ), replyTo, {
 						placeholder: placeholder
+					} ),
+					editorWidget = new mw.flow.ui.EditorWidget( {
+						placeholder: placeholder,
+						saveMsgKey: 'flow-reply-link',
+						collapsed: true
 					} );
+
+				editorWidget.on( 'saveContent', function ( content, contentFormat ) {
+					editorWidget.pushPending();
+					new mw.Api().postWithToken( 'edit', {
+						action: 'flow',
+						submodule: 'reply',
+						page: 'Topic:' + replyTo, // Using pageTitle here doesn't work for some reason
+						repreplyTo: replyTo,
+						repcontent: content,
+						repformat: contentFormat
+					} )
+						.then( function ( data ) {
+							// HACK get the old system to rerender the topic
+							return flowBoard.flowBoardComponentRefreshTopic(
+								$topic,
+								data.flow.reply.workflow
+							);
+						} )
+						.then( function () {
+							// Destroy the editor
+							editorWidget.destroy();
+							editorWidget.$element.remove();
+							// refreshTopic event handler will call replaceReplyForms() on the
+							// rerendered topic, so the new reply form is also OOUIified
+						}, function () {
+							editorWidget.popPending();
+						} );
+				} );
+				// Replace the reply form with the new editor widget
+				$( this ).replaceWith( editorWidget.$element );
 
 				replyWidget.on( 'saveContent', function ( workflow ) {
 					replyWidget.destroy();
@@ -315,6 +350,10 @@
 		} );
 		$( 'form.flow-newtopic-form' ).replaceWith( newTopicWidget.$element );
 
+		// The dategory widget is inside the board description widget.
+		// Remove it here
+		$( '.flow-board-header-category-view' ).detach();
+
 		dataBlob = mw.flow && mw.flow.data;
 		if ( dataBlob && dataBlob.blocks ) {
 			// Populate the rendered topics or topic (if we are in a single-topic view)
@@ -324,6 +363,9 @@
 			// Populate the ToC topics
 			if ( dataBlob.toc ) {
 				mw.flow.system.populateBoardTopicsFromJson( dataBlob.toc );
+			}
+			if ( dataBlob.categories ) {
+				dmBoard.setCategoriesFromObject( dataBlob.categories );
 			}
 		} else {
 			mw.flow.system.populateBoardFromApi();
