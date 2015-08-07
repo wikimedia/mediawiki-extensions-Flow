@@ -35,6 +35,7 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 				),
 				// This last_updated is used for the 'newest' test, then later changed for 'updated' test.
 				'last_updated' => $actualRevision['last_updated'],
+				'isModerated' => false,
 			);
 		}
 

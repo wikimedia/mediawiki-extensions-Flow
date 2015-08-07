@@ -43,6 +43,15 @@ class TocTopicListFormatter extends BaseTopicListFormatter {
 
 			$workflow = $workflowsByWorkflowId[$topicId];
 
+			$moderatedRevision = $this->templating->getModeratedRevision( $postRevision );
+			$moderationData = $moderatedRevision->isModerated() ?
+				array(
+					'isModerated' => true,
+					'moderateState' => $moderatedRevision->getModerationState(),
+				) :
+				array(
+					'isModerated' => false
+				);
 			$result['revisions'][$revisionId] = array(
 				// Keep this as a minimal subset of
 				// RevisionFormatter->formatApi, and keep the same content
@@ -59,7 +68,7 @@ class TocTopicListFormatter extends BaseTopicListFormatter {
 					'format' => $contentFormat,
 				),
 				'last_updated' => $workflow->getLastUpdatedObj()->getTimestamp() * 1000,
-			);
+			) + $moderationData;
 		}
 
 		$pagingOption = $page->getPagingLinksOptions();
