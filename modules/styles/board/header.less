@@ -48,6 +48,25 @@ div#content h2.flow-board-header-title {
 	display: none;
 }
 
+.flow-board-header-category-view-nojs,
+.flow-board-header-category-view {
+	background: white;
+	padding: 0.5em;
+
+	.flow-board-header-category-list { //ul
+		list-style-type: none;
+		list-style-image: none;
+
+		.flow-board-header-category-item {
+			display: inline-block;
+		}
+
+		.flow-board-header-category-item + .flow-board-header-category-item:before {
+			content: " | ";
+		}
+	}
+}
+
 .side-rail-toggle-button {
 	visibility: hidden;
 	position: absolute;
