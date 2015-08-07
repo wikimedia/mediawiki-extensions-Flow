@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec42329_f15e2218",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-07T11:49:18Z",
+      "side": 1,
+      "message": "Did you add the local variable \u0027siderailCollapsed\u0027 because you wanted to use it here?",
+      "revId": "79d0f821fa50088005f5f7bc9fabc8d009656a0b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
