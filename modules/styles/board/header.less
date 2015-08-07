@@ -48,6 +48,24 @@ div#content h2.flow-board-header-title {
 	display: none;
 }
 
+.flow-board-header-category-view {
+	background: white;
+	padding: 0.5em;
+
+	ul {
+		list-style-type: none;
+		list-style-image: none;
+
+		li {
+			display: inline-block;
+		}
+
+		li + li:before {
+			content: " | ";
+		}
+	}
+}
+
 .side-rail-toggle-button {
 	visibility: hidden;
 	position: absolute;

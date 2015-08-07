@@ -77,6 +77,27 @@
 	};
 
 	/**
+	 * Get page categories. This will recursively continue to fetch results
+	 * until all page categories are fetched.
+	 *
+	 * @return {jQuery.Promise} Promise that is resolved when the API request
+	 *  is done, with the API result.
+	 */
+	mw.flow.dm.APIHandler.prototype.getCategories = function () {
+		var params = {
+				action: 'query',
+				titles: this.page,
+				generator: 'categories',
+				gcllimit: 'max'
+			};
+
+		return ( new mw.Api() ).get( params )
+		.then( function ( response ) {
+			return OO.getProp( response, 'query', 'pages' );
+		} );
+	};
+
+	/**
 	 * Send a request to get topic list
 	 *
 	 * @param {string} orderType Sort order type, 'newest' or 'updated'

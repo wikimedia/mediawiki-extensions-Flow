@@ -18,7 +18,8 @@
 		// Parent constructor
 		mw.flow.ui.BoardDescriptionWidget.parent.call( this, config );
 
-		this.attachModel( boardModel.getDescription() );
+		this.board = boardModel;
+		this.attachModel( this.board.getDescription() );
 
 		// Since the content is already displayed, we will "steal" the already created
 		// node to avoid having to render it twice.
@@ -34,7 +35,7 @@
 			.append( $content );
 
 		this.api = new mw.flow.dm.APIHandler(
-			boardModel.getPageTitle().getPrefixedDb(),
+			this.board.getPageTitle().getPrefixedDb(),
 			{
 				currentRevision: this.model.getRevisionId()
 			}
@@ -62,6 +63,8 @@
 			classes: [ 'flow-ui-boardDescriptionWidget-editButton' ]
 		} );
 
+		this.categoriesWidget = new mw.flow.ui.CategoriesWidget( this.board );
+
 		// Events
 		this.button.connect( this, { click: 'onEditButtonClick' } );
 		this.editor.connect( this, {
@@ -75,7 +78,8 @@
 				this.anonWarning.$element,
 				this.button.$element,
 				this.$content,
-				this.editor.$element
+				this.editor.$element,
+				this.categoriesWidget.$element
 			)
 			.addClass( 'flow-ui-boardDescriptionWidget' );
 	};
@@ -100,6 +104,7 @@
 		this.button.toggle( false );
 		this.error.toggle( false );
 		this.$content.addClass( 'oo-ui-element-hidden' );
+		this.categoriesWidget.$element.addClass( 'oo-ui-element-hidden' );
 
 		this.editor.toggle( true );
 		if ( this.editor.isActive() ) {
@@ -206,6 +211,28 @@
 
 				widget.error.toggle( true );
 			} )
+			// Get the new categories
+			.then( this.api.getCategories.bind( this.api ) )
+			.then( function ( catObject ) {
+				var page, catName,
+					categoryDMs = [];
+				// Create category data models
+				for ( page in catObject ) {
+					catName = catObject[page].title;
+					categoryDMs.push( new mw.flow.dm.CategoryItem( catName, {
+						exists: catObject[page].missing === undefined
+					} ) );
+				}
+
+				// Update the board data model
+				widget.board.clearCategories();
+				widget.board.addCategories( categoryDMs );
+			} )
+			// Remove the editor and show content
+			.then( function () {
+				widget.showContent( true );
+			} )
+			// Always pop pending for the editor
 			.always( function () {
 				widget.editor.popPending();
 			} );
@@ -229,6 +256,7 @@
 		// Display the edit button and the content
 		this.button.toggle( true );
 		this.$content.removeClass( 'oo-ui-element-hidden' );
+		this.categoriesWidget.$element.removeClass( 'oo-ui-element-hidden' );
 	};
 
 	/**
