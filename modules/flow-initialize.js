@@ -9,7 +9,7 @@
 	 * @todo not like this
 	 */
 	$( document ).ready( function () {
-		var dataBlob, navWidget, flowBoard, dmBoard, descriptionWidget,
+		var dataBlob, navWidget, flowBoard, dmBoard, descriptionWidget, categoriesWidget,
 			pageTitle = mw.Title.newFromText( mw.config.get( 'wgPageName' ) ),
 			$component = $( '.flow-component' ),
 			$board = $( '.flow-board' ),
@@ -224,6 +224,10 @@
 		}
 		replaceReplyForms( $board );
 
+		// The dategory widget is inside the board description widget.
+		// Remove it here
+		$( '.flow-board-header-category-view' ).detach();
+
 		dataBlob = mw.flow && mw.flow.data;
 		if ( dataBlob && dataBlob.blocks ) {
 			// Populate the rendered topics or topic (if we are in a single-topic view)
@@ -233,6 +237,9 @@
 			// Populate the ToC topics
 			if ( dataBlob.toc ) {
 				mw.flow.system.populateBoardTopicsFromJson( dataBlob.toc );
+			}
+			if ( dataBlob.categories ) {
+				dmBoard.setCategoriesFromObject( dataBlob.categories );
 			}
 		} else {
 			mw.flow.system.populateBoardFromApi();
