@@ -3,34 +3,10 @@
 namespace Flow\Formatter;
 
 use Flow\Exception\FlowException;
-use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
-use Flow\Data\ManagerGroup;
-use Flow\Repository\TreeRepository;
-use Flow\FlowActions;
 
 class TopicHistoryQuery  extends AbstractQuery {
-
-	/**
-	 * @var FlowActions
-	 */
-	protected $actions;
-
-	/**
-	 * @param ManagerGroup $storage
-	 * @param TreeRepository $treeRepo
-	 * @param FlowActions $actions
-	 */
-	public function __construct(
-		ManagerGroup $storage,
-		TreeRepository $treeRepo,
-		FlowActions $actions )
-	{
-		parent::__construct( $storage, $treeRepo );
-		$this->actions = $actions;
-	}
-
 	/**
 	 * @param UUID $postId
 	 * @param int $limit
@@ -60,9 +36,6 @@ class TopicHistoryQuery  extends AbstractQuery {
 		$results = $replies = array();
 		foreach ( $history as $revision ) {
 			try {
-				if ( $this->excludeFromHistory( $revision ) ) {
-					continue;
-				}
 				$results[] = $row = new TopicRow;
 				$this->buildResult( $revision, null, $row );
 				if ( $revision instanceof PostRevision ) {
@@ -88,11 +61,4 @@ class TopicHistoryQuery  extends AbstractQuery {
 		return $results;
 	}
 
-	/**
-	 * @param AbstractRevision $revision
-	 * @return bool
-	 */
-	private function excludeFromHistory( AbstractRevision $revision ) {
-		return (bool) $this->actions->getValue( $revision->getChangeType(), 'exclude_from_history' );
-	}
 }
