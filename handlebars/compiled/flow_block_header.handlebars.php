@@ -62,7 +62,12 @@
 '.$sp.'	<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-speechBubbles pull-right expand-button"
 '.$sp.'		  title="'.LCRun3::ch($cx, 'l10n', array(array('flow-board-expand-description'),array()), 'encq').'"></span>
 '.$sp.'</a>
-';},'flow_header_footer' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-board-header-footer">
+';},'flow_header_categories' => function ($cx, $in, $sp) {return ''.$sp.''.((LCRun3::ifvar($cx, ((isset($cx['sp_vars']['root']['categories']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['categories'] : null))) ? '<div class="flow-board-header-category-view-nojs">
+'.$sp.'	<ul class="flow-board-header-category-list">
+'.$sp.''.LCRun3::sec($cx, ((isset($cx['sp_vars']['root']['categories']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['categories'] : null), $in, true, function($cx, $in)use($sp){return '		<li class="flow-board-header-category-item">'.LCRun3::ch($cx, 'html', array(array($in),array()), 'encq').'</li>
+'.$sp.'';}).'	</ul>
+'.$sp.'</div>
+'.$sp.'' : '').'';},'flow_header_footer' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-board-header-footer">
 '.$sp.'  <hr />
 '.$sp.'  <p>
 '.$sp.'    '.LCRun3::ch($cx, 'html', array(array(((isset($in['copyrightMessage']) && is_array($in)) ? $in['copyrightMessage'] : null)),array()), 'encq').'
@@ -76,7 +81,7 @@
     );
     
     return '<div class="flow-board-header flow-load-interactive" data-flow-load-handler="loadSideRail">
-'.LCRun3::p($cx, 'flow_header_title', array(array($in),array()), '	').''.LCRun3::p($cx, 'flow_errors', array(array($in),array()), '	').''.((LCRun3::ifvar($cx, ((isset($in['oldSystem']) && is_array($in)) ? $in['oldSystem'] : null))) ? ''.LCRun3::p($cx, 'flow_header_detail_oldsystem', array(array($in),array()), '		').'' : ''.LCRun3::p($cx, 'flow_header_detail', array(array($in),array()), '		').'').''.LCRun3::p($cx, 'flow_header_footer', array(array($in),array()), '	').'</div>
+'.LCRun3::p($cx, 'flow_header_title', array(array($in),array()), '	').''.LCRun3::p($cx, 'flow_errors', array(array($in),array()), '	').''.((LCRun3::ifvar($cx, ((isset($in['oldSystem']) && is_array($in)) ? $in['oldSystem'] : null))) ? ''.LCRun3::p($cx, 'flow_header_detail_oldsystem', array(array($in),array()), '		').'' : ''.LCRun3::p($cx, 'flow_header_detail', array(array($in),array()), '		').'').''.LCRun3::p($cx, 'flow_header_categories', array(array($in),array()), '	').''.LCRun3::p($cx, 'flow_header_footer', array(array($in),array()), '	').'</div>
 ';
 }
 ?>
