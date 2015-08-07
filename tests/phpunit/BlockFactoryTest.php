@@ -2,6 +2,7 @@
 
 namespace Flow\Tests;
 
+use Flow\Container;
 use Flow\BlockFactory;
 use Flow\NotificationController;
 
@@ -53,7 +54,7 @@ class BlockFactoryTest extends FlowTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		return new BlockFactory( $storage, $rootPostLoader );
+		return new BlockFactory( $storage, $rootPostLoader, Container::get( 'flow_actions' ) );
 	}
 
 	protected function mockWorkflow( $type ) {

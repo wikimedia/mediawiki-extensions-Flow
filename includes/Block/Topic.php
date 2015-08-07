@@ -3,6 +3,7 @@
 namespace Flow\Block;
 
 use Flow\Container;
+use Flow\FlowActions;
 use Flow\Data\ManagerGroup;
 use Flow\Data\Pager\HistoryPager;
 use Flow\Exception\FailCommitException;
@@ -43,6 +44,11 @@ class TopicBlock extends AbstractBlock {
 	 * @var PostRevision|null
 	 */
 	protected $newRevision;
+
+	/**
+	 * @var FlowActions
+	 */
+	protected $actions;
 
 	/**
 	 * @var array
@@ -89,7 +95,7 @@ class TopicBlock extends AbstractBlock {
 		'lock-topic' => 'lock',
 	);
 
-	public function __construct( Workflow $workflow, ManagerGroup $storage, $root ) {
+	public function __construct( Workflow $workflow, ManagerGroup $storage, $root, FlowActions $actions ) {
 		parent::__construct( $workflow, $storage );
 		if ( $root instanceof PostRevision ) {
 			$this->root = $root;
@@ -100,6 +106,8 @@ class TopicBlock extends AbstractBlock {
 				'Expected PostRevision or RootPostLoader, received: ' . is_object( $root ) ? get_class( $root ) : gettype( $root ), 'invalid-input'
 			);
 		}
+
+		$this->actions = $actions;
 	}
 
 	protected function validate() {
@@ -730,7 +738,7 @@ class TopicBlock extends AbstractBlock {
 		$offset = $wgRequest->getText( 'offset' );
 		$offset = $offset ? UUID::create( $offset ) : null;
 
-		$pager = new HistoryPager( $query, $uuid );
+		$pager = new HistoryPager( $this->actions, $query, $uuid );
 		$pager->setLimit( $limit );
 		$pager->setOffset( $offset );
 		$pager->doQuery();
