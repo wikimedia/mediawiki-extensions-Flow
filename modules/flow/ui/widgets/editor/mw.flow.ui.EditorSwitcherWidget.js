@@ -228,7 +228,7 @@
 				widget.popPending();
 				newEditor.setDisabled( widget.isDisabled() );
 
-				widget.placeholderInput.detach();
+				widget.placeholderInput.$element.detach();
 				widget.$element.append( newEditor.$element );
 
 				newEditor.toggle( true );
