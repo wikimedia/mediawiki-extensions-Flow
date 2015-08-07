@@ -11,7 +11,8 @@
 			"Albinomamba",
 			"Stens51",
 			"Jenniesarina",
-			"Josve05a"
+			"Josve05a",
+			"Lejonel"
 		]
 	},
 	"enableflow": "Aktivera Flow",
@@ -485,7 +486,7 @@
 	"flow-talk-conversion-archive-edit-reason": "Konvertering av diskussion i wikitext till Flow",
 	"flow-previous-diff": "← Äldre redigering",
 	"flow-next-diff": "Nyare redigering →",
-	"flow-undo": "ångra",
+	"flow-undo": "gör ogjord",
 	"flow-undo-latest-revision": "Nuvarande version",
 	"flow-undo-your-text": "Din text",
 	"flow-undo-edit-header": "Redigera beskrivningen",
