@@ -307,9 +307,9 @@ class HeaderBlock extends AbstractBlock {
 			$serializer->setIncludeHistoryProperties( true );
 
 			$output['revision'] = $serializer->formatApi( $row, $this->context );
-
-			$output['copyrightMessage'] = $this->context->getSkin()->getCopyright();
 		}
+
+		$output['copyrightMessage'] = $this->context->getSkin()->getCopyright();
 
 		return $output;
 	}
