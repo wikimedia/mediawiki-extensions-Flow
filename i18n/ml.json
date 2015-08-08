@@ -3,13 +3,13 @@
 		"authors": [
 			"Praveenp",
 			"Suresh.balasubra",
-			"Hamnashafeer"
+			"Hamnashafeer",
+			"Nesi"
 		]
 	},
 	"enableflow": "ഫ്ലോ സജ്ജമാക്കുക",
 	"flow-desc": "പ്രവൃത്തി കൈകാര്യ സൗകര്യം",
 	"flow-talk-taken-over": "ഈ സംവാദത്താൾ [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal ഫ്ലോ] ഉപയോഗിക്കുന്നു.",
-	"flow-talk-username": "ഫ്ലോ സംവാദത്താൾ കൈകാര്യോപകരണം",
 	"log-name-flow": "ഫ്ലോ പ്രവർത്തനരേഖ",
 	"logentry-delete-flow-delete-post": "[[$6]] താളിലെ \"[[$3|$5]]\" എന്നതിലുള്ള ഒരു [$4 കുറിപ്പ്]  $1 {{GENDER:$2|മായ്ച്ചു}}",
 	"logentry-delete-flow-restore-post": "[[$6]] താളിലെ \"[[$3|$5]]\" എന്നതിലുള്ള താളിലെ  ഒരു [$4 കുറിപ്പ്] $1 {{GENDER:$2|പുനഃസ്ഥാപിച്ചു}}",
@@ -205,6 +205,7 @@
 	"flow": "പ്രവാഹം",
 	"flow-special-type": "തരം",
 	"flow-special-type-post": "കുറിപ്പ്",
+	"apihelp-flow+view-topic-history-description": "ഒരു വിഷയത്തിന്റെ നാൾവഴി പരിശോധിക്കുക.",
 	"flow-previous-diff": "← പഴയ തിരുത്ത്",
 	"flow-next-diff": "പുതിയ തിരുത്ത് →",
 	"flow-undo": "തിരസ്കരിക്കുക",
@@ -221,5 +222,6 @@
 	"flow-wikitext-editor-help": "വിക്കിഎഴുത്ത് $1.",
 	"flow-wikitext-editor-help-preview-the-result": "ഫലം എങ്ങനെയുണ്ടെന്ന് കാണുക",
 	"flow-wikitext-switch-editor-tooltip": "കണ്ടുതിരുത്തൽ ഉപകരണത്തിലേക്ക് മാറുക",
-	"flow-ve-switch-editor-tool-title": "വിക്കി എഴുത്തിലേക്ക് മാറുക"
+	"flow-ve-switch-editor-tool-title": "വിക്കി എഴുത്തിലേക്ക് മാറുക",
+	"flow-description-last-modified-at": "ഈ വിവരണം അവസാനം തിരുത്തിയത് $1 -നു $2 മണിക്കാണ്"
 }

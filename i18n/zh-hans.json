@@ -450,6 +450,7 @@
 	"apihelp-flow+view-post-param-format": "返回内容的格式。",
 	"apihelp-flow+view-post-example-1": "获取[[Topic:S2tycnas4hcucw8w]]上帖子的内容作为wiki文本",
 	"apihelp-flow+view-post-history-description": "浏览一个帖子的修订历史。",
+	"apihelp-flow+view-post-history-param-postId": "要查看修订历史的帖子ID。",
 	"apihelp-flow+view-post-history-param-format": "返回内容的格式。",
 	"apihelp-flow+view-post-history-example-1": "检索在[[Topic:S2tycnas4hcucw8w]]的帖子修订作为wiki文本",
 	"apihelp-flow+view-topic-description": "查看话题。",
