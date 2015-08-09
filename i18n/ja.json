@@ -55,6 +55,8 @@
 	"flow-reply-topic-title-placeholder": "「$1」への返信",
 	"flow-reply-link": "{{GENDER:$1|返信}}",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|感謝}}}}",
+	"flow-history-action-delete-post": "削除",
+	"flow-history-action-hide-post": "非表示",
 	"flow-history-action-lock-topic": "解決する",
 	"flow-history-action-unlock-topic": "再開",
 	"flow-post-edited": "$1 が $2 に{{GENDER:$1|編集した}}投稿",
@@ -338,5 +340,6 @@
 	"flow-previous-diff": "← 古い編集",
 	"flow-next-diff": "新しい編集 →",
 	"flow-undo": "取り消し",
+	"flow-mark-revision-patrolled-link-text": "このページを巡回済みにする",
 	"flow-mark-diff-patrolled-link-text": "巡回済みにする"
 }

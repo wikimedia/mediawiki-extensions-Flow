@@ -224,6 +224,8 @@
 	"flow-sorting-tooltip-recent": "{{GENDER:|Näet}} tällä hetkellä viimeksi aktiiviset aiheet ylimpänä. Napsauta saadaksesi lisää lajitteluvaihtoehtoja.",
 	"flow-edited": "Muokattu",
 	"flow-edited-by": "Muokannut $1",
+	"group-flow-bot": "botit (Flow)",
+	"group-flow-bot-member": "Flow'n botti",
 	"flow-ve-mention-context-item-label": "Mainitse",
 	"flow-ve-mention-inspector-title": "Mainitse",
 	"flow-ve-mention-inspector-remove-label": "Poista",

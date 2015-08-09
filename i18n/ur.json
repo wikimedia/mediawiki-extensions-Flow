@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Muhammad Shuaib"
+			"Muhammad Shuaib",
+			"عثمان خان شاہ"
 		]
 	},
 	"enableflow": "فلو فعال کریں",
@@ -29,5 +30,12 @@
 	"flow-skip-summary": "خلاصہ نظر انداز کریں",
 	"flow-edit-summary-placeholder": "مختصر طور پر اس گفتگو کا نتیجہ تحریر کریں",
 	"flow-summary-authored": "خلاصہ از $1",
-	"flow-show-change": "تبدیلیاں دکھائیں"
+	"flow-show-change": "تبدیلیاں دکھائیں",
+	"flow-newtopic-save": "نیا موضوع",
+	"flow-newtopic-start-placeholder": "نیا موضوع شروع کریں",
+	"flow-newtopic-first-heading": "$1 پر نیا موضوع شروع کریں",
+	"flow-reply-topic-title-placeholder": "\"$1\" کو جواب",
+	"flow-history-action-delete-post": "حذف",
+	"flow-history-action-hide-post": "چھپائیں",
+	"flow-history-action-undelete-post": "بحال"
 }

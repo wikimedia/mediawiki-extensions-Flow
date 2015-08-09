@@ -143,6 +143,8 @@
 	"apihelp-flow+reply-param-content": "Dä Enhald för dä neuje Beidraach.",
 	"apihelp-flow+reply-param-format": "Et Fommaht vum neue post, Wikkitäx udder <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"HyperText Markup Language\">HTML</i>?\n<!-- \nhttps://translatewiki.net/wiki/Thread:Support/About_MediaWiki:Apihelp-flow%2Breply-param-format/en\n-->",
 	"apihelp-flow+view-header-example-1": "Holl de Äkliehrong för „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">[[Talk:Sandbox]]</code>“ em Wikkitäx Fommaht.",
+	"apihelp-flow+view-post-history-param-format": "Dat Fommaht för der Enhalld dren ußzejävve.",
+	"apihelp-flow+view-topic-history-example-1": "Belohr de Väsohne vun de Beijdrähsch zom <code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">[[Topic:S2tycnas4hcucw8w]]</code> als Wikkitäx",
 	"apihelp-flow+view-topiclist-param-sortby": "Enschtällonge för et Zottehre vun de  topics, dadd es äntwehder „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">updated</kbd>“ för zem Zottehre noh de Zigg, woh dä  topic et läz jeändert wohd, udder „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">newest</kbd>“ för et Zottehre noh dä Zigg vum Aanläje.",
 	"apihelp-flow+view-topiclist-param-savesortby": "Donn de Enschtällong för woh noh ze zottehre en de Enschtällonge vum Metmaacher, wann jät ennjejovve es.",
 	"apihelp-flow+view-topiclist-param-offset-id": "Der Wäät för der Bejenn — em <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Universally unique identifier\">UUID</i>-Fommaht — vun woh aan  topics jehollt wähde sulle. Weed blohß beim Zottehre noh „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">newest</kbd>“ jebruch.",
