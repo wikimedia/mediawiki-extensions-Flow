@@ -549,5 +549,7 @@
 	"flow-mark-revision-patrolled-link-title": "Mark this page as patrolled",
 	"flow-mark-diff-patrolled-link-text": "Mark as patrolled",
 	"flow-mark-diff-patrolled-link-title": "Mark as patrolled",
-	"flow-description-last-modified-at": "This description was last modified on $1, at $2."
+	"flow-description-last-modified-at": "This description was last modified on $1, at $2.",
+	"flow-talk-page-beta-feature-message": "User talk page discussion",
+	"flow-talk-page-beta-feature-description": "New discussion system for your user talk page. Simplify the collaboration with other editors. Existing content will remain available through an archive."
 }

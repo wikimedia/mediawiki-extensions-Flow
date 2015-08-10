@@ -556,5 +556,7 @@
 	"flow-mark-revision-patrolled-link-title": "Title of the link to mark a revision as patrolled on a revision page.",
 	"flow-mark-diff-patrolled-link-text": "Text of the link to mark a revision as patrolled on a diff page.\n{{Identical|Mark as patrolled}}",
 	"flow-mark-diff-patrolled-link-title": "Title of the link to mark a revision as patrolled on a diff page.\n{{Identical|Mark as patrolled}}",
-	"flow-description-last-modified-at": "Timestamp line stating when description was modified. See also {{msg-mw|lastmodifiedat}}.  Parameters:\n* $1 - Date\n* $2 - Time"
+	"flow-description-last-modified-at": "Timestamp line stating when description was modified. See also {{msg-mw|lastmodifiedat}}.  Parameters:\n* $1 - Date\n* $2 - Time",
+	"flow-talk-page-beta-feature-message": "Title of the beta feature to enable Flow on the user's talk page.",
+	"flow-talk-page-beta-feature-description": "Description of the beta feature to enable Flow on the user's talk page."
 }
