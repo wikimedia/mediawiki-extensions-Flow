@@ -354,4 +354,47 @@ class Converter {
 
 		throw new ImportException( "All titles 1 through 20 (inclusive) exist for format: $format" );
 	}
+
+	/**
+	 * @param Title $source
+	 * @param array $formats
+	 * @param TitleRepository $titleRepo
+	 * @return bool|mixed
+	 */
+	static public function findLatestArchiveTitle( Title $source, array $formats, TitleRepository $titleRepo = null ) {
+		if ( $titleRepo === null ) {
+			$titleRepo = new TitleRepository();
+		}
+
+		$format = false;
+		$n = 1;
+		$text = $source->getPrefixedText();
+		foreach ( $formats as $potential ) {
+			$title = Title::newFromText( sprintf( $potential, $text, $n ) );
+			if ( $title && $titleRepo->exists( $title ) ) {
+				$format = $potential;
+				break;
+			}
+		}
+		if ( $format === false ) {
+			// no archive page matches any format
+			return false;
+		}
+
+		$archivePages = array();
+		for ( $n = 1; $n <= 20; ++$n ) {
+			$title = Title::newFromText( sprintf( $format, $text, $n ) );
+			if ( $title && $titleRepo->exists( $title ) ) {
+				$archivePages[] = $title;
+			} else {
+				break;
+			}
+		}
+
+		if ( $archivePages ) {
+			return end( $archivePages );
+		}
+
+		return false;
+	}
 }
