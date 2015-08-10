@@ -163,6 +163,10 @@ $wgHooks['BeforeCreateEchoEvent'][] = 'Flow\NotificationController::onBeforeCrea
 $wgHooks['EchoGetDefaultNotifiedUsers'][] = 'Flow\NotificationController::getDefaultNotifiedUsers';
 $wgHooks['EchoGetBundleRules'][] = 'Flow\NotificationController::onEchoGetBundleRules';
 
+// Beta feature Flow on user talk page
+$wgHooks['GetBetaFeaturePreferences'][] = 'FlowHooks::onGetBetaFeaturePreferences';
+$wgHooks['UserSaveOptions'][] = 'FlowHooks::onUserSaveOptions';
+
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
 
