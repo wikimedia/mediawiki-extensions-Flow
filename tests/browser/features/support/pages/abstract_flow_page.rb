@@ -1,6 +1,5 @@
-require_relative 'wiki_page'
-
-class AbstractFlowPage < WikiPage
+class AbstractFlowPage
+  include PageObject
   include FlowEditor
 
   page_section(:description, BoardDescription, class: 'flow-board-header')
