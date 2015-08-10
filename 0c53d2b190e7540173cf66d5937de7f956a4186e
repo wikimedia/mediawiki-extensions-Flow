@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_01658caa",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.NewTopicWidget.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-10T22:06:34Z",
+      "side": 1,
+      "message": "Lies",
+      "revId": "0c53d2b190e7540173cf66d5937de7f956a4186e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
