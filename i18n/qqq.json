@@ -405,6 +405,7 @@
 	"flow-special-enableflow-page-is-liquidthreads": "Error given on Special:EnableFlow if the page to enable Flow on is a LiquidThreads page.  Parameters:\n$1 - Page name where user requested to put Flow board",
 	"flow-special-enableflow-confirmation": "Confirmation message on Special:EnableFlow saying that you have successfully created a board  Parameters:\n$1 - Page name of new Flow board",
 	"flow-conversion-archive-page-name-format": "Archive format used when enabling Flow on existing pages. This is a format string. %s and %d should be present. %s represents the title of the page where Flow is being enabled. %d represents a number that will be incremented if an archive page with the same name already exist. Multiple formats can be specified separated by the new line character (\\n).",
+	"flow-conversion-archive-flow-page-name-format": "Archive format used when archiving a Flow page. This is a format string. %s and %d should be present. %s represents the title of the Flow page being archived. %d represents a number that will be incremented if an archive page with the same name already exist. Multiple formats can be specified separated by the new line character (\\n).",
 	"flow-spam-confirmedit-form": "Error message when ConfirmEdit flagged the submitted content (because an anonymous user submitted external links, possibly spam). A captcha will be displayed after this error message. Parameters:\n* $1 - the HTML for the captcha form.",
 	"flow-embedding-unsupported": "Error message displayed if a user tries to transclude a Flow page.",
 	"mw-ui-unsubmitted-confirm": "You have unsubmitted changes on this page. Are you sure you want to navigate away and lose your work?",
@@ -564,5 +565,13 @@
 	"flow-mark-revision-patrolled-link-title": "Title of the link to mark a revision as patrolled on a revision page.",
 	"flow-mark-diff-patrolled-link-text": "Text of the link to mark a revision as patrolled on a diff page.\n{{Identical|Mark as patrolled}}",
 	"flow-mark-diff-patrolled-link-title": "Title of the link to mark a revision as patrolled on a diff page.\n{{Identical|Mark as patrolled}}",
-	"flow-description-last-modified-at": "Timestamp line stating when description was modified. See also {{msg-mw|lastmodifiedat}}.  Parameters:\n* $1 - Date\n* $2 - Time"
+	"flow-description-last-modified-at": "Timestamp line stating when description was modified. See also {{msg-mw|lastmodifiedat}}.  Parameters:\n* $1 - Date\n* $2 - Time",
+	"flow-talk-page-beta-feature-message": "Title of the beta feature to enable Flow on the user's talk page.",
+	"flow-talk-page-beta-feature-description": "Description of the beta feature to enable Flow on the user's talk page.",
+	"flow-notification-link-text-enabled-on-talkpage": "Primary link text in email for notification when Flow was enabled on your talk page.",
+	"flow-notification-enabled-on-talkpage-title-message": "Text of the web notification when Flow was enabled on your talk page.\n Parameters:\n* $1 - Title where Flow was enabled.",
+	"flow-notification-enabled-on-talkpage-email-subject": "Email subject for notification when Flow was enabled on your talk page.\n Parameters:\n* $1 - Title where Flow was enabled.",
+	"flow-notification-enabled-on-talkpage-email-batch-body": "Email body for notification when Flow was enabled on your talk page.\n Parameters:\n* $1 - Title where Flow was enabled.",
+	"flow-beta-feature-add-archive-template-edit-summary": "Edit summary message for the revision adding the archive template to an archived talk page.",
+	"flow-beta-feature-remove-archive-template-edit-summary": "Edit summary message for the revision removing the archive template to an archived talk page."
 }
