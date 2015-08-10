@@ -5,6 +5,7 @@ use Flow\Container;
 use Flow\Exception\FlowException;
 use Flow\Exception\PermissionException;
 use Flow\Formatter\CheckUserQuery;
+use Flow\Import\OptInUpdate;
 use Flow\Model\UUID;
 use Flow\OccupationController;
 use Flow\SpamFilter\AbuseFilter;
@@ -1601,4 +1602,56 @@ class FlowHooks {
 
 		return false;
 	}
+
+	/**
+	 * @param User $user
+	 * @param array $prefs
+	 */
+	public static function onGetBetaFeaturePreferences( $user, &$prefs ) {
+		global $wgExtensionAssetsPath;
+		global $wgFlowEnableOptInBetaFeature;
+
+		if ( $wgFlowEnableOptInBetaFeature ) {
+			$prefs[BETA_FEATURE_FLOW_USER_TALK_PAGE] = array(
+				// The first two are message keys
+				'label-message' => 'flow-talk-page-beta-feature-message',
+				'desc-message' => 'flow-talk-page-beta-feature-description',
+				'screenshot' => array(
+					'ltr' => "$wgExtensionAssetsPath/Flow/images/betafeature-flow-ltr.svg",
+					'rtl' => "$wgExtensionAssetsPath/Flow/images/betafeature-flow-rtl.svg",
+				),
+				'info-link' => 'https://www.mediawiki.org/wiki/Extension:Flow',
+				'discussion-link' => 'https://www.mediawiki.org/wiki/Extension_talk:Flow',
+			);
+		}
+	}
+
+	/**
+	 * @param User $user
+	 * @param array $options
+	 * @return bool
+	 */
+	public static function onUserSaveOptions( $user, &$options ) {
+		if ( !array_key_exists( BETA_FEATURE_FLOW_USER_TALK_PAGE, $options ) ) {
+			return true;
+		}
+
+		$userClone = User::newFromId( $user->getId() );
+		$before = BetaFeatures::isFeatureEnabled( $userClone, BETA_FEATURE_FLOW_USER_TALK_PAGE );
+		$after = $options[BETA_FEATURE_FLOW_USER_TALK_PAGE];
+		$action = null;
+
+		if ( !$before && $after ) {
+			$action = OptInUpdate::$ENABLE;
+		} elseif ( $before && !$after ) {
+			$action = OptInUpdate::$DISABLE;
+		}
+
+		if ( $action ) {
+			DeferredUpdates::addUpdate( new OptInUpdate( $action, $user->getTalkPage() ) );
+		}
+
+		return true;
+	}
+
 }
