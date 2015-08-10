@@ -162,6 +162,7 @@ $wgAutoloadClasses += array(
 	'Flow\\Formatter\\TopicListFormatter' => __DIR__ . '/includes/Formatter/TopicListFormatter.php',
 	'Flow\\Formatter\\TopicListQuery' => __DIR__ . '/includes/Formatter/TopicListQuery.php',
 	'Flow\\Formatter\\TopicRow' => __DIR__ . '/includes/Formatter/TopicRow.php',
+	'Flow\\Import\\OptInController' => __DIR__ . '/includes/Import/OptInController.php',
 	'Flow\\Import\\Converter' => __DIR__ . '/includes/Import/Converter.php',
 	'Flow\\Import\\EnableFlow\\EnableFlowWikitextConversionStrategy' => __DIR__ . '/includes/Import/EnableFlow/EnableFlowWikitextConversionStrategy.php',
 	'Flow\\Import\\FileImportSourceStore' => __DIR__ . '/includes/Import/ImportSourceStore.php',
