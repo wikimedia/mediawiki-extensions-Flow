@@ -103,6 +103,22 @@ $notifications = array(
 		'email-body-batch-message' => 'flow-notification-mention-email-batch-body',
 		'email-body-batch-params' => array( 'agent', 'subject', 'title', 'user' ),
 	) + $notificationTemplate,
+	'flow-enabled-on-talkpage' => array(
+		'section' => null,
+		'user-locators' => array(
+			'EchoUserLocator::locateTalkPageOwner'
+		),
+		'primary-link' => array(
+			'message' => 'flow-notification-link-text-enabled-on-talkpage',
+			'destination' => 'title'
+		),
+		'title-message' => 'flow-notification-enabled-on-talkpage-title-message',
+		'title-params' => array( 'title' ),
+		'email-subject-message' => 'flow-notification-enabled-on-talkpage-email-subject',
+		'email-subject-params' => array( 'title' ),
+		'email-body-batch-message' => 'flow-notification-enabled-on-talkpage-email-batch-body',
+		'email-body-batch-params' => array( 'title' ),
+	) + $notificationTemplate,
 );
 
 return $notifications;

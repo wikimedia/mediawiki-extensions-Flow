@@ -166,6 +166,10 @@ $wgHooks['BeforeCreateEchoEvent'][] = 'Flow\NotificationController::onBeforeCrea
 $wgHooks['EchoGetDefaultNotifiedUsers'][] = 'Flow\NotificationController::getDefaultNotifiedUsers';
 $wgHooks['EchoGetBundleRules'][] = 'Flow\NotificationController::onEchoGetBundleRules';
 
+// Beta feature Flow on user talk page
+$wgHooks['GetBetaFeaturePreferences'][] = 'FlowHooks::onGetBetaFeaturePreferences';
+$wgHooks['UserSaveOptions'][] = 'FlowHooks::onUserSaveOptions';
+
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
 
@@ -403,3 +407,6 @@ $wgFlowEventLogging = false;
 
 // Temporary field to allow source wiki to be null for references until it's backfilled.
 $wgFlowMigrateReferenceWiki = false;
+
+// Enable/Disable Opt-in beta feature
+$wgFlowEnableOptInBetaFeature = false;
