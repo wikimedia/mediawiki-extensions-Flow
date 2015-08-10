@@ -1,0 +1,427 @@
+<?php
+
+namespace Flow\Import;
+
+use DateTime;
+use DateTimeZone;
+use Flow\Collection\HeaderCollection;
+use Flow\NotificationController;
+use Flow\OccupationController;
+use Flow\Parsoid\Utils;
+use Flow\WorkflowLoaderFactory;
+use IContextSource;
+use MovePage;
+use RequestContext;
+use Revision;
+use Title;
+use Flow\Container;
+use User;
+use WikiPage;
+use WikitextContent;
+
+
+/**
+ * Entry point for enabling Flow on a page.
+ */
+class OptInController {
+
+	/**
+	 * @var OccupationController
+	 */
+	private $occupationController;
+
+	/**
+	 * @var NotificationController
+	 */
+	private $notificationController;
+
+	/**
+	 * @var IContextSource
+	 */
+	private $context;
+
+	public function __construct() {
+		$this->occupationController = Container::get( 'occupation_controller' );
+		$this->notificationController = Container::get( 'controller.notification' );
+		$this->context = RequestContext::getMain();
+	}
+
+	/**
+	 * @param Title $title
+	 * @param User $user
+	 */
+	public function enable( Title $title, User $user ) {
+		if ( $this->isFlowBoard( $title ) ) {
+			// already a Flow board
+			return;
+		}
+
+		// archive existing wikitext talk page
+		$linkToArchivedTalkpage = null;
+		if ( $title->exists( Title::GAID_FOR_UPDATE ) ) {
+			$wikitextTalkpageArchiveTitle = $this->archiveExistingTalkpage( $title );
+			$this->addArchiveTemplate( $wikitextTalkpageArchiveTitle, $title );
+			$linkToArchivedTalkpage = $this->buildLinkToArchivedTalkpage( $wikitextTalkpageArchiveTitle );
+		}
+
+		// create or restore flow board
+		$archivedFlowPage = $this->findLatestFlowArchive( $title );
+		if ( $archivedFlowPage ) {
+			$this->restoreExistingFlowBoard( $archivedFlowPage, $title, $linkToArchivedTalkpage );
+		} else {
+			$this->createFlowBoard( $title, $linkToArchivedTalkpage );
+
+			$this->notificationController->notifyFlowEnabledOnTalkpage( $user );
+		}
+	}
+
+	/**
+	 * @param Title $title
+	 */
+	public function disable( Title $title ) {
+		if ( !$this->isFlowBoard( $title ) ) {
+			return;
+		}
+
+		// archive the flow board
+		$flowArchiveTitle = $this->findNextFlowArchive( $title );
+		$this->movePage( $title, $flowArchiveTitle );
+		$this->removeArchivedTalkpageTemplateFromFlowBoardDescription( $flowArchiveTitle );
+
+		// restore the original wikitext talk page
+		$archivedTalkpage = $this->findLatestArchive( $title );
+		if ( $archivedTalkpage ) {
+			// restore the previously archived wikitext talk page
+			$this->movePage( $archivedTalkpage, $title );
+			$this->removeArchiveTemplateFromWikitextTalkpage( $title );
+		}
+	}
+
+	/**
+	 * @param Title $title
+	 * @return bool
+	 */
+	private function isFlowBoard( Title $title ) {
+		return $this->occupationController->isTalkpageOccupied( $title, true );
+	}
+
+	/**
+	 * @param Title $from
+	 * @param Title $to
+	 */
+	private function movePage( Title $from, Title $to ) {
+		$flowTalkPageManagerUser = $this->occupationController->getTalkpageManager();
+
+		$mp = new MovePage( $from, $to );
+		$mp->move( $flowTalkPageManagerUser, null, false );
+
+		// this was there in the previous version, don't know if it's needed
+//		wfWaitForSlaves();
+	}
+
+	/**
+	 * @param $msgKey
+	 * @param array $args
+	 * @throws ImportException
+	 */
+	private function fatal( $msgKey, $args = array() ) {
+		throw new ImportException( wfMessage( $msgKey, $args )->inContentLanguage()->text() );
+	}
+
+	/**
+	 * @param string $str
+	 * @return array
+	 */
+	private function from_csv( $str ) {
+		return strpos( $str, "\n") === false ? array( $str ) : explode( "\n", $str );
+	}
+
+	/**
+	 * @param Title $title
+	 * @return Title|false
+	 */
+	private function findLatestArchive( Title $title ) {
+		$archiveFormats = $this->from_csv(
+			wfMessage( 'flow-conversion-archive-page-name-format' )->inContentLanguage()->plain() );
+		return Converter::findLatestArchiveTitle( $title, $archiveFormats );
+	}
+
+	/**
+	 * @param Title $title
+	 * @return Title
+	 * @throws ImportException
+	 */
+	private function findNextArchive( Title $title ) {
+		$archiveFormats = $this->from_csv(
+			wfMessage( 'flow-conversion-archive-page-name-format' )->inContentLanguage()->plain() );
+		return Converter::decideArchiveTitle( $title, $archiveFormats );
+	}
+
+	/**
+	 * @param Title $title
+	 * @return Title|false
+	 */
+	private function findLatestFlowArchive( Title $title ) {
+		$archiveFormats = $this->from_csv(
+			wfMessage( 'flow-conversion-archive-flow-page-name-format' )->inContentLanguage()->plain() );
+		return Converter::findLatestArchiveTitle( $title, $archiveFormats );
+	}
+
+	/**
+	 * @param Title $title
+	 * @return Title
+	 * @throws ImportException
+	 */
+	private function findNextFlowArchive( Title $title ) {
+		$archiveFormats = $this->from_csv(
+			wfMessage( 'flow-conversion-archive-flow-page-name-format' )->inContentLanguage()->plain() );
+		return Converter::decideArchiveTitle( $title, $archiveFormats );
+	}
+
+	/**
+	 * @param Title $title
+	 * @param string $contentText
+	 * @throws ImportException
+	 * @throws \MWException
+	 */
+	private function createRevision( Title $title, $contentText ) {
+		$page = WikiPage::factory( $title );
+		$newContent = new WikitextContent( $contentText );
+		$status = $page->doEditContent(
+			$newContent,
+			null,
+			EDIT_FORCE_BOT | EDIT_SUPPRESS_RC,
+			false,
+			$this->occupationController->getTalkpageManager()
+		);
+
+		if ( !$status->isGood() ) {
+			throw new ImportException( "Failed creating revision at {$title}" );
+		}
+	}
+
+	/**
+	 * @param Title $title
+	 * @param $boardDescription
+	 * @throws ImportException
+	 * @throws \Flow\Exception\CrossWikiException
+	 * @throws \Flow\Exception\InvalidInputException
+	 */
+	private function createFlowBoard( Title $title, $boardDescription ) {
+		/** @var WorkflowLoaderFactory $loaderFactory */
+		$loaderFactory = Container::get( 'factory.loader.workflow' );
+		$page = $title->getPrefixedText();
+
+		$asUser = $this->occupationController->getTalkpageManager();
+		$allowCreationStatus = $this->occupationController->allowCreation( $title, $asUser, false );
+		if ( !$allowCreationStatus->isGood() ) {
+			$this->fatal( 'flow-special-enableflow-board-creation-not-allowed', $page );
+		}
+
+		$loader = $loaderFactory->createWorkflowLoader( $title );
+		$blocks = $loader->getBlocks();
+
+		if ( !$boardDescription ) {
+			$boardDescription = '.';
+		}
+
+		$action = 'edit-header';
+		$params = array(
+			'header' => array(
+				'content' => $boardDescription,
+				'format' => 'wikitext',
+			),
+		);
+
+		$blocksToCommit = $loader->handleSubmit(
+			$this->context,
+			$action,
+			$params
+		);
+
+		foreach ( $blocks as $block ) {
+			if ( $block->hasErrors() ) {
+				$errors = $block->getErrors();
+
+				foreach ( $errors as $errorKey ) {
+					$this->fatal( $block->getErrorMessage( $errorKey ) );
+				}
+			}
+		}
+
+		$loader->commit( $blocksToCommit );
+	}
+
+	/**
+	 * @param Title $title
+	 * @return Title
+	 */
+	private function archiveExistingTalkpage( Title $title ) {
+		$archiveTitle = $this->findNextArchive( $title );
+		$this->movePage( $title, $archiveTitle );
+		return $archiveTitle;
+	}
+
+	/**
+	 * @param Title $archivedFlowPage
+	 * @param Title $title
+	 * @param string|null $addToHeader
+	 */
+	private function restoreExistingFlowBoard( Title $archivedFlowPage, Title $title, $addToHeader = null ) {
+		$this->movePage( $archivedFlowPage, $title );
+		if ( $addToHeader ) {
+			$htmlHeaderPart = Utils::convert( 'wikitext', 'html', $addToHeader, $title );
+			$this->editBoardDescription( $title, function( $oldDesc ) use ( $htmlHeaderPart ) {
+				return $oldDesc . "<br/></br/>" . $htmlHeaderPart;
+			} );
+		}
+	}
+
+	/**
+	 * @param Title $title
+	 * @return string
+	 * @throws \MWException
+	 */
+	private function getContent( Title $title ) {
+		$page = WikiPage::factory( $title );
+		$page->loadPageData( 'fromdbmaster' );
+		$revision = $page->getRevision();
+		if ( $revision ) {
+			$content = $revision->getContent( Revision::FOR_PUBLIC );
+			if ( $content instanceof WikitextContent ) {
+				return $content->getNativeData();
+			}
+		}
+
+		return '';
+	}
+
+	/**
+	 * @param Title $archiveTitle
+	 * @return string
+	 */
+	private function buildLinkToArchivedTalkpage( Title $archiveTitle ) {
+		$now = new DateTime( "now", new DateTimeZone( "GMT" ) );
+		$arguments = array(
+			'archive' => $archiveTitle->getPrefixedText(),
+			'date' => $now->format( 'Y-m-d' ),
+		);
+		$template = wfMessage( 'flow-importer-wt-converted-template' )->inContentLanguage()->plain();
+		return $this->formatTemplate( $template, $arguments );
+	}
+
+	/**
+	 * @param string $name
+	 * @param array $args
+	 * @return string
+	 */
+	private function formatTemplate( $name, $args ) {
+		$arguments = implode( '|',
+			array_map(
+				function( $key, $value ) {
+					return "$key=$value";
+				},
+				array_keys( $args ),
+				array_values( $args ) )
+		);
+		return "{{{$name}|$arguments}}";
+	}
+
+	/**
+	 * @param Title $flowArchiveTitle
+	 */
+	private function removeArchivedTalkpageTemplateFromFlowBoardDescription( Title $flowArchiveTitle ) {
+		$this->editBoardDescription( $flowArchiveTitle, function( $oldDesc ) {
+			$templateName = wfMessage( 'flow-importer-wt-converted-template' )->inContentLanguage()->plain();
+			return TemplateHelper::removeFromHtml( $oldDesc, $templateName );
+		} );
+	}
+
+	/**
+	 * @param Title $title
+	 * @param callable $newDescriptionCallback
+	 * @param string $format
+	 * @throws ImportException
+	 * @throws \Flow\Exception\InvalidDataException
+	 */
+	private function editBoardDescription( Title $title, callable $newDescriptionCallback, $format = 'html' ) {
+		/** @var WorkflowLoaderFactory $loader */
+		$factory = Container::get( 'factory.loader.workflow' );
+
+		/** @var WorkflowLoader $loader */
+		$loader = $factory->createWorkflowLoader( $title );
+
+		$collection = HeaderCollection::newFromId( $loader->getWorkflow()->getId() );
+		$revision = $collection->getLastRevision();
+		$content = $revision->getContent();
+
+		$newDescription = call_user_func( $newDescriptionCallback, $content );
+
+		$action = 'edit-header';
+		$params = array(
+			'header' => array(
+				'content' => $newDescription,
+				'format' => $format,
+				'prev_revision' => $revision->getRevisionId()->getAlphadecimal()
+			),
+		);
+
+		$blocks = $loader->getBlocks();
+
+		$blocksToCommit = $loader->handleSubmit(
+			$this->context,
+			$action,
+			$params
+		);
+
+		foreach ( $blocks as $block ) {
+			if ( $block->hasErrors() ) {
+				$errors = $block->getErrors();
+
+				foreach ( $errors as $errorKey ) {
+					$this->fatal( $block->getErrorMessage( $errorKey ) );
+				}
+			}
+		}
+
+		$loader->commit( $blocksToCommit );
+	}
+
+	/**
+	 * @param Title $archive
+	 * @param Title $current
+	 * @throws ImportException
+	 */
+	private function addArchiveTemplate( Title $archive, Title $current ) {
+		$templateName = wfMessage( 'flow-importer-wt-converted-archive-template' )->inContentLanguage()->plain();
+		$now = new DateTime( "now", new DateTimeZone( "GMT" ) );
+		$template = $this->formatTemplate( $templateName, array(
+			'from' => $current->getPrefixedText(),
+			'date' => $now->format( 'Y-m-d' ),
+		) );
+
+		$content = $this->getContent( $archive );
+
+		$this->createRevision( $archive, $template . "\n\n" . $content );
+	}
+
+	/**
+	 * @param Title $title
+	 * @throws ImportException
+	 */
+	private function removeArchiveTemplateFromWikitextTalkpage( Title $title ) {
+		$content = $this->getContent( $title );
+		if ( !$content ) {
+			return;
+		}
+
+		$content = Utils::convert( 'wikitext', 'html', $content, $title );
+		$templateName = wfMessage( 'flow-importer-wt-converted-archive-template' )->inContentLanguage()->plain();
+
+		$newContent = TemplateHelper::removeFromHtml( $content, $templateName );
+
+		$this->createRevision(
+			$title,
+			Utils::convert( 'html', 'wikitext', $newContent, $title ) );
+	}
+}
