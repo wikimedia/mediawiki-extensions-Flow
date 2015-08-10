@@ -4,6 +4,7 @@ namespace Flow\Import\Wikitext;
 
 use DateTime;
 use DateTimeZone;
+use Flow\Import\ArchiveNameHelper;
 use Flow\Import\Converter;
 use Flow\Import\IConversionStrategy;
 use Flow\Import\ImportSourceStore;
@@ -130,7 +131,8 @@ class ConversionStrategy implements IConversionStrategy {
 	 * {@inheritDoc}
 	 */
 	public function decideArchiveTitle( Title $source ) {
-		return Converter::decideArchiveTitle( $source, $this->archiveTitleSuggestions );
+		$archiveNameHelper = new ArchiveNameHelper();
+		return $archiveNameHelper->decideArchiveTitle( $source, $this->archiveTitleSuggestions );
 	}
 
 	/**

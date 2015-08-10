@@ -4,7 +4,7 @@ class DataManager
   end
 
   def get(part)
-    @data[part] = "#{part}-#{rand}" unless @data.key? part
+    @data[part] = "#{part}_#{Random.srand}" unless @data.key? part
     @data[part]
   end
 
