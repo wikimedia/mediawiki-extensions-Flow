@@ -114,6 +114,11 @@ $namespaceNames['uk'] = array(
 	NS_TOPIC =>  'Тема',
 );
 
+/** Urdu */
+$namespaceNames['ur'] = array(
+	NS_TOPIC =>  'موضوع',
+);
+
 /** Yiddish */
 $namespaceNames['yi'] = array(
 	NS_TOPIC =>  'טעמע',
