@@ -159,6 +159,10 @@ class NotificationFormatter extends EchoBasicFormatter {
 				}
 				break;
 
+			case 'talk-page':
+				$anchor = $urlGenerator->talkpageLink( $user );
+				break;
+
 			default:
 				return parent::getLinkParams( $event, $user, $destination );
 		}

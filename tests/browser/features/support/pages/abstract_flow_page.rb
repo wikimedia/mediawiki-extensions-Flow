@@ -1,9 +1,14 @@
-require_relative 'wiki_page'
-
-class AbstractFlowPage < WikiPage
+class AbstractFlowPage
+  include PageObject
   include FlowEditor
 
   page_section(:description, BoardDescription, class: 'flow-board-header')
+
+  def scroll_to_top
+    browser.execute_script("window.scrollTo(0, 0);")
+  end
+
+  a(:logout, css: "#pt-logout a")
 
   # board component
   div(:flow_component, class: 'flow-component')
