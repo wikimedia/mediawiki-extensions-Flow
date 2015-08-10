@@ -398,6 +398,7 @@
 	"flow-special-enableflow-page-is-liquidthreads": "There is a LiquidThreads page at [[:$1]].",
 	"flow-special-enableflow-confirmation": "You have successfully created a Flow board at [[$1]].",
 	"flow-conversion-archive-page-name-format": "%s/Archive %d\n%s/Archive%d\n%s/archive %d\n%s/archive%d",
+	"flow-conversion-archive-flow-page-name-format": "%s/Flow Archive %d\n%s/FlowArchive%d",
 	"flow-spam-confirmedit-form": "Please confirm you are a human by solving the below captcha: $1",
 	"flow-embedding-unsupported": "Discussions cannot be embedded yet.",
 	"mw-ui-unsubmitted-confirm": "You have unsubmitted changes on this page. Are you sure you want to navigate away and lose your work?",
@@ -557,5 +558,14 @@
 	"flow-mark-revision-patrolled-link-title": "Mark this page as patrolled",
 	"flow-mark-diff-patrolled-link-text": "Mark as patrolled",
 	"flow-mark-diff-patrolled-link-title": "Mark as patrolled",
-	"flow-description-last-modified-at": "This description was last modified on $1, at $2."
+	"flow-description-last-modified-at": "This description was last modified on $1, at $2.",
+	"flow-talk-page-beta-feature-message": "Flow on user talk",
+	"flow-talk-page-beta-feature-description": "Enables a new structured discussion system on your user talk page. Flow simplifies talk page discussions with clear places to write and reply, and allows conversation-level notifications. Existing wikitext discussions are moved to an archive. This feature is not auto-enabled; users will have to enable it separately. Disabling this feature will move the Flow board to a subpage and un-archive the previous talkpage.",
+	"flow-notification-link-text-enabled-on-talkpage": "View user talk page",
+	"flow-notification-enabled-on-talkpage-title-message": "New discussion system enabled for your user talk page<br/><small>Available at [[$1]]</small>",
+	"flow-notification-enabled-on-talkpage-email-subject": "New discussion system on $1",
+	"flow-notification-enabled-on-talkpage-email-batch-body": "Flow, the new wiki discussion system, has been enabled on your user talk page on {{SITENAME}}. You can get more information, provide feedback or disable the new system any time from the Beta features section in your preferences.",
+	"flow-beta-feature-add-archive-template-edit-summary": "Adding archive template",
+	"flow-beta-feature-remove-archive-template-edit-summary": "Removing archive template"
+
 }

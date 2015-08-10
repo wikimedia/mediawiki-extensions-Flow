@@ -3,6 +3,7 @@
 namespace Flow\Import\LiquidThreadsApi;
 
 use DatabaseBase;
+use Flow\Import\ArchiveNameHelper;
 use Flow\Import\Converter;
 use Flow\Import\IConversionStrategy;
 use Flow\Import\ImportSourceStore;
@@ -111,7 +112,8 @@ class ConversionStrategy implements IConversionStrategy {
 	 * @return Title
 	 */
 	public function decideArchiveTitle( Title $source ) {
-		return Converter::decideArchiveTitle( $source, array(
+		$archiveNameHelper = new ArchiveNameHelper();
+		return $archiveNameHelper->decideArchiveTitle( $source, array(
 			'%s/LQT Archive %d',
 		) );
 	}
