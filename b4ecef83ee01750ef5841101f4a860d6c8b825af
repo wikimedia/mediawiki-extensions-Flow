@@ -68,6 +68,24 @@
       "revId": "b4ecef83ee01750ef5841101f4a860d6c8b825af",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_a4d9262e",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-10T23:23:59Z",
+      "side": 1,
+      "message": "I would expect (definitely needs to be tested) that:\n\n* Only users with \u0027editcontentmodel\u0027 or \u0027flow-create-board\u0027 can change an existing wikitext page to Flow (they can only really do it correctly with \u0027flow-create-board\u0027).\n** That should be okay since \u0027editcontentmodel\u0027 is heavily restricted, but maybe canBeUsedOn should also return false for existent pages with non-Flow content model. so even users with editcontentmodel can\u0027t mess it up.\n\n* Anyone can create a Flow board where there is currently no page, in a Flow namespace (also due to canBeUsedOn).\n\n* editcontentmodel is required to create a wikitext page in a Flow namespace.",
+      "parentUuid": "8ec42329_7f00e238",
+      "revId": "b4ecef83ee01750ef5841101f4a860d6c8b825af",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
