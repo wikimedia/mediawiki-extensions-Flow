@@ -16,6 +16,7 @@ use SpecialPage;
 use Title;
 use RequestContext;
 use RecentChange;
+use User;
 
 /**
  * Provides url generation capabilities for Flow. Ties together an
@@ -856,6 +857,14 @@ class UrlGenerator {
 				'rcid' => $rc->getAttribute( 'rc_id' ),
 				'token' => $token
 			)
+		);
+	}
+
+	public function talkpageLink( User $user ) {
+		$talkpage = $user->getTalkPage();
+		return new Anchor(
+			$talkpage->getPrefixedText(),
+			$talkpage
 		);
 	}
 }
