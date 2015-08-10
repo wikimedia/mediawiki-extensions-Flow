@@ -6,6 +6,7 @@ use Flow\Container;
 use Flow\Exception\FlowException;
 use Flow\Exception\PermissionException;
 use Flow\Formatter\CheckUserQuery;
+use Flow\Import\OptInUpdate;
 use Flow\Model\UUID;
 use Flow\OccupationController;
 use Flow\SpamFilter\AbuseFilter;
@@ -230,6 +231,9 @@ class FlowHooks {
 
 		require_once __DIR__.'/maintenance/FlowFixLinks.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowFixLinks' );
+
+		require_once __DIR__.'/maintenance/FlowUpdateBetaFeaturePreference.php';
+		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateBetaFeaturePreference' );
 
 		return true;
 	}
@@ -1577,9 +1581,72 @@ class FlowHooks {
 	 *
 	 * @param array $namespaces Associative array mapping namespace index
 	 *  to name
+	 * @return bool
 	 */
 	public static function onSearchableNamespaces( &$namespaces ) {
 		unset( $namespaces[NS_TOPIC] );
 		return true;
 	}
+
+	/**
+	 * @param User $user
+	 * @param array $prefs
+	 * @return bool
+	 */
+	public static function onGetBetaFeaturePreferences( $user, &$prefs ) {
+		global $wgExtensionAssetsPath, $wgFlowEnableOptInBetaFeature;
+
+		if ( !$wgFlowEnableOptInBetaFeature ) {
+			return true;
+		}
+
+		$prefs[BETA_FEATURE_FLOW_USER_TALK_PAGE] = array(
+			// The first two are message keys
+			'label-message' => 'flow-talk-page-beta-feature-message',
+			'desc-message' => 'flow-talk-page-beta-feature-description',
+			'screenshot' => array(
+				'ltr' => "$wgExtensionAssetsPath/Flow/images/betafeature-flow-ltr.svg",
+				'rtl' => "$wgExtensionAssetsPath/Flow/images/betafeature-flow-rtl.svg",
+			),
+			'info-link' => Title::newFromText( 'Project:Flow' )->getLocalURL(),
+			'discussion-link' => Title::newFromText( 'Project_talk:Flow' )->getLocalURL(),
+		);
+
+		return true;
+	}
+
+	/**
+	 * @param User $user
+	 * @param array $options
+	 * @return bool
+	 */
+	public static function onUserSaveOptions( $user, &$options ) {
+		global $wgFlowEnableOptInBetaFeature;
+
+		if ( !$wgFlowEnableOptInBetaFeature ) {
+			return true;
+		}
+
+		if ( !array_key_exists( BETA_FEATURE_FLOW_USER_TALK_PAGE, $options ) ) {
+			return true;
+		}
+
+		$userClone = User::newFromId( $user->getId() );
+		$before = BetaFeatures::isFeatureEnabled( $userClone, BETA_FEATURE_FLOW_USER_TALK_PAGE );
+		$after = $options[BETA_FEATURE_FLOW_USER_TALK_PAGE];
+		$action = null;
+
+		if ( !$before && $after ) {
+			$action = OptInUpdate::$ENABLE;
+		} elseif ( $before && !$after ) {
+			$action = OptInUpdate::$DISABLE;
+		}
+
+		if ( $action ) {
+			DeferredUpdates::addUpdate( new OptInUpdate( $action, $user->getTalkPage(), $user ) );
+		}
+
+		return true;
+	}
+
 }

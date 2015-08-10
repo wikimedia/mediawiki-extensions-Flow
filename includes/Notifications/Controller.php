@@ -208,6 +208,25 @@ class NotificationController {
 		return $events;
 	}
 
+	public function notifyFlowEnabledOnTalkpage( User $user ) {
+		if ( !class_exists( 'EchoEvent' ) ) {
+			// Nothing to do here.
+			return array();
+		}
+
+		$events = array();
+		$events[] = EchoEvent::create( array(
+			'type' => 'flow-enabled-on-talkpage',
+			'agent' => $user,
+			'title' => $user->getTalkPage(),
+			'extra' => array(
+				'notifyAgent' => true,
+			),
+		) );
+
+		return $events;
+	}
+
 	/**
 	 * Called when a new Post is added, whether it be a new topic or a reply.
 	 * Do not call directly, use notifyPostChange for new replies.
