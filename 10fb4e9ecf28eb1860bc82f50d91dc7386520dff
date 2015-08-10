@@ -1,0 +1,361 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_413394f3",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 831,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-10T23:06:19Z",
+      "side": 1,
+      "message": "Probably better to comment why we expose this. I thought it was already exposed (apparently not)",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_61a9f0db",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-10T23:06:19Z",
+      "side": 1,
+      "message": "This should be removed; the method is checking whether VE is supported, while the config option checks whether it should be loaded. The switcher already checks whetehr it should be loaded anyways, and I can see cases where we might want to check \"isSupported\" without having the editor in the load list.",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_01ba6c1e",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-10T23:06:19Z",
+      "side": 1,
+      "message": "Documentation?",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_e193a0a4",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-10T23:06:19Z",
+      "side": 1,
+      "message": "If we allow this as a configuration option in the wikitext editor, should we also in VE ?",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_e1eac004",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-10T23:06:19Z",
+      "side": 1,
+      "message": "This should also be inside the if condition.",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_81d3bc60",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorControlsWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-10T23:06:19Z",
+      "side": 1,
+      "message": "Too many indents?",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_21c8c8a9",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorControlsWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-10T23:06:19Z",
+      "side": 1,
+      "message": "Documentation",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_41c5d48f",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-10T23:06:19Z",
+      "side": 1,
+      "message": "If the switcher uses it here and stores it (and then updates it) then the initial content should probably be taken off from the WikitextEditor constructor/config",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_415f1445",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-10T23:06:19Z",
+      "side": 1,
+      "message": "I\u0027d suggest making the switching promise abortable, but then I thought about this: When is this case ever going to happen at all? This case seems to happen only if there\u0027s an editor in the process of loading and we change to another editor. That can\u0027t happen, though, because the \"switcher\" button is *off*.\n\nI think that\u0027s as gracefully as you can make it considering this is against the principles of the way the editor works?",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_a13598f5",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-10T23:06:19Z",
+      "side": 1,
+      "message": "Notice that failures will never pop pending.",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_410dd440",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-10T23:06:19Z",
+      "side": 1,
+      "message": "Can this fail?",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_a11cb87d",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-10T23:06:19Z",
+      "side": 1,
+      "message": "Also, handle format conversion errors",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_e4464e54",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-10T23:06:19Z",
+      "side": 1,
+      "message": "Conceptual question: Do we really want to change the requested editor?\n\nI mean \u0027onEditorSwitch\u0027 responds to an event to switch the editor, either explicitly to a named editor or to whatever next editor available is.\n\nIf the event already explicitly asked for a named editor, do we want to change that name if the editor doesn\u0027t exist, or do we want to \"abort\" the process so the client knows what they asked for was not done?\n\nThis isn\u0027t really crucial either way, but I thought I\u0027d raise this as a conceptual issue we should intentionally take a stand on either way.",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_c4755294",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-10T23:06:19Z",
+      "side": 1,
+      "message": "Documentation",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_0444ba49",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-10T23:06:19Z",
+      "side": 1,
+      "message": "If it\u0027s auto disabled when pending, then why do we check isPending here? Shouldn\u0027t \"pending\" action set the disabled state to true itself? (Which it does by \u0027updateDisabled\u0027 ) ? then checking isPending *should* theoretically be redundant.",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_446162cf",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-10T23:06:19Z",
+      "side": 1,
+      "message": "Documentation",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_846f4ac0",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-10T23:06:19Z",
+      "side": 1,
+      "message": "Document",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_246456e1",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-10T23:06:19Z",
+      "side": 1,
+      "message": "Document",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_e4eace04",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-10T23:06:19Z",
+      "side": 1,
+      "message": "Since onEditorControlsWidgetCancel only emits \u0027cancel\u0027, you can just remove that method and go with \n\n     cancel: [ \u0027emit\u0027, \u0027cancel\u0027 ]",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_e493aea4",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-10T23:06:19Z",
+      "side": 1,
+      "message": "Also @event cancel",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_a4d4c64c",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-10T23:06:19Z",
+      "side": 1,
+      "message": "See comment above; you can get rid of this method.",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
