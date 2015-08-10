@@ -1,6 +1,8 @@
-require_relative 'wiki_page'
+# require_relative 'wiki_page'
 
-class AbstractFlowPage < WikiPage
+class AbstractFlowPage
+  include PageObject
+
   def visualeditor_or_textarea(form)
     parent = form.is_a?(String) ? form_element(css: form) : form
     parent.when_present
