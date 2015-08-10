@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_bb75c994",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIHandler.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-10T19:02:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec1af18_fb283298",
+      "revId": "33c2e970e8c9ea5e139a75e61c962c5a90e3a2c0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_9bfb2d11",
         "filename": "modules/flow/ui/widgets/mw.flow.ui.ReplyWidget.js",
         "patchSetId": 7
@@ -30,6 +48,24 @@
       "writtenOn": "2015-08-10T18:58:15Z",
       "side": 1,
       "message": "I don\u0027t understand what expandable means from reading this comment.",
+      "revId": "33c2e970e8c9ea5e139a75e61c962c5a90e3a2c0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_7b58c135",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ReplyWidget.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-10T19:02:26Z",
+      "side": 1,
+      "message": "Basically, whether or not a trigger input is used. (As in, if it is the last reply \u003d\u003d use trigger input, otherwise, show the fully expanded reply widget already.)\n\nI\u0027ll rephrase the comment.",
+      "parentUuid": "6ec1af18_9bfb2d11",
       "revId": "33c2e970e8c9ea5e139a75e61c962c5a90e3a2c0",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
