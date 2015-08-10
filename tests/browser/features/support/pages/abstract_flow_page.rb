@@ -1,6 +1,8 @@
-require_relative 'wiki_page'
+# require_relative 'wiki_page'
 
-class AbstractFlowPage < WikiPage
+class AbstractFlowPage
+  include PageObject
+
   def visualeditor_or_textarea(form)
     parent = form.is_a?(String) ? form_element(css: form) : form
     parent.when_present
@@ -11,13 +13,19 @@ class AbstractFlowPage < WikiPage
     end
   end
 
+  def scroll_to_top
+    browser.execute_script("window.scrollTo(0, 0);")
+  end
+
+  a(:logout, css: "#pt-logout a")
+
   # board component
   div(:flow_component, class: 'flow-component')
   div(:flow_board, class: 'flow-board')
 
   # board description
-  a(:edit_description_link, title: "Edit description")
-  div(:description_content, css: ".flow-board-header-content")
+  a(:edit_description_link, text: "Edit description")
+  div(:description_content, css: ".flow-ui-boardDescriptionWidget-content")
   form(:edit_description_form, css: ".edit-header-form")
   a(:sidebar_toggle, class: "side-rail-toggle-button")
   def edit_description_textbox_element
