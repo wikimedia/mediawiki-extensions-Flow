@@ -1,6 +1,5 @@
-require_relative 'wiki_page'
-
-class AbstractFlowPage < WikiPage
+class AbstractFlowPage
+  include PageObject
   include FlowEditor
 
   page_section(:description, BoardDescription, class: 'flow-board-header')
@@ -11,6 +10,8 @@ class AbstractFlowPage < WikiPage
     menu.when_present.click
     option.when_present.click
   end
+
+  a(:logout, css: "#pt-logout a")
 
   # board component
   div(:flow_component, class: 'flow-component')
