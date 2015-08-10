@@ -771,7 +771,8 @@ $c['submission_handler'] = function( $c ) {
 $c['factory.block'] = function( $c ) {
 	return new Flow\BlockFactory(
 		$c['storage'],
-		$c['loader.root_post']
+		$c['loader.root_post'],
+		$c['flow_actions']
 	);
 };
 $c['factory.loader.workflow'] = function( $c ) {
@@ -892,8 +893,7 @@ $c['query.topiclist'] = function( $c ) {
 $c['query.topic.history'] = function( $c ) {
 	return new Flow\Formatter\TopicHistoryQuery(
 		$c['storage'],
-		$c['repository.tree'],
-		$c['flow_actions']
+		$c['repository.tree']
 	);
 };
 $c['query.post.history'] = function( $c ) {
@@ -971,8 +971,7 @@ $c['formatter.contributions.feeditem'] = function( $c ) {
 $c['query.board-history'] = function( $c ) {
 	return new Flow\Formatter\BoardHistoryQuery(
 		$c['storage'],
-		$c['repository.tree'],
-		$c['flow_actions']
+		$c['repository.tree']
 	);
 };
 
