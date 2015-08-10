@@ -1,11 +1,12 @@
 <?php
 
 namespace Flow\Import;
+use Flow\Exception\FlowException;
 
 /**
  * Base class for errors in the Flow\Import module
  */
-class ImportException extends \Flow\Exception\FlowException {
+class ImportException extends FlowException {
 }
 
 /**
