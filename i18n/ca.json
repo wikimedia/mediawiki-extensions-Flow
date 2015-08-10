@@ -11,7 +11,8 @@
 			"Xavier Dengra",
 			"Macofe",
 			"Annamerida",
-			"Paucabot"
+			"Paucabot",
+			"Eduardo Martinez"
 		]
 	},
 	"enableflow": "Habilita el Flow",
@@ -277,7 +278,10 @@
 	"mw-ui-unsubmitted-confirm": "Teniu canvis no desats en aquesta pàgina. Segur que voleu sortir i perdre la feina feta?",
 	"flow-importer-wt-converted-template": "Pàgina de discussió en wikitext convertida a Flow",
 	"flow-importer-wt-converted-archive-template": "Arxiu de pàgina de discussió en wikitext convertida",
+	"apihelp-flow+view-post-history-description": "Veure la revisió de la història d'un post.",
+	"apihelp-flow+view-post-history-example-1": "Buscar les revisions d'un missatge a [[Topic:S2tycnas4hcucw8w]] com wikitext",
 	"apihelp-flow+view-topic-description": "Mostra un tema.",
+	"apihelp-flow+view-topic-history-example-1": "Veure les revisions de les entrades a [[Topic:S2tycnas4hcucw8w]] com wikitext",
 	"apihelp-flow+view-topiclist-description": "Mostra una llista de temes.",
 	"apihelp-flow+view-topiclist-param-offset-dir": "Direcció d'ordenació dels temes.",
 	"apihelp-flow-parsoid-utils-param-content": "Contingut per convertir.",

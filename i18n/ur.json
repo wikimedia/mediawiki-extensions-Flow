@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Muhammad Shuaib",
-			"عثمان خان شاہ"
+			"عثمان خان شاہ",
+			"FarhanDanish"
 		]
 	},
 	"enableflow": "فلو فعال کریں",
@@ -16,26 +17,26 @@
 	"logentry-delete-flow-restore-topic": "$1 نے [[$6]] پر موضوع [[$3|$5]] {{GENDER:$2|بحال کیا}}",
 	"flow-user-moderated": "تدوین شدہ صارف",
 	"flow-board-header-browse-topics-link": "موضوعات دیکھیں",
-	"flow-board-header": "اس بورڈ کے متعلق",
-	"flow-board-collapse-description": "توضیح چھپائیں",
-	"flow-board-expand-description": "توضیح دکھائیں",
-	"flow-edit-header-link": "توضیح کی ترمیم کریں",
+	"flow-board-header": "اس بورڈ کے بارے میں",
+	"flow-board-collapse-description": "تفصیل چھپائیں",
+	"flow-board-expand-description": "تفصیل دکھائیں",
+	"flow-edit-header-link": "تفصیل میں ترمیم کریں",
 	"flow-post-moderated-toggle-hide-show": "تبصرہ {{GENDER:$1|پوشیدہ کردہ}} از $2 دکھائیں",
-	"flow-post-moderated-toggle-delete-show": "تبصرہ {{GENDER:$1|حذف کردہ}} از $2 دکھائیں",
-	"flow-topic-moderated-reason-prefix": "وجہ",
-	"flow-hide-post-content": "اس تبصرہ کو $1 نے {{GENDER:$1|پوشیدہ کردیا}} ([$2 تاریخچہ])",
+	"flow-post-moderated-toggle-delete-show": "$2 کا {{GENDER:$1|حذف کردہ}} تبصرہ دکھائیں",
+	"flow-topic-moderated-reason-prefix": "وجہ:",
+	"flow-hide-post-content": "اس تبصرے کو $1 نے {{GENDER:$1|پوشیدہ کردیا ہے}} ([$2 تاریخچہ])",
 	"flow-post-actions": "اقدامات",
 	"flow-topic-actions": "اقدامات",
-	"flow-cancel": "منسوخ",
+	"flow-cancel": "منسوخ کریں",
 	"flow-skip-summary": "خلاصہ نظر انداز کریں",
 	"flow-edit-summary-placeholder": "مختصر طور پر اس گفتگو کا نتیجہ تحریر کریں",
 	"flow-summary-authored": "خلاصہ از $1",
 	"flow-show-change": "تبدیلیاں دکھائیں",
-	"flow-newtopic-save": "نیا موضوع",
+	"flow-newtopic-save": "نیا موضوع شامل کریں",
 	"flow-newtopic-start-placeholder": "نیا موضوع شروع کریں",
 	"flow-newtopic-first-heading": "$1 پر نیا موضوع شروع کریں",
-	"flow-reply-topic-title-placeholder": "\"$1\" کو جواب",
-	"flow-history-action-delete-post": "حذف",
+	"flow-reply-topic-title-placeholder": "\"$1\" کو جواب دیں",
+	"flow-history-action-delete-post": "حذف کریں",
 	"flow-history-action-hide-post": "چھپائیں",
-	"flow-history-action-undelete-post": "بحال"
+	"flow-history-action-undelete-post": "بحال کریں"
 }
