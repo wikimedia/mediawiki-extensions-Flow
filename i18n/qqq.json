@@ -556,5 +556,11 @@
 	"flow-mark-revision-patrolled-link-title": "Title of the link to mark a revision as patrolled on a revision page.",
 	"flow-mark-diff-patrolled-link-text": "Text of the link to mark a revision as patrolled on a diff page.\n{{Identical|Mark as patrolled}}",
 	"flow-mark-diff-patrolled-link-title": "Title of the link to mark a revision as patrolled on a diff page.\n{{Identical|Mark as patrolled}}",
-	"flow-description-last-modified-at": "Timestamp line stating when description was modified. See also {{msg-mw|lastmodifiedat}}.  Parameters:\n* $1 - Date\n* $2 - Time"
+	"flow-description-last-modified-at": "Timestamp line stating when description was modified. See also {{msg-mw|lastmodifiedat}}.  Parameters:\n* $1 - Date\n* $2 - Time",
+	"flow-guidedtour-optin-welcome": "Title of the 'welcome' step in the Flow opt-in guided tour. This message is the first to appear in the guided tour after a user chose to convert their talk page to a Flow board.",
+	"flow-guidedtour-optin-welcome-description": "Description of the 'welcome' step in the flow opt-in guided tour. This message is the first to appear in the guided tour after a user chose to convert their talk page to a Flow board.",
+	"flow-guidedtour-optin-find-old-conversations": "Title of the 'find old conversations' step in the flow opt-in guided tour that launches after the user chose to convert their talk page to a Flow board. This message appears next to the board description, where a link is visible to the user's old talk page.",
+	"flow-guidedtour-optin-find-old-conversations-description": "Description of the 'find old conversations' step in the flow opt-in guided tour that launches after the user chose to convert their talk page to a Flow board. This message appears next to the board description, where a link is visible to the user's old talk page.",
+	"flow-guidedtour-optin-feedback": "Title of the 'feedback' step in the flow opt-in guided tour that launches after the user chose to convert their talk page to a Flow board. It appears under the 'beta' personal tool link, suggesting to the users that they can send the Flow developers feedback on their experience.",
+	"flow-guidedtour-optin-feedback-description": "Description of the 'feedback' step in the flow opt-in guided tour that launches after the user chose to convert their talk page to a Flow board. It appears under the 'beta' personal tool link, suggesting to the users that they can send the Flow developers feedback on their experience."
 }
