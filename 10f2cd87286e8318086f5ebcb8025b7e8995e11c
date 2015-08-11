@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "6ec1af18_5827fe0d",
+        "filename": "Resources.php",
+        "patchSetId": 36
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T23:33:16Z",
+      "side": 1,
+      "message": "You deleted this file, so you should remove it here too. It causes errors now.",
+      "revId": "10f2cd87286e8318086f5ebcb8025b7e8995e11c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_78399a3d",
         "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
         "patchSetId": 36
