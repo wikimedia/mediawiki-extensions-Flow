@@ -217,6 +217,8 @@
 	"right-flow-edit-post": "Muokata Flow'n viestejä, jotka on kirjoittanut toinen käyttäjä",
 	"right-flow-suppress": "Häivyttää Flow'n versioita",
 	"flow-terms-of-use-new-topic": "Napsauttamalla \"{{int:flow-newtopic-save}}\", hyväksyt tämän wikin käyttöehdot.",
+	"flow-terms-of-use-edit": "Tallentamalla muutoksesi, hyväksyt käyttöehdot tässä wikissä.",
+	"flow-cancel-warning": "Olet asettanut tekstiä tähän lomakkeeseen. Oletko varma, että haluat hylätä muutoksesi?",
 	"flow-no-more-fwd": "Ei vanhempia aiheita",
 	"flow-newest-topics": "Uusimmat aiheet",
 	"flow-recent-topics": "Viimeksi aktiiviset aiheet",

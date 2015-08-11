@@ -360,6 +360,7 @@
 	"flow-special-enableflow-board-already-exists": "Es gibt bereits ein Flow-Board unter [[$1]].",
 	"flow-special-enableflow-invalid-title": "Es wurde ein ungültiger Seitentitel angegeben",
 	"flow-special-enableflow-board-creation-not-allowed": "Du bist nicht berechtigt, ein Flow-Board unter [[:$1]] zu erstellen.",
+	"flow-special-enableflow-non-existent-requires-description": "Um ein Flow-Board zu erstellen, wo derzeit keine Seite vorhanden ist, musst du eine Beschreibung angeben.",
 	"flow-special-enableflow-page-is-liquidthreads": "Es gibt eine LiquidThreads-Seite unter [[:$1]].",
 	"flow-special-enableflow-confirmation": "Du hast erfolgreich ein Flow-Board unter [[$1]] erstellt.",
 	"flow-conversion-archive-page-name-format": "%s/Archiv %d\n%s/Archiv%d\n%s/archiv %d\n%s/archiv%d",
