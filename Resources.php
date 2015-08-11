@@ -247,6 +247,18 @@ $wgResourceModules += array(
 			"flow-wikitext-editor-help-preview-the-result",
 		),
 	) + $mobile,
+	'ext.guidedTour.tour.flowOptIn' => $flowResourceTemplate + array(
+		'scripts' => 'tours/flowOptIn.js',
+		'dependencies' => 'ext.guidedTour.lib',
+		'messages' => array(
+			"flow-guidedtour-optin-welcome",
+			"flow-guidedtour-optin-welcome-description",
+			"flow-guidedtour-optin-find-old-conversations",
+			"flow-guidedtour-optin-find-old-conversations-description",
+			"flow-guidedtour-optin-feedback",
+			"flow-guidedtour-optin-feedback-description"
+		)
+	),
 	// @todo: upstream to mediawiki ui
 	'ext.flow.mediawiki.ui.modal' => $flowResourceTemplate + array(
 		'position' => 'top',
