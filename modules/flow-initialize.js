@@ -179,5 +179,6 @@
 
 		// Show the board
 		finishLoading();
+
 	} );
 }( jQuery ) );
