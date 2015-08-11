@@ -179,5 +179,8 @@
 
 		// Show the board
 		finishLoading();
+
+		// TODO: Make this conditional on new boards
+		mw.guidedTour.launchTour( 'flowOptIn' );
 	} );
 }( jQuery ) );

@@ -549,5 +549,11 @@
 	"flow-mark-revision-patrolled-link-title": "Mark this page as patrolled",
 	"flow-mark-diff-patrolled-link-text": "Mark as patrolled",
 	"flow-mark-diff-patrolled-link-title": "Mark as patrolled",
-	"flow-description-last-modified-at": "This description was last modified on $1, at $2."
+	"flow-description-last-modified-at": "This description was last modified on $1, at $2.",
+	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Welcome}} to {{GENDER:$1|your}} new discussion system",
+	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Your}} talk page is the place where other editors can contact {{GENDER:$1|you}}. With the new system it is easier to start new topics and organize conversations.",
+	"flow-guidedtour-optin-find-old-conversations": "Find {{GENDER:$1|your}} old conversations",
+	"flow-guidedtour-optin-find-old-conversations-description": "Previous conversations have been archived. {{GENDER:$1|You}} can always move them to a different location.",
+	"flow-guidedtour-optin-feedback": "Give us {{GENDER:$1|your}} feedback!",
+	"flow-guidedtour-optin-feedback-description": "The discussion system is still in active development. {{GENDER:$1|You}} can provide {{GENDER:$1|your}} feedback or disable the new system anytime from the '''beta features''' section.",
 }
