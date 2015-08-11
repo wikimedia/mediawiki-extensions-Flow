@@ -30,6 +30,8 @@ abstract class AbstractQuery {
 	 */
 	protected $treeRepository;
 
+	// Consider converting these in-process caches to MapCacheLRU to avoid
+	// memory leaks.  Should only be an issue if a batch is repeatedly doing queries.
 	/**
 	 * @var UUID[] Associative array of post ID to root post's UUID object.
 	 */

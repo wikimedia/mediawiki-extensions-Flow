@@ -92,6 +92,7 @@ class Templating {
 			throw new PermissionException( 'Insufficient permissions to see userlinks for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
 		}
 
+		// Convert to use MapCacheLRU?
 		// if this specific revision is moderated, its usertext can always be
 		// displayed, since it will be the moderator user
 		static $cache;

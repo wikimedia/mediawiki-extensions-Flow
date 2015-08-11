@@ -282,12 +282,29 @@ class PageImportState {
 	/**
 	 * Gets the given object from storage
 	 *
+	 * WARNING: Before calling this method, ensure that you follow the rule
+	 * given in clearManagerGroup.
+	 *
 	 * @param  string $type Class name to retrieve
 	 * @param  UUID   $id   ID of the object to retrieve
 	 * @return Object|false
 	 */
 	public function get( $type, UUID $id ) {
 		return $this->storage->get( $type, $id );
+	}
+
+	/**
+	 * Clears information about which objects are loaded, to avoid memory leaks.
+	 * This will also:
+	 * * Clear the mapper associated with each ObjectManager that has been used.
+	 * * Trigger onAfterClear on any listeners.
+	 *
+	 * WARNING: You can *NOT* call ->get before calling clearManagerGroup, then ->put
+	 * after calling clearManagerGroup, on the same object.  This will cause a
+	 * duplicate object to be inserted.
+	 */
+	public function clearManagerGroup() {
+		$this->storage->clear();
 	}
 
 	/**
@@ -589,6 +606,8 @@ class TalkpageImportOperation {
 				$this->importTopic( $topicState, $topic );
 				$state->commit();
 				$state->postprocessor->afterTopicImported( $topicState, $topic );
+				$state->clearManagerGroup();
+
 				$imported++;
 			} catch ( ImportSourceStoreException $e ) {
 				// errors from the source store are more serious and shuld

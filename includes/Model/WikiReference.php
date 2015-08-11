@@ -72,8 +72,14 @@ class WikiReference extends Reference {
 	}
 
 	/**
-	 * Many loaded references typically point to the same Title, cache those instead
-	 * of generating a bunch of duplicate title classes.
+	 * Gets a title give a namespace number and title text
+	 *
+	 * Many loaded references typically point to the same Title, so we cache those
+	 * instead of generating a bunch of duplicate title classes.
+	 *
+	 * @param int $namespace Namespace number
+	 * @param string $title Title text
+	 * @return Title
 	 */
 	public static function makeTitle( $namespace, $title ) {
 		try {
