@@ -85,6 +85,7 @@ $dir = __DIR__ . '/';
 require $dir . 'Resources.php';
 
 $wgHooks['ResourceLoaderRegisterModules'][] = 'FlowHooks::onResourceLoaderRegisterModules';
+$wgHooks['BeforePageDisplay'][] = 'FlowHooks::onBeforePageDisplay';
 
 $wgMessagesDirs['Flow'] = __DIR__ . '/i18n';
 $wgExtensionMessagesFiles['FlowNamespaces'] = $dir . '/Flow.namespaces.php';
