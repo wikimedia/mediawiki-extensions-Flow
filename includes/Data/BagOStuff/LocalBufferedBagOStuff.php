@@ -36,6 +36,10 @@ class LocalBufferedBagOStuff extends BufferedBagOStuff {
 
 	protected function clearLocal() {
 		// contrary to BufferedBagOStuff, don't clear $this->bag
+		//
+		// TODO: Reconsider this, or at least bound $this->bag somehow?  This
+		// *might* be acceptable for web requests, but $this->bag growing
+		// unbounded can easily cause problems for batch.
 		$this->buffer = array();
 		$this->committed = array();
 	}
