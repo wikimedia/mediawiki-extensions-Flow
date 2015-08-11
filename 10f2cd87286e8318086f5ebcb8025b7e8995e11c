@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_78399a3d",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 36
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T23:32:23Z",
+      "side": 1,
+      "message": "From PS30: this comment doesn\u0027t match the code below it",
+      "revId": "10f2cd87286e8318086f5ebcb8025b7e8995e11c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_f84caae6",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 36
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T23:32:23Z",
+      "side": 1,
+      "message": "From PS30: are you sure this shouldn\u0027t be removeClass()? And maybe you could use showContent() here, perhaps by parameterizing it?",
+      "revId": "10f2cd87286e8318086f5ebcb8025b7e8995e11c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_b81622ab",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 36
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T23:32:23Z",
+      "side": 1,
+      "message": "From PS30: editors\u0027",
+      "revId": "10f2cd87286e8318086f5ebcb8025b7e8995e11c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_d81beed2",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 36
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T23:32:23Z",
+      "side": 1,
+      "message": "From PS30: handle failure",
+      "revId": "10f2cd87286e8318086f5ebcb8025b7e8995e11c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
