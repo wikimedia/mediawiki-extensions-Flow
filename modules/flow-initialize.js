@@ -17,6 +17,13 @@
 				$( '.flow-ui-load-overlay' ).hide();
 			};
 
+		// TODO: Make this conditional on new flow talk pages
+		// We can do that by creating the guided tour cookie
+		// when the user actually opts-in, which will make the
+		// line below unnecessary anyways.
+		// This is only here for testing!!!
+		mw.guidedTour.launchTour( 'flowOptIn' );
+
 		// HACK: If there is no component, we are not on a flow
 		// board at all, and there's no need to load anything.
 		// This is especially true for tests, though we should
@@ -179,5 +186,6 @@
 
 		// Show the board
 		finishLoading();
+
 	} );
 }( jQuery ) );

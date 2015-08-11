@@ -556,5 +556,11 @@
 	"flow-mark-revision-patrolled-link-title": "Title of the link to mark a revision as patrolled on a revision page.",
 	"flow-mark-diff-patrolled-link-text": "Text of the link to mark a revision as patrolled on a diff page.\n{{Identical|Mark as patrolled}}",
 	"flow-mark-diff-patrolled-link-title": "Title of the link to mark a revision as patrolled on a diff page.\n{{Identical|Mark as patrolled}}",
-	"flow-description-last-modified-at": "Timestamp line stating when description was modified. See also {{msg-mw|lastmodifiedat}}.  Parameters:\n* $1 - Date\n* $2 - Time"
+	"flow-description-last-modified-at": "Timestamp line stating when description was modified. See also {{msg-mw|lastmodifiedat}}.  Parameters:\n* $1 - Date\n* $2 - Time",
+	"flow-guidedtour-optin-welcome": "Title of the 'welcome' step in the flow opt-in guided tour.",
+	"flow-guidedtour-optin-welcome-description": "Description of the 'welcome' step in the flow opt-in guided tour.",
+	"flow-guidedtour-optin-find-old-conversations": "Title of the 'find old conversations' step in the flow opt-in guided tour.",
+	"flow-guidedtour-optin-find-old-conversations-description": "Description of the 'find old conversations' step in the flow opt-in guided tour.",
+	"flow-guidedtour-optin-feedback": "Title of the 'feedback' step in the flow opt-in guided tour.",
+	"flow-guidedtour-optin-feedback-description": "Description of the 'feedback' step in the flow opt-in guided tour."
 }
