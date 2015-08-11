@@ -12,6 +12,9 @@ use User;
  * Batch together queries for a bunch of wiki+userid -> username
  */
 class UserNameBatch {
+	// Maximum number of usernames to cache for each wiki
+	const USERNAMES_PER_WIKI = 250;
+
 	/**
 	 * @var UserName\UserNameQuery
 	 */
@@ -23,7 +26,8 @@ class UserNameBatch {
 	protected $queued = array();
 
 	/**
-	 * @var array[] 2-d map from wiki id and user id to display username or false
+	 * @var array Map from wiki id to MapCacheLRU.  MapCacheLRU is a map of user ID (as
+	 *  string, though to PHP it's the same anyway...) to username.
 	 */
 	protected $usernames = array();
 
@@ -35,6 +39,17 @@ class UserNameBatch {
 		$this->query = $query;
 		foreach ( $queued as $wiki => $userIds ) {
 			$this->queued[$wiki] = array_map( 'intval', $userIds );
+		}
+	}
+
+	/*
+	 * Make sure the LRU for the given wiki is in place.
+	 *
+	 * @param string $wiki Wiki identifier
+	 */
+	protected function ensureLRU( $wiki ) {
+		if ( !isset( $this->usernames[$wiki] ) ) {
+			$this->usernames[$wiki] = new MapCacheLRU( self::USERNAMES_PER_WIKI );
 		}
 	}
 
@@ -50,9 +65,11 @@ class UserNameBatch {
 	 */
 	public function add( $wiki, $userId, $userName = null ) {
 		$userId = (int)$userId;
+
+		$this->ensureLRU( $wiki );
 		if ( $userName !== null ) {
-			$this->usernames[$wiki][$userId] = $userName;
-		} elseif ( !isset( $this->usernames[$wiki][$userId] ) ) {
+			$this->usernames[$wiki]->set( (string) $userId, $userName );
+		} elseif ( !$this->usernames[$wiki]->has( (string) $userId ) ) {
 			$this->queued[$wiki][] = $userId;
 		}
 	}
@@ -79,11 +96,13 @@ class UserNameBatch {
 		if ( $userId === 0 ) {
 			return $userIp;
 		}
-		if ( !isset( $this->usernames[$wiki][$userId] ) ) {
+
+		$this->ensureLRU( $wiki );
+		if ( !$this->usernames[$wiki]->has( (string) $userId ) ) {
 			$this->queued[$wiki][] = $userId;
 			$this->resolve( $wiki );
 		}
-		return $this->usernames[$wiki][$userId];
+		return $this->usernames[$wiki]->get( (string) $userId );
 	}
 
 	/**
@@ -105,15 +124,19 @@ class UserNameBatch {
 		}
 		$queued = array_unique( $this->queued[$wiki] );
 		if ( isset( $this->usernames[$wiki] ) ) {
-			$queued = array_diff( $queued, array_keys( $this->usernames[$wiki] ) );
+			$queued = array_diff( $queued, $this->usernames[$wiki]->getAllKeys() );
+		} else {
+			$this->ensureLRU( $wiki );
 		}
+
 		$res = $this->query->execute( $wiki, $queued );
 		unset( $this->queued[$wiki] );
 		if ( $res ) {
 			$usernames = array();
 			foreach ( $res as $row ) {
 				$id = (int)$row->user_id;
-				$this->usernames[$wiki][$id] = $usernames[$id] = $row->user_name;
+				$usernames[$id] = $row->user_name;
+				$this->usernames[$wiki]->set( (string) $id, $row->user_name );
 			}
 			$this->resolveUserPages( $wiki, $usernames );
 			$missing = array_diff( $queued, array_keys( $usernames ) );
@@ -121,7 +144,7 @@ class UserNameBatch {
 			$missing = $queued;
 		}
 		foreach ( $missing as $id ) {
-			$this->usernames[$wiki][$id] = false;
+			$this->usernames[$wiki]->set( (string) $id, false );
 		}
 	}
 
