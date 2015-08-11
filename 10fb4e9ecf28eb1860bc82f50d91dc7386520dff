@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_9db478e6",
+        "filename": "modules/engine/components/board/base/flow-board-api-events.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 831,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T21:28:26Z",
+      "side": 1,
+      "message": "Brought this up into the reply widget change and added a comment.",
+      "parentUuid": "6ec1af18_413394f3",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_61a9f0db",
         "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
         "patchSetId": 31
@@ -30,6 +48,24 @@
       "writtenOn": "2015-08-10T23:06:19Z",
       "side": 1,
       "message": "This should be removed; the method is checking whether VE is supported, while the config option checks whether it should be loaded. The switcher already checks whetehr it should be loaded anyways, and I can see cases where we might want to check \"isSupported\" without having the editor in the load list.",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_1dd408ec",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T21:28:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec1af18_61a9f0db",
       "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_3d99c480",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T21:28:26Z",
+      "side": 1,
+      "message": "This is inherited cross-repo (from OO.ui.Widget), so I can\u0027t put @inheritdoc here",
+      "parentUuid": "6ec1af18_01ba6c1e",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_e193a0a4",
         "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
         "patchSetId": 31
@@ -64,6 +118,24 @@
       "writtenOn": "2015-08-10T23:06:19Z",
       "side": 1,
       "message": "If we allow this as a configuration option in the wikitext editor, should we also in VE ?",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_dd91a053",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T21:28:26Z",
+      "side": 1,
+      "message": "I killed it",
+      "parentUuid": "6ec1af18_e193a0a4",
       "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_7d866c1a",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T21:28:26Z",
+      "side": 1,
+      "message": "Why? It\u0027s used by both the if branch and the else branch.",
+      "parentUuid": "6ec1af18_e1eac004",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_81d3bc60",
         "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorControlsWidget.js",
         "patchSetId": 31
@@ -98,6 +188,24 @@
       "writtenOn": "2015-08-10T23:06:19Z",
       "side": 1,
       "message": "Too many indents?",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_9d8b1820",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorControlsWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T21:28:26Z",
+      "side": 1,
+      "message": "Whoops, fixed.",
+      "parentUuid": "6ec1af18_81d3bc60",
       "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_3d80e4f8",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorControlsWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T21:28:26Z",
+      "side": 1,
+      "message": "Inherited cross-repo",
+      "parentUuid": "6ec1af18_21c8c8a9",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_41c5d48f",
         "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
         "patchSetId": 31
@@ -132,6 +258,24 @@
       "writtenOn": "2015-08-10T23:06:19Z",
       "side": 1,
       "message": "If the switcher uses it here and stores it (and then updates it) then the initial content should probably be taken off from the WikitextEditor constructor/config",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_5d7db016",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T21:28:26Z",
+      "side": 1,
+      "message": "Yeah, did that already.",
+      "parentUuid": "6ec1af18_41c5d48f",
       "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_fd79fc2a",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T21:28:26Z",
+      "side": 1,
+      "message": "Well, I was thinking that maybe we could queue the requested switch to occur after the current switch finishes. But that\u0027s not going to be needed for our current use case.",
+      "parentUuid": "6ec1af18_415f1445",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_a13598f5",
         "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
         "patchSetId": 31
@@ -166,6 +328,24 @@
       "writtenOn": "2015-08-10T23:06:19Z",
       "side": 1,
       "message": "Notice that failures will never pop pending.",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_1d772837",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T21:28:26Z",
+      "side": 1,
+      "message": "Good point, I\u0027ll work on that when I do error handling.",
+      "parentUuid": "6ec1af18_a13598f5",
       "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -189,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_dd90c048",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T21:28:26Z",
+      "side": 1,
+      "message": "Yes, and I should deal with it. Good catch.",
+      "parentUuid": "6ec1af18_410dd440",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_a11cb87d",
         "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
         "patchSetId": 31
@@ -200,6 +398,24 @@
       "writtenOn": "2015-08-10T23:06:19Z",
       "side": 1,
       "message": "Also, handle format conversion errors",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_7d950c35",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T21:28:26Z",
+      "side": 1,
+      "message": "Good catch",
+      "parentUuid": "6ec1af18_a11cb87d",
       "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -223,6 +439,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_9d9a3865",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T21:28:26Z",
+      "side": 1,
+      "message": "You\u0027re right. I changed switchEditor to make it reject when requesting a nonexistent editor.",
+      "parentUuid": "6ec1af18_e4464e54",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_c4755294",
         "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
         "patchSetId": 31
@@ -234,6 +468,24 @@
       "writtenOn": "2015-08-10T23:06:19Z",
       "side": 1,
       "message": "Documentation",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_3d9f8457",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T21:28:26Z",
+      "side": 1,
+      "message": "Inherited cross-repo",
+      "parentUuid": "6ec1af18_c4755294",
       "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -257,6 +509,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_5d9cd05f",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T21:28:26Z",
+      "side": 1,
+      "message": "This is how auto-disabling works in OOUI. You override isDisabled() to check whether the widget should be disabled, and you call updateDisabled() whenever those criteria change. updateDisabled() causes isDisabled() to be called.",
+      "parentUuid": "6ec1af18_0444ba49",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_446162cf",
         "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
         "patchSetId": 31
@@ -268,6 +538,24 @@
       "writtenOn": "2015-08-10T23:06:19Z",
       "side": 1,
       "message": "Documentation",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_fda81c76",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T21:28:26Z",
+      "side": 1,
+      "message": "Inherited cross-repo",
+      "parentUuid": "6ec1af18_446162cf",
       "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -291,6 +579,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_1da648a8",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T21:28:26Z",
+      "side": 1,
+      "message": "Inherited cross-repo",
+      "parentUuid": "6ec1af18_846f4ac0",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_246456e1",
         "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
         "patchSetId": 31
@@ -302,6 +608,24 @@
       "writtenOn": "2015-08-10T23:06:19Z",
       "side": 1,
       "message": "Document",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_bdb294e2",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T21:28:26Z",
+      "side": 1,
+      "message": "Inherited cross-repo",
+      "parentUuid": "6ec1af18_246456e1",
       "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -325,6 +649,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_9db1d8de",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T21:28:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec1af18_e4eace04",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_e493aea4",
         "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
         "patchSetId": 31
@@ -342,6 +684,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_3dc6a44f",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T21:28:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec1af18_e493aea4",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_a4d4c64c",
         "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
         "patchSetId": 31
@@ -353,6 +713,24 @@
       "writtenOn": "2015-08-10T23:06:19Z",
       "side": 1,
       "message": "See comment above; you can get rid of this method.",
+      "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_5dc3703d",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T21:28:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec1af18_a4d4c64c",
       "revId": "10fb4e9ecf28eb1860bc82f50d91dc7386520dff",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
