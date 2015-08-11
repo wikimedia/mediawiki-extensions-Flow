@@ -37,7 +37,7 @@ $c['db.factory'] = function( $c ) {
 $c['repository.tree'] = function( $c ) {
 	return new Flow\Repository\TreeRepository(
 		$c['db.factory'],
-		$c['memcache.buffered']
+		$c['memcache.local_buffered']
 	);
 };
 
@@ -132,14 +132,28 @@ use Flow\Model\Header;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 
-$c['memcache.buffered'] = function( $c ) {
+// This currently never clears $this->bag, which makes it unusuable for long-running batch.
+// Use 'memcache.buffered' for those instead.
+$c['memcache.local_buffered'] = function( $c ) {
 	global $wgFlowCacheTime;
 
-	// This is the real buffered cached that will allow transactional-like cache
+	// This is the real buffered cached that will allow transactional-like cache.
+	// It also caches all reads in-memory.
 	$bufferedCache = new Flow\Data\BagOStuff\LocalBufferedBagOStuff( $c['memcache'] );
 	// This is Flow's wrapper around it, to have a fixed cache expiry time
 	return new BufferedCache( $bufferedCache, $wgFlowCacheTime );
 };
+
+$c['memcache.buffered'] = function( $c ) {
+	global $wgFlowCacheTime;
+
+	// This is the real buffered cached that will allow transactional-like cache
+	$bufferedCache = new Flow\Data\BagOStuff\BufferedBagOStuff( $c['memcache'] );
+
+	// This is Flow's wrapper around it, to have a fixed cache expiry time
+	return new BufferedCache( $bufferedCache, $wgFlowCacheTime );
+};
+
 // Batched username loader
 $c['repository.username.query'] = function( $c ) {
 	return new Flow\Repository\UserName\TwoStepUserNameQuery(
@@ -173,7 +187,7 @@ $c['storage.workflow.mapper'] = function( $c ) {
 };
 $c['storage.workflow.indexes.primary'] = function( $c ) {
 	return new UniqueFeatureIndex(
-		$c['memcache.buffered'],
+		$c['memcache.local_buffered'],
 		$c['storage.workflow.backend'],
 		'flow_workflow:v2:pk',
 		$c['storage.workflow.primary_key']
@@ -181,7 +195,7 @@ $c['storage.workflow.indexes.primary'] = function( $c ) {
 };
 $c['storage.workflow.indexes.title_lookup'] = function( $c ) {
 	return new TopKIndex(
-		$c['memcache.buffered'],
+		$c['memcache.local_buffered'],
 		$c['storage.workflow.backend'],
 		'flow_workflow:title:v2:',
 		array( 'workflow_wiki', 'workflow_namespace', 'workflow_title_text', 'workflow_type' ),
@@ -252,7 +266,7 @@ $c['storage.board_history.backend'] = function( $c ) {
 };
 $c['storage.board_history.indexes.primary'] = function( $c ) {
 	return new BoardHistoryIndex(
-		$c['memcache.buffered'],
+		$c['memcache.local_buffered'],
 		// backend storage
 		$c['storage.board_history.backend'],
 		// key prefix
@@ -338,7 +352,7 @@ $c['storage.header.backend'] = function( $c ) {
 };
 $c['storage.header.indexes.primary'] = function( $c ) {
 	return new UniqueFeatureIndex(
-		$c['memcache.buffered'],
+		$c['memcache.local_buffered'],
 		$c['storage.header.backend'],
 		'flow_header:v2:pk',
 		$c['storage.header.primary_key']
@@ -346,7 +360,7 @@ $c['storage.header.indexes.primary'] = function( $c ) {
 };
 $c['storage.header.indexes.topic_lookup'] = function( $c ) {
 	return new TopKIndex(
-		$c['memcache.buffered'],
+		$c['memcache.local_buffered'],
 		$c['storage.header.backend'],
 		'flow_header:workflow',
 		array( 'rev_type_id' ),
@@ -416,7 +430,7 @@ $c['storage.post_summary.backend'] = function( $c ) {
 };
 $c['storage.post_summary.indexes.primary'] = function( $c ) {
 	return new UniqueFeatureIndex(
-		$c['memcache.buffered'],
+		$c['memcache.local_buffered'],
 		$c['storage.post_summary.backend'],
 		'flow_post_summary:v2:pk',
 		$c['storage.post_summary.primary_key']
@@ -424,7 +438,7 @@ $c['storage.post_summary.indexes.primary'] = function( $c ) {
 };
 $c['storage.post_summary.indexes.topic_lookup'] = function( $c ) {
 	return new TopKIndex(
-		$c['memcache.buffered'],
+		$c['memcache.local_buffered'],
 		$c['storage.post_summary.backend'],
 		'flow_post_summary:workflow',
 		array( 'rev_type_id' ),
@@ -482,7 +496,7 @@ $c['storage.topic_list.backend'] = function( $c ) {
 // Lookup from topic_id to its owning board id
 $c['storage.topic_list.indexes.primary'] = function( $c ) {
 	return new UniqueFeatureIndex(
-		$c['memcache.buffered'],
+		$c['memcache.local_buffered'],
 		$c['storage.topic_list.backend'],
 		'flow_topic_list:topic',
 		array( 'topic_id' )
@@ -493,7 +507,7 @@ $c['storage.topic_list.indexes.primary'] = function( $c ) {
 /// In reverse order by topic_id
 $c['storage.topic_list.indexes.reverse_lookup'] = function( $c ) {
 	return new TopicListTopKIndex(
-		$c['memcache.buffered'],
+		$c['memcache.local_buffered'],
 		$c['storage.topic_list.backend'],
 		'flow_topic_list:list',
 		array( 'topic_list_id' ),
@@ -503,7 +517,7 @@ $c['storage.topic_list.indexes.reverse_lookup'] = function( $c ) {
 /// In reverse order by topic last_updated
 $c['storage.topic_list.indexes.last_updated'] = function( $c ) {
 	return new TopicListTopKIndex(
-		$c['memcache.buffered'],
+		$c['memcache.local_buffered'],
 		$c['storage.topic_list.indexes.last_updated.backend'],
 		'flow_topic_list_last_updated:list',
 		array( 'topic_list_id' ),
@@ -595,7 +609,7 @@ $c['storage.post.listeners'] = function( $c ) {
 };
 $c['storage.post.indexes.primary'] = function( $c ) {
 	return new UniqueFeatureIndex(
-		$c['memcache.buffered'],
+		$c['memcache.local_buffered'],
 		$c['storage.post.backend'],
 		'flow_revision:v4:pk',
 		$c['storage.post.primary_key']
@@ -604,7 +618,7 @@ $c['storage.post.indexes.primary'] = function( $c ) {
 // Each bucket holds a list of revisions in a single post
 $c['storage.post.indexes.post_lookup'] = function( $c ) {
 	return new TopKIndex(
-		$c['memcache.buffered'],
+		$c['memcache.local_buffered'],
 		$c['storage.post.backend'],
 		'flow_revision:descendant',
 		array( 'rev_type_id' ),
@@ -646,7 +660,7 @@ $c['storage.topic_history.backend'] = function( $c ) {
 };
 $c['storage.topic_history.indexes.primary'] = function( $c ) {
 	return new UniqueFeatureIndex(
-		$c['memcache.buffered'],
+		$c['memcache.local_buffered'],
 		$c['storage.topic_history.backend'],
 		'flow_revision:v4:pk',
 		$c['storage.topic_history.primary_key']
@@ -654,7 +668,7 @@ $c['storage.topic_history.indexes.primary'] = function( $c ) {
 };
 $c['storage.topic_history.indexes.topic_lookup'] = function( $c ) {
 	return new TopicHistoryIndex(
-		$c['memcache.buffered'],
+		$c['memcache.local_buffered'],
 		$c['storage.topic_history.backend'],
 		$c['repository.tree'],
 		'flow_revision:topic:v2',
@@ -764,7 +778,7 @@ $c['submission_handler'] = function( $c ) {
 	return new Flow\SubmissionHandler(
 		$c['storage'],
 		$c['db.factory'],
-		$c['memcache.buffered'],
+		$c['memcache.local_buffered'],
 		$c['deferred_queue']
 	);
 };
@@ -1046,7 +1060,7 @@ $c['storage.wiki_reference.backend'] = function( $c ) {
 };
 $c['storage.wiki_reference.indexes.source_lookup'] = function( $c ) {
 	return new TopKIndex(
-		$c['memcache.buffered'],
+		$c['memcache.local_buffered'],
 		$c['storage.wiki_reference.backend'],
 		'flow_ref:wiki:by-source',
 		array(
@@ -1061,7 +1075,7 @@ $c['storage.wiki_reference.indexes.source_lookup'] = function( $c ) {
 };
 $c['storage.wiki_reference.indexes.revision_lookup'] = function( $c ) {
 	return new TopKIndex(
-		$c['memcache.buffered'],
+		$c['memcache.local_buffered'],
 		$c['storage.wiki_reference.backend'],
 		'flow_ref:wiki:by-revision:v2',
 		array(
@@ -1113,7 +1127,7 @@ $c['storage.url_reference.backend'] = function( $c ) {
 
 $c['storage.url_reference.indexes.revision_lookup'] = function( $c ) {
 	return new TopKIndex(
-		$c['memcache.buffered'],
+		$c['memcache.local_buffered'],
 		$c['storage.url_reference.backend'],
 		'flow_ref:url:by-source',
 		array(
@@ -1128,7 +1142,7 @@ $c['storage.url_reference.indexes.revision_lookup'] = function( $c ) {
 };
 $c['storage.url_reference.indexes.source_lookup'] = function( $c ) {
 	return new TopKIndex(
-		$c['memcache.buffered'],
+		$c['memcache.local_buffered'],
 		$c['storage.url_reference.backend'],
 		'flow_ref:url:by-revision:v2',
 		array(
@@ -1230,7 +1244,7 @@ $c['formatter.undoedit'] = function( $c ) {
 $c['board_mover'] = function( $c ) {
 	return new Flow\BoardMover(
 		$c['db.factory'],
-		$c['memcache.buffered'],
+		$c['memcache.local_buffered'],
 		$c['storage'],
 		$c['occupation_controller']->getTalkpageManager()
 	);
