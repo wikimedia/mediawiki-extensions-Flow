@@ -55,7 +55,7 @@
 '.$sp.''.((LCRun3::ifvar($cx, ((isset($in['revision']['dateFormats']) && is_array($in['revision'])) ? $in['revision']['dateFormats'] : null))) ? '    <p>
 '.$sp.'      '.LCRun3::ch($cx, 'l10n', array(array('flow-description-last-modified-at',((isset($in['revision']['dateFormats']['date']) && is_array($in['revision']['dateFormats'])) ? $in['revision']['dateFormats']['date'] : null),((isset($in['revision']['dateFormats']['time']) && is_array($in['revision']['dateFormats'])) ? $in['revision']['dateFormats']['time'] : null)),array()), 'encq').'
 '.$sp.'    </p>
-'.$sp.'' : '').'  
+'.$sp.'' : '').'
 '.$sp.'  <p>
 '.$sp.'    '.LCRun3::ch($cx, 'html', array(array(((isset($in['copyrightMessage']) && is_array($in)) ? $in['copyrightMessage'] : null)),array()), 'encq').'
 '.$sp.'  </p>

@@ -9,7 +9,7 @@
 	 * Flow-specific target, inheriting from the stand-alone target
 	 *
 	 * @class
-	 * @extends ve.init.sa.Target
+	 * @extends ve.init.sa.DesktopTarget
 	 */
 	mw.flow.ve.Target = function FlowVeTarget() {
 		mw.flow.ve.Target.parent.call(
@@ -18,7 +18,7 @@
 		);
 	};
 
-	OO.inheritClass( mw.flow.ve.Target, ve.init.sa.Target );
+	OO.inheritClass( mw.flow.ve.Target, ve.init.sa.DesktopTarget );
 
 	// Static
 
