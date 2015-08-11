@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_184ad6c8",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.AbstractEditorWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-11T23:36:29Z",
+      "side": 1,
+      "message": "Might be better to just pass in the string rather than the message key. When you abstract out the mw.msg() process, you risk having trouble with cases where i18n requires another parameter (like gender of another user, or whatever).",
+      "revId": "57ae0feaced24803f8851ee7413bb29a9ff0ae20",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_182176f6",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-11T23:36:29Z",
+      "side": 1,
+      "message": "This is minor but I usually prefer to put .popPending in .always() for readability. It\u0027s true it appears in both your then( ... ) and fail( ... ) so it\u0027s basically the same, but it does give the code a better structure to show that this process *always* pops pending.",
+      "revId": "57ae0feaced24803f8851ee7413bb29a9ff0ae20",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
