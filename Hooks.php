@@ -39,7 +39,46 @@ class FlowHooks {
 			$wgResourceModules['ext.flow']['dependencies'][] = 'schema.FlowReplies';
 		}
 
+		if ( class_exists( 'GuidedTourHooks' ) ) {
+			$resourceLoader->register( 'ext.guidedTour.tour.flowOptIn', array(
+				'localBasePath' => __DIR__ . '/modules',
+				'remoteExtPath' => 'Flow/modules',
+					'scripts' => 'tours/flowOptIn.js',
+					'styles' => 'tours/flowOptIn.less',
+					'messages' => array(
+						"flow-guidedtour-optin-welcome",
+						"flow-guidedtour-optin-welcome-description",
+						"flow-guidedtour-optin-find-old-conversations",
+						"flow-guidedtour-optin-find-old-conversations-description",
+						"flow-guidedtour-optin-feedback",
+						"flow-guidedtour-optin-feedback-description"
+					)
+			) );
+		}
+
 		return true;
+	}
+
+	public static function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
+		$title = $skin->getTitle();
+
+		// Register guided tour if needed
+		if (
+			// Check that the cookie for Flow opt-in tour exists
+			$out->getRequest()->getCookie( 'Flow_optIn_guidedTour' ) &&
+			// Check that the user is on their own talk page
+			$out->getUser()->getTalkPage()->equals( $title ) &&
+			// Check that we are on a flow board
+			$title->getContentModel() === CONTENT_MODEL_FLOW_BOARD &&
+			// Check that guided tour exists
+			class_exists( 'GuidedTourHooks' )
+		) {
+			// Activate tour
+			GuidedTourLauncher::launchTourByCookie( 'flowOptIn', 'newTopic' );
+
+			// Destroy Flow cookie
+			$out->getRequest()->response()->setcookie( 'Flow_optIn_guidedTour', '', time() - 3600);
+		}
 	}
 
 	/**
