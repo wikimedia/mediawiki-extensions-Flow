@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_6f76b7d7",
+        "filename": "includes/Model/WikiReference.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-11T02:09:05Z",
+      "side": 1,
+      "message": "giveN",
+      "revId": "971ff257686430f629a99ad3f61c49576b7596b5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
