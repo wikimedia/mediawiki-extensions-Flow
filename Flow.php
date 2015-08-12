@@ -53,15 +53,18 @@ $wgExtensionCredits['other'][] = array(
 	'author' => array(
 		// Alphabetical by last name
 		'Erik Bernhardson',
+		'Stephane Bisson',
 		'Matthew Flaschen',
 		'Andrew Garrett',
 		'Shahyar Ghobadpour',
 		'Pau Giner',
+		'Roan Kattouw',
 		'Chris McMahon',
 		'Kunal Mehta',
 		'Matthias Mullie',
 		'S Page',
 		'Jon Robson',
+		'Moriel Schottlender',
 		'Benny Situ',
 	),
 	'descriptionmsg' => 'flow-desc',
