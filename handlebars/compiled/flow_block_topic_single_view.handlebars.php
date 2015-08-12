@@ -50,6 +50,7 @@
 		</div>
 
 '.LCRun3::p($cx, 'flow_patrol_action', array(array($in),array()), '		').'' : '').'</div>
+<div class="flow-single-topic-siderail"></div>
 ';
 }
 ?>
