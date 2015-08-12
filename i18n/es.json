@@ -375,6 +375,7 @@
 	"flow-special-enableflow-board-already-exists": "Ya existe un panel de mensajes Flow en [[$1]]",
 	"flow-special-enableflow-invalid-title": "Se proporcionó un título de página no válido",
 	"flow-special-enableflow-board-creation-not-allowed": "No tienes permitido crear un panel de discusión en [[:$1]].",
+	"flow-special-enableflow-non-existent-requires-description": "Para crear un panel de Flow donde no existe ninguna página actualmente, debes proporcionar una descripción.",
 	"flow-special-enableflow-page-is-liquidthreads": "Hay una página con LiquidThreads en [[:$1]].",
 	"flow-special-enableflow-confirmation": "Has creado un nuevo panel de discusión en [[$1]].",
 	"flow-conversion-archive-page-name-format": "%s/Archivo %d\n%s/Archivo%d\n%s/archivo %d\n%s/archivo%d",
