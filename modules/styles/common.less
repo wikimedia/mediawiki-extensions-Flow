@@ -195,7 +195,13 @@
 }
 
 .flow-board-header-footer {
-	font-size: 0.85em;
+	display: none;
+	// Footer text should only appear in the sidebar
+	@media (min-width: 1165px) {
+		display: block;
+		margin-top: 6em;
+		font-size: 0.85em;
+	}
 }
 
 .flow-history-moderation-menu {
