@@ -166,7 +166,7 @@
 	 * @inheritdoc
 	 */
 	mw.flow.ui.VisualEditorWidget.prototype.isEmpty = function () {
-		return this.target.getSurface().getModel().getDocument().data.hasContent();
+		return !this.target.getSurface().getModel().getDocument().data.hasContent();
 	};
 
 	mw.flow.ui.VisualEditorWidget.prototype.setDisabled = function ( disabled ) {
