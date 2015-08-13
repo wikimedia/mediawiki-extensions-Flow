@@ -1218,7 +1218,7 @@ $c['importer'] = function( $c ) {
 	$importer = new Flow\Import\Importer(
 		$c['storage'],
 		$c['factory.loader.workflow'],
-		$c['memcache.buffered'],
+		$c['memcache.local_buffered'],
 		$c['db.factory'],
 		$c['deferred_queue'],
 		$c['occupation_controller']
