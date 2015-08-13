@@ -191,6 +191,10 @@
 			return $.Deferred().reject().promise();
 		}
 
+		if ( this.activeEditorName === name ) {
+			return $.Deferred().resolve().promise();
+		}
+
 		if ( this.switchingPromise ) {
 			if ( this.switchingPromise.newEditorName === name ) {
 				return this.switchingPromise;
