@@ -130,6 +130,8 @@
 			.always( function () {
 				// Unset pending editor
 				widget.editor.popPending();
+				// Focus again: pending editors are disabled and can't be focused
+				widget.editor.focus();
 			} );
 
 	};
