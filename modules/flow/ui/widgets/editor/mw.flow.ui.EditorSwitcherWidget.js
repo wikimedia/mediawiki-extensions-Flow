@@ -240,6 +240,9 @@
 				}
 			} )
 			.then( function () {
+				// Check .autoFocus now, in case handlers for switchingDeferred change it
+				var shouldFocus = widget.autoFocus;
+
 				widget.activeEditorName = name;
 				widget.contentFormat = newFormat;
 
@@ -250,12 +253,13 @@
 				widget.$element.append( newEditor.$element );
 
 				newEditor.toggle( true );
-				if ( widget.autoFocus ) {
-					newEditor.focus();
-				}
 
 				switchingDeferred.resolve();
 				widget.switchingPromise = null;
+
+				if ( shouldFocus ) {
+					newEditor.focus();
+				}
 			} )
 			.fail( function ( error ) {
 				widget.activeEditorName = oldName;
