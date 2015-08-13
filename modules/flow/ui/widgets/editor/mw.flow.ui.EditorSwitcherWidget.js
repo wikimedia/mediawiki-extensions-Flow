@@ -250,12 +250,13 @@
 				widget.$element.append( newEditor.$element );
 
 				newEditor.toggle( true );
-				if ( widget.autoFocus ) {
-					newEditor.focus();
-				}
 
 				switchingDeferred.resolve();
 				widget.switchingPromise = null;
+
+				if ( widget.autoFocus ) {
+					newEditor.focus();
+				}
 			} )
 			.fail( function ( error ) {
 				widget.activeEditorName = oldName;
