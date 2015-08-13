@@ -16,9 +16,11 @@
 	 * @cfg {string} [saveMsgKey='flow-newtopic-save'] i18n message key for the save button
 	 * @cfg {string} [cancelMsgKey='flow-cancel'] i18n message key for the cancel button
 	 * @cfg {boolean} [autoFocus=true] Automatically focus after switching editors
+	 * @cfg {boolean} [cancelOnEscape=true] Emit 'cancel' when Esc is pressed
 	 */
 	mw.flow.ui.EditorWidget = function mwFlowUiEditorWidget( config ) {
-		var defaultUserEditor = mw.user.options.get( 'flow-editor' );
+		var widget = this,
+			defaultUserEditor = mw.user.options.get( 'flow-editor' );
 
 		config = config || {};
 
@@ -53,6 +55,16 @@
 			cancel: [ 'emit', 'cancel' ],
 			save: 'onEditorControlsWidgetSave'
 		} );
+
+		if ( config.cancelOnEscape || config.cancelOnEscape === undefined ) {
+			this.$element.on( 'keydown', function ( e ) {
+				if ( e.which === OO.ui.Keys.ESCAPE ) {
+					widget.emit( 'cancel' );
+					e.preventDefault();
+					e.stopPropagation();
+				}
+			} );
+		}
 
 		this.$element
 			.append(
