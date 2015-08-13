@@ -18,8 +18,6 @@
 	 * @cfg {boolean} [autoFocus=true] Automatically focus after switching editors
 	 */
 	mw.flow.ui.EditorWidget = function mwFlowUiEditorWidget( config ) {
-		var defaultUserEditor = mw.user.options.get( 'flow-editor' );
-
 		config = config || {};
 
 		// Parent constructor
@@ -27,6 +25,8 @@
 
 		// Mixin constructors
 		OO.ui.mixin.PendingElement.call( this, config );
+
+		this.initialEditor = config.editor;
 
 		this.editorControlsWidget = new mw.flow.ui.EditorControlsWidget( {
 			autoFocus: config.autoFocus,
@@ -36,7 +36,6 @@
 		} );
 
 		this.editorSwitcherWidget = new mw.flow.ui.EditorSwitcherWidget( {
-			initialEditor: config.editor || defaultUserEditor,
 			content: config.content,
 			contentFormat: config.contentFormat,
 			placeholder: config.placeholder
@@ -172,7 +171,11 @@
 	 * @return {jQuery.Promise} Promise resolved when editor switch is done
 	 */
 	mw.flow.ui.EditorWidget.prototype.activate = function () {
-		return this.editorSwitcherWidget.activate();
+		// Doesn't call editorSwitcherWdiget.activate() because we want to
+		// evaluate the user preference as late as possible
+		return this.editorSwitcherWidget.switchEditor(
+			this.initialEditor || mw.user.options.get( 'flow-editor' )
+		);
 	};
 
 	mw.flow.ui.EditorWidget.prototype.isDisabled = function () {
