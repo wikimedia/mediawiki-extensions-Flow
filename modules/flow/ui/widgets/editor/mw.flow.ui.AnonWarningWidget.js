@@ -9,7 +9,8 @@
 	 * @param {Object} [config] Configuration options
 	 */
 	mw.flow.ui.AnonWarningWidget = function mwFlowUiEditorControlsWidget( config ) {
-		var returnTo, labelHtml;
+		var returnTo, labelHtml,
+			isAnon = mw.user.isAnon();
 
 		config = config || {};
 
@@ -18,7 +19,7 @@
 
 		this.label = new OO.ui.LabelWidget();
 
-		if ( mw.user.isAnon() ) {
+		if ( isAnon ) {
 			returnTo = {
 				returntoquery: encodeURIComponent( window.location.search ),
 				returnto: mw.config.get( 'wgPageName' )
@@ -37,7 +38,8 @@
 			.append(
 				this.label.$element
 			)
-			.addClass( 'flow-ui-anonWarningWidget' );
+			.addClass( 'flow-ui-anonWarningWidget' )
+			.toggleClass( 'flow-ui-anonWarningWidget-active', isAnon );
 	};
 
 	/* Initialization */
