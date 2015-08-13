@@ -609,6 +609,10 @@ class TalkpageImportOperation {
 				$state->clearManagerGroup();
 
 				$imported++;
+				if ( $imported % 100 === 0 ) {
+					$cyclesCollected = gc_collect_cycles();
+					$state->logger->debug( "Reference cycles collected: $cyclesCollected" );
+				}
 			} catch ( ImportSourceStoreException $e ) {
 				// errors from the source store are more serious and shuld
 				// not juts be logged and swallowed.  This may indicate that
