@@ -6,7 +6,8 @@
 			"Inkowik",
 			"Andreasburmeister",
 			"Tiin",
-			"Macofe"
+			"Macofe",
+			"MarcoFalke"
 		]
 	},
 	"enableflow": "Flow aktivieren",
@@ -428,6 +429,7 @@
 	"apihelp-flow+view-post-param-postId": "Kennung des anzuzeigenden Beitrags.",
 	"apihelp-flow+view-post-param-format": "Format, in dem der Inhalt zurückgegeben werden soll.",
 	"apihelp-flow+view-post-example-1": "Ruft den Inhalt von [[Topic:S2tycnas4hcucw8w]] als Wikitext ab",
+	"apihelp-flow+view-post-history-param-format": "Format, in dem der Inhalt zurückgegeben werden soll.",
 	"apihelp-flow+view-topic-description": "Betrachtet ein Thema.",
 	"apihelp-flow+view-topic-example-1": "[[Topic:S2tycnas4hcucw8w]] ansehen",
 	"apihelp-flow+view-topic-history-description": "Zeigt die Versionsgeschichte eines Themas an.",
