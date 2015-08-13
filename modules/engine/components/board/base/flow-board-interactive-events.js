@@ -42,6 +42,11 @@
 				}
 			};
 
+		// Ignore clicks on links inside of collapsible areas
+		if ( $( event.target ).is( 'a' ) && !$target.is( event.target ) ) {
+			return $deferred.resolve().promise();
+		}
+
 		if ( $target.is( '.flow-element-collapsed' ) ) {
 			$target.removeClass( 'flow-element-collapsed' ).addClass( 'flow-element-expanded' );
 			updateTitle( this, 'expanded' );
