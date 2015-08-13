@@ -24,10 +24,20 @@ class ConfirmEditTest extends \MediaWikiTestCase {
 		$oldRevision = PostRevision::create( $workflow, $user, 'foo', 'wikitext' );
 		$newRevision = $oldRevision->newNextRevision( $user, 'bar', 'wikitext', 'change-type', $title );
 
+		$request = $this->getMock( 'WebRequest' );
+		$request->expects( $this->any() )
+			->method( 'wasPosted' )
+			->will( $this->returnValue( true ) );
+
 		$context = $this->getMock( 'IContextSource' );
+
 		$context->expects( $this->any() )
 			->method( 'getUser' )
 			->will( $this->returnValue( $user ) );
+
+		$context->expects( $this->any() )
+			->method( 'getRequest' )
+			->will( $this->returnValue( $request ) );
 
 		$status = $filter->validate( $context, $newRevision, $oldRevision, $title );
 		$this->assertInstanceOf( 'Status', $status );
