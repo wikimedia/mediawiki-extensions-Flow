@@ -52,7 +52,6 @@
 
 	/**
 	 * Takes any length of arguments, and passes it off to console.log.
-	 * Only renders if window.flow_debug OR localStorage.flow_debug == true OR user is Admin or (WMF).
 	 * @param {boolean} [isError=true]
 	 */
 	mw.flow.debug = FlowComponent.prototype.debug = function ( isError ) {
