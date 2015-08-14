@@ -199,9 +199,12 @@
 
 		// Doesn't call editorSwitcherWidget.activate() because we want to
 		// evaluate the user preference as late as possible
-		return this.editorSwitcherWidget.switchEditor(
-			this.initialEditor || mw.user.options.get( 'flow-editor' )
-		);
+		var editor = this.initialEditor || mw.user.options.get( 'flow-editor' );
+		if ( editor === 'none' ) {
+			editor = 'wikitext';
+		}
+
+		return this.editorSwitcherWidget.switchEditor( editor );
 	};
 
 	mw.flow.ui.EditorWidget.prototype.isDisabled = function () {
