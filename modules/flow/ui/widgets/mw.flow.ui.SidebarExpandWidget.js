@@ -8,12 +8,17 @@
 	 * @constructor
 	 * @param {Object} [config] Configuration object
 	 * @cfg {boolean} [collapsed=false] Start as collapsed
+	 * @cfg {string} [expandedButtonTitle] Title for the button when expanded
+	 * @cfg {string} [collapsedButtonTitle] Title for the button when collapsed
 	 */
 	mw.flow.ui.SidebarExpandWidget = function mwFlowUiSidebarExpandWidget( config ) {
 		config = config || {};
 
 		// Parent constructor
 		mw.flow.ui.SidebarExpandWidget.parent.call( this, config );
+
+		this.expandedButtonTitle = config.expandedButtonTitle || mw.msg( 'flow-board-collapse-description' );
+		this.collapsedButtonTitle = config.collapsedButtonTitle || mw.msg( 'flow-board-expand-description' );
 
 		this.button = new OO.ui.ButtonWidget( {
 			framed: false
@@ -55,7 +60,7 @@
 				.toggleClass( 'flow-ui-sidebarExpandWidget-collapsed', this.collapsed );
 
 			this.button.setIcon( 'topic-' + action );
-			this.button.setTitle( mw.msg( 'flow-sidebar-' + action ) );
+			this.button.setTitle( this.collapsed ? this.collapsedButtonTitle : this.expandedButtonTitle );
 
 			// Change the preference
 			siderailState = this.collapsed ? 'collapsed' : 'expanded';
