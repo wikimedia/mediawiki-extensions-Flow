@@ -16,6 +16,24 @@
       "revId": "d39132478ff5c241e1d16f93ecb91b7377c01bb9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_c10c3b40",
+        "filename": "tests/phpunit/SpamFilter/ConfirmEditTest.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-14T22:09:55Z",
+      "side": 1,
+      "message": "We\u0027re not trying to test the ConfirmEdit code here.  We just give it the input it needs (as simply as possible), so we can focus on testing the Flow integration.",
+      "parentUuid": "6ec1af18_8e8c25dd",
+      "revId": "d39132478ff5c241e1d16f93ecb91b7377c01bb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
