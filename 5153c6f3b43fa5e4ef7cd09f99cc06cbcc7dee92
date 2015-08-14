@@ -16,6 +16,24 @@
       "revId": "5153c6f3b43fa5e4ef7cd09f99cc06cbcc7dee92",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_9407581f",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-14T17:43:53Z",
+      "side": 1,
+      "message": "Because the default value is true (See [cancelOnEscape\u003dtrue] in the documentation comment).",
+      "parentUuid": "6ec1af18_34a6a4bf",
+      "revId": "5153c6f3b43fa5e4ef7cd09f99cc06cbcc7dee92",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
