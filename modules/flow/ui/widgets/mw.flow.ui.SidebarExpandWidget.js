@@ -55,7 +55,8 @@
 				.toggleClass( 'flow-ui-sidebarExpandWidget-collapsed', this.collapsed );
 
 			this.button.setIcon( 'topic-' + action );
-			this.button.setTitle( mw.msg( 'flow-sidebar-' + action ) );
+			// Uses either flow-board-expand-description or flow-board-collapse-description
+			this.button.setTitle( mw.msg( 'flow-board-' + action + '-description' ) );
 
 			// Change the preference
 			siderailState = this.collapsed ? 'collapsed' : 'expanded';
