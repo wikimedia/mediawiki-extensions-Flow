@@ -145,6 +145,30 @@
 	};
 
 	/**
+	 * Get the name of the editor that would be loaded if this widget were to be
+	 * activated right now.
+	 *
+	 * Note that the return value of this function can change over time as the user switches
+	 * editors in different EditorWidgets. The editor that is actually loaded when activating
+	 * is determined by calling this function at activation time, no earlier.
+	 *
+	 * @return {string} Name of initial editor that will be used
+	 */
+	mw.flow.ui.EditorWidget.prototype.getInitialEditorName = function () {
+		return this.initialEditor || mw.user.options.get( 'flow-editor' );
+	};
+
+	/**
+	 * Get the format of the editor that would be loaded if this widget were to be
+	 * activated right now.
+	 * @return {string|null} Format used by initial editor, or null if no editor is active
+	 * @see #getInitialEditorName
+	 */
+	mw.flow.ui.EditorWidget.prototype.getInitialFormat = function () {
+		return this.editorSwitcherWidget.getEditorFormat( this.getInitialEditorName() );
+	};
+
+	/**
 	 * Toggle whether the editor is automatically focused after switching.
 	 * @param {boolean} [autoFocus] Whether to focus automatically; if unset, flips current value
 	 */
