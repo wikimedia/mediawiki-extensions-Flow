@@ -76,7 +76,7 @@ class SearchEngine extends \SearchEngine {
 
 		// only apply filters if there are any
 		if ( $filter->toArray() ) {
-			$query->setFilter( $filter );
+			$query->setPostFilter( $filter );
 		}
 
 		$sortArgs = $this->getSortArgs();
