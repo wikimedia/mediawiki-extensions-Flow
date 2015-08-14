@@ -191,9 +191,12 @@
 	 * @fires contentChange
 	 */
 	mw.flow.dm.RevisionedContent.prototype.setContent = function ( content ) {
+		var wasUnset = this.content === null;
 		if ( content !== undefined && this.content !== content ) {
 			this.content = content;
-			this.emit( 'contentChange', this.content, this.contentFormat );
+			if ( !wasUnset ) {
+				this.emit( 'contentChange', this.content, this.contentFormat );
+			}
 		}
 	};
 
@@ -217,9 +220,12 @@
 	 * @param {string} contentFormat Content format
 	 */
 	mw.flow.dm.RevisionedContent.prototype.setContentFormat = function ( contentFormat ) {
+		var wasUnset = this.contentFormat === null;
 		if ( contentFormat !== undefined && this.contentFormat !== contentFormat ) {
 			this.contentFormat = contentFormat;
-			this.emit( 'contentChange', this.content, this.contentFormat );
+			if ( !wasUnset ) {
+				this.emit( 'contentChange', this.content, this.contentFormat );
+			}
 		}
 	};
 
