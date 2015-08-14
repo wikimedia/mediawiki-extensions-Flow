@@ -49,7 +49,9 @@
 				.toggleClass( 'flow-board-expanded', siderailCollapsed );
 			// We are in single-topic view. Initialize the sidebar expand widget
 			sidebarExpandWidget = new mw.flow.ui.SidebarExpandWidget( {
-				collapsed: siderailCollapsed
+				collapsed: siderailCollapsed,
+				expandedButtonTitle: mw.msg( 'flow-topic-collapse-siderail' ),
+				collapsedButtonTitle: mw.msg( 'flow-topic-expand-siderail' )
 			} );
 			sidebarExpandWidget.$element.insertAfter( $board );
 			sidebarExpandWidget.on( 'toggle', function ( collapsed ) {

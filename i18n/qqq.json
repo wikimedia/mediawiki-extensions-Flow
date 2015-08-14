@@ -38,6 +38,8 @@
 	"flow-board-header": "Used as title for the board description in the side rail.",
 	"flow-board-collapse-description": "Used as title for the collapse description icon.",
 	"flow-board-expand-description": "Used as title for the expand description icon.",
+	"flow-topic-collapse-siderail": "Used as a title for the full width icon.",
+	"flow-topic-expand-siderail": "Used as a title for the fixed width icon.",
 	"flow-edit-header-link": "Used as text for the button that either allows editing the description in place or brings the user to a page for editing the description.",
 	"flow-post-moderated-toggle-hide-show": "Message to display instead of content when a hidden post has been hidden.\n\nParameters:\n* $1 - username that hid the title, can be used for GENDER\n* $2 - user link and tool links for the user\n{{Related|Flow-post-moderated-toggle}}",
 	"flow-post-moderated-toggle-delete-show": "Message to display instead of content when a deleted post has been hidden.\n\nParameters:\n* $1 - username that hid the title, can be used for GENDER\n* $2 - user link and tool links for the user\n{{Related|Flow-post-moderated-toggle}}",
