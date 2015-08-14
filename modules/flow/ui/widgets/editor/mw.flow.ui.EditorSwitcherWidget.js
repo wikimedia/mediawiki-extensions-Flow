@@ -421,7 +421,9 @@
 		}
 
 		if ( currentPref !== name ) {
-			new mw.Api().saveOption( 'flow-editor', name );
+			if ( !mw.user.isAnon() ) {
+				new mw.Api().saveOption( 'flow-editor', name );
+			}
 			// Ensure we also see that preference in the current page
 			mw.user.options.set( 'flow-editor', name );
 		}
