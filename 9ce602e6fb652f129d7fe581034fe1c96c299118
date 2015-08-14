@@ -16,6 +16,24 @@
       "revId": "9ce602e6fb652f129d7fe581034fe1c96c299118",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_614d47e0",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 914,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-14T23:35:03Z",
+      "side": 1,
+      "message": "Which?  None of these three functions are marked deprecated AFAICT.\n\nAlso, worth noting this is only meant to be temporary until we figure out the underlying cause.",
+      "parentUuid": "6ec1af18_61ff87a8",
+      "revId": "9ce602e6fb652f129d7fe581034fe1c96c299118",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
