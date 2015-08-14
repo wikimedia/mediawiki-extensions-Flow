@@ -223,6 +223,7 @@
 						$topic.removeClass( 'flow-api-inprogress' );
 					} );
 				} );
+				replyWidget.$element.data( 'self', replyWidget );
 
 				// Replace the reply form with the new editor widget
 				$( this ).replaceWith( replyWidget.$element );
@@ -238,13 +239,16 @@
 					$topic = $( this ).closest( '.flow-topic' ),
 					placeholder = mw.msg( 'flow-reply-topic-title-placeholder', $topic.find( '.flow-topic-title' ).text().trim() ),
 					replyTo = $( this ).data( 'postId' ),
-					$targetPost = $( '#flow-post-' + replyTo ),
-					$existingWidget = $targetPost.children( '.flow-replies' ).find( '.flow-ui-replyWidget' );
+					// replyTo can refer to a post ID or a topic ID
+					// For posts, the ReplyWidget should go in .flow-replies
+					// For topics, it's directly inside the topic
+					$targetContainer = $( '#flow-post-' + replyTo + ' .flow-replies, #flow-topic-' + replyTo ),
+					$existingWidget = $targetContainer.children( '.flow-ui-replyWidget' );
 
 				// Check that there's not already a reply widget existing in the same place
 				if ( $existingWidget.length > 0 ) {
 					// Focus the existing reply widget
-					$existingWidget.data( 'self' ).toggle( true );
+					$existingWidget.data( 'self' ).activateEditor();
 					$existingWidget.data( 'self' ).focus();
 					return false;
 				}
@@ -257,7 +261,7 @@
 				replyWidget.$element.data( 'self', replyWidget );
 
 				// Add reply form below the post being replied to (WRT max depth)
-				$targetPost.children( '.flow-replies' ).append( replyWidget.$element );
+				$targetContainer.append( replyWidget.$element );
 				replyWidget.activateEditor();
 
 				replyWidget

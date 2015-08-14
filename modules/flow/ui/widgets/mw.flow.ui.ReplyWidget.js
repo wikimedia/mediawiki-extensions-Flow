@@ -87,8 +87,6 @@
 	 */
 	mw.flow.ui.ReplyWidget.prototype.onTriggerFocusIn = function () {
 		this.activateEditor();
-		this.triggerInput.setValue( '' );
-		this.triggerInput.toggle( false );
 	};
 
 	/**
@@ -152,6 +150,11 @@
 	 * Force activation of the editor
 	 */
 	mw.flow.ui.ReplyWidget.prototype.activateEditor = function () {
+		if ( this.triggerInput ) {
+			this.triggerInput.setValue( '' );
+			this.triggerInput.toggle( false );
+		}
+		this.toggle( true );
 		this.anonWarning.toggle( true );
 		this.editor.toggle( true );
 		this.editor.activate();
