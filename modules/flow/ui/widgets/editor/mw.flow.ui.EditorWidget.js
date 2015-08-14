@@ -99,6 +99,15 @@
 	// merge EditorSwitcherWidget into EditorWidget?
 
 	/**
+	 * Check whether an editor is currently active. This returns false before the first editor
+	 * is loaded, and true after that. It also returns true if and editor switch is in progress.
+	 * @return {boolean} Editor is active
+	 */
+	mw.flow.ui.EditorWidget.prototype.isActive = function () {
+		return this.editorSwitcherWidget.isActive();
+	};
+
+	/**
 	 * Get the content of the editor.
 	 * @return {string|null} Content of the editor, or null if no editor is active.
 	 */
@@ -167,11 +176,15 @@
 	};
 
 	/**
-	 * Activate the switcher
+	 * Activate the first editor, if not already active.
 	 * @return {jQuery.Promise} Promise resolved when editor switch is done
 	 */
 	mw.flow.ui.EditorWidget.prototype.activate = function () {
-		// Doesn't call editorSwitcherWdiget.activate() because we want to
+		if ( this.isActive() ) {
+			return $.Deferred().resolve().promise();
+		}
+
+		// Doesn't call editorSwitcherWidget.activate() because we want to
 		// evaluate the user preference as late as possible
 		return this.editorSwitcherWidget.switchEditor(
 			this.initialEditor || mw.user.options.get( 'flow-editor' )

@@ -155,6 +155,8 @@
 		this.anonWarning.toggle( true );
 		this.editor.toggle( true );
 		this.editor.activate();
+		// If the editor was already active, focus it
+		this.editor.focus();
 		this.expanded = true;
 	};
 

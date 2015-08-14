@@ -127,6 +127,15 @@
 	};
 
 	/**
+	 * Check whether an editor is currently active. This returns false before the first editor
+	 * is loaded, and true after that. It also returns true if and editor switch is in progress.
+	 * @return {boolean} Editor is active
+	 */
+	mw.flow.ui.EditorSwitcherWidget.prototype.isActive = function () {
+		return !!this.activeEditorName || !!this.switchingPromise;
+	};
+
+	/**
 	 * Get the next editor after the currently active one.
 	 * @return {string} Name of the next editor
 	 */
