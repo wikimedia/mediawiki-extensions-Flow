@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_8e8c25dd",
+        "filename": "tests/phpunit/SpamFilter/ConfirmEditTest.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 890
+      },
+      "writtenOn": "2015-08-14T14:10:30Z",
+      "side": 1,
+      "message": "I would use a Derivativecontext object, a FauxRequest, but this works, too and I\u0027m not familar with test coding conventions in Flow :)",
+      "revId": "d39132478ff5c241e1d16f93ecb91b7377c01bb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
