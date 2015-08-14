@@ -172,7 +172,7 @@
 				widget.showContent( true );
 			} )
 			.then( null, function ( errorCode, errorObj ) {
-				var $errorMessage = $( '<span>' ).text( errorObj.error.info );
+				var $errorMessage = $( '<span>' ).text( errorObj.error && errorObj.error.info || errorObj.exception );
 				widget.error.setLabel( $errorMessage );
 				widget.error.toggle( true );
 			} )
@@ -220,7 +220,7 @@
 				widget.$content.empty().append( $.parseHTML( desc.content.content ) );
 			} )
 			.then( null, function ( errorCode, errorObj ) {
-				var $errorMessage = $( '<span>' ).text( errorObj.error.info );
+				var $errorMessage = $( '<span>' ).text( errorObj.error && errorObj.error.info || errorObj.exception );
 				widget.error.setLabel( $errorMessage );
 				widget.error.toggle( true );
 			} )
