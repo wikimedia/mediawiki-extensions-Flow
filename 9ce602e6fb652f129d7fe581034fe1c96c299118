@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_61ff87a8",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 914,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2015-08-14T22:47:45Z",
+      "side": 1,
+      "message": "probably used elsewhere in flow, but deprecated since 1.25",
+      "revId": "9ce602e6fb652f129d7fe581034fe1c96c299118",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
