@@ -153,6 +153,16 @@
 	};
 
 	/**
+	 * Get the format used by a given editor type.
+	 * @param {string} name Editor name
+	 * @return {string|null} Format used by that editor, or null if no such editor exists
+	 */
+	mw.flow.ui.EditorSwitcherWidget.prototype.getEditorFormat = function ( name ) {
+		var definition = this.constructor.static.editorDefinitions[name];
+		return definition ? definition.static.format : null;
+	};
+
+	/**
 	 * Create an editor and add it to this.editors.
 	 *
 	 * This method is safe to call multiple times. If the requested editor has already been
