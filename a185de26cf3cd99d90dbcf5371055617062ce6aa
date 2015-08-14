@@ -16,6 +16,24 @@
       "revId": "a185de26cf3cd99d90dbcf5371055617062ce6aa",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_7433cc0a",
+        "filename": "modules/styles/common.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-14T17:42:32Z",
+      "side": 1,
+      "message": "I was wondering the same, made a mental note to ask you where this number came from, then forgot. We do have @large but it\u0027s 1300px; however, it\u0027s also unused, so we could potentially change it to 1200.",
+      "parentUuid": "6ec1af18_253f5424",
+      "revId": "a185de26cf3cd99d90dbcf5371055617062ce6aa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
