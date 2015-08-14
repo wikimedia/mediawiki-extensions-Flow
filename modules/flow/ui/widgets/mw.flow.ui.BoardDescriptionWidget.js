@@ -101,9 +101,14 @@
 		this.error.toggle( false );
 		this.$content.addClass( 'oo-ui-element-hidden' );
 
+		this.editor.toggle( true );
+		if ( this.editor.isActive() ) {
+			this.editor.focus();
+			return;
+		}
+
 		// Load the editor
 		this.editor.pushPending();
-		this.editor.toggle( true );
 		this.anonWarning.toggle( true );
 		this.editor.activate();
 
