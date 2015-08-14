@@ -144,7 +144,7 @@
 			clear: left;
 			width: 66%;
 			box-sizing: border-box;
-			max-width: 1200px;
+			max-width: @large;
 			padding-right: 26px;
 		}
 	}
@@ -193,12 +193,26 @@
 			max-width: none;
 		}
 	}
+
+	.flow-component.topic-page {
+		.flow-board {
+			float: left;
+			width: 66%;
+			max-width: @large;
+			padding-right: 26px;
+
+			&-expanded {
+				width: 100%;
+				max-width: none;
+			}
+		}
+	}
 }
 
 .flow-board-header-footer {
 	margin-top: 2em;
 	font-size: 0.85em;
-	@media (min-width: 1165px) {
+	@media (min-width: @medium) {
 		margin-top: 6em;
 	}
 }
