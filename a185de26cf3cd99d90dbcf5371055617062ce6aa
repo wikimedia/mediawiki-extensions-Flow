@@ -34,6 +34,24 @@
       "revId": "a185de26cf3cd99d90dbcf5371055617062ce6aa",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_21b3bfe9",
+        "filename": "modules/styles/common.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-14T23:14:25Z",
+      "side": 1,
+      "message": "I copied these styles from the other base stylesheet that you fixed into using those variables.\n\nMaybe we should use that @large variable anyways with the new number?",
+      "parentUuid": "6ec1af18_7433cc0a",
+      "revId": "a185de26cf3cd99d90dbcf5371055617062ce6aa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
