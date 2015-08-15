@@ -48,6 +48,7 @@
 		this.cancelButton.connect( this, { click: [ 'emit', 'cancel' ] } );
 
 		// Initialize
+		this.toggleSaveable( true );
 		this.$element
 			.append(
 				this.termsLabel.$element,
@@ -71,13 +72,22 @@
 		this.termsLabel.setLabel( msg );
 	};
 
+	/**
+	 * Toggle whether the save button can be used
+	 * @param {boolean} [saveable=!this.saveable] Whether the save button can be used
+	 */
+	mw.flow.ui.EditorControlsWidget.prototype.toggleSaveable = function ( saveable ) {
+		this.saveable = saveable === undefined ? !this.saveable : !!saveable;
+		this.saveButton.setDisabled( this.isDisabled() || !this.saveable );
+	};
+
 	mw.flow.ui.EditorControlsWidget.prototype.setDisabled = function ( disabled ) {
 		// Parent method
 		mw.flow.ui.EditorControlsWidget.parent.prototype.setDisabled.call( this, disabled );
 
 		if ( this.cancelButton && this.saveButton ) {
 			this.cancelButton.setDisabled( this.isDisabled() );
-			this.saveButton.setDisabled( this.isDisabled() );
+			this.saveButton.setDisabled( this.isDisabled() || !this.saveable );
 		}
 	};
 
