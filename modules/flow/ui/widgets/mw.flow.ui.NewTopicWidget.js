@@ -138,6 +138,7 @@
 				// Clear for next use
 				widget.title.setValue( '' );
 				widget.editor.setContent( '', 'html' );
+				widget.editor.editorControlsWidget.saveButton.setDisabled( true );
 			} );
 	};
 
