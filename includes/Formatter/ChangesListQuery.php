@@ -10,7 +10,7 @@ use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use RecentChange;
 
-class RecentChangesQuery extends AbstractQuery {
+class ChangesListQuery extends AbstractQuery {
 
 	/**
 	 * Check if the most recent action for an entity has been displayed already
@@ -69,7 +69,7 @@ class RecentChangesQuery extends AbstractQuery {
 			if ( !isset( $changeData['revision_type'] ) ) {
 				continue;
 			}
-			if ( $this->excludeFromRecentChanges( $changeData['action'] ) ) {
+			if ( $this->excludeFromChangesList( $isWatchlist, $changeData['action'] ) ) {
 				continue;
 			}
 			if ( $isWatchlist && $this->isRecordHidden( $changeData ) ) {
@@ -100,12 +100,17 @@ class RecentChangesQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param string $action
+	 * @param bool $isWatchlist Whether this is Special:Watchlist
+	 * @param string $action The Flow action this line represents
 	 * @return bool
 	 */
-	private function excludeFromRecentChanges( $action ) {
-		$rcInsert = $this->actions->getValue( $action, 'rc_insert' );
-		return !$rcInsert;
+	private function excludeFromChangesList( $isWatchlist, $action ) {
+		// If we want to exclude things from watchlist, we can add exclude_from_watchlist
+		if ( $isWatchlist ) {
+			return false;
+		} else {
+			return (bool) $this->actions->getValue( $action, 'exclude_from_recentchanges' );
+		}
 	}
 
 	/**
@@ -140,7 +145,7 @@ class RecentChangesQuery extends AbstractQuery {
 		 * RC entries are not being created for 'new-topic' action but
 		 * old records exists. This filters them out.
 		 */
-		if ( $this->excludeFromRecentChanges( $changeData['action'] ) ) {
+		if ( $this->excludeFromChangesList( $isWatchlist, $changeData['action'] ) ) {
 			return false;
 		}
 

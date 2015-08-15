@@ -10,7 +10,7 @@ use ChangesList;
 use IContextSource;
 use Html;
 
-class Contributions extends AbstractFormatter {
+class ContributionsFormatter extends AbstractFormatter {
 	protected function getHistoryType() {
 		return 'contributions';
 	}
