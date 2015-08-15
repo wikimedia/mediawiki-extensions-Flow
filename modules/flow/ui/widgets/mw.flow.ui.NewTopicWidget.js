@@ -134,6 +134,10 @@
 				widget.editor.popPending();
 				widget.title.popPending();
 				widget.title.setDisabled( false );
+
+				// Clear for next use
+				widget.title.setValue( '' );
+				widget.editor.setContent( '', 'html' );
 			} );
 	};
 
