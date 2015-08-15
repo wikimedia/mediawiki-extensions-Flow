@@ -39,7 +39,7 @@
 		this.editor.toggle( false );
 
 		this.error = new OO.ui.LabelWidget( {
-			classes: [ 'flow-ui-newTopicWidget-error flow-error errorbox' ]
+			classes: [ 'flow-ui-newTopicWidget-error flow-errors errorbox' ]
 		} );
 		this.error.toggle( false );
 
