@@ -916,8 +916,8 @@ $c['query.post.history'] = function( $c ) {
 		$c['repository.tree']
 	);
 };
-$c['query.recentchanges'] = function( $c ) {
-	$query = new Flow\Formatter\RecentChangesQuery(
+$c['query.changeslist'] = function( $c ) {
+	$query = new Flow\Formatter\ChangesListQuery(
 		$c['storage'],
 		$c['repository.tree'],
 		$c['flow_actions']
@@ -954,8 +954,8 @@ $c['query.postsummary.view'] = function( $c ) {
 		$c['permissions']
 	);
 };
-$c['formatter.recentchanges'] = function( $c ) {
-	return new Flow\Formatter\RecentChanges(
+$c['formatter.changeslist'] = function( $c ) {
+	return new Flow\Formatter\ChangesListFormatter(
 		$c['permissions'],
 		$c['formatter.revision']
 	);
@@ -971,7 +971,7 @@ $c['query.contributions'] = function( $c ) {
 	);
 };
 $c['formatter.contributions'] = function( $c ) {
-	return new Flow\Formatter\Contributions(
+	return new Flow\Formatter\ContributionsFormatter(
 		$c['permissions'],
 		$c['formatter.revision']
 	);
