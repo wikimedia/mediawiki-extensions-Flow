@@ -57,6 +57,7 @@
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|感謝}}}}",
 	"flow-history-action-delete-post": "削除",
 	"flow-history-action-hide-post": "非表示",
+	"flow-history-action-unhide-post": "非表示解除",
 	"flow-history-action-lock-topic": "解決する",
 	"flow-history-action-unlock-topic": "再開",
 	"flow-post-edited": "$1 が $2 に{{GENDER:$1|編集した}}投稿",
