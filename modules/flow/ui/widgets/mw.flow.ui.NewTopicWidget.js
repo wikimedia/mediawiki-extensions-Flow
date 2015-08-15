@@ -47,7 +47,7 @@
 
 		// Events
 		this.editor.connect( this, {
-			change: 'onChange',
+			change: 'updateSaveButtonState',
 			saveContent: 'onEditorSave',
 			cancel: 'onEditorCancel'
 		} );
@@ -61,12 +61,12 @@
 		} );
 
 		this.title.connect( this, {
-			change: 'onChange'
+			change: 'updateSaveButtonState'
 		} );
 		this.title.$element.on( 'focusin', this.onTitleFocusIn.bind( this ) );
-		// TODO: Expose a better way to disable the save button specifically
-		// through the editor widget
-		this.editor.editorControlsWidget.saveButton.setDisabled( true );
+
+		// Initialization
+		this.updateSaveButtonState();
 
 		this.$element
 			.addClass( 'flow-ui-newTopicWidget' )
@@ -83,19 +83,19 @@
 	OO.inheritClass( mw.flow.ui.NewTopicWidget, OO.ui.Widget );
 
 	/**
-	 * Respond to changes in either the editor or the title
+	 * Update the state of the save button.
+	 * @private
 	 */
-	mw.flow.ui.NewTopicWidget.prototype.onChange = function () {
-		// TODO: Expose a better way to disable the save button specifically
-		// through the editor widget
-		this.editor.editorControlsWidget.saveButton.setDisabled(
-			!this.title.getValue() ||
-			this.editor.isEmpty()
+	mw.flow.ui.NewTopicWidget.prototype.updateSaveButtonState = function () {
+		this.editor.editorControlsWidget.toggleSaveable(
+			this.title.getValue() &&
+			!this.editor.isEmpty()
 		);
 	};
 
 	/**
 	 * Respond to title input focusin event
+	 * @private
 	 */
 	mw.flow.ui.NewTopicWidget.prototype.onTitleFocusIn = function () {
 		if ( !this.isExpanded() ) {
@@ -138,6 +138,7 @@
 				// Clear for next use
 				widget.title.setValue( '' );
 				widget.editor.setContent( '', 'html' );
+				widget.updateSaveButtonState();
 			} );
 	};
 
