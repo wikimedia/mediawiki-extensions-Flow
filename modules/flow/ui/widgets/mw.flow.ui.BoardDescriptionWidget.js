@@ -50,7 +50,7 @@
 		this.anonWarning.toggle( false );
 
 		this.error = new OO.ui.LabelWidget( {
-			classes: [ 'flow-ui-boardDescriptionWidget-error flow-error errorbox' ]
+			classes: [ 'flow-ui-boardDescriptionWidget-error flow-errors errorbox' ]
 		} );
 		this.error.toggle( false );
 
