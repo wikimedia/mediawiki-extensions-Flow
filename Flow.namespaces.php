@@ -36,7 +36,7 @@ $namespaceNames['es'] = array(
 
 /** Persian */
 $namespaceNames['fa'] = array(
-	NS_TOPIC =>  'موضوع',
+	NS_TOPIC =>  'مبحث',
 );
 
 /** Finnish */
