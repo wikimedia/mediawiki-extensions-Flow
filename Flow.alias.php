@@ -77,6 +77,12 @@ $specialPageAliases['sv'] = array(
 	'Flow' => array( 'Flöde' ),
 );
 
+/** Vietnamese (Tiếng Việt) */
+$specialPageAliases['vi'] = array(
+	'Flow' => array( 'Flow' ),
+	'EnableFlow' => array( 'Kích_hoạt_Flow' ),
+);
+
 /** Simplified Chinese (中文（简体）‎) */
 $specialPageAliases['zh-hans'] = array(
 	'EnableFlow' => array( '启用Flow' ),
