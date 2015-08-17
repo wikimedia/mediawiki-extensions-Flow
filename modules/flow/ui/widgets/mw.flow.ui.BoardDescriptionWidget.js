@@ -116,11 +116,16 @@
 		this.api.getDescription( contentFormat )
 			.then(
 				function ( desc ) {
-					// Give it to the editor
-					widget.editor.setContent( desc.content.content, desc.content.format );
+					var content = OO.getProp( desc, 'content', 'content' ),
+						format = OO.getProp( desc, 'content', 'format' );
 
-					// Update revisionId in the API
-					widget.api.setCurrentRevision( widget.model.getRevisionId() );
+					if ( content && format ) {
+						// Give it to the editor
+						widget.editor.setContent( content, format );
+
+						// Update revisionId in the API
+						widget.api.setCurrentRevision( widget.model.getRevisionId() );
+					}
 				},
 				// Error fetching description
 				function ( error ) {
