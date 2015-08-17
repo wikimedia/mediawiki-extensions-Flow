@@ -14,6 +14,11 @@ $namespaceNames['ast'] = array(
 	NS_TOPIC =>  'Asuntu',
 );
 
+/** South Azerbaijani */
+$namespaceNames['azb'] = array(
+	NS_TOPIC =>  'مبحث',
+);
+
 /** Catalan */
 $namespaceNames['ca'] = array(
 	NS_TOPIC =>  'Tema',
