@@ -32,13 +32,13 @@
 		this.initialEditor = config.editor;
 
 		this.editorControlsWidget = new mw.flow.ui.EditorControlsWidget( {
-			autoFocus: config.autoFocus,
 			termsMsgKey: config.termsMsgKey || 'flow-terms-of-use-edit',
 			saveMsgKey: config.saveMsgKey || 'flow-newtopic-save',
 			cancelMsgKey: config.cancelMsgKey || 'flow-cancel'
 		} );
 
 		this.editorSwitcherWidget = new mw.flow.ui.EditorSwitcherWidget( {
+			autoFocus: config.autoFocus,
 			content: config.content,
 			contentFormat: config.contentFormat,
 			placeholder: config.placeholder
