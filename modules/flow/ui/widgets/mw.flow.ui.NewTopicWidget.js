@@ -147,6 +147,8 @@
 	mw.flow.ui.NewTopicWidget.prototype.onEditorCancel = function () {
 		// Hide the editor
 		this.toggleExpanded( false );
+		// Take focus away from the title input, if it was focused (T109353)
+		this.title.blur();
 	};
 
 	/**
