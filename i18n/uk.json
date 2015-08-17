@@ -9,7 +9,8 @@
 			"Olion",
 			"Капитан Джон Шепард",
 			"Piramidion",
-			"Lxlalexlxl"
+			"Lxlalexlxl",
+			"Dars"
 		]
 	},
 	"enableflow": "Увімкнути Flow",
@@ -440,8 +441,11 @@
 	"apihelp-flow+view-post-param-postId": "ID допису для перегляду.",
 	"apihelp-flow+view-post-param-format": "Формат виведення вмісту.",
 	"apihelp-flow+view-post-example-1": "Вибірка вмісту допису у [[Topic:S2tycnas4hcucw8w]] у вигляді вікітексту",
+	"apihelp-flow+view-post-history-description": "Переглянути історію змін цього допису.",
+	"apihelp-flow+view-post-history-param-postId": "ID запису, для якого необхідно переглянути історію змін.",
 	"apihelp-flow+view-topic-description": "Переглянути тему.",
 	"apihelp-flow+view-topic-example-1": "Переглянути [[Topic:S2tycnas4hcucw8w]]",
+	"apihelp-flow+view-topic-history-description": "Переглянути історію змін цієї теми.",
 	"apihelp-flow+view-topic-summary-description": "Переглянути підсумок теми.",
 	"apihelp-flow+view-topic-summary-param-format": "Формат виведення вмісту.",
 	"apihelp-flow+view-topic-summary-param-revId": "Завантажити цю версію замість останньої.",
