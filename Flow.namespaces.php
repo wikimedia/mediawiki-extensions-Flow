@@ -19,6 +19,11 @@ $namespaceNames['ca'] = array(
 	NS_TOPIC =>  'Tema',
 );
 
+/** Central Kurdish */
+$namespaceNames['ckb'] = array(
+	NS_TOPIC =>  'بابه‌ت',
+);
+
 /** German */
 $namespaceNames['de'] = array(
 	NS_TOPIC =>  'Thema',
