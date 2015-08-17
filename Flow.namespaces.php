@@ -84,6 +84,11 @@ $namespaceNames['mk'] = array(
 	NS_TOPIC =>  'Тема',
 );
 
+/** Mazandarani */
+$namespaceNames['mzn'] = array(
+	NS_TOPIC =>  'مبحث',
+);
+
 /** Dutch */
 $namespaceNames['nl'] = array(
 	NS_TOPIC =>  'Onderwerp',
