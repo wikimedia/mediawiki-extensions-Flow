@@ -688,6 +688,7 @@ class TalkpageImportOperation {
 		}
 
 		$topicState->commitLastUpdated();
+		$topicState->parent->logger->info( "Finished importing topic" );
 	}
 
 	/**
