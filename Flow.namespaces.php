@@ -69,6 +69,11 @@ $namespaceNames['lb'] = array(
 	NS_TOPIC =>  'Thema',
 );
 
+/** Northern Luri */
+$namespaceNames['lrc'] = array(
+	NS_TOPIC =>  'گأپئسئن',
+);
+
 /** Latvian */
 $namespaceNames['lv'] = array(
 	NS_TOPIC =>  'Tēma',
