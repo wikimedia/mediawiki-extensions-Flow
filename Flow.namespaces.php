@@ -124,6 +124,11 @@ $namespaceNames['ur'] = array(
 	NS_TOPIC =>  'موضوع',
 );
 
+/** Vietnamese */
+$namespaceNames['vi'] = array(
+	NS_TOPIC =>  'Đề_tài',
+);
+
 /** Yiddish */
 $namespaceNames['yi'] = array(
 	NS_TOPIC =>  'טעמע',
