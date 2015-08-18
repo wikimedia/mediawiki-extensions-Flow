@@ -174,6 +174,11 @@
 			.then( function ( description ) {
 				// Update the model
 				widget.model.populate( description );
+				return widget.api.getDescription( 'fixed-html' );
+			} )
+			.then( function ( desc ) {
+				// Change the actual content
+				widget.$content.empty().append( $.parseHTML( desc.content.content ) );
 				widget.showContent( true );
 			} )
 			.then( null, function ( errorCode, errorObj ) {
@@ -207,35 +212,6 @@
 	};
 
 	/**
-	 * Respond to content change. Content change can be in any of the
-	 * editors' formats, but we care to show it only in fixed-html.
-	 * So when the model changes, we must ask the API for a fixed-html
-	 * version of the content to display.
-	 *
-	 * @param {string} content Description content
-	 * @param {string} contentFormat Description content format
-	 */
-	mw.flow.ui.BoardDescriptionWidget.prototype.onContentChange = function () {
-		var widget = this;
-
-		this.$element.addClass( 'flow-api-inprogress' );
-		this.button.setDisabled( true );
-		this.api.getDescription( 'fixed-html' )
-			.then( function ( desc ) {
-				widget.$content.empty().append( $.parseHTML( desc.content.content ) );
-			} )
-			.then( null, function ( errorCode, errorObj ) {
-				var $errorMessage = $( '<span>' ).text( errorObj.error && errorObj.error.info || errorObj.exception );
-				widget.error.setLabel( $errorMessage );
-				widget.error.toggle( true );
-			} )
-			.always( function () {
-				widget.$element.removeClass( 'flow-api-inprogress' );
-				widget.button.setDisabled( false );
-			} );
-	};
-
-	/**
 	 * Attach a model to the widget
 	 *
 	 * @param {mw.flow.dm.BoardDescription} model Board model
@@ -246,11 +222,6 @@
 		}
 
 		this.model = model;
-
-		// Events
-		this.model.connect( this, {
-			contentChange: 'onContentChange'
-		} );
 	};
 
 }( jQuery ) );
