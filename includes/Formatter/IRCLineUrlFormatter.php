@@ -58,6 +58,13 @@ class IRCLineUrlFormatter extends AbstractFormatter implements RCFeedFormatter {
 	}
 
 	/**
+	 * Gets the formatted RC revision, or returns null if this revision is not to be
+	 *  shown in RC, or on failure.
+	 *
+	 * @param RecentChange $rc
+	 * @param IContextSource $ctx
+	 * @return array|false Array of data, or false on failure
+	 *
 	 * @fixme this looks slow, likely a better way
 	 */
 	protected function serializeRcRevision( RecentChange $rc, IContextSource $ctx ) {
@@ -65,6 +72,9 @@ class IRCLineUrlFormatter extends AbstractFormatter implements RCFeedFormatter {
 		$query = Container::get( 'query.changeslist' );
 		$query->loadMetadataBatch( array( (object)$rc->mAttribs ) );
 		$rcRow = $query->getResult( null, $rc );
+		if ( !$rcRow ) {
+			return false;
+		}
 
 		$this->serializer->setIncludeHistoryProperties( true );
 		return $this->serializer->formatApi( $rcRow, $ctx, 'recentchanges' );
