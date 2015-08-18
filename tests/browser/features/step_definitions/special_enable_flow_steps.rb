@@ -18,8 +18,9 @@ end
 
 When(/^I enable a new Flow board on article (.*?)$/) do |article|
   on(EnableFlowPage) do |page|
-    page.page_name.when_present.send_keys(article)
-    page.submit_button.when_present.click
+    page.page_name_element.when_present.send_keys article
+    page.page_header_element.when_present.send_keys 'header'
+    page.submit
   end
 end
 
@@ -41,8 +42,8 @@ end
 
 Then(/^I click the archive link$/) do
   on(AbstractFlowPage) do |page|
-    page.sidebar_toggle_element.when_present.click unless page.description_content_element.visible?
-    page.description_archive_link.when_present.click
+    page.description.toggle_element.when_present.click unless page.description.content_element.visible?
+    page.description.archive_link_element.when_present.click
   end
 end
 

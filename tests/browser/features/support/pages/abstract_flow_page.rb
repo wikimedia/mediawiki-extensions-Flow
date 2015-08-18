@@ -1,34 +1,14 @@
 require_relative 'wiki_page'
 
 class AbstractFlowPage < WikiPage
-  def visualeditor_or_textarea(form)
-    parent = form.is_a?(String) ? form_element(css: form) : form
-    parent.when_present
-    if parent.div_element(class: 'flow-editor-visualeditor').exists?
-      parent.div_element(class: 've-ce-documentNode')
-    else
-      parent.div_element(class: 'oo-ui-textInputWidget').text_area_element
-    end
-  end
+  include FlowEditor
+
+  page_section(:description, BoardDescription, class: 'flow-board-header')
 
   # board component
   div(:flow_component, class: 'flow-component')
   div(:flow_board, class: 'flow-board')
 
-  # board description
-  a(:edit_description_link, title: "Edit description")
-  div(:description_content, css: ".flow-board-header-content")
-  form(:edit_description_form, css: ".edit-header-form")
-  a(:sidebar_toggle, class: "side-rail-toggle-button")
-  def edit_description_textbox_element
-    visualeditor_or_textarea '.edit-header-form'
-  end
-
-  # If page has an archive template from a flow conversion
-  # find the link
-  def description_archive_link
-    div_element(class: 'flow-board-header-content').link_element
-  end
   a(:author_link, css: ".flow-author a", index: 0)
   a(:cancel_button, text: "Cancel")
 
@@ -238,32 +218,43 @@ class AbstractFlowPage < WikiPage
   # New topic creation
   a(:new_topic_link, text: "Start a new topic")
   form(:new_topic_form, css: ".flow-newtopic-form")
-  text_field(:new_topic_title, name: "topiclist_topic")
+  text_field(:new_topic_title, css: ".flow-ui-newTopicWidget-title > input")
 
+  div(:new_topic_widget, class: 'flow-ui-newTopicWidget')
   def new_topic_body_element
-    visualeditor_or_textarea '.flow-newtopic-form'
+    visualeditor_or_textarea new_topic_widget_element
   end
 
-  button(:new_topic_cancel, css: ".flow-newtopic-form .mw-ui-destructive")
-  # FIXME: Remove flow-ui-constructive reference when cache has cleared
-  button(:new_topic_save, css: ".flow-newtopic-form .mw-ui-constructive, .flow-newtopic-form .flow-ui-constructive")
+  link(:new_topic_cancel) do
+    new_topic_widget_element.link_element(text: 'Cancel')
+  end
+
+  link(:new_topic_save) do
+    new_topic_widget_element.link_element(text: 'Add topic')
+  end
 
   # Replying
   # TODO (mattflaschen, 2014-06-24): Should distinguish between
   # top-level replies to the topic, and replies to regular posts
   form(:new_reply_form, css: ".flow-reply-form")
 
-  text_area(:new_reply_placeholder) do |page|
-    page.new_reply_form_element.text_area_element
+  div(:new_reply_placeholder, class: 'flow-ui-replyWidget')
+
+  div(:first_reply_widget) do
+    flow_first_topic_element.div_element(class: 'flow-ui-replyWidget')
   end
 
   def new_reply_editor_element
-    form = flow_first_topic_element.form_element(class: 'flow-reply-form')
-    visualeditor_or_textarea form
+    visualeditor_or_textarea first_reply_widget_element
   end
 
-  button(:new_reply_cancel, css: ".flow-reply-form .mw-ui-destructive")
-  button(:new_reply_save, css: ".flow-reply-form .mw-ui-constructive")
+  link(:new_reply_cancel) do
+    first_reply_widget_element.link_element(text: 'Cancel')
+  end
+  link(:new_reply_save) do
+    first_reply_widget_element.link_element(text: 'Reply')
+  end
+
   button(:keep_editing, text: "Keep editing")
 
   # Editing post workflow
@@ -275,8 +266,6 @@ class AbstractFlowPage < WikiPage
   button(:change_post_save, css: ".flow-edit-post-form .mw-ui-constructive")
 
   div(:small_spinner, class: "mw-spinner mw-spinner-small mw-spinner-inline")
-
-  button(:edit_description_save, text: "Save description")
 
   # No javascript elements
   button(:no_javascript_add_topic, text: "Add topic")
@@ -291,10 +280,11 @@ class AbstractFlowPage < WikiPage
   text_field(:no_javascript_topic_title_text, name: "topiclist_topic")
 
   # Sorting
-  span(:newest_topics_link, text: "Newest topics")
-  span(:recently_active_topics_choice, text: "Recently active topics")
-  span(:recently_active_topics_link, text: "Recently active topics")
-  span(:newest_topics_choice, text: "Newest topics")
+  div(:sorting, class: 'flow-ui-reorderTopicsWidget')
+  link(:newest_topics_link, text: "Newest topics")
+  link(:recently_active_topics_link, text: "Recently active topics")
+  div(:newest_topics_choice, text: "Newest topics")
+  div(:recently_active_topics_choice, text: "Recently active topics")
 
   ## Watch and unwatch links
   div(:first_topic_watchlist_container, css: ".flow-topic-watchlist", index: 0)
