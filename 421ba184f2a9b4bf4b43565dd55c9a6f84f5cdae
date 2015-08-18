@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_387c40b4",
+        "filename": "container.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 1102,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-18T18:16:59Z",
+      "side": 1,
+      "message": "Yep.  T108104 .  Have added it to the sprint.",
+      "parentUuid": "6ec1af18_42a03b8d",
+      "revId": "421ba184f2a9b4bf4b43565dd55c9a6f84f5cdae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_e28fe724",
         "filename": "db_patches/patch-reference_wiki-phase1.sql",
         "patchSetId": 16
@@ -30,6 +48,24 @@
       "writtenOn": "2015-08-18T13:22:10Z",
       "side": 1,
       "message": "We can probably make this one NOT NULL, and skip \"OR flow_wiki_ref.ref_src_wiki IS NULL\" in step 2 and the ALTER TABLE in step 3?\n\nI assume the only reason for the default null is because we already ran this script? We could also ALTER to NOT NULL in step 1.5, but meh, it\u0027ll all result in the same.",
+      "revId": "421ba184f2a9b4bf4b43565dd55c9a6f84f5cdae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_3863e00b",
+        "filename": "db_patches/patch-reference_wiki-phase1.sql",
+        "patchSetId": 16
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-18T18:16:59Z",
+      "side": 1,
+      "message": "When the script was run in production, one was NULL and one was NOT NULL (https://gerrit.wikimedia.org/r/#/c/136280/9/db_patches/patch-reference_wiki-phase1.sql) .\n\nBut the comment clearly says they were supposed to be nullable.  In my opinion, NULL is also more semantically correct than empty string.\n\nI added the !\u003d \u0027\u0027 to account for the fact that there were such rows in production (due to the issue with patch set 9, phase 1).\n\nI thought about changing the wrong one back to NULL in the WMF-only phase 1.5, but I think it\u0027s unnecessary (there are already empty strings, but as soon as we deploy this it will start inserting valid values, and then the conversion will get rid of the empty strings).",
+      "parentUuid": "6ec1af18_e28fe724",
       "revId": "421ba184f2a9b4bf4b43565dd55c9a6f84f5cdae",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_382a0090",
+        "filename": "includes/Data/ReferenceRecorder.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-18T18:16:59Z",
+      "side": 1,
+      "message": "Sorry, I should have noticed that.  Done.",
+      "parentUuid": "6ec1af18_e2b607d7",
+      "revId": "421ba184f2a9b4bf4b43565dd55c9a6f84f5cdae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_e2dda718",
         "filename": "includes/Parsoid/ReferenceExtractor.php",
         "patchSetId": 16
@@ -64,6 +118,24 @@
       "writtenOn": "2015-08-18T13:22:10Z",
       "side": 1,
       "message": "$workflow already has a (protected) property $wiki. Maybe we should get wiki id from there instead of wfWikiId()?",
+      "revId": "421ba184f2a9b4bf4b43565dd55c9a6f84f5cdae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_981a147d",
+        "filename": "includes/Parsoid/ReferenceExtractor.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-18T18:16:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec1af18_e2dda718",
       "revId": "421ba184f2a9b4bf4b43565dd55c9a6f84f5cdae",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
