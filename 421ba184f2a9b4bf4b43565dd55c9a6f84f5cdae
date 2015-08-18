@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_42a03b8d",
+        "filename": "container.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 1102,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-18T13:22:10Z",
+      "side": 1,
+      "message": "We should probably prepare a follow-up commit to drop all $wgFlowMigrateReferenceWiki occurrences.",
+      "revId": "421ba184f2a9b4bf4b43565dd55c9a6f84f5cdae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_e28fe724",
+        "filename": "db_patches/patch-reference_wiki-phase1.sql",
+        "patchSetId": 16
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-18T13:22:10Z",
+      "side": 1,
+      "message": "We can probably make this one NOT NULL, and skip \"OR flow_wiki_ref.ref_src_wiki IS NULL\" in step 2 and the ALTER TABLE in step 3?\n\nI assume the only reason for the default null is because we already ran this script? We could also ALTER to NOT NULL in step 1.5, but meh, it\u0027ll all result in the same.",
+      "revId": "421ba184f2a9b4bf4b43565dd55c9a6f84f5cdae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_e2b607d7",
+        "filename": "includes/Data/ReferenceRecorder.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-18T13:22:10Z",
+      "side": 1,
+      "message": "It looks like something went wrong in the rebases.\nThis ReferenceRecorder.php shouldn\u0027t be a new file, there were just a couple of changes: https://gerrit.wikimedia.org/r/#/c/136280/8/includes/Data/ReferenceRecorder.php\n\nThe file has moved inside a /Listener/ subdir. The changes should probably be applied there, instead of in this new (unknown to autoloader) file.",
+      "revId": "421ba184f2a9b4bf4b43565dd55c9a6f84f5cdae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_e2dda718",
+        "filename": "includes/Parsoid/ReferenceExtractor.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-18T13:22:10Z",
+      "side": 1,
+      "message": "$workflow already has a (protected) property $wiki. Maybe we should get wiki id from there instead of wfWikiId()?",
+      "revId": "421ba184f2a9b4bf4b43565dd55c9a6f84f5cdae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
