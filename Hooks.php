@@ -1619,4 +1619,15 @@ class FlowHooks {
 
 		return false;
 	}
+
+	/**
+	 * Excludes NS_TOPIC from the list of searchable namespaces
+	 *
+	 * @param array $namespaces Associative array mapping namespace index
+	 *  to name
+	 */
+	public static function onSearchableNamespaces( &$namespaces ) {
+		unset( $namespaces[NS_TOPIC] );
+		return true;
+	}
 }
