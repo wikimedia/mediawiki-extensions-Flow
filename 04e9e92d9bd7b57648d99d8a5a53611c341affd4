@@ -16,6 +16,24 @@
       "revId": "04e9e92d9bd7b57648d99d8a5a53611c341affd4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_93243609",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-18T20:26:43Z",
+      "side": 1,
+      "message": "wow, good catch!",
+      "parentUuid": "6ec1af18_53324ff0",
+      "revId": "04e9e92d9bd7b57648d99d8a5a53611c341affd4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
