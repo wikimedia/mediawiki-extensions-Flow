@@ -288,7 +288,7 @@ $wgFlowOccupyNamespaces = array();
 $wgFlowMaxThreadingDepth = 8;
 
 // A list of editors to use, in priority order
-$wgFlowEditorList = array( 'wikitext' );  // EXPERIMENTAL prepend 'visualeditor'
+$wgFlowEditorList = array( 'visualeditor', 'wikitext' );
 
 // Action details config file
 require $dir . 'FlowActions.php';
