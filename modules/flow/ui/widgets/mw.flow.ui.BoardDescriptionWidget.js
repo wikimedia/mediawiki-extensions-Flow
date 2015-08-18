@@ -130,8 +130,8 @@
 				// Error fetching description
 				function ( error ) {
 					// Display error
-					this.error.setLabel( mw.msg( 'flow-error-external', error ) );
-					this.error.toggle( true );
+					widget.error.setLabel( mw.msg( 'flow-error-external', error ) );
+					widget.error.toggle( true );
 
 					// Return to read mode
 					widget.showContent( false );
