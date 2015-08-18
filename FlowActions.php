@@ -249,9 +249,12 @@ $wgFlowActions = array(
 	'new-topic' => array(
 		'performs-writes' => true,
 		'log_type' => false,
-		'rc_insert' => false,
+		'rc_title' => 'owner',
+		'rc_insert' => true,
 		'exclude_from_contributions' => true,
 		'exclude_from_history' => true,
+		// exclude_from_recentchanges only refers to the actual Special:RecentChanges.  It does not affect Special:Watchlist.
+		'exclude_from_recentchanges' => true,
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',
 		),

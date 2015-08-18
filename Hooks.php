@@ -270,8 +270,8 @@ class FlowHooks {
 
 		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
 		try {
-			/** @var Flow\Formatter\RecentChangesQuery $query */
-			$query = Container::get( 'query.recentchanges' );
+			/** @var Flow\Formatter\ChangesListQuery $query */
+			$query = Container::get( 'query.changeslist' );
 			$query->loadMetadataBatch(
 				$rows,
 				$changesList->isWatchlist()
@@ -361,8 +361,8 @@ class FlowHooks {
 
 		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
 		try {
-			/** @var Flow\Formatter\RecentChangesQuery $query */
-			$query = Container::get( 'query.recentchanges' );
+			/** @var Flow\Formatter\ChangesListQuery $query */
+			$query = Container::get( 'query.changeslist' );
 
 			$row = $query->getResult( $changesList, $rc, $changesList->isWatchlist() );
 			if ( $row === false ) {
@@ -370,8 +370,8 @@ class FlowHooks {
 				return false;
 			}
 
-			/** @var Flow\Formatter\RecentChanges $formatter */
-			$formatter = Container::get( 'formatter.recentchanges' );
+			/** @var Flow\Formatter\ChangesListFormatter $formatter */
+			$formatter = Container::get( 'formatter.changeslist' );
 			$line = $formatter->format( $row, $changesList, $topicOnly );
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting rc ' . $rc->getAttribute( 'rc_id' ) . ' ' . $e );
@@ -414,8 +414,8 @@ class FlowHooks {
 
 		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
 		try {
-			/** @var Flow\Formatter\RecentChangesQuery $query */
-			$query = Container::get( 'query.recentchanges' );
+			/** @var Flow\Formatter\ChangesListQuery $query */
+			$query = Container::get( 'query.changeslist' );
 
 			$row = $query->getResult( $changesList, $rc, $changesList->isWatchlist() );
 			if ( $row === false ) {
@@ -423,8 +423,8 @@ class FlowHooks {
 				return false;
 			}
 
-			/** @var Flow\Formatter\RecentChanges $formatter */
-			$formatter = Container::get( 'formatter.recentchanges' );
+			/** @var Flow\Formatter\ChangesListFormatter $formatter */
+			$formatter = Container::get( 'formatter.changeslist' );
 			$logTextLinks = $formatter->getLogTextLinks( $row, $changesList, $block, $links );
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting rc logtext ' . $rc->getAttribute( 'rc_id' ) . ' ' . $e );
@@ -465,14 +465,14 @@ class FlowHooks {
 			return true;
 		}
 
-		$query = Container::get( 'query.recentchanges' );
+		$query = Container::get( 'query.changeslist' );
 		$row = $query->getResult( $changesList, $rc, $changesList->isWatchlist() );
 		if ( $row === false ) {
 			return false;
 		}
 
-		/** @var Flow\Formatter\RecentChanges $formatter */
-		$formatter = Container::get( 'formatter.recentchanges' );
+		/** @var Flow\Formatter\ChangesListFormatter $formatter */
+		$formatter = Container::get( 'formatter.changeslist' );
 		try {
 			$data['timestampLink'] = $formatter->getTimestampLink( $row, $changesList );
 			$data['recentChangesFlags'] = $formatter->getFlags( $row, $changesList );
@@ -712,7 +712,7 @@ class FlowHooks {
 
 		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
 		try {
-			/** @var Flow\Formatter\Contributions $formatter */
+			/** @var Flow\Formatter\ContributionsFormatter $formatter */
 			$formatter = Container::get( 'formatter.contributions' );
 			$line = $formatter->format( $row, $pager );
 		} catch ( Exception $e ) {

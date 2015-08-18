@@ -12,7 +12,7 @@ use Flow\Parsoid\Utils;
 use IContextSource;
 use Linker;
 
-class RecentChanges extends AbstractFormatter {
+class ChangesListFormatter extends AbstractFormatter {
 	protected function getHistoryType() {
 		return 'recentchanges';
 	}
