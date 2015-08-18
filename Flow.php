@@ -152,6 +152,7 @@ $wgHooks['CategoryViewer::generateLink'][] = 'FlowHooks::onCategoryViewerGenerat
 $wgHooks['ArticleConfirmDelete'][] = 'FlowHooks::onArticleConfirmDelete';
 $wgHooks['ArticleDelete'][] = 'FlowHooks::onArticleDelete';
 $wgHooks['ArticleUndelete'][] = 'FlowHooks::onArticleUndelete';
+$wgHooks['SearchableNamespaces'][] = 'FlowHooks::onSearchableNamespaces';
 
 // Extension:UserMerge support
 $wgHooks['UserMergeAccountFields'][] = 'FlowHooks::onUserMergeAccountFields';
