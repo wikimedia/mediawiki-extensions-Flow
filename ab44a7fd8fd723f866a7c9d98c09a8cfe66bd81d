@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_e28127c9",
+        "filename": "maintenance/FlowUpdateRevContentModelFromOccupyPages.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-18T13:35:16Z",
+      "side": 1,
+      "message": "\"not batched\" comment is no longer accurate, it seems.",
+      "revId": "ab44a7fd8fd723f866a7c9d98c09a8cfe66bd81d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_a28b1fe7",
+        "filename": "maintenance/FlowUpdateRevContentModelFromOccupyPages.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-18T13:35:16Z",
+      "side": 1,
+      "message": "Should also call parent::__construct() (which fixes up $IP \u0026 adds default params like --help etc.)",
+      "revId": "ab44a7fd8fd723f866a7c9d98c09a8cfe66bd81d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
