@@ -38,7 +38,7 @@
 				return editor === 'none' ? 'wikitext' : editor;
 			} )
 			.filter( function ( editor ) {
-				return widget.constructor.static.editorDefinitions[editor].static.isSupported();
+				return widget.constructor.static.editorDefinitions[ editor ].static.isSupported();
 			} );
 		this.initialEditorName =
 			( config.initialEditor === 'none' ? 'wikitext' : config.initialEditor ) ||
@@ -123,7 +123,7 @@
 	 * @return {mw.flow.ui.AbstractEditorWidget|null} Active editor, if any
 	 */
 	mw.flow.ui.EditorSwitcherWidget.prototype.getActiveEditor = function () {
-		return this.activeEditorName && this.editors[this.activeEditorName] || null;
+		return this.activeEditorName && this.editors[ this.activeEditorName ] || null;
 	};
 
 	/**
@@ -160,14 +160,14 @@
 		if ( this.initialContent !== '' ) {
 			// Find the first editor that matches this.contentFormat
 			for ( i = 0, len = this.availableEditors.length; i < len; i++ ) {
-				if ( this.constructor.static.editorDefinitions[this.availableEditors[i]].static.format === this.contentFormat ) {
-					return this.availableEditors[i];
+				if ( this.constructor.static.editorDefinitions[ this.availableEditors[ i ] ].static.format === this.contentFormat ) {
+					return this.availableEditors[ i ];
 				}
 			}
 		}
 		// Either we didn't find an editor matching this.contentFormat, or we don't have any
 		// initial content and so we don't care. Use the first editor.
-		return this.availableEditors[0];
+		return this.availableEditors[ 0 ];
 	};
 
 	/**
@@ -180,17 +180,17 @@
 	 * @return {mw.flow.ui.AbstractEditorWidget} Editor instance
 	 */
 	mw.flow.ui.EditorSwitcherWidget.prototype.getEditor = function ( name ) {
-		if ( !this.editors[name] ) {
-			this.editors[name] = new this.constructor.static.editorDefinitions[name]( {
+		if ( !this.editors[ name ] ) {
+			this.editors[ name ] = new this.constructor.static.editorDefinitions[ name ]( {
 				switchable: this.isSwitchable(),
 				placeholder: this.placeholder
 			} );
-			this.editors[name].connect( this, {
+			this.editors[ name ].connect( this, {
 				'switch': 'onEditorSwitch',
-				change: [ 'onEditorChange', this.editors[name] ]
+				change: [ 'onEditorChange', this.editors[ name ] ]
 			} );
 		}
-		return this.editors[name];
+		return this.editors[ name ];
 	};
 
 	/**
@@ -325,7 +325,7 @@
 			title: mw.config.get( 'wgPageName' )
 		} )
 			.then( function ( data ) {
-				return data['flow-parsoid-utils'].content;
+				return data[ 'flow-parsoid-utils' ].content;
 			}, function () {
 				return mw.msg( 'flow-error-parsoid-failure' );
 			} );
@@ -548,8 +548,8 @@
 	mw.flow.ui.EditorSwitcherWidget.prototype.destroy = function () {
 		var editor;
 		for ( editor in this.editors ) {
-			this.editors[editor].disconnect( this );
-			this.editors[editor].destroy();
+			this.editors[ editor ].disconnect( this );
+			this.editors[ editor ].destroy();
 		}
 	};
 

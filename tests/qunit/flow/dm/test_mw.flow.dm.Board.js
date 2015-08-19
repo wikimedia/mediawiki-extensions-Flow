@@ -5,7 +5,7 @@ QUnit.module( 'ext.flow.dm mw.flow.dm.Board' );
 QUnit.test( 'Create board', function ( assert ) {
 	var i, ilen, result, board,
 		executeOperation = function ( obj, operation, params ) {
-			return obj[operation].apply( obj, params );
+			return obj[ operation ].apply( obj, params );
 		},
 		expectCount = 0,
 		cases = [
@@ -124,10 +124,10 @@ QUnit.test( 'Create board', function ( assert ) {
 
 	expectCount = cases.length;
 	for ( i = 0, ilen = cases.length; i < ilen; i++ ) {
-		result = executeOperation( board, cases[i].method, cases[i].params || [] );
+		result = executeOperation( board, cases[ i ].method, cases[ i ].params || [] );
 		if ( cases[ i ].expected !== undefined ) {
 			// Test
-			assert.deepEqual( result, cases[i].expected, cases[i].msg );
+			assert.deepEqual( result, cases[ i ].expected, cases[ i ].msg );
 		} else {
 			expectCount--;
 		}

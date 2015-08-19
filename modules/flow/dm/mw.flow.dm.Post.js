@@ -48,8 +48,8 @@
 	mw.flow.dm.Post.static.getPostRevision = function ( topiclist, postId ) {
 		var pid = OO.getProp( topiclist, 'posts', postId );
 
-		if ( pid[0] ) {
-			return topiclist.revisions[pid[0]];
+		if ( pid[ 0 ] ) {
+			return topiclist.revisions[ pid[ 0 ] ];
 		}
 		return {};
 	};
@@ -66,8 +66,8 @@
 			result = [];
 
 		for ( i = 0, len = parentReplyIds.length; i < len; i++ ) {
-			postRevision = mw.flow.dm.Post.static.getPostRevision( topiclist, parentReplyIds[i] );
-			post = new mw.flow.dm.Post( parentReplyIds[i], postRevision );
+			postRevision = mw.flow.dm.Post.static.getPostRevision( topiclist, parentReplyIds[ i ] );
+			post = new mw.flow.dm.Post( parentReplyIds[ i ], postRevision );
 			// Populate sub-posts
 			replies = this.createTopicReplyTree( topiclist, post.getReplyIds() );
 			post.addItems( replies );

@@ -132,7 +132,7 @@
 		doc = ve.dm.converter.getDomFromModel( this.dmDoc );
 
 		// document content will include html, head & body nodes; get only content inside body node
-		html = ve.properInnerHtml( $( doc.documentElement ).find( 'body' )[0] );
+		html = ve.properInnerHtml( $( doc.documentElement ).find( 'body' )[ 0 ] );
 		return html;
 	};
 

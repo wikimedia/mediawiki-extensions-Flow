@@ -51,7 +51,7 @@
 			// Doublecheck that this textarea is actually an editor instance
 			// (the editor may have added a textarea itself...)
 			if ( mw.flow.editor && mw.flow.editor.exists( $editor ) ) {
-				override[$editor.attr( 'name' )] = mw.flow.editor.getRawContent( $editor );
+				override[ $editor.attr( 'name' ) ] = mw.flow.editor.getRawContent( $editor );
 				override.flow_format = mw.flow.editor.getFormat( $editor );
 			}
 
@@ -302,13 +302,13 @@
 		} ).done( function ( result ) {
 			// SUPERHACK: Add an indicator for handlebars to know to load the partial from
 			// the "old" system. This will go away when the OOUI widget in JS is operational
-			result.flow['view-header'].result.header.oldSystem = true;
+			result.flow[ 'view-header' ].result.header.oldSystem = true;
 
 			// Render
 			$rendered = $(
 				flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
 					'flow_block_loop',
-					{ blocks: result.flow['view-header'].result }
+					{ blocks: result.flow[ 'view-header' ].result }
 				)
 			).children();
 
@@ -334,9 +334,9 @@
 		}
 
 		function summarize( result ) {
-			var root = result.topic.roots[0],
-				revId = result.topic.posts[root][0],
-				topic = result.topic.revisions[revId];
+			var root = result.topic.roots[ 0 ],
+				revId = result.topic.posts[ root ][ 0 ],
+				topic = result.topic.revisions[ revId ];
 
 			return flowBoard.Api.apiCall( {
 				action: 'flow',
@@ -345,7 +345,7 @@
 				page: ( new mw.Title( workflowId, 2600 ) ).getPrefixedDb(),
 				vtsformat: mw.flow.editor.getFormat()
 			} ).then( function ( data ) {
-				var topicSummary = data.flow['view-topic-summary'].result.topicsummary;
+				var topicSummary = data.flow[ 'view-topic-summary' ].result.topicsummary;
 
 				// skip summarize step when a topic with NO summary has been reopened
 				if ( !topic.isLocked && !_hasSummary( topicSummary ) ) {
@@ -393,7 +393,7 @@
 
 		return _flowBoardComponentRefreshTopic(
 			info.$target,
-			data.flow['edit-title'].workflow,
+			data.flow[ 'edit-title' ].workflow,
 			'.flow-topic-titlebar'
 		);
 	};
@@ -415,7 +415,7 @@
 		}
 
 		// @todo: add 3rd argument (target selector); there's no need to refresh entire topic
-		return _flowBoardComponentRefreshTopic( info.$target, data.flow['edit-post'].workflow );
+		return _flowBoardComponentRefreshTopic( info.$target, data.flow[ 'edit-post' ].workflow );
 	};
 
 	/**
@@ -450,7 +450,7 @@
 		// _flowBoardComponentRefreshTopic relies on finding a .flow-topic node
 		// to replace, so let's pretend to have one here!
 		$stub = $( '<div class="flow-topic"><div></div></div>' ).prependTo( flowBoard.$container.find( '.flow-topics' ) );
-		return _flowBoardComponentRefreshTopic( $stub.find( 'div' ), data.flow['new-topic'].committed.topiclist['topic-id'] );
+		return _flowBoardComponentRefreshTopic( $stub.find( 'div' ), data.flow[ 'new-topic' ].committed.topiclist[ 'topic-id' ] );
 	};
 
 	/**
@@ -508,7 +508,7 @@
 			watchLinkTemplate = 'flow_topic_titlebar_watch.partial';
 		}
 
-		if ( data.watch[0].watched !== undefined ) {
+		if ( data.watch[ 0 ].watched !== undefined ) {
 			unwatchUrl = url.replace( 'watch', 'unwatch' );
 			watchUrl = url;
 			isWatched = true;
@@ -516,8 +516,8 @@
 			watchUrl = url.replace( 'unwatch', 'watch' );
 			unwatchUrl = url;
 		}
-		links['unwatch-' + watchType] = { url: unwatchUrl };
-		links['watch-' + watchType] = { url: watchUrl };
+		links[ 'unwatch-' + watchType ] = { url: unwatchUrl };
+		links[ 'watch-' + watchType ] = { url: watchUrl };
 
 		// Render new icon
 		// This will hide any tooltips if present
@@ -533,7 +533,7 @@
 		).children();
 		$tooltipTarget.replaceWith( $newLink );
 
-		if ( data.watch[0].watched !== undefined ) {
+		if ( data.watch[ 0 ].watched !== undefined ) {
 			// Successful watch: show tooltip
 			flowBoard.emitWithReturn( 'showSubscribedTooltip', $newLink.find( '.mw-ui-icon' ), watchType );
 		}
@@ -581,7 +581,7 @@
 
 		return _flowBoardComponentRefreshTopic(
 			info.$target,
-			data.flow['edit-topic-summary'].workflow,
+			data.flow[ 'edit-topic-summary' ].workflow,
 			'.flow-topic-titlebar'
 		);
 	};
@@ -598,8 +598,8 @@
 		var flowBoard, $form, cancelCallback,
 			$link = $( this ),
 			activeClass = 'flow-topic-title-activate-edit',
-			rootBlock = data.flow['view-post'].result.topic,
-			revision = rootBlock.revisions[rootBlock.posts[rootBlock.roots[0]]];
+			rootBlock = data.flow[ 'view-post' ].result.topic,
+			revision = rootBlock.revisions[ rootBlock.posts[ rootBlock.roots[ 0 ] ] ];
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
@@ -664,12 +664,12 @@
 
 		// The API returns with the entire topic, but we only want to render the edit form
 		// for a singular post
-		rootBlock = data.flow['view-post'].result.topic;
+		rootBlock = data.flow[ 'view-post' ].result.topic;
 		$rendered = $(
 			flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
 				'flow_edit_post_ajax.partial',
 				{
-					revision: rootBlock.revisions[rootBlock.posts[rootBlock.roots[0]]],
+					revision: rootBlock.revisions[ rootBlock.posts[ rootBlock.roots[ 0 ] ] ],
 					rootBlock: rootBlock
 				}
 			)
@@ -767,14 +767,14 @@
 
 			var $this = $( this ),
 				$form = $this.closest( 'form' ),
-				revisionId = data.flow[action].committed.topic['post-revision-id'],
+				revisionId = data.flow[ action ].committed.topic[ 'post-revision-id' ],
 				$target = $form.data( 'flow-dialog-owner' ) || $form,
 				flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $this );
 
 			// @todo: add 3rd argument (target selector); there's no need to refresh entire topic if only post was moderated
-			return _flowBoardComponentRefreshTopic( $target, data.flow[action].workflow )
+			return _flowBoardComponentRefreshTopic( $target, data.flow[ action ].workflow )
 				.done( function ( result ) {
-					successCallback( flowBoard, result.flow['view-topic'].result.topic.revisions[revisionId] );
+					successCallback( flowBoard, result.flow[ 'view-topic' ].result.topic.revisions[ revisionId ] );
 				} )
 				.done( function () {
 					// we're done here, close moderation pop-up
@@ -805,7 +805,7 @@
 			// Update view of the full topic
 			var $replacement = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
 				'flow_topiclist_loop.partial',
-				result.flow['view-topic'].result.topic
+				result.flow[ 'view-topic' ].result.topic
 			) ).children();
 
 			if ( selector ) {
@@ -819,7 +819,7 @@
 
 			// make new topic and $element accessible to downstream handlers
 			result.$topic = $replacement;
-			result.topic = result.flow['view-topic'].result.topic;
+			result.topic = result.flow[ 'view-topic' ].result.topic;
 
 			// HACK: Emit an event here so that the flow data model can update
 			// itself based on the API response

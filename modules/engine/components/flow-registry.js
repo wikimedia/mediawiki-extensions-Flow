@@ -44,12 +44,12 @@
 			// Call each parent in reverse (starting with the base class and moving up the chain)
 			for ( i = constructors.length; i--; ) {
 				// Call each mixin constructor
-				for ( j = 0; j < constructors[i].static.mixinConstructors.length; j++ ) {
-					constructors[i].static.mixinConstructors[j].apply( this, arguments );
+				for ( j = 0; j < constructors[ i ].static.mixinConstructors.length; j++ ) {
+					constructors[ i ].static.mixinConstructors[ j ].apply( this, arguments );
 				}
 
 				// Call this class constructor
-				parentReturn = constructors[i].apply( this, arguments );
+				parentReturn = constructors[ i ].apply( this, arguments );
 
 				if ( parentReturn && parentReturn.constructor ) {
 					// If the parent returned an instantiated class (cached), return that instead
@@ -136,7 +136,7 @@
 			return $.noop;
 		}
 
-		method = registeredClass.prototype[methodName];
+		method = registeredClass.prototype[ methodName ];
 		if ( !method ) {
 			mw.flow.debug( 'Failed to find FlowComponent method.', arguments );
 			return $.noop;

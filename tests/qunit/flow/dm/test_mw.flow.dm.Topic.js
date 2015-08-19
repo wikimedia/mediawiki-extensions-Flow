@@ -5,7 +5,7 @@ QUnit.module( 'ext.flow.dm mw.flow.dm.Topic' );
 QUnit.test( 'Load topics', function ( assert ) {
 	var i, j, ilen, jlen, topic, result, operation,
 		executeOperation = function ( obj, operation, params ) {
-			return obj[operation].apply( obj, params );
+			return obj[ operation ].apply( obj, params );
 		},
 		expectCount = 0,
 		cases = [
@@ -240,12 +240,12 @@ QUnit.test( 'Load topics', function ( assert ) {
 	];
 
 	for ( i = 0, ilen = cases.length; i < ilen; i++ ) {
-		expectCount += cases[i].operations.length;
+		expectCount += cases[ i ].operations.length;
 
-		topic = new mw.flow.dm.Topic( cases[i].args.id, cases[i].args.data );
+		topic = new mw.flow.dm.Topic( cases[ i ].args.id, cases[ i ].args.data );
 
-		for ( j = 0, jlen = cases[i].operations.length; j < jlen; j++ ) {
-			operation = cases[i].operations[j];
+		for ( j = 0, jlen = cases[ i ].operations.length; j < jlen; j++ ) {
+			operation = cases[ i ].operations[ j ];
 			result = executeOperation( topic, operation.method, operation.params || [] );
 			if ( operation.expected !== undefined ) {
 				// Test

@@ -155,7 +155,7 @@
 
 		// Support adding existing items at new locations
 		for ( i = 0, len = items.length; i < len; i++ ) {
-			item = items[i];
+			item = items[ i ];
 			existingItem = this.getItemById( item.getId() );
 
 			// Check if item exists then remove it first, effectively "moving" it
@@ -178,7 +178,7 @@
 			}
 
 			// Add by reference
-			this.itemsById[ item.getId() ] = items[i];
+			this.itemsById[ item.getId() ] = items[ i ];
 		}
 
 		if ( index === undefined || index < 0 || index >= this.items.length ) {
