@@ -133,7 +133,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 
 // This currently never clears $this->bag, which makes it unusuable for long-running batch.
-// Use 'memcache.buffered' for those instead.
+// Use 'memcache.non_local_buffered' for those instead.
 $c['memcache.local_buffered'] = function( $c ) {
 	global $wgFlowCacheTime;
 
@@ -144,7 +144,7 @@ $c['memcache.local_buffered'] = function( $c ) {
 	return new BufferedCache( $bufferedCache, $wgFlowCacheTime );
 };
 
-$c['memcache.buffered'] = function( $c ) {
+$c['memcache.non_local_buffered'] = function( $c ) {
 	global $wgFlowCacheTime;
 
 	// This is the real buffered cached that will allow transactional-like cache
