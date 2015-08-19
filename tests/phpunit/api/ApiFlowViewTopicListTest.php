@@ -71,7 +71,7 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 					'result' => array(
 						'topiclist' => array(
 							'submitted' => array(
-								'sortby' => 'user',
+								'sortby' => 'newest',
 							),
 							'sortby' => 'newest',
 							'roots' => array(),
@@ -92,6 +92,7 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 				'page' => 'Talk:Intentionally blank',
 				'submodule' => 'view-topiclist',
 				'vtllimit' => 2,
+				'vtlsortby' => 'newest',
 				'vtltoconly' => true,
 				'vtlformat' => 'fixed-html',
 			)

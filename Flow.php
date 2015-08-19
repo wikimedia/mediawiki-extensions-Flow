@@ -268,7 +268,7 @@ $wgDefaultUserOptions['echo-subscriptions-email-flow-discussion'] = false;
 
 // Default sort order of a topiclist view. See TopicListBlock::getFindOptions()
 // for more information.
-$wgDefaultUserOptions['flow-topiclist-sortby'] = 'newest';
+$wgDefaultUserOptions['flow-topiclist-sortby'] = 'updated';
 
 // Default editor to use in Flow
 $wgDefaultUserOptions['flow-editor'] = 'wikitext';
