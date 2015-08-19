@@ -35,6 +35,12 @@ $specialPageAliases['diq'] = array(
 	'Flow' => array( 'Rodayış' ),
 );
 
+/** Persian (فارسی) */
+$specialPageAliases['fa'] = array(
+	'Flow' => array( 'جریان' ),
+	'EnableFlow' => array( 'فعال‌سازی_جریان' ),
+);
+
 /** Hebrew (עברית) */
 $specialPageAliases['he'] = array(
 	'Flow' => array( 'זרימה' ),
