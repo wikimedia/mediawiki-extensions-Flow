@@ -36,7 +36,15 @@ module.exports = function ( grunt ) {
 			]
 		},
 		jscs: {
-			src: '<%= jshint.all %>'
+			fix: {
+				options: {
+					fix: true
+				},
+				src: '<%= jshint.all %>'
+			},
+			main: {
+				src: '<%= jshint.all %>'
+			}
 		},
 		csslint: {
 			options: {
@@ -63,7 +71,8 @@ module.exports = function ( grunt ) {
 		}
 	} );
 
-	grunt.registerTask( 'lint', [ 'tyops', 'jscs', 'jshint', 'csslint', 'jsonlint', 'banana' ] );
+	grunt.registerTask( 'lint', [ 'tyops', 'jshint', 'jscs:main', 'csslint', 'jsonlint', 'banana' ] );
+	grunt.registerTask( 'fix', 'jscs:fix' );
 	grunt.registerTask( 'test', 'lint' );
 	grunt.registerTask( 'default', 'test' );
 };
