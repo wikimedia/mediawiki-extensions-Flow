@@ -911,7 +911,6 @@ class FlowHooks {
 		}
 
 		if ( !$editor instanceof User ) {
-			wfDebugLog( 'Flow', 'T109063: ' . $title->getPrefixedDBkey() . ' ' . wfBacktrace( true ) );
 			return true;
 		}
 
@@ -931,8 +930,7 @@ class FlowHooks {
 	public static function onBeforeEchoEventInsert( EchoEvent $event ) {
 		$agent = $event->getAgent();
 
-		if ( !$agent instanceof User ) {
-			wfDebugLog( 'Flow', 'T109063: ' . var_export( $event, true ) . wfBacktrace( true ) );
+		if ( $agent === null ) {
 			return true;
 		}
 
@@ -953,11 +951,6 @@ class FlowHooks {
 	 */
 	public static function onArticleEditUpdateNewTalk( WikiPage $page, User $recipient ) {
 		$user = User::newFromId( $page->getUser( Revision::RAW ) );
-
-		if ( !$user instanceof User ) {
-			wfDebugLog( 'Flow', 'T109063: ' . wfBacktrace( true ) );
-			return true;
-		}
 
 		if ( self::isTalkpageManagerUser( $user ) ) {
 			return false;
