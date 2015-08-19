@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_e753706d",
+        "filename": "i18n/en.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-19T12:01:57Z",
+      "side": 1,
+      "message": "Double \"Your\"",
+      "revId": "00f39e353cf774cf74d2055f8c57e28fffa388c9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_a7dc88e6",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-19T12:01:57Z",
+      "side": 1,
+      "message": "Maybe better explain what the \u0027find old conversations\u0027 (same with other steps) is about, so translators know how to explain it (without having to refer to the english)\nMaybe describe where it attaches and what exactly it\u0027s describing.",
+      "revId": "00f39e353cf774cf74d2055f8c57e28fffa388c9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_8752ac68",
+        "filename": "modules/tours/flowOptIn.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-19T12:01:57Z",
+      "side": 1,
+      "message": "\u0027findOldConversations\u0027 may not exist. Also have to check archiveLinkExists here:\narchiveLinkExists ? \u0027findOldConversations\u0027 : \u0027newTopic\u0027",
+      "revId": "00f39e353cf774cf74d2055f8c57e28fffa388c9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
