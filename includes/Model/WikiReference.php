@@ -54,15 +54,13 @@ class WikiReference extends Reference {
 	 * @return WikiReference
 	 */
 	public static function fromStorageRow( $row ) {
-		global $wgFlowMigrateReferenceWiki;
-
 		$workflow = UUID::create( $row['ref_src_workflow_id'] );
 		$objectType = $row['ref_src_object_type'];
 		$objectId = UUID::create( $row['ref_src_object_id'] );
 		$srcTitle = self::makeTitle( $row['ref_src_namespace'], $row['ref_src_title'] );
 		$targetTitle = self::makeTitle( $row['ref_target_namespace'], $row['ref_target_title'] );
 		$type = $row['ref_type'];
-		$wiki = $wgFlowMigrateReferenceWiki ? null : $row['ref_src_wiki'];
+		$wiki = $row['ref_src_wiki'];
 
 		return new WikiReference( $wiki, $workflow, $srcTitle, $objectType, $objectId, $type, $targetTitle );
 	}

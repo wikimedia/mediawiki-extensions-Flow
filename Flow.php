@@ -407,6 +407,3 @@ $wgFlowServerCompileTemplates = false;
 
 // Enable/disable event logging
 $wgFlowEventLogging = false;
-
-// Temporary field to allow source wiki to be null for references until it's backfilled.
-$wgFlowMigrateReferenceWiki = false;

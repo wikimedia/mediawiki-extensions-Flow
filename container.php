@@ -1092,47 +1092,10 @@ $c['storage.wiki_reference.indexes.revision_lookup'] = function( $c ) {
 	);
 };
 $c['storage.wiki_reference.indexes'] = function( $c ) {
-	$indexes = array(
+	return array(
 		$c['storage.wiki_reference.indexes.source_lookup'],
 		$c['storage.wiki_reference.indexes.revision_lookup'],
 	);
-
-	global $wgFlowMigrateReferenceWiki;
-
-	if ( $wgFlowMigrateReferenceWiki ) {
-		// Temporarily support querying without the source wiki until
-		// backfill is complete
-		$indexes = array_merge( $indexes, array(
-				new TopKIndex(
-					$c['memcache.local_buffered'],
-					$c['storage.wiki_reference.backend'],
-					'flow_ref:wiki:by-source',
-					array(
-						'ref_src_namespace',
-						'ref_src_title',
-					),
-					array(
-						'order' => 'ASC',
-						'sort' => 'ref_src_object_id',
-					)
-				),
-				new TopKIndex(
-					$c['memcache.local_buffered'],
-					$c['storage.wiki_reference.backend'],
-					'flow_ref:wiki:by-revision:v2',
-					array(
-						'ref_src_object_type',
-						'ref_src_object_id',
-					),
-					array(
-						'order' => 'ASC',
-						'sort' => array( 'ref_target_namespace', 'ref_target_title' ),
-					)
-				)
-			) );
-	}
-
-	return $indexes;
 };
 $c['storage.wiki_reference'] = function( $c ) {
 	return new ObjectManager(
@@ -1199,44 +1162,10 @@ $c['storage.url_reference.indexes.revision_lookup'] = function( $c ) {
 	);
 };
 $c['storage.url_reference.indexes'] = function( $c ) {
-	$indexes = array(
+	return array(
 		$c['storage.url_reference.indexes.source_lookup'],
 		$c['storage.url_reference.indexes.revision_lookup'],
 	);
-
-	global $wgFlowMigrateReferenceWiki;
-	if ( $wgFlowMigrateReferenceWiki ) {
-		$indexes = array_merge( $indexes, array(
-			new TopKIndex(
-				$c['memcache.local_buffered'],
-				$c['storage.url_reference.backend'],
-				'flow_ref:url:by-source',
-				array(
-					'ref_src_namespace',
-					'ref_src_title',
-				),
-				array(
-					'order' => 'ASC',
-					'sort' => 'ref_src_object_id',
-				)
-			),
-			new TopKIndex(
-				$c['memcache.local_buffered'],
-				$c['storage.url_reference.backend'],
-				'flow_ref:url:by-revision:v2',
-				array(
-					'ref_src_object_type',
-					'ref_src_object_id',
-				),
-				array(
-					'order' => 'ASC',
-					'sort' => array( 'ref_target' ),
-				)
-			)
-		) );
-	}
-
-	return $indexes;
 };
 $c['storage.url_reference'] = function( $c ) {
 	return new ObjectManager(
