@@ -320,5 +320,6 @@
 	"flow-mark-revision-patrolled-link-text": "Marca la pàgina com a supervisada",
 	"flow-mark-revision-patrolled-link-title": "Marca la pàgina com a supervisada",
 	"flow-mark-diff-patrolled-link-text": "Marca com a supervisat",
-	"flow-mark-diff-patrolled-link-title": "Marca com a supervisat"
+	"flow-mark-diff-patrolled-link-title": "Marca com a supervisat",
+	"flow-description-last-modified-at": "Darrera modificació d'aquesta descripció: $1 a les $2h."
 }
