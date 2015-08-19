@@ -5,7 +5,7 @@ QUnit.module( 'ext.flow.dm mw.flow.dm.System' );
 QUnit.test( 'Initialize flow system', function ( assert ) {
 	var i, len, j, jlen, system, op, result, ops,
 		executeOperation = function ( obj, operation, params ) {
-			return obj[operation].apply( obj, params );
+			return obj[ operation ].apply( obj, params );
 		},
 		expectCounter = 0,
 		truncatedApiData = {
@@ -317,14 +317,14 @@ QUnit.test( 'Initialize flow system', function ( assert ) {
 	} );
 
 	for ( i = 0, len = cases.length; i < len; i++ ) {
-		op = cases[i];
+		op = cases[ i ];
 
 		if ( op.method.indexOf( '.' ) > -1 ) {
 			// Nested operations
 			ops = op.method.split( '.' );
 			result = system;
 			for ( j = 0, jlen = ops.length; j < jlen; j++ ) {
-				result = executeOperation( result, ops[j], [] );
+				result = executeOperation( result, ops[ j ], [] );
 			}
 		} else {
 			// Regular operations

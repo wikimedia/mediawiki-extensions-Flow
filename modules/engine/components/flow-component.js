@@ -39,7 +39,7 @@
 
 		// Keep this in the registry to find it by other means
 		while ( parent ) {
-			parent._instanceRegistryById[this.id] = parent._instanceRegistry.push( this ) - 1;
+			parent._instanceRegistryById[ this.id ] = parent._instanceRegistry.push( this ) - 1;
 			parent = parent.parent; // and add it to every instance registry
 		}
 		_totalInstanceCount++;
@@ -92,8 +92,8 @@
 
 				if ( timestamp.indexOf( 'e' ) !== -1 ) {
 					parts = timestamp.split( '(e+' );
-					first = parts[0].replace( '.', '' );
-					zeroes = parseInt( parts[1], 10 ) - ( first.length - 1 );
+					first = parts[ 0 ].replace( '.', '' );
+					zeroes = parseInt( parts[ 1 ], 10 ) - ( first.length - 1 );
 					first += Array( zeroes + 1 ).join( '0' );
 
 					return first;
@@ -186,7 +186,7 @@
 					// For every node between $eventTarget and window that was not filtered out above...
 					while ( i-- ) {
 						// Trigger a bubbling event on each one, with the correct context
-						_eventForwardDispatch.call( $nodes[i], event, $el[0] );
+						_eventForwardDispatch.call( $nodes[ i ], event, $el[ 0 ] );
 					}
 				}
 			}
@@ -222,7 +222,7 @@
 			special = jQuery.event.special[ event.type ] || {};
 
 		// Use the fix-ed jQuery.Event rather than the (read-only) native event
-		args[0] = event;
+		args[ 0 ] = event;
 		event.delegateTarget = this;
 
 		// Call the preDispatch hook for the mapped type, and let it bail if desired

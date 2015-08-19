@@ -41,8 +41,8 @@
 				editorIndex = 0;
 			}
 
-			if ( editorList[editorIndex] ) {
-				editor = editorList[editorIndex];
+			if ( editorList[ editorIndex ] ) {
+				editor = editorList[ editorIndex ];
 			} else {
 				editor = 'none';
 			}
@@ -52,10 +52,10 @@
 
 			mw.loader.using( 'ext.flow.editors.' + editor, function () {
 				// Some editors only work under certain circumstances
-				if ( !mw.flow.editors[editor].static.isSupported() ) {
+				if ( !mw.flow.editors[ editor ].static.isSupported() ) {
 					mw.flow.editor.loadEditor( editorIndex + 1 );
 				} else {
-					mw.flow.editor.editor = mw.flow.editors[editor];
+					mw.flow.editor.editor = mw.flow.editors[ editor ];
 				}
 			} );
 		},
@@ -103,7 +103,7 @@
 				editor.destroy();
 
 				// destroy reference
-				mw.flow.editor.editors[$.inArray( editor, mw.flow.editor.editors )] = null;
+				mw.flow.editor.editors[ $.inArray( editor, mw.flow.editor.editors ) ] = null;
 				$node
 					.removeData( 'flow-editor' )
 					// instead of .show(), we just want to remove the .hide() we've applied since
@@ -166,7 +166,7 @@
 		 * @return {Object}
 		 */
 		getEditor: function ( $node ) {
-			return mw.flow.editor.editors[$node.data( 'flow-editor' )];
+			return mw.flow.editor.editors[ $node.data( 'flow-editor' ) ];
 		},
 
 		/**
@@ -224,7 +224,7 @@
 			return mw.loader.using( 'ext.flow.editors.' + desiredEditor )
 
 				.then( function () {
-					if ( !mw.flow.editors[desiredEditor].static.isSupported() ) {
+					if ( !mw.flow.editors[ desiredEditor ].static.isSupported() ) {
 						return $.Deferred().reject( 'editor-not-supported' );
 					}
 
@@ -232,7 +232,7 @@
 						oldFormat = editor.constructor.static.format,
 						newFormat;
 
-					mw.flow.editor.editor = mw.flow.editors[desiredEditor];
+					mw.flow.editor.editor = mw.flow.editors[ desiredEditor ];
 					newFormat = mw.flow.editor.editor.static.format;
 
 					// prepare data to feed into conversion
@@ -276,7 +276,7 @@
 					// Destroy old editor
 					mw.flow.editor.destroy( $node );
 					// Load new editor
-					return mw.flow.editor.load( $node, data['flow-parsoid-utils'].content );
+					return mw.flow.editor.load( $node, data[ 'flow-parsoid-utils' ].content );
 				} )
 
 				// Unmark pending, store editor preference
