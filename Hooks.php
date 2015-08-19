@@ -233,8 +233,8 @@ class FlowHooks {
 		require_once __DIR__.'/maintenance/FlowUpdateWorkflowPageId.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateWorkflowPageId' );
 
-		require_once __DIR__.'/maintenance/FlowCreateMentionTemplate.php';
-		$updater->addPostDatabaseUpdateMaintenance( 'FlowCreateMentionTemplate' );
+		require_once __DIR__.'/maintenance/FlowCreateTemplates.php';
+		$updater->addPostDatabaseUpdateMaintenance( 'FlowCreateTemplates' );
 
 		return true;
 	}
