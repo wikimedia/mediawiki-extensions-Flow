@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_dce16b2a",
+        "filename": "includes/Parsoid/ReferenceExtractor.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-19T04:50:38Z",
+      "side": 1,
+      "message": "I\u0027ll simplify this.",
+      "revId": "8448ab304c222d60292f96b2365250e7e96fac2f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
