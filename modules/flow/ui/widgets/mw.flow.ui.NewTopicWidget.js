@@ -64,6 +64,7 @@
 			change: 'updateSaveButtonState'
 		} );
 		this.title.$element.on( 'focusin', this.onTitleFocusIn.bind( this ) );
+		this.title.$element.on( 'keydown', this.onTitleKeydown.bind( this ) );
 
 		// Initialization
 		this.updateSaveButtonState();
@@ -103,6 +104,18 @@
 			this.toggleExpanded( true );
 			this.editor.activate();
 			this.title.focus();
+		}
+	};
+
+	/**
+	 * Respond to keydown events in title input, and cancel when escape is pressed.
+	 * @param {jQuery.Event} e Keydown event
+	 */
+	mw.flow.ui.NewTopicWidget.prototype.onTitleKeydown = function ( e ) {
+		if ( e.which === OO.ui.Keys.ESCAPE ) {
+			this.onEditorCancel();
+			e.preventDefault();
+			e.stopPropagation();
 		}
 	};
 
