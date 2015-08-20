@@ -272,6 +272,7 @@
 
 				if ( shouldFocus ) {
 					newEditor.focus();
+					newEditor.moveCursorToEnd();
 				}
 			} )
 			.fail( function ( error ) {
