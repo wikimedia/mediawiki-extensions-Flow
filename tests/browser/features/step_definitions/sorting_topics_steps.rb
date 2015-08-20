@@ -1,34 +1,29 @@
-When(/^I click Newest topics choice$/) do
-  on(FlowPage).newest_topics_choice_element.when_present.click
-end
-
-When(/^I click Newest topics link$/) do
-  on(FlowPage).newest_topics_link_element.when_present.click
-end
-
-When(/^I click Recently active topics choice$/) do
-  on(FlowPage).recently_active_topics_choice_element.when_present.click
-end
-
-When(/^I click Recently active topics link$/) do
+When(/^I sort by Newest topics$/) do
   on(FlowPage) do |page|
-    page.recently_active_topics_choice_element.when_not_visible
+    page.sorting_element.when_present
     page.recently_active_topics_link_element.when_present.click
+    page.newest_topics_choice_element.when_present.click
+    page.sorting_element.when_not_present
   end
 end
 
-Then(/^the Flow page should not show Recently active topics link$/) do
-  expect(on(FlowPage).recently_active_topics_link_element.when_not_visible).not_to be_visible
+Then(/^it is sorted by Newest topics$/) do
+  on(FlowPage) do |page|
+    page.newest_topics_link_element.when_present
+  end
 end
 
-Then(/^the Flow page should show Recently active topics link$/) do
-  expect(on(FlowPage).recently_active_topics_link_element.when_present).to be_visible
+When(/^I sort by Recently active topics$/) do
+  on(FlowPage) do |page|
+    page.sorting_element.when_present
+    page.newest_topics_link_element.when_present.click
+    page.recently_active_topics_choice_element.when_present.click
+    page.sorting_element.when_not_present
+  end
 end
 
-Then(/^the Flow page should not show Newest topics link$/) do
-  expect(on(FlowPage).newest_topics_link_element.when_not_visible).not_to be_visible
-end
-
-Then(/^the Flow page should show Newest topics link$/) do
-  expect(on(FlowPage).newest_topics_link_element.when_present).to be_visible
+Then(/^it is sorted by Recently active topics$/) do
+  on(FlowPage) do |page|
+    page.recently_active_topics_link_element.when_present
+  end
 end
