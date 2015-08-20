@@ -36,6 +36,23 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_7065f340",
+        "filename": "modules/tours/flowOptIn.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-20T02:29:32Z",
+      "side": 1,
+      "message": "This is not super-reliable.  We could add a class around the link, but may not be worth it.",
+      "revId": "00f39e353cf774cf74d2055f8c57e28fffa388c9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_8752ac68",
         "filename": "modules/tours/flowOptIn.js",
         "patchSetId": 6
