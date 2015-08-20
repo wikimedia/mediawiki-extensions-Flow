@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "6ec1af18_f058038e",
+        "filename": "Resources.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-20T04:07:16Z",
+      "side": 1,
+      "message": "If it\u0027s registered unconditionally, it will have be documented as a hard requirement at https://www.mediawiki.org/wiki/Extension:Flow#Dependencies  (also EventLogging, since that is a requirement of GuidedTour).\n\nAlternatively, you can use https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderRegisterModules to do it conditionally (which I recommend).",
+      "revId": "00f39e353cf774cf74d2055f8c57e28fffa388c9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_50623738",
+        "filename": "Resources.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-20T04:07:16Z",
+      "side": 1,
+      "message": "Stray change.",
+      "revId": "00f39e353cf774cf74d2055f8c57e28fffa388c9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_e753706d",
         "filename": "i18n/en.json",
         "patchSetId": 6
@@ -19,6 +53,23 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_d04dc7c8",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-20T04:07:16Z",
+      "side": 1,
+      "message": "Flow should be capitalized in the message.  It would also be useful to give the context (they are sent on this tour after converting their user talk page to Flow).",
+      "revId": "00f39e353cf774cf74d2055f8c57e28fffa388c9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_a7dc88e6",
         "filename": "i18n/qqq.json",
         "patchSetId": 6
@@ -30,6 +81,23 @@
       "writtenOn": "2015-08-19T12:01:57Z",
       "side": 1,
       "message": "Maybe better explain what the \u0027find old conversations\u0027 (same with other steps) is about, so translators know how to explain it (without having to refer to the english)\nMaybe describe where it attaches and what exactly it\u0027s describing.",
+      "revId": "00f39e353cf774cf74d2055f8c57e28fffa388c9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_ab5e8a15",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-20T04:07:16Z",
+      "side": 1,
+      "message": "Stray change.",
       "revId": "00f39e353cf774cf74d2055f8c57e28fffa388c9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
