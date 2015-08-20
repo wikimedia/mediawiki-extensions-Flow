@@ -1,5 +1,7 @@
 <?php
 
+use Flow\Data\Listener\RecentChangesListener;
+
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
 	: dirname( __FILE__ ) . '/../../../maintenance/Maintenance.php' );
@@ -49,7 +51,7 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 		$rows = $dbw->select(
 			/* table */'recentchanges',
 			/* select */array( 'rc_id', 'rc_params' ),
-			/* conds */array( "rc_id > $continue", 'rc_type' => RC_FLOW ),
+			/* conds */array( "rc_id > $continue", 'rc_source' => RecentChangesListener::SRC_FLOW ),
 			__METHOD__,
 			/* options */array( 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'rc_id' )
 		);
