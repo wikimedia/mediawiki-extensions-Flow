@@ -1,8 +1,11 @@
+@import 'flow.variables';
+
+
 .flow-ui-sidebarExpandWidget {
 	display: none;
 	margin-top: 1.6em;
 
-	@media (min-width: 1165px) {
+	@media (min-width: @medium) {
 		padding-left: 10px;
 		display: block;
 		float: right;
@@ -12,9 +15,7 @@
 
 	}
 	&-collapsed {
-		@media (min-width: 1165px) {
-			display: block;
-			float: right;
+		@media (min-width: @medium) {
 			width: 24px;
 			margin-left: -24px;
 		}
@@ -25,24 +26,5 @@
 	}
 	.oo-ui-buttonElement.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon.oo-ui-icon-topic-expand {
 		background: url( '../images/topic-expand.svg' ) no-repeat;
-	}
-}
-
-.flow-component.topic-page .flow-board {
-	@media (min-width: 1165px) {
-		display: block;
-		float: left;
-		clear: left;
-		width: 66%;
-		box-sizing: border-box;
-		max-width: 1200px;
-		padding-right: 26px;
-	}
-
-	&-expanded {
-		@media (min-width: 1165px) {
-			width: 100%;
-			max-width: none;
-		}
 	}
 }
