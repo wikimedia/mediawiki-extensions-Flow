@@ -58,6 +58,7 @@
 			$message.find( '.flow-ui-wikitextEditorWidget-label-preview' )
 				.on( 'click', function () {
 					widget.emit( 'switch' );
+					return false;
 				} );
 		} else {
 			$message = $( '<span>' ).append(
