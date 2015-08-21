@@ -91,7 +91,7 @@ $namespaceNames['mk'] = array(
 
 /** Mazandarani */
 $namespaceNames['mzn'] = array(
-	NS_TOPIC =>  'مبحث',
+	NS_TOPIC =>  'تاپیک',
 );
 
 /** Dutch */
