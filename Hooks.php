@@ -1,5 +1,6 @@
 <?php
 
+use Flow\Actions\ViewAction;
 use Flow\Collection\PostCollection;
 use Flow\Container;
 use Flow\Exception\FlowException;
@@ -1605,10 +1606,9 @@ class FlowHooks {
 			throw new FlowException( 'Non-existent topic' );
 		}
 
-		$emptyContent = ContentHandler::getForModelID( CONTENT_MODEL_FLOW_BOARD )->makeEmptyContent();
-
-		$parserOutput = $emptyContent->getParserOutput( $article->getTitle() );
-		$article->getContext()->getOutput()->addParserOutput( $parserOutput );
+		$context = $article->getContext();
+		$viewAction = new ViewAction( $article, $context );
+		$viewAction->showForAction( 'view', $article, $context->getOutput() );
 
 		return false;
 	}
