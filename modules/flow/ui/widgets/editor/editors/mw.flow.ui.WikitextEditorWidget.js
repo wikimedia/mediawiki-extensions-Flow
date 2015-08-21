@@ -121,17 +121,7 @@
 	 * @inheritdoc
 	 */
 	mw.flow.ui.WikitextEditorWidget.prototype.moveCursorToEnd = function () {
-		// TODO: After Ia63e6c6a0 is merged and released in OOjs UI, we can do:
-		// this.input.moveCursorToEnd();
-		var textRange,
-			element = this.input.$input[0];
-		if ( element.selectionStart !== undefined ) {
-			element.selectionStart = element.selectionEnd = element.value.length;
-		} else if ( element.createTextRange ) {
-			textRange = element.createTextRange();
-			textRange.collapse( false );
-			textRange.select();
-		}
+		this.input.moveCursorToEnd();
 	};
 
 	/**
