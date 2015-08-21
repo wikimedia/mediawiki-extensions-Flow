@@ -242,7 +242,7 @@
 					// replyTo can refer to a post ID or a topic ID
 					// For posts, the ReplyWidget should go in .flow-replies
 					// For topics, it's directly inside the topic
-					$targetContainer = $( '#flow-post-' + replyTo + ' .flow-replies, #flow-topic-' + replyTo ),
+					$targetContainer = $( '#flow-post-' + replyTo + ' > .flow-replies, #flow-topic-' + replyTo ),
 					$existingWidget = $targetContainer.children( '.flow-ui-replyWidget' );
 
 				// Check that there's not already a reply widget existing in the same place
