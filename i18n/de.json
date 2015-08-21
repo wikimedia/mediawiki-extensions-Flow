@@ -432,6 +432,7 @@
 	"apihelp-flow+view-post-param-format": "Format, in dem der Inhalt zurückgegeben werden soll.",
 	"apihelp-flow+view-post-example-1": "Ruft den Inhalt von [[Topic:S2tycnas4hcucw8w]] als Wikitext ab",
 	"apihelp-flow+view-post-history-description": "Zeigt die Versionsgeschichte eines Beitrags an.",
+	"apihelp-flow+view-post-history-param-postId": "Kennung des Beitrags, für den die Versionsgeschichte angezeigt werden soll.",
 	"apihelp-flow+view-post-history-param-format": "Format, in dem der Inhalt zurückgegeben werden soll.",
 	"apihelp-flow+view-topic-description": "Betrachtet ein Thema.",
 	"apihelp-flow+view-topic-example-1": "[[Topic:S2tycnas4hcucw8w]] ansehen",

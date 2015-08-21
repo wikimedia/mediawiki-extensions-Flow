@@ -23,6 +23,8 @@
 	"flow-board-header": "За оваа разговорница",
 	"flow-board-collapse-description": "Скриј опис",
 	"flow-board-expand-description": "Прикажи опис",
+	"flow-topic-collapse-siderail": "Читајте на полна ширина",
+	"flow-topic-expand-siderail": "Читајте на зададена ширина",
 	"flow-edit-header-link": "Измени опис",
 	"flow-post-moderated-toggle-hide-show": "Прикажи го коментарот што го {{GENDER:$1|скри}} $2",
 	"flow-post-moderated-toggle-delete-show": "Прикажи го коментарот што го {{GENDER:$1|избриша}} $2",

@@ -15,6 +15,8 @@
 	"flow-board-header": "Iwwer dëst Board",
 	"flow-board-collapse-description": "Beschreiwung verstoppen",
 	"flow-board-expand-description": "Beschreiwung weisen",
+	"flow-topic-collapse-siderail": "Mat der ganzer Breet liesen",
+	"flow-topic-expand-siderail": "Mat enger fixer Breet liesen",
 	"flow-edit-header-link": "Beschreiwung änneren",
 	"flow-post-moderated-toggle-hide-show": "Bemierkung weisen déi {{GENDER:$1|vum|vun der}} $2 verstoppt gouf",
 	"flow-post-moderated-toggle-delete-show": "Bemierkung weisen {{GENDER:$1|geläscht}} vum $2",

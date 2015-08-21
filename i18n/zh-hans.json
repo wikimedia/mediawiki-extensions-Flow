@@ -39,6 +39,8 @@
 	"flow-board-header": "关于此版块",
 	"flow-board-collapse-description": "隐藏描述",
 	"flow-board-expand-description": "显示描述",
+	"flow-topic-collapse-siderail": "全宽阅读",
+	"flow-topic-expand-siderail": "固定宽度阅读",
 	"flow-edit-header-link": "编辑描述",
 	"flow-post-moderated-toggle-hide-show": "显示被$2{{GENDER:$1|隐藏}}的评论",
 	"flow-post-moderated-toggle-delete-show": "显示被$2{{GENDER:$1|删除}}的评论",

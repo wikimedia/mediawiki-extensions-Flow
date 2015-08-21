@@ -191,5 +191,6 @@
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|kasutab märgistuskeelt]]",
 	"flow-wikitext-editor-help-preview-the-result": "tulemust eelvaadelda",
 	"flow-wikitext-switch-editor-tooltip": "Vaheta visuaaltoimeti vastu",
-	"flow-ve-switch-editor-tool-title": "Vaheta vikiteksti redaktori vastu"
+	"flow-ve-switch-editor-tool-title": "Vaheta vikiteksti redaktori vastu",
+	"flow-description-last-modified-at": "Kirjelduse viimane muutmisaeg: $1, kell $2."
 }
