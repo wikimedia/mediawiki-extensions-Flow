@@ -279,9 +279,6 @@ $wgDefaultUserOptions['flow-side-rail-state'] = 'expanded';
 // Maximum number of users that can be mentioned in one comment
 $wgFlowMaxMentionCount = 100;
 
-// Pages to occupy is an array of normalised page names, e.g. array( 'User talk:Zomg' ).
-$wgFlowOccupyPages = array();
-
 // Namespaces to occupy is an array of NS_* constants, e.g. array( NS_USER_TALK ).
 $wgFlowOccupyNamespaces = array();
 
