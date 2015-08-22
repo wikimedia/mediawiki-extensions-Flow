@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_7cf4dc50",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-22T00:24:15Z",
+      "side": 1,
+      "message": "While we\u0027re at it, this should probably be i18n-ed in the content language.",
+      "revId": "3aff490c60cc97cb8d0d1dd2af4e1a6321338fc7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
