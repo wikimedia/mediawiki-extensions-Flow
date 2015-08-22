@@ -57,6 +57,8 @@
 	"flow-board-header": "À propos de ce tableau",
 	"flow-board-collapse-description": "Cacher la description",
 	"flow-board-expand-description": "Afficher la description",
+	"flow-topic-collapse-siderail": "Lire à pleine largeur",
+	"flow-topic-expand-siderail": "Lire à largeur fixe",
 	"flow-edit-header-link": "Modifier la description",
 	"flow-post-moderated-toggle-hide-show": "Afficher le commentaire {{GENDER:$1|masqué}} par $2",
 	"flow-post-moderated-toggle-delete-show": "Afficher le commentaire {{GENDER:$1|supprimé}} par $2",
