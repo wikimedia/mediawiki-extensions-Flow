@@ -233,6 +233,9 @@ class FlowHooks {
 		require_once __DIR__.'/maintenance/FlowCreateTemplates.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowCreateTemplates' );
 
+		require_once __DIR__.'/maintenance/FlowFixLinks.php';
+		$updater->addPostDatabaseUpdateMaintenance( 'FlowFixLinks' );
+
 		return true;
 	}
 
