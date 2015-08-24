@@ -16,6 +16,24 @@
       "revId": "4b1be590c7e044d07434e93fc161852a8638e702",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_40124902",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 19
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-24T15:07:24Z",
+      "side": 1,
+      "message": "My goal is still to run it all as Talk page manager user. Let re-evaluate the flags if we end up running as current user.",
+      "parentUuid": "6ec1af18_7cc85c77",
+      "revId": "4b1be590c7e044d07434e93fc161852a8638e702",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
