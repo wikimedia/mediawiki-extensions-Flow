@@ -3,6 +3,7 @@
 namespace Flow\Data\Storage;
 
 use Flow\Data\ObjectManager;
+use Flow\Data\ObjectMapper;
 use Flow\Data\ObjectStorage;
 use Flow\Data\Utils\RawSql;
 use Flow\Model\UUID;
@@ -23,6 +24,11 @@ abstract class DbStorage implements ObjectStorage {
 	protected $dbFactory;
 
 	/**
+	 * @var ObjectMapper
+	 */
+	protected $mapper;
+
+	/**
 	 * The revision columns allowed to be updated
 	 *
 	 * @var string[]|true Allow of selective columns to allow, or true to allow
@@ -41,9 +47,11 @@ abstract class DbStorage implements ObjectStorage {
 
 	/**
 	 * @param DbFactory $dbFactory
+	 * @param ObjectMapper $mapper
 	 */
-	public function __construct( DbFactory $dbFactory ) {
+	public function __construct( DbFactory $dbFactory, ObjectMapper $mapper ) {
 		$this->dbFactory = $dbFactory;
+		$this->mapper = $mapper;
 	}
 
 	/**
@@ -189,6 +197,14 @@ abstract class DbStorage implements ObjectStorage {
 
 		// Everything passes
 		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function normalize( array $row ) {
+		$object = $this->mapper->fromStorageRow( $row );
+		return $this->mapper->toStorageRow( $object );
 	}
 
 	/**

@@ -2,6 +2,7 @@
 
 namespace Flow\Data\Storage;
 
+use Flow\Data\ObjectMapper;
 use Flow\DbFactory;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
@@ -18,12 +19,13 @@ class PostRevisionStorage extends RevisionStorage {
 
 	/**
 	 * @param DbFactory $dbFactory
+	 * @param ObjectMapper $mapper
 	 * @param array|false List of external store servers available for insert
 	 *  or false to disable. See $wgFlowExternalStore.
 	 * @param TreeRepository $treeRepo
 	 */
-	public function __construct( DbFactory $dbFactory, $externalStore, TreeRepository $treeRepo ) {
-		parent::__construct( $dbFactory, $externalStore );
+	public function __construct( DbFactory $dbFactory, ObjectMapper $mapper, $externalStore, TreeRepository $treeRepo ) {
+		parent::__construct( $dbFactory, $mapper, $externalStore );
 		$this->treeRepo = $treeRepo;
 	}
 

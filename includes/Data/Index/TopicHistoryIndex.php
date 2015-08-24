@@ -77,7 +77,11 @@ class TopicHistoryIndex extends TopKIndex {
 		if ( isset( $metadata['workflow'] ) && $metadata['workflow'] instanceof Workflow ) {
 			return $metadata['workflow']->getId();
 		} elseif ( $object instanceof PostRevision ) {
-			return $object->getRootPost()->getPostId()->getAlphadecimal();
+			// We used to figure out the root post from a PostRevision object.
+			// Now we should just make sure we pass in the correct metadata.
+			// Resolving workflow is intensive and at this point, the data in
+			// storage has already been deleted...
+			throw new InvalidInputException( 'Missing "workflow" metadata: ' . get_class( $object ) );
 		} elseif ( $object instanceof PostSummary ) {
 			return $object->getCollection()->getWorkflowId()->getAlphadecimal();
 		} else {

@@ -3,6 +3,7 @@
 namespace Flow\Tests\Data\Storage;
 
 use Flow\Container;
+use Flow\Data\Mapper\CachingObjectMapper;
 use Flow\Data\Storage\HeaderRevisionStorage;
 use Flow\Data\Storage\PostRevisionStorage;
 use Flow\Model\UUID;
@@ -189,6 +190,7 @@ class RevisionStorageTest extends FlowTestCase {
 		// the parent class.
 		$storage = new HeaderRevisionStorage(
 			$factory,
+			CachingObjectMapper::model( 'Flow\Model\Header', array( 'rev_id' ) ),
 			$this->MOCK_EXTERNAL_STORE_CONFIG
 		);
 
@@ -227,6 +229,7 @@ class RevisionStorageTest extends FlowTestCase {
 	protected function getRevisionStorageWithMockExternalStore( $allowContentUpdates) {
 		$revisionStorage = new HeaderRevisionStorage(
 			Container::get( 'db.factory' ),
+			CachingObjectMapper::model( 'Flow\Model\Header', array( 'rev_id' ) ),
 			$this->MOCK_EXTERNAL_STORE_CONFIG
 		);
 
@@ -351,8 +354,9 @@ class RevisionStorageTest extends FlowTestCase {
 		$factory->getDB( null )->expects( $this->exactly( $count ) )
 			->method( 'select' )
 			->will( $this->returnValue( $result ) );
+		$mapper = CachingObjectMapper::model( 'Flow\Model\PostRevision', array( 'rev_id' ) );
 
-		$storage = new PostRevisionStorage( $factory, false, $treeRepo );
+		$storage = new PostRevisionStorage( $factory, $mapper, false, $treeRepo );
 
 		$storage->findMulti( $queries, $options );
 	}
@@ -367,8 +371,9 @@ class RevisionStorageTest extends FlowTestCase {
 			->will( $this->returnValue( array(
 				(object)array( 'rev_id' => 42, 'rev_flags' => '' )
 			) ) );
+		$mapper = CachingObjectMapper::model( 'Flow\Model\PostRevision', array( 'rev_id' ) );
 
-		$storage = new PostRevisionStorage( $factory, false, $treeRepo );
+		$storage = new PostRevisionStorage( $factory, $mapper, false, $treeRepo );
 
 		$res = $storage->findMulti(
 			array(

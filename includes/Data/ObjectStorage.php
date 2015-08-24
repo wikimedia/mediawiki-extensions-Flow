@@ -60,6 +60,17 @@ interface ObjectStorage {
 	function remove( array $row );
 
 	/**
+	 * Accepts a row representing domain model & returns that same row,
+	 * normalized. It'll roundtrip the row from- & toStorageRow to cleanup data.
+	 * We want to make sure that data type differences cause no false positives,
+	 * like $row containing strings, & new row has integers with the same value.
+	 *
+	 * @param array $row Assoc array representing the domain model
+	 * @return array Normalized row
+	 */
+	function normalize( array $row );
+
+	/**
 	 * Returns a boolean true/false to indicate if the result of a particular
 	 * query is valid & can be cached.
 	 * In some cases, the retrieved data should not be cached. E.g. revisions

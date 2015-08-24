@@ -168,7 +168,7 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 		// Make it so update order is chronologically (1, 0, 2)
 		// We then expect it to be returned reverse chronologically (2, 0)
 
-		$updateList = array( 1, 0, 2);
+		$updateList = array( 1, 0, 2 );
 
 		foreach ( $updateList as $updateListInd => $topicDataInd ) {
 			$replyResponse = $this->doApiRequest(
@@ -179,6 +179,7 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 					'token' => $this->getEditToken(),
 					'repreplyTo' => $topicData[$topicDataInd]['id'],
 					'repcontent' => "Reply to topic $topicDataInd",
+					'repformat' => 'wikitext',
 				)
 			);
 

@@ -35,17 +35,6 @@ interface ObjectMapper {
 	function get( array $primaryKey );
 
 	/**
-	 * Accepts a row representing domain model & returns that same row,
-	 * normalized. It'll roundtrip the row from- & toStorageRow to cleanup data.
-	 * We want to make sure that data type differences cause no false positives,
-	 * like $row containing strings, & new row has integers with the same value.
-	 *
-	 * @param array $row Assoc array representing the domain model
-	 * @return array Normalized row
-	 */
-	function normalizeRow( array $row );
-
-	/**
 	 * Clear any internally cached information
 	 */
 	function clear();
