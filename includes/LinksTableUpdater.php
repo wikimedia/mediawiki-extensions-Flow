@@ -26,14 +26,16 @@ class LinksTableUpdater {
 		$this->storage = $storage;
 	}
 
-	public function doUpdate( Workflow $workflow ) {
+	public function doUpdate( Workflow $workflow) {
 		$title = $workflow->getArticleTitle();
 		$page = WikiPage::factory( $title );
 		$content = $page->getContent();
 		if ( $content === null ) {
 			$updates = array();
 		} else {
-			$updates = $content->getSecondaryDataUpdates( $title );
+			// Make sure linksTableUpdater receives a $parserOutput object with the old
+			// category links, so it can compare and update against current state
+			$updates = $content->getSecondaryDataUpdates( $title ); //, null, true, $parserOutput );
 		}
 
 		DataUpdate::runUpdates( $updates );

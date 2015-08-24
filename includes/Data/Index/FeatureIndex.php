@@ -347,7 +347,8 @@ abstract class FeatureIndex implements Index {
 		if ( !$indexed ) {
 			throw new DataModelException( 'Unindexable row: ' . FormatJson::encode( $old ), 'process-data' );
 		}
-		$this->removeFromIndex( $indexed, $old );
+		$compacted = $this->rowCompactor->compactRow( UUID::convertUUIDs( $old, 'alphadecimal' ) );
+		$this->removeFromIndex( $indexed, $compacted );
 	}
 
 	/**
@@ -411,6 +412,11 @@ abstract class FeatureIndex implements Index {
 				if ( $rows !== $fromStorage[$index] ) {
 					continue;
 				}
+
+				// normalize rows read from DB: schema may be different than the
+				// real data (e.g. nullable rows no longer used or in preparation
+				// for changes)
+				$rows = array_map( array( $this->storage, 'normalize' ), $rows );
 
 				$compacted = $this->rowCompactor->compactRows( $rows );
 				$callback = function( \BagOStuff $cache, $key, $value ) use ( $compacted ) {

@@ -4,6 +4,7 @@ namespace Flow\Data\Storage;
 
 use DatabaseBase;
 use ExternalStore;
+use Flow\Data\ObjectMapper;
 use Flow\Data\Utils\Merger;
 use Flow\Data\Utils\ResultDuplicator;
 use Flow\Data\ObjectManager;
@@ -96,11 +97,12 @@ abstract class RevisionStorage extends DbStorage {
 
 	/**
 	 * @param DbFactory $dbFactory
+	 * @param ObjectMapper $mapper
 	 * @param array|false List of external store servers available for insert
 	 *  or false to disable. See $wgFlowExternalStore.
 	 */
-	public function __construct( DbFactory $dbFactory, $externalStore ) {
-		parent::__construct( $dbFactory );
+	public function __construct( DbFactory $dbFactory, ObjectMapper $mapper, $externalStore ) {
+		parent::__construct( $dbFactory, $mapper );
 		$this->externalStore = $externalStore;
 	}
 

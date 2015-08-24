@@ -2,6 +2,7 @@
 
 namespace Flow\Data\Storage;
 
+use Flow\Data\ObjectMapper;
 use Flow\Data\ObjectStorage;
 use Flow\Exception\DataModelException;
 use Flow\Model\UUID;
@@ -25,6 +26,11 @@ class TopicHistoryStorage implements ObjectStorage {
 	protected $postSummaryStorage;
 
 	/**
+	 * @var ObjectMapper
+	 */
+	protected $mapper;
+
+	/**
 	 * @var TreeRepository
 	 */
 	protected $treeRepository;
@@ -32,11 +38,13 @@ class TopicHistoryStorage implements ObjectStorage {
 	/**
 	 * @param ObjectStorage $postRevisionStorage
 	 * @param ObjectStorage $postSummaryStorage
+	 * @param ObjectMapper $mapper
 	 * @param TreeRepository $treeRepo
 	 */
-	public function __construct( ObjectStorage $postRevisionStorage, ObjectStorage $postSummaryStorage, TreeRepository $treeRepo ) {
+	public function __construct( ObjectStorage $postRevisionStorage, ObjectStorage $postSummaryStorage, ObjectMapper $mapper, TreeRepository $treeRepo ) {
 		$this->postRevisionStorage = $postRevisionStorage;
 		$this->postSummaryStorage = $postSummaryStorage;
+		$this->mapper = $mapper;
 		$this->treeRepository = $treeRepo;
 	}
 
@@ -138,6 +146,11 @@ class TopicHistoryStorage implements ObjectStorage {
 
 	public function remove( array $row ) {
 		throw new DataModelException( __CLASS__ . ' does not support remove action', 'process-data' );
+	}
+
+	public function normalize( array $row ) {
+		$object = $this->mapper->fromStorageRow( $row );
+		return $this->mapper->toStorageRow( $object );
 	}
 
 	public function validate( array $row ) {

@@ -9,6 +9,7 @@ use Flow\Data\ObjectStorage;
 use Flow\Data\Compactor\ShallowCompactor;
 use Flow\Data\Utils\SortArrayByKeys;
 use Flow\Exception\InvalidInputException;
+use Flow\Model\UUID;
 
 /**
  * Holds the top k items with matching $indexed columns.  List is sorted and truncated to specified size.
@@ -68,14 +69,17 @@ class TopKIndex extends FeatureIndex {
 
 	protected function addToIndex( array $indexed, array $row ) {
 		$self = $this;
+
 		// If this used redis instead of memcached, could it add to index in position
 		// without retry possibility? need a single number that will properly sort rows.
 		$this->cache->merge(
 			$this->cacheKey( $indexed ),
-			function( BagOStuff $cache, $key, $value ) use( $self, $row ) {
+			function( BagOStuff $cache, $key, $value ) use( $self, $row, $indexed ) {
 				if ( $value === false ) {
 					return false;
 				}
+				$value = $self->normalize( $value, $indexed );
+
 				$idx = array_search( $row, $value );
 				if ( $idx !== false ) {
 					return false; // This row already exists somehow
@@ -95,12 +99,16 @@ class TopKIndex extends FeatureIndex {
 	}
 
 	protected function removeFromIndex( array $indexed, array $row ) {
+		$self = $this;
+
 		$this->cache->merge(
 			$this->cacheKey( $indexed ),
-			function( BagOStuff $cache, $key, $value ) use( $row ) {
+			function( BagOStuff $cache, $key, $value ) use( $self, $row, $indexed ) {
 				if ( $value === false ) {
 					return false;
 				}
+				$value = $self->normalize( $value, $indexed );
+
 				$idx = array_search( $row, $value );
 				if ( $idx === false ) {
 					return false;
@@ -115,11 +123,13 @@ class TopKIndex extends FeatureIndex {
 		$self = $this;
 		$this->cache->merge(
 			$this->cacheKey( $indexed ),
-			function( BagOStuff $cache, $key, $value ) use( $self, $oldRow, $newRow ) {
+			function( BagOStuff $cache, $key, $value ) use( $self, $oldRow, $newRow, $indexed ) {
 				if ( $value === false ) {
 					return false;
 				}
+				$value = $self->normalize( $value, $indexed );
 				$retval = $value;
+
 				$idx = array_search( $oldRow, $retval );
 				if ( $idx !== false ) {
 					unset( $retval[$idx] );
@@ -135,6 +145,23 @@ class TopKIndex extends FeatureIndex {
 				}
 			}
 		);
+	}
+
+	/**
+	 * In order to be able to reliably find a row in an array of
+	 * cached rows, we need to normalize those rows: they may be
+	 * outdated (e.g. missing/additional rows in cache)
+	 *
+	 * @param array $rows
+	 * @param array $indexed
+	 * @return array
+	 */
+	protected function normalize( $rows, $indexed ) {
+		$fromCache = array( 'from-cache' => $rows );
+		$keyToQuery = array( 'from-cache' => UUID::convertUUIDs( $indexed, 'alphadecimal' ) );
+		$rows = $this->rowCompactor->expandCacheResult( $fromCache, $keyToQuery );
+		$rows = array_map( array( $this->storage, 'normalize' ), $rows['from-cache'] );
+		return $this->rowCompactor->compactRows( $rows );
 	}
 
 	// INTERNAL: in 5.4 it can be protected

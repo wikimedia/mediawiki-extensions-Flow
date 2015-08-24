@@ -172,16 +172,17 @@ $c['collection.cache'] = function( $c ) {
 $c['storage.workflow.class'] = 'Flow\Model\Workflow';
 $c['storage.workflow.table'] = 'flow_workflow';
 $c['storage.workflow.primary_key'] = array( 'workflow_id' );
-$c['storage.workflow.backend'] = function( $c ) {
-	return new BasicDbStorage(
-		$c['db.factory'],
-		$c['storage.workflow.table'],
-		$c['storage.workflow.primary_key']
-	);
-};
 $c['storage.workflow.mapper'] = function( $c ) {
 	return CachingObjectMapper::model(
 		$c['storage.workflow.class'],
+		$c['storage.workflow.primary_key']
+	);
+};
+$c['storage.workflow.backend'] = function( $c ) {
+	return new BasicDbStorage(
+		$c['db.factory'],
+		$c['storage.workflow.mapper'],
+		$c['storage.workflow.table'],
 		$c['storage.workflow.primary_key']
 	);
 };
@@ -262,7 +263,7 @@ $c['listener.occupation'] = function( $c ) {
 };
 
 $c['storage.board_history.backend'] = function( $c ) {
-	return new BoardHistoryStorage( $c['db.factory'] );
+	return new BoardHistoryStorage( $c['db.factory'], $c['storage.board_history.mapper'] );
 };
 $c['storage.board_history.indexes.primary'] = function( $c ) {
 	return new BoardHistoryIndex(
@@ -346,6 +347,7 @@ $c['storage.header.backend'] = function( $c ) {
 	global $wgFlowExternalStore;
 	return new HeaderRevisionStorage(
 		$c['db.factory'],
+		$c['storage.header.mapper'],
 		$wgFlowExternalStore
 	);
 
@@ -425,6 +427,7 @@ $c['storage.post_summary.backend'] = function( $c ) {
 	global $wgFlowExternalStore;
 	return new PostSummaryRevisionStorage(
 		$c['db.factory'],
+		$c['storage.post_summary.mapper'],
 		$wgFlowExternalStore
 	);
 };
@@ -475,6 +478,7 @@ $c['storage.topic_list.primary_key'] = array( 'topic_list_id', 'topic_id' );
 $c['storage.topic_list.indexes.last_updated.backend'] = function( $c ) {
 	return new TopicListLastUpdatedStorage(
 		$c['db.factory'],
+		$c['storage.topic_list.mapper'],
 		$c['storage.topic_list.table'],
 		$c['storage.topic_list.primary_key']
 	);
@@ -489,6 +493,7 @@ $c['storage.topic_list.backend'] = function( $c ) {
 	return new TopicListStorage(
 		// factory and table
 		$c['db.factory'],
+		$c['storage.topic_list.mapper'],
 		$c['storage.topic_list.table'],
 		$c['storage.topic_list.primary_key']
 	);
@@ -553,6 +558,7 @@ $c['storage.post.backend'] = function( $c ) {
 	global $wgFlowExternalStore;
 	return new PostRevisionStorage(
 		$c['db.factory'],
+		$c['storage.post.mapper'],
 		$wgFlowExternalStore,
 		$c['repository.tree']
 	);
@@ -651,10 +657,10 @@ $c['storage.post'] = function( $c ) {
 };
 $c['storage.topic_history.primary_key'] = array( 'rev_id' );
 $c['storage.topic_history.backend'] = function( $c ) {
-	global $wgFlowExternalStore;
 	return new TopicHistoryStorage(
-		new PostRevisionStorage( $c['db.factory'], $wgFlowExternalStore, $c['repository.tree'] ),
-		new PostSummaryRevisionStorage( $c['db.factory'], $wgFlowExternalStore ),
+		$c['storage.post.backend'],
+		$c['storage.post_summary.backend'],
+		$c['storage.topic_history.mapper'],
 		$c['repository.tree']
 	);
 };
@@ -1054,6 +1060,7 @@ $c['storage.wiki_reference.mapper'] = function( $c ) {
 $c['storage.wiki_reference.backend'] = function( $c ) {
 	return new BasicDbStorage(
 		$c['db.factory'],
+		$c['storage.wiki_reference.mapper'],
 		$c['storage.wiki_reference.table'],
 		$c['storage.wiki_reference.primary_key']
 	);
@@ -1120,6 +1127,7 @@ $c['storage.url_reference.backend'] = function( $c ) {
 	return new BasicDbStorage(
 		// factory and table
 		$c['db.factory'],
+		$c['storage.url_reference.mapper'],
 		$c['storage.url_reference.table'],
 		$c['storage.url_reference.primary_key']
 	);
@@ -1203,7 +1211,8 @@ $c['reference.recorder'] = function( $c ) {
 		$c['reference.extractor'],
 		$c['reference.updater.links-tables'],
 		$c['storage'],
-		$c['repository.tree']
+		$c['repository.tree'],
+		$c['deferred_queue']
 	);
 };
 

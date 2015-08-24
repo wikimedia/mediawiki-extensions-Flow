@@ -2,6 +2,7 @@
 
 namespace Flow\Data\Storage;
 
+use Flow\Data\ObjectMapper;
 use Flow\Model\UUID;
 use Flow\DbFactory;
 use Flow\Data\ObjectManager;
@@ -30,15 +31,16 @@ class BasicDbStorage extends DbStorage {
 
 	/**
 	 * @param DbFactory $dbFactory
+	 * @param ObjectMapper $mapper
 	 * @param string $table
 	 * @param string[] $primaryKey
 	 * @throws DataModelException
 	 */
-	public function __construct( DbFactory $dbFactory, $table, array $primaryKey ) {
+	public function __construct( DbFactory $dbFactory, ObjectMapper $mapper, $table, array $primaryKey ) {
 		if ( !$primaryKey ) {
 			throw new DataModelException( 'PK required', 'process-data' );
 		}
-		parent::__construct( $dbFactory );
+		parent::__construct( $dbFactory, $mapper );
 		$this->table = $table;
 		$this->primaryKey = $primaryKey;
 	}
@@ -164,7 +166,7 @@ class BasicDbStorage extends DbStorage {
 
 	public function findMulti( array $queries, array $options = array() ) {
 		$keys = array_keys( reset( $queries ) );
-		$pks  = $this->getPrimaryKeyColumns();
+		$pks = $this->getPrimaryKeyColumns();
 		if ( count( $keys ) !== count( $pks ) || array_diff( $keys, $pks ) ) {
 			return $this->fallbackFindMulti( $queries, $options );
 		}
