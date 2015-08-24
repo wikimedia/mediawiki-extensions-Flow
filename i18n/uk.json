@@ -31,6 +31,8 @@
 	"flow-board-header": "Про цю дошку",
 	"flow-board-collapse-description": "Приховати опис",
 	"flow-board-expand-description": "Показати опис",
+	"flow-topic-collapse-siderail": "Читати у повну ширину",
+	"flow-topic-expand-siderail": "Читати із фіксованою шириною",
 	"flow-edit-header-link": "Редагувати опис",
 	"flow-post-moderated-toggle-hide-show": "Показати коментар, прихований {{GENDER:$1|користувачем|користувачкою}} $2",
 	"flow-post-moderated-toggle-delete-show": "Показати коментар, вилучений {{GENDER:$1|користувачем|користувачкою}} $2",

@@ -38,6 +38,8 @@
 	"flow-board-header": "O tej dyskusji",
 	"flow-board-collapse-description": "Ukryj opis",
 	"flow-board-expand-description": "Pokaż opis",
+	"flow-topic-collapse-siderail": "Czytaj w pełnej szerokości",
+	"flow-topic-expand-siderail": "Czytaj przy stałej szerokości",
 	"flow-edit-header-link": "Edytuj opis",
 	"flow-post-moderated-toggle-hide-show": "Pokaż komentarz {{GENDER:$1|ukryty}} przez $2",
 	"flow-post-moderated-toggle-delete-show": "Pokaż komentarz {{GENDER:$1|usunięty}} przez $2",
