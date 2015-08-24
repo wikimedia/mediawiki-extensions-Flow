@@ -3,6 +3,7 @@
 namespace Flow\Tests\Data\Storage;
 
 use Flow\Container;
+use Flow\Data\Mapper\CachingObjectMapper;
 use Flow\Data\Storage\HeaderRevisionStorage;
 use Flow\Data\Storage\PostRevisionStorage;
 use Flow\Model\UUID;

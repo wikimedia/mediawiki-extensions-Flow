@@ -164,7 +164,7 @@ class BasicDbStorage extends DbStorage {
 
 	public function findMulti( array $queries, array $options = array() ) {
 		$keys = array_keys( reset( $queries ) );
-		$pks  = $this->getPrimaryKeyColumns();
+		$pks = $this->getPrimaryKeyColumns();
 		if ( count( $keys ) !== count( $pks ) || array_diff( $keys, $pks ) ) {
 			return $this->fallbackFindMulti( $queries, $options );
 		}

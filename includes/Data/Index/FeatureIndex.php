@@ -9,6 +9,7 @@ use Flow\Data\Compactor\FeatureCompactor;
 use Flow\Data\Compactor\ShallowCompactor;
 use Flow\Data\Index;
 use Flow\Data\ObjectManager;
+use Flow\Data\ObjectMapper;
 use Flow\Data\ObjectStorage;
 use Flow\Model\UUID;
 use FormatJson;
@@ -28,6 +29,11 @@ abstract class FeatureIndex implements Index {
 	 * @var ObjectStorage
 	 */
 	protected $storage;
+
+	/**
+	 * @var ObjectMapper
+	 */
+	protected $mapper;
 
 	/**
 	 * @var string
@@ -94,12 +100,14 @@ abstract class FeatureIndex implements Index {
 	/**
 	 * @param BufferedCache $cache
 	 * @param ObjectStorage $storage
+	 * @param ObjectMapper $mapper
 	 * @param string $prefix Prefix to utilize for all cache keys
 	 * @param array $indexedColumns List of columns to index,
 	 */
-	public function __construct( BufferedCache $cache, ObjectStorage $storage, $prefix, array $indexedColumns ) {
+	public function __construct( BufferedCache $cache, ObjectStorage $storage, ObjectMapper $mapper, $prefix, array $indexedColumns ) {
 		$this->cache = $cache;
 		$this->storage = $storage;
+		$this->mapper = $mapper;
 		$this->prefix = $prefix;
 		$this->rowCompactor = new FeatureCompactor( $indexedColumns );
 		$this->indexed = $indexedColumns;
@@ -347,7 +355,8 @@ abstract class FeatureIndex implements Index {
 		if ( !$indexed ) {
 			throw new DataModelException( 'Unindexable row: ' . FormatJson::encode( $old ), 'process-data' );
 		}
-		$this->removeFromIndex( $indexed, $old );
+		$compacted = $this->rowCompactor->compactRow( UUID::convertUUIDs( $old, 'alphadecimal' ) );
+		$this->removeFromIndex( $indexed, $compacted );
 	}
 
 	/**
@@ -411,6 +420,11 @@ abstract class FeatureIndex implements Index {
 				if ( $rows !== $fromStorage[$index] ) {
 					continue;
 				}
+
+				// normalize rows fetched from DB: schema may be different than the
+				// real data (e.g. nullable rows no longer used or in preparation
+				// for changes)
+				$rows = array_map( array( $this->mapper, 'normalizeRow' ), $rows );
 
 				$compacted = $this->rowCompactor->compactRows( $rows );
 				$callback = function( \BagOStuff $cache, $key, $value ) use ( $compacted ) {

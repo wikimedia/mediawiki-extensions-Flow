@@ -172,6 +172,12 @@ $c['collection.cache'] = function( $c ) {
 $c['storage.workflow.class'] = 'Flow\Model\Workflow';
 $c['storage.workflow.table'] = 'flow_workflow';
 $c['storage.workflow.primary_key'] = array( 'workflow_id' );
+$c['storage.workflow.mapper'] = function( $c ) {
+	return CachingObjectMapper::model(
+		$c['storage.workflow.class'],
+		$c['storage.workflow.primary_key']
+	);
+};
 $c['storage.workflow.backend'] = function( $c ) {
 	return new BasicDbStorage(
 		$c['db.factory'],
@@ -179,16 +185,11 @@ $c['storage.workflow.backend'] = function( $c ) {
 		$c['storage.workflow.primary_key']
 	);
 };
-$c['storage.workflow.mapper'] = function( $c ) {
-	return CachingObjectMapper::model(
-		$c['storage.workflow.class'],
-		$c['storage.workflow.primary_key']
-	);
-};
 $c['storage.workflow.indexes.primary'] = function( $c ) {
 	return new UniqueFeatureIndex(
 		$c['memcache.local_buffered'],
 		$c['storage.workflow.backend'],
+		$c['storage.workflow.mapper'],
 		'flow_workflow:v2:pk',
 		$c['storage.workflow.primary_key']
 	);
@@ -197,6 +198,7 @@ $c['storage.workflow.indexes.title_lookup'] = function( $c ) {
 	return new TopKIndex(
 		$c['memcache.local_buffered'],
 		$c['storage.workflow.backend'],
+		$c['storage.workflow.mapper'],
 		'flow_workflow:title:v2:',
 		array( 'workflow_wiki', 'workflow_namespace', 'workflow_title_text', 'workflow_type' ),
 		array(
@@ -269,6 +271,8 @@ $c['storage.board_history.indexes.primary'] = function( $c ) {
 		$c['memcache.local_buffered'],
 		// backend storage
 		$c['storage.board_history.backend'],
+		// data mapper
+		$c['storage.board_history.mapper'],
 		// key prefix
 		'flow_revision:topic_list_history',
 		// primary key
@@ -354,6 +358,7 @@ $c['storage.header.indexes.primary'] = function( $c ) {
 	return new UniqueFeatureIndex(
 		$c['memcache.local_buffered'],
 		$c['storage.header.backend'],
+		$c['storage.header.mapper'],
 		'flow_header:v2:pk',
 		$c['storage.header.primary_key']
 	);
@@ -362,6 +367,7 @@ $c['storage.header.indexes.topic_lookup'] = function( $c ) {
 	return new TopKIndex(
 		$c['memcache.local_buffered'],
 		$c['storage.header.backend'],
+		$c['storage.header.mapper'],
 		'flow_header:workflow',
 		array( 'rev_type_id' ),
 		array(
@@ -432,6 +438,7 @@ $c['storage.post_summary.indexes.primary'] = function( $c ) {
 	return new UniqueFeatureIndex(
 		$c['memcache.local_buffered'],
 		$c['storage.post_summary.backend'],
+		$c['storage.post_summary.mapper'],
 		'flow_post_summary:v2:pk',
 		$c['storage.post_summary.primary_key']
 	);
@@ -440,6 +447,7 @@ $c['storage.post_summary.indexes.topic_lookup'] = function( $c ) {
 	return new TopKIndex(
 		$c['memcache.local_buffered'],
 		$c['storage.post_summary.backend'],
+		$c['storage.post_summary.mapper'],
 		'flow_post_summary:workflow',
 		array( 'rev_type_id' ),
 		array(
@@ -498,6 +506,7 @@ $c['storage.topic_list.indexes.primary'] = function( $c ) {
 	return new UniqueFeatureIndex(
 		$c['memcache.local_buffered'],
 		$c['storage.topic_list.backend'],
+		$c['storage.topic_list.mapper'],
 		'flow_topic_list:topic',
 		array( 'topic_id' )
 	);
@@ -509,6 +518,7 @@ $c['storage.topic_list.indexes.reverse_lookup'] = function( $c ) {
 	return new TopicListTopKIndex(
 		$c['memcache.local_buffered'],
 		$c['storage.topic_list.backend'],
+		$c['storage.topic_list.mapper'],
 		'flow_topic_list:list',
 		array( 'topic_list_id' ),
 		array( 'sort' => 'topic_id' )
@@ -519,6 +529,7 @@ $c['storage.topic_list.indexes.last_updated'] = function( $c ) {
 	return new TopicListTopKIndex(
 		$c['memcache.local_buffered'],
 		$c['storage.topic_list.indexes.last_updated.backend'],
+		$c['storage.topic_list.mapper'],
 		'flow_topic_list_last_updated:list',
 		array( 'topic_list_id' ),
 		array(
@@ -611,6 +622,7 @@ $c['storage.post.indexes.primary'] = function( $c ) {
 	return new UniqueFeatureIndex(
 		$c['memcache.local_buffered'],
 		$c['storage.post.backend'],
+		$c['storage.post.mapper'],
 		'flow_revision:v4:pk',
 		$c['storage.post.primary_key']
 	);
@@ -620,6 +632,7 @@ $c['storage.post.indexes.post_lookup'] = function( $c ) {
 	return new TopKIndex(
 		$c['memcache.local_buffered'],
 		$c['storage.post.backend'],
+		$c['storage.post.mapper'],
 		'flow_revision:descendant',
 		array( 'rev_type_id' ),
 		array(
@@ -651,10 +664,9 @@ $c['storage.post'] = function( $c ) {
 };
 $c['storage.topic_history.primary_key'] = array( 'rev_id' );
 $c['storage.topic_history.backend'] = function( $c ) {
-	global $wgFlowExternalStore;
 	return new TopicHistoryStorage(
-		new PostRevisionStorage( $c['db.factory'], $wgFlowExternalStore, $c['repository.tree'] ),
-		new PostSummaryRevisionStorage( $c['db.factory'], $wgFlowExternalStore ),
+		$c['storage.post.backend'],
+		$c['storage.post_summary.backend'],
 		$c['repository.tree']
 	);
 };
@@ -662,6 +674,7 @@ $c['storage.topic_history.indexes.primary'] = function( $c ) {
 	return new UniqueFeatureIndex(
 		$c['memcache.local_buffered'],
 		$c['storage.topic_history.backend'],
+		$c['storage.topic_history.mapper'],
 		'flow_revision:v4:pk',
 		$c['storage.topic_history.primary_key']
 	);
@@ -670,6 +683,7 @@ $c['storage.topic_history.indexes.topic_lookup'] = function( $c ) {
 	return new TopicHistoryIndex(
 		$c['memcache.local_buffered'],
 		$c['storage.topic_history.backend'],
+		$c['storage.topic_history.mapper'],
 		$c['repository.tree'],
 		'flow_revision:topic:v2',
 		array( 'topic_root_id' ),
@@ -1048,7 +1062,7 @@ $c['storage.wiki_reference.primary_key'] = array(
 	'ref_target_title'
 );
 $c['storage.wiki_reference.mapper'] = function( $c ) {
-	return Flow\Data\Mapper\BasicObjectMapper::model(
+	return BasicObjectMapper::model(
 		$c['storage.wiki_reference.class']
 	);
 };
@@ -1063,6 +1077,7 @@ $c['storage.wiki_reference.indexes.source_lookup'] = function( $c ) {
 	return new TopKIndex(
 		$c['memcache.local_buffered'],
 		$c['storage.wiki_reference.backend'],
+		$c['storage.wiki_reference.mapper'],
 		'flow_ref:wiki:by-source:v3',
 		array(
 			'ref_src_wiki',
@@ -1079,6 +1094,7 @@ $c['storage.wiki_reference.indexes.revision_lookup'] = function( $c ) {
 	return new TopKIndex(
 		$c['memcache.local_buffered'],
 		$c['storage.wiki_reference.backend'],
+		$c['storage.wiki_reference.mapper'],
 		'flow_ref:wiki:by-revision:v3',
 		array(
 			'ref_src_wiki',
@@ -1106,7 +1122,8 @@ $c['storage.wiki_reference.indexes'] = function( $c ) {
 				new TopKIndex(
 					$c['memcache.local_buffered'],
 					$c['storage.wiki_reference.backend'],
-					'flow_ref:wiki:by-source',
+					$c['storage.wiki_reference.mapper'],
+					'flow_ref:wiki:by-source:v2b',
 					array(
 						'ref_src_namespace',
 						'ref_src_title',
@@ -1119,7 +1136,8 @@ $c['storage.wiki_reference.indexes'] = function( $c ) {
 				new TopKIndex(
 					$c['memcache.local_buffered'],
 					$c['storage.wiki_reference.backend'],
-					'flow_ref:wiki:by-revision:v2',
+					$c['storage.wiki_reference.mapper'],
+					'flow_ref:wiki:by-revision:v2b',
 					array(
 						'ref_src_object_type',
 						'ref_src_object_id',
@@ -1153,7 +1171,7 @@ $c['storage.url_reference.primary_key'] = array(
 	'ref_target'
 );
 $c['storage.url_reference.mapper'] = function( $c ) {
-	return Flow\Data\Mapper\BasicObjectMapper::model(
+	return BasicObjectMapper::model(
 		$c['storage.url_reference.class']
 	);
 };
@@ -1170,6 +1188,7 @@ $c['storage.url_reference.indexes.source_lookup'] = function( $c ) {
 	return new TopKIndex(
 		$c['memcache.local_buffered'],
 		$c['storage.url_reference.backend'],
+		$c['storage.url_reference.mapper'],
 		'flow_ref:url:by-source:v3',
 		array(
 			'ref_src_wiki',
@@ -1186,6 +1205,7 @@ $c['storage.url_reference.indexes.revision_lookup'] = function( $c ) {
 	return new TopKIndex(
 		$c['memcache.local_buffered'],
 		$c['storage.url_reference.backend'],
+		$c['storage.url_reference.mapper'],
 		'flow_ref:url:by-revision:v3',
 		array(
 			'ref_src_wiki',
@@ -1210,7 +1230,8 @@ $c['storage.url_reference.indexes'] = function( $c ) {
 			new TopKIndex(
 				$c['memcache.local_buffered'],
 				$c['storage.url_reference.backend'],
-				'flow_ref:url:by-source',
+				$c['storage.url_reference.mapper'],
+				'flow_ref:url:by-source:v2b',
 				array(
 					'ref_src_namespace',
 					'ref_src_title',
@@ -1223,7 +1244,8 @@ $c['storage.url_reference.indexes'] = function( $c ) {
 			new TopKIndex(
 				$c['memcache.local_buffered'],
 				$c['storage.url_reference.backend'],
-				'flow_ref:url:by-revision:v2',
+				$c['storage.url_reference.mapper'],
+				'flow_ref:url:by-revision:v2b',
 				array(
 					'ref_src_object_type',
 					'ref_src_object_id',
@@ -1280,7 +1302,8 @@ $c['reference.recorder'] = function( $c ) {
 		$c['reference.extractor'],
 		$c['reference.updater.links-tables'],
 		$c['storage'],
-		$c['repository.tree']
+		$c['repository.tree'],
+		$c['deferred_queue']
 	);
 };
 

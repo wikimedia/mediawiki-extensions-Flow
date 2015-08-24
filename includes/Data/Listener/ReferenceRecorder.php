@@ -14,6 +14,7 @@ use Flow\Model\Workflow;
 use Flow\Model\Reference;
 use Flow\Parsoid\ReferenceExtractor;
 use Flow\Repository\TreeRepository;
+use SplQueue;
 
 /**
  * Listens for new revisions to be inserted.  Calculates the difference in
@@ -42,16 +43,23 @@ class ReferenceRecorder extends AbstractListener {
 	 */
 	protected $treeRepository;
 
+	/**
+	 * @var SplQueue
+	 */
+	protected $deferredQueue;
+
 	public function __construct(
 		ReferenceExtractor $referenceExtractor,
 		LinksTableUpdater $linksTableUpdater,
 		ManagerGroup $storage,
-		TreeRepository $treeRepository
+		TreeRepository $treeRepository,
+		SplQueue $deferredQueue
 	) {
 		$this->referenceExtractor = $referenceExtractor;
 		$this->linksTableUpdater = $linksTableUpdater;
 		$this->storage = $storage;
 		$this->treeRepository = $treeRepository;
+		$this->deferredQueue = $deferredQueue;
 	}
 
 	public function onAfterLoad( $object, array $old ) {
@@ -65,6 +73,7 @@ class ReferenceRecorder extends AbstractListener {
 		if ( !$revision instanceof AbstractRevision ) {
 			throw new InvalidDataException( 'ReferenceRecorder can only attach to AbstractRevision storage');
 		}
+		/** @var Workflow $workflow */
 		$workflow = $metadata['workflow'];
 
 		if ( $revision instanceof PostRevision && $revision->isTopicTitle() ) {
@@ -76,8 +85,12 @@ class ReferenceRecorder extends AbstractListener {
 		$this->storage->multiPut( $added );
 		$this->storage->multiRemove( $removed );
 
-		// Data updates
-		$this->linksTableUpdater->doUpdate( $workflow );
+		// Data has not yet been committed at this points, so let's delay
+		// updating `categorylinks`
+		$linksTableUpdater = $this->linksTableUpdater;
+		$this->deferredQueue->push( function() use ( $linksTableUpdater, $workflow ) {
+			$linksTableUpdater->doUpdate( $workflow );
+		} );
 	}
 
 	/**

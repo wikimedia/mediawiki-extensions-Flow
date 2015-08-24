@@ -5,10 +5,12 @@ namespace Flow\Data\Index;
 use BagOStuff;
 use Flow\Data\BufferedCache;
 use Flow\Data\ObjectManager;
+use Flow\Data\ObjectMapper;
 use Flow\Data\ObjectStorage;
 use Flow\Data\Compactor\ShallowCompactor;
 use Flow\Data\Utils\SortArrayByKeys;
 use Flow\Exception\InvalidInputException;
+use Flow\Model\UUID;
 
 /**
  * Holds the top k items with matching $indexed columns.  List is sorted and truncated to specified size.
@@ -19,12 +21,12 @@ class TopKIndex extends FeatureIndex {
 	 */
 	protected $options = array();
 
-	public function __construct( BufferedCache $cache, ObjectStorage $storage, $prefix, array $indexed, array $options = array() ) {
+	public function __construct( BufferedCache $cache, ObjectStorage $storage, ObjectMapper $mapper, $prefix, array $indexed, array $options = array() ) {
 		if ( empty( $options['sort'] ) ) {
 			throw new InvalidInputException( 'TopKIndex must be sorted', 'invalid-input' );
 		}
 
-		parent::__construct( $cache, $storage, $prefix, $indexed );
+		parent::__construct( $cache, $storage, $mapper, $prefix, $indexed );
 
 		$this->options = $options + array(
 			'limit' => 500,
@@ -68,6 +70,7 @@ class TopKIndex extends FeatureIndex {
 
 	protected function addToIndex( array $indexed, array $row ) {
 		$self = $this;
+
 		// If this used redis instead of memcached, could it add to index in position
 		// without retry possibility? need a single number that will properly sort rows.
 		$this->cache->merge(
@@ -76,6 +79,26 @@ class TopKIndex extends FeatureIndex {
 				if ( $value === false ) {
 					return false;
 				}
+
+				if ( count( $value ) > 0 ) {
+					/*
+					 * Ideally, we'd expand the rows currently in cache, run them
+					 * through $this->storage->normalize & then re-compact them.
+					 * And then we can reliably locate $row in there.
+					 * However, that may require additional cache lookups for
+					 * the expand info.
+					 *
+					 * Instead of doing that, Let's just make the current row
+					 * columns conform the rows in cache ($schema)
+					 *
+					 * This is mostly to fight useless nullable columns in DB
+					 * (either in preparation for schema change or no longer needed)
+					 * Meaningful changes in data will need a cache key change, so
+					 * we're good here.
+					 */
+					$row = $self->normalizeCompressed( $row, array_keys( reset( $value ) ) );
+				}
+
 				$idx = array_search( $row, $value );
 				if ( $idx !== false ) {
 					return false; // This row already exists somehow
@@ -95,12 +118,20 @@ class TopKIndex extends FeatureIndex {
 	}
 
 	protected function removeFromIndex( array $indexed, array $row ) {
+		$self = $this;
+
 		$this->cache->merge(
 			$this->cacheKey( $indexed ),
-			function( BagOStuff $cache, $key, $value ) use( $row ) {
+			function( BagOStuff $cache, $key, $value ) use( $self, $row ) {
 				if ( $value === false ) {
 					return false;
 				}
+
+				if ( count( $value ) > 0 ) {
+					// see comment in self::addToIndex on why to normalize
+					$row = $self->normalizeCompressed( $row, array_keys( reset( $value ) ) );
+				}
+
 				$idx = array_search( $row, $value );
 				if ( $idx === false ) {
 					return false;
@@ -120,6 +151,13 @@ class TopKIndex extends FeatureIndex {
 					return false;
 				}
 				$retval = $value;
+
+				if ( count( $value ) > 0 ) {
+					// see comment in self::addToIndex on why to normalize
+					$oldRow = $self->normalizeCompressed( $oldRow, array_keys( reset( $value ) ) );
+					$newRow = $self->normalizeCompressed( $newRow, array_keys( reset( $value ) ) );
+				}
+
 				$idx = array_search( $oldRow, $retval );
 				if ( $idx !== false ) {
 					unset( $retval[$idx] );
@@ -128,7 +166,7 @@ class TopKIndex extends FeatureIndex {
 				$retval = $self->sortIndex( $retval );
 				$retval = $self->limitIndexSize( $retval );
 				if ( $value === $retval ) {
-					// new item didnt fit in index and old item wasnt found in index
+					// new item didn't fit in index and old item wasn't found in index
 					return false;
 				} else {
 					return $retval;
@@ -137,9 +175,31 @@ class TopKIndex extends FeatureIndex {
 		);
 	}
 
+	/**
+	 * In order to be able to reliably find a row in an array of
+	 * cached rows, we need to normalize those to make sure the
+	 * columns match: they may be outdated.
+	 *
+	 * @param array $row Array in [column => value] format
+	 * @param array $schema Array of column names to be present in $row
+	 * @return array
+	 */
+	// INTERNAL: in 5.4 it can be protected
+	public function normalizeCompressed( array $row, array $schema ) {
+		$schema = array_fill_keys( $schema, null );
+
+		// add null value for rows currently in cache
+		$row = array_merge( $schema, $row );
+
+		// remove rows not known in cache
+		$row = array_intersect_key( $row, $schema );
+
+		return $row;
+	}
+
 	// INTERNAL: in 5.4 it can be protected
 	public function sortIndex( array $values ) {
-		// I dont think this is a valid way to sort a 128bit integer string
+		// I don't think this is a valid way to sort a 128bit integer string
 		$callback = new SortArrayByKeys( $this->options['sort'], true );
 		/** @noinspection PhpParamsInspection */
 		usort( $values, $callback );
