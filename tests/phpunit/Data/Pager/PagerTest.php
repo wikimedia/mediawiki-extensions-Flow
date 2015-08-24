@@ -460,10 +460,18 @@ class PagerTest extends \MediaWikiTestCase {
 		) );
 
 		$storage = $this->getMock( 'Flow\Data\ObjectStorage' );
+		// fake ObjectMapper that doesn't roundtrip to- & fromStorageRow
+		$mapper = $this->getMockBuilder( 'Flow\Data\Mapper\BasicObjectMapper' )
+			->disableOriginalConstructor()
+			->getMock();
+		$mapper->expects( $this->any() )
+			->method( 'normalizeRow' )
+			->will( $this->returnArgument( 0 ) );
 
 		$index = new TopKIndex(
 			$cache,
 			$storage,
+			$mapper,
 			'prefix',
 			array( 'foo' ),
 			array(

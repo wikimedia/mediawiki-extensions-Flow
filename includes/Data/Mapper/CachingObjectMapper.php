@@ -120,6 +120,9 @@ class CachingObjectMapper implements ObjectMapper {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function normalizeRow( array $row ) {
 		$object = call_user_func( $this->fromStorageRow, $row );
 		return call_user_func( $this->toStorageRow, $object );

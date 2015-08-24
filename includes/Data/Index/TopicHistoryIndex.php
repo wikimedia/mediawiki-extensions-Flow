@@ -3,6 +3,7 @@
 namespace Flow\Data\Index;
 
 use Flow\Data\BufferedCache;
+use Flow\Data\ObjectMapper;
 use Flow\Data\Storage\TopicHistoryStorage;
 use Flow\Exception\InvalidInputException;
 use Flow\Model\PostRevision;
@@ -19,11 +20,11 @@ class TopicHistoryIndex extends TopKIndex {
 
 	protected $treeRepository;
 
-	public function __construct( BufferedCache $cache, TopicHistoryStorage $storage, TreeRepository $treeRepo, $prefix, array $indexed, array $options = array() ) {
+	public function __construct( BufferedCache $cache, TopicHistoryStorage $storage, ObjectMapper $mapper, TreeRepository $treeRepo, $prefix, array $indexed, array $options = array() ) {
 		if ( $indexed !== array( 'topic_root_id' ) ) {
 			throw new \MWException( __CLASS__ . ' is hardcoded to only index topic_root_id: ' . print_r( $indexed, true ) );
 		}
-		parent::__construct( $cache, $storage, $prefix, $indexed, $options );
+		parent::__construct( $cache, $storage, $mapper, $prefix, $indexed, $options );
 		$this->treeRepository = $treeRepo;
 	}
 
@@ -77,7 +78,11 @@ class TopicHistoryIndex extends TopKIndex {
 		if ( isset( $metadata['workflow'] ) && $metadata['workflow'] instanceof Workflow ) {
 			return $metadata['workflow']->getId();
 		} elseif ( $object instanceof PostRevision ) {
-			return $object->getRootPost()->getPostId()->getAlphadecimal();
+			// We used to figure out the root post from a PostRevision object.
+			// Now we should just make sure we pass in the correct metadata.
+			// Resolving workflow is intensive and at this point, the data in
+			// storage may already have been deleted...
+			throw new InvalidInputException( 'Missing "workflow" metadata: ' . get_class( $object ) );
 		} elseif ( $object instanceof PostSummary ) {
 			return $object->getCollection()->getWorkflowId()->getAlphadecimal();
 		} else {
