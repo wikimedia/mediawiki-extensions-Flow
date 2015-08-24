@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_ec2331a4",
+        "filename": "i18n/en.json",
+        "patchSetId": 18
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-24T15:07:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec1af18_c10ba924",
+      "revId": "ce05ce7b734d22ab494f38c9e48a77495d76a44a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_3c917452",
         "filename": "includes/Import/Converter.php",
         "patchSetId": 18
@@ -30,6 +48,24 @@
       "writtenOn": "2015-08-22T00:59:24Z",
       "side": 1,
       "message": "It would be nice to reuse some code between decideArchiveTitle and findLatestArchiveTitle .\n\nMaybe have a helper method findLatestArchiveInfo:\n1. If there are no archives anywhere, it could return false.  decideArchiveTitle could then just use the first format with $n as 1.  findLatestArchiveTitle would just pass the false through.\n2. If there is an archive somewhere, it would find the last of that format and return array( \u0027format \u003d\u003e ..., \u0027titleNumber\u0027 \u003d\u003e ... ), where titleNumber is the last $n that exists.\n\ndecideArchiveTitle would then just increment titleIndex and use the given format with it.  findLatestArchiveTitle would just use that format and titleNumber (without incrementing) to construct the title.",
+      "revId": "ce05ce7b734d22ab494f38c9e48a77495d76a44a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_409fa962",
+        "filename": "includes/Import/Converter.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-24T15:07:12Z",
+      "side": 1,
+      "message": "I agree. I\u0027ll get back to this when everything else is working.",
+      "parentUuid": "6ec1af18_3c917452",
       "revId": "ce05ce7b734d22ab494f38c9e48a77495d76a44a",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_6c3741e1",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-24T15:07:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec1af18_3c05f47c",
+      "revId": "ce05ce7b734d22ab494f38c9e48a77495d76a44a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_1c311857",
         "filename": "includes/Import/OptInController.php",
         "patchSetId": 18
@@ -64,6 +118,24 @@
       "writtenOn": "2015-08-22T00:59:24Z",
       "side": 1,
       "message": "I don\u0027t think it\u0027s needed here. I added it in Converter.php because of concern about interactions with LQT\u0027s API.",
+      "revId": "ce05ce7b734d22ab494f38c9e48a77495d76a44a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_8c32aded",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-24T15:07:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec1af18_1c311857",
       "revId": "ce05ce7b734d22ab494f38c9e48a77495d76a44a",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_0c4ebd72",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-24T15:07:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec1af18_dc3ab032",
+      "revId": "ce05ce7b734d22ab494f38c9e48a77495d76a44a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_3c341446",
         "filename": "includes/Import/OptInController.php",
         "patchSetId": 18
@@ -98,6 +188,24 @@
       "writtenOn": "2015-08-22T00:59:24Z",
       "side": 1,
       "message": "There\u0027s no need to special case it:\n\nexplode( \u0027\\n\u0027, \u0027foo\u0027 )\n\ndoes the right thing (one-element array with \u0027foo\u0027)..",
+      "revId": "ce05ce7b734d22ab494f38c9e48a77495d76a44a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_ac544902",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-24T15:07:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec1af18_3c341446",
       "revId": "ce05ce7b734d22ab494f38c9e48a77495d76a44a",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_2cbe1914",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-24T15:07:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec1af18_5cf9e048",
+      "revId": "ce05ce7b734d22ab494f38c9e48a77495d76a44a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_dcb39094",
         "filename": "includes/Import/OptInController.php",
         "patchSetId": 18
@@ -138,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_0cd9dd82",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-24T15:07:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec1af18_dcb39094",
+      "revId": "ce05ce7b734d22ab494f38c9e48a77495d76a44a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_9c7c28b6",
         "filename": "tests/browser/features/opt_in.feature",
         "patchSetId": 18
@@ -149,6 +293,24 @@
       "writtenOn": "2015-08-22T00:59:24Z",
       "side": 1,
       "message": "NS_USER_TALK.",
+      "revId": "ce05ce7b734d22ab494f38c9e48a77495d76a44a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_8cc4ed95",
+        "filename": "tests/browser/features/opt_in.feature",
+        "patchSetId": 18
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-24T15:07:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec1af18_9c7c28b6",
       "revId": "ce05ce7b734d22ab494f38c9e48a77495d76a44a",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
