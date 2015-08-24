@@ -125,10 +125,18 @@
 	/**
 	 * Focus on the editor.
 	 *
-	 * @method
 	 * @abstract
+	 * @method
 	 */
 	mw.flow.ui.AbstractEditorWidget.prototype.focus = null;
+
+	/**
+	 * Move the cursor to the end of the editor.
+	 *
+	 * @abstract
+	 * @method
+	 */
+	mw.flow.ui.AbstractEditorWidget.prototype.moveCursorToEnd = null;
 
 	/**
 	 * Destroy the editor widget.

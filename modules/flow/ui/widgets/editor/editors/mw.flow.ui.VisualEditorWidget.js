@@ -138,6 +138,20 @@
 	/**
 	 * @inheritdoc
 	 */
+	mw.flow.ui.VisualEditorWidget.prototype.moveCursorToEnd = function () {
+		if ( !this.target ) {
+			return;
+		}
+
+		var data = this.target.surface.getModel().getDocument().data,
+			cursorPos = data.getNearestContentOffset( data.getLength(), -1 );
+
+		this.target.surface.getModel().setLinearSelection( new ve.Range( cursorPos ) );
+	};
+
+	/**
+	 * @inheritdoc
+	 */
 	mw.flow.ui.VisualEditorWidget.prototype.getContent = function () {
 		var doc, html;
 
