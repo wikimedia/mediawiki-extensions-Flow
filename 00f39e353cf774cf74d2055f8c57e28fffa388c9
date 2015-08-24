@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_a6ad4a82",
+        "filename": "Resources.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-24T04:53:34Z",
+      "side": 1,
+      "message": "class_exists( \u0027GuidedTourHooks\u0027 )\n\nshould work as a condition for registering the module.\n\nThat same condition can also be used when detecting whether to addModules \u0027ext.guidedTour.tour.flowOptIn\u0027.\n\nPer IRC, I think this will work:\n\n1. The first time they opt in, add a custom cookie (not the standard GuidedTour tour cookie).\n\n2. Any time the server (check in BeforePageDisplay) sees that:\n* GuidedTourHooks exists.\n* The user is on their own talk page\n* They have that custom cookie\n\ndelete the cookie and addModules \u0027ext.guidedTour.tour.flowOptIn\u0027",
+      "parentUuid": "6ec1af18_082a362b",
+      "revId": "00f39e353cf774cf74d2055f8c57e28fffa388c9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_50623738",
         "filename": "Resources.php",
         "patchSetId": 6
@@ -151,6 +169,24 @@
       "side": 1,
       "message": "Actually, we *REALLY* should, because that would make browser tests much happier, too. This is the same sort of trick we use for browser tests, too, because there\u0027s real way of figuring out the link in there. In fact, in browser tests, we go further and have the browser trigger a click on it so we can verify that the archive is done correctly.\n\nI agree it\u0027s non reliable, but I don\u0027t think it\u0027s that horrific, honestly. The ideal would be to add a class so we can make ti better, but if we think about it, the only scenario this tour (and browser tests) care about the link in the description is when there is only that exact link in the description.\n\nThen again, if we *can* add a class to that link so we can find it, it\u0027s definitely better for both needs.",
       "parentUuid": "6ec1af18_7065f340",
+      "revId": "00f39e353cf774cf74d2055f8c57e28fffa388c9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_e6b352e6",
+        "filename": "modules/tours/flowOptIn.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-24T04:53:34Z",
+      "side": 1,
+      "message": "Suggested class at T105421#1566274 .",
+      "parentUuid": "6ec1af18_88ece6f3",
       "revId": "00f39e353cf774cf74d2055f8c57e28fffa388c9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
