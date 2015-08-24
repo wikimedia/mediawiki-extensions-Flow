@@ -3,6 +3,7 @@
 namespace Flow\Tests\Data\Index;
 
 use Flow\Data\Index\FeatureIndex;
+use Flow\Data\ObjectMapper;
 
 /**
  * @group Flow
@@ -17,6 +18,13 @@ class FeatureIndexTest extends \MediaWikiTestCase {
 		$storage = $this->getMockBuilder( 'Flow\Data\ObjectStorage' )
 			->disableOriginalConstructor()
 			->getMock();
+		// fake ObjectMapper that doesn't roundtrip to- & fromStorageRow
+		$mapper = $this->getMockBuilder( 'Flow\Data\Mapper\BasicObjectMapper' )
+			->disableOriginalConstructor()
+			->getMock();
+		$mapper->expects( $this->any() )
+			->method( 'normalizeRow' )
+			->will( $this->returnArgument( 0 ) );
 
 		$dbId = FeatureIndex::cachedDbId();
 		$cache->expects( $this->any() )
@@ -33,7 +41,7 @@ class FeatureIndexTest extends \MediaWikiTestCase {
 		$storage->expects( $this->never() )
 			->method( 'findMulti' );
 
-		$index = new MockFeatureIndex( $cache, $storage, 'foo', array( 'bar' ) );
+		$index = new MockFeatureIndex( $cache, $storage, $mapper, 'foo', array( 'bar' ) );
 
 		$res = $index->find(
 			array( 'bar' => 5 ),
@@ -73,8 +81,15 @@ class FeatureIndexTest extends \MediaWikiTestCase {
 			) ) );
 		$storage->expects( $this->never() )
 			->method( 'findMulti' );
+		// fake ObjectMapper that doesn't roundtrip to- & fromStorageRow
+		$mapper = $this->getMockBuilder( 'Flow\Data\Mapper\BasicObjectMapper' )
+			->disableOriginalConstructor()
+			->getMock();
+		$mapper->expects( $this->any() )
+			->method( 'normalizeRow' )
+			->will( $this->returnArgument( 0 ) );
 
-		$index = new MockFeatureIndex( $cache, $storage, 'foo', array( 'bar' ) );
+		$index = new MockFeatureIndex( $cache, $storage, $mapper, 'foo', array( 'bar' ) );
 
 		$res = $index->find(
 			array( 'bar' => 5 ),

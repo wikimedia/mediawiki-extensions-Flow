@@ -21,17 +21,25 @@ class IndexTest extends FlowTestCase {
 		$bag = new BufferedBagOStuff( new \HashBagOStuff );
 		$cache = new BufferedCache( $bag, $wgFlowCacheTime );
 
+		// fake ObjectMapper that doesn't roundtrip to- & fromStorageRow
+		$mapper = $this->getMockBuilder( 'Flow\Data\Mapper\BasicObjectMapper' )
+			->disableOriginalConstructor()
+			->getMock();
+		$mapper->expects( $this->any() )
+			->method( 'normalizeRow' )
+			->will( $this->returnArgument( 0 ) );
+
 		// As we are only testing the cached result, storage should never be called
 		// not sure how to test that
 		$storage = $this->getMock( 'Flow\\Data\\ObjectStorage' );
 
 		$unique = new UniqueFeatureIndex(
-			$cache, $storage, 'unique',
+			$cache, $storage, $mapper, 'unique',
 			array( 'id' )
 		);
 
 		$secondary = new TopKIndex(
-			$cache, $storage, 'secondary',
+			$cache, $storage, $mapper, 'secondary',
 			array( 'name' ), // keys indexed in this array
 			array(
 				'shallow' => $unique,
@@ -67,13 +75,21 @@ class IndexTest extends FlowTestCase {
 		$cache = new BufferedCache( $bag, $wgFlowCacheTime );
 		$storage = $this->getMock( 'Flow\\Data\\ObjectStorage' );
 
+		// fake ObjectMapper that doesn't roundtrip to- & fromStorageRow
+		$mapper = $this->getMockBuilder( 'Flow\Data\Mapper\BasicObjectMapper' )
+			->disableOriginalConstructor()
+			->getMock();
+		$mapper->expects( $this->any() )
+			->method( 'normalizeRow' )
+			->will( $this->returnArgument( 0 ) );
+
 		$unique = new UniqueFeatureIndex(
-			$cache, $storage, 'unique',
+			$cache, $storage, $mapper, 'unique',
 			array( 'id', 'ot' )
 		);
 
 		$secondary = new TopKIndex(
-			$cache, $storage, 'secondary',
+			$cache, $storage, $mapper, 'secondary',
 			array( 'name' ), // keys indexed in this array
 			array(
 				'shallow' => $unique,

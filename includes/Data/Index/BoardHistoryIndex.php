@@ -4,6 +4,7 @@ namespace Flow\Data\Index;
 
 use Flow\Data\BufferedCache;
 use Flow\Data\ObjectManager;
+use Flow\Data\ObjectMapper;
 use Flow\Data\Storage\BoardHistoryStorage;
 use Flow\Exception\DataModelException;
 use Flow\Exception\InvalidInputException;
@@ -30,6 +31,7 @@ class BoardHistoryIndex extends TopKIndex {
 	public function __construct(
 		BufferedCache $cache,
 		BoardHistoryStorage $storage,
+		ObjectMapper $mapper,
 		$prefix,
 		array $indexed,
 		array $options = array(),
@@ -38,7 +40,7 @@ class BoardHistoryIndex extends TopKIndex {
 		if ( $indexed !== array( 'topic_list_id' ) ) {
 			throw new DataModelException( __CLASS__ . ' is hardcoded to only index topic_list_id: ' . print_r( $indexed, true ), 'process-data' );
 		}
-		parent::__construct( $cache, $storage, $prefix, $indexed, $options );
+		parent::__construct( $cache, $storage, $mapper, $prefix, $indexed, $options );
 		$this->om = $om;
 	}
 

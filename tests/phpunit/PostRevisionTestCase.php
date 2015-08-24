@@ -60,7 +60,8 @@ class PostRevisionTestCase extends FlowTestCase {
 
 		foreach ( $this->revisions as $revision ) {
 			try {
-				$this->getStorage()->multiRemove( array( $revision ) );
+				$workflow = $revision->getCollection()->getWorkflow();
+				$this->getStorage()->multiRemove( array( $revision ), array( 'workflow' => $workflow ) );
 			} catch ( \MWException $e ) {
 				// ignore - lifecyclehandlers may cause issues with tests, where
 				// not all related stuff is loaded
