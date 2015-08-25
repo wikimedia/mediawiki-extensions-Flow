@@ -48,7 +48,7 @@
 		// Events
 		this.editor.connect( this, {
 			change: 'updateSaveButtonState',
-			saveContent: 'onEditorSave',
+			saveContent: 'onEditorSaveContent',
 			cancel: 'onEditorCancel'
 		} );
 		this.editor.once( 'switch', function ( promise ) {
@@ -112,29 +112,50 @@
 	 * @param {string} content Content
 	 * @param {string} format Content format
 	 */
-	mw.flow.ui.NewTopicWidget.prototype.onEditorSave = function ( content, format ) {
+	mw.flow.ui.NewTopicWidget.prototype.onEditorSaveContent = function ( content, format ) {
 		var widget = this,
-			title = this.title.getValue();
+			title = this.title.getValue(),
+			$captchaField,
+			captcha;
 
-		this.error.toggle( false );
 		this.editor.pushPending();
 		this.title.pushPending();
 		this.title.setDisabled( true );
-		this.api.saveNewTopic( title, content, format )
+
+		$captchaField = this.error.$label.find( '[name="wpCaptchaWord"]' );
+		if ( $captchaField.length > 0 ) {
+			captcha = {
+				id: this.error.$label.find( '[name="wpCaptchaId"]' ).val(),
+				answer: $captchaField.val()
+			};
+		}
+
+		this.error.setLabel( '' );
+		this.error.toggle( false );
+
+		this.api.saveNewTopic( title, content, format, captcha )
 			.then( function ( topicId ) {
 				widget.toggleExpanded( false );
 				widget.emit( 'save', topicId );
 			} )
 			.then( null, function ( errorCode, errorObj ) {
-				var $errorMessage = $( '<span>' ).text( errorObj.error && errorObj.error.info || errorObj.exception );
-				widget.error.setLabel( $errorMessage );
+				if ( /spamfilter$/.test( errorCode ) && errorObj.error.spamfilter === 'flow-spam-confirmedit-form' ) {
+					widget.error.setLabel(
+						// CAPTCHA form
+						new OO.ui.HtmlSnippet( errorObj.error.info )
+					);
+				} else {
+					widget.error.setLabel( errorObj.error && errorObj.error.info || errorObj.exception );
+				}
+
 				widget.error.toggle( true );
 			} )
 			.always( function () {
 				widget.editor.popPending();
 				widget.title.popPending();
 				widget.title.setDisabled( false );
-
+			} )
+			.done( function () {
 				// Clear for next use
 				widget.title.setValue( '' );
 				widget.editor.setContent( '', 'html' );

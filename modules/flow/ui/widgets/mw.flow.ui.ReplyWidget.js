@@ -52,7 +52,7 @@
 
 		// Events
 		this.editor.connect( this, {
-			saveContent: 'onEditorSave',
+			saveContent: 'onEditorSaveContent',
 			cancel: 'onEditorCancel'
 		} );
 
@@ -107,12 +107,23 @@
 	/**
 	 * Respond to editor save
 	 */
-	mw.flow.ui.ReplyWidget.prototype.onEditorSave = function ( content, format ) {
-		var widget = this;
+	mw.flow.ui.ReplyWidget.prototype.onEditorSaveContent = function ( content, format ) {
+		var widget = this,
+			$captchaField, captcha;
 
-		this.error.toggle( false );
+		$captchaField = this.error.$label.find( '[name="wpCaptchaWord"]' );
+		if ( $captchaField.length > 0 ) {
+			captcha = {
+				id: this.error.$label.find( '[name="wpCaptchaId"]' ).val(),
+				answer: $captchaField.val()
+			};
+		}
+
+		this.error.setLabel( '' );
+		this.error.toggle( false )
+		;
 		this.editor.pushPending();
-		this.api.saveReply( this.topicId, this.replyTo, content, format )
+		this.api.saveReply( this.topicId, this.replyTo, content, format, captcha )
 			.then( function ( workflow ) {
 				if ( widget.expandable ) {
 					widget.triggerInput.toggle( true );
@@ -123,8 +134,15 @@
 				widget.emit( 'saveContent', workflow, content, format );
 			} )
 			.then( null, function ( errorCode, errorObj ) {
-				var $errorMessage = $( '<span>' ).text( errorObj.error && errorObj.error.info || errorObj.exception );
-				widget.error.setLabel( $errorMessage );
+				if ( /spamfilter$/.test( errorCode ) && errorObj.error.spamfilter === 'flow-spam-confirmedit-form' ) {
+					widget.error.setLabel(
+						// CAPTCHA form
+						new OO.ui.HtmlSnippet( errorObj.error.info )
+					);
+				} else {
+					widget.error.setLabel( errorObj.error && errorObj.error.info || errorObj.exception );
+				}
+
 				widget.error.toggle( true );
 			} )
 			.always( function () {
