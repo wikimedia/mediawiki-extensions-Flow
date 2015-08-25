@@ -1,6 +1,5 @@
 Then(/^the description should be "(.*?)"$/) do |content|
   on(FlowPage) do |page|
-    page.description.content_element.when_present
     page.description.content.should eq(content)
   end
 end
