@@ -343,9 +343,9 @@ class BufferedBagOStuff extends HashBagOStuff {
 		return $value !== false;
 	}
 
-	public function lock( $key, $timeout = 6, $expiry = 6 ) {
+	public function lock( $key, $timeout = 6, $expiry = 6, $rclass = '' ) {
 		// Do not try to defer/buffer stuff
-		return $this->cache->lock( $key, $timeout, $expiry );
+		return $this->cache->lock( $key, $timeout, $expiry, $rclass );
 	}
 
 	public function unlock( $key ) {
