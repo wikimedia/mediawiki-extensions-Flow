@@ -24,6 +24,8 @@
 	"flow-board-header": "Acerca deste panel de conversa",
 	"flow-board-collapse-description": "Agochar a descrición",
 	"flow-board-expand-description": "Mostrar descrición",
+	"flow-topic-collapse-siderail": "Ler en largo completo",
+	"flow-topic-expand-siderail": "Ler en largo fixado",
 	"flow-edit-header-link": "Editar a descrición",
 	"flow-post-moderated-toggle-hide-show": "Mostrar o comentario {{GENDER:$1|agochado}} por $2",
 	"flow-post-moderated-toggle-delete-show": "Mostrar comentario {{GENDER:$1|borrado}} por $2",

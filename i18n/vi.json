@@ -29,6 +29,8 @@
 	"flow-board-header": "Thông tin về bảng tin này",
 	"flow-board-collapse-description": "Ẩn miêu tả",
 	"flow-board-expand-description": "Hiện miêu tả",
+	"flow-topic-collapse-siderail": "Đọc ở chế độ rộng",
+	"flow-topic-expand-siderail": "Đọc ở chiều ngang cố định",
 	"flow-edit-header-link": "Sửa miêu tả",
 	"flow-post-moderated-toggle-hide-show": "Hiển thị bình luận đã bị $2 {{GENDER:$1}}ẩn",
 	"flow-post-moderated-toggle-delete-show": "Hiển thị bình luận đã bị $2 {{GENDER:$1}}xóa",
