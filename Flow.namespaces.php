@@ -19,6 +19,11 @@ $namespaceNames['azb'] = array(
 	NS_TOPIC =>  'مبحث',
 );
 
+/** Western Balochi */
+$namespaceNames['bgn'] = array(
+	NS_TOPIC =>  'سر_ئو_بُن',
+);
+
 /** Catalan */
 $namespaceNames['ca'] = array(
 	NS_TOPIC =>  'Tema',
