@@ -112,16 +112,32 @@
 	};
 
 	/**
+	 * Adds CAPTCHA to parameters if applicable
+	 *
+	 * @param {Object} captcha CAPTCHA object
+	 * @param {string} id CAPTCHA ID
+	 * @param {string} answer CAPTCHA answer (user-provided)
+	 */
+	mw.flow.dm.APIHandler.prototype.addCaptcha = function ( params, captcha ) {
+		// TODO: Find a better way to plug this in.
+		if ( captcha ) {
+			params.wpCaptchaId = captcha.id;
+			params.wpCaptchaWord = captcha.answer;
+		}
+	};
+
+	/**
 	 * Send an edit request to the API to save a reply.
 	 *
 	 * @param {string} topicId Topic Id
 	 * @param {string} replyTo The parent of this reply
 	 * @param {string} content Reply content
 	 * @param {string} format Reply content format
+	 * @param {Object} [captcha] CAPTCHA information
 	 * @return {jQuery.Promise} Promise that is resolved with the id of the workflow
 	 *  that this reply belongs to
 	 */
-	mw.flow.dm.APIHandler.prototype.saveReply = function ( topicId, replyTo, content, format ) {
+	mw.flow.dm.APIHandler.prototype.saveReply = function ( topicId, replyTo, content, format, captcha ) {
 		var params = {
 			action: 'flow',
 			submodule: 'reply',
@@ -130,6 +146,8 @@
 			repcontent: content,
 			repformat: format
 		};
+
+		this.addCaptcha( params, captcha );
 
 		return ( new mw.Api() ).postWithToken( 'edit', params )
 			.then( function ( data ) {
@@ -143,9 +161,10 @@
 	 * @param {string} title Topic title
 	 * @param {string} content Topic content
 	 * @param {string} format Content format
+	 * @param {Object} [captcha] CAPTCHA information
 	 * @return {jQuery.Promise} Promise that is resolved with the new topic id
 	 */
-	mw.flow.dm.APIHandler.prototype.saveNewTopic = function ( title, content, format ) {
+	mw.flow.dm.APIHandler.prototype.saveNewTopic = function ( title, content, format, captcha ) {
 		var params = {
 			action: 'flow',
 			submodule: 'new-topic',
@@ -154,6 +173,8 @@
 			ntcontent: content,
 			ntformat: format
 		};
+
+		this.addCaptcha( params, captcha );
 
 		return ( new mw.Api() ).postWithToken( 'edit', params )
 			.then( function ( response ) {
@@ -183,10 +204,11 @@
 	 * Save header information.
 	 *
 	 * @param {string} content Header content
-	 * @param {string} [format='fixed-html'] Content format for board description
+	 * @param {string} format Content format for board description
+	 * @param {string} [captcha] CAPTCHA information
 	 * @return {jQuery.Promise} Promise that is resolved with the saved header revision id
 	 */
-	mw.flow.dm.APIHandler.prototype.saveDescription = function ( content, format ) {
+	mw.flow.dm.APIHandler.prototype.saveDescription = function ( content, format, captcha ) {
 		var xhr,
 			params = {
 				page: this.page,
@@ -194,6 +216,8 @@
 				ehformat: format,
 				ehprev_revision: this.currentRevision
 			};
+
+		this.addCaptcha( params, captcha );
 
 		// return ( new mw.Api() ).postWithToken( 'edit', params )
 		xhr = this.postEdit( 'edit-header', params )
