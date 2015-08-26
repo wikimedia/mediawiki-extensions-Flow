@@ -60,6 +60,8 @@ class ConversionStrategy implements IConversionStrategy {
 
 	const LQT_ENABLE_MAGIC_WORD_REGEX = '/{{\s*#useliquidthreads:\s*0*1\s*}}/i';
 
+	const LQT_DISABLE_MAGIC_WORD = '{{#useliquidthreads:0}}';
+
 	public function __construct(
 		DatabaseBase $dbw,
 		ImportSourceStore $sourceStore,
@@ -89,7 +91,6 @@ class ConversionStrategy implements IConversionStrategy {
 	}
 
 	public function isConversionFinished( Title $title, Title $movedFrom = null ) {
-		// After successful conversion we strip the LQT magic word
 		if ( LqtDispatch::isLqtPage( $title ) ) {
 			return false;
 		} else {
@@ -117,10 +118,8 @@ class ConversionStrategy implements IConversionStrategy {
 	}
 
 	/**
-	 * Creates a new revision that strips the LQT magic word (if any) and injects a
-	 * template about the move. With the magic word stripped, these pages will no
-	 * longer contain the use-liquid-threads page property.  Unless LQT applies for an
-	 * additional reason ($wgLqtTalkPages, $wgLqtNamespaces, $wgLqtPages), they will
+	 * Creates a new revision that ensures the LQT magic word is there and turning LQT off.
+	 * It also adds a template about the move.
 	 * effectively no longer be LQT pages.
 	 *
 	 * @param WikitextContent $content
@@ -138,6 +137,8 @@ class ConversionStrategy implements IConversionStrategy {
 			'',
 			$content->getNativeData()
 		);
+		$newWikitext = self::LQT_DISABLE_MAGIC_WORD . "\n\n" . $newWikitext;
+
 		$template = wfMessage( 'flow-importer-lqt-converted-archive-template' )->inContentLanguage()->plain();
 		$newWikitext = "{{{$template}|$arguments}}\n\n" . $newWikitext;
 

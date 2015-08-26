@@ -85,14 +85,14 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 			array(
 				'Blank input page',
 				// expect
-				"{{Archive for converted LQT page|from=Talk:Blue birds|date=$date}}\n\n",
+				"{{Archive for converted LQT page|from=Talk:Blue birds|date=$date}}\n\n{{#useliquidthreads:0}}\n\n",
 				// input content
 				'',
 			),
 			array(
 				'Page containing lqt magic word',
 				// expect
-				"{{Archive for converted LQT page|from=Talk:Blue birds|date=$date}}\n\n",
+				"{{Archive for converted LQT page|from=Talk:Blue birds|date=$date}}\n\n{{#useliquidthreads:0}}\n\n",
 				// input content
 				'{{#useliquidthreads:1}}',
 			),
@@ -102,6 +102,8 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 				// expect
 				<<<EOD
 {{Archive for converted LQT page|from=Talk:Blue birds|date=$date}}
+
+{{#useliquidthreads:0}}
 
 Four score and seven years ago our fathers brought forth
 on this continent, a new nation, conceived in Liberty, and

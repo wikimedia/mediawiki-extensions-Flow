@@ -4,6 +4,7 @@ use Flow\Container;
 use Flow\Import\FileImportSourceStore;
 use Flow\Import\LiquidThreadsApi\ConversionStrategy;
 use Flow\Import\LiquidThreadsApi\LocalApiBackend;
+use Flow\Utils\NamespaceIterator;
 use Flow\Utils\PagesWithPropertyIterator;
 use Psr\Log\LogLevel;
 
@@ -16,14 +17,12 @@ require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
  * option this process is idempotent.It may be run many times and will only import
  * one copy of each item.
  */
-class ConvertLqt extends Maintenance {
+class ConvertAllLqtPages extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Converts LiquidThreads data to Flow data";
 		$this->addOption( 'logfile', 'File to read and store associations between imported items and their sources. This is required for the import to be idempotent.', true, true );
 		$this->addOption( 'debug', 'Include debug information with progress report' );
-		$this->addOption( 'startId', 'Page id to start importing at (inclusive)' );
-		$this->addOption( 'stopId', 'Page id to stop importing at (exclusive)' );
 	}
 
 	public function execute() {
@@ -55,15 +54,38 @@ class ConvertLqt extends Maintenance {
 			$strategy
 		);
 
-		$startId = $this->getOption( 'startId' );
-		$stopId = $this->getOption( 'stopId' );
+		$titles = $this->buildIterator( $logger, $dbw );
 
-		$logger->info( "Starting full wiki LQT conversion of all pages with use-liquid-threads property" );
-		$titles = new PagesWithPropertyIterator( $dbw, 'use-liquid-threads', $startId, $stopId );
+		$logger->info( "Starting full wiki LQT conversion of all LiquidThreads pages" );
 		$converter->convertAll( $titles );
 		$logger->info( "Finished conversion" );
 	}
+
+	/**
+	 * @param $logger
+	 * @param $dbw
+	 * @return AppendIterator
+	 */
+	private function buildIterator( $logger, $dbw ) {
+		global $wgLqtTalkPages;
+
+		$iterator = new AppendIterator();
+
+		$logger->info( "Considering for conversion: pages with the 'use-liquid-threads' property" );
+		$withProperty = new PagesWithPropertyIterator( $dbw, 'use-liquid-threads' );
+		$iterator->append( $withProperty->getIterator() );
+
+		if ( $wgLqtTalkPages ) {
+			foreach ( MWNamespace::getTalkNamespaces() as $ns ) {
+				$logger->info( "Considering for conversion: pages in namespace $ns" );
+				$it = new NamespaceIterator( $dbw, $ns );
+				$iterator->append( $it->getIterator() );
+			}
+		}
+
+		return $iterator;
+	}
 }
 
-$maintClass = "ConvertLqt";
+$maintClass = "ConvertAllLqtPages";
 require_once ( RUN_MAINTENANCE_IF_MAIN );
