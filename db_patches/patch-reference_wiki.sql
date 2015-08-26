@@ -5,7 +5,7 @@
 ALTER TABLE /*_*/flow_wiki_ref ADD COLUMN ref_src_wiki varchar(16) binary not null;
 
 -- Drop indexes for adjustment
-DROP INDEX /*i*//flow_wiki_ref_idx ON /*_*/flow_wiki_ref;
+DROP INDEX /*i*/flow_wiki_ref_idx ON /*_*/flow_wiki_ref;
 DROP INDEX /*i*/flow_wiki_ref_revision ON /*_*/flow_wiki_ref;
 
 -- Populate header and summary references with the appropriate wiki
