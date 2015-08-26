@@ -13,7 +13,8 @@ class TalkpageManagerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideIsTalkpageOccupied
 	 */
 	public function testIsTalkpageOccupied( array $ns, Title $title, $checkContentModel, $expected ) {
-		$manager = new TalkpageManager( $ns );
+		$this->setMwGlobals( 'wgNamespaceContentModels', $ns );
+		$manager = new TalkpageManager();
 		$actual = $manager->isTalkpageOccupied( $title, $checkContentModel );
 		$this->assertEquals( $expected, $actual );
 	}
@@ -35,49 +36,49 @@ class TalkpageManagerTest extends MediaWikiLangTestCase {
 	public function provideIsTalkpageOccupied() {
 		return array(
 			array(
-				array( NS_USER_TALK ),
+				array( NS_USER_TALK => CONTENT_MODEL_FLOW_BOARD ),
 				Title::newFromText( 'User talk:Foo Bar' ),
 				false,
 				true
 			),
 			array(
-				array( NS_USER_TALK ),
+				array( NS_USER_TALK => CONTENT_MODEL_FLOW_BOARD ),
 				Title::newFromText( 'User talk:Foo/Bar' ),
 				false,
 				true
 			),
 			array(
-				array( NS_USER_TALK ),
+				array( NS_USER_TALK => CONTENT_MODEL_FLOW_BOARD ),
 				Title::newFromText( 'Talk:Foo Bar' ),
 				false,
 				false
 			),
 			array(
-				array( NS_USER_TALK ),
+				array( NS_USER_TALK => CONTENT_MODEL_FLOW_BOARD ),
 				$this->getMockTitle( false, 'wikitext', NS_USER_TALK, 'User talk:FooBar' ),
 				true,
 				true
 			),
 			array(
-				array( NS_USER_TALK ),
+				array( NS_USER_TALK => CONTENT_MODEL_FLOW_BOARD ),
 				$this->getMockTitle( false, 'wikitext', NS_USER_TALK, 'User talk:Foo/Bar' ),
 				true,
 				true
 			),
 			array(
-				array( NS_USER_TALK ),
+				array( NS_USER_TALK => CONTENT_MODEL_FLOW_BOARD ),
 				$this->getMockTitle( true, 'wikitext', NS_USER_TALK, 'User talk:FooBar' ),
 				true,
 				false
 			),
 			array(
-				array( NS_USER_TALK ),
+				array( NS_USER_TALK => CONTENT_MODEL_FLOW_BOARD ),
 				$this->getMockTitle( true, 'wikitext', NS_USER_TALK, 'User talk:Foo/Bar' ),
 				true,
 				false
 			),
 			array(
-				array( NS_TALK ),
+				array( NS_TALK => CONTENT_MODEL_FLOW_BOARD ),
 				$this->getMockTitle( false, 'wikitext', NS_USER_TALK, 'User talk:FooBar' ),
 				true,
 				false

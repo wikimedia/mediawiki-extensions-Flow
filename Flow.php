@@ -279,9 +279,6 @@ $wgDefaultUserOptions['flow-side-rail-state'] = 'expanded';
 // Maximum number of users that can be mentioned in one comment
 $wgFlowMaxMentionCount = 100;
 
-// Namespaces to occupy is an array of NS_* constants, e.g. array( NS_USER_TALK ).
-$wgFlowOccupyNamespaces = array();
-
 // Max threading depth
 $wgFlowMaxThreadingDepth = 8;
 
