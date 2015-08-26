@@ -119,7 +119,7 @@
 					var content = OO.getProp( desc, 'content', 'content' ),
 						format = OO.getProp( desc, 'content', 'format' );
 
-					if ( content && format ) {
+					if ( content !== undefined && format !== undefined ) {
 						// Give it to the editor
 						widget.editor.setContent( content, format );
 
