@@ -58,6 +58,7 @@ class ImportSource implements IImportSource {
 	/**
 	 * @param ApiBackend $apiBackend
 	 * @param string $pageName
+	 * @param User $scriptUser
 	 */
 	public function __construct( ApiBackend $apiBackend, $pageName, User $scriptUser ) {
 		$this->api = $apiBackend;

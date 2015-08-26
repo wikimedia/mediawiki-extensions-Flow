@@ -531,6 +531,7 @@ class ImportHeader extends PageRevisionedObject implements IImportHeader {
 			'',
 			$wikitextForLastRevision
 		);
+		$newWikitext = ConversionStrategy::LQT_DISABLE_MAGIC_WORD . "\n\n" . $newWikitext;
 		$templateName = wfMessage( 'flow-importer-lqt-converted-template' )->inContentLanguage()->plain();
 		$arguments = implode( '|', array(
 			'archive=' . $archiveTitle->getPrefixedText(),
