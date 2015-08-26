@@ -4,10 +4,6 @@ Given(/^I have suppressed and restored the first topic$/) do
   step 'I undo the suppression'
 end
 
-When(/^I click the Suppress topic button$/) do
-  on(FlowPage).topic_suppress_button_element.when_present.click
-end
-
 When(/^I click Suppress topic$/) do
   on(FlowPage).dialog_submit_suppress_element.when_present.click
 end
@@ -19,9 +15,16 @@ When(/^I undo the suppression$/) do
   end
 end
 
+When(/^I select to suppress the first topic$/) do
+  on(FlowPage) do |page|
+    menu = page.topic_actions_link_element
+    option = page.topic_suppress_button_element
+    page.select_menu_option menu, option
+  end
+end
+
 When(/^I suppress the first topic with reason "(.*?)"$/) do |reason|
-  step 'I hover on the Topic Actions link'
-  step 'I click the Suppress topic button'
+  step 'I select to suppress the first topic'
   step 'I see a dialog box'
   step "I type \"#{reason}\" in the dialog box"
   step 'I click Suppress topic'

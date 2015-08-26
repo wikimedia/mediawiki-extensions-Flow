@@ -61,8 +61,12 @@ When(/^topic "(.+)" is saved$/) do |title|
   end
 end
 
-When(/^I click the Delete topic button$/) do
-  on(FlowPage).topic_delete_button_element.when_present.click
+When(/^I select the Delete topic button$/) do
+  on(FlowPage) do |page|
+    menu = page.topic_actions_link_element
+    option = page.topic_delete_button_element
+    page.select_menu_option menu, option
+  end
 end
 
 When(/^I click the flow creator element$/) do
@@ -73,18 +77,7 @@ When(/^I click the Hide topic button$/) do
   on(FlowPage).topic_hide_button_element.when_present.click
 end
 
-When(/^I hover on the Post Actions link$/) do
-  on(FlowPage).scroll_to_top
-  on(FlowPage).post_actions_link_element.when_present.hover
-end
-
-When(/^I hover on the Topic Actions link$/) do
-  on(FlowPage).scroll_to_top
-  on(FlowPage).topic_actions_link_element.when_present.hover
-end
-
 When(/^I hover over the author link$/) do
-  on(FlowPage).scroll_to_top
   on(FlowPage).author_link_element.hover
 end
 
@@ -119,13 +112,16 @@ When(/^I visit the board history page$/) do
 end
 
 When(/^I visit the topic history page$/) do
-  step 'I hover on the Topic Actions link'
-  step 'I click History from the Actions menu'
+  step 'I select History from the Actions menu'
   on(TopicHistoryPage).flow_topic_history_element.when_present
 end
 
-When(/^I click History from the Actions menu$/) do
-  on(FlowPage).topic_history_button_element.when_present.click
+When(/^I select History from the Actions menu$/) do
+  on(FlowPage) do |page|
+    menu = page.topic_actions_link_element
+    option = page.topic_history_button_element
+    page.select_menu_option menu, option
+  end
 end
 
 Then(/^I am on my user page$/) do

@@ -5,10 +5,19 @@ When(/^I add (\d+) comments to the Topic$/) do |number|
   end
 end
 
+When(/^I select the permalink for the first post of the first topic$/) do
+  on(FlowPage) do |page|
+    menu = page.post_actions_link_element
+    option = page.permalink_button_element
+    page.select_menu_option menu, option
+  end
+end
+
 When(/^I select the permalink for the second post of the first topic$/) do
   on(FlowPage) do |page|
-    page.second_post_actions_link_element.when_present.click
-    page.actions_link_permalink_second_comment_element.when_present.click
+    menu = page.second_post_actions_link_element
+    option = page.actions_link_permalink_second_comment_element
+    page.select_menu_option menu, option
   end
 end
 
@@ -18,14 +27,6 @@ end
 
 When(/^I click Permalink from the 3rd comment Post Actions menu$/) do
   on(FlowPage).actions_link_permalink_3rd_comment_element.when_present.click
-end
-
-When(/^I hover on the Post Actions link on the 3rd comment on the topic$/) do
-  on(FlowPage) do |page|
-    page.scroll_to_top
-    page.third_post_actions_link_element.when_present.focus
-    page.third_post_actions_link_element.click
-  end
 end
 
 When(/^I go to an old style permalink to my topic$/) do
