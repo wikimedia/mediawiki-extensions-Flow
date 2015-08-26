@@ -5,6 +5,13 @@ class AbstractFlowPage < WikiPage
 
   page_section(:description, BoardDescription, class: 'flow-board-header')
 
+  def select_menu_option(menu, option)
+    menu.when_present.click
+    option.scroll_into_view
+    menu.when_present.click
+    option.when_present.click
+  end
+
   # board component
   div(:flow_component, class: 'flow-component')
   div(:flow_board, class: 'flow-board')
@@ -154,6 +161,9 @@ class AbstractFlowPage < WikiPage
   ### First post of first topic actions menu
   a(:post_actions_link, css: ".flow-topic .flow-post .flow-menu-js-drop a", index: 0)
   ul(:post_actions_menu, css: ".flow-topic .flow-post .flow-menu ul", index: 0)
+  a(:permalink_button) do |page|
+    page.post_actions_menu_element.link_element(text: "Permalink")
+  end
   a(:hide_button) do |page|
     page.post_actions_menu_element.link_element(title: "Hide")
   end
@@ -238,10 +248,12 @@ class AbstractFlowPage < WikiPage
   # top-level replies to the topic, and replies to regular posts
   form(:new_reply_form, css: ".flow-reply-form")
 
-  div(:new_reply_placeholder, class: 'flow-ui-replyWidget')
-
   div(:first_reply_widget) do
     flow_first_topic_element.div_element(class: 'flow-ui-replyWidget')
+  end
+
+  div(:first_reply_placeholder) do
+    first_reply_widget_element.text_field_element
   end
 
   def new_reply_editor_element
@@ -283,8 +295,8 @@ class AbstractFlowPage < WikiPage
   div(:sorting, class: 'flow-ui-reorderTopicsWidget')
   link(:newest_topics_link, text: "Newest topics")
   link(:recently_active_topics_link, text: "Recently active topics")
-  div(:newest_topics_choice, text: "Newest topics")
-  div(:recently_active_topics_choice, text: "Recently active topics")
+  span(:newest_topics_choice, text: "Newest topics")
+  span(:recently_active_topics_choice, text: "Recently active topics")
 
   ## Watch and unwatch links
   div(:first_topic_watchlist_container, css: ".flow-topic-watchlist", index: 0)

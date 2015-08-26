@@ -9,8 +9,7 @@ Feature: Moderation
     And I am on Flow page
 
   Scenario: Deleting a topic
-    When I hover on the Topic Actions link
-    And I click the Delete topic button
+    When I select the Delete topic button
     And I see a dialog box
     And I give reason for deletion as being "He's a naughty boy"
     And I click Delete topic

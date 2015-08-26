@@ -8,8 +8,7 @@ Feature: Actions menu Permalink
     And I am on Flow page
 
   Scenario: Topic Actions menu Permalink
-    When I hover on the Topic Actions link
-    And I click Permalink from the Actions menu
+    When I select the permalink for the first post of the first topic
     And I am viewing Topic page
     Then I see only one topic on the page
     And the top post should have a heading which contains "Permalinktest"

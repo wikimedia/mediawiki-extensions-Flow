@@ -1,8 +1,9 @@
 
 When(/^I mark the first topic as resolved$/) do
   on(FlowPage) do |page|
-    page.topic_actions_link_element.when_present.click
-    page.topic_resolve_button_element.when_present.click
+    menu = page.topic_actions_link_element
+    option = page.topic_resolve_button_element
+    page.select_menu_option menu, option
 
     # dismiss the menu
     page.edit_summary_element.when_present.click
@@ -12,8 +13,9 @@ end
 
 When(/^I reopen the first topic$/) do
   on(FlowPage) do |page|
-    page.topic_actions_link_element.when_present.click
-    page.topic_reopen_button_element.when_present.click
+    menu = page.topic_actions_link_element
+    option = page.topic_reopen_button_element
+    page.select_menu_option menu, option
 
     # dismiss the menu
     page.edit_summary_element.when_present.click
@@ -57,8 +59,9 @@ end
 
 When(/^I click the summarize menu item$/) do
   on(FlowPage) do |page|
-    page.topic_actions_link_element.when_present.click
-    page.topic_summarize_button_element.when_present.click
+    menu = page.topic_actions_link_element
+    option = page.topic_summarize_button_element
+    page.select_menu_option menu, option
   end
 end
 

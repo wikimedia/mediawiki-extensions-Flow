@@ -19,16 +19,3 @@ Feature: Create new topic logged in
     When I hover over the author link
     Then the talk to author link should be visible
     And the block author link should be visible
-
-  # todo: replace with actual tests on those actions
-  Scenario: Post Actions
-    When I hover on the Post Actions link
-    Then I should see a Hide button
-    And I should see a Delete button
-    And I should see a Suppress button
-
-  Scenario: Topic Actions
-    When I hover on the Topic Actions link
-    Then I should see a Hide topic button
-    And I should see a Delete topic button
-    And I should see a Suppress topic button

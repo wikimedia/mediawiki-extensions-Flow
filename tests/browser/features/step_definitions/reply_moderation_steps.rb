@@ -14,8 +14,9 @@ end
 
 When(/^I hide the second comment with reason "(.*?)"$/) do |reason|
   on(FlowPage) do |page|
-    page.second_post_actions_link_element.when_present.click
-    page.actions_link_hide_second_comment_element.when_present.click
+    menu = page.second_post_actions_link_element
+    option = page.actions_link_hide_second_comment_element
+    page.select_menu_option menu, option
   end
   step "I type \"#{reason}\" in the dialog box"
   step 'I click the Hide button in the dialog'
