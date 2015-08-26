@@ -324,7 +324,7 @@
 	"action-flow-create-board": "создание досок Flow в любом месте",
 	"right-flow-create-board": "создание досок Flow в любом месте",
 	"right-flow-hide": "скрытие тем и сообщений Flow",
-	"right-flow-lock": "Закрывать Flow-темы",
+	"right-flow-lock": "пометка Flow-тем как завершённых",
 	"right-flow-delete": "Удалять темы и сообщения Flow",
 	"right-flow-edit-post": "правка Flow-сообщений других участников",
 	"right-flow-suppress": "подавление версий Flow",
