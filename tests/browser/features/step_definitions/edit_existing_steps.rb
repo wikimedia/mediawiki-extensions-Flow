@@ -1,12 +1,16 @@
-When(/^I click Edit post$/) do
+When(/^I select Edit post$/) do
   on(FlowPage) do |page|
-    page.edit_post_button_element.when_present.click
+    menu = page.post_actions_link_element
+    option = page.edit_post_button_element
+    page.select_menu_option menu, option
   end
 end
 
-When(/^I click the Edit title action$/) do
+When(/^I select the Edit title action$/) do
   on(FlowPage) do |page|
-    page.edit_title_button_element.when_present.click
+    menu = page.topic_actions_link_element
+    option = page.edit_title_button_element
+    page.select_menu_option menu, option
   end
 end
 
