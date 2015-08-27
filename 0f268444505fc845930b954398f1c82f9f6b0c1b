@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_c06dba96",
+        "filename": "Hooks.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 1617,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-27T13:42:15Z",
+      "side": 1,
+      "message": "Can just as well do:\n\n    global $wgExtensionAssetsPath, $wgFlowEnableOptInBetaFeature;",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_601406ee",
+        "filename": "Hooks.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 1629,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-27T13:42:15Z",
+      "side": 1,
+      "message": "Should probably auto-create these pages - they\u0027ll be missing from most wikis.\nSlightly alter maintenance script in https://gerrit.wikimedia.org/r/#/c/232489/ to allow creation of more than just pages inside Template namespace \u0026 add these 2?",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_60fde6ad",
+        "filename": "Hooks.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 1631,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-27T13:42:15Z",
+      "side": 1,
+      "message": "From https://www.mediawiki.org/wiki/Manual:Hooks\n\n    Event handlers can return one of three possible values:\n    * true: the hook has operated successfully\n    * \"some string\": an error occurred; processing should stop and the error should be shown to the user\n    * false: the hook has successfully done the work necessary and the calling function should skip\n\nThe code doesn\u0027t explicitly expect a \u0027true\u0027 value (it\u0027ll check for string and false) so it\u0027ll work just fine, but should probably still return true none the less. Don\u0027t forget to also update phpdoc @return.",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_20035e7b",
+        "filename": "includes/Import/ArchiveNameHelper.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-27T13:42:15Z",
+      "side": 1,
+      "message": "Can we make this a proper object instead of statics?\n\n    $archiveNameHelper \u003d new ArchiveNameHelper( array( \u0027%s/LQT Archive %d\u0027 ) );\n\n    ...\n\n    $title \u003d $archiveNameHelper-\u003edecideArchiveTitle( $source );",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_8080128f",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-27T13:42:15Z",
+      "side": 1,
+      "message": "Not yet sure where the problem is (and looks like it already existed in Special:EnableFlow too).\n\nIt looks like the content of the converted flow-board page is not entirely correct. It should be a json string with the workflow-id in there, but there doesn\u0027t seem to be any content.\n\nThat also means that the BoardContent object won\u0027t work properly. E.g., when trying to access ?action\u003ddelete, you\u0027ll get a fatal error because BoardContent::$workflowId is null (it should\u0027ve read it from DB)\n\nI haven\u0027t yet figured out why it\u0027s happening, just wanted to point it out. For all I know, my recent TalkPageManager changes broke this :p",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_808a52be",
+        "filename": "includes/Import/TemplateHelper.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-27T13:42:15Z",
+      "side": 1,
+      "message": "Any chance this one could be turned into a Flow\\Parsoid\\Fixer\\... thingy?\nWe\u0027ll need pretty similar functionality soon: https://phabricator.wikimedia.org/T110261\n\n(Doesn\u0027t have to be changed as part of this patch - we can do that later)\n\nUsage in OptInController could then be:\n\n    $fixer \u003d new Flow\\Parsoid\\ContentFixer( new Flow\\Parsoid\\Fixer\\TemplateRemover( $templateName ) );\n    $fixer-\u003eapply( $content, $title );\n\nFixer could look like (quickly thrown together - untested):\n\n    namespace Flow\\Parsoid\\Fixer;\n    \n    use Flow\\Parsoid\\Fixer;\n    \n    class TemplateRemover implements Fixer {\n        protected $templateName;\n    \n        public function __construct( $templateName ) {\n            $this-\u003etemplateName \u003d $templateName;\n        }\n    \n        public function getXPath() {\n            return \u0027//*[@typeof\u003d\"mw:Transclusion\"]\u0027;\n        }\n    \n        public function apply( \\DOMNode $node, \\Title $title ) {\n            /** @var \\DOMElement $templateNode */\n            if ( !$templateNode-\u003ehasAttribute( \u0027data-mw\u0027 ) ) {\n                return;\n            }\n    \n            $name \u003d $this-\u003egetTemplateName( $templateNode-\u003egetAttribute( \u0027data-mw\u0027 ) );\n            if ( $name !\u003d\u003d $this-\u003etemplateName ) {\n                return;\n            }\n    \n            $templateNode-\u003eparentNode-\u003eremoveChild( $templateNode );\n    \n            // @todo about nodes?\n        }\n    \n        protected function getTemplateName( $dataMW ) {\n            try {\n                $mwAttr \u003d json_decode( $dataMW );\n                return $mwAttr-\u003eparts[0]-\u003etemplate-\u003etarget-\u003ewt;\n            } catch ( \\Exception $e ) {\n                return null;\n            }\n        }\n    \n        // @todo about nodes?\n    }",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_c084dab6",
+        "filename": "includes/Import/TemplateHelper.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-27T13:42:15Z",
+      "side": 1,
+      "message": "Probably a stupid question, but I\u0027m confused.\nIf the $tempateNode matches $templateName, $tempateNode is removed.\nThen, we check if $tempateNode has a particular child node and, if yes, remove that too? Isn\u0027t that already removed along with the removal of $tempateNode?",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_a073ce12",
+        "filename": "includes/Import/TemplateHelper.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-27T13:42:15Z",
+      "side": 1,
+      "message": "@return string|null",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_40f22a6c",
+        "filename": "includes/Import/TemplateHelper.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-27T13:42:15Z",
+      "side": 1,
+      "message": "Typehint: ( \\DOMDocument $dom, $about )",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_40930a53",
+        "filename": "maintenance/FlowUpdateBetaFeaturePreference.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-27T13:42:15Z",
+      "side": 1,
+      "message": "Not a big deal since it\u0027s only a maintenance script.\nI have a feeling another (outer) join would be better here instead of the subquery.\n\n\nThis should be the current query:\n\n    SELECT user_id FROM page\n    JOIN user ON page_namespace \u003d 3 AND page_title \u003d REPLACE(user_name, \u0027 \u0027, \u0027_\u0027)\n    WHERE page_content_model \u003d \u0027flow-board\u0027\n        AND user_id NOT IN (\n            SELECT up_user\n            FROM user_properties\n            WHERE up_property \u003d \u0027beta-feature-flow-user-talk-page\u0027 AND up_value \u003d \u00271\u0027\n        );\n\nI believe (didn\u0027t check) this one should be more efficient:\n\n    SELECT user_id FROM page\n    JOIN user ON page_namespace \u003d 3 AND page_title \u003d REPLACE(user_name, \u0027 \u0027, \u0027_\u0027)\n    LEFT JOIN user_properties ON up_user \u003d user_id AND up_property \u003d \u0027beta-feature-flow-user-talk-page\u0027 AND up_value \u003d \u00271\u0027\n    WHERE page_content_model \u003d \u0027flow-board\u0027 AND up_property IS NULL;\n\nThe left join would allow us to join up_properties even if the ON conditions aren\u0027t matched. We can then easily check if those columns are null (when they didn\u0027t match)",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_c09e1a58",
+        "filename": "maintenance/FlowUpdateBetaFeaturePreference.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-27T13:42:15Z",
+      "side": 1,
+      "message": "You probably want to add a wfWaitForSlaves() in here every x users, to make sure we don\u0027t flood master DB and give slaves a chance to catch up.",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
