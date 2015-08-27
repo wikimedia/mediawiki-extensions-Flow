@@ -1,0 +1,225 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_fe85f2d3",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-27T22:33:11Z",
+      "side": 1,
+      "message": "This doesn\u0027t belong in this patch. Rebase snafu?",
+      "revId": "212a3b6befc47c382ad408ebafa8ec71182e7a4a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_1e8b1ee9",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-27T22:33:11Z",
+      "side": 1,
+      "message": "I had seen footegory, bartegory and mootegory, but not dategory ;)",
+      "revId": "212a3b6befc47c382ad408ebafa8ec71182e7a4a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_7e7902f1",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIHandler.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-27T22:33:11Z",
+      "side": 1,
+      "message": "Indent",
+      "revId": "212a3b6befc47c382ad408ebafa8ec71182e7a4a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_3e67fa4b",
+        "filename": "modules/flow/dm/mw.flow.dm.Board.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-27T22:33:11Z",
+      "side": 1,
+      "message": "This cannot be true. this.categories has an .addItems() method according ot the method above, so it cannot be an array.",
+      "revId": "212a3b6befc47c382ad408ebafa8ec71182e7a4a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_fe5c1284",
+        "filename": "modules/flow/dm/mw.flow.dm.Categories.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-27T22:33:11Z",
+      "side": 1,
+      "message": "And EventEmitter",
+      "revId": "212a3b6befc47c382ad408ebafa8ec71182e7a4a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_1e623e37",
+        "filename": "modules/flow/dm/mw.flow.dm.CategoryItem.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-27T22:33:11Z",
+      "side": 1,
+      "message": "Document the name parameter",
+      "revId": "212a3b6befc47c382ad408ebafa8ec71182e7a4a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_de57d659",
+        "filename": "modules/flow/dm/mw.flow.dm.CategoryItem.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-27T22:33:11Z",
+      "side": 1,
+      "message": "Document",
+      "revId": "212a3b6befc47c382ad408ebafa8ec71182e7a4a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_7e502261",
+        "filename": "modules/flow/dm/mw.flow.dm.CategoryItem.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-27T22:33:11Z",
+      "side": 1,
+      "message": "Document",
+      "revId": "212a3b6befc47c382ad408ebafa8ec71182e7a4a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_3ec61a1b",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-27T22:33:11Z",
+      "side": 1,
+      "message": "AKA this.categoriesWidget.toggle( false );",
+      "revId": "212a3b6befc47c382ad408ebafa8ec71182e7a4a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_fecbb21e",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-27T22:33:11Z",
+      "side": 1,
+      "message": "this.categoriesWidget.toggle( true );",
+      "revId": "212a3b6befc47c382ad408ebafa8ec71182e7a4a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_1ed1decf",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.CategoriesWidget.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-27T22:33:11Z",
+      "side": 1,
+      "message": "@mixins",
+      "revId": "212a3b6befc47c382ad408ebafa8ec71182e7a4a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_7edfc2db",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.CategoryItemWidget.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-27T22:33:11Z",
+      "side": 1,
+      "message": "Document config param",
+      "revId": "212a3b6befc47c382ad408ebafa8ec71182e7a4a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_fee2d296",
+        "filename": "modules/styles/flow/widgets/mw.flow.ui.CategoriesWidget.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-08-27T22:33:11Z",
+      "side": 1,
+      "message": "This is all duplicated from header.less, it would be nice to reduce that duplication. Maybe by using comma selectors, or maybe by changing the DOM of the OOUI widgets to follow the ul/li pattern.",
+      "revId": "212a3b6befc47c382ad408ebafa8ec71182e7a4a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
