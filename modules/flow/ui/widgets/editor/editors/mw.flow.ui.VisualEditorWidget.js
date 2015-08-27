@@ -148,15 +148,8 @@
 	 * @inheritdoc
 	 */
 	mw.flow.ui.VisualEditorWidget.prototype.moveCursorToEnd = function () {
-		if ( !this.target ) {
-			return;
-		}
-
-		var data = this.target.surface.getModel().getDocument().data,
-			cursorPos = data.getNearestContentOffset( data.getLength(), -1 );
-
-		if ( cursorPos !== -1 ) {
-			this.target.surface.getModel().setLinearSelection( new ve.Range( cursorPos ) );
+		if ( this.target ) {
+			this.target.getSurface().getModel().selectLastContentOffset();
 		}
 	};
 
