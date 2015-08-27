@@ -136,6 +136,15 @@
 	};
 
 	/**
+	 * Check whether an editor is available.
+	 * @param {string} editorName Name of editor
+	 * @return {boolean} Editor is available
+	 */
+	mw.flow.ui.EditorSwitcherWidget.prototype.isEditorAvailable = function ( editorName ) {
+		return this.availableEditors.indexOf( editorName ) !== -1;
+	};
+
+	/**
 	 * Get the next editor after the currently active one.
 	 * @return {string} Name of the next editor
 	 */
@@ -196,7 +205,7 @@
 	 * @fires switch
 	 */
 	mw.flow.ui.EditorSwitcherWidget.prototype.switchEditor = function ( name ) {
-		if ( this.availableEditors.indexOf( name ) === -1 ) {
+		if ( !this.isEditorAvailable( name ) ) {
 			return $.Deferred().reject().promise();
 		}
 
