@@ -54,7 +54,6 @@ class FlowAction extends Action {
 	 */
 	public function showForAction( $action, OutputPage $output = null ) {
 		$container = Container::getContainer();
-		$occupationController = \FlowHooks::getOccupationController();
 
 		if ( $output === null ) {
 			$output = $this->context->getOutput();
@@ -66,7 +65,7 @@ class FlowAction extends Action {
 		}
 
 		$title = $this->page->getTitle();
-		if ( ! $occupationController->isTalkpageOccupied( $title ) ) {
+		if ( $title->getContentModel() !== CONTENT_MODEL_FLOW_BOARD ) {
 			throw new ErrorPageError( 'nosuchaction', 'flow-action-unsupported' );
 		}
 

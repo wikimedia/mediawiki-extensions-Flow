@@ -361,7 +361,6 @@ $wgAutoloadClasses += array(
 	'Flow\\Tests\\SpamFilter\\ContentLengthFilterTest' => __DIR__ . '/tests/phpunit/SpamFilter/ContentLengthFilterTest.php',
 	'Flow\\Tests\\SpamFilter\\SpamBlacklistTest' => __DIR__ . '/tests/phpunit/SpamFilter/SpamBlacklistTest.php',
 	'Flow\\Tests\\SpamFilter\\SpamRegexTest' => __DIR__ . '/tests/phpunit/SpamFilter/SpamRegexTest.php',
-	'Flow\\Tests\\TalkpageManagerTest' => __DIR__ . '/tests/phpunit/TalkpageManagerTest.php',
 	'Flow\\Tests\\TemplateHelperTest' => __DIR__ . '/tests/phpunit/TemplateHelperTest.php',
 	'Flow\\Tests\\TemplatingTest' => __DIR__ . '/tests/phpunit/TemplatingTest.php',
 	'Flow\\Tests\\UrlGeneratorTest' => __DIR__ . '/tests/phpunit/UrlGeneratorTest.php',

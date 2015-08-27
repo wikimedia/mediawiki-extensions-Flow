@@ -12,6 +12,11 @@ class ApiQueryPropFlowInfo extends ApiQueryBase {
 		parent::__construct( $query, $moduleName, 'fli' );
 	}
 
+	// Use action=query&prop=info instead; check for 'contentmodel' 'flow-board'.
+	public function isDeprecated() {
+		return true;
+	}
+
 	public function execute() {
 		$pageSet = $this->getPageSet();
 		/** @var Title $title */
@@ -27,10 +32,8 @@ class ApiQueryPropFlowInfo extends ApiQueryBase {
 	 * @return array
 	 */
 	protected function getPageInfo( Title $title ) {
-		/** @var \Flow\TalkpageManager $manager */
-		$manager = Container::get( 'occupation_controller' );
 		$result = array( 'flow' => array() );
-		if ( $manager->isTalkpageOccupied( $title ) ) {
+		if ( $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
 			$result['flow']['enabled'] = '';
 		}
 

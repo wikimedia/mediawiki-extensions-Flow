@@ -73,7 +73,7 @@ class SpecialEnableFlow extends FormSpecialPage {
 		// Canonicalize so the error or confirmation message looks nicer (no underscores).
 		$page = $title->getPrefixedText();
 
-		if ( $this->occupationController->isTalkpageOccupied( $title, true ) ) {
+		if ( $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
 			return Status::newFatal( 'flow-special-enableflow-board-already-exists', $page );
 		}
 
