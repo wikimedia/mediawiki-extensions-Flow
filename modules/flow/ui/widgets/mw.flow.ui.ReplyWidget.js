@@ -3,7 +3,7 @@
 	 * Flow reply widget
 	 *
 	 * @class
-	 * @extends OO.ui.Widget
+	 * @extends mw.flow.ui.ContentWidget
 	 *
 	 * @constructor
 	 * @param {string} topicId The id of the topic this reply belongs to
@@ -63,7 +63,7 @@
 
 	/* Initialization */
 
-	OO.inheritClass( mw.flow.ui.ReplyWidget, OO.ui.Widget );
+	OO.inheritClass( mw.flow.ui.ReplyWidget, mw.flow.ui.ContentWidget );
 
 	/* Events */
 
@@ -104,15 +104,9 @@
 	 */
 	mw.flow.ui.ReplyWidget.prototype.onEditorSaveContent = function ( content, format ) {
 		var widget = this,
-			$captchaField, captcha;
+			captcha;
 
-		$captchaField = this.error.$label.find( '[name="wpCaptchaWord"]' );
-		if ( $captchaField.length > 0 ) {
-			captcha = {
-				id: this.error.$label.find( '[name="wpCaptchaId"]' ).val(),
-				answer: $captchaField.val()
-			};
-		}
+		captcha = this.getCaptcha();
 
 		this.error.setLabel( '' );
 		this.error.toggle( false )
@@ -128,18 +122,7 @@
 				}
 				widget.emit( 'saveContent', workflow, content, format );
 			} )
-			.then( null, function ( errorCode, errorObj ) {
-				if ( /spamfilter$/.test( errorCode ) && errorObj.error.spamfilter === 'flow-spam-confirmedit-form' ) {
-					widget.error.setLabel(
-						// CAPTCHA form
-						new OO.ui.HtmlSnippet( errorObj.error.info )
-					);
-				} else {
-					widget.error.setLabel( errorObj.error && errorObj.error.info || errorObj.exception );
-				}
-
-				widget.error.toggle( true );
-			} )
+			.then( null, this.onSaveContentFailure.bind( this ) )
 			.always( function () {
 				widget.editor.popPending();
 			} );

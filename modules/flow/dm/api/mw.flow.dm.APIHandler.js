@@ -135,9 +135,10 @@
 	/**
 	 * Adds CAPTCHA to parameters if applicable
 	 *
-	 * @param {Object} captcha CAPTCHA object
-	 * @param {string} id CAPTCHA ID
-	 * @param {string} answer CAPTCHA answer (user-provided)
+	 * @param {Object} params API Parameters to add CAPTCHA information to
+	 * @param {Object|null} captcha CAPTCHA object
+	 * @param {string} captcha.id CAPTCHA ID
+	 * @param {string} captcha.answer CAPTCHA answer (user-provided)
 	 */
 	mw.flow.dm.APIHandler.prototype.addCaptcha = function ( params, captcha ) {
 		// TODO: Find a better way to plug this in.
@@ -236,7 +237,7 @@
 	 *
 	 * @param {string} content Header content
 	 * @param {string} format Content format for board description
-	 * @param {string} [captcha] CAPTCHA information
+	 * @param {Object} [captcha] CAPTCHA information
 	 * @return {jQuery.Promise} Promise that is resolved with the saved header revision id
 	 */
 	mw.flow.dm.APIHandler.prototype.saveDescription = function ( content, format, captcha ) {

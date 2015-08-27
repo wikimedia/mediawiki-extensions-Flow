@@ -3,7 +3,7 @@
 	 * Flow reply widget
 	 *
 	 * @class
-	 * @extends OO.ui.Widget
+	 * @extends mw.flow.ui.ContentWidget
 	 *
 	 * @constructor
 	 * @param {string} page The page name, including namespace, that the
@@ -81,7 +81,7 @@
 
 	/* Initialization */
 
-	OO.inheritClass( mw.flow.ui.NewTopicWidget, OO.ui.Widget );
+	OO.inheritClass( mw.flow.ui.NewTopicWidget, mw.flow.ui.ContentWidget );
 
 	/**
 	 * Update the state of the save button.
@@ -151,20 +151,13 @@
 	mw.flow.ui.NewTopicWidget.prototype.onEditorSaveContent = function ( content, format ) {
 		var widget = this,
 			title = this.title.getValue(),
-			$captchaField,
 			captcha;
 
 		this.editor.pushPending();
 		this.title.pushPending();
 		this.title.setDisabled( true );
 
-		$captchaField = this.error.$label.find( '[name="wpCaptchaWord"]' );
-		if ( $captchaField.length > 0 ) {
-			captcha = {
-				id: this.error.$label.find( '[name="wpCaptchaId"]' ).val(),
-				answer: $captchaField.val()
-			};
-		}
+		captcha = this.getCaptcha();
 
 		this.error.setLabel( '' );
 		this.error.toggle( false );
@@ -174,18 +167,7 @@
 				widget.toggleExpanded( false );
 				widget.emit( 'save', topicId );
 			} )
-			.then( null, function ( errorCode, errorObj ) {
-				if ( /spamfilter$/.test( errorCode ) && errorObj.error.spamfilter === 'flow-spam-confirmedit-form' ) {
-					widget.error.setLabel(
-						// CAPTCHA form
-						new OO.ui.HtmlSnippet( errorObj.error.info )
-					);
-				} else {
-					widget.error.setLabel( errorObj.error && errorObj.error.info || errorObj.exception );
-				}
-
-				widget.error.toggle( true );
-			} )
+			.then( null, this.onSaveContentFailure.bind( this ) )
 			.always( function () {
 				widget.editor.popPending();
 				widget.title.popPending();
