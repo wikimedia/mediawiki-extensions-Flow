@@ -126,7 +126,7 @@ class ReferenceClarifier {
 				 * We used to have a unique index (on all columns), but the size
 				 * of the index was too small (urls can be pretty long...)
 				 * We have no data integrity reasons to want to ensure unique
-				 * entries, and the code actually does a good jon of only
+				 * entries, and the code actually does a good job of only
 				 * inserting uniques. Still, I'll do a sanity check and get rid
 				 * of duplicates, should there be any...
 				 */
