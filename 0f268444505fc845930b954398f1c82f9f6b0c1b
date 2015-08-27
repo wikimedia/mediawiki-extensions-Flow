@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_d4001f3b",
+        "filename": "Hooks.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 1629,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-27T15:18:15Z",
+      "side": 1,
+      "message": "I tend to agree with you. Could you please bring it up on the ticket so Danny can be part of the conversation?",
+      "parentUuid": "6ec1af18_74092be0",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_60fde6ad",
         "filename": "Hooks.php",
         "patchSetId": 26
@@ -172,6 +190,24 @@
       "side": 1,
       "message": "It\u0027s hard(er) to swap out statics. Very similar to global functions.\n\nCurrent ArchiveNameHelper makes some implementation assumptions: e.g. archives are numbered from 1-20.\nThere may be archives based on date. There may be situations where we want to check more than 20 pages (e.g. CLI script, where it doesn\u0027t matter if we need to check 400 pages)\n\nIf we even want to make changes like that, we\u0027d likely extend from this class, making some DateBasedArchiveNameHelper.\n\nChanging ArchiveNameHelper to DateBasedArchiveNameHelper from wherever the static method is called is easy enough. But not so much when reusing code (which, afaik, is not currently happening for ArchiveNameHelper callers)\n\nSuppose we have a method like this, and it was reused by all importers:\n\n    public function convert( $source ) {\n        $title \u003d ArchiveNameHelper::decideArchiveTitle( $source );\n\n        $workflow \u003d new Workflow();\n        $this-\u003etalkPageManager-\u003eensureFlowRevision( new \\Article( $title ), $workflow );\n    }\n\nIt\u0027s impossible to re-use that method for importers wanting to use DateBasedArchiveNameHelper -- changing it to DateBasedArchiveNameHelper would also change how those other importers behave.\nBelow, however, would allow reuse everywhere - just pass in a different $archiveNameHelper (well, in reality we might still reach out to Container because our DI is sometimes poor, but hey)\n\n    public function convert( $source ) {\n        $title \u003d $this-\u003earchiveNameHelper-\u003edecideArchiveTitle( $source );\n\n        $workflow \u003d new Workflow();\n        $this-\u003etalkPageManager-\u003eensureFlowRevision( new \\Article( $title ), $workflow );\n    }\n\nMaybe not an issue here, but they\u0027re also harder to test (for the same reasons) - you\u0027re stuck with this specific implementation and can\u0027t inject mocks.\n\nThose methods being static are not a real problem with the current code, but if the implementation even starts to change it might get annoying.",
       "parentUuid": "6ec1af18_e0147653",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_d47d7fb1",
+        "filename": "includes/Import/ArchiveNameHelper.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-27T15:18:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec1af18_1486a7e0",
       "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -453,6 +489,24 @@
       "side": 1,
       "message": "$this-\u003emBatchSize\n\nAnd add this in __construct:\n\n    $this-\u003esetBatchSize( 300 );\n\nThen $this-\u003emBatchSize will default to 300, but CLI option --batch-size will allow it to be adjusted.",
       "parentUuid": "6ec1af18_54f0affa",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_344c039f",
+        "filename": "maintenance/FlowUpdateBetaFeaturePreference.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-27T15:18:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec1af18_c09e1a58",
       "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
