@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_403d4ada",
+        "filename": "Hooks.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 1617,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-27T14:04:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec1af18_c06dba96",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_601406ee",
         "filename": "Hooks.php",
         "patchSetId": 26
@@ -30,6 +48,24 @@
       "writtenOn": "2015-08-27T13:42:15Z",
       "side": 1,
       "message": "Should probably auto-create these pages - they\u0027ll be missing from most wikis.\nSlightly alter maintenance script in https://gerrit.wikimedia.org/r/#/c/232489/ to allow creation of more than just pages inside Template namespace \u0026 add these 2?",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_0043c267",
+        "filename": "Hooks.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 1629,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-27T14:04:35Z",
+      "side": 1,
+      "message": "I discussed this with Danny and he said the beta feature will only be enabled on specific wiki where info and discussions about Flow have taken place already so these pages will exist.",
+      "parentUuid": "6ec1af18_601406ee",
       "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_802ed29e",
+        "filename": "Hooks.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 1631,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-27T14:04:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec1af18_60fde6ad",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_20035e7b",
         "filename": "includes/Import/ArchiveNameHelper.php",
         "patchSetId": 26
@@ -64,6 +118,24 @@
       "writtenOn": "2015-08-27T13:42:15Z",
       "side": 1,
       "message": "Can we make this a proper object instead of statics?\n\n    $archiveNameHelper \u003d new ArchiveNameHelper( array( \u0027%s/LQT Archive %d\u0027 ) );\n\n    ...\n\n    $title \u003d $archiveNameHelper-\u003edecideArchiveTitle( $source );",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_e0147653",
+        "filename": "includes/Import/ArchiveNameHelper.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-27T14:04:35Z",
+      "side": 1,
+      "message": "Sure, but why?",
+      "parentUuid": "6ec1af18_20035e7b",
       "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -104,6 +176,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_60088630",
+        "filename": "includes/Import/TemplateHelper.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-27T14:04:35Z",
+      "side": 1,
+      "message": "Sounds good, but I would do it when it is needed.",
+      "parentUuid": "6ec1af18_808a52be",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_c084dab6",
         "filename": "includes/Import/TemplateHelper.php",
         "patchSetId": 26
@@ -115,6 +205,24 @@
       "writtenOn": "2015-08-27T13:42:15Z",
       "side": 1,
       "message": "Probably a stupid question, but I\u0027m confused.\nIf the $tempateNode matches $templateName, $tempateNode is removed.\nThen, we check if $tempateNode has a particular child node and, if yes, remove that too? Isn\u0027t that already removed along with the removal of $tempateNode?",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_d411ff57",
+        "filename": "includes/Import/TemplateHelper.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-27T14:04:35Z",
+      "side": 1,
+      "message": "If this node is the template we\u0027re looking for, we remove it.\nAlso, if this template defines a set of sibling nodes, identified by the \"about\" attribute, remove all the siblings too.\n\nSee unit tests for an example.",
+      "parentUuid": "6ec1af18_c084dab6",
       "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -138,6 +246,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_b42b1377",
+        "filename": "includes/Import/TemplateHelper.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-27T14:04:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec1af18_a073ce12",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_40f22a6c",
         "filename": "includes/Import/TemplateHelper.php",
         "patchSetId": 26
@@ -149,6 +275,24 @@
       "writtenOn": "2015-08-27T13:42:15Z",
       "side": 1,
       "message": "Typehint: ( \\DOMDocument $dom, $about )",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_b442333d",
+        "filename": "includes/Import/TemplateHelper.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-27T14:04:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec1af18_40f22a6c",
       "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -172,6 +316,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_949297a0",
+        "filename": "maintenance/FlowUpdateBetaFeaturePreference.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-27T14:04:35Z",
+      "side": 1,
+      "message": "This would be run on wikis where there is a lot of users but almost none that have a Flow talk page. So the initial join and where clause between page and user would return almost nothing, and the subquery for user who have already opted in would also return next to nothing.\n\nI think they would be quite similar but if you think there would be any problem here I don\u0027t mind changing it.",
+      "parentUuid": "6ec1af18_40930a53",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_c09e1a58",
         "filename": "maintenance/FlowUpdateBetaFeaturePreference.php",
         "patchSetId": 26
@@ -183,6 +345,24 @@
       "writtenOn": "2015-08-27T13:42:15Z",
       "side": 1,
       "message": "You probably want to add a wfWaitForSlaves() in here every x users, to make sure we don\u0027t flood master DB and give slaves a chance to catch up.",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_54f0affa",
+        "filename": "maintenance/FlowUpdateBetaFeaturePreference.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-27T14:04:35Z",
+      "side": 1,
+      "message": "Every how many users you think is reasonable?",
+      "parentUuid": "6ec1af18_c09e1a58",
       "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
