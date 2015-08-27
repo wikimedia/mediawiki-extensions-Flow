@@ -38,6 +38,9 @@
 		} );
 		this.editor.toggle( false );
 
+		this.captcha = new mw.flow.dm.Captcha();
+		this.captchaWidget = new mw.flow.ui.CaptchaWidget( this.captcha );
+
 		this.error = new OO.ui.LabelWidget( {
 			classes: [ 'flow-ui-newTopicWidget-error flow-errors errorbox' ]
 		} );
@@ -74,6 +77,7 @@
 			.append(
 				this.anonWarning.$element,
 				this.error.$element,
+				this.captchaWidget.$element,
 				this.title.$element,
 				this.editor.$element
 			);
@@ -151,40 +155,30 @@
 	mw.flow.ui.NewTopicWidget.prototype.onEditorSaveContent = function ( content, format ) {
 		var widget = this,
 			title = this.title.getValue(),
-			$captchaField,
-			captcha;
+			captchaResponse;
 
 		this.editor.pushPending();
 		this.title.pushPending();
 		this.title.setDisabled( true );
 
-		$captchaField = this.error.$label.find( '[name="wpCaptchaWord"]' );
-		if ( $captchaField.length > 0 ) {
-			captcha = {
-				id: this.error.$label.find( '[name="wpCaptchaId"]' ).val(),
-				answer: $captchaField.val()
-			};
-		}
+		captchaResponse = this.captchaWidget.getResponse();
 
 		this.error.setLabel( '' );
 		this.error.toggle( false );
 
-		this.api.saveNewTopic( title, content, format, captcha )
+		this.api.saveNewTopic( title, content, format, captchaResponse )
 			.then( function ( topicId ) {
+				widget.captchaWidget.toggle( false );
+
 				widget.toggleExpanded( false );
 				widget.emit( 'save', topicId );
 			} )
 			.then( null, function ( errorCode, errorObj ) {
-				if ( /spamfilter$/.test( errorCode ) && errorObj.error.spamfilter === 'flow-spam-confirmedit-form' ) {
-					widget.error.setLabel(
-						// CAPTCHA form
-						new OO.ui.HtmlSnippet( errorObj.error.info )
-					);
-				} else {
+				widget.captcha.update( errorCode, errorObj );
+				if ( !widget.captcha.isRequired() ) {
 					widget.error.setLabel( errorObj.error && errorObj.error.info || errorObj.exception );
+					widget.error.toggle( true );
 				}
-
-				widget.error.toggle( true );
 			} )
 			.always( function () {
 				widget.editor.popPending();
