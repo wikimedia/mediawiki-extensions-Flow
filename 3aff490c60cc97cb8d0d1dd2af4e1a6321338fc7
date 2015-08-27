@@ -16,6 +16,24 @@
       "revId": "3aff490c60cc97cb8d0d1dd2af4e1a6321338fc7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_4556bc34",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-27T11:24:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec1af18_7cf4dc50",
+      "revId": "3aff490c60cc97cb8d0d1dd2af4e1a6321338fc7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
