@@ -204,7 +204,11 @@
 			editor = 'wikitext';
 		}
 
-		return this.editorSwitcherWidget.switchEditor( editor );
+		if ( this.editorSwitcherWidget.isEditorAvailable( editor ) ) {
+			return this.editorSwitcherWidget.switchEditor( editor );
+		}
+		// If the editor we want isn't available, let EditorSwitcherWidget decide which editor to use
+		return this.editorSwitcherWidget.activate();
 	};
 
 	mw.flow.ui.EditorWidget.prototype.isDisabled = function () {
