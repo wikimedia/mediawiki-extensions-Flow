@@ -3,7 +3,7 @@
 	 * Flow board description widget
 	 *
 	 * @class
-	 * @extends OO.ui.Widget
+	 * @extends mw.flow.ui.ContentWidget
 	 *
 	 * @constructor
 	 * @param {mw.flow.dm.Board} boardModel The board model
@@ -82,7 +82,7 @@
 
 	/* Initialization */
 
-	OO.inheritClass( mw.flow.ui.BoardDescriptionWidget, OO.ui.Widget );
+	OO.inheritClass( mw.flow.ui.BoardDescriptionWidget, mw.flow.ui.ContentWidget );
 
 	/* Methods */
 
@@ -161,17 +161,11 @@
 	 */
 	mw.flow.ui.BoardDescriptionWidget.prototype.onEditorSaveContent = function ( content, format ) {
 		var widget = this,
-			$captchaField, captcha;
+			captcha;
 
 		this.editor.pushPending();
 
-		$captchaField = this.error.$label.find( '[name="wpCaptchaWord"]' );
-		if ( $captchaField.length > 0 ) {
-			captcha = {
-				id: this.error.$label.find( '[name="wpCaptchaId"]' ).val(),
-				answer: $captchaField.val()
-			};
-		}
+		captcha = this.getCaptcha();
 
 		this.error.setLabel( '' );
 		this.error.toggle( false );
@@ -195,16 +189,7 @@
 				widget.showContent( true );
 			} )
 			.then( null, function ( errorCode, errorObj ) {
-				if ( /spamfilter$/.test( errorCode ) && errorObj.error.spamfilter === 'flow-spam-confirmedit-form' ) {
-					widget.error.setLabel(
-						// CAPTCHA form
-						new OO.ui.HtmlSnippet( errorObj.error.info )
-					);
-				} else {
-					widget.error.setLabel( errorObj.error && errorObj.error.info || errorObj.exception );
-				}
-
-				widget.error.toggle( true );
+				widget.onSaveContentFailure( errorCode, errorObj );
 			} )
 			.always( function () {
 				widget.editor.popPending();

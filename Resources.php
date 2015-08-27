@@ -376,6 +376,7 @@ $wgResourceModules += array(
 	'ext.flow.ui' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'flow/ui/mw.flow.ui.js',
+			'flow/ui/widgets/mw.flow.ui.ContentWidget.js',
 			'flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js',
 			'flow/ui/widgets/mw.flow.ui.ToCWidget.js',
 			'flow/ui/widgets/mw.flow.ui.ReorderTopicsWidget.js',
