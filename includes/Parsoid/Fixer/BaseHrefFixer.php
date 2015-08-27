@@ -20,7 +20,7 @@ class BaseHrefFixer implements Fixer {
 	protected $baseHref;
 
 	/**
-	 * @param $articlePath Article path setting for wiki
+	 * @param $articlePath \Article path setting for wiki
 	 */
 	public function __construct( $articlePath ) {
 		$replacedArticlePath = str_replace( '$1', '', $articlePath );
@@ -40,8 +40,8 @@ class BaseHrefFixer implements Fixer {
 	/**
 	 * Prefixes the href with base href.
 	 *
-	 * @param DOMNode $node Link
-	 * @param Title $title
+	 * @param \DOMNode $node Link
+	 * @param \Title $title
 	 */
 	public function apply( \DOMNode $node, \Title $title ) {
 		if ( !$node instanceof \DOMElement ) {
