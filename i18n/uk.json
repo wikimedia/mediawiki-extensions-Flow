@@ -15,7 +15,6 @@
 	},
 	"enableflow": "Увімкнути Flow",
 	"flow-desc": "Система управління робочими процесами",
-	"flow-talk-taken-over": "Ця сторінка обговорення використовує [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow].",
 	"log-name-flow": "Журнал активності потоку",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|вилучив|вилучила}} [$4 допис] у «[[$3|$5]]» на [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|відновив|відновила}} [$4 допис] у «[[$3|$5]]» на [[$6]]",

@@ -6,7 +6,6 @@
 		]
 	},
 	"enableflow": "Aktivizēt Flow",
-	"flow-talk-taken-over": "Šajā diskusiju lapā tiek izmantots [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow].",
 	"log-name-flow": "Flow darbību reģistrs",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|izdzēsa}} [$4 ierakstu] lapas [[$6]] tēmā \"[[$3|$5]]\"",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|atjaunoja}} [$4 ierakstu] lapas [[$6]] tēmā \"[[$3|$5]]\"",

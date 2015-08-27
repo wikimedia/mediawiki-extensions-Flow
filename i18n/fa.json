@@ -17,7 +17,6 @@
 	},
 	"enableflow": "فعال‌سازی جریان",
 	"flow-desc": "سیستم مدیریت جریان کار",
-	"flow-talk-taken-over": "این صفحهٔ گفتگو توسط یک [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow board] تصاحب شده‌است.",
 	"log-name-flow": "سیاههٔ فعالیت جریان",
 	"logentry-delete-flow-delete-post": "$1 یک [$4 پست] را در [[$3]] {{GENDER:$2|حذف کرد}}",
 	"logentry-delete-flow-restore-post": "$1 یک [$4 ارسال] را در [[$3]] {{GENDER:$2|بازیابی کرد}}",

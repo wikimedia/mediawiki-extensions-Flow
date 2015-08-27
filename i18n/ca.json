@@ -17,7 +17,6 @@
 	},
 	"enableflow": "Habilita el Flow",
 	"flow-desc": "Sistema de gestió del flux de treball",
-	"flow-talk-taken-over": "Aquesta pàgina de discussió utilitza [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow].",
 	"log-name-flow": "Registre d'activitat del Flow",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|ha esborrat}} un [$4 missatge] sobre «[[$3|$5]]» a [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|ha restaurat}} un [$4 missatge] sobre «[[$3|$5]]» a [[$6]]",

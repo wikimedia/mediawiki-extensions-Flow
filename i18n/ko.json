@@ -23,7 +23,6 @@
 	},
 	"enableflow": "Flow 활성화",
 	"flow-desc": "워크플로우 관리 시스템",
-	"flow-talk-taken-over": "이 토론 문서는 [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal 플로우]를 사용합니다.",
 	"log-name-flow": "플로우 활동 기록",
 	"logentry-delete-flow-delete-post": "$1 사용자가 [[$3]] 문서의 [$4 게시물]을 {{GENDER:$2|삭제했습니다}}",
 	"logentry-delete-flow-restore-post": "$1 사용자가 [[$3]] 문서의 [$4 게시물]을  {{GENDER:$2|되살렸습니다}}",

@@ -23,7 +23,6 @@
 	},
 	"enableflow": "Włącz Flow",
 	"flow-desc": "System zarządzania cyklem pracy",
-	"flow-talk-taken-over": "Ta strona używa [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow].",
 	"log-name-flow": "Rejestr aktywności Flow",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|usunął|usunęła}} [$4 post] z „[[$3|$5]]” na [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|przywrócił|przywróciła}} [$4 post] w „[[$3|$5]]” na [[$6]]",
