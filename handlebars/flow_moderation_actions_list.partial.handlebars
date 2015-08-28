@@ -69,9 +69,7 @@
 				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon"
 				   href="{{actions.edit.url}}"
 				   title="{{actions.edit.title}}"
-				   data-flow-api-handler="activateEditPost"
-				   data-flow-api-target="< .flow-post-main"
-				   data-flow-interactive-handler="apiRequest"
+				   data-flow-interactive-handler="editPost"
 				>
 					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-edit mw-ui-icon-edit-progressive-hover"></span> {{/if~}}
 					{{~l10n "flow-post-action-edit-post"~}}
