@@ -14,7 +14,7 @@ When(/^I select the Edit title action$/) do
   end
 end
 
-When(/^I edit the post field with (.+)$/) do |edited_post|
+When(/^I edit the post field with "(.+)"$/) do |edited_post|
   on(FlowPage) do |page|
     # Take focus away from menu
     page.post_edit_element.when_present.click
@@ -22,7 +22,7 @@ When(/^I edit the post field with (.+)$/) do |edited_post|
   end
 end
 
-When(/^I edit the title field with (.+)$/) do |edited_title|
+When(/^I edit the title field with "(.+)"$/) do |edited_title|
   on(FlowPage) do |page|
     @edited_topic_string = edited_title + @random_string
     # Take focus away from menu
@@ -45,6 +45,6 @@ When(/^I save the new title$/) do
   end
 end
 
-Then(/^the saved post should contain (.+)$/) do |edited_post|
-  expect(on(FlowPage).flow_first_topic_body).to match(edited_post + @random_string)
+Then(/^the saved post should contain "(.+)"$/) do |edited_post|
+  expect(on(FlowPage).flow_first_topic_body_element.when_present.text).to match(edited_post + @random_string)
 end
