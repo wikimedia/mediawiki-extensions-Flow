@@ -94,12 +94,6 @@
 		// We shouldn't have to worry about 'remove', since by the time we have filtering,
 		// orderedTopicIds should be gone.
 
-		// HACK: On load more, populate the board dm
-		flowBoard.on( 'loadmore', function ( topiclist ) {
-			// Add to the DM board
-			mw.flow.system.populateBoardTopicsFromJson( topiclist );
-		} );
-
 		// Initialize the old system to accept the default
 		// 'newest' order for the topic order widget
 		// Get the current default sort
