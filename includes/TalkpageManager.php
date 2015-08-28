@@ -92,7 +92,7 @@ class TalkpageManager implements OccupationController {
 		}
 
 		$status = $page->doEditContent(
-			new BoardContent( CONTENT_MODEL_FLOW_BOARD, $workflow->isNew() ? null : $workflow->getId() ),
+			new BoardContent( CONTENT_MODEL_FLOW_BOARD, $workflow->getId() ),
 			wfMessage( 'flow-talk-taken-over-comment' )->plain(),
 			EDIT_FORCE_BOT | EDIT_SUPPRESS_RC,
 			false,

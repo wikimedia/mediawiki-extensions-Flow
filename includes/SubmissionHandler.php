@@ -132,6 +132,7 @@ class SubmissionHandler {
 		$occupationController = Container::get( 'occupation_controller' );
 		$title = $workflow->getOwnerTitle();
 		$occupationController->ensureFlowRevision( new \Article( $title ), $workflow );
+		$isNew = $workflow->isNew();
 
 		try {
 			$dbw->begin();
@@ -151,6 +152,14 @@ class SubmissionHandler {
 			while( !$this->deferredQueue->isEmpty() ) {
 				$this->deferredQueue->dequeue();
 			}
+
+			if ( $isNew ) {
+				$article = new \Article( $title );
+				$page = $article->getPage();
+				$reason = '/* Failed to create Flow board */';
+				$page->doDeleteArticleReal( $reason, false, 0, true, $errors, $occupationController->getTalkpageManager() );
+			}
+
 			$dbw->rollback();
 			$cache->rollback();
 			throw $e;
