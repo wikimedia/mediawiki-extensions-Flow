@@ -13,6 +13,7 @@
 	},
 	"enableflow": "הפעלת זרימה",
 	"flow-desc": "מערכת ניהול תהליכי עבודה",
+	"flow-talk-taken-over-comment": "/* הדף הזה הומר ללוח דיונים של זרימה */",
 	"log-name-flow": "יומן פעילות זרימה",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|מחק|מחקה}} [$4 רשומה] בנושא \"[[$3|$5]]\" בלוח [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|שחזר|שחזרה}} [$4 רשומה] בנושא \"[[$3|$5]]\" בלוח [[$6]]",

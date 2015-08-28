@@ -7,6 +7,7 @@
 	},
 	"enableflow": "Вклучи го Тек",
 	"flow-desc": "Систем за раководење со работниот тек",
+	"flow-talk-taken-over-comment": "/* Оваа страница е претворена во разговорница на Тек */",
 	"log-name-flow": "Дневник на активности во текот",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|избриша}} [$4 објава] на „[[$3|$5]]“ на [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|поврати}} [$4 објава] на „[[$3|$5]]“ на [[$6]]",
