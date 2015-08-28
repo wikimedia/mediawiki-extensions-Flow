@@ -11,10 +11,12 @@ use Flow\Exception\InvalidDataException;
 use Flow\Exception\NoParsoidException;
 use Flow\Exception\WikitextException;
 use Language;
+use MultiHttpClient;
 use OutputPage;
 use RequestContext;
 use Title;
 use User;
+use VirtualRESTServiceClient;
 
 abstract class Utils {
 	/**
@@ -33,13 +35,12 @@ abstract class Utils {
 		}
 
 		try {
-			self::parsoidConfig();
+			return self::parsoid( $from, $to, $content, $title );
 		} catch ( NoParsoidException $e ) {
 			// If we have no parsoid config, fallback to the parser.
 			return self::parser( $from, $to, $content, $title );
 		}
 
-		return self::parsoid( $from, $to, $content, $title );
 	}
 
 	/**
@@ -79,52 +80,44 @@ abstract class Utils {
 	 * @throws WikitextException When conversion is unsupported
 	 */
 	protected static function parsoid( $from, $to, $content, Title $title ) {
-		list( $parsoidURL, $parsoidPrefix, $parsoidTimeout, $parsoidForwardCookies ) = self::parsoidConfig();
+		$serviceClient = self::getServiceClient();
 
 		if ( $from == 'html' ) {
 			$from = 'html';
 		} elseif ( in_array( $from, array( 'wt', 'wikitext' ) ) ) {
-			$from = 'wt';
+			$from = 'wikitext';
 		} else {
 			throw new WikitextException( 'Unknown source format: ' . $from, 'process-wikitext' );
 		}
 
+		$prefixedDbTitle = $title->getPrefixedDBkey();
 		$params = array(
 			$from => $content,
-			'body' => true,
+			'bodyOnly' => 'true',
 		);
 		if ( $from === 'html' ) {
 			$params['scrubWikitext'] = 'true';
 		}
-
-		$prefixedDbTitle = $title->getPrefixedDBkey();
-		$request = \MWHttpRequest::factory(
-			$parsoidURL . '/' . $parsoidPrefix . '/' . urlencode( $prefixedDbTitle ),
-			array(
-				'method' => 'POST',
-				'postData' => wfArrayToCgi( $params ),
-				'timeout' => $parsoidTimeout,
-				'connectTimeout' => 'default',
-			)
+		$url = '/restbase/local/v1/transform/' . $from . '/to/' . $to . '/' .
+			urlencode( $prefixedDbTitle );
+		$request = array(
+			'method' => 'POST',
+			'url' => $url,
+			'body' => $params,
 		);
-		if ( $parsoidForwardCookies && !User::isEveryoneAllowed( 'read' ) ) {
-			if ( PHP_SAPI === 'cli' ) {
-				// From the command line we need to generate a cookie
-				$cookies = self::generateForwardedCookieForCli();
+		$response = $serviceClient->run( $request );
+		if ( $response['code'] !== 200 ) {
+			if ( $response['error'] !== '' ) {
+				$statusMsg = $response['error'];
 			} else {
-				$cookies = RequestContext::getMain()->getRequest()->getHeader( 'Cookie' );
+				$statusMSg = $response['code'];
 			}
-			$request->setHeader( 'Cookie', $cookies );
-		}
-		$status = $request->execute();
-		if ( !$status->isOK() ) {
-			$statusMsg = $status->getMessage()->text();
 			$msg = "Failed contacting Parsoid for title \"$prefixedDbTitle\": $statusMsg";
 			wfDebugLog( 'Flow', __METHOD__ . ": $msg" );
 			throw new NoParsoidException( "$msg", 'process-wikitext' );
 		}
 
-		$content = $request->getContent();
+		$content = $response['body'];
 		// HACK remove trailing newline inserted by Parsoid (T106925)
 		if ( $to === 'wikitext' ) {
 			$content = preg_replace( '/\\n$/', '', $content );
@@ -160,26 +153,104 @@ abstract class Utils {
 	}
 
 	/**
-	 * Returns Flow's Parsoid config. $wgFlowParsoid* variables are used to
-	 * specify how to connect to Parsoid.
+	 * Check to see whether a Parsoid or RESTBase service is configured.
 	 *
-	 * @return array Parsoid config, in array(URL, prefix, timeout, forwardCookies) format
+	 * @return boolean
+	 */
+	public static function isParsoidConfigured() {
+		try {
+			self::getServiceClient();
+			return true;
+		} catch ( NoParsoidException $e ) {
+			return false;
+		}
+	}
+
+	/**
+	 * @var VirtualRESTServiceClient
+	 */
+	protected static $serviceClient = null;
+
+	/**
+	 * Returns Flow's Virtual REST Service for Parsoid/RESTBase.
+	 * The Parsoid/RESTBase service will be mounted at /restbase/.
+	 *
+	 * @return VirtualRESTServiceClient
 	 * @throws NoParsoidException When parsoid is unconfigured
 	 */
-	protected static function parsoidConfig() {
-		global
-			$wgFlowParsoidURL, $wgFlowParsoidPrefix, $wgFlowParsoidTimeout, $wgFlowParsoidForwardCookies;
+	protected static function getServiceClient() {
 
-		if ( !$wgFlowParsoidURL ) {
-			throw new NoParsoidException( 'Flow Parsoid configuration is unavailable', 'process-wikitext' );
+		if ( self::$serviceClient === null ) {
+			$sc = new VirtualRESTServiceClient( new MultiHttpClient( array() ) );
+			$sc->mount( '/restbase/', self::getVRSObject() );
+			self::$serviceClient = $sc;
 		}
+		return self::$serviceClient;
+	}
 
-		return array(
-			$wgFlowParsoidURL,
-			$wgFlowParsoidPrefix,
-			$wgFlowParsoidTimeout,
-			$wgFlowParsoidForwardCookies,
-		);
+	/**
+	 * Creates the Virtual REST Service object to be used in Flow's
+	 * API calls.  The method determines whether to instantiate a
+	 * ParsoidVirtualRESTService or a RestbaseVirtualRESTService
+	 * object based on configuration directives: if
+	 * `$wgVirtualRestConfig['modules']['restbase']` is defined,
+	 * RESTBase is chosen; otherwise Parsoid is used.
+	 * For backwards compatibility, $wgFlowParsoid* variables are used
+	 * to specify a Parsoid configuration as a fall back.
+	 *
+	 * @return VirtualRESTService the VirtualRESTService object to use
+	 * @throws NoParsoidException When parsoid is unconfigured
+	 */
+	private static function getVRSObject() {
+		global $wgVirtualRestConfig, $wgFlowParsoidURL, $wgFlowParsoidPrefix,
+			$wgFlowParsoidTimeout, $wgFlowParsoidForwardCookies,
+			$wgFlowParsoidHTTPProxy;
+
+		// the params array to create the service object with
+		$params = array();
+		// the VRS class to use; defaults to Parsoid
+		$class = 'ParsoidVirtualRESTService';
+		// the global virtual rest service config object, if any
+		$vrs = $wgVirtualRestConfig;
+		if ( isset( $vrs['modules'] ) && isset( $vrs['modules']['restbase'] ) ) {
+			// if restbase is available, use it
+			$params = $vrs['modules']['restbase'];
+			$params['parsoidCompat'] = false; // backward compatibility
+			$class = 'RestbaseVirtualRESTService';
+		} elseif ( isset( $vrs['modules'] ) && isset( $vrs['modules']['parsoid'] ) ) {
+			// there's a global parsoid config, use it next
+			$params = $vrs['modules']['parsoid'];
+			$params['restbaseCompat'] = true;
+		} else {
+			// no global modules defined, fall back to old defaults
+			if ( !$wgFlowParsoidURL ) {
+				throw new NoParsoidException( 'Flow Parsoid configuration is unavailable', 'process-wikitext' );
+			}
+			$params = array(
+				'URL' => $wgFlowParsoidURL,
+				'prefix' => $wgFlowParsoidPrefix,
+				'timeout' => $wgFlowParsoidTimeout,
+				'HTTPProxy' => $wgFlowParsoidHTTPProxy,
+				'forwardCookies' => $wgFlowParsoidForwardCookies
+			);
+		}
+		// merge the global and service-specific params
+		if ( isset( $vrs['global'] ) ) {
+			$params = array_merge( $vrs['global'], $params );
+		}
+		// set up cookie forwarding
+		if ( $params['forwardCookies'] && !User::isEveryoneAllowed( 'read' ) ) {
+			if ( PHP_SAPI === 'cli' ) {
+				// From the command line we need to generate a cookie
+				$params['forwardCookies'] = self::generateForwardedCookieForCli();
+			} else {
+				$params['forwardCookies'] = RequestContext::getMain()->getRequest()->getHeader( 'Cookie' );
+			}
+		} else {
+			$params['forwardCookies'] = false;
+		}
+		// create the VRS object and return it
+		return new $class( $params );
 	}
 
 	/**
@@ -258,16 +329,14 @@ abstract class Utils {
 	 */
 	public static function onFlowAddModules( OutputPage $out ) {
 
-		try {
-			self::parsoidConfig();
+		if ( self::isParsoidConfigured() ) {
+			// The module is only necessary when we are using parsoid.
 			// XXX We only need the Parsoid CSS if some content being
 			// rendered has getContentFormat() === 'html'.
 			$out->addModuleStyles( array(
 				'mediawiki.skinning.content.parsoid',
 				'ext.cite.style',
 			) );
-		} catch ( NoParsoidException $e ) {
-			// The module is only necessary when we are using parsoid.
 		}
 
 		return true;
