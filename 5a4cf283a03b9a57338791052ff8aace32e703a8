@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_01497e35",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-28T04:49:31Z",
+      "side": 1,
+      "message": "columns",
+      "revId": "5a4cf283a03b9a57338791052ff8aace32e703a8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_e1bc7203",
+        "filename": "includes/Data/Index/FeatureIndex.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-28T04:49:31Z",
+      "side": 1,
+      "message": "columns",
+      "revId": "5a4cf283a03b9a57338791052ff8aace32e703a8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_c1bff6f5",
+        "filename": "includes/Data/Index/TopKIndex.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-28T04:49:31Z",
+      "side": 1,
+      "message": "// Remove unknown columns from the cached row?",
+      "revId": "5a4cf283a03b9a57338791052ff8aace32e703a8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_2146fa25",
+        "filename": "includes/Data/Index/TopicHistoryIndex.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-28T04:49:31Z",
+      "side": 1,
+      "message": "Please mention in the commit message.",
+      "revId": "5a4cf283a03b9a57338791052ff8aace32e703a8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_815c8ef5",
+        "filename": "includes/Data/Index/TopicHistoryIndex.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-28T04:49:31Z",
+      "side": 1,
+      "message": "May have been deleted?  This is called from several places.",
+      "revId": "5a4cf283a03b9a57338791052ff8aace32e703a8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_21e03a23",
+        "filename": "includes/Data/Listener/ReferenceRecorder.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-28T04:49:31Z",
+      "side": 1,
+      "message": "point",
+      "revId": "5a4cf283a03b9a57338791052ff8aace32e703a8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_81d6ce52",
+        "filename": "includes/Data/Listener/ReferenceRecorder.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-28T04:49:31Z",
+      "side": 1,
+      "message": "Other links are also affected.",
+      "revId": "5a4cf283a03b9a57338791052ff8aace32e703a8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_610e42ea",
+        "filename": "maintenance/FlowFixLinks.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-28T04:49:31Z",
+      "side": 1,
+      "message": "Use tabs.",
+      "revId": "5a4cf283a03b9a57338791052ff8aace32e703a8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_a1618aa5",
+        "filename": "tests/phpunit/Data/Storage/RevisionStorageTest.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-28T04:49:31Z",
+      "side": 1,
+      "message": "Unused",
+      "revId": "5a4cf283a03b9a57338791052ff8aace32e703a8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
