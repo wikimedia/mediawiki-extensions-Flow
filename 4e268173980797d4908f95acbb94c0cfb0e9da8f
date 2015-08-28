@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_0aeaeed5",
+        "filename": "modules/tours/flowOptIn.js",
+        "patchSetId": 18
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-28T22:45:41Z",
+      "side": 1,
+      "message": "It is now (and merged): class\u003d\u0027flow-link-to-archive\u0027",
+      "revId": "4e268173980797d4908f95acbb94c0cfb0e9da8f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
