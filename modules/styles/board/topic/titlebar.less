@@ -32,12 +32,22 @@ div#content .flow-topic-title {
 div#content .mw-content-ltr .flow-topic-title {
 	/* @noflip */
 	margin: 0 2.5em .15em 0;
+
+	.mw-ui-icon.mw-ui-icon-before:before {
+		/* @noflip */
+		float: left;
+	}
 }
 
 // Correct positioning for ltr/rtl content direction
 div#content .mw-content-rtl .flow-topic-title {
 	/* @noflip */
 	margin: 0 0 .15em 2.5em;
+
+	.mw-ui-icon.mw-ui-icon-before:before {
+		/* @noflip */
+		float: right;
+	}
 }
 
 .flow-moderated-topic-title {
