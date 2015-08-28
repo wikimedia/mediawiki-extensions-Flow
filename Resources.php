@@ -51,7 +51,6 @@ $wgResourceModules += array(
 			'handlebars/flow_block_topicsummary_edit.handlebars',
 			'handlebars/flow_block_topicsummary_single_view.handlebars',
 			'handlebars/flow_board_navigation.partial.handlebars',
-			'handlebars/flow_edit_post_ajax.partial.handlebars',
 			'handlebars/flow_edit_post.partial.handlebars',
 			'handlebars/flow_edit_topic_title.partial.handlebars',
 			'handlebars/flow_editor_switcher.partial.handlebars',
@@ -381,6 +380,7 @@ $wgResourceModules += array(
 			'flow/ui/widgets/mw.flow.ui.ReorderTopicsWidget.js',
 			'flow/ui/widgets/mw.flow.ui.NavigationWidget.js',
 			'flow/ui/widgets/mw.flow.ui.ReplyWidget.js',
+			'flow/ui/widgets/mw.flow.ui.EditPostWidget.js',
 			'flow/ui/widgets/mw.flow.ui.SidebarExpandWidget.js',
 			'flow/ui/widgets/mw.flow.ui.NewTopicWidget.js',
 

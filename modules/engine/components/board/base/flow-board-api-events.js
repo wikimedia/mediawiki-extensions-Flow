@@ -134,21 +134,6 @@
 	};
 
 	/**
-	 * Before activating post, sends an overrideObject to the API to modify the request params.
-	 * @param {Event} event
-	 * @param {Object} info
-	 * @param {Object} queryMap
-	 * @return {Object}
-	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.activateEditPost = function ( event, info, queryMap ) {
-		return $.extend( {}, queryMap, {
-			submodule: 'view-post',
-			vppostId: $( this ).closest( '.flow-post' ).data( 'flow-id' ),
-			vpformat: mw.flow.editor.getFormat()
-		} );
-	};
-
-	/**
 	 * Adjusts query params to use global watch action, and specifies it should use a watch token.
 	 * @param {Event} event
 	 * @param {Object} info
@@ -399,26 +384,6 @@
 	};
 
 	/**
-	 * After submit of the topic title edit form, process the response.
-	 *
-	 * @param {Object} info
-	 * @param {string} info.status "done" or "fail"
-	 * @param {jQuery} info.$target
-	 * @param {Object} data
-	 * @param {jqXHR} jqxhr
-	 * @return {jQuery.Promise}
-	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitEditPost = function ( info, data, jqxhr ) {
-		if ( info.status !== 'done' ) {
-			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
-			return $.Deferred().resolve().promise();
-		}
-
-		// @todo: add 3rd argument (target selector); there's no need to refresh entire topic
-		return _flowBoardComponentRefreshTopic( info.$target, data.flow['edit-post'].workflow );
-	};
-
-	/**
 	 * After submitting a new topic, process the response.
 	 * @param {Object} info
 	 * @param {string} info.status "done" or "fail"
@@ -639,52 +604,6 @@
 		}
 
 		$form.find( '.mw-ui-input' ).focus();
-
-		return $.Deferred().resolve().promise();
-	};
-
-	/**
-	 * Renders the editable post with the given API response.
-	 * @param {Object} info
-	 * @param {string} info.status "done" or "fail"
-	 * @param {jQuery} info.$target
-	 * @param {Object} data
-	 * @param {jqXHR} jqxhr
-	 * @return {jQuery.Promise}
-	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.activateEditPost = function ( info, data, jqxhr ) {
-		var $rendered, rootBlock,
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) ),
-			$post = info.$target;
-
-		if ( info.status !== 'done' ) {
-			// Error will be displayed by default, nothing else to wrap up
-			return $.Deferred().resolve().promise();
-		}
-
-		// The API returns with the entire topic, but we only want to render the edit form
-		// for a singular post
-		rootBlock = data.flow['view-post'].result.topic;
-		$rendered = $(
-			flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-				'flow_edit_post_ajax.partial',
-				{
-					revision: rootBlock.revisions[rootBlock.posts[rootBlock.roots[0]]],
-					rootBlock: rootBlock
-				}
-			)
-		).children();
-
-		// Set the cancel callback on this form so that it returns to the post
-		flowBoard.emitWithReturn( 'addFormCancelCallback',
-			$rendered.find( 'form' ).addBack( 'form' ),
-			function () {
-				$rendered.replaceWith( $post );
-			}
-		);
-
-		$post.replaceWith( $rendered );
-		$rendered.find( 'textarea' ).conditionalScrollIntoView().focus();
 
 		return $.Deferred().resolve().promise();
 	};

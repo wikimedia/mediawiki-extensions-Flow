@@ -315,6 +315,42 @@
 		} );
 		$( 'form.flow-newtopic-form' ).replaceWith( newTopicWidget.$element );
 
+		$( '.flow-ui-edit-post-link' ).on( 'click', function( event ) {
+			var editPostWidget,
+				$topic = $( this ).closest( '.flow-topic' ),
+				topicId = $topic.data( 'flow-id' ),
+				$post = $( this ).closest( '.flow-post' ),
+				$postMain = $post.find( '.flow-post-main' ),
+				postId = $post.data( 'flow-id' ),
+				$board = $( '.flow-board' ),
+				flowBoard = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $board );
+
+			editPostWidget = new mw.flow.ui.EditPostWidget( topicId, postId );
+			editPostWidget
+				.on( 'saveContent', function ( workflow ) {
+					editPostWidget.destroy();
+					editPostWidget.$element.remove();
+
+					$topic.addClass( 'flow-api-inprogress' );
+					// HACK get the old system to rerender the topic
+					return flowBoard.flowBoardComponentRefreshTopic(
+						$topic,
+						workflow
+					)
+						.always( function () {
+							$topic.removeClass( 'flow-api-inprogress' );
+						} );
+				} )
+				.on( 'cancel', function () {
+					editPostWidget.$element.replaceWith( $postMain );
+					editPostWidget.destroy();
+				} );
+
+			$postMain.replaceWith( editPostWidget.$element );
+
+			event.preventDefault();
+		} );
+
 		dataBlob = mw.flow && mw.flow.data;
 		if ( dataBlob && dataBlob.blocks ) {
 			// Populate the rendered topics or topic (if we are in a single-topic view)
