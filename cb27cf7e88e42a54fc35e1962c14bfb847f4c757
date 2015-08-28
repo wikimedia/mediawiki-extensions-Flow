@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_b02f9239",
+        "filename": "includes/Import/LiquidThreadsApi/ConversionStrategy.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2015-08-28T18:01:05Z",
+      "side": 1,
+      "message": "Should we try to use the localized version of the magic word?",
+      "revId": "cb27cf7e88e42a54fc35e1962c14bfb847f4c757",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
