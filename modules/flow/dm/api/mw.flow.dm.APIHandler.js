@@ -227,4 +227,54 @@
 
 		return xhr.promise( { abort: xhr.abort } );
 	};
+
+	/**
+	 * Get a post.
+	 *
+	 * @param {string} postId
+	 * @param {string} format
+	 * @return {jQuery.Promise} Promise that is resolved with the post revision data
+	 */
+	mw.flow.dm.APIHandler.prototype.getPost = function ( postId, format ) {
+		var params = {
+			page: this.page,
+			vppostId: postId,
+			vpformat: format || 'html'
+		};
+
+		return this.get( 'view-post', params )
+			.then( function ( data ) {
+				return data.topic.revisions[data.topic.posts[postId]];
+			} );
+	};
+
+	/**
+	 * Save a post.
+	 *
+	 * @param {string} postId
+	 * @param {string} content
+	 * @param {string} format
+	 * @param {string} [captcha] CAPTCHA information
+	 * @return {jQuery.Promise} Promise that is resolved with the saved post revision id
+	 */
+	mw.flow.dm.APIHandler.prototype.savePost = function ( postId, content, format, captcha ) {
+		var xhr,
+			params = {
+				page: this.page,
+				epcontent: content,
+				epformat: format,
+				epprev_revision: this.currentRevision,
+				eppostId: postId
+			};
+
+		this.addCaptcha( params, captcha );
+
+		xhr = this.postEdit( 'edit-post', params )
+			.then( function ( data ) {
+				return OO.getProp( data.flow, 'edit-post', 'workflow' );
+			} );
+
+		return xhr.promise( { abort: xhr.abort } );
+	};
+
 }( jQuery ) );

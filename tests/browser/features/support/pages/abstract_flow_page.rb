@@ -46,7 +46,9 @@ class AbstractFlowPage < WikiPage
   div(:flow_first_topic, css: ".flow-topic", index: 0)
   h2(:flow_first_topic_heading, css: ".flow-topic h2", index: 0)
   # todo this is poor naming, it's really the first_topic_first_post_content
-  div(:flow_first_topic_body, css: ".flow-topic .flow-post-content", index: 0)
+  div(:flow_first_topic_body) do
+    div_element(class: "flow-topic", index: 0).div_element(class: 'flow-post-content')
+  end
   div(:flow_first_topic_moderation_msg) do |page|
     page.flow_first_topic_element.div_element(css: "div.flow-topic-titlebar div.flow-moderated-topic-title")
   end
@@ -271,11 +273,14 @@ class AbstractFlowPage < WikiPage
 
   # Editing post workflow
 
+  div(:edit_post_widget, class: 'flow-ui-editPostWidget')
   def post_edit_element
-    visualeditor_or_textarea '.flow-edit-post-form'
+    visualeditor_or_textarea edit_post_widget_element
   end
 
-  button(:change_post_save, css: ".flow-edit-post-form .mw-ui-constructive")
+  button(:change_post_save) do
+    edit_post_widget_element.link_element(text: 'Save changes')
+  end
 
   div(:small_spinner, class: "mw-spinner mw-spinner-small mw-spinner-inline")
 
