@@ -16,6 +16,58 @@
       "revId": "cb27cf7e88e42a54fc35e1962c14bfb847f4c757",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_fb62dba1",
+        "filename": "includes/Import/LiquidThreadsApi/ConversionStrategy.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-28T19:42:22Z",
+      "side": 1,
+      "message": "This is a bigger issue for the phase where we search for useliquidthreads:1 and remove it.  I haven\u0027t run into it yet, but you raise a good point that it could happen.\n\nFiled as T110723.",
+      "parentUuid": "6ec1af18_b02f9239",
+      "revId": "cb27cf7e88e42a54fc35e1962c14bfb847f4c757",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_7be4ab0a",
+        "filename": "includes/Import/LiquidThreadsApi/ConversionStrategy.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-28T19:42:22Z",
+      "side": 1,
+      "message": "Maybe, \"strip the \u0027enable\u0027 magic word and add the \u0027disable\u0027 one\".",
+      "revId": "cb27cf7e88e42a54fc35e1962c14bfb847f4c757",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_1bf7a7d1",
+        "filename": "includes/Import/LiquidThreadsApi/Objects.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-28T19:42:22Z",
+      "side": 1,
+      "message": "This is the Flow description.  The disable word shouldn\u0027t be necessary here.  We just remove the enable word to avoid cruft in the Flow description.\n\nThere is already a hook, LiquidThreadsIsLqtPage (implemented by FlowHooks::onIsLiquidThreadsPage) to make sure Flow boards are explicitly never LQT.",
+      "revId": "cb27cf7e88e42a54fc35e1962c14bfb847f4c757",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
