@@ -146,7 +146,9 @@
 		var data = this.target.surface.getModel().getDocument().data,
 			cursorPos = data.getNearestContentOffset( data.getLength(), -1 );
 
-		this.target.surface.getModel().setLinearSelection( new ve.Range( cursorPos ) );
+		if ( cursorPos !== -1 ) {
+			this.target.surface.getModel().setLinearSelection( new ve.Range( cursorPos ) );
+		}
 	};
 
 	/**
