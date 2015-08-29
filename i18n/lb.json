@@ -196,6 +196,7 @@
 	"flow-post-undo-delete": "läsche réckgängeg maachen",
 	"flow-topic-undo-hide": "verstoppe réckgängeg maachen",
 	"flow-topic-undo-delete": "läsche réckgängeg maachen",
+	"flow-importer-lqt-moved-thread-template-content": "Dës Notiz vum {{{author}}} gouf de(n) {{{date}}} geréckelt. Dir fannt se op [[{{{title}}}]].",
 	"apihelp-flow-example-1": "Ännert d'Beschreiwung vun ''[[Talk:Sandbox]]''",
 	"apihelp-flow+edit-header-param-content": "Inhalt fir d'Beschreiwung.",
 	"apihelp-flow+edit-header-param-format": "Format vun der Beschreiwung (wikitext|html)",

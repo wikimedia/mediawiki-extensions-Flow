@@ -12,6 +12,7 @@
 		]
 	},
 	"flow-desc": "ワークフロー管理システム",
+	"flow-talk-taken-over-comment": "/* このページは a Flow discussion board  に変換されています */",
 	"log-name-flow": "Flow活動記録",
 	"logentry-delete-flow-delete-post": "$1 が [[$6]]上の \"[[$3|$5]]\" の [$4 投稿]を {{GENDER:$2|削除}}",
 	"logentry-delete-flow-restore-post": "$1 が [[$6]]の\"[[$3|$5]]\" の[$4 投稿]を{{GENDER:$2|復元}}",
@@ -270,6 +271,7 @@
 	"flow-special-type-workflow": "ワークフロー",
 	"flow-special-uuid": "UUID",
 	"flow-importer-lqt-moved-thread-template-content": "この投稿は{{{author}}}によって{{{date}}}上に移動されました。それを[[{{{title}}}]]で発見できます。",
+	"flow-importer-lqt-converted-template-content": "前のページの履歴はアーカイブされています。バックアップの目的のためのアーカイブであり、<span class='flow-link-to-archive'>[[{{{archive}}}]]</span> on {{#time: Y-m-d|{{{date}}}}}にあります。",
 	"flow-importer-wt-converted-template-content": "前の決定は{{#time: Y-m-d|{{{date}}} }}上の<span class='flow-link-to-archive'>[[{{{archive}}}]]</span>にてアーカイブされています。",
 	"flow-importer-wt-converted-archive-template-content": "このページはアーカイブです。'''けっして、このページを編集しないでください。'''コメントを追加したい場合は、[[{{{from|{{TALKSPACE}}:{{BASEPAGENAME}}}}}|current talk page]]にダイレクトしてください。",
 	"flow-importer-lqt-different-author-signature-template-content": "''この投稿は [[User:{{{authorUser}}}|{{{authorUser}}}]]によって投稿されましたが、しかし[[User:{{{signatureUser}}}|{{{signatureUser}}}]]としてサインされました。 ''",
