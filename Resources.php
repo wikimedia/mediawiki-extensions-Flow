@@ -536,6 +536,7 @@ $wgResourceModules += array(
 			'ext.visualEditor.icons',
 			// See comment at bottom of mw.flow.ve.Target.js.
 			'ext.visualEditor.mediawiki',
+			'ext.visualEditor.mwimage',
 			'ext.visualEditor.mwlink',
 			'ext.visualEditor.mwtransclusion',
 			'ext.visualEditor.standalone',
