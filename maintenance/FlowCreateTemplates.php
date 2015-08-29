@@ -29,7 +29,7 @@ class FlowCreateTemplates extends LoggedUpdateMaintenance {
 				global $wgContLang;
 				$namespaces = $wgContLang->getFormattedNamespaces();
 
-				return '@[[' . $namespaces[NS_USER] . ':{{{1|Example}}}|{{{2|{{{1|Example}}}}}}]]';
+				return '@[[' . $namespaces[NS_USER] . ':{{{1|Example}}}|{{{2|{{{1|Example}}}}}}]]<nowiki />';
 			},
 			// LiquidThread import templates
 			'flow-importer-lqt-moved-thread-template' => function( Title $title ) {
