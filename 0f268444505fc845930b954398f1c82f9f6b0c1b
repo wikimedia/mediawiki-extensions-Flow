@@ -108,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_0d98c879",
+        "filename": "Hooks.php",
+        "patchSetId": 26
+      },
+      "lineNbr": 1629,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-29T02:06:22Z",
+      "side": 1,
+      "message": "I\u0027ve suggested on the task to link to MediaWiki.org instead.  All the BetaFeatures at https://en.wikipedia.org/wiki/Special:Preferences#mw-prefsection-betafeatures already do so.",
+      "parentUuid": "6ec1af18_d4001f3b",
+      "revId": "0f268444505fc845930b954398f1c82f9f6b0c1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_60fde6ad",
         "filename": "Hooks.php",
         "patchSetId": 26
