@@ -13,6 +13,7 @@
 	},
 	"enableflow": "Kích hoạt Flow",
 	"flow-desc": "Hệ thống quản lý luồng làm việc",
+	"flow-talk-taken-over-comment": "/* Trang này đã được chuyển đổi thành bảng tin Flow */",
 	"log-name-flow": "Nhật trình hoạt động Flow",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2}}đã xóa một [$4 bài đăng] về “[[$3|$5]]” tại [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2}}đã phục hồi một [$4 bài đăng] về “[[$3|$5]]” tại [[$6]]",
