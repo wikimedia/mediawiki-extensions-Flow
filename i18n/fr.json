@@ -393,7 +393,6 @@
 	"flow-special-enableflow-board-already-exists": "Il y a déjà un tableau Flow sur [[$1]].",
 	"flow-special-enableflow-invalid-title": "Un titre invalide de page a été fourni.",
 	"flow-special-enableflow-board-creation-not-allowed": "Vous n'êtes pas autorisé à créer un tableau Flux à [[:$1]].",
-	"flow-special-enableflow-non-existent-requires-description": "Pour créer un tableau Flow sans encore aucune page, vous devez fournir une description.",
 	"flow-special-enableflow-page-is-liquidthreads": "Il existe une page LiquidThreads à [[:$1]].",
 	"flow-special-enableflow-confirmation": "Vous avez bien créé un tableau Flow sur [[$1]].",
 	"flow-conversion-archive-page-name-format": "%s/Archive %d\n%s/Archive%d\n%s/archive %d\n%s/archive%d",

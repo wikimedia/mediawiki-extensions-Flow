@@ -358,7 +358,6 @@
 	"flow-special-enableflow-board-already-exists": "Xa existe un taboleiro de mensaxes Flow en [[$1]]",
 	"flow-special-enableflow-invalid-title": "Proporcionouse un título de páxina non válido",
 	"flow-special-enableflow-board-creation-not-allowed": "Non ten permiso para crear un taboleiro Flow en [[:$1]].",
-	"flow-special-enableflow-non-existent-requires-description": "Para crear un panel de conversa de Flow onde non existe ningunha páxina actualmente, cómpre achegar unha descrición.",
 	"flow-special-enableflow-page-is-liquidthreads": "Hai unha páxina LiquidThreads en [[:$1]].",
 	"flow-special-enableflow-confirmation": "Creou un novo taboleiro de conversa de Flow en [[$1]].",
 	"flow-conversion-archive-page-name-format": "%s/Arquivo %d\n%s/Arquivo%d\n%s/arquivo %d\n%s/arquivo%d",

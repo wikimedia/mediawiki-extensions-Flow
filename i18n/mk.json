@@ -358,7 +358,6 @@
 	"flow-special-enableflow-board-already-exists": "Веќе има разговорница на [[$1]].",
 	"flow-special-enableflow-invalid-title": "Укажан е неважечки наслов на страницата",
 	"flow-special-enableflow-board-creation-not-allowed": "Не ви е дозволено да создадете разговорник на [[:$1]].",
-	"flow-special-enableflow-non-existent-requires-description": "За да направите разговорница онаму кајшто нема страница, ќе мора да внесете опис.",
 	"flow-special-enableflow-page-is-liquidthreads": "Страницата [[:$1]] има LiquidThreads.",
 	"flow-special-enableflow-confirmation": "Успешно создадовте разговорница на [[$1]].",
 	"flow-conversion-archive-page-name-format": "%s/Архив %d\n%s/Архив%d\n%s/архив %d\n%s/архив%d",

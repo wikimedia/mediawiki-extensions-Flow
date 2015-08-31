@@ -364,7 +364,6 @@
 	"flow-special-enableflow-board-already-exists": "כבר יש לוח זרימה בדף [[$1]].",
 	"flow-special-enableflow-invalid-title": "ניתנה כותרת דף שגויה",
 	"flow-special-enableflow-board-creation-not-allowed": "אין לך הרשאה ליצור לוח זרימה בדף [[:$1]].",
-	"flow-special-enableflow-non-existent-requires-description": "כדי ליצור לוח זרימה איפה שאין עכשיו דף יש לספק תיאור.",
 	"flow-special-enableflow-page-is-liquidthreads": "יש דף LiquidThreads בשם [[:$1]].",
 	"flow-special-enableflow-confirmation": "מיקמת בהצלחה לוח זרימה בדף [[$1]].",
 	"flow-conversion-archive-page-name-format": "%s/ארכיון %d",

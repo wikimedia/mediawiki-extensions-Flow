@@ -374,7 +374,6 @@
 	"flow-special-enableflow-board-already-exists": "在[[$1]]已存在Flow板块。",
 	"flow-special-enableflow-invalid-title": "提供了一个无效的页面标题",
 	"flow-special-enableflow-board-creation-not-allowed": "您不被允许在[[:$1]]创建一个Flow板块。",
-	"flow-special-enableflow-non-existent-requires-description": "要在当前无页面存在的情况下创建一个Flow板块，您必须提供一段描述。",
 	"flow-special-enableflow-page-is-liquidthreads": "在[[:$1]]有一个LiquidThreads页面。",
 	"flow-special-enableflow-confirmation": "您已成功在[[$1]]创建一个Flow板块。",
 	"flow-conversion-archive-page-name-format": "%s/存档 %d\n%s/存档%d\n%s/存档 %d\n%s/存档%d",

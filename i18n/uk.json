@@ -381,6 +381,7 @@
 	"flow-importer-lqt-converted-template": "Сторінку LQT перетворено на Flow",
 	"flow-importer-lqt-converted-archive-template": "Архів конвертованої LQT-сторінки",
 	"flow-importer-wt-converted-template": "Вікітекстова сторінка обговорення перетворена на Flow",
+	"flow-importer-wt-converted-template-content": "Попередня дискусія була заархівованою <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> {{#час: Р-М-д|{{{дата}}}}}.",
 	"flow-importer-wt-converted-archive-template": "Архів перетвореної вікітекстової сторінки обговорення",
 	"flow-importer-lqt-suppressed-user-template": "Допис LQT імпортовано з пригніченим користувачем",
 	"flow-importer-lqt-different-author-signature-template": "LQT-пост імпортовано з іншим підписом користувача",

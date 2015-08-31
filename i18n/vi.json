@@ -364,7 +364,6 @@
 	"flow-special-enableflow-board-already-exists": "Đã có bảng tin Flow tại [[$1]].",
 	"flow-special-enableflow-invalid-title": "Tên trang đã cung cấp không hợp lệ.",
 	"flow-special-enableflow-board-creation-not-allowed": "Bạn không được phép tạo bảng tin Flow tại [[:$1]].",
-	"flow-special-enableflow-non-existent-requires-description": "Để tạo bảng tin Flow mới ở nơi chưa có trang, bạn phải cung cấp một lời miêu tả.",
 	"flow-special-enableflow-page-is-liquidthreads": "Có trang LiquidThreads tại [[:$1]].",
 	"flow-special-enableflow-confirmation": "Bạn đã tạo bảng tin Flow thành công tại [[$1]].",
 	"flow-conversion-archive-page-name-format": "%s/Lưu %d\n%s/Lưu%d\n%s/lưu %d\n%s/lưu%d\n%s/Lưu trữ %d\n%s/lưu trữ %d",

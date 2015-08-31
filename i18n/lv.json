@@ -205,6 +205,7 @@
 	"flow-whatlinkshere-post-summary": "no [$1 kopsavilkuma]",
 	"flow": "Flow",
 	"flow-special-type-post": "Ieraksts",
+	"flow-special-type-workflow": "Darbplūsma",
 	"flow-special-uuid": "UUID",
 	"flow-special-enableflow-header": "Sākotnējais lapas apraksts (vikiteksts)",
 	"flow-special-enableflow-board-creation-not-allowed": "Tev nav atļauts izveidot Flow lapu [[:$1]].",
