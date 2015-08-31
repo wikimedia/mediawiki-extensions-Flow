@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_a440a20a",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-31T22:24:51Z",
+      "side": 1,
+      "message": "You also need to do this again after the topic loads (inside the response to \u0027refreshTopic\u0027 )\n\nsee how we did the replaceReplyForms() -- it runs on initialization but also when the topic reloads to re-replace the links. Otherwise, editing a post will cause the topic to refresh and the editing again will take us to the no-js link to edit in a separate window.",
+      "revId": "896ff011e5a89e3d6adfbe491568bde4e70b4c0f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_045c161d",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.EditPostWidget.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-31T22:24:51Z",
+      "side": 1,
+      "message": "^^ Not quite reply widget",
+      "revId": "896ff011e5a89e3d6adfbe491568bde4e70b4c0f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_643cfabb",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.EditPostWidget.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-31T22:24:51Z",
+      "side": 1,
+      "message": "This isn\u0027t a blocker to merge, but just for posterity: \n\nThere\u0027s a lot of functionality and code here that seems to be duplicated and shared between the EditPostWidget, the ReplyWidget and, some, with the DescriptionWidget and its edit functionality.\n\nWe should at some point abstract all the base functionality out and use it as a base class for those.",
+      "revId": "896ff011e5a89e3d6adfbe491568bde4e70b4c0f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
