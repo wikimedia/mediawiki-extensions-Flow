@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_23c7cc68",
+        "filename": "Hooks.php",
+        "patchSetId": 30
+      },
+      "lineNbr": 1624,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-31T17:49:29Z",
+      "side": 1,
+      "message": "We can bypass whitelist and just do $user-\u003egetOption( BETA_FEATURE_FLOW_USER_TALK_PAGE ) !\u003d\u003d \u00271\u0027\n(though I\u0027m not sure we should)\n\nI just prefer not to have to rely on setting 2 globals for 2 different extensions to get a feature to work right. If we can have only 1 and take care of setting the rest ourselves, that\u0027d be better. If not, we should at least add a noticable comment near $wgFlowEnableOptInBetaFeature informing the user they may also have to set $wgBetaFeaturesWhitelist?",
+      "parentUuid": "6ec1af18_8303200f",
+      "revId": "4d6290e18af523cbbabfe3af30caf34c4bddbd9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_12ec60b7",
         "filename": "includes/Import/OptInUpdate.php",
         "patchSetId": 30
