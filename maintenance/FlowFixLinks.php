@@ -30,6 +30,10 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
+		// disable Echo notifications for this script
+		global $wgEchoNotifications;
+		$wgEchoNotifications = array();
+
 		$this->removeVirtualPages();
 		$this->rebuildCoreTables();
 
