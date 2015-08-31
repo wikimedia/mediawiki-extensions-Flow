@@ -12,7 +12,7 @@ require_once( __DIR__ . '/../../../includes/utils/BatchRowWriter.php' );
 require_once( __DIR__ . '/../../../includes/utils/RowUpdateGenerator.php' );
 
 /**
- * Fixes Flow entries in categorylinks & related tables.
+ * Fixes Flow References & entries in categorylinks & related tables.
  *
  * @ingroup Maintenance
  */
@@ -20,18 +20,39 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
 
-		$this->mDescription = 'Fixes Flow entries in categorylinks & related tables';
+		$this->mDescription = 'Fixes Flow References & entries in categorylinks & related tables';
 
 		$this->setBatchSize( 300 );
 	}
 
 	protected function getUpdateKey() {
-		return __CLASS__;
+		return __CLASS__ . ':v2';
 	}
 
 	protected function doDBUpdates() {
+		$this->removeVirtualPages();
+		$this->rebuildCoreTables();
+
+		$this->output( "Completed\n" );
+
+		return true;
+	}
+
+	protected function removeVirtualPages() {
+		/** @var \Flow\Data\ObjectManager $storage */
+		$storage = Container::get( 'storage.wiki_reference' );
+		$links = $storage->find( array( 'ref_target_namespace' => array( -1, -2 ) ) );
+		if ( $links ) {
+			$storage->multiRemove( $links, array() );
+		}
+
+		$this->output( "Removed " . count( $links ) . " links to special pages.\n");
+	}
+
+	protected function rebuildCoreTables() {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbr = Container::get( 'db.factory' )->getDB( DB_SLAVE );
+		/** @var \Flow\LinksTableUpdater $linksTableUpdater */
 		$linksTableUpdater = Container::get( 'reference.updater.links-tables' );
 
 		$iterator = new BatchRowIterator( $dbr, 'flow_workflow', 'workflow_id', $this->mBatchSize );
@@ -59,12 +80,10 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 			}
 
 			$dbw->commit();
+
+			$this->output( "Rebuilt links for " . count( $rows ) . " workflows...\n" );
 			wfWaitForSlaves();
 		}
-
-		$this->output( "Completed\n" );
-
-		return true;
 	}
 }
 

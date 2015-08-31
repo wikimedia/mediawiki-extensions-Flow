@@ -76,6 +76,11 @@ class ReferenceFactory {
 			return null;
 		}
 
+		// exclude virtual namespaces
+		if ( $title->getNamespace() < 0 ) {
+			return null;
+		}
+
 		return new WikiReference(
 			$this->wikiId,
 			$this->workflowId,
