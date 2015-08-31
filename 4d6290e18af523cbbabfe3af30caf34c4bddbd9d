@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_b2746ccd",
+        "filename": "Hooks.php",
+        "patchSetId": 30
+      },
+      "lineNbr": 1624,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-31T13:40:29Z",
+      "side": 1,
+      "message": "This check only works if BETA_FEATURE_FLOW_USER_TALK_PAGE is in $wgBetaFeaturesWhitelist. Otherwise it always returns false.\n\nI had missed that.\nMaybe we should get rid of $wgFlowEnableOptInBetaFeature and check in_array( BETA_FEATURE_FLOW_USER_TALK_PAGE, $wgBetaFeaturesWhitelist )? (or make sure that it\u0027s automatically added to $wgBetaFeaturesWhitelist if wgFlowEnableOptInBetaFeature \u003d\u003d\u003d true)",
+      "revId": "4d6290e18af523cbbabfe3af30caf34c4bddbd9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_12ec60b7",
+        "filename": "includes/Import/OptInUpdate.php",
+        "patchSetId": 30
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-08-31T13:40:29Z",
+      "side": 1,
+      "message": "Coding standards: { should be on same line.\nhttps://www.mediawiki.org/wiki/Manual:Coding_conventions#Indenting_and_alignment",
+      "revId": "4d6290e18af523cbbabfe3af30caf34c4bddbd9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
