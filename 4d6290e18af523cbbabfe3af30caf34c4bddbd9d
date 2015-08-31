@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_8303200f",
+        "filename": "Hooks.php",
+        "patchSetId": 30
+      },
+      "lineNbr": 1624,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-31T17:24:26Z",
+      "side": 1,
+      "message": "I guess the question is: should we use whitelisting to determine if our beta feature is available to users or not?\n\nWhilelisting is optional, it means that if we deploy a new version of Flow (after we merge the beta feature) to a wiki that doesn\u0027t use it, we would have to add and configure it to keep things the same.\n\nDoes it make sense to automatically add our self to the whitelist  when $wgFlowEnableOptInBetaFeature is true? Doesn\u0027t it defeat the purpose of a whitelist if anybody can join it?",
+      "parentUuid": "6ec1af18_b2746ccd",
+      "revId": "4d6290e18af523cbbabfe3af30caf34c4bddbd9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_12ec60b7",
         "filename": "includes/Import/OptInUpdate.php",
         "patchSetId": 30
@@ -30,6 +48,24 @@
       "writtenOn": "2015-08-31T13:40:29Z",
       "side": 1,
       "message": "Coding standards: { should be on same line.\nhttps://www.mediawiki.org/wiki/Manual:Coding_conventions#Indenting_and_alignment",
+      "revId": "4d6290e18af523cbbabfe3af30caf34c4bddbd9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_4311b855",
+        "filename": "includes/Import/OptInUpdate.php",
+        "patchSetId": 30
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-31T17:24:26Z",
+      "side": 1,
+      "message": "Done\n\nCan php linting check that? I feel it\u0027s a waste of your brain to enforce it.",
+      "parentUuid": "6ec1af18_12ec60b7",
       "revId": "4d6290e18af523cbbabfe3af30caf34c4bddbd9d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
