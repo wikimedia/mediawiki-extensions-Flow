@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_637ab4b9",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-31T18:27:13Z",
+      "side": 1,
+      "message": "It might return null, too, since editorSwitcherWidget.getEditorFormat(..) can return null if the initialEditorName doesn\u0027t exist.",
+      "revId": "997cb268d99960d1a8cc4ac2003632846e48e09e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_e3554427",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-08-31T18:27:13Z",
+      "side": 1,
+      "message": "contentFormat might be null. We should either fallback on something (wikitext?) or add a condition to make sure we don\u0027t query the API if contentFormat is null...?",
+      "revId": "997cb268d99960d1a8cc4ac2003632846e48e09e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
