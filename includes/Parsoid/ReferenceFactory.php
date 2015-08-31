@@ -76,6 +76,10 @@ class ReferenceFactory {
 			return null;
 		}
 
+		if ( $title->getNamespace() === NS_SPECIAL ) {
+			return null;
+		}
+
 		return new WikiReference(
 			$this->wikiId,
 			$this->workflowId,
