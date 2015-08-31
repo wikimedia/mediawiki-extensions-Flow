@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_9e0e17e7",
+        "filename": "Hooks.php",
+        "patchSetId": 30
+      },
+      "lineNbr": 1624,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-31T19:19:48Z",
+      "side": 1,
+      "message": "I agree there should be only 1 place to set this. But in the short term I think we should at least check the whitelist and if it exists and we\u0027re not in there, we don\u0027t show our beta feature. \n\nThe impact of incomplete configuration would be that the feature is not there, not that it is there but it doesn\u0027t work.",
+      "parentUuid": "6ec1af18_23c7cc68",
+      "revId": "4d6290e18af523cbbabfe3af30caf34c4bddbd9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_12ec60b7",
         "filename": "includes/Import/OptInUpdate.php",
         "patchSetId": 30
