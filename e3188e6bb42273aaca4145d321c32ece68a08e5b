@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_9e837756",
+        "filename": "includes/Parsoid/ReferenceFactory.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-08-31T19:02:11Z",
+      "side": 1,
+      "message": "Should we normalize Media (-2) to File as https://git.wikimedia.org/blob/mediawiki%2Fcore.git/0841b74ca1aa11d8175be099cbb4dd168f38d206/includes%2Fparser%2FParserOutput.php#L372 does?",
+      "revId": "e3188e6bb42273aaca4145d321c32ece68a08e5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
