@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_f28d1486",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ContentWidget.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-08-31T11:25:01Z",
+      "side": 1,
+      "message": "The API layer could clean that up to return a single message that can be displayed.",
+      "revId": "c0a2ac5d54cbb27ffd5298cf11cd983fec2331c4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
