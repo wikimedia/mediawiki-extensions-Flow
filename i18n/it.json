@@ -13,12 +13,12 @@
 			"F. Cosoleto",
 			"Ricordisamoa",
 			"Alexmar983",
-			"Erasmo Barresi"
+			"Erasmo Barresi",
+			"Statix64"
 		]
 	},
 	"enableflow": "Attiva Flow",
 	"flow-desc": "Sistema di gestione del flusso di lavoro",
-	"flow-talk-taken-over": "Questa pagina di discussione sta utilizzando [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow].",
 	"log-name-flow": "Attività sui flussi",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|ha cancellato}} un [$4 messaggio] su \"[[$3|$5]]\" su [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|ha ripristinato}} un [$4 messaggio] su \"[[$3|$5]]\" su [[$6]]",
@@ -127,7 +127,7 @@
 	"flow-error-lock-moderated-post": "Non puoi segnalare come chiuso un messaggio moderato.",
 	"flow-error-external-multi": "Si sono verificati errori.<br />$1",
 	"flow-error-missing-content": "Il tuo messaggio non ha contenuto. Un minimo di contenuto è necessario per poter salvare un messaggio.",
-	"flow-error-missing-summary": "Il riassunto non ha contenuto. Un minimo di contenuto è necessario per poter salvare un riassunto.",
+	"flow-error-missing-summary": "È necessario inserire un riassunto.",
 	"flow-error-missing-title": "L'argomento non ha titolo. Serve un titolo per salvare un argomento.",
 	"flow-error-parsoid-failure": "Impossibile analizzare il contenuto a causa di un errore di Parsoid.",
 	"flow-error-missing-replyto": "Non è stato indicato un parametro \"rispondi_a\". Questo parametro è richiesto per la funzione \"rispondi\".",
@@ -153,7 +153,7 @@
 	"flow-error-title-too-long": "I titoli degli argomenti sono limitati a $1 {{PLURAL:$1|byte}}.",
 	"flow-error-no-existing-workflow": "Questo flusso di lavoro non esiste ancora.",
 	"flow-error-not-a-post": "Il titolo di un argomento non può essere salvato come un messaggio.",
-	"flow-error-missing-header-content": "La descrizione non ha contenuto. Un minimo di contenuto è necessario per poter salvare una descrizione.",
+	"flow-error-missing-header-content": "È necessario inserire una descrizione.",
 	"flow-error-missing-prev-revision-identifier": "L'Identificatore della versione precedente è mancante.",
 	"flow-error-prev-revision-mismatch": "Un altro utente ha modificato questo messaggio pochi secondi fa. Sei {{GENDER:$3|sicuro|sicura}} di voler sovrascrivere la recente modifica?",
 	"flow-error-prev-revision-does-not-exist": "Impossibile trovare la versione precedente.",

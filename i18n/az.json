@@ -5,6 +5,8 @@
 		]
 	},
 	"flow-post-action-undelete-post": "Bərpa et",
+	"flow-error-missing-summary": "Siz mütləq şərh əlavə etməlisiniz.",
+	"flow-error-missing-header-content": "Siz mütləq izah əlavə etməlisiniz.",
 	"flow-moderation-confirm-undelete-post": "Bərpa et",
 	"flow-moderation-confirm-undelete-topic": "Bərpa et"
 }
