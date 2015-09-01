@@ -315,7 +315,8 @@
 		} );
 		$( 'form.flow-newtopic-form' ).replaceWith( newTopicWidget.$element );
 
-		dataBlob = mw.flow && mw.flow.data;
+		// Fall back to mw.flow.data, which was used until September 2015
+		dataBlob = mw.config.get( 'wgFlowData' ) || ( mw.flow && mw.flow.data );
 		if ( dataBlob && dataBlob.blocks ) {
 			// Populate the rendered topics or topic (if we are in a single-topic view)
 			mw.flow.system.populateBoardTopicsFromJson( dataBlob.blocks.topiclist || dataBlob.blocks.topic );
