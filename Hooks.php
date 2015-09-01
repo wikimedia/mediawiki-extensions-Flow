@@ -6,6 +6,7 @@ use Flow\Container;
 use Flow\Exception\FlowException;
 use Flow\Exception\PermissionException;
 use Flow\Formatter\CheckUserQuery;
+use Flow\Import\OptInUpdate;
 use Flow\Model\UUID;
 use Flow\OccupationController;
 use Flow\SpamFilter\AbuseFilter;
@@ -230,6 +231,9 @@ class FlowHooks {
 
 		require_once __DIR__.'/maintenance/FlowFixLinks.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowFixLinks' );
+
+		require_once __DIR__.'/maintenance/FlowUpdateBetaFeaturePreference.php';
+		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateBetaFeaturePreference' );
 
 		return true;
 	}
@@ -1577,9 +1581,92 @@ class FlowHooks {
 	 *
 	 * @param array $namespaces Associative array mapping namespace index
 	 *  to name
+	 * @return bool
 	 */
 	public static function onSearchableNamespaces( &$namespaces ) {
 		unset( $namespaces[NS_TOPIC] );
 		return true;
 	}
+
+	/**
+	 * @return bool
+	 */
+	private static function isBetaFeatureAvailable() {
+		global $wgBetaFeaturesWhitelist, $wgFlowEnableOptInBetaFeature;
+		return $wgFlowEnableOptInBetaFeature &&
+			( !is_array( $wgBetaFeaturesWhitelist ) || in_array( BETA_FEATURE_FLOW_USER_TALK_PAGE, $wgBetaFeaturesWhitelist ) );
+	}
+
+	/**
+	 * @param User $user
+	 * @param array $prefs
+	 * @return bool
+	 */
+	public static function onGetBetaFeaturePreferences( $user, &$prefs ) {
+		global $wgExtensionAssetsPath;
+
+		if ( !self::isBetaFeatureAvailable() ) {
+			return true;
+		}
+
+		$defaultProjectUrl = 'https://www.mediawiki.org/wiki/Extension:Flow';
+		$defaultProjectTalkUrl = 'https://www.mediawiki.org/wiki/Extension_talk:Flow';
+
+		$prefs[BETA_FEATURE_FLOW_USER_TALK_PAGE] = array(
+			// The first two are message keys
+			'label-message' => 'flow-talk-page-beta-feature-message',
+			'desc-message' => 'flow-talk-page-beta-feature-description',
+			'screenshot' => array(
+				'ltr' => "$wgExtensionAssetsPath/Flow/images/betafeature-flow-ltr.svg",
+				'rtl' => "$wgExtensionAssetsPath/Flow/images/betafeature-flow-rtl.svg",
+			),
+			'info-link' => self::getTitleUrlOrDefault( 'Project:Flow', $defaultProjectUrl ),
+			'discussion-link' => self::getTitleUrlOrDefault( 'Project_talk:Flow', $defaultProjectTalkUrl ),
+		);
+
+		return true;
+	}
+
+	/**
+	 * @param string $titleText
+	 * @param string $default
+	 * @return string
+	 */
+	private static function getTitleUrlOrDefault( $titleText, $default ) {
+		$title = Title::newFromText( $titleText );
+		return $title->exists() ? $title->getLocalURL() : $default;
+	}
+
+	/**
+	 * @param User $user
+	 * @param array $options
+	 * @return bool
+	 */
+	public static function onUserSaveOptions( $user, &$options ) {
+		if ( !self::isBetaFeatureAvailable() ) {
+			return true;
+		}
+
+		if ( !array_key_exists( BETA_FEATURE_FLOW_USER_TALK_PAGE, $options ) ) {
+			return true;
+		}
+
+		$userClone = User::newFromId( $user->getId() );
+		$before = BetaFeatures::isFeatureEnabled( $userClone, BETA_FEATURE_FLOW_USER_TALK_PAGE );
+		$after = $options[BETA_FEATURE_FLOW_USER_TALK_PAGE];
+		$action = null;
+
+		if ( !$before && $after ) {
+			$action = OptInUpdate::$ENABLE;
+		} elseif ( $before && !$after ) {
+			$action = OptInUpdate::$DISABLE;
+		}
+
+		if ( $action ) {
+			DeferredUpdates::addUpdate( new OptInUpdate( $action, $user->getTalkPage(), $user ) );
+		}
+
+		return true;
+	}
+
 }
