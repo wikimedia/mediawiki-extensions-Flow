@@ -236,11 +236,7 @@ class View extends ContextSource {
 		} );
 
 		// Add JSON blob for OOUI widgets
-		$out->addHTML( ResourceLoader::makeInlineScript(
-			'mw.flow = mw.flow || {}; mw.flow.data = ' .
-			FormatJson::encode( $jsonBlobResponse ) .
-			';'
-		) );
+		$out->addJsConfigVars( 'wgFlowData', $jsonBlobResponse );
 
 		$renderedBlocks = array();
 		foreach ( $apiResponse['blocks'] as $block ) {
