@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_1be6b43f",
+        "filename": "Hooks.php",
+        "patchSetId": 30
+      },
+      "lineNbr": 1624,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-09-01T06:09:26Z",
+      "side": 1,
+      "message": "I agree.",
+      "parentUuid": "6ec1af18_9e0e17e7",
+      "revId": "4d6290e18af523cbbabfe3af30caf34c4bddbd9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_12ec60b7",
         "filename": "includes/Import/OptInUpdate.php",
         "patchSetId": 30
@@ -102,6 +120,24 @@
       "side": 1,
       "message": "Done\n\nCan php linting check that? I feel it\u0027s a waste of your brain to enforce it.",
       "parentUuid": "6ec1af18_12ec60b7",
+      "revId": "4d6290e18af523cbbabfe3af30caf34c4bddbd9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_9bd1445a",
+        "filename": "includes/Import/OptInUpdate.php",
+        "patchSetId": 30
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-09-01T06:09:26Z",
+      "side": 1,
+      "message": "I think we have some phpcs rules that should detect things like this. https://packagist.org/packages/mediawiki/mediawiki-codesniffer",
+      "parentUuid": "6ec1af18_4311b855",
       "revId": "4d6290e18af523cbbabfe3af30caf34c4bddbd9d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
