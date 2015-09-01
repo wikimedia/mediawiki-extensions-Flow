@@ -573,6 +573,4 @@
 	"flow-guidedtour-optin-find-old-conversations-description": "Previous conversations have been moved to an archive page.",
 	"flow-guidedtour-optin-feedback": "Give us {{GENDER:$1|your}} feedback!",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|You}} can get more information, provide feedback, or disable the new system any time from the Beta features section."
-
-
 }

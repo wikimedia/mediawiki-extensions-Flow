@@ -580,5 +580,4 @@
 	"flow-guidedtour-optin-find-old-conversations-description": "Description of the 'find old conversations' step in the flow opt-in guided tour that launches after the user chose to convert their talk page to a Flow board. This message appears next to the board description, where a link is visible to the user's old talk page.",
 	"flow-guidedtour-optin-feedback": "Title of the 'feedback' step in the flow opt-in guided tour that launches after the user chose to convert their talk page to a Flow board. It appears under the 'beta' personal tool link, suggesting to the users that they can send the Flow developers feedback on their experience.",
 	"flow-guidedtour-optin-feedback-description": "Description of the 'feedback' step in the flow opt-in guided tour that launches after the user chose to convert their talk page to a Flow board. It appears under the 'beta' personal tool link, suggesting to the users that they can send the Flow developers feedback on their experience."
-
 }
