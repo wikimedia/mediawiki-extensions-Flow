@@ -556,6 +556,5 @@
 	"flow-mark-revision-patrolled-link-text": "Mark this page as patrolled",
 	"flow-mark-revision-patrolled-link-title": "Mark this page as patrolled",
 	"flow-mark-diff-patrolled-link-text": "Mark as patrolled",
-	"flow-mark-diff-patrolled-link-title": "Mark as patrolled",
-	"flow-description-last-modified-at": "This description was last modified on $1, at $2."
+	"flow-mark-diff-patrolled-link-title": "Mark as patrolled"
 }

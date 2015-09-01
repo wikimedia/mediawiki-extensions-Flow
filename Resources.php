@@ -240,7 +240,6 @@ $wgResourceModules += array(
 			// Timestamps
 			'flow-edited',
 			'flow-edited-by',
-			'flow-description-last-modified-at',
 			// Board header
 			"flow-board-header-browse-topics-link",
 			// editor switching
