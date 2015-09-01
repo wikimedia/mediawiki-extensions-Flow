@@ -235,11 +235,15 @@ $wgFlowExternalStore = false;
 $wgFlowContentFormat = 'html'; // possible values: html|wikitext XXX bug 70148 with wikitext
 
 // Flow Parsoid config
+// THESE VARIABLES ARE DEPRECATED.
+// Use the VirtualRESTService ($wgVirtualRestConfig) to configure
+// Parsoid and/or RESTBase.
 // Please note that this configuration is separate from VE's Parsoid config:
 // you'll have to fill out these variables too if you want to use Parsoid.
 $wgFlowParsoidURL = null; // also see $wgVisualEditorParsoidURL
 $wgFlowParsoidPrefix = null; // also see $wgVisualEditorParsoidPrefix
 $wgFlowParsoidTimeout = null; // In seconds; also see $wgVisualEditorParsoidTimeout
+$wgFlowParsoidHTTPProxy = null; // see also $wgVisualEditorParsoidHTTPProxy
 // Forward users' Cookie: headers to Parsoid. Required for private wikis (login required to read).
 // If the wiki is not private (i.e. $wgGroupPermissions['*']['read'] is true) this configuration
 // variable will be ignored.

@@ -85,7 +85,7 @@ class FlowHooks {
 	 * from $wgExtensionFunctions
 	 */
 	public static function initFlowExtension() {
-		global $wgFlowContentFormat, $wgFlowParsoidURL;
+		global $wgFlowContentFormat;
 
 		// needed to determine if a page is occupied by flow
 		self::getOccupationController();
@@ -96,7 +96,7 @@ class FlowHooks {
 			self::getAbuseFilter();
 		}
 
-		if ( $wgFlowContentFormat === 'html' && $wgFlowParsoidURL === null ) {
+		if ( $wgFlowContentFormat === 'html' && !Flow\Parsoid\Utils::isParsoidConfigured() ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Warning: $wgFlowContentFormat was set to \'html\', but you do not have Parsoid enabled.  Changing $wgFlowContentFormat to \'wikitext\'' );
 			$wgFlowContentFormat = 'wikitext';
 		}
