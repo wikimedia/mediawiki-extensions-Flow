@@ -9,6 +9,11 @@ require_once __DIR__ . '/defines.php';
 
 $namespaceNames = array();
 
+/** Arabic */
+$namespaceNames['ar'] = array(
+	NS_TOPIC => 'موضوع',
+);
+
 /** Asturian */
 $namespaceNames['ast'] = array(
 	NS_TOPIC =>  'Asuntu',
