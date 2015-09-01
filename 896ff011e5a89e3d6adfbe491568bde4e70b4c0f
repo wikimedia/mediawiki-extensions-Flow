@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_e791c79d",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-09-01T17:55:02Z",
+      "side": 1,
+      "message": "I did, and it didn\u0027t work for me. On the second editing, it opened the \u0027edit\u0027 link in a new window.\n\nAnd jQuery actually doesn\u0027t seem to attach the listeners properly on reloaded/added content. There used to be a .live() function that \"Attach an event handler for all elements which match the current selector, now and in the future\", but it is \"helpfully\" deprecated :(\nhttp://api.jquery.com/live/\n\nThe method that replaces it (.on() ) only gets attached to the currently selected elements: \"The .on() method attaches event handlers to the currently selected set of elements in the jQuery object.\" http://api.jquery.com/on/\n\nWe\u0027re doing the same \"trick\" with the replyWidgets too (see replaceReplyForms method in this file.) The event has to be reattached on dynamic content or it doesn\u0027t work.",
+      "parentUuid": "6ec1af18_4e29d8df",
+      "revId": "896ff011e5a89e3d6adfbe491568bde4e70b4c0f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_045c161d",
         "filename": "modules/flow/ui/widgets/mw.flow.ui.EditPostWidget.js",
         "patchSetId": 6
