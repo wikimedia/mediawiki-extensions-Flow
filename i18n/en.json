@@ -558,7 +558,6 @@
 	"flow-mark-revision-patrolled-link-title": "Mark this page as patrolled",
 	"flow-mark-diff-patrolled-link-text": "Mark as patrolled",
 	"flow-mark-diff-patrolled-link-title": "Mark as patrolled",
-	"flow-description-last-modified-at": "This description was last modified on $1, at $2.",
 	"flow-talk-page-beta-feature-message": "Flow on user talk",
 	"flow-talk-page-beta-feature-description": "Enables a new structured discussion system on your user talk page. Flow simplifies talk page discussions with clear places to write and reply, and allows conversation-level notifications. Existing wikitext discussions are moved to an archive. This feature is not auto-enabled; users will have to enable it separately. Disabling this feature will move the Flow board to a subpage and un-archive the previous talkpage.",
 	"flow-notification-link-text-enabled-on-talkpage": "View user talk page",
@@ -573,6 +572,4 @@
 	"flow-guidedtour-optin-find-old-conversations-description": "Previous conversations have been moved to an archive page.",
 	"flow-guidedtour-optin-feedback": "Give us {{GENDER:$1|your}} feedback!",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|You}} can get more information, provide feedback, or disable the new system any time from the Beta features section."
-
-
 }
