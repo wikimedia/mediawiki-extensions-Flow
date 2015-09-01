@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_4e29d8df",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-09-01T13:22:25Z",
+      "side": 1,
+      "message": "You should try editing a post, have it reloaded and edit it again...\n\nJquery events are not attached to individual elements but to the root. It receives all events and dispatch them based on the selectors used a registration time. It doesn\u0027t matter if the elements existed or not at registration time.",
+      "parentUuid": "6ec1af18_a440a20a",
+      "revId": "896ff011e5a89e3d6adfbe491568bde4e70b4c0f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_045c161d",
         "filename": "modules/flow/ui/widgets/mw.flow.ui.EditPostWidget.js",
         "patchSetId": 6
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_8e8a60e2",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.EditPostWidget.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-09-01T13:22:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec1af18_045c161d",
+      "revId": "896ff011e5a89e3d6adfbe491568bde4e70b4c0f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_643cfabb",
         "filename": "modules/flow/ui/widgets/mw.flow.ui.EditPostWidget.js",
         "patchSetId": 6
@@ -47,6 +83,24 @@
       "writtenOn": "2015-08-31T22:24:51Z",
       "side": 1,
       "message": "This isn\u0027t a blocker to merge, but just for posterity: \n\nThere\u0027s a lot of functionality and code here that seems to be duplicated and shared between the EditPostWidget, the ReplyWidget and, some, with the DescriptionWidget and its edit functionality.\n\nWe should at some point abstract all the base functionality out and use it as a base class for those.",
+      "revId": "896ff011e5a89e3d6adfbe491568bde4e70b4c0f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_cecaa81d",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.EditPostWidget.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-09-01T13:22:25Z",
+      "side": 1,
+      "message": "Reply and EditPost are indeed weird because they are centered on actions (replying, editing) rather than objects (post). We could have a Post widget that allows editing. Creating a blank instance could be used for replying and could be contained by the NewTopic widget. Or some variation of it.\n\nCreating a base class would not be my preferred option but I agree that encapsulation of shared behavior could help keep those widgets simple. Matt has started something here: https://gerrit.wikimedia.org/r/#/c/234423/",
+      "parentUuid": "6ec1af18_643cfabb",
       "revId": "896ff011e5a89e3d6adfbe491568bde4e70b4c0f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
