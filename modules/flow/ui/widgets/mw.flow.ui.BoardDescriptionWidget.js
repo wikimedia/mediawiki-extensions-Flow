@@ -99,10 +99,6 @@
 		this.$content.addClass( 'oo-ui-element-hidden' );
 
 		this.editor.toggle( true );
-		if ( this.editor.isActive() ) {
-			this.editor.focus();
-			return;
-		}
 
 		// Load the editor
 		this.editor.pushPending();
