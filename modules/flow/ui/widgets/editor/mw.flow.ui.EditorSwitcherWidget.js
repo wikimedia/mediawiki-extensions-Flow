@@ -32,11 +32,12 @@
 
 		this.activeEditorName = null;
 		this.editors = {};
-		this.availableEditors = mw.config.get( 'wgFlowEditorList' )
+		this.allEditors = mw.config.get( 'wgFlowEditorList' )
 			.map( function ( editor ) {
 				// Map 'none' to 'wikitext' for backwards compatibility
 				return editor === 'none' ? 'wikitext' : editor;
-			} )
+			} );
+		this.availableEditors = this.allEditors
 			.filter( function ( editor ) {
 				return widget.constructor.static.editorDefinitions[editor].static.isSupported();
 			} );
@@ -447,6 +448,15 @@
 		// Normalize 'none' to 'wikitext'
 		if ( currentPref === 'none' ) {
 			currentPref = 'wikitext';
+		}
+
+		// If the user's preferred editor exists but is not supported right now,
+		// don't change their preference (T110706)
+		if (
+			this.availableEditors.indexOf( currentPref ) === -1 &&
+			this.allEditors.indexOf( currentPref ) !== -1
+		) {
+			return;
 		}
 
 		if ( currentPref !== name ) {
