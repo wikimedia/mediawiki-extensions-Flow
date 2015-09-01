@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_e76547ac",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-09-01T18:06:10Z",
+      "side": 1,
+      "message": "For live event binding, what you need is something similar to line 239",
+      "parentUuid": "6ec1af18_e791c79d",
+      "revId": "896ff011e5a89e3d6adfbe491568bde4e70b4c0f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_045c161d",
         "filename": "modules/flow/ui/widgets/mw.flow.ui.EditPostWidget.js",
         "patchSetId": 6
