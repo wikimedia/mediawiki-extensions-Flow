@@ -59,7 +59,7 @@ class FeatureCompactor implements Compactor {
 	 * The $keyToQuery array maps from cache key to the values that were used to build the cache key.
 	 * These values are re-added to the results found in memcache.
 	 *
-	 * @param array $cached Array of results from BagOStuff::multiGet each containg a list of rows
+	 * @param array $cached Array of results from BagOStuff::multiGet each containing a list of rows
 	 * @param array $keyToQuery Map from key in $cached to the values used to generate that key
 	 * @return array The $cached array with the queried values merged in
 	 * @throws DataModelException

@@ -400,6 +400,7 @@ abstract class FeatureIndex implements Index {
 		// figure out what queries were resolved in cache
 		// $keysFromCache will be an array where values are cache keys and keys
 		// are the same index as their corresponding $queries
+		// (intersect with $cacheKeys to guarantee order)
 		$keysFromCache = array_intersect( $cacheKeys, array_keys( $fromCache ) );
 
 		// filter out all queries that have been resolved from cache and fetch
