@@ -1,1 +1,3 @@
-mw.flow.ui = {};
+mw.flow.ui = {
+	windowManager: new OO.ui.WindowManager()
+};

@@ -185,6 +185,20 @@
 		return !this.target.getSurface().getModel().getDocument().data.hasContent();
 	};
 
+	/**
+	 * Check if there are any changes made to the data in the editor
+	 *
+	 * @return {boolean} The original content has changed
+	 */
+	mw.flow.ui.VisualEditorWidget.prototype.hasBeenChanged = function () {
+		// If we haven't fully loaded yet, just return false
+		if ( !this.target ) {
+			return false;
+		}
+
+		return this.target.getSurface().getModel().hasBeenModified();
+	};
+
 	mw.flow.ui.VisualEditorWidget.prototype.setDisabled = function ( disabled ) {
 		// Parent method
 		mw.flow.ui.VisualEditorWidget.parent.prototype.setDisabled.call( this, disabled );
