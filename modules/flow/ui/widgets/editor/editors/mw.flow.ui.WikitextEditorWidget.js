@@ -136,6 +136,8 @@
 	 */
 	mw.flow.ui.WikitextEditorWidget.prototype.setContent = function ( content ) {
 		this.input.setValue( content );
+		// Cache content for comparison
+		this.initialContent = content;
 	};
 
 	mw.flow.ui.WikitextEditorWidget.prototype.setDisabled = function ( disabled ) {
@@ -151,7 +153,7 @@
 	 * @inheritdoc
 	 */
 	mw.flow.ui.WikitextEditorWidget.prototype.setup = function ( content ) {
-		this.input.setValue( content );
+		this.setContent( content );
 		return $.Deferred().resolve().promise();
 	};
 
