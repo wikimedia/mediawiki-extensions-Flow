@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_f882c551",
+        "filename": "modules/flow/ui/mw.flow.ui.Overlay.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-09-02T01:34:12Z",
+      "side": 1,
+      "message": "Not abstract, this is being instantiated",
+      "revId": "ebf967a2403543abbccde38c9e3907f6a51dcbff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_989dc1b6",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.AbstractEditorWidget.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-09-02T01:34:12Z",
+      "side": 1,
+      "message": "If the base class is going to consume this.initialContent, it should ideally maintain it completely (i.e. also set it). If that\u0027s not feasible, it should at least very clearly document what subclasses are expected to do.",
+      "revId": "ebf967a2403543abbccde38c9e3907f6a51dcbff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_b898bdc3",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-09-02T01:34:12Z",
+      "side": 1,
+      "message": "This creates and adds a new window for every EditorWidget, but because the WindowManager is keyed by name, only one is actually used. Instead, you should set up a WindowFactory in the same place where you set up the WindowManager, and register CancelConfirmDialog with that factory.",
+      "revId": "ebf967a2403543abbccde38c9e3907f6a51dcbff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_18f1d1fe",
+        "filename": "modules/styles/flow/mw.flow.ui.Overlay.less",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-09-02T01:34:12Z",
+      "side": 1,
+      "message": "Why?",
+      "revId": "ebf967a2403543abbccde38c9e3907f6a51dcbff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_38f4cded",
+        "filename": "modules/styles/flow/mw.flow.ui.Overlay.less",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-09-02T01:34:12Z",
+      "side": 1,
+      "message": "Why is this necessary? z-indexes are stacked, so I don\u0027t think this should be needed",
+      "revId": "ebf967a2403543abbccde38c9e3907f6a51dcbff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
