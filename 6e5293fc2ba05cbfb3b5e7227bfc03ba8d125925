@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_74ed79b3",
+        "filename": "modules/styles/board/topic/titlebar.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-09-02T20:54:32Z",
+      "side": 1,
+      "message": "You have identical comments that should be different. One pushes to the left and one to the right.\n\nSince I got extremely confused about this, can you change them?",
+      "revId": "6e5293fc2ba05cbfb3b5e7227bfc03ba8d125925",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
