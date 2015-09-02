@@ -573,5 +573,12 @@
 	"flow-notification-enabled-on-talkpage-email-subject": "Email subject for notification when Flow was enabled on your talk page.\n Parameters:\n* $1 - Title where Flow was enabled.",
 	"flow-notification-enabled-on-talkpage-email-batch-body": "Email body for notification when Flow was enabled on your talk page.\n Parameters:\n* $1 - Title where Flow was enabled.",
 	"flow-beta-feature-add-archive-template-edit-summary": "Edit summary message for the revision adding the archive template to an archived talk page.",
-	"flow-beta-feature-remove-archive-template-edit-summary": "Edit summary message for the revision removing the archive template to an archived talk page."
+	"flow-beta-feature-remove-archive-template-edit-summary": "Edit summary message for the revision removing the archive template to an archived talk page.",
+	"flow-guidedtour-optin-welcome": "Title of the 'welcome' step in the Flow opt-in guided tour. This message is the first to appear in the guided tour after a user chose to convert their talk page to a Flow board.",
+	"flow-guidedtour-optin-welcome-description": "Description of the 'welcome' step in the flow opt-in guided tour. This message is the first to appear in the guided tour after a user chose to convert their talk page to a Flow board.",
+	"flow-guidedtour-optin-find-old-conversations": "Title of the 'find old conversations' step in the flow opt-in guided tour that launches after the user chose to convert their talk page to a Flow board. This message appears next to the board description, where a link is visible to the user's old talk page.",
+	"flow-guidedtour-optin-find-old-conversations-description": "Description of the 'find old conversations' step in the flow opt-in guided tour that launches after the user chose to convert their talk page to a Flow board. This message appears next to the board description, where a link is visible to the user's old talk page.",
+	"flow-guidedtour-optin-feedback": "Title of the 'feedback' step in the flow opt-in guided tour that launches after the user chose to convert their talk page to a Flow board. It appears under the 'beta' personal tool link, suggesting to the users that they can send the Flow developers feedback on their experience.",
+	"flow-guidedtour-optin-feedback-description": "Description of the 'feedback' step in the flow opt-in guided tour that launches after the user chose to convert their talk page to a Flow board. It appears under the 'beta' personal tool link, suggesting to the users that they can send the Flow developers feedback on their experience."
+
 }
