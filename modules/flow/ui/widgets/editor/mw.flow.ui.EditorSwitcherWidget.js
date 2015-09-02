@@ -563,6 +563,15 @@
 	};
 
 	/**
+	 * Check if there are any changes made to the data in the editor
+	 *
+	 * @return {boolean} The original content has changed
+	 */
+	mw.flow.ui.EditorSwitcherWidget.prototype.hasBeenChanged = function () {
+		var editor = this.getActiveEditor();
+		return editor && editor.hasBeenChanged();
+	};
+	/**
 	 * Destroy the widget
 	 */
 	mw.flow.ui.EditorSwitcherWidget.prototype.destroy = function () {

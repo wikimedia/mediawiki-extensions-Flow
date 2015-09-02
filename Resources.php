@@ -374,6 +374,8 @@ $wgResourceModules += array(
 	'ext.flow.ui' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'flow/ui/mw.flow.ui.js',
+			'flow/ui/mw.flow.ui.Overlay.js',
+			'flow/ui/mw.flow.ui.CancelConfirmDialog.js',
 			'flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js',
 			'flow/ui/widgets/mw.flow.ui.ToCWidget.js',
 			'flow/ui/widgets/mw.flow.ui.ReorderTopicsWidget.js',
@@ -394,6 +396,7 @@ $wgResourceModules += array(
 		),
 		'styles' => array(
 			'styles/flow/mw.flow.ui.less',
+			'styles/flow/mw.flow.ui.Overlay.less',
 			'styles/flow/widgets/mw.flow.ui.NavigationWidget.less',
 			'styles/flow/widgets/mw.flow.ui.TopicMenuSelectWidget.less',
 			'styles/flow/widgets/mw.flow.ui.ReorderTopicsWidget.less',
@@ -410,6 +413,10 @@ $wgResourceModules += array(
 		'messages' => array(
 			'flow-error-parsoid-failure',
 			'flow-error-default',
+			'flow-dialog-cancelconfirm-title',
+			'flow-dialog-cancelconfirm-message',
+			'flow-dialog-cancelconfirm-keep',
+			'flow-dialog-cancelconfirm-discard',
 		),
 		'dependencies' => array (
 			'oojs-ui',
