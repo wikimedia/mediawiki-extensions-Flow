@@ -94,6 +94,8 @@ class OptInController {
 		} else {
 			$this->createFlowBoard( $title, $linkToArchivedTalkpage );
 			$this->notificationController->notifyFlowEnabledOnTalkpage( $user );
+			// Enable the guided tour by setting the cookie
+			$this->context->getRequest()->response()->setcookie( 'Flow_optIn_guidedTour', '1' );
 		}
 	}
 
