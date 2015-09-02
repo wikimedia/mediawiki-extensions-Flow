@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_74bfb9a7",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.AbstractEditorWidget.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-09-02T20:50:24Z",
+      "side": 1,
+      "message": "Not abstract any more",
+      "revId": "974da8cd583f2902cafcc807ae4f347f1057b8f6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_d4cb0d4c",
+        "filename": "modules/flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-09-02T20:50:24Z",
+      "side": 1,
+      "message": "Parent method usually comes first, not last",
+      "revId": "974da8cd583f2902cafcc807ae4f347f1057b8f6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
