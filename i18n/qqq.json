@@ -565,7 +565,6 @@
 	"flow-mark-revision-patrolled-link-title": "Title of the link to mark a revision as patrolled on a revision page.",
 	"flow-mark-diff-patrolled-link-text": "Text of the link to mark a revision as patrolled on a diff page.\n{{Identical|Mark as patrolled}}",
 	"flow-mark-diff-patrolled-link-title": "Title of the link to mark a revision as patrolled on a diff page.\n{{Identical|Mark as patrolled}}",
-	"flow-description-last-modified-at": "Timestamp line stating when description was modified. See also {{msg-mw|lastmodifiedat}}.  Parameters:\n* $1 - Date\n* $2 - Time",
 	"flow-talk-page-beta-feature-message": "Title of the beta feature to enable Flow on the user's talk page.",
 	"flow-talk-page-beta-feature-description": "Description of the beta feature to enable Flow on the user's talk page.",
 	"flow-notification-link-text-enabled-on-talkpage": "Primary link text in email for notification when Flow was enabled on your talk page.",
@@ -573,5 +572,10 @@
 	"flow-notification-enabled-on-talkpage-email-subject": "Email subject for notification when Flow was enabled on your talk page.\n Parameters:\n* $1 - Title where Flow was enabled.",
 	"flow-notification-enabled-on-talkpage-email-batch-body": "Email body for notification when Flow was enabled on your talk page.\n Parameters:\n* $1 - Title where Flow was enabled.",
 	"flow-beta-feature-add-archive-template-edit-summary": "Edit summary message for the revision adding the archive template to an archived talk page.",
-	"flow-beta-feature-remove-archive-template-edit-summary": "Edit summary message for the revision removing the archive template to an archived talk page."
+	"flow-beta-feature-remove-archive-template-edit-summary": "Edit summary message for the revision removing the archive template to an archived talk page.",
+	"flow-dialog-cancelconfirm-title": "Title of the dialog that appears when the user cancels an edit and verifies whether the user wants to discard their edits or continue editing.",
+	"flow-dialog-cancelconfirm-message": "Title of the dialog that appears when the user cancels an edit, asking the user if they are sure they wants to discard their edits or continue editing.",
+	"flow-dialog-cancelconfirm-keep": "Title for the keep option in the dialog that appears when the user cancels an edit.",
+	"flow-dialog-cancelconfirm-discard": "Title for the discard option in the dialog that appears when the user cancels an edit.",
+	"flow-description-last-modified-at": "Timestamp line stating when description was modified. See also {{msg-mw|lastmodifiedat}}.  Parameters:\n* $1 - Date\n* $2 - Time"
 }

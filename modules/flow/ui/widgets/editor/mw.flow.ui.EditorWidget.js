@@ -17,6 +17,8 @@
 	 * @cfg {string} [cancelMsgKey='flow-cancel'] i18n message key for the cancel button
 	 * @cfg {boolean} [autoFocus=true] Automatically focus after switching editors
 	 * @cfg {boolean} [cancelOnEscape=true] Emit 'cancel' when Esc is pressed
+	 * @cfg {boolean} [confirmCancel=true] Pop up a confirmation dialog if the user attempts
+	 *  to cancel when there are changes in the editor.
 	 */
 	mw.flow.ui.EditorWidget = function mwFlowUiEditorWidget( config ) {
 		var widget = this;
@@ -30,6 +32,7 @@
 		OO.ui.mixin.PendingElement.call( this, config );
 
 		this.initialEditor = config.editor;
+		this.confirmCancel = !!config.confirmCancel || config.cancelOnEscape === undefined;
 
 		this.editorControlsWidget = new mw.flow.ui.EditorControlsWidget( {
 			termsMsgKey: config.termsMsgKey || 'flow-terms-of-use-edit',
@@ -52,14 +55,14 @@
 			change: [ 'emit', 'change' ]
 		} );
 		this.editorControlsWidget.connect( this, {
-			cancel: [ 'emit', 'cancel' ],
+			cancel: 'onEditorControlsWidgetCancel',
 			save: 'onEditorControlsWidgetSave'
 		} );
 
 		if ( config.cancelOnEscape || config.cancelOnEscape === undefined ) {
 			this.$element.on( 'keydown', function ( e ) {
 				if ( e.which === OO.ui.Keys.ESCAPE ) {
-					widget.emit( 'cancel' );
+					widget.onEditorControlsWidgetCancel();
 					e.preventDefault();
 					e.stopPropagation();
 				}
@@ -110,6 +113,30 @@
 
 	// TODO figure out a way not to have to wrap so many things in EditorSwitcherWidget; maybe
 	// merge EditorSwitcherWidget into EditorWidget?
+
+	/**
+	 * Respond to cancel event. Verify with the user that they want to cancel if
+	 * there is changed data in the editor.
+	 * @fires cancel
+	 */
+	mw.flow.ui.EditorWidget.prototype.onEditorControlsWidgetCancel = function () {
+		var widget = this;
+
+		if ( this.confirmCancel && this.editorSwitcherWidget.hasBeenChanged() ) {
+			mw.flow.ui.windowManager.openWindow( 'cancelconfirm' )
+				.then( function ( opened ) {
+					opened.then( function ( closing, data ) {
+						if ( data && data.action === 'discard' ) {
+							// Remove content
+							widget.setContent( '', 'wikitext' );
+							widget.emit( 'cancel' );
+						}
+					} );
+				} );
+		} else {
+			this.emit( 'cancel' );
+		}
+	};
 
 	/**
 	 * Check whether an editor is currently active. This returns false before the first editor
