@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_38accd9c",
+        "filename": "i18n/en.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-09-02T17:09:27Z",
+      "side": 0,
+      "message": "The only reason is because I know in advance that there\u0027s another patch that removes it, and I didn\u0027t want another rebase....",
+      "parentUuid": "6ec1af18_388dad85",
+      "revId": "8eadb659fe3e017521987f53212592ac5a286788",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_d87fc961",
         "filename": "i18n/qqq.json",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2015-09-02T01:34:12Z",
       "side": 0,
       "message": "Same here too",
+      "revId": "8eadb659fe3e017521987f53212592ac5a286788",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_8f04911b",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-09-02T17:09:27Z",
+      "side": 0,
+      "message": "(Same as other comment)",
+      "parentUuid": "6ec1af18_d87fc961",
       "revId": "8eadb659fe3e017521987f53212592ac5a286788",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
