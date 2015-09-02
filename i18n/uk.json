@@ -521,5 +521,7 @@
 	"flow-mark-revision-patrolled-link-title": "Позначити цю сторінку як патрульовану",
 	"flow-mark-diff-patrolled-link-text": "Позначити як патрульовану",
 	"flow-mark-diff-patrolled-link-title": "Позначити як патрульовану",
-	"flow-description-last-modified-at": "Опис було востаннє змінено $1, о $2."
+	"flow-notification-enabled-on-talkpage-title-message": "На вашій сторінці обговорення задіяна нова дискусійна система<br/><small>Доступне від [[$1]]</small>",
+	"flow-beta-feature-add-archive-template-edit-summary": "Додавання архівного шаблону",
+	"flow-beta-feature-remove-archive-template-edit-summary": "Видалення архівного шаблону"
 }

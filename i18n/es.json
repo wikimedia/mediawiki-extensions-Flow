@@ -139,7 +139,7 @@
 	"flow-error-lock-moderated-post": "No puedes marcar como resuelta una publicación moderada.",
 	"flow-error-external-multi": "Se han encontrado errores.<br />$1",
 	"flow-error-missing-content": "La entrada no tiene contenido. Para guardarla necesitas añadir contenido.",
-	"flow-error-missing-summary": "El resumen no tiene contenido. Es necesario el contenido para guardar el resumen.",
+	"flow-error-missing-summary": "Debes escribir un resumen.",
 	"flow-error-missing-title": "El tema no tiene título. Para guardarlo necesitas añadirle un título.",
 	"flow-error-parsoid-failure": "No se puede analizar el contenido debido a una falla de Parsoid.",
 	"flow-error-missing-replyto": "Ningún parámetro \"replyTo\" fue suministrado. Este parámetro es requerido para hacer la acción \"responder\".",
@@ -166,7 +166,7 @@
 	"flow-error-title-too-long": "Los títulos de temas están restringidos a $1 {{PLURAL:$1|byte|bytes}}.",
 	"flow-error-no-existing-workflow": "Este flujo de trabajo todavía no existe.",
 	"flow-error-not-a-post": "El título del tema no puede guardarse como una publicación.",
-	"flow-error-missing-header-content": "La descripción no tiene contenido. Para guardar una descripción es necesario que tenga algo de contenido.",
+	"flow-error-missing-header-content": "Debes escribir una descripción.",
 	"flow-error-missing-prev-revision-identifier": "El identificador de la revisión anterior no se encuentra.",
 	"flow-error-prev-revision-mismatch": "Otro usuario acaba de editar esta publicación hace algunos segundos. ¿Estás {{GENDER:$3|seguro|segura}} que deseas sobrescribir el cambio reciente?",
 	"flow-error-prev-revision-does-not-exist": "La revisión anterior no pudo encontrarse.",
@@ -513,6 +513,5 @@
 	"flow-mark-revision-patrolled-link-text": "Marcar esta página como patrullada",
 	"flow-mark-revision-patrolled-link-title": "Marcar esta página como patrullada",
 	"flow-mark-diff-patrolled-link-text": "Marcar como patrullada",
-	"flow-mark-diff-patrolled-link-title": "Marcar como patrullada",
-	"flow-description-last-modified-at": "Esta descripción fue modificada por última vez el $1 a las $2."
+	"flow-mark-diff-patrolled-link-title": "Marcar como patrullada"
 }

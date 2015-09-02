@@ -136,7 +136,7 @@
 	"flow-error-lock-moderated-post": "Nie możesz oznaczyć moderowanego postu jako załatwiony.",
 	"flow-error-external-multi": "Wystąpiły błędy.<br />$1",
 	"flow-error-missing-content": "Post nie ma treści. Aby zapisać wiadomość, wymagana jest treść.",
-	"flow-error-missing-summary": "Streszczenie nie ma treści. Aby zapisać streszczenie, wymagana jest treść.",
+	"flow-error-missing-summary": "Należy wpisać streszczenie.",
 	"flow-error-missing-title": "Wątek nie ma tytułu. Aby zapisać wątek, wymagany jest tytuł.",
 	"flow-error-parsoid-failure": "Nie można wykonać analizy zawartości z powodu awarii Parsoida.",
 	"flow-error-missing-replyto": "Nie podano wartości „odpowiedz na”. Ta wartość jest wymagana do wykonania akcji „odpowiedz”.",
@@ -163,7 +163,7 @@
 	"flow-error-title-too-long": "Maksymalna wielkość tytułu wątku wynosi $1 {{PLURAL:$1|bajt|bajty|bajtów}}.",
 	"flow-error-no-existing-workflow": "Ten cykl pracy jeszcze nie istnieje.",
 	"flow-error-not-a-post": "Nie można zapisać tytułu wątku jako postu.",
-	"flow-error-missing-header-content": "Opis nie ma treści. Treść jest wymagana, aby zapisać opis.",
+	"flow-error-missing-header-content": "Należy podać opis.",
 	"flow-error-missing-prev-revision-identifier": "Brak identyfikatora poprzedniej wersji.",
 	"flow-error-prev-revision-mismatch": "Ktoś inny kilka sekund temu edytował ten wpis. Na pewno {{GENDER:$3|chcesz}} nadpisać jego zmiany?",
 	"flow-error-prev-revision-does-not-exist": "Nie udało się znaleźć poprzedniej wersji.",
@@ -440,6 +440,5 @@
 	"flow-mark-revision-patrolled-link-text": "Oznacz tę stronę jako „sprawdzoną”",
 	"flow-mark-revision-patrolled-link-title": "Oznacz tę stronę jako „sprawdzoną”",
 	"flow-mark-diff-patrolled-link-text": "Oznacz edycję jako „sprawdzoną”",
-	"flow-mark-diff-patrolled-link-title": "Oznacz edycję jako „sprawdzoną”",
-	"flow-description-last-modified-at": "Ten opis ostatnio zmodyfikowano o $2, $1."
+	"flow-mark-diff-patrolled-link-title": "Oznacz edycję jako „sprawdzoną”"
 }

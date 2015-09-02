@@ -378,6 +378,5 @@
 	"flow-mark-revision-patrolled-link-text": "이 문서를 점검한 것으로 표시",
 	"flow-mark-revision-patrolled-link-title": "이 문서를 점검한 것으로 표시",
 	"flow-mark-diff-patrolled-link-text": "점검한 문서로 표시",
-	"flow-mark-diff-patrolled-link-title": "점검한 문서로 표시",
-	"flow-description-last-modified-at": "이 설명은 $1 $2에 마지막으로 바뀌었습니다."
+	"flow-mark-diff-patrolled-link-title": "점검한 문서로 표시"
 }

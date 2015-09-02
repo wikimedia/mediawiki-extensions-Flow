@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Papuass",
-			"Edgars2007"
+			"Edgars2007",
+			"Silraks"
 		]
 	},
 	"enableflow": "Aktivizēt Flow",
@@ -82,7 +83,7 @@
 	"flow-topic-notification-subscribe-description": "{{GENDER:$1|Tu}} saņemsi paziņojumus par visām darbībām šajā tēmā.",
 	"flow-board-notification-subscribe-title": "{{GENDER:$1|Tu}} esi {{GENDER:$1|pierakstījies|pierakstījusies}} šai lapai!",
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Tu}} saņemsi paziņojumu, kad šajā lapā tiks izveidota jauna tēma.",
-	"flow-topic-action-watchlist-add": "Pierakstīties šai tēmai",
+	"flow-topic-action-watchlist-add": "Uzraudzīt šo tēmu",
 	"flow-error-http": "Sazinoties ar serveri, radās kļūda.",
 	"flow-error-other": "Neparedzēta kļūda.",
 	"flow-error-external": "Notikusi kļūda.<br />Saņemtais kļūdas ziņojums: $1",
@@ -228,11 +229,10 @@
 	"flow-wikitext-editor-help-and-preview": "Vikiteksts $1, Tu vari $2 jebkurā laikā.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|izmanto formatējumu]]",
 	"flow-wikitext-editor-help-preview-the-result": "apskatīt pirmskatu",
-	"flow-wikitext-switch-editor-tooltip": "Parslēgties uz VisualEditor",
-	"flow-ve-switch-editor-tool-title": "Parslēgties uz vikitekstu",
+	"flow-wikitext-switch-editor-tooltip": "Pārslēgties uz VisualEditor",
+	"flow-ve-switch-editor-tool-title": "Pārslēgties uz vikitekstu",
 	"flow-mark-revision-patrolled-link-text": "Atzīmēt šo lapu kā pārbaudītu",
 	"flow-mark-revision-patrolled-link-title": "Atzīmēt šo lapu kā pārbaudītu",
 	"flow-mark-diff-patrolled-link-text": "Atzīmēt kā pārbaudītu",
-	"flow-mark-diff-patrolled-link-title": "Atzīmēt kā pārbaudītu",
-	"flow-description-last-modified-at": "Apraksts pēdējoreiz tika mainīts $1 plkst. $2."
+	"flow-mark-diff-patrolled-link-title": "Atzīmēt kā pārbaudītu"
 }

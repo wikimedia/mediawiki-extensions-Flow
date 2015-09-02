@@ -29,7 +29,7 @@
 	"logentry-suppress-flow-restore-topic": "$1 {{GENDER:$2|eliminou}} o tópico \"[[$3|$5]]\" em [[$6]]",
 	"flow-user-moderated": "Utilizador em moderação",
 	"flow-board-header-browse-topics-link": "Pesquisar tópicos",
-	"flow-board-header": "Acerca deste conselho",
+	"flow-board-header": "Sobre esta discussão",
 	"flow-board-collapse-description": "Ocultar descrição",
 	"flow-board-expand-description": "Mostrar descrição",
 	"flow-edit-header-link": "Editar descrição",
@@ -124,7 +124,7 @@
 	"flow-error-lock-moderated-post": "Não pode marcar uma mensagem como resolvida.",
 	"flow-error-external-multi": "Foram encontrados erros.<br /> $1",
 	"flow-error-missing-content": "A mensagem não tem conteúdo. É necessário haver conteúdo para gravar uma mensagem.",
-	"flow-error-missing-summary": "Deve apresentar um sumário.",
+	"flow-error-missing-summary": "Deve apresentar um resumo.",
 	"flow-error-missing-title": "O tópico não tem título. É necessário definir um título para gravar um tópico.",
 	"flow-error-parsoid-failure": "Não foi possível analisar o conteúdo devido a uma falha do Parsoid.",
 	"flow-error-missing-replyto": "Não foi fornecido nenhum parâmetro \"responderA\". Este parâmetro é necessário para a ação de \"resposta\".",
@@ -477,6 +477,5 @@
 	"flow-mark-revision-patrolled-link-text": "Marcar esta página como patrulhada",
 	"flow-mark-revision-patrolled-link-title": "Marcar esta página como patrulhada",
 	"flow-mark-diff-patrolled-link-text": "Marcar como patrulhada",
-	"flow-mark-diff-patrolled-link-title": "Marcar como patrulhada",
-	"flow-description-last-modified-at": "Esta descrição foi alterada pela última vez a $1, às $2."
+	"flow-mark-diff-patrolled-link-title": "Marcar como patrulhada"
 }

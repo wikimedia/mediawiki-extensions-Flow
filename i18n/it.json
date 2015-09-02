@@ -379,6 +379,5 @@
 	"flow-wikitext-editor-help": "Wikitext $1.",
 	"flow-wikitext-editor-help-and-preview": "Wikitext $1 e si può fare $2 in qualsiasi momento.",
 	"flow-wikitext-editor-help-preview-the-result": "anteprima del risultato",
-	"flow-wikitext-switch-editor-tooltip": "Passa a VisualEditor",
-	"flow-description-last-modified-at": "Questa descrizione è stata modificata per l'ultima volta il $1 alle $2."
+	"flow-wikitext-switch-editor-tooltip": "Passa a VisualEditor"
 }

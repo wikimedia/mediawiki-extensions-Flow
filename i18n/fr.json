@@ -396,6 +396,7 @@
 	"flow-special-enableflow-page-is-liquidthreads": "Il existe une page LiquidThreads à [[:$1]].",
 	"flow-special-enableflow-confirmation": "Vous avez bien créé un tableau Flow sur [[$1]].",
 	"flow-conversion-archive-page-name-format": "%s/Archive %d\n%s/Archive%d\n%s/archive %d\n%s/archive%d",
+	"flow-conversion-archive-flow-page-name-format": "%s/Flow Archive %d\n%s/FlowArchive%d",
 	"flow-spam-confirmedit-form": "Veuillez confirmer que vous êtes humain en résolvant le captcha ci-dessous : $1",
 	"flow-embedding-unsupported": "Les discussions ne peuvent pas encore être incorporées.",
 	"mw-ui-unsubmitted-confirm": "Vous avez des modifications non enregistrées sur cette page. Êtes-vous sûr de vouloir la quitter et perdre ainsi votre travail ?",
@@ -555,5 +556,10 @@
 	"flow-mark-revision-patrolled-link-title": "Marquer cette page comme relue",
 	"flow-mark-diff-patrolled-link-text": "Marquer comme relue",
 	"flow-mark-diff-patrolled-link-title": "Marquer comme relue",
-	"flow-description-last-modified-at": "La description a été modifiée la dernière fois le $1 à $2."
+	"flow-talk-page-beta-feature-message": "Flux sur la discussion de l'utilisateur",
+	"flow-notification-link-text-enabled-on-talkpage": "Afficher la page de discussion de l'utilisateur",
+	"flow-notification-enabled-on-talkpage-title-message": "Nouveau système de discussion activé pour votre page de discussion utilisateur<br /><small>Disponible à [[$1]]</small>",
+	"flow-notification-enabled-on-talkpage-email-subject": "Nouveau système de discussion sur $1",
+	"flow-beta-feature-add-archive-template-edit-summary": "Ajouter le modèle d'archive",
+	"flow-beta-feature-remove-archive-template-edit-summary": "Supprimer le modèle d'archive"
 }

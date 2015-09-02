@@ -20,6 +20,7 @@
 	"flow-board-header": "Tietoa tästä keskustelusta",
 	"flow-board-collapse-description": "Piilota kuvaus",
 	"flow-board-expand-description": "Näytä kuvaus",
+	"flow-topic-collapse-siderail": "Lue koko leveydessään",
 	"flow-edit-header-link": "Muokkaa kuvausta",
 	"flow-post-moderated-toggle-hide-show": "Näytä kommentti, jonka on {{GENDER:$1|piilottanut}} $2",
 	"flow-post-moderated-toggle-delete-show": "Näytä kommentti, jonka on {{GENDER:$1|poistanut}} $2",
@@ -114,7 +115,7 @@
 	"flow-error-lock-moderated-post": "Et voi merkitä valvottua viestiä loppuun käsitellyksi.",
 	"flow-error-external-multi": "Virheitä on tapahtunut.<br />$1",
 	"flow-error-missing-content": "Viestissä ei ole sisältöä. Vain tekstiä sisältäviä viestejä voidaan tallentaa.",
-	"flow-error-missing-summary": "Yhteenvedossa ei ole sisältöä. Tyhjää yhteenvetoa ei voida tallentaa.",
+	"flow-error-missing-summary": "Sinun täytyy antaa yhteenveto.",
 	"flow-error-missing-title": "Aiheella ei ole otsikkoa. Aiheen otsikko on välttämätön, jotta aihe voidaan tallentaa.",
 	"flow-error-delete-failure": "Tämän kohteen poistaminen epäonnistui.",
 	"flow-error-hide-failure": "Tämän kohteen piilottaminen epäonnistui.",
@@ -234,6 +235,5 @@
 	"flow-ve-mention-placeholder": "Käyttäjätunnus",
 	"flow-ve-mention-tool-title": "Mainitse käyttäjä",
 	"flow-wikitext-switch-editor-tooltip": "Vaihda Visuaaliseen muokkaimeen",
-	"flow-ve-switch-editor-tool-title": "Vaihda wikitekstimuokkaimeen",
-	"flow-description-last-modified-at": "Tätä kuvausta on muokattu viimeksi $1 kello $2"
+	"flow-ve-switch-editor-tool-title": "Vaihda wikitekstimuokkaimeen"
 }

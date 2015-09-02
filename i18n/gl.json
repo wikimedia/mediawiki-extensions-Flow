@@ -8,6 +8,7 @@
 	},
 	"enableflow": "Activar Flow",
 	"flow-desc": "Sistema de xestión do fluxo de traballo",
+	"flow-talk-taken-over-comment": "/* Esta páxina foi convertida a un taboleiro de discusión de Flow */",
 	"log-name-flow": "Rexistro de actividade de Flow",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|borrou}} unha [$4 publicación] sobre «[[$3|$5]]» en [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|restaurou}} unha [$4 publicación] sobre «[[$3|$5]]» en [[$6]]",
@@ -121,7 +122,7 @@
 	"flow-error-lock-moderated-post": "Non pode marcar unha publicación moderada como resolta.",
 	"flow-error-external-multi": "Producíronse varios erros.<br />$1",
 	"flow-error-missing-content": "A mensaxe non ten contido. O contido é obrigatorio para gardar unha mensaxe.",
-	"flow-error-missing-summary": "O resumo non ten contido. É necesario un contenido para gardar o resumo.",
+	"flow-error-missing-summary": "Debe indicar un resumo.",
 	"flow-error-missing-title": "O fío non ten título. O título é obrigatorio para gardar un fío.",
 	"flow-error-parsoid-failure": "Non é posible analizar o contido debido a un fallo do Parsoid.",
 	"flow-error-missing-replyto": "Non se achegou ningún parámetro de resposta. Este parámetro é obrigatorio para a acción \"responder\".",
@@ -148,7 +149,7 @@
 	"flow-error-title-too-long": "Os títulos do tema foron restrinxidos a $1 {{PLURAL:$1|byte|bytes}}.",
 	"flow-error-no-existing-workflow": "Esta conversa aínda non existe.",
 	"flow-error-not-a-post": "O título do tema non puido ser gardado como unha mensaxe.",
-	"flow-error-missing-header-content": "A descrición non ten contido. Para gardar unha descrición é necesario que teña algún contido.",
+	"flow-error-missing-header-content": "Debe redactar unha descrición.",
 	"flow-error-missing-prev-revision-identifier": "O identificador da revisión anterior non se atopa.",
 	"flow-error-prev-revision-mismatch": "Outro usuario acaba de editar esta publicación fai algúns segundos. Está {{GENDER:$3|seguro|segura}} que desexa sobrescribir o cambio recente?",
 	"flow-error-prev-revision-does-not-exist": "A revisión anterior non puido ser atopada.",
@@ -371,6 +372,7 @@
 	"flow-topic-undo-delete": "desfacer borrar",
 	"flow-topic-undo-suppress": "desfacer suprimir",
 	"flow-importer-lqt-moved-thread-template": "Bosquexo de fío LQT trasladado e convertido a Flow",
+	"flow-importer-lqt-moved-thread-template-content": "A mensaxe de {{{author}}} foi movida o {{{date}}}. Pode atoparse en [[{{{title}}}]].",
 	"flow-importer-lqt-converted-template": "Páxina LQT convertida a Flow",
 	"flow-importer-lqt-converted-archive-template": "Arquivo da páxina LQT convertida",
 	"flow-importer-wt-converted-template": "Páxina de conversa en wikitexto convertida a Flow",
@@ -512,6 +514,5 @@
 	"flow-mark-revision-patrolled-link-text": "Marcar esta páxina como revisada",
 	"flow-mark-revision-patrolled-link-title": "Marcar esta páxina como revisada",
 	"flow-mark-diff-patrolled-link-text": "Marcar como revisada",
-	"flow-mark-diff-patrolled-link-title": "Marcar como revisada",
-	"flow-description-last-modified-at": "A última modificación desta descrición foi o $1 ás $2."
+	"flow-mark-diff-patrolled-link-title": "Marcar como revisada"
 }

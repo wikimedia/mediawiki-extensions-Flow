@@ -80,6 +80,8 @@
 	"flow-topic-action-watchlist-remove": "সদস্যতা ত্যাগ",
 	"flow-error-topic-is-locked": "এই প্রসঙ্গটি মিমাংসিত হয়েছে, তাই অতিরিক্ত কার্যকলাপ সম্ভব নয়।",
 	"flow-error-lock-moderated-post": "আপনি একটি মডারেটকৃত প্রকাশনা মিমাংসিত হিসাবে চিহ্নিত করতে পারবেন না।",
+	"flow-error-missing-summary": "আপনাকে অবশ্যই সারাংশ লিখতে হবে।",
+	"flow-error-missing-header-content": "আপনাকে অবশ্যই একটি বিবরণ দিতে হবে।",
 	"flow-error-invalid-topic-uuid-title": "খারাপ শিরোনাম",
 	"flow-error-unknown-workflow-id-title": "অজানা প্রসঙ্গ",
 	"flow-error-unknown-workflow-id": "অনুরোধকৃত প্রসঙ্গ বিদ্যমান নেই।",

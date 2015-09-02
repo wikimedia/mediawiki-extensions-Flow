@@ -366,6 +366,7 @@
 	"flow-special-enableflow-page-is-liquidthreads": "Es gibt eine LiquidThreads-Seite unter [[:$1]].",
 	"flow-special-enableflow-confirmation": "Du hast erfolgreich ein Flow-Board unter [[$1]] erstellt.",
 	"flow-conversion-archive-page-name-format": "%s/Archiv %d\n%s/Archiv%d\n%s/archiv %d\n%s/archiv%d",
+	"flow-conversion-archive-flow-page-name-format": "%s/Flow-Archiv %d\n%s/FlowArchiv%d",
 	"flow-spam-confirmedit-form": "Bitte bestätige, dass du ein Mensch bist, indem du das unten stehende Captcha löst: $1",
 	"flow-embedding-unsupported": "Diskussionen können noch nicht eingebettet werden.",
 	"mw-ui-unsubmitted-confirm": "Du hast auf dieser Seite ungespeicherte Änderungen. Bist du sicher, dass du diese Seite verlassen möchtest und die Arbeit verloren gehen soll?",
@@ -510,5 +511,12 @@
 	"flow-mark-revision-patrolled-link-title": "Diese Seite als kontrolliert markieren",
 	"flow-mark-diff-patrolled-link-text": "Als kontrolliert markieren",
 	"flow-mark-diff-patrolled-link-title": "Als kontrolliert markieren",
-	"flow-description-last-modified-at": "Diese Beschreibung wurde zuletzt geändert am $1 um $2."
+	"flow-talk-page-beta-feature-message": "Flow auf der Benutzerdiskussionsseite",
+	"flow-talk-page-beta-feature-description": "Aktiviert auf deiner Benutzerdiskussionsseite ein neu strukturiertes Diskussionssystem. Flow vereinfacht Diskussionsseiten mit klaren Orten zum Schreiben und Antworten und erlaubt Benachrichtigungen auf Diskussionsebene. Vorhandene Wikitext-Diskussionen werden in ein Archiv verschoben. Diese Funktion ist nicht automatisch aktiviert. Benutzer müssen es getrennt aktivieren. Das Deaktivieren dieser Funktion verschiebt das Flow-Board in eine Unterseite und stellt die vorherige Diskussionsseite wieder her.",
+	"flow-notification-link-text-enabled-on-talkpage": "Benutzerdiskussionsseite ansehen",
+	"flow-notification-enabled-on-talkpage-title-message": "Neues Diskussionssystem für deine Benutzerdiskussionsseite aktiviert<br /><small>Verfügbar unter [[$1]]</small>",
+	"flow-notification-enabled-on-talkpage-email-subject": "Neues Diskussionssystem auf $1",
+	"flow-notification-enabled-on-talkpage-email-batch-body": "Flow, das neue Wikidiskussionssystem, wurde auf deiner {{SITENAME}}-Benutzerdiskussionsseite aktiviert. Du erhältst weitere Informationen im Betafunktionen-Abschnitt in deinen Einstellungen. Dort kannst du auch Rückmeldungen geben oder das neue System jederzeit wieder deaktivieren.",
+	"flow-beta-feature-add-archive-template-edit-summary": "Archivvorlage hinzugefügt",
+	"flow-beta-feature-remove-archive-template-edit-summary": "Archivvorlage entfernt"
 }
