@@ -26,6 +26,8 @@
 	mw.flow.ui.AbstractEditorWidget = function mwFlowUiAbstractEditorWidget( config ) {
 		config = config || {};
 
+		this.initialContent = null;
+
 		// Parent constructor
 		mw.flow.ui.AbstractEditorWidget.parent.call( this, config );
 	};
@@ -170,4 +172,13 @@
 	mw.flow.ui.AbstractEditorWidget.prototype.isEmpty = function () {
 		return !this.getContent();
 	};
+
+	/**
+	 * Check if the information in the editor changed
+	 * @return {boolean} Information has changed
+	 */
+	mw.flow.ui.AbstractEditorWidget.prototype.hasBeenChanged = function () {
+		return this.initialContent !== this.getContent();
+	};
+
 }( jQuery ) );

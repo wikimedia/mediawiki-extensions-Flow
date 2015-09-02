@@ -39,6 +39,10 @@
 			return;
 		}
 
+		// Set up window overlay
+		$( 'body' ).append( mw.flow.ui.windowOverlay.$element );
+		mw.flow.ui.windowOverlay.$element.append( mw.flow.ui.windowManager.$element );
+
 		flowBoard = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $board );
 
 		if (

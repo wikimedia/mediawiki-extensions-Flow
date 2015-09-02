@@ -557,5 +557,9 @@
 	"flow-mark-revision-patrolled-link-title": "Mark this page as patrolled",
 	"flow-mark-diff-patrolled-link-text": "Mark as patrolled",
 	"flow-mark-diff-patrolled-link-title": "Mark as patrolled",
+	"flow-dialog-cancelconfirm-title": "Are you sure?",
+	"flow-dialog-cancelconfirm-message": "Are you sure you want to cancel without saving first?",
+	"flow-dialog-cancelconfirm-keep": "Continue editing",
+	"flow-dialog-cancelconfirm-discard": "Discard changes",
 	"flow-description-last-modified-at": "This description was last modified on $1, at $2."
 }
