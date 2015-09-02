@@ -136,6 +136,9 @@
 	 */
 	mw.flow.ui.WikitextEditorWidget.prototype.setContent = function ( content ) {
 		this.input.setValue( content );
+
+		// Parent method
+		mw.flow.ui.WikitextEditorWidget.parent.prototype.setContent.call( this, content );
 	};
 
 	mw.flow.ui.WikitextEditorWidget.prototype.setDisabled = function ( disabled ) {
@@ -151,7 +154,7 @@
 	 * @inheritdoc
 	 */
 	mw.flow.ui.WikitextEditorWidget.prototype.setup = function ( content ) {
-		this.input.setValue( content );
+		this.setContent( content );
 		return $.Deferred().resolve().promise();
 	};
 
