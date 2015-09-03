@@ -389,6 +389,7 @@ $wgResourceModules += array(
 			'flow/ui/widgets/mw.flow.ui.NavigationWidget.js',
 			'flow/ui/widgets/mw.flow.ui.ReplyWidget.js',
 			'flow/ui/widgets/mw.flow.ui.EditPostWidget.js',
+			'flow/ui/widgets/mw.flow.ui.EditTopicSummaryWidget.js',
 			'flow/ui/widgets/mw.flow.ui.SidebarExpandWidget.js',
 			'flow/ui/widgets/mw.flow.ui.NewTopicWidget.js',
 

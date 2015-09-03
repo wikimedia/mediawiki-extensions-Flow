@@ -213,15 +213,11 @@
 					replyWidget.destroy();
 					replyWidget.$element.remove();
 
-					$topic.addClass( 'flow-api-inprogress' );
 					// HACK get the old system to rerender the topic
 					return flowBoard.flowBoardComponentRefreshTopic(
 						$topic,
 						workflow
-					)
-					.always( function () {
-						$topic.removeClass( 'flow-api-inprogress' );
-					} );
+					);
 				} );
 				replyWidget.$element.data( 'self', replyWidget );
 
@@ -269,15 +265,11 @@
 						replyWidget.destroy();
 						replyWidget.$element.remove();
 
-						$topic.addClass( 'flow-api-inprogress' );
 						// HACK get the old system to rerender the topic
 						return flowBoard.flowBoardComponentRefreshTopic(
 							$topic,
 							workflow
-						)
-						.always( function () {
-							$topic.removeClass( 'flow-api-inprogress' );
-						} );
+						);
 					} )
 					.on( 'cancel', function () {
 						replyWidget.destroy();
@@ -319,9 +311,7 @@
 				topicId = $topic.data( 'flow-id' ),
 				$post = $( this ).closest( '.flow-post' ),
 				$postMain = $post.find( '.flow-post-main' ),
-				postId = $post.data( 'flow-id' ),
-				$board = $( '.flow-board' ),
-				flowBoard = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $board );
+				postId = $post.data( 'flow-id' );
 
 			editPostWidget = new mw.flow.ui.EditPostWidget( topicId, postId );
 			editPostWidget
@@ -329,15 +319,11 @@
 					editPostWidget.destroy();
 					editPostWidget.$element.remove();
 
-					$topic.addClass( 'flow-api-inprogress' );
 					// HACK get the old system to rerender the topic
 					return flowBoard.flowBoardComponentRefreshTopic(
 						$topic,
 						workflow
-					)
-						.always( function () {
-							$topic.removeClass( 'flow-api-inprogress' );
-						} );
+					);
 				} )
 				.on( 'cancel', function () {
 					editPostWidget.$element.replaceWith( $postMain );
@@ -348,6 +334,109 @@
 
 			event.preventDefault();
 		} );
+
+		function startEditTopicSummary( topicId, action ) {
+			var $topic = $board.find( '#flow-topic-' + topicId ),
+				$summaryContainer = $topic.find( '.flow-topic-summary-container' ),
+				editTopicSummaryWidget,
+				options = {};
+
+			if ( action === 'resolve-topic' || action === 'reopen-topic' ) {
+				options = {
+					cancelMsgKey: 'flow-skip-summary'
+				};
+			}
+
+			editTopicSummaryWidget = new mw.flow.ui.EditTopicSummaryWidget( topicId, options );
+			editTopicSummaryWidget
+				.on( 'saveContent', function ( workflow ) {
+					editTopicSummaryWidget.destroy();
+					editTopicSummaryWidget.$element.remove();
+
+					// HACK get the old system to rerender the topic
+					return flowBoard.flowBoardComponentRefreshTopic(
+						$topic,
+						workflow
+					);
+				} )
+				.on( 'cancel', function () {
+					editTopicSummaryWidget.$element.replaceWith( $summaryContainer );
+					editTopicSummaryWidget.destroy();
+				} );
+
+			$summaryContainer.replaceWith( editTopicSummaryWidget.$element );
+		}
+
+		$board.on( 'click', '.flow-ui-summarize-topic-link', function ( event ) {
+			var $topic = $( this ).closest( '.flow-topic' ),
+				topicId = $topic.data( 'flow-id' );
+			startEditTopicSummary( topicId );
+			event.preventDefault();
+		} );
+
+		$board.on( 'click', '.flow-ui-topicmenu-lock', function () {
+			var promise,
+				action = $( this ).data( 'role' ),
+				$topic = $( this ).closest( '.flow-topic' ),
+				topicId = $topic.data( 'flow-id' ),
+				$target = $topic.find( '.flow-topic-summary-container' ),
+				api = new mw.flow.dm.APIHandler();
+debugger;
+			if ( action === 'lock' ) {
+				promise = api.resolveTopic( topicId );
+			} else {
+				promise = api.reopenTopic( topicId );
+			}
+
+			promise
+				.then( flowBoard.lockAndSummarizeTopic.bind( flowBoard, $target, flowBoard, topicId ) )
+				.then( function ( action ) {
+					// HACK: We are going to cheat and use the old system,
+					// then replace the editor with the new system
+					// This should be replaced when we have topic widgets!
+					// flowBoard.lockAndSummarizeTopic( $target, flowBoard, topicId )
+					startEditTopicSummary( $topic.data( 'flowId' ), action );
+				} );
+
+			// Prevent default
+			return false;
+		} );
+
+		// $board.on( 'click', '.flow-ui-resolve-topic-link', function ( event ) {
+		// 	var $topic = $( this ).closest( '.flow-topic' ),
+		// 		topicId = $topic.data( 'flow-id' ),
+		// 		api = new mw.flow.dm.APIHandler();
+
+		// 	api.resolveTopic( topicId )
+		// 		.then( function ( workflow ) {
+		// 			return flowBoard.flowBoardComponentRefreshTopic(
+		// 				$topic,
+		// 				workflow
+		// 			);
+		// 		} )
+		// 		.then( function () { startEditTopicSummary( topicId, 'resolve-topic' ); } );
+
+		// 	event.preventDefault();
+		// } );
+
+		// $board.on( 'click', '.flow-ui-reopen-topic-link', function ( event ) {
+		// 	var $topic = $( this ).closest( '.flow-topic' ),
+		// 		topicId = $topic.data( 'flow-id' ),
+		// 		api = new mw.flow.dm.APIHandler();
+
+		// 	api.reopenTopic( topicId )
+		// 		.then( function ( workflow ) {
+		// 			return flowBoard.flowBoardComponentRefreshTopic(
+		// 				$topic,
+		// 				workflow
+		// 			);
+		// 		} )
+		// 		.then( function () {
+		// 			startEditTopicSummary( topicId, 'reopen-topic' );
+		// 		} );
+
+		// 	event.preventDefault();
+		// } );
 
 		// Fall back to mw.flow.data, which was used until September 2015
 		dataBlob = mw.config.get( 'wgFlowData' ) || ( mw.flow && mw.flow.data );
