@@ -309,15 +309,7 @@
 	 * @param {jqXHR} jqxhr
 	 * @return {jQuery.Promise}
 	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.lockAndSummarizeTopic = function ( info, data ) {
-		var flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) ),
-			workflowId = $( this ).closest( '.flow-topic' ).data( 'flow-id' );
-
-		if ( info.status !== 'done' ) {
-			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
-			return $.Deferred().resolve().promise();
-		}
-
+	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.lockAndSummarizeTopic = function ( $target, flowBoard, workflowId ) {
 		function summarize( result ) {
 			var root = result.topic.roots[0],
 				revId = result.topic.posts[root][0],
@@ -346,8 +338,10 @@
 			} );
 		}
 
-		return _flowBoardComponentRefreshTopic( info.$target, workflowId ).then( summarize );
+		return _flowBoardComponentRefreshTopic( $target, workflowId ).then( summarize );
 	};
+	// HACK expose this so flow-initialize.js can rerender topics when it needs to
+	FlowBoardComponentApiEventsMixin.prototype.lockAndSummarizeTopic = FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.lockAndSummarizeTopic;
 
 	/**
 	 * Checks if a topic summary object actually contains a summary.
@@ -715,6 +709,7 @@
 		var $target = $targetElement.closest( '.flow-topic' ),
 			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $targetElement );
 
+		$targetElement.addClass( 'flow-api-inprogress' );
 		return flowBoard.Api.apiCall( {
 			action: 'flow',
 			submodule: 'view-topic',
@@ -749,6 +744,8 @@
 
 			flowBoard.emitWithReturn( 'removeError', $target );
 			flowBoard.emitWithReturn( 'showError', $target, errorMsg );
+		} ).always( function () {
+			$targetElement.removeClass( 'flow-api-inprogress' );
 		} );
 	}
 
@@ -777,7 +774,7 @@
 		// Focus on first form field
 		$target.find( 'input, textarea' ).filter( ':visible:first' ).focus();
 
-		return $.Deferred().resolve().promise();
+		return $.Deferred().resolve( action ).promise();
 	}
 
 	// Mixin to FlowBoardComponent
