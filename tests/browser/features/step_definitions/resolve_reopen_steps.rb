@@ -65,6 +65,14 @@ When(/^I click the summarize menu item$/) do
   end
 end
 
+When(/^I click the edit summary menu item$/) do
+  on(FlowPage) do |page|
+    menu = page.topic_actions_link_element
+    option = page.topic_edit_summary_button_element
+    page.select_menu_option menu, option
+  end
+end
+
 Then(/^the first topic is summarized as "(.*?)"$/) do |summary_text|
   on(FlowPage) do |page|
     expect(page.summary_content_element.when_present.text).to eq(summary_text)
@@ -84,6 +92,12 @@ end
 
 Given(/^I summarize the first topic as "(.*?)"$/) do |summary_text|
   step 'I click the summarize menu item'
+  step "I enter \"#{summary_text}\" as summary"
+  step 'I click the update summary button'
+end
+
+Given(/^I re-summarize the first topic as "(.*?)"$/) do |summary_text|
+  step 'I click the edit summary menu item'
   step "I enter \"#{summary_text}\" as summary"
   step 'I click the update summary button'
 end
