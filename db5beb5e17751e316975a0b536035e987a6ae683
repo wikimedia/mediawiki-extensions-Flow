@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_f81cefcc",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorControlsWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-09-03T23:58:36Z",
+      "side": 1,
+      "message": "Please don\u0027t do this :( it makes the message keys ungreppable, and it makes it impossible to not vary the message on anon-ness if a caller should wish to do so.",
+      "revId": "db5beb5e17751e316975a0b536035e987a6ae683",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
