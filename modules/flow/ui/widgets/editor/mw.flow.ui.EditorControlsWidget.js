@@ -13,7 +13,7 @@
 	 */
 	mw.flow.ui.EditorControlsWidget = function mwFlowUiEditorControlsWidget( config ) {
 		var $buttons = $( '<div>' )
-			.addClass( 'flow-ui-editorControlsWidget-buttons' );
+				.addClass( 'flow-ui-editorControlsWidget-buttons' );
 
 		config = config || {};
 
