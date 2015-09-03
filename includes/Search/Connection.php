@@ -2,8 +2,6 @@
 
 namespace Flow\Search;
 
-use Elastica\SearchableInterface;
-
 /**
  * Provides the connection to the elasticsearch backend.
  */
@@ -30,19 +28,36 @@ class Connection extends \ElasticaConnection {
 	const FLOW_INDEX_TYPE = 'flow';
 
 	/**
+	 * @var string[]
+	 */
+	protected $servers;
+
+	/**
+	 * @var int
+	 */
+	protected $maxConnectionAttempts;
+
+	/**
+	 * @param string[] $servers
+	 * @param int $maxConnectionAttempts
+	 */
+	public function __construct( array $servers, $maxConnectionAttempts ) {
+		$this->servers = $servers;
+		$this->maxConnectionAttempts = $maxConnectionAttempts;
+	}
+
+	/**
 	 * @return string[]
 	 */
 	public function getServerList() {
-		global $wgFlowSearchServers;
-		return $wgFlowSearchServers;
+		return $this->servers;
 	}
 
 	/**
 	 * @return int
 	 */
 	public function getMaxConnectionAttempts() {
-		global $wgFlowSearchConnectionAttempts;
-		return $wgFlowSearchConnectionAttempts;
+		return $this->maxConnectionAttempts;
 	}
 
 	/**
@@ -67,7 +82,7 @@ class Connection extends \ElasticaConnection {
 	 * @param string $name
 	 * @return \Elastica\Index
 	 */
-	public static function getFlowIndex( $name ) {
-		return static::getSingleton()->getIndex2( $name, static::FLOW_INDEX_TYPE );
+	public function getFlowIndex( $name ) {
+		return $this->getIndex( $name, static::FLOW_INDEX_TYPE );
 	}
 }

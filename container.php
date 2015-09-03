@@ -1035,7 +1035,11 @@ $c['formatter.topic'] = function( $c ) {
 		$c['formatter.revision']
 	);
 };
-$c['searchindex.updaters'] = function( $c ) {
+$c['search.connection'] = function( $c ) {
+	global $wgFlowSearchServers, $wgFlowSearchConnectionAttempts;
+	return new Flow\Search\Connection( $wgFlowSearchServers, $wgFlowSearchConnectionAttempts );
+};
+$c['search.index.updaters'] = function( $c ) {
 	// permissions for anon user
 	$anonPermissions = new Flow\RevisionActionPermissions( $c['flow_actions'], new User );
 	return array(
