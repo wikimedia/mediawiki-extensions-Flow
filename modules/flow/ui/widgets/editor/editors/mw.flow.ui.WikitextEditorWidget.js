@@ -134,10 +134,10 @@
 	/**
 	 * @inheritdoc
 	 */
-	mw.flow.ui.WikitextEditorWidget.prototype.setContent = function ( content ) {
-		// Parent method
-		mw.flow.ui.WikitextEditorWidget.parent.prototype.setContent.call( this, content );
-
+	mw.flow.ui.WikitextEditorWidget.prototype.setContent = function ( content, isOriginalContent ) {
+		if ( isOriginalContent ) {
+			this.setInitialContent( content );
+		}
 		this.input.setValue( content );
 	};
 
