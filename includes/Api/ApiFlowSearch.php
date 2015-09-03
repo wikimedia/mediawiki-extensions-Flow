@@ -11,7 +11,6 @@ use Flow\Model\UUID;
 use Flow\Search\Connection;
 use Flow\Search\SearchEngine;
 use Flow\Search\Searcher;
-use Flow\TalkpageManager;
 use MWNamespace;
 use Status;
 
