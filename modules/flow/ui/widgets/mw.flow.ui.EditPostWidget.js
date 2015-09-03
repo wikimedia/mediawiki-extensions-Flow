@@ -19,7 +19,7 @@
 		mw.flow.ui.EditPostWidget.parent.call( this, config );
 
 		this.editor = new mw.flow.ui.EditorWidget( {
-			saveMsgKey: 'flow-post-action-edit-post-submit',
+			saveMsgKey: mw.user.isAnon() ? 'flow-post-action-edit-post-submit-anonymously' : 'flow-post-action-edit-post-submit',
 			classes: [ 'flow-ui-editPostWidget-editor' ]
 		} );
 		this.editor.toggle( true );

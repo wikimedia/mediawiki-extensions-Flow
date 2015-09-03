@@ -41,7 +41,7 @@
 		);
 
 		this.editor = new mw.flow.ui.EditorWidget( {
-			saveMsgKey: 'flow-edit-header-submit',
+			saveMsgKey: mw.user.isAnon() ? 'flow-edit-header-submit-anonymously' : 'flow-edit-header-submit',
 			classes: [ 'flow-ui-boardDescriptionWidget-editor' ]
 		} );
 		this.editor.toggle( false );
