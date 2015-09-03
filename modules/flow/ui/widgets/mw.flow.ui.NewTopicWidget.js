@@ -32,7 +32,7 @@
 
 		this.editor = new mw.flow.ui.EditorWidget( {
 			placeholder: mw.msg( 'flow-newtopic-content-placeholder', this.page ),
-			saveMsgKey: 'flow-newtopic-save',
+			saveMsgKey: mw.user.isAnon() ? 'flow-newtopic-save-anonymously' : 'flow-newtopic-save',
 			autoFocus: false,
 			classes: [ 'flow-ui-newTopicWidget-editor' ]
 		} );

@@ -35,7 +35,7 @@
 
 		this.editor = new mw.flow.ui.EditorWidget( {
 			placeholder: config.placeholder,
-			saveMsgKey: 'flow-reply-link',
+			saveMsgKey: mw.user.isAnon() ? 'flow-reply-link-anonymously' : 'flow-reply-link',
 			classes: [ 'flow-ui-replyWidget-editor' ]
 		} );
 		this.editor.toggle( !this.expandable );
