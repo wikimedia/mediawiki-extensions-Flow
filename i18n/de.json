@@ -518,5 +518,15 @@
 	"flow-notification-enabled-on-talkpage-email-subject": "Neues Diskussionssystem auf $1",
 	"flow-notification-enabled-on-talkpage-email-batch-body": "Flow, das neue Wikidiskussionssystem, wurde auf deiner {{SITENAME}}-Benutzerdiskussionsseite aktiviert. Du erhältst weitere Informationen im Betafunktionen-Abschnitt in deinen Einstellungen. Dort kannst du auch Rückmeldungen geben oder das neue System jederzeit wieder deaktivieren.",
 	"flow-beta-feature-add-archive-template-edit-summary": "Archivvorlage hinzugefügt",
-	"flow-beta-feature-remove-archive-template-edit-summary": "Archivvorlage entfernt"
+	"flow-beta-feature-remove-archive-template-edit-summary": "Archivvorlage entfernt",
+	"flow-dialog-cancelconfirm-title": "Bist du dir sicher?",
+	"flow-dialog-cancelconfirm-message": "Bist du dir sicher, dass du ohne zuerst zu speichern abbrechen möchtest?",
+	"flow-dialog-cancelconfirm-keep": "Mit dem Bearbeiten fortfahren",
+	"flow-dialog-cancelconfirm-discard": "Änderungen verwerfen",
+	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Willkommen}} auf {{GENDER:$1|deiner}} neuen Benutzerdiskussionsseite",
+	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Deine}} Diskussionsseite ist der Ort, wo andere Autoren {{GENDER:$1|dich}} kontaktieren können. Mit Flow ist es leichter, neue Themen zu erstellen und Diskussionen zu verfolgen.",
+	"flow-guidedtour-optin-find-old-conversations": "{{GENDER:$1|Deine}} alten Diskussionen finden",
+	"flow-guidedtour-optin-find-old-conversations-description": "Frühere Diskussionen wurden auf eine Archivseite verschoben.",
+	"flow-guidedtour-optin-feedback": "Gib uns {{GENDER:$1|deine}} Rückmeldung!",
+	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Du}} kannst weitere Informationen im Betafunktionen-Abschnitt erhalten. Dort kannst du auch Rückmeldungen geben oder das neue System jederzeit deaktivieren."
 }

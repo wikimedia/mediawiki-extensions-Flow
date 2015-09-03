@@ -149,7 +149,7 @@
 	"flow-error-title-too-long": "Os títulos do tema foron restrinxidos a $1 {{PLURAL:$1|byte|bytes}}.",
 	"flow-error-no-existing-workflow": "Esta conversa aínda non existe.",
 	"flow-error-not-a-post": "O título do tema non puido ser gardado como unha mensaxe.",
-	"flow-error-missing-header-content": "Debe redactar unha descrición.",
+	"flow-error-missing-header-content": "Debe indicar unha descrición.",
 	"flow-error-missing-prev-revision-identifier": "O identificador da revisión anterior non se atopa.",
 	"flow-error-prev-revision-mismatch": "Outro usuario acaba de editar esta publicación fai algúns segundos. Está {{GENDER:$3|seguro|segura}} que desexa sobrescribir o cambio recente?",
 	"flow-error-prev-revision-does-not-exist": "A revisión anterior non puido ser atopada.",

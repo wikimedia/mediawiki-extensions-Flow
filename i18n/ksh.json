@@ -148,7 +148,7 @@
 	"apihelp-flow+view-topic-history-example-1": "Belohr de Väsohne vun de Beijdrähsch zom <code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">[[Topic:S2tycnas4hcucw8w]]</code> als Wikkitäx",
 	"apihelp-flow+view-topiclist-param-sortby": "Enschtällonge för et Zottehre vun de  topics, dadd es äntwehder „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">updated</kbd>“ för zem Zottehre noh de Zigg, woh dä  topic et läz jeändert wohd, udder „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">newest</kbd>“ för et Zottehre noh dä Zigg vum Aanläje.",
 	"apihelp-flow+view-topiclist-param-savesortby": "Donn de Enschtällong för woh noh ze zottehre en de Enschtällonge vum Metmaacher, wann jät ennjejovve es.",
-	"apihelp-flow+view-topiclist-param-offset-id": "Der Wäät för der Bejenn — em <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Universally unique identifier\">UUID</i>-Fommaht — vun woh aan  topics jehollt wähde sulle. Weed blohß beim Zottehre noh „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">newest</kbd>“ jebruch.",
+	"apihelp-flow+view-topiclist-param-offset-id": "Der Wäät för der Bejenn — em <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Universally unique identifier\">UUID</i>-Fommaht — vun woh aan Jähjeschtänd jehollt wähde sulle. Weed blohß beim Zottehre noh „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">newest</kbd>“ jebruch.",
 	"apihelp-flow-parsoid-utils-description": "Donn Täx zwesche Wikkitäx un <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"HyperText Markup Language\">HTML</i> wandelle.",
 	"apihelp-flow-parsoid-utils-param-content": "Der Enhalld zom Ömwandelle.",
 	"apihelp-flow+undo-edit-header-description": "Holl nühdejje Enfommazjuhne, öm de Änderong aan dä Äkliehrong retuhr ze nämme.",
@@ -178,5 +178,14 @@
 	"flow-ve-mention-tool-title": "Ene Metmaacher ä'wähne",
 	"flow-ve-mention-inspector-invalid-user": "Ene Metmaacher met däm Nahme „$1“ es nit aanjemäldt.",
 	"flow-wikitext-editor-help": "Wikkitäx $1.",
-	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|Befähle]]"
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|Befähle]]",
+	"flow-notification-link-text-enabled-on-talkpage": "Beloor de Klaafsigg",
+	"flow-dialog-cancelconfirm-title": "Verhaftesch?",
+	"flow-dialog-cancelconfirm-message": "Wells de verhaftesch der ohne ze seschere ophühre?",
+	"flow-dialog-cancelconfirm-keep": "Wigger beärbeijde",
+	"flow-dialog-cancelconfirm-discard": "De Änderonge fottschmiiße",
+	"flow-guidedtour-optin-welcome": "Welkumme op Dinger neuje Metmaacher_Klaafsigg.{{GENDER:$1|}}",
+	"flow-guidedtour-optin-find-old-conversations": "Fengk Dinge Klaaf us der Verjangeheid.{{GENDER:$1|}}",
+	"flow-guidedtour-optin-find-old-conversations-description": "Fröhere Klaaf es obb en Aschihf_Sigg ömjetroke woode.",
+	"flow-guidedtour-optin-feedback": "Jivv ons Ding Rökmäldonge.{{GENDER:$1|}}"
 }

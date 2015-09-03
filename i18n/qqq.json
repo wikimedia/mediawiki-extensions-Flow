@@ -17,7 +17,8 @@
 			"Purodha",
 			"Metalhead64",
 			"Matthew Flaschen",
-			"Wladek92"
+			"Wladek92",
+			"Tacsipacsi"
 		]
 	},
 	"enableflow": "{{doc-special|EnableFlow}}",
@@ -113,7 +114,7 @@
 	"flow-topic-action-hide-topic": "Used as a link in a dropdown menu to hide a topic.\n{{Related|Flow-action}}",
 	"flow-topic-action-delete-topic": "Used as a link in a dropdown menu to delete a topic.\n{{Related|Flow-action}}\n{{Identical|Delete topic}}",
 	"flow-topic-action-lock-topic": "Used as a link in a dropdown menu to resolve a topic.\n{{Related|Flow-action}}",
-	"flow-topic-action-unlock-topic": "Used as a link in a dropdown menu to reopen a topic.\n{{Related:Flow-action}}",
+	"flow-topic-action-unlock-topic": "Used as a link in a dropdown menu to reopen a topic.\n{{Related|Flow-action}}",
 	"flow-topic-action-summarize-topic": "Used as a link in a dropdown menu to summarize a topic.\n{{Related|Flow-action}}\n{{Identical|Summarize}}",
 	"flow-topic-action-resummarize-topic": "In the context of a [[mw:Flow/Nomenclature|Flow topic]], this message is used in a dropdown menu, as label of a link which allows to edit an existing topic summary.\n\n{{Related|Flow-action}}",
 	"flow-topic-action-update-topic-summary": "Used as text on the button to update a topic summary.\n{{Related|Flow-action}}",

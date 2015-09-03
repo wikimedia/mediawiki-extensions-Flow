@@ -557,9 +557,21 @@
 	"flow-mark-diff-patrolled-link-text": "Marquer comme relue",
 	"flow-mark-diff-patrolled-link-title": "Marquer comme relue",
 	"flow-talk-page-beta-feature-message": "Flux sur la discussion de l'utilisateur",
+	"flow-talk-page-beta-feature-description": "Active un nouveau système de discussion structurée sur votre page de discussion utilisateur. Flow simplifie les discussions de la page avec des emplacements clairs pour écrire et répondre, et permet des notifications au niveau de la conversation. Les discussions existantes en wikitexte sont déplacées dans une archive. Cette fonctionnalité n’est pas activée automatiquement ; les utilisateurs devront l’activer séparément. Désactiver cette fonctionnalité déplacera le tableau Flow dans une sous-page et désarchivera la page de discussion précédente.",
 	"flow-notification-link-text-enabled-on-talkpage": "Afficher la page de discussion de l'utilisateur",
 	"flow-notification-enabled-on-talkpage-title-message": "Nouveau système de discussion activé pour votre page de discussion utilisateur<br /><small>Disponible à [[$1]]</small>",
 	"flow-notification-enabled-on-talkpage-email-subject": "Nouveau système de discussion sur $1",
+	"flow-notification-enabled-on-talkpage-email-batch-body": "Flow, le nouveau système de discussion de wiki, a été activé sur votre page de discussion sur {{SITENAME}}. Vous pouvez obtenir plus d’information, donner votre avis ou désactiver le nouveau système n’importe quand depuis la section fonctionnalités bêta dans vos préférences.",
 	"flow-beta-feature-add-archive-template-edit-summary": "Ajouter le modèle d'archive",
-	"flow-beta-feature-remove-archive-template-edit-summary": "Supprimer le modèle d'archive"
+	"flow-beta-feature-remove-archive-template-edit-summary": "Supprimer le modèle d'archive",
+	"flow-dialog-cancelconfirm-title": "Êtes-vous sûr ?",
+	"flow-dialog-cancelconfirm-message": "Êtes-vous sûr de vouloir annuler sans enregistrer d’abord ?",
+	"flow-dialog-cancelconfirm-keep": "Continuer à modifier",
+	"flow-dialog-cancelconfirm-discard": "Annuler les modifications",
+	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Bienvenue}} dans {{GENDER:$1|votre}} nouvelle page de discussion utilisateur",
+	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Votre}} page de discussion est l’endroit où les autres éditeurs peuvent {{GENDER:$1|vous}} contacter. Avec Flow, il est plus facile de démarrer de nouveaux sujets et garder trace des conversations.",
+	"flow-guidedtour-optin-find-old-conversations": "Trouver {{GENDER:$1|vos}} anciennes conversations",
+	"flow-guidedtour-optin-find-old-conversations-description": "Les conversations précédentes ont été déplacées dans une page d’archive.",
+	"flow-guidedtour-optin-feedback": "Donnez nous {{GENDER:$1|votre}} avis !",
+	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Vous}} pouvez obtenir plus d’information, donner votre avis, ou désactiver le nouveau système n’importe quand depuis la section Fonctionnalités bêta."
 }

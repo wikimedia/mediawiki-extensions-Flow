@@ -23,6 +23,8 @@
 	"logentry-suppress-flow-suppress-topic": "$1 が  [[$6]]の話題\"[[$3|$5]]\"を{{GENDER:$2|秘匿}}",
 	"logentry-suppress-flow-restore-topic": "$1 が [[$6]] の話題\"[[$3|$5]]\"を{{GENDER:$2|削除}}",
 	"flow-board-header-browse-topics-link": "話題を参照",
+	"flow-topic-collapse-siderail": "全幅で読む",
+	"flow-topic-expand-siderail": "固定幅で読む",
 	"flow-edit-header-link": "説明を編集",
 	"flow-post-moderated-toggle-hide-show": "$2 が{{GENDER:$1|非表示にした}}コメントを表示",
 	"flow-post-moderated-toggle-delete-show": "$2 が{{GENDER:$1|削除した}}コメントを表示",
@@ -348,5 +350,15 @@
 	"flow-next-diff": "新しい編集 →",
 	"flow-undo": "取り消し",
 	"flow-mark-revision-patrolled-link-text": "このページを巡回済みにする",
-	"flow-mark-diff-patrolled-link-text": "巡回済みにする"
+	"flow-mark-diff-patrolled-link-text": "巡回済みにする",
+	"flow-notification-link-text-enabled-on-talkpage": "利用者の会話ページを見る",
+	"flow-notification-enabled-on-talkpage-title-message": "利用者の会話ページで新しい議論システムが有効になりました<br/>\n<small>[[$1]]で利用可能です</small>",
+	"flow-notification-enabled-on-talkpage-email-subject": "$1 の議論システムが新しくなりました",
+	"flow-beta-feature-add-archive-template-edit-summary": "アーカイブテンプレートの追加",
+	"flow-beta-feature-remove-archive-template-edit-summary": "アーカイブ・テンプレートの除去",
+	"flow-dialog-cancelconfirm-title": "本当によろしいですか?",
+	"flow-dialog-cancelconfirm-message": "保存せずにキャンセルしてもよろしいですか?",
+	"flow-dialog-cancelconfirm-keep": "編集を続行する",
+	"flow-dialog-cancelconfirm-discard": "変更内容を破棄しました",
+	"flow-guidedtour-optin-find-old-conversations": "{{GENDER:$1|あなた}}の過去の会話を探す"
 }

@@ -86,9 +86,14 @@
 	"flow-topic-action-undo-moderation": "Annulle",
 	"flow-error-http": "Ha assute 'n'errore condattanne 'u server.",
 	"flow-error-other": "Ha assute 'n'errore inaspettate.",
+	"flow-error-missing-summary": "Tu a confermà 'nu riepiloghe.",
+	"flow-error-missing-header-content": "Tu a confermà 'na descrizione.",
 	"flow-edit-title-submit": "Cange 'u titole",
 	"flow-moderation-confirmation-suppress-topic": "St'argomende ha state luate.",
 	"flow-moderation-confirmation-delete-topic": "St'argomende ha state scangellate.",
 	"flow-moderation-confirmation-hide-topic": "St'argomende ha state scunnute.",
-	"flow-topic-html-title": "$1 sus a $2"
+	"flow-topic-html-title": "$1 sus a $2",
+	"flow-dialog-cancelconfirm-title": "Sì secure?",
+	"flow-dialog-cancelconfirm-keep": "Condinue a cangià",
+	"flow-dialog-cancelconfirm-discard": "Scitte le cangiaminde"
 }

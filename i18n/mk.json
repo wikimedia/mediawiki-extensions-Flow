@@ -522,9 +522,21 @@
 	"flow-mark-diff-patrolled-link-text": "Означи како проверено",
 	"flow-mark-diff-patrolled-link-title": "Означи како проверено",
 	"flow-talk-page-beta-feature-message": "Тек на разговор со корисник",
+	"flow-talk-page-beta-feature-description": "Дава нов систем за структуритани дискусии на вашата корисничка страница. „Тек“ го упростува сето она што се дискутира на страницата за разговор, овозможувајќи јасни места за пишување пораки и давање одговори. Исто така, дава известувања на разговорно ниво. Постоечките разговори во викитекст ќе се преместат во архив. Оваа можност не се вклучува самата, туку корисниците ќе треба тоа да го направат самите. Доколку го исклучите, „Тек“ ќе биде преместен на потстраница, а претходната страница за разговор ќе се одархивира (т.е. ќе врати како што си била).",
 	"flow-notification-link-text-enabled-on-talkpage": "Погл. разговор со корисник",
 	"flow-notification-enabled-on-talkpage-title-message": "Овозможен е нов систем за разговори за вашата корисничка страница за разговор<br /><small>Ќе го најдете на [[$1]]</small>",
 	"flow-notification-enabled-on-talkpage-email-subject": "Нов систем за разговори на $1",
+	"flow-notification-enabled-on-talkpage-email-batch-body": "Новиот систем за викиразговори „Тек“ е вклучен на вашата корисничка страница за разговор на {{SITENAME}}. Можете да дознаете повеќе, да ни дадете ваше мислење, или пак да го исклучите новиот систем во секое време во делот за бета-можности во вашите нагодувања.",
 	"flow-beta-feature-add-archive-template-edit-summary": "ДОдаден архивен шаблон",
-	"flow-beta-feature-remove-archive-template-edit-summary": "Отстранет архивен шаблон"
+	"flow-beta-feature-remove-archive-template-edit-summary": "Отстранет архивен шаблон",
+	"flow-dialog-cancelconfirm-title": "Дали сте сигурни?",
+	"flow-dialog-cancelconfirm-message": "Дали сте сигурни дека сакате да откажете без претходно да зачувате?",
+	"flow-dialog-cancelconfirm-keep": "Продолжи со уредување",
+	"flow-dialog-cancelconfirm-discard": "Отфрли ги промените",
+	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Добре дојдовте}} на {{GENDER:$1|вашата}} нова корисничка страница",
+	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Вашата}} корисничка страница е место кајшто уредниците можат да {{GENDER:$1|ви}} се обратат. „Тек“ овозможува полесно започнување нови теми и следење на разговорите.",
+	"flow-guidedtour-optin-find-old-conversations": "Најдете ги {{GENDER:$1|вашите}} стари разговори",
+	"flow-guidedtour-optin-find-old-conversations-description": "Претходните разговори се преместени на архивска страница.",
+	"flow-guidedtour-optin-feedback": "Дајте ни {{GENDER:$1|ваше}} мислење!",
+	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Можете}} да добиете повеќе информации, да ни дадете ваше мислење или пак да го исклучите новиот систем во било кое време од делот за бета-можности."
 }
