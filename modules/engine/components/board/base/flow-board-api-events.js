@@ -303,66 +303,6 @@
 	};
 
 	/**
-	 * Lock/unlock a topic, update the UI and trigger summarize.
-	 * @param {string} status
-	 * @param {Object} data
-	 * @param {jqXHR} jqxhr
-	 * @return {jQuery.Promise}
-	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.lockAndSummarizeTopic = function ( info, data ) {
-		var flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) ),
-			workflowId = $( this ).closest( '.flow-topic' ).data( 'flow-id' );
-
-		if ( info.status !== 'done' ) {
-			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
-			return $.Deferred().resolve().promise();
-		}
-
-		function summarize( result ) {
-			var root = result.topic.roots[0],
-				revId = result.topic.posts[root][0],
-				topic = result.topic.revisions[revId];
-
-			return flowBoard.Api.apiCall( {
-				action: 'flow',
-				submodule: 'view-topic-summary',
-				// Flow topic title, in Topic:<topicId> format (2600 is topic namespace id)
-				page: ( new mw.Title( workflowId, 2600 ) ).getPrefixedDb(),
-				vtsformat: mw.flow.editor.getFormat()
-			} ).then( function ( data ) {
-				var topicSummary = data.flow['view-topic-summary'].result.topicsummary;
-
-				// skip summarize step when a topic with NO summary has been reopened
-				if ( !topic.isLocked && !_hasSummary( topicSummary ) ) {
-					return $.Deferred().resolve().promise();
-				}
-
-				return _activateSummarizeTopic(
-					result.$topic.find( '.flow-topic-titlebar .flow-topic-summary-container' ),
-					flowBoard,
-					topicSummary,
-					topic.isLocked ? 'lock' : 'unlock'
-				);
-			} );
-		}
-
-		return _flowBoardComponentRefreshTopic( info.$target, workflowId ).then( summarize );
-	};
-
-	/**
-	 * Checks if a topic summary object actually contains a summary.
-	 * @param topicSummary
-	 * @return {boolean}
-	 * @private
-	 */
-	function _hasSummary( topicSummary ) {
-		return !!( topicSummary &&
-				topicSummary.revision &&
-				topicSummary.revision.content &&
-				topicSummary.revision.content.content );
-	}
-
-	/**
 	 * @param {Object} info
 	 * @param {string} info.status "done" or "fail"
 	 * @param {jQuery} info.$target
@@ -504,51 +444,6 @@
 		}
 
 		return $.Deferred().resolve().promise();
-	};
-
-	/**
-	 * Activate the editable summarize topic form with given api request
-	 * @param {Object} info (status:done|fail, $target: jQuery)
-	 * @param {Object} data
-	 * @param {jqXHR} jqxhr
-	 * @return {jQuery.Promise}
-	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.activateSummarizeTopic = function ( info, data, jqxhr ) {
-		var flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) );
-
-		if ( info.status !== 'done' ) {
-			// Error will be displayed by default, nothing else to wrap up
-			return $.Deferred().resolve().promise();
-		}
-
-		return _activateSummarizeTopic(
-			info.$target,
-			flowBoard,
-			data.flow[ 'view-topic-summary' ].result.topicsummary,
-			'summarize'
-		);
-	};
-
-	/**
-	 * After submit of the summarize topic edit form, process the new topic summary data.
-	 * @param {Object} info
-	 * @param {string} info.status "done" or "fail"
-	 * @param {jQuery} info.$target
-	 * @param {Object} data
-	 * @param {jqXHR} jqxhr
-	 * @return {jQuery.Promise}
-	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.summarizeTopic = function ( info, data, jqxhr ) {
-		if ( info.status !== 'done' ) {
-			// Error will be displayed by default, nothing else to wrap up
-			return $.Deferred().resolve().promise();
-		}
-
-		return _flowBoardComponentRefreshTopic(
-			info.$target,
-			data.flow['edit-topic-summary'].workflow,
-			'.flow-topic-titlebar'
-		);
 	};
 
 	/**
@@ -715,6 +610,7 @@
 		var $target = $targetElement.closest( '.flow-topic' ),
 			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $targetElement );
 
+		$targetElement.addClass( 'flow-api-inprogress' );
 		return flowBoard.Api.apiCall( {
 			action: 'flow',
 			submodule: 'view-topic',
@@ -749,36 +645,13 @@
 
 			flowBoard.emitWithReturn( 'removeError', $target );
 			flowBoard.emitWithReturn( 'showError', $target, errorMsg );
+		} ).always( function () {
+			$targetElement.removeClass( 'flow-api-inprogress' );
 		} );
 	}
 
 	// HACK expose this so flow-initialize.js can rerender topics when it needs to
 	FlowBoardComponentApiEventsMixin.prototype.flowBoardComponentRefreshTopic = _flowBoardComponentRefreshTopic;
-
-	function _activateSummarizeTopic( $target, flowBoard, topicSummary, action ) {
-		var $old = $target;
-
-		// Create the new flow_block_topicsummary_edit template
-		$target = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-			'flow_block_topicsummary_edit',
-			$.extend( topicSummary, { action: action } )
-		) ).children();
-
-		// On cancel, put the old topicsummary back
-		flowBoard.emitWithReturn( 'addFormCancelCallback', $target.find( 'form' ), function () {
-			$target.before( $old ).remove();
-		} );
-
-		// Replace the old one
-		$old.before( $target ).detach();
-
-		flowBoard.emitWithReturn( 'makeContentInteractive', $target );
-
-		// Focus on first form field
-		$target.find( 'input, textarea' ).filter( ':visible:first' ).focus();
-
-		return $.Deferred().resolve().promise();
-	}
 
 	// Mixin to FlowBoardComponent
 	mw.flow.mixinComponent( 'board', FlowBoardComponentApiEventsMixin );

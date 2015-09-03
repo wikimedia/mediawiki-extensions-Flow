@@ -44,10 +44,7 @@
 		{{~#if actions.summarize~}}
 			<li>
 				{{~noop~}}
-				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon"
-				   data-flow-interactive-handler="apiRequest"
-				   data-flow-api-handler="activateSummarizeTopic"
-				   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
+				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon flow-ui-summarize-topic-link"
 				   href="{{actions.summarize.url}}"
 				   title="{{actions.summarize.title}}">
 					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-stripeToC mw-ui-icon-stripeToC-progressive-hover"></span> {{/if~}}
@@ -270,5 +267,4 @@
 			{{~noop~}}
 		</li>
 	{{~/if~}}
-
 </section>
