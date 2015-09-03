@@ -4,12 +4,14 @@ use Flow\Container;
 use Flow\LinksTableUpdater;
 use Flow\Model\Workflow;
 
-require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
-	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
-	: dirname( __FILE__ ) . '/../../../maintenance/Maintenance.php' );
+$installPath = getenv( 'MW_INSTALL_PATH' ) !== false ?
+	getenv( 'MW_INSTALL_PATH' ) :
+	__DIR__ . '/../../..';
+
+require_once( $installPath . '/maintenance/Maintenance.php' );
 // extending these - autoloader not yet wired up at the point these are interpreted
-require_once( __DIR__ . '/../../../includes/utils/BatchRowWriter.php' );
-require_once( __DIR__ . '/../../../includes/utils/RowUpdateGenerator.php' );
+require_once( $installPath .'/includes/utils/BatchRowWriter.php' );
+require_once( $installPath . '/includes/utils/RowUpdateGenerator.php' );
 
 /**
  * Fixes Flow References & entries in categorylinks & related tables.
