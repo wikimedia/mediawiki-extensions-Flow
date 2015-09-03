@@ -126,6 +126,10 @@
 		}
 	};
 
+	mw.flow.dm.APIHandler.prototype.topicTitle = function ( topicId ) {
+		return ( new mw.Title( topicId, 2600 ) ).getPrefixedDb();
+	};
+
 	/**
 	 * Send an edit request to the API to save a reply.
 	 *
@@ -235,9 +239,9 @@
 	 * @param {string} format
 	 * @return {jQuery.Promise} Promise that is resolved with the post revision data
 	 */
-	mw.flow.dm.APIHandler.prototype.getPost = function ( postId, format ) {
+	mw.flow.dm.APIHandler.prototype.getPost = function ( topicId, postId, format ) {
 		var params = {
-			page: this.page,
+			page: this.topicTitle( topicId ),
 			vppostId: postId,
 			vpformat: format || 'html'
 		};
@@ -257,10 +261,10 @@
 	 * @param {string} [captcha] CAPTCHA information
 	 * @return {jQuery.Promise} Promise that is resolved with the saved post revision id
 	 */
-	mw.flow.dm.APIHandler.prototype.savePost = function ( postId, content, format, captcha ) {
+	mw.flow.dm.APIHandler.prototype.savePost = function ( topicId, postId, content, format, captcha ) {
 		var xhr,
 			params = {
-				page: this.page,
+				page: this.topicTitle( topicId ),
 				epcontent: content,
 				epformat: format,
 				epprev_revision: this.currentRevision,
@@ -275,6 +279,69 @@
 			} );
 
 		return xhr.promise( { abort: xhr.abort } );
+	};
+
+	mw.flow.dm.APIHandler.prototype.getTopicSummary = function ( topicId, format ) {
+		var params = {
+			page: this.topicTitle( topicId ),
+			vtsformat: format || 'html'
+		};
+
+		return this.get( 'view-topic-summary', params )
+			.then( function ( data ) {
+				return data.topicsummary.revision;
+			} );
+	};
+
+	mw.flow.dm.APIHandler.prototype.saveTopicSummary = function ( topicId, content, format, captcha ) {
+		var xhr,
+			params = {
+				page: this.topicTitle( topicId ),
+				etssummary: content,
+				etsformat: format,
+				etsprev_revision: this.currentRevision
+			};
+
+		this.addCaptcha( params, captcha );
+
+		xhr = this.postEdit( 'edit-topic-summary', params )
+			.then( function ( data ) {
+				return OO.getProp( data.flow, 'edit-topic-summary', 'workflow' );
+			} );
+
+		return xhr.promise( { abort: xhr.abort } );
+	};
+
+	/**
+	 * Executes the 'lock-topic' moderation action against a topic. Can be used to resolve or reopen a topic.
+	 *
+	 * @param {string} topicId Id of the topic to moderate
+	 * @param {string} moderationState Can be 'lock' or 'unlock'
+	 * @param {string} reasonMsgKey Message key for the moderation reason
+	 * @return {jQuery.Promise} Resolved with the workflow id
+	 */
+	mw.flow.dm.APIHandler.prototype.lockTopic = function ( topicId, moderationState, reasonMsgKey ) {
+		var xhr,
+			params = {
+				page: this.topicTitle( topicId ),
+				cotmoderationState: moderationState,
+				cotreason: mw.msg( reasonMsgKey )
+			};
+
+		xhr = this.postEdit( 'lock-topic', params )
+			.then( function ( data ) {
+				return OO.getProp( data.flow, 'lock-topic', 'workflow' );
+			} );
+
+		return xhr.promise( { abort: xhr.abort } );
+	};
+
+	mw.flow.dm.APIHandler.prototype.resolveTopic = function ( topicId ) {
+		return this.lockTopic( topicId, 'lock', 'flow-rev-message-lock-topic-reason' );
+	};
+
+	mw.flow.dm.APIHandler.prototype.reopenTopic = function ( topicId ) {
+		return this.lockTopic( topicId, 'unlock', 'flow-rev-message-restore-topic-reason' );
 	};
 
 }( jQuery ) );

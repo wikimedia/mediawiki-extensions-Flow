@@ -44,10 +44,7 @@
 		{{~#if actions.summarize~}}
 			<li>
 				{{~noop~}}
-				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon"
-				   data-flow-interactive-handler="apiRequest"
-				   data-flow-api-handler="activateSummarizeTopic"
-				   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
+				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon flow-ui-summarize-topic-link"
 				   href="{{actions.summarize.url}}"
 				   title="{{actions.summarize.title}}">
 					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-stripeToC mw-ui-icon-stripeToC-progressive-hover"></span> {{/if~}}
@@ -238,12 +235,7 @@
 		{{~#if actions.lock~}}
 			<li>
 				{{~noop~}}
-				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon"
-				   data-flow-interactive-handler="apiRequest"
-				   data-flow-api-handler="lockAndSummarizeTopic"
-				   data-flow-id="{{postId}}"
-				   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
-				   data-flow-api-method="POST"
+				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon flow-ui-resolve-topic-link"
 				   href="{{actions.lock.url}}"
 				   title="{{actions.lock.title}}">
 					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-check mw-ui-icon-check-progressive-hover"></span> {{/if~}}
@@ -255,12 +247,7 @@
 		{{~#if actions.unlock~}}
 			<li>
 				{{~noop~}}
-				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon"
-				   data-flow-interactive-handler="apiRequest"
-				   data-flow-api-handler="lockAndSummarizeTopic"
-				   data-flow-id="{{postId}}"
-				   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
-				   data-flow-api-method="POST"
+				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon flow-ui-reopen-topic-link"
 				   href="{{actions.unlock.url}}"
 				   title="{{actions.unlock.title}}">
 					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-ongoingConversation mw-ui-icon-ongoingConversation-progressive-hover"></span> {{/if~}}

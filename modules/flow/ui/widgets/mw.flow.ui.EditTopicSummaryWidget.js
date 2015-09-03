@@ -1,26 +1,27 @@
 ( function ( $ ) {
 	/**
-	 * Flow edit post widget
+	 * Flow edit topic summary widget
 	 *
 	 * @class
 	 * @extends OO.ui.Widget
 	 *
 	 * @constructor
-	 * @param {string} postId The id of the post to edit
+	 * @param {string} topicId The id of the topic that has the summary we want to edit
 	 * @param {Object} [config] Configuration object
 	 */
-	mw.flow.ui.EditPostWidget = function mwFlowUiEditPostWidget( topicId, postId, config ) {
+	mw.flow.ui.EditTopicSummaryWidget = function mwFlowUiEditTopicSummaryWidget( topicId, config ) {
 		config = config || {};
 
 		this.topicId = topicId;
-		this.postId = postId;
 
 		// Parent constructor
-		mw.flow.ui.EditPostWidget.parent.call( this, config );
+		mw.flow.ui.EditTopicSummaryWidget.parent.call( this, config );
 
 		this.editor = new mw.flow.ui.EditorWidget( {
-			saveMsgKey: mw.user.isAnon() ? 'flow-post-action-edit-post-submit-anonymously' : 'flow-post-action-edit-post-submit',
-			classes: [ 'flow-ui-editPostWidget-editor' ]
+			saveMsgKey: 'flow-topic-action-update-topic-summary',
+			classes: [ 'flow-ui-editTopicSummaryWidget-editor' ],
+			placeholder: mw.msg( 'flow-edit-summary-placeholder' ),
+			cancelMsgKey: config.cancelMsgKey
 		} );
 		this.editor.toggle( true );
 
@@ -28,7 +29,7 @@
 		this.anonWarning.toggle( true );
 
 		this.error = new OO.ui.LabelWidget( {
-			classes: [ 'flow-ui-editPostWidget-error flow-errors errorbox' ]
+			classes: [ 'flow-ui-editTopicSummaryWidget-error flow-errors errorbox' ]
 		} );
 		this.error.toggle( false );
 
@@ -43,7 +44,7 @@
 		} );
 
 		this.$element
-			.addClass( 'flow-ui-editPostWidget' )
+			.addClass( 'flow-ui-editTopicSummaryWidget' )
 			.append(
 				this.anonWarning.$element,
 				this.error.$element,
@@ -58,17 +59,17 @@
 		var widget = this,
 			contentFormat = this.editor.getContentFormat();
 
-		this.api.getPost( topicId, postId, contentFormat ).then(
-			function ( post ) {
-				var content = OO.getProp( post, 'content', 'content' ),
-					format = OO.getProp( post, 'content', 'format' );
+		this.api.getTopicSummary( topicId, contentFormat ).then(
+			function ( topicSummary ) {
+				var content = OO.getProp( topicSummary, 'content', 'content' ),
+					format = OO.getProp( topicSummary, 'content', 'format' );
 
 				if ( content !== undefined && format !== undefined ) {
 					// Give it to the editor
 					widget.editor.setContent( content, format );
 
 					// Update revisionId in the API
-					widget.api.setCurrentRevision( post.revisionId );
+					widget.api.setCurrentRevision( topicSummary.revisionId );
 				}
 
 			},
@@ -89,7 +90,7 @@
 
 	/* Initialization */
 
-	OO.inheritClass( mw.flow.ui.EditPostWidget, OO.ui.Widget );
+	OO.inheritClass( mw.flow.ui.EditTopicSummaryWidget, OO.ui.Widget );
 
 	/* Events */
 
@@ -106,14 +107,14 @@
 	/**
 	 * Respond to editor cancel
 	 */
-	mw.flow.ui.EditPostWidget.prototype.onEditorCancel = function () {
+	mw.flow.ui.EditTopicSummaryWidget.prototype.onEditorCancel = function () {
 		this.emit( 'cancel' );
 	};
 
 	/**
 	 * Respond to editor save
 	 */
-	mw.flow.ui.EditPostWidget.prototype.onEditorSaveContent = function ( content, format ) {
+	mw.flow.ui.EditTopicSummaryWidget.prototype.onEditorSaveContent = function ( content, format ) {
 		var widget = this,
 			$captchaField, captcha;
 
@@ -129,7 +130,7 @@
 		this.error.toggle( false );
 
 		this.editor.pushPending();
-		this.api.savePost( this.topicId, this.postId, content, format, captcha )
+		this.api.saveTopicSummary( this.topicId, content, format, captcha )
 			.then( function ( workflow ) {
 				widget.emit( 'saveContent', workflow, content, format );
 			} )
@@ -153,14 +154,14 @@
 	/**
 	 * Focus the reply widget on the editor
 	 */
-	mw.flow.ui.EditPostWidget.prototype.focus = function () {
+	mw.flow.ui.EditTopicSummaryWidget.prototype.focus = function () {
 		this.editor.focus();
 	};
 
 	/**
 	 * Destroy the widget
 	 */
-	mw.flow.ui.EditPostWidget.prototype.destroy = function () {
+	mw.flow.ui.EditTopicSummaryWidget.prototype.destroy = function () {
 		this.editor.destroy();
 	};
 
