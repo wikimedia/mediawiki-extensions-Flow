@@ -1035,7 +1035,24 @@ $c['formatter.topic'] = function( $c ) {
 		$c['formatter.revision']
 	);
 };
-$c['searchindex.updaters'] = function( $c ) {
+$c['search.connection'] = function( $c ) {
+	if ( defined( 'MW_PHPUNIT_TEST' ) && !class_exists( 'ElasticaConnection' ) ) {
+		/*
+		 * ContainerTest::testInstantiateAll instantiates everything
+		 * in container and doublechecks it's not null.
+		 * Flow runs on Jenkins don't currently load Extension:Elastica,
+		 * which is required to be able to construct this object.
+		 * Because search is not currently in use, let's not add the
+		 * dependency in Jenkins and just return a bogus value to not
+		 * make the test fail ;)
+		 */
+		return 'not-supported';
+	}
+
+	global $wgFlowSearchServers, $wgFlowSearchConnectionAttempts;
+	return new Flow\Search\Connection( $wgFlowSearchServers, $wgFlowSearchConnectionAttempts );
+};
+$c['search.index.updaters'] = function( $c ) {
 	// permissions for anon user
 	$anonPermissions = new Flow\RevisionActionPermissions( $c['flow_actions'], new User );
 	return array(

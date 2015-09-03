@@ -7,6 +7,7 @@ use Elastica\Query\QueryString;
 use Elastica\Exception\ExceptionInterface;
 use Elastica\Request;
 use Elastica\ResultSet;
+use Flow\Container;
 use PoolCounterWorkViaCallback;
 use Status;
 
@@ -31,6 +32,11 @@ class Searcher {
 	protected $query;
 
 	/**
+	 * @var Connection
+	 */
+	protected $connection;
+
+	/**
 	 * @param Query $query
 	 * @param string|bool $index Base name for index to search from, defaults to wfWikiId()
 	 * @param string|bool $type Type of revisions to retrieve, defaults to all
@@ -39,6 +45,7 @@ class Searcher {
 		$this->query = $query;
 		$this->indexBaseName = $index ?: wfWikiId();
 		$this->type = $type;
+		$this->connection = Container::get( 'search.connection' );
 	}
 
 	/**
@@ -75,7 +82,7 @@ class Searcher {
 
 		// @todo: support insource: queries (and perhaps others)
 
-		$searchable = Connection::getFlowIndex( $this->indexBaseName );
+		$searchable = $this->connection->getFlowIndex( $this->indexBaseName );
 		if ( $this->type !== false ) {
 			$searchable = $searchable->getType( $this->type );
 		}
@@ -144,7 +151,7 @@ class Searcher {
 		// _termvectors only works on a type, but our types are
 		// configured exactly the same so it doesn't matter which
 		$types = Connection::getAllTypes();
-		$searchable = Connection::getFlowIndex( $this->indexBaseName );
+		$searchable = $this->connection->getFlowIndex( $this->indexBaseName );
 		$searchable = $searchable->getType( array_pop( $types ) );
 
 		$query = array(
