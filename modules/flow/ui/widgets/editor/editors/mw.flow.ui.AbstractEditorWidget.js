@@ -118,10 +118,18 @@
 	/**
 	 * Change the content of the editor.
 	 *
+	 * @abstract
 	 * @method
 	 * @param {string} content New content
 	 */
-	mw.flow.ui.AbstractEditorWidget.prototype.setContent = function ( content ) {
+	mw.flow.ui.AbstractEditorWidget.prototype.setContent = null;
+
+	/**
+	 * Set the initial content for comparison
+	 *
+	 * @param {string} content New content
+	 */
+	mw.flow.ui.AbstractEditorWidget.prototype.setInitialContent = function ( content ) {
 		// Cache content for comparison
 		this.initialContent = content;
 	};

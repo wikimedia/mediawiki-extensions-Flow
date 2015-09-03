@@ -173,9 +173,15 @@
 	/**
 	 * @inheritdoc
 	 */
-	mw.flow.ui.VisualEditorWidget.prototype.setContent = function ( content ) {
+	mw.flow.ui.VisualEditorWidget.prototype.setContent = function ( content, isOriginalContent ) {
 		this.target.clearSurfaces();
 		this.createSurface( content );
+		if ( isOriginalContent ) {
+			// Set breakpoint to compare to
+			// 
+			// 
+			// 
+		}
 	};
 
 	/**

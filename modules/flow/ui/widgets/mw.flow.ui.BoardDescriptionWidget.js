@@ -114,7 +114,7 @@
 
 					if ( content !== undefined && format !== undefined ) {
 						// Give it to the editor
-						widget.editor.setContent( content, format );
+						widget.editor.setContent( content, format, true );
 
 						// Update revisionId in the API
 						widget.api.setCurrentRevision( widget.model.getRevisionId() );

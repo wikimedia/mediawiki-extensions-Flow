@@ -383,7 +383,7 @@
 	 * @param {string} contentFormat Format of new content
 	 * @return {jQuery.Promise} Promise resolved when new content has been set
 	 */
-	mw.flow.ui.EditorSwitcherWidget.prototype.setContent = function ( content, contentFormat ) {
+	mw.flow.ui.EditorSwitcherWidget.prototype.setContent = function ( content, contentFormat, isOriginalContent ) {
 		if ( this.settingPromise ) {
 			// TODO handle this more gracefully
 			return $.Deferred().reject();
@@ -409,7 +409,7 @@
 				return widget.convertContent( content, contentFormat, widget.contentFormat );
 			} )
 			.then( function ( newContent ) {
-				widget.getActiveEditor().setContent( newContent );
+				widget.getActiveEditor().setContent( newContent, isOriginalContent );
 				settingDeferred.resolve();
 				widget.settingPromise = null;
 			} )
@@ -429,6 +429,10 @@
 	 */
 	mw.flow.ui.EditorSwitcherWidget.prototype.toggleAutoFocus = function ( autoFocus ) {
 		this.autoFocus = autoFocus === undefined ? !this.autoFocus : !!autoFocus;
+	};
+
+	mw.flow.ui.EditorSwitcherWidget.prototype.getActiveEditorName = function () {
+		return this.activeEditorName;
 	};
 
 	/**

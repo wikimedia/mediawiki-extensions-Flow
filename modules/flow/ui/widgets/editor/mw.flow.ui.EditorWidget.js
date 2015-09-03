@@ -33,6 +33,7 @@
 
 		this.initialEditor = config.editor;
 		this.confirmCancel = !!config.confirmCancel || config.cancelOnEscape === undefined;
+		this.changedOnce = false;
 
 		this.editorControlsWidget = new mw.flow.ui.EditorControlsWidget( {
 			termsMsgKey: config.termsMsgKey || 'flow-terms-of-use-edit',
@@ -52,7 +53,7 @@
 		// Events
 		this.editorSwitcherWidget.connect( this, {
 			'switch': 'onEditorSwitcherSwitch',
-			change: [ 'emit', 'change' ]
+			change: 'onEditorSwitcherChange'
 		} );
 		this.editorControlsWidget.connect( this, {
 			cancel: 'onEditorControlsWidgetCancel',
@@ -115,6 +116,28 @@
 	// merge EditorSwitcherWidget into EditorWidget?
 
 	/**
+	 * Respond to change in the editor
+	 * @fires change
+	 */
+	mw.flow.ui.EditorWidget.prototype.onEditorSwitcherChange = function () {
+		var hasBeenChanged = this.editorSwitcherWidget.hasBeenChanged();
+
+		if (
+			// If there have been changes
+			hasBeenChanged &&
+			// And the editor is the original one we loaded (which is where we
+			// saved the initial content for comparison)
+			this.initialEditor === this.editorSwitcherWidget.getActiveEditorName()
+		) {
+			// Set the changedOnce flag to true
+			this.changedOnce = true;
+		}
+
+		// Check if there's changed content or if the changedOnce flag is on
+		this.editorControlsWidget.toggleSaveable( this.changedOnce || hasBeenChanged );
+		this.emit( 'change' );
+	};
+	/**
 	 * Respond to cancel event. Verify with the user that they want to cancel if
 	 * there is changed data in the editor.
 	 * @fires cancel
@@ -129,11 +152,15 @@
 						if ( data && data.action === 'discard' ) {
 							// Remove content
 							widget.setContent( '', 'wikitext' );
+							// Reset the changedOnce flag
+							this.changedOnce = false;
 							widget.emit( 'cancel' );
 						}
 					} );
 				} );
 		} else {
+			// Reset the changedOnce flag
+			this.changedOnce = false;
 			this.emit( 'cancel' );
 		}
 	};
@@ -210,8 +237,8 @@
 	 * @return {jQuery.Promise} Promise resolved when new content has been set
 	 * @see mw.flow.ui.EditorSwitcherWidget#setContent
 	 */
-	mw.flow.ui.EditorWidget.prototype.setContent = function ( content, contentFormat ) {
-		return this.editorSwitcherWidget.setContent( content, contentFormat );
+	mw.flow.ui.EditorWidget.prototype.setContent = function ( content, contentFormat, isOriginalContent ) {
+		return this.editorSwitcherWidget.setContent( content, contentFormat, isOriginalContent );
 	};
 
 	/**
