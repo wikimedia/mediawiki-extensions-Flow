@@ -2,6 +2,7 @@
 
 namespace Flow\Search;
 
+use Flow\Container;
 use Flow\DbFactory;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
@@ -21,12 +22,18 @@ abstract class Updater {
 	protected $permissions;
 
 	/**
+	 * @var Connection
+	 */
+	protected $connection;
+
+	/**
 	 * @param DbFactory $dbFactory
 	 * @param RevisionActionPermissions $permissions
 	 */
 	public function __construct( DbFactory $dbFactory, RevisionActionPermissions $permissions ) {
 		$this->dbFactory = $dbFactory;
 		$this->permissions = $permissions;
+		$this->connection = Container::get( 'search.connection' );
 	}
 
 	/**
@@ -102,7 +109,7 @@ abstract class Updater {
 	 */
 	public function updateRevisions( array $revisions, $shardTimeout = null, $clientSideTimeout = null ) {
 		if ( $clientSideTimeout !== null ) {
-			Connection::getSingleton()->setTimeout2( $clientSideTimeout );
+			$this->connection->setTimeout( $clientSideTimeout );
 		}
 
 		$documents = $this->buildDocumentsForRevisions( $revisions );
@@ -122,12 +129,12 @@ abstract class Updater {
 
 		try {
 			// addDocuments (notice plural) is the bulk api
-			$bulk = new \Elastica\Bulk( Connection::getSingleton()->getClient2() );
+			$bulk = new \Elastica\Bulk( $this->connection->getClient() );
 			if ( $shardTimeout !== null ) {
 				$bulk->setShardTimeout( $shardTimeout );
 			}
 
-			$index = Connection::getFlowIndex( wfWikiId() );
+			$index = $this->connection->getFlowIndex( wfWikiId() );
 			$type = $index->getType( $this->getTypeName() );
 			$bulk->setType( $type );
 			$bulk->addDocuments( $documents );

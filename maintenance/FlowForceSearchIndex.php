@@ -19,6 +19,11 @@ require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 class FlowForceSearchIndex extends Maintenance {
 	// @todo: do we need to steal more from Cirrus' ForceSearchIndex? What options are important?
 
+	/**
+	 * @var Connection
+	 */
+	protected $connection;
+
 	public function __construct() {
 		parent::__construct();
 
@@ -30,16 +35,18 @@ class FlowForceSearchIndex extends Maintenance {
 		$this->addOption( 'toId', 'Stop indexing at a specific revision (inclusive).', false, true );
 		$this->addOption( 'limit', 'Maximum number of revisions to process before exiting the script. Default to unlimited.', false, true );
 		$this->addOption( 'namespace', 'Only index revisions in this given namespace', false, true );
+
+		$this->connection = Container::get( 'search.connection' );
 	}
 
 	public function execute() {
 		global $wgFlowSearchMaintenanceTimeout;
 
 		// Set the timeout for maintenance actions
-		Connection::getSingleton()->setTimeout2( $wgFlowSearchMaintenanceTimeout );
+		$this->connection->setTimeout( $wgFlowSearchMaintenanceTimeout );
 
 		/** @var Updater[] $updaters */
-		$updaters = Container::get( 'searchindex.updaters' );
+		$updaters = Container::get( 'search.index.updaters' );
 		foreach ( $updaters as $updaterType => $updater ) {
 			$fromId = $this->getOption( 'fromId', null );
 			$fromId = $fromId ? UUID::create( $fromId ) : null;

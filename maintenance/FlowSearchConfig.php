@@ -1,5 +1,6 @@
 <?php
 
+use Flow\Container;
 use Flow\Search\Connection;
 use Flow\Search\Maintenance\MappingConfigBuilder;
 use CirrusSearch\ElasticsearchIntermediary;
@@ -202,7 +203,7 @@ class FlowSearchConfig extends Maintenance {
 			$wgFlowSearchMaxShardsPerNode,
 			$wgFlowSearchCacheWarmers;
 
-		$this->connection = Connection::getSingleton();
+		$this->connection = Container::get( 'search.connection' );
 		$this->utils = new ConfigUtils( $this->getClient(), $this );
 
 		$this->indexType = 'flow'; // only 1 index for Flow
@@ -397,23 +398,23 @@ class FlowSearchConfig extends Maintenance {
 	}
 
 	protected function getClient() {
-		return $this->connection->getClient2();
+		return $this->connection->getClient();
 	}
 
 	protected function getIndex() {
-		return $this->connection->getIndex2( $this->indexBaseName, $this->indexType, $this->indexIdentifier );
+		return $this->connection->getIndex( $this->indexBaseName, $this->indexType, $this->indexIdentifier );
 	}
 
 	protected function getIndexName() {
-		return $this->connection->getIndexName2( $this->indexBaseName );
+		return $this->connection->getIndexName( $this->indexBaseName );
 	}
 
 	protected function getSpecificIndexName() {
-		return $this->connection->getIndexName2( $this->indexBaseName, $this->indexType, $this->indexIdentifier );
+		return $this->connection->getIndexName( $this->indexBaseName, $this->indexType, $this->indexIdentifier );
 	}
 
 	protected function getIndexTypeName() {
-		return $this->connection->getIndexName2( $this->indexBaseName, $this->indexType );
+		return $this->connection->getIndexName( $this->indexBaseName, $this->indexType );
 	}
 
 	protected function getTopicType() {
@@ -425,12 +426,12 @@ class FlowSearchConfig extends Maintenance {
 	}
 
 	protected function getOldTopicType() {
-		$index = Connection::getFlowIndex( $this->indexBaseName );
+		$index = $this->connection->getFlowIndex( $this->indexBaseName );
 		return $index->getType( Connection::TOPIC_TYPE_NAME );
 	}
 
 	protected function getOldHeaderType() {
-		$index = Connection::getFlowIndex( $this->indexBaseName );
+		$index = $this->connection->getFlowIndex( $this->indexBaseName );
 		return $index->getType( Connection::HEADER_TYPE_NAME );
 	}
 
@@ -439,7 +440,7 @@ class FlowSearchConfig extends Maintenance {
 	}
 
 	protected function setConnectionTimeout() {
-		$this->connection->setTimeout2( $this->maintenanceTimeout );
+		$this->connection->setTimeout( $this->maintenanceTimeout );
 	}
 }
 
