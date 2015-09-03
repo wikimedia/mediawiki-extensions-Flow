@@ -12,8 +12,10 @@
 	 * @cfg {string} [cancelMsgKey='flow-cancel'] i18n message key for the cancel button
 	 */
 	mw.flow.ui.EditorControlsWidget = function mwFlowUiEditorControlsWidget( config ) {
-		var $buttons = $( '<div>' )
-			.addClass( 'flow-ui-editorControlsWidget-buttons' );
+		var saveLabelKey,
+			$buttons = $( '<div>' )
+				.addClass( 'flow-ui-editorControlsWidget-buttons' ),
+			isAnon = mw.user.isAnon();
 
 		config = config || {};
 
@@ -25,9 +27,11 @@
 			label: $( $.parseHTML( mw.message( config.termsMsgKey || 'flow-terms-of-use-edit' ).parse() ) )
 		} );
 
+		saveLabelKey = ( config.saveMsgKey || 'flow-newtopic-save' ) + ( isAnon ? '-anonymously' : '' );
+
 		this.saveButton = new OO.ui.ButtonWidget( {
 			flags: [ 'primary', 'constructive' ],
-			label: mw.msg( config.saveMsgKey || 'flow-newtopic-save' ),
+			label: mw.msg( saveLabelKey ),
 			classes: [ 'flow-ui-editorControlsWidget-saveButton' ]
 		} );
 

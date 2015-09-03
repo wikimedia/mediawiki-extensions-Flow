@@ -1,5 +1,23 @@
 .flow-ui-anonWarningWidget-active {
+	background-image: url( ../../images/anon-user.svg );
+	background-repeat: no-repeat;
+	background-color: #347BFF;
+	background-position: 0.6em center;
+
+	padding: 0.6em;
+	padding-left: ~"calc(0.6em + 24px + 0.6em)";
+
+	color: white;
 	display: block;
-	padding: 4px 8px;
 	border: 1px solid #ccc;
+	line-height: 1.2em;
+
+	a {
+		color: white;
+		font-weight: bold;
+	}
+
+	body.rtl & {
+		background-position: ~"calc(100% - 0.6em) center";
+	}
 }
