@@ -15,7 +15,7 @@ class WikiReference extends Reference {
 	/**
 	 * @param String $wiki Wiki ID of the reference source
 	 * @param UUID   $srcWorkflow ID of the source Workflow
-	 * @param Title  $srcTitle    Title of the reference's target.
+	 * @param Title  $srcTitle    Title of the Workflow from which this reference comes.
 	 * @param string $objectType  Output of getRevisionType for the AbstractRevision that this reference comes from.
 	 * @param UUID   $objectId    Unique identifier for the revisioned object containing the reference.
 	 * @param string $type        Type of reference
@@ -83,7 +83,7 @@ class WikiReference extends Reference {
 	 *
 	 * @param int $namespace Namespace number
 	 * @param string $title Title text
-	 * @return Title
+	 * @return Title|null
 	 */
 	public static function makeTitle( $namespace, $title ) {
 		try {
@@ -91,6 +91,9 @@ class WikiReference extends Reference {
 		} catch ( InvalidInputException $e ) {
 			// duplicate Title::makeTitleSafe which returns null on failure,
 			// but only for InvalidInputException
+
+			wfDebugLog( 'Flow', __METHOD__ . ": Invalid title.  Namespace: $namespace, Title text: $title" );
+
 			return null;
 		}
 	}
