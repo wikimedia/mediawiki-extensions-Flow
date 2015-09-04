@@ -2,6 +2,9 @@
  * Enhances mediawiki-ui style elements with JavaScript.
  */
 
+// Expose for the sake of tests
+mw.flow.ui.enhance = {};
+
 /** @class mw.ui.enhance */
 ( function ( mw, $ ) {
 	/*
@@ -111,6 +114,10 @@
 		$form.find( '.mw-ui-button' ).filter( '[data-role=action], [data-role=submit]' )
 			.prop( 'disabled', !ready );
 	}
+	// Expose for the sake of tests. This will be unnecessary and removed when all
+	// instances of the editor are migrated to ooui
+	mw.flow.ui.enhance.enableFormWithRequiredFields = enableFormWithRequiredFields;
+
 	/*
 	 * Disable / enable submit buttons without/with text in field.
 	 * Usage: field needs required attribute
