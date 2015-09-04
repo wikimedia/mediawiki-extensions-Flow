@@ -92,7 +92,10 @@ abstract class Utils {
 		$prefixedDbTitle = $title->getPrefixedDBkey();
 		$params = array(
 			$from => $content,
-			'bodyOnly' => 'true',
+			// ParsoidVirtualRESTService only supports 'body' (returns <body>
+			// node) & RestbaseVirtualRESTService also understands 'body'
+			// (which it converts to 'bodyOnly' (returns <body> children))
+			'body' => 'true',
 		);
 		if ( $from === 'html' ) {
 			$params['scrubWikitext'] = 'true';
@@ -121,6 +124,20 @@ abstract class Utils {
 		if ( $to === 'wikitext' ) {
 			$content = preg_replace( '/\\n$/', '', $content );
 		}
+
+		// ParsoidVirtualRESTService & RestbaseVirtualRESTService response
+		// when param 'body' is set is slightly different: the former includes
+		// the <body> tag while the latter only returns the children.
+		// Let's omit <body> tag everywhere to standardize our content.
+		$dom = static::createDOM( $content );
+		$body = $dom->getElementsByTagName( 'body' )->item( 0 );
+		if ( $body !== null ) {
+			$content = '';
+			foreach ( $body->childNodes as $childNode ) {
+				$content .= $dom->saveHTML( $childNode );
+			}
+		}
+
 		return $content;
 	}
 
