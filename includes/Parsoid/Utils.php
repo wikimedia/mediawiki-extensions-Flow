@@ -40,7 +40,6 @@ abstract class Utils {
 			// If we have no parsoid config, fallback to the parser.
 			return self::parser( $from, $to, $content, $title );
 		}
-
 	}
 
 	/**
@@ -110,7 +109,7 @@ abstract class Utils {
 			if ( $response['error'] !== '' ) {
 				$statusMsg = $response['error'];
 			} else {
-				$statusMSg = $response['code'];
+				$statusMsg = $response['code'];
 			}
 			$msg = "Failed contacting Parsoid for title \"$prefixedDbTitle\": $statusMsg";
 			wfDebugLog( 'Flow', __METHOD__ . ": $msg" );
@@ -198,7 +197,7 @@ abstract class Utils {
 	 * For backwards compatibility, $wgFlowParsoid* variables are used
 	 * to specify a Parsoid configuration as a fall back.
 	 *
-	 * @return VirtualRESTService the VirtualRESTService object to use
+	 * @return \VirtualRESTService the VirtualRESTService object to use
 	 * @throws NoParsoidException When parsoid is unconfigured
 	 */
 	private static function getVRSObject() {
