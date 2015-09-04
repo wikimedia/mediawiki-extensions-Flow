@@ -440,5 +440,11 @@
 	"flow-mark-revision-patrolled-link-text": "Oznacz tę stronę jako „sprawdzoną”",
 	"flow-mark-revision-patrolled-link-title": "Oznacz tę stronę jako „sprawdzoną”",
 	"flow-mark-diff-patrolled-link-text": "Oznacz edycję jako „sprawdzoną”",
-	"flow-mark-diff-patrolled-link-title": "Oznacz edycję jako „sprawdzoną”"
+	"flow-mark-diff-patrolled-link-title": "Oznacz edycję jako „sprawdzoną”",
+	"flow-dialog-cancelconfirm-title": "Na pewno?",
+	"flow-dialog-cancelconfirm-message": "Czy na pewno chcesz przerwać edycję bez jej zapisywania?",
+	"flow-dialog-cancelconfirm-keep": "Kontynuuj edycję",
+	"flow-dialog-cancelconfirm-discard": "Porzuć zmiany",
+	"flow-guidedtour-optin-find-old-conversations": "Znajdź {{GENDER:$1|swoje}} wcześniejsze rozmowy",
+	"flow-guidedtour-optin-find-old-conversations-description": "Wcześniejsze rozmowy zostały przeniesione na stronę archiwum."
 }

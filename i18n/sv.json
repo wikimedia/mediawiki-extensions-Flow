@@ -514,5 +514,17 @@
 	"flow-mark-revision-patrolled-link-text": "Märk den här sidan som patrullerad",
 	"flow-mark-revision-patrolled-link-title": "Märk den här sidan som patrullerad",
 	"flow-mark-diff-patrolled-link-text": "Märk som patrullerad",
-	"flow-mark-diff-patrolled-link-title": "Märk som patrullerad"
+	"flow-mark-diff-patrolled-link-title": "Märk som patrullerad",
+	"flow-notification-link-text-enabled-on-talkpage": "Visa användardiskussionssida",
+	"flow-notification-enabled-on-talkpage-email-subject": "Nytt diskussionssystem på $1",
+	"flow-beta-feature-remove-archive-template-edit-summary": "Tar bort arkivmall",
+	"flow-dialog-cancelconfirm-title": "Är du säker?",
+	"flow-dialog-cancelconfirm-message": "Är du säker på att du vill avbryta utan att spara först?",
+	"flow-dialog-cancelconfirm-keep": "Fortsätt redigera",
+	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Välkommen}} till {{GENDER:$1|din}} nya användardiskussionsida",
+	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Din}} diskussionssida är platsen där andra redigerare kan kontakta {{GENDER:$1|dig}}. Med Flow är det enklare att starta nya ämnen och hålla reda på konversationer.",
+	"flow-guidedtour-optin-find-old-conversations": "Hitta {{GENDER:$1|dina}} gamla konversationer",
+	"flow-guidedtour-optin-find-old-conversations-description": "Tidigare konversationer har flyttas till en arkivsida.",
+	"flow-guidedtour-optin-feedback": "Ge oss {{GENDER:$1|din}} återkoppling!",
+	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Du}} kan skaffa mer information, ge återkoppling eller inaktivera det nya systemet när som helst från avsnittet Betafunktioner."
 }

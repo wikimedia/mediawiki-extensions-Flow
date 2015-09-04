@@ -86,5 +86,6 @@
 	"flow-ve-mention-placeholder": "Корисничко име",
 	"flow-ve-mention-tool-title": "Спомени корисника",
 	"flow-wikitext-switch-editor-tooltip": "Пребаци ме на Визуелни уређивач",
-	"flow-ve-switch-editor-tool-title": "Пребаци ме на уређивач викитекста"
+	"flow-ve-switch-editor-tool-title": "Пребаци ме на уређивач викитекста",
+	"flow-dialog-cancelconfirm-title": "Јесте ли сигурни?"
 }

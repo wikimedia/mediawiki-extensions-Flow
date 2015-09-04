@@ -444,7 +444,7 @@
 	"flow-talk-page-beta-feature-message": "於使用者對話上使用 Flow",
 	"flow-talk-page-beta-feature-description": "於您的使用者對話頁面開啟新結構化討論系統。 Flow 透過簡潔的方式提供發表與回覆的功能來簡化對話頁面的討論方式，並允許對話層級的通知。 已存在的 wikitext 討論內容將會移動至存檔頁面。 此功能不會自動開啟，使用者需要手動開啟。 關閉此功能將會移動 Flow 討論板至子頁面並且還原先前對話頁面的存檔。",
 	"flow-notification-link-text-enabled-on-talkpage": "檢視使用者對話頁面",
-	"flow-notification-enabled-on-talkpage-title-message": "您的使用者對話頁面已開啟新討論系統<br/><small>可至 [[$1]]</small>",
+	"flow-notification-enabled-on-talkpage-title-message": "您的使用者對話頁面已開啟新討論系統<br /><small>可至 [[$1]]</small>",
 	"flow-notification-enabled-on-talkpage-email-subject": "於 $1 的新討論系統",
 	"flow-notification-enabled-on-talkpage-email-batch-body": "已在 {{SITENAME}} 於您的使用者對話頁面開啟新 wiki 討論系統 Flow。 您可以隨時於您的偏好設定中的試用版功能區取得更多資訊，提供意見回饋或者關閉新的系統。",
 	"flow-beta-feature-add-archive-template-edit-summary": "正在加入存檔模板",

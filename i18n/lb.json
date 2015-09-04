@@ -234,7 +234,15 @@
 	"flow-mark-revision-patrolled-link-title": "Dës Säit als nogekuckt markéieren",
 	"flow-mark-diff-patrolled-link-text": "Als nogekuckt markéieren",
 	"flow-mark-diff-patrolled-link-title": "Als nogekuckt markéieren",
+	"flow-notification-link-text-enabled-on-talkpage": "Benotzerdiskussiounssäit weisen",
 	"flow-notification-enabled-on-talkpage-title-message": "Neien Diskussiounssystem aktivéiert fir Är Benotzerdiskussiounssäit<br /><small>Disponibel op [[$1]]</small>",
 	"flow-notification-enabled-on-talkpage-email-subject": "Neien Diskussiounssystem op $1",
-	"flow-beta-feature-remove-archive-template-edit-summary": "Archiv-Schabloun gëtt ewechgeholl"
+	"flow-beta-feature-remove-archive-template-edit-summary": "Archiv-Schabloun gëtt ewechgeholl",
+	"flow-dialog-cancelconfirm-title": "Sidd Dir sécher?",
+	"flow-dialog-cancelconfirm-message": "Sidd Dir sécher datt Dir ofbrieche wëllt ouni fir d'éischt ze späicheren?",
+	"flow-dialog-cancelconfirm-keep": "Virufuere mat Änneren",
+	"flow-dialog-cancelconfirm-discard": "Ännerungen annuléieren",
+	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Wëllkomm}} op {{GENDER:$1|Ärer}} neier Benotzerdiskussiounssäit",
+	"flow-guidedtour-optin-find-old-conversations": "{{GENDER:$1|Är}} al Diskussioune fannt Dir",
+	"flow-guidedtour-optin-feedback": "Gitt eis {{GENDER:$1|Äre}} Feedback!"
 }
