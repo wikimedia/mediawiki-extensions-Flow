@@ -59,14 +59,6 @@ class OptInController {
 		$this->user = $this->occupationController->getTalkpageManager();
 		$this->context = new DerivativeContext( RequestContext::getMain() );
 		$this->context->setUser( $this->user );
-
-		// We need to replace the 'permissions' object in the container
-		// so it is initialized with the user we are trying to
-		// impersonate (Talk page manager user).
-		$user = $this->user;
-		Container::getContainer()->extend( 'permissions', function ( $p, $c ) use ( $user ) {
-			return new RevisionActionPermissions( $c['flow_actions'], $user );
-		} );
 	}
 
 	/**
