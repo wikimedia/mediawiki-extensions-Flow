@@ -1,9 +1,5 @@
 ( function ( $ ) {
-	QUnit.module( 'ext.flow: mediawiki.ui.enhance', QUnit.newMwEnvironment( {
-		setup: function () {
-			this.clock = this.sandbox.useFakeTimers();
-		}
-	} ) );
+	QUnit.module( 'ext.flow: mediawiki.ui.enhance' );
 
 	QUnit.test( 'Forms with required fields have certain buttons disabled by default', 6, function ( assert ) {
 		var $forms = [
@@ -16,24 +12,20 @@
 		];
 
 		$.each( $forms, function () {
-			this.appendTo( '#qunit-fixture' );
-			this.find( '.mw-ui-input' ).trigger( 'keyup' );
+			mw.flow.ui.enhance.enableFormWithRequiredFields( this );
 		} );
 
-		// See mw-ui.enhance.js for why setTimeout is used.
-		this.clock.tick( 1000 );
-
-		assert.strictEqual( $forms[0].find( 'button' ).is( ':disabled' ), true,
+		assert.strictEqual( $forms[0].find( 'button' ).prop( 'disabled' ), true,
 			'Buttons with data-role=action are disabled when required fields are empty.' );
-		assert.strictEqual( $forms[1].find( 'button' ).is( ':disabled' ), true,
+		assert.strictEqual( $forms[1].find( 'button' ).prop( 'disabled' ), true,
 			'Buttons with data-role=action are disabled when required fields are empty.' );
-		assert.strictEqual( $forms[2].find( 'button' ).is( ':disabled' ), false,
+		assert.strictEqual( $forms[2].find( 'button' ).prop( 'disabled' ), false,
 			'Buttons with are enabled when no required fields in form.' );
-		assert.strictEqual( $forms[3].find( 'button' ).is( ':disabled' ), true,
+		assert.strictEqual( $forms[3].find( 'button' ).prop( 'disabled' ), true,
 			'Buttons are disabled when textarea is required but empty.' );
-		assert.strictEqual( $forms[4].find( 'button' ).is( ':disabled' ), false,
+		assert.strictEqual( $forms[4].find( 'button' ).prop( 'disabled' ), false,
 			'Buttons are enabled when required textarea has text.' );
-		assert.strictEqual( $forms[5].find( 'button' ).is( ':disabled' ), true,
+		assert.strictEqual( $forms[5].find( 'button' ).prop( 'disabled' ), true,
 			'Buttons are disabled when required textarea but required input does not.' );
 	} );
 
