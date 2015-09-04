@@ -174,17 +174,28 @@ class BoardContent extends \AbstractContent {
 		$parserOutput->setTimestamp( $timestamp );
 
 		if ( $generateHtml ) {
-			$parserOutput->setText(
-				// Flow boards are rendered on view (in two possible
-				// orders) and can be thousands of topics long, so
-				// rendering a few topics into the parser output at
-				// parse-time may not be useful in practice.
-				Html::element(
-					'span',
-					array( 'class' => 'flow-parser-output-placeholder' ),
-					'This is a placeholder in place of a Flow board.'
-				)
+			// Set up a derivative context (which inherits the current request)
+			// to hold the output modules + text
+			$childContext = new DerivativeContext( RequestContext::getMain() );
+			$childContext->setOutput( new OutputPage( $childContext ) );
+			$childContext->setRequest( new FauxRequest );
+
+			// Create a View set up to output to our derivative context
+			$view = new View(
+				Container::get( 'url_generator' ),
+				Container::get( 'lightncandy' ),
+				$childContext->getOutput(),
+				Container::get( 'flow_actions' )
 			);
+
+			$loader = $this->getWorkflowLoader( $title );
+			$view->show( $loader, 'view' );
+
+			// Extract data from derivative context
+			$parserOutput->setText( $childContext->getOutput()->getHTML() );
+			$parserOutput->addModules( $childContext->getOutput()->getModules() );
+			$parserOutput->addModuleStyles( $childContext->getOutput()->getModuleStyles() );
+			$parserOutput->addModuleScripts( $childContext->getOutput()->getModuleScripts() );
 		}
 
 		/** @var LinksTableUpdater $updater */
