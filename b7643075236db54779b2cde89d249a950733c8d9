@@ -16,6 +16,24 @@
       "revId": "b7643075236db54779b2cde89d249a950733c8d9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_4223cdff",
+        "filename": "includes/Search/Connection.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-09-04T11:20:03Z",
+      "side": 1,
+      "message": "Have you installed extension/Elastica?\nAs far as I can tell, \\ElasticaConnection still exists (see https://gerrit.wikimedia.org/r/#/c/235175/3/ElasticaConnection.php)",
+      "parentUuid": "6ec1af18_8cfc913c",
+      "revId": "b7643075236db54779b2cde89d249a950733c8d9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
