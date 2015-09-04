@@ -3,6 +3,7 @@
 namespace Flow\Formatter;
 
 use Flow\Collection\PostCollection;
+use Flow\Container;
 use Flow\Exception\PermissionException;
 use Flow\Repository\UserNameBatch;
 use Flow\Exception\FlowException;
@@ -170,14 +171,7 @@ class RevisionFormatter {
 	 * @throws \TimestampException
 	 */
 	public function formatApi( FormatterRow $row, IContextSource $ctx, $action = 'view' ) {
-		$user = $ctx->getUser();
-
-		// @todo the only permissions currently checked in this class are prev-revision
-		// mostly permissions is used for the actions,  figure out how permissions should
-		// fit into this class either used more or not at all.
-		if ( !$user->equals( $this->permissions->getUser() ) ) {
-			throw new PermissionException( 'Formatting for wrong user: ' . $user->getName() . ' instead of ' . $this->permissions->getUser()->getName() );
-		}
+		$this->permissions->setUser( $ctx->getUser() );
 
 		if ( !$this->permissions->isAllowed( $row->revision, $action ) ) {
 			return false;
