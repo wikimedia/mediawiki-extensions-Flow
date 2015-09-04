@@ -34,6 +34,24 @@
       "revId": "b7643075236db54779b2cde89d249a950733c8d9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_42e0ad92",
+        "filename": "includes/Search/Connection.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-09-04T11:38:39Z",
+      "side": 1,
+      "message": "Nevermind. I hadn\u0027t seen the Jenkins failure.\nIt\u0027s because these builds don\u0027t have Exception:Elastica. I\u0027ve worked around it.",
+      "parentUuid": "6ec1af18_4223cdff",
+      "revId": "b7643075236db54779b2cde89d249a950733c8d9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
