@@ -266,4 +266,11 @@ class RevisionActionPermissions {
 	public function getActions() {
 		return $this->actions;
 	}
+
+	/**
+	 * @param $user
+	 */
+	public function setUser( User $user ) {
+		$this->user = $user;
+	}
 }
