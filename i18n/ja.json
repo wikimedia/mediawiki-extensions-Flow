@@ -360,5 +360,6 @@
 	"flow-dialog-cancelconfirm-message": "保存せずにキャンセルしてもよろしいですか?",
 	"flow-dialog-cancelconfirm-keep": "編集を続行する",
 	"flow-dialog-cancelconfirm-discard": "変更内容を破棄しました",
-	"flow-guidedtour-optin-find-old-conversations": "{{GENDER:$1|あなた}}の過去の会話を探す"
+	"flow-guidedtour-optin-find-old-conversations": "{{GENDER:$1|あなた}}の過去の会話を探す",
+	"flow-guidedtour-optin-feedback": "あなたのフィードバックをください。"
 }

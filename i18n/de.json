@@ -7,7 +7,8 @@
 			"Andreasburmeister",
 			"Tiin",
 			"Macofe",
-			"MarcoFalke"
+			"MarcoFalke",
+			"J. 'mach' wust"
 		]
 	},
 	"enableflow": "Flow aktivieren",
@@ -69,7 +70,7 @@
 	"flow-reply-topic-title-placeholder": "Antworten zu „$1“",
 	"flow-reply-link": "{{GENDER:$1|Antworten}}",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Danken}}}}",
-	"flow-thank-link-title": "{{GENDER:$1|{{GENDER:$2|Dem Beitragsersteller|Der Beitragserstellerin}}}} öffentlich danken",
+	"flow-thank-link-title": "{{GENDER:$2|Dem Beitragsersteller|Der Beitragserstellerin}} öffentlich {{GENDER:$1|danken}}",
 	"flow-history-action-suppress-post": "unterdrücken",
 	"flow-history-action-delete-post": "löschen",
 	"flow-history-action-hide-post": "verstecken",
@@ -219,7 +220,7 @@
 	"flow-history-week": "Letzte Woche",
 	"flow-history-pages-topic": "Erscheint auf dem [$1 Board „$2“]",
 	"flow-history-pages-post": "Erscheint auf [$1 $2]",
-	"flow-topic-comments": "{{PLURAL:$1|Ein Kommentar|$1 Kommentare|0=Sei {{GENDER:$2|der|die|der}} erste!}}",
+	"flow-topic-comments": "{{PLURAL:$1|Ein Kommentar|$1 Kommentare|0=Sei {{GENDER:$2|der|die}} erste!}}",
 	"flow-show-comments-title": "{{PLURAL:$1|Kommentar|Kommentare}} ansehen",
 	"flow-hide-comments-title": "{{PLURAL:$1|Kommentar|Kommentare}} ausblenden",
 	"flow-comment-restored": "Kommentar wiederhergestellt",

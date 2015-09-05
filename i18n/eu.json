@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Subi"
+			"Subi",
+			"Sator"
 		]
 	},
 	"flow-board-header-browse-topics-link": "Arakatu gaiak",
@@ -30,5 +31,6 @@
 	"flow-moderation-confirm-delete-post": "Ezabatu",
 	"flow-moderation-confirm-hide-post": "Ezkutatu",
 	"flow-moderation-confirm-delete-topic": "Ezabatu",
-	"flow-moderation-confirm-hide-topic": "Ezkutatu"
+	"flow-moderation-confirm-hide-topic": "Ezkutatu",
+	"flow-dialog-cancelconfirm-title": "Ziur zaude?"
 }
