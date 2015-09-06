@@ -409,7 +409,7 @@
 	"apihelp-flow+reply-description": "回覆一篇貼文。",
 	"apihelp-flow+reply-param-content": "新貼文的內容。",
 	"apihelp-flow+reply-example-1": "於 [[Topic:S2tycnas4hcucw8w]] 回覆一篇貼文",
-	"apihelp-flow+view-header-description": "檢視討論板的頁首。",
+	"apihelp-flow+view-header-description": "檢視討論板的描述。",
 	"apihelp-flow+view-post-description": "檢視一篇貼文。",
 	"flow-edited": "已編輯於",
 	"flow-edited-by": "已編輯由 $1",

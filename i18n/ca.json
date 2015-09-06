@@ -292,7 +292,6 @@
 	"flow-special-enableflow-header": "Descripció inicial del tauler Flow (wikitext)",
 	"flow-special-enableflow-board-already-exists": "Ja existeix un tauler Flow a [[$1]].",
 	"flow-special-enableflow-invalid-title": "S'ha proporcionat un títol de pàgina no vàlid.",
-	"flow-special-enableflow-non-existent-requires-description": "Per crear un tauler Flow on actualment no existeix cap pàgina, heu de proporcionar una descripció.",
 	"flow-special-enableflow-confirmation": "Heu creat correctament un tauler Flow a [[$1]].",
 	"flow-conversion-archive-page-name-format": "%s/Arxiu %d\n%s/Arxiu%d\n%s/arxiu%d\n%s/arxiu%d",
 	"flow-spam-confirmedit-form": "Confirmeu que no és una edició mecànica desxifrant el captcha següent: $1",
@@ -331,6 +330,5 @@
 	"flow-mark-revision-patrolled-link-text": "Marca la pàgina com a supervisada",
 	"flow-mark-revision-patrolled-link-title": "Marca la pàgina com a supervisada",
 	"flow-mark-diff-patrolled-link-text": "Marca com a supervisat",
-	"flow-mark-diff-patrolled-link-title": "Marca com a supervisat",
-	"flow-description-last-modified-at": "Darrera modificació d'aquesta descripció: $1 a les $2h."
+	"flow-mark-diff-patrolled-link-title": "Marca com a supervisat"
 }

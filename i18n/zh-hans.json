@@ -411,7 +411,7 @@
 	"apihelp-flow+edit-header-description": "编辑板块的描述。",
 	"apihelp-flow+edit-header-param-prev_revision": "当前描述修订的版本ID，以检查编辑冲突。",
 	"apihelp-flow+edit-header-param-content": "用于描述的内容。",
-	"apihelp-flow+edit-header-param-format": "描述的格式（wiki文本|html）",
+	"apihelp-flow+edit-header-param-format": "描述的格式(wikitext|html)",
 	"apihelp-flow+edit-header-example-1": "编辑[[Talk:Sandbox]]的描述",
 	"apihelp-flow+edit-post-description": "编辑帖子的内容。",
 	"apihelp-flow+edit-post-param-postId": "帖子ID。",

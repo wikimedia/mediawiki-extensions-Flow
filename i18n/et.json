@@ -66,7 +66,7 @@
 	"flow-topic-action-hide-topic": "Peida teema",
 	"flow-topic-action-delete-topic": "Kustuta teema",
 	"flow-topic-action-lock-topic": "Märgi lahendatuks",
-	"flow-topic-action-unlock-topic": "Ava teema teema",
+	"flow-topic-action-unlock-topic": "Ava teema taas",
 	"flow-topic-action-summarize-topic": "Võta kokku",
 	"flow-topic-action-resummarize-topic": "Redigeeri teema kokkuvõtet",
 	"flow-topic-action-update-topic-summary": "Uuenda kokkuvõtet",
@@ -202,6 +202,5 @@
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|kasutab märgistuskeelt]]",
 	"flow-wikitext-editor-help-preview-the-result": "tulemust eelvaadelda",
 	"flow-wikitext-switch-editor-tooltip": "Vaheta visuaaltoimeti vastu",
-	"flow-ve-switch-editor-tool-title": "Vaheta vikiteksti redaktori vastu",
-	"flow-description-last-modified-at": "Kirjelduse viimane muutmisaeg: $1, kell $2."
+	"flow-ve-switch-editor-tool-title": "Vaheta vikiteksti redaktori vastu"
 }
