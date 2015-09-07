@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_3167dfe7",
+        "filename": "i18n/en.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-09-07T17:52:20Z",
+      "side": 1,
+      "message": "The EditorControlsWidget code doesn\u0027t pass any parameters. This works by accident because empty string is substituted for $1 and {{GENDER:|Foo|Bar}} uses the current user.\n\nRelying on {{GENDER:|...}} is fine, but in that case we shouldn\u0027t pretend $1 is passed. This is already and issue with the non-anonymous version of this message, so that\u0027s not this change\u0027s fault, but here you\u0027re adding a new message with an unused $1 parameter and adding a qqq that claims $1 has a certain value.\n\nOr is this a case where $1 needs to be the gender of the user you\u0027re replying to? In that case the problem is not with the message but with the code.",
+      "revId": "05a21ab62791b61eac9693ee135d5c353f0107be",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_b173cfae",
+        "filename": "modules/styles/flow/widgets/editor/mw.flow.ui.AnonWarningWidget.less",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-09-07T17:52:20Z",
+      "side": 1,
+      "message": "/* @embed */",
+      "revId": "05a21ab62791b61eac9693ee135d5c353f0107be",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
