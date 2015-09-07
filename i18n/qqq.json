@@ -136,7 +136,6 @@
 	"flow-error-http": "Used as error message on HTTP error.",
 	"flow-error-other": "Used as generic error message.",
 	"flow-error-external": "Uses as error message. Parameters:\n* $1 - error message\nSee also:\n* {{msg-mw|Flow-error-external-multi}}",
-	"flow-error-edit-restricted": "Used as error message when a user attempts to edit a post they do not have the permissions for.",
 	"flow-error-topic-is-locked": "Used as error message when a user attempts to moderate/create/edit title/post when a topic is resolved (locked).",
 	"flow-error-lock-moderated-post": "Used as error message when user attempts to resolve (lock) a moderated topic/post.",
 	"flow-error-external-multi": "Used as error message. Parameters:\n* $1 - list of error messages\nSee also:\n* {{msg-mw|Flow-error-external}}",
