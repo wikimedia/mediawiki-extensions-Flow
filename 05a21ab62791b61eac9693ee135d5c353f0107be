@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_71a807d8",
+        "filename": "i18n/en.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-09-07T17:58:15Z",
+      "side": 1,
+      "message": "I see the point, but two counter points about this:\n1. First, we actually may not need gender here at all, since these messages only appear to anonymous users who have no gender preference.\n2. Even if some languages have the \"reply\" text relate to the person you are replying to, this is going to be extremely confusing. Our nesting system sometimes means that the reply link you clicked is not necessarily the actual context you are replying to. Even if we find a good solid way to know which user to reference in that case, I think it has a huge potential of actually becoming confusing to the user.\n\nI think we should actually remove the {{GENDER}} from this message completely, since it won\u0027t matter for anonymous users anyways.",
+      "parentUuid": "6ec1af18_3167dfe7",
+      "revId": "05a21ab62791b61eac9693ee135d5c353f0107be",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_b173cfae",
         "filename": "modules/styles/flow/widgets/editor/mw.flow.ui.AnonWarningWidget.less",
         "patchSetId": 4
