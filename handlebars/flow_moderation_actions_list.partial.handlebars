@@ -62,6 +62,81 @@
 		{{~/if~}}
 	{{~/ifCond~}}
 
+
+	{{~#ifCond moderationType "===" "history"~}}
+		{{!-- The history page uses a modal, while the topic view puts this in the title bar --}}
+		{{~#if actions.lock~}}
+			<li>
+				{{~noop~}}
+				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon"
+				   data-flow-interactive-handler="apiRequest"
+				   data-flow-api-handler="lockTopic"
+				   data-flow-api-method="POST"
+				   data-role="lock"
+				   data-flow-id="{{postId}}"
+				   href="{{actions.lock.url}}"
+				   title="{{actions.lock.title}}">
+					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-check mw-ui-icon-check-progressive-hover"></span> {{/if~}}
+					{{~l10n (concat "flow-" moderationType "-action-lock-topic")~}}
+				</a>
+				{{~noop~}}
+			</li>
+		{{~/if~}}
+		{{~#if actions.unlock~}}
+			<li>
+				{{~noop~}}
+				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon"
+				   data-flow-interactive-handler="apiRequest"
+				   data-flow-api-handler="lockTopic"
+				   data-flow-api-method="POST"
+				   data-role="unlock"
+				   data-flow-id="{{postId}}"
+				   href="{{actions.unlock.url}}"
+				   title="{{actions.unlock.title}}">
+					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-ongoingConversation mw-ui-icon-ongoingConversation-progressive-hover"></span> {{/if~}}
+					{{~l10n (concat "flow-" moderationType "-action-unlock-topic")~}}
+				</a>
+				{{~noop~}}
+			</li>
+		{{~/if~}}
+	{{else}}
+		{{!-- @todo Maybe we should change the topic view so that it also uses this modal? Consistency! --}}
+		{{~#if actions.lock~}}
+			<li>
+				{{~noop~}}
+				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon"
+				   data-flow-interactive-handler="apiRequest"
+				   data-flow-api-handler="lockAndSummarizeTopic"
+				   data-flow-id="{{postId}}"
+				   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
+				   data-flow-api-method="POST"
+				   href="{{actions.lock.url}}"
+				   title="{{actions.lock.title}}">
+					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-check mw-ui-icon-check-progressive-hover"></span> {{/if~}}
+					{{~l10n (concat "flow-" moderationType "-action-lock-topic")~}}
+				</a>
+				{{~noop~}}
+			</li>
+		{{~/if~}}
+		{{~#if actions.unlock~}}
+			<li>
+				{{~noop~}}
+				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon"
+				   data-flow-interactive-handler="apiRequest"
+				   data-flow-api-handler="lockAndSummarizeTopic"
+				   data-flow-id="{{postId}}"
+				   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
+				   data-flow-api-method="POST"
+				   href="{{actions.unlock.url}}"
+				   title="{{actions.unlock.title}}">
+					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-ongoingConversation mw-ui-icon-ongoingConversation-progressive-hover"></span> {{/if~}}
+					{{~l10n (concat "flow-" moderationType "-action-unlock-topic")~}}
+				</a>
+				{{~noop~}}
+			</li>
+		{{~/if~}}
+	{{~/ifCond~}}
+
 	{{~#ifCond moderationType "===" "post"~}}
 		{{!-- Post only --}}
 		{{~#if actions.edit~}}
@@ -88,7 +163,6 @@
 			</li>
 		{{~/if~}}
 	{{~/ifCond~}}
-
 </section>
 
 <section>
@@ -197,77 +271,4 @@
 		</li>
 	{{~/if~}}
 
-	{{~#ifCond moderationType "===" "history"~}}
-		{{!-- The history page uses a modal, while the topic view puts this in the title bar --}}
-		{{~#if actions.lock~}}
-			<li>
-				{{~noop~}}
-				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon"
-				   data-flow-interactive-handler="apiRequest"
-				   data-flow-api-handler="lockTopic"
-				   data-flow-api-method="POST"
-				   data-role="lock"
-				   data-flow-id="{{postId}}"
-				   href="{{actions.lock.url}}"
-				   title="{{actions.lock.title}}">
-					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-check mw-ui-icon-check-progressive-hover"></span> {{/if~}}
-					{{~l10n (concat "flow-" moderationType "-action-lock-topic")~}}
-				</a>
-				{{~noop~}}
-			</li>
-		{{~/if~}}
-		{{~#if actions.unlock~}}
-			<li>
-				{{~noop~}}
-				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon"
-				   data-flow-interactive-handler="apiRequest"
-				   data-flow-api-handler="lockTopic"
-				   data-flow-api-method="POST"
-				   data-role="unlock"
-				   data-flow-id="{{postId}}"
-				   href="{{actions.unlock.url}}"
-				   title="{{actions.unlock.title}}">
-					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-ongoingConversation mw-ui-icon-ongoingConversation-progressive-hover"></span> {{/if~}}
-					{{~l10n (concat "flow-" moderationType "-action-unlock-topic")~}}
-				</a>
-				{{~noop~}}
-			</li>
-		{{~/if~}}
-	{{else}}
-		{{!-- @todo Maybe we should change the topic view so that it also uses this modal? Consistency! --}}
-		{{~#if actions.lock~}}
-			<li>
-				{{~noop~}}
-				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon"
-				   data-flow-interactive-handler="apiRequest"
-				   data-flow-api-handler="lockAndSummarizeTopic"
-				   data-flow-id="{{postId}}"
-				   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
-				   data-flow-api-method="POST"
-				   href="{{actions.lock.url}}"
-				   title="{{actions.lock.title}}">
-					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-check mw-ui-icon-check-progressive-hover"></span> {{/if~}}
-					{{~l10n (concat "flow-" moderationType "-action-lock-topic")~}}
-				</a>
-				{{~noop~}}
-			</li>
-		{{~/if~}}
-		{{~#if actions.unlock~}}
-			<li>
-				{{~noop~}}
-				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon"
-				   data-flow-interactive-handler="apiRequest"
-				   data-flow-api-handler="lockAndSummarizeTopic"
-				   data-flow-id="{{postId}}"
-				   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
-				   data-flow-api-method="POST"
-				   href="{{actions.unlock.url}}"
-				   title="{{actions.unlock.title}}">
-					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-ongoingConversation mw-ui-icon-ongoingConversation-progressive-hover"></span> {{/if~}}
-					{{~l10n (concat "flow-" moderationType "-action-unlock-topic")~}}
-				</a>
-				{{~noop~}}
-			</li>
-		{{~/if~}}
-	{{~/ifCond~}}
 </section>
