@@ -94,8 +94,6 @@ class OptInController {
 		} else {
 			$this->createFlowBoard( $title, $linkToArchivedTalkpage );
 			$this->notificationController->notifyFlowEnabledOnTalkpage( $user );
-			// Enable the guided tour by setting the cookie
-			$this->context->getRequest()->response()->setcookie( 'Flow_optIn_guidedTour', '1' );
 		}
 	}
 
@@ -118,6 +116,15 @@ class OptInController {
 			$this->movePage( $archivedTalkpage, $title );
 			$this->removeArchiveTemplateFromWikitextTalkpage( $title );
 		}
+	}
+
+	/**
+	 * Check whether the current user has a flow board archived already.
+	 *
+	 * @return boolean Flow board archive exists
+	 */
+	public function hasFlowBoardArchive() {
+		return $this->findLatestFlowArchive( $this->user->getTalkPage() ) !== false;
 	}
 
 	/**
