@@ -1694,9 +1694,15 @@ class FlowHooks {
 		$before = BetaFeatures::isFeatureEnabled( $userClone, BETA_FEATURE_FLOW_USER_TALK_PAGE );
 		$after = $options[BETA_FEATURE_FLOW_USER_TALK_PAGE];
 		$action = null;
+		$c = new Flow\Import\OptInController();
 
 		if ( !$before && $after ) {
 			$action = OptInUpdate::$ENABLE;
+			// Check if the user had a flow board
+			if ( !$c->hasFlowBoardArchive() ) {
+				// Enable the guided tour by setting the cookie
+				RequestContext::getMain()->getRequest()->response()->setcookie( 'Flow_optIn_guidedTour', '1' );
+			}
 		} elseif ( $before && !$after ) {
 			$action = OptInUpdate::$DISABLE;
 		}

@@ -16,7 +16,7 @@
 		name: 'newTopic',
 		titlemsg: 'flow-guidedtour-optin-welcome',
 		description: $firstStepDescription[0].outerHTML,
-		attachTo: '.flow-newtopic-form [name="topiclist_topic"]',
+		attachTo: '.flow-ui-newTopicWidget .flow-ui-newTopicWidget-title',
 		position: 'bottom',
 		autoFocus: true,
 		closeOnClickOutside: false
