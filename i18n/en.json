@@ -568,7 +568,7 @@
 	"flow-notification-link-text-enabled-on-talkpage": "View user talk page",
 	"flow-notification-enabled-on-talkpage-title-message": "New discussion system enabled for your user talk page<br /><small>Available at [[$1]]</small>",
 	"flow-notification-enabled-on-talkpage-email-subject": "New discussion system on $1",
-	"flow-notification-enabled-on-talkpage-email-batch-body": "Flow, the new wiki discussion system, has been enabled on your user talk page on {{SITENAME}}. You can get more information, provide feedback or disable the new system any time from the Beta features section in your preferences.",
+	"flow-notification-enabled-on-talkpage-email-batch-body": "Flow, the new wiki discussion system, has been enabled on {{GENDER:$1|your}} user talk page on {{SITENAME}}. You can get more information, provide feedback or disable the new system any time from the Beta features section in {{GENDER:$1|your}} preferences.",
 	"flow-beta-feature-add-archive-template-edit-summary": "Adding archive template",
 	"flow-beta-feature-remove-archive-template-edit-summary": "Removing archive template",
 	"flow-dialog-cancelconfirm-title": "Are you sure?",

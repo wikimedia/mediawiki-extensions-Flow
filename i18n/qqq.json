@@ -576,7 +576,7 @@
 	"flow-notification-link-text-enabled-on-talkpage": "Primary link text in email for notification when Flow was enabled on your talk page.",
 	"flow-notification-enabled-on-talkpage-title-message": "Text of the web notification when Flow was enabled on your talk page.\n Parameters:\n* $1 - Title where Flow was enabled.",
 	"flow-notification-enabled-on-talkpage-email-subject": "Email subject for notification when Flow was enabled on your talk page.\n Parameters:\n* $1 - Title where Flow was enabled.",
-	"flow-notification-enabled-on-talkpage-email-batch-body": "Email body for notification when Flow was enabled on your talk page.\n Parameters:\n* $1 - Title where Flow was enabled.",
+	"flow-notification-enabled-on-talkpage-email-batch-body": "Email body for notification when Flow was enabled on your talk page.\n Parameters:\n* $1 - User name for gender.",
 	"flow-beta-feature-add-archive-template-edit-summary": "Edit summary message for the revision adding the archive template to an archived talk page.",
 	"flow-beta-feature-remove-archive-template-edit-summary": "Edit summary message for the revision removing the archive template to an archived talk page.",
 	"flow-dialog-cancelconfirm-title": "Title of the dialog that appears when the user cancels an edit and verifies whether the user wants to discard their edits or continue editing.\n{{Identical|Are you sure?}}",
