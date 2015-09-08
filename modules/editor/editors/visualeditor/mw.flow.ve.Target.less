@@ -4,9 +4,6 @@
 .flow-component {
 	.ve-init-target {
 		border: 1px solid #CCC;
-		// Undo .mw-body-content font-size (0.875em) and apply font-size matching OOUI theme (0.8em)
-		// TODO: Make this theme specific
-		font-size: 0.8/0.875em;
 
 		&.flow-ui-focused {
 			border-color: @colorProgressive;
@@ -16,9 +13,6 @@
 
 	.ve-ce-documentNode,
 	.ve-ui-surface-placeholder {
-		// Return to .mw-body-content font-size
-		// TODO: Make this theme specific
-		font-size: 0.875/0.8em;
 		padding: 1px 8px;
 
 	}
@@ -48,6 +42,14 @@
 		// the editing area. The 2px of positive margin gives room for the blue border of the
 		// documentNode (via .mw-ui-input)
 		margin: -42px 2px 1px 2px;
+
+		// Undo .mw-body-content font-size (0.875em) and apply font-size matching OOUI theme (0.8em)
+		// TODO: Make this theme specific
+		font-size: 0.8/0.875em;
+		// But don't let this double-apply for nested toolbars
+		.oo-ui-toolbar {
+			font-size: 1em;
+		}
 	}
 
 	// Due to this being floated, it needs a matching top margin to still display inside the bar
