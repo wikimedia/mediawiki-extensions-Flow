@@ -34,12 +34,13 @@
 			.end();
 
 		if ( config.switchable ) {
-			// Switcher
-			this.switcher = new OO.ui.ButtonWidget( {
-				label: $( '<span>' ).append( '&lt;/&gt;' ),
-				title: mw.msg( 'flow-wikitext-switch-editor-tooltip' ),
-				classes: [ 'flow-ui-wikitextEditorWidget-switcher' ]
-			} );
+			// Toolbar
+			this.toolFactory = new OO.ui.ToolFactory();
+			this.toolFactory.register( mw.flow.ui.SwitchToVeTool );
+			this.toolGroupFactory = new OO.ui.ToolGroupFactory();
+			this.toolbar = new OO.ui.Toolbar( this.toolFactory, this.toolGroupFactory );
+			this.toolbar.setup( [ { include: [ 'flowSwitchEditor' ] } ] );
+			this.initializedToolbar = false;
 
 			$preview = $( '<a>' )
 				.attr( 'href', '#' )
@@ -54,7 +55,7 @@
 			);
 
 			// Events
-			this.switcher.connect( this, { click: [ 'emit', 'switch' ] } );
+			this.toolbar.connect( this, { switchEditor: [ 'emit', 'switch' ] } );
 			$message.find( '.flow-ui-wikitextEditorWidget-label-preview' )
 				.on( 'click', function () {
 					widget.emit( 'switch' );
@@ -82,13 +83,8 @@
 			.addClass( 'flow-ui-wikitextEditorWidget' )
 			.append(
 				this.input.$element,
-				$( '<div>' )
-					.addClass( 'flow-ui-wikitextEditorWidget-actions' )
-					.append(
-						label.$element,
-						this.switcher ? this.switcher.$element : [],
-						$( '<div>' ).css( 'clear', 'both' )
-					)
+				label.$element,
+				this.toolbar ? this.toolbar.$element : []
 			);
 	};
 
@@ -161,8 +157,28 @@
 	/**
 	 * @inheritdoc
 	 */
+	mw.flow.ui.WikitextEditorWidget.prototype.afterAttach = function () {
+		if ( this.toolbar && !this.initializedToolbar ) {
+			this.toolbar.initialize();
+			// Prevent double initialization; will not be needed with OOjs UI >=0.12.8
+			this.initializedToolbar = true;
+		}
+	};
+
+	/**
+	 * @inheritdoc
+	 */
 	mw.flow.ui.WikitextEditorWidget.prototype.teardown = function () {
 		this.input.setValue( '' );
 		return $.Deferred().resolve().promise();
+	};
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.flow.ui.WikitextEditorWidget.prototype.destroy = function () {
+		if ( this.toolbar ) {
+			this.toolbar.destroy();
+		}
 	};
 }( jQuery ) );

@@ -287,6 +287,7 @@ $wgResourceModules += array(
 		'position' => 'top',
 		'styles' => array(
 			'styles/common.less',
+			'styles/editors-common.less',
 			'styles/errors.less',
 			'styles/history/history-line.less',
 		),
@@ -398,6 +399,7 @@ $wgResourceModules += array(
 			'flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js',
 			'flow/ui/widgets/editor/mw.flow.ui.EditorControlsWidget.js',
 			'flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js',
+			'flow/ui/widgets/editor/mw.flow.ui.SwitchToVeTool.js',
 			'flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js',
 		),
 		'styles' => array(
@@ -423,11 +425,13 @@ $wgResourceModules += array(
 			'flow-dialog-cancelconfirm-message',
 			'flow-dialog-cancelconfirm-keep',
 			'flow-dialog-cancelconfirm-discard',
+			'flow-wikitext-switch-editor-tooltip',
 		),
 		'dependencies' => array (
 			'oojs-ui',
 			'es5-shim',
 			'ext.flow.dm',
+			'oojs-ui.styles.icons-editing-advanced',
 		)
 	) + $mobile,
 	'ext.flow' => $flowResourceTemplate + array(
