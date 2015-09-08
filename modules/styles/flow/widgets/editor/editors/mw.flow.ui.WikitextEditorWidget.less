@@ -6,6 +6,8 @@
 
 	.oo-ui-textInputWidget {
 		max-width: none;
+		padding-bottom: @editorToolbarHeight;
+
 		// Work around Chrome bug adding 5px below the textarea
 		line-height: 0;
 
@@ -36,26 +38,15 @@
 		}
 	}
 
-	&-actions {
-		position: relative;
-		padding: 4px 6px 6px 6px;
-	}
-
-	&-switcher {
-		display: inline-block;
-		float: right;
-		color: #555;
-
-		&.oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button {
-			background-color: #ccc;
-		}
-	}
-
 	&-label {
 		color: @colorTextLight;
 		font-size: 0.75em;
-		margin: 0.5em 0;
+		padding: 4px 6px 6px 6px;
 		position: absolute;
 		bottom: 0;
+	}
+
+	> .oo-ui-toolbar {
+		float: right;
 	}
 }
