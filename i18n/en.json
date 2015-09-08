@@ -564,7 +564,7 @@
 	"flow-mark-diff-patrolled-link-text": "Mark as patrolled",
 	"flow-mark-diff-patrolled-link-title": "Mark as patrolled",
 	"flow-talk-page-beta-feature-message": "Flow on user talk",
-	"flow-talk-page-beta-feature-description": "Enables a new structured discussion system on your user talk page. Flow simplifies talk page discussions with clear places to write and reply, and allows conversation-level notifications. Existing wikitext discussions are moved to an archive. This feature is not auto-enabled; users will have to enable it separately. Disabling this feature will move the Flow board to a subpage and un-archive the previous talkpage.",
+	"flow-talk-page-beta-feature-description": "Enables a new structured discussion system on {{GENDER:|your}} user talk page. Flow simplifies talk page discussions with clear places to write and reply, and allows conversation-level notifications. Existing wikitext discussions are moved to an archive. This feature is not auto-enabled; users will have to enable it separately. Disabling this feature will move the Flow board to a subpage and un-archive the previous talkpage.",
 	"flow-notification-link-text-enabled-on-talkpage": "View user talk page",
 	"flow-notification-enabled-on-talkpage-title-message": "New discussion system enabled for your user talk page<br /><small>Available at [[$1]]</small>",
 	"flow-notification-enabled-on-talkpage-email-subject": "New discussion system on $1",
