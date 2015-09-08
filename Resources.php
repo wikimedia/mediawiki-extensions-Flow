@@ -401,7 +401,6 @@ $wgResourceModules += array(
 			'flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js',
 		),
 		'styles' => array(
-			'styles/flow/mw.flow.ui.less',
 			'styles/flow/mw.flow.ui.Overlay.less',
 			'styles/flow/widgets/mw.flow.ui.NavigationWidget.less',
 			'styles/flow/widgets/mw.flow.ui.TopicMenuSelectWidget.less',
