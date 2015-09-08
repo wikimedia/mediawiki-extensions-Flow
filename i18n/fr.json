@@ -152,7 +152,6 @@
 	"flow-error-http": "Une erreur s’est produite en communiquant avec le serveur.",
 	"flow-error-other": "Une erreur inattendue s’est produite.",
 	"flow-error-external": "Une erreur s’est produite.<br />Le message d’erreur reçu était : $1",
-	"flow-error-edit-restricted": "Vous n’êtes pas autorisé(e) à modifier cette publication.",
 	"flow-error-topic-is-locked": "Cette discussion est marquée comme résolue, aucune activité supplémentaire n'est possible.",
 	"flow-error-lock-moderated-post": "Vous ne pouvez pas marquer une discussion modérée comme résolue.",
 	"flow-error-external-multi": "Des erreurs se sont produites.<br />$1",

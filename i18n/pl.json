@@ -131,7 +131,6 @@
 	"flow-error-http": "Wystąpił błąd w czasie łączenia z serwerem.",
 	"flow-error-other": "Wystąpił nieoczekiwany błąd.",
 	"flow-error-external": "Wystąpił błąd.<br />Otrzymano następujący komunikat o błędzie: $1",
-	"flow-error-edit-restricted": "Nie masz uprawnień do edytowania tego postu.",
 	"flow-error-topic-is-locked": "Ten wątek oznaczono jako załatwiony, więc dodawanie komentarzy jest niemożliwe.",
 	"flow-error-lock-moderated-post": "Nie możesz oznaczyć moderowanego postu jako załatwiony.",
 	"flow-error-external-multi": "Wystąpiły błędy.<br />$1",

@@ -53,7 +53,6 @@
 	"flow-error-allowcreation-flow-create-board": "Dä metmaacher hät nit et Rääsch „{{int:right-flow-create-board}}“",
 	"flow-error-other": "Ene Fähler es opjetrodde, woh mer nit met jerääschnet hatte.",
 	"flow-error-external": "Ene Fähler es opjetrodde.<br />De Mäldong derzoh wohr: $1",
-	"flow-error-edit-restricted": "Do häs nit dat Rääsch, he di post ze ändere.",
 	"flow-error-lock-moderated-post": "Do kanns keijne modderehrte topic als älehdesch makkehre",
 	"flow-error-missing-summary": "Do moss_en Äkliehrong schrihve.",
 	"flow-error-not-allowed-reply-to-hide-topic": "Do kanns nit antwoote, weil heh dä  topic verschtoche woode es.",

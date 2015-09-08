@@ -120,7 +120,6 @@
 	"flow-error-http": "S'ha produït un error mentre es contactava amb el servidor.",
 	"flow-error-other": "S'ha produït un error inesperat.",
 	"flow-error-external": "S'ha produït un error.<br />El missatge d'error rebre és: $1",
-	"flow-error-edit-restricted": "No teniu permís per modificar aquest missatge.",
 	"flow-error-topic-is-locked": "Aquest tema està resolt, per tant no és possible cap més activitat.",
 	"flow-error-lock-moderated-post": "No podeu marcar un apunt moderat com a resolt.",
 	"flow-error-external-multi": "S'han trobat errors.<br />$1",

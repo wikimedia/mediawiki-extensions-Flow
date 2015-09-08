@@ -121,7 +121,6 @@
 	"flow-error-http": "與伺服器連線時發生錯誤。",
 	"flow-error-other": "發生未預期的錯誤。",
 	"flow-error-external": "發生錯誤。<br />錯誤訊息為：$1",
-	"flow-error-edit-restricted": "您不被允許編輯此貼文。",
 	"flow-error-topic-is-locked": "此話題已被解決，不能進行進一步的活動。",
 	"flow-error-lock-moderated-post": "您無法標記受管制的貼文已解決。",
 	"flow-error-external-multi": "發生錯誤。<br />$1",

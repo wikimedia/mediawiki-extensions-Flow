@@ -132,7 +132,6 @@
 	"flow-error-http": "与服务器联系时出错。",
 	"flow-error-other": "出现意外的错误。",
 	"flow-error-external": "出现一个错误。<br />收到的错误信息：$1",
-	"flow-error-edit-restricted": "您无权编辑此帖。",
 	"flow-error-topic-is-locked": "此话题已解决，因此不再接受更多回复。",
 	"flow-error-lock-moderated-post": "您不能将被限制的帖子标记为已解决。",
 	"flow-error-external-multi": "出错。<br />$1",

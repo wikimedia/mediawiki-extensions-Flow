@@ -89,7 +89,6 @@
 	"flow-error-http": "Hebo un error al comunicase col sirvidor.",
 	"flow-error-other": "Hebo un fallu inesperáu.",
 	"flow-error-external": "Hebo un error.<br />El mensaxe d'error recibíu ye: $1",
-	"flow-error-edit-restricted": "Nun tien permisu pa editar esti mensaxe.",
 	"flow-error-external-multi": "Alcontráronse errores.<br />$1",
 	"flow-error-missing-content": "El mensaxe nun tien conteníu. El conteníu ye obligatoriu pa guardar un mensaxe.",
 	"flow-error-missing-summary": "Tienes d'unviar un resume.",

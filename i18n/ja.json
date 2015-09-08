@@ -99,7 +99,6 @@
 	"flow-error-http": "サーバーとの通信中にエラーが発生しました。",
 	"flow-error-other": "予期しないエラーが発生しました。",
 	"flow-error-external": "エラーが発生しました。<br />受信したエラーメッセージ: $1",
-	"flow-error-edit-restricted": "あなたはこの投稿を編集を許可されていません。",
 	"flow-error-external-multi": "複数のエラーが発生しました。<br /> $1",
 	"flow-error-missing-content": "投稿の本文がありません。投稿を保存するには本文が必要です。",
 	"flow-error-missing-summary": "要約を提出する必要があります。",

@@ -125,7 +125,6 @@
 	"flow-error-http": "Beim Kontaktieren des Servers ist ein Fehler aufgetreten.",
 	"flow-error-other": "Ein unerwarteter Fehler ist aufgetreten.",
 	"flow-error-external": "Es ist ein Fehler aufgetreten.<br />Die empfangene Fehlermeldung lautete: $1",
-	"flow-error-edit-restricted": "Du bist nicht berechtigt, diesen Beitrag zu bearbeiten.",
 	"flow-error-topic-is-locked": "Dieses Thema ist erledigt. Weitere Aktivitäten sind nicht möglich.",
 	"flow-error-lock-moderated-post": "Du kannst keinen moderierten Beitrag als erledigt markieren.",
 	"flow-error-external-multi": "Es sind Fehler aufgetreten.<br />$1",

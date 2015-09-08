@@ -5,7 +5,8 @@
 			"مشعل الحربي",
 			"Ms.Rainbow",
 			"محمد أحمد عبد الفتاح",
-			"Meno25"
+			"Meno25",
+			"Hiba Alshawi"
 		]
 	},
 	"flow-board-header-browse-topics-link": "تصفح المواضيع",
@@ -49,12 +50,15 @@
 	"flow-error-http": "حدث خطأ أثناء الاتصال بالخادم.",
 	"flow-error-other": "حدث خطأ غير متوقع.",
 	"flow-error-external": "حدث خطأ.<br />رسالة الخطأ المتلقاة هي: $1",
+	"flow-error-missing-summary": "يجب أن ترسل ملخص.",
+	"flow-error-missing-header-content": "يجب أن ترسل وصفا.",
 	"flow-error-default": "حدث خطأ.",
 	"flow-error-invalid-topic-uuid-title": "عنوان سيء",
 	"flow-error-unknown-workflow-id-title": "موضوع غير معروف",
 	"flow-error-unknown-workflow-id": "الموضوع المطلوب غير موجود.",
 	"flow-edit-title-submit": "تغيير العنوان",
 	"flow-edit-post-submit": "أرسل التغييرات",
+	"flow-edit-post-submit-anonymously": "إرسال التغييرات مجهول",
 	"flow-board-history": "تاريخ \"$1\"",
 	"flow-topic-history": "تاريخ موضوع \"$1\"",
 	"flow-history-last4": "آخر 4 ساعات",
@@ -89,5 +93,13 @@
 	"flow-ve-mention-placeholder": "اسم المستخدم",
 	"flow-wikitext-editor-help-preview-the-result": "اعرض النتيجة",
 	"flow-wikitext-switch-editor-tooltip": "الانتقال إلى المحرر المرئي",
-	"flow-ve-switch-editor-tool-title": "الانتقال إلى محرر نص الويكي"
+	"flow-ve-switch-editor-tool-title": "الانتقال إلى محرر نص الويكي",
+	"flow-notification-enabled-on-talkpage-email-subject": "نظام مناقشة جديد على 1 $",
+	"flow-beta-feature-add-archive-template-edit-summary": "إضافة قالب أرشيف",
+	"flow-beta-feature-remove-archive-template-edit-summary": "إزالة قالب الأرشيف",
+	"flow-dialog-cancelconfirm-title": "هل أنت متأكد؟",
+	"flow-dialog-cancelconfirm-message": "هل أنت متأكد أنك تريد إلغاء بدون حفظ أولا؟",
+	"flow-dialog-cancelconfirm-keep": "مواصلة المراجعة",
+	"flow-dialog-cancelconfirm-discard": "تجاهل التغييرات",
+	"flow-guidedtour-optin-find-old-conversations-description": "تم نقل المحادثات السابقة إلى صفحة الأرشيف."
 }

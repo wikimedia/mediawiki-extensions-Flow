@@ -135,7 +135,6 @@
 	"flow-error-http": "Ha ocurrido un error mientras se contactaba al servidor.",
 	"flow-error-other": "Ha ocurrido un error inesperado.",
 	"flow-error-external": "Se ha producido un error.<br />El mensaje de error recibido es: $1",
-	"flow-error-edit-restricted": "No tienes permitido editar esta entrada.",
 	"flow-error-topic-is-locked": "Este tema está resuelto, así que no se puede continuar modificando.",
 	"flow-error-lock-moderated-post": "No puedes marcar como resuelta una publicación moderada.",
 	"flow-error-external-multi": "Se han encontrado errores.<br />$1",

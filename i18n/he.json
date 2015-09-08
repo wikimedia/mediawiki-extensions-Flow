@@ -125,7 +125,6 @@
 	"flow-error-http": "אירעה שגיאה בעת יצירת קשר עם השרת.",
 	"flow-error-other": "אירעה שגיאה בלתי־צפויה.",
 	"flow-error-external": "אירעה שגיאה.<br />התקבלה הודעת השגיאה הבאה: $1",
-	"flow-error-edit-restricted": "אין לך הרשאה לערוך את הרשומה הזאת.",
 	"flow-error-topic-is-locked": "הנושא הזה נפתר, ולכן לא ניתן לעשות בו עוד פעילות.",
 	"flow-error-lock-moderated-post": "לא ניתן לסמן רשומה מפוקחת בתור פתורה.",
 	"flow-error-external-multi": "אירעו שגיאות.<br />\n$1",

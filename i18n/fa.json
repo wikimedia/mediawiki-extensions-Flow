@@ -127,7 +127,6 @@
 	"flow-error-http": "یک خطا هنگام تماس با سرور رخ داد.",
 	"flow-error-other": "یک خطای غیرمنتظره رخ داد.",
 	"flow-error-external": "خطایی رخ داده. <br /> پیغام خطای دریافت شده: $1 بود",
-	"flow-error-edit-restricted": "شما مجاز به ویرایش این پست نیستید.",
 	"flow-error-topic-is-locked": "این مبحث برطرف شده است بنابراین فعالیت بیشتر در آن ممکن نیست.",
 	"flow-error-lock-moderated-post": "شما نمی‌توانید یک ارسال را به‌عنوان برطرف شده پرچسپ زنید.",
 	"flow-error-external-multi": "خطاهایی رخ داده‌اند. <br />$1",
