@@ -97,6 +97,14 @@
 	mw.flow.ui.AbstractEditorWidget.prototype.setup = null;
 
 	/**
+	 * Called immediately after the editor is attached to the DOM and made visible.
+	 * Use this method only for things that rely on the editor being attached and visible;
+	 * put other things in #setup.
+	 */
+	mw.flow.ui.AbstractEditorWidget.prototype.afterAttach = function () {
+	};
+
+	/**
 	 * Tear down the editor.
 	 *
 	 * @method

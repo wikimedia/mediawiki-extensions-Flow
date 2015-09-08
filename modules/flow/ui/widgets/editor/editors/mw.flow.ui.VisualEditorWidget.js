@@ -91,24 +91,24 @@
 	 * @param {string} content HTML to put in the surface
 	 */
 	mw.flow.ui.VisualEditorWidget.prototype.createSurface = function ( content ) {
-		var dmDoc, surface,
+		var dmDoc,
 			htmlDoc = ve.createDocumentFromHtml( content );
 		ve.init.mw.Target.static.fixBase( htmlDoc );
 		dmDoc = ve.dm.converter.getModelFromDom( htmlDoc, {
 			lang: mw.config.get( 'wgVisualEditor' ).pageLanguageCode,
 			dir: mw.config.get( 'wgVisualEditor' ).pageLanguageDir
 		} );
-		surface = this.target.addSurface( dmDoc, { placeholder: this.placeholder } );
-		this.target.setSurface( surface );
+		this.surface = this.target.addSurface( dmDoc, { placeholder: this.placeholder } );
+		// afterAttach() calls setSurface
 
 		// Add directionality class
-		surface.getView().getDocument().getDocumentNode().$element.addClass(
+		this.surface.getView().getDocument().getDocumentNode().$element.addClass(
 			'mw-content-' + mw.config.get( 'wgVisualEditor' ).pageLanguageDir
 		);
 
 		// Relay events
-		surface.getModel().connect( this, { documentUpdate: [ 'emit', 'change' ] } );
-		surface.connect( this, { switchEditor: [ 'emit', 'switch' ] } );
+		this.surface.getModel().connect( this, { documentUpdate: [ 'emit', 'change' ] } );
+		this.surface.connect( this, { switchEditor: [ 'emit', 'switch' ] } );
 	};
 
 	/**
@@ -116,6 +116,13 @@
 	 */
 	mw.flow.ui.VisualEditorWidget.prototype.setup = function ( content ) {
 		return this.load().then( this.createSurface.bind( this, content ) );
+	};
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.flow.ui.VisualEditorWidget.prototype.afterAttach = function () {
+		this.target.setSurface( this.surface );
 	};
 
 	/**
