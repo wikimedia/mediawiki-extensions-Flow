@@ -286,6 +286,7 @@
 				widget.$element.append( newEditor.$element );
 
 				newEditor.toggle( true );
+				newEditor.afterAttach();
 
 				switchingDeferred.resolve();
 				widget.switchingPromise = null;
