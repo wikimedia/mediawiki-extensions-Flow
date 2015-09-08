@@ -117,7 +117,7 @@ $notifications = array(
 		'email-subject-message' => 'flow-notification-enabled-on-talkpage-email-subject',
 		'email-subject-params' => array( 'title' ),
 		'email-body-batch-message' => 'flow-notification-enabled-on-talkpage-email-batch-body',
-		'email-body-batch-params' => array( 'title' ),
+		'email-body-batch-params' => array( 'agent' ),
 	) + $notificationTemplate,
 );
 
