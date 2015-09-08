@@ -21,7 +21,7 @@
 	// Static
 	mw.flow.ve.ui.SwitchEditorTool.static.commandName = 'flowSwitchEditor';
 	mw.flow.ve.ui.SwitchEditorTool.static.name = 'flowSwitchEditor';
-	mw.flow.ve.ui.SwitchEditorTool.static.icon = 'flow-switch-editor';
+	mw.flow.ve.ui.SwitchEditorTool.static.icon = 'wikiText';
 	mw.flow.ve.ui.SwitchEditorTool.static.title = OO.ui.deferMsg( 'flow-ve-switch-editor-tool-title' );
 
 	ve.ui.toolFactory.register( mw.flow.ve.ui.SwitchEditorTool );
