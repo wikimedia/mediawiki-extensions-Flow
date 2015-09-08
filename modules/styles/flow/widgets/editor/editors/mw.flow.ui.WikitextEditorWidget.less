@@ -1,14 +1,16 @@
 @import 'flow.colors';
+@import 'flow.variables';
 
 .flow-ui-wikitextEditorWidget {
 	position: relative;
-	padding: 2px;
 
 	.oo-ui-textInputWidget {
 		max-width: none;
+		// Work around Chrome bug adding 5px below the textarea
+		line-height: 0;
 
 		textarea {
-			min-height: 8em;
+			min-height: @editorMinHeight;
 			-webkit-appearance: none;
 			background: transparent;
 
