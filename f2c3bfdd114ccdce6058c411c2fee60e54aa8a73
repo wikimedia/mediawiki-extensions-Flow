@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_0196fa97",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-09-09T20:21:26Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this use findLatest*Flow*Archive()? The place you removed the cookie setting code from effectively checks if ( !$this-\u003efindLatestFlowArchive( $title ) )",
+      "revId": "f2c3bfdd114ccdce6058c411c2fee60e54aa8a73",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
