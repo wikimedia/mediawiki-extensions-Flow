@@ -19,7 +19,16 @@ end
 When(/^I enable a new Flow board on article (.*?)$/) do |article|
   on(EnableFlowPage) do |page|
     page.page_name_element.when_present.send_keys article
-    page.page_header_element.when_present.send_keys 'header'
+    page.submit
+  end
+end
+
+When(/^I enable a new Flow board with a custom header$/) do
+  @new_board_page = @data_manager.get_talk 'Test_Random_Board'
+  @custom_header = @data_manager.get 'custom header'
+  on(EnableFlowPage) do |page|
+    page.page_name_element.when_present.send_keys @new_board_page
+    page.page_header_element.when_present.send_keys @custom_header
     page.submit
   end
 end
@@ -49,4 +58,10 @@ end
 
 Then(/^The archive contains the original text$/) do
   expect(on(SpecialConversionFlowArchivePage).content_element.when_present.text).to match('Some wikitext here.')
+end
+
+Then(/^I see the custom header$/) do
+  on(AbstractFlowPage) do |page|
+    page.description.content_element.when_present.text.should match @custom_header
+  end
 end
