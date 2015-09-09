@@ -176,6 +176,7 @@
 	mw.flow.ui.VisualEditorWidget.prototype.setContent = function ( content ) {
 		this.target.clearSurfaces();
 		this.createSurface( content );
+		this.target.setSurface( this.surface );
 	};
 
 	/**
