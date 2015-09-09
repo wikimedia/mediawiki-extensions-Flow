@@ -1,4 +1,5 @@
 @import 'flow.colors';
+@import 'flow.variables';
 
 .flow-ui-editorSwitcherWidget {
 	display: block;
@@ -7,6 +8,14 @@
 	&-placeholder-input {
 		max-width: none;
 		background-color: transparent;
+		// HACK less calc:
+		// Less has its own 'calc()' method which we don't want, so we
+		// must escape the calculation itself. However, in this case, we
+		// want to make sure that the height of the placeholder is equal to
+		// the editor minimum height + the toolbar height (both of those have
+		// different units). We have no choice but to build our own expression
+		// and lett CSS handle the calculation:
+		min-height: ~"calc( " @editorMinHeight ~"+" @editorToolbarHeight ~")";
 
 		& textarea {
 			border: none;
