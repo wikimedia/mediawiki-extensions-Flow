@@ -121,9 +121,16 @@ class PostRevision extends AbstractRevision {
 		$obj = parent::fromStorageRow( $row, $obj );
 		$treeRevId = UUID::create( $row['tree_rev_id'] );
 		if ( ! $obj->revId->equals( $treeRevId ) ) {
+			$treeRevIdStr = ( $treeRevId !== null )
+				? $treeRevId->getAlphadecimal()
+				: var_export( $row['tree_rev_id'], true );
+			$objRevIdStr = ( $obj->revId !== null )
+				? $obj->revId->getAlphadecimal()
+				: var_export( $row['rev_id'], true );
+
 			throw new DataModelException(
-				'tree revision doesn\'t match provided revision: '
-					. $treeRevId->getAlphadecimal() . ' != ' . $obj->revId->getAlphadecimal(),
+				'tree revision doesn\'t match provided revision: treeRevId ('
+					. $treeRevIdStr . ') != obj->revId (' . $objRevIdStr . ')',
 				'process-data'
 			);
 		}
