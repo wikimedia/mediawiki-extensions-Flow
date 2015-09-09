@@ -16,6 +16,24 @@
       "revId": "aef539cd42e29329cf80922f769844a7df24e243",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_41b082d8",
+        "filename": "modules/styles/flow/widgets/editor/mw.flow.ui.AnonWarningWidget.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-09-09T20:54:15Z",
+      "side": 1,
+      "message": "It\u0027s \"Definitely Defined\". Like \"iff\".",
+      "parentUuid": "6ec1af18_932ec488",
+      "revId": "aef539cd42e29329cf80922f769844a7df24e243",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
