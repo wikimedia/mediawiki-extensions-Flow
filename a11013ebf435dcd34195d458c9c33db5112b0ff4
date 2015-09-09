@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_21a8d6d7",
+        "filename": "modules/styles/flow/widgets/editor/mw.flow.ui.EditorSwitcherWidget.less",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-09-09T20:16:28Z",
+      "side": 1,
+      "message": "Does ~\"calc(@{editorMinHeight}+@{editorToolbarHeight}\"; work?",
+      "revId": "a11013ebf435dcd34195d458c9c33db5112b0ff4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
