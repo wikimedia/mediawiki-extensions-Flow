@@ -16,6 +16,24 @@
       "revId": "f2c3bfdd114ccdce6058c411c2fee60e54aa8a73",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_c1bd52ff",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-09-09T20:42:42Z",
+      "side": 1,
+      "message": "Whoops, bad typo. Yes!",
+      "parentUuid": "6ec1af18_0196fa97",
+      "revId": "f2c3bfdd114ccdce6058c411c2fee60e54aa8a73",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
