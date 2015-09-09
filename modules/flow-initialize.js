@@ -318,7 +318,7 @@
 				$topic = $( this ).closest( '.flow-topic' ),
 				topicId = $topic.data( 'flow-id' ),
 				$post = $( this ).closest( '.flow-post' ),
-				$postMain = $post.find( '.flow-post-main' ),
+				$postMain = $post.children( '.flow-post-main' ),
 				postId = $post.data( 'flow-id' ),
 				$board = $( '.flow-board' ),
 				flowBoard = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $board );
