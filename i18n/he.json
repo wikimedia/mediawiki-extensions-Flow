@@ -537,7 +537,7 @@
 	"flow-notification-link-text-enabled-on-talkpage": "הצגת דף שיחת המשתמש",
 	"flow-notification-enabled-on-talkpage-title-message": "מערכת דיונים חדשה הופעלה עבור דף המשתמש שלך<br /><small>זמין בדף [[$1]]</small>",
 	"flow-notification-enabled-on-talkpage-email-subject": "מערכת דיונים חדשה בדף $1",
-	"flow-notification-enabled-on-talkpage-email-batch-body": "זרימה, מערכת הדיונים החדשה לוויקי, הופעלה בדך השיחה שלך ב{{GRAMMAR:תחילית{{SITENAME}}}}. באפשרותך לקבל יותר מידע, לשלוח משוב או לכבות את מערכת דפי השיחה החדשה בכל זמן דרך לשונית בטא בהעדפות שלך.",
+	"flow-notification-enabled-on-talkpage-email-batch-body": "זרימה, מערכת הדיונים החדשה לוויקי, הופעלה בדך השיחה {{GENDER:$1|שלך}} ב{{GRAMMAR:תחילית{{SITENAME}}}}. באפשרותך לקבל יותר מידע, לשלוח משוב או לכבות את מערכת דפי השיחה החדשה בכל זמן דרך לשונית בטא בהעדפות {{GENDER:$1|שלך}}.",
 	"flow-beta-feature-add-archive-template-edit-summary": "הוספת תבנית ארכיון",
 	"flow-beta-feature-remove-archive-template-edit-summary": "הסרת תבנית ארכיון",
 	"flow-dialog-cancelconfirm-title": "באמת?",
