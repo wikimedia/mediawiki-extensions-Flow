@@ -29,7 +29,7 @@ end
 
 Then(/^my previous talk page is archived$/) do
   archive_name = "./User_talk:#{@username}/Archive_1"
-  archive_template = "User_talk:#{@username}".gsub '_', ' '
+  archive_template = 'This page is an archive.'
   visit(WikiPage, using_params: { page: archive_name }) do |page|
     expect(page.content_element.when_present.text).to match @talk_page_content
     expect(page.content_element.when_present.text).to match archive_template
