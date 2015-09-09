@@ -1,23 +1,30 @@
-.flow-ui-anonWarningWidget-active {
-	/* @embed */
-	background-image: url( ../../images/anon-user.svg );
-	background-repeat: no-repeat;
-	background-color: #347BFF;
-	background-position: 0.6em center;
+.flow-ui-anonWarningWidget{
+	// The line-height is defined for all of flow-board class. However,
+	// it has to be 0 in the case where the anonWarningWidget is empty
+	// otherwise it has a visible height.
+	line-height: 0;
 
-	padding: 0.6em;
-	padding-left: ~"calc(0.6em + 24px + 0.6em)";
+	&-active {
+		/* @embed */
+		background-image: url( ../../images/anon-user.svg );
+		background-repeat: no-repeat;
+		background-color: #347BFF;
+		background-position: 0.6em center;
 
-	color: white;
-	display: block;
-	line-height: 1.2em;
+		padding: 0.6em;
+		padding-left: ~"calc(0.6em + 24px + 0.6em)";
 
-	a {
 		color: white;
-		font-weight: bold;
-	}
+		display: block;
+		line-height: 1.2em;
 
-	body.rtl & {
-		background-position: ~"calc(100% - 0.6em) center";
+		a {
+			color: white;
+			font-weight: bold;
+		}
+
+		body.rtl & {
+			background-position: ~"calc(100% - 0.6em) center";
+		}
 	}
 }
