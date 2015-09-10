@@ -329,13 +329,90 @@
 					);
 				} )
 				.on( 'cancel', function () {
-					editPostWidget.$element.replaceWith( $postMain );
 					editPostWidget.destroy();
+					editPostWidget.$element.replaceWith( $postMain );
 				} );
 
 			$postMain.replaceWith( editPostWidget.$element );
 
 			event.preventDefault();
+		} );
+
+		function startEditTopicSummary( topicId, action ) {
+			var $topic = $board.find( '#flow-topic-' + topicId ),
+				$summaryContainer = $topic.find( '.flow-topic-summary-container' ),
+				$topicSummary = $summaryContainer.find( '.flow-topic-summary' ),
+				editTopicSummaryWidget,
+				options = {};
+
+			if ( action === 'lock' || action === 'unlock' ) {
+				options = {
+					cancelMsgKey: 'flow-skip-summary'
+				};
+			}
+
+			editTopicSummaryWidget = new mw.flow.ui.EditTopicSummaryWidget( topicId, options );
+			editTopicSummaryWidget
+				.on( 'saveContent', function ( workflow ) {
+					editTopicSummaryWidget.destroy();
+					editTopicSummaryWidget.$element.remove();
+
+					// HACK get the old system to rerender the topic
+					return flowBoard.flowBoardComponentRefreshTopic(
+						$topic,
+						workflow
+					);
+				} )
+				.on( 'cancel', function () {
+					editTopicSummaryWidget.destroy();
+					editTopicSummaryWidget.$element.remove();
+					$summaryContainer.append( $topicSummary );
+				} );
+
+			$topicSummary.remove();
+			$summaryContainer.append( editTopicSummaryWidget.$element );
+		}
+
+		$board.on( 'click', '.flow-ui-summarize-topic-link', function ( event ) {
+			var $topic = $( this ).closest( '.flow-topic' ),
+				topicId = $topic.data( 'flow-id' );
+			startEditTopicSummary( topicId );
+			event.preventDefault();
+		} );
+
+		$board.on( 'click', '.flow-ui-topicmenu-lock', function () {
+			var promise,
+				action = $( this ).data( 'role' ),
+				$topic = $( this ).closest( '.flow-topic' ),
+				topicId = $topic.data( 'flow-id' ),
+				api = new mw.flow.dm.APIHandler();
+
+			if ( action === 'lock' ) {
+				promise = api.resolveTopic( topicId );
+			} else {
+				promise = api.reopenTopic( topicId );
+			}
+
+			promise
+				.then( function ( workflow ) {
+					return flowBoard.flowBoardComponentRefreshTopic(
+						$topic,
+						workflow
+					);
+				} )
+				.then( function ( data ) {
+					var revisionId = data.topic.posts[ topicId ],
+						revision = data.topic.revisions[ revisionId ],
+						summaryContent = OO.getProp( revision, 'summary', 'revision', 'content', 'content' ),
+						skipSummarize = action === 'unlock' && !summaryContent;
+
+					if ( !skipSummarize ) {
+						startEditTopicSummary( topicId, action );
+					}
+				} );
+
+			// Prevent default
+			return false;
 		} );
 
 		// Fall back to mw.flow.data, which was used until September 2015
