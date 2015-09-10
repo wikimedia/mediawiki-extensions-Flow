@@ -715,6 +715,7 @@
 		var $target = $targetElement.closest( '.flow-topic' ),
 			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $targetElement );
 
+		$targetElement.addClass( 'flow-api-inprogress' );
 		return flowBoard.Api.apiCall( {
 			action: 'flow',
 			submodule: 'view-topic',
@@ -749,6 +750,8 @@
 
 			flowBoard.emitWithReturn( 'removeError', $target );
 			flowBoard.emitWithReturn( 'showError', $target, errorMsg );
+		} ).always( function () {
+			$targetElement.removeClass( 'flow-api-inprogress' );
 		} );
 	}
 
