@@ -15,7 +15,7 @@
 	tour.firstStep( {
 		name: 'newTopic',
 		titlemsg: 'flow-guidedtour-optin-welcome',
-		description: $firstStepDescription[0].outerHTML,
+		description: $firstStepDescription[ 0 ].outerHTML,
 		attachTo: '.flow-newtopic-form [name="topiclist_topic"]',
 		position: 'bottom',
 		autoFocus: true,

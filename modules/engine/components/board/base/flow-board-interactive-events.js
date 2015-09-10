@@ -188,7 +188,7 @@
 					'topic-of-post': $.trim( replyToContent ).substr( 0, 200 )
 				},
 				// Topic:UUID
-				articleTitle: mw.config.get( 'wgFormattedNamespaces' )[2600] + ':' + topicId[0].toUpperCase() + topicId.slice( 1 )
+				articleTitle: mw.config.get( 'wgFormattedNamespaces' )[ 2600 ] + ':' + topicId[ 0 ].toUpperCase() + topicId.slice( 1 )
 			}
 		) ).children();
 

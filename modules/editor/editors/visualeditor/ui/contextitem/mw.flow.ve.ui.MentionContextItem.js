@@ -50,7 +50,7 @@
 		var key = mw.flow.ve.ui.MentionInspector.static.templateParameterKey;
 
 		// Is there a more intuitive way to do this?
-		return this.model.element.attributes.mw.parts[0].template.params[key].wt;
+		return this.model.element.attributes.mw.parts[ 0 ].template.params[ key ].wt;
 	};
 
 	ve.ui.contextItemFactory.register( mw.flow.ve.ui.MentionContextItem );

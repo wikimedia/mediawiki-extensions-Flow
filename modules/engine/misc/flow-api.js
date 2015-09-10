@@ -130,18 +130,18 @@
 	 */
 	function flowApiTransformMap( queryMap ) {
 		var key,
-			map = apiTransformMap[queryMap.submodule];
+			map = apiTransformMap[ queryMap.submodule ];
 		if ( !map ) {
 			return queryMap;
 		}
 		for ( key in queryMap ) {
 			if ( queryMap.hasOwnProperty( key ) ) {
-				if ( key.indexOf( map[0] ) === 0 ) {
-					queryMap[ key.replace( map[0], map[1] ) ] = queryMap[ key ];
+				if ( key.indexOf( map[ 0 ] ) === 0 ) {
+					queryMap[ key.replace( map[ 0 ], map[ 1 ] ) ] = queryMap[ key ];
 					delete queryMap[ key ];
 				}
 				if ( key.indexOf( 'flow_' ) === 0 ) {
-					queryMap[ key.replace( 'flow_', map[1] ) ] = queryMap[ key ];
+					queryMap[ key.replace( 'flow_', map[ 1 ] ) ] = queryMap[ key ];
 					delete queryMap[ key ];
 				}
 			}
@@ -218,7 +218,7 @@
 		uri = new mw.Uri( url );
 
 		for ( queryKey in uri.query ) {
-			queryValue = uri.query[queryKey];
+			queryValue = uri.query[ queryKey ];
 			if ( queryKey === 'action' ) {
 				// Submodule is the action
 				queryKey = 'submodule';

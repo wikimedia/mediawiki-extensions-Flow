@@ -350,7 +350,7 @@
 	 */
 	FlowHandlebars.prototype.workflowBlock = function ( context, options ) {
 		return FlowHandlebars.prototype.html( FlowHandlebars.prototype.processTemplate(
-			'flow_block_' + context.type + ( context['block-action-template'] || '' ),
+			'flow_block_' + context.type + ( context[ 'block-action-template' ] || '' ),
 			context
 		) );
 	};
@@ -381,8 +381,8 @@
 	 * @todo support multiple postIds in an array
 	 */
 	FlowHandlebars.prototype.eachPost = function ( context, postId, options ) {
-		var revId = ( context.posts && context.posts[postId] && context.posts[postId][0] ),
-			revision = ( context.revisions && context.revisions[revId] ) || { content: null };
+		var revId = ( context.posts && context.posts[ postId ] && context.posts[ postId ][ 0 ] ),
+			revision = ( context.revisions && context.revisions[ revId ] ) || { content: null };
 
 		if ( revision.content === null ) {
 			mw.flow.debug( '[eachPost] Failed to find revision object', arguments );
@@ -514,7 +514,7 @@
 	 * @return {string}
 	 */
 	FlowHandlebars.prototype.moderationAction = function ( actions, moderationState ) {
-		return actions[moderationState] ? actions[moderationState].url : '';
+		return actions[ moderationState ] ? actions[ moderationState ].url : '';
 	};
 
 	/**
@@ -565,7 +565,7 @@
 
 			partialMatch = name.match( /handlebars\/(.*)\.partial\.handlebars$/ );
 			if ( partialMatch ) {
-				partialName = partialMatch[1];
+				partialName = partialMatch[ 1 ];
 				Handlebars.partials[ partialName ] = mw.template.get( moduleName, name ).render;
 			}
 		} );

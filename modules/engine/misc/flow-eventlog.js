@@ -16,7 +16,7 @@
 		 */
 		function logEvent( eventInstance ) {
 			// Ensure eventLog & this schema exist, or return a stub deferred
-			if ( !mw.eventLog || !mw.eventLog.schemas[this.schemaName] ) {
+			if ( !mw.eventLog || !mw.eventLog.schemas[ this.schemaName ] ) {
 				return $.Deferred().promise();
 			}
 
