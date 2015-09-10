@@ -19,6 +19,7 @@ class BoardDescriptionWidget extends \OOUI\Widget {
 		if ( isset( $config['description'] ) ) {
 			$this->description = $config['description'];
 		}
+		$editLink = null;
 		if ( isset( $config['editLink'] ) ) {
 			$editLink = $config['editLink'];
 		}
