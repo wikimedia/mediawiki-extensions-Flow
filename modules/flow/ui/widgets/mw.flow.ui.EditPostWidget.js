@@ -58,7 +58,7 @@
 		var widget = this,
 			contentFormat = this.editor.getContentFormat();
 
-		this.api.getPost( postId, contentFormat ).then(
+		this.api.getPost( topicId, postId, contentFormat ).then(
 			function ( post ) {
 				var content = OO.getProp( post, 'content', 'content' ),
 					format = OO.getProp( post, 'content', 'format' );
@@ -129,7 +129,7 @@
 		this.error.toggle( false );
 
 		this.editor.pushPending();
-		this.api.savePost( this.postId, content, format, captcha )
+		this.api.savePost( this.topicId, this.postId, content, format, captcha )
 			.then( function ( workflow ) {
 				widget.emit( 'saveContent', workflow, content, format );
 			} )
