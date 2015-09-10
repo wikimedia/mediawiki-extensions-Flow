@@ -236,6 +236,14 @@ class OptInController {
 			$this->fatal( 'flow-special-enableflow-board-creation-not-allowed', $page );
 		}
 
+		// $title was recently moved, but the article ID is cached inside
+		// the Title object. Let's make sure it accurately reflects that
+		// $title now doesn't exist by forcefully re-fetching the non-
+		// existing article ID.
+		// Otherwise, we run the risk of the Workflow we're creating being
+		// associated with the page we just moved.
+		$title->getArticleID( Title::GAID_FOR_UPDATE );
+
 		$loader = $loaderFactory->createWorkflowLoader( $title );
 		$blocks = $loader->getBlocks();
 

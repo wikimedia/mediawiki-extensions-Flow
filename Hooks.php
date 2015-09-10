@@ -1566,7 +1566,7 @@ class FlowHooks {
 	}
 
 	/**
-	 * Occurs at the begining of the MovePage process. Perhaps ContentModel should be
+	 * Occurs at the beginning of the MovePage process. Perhaps ContentModel should be
 	 * extended to be notified about moves explicitly.
 	 */
 	public static function onTitleMove( Title $oldTitle, Title $newTitle, User $user ) {
