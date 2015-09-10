@@ -261,6 +261,7 @@
 	/**
 	 * Save a post.
 	 *
+	 * @param {string} topicId
 	 * @param {string} postId
 	 * @param {string} content
 	 * @param {string} format
@@ -268,8 +269,7 @@
 	 * @return {jQuery.Promise} Promise that is resolved with the saved post revision id
 	 */
 	mw.flow.dm.APIHandler.prototype.savePost = function ( topicId, postId, content, format, captcha ) {
-		var xhr,
-			params = {
+		var params = {
 				page: this.getTopicTitle( topicId ),
 				epcontent: content,
 				epformat: format,
@@ -279,12 +279,95 @@
 
 		this.addCaptcha( params, captcha );
 
-		xhr = this.postEdit( 'edit-post', params )
+		return this.postEdit( 'edit-post', params )
 			.then( function ( data ) {
 				return OO.getProp( data.flow, 'edit-post', 'workflow' );
 			} );
+	};
 
-		return xhr.promise( { abort: xhr.abort } );
+	/**
+	 * Get a topic summary.
+	 *
+	 * @param {string} topicId
+	 * @param {string} format
+	 * @return {jQuery.Promise} Promise that is resolved with the topic summary revision
+	 */
+	mw.flow.dm.APIHandler.prototype.getTopicSummary = function ( topicId, format ) {
+		var params = {
+			page: this.getTopicTitle( topicId ),
+			vtsformat: format || 'html'
+		};
+
+		return this.get( 'view-topic-summary', params )
+			.then( function ( data ) {
+				return data.topicsummary.revision;
+			} );
+	};
+
+	/**
+	 * Save a topic summary.
+	 *
+	 * @param {string} topicId
+	 * @param {string} content
+	 * @param {string} format
+	 * @param {string} captcha
+	 * @return {jQuery.Promise} Promise that is resolved with workflow id
+	 */
+	mw.flow.dm.APIHandler.prototype.saveTopicSummary = function ( topicId, content, format, captcha ) {
+		var params = {
+				page: this.getTopicTitle( topicId ),
+				etssummary: content,
+				etsformat: format,
+				etsprev_revision: this.currentRevision
+			};
+
+		this.addCaptcha( params, captcha );
+
+		return this.postEdit( 'edit-topic-summary', params )
+			.then( function ( data ) {
+				return OO.getProp( data.flow, 'edit-topic-summary', 'workflow' );
+			} );
+	};
+
+	/**
+	 * Execute the 'lock-topic' moderation action against a topic. Can be used to resolve or reopen a topic.
+	 *
+	 * @param {string} topicId Id of the topic to moderate
+	 * @param {string} moderationState Can be 'lock' or 'unlock'
+	 * @param {string} reasonMsgKey Message key for the moderation reason
+	 * @return {jQuery.Promise} Promise that is resolved with workflow id
+	 */
+	mw.flow.dm.APIHandler.prototype.lockTopic = function ( topicId, moderationState, reasonMsgKey ) {
+		var params = {
+				page: this.getTopicTitle( topicId ),
+				cotmoderationState: moderationState,
+				cotreason: mw.msg( reasonMsgKey )
+			};
+
+		return this.postEdit( 'lock-topic', params )
+			.then( function ( data ) {
+				return OO.getProp( data.flow, 'lock-topic', 'workflow' );
+			} );
+	};
+
+	/**
+	 * Resolve a topic.
+	 *
+	 * @param {string} topicId
+	 * @return {jQuery.Promise} Promise that is resolved with workflow id
+	 */
+	mw.flow.dm.APIHandler.prototype.resolveTopic = function ( topicId ) {
+		return this.lockTopic( topicId, 'lock', 'flow-rev-message-lock-topic-reason' );
+	};
+
+	/**
+	 * Reopen a topic.
+	 *
+	 * @param {string} topicId
+	 * @return {jQuery.Promise} Promise that is resolved with workflow id
+	 */
+	mw.flow.dm.APIHandler.prototype.reopenTopic = function ( topicId ) {
+		return this.lockTopic( topicId, 'unlock', 'flow-rev-message-restore-topic-reason' );
 	};
 
 }( jQuery ) );
