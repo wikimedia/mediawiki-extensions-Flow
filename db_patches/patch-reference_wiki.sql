@@ -8,21 +8,11 @@ ALTER TABLE /*_*/flow_wiki_ref ADD COLUMN ref_src_wiki varchar(16) binary not nu
 DROP INDEX /*i*/flow_wiki_ref_idx ON /*_*/flow_wiki_ref;
 DROP INDEX /*i*/flow_wiki_ref_revision ON /*_*/flow_wiki_ref;
 
--- Populate header and summary references with the appropriate wiki
+-- Populate wiki references with the appropriate wiki
 UPDATE /*_*/flow_wiki_ref, /*_*/flow_workflow
 	SET flow_wiki_ref.ref_src_wiki = flow_workflow.workflow_wiki
 	WHERE
-		flow_wiki_ref.ref_src_object_id = flow_workflow.workflow_id AND
-		flow_wiki_ref.ref_src_object_type IN ('header', 'post-summary');
-
-
--- Populate post references with the appropriate wiki.
-UPDATE /*_*/flow_wiki_ref, /*_*/flow_tree_node, /*_*/flow_workflow
-	SET flow_wiki_ref.ref_src_wiki = flow_workflow.workflow_wiki
-	WHERE
-		flow_wiki_ref.ref_src_object_id = flow_tree_node.tree_descendant_id AND
-		flow_tree_node.tree_ancestor_id = flow_workflow.workflow_id AND
-		flow_wiki_ref.ref_src_object_type IN ('post');
+		flow_wiki_ref.ref_src_workflow_id = flow_workflow.workflow_id;
 
 -- Recreate new indexes
 CREATE INDEX /*i*/flow_wiki_ref_idx_v2 ON /*_*/flow_wiki_ref
@@ -38,21 +28,11 @@ ALTER TABLE /*_*/flow_ext_ref ADD COLUMN ref_src_wiki varchar(16) binary not nul
 DROP INDEX /*i*/flow_ext_ref_idx ON /*_*/flow_ext_ref;
 DROP INDEX /*i*/flow_ext_ref_revision ON /*_*/flow_ext_ref;
 
--- Populate header and summary references
+-- Populate external references with the appropriate wiki
 UPDATE /*_*/flow_ext_ref, /*_*/flow_workflow
 	SET flow_ext_ref.ref_src_wiki = flow_workflow.workflow_wiki
 	WHERE
-		flow_ext_ref.ref_src_object_id = flow_workflow.workflow_id AND
-		flow_ext_ref.ref_src_object_type IN ('header', 'post-summary');
-
-
--- Populate post references
-UPDATE /*_*/flow_ext_ref, /*_*/flow_tree_node, /*_*/flow_workflow
-	SET flow_ext_ref.ref_src_wiki = flow_workflow.workflow_wiki
-	WHERE
-		flow_ext_ref.ref_src_object_id = flow_tree_node.tree_descendant_id AND
-		flow_tree_node.tree_ancestor_id = flow_workflow.workflow_id AND
-		flow_ext_ref.ref_src_object_type IN ('post');
+		flow_ext_ref.ref_src_workflow_id = flow_workflow.workflow_id;
 
 -- Recreate new indexes
 CREATE INDEX /*i*/flow_ext_ref_idx_v2 ON /*_*/flow_ext_ref
