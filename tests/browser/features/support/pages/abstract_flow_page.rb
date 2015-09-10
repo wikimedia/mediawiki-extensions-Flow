@@ -124,6 +124,9 @@ class AbstractFlowPage
   a(:topic_summarize_button) do |page|
     page.topic_actions_menu_element.link_element(text: "Summarize")
   end
+  a(:topic_edit_summary_button) do |page|
+    page.topic_actions_menu_element.link_element(text: "Edit the topic summary")
+  end
 
   ### Editing title of first topic
   text_field(:title_edit, css: ".flow-topic-titlebar form .mw-ui-input", index: 0)
@@ -145,17 +148,14 @@ class AbstractFlowPage
   div(:summary_content) do |page|
     page.summary_element.div_element(css: '.flow-topic-summary-content')
   end
-  button(:skip_summary_button) do |page|
-    page.summary_element.button_element(text: 'Skip summary')
+  link(:skip_summary_button, text: 'Skip summary')
+  link(:cancel_summary_button) do |page|
+    page.summary_element.link_element(text: 'Cancel')
   end
-  button(:cancel_summary_button) do |page|
-    page.summary_element.button_element(text: 'Cancel')
-  end
-  button(:update_summary_button) do |page|
-    page.summary_element.button_element(text: 'Update summary')
-  end
+  link(:update_summary_button, text: 'Update summary')
   def edit_summary_element
-    visualeditor_or_textarea '.flow-edit-form'
+    edit_summary_widget = div_element(class: 'flow-ui-editTopicSummaryWidget')
+    visualeditor_or_textarea edit_summary_widget
   end
   span(:first_topic_resolved_mark) do |page|
     page.flow_first_topic_heading_element.span_element(css: '.mw-ui-icon-check')
