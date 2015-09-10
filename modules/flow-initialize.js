@@ -213,15 +213,11 @@
 					replyWidget.destroy();
 					replyWidget.$element.remove();
 
-					$topic.addClass( 'flow-api-inprogress' );
 					// HACK get the old system to rerender the topic
 					return flowBoard.flowBoardComponentRefreshTopic(
 						$topic,
 						workflow
-					)
-					.always( function () {
-						$topic.removeClass( 'flow-api-inprogress' );
-					} );
+					);
 				} );
 				replyWidget.$element.data( 'self', replyWidget );
 
@@ -269,15 +265,11 @@
 						replyWidget.destroy();
 						replyWidget.$element.remove();
 
-						$topic.addClass( 'flow-api-inprogress' );
 						// HACK get the old system to rerender the topic
 						return flowBoard.flowBoardComponentRefreshTopic(
 							$topic,
 							workflow
-						)
-						.always( function () {
-							$topic.removeClass( 'flow-api-inprogress' );
-						} );
+						);
 					} )
 					.on( 'cancel', function () {
 						replyWidget.destroy();
@@ -329,15 +321,11 @@
 					editPostWidget.destroy();
 					editPostWidget.$element.remove();
 
-					$topic.addClass( 'flow-api-inprogress' );
 					// HACK get the old system to rerender the topic
 					return flowBoard.flowBoardComponentRefreshTopic(
 						$topic,
 						workflow
-					)
-						.always( function () {
-							$topic.removeClass( 'flow-api-inprogress' );
-						} );
+					);
 				} )
 				.on( 'cancel', function () {
 					editPostWidget.$element.replaceWith( $postMain );
