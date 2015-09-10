@@ -127,6 +127,16 @@
 	};
 
 	/**
+	 * Get topic title from topic id
+	 *
+	 * @param {string} topicId Topic id
+	 * @return {string} Topic title
+	 */
+	mw.flow.dm.APIHandler.prototype.getTopicTitle = function ( topicId ) {
+		return ( new mw.Title( topicId, 2600 ) ).getPrefixedDb();
+	};
+
+	/**
 	 * Send an edit request to the API to save a reply.
 	 *
 	 * @param {string} topicId Topic Id
@@ -235,9 +245,9 @@
 	 * @param {string} format
 	 * @return {jQuery.Promise} Promise that is resolved with the post revision data
 	 */
-	mw.flow.dm.APIHandler.prototype.getPost = function ( postId, format ) {
+	mw.flow.dm.APIHandler.prototype.getPost = function ( topicId, postId, format ) {
 		var params = {
-			page: this.page,
+			page: this.getTopicTitle( topicId ),
 			vppostId: postId,
 			vpformat: format || 'html'
 		};
@@ -257,10 +267,10 @@
 	 * @param {string} [captcha] CAPTCHA information
 	 * @return {jQuery.Promise} Promise that is resolved with the saved post revision id
 	 */
-	mw.flow.dm.APIHandler.prototype.savePost = function ( postId, content, format, captcha ) {
+	mw.flow.dm.APIHandler.prototype.savePost = function ( topicId, postId, content, format, captcha ) {
 		var xhr,
 			params = {
-				page: this.page,
+				page: this.getTopicTitle( topicId ),
 				epcontent: content,
 				epformat: format,
 				epprev_revision: this.currentRevision,
