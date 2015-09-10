@@ -70,7 +70,7 @@
 		this.targetInput.isValid().done( function ( isValid ) {
 			if ( isValid ) {
 				// After the updates are done, we'll get onTransclusionModelChange
-				templateModel = inspector.transclusionModel.getParts()[0];
+				templateModel = inspector.transclusionModel.getParts()[ 0 ];
 				if ( templateModel.hasParameter( key ) ) {
 					parameterModel = templateModel.getParameter( key );
 					parameterModel.setValue( value );
@@ -103,7 +103,7 @@
 		this.$element.addClass( 'flow-ve-ui-mentionInspector-ready' );
 		this.popPending();
 
-		templateModel = this.transclusionModel.getParts()[0];
+		templateModel = this.transclusionModel.getParts()[ 0 ];
 		if ( templateModel.hasParameter( key ) ) {
 			this.targetInput.setValue( templateModel.getParameter( key ).getValue() );
 		}
@@ -127,7 +127,7 @@
 	 */
 	mw.flow.ve.ui.MentionInspector.prototype.setApplicableStatus = function () {
 		var parts = this.transclusionModel.getParts(),
-			templateModel = parts[0],
+			templateModel = parts[ 0 ],
 			key = mw.flow.ve.ui.MentionInspector.static.templateParameterKey,
 			inspector = this;
 
@@ -259,7 +259,7 @@
 			errors = [ errors ];
 		}
 
-		errorText = errors[0].getMessageText();
+		errorText = errors[ 0 ].getMessageText();
 		this.errorWidget.setLabel( errorText );
 		this.errorFieldsetLayout.toggle( true );
 		this.setSize( 'large' );

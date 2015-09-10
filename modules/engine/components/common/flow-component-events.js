@@ -117,10 +117,10 @@
 
 		if ( event in this.bindings ) {
 			// Slicing ensures that we don't get tripped up by event handlers that add/remove bindings
-			bindings = this.bindings[event].slice();
+			bindings = this.bindings[ event ].slice();
 			args = Array.prototype.slice.call( arguments, 1 );
 			for ( i = 0, len = bindings.length; i < len; i++ ) {
-				binding = bindings[i];
+				binding = bindings[ i ];
 
 				if ( typeof binding.method === 'string' ) {
 					// Lookup method by name (late binding)
@@ -183,15 +183,15 @@
 			// eg. { foo: Function }
 			$.each( callbacks, function ( name, fn ) {
 				// First time for this callback name, instantiate the callback list
-				if ( !self.UI.events[type][name] ) {
-					self.UI.events[type][name] = [];
+				if ( !self.UI.events[ type ][ name ] ) {
+					self.UI.events[ type ][ name ] = [];
 				}
 				if ( $.isArray( fn ) ) {
 					// eg. UI.events.interactiveHandlers.foo concat [Function, Function];
-					self.UI.events[type][name] = self.UI.events[type][name].concat( fn );
+					self.UI.events[ type ][ name ] = self.UI.events[ type ][ name ].concat( fn );
 				} else {
 					// eg. UI.events.interactiveHandlers.foo = [Function];
-					self.UI.events[type][name].push( fn );
+					self.UI.events[ type ][ name ].push( fn );
 				}
 			} );
 		} );
@@ -323,7 +323,7 @@
 
 		// execute API call
 		$deferred = $deferred.then( function ( args ) {
-			var queryMap = args[2];
+			var queryMap = args[ 2 ];
 			return flowComponent.Api.requestFromNode( self, queryMap ).then(
 				// alter API response: apiHandler expects a 1st param info (that
 				// includes 'status') & `this` being the target element
@@ -381,8 +381,8 @@
 
 		// chain apiHandler callbacks (it can distinguish in how it needs to wrap up
 		// depending on info.status)
-		if ( flowComponent.UI.events.apiHandlers[handlerName] ) {
-			$.each( flowComponent.UI.events.apiHandlers[handlerName], function ( i, callback ) {
+		if ( flowComponent.UI.events.apiHandlers[ handlerName ] ) {
+			$.each( flowComponent.UI.events.apiHandlers[ handlerName ], function ( i, callback ) {
 				/*
 				 * apiHandlers will return promises that won't resolve until
 				 * the apiHandler has completed all it needs to do.
@@ -488,8 +488,8 @@
 		args = $.isArray( args ) ? args : ( args ? [ args ] : [] );
 		context = context || this;
 
-		if ( this.UI.events.loadHandlers[handlerName] ) {
-			$.each( this.UI.events.loadHandlers[handlerName], function ( i, fn ) {
+		if ( this.UI.events.loadHandlers[ handlerName ] ) {
+			$.each( this.UI.events.loadHandlers[ handlerName ], function ( i, fn ) {
 				fn.apply( context, args );
 			} );
 		}
@@ -508,14 +508,14 @@
 		var promises = [];
 
 		// Call any matching interactive handlers
-		if ( this.UI.events.interactiveHandlers[interactiveHandlerName] ) {
-			$.each( this.UI.events.interactiveHandlers[interactiveHandlerName], function ( i, fn ) {
-				promises.push( fn.apply( $context[0], args ) );
+		if ( this.UI.events.interactiveHandlers[ interactiveHandlerName ] ) {
+			$.each( this.UI.events.interactiveHandlers[ interactiveHandlerName ], function ( i, fn ) {
+				promises.push( fn.apply( $context[ 0 ], args ) );
 			} );
-		} else if ( this.UI.events.apiHandlers[apiHandlerName] ) {
+		} else if ( this.UI.events.apiHandlers[ apiHandlerName ] ) {
 			// Call any matching API handlers
 			$.each( this.UI.events.interactiveHandlers.apiRequest, function ( i, fn ) {
-				promises.push( fn.apply( $context[0], args ) );
+				promises.push( fn.apply( $context[ 0 ], args ) );
 			} );
 		} else if ( interactiveHandlerName ) {
 			this.debug( 'Failed to find interactiveHandler', interactiveHandlerName, arguments );
@@ -610,10 +610,10 @@
 				}
 
 				// Strips "flowEventlog" and lowercases first char after that
-				value = data[key];
+				value = data[ key ];
 				key = key.substr( 12, 1 ).toLowerCase() + key.substr( 13 );
 
-				eventInstance[key] = value;
+				eventInstance[ key ] = value;
 			}
 		}
 
@@ -916,7 +916,7 @@
 				}
 
 				if ( $.isPlainObject( queryMap ) ) {
-					args[2] = queryMap;
+					args[ 2 ] = queryMap;
 				}
 
 				return args;

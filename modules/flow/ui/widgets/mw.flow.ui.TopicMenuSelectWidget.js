@@ -186,7 +186,7 @@
 			widgets = [];
 
 		for ( i = 0, len = items.length; i < len; i++ ) {
-			itemId = items[i].getId();
+			itemId = items[ i ].getId();
 			optionWidget = this.topics[ itemId ];
 			widgets.push( optionWidget );
 		}
@@ -204,8 +204,8 @@
 		var i, len;
 
 		for ( i = 0, len = items.length; i < len; i++ ) {
-			if ( items[i].getData() ) {
-				this.topics[ items[i].getData().getId() ] = items[i];
+			if ( items[ i ].getData() ) {
+				this.topics[ items[ i ].getData().getId() ] = items[ i ];
 			}
 		}
 

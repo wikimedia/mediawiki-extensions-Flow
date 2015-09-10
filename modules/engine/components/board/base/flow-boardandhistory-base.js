@@ -77,7 +77,7 @@
 		var // Get existing (forwarded) funnel id, or generate a new one if it does not yet exist
 			funnelId = data.funnelId || mw.flow.EventLogRegistry.generateFunnelId(),
 			// Fetch existing EventLog object for this funnel (if any)
-			eventLog = mw.flow.EventLogRegistry.funnels[funnelId];
+			eventLog = mw.flow.EventLogRegistry.funnels[ funnelId ];
 
 		// Optional argument, may not want/need to forward funnel to other nodes
 		$forward = $forward || $();
@@ -97,7 +97,7 @@
 
 			// Store this particular eventLog - we may want to log more things
 			// in this funnel
-			mw.flow.EventLogRegistry.funnels[funnelId] = eventLog;
+			mw.flow.EventLogRegistry.funnels[ funnelId ] = eventLog;
 		}
 
 		// Log this action
@@ -171,7 +171,7 @@
 
 		event.preventDefault();
 
-		params.actions[role] = { url: $this.attr( 'href' ), title: $this.attr( 'title' ) };
+		params.actions[ role ] = { url: $this.attr( 'href' ), title: $this.attr( 'title' ) };
 
 		// Render the modal itself with mw-ui-modal
 		modal = mw.Modal( {
@@ -243,7 +243,7 @@
 		}
 
 		// Reset the form content
-		$form[0].reset();
+		$form[ 0 ].reset();
 
 		// Trigger for flow-actions-disabler
 		$form.find( 'textarea, :text' ).trigger( 'keyup' );

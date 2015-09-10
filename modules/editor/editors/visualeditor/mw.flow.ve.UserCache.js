@@ -53,10 +53,10 @@
 				// The parent class wants data like { query: { pages: { userid: { data } } } }
 				var i, len, user, newData = {};
 				for ( i = 0, len = data.query.users.length; i < len; i++ ) {
-					user = data.query.users[i];
+					user = data.query.users[ i ];
 					// Parent class needs .title
 					user.title = user.name;
-					newData[i] = user;
+					newData[ i ] = user;
 				}
 				return { query: { pages: newData } };
 			} )
@@ -69,7 +69,7 @@
 	 */
 	mw.flow.ve.UserCache.prototype.setFromApiData = function ( apiData ) {
 		var cacheData = {};
-		cacheData[apiData.name] = this.constructor.static.processPage( apiData );
+		cacheData[ apiData.name ] = this.constructor.static.processPage( apiData );
 		this.set( cacheData );
 	};
 
@@ -83,7 +83,7 @@
 		}
 		var i, len, cacheData = {};
 		for ( i = 0, len = usernames.length; i < len; i++ ) {
-			cacheData[usernames[i]] = { missing: false, invalid: false };
+			cacheData[ usernames[ i ] ] = { missing: false, invalid: false };
 		}
 		this.set( cacheData );
 	};

@@ -77,7 +77,7 @@
 			var i, len, item, itemId;
 
 			for ( i = 0, len = newItems.length; i < len; i++ ) {
-				item = newItems[i];
+				item = newItems[ i ];
 				itemId = item.getId();
 
 				if ( $.inArray( itemId, flowBoard.orderedTopicIds ) === -1 ) {
@@ -170,7 +170,7 @@
 		flowBoard.on( 'refreshTopic', function ( workflowId, topicData ) {
 			var revisionId, revision,
 				topic = dmBoard.getItemById( workflowId ),
-				data = topicData.flow['view-topic'].result.topic;
+				data = topicData.flow[ 'view-topic' ].result.topic;
 
 			if ( !topic ) {
 				// New topic

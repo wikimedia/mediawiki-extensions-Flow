@@ -254,7 +254,7 @@
 
 		return this.get( 'view-post', params )
 			.then( function ( data ) {
-				return data.topic.revisions[data.topic.posts[postId]];
+				return data.topic.revisions[ data.topic.posts[ postId ] ];
 			} );
 	};
 

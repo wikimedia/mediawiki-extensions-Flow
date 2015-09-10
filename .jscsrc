@@ -1,7 +1,6 @@
 {
 	"preset": "wikimedia",
 	"requireVarDeclFirst": null,
-	"requireSpacesInsideBrackets": null,
 	"jsDoc": null,
 	"disallowDanglingUnderscores": null,
 	"requireCamelCaseOrUpperCaseIdentifiers": null

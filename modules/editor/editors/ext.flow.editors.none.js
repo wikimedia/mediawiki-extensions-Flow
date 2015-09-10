@@ -124,7 +124,7 @@
 				enable_switcher: true,
 				help_text: mw.message( 'flow-wikitext-editor-help-and-preview' ).params( [
 					$usesWikitext.html(),
-					$preview[0].outerHTML
+					$preview[ 0 ].outerHTML
 				] ).parse()
 			};
 		} else {

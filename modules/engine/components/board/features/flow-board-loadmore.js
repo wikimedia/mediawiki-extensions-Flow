@@ -99,7 +99,7 @@
 		};
 
 		if ( this.topicIdSort === 'newest' ) {
-			apiParameters['vtloffset-id'] = topicId;
+			apiParameters[ 'vtloffset-id' ] = topicId;
 		} else {
 			// TODO: It would seem to be safer to pass 'offset-id' for both (what happens
 			// if there are two posts at the same timestamp?).  (Also, that would avoid needing
@@ -369,8 +369,8 @@
 	 */
 	function _flowBoardTopicIdGenerateSortRecentlyActive( board ) {
 		return function ( a, b ) {
-			var aTimestamp = board.updateTimestampsByTopicId[a],
-				bTimestamp = board.updateTimestampsByTopicId[b];
+			var aTimestamp = board.updateTimestampsByTopicId[ a ],
+				bTimestamp = board.updateTimestampsByTopicId[ b ];
 
 			if ( aTimestamp === undefined && bTimestamp === undefined ) {
 				return 0;
@@ -552,7 +552,7 @@
 
 			if ( !flowBoard.renderedTopics[ topicId ] ) {
 				flowBoard.renderedTopics[ topicId ] = _render( [ topicId ] );
-				$allRendered.push( flowBoard.renderedTopics[ topicId ][0] );
+				$allRendered.push( flowBoard.renderedTopics[ topicId ][ 0 ] );
 				toInsert.push( topicId );
 				if ( $.inArray( topicId, flowBoard.orderedTopicIds ) === -1 ) {
 					flowBoard.orderedTopicIds.push( topicId );
@@ -560,7 +560,7 @@
 				// @todo this is already done elsewhere, but it runs after insert
 				// to the DOM instead of before.  Not sure how to fix ordering.
 				if ( !flowBoard.updateTimestampsByTopicId[ topicId ] ) {
-					flowBoard.updateTimestampsByTopicId[ topicId ] = topicsData.revisions[topicsData.posts[topicId][0]].last_updated;
+					flowBoard.updateTimestampsByTopicId[ topicId ] = topicsData.revisions[ topicsData.posts[ topicId ][ 0 ] ].last_updated;
 				}
 			}
 		}
@@ -580,7 +580,7 @@
 				// find the most recent topic in the list that exists and insert after it.
 				for ( j = i - 1; j >= 0; j-- ) {
 					$topic = flowBoard.renderedTopics[ flowBoard.orderedTopicIds[ j ] ];
-					if ( $topic && $topic.length && $.contains( document.body, $topic[0] ) ) {
+					if ( $topic && $topic.length && $.contains( document.body, $topic[ 0 ] ) ) {
 						break;
 					}
 				}
@@ -595,9 +595,9 @@
 			// page but also the ones loaded by the toc.  If these topics are due
 			// to a jump rather than forward auto-pagination the prior topic will
 			// not be rendered.
-			i = $.inArray( topicsData.roots[0], flowBoard.orderedTopicIds );
+			i = $.inArray( topicsData.roots[ 0 ], flowBoard.orderedTopicIds );
 			if ( i > 0 && flowBoard.renderedTopics[ flowBoard.orderedTopicIds[ i - 1 ] ] === undefined ) {
-				_createRevPagination( flowBoard.renderedTopics[ topicsData.roots[0] ] );
+				_createRevPagination( flowBoard.renderedTopics[ topicsData.roots[ 0 ] ] );
 			}
 			// Same for forward pagination, if we jumped and then scrolled backwards the
 			// topic after the last will already be rendered, and forward pagination

@@ -101,7 +101,7 @@ mw.flow.ui.ReorderTopicsWidget.prototype.toggleOrderType = function ( type ) {
 		this.orderType = type || { newest: 'updated', updated: 'newest' }[ this.orderType ];
 
 		// Change button label
-		this.button.setLabel( this.messages[this.orderType] );
+		this.button.setLabel( this.messages[ this.orderType ] );
 
 		// Change reorder menu option label
 		this.reorderMenuOptionWidget.setLabel(

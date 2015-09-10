@@ -204,7 +204,7 @@ mw.flow.ui.enhance = {};
 			optionsUnreferenced.tooltipClosable = options.tooltipClosable || $target.data( 'tooltipClosable' );
 
 			// Support passing jQuery as argument
-			target = $target[0];
+			target = $target[ 0 ];
 
 			if ( !content ) {
 				if ( optionsUnreferenced.tooltipContentCallback ) {
@@ -380,7 +380,7 @@ mw.flow.ui.enhance = {};
 
 			// Restore old title; was used for tooltip
 			if ( tooltipTitle ) {
-				$target[0].title = tooltipTitle;
+				$target[ 0 ].title = tooltipTitle;
 				$target.removeData( 'tooltipTitle' );
 			}
 		}
