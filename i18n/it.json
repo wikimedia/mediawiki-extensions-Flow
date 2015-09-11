@@ -378,5 +378,6 @@
 	"flow-wikitext-editor-help": "Wikitext $1.",
 	"flow-wikitext-editor-help-and-preview": "Wikitext $1 e si può fare $2 in qualsiasi momento.",
 	"flow-wikitext-editor-help-preview-the-result": "anteprima del risultato",
-	"flow-wikitext-switch-editor-tooltip": "Passa a VisualEditor"
+	"flow-wikitext-switch-editor-tooltip": "Passa a VisualEditor",
+	"flow-dialog-cancelconfirm-discard": "Ignorare modifiche"
 }
