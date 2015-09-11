@@ -114,6 +114,11 @@ $namespaceNames['oc'] = array(
 	NS_TOPIC =>  'Subjècte',
 );
 
+/** Orya */
+$namespaceNames['or'] = array(
+	NS_TOPIC =>  'ବିଷୟ',
+);
+
 /** Polish */
 $namespaceNames['pl'] = array(
 	NS_TOPIC =>  'Wątek',
