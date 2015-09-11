@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Translations of the namespaces introduced by Flow.
@@ -112,6 +113,11 @@ $namespaceNames['nl'] = array(
 /** Occitan */
 $namespaceNames['oc'] = array(
 	NS_TOPIC =>  'Subjècte',
+);
+
+/** Orya */
+$namespaceNames['or'] = array(
+	NS_TOPIC =>  'ବିଷୟ',
 );
 
 /** Polish */
