@@ -112,12 +112,12 @@ $notifications = array(
 			'message' => 'flow-notification-link-text-enabled-on-talkpage',
 			'destination' => 'title'
 		),
-		'title-message' => 'flow-notification-enabled-on-talkpage-title-message',
-		'title-params' => array( 'title' ),
-		'email-subject-message' => 'flow-notification-enabled-on-talkpage-email-subject',
-		'email-subject-params' => array( 'title' ),
+		'title-message' => 'flow-notification-enabled-on-talkpage-title',
+		'title-params' => array( 'agent', 'title' ),
+		'email-subject-message' => 'flow-notification-enabled-on-talkpage-email-subject-message',
+		'email-subject-params' => array( 'agent', 'title' ),
 		'email-body-batch-message' => 'flow-notification-enabled-on-talkpage-email-batch-body',
-		'email-body-batch-params' => array( 'agent' ),
+		'email-body-batch-params' => array( 'agent', 'title' ),
 	) + $notificationTemplate,
 );
 
