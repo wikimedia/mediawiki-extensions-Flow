@@ -2,36 +2,40 @@
 
 namespace Flow\Formatter;
 
+use Flow\Data\Utils\SortRevisionsByRevisionId;
 use Flow\Exception\FlowException;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 
-class TopicHistoryQuery  extends AbstractQuery {
+class TopicHistoryQuery extends AbstractQuery {
 	/**
-	 * @param UUID $postId
+	 * @param UUID $topicRootId
 	 * @param int $limit
 	 * @param UUID|null $offset
 	 * @param string $direction 'rev' or 'fwd'
 	 * @return FormatterRow[]
 	 */
-	public function getResults( UUID $postId, $limit = 50, UUID $offset = null, $direction = 'fwd' ) {
-		$history = $this->storage->find(
-			'TopicHistoryEntry',
-			array( 'topic_root_id' => $postId ),
-			array(
-				'sort' => 'rev_id',
-				'order' => 'DESC',
-				'limit' => $limit,
-				'offset-id' => $offset,
-				'offset-dir' => $direction,
-				'offset-include' => false,
-				'offset-elastic' => false,
-			)
+	public function getResults( UUID $topicRootId, $limit = 50, UUID $offset = null, $direction = 'fwd' ) {
+		$options = array(
+			'sort' => 'rev_id',
+			'order' => 'DESC',
+			'limit' => $limit,
+			'offset-id' => $offset,
+			'offset-dir' => $direction,
+			'offset-include' => false,
+			'offset-elastic' => false,
 		);
-		if ( !$history ) {
-			return array();
-		}
+	
+		$topicPostHistory = $this->getTopicPostResults( $topicRootId, $options ) ?: array();
+		$topicSummaryHistory = $this->getTopicSummaryResults( $topicRootId, $options ) ?: array();
 
+		$history = array_merge( $topicPostHistory, $topicSummaryHistory );
+		usort( $history, new SortRevisionsByRevisionId );
+
+		if ( isset( $options['limit'] ) ) {
+			$history = array_splice( $history, 0, $options['limit'] );
+		}
+		
 		$this->loadMetadataBatch( $history );
 		$results = $replies = array();
 		foreach ( $history as $revision ) {
@@ -59,6 +63,27 @@ class TopicHistoryQuery  extends AbstractQuery {
 		}
 
 		return $results;
+	}
+
+	protected function getTopicPostResults( UUID $topicRootId, $options ) {
+		// Can't use 'PostRevision' because we need to get only the ones with the right board ID.
+		return $this->storage->find(
+			'PostRevisionTopicHistoryEntry',
+			array(
+				'topic_root_id' => $topicRootId,
+			),
+			$options
+		);
+	}
+
+	protected function getTopicSummaryResults( UUID $topicRootId, $options ) {
+		return $this->storage->find(
+			'PostSummary',
+			array(
+				'rev_type_id' => $topicRootId,
+			),
+			$options
+		);
 	}
 
 }
