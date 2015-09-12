@@ -124,11 +124,8 @@ class PurgeAction extends \PurgeAction {
 		$this->fetchTopics( $results );
 
 		// purge the board history
-		$storage->find(
-			'BoardHistoryEntry',
-			array( 'topic_list_id' => $workflow->getId() ),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 499 )
-		);
+		$boardHistoryQuery = Container::get( 'query.board-history' );
+		$boardHistoryQuery->getResults( $workflow->getId(), 499 );
 	}
 
 
