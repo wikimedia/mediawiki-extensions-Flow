@@ -116,8 +116,10 @@ use Flow\Data\Mapper\CachingObjectMapper;
 use Flow\Data\Storage\BasicDbStorage;
 use Flow\Data\Storage\TopicListStorage;
 use Flow\Data\Storage\TopicListLastUpdatedStorage;
+use Flow\Data\Storage\PostRevisionBoardHistoryStorage;
 use Flow\Data\Storage\PostRevisionStorage;
 use Flow\Data\Storage\HeaderRevisionStorage;
+use Flow\Data\Storage\PostSummaryRevisionBoardHistoryStorage;
 use Flow\Data\Storage\PostSummaryRevisionStorage;
 use Flow\Data\Storage\TopicHistoryStorage;
 use Flow\Data\Index\UniqueFeatureIndex;
@@ -126,6 +128,8 @@ use Flow\Data\Index\TopicListTopKIndex;
 use Flow\Data\Index\TopicHistoryIndex;
 use Flow\Data\Storage\BoardHistoryStorage;
 use Flow\Data\Index\BoardHistoryIndex;
+use Flow\Data\Index\PostRevisionBoardHistoryIndex;
+use Flow\Data\Index\PostSummaryRevisionBoardHistoryIndex;
 use Flow\Data\ObjectManager;
 use Flow\Data\ObjectLocator;
 use Flow\Model\Header;
@@ -263,18 +267,18 @@ $c['listener.topicpagecreation'] = function( $c ) {
 	);
 };
 
-$c['storage.board_history.backend'] = function( $c ) {
-	return new BoardHistoryStorage( $c['db.factory'] );
+$c['storage.post_board_history.backend'] = function( $c ) {
+	return new PostRevisionBoardHistoryStorage( $c['db.factory'] );
 };
-$c['storage.board_history.indexes.primary'] = function( $c ) {
-	return new BoardHistoryIndex(
+$c['storage.post_board_history.indexes.primary'] = function( $c ) {
+	return new PostRevisionBoardHistoryIndex(
 		$c['memcache.local_buffered'],
 		// backend storage
-		$c['storage.board_history.backend'],
+		$c['storage.post_board_history.backend'],
 		// data mapper
-		$c['storage.board_history.mapper'],
+		$c['storage.post.mapper'],
 		// key prefix
-		'flow_revision:topic_list_history',
+		'flow_revision:topic_list_history:post',
 		// primary key
 		array( 'topic_list_id' ),
 		// index options
@@ -286,40 +290,52 @@ $c['storage.board_history.indexes.primary'] = function( $c ) {
 		$c['storage.topic_list']
 	);
 };
-$c['storage.board_history.mapper'] = function( $c ) {
-	return new BasicObjectMapper(
-		function( $rev ) use( $c ) {
-			if ( $rev instanceof PostRevision ) {
-				return $c['storage.post.mapper']->toStorageRow( $rev );
-			} elseif ( $rev instanceof Header ) {
-				return $c['storage.header.mapper']->toStorageRow( $rev );
-			} elseif ( $rev instanceof PostSummary ) {
-				return $c['storage.post_summary.mapper']->toStorageRow( $rev );
-			} else {
-				throw new \Flow\Exception\InvalidDataException( 'Invalid class for board history entry: ' . get_class( $rev ), 'fail-load-data' );
-			}
-		},
-		function( array $row, $obj = null ) use( $c ) {
-			if ( $row['rev_type'] === 'header' ) {
-				return $c['storage.header.mapper']->fromStorageRow( $row, $obj );
-			} elseif ( $row['rev_type'] === 'post' ) {
-				return $c['storage.post.mapper']->fromStorageRow( $row, $obj );
-			} elseif ( $row['rev_type'] === 'post-summary' ) {
-				return $c['storage.post_summary.mapper']->fromStorageRow( $row, $obj );
-			} else {
-				throw new \Flow\Exception\InvalidDataException( 'Invalid rev_type for board history entry: ' . $row['rev_type'], 'fail-load-data' );
-			}
-		}
+
+$c['storage.post_board_history.indexes'] = function( $c ) {
+	return array( $c['storage.post_board_history.indexes.primary'] );
+};
+
+$c['storage.post_board_history'] = function( $c ) {
+	return new ObjectLocator(
+		$c['storage.post.mapper'],
+		$c['storage.post_board_history.backend'],
+		$c['storage.post_board_history.indexes']
 	);
 };
-$c['storage.board_history.indexes'] = function( $c ) {
-	return array( $c['storage.board_history.indexes.primary'] );
+
+$c['storage.post_summary_board_history.backend'] = function( $c ) {
+	return new PostSummaryRevisionBoardHistoryStorage( $c['db.factory'] );
 };
-$c['storage.board_history'] = function( $c ) {
+$c['storage.post_summary_board_history.indexes.primary'] = function( $c ) {
+	return new PostSummaryRevisionBoardHistoryIndex(
+		$c['memcache.local_buffered'],
+		// backend storage
+		$c['storage.post_summary_board_history.backend'],
+		// data mapper
+		$c['storage.post_summary.mapper'],
+		// key prefix
+		'flow_revision:topic_list_history:post_summary',
+		// primary key
+		array( 'topic_list_id' ),
+		// index options
+		array(
+			'limit' => 500,
+			'sort' => 'rev_id',
+			'order' => 'DESC'
+		),
+		$c['storage.topic_list']
+	);
+};
+
+$c['storage.post_summary_board_history.indexes'] = function( $c ) {
+	return array( $c['storage.post_summary_board_history.indexes.primary'] );
+};
+
+$c['storage.post_summary_board_history'] = function( $c ) {
 	return new ObjectLocator(
-		$c['storage.board_history.mapper'],
-		$c['storage.board_history.backend'],
-		$c['storage.board_history.indexes']
+		$c['storage.post_summary.mapper'],
+		$c['storage.post_summary_board_history.backend'],
+		$c['storage.post_summary_board_history.indexes']
 	);
 };
 
@@ -336,7 +352,6 @@ $c['storage.header.listeners.username'] = function( $c ) {
 $c['storage.header.listeners'] = function( $c ) {
 	return array(
 		'reference.recorder' => $c['reference.recorder'],
-		'storage.board_history.indexes.primary' => $c['storage.board_history.indexes.primary'],
 		'storage.header.listeners.username' => $c['storage.header.listeners.username'],
 		'listener.recentchanges' => $c['listener.recentchanges'],
 		'listener.editcount' => $c['listener.editcount'],
@@ -363,15 +378,15 @@ $c['storage.header.indexes.primary'] = function( $c ) {
 		$c['storage.header.primary_key']
 	);
 };
-$c['storage.header.indexes.topic_lookup'] = function( $c ) {
+$c['storage.header.indexes.header_lookup'] = function( $c ) {
 	return new TopKIndex(
 		$c['memcache.local_buffered'],
 		$c['storage.header.backend'],
 		$c['storage.header.mapper'],
-		'flow_header:workflow',
+		'flow_header:workflow:v2',
 		array( 'rev_type_id' ),
 		array(
-			'limit' => 100,
+			'limit' => 500,
 			'sort' => 'rev_id',
 			'order' => 'DESC',
 			'shallow' => $c['storage.header.indexes.primary'],
@@ -384,7 +399,7 @@ $c['storage.header.indexes.topic_lookup'] = function( $c ) {
 $c['storage.header.indexes'] = function( $c ) {
 	return array(
 		$c['storage.header.indexes.primary'],
-		$c['storage.header.indexes.topic_lookup']
+		$c['storage.header.indexes.header_lookup']
 	);
 };
 $c['storage.header'] = function( $c ) {
@@ -418,7 +433,7 @@ $c['storage.post_summary.listeners'] = function( $c ) {
 	return array(
 		'listener.recentchanges' => $c['listener.recentchanges'],
 		'storage.post_summary.listeners.username' => $c['storage.post_summary.listeners.username'],
-		'storage.board_history.indexes.primary' => $c['storage.board_history.indexes.primary'],
+		'storage.post_summary_board_history.indexes.primary' => $c['storage.post_summary_board_history.indexes.primary'],
 		'listener.editcount' => $c['listener.editcount'],
 		// topic history -- to keep a history by topic we have to know what topic every post
 		// belongs to, not just its parent. TopicHistoryIndex is a slight tweak to TopKIndex
@@ -611,10 +626,10 @@ $c['storage.post.listeners'] = function( $c ) {
 		'storage.post.listeners.moderation_logging' => $c['storage.post.listeners.moderation_logging'],
 		'listener.recentchanges' => $c['listener.recentchanges'],
 		'listener.editcount' => $c['listener.editcount'],
+		'storage.post_board_history.indexes.primary' => $c['storage.post_board_history.indexes.primary'],
 		// topic history -- to keep a history by topic we have to know what topic every post
 		// belongs to, not just its parent. TopicHistoryIndex is a slight tweak to TopKIndex
 		// using TreeRepository for extra information and stuffing it into topic_root while indexing
-		'storage.board_history.indexes.primary' => $c['storage.board_history.indexes.primary'],
 		'storage.topic_history.indexes.primary' => $c['storage.topic_history.indexes.primary'],
 	);
 };
@@ -758,7 +773,9 @@ $c['storage.manager_list'] = function( $c ) {
 		'Header' => 'storage.header',
 		'header' => 'storage.header',
 
-		'BoardHistoryEntry' => 'storage.board_history',
+		'PostRevisionBoardHistoryEntry' => 'storage.post_board_history',
+
+		'PostSummaryBoardHistoryEntry' => 'storage.post_summary_board_history',
 
 		'TopicHistoryEntry' => 'storage.topic_history',
 
