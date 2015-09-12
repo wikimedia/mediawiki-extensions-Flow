@@ -520,7 +520,7 @@
 	"flow-mark-diff-patrolled-link-text": "Märk som patrullerad",
 	"flow-mark-diff-patrolled-link-title": "Märk som patrullerad",
 	"flow-notification-link-text-enabled-on-talkpage": "Visa användardiskussionssida",
-	"flow-notification-enabled-on-talkpage-email-subject": "Nytt diskussionssystem på $1",
+	"flow-notification-enabled-on-talkpage-email-subject-message": "Nytt diskussionssystem på $1",
 	"flow-beta-feature-remove-archive-template-edit-summary": "Tar bort arkivmall",
 	"flow-dialog-cancelconfirm-title": "Är du säker?",
 	"flow-dialog-cancelconfirm-message": "Är du säker på att du vill avbryta utan att spara först?",

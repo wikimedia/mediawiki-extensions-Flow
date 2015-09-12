@@ -94,7 +94,7 @@
 	"flow-wikitext-editor-help-preview-the-result": "اعرض النتيجة",
 	"flow-wikitext-switch-editor-tooltip": "الانتقال إلى المحرر المرئي",
 	"flow-ve-switch-editor-tool-title": "الانتقال إلى محرر نص الويكي",
-	"flow-notification-enabled-on-talkpage-email-subject": "نظام مناقشة جديد على 1 $",
+	"flow-notification-enabled-on-talkpage-email-subject-message": "نظام مناقشة جديد على 1 $",
 	"flow-beta-feature-add-archive-template-edit-summary": "إضافة قالب أرشيف",
 	"flow-beta-feature-remove-archive-template-edit-summary": "إزالة قالب الأرشيف",
 	"flow-dialog-cancelconfirm-title": "هل أنت متأكد؟",
