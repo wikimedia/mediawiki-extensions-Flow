@@ -8,21 +8,14 @@ use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 
 /**
- * Query-only storage implementation merges PostRevision and
- * PostSummary instances to provide a full list of revisions for
- * a topics history.
+ * Query-only storage implementation providess history of all post revisions in a topic.
  */
-class TopicHistoryStorage implements ObjectStorage {
+class PostRevisionTopicHistoryStorage implements ObjectStorage {
 
 	/**
 	 * @var ObjectStorage
 	 */
 	protected $postRevisionStorage;
-
-	/**
-	 * @var ObjectStorage
-	 */
-	protected $postSummaryStorage;
 
 	/**
 	 * @var TreeRepository
@@ -31,12 +24,10 @@ class TopicHistoryStorage implements ObjectStorage {
 
 	/**
 	 * @param ObjectStorage $postRevisionStorage
-	 * @param ObjectStorage $postSummaryStorage
 	 * @param TreeRepository $treeRepo
 	 */
-	public function __construct( ObjectStorage $postRevisionStorage, ObjectStorage $postSummaryStorage, TreeRepository $treeRepo ) {
+	public function __construct( ObjectStorage $postRevisionStorage, TreeRepository $treeRepo ) {
 		$this->postRevisionStorage = $postRevisionStorage;
-		$this->postSummaryStorage = $postSummaryStorage;
 		$this->treeRepository = $treeRepo;
 	}
 
@@ -49,16 +40,9 @@ class TopicHistoryStorage implements ObjectStorage {
 	}
 
 	/**
-	 * This can be called with 2 different kinds of input:
-	 * * queries for 'topic_root_id': a "virtual" column that we'll interpret.
-	 *   Based on these root ids (=topic id), we'll fetch all revision (post &
-	 *   summary) inside that topic.
-	 * * queries for 'rev_id': by ShallowCompactor, when expanding: when caching
-	 *   lists like these, we only store the id & then expand the full list from
-	 *   other cache data. Shallow storage for TopicHistoryIndex is defined by
-	 *   storage.topic_history.indexes.primary (it's compacted by rev_id)
-	 *   rev_id can contain ids for both posts & summaries.
-	 *
+	 * This is called with queries for 'topic_root_id': a "virtual" column that we'll
+	 *   interpret.  Based on these root ids (=topic id), we'll fetch all post revisions inside
+	 *   that topic.
 	 * @param array $queries
 	 * @param array $options
 	 * @return array
@@ -70,7 +54,7 @@ class TopicHistoryStorage implements ObjectStorage {
 			}
 		}
 
-		return $this->findDescendants( $queries, $options );
+		return $this->postRevisionStorage->findMulti( $queries, $options );
 	}
 
 	/**
@@ -100,28 +84,6 @@ class TopicHistoryStorage implements ObjectStorage {
 		return array(
 			'rev_type_id' => UUID::convertUUIDs( $nodes ),
 		);
-	}
-
-	public function findDescendants( array $queries, array $options = array() ) {
-		$data = $this->postRevisionStorage->findMulti( $queries, $options );
-		$summary = $this->postSummaryStorage->findMulti( $queries, $options );
-		if ( $summary ) {
-			if ( $data ) {
-				foreach ( $summary as $key => $rows ) {
-					if ( isset( $data[$key] ) ) {
-						$data[$key] += $rows;
-						// Failing to sort is okay, we'd rather display unordered
-						// result than showing an error page with exception
-						krsort( $data[$key] );
-					} else {
-						$data[$key] = $rows;
-					}
-				}
-			} else {
-				$data = $summary;
-			}
-		}
-		return $data;
 	}
 
 	public function getPrimaryKeyColumns() {
