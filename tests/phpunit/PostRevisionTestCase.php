@@ -280,7 +280,7 @@ class PostRevisionTestCase extends FlowTestCase {
 					$listeners['listener.recentchanges'],
 					// BoardHistory requires we also wire together TopicListEntry objects for
 					// each revision, but that's also beyond our scope.
-					$listeners['storage.board_history.indexes.primary']
+					$listeners['storage.post_board_history.indexes.primary']
 				);
 
 				return $listeners;
