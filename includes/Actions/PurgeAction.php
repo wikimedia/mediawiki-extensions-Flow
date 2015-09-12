@@ -124,11 +124,8 @@ class PurgeAction extends \PurgeAction {
 		$this->fetchTopics( $results );
 
 		// purge the board history
-		$storage->find(
-			'BoardHistoryEntry',
-			array( 'topic_list_id' => $workflow->getId() ),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 499 )
-		);
+		$boardHistoryQuery = Container::get( 'query.board.history' );
+		$boardHistoryQuery->getResults( $workflow->getId(), 499 );
 	}
 
 
@@ -140,20 +137,16 @@ class PurgeAction extends \PurgeAction {
 	 */
 	protected function fetchTopics( array $results ) {
 		// purge the revisions that make up the topic
-		/** @var TopicListQuery $query */
-		$query = Container::get( 'query.topiclist' );
-		$query->getResults( $results );
+		/** @var TopicListQuery $topicListQuery */
+		$topicListQuery = Container::get( 'query.topiclist' );
+		$topicListQuery->getResults( $results );
 
-		// Purge the history
-		$queries = array();
+		$topicHistoryQuery = Container::get( 'query.topic.history' );
+
 		foreach ( $results as $id ) {
-			$queries[] = array( 'topic_root_id' => $id );
+			// purge the topic history
+			$topicHistoryQuery->getResults( $id, 499 );
 		}
-		Container::get( 'storage' )->findMulti(
-			'TopicHistoryEntry',
-			$queries,
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 499 )
-		);
 	}
 
 	/**

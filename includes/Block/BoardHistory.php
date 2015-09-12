@@ -63,7 +63,7 @@ class BoardHistoryBlock extends AbstractBlock {
 		}
 
 		/** @var BoardHistoryQuery $query */
-		$query = Container::get( 'query.board-history' );
+		$query = Container::get( 'query.board.history' );
 		/** @var RevisionFormatter $formatter */
 		$formatter = Container::get( 'formatter.revision' );
 		$formatter->setIncludeHistoryProperties( true );
@@ -72,7 +72,7 @@ class BoardHistoryBlock extends AbstractBlock {
 		// don't use offset from getLimitOffset - that assumes an int, which our
 		// UUIDs are not
 		$offset = $wgRequest->getText( 'offset' );
-		$offset = $offset ? UUID::create( $offset ) : null;
+		$offset = $offset ?: null;
 
 		$pager = new HistoryPager( $this->actions, $query, $this->workflow->getId() );
 		$pager->setLimit( $limit );

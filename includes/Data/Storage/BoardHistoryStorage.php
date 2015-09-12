@@ -7,116 +7,26 @@ use Flow\Exception\DataModelException;
 
 /**
  * SQL backing for BoardHistoryIndex fetches revisions related
- * to a specific TopicList(board workflow)
+ * to a specific TopicList (board workflow)
+ * Subclassed for each type that needs it, so each TopKIndex
+ * has a distinct backend.
  */
-class BoardHistoryStorage extends DbStorage {
-
-	public function find( array $attributes, array $options = array() ) {
-		$multi = $this->findMulti( array( $attributes ), $options );
-		if ( $multi ) {
-			return reset( $multi );
-		}
-		return null;
-	}
+abstract class BoardHistoryStorage extends DbStorage {
+	abstract public function find( array $attributes, array $options = array() );
 
 	public function findMulti( array $queries, array $options = array() ) {
-		if ( count( $queries ) > 1 ) {
-			throw new DataModelException( __METHOD__ . ' expects only one value in $queries', 'process-data' );
+		if ( count( $queries ) !== 1 ) {
+			throw new DataModelException( __METHOD__ . ' expects exactly one value in $queries', 'process-data' );
 		}
 
-		$merged = $this->findHeaderHistory( $queries, $options ) +
-			$this->findTopicListHistory( $queries, $options ) +
-			$this->findTopicSummaryHistory( $queries, $options );
-
-		// Having merged data from 3 sources, we now have to combine it
-		// (according to the current sort & limit)
-		$order = isset( $options['ORDER BY'][0] ) && preg_match( '/ASC$/', $options['ORDER BY'][0] ) ? 'ASC' : 'DESC';
-		if ( $order === 'DESC' ) {
-			krsort( $merged );
-		} else {
-			ksort( $merged );
+		$result = array();
+		foreach ( $queries as $i => $attributes ) {
+			$result[$i] = $this->find( $attributes, $options );
 		}
 
-		if ( isset( $options['LIMIT'] ) ) {
-			$merged = array_splice( $merged, 0, $options['LIMIT'] );
-		}
+		$result = RevisionStorage::mergeExternalContent( $result );
 
-		$res = array( $merged );
-		return RevisionStorage::mergeExternalContent( $res );
-	}
-
-	protected function findHeaderHistory( array $queries, array $options = array() ) {
-		$queries = $this->preprocessSqlArray( reset( $queries ) );
-
-		$res = $this->dbFactory->getDB( DB_SLAVE )->select(
-			array( 'flow_revision' ),
-			array( '*' ),
-			array( 'rev_type' => 'header' ) + UUID::convertUUIDs( array( 'rev_type_id' => $queries['topic_list_id'] ) ),
-			__METHOD__,
-			$options
-		);
-
-		$retval = array();
-
-		if ( $res ) {
-			foreach ( $res as $row ) {
-				$row = UUID::convertUUIDs( (array) $row, 'alphadecimal' );
-				$retval[$row['rev_id']] = $row;
-			}
-		}
-		return $retval;
-	}
-
-	protected function findTopicSummaryHistory( array $queries, array $options = array() ) {
-		$queries = $this->preprocessSqlArray( reset( $queries ) );
-
-		$res = $this->dbFactory->getDB( DB_SLAVE )->select(
-			array( 'flow_revision', 'flow_topic_list', 'flow_tree_node' ),
-			array( '*' ),
-			array(
-				'rev_type' => 'post-summary',
-				'topic_id = tree_ancestor_id',
-				'rev_type_id = tree_descendant_id'
-			) + UUID::convertUUIDs( array( 'topic_list_id' => $queries['topic_list_id'] ) ),
-			__METHOD__,
-			$options
-		);
-
-		$retval = array();
-
-		if ( $res ) {
-			foreach ( $res as $row ) {
-				$row = UUID::convertUUIDs( (array) $row, 'alphadecimal' );
-				$retval[$row['rev_id']] = $row;
-			}
-		}
-		return $retval;
-	}
-
-	protected function findTopicListHistory( array $queries, array $options = array() ) {
-		$queries = $this->preprocessSqlArray( reset( $queries ) );
-
-		$res = $this->dbFactory->getDB( DB_SLAVE )->select(
-			array( 'flow_topic_list', 'flow_tree_node', 'flow_tree_revision', 'flow_revision' ),
-			array( '*' ),
-			array(
-				'topic_id = tree_ancestor_id',
-				'tree_descendant_id = tree_rev_descendant_id',
-				'tree_rev_id = rev_id',
-			) + $queries,
-			__METHOD__,
-			$options
-		);
-
-		$retval = array();
-
-		if ( $res ) {
-			foreach ( $res as $row ) {
-				$row = UUID::convertUUIDs( (array) $row, 'alphadecimal' );
-				$retval[$row['rev_id']] = $row;
-			}
-		}
-		return $retval;
+		return $result;
 	}
 
 	/**

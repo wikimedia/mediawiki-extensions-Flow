@@ -28,11 +28,6 @@ class HistoryPager extends \ReverseChronologicalPager {
 	protected $id;
 
 	/**
-	 * @var UUID|null
-	 */
-	public $mOffset;
-
-	/**
 	 * @var FormatterRow[]
 	 */
 	public $mResult;
@@ -62,7 +57,7 @@ class HistoryPager extends \ReverseChronologicalPager {
 		$direction = $this->mIsBackwards ? 'rev' : 'fwd';
 
 		// over-fetch so we can figure out if there's anything after what we're showing
-		$this->mResult = $this->query->getResults( $this->id, $this->getLimit() + 1, $this->mOffset, $direction );
+		$this->mResult = $this->query->getResults( $this->id, $this->getLimit() + 1, UUID::create( $this->mOffset ), $direction );
 		if ( !$this->mResult ) {
 			throw new InvalidDataException(
 				'Unable to load history for ' . $this->id->getAlphadecimal(),
