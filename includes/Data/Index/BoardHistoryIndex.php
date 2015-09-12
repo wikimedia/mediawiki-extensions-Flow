@@ -21,8 +21,7 @@ use Flow\Model\Workflow;
  *
  * Can be used with Header, PostRevision and PostSummary ObjectMapper's
  */
-class BoardHistoryIndex extends TopKIndex {
-
+abstract class BoardHistoryIndex extends TopKIndex {
 	/**
 	 * @var ObjectManager Manager for the TopicListEntry model
 	 */
@@ -42,6 +41,18 @@ class BoardHistoryIndex extends TopKIndex {
 		}
 		parent::__construct( $cache, $storage, $mapper, $prefix, $indexed, $options );
 		$this->om = $om;
+	}
+
+	public function canAnswer( array $keys, array $options ) {
+		if ( !parent::canAnswer( $keys, $options ) ) {
+			return false;
+		}
+
+		if ( isset( $options['offset-id'] ) || $options['offset-dir'] !== 'fwd' ) {
+			return false;
+		}
+
+		return true;
 	}
 
 	public function findMulti( array $queries, array $options = array() ) {
@@ -64,7 +75,7 @@ class BoardHistoryIndex extends TopKIndex {
 	}
 
 	/**
-	 * @param Header|PostRevision $object
+	 * @param PostSummary|PostRevision $object
 	 * @param string[] $row
 	 */
 	public function cachePurge( $object, array $row ) {
@@ -73,7 +84,7 @@ class BoardHistoryIndex extends TopKIndex {
 	}
 
 	/**
-	 * @param Header|PostRevision $object
+	 * @param PostSummary|PostRevision $object
 	 * @param string[] $new
 	 * @param array $metadata
 	 */
@@ -83,7 +94,7 @@ class BoardHistoryIndex extends TopKIndex {
 	}
 
 	/**
-	 * @param Header|PostRevision $object
+	 * @param PostSummary|PostRevision $object
 	 * @param string[] $old
 	 * @param string[] $new
 	 * @param array $metadata
@@ -94,7 +105,7 @@ class BoardHistoryIndex extends TopKIndex {
 	}
 
 	/**
-	 * @param Header|PostRevision $object
+	 * @param PostSummary|PostRevision $object
 	 * @param string[] $old
 	 * @param array $metadata
 	 */
@@ -104,32 +115,27 @@ class BoardHistoryIndex extends TopKIndex {
 	}
 
 	/**
-	 * Find a topic list id related to an abstract revision
+	 * Find a topic ID given an AbstractRevision
+	 *
+	 * @param AbstractRevision $object
+	 * @return UUID Topic ID
+	 */
+	abstract protected function findTopicId( AbstractRevision $object );
+
+	/**
+	 * Find a topic list ID related to an AbstractRevision
 	 *
 	 * @param AbstractRevision $object
 	 * @param string[] $row
 	 * @param array $metadata
 	 * @return string Alphadecimal uid of the related board
-	 * @throws InvalidInputException When $object is not a Header, PostRevision or
-	 *  PostSummary instance.
 	 * @throws DataModelException When the related id cannot be located
 	 */
 	protected function findTopicListId( AbstractRevision $object, array $row, array $metadata ) {
-		if ( $object instanceof Header ) {
-			return $row['rev_type_id'];
-		}
-
 		if ( isset( $metadata['workflow'] ) && $metadata['workflow'] instanceof Workflow ) {
 			$topicId = $metadata['workflow']->getId();
 		} else {
-			if ( $object instanceof PostRevision ) {
-				$post = $object;
-			} elseif ( $object instanceof PostSummary ) {
-				$post = $object->getCollection()->getPost()->getLastRevision();
-			} else {
-				throw new InvalidInputException( 'Unexpected object type: ' . get_class( $object ) );
-			}
-			$topicId = $post->getRootPost()->getPostId();
+			$topicId = $this->findTopicId( $object );
 		}
 
 		$found = $this->om->find( array( 'topic_id' => $topicId ) );
