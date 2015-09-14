@@ -104,20 +104,13 @@ class ReferenceClarifier {
 
 		foreach( array( 'WikiReference', 'URLReference' ) as $refType ) {
 			// find() returns null for error or empty result
-
-			$conds = array(
-				'ref_src_namespace' => $from->getNamespace(),
-				'ref_src_title' => $from->getDBkey(),
-			);
-
-			global $wgFlowMigrateReferenceWiki;
-			if ( ! $wgFlowMigrateReferenceWiki ) {
-				$conds['ref_src_wiki'] = wfWikiId();
-			}
-
 			$res = $this->storage->find(
 				$refType,
-				$conds
+				array(
+					'ref_src_wiki' => wfWikiId(),
+					'ref_src_namespace' => $from->getNamespace(),
+					'ref_src_title' => $from->getDBkey(),
+				)
 			);
 
 			if ( $res ) {
