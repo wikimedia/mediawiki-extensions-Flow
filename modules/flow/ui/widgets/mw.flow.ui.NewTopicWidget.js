@@ -99,11 +99,34 @@
 	 * @private
 	 */
 	mw.flow.ui.NewTopicWidget.prototype.onTitleFocusIn = function () {
+		this.activate();
+	};
+
+	/**
+	 * Expand the widget and make it ready to create a new topic
+	 */
+	mw.flow.ui.NewTopicWidget.prototype.activate = function () {
 		if ( !this.isExpanded() ) {
 			// Expand the editor
 			this.toggleExpanded( true );
 			this.editor.activate();
 			this.title.focus();
+		}
+	};
+
+	/**
+	 * Preload the widget with title and content.
+	 *
+	 * @param {string} title
+	 * @param {string} content
+	 * @param {string} format
+	 */
+	mw.flow.ui.NewTopicWidget.prototype.preload = function ( title, content, format ) {
+		this.activate();
+		this.title.setValue( title );
+
+		if ( content && format ) {
+			this.editor.setContent( content, format ).then( this.updateSaveButtonState.bind( this ) );
 		}
 	};
 

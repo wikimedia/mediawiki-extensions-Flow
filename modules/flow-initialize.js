@@ -352,6 +352,13 @@
 			mw.flow.system.populateBoardFromApi();
 		}
 
+		var preloadTopic = OO.getProp(dataBlob, 'blocks', 'topiclist', 'submitted', 'topic' ),
+			preloadContent = OO.getProp(dataBlob, 'blocks', 'topiclist', 'submitted', 'content' ),
+			preloadFormat = OO.getProp(dataBlob, 'blocks', 'topiclist', 'submitted', 'format' );
+		if ( preloadTopic || preloadContent ) {
+			newTopicWidget.preload( preloadTopic, preloadContent, preloadFormat );
+		}
+
 		// Show the board
 		finishLoading();
 	} );
