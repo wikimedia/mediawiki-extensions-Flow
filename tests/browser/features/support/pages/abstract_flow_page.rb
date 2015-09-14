@@ -243,7 +243,7 @@ class AbstractFlowPage
   end
 
   link(:new_topic_save) do
-    new_topic_widget_element.link_element(text: 'Add topic')
+    new_topic_widget_element.link_element(text: /Add topic.*/)
   end
 
   # Replying
@@ -267,7 +267,7 @@ class AbstractFlowPage
     first_reply_widget_element.link_element(text: 'Cancel')
   end
   link(:new_reply_save) do
-    first_reply_widget_element.link_element(text: 'Reply')
+    first_reply_widget_element.link_element(text: /Reply.*/)
   end
 
   button(:keep_editing, text: "Keep editing")
