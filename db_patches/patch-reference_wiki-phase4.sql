@@ -7,12 +7,3 @@
 -- Mark field as not null
 ALTER TABLE /*_*/flow_wiki_ref MODIFY ref_src_wiki varchar(16) binary not null;
 ALTER TABLE /*_*/flow_ext_ref MODIFY ref_src_wiki varchar(16) binary not null;
-
--- Drop old indexes
-DROP INDEX /*i*/flow_wiki_ref_idx ON /*_*/flow_wiki_ref;
-DROP INDEX /*i*/flow_wiki_ref_revision ON /*_*/flow_wiki_ref;
-DROP INDEX /*i*/flow_wiki_ref_workflow_id_idx_tmp ON /*_*/flow_wiki_ref;
-
-DROP INDEX /*i*/flow_ext_ref_idx ON /*_*/flow_ext_ref;
-DROP INDEX /*i*/flow_ext_ref_revision ON /*_*/flow_ext_ref;
-DROP INDEX /*i*/flow_ext_ref_workflow_id_idx_tmp ON /*_*/flow_ext_ref;
