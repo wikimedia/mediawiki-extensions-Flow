@@ -14,6 +14,7 @@
 			pageTitle = mw.Title.newFromText( mw.config.get( 'wgPageName' ) ),
 			$component = $( '.flow-component' ),
 			$board = $( '.flow-board' ),
+			preloadTopic, preloadContent, preloadFormat,
 			finishLoading = function () {
 				$component.addClass( 'flow-component-ready' );
 				$( '.flow-ui-load-overlay' ).hide();
@@ -350,6 +351,13 @@
 			}
 		} else {
 			mw.flow.system.populateBoardFromApi();
+		}
+
+		preloadTopic = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'topic' );
+		preloadContent = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'content' );
+		preloadFormat = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'format' );
+		if ( preloadTopic || preloadContent ) {
+			newTopicWidget.preload( preloadTopic, preloadContent, preloadFormat );
 		}
 
 		// Show the board

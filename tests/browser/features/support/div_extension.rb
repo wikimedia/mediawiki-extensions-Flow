@@ -13,5 +13,9 @@ module Watir
       Watir::Wait.until { !self.disabled? }
       self
     end
+
+    def text
+      value
+    end
   end
 end
