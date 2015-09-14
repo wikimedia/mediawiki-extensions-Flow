@@ -33,11 +33,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 
 	protected function doDBUpdates() {
 		// disable Echo notifications for this script
-		global $wgEchoNotifications, $wgFlowMigrateReferenceWiki;
-
-		if ( $wgFlowMigrateReferenceWiki ) {
-			$this->error( '$wgFlowMigrateReferenceWiki must be false to ensure links from the wrong wiki are not loaded.', 1 );
-		}
+		global $wgEchoNotifications;
 
 		$wgEchoNotifications = array();
 

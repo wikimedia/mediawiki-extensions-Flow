@@ -1070,9 +1070,8 @@ $c['logger.moderation'] = function( $c ) {
 $c['storage.wiki_reference.class'] = 'Flow\Model\WikiReference';
 $c['storage.wiki_reference.table'] = 'flow_wiki_ref';
 $c['storage.wiki_reference.primary_key'] = function ( $c ) {
-	global $wgFlowMigrateReferenceWiki;
-
-	$pk = array(
+	return array(
+		'ref_src_wiki',
 		'ref_src_namespace',
 		'ref_src_title',
 		'ref_src_object_id',
@@ -1080,12 +1079,6 @@ $c['storage.wiki_reference.primary_key'] = function ( $c ) {
 		'ref_target_namespace',
 		'ref_target_title'
 	);
-
-	if ( !$wgFlowMigrateReferenceWiki ) {
-		array_unshift( $pk, 'ref_src_wiki' );
-	}
-
-	return $pk;
 };
 $c['storage.wiki_reference.mapper'] = function( $c ) {
 	return BasicObjectMapper::model(
@@ -1134,54 +1127,10 @@ $c['storage.wiki_reference.indexes.revision_lookup'] = function( $c ) {
 	);
 };
 $c['storage.wiki_reference.indexes'] = function( $c ) {
-	$indexes = array(
+	return array(
 		$c['storage.wiki_reference.indexes.source_lookup'],
 		$c['storage.wiki_reference.indexes.revision_lookup'],
 	);
-
-	global $wgFlowMigrateReferenceWiki;
-
-	if ( $wgFlowMigrateReferenceWiki ) {
-		// Until the backfill is done, keep using only the old indexes.
-		// However, this means the new indexes will not be populated
-		// at all until the backfill is fully done, and the global is off.
-		// We can't start using them, because the indexes listen to removal
-		// events, and we can't properly remove it from the full index
-		// e.g. (ref_src_wiki, ref_src_namespace, ref_src_title) when
-		// we're not passing in ref_src_wiki.
-		$indexes = array(
-				new TopKIndex(
-					$c['memcache.local_buffered'],
-					$c['storage.wiki_reference.backend'],
-					$c['storage.wiki_reference.mapper'],
-					'flow_ref:wiki:by-source:v2b',
-					array(
-						'ref_src_namespace',
-						'ref_src_title',
-					),
-					array(
-						'order' => 'ASC',
-						'sort' => 'ref_src_object_id',
-					)
-				),
-				new TopKIndex(
-					$c['memcache.local_buffered'],
-					$c['storage.wiki_reference.backend'],
-					$c['storage.wiki_reference.mapper'],
-					'flow_ref:wiki:by-revision:v2b',
-					array(
-						'ref_src_object_type',
-						'ref_src_object_id',
-					),
-					array(
-						'order' => 'ASC',
-						'sort' => array( 'ref_target_namespace', 'ref_target_title' ),
-					)
-				)
-		);
-	}
-
-	return $indexes;
 };
 $c['storage.wiki_reference'] = function( $c ) {
 	return new ObjectManager(
@@ -1194,21 +1143,14 @@ $c['storage.wiki_reference'] = function( $c ) {
 $c['storage.url_reference.class'] = 'Flow\Model\URLReference';
 $c['storage.url_reference.table'] = 'flow_ext_ref';
 $c['storage.url_reference.primary_key'] = function ( $c ) {
-	global $wgFlowMigrateReferenceWiki;
-
-	$pk = array(
+	return array(
+		'ref_src_wiki',
 		'ref_src_namespace',
 		'ref_src_title',
 		'ref_src_object_id',
 		'ref_type',
 		'ref_target',
 	);
-
-	if ( !$wgFlowMigrateReferenceWiki ) {
-		array_unshift( $pk, 'ref_src_wiki' );
-	}
-
-	return $pk;
 };
 
 $c['storage.url_reference.mapper'] = function( $c ) {
@@ -1260,47 +1202,10 @@ $c['storage.url_reference.indexes.revision_lookup'] = function( $c ) {
 	);
 };
 $c['storage.url_reference.indexes'] = function( $c ) {
-	$indexes = array(
+	return array(
 		$c['storage.url_reference.indexes.source_lookup'],
 		$c['storage.url_reference.indexes.revision_lookup'],
 	);
-
-	global $wgFlowMigrateReferenceWiki;
-	if ( $wgFlowMigrateReferenceWiki ) {
-		// See 'storage.wiki_reference.indexes'.
-		$indexes = array(
-			new TopKIndex(
-				$c['memcache.local_buffered'],
-				$c['storage.url_reference.backend'],
-				$c['storage.url_reference.mapper'],
-				'flow_ref:url:by-source:v2b',
-				array(
-					'ref_src_namespace',
-					'ref_src_title',
-				),
-				array(
-					'order' => 'ASC',
-					'sort' => 'ref_src_object_id',
-				)
-			),
-			new TopKIndex(
-				$c['memcache.local_buffered'],
-				$c['storage.url_reference.backend'],
-				$c['storage.url_reference.mapper'],
-				'flow_ref:url:by-revision:v2b',
-				array(
-					'ref_src_object_type',
-					'ref_src_object_id',
-				),
-				array(
-					'order' => 'ASC',
-					'sort' => array( 'ref_target' ),
-				)
-			)
-		);
-	}
-
-	return $indexes;
 };
 $c['storage.url_reference'] = function( $c ) {
 	return new ObjectManager(
