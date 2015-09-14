@@ -48,15 +48,13 @@ class URLReference extends Reference {
 	 * @return URLReference
 	 */
 	public static function fromStorageRow( $row ) {
-		global $wgFlowMigrateReferenceWiki;
-
 		$workflow = UUID::create( $row['ref_src_workflow_id'] );
 		$objectType = $row['ref_src_object_type'];
 		$objectId = UUID::create( $row['ref_src_object_id'] );
 		$url = $row['ref_target'];
 		$type = $row['ref_type'];
 		$srcTitle = Title::makeTitle( $row['ref_src_namespace'], $row['ref_src_title'] );
-		$wiki = $wgFlowMigrateReferenceWiki ? null : $row['ref_src_wiki'];
+		$wiki = $row['ref_src_wiki'];
 
 		return new URLReference( $wiki, $workflow, $srcTitle, $objectType, $objectId, $type, $url );
 	}
