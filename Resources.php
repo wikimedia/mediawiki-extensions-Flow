@@ -430,6 +430,7 @@ $wgResourceModules += array(
 			'oojs-ui',
 			'es5-shim',
 			'ext.flow.dm',
+			'oojs-ui.styles.icons',
 			'oojs-ui.styles.icons-editing-advanced',
 		)
 	) + $mobile,
