@@ -307,7 +307,7 @@ class TopicListBlock extends AbstractBlock {
 	 * @throws \MWException
 	 */
 	protected function preloadTexts( $options ) {
-		if ( isset( $options['preload'] ) ) {
+		if ( isset( $options['preload'] ) && !empty( $options['preload'] ) ) {
 			$title = \Title::newFromText( $options['preload'] );
 			$page = \WikiPage::factory( $title );
 			if ( $page->isRedirect() ) {
@@ -318,6 +318,7 @@ class TopicListBlock extends AbstractBlock {
 			if ( $page->exists() ) {
 				$content = $page->getContent( \Revision::RAW );
 				$options['content'] = $content->serialize();
+				$options['format'] = 'wikitext';
 			}
 		}
 
