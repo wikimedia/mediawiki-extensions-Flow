@@ -54,6 +54,7 @@ class ReferenceFactory {
 	 */
 	public function createUrlReference( $refType, $value ) {
 		return new URLReference(
+			UUID::create(),
 			$this->wikiId,
 			$this->workflowId,
 			$this->title,
@@ -82,6 +83,7 @@ class ReferenceFactory {
 		}
 
 		return new WikiReference(
+			UUID::create(),
 			$this->wikiId,
 			$this->workflowId,
 			$this->title,
