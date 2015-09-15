@@ -230,6 +230,7 @@ class FlowHooks {
 		$updater->dropExtensionIndex( 'flow_ext_ref', 'flow_ext_ref_pk', "$dir/db_patches/patch-remove_unique_ref_indices.sql" );
 		$updater->addExtensionIndex( 'flow_workflow', 'flow_workflow_update_timestamp', "$dir/db_patches/patch-flow_workflow_update_timestamp_idx.sql" );
 		$updater->addExtensionField( 'flow_wiki_ref', 'ref_src_wiki', "$dir/db_patches/patch-reference_wiki.sql" );
+		$updater->addExtensionField( 'flow_wiki_ref', 'ref_id', "$dir/db_patches/patch-ref_id-phase1.sql" );
 
 		require_once __DIR__.'/maintenance/FlowUpdateRecentChanges.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateRecentChanges' );
@@ -271,6 +272,21 @@ class FlowHooks {
 
 		require_once __DIR__.'/maintenance/FlowUpdateBetaFeaturePreference.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateBetaFeaturePreference' );
+
+		require_once __DIR__.'/maintenance/FlowPopulateRefId.php';
+		$updater->addPostDatabaseUpdateMaintenance( 'FlowPopulateRefId' );
+
+		/*
+		 * Add primary key, but only after we've made sure the newly added
+		 * column has been populated (otherwise they'd all be null values)
+		 */
+		if ( $updater->updateRowExists( 'FlowPopulateRefId' ) ) {
+			if ( $updater->getDB()->getType() === 'sqlite' ) {
+				$updater->addExtensionIndex( 'flow_wiki_ref', 'PRIMARY', "$dir/db_patches/patch-ref_id-phase2.sqlite.sql" );
+			} else {
+				$updater->addExtensionIndex( 'flow_wiki_ref', 'PRIMARY', "$dir/db_patches/patch-ref_id-phase2.sql" );
+			}
+		}
 
 		return true;
 	}
