@@ -87,6 +87,12 @@ class WorkflowLoaderFactory {
 				$content = $page->getContent();
 				if ( $content instanceof BoardContent ) {
 					$workflowId = $content->getWorkflowId();
+				} else {
+					// if we failed to get a Flow content model for this
+					// title, let's make sure it's been cleared from
+					// LinkCache (we're likely be in the process of creating
+					// a new workflow, so we don't want lingering cache data)
+					$pageTitle->resetArticleID( false );
 				}
 			}
 		}

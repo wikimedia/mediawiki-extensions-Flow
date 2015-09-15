@@ -1570,15 +1570,15 @@ class FlowHooks {
 	 * extended to be notified about moves explicitly.
 	 */
 	public static function onTitleMove( Title $oldTitle, Title $newTitle, User $user ) {
-		// $newTitle doesn't yet exist, but after the move it'll still have
-		// the same ID $oldTitle used to have
-		// Since we don't want to wait until after the page has been moved
-		// to start preparing relevant Flow moves, I'll make it reflect the
-		// correct ID already
-		$bogusTitle = clone $newTitle;
-		$bogusTitle->resetArticleID( $oldTitle->getArticleID() );
-
 		if ( $oldTitle->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
+			// $newTitle doesn't yet exist, but after the move it'll still have
+			// the same ID $oldTitle used to have
+			// Since we don't want to wait until after the page has been moved
+			// to start preparing relevant Flow moves, I'll make it reflect the
+			// correct ID already
+			$bogusTitle = clone $newTitle;
+			$bogusTitle->resetArticleID( $oldTitle->getArticleID() );
+
 			// complete hack to make sure that when the page is saved to new
 			// location and rendered it doesn't throw an error about the wrong title
 			Container::get( 'factory.loader.workflow' )->pageMoveInProgress();
