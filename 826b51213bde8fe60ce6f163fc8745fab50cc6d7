@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_ff047d19",
+        "filename": "maintenance/FlowPopulateRefId.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-09-15T15:19:30Z",
+      "side": 1,
+      "message": "Does this just do a SELECT * on the entire table?",
+      "revId": "826b51213bde8fe60ce6f163fc8745fab50cc6d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_df0bc124",
+        "filename": "maintenance/FlowPopulateRefId.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-09-15T15:19:30Z",
+      "side": 1,
+      "message": "Does this write all rows at once, or in batches? We can probably get away with it in this case because there are only ~60k rows in each table, but ideally we\u0027d call wfWaitForSlaves() after each batch.",
+      "revId": "826b51213bde8fe60ce6f163fc8745fab50cc6d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
