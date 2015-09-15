@@ -249,7 +249,9 @@ class OptInController {
 		// existing article ID.
 		// Otherwise, we run the risk of the Workflow we're creating being
 		// associated with the page we just moved.
-		$title->getArticleID( Title::GAID_FOR_UPDATE );
+		$title->resetArticleID( 0 );
+		$linkCache = \LinkCache::singleton();
+		$linkCache->clearLink( $title );
 
 		$loader = $loaderFactory->createWorkflowLoader( $title );
 		$blocks = $loader->getBlocks();

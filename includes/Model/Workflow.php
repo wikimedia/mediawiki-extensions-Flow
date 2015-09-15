@@ -156,11 +156,18 @@ class Workflow {
 		$obj->type = $type;
 		$obj->wiki = $wiki;
 
-		// for new pages, article id will be 0; it'll be created in toStorageRow
+		// for new pages, article id will be 0; it'll be fetched again in toStorageRow
 		$obj->pageId = $title->getArticleID();
 		$obj->namespace = $title->getNamespace();
 		$obj->titleText = $title->getDBkey();
 		$obj->updateLastUpdated( $obj->id );
+
+		// we just created a new workflow; wipe out any cached data for the
+		// associated title
+		if ( self::$titleCache !== null ) {
+			$key = implode( '|', array( $obj->wiki, $obj->namespace, $obj->titleText ) );
+			self::$titleCache->clear( array( $key ) );
+		}
 
 		return $obj;
 	}
