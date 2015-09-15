@@ -13,7 +13,8 @@ class WikiReference extends Reference {
 	protected $target;
 
 	/**
-	 * @param String $wiki Wiki ID of the reference source
+	 * @param UUID   $id          Id of the reference
+	 * @param string $wiki        Wiki ID of the reference source
 	 * @param UUID   $srcWorkflow ID of the source Workflow
 	 * @param Title  $srcTitle    Title of the Workflow from which this reference comes.
 	 * @param string $objectType  Output of getRevisionType for the AbstractRevision that this reference comes from.
@@ -21,7 +22,7 @@ class WikiReference extends Reference {
 	 * @param string $type        Type of reference
 	 * @param Title  $targetTitle Title of the reference's target.
 	 */
-	public function __construct( $wiki, UUID $srcWorkflow, Title $srcTitle, $objectType, UUID $objectId, $type, Title $targetTitle ) {
+	public function __construct( UUID $id, $wiki, UUID $srcWorkflow, Title $srcTitle, $objectType, UUID $objectId, $type, Title $targetTitle ) {
 		$this->target = $targetTitle;
 
 		$this->validTypes = array_merge( $this->validTypes,
@@ -32,7 +33,7 @@ class WikiReference extends Reference {
 			)
 		);
 
-		parent::__construct( $wiki, $srcWorkflow, $srcTitle, $objectType, $objectId, $type );
+		parent::__construct( $id, $wiki, $srcWorkflow, $srcTitle, $objectType, $objectId, $type );
 	}
 
 	/**
@@ -50,12 +51,13 @@ class WikiReference extends Reference {
 	/**
 	 * Instantiates a WikiReference object from a storage row.
 	 *
-	 * @param  \StdClass $row
+	 * @param  array $row
 	 * @return WikiReference
 	 */
 	public static function fromStorageRow( $row ) {
 		global $wgFlowMigrateReferenceWiki;
 
+		$id = $row['ref_id'] === null ? UUID::create() : UUID::create( $row['ref_id'] );
 		$workflow = UUID::create( $row['ref_src_workflow_id'] );
 		$objectType = $row['ref_src_object_type'];
 		$objectId = UUID::create( $row['ref_src_object_id'] );
@@ -64,7 +66,7 @@ class WikiReference extends Reference {
 		$type = $row['ref_type'];
 		$wiki = $wgFlowMigrateReferenceWiki ? null : $row['ref_src_wiki'];
 
-		return new WikiReference( $wiki, $workflow, $srcTitle, $objectType, $objectId, $type, $targetTitle );
+		return new WikiReference( $id, $wiki, $workflow, $srcTitle, $objectType, $objectId, $type, $targetTitle );
 	}
 
 	/**
