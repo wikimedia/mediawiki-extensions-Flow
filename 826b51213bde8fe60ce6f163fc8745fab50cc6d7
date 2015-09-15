@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6ec1af18_453380c0",
+        "filename": "maintenance/FlowPopulateRefId.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-09-15T18:13:25Z",
+      "side": 1,
+      "message": "Yeah. In BasicDBStorage:\n\n    $this-\u003edbFactory-\u003egetDB( DB_MASTER )-\u003eselect(\n        $this-\u003etable,\n        \u0027*\u0027,\n        $attributes,\n        __METHOD__ . \" ({$this-\u003etable})\",\n        $options\n    );\n\n$attributes is the first empty array, $options the second. So yeah, SELECT * FROM table.",
+      "parentUuid": "6ec1af18_ff047d19",
+      "revId": "826b51213bde8fe60ce6f163fc8745fab50cc6d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec1af18_df0bc124",
         "filename": "maintenance/FlowPopulateRefId.php",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2015-09-15T15:19:30Z",
       "side": 1,
       "message": "Does this write all rows at once, or in batches? We can probably get away with it in this case because there are only ~60k rows in each table, but ideally we\u0027d call wfWaitForSlaves() after each batch.",
+      "revId": "826b51213bde8fe60ce6f163fc8745fab50cc6d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_e56aac7d",
+        "filename": "maintenance/FlowPopulateRefId.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-09-15T18:13:25Z",
+      "side": 1,
+      "message": "Actually, it\u0027ll loop \u0026 store them one by one.\nI should probably loop myself so we can wfWaitForSlaves every $batch.",
+      "parentUuid": "6ec1af18_df0bc124",
       "revId": "826b51213bde8fe60ce6f163fc8745fab50cc6d7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
