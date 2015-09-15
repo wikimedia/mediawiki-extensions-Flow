@@ -11,6 +11,11 @@ abstract class Reference {
 	/**
 	 * @var UUID
 	 */
+	protected $id;
+
+	/**
+	 * @var UUID
+	 */
 	protected $workflowId;
 
 	/**
@@ -43,15 +48,17 @@ abstract class Reference {
 	/**
 	 * Standard constructor. Called from subclasses only
 	 *
-	 * @param String $wiki Wiki ID of the reference source
+	 * @param UUID   $id          Id of the reference
+	 * @param string $wiki        Wiki ID of the reference source
 	 * @param UUID   $srcWorkflow Source Workflow's ID
 	 * @param Title  $srcTitle    Title of the Workflow from which this reference comes.
-	 * @param String $objectType  Output of getRevisionType for the AbstractRevision that this reference comes from.
+	 * @param string $objectType  Output of getRevisionType for the AbstractRevision that this reference comes from.
 	 * @param UUID   $objectId    Unique identifier for the revisioned object containing the reference.
 	 * @param string $type        The type of reference
 	 * @throws InvalidReferenceException
 	 */
-	protected function __construct( $wiki, UUID $srcWorkflow, Title $srcTitle, $objectType, UUID $objectId, $type ) {
+	protected function __construct( UUID $id, $wiki, UUID $srcWorkflow, Title $srcTitle, $objectType, UUID $objectId, $type ) {
+		$this->id = $id;
 		$this->wikiId = $wiki;
 		$this->workflowId = $srcWorkflow;
 		$this->objectType = $objectType;
@@ -125,6 +132,7 @@ abstract class Reference {
 	 */
 	public function getStorageRow() {
 		return array(
+			'ref_id' => $this->id->getAlphadecimal(),
 			'ref_src_wiki' => $this->wikiId,
 			'ref_src_workflow_id' => $this->workflowId->getAlphadecimal(),
 			'ref_src_namespace' => $this->srcTitle->getNamespace(),
