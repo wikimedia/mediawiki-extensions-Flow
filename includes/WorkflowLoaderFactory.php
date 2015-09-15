@@ -87,19 +87,24 @@ class WorkflowLoaderFactory {
 				$content = $page->getContent();
 				if ( $content instanceof BoardContent ) {
 					$workflowId = $content->getWorkflowId();
-				} else {
-					// if we failed to get a Flow content model for this
-					// title, let's make sure it's been cleared from
-					// LinkCache (we're likely be in the process of creating
-					// a new workflow, so we don't want lingering cache data)
-					$pageTitle->resetArticleID( false );
 				}
 			}
 		}
 
 		if ( $workflowId === null ) {
+			// We failed to get a Flow content model for this title,
+			// so we'll want to clear LinkCache (we're likely be in
+			// the process of creating a new workflow, so we don't
+			// want lingering cache data)
+			// Workflow::create doesn't GAID_FOR_UPDATE to fetch the
+			// article id. Let's forcibly make it look like the title
+			// does not yet exist (in which case it will be
+			// GAID_FOR_UPDATE when we actually want to store it)
+			$title = clone $pageTitle;
+			$title->resetArticleID( 0 );
+
 			// no existing workflow found, create new one
-			$workflow = Workflow::create( $this->defaultWorkflowName, $pageTitle );
+			$workflow = Workflow::create( $this->defaultWorkflowName, $title );
 		} else {
 			$workflow = $this->loadWorkflowById( $pageTitle, $workflowId );
 		}
