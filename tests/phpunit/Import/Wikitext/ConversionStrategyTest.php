@@ -68,6 +68,10 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 	}
 
 	public function testCreateArchiveCleanupRevisionContent() {
+		if( !class_exists( 'LqtDispatch' ) ) {
+			$this->markTestSkipped( 'LiquidThreads not enabled' );
+		}
+
 		// @todo superm401 suggested finding library that lets us control time during tests,
 		// would probably be better
 		$now = new DateTime( "now", new DateTimeZone( "GMT" ) );
