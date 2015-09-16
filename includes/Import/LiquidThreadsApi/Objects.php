@@ -526,11 +526,7 @@ class ImportHeader extends PageRevisionedObject implements IImportHeader {
 		// This is will remove all instances, without attempting to check if it's in
 		// nowiki, etc.  It also ignores case and spaces in places where it doesn't
 		// matter.
-		$newWikitext = preg_replace(
-			ConversionStrategy::LQT_ENABLE_MAGIC_WORD_REGEX,
-			'',
-			$wikitextForLastRevision
-		);
+		$newWikitext = ConversionStrategy::removeLqtMagicWord( $wikitextForLastRevision );
 		$templateName = wfMessage( 'flow-importer-lqt-converted-template' )->inContentLanguage()->plain();
 		$arguments = implode( '|', array(
 			'archive=' . $archiveTitle->getPrefixedText(),
