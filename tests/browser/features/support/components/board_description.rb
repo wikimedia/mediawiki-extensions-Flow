@@ -16,7 +16,7 @@ class BoardDescription
     visualeditor_or_textarea editor_widget_element
   end
 
-  link(:save, text: "Save description")
+  link(:save, text: /Save description.*/)
 
   # If page has an archive template from a flow conversion
   # find the link
