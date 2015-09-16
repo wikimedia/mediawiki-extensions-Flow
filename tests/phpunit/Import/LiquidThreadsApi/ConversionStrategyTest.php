@@ -129,6 +129,10 @@ EOD
 	 * @param string $content
 	 */
 	public function testCreateArchiveCleanupRevisionContent( $message, $expect, $content ) {
+		if( !class_exists( 'LqtDispatch' ) ) {
+			$this->markTestSkipped( 'LiquidThreads not enabled' );
+		}
+
 		$result = $this->createStrategy()->createArchiveCleanupRevisionContent(
 			new WikitextContent( $content ),
 			Title::newFromText( 'Talk:Blue_birds' )
