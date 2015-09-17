@@ -1,6 +1,3 @@
--- This is the final schema change required for
--- 'Segregate Reference objects by source wiki.'
---
 -- After phase 3 is complete (re-running does not affect any more rows),
 -- this should be run.
 
