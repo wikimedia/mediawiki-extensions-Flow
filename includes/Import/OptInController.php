@@ -139,9 +139,35 @@ class OptInController {
 	 * @param Title $from
 	 * @param Title $to
 	 */
-	private function movePage( Title $from, Title $to ) {
+	private function movePage( Title $from, Title &$to ) {
 		$mp = new MovePage( $from, $to );
 		$mp->move( $this->user, null, false );
+
+		/*
+		 * Article IDs are cached inside title objects. Since we'll be
+		 * reusing these objects, we have to make sure they reflect the
+		 * correct IDs.
+		 * We could just Title::GAID_FOR_UPDATE everywhere, but that would
+		 * result in a lot of unneeded calls to master.
+		 * If these IDs are wrong, we could end up associating workflows
+		 * with an incorrect page (that was just moved)
+		 *
+		 * Anyway, the page has just been moved without redirect, so that
+		 * page is no longer valid.
+		 */
+		$from->resetArticleID( 0 );
+		$linkCache = \LinkCache::singleton();
+		$linkCache->addBadLinkObj( $from );
+
+		/*
+		 * WikiPage::updateRevisionOn (called form MovePage::moveToInternal)
+		 * updates LinkCache for $to. We're still stuck with the $to object,
+		 * which has cached the article ID.
+		 * We've accepted $to by-ref, so we'll just overwrite the object
+		 * with one that's unaware of its article ID, so it'll go look in
+		 * LinkCache once requested.
+		 */
+		$to = Title::newFromDBkey( $to->getDBkey() );
 	}
 
 	/**
@@ -243,13 +269,6 @@ class OptInController {
 			$this->fatal( 'flow-special-enableflow-board-creation-not-allowed', $page );
 		}
 
-		// $title was recently moved, but the article ID is cached inside
-		// the Title object. Let's make sure it accurately reflects that
-		// $title now doesn't exist by resetting the article ID.
-		// Otherwise, we run the risk of the Workflow we're creating being
-		// associated with the page we just moved.
-		$title->resetArticleID( 0 );
-
 		$loader = $loaderFactory->createWorkflowLoader( $title );
 		$blocks = $loader->getBlocks();
 
@@ -300,13 +319,7 @@ class OptInController {
 	 * @param string|null $addToHeader
 	 */
 	private function restoreExistingFlowBoard( Title $archivedFlowPage, Title $title, $addToHeader = null ) {
-		$pageId = $archivedFlowPage->getArticleID();
 		$this->movePage( $archivedFlowPage, $title );
-
-		// $title was just moved, but the article ID is cached inside
-		// the Title object. Let's make sure it accurately reflects the
-		// new article id.
-		$title->resetArticleID( $pageId );
 
 		if ( $addToHeader ) {
 			$this->editBoardDescription( $title, function( $oldDesc ) use ( $addToHeader ) {
