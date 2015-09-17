@@ -90,6 +90,8 @@
 	"flow-undo-edit-header": "تعديل الوصف",
 	"flow-undo-edit-topic-summary": "تعديل ملخص الموضوع",
 	"flow-undo-edit-post": "تعديل منشور",
+	"group-flow-bot": "بوتات فلو",
+	"grouppage-flow-bot": "Project:بوتات فلو",
 	"flow-ve-mention-inspector-remove-label": "أزل",
 	"flow-ve-mention-placeholder": "اسم المستخدم",
 	"flow-wikitext-editor-help-preview-the-result": "اعرض النتيجة",

@@ -2,8 +2,9 @@
 	"@metadata": {
 		"authors": [
 			"Gmelfi",
-			"Pippinu"
+			"Pippinu",
+			"Sarvaturi"
 		]
 	},
-	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|ringràzzia}}}}"
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|ringrazzia}}}}"
 }
