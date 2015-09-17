@@ -10,6 +10,7 @@ use Flow\NotificationController;
 use Flow\OccupationController;
 use Flow\Parsoid\Utils;
 use Flow\RevisionActionPermissions;
+use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
 use IContextSource;
 use MovePage;
@@ -20,7 +21,6 @@ use Flow\Container;
 use User;
 use WikiPage;
 use WikitextContent;
-
 
 /**
  * Entry point for enabling Flow on a page.
@@ -300,7 +300,14 @@ class OptInController {
 	 * @param string|null $addToHeader
 	 */
 	private function restoreExistingFlowBoard( Title $archivedFlowPage, Title $title, $addToHeader = null ) {
+		$pageId = $archivedFlowPage->getArticleID();
 		$this->movePage( $archivedFlowPage, $title );
+
+		// $title was just moved, but the article ID is cached inside
+		// the Title object. Let's make sure it accurately reflects the
+		// new article id.
+		$title->resetArticleID( $pageId );
+
 		if ( $addToHeader ) {
 			$this->editBoardDescription( $title, function( $oldDesc ) use ( $addToHeader ) {
 				return $oldDesc . "\n\n" . $addToHeader;
