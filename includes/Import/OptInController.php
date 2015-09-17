@@ -6,6 +6,8 @@ use DateTime;
 use DateTimeZone;
 use DerivativeContext;
 use Flow\Collection\HeaderCollection;
+use Flow\Content\BoardContent;
+use Flow\Exception\InvalidDataException;
 use Flow\NotificationController;
 use Flow\OccupationController;
 use Flow\Parsoid\Utils;
@@ -396,13 +398,23 @@ class OptInController {
 	 * @throws \Flow\Exception\InvalidDataException
 	 */
 	private function editBoardDescription( Title $title, callable $newDescriptionCallback, $format = 'html' ) {
-		/** @var WorkflowLoaderFactory $loader */
-		$factory = Container::get( 'factory.loader.workflow' );
+		/*
+		 * We could use WorkflowLoaderFactory::createWorkflowLoader
+		 * to get to the workflow ID, but that uses WikiPage::factory
+		 * to build the wikipage & get the content. For most requests,
+		 * that'll be better (it reads from slaves), but we really
+		 * need to read from master here.
+		 * We'll need WorkflowLoader further down anyway, but we'll
+		 * then have the correct workflow ID to initialize it with!
+		 */
+		$page = WikiPage::newFromID( $title->getArticleID(), WikiPage::READ_LATEST );
+		$content = $page->getContent();
+		if ( !$content instanceof BoardContent ) {
+			throw new InvalidDataException( 'Could not find board page for ' . $title->getPrefixedDBkey() );
+		}
+		$workflowId = $content->getWorkflowId();
 
-		/** @var WorkflowLoader $loader */
-		$loader = $factory->createWorkflowLoader( $title );
-
-		$collection = HeaderCollection::newFromId( $loader->getWorkflow()->getId() );
+		$collection = HeaderCollection::newFromId( $workflowId );
 		$revision = $collection->getLastRevision();
 		$content = $revision->getContent();
 
@@ -419,6 +431,12 @@ class OptInController {
 				'prev_revision' => $revision->getRevisionId()->getAlphadecimal()
 			),
 		);
+
+		/** @var WorkflowLoaderFactory $loader */
+		$factory = Container::get( 'factory.loader.workflow' );
+
+		/** @var WorkflowLoader $loader */
+		$loader = $factory->createWorkflowLoader( $title, $workflowId );
 
 		$blocks = $loader->getBlocks();
 
