@@ -123,8 +123,8 @@ class OptInController {
 	 *
 	 * @return boolean Flow board archive exists
 	 */
-	public function hasFlowBoardArchive() {
-		return $this->findLatestFlowArchive( $this->user->getTalkPage() ) !== false;
+	public function hasFlowBoardArchive( User $user ) {
+		return $this->findLatestFlowArchive( $user->getTalkPage() ) !== false;
 	}
 
 	/**

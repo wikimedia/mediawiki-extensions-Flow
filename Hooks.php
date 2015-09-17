@@ -1699,7 +1699,7 @@ class FlowHooks {
 		if ( !$before && $after ) {
 			$action = OptInUpdate::$ENABLE;
 			// Check if the user had a flow board
-			if ( !$c->hasFlowBoardArchive() ) {
+			if ( !$c->hasFlowBoardArchive( $user ) ) {
 				// Enable the guided tour by setting the cookie
 				RequestContext::getMain()->getRequest()->response()->setcookie( 'Flow_optIn_guidedTour', '1' );
 			}
