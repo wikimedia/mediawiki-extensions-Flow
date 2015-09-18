@@ -146,11 +146,7 @@ abstract class AbstractBlock implements Block {
 	public function init( IContextSource $context, $action ) {
 		$this->context = $context;
 		$this->action = $action;
-
-		$this->permissions = Container::get( 'permissions' );
-		if ( !$context->getUser()->equals( $this->permissions->getUser() ) ) {
-			throw new PermissionException( 'Formatting for wrong user: ' . $context->getUser()->getName() . ' instead of ' . $this->permissions->getUser()->getName() );
-		}
+		$this->permissions = new RevisionActionPermissions( Container::get( 'flow_actions' ), $context->getUser() );
 	}
 
 	/**

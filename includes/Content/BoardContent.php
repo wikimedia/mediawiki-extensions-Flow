@@ -2,22 +2,23 @@
 
 namespace Flow\Content;
 
+use Content;
 use DerivativeContext;
 use FauxRequest;
 use Flow\Container;
+use Flow\Exception\UnknownWorkflowIdException;
 use Flow\LinksTableUpdater;
 use Flow\Model\UUID;
-use Flow\Model\Workflow;
+use Flow\RevisionActionPermissions;
 use Flow\View;
 use Flow\WorkflowLoaderFactory;
-use Html;
-use MWException;
 use OutputPage;
 use ParserOptions;
 use ParserOutput;
 use RequestContext;
 use Revision;
 use Title;
+use User;
 use WikiPage;
 
 class BoardContent extends \AbstractContent {
@@ -161,7 +162,17 @@ class BoardContent extends \AbstractContent {
 	public function getParserOutput( Title $title, $revId = null,
 			ParserOptions $options = null, $generateHtml = true )
 	{
-		$parserOutput = new ParserOutput();
+		if ( $generateHtml ) {
+			try {
+				$parserOutput = $this->generateHtml( $title, $options->getUser() );
+			} catch ( UnknownWorkflowIdException $e ) {
+				// Workflow does not yet exist (may be in the process of being created)
+				$parserOutput = new ParserOutput();
+			}
+		} else {
+			$parserOutput = new ParserOutput();
+		}
+
 		$parserOutput->updateCacheExpiry( 0 );
 
 		if ( $revId === null ) {
@@ -173,23 +184,43 @@ class BoardContent extends \AbstractContent {
 
 		$parserOutput->setTimestamp( $timestamp );
 
-		if ( $generateHtml ) {
-			$parserOutput->setText(
-				// Flow boards are rendered on view (in two possible
-				// orders) and can be thousands of topics long, so
-				// rendering a few topics into the parser output at
-				// parse-time may not be useful in practice.
-				Html::element(
-					'span',
-					array( 'class' => 'flow-parser-output-placeholder' ),
-					'This is a placeholder in place of a Flow board.'
-				)
-			);
-		}
-
 		/** @var LinksTableUpdater $updater */
 		$updater = Container::get( 'reference.updater.links-tables' );
 		$updater->mutateParserOutput( $title, $parserOutput );
+
+		return $parserOutput;
+	}
+
+	/**
+	 * @param Title $title
+	 * @param User $user
+	 * @return ParserOutput
+	 */
+	protected function generateHtml( Title $title, User $user ) {
+		// Set up a derivative context (which inherits the current request)
+		// to hold the output modules + text
+		$childContext = new DerivativeContext( RequestContext::getMain() );
+		$childContext->setOutput( new OutputPage( $childContext ) );
+		$childContext->setRequest( new FauxRequest );
+		$childContext->setUser( $user );
+
+		// Create a View set up to output to our derivative context
+		$view = new View(
+			Container::get( 'url_generator' ),
+			Container::get( 'lightncandy' ),
+			$childContext->getOutput(),
+			Container::get( 'flow_actions' )
+		);
+
+		$loader = $this->getWorkflowLoader( $title );
+		$view->show( $loader, 'view' );
+
+		// Extract data from derivative context
+		$parserOutput = new ParserOutput();
+		$parserOutput->setText( $childContext->getOutput()->getHTML() );
+		$parserOutput->addModules( $childContext->getOutput()->getModules() );
+		$parserOutput->addModuleStyles( $childContext->getOutput()->getModuleStyles() );
+		$parserOutput->addModuleScripts( $childContext->getOutput()->getModuleScripts() );
 
 		return $parserOutput;
 	}
