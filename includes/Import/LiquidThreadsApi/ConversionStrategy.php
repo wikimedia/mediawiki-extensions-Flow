@@ -13,6 +13,7 @@ use Flow\Import\Postprocessor\LqtRedirector;
 use Flow\NotificationController;
 use Flow\UrlGenerator;
 use LqtDispatch;
+use MagicWord;
 use MWTimestamp;
 use Title;
 use User;
@@ -58,10 +59,6 @@ class ConversionStrategy implements IConversionStrategy {
 	 * @var NotificationController
 	 */
 	protected $notificationController;
-
-	const LQT_ENABLE_MAGIC_WORD_REGEX = '/{{\s*#useliquidthreads:\s*0*1\s*}}/i';
-
-	const LQT_DISABLE_MAGIC_WORD = '{{#useliquidthreads:0}}';
 
 	public function __construct(
 		DatabaseBase $dbw,
@@ -134,12 +131,8 @@ class ConversionStrategy implements IConversionStrategy {
 			'date=' . MWTimestamp::getInstance()->timestamp->format( 'Y-m-d' ),
 		) );
 
-		$newWikitext = preg_replace(
-			self::LQT_ENABLE_MAGIC_WORD_REGEX,
-			'',
-			$content->getNativeData()
-		);
-		$newWikitext = self::LQT_DISABLE_MAGIC_WORD . "\n\n" . $newWikitext;
+		$newWikitext = self::removeLqtMagicWord( $content->getNativeData() );
+		$newWikitext = self::getDisableLqtMagicWord() . "\n\n" . $newWikitext;
 
 		$template = wfMessage( 'flow-importer-lqt-converted-archive-template' )->inContentLanguage()->plain();
 		$newWikitext = "{{{$template}|$arguments}}\n\n" . $newWikitext;
@@ -161,5 +154,26 @@ class ConversionStrategy implements IConversionStrategy {
 	public function shouldConvert( Title $sourceTitle ) {
 		// The expensive part of this (user-override checking) is cached by LQT.
 		return LqtDispatch::isLqtPage( $sourceTitle );
+	}
+
+	/**
+	 * Remove the LQT magic word or its localized version
+	 * @param string $content
+	 * @return string
+	 */
+	public static function removeLqtMagicWord( $content ) {
+		$patterns = array_map(
+			function( $word ) { return '/{{\\s*#' . preg_quote( $word ) . ':\\s*0*1\\s*}}/i'; },
+			array( 'useliquidthreads' ) + MagicWord::get( 'useliquidthreads' )->getSynonyms() );
+
+		return preg_replace( $patterns, '', $content );
+	}
+
+	/**
+	 * @return string The localized magic word to disable LQT on a page
+	 */
+	public static function getDisableLqtMagicWord() {
+		$magicWord = strtolower( MagicWord::get( 'useliquidthreads' )->getSynonym( 0 ) );
+		return "{{#$magicWord:0}}";
 	}
 }
