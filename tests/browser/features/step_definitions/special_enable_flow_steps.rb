@@ -38,7 +38,6 @@ Then(/^I get confirmation for enabling a new Flow board$/) do
     page.new_board_link.when_present
     expect(page.new_board_link.text).to match(@new_board_page)
   end
-  expect(on(EnableFlowConfirmationPage).new_board_link.text).to match(@new_board_page)
 end
 
 Then(/^I click on the new Flow board link$/) do
