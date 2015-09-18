@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec1af18_788728dd",
+        "filename": "Flow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-09-18T09:56:59Z",
+      "side": 1,
+      "message": "I don\u0027t think we need to clear all caches?\nThe bad index is going away (flow_revision:topic_list_history) and only 1 other index changes.",
+      "revId": "7749cb66d9bf38e81cb2f0a501df981431536f6c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_181f04bc",
+        "filename": "container.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-09-18T09:56:59Z",
+      "side": 1,
+      "message": "Increase version",
+      "revId": "7749cb66d9bf38e81cb2f0a501df981431536f6c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec1af18_b83350bf",
+        "filename": "includes/Data/Index/BoardHistoryIndex.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-09-18T09:56:59Z",
+      "side": 1,
+      "message": "No longer throws this.",
+      "revId": "7749cb66d9bf38e81cb2f0a501df981431536f6c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
