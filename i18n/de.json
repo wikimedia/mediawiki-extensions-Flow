@@ -401,6 +401,7 @@
 	"apihelp-flow-example-1": "Die Beschreibung von „[[Talk:Sandbox]]“ bearbeiten",
 	"apihelp-flow+close-open-topic-param-reason": "Grund für das Sperren oder Freigeben des Themas.",
 	"apihelp-flow+edit-header-description": "Bearbeitet die Beschreibung eines Boards.",
+	"apihelp-flow+edit-header-param-prev_revision": "Kennung der aktuellen Beschreibungsversion, die auf Bearbeitungskonflikte überprüft werden soll.",
 	"apihelp-flow+edit-header-param-content": "Inhalt für die Beschreibung.",
 	"apihelp-flow+edit-header-param-format": "Format der Beschreibung (wikitext oder html)",
 	"apihelp-flow+edit-header-example-1": "Bearbeitet die Beschreibung von [[Talk:Sandbox]]",
