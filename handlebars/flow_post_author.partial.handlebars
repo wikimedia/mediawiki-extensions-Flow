@@ -6,7 +6,7 @@
 			   class="{{#unless links.userpage.exists}}new {{/unless}}mw-userlink">
 		{{/if}}
 		{{~#if name~}}
-			{{~name~}}
+			<bdi>{{~name~}}</bdi>
 		{{~else~}}
 			{{~l10n "flow-anonymous"}}
 		{{~/if~}}
