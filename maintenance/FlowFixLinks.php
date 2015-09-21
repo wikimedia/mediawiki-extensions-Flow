@@ -33,7 +33,12 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 
 	protected function doDBUpdates() {
 		// disable Echo notifications for this script
-		global $wgEchoNotifications;
+		global $wgEchoNotifications, $wgFlowMigrateReferenceWiki;
+
+		if ( $wgFlowMigrateReferenceWiki ) {
+			$this->error( '$wgFlowMigrateReferenceWiki must be false to ensure links from the wrong wiki are not loaded.', 1 );
+		}
+
 		$wgEchoNotifications = array();
 
 		$this->removeVirtualPages();
@@ -47,7 +52,10 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 	protected function removeVirtualPages() {
 		/** @var \Flow\Data\ObjectManager $storage */
 		$storage = Container::get( 'storage.wiki_reference' );
-		$links = $storage->find( array( 'ref_target_namespace' => array( -1, -2 ) ) );
+		$links = $storage->find( array(
+			'ref_src_wiki' => wfWikiId(),
+			'ref_target_namespace' => array( -1, -2 ),
+		) );
 		if ( $links ) {
 			$storage->multiRemove( $links, array() );
 		}
