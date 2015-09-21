@@ -164,7 +164,9 @@ class BoardContent extends \AbstractContent {
 	{
 		if ( $generateHtml ) {
 			try {
-				$parserOutput = $this->generateHtml( $title, $options->getUser() );
+				global $wgUser;
+				$user = $options ? $options->getUser() : $wgUser;
+				$parserOutput = $this->generateHtml( $title, $user );
 			} catch ( UnknownWorkflowIdException $e ) {
 				// Workflow does not yet exist (may be in the process of being created)
 				$parserOutput = new ParserOutput();
