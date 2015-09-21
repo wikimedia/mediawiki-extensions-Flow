@@ -424,7 +424,10 @@ class TopicListBlock extends AbstractBlock {
 			&& $user->getOption( 'flow-topiclist-sortby' ) != $findOptions['sortby']
 		) {
 			$user->setOption( 'flow-topiclist-sortby', $findOptions['sortby'] );
-			$user->saveSettings();
+			// Save the user preferences post-send
+			\DeferredUpdates::addCallableUpdate( function() use ( $user ) {
+				$user->saveSettings();
+			} );
 		}
 
 		return $findOptions;
