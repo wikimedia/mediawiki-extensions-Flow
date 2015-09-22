@@ -73,30 +73,22 @@ class OptInController {
 			return;
 		}
 
-		wfDebugLog( 'Flow', __METHOD__ . ': start' );
-
 		// archive existing wikitext talk page
 		$linkToArchivedTalkpage = null;
 		if ( $title->exists( Title::GAID_FOR_UPDATE ) ) {
 			$wikitextTalkpageArchiveTitle = $this->archiveExistingTalkpage( $title );
-			wfDebugLog( 'Flow', __METHOD__ . ': archived existing talk page ' . $title->getPrefixedDBkey() . '(' . $title->getArticleID() . ') to ' . $wikitextTalkpageArchiveTitle->getPrefixedDBkey() . '(' . $wikitextTalkpageArchiveTitle->getArticleID() . ')' );
 			$this->addArchiveTemplate( $wikitextTalkpageArchiveTitle, $title );
 			$linkToArchivedTalkpage = $this->buildLinkToArchivedTalkpage( $wikitextTalkpageArchiveTitle );
-			wfDebugLog( 'Flow', __METHOD__ . ': link to archived page: ' . $linkToArchivedTalkpage );
 		}
 
 		// create or restore flow board
 		$archivedFlowPage = $this->findLatestFlowArchive( $title );
 		if ( $archivedFlowPage ) {
 			$this->restoreExistingFlowBoard( $archivedFlowPage, $title, $linkToArchivedTalkpage );
-			wfDebugLog( 'Flow', __METHOD__ . ': restored existing Flow board ' . $archivedFlowPage->getPrefixedDBkey() . ' (' .  $archivedFlowPage->getArticleID() . ') to ' . $title->getPrefixedDBkey() . '(' .  $title->getArticleID() . ')' );
 		} else {
 			$this->createFlowBoard( $title, $linkToArchivedTalkpage );
-			wfDebugLog( 'Flow', __METHOD__ . ': created new Flow board: ' . $title->getPrefixedDBkey() . ' (' . $title->getArticleID() . ')' );
 			$this->notificationController->notifyFlowEnabledOnTalkpage( $user );
 		}
-
-		wfDebugLog( 'Flow', __METHOD__ . ': done' );
 	}
 
 	/**
@@ -107,23 +99,17 @@ class OptInController {
 			return;
 		}
 
-		wfDebugLog( 'Flow', __METHOD__ . ': start' );
-
 		// archive the flow board
 		$flowArchiveTitle = $this->findNextFlowArchive( $title );
 		$this->movePage( $title, $flowArchiveTitle );
-		wfDebugLog( 'Flow', __METHOD__ . ': archived existing Flow board ' . $title->getPrefixedDBkey() . '(' . $title->getArticleID() . ') to ' . $flowArchiveTitle->getPrefixedDBkey() . '(' . $flowArchiveTitle->getArticleID() . ')' );
 		$this->removeArchivedTalkpageTemplateFromFlowBoardDescription( $flowArchiveTitle );
 
 		// restore the original wikitext talk page
 		$archivedTalkpage = $this->findLatestArchive( $title );
 		if ( $archivedTalkpage ) {
 			$this->movePage( $archivedTalkpage, $title );
-			wfDebugLog( 'Flow', __METHOD__ . ': restored existing talk page ' . $archivedTalkpage->getPrefixedDBkey() . '(' . $archivedTalkpage->getArticleID() . ') to ' . $title->getPrefixedDBkey() . '(' . $title->getArticleID() . ')' );
 			$this->removeArchiveTemplateFromWikitextTalkpage( $title );
 		}
-
-		wfDebugLog( 'Flow', __METHOD__ . ': done' );
 	}
 
 	/**
@@ -330,7 +316,6 @@ class OptInController {
 		$this->movePage( $archivedFlowPage, $title );
 
 		if ( $addToHeader ) {
-			wfDebugLog( 'Flow', __METHOD__ . ': adding to description: ' . var_export( $addToHeader, true ) );
 			$this->editBoardDescription( $title, function( $oldDesc ) use ( $addToHeader ) {
 				return $oldDesc . "\n\n" . $addToHeader;
 			}, 'wikitext' );
@@ -432,11 +417,9 @@ class OptInController {
 		 * manually convert the content.
 		 */
 		$content = $revision->getContentRaw();
-		wfDebugLog( 'Flow', __METHOD__ . ': existing description: ' . var_export( $content, true ) );
 		$content = Utils::convert( $revision->getContentFormat(), $format, $content, $title );
 
 		$newDescription = call_user_func( $newDescriptionCallback, $content );
-		wfDebugLog( 'Flow', __METHOD__ . ': new description: ' . var_export( $newDescription, true ) );
 
 		$action = 'edit-header';
 		$params = array(
@@ -471,8 +454,7 @@ class OptInController {
 			}
 		}
 
-		$result = $loader->commit( $blocksToCommit );
-		wfDebugLog( 'Flow', __METHOD__ . ': header committed: ' . var_export( $result, true ) );
+		$loader->commit( $blocksToCommit );
 	}
 
 	/**
