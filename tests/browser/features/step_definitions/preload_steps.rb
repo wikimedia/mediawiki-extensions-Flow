@@ -23,6 +23,9 @@ end
 
 Then(/^the content is preloaded$/) do
   on(AbstractFlowPage) do |page|
+    page.wait_until do
+      page.new_topic_body_element.when_present.text
+    end
     expect(page.new_topic_body_element.when_present.text).to eq @content_to_preload
   end
 end
