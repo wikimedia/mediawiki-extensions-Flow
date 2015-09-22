@@ -27,7 +27,7 @@
 
 		init: function () {
 			var editorList = mw.config.get( 'wgFlowEditorList' ),
-				index = editorList.indexOf( mw.user.options.get( 'flow-editor' ) );
+				index = editorList.indexOf( 'none' );
 
 			// determine editor instance to use, depending on availability
 			mw.flow.editor.loadEditor( index );
