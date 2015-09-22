@@ -408,11 +408,17 @@ class OptInController {
 
 		$collection = HeaderCollection::newFromId( $workflowId );
 		$revision = $collection->getLastRevision();
-		$content = $revision->getContent();
 
-		if ( $format === 'wikitext' ) {
-			$content = Utils::convert( 'html', 'wikitext', $content, $title );
-		}
+		/*
+		 * We could just do $revision->getContent( $format ), but that
+		 * may need to find $title in order to convert.
+		 * We already know $title (and don't want to risk it being used
+		 * in a way it stores lagging slave data), so let's just
+		 * manually convert the content.
+		 */
+		$content = $revision->getContentRaw();
+		$content = Utils::convert( $revision->getContentFormat(), $format, $content, $title );
+
 		$newDescription = call_user_func( $newDescriptionCallback, $content );
 
 		$action = 'edit-header';
@@ -424,7 +430,7 @@ class OptInController {
 			),
 		);
 
-		/** @var WorkflowLoaderFactory $loader */
+		/** @var WorkflowLoaderFactory $factory */
 		$factory = Container::get( 'factory.loader.workflow' );
 
 		/** @var WorkflowLoader $loader */
