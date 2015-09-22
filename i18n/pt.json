@@ -13,7 +13,8 @@
 			"He7d3r",
 			"Imperadeiro90",
 			"Opraco",
-			"Macofe"
+			"Macofe",
+			"Cainamarques"
 		]
 	},
 	"enableflow": "Ativar Flow",
@@ -461,7 +462,7 @@
 	"flow-undo-edit-post": "A editar mensagem",
 	"flow-undo-edit-content": "É possível desfazer a edição. Verifique a comparação abaixo, para se certificar que corresponde ao que pretende fazer. Depois grave as alterações, para finalizar e desfazer a edição.",
 	"flow-undo-edit-failure": "Não foi possível desfazer a edição por conflito com alterações intermédias.",
-	"group-flow-bot": "Flow bots",
+	"group-flow-bot": "Bots para o Flow",
 	"group-flow-bot-member": "Flow bot",
 	"grouppage-flow-bot": "Project:Flow bots",
 	"flow-ve-mention-context-item-label": "Mencionar",

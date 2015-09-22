@@ -78,7 +78,7 @@
 	"flow-suppress-post-content": "Ce commentaire a été {{GENDER:$1|supprimé}} par $1 ([$2 historique])",
 	"flow-suppress-title-content": "Le sujet a été {{GENDER:$1|supprimé}} par $1",
 	"flow-suppress-header-content": "{{GENDER:$1|Masqué}} par $2",
-	"flow-suppress-usertext": "<em>Nom d’{{GENDER:$1|utilisateur|utilisatrice}} masqué</em>",
+	"flow-suppress-usertext": "<em>Nom d’utilisateur masqué</em>",
 	"flow-post-actions": "Actions",
 	"flow-topic-actions": "Actions",
 	"flow-cancel": "Annuler",
