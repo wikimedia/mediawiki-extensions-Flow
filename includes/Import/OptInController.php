@@ -133,7 +133,7 @@ class OptInController {
 	 * @param Title $from
 	 * @param Title $to
 	 */
-	private function movePage( Title $from, Title &$to ) {
+	private function movePage( Title $from, Title $to ) {
 		$mp = new MovePage( $from, $to );
 		$mp->move( $this->user, null, false );
 
@@ -154,14 +154,10 @@ class OptInController {
 		$linkCache->addBadLinkObj( $from );
 
 		/*
-		 * WikiPage::updateRevisionOn (called form MovePage::moveToInternal)
-		 * updates LinkCache for $to. We're still stuck with the $to object,
-		 * which has cached the article ID.
-		 * We've accepted $to by-ref, so we'll just overwrite the object
-		 * with one that's unaware of its article ID, so it'll go look in
-		 * LinkCache once requested.
+		 * Force id cached inside $title to be updated, as well as info
+		 * inside LinkCache.
 		 */
-		$to = Title::newFromDBkey( $to->getPrefixedDBkey() );
+		$to->getArticleID( Title::GAID_FOR_UPDATE );
 	}
 
 	/**
