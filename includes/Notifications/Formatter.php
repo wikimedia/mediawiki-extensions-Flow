@@ -57,9 +57,15 @@ class NotificationFormatter extends EchoBasicFormatter {
 			$message->params( $anchor->getFullUrl() );
 		} elseif ( $param === 'new-topics-permalink' ) {
 			// link to board sorted by newest topics
-			$anchor = $this->getUrlGenerator()->boardLink( $event->getTitle(), 'newest' );
-			$anchor->query['fromnotif'] = 1;
-			$message->params( $anchor->getFullUrl() );
+			$title  = $event->getTitle();
+			if ( $title ) {
+				$anchor = $this->getUrlGenerator()->boardLink( $title, 'newest' );
+				$anchor->query['fromnotif'] = 1;
+				$message->params( $anchor->getFullUrl() );
+			} else {
+				$msg =  'Flow Formatter::' . __METHOD__ . ": Param:" . $param . ' Echo event does not contain a title: ' . var_export( $event, true );
+				wfLogWarning( $msg );
+			}
 		} elseif ( $param == 'flow-title' ) {
 			$title = $event->getTitle();
 			if ( $title ) {
