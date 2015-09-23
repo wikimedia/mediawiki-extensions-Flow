@@ -6,5 +6,6 @@
 			"Sarvaturi"
 		]
 	},
-	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|ringrazzia}}}}"
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|ringrazzia}}}}",
+	"flow": "Flussu"
 }
