@@ -398,11 +398,20 @@ class OptInController {
 		 * need to read from master here.
 		 * We'll need WorkflowLoader further down anyway, but we'll
 		 * then have the correct workflow ID to initialize it with!
+		 *
+		 * $title->getLatestRevId() should be fine, it'll be read from
+		 * LinkCache, which has been updated.
+		 * Revision::newFromId will try slave first. If it can't find
+		 * the id, it'll try to find it on master.
 		 */
-		$page = WikiPage::newFromID( $title->getArticleID(), WikiPage::READ_LATEST );
-		$content = $page->getContent();
+		$revId = $title->getLatestRevID();
+		$revision = Revision::newFromId( $revId );
+		$content = $revision->getContent();
 		if ( !$content instanceof BoardContent ) {
-			throw new InvalidDataException( 'Could not find board page for ' . $title->getPrefixedDBkey() );
+			throw new InvalidDataException(
+				'Could not find board page for ' . $title->getPrefixedDBkey() . ' (id: ' . $title->getArticleID() . ').' .
+				'Found content: ' . var_export( $content, true )
+			);
 		}
 		$workflowId = $content->getWorkflowId();
 

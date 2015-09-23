@@ -62,7 +62,7 @@ class BoardContentHandler extends \ContentHandler {
 	 * @param string $blob Serialized form of the content
 	 * @param string $format The format used for serialization
 	 *
-	 * @return Content The Content object created by deserializing $blob
+	 * @return BoardContent The Content object created by deserializing $blob
 	 */
 	public function unserializeContent( $blob, $format = null ) {
 		$info = FormatJson::decode( $blob, true );
