@@ -73,6 +73,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 		$iterator->setFetchColumns( array( '*' ) );
 		$iterator->addConditions( array( 'workflow_wiki' => wfWikiId() ) );
 
+		$count = 0;
 		foreach ( $iterator as $rows ) {
 			$dbw->begin();
 
@@ -95,7 +96,8 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 
 			$dbw->commit();
 
-			$this->output( "Rebuilt links for " . count( $rows ) . " workflows...\n" );
+			$count += count( $rows );
+			$this->output( "Rebuilt links for " . $count . " workflows...\n" );
 			wfWaitForSlaves();
 		}
 	}
