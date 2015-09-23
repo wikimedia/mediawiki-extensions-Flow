@@ -177,7 +177,8 @@ abstract class AbstractQuery {
 			/** @var AbstractRevision[] $result */
 			foreach ( $found as $result ) {
 				$rev = reset( $result );
-				$this->currentRevisionsCache[$rev->getCollectionId()->getAlphadecimal()] = $rev->getRevisionId();
+				$cacheKey = $this->getCurrentRevisionCacheKey( $rev );
+				$this->currentRevisionsCache[$cacheKey] = $rev->getRevisionId();
 				$revisions[$rev->getRevisionId()->getAlphadecimal()] = $rev;
 			}
 		}
@@ -328,15 +329,15 @@ abstract class AbstractQuery {
 	 * @return AbstractRevision|null      AbstractRevision of the current revision.
 	 */
 	protected function getCurrentRevision( AbstractRevision $revision ) {
-		$collectionId = $revision->getCollectionId();
-		if ( !isset( $this->currentRevisionsCache[$collectionId->getAlphadecimal()] ) ) {
+		$cacheKey = $this->getCurrentRevisionCacheKey( $revision );
+		if ( !isset( $this->currentRevisionsCache[$cacheKey] ) ) {
 			$currentRevision = $revision->getCollection()->getLastRevision();
 
-			$this->currentRevisionsCache[$collectionId->getAlphadecimal()] = $currentRevision->getRevisionId();
+			$this->currentRevisionsCache[$cacheKey] = $currentRevision->getRevisionId();
 			$this->revisionCache[$currentRevision->getRevisionId()->getAlphadecimal()] = $currentRevision;
 		}
 
-		$currentRevisionId = $this->currentRevisionsCache[$collectionId->getAlphadecimal()];
+		$currentRevisionId = $this->currentRevisionsCache[$cacheKey];
 		return $this->revisionCache[$currentRevisionId->getAlphaDecimal()];
 	}
 
@@ -396,6 +397,14 @@ abstract class AbstractQuery {
 		} else {
 			return $this->workflowCache[$alpha] = $this->storage->get( 'Workflow', $workflowId );
 		}
+	}
+
+	/**
+	 * @param AbstractRevision $revision
+	 * @return string
+	 */
+	protected function getCurrentRevisionCacheKey( AbstractRevision $revision ) {
+		return $revision->getRevisionType() . '-' . $revision->getCollectionId()->getAlphadecimal();
 	}
 }
 
