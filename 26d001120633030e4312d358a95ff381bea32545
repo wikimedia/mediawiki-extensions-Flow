@@ -16,6 +16,24 @@
       "revId": "26d001120633030e4312d358a95ff381bea32545",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ecb373e_e3764d39",
+        "filename": "includes/Formatter/BoardHistoryQuery.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-09-23T15:54:30Z",
+      "side": 1,
+      "message": "After clearing cache, it\u0027s fine again and all keys are UUIDs.\nUntil adding another reply, at which point all keys are 0, 1, 2, ...",
+      "parentUuid": "2ecb373e_838c293c",
+      "revId": "26d001120633030e4312d358a95ff381bea32545",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
