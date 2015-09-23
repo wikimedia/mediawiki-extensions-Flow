@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2ecb373e_e5abba19",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-09-23T00:50:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ecb373e_ce84a3b8",
+      "revId": "fffbb5ed3bfba6a03c2d01b1346b9d02ac4a5bc8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ecb373e_2e1be783",
         "filename": "modules/flow/dm/api/mw.flow.dm.APIHandler.js",
         "patchSetId": 17
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "2ecb373e_c558fe5b",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIHandler.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-09-23T00:50:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ecb373e_2e1be783",
+      "revId": "fffbb5ed3bfba6a03c2d01b1346b9d02ac4a5bc8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ecb373e_f13940cc",
         "filename": "modules/flow/dm/api/mw.flow.dm.APIHandler.js",
         "patchSetId": 17
@@ -47,6 +83,24 @@
       "writtenOn": "2015-09-22T23:43:42Z",
       "side": 1,
       "message": "This doesn\u0027t work. In order for xhr.abort to be set, you have to assign to xhr without chaining:\n\n    xhr \u003d this.postEdit( ... );\n    return xhr.then( ... ).promise( { abort: xhr.abort } );",
+      "revId": "fffbb5ed3bfba6a03c2d01b1346b9d02ac4a5bc8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ecb373e_055fe645",
+        "filename": "modules/flow/dm/api/mw.flow.dm.APIHandler.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-09-23T00:50:34Z",
+      "side": 1,
+      "message": "Yeah, I copied that from above but it doesn\u0027t seem useful. I\u0027ve cleaned that up.",
+      "parentUuid": "2ecb373e_f13940cc",
       "revId": "fffbb5ed3bfba6a03c2d01b1346b9d02ac4a5bc8",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
