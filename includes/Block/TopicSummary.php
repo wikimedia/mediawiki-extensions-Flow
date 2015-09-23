@@ -278,7 +278,7 @@ class TopicSummaryBlock extends AbstractBlock {
 				}
 				$oldRevision = null;
 				if ( isset( $options['oldRevision'] ) ) {
-					$oldRevision = $options['newRevision'];
+					$oldRevision = $options['oldRevision'];
 				}
 				list( $new, $old ) = Container::get( 'query.postsummary.view' )->getDiffViewResult( UUID::create( $options['newRevision'] ), UUID::create( $oldRevision ) );
 				if (

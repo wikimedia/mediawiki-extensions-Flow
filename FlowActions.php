@@ -133,7 +133,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => '',
 			PostRevision::MODERATED_LOCKED => '',
 		),
-		'links' => array( 'topic', 'topic-history', 'watch-topic', 'unwatch-topic', 'summary-revision' ),
+		'links' => array( 'topic', 'topic-history', 'diff-post-summary', 'watch-topic', 'unwatch-topic', 'summary-revision' ),
 		'actions' => array( 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-create-topic-summary',
