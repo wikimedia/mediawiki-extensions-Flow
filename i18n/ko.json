@@ -69,13 +69,14 @@
 	"flow-newtopic-content-placeholder": "\"$1\"에 새 메시지 남기기",
 	"flow-newtopic-header": "새 항목 추가",
 	"flow-newtopic-save": "새 항목",
+	"flow-newtopic-save-anonymously": "익명으로 주제 추가",
 	"flow-newtopic-start-placeholder": "새 주제 시작하기",
 	"flow-newtopic-first-heading": "$1에 새 주제 시작하기",
 	"flow-summarize-topic-placeholder": "이 토론을 요약해 주세요",
 	"flow-reply-topic-placeholder": "$1의 \"$2\"에 대한 의견",
 	"flow-reply-topic-title-placeholder": "\"$1\"에 답변하기",
 	"flow-reply-link": "{{GENDER:$1|답변}}",
-	"flow-thank-link": "{{GENDER:$1|감사합니다}}",
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|감사합니다}}}}",
 	"flow-history-action-suppress-post": "숨기기",
 	"flow-history-action-delete-post": "삭제",
 	"flow-history-action-hide-post": "숨기기",
@@ -119,7 +120,6 @@
 	"flow-error-http": "서버와 만나는 동안 오류가 발생했습니다.",
 	"flow-error-other": "예기치 않은 오류가 발생했습니다.",
 	"flow-error-external": "오류가 발생했습니다.<br />받은 오류 메시지는: $1",
-	"flow-error-edit-restricted": "이 문서의 편집을 허용하지 않습니다.",
 	"flow-error-external-multi": "오류가 발생했습니다.<br />$1",
 	"flow-error-missing-content": "게시물에 내용이 없습니다. 게시물을 저장하려면 내용이 있어야 합니다.",
 	"flow-error-missing-summary": "편집 요약에 내용이 없습니다. 요약을 저장하려면 내용이 있어야 합니다.",
@@ -378,5 +378,7 @@
 	"flow-mark-revision-patrolled-link-text": "이 문서를 점검한 것으로 표시",
 	"flow-mark-revision-patrolled-link-title": "이 문서를 점검한 것으로 표시",
 	"flow-mark-diff-patrolled-link-text": "점검한 문서로 표시",
-	"flow-mark-diff-patrolled-link-title": "점검한 문서로 표시"
+	"flow-mark-diff-patrolled-link-title": "점검한 문서로 표시",
+	"flow-dialog-cancelconfirm-title": "확실합니까?",
+	"flow-dialog-cancelconfirm-discard": "바뀜 버리기"
 }

@@ -18,7 +18,8 @@
 			"Batumski brodyaga",
 			"Dicto23456",
 			"Дмитрий",
-			"Amire80"
+			"Amire80",
+			"INS Pirat"
 		]
 	},
 	"enableflow": "Включить Поток",
@@ -71,12 +72,14 @@
 	"flow-newtopic-content-placeholder": "Разместите новое сообщение на «$1»",
 	"flow-newtopic-header": "Добавить новую тему",
 	"flow-newtopic-save": "Добавить тему",
+	"flow-newtopic-save-anonymously": "Добавить тему анонимно",
 	"flow-newtopic-start-placeholder": "Начать новую тему",
 	"flow-newtopic-first-heading": "Начать новую тему на странице $1",
 	"flow-summarize-topic-placeholder": "Пожалуйста, кратко опишите содержание этого обсуждения",
 	"flow-reply-topic-placeholder": "{{GENDER:$1|Комментарий}} в «$2»",
 	"flow-reply-topic-title-placeholder": "Ответ на «$1»",
 	"flow-reply-link": "{{GENDER:$1|Ответить}}",
+	"flow-reply-link-anonymously": "Ответить анонимно",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Поблагодарить}}}}",
 	"flow-thank-link-title": "Публично {{GENDER:$1|{{GENDER:$2|поблагодарить}}}} автора сообщения",
 	"flow-history-action-suppress-post": "подавить",
@@ -189,6 +192,7 @@
 	"flow-error-unknown-workflow-id": "Запрошенная тема не существует.",
 	"flow-edit-header-placeholder": "Опишите эту доску обсуждений",
 	"flow-edit-header-submit": "Сохранить описание",
+	"flow-edit-header-submit-anonymously": "Сохранить описание анонимно",
 	"flow-edit-title-submit": "Изменить заголовок",
 	"flow-edit-post-submit": "Подтвердить изменения",
 	"flow-rev-message-edit-post": "$1 отредактировал{{GENDER:$2||а}} [$3  комментарий] в «$4»",
@@ -510,5 +514,8 @@
 	"flow-talk-page-beta-feature-message": "Поток на странице обсуждения участни{{GENDER:|ка|цы}}",
 	"flow-talk-page-beta-feature-description": "Включает новую систему структурированного обсуждения на вашей странице обсуждения участни{{GENDER:|ка|цы}}. Поток упрощает дискуссии на страницe обсуждения, добавляет понятные места где писать и где отвечать, и обеспечивает уведомления для каждого разговора. Существующие обсуждения на вики-тексте будут перемещены в архив. Эта функция не включается автоматически; участники должны будут самостоятельно включить его отдельно. Отключение этой функции переименует доску Потока в подстраницу и разархивирует предыдущую страницу обсуждения.",
 	"flow-notification-enabled-on-talkpage-email-batch-body": "Поток, новая система обсуждений в вики, была включена на вашей странице обсуждения участни{{GENDER:$1|ка|цы}} в {{SITENAME}}. Вы можете получить более подробную информацию, оставить отзыв или отключить новую систему в любое время из бета-функций в разделе ваших настроек.",
+	"flow-dialog-cancelconfirm-title": "Вы уверены?",
+	"flow-dialog-cancelconfirm-message": "Вы уверены, что хотите отменить без сохранения?",
+	"flow-dialog-cancelconfirm-keep": "Продолжить редактирование",
 	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Ваша}} страница обсуждения - это место, где другие редакторы могут связаться с {{GENDER:$1|вами}}. С Потоком легче начинать новые темы и продолжать отслеживать разговоры."
 }

@@ -379,5 +379,7 @@
 	"flow-wikitext-editor-help-and-preview": "Wikitext $1 e si può fare $2 in qualsiasi momento.",
 	"flow-wikitext-editor-help-preview-the-result": "anteprima del risultato",
 	"flow-wikitext-switch-editor-tooltip": "Passa a VisualEditor",
+	"flow-notification-enabled-on-talkpage-title": "Nuovo sistema di discussione abilitato per la {{GENDER:$1|tua}} pagina discussione utente<br /><small>Disponibile su [[$2]]</small>",
+	"flow-notification-enabled-on-talkpage-email-subject-message": "Nuovo sistema di discussione su $2",
 	"flow-dialog-cancelconfirm-discard": "Ignorare modifiche"
 }
