@@ -129,6 +129,8 @@
 	 * @inheritdoc
 	 */
 	mw.flow.ui.VisualEditorWidget.prototype.teardown = function () {
+		// HACK: ensure target is not disabled, otherwise destroying the surface breaks (T113382)
+		this.target.setDisabled( false );
 		this.target.clearSurfaces();
 		return $.Deferred().resolve().promise();
 	};
