@@ -71,6 +71,7 @@ end
 
 Then(/^the board description contains the templates from my talk page$/) do
   on(AbstractFlowPage) do |page|
+    page.refresh_until { page.description.content_element.visible? }
     description = page.description.content_element.when_present.text
     expect(description).to match 'Template:Template before first heading'
     expect(description).to_not match 'Template:Template after first heading'
