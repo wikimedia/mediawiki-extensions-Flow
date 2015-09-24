@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ecb373e_12f5d8c7",
+        "filename": "includes/View.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-09-24T01:00:32Z",
+      "side": 1,
+      "message": "If $value looks like \"Category:Foo\", then the link caption should be \"Foo\". If $value looks like \"Foo\", then $categoryTitle is constructed wrong (refers to Foo rather than Category:Foo).",
+      "revId": "4a2e86be424fae6992a039afb2d15e65739d0d83",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ecb373e_72277c60",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 18
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-09-24T01:00:32Z",
+      "side": 1,
+      "message": "You\u0027re so close to being able to reuse setCategoriesFromObject here, would it be worth refactoring it a bit so you can?",
+      "revId": "4a2e86be424fae6992a039afb2d15e65739d0d83",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ecb373e_d21510eb",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 18
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-09-24T01:00:32Z",
+      "side": 1,
+      "message": "This seems like a great place to use setCategoriesFromObject() (which is unused right now!)",
+      "revId": "4a2e86be424fae6992a039afb2d15e65739d0d83",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ecb373e_f2128c00",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 18
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-09-24T01:00:32Z",
+      "side": 1,
+      "message": "Why is this necessary? Does CategoriesWidget not have an empty rendering when there are no categories?",
+      "revId": "4a2e86be424fae6992a039afb2d15e65739d0d83",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ecb373e_b2dc044d",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.CategoriesWidget.js",
+        "patchSetId": 18
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-09-24T01:00:32Z",
+      "side": 1,
+      "message": "Why doesn\u0027t a CategoryItemWidget take a CategoryItem? It shouldn\u0027t be this code\u0027s job to unpack the information in dm.CategoryItem.",
+      "revId": "4a2e86be424fae6992a039afb2d15e65739d0d83",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
