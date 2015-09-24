@@ -101,13 +101,15 @@ class OptInController {
 
 		// archive the flow board
 		$flowArchiveTitle = $this->findNextFlowArchive( $title );
-		$this->movePage( $title, $flowArchiveTitle );
+		$archiveReason = wfMessage( 'flow-optin-archive-flow-board' )->inContentLanguage()->text();
+		$this->movePage( $title, $flowArchiveTitle, $archiveReason );
 		$this->removeArchivedTalkpageTemplateFromFlowBoardDescription( $flowArchiveTitle );
 
 		// restore the original wikitext talk page
 		$archivedTalkpage = $this->findLatestArchive( $title );
 		if ( $archivedTalkpage ) {
-			$this->movePage( $archivedTalkpage, $title );
+			$restoreReason = wfMessage( 'flow-optin-restore-wikitext' )->inContentLanguage()->text();
+			$this->movePage( $archivedTalkpage, $title , $restoreReason);
 			$this->removeArchiveTemplateFromWikitextTalkpage( $title );
 		}
 	}
@@ -132,10 +134,11 @@ class OptInController {
 	/**
 	 * @param Title $from
 	 * @param Title $to
+	 * @param string $reason
 	 */
-	private function movePage( Title $from, Title $to ) {
+	private function movePage( Title $from, Title $to, $reason = '' ) {
 		$mp = new MovePage( $from, $to );
-		$mp->move( $this->user, null, false );
+		$mp->move( $this->user, $reason, false );
 
 		/*
 		 * Article IDs are cached inside title objects. Since we'll be
@@ -299,7 +302,8 @@ class OptInController {
 	 */
 	private function archiveExistingTalkpage( Title $title ) {
 		$archiveTitle = $this->findNextArchive( $title );
-		$this->movePage( $title, $archiveTitle );
+		$archiveReason = wfMessage( 'flow-optin-archive-wikitext' )->inContentLanguage()->text();
+		$this->movePage( $title, $archiveTitle, $archiveReason );
 		return $archiveTitle;
 	}
 
@@ -309,7 +313,8 @@ class OptInController {
 	 * @param string|null $addToHeader
 	 */
 	private function restoreExistingFlowBoard( Title $archivedFlowPage, Title $title, $addToHeader = null ) {
-		$this->movePage( $archivedFlowPage, $title );
+		$restoreReason = wfMessage( 'flow-optin-restore-flow-board' )->inContentLanguage()->text();
+		$this->movePage( $archivedFlowPage, $title, $restoreReason );
 
 		if ( $addToHeader ) {
 			$this->editBoardDescription( $title, function( $oldDesc ) use ( $addToHeader ) {
