@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ecb373e_f0bcbf1c",
+        "filename": "i18n/en.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2015-09-24T16:14:15Z",
+      "side": 1,
+      "message": "* I think it\u0027s \"make room\". You translated \"ruimte maken\" literally, I think ;).\n* add an article for \"discussion board\"\n\n Move wikitext page to make room for a discussion board.",
+      "revId": "d11b1bec1c3340fe2b2e4519acf5ad75ff50a87c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ecb373e_5097d393",
+        "filename": "i18n/en.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2015-09-24T16:14:15Z",
+      "side": 1,
+      "message": "* I think it\u0027s \"make room\". You translated \"ruimte maken\" literally, I think ;).\n* add an article for \"wikitext page\"\n\n Move discussion board page to make room for a wikitext page.",
+      "revId": "d11b1bec1c3340fe2b2e4519acf5ad75ff50a87c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ecb373e_f0935fa4",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2015-09-24T16:14:15Z",
+      "side": 1,
+      "message": "place -\u003e room\n\nAlso below.",
+      "revId": "d11b1bec1c3340fe2b2e4519acf5ad75ff50a87c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
