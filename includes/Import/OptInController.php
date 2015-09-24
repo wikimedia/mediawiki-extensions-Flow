@@ -16,6 +16,8 @@ use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
 use IContextSource;
 use MovePage;
+use Parser;
+use ParserOptions;
 use RequestContext;
 use Revision;
 use Title;
@@ -75,7 +77,9 @@ class OptInController {
 
 		// archive existing wikitext talk page
 		$linkToArchivedTalkpage = null;
+		$templatesFromTalkpage = null;
 		if ( $title->exists( Title::GAID_FOR_UPDATE ) ) {
+			$templatesFromTalkpage = $this->extractTemplatesAboveFirstSection( $title );
 			$wikitextTalkpageArchiveTitle = $this->archiveExistingTalkpage( $title );
 			$this->addArchiveTemplate( $wikitextTalkpageArchiveTitle, $title );
 			$linkToArchivedTalkpage = $this->buildLinkToArchivedTalkpage( $wikitextTalkpageArchiveTitle );
@@ -86,7 +90,7 @@ class OptInController {
 		if ( $archivedFlowPage ) {
 			$this->restoreExistingFlowBoard( $archivedFlowPage, $title, $linkToArchivedTalkpage );
 		} else {
-			$this->createFlowBoard( $title, $linkToArchivedTalkpage );
+			$this->createFlowBoard( $title, $templatesFromTalkpage . "\n\n" . $linkToArchivedTalkpage );
 			$this->notificationController->notifyFlowEnabledOnTalkpage( $user );
 		}
 	}
@@ -502,6 +506,25 @@ class OptInController {
 			$title,
 			Utils::convert( 'html', 'wikitext', $newContent, $title ),
 			wfMessage( 'flow-beta-feature-remove-archive-template-edit-summary' )->inContentLanguage()->plain());
+	}
+
+	/**
+	 * @param Title $title
+	 * @return string
+	 */
+	private function extractTemplatesAboveFirstSection( Title $title ) {
+		$content = $this->getContent( $title );
+		if ( !$content ) {
+			return '';
+		}
+
+		$parser = new Parser();
+		$output = $parser->parse( $content, $title, new ParserOptions );
+		$sections = $output->getSections();
+		if ( $sections ) {
+			$content = substr( $content, 0, $sections[0]['byteoffset'] );
+		}
+		return TemplateHelper::extractTemplates( $content, $title );
 	}
 
 }

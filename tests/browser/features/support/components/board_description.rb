@@ -21,6 +21,6 @@ class BoardDescription
   # If page has an archive template from a flow conversion
   # find the link
   link(:archive_link) do
-    content_element.link_element
+    content_element.link_element(text: /Archive/)
   end
 end
