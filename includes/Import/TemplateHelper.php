@@ -6,6 +6,7 @@ use DOMDocument;
 use DOMElement;
 use DOMXPath;
 use Flow\Parsoid\Utils;
+use Title;
 
 class TemplateHelper {
 
@@ -61,6 +62,28 @@ class TemplateHelper {
 		foreach ( $aboutNodes as $aboutNode ) {
 			$aboutNode->parentNode->removeChild( $aboutNode );
 		}
+	}
+
+	/**
+	 * Extract templates from wikitext content.
+	 * Requires Parsoid to reliably extract templates.
+	 *
+	 * @param string $content
+	 * @param Title $title
+	 * @return string
+	 */
+	public static function extractTemplates( $content, Title $title ) {
+		$content = Utils::convert( 'wikitext', 'html', $content, $title );
+		$dom = Utils::createDOM( $content );
+		$xpath = new \DOMXPath( $dom );
+		$templates = $xpath->query( '//*[@typeof="mw:Transclusion"]' );
+
+		$content = '';
+		foreach ( $templates as $template ) {
+			$content .= $dom->saveHTML( $template ) . "\n";
+		}
+
+		return Utils::convert( 'html', 'wikitext', $content, $title );
 	}
 
 }

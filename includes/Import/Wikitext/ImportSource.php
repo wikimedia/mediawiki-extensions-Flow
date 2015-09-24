@@ -3,6 +3,7 @@
 namespace Flow\Import\Wikitext;
 
 use ArrayIterator;
+use Flow\Import\TemplateHelper;
 use Flow\Parsoid\Utils;
 use FlowHooks;
 use Flow\Import\ImportException;
@@ -63,7 +64,7 @@ class ImportSource implements IImportSource {
 			$content = substr( $content, 0, $sections[0]['byteoffset'] );
 		}
 
-		$content = $this->extractTemplates( $content );
+		$content = TemplateHelper::extractTemplates( $content, $this->title );
 
 		$template = wfMessage( 'flow-importer-wt-converted-template' )->inContentLanguage()->plain();
 		$arguments = implode( '|', array(
@@ -85,27 +86,6 @@ class ImportSource implements IImportSource {
 			) ),
 			"wikitext-import:header:{$this->title->getPrefixedText()}"
 		);
-	}
-
-	/**
-	 * Only extract templates to copy to Flow description.
-	 * Requires Parsoid, to reliably extract templates.
-	 *
-	 * @param string $content
-	 * @return string
-	 */
-	protected function extractTemplates( $content ) {
-		$content = Utils::convert( 'wikitext', 'html', $content, $this->title );
-		$dom = Utils::createDOM( $content );
-		$xpath = new \DOMXPath( $dom );
-		$templates = $xpath->query( '//*[@typeof="mw:Transclusion"]' );
-
-		$content = '';
-		foreach ( $templates as $template ) {
-			$content .= $dom->saveHTML( $template ) . "\n";
-		}
-
-		return Utils::convert( 'html', 'wikitext', $content, $this->title );
 	}
 
 	/**
