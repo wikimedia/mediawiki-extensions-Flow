@@ -19,6 +19,7 @@ Feature: Opt-in Flow beta feature
     When I enable Flow beta feature
     Then my talk page is a Flow board
     And my flow board contains a link to my archived talk page
+    And the board description contains the templates from my talk page
     And my previous talk page is archived
 
   Scenario: Opt-out: I didn't have a talk page

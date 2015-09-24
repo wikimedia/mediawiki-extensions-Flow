@@ -4,7 +4,11 @@ end
 
 Given(/^I have an existing talk page$/) do
   @new_board_page = @data_manager.get_talk 'Test_Prefilled_Random_Board'
-  api.create_page @new_board_page, '<p class="flow-test-archive-content">Some wikitext here.</p>'
+  content = "<p class=\"flow-test-archive-content\">Some wikitext here.</p>"
+  content += "\n\n{{template_before_first_heading}}"
+  content += "\n\n== this is the first section =="
+  content += "\n\n{{template_after_first_heading}}"
+  api.create_page @new_board_page, content
 end
 
 When(/^I enable a new Flow board on the talk page$/) do
@@ -62,5 +66,13 @@ end
 Then(/^I see the custom header$/) do
   on(AbstractFlowPage) do |page|
     page.description.content_element.when_present.text.should match @custom_header
+  end
+end
+
+Then(/^the board description contains the templates from my talk page$/) do
+  on(AbstractFlowPage) do |page|
+    description = page.description.content_element.when_present.text
+    expect(description).to match 'Template:Template before first heading'
+    expect(description).to_not match 'Template:Template after first heading'
   end
 end

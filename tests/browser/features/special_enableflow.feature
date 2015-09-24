@@ -29,5 +29,6 @@ Feature: Flow Special:EnableFlow enables new flow boards
     Then I get confirmation for enabling a new Flow board
     And I click on the new Flow board link
     And The page I am on is a Flow board
+    And the board description contains the templates from my talk page
     And I click the archive link
     And The archive contains the original text

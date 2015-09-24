@@ -23,8 +23,12 @@ end
 
 Given(/^my talk page has wiktext content$/) do
   talk_page = "User_talk:#{@username}"
-  @talk_page_content = 'this is the content of my talk page'
-  api.create_page talk_page, @talk_page_content
+  @talk_page_content = "this is the content of my talk page"
+  content = @talk_page_content
+  content += "\n{{template_before_first_heading}}"
+  content += "\n== this is the first section =="
+  content += "\n{{template_after_first_heading}}"
+  api.create_page talk_page, content
 end
 
 Then(/^my previous talk page is archived$/) do
