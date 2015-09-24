@@ -17,7 +17,7 @@ end
 
 Then(/^my talk page is a Flow board$/) do
   visit(UserTalkPage, using_params: { username: @username }) do |page|
-    page.flow.board_element.when_present
+    page.refresh_until { page.flow.board_element.visible? }
   end
 end
 
@@ -66,6 +66,7 @@ Then(/^my Flow board is archived$/) do
   flow_archive_name = "./User_talk:#{@username}/Flow_Archive_1"
   talk_page_link = "User_talk:#{@username}".gsub '_', ' '
   visit(WikiPage, using_params: { page: flow_archive_name }) do |page|
+    page.refresh_until { page.flow.board_element.visible? }
     page.flow.board_element.when_present
     expect(page.flow.header).to_not match talk_page_link
   end
@@ -82,6 +83,7 @@ end
 Then(/^my talk page is my old Flow board$/) do
   archive_name = "User_talk:#{@username}/Archive_1".gsub '_', ' '
   visit(UserTalkPage, using_params: { username: @username }) do |page|
+    page.refresh_until { page.flow.board_element.visible? }
     expect(page.content_element.when_present.text).to match @topic_title
     expect(page.flow.header).to match archive_name
   end
@@ -90,7 +92,7 @@ end
 Then(/^my flow board contains a link to my archived talk page$/) do
   archive_name = "User_talk:#{@username}/Archive_1".gsub '_', ' '
   visit(UserTalkPage, using_params: { username: @username }) do |page|
-    page.flow.board_element.when_present
+    page.refresh_until { page.flow.board_element.visible? }
     expect(page.flow.header).to match archive_name
   end
 end
