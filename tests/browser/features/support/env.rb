@@ -3,7 +3,7 @@ require 'mediawiki_selenium'
 require 'mediawiki_selenium/support'
 require 'mediawiki_selenium/step_definitions'
 
-require_relative 'div_extension'
+require_relative 'extensions'
 
 def env_or_default(key, default)
   ENV[key].nil? ? default : ENV[key].to_i
