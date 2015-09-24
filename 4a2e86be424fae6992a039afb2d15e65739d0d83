@@ -138,6 +138,24 @@
       "revId": "4a2e86be424fae6992a039afb2d15e65739d0d83",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ecb373e_0fc4c967",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.CategoriesWidget.js",
+        "patchSetId": 18
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-09-24T18:20:11Z",
+      "side": 1,
+      "message": "What I mean is, you should be able to do new mw.flow.ui.CategoryItemWidget( categories[i] ) and have CategoryItemWidget know how to get information out of the dm.CategoryItem",
+      "parentUuid": "2ecb373e_ab4eca99",
+      "revId": "4a2e86be424fae6992a039afb2d15e65739d0d83",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
