@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2ecb373e_6b9b021c",
+        "filename": "includes/View.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-09-24T18:17:53Z",
+      "side": 1,
+      "message": "The link caption should be Category:Foo to be consistent with the current MW behavior. And as for the second part -- Is it even possible for a category to not have Category:... namespace when we get it from $title-\u003egetParentCategories() ?",
+      "parentUuid": "2ecb373e_12f5d8c7",
+      "revId": "4a2e86be424fae6992a039afb2d15e65739d0d83",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ecb373e_72277c60",
         "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
         "patchSetId": 18
@@ -70,6 +88,24 @@
     },
     {
       "key": {
+        "uuid": "2ecb373e_abb80a75",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 18
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-09-24T18:17:53Z",
+      "side": 1,
+      "message": "The styles remain, and the styles have a border, a backgrond, and padding.... :(\n\nI couldn\u0027t find a way to move the padding into the children and still make it look right or even close to the current way the category box is rendered.",
+      "parentUuid": "2ecb373e_f2128c00",
+      "revId": "4a2e86be424fae6992a039afb2d15e65739d0d83",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ecb373e_b2dc044d",
         "filename": "modules/flow/ui/widgets/mw.flow.ui.CategoriesWidget.js",
         "patchSetId": 18
@@ -81,6 +117,24 @@
       "writtenOn": "2015-09-24T01:00:32Z",
       "side": 1,
       "message": "Why doesn\u0027t a CategoryItemWidget take a CategoryItem? It shouldn\u0027t be this code\u0027s job to unpack the information in dm.CategoryItem.",
+      "revId": "4a2e86be424fae6992a039afb2d15e65739d0d83",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ecb373e_ab4eca99",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.CategoriesWidget.js",
+        "patchSetId": 18
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-09-24T18:17:53Z",
+      "side": 1,
+      "message": "i don\u0027t understand the comment... that\u0027s the way we always work with select and group widgets. The dm handles items, but the widgets hold itemWidgets...\n\nI\u0027m a little confused about what you mean here.",
+      "parentUuid": "2ecb373e_b2dc044d",
       "revId": "4a2e86be424fae6992a039afb2d15e65739d0d83",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
