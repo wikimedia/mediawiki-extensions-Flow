@@ -255,6 +255,7 @@ abstract class AbstractRevision {
 
 	/**
 	 * Create the next revision with new content
+	 * or return itself when content is the same
 	 *
 	 * @param User $user
 	 * @param string $content
@@ -267,7 +268,7 @@ abstract class AbstractRevision {
 		$obj = $this->newNullRevision( $user );
 		$obj->setNextContent( $user, $content, $format, $title );
 		$obj->changeType = $changeType;
-		return $obj;
+		return $this->hasSameContentAs( $obj ) ? $this : $obj;
 	}
 
 	/**
@@ -814,6 +815,15 @@ abstract class AbstractRevision {
 	 */
 	public function getCreatorIp() {
 		return $this->getCreatorTuple()->ip;
+	}
+
+	/**
+	 * @param AbstractRevision $revision
+	 * @return bool
+	 * @throws InvalidDataException
+	 */
+	protected function hasSameContentAs( AbstractRevision $revision ) {
+		return $this->getContent() === $revision->getContent();
 	}
 
 	/**
