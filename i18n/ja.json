@@ -359,6 +359,10 @@
 	"flow-dialog-cancelconfirm-message": "保存せずにキャンセルしてもよろしいですか?",
 	"flow-dialog-cancelconfirm-keep": "編集を続行する",
 	"flow-dialog-cancelconfirm-discard": "変更内容を破棄しました",
+	"flow-optin-archive-wikitext": "ウィキテキスト・ページを移動して議論ボードのための部屋を作る",
+	"flow-optin-archive-flow-board": "議論ボード・ページを移動し、ウィキテキスト・ページのための部屋をつくる",
+	"flow-optin-restore-wikitext": "アーカイブ化されたウィキテキスト・ページを復元",
+	"flow-optin-restore-flow-board": "アーカイブ化された議論ボードを復元",
 	"flow-guidedtour-optin-find-old-conversations": "{{GENDER:$1|あなた}}の過去の会話を探す",
 	"flow-guidedtour-optin-feedback": "{{GENDER:$1|あなた}}のフィードバックをください。"
 }

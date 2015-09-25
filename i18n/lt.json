@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Robotukas11",
-			"Pofka"
+			"Pofka",
+			"Zygimantus"
 		]
 	},
 	"flow-error-external": "Įvyko klaida.<br>Gautas klaidos pranešimas: $1",
@@ -17,5 +18,10 @@
 	"flow-undo-latest-revision": "Dabartinė versija",
 	"flow-undo-your-text": "Jūsų tekstas",
 	"flow-undo-edit-topic-summary": "Temos santraukos redagavimas",
-	"flow-undo-edit-post": "Pranešimo redagavimas"
+	"flow-undo-edit-post": "Pranešimo redagavimas",
+	"flow-notification-enabled-on-talkpage-email-subject-message": "Nauja diskusijų sistema $2",
+	"flow-optin-archive-wikitext": "Perkelti vikiteksto puslapį, kad diskusijų lentoje atsirastų kambarys.",
+	"flow-optin-archive-flow-board": "Perkelti diskusijų puslapį vikiteksto puslapio kambario sukūrimui.",
+	"flow-optin-restore-wikitext": "Atkurti archyvuotą vikiteksto puslapį.",
+	"flow-optin-restore-flow-board": "Atkurti archyvuotas diskusijų lentas."
 }
