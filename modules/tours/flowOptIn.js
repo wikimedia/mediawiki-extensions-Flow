@@ -2,6 +2,7 @@
 	var archiveLinkExists = $( '.flow-link-to-archive' ).length,
 		tour = new gt.TourBuilder( {
 			name: 'flowOptIn',
+			shouldLog: true,
 			isSinglePage: true
 		} ),
 		$firstStepDescription = $( '<div>' )
