@@ -270,11 +270,11 @@ class View extends ContextSource {
 			$template = $this->lightncandy->getTemplate( 'flow_block_loop' );
 
 			$classes = array( 'flow-component', "$page-page" );
-			// Add mw-content-{ltr,rtl} text if necessary (MW core doesn't add it for non-view actions
-			if ( \Action::getActionName( $this ) !== 'view' ) {
-				$title = Title::newFromText( $apiResponse['title'] );
-				$classes[] = 'mw-content-' . $title->getPageViewLanguage()->getDir();
-			}
+
+			// Always add mw-content-{ltr,rtl} class
+			$title = Title::newFromText( $apiResponse['title'] );
+			$classes[] = 'mw-content-' . $title->getPageViewLanguage()->getDir();
+
 			// Output the component, with the rendered blocks inside it
 			$out->addHTML( Html::rawElement(
 				'div',
