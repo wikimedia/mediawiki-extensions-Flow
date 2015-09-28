@@ -33,6 +33,24 @@
       "revId": "b8e08e19d3c3da2c9effee3ee25b20394fb3a817",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ecb373e_afcf9681",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-09-28T14:17:00Z",
+      "side": 1,
+      "message": "Is it better to use getContentFormat or getStorageFormat?",
+      "parentUuid": "2ecb373e_6f13ee05",
+      "revId": "b8e08e19d3c3da2c9effee3ee25b20394fb3a817",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
