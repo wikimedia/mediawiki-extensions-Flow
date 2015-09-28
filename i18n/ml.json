@@ -9,7 +9,6 @@
 	},
 	"enableflow": "ഫ്ലോ സജ്ജമാക്കുക",
 	"flow-desc": "പ്രവൃത്തി കൈകാര്യ സൗകര്യം",
-	"flow-talk-taken-over": "ഈ സംവാദത്താൾ [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal ഫ്ലോ] ഉപയോഗിക്കുന്നു.",
 	"log-name-flow": "ഫ്ലോ പ്രവർത്തനരേഖ",
 	"logentry-delete-flow-delete-post": "[[$6]] താളിലെ \"[[$3|$5]]\" എന്നതിലുള്ള ഒരു [$4 കുറിപ്പ്]  $1 {{GENDER:$2|മായ്ച്ചു}}",
 	"logentry-delete-flow-restore-post": "[[$6]] താളിലെ \"[[$3|$5]]\" എന്നതിലുള്ള താളിലെ  ഒരു [$4 കുറിപ്പ്] $1 {{GENDER:$2|പുനഃസ്ഥാപിച്ചു}}",
@@ -25,6 +24,8 @@
 	"flow-board-header": "ഈ ചർച്ചയുടെ വിവരണം",
 	"flow-board-collapse-description": "വിവരണം മറയ്ക്കുക",
 	"flow-board-expand-description": "വിവരണം പ്രദർശിപ്പിക്കുക",
+	"flow-topic-collapse-siderail": "മൊത്തം വീതിയിൽ വായിക്കുക",
+	"flow-topic-expand-siderail": "നിജപ്പെടുത്തിയ വീതിയിൽ വായിക്കുക",
 	"flow-edit-header-link": "വിവരണം തിരുത്തുക",
 	"flow-post-moderated-toggle-hide-show": "$2 {{GENDER:$1|മറച്ച}} അഭിപ്രായം പ്രദർശിപ്പിക്കുക",
 	"flow-post-moderated-toggle-delete-show": "$2 {{GENDER:$1|മായ്ച്ച}} അഭിപ്രായം പ്രദർശിപ്പിക്കുക",
@@ -113,7 +114,6 @@
 	"flow-error-http": "സെർവറുമായി ബന്ധപ്പെടുന്നതിനിടെ ഒരു പിഴവുണ്ടായി.",
 	"flow-error-other": "അപ്രതീക്ഷിതമായ പിഴവ് ഉണ്ടായി.",
 	"flow-error-external": "പിഴവുണ്ടായി.<br />പിഴവ് സംബന്ധിച്ച് ലഭിച്ച സന്ദേശം: $1",
-	"flow-error-edit-restricted": "ഈ കുറിപ്പ് തിരുത്താൻ താങ്കൾക്ക് അനുവാദമില്ല.",
 	"flow-error-topic-is-locked": "ഈ വിഷയം പരിഹരിച്ചിരിക്കുന്നു, കൂടുതൽ നടപടികൾ ആവശ്യമില്ല.",
 	"flow-error-external-multi": "പിഴവുകൾ നേരിടേണ്ടി വന്നു.<br />$1",
 	"flow-error-missing-content": "കുറിപ്പിൽ ഉള്ളടക്കമൊന്നുമില്ല. കുറിപ്പ് സേവ് ചെയ്യാനായി ഉള്ളടക്കം വേണം.",
@@ -224,6 +224,5 @@
 	"flow-wikitext-editor-help": "വിക്കിഎഴുത്ത് $1.",
 	"flow-wikitext-editor-help-preview-the-result": "ഫലം എങ്ങനെയുണ്ടെന്ന് കാണുക",
 	"flow-wikitext-switch-editor-tooltip": "കണ്ടുതിരുത്തൽ ഉപകരണത്തിലേക്ക് മാറുക",
-	"flow-ve-switch-editor-tool-title": "വിക്കി എഴുത്തിലേക്ക് മാറുക",
-	"flow-description-last-modified-at": "ഈ വിവരണം അവസാനം തിരുത്തിയത് $1 -നു $2 മണിക്കാണ്"
+	"flow-ve-switch-editor-tool-title": "വിക്കി എഴുത്തിലേക്ക് മാറുക"
 }

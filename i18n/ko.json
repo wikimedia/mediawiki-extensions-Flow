@@ -152,7 +152,7 @@
 	"flow-error-title-too-long": "주제 제목은 $1 {{PLURAL:$1|바이트}}로 제한됩니다.",
 	"flow-error-no-existing-workflow": "이 워크플로우는 아직 존재하지 않습니다.",
 	"flow-error-not-a-post": "주제 제목은 기여로 저장할 수 없습니다.",
-	"flow-error-missing-header-content": "머릿글에 내용이 없습니다. 머릿글을 저장하려면 내용이 있어야 합니다.",
+	"flow-error-missing-header-content": "설명을 입력해야 합니다.",
 	"flow-error-missing-prev-revision-identifier": "이전 판 식별자가 없습니다.",
 	"flow-error-prev-revision-mismatch": "다른 사용자가 이 게시물을 조금 전에 편집했습니다. 최근 바뀜을 덮어쓰시겠습니까?",
 	"flow-error-prev-revision-does-not-exist": "이전 판을 찾을 수 없습니다.",
