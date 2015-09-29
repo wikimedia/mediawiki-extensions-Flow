@@ -131,6 +131,8 @@
 		if ( data.watchable !== undefined ) {
 			this.toggleWatchable( !!data.watchable );
 		}
+
+		this.actions = data.actions;
 	};
 
 	/**
