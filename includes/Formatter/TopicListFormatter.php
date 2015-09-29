@@ -52,12 +52,14 @@ class TopicListFormatter extends BaseTopicListFormatter {
 			$pagingOption
 		);
 		$title = $listWorkflow->getArticleTitle();
-		$saveSortBy = true;
-		$res['links']['board-sort']['updated'] = $this->urlGenerator->boardLink( $title, 'updated', $saveSortBy )->getLinkURL();
-		$res['links']['board-sort']['newest'] = $this->urlGenerator->boardLink( $title, 'newest', $saveSortBy )->getLinkURL();
+		if ( !$title->isDeleted() ) {
+			$saveSortBy = true;
+			$res['links']['board-sort']['updated'] = $this->urlGenerator->boardLink( $title, 'updated', $saveSortBy )->getLinkURL();
+			$res['links']['board-sort']['newest'] = $this->urlGenerator->boardLink( $title, 'newest', $saveSortBy )->getLinkURL();
 
-		// Link to designated new-topic page, for no-JS users
-		$res['links']['newtopic'] = $this->urlGenerator->newTopicAction( $title, $listWorkflow->getId() )->getLinkURL();
+			// Link to designated new-topic page, for no-JS users
+			$res['links']['newtopic'] = $this->urlGenerator->newTopicAction( $title, $listWorkflow->getId() )->getLinkURL();
+		}
 
 		return $res;
 	}
@@ -120,9 +122,13 @@ class TopicListFormatter extends BaseTopicListFormatter {
 	}
 
 	protected function buildApiActions( Workflow $workflow ) {
-		return array(
-			'newtopic' => $this->urlGenerator->newTopicAction( $workflow->getArticleTitle() ),
-		);
+		$actions = array();
+
+		if ( !$workflow->isDeleted() ) {
+			$actions['newtopic'] = $this->urlGenerator->newTopicAction( $workflow->getArticleTitle() );
+		}
+
+		return $actions;
 	}
 
 	protected function generateTopicMetadata( array $posts, array $revisions, array $workflows, $postAlphaId, IContextSource $ctx ) {

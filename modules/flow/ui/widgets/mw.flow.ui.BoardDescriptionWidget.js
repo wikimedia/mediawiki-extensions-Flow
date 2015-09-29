@@ -62,6 +62,10 @@
 			classes: [ 'flow-ui-boardDescriptionWidget-editButton' ]
 		} );
 
+		if ( !this.model.getEditLink() ) {
+			this.button.toggle( false );
+		}
+
 		// Events
 		this.button.connect( this, { click: 'onEditButtonClick' } );
 		this.editor.connect( this, {
