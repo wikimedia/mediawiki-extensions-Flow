@@ -99,6 +99,21 @@
 		// We shouldn't have to worry about 'remove', since by the time we have filtering,
 		// orderedTopicIds should be gone.
 
+		// Fall back to mw.flow.data, which was used until September 2015
+		dataBlob = mw.config.get( 'wgFlowData' ) || ( mw.flow && mw.flow.data );
+		if ( dataBlob && dataBlob.blocks ) {
+			// Populate the rendered topics or topic (if we are in a single-topic view)
+			mw.flow.system.populateBoardTopicsFromJson( dataBlob.blocks.topiclist || dataBlob.blocks.topic );
+			// Populate header
+			mw.flow.system.populateBoardDescriptionFromJson( dataBlob.blocks.header || {} );
+			// Populate the ToC topics
+			if ( dataBlob.toc ) {
+				mw.flow.system.populateBoardTopicsFromJson( dataBlob.toc );
+			}
+		} else {
+			mw.flow.system.populateBoardFromApi();
+		}
+
 		// Initialize the old system to accept the default
 		// 'newest' order for the topic order widget
 		// Get the current default sort
@@ -414,21 +429,6 @@
 			// Prevent default
 			return false;
 		} );
-
-		// Fall back to mw.flow.data, which was used until September 2015
-		dataBlob = mw.config.get( 'wgFlowData' ) || ( mw.flow && mw.flow.data );
-		if ( dataBlob && dataBlob.blocks ) {
-			// Populate the rendered topics or topic (if we are in a single-topic view)
-			mw.flow.system.populateBoardTopicsFromJson( dataBlob.blocks.topiclist || dataBlob.blocks.topic );
-			// Populate header
-			mw.flow.system.populateBoardDescriptionFromJson( dataBlob.blocks.header || {} );
-			// Populate the ToC topics
-			if ( dataBlob.toc ) {
-				mw.flow.system.populateBoardTopicsFromJson( dataBlob.toc );
-			}
-		} else {
-			mw.flow.system.populateBoardFromApi();
-		}
 
 		preloadTopic = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'topic' );
 		preloadContent = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'content' );
