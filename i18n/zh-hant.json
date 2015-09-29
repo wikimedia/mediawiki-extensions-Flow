@@ -8,7 +8,8 @@
 			"Impersonator 1",
 			"LNDDYL",
 			"MoonYaksha",
-			"Macofe"
+			"Macofe",
+			"Nnemo"
 		]
 	},
 	"enableflow": "開啟 Flow",
@@ -124,7 +125,7 @@
 	"flow-error-external": "發生錯誤。<br />錯誤訊息為：$1",
 	"flow-error-topic-is-locked": "此話題已被解決，不能進行進一步的活動。",
 	"flow-error-lock-moderated-post": "您無法標記受管制的貼文已解決。",
-	"flow-error-external-multi": "發生錯誤。<br />$1",
+	"flow-error-external-multi": "發生錯誤。 <br />$1",
 	"flow-error-missing-content": "貼文沒有內容。 您需要填寫內容以儲存貼文。",
 	"flow-error-missing-summary": "您必須填寫摘要。",
 	"flow-error-missing-title": "話題沒有標題。 您需要填寫標題以儲存話題。",

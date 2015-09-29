@@ -14,7 +14,8 @@
 			"Ricordisamoa",
 			"Alexmar983",
 			"Erasmo Barresi",
-			"Statix64"
+			"Statix64",
+			"Nnemo"
 		]
 	},
 	"enableflow": "Attiva Flow",
@@ -121,10 +122,10 @@
 	"flow-error-allowcreation-no-usedb": "allowCreation richiede che <var>$wgContentHandlerUseDB</var> sia <code>true</code>.",
 	"flow-error-http": "Si è verificato un errore durante la comunicazione con il server.",
 	"flow-error-other": "Si è verificato un errore imprevisto.",
-	"flow-error-external": "Si è verificato un errore.<br />Il messaggio di errore ricevuto è: $1",
+	"flow-error-external": "Si è verificato un errore. <br />Il messaggio di errore ricevuto è: $1",
 	"flow-error-topic-is-locked": "Questo argomento è risolto, ulteriore attività non è pertanto possibile.",
 	"flow-error-lock-moderated-post": "Non puoi segnalare come chiuso un messaggio moderato.",
-	"flow-error-external-multi": "Si sono verificati errori.<br />$1",
+	"flow-error-external-multi": "Si sono verificati errori. <br />$1",
 	"flow-error-missing-content": "Il tuo messaggio non ha contenuto. Un minimo di contenuto è necessario per poter salvare un messaggio.",
 	"flow-error-missing-summary": "È necessario inserire un riassunto.",
 	"flow-error-missing-title": "L'argomento non ha titolo. Serve un titolo per salvare un argomento.",

@@ -10,7 +10,8 @@
 			"Капитан Джон Шепард",
 			"Piramidion",
 			"Lxlalexlxl",
-			"Dars"
+			"Dars",
+			"Nnemo"
 		]
 	},
 	"enableflow": "Увімкнути Flow",
@@ -122,10 +123,10 @@
 	"flow-error-allowcreation-flow-create-board": "Користувач не має права «{{int:right-flow-create-board}}»",
 	"flow-error-http": "Сталася помилка при зверненні до сервера.",
 	"flow-error-other": "Трапилася неочікувана помилка.",
-	"flow-error-external": "Сталася помилка.<br />Отримане повідомлення було:$1",
+	"flow-error-external": "Сталася помилка. <br />Отримане повідомлення було:$1",
 	"flow-error-topic-is-locked": "Ця тема позначена як вирішена, тож подальші дії неможливі.",
 	"flow-error-lock-moderated-post": "Ви не можете позначити модерований допис як вирішений.",
-	"flow-error-external-multi": "Виявлені помилки.<br /> $1",
+	"flow-error-external-multi": "Виявлені помилки. <br /> $1",
 	"flow-error-missing-content": "Публікація не має ніякого вмісту. Необхідний вміст, щоб зберегти публікацію.",
 	"flow-error-missing-summary": "Ви маєте надати резюме.",
 	"flow-error-missing-title": "Тема не має назви. Потрібна назва, щоб зберегти тему.",

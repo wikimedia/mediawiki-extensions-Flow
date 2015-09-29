@@ -21,7 +21,8 @@
 			"JosouNoAria",
 			"Mor",
 			"Effy",
-			"Ryo567"
+			"Ryo567",
+			"Nnemo"
 		]
 	},
 	"enableflow": "Activar Flow",
@@ -137,10 +138,10 @@
 	"flow-error-allowcreation-flow-create-board": "El usuario no tiene el permiso de \"{{int:right-flow-create-board}}\"",
 	"flow-error-http": "Ha ocurrido un error mientras se contactaba al servidor.",
 	"flow-error-other": "Ha ocurrido un error inesperado.",
-	"flow-error-external": "Se ha producido un error.<br />El mensaje de error recibido es: $1",
+	"flow-error-external": "Se ha producido un error. <br />El mensaje de error recibido es: $1",
 	"flow-error-topic-is-locked": "Este tema está resuelto, así que no se puede continuar modificando.",
 	"flow-error-lock-moderated-post": "No puedes marcar como resuelta una publicación moderada.",
-	"flow-error-external-multi": "Se han encontrado errores.<br />$1",
+	"flow-error-external-multi": "Se han encontrado errores. <br />$1",
 	"flow-error-missing-content": "La entrada no tiene contenido. Para guardarla necesitas añadir contenido.",
 	"flow-error-missing-summary": "Debes escribir un resumen.",
 	"flow-error-missing-title": "El tema no tiene título. Para guardarlo necesitas añadirle un título.",

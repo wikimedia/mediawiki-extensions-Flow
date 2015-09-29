@@ -3,7 +3,8 @@
 		"authors": [
 			"Papuass",
 			"Edgars2007",
-			"Silraks"
+			"Silraks",
+			"Nnemo"
 		]
 	},
 	"enableflow": "Aktivizēt Flow",
@@ -86,9 +87,9 @@
 	"flow-topic-action-watchlist-add": "Uzraudzīt šo tēmu",
 	"flow-error-http": "Sazinoties ar serveri, radās kļūda.",
 	"flow-error-other": "Neparedzēta kļūda.",
-	"flow-error-external": "Notikusi kļūda.<br />Saņemtais kļūdas ziņojums: $1",
+	"flow-error-external": "Notikusi kļūda. <br />Saņemtais kļūdas ziņojums: $1",
 	"flow-error-topic-is-locked": "Šī tēma ir atrisināta, tāpēc turpmākas darbības nav iespējamas.",
-	"flow-error-external-multi": "Radušās kļūdas:<br />$1",
+	"flow-error-external-multi": "Radušās kļūdas: <br />$1",
 	"flow-error-missing-content": "Šim ierakstam nav satura. Tas ir nepieciešams ieraksta saglabāšanai.",
 	"flow-error-missing-summary": "Kopsavilkumam nav satura. Tas ir vajadzīgs kopsavilkuma saglabāšanai",
 	"flow-error-missing-title": "Tēmai nav nosaukuma. Tas ir vajadzīgs tēmas saglabāšanai",

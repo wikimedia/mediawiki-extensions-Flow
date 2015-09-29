@@ -8,7 +8,8 @@
 			"MrTapsa",
 			"McSalama",
 			"Lliehu",
-			"Pitke"
+			"Pitke",
+			"Nnemo"
 		]
 	},
 	"enableflow": "Ota Flow käyttöön",
@@ -109,10 +110,10 @@
 	"flow-error-allowcreation-already-exists": "Sivu on jo olemassa, vaikka sen ei tarvinnut olla olemassa",
 	"flow-error-http": "Virhe muodostettaessa yhteyttä palvelimeen.",
 	"flow-error-other": "Tuntematon virhe tapahtui.",
-	"flow-error-external": "On tapahtunut virhe.<br />Vastaanotettu virheilmoitus oli: $1",
+	"flow-error-external": "On tapahtunut virhe. <br />Vastaanotettu virheilmoitus oli: $1",
 	"flow-error-topic-is-locked": "Tämä aihe on loppuunkäsitelty, joten siihen ei voi enää koskea.",
 	"flow-error-lock-moderated-post": "Et voi merkitä valvottua viestiä loppuun käsitellyksi.",
-	"flow-error-external-multi": "Virheitä on tapahtunut.<br />$1",
+	"flow-error-external-multi": "Virheitä on tapahtunut. <br />$1",
 	"flow-error-missing-content": "Viestissä ei ole sisältöä. Vain tekstiä sisältäviä viestejä voidaan tallentaa.",
 	"flow-error-missing-summary": "Sinun täytyy antaa yhteenveto.",
 	"flow-error-missing-title": "Aiheella ei ole otsikkoa. Aiheen otsikko on välttämätön, jotta aihe voidaan tallentaa.",

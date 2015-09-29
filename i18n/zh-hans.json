@@ -18,7 +18,8 @@
 			"Duolaimi",
 			"御坂美琴",
 			"Shizhao",
-			"LNDDYL"
+			"LNDDYL",
+			"Nnemo"
 		]
 	},
 	"enableflow": "启用Flow",
@@ -137,7 +138,7 @@
 	"flow-error-external": "出现一个错误。<br />收到的错误信息：$1",
 	"flow-error-topic-is-locked": "此话题已解决，因此不再接受更多回复。",
 	"flow-error-lock-moderated-post": "您不能将被限制的帖子标记为已解决。",
-	"flow-error-external-multi": "出错。<br />$1",
+	"flow-error-external-multi": "出错。 <br />$1",
 	"flow-error-missing-content": "帖子无内容。只能保存有内容的帖子。",
 	"flow-error-missing-summary": "您必须提交一段摘要。",
 	"flow-error-missing-title": "此话题没有标题。必须有标题才能保存一个话题。",

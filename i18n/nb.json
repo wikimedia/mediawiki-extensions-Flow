@@ -5,7 +5,8 @@
 			"Jeblad",
 			"Laaknor",
 			"Kingu",
-			"Tarjeimo"
+			"Tarjeimo",
+			"Nnemo"
 		]
 	},
 	"enableflow": "Aktiver Flow",
@@ -108,8 +109,8 @@
 	"flow-topic-notification-subscribe-description": "{{GENDER:$1|Du}} vil motta varsler for all aktivitet knyttet til denne diskusjonen.",
 	"flow-error-http": "Det oppsto en feil ved kontakt med serveren.",
 	"flow-error-other": "Det oppsto en ukjent feil.",
-	"flow-error-external": "Det oppsto en feil.<br />Feilmeldingen var: $1",
-	"flow-error-external-multi": "Feil oppsto under lagring av meldingen.<br />$1",
+	"flow-error-external": "Det oppsto en feil. <br />Feilmeldingen var: $1",
+	"flow-error-external-multi": "Feil oppsto under lagring av meldingen. <br />$1",
 	"flow-error-missing-content": "Innlegget har ikke noe innhold. Innhold kreves for å lagre et innlegg.",
 	"flow-error-missing-summary": "Du må fylle inn et sammendrag.",
 	"flow-error-missing-title": "Meldingen har ingen overskrift. En overskrift kreves for å lagre en diskusjon.",

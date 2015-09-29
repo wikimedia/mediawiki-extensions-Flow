@@ -8,7 +8,8 @@
 			"Tiin",
 			"Macofe",
 			"MarcoFalke",
-			"J. 'mach' wust"
+			"J. 'mach' wust",
+			"Nnemo"
 		]
 	},
 	"enableflow": "Flow aktivieren",
@@ -124,10 +125,10 @@
 	"flow-error-allowcreation-flow-create-board": "Der Benutzer hat nicht das Recht „{{int:right-flow-create-board}}“",
 	"flow-error-http": "Beim Kontaktieren des Servers ist ein Fehler aufgetreten.",
 	"flow-error-other": "Ein unerwarteter Fehler ist aufgetreten.",
-	"flow-error-external": "Es ist ein Fehler aufgetreten.<br />Die empfangene Fehlermeldung lautete: $1",
+	"flow-error-external": "Es ist ein Fehler aufgetreten. <br />Die empfangene Fehlermeldung lautete: $1",
 	"flow-error-topic-is-locked": "Dieses Thema ist erledigt. Weitere Aktivitäten sind nicht möglich.",
 	"flow-error-lock-moderated-post": "Du kannst keinen moderierten Beitrag als erledigt markieren.",
-	"flow-error-external-multi": "Es sind Fehler aufgetreten.<br />$1",
+	"flow-error-external-multi": "Es sind Fehler aufgetreten. <br />$1",
 	"flow-error-missing-content": "Der Beitrag hat keinen Inhalt. Dieser ist erforderlich, um einen Beitrag zu speichern.",
 	"flow-error-missing-summary": "Du musst eine Zusammenfassung angeben.",
 	"flow-error-missing-title": "Das Thema hat keinen Titel. Dieser ist erforderlich, um ein Thema zu speichern.",

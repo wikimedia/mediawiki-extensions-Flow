@@ -14,7 +14,8 @@
 			"TheEduGobi",
 			"Araceletorres",
 			"Walesson",
-			"Cainamarques"
+			"Cainamarques",
+			"Nnemo"
 		]
 	},
 	"enableflow": "Ativar Flow",
@@ -120,10 +121,10 @@
 	"flow-error-allowcreation-flow-create-board": "O usuário não tem a permissão de \"{{int:right-flow-create-board}}\"",
 	"flow-error-http": "Ocorreu um erro ao contactar o servidor.",
 	"flow-error-other": "Ocorreu um erro inesperado.",
-	"flow-error-external": "Ocorreu um erro.<br />A mensagem de erro recebida foi: $1",
+	"flow-error-external": "Ocorreu um erro. <br />A mensagem de erro recebida foi: $1",
 	"flow-error-topic-is-locked": "Este tópico está bloqueado para quaisquer outras atividades.",
 	"flow-error-lock-moderated-post": "Você não pode trancar uma publicação moderada.",
-	"flow-error-external-multi": "Foram encontrados erros.<br /> $1",
+	"flow-error-external-multi": "Foram encontrados erros. <br /> $1",
 	"flow-error-missing-content": "A publicação não tem conteúdo. É necessário haver conteúdo para salvar uma publicação.",
 	"flow-error-missing-summary": "O resumo não tem conteúdo. É necessário haver conteúdo para salvar um resumo.",
 	"flow-error-missing-title": "O tópico não tem título. É necessário definir um título para salvar um tópico.",

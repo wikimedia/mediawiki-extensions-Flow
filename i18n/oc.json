@@ -1,11 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Cedric31"
+			"Cedric31",
+			"Nnemo"
 		]
 	},
 	"flow-desc": "Sistèma de gestion del flux de trabalh",
-	"flow-talk-taken-over": "Aquesta pagina de discussion es estada remplaçada per un [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal ''Flow board''].",
 	"log-name-flow": "Jornal de flux d’activitat",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|a suprimit}} una [$4 publicacion] sus « [[$3|$5]] » sus [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|a restablit}} una [$4 nòta] sus  \"[[$3|$5]]\" lo [[$6]]",
@@ -64,9 +64,8 @@
 	"flow-topic-action-restore-topic": "Restablir lo subjècte",
 	"flow-error-http": "Una error s'es producha en comunicant amb lo servidor.",
 	"flow-error-other": "Una error imprevista s'es producha.",
-	"flow-error-external": "Una error s'es producha.<br />Lo messatge d'error recebut èra :$1",
-	"flow-error-edit-restricted": "Sètz pas autorizat(ada) a modificar aquesta nòta",
-	"flow-error-external-multi": "D'errors se son produchas.<br /> $1",
+	"flow-error-external": "Una error s'es producha. <br />Lo messatge d'error recebut èra :$1",
+	"flow-error-external-multi": "D'errors se son produchas. <br /> $1",
 	"flow-error-missing-content": "Lo messatge a pas cap de contengut. Un contengut es obligatòri per enregistrar un messatge.",
 	"flow-error-missing-summary": "Lo resumit a pas cap de contengut. Un contengut es obligatòri per enregistrar un resumit.",
 	"flow-error-missing-title": "Lo subjècte a pas cap de títol. Un títol es obligatòri per enregistrar un subjècte.",

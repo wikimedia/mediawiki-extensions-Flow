@@ -3,10 +3,11 @@
 		"authors": [
 			"Robotukas11",
 			"Pofka",
-			"Zygimantus"
+			"Zygimantus",
+			"Nnemo"
 		]
 	},
-	"flow-error-external": "Įvyko klaida.<br>Gautas klaidos pranešimas: $1",
+	"flow-error-external": "Įvyko klaida. <br />Gautas klaidos pranešimas: $1",
 	"flow-error-not-allowed-reply-to-hide-topic": "Jūs negalite atsakyti, nes ši tema buvo paslėpta.",
 	"flow-error-not-allowed-reply-to-delete-topic": "Jūs negalite atsakyti, nes ši tema buvo ištrinta.",
 	"flow-error-not-allowed-suppress": "Ši tema buvo ištrinta.",

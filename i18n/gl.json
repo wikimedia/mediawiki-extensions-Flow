@@ -3,7 +3,8 @@
 		"authors": [
 			"Toliño",
 			"Elisardojm",
-			"Banjo"
+			"Banjo",
+			"Nnemo"
 		]
 	},
 	"enableflow": "Activar Flow",
@@ -119,10 +120,10 @@
 	"flow-error-allowcreation-flow-create-board": "O usuario non ten o permiso de \"{{int:right-flow-create-board}}\"",
 	"flow-error-http": "Produciuse un erro ao contactar co servidor.",
 	"flow-error-other": "Produciuse un erro inesperado.",
-	"flow-error-external": "Produciuse un erro.<br />A mensaxe de erro recibida foi: $1",
+	"flow-error-external": "Produciuse un erro. <br />A mensaxe de erro recibida foi: $1",
 	"flow-error-topic-is-locked": "O tema está resolto, polo que calquera actividade adicional non é posible.",
 	"flow-error-lock-moderated-post": "Non pode marcar unha publicación moderada como resolta.",
-	"flow-error-external-multi": "Producíronse varios erros.<br />$1",
+	"flow-error-external-multi": "Producíronse varios erros. <br />$1",
 	"flow-error-missing-content": "A mensaxe non ten contido. O contido é obrigatorio para gardar unha mensaxe.",
 	"flow-error-missing-summary": "Debe indicar un resumo.",
 	"flow-error-missing-title": "O fío non ten título. O título é obrigatorio para gardar un fío.",

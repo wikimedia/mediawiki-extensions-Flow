@@ -12,7 +12,8 @@
 			"Macofe",
 			"Annamerida",
 			"Paucabot",
-			"Eduardo Martinez"
+			"Eduardo Martinez",
+			"Nnemo"
 		]
 	},
 	"enableflow": "Habilita el Flow",
@@ -119,10 +120,10 @@
 	"flow-error-allowcreation-flow-create-board": "L'usuari no té el permís «{{int:right-flow-create-board}}»",
 	"flow-error-http": "S'ha produït un error mentre es contactava amb el servidor.",
 	"flow-error-other": "S'ha produït un error inesperat.",
-	"flow-error-external": "S'ha produït un error.<br />El missatge d'error rebre és: $1",
+	"flow-error-external": "S'ha produït un error. <br />El missatge d'error rebre és: $1",
 	"flow-error-topic-is-locked": "Aquest tema està resolt, per tant no és possible cap més activitat.",
 	"flow-error-lock-moderated-post": "No podeu marcar un apunt moderat com a resolt.",
-	"flow-error-external-multi": "S'han trobat errors.<br />$1",
+	"flow-error-external-multi": "S'han trobat errors. <br />$1",
 	"flow-error-missing-content": "La publicació no té contingut. El contingut és necessari per desar una publicació.",
 	"flow-error-missing-summary": "El resum no té cap contingut. El contingut és necessari per desar un resum.",
 	"flow-error-missing-title": "El tema no té cap títol. És necessari un títol per desar un tema.",

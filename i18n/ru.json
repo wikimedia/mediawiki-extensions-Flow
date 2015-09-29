@@ -19,7 +19,8 @@
 			"Dicto23456",
 			"Дмитрий",
 			"Amire80",
-			"INS Pirat"
+			"INS Pirat",
+			"Nnemo"
 		]
 	},
 	"enableflow": "Включить Поток",
@@ -131,10 +132,10 @@
 	"flow-error-allowcreation-flow-create-board": "У пользователя нет права «{{int:right-flow-create-board}}»",
 	"flow-error-http": "Произошла ошибка при обращении к серверу.",
 	"flow-error-other": "Произошла непредвиденная ошибка.",
-	"flow-error-external": "Произошла ошибка.<br />Было получено следующее сообщение об ошибке: $1",
+	"flow-error-external": "Произошла ошибка. <br />Было получено следующее сообщение об ошибке: $1",
 	"flow-error-topic-is-locked": "Эта тема решена, дальнейшие действия невозможны.",
 	"flow-error-lock-moderated-post": "Вы не можете отметить промодерированное сообщение, как решённое.",
-	"flow-error-external-multi": "Были обнаружены ошибки.<br />$1",
+	"flow-error-external-multi": "Были обнаружены ошибки. <br />$1",
 	"flow-error-missing-content": "Сообщение не имеет содержимого. Для сохранения сообщения требуется содержимое.",
 	"flow-error-missing-summary": "Вам необходимо оставить краткое содержание.",
 	"flow-error-missing-title": "Тема не имеет заголовка. Заголовок необходим для сохранения темы.",

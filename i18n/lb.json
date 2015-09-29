@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Robby",
-			"Soued031"
+			"Soued031",
+			"Nnemo"
 		]
 	},
 	"enableflow": "Flow aktivéieren",
@@ -82,8 +83,8 @@
 	"flow-error-allowcreation-already-exists": "Säit gëtt et schonn, awer et dierft se net ginn",
 	"flow-error-allowcreation-flow-create-board": "De Benotzer huetd'Recht \"{{int:right-flow-create-board}}\" net",
 	"flow-error-other": "En onerwaarte Feeler ass geschitt.",
-	"flow-error-external": "Et ass e Feeler geschitt.<br />De Feelermessage war:$1</ small>",
-	"flow-error-external-multi": "Et si Feeler geschitt.<br />$1",
+	"flow-error-external": "Et ass e Feeler geschitt. <br />De Feelermessage war:$1</ small>",
+	"flow-error-external-multi": "Et si Feeler geschitt. <br />$1",
 	"flow-error-missing-summary": "Dir musst e Resumé eraschécken.",
 	"flow-error-missing-title": "D'Thema huet keen Titel. Den Titel ass obligatoresch fir een Thema ze späicheren.",
 	"flow-error-delete-failure": "D'Läsche vun dësem Element huet net funktionéiert.",

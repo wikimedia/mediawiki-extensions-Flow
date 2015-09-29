@@ -1,13 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Arystanbek"
+			"Arystanbek",
+			"Nnemo"
 		]
 	},
 	"enableflow": "Flow кеңейтілімін іске қосу",
 	"flow-desc": "Лекті жұмыстайтын басқару жүйесі",
-	"flow-talk-taken-over": "Бұл талқылау бетін [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow] кеңейтілімін қолдануда.",
-	"flow-talk-username": "Flow талқылау бет басқармасы",
 	"log-name-flow": "Flow белсенділік журналы",
 	"logentry-delete-flow-delete-post": "$1 [[$6]] бетіндегі «[[$3|$5]]» деген [$4 хабарламаны]  {{GENDER:$2|жойды}}",
 	"logentry-delete-flow-restore-post": "$1 [[$6]] бетіндегі «[[$3|$5]]» деген [$4 хабарламаны]  {{GENDER:$2|қалпына келтірді}}",
@@ -106,11 +105,10 @@
 	"flow-error-allowcreation-flow-create-board": "Қатысушыда «{{int:right-flow-create-board}}» рұқсаты жоқ",
 	"flow-error-http": "Серверге байланысу барысында қате кездесті.",
 	"flow-error-other": "Күтпеген қате кездесті.",
-	"flow-error-external": "Қате кездесті.<br />Қабылданған қате хабарлама: $1",
-	"flow-error-edit-restricted": "Бұл хабарламаны өңдеуге рұқсатыңыз жоқ.",
+	"flow-error-external": "Қате кездесті. <br />Қабылданған қате хабарлама: $1",
 	"flow-error-topic-is-locked": "Бұл тақырып кез келген әрекеттер үшін жабық.",
 	"flow-error-lock-moderated-post": "Қадаланған хабарламаны жаба алмайсыз.",
-	"flow-error-external-multi": "Қателер байқалды.<br />$1",
+	"flow-error-external-multi": "Қателер байқалды. <br />$1",
 	"flow-error-missing-content": "Хабарламаның контенті жоқ. Хабарламаны сақтау үшін контент қажет.",
 	"flow-error-missing-summary": "Түйіндеме контент жоқ. Түйіндемені сақтау үшін контент қажет.",
 	"flow-error-missing-title": "Тақырыпша атаусыз. Тақырыпты сақтау үшін атау қажет.",
@@ -344,8 +342,6 @@
 	"flow-special-enableflow-header": "Flow тақтасындағы бастапқы сипаттамасы (уикимәтін)",
 	"flow-special-enableflow-board-already-exists": "[[$1]] ретінде Flow тақтасы сонда әлдеқашан бар.",
 	"flow-special-enableflow-invalid-title": "Жарамсыз бет атауы берілген.",
-	"flow-special-enableflow-archive-title-format": "Бар контентті қайда мұрағаттау",
-	"flow-special-enableflow-archive-title-format-default-value": "%s/Archive_%d",
 	"flow-special-enableflow-board-creation-not-allowed": "[[:$1]] дегенге Flow тақтасын бастауыңызға жол берілмейді.",
 	"flow-special-enableflow-page-is-liquidthreads": "[[:$1]] дегенде LiquidThreads беті бар.",
 	"flow-special-enableflow-confirmation": "[[$1]] бетінде Flow тақтасын сәтті бастадыңыз.",
@@ -481,7 +477,6 @@
 	"flow-ve-mention-inspector-remove-label": "Аластау",
 	"flow-ve-mention-placeholder": "Қатысушы есімі",
 	"flow-ve-mention-tool-title": "Қатысушыны атап өту",
-	"flow-ve-mention-template": "ping",
 	"flow-ve-mention-inspector-invalid-user": "«$1» қатысушы есімі тіркелмеген.",
 	"flow-wikitext-editor-help": "Уикимәтін: $1.",
 	"flow-wikitext-editor-help-and-preview": "Уикимәтінін $1 және кез келген уақытта $2",

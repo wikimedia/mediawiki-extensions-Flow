@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"McDutchie"
+			"McDutchie",
+			"Nnemo"
 		]
 	},
 	"flow-desc": "Systema de gestion de fluxo de travalio",
@@ -15,14 +16,12 @@
 	"flow-post-actions": "Actiones",
 	"flow-topic-actions": "Actiones",
 	"flow-cancel": "Cancellar",
-	"flow-preview": "Previsualisar",
 	"flow-newtopic-title-placeholder": "Nove topico",
 	"flow-newtopic-content-placeholder": "Adde detalios si tu vole",
 	"flow-newtopic-header": "Adder un nove topico",
 	"flow-newtopic-save": "Adder topico",
 	"flow-newtopic-start-placeholder": "Initiar un nove discussion",
 	"flow-reply-topic-placeholder": "{{GENDER:$1|Commentar}} \"$2\"",
-	"flow-reply-submit": "{{GENDER:$1|Responder}}",
 	"flow-reply-link": "{{GENDER:$1|Responder}}",
 	"flow-thank-link": "{{GENDER:$1|Regratiar}}",
 	"flow-post-edited": "Entrata {{GENDER:$1|modificate}} per $1 $2",
@@ -43,9 +42,8 @@
 	"flow-topic-action-restore-topic": "Restaurar topico",
 	"flow-error-http": "Un error occurreva durante le communication con le servitor.",
 	"flow-error-other": "Un error inexpectate ha occurrite.",
-	"flow-error-external": "Un error ha occurrite.<br />Le message de error recipite es: $1",
-	"flow-error-edit-restricted": "Tu non es autorisate a modificar iste entrata.",
-	"flow-error-external-multi": "Errores ha occurrite.<br />$1",
+	"flow-error-external": "Un error ha occurrite. <br />Le message de error recipite es: $1",
+	"flow-error-external-multi": "Errores ha occurrite. <br />$1",
 	"flow-error-missing-content": "Le message non ha contento. Contento es necessari pro salveguardar un message.",
 	"flow-error-missing-title": "Le topico non ha titulo. Le titulo es necessari pro salveguardar un topico.",
 	"flow-error-parsoid-failure": "Impossibile interpretar le contento a causa de un fallimento de Parsoid.",

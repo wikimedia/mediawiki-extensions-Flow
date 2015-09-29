@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Minisarm",
-			"Tuxilina"
+			"Tuxilina",
+			"Nnemo"
 		]
 	},
 	"flow-user-moderated": "Utilizator moderat",
@@ -10,7 +11,6 @@
 	"flow-post-actions": "Acțiuni",
 	"flow-topic-actions": "Acțiuni",
 	"flow-cancel": "Revocare",
-	"flow-preview": "Previzualizare",
 	"flow-show-change": "Arată modificările",
 	"flow-stub-post-content": "''Din cauza unei erori de natură tehnică, acest mesaj nu a putut fi obținut.''",
 	"flow-newtopic-title-placeholder": "Subiect nou",
@@ -34,8 +34,7 @@
 	"flow-topic-action-resummarize-topic": "Modifică rezumatul",
 	"flow-error-http": "A apărut o eroare în momentul accesării serverului.",
 	"flow-error-other": "A intervenit o eroare neașteptată.",
-	"flow-error-external": "A intervenit o eroare.<br />Mesajul de eroare primit a fost: $1.",
-	"flow-error-edit-restricted": "Nu aveți permisiunea de a modifica acest mesaj.",
+	"flow-error-external": "A intervenit o eroare. <br />Mesajul de eroare primit a fost: $1.",
 	"flow-error-topic-is-locked": "Acest subiect este blocat pentru orice acțiuni suplimentare.",
 	"flow-notification-rename-email-subject": "$1 {{GENDER:$1|a redenumit}} subiectul dv."
 }

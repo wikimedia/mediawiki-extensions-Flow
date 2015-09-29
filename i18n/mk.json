@@ -3,7 +3,8 @@
 		"authors": [
 			"Amire80",
 			"Bjankuloski06",
-			"Macofe"
+			"Macofe",
+			"Nnemo"
 		]
 	},
 	"enableflow": "Вклучи го Тек",
@@ -119,10 +120,10 @@
 	"flow-error-allowcreation-flow-create-board": "Корисникот ја нема дозволата „{{int:right-flow-create-board}}“",
 	"flow-error-http": "Се јави грешка при поврзувањето со опслужувачот.",
 	"flow-error-other": "Се појави неочекувана грешка.",
-	"flow-error-external": "Се појави грешка.<br />Објаснувањето гласи: $1",
+	"flow-error-external": "Се појави грешка. <br />Објаснувањето гласи: $1",
 	"flow-error-topic-is-locked": "Темава е решена, за да се оневозможат понатамошните активности.",
 	"flow-error-lock-moderated-post": "Не можете да означите модерирана објава како решена.",
-	"flow-error-external-multi": "Наидов на грешки.<br />$1",
+	"flow-error-external-multi": "Наидов на грешки. <br />$1",
 	"flow-error-missing-content": "Пораката нема содржина. За да се зачува, мора да има содржина.",
 	"flow-error-missing-summary": "Ќе мора да поднесете краток опис.",
 	"flow-error-missing-title": "Темата нема наслов. Се бара наслов за да може да се зачува темата.",

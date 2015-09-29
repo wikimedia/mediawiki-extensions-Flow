@@ -18,12 +18,12 @@
 			"Mirolith",
 			"MedShot",
 			"Robin0van0der0vliet",
-			"Catrope"
+			"Catrope",
+			"Nnemo"
 		]
 	},
 	"enableflow": "Flow inschakelen",
 	"flow-desc": "Workflowmanagementsysteem",
-	"flow-talk-taken-over": "Deze overlegpagina gebruikt [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow].",
 	"log-name-flow": "Logboek Flow",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|heeft}} een [$4 bericht] verwijderd van [[$3|$5]] op [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|heeft}} een [$4 bericht] teruggeplaatst op [[$3|$5]] op [[$6]]",
@@ -129,11 +129,10 @@
 	"flow-error-allowcreation-flow-create-board": "De gebruiker heeft het \"{{int:right-flow-create-board}}\" recht niet",
 	"flow-error-http": "Er is een fout opgetreden in het contact met de server.",
 	"flow-error-other": "Er is een onverwachte fout opgetreden.",
-	"flow-error-external": "Er is een fout opgetreden.<br />De foutmelding is: $1",
-	"flow-error-edit-restricted": "U mag dit bericht niet bewerken.",
+	"flow-error-external": "Er is een fout opgetreden. <br />De foutmelding is: $1",
 	"flow-error-topic-is-locked": "Dit onderwerp is gesloten, verdere activiteit is niet mogelijk.",
 	"flow-error-lock-moderated-post": "U kunt een gemodereerd bericht niet sluiten.",
-	"flow-error-external-multi": "Er zijn fouten opgetreden.<br />$1",
+	"flow-error-external-multi": "Er zijn fouten opgetreden. <br />$1",
 	"flow-error-missing-content": "Het bericht heeft geen inhoud. Inhoud is vereist voor het opslaan van een bericht.",
 	"flow-error-missing-summary": "De samenvatting is leeg. U moet tekst invoeren om een samenvatting op te kunnen slaan.",
 	"flow-error-missing-title": "Onderwerp heeft geen titel. Een titel is vereist voor het opslaan van een onderwerp.",

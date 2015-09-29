@@ -18,7 +18,9 @@
 			"Devwebtel",
 			"Mbkgacek",
 			"Halibutt",
-			"The Polish"
+			"The Polish",
+			"Nnemo",
+			"Peter Bowman"
 		]
 	},
 	"enableflow": "Włącz Flow",
@@ -131,10 +133,10 @@
 	"flow-error-allowcreation-flow-create-board": "Użytkownik nie posiada uprawnienia „{{int:right-flow-create-board}}”",
 	"flow-error-http": "Wystąpił błąd w czasie łączenia z serwerem.",
 	"flow-error-other": "Wystąpił nieoczekiwany błąd.",
-	"flow-error-external": "Wystąpił błąd.<br />Otrzymano następujący komunikat o błędzie: $1",
+	"flow-error-external": "Wystąpił błąd. <br />Otrzymano następujący komunikat o błędzie: $1",
 	"flow-error-topic-is-locked": "Ten wątek oznaczono jako załatwiony, więc dodawanie komentarzy jest niemożliwe.",
 	"flow-error-lock-moderated-post": "Nie możesz oznaczyć moderowanego postu jako załatwiony.",
-	"flow-error-external-multi": "Wystąpiły błędy.<br />$1",
+	"flow-error-external-multi": "Wystąpiły błędy. <br />$1",
 	"flow-error-missing-content": "Post nie ma treści. Aby zapisać wiadomość, wymagana jest treść.",
 	"flow-error-missing-summary": "Należy wpisać streszczenie.",
 	"flow-error-missing-title": "Wątek nie ma tytułu. Aby zapisać wątek, wymagany jest tytuł.",
@@ -389,7 +391,7 @@
 	"flow-importer-lqt-moved-thread-template": "Wątek LQT skonwertowany na Flow",
 	"flow-importer-lqt-converted-template": "Strona LQT skonwertowana na Flow",
 	"flow-importer-lqt-converted-archive-template": "Archiwum skonwertowanej strony LQT",
-	"flow-importer-wt-converted-template": "Strona dyskusji w wikikodzie zmieniona na Flow",
+	"flow-importer-wt-converted-template": "Strona dyskusji w wikikodzie skonwertowana na Flow",
 	"flow-importer-wt-converted-archive-template": "Archiwum skonwertowanej strony dyskusji w wikikodzie",
 	"flow-importer-lqt-suppressed-user-template": "Zaimportowany post LQT ukrytego użytkownika",
 	"flow-importer-lqt-different-author-signature-template": "Post LQT zaimportowany z innym podpisem użytkownika",

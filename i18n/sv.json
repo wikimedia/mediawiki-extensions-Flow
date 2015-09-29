@@ -14,7 +14,8 @@
 			"Josve05a",
 			"Lejonel",
 			"Hangsna",
-			"Macofe"
+			"Macofe",
+			"Nnemo"
 		]
 	},
 	"enableflow": "Aktivera Flow",
@@ -130,10 +131,10 @@
 	"flow-error-allowcreation-flow-create-board": "Användaren har inte behörigheten \"{{int:right-flow-create-board}}\"",
 	"flow-error-http": "Ett fel uppstod när servern kontaktades.",
 	"flow-error-other": "Ett oväntat fel uppstod.",
-	"flow-error-external": "Ett fel uppstod.<br />Felmeddelandet var: $1",
+	"flow-error-external": "Ett fel uppstod. <br />Felmeddelandet var: $1",
 	"flow-error-topic-is-locked": "Detta ämne är löst, så ytterligare aktivitet är inte möjlig.",
 	"flow-error-lock-moderated-post": "Du kan inte markera ett modererat inlägg som löst.",
-	"flow-error-external-multi": "Fel uppstod.<br />$1",
+	"flow-error-external-multi": "Fel uppstod. <br />$1",
 	"flow-error-missing-content": "Inlägget har inget innehåll. Innehåll krävs för att spara ett inlägg.",
 	"flow-error-missing-summary": "Du måste skicka in en sammanfattning.",
 	"flow-error-missing-title": "Ämnet har ingen rubrik. En rubrik krävs för att spara ett ämne.",

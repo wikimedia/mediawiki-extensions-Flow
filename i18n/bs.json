@@ -4,7 +4,8 @@
 			"DzWiki",
 			"Semso98",
 			"Srdjan m",
-			"Milicevic01"
+			"Milicevic01",
+			"Nnemo"
 		]
 	},
 	"enableflow": "Uključi Flow",
@@ -116,10 +117,10 @@
 	"flow-error-allowcreation-flow-create-board": "Korisnik nema \"{{int:right-flow-create-board}}\" dozvolu",
 	"flow-error-http": "Došlo je do greške pri kontaktiranju servera.",
 	"flow-error-other": "Došlo je do neočekivane greške.",
-	"flow-error-external": "Došlo je do greške.<br />Primljenja je sljedeća dijagnostička poruka: $1",
+	"flow-error-external": "Došlo je do greške. <br />Primljenja je sljedeća dijagnostička poruka: $1",
 	"flow-error-topic-is-locked": "Ova tema je riješena, tako da daljnja aktivnost nije moguća.",
 	"flow-error-lock-moderated-post": "Moderiranu objavu ne možete označiti kao riješenu.",
-	"flow-error-external-multi": "Došlo je do grešaka.<br />$1",
+	"flow-error-external-multi": "Došlo je do grešaka. <br />$1",
 	"flow-error-missing-content": "Objava nema sadržaja. Sadržaj je potreban da bi se objava sačuvala.",
 	"flow-error-missing-summary": "Rezime nema sadržaja. Sadržaj je potreban da bi se rezime sačuvao.",
 	"flow-error-missing-title": "Tema nema naslov. Naslov je potreban da bi se tema sačuvala.",

@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Fohanno",
-			"Y-M D"
+			"Y-M D",
+			"Nnemo"
 		]
 	},
 	"flow-user-moderated": "Implijer habaskaet",
@@ -24,7 +25,6 @@
 	"flow-post-actions": "Oberoù",
 	"flow-topic-actions": "Oberoù",
 	"flow-cancel": "Nullañ",
-	"flow-preview": "Rakwelet",
 	"flow-show-change": "Diskouez ar c'hemmoù",
 	"flow-last-modified-by": "{{GENDER:$1|kemmet}} da ziwezhañ gant $1",
 	"flow-newtopic-title-placeholder": "Kaoz nevez",
@@ -34,7 +34,6 @@
 	"flow-newtopic-start-placeholder": "Kregiñ gant ur gaoz nevez",
 	"flow-summarize-topic-placeholder": "Diverrit an diviz-mañ, mar plij",
 	"flow-reply-topic-title-placeholder": "Respont da \"$1\"",
-	"flow-reply-submit": "{{GENDER:$1|Respont}}",
 	"flow-reply-link": "{{GENDER:$1|Respont}}",
 	"flow-thank-link": "{{GENDER:$1|Trugarez}}",
 	"flow-post-edited": "Kemennadenn {{GENDER:$1|aozet}} gant $1 $2",
@@ -58,15 +57,13 @@
 	"flow-topic-action-restore-topic": "Assevel ar gaoz",
 	"flow-topic-action-undo-moderation": "Dizober",
 	"flow-error-other": "Ur fazi dic'hortoz zo bet.",
-	"flow-error-external": "Ur fazi zo bet.<br />Ar gemennadenn fazi resevet a oa : $1",
-	"flow-error-edit-restricted": "N'oc'h ket aotreet da aozañ ar gemennadenn-mañ.",
-	"flow-error-external-multi": "Fazioù zo bet.<br />$1",
+	"flow-error-external": "Ur fazi zo bet. <br />Ar gemennadenn fazi resevet a oa : $1",
+	"flow-error-external-multi": "Fazioù zo bet. <br />$1",
 	"flow-error-delete-failure": "C'hwitet eo bet diverkadenn an elfenn-mañ",
 	"flow-error-hide-failure": "N'eus ket bet gallet kuzhat an elfenn-mañ.",
 	"flow-error-default": "C'hoarvezet ez eus ur fazi.",
 	"flow-error-invalid-topic-uuid-title": "Titl fall",
 	"flow-edit-header-submit": "Enrollañ an talbenn",
-	"flow-summarize-topic-submit": "Diverrañ",
 	"flow-edit-title-submit": "Cheñch an titl",
 	"flow-edit-post-submit": "Kas ar c'hemmoù",
 	"flow-rev-message-create-header": "$1 {{GENDER:$2|en deus|he deus}} krouet an talbenn.",
@@ -103,13 +100,9 @@
 	"flow-moderation-confirm-delete-topic": "Diverkañ",
 	"flow-moderation-confirm-hide-topic": "Kuzhat",
 	"flow-moderation-confirm-unhide-topic": "Diguzhat",
-	"flow-topic-collapsed-one-line": "Gwel bihan",
-	"flow-topic-complete": "Gwel klok",
 	"flow-load-more": "Kargañ muioc'h",
 	"flow-special-type": "Seurt",
 	"flow-special-type-post": "Postañ",
 	"flow-special-uuid": "UUID",
-	"flow-preview-return-edit-post": "Kenderc'hel da aozañ",
-	"flow-anonymous": "Dizanv",
 	"flow-embedding-unsupported": "An divizoù ne c'hallont ket bezañ enframmet c'hoazh."
 }
