@@ -141,10 +141,6 @@ class ChangesListQuery extends AbstractQuery {
 			throw new FlowException( 'Corrupted rc without changeData: ' . $rc->getAttribute( 'rc_id' ) );
 		}
 
-		/**
-		 * RC entries are not being created for 'new-topic' action but
-		 * old records exists. This filters them out.
-		 */
 		if ( $this->excludeFromChangesList( $isWatchlist, $changeData['action'] ) ) {
 			return false;
 		}
