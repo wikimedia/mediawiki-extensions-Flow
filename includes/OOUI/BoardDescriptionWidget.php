@@ -42,7 +42,11 @@ class BoardDescriptionWidget extends \OOUI\Widget {
 
 		// Initialize
 		$this->addClasses( array( 'flow-ui-boardDescriptionWidget', 'flow-ui-boardDescriptionWidget-nojs' ) );
-		$this->appendContent( $this->editButton, $this->contentWrapper );
+
+		if ( $editLink ) {
+			$this->appendContent( $this->editButton );
+		}
+		$this->appendContent( $this->contentWrapper );
 	}
 
 	/**

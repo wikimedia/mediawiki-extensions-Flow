@@ -28,12 +28,11 @@
             'tooltip' => 'Flow\TemplateHelper::tooltip',
             'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
 ),
-        'partials' => array('flow_board_navigation' => function ($cx, $in, $sp) {return ''.$sp.'
-'.$sp.'<div class="flow-board-navigation" data-flow-load-handler="boardNavigation">
+        'partials' => array('flow_board_navigation' => function ($cx, $in, $sp) {return ''.$sp.''.((LCRun3::ifvar($cx, ((isset($in['links']['board-sort']) && is_array($in['links'])) ? $in['links']['board-sort'] : null))) ? '<div class="flow-board-navigation" data-flow-load-handler="boardNavigation">
 '.$sp.'	<div class="flow-error-container">
 '.$sp.'	</div>
 '.$sp.'</div>
-';},'flow_errors' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-error-container">
+'.$sp.'' : '').'';},'flow_errors' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-error-container">
 '.$sp.''.((LCRun3::ifvar($cx, ((isset($cx['sp_vars']['root']['errors']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['errors'] : null))) ? '	<div class="flow-errors errorbox">
 '.$sp.'		<ul>
 '.$sp.''.LCRun3::sec($cx, ((isset($cx['sp_vars']['root']['errors']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['errors'] : null), $in, true, function($cx, $in)use($sp){return '				<li>'.LCRun3::ch($cx, 'html', array(array(((isset($in['message']) && is_array($in)) ? $in['message'] : null)),array()), 'encq').'</li>
