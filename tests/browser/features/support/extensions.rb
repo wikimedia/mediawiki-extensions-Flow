@@ -9,9 +9,8 @@ module Watir
   end
 
   class TextArea
-    def when_enabled
-      Watir::Wait.until { !self.disabled? }
-      self
+    def enabled?
+      !disabled?
     end
 
     def text
@@ -25,6 +24,17 @@ module PageObject
     platform.wait_until(timeout, message) do
       yield.tap do |result|
         refresh unless result
+      end
+    end
+  end
+end
+
+module PageObject
+  module Elements
+    class TextArea
+      def when_enabled
+        wait_until { enabled? }
+        self
       end
     end
   end
