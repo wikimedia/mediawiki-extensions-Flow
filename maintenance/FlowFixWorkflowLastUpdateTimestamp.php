@@ -190,7 +190,7 @@ class UpdateWorkflowLastUpdateTimestampWriter extends EchoBatchRowWriter {
 		/** @var Workflow[] $workflows */
 		$workflows = $this->storage->getMulti( 'Workflow', $uuids );
 		foreach ( $workflows as $workflow ) {
-			$timestamp = $timestamps[$workflow->getId()->getBinary()];
+			$timestamp = $timestamps[$workflow->getId()->getBinary()->__toString()];
 			$workflow->updateLastUpdated( UUID::getComparisonUUID( $timestamp ) );
 		}
 
