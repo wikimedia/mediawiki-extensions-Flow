@@ -14,6 +14,7 @@ require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 class FlowUpdateBetaFeaturePreference extends LoggedUpdateMaintenance {
 
 	public function __construct() {
+		parent::__construct();
 		$this->setBatchSize( 300 );
 	}
 
