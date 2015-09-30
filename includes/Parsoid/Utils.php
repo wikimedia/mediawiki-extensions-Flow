@@ -92,7 +92,7 @@ abstract class Utils {
 		$prefixedDbTitle = $title->getPrefixedDBkey();
 		$params = array(
 			$from => $content,
-			'bodyOnly' => 'true',
+			'body_only' => 'true',
 		);
 		if ( $from === 'html' ) {
 			$params['scrubWikitext'] = 'true';
