@@ -73,7 +73,7 @@ class TopicUpdater extends Updater {
 	 * Instead of querying for revisions (which is what we actually need), we'll
 	 * just query the workflow table, which will save us some complicated joins.
 	 * The workflow_id for a topic title (aka root post) is the same as its
-	 * revision is, so we can pass that to the root post loader and *poof*, we
+	 * revision id, so we can pass that to the root post loader and *poof*, we
 	 * have our revisions!
 	 *
 	 * {@inheritDoc}
