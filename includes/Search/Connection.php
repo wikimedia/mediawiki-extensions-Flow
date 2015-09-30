@@ -42,8 +42,6 @@ class Connection extends \ElasticaConnection {
 	 * @param int $maxConnectionAttempts
 	 */
 	public function __construct( array $servers, $maxConnectionAttempts ) {
-		parent::__construct();
-
 		$this->servers = $servers;
 		$this->maxConnectionAttempts = $maxConnectionAttempts;
 	}
