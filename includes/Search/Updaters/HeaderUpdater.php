@@ -1,14 +1,13 @@
 <?php
 
-namespace Flow\Search;
+namespace Flow\Search\Updaters;
 
-use Flow\Container;
-use Flow\Data\ManagerGroup;
+use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
-use Flow\Model\UUID;
+use Flow\Search\Connection;
 use Sanitizer;
 
-class HeaderUpdater extends Updater {
+class HeaderUpdater extends AbstractUpdater {
 	/**
 	 * {@inheritDoc}
 	 */
@@ -19,41 +18,7 @@ class HeaderUpdater extends Updater {
 	/**
 	 * {@inheritDoc}
 	 */
-	public function getRevisions( array $conditions = array(), array $options = array() ) {
-		$dbr = $this->dbFactory->getDB( DB_SLAVE );
-
-		// get the current (=most recent, =max) revision id for all headers
-		$rows = $dbr->select(
-			array( 'flow_revision', 'flow_workflow' ),
-			array( 'rev_id' => 'MAX(rev_id)' ),
-			$conditions,
-			__METHOD__,
-			array(
-				'ORDER BY' => 'rev_id ASC',
-				'GROUP BY' => 'rev_type_id',
-			) + $options,
-			array(
-				'flow_workflow' => array(
-					'INNER JOIN',
-					array( 'workflow_id = rev_type_id' , 'rev_type' => 'header' )
-				),
-			)
-		);
-
-		$uuids = array();
-		foreach ( $rows as $row ) {
-			$uuids[] = UUID::create( $row->rev_id );
-		}
-
-		/** @var ManagerGroup $storage */
-		$storage = Container::get( 'storage' );
-		return $storage->getStorage( 'Header' )->getMulti( $uuids );
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public function buildDocument( /* Header */ $revision ) {
+	public function buildDocument( AbstractRevision /* Header */ $revision ) {
 		/** @var Header $revision */
 
 		// get article title associated with this revision
