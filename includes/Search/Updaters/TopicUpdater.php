@@ -1,30 +1,30 @@
 <?php
 
-namespace Flow\Search;
+namespace Flow\Search\Updaters;
 
 use Flow\Collection\PostSummaryCollection;
-use Flow\DbFactory;
+use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
-use Flow\Model\UUID;
 use Flow\Repository\RootPostLoader;
 use Flow\RevisionActionPermissions;
-use ResultWrapper;
+use Flow\Search\Connection;
+use Flow\Search\Iterators\AbstractIterator;
 use Sanitizer;
 
-class TopicUpdater extends Updater {
+class TopicUpdater extends AbstractUpdater {
 	/**
 	 * @var RootPostLoader
 	 */
 	protected $rootPostLoader;
 
 	/**
-	 * @param DbFactory $dbFactory
+	 * @param AbstractIterator $iterator
 	 * @param RevisionActionPermissions $permissions
 	 * @param RootPostLoader $rootPostLoader
 	 */
-	public function __construct( DbFactory $dbFactory, RevisionActionPermissions $permissions, RootPostLoader $rootPostLoader ) {
-		parent::__construct( $dbFactory, $permissions );
+	public function __construct( AbstractIterator $iterator, RevisionActionPermissions $permissions, RootPostLoader $rootPostLoader ) {
+		parent::__construct( $iterator, $permissions );
 		$this->rootPostLoader = $rootPostLoader;
 	}
 
@@ -36,57 +36,9 @@ class TopicUpdater extends Updater {
 	}
 
 	/**
-	 * We'll be querying the workflow table instead of the revisions table.
-	 * Because it's possible to request only a couple of revisions (in between
-	 * certain ids), we'll need to override the parent buildQueryConditions
-	 * method to also work on the workflow table.
-	 * A topic workflow is updated with a workflow_last_update_timestamp for
-	 * every change made in the topic. Our UUIDs are sequential & time-based,
-	 * so we can just query for workflows with a timestamp higher than the
-	 * timestamp derived from the starting UUID and lower than the end UUID.
-	 *
 	 * {@inheritDoc}
 	 */
-	public function buildQueryConditions( UUID $fromId = null, UUID $toId = null, $namespace = null ) {
-		$dbr = $this->dbFactory->getDB( DB_SLAVE );
-
-		$conditions = array();
-
-		// only find entries in a given range
-		if ( $fromId !== null ) {
-			$conditions[] = 'workflow_last_update_timestamp >= ' . $dbr->addQuotes( $fromId->getTimestamp() );
-		}
-		if ( $toId !== null ) {
-			$conditions[] = 'workflow_last_update_timestamp <= ' . $dbr->addQuotes( $toId->getTimestamp() );
-		}
-
-		// find only within requested wiki/namespace
-		$conditions['workflow_wiki'] = wfWikiId();
-		if ( $namespace !== null ) {
-			$conditions['workflow_namespace'] = $namespace;
-		}
-
-		return $conditions;
-	}
-
-	/**
-	 * Instead of querying for revisions (which is what we actually need), we'll
-	 * just query the workflow table, which will save us some complicated joins.
-	 * The workflow_id for a topic title (aka root post) is the same as its
-	 * revision is, so we can pass that to the root post loader and *poof*, we
-	 * have our revisions!
-	 *
-	 * {@inheritDoc}
-	 */
-	public function getRevisions( array $conditions = array(), array $options = array() ) {
-		$workflows = $this->getWorkflows( $conditions, $options );
-		return $this->getRoots( $workflows );
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public function buildDocument( /* PostRevision */ $revision ) {
+	public function buildDocument( AbstractRevision /* PostRevision */ $revision ) {
 		/** @var PostRevision $revision */
 
 		// get timestamp from the most recent revision
@@ -130,43 +82,6 @@ class TopicUpdater extends Updater {
 	}
 
 	/**
-	 * @param array $conditions
-	 * @param array $options
-	 * @return bool|ResultWrapper
-	 */
-	public function getWorkflows( array $conditions = array(), array $options = array() ) {
-		$dbr = $this->dbFactory->getDB( DB_SLAVE );
-
-		return $dbr->select(
-			array( 'flow_workflow' ),
-			// for root post (topic title), workflow_id is the same as its rev_type_id
-			array( 'workflow_id', 'workflow_last_update_timestamp' ),
-			array(
-				'workflow_type' => 'topic'
-			) + $conditions,
-			__METHOD__,
-			array(
-				'ORDER BY' => 'workflow_last_update_timestamp ASC',
-			) + $options
-		);
-	}
-
-	/**
-	 * @param ResultWrapper $workflows
-	 * @return PostRevision[]
-	 */
-	public function getRoots( ResultWrapper $workflows ) {
-		$roots = array();
-		foreach ( $workflows as $row ) {
-			$roots[$row->workflow_id] = UUID::create( $row->workflow_id );
-		}
-
-		// we need to fetch all data via rootloader because we'll want children
-		// to be populated
-		return $this->rootPostLoader->getMulti( $roots );
-	}
-
-	/**
 	 * Recursively get the data for all children. This will add the revision's
 	 * content to the results array, with the post ID as key.
 	 *
@@ -177,6 +92,7 @@ class TopicUpdater extends Updater {
 		// make sure we don't parse text that isn't meant to be parsed (e.g.
 		// topic titles are never meant to be parsed from wikitext to html)
 		$format = $revision->isFormatted() ? 'html' : 'wikitext';
+		// @todo: update after rebasing on top of https://gerrit.wikimedia.org/r/#/c/243066/9/includes/Search/TopicUpdater.php
 
 		// store type of revision so we can also search for very specific types
 		// (e.g. titles only)
