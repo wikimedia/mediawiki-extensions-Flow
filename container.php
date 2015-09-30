@@ -1033,12 +1033,18 @@ $c['search.connection'] = function( $c ) {
 	global $wgFlowSearchServers, $wgFlowSearchConnectionAttempts;
 	return new Flow\Search\Connection( $wgFlowSearchServers, $wgFlowSearchConnectionAttempts );
 };
+$c['search.index.iterators.header'] = function( $c ) {
+	return new \Flow\Search\Iterators\HeaderIterator( $c['db.factory'] );
+};
+$c['search.index.iterators.topic'] = function( $c ) {
+	return new \Flow\Search\Iterators\TopicIterator( $c['db.factory'], $c['loader.root_post'] );
+};
 $c['search.index.updaters'] = function( $c ) {
 	// permissions for anon user
 	$anonPermissions = new Flow\RevisionActionPermissions( $c['flow_actions'], new User );
 	return array(
-		'topic' => new \Flow\Search\TopicUpdater( $c['db.factory'], $anonPermissions,  $c['loader.root_post'] ),
-		'header' => new \Flow\Search\HeaderUpdater( $c['db.factory'], $anonPermissions )
+		'topic' => new \Flow\Search\Updaters\TopicUpdater( $c['search.index.iterators.topic'], $anonPermissions, $c['loader.root_post'] ),
+		'header' => new \Flow\Search\Updaters\HeaderUpdater( $c['search.index.iterators.header'], $anonPermissions )
 	);
 };
 
