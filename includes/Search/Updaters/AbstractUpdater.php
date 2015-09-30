@@ -1,20 +1,20 @@
 <?php
 
-namespace Flow\Search;
+namespace Flow\Search\Updaters;
 
 use Flow\Container;
-use Flow\DbFactory;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
-use Flow\Model\UUID;
 use Flow\RevisionActionPermissions;
+use Flow\Search\Connection;
+use Flow\Search\Iterators\AbstractIterator;
 use MWExceptionHandler;
 
-abstract class Updater {
+abstract class AbstractUpdater {
 	/**
-	 * @var DbFactory
+	 * @var AbstractIterator
 	 */
-	protected $dbFactory;
+	public $iterator;
 
 	/**
 	 * @var RevisionActionPermissions
@@ -27,11 +27,11 @@ abstract class Updater {
 	protected $connection;
 
 	/**
-	 * @param DbFactory $dbFactory
+	 * @param AbstractIterator $iterator
 	 * @param RevisionActionPermissions $permissions
 	 */
-	public function __construct( DbFactory $dbFactory, RevisionActionPermissions $permissions ) {
-		$this->dbFactory = $dbFactory;
+	public function __construct( AbstractIterator $iterator, RevisionActionPermissions $permissions ) {
+		$this->iterator = $iterator;
 		$this->permissions = $permissions;
 		$this->connection = Container::get( 'search.connection' );
 	}
@@ -42,80 +42,47 @@ abstract class Updater {
 	abstract public function getTypeName();
 
 	/**
-	 * @param array $conditions
-	 * @param array $options
-	 * @return AbstractRevision[]
-	 */
-	abstract public function getRevisions( array $conditions = array(), array $options = array() );
-
-	/**
 	 * @param AbstractRevision $revision
 	 * @return \Elastica\Document
 	 */
 	abstract public function buildDocument( /* AbstractRevision */ $revision );
 
 	/**
-	 * @param UUID|null $fromId
-	 * @param UUID|null $toId
-	 * @param int|null $namespace
-	 * @return array
+	 * @param string|null $shardTimeout Timeout in Elasticsearch time format (1m, 15s, ...)
+	 * @param int|null $clientSideTimeout
+	 * @param int $batchSize
+	 * @return int
 	 */
-	public function buildQueryConditions( UUID $fromId = null, UUID $toId = null, $namespace = null ) {
-		$dbr = $this->dbFactory->getDB( DB_SLAVE );
-
-		$conditions = array();
-
-		// only find entries in a given range
-		if ( $fromId !== null ) {
-			$conditions[] = 'rev_id >= ' . $dbr->addQuotes( $fromId->getBinary() );
-		}
-		if ( $toId !== null ) {
-			$conditions[] = 'rev_id <= ' . $dbr->addQuotes( $toId->getBinary() );
+	public function updateRevisions( $shardTimeout = null, $clientSideTimeout = null, $batchSize = 50 ) {
+		if ( $clientSideTimeout !== null ) {
+			$this->connection->setTimeout( $clientSideTimeout );
 		}
 
-		// find only within requested wiki/namespace
-		$conditions['workflow_wiki'] = wfWikiId();
-		if ( $namespace !== null ) {
-			$conditions['workflow_namespace'] = $namespace;
-		}
-
-		return $conditions;
-	}
-
-	/**
-	 * @param AbstractRevision[] $revisions
-	 * @return \Elastica\Document[]
-	 */
-	protected function buildDocumentsForRevisions( array $revisions ) {
 		$documents = array();
-		foreach ( $revisions as $revision ) {
+		$count = 0;
+		foreach ( $this->iterator as $revision ) {
 			try {
 				$documents[] = $this->buildDocument( $revision );
+				$count++;
 			} catch ( FlowException $e ) {
 				// just ignore revisions that fail to build document...
 				wfWarn( __METHOD__ . ': Failed to build document for ' . $revision->getRevisionId()->getAlphadecimal() . ': ' . $e->getMessage());
 				MWExceptionHandler::logException( $e );
 			}
+
+			// send documents in small batches
+			if ( count( $documents ) > $batchSize ) {
+				$this->sendDocuments( $documents );
+				$documents = array();
+			}
 		}
 
-		return $documents;
-	}
-
-	/**
-	 * @param AbstractRevision[] $revisions
-	 * @param string|null $shardTimeout Timeout in Elasticsearch time format (1m, 15s, ...)
-	 * @param int|null $clientSideTimeout
-	 * @return int
-	 */
-	public function updateRevisions( array $revisions, $shardTimeout = null, $clientSideTimeout = null ) {
-		if ( $clientSideTimeout !== null ) {
-			$this->connection->setTimeout( $clientSideTimeout );
+		if ( $documents ) {
+			// send remaining documents
+			$this->sendDocuments( $documents, $shardTimeout );
 		}
 
-		$documents = $this->buildDocumentsForRevisions( $revisions );
-		$this->sendDocuments( $documents, $shardTimeout );
-
-		return count( $documents );
+		return $count;
 	}
 
 	/**
