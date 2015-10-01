@@ -23,15 +23,17 @@ class RevisionUndoViewFormatter {
 		FormatterRow $current,
 		IContextSource $context
 	) {
+		$currentWikitext = $current->revision->getContentInWikitext();
+
 		$undoContent = $this->getUndoContent(
-			$start->revision->getContent( 'wikitext' ),
-			$stop->revision->getContent( 'wikitext' ),
-			$current->revision->getContent( 'wikitext' )
+			$start->revision->getContentInWikitext(),
+			$stop->revision->getContentInWikitext(),
+			$currentWikitext
 		);
 
 		$differenceEngine = new DifferenceEngine();
 		$differenceEngine->setContent(
-			new TextContent( $current->revision->getContent( 'wikitext' ) ),
+			new TextContent( $currentWikitext ),
 			new TextContent( $undoContent )
 		);
 

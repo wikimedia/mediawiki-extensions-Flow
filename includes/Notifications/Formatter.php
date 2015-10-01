@@ -5,7 +5,7 @@ namespace Flow;
 use Flow\Exception\FlowException;
 use Flow\Model\Anchor;
 use Flow\Model\UUID;
-use Flow\Parsoid\Utils;
+use Flow\Conversion\Utils;
 use Flow\Model\Workflow;
 use EchoBasicFormatter;
 use EchoEvent;
