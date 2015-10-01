@@ -520,9 +520,8 @@ class TemplateHelper {
 			case 'BoardDescriptionWidget':
 				$dataArgs = array(
 					'infusable' => false,
-					'descriptionFormat' => $args[0],
-					'description' => $args[1],
-					'editLink' => $args[2]
+					'description' => $args[0],
+					'editLink' => $args[1]
 				);
 				$widget = new OOUI\BoardDescriptionWidget( $baseConfig + $dataArgs );
 				break;
@@ -535,7 +534,7 @@ class TemplateHelper {
 	 * @param array $args one or more arguments, i18n key and parameters
 	 * @param array $named unused
 	 *
-	 * @return string Plaintext
+	 * @return string Message output, using the 'text' format
 	 */
 	static public function l10n( array $args, array $named ) {
 		$message = null;
@@ -762,7 +761,7 @@ class TemplateHelper {
 			throw new WrongNumberArgumentsException( $args, 'two' );
 		}
 		list( $contentType, $content ) = $args;
-		return in_array( $contentType, array( 'html', 'fixed-html' ) ) ? self::html( $content ) : $content;
+		return in_array( $contentType, array( 'html', 'fixed-html', 'topic-title-html' ) ) ? self::html( $content ) : $content;
 	}
 
 	/**

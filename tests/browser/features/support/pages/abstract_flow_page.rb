@@ -54,6 +54,15 @@ class AbstractFlowPage
     page.flow_first_topic_element.div_element(css: "div.flow-topic-titlebar div.flow-moderated-topic-title")
   end
 
+  ## First post with link HTML in topic title
+  a(:flow_first_topic_main_page_link) do
+    h2_element(css: ".flow-topic-title", index: 0).link_element(href: %r{/wiki/Main_Page})
+  end
+
+  a(:flow_first_topic_red_link) do
+    h2_element(css: ".flow-topic-title", index: 0).link_element(class: 'new')
+  end
+
   div(:flow_first_topic_original_post, css: ".flow-post", index: 0)
   a(:flow_first_topic_original_post_edit) do |page|
     page.flow_first_topic_original_post_element.link_element(text: "Edit")
