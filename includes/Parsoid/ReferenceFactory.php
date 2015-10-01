@@ -2,6 +2,7 @@
 
 namespace Flow\Parsoid;
 
+use Flow\Conversion\Utils;
 use Flow\Model\URLReference;
 use Flow\Model\UUID;
 use Flow\Model\WikiReference;

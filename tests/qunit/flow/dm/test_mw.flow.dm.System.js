@@ -43,7 +43,7 @@ QUnit.test( 'Initialize flow system', function ( assert ) {
 					dateFormats: [],
 					properties: {
 						'topic-of-post': {
-							plaintext: 'This is a test content in plaintext.'
+							plaintext: 'This is a test content in topic-title-wikitext.'
 						}
 					},
 					isOriginalContent: true,
@@ -81,8 +81,8 @@ QUnit.test( 'Initialize flow system', function ( assert ) {
 					lastEditId: null,
 					previousRevisionId: null,
 					content: {
-						content: 'This is a test content in plaintext.',
-						format: 'plaintext'
+						content: 'This is a test content in topic-title-wikitext.',
+						format: 'topic-title-wikitext'
 					},
 					watchable: false,
 					replyToId: null,

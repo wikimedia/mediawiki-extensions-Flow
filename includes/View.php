@@ -122,7 +122,7 @@ class View extends ContextSource {
 		}
 
 		// Add Parsoid modules if necessary
-		Parsoid\Utils::onFlowAddModules( $out );
+		Conversion\Utils::onFlowAddModules( $out );
 		// Allow other extensions to add modules
 		Hooks::run( 'FlowAddModules', array( $out ) );
 	}

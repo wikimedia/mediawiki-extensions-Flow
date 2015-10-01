@@ -20,7 +20,7 @@ class RecentChangesListenerTest extends \MediaWikiTestCase {
 				'Reply recent change goes to the topic',
 				NS_TOPIC,
 				function( $workflow, $user ) {
-					$first = PostRevision::create( $workflow, $user, 'blah blah', 'wikitext' );
+					$first = PostRevision::createTopicPost( $workflow, $user, 'blah blah' );
 					return $first->reply( $workflow, $user, 'fofofo', 'wikitext' );
 				},
 			),

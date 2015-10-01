@@ -3,6 +3,7 @@
 namespace Flow\Formatter;
 
 use Flow\Container;
+use Flow\Conversion\Utils;
 use Flow\FlowActions;
 use Flow\Model\Anchor;
 use Flow\Model\PostRevision;
@@ -306,7 +307,10 @@ abstract class AbstractFormatter {
 		// generated link has generic link text, should be actual topic title
 		$root = $row->revision->getRootPost();
 		if ( $root && $this->permissions->isAllowed( $root, 'view' ) ) {
-			$topic->setMessage( Container::get( 'templating' )->getContent( $root, 'wikitext' ) );
+			$topicDisplayText = Utils::htmlToPlaintext(
+				Container::get( 'templating' )->getContent( $root, 'topic-title-html' )
+			);
+			$topic->setMessage( $topicDisplayText );
 		}
 
 		return $ctx->msg( 'flow-rc-topic-of-board' )->rawParams(

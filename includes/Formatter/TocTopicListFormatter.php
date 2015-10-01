@@ -39,7 +39,7 @@ class TocTopicListFormatter extends BaseTopicListFormatter {
 			$revisionId = $postRevision->getRevisionId()->getAlphadecimal();
 			$result['posts'][$topicId] = array( $revisionId );
 
-			$contentFormat = 'plaintext';
+			$contentFormat = 'topic-title-wikitext';
 
 			$workflow = $workflowsByWorkflowId[$topicId];
 

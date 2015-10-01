@@ -2,6 +2,7 @@
 
 use Flow\Collection\PostCollection;
 use Flow\Container;
+use Flow\Conversion\Utils;
 use Flow\Exception\FlowException;
 use Flow\Exception\PermissionException;
 use Flow\Formatter\CheckUserQuery;
@@ -135,7 +136,7 @@ class FlowHooks {
 			self::getAbuseFilter();
 		}
 
-		if ( $wgFlowContentFormat === 'html' && !Flow\Parsoid\Utils::isParsoidConfigured() ) {
+		if ( $wgFlowContentFormat === 'html' && !Utils::isParsoidConfigured() ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Warning: $wgFlowContentFormat was set to \'html\', but you do not have Parsoid enabled.  Changing $wgFlowContentFormat to \'wikitext\'' );
 			$wgFlowContentFormat = 'wikitext';
 		}
@@ -1356,8 +1357,7 @@ class FlowHooks {
 			return true;
 		}
 
-		// Titles are never parsed, so request as wikitext
-		$content = $revision->getContent( 'wikitext' );
+		$content = Utils::htmlToPlaintext( $revision->getContent( 'topic-title-html' ) );
 		$link = Linker::link( $title, htmlspecialchars( $content ) );
 
 		return true;
