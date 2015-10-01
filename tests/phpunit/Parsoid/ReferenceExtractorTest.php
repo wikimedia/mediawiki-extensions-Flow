@@ -6,7 +6,7 @@ use Flow\Container;
 use Flow\Exception\WikitextException;
 use Flow\Model\UUID;
 use Flow\Parsoid\ReferenceFactory;
-use Flow\Parsoid\Utils;
+use Flow\Conversion\Utils;
 use Flow\Tests\FlowTestCase;
 use ReflectionMethod;
 use Title;

@@ -395,7 +395,7 @@ class TopicSummaryBlock extends AbstractBlock {
 			$out->setHtmlTitle( $out->msg( $key, array(
 				// This must be a rawParam to not expand {{foo}} in the title, it must
 				// not be htmlspecialchar'd because OutputPage::setHtmlTitle handles that.
-				Message::rawParam( $topic->getContent( 'wikitext' ) ),
+				Message::rawParam( $topic->getContent( 'topic-title-wikitext' ) ),
 				$title->getPrefixedText()
 			) ) );
 		} else {
