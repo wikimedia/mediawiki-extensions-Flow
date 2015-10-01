@@ -59,8 +59,6 @@
 				<button
 					data-role="submit"
 					class="mw-ui-button mw-ui-constructive"
-					data-flow-interactive-handler="apiRequest"
-					data-flow-api-handler="summarizeTopic"
 					data-flow-api-target="< .flow-topic-summary-container">
 						'.LCRun3::ch($cx, 'l10n', array(array('flow-topic-action-update-topic-summary'),array()), 'encq').'
 				</button>

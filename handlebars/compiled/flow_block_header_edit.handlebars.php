@@ -58,13 +58,12 @@
 
 			<div class="flow-form-actions flow-form-collapsible">
 				<button data-role="submit"
-					class="mw-ui-button mw-ui-constructive"
-					data-flow-interactive-handler="apiRequest"
-					data-flow-api-handler="submitHeader">'.LCRun3::ch($cx, 'l10n', array(array('flow-edit-header-submit'),array()), 'encq').'</button>
+					class="mw-ui-button mw-ui-constructive">'.LCRun3::ch($cx, 'l10n', array(array('flow-edit-header-submit'),array()), 'encq').'</button>
 '.LCRun3::p($cx, 'flow_form_cancel_button', array(array($in),array()), '				').'				<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-edit'),array()), 'encq').'</small>
 			</div>
 		</form>
 	</div>
-</div>';
+</div>
+';
 }
 ?>
