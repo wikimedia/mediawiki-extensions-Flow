@@ -19,12 +19,13 @@ class SpamRegex implements SpamFilter {
 		global $wgSpamRegex;
 
 		/*
-		 * This should not roundtrip to Parsoid; SpamRegex checks will be
-		 * performed upon submitting new content, and content is always
-		 * submitted in wikitext. It will only be transformed once it's being
-		 * saved to DB.
+		 * This should not cause an extra conversion; SpamRegex checks will be
+		 * performed upon submitting new content.  Content is always either
+		 * submitted in (topic-title-)wikitext, or submitted in HTML, but
+		 * immediately converted to wikitext and then treated as such. It will only
+		 * be transformed once it's being saved to DB.
 		 */
-		$text = $newRevision->getContent( 'wikitext' );
+		$text = $newRevision->getContentInWikitext();
 
 		// back compat, $wgSpamRegex may be a single string or an array of regexes
 		$regexes = (array) $wgSpamRegex;

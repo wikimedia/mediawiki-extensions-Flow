@@ -174,10 +174,6 @@ class TopicUpdater extends Updater {
 	 * @return array
 	 */
 	public function getRevisionsData( /* PostRevision|PostSummary */ $revision ) {
-		// make sure we don't parse text that isn't meant to be parsed (e.g.
-		// topic titles are never meant to be parsed from wikitext to html)
-		$format = $revision->isFormatted() ? 'html' : 'wikitext';
-
 		// store type of revision so we can also search for very specific types
 		// (e.g. titles only)
 		// possible values will be:
@@ -185,17 +181,14 @@ class TopicUpdater extends Updater {
 		// * post
 		// * post-summary
 		$type = $revision->getRevisionType();
-		if ( method_exists( $revision, 'isTopicTitle' ) && $revision->isTopicTitle() ) {
-			$type = 'title';
-		}
 
 		$data = array();
 
 		if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
 			$data[] = array(
 				'id' => $revision->getCollectionId()->getAlphadecimal(),
-				'text' => trim( Sanitizer::stripAllTags( $revision->getContent( $format ) ) ),
-				'source_text' => $revision->getContent( 'wikitext' ), // for insource: searches
+				'text' => trim( Sanitizer::stripAllTags( $revision->getContentInHtml() ) ),
+				'source_text' => $revision->getContentInWikitext(),
 				'moderation_state' => $revision->getModerationState(),
 				'timestamp' => $revision->getCollectionId()->getTimestamp( TS_ISO_8601 ),
 				'update_timestamp' => $revision->getRevisionId()->getTimestamp( TS_ISO_8601 ),

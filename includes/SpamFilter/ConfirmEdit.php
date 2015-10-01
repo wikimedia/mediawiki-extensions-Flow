@@ -20,8 +20,8 @@ class ConfirmEdit implements SpamFilter {
 	 */
 	public function validate( IContextSource $context, AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title ) {
 		global $wgOut;
-		$newContent = $newRevision->getContent( 'wikitext' );
-		$oldContent = ( $oldRevision !== null ) ? $oldRevision->getContent( 'wikitext' ) : '';
+		$newContent = $newRevision->getContentInWikitext();
+		$oldContent = ( $oldRevision !== null ) ? $oldRevision->getContentInWikitext() : '';
 
 		/** @var SimpleCaptcha $captcha */
 		$captcha = ConfirmEditHooks::getInstance();

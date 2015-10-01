@@ -33,8 +33,8 @@ class RevisionDiffViewFormatter {
 		$oldRes = $this->revisionViewFormatter->formatApi( $oldRow, $ctx );
 		$newRes = $this->revisionViewFormatter->formatApi( $newRow, $ctx );
 
-		$oldContent = $oldRow->revision->getContent( 'wikitext' );
-		$newContent = $newRow->revision->getContent( 'wikitext' );
+		$oldContent = $oldRow->revision->getContentInWikitext();
+		$newContent = $newRow->revision->getContentInWikitext();
 
 		$differenceEngine = new \DifferenceEngine();
 
