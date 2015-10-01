@@ -1,6 +1,6 @@
 <?php
 
-use Flow\Parsoid\Utils;
+use Flow\Conversion\Utils;
 
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'

@@ -62,7 +62,7 @@ class HookTest extends \MediaWikiTestCase {
 				->getWorkflow();
 			$topicWorkflow = Workflow::create( 'topic', $boardWorkflow->getArticleTitle() );
 			$topicList = TopicListEntry::create( $boardWorkflow, $topicWorkflow );
-			$topicTitle = PostRevision::create( $topicWorkflow, $user, 'some content', 'wikitext' );
+			$topicTitle = PostRevision::createTopicPost( $topicWorkflow, $user, 'some content' );
 			$metadata = array(
 				'workflow' => $topicWorkflow,
 				'board-workflow' => $boardWorkflow,
@@ -125,7 +125,7 @@ class HookTest extends \MediaWikiTestCase {
 					$title = $metadata['workflow']->getArticleTitle();
 
 					return array(
-						'revision' => $metadata['revision']->newNextRevision( $user, 'gnihtemos gnihtemos', 'wikitext', 'edit-title', $title ),
+						'revision' => $metadata['revision']->newNextRevision( $user, 'gnihtemos gnihtemos', 'topic-title-wikitext', 'edit-title', $title ),
 					) + $metadata;
 				},
 				array(

@@ -737,11 +737,10 @@ class TalkpageImportOperation {
 		$titleRevisions = $this->importObjectWithHistory(
 			$importTopic,
 			function( IObjectRevision $rev ) use ( $state, $topicWorkflow ) {
-				return PostRevision::create(
+				return PostRevision::createTopicPost(
 					$topicWorkflow,
 					$state->createUser( $rev->getAuthor() ),
-					$rev->getText(),
-					'wikitext'
+					$rev->getText()
 				);
 			},
 			'edit-title',
