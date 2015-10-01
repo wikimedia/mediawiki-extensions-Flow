@@ -59,9 +59,7 @@ class HeaderUpdater extends Updater {
 		// get article title associated with this revision
 		$title = $revision->getCollection()->getWorkflow()->getArticleTitle();
 
-		// make sure we don't parse text that isn't meant to be parsed (e.g.
-		// topic titles are never meant to be parsed from wikitext to html)
-		$format = $revision->isFormatted() ? 'html' : 'wikitext';
+		$format = 'html';
 
 		$creationTimestamp = $revision->getCollectionId()->getTimestampObj();
 		$updateTimestamp = $revision->getRevisionId()->getTimestampObj();

@@ -4,6 +4,7 @@ namespace Flow\Parsoid;
 
 use DOMDocument;
 use DOMXPath;
+use Flow\Conversion\Utils;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;

@@ -7,7 +7,7 @@ use DOMElement;
 use DOMNode;
 use Flow\Model\PostRevision;
 use Flow\Parsoid\Fixer;
-use Flow\Parsoid\Utils;
+use Flow\Conversion\Utils;
 use LinkBatch;
 use Linker;
 use Title;
