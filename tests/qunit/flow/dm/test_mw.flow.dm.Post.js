@@ -53,7 +53,7 @@ QUnit.test( 'Hierarchical post structure', function ( assert ) {
 					isModeratedNotLocked: false,
 					content: {
 						content: 'Topic with hierarchical posts',
-						format: 'plaintext'
+						format: 'topic-title-wikitext'
 					},
 					isWatched: true,
 					watchable: true,

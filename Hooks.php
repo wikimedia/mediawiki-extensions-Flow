@@ -97,7 +97,7 @@ class FlowHooks {
 			self::getAbuseFilter();
 		}
 
-		if ( $wgFlowContentFormat === 'html' && !Flow\Parsoid\Utils::isParsoidConfigured() ) {
+		if ( $wgFlowContentFormat === 'html' && !Flow\Conversion\Utils::isParsoidConfigured() ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Warning: $wgFlowContentFormat was set to \'html\', but you do not have Parsoid enabled.  Changing $wgFlowContentFormat to \'wikitext\'' );
 			$wgFlowContentFormat = 'wikitext';
 		}

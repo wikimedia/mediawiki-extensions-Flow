@@ -2,10 +2,12 @@
 
 namespace Flow\Tests\Formatter;
 
+use Flow\Exception\FlowException;
 use Flow\FlowActions;
 use Flow\Formatter\FormatterRow;
 use Flow\Formatter\RevisionFormatter;
 use Flow\Model\PostRevision;
+use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use RequestContext;
 use Title;
@@ -17,20 +19,205 @@ use User;
 class RevisionFormatterTest extends \MediaWikiTestCase {
 	protected $user;
 
+	protected $topicTitleRevisionUnspecified;
+
+	protected $topicTitleRevisionSpecified;
+
+	protected $postRevisionUnspecified;
+
+	protected $postRevisionSpecified;
+
 	public function setUp() {
 		parent::setUp();
 		$this->user = User::newFromName( '127.0.0.1', false );
 	}
 
+	/**
+	 * @dataProvider decideContentFormatProvider
+	 */
+	public function testDecideContentFormat( $expectedFormat, $setContentRequestedFormat, $setContentRevisionId, $revision ) {
+		list( $formatter ) = $this->makeFormatter();
+		$formatter->setContentFormat( $setContentRequestedFormat, $setContentRevisionId );
+
+		$this->assertEquals(
+			$expectedFormat,
+			$formatter->decideContentFormat( $revision )
+		);
+	}
+
+	public function decideContentFormatProvider() {
+		$topicTitleRevisionUnspecified = $this->mockTopicTitleRevision();
+		$topicTitleRevisionSpecified = $this->mockTopicTitleRevision();
+
+		$postRevisionUnspecified = $this->mockPostRevision();
+		$postRevisionSpecified = $this->mockPostRevision();
+
+		return array(
+			array(
+				'topic-title-html',
+				'fixed-html',
+				null,
+				$topicTitleRevisionUnspecified,
+			),
+			// Specified for a different revision, so uses canonicalized
+			// version of class default (fixed-html => topic-title-html).
+			array(
+				'topic-title-html',
+				'topic-title-wikitext',
+				$topicTitleRevisionSpecified->getRevisionId(),
+				$topicTitleRevisionUnspecified,
+			),
+			array(
+				'topic-title-wikitext',
+				'html',
+				null,
+				$topicTitleRevisionUnspecified,
+			),
+			array(
+				'topic-title-wikitext',
+				'wikitext',
+				null,
+				$topicTitleRevisionUnspecified,
+			),
+			array(
+				'fixed-html',
+				'fixed-html',
+				null,
+				$postRevisionUnspecified,
+			),
+			// We've specified it, but for another rev ID, so it uses the class default
+			// of fixed-html.
+			array(
+				'fixed-html',
+				'wikitext',
+				$postRevisionSpecified->getRevisionId(),
+				$postRevisionUnspecified,
+			),
+			array(
+				'html',
+				'html',
+				null,
+				$postRevisionUnspecified,
+			),
+			array(
+				'wikitext',
+				'wikitext',
+				null,
+				$postRevisionUnspecified,
+			),
+			array(
+				'topic-title-html',
+				'topic-title-html',
+				null,
+				$topicTitleRevisionUnspecified,
+			),
+			array(
+				'topic-title-wikitext',
+				'topic-title-wikitext',
+				null,
+				$topicTitleRevisionUnspecified,
+			),
+			array(
+				'topic-title-html',
+				'topic-title-html',
+				$topicTitleRevisionSpecified->getRevisionId(),
+				$topicTitleRevisionSpecified,
+			),
+			array(
+				'topic-title-wikitext',
+				'topic-title-wikitext',
+				$topicTitleRevisionSpecified->getRevisionId(),
+				$topicTitleRevisionSpecified,
+			),
+			array(
+				'fixed-html',
+				'fixed-html',
+				$postRevisionSpecified->getRevisionId(),
+				$postRevisionSpecified,
+			),
+			array(
+				'html',
+				'html',
+				$postRevisionSpecified->getRevisionId(),
+				$postRevisionSpecified,
+			),
+			array(
+				'wikitext',
+				'wikitext',
+				$postRevisionSpecified->getRevisionId(),
+				$postRevisionSpecified,
+			),
+		);
+	}
+
+
+	/**
+	 * @expectedException Flow\Exception\FlowException
+	 * @dataProvider decideContentInvalidFormatProvider
+	 */
+	public function testDecideContentInvalidFormat( $setContentRequestedFormat, $setContentRevisionId, $revision ) {
+		list( $formatter ) = $this->makeFormatter();
+		$formatter->setContentFormat( $setContentRequestedFormat, $setContentRevisionId );
+		$formatter->decideContentFormat( $revision );
+	}
+
+	public function decideContentInvalidFormatProvider() {
+		$topicTitleRevisionSpecified = $this->mockTopicTitleRevision();
+		$postRevisionSpecified = $this->mockPostRevision();
+		$postRevisionUnspecified = $this->mockPostRevision();
+
+		return array(
+			array(
+				'wikitext',
+				$topicTitleRevisionSpecified->getRevisionId(),
+				$topicTitleRevisionSpecified,
+			),
+			array(
+				'topic-title-html',
+				$postRevisionSpecified->getRevisionId(),
+				$postRevisionSpecified,
+			),
+			array(
+				'topic-title-html',
+				null,
+				$postRevisionUnspecified,
+			),
+		);
+	}
+
+	/**
+	 * @expectedException Flow\Exception\FlowException
+	 * @dataProvider setContentFormatInvalidProvider
+	 */
+	public function testSetContentFormatInvalidProvider( $requestedFormat, $revisionId) {
+		list( $formatter ) = $this->makeFormatter();
+		$formatter->setContentFormat( $requestedFormat, $revisionId );
+	}
+
+	public function setContentFormatInvalidProvider() {
+		$postRevisionSpecified = $this->mockPostRevision();
+
+		return array(
+			array(
+				'fake-format',
+				null
+			),
+			array(
+				'another-fake-format',
+				$postRevisionSpecified->getRevisionId()
+			),
+		);
+	}
+
 	public function testMockFormatterBasicallyWorks() {
-		list( $formatter, $ctx ) = $this->mockFormatter();
+		list( $formatter, $ctx ) = $this->makeFormatter();
 		$result = $formatter->formatApi( $this->generateRow( 'my new topic' ), $ctx );
 		$this->assertEquals( 'new-post', $result['changeType'] );
 		$this->assertEquals( 'my new topic', $result['content']['content'] );
 	}
 
 	public function testFormattingEditedTitle() {
-		list( $formatter, $ctx ) = $this->mockFormatter();
+		list( $formatter, $ctx ) = $this->makeFormatter();
 		$row = $this->generateRow();
 		$row->previousRevision = $row->revision;
 		$row->revision = $row->revision->newNextRevision(
@@ -49,7 +236,7 @@ class RevisionFormatterTest extends \MediaWikiTestCase {
 		$content = 'something something';
 		$nextContent = 'ברוכים הבאים לוויקיפדיה!';
 
-		list( $formatter, $ctx, $permissions, $templating, $usernames, $actions ) = $this->mockFormatter( true );
+		list( $formatter, $ctx, $permissions, $templating, $usernames, $actions ) = $this->makeFormatter( true );
 
 		$row = $this->generateRow( $content );
 		$result = $formatter->formatApi( $row, $ctx );
@@ -86,10 +273,10 @@ class RevisionFormatterTest extends \MediaWikiTestCase {
 		);
 	}
 
-	public function generateRow( $plaintext = 'titlebar content' ) {
+	public function generateRow( $wikitext = 'titlebar content' ) {
 		$row = new FormatterRow;
 		$row->workflow = Workflow::create( 'topic', Title::newMainPage() );
-		$row->rootPost = PostRevision::create( $row->workflow, $this->user, $plaintext, 'wikitext' );
+		$row->rootPost = PostRevision::createTopicPost( $row->workflow, $this->user, $wikitext );
 		$row->revision = $row->currentRevision = $row->rootPost;
 
 		return $row;
@@ -118,6 +305,17 @@ class RevisionFormatterTest extends \MediaWikiTestCase {
 		return $permissions;
 	}
 
+	protected function mockPostRevision() {
+		$postRevision = $this->getMockBuilder( 'Flow\Model\PostRevision' )->getMock();
+		$postRevision->expects( $this->any() )
+			->method( 'isTopicTitle' )
+			->will( $this->returnValue( false ) );
+		$postRevision->expects( $this->any() )
+			->method( 'getRevisionId' )
+			->will( $this->returnValue( UUID::create() ) );
+		return $postRevision;
+	}
+
 	protected function mockTemplating() {
 		$templating = $this->getMockBuilder( 'Flow\Templating' )
 			->disableOriginalConstructor()
@@ -134,14 +332,24 @@ class RevisionFormatterTest extends \MediaWikiTestCase {
 		return $templating;
 	}
 
+	protected function mockTopicTitleRevision() {
+		$topicTitleRevision = $this->getMockBuilder( 'Flow\Model\PostRevision' )->getMock();
+		$topicTitleRevision->expects( $this->any() )
+			->method( 'isTopicTitle' )
+			->will( $this->returnValue( true ) );
+		$topicTitleRevision->expects( $this->any() )
+			->method( 'getRevisionId' )
+			->will( $this->returnValue( UUID::create() ) );
+		return $topicTitleRevision;
+	}
+
 	protected function mockUserNameBatch() {
 		return $this->getMockBuilder( 'Flow\Repository\UserNameBatch' )
 			->disableOriginalConstructor()
 			->getMock();
 	}
 
-	// @todo name seems wrong, the Formatter is real everything else is mocked
-	public function mockFormatter( $returnAll = false ) {
+	public function makeFormatter( $returnAll = false ) {
 		$actions = $this->mockActions();
 		$permissions = $this->mockPermissions( $actions );
 		// formatting only proceedes when this is true

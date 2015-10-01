@@ -703,7 +703,7 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	/**
-	 * @param string $format Content format (html|wikitext|html-fixed|plaintext)
+	 * @param string $format Content format (html|wikitext|fixed-html|topic-title-html|topic-title-wikitext)
 	 * @return RevisionFormatter
 	 */
 	protected function getRevisionFormatter( $format ) {

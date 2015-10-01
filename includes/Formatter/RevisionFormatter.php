@@ -11,7 +11,7 @@ use Flow\Model\Anchor;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\UUID;
-use Flow\Parsoid\Utils;
+use Flow\Conversion\Utils;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\UrlGenerator;
@@ -66,9 +66,12 @@ class RevisionFormatter {
 	protected $includeContent = true;
 
 	/**
-	 * @var string[]
+	 * @var string[] Allowed content formats
+	 *
+	 *  See setContentFormat.
 	 */
-	protected $allowedContentFormats = array( 'html', 'wikitext', 'fixed-html', 'plaintext' );
+	protected $allowedContentFormats = array( 'html', 'wikitext', 'fixed-html',
+		'topic-title-html', 'topic-title-wikitext' );
 
 	/**
 	 * @var string Default content format for revision output
@@ -76,7 +79,7 @@ class RevisionFormatter {
 	protected $contentFormat = 'fixed-html';
 
 	/**
-	 * @var array Map from alphadeicmal revision id to content format ovverride
+	 * @var array Map from alphadeicmal revision id to content format override
 	 */
 	protected $revisionContentFormat = array();
 
@@ -145,6 +148,27 @@ class RevisionFormatter {
 		$this->includeContent = (bool)$shouldInclude;
 	}
 
+	/**
+	 * Sets the content format for all revisions formatted by this formatter, or a
+	 * particular revision.
+	 *
+	 * @param string $format Format to use for revision content.  If no revision ID is
+	 *  given, this is a default format, and the allowed formats are 'html', 'wikitext',
+	 *  and 'fixed-html'.
+	 *
+	 *  For the default format, 'fixed-html' will be converted to 'topic-title-html'
+	 *  when formatting a topic title.  'html' and 'wikitext' will be converted to
+	 *  'topic-title-wikitext' for topic titles (because 'html' and 'wikitext' are
+	 *  editable, and 'topic-title-html' is not editable).
+	 *
+	 *  If a revision ID is given, the allowed formats are 'html', 'wikitext',
+	 *  'fixed-html', 'topic-title-html', and 'topic-title-wikitext'.  However, the
+	 *  format will not be converted, and must be valid for the given revision ('html',
+	 *  'wikitext', and 'fixed-html' are valid only for non-topic titles.
+	 *  'topic-title-html' and 'topic-title-wikitext' are only valid for topic titles.
+	 *  Otherwise, an exception will be thrown later.
+	 * @param UUID $revisionId Revision ID this format applies for.
+	 */
 	public function setContentFormat( $format, UUID $revisionId = null ) {
 		if ( false === array_search( $format, $this->allowedContentFormats ) ) {
 			throw new FlowException( "Unknown content format: $format" );
@@ -246,7 +270,6 @@ class RevisionFormatter {
 		$res['isModeratedNotLocked'] = $moderatedRevision->isModerated() && !$moderatedRevision->isLocked();
 
 		if ( $this->includeContent ) {
-			// topic titles are always forced to plain text
 			$contentFormat = $this->decideContentFormat( $row->revision );
 
 			// @todo better name?
@@ -953,8 +976,10 @@ class RevisionFormatter {
 				return '';
 			}
 
-			$content = $this->templating->getContent( $root, 'wikitext' );
+			$content = $this->templating->getContent( $root, 'topic-title-wikitext' );
 
+			// This is *not* plaintext (it's topic-title-wikitext), but I think
+			// this is required for i18n operations later.
 			return Message::plaintextParam( $content );
 
 		case 'post-of-summary':
@@ -996,18 +1021,89 @@ class RevisionFormatter {
 	}
 
 	/**
+	 * Determines the exact output content format, given the requested content format
+	 * and the revision type.
+	 *
 	 * @param AbstractRevision $revision
-	 * @return string
+	 * @return string Content format
+	 * @throws FlowException If a per-revision format was given and it is
+	 *  invalid for the revision type (topic title/non-topic title).
 	 */
-	protected function decideContentFormat( AbstractRevision $revision ) {
-		if ( $revision instanceof PostRevision && $revision->isTopicTitle() ) {
-			return 'plaintext';
-		}
+	public function decideContentFormat( AbstractRevision $revision ) {
+		$requestedRevFormat = null;
+		$requestedDefaultFormat = null;
+
 		$alpha = $revision->getRevisionId()->getAlphadecimal();
 		if ( isset( $this->revisionContentFormat[$alpha] ) ) {
-			return $this->revisionContentFormat[$alpha];
+			$requestedRevFormat = $this->revisionContentFormat[$alpha];
+		} else {
+			$requestedDefaultFormat = $this->contentFormat;
 		}
 
-		return $this->contentFormat;
+		if ( $revision instanceof PostRevision && $revision->isTopicTitle() ) {
+			return $this->decideTopicTitleContentFormat( $revision, $requestedRevFormat, $requestedDefaultFormat );
+		} else {
+			return $this->decideNonTopicTitleContentFormat( $revision, $requestedRevFormat, $requestedDefaultFormat );
+		}
+	}
+
+	/**
+	 * Decide the content format for a topic title
+	 *
+	 * @param PostRevision $topicTitle Topic title revision
+	 * @param string|null $requestedRevFormat Format requested for this specific revision
+	 * @param string|null $requestedDefaultFormat Default format requested
+	 * @return string
+	 * @throws FlowException If a per-revision format was given and it is
+	 *  invalid for topic titles.
+	 */
+	protected function decideTopicTitleContentFormat( PostRevision $topicTitle, $requestedRevFormat, $requestedDefaultFormat ) {
+		if ( $requestedRevFormat !== null ) {
+			if ( $requestedRevFormat !== 'topic-title-html' &&
+				$requestedRevFormat !== 'topic-title-wikitext' ) {
+
+				throw new FlowException( 'Per-revision format for a topic title must be \'topic-title-html\' or \'topic-title-wikitext\'' );
+			}
+			return $requestedRevFormat;
+		} else {
+			// Since this is a default format, we'll canonicalize it.
+
+			// Because these are both editable formats, and this is the only
+			// editable topic title format.
+			if ( $requestedDefaultFormat === 'topic-title-wikitext' || $requestedDefaultFormat === 'html' || $requestedDefaultFormat === 'wikitext' ) {
+				return 'topic-title-wikitext';
+			} else {
+				return 'topic-title-html';
+			}
+		}
+	}
+
+	/**
+	 * Decide the content format for revisions other than topic titles
+	 *
+	 * @param AbstractRevision $revision Revision to decide format for
+	 * @param string|null $requestedRevFormat Format requested for this specific revision
+	 * @param string|null $requestedDefaultFormat Default format requested
+	 * @return string
+	 * @throws FlowException If a per-revision format was given and it is
+	 *  invalid for this type
+	 */
+	protected function decideNonTopicTitleContentFormat( AbstractRevision $revision, $requestedRevFormat, $requestedDefaultFormat ) {
+		if ( $requestedRevFormat !== null ) {
+			if ( $requestedRevFormat === 'topic-title-html' ||
+				$requestedRevFormat === 'topic-title-wikitxt' ) {
+
+				throw new FlowException( 'Invalid per-revision format.  Only topic titles can use  \'topic-title-html\' and \'topic-title-wikitext\'' );
+			}
+			return $requestedRevFormat;
+		} else {
+			if ( $requestedDefaultFormat === 'topic-title-html' ||
+				$requestedDefaultFormat === 'topic-title-wikitxt' ) {
+
+				throw new FlowException( 'Default format of \'topic-title-html\' or \'topic-title-wikitext\' can only be used to format topic titles.' );
+			}
+
+			return $requestedDefaultFormat;
+		}
 	}
 }

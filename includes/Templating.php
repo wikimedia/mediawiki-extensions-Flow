@@ -116,15 +116,15 @@ class Templating {
 	 *
 	 * The content-type of the return value varies on the $format parameter.
 	 * Further processing in the final output stage must escape all formats
-	 * other than the default 'html'.
+	 * other than the default 'html' and 'fixed-html'.
 	 *
 	 * @param AbstractRevision $revision Revision to display content for
-	 * @param string[optional] $format Format to output content in (fixed-html|html|wikitext|plaintext)
+	 * @param string[optional] $format Format to output content in (fixed-html|html|wikitext|topic-title-html|topic-title-wikitext)
 	 * @return string HTML if requested, otherwise plain text
 	 * @throws InvalidInputException
 	 */
 	public function getContent( AbstractRevision $revision, $format = 'fixed-html' ) {
-		if ( !in_array( $format, array( 'fixed-html', 'html', 'plaintext', 'wikitext' ) ) ) {
+		if ( !in_array( $format, array( 'fixed-html', 'html', 'wikitext', 'topic-title-html', 'topic-title-wikitext' ) ) ) {
 			throw new InvalidInputException( 'Invalid format: ' . $format );
 		}
 
@@ -147,8 +147,6 @@ class Templating {
 				// Parsoid doesn't render redlinks & doesn't strip bad images
 				$content = $this->contentFixer->getContent( $revision );
 			} else {
-				// plaintext = wikitext
-				$format = $format === 'plaintext' ? 'wikitext' : $format;
 				$content = $revision->getContent( $format );
 			}
 		} catch ( \Exception $e ) {

@@ -7,7 +7,7 @@ use Flow\Exception\FlowException;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use Flow\Parsoid\Utils;
+use Flow\Conversion\Utils;
 use EchoEvent;
 use Language;
 use Title;

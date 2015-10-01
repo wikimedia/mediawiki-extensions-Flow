@@ -177,8 +177,8 @@
 	 * Get content
 	 *
 	 * @return {string} Content; can be in wikitext, html, fixed-html
-	 * or plaintext format.
-	 * See #getContentFormat for the format of the given content.
+	 *  topic-title-wikitext, or topic-title-html format.
+	 *  See #getContentFormat for the format of the given content.
 	 */
 	mw.flow.dm.RevisionedContent.prototype.getContent = function () {
 		return this.content;
@@ -201,9 +201,10 @@
 	 * Get content format
 	 * Possible formats are:
 	 * - 'wikitext' for unparsed wikitext content
-	 * - 'html' for full html content
-	 * - 'fixed-html' for parsoid html content
-	 * - 'plaintext' for plaintext content
+	 * - 'html' for HTML content
+	 * - 'fixed-html' for HTML content, adjusted to be suitable for views.
+	 * - 'topic-title-wikitext' for the wikitext form of the topic title
+	 * - 'topic-title-html' for the HTML form of the topic title
 	 *
 	 * @return {string} Content format.
 	 */

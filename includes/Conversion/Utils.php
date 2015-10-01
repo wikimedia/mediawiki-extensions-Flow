@@ -1,6 +1,6 @@
 <?php
 
-namespace Flow\Parsoid;
+namespace Flow\Conversion;
 
 use DOMDocument;
 use DOMNode;
@@ -11,6 +11,7 @@ use Flow\Exception\InvalidDataException;
 use Flow\Exception\NoParsoidException;
 use Flow\Exception\WikitextException;
 use Language;
+use Linker;
 use MultiHttpClient;
 use OutputPage;
 use RequestContext;
@@ -20,10 +21,12 @@ use VirtualRESTServiceClient;
 
 abstract class Utils {
 	/**
-	 * Convert from/to wikitext/html.
+	 * Convert from/to wikitext <=> html or topic-title-wikitext => topic-title-html.
+	 * Only these pairs are supported.  html => wikitext requires Parsoid, and
+	 * topic-title-html => topic-title-wikitext is not supported.
 	 *
-	 * @param string $from Format of content to convert: html|wikitext
-	 * @param string $to Format to convert to: html|wikitext
+	 * @param string $from Format of content to convert: html|wikitext|topic-title-wikitext
+	 * @param string $to Format to convert to: html|wikitext|topic-title-html
 	 * @param string $content
 	 * @param Title $title
 	 * @return string
@@ -34,13 +37,20 @@ abstract class Utils {
 			return $content;
 		}
 
-		try {
-			return self::parsoid( $from, $to, $content, $title );
-		} catch ( NoParsoidException $e ) {
-			// If we have no parsoid config, fallback to the parser.
-			return self::parser( $from, $to, $content, $title );
+		if ( $from === 'wikitext' || $from === 'html' ) {
+			if ( $to === 'wikitext' || $to === 'html' ) {
+				try {
+					return self::parsoid( $from, $to, $content, $title );
+				} catch ( NoParsoidException $e ) {
+					// If we have no parsoid config, fallback to the parser.
+					return self::parser( $from, $to, $content, $title );
+				}
+			} else {
+				throw new WikitextException( "Conversion from '$from' to '$to' was requested, but this is not supported." );
+			}
+		} else {
+			return self::commentParser( $from, $to, $content, $title );
 		}
-
 	}
 
 	/**
@@ -126,6 +136,22 @@ abstract class Utils {
 	}
 
 	/**
+	 * Convert from/to topic-title-wikitext/topic-title-html using Linker::formatLinksInComment
+	 *
+	 * @param string $from Format of content to convert: topic-title-wikitext
+	 * @param string $to Format of content to convert to: topic-title-html
+	 * @param string $content Content to convert, in topic-title-wikitext format.
+	 * @return string $content in HTML
+	 */
+	protected static function commentParser( $from, $to, $content ) {
+		if ( $from !== 'topic-title-wikitext' || $to !== 'topic-title-html' ) {
+			throw new WikitextException( "Conversion from '$from' to '$to' was requested, but this is not supported." );
+		}
+
+		return Linker::formatLinksInComment( $content );
+	}
+
+	/**
 	 * Convert from/to wikitext/html using Parser.
 	 *
 	 * This only supports wikitext to HTML.
@@ -138,7 +164,7 @@ abstract class Utils {
 	 * @throws WikitextException When the conversion is unsupported
 	 */
 	protected static function parser( $from, $to, $content, Title $title ) {
-		if ( $from !== 'wikitext' && $to !== 'html' ) {
+		if ( $from !== 'wikitext' || $to !== 'html' ) {
 			throw new WikitextException( "Conversion from '$from' to '$to' was requested, but core's Parser only supports 'wikitext' to 'html' conversion", 'process-wikitext' );
 		}
 

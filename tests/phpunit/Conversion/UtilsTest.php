@@ -1,16 +1,16 @@
 <?php
 
-namespace Flow\Tests\Parsoid;
+namespace Flow\Tests\Conversion;
 
 use Flow\Exception\WikitextException;
-use Flow\Parsoid\Utils;
+use Flow\Conversion\Utils;
 use Flow\Tests\FlowTestCase;
 use Title;
 
 /**
  * @group Flow
  */
-class ParsoidUtilsTest extends FlowTestCase {
+class ConversionUtilsTest extends FlowTestCase {
 
 	static public function createDomProvider() {
 		return array(

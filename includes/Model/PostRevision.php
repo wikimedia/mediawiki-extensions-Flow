@@ -55,10 +55,10 @@ class PostRevision extends AbstractRevision {
 	 * @param Workflow $topic
 	 * @param User $user
 	 * @param string $content The title of the topic(they are Collection as well)
-	 * @param string $format wikitext|html
 	 * @return PostRevision
 	 */
-	static public function create( Workflow $topic, User $user, $content, $format ) {
+	static public function createTopicPost( Workflow $topic, User $user, $content ) {
+		$format = 'topic-title-wikitext';
 		$obj = static::newFromId( $topic->getId(), $user, $content, $format, $topic->getArticleTitle() );
 
 		$obj->changeType = 'new-post';
@@ -201,6 +201,37 @@ class PostRevision extends AbstractRevision {
 		return $this->replyToId === null;
 	}
 
+	public function getContentFormat() {
+		// The canonical format must always be topic-title-wikitext, because we
+		// can not convert 'topic-title-html' to 'topic-title-wikitext'.
+		if ( $this->isTopicTitle() ) {
+			return 'topic-title-wikitext';
+		} else {
+			return parent::getContentFormat();
+		}
+	}
+
+	protected function calculateContentLength() {
+		if ( $this->isTopicTitle() ) {
+			return mb_strlen( $this->getContent( 'topic-title-wikitext' ) );
+		} else {
+			return parent::calculateContentLength();
+		}
+	}
+
+	/**
+	 * Gets the desired storage format.
+	 *
+	 * @return string
+	 */
+	protected function getStorageFormat() {
+		if ( $this->isTopicTitle() ) {
+			return 'topic-title-wikitext';
+		} else {
+			return parent::getStorageFormat();
+		}
+	}
+
 	/**
 	 * @param UUID|null $id
 	 */
@@ -327,13 +358,6 @@ class PostRevision extends AbstractRevision {
 	 */
 	public function getRevisionType() {
 		return 'post';
-	}
-
-	/**
-	 * @return boolean Posts are unformatted if they are title posts, formatted otherwise.
-	 */
-	public function isFormatted() {
-		return !$this->isTopicTitle();
 	}
 
 	/**

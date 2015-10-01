@@ -42,7 +42,7 @@ class PostRevisionTest extends PostRevisionTestCase {
 		$user = User::newFromName( '127.0.0.1', false );
 		$workflow = Workflow::create( 'topic', $title );
 
-		$topic = PostRevision::create( $workflow, $user, $content, 'wikitext' );
+		$topic = PostRevision::createTopicPost( $workflow, $user, $content );
 		$this->assertEquals( 0, $topic->getPreviousContentLength() );
 		$this->assertEquals( mb_strlen( $content ), $topic->getContentLength() );
 

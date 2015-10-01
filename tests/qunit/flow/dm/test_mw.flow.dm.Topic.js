@@ -138,7 +138,7 @@ QUnit.test( 'Load topics', function ( assert ) {
 					previousRevisionId: null,
 					content: {
 						content: 'This is the title of the topic.',
-						format: 'plaintext'
+						format: 'topic-title-wikitext'
 					},
 					isWatched: true,
 					watchable: true,
@@ -194,7 +194,7 @@ QUnit.test( 'Load topics', function ( assert ) {
 				},
 				{
 					method: 'getContentFormat',
-					expected: 'plaintext',
+					expected: 'topic-title-wikitext',
 					msg: 'Get topic content format'
 				},
 				{

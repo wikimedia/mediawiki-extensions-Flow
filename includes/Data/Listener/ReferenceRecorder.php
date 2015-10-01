@@ -118,10 +118,11 @@ class ReferenceRecorder extends AbstractListener {
 	}
 
 	/**
-	 * While topic's themselves are plaintext and do not contain any references,
-	 * moderation actions change what references are visible.  When transitioning
-	 * from or to a generically visible state (unmoderated or locked) the entire
-	 * topic + summary needs to be re-evaluated.
+	 * Topic titles themselves only support minimal wikitext, and references are not tracked.
+	 *
+	 * However, moderation actions change what references are visible.  When
+	 * transitioning from or to a generically visible state (unmoderated or locked) the
+	 * entire topic + summary needs to be re-evaluated.
 	 *
 	 * @param Workflow $workflow
 	 * @param PostRevision $current Topic revision object that was inserted

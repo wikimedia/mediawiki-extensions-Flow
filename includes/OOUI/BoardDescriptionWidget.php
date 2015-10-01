@@ -2,12 +2,14 @@
 
 namespace Flow\OOUI;
 
+use Flow\Exception\InvalidInputException;
+
 class BoardDescriptionWidget extends \OOUI\Widget {
 
 	protected $editButton;
 
 	protected $description = '';
-	protected $descriptionFormat = 'plaintext';
+	protected $descriptionFormat;
 
 	public function __construct( array $config = array() ) {
 		// Parent constructor
@@ -15,7 +17,10 @@ class BoardDescriptionWidget extends \OOUI\Widget {
 
 		if ( isset( $config['descriptionFormat'] ) ) {
 			$this->descriptionFormat = $config['descriptionFormat'];
+		} else {
+			throw new InvalidInputException( 'You must specify a descriptionFormat' );
 		}
+
 		if ( isset( $config['description'] ) ) {
 			$this->description = $config['description'];
 		}

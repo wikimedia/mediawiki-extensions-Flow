@@ -41,6 +41,6 @@ class ApiFlowEditTitleTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'changeType', $revision, $debug );
 		$this->assertEquals( 'edit-title', $revision['changeType'], $debug );
 		$this->assertEquals( '(ﾉ◕ヮ◕)ﾉ*:･ ﾟ ﾟ ﾟ ﾟ ﾟ ﾟ ﾟ ﾟ✧', $revision['content']['content'], $debug );
-		$this->assertEquals( 'plaintext', $revision['content']['format'], $debug );
+		$this->assertEquals( 'topic-title-html', $revision['content']['format'], $debug );
 	}
 }

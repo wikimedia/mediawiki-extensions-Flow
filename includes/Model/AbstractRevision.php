@@ -6,7 +6,7 @@ use Flow\Collection\AbstractCollection;
 use Flow\Exception\DataModelException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\PermissionException;
-use Flow\Parsoid\Utils;
+use Flow\Conversion\Utils;
 use ContentHandler;
 use Hooks;
 use Title;
@@ -305,7 +305,7 @@ abstract class AbstractRevision {
 		} else {
 			// reset content length (we may be restoring, in which case $obj's
 			// current length will be 0)
-			$obj->contentLength = mb_strlen( $this->getContent( 'wikitext' ) );
+			$obj->contentLength = $this->calculateContentLength();
 		}
 
 		return $obj;
@@ -349,7 +349,7 @@ abstract class AbstractRevision {
 	 * Templating::getContent, which will do additional (permissions-based)
 	 * checks to make sure it outputs something the user can see.
 	 *
-	 * @param string[optional] $format Format to output content in (html|wikitext)
+	 * @param string[optional] $format Format to output content in (html|wikitext|topic-title-wikitext|topic-title)
 	 * @return string
 	 * @throws InvalidDataException
 	 */
@@ -371,9 +371,6 @@ abstract class AbstractRevision {
 			}
 		}
 
-		if ( !$this->isFormatted() ) {
-			return $raw;
-		}
 		if ( !isset( $this->convertedContent[$format] ) ) {
 			if ( $sourceFormat === $format ) {
 				$this->convertedContent[$format] = $raw;
@@ -430,7 +427,7 @@ abstract class AbstractRevision {
 	 * use self::setNextContent
 	 *
 	 * @param string $content
-	 * @param string $format wikitext|html
+	 * @param string $format wikitext|html|topic-title-wikitext
 	 * @param Title|null $title When null the related workflow will be lazy-loaded to locate the title
 	 * @throws DataModelException
 	 */
@@ -447,20 +444,26 @@ abstract class AbstractRevision {
 			$title = $this->getCollection()->getTitle();
 		}
 
+		if ( $format !== 'wikitext' && $format !== 'html' && $format !== 'topic-title-wikitext' ) {
+			throw new DataModelException( 'Invalid format: Supported formats for new content are \'wikitext\', \'html\', and \'topic-title-wikitext\'' );
+		}
+
 		// never trust incoming html - roundtrip to wikitext first
-		if ( $format !== 'wikitext' ) {
+		if ( $format === 'html' ) {
 			$content = Utils::convert( $format, 'wikitext', $content, $title  );
 			$format = 'wikitext';
 		}
 
-		// Run pre-save transform
-		$content = ContentHandler::makeContent( $content, $title, CONTENT_MODEL_WIKITEXT )
-			->preSaveTransform(
-				$title,
-				$this->getUser(),
-				WikiPage::factory( $title )->makeParserOptions( $this->getUser() )
-			)
-			->serialize( 'text/x-wiki' );
+		if ( $format === 'wikitext' ) {
+			// Run pre-save transform
+			$content = ContentHandler::makeContent( $content, $title, CONTENT_MODEL_WIKITEXT )
+				->preSaveTransform(
+					$title,
+					$this->getUser(),
+					WikiPage::factory( $title )->makeParserOptions( $this->getUser() )
+				)
+				->serialize( 'text/x-wiki' );
+		}
 
 		// Keep consistent with normal edit page, trim only trailing whitespaces
 		$content = rtrim( $content );
@@ -468,7 +471,7 @@ abstract class AbstractRevision {
 
 		// convert content to desired storage format
 		$storageFormat = $this->getStorageFormat();
-		if ( $this->isFormatted() && $storageFormat !== $format ) {
+		if ( $storageFormat !== $format ) {
 			$this->convertedContent[$storageFormat] = Utils::convert( $format, $storageFormat, $content, $title );
 		}
 
@@ -479,7 +482,7 @@ abstract class AbstractRevision {
 		$this->flags = array_filter( explode( ',', \Revision::compressRevisionText( $this->content ) ) );
 		$this->flags[] = $storageFormat;
 
-		$this->contentLength = mb_strlen( $this->getContent( 'wikitext' ) );
+		$this->contentLength = $this->calculateContentLength();
 	}
 
 	/**
@@ -504,19 +507,6 @@ abstract class AbstractRevision {
 	}
 
 	/**
-	 * Determines whether this revision contains formatted content
-	 * (i.e. content with separate HTML and WikiText representations)
-	 * or unformatted content (i.e. one plaintext representation)
-	 * Note that this function may return different values for different
-	 * instances of the same class.
-	 *
-	 * @return boolean True for formatted, False for plaintext
-	 */
-	public function isFormatted() {
-		return true;
-	}
-
-	/**
 	 * @return string The content format of this revision
 	 */
 	public function getContentFormat() {
@@ -525,15 +515,14 @@ abstract class AbstractRevision {
 
 	/**
 	 * Determines the appropriate format to store content in.
-	 * Usually, the default storage format, but if isFormatted() returns
-	 * false, then it will return 'wikitext'.
 	 * NOTE: The format of the current content is retrieved with getContentFormat
 	 *
 	 * @return string The name of the storage format.
 	 */
 	protected function getStorageFormat() {
-		global $wgFlowContentFormat;
-		return $this->isFormatted() ? $wgFlowContentFormat : 'wikitext';
+		return $wgFlowContentFormat;
+
+		return $wgFlowContentFormat;
 	}
 
 	/**
@@ -714,6 +703,13 @@ abstract class AbstractRevision {
 	 */
 	public function getContentLength() {
 		return $this->contentLength;
+	}
+
+	/**
+	 * @return integer
+	 */
+	protected function calculateContentLength() {
+		return mb_strlen( $this->getContent( 'wikitext' ) );
 	}
 
 	/**

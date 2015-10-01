@@ -3,7 +3,7 @@
 namespace Flow\Import\Wikitext;
 
 use ArrayIterator;
-use Flow\Parsoid\Utils;
+use Flow\Conversion\Utils;
 use FlowHooks;
 use Flow\Import\ImportException;
 use Flow\Import\Plain\ImportHeader;

@@ -122,12 +122,10 @@ class TopicListBlock extends AbstractBlock {
 		$user = $this->context->getUser();
 		$topicWorkflow = Workflow::create( 'topic', $title );
 		$topicListEntry = TopicListEntry::create( $this->workflow, $topicWorkflow );
-		$topicTitle = PostRevision::create(
+		$topicTitle = PostRevision::createTopicPost(
 			$topicWorkflow,
 			$user,
-			$this->submitted['topic'],
-			// topic title is never parsed
-			'wikitext'
+			$this->submitted['topic']
 		);
 
 		$firstPost = null;

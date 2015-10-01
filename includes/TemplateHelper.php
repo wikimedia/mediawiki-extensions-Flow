@@ -535,7 +535,7 @@ class TemplateHelper {
 	 * @param array $args one or more arguments, i18n key and parameters
 	 * @param array $named unused
 	 *
-	 * @return string Plaintext
+	 * @return string Message output, using the 'text' format
 	 */
 	static public function l10n( array $args, array $named ) {
 		$message = null;
