@@ -165,6 +165,12 @@
 		flowBoard.on( 'loadmore', function ( topiclist ) {
 			// Add to the DM board
 			mw.flow.system.populateBoardTopicsFromJson( topiclist );
+
+			replaceReplyForms( $board );
+			deactivateReplyLinks( $board );
+
+			// Cancel the interactive handler so "old" system doesn't get triggered for internal replies
+			$( '[data-flow-interactive-handler="activateReplyPost"]' ).attr( 'data-flow-interactive-handler', '' );
 		} );
 
 		// HACK: Update the DM when topic is refreshed
@@ -282,7 +288,7 @@
 
 		function deactivateReplyLinks( $element ) {
 			// Cancel the interactive handler so "old" system doesn't get triggered for internal replies
-			$element.find( '[data-flow-interactive-handler="activateReplyPost"]' ).each( function () {
+			$element.find( 'a.flow-reply-link' ).each( function () {
 				// Store the needed details so we can get rid of the URL in JS mode
 				var href = $( this ).attr( 'href' ),
 					uri = new mw.Uri( href ),

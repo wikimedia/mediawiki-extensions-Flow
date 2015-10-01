@@ -40,9 +40,6 @@
 '.$sp.'			<div class="flow-form-actions flow-form-collapsible">
 '.$sp.'				<button data-role="submit"
 '.$sp.'				        class="mw-ui-button mw-ui-constructive"
-'.$sp.'				        data-flow-interactive-handler="apiRequest"
-'.$sp.'				        data-flow-api-target="< .flow-topic"
-'.$sp.'				        data-flow-api-handler="lockTopic"
 '.$sp.'				>
 '.$sp.''.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? '						'.LCRun3::ch($cx, 'l10n', array(array('flow-topic-action-unlock-topic'),array()), 'encq').'
 '.$sp.'' : '						'.LCRun3::ch($cx, 'l10n', array(array('flow-topic-action-lock-topic'),array()), 'encq').'

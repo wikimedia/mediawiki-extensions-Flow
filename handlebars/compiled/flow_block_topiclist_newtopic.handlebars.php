@@ -53,8 +53,6 @@
 '.$sp.'			type="text"
 '.$sp.'			placeholder="'.LCRun3::ch($cx, 'l10n', array(array('flow-newtopic-start-placeholder'),array()), 'encq').'"
 '.$sp.'			data-role="title"
-'.$sp.'
-'.$sp.'			data-flow-interactive-handler-focus="activateNewTopic"
 '.$sp.'		/>
 '.$sp.'		<div class="flow-editor">
 '.$sp.'			<textarea name="topiclist_content"
@@ -66,9 +64,7 @@
 '.$sp.'		</div>
 '.$sp.'
 '.$sp.'		<div class="flow-form-actions flow-form-collapsible'.((LCRun3::ifvar($cx, ((isset($in['isOnFlowBoard']) && is_array($in)) ? $in['isOnFlowBoard'] : null))) ? ' flow-form-collapsible-collapsed' : '').'">
-'.$sp.'			<button data-role="submit" data-flow-api-handler="newTopic"
-'.$sp.'				data-flow-interactive-handler="apiRequest"
-'.$sp.'				data-flow-eventlog-action="save-attempt"
+'.$sp.'			<button data-role="submit"
 '.$sp.'				class="mw-ui-button mw-ui-constructive mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', array(array('flow-newtopic-save'),array()), 'encq').'</button>
 '.$sp.''.LCRun3::p($cx, 'flow_form_cancel_button', array(array($in),array()), '			').'			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-new-topic'),array()), 'encq').'</small>
 '.$sp.'		</div>
