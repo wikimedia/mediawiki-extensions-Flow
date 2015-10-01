@@ -22,6 +22,10 @@ class SpamBlacklist implements SpamFilter {
 			wfWarn( __METHOD__ . ': Expected a SpamBlacklist instance but instead received: ' . get_class( $spamObj ) );
 			return Status::newFatal( 'something' );
 		}
+
+		// TODO: This seems to check topic titles.  Should it?  There can't
+		// actually be a link in a topic title, but http://spam.com can still look
+		// spammy even if it's not a working link.
 		$links = $this->getLinks( $newRevision, $title );
 		$matches = $spamObj->filter( $links, $title );
 
@@ -46,7 +50,7 @@ class SpamBlacklist implements SpamFilter {
 	public function getLinks( AbstractRevision $revision, Title $title ) {
 		global $wgParser;
 		$options = new \ParserOptions;
-		$output = $wgParser->parse( $revision->getContent( 'wikitext' ), $title, $options );
+		$output = $wgParser->parse( $revision->getContentInWikitext(), $title, $options );
 		return array_keys( $output->getExternalLinks() );
 	}
 

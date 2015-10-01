@@ -47,21 +47,21 @@ QUnit.test( 'Create board', function ( assert ) {
 						new mw.flow.dm.Topic( 'topic1', {
 							content: {
 								content: 'Topic 1',
-								format: 'plaintext'
+								format: 'topic-title-wikitext'
 							},
 							last_updated: '123123123'
 						} ),
 						new mw.flow.dm.Topic( 'topic2', {
 							content: {
 								content: 'Topic 2',
-								format: 'plaintext'
+								format: 'topic-title-wikitext'
 							},
 							last_updated: '123123321'
 						} ),
 						new mw.flow.dm.Topic( 'topic3', {
 							content: {
 								content: 'Topic 3',
-								format: 'plaintext'
+								format: 'topic-title-wikitext'
 							},
 							last_updated: '123123543'
 						} )

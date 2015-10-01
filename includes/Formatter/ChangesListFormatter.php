@@ -8,7 +8,7 @@ use Flow\Model\Anchor;
 use ChangesList;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
-use Flow\Parsoid\Utils;
+use Flow\Conversion\Utils;
 use IContextSource;
 use Linker;
 

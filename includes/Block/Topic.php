@@ -218,8 +218,7 @@ class TopicBlock extends AbstractBlock {
 		$this->newRevision = $topicTitle->newNextRevision(
 			$this->context->getUser(),
 			$this->submitted['content'],
-			// default to wikitext when not specified, for old API requests
-			isset( $this->submitted['format'] ) ? $this->submitted['format'] : 'wikitext',
+			'topic-title-wikitext',
 			'edit-title',
 			$this->workflow->getArticleTitle()
 		);
@@ -703,7 +702,7 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	/**
-	 * @param string $format Content format (html|wikitext|html-fixed|plaintext)
+	 * @param string $format Content format (html|wikitext|fixed-html|topic-title-html|topic-title-wikitext)
 	 * @return RevisionFormatter
 	 */
 	protected function getRevisionFormatter( $format ) {
@@ -989,7 +988,7 @@ class TopicBlock extends AbstractBlock {
 			$out->setHtmlTitle( $out->msg( $key, array(
 				// This must be a rawParam to not expand {{foo}} in the title, it must
 				// not be htmlspecialchar'd because OutputPage::setHtmlTitle handles that.
-				Message::rawParam( $topic->getContent( 'wikitext' ) ),
+				Message::rawParam( $topic->getContent( 'topic-title-wikitext' ) ),
 				$title->getPrefixedText()
 			) ) );
 		} else {

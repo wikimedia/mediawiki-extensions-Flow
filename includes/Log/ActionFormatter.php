@@ -6,7 +6,7 @@ use Flow\Collection\PostCollection;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Model\UUID;
-use Flow\Parsoid\Utils;
+use Flow\Conversion\Utils;
 use Flow\Repository\TreeRepository;
 use Flow\UrlGenerator;
 use Message;

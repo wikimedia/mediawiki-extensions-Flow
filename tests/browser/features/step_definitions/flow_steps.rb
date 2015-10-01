@@ -52,6 +52,8 @@ When(/^I click New topic save$/) do
   end
 end
 
+# This will only work for titles without wikitext
+# due to topic_with_title
 When(/^topic "(.+)" is saved$/) do |title|
   on(FlowPage) do |page|
     page.new_topic_save_element.when_not_visible(10)
