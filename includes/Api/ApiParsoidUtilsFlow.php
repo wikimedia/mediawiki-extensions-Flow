@@ -3,7 +3,7 @@
 namespace Flow\Api;
 
 use ApiBase;
-use Flow\Parsoid\Utils;
+use Flow\Conversion\Utils;
 use Flow\Exception\WikitextException;
 
 class ApiParsoidUtilsFlow extends ApiBase {

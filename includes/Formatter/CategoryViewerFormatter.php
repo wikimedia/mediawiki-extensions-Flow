@@ -28,7 +28,7 @@ class CategoryViewerFormatter {
 
 		$topic = Linker::link(
 			$row->workflow->getArticleTitle(),
-			htmlspecialchars( $row->revision->getContent( 'plaintext' ) ),
+			htmlspecialchars( $row->revision->getContent( 'topic-title-wikitext' ) ),
 			array( 'class' => 'mw-title' )
 		);
 

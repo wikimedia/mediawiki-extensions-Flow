@@ -154,7 +154,7 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 		if ( $revision->isModerated() && !$revision->isLocked() ) {
 			return 0;
 		} else {
-			return $revision->getContentLength() ?: mb_strlen( $revision->getContent( 'wikitext' ) );
+			return $revision->getContentLength() ?: $revision->calculateContentLength();
 		}
 	}
 }

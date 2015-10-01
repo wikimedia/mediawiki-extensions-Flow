@@ -7,15 +7,11 @@ class BoardDescriptionWidget extends \OOUI\Widget {
 	protected $editButton;
 
 	protected $description = '';
-	protected $descriptionFormat = 'plaintext';
 
 	public function __construct( array $config = array() ) {
 		// Parent constructor
 		parent::__construct( $config );
 
-		if ( isset( $config['descriptionFormat'] ) ) {
-			$this->descriptionFormat = $config['descriptionFormat'];
-		}
 		if ( isset( $config['description'] ) ) {
 			$this->description = $config['description'];
 		}

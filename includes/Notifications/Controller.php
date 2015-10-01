@@ -7,7 +7,7 @@ use Flow\Exception\FlowException;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use Flow\Parsoid\Utils;
+use Flow\Conversion\Utils;
 use EchoEvent;
 use Language;
 use Title;
@@ -101,7 +101,7 @@ class NotificationController {
 				$extraData += array(
 					'reply-to' => $replyToPostId,
 					'content' => Utils::htmlToPlaintext( $revision->getContent(), 200, $this->language ),
-					'topic-title' => $this->language->truncate( trim( $topicRevision->getContent( 'wikitext' ) ), 200 ),
+					'topic-title' => Utils::htmlToPlaintext( $topicRevision->getContent( 'topic-title-html' ), 200, $this->language ),
 				);
 				$newPost = array(
 					'title' => $title,
@@ -115,14 +115,14 @@ class NotificationController {
 			break;
 			case 'flow-topic-renamed':
 				$extraData += array(
-					'old-subject' => $this->language->truncate( trim( $topicRevision->getContent( 'wikitext' ) ), 200 ),
-					'new-subject' => $this->language->truncate( trim( $revision->getContent( 'wikitext' ) ), 200 ),
+					'old-subject' => Utils::htmlToPlaintext( $topicRevision->getContent( 'topic-title-html' ), 200, $this->language ),
+					'new-subject' => Utils::htmlToPlaintext( $revision->getContent( 'topic-title-html' ), 200, $this->language ),
 				);
 			break;
 			case 'flow-post-edited':
 				$extraData += array(
 					'content' => Utils::htmlToPlaintext( $revision->getContent(), 200, $this->language ),
-					'topic-title' => $this->language->truncate( trim( $topicRevision->getContent( 'wikitext' ) ), 200 ),
+					'topic-title' => Utils::htmlToPlaintext( $topicRevision->getContent( 'topic-title-html' ), 200, $this->language ),
 				);
 			break;
 		}
@@ -193,7 +193,7 @@ class NotificationController {
 				'board-workflow' => $boardWorkflow->getId(),
 				'topic-workflow' => $topicWorkflow->getId(),
 				'post-id' => $firstPost ? $firstPost->getRevisionId() : null,
-				'topic-title' => Utils::htmlToPlaintext( $topicTitle->getContent(), 200, $this->language ),
+				'topic-title' => Utils::htmlToPlaintext( $topicTitle->getContent( 'topic-title-html' ), 200, $this->language ),
 				'content' => $firstPost
 					? Utils::htmlToPlaintext( $firstPost->getContent(), 200, $this->language )
 					: null,
@@ -273,7 +273,7 @@ class NotificationController {
 					'content' => $newRevision
 						? Utils::htmlToPlaintext( $newRevision->getContent(), 200, $this->language )
 						: null,
-					'topic-title' => $this->language->truncate( trim( $topicRevision->getContent( 'wikitext' ) ), 200 ),
+					'topic-title' => Utils::htmlToPlaintext( $topicRevision->getContent( 'topic-title-html' ), 200, $this->language ),
 					'post-id' => $newRevision ? $newRevision->getPostId() : null,
 					'mentioned-users' => $mentionedUsers,
 					'topic-workflow' => $topicWorkflow->getId(),

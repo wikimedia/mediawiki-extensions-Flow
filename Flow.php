@@ -238,7 +238,7 @@ $wgFlowExternalStore = false;
 // If $wgFlowParsoidURL is null, $wgFlowContentFormat will be forced to wikitext.
 //
 // The 'wikitext' format is likely to be deprecated in the future.
-$wgFlowContentFormat = 'html'; // possible values: html|wikitext XXX bug 70148 with wikitext
+$wgFlowContentFormat = 'html'; // possible values: html|wikitext
 
 // Flow Parsoid config
 // THESE VARIABLES ARE DEPRECATED.

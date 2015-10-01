@@ -13,7 +13,7 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Parsoid\ReferenceExtractor;
 use Flow\Parsoid\ReferenceFactory;
-use Flow\Parsoid\Utils;
+use Flow\Conversion\Utils;
 use ParserOutput;
 use Title;
 

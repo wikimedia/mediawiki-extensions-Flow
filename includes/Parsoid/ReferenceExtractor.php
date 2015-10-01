@@ -3,6 +3,7 @@
 namespace Flow\Parsoid;
 
 use DOMXPath;
+use Flow\Conversion\Utils;
 use Flow\Exception\InvalidReferenceException;
 use Flow\Model\Reference;
 use Flow\Model\UUID;
