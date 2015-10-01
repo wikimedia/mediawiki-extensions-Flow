@@ -165,6 +165,12 @@
 		flowBoard.on( 'loadmore', function ( topiclist ) {
 			// Add to the DM board
 			mw.flow.system.populateBoardTopicsFromJson( topiclist );
+
+			replaceReplyForms( $board );
+			deactivateReplyLinks( $board );
+
+			// Cancel the interactive handler so "old" system doesn't get triggered for internal replies
+			$( '[data-flow-interactive-handler="activateReplyPost"]' ).attr( 'data-flow-interactive-handler', '' );
 		} );
 
 		// HACK: Update the DM when topic is refreshed
