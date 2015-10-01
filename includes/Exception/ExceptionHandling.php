@@ -270,7 +270,7 @@ class DataPersistenceException extends FlowException {
 /**
  * Category: Parsoid
  */
-class NoParsoidException extends FlowException {
+class NoParserException extends FlowException {
 	protected function getErrorCodeList() {
 		return array ( 'process-wikitext' );
 	}

@@ -8,7 +8,7 @@ use FauxResponse;
 use Flow\Container;
 use Flow\Exception\FlowException;
 use Flow\Exception\InvalidDataException;
-use Flow\Exception\NoParsoidException;
+use Flow\Exception\NoParserException;
 use Flow\Exception\WikitextException;
 use Language;
 use MultiHttpClient;
@@ -36,8 +36,8 @@ abstract class Utils {
 
 		try {
 			return self::parsoid( $from, $to, $content, $title );
-		} catch ( NoParsoidException $e ) {
-			// If we have no parsoid config, fallback to the parser.
+		} catch ( NoParserException $e ) {
+			// If we have no parsoid config, fallback to the PHP parser.
 			return self::parser( $from, $to, $content, $title );
 		}
 	}
@@ -66,16 +66,16 @@ abstract class Utils {
 	}
 
 	/**
-	 * Convert from/to wikitext/html via Parsoid.
+	 * Convert from/to wikitext/html via Parsoid/RESTBase.
 	 *
-	 * This will assume Parsoid is installed.
+	 * This will assume Parsoid/RESTBase is installed and configured.
 	 *
 	 * @param string $from Format of content to convert: html|wikitext
 	 * @param string $to Format to convert to: html|wikitext
 	 * @param string $content
 	 * @param Title $title
 	 * @return string
-	 * @throws NoParsoidException When parsoid configuration is not available
+	 * @throws NoParserException When Parsoid/RESTBase is not available
 	 * @throws WikitextException When conversion is unsupported
 	 */
 	protected static function parsoid( $from, $to, $content, Title $title ) {
@@ -111,9 +111,11 @@ abstract class Utils {
 			} else {
 				$statusMsg = $response['code'];
 			}
-			$msg = "Failed contacting Parsoid for title \"$prefixedDbTitle\": $statusMsg";
+			$vrs = $serviceClient->getMountAndService( '/restbase/' )[1];
+			$name = $vrs ? $vrs->getName() : 'VRS service';
+			$msg = "Failed contacting " . $name . " for title \"$prefixedDbTitle\": $statusMsg";
 			wfDebugLog( 'Flow', __METHOD__ . ": $msg" );
-			throw new NoParsoidException( "$msg", 'process-wikitext' );
+			throw new NoParserException( "$msg", 'process-wikitext' );
 		}
 
 		$content = $response['body'];
@@ -160,7 +162,7 @@ abstract class Utils {
 		try {
 			self::getServiceClient();
 			return true;
-		} catch ( NoParsoidException $e ) {
+		} catch ( NoParserException $e ) {
 			return false;
 		}
 	}
@@ -172,10 +174,11 @@ abstract class Utils {
 
 	/**
 	 * Returns Flow's Virtual REST Service for Parsoid/RESTBase.
-	 * The Parsoid/RESTBase service will be mounted at /restbase/.
+	 * The Parsoid/RESTBase service will be mounted at /restbase/
+	 * and will answer RESTBase v1 API requests.
 	 *
 	 * @return VirtualRESTServiceClient
-	 * @throws NoParsoidException When parsoid is unconfigured
+	 * @throws NoParserException When Parsoid/RESTBase is unconfigured
 	 */
 	protected static function getServiceClient() {
 
@@ -198,7 +201,7 @@ abstract class Utils {
 	 * to specify a Parsoid configuration as a fall back.
 	 *
 	 * @return \VirtualRESTService the VirtualRESTService object to use
-	 * @throws NoParsoidException When parsoid is unconfigured
+	 * @throws NoParserException When Parsoid/RESTBase is not configured
 	 */
 	private static function getVRSObject() {
 		global $wgVirtualRestConfig, $wgFlowParsoidURL, $wgFlowParsoidPrefix,
@@ -223,7 +226,7 @@ abstract class Utils {
 		} else {
 			// no global modules defined, fall back to old defaults
 			if ( !$wgFlowParsoidURL ) {
-				throw new NoParsoidException( 'Flow Parsoid configuration is unavailable', 'process-wikitext' );
+				throw new NoParserException( 'Flow Parsoid configuration is unavailable', 'process-wikitext' );
 			}
 			$params = array(
 				'URL' => $wgFlowParsoidURL,
