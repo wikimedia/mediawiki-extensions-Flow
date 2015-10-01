@@ -4,25 +4,31 @@
 
 // @todo: Find better home for this css
 .client-js {
-	// Hide the component while it is loading if Javascript
-	// is enabled.
-	.flow-ui-load-overlay {
-		z-index: 101;
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		cursor: wait;
-	}
-
+	// Hide elements from handlebars if the client has js
+	// so that the new elements appear when the JS is loaded
 	.flow-component {
-		position: relative;
-		opacity: 0.5;
+		&:not(.flow-component-ready) {
+			opacity: 0.8;
+
+			.flow-nojs-reply-link,
+			.flow-newtopic-form,
+			.flow-post-meta-actions,
+			.flow-ui-boardDescriptionWidget-editButton {
+				visibility: hidden;
+
+				&::after {
+					display: block;
+					visibility: visible;
+					content: " ";
+					background: url(flow/images/pending.gif);
+					width: 100%;
+					height: 1em;
+					margin-top: -1em;
+				}
+			}
+		}
 
 		&-ready {
-			opacity: 1;
-
 			-moz-transition: opacity 0.5s;
 			-webkit-transition: opacity 0.5s;
 			-o-transition: opacity 0.5s;
