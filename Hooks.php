@@ -1660,6 +1660,7 @@ class FlowHooks {
 			),
 			'info-link' => self::getTitleUrlOrDefault( 'Project:Flow', $defaultProjectUrl ),
 			'discussion-link' => self::getTitleUrlOrDefault( 'Project_talk:Flow', $defaultProjectTalkUrl ),
+			'exempt-from-auto-enrollment' => true,
 		);
 
 		return true;
