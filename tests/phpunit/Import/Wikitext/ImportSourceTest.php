@@ -6,7 +6,7 @@ use DateTime;
 use DateTimeZone;
 use Flow\Exception\WikitextException;
 use Flow\Import\Wikitext\ImportSource;
-use Flow\Parsoid\Utils;
+use Flow\Conversion\Utils;
 use Parser;
 use Title;
 use WikiPage;

@@ -10,7 +10,7 @@ use Flow\Content\BoardContent;
 use Flow\Exception\InvalidDataException;
 use Flow\NotificationController;
 use Flow\OccupationController;
-use Flow\Parsoid\Utils;
+use Flow\Conversion\Utils;
 use Flow\RevisionActionPermissions;
 use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
