@@ -191,7 +191,7 @@
 	"flow-error-not-a-post": "Le titre du sujet ne peut pas être enregistré comme un message.",
 	"flow-error-missing-header-content": "Vous devez saisir une description.",
 	"flow-error-missing-prev-revision-identifier": "L’identifiant de révision précédente est absent.",
-	"flow-error-prev-revision-mismatch": "Un autre utilisateur vient de modifier cette publication il y a quelques secondes. Êtes-vous {{GENDER:$3|sûr|sûre}} de vouloir écraser cette modification récente  ?",
+	"flow-error-prev-revision-mismatch": "Un autre utilisateur vient de modifier cette publication il y a quelques secondes. Êtes-vous {{GENDER:$3|sûr|sûre}} de vouloir écraser cette modification récente ?",
 	"flow-error-prev-revision-does-not-exist": "Impossible de trouver la révision précédente.",
 	"flow-error-core-topic-deletion": "Pour supprimer un sujet, utiliser le menu … sur l’espace de discussion Flow ou [$1 la page du sujet]. Ne pas visiter directement action=delete pour le sujet.",
 	"flow-error-default": "Une erreur s’est produite.",
