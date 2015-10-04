@@ -87,26 +87,16 @@ class BufferedBagOStuff extends HashBagOStuff {
 
 	/**
 	 * @param string $key
-	 * @param mixed $casToken [optional]
 	 * @param int $flags [optional]
 	 * @return bool|mixed
 	 */
-	public function get( $key, &$casToken = null, $flags = 0 ) {
+	protected function doGet( $key, $flags = 0 ) {
 		if ( !isset( $this->bag[$key] ) ) {
 			// Unknown in local cache = fetch from source cache
-			$value = $this->cache->get( $key, $casToken );
+			$value = $this->cache->get( $key, $flags );
 		} else {
-			$value = parent::get( $key, $casToken );
+			$value = parent::get( $key, $flags );
 		}
-
-		// $casToken will be unreliable to the deferred updates so generate
-		// a custom one and keep the associated value around.
-		// Read more details in PHPDoc for function cas().
-		// uniqid is ok here. Doesn't really have to be unique across
-		// servers, just has to be unique every time it's called in this
-		// one particular request - which it is.
-		$casToken = uniqid();
-		$this->casTokens[$casToken] = serialize( $value );
 
 		return $value;
 	}
