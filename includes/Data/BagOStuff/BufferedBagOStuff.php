@@ -91,7 +91,7 @@ class BufferedBagOStuff extends HashBagOStuff {
 	 * @param int $flags [optional]
 	 * @return bool|mixed
 	 */
-	public function get( $key, &$casToken = null, $flags = 0 ) {
+	protected function getWithToken( $key, &$casToken = null, $flags = 0 ) {
 		if ( !isset( $this->bag[$key] ) ) {
 			// Unknown in local cache = fetch from source cache
 			$value = $this->cache->get( $key, $casToken );
