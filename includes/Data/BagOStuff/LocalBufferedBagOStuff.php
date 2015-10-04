@@ -18,8 +18,8 @@ class LocalBufferedBagOStuff extends BufferedBagOStuff {
 		return array_key_exists( $key, $this->bag );
 	}
 
-	public function get( $key, &$casToken = null, $flags = 0 ) {
-		$value = parent::get( $key, $casToken );
+	protected function doGet( $key, $flags = 0 ) {
+		$value = parent::doGet( $key, $flags );
 		$this->bag[$key] = array( $value, 0 );
 		return $value;
 	}
