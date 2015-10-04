@@ -131,7 +131,7 @@
 	"flow-error-other": "예기치 않은 오류가 발생했습니다.",
 	"flow-error-external": "오류가 발생했습니다.<br />받은 오류 메시지는: $1",
 	"flow-error-topic-is-locked": "이 주제는 해결되었으므로 더 이상의 활동은 불가능합니다.",
-	"flow-error-external-multi": "오류가 발생했습니다. <br />$1",
+	"flow-error-external-multi": "오류가 발생했습니다.<br />$1",
 	"flow-error-missing-content": "게시물에 내용이 없습니다. 게시물을 저장하려면 내용이 있어야 합니다.",
 	"flow-error-missing-summary": "편집 요약을 입력해야 합니다.",
 	"flow-error-missing-title": "주제에 제목이 없습니다. 주제를 저장하려면 제목이 있어야 합니다.",

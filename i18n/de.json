@@ -397,6 +397,7 @@
 	"flow-importer-lqt-suppressed-user-template-content": "Diese Version wurde von LiquidThreads mit einem unterdrückten Benutzer importiert. Er wurde dem aktuellen Benutzer neu zugeordnet.",
 	"flow-importer-lqt-different-author-signature-template": "LQT-Beitrag mit einem anderen Signaturbenutzer importiert",
 	"flow-importer-lqt-different-author-signature-template-content": "''Dieser Beitrag wurde abgespeichert von [[User:{{{authorUser}}}|{{{authorUser}}}]], aber signiert als [[User:{{{signatureUser}}}|{{{signatureUser}}}]].''",
+	"apihelp-flow-description": "Erlaubt auszuführende Aktionen auf Flow-Seiten.",
 	"apihelp-flow-param-submodule": "Das aufzurufende Flow-Submodul.",
 	"apihelp-flow-param-page": "Die Seite, auf die die Aktion angewandt werden soll.",
 	"apihelp-flow-example-1": "Die Beschreibung von „[[Talk:Sandbox]]“ bearbeiten",
