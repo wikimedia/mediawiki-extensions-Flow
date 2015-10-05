@@ -401,7 +401,7 @@
 	"flow-special-enableflow-header": "Description initiale du flux de discussion Flow (wikitexte)",
 	"flow-special-enableflow-board-already-exists": "Il y a déjà un flux de discussion Flow sur [[$1]].",
 	"flow-special-enableflow-invalid-title": "Un titre invalide de page a été fourni.",
-	"flow-special-enableflow-board-creation-not-allowed": "Vous n’êtes pas autorisé(e) à créer un flux de discussion Flow sur [[:$1]].",
+	"flow-special-enableflow-board-creation-not-allowed": "Vous n’êtes pas {{GENDER:|autorisé|autorisée}} à créer un flux de discussion Flow sur [[:$1]].",
 	"flow-special-enableflow-page-is-liquidthreads": "Il existe une page LiquidThreads à [[:$1]].",
 	"flow-special-enableflow-confirmation": "Vous avez bien créé un flux de discussion Flow sur [[$1]].",
 	"flow-conversion-archive-page-name-format": "%s/Archive %d\n%s/Archive%d\n%s/archive %d\n%s/archive%d",
