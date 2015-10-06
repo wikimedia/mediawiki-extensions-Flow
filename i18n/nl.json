@@ -426,5 +426,7 @@
 	"flow-mark-revision-patrolled-link-text": "Deze pagina als gecontroleerd markeren",
 	"flow-mark-revision-patrolled-link-title": "Deze pagina als gecontroleerd markeren",
 	"flow-mark-diff-patrolled-link-text": "Als gecontroleerd markeren",
-	"flow-mark-diff-patrolled-link-title": "Als gecontroleerd markeren"
+	"flow-mark-diff-patrolled-link-title": "Als gecontroleerd markeren",
+	"flow-notification-enabled-on-talkpage-email-subject-message": "Nieuw overlegsysteem op $2",
+	"flow-optin-restore-wikitext": "Gearchiveerde wikitekstpagina herstellen."
 }
