@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ecb373e_afbbbab8",
+        "filename": "includes/Search/Iterators/AbstractIterator.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-07T19:09:09Z",
+      "side": 1,
+      "message": "I think AbstractRevision/null is a better fit than AbstractRevision/array().  This should be documented in the field docblock either way.",
+      "revId": "12b5d2913b93cd00f1fb6d970fe9197545c7fca8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ecb373e_6f85d2d3",
+        "filename": "includes/Search/Iterators/TopicIterator.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-07T19:09:09Z",
+      "side": 1,
+      "message": "It\u0027s the same as the post ID, not the revision ID (in this case, post ID and revision ID actually are different, even for the first revision).",
+      "revId": "12b5d2913b93cd00f1fb6d970fe9197545c7fca8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ecb373e_af765aff",
+        "filename": "includes/Search/Updaters/AbstractUpdater.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-07T19:09:09Z",
+      "side": 1,
+      "message": "Could this be a real type hint?",
+      "revId": "12b5d2913b93cd00f1fb6d970fe9197545c7fca8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ecb373e_0fcc4e37",
+        "filename": "includes/Search/Updaters/AbstractUpdater.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-07T19:09:09Z",
+      "side": 1,
+      "message": "Should this also use the shard timeout?",
+      "revId": "12b5d2913b93cd00f1fb6d970fe9197545c7fca8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ecb373e_2f4caa9e",
+        "filename": "maintenance/dumpBackup.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-07T19:09:09Z",
+      "side": 1,
+      "message": "Comment should be updated at some point.",
+      "revId": "12b5d2913b93cd00f1fb6d970fe9197545c7fca8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ecb373e_8f311e03",
+        "filename": "maintenance/dumpBackup.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-07T19:09:09Z",
+      "side": 1,
+      "message": "Maybe this should just be hard-coded to \u0027discussion\u0027, since it only really makes sense in that case (considering the \u003cboard\u003e element).  It\u0027s weird that this is configurable anyway.",
+      "revId": "12b5d2913b93cd00f1fb6d970fe9197545c7fca8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ecb373e_4f1fb671",
+        "filename": "maintenance/dumpBackup.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-07T19:09:09Z",
+      "side": 1,
+      "message": "I\u0027m a little worried about trying to hold the entire \u003cboard\u003e element (including all expanded topics) in memory on extremely large boards.  It might be better to stream the output (write opening \u003cboard\u003e tag and header, then write each topic one-by-one to the sink).",
+      "revId": "12b5d2913b93cd00f1fb6d970fe9197545c7fca8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ecb373e_0a1bdc73",
+        "filename": "maintenance/dumpBackup.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-07T19:09:09Z",
+      "side": 1,
+      "message": "Standardize on \u0027version\u0027 or \u0027dumpVersion\u0027?",
+      "revId": "12b5d2913b93cd00f1fb6d970fe9197545c7fca8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ecb373e_aab88825",
+        "filename": "maintenance/dumpBackup.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-07T19:09:09Z",
+      "side": 1,
+      "message": "Needs update eventually.",
+      "revId": "12b5d2913b93cd00f1fb6d970fe9197545c7fca8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
