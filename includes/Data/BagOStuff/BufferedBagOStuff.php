@@ -33,15 +33,6 @@ class BufferedBagOStuff extends HashBagOStuff {
 	protected $buffer = array();
 
 	/**
-	 * We'll return stub CAS tokens in order to reliably replay the CAS actions
-	 * later on. This will hold a map of stub token => value at that time.
-	 *
-	 * @see cas()
-	 * @var array
-	 */
-	protected $casTokens = array();
-
-	/**
 	 * Whether or not to defer updates.
 	 *
 	 * @var bool
@@ -95,7 +86,7 @@ class BufferedBagOStuff extends HashBagOStuff {
 			// Unknown in local cache = fetch from source cache
 			$value = $this->cache->get( $key, $flags );
 		} else {
-			$value = parent::get( $key, $flags );
+			$value = parent::doGet( $key, $flags );
 		}
 
 		return $value;
