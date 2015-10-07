@@ -435,6 +435,7 @@ $wgResourceModules += array(
 		)
 	) + $mobile,
 	'ext.flow' => $flowResourceTemplate + array(
+		'position' => 'top',
 		'scripts' => array( // Component order is important
 			// MW UI
 			'engine/misc/mw-ui.enhance.js',
