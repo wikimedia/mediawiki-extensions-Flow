@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ecb373e_8c8dacda",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-10-07T17:28:54Z",
+      "side": 1,
+      "message": "activateReplyPost now only appears in this file. That probably means this line is a no-op, and some other lines in this file (that also look for activateReplyPost) may be no-ops or broken.",
+      "revId": "a985a7cd4dba32ec901d52d67b85ca9f0b294071",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
