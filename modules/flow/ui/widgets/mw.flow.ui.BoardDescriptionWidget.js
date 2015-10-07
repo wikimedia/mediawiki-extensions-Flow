@@ -145,9 +145,11 @@
 
 	/**
 	 * Respond to an editor cancel event
+	 * @fires cancel
 	 */
 	mw.flow.ui.BoardDescriptionWidget.prototype.onEditorCancel = function () {
 		this.showContent( true );
+		this.emit( 'cancel' );
 	};
 
 	/**
@@ -155,6 +157,7 @@
 	 *
 	 * @param {string} content Content to save
 	 * @param {string} contentFormat Format of content
+	 * @fires saveContent
 	 */
 	mw.flow.ui.BoardDescriptionWidget.prototype.onEditorSaveContent = function ( content, format ) {
 		var widget = this,
@@ -190,6 +193,7 @@
 				// Change the actual content
 				widget.$content.empty().append( $.parseHTML( desc.content.content ) );
 				widget.showContent( true );
+				widget.emit( 'saveContent' );
 			} )
 			.then( null, function ( errorCode, errorObj ) {
 				if ( /spamfilter$/.test( errorCode ) && errorObj.error.spamfilter === 'flow-spam-confirmedit-form' ) {
