@@ -526,7 +526,7 @@
 	"flow-undo-edit-content": "Puedes deshacer la edición. Antes de deshacerla, comprueba la siguiente comparación para verificar que realmente es lo que quieres hacer y entonces guarda los cambios para así efectuar la reversión.",
 	"flow-undo-edit-failure": "No se ha podido deshacer la edición ya que otro usuario ha realizado ediciones intermedias.",
 	"group-flow-bot": "Bots de Flow",
-	"group-flow-bot-member": "Bot de Flow",
+	"group-flow-bot-member": "bot de Flow",
 	"grouppage-flow-bot": "Project:Bots de Flow",
 	"flow-ve-mention-context-item-label": "Mencionar",
 	"flow-ve-mention-inspector-title": "Mención",
