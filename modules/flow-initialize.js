@@ -243,6 +243,52 @@
 		}
 		replaceReplyForms( $board );
 
+		// No-JS view with JavaScript on (replace old editor)
+		function replaceNoJSEditor( $element ) {
+			var editPostWidget,
+				$post = $element.parent(),
+				$topic = $post.parent();
+
+			if ( !$element.length ) {
+				return;
+			}
+
+			editPostWidget = new mw.flow.ui.EditPostWidget( $topic.data( 'flowId' ), $post.data( 'flowId' ), {
+				expandable: true
+			} );
+
+			editPostWidget
+				.on( 'saveContent', function ( workflow ) {
+					editPostWidget.destroy();
+					editPostWidget.$element.remove();
+
+					// HACK get the old system to rerender the topic
+					return flowBoard.flowBoardComponentRefreshTopic(
+						$topic,
+						workflow
+					);
+				} )
+				// HACK: In this case, we are in an edge case where the topic already
+				// loaded with the editor open. We can't trust the content of the editor
+				// for displaying the post in case of a 'cancel' event and we don't have
+				// the actual content stored in the DOM anywhere else.
+				// We must reload the topic -- just like we do on save -- for a cancel
+				// event too.
+				.on( 'cancel', function () {
+					editPostWidget.destroy();
+					editPostWidget.$element.remove();
+
+					// HACK get the old system to rerender the topic
+					return flowBoard.flowBoardComponentRefreshTopic(
+						$topic,
+						$topic.data( 'flowId' )
+					);
+				} );
+
+			$element.replaceWith( editPostWidget.$element );
+		}
+		replaceNoJSEditor( $( '.flow-edit-post-form' ) );
+
 		// Replace the 'reply' buttons so they all produce replyWidgets rather
 		// than the reply forms from the API
 		$board
