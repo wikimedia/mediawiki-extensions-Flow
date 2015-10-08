@@ -247,7 +247,7 @@
 		function replaceNoJSEditor( $element ) {
 			var editPostWidget,
 				$post = $element.parent(),
-				$topic = $post.parent();
+				$topic = $post.closest( '.flow-topic' );
 
 			if ( !$element.length ) {
 				return;
