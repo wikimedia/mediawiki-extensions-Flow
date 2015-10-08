@@ -249,41 +249,32 @@
 				$post = $element.parent(),
 				$topic = $post.closest( '.flow-topic' );
 
+			function saveOrCancelHandler( workflow ) {
+				editPostWidget.destroy();
+				editPostWidget.$element.remove();
+
+				// HACK get the old system to rerender the topic
+				return flowBoard.flowBoardComponentRefreshTopic(
+					$topic,
+					workflow
+				);
+			}
+
 			if ( !$element.length ) {
 				return;
 			}
 
-			editPostWidget = new mw.flow.ui.EditPostWidget( $topic.data( 'flowId' ), $post.data( 'flowId' ), {
-				expandable: true
-			} );
+			editPostWidget = new mw.flow.ui.EditPostWidget( $topic.data( 'flowId' ), $post.data( 'flowId' ) );
 
 			editPostWidget
-				.on( 'saveContent', function ( workflow ) {
-					editPostWidget.destroy();
-					editPostWidget.$element.remove();
-
-					// HACK get the old system to rerender the topic
-					return flowBoard.flowBoardComponentRefreshTopic(
-						$topic,
-						workflow
-					);
-				} )
+				.on( 'saveContent', saveOrCancelHandler )
 				// HACK: In this case, we are in an edge case where the topic already
 				// loaded with the editor open. We can't trust the content of the editor
 				// for displaying the post in case of a 'cancel' event and we don't have
 				// the actual content stored in the DOM anywhere else.
 				// We must reload the topic -- just like we do on save -- for a cancel
 				// event too.
-				.on( 'cancel', function () {
-					editPostWidget.destroy();
-					editPostWidget.$element.remove();
-
-					// HACK get the old system to rerender the topic
-					return flowBoard.flowBoardComponentRefreshTopic(
-						$topic,
-						$topic.data( 'flowId' )
-					);
-				} );
+				.on( 'cancel', saveOrCancelHandler.bind( null, $topic.data( 'flowId' ) ) );
 
 			$element.replaceWith( editPostWidget.$element );
 		}
