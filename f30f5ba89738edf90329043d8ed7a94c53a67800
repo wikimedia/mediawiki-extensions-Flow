@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_54bd91d0",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.CategoryItemWidget.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-10-08T23:34:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_64fb4612",
+      "revId": "f30f5ba89738edf90329043d8ed7a94c53a67800",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_24054e14",
         "filename": "modules/flow/ui/widgets/mw.flow.ui.CategoryItemWidget.js",
         "patchSetId": 20
@@ -30,6 +48,24 @@
       "writtenOn": "2015-10-08T19:01:40Z",
       "side": 1,
       "message": "I think you also need this.title.getPrefixedText() here instead of this.name",
+      "revId": "f30f5ba89738edf90329043d8ed7a94c53a67800",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_34b81de2",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.CategoryItemWidget.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-10-08T23:34:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_24054e14",
       "revId": "f30f5ba89738edf90329043d8ed7a94c53a67800",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
