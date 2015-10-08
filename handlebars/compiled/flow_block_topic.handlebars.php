@@ -206,10 +206,6 @@
 '.$sp.'		<div class="flow-form-actions flow-form-collapsible">
 '.$sp.'			<button data-role="submit"
 '.$sp.'			        class="mw-ui-button mw-ui-constructive"
-'.$sp.'			        data-flow-interactive-handler="apiRequest"
-'.$sp.'			        data-flow-api-handler="submitReply"
-'.$sp.'			        data-flow-api-target="< .flow-topic"
-'.$sp.'			        data-flow-eventlog-action="save-attempt"
 '.$sp.'			>'.htmlentities((string)((isset($in['actions']['reply']['text']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['text'] : null), ENT_QUOTES, 'UTF-8').'</button>
 '.$sp.''.LCRun3::p($cx, 'flow_form_cancel_button', array(array($in),array()), '			').'			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-reply'),array()), 'encq').'</small>
 '.$sp.'		</div>

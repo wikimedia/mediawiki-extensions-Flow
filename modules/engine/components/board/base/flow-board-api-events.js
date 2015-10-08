@@ -99,22 +99,6 @@
 		} );
 	};
 
-	/** @class FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers */
-
-	/**
-	 * Before activating header, sends an overrideObject to the API to modify the request params.
-	 * @param {Event} event
-	 * @param {Object} info
-	 * @param {Object} queryMap
-	 * @return {Object}
-	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.activateEditHeader = function ( event, info, queryMap ) {
-		return $.extend( {}, queryMap, {
-			submodule: 'view-header', // href submodule is edit-header
-			vhformat: mw.flow.editor.getFormat() // href does not have this param
-		} );
-	};
-
 	/**
 	 * Before activating topic, sends an overrideObject to the API to modify the request params.
 	 *
@@ -199,86 +183,6 @@
 	};
 
 	/**
-	 * Renders the editable board header with the given API response.
-	 * @param {Object} info
-	 * @param {string} info.status "done" or "fail"
-	 * @param {jQuery} info.$target
-	 * @param {Object} data
-	 * @param {jqXHR} jqxhr
-	 * @return {jQuery.Promise}
-	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.activateEditHeader = function ( info, data, jqxhr ) {
-		var $rendered,
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) ),
-			$oldBoardNodes;
-
-		if ( info.status !== 'done' ) {
-			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
-			return $.Deferred().resolve().promise();
-		}
-
-		// Change "header" to "header_edit" so that it loads up flow_block_header_edit
-		data.flow[ 'view-header' ].result.header.type = 'header_edit';
-
-		$rendered = $(
-			flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-				'flow_block_loop',
-				{ blocks: data.flow[ 'view-header' ].result }
-			)
-		).children();
-
-		// Set the cancel callback on this form so that it returns the old content back if needed
-		flowBoard.emitWithReturn( 'addFormCancelCallback', $rendered.find( 'form' ), function () {
-			flowBoard.reinitializeContainer( $oldBoardNodes );
-		} );
-
-		// Reinitialize the whole board with these nodes, and hold onto the replaced header
-		$oldBoardNodes = flowBoard.reinitializeContainer( $rendered );
-
-		mw.flow.editor.focus( $rendered.find( 'textarea' ) );
-
-		return $.Deferred().resolve().promise();
-	};
-
-	/**
-	 * After submit of the board header edit form, process the new header data.
-	 * @param {Object} info (status:done|fail, $target: jQuery)
-	 * @param {Object} data
-	 * @param {jqXHR} jqxhr
-	 * @return {jQuery.Promise}
-	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitHeader = function ( info, data, jqxhr ) {
-		var $rendered,
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) );
-
-		if ( info.status !== 'done' ) {
-			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
-			return $.Deferred().resolve().promise();
-		}
-
-		return flowBoard.Api.apiCall( {
-			action: 'flow',
-			submodule: 'view-header',
-			page: mw.config.get( 'wgPageName' )
-		} ).done( function ( result ) {
-			// SUPERHACK: Add an indicator for handlebars to know to load the partial from
-			// the "old" system. This will go away when the OOUI widget in JS is operational
-			result.flow[ 'view-header' ].result.header.oldSystem = true;
-
-			// Render
-			$rendered = $(
-				flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-					'flow_block_loop',
-					{ blocks: result.flow[ 'view-header' ].result }
-				)
-			).children();
-
-			// Reinitialize the whole board with these nodes
-			flowBoard.reinitializeContainer( $rendered );
-		} );
-	};
-
-	/**
 	 * @param {Object} info
 	 * @param {string} info.status "done" or "fail"
 	 * @param {jQuery} info.$target
@@ -297,68 +201,6 @@
 			data.flow[ 'edit-title' ].workflow,
 			'.flow-topic-titlebar'
 		);
-	};
-
-	/**
-	 * After submitting a new topic, process the response.
-	 * @param {Object} info
-	 * @param {string} info.status "done" or "fail"
-	 * @param {jQuery} info.$target
-	 * @param {Object} data
-	 * @param {jqXHR} jqxhr
-	 * @return {jQuery.Promise}
-	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.newTopic = function ( info, data, jqxhr ) {
-		var schemaName = $( this ).data( 'flow-eventlog-schema' ),
-			funnelId = $( this ).data( 'flow-eventlog-funnel-id' ),
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $( this ) ),
-			$stub;
-
-		if ( info.status !== 'done' ) {
-			// Error will be displayed by default, nothing else to wrap up
-			return $.Deferred().resolve().promise();
-		}
-
-		flowBoard.logEvent( schemaName, { action: 'save-success', funnelId: funnelId } );
-
-		flowBoard.emitWithReturn( 'cancelForm', $( this ).closest( 'form' ) );
-
-		// remove focus - title input field may still have focus
-		// (submitted via enter key), which it needs to lose:
-		// the form will only re-activate if re-focused
-		document.activeElement.blur();
-
-		// _flowBoardComponentRefreshTopic relies on finding a .flow-topic node
-		// to replace, so let's pretend to have one here!
-		$stub = $( '<div class="flow-topic"><div></div></div>' ).prependTo( flowBoard.$container.find( '.flow-topics' ) );
-		return _flowBoardComponentRefreshTopic( $stub.find( 'div' ), data.flow[ 'new-topic' ].committed.topiclist[ 'topic-id' ] );
-	};
-
-	/**
-	 * @param {Object} info (status:done|fail, $target: jQuery)
-	 * @param {Object} data
-	 * @param {jqXHR} jqxhr
-	 * @return {jQuery.Promise}
-	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitReply = function ( info, data, jqxhr ) {
-		var $form = $( this ).closest( 'form' ),
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $form ),
-			schemaName = $( this ).data( 'flow-eventlog-schema' ),
-			funnelId = $( this ).data( 'flow-eventlog-funnel-id' );
-
-		if ( info.status !== 'done' ) {
-			// Error will be displayed by default, nothing else to wrap up
-			return $.Deferred().resolve().promise();
-		}
-
-		flowBoard.logEvent( schemaName, { action: 'save-success', funnelId: funnelId } );
-
-		// Execute cancel callback to destroy form
-		flowBoard.emitWithReturn( 'cancelForm', $form );
-
-		// Target should be flow-topic
-		// @todo: add 3rd argument (target selector); there's no need to refresh entire topic
-		return _flowBoardComponentRefreshTopic( info.$target, data.flow.reply.workflow );
 	};
 
 	/**
