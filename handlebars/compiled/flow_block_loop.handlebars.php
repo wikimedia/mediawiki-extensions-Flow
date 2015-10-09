@@ -25,6 +25,10 @@
     return ''.LCRun3::sec($cx, ((isset($in['blocks']) && is_array($in)) ? $in['blocks'] : null), $in, true, function($cx, $in) {return '	'.LCRun3::ch($cx, 'block', array(array($in),array()), 'encq').'
 ';}).'<div class="flow-ui-load-overlay"></div>
 <div style="clear: both"></div>
-';
+<script>
+window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+	mw.hook( \'flow.ready\' ).fire();
+} );
+</script>';
 }
 ?>
