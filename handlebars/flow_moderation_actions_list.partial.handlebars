@@ -6,7 +6,6 @@
 				{{~noop~}}
 				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon"
 				   href="{{actions.edit.url}}"
-				   title="{{actions.edit.title}}"
 				   data-flow-interactive-handler="apiRequest"
 				   data-flow-api-handler="activateEditTitle"
 				   data-flow-api-target="< .flow-topic-titlebar"
@@ -21,8 +20,7 @@
 			<li>
 				{{~noop~}}
 				<a class="{{moderationMwUiClass}} mw-ui-quiet"
-				   href="{{links.topic-history.url}}"
-				   title="{{links.topic-history.title}}">
+				   href="{{links.topic-history.url}}">
 					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-clock"></span> {{/if~}}
 					{{~l10n (concat "flow-topic-action-history")~}}
 				</a>
@@ -33,8 +31,7 @@
 			<li>
 				{{~noop~}}
 				<a class="{{moderationMwUiClass}} mw-ui-quiet"
-				   href="{{links.topic.url}}"
-				   title="{{links.topic.title}}">
+				   href="{{links.topic.url}}">
 					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-link"></span> {{/if~}}
 					{{~l10n (concat "flow-topic-action-view")~}}
 				</a>
@@ -45,8 +42,7 @@
 			<li>
 				{{~noop~}}
 				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon flow-ui-summarize-topic-link"
-				   href="{{actions.summarize.url}}"
-				   title="{{actions.summarize.title}}">
+				   href="{{actions.summarize.url}}">
 					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-stripeToC mw-ui-icon-stripeToC-progressive-hover"></span> {{/if~}}
 					{{~#if summary.revision.content.content~}}
 						{{~l10n (concat "flow-topic-action-resummarize-topic")~}}
@@ -68,8 +64,7 @@
 				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon flow-ui-topicmenu-lock"
 				   data-role="lock"
 				   data-flow-id="{{postId}}"
-				   href="{{actions.lock.url}}"
-				   title="{{actions.lock.title}}">
+				   href="{{actions.lock.url}}">
 					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-check mw-ui-icon-check-progressive-hover"></span> {{/if~}}
 					{{~l10n (concat "flow-" moderationType "-action-lock-topic")~}}
 				</a>
@@ -82,8 +77,7 @@
 				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon flow-ui-topicmenu-lock"
 				   data-role="unlock"
 				   data-flow-id="{{postId}}"
-				   href="{{actions.unlock.url}}"
-				   title="{{actions.unlock.title}}">
+				   href="{{actions.unlock.url}}">
 					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-ongoingConversation mw-ui-icon-ongoingConversation-progressive-hover"></span> {{/if~}}
 					{{~l10n (concat "flow-" moderationType "-action-unlock-topic")~}}
 				</a>
@@ -98,8 +92,7 @@
 				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon flow-ui-topicmenu-lock"
 				   data-flow-id="{{postId}}"
 				   data-role="lock"
-				   href="{{actions.lock.url}}"
-				   title="{{actions.lock.title}}">
+				   href="{{actions.lock.url}}">
 					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-check mw-ui-icon-check-progressive-hover"></span> {{/if~}}
 					{{~l10n (concat "flow-" moderationType "-action-lock-topic")~}}
 				</a>
@@ -112,8 +105,7 @@
 				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon flow-ui-topicmenu-lock"
 				   data-flow-id="{{postId}}"
 				   data-role="unlock"
-				   href="{{actions.unlock.url}}"
-				   title="{{actions.unlock.title}}">
+				   href="{{actions.unlock.url}}">
 					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-ongoingConversation mw-ui-icon-ongoingConversation-progressive-hover"></span> {{/if~}}
 					{{~l10n (concat "flow-" moderationType "-action-unlock-topic")~}}
 				</a>
@@ -128,7 +120,6 @@
 			<li>
 				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon flow-ui-edit-post-link"
 				   href="{{actions.edit.url}}"
-				   title="{{actions.edit.title}}"
 				>
 					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-edit mw-ui-icon-edit-progressive-hover"></span> {{/if~}}
 					{{~l10n "flow-post-action-edit-post"~}}
@@ -139,8 +130,7 @@
 			<li>
 				{{~noop~}}
 				<a class="{{moderationMwUiClass}} mw-ui-quiet"
-				   href="{{links.post.url}}"
-				   title="{{links.post.title}}">
+				   href="{{links.post.url}}">
 					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-link"></span> {{/if~}}
 					{{~l10n (concat "flow-post-action-view")~}}
 				</a>
@@ -170,7 +160,6 @@
 			{{~noop~}}
 			<a class="{{moderationMwUiClass}} mw-ui-quiet"
 			   href="{{actions.hide.url}}"
-			   title="{{actions.hide.title}}"
 			   data-flow-interactive-handler="moderationDialog"
 			   data-flow-template="flow_moderate_{{moderationTemplate}}.partial"
 			   data-role="hide">
@@ -185,7 +174,6 @@
 			{{~noop~}}
 			<a class="{{moderationMwUiClass}} mw-ui-quiet"
 			   href="{{actions.unhide.url}}"
-			   title="{{actions.unhide.title}}"
 			   data-flow-interactive-handler="moderationDialog"
 			   data-flow-template="flow_moderate_{{moderationTemplate}}.partial"
 			   data-role="unhide">
@@ -200,7 +188,6 @@
 			{{~noop~}}
 			<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet mw-ui-hovericon"
 			   href="{{actions.delete.url}}"
-			   title="{{actions.delete.title}}"
 			   data-flow-interactive-handler="moderationDialog"
 			   data-flow-template="flow_moderate_{{moderationTemplate}}.partial"
 			   data-role="delete">
@@ -215,7 +202,6 @@
 			{{~noop~}}
 			<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet mw-ui-hovericon"
 			   href="{{actions.undelete.url}}"
-			   title="{{actions.undelete.title}}"
 			   data-flow-interactive-handler="moderationDialog"
 			   data-flow-template="flow_moderate_{{moderationTemplate}}.partial"
 			   data-role="undelete">
@@ -230,7 +216,6 @@
 			{{~noop~}}
 			<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet mw-ui-hovericon"
 			   href="{{actions.suppress.url}}"
-			   title="{{actions.suppress.title}}"
 			   data-flow-interactive-handler="moderationDialog"
 			   data-flow-template="flow_moderate_{{moderationTemplate}}.partial"
 			   data-role="suppress">
@@ -245,7 +230,6 @@
 			{{~noop~}}
 			<a class="{{moderationMwUiClass}} mw-ui-destructive mw-ui-quiet mw-ui-hovericon"
 			   href="{{actions.unsuppress.url}}"
-			   title="{{actions.unsuppress.title}}"
 			   data-flow-interactive-handler="moderationDialog"
 			   data-flow-template="flow_moderate_{{moderationTemplate}}.partial"
 			   data-role="unsuppress">
