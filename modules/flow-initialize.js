@@ -8,7 +8,10 @@
 	 * Now do stuff
 	 * @todo not like this
 	 */
-	$( document ).ready( function () {
+	mw.hook( 'flow.ready' ).add( function () {
+	//$( document ).ready( function () {
+		console.log('here we go!');
+		console.profile('flowready');
 		var dataBlob, navWidget, flowBoard, dmBoard, newTopicWidget, sidebarExpandWidget, descriptionWidget,
 			siderailCollapsed = mw.user.options.get( 'flow-side-rail-state' ) === 'collapsed',
 			pageTitle = mw.Title.newFromText( mw.config.get( 'wgPageName' ) ),
@@ -16,6 +19,9 @@
 			$board = $( '.flow-board' ),
 			preloadTopic, preloadContent, preloadFormat,
 			finishLoading = function () {
+				console.profileEnd('flowready');
+				console.log('finish');
+				debugger;
 				$component.addClass( 'flow-component-ready' );
 				$( '.flow-ui-load-overlay' ).hide();
 			};

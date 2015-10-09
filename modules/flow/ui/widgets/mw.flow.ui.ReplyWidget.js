@@ -9,8 +9,8 @@
 	 * @param {string} topicId The id of the topic this reply belongs to
 	 * @param {string} replyTo The id this reply is a child of
 	 * @param {Object} [config] Configuration object
-	 * @cfg {boolean} [expandable=true] Initialize the widget with the editor
-	 *  already expanded. Otherwise, the widget is initialized with a trigger input.
+	 * @cfg {boolean} [expandable=true] Initialize the widget with a trigger input. Otherwise,
+	 *   the widget will be initialized with the editor already open.
 	 */
 	mw.flow.ui.ReplyWidget = function mwFlowUiReplyWidget( topicId, replyTo, config ) {
 		config = config || {};
