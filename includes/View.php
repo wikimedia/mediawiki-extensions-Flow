@@ -185,6 +185,10 @@ class View extends ContextSource {
 				}
 			}
 		}
+		// // We need to rearrange the header so it is on top of the block array
+		// $headerBlock = $apiResponse['blocks']['header'];
+		// unset( $apiResponse['blocks']['header'] );
+		// $apiResponse['blocks']['header'] = $headerBlock;
 
 		if ( isset( $topicListBlock ) && isset( $parameters['topiclist'] ) ) {
 			$apiResponse['toc'] = $topicListBlock->renderTocApi(

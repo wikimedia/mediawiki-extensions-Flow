@@ -50,7 +50,6 @@ $wgResourceModules += array(
 			'handlebars/flow_block_topicsummary_diff_view.handlebars',
 			'handlebars/flow_block_topicsummary_edit.handlebars',
 			'handlebars/flow_block_topicsummary_single_view.handlebars',
-			'handlebars/flow_board_navigation.partial.handlebars',
 			'handlebars/flow_edit_post.partial.handlebars',
 			'handlebars/flow_edit_topic_title.partial.handlebars',
 			'handlebars/flow_editor_switcher.partial.handlebars',

@@ -3,6 +3,10 @@
 @import 'flow.helpers';
 @import 'flow.variables';
 
+#mw-content-text {
+	display: table;
+}
+
 .flow-component {
 	.flow-list {
 		list-style: none;
@@ -25,6 +29,7 @@
 .flow-board-navigation,
 // The whole board content wrapper
 .flow-board {
+
 	.box-sizing( border-box );
 	font-size: .875em;
 	width: 100%;
@@ -38,6 +43,14 @@
 }
 
 .board-page {
+	// HACK: This is evil. It's done to replace the order of
+	// the table cells and the direction itself must be
+	// overrided in the children
+	direction: rtl !important;
+	> * {
+		direction: ltr !important;
+	}
+
 	.flow-board-navigation,
 	.flow-board {
 		max-width: 700px;
@@ -112,7 +125,6 @@
 	.flow-component.board-page {
 		.flow-board-header {
 			padding-left: 10px;
-			float: right;
 			width: 34%;
 			min-height: 70vh;
 			box-sizing: border-box;
@@ -140,22 +152,22 @@
 
 		.flow-board-navigation,
 		.flow-board {
-			float: left;
 			clear: left;
-			width: 66%;
 			box-sizing: border-box;
 			max-width: @large;
 			padding-right: 26px;
 		}
 	}
 
+	.flow-board-wrapper {
+		display: table-cell;
+	}
+
 	.flow-component.board-page.full-height-side-rail {
 		overflow: hidden;
 		.flow-board-header {
-			// this is a hack to make sure the side rail always
-			// stretches all the way to the bottom of the page
-			padding-bottom: 9999999px;
-			margin-bottom: -9999999px;
+			display: table-cell;
+			vertical-align: top;
 		}
 	}
 
@@ -196,8 +208,6 @@
 
 	.flow-component.topic-page {
 		.flow-board {
-			float: left;
-			width: 66%;
 			max-width: @large;
 			padding-right: 26px;
 

@@ -28,11 +28,7 @@
             'tooltip' => 'Flow\TemplateHelper::tooltip',
             'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
 ),
-        'partials' => array('flow_board_navigation' => function ($cx, $in, $sp) {return ''.$sp.''.((LCRun3::ifvar($cx, ((isset($in['links']['board-sort']) && is_array($in['links'])) ? $in['links']['board-sort'] : null))) ? '<div class="flow-board-navigation" data-flow-load-handler="boardNavigation">
-'.$sp.'	<div class="flow-error-container">
-'.$sp.'	</div>
-'.$sp.'</div>
-'.$sp.'' : '').'';},'flow_errors' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-error-container">
+        'partials' => array('flow_errors' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-error-container">
 '.$sp.''.((LCRun3::ifvar($cx, ((isset($cx['sp_vars']['root']['errors']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['errors'] : null))) ? '	<div class="flow-errors errorbox">
 '.$sp.'		<ul>
 '.$sp.''.LCRun3::sec($cx, ((isset($cx['sp_vars']['root']['errors']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['errors'] : null), $in, true, function($cx, $in)use($sp){return '				<li>'.LCRun3::ch($cx, 'html', array(array(((isset($in['message']) && is_array($in)) ? $in['message'] : null)),array()), 'encq').'</li>
@@ -285,21 +281,27 @@
 
     );
     
-    return ''.LCRun3::p($cx, 'flow_board_navigation', array(array($in),array())).'
-<div class="flow-board" data-flow-sortby="'.htmlentities((string)((isset($in['sortby']) && is_array($in)) ? $in['sortby'] : null), ENT_QUOTES, 'UTF-8').'">
-	<div class="flow-newtopic-container">
-		<div class="flow-nojs">
-			<a class="mw-ui-input mw-ui-input-large flow-ui-input-replacement-anchor"
-				href="'.htmlentities((string)((isset($in['links']['newtopic']) && is_array($in['links'])) ? $in['links']['newtopic'] : null), ENT_QUOTES, 'UTF-8').'">'.LCRun3::ch($cx, 'l10n', array(array('flow-newtopic-start-placeholder'),array()), 'encq').'</a>
+    return '<div class="flow-board-wrapper">
+'.((LCRun3::ifvar($cx, ((isset($in['links']['board-sort']) && is_array($in['links'])) ? $in['links']['board-sort'] : null))) ? '	<div class="flow-board-navigation" data-flow-load-handler="boardNavigation">
+		<div class="flow-error-container">
+		</div>
+	</div>
+' : '').'
+	<div class="flow-board" data-flow-sortby="'.htmlentities((string)((isset($in['sortby']) && is_array($in)) ? $in['sortby'] : null), ENT_QUOTES, 'UTF-8').'">
+		<div class="flow-newtopic-container">
+			<div class="flow-nojs">
+				<a class="mw-ui-input mw-ui-input-large flow-ui-input-replacement-anchor"
+					href="'.htmlentities((string)((isset($in['links']['newtopic']) && is_array($in['links'])) ? $in['links']['newtopic'] : null), ENT_QUOTES, 'UTF-8').'">'.LCRun3::ch($cx, 'l10n', array(array('flow-newtopic-start-placeholder'),array()), 'encq').'</a>
+			</div>
+
+			<div class="flow-js">
+'.LCRun3::p($cx, 'flow_newtopic_form', array(array($in),array('isOnFlowBoard'=>true)), '				').'			</div>
 		</div>
 
-		<div class="flow-js">
-'.LCRun3::p($cx, 'flow_newtopic_form', array(array($in),array('isOnFlowBoard'=>true)), '			').'		</div>
+		<div class="flow-topics">
+'.LCRun3::p($cx, 'flow_topiclist_loop', array(array($in),array()), '			').'
+'.LCRun3::p($cx, 'flow_load_more', array(array($in),array('loadMoreApiHandler'=>'loadMoreTopics','loadMoreTarget'=>'window','loadMoreContainer'=>'< .flow-topics','loadMoreTemplate'=>'flow_topiclist_loop.partial','loadMoreObject'=>((isset($in['links']['pagination']['fwd']) && is_array($in['links']['pagination'])) ? $in['links']['pagination']['fwd'] : null))), '			').'		</div>
 	</div>
-
-	<div class="flow-topics">
-'.LCRun3::p($cx, 'flow_topiclist_loop', array(array($in),array()), '		').'
-'.LCRun3::p($cx, 'flow_load_more', array(array($in),array('loadMoreApiHandler'=>'loadMoreTopics','loadMoreTarget'=>'window','loadMoreContainer'=>'< .flow-topics','loadMoreTemplate'=>'flow_topiclist_loop.partial','loadMoreObject'=>((isset($in['links']['pagination']['fwd']) && is_array($in['links']['pagination'])) ? $in['links']['pagination']['fwd'] : null))), '		').'	</div>
 </div>
 ';
 }
