@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2ecb373e_6af5c0e9",
+        "filename": "includes/Search/Iterators/AbstractIterator.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-10-09T16:20:56Z",
+      "side": 1,
+      "message": "Absolutely.",
+      "parentUuid": "2ecb373e_afbbbab8",
+      "revId": "12b5d2913b93cd00f1fb6d970fe9197545c7fca8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ecb373e_6f85d2d3",
         "filename": "includes/Search/Iterators/TopicIterator.php",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2015-10-07T19:09:09Z",
       "side": 1,
       "message": "It\u0027s the same as the post ID, not the revision ID (in this case, post ID and revision ID actually are different, even for the first revision).",
+      "revId": "12b5d2913b93cd00f1fb6d970fe9197545c7fca8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ecb373e_2afb38df",
+        "filename": "includes/Search/Iterators/TopicIterator.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-10-09T16:20:56Z",
+      "side": 1,
+      "message": "Yes, correct. Thanks for spotting that.",
+      "parentUuid": "2ecb373e_6f85d2d3",
       "revId": "12b5d2913b93cd00f1fb6d970fe9197545c7fca8",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_65449d6f",
+        "filename": "includes/Search/Updaters/AbstractUpdater.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-10-09T16:20:56Z",
+      "side": 1,
+      "message": "Yeah. Just didn\u0027t do it because TopicUpdater \u0026 HeaderUpdater have /* PostRevision */ \u0026 /* Header */ in there. I can\u0027t change the method signature in children.\n\nBut I\u0027ll make these real AbstractRevision typehints; I can still add a comment to clarify that it expects Header or PostRevision.",
+      "parentUuid": "2ecb373e_af765aff",
+      "revId": "12b5d2913b93cd00f1fb6d970fe9197545c7fca8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ecb373e_0fcc4e37",
         "filename": "includes/Search/Updaters/AbstractUpdater.php",
         "patchSetId": 4
@@ -64,6 +118,24 @@
       "writtenOn": "2015-10-07T19:09:09Z",
       "side": 1,
       "message": "Should this also use the shard timeout?",
+      "revId": "12b5d2913b93cd00f1fb6d970fe9197545c7fca8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_0529219a",
+        "filename": "includes/Search/Updaters/AbstractUpdater.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-10-09T16:20:56Z",
+      "side": 1,
+      "message": "Yes, thanks.",
+      "parentUuid": "2ecb373e_0fcc4e37",
       "revId": "12b5d2913b93cd00f1fb6d970fe9197545c7fca8",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -104,6 +176,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_4516395c",
+        "filename": "maintenance/dumpBackup.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-10-09T16:20:56Z",
+      "side": 1,
+      "message": "I agree it\u0027s a bit weird that it is configurable, but I\u0027d still use it as long as we have it?",
+      "parentUuid": "2ecb373e_8f311e03",
+      "revId": "12b5d2913b93cd00f1fb6d970fe9197545c7fca8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ecb373e_4f1fb671",
         "filename": "maintenance/dumpBackup.php",
         "patchSetId": 4
@@ -121,6 +211,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_c5322906",
+        "filename": "maintenance/dumpBackup.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-10-09T16:20:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ecb373e_4f1fb671",
+      "revId": "12b5d2913b93cd00f1fb6d970fe9197545c7fca8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ecb373e_0a1bdc73",
         "filename": "maintenance/dumpBackup.php",
         "patchSetId": 4
@@ -132,6 +240,24 @@
       "writtenOn": "2015-10-07T19:09:09Z",
       "side": 1,
       "message": "Standardize on \u0027version\u0027 or \u0027dumpVersion\u0027?",
+      "revId": "12b5d2913b93cd00f1fb6d970fe9197545c7fca8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_e52f2d9b",
+        "filename": "maintenance/dumpBackup.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-10-09T16:20:56Z",
+      "side": 1,
+      "message": "I forgot to remove this one here.",
+      "parentUuid": "2ecb373e_0a1bdc73",
       "revId": "12b5d2913b93cd00f1fb6d970fe9197545c7fca8",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
