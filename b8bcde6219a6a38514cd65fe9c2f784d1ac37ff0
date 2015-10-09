@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebaf39b_a75dbd1c",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.CategoryItemWidget.js",
+        "patchSetId": 21
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-10-09T06:16:59Z",
+      "side": 1,
+      "message": "For consistency, the title attribute shouldn\u0027t use getPrefixedDb() but getPrefixedText(). Using getPrefixedDb() for the href is correct though.",
+      "revId": "b8bcde6219a6a38514cd65fe9c2f784d1ac37ff0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
