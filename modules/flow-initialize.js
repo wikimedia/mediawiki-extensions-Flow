@@ -278,7 +278,75 @@
 
 			$element.replaceWith( editPostWidget.$element );
 		}
+		// Editing in a separate window
 		replaceNoJSEditor( $( '.flow-edit-post-form' ) );
+
+		// Undo actions
+		if ( $( 'form[data-module="topic"]' ).length ) {
+			replaceEditorInUndoEditPost( $( 'form[data-module="topic"]' ) );
+		} else if ( $( 'form[data-module="header"]' ).length ) {
+			replaceEditorInUndoHeaderPost( $( 'form[data-module="header"]' ) );
+		}
+
+		function replaceEditorInUndoEditPost( $form ) {
+			var editPostWidget, postId,
+				pageName = mw.config.get( 'wgPageName' ),
+				title = mw.Title.newFromText( pageName ),
+				topicId = title.getNameText(),
+				goBackToTitle = function () {
+					editPostWidget.toggle( false );
+					// HACK: redirect to topic view
+					window.location.href = title.getUrl();
+				};
+
+			if ( !$form.length ) {
+				return;
+			}
+			postId = $form.find( 'input[name="topic_postId"]' ).val();
+			editPostWidget = new mw.flow.ui.EditPostWidget( topicId, postId );
+
+			editPostWidget
+				.on( 'saveContent', goBackToTitle )
+				.on( 'cancel', goBackToTitle );
+
+			$form.replaceWith( editPostWidget.$element );
+		}
+
+		function replaceEditorInUndoHeaderPost( $form ) {
+			var descWidget, prevRevId,
+				pageName = mw.config.get( 'wgPageName' ),
+				title = mw.Title.newFromText( pageName ),
+				model = mw.flow.system.getBoard();
+
+			if ( !$form.length ) {
+				return;
+			}
+
+			prevRevId = $form.find( 'input[name="header_prev_revision"]' ).val();
+			model.getDescription().setRevisionId( prevRevId );
+			descWidget = new mw.flow.ui.BoardDescriptionWidget( model );
+			// HACK: Hide the edit button even if it tries to toggle( true ) itself
+			// later in the code after saveContent
+			descWidget.button.$element.css( 'display', 'none' );
+			// HACK: Simulate an 'edit' click event so the description widget
+			// loads already in edit mode. This saves us the trouble of creating
+			// and already open description widget and duplicating all the api
+			// logic that happens when clicking the 'edit' button, seeing as this
+			// addition is already a quickfix hack.
+			descWidget.button.emit( 'click' );
+
+			descWidget
+				.on( 'saveContent', function () {
+					// HACK: redirect to topic view
+					window.location.href = title.getUrl();
+				} )
+				.on( 'cancel', function () {
+					// HACK: redirect to topic view
+					window.location.href = title.getUrl();
+				} );
+
+			$form.replaceWith( descWidget.$element );
+		}
 
 		// Replace the 'reply' buttons so they all produce replyWidgets rather
 		// than the reply forms from the API
