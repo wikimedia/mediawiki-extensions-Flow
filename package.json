@@ -13,7 +13,7 @@
     "grunt-contrib-csslint": "0.4.0",
     "grunt-contrib-jshint": "0.11.3",
     "grunt-contrib-watch": "0.6.1",
-    "grunt-banana-checker": "0.2.2",
+    "grunt-banana-checker": "0.4.0",
     "grunt-jscs": "2.1.0",
     "grunt-jsonlint": "1.0.4",
     "grunt-tyops": "0.1.0"
