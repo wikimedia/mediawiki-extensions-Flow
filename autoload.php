@@ -115,6 +115,7 @@ $wgAutoloadClasses += array(
 	'Flow\\Data\\Utils\\UserMerger' => __DIR__ . '/includes/Data/Utils/UserMerger.php',
 	'Flow\\DbFactory' => __DIR__ . '/includes/DbFactory.php',
 	'Flow\\Dump\\Exporter' => __DIR__ . '/includes/Dump/Exporter.php',
+	'Flow\\Dump\\Importer' => __DIR__ . '/includes/Dump/Importer.php',
 	'Flow\\Exception\\CatchableFatalErrorException' => __DIR__ . '/includes/Exception/CatchableFatalErrorException.php',
 	'Flow\\Exception\\CrossWikiException' => __DIR__ . '/includes/Exception/ExceptionHandling.php',
 	'Flow\\Exception\\DataModelException' => __DIR__ . '/includes/Exception/ExceptionHandling.php',

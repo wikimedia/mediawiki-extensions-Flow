@@ -133,7 +133,7 @@ class PostRevision extends AbstractRevision {
 				'process-data'
 			);
 		}
-		$obj->replyToId = UUID::create( $row['tree_parent_id'] );
+		$obj->replyToId = $row['tree_parent_id'] ? UUID::create( $row['tree_parent_id'] ) : null;
 		$obj->postId = UUID::create( $row['rev_type_id'] );
 		$obj->origUser = UserTuple::newFromArray( $row, 'tree_orig_user_' );
 		if ( !$obj->origUser ) {
