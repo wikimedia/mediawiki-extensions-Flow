@@ -5,7 +5,9 @@
 			"Nnemo"
 		]
 	},
+	"enableflow": "Activar Flow",
 	"flow-desc": "Sistema de xestión del fluxu de trabayu",
+	"flow-talk-taken-over-comment": "/* Esta páxina convertióse a tableru d'alderique Flow */",
 	"log-name-flow": "Rexistru d'actividá de Flow",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|desanició}} un [$4 mensaxe] sobro «[[$3|$5]]» en [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|restauró}} un [$4 mensaxe] sobro «[[$3|$5]]» en [[$6]]",
@@ -15,6 +17,7 @@
 	"logentry-delete-flow-restore-topic": "$1 {{GENDER:$2|restauró}} l'asuntu «[[$3|$5]]» en [[$6]]",
 	"logentry-suppress-flow-suppress-topic": "$1 {{GENDER:$2|suprimió}} l'asuntu «[[$3|$5]]» en [[$6]]",
 	"logentry-suppress-flow-restore-topic": "$1 {{GENDER:$2|desanició}} l'asuntu «[[$3|$5]]» en [[$6]]",
+	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] en [[$3]] importóse de LiquidThreads a Flow",
 	"flow-user-moderated": "Usuariu moderáu",
 	"flow-edit-header-link": "Editar la descripción",
 	"flow-post-moderated-toggle-hide-show": "Amosar el comentariu {{GENDER:$1|tapecíu}} por $2",
