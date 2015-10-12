@@ -36,6 +36,15 @@
 		// we shouldn't proceed. This is true mainly to history pages
 		// that have the component but not the board DOM element.
 		if ( $board.length === 0 ) {
+			// Editing summary in a separate window. That has no
+			// flow-board, but we should still replace it
+			startEditTopicSummary(
+				false,
+				$( '.flow-topic-summary-container' ),
+				$component.data( 'flow-id' )
+			);
+
+			// Mark as finished loading
 			finishLoading();
 			return;
 		}
@@ -458,12 +467,17 @@
 			event.preventDefault();
 		} );
 
-		function startEditTopicSummary( topicId, action ) {
-			var $topic = $board.find( '#flow-topic-' + topicId ),
-				$summaryContainer = $topic.find( '.flow-topic-summary-container' ),
+		function startEditTopicSummary( isFullBoard, $summaryContainer, topicId, action ) {
+			var editTopicSummaryWidget,
+				$topic = isFullBoard ? $board.find( '#flow-topic-' + topicId ) : $(),
 				$topicSummary = $summaryContainer.find( '.flow-topic-summary' ),
-				editTopicSummaryWidget,
-				options = {};
+				options = {},
+				pageName = mw.config.get( 'wgPageName' ),
+				title = mw.Title.newFromText( pageName );
+
+			if ( !$summaryContainer.length ) {
+				return;
+			}
 
 			if ( action === 'lock' || action === 'unlock' ) {
 				options = {
@@ -477,16 +491,26 @@
 					editTopicSummaryWidget.destroy();
 					editTopicSummaryWidget.$element.remove();
 
-					// HACK get the old system to rerender the topic
-					return flowBoard.flowBoardComponentRefreshTopic(
-						$topic,
-						workflow
-					);
+					if ( isFullBoard ) {
+						// HACK get the old system to rerender the topic
+						return flowBoard.flowBoardComponentRefreshTopic(
+							$topic,
+							workflow
+						);
+					} else {
+						// HACK: redirect to topic view
+						window.location.href = title.getUrl();
+					}
 				} )
 				.on( 'cancel', function () {
 					editTopicSummaryWidget.destroy();
 					editTopicSummaryWidget.$element.remove();
-					$summaryContainer.append( $topicSummary );
+					if ( isFullBoard ) {
+						$summaryContainer.append( $topicSummary );
+					} else {
+						// HACK: redirect to topic view
+						window.location.href = title.getUrl();
+					}
 				} );
 
 			$topicSummary.remove();
@@ -495,8 +519,9 @@
 
 		$board.on( 'click', '.flow-ui-summarize-topic-link', function ( event ) {
 			var $topic = $( this ).closest( '.flow-topic' ),
+				$container = $topic.find( '.flow-topic-summary-container' ),
 				topicId = $topic.data( 'flow-id' );
-			startEditTopicSummary( topicId );
+			startEditTopicSummary( true, $container, topicId );
 			event.preventDefault();
 		} );
 
@@ -504,6 +529,7 @@
 			var promise,
 				action = $( this ).data( 'role' ),
 				$topic = $( this ).closest( '.flow-topic' ),
+				$container = $topic.find( '.flow-topic-summary-container' ),
 				topicId = $topic.data( 'flow-id' ),
 				api = new mw.flow.dm.APIHandler();
 
@@ -527,7 +553,7 @@
 						skipSummarize = action === 'unlock' && !summaryContent;
 
 					if ( !skipSummarize ) {
-						startEditTopicSummary( topicId, action );
+						startEditTopicSummary( true, $container, topicId, action );
 					}
 				} );
 
