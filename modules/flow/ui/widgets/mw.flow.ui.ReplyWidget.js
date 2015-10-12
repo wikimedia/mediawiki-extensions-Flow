@@ -19,9 +19,12 @@
 		this.topicId = topicId;
 		this.expandable = config.expandable === undefined ? true : config.expandable;
 		this.expanded = !this.expandable;
+		this.placeholder = config.placeholder;
 
 		// Parent constructor
 		mw.flow.ui.ReplyWidget.parent.call( this, config );
+
+		this.$editorWrapper = $( '<div>' );
 
 		if ( this.expandable ) {
 			this.triggerInput = new OO.ui.TextInputWidget( {
@@ -31,14 +34,12 @@
 			} );
 			this.triggerInput.$element.on( 'focusin', this.onTriggerFocusIn.bind( this ) );
 			this.$element.append( this.triggerInput.$element );
+		} else {
+			// Only initialize the editor if we are not in 'expandable' mode
+			// Otherwise, the editor is lazy-loaded
+			this.initializeEditor();
+			this.editor.toggle( true );
 		}
-
-		this.editor = new mw.flow.ui.EditorWidget( {
-			placeholder: config.placeholder,
-			saveMsgKey: mw.user.isAnon() ? 'flow-reply-link-anonymously' : 'flow-reply-link',
-			classes: [ 'flow-ui-replyWidget-editor' ]
-		} );
-		this.editor.toggle( !this.expandable );
 
 		this.anonWarning = new mw.flow.ui.AnonWarningWidget();
 		this.anonWarning.toggle( !this.expandable );
@@ -50,18 +51,12 @@
 
 		this.api = new mw.flow.dm.APIHandler();
 
-		// Events
-		this.editor.connect( this, {
-			saveContent: 'onEditorSaveContent',
-			cancel: 'onEditorCancel'
-		} );
-
 		this.$element
 			.addClass( 'flow-ui-replyWidget' )
 			.append(
 				this.anonWarning.$element,
 				this.error.$element,
-				this.editor.$element
+				this.$editorWrapper
 			);
 
 	};
@@ -151,6 +146,27 @@
 	};
 
 	/**
+	 * Initialize the editor
+	 */
+	mw.flow.ui.ReplyWidget.prototype.initializeEditor = function () {
+		if ( !this.editor ) {
+			this.editor = new mw.flow.ui.EditorWidget( {
+				placeholder: this.placeholder,
+				saveMsgKey: mw.user.isAnon() ? 'flow-reply-link-anonymously' : 'flow-reply-link',
+				classes: [ 'flow-ui-replyWidget-editor' ]
+			} );
+
+			this.$editorWrapper.append( this.editor.$element );
+
+			// Events
+			this.editor.connect( this, {
+				saveContent: 'onEditorSaveContent',
+				cancel: 'onEditorCancel'
+			} );
+		}
+	};
+
+	/**
 	 * Check if the widget is expandable
 	 */
 	mw.flow.ui.ReplyWidget.prototype.isExpandable = function () {
@@ -174,6 +190,7 @@
 		}
 		this.toggle( true );
 		this.anonWarning.toggle( true );
+		this.initializeEditor();
 		this.editor.toggle( true );
 		this.editor.activate();
 		// If the editor was already active, focus it
