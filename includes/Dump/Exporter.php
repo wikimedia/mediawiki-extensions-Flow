@@ -7,6 +7,7 @@ use DatabaseBase;
 use Exception;
 use Flow\Collection\PostSummaryCollection;
 use Flow\Container;
+use Flow\Data\ManagerGroup;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
@@ -192,15 +193,37 @@ class Exporter extends WikiExporter {
 		$output = Xml::openElement( 'revisions' ) . "\n";
 		$this->sink->write( $output );
 
+		$collection = $revision->getCollection();
 		if ( $this->history === WikiExporter::FULL ) {
-			$collection = $revision->getCollection();
-
 			$revisions = array_reverse( $collection->getAllRevisions() );
 			foreach ( $revisions as $revision ) {
 				$this->formatRevision( $revision );
 			}
 		} elseif ( $this->history === WikiExporter::CURRENT ) {
-			$this->formatRevision( $revision );
+			$first = $collection->getFirstRevision();
+
+			// storing only last revision won't work (it'll reference non-existing
+			// parents): we'll construct a bogus revision with most of the original
+			// metadata, but with the current content & id (= timestamp)
+			$first = $first->toStorageRow( $first );
+			$last = $revision->toStorageRow( $revision );
+			$first['rev_id'] = $last['rev_id'];
+			$first['rev_content'] = $last['rev_content'];
+			$first['rev_flags'] = $last['rev_flags'];
+			if ( isset( $first['tree_rev_id'] ) ) {
+				// PostRevision-only: tree_rev_id must match rev_id
+				$first['tree_rev_id'] = $first['rev_id'];
+			}
+
+			// clear buffered cache, to make sure it doesn't serve the existing (already
+			// loaded) revision when trying to turn our bogus mixed data into a revision
+			/** @var ManagerGroup $storage */
+			$storage = Container::get( 'storage' );
+			$storage->clear();
+
+			$mix = $revision->fromStorageRow( $first );
+
+			$this->formatRevision( $mix );
 		}
 
 		$output = Xml::closeElement( 'revisions' ) . "\n";
