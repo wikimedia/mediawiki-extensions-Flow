@@ -153,6 +153,7 @@ $wgHooks['ArticleConfirmDelete'][] = 'FlowHooks::onArticleConfirmDelete';
 $wgHooks['ArticleDelete'][] = 'FlowHooks::onArticleDelete';
 $wgHooks['ArticleUndelete'][] = 'FlowHooks::onArticleUndelete';
 $wgHooks['SearchableNamespaces'][] = 'FlowHooks::onSearchableNamespaces';
+$wgHooks['ImportHandleToplevelXMLTag'][] = 'FlowHooks::onImportHandleToplevelXMLTag';
 
 // Extension:UserMerge support
 $wgHooks['UserMergeAccountFields'][] = 'FlowHooks::onUserMergeAccountFields';
