@@ -195,8 +195,6 @@ class Exporter extends WikiExporter {
 
 		$collection = $revision->getCollection();
 		if ( $this->history === WikiExporter::FULL ) {
-			$collection = $revision->getCollection();
-
 			$revisions = array_reverse( $collection->getAllRevisions() );
 			foreach ( $revisions as $revision ) {
 				$this->formatRevision( $revision );
