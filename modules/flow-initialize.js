@@ -17,7 +17,7 @@
 			preloadTopic, preloadContent, preloadFormat,
 			finishLoading = function () {
 				$component.addClass( 'flow-component-ready' );
-				$( '.flow-ui-load-overlay' ).hide();
+				$( '.flow-ui-load-overlay' ).addClass( 'oo-ui-element-hidden' );
 			};
 
 		// HACK: If there is no component, we are not on a flow
