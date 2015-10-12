@@ -1768,4 +1768,49 @@ class FlowHooks {
 		return true;
 	}
 
+	/**
+	 * @param WikiImporter $importer
+	 * @return bool
+	 */
+	public static function onImportHandleToplevelXMLTag( WikiImporter $importer ) {
+		// only init Flow's importer once, then re-use it
+		static $flowImporter = null;
+		if ( $flowImporter === null ) {
+			// importer can be dry-run (= parse, but don't store), but we can only
+			// derive that from mPageOutCallback. I'll set a new value (which will
+			// return the existing value) to see if it's in dry-run mode (= null)
+			$callback = $importer->setPageOutCallback( null );
+			// restore previous mPageOutCallback value
+			$importer->setPageOutCallback( $callback );
+
+			$flowImporter = new \Flow\Dump\Importer( $importer );
+			if ( $callback !== null ) {
+				// not in dry-run mode
+				$flowImporter->setStorage( Container::get( 'storage' ) );
+			}
+		}
+
+		$reader = $importer->getReader();
+		$tag = $reader->localName;
+		$type = $reader->nodeType;
+
+		if ( $tag == 'board' && $type === XMLReader::ELEMENT ) {
+			$flowImporter->handleBoard();
+			return false;
+		} elseif ( $tag == 'description' && $type === XMLReader::ELEMENT ) {
+			$flowImporter->handleHeader();
+			return false;
+		} elseif ( $tag == 'topic' && $type === XMLReader::ELEMENT ) {
+			$flowImporter->handleTopic();
+			return false;
+		} elseif ( $tag == 'post' && $type === XMLReader::ELEMENT ) {
+			$flowImporter->handlePost();
+			return false;
+		} elseif ( $tag == 'summary' && $type === XMLReader::ELEMENT ) {
+			$flowImporter->handleSummary();
+			return false;
+		}
+
+		return true;
+	}
 }
