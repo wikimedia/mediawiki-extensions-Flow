@@ -23,6 +23,8 @@
 		// Mixin constructor
 		mw.flow.dm.List.call( this, config );
 
+		this.categories = new mw.flow.dm.Categories();
+
 		// TODO: Fill this stuff in properly
 		this.setId( data.id );
 		this.pageTitle = data.pageTitle;
@@ -30,7 +32,13 @@
 		this.sort = data.defaultSort || 'newest';
 		this.description = new mw.flow.dm.BoardDescription();
 
+		// Events
 		this.aggregate( { contentChange: 'topicContentChange' } );
+		this.categories.connect( this, {
+			add: [ 'emit', 'addCategories' ],
+			remove: [ 'emit', 'removeCategories' ],
+			clear: [ 'emit', 'clearCategories' ]
+		} );
 	};
 
 	/* Initialization */
@@ -78,6 +86,65 @@
 			// Parent
 			mw.flow.dm.Board.parent.prototype.getHashObject.call( this )
 		);
+	};
+
+	/**
+	 * Add raw categories from the initial board api response
+	 * @param {Object} categories Categories object
+	 */
+	mw.flow.dm.Board.prototype.setCategoriesFromObject = function ( categories ) {
+		var cat,
+			categoryDMs = [];
+
+		// Add
+		for ( cat in categories ) {
+			categoryDMs.push( new mw.flow.dm.CategoryItem( cat, {
+				exists: !!categories[ cat ].exists
+			} ) );
+		}
+		this.addCategories( categoryDMs );
+	};
+
+	/**
+	 * Add categories to the board
+	 *
+	 * @param {mw.flow.dm.CategoryItem[]} categories An array of category items
+	 */
+	mw.flow.dm.Board.prototype.addCategories = function ( categories ) {
+		this.categories.addItems( categories );
+	};
+
+	/**
+	 * Get board categories
+	 *
+	 * @return {mw.flow.dm.Categories} An array of category items
+	 */
+	mw.flow.dm.Board.prototype.getCategories = function () {
+		return this.categories;
+	};
+
+	/**
+	 * Remove board categories
+	 *
+	 * @param {mw.flow.dm.CategoryItem[]} categories An array of category items
+	 */
+	mw.flow.dm.Board.prototype.removeCategories = function ( categories ) {
+		this.categories.removeItems( categories );
+	};
+
+	/**
+	 * Clear the categories of this board
+	 */
+	mw.flow.dm.Board.prototype.clearCategories = function () {
+		this.categories.clearItems();
+	};
+
+	/**
+	 * Check whether the board has any categories
+	 * @return {boolean} Board has categories
+	 */
+	mw.flow.dm.Board.prototype.hasCategories = function () {
+		return !!this.categories.getItemCount();
 	};
 
 	/**
