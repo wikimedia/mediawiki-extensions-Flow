@@ -77,6 +77,7 @@
 '.$sp.'			<div class="flow-topic-summary-content">
 '.$sp.'				'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['revision']['content']['format']) && is_array($in['revision']['content'])) ? $in['revision']['content']['format'] : null),((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null)),array()), 'encq').'
 '.$sp.'			</div>
+'.$sp.'			<div style="clear: both;"></div>
 '.$sp.'		</div>
 '.$sp.'' : '').'</div>
 ';},'flow_topic_titlebar_watch' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-topic-watchlist flow-watch-link">
