@@ -171,7 +171,7 @@ abstract class AbstractRevision {
 		if ( $obj->user === null ) {
 			throw new DataModelException( 'Could not load UserTuple for rev_user_' );
 		}
-		$obj->prevRevision = UUID::create( $row['rev_parent_id'] );
+		$obj->prevRevision = $row['rev_parent_id'] ? UUID::create( $row['rev_parent_id'] ) : null;
 		$obj->changeType = $row['rev_change_type'];
 	 	$obj->flags = array_filter( explode( ',', $row['rev_flags'] ) );
 		$obj->content = $row['rev_content'];
@@ -181,8 +181,8 @@ abstract class AbstractRevision {
 
 		$obj->moderationState = $row['rev_mod_state'];
 		$obj->moderatedBy = UserTuple::newFromArray( $row, 'rev_mod_user_' );
-		$obj->moderationTimestamp = $row['rev_mod_timestamp'];
-		$obj->moderatedReason = isset( $row['rev_mod_reason'] ) ? $row['rev_mod_reason'] : null;
+		$obj->moderationTimestamp = $row['rev_mod_timestamp'] ?: null;
+		$obj->moderatedReason = isset( $row['rev_mod_reason'] ) && $row['rev_mod_reason'] ? $row['rev_mod_reason'] : null;
 
 		// BC: 'suppress' used to be called 'censor' & 'lock' was 'close'
 		$bc = array(
@@ -192,7 +192,7 @@ abstract class AbstractRevision {
 		$obj->moderationState = str_replace( array_keys( $bc ), array_values( $bc ), $obj->moderationState );
 
 		// isset required because there is a possible db migration, cached data will not have it
-		$obj->lastEditId = isset( $row['rev_last_edit_id'] ) ? UUID::create( $row['rev_last_edit_id'] ) : null;
+		$obj->lastEditId = isset( $row['rev_last_edit_id'] ) && $row['rev_last_edit_id'] ? UUID::create( $row['rev_last_edit_id'] ) : null;
 		$obj->lastEditUser = UserTuple::newFromArray( $row, 'rev_edit_user_' );
 
 		$obj->contentLength = isset( $row['rev_content_length'] ) ? $row['rev_content_length'] : 0;

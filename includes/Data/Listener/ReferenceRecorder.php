@@ -137,7 +137,7 @@ class ReferenceRecorder extends AbstractListener {
 		}
 		$previous = $this->storage->get( 'PostRevision', $current->getPrevRevisionId() );
 		if ( !$previous ) {
-			throw new FlowException( 'Expcted previous revision of ' . $current->getPrevRevisionId()->getAlphadecimal() );
+			throw new FlowException( 'Expected previous revision of ' . $current->getPrevRevisionId()->getAlphadecimal() );
 		}
 
 		$isHidden = self::isHidden( $current );
