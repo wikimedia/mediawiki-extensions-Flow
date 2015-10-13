@@ -28,7 +28,7 @@
 		$link = $( '<a>' )
 			.attr( 'href', mw.util.getUrl( this.title && this.title.getPrefixedDb() || this.name ) )
 			.attr( 'title', this.exists ? prefixedCleanName : mw.msg( 'red-link-title', prefixedCleanName ) )
-			.text( this.name )
+			.text( this.title && this.title.getNameText() || this.name )
 			.toggleClass( 'new', !this.exists );
 
 		this.$element
