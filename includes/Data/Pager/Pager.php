@@ -103,7 +103,6 @@ class Pager {
 			'offset-dir' => $this->options['pager-dir'],
 			'offset-id' => $this->options['pager-offset'],
 			'include-offset' => $this->options['pager-include-offset'],
-			'offset-elastic' => true,
 		);
 		$offset = $this->options['pager-offset'];
 		$results = array();
