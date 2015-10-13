@@ -118,12 +118,6 @@
 		} );
 		$( '.flow-board-navigation' ).append( navWidget.$element );
 
-		// Board description widget
-		descriptionWidget = new mw.flow.ui.BoardDescriptionWidget( dmBoard, {
-			$existing: $( '.flow-ui-boardDescriptionWidget-content' ).contents(),
-			$categories: $( '.flow-board-header-category-view-nojs' ).contents()
-		} );
-		$( '.flow-ui-boardDescriptionWidget' ).replaceWith( descriptionWidget.$element );
 		// The category widget is inside the board description widget.
 		// Remove it here
 		$( '.flow-board-header-category-view-nojs' ).detach();
@@ -566,6 +560,13 @@
 		} else {
 			mw.flow.system.populateBoardFromApi();
 		}
+
+		// Board description widget
+		descriptionWidget = new mw.flow.ui.BoardDescriptionWidget( dmBoard, {
+			$existing: $( '.flow-ui-boardDescriptionWidget-content' ).contents(),
+			$categories: $( '.flow-board-header-category-view-nojs' ).contents()
+		} );
+		$( '.flow-ui-boardDescriptionWidget' ).replaceWith( descriptionWidget.$element );
 
 		preloadTopic = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'topic' );
 		preloadContent = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'content' );
