@@ -118,12 +118,6 @@
 		} );
 		$( '.flow-board-navigation' ).append( navWidget.$element );
 
-		// The category widget is inside the board description widget.
-		// Remove it here
-		$( '.flow-board-header-category-view-nojs' ).detach();
-		// HACK: Remove the MW page categories
-		$( '.catlinks' ).detach();
-
 		// HACK: These event handlers should be in the prospective widgets
 		// they will move once we have Board UI and Topic UI widgets
 		mw.flow.system.on( 'resetBoardStart', function () {
@@ -567,6 +561,12 @@
 			$categories: $( '.flow-board-header-category-view-nojs' ).contents()
 		} );
 		$( '.flow-ui-boardDescriptionWidget' ).replaceWith( descriptionWidget.$element );
+
+		// The category widget is inside the board description widget.
+		// Remove it here
+		$( '.flow-board-header-category-view-nojs' ).detach();
+		// HACK: Remove the MW page categories
+		$( '.catlinks' ).detach();
 
 		preloadTopic = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'topic' );
 		preloadContent = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'content' );
