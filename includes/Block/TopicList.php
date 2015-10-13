@@ -412,10 +412,6 @@ class TopicListBlock extends AbstractBlock {
 			$findOptions['pager-include-offset'] = $requestOptions['include-offset'];
 		}
 
-		if ( $requestOptions['api'] ) {
-			$findOptions['offset-elastic'] = false;
-		}
-
 		$findOptions['pager-limit'] = $limit;
 
 		if (

@@ -4,10 +4,12 @@ namespace Flow\Formatter;
 
 use Flow\Data\Utils\SortRevisionsByRevisionId;
 use Flow\Exception\FlowException;
+use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
+use Flow\FlowActions;
 
-class TopicHistoryQuery extends AbstractQuery {
+class TopicHistoryQuery extends HistoryQuery {
 	/**
 	 * @param UUID $topicRootId
 	 * @param int $limit
@@ -16,24 +18,21 @@ class TopicHistoryQuery extends AbstractQuery {
 	 * @return FormatterRow[]
 	 */
 	public function getResults( UUID $topicRootId, $limit = 50, UUID $offset = null, $direction = 'fwd' ) {
-		$options = array(
-			'sort' => 'rev_id',
-			'order' => 'DESC',
-			'limit' => $limit,
-			'offset-id' => $offset,
-			'offset-dir' => $direction,
-			'offset-include' => false,
-			'offset-elastic' => false,
-		);
+		$options = $this->getOptions( $direction, $limit, $offset );
 
 		$topicPostHistory = $this->getTopicPostResults( $topicRootId, $options ) ?: array();
 		$topicSummaryHistory = $this->getTopicSummaryResults( $topicRootId, $options ) ?: array();
 
 		$history = array_merge( $topicPostHistory, $topicSummaryHistory );
-		usort( $history, new SortRevisionsByRevisionId );
+		usort( $history, new SortRevisionsByRevisionId( $options['order'] ) );
 
 		if ( isset( $options['limit'] ) ) {
 			$history = array_splice( $history, 0, $options['limit'] );
+		}
+
+		// See explanation in BoardHistoryQuery::getResults.
+		if ( $direction === 'rev' ) {
+			$history = array_reverse( $history );
 		}
 
 		$this->loadMetadataBatch( $history );
@@ -67,12 +66,13 @@ class TopicHistoryQuery extends AbstractQuery {
 
 	protected function getTopicPostResults( UUID $topicRootId, $options ) {
 		// Can't use 'PostRevision' because we need to get only the ones with the right board ID.
-		return $this->storage->find(
+		return $this->doInternalQueries(
 			'PostRevisionTopicHistoryEntry',
 			array(
 				'topic_root_id' => $topicRootId,
 			),
-			$options
+			$options,
+			self::POST_OVERFETCH_FACTOR
 		);
 	}
 
@@ -85,5 +85,4 @@ class TopicHistoryQuery extends AbstractQuery {
 			$options
 		);
 	}
-
 }
