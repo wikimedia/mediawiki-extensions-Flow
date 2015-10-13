@@ -2,14 +2,34 @@
 
 namespace Flow\Data\Utils;
 
+use Flow\InvalidInputException;
 use Flow\Model\AbstractRevision;
 
 /**
- * Sorts AbstractRevision objects by revision ID (currently only descending)
+ * Sorts AbstractRevision objects by revision ID
  */
 class SortRevisionsByRevisionId {
 	/**
-	 * Compares two revisions with descending ordering
+	 * Order, either ASC or DESC.
+	 *
+	 * @var string
+	 */
+	protected $order;
+
+	/**
+	 * @param string $order ASC or DESC
+	 * @throws InvalidInputException
+	 */
+	public function __construct( $order ) {
+		if ( $order !== 'ASC' && $order !== 'DESC' ) {
+			throw new InvalidInputException( "Must specify ASC or DESC" );
+		}
+
+		$this->order = $order;
+	}
+
+	/**
+	 * Compares two revisions
 	 *
 	 * @param AbstractRevision $a
 	 * @param AbstractRevision $b
@@ -18,13 +38,18 @@ class SortRevisionsByRevisionId {
 		$aId = $a->getRevisionId()->getAlphadecimal();
 		$bId = $b->getRevisionId()->getAlphadecimal();
 
-		// Reverse sort
 		if ( $aId < $bId ) {
-			return 1;
+			$result = -1;
 		} elseif ( $aId > $bId ) {
-			return -1;
+			$result = 1;
 		} else {
-			return 0;
+			$result = 0;
+		}
+
+		if ( $this->order === 'ASC' ) {
+			return $result;
+		} else {
+			return -$result;
 		}
 	}
 }

@@ -5,7 +5,7 @@ namespace Flow\Formatter;
 use Flow\Exception\FlowException;
 use Flow\Model\UUID;
 
-class PostHistoryQuery extends AbstractQuery {
+class PostHistoryQuery extends HistoryQuery {
 
 	/**
 	 * @param UUID $postId
@@ -18,18 +18,15 @@ class PostHistoryQuery extends AbstractQuery {
 		$history = $this->storage->find(
 			'PostRevision',
 			array( 'rev_type_id' => $postId ),
-			array(
-				'sort' => 'rev_id',
-				'order' => 'DESC',
-				'limit' => $limit,
-				'offset-id' => $offset,
-				'offset-dir' => $direction,
-				'offset-include' => false,
-				'offset-elastic' => false,
-			)
+			$this->getOptions( $direction, $limit, $offset )
 		);
 		if ( !$history ) {
 			return array();
+		}
+
+		// See explanation in BoardHistoryQuery::getResults.
+		if ( $direction === 'rev' ) {
+			$history = array_reverse( $history );
 		}
 
 		$this->loadMetadataBatch( $history );

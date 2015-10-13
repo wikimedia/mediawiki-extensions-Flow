@@ -2,6 +2,8 @@
 
 namespace Flow\Data;
 
+use Flow\DbFactory;
+use Flow\Data\Utils\RawSql;
 use Flow\Exception\FlowException;
 use Flow\Exception\NoIndexException;
 use Flow\Model\UUID;
@@ -30,6 +32,13 @@ class ObjectLocator {
 	protected $indexes;
 
 	/**
+	 * Database factory (only for addQuotes)
+	 *
+	 * @var DbFactory
+	 */
+	protected $dbFactory;
+
+	/**
 	 * @var LifecycleHandler[]
 	 */
 	protected $lifecycleHandlers;
@@ -37,13 +46,15 @@ class ObjectLocator {
 	/**
 	 * @param ObjectMapper $mapper
 	 * @param ObjectStorage $storage
+	 * @param DbFactory $dbFactory
 	 * @param Index[] $indexes
 	 * @param LifecycleHandler[] $lifecycleHandlers
 	 */
-	public function __construct( ObjectMapper $mapper, ObjectStorage $storage, array $indexes = array(), array $lifecycleHandlers = array() ) {
+	public function __construct( ObjectMapper $mapper, ObjectStorage $storage, DbFactory $dbFactory, array $indexes = array(), array $lifecycleHandlers = array() ) {
 		$this->mapper = $mapper;
 		$this->storage = $storage;
 		$this->indexes = $indexes;
+		$this->dbFactory = $dbFactory;
 		$this->lifecycleHandlers = array_merge( $indexes, $lifecycleHandlers );
 	}
 
@@ -91,7 +102,7 @@ class ObjectLocator {
 			} else {
 				wfDebugLog( 'FlowDebug', __METHOD__ . ': ' . $e->getMessage() );
 			}
-			$res = $this->storage->findMulti( $queries, $this->convertToDbOptions( $options ) );
+			$res = $this->storage->findMulti( $this->convertToDbQueries( $queries, $options ), $this->convertToDbOptions( $options ) );
 		}
 
 		if ( $res === null ) {
@@ -316,15 +327,50 @@ class ObjectLocator {
 		if ( isset( $options['order'] ) ) {
 			$order = ' ' . $options['order'];
 		}
+
 		if ( isset( $options['sort'] ) ) {
 			foreach ( $options['sort'] as $val ) {
 				$orderBy[] = $val . $order;
 			}
 		}
+
 		if ( $orderBy ) {
 			$dbOptions['ORDER BY'] = $orderBy;
 		}
 
 		return $dbOptions;
+	}
+
+	/**
+	 * Uses options to figure out conditions to add to the DB queries.
+	 *
+	 * @param $queries Array of queries, with each element an array of attributes
+	 * @param $options Options for queries
+	 * @return array Queries for BasicDbStorage class
+	 */
+	protected function convertToDbQueries( $queries, $options ) {
+		if ( isset( $options['offset-id'] ) && $options['offset-id'] instanceof UUID &&
+			isset( $options['sort'] ) && count( $options['sort'] ) === 1 &&
+			preg_match( '/_id$/', $options['sort'][0] ) ) {
+				if ( $options['order'] === 'ASC' ) {
+
+					$operator = '>';
+				} else {
+					$operator = '<';
+				}
+
+				if ( isset( $options['offset-include'] ) && $options['offset-include'] ) {
+					$operator .= '=';
+				}
+
+				$dbr = $this->dbFactory->getDB( DB_SLAVE );
+				$condition = new RawSql( $options['sort'][0] . ' ' . $operator . ' ' . $dbr->addQuotes( $options['offset-id']->getBinary() ) );
+
+				foreach( $queries as &$query ) {
+					$query[] = $condition;
+				}
+		}
+
+		return $queries;
 	}
 }
