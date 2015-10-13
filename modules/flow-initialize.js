@@ -110,11 +110,6 @@
 		} );
 		$( '.flow-board-navigation' ).append( navWidget.$element );
 
-		// Board description widget
-		descriptionWidget = new mw.flow.ui.BoardDescriptionWidget( dmBoard, {
-			$existing: $( '.flow-ui-boardDescriptionWidget-content' ).contents()
-		} );
-		$( '.flow-ui-boardDescriptionWidget' ).replaceWith( descriptionWidget.$element );
 
 		// HACK: These event handlers should be in the prospective widgets
 		// they will move once we have Board UI and Topic UI widgets
@@ -431,6 +426,12 @@
 		} else {
 			mw.flow.system.populateBoardFromApi();
 		}
+
+		// Board description widget
+		descriptionWidget = new mw.flow.ui.BoardDescriptionWidget( dmBoard, {
+			$existing: $( '.flow-ui-boardDescriptionWidget-content' ).contents()
+		} );
+		$( '.flow-ui-boardDescriptionWidget' ).replaceWith( descriptionWidget.$element );
 
 		preloadTopic = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'topic' );
 		preloadContent = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'content' );
