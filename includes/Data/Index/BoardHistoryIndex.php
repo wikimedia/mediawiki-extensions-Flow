@@ -43,18 +43,6 @@ abstract class BoardHistoryIndex extends TopKIndex {
 		$this->om = $om;
 	}
 
-	public function canAnswer( array $keys, array $options ) {
-		if ( !parent::canAnswer( $keys, $options ) ) {
-			return false;
-		}
-
-		if ( isset( $options['offset-id'] ) || $options['offset-dir'] !== 'fwd' ) {
-			return false;
-		}
-
-		return true;
-	}
-
 	public function findMulti( array $queries, array $options = array() ) {
 		if ( count( $queries ) > 1 ) {
 			// why?

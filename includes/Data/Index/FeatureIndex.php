@@ -133,6 +133,9 @@ abstract class FeatureIndex implements Index {
 		if ( $featureColumns !== $this->indexedOrdered ) {
 			return false;
 		}
+
+		// This can probably be moved to TopKIndex if it's not used
+		// by anything else.
 		if ( isset( $options['limit'] ) ) {
 			$max = $options['limit'];
 			if ( isset( $options['offset'] ) ) {
@@ -164,125 +167,6 @@ abstract class FeatureIndex implements Index {
 		} else {
 			return 'DESC';
 		}
-	}
-
-	/**
-	 * @param array $rows
-	 * @param array $options
-	 * @return array [offset, limit]
-	 */
-	protected function getOffsetLimit( $rows, $options ) {
-		$limit = isset( $options['limit'] ) ? $options['limit'] : $this->getLimit();
-
-		// not using isset because offset-id could also just be null (in which
-		// case we'll still not want to fallback to 0, because offset-dir may
-		// need to to start from the end of the rows)
-		if ( !array_key_exists( 'offset-id', $options ) ) {
-			$offset = isset( $options['offset'] ) ? $options['offset'] : 0;
-			return array( $offset, $limit );
-		}
-
-		$offsetId = $options['offset-id'];
-		if ( $offsetId instanceof UUID ) {
-			$offsetId = $offsetId->getAlphadecimal();
-		}
-
-		$dir = 'fwd';
-		if (
-			isset( $options['offset-dir'] ) &&
-			$options['offset-dir'] === 'rev'
-		) {
-			$dir = 'rev';
-		}
-
-		if ( $offsetId === null ) {
-			$offset = $dir === 'fwd' ? 0 : count( $rows ) - $limit;
-			return array( $offset, $limit );
-		}
-
-		$offset = $this->getOffsetFromKey( $rows, $offsetId );
-		$includeOffset = isset( $options['include-offset'] ) && $options['include-offset'];
-		if ( $dir === 'fwd' ) {
-			if ( $includeOffset ) {
-				$startPos = $offset;
-			} else {
-				$startPos = $offset + 1;
-			}
-		} elseif ( $dir === 'rev' ) {
-			$startPos = $offset - $limit;
-			if ( $includeOffset ) {
-				$startPos++;
-			}
-
-			if ( $startPos < 0 ) {
-				if (
-					isset( $options['offset-elastic'] ) &&
-					$options['offset-elastic'] === false
-				) {
-					// If non-elastic, then reduce the number of items shown commensurately
-					$limit += $startPos;
-				}
-				$startPos = 0;
-			}
-		} else {
-			$startPos = 0;
-		}
-
-		return array( $startPos, $limit );
-	}
-
-	/**
-	 * Returns the 0-indexed position of $offsetKey within $rows or throws a
-	 * DataModelException if $offsetKey is not contained within $rows
-	 *
-	 * @todo seems wasteful to pass string offsetKey instead of exploding when it comes in
-	 * @param array $rows Current bucket contents
-	 * @param string $offsetKey
-	 * @return int The position of $offsetKey within $rows
-	 * @throws DataModelException When $offsetKey is not found within $rows
-	 */
-	protected function getOffsetFromKey( $rows, $offsetKey ) {
-		$rowIndex = 0;
-		$nextInOrder = $this->getOrder() === 'DESC' ? -1 : 1;
-		foreach ( $rows as $row ) {
-			$comparisonValue = $this->compareRowToOffset( $row, $offsetKey );
-			if ( $comparisonValue === 0 || $comparisonValue === $nextInOrder ) {
-				return $rowIndex;
-			}
-			$rowIndex++;
-		}
-
-		throw new DataModelException( 'Unable to find specified offset in query results', 'process-data' );
-	}
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @throws DataModelException When the index does not support key offsets due to
-	 *  having an undefined sort order.
-	 */
-	public function compareRowToOffset( array $row, $offset ) {
-		$sortFields = $this->getSort();
-		$splitOffset = explode( '|', $offset );
-		$fieldIndex = 0;
-
-		if ( $sortFields === false ) {
-			throw new DataModelException( 'This Index implementation does not support key offsets', 'process-data' );
-		}
-
-		foreach( $sortFields as $field ) {
-			$valueInRow = $row[$field];
-			$valueInOffset = $splitOffset[$fieldIndex];
-
-			if ( $valueInRow > $valueInOffset ) {
-				return 1;
-			} elseif ( $valueInRow < $valueInOffset ) {
-				return -1;
-			}
-			++$fieldIndex;
-		}
-
-		return 0;
 	}
 
 	/**
@@ -503,11 +387,7 @@ abstract class FeatureIndex implements Index {
 	 * @return array
 	 */
 	protected function filterResults( array $results, array $options = array() ) {
-		foreach ( $results as $i => $result ) {
-			list( $offset, $limit ) = $this->getOffsetLimit( $result, $options );
-			$results[$i] = array_slice( $result, $offset, $limit, true );
-		}
-
+		// Overriden in TopKIndex
 		return $results;
 	}
 

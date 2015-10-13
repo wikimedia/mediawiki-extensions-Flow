@@ -49,6 +49,11 @@ class TopKIndex extends FeatureIndex {
 		if ( !parent::canAnswer( $keys, $options ) ) {
 			return false;
 		}
+
+		if ( isset( $options['offset-id'] ) || ( isset( $options['offset-dir'] ) && $options['offset-dir'] !== 'fwd' ) ) {
+			return false;
+		}
+
 		if ( isset( $options['sort'], $options['order'] ) ) {
 			return ObjectManager::makeArray( $options['sort'] ) === $this->options['sort']
 				&& strtoupper( $options['order'] ) === $this->options['order'];
@@ -58,6 +63,29 @@ class TopKIndex extends FeatureIndex {
 
 	public function getLimit() {
 		return $this->options['limit'];
+	}
+
+	protected function filterResults( array $results, array $options = array() ) {
+		foreach ( $results as $i => $result ) {
+			list( $offset, $limit ) = $this->getOffsetLimit( $result, $options );
+			$results[$i] = array_slice( $result, $offset, $limit, true );
+		}
+
+		return $results;
+	}
+
+	/**
+	 * @param array $rows
+	 * @param array $options
+	 * @return array [offset, limit]
+	 */
+	protected function getOffsetLimit( $rows, $options ) {
+		$limit = isset( $options['limit'] ) ? $options['limit'] : $this->getLimit();
+
+		// Due to canAnswer, offset-id can be either null or omitted.  offset-dir must be
+		// 'fwd'.  So if there is no numeric offset we always use 0.
+		$offset = isset( $options['offset'] ) ? $options['offset'] : 0;
+		return array( $offset, $limit );
 	}
 
 	protected function maybeCreateIndex( array $indexed, array $sourceRow, array $compacted ) {

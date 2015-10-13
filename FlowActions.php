@@ -252,7 +252,12 @@ $wgFlowActions = array(
 		'rc_title' => 'owner',
 		'rc_insert' => true,
 		'exclude_from_contributions' => true,
+
+		// If you add exclude_from_history to new change types, you *must* update
+		// the *HistoryQuery's (to use doInternalQueries with a good overfetch factor).
+		// You should also adjust the memcached indices for best results.
 		'exclude_from_history' => true,
+
 		// exclude_from_recentchanges only refers to the actual Special:RecentChanges.  It does not affect Special:Watchlist.
 		'exclude_from_recentchanges' => true,
 		'permissions' => array(
