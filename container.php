@@ -21,6 +21,16 @@ $c['memcache'] = function( $c ) {
 };
 $c['cache.version'] = $GLOBALS['wgFlowCacheVersion'];
 
+// This lets the index handle the initial query from HistoryPager,
+// even when the UI limit is 500.  An extra item is requested
+// so we know whether to link the pagination.
+$c['history_index_limit'] = 501;
+
+// 501 * OVERFETCH_FACTOR from HistoryQuery + 1
+// Basically, this is so we can try to fetch enough extra to handle
+// exclude_from_history without retrying.
+$c['board_topic_history_post_index_limit'] = 682;
+
 // Flow config
 $c['flow_actions'] = function( $c ) {
 	global $wgFlowActions;
@@ -241,6 +251,7 @@ $c['storage.workflow'] = function( $c ) {
 	return new ObjectManager(
 		$c['storage.workflow.mapper'],
 		$c['storage.workflow.backend'],
+		$c['db.factory'],
 		$c['storage.workflow.indexes'],
 		$c['storage.workflow.listeners']
 	);
@@ -279,12 +290,12 @@ $c['storage.post_board_history.indexes.primary'] = function( $c ) {
 		// data mapper
 		$c['storage.post.mapper'],
 		// key prefix
-		'flow_revision:topic_list_history:post',
+		'flow_revision:topic_list_history:post:v2',
 		// primary key
 		array( 'topic_list_id' ),
 		// index options
 		array(
-			'limit' => 500,
+			'limit' => $c['board_topic_history_post_index_limit'],
 			'sort' => 'rev_id',
 			'order' => 'DESC'
 		),
@@ -300,6 +311,7 @@ $c['storage.post_board_history'] = function( $c ) {
 	return new ObjectLocator(
 		$c['storage.post.mapper'],
 		$c['storage.post_board_history.backend'],
+		$c['db.factory'],
 		$c['storage.post_board_history.indexes']
 	);
 };
@@ -315,12 +327,12 @@ $c['storage.post_summary_board_history.indexes.primary'] = function( $c ) {
 		// data mapper
 		$c['storage.post_summary.mapper'],
 		// key prefix
-		'flow_revision:topic_list_history:post_summary',
+		'flow_revision:topic_list_history:post_summary:v2',
 		// primary key
 		array( 'topic_list_id' ),
 		// index options
 		array(
-			'limit' => 500,
+			'limit' => $c['history_index_limit'],
 			'sort' => 'rev_id',
 			'order' => 'DESC'
 		),
@@ -336,6 +348,7 @@ $c['storage.post_summary_board_history'] = function( $c ) {
 	return new ObjectLocator(
 		$c['storage.post_summary.mapper'],
 		$c['storage.post_summary_board_history.backend'],
+		$c['db.factory'],
 		$c['storage.post_summary_board_history.indexes']
 	);
 };
@@ -384,10 +397,10 @@ $c['storage.header.indexes.header_lookup'] = function( $c ) {
 		$c['memcache.local_buffered'],
 		$c['storage.header.backend'],
 		$c['storage.header.mapper'],
-		'flow_header:workflow:v2',
+		'flow_header:workflow:v3',
 		array( 'rev_type_id' ),
 		array(
-			'limit' => 500,
+			'limit' => $c['history_index_limit'],
 			'sort' => 'rev_id',
 			'order' => 'DESC',
 			'shallow' => $c['storage.header.indexes.primary'],
@@ -407,6 +420,7 @@ $c['storage.header'] = function( $c ) {
 	return new ObjectManager(
 		$c['storage.header.mapper'],
 		$c['storage.header.backend'],
+		$c['db.factory'],
 		$c['storage.header.indexes'],
 		$c['storage.header.listeners']
 	);
@@ -460,10 +474,10 @@ $c['storage.post_summary.indexes.topic_lookup'] = function( $c ) {
 		$c['memcache.local_buffered'],
 		$c['storage.post_summary.backend'],
 		$c['storage.post_summary.mapper'],
-		'flow_post_summary:workflow:v2',
+		'flow_post_summary:workflow:v3',
 		array( 'rev_type_id' ),
 		array(
-			'limit' => 500,
+			'limit' => $c['history_index_limit'],
 			'sort' => 'rev_id',
 			'order' => 'DESC',
 			'shallow' => $c['storage.post_summary.indexes.primary'],
@@ -483,6 +497,7 @@ $c['storage.post_summary'] = function( $c ) {
 	return new ObjectManager(
 		$c['storage.post_summary.mapper'],
 		$c['storage.post_summary.backend'],
+		$c['db.factory'],
 		$c['storage.post_summary.indexes'],
 		$c['storage.post_summary.listeners']
 	);
@@ -560,6 +575,7 @@ $c['storage.topic_list'] = function( $c ) {
 	return new ObjectManager(
 		$c['storage.topic_list.mapper'],
 		$c['storage.topic_list.backend'],
+		$c['db.factory'],
 		$c['storage.topic_list.indexes']
 	);
 };
@@ -665,6 +681,7 @@ $c['storage.post'] = function( $c ) {
 	return new ObjectManager(
 		$c['storage.post.mapper'],
 		$c['storage.post.backend'],
+		$c['db.factory'],
 		$c['storage.post.indexes'],
 		$c['storage.post.listeners']
 	);
@@ -682,10 +699,10 @@ $c['storage.post_topic_history.indexes.topic_lookup'] = function( $c ) {
 		$c['memcache.local_buffered'],
 		$c['storage.post_topic_history.backend'],
 		$c['storage.post.mapper'],
-		'flow_revision:topic_history:post',
+		'flow_revision:topic_history:post:v2',
 		array( 'topic_root_id' ),
 		array(
-			'limit' => 500,
+			'limit' => $c['board_topic_history_post_index_limit'],
 			'sort' => 'rev_id',
 			'order' => 'DESC',
 			// Why does topic history have a shallow compactor, but not board history?
@@ -713,6 +730,7 @@ $c['storage.post_topic_history'] = function( $c ) {
 	return new ObjectLocator(
 		$c['storage.post.mapper'],
 		$c['storage.post_topic_history.backend'],
+		$c['db.factory'],
 		$c['storage.post_topic_history.indexes']
 	);
 };
@@ -780,8 +798,7 @@ $c['submission_handler'] = function( $c ) {
 $c['factory.block'] = function( $c ) {
 	return new Flow\BlockFactory(
 		$c['storage'],
-		$c['loader.root_post'],
-		$c['flow_actions']
+		$c['loader.root_post']
 	);
 };
 $c['factory.loader.workflow'] = function( $c ) {
@@ -902,13 +919,15 @@ $c['query.topiclist'] = function( $c ) {
 $c['query.topic.history'] = function( $c ) {
 	return new Flow\Formatter\TopicHistoryQuery(
 		$c['storage'],
-		$c['repository.tree']
+		$c['repository.tree'],
+		$c['flow_actions']
 	);
 };
 $c['query.post.history'] = function( $c ) {
 	return new Flow\Formatter\PostHistoryQuery(
 		$c['storage'],
-		$c['repository.tree']
+		$c['repository.tree'],
+		$c['flow_actions']
 	);
 };
 $c['query.changeslist'] = function( $c ) {
@@ -980,7 +999,8 @@ $c['formatter.contributions.feeditem'] = function( $c ) {
 $c['query.board.history'] = function( $c ) {
 	return new Flow\Formatter\BoardHistoryQuery(
 		$c['storage'],
-		$c['repository.tree']
+		$c['repository.tree'],
+		$c['flow_actions']
 	);
 };
 
@@ -1117,6 +1137,7 @@ $c['storage.wiki_reference'] = function( $c ) {
 	return new ObjectManager(
 		$c['storage.wiki_reference.mapper'],
 		$c['storage.wiki_reference.backend'],
+		$c['db.factory'],
 		$c['storage.wiki_reference.indexes'],
 		array()
 	);
@@ -1192,6 +1213,7 @@ $c['storage.url_reference'] = function( $c ) {
 	return new ObjectManager(
 		$c['storage.url_reference.mapper'],
 		$c['storage.url_reference.backend'],
+		$c['db.factory'],
 		$c['storage.url_reference.indexes'],
 		array()
 	);

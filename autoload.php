@@ -149,6 +149,7 @@ $wgAutoloadClasses += array(
 	'Flow\\Formatter\\FeedItemFormatter' => __DIR__ . '/includes/Formatter/FeedItemFormatter.php',
 	'Flow\\Formatter\\FormatterRow' => __DIR__ . '/includes/Formatter/AbstractQuery.php',
 	'Flow\\Formatter\\HeaderViewQuery' => __DIR__ . '/includes/Formatter/RevisionViewQuery.php',
+	'Flow\\Formatter\\HistoryQuery' => __DIR__ . '/includes/Formatter/HistoryQuery.php',
 	'Flow\\Formatter\\IRCLineUrlFormatter' => __DIR__ . '/includes/Formatter/IRCLineUrlFormatter.php',
 	'Flow\\Formatter\\PostHistoryQuery' => __DIR__ . '/includes/Formatter/PostHistoryQuery.php',
 	'Flow\\Formatter\\PostSummaryQuery' => __DIR__ . '/includes/Formatter/PostSummaryQuery.php',

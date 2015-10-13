@@ -4,32 +4,13 @@ namespace Flow\Block;
 
 use Flow\Container;
 use Flow\Data\Pager\HistoryPager;
-use Flow\Data\ManagerGroup;
 use Flow\Exception\DataModelException;
-use Flow\FlowActions;
 use Flow\Formatter\BoardHistoryQuery;
 use Flow\Formatter\RevisionFormatter;
 use Flow\Model\UUID;
-use Flow\Model\Workflow;
 
 class BoardHistoryBlock extends AbstractBlock {
 	protected $supportedGetActions = array( 'history' );
-
-	/**
-	 * @var FlowActions
-	 */
-	protected $actions;
-
-	/**
-	 * @param Workflow $workflow Board workflow
-	 * @param ManagerGroup $storage Storage wrapper
-	 * @param FlowActions $actions Flow permission information
-	 */
-	public function __construct( Workflow $workflow, ManagerGroup $storage, FlowActions $actions ) {
-		parent::__construct( $workflow, $storage );
-
-		$this->actions = $actions;
-	}
 
 	// @Todo - fill in the template names
 	protected $templates = array(
@@ -74,7 +55,7 @@ class BoardHistoryBlock extends AbstractBlock {
 		$offset = $wgRequest->getText( 'offset' );
 		$offset = $offset ?: null;
 
-		$pager = new HistoryPager( $this->actions, $query, $this->workflow->getId() );
+		$pager = new HistoryPager( $query, $this->workflow->getId() );
 		$pager->setLimit( $limit );
 		$pager->setOffset( $offset );
 		$pager->doQuery();

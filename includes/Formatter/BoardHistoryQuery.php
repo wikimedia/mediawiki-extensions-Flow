@@ -7,8 +7,10 @@ use Flow\Data\Utils\SortRevisionsByRevisionId;
 use Flow\Exception\FlowException;
 use Flow\Model\UUID;
 use MWExceptionHandler;
+use Flow\Model\AbstractRevision;
+use Flow\FlowActions;
 
-class BoardHistoryQuery extends AbstractQuery {
+class BoardHistoryQuery extends HistoryQuery {
 	/**
 	 * @param UUID $workflowId
 	 * @param int $limit
@@ -17,25 +19,25 @@ class BoardHistoryQuery extends AbstractQuery {
 	 * @return FormatterRow[]
 	 */
 	public function getResults( UUID $boardWorkflowId, $limit = 50, UUID $offset = null, $direction = 'fwd' ) {
-		$options = array(
-			'sort' => 'rev_id',
-			'order' => 'DESC',
-			'limit' => $limit,
-			'offset-id' => $offset,
-			'offset-dir' => $direction,
-			'offset-include' => false,
-			'offset-elastic' => false,
-		);
+		$options = $this->getOptions( $direction, $limit, $offset );
 
 		$headerHistory = $this->getHeaderResults( $boardWorkflowId, $options ) ?: array();
 		$topicListHistory = $this->getTopicListResults( $boardWorkflowId, $options ) ?: array();
 		$topicSummaryHistory = $this->getTopicSummaryResults( $boardWorkflowId, $options ) ?: array();
 
 		$history = array_merge( $headerHistory, $topicListHistory, $topicSummaryHistory );
-		usort( $history, new SortRevisionsByRevisionId );
+		usort( $history, new SortRevisionsByRevisionId( $options['order'] ) );
 
 		if ( isset( $options['limit'] ) ) {
 			$history = array_splice( $history, 0, $options['limit'] );
+		}
+
+		// We can't use ORDER BY ... DESC in SQL, because that will give us the
+		// largest entries that are > some offset.  We want the smallest entries
+		// that are > that offset, but ordered in descending order.  Core solves
+		// this problem in IndexPager->getBody by iterating in descending order.
+		if ( $direction === 'rev' ) {
+			$history = array_reverse( $history );
 		}
 
 		// fetch any necessary metadata
@@ -69,12 +71,13 @@ class BoardHistoryQuery extends AbstractQuery {
 
 	protected function getTopicListResults( UUID $boardWorkflowId, $options ) {
 		// Can't use 'PostRevision' because we need to get only the ones with the right board ID.
-		return $this->storage->find(
+		return $this->doInternalQueries(
 			'PostRevisionBoardHistoryEntry',
 			array(
 				'topic_list_id' => $boardWorkflowId,
 			),
-			$options
+			$options,
+			self::POST_OVERFETCH_FACTOR
 		);
 	}
 

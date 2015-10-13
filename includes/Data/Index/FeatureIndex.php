@@ -167,71 +167,6 @@ abstract class FeatureIndex implements Index {
 	}
 
 	/**
-	 * @param array $rows
-	 * @param array $options
-	 * @return array [offset, limit]
-	 */
-	protected function getOffsetLimit( $rows, $options ) {
-		$limit = isset( $options['limit'] ) ? $options['limit'] : $this->getLimit();
-
-		// not using isset because offset-id could also just be null (in which
-		// case we'll still not want to fallback to 0, because offset-dir may
-		// need to to start from the end of the rows)
-		if ( !array_key_exists( 'offset-id', $options ) ) {
-			$offset = isset( $options['offset'] ) ? $options['offset'] : 0;
-			return array( $offset, $limit );
-		}
-
-		$offsetId = $options['offset-id'];
-		if ( $offsetId instanceof UUID ) {
-			$offsetId = $offsetId->getAlphadecimal();
-		}
-
-		$dir = 'fwd';
-		if (
-			isset( $options['offset-dir'] ) &&
-			$options['offset-dir'] === 'rev'
-		) {
-			$dir = 'rev';
-		}
-
-		if ( $offsetId === null ) {
-			$offset = $dir === 'fwd' ? 0 : count( $rows ) - $limit;
-			return array( $offset, $limit );
-		}
-
-		$offset = $this->getOffsetFromKey( $rows, $offsetId );
-		$includeOffset = isset( $options['include-offset'] ) && $options['include-offset'];
-		if ( $dir === 'fwd' ) {
-			if ( $includeOffset ) {
-				$startPos = $offset;
-			} else {
-				$startPos = $offset + 1;
-			}
-		} elseif ( $dir === 'rev' ) {
-			$startPos = $offset - $limit;
-			if ( $includeOffset ) {
-				$startPos++;
-			}
-
-			if ( $startPos < 0 ) {
-				if (
-					isset( $options['offset-elastic'] ) &&
-					$options['offset-elastic'] === false
-				) {
-					// If non-elastic, then reduce the number of items shown commensurately
-					$limit += $startPos;
-				}
-				$startPos = 0;
-			}
-		} else {
-			$startPos = 0;
-		}
-
-		return array( $startPos, $limit );
-	}
-
-	/**
 	 * Returns the 0-indexed position of $offsetKey within $rows or throws a
 	 * DataModelException if $offsetKey is not contained within $rows
 	 *
@@ -503,11 +438,7 @@ abstract class FeatureIndex implements Index {
 	 * @return array
 	 */
 	protected function filterResults( array $results, array $options = array() ) {
-		foreach ( $results as $i => $result ) {
-			list( $offset, $limit ) = $this->getOffsetLimit( $result, $options );
-			$results[$i] = array_slice( $result, $offset, $limit, true );
-		}
-
+		// Overriden in TopKIndex
 		return $results;
 	}
 
