@@ -63,7 +63,7 @@
 			classes: [ 'flow-ui-boardDescriptionWidget-editButton' ]
 		} );
 
-		if ( !this.model.canEdit() ) {
+		if ( !this.model.isEditable() ) {
 			this.button.toggle( false );
 		}
 
@@ -78,6 +78,19 @@
 			saveContent: 'onEditorSaveContent',
 			cancel: 'onEditorCancel'
 		} );
+
+		// NOTE: Unlike other widgets, in the board description widget there is
+		// no use listening to change events in the content, because:
+		// 1. Any time the model changes, the widget must re-request the content
+		// in fixed-html format.
+		// 2. Due to the above, we initialize the widget already with the content
+		// from the DOM, and assume that all other changes to the content happen
+		// from the widget itself, which would run its own api request for the
+		// content in the proper format.
+		//
+		// The events below are specific listeners for specific behaviors identified
+		// as necessary.
+		this.model.connect( this, { editableChange: 'onModelEditableChange' } );
 
 		// Initialize
 		this.$element
@@ -109,6 +122,15 @@
 	 */
 
 	/* Methods */
+
+	/**
+	 * Respond to changes in the model's editable status
+	 *
+	 * @param {boolean} editable Description is editable
+	 */
+	mw.flow.ui.BoardDescriptionWidget.prototype.onModelEditableChange = function ( editable ) {
+		this.button.toggle( editable && !this.editor.isVisible() );
+	};
 
 	/**
 	 * Respond to edit button click. Switch to the editor widget

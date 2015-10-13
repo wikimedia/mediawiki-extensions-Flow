@@ -30,6 +30,7 @@ QUnit.test( 'Create board', function ( assert ) {
 						revisionId: null,
 						timestamp: null,
 						watchable: true,
+						editable: true,
 						watched: false,
 						workflowId: null
 					}
@@ -103,6 +104,7 @@ QUnit.test( 'Create board', function ( assert ) {
 						revisionId: null,
 						timestamp: null,
 						watchable: true,
+						editable: false,
 						watched: false,
 						workflowId: null
 					}
@@ -113,6 +115,47 @@ QUnit.test( 'Create board', function ( assert ) {
 				method: 'hasBeenChanged',
 				expected: true,
 				msg: 'Check if board has changed since breakpoint'
+			},
+			{
+				method: 'setDescription',
+				params: [
+					new mw.flow.dm.BoardDescription( {
+						content: {
+							content: '<h1>This is a test board description.</h1>',
+							format: 'html'
+						},
+						actions: {
+							edit: 'http://some.url.for.edit/'
+						}
+					} )
+				]
+			},
+			{
+				method: 'getHashObject',
+				expected: {
+					id: 'xxx123xxx',
+					isDeleted: false,
+					pagePrefixedDb: 'Special:FlowTestBoardPage',
+					topicCount: 3,
+					description: {
+						author: null,
+						changeType: null,
+						content: '<h1>This is a test board description.</h1>',
+						contentFormat: 'html',
+						creator: null,
+						id: null,
+						lastUpdate: null,
+						originalContent: true,
+						previousRevisionId: null,
+						revisionId: null,
+						timestamp: null,
+						watchable: true,
+						editable: true,
+						watched: false,
+						workflowId: null
+					}
+				},
+				msg: 'Get current board state with editable description'
 			}
 		];
 
