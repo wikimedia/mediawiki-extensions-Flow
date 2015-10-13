@@ -11,11 +11,11 @@ class PostSummaryRevisionBoardHistoryStorage extends BoardHistoryStorage {
 		$res = $this->dbFactory->getDB( DB_SLAVE )->select(
 			array( 'flow_revision', 'flow_topic_list', 'flow_tree_node' ),
 			array( '*' ),
-			array(
+			array_merge( array(
 				'rev_type' => 'post-summary',
 				'topic_id = tree_ancestor_id',
 				'rev_type_id = tree_descendant_id',
-			) + UUID::convertUUIDs( array( 'topic_list_id' => $attributes['topic_list_id'] ) ),
+			), $attributes ),
 			__METHOD__,
 			$options
 		);

@@ -2,7 +2,6 @@
 
 namespace Flow\Data\Pager;
 
-use Flow\FlowActions;
 use Flow\Exception\FlowException;
 use Flow\Exception\InvalidDataException;
 use Flow\Formatter\BoardHistoryQuery;
@@ -12,11 +11,6 @@ use Flow\Formatter\PostHistoryQuery;
 use Flow\Model\UUID;
 
 class HistoryPager extends \ReverseChronologicalPager {
-	/**
-	 * @var FlowActions
-	 */
-	protected $actions;
-
 	/**
 	 * @var BoardHistoryQuery|TopicHistoryQuery|PostHistoryQuery
 	 */
@@ -36,21 +30,12 @@ class HistoryPager extends \ReverseChronologicalPager {
 	 * @param BoardHistoryQuery|TopicHistoryQuery|PostHistoryQuery $query
 	 * @param UUID $id
 	 */
-	public function __construct( FlowActions $actions, /* BoardHistoryQuery|TopicHistoryQuery|PostHistoryQuery */ $query, UUID $id ) {
-		$this->actions = $actions;
+	public function __construct( /* BoardHistoryQuery|TopicHistoryQuery|PostHistoryQuery */ $query, UUID $id ) {
 		$this->query = $query;
 		$this->id = $id;
 
 		$this->mDefaultLimit = $this->getUser()->getIntOption( 'rclimit' );
 		$this->mIsBackwards = $this->getRequest()->getVal( 'dir' ) == 'prev';
-	}
-
-	/**
-	 * @param FormatterRow $row
-	 * @return bool
-	 */
-	protected function includeInHistory( FormatterRow $row ) {
-		return !$this->actions->getValue( $row->revision->getChangeType(), 'exclude_from_history' );
 	}
 
 	public function doQuery() {
@@ -77,12 +62,6 @@ class HistoryPager extends \ReverseChronologicalPager {
 				$overfetched = array_pop( $this->mResult );
 			}
 		}
-
-		// We needed the exact row counts (before filtering) to determine
-		// whether there were was an extra row (which controls pagination).
-		// Now we can get rid of rows we don't want to display.  Offsets will also
-		// be generated based on the last displayed row.
-		$this->mResult = array_values( array_filter( $this->mResult, array( $this, 'includeInHistory' ) ) );
 
 		// set some properties that'll be used to generate navigation bar
 		$this->mLastShown = $this->mResult[count( $this->mResult ) - 1]->revision->getRevisionId()->getAlphadecimal();

@@ -8,13 +8,11 @@ namespace Flow;
  * anything that needs to talk to the database.
  *
  * The factory receives, in its constructor, the wiki name and cluster name
- * that flow specific data is stored on.  Multiple wiki's can and should be
- * using the same wiki name and cluster to share flow specific data. These values
- * are used.  The $wiki parameter of getDB and getLB must be null to receive
- * the flow database.
+ * that Flow-specific data is stored on.  Multiple wiki's can and should be
+ * using the same wiki name and cluster to share Flow-specific data. These values
+ * are used.
  *
- * To access core tables, use wfGetDB() etc. This is solely for Flow-specific
- * data, which may live on a separate database.
+ * There are also get getWikiLB and getWikiDB for the main wiki database.
  */
 class DbFactory {
 	/**
@@ -46,6 +44,8 @@ class DbFactory {
 	}
 
 	/**
+	 * Gets a database connection for the Flow-specific database.
+	 *
 	 * @param integer $db index of the connection to get.  DB_MASTER|DB_SLAVE.
 	 * @param mixed $groups query groups. An array of group names that this query
 	 *   belongs to.
@@ -56,6 +56,8 @@ class DbFactory {
 	}
 
 	/**
+	 * Gets a load balancer for the Flow-specific database.
+	 *
 	 * @return \LoadBalancer
 	 */
 	public function getLB() {
@@ -67,7 +69,7 @@ class DbFactory {
 	}
 
 	/**
-	 * Mockable version of wfGetDB.
+	 * Gets a database connection for the main wiki database.  Mockable version of wfGetDB.
 	 *
 	 * @param integer $db index of the connection to get.  DB_MASTER|DB_SLAVE.
 	 * @param array $groups query groups. An array of group names that this query
@@ -80,7 +82,7 @@ class DbFactory {
 	}
 
 	/**
-	 * Mockable version of wfGetLB.
+	 * Gets a load balancer for the main wiki database. Mockable version of wfGetLB.
 	 *
 	 * @param string|boolean $wiki wiki ID, or false for the current wiki
 	 * @return \LoadBalancer

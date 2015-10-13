@@ -11,12 +11,12 @@ class PostRevisionBoardHistoryStorage extends BoardHistoryStorage {
 		$res = $this->dbFactory->getDB( DB_SLAVE )->select(
 			array( 'flow_topic_list', 'flow_tree_node', 'flow_tree_revision', 'flow_revision' ),
 			array( '*' ),
-			array(
+			array_merge( array(
 				'rev_type' => 'post',
 				'topic_id = tree_ancestor_id',
 				'tree_descendant_id = tree_rev_descendant_id',
 				'tree_rev_id = rev_id',
-			) + $attributes,
+			), $attributes ),
 			__METHOD__,
 			$options
 		);
