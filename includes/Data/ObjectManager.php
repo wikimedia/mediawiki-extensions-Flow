@@ -2,6 +2,7 @@
 
 namespace Flow\Data;
 
+use Flow\DbFactory;
 use Flow\Exception\DataModelException;
 use Flow\Exception\FlowException;
 use Flow\Model\UUID;
@@ -79,10 +80,11 @@ class ObjectManager extends ObjectLocator {
 	public function __construct(
 		ObjectMapper $mapper,
 		ObjectStorage $storage,
+		DbFactory $dbFactory,
 		array $indexes = array(),
 		array $lifecycleHandlers = array()
 	) {
-		parent::__construct( $mapper, $storage, $indexes, $lifecycleHandlers );
+		parent::__construct( $mapper, $storage, $dbFactory, $indexes, $lifecycleHandlers );
 
 		// This needs to be SplObjectStorage rather than using spl_object_hash for keys
 		// in a normal array because if the object gets GC'd spl_object_hash can reuse
