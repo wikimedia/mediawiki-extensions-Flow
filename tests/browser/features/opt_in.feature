@@ -14,6 +14,7 @@ Feature: Opt-in Flow beta feature
     Then my talk page is a Flow board
     And a notification tells me about it
 
+  @integration
   Scenario: Opt-in: I have a wikitext talk page
     Given my talk page has wiktext content
     When I enable Flow beta feature

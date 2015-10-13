@@ -14,6 +14,7 @@ Feature: Board description
     When I set the description to "first version"
     Then the description should be "first version"
 
+  @integration
   Scenario: Edit the description on an existing board
     Given I set the description to "first version"
     When I set the description to "second version"
