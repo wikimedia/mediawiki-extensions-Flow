@@ -30,6 +30,7 @@
 		this.originalContent = true;
 		this.watched = false;
 		this.watchable = true;
+		this.editable = false;
 		this.lastEditId = null;
 		this.lastEditUser = null;
 	};
@@ -68,6 +69,13 @@
 	 * @param {boolean} originalContent Revision is original content, and was never edited
 	 */
 
+	/**
+	 * Change of editable status
+	 *
+	 * @event editableChange
+	 * @param {boolean} editable The revision is editable
+	 */
+
 	/* Methods */
 
 	/**
@@ -88,7 +96,8 @@
 			previousRevisionId: this.getPreviousRevisionId(),
 			originalContent: this.isOriginalContent(),
 			watched: this.isWatched(),
-			watchable: this.isWatchable()
+			watchable: this.isWatchable(),
+			editable: this.isEditable()
 		}, mw.flow.dm.RevisionedContent.parent.prototype.getHashObject.call( this ) );
 	};
 
@@ -131,6 +140,8 @@
 		if ( data.watchable !== undefined ) {
 			this.toggleWatchable( !!data.watchable );
 		}
+
+		this.toggleEditable( data.actions && data.actions.edit );
 
 		this.actions = data.actions;
 	};
@@ -454,5 +465,28 @@
 		this.watchable = watchable !== undefined ? watchable : !this.watchable;
 
 		this.emit( 'watchableChange', this.watchable );
+	};
+
+	/**
+	 * Toggle the editability state of this revision
+	 * @param {boolean} [editable] The revision is editable
+	 * @fires editableChange
+	 */
+	mw.flow.dm.RevisionedContent.prototype.toggleEditable = function ( editable ) {
+		editable = editable !== undefined ? !!editable : !this.editable;
+
+		if ( this.editable !== editable ) {
+			this.editable = editable;
+			this.emit( 'editableChange', this.editable );
+		}
+	};
+
+	/**
+	 * Check topic watchable status
+	 *
+	 * @return {boolean} Topic is watchable
+	 */
+	mw.flow.dm.RevisionedContent.prototype.isEditable = function () {
+		return this.editable;
 	};
 }( jQuery ) );

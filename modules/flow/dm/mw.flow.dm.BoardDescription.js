@@ -22,12 +22,3 @@ mw.flow.dm.BoardDescription = function mwFlowDmBoardDescription( data, config ) 
 /* Initialization */
 
 OO.inheritClass( mw.flow.dm.BoardDescription, mw.flow.dm.RevisionedContent );
-
-/**
- * Check if the description can be edited.
- *
- * @return {boolean}
- */
-mw.flow.dm.BoardDescription.prototype.canEdit = function () {
-	return !!OO.getProp( this, 'actions', 'edit' );
-};
