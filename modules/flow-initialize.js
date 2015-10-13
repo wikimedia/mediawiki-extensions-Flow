@@ -40,7 +40,6 @@
 			// flow-board, but we should still replace it
 			startEditTopicSummary(
 				false,
-				$( '.flow-topic-summary-container' ),
 				$component.data( 'flow-id' )
 			);
 
@@ -458,9 +457,10 @@
 			event.preventDefault();
 		} );
 
-		function startEditTopicSummary( isFullBoard, $summaryContainer, topicId, action ) {
+		function startEditTopicSummary( isFullBoard, topicId, action ) {
 			var editTopicSummaryWidget,
-				$topic = isFullBoard ? $board.find( '#flow-topic-' + topicId ) : $(),
+				$topic = $( '#flow-topic-' + topicId ),
+				$summaryContainer = $topic.find( '.flow-topic-summary-container' ),
 				$topicSummary = $summaryContainer.find( '.flow-topic-summary' ),
 				options = {},
 				pageName = mw.config.get( 'wgPageName' ),
@@ -510,9 +510,8 @@
 
 		$board.on( 'click', '.flow-ui-summarize-topic-link', function ( event ) {
 			var $topic = $( this ).closest( '.flow-topic' ),
-				$container = $topic.find( '.flow-topic-summary-container' ),
 				topicId = $topic.data( 'flow-id' );
-			startEditTopicSummary( true, $container, topicId );
+			startEditTopicSummary( true, topicId );
 			event.preventDefault();
 		} );
 
@@ -520,7 +519,6 @@
 			var promise,
 				action = $( this ).data( 'role' ),
 				$topic = $( this ).closest( '.flow-topic' ),
-				$container = $topic.find( '.flow-topic-summary-container' ),
 				topicId = $topic.data( 'flow-id' ),
 				api = new mw.flow.dm.APIHandler();
 
@@ -544,7 +542,7 @@
 						skipSummarize = action === 'unlock' && !summaryContent;
 
 					if ( !skipSummarize ) {
-						startEditTopicSummary( true, $container, topicId, action );
+						startEditTopicSummary( true, topicId, action );
 					}
 				} );
 
