@@ -19,7 +19,8 @@
 			"御坂美琴",
 			"Shizhao",
 			"LNDDYL",
-			"Nnemo"
+			"Nnemo",
+			"EagerLin"
 		]
 	},
 	"enableflow": "启用Flow",
@@ -210,7 +211,7 @@
 	"flow-rev-message-reply-bundle": "<strong>$1个评论</strong>被添加",
 	"flow-rev-message-new-post": "$1{{GENDER:$2|已创建}}话题“[$3  $4]”",
 	"flow-rev-message-new-post-recentchanges-summary": "{{GENDER:$2|已创建}}新话题",
-	"flow-rev-message-edit-title": "$1{{GENDER:$2|已修改}}话题标题自“$5”至“[$3 $4]”",
+	"flow-rev-message-edit-title": "$1 原话题标题「$5」{{GENDER:$2|已修改}}为「[$3 $4]」",
 	"flow-rev-message-create-header": "$1{{GENDER:$2|已创建}}描述",
 	"flow-rev-message-edit-header": "$1{{GENDER:$2|已编辑}}描述",
 	"flow-rev-message-create-topic-summary": "$1{{GENDER:$2|已创建}}$3的话题摘要",

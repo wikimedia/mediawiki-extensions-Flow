@@ -194,7 +194,7 @@
 	"flow-rev-message-reply-bundle": "<strong>$1 筆{{PLURAL:$1|評論|評論}}</strong> {{PLURAL:$1|已新增|已新增}}",
 	"flow-rev-message-new-post": "$1 {{GENDER:$2|已建立}}話題 \"[$3 $4]\"",
 	"flow-rev-message-new-post-recentchanges-summary": "{{GENDER:$2|已建立}}新話題",
-	"flow-rev-message-edit-title": "$1 {{GENDER:$2|已更改}}話題標題自 \"$5\" 至 \"[$3 $4]\"",
+	"flow-rev-message-edit-title": "$1 原話題標題 「$5」 ，{{GENDER:$2|已更改}}為 「[$3 $4]」",
 	"flow-rev-message-create-header": "$1 {{GENDER:$2|已建立}}描述",
 	"flow-rev-message-edit-header": "$1 {{GENDER:$2|已編輯}}描述",
 	"flow-rev-message-create-topic-summary": "$1 {{GENDER:$2|已建立}}於 $3 的話題摘要",
