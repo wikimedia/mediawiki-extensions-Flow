@@ -32,6 +32,12 @@ class HistoryPager extends \ReverseChronologicalPager {
 	 */
 	public $mResult;
 
+	// This requests extra to take into account that we will filter some out,
+	// to try to reduce the number of rounds (preferably to 1).
+	// If you raise this, also increase history_index_limit and bump the
+	// key of the indexes using history_index_limit
+	const OVERFETCH_FACTOR = 2;
+
 	/**
 	 * @param BoardHistoryQuery|TopicHistoryQuery|PostHistoryQuery $query
 	 * @param UUID $id
@@ -53,11 +59,67 @@ class HistoryPager extends \ReverseChronologicalPager {
 		return !$this->actions->getValue( $row->revision->getChangeType(), 'exclude_from_history' );
 	}
 
+	/**
+	 * Internally query as many times as needed, until there are no more entries
+	 * or after filtering, there are the desired number of results
+	 *
+	 * @param UUID $internalOffset Offset to start from
+	 * @param int $limit Number of entries to fetch
+	 * @param string $direction Direction, 'fwd' or 'rev'
+	 * @return FormatterRow[] Array of history rows
+	 */
+	protected function doInternalQueries( $internalOffset, $limit, $direction ) {
+		$result = array();
+
+		do {
+			$remainingNeeded = $limit - count( $result );
+
+			$requestCount = max( 5, self::OVERFETCH_FACTOR * $remainingNeeded );
+
+			// Over-fetch by 1 item so we can figure out when to stop re-querying.
+			$resultBeforeFiltering = $this->query->getResults( $this->id, $requestCount + 1, $internalOffset, $direction );
+
+			// We over-fetched, now get rid of redundant value for our "real" data
+			$internalOverfetched = null;
+			if ( count( $resultBeforeFiltering ) > $requestCount ) {
+				// when traversing history reverse, the overfetched entry will be at
+				// the beginning of the list; in normal mode it'll be last
+				if ( $direction === 'rev' ) {
+					$internalOverfetched = array_shift( $resultBeforeFiltering );
+				} else {
+					$internalOverfetched = array_pop( $resultBeforeFiltering );
+				}
+			}
+			// We needed the exact row counts (before filtering) to determine
+			// whether there were was an extra row (which controls pagination).
+			// Now we can get rid of rows we don't want to display.  $nextOffset will also
+			// be generated based on the last displayed row.
+			$resultAfterFiltering = array_values( array_filter( $resultBeforeFiltering, array( $this, 'includeInHistory' ) ) );
+
+			if ( $direction === 'rev' ) {
+				$internalOffset = $resultBeforeFiltering[0]->revision->getRevisionId();
+				$trimmedResultAfterFiltering = array_slice( $resultAfterFiltering, -$remainingNeeded );
+				$result = array_merge( $trimmedResultAfterFiltering, $result );
+			} else {
+				$internalOffset = $resultBeforeFiltering[count( $resultBeforeFiltering ) - 1]->revision->getRevisionId();
+				$trimmedResultAfterFiltering = array_slice( $resultAfterFiltering, 0, $remainingNeeded );
+				$result = array_merge( $result, $trimmedResultAfterFiltering );
+			}
+
+		} while( count( $result ) < $limit && $internalOverfetched !== null );
+
+		return $result;
+	}
+
 	public function doQuery() {
+		// $nextOffset is used for mIsFirst which controls a user-visible link
+		$nextOffset = UUID::create( $this->mOffset );
+
 		$direction = $this->mIsBackwards ? 'rev' : 'fwd';
 
-		// over-fetch so we can figure out if there's anything after what we're showing
-		$this->mResult = $this->query->getResults( $this->id, $this->getLimit() + 1, UUID::create( $this->mOffset ), $direction );
+		// We over-fetch by 1 *filtered* entry, so if we get it we know the user
+		// would actually see that entry if they navigated.
+		$this->mResult = $this->doInternalQueries( $nextOffset, $this->getLimit() + 1, $direction );
 		if ( !$this->mResult ) {
 			throw new InvalidDataException(
 				'Unable to load history for ' . $this->id->getAlphadecimal(),
@@ -66,7 +128,6 @@ class HistoryPager extends \ReverseChronologicalPager {
 		}
 		$this->mQueryDone = true;
 
-		// we over-fetched, now get rid of redundant value for our "real" data
 		$overfetched = null;
 		if ( count( $this->mResult ) > $this->getLimit() ) {
 			// when traversing history reverse, the overfetched entry will be at
@@ -78,15 +139,13 @@ class HistoryPager extends \ReverseChronologicalPager {
 			}
 		}
 
-		// We needed the exact row counts (before filtering) to determine
-		// whether there were was an extra row (which controls pagination).
-		// Now we can get rid of rows we don't want to display.  Offsets will also
-		// be generated based on the last displayed row.
-		$this->mResult = array_values( array_filter( $this->mResult, array( $this, 'includeInHistory' ) ) );
 
 		// set some properties that'll be used to generate navigation bar
 		$this->mLastShown = $this->mResult[count( $this->mResult ) - 1]->revision->getRevisionId()->getAlphadecimal();
 		$this->mFirstShown = $this->mResult[0]->revision->getRevisionId()->getAlphadecimal();
+
+		$nextOffset = $this->mIsBackwards ? $this->mFirstShown : $this->mLastShown;
+		$nextOffset = UUID::create( $nextOffset );
 
 		/*
 		 * By overfetching, we've already figured out if there's additional
@@ -94,11 +153,9 @@ class HistoryPager extends \ReverseChronologicalPager {
 		 * go fetch 1 more in the other direction (the one we likely came from,
 		 * when navigating)
 		 */
-		$nextOffset = $this->mIsBackwards ? $this->mFirstShown : $this->mLastShown;
-		$nextOffset = UUID::create( $nextOffset );
 		$reverseDirection = $this->mIsBackwards ? 'fwd' : 'rev';
 		$this->mIsLast = !$overfetched;
-		$this->mIsFirst = !$this->mOffset || count( $this->query->getResults( $this->id, 1, $nextOffset, $reverseDirection ) ) === 0;
+		$this->mIsFirst = !$this->mOffset || count( $this->doInternalQueries( $nextOffset, 1, $reverseDirection ) ) === 0;
 
 		if ( $this->mIsBackwards ) {
 			// swap values if we're going backwards
