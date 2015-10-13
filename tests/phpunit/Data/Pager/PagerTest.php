@@ -223,7 +223,7 @@ class PagerTest extends \MediaWikiTestCase {
 			),
 
 			array(
-				'Reverse pagination when offset-id is present in options',
+				'Reverse pagination when offset is present in options',
 				// expect
 				array(
 					'rev' => array(
@@ -320,17 +320,17 @@ class PagerTest extends \MediaWikiTestCase {
 			),
 
 			array(
-				'offset-id defaults to null',
+				'offset-value defaults to null',
 				// expect
-				array( 'offset-id' => null ),
+				array( 'offset-value' => null ),
 				// pager options
 				array()
 			),
 
 			array(
-				'initial offset-id is set by providing pager-offset',
+				'initial offset-value is set by providing pager-offset',
 				// expect
-				array( 'offset-id' => 'echo and flow' ),
+				array( 'offset-value' => 'echo and flow' ),
 				// pager options
 				array( 'pager-offset' => 'echo and flow' ),
 			),
@@ -362,134 +362,6 @@ class PagerTest extends \MediaWikiTestCase {
 			$this->assertArrayHasKey( $key, $options, $optionsString );
 			$this->assertEquals( $value, $options[$key], $optionsString );
 		}
-	}
-
-	public function includeOffsetProvider() {
-		return array(
-			array(
-				'',
-				// expected returned series of 'bar' values
-				array( 5, 4, 3, 2, 1 ),
-				// query options
-				array(
-					'offset-id' => 5,
-					'include-offset' => true,
-				),
-			),
-			array(
-				'',
-				// expected returned series of 'bar' values
-				array( 4, 3, 2, 1 ),
-				// query options
-				array(
-					'offset-id' => 5,
-					'include-offset' => false,
-				),
-			),
-			array(
-				'',
-				// expected returned series of 'bar' values
-				array( 9, 8, 7, 6, 5 ),
-				// query options
-				array(
-					'offset-id' => 5,
-					'include-offset' => true,
-					'offset-dir' => 'rev',
-					'offset-elastic' => false,
-				),
-			),
-			array(
-				'',
-				// expected returned series of 'bar' values
-				array( 9, 8, 7, 6 ),
-				// query options
-				array(
-					'offset-id' => 5,
-					'include-offset' => false,
-					'offset-dir' => 'rev',
-					'offset-elastic' => false,
-				),
-			),
-			array(
-				'',
-				// expected returned series of 'bar' values
-				array( 9, 8, 7, 6, 5, 4, 3, 2, 1 ),
-				// query options
-				array(
-					'offset-id' => 5,
-					'include-offset' => true,
-					'offset-dir' => 'rev',
-					'offset-elastic' => true,
-				),
-			),
-			array(
-				'',
-				// expected returned series of 'bar' values
-				array( 9, 8, 7, 6, 5, 4, 3, 2, 1 ),
-				// query options
-				array(
-					'offset-id' => 5,
-					'include-offset' => false,
-					'offset-dir' => 'rev',
-					'offset-elastic' => true,
-				),
-			),
-
-		);
-	}
-
-	/**
-	 * @dataProvider includeOffsetProvider
-	 */
-	public function testIncludeOffset( $message, $expect, $queryOptions ) {
-		global $wgFlowCacheVersion;
-
-		$bag = new \HashBagOStuff();
-		$innerCache = new LocalBufferedBagOStuff( $bag );
-		$cache = new BufferedCache( $innerCache );
-
-		// preload our answer
-		$bag->set( wfWikiId() . ":prefix:" . md5( '1' ) . ":$wgFlowCacheVersion", array(
-			array( 'foo' => 1, 'bar' => 9 ),
-			array( 'foo' => 1, 'bar' => 8 ),
-			array( 'foo' => 1, 'bar' => 7 ),
-			array( 'foo' => 1, 'bar' => 6 ),
-			array( 'foo' => 1, 'bar' => 5 ),
-			array( 'foo' => 1, 'bar' => 4 ),
-			array( 'foo' => 1, 'bar' => 3 ),
-			array( 'foo' => 1, 'bar' => 2 ),
-			array( 'foo' => 1, 'bar' => 1 ),
-		) );
-
-		$storage = $this->getMock( 'Flow\Data\ObjectStorage' );
-		// fake ObjectMapper that doesn't roundtrip to- & fromStorageRow
-		$mapper = $this->getMockBuilder( 'Flow\Data\Mapper\BasicObjectMapper' )
-			->disableOriginalConstructor()
-			->getMock();
-		$mapper->expects( $this->any() )
-			->method( 'normalizeRow' )
-			->will( $this->returnArgument( 0 ) );
-
-		$index = new TopKIndex(
-			$cache,
-			$storage,
-			$mapper,
-			'prefix',
-			array( 'foo' ),
-			array(
-				'sort' => 'bar',
-			)
-		);
-
-		$result = $index->find( array( 'foo' => '1' ), $queryOptions );
-		foreach ( $result as $row ) {
-			$found[] = $row['bar'];
-		}
-
-		$this->assertEquals(
-			$expect,
-			$found
-		);
 	}
 
 	protected function mockObjectManager( array $found = array() ) {

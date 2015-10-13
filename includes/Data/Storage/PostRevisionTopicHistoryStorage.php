@@ -50,7 +50,9 @@ class PostRevisionTopicHistoryStorage implements ObjectStorage {
 	public function findMulti( array $queries, array $options = array() ) {
 		foreach ( $queries as $idx => $query ) {
 			if ( isset( $query['topic_root_id'] ) ) {
-				$queries[$idx] = $this->findDescendantQuery( $query );
+				$descendantQuery = $this->findDescendantQuery( $query );
+				unset( $query['topic_root_id'] );
+				$queries[$idx] = array_merge( $query, $descendantQuery );
 			}
 		}
 
