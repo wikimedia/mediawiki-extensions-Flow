@@ -95,7 +95,7 @@ abstract class Utils {
 			'body_only' => 'true',
 		);
 		if ( $from === 'html' ) {
-			$params['scrubWikitext'] = 'true';
+			$params['scrub_wikitext'] = 'true';
 		}
 		$url = '/restbase/local/v1/transform/' . $from . '/to/' . $to . '/' .
 			urlencode( $prefixedDbTitle );
