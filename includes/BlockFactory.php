@@ -25,19 +25,12 @@ class BlockFactory {
 	 */
 	protected $rootPostLoader;
 
-	/**
-	 * @var FlowActions
-	 */
-	protected $actions;
-
 	public function __construct(
 		ManagerGroup $storage,
-		RootPostLoader $rootPostLoader,
-		FlowActions $actions
+		RootPostLoader $rootPostLoader
 	) {
 		$this->storage = $storage;
 		$this->rootPostLoader = $rootPostLoader;
-		$this->actions = $actions;
 	}
 
 	/**
@@ -52,13 +45,13 @@ class BlockFactory {
 				$blocks = array(
 					new HeaderBlock( $workflow, $this->storage ),
 					new TopicListBlock( $workflow, $this->storage ),
-					new BoardHistoryBlock( $workflow, $this->storage, $this->actions ),
+					new BoardHistoryBlock( $workflow, $this->storage ),
 				);
 				break;
 
 			case 'topic':
 				$blocks = array(
-					new TopicBlock( $workflow, $this->storage, $this->rootPostLoader, $this->actions ),
+					new TopicBlock( $workflow, $this->storage, $this->rootPostLoader ),
 					new TopicSummaryBlock( $workflow, $this->storage ),
 				);
 				break;
