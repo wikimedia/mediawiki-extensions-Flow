@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebaf39b_5beef2b2",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-10-13T21:20:24Z",
+      "side": 1,
+      "message": "editable",
+      "revId": "a6d04ceafabf0329ae6c0faa411d2d5823d900d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_fbffa660",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-10-13T21:20:24Z",
+      "side": 1,
+      "message": "editable",
+      "revId": "a6d04ceafabf0329ae6c0faa411d2d5823d900d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
