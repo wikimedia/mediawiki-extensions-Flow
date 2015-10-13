@@ -46,6 +46,11 @@ class Pager {
 	 */
 	protected $offsetKey;
 
+	/**
+	 * @var boolean Whether this pager uses ID fields
+	 */
+	protected $useId;
+
 	public function __construct( ObjectManager $storage, array $query, array $options ) {
 		// not sure i like this
 		$this->storage = $storage;
@@ -87,6 +92,8 @@ class Pager {
 			}
 			break;
 		}
+		$this->useId = $useId;
+
 		$this->offsetKey = $useId ? 'offset-id' : 'offset';
 	}
 
@@ -97,13 +104,14 @@ class Pager {
 	 */
 	public function getPage( $filter = null ) {
 		$numNeeded = $this->options['pager-limit'] + 1;
+		$storageOffsetKey = $this->useId ? 'offset-id' : 'offset-value';
+
 		$options = $this->options + array(
 			// We need one item of leeway to determine if there are more items
 			'limit' => $numNeeded,
 			'offset-dir' => $this->options['pager-dir'],
-			'offset-id' => $this->options['pager-offset'],
+			$storageOffsetKey => $this->options['pager-offset'],
 			'include-offset' => $this->options['pager-include-offset'],
-			'offset-elastic' => true,
 		);
 		$offset = $this->options['pager-offset'];
 		$results = array();
@@ -117,7 +125,7 @@ class Pager {
 
 			// Retrieve results
 			$found = $this->storage->find( $this->query, array(
-				'offset-id' => $offset,
+				$storageOffsetKey => $offset,
 			) + $options );
 
 			if ( !$found ) {

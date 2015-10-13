@@ -49,6 +49,11 @@ class TopKIndex extends FeatureIndex {
 		if ( !parent::canAnswer( $keys, $options ) ) {
 			return false;
 		}
+
+		if ( isset( $options['offset-id'] ) || ( isset( $options['offset-dir'] ) && $options['offset-dir'] !== 'fwd' ) ) {
+			return false;
+		}
+
 		if ( isset( $options['sort'], $options['order'] ) ) {
 			return ObjectManager::makeArray( $options['sort'] ) === $this->options['sort']
 				&& strtoupper( $options['order'] ) === $this->options['order'];
@@ -58,6 +63,134 @@ class TopKIndex extends FeatureIndex {
 
 	public function getLimit() {
 		return $this->options['limit'];
+	}
+
+	protected function filterResults( array $results, array $options = array() ) {
+		foreach ( $results as $i => $result ) {
+			list( $offset, $limit ) = $this->getOffsetLimit( $result, $options );
+			$results[$i] = array_slice( $result, $offset, $limit, true );
+		}
+
+		return $results;
+	}
+
+	// TODO: This is only left for now to handle non-ID offsets (e.g. updated
+	// timestamps).
+	//
+	// This has always been broken once you query past the TopKIndex limit.
+	/**
+	 * @param array $rows
+	 * @param array $options
+	 * @return array [offset, limit] 0-based index to start with and limit.
+	 */
+	protected function getOffsetLimit( $rows, $options ) {
+		$limit = isset( $options['limit'] ) ? $options['limit'] : $this->getLimit();
+
+		$offsetValue = isset( $options['offset-value'] ) ? $options['offset-value'] : null;
+
+		$dir = 'fwd';
+		if (
+			isset( $options['offset-dir'] ) &&
+			$options['offset-dir'] === 'rev'
+		) {
+			$dir = 'rev';
+		}
+
+		if ( $offsetValue === null ) {
+			$offset = $dir === 'fwd' ? 0 : count( $rows ) - $limit;
+			return array( $offset, $limit );
+		}
+
+		$offset = $this->getOffsetFromOffsetValue( $rows, $offsetValue );
+		$includeOffset = isset( $options['include-offset'] ) && $options['include-offset'];
+		if ( $dir === 'fwd' ) {
+			if ( $includeOffset ) {
+				$startPos = $offset;
+			} else {
+				$startPos = $offset + 1;
+			}
+		} elseif ( $dir === 'rev' ) {
+			$startPos = $offset - $limit;
+			if ( $includeOffset ) {
+				$startPos++;
+			}
+
+			if ( $startPos < 0 ) {
+				if (
+					isset( $options['offset-elastic'] ) &&
+					$options['offset-elastic'] === false
+				) {
+					// If non-elastic, then reduce the number of items shown commensurately
+					$limit += $startPos;
+				}
+				$startPos = 0;
+			}
+		} else {
+			$startPos = 0;
+		}
+
+		return array( $startPos, $limit );
+	}
+
+	/**
+	 * Returns the 0-indexed position of $offsetValue within $rows or throws a
+	 * DataModelException if $offsetValue is not contained within $rows
+	 *
+	 * @todo seems wasteful to pass string offsetValue instead of exploding when it comes in
+	 * @param array $rows Current bucket contents
+	 * @param string $offsetValue
+	 * @return int The position of $offsetValue within $rows
+	 * @throws DataModelException When $offsetValue is not found within $rows
+	 */
+	protected function getOffsetFromOffsetValue( $rows, $offsetValue ) {
+		$rowIndex = 0;
+		$nextInOrder = $this->getOrder() === 'DESC' ? -1 : 1;
+		foreach ( $rows as $row ) {
+			$comparisonValue = $this->compareRowToOffsetValue( $row, $offsetValue );
+			if ( $comparisonValue === 0 || $comparisonValue === $nextInOrder ) {
+				return $rowIndex;
+			}
+			$rowIndex++;
+		}
+
+		throw new DataModelException( 'Unable to find specified offset in query results', 'process-data' );
+	}
+
+	/**
+	 * @param array $row Row to compare to
+	 * @param string $offsetValue Value to compare to.  For instance, a timestamp if we
+	 *  want all rows before/after that timestamp.  This consists of values for each field
+	 *  we sort by, delimited by |.
+	 *
+	 * @return integer An integer less than, equal to, or greater than zero
+	 *  if $row is considered to be respectively less than, equal to, or
+	 *  greater than $offsetValue
+	 *
+	 * @throws DataModelException When the index does not support offset values due to
+	 *  having an undefined sort order.
+	 */
+	public function compareRowToOffsetValue( array $row, $offsetValue ) {
+		$sortFields = $this->getSort();
+		$splitOffsetValue = explode( '|', $offsetValue );
+		$fieldIndex = 0;
+
+		if ( $sortFields === false ) {
+			throw new DataModelException( 'This Index implementation does not support offset values', 'process-data' );
+		}
+
+		foreach( $sortFields as $field ) {
+			$valueInRow = $row[$field];
+			$offsetValuePart = $splitOffsetValue[$fieldIndex];
+
+			if ( $valueInRow > $offsetValuePart ) {
+				return 1;
+			} elseif ( $valueInRow < $offsetValuePart ) {
+				return -1;
+			}
+			++$fieldIndex;
+		}
+
+		return 0;
 	}
 
 	protected function maybeCreateIndex( array $indexed, array $sourceRow, array $compacted ) {

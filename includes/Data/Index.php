@@ -78,15 +78,6 @@ interface Index extends LifecycleHandler {
 	function canAnswer( array $keys, array $options );
 
 	/**
-	 * @param array $row
-	 * @param string $offset
-	 * @return integer An integer less than, equal to, or greater than zero
-	 *  if $row is considered to be respectively less than, equal to, or
-	 *  greater than $offset
-	 */
-	function compareRowToOffset( array $row, $offset );
-
-	/**
 	 * @param object $object
 	 * @param array $row
 	 */
