@@ -103,6 +103,7 @@ QUnit.test( 'Create board', function ( assert ) {
 						revisionId: null,
 						timestamp: null,
 						watchable: true,
+						editable: true,
 						watched: false,
 						workflowId: null
 					}
