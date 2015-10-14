@@ -823,7 +823,7 @@ abstract class AbstractRevision {
 	 * @throws InvalidDataException
 	 */
 	protected function hasSameContentAs( AbstractRevision $revision ) {
-		$format = $this->getStorageFormat();
+		$format = 'wikitext';
 		return $this->getContent( $format ) === $revision->getContent( $format );
 	}
 
