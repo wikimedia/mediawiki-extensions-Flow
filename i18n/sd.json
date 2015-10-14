@@ -2,10 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Sindhu",
-			"Mehtab ahmed"
+			"Mehtab ahmed",
+			"Aursani"
 		]
 	},
 	"flow-topic-action-watchlist-add": "هيءَ ٽاپڪ پنهنجي واچ اڪثر ڏسجندڙ لسٽ ۾ جوڙيو",
 	"flow-topic-action-watchlist-remove": "پنهنجي واچ لسٽ تان هيءَ ٽاپڪ ڊليٽ ڪريو",
-	"flow-notification-enabled-on-talkpage-email-subject-message": "$2 تي نئون بحص جو نظام"
+	"flow-notification-enabled-on-talkpage-email-subject-message": "$2 تي نئون مباحثي سرشتو"
 }
