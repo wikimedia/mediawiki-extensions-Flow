@@ -133,5 +133,7 @@ QUnit.test( 'Create board', function ( assert ) {
 		}
 	}
 
+	assert.deepEqual( 1, 2 );
+
 	QUnit.expect( expectCount );
 } );
