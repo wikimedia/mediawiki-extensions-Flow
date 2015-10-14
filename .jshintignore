@@ -1,2 +1,2 @@
-modules/jquery.scroll.js
-vendor
+node_modules/**
+vendor/**
