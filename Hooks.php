@@ -1187,7 +1187,7 @@ class FlowHooks {
 						'localBasePath' => __DIR__,
 						'scripts' => $testFiles,
 					);
-					$testModules['qunit']["$key.tests"] = $module;
+//					$testModules['qunit']["$key.tests"] = $module;
 				}
 			}
 		}
