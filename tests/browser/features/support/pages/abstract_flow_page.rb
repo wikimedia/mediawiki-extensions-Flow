@@ -168,16 +168,16 @@ class AbstractFlowPage
     page.post_actions_menu_element.link_element(text: "Permalink")
   end
   a(:hide_button) do |page|
-    page.post_actions_menu_element.link_element(title: "Hide")
+    page.post_actions_menu_element.link_element(text: "Hide")
   end
   a(:delete_button) do |page|
-    page.post_actions_menu_element.link_element(title: "Delete")
+    page.post_actions_menu_element.link_element(text: "Delete")
   end
   a(:suppress_button) do |page|
-    page.post_actions_menu_element.link_element(title: "Suppress")
+    page.post_actions_menu_element.link_element(text: "Suppress")
   end
   a(:edit_post_button) do |page|
-    page.post_actions_menu_element.link_element(title: "Edit")
+    page.post_actions_menu_element.link_element(text: "Edit")
   end
 
   ### Replies to top post
