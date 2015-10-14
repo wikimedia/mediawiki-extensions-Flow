@@ -23,7 +23,7 @@ end
 When(/^I enable a new Flow board on article (.*?)$/) do |article|
   on(EnableFlowPage) do |page|
     page.page_name_element.when_present.send_keys article
-    page.submit
+    page.submit_element.when_present.click
   end
 end
 
