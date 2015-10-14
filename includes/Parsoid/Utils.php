@@ -214,12 +214,13 @@ abstract class Utils {
 		$class = 'ParsoidVirtualRESTService';
 		// the global virtual rest service config object, if any
 		$vrs = $wgVirtualRestConfig;
-		if ( isset( $vrs['modules'] ) && isset( $vrs['modules']['restbase'] ) ) {
+		// HACK: don't use RESTbase because it'll drop data-parsoid, see T115236
+		/*if ( isset( $vrs['modules'] ) && isset( $vrs['modules']['restbase'] ) ) {
 			// if restbase is available, use it
 			$params = $vrs['modules']['restbase'];
 			$params['parsoidCompat'] = false; // backward compatibility
 			$class = 'RestbaseVirtualRESTService';
-		} elseif ( isset( $vrs['modules'] ) && isset( $vrs['modules']['parsoid'] ) ) {
+		} else*/if ( isset( $vrs['modules'] ) && isset( $vrs['modules']['parsoid'] ) ) {
 			// there's a global parsoid config, use it next
 			$params = $vrs['modules']['parsoid'];
 			$params['restbaseCompat'] = true;
