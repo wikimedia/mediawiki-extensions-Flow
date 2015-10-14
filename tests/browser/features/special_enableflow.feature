@@ -23,6 +23,7 @@ Feature: Flow Special:EnableFlow enables new flow boards
     And The page I am on is a Flow board
     And I see the custom header
 
+  @integration
   Scenario: Enabling a Flow page on existing page
     Given I have an existing talk page
     When I enable a new Flow board on the talk page

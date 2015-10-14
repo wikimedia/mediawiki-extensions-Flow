@@ -8,6 +8,7 @@ Feature: Reopen a resolved topic
     And I am logged in
     And I am on Flow page
 
+  @integration
   Scenario: Reopening a resolved topic and changing the summary
     Given I mark the first topic as resolved
     And I summarize as "answer when resolving"
