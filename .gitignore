@@ -1,13 +1,10 @@
-.svn
 *~
 *.kate-swp
 .*.swp
 scripts/hhvm-wrapper.phar
 scripts/remotes
-node_modules/
 tests/browser/.gem
 tests/browser/screenshots
-vendor/composer/
-vendor/symfony/
-vendor/autoload.php
 \#*#
+node_modules/
+vendor/
