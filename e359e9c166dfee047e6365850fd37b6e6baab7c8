@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebaf39b_21ce6060",
+        "filename": "includes/Parsoid/Utils.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 664
+      },
+      "writtenOn": "2015-10-14T23:18:15Z",
+      "side": 1,
+      "message": "$disableRestbase \u003d false;\nif ( isset( $vrs[\u0027modules\u0027] ) \u0026\u0026 isset( $vrs[\u0027modules\u0027][\u0027restbase\u0027] ) \u0026\u0026 !$disableRestbase ) {\n ...\n}\n\n?\n\nFor bonus points, make $wgFlowDisableRestbase a global.",
+      "revId": "e359e9c166dfee047e6365850fd37b6e6baab7c8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
