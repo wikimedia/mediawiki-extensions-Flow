@@ -1,3 +1,4 @@
 modules/jquery.scroll.js
 modules/vendor/handlebars-v2.0.0-alpha.2.js
+node_modules
 modules/vendor/Storer.js
