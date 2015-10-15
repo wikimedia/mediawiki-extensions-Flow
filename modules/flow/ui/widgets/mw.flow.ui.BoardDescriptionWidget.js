@@ -8,7 +8,9 @@
 	 * @constructor
 	 * @param {mw.flow.dm.Board} boardModel The board model
 	 * @param {Object} [config]
-	 * @cfg {jQuery} $existing A jQuery object of the existing contents of the board description
+	 * @cfg {jQuery} [$existing] A jQuery object of the existing contents of the board description
+	 * @cfg {string} [specialPageCategoryLink] Link to the localized Special:Categories page
+	 * @cfg {jQuery} [$categories] A jQuery object of the existing board categories
 	 */
 	mw.flow.ui.BoardDescriptionWidget = function mwFlowUiBoardDescriptionWidget( boardModel, config ) {
 		var $content = $();
@@ -67,7 +69,9 @@
 			this.button.toggle( false );
 		}
 
-		this.categoriesWidget = new mw.flow.ui.CategoriesWidget( this.board );
+		this.categoriesWidget = new mw.flow.ui.CategoriesWidget( this.board, {
+			specialPageCategoryLink: config.specialPageCategoryLink
+		} );
 		if ( config.$categories ) {
 			this.addCategoriesFromDom( config.$categories );
 		}
@@ -257,7 +261,7 @@
 	 * nojs rendering of the page without having the widget to ask the API for the categories
 	 * when it just loads.
 	 *
-	 * @param {jQuery} $categoriesWrapper Categories div wrapper
+	 * @param {jQuery} [$categoriesWrapper] Categories div wrapper
 	 */
 	mw.flow.ui.BoardDescriptionWidget.prototype.addCategoriesFromDom = function ( $categoriesWrapper ) {
 		var categories = {};
