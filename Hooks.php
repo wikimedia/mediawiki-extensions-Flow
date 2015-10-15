@@ -1647,9 +1647,6 @@ class FlowHooks {
 			return true;
 		}
 
-		$defaultProjectUrl = 'https://www.mediawiki.org/wiki/Extension:Flow';
-		$defaultProjectTalkUrl = 'https://www.mediawiki.org/wiki/Extension_talk:Flow';
-
 		$prefs[BETA_FEATURE_FLOW_USER_TALK_PAGE] = array(
 			// The first two are message keys
 			'label-message' => 'flow-talk-page-beta-feature-message',
@@ -1658,22 +1655,12 @@ class FlowHooks {
 				'ltr' => "$wgExtensionAssetsPath/Flow/images/betafeature-flow-ltr.svg",
 				'rtl' => "$wgExtensionAssetsPath/Flow/images/betafeature-flow-rtl.svg",
 			),
-			'info-link' => self::getTitleUrlOrDefault( 'Project:Flow', $defaultProjectUrl ),
-			'discussion-link' => self::getTitleUrlOrDefault( 'Project_talk:Flow', $defaultProjectTalkUrl ),
+			'info-link' => 'https://www.mediawiki.org/wiki/Flow',
+			'discussion-link' => 'https://www.mediawiki.org/wiki/Talk:Flow',
 			'exempt-from-auto-enrollment' => true,
 		);
 
 		return true;
-	}
-
-	/**
-	 * @param string $titleText
-	 * @param string $default
-	 * @return string
-	 */
-	private static function getTitleUrlOrDefault( $titleText, $default ) {
-		$title = Title::newFromText( $titleText );
-		return $title->exists() ? $title->getLocalURL() : $default;
 	}
 
 	/**
