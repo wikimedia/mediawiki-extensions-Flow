@@ -38,6 +38,10 @@
 
 	OO.inheritClass( mw.flow.ui.CategoryItemWidget, OO.ui.Widget );
 
+	/* Static Properties */
+
+	mw.flow.ui.CategoryItemWidget.static.tagName = 'li';
+
 	/**
 	 * Get the category data
 	 *

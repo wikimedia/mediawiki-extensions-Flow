@@ -67,10 +67,10 @@
 			this.button.toggle( false );
 		}
 
-		this.categoriesWidget = new mw.flow.ui.CategoriesWidget( this.board );
-		if ( config.$categories ) {
-			this.addCategoriesFromDom( config.$categories );
-		}
+		this.categoriesWidget = new mw.flow.ui.CategoriesWidget( this.board, {
+			specialPageCategoryLink: config.specialPageCategoryLink
+		} );
+		this.addCategoriesFromDom( config.$categories );
 
 		// Events
 		this.button.connect( this, { click: 'onEditButtonClick' } );
@@ -261,6 +261,10 @@
 	 */
 	mw.flow.ui.BoardDescriptionWidget.prototype.addCategoriesFromDom = function ( $categoriesWrapper ) {
 		var categories = {};
+
+		if ( !$categoriesWrapper.length ) {
+			return;
+		}
 
 		$categoriesWrapper.find( '.flow-board-header-category-item a' ).each( function () {
 			categories[ $( this ).text() ] = {
