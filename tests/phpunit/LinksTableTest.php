@@ -339,6 +339,9 @@ class LinksTableTest extends PostRevisionTestCase {
 		if ( $globals ) {
 			$this->setMwGlobals( $globals );
 		}
+
+		$this->assertTrue( false );
+
 		list( $workflow, $revision, $title ) = $this->getBlandTestObjects();
 
 		foreach( array( 'old', 'new', 'expectedAdded', 'expectedRemoved' ) as $varName ) {
