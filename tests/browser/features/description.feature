@@ -19,3 +19,18 @@ Feature: Board description
     Given I set the description to "first version"
     When I set the description to "second version"
     Then the description should be "second version"
+
+  Scenario: Add a category to new board
+    When I add category "Footegory" to the description
+    Then the categories contain "Footegory"
+
+  Scenario: Add multiple categories to new board
+    When I add categories "Footegory" and "Mootegory" to the description
+    Then the categories contain "Footegory"
+    And the categories contain "Mootegory"
+
+  Scenario: Remove categories from a new board
+    Given the board contains categories "Footegory" and "Mootegory"
+    When I remove category "Footegory" from the description
+    Then the categories do not contain "Footegory"
+    And the categories contain "Mootegory"
