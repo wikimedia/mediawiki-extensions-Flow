@@ -51,7 +51,6 @@
 	"flow-error-default": "Došlo k chybě.",
 	"flow-error-invalid-topic-uuid-title": "Neplatný název",
 	"flow-edit-header-submit": "Uložit popis",
-	"flow-edit-header-submit-overwrite": "Přepsat popis",
 	"flow-history-day": "Dnes",
 	"flow-history-week": "Poslední týden",
 	"flow-notification-link-text-view-post": "Zobrazit příspěvek",
@@ -66,11 +65,9 @@
 	"flow-moderation-confirm-suppress-topic": "Utajit",
 	"flow-moderation-confirm-delete-topic": "Smazat",
 	"flow-moderation-confirm-hide-topic": "Skrýt",
-	"flow-moderation-confirm-lock-topic": "Uzamknout",
 	"flow-moderation-confirm-unsuppress-topic": "Zrušit utajení",
 	"flow-moderation-confirm-undelete-topic": "Obnovit",
 	"flow-moderation-confirm-unhide-topic": "Odkrýt",
-	"flow-moderation-confirm-unlock-topic": "Odemknout",
 	"flow-topic-html-title": "$1 na $2",
 	"flow-topic-count": "Témata ($1)",
 	"flow-load-more": "Načíst další",
@@ -88,7 +85,6 @@
 	"flow-ve-mention-inspector-remove-label": "Odstranit",
 	"flow-ve-mention-placeholder": "Uživatelské jméno",
 	"flow-ve-mention-tool-title": "Zmínit uživatele",
-	"flow-ve-mention-template": "Odpověď",
 	"flow-ve-mention-inspector-invalid-user": "Uživatelské jméno „$1“ není zaregistrováno.",
 	"flow-ve-switch-editor-tool-title": "Přepnout do Wikitext editoru"
 }

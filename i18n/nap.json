@@ -12,7 +12,6 @@
 	"flow-topic-notification-subscribe-title": "Chist'argomento è stat'azzeccato dint'a l'elenco 'e paggene cuntrullate {{GENDER:$1|vuoste}}.",
 	"flow-board-notification-subscribe-title": "Mo' te sì {{GENDER:$1|scritto|scritta}} dint'a sta bacheca 'e discussione!",
 	"flow-error-other": "All'intrasatta s'è verificato n'errore.",
-	"flow-error-move": "Rimpizzanno na bacheca 'e discussione ca nun è cchiù supportata.",
 	"flow-edit-header-placeholder": "Descrive sta bacheca 'e discussione",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|rispunnette}} ncopp'a '''$4'''.",
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 e $5 {{PLURAL:$6|ato|ati}} {{GENDER:$1|rispunnettero}} ncopp'a '''$3'''.",

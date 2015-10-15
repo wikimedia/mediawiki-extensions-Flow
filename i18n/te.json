@@ -9,8 +9,6 @@
 		]
 	},
 	"flow-desc": "కార్యధార నిర్వహణా వ్యవస్థ",
-	"flow-talk-taken-over": "ఈ పుట [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow] ను వాడుతోంది.",
-	"flow-talk-username": "ఫ్లో చర్చ పుట నిర్వాహకి",
 	"log-name-flow": "ఫ్లో చర్య లాగ్",
 	"logentry-delete-flow-delete-post": "$1 [[$6]] లో [[$3|$5]] లోని [$4 టపాను]  {{GENDER:$2|తొలగించారు}}",
 	"flow-board-header-browse-topics-link": "అంశాలను చూడండి",

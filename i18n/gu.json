@@ -18,7 +18,6 @@
 	"flow-newtopic-start-placeholder": "નવો વિષય શરુ કરો",
 	"flow-newtopic-first-heading": "$1 પર નવો વિષય શરુ કરો",
 	"flow-reply-topic-title-placeholder": "\"$1\" નો જવાબ આપો",
-	"flow-reply-submit": "{{GENDER:$1|જવાબ}}",
 	"flow-reply-link": "{{GENDER:$1|જવાબ}}",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|આભાર}}}}",
 	"flow-topic-notification-subscribe-title": "આ વિષયને {{GENDER:$1|તમારી}} ધ્યાનસૂચિમાં ઉમેરી દેવામાં આવ્યો છે.",

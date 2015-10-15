@@ -9,6 +9,5 @@
 	"flow-topic-notification-subscribe-title": "Энэ сэдэв өөрийн тань watchlist -д орлоо.",
 	"flow-topic-notification-subscribe-description": "Энэ сэдвийн дагуух бүх үйл явдлын тоймыг хүлээх авах болно.",
 	"flow-board-notification-subscribe-title": "Энэ хэлэлцүүлгийн самбарт feed хийсэн байна!",
-	"flow-board-notification-subscribe-description": "Энэ самбарт шинээр үүссэн бүх сэдвийг автоматаар хүлээн авах болно.",
-	"flow-error-move": "Хэлэлцүүлгийн самбарыг шилжүүлэх боломжгүй. одоогоор."
+	"flow-board-notification-subscribe-description": "Энэ самбарт шинээр үүссэн бүх сэдвийг автоматаар хүлээн авах болно."
 }

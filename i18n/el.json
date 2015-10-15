@@ -9,7 +9,6 @@
 	},
 	"flow-post-moderated-toggle-delete-show": "Εμφάνιση σχολίου {{GENDER:$1|διαγραφή}} $2",
 	"flow-topic-actions": "Ενέργειες",
-	"flow-preview": "Προεπισκόπηση",
 	"flow-newtopic-content-placeholder": "Δημοσιεύστε ένα νέο μήνυμα στην \"$1\"",
 	"flow-newtopic-first-heading": "Ξεκινήσετε ένα νέο θέμα στην $1",
 	"flow-post-action-post-history": "Ιστορικό",

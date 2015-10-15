@@ -8,7 +8,6 @@
 	},
 	"enableflow": "فلو فعال کریں",
 	"flow-desc": "ورک فلو مینیجمنٹ سسٹم",
-	"flow-talk-taken-over": "یہ تبادلۂ خیال صفحہ [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow] استعمال کررہا ہے.",
 	"log-name-flow": "نوشتہ فعالیت فلو",
 	"logentry-delete-flow-delete-post": "$1 نے [[$6]] پر [[$3|$5]] سے ایک [$4 مراسلہ] {{GENDER:$2|حذف کیا}}",
 	"logentry-delete-flow-restore-post": "$1 نے [[$6]] پر [[$3|$5]] سے ایک [$4 مراسلہ] {{GENDER:$2|بحال کیا}}",
