@@ -1007,7 +1007,7 @@ class FlowHooks {
 		unset( $pageinfo['header-edits'] );
 
 		// These keys are wrong on Flow pages, so we'll remove them
-		static $badMessageKeys = array( 'pageinfo-length', 'pageinfo-content-model' );
+		static $badMessageKeys = array( 'pageinfo-length' );
 
 		foreach ( $pageinfo['header-basic'] as $num => $val ) {
 			if ( $val[0] instanceof Message && in_array( $val[0]->getKey(), $badMessageKeys ) ) {
