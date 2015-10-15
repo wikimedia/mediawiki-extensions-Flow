@@ -558,7 +558,8 @@
 		// Board description widget
 		descriptionWidget = new mw.flow.ui.BoardDescriptionWidget( dmBoard, {
 			$existing: $( '.flow-ui-boardDescriptionWidget-content' ).contents(),
-			$categories: $( '.flow-board-header-category-view-nojs' ).contents()
+			$categories: $( '.flow-board-header-category-view-nojs' ).contents(),
+			specialPageCategoryLink: dataBlob.specialCategoryLink
 		} );
 		$( '.flow-ui-boardDescriptionWidget' ).replaceWith( descriptionWidget.$element );
 
@@ -566,7 +567,7 @@
 		// Remove it here
 		$( '.flow-board-header-category-view-nojs' ).detach();
 		// HACK: Remove the MW page categories
-		$( '.catlinks' ).detach();
+		$( '.catlinks:not(.flow-ui-categoriesWidget)' ).detach();
 
 		preloadTopic = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'topic' );
 		preloadContent = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'content' );

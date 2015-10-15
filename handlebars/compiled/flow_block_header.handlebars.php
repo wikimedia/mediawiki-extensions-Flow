@@ -62,10 +62,13 @@
 '.$sp.'	<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-speechBubbles pull-right expand-button"
 '.$sp.'		  title="'.LCRun3::ch($cx, 'l10n', array(array('flow-board-expand-description'),array()), 'encq').'"></span>
 '.$sp.'</a>
-';},'flow_header_categories' => function ($cx, $in, $sp) {return ''.$sp.''.((LCRun3::ifvar($cx, ((isset($cx['sp_vars']['root']['categories']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['categories'] : null))) ? '<div class="flow-board-header-category-view-nojs">
-'.$sp.'	<ul class="flow-board-header-category-list">
-'.$sp.''.LCRun3::sec($cx, ((isset($cx['sp_vars']['root']['categories']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['categories'] : null), $in, true, function($cx, $in)use($sp){return '		<li class="flow-board-header-category-item">'.LCRun3::ch($cx, 'html', array(array($in),array()), 'encq').'</li>
-'.$sp.'';}).'	</ul>
+';},'flow_header_categories' => function ($cx, $in, $sp) {return ''.$sp.''.((LCRun3::ifvar($cx, ((isset($cx['sp_vars']['root']['categories']['items']) && is_array($cx['sp_vars']['root']['categories'])) ? $cx['sp_vars']['root']['categories']['items'] : null))) ? '<div class="catlinks flow-board-header-category-view-nojs">
+'.$sp.'	<div id="mw-normal-catlinks" class="mw-normal-catlinks">
+'.$sp.'		'.LCRun3::ch($cx, 'html', array(array(((isset($cx['sp_vars']['root']['categories']['link']) && is_array($cx['sp_vars']['root']['categories'])) ? $cx['sp_vars']['root']['categories']['link'] : null)),array()), 'encq').'
+'.$sp.'		<ul class="flow-board-header-category-list">
+'.$sp.''.LCRun3::sec($cx, ((isset($cx['sp_vars']['root']['categories']['items']) && is_array($cx['sp_vars']['root']['categories'])) ? $cx['sp_vars']['root']['categories']['items'] : null), $in, true, function($cx, $in)use($sp){return '			<li class="flow-board-header-category-item">'.LCRun3::ch($cx, 'html', array(array($in),array()), 'encq').'</li>
+'.$sp.'';}).'		</ul>
+'.$sp.'	</div>
 '.$sp.'</div>
 '.$sp.'' : '').'';},'flow_header_footer' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-board-header-footer">
 '.$sp.'  <hr />
