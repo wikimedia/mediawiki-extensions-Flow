@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebaf39b_1cc86276",
+        "filename": "includes/Data/Index/FeatureIndex.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-10-15T10:32:33Z",
+      "side": 1,
+      "message": "Just curious: why was this filtering moved to TopKIndex? Since this class supports limit \u0026 offset, we should probably filter those results in here already?",
+      "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_fccc6e8e",
+        "filename": "includes/Data/Index/TopKIndex.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-10-15T10:32:33Z",
+      "side": 1,
+      "message": "AIUI: queries with offset-id now will no longer use cache indices nut allways fall back to DB - right?\n\nI\u0027m guessing most of those already went to DB anyway, but just want to make sure we don\u0027t cause a bunch of new DB traffic.",
+      "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_7cadde7f",
+        "filename": "includes/Data/ObjectLocator.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-10-15T10:32:33Z",
+      "side": 1,
+      "message": "@return array",
+      "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_9cb0d2d9",
+        "filename": "includes/Data/ObjectLocator.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-10-15T10:32:33Z",
+      "side": 1,
+      "message": "instead of checking if `$options[\u0027offset-id\u0027] !\u003d\u003d null`, check `$options[\u0027offset-id\u0027] instanceof UUID` (which is assumed on L367 by calling -\u003egetBinary on it)\n\nOr do a `$options[\u0027offset-id\u0027] \u003d UUID::create( $options[\u0027offset-id\u0027] );` just to make sure it is a UUID before using it as such.",
+      "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_9c8a121b",
+        "filename": "includes/Data/Utils/SortRevisionsByRevisionId.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-10-15T10:32:33Z",
+      "side": 1,
+      "message": "\"currently only descending\" is outdated.",
+      "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_3c81a6fd",
+        "filename": "includes/Data/Utils/SortRevisionsByRevisionId.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-10-15T10:32:33Z",
+      "side": 1,
+      "message": "\"descending\" is outdated.",
+      "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_fca9ce78",
+        "filename": "includes/Formatter/BoardHistoryQuery.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-10-15T10:32:33Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this also run though doInternalQueries? While we don\u0027t exclude_from_history now, we might at some point?",
+      "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_dc8f2a25",
+        "filename": "includes/Formatter/HistoryQuery.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-10-15T10:32:33Z",
+      "side": 1,
+      "message": "Missing @return",
+      "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_9c99b273",
+        "filename": "includes/Formatter/HistoryQuery.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-10-15T10:32:33Z",
+      "side": 1,
+      "message": "Maybe do an `$overfetchFactor *\u003d 2;` instead of hardcoding to 2?\nIf we ever do decide to exclude a lot more things (like, over half of them), hardcoding it to 2 would still result in what this is trying to avoid.",
+      "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_1ca5c29a",
+        "filename": "includes/Formatter/HistoryQuery.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-10-15T10:32:33Z",
+      "side": 1,
+      "message": "I think $resultBeforeFiltering could be an empty array() (if we\u0027re all out of data, even though we requested more) - in which case this would fail to -\u003egetRevisionId()",
+      "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_3cc7664c",
+        "filename": "includes/Formatter/TopicHistoryQuery.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-10-15T10:32:33Z",
+      "side": 1,
+      "message": "Also doInternalQueries?",
+      "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
