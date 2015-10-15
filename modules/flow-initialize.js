@@ -118,12 +118,6 @@
 		} );
 		$( '.flow-board-navigation' ).append( navWidget.$element );
 
-		// The category widget is inside the board description widget.
-		// Remove it here
-		$( '.flow-board-header-category-view-nojs' ).detach();
-		// HACK: Remove the MW page categories
-		$( '.catlinks' ).detach();
-
 		// HACK: These event handlers should be in the prospective widgets
 		// they will move once we have Board UI and Topic UI widgets
 		mw.flow.system.on( 'resetBoardStart', function () {
@@ -563,8 +557,7 @@
 
 		// Board description widget
 		descriptionWidget = new mw.flow.ui.BoardDescriptionWidget( dmBoard, {
-			$existing: $( '.flow-ui-boardDescriptionWidget-content' ).contents(),
-			$categories: $( '.flow-board-header-category-view-nojs' ).contents()
+			$existing: $( '.flow-ui-boardDescriptionWidget-content' ).contents()
 		} );
 		$( '.flow-ui-boardDescriptionWidget' ).replaceWith( descriptionWidget.$element );
 

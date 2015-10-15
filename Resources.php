@@ -58,7 +58,6 @@ $wgResourceModules += array(
 			'handlebars/flow_form_cancel_button.partial.handlebars',
 			'handlebars/flow_header_title.partial.handlebars',
 			'handlebars/flow_header_detail.partial.handlebars',
-			'handlebars/flow_header_categories.partial.handlebars',
 			'handlebars/flow_header_footer.partial.handlebars',
 			// HACK: Get rid of this when the description uses js ooui widgets
 			'handlebars/flow_header_detail_oldsystem.partial.handlebars',
@@ -374,8 +373,6 @@ $wgResourceModules += array(
 			'flow/dm/mw.flow.dm.Post.js',
 			'flow/dm/mw.flow.dm.Topic.js',
 			'flow/dm/mw.flow.dm.Board.js',
-			'flow/dm/mw.flow.dm.CategoryItem.js',
-			'flow/dm/mw.flow.dm.Categories.js',
 		),
 		'dependencies' => array(
 			'oojs'
@@ -405,8 +402,6 @@ $wgResourceModules += array(
 			'flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js',
 			'flow/ui/widgets/editor/mw.flow.ui.SwitchToVeTool.js',
 			'flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js',
-			'flow/ui/widgets/mw.flow.ui.CategoryItemWidget.js',
-			'flow/ui/widgets/mw.flow.ui.CategoriesWidget.js',
 		),
 		'styles' => array(
 			'styles/flow/mw.flow.ui.Overlay.less',
@@ -421,9 +416,7 @@ $wgResourceModules += array(
 			'styles/flow/widgets/editor/mw.flow.ui.EditorControlsWidget.less',
 			'styles/flow/widgets/editor/mw.flow.ui.EditorSwitcherWidget.less',
 			'styles/flow/widgets/editor/mw.flow.ui.EditorWidget.less',
-			'styles/flow/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.less',
-			'styles/flow/widgets/mw.flow.ui.CategoryItemWidget.less',
-			'styles/flow/widgets/mw.flow.ui.CategoriesWidget.less',
+			'styles/flow/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.less'
 		),
 		'messages' => array(
 			'flow-error-parsoid-failure',
@@ -433,9 +426,6 @@ $wgResourceModules += array(
 			'flow-dialog-cancelconfirm-keep',
 			'flow-dialog-cancelconfirm-discard',
 			'flow-wikitext-switch-editor-tooltip',
-			'red-link-title',
-			'pagecategories',
-			'colon-separator'
 		),
 		'dependencies' => array (
 			'oojs-ui',

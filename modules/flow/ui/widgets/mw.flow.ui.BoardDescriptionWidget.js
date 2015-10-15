@@ -18,8 +18,7 @@
 		// Parent constructor
 		mw.flow.ui.BoardDescriptionWidget.parent.call( this, config );
 
-		this.board = boardModel;
-		this.attachModel( this.board.getDescription() );
+		this.attachModel( boardModel.getDescription() );
 
 		// Since the content is already displayed, we will "steal" the already created
 		// node to avoid having to render it twice.
@@ -35,7 +34,7 @@
 			.append( $content );
 
 		this.api = new mw.flow.dm.APIHandler(
-			this.board.getPageTitle().getPrefixedDb(),
+			boardModel.getPageTitle().getPrefixedDb(),
 			{
 				currentRevision: this.model.getRevisionId()
 			}
@@ -67,18 +66,12 @@
 			this.button.toggle( false );
 		}
 
-		this.categoriesWidget = new mw.flow.ui.CategoriesWidget( this.board );
-		if ( config.$categories ) {
-			this.addCategoriesFromDom( config.$categories );
-		}
-
 		// Events
 		this.button.connect( this, { click: 'onEditButtonClick' } );
 		this.editor.connect( this, {
 			saveContent: 'onEditorSaveContent',
 			cancel: 'onEditorCancel'
 		} );
-
 		// Initialize
 		this.$element
 			.append(
@@ -86,8 +79,7 @@
 				this.anonWarning.$element,
 				this.button.$element,
 				this.$content,
-				this.editor.$element,
-				this.categoriesWidget.$element
+				this.editor.$element
 			)
 			.addClass( 'flow-ui-boardDescriptionWidget' );
 	};
@@ -120,7 +112,6 @@
 		// Hide the edit button, any errors, and the content
 		this.button.toggle( false );
 		this.error.toggle( false );
-		this.categoriesWidget.toggle( false );
 		this.$content.addClass( 'oo-ui-element-hidden' );
 
 		this.editor.toggle( true );
@@ -228,48 +219,9 @@
 
 				widget.error.toggle( true );
 			} )
-			// Get the new categories
-			.then( this.api.getCategories.bind( this.api ) )
-			.then( function ( catObject ) {
-				var cat, title,
-					categories = {};
-
-				for ( cat in catObject ) {
-					title = mw.Title.newFromText( catObject[ cat ].title );
-					categories[ title.getName() ] = { exists: catObject[ cat ].missing === undefined };
-				}
-				// Update the board data model
-				widget.board.clearCategories();
-				widget.board.setCategoriesFromObject( categories );
-			} )
-			// Remove the editor and show content
-			.then( function () {
-				widget.showContent( true );
-			} )
-			// Always pop pending for the editor
 			.always( function () {
 				widget.editor.popPending();
 			} );
-	};
-
-	/**
-	 * Add categories from a jQuery object. This is so that we can feed categories from the
-	 * nojs rendering of the page without having the widget to ask the API for the categories
-	 * when it just loads.
-	 *
-	 * @param {jQuery} $categoriesWrapper Categories div wrapper
-	 */
-	mw.flow.ui.BoardDescriptionWidget.prototype.addCategoriesFromDom = function ( $categoriesWrapper ) {
-		var categories = {};
-
-		$categoriesWrapper.find( '.flow-board-header-category-item a' ).each( function () {
-			categories[ $( this ).text() ] = {
-				exists: !$( this ).hasClass( 'new' )
-			};
-		} );
-
-		this.board.setCategoriesFromObject( categories );
-		this.categoriesWidget.toggle( this.board.hasCategories() );
 	};
 
 	/**
@@ -290,7 +242,6 @@
 		// Display the edit button and the content
 		this.button.toggle( true );
 		this.$content.removeClass( 'oo-ui-element-hidden' );
-		this.categoriesWidget.toggle( this.board.hasCategories() );
 	};
 
 	/**

@@ -151,24 +151,10 @@ class View extends ContextSource {
 		$workflow = $loader->getWorkflow();
 		$title = $workflow->getArticleTitle();
 		$user = $this->getUser();
-		$categories = array_keys( $title->getParentCategories() );
-		$categoryObject = array();
-		$linkedCategories = array();
-
-		// Transform the raw category names into links
-		foreach ( $categories as $value ) {
-			$categoryTitle = Title::newFromText( $value );
-			$categoryObject[ $value ] = array(
-				'name' => $value,
-				'exists' => $categoryTitle->exists()
-			);
-			$linkedCategories[] = \Linker::link( $categoryTitle, htmlspecialchars( $categoryTitle->getText() ) );
-		}
 
 		// @todo This and API should use same code
 		$apiResponse = array(
 			'title' => $title->getPrefixedText(),
-			'categories' => $categoryObject,
 			'workflow' => $workflow->isNew() ? '' : $workflow->getId()->getAlphadecimal(),
 			'blocks' => array(),
 			'isWatched' => $user->isWatched( $title ),
@@ -193,7 +179,6 @@ class View extends ContextSource {
 									'title' => $apiResponse['title'],
 									'block-action-template' => $block->getTemplate( $action ),
 									'editToken' => $editToken,
-									'categories' => $linkedCategories
 								);
 				if ( $block->getName() == 'topiclist' ) {
 					$topicListBlock = $block;
