@@ -169,6 +169,10 @@ class View extends ContextSource {
 		$apiResponse = array(
 			'title' => $title->getPrefixedText(),
 			'categories' => $categoryObject,
+			// We need to store the link to the Special:Categories page from the
+			// back end php script, because there is no way in JS front end to
+			// get the localized link of a special page
+			'specialCategoryLink' => \SpecialPage::getTitleFor( 'Categories' )->getLocalURL(),
 			'workflow' => $workflow->isNew() ? '' : $workflow->getId()->getAlphadecimal(),
 			'blocks' => array(),
 			'isWatched' => $user->isWatched( $title ),
@@ -193,12 +197,22 @@ class View extends ContextSource {
 									'title' => $apiResponse['title'],
 									'block-action-template' => $block->getTemplate( $action ),
 									'editToken' => $editToken,
-									'categories' => $linkedCategories
 								);
 				if ( $block->getName() == 'topiclist' ) {
 					$topicListBlock = $block;
 				}
 			}
+		}
+
+		// Add category items to the header if they exist
+		if ( count( $linkedCategories ) > 0 && isset( $apiResponse['blocks']['header'] ) ) {
+			$apiResponse['blocks']['header']['categories'] = array(
+				'link' => \Linker::link(
+						\SpecialPage::getTitleFor( 'Categories' ),
+						wfMessage( 'pagecategories' )->params( count( $linkedCategories ) )->text()
+					) . wfMessage( 'colon-separator' )->text(),
+				'items' => $linkedCategories
+			);
 		}
 
 		if ( isset( $topicListBlock ) && isset( $parameters['topiclist'] ) ) {

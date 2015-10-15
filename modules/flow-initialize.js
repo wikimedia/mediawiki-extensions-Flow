@@ -548,6 +548,8 @@
 		// The category widget is inside the board description widget.
 		// Remove it here
 		$( '.flow-board-header-category-view-nojs' ).detach();
+		// HACK: Remove the MW page categories
+		$( '.catlinks:not(.flow-ui-categoriesWidget)' ).detach();
 
 		// Fall back to mw.flow.data, which was used until September 2015
 		// NOTICE: This block must be after the initialization of the ui widgets so

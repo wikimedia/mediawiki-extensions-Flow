@@ -12,13 +12,17 @@
 	 *
 	 */
 	mw.flow.ui.CategoriesWidget = function mwFlowUiCategoriesWidget( model, config ) {
+		var $categoryList = $( '<ul>' )
+				.addClass( 'flow-board-header-category-list' ),
+			categoriesTitle = mw.Title.newFromText( 'Special:Categories' );
+
 		config = config || {};
 
 		// Parent constructor
 		mw.flow.ui.CategoriesWidget.parent.call( this, config );
 
 		// Mixin constructor
-		OO.ui.mixin.GroupElement.call( this, config );
+		OO.ui.mixin.GroupElement.call( this, $.extend( { $group: $categoryList }, config ) );
 
 		this.model = model;
 		this.model.connect( this, {
@@ -27,19 +31,28 @@
 			clearCategories: 'onModelClearCategories'
 		} );
 
-		this.categoriesLabel = new OO.ui.LabelWidget();
+		this.$categoriesLabel = $( '<a>' )
+			.prop( 'href', config.specialPageCategoryLink || categoriesTitle.getUrl() );
 		this.updateCategoriesLabel();
 
 		// Initialize
 		this.$element
+			// Mimic the same structure as mediawiki category
+			// and the nojs version
+			.addClass( 'catlinks flow-board-header-category-view-js flow-ui-categoriesWidget' )
+			.prop( 'id', 'catlinks' )
 			.append(
 				$( '<div>' )
-					.addClass( 'flow-board-header-category-title' )
-					.append( this.categoriesLabel.$element ),
-				this.$group
-					.addClass( 'flow-board-header-category-list' )
-			)
-			.addClass( 'flow-ui-categoriesWidget flow-board-header-category-view' );
+					.prop( 'id', 'mw-normal-catlinks' )
+					.append(
+						this.$categoriesLabel,
+						mw.msg( 'colon-separator' ),
+						this.$group
+					)
+					.addClass( 'mw-normal-catlinks flow-board-header-category-view' )
+			);
+
+		this.toggle( this.model.hasCategories() );
 	};
 
 	/* Initialization */
@@ -62,6 +75,7 @@
 
 		this.addItems( widgets );
 		this.updateCategoriesLabel();
+		this.toggle( this.model.hasCategories() );
 	};
 
 	/**
@@ -79,6 +93,7 @@
 
 		this.removeItems( widgets );
 		this.updateCategoriesLabel();
+		this.toggle( this.model.hasCategories() );
 	};
 
 	/**
@@ -92,9 +107,9 @@
 	 * Update the category label according to the number of available items
 	 */
 	mw.flow.ui.CategoriesWidget.prototype.updateCategoriesLabel = function () {
-		this.categoriesLabel.setLabel(
-			mw.msg( 'pagecategories', this.model.getItemCount() ) +
-			mw.msg( 'colon-separator' )
+		this.$categoriesLabel.text(
+			// FIXME: this.model should be an instance of dm.Categories, not dm.Board
+			mw.msg( 'pagecategories', this.model.getCategories().getItemCount() )
 		);
 	};
 }( jQuery ) );
