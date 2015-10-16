@@ -76,21 +76,20 @@ class OptInController {
 		}
 
 		// archive existing wikitext talk page
-		$linkToArchivedTalkpage = null;
+		$currentTemplate = null;
 		$templatesFromTalkpage = null;
 		if ( $title->exists( Title::GAID_FOR_UPDATE ) ) {
 			$templatesFromTalkpage = $this->extractTemplatesAboveFirstSection( $title );
 			$wikitextTalkpageArchiveTitle = $this->archiveExistingTalkpage( $title );
-			$this->addArchiveTemplate( $wikitextTalkpageArchiveTitle, $title );
-			$linkToArchivedTalkpage = $this->buildLinkToArchivedTalkpage( $wikitextTalkpageArchiveTitle );
+			$currentTemplate = $this->getFormattedCurrentTemplate( $wikitextTalkpageArchiveTitle );
 		}
 
 		// create or restore flow board
 		$archivedFlowPage = $this->findLatestFlowArchive( $title );
 		if ( $archivedFlowPage ) {
-			$this->restoreExistingFlowBoard( $archivedFlowPage, $title, $linkToArchivedTalkpage );
+			$this->restoreExistingFlowBoard( $archivedFlowPage, $title, $currentTemplate );
 		} else {
-			$this->createFlowBoard( $title, $templatesFromTalkpage . "\n\n" . $linkToArchivedTalkpage );
+			$this->createFlowBoard( $title, $templatesFromTalkpage . "\n\n" . $currentTemplate );
 			$this->notificationController->notifyFlowEnabledOnTalkpage( $user );
 		}
 	}
@@ -104,24 +103,23 @@ class OptInController {
 		}
 
 		// archive the flow board
-		$flowArchiveTitle = $this->findNextFlowArchive( $title );
-		$archiveReason = wfMessage( 'flow-optin-archive-flow-board' )->inContentLanguage()->text();
-		$this->movePage( $title, $flowArchiveTitle, $archiveReason );
-		$this->removeArchivedTalkpageTemplateFromFlowBoardDescription( $flowArchiveTitle );
+		$flowArchiveTitle = $this->archiveFlowBoard( $title );
 
 		// restore the original wikitext talk page
 		$archivedTalkpage = $this->findLatestArchive( $title );
 		if ( $archivedTalkpage ) {
+			$this->removeArchiveTemplateFromWikitextTalkpage( $archivedTalkpage );
+			$this->addCurrentTemplate( $archivedTalkpage, $flowArchiveTitle );
 			$restoreReason = wfMessage( 'flow-optin-restore-wikitext' )->inContentLanguage()->text();
-			$this->movePage( $archivedTalkpage, $title , $restoreReason);
-			$this->removeArchiveTemplateFromWikitextTalkpage( $title );
+			$this->movePage( $archivedTalkpage, $title, $restoreReason );
 		}
 	}
 
 	/**
 	 * Check whether the current user has a flow board archived already.
 	 *
-	 * @return boolean Flow board archive exists
+	 * @param User $user
+	 * @return bool Flow board archive exists
 	 */
 	public function hasFlowBoardArchive( User $user ) {
 		return $this->findLatestFlowArchive( $user->getTalkPage() ) !== false;
@@ -308,23 +306,43 @@ class OptInController {
 		$archiveTitle = $this->findNextArchive( $title );
 		$archiveReason = wfMessage( 'flow-optin-archive-wikitext' )->inContentLanguage()->text();
 		$this->movePage( $title, $archiveTitle, $archiveReason );
+
+		$content = $this->getContent( $archiveTitle );
+		$content = $this->removeCurrentTemplateFromWikitext( $content, $archiveTitle );
+		$content = $this->getFormattedArchiveTemplate( $title ) . "\n\n" . $content;
+
+		$addTemplateReason = wfMessage( 'flow-beta-feature-add-archive-template-edit-summary' )->inContentLanguage()->plain();
+		$this->createRevision(
+			$archiveTitle,
+			$content,
+			$addTemplateReason
+		);
+
 		return $archiveTitle;
 	}
 
 	/**
 	 * @param Title $archivedFlowPage
 	 * @param Title $title
-	 * @param string|null $addToHeader
+	 * @param string|null $currentTemplate
 	 */
-	private function restoreExistingFlowBoard( Title $archivedFlowPage, Title $title, $addToHeader = null ) {
+	private function restoreExistingFlowBoard( Title $archivedFlowPage, Title $title, $currentTemplate = null ) {
+		$this->editBoardDescription(
+			$archivedFlowPage,
+			function( $content ) use ( $currentTemplate, $archivedFlowPage ) {
+				$templateName = wfMessage( 'flow-importer-wt-converted-archive-template' )->inContentLanguage()->plain();
+				$content = TemplateHelper::removeFromHtml( $content, $templateName );
+				if ( $currentTemplate ) {
+					$content = $currentTemplate . "<br/><br/>" . Utils::convert( 'wikitext', 'html', $currentTemplate, $archivedFlowPage );
+				}
+				return $content;
+			},
+			'html'
+		);
+
 		$restoreReason = wfMessage( 'flow-optin-restore-flow-board' )->inContentLanguage()->text();
 		$this->movePage( $archivedFlowPage, $title, $restoreReason );
 
-		if ( $addToHeader ) {
-			$this->editBoardDescription( $title, function( $oldDesc ) use ( $addToHeader ) {
-				return $oldDesc . "\n\n" . $addToHeader;
-			}, 'wikitext' );
-		}
 	}
 
 	/**
@@ -350,7 +368,7 @@ class OptInController {
 	 * @param Title $archiveTitle
 	 * @return string
 	 */
-	private function buildLinkToArchivedTalkpage( Title $archiveTitle ) {
+	private function getFormattedCurrentTemplate( Title $archiveTitle ) {
 		$now = new DateTime( "now", new DateTimeZone( "GMT" ) );
 		$arguments = array(
 			'archive' => $archiveTitle->getPrefixedText(),
@@ -375,16 +393,6 @@ class OptInController {
 				array_values( $args ) )
 		);
 		return "{{{$name}|$arguments}}";
-	}
-
-	/**
-	 * @param Title $flowArchiveTitle
-	 */
-	private function removeArchivedTalkpageTemplateFromFlowBoardDescription( Title $flowArchiveTitle ) {
-		$this->editBoardDescription( $flowArchiveTitle, function( $oldDesc ) {
-			$templateName = wfMessage( 'flow-importer-wt-converted-template' )->inContentLanguage()->plain();
-			return TemplateHelper::removeFromHtml( $oldDesc, $templateName );
-		}, 'html' );
 	}
 
 	/**
@@ -472,24 +480,16 @@ class OptInController {
 	}
 
 	/**
-	 * @param Title $archive
 	 * @param Title $current
-	 * @throws ImportException
+	 * @return string
 	 */
-	private function addArchiveTemplate( Title $archive, Title $current ) {
+	private function getFormattedArchiveTemplate( Title $current ) {
 		$templateName = wfMessage( 'flow-importer-wt-converted-archive-template' )->inContentLanguage()->plain();
 		$now = new DateTime( "now", new DateTimeZone( "GMT" ) );
-		$template = $this->formatTemplate( $templateName, array(
+		return $this->formatTemplate( $templateName, array(
 			'from' => $current->getPrefixedText(),
 			'date' => $now->format( 'Y-m-d' ),
 		) );
-
-		$content = $this->getContent( $archive );
-
-		$this->createRevision(
-			$archive,
-			$template . "\n\n" . $content,
-			wfMessage( 'flow-beta-feature-add-archive-template-edit-summary' )->inContentLanguage()->plain());
 	}
 
 	/**
@@ -514,6 +514,18 @@ class OptInController {
 	}
 
 	/**
+	 * @param string $wikitextContent
+	 * @param Title $title
+	 * @return string
+	 */
+	private function removeCurrentTemplateFromWikitext( $wikitextContent, Title $title ) {
+		$templateName = wfMessage( 'flow-importer-wt-converted-template' )->inContentLanguage()->plain();
+		$contentAsHtml = Utils::convert( 'wikitext', 'html', $wikitextContent, $title );
+		$contentWithoutTemplate = TemplateHelper::removeFromHtml( $contentAsHtml, $templateName );
+		return Utils::convert( 'html', 'wikitext', $contentWithoutTemplate, $title );
+	}
+
+	/**
 	 * @param Title $title
 	 * @return string
 	 */
@@ -532,4 +544,63 @@ class OptInController {
 		return TemplateHelper::extractTemplates( $content, $title );
 	}
 
+	/**
+	 * @param Title $title
+	 * @param $reason
+	 * @param callable $newDescriptionCallback
+	 * @param string $format
+	 * @throws ImportException
+	 * @throws InvalidDataException
+	 */
+	private function editWikitextContent( Title $title, $reason, callable $newDescriptionCallback, $format = 'html' ) {
+		$content = Utils::convert( 'wikitext', $format, $this->getContent( $title ), $title );
+		$newContent = call_user_func( $newDescriptionCallback, $content );
+		$this->createRevision(
+			$title,
+			Utils::convert( $format, 'wikitext', $newContent, $title ),
+			$reason
+		);
+	}
+
+	/**
+	 * Add the "current" template to the page considered the current talkpage
+	 * and link to the archived talkpage.
+	 *
+	 * @param Title $currentTalkpageTitle
+	 * @param Title $archivedTalkpageTitle
+	 */
+	private function addCurrentTemplate( Title $currentTalkpageTitle, Title $archivedTalkpageTitle ) {
+		$template = $this->getFormattedCurrentTemplate( $archivedTalkpageTitle );
+		$this->editWikitextContent(
+			$currentTalkpageTitle,
+			null,
+			function( $content ) use ( $template ) { return $template . "\n\n" . $content; },
+			'wikitext'
+		);
+	}
+
+	/**
+	 * @param Title $title
+	 * @return Title
+	 * @throws InvalidDataException
+	 */
+	private function archiveFlowBoard( Title $title ) {
+		$flowArchiveTitle = $this->findNextFlowArchive( $title );
+		$archiveReason = wfMessage( 'flow-optin-archive-flow-board' )->inContentLanguage()->text();
+		$this->movePage( $title, $flowArchiveTitle, $archiveReason );
+
+		$template = $this->getFormattedArchiveTemplate( $title );
+		$template = Utils::convert( 'wikitext', 'html', $template, $title );
+
+		$this->editBoardDescription(
+			$flowArchiveTitle,
+			function( $content ) use ( $template ) {
+				$templateName = wfMessage( 'flow-importer-wt-converted-template' )->inContentLanguage()->plain();
+				$content = TemplateHelper::removeFromHtml( $content, $templateName );
+				return $template . "<br/><br/>" . $content;
+			},
+			'html' );
+
+		return $flowArchiveTitle;
+	}
 }

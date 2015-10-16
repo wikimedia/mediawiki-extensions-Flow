@@ -37,6 +37,9 @@ Then(/^my previous talk page is archived$/) do
   visit(WikiPage, using_params: { page: archive_name }) do |page|
     expect(page.content_element.when_present.text).to match @talk_page_content
     expect(page.content_element.when_present.text).to match archive_template
+
+    expect(page.content).to match 'This page is an archive.'
+    expect(page.content).to_not match 'Previous discussion was archived at'
   end
 end
 
@@ -54,22 +57,24 @@ When(/^I disable Flow beta feature$/) do
 end
 
 Then(/^my wikitext talk page is restored$/) do
-  talk_page_link = "User_talk:#{@username}".gsub '_', ' '
+  flow_archive_link = "User_talk:#{@username}/Flow_Archive_1".gsub '_', ' '
   visit(UserTalkPage, using_params: { username: @username }) do |page|
     page.refresh_until do
       page.content.match @talk_page_content
     end
-    expect(page.content).to_not match talk_page_link
+    expect(page.content).to_not match 'This page is an archive.'
+    expect(page.content).to match 'Previous discussion was archived at'
+    expect(page.content).to match flow_archive_link
   end
 end
 
 Then(/^my Flow board is archived$/) do
   flow_archive_name = "./User_talk:#{@username}/Flow_Archive_1"
-  talk_page_link = "User_talk:#{@username}".gsub '_', ' '
   visit(WikiPage, using_params: { page: flow_archive_name }) do |page|
     page.refresh_until { page.flow.board_element.visible? }
     page.flow.board_element.when_present
-    expect(page.flow.header).to_not match talk_page_link
+    expect(page.flow.header).to match 'This page is an archive.'
+    expect(page.flow.header).to_not match 'Previous discussion was archived at'
   end
 end
 
@@ -84,11 +89,13 @@ end
 
 Then(/^my talk page is my old Flow board$/) do
   archive_name = "User_talk:#{@username}/Archive_1".gsub '_', ' '
-  visit(UserTalkPage, using_params: { username: @username }) do |page|
-    page.refresh_until do
-      page.flow.header_element.exists? && page.flow.header.match(archive_name)
-    end
-    expect(page.content_element.when_present.text).to match @topic_title
+  visit(WikiPage, using_params: { page: "./User_talk:#{@username}" }) do |page|
+    page.refresh_until { page.flow.board_element.visible? }
+    page.flow.board_element.when_present
+
+    expect(page.flow.header).to match archive_name
+    expect(page.flow.header).to match 'Previous discussion was archived at'
+    expect(page.flow.header).to_not match 'This page is an archive.'
   end
 end
 
