@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_7a8153c7",
+        "filename": "handlebars/flow_header_categories.partial.handlebars",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-10-16T21:28:46Z",
+      "side": 1,
+      "message": "Actually, there are multiple styling rules that look for #catlinks {...}",
+      "parentUuid": "0ebaf39b_7a90734e",
+      "revId": "3bdcd605f7c5d0d0f24330dd028c673ec4739483",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_5a8c8f32",
         "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
         "patchSetId": 2
