@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebaf39b_3abc3bd5",
+        "filename": ".gitignore",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 24
+      },
+      "writtenOn": "2015-10-16T21:11:16Z",
+      "side": 0,
+      "message": "We still want to .gitignore  node_modules !",
+      "revId": "d0ef99327fecdda3b758accf38eadcd7627734fb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}

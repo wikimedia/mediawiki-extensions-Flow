@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebaf39b_3ae51b07",
+        "filename": ".gitignore",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 24
+      },
+      "writtenOn": "2015-10-16T21:11:16Z",
+      "side": 1,
+      "message": "There is a /vendor/.gitignore there with /PHP-Parser  and the vendor directory has a couple entries:\n\n /vendor/Pimple\n /vendor/modules\n\nSo we would want exceptions for them:\n\n* remove /vendor/.gitignore\n\nIn /.gitignore:\n\n/vendor\n!/vendor/Pimple\n!/vendor/modules\n\nThis way Pimple and modules are not ignored.",
+      "revId": "84711a43768a44d6291c4ca3b1654710d325c7be",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_1ab937e6",
+        "filename": ".jshintignore",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 24
+      },
+      "writtenOn": "2015-10-16T21:11:16Z",
+      "side": 1,
+      "message": "Same you do not want to ignore  /vendor/Pimple and /vendor/modules\n\nNot sure how it can be done with .jshintignore though :(",
+      "revId": "84711a43768a44d6291c4ca3b1654710d325c7be",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
