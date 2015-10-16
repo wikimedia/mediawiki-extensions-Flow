@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebaf39b_7a90734e",
+        "filename": "handlebars/flow_header_categories.partial.handlebars",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-10-16T21:19:14Z",
+      "side": 1,
+      "message": "Is id\u003dcatlinks actually used for anything? If not, I\u0027d recommend leaving it out, because you\u0027re putting two things with the same ID on the page.",
+      "revId": "3bdcd605f7c5d0d0f24330dd028c673ec4739483",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_5a8c8f32",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-10-16T21:19:14Z",
+      "side": 1,
+      "message": "Undocumented config option",
+      "revId": "3bdcd605f7c5d0d0f24330dd028c673ec4739483",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_1a961743",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-10-16T21:19:14Z",
+      "side": 1,
+      "message": "(Pre-existing) undocumented config option. Also, config options are always optional, so config.$categories could be undefined. But addCategoriesFromDom() doesn\u0027t expect that: it marks its parameter as non-optional, and it will crash on the second line if you feed it undefined.",
+      "revId": "3bdcd605f7c5d0d0f24330dd028c673ec4739483",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
