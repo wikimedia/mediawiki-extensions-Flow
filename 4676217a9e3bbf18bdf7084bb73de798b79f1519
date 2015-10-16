@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebaf39b_b5483cd0",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-10-16T22:56:08Z",
+      "side": 1,
+      "message": "Was this meant to be $content \u003d $content . stuff; (or $content .\u003d stuff;)? As written, it looks strange because 1) the type of $currentTemplate is wikitext, but the type of $content is HTML and 2) the original value of $content is ignored.",
+      "revId": "4676217a9e3bbf18bdf7084bb73de798b79f1519",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
