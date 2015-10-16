@@ -33,6 +33,23 @@
       "revId": "84711a43768a44d6291c4ca3b1654710d325c7be",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_ba758b2e",
+        "filename": "composer.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 24
+      },
+      "writtenOn": "2015-10-16T21:17:08Z",
+      "side": 1,
+      "message": "Note /vendor/ has some php files in the repository :(",
+      "revId": "84711a43768a44d6291c4ca3b1654710d325c7be",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
