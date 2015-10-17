@@ -88,11 +88,13 @@
 
 	/**
 	 * Create a VE surface with the provided content in it.
-	 * @param {string} content HTML to put in the surface
+	 * @param {string} content HTML to put in the surface (body only)
 	 */
 	mw.flow.ui.VisualEditorWidget.prototype.createSurface = function ( content ) {
 		var dmDoc,
-			htmlDoc = ve.createDocumentFromHtml( content );
+			// Wrap content in <body> tag to prevent <link>/<meta> tags from being pulled
+			// up into the <head> (T115362)
+			htmlDoc = ve.createDocumentFromHtml( '<body>' + content + '</body>' );
 		ve.init.mw.Target.static.fixBase( htmlDoc );
 		dmDoc = ve.dm.converter.getModelFromDom( htmlDoc, {
 			lang: mw.config.get( 'wgVisualEditor' ).pageLanguageCode,
