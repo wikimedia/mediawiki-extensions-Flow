@@ -16,6 +16,24 @@
       "revId": "d0ef99327fecdda3b758accf38eadcd7627734fb",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_da807ffb",
+        "filename": ".gitignore",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1665
+      },
+      "writtenOn": "2015-10-17T15:54:40Z",
+      "side": 0,
+      "message": "Hi I moved it to the bottom.",
+      "parentUuid": "0ebaf39b_3abc3bd5",
+      "revId": "d0ef99327fecdda3b758accf38eadcd7627734fb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
