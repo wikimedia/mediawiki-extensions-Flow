@@ -29,8 +29,11 @@
 			var editorList = mw.config.get( 'wgFlowEditorList' ),
 				index = editorList.indexOf( 'none' );
 
-			// determine editor instance to use, depending on availability
-			mw.flow.editor.loadEditor( index );
+			// Only load the old editor system if there is an old editor on the page
+			if ( $( '.flow-editor' ).length ) {
+				// determine editor instance to use, depending on availability
+				mw.flow.editor.loadEditor( index );
+			}
 		},
 
 		loadEditor: function ( editorIndex ) {
