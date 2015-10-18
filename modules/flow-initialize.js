@@ -271,8 +271,12 @@
 		// Undo actions
 		if ( $( 'form[data-module="topic"]' ).length ) {
 			replaceEditorInUndoEditPost( $( 'form[data-module="topic"]' ) );
+			finishLoading();
+			return;
 		} else if ( $( 'form[data-module="header"]' ).length ) {
 			replaceEditorInUndoHeaderPost( $( 'form[data-module="header"]' ) );
+			finishLoading();
+			return;
 		}
 
 		function replaceEditorInUndoEditPost( $form ) {
@@ -300,39 +304,94 @@
 		}
 
 		function replaceEditorInUndoHeaderPost( $form ) {
-			var descWidget, prevRevId,
+			var prevRevId, editor, anonWarning, content,
+				error, apiHandler, $wrapper,
 				pageName = mw.config.get( 'wgPageName' ),
 				title = mw.Title.newFromText( pageName ),
-				model = mw.flow.system.getBoard();
+				returnToBoard = function () {
+					window.location.href = title.getUrl();
+				};
 
 			if ( !$form.length ) {
 				return;
 			}
 
 			prevRevId = $form.find( 'input[name="header_prev_revision"]' ).val();
-			model.getDescription().setRevisionId( prevRevId );
-			descWidget = new mw.flow.ui.BoardDescriptionWidget( model );
-			// HACK: Hide the edit button even if it tries to toggle( true ) itself
-			// later in the code after saveContent
-			descWidget.button.$element.css( 'display', 'none' );
-			// HACK: Simulate an 'edit' click event so the description widget
-			// loads already in edit mode. This saves us the trouble of creating
-			// and already open description widget and duplicating all the api
-			// logic that happens when clicking the 'edit' button, seeing as this
-			// addition is already a quickfix hack.
-			descWidget.button.emit( 'click' );
+			content = $form.find( 'textarea[name="header_content"]' ).val();
 
-			descWidget
-				.on( 'saveContent', function () {
-					// HACK: redirect to topic view
-					window.location.href = title.getUrl();
-				} )
-				.on( 'cancel', function () {
-					// HACK: redirect to topic view
-					window.location.href = title.getUrl();
+			apiHandler = new mw.flow.dm.APIHandler(
+				title.getPrefixedDb(),
+				{
+					currentRevision: prevRevId
+				}
+			);
+			anonWarning = new mw.flow.ui.AnonWarningWidget();
+			error = new OO.ui.LabelWidget( {
+				classes: [ 'flow-ui-boardDescriptionWidget-error flow-errors errorbox' ]
+			} );
+			editor = new mw.flow.ui.EditorWidget( {
+				saveMsgKey: mw.user.isAnon() ? 'flow-edit-header-submit-anonymously' : 'flow-edit-header-submit',
+				classes: [ 'flow-ui-boardDescriptionWidget-editor' ]
+			} );
+			error.toggle( false );
+			anonWarning.toggle( mw.user.isAnon() );
+
+			// Prepare the editor
+			editor.pushPending();
+			editor.toggle( true );
+			editor.activate();
+debugger;
+			editor.setContent( content, 'wikitext' )
+				.then( function () {
+					editor.popPending();
 				} );
 
-			$form.replaceWith( descWidget.$element );
+			editor
+				.on( 'saveContent', function ( content, contentFormat ) {
+					var $captchaField, captcha;
+
+					editor.pushPending();
+
+					$captchaField = error.$label.find( '[name="wpCaptchaWord"]' );
+					if ( $captchaField.length > 0 ) {
+						captcha = {
+							id: this.error.$label.find( '[name="wpCaptchaId"]' ).val(),
+							answer: $captchaField.val()
+						};
+					}
+					error.setLabel( '' );
+					error.toggle( false );
+
+					apiHandler.saveDescription( content, contentFormat, captcha )
+						.then(
+							// Success
+							returnToBoard,
+							// Failure
+							function ( errorCode, errorObj ) {
+								if ( /spamfilter$/.test( errorCode ) && errorObj.error.spamfilter === 'flow-spam-confirmedit-form' ) {
+									error.setLabel(
+										// CAPTCHA form
+										new OO.ui.HtmlSnippet( errorObj.error.info )
+									);
+								} else {
+									error.setLabel( errorObj.error && errorObj.error.info || errorObj.exception );
+								}
+								editor.popPending();
+							}
+						);
+				} )
+				.on( 'cancel', function () {
+					editor.pushPending();
+					returnToBoard();
+				} );
+
+			$wrapper = $( '<div>' )
+				.append(
+					error.$element,
+					anonWarning.$element,
+					editor.$element
+				);
+			$form.replaceWith( $wrapper );
 		}
 
 		// Replace the 'reply' buttons so they all produce replyWidgets rather
