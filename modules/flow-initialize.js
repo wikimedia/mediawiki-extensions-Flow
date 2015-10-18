@@ -271,17 +271,86 @@
 		// Undo actions
 		if ( $( 'form[data-module="topic"]' ).length ) {
 			replaceEditorInUndoEditPost( $( 'form[data-module="topic"]' ) );
+			finishLoading();
+			return;
 		} else if ( $( 'form[data-module="header"]' ).length ) {
 			replaceEditorInUndoHeaderPost( $( 'form[data-module="header"]' ) );
+			finishLoading();
+			return;
+		}
+
+		function createEditorWidget( $domToReplace, content, saveMsgKey ) {
+			var $wrapper,
+				anonWarning = new mw.flow.ui.AnonWarningWidget(),
+				error = new OO.ui.LabelWidget( {
+					classes: [ 'flow-ui-boardDescriptionWidget-error flow-errors errorbox' ]
+				} ),
+				editor = new mw.flow.ui.EditorWidget( {
+					saveMsgKey: saveMsgKey
+				} );
+
+			error.toggle( false );
+			editor.toggle( true );
+			anonWarning.toggle( mw.user.isAnon() );
+
+			// HACK: We still need a reference to the error widget, for
+			// the api responses in the intialized widgets that use this
+			// function, so make a forced connection
+			editor.error = error;
+
+			// Prepare the editor
+			editor.pushPending();
+			editor.activate();
+
+			editor.setContent( content, 'wikitext' )
+				.then( function () {
+					editor.popPending();
+				} );
+
+			editor
+				.on( 'saveContent', function ( content, contentFormat ) {
+					var $captchaField, captcha;
+
+					editor.pushPending();
+
+					$captchaField = error.$label.find( '[name="wpCaptchaWord"]' );
+					if ( $captchaField.length > 0 ) {
+						captcha = {
+							id: this.error.$label.find( '[name="wpCaptchaId"]' ).val(),
+							answer: $captchaField.val()
+						};
+					}
+					error.setLabel( '' );
+					error.toggle( false );
+
+					// HACK: This is a cheat so that we can have a single function
+					// that creates the editor, but multiple uses, especially for the
+					// APIhandler in different cases
+					editor.emit( 'afterSaveContent', content, contentFormat, captcha );
+				} )
+				.on( 'cancel', function () {
+					editor.pushPending();
+					editor.emit( 'afterCancel' );
+					// returnToBoard();
+				} );
+
+			$wrapper = $( '<div>' )
+				.append(
+					error.$element,
+					anonWarning.$element,
+					editor.$element
+				);
+			$domToReplace.replaceWith( $wrapper );
+
+			return editor;
 		}
 
 		function replaceEditorInUndoEditPost( $form ) {
-			var editPostWidget, postId,
+			var apiHandler, content, postId, editor, prevRevId,
 				pageName = mw.config.get( 'wgPageName' ),
 				title = mw.Title.newFromText( pageName ),
 				topicId = title.getNameText(),
-				goBackToTitle = function () {
-					editPostWidget.toggle( false );
+				returnToTitle = function () {
 					// HACK: redirect to topic view
 					window.location.href = title.getUrl();
 				};
@@ -289,50 +358,105 @@
 			if ( !$form.length ) {
 				return;
 			}
+
 			postId = $form.find( 'input[name="topic_postId"]' ).val();
-			editPostWidget = new mw.flow.ui.EditPostWidget( topicId, postId );
+			prevRevId = $form.find( 'input[name="topic_prev_revision"]' ).val();
+			content = $form.find( 'textarea' ).val();
 
-			editPostWidget
-				.on( 'saveContent', goBackToTitle )
-				.on( 'cancel', goBackToTitle );
+			apiHandler = new mw.flow.dm.APIHandler(
+				'Topic:' + topicId,
+				{
+					currentRevision: prevRevId
+				}
+			);
 
-			$form.replaceWith( editPostWidget.$element );
+			// Create the editor
+			editor = createEditorWidget(
+				$form,
+				content,
+				mw.user.isAnon() ? 'flow-post-action-edit-post-submit-anonymously' : 'flow-post-action-edit-post-submit'
+			);
+
+			// Events
+			editor
+				.on( 'afterSaveContent', function ( content, contentFormat, captcha ) {
+					apiHandler.savePost( topicId, postId, content, contentFormat, captcha )
+						.then(
+							// Success
+							returnToTitle,
+							// Failure
+							function ( errorCode, errorObj ) {
+								if ( /spamfilter$/.test( errorCode ) && errorObj.error.spamfilter === 'flow-spam-confirmedit-form' ) {
+									editor.error.setLabel(
+										// CAPTCHA form
+										new OO.ui.HtmlSnippet( errorObj.error.info )
+									);
+								} else {
+									editor.error.setLabel( errorObj.error && errorObj.error.info || errorObj.exception );
+								}
+
+								editor.error.toggle( true );
+								editor.popPending();
+							}
+						);
+				} )
+				.on( 'afterCancel', returnToTitle );
 		}
 
 		function replaceEditorInUndoHeaderPost( $form ) {
-			var descWidget, prevRevId,
+			var prevRevId, editor, content,
+				error, apiHandler,
 				pageName = mw.config.get( 'wgPageName' ),
 				title = mw.Title.newFromText( pageName ),
-				model = mw.flow.system.getBoard();
+				returnToBoard = function () {
+					window.location.href = title.getUrl();
+				};
 
 			if ( !$form.length ) {
 				return;
 			}
 
 			prevRevId = $form.find( 'input[name="header_prev_revision"]' ).val();
-			model.getDescription().setRevisionId( prevRevId );
-			descWidget = new mw.flow.ui.BoardDescriptionWidget( model );
-			// HACK: Hide the edit button even if it tries to toggle( true ) itself
-			// later in the code after saveContent
-			descWidget.button.$element.css( 'display', 'none' );
-			// HACK: Simulate an 'edit' click event so the description widget
-			// loads already in edit mode. This saves us the trouble of creating
-			// and already open description widget and duplicating all the api
-			// logic that happens when clicking the 'edit' button, seeing as this
-			// addition is already a quickfix hack.
-			descWidget.button.emit( 'click' );
+			content = $form.find( 'textarea[name="header_content"]' ).val();
 
-			descWidget
-				.on( 'saveContent', function () {
-					// HACK: redirect to topic view
-					window.location.href = title.getUrl();
+			apiHandler = new mw.flow.dm.APIHandler(
+				title.getPrefixedDb(),
+				{
+					currentRevision: prevRevId
+				}
+			);
+
+			// Create the editor
+			editor = createEditorWidget(
+				$form,
+				content,
+				mw.user.isAnon() ? 'flow-edit-header-submit-anonymously' : 'flow-edit-header-submit'
+			);
+
+			// Events
+			editor
+				.on( 'afterSaveContent', function ( content, contentFormat, captcha ) {
+					apiHandler.saveDescription( content, contentFormat, captcha )
+						.then(
+							// Success
+							returnToBoard,
+							// Failure
+							function ( errorCode, errorObj ) {
+								if ( /spamfilter$/.test( errorCode ) && errorObj.error.spamfilter === 'flow-spam-confirmedit-form' ) {
+									error.setLabel(
+										// CAPTCHA form
+										new OO.ui.HtmlSnippet( errorObj.error.info )
+									);
+								} else {
+									error.setLabel( errorObj.error && errorObj.error.info || errorObj.exception );
+								}
+								editor.popPending();
+							}
+						);
 				} )
-				.on( 'cancel', function () {
-					// HACK: redirect to topic view
-					window.location.href = title.getUrl();
+				.on( 'afterCancel', function () {
+					returnToBoard();
 				} );
-
-			$form.replaceWith( descWidget.$element );
 		}
 
 		// Replace the 'reply' buttons so they all produce replyWidgets rather
