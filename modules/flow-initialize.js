@@ -110,7 +110,6 @@
 		} );
 		$( '.flow-board-navigation' ).append( navWidget.$element );
 
-
 		// HACK: These event handlers should be in the prospective widgets
 		// they will move once we have Board UI and Topic UI widgets
 		mw.flow.system.on( 'resetBoardStart', function () {
