@@ -70,8 +70,9 @@ class AbuseFilterTest extends PostRevisionTestCase {
 		\RequestContext::getMain()->setTitle( Title::newMainPage() );
 
 		$user = User::newFromName( 'UTSysop' );
+		\RequestContext::getMain()->setUser( $user );
 
-		$this->spamFilter = new AbuseFilter( $user, $wgFlowAbuseFilterGroup );
+		$this->spamFilter = new AbuseFilter( $wgFlowAbuseFilterGroup );
 		if ( !$this->spamFilter->enabled() ) {
 			$this->markTestSkipped( 'AbuseFilter not enabled' );
 		}
