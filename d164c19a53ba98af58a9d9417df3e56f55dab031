@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebaf39b_2c063e21",
+        "filename": ".gitignore",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 24
+      },
+      "writtenOn": "2015-10-19T09:27:58Z",
+      "side": 1,
+      "message": "Since require-dev now has jakub-onderka/php-parallel-lint you will want to also ignore:\n\n vendor/bin/\n vendor/jakub-onderka/",
+      "revId": "d164c19a53ba98af58a9d9417df3e56f55dab031",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_9120a5a9",
+        "filename": ".gitignore",
+        "patchSetId": 7
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 24
+      },
+      "writtenOn": "2015-10-19T09:27:58Z",
+      "side": 1,
+      "message": "Ignoring node_modules/  is unrelated.",
+      "revId": "d164c19a53ba98af58a9d9417df3e56f55dab031",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_ec0fc631",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 24
+      },
+      "writtenOn": "2015-10-19T09:27:58Z",
+      "side": 1,
+      "message": "The commit message will need to be rephrased :-}",
+      "revId": "d164c19a53ba98af58a9d9417df3e56f55dab031",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_31177958",
+        "filename": "composer.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 24
+      },
+      "writtenOn": "2015-10-19T09:27:58Z",
+      "side": 1,
+      "message": "require-dev  already exists, so you have duplicate keys in the json.   php-parallel-lint should be inserted in the existing require-dev section.",
+      "revId": "d164c19a53ba98af58a9d9417df3e56f55dab031",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_4c09322e",
+        "filename": "composer.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 24
+      },
+      "writtenOn": "2015-10-19T09:27:58Z",
+      "side": 1,
+      "message": "That is going to be messy, but the repository has a couple directories there:\n\n vendor/Pimpe\n vendor/modules\n\nSo we will want to match the .gitignore rule:\n\n parallel-lint . --exclude vendor/composer/  --exclude vendor/symfony/ --exclude vendor/jakub-onderka/",
+      "revId": "d164c19a53ba98af58a9d9417df3e56f55dab031",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}

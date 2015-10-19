@@ -34,6 +34,23 @@
       "revId": "d0ef99327fecdda3b758accf38eadcd7627734fb",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_112595bc",
+        "filename": ".jshintignore",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 24
+      },
+      "writtenOn": "2015-10-19T09:27:58Z",
+      "side": 0,
+      "message": "Removing modules/jquery.scroll.js from .jshintignore is unrelated",
+      "revId": "d0ef99327fecdda3b758accf38eadcd7627734fb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
