@@ -49,6 +49,7 @@
 	"flow-topic-action-delete-topic": "Обриши тему",
 	"flow-topic-action-lock-topic": "Означи као решено",
 	"flow-topic-action-unlock-topic": "Поново отвори тему",
+	"flow-topic-action-summarize-topic": "Сумирај",
 	"flow-topic-action-undo-moderation": "Опозови",
 	"flow-topic-notification-subscribe-title": "Ова тема је додата на {{GENDER:$1|Ваш}} списак надгледања.",
 	"flow-error-not-allowed-delete": "Ова тема је обрисана.",
@@ -64,6 +65,9 @@
 	"flow-rev-message-new-post-recentchanges-summary": "{{GENDER:$2|Направљена}} нова тема",
 	"flow-rev-message-create-header": "$1 је {{GENDER:$2|направио|направила}} опис",
 	"flow-rev-message-edit-header": "$1 је {{GENDER:$2|изменио|изменила}} опис",
+	"flow-rev-message-create-topic-summary": "$1 је {{GENDER:$2|сумирао|сумирала}} тему $3",
+	"flow-rev-message-locked-topic": "$1 је {{GENDER:$2|означио|означила}} [$4 тему] $6 решеном (<em>$5</em>)",
+	"flow-rev-message-restored-topic": "$1 је поново {{GENDER:$2|отворио|отворила}} [$4 тему] „$6“ (<em>$5</em>)",
 	"flow-rc-topic-of-board": "$1 на $2",
 	"flow-history-last4": "Претходна 4 сата",
 	"flow-history-day": "Данас",
@@ -91,6 +95,7 @@
 	"flow-terms-of-use-edit": "Чувањем измена, прихватате услове коришћења на овом викију.",
 	"flow-cancel-warning": "Унели сте текст у овај оквир. Да ли сигурно желите да га одбаците?",
 	"flow-load-more": "Учитај још",
+	"flow-no-more-fwd": "Нема старих тема",
 	"flow-newest-topics": "Најновије теме",
 	"flow-recent-topics": "Недавно активне теме",
 	"flow-terms-of-use-summarize": "Кликом на „{{int:flow-topic-action-update-topic-summary}}“, прихватате услове коришћења овог викија.",
@@ -103,5 +108,8 @@
 	"flow-ve-mention-tool-title": "Спомени корисника",
 	"flow-wikitext-switch-editor-tooltip": "Пребаци ме на Визуелни уређивач",
 	"flow-ve-switch-editor-tool-title": "Пребаци ме на уређивач викитекста",
-	"flow-dialog-cancelconfirm-title": "Јесте ли сигурни?"
+	"flow-dialog-cancelconfirm-title": "Јесте ли сигурни?",
+	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Добродошли}} на {{GENDER:$1|Вашу}} нову страницу за разговор",
+	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Ваша}} страница за разговор је место где вас други уредници контактирају. Са Flow-ом, једноставније је направити нову тему и пратити дискусију.",
+	"flow-guidedtour-optin-feedback": "Дајте нам {{GENDER:$1|Ваше}} мишљење!"
 }
