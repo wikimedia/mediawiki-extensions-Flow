@@ -52,7 +52,14 @@ class AbuseFilterTest extends PostRevisionTestCase {
 	public function testSpam( PostRevision $newRevision, PostRevision $oldRevision = null, $expected ) {
 		$title = Title::newFromText( 'UTPage' );
 
-		$status = $this->spamFilter->validate( $this->getMock( 'IContextSource' ), $newRevision, $oldRevision, $title );
+		$context = $this->getMockBuilder( 'IContextSource' )
+				->setMethods( array( 'getUser' ) )
+				->getMock();
+		$context->expects( $this->any() )
+				->method( 'getUser' )
+				->will( $this->returnValue( User::newFromName( 'UTSysop' ) ) );
+
+		$status = $this->spamFilter->validate( $context, $newRevision, $oldRevision, $title );
 		$this->assertEquals( $expected, $status->isOK() );
 	}
 
@@ -70,8 +77,9 @@ class AbuseFilterTest extends PostRevisionTestCase {
 		\RequestContext::getMain()->setTitle( Title::newMainPage() );
 
 		$user = User::newFromName( 'UTSysop' );
+		\RequestContext::getMain()->setUser( $user );
 
-		$this->spamFilter = new AbuseFilter( $user, $wgFlowAbuseFilterGroup );
+		$this->spamFilter = new AbuseFilter( $wgFlowAbuseFilterGroup );
 		if ( !$this->spamFilter->enabled() ) {
 			$this->markTestSkipped( 'AbuseFilter not enabled' );
 		}

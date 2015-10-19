@@ -10,21 +10,14 @@ use User;
 
 class AbuseFilter implements SpamFilter {
 	/**
-	 * @var User
-	 */
-	protected $user;
-
-	/**
 	 * @var string
 	 */
 	protected $group;
 
 	/**
-	 * @param User $user The user submitting content
 	 * @param string $group The abuse filter group to use
 	 */
-	public function __construct( User $user, $group ) {
-		$this->user = $user;
+	public function __construct( $group ) {
 		$this->group = $group;
 	}
 
@@ -71,7 +64,7 @@ class AbuseFilter implements SpamFilter {
 	 */
 	public function validate( IContextSource $context, AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title ) {
 		$vars = \AbuseFilter::getEditVars( $title );
-		$vars->addHolders( \AbuseFilter::generateUserVars( $this->user ), \AbuseFilter::generateTitleVars( $title , 'ARTICLE' ) );
+		$vars->addHolders( \AbuseFilter::generateUserVars( $context->getUser() ), \AbuseFilter::generateTitleVars( $title , 'ARTICLE' ) );
 		$vars->setVar( 'ACTION', $newRevision->getChangeType() );
 
 		/*

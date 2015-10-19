@@ -103,13 +103,12 @@ class FlowHooks {
 	 */
 	public static function getAbuseFilter() {
 		if ( self::$abuseFilter === null ) {
-			global $wgUser,
-				$wgFlowAbuseFilterGroup,
+			global $wgFlowAbuseFilterGroup,
 				$wgFlowAbuseFilterEmergencyDisableThreshold,
 				$wgFlowAbuseFilterEmergencyDisableCount,
 				$wgFlowAbuseFilterEmergencyDisableAge;
 
-			self::$abuseFilter = new AbuseFilter( $wgUser, $wgFlowAbuseFilterGroup );
+			self::$abuseFilter = new AbuseFilter( $wgFlowAbuseFilterGroup );
 			self::$abuseFilter->setup( array(
 				'threshold' => $wgFlowAbuseFilterEmergencyDisableThreshold,
 				'count' => $wgFlowAbuseFilterEmergencyDisableCount,
