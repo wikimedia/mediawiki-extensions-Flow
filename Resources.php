@@ -473,6 +473,7 @@ $wgResourceModules += array(
 			// this must be last (of everything loaded.  otherwise a components
 			// can be initialized before all the mixins are loaded.  Can we mixin
 			// after initialization?)
+			'mw.flow.Initializer.js',
 			'flow-initialize.js',
 		),
 		'dependencies' => array(
