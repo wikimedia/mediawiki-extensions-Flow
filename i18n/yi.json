@@ -11,6 +11,7 @@
 	"flow-topic-actions": "אַקציעס",
 	"flow-cancel": "אַנולירן",
 	"flow-summary-authored": "רעזומע פון $1",
+	"flow-summary-edited": "רעזומע לעצט {{GENDER:$1|רעדאקטירט}} דורך $1",
 	"flow-newtopic-title-placeholder": "נײַע טעמע",
 	"flow-newtopic-content-placeholder": "אײַנגעבן א נײַע מעלדונג צו \"$1\"",
 	"flow-newtopic-header": "צולייגן א נײַע טעמע",
