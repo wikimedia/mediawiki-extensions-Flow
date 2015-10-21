@@ -130,18 +130,12 @@ class BufferedBagOStuff extends HashBagOStuff {
 		} );
 	}
 
-	/**
-	 * @param string $key
-	 * @param mixed $value
-	 * @param int $exptime
-	 * @return bool
-	 */
-	public function set( $key, $value, $exptime = 0 ) {
+	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		$this->defer( array( $this->cache, __FUNCTION__ ), func_get_args(), $key );
 
 		// Store the value in memory, so that when we ask for it again later in
 		// this same request, we get the value we just set
-		return parent::set( $key, $value, $exptime );
+		return parent::set( $key, $value, $exptime, $flags );
 	}
 
 	/**
