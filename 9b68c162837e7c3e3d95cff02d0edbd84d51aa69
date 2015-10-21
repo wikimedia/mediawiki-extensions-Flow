@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_a381c350",
+        "filename": "includes/Data/Index/FeatureIndex.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-21T19:41:09Z",
+      "side": 1,
+      "message": "It seemed like a limit of e.g. \"first 50 results\" only made sense in TopKIndex (you can\u0027t have the first 50 of a UniqueFeatureIndex).  Same for offsets (though this isn\u0027t really being done in the index anymore either for \u0027offset-id\u0027 cases at least, and I\u0027m not sure if this \u0027offset\u0027 is used anywhere).  \n\nI\u0027ve added a TODO regarding \u0027offset\u0027.\n\nThe main reason I didn\u0027t move all the limit functionality to TopKIndex is that UniqueFeatureIndex declares itself as having a limit of 1.",
+      "parentUuid": "0ebaf39b_1cc86276",
+      "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_fccc6e8e",
         "filename": "includes/Data/Index/TopKIndex.php",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2015-10-15T10:32:33Z",
       "side": 1,
       "message": "AIUI: queries with offset-id now will no longer use cache indices nut allways fall back to DB - right?\n\nI\u0027m guessing most of those already went to DB anyway, but just want to make sure we don\u0027t cause a bunch of new DB traffic.",
+      "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_43bec7fb",
+        "filename": "includes/Data/Index/TopKIndex.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-21T19:41:09Z",
+      "side": 1,
+      "message": "Yes, it sends anything with offset-id or non-fwd offset-dir to the DB.",
+      "parentUuid": "0ebaf39b_fccc6e8e",
       "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_23695388",
+        "filename": "includes/Data/ObjectLocator.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-21T19:41:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_7cadde7f",
+      "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_9cb0d2d9",
         "filename": "includes/Data/ObjectLocator.php",
         "patchSetId": 6
@@ -64,6 +118,24 @@
       "writtenOn": "2015-10-15T10:32:33Z",
       "side": 1,
       "message": "instead of checking if `$options[\u0027offset-id\u0027] !\u003d\u003d null`, check `$options[\u0027offset-id\u0027] instanceof UUID` (which is assumed on L367 by calling -\u003egetBinary on it)\n\nOr do a `$options[\u0027offset-id\u0027] \u003d UUID::create( $options[\u0027offset-id\u0027] );` just to make sure it is a UUID before using it as such.",
+      "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_a35543c7",
+        "filename": "includes/Data/ObjectLocator.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-21T19:41:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_9cb0d2d9",
       "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_03068fd1",
+        "filename": "includes/Data/Utils/SortRevisionsByRevisionId.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-21T19:41:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_9c8a121b",
+      "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_3c81a6fd",
         "filename": "includes/Data/Utils/SortRevisionsByRevisionId.php",
         "patchSetId": 6
@@ -98,6 +188,24 @@
       "writtenOn": "2015-10-15T10:32:33Z",
       "side": 1,
       "message": "\"descending\" is outdated.",
+      "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_a30c63f1",
+        "filename": "includes/Data/Utils/SortRevisionsByRevisionId.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-21T19:41:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_3c81a6fd",
       "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_83f11fdc",
+        "filename": "includes/Formatter/BoardHistoryQuery.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-21T19:41:09Z",
+      "side": 1,
+      "message": "I intentionally did this as an optimization to avoid over-fetching where unneeded.  Same for header.\n\nThis is also why it\u0027s no longer in HistoryPager like it was in https://gerrit.wikimedia.org/r/#/c/245621/1/includes/Data/Pager/HistoryPager.php .\n\nI added some warnings about this.  It will also be pretty obvious if it\u0027s not updated, though.  Rather than only an obscure performance issue, it just won\u0027t exclude the new thing.",
+      "parentUuid": "0ebaf39b_fca9ce78",
+      "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_dc8f2a25",
         "filename": "includes/Formatter/HistoryQuery.php",
         "patchSetId": 6
@@ -132,6 +258,24 @@
       "writtenOn": "2015-10-15T10:32:33Z",
       "side": 1,
       "message": "Missing @return",
+      "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_a3230353",
+        "filename": "includes/Formatter/HistoryQuery.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-21T19:41:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_dc8f2a25",
       "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_03b76fd4",
+        "filename": "includes/Formatter/HistoryQuery.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-21T19:41:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_9c99b273",
+      "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_1ca5c29a",
         "filename": "includes/Formatter/HistoryQuery.php",
         "patchSetId": 6
@@ -172,6 +334,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_83e7df0c",
+        "filename": "includes/Formatter/HistoryQuery.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-21T19:41:09Z",
+      "side": 1,
+      "message": "Good catch.  I think this is possible on the first request (it shouldn\u0027t be possible on the later ones due to $internalOverfetched).",
+      "parentUuid": "0ebaf39b_1ca5c29a",
+      "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_3cc7664c",
         "filename": "includes/Formatter/TopicHistoryQuery.php",
         "patchSetId": 6
@@ -183,6 +363,24 @@
       "writtenOn": "2015-10-15T10:32:33Z",
       "side": 1,
       "message": "Also doInternalQueries?",
+      "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_63c74b4b",
+        "filename": "includes/Formatter/TopicHistoryQuery.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-21T19:41:09Z",
+      "side": 1,
+      "message": "See reply at BoardHistoryQuery.",
+      "parentUuid": "0ebaf39b_3cc7664c",
       "revId": "9b68c162837e7c3e3d95cff02d0edbd84d51aa69",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
