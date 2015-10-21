@@ -353,7 +353,7 @@ $wgResourceModules += array(
 		'dependencies' => array(
 			'oojs',
 			'ext.flow.templating', // prototype-based for progressiveEnhancement
-			'ext.flow.jquery.findWithParent',
+			'jquery.findWithParent',
 			'ext.flow.vendor.storer',
 			'mediawiki.Title',
 			'mediawiki.user',
@@ -609,11 +609,6 @@ $wgResourceModules += array(
 	'ext.flow.jquery.conditionalScroll' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'engine/misc/jquery.conditionalScroll.js',
-		),
-	) + $mobile,
-	'ext.flow.jquery.findWithParent' => $flowResourceTemplate + array(
-		'scripts' => array(
-			'engine/misc/jquery.findWithParent.js',
 		),
 	) + $mobile,
 );
