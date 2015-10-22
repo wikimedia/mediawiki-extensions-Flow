@@ -288,6 +288,7 @@ $wgAutoloadClasses += array(
 	'Flow\\SpamFilter\\ConfirmEdit' => __DIR__ . '/includes/SpamFilter/ConfirmEdit.php',
 	'Flow\\SpamFilter\\ContentLengthFilter' => __DIR__ . '/includes/SpamFilter/ContentLengthFilter.php',
 	'Flow\\SpamFilter\\Controller' => __DIR__ . '/includes/SpamFilter/Controller.php',
+	'Flow\\SpamFilter\\RateLimits' => __DIR__ . '/includes/SpamFilter/RateLimits.php',
 	'Flow\\SpamFilter\\SpamBlacklist' => __DIR__ . '/includes/SpamFilter/SpamBlacklist.php',
 	'Flow\\SpamFilter\\SpamFilter' => __DIR__ . '/includes/SpamFilter/SpamFilter.php',
 	'Flow\\SpamFilter\\SpamRegex' => __DIR__ . '/includes/SpamFilter/SpamRegex.php',
