@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebaf39b_fdb993c7",
+        "filename": "includes/SpamFilter/RateLimits.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-22T19:50:07Z",
+      "side": 1,
+      "message": "RateLimits",
+      "revId": "0aef79fe9893f3214915fdc1e400cbd09de79cd1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
