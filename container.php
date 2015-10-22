@@ -838,12 +838,12 @@ $c['controller.ratelimits'] = function( $c ) {
 
 $c['controller.spamfilter'] = function( $c ) {
 	return new Flow\SpamFilter\Controller(
+		$c['controller.contentlength'],
 		$c['controller.spamregex'],
 		$c['controller.ratelimits'],
 		$c['controller.spamblacklist'],
 		$c['controller.abusefilter'],
-		$c['controller.confirmedit'],
-		$c['controller.contentlength']
+		$c['controller.confirmedit']
 	);
 };
 
