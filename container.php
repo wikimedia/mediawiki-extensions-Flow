@@ -832,9 +832,14 @@ $c['controller.contentlength'] = function( $c ) {
 	return new Flow\SpamFilter\ContentLengthFilter( $maxCharCount );
 };
 
+$c['controller.ratelimits'] = function( $c ) {
+	return new Flow\SpamFilter\RateLimits;
+};
+
 $c['controller.spamfilter'] = function( $c ) {
 	return new Flow\SpamFilter\Controller(
 		$c['controller.spamregex'],
+		$c['controller.ratelimits'],
 		$c['controller.spamblacklist'],
 		$c['controller.abusefilter'],
 		$c['controller.confirmedit'],
