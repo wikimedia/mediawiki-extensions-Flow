@@ -19,7 +19,8 @@
 			"Kwj2772",
 			"LiteHell",
 			"Hwangjy9",
-			"Nnemo"
+			"Nnemo",
+			"Yearning"
 		]
 	},
 	"enableflow": "Flow 활성화",
@@ -28,8 +29,8 @@
 	"log-name-flow": "플로우 활동 기록",
 	"logentry-delete-flow-delete-post": "$1 사용자가 [[$6]]의 주제 \"[[$3|$5]]\"의 [$4 게시물]을 {{GENDER:$2|삭제했습니다}}",
 	"logentry-delete-flow-restore-post": "$1 사용자가 [[$6]]의 주제 \"[[$3|$5]]\"의 [$4 게시물]을 {{GENDER:$2|되살렸습니다}}",
-	"logentry-suppress-flow-suppress-post": "$1 사용자가 [[$6]]의 주제 \"[[$3|$5]]\"의 [$4 게시물]을 {{GENDER:$2|숨겼습니다}}",
-	"logentry-suppress-flow-restore-post": "$1 사용자가 [[$6]]의 주제 \"[[$3|$5]]\"의 [$4 게시물]을 {{GENDER:$2|삭제했습니다}}",
+	"logentry-suppress-flow-suppress-post": "$1 사용자가 [[$6]]에서 \"[[$3|$5]]\" [$4 게시물]을 {{GENDER:$2|숨겼습니다}}",
+	"logentry-suppress-flow-restore-post": "$1 사용자가 [[$6]]에서 \"[[$3|$5]]\" [$4 게시물]을 {{GENDER:$2|삭제했습니다}}",
 	"logentry-delete-flow-delete-topic": "$1 사용자가 [[$6]]의 주제 \"[[$3|$5]]\"를 {{GENDER:$2|삭제했습니다}}",
 	"logentry-delete-flow-restore-topic": "$1 사용자가 [[$6]]의 주제 \"[[$3|$5]]\"를 {{GENDER:$2|되살렸습니다}}",
 	"logentry-suppress-flow-suppress-topic": "$1 사용자가 [[$6]]의 주제 \"[[$3|$5]]\"를 {{GENDER:$2|숨겼습니다}}",
@@ -378,7 +379,7 @@
 	"apihelp-flow+edit-topic-summary-example-1": "[[Topic:S2tycnas4hcucw8w]]의 요약을 편집하기",
 	"apihelp-flow+lock-topic-description": "플로우 주제를 잠그거나 잠금을 해제합니다.",
 	"apihelp-flow+lock-topic-example-1": "[[Topic:S2tycnas4hcucw8w]] 잠그기",
-	"apihelp-flow+moderate-post-example-1": "[[Topic:S2tycnas4hcucw8w]] 주제의 게시물을 삭제하기",
+	"apihelp-flow+moderate-post-example-1": "[[Topic:S2tycnas4hcucw8w]] 게시물을 삭제하기",
 	"apihelp-flow+moderate-topic-example-1": "[[Topic:S2tycnas4hcucw8w]] 주제를 지우기",
 	"apihelp-flow+new-topic-example-1": "[[Talk:Sandbox]]에서 새 주제 만들기",
 	"apihelp-flow+reply-example-1": "[[Topic:S2tycnas4hcucw8w]]의 게시물에 답변하기",
@@ -387,7 +388,7 @@
 	"apihelp-flow+view-topic-summary-description": "주제 요약을 봅니다.",
 	"apihelp-flow+view-topic-summary-example-1": "[[Topic:S2tycnas4hcucw8w]]의 요약을 위키텍스트로 보기",
 	"apihelp-flow+view-topiclist-description": "주제 목록을 봅니다.",
-	"apihelp-flow+view-topiclist-example-1": "[[Talk:Sandbox]]의 주제를 나열하기",
+	"apihelp-flow+view-topiclist-example-1": "[[Talk:Sandbox]]의 항목을 나열하기",
 	"apihelp-flow+undo-edit-post-description": "포스트 편집을 취소하기 위해 필요한 정보를 검색합니다.",
 	"apihelp-flow+undo-edit-post-param-postId": "포스트 아이디는 취소할수 있습니다.",
 	"apihelp-flow+undo-edit-post-param-endId": "끝으로 아이디 수정이 취소되었습니다.",
