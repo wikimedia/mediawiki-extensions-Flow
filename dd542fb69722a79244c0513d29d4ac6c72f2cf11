@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebaf39b_1730fb98",
+        "filename": "FlowActions.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-23T19:47:58Z",
+      "side": 1,
+      "message": "MODERATED_HIDDEN should also show per Nick.  Since \u0027hide\u0027 is widely available making all posts in RC (within hidden topic) invisible is too drastic.",
+      "revId": "dd542fb69722a79244c0513d29d4ac6c72f2cf11",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
