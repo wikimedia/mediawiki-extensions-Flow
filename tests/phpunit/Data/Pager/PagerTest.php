@@ -449,7 +449,7 @@ class PagerTest extends \MediaWikiTestCase {
 		$cache = new BufferedCache( $innerCache );
 
 		// preload our answer
-		$bag->set( wfWikiId() . ":prefix:1:$wgFlowCacheVersion", array(
+		$bag->set( wfWikiId() . ":prefix:" . md5( '1' ) . ":$wgFlowCacheVersion", array(
 			array( 'foo' => 1, 'bar' => 9 ),
 			array( 'foo' => 1, 'bar' => 8 ),
 			array( 'foo' => 1, 'bar' => 7 ),
