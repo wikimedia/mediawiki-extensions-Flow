@@ -693,7 +693,7 @@ abstract class FeatureIndex implements Index {
 		// which would lead to differences in cache key if we don't force that
 		sort( $attributes );
 
-		return wfForeignMemcKey( self::cachedDbId(), '', $this->prefix, implode( ':', $attributes ), Container::get( 'cache.version' ) );
+		return wfForeignMemcKey( self::cachedDbId(), '', $this->prefix, md5( implode( ':', $attributes ) ), Container::get( 'cache.version' ) );
 	}
 
 	/**
