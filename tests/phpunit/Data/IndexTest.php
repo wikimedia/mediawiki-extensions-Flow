@@ -49,12 +49,12 @@ class IndexTest extends FlowTestCase {
 
 		$db = FeatureIndex::cachedDbId();
 		$v = Container::get( 'cache.version' );
-		$bag->set( "$db:unique:1:$v", array( array( 'id' => 1, 'name' => 'foo', 'other' => 'ppp' ) ) );
-		$bag->set( "$db:unique:2:$v", array( array( 'id' => 2, 'name' => 'foo', 'other' => 'qqq' ) ) );
-		$bag->set( "$db:unique:3:$v", array( array( 'id' => 3, 'name' => 'baz', 'other' => 'lll' ) ) );
+		$bag->set( "$db:unique:" . md5( '1' ) . ":$v", array( array( 'id' => 1, 'name' => 'foo', 'other' => 'ppp' ) ) );
+		$bag->set( "$db:unique:" . md5( '2' ) . ":$v", array( array( 'id' => 2, 'name' => 'foo', 'other' => 'qqq' ) ) );
+		$bag->set( "$db:unique:" . md5( '3' ) . ":$v", array( array( 'id' => 3, 'name' => 'baz', 'other' => 'lll' ) ) );
 
-		$bag->set( "$db:secondary:foo:$v", array( array( 'id' => 1 ), array( 'id' => 2 ) ) );
-		$bag->set( "$db:secondary:baz:$v", array( array( 'id' => 3 ) ) );
+		$bag->set( "$db:secondary:" . md5( 'foo' ) . ":$v", array( array( 'id' => 1 ), array( 'id' => 2 ) ) );
+		$bag->set( "$db:secondary:" . md5( 'baz' ) . ":$v", array( array( 'id' => 3 ) ) );
 
 		$expect = array(
 			array( 'id' => 1, 'name' => 'foo', 'other' => 'ppp', ),
@@ -101,15 +101,15 @@ class IndexTest extends FlowTestCase {
 		// even though, due to uniqueness, there is only one value per set of keys
 		$db = FeatureIndex::cachedDbId();
 		$v = Container::get( 'cache.version' );
-		$bag->set( "$db:unique:1:9:$v", array( array( 'id' => 1, 'ot' => 9, 'name' => 'foo' ) ) );
-		$bag->set( "$db:unique:1:8:$v", array( array( 'id' => 1, 'ot' => 8, 'name' => 'foo' ) ) );
-		$bag->set( "$db:unique:3:7:$v", array( array( 'id' => 3, 'ot' => 7, 'name' => 'baz' ) ) );
+		$bag->set( "$db:unique:" . md5( '1:9' ) . ":$v", array( array( 'id' => 1, 'ot' => 9, 'name' => 'foo' ) ) );
+		$bag->set( "$db:unique:" . md5( '1:8' ) . ":$v", array( array( 'id' => 1, 'ot' => 8, 'name' => 'foo' ) ) );
+		$bag->set( "$db:unique:" . md5( '3:7' ) . ":$v", array( array( 'id' => 3, 'ot' => 7, 'name' => 'baz' ) ) );
 
-		$bag->set( "$db:secondary:foo:$v", array(
+		$bag->set( "$db:secondary:" . md5( 'foo' ) . ":$v", array(
 			array( 'id' => 1, 'ot' => 9 ),
 			array( 'id' => 1, 'ot' => 8 ),
 		) );
-		$bag->set( "$db:secondary:baz:$v", array(
+		$bag->set( "$db:secondary:" . md5( 'baz' ). ":$v", array(
 			array( 'id' => 3, 'ot' => 7 ),
 		) );
 
