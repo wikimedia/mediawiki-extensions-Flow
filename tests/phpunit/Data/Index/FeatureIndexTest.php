@@ -30,7 +30,7 @@ class FeatureIndexTest extends \MediaWikiTestCase {
 		$cache->expects( $this->any() )
 			->method( 'getMulti' )
 			->will( $this->returnValue( array(
-				"$dbId:foo:5:$wgFlowCacheVersion" => array(
+				"$dbId:foo:" . md5( '5' ) . ":$wgFlowCacheVersion" => array(
 					array( 'some_row' => 40 ),
 					array( 'some_row' => 41 ),
 					array( 'some_row' => 42 ),
@@ -71,7 +71,7 @@ class FeatureIndexTest extends \MediaWikiTestCase {
 		$cache->expects( $this->any() )
 			->method( 'getMulti' )
 			->will( $this->returnValue( array(
-				"$dbId:foo:5:$wgFlowCacheVersion" => array(
+				"$dbId:foo:" . md5 ( '5' ) . ":$wgFlowCacheVersion" => array(
 					array( 'some_row' => 40 ),
 					array( 'some_row' => 41 ),
 					array( 'some_row' => 42 ),
