@@ -35,6 +35,13 @@ abstract class AbstractRevision {
 	);
 
 	/**
+	 * List of moderation change types
+	 *
+	 * @var array|null
+	 */
+	static protected $moderationChangeTypes = null;
+
+	/**
 	 * @var UUID
 	 */
 	protected $revId;
@@ -708,6 +715,27 @@ abstract class AbstractRevision {
 	 */
 	public function getModeratedByUserWiki() {
 		return $this->moderatedBy ? $this->moderatedBy->wiki : null;
+	}
+
+	protected static function getModerationChangeTypes() {
+		if ( self::$moderationChangeTypes === null ) {
+			self::$moderationChangeTypes = array();
+			foreach( self::$perms as $perm ) {
+				if ( $perm != '' ) {
+					self::$moderationChangeTypes[] = "{$perm}-topic";
+					self::$moderationChangeTypes[] = "{$perm}-post";
+				}
+			}
+
+			self::$moderationChangeTypes[] = 'restore-topic';
+			self::$moderationChangeTypes[] = 'restore-post';
+		}
+
+		return self::$moderationChangeTypes;
+	}
+
+	public function isModerationChange() {
+		 return in_array( $this->getChangeType(), self::getModerationChangeTypes() );
 	}
 
 	/**
