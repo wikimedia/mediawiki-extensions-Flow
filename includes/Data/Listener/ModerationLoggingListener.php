@@ -30,8 +30,7 @@ class ModerationLoggingListener extends AbstractListener {
 	}
 
 	protected function log( PostRevision $post, Workflow $workflow ) {
-		$moderationChangeTypes = self::getModerationChangeTypes();
-		if ( ! in_array( $post->getChangeType(), $moderationChangeTypes ) ) {
+		if ( !$post->isModerationChange() ) {
 			// Do nothing for non-moderation actions
 			return;
 		}
@@ -46,24 +45,5 @@ class ModerationLoggingListener extends AbstractListener {
 				$workflowId
 			);
 		}
-	}
-
-	public static function getModerationChangeTypes() {
-		static $changeTypes = false;
-
-		if ( ! $changeTypes ) {
-			$changeTypes = array();
-			foreach( AbstractRevision::$perms as $perm ) {
-				if ( $perm != '' ) {
-					$changeTypes[] = "{$perm}-topic";
-					$changeTypes[] = "{$perm}-post";
-				}
-			}
-
-			$changeTypes[] = 'restore-topic';
-			$changeTypes[] = 'restore-post';
-		}
-
-		return $changeTypes;
 	}
 }
