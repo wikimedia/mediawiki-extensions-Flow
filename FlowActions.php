@@ -706,7 +706,7 @@ $wgFlowActions = array(
 
 				/*
 				 * To check permissions, both the current revision (revision-
-				 * specific moderation state)& the last revision (global
+				 * specific moderation state) & the last revision (global
 				 * collection moderation state) will always be checked.
 				 * This one has special checks to make sure "restore" actions
 				 * are hidden when the user has no permissions to see the
@@ -762,10 +762,14 @@ $wgFlowActions = array(
 		),
 		'root-permissions' => array(
 			PostRevision::MODERATED_NONE => '',
-			PostRevision::MODERATED_HIDDEN => '',
 			PostRevision::MODERATED_LOCKED => '',
-			PostRevision::MODERATED_DELETED => '',
-			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
+			PostRevision::MODERATED_HIDDEN => '',
+			// No data should be shown for other moderation levels: if a topic
+			// has been deleted, we don't want a bunch of irrelevant
+			// "new reply", "edit", ... spam in there.
+			// All we want is the "topic has been deleted", which will still be
+			// displayed (root-permissions won't be tested for the topic, since
+			// it is the root)
 		),
 		'core-delete-permissions' => array( 'deletedhistory' ),
 		'history' => array(), // views don't generate history
