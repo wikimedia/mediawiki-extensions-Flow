@@ -356,7 +356,6 @@ $wgAutoloadClasses += array(
 	'Flow\\Tests\\Model\\UUIDTest' => __DIR__ . '/tests/phpunit/Model/UUIDTest.php',
 	'Flow\\Tests\\Model\\UserTupleTest' => __DIR__ . '/tests/phpunit/Model/UserTupleTest.php',
 	'Flow\\Tests\\NotifiedUsersTest' => __DIR__ . '/tests/phpunit/Notifications/NotifiedUsersTest.php',
-	'Flow\\Tests\\PagerTest' => __DIR__ . '/tests/phpunit/PagerTest.php',
 	'Flow\\Tests\\Parsoid\\BadImageRemoverTest' => __DIR__ . '/tests/phpunit/Parsoid/Fixer/BadImageRemoverTest.php',
 	'Flow\\Tests\\Parsoid\\BaseHrefFixerTest' => __DIR__ . '/tests/phpunit/Parsoid/Fixer/BaseHrefFixerTest.php',
 	'Flow\\Tests\\Parsoid\\Fixer\\MethodReturnsConstraint' => __DIR__ . '/tests/phpunit/Parsoid/Fixer/WikiLinkFixerTest.php',
