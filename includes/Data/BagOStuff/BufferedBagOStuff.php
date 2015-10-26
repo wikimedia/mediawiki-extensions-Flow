@@ -179,10 +179,9 @@ class BufferedBagOStuff extends HashBagOStuff {
 
 	/**
 	 * @param string $key
-	 * @param int $time
 	 * @return bool
 	 */
-	public function delete( $key, $time = 0 ) {
+	public function delete( $key ) {
 		$cache = $this->cache;
 
 		/**
@@ -196,11 +195,10 @@ class BufferedBagOStuff extends HashBagOStuff {
 		 * always return true, regardless of whether or not the key existed.
 		 *
 		 * @param string $key
-		 * @param int $time
 		 * @return bool
 		 */
-		$delete = function ( $key, $time = 0 ) use ( $cache ) {
-			$cache->delete( $key, $time );
+		$delete = function ( $key ) use ( $cache ) {
+			$cache->delete( $key );
 			return true;
 		};
 
