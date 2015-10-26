@@ -394,7 +394,7 @@ class TreeRepository {
 	public function fetchSubtreeNodeList( array $roots ) {
 		$list = new MultiGetList( $this->cache );
 		$res = $list->get(
-			array( 'tree', 'subtree' ),
+			'subtree',
 			$roots,
 			array( $this, 'fetchSubtreeNodeListFromDb' )
 		);
@@ -443,7 +443,7 @@ class TreeRepository {
 	public function fetchParentMap( array $nodes ) {
 		$list = new MultiGetList( $this->cache );
 		return $list->get(
-			array( 'tree', 'parent' ),
+			'parent',
 			$nodes,
 			array( $this, 'fetchParentMapFromDb' )
 		);
