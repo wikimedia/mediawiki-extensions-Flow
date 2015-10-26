@@ -262,7 +262,7 @@
 '.$sp.'' : '	<div class="flow-no-more">
 '.$sp.'		'.LCRun3::ch($cx, 'l10n', array(array('flow-no-more-fwd'),array()), 'encq').'
 '.$sp.'	</div>
-'.$sp.'	<div class="bottom-spacer"></div>
+'.$sp.'	<div class="flow-bottom-spacer"></div>
 '.$sp.'').'';},),
         'scopes' => array(),
         'sp_vars' => array('root' => $in),
