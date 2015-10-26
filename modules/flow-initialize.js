@@ -55,7 +55,7 @@
 		flowBoard = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $board );
 
 		if (
-			$component.hasClass( 'topic-page' ) &&
+			$component.hasClass( 'flow-topic-page' ) &&
 			$( 'body' ).hasClass( 'action-view' )
 		) {
 			$board
