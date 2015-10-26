@@ -22,14 +22,13 @@ class MultiGetList {
 	}
 
 	/**
-	 * @param string $key
+	 * @param string $treeType
 	 * @param array $ids
 	 * @param callable $loadCallback
 	 * @return array
 	 * @throws InvalidInputException
 	 */
-	public function get( $key, array $ids, $loadCallback ) {
-		$key = implode( ':', (array) $key );
+	public function get( $treeType, array $ids, $loadCallback ) {
 		$cacheKeys = array();
 		foreach ( $ids as $id ) {
 			if ( $id instanceof UUID ) {
@@ -40,7 +39,7 @@ class MultiGetList {
 			} else {
 				$cacheId = $id;
 			}
-			$cacheKeys[wfForeignMemcKey( 'flow', '', $key, $cacheId, Container::get( 'cache.version' ) )] = $id;
+			$cacheKeys[wfForeignMemcKey( 'flow', '', 'tree', $treeType, $cacheId, Container::get( 'cache.version' ) )] = $id;
 		}
 		return $this->getByKey( $cacheKeys, $loadCallback );
 	}
