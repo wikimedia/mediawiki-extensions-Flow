@@ -121,12 +121,16 @@ class WorkflowLoaderFactory {
 	 * @param UUID $workflowId
 	 * @return Workflow
 	 * @throws InvalidInputException
+	 * @throws UnknownWorkflowIdException
 	 */
 	protected function loadWorkflowById( /* Title or false */ $title, $workflowId ) {
 		/** @var Workflow $workflow */
 		$workflow = $this->storage->getStorage( 'Workflow' )->get( $workflowId );
 		if ( !$workflow ) {
 			throw new UnknownWorkflowIdException( 'Invalid workflow requested by id', 'invalid-input' );
+		}
+		if ( $workflow->getWiki() !== wfWikiID() ) {
+			throw new UnknownWorkflowIdException( 'The requested workflow does not exist on this wiki.' );
 		}
 		if ( $title !== false && $this->pageMoveInProgress === false && !$workflow->matchesTitle( $title ) ) {
 			throw new InvalidInputException( 'Flow workflow is for different page', 'invalid-input' );
