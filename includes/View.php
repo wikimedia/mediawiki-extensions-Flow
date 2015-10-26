@@ -298,7 +298,7 @@ class View extends ContextSource {
 			// Get the block loop template
 			$template = $this->lightncandy->getTemplate( 'flow_block_loop' );
 
-			$classes = array( 'flow-component', "$page-page" );
+			$classes = array( 'flow-component', "flow-$page-page" );
 
 			// Always add mw-content-{ltr,rtl} class
 			$title = Title::newFromText( $apiResponse['title'] );

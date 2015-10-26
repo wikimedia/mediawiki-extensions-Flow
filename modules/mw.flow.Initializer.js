@@ -109,7 +109,7 @@
 		var sidebarExpandWidget;
 
 		if (
-			this.$component.hasClass( 'topic-page' ) &&
+			this.$component.hasClass( 'flow-topic-page' ) &&
 			$( 'body' ).hasClass( 'action-view' )
 		) {
 			this.$board.toggleClass( 'flow-board-expanded', this.siderailCollapsed );
