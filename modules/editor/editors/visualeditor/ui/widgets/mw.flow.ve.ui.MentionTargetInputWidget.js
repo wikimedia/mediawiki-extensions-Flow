@@ -6,7 +6,7 @@
 	 *
 	 * @class
 	 * @extends OO.ui.TextInputWidget
-	 * @mixins OO.ui.LookupElement
+	 * @mixins OO.ui.mixin.LookupElement
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
@@ -23,7 +23,7 @@
 		);
 
 		// Mixin constructor
-		OO.ui.LookupElement.call( this, $.extend( { allowSuggestionsWhenEmpty: true }, config ) );
+		OO.ui.mixin.LookupElement.call( this, $.extend( { allowSuggestionsWhenEmpty: true }, config ) );
 
 		// Properties
 		this.username = null;
@@ -41,7 +41,7 @@
 
 	OO.inheritClass( mw.flow.ve.ui.MentionTargetInputWidget, OO.ui.TextInputWidget );
 
-	OO.mixinClass( mw.flow.ve.ui.MentionTargetInputWidget, OO.ui.LookupElement );
+	OO.mixinClass( mw.flow.ve.ui.MentionTargetInputWidget, OO.ui.mixin.LookupElement );
 
 	/**
 	 * Check if the value of the input corresponds to a username that exists.
@@ -138,7 +138,7 @@
 
 		item = this.lookupMenu.getSelectedItem();
 		if ( !item ) {
-			OO.ui.LookupElement.prototype.initializeLookupMenuSelection.call( this );
+			OO.ui.mixin.LookupElement.prototype.initializeLookupMenuSelection.call( this );
 		}
 
 		item = this.lookupMenu.getSelectedItem();
