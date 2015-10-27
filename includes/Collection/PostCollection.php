@@ -13,7 +13,7 @@ class PostCollection extends LocalCacheAbstractCollection {
 	 */
 	protected $rootId;
 
-	public function getRevisionClass() {
+	public static function getRevisionClass() {
 		return 'Flow\\Model\\PostRevision';
 	}
 
@@ -37,7 +37,7 @@ class PostCollection extends LocalCacheAbstractCollection {
 	 * @throws InvalidDataException
 	 */
 	public function getBoardWorkflowId() {
-		$found = $this->getStorage( 'Flow\\Model\\TopicListEntry' )->find(
+		$found = self::getStorage( 'Flow\\Model\\TopicListEntry' )->find(
 			// uses flow_topic_list:topic index, for topic->board lookups
 			array( 'topic_id' => $this->getWorkflowId() )
 		);
