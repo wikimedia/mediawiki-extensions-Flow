@@ -37,9 +37,9 @@ class MultiGetList {
 				$type = is_object( $id ) ? get_class( $id ) : gettype( $id );
 				throw new InvalidInputException( 'Not scalar:' . $type, 'invalid-input' );
 			} else {
-				$cacheId = $id;
+				$cacheId = strval( $id );
 			}
-			$cacheKeys[wfForeignMemcKey( 'flow', '', 'tree', $treeType, $cacheId, Container::get( 'cache.version' ) )] = $id;
+			$cacheKeys[ TreeCacheKey::build( $treeType, $cacheId ) ] = $id;
 		}
 		return $this->getByKey( $cacheKeys, $loadCallback );
 	}
