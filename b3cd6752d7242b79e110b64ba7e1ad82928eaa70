@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebaf39b_54241bbc",
+        "filename": "includes/Collection/AbstractCollection.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-10-27T11:58:01Z",
+      "side": 1,
+      "message": "Can probably just do storage-\u003eget( $revId )?",
+      "revId": "b3cd6752d7242b79e110b64ba7e1ad82928eaa70",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
