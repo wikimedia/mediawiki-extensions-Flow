@@ -39,7 +39,7 @@ class MultiGetList {
 			} else {
 				$cacheId = $id;
 			}
-			$cacheKeys[wfForeignMemcKey( 'flow', '', 'tree', $treeType, $cacheId, Container::get( 'cache.version' ) )] = $id;
+			$cacheKeys[ TreeCacheKey::build( $treeType, $cacheId ) ] = $id;
 		}
 		return $this->getByKey( $cacheKeys, $loadCallback );
 	}
