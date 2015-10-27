@@ -3,7 +3,7 @@
 namespace Flow\Collection;
 
 class HeaderCollection extends LocalCacheAbstractCollection {
-	public function getRevisionClass() {
+	public static function getRevisionClass() {
 		return 'Flow\\Model\\Header';
 	}
 

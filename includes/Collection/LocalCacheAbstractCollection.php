@@ -64,8 +64,8 @@ abstract class LocalCacheAbstractCollection extends AbstractCollection {
 			$previousId = $oldest->getPrevRevisionId();
 
 			// check if it's in local storage already
-			if ( $previousId && $this->getStorage()->got( $previousId ) ) {
-				$revision = $this->getStorage()->get( $previousId );
+			if ( $previousId && self::getStorage()->got( $previousId ) ) {
+				$revision = self::getStorage()->get( $previousId );
 
 				// add this revision to revisions array
 				$this->revisions[$previousId->getAlphadecimal()] = $revision;
@@ -104,11 +104,11 @@ abstract class LocalCacheAbstractCollection extends AbstractCollection {
 		$attributes = array( 'rev_type_id' => $this->uuid );
 		$options = array( 'sort' => 'rev_id', 'limit' => 1, 'order' => 'DESC' );
 
-		if ( $this->getStorage()->found( $attributes, $options ) ) {
+		if ( self::getStorage()->found( $attributes, $options ) ) {
 			// if last revision is already known in local cache, fetch it
-			$revision = $this->getStorage()->find( $attributes, $options );
+			$revision = self::getStorage()->find( $attributes, $options );
 			if ( !$revision ) {
-				throw new InvalidDataException( 'Last revision for ' . $this->uuid->getAlphadecimal() . ' could not be found', 'invalid-revision-id' );
+				throw new InvalidDataException( 'Last revision for ' . $this->uuid->getAlphadecimal() . ' could not be found', 'invalid-type-id' );
 			}
 			$revision = reset( $revision );
 			$this->revisions[$revision->getRevisionId()->getAlphadecimal()] = $revision;
