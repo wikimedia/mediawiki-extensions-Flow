@@ -21,7 +21,7 @@ class TopicListLastUpdatedStorage extends TopicListStorage {
 			throw new \MWException( "Validation error in database options" );
 		}
 
-		$res = $this->dbFactory->getDB( DB_MASTER )->select(
+		$res = $this->dbFactory->getDB( DB_SLAVE )->select(
 			array( $this->table, 'flow_workflow' ),
 			'topic_list_id, topic_id, workflow_last_update_timestamp',
 			array_merge( $attributes, array( 'topic_id = workflow_id' ) ),
