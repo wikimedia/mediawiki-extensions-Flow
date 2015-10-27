@@ -60,12 +60,12 @@ class TreeRepository {
 
 	/**
 	 * A helper function to generate cache keys for tree repository
-	 * @param string $type
-	 * @param \Flow\Model\UUID $uuid
+	 * @param string $treeType
+	 * @param UUID $uuid
 	 * @return string
 	 */
-	protected function cacheKey( $type, UUID $uuid ) {
-		return wfForeignMemcKey( 'flow', '', 'tree', $type, $uuid->getAlphadecimal(), Container::get( 'cache.version' ) );
+	protected function cacheKey( $treeType, UUID $uuid ) {
+		return TreeCacheKey::build( $treeType, $uuid );
 	}
 
 	/**
