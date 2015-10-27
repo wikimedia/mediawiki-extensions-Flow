@@ -6,6 +6,7 @@ use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Data\ObjectManager;
 use Flow\Exception\InvalidDataException;
+use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
@@ -37,7 +38,10 @@ abstract class AbstractCollection {
 	 *
 	 * @return string
 	 */
-	abstract public function getRevisionClass();
+	public static function getRevisionClass() {
+		// Workaround to allow static inheritance without strict standards warning from this being abstract
+		throw new FlowException( 'getRevisionClass() must be implemented in the subclass', 'not-implemented' );
+	}
 
 	/**
 	 * Returns the id of the workflow this collection is associated with.
@@ -67,13 +71,32 @@ abstract class AbstractCollection {
 	}
 
 	/**
-	 * Instantiate a new object based on its id.
+	 * Instantiate a new object based on its type id
+	 * (post ID, header ID, etc.)
 	 *
 	 * @param UUID $uuid
 	 * @return AbstractCollection
 	 */
 	public static function newFromId( UUID $uuid ) {
 		return new static( $uuid );
+	}
+
+	/**
+	 * Instantiate a new collection based on a revision ID
+	 *
+	 * @param UUID $revId Revision ID
+	 * @return AbstractCollection
+	 */
+	public static function newFromRevisionId( UUID $revId ) {
+		$revisions = static::getStorage()->find(
+			array( 'rev_id' => $revId )
+		);
+
+		if ( !$revisions ) {
+			throw new InvalidDataException( 'Revisions for ' . $revId->getAlphadecimal() . ' could not be found', 'invalid-revision-id' );
+		}
+
+		return static::newFromRevision( $revisions[0] );
 	}
 
 	/**
@@ -97,9 +120,9 @@ abstract class AbstractCollection {
 	 * @param string|null $class Storage class - defaults to getRevisionClass()
 	 * @return ObjectManager
 	 */
-	public function getStorage( $class = null ) {
+	public static function getStorage( $class = null ) {
 		if ( !$class ) {
-			$class = $this->getRevisionClass();
+			$class = static::getRevisionClass();
 		}
 
 		/** @var ManagerGroup $storage */
@@ -116,13 +139,13 @@ abstract class AbstractCollection {
 	public function getAllRevisions() {
 		if ( !$this->revisions ) {
 			/** @var AbstractRevision[] $revisions */
-			$revisions = $this->getStorage()->find(
+			$revisions = self::getStorage()->find(
 				array( 'rev_type_id' => $this->uuid ),
 				array( 'sort' => 'rev_id', 'order' => 'DESC' )
 			);
 
 			if ( !$revisions ) {
-				throw new InvalidDataException( 'Revisions for ' . $this->uuid->getAlphadecimal() . ' could not be found', 'invalid-revision-id' );
+				throw new InvalidDataException( 'Revisions for ' . $this->uuid->getAlphadecimal() . ' could not be found', 'invalid-type-id' );
 			}
 
 			foreach ( $revisions as $revision ) {
@@ -137,7 +160,7 @@ abstract class AbstractCollection {
 	 * Returns the revision with the given id.
 	 *
 	 * @param UUID $uuid
-	 * @return AbstractRevision|null null if there is no such revision
+	 * @return AbstractRevision|null null if there is no such revision in the collection
 	 */
 	public function getRevision( UUID $uuid ) {
 		// make sure all revisions have been loaded
@@ -227,7 +250,7 @@ abstract class AbstractCollection {
 		if ( !$this->workflow ) {
 			$uuid = $this->getWorkflowId();
 
-			$this->workflow = $this->getStorage( 'Flow\\Model\\Workflow' )->get( $uuid );
+			$this->workflow = self::getStorage( 'Flow\\Model\\Workflow' )->get( $uuid );
 			if ( !$this->workflow ) {
 				throw new InvalidDataException( 'Invalid workflow: ' . $uuid->getAlphadecimal(), 'invalid-workflow' );
 			}
@@ -237,6 +260,6 @@ abstract class AbstractCollection {
 	}
 
 	public function getBoardWorkflow() {
-		return $this->getStorage( 'Flow\\Model\\Workflow' )->get( $this->getBoardWorkflowId() );
+		return self::getStorage( 'Flow\\Model\\Workflow' )->get( $this->getBoardWorkflowId() );
 	}
 }
