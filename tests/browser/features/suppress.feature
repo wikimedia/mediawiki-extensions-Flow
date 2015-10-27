@@ -30,6 +30,8 @@ Feature: Suppress
     Then I see the following entries in board history
         |action              |topic                  |
         |suppressed the topic|suppress-not-in-history|
+    And I do not see the following entries in board history
+        |action              |topic                  |
         |commented on        |suppress-not-in-history|
     When I log out
     And I visit the board history page
