@@ -27,17 +27,17 @@ abstract class Utils {
 	 * @param string $content
 	 * @param Title $title
 	 * @return string
-	 * @throws InvalidDataException When $title does not exist
+	 * @throws WikitextException When the requested conversion is unsupported
+	 * @throws NoParserException When the conversion fails
 	 */
 	public static function convert( $from, $to, $content, Title $title ) {
 		if ( $from === $to || $content === '' ) {
 			return $content;
 		}
 
-		try {
+		if ( self::isParsoidConfigured() ) {
 			return self::parsoid( $from, $to, $content, $title );
-		} catch ( NoParserException $e ) {
-			// If we have no parsoid config, fallback to the PHP parser.
+		} else {
 			return self::parser( $from, $to, $content, $title );
 		}
 	}
@@ -75,7 +75,7 @@ abstract class Utils {
 	 * @param string $content
 	 * @param Title $title
 	 * @return string
-	 * @throws NoParserException When Parsoid/RESTBase is not available
+	 * @throws NoParserException When Parsoid/RESTBase operation fails
 	 * @throws WikitextException When conversion is unsupported
 	 */
 	protected static function parsoid( $from, $to, $content, Title $title ) {
@@ -113,7 +113,7 @@ abstract class Utils {
 			}
 			$vrsInfo = $serviceClient->getMountAndService( '/restbase/' );
 			$name = $vrsInfo[1] ? $vrsInfo[1]->getName() : 'VRS service';
-			$msg = "Failed contacting " . $name . " for title \"$prefixedDbTitle\": $statusMsg";
+			$msg = "Request to " . $name . " for '$from' to '$to' conversion of content connected to title \"$prefixedDbTitle\" failed: $statusMsg";
 			wfDebugLog( 'Flow', __METHOD__ . ": $msg" );
 			throw new NoParserException( "$msg", 'process-wikitext' );
 		}
