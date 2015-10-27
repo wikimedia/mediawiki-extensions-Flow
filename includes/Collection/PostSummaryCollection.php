@@ -11,7 +11,7 @@ class PostSummaryCollection extends LocalCacheAbstractCollection {
 	 */
 	protected $rootId;
 
-	public function getRevisionClass() {
+	public static function getRevisionClass() {
 		return 'Flow\\Model\\PostSummary';
 	}
 
