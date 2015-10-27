@@ -41,7 +41,7 @@
 
 	OO.inheritClass( mw.flow.ve.ui.MentionTargetInputWidget, OO.ui.TextInputWidget );
 
-	OO.mixinClass( mw.flow.ve.ui.MentionTargetInputWidget, OO.ui.LookupElement );
+	OO.mixinClass( mw.flow.ve.ui.MentionTargetInputWidget, OO.ui.mixin.LookupElement );
 
 	/**
 	 * Check if the value of the input corresponds to a username that exists.
