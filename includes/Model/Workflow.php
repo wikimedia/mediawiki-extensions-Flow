@@ -246,7 +246,7 @@ class Workflow {
 			if ( $title ) {
 				self::$titleCache->set( $key, $title );
 			} else {
-				throw new InvalidInputException( 'Fail to create title from ' . $titleText, 'invalid-input' );
+				throw new InvalidInputException( "Fail to create title from namespace $namespace and title text '$titleText'", 'invalid-input' );
 			}
 		}
 
