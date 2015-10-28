@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebaf39b_0a83c99c",
+        "filename": "includes/Repository/TreeCacheKey.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-28T23:59:59Z",
+      "side": 1,
+      "message": "Document parameter types.  You might want to have $objectId be a UUID for type-safety.  This would require some slight refactoring of MultiGetList.php.",
+      "revId": "1ac7c3525bec8ccdfd311567e4d6e8fa5d6cbe93",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
