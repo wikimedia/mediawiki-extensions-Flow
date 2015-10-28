@@ -4,13 +4,22 @@
 			"M hamlet",
 			"Vadgt",
 			"Xelgen",
-			"Aram1985"
+			"Aram1985",
+			"Աշոտ1997"
 		]
 	},
 	"flow-edit-header-link": "Խմբագրել նկարագրությունը",
+	"flow-history-action-delete-post": "ջնջել",
+	"flow-history-action-hide-post": "թաքցնել",
+	"flow-post-action-edit-post": "Խմբագրել",
+	"flow-post-action-edit-post-submit": "Պահպանել փոփոխությունները",
+	"flow-topic-action-watchlist": "Հսկացանկ",
+	"flow-topic-action-edit-title": "Խմբագրել վերնագիրը",
+	"flow-topic-action-history": "Պատմություն",
 	"flow-edit-header-submit": "Պահպանել նկարագրությունը:",
 	"flow-notification-edit": "$1 մասնակիցը {{GENDER:$1|խմբագրեց}} <span class=\"plainlinks\">[$5 գրառումը]</span> [[$3|$4]] էջի «$2» թեմայում։",
 	"flow-notification-rename": "$1՝ {{GENDER:$1|փոխեց}} վերնագրիրը [$2 $3]-ի \"$4\"-ում [[$5|$6]]-ի վրա:",
-	"flow-revision-permalink-warning-header-first": "Սա ժամանակավոր հղում է դեպի նկարագրության առաջին տարբերակ:\nԴուք կարող եք դիտել ավելի ուշ տարբերակները [$2 էջի պատմության ցուցակ]ում.",
-	"flow-undo-edit-header": "Նկարագրությունը խմբագրվում է"
+	"flow-revision-permalink-warning-header-first": "Սա նկարագրության առաջին տարբերակ մշտական հղումն է:\nԴուք կարող եք դիտել ավելի ուշ տարբերակները [$2 էջի պատմության ցուցակ]ում:",
+	"flow-undo-edit-header": "Նկարագրությունը խմբագրվում է",
+	"flow-dialog-cancelconfirm-title": "Դուք վստա՞հ եք"
 }
