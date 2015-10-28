@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebaf39b_8bdb4924",
+        "filename": "db_patches/patch-ref_id-phase2.sqlite.sql",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-28T00:15:23Z",
+      "side": 1,
+      "message": "SQLite",
+      "revId": "93056c5499f1e3e49d0bdb7779fc47b8110a199c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_ab6e4dfc",
+        "filename": "includes/Model/URLReference.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-28T00:15:23Z",
+      "side": 1,
+      "message": "We should add a TODO about removing this, or add a migrate global.",
+      "revId": "93056c5499f1e3e49d0bdb7779fc47b8110a199c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_2b7a5db8",
+        "filename": "includes/Model/WikiReference.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-28T00:15:23Z",
+      "side": 1,
+      "message": "Same",
+      "revId": "93056c5499f1e3e49d0bdb7779fc47b8110a199c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
