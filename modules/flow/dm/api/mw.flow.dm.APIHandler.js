@@ -27,7 +27,8 @@
 		this.setCurrentRevision( config.currentRevision );
 
 		this.requestParams = $.extend( {
-			action: 'flow'
+			action: 'flow',
+			uselang: mw.config.get( 'wgUserLanguage' )
 		}, config.requestParams );
 	};
 
@@ -91,7 +92,7 @@
 				gcllimit: 'max'
 			};
 
-		return ( new mw.Api() ).get( params )
+		return ( new mw.Api() ).get( $.extend( {}, this.requestParams, params ) )
 			.then( function ( response ) {
 				return OO.getProp( response, 'query', 'pages' );
 			} );
@@ -180,7 +181,7 @@
 
 		this.addCaptcha( params, captcha );
 
-		return ( new mw.Api() ).postWithToken( 'edit', params )
+		return ( new mw.Api() ).postWithToken( 'edit', $.extend( {}, this.requestParams, params ) )
 			.then( function ( data ) {
 				return data.flow.reply.workflow;
 			} );
@@ -197,7 +198,6 @@
 	 */
 	mw.flow.dm.APIHandler.prototype.saveNewTopic = function ( title, content, format, captcha ) {
 		var params = {
-			action: 'flow',
 			submodule: 'new-topic',
 			page: this.page,
 			nttopic: title,
@@ -207,7 +207,7 @@
 
 		this.addCaptcha( params, captcha );
 
-		return ( new mw.Api() ).postWithToken( 'edit', params )
+		return ( new mw.Api() ).postWithToken( 'edit', $.extend( {}, this.requestParams, params ) )
 			.then( function ( response ) {
 				return OO.getProp( response.flow, 'new-topic', 'committed', 'topiclist', 'topic-id' );
 			} )
@@ -251,7 +251,6 @@
 
 		this.addCaptcha( params, captcha );
 
-		// return ( new mw.Api() ).postWithToken( 'edit', params )
 		xhr = this.postEdit( 'edit-header', params )
 			.then( function ( data ) {
 				return OO.getProp( data.flow, 'edit-header', 'committed', 'header', 'header-revision-id' );
