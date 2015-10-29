@@ -44,7 +44,9 @@
 	};
 
 	/**
-	 * General get request
+	 * General get request.
+	 *
+	 * @private
 	 * @param {string} submodule The requested submodule
 	 * @param {Object} requestParams API request parameters
 	 * @return {jQuery.Promise} Promise that is resolved when the API request
@@ -63,8 +65,9 @@
 	};
 
 	/**
-	 * Post with edit token request
+	 * Post with edit token request.
 	 *
+	 * @private
 	 * @param {string} submodule The requested submodule
 	 * @param {Object} requestParams API request parameters
 	 * @return {jQuery.Promise} Promise that is resolved when the API request
@@ -183,7 +186,8 @@
 		return ( new mw.Api() ).postWithToken( 'edit', params )
 			.then( function ( data ) {
 				return data.flow.reply.workflow;
-			} );
+			} )
+			.then( null, this.processCaptchaError.bind( this ) );
 	};
 
 	/**
@@ -409,8 +413,8 @@
 	 */
 	mw.flow.dm.APIHandler.prototype.processCaptchaError = function ( errorCode, errorObj ) {
 		if ( /spamfilter$/.test( errorCode ) && errorObj.error.spamfilter === 'flow-spam-confirmedit-form' ) {
-			// // Remove the <link rel="stylesheet" ...> and <script> and <style> tags
-			errorObj.error.$info = $( $.parseHTML( errorObj.error.info ) ).not( 'link, script, style' );
+			// Remove the <link rel="stylesheet" ...> tag
+			errorObj.error.$info = $( $.parseHTML( errorObj.error.info ) ).not( 'link' );
 		}
 
 		return $.Deferred().reject( errorCode, errorObj );
