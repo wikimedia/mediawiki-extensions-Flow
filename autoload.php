@@ -271,6 +271,7 @@ $wgAutoloadClasses += array(
 	'Flow\\Repository\\MultiGetList' => __DIR__ . '/includes/Repository/MultiGetList.php',
 	'Flow\\Repository\\RootPostLoader' => __DIR__ . '/includes/Repository/RootPostLoader.php',
 	'Flow\\Repository\\TitleRepository' => __DIR__ . '/includes/Repository/TitleRepository.php',
+	'Flow\\Repository\\TreeCacheKey' => __DIR__ . '/includes/Repository/TreeCacheKey.php',
 	'Flow\\Repository\\TreeRepository' => __DIR__ . '/includes/Repository/TreeRepository.php',
 	'Flow\\Repository\\UserNameBatch' => __DIR__ . '/includes/Repository/UserNameBatch.php',
 	'Flow\\Repository\\UserName\\OneStepUserNameQuery' => __DIR__ . '/includes/Repository/UserName/OneStepUserNameQuery.php',

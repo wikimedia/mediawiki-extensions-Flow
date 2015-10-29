@@ -32,14 +32,14 @@ class MultiGetList {
 		$cacheKeys = array();
 		foreach ( $ids as $id ) {
 			if ( $id instanceof UUID ) {
-				$cacheId = $id->getAlphadecimal();
-			} elseif ( !is_scalar( $id ) ) {
+				$cacheId = $id;
+			} elseif ( is_scalar( $id ) ) {
+				$cacheId = UUID::create( $id );
+			} else {
 				$type = is_object( $id ) ? get_class( $id ) : gettype( $id );
 				throw new InvalidInputException( 'Not scalar:' . $type, 'invalid-input' );
-			} else {
-				$cacheId = $id;
 			}
-			$cacheKeys[wfForeignMemcKey( 'flow', '', 'tree', $treeType, $cacheId, Container::get( 'cache.version' ) )] = $id;
+			$cacheKeys[ TreeCacheKey::build( $treeType, $cacheId ) ] = $id;
 		}
 		return $this->getByKey( $cacheKeys, $loadCallback );
 	}
