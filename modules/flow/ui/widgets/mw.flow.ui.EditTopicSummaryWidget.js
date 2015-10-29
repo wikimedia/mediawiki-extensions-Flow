@@ -138,7 +138,7 @@
 				if ( /spamfilter$/.test( errorCode ) && errorObj.error.spamfilter === 'flow-spam-confirmedit-form' ) {
 					widget.error.setLabel(
 						// CAPTCHA form
-						new OO.ui.HtmlSnippet( errorObj.error.info )
+						OO.getProp( errorObj, 'error', '$info' )
 					);
 				} else {
 					widget.error.setLabel( errorObj.error && errorObj.error.info || errorObj.exception );
