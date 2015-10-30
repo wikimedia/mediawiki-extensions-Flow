@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_8b048d1b",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-10-30T22:07:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_a874f7fb",
+      "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_687a7fe8",
         "filename": "modules/flow-initialize.js",
         "patchSetId": 10
@@ -30,6 +48,24 @@
       "writtenOn": "2015-10-30T20:47:09Z",
       "side": 1,
       "message": "This doesn\u0027t need to be passed in, because it\u0027s now in the object\u0027s this.$component.",
+      "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_cb0e053e",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-10-30T22:07:51Z",
+      "side": 1,
+      "message": "You\u0027re right. I initially did both in the same place, but then discovered it needs its own operation (and quick finishLoading() above)\n\nFor clarity, I changed the \"Initialize component\" comment above to \"Set component\" so it makes more sense, as we\u0027re actually initializing it here.",
+      "parentUuid": "0ebaf39b_687a7fe8",
       "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_5602bc0d",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-10-30T22:07:51Z",
+      "side": 1,
+      "message": "Yes! Oops. I initially had the entire process inside try/catch blocks in flow-initialize, but it made some of the operation more confusing, so I got rid of it, and forgot to change the documentation.\n\nGood catch.",
+      "parentUuid": "0ebaf39b_881ed3bc",
+      "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_887573f6",
         "filename": "modules/mw.flow.Initializer.js",
         "patchSetId": 10
@@ -64,6 +118,24 @@
       "writtenOn": "2015-10-30T20:47:09Z",
       "side": 1,
       "message": "See above.",
+      "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_b612185a",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-10-30T22:07:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_887573f6",
       "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_362628b7",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-10-30T22:07:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_28eec787",
+      "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_e89aef15",
         "filename": "modules/mw.flow.Initializer.js",
         "patchSetId": 10
@@ -98,6 +188,24 @@
       "writtenOn": "2015-10-30T20:47:09Z",
       "side": 1,
       "message": "Remove obsolete commented out line (same thing is done below).",
+      "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_f61bb070",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-10-30T22:07:51Z",
+      "side": 1,
+      "message": "ha, good catch.",
+      "parentUuid": "0ebaf39b_e89aef15",
       "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_161f645f",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-10-30T22:07:51Z",
+      "side": 1,
+      "message": "Yeah in order to do that, we\u0027ll need all of the widgets to be ooui -- while we do have that in descriptionWidget, we don\u0027t with the newTopicWidget and other widgets just yet.",
+      "parentUuid": "0ebaf39b_28524740",
+      "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_6b18397a",
         "filename": "modules/mw.flow.Initializer.js",
         "patchSetId": 10
@@ -132,6 +258,24 @@
       "writtenOn": "2015-10-30T20:47:09Z",
       "side": 1,
       "message": "No such parameter",
+      "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_36d8687f",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-10-30T22:07:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_6b18397a",
       "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_f6cdf0bc",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-10-30T22:07:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_eb52e914",
+      "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_2b748196",
         "filename": "modules/mw.flow.Initializer.js",
         "patchSetId": 10
@@ -172,6 +334,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_76c10082",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-10-30T22:07:51Z",
+      "side": 1,
+      "message": "If content is omitted, the editor is empty. The saveMsgKey is optional because the editor *itself* has a fallback message.",
+      "parentUuid": "0ebaf39b_2b748196",
+      "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_8bb7ad34",
         "filename": "modules/mw.flow.Initializer.js",
         "patchSetId": 10
@@ -183,6 +363,24 @@
       "writtenOn": "2015-10-30T20:47:09Z",
       "side": 1,
       "message": "Would be good to add !!( ) so it actually returns a boolean.",
+      "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_966274a1",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-10-30T22:07:51Z",
+      "side": 1,
+      "message": "Good point",
+      "parentUuid": "0ebaf39b_8bb7ad34",
       "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
