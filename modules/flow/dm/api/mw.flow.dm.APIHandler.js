@@ -210,8 +210,7 @@
 		return ( new mw.Api() ).postWithToken( 'edit', $.extend( {}, this.requestParams, params ) )
 			.then( function ( response ) {
 				return OO.getProp( response.flow, 'new-topic', 'committed', 'topiclist', 'topic-id' );
-			} )
-			.then( null, this.processCaptchaError.bind( this ) );
+			} );
 	};
 
 	/**
@@ -254,8 +253,7 @@
 		xhr = this.postEdit( 'edit-header', params )
 			.then( function ( data ) {
 				return OO.getProp( data.flow, 'edit-header', 'committed', 'header', 'header-revision-id' );
-			} )
-			.then( null, this.processCaptchaError.bind( this ) );
+			} );
 
 		return xhr.promise( { abort: xhr.abort } );
 	};
@@ -304,8 +302,7 @@
 		return this.postEdit( 'edit-post', params )
 			.then( function ( data ) {
 				return OO.getProp( data.flow, 'edit-post', 'workflow' );
-			} )
-			.then( null, this.processCaptchaError.bind( this ) );
+			} );
 	};
 
 	/**
@@ -349,8 +346,7 @@
 		return this.postEdit( 'edit-topic-summary', params )
 			.then( function ( data ) {
 				return OO.getProp( data.flow, 'edit-topic-summary', 'workflow' );
-			} )
-			.then( null, this.processCaptchaError.bind( this ) );
+			} );
 	};
 
 	/**
@@ -392,27 +388,6 @@
 	 */
 	mw.flow.dm.APIHandler.prototype.reopenTopic = function ( topicId ) {
 		return this.lockTopic( topicId, 'unlock', 'flow-rev-message-restore-topic-reason' );
-	};
-
-	/**
-	 * Process captcha error and remove offending <link> tag
-	 * This entire method is a necessary hack, because CAPTCHA returns an html block that
-	 * contains a <link rel="stylesheet" ...> that contains destructive classes for RTL wikis.
-	 * That link must be destroyed before being given to the DOM.
-	 * HACK: This should really be done by making the CAPTCHA element not return garbage.
-	 *
-	 * @private
-	 * @param {string} errorCode API error code
-	 * @param {Object} errorObj API error object
-	 * @return {jQuery.Promise} Rejected promise with the API error object adjusted
-	 */
-	mw.flow.dm.APIHandler.prototype.processCaptchaError = function ( errorCode, errorObj ) {
-		if ( /spamfilter$/.test( errorCode ) && errorObj.error.spamfilter === 'flow-spam-confirmedit-form' ) {
-			// // Remove the <link rel="stylesheet" ...> and <script> and <style> tags
-			errorObj.error.$info = $( $.parseHTML( errorObj.error.info ) ).not( 'link, script, style' );
-		}
-
-		return $.Deferred().reject( errorCode, errorObj );
 	};
 
 }( jQuery ) );
