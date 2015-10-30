@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebaf39b_a874f7fb",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-30T20:47:09Z",
+      "side": 1,
+      "message": "Initialize",
+      "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_687a7fe8",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-30T20:47:09Z",
+      "side": 1,
+      "message": "This doesn\u0027t need to be passed in, because it\u0027s now in the object\u0027s this.$component.",
+      "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_881ed3bc",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-30T20:47:09Z",
+      "side": 1,
+      "message": "No longer throws; now returns.\n\nIt might actually be less confusing if it did throw, but it\u0027s good enough either way if it\u0027s properly documented.",
+      "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_887573f6",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-30T20:47:09Z",
+      "side": 1,
+      "message": "See above.",
+      "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_28eec787",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-30T20:47:09Z",
+      "side": 1,
+      "message": "Default is now Recently active.",
+      "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_e89aef15",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-30T20:47:09Z",
+      "side": 1,
+      "message": "Remove obsolete commented out line (same thing is done below).",
+      "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_28524740",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-30T20:47:09Z",
+      "side": 1,
+      "message": "Eventually (not as part of this change) we should look at moving this kind of stuff to use OO.ui.infuse, or at least making the widget itself responsible for it.",
+      "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_6b18397a",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-30T20:47:09Z",
+      "side": 1,
+      "message": "No such parameter",
+      "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_eb52e914",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-30T20:47:09Z",
+      "side": 1,
+      "message": "Not for this change, but IMHO this should really be managed by the widget.  If you agree, you could add a TODO.",
+      "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_2b748196",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-30T20:47:09Z",
+      "side": 1,
+      "message": "Doesn\u0027t look like these are actually optional.  If they are, it\u0027s not clear what happens if they\u0027re omitted.",
+      "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_8bb7ad34",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-10-30T20:47:09Z",
+      "side": 1,
+      "message": "Would be good to add !!( ) so it actually returns a boolean.",
+      "revId": "741ac2462edf13739c60a64ec4f2a0df1da98e48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
