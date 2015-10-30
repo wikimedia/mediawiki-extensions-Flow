@@ -389,7 +389,7 @@
 								if ( /spamfilter$/.test( errorCode ) && errorObj.error.spamfilter === 'flow-spam-confirmedit-form' ) {
 									editor.error.setLabel(
 										// CAPTCHA form
-										OO.getProp( errorObj, 'error', '$info' )
+										new OO.ui.HtmlSnippet( errorObj.error.info )
 									);
 								} else {
 									editor.error.setLabel( errorObj.error && errorObj.error.info || errorObj.exception );
@@ -445,7 +445,7 @@
 								if ( /spamfilter$/.test( errorCode ) && errorObj.error.spamfilter === 'flow-spam-confirmedit-form' ) {
 									error.setLabel(
 										// CAPTCHA form
-										OO.getProp( errorObj, 'error', '$info' )
+										new OO.ui.HtmlSnippet( errorObj.error.info )
 									);
 								} else {
 									error.setLabel( errorObj.error && errorObj.error.info || errorObj.exception );
