@@ -70,8 +70,6 @@
 
 				// Replace reply forms
 				self.replaceReplyForms( self.$board );
-				// Deactivate reply links
-				self.setupReplyLinkActions( self.$board );
 			},
 			// HACK: Update the DM when topic is refreshed
 			refreshTopic: function ( workflowId, topicData ) {
@@ -91,8 +89,6 @@
 
 				// Replace reply forms
 				self.replaceReplyForms( topicData.$topic );
-				// Deactivate reply links
-				self.setupReplyLinkActions( topicData.$topic );
 			}
 		} );
 	};
@@ -156,8 +152,8 @@
 		this.replaceReplyForms( this.$board );
 
 		/* Take over click actions */
-		this.setupReplyLinkActions( this.$board );
-		this.setupEditPostAction( this.$board );
+		this.setupReplyLinkActions();
+		this.setupEditPostAction();
 		this.setupEditTopicSummaryAction();
 	};
 
@@ -308,14 +304,19 @@
 				// Run this on a short timeout so that the other board handler in FlowBoardComponentLoadMoreFeatureMixin can run
 				// TODO: Using a timeout doesn't seem like the right way to do this.
 				setTimeout( function () {
-					// Reinitialize the whole board with these nodes
-					self.$board.empty().append( $rendered[ 1 ] );
+					var boardEl = $rendered[ 1 ];
 
 					// Since we've replaced the entire board, we need to reinitialize
 					// it. This also takes away the original navWidget, so we need to
 					// make sure it's reinitialized too
 					self.flowBoard.reinitializeContainer( $rendered );
 					$( '.flow-board-navigation' ).append( self.navWidget.$element );
+
+					self.setBoardDom( $( boardEl ) );
+
+					self.replaceReplyForms( self.$board );
+
+					self.setupNewTopicWidget( $( 'form.flow-newtopic-form' ) );
 
 					self.$component.removeClass( 'flow-api-inprogress' );
 				}, 50 );
@@ -410,11 +411,10 @@
 
 	/**
 	 * Take over the action of the 'edit post' links
-	 *
-	 * @param {jQuery} $element The element to conduct the replacements in
+	 * This is delegated, so it applies to all future links as well.
 	 */
-	mw.flow.Initializer.prototype.setupEditPostAction = function ( $element ) {
-		$element.on( 'click', '.flow-ui-edit-post-link', function ( event ) {
+	mw.flow.Initializer.prototype.setupEditPostAction = function () {
+		this.$component.on( 'click', '.flow-ui-edit-post-link', function ( event ) {
 			var editPostWidget,
 				$topic = $( this ).closest( '.flow-topic' ),
 				topicId = $topic.data( 'flow-id' ),
@@ -449,11 +449,12 @@
 
 	/**
 	 * Take over the action of the 'edit topic summary' links
+	 * This is delegated, so it applies to all future links as well.
 	 */
 	mw.flow.Initializer.prototype.setupEditTopicSummaryAction = function () {
 		var self = this;
 
-		this.$board
+		this.$component
 			// Summarize action
 			.on( 'click', '.flow-ui-summarize-topic-link', function ( event ) {
 				var $topic = $( this ).closest( '.flow-topic' ),
@@ -500,75 +501,64 @@
 	};
 
 	/**
-	 * Take over the action of the 'reply' links
-	 *
-	 * @param {jQuery} $element The element to conduct the replacements in
+	 * Take over the action of the 'reply' links.  This is delegated,
+	 * so it applies to current and future links.
 	 */
-	mw.flow.Initializer.prototype.setupReplyLinkActions = function ( $element ) {
+	mw.flow.Initializer.prototype.setupReplyLinkActions = function () {
 		var self = this;
 
-		// Cancel the interactive handler so "old" system doesn't get triggered for internal replies
-		$element.find( 'a.flow-reply-link' ).each( function () {
+		// Replace the handler used for reply links.
+		this.$component.on( 'click', 'a.flow-reply-link', function () {
 			// Store the needed details so we can get rid of the URL in JS mode
-			var href = $( this ).attr( 'href' ),
+			var replyWidget,
+				href = $( this ).attr( 'href' ),
 				uri = new mw.Uri( href ),
-				postId = uri.query.topic_postId;
+				replyTo = uri.query.topic_postId,
+				$topic = $( this ).closest( '.flow-topic' ),
+					placeholder = mw.msg( 'flow-reply-topic-title-placeholder', $topic.find( '.flow-topic-title' ).text().trim() ),
+					// replyTo can refer to a post ID or a topic ID
+					// For posts, the ReplyWidget should go in .flow-replies
+					// For topics, it's directly inside the topic
+					$targetContainer = $( '#flow-post-' + replyTo + ' > .flow-replies, #flow-topic-' + replyTo ),
+					$existingWidget = $targetContainer.children( '.flow-ui-replyWidget' );
 
-			$( this )
-				.data( 'postId', postId )
-				.attr( 'data-flow-interactive-handler', '' )
-				.attr( 'href', '' )
-				.addClass( 'flow-ui-reply-link-trigger' )
-				.on( 'click', function () {
-					var replyWidget,
-						$topic = $( this ).closest( '.flow-topic' ),
-						placeholder = mw.msg( 'flow-reply-topic-title-placeholder', $topic.find( '.flow-topic-title' ).text().trim() ),
-						replyTo = $( this ).data( 'postId' ),
-						// replyTo can refer to a post ID or a topic ID
-						// For posts, the ReplyWidget should go in .flow-replies
-						// For topics, it's directly inside the topic
-						$targetContainer = $( '#flow-post-' + replyTo + ' > .flow-replies, #flow-topic-' + replyTo ),
-						$existingWidget = $targetContainer.children( '.flow-ui-replyWidget' );
+			// Check that there's not already a reply widget existing in the same place
+			if ( $existingWidget.length > 0 ) {
+				// Focus the existing reply widget
+				$existingWidget.data( 'self' ).activateEditor();
+				$existingWidget.data( 'self' ).focus();
+				return false;
+			}
 
-					// Check that there's not already a reply widget existing in the same place
-					if ( $existingWidget.length > 0 ) {
-						// Focus the existing reply widget
-						$existingWidget.data( 'self' ).activateEditor();
-						$existingWidget.data( 'self' ).focus();
-						return false;
-					}
+			replyWidget = new mw.flow.ui.ReplyWidget( $topic.data( 'flowId' ), replyTo, {
+				placeholder: placeholder,
+				expandable: false
+			} );
+			// Create a reference so we can call it from the DOM above
+			replyWidget.$element.data( 'self', replyWidget );
 
-					replyWidget = new mw.flow.ui.ReplyWidget( $topic.data( 'flowId' ), replyTo, {
-						placeholder: placeholder,
-						expandable: false
-					} );
-					// Create a reference so we can call it from the DOM above
-					replyWidget.$element.data( 'self', replyWidget );
+			// Add reply form below the post being replied to (WRT max depth)
+			$targetContainer.append( replyWidget.$element );
+			replyWidget.activateEditor();
 
-					// Add reply form below the post being replied to (WRT max depth)
-					$targetContainer.append( replyWidget.$element );
-					replyWidget.activateEditor();
+			replyWidget
+				.on( 'saveContent', function ( workflow ) {
+					replyWidget.destroy();
+					replyWidget.$element.remove();
 
-					replyWidget
-						.on( 'saveContent', function ( workflow ) {
-							replyWidget.destroy();
-							replyWidget.$element.remove();
-
-							// HACK get the old system to rerender the topic
-							return self.flowBoard.flowBoardComponentRefreshTopic(
-								$topic,
-								workflow
-							);
-						} )
-						.on( 'cancel', function () {
-							replyWidget.destroy();
-							replyWidget.$element.remove();
-						} );
-
-					return false;
+					// HACK get the old system to rerender the topic
+					return self.flowBoard.flowBoardComponentRefreshTopic(
+						$topic,
+						workflow
+					);
+				} )
+				.on( 'cancel', function () {
+					replyWidget.destroy();
+					replyWidget.$element.remove();
 				} );
-		} );
 
+			return false;
+		} );
 	};
 
 	/**
