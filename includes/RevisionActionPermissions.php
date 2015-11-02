@@ -104,18 +104,14 @@ class RevisionActionPermissions {
 		$actions = func_get_args();
 		// Pull $revision out of the actions list
 		array_shift( $actions );
-		$allowed = false;
 
 		foreach ( $actions as $action ) {
-			$allowed |= $this->isAllowed( $revision, $action );
-
-			// as soon as we've found one that is allowed, break
-			if ( $allowed ) {
-				break;
+			if ( $this->isAllowed( $revision, $action ) ) {
+				return true;
 			}
 		}
 
-		return $allowed;
+		return false;
 	}
 
 	/**
