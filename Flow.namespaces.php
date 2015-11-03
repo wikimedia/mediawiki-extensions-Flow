@@ -54,6 +54,11 @@ $namespaceNames['es'] = array(
 	NS_TOPIC =>  'Tema',
 );
 
+/** Estonian */
+$namespaceNames['et'] = array(
+	NS_TOPIC =>  'Teema',
+);
+
 /** Persian */
 $namespaceNames['fa'] = array(
 	NS_TOPIC =>  'مبحث',
