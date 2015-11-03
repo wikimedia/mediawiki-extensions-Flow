@@ -1,0 +1,242 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebaf39b_ff07f5ca",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-03T03:06:56Z",
+      "side": 1,
+      "message": "Document, please.  $pages is actually inconsistent with the call.  Also, you can tell from the code that startId and endId are page IDs, but nice to document since it could be revision ID.",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_a415f04e",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-03T03:06:56Z",
+      "side": 1,
+      "message": "End is exclusive, so should be \u003c\n\nhttps://phabricator.wikimedia.org/diffusion/MW/browse/master/maintenance/dumpBackup.php;6c02a2bb298b642d5443aa0738eebd032f8fda4c$111\n\nand also dumpBackup.php documentation here brought over from there.",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_dfa231f9",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-03T03:06:56Z",
+      "side": 1,
+      "message": "Once https://gerrit.wikimedia.org/r/#/c/243066/ is merged, this will need to be isTopicTitle and the fallback should be \u0027topic-title-wikitext\u0027.",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_5fb6413d",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-03T03:06:56Z",
+      "side": 1,
+      "message": "Should be prettified (e.g. \u0027flags\u0027, \u0027userid\u0027, \u0027userip\u0027) rather than DB columns.\n\nCore doesn\u0027t seem to have many multi-word names, but there are parentid and logtitle (https://git.wikimedia.org/blob/mediawiki%2Fcore.git/8682b8b90e77feac03ffce4e601e3ceea5d2cdfe/docs%2Fexport-0.10.xsd#L183), so I guess we should use that style.",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_9fa839d9",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-03T03:06:56Z",
+      "side": 1,
+      "message": "Logic to determine format (for flags) should be pulled out and reused here for getContent.",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_a4b1708e",
+        "filename": "includes/Search/Iterators/AbstractIterator.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-03T03:06:56Z",
+      "side": 1,
+      "message": "Can be null and false currently.",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_3fb7cd36",
+        "filename": "includes/Search/Iterators/AbstractIterator.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-03T03:06:56Z",
+      "side": 1,
+      "message": "Can also be null.",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_4404341a",
+        "filename": "includes/Search/Iterators/AbstractIterator.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-03T03:06:56Z",
+      "side": 1,
+      "message": "I think this should also be \u003c for consistency with https://phabricator.wikimedia.org/diffusion/MW/browse/master/maintenance/dumpBackup.php;6c02a2bb298b642d5443aa0738eebd032f8fda4c$113 and the dumpBackup.php here.\n\nI know this also affects search, but seems like it should be alright.  Just need to update FlowForceSearchIndex documentation.",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_1fbc4919",
+        "filename": "includes/Search/Iterators/AbstractIterator.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-03T03:06:56Z",
+      "side": 1,
+      "message": "Can also return null.",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_df89d17a",
+        "filename": "includes/Search/Iterators/AbstractIterator.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-03T03:06:56Z",
+      "side": 1,
+      "message": "Is this an error case, or just the normal end of iteration?",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_ff8cd58a",
+        "filename": "includes/Search/Iterators/AbstractIterator.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-03T03:06:56Z",
+      "side": 1,
+      "message": "This really re-fetches it entirely from the UUID, right?  That\u0027s probably alright, but it should be documented.",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_9f7fd962",
+        "filename": "includes/Search/Iterators/TopicIterator.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-03T03:06:56Z",
+      "side": 1,
+      "message": "\u003c (see related comments).",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_bfd09d54",
+        "filename": "maintenance/FlowForceSearchIndex.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-03T03:06:56Z",
+      "side": 1,
+      "message": "If you go with my suggestion to standardize on exclusive end to match core, toId has to be updated.",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_bfbaddd7",
+        "filename": "maintenance/dumpBackup.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-03T03:06:56Z",
+      "side": 1,
+      "message": "$this-\u003epages needs to be converted from title strings to article IDs, either here or in getWorkflowIterator.",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
