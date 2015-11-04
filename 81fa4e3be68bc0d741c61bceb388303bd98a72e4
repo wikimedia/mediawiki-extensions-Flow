@@ -70,6 +70,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_1ef9a1c0",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-04T05:20:39Z",
+      "side": 1,
+      "message": "As part of this, it should just be id (for consistency with board and topic), not rev_id.",
+      "parentUuid": "0ebaf39b_5fb6413d",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_9fa839d9",
         "filename": "includes/Dump/Exporter.php",
         "patchSetId": 9
@@ -81,6 +99,24 @@
       "writtenOn": "2015-11-03T03:06:56Z",
       "side": 1,
       "message": "Logic to determine format (for flags) should be pulled out and reused here for getContent.",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_be8f352e",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-04T05:20:39Z",
+      "side": 1,
+      "message": "The CDATA end token can not be escaped, and it can be outputted by Parsoid (at least as tested at http://parsoid-lb.eqiad.wikimedia.org .  So AFAICT CDATA is not safe for arbitrary content.\n\nI think it should just use Xml::element( \u0027revision\u0027, $attribs, $revision-\u003egetContent( $format ) );\n\nThe output is not pretty, but it should work.",
+      "parentUuid": "0ebaf39b_9fa839d9",
       "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
