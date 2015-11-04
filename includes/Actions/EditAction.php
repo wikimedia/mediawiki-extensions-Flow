@@ -20,12 +20,23 @@ class EditAction extends FlowAction {
 
 		// There should always be a title since Flow page
 		// is detected by title or namespace, adding this
-		// to prevent some werid cases
+		// to prevent some weird cases
 		if ( !$title ) {
 			$title = Title::newMainPage();
 		}
 
-		$this->context->getOutput()->redirect( $title->getFullURL() );
+		// Forward values to preload in the form when adding a new section (T107637).
+		// Flow uses different URL parameter names for this than vanilla MediaWiki.
+		// This way the same URL works regardless of whether a page is a Flow or regular talk page.
+		$request = $this->context->getRequest();
+		$query = array();
+		if ( $request->getVal( 'section' ) === 'new' ) {
+			// null values will not be included in the query
+			$query['topiclist_preloadtitle'] = $request->getVal( 'preloadtitle', null );
+			$query['topiclist_preload'] = $request->getVal( 'preload', null );
+		}
+
+		$this->context->getOutput()->redirect( $title->getFullURL( $query ) );
 	}
 
 }
