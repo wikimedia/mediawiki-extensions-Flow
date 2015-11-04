@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Gleki"
+			"Gleki",
+			"Xbony2"
 		]
 	},
 	"log-name-flow": "flecu fasnu citri",
@@ -10,7 +11,7 @@
 	"flow-newtopic-save": "jmina la'e se casnu",
 	"flow-post-action-delete-post": "vimcu",
 	"flow-post-action-hide-post": "cancygau",
-	"flow-post-action-edit-post": "stika lo se mrilu",
+	"flow-post-action-edit-post": "stika",
 	"echo-category-title-flow-discussion": "lo flecu",
 	"flow-link-topic": "lo se casnu",
 	"flow-link-history": "lo citri"
