@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebaf39b_fe660db7",
+        "filename": "includes/Dump/Importer.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-04T05:18:22Z",
+      "side": 1,
+      "message": "I still feel it\u0027s a bit confusing to have wgFlowDefaultWorkflow configurable and taken into account here (but then have board-workflow explicit).  We should probably just remove that global.",
+      "revId": "50b8ab09c8ee7dc981bb5679932bafaf6a0db76d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_fefdadae",
+        "filename": "includes/Dump/Importer.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-04T05:18:22Z",
+      "side": 1,
+      "message": "This needs to correspond to the latest revision from the topic.\n\nWe should probably just store last update timestamp on topic and board XML nodes.  Alternative more complicated method below:\n\n---\n\nCan keep calling $this-\u003emetadata[\u0027workflow\u0027]-\u003eupdateLastUpdated() on every revision if $this-\u003emetadata[\u0027workflow\u0027] is non-null.  Then we can null it out in topic\u0027s END_ELEMENT.\n\nI guess we need to do this for board workflow too, but only for the description.  Judging by:\n\nhttps://phabricator.wikimedia.org/diffusion/EFLW/browse/master/includes/Block/Topic.php;d07c26b597c71c82de61e845ce9fc753d020119e$452\n\nwe don\u0027t update the board workflow for post changes.",
+      "revId": "50b8ab09c8ee7dc981bb5679932bafaf6a0db76d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
