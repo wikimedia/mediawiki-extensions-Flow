@@ -6,6 +6,7 @@ class AbstractFlowPage
 
   def select_menu_option(menu, option)
     menu.when_present.click
+    wait_until { option.exists? }
     option.scroll_into_view
     menu.when_present.click
     option.when_present.click

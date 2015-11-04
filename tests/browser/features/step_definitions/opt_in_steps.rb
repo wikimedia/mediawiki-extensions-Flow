@@ -85,6 +85,7 @@ Given(/^I have used the Flow beta feature before$/) do
   @topic_title = @data_manager.get 'title'
   api.action('flow', submodule: 'new-topic', page: "User_talk:#{@username}", nttopic: @topic_title, ntcontent: 'created via API')
   step 'I disable Flow beta feature'
+  step 'my wikitext talk page is restored'
 end
 
 Then(/^my talk page is my old Flow board$/) do
