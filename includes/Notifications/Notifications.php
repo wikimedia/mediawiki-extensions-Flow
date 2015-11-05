@@ -37,6 +37,7 @@ $notifications = array(
 		'email-body-batch-bundle-params' => array( 'event-count', 'title', 'new-topics-permalink' ),
 	) + $notificationTemplate,
 	'flow-post-reply' => array(
+		'presentation-model' => 'Flow\PostReplyPresentationModel',
 		'user-locators' => array(
 			'Flow\\NotificationsUserLocator::locateUsersWatchingTopic',
 		),

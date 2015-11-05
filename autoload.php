@@ -266,6 +266,7 @@ $wgAutoloadClasses += array(
 	'Flow\\Parsoid\\ReferenceExtractor' => __DIR__ . '/includes/Parsoid/ReferenceExtractor.php',
 	'Flow\\Parsoid\\ReferenceFactory' => __DIR__ . '/includes/Parsoid/ReferenceFactory.php',
 	'Flow\\Parsoid\\Utils' => __DIR__ . '/includes/Parsoid/Utils.php',
+	'Flow\\PostReplyPresentationModel' => __DIR__ . '/includes/Notifications/PostReplyPresentationModel.php',
 	'Flow\\RecoverableErrorHandler' => __DIR__ . '/includes/RecoverableErrorHandler.php',
 	'Flow\\ReferenceClarifier' => __DIR__ . '/includes/ReferenceClarifier.php',
 	'Flow\\Repository\\MultiGetList' => __DIR__ . '/includes/Repository/MultiGetList.php',
