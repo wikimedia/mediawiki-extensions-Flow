@@ -50,15 +50,38 @@
 				this.editor.$element
 			);
 
-		// Load the editor
+	};
+
+	/* Initialization */
+
+	OO.inheritClass( mw.flow.ui.EditPostWidget, OO.ui.Widget );
+
+	/* Events */
+
+	/**
+	 * Save the content of the reply
+	 * @event saveContent
+	 * @param {string} workflow The workflow this reply was saved under
+	 * @param {string} content The content of the reply
+	 * @param {string} contentFormat The format of the content of this reply
+	 */
+
+	/* Methods */
+
+	/**
+	 * Activate the widget.  These needs to be called when it's visible and in the body.
+	 */
+	mw.flow.ui.EditPostWidget.prototype.activate = function () {
+		var widget, contentFormat;
+
 		this.editor.pushPending();
 		this.editor.activate();
 
 		// Get the post from the API
-		var widget = this,
-			contentFormat = this.editor.getContentFormat();
+		widget = this;
+		contentFormat = this.editor.getContentFormat();
 
-		this.api.getPost( topicId, postId, contentFormat ).then(
+		this.api.getPost( this.topicId, this.postId, contentFormat ).then(
 			function ( post ) {
 				var content = OO.getProp( post, 'content', 'content' ),
 					format = OO.getProp( post, 'content', 'format' );
@@ -84,24 +107,7 @@
 			// Focus again: pending editors are disabled and can't be focused
 			widget.editor.focus();
 		} );
-
 	};
-
-	/* Initialization */
-
-	OO.inheritClass( mw.flow.ui.EditPostWidget, OO.ui.Widget );
-
-	/* Events */
-
-	/**
-	 * Save the content of the reply
-	 * @event saveContent
-	 * @param {string} workflow The workflow this reply was saved under
-	 * @param {string} content The content of the reply
-	 * @param {string} contentFormat The format of the content of this reply
-	 */
-
-	/* Methods */
 
 	/**
 	 * Respond to editor cancel
