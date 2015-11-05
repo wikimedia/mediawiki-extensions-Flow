@@ -688,6 +688,15 @@
 		// function, so make a forced connection
 		editor.error = error;
 
+		$wrapper = $( '<div>' )
+			.append(
+				error.$element,
+				anonWarning.$element,
+				editor.$element
+			);
+
+		$domToReplace.replaceWith( $wrapper );
+
 		// Prepare the editor
 		editor.pushPending();
 		editor.activate();
@@ -724,23 +733,15 @@
 				// returnToBoard();
 			} );
 
-		$wrapper = $( '<div>' )
-			.append(
-				error.$element,
-				anonWarning.$element,
-				editor.$element
-			);
-		$domToReplace.replaceWith( $wrapper );
-
 		return editor;
 	};
 
 	/**
-	 * Check whether we are on a diff page
+	 * Check whether we are on an undo form page
 	 *
-	 * @return {boolean} The page is a diff page
+	 * @return {boolean} The page is an in-progress undo form
 	 */
-	mw.flow.Initializer.prototype.isDiffPage = function () {
+	mw.flow.Initializer.prototype.isUndoForm = function () {
 		return !!( $( 'form[data-module="topic"]' ).length ||
 			$( 'form[data-module="header"]' ).length );
 	};
