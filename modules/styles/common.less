@@ -37,14 +37,14 @@
 	padding-bottom: 24px;
 }
 
-.board-page {
+.flow-board-page {
 	.flow-board-navigation,
 	.flow-board {
 		max-width: 700px;
 	}
 }
 
-.topic-page {
+.flow-topic-page {
 	.flow-board {
 		max-width: 850px;
 	}
@@ -93,7 +93,7 @@
 
 // This is to make sure there is enough space
 // at the bottom to display the last post's menu.
-.bottom-spacer {
+.flow-bottom-spacer {
 	height: 100px;
 }
 
@@ -115,7 +115,7 @@
 }
 
 @media all and (min-width: @medium) {
-	.flow-component.board-page {
+	.flow-component.flow-board-page {
 		.flow-board-header {
 			padding-left: 10px;
 			float: right;
@@ -155,7 +155,7 @@
 		}
 	}
 
-	.flow-component.board-page.full-height-side-rail {
+	.flow-component.flow-board-page.flow-full-height-side-rail {
 		overflow: hidden;
 		.flow-board-header {
 			// this is a hack to make sure the side rail always
@@ -165,7 +165,7 @@
 		}
 	}
 
-	.flow-component.board-page.expanded {
+	.flow-component.flow-board-page.expanded {
 		padding-right: 30px;
 
 		.flow-board-header {
@@ -200,7 +200,7 @@
 		}
 	}
 
-	.flow-component.topic-page {
+	.flow-component.flow-topic-page {
 		.flow-board {
 			float: left;
 			width: 66%;
