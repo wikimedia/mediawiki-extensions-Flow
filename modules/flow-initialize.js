@@ -44,7 +44,7 @@
 			// For reference and debugging
 			mw.flow.system = initializer.getDataModelSystem();
 
-			if ( initializer.isDiffPage() ) {
+			if ( initializer.isUndoForm() ) {
 				// Setup undo pages
 				initializer.setupUndoPage();
 			} else {
