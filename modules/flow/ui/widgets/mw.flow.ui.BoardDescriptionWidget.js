@@ -57,6 +57,9 @@
 		} );
 		this.error.toggle( false );
 
+		this.captcha = new mw.flow.dm.Captcha();
+		this.captchaWidget = new mw.flow.ui.CaptchaWidget( this.captcha );
+
 		this.button = new OO.ui.ButtonWidget( {
 			label: mw.msg( 'flow-edit-header-link' ),
 			framed: false,
@@ -100,6 +103,7 @@
 		this.$element
 			.append(
 				this.error.$element,
+				this.captchaWidget.$element,
 				this.anonWarning.$element,
 				this.button.$element,
 				this.$content,
@@ -208,23 +212,19 @@
 	 */
 	mw.flow.ui.BoardDescriptionWidget.prototype.onEditorSaveContent = function ( content, format ) {
 		var widget = this,
-			$captchaField, captcha;
+			captchaResponse;
 
 		this.editor.pushPending();
 
-		$captchaField = this.error.$label.find( '[name="wpCaptchaWord"]' );
-		if ( $captchaField.length > 0 ) {
-			captcha = {
-				id: this.error.$label.find( '[name="wpCaptchaId"]' ).val(),
-				answer: $captchaField.val()
-			};
-		}
+		captchaResponse = this.captchaWidget.getResponse();
 
 		this.error.setLabel( '' );
 		this.error.toggle( false );
 
-		this.api.saveDescription( content, format, captcha )
+		this.api.saveDescription( content, format, captchaResponse )
 			.then( function ( newRevisionId ) {
+				widget.captchaWidget.toggle( false );
+
 				// Update revisionId in the API
 				widget.api.setCurrentRevision( newRevisionId );
 				// Get the new header to update the dm.BoardDescription
@@ -243,16 +243,11 @@
 				widget.emit( 'saveContent' );
 			} )
 			.then( null, function ( errorCode, errorObj ) {
-				if ( /spamfilter$/.test( errorCode ) && errorObj.error.spamfilter === 'flow-spam-confirmedit-form' ) {
-					widget.error.setLabel(
-						// CAPTCHA form
-						new OO.ui.HtmlSnippet( errorObj.error.info )
-					);
-				} else {
+				widget.captcha.update( errorCode, errorObj );
+				if ( !widget.captcha.isRequired() ) {
 					widget.error.setLabel( errorObj.error && errorObj.error.info || errorObj.exception );
+					widget.error.toggle( true );
 				}
-
-				widget.error.toggle( true );
 			} )
 			// Get the new categories
 			.then( this.api.getCategories.bind( this.api ) )

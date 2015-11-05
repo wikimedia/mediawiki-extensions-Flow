@@ -33,6 +33,9 @@
 		} );
 		this.error.toggle( false );
 
+		this.captcha = new mw.flow.dm.Captcha();
+		this.captchaWidget = new mw.flow.ui.CaptchaWidget( this.captcha );
+
 		this.api = new mw.flow.dm.APIHandler(
 			'Topic:' + topicId
 		);
@@ -48,6 +51,7 @@
 			.append(
 				this.anonWarning.$element,
 				this.error.$element,
+				this.captchaWidget.$element,
 				this.editor.$element
 			);
 	};
@@ -122,35 +126,26 @@
 	 */
 	mw.flow.ui.EditTopicSummaryWidget.prototype.onEditorSaveContent = function ( content, format ) {
 		var widget = this,
-			$captchaField, captcha;
+			captchaResponse;
 
-		$captchaField = this.error.$label.find( '[name="wpCaptchaWord"]' );
-		if ( $captchaField.length > 0 ) {
-			captcha = {
-				id: this.error.$label.find( '[name="wpCaptchaId"]' ).val(),
-				answer: $captchaField.val()
-			};
-		}
+		captchaResponse = this.captchaWidget.getResponse();
 
 		this.error.setLabel( '' );
 		this.error.toggle( false );
 
 		this.editor.pushPending();
-		this.api.saveTopicSummary( this.topicId, content, format, captcha )
+		this.api.saveTopicSummary( this.topicId, content, format, captchaResponse )
 			.then( function ( workflow ) {
+				widget.captchaWidget.toggle( false );
+
 				widget.emit( 'saveContent', workflow, content, format );
 			} )
 			.then( null, function ( errorCode, errorObj ) {
-				if ( /spamfilter$/.test( errorCode ) && errorObj.error.spamfilter === 'flow-spam-confirmedit-form' ) {
-					widget.error.setLabel(
-						// CAPTCHA form
-						new OO.ui.HtmlSnippet( errorObj.error.info )
-					);
-				} else {
+				widget.captcha.update( errorCode, errorObj );
+				if ( !widget.captcha.isRequired() ) {
 					widget.error.setLabel( errorObj.error && errorObj.error.info || errorObj.exception );
+					widget.error.toggle( true );
 				}
-
-				widget.error.toggle( true );
 			} )
 			.always( function () {
 				widget.editor.popPending();

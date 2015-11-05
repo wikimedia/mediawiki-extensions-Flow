@@ -367,6 +367,7 @@ $wgResourceModules += array(
 			'flow/dm/mw.flow.dm.Item.js',
 			'flow/dm/mixins/mw.flow.dm.List.js',
 			'flow/dm/api/mw.flow.dm.APIHandler.js',
+			'flow/dm/mw.flow.dm.Captcha.js',
 			'flow/dm/mw.flow.dm.RevisionedContent.js',
 			'flow/dm/mw.flow.dm.ModeratedRevisionedContent.js',
 			'flow/dm/mw.flow.dm.BoardDescription.js',
@@ -384,6 +385,7 @@ $wgResourceModules += array(
 	'ext.flow.ui' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'flow/ui/mw.flow.ui.js',
+			'flow/ui/widgets/mw.flow.ui.CaptchaWidget.js',
 			'flow/ui/mw.flow.ui.Overlay.js',
 			'flow/ui/mw.flow.ui.CancelConfirmDialog.js',
 			'flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js',
