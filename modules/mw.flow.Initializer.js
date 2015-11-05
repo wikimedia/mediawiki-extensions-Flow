@@ -442,6 +442,7 @@
 				} );
 
 			$postMain.replaceWith( editPostWidget.$element );
+			editPostWidget.activate();
 
 			event.preventDefault();
 		} );
@@ -620,6 +621,7 @@
 
 		$topicSummary.remove();
 		$summaryContainer.append( editTopicSummaryWidget.$element );
+		editTopicSummaryWidget.activate();
 	};
 
 	/**
