@@ -245,6 +245,7 @@ $wgAutoloadClasses += array(
 	'Flow\\Model\\WikiReference' => __DIR__ . '/includes/Model/WikiReference.php',
 	'Flow\\Model\\Workflow' => __DIR__ . '/includes/Model/Workflow.php',
 	'Flow\\NewTopicFormatter' => __DIR__ . '/includes/Notifications/Formatter.php',
+	'Flow\\NewTopicPresentationModel' => __DIR__ . '/includes/Notifications/NewTopicPresentationModel.php',
 	'Flow\\NotificationController' => __DIR__ . '/includes/Notifications/Controller.php',
 	'Flow\\NotificationFormatter' => __DIR__ . '/includes/Notifications/Formatter.php',
 	'Flow\\NotificationsUserLocator' => __DIR__ . '/includes/Notifications/UserLocator.php',

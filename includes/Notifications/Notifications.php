@@ -11,6 +11,7 @@ $notificationTemplate = array(
 
 $notifications = array(
 	'flow-new-topic' => array(
+		'presentation-model' => 'Flow\NewTopicPresentationModel',
 		'formatter-class' => 'Flow\NewTopicFormatter',
 		'user-locators' => array(
 			'EchoUserLocator::locateUsersWatchingTitle',
