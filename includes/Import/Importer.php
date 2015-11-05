@@ -142,9 +142,11 @@ class Importer {
  */
 class HistoricalUIDGenerator extends UIDGenerator {
 	public static function historicalTimestampedUID88( $timestamp, $base = 10 ) {
+		$COUNTER_MAX = 1023; // 2^10 - 1
+
 		static $counter = false;
 		if ( $counter === false ) {
-			$counter = mt_rand( 0, 256 );
+			$counter = mt_rand( 0, $COUNTER_MAX );
 		}
 
 		$time = array(
@@ -159,7 +161,7 @@ class HistoricalUIDGenerator extends UIDGenerator {
 		$gen = self::singleton();
 		self::rotateNodeId( $gen );
 		$binaryUUID = $gen->getTimestampedID88(
-			array( $time, ++$counter % 1024 )
+			array( $time, ++$counter % ( $COUNTER_MAX + 1) )
 		);
 
 		return wfBaseConvert( $binaryUUID, 2, $base );
