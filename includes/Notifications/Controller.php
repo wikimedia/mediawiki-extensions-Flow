@@ -114,8 +114,9 @@ class NotificationController {
 
 			break;
 			case 'flow-topic-renamed':
+				$previousRevision = $revision->getCollection()->getPrevRevision( $revision );
 				$extraData += array(
-					'old-subject' => $this->language->truncate( trim( $topicRevision->getContent( 'wikitext' ) ), 200 ),
+					'old-subject' => $this->language->truncate( trim( $previousRevision->getContent( 'wikitext' ) ), 200 ),
 					'new-subject' => $this->language->truncate( trim( $revision->getContent( 'wikitext' ) ), 200 ),
 				);
 			break;
