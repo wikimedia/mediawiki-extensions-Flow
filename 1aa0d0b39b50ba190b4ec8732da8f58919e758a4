@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_417f2263",
+        "filename": "includes/Notifications/PostReplyPresentationModel.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-11-06T13:44:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_e09c146f",
+      "revId": "1aa0d0b39b50ba190b4ec8732da8f58919e758a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_20d0ec20",
         "filename": "includes/Notifications/PostReplyPresentationModel.php",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2015-11-06T01:45:34Z",
       "side": 1,
       "message": "Our code convention is to have the open brace ({) on the same line as the function declaration, not on its own line. (Like you did below for getHeaderMessage). I\u0027m surprised phpcs didn\u0027t catch this.",
+      "revId": "1aa0d0b39b50ba190b4ec8732da8f58919e758a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_01404a37",
+        "filename": "includes/Notifications/PostReplyPresentationModel.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-11-06T13:44:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_20d0ec20",
       "revId": "1aa0d0b39b50ba190b4ec8732da8f58919e758a4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_c1455248",
+        "filename": "includes/Notifications/PostReplyPresentationModel.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-11-06T13:44:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_c0ca3070",
+      "revId": "1aa0d0b39b50ba190b4ec8732da8f58919e758a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_20978c4c",
         "filename": "includes/Notifications/PostReplyPresentationModel.php",
         "patchSetId": 1
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_e1409637",
+        "filename": "includes/Notifications/PostReplyPresentationModel.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-11-06T13:44:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_20978c4c",
+      "revId": "1aa0d0b39b50ba190b4ec8732da8f58919e758a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_a0ab7c84",
         "filename": "includes/Notifications/PostReplyPresentationModel.php",
         "patchSetId": 1
@@ -81,6 +153,24 @@
       "writtenOn": "2015-11-06T01:45:34Z",
       "side": 1,
       "message": "There\u0027s a double space between $title and \u003d . Again, I wonder why phpcs didn\u0027t flag this.",
+      "revId": "1aa0d0b39b50ba190b4ec8732da8f58919e758a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_8173daae",
+        "filename": "includes/Notifications/PostReplyPresentationModel.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-11-06T13:44:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_a0ab7c84",
       "revId": "1aa0d0b39b50ba190b4ec8732da8f58919e758a4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
