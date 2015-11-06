@@ -114,8 +114,9 @@ class NotificationController {
 
 			break;
 			case 'flow-topic-renamed':
+				$previousRevision = $revision->getCollection()->getPrevRevision( $revision );
 				$extraData += array(
-					'old-subject' => Utils::htmlToPlaintext( $topicRevision->getContent( 'topic-title-html' ), 200, $this->language ),
+					'old-subject' => Utils::htmlToPlaintext( $previousRevision->getContent( 'topic-title-html' ), 200, $this->language ),
 					'new-subject' => Utils::htmlToPlaintext( $revision->getContent( 'topic-title-html' ), 200, $this->language ),
 				);
 			break;
