@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebaf39b_20d0ec20",
+        "filename": "includes/Notifications/PostReplyPresentationModel.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-11-06T01:45:34Z",
+      "side": 1,
+      "message": "Our code convention is to have the open brace ({) on the same line as the function declaration, not on its own line. (Like you did below for getHeaderMessage). I\u0027m surprised phpcs didn\u0027t catch this.",
+      "revId": "1aa0d0b39b50ba190b4ec8732da8f58919e758a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_c0ca3070",
+        "filename": "includes/Notifications/PostReplyPresentationModel.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-11-06T01:45:34Z",
+      "side": 1,
+      "message": "You should explicitly call -\u003etext() here, because the parent method\u0027s documentation says you should return array( string, string ), not array( string, Message )\n\n(There is magical toString behavior in Message, so this probably does work, but relying on that always makes me feel uncomfortable, especially if the docs claim/expect a string)",
+      "revId": "1aa0d0b39b50ba190b4ec8732da8f58919e758a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_a0ab7c84",
+        "filename": "includes/Notifications/PostReplyPresentationModel.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-11-06T01:45:34Z",
+      "side": 1,
+      "message": "There\u0027s a double space between $title and \u003d . Again, I wonder why phpcs didn\u0027t flag this.",
+      "revId": "1aa0d0b39b50ba190b4ec8732da8f58919e758a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
