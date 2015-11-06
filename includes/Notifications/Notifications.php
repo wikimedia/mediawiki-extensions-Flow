@@ -80,6 +80,7 @@ $notifications = array(
 		'email-body-batch-bundle-params' => array( 'agent', 'subject', 'title', 'agent-other-display', 'agent-other-count' ),
 	) + $notificationTemplate,
 	'flow-topic-renamed' => array(
+		'presentation-model' => 'Flow\TopicRenamedPresentationModel',
 		'primary-link' => array(
 			'message' => 'flow-notification-link-text-view-post',
 			'destination' => 'flow-post'
