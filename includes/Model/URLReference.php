@@ -51,7 +51,7 @@ class URLReference extends Reference {
 	public static function fromStorageRow( $row ) {
 		// TODO: Remove this UUID::create() call when the field is populated
 		// everywhere relevant.
-		$id = $row['ref_id'] === null ? UUID::create() : UUID::create( $row['ref_id'] );
+		$id = ( !isset( $row['ref_id'] ) || $row['ref_id'] === null ) ? UUID::create() : UUID::create( $row['ref_id'] );
 		$workflow = UUID::create( $row['ref_src_workflow_id'] );
 		$objectType = $row['ref_src_object_type'];
 		$objectId = UUID::create( $row['ref_src_object_id'] );
