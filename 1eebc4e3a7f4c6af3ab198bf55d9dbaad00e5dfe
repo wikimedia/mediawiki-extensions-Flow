@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_a1605ea0",
+        "filename": "includes/Notifications/NewTopicPresentationModel.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-11-06T14:03:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_a0929c54",
+      "revId": "1eebc4e3a7f4c6af3ab198bf55d9dbaad00e5dfe",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_4085e009",
         "filename": "includes/Notifications/NewTopicPresentationModel.php",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_6156e6d2",
+        "filename": "includes/Notifications/NewTopicPresentationModel.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-11-06T14:03:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_4085e009",
+      "revId": "1eebc4e3a7f4c6af3ab198bf55d9dbaad00e5dfe",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_00836806",
         "filename": "includes/Notifications/NewTopicPresentationModel.php",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2015-11-06T01:51:08Z",
       "side": 1,
       "message": "Per my comments on the other patch: add -\u003egetPrefixedText()",
+      "revId": "1eebc4e3a7f4c6af3ab198bf55d9dbaad00e5dfe",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_01712a72",
+        "filename": "includes/Notifications/NewTopicPresentationModel.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-11-06T14:03:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_00836806",
       "revId": "1eebc4e3a7f4c6af3ab198bf55d9dbaad00e5dfe",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
