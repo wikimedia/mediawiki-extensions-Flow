@@ -662,6 +662,7 @@
 			.on( 'cancel', saveOrCancelHandler.bind( null, $topic.data( 'flowId' ) ) );
 
 		$element.replaceWith( editPostWidget.$element );
+		editPostWidget.activate();
 	};
 
 	/**
