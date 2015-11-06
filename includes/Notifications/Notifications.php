@@ -11,6 +11,7 @@ $notificationTemplate = array(
 
 $notifications = array(
 	'flow-new-topic' => array(
+		'presentation-model' => 'Flow\\NewTopicPresentationModel',
 		'formatter-class' => 'Flow\NewTopicFormatter',
 		'user-locators' => array(
 			'EchoUserLocator::locateUsersWatchingTitle',
@@ -37,6 +38,7 @@ $notifications = array(
 		'email-body-batch-bundle-params' => array( 'event-count', 'title', 'new-topics-permalink' ),
 	) + $notificationTemplate,
 	'flow-post-reply' => array(
+		'presentation-model' => 'Flow\\PostReplyPresentationModel',
 		'user-locators' => array(
 			'Flow\\NotificationsUserLocator::locateUsersWatchingTopic',
 		),
@@ -60,6 +62,7 @@ $notifications = array(
 		'email-body-batch-bundle-params' => array( 'agent', 'subject', 'title', 'agent-other-display', 'agent-other-count' ),
 	) + $notificationTemplate,
 	'flow-post-edited' => array(
+		'presentation-model' => 'Flow\\PostEditedPresentationModel',
 		'primary-link' => array(
 			'message' => 'flow-notification-link-text-view-post',
 			'destination' => 'flow-post'
@@ -80,6 +83,7 @@ $notifications = array(
 		'email-body-batch-bundle-params' => array( 'agent', 'subject', 'title', 'agent-other-display', 'agent-other-count' ),
 	) + $notificationTemplate,
 	'flow-topic-renamed' => array(
+		'presentation-model' => 'Flow\\TopicRenamedPresentationModel',
 		'primary-link' => array(
 			'message' => 'flow-notification-link-text-view-post',
 			'destination' => 'flow-post'
@@ -92,6 +96,7 @@ $notifications = array(
 		'email-body-batch-params' => array( 'agent', 'old-subject', 'new-subject', 'title' ),
 	) + $notificationTemplate,
 	'flow-mention' => array(
+		'presentation-model' => 'Flow\\MentionPresentationModel',
 		'primary-link' => array(
 			'message' => 'notification-link-text-view-mention',
 			'destination' => 'flow-post'
@@ -104,6 +109,7 @@ $notifications = array(
 		'email-body-batch-params' => array( 'agent', 'subject', 'title', 'user' ),
 	) + $notificationTemplate,
 	'flow-enabled-on-talkpage' => array(
+		'presentation-model' => 'Flow\\FlowEnabledOnTalkpagePresentationModel',
 		'section' => null,
 		'user-locators' => array(
 			'EchoUserLocator::locateTalkPageOwner'
