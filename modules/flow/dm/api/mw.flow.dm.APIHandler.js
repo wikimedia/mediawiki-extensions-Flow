@@ -119,6 +119,7 @@
 
 		params.vtltoconly = !!config.toconly;
 		params.vtllimit = config.toconly ? 50 : 10;
+		params.vtlsortby = orderType;
 
 		if ( orderType === 'newest' ) {
 			params[ 'vtloffset-id' ] = config.offset;

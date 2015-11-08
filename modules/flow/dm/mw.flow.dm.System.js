@@ -125,6 +125,7 @@
 		return this.moreTopicsExistInApi;
 	};
 
+	// TODO: This should be merged with mw.flow.dm.APIHandler.getTopicList.
 	/**
 	 * Populate the board by querying the Api
 	 *
