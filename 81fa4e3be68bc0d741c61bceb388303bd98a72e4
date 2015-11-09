@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_9b06ed87",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-11-09T16:22:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_ff07f5ca",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_a415f04e",
         "filename": "includes/Dump/Exporter.php",
         "patchSetId": 9
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_3bf9017e",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-11-09T16:22:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_a415f04e",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_dfa231f9",
         "filename": "includes/Dump/Exporter.php",
         "patchSetId": 9
@@ -47,6 +83,24 @@
       "writtenOn": "2015-11-03T03:06:56Z",
       "side": 1,
       "message": "Once https://gerrit.wikimedia.org/r/#/c/243066/ is merged, this will need to be isTopicTitle and the fallback should be \u0027topic-title-wikitext\u0027.",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_d97e9f15",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-11-09T16:22:57Z",
+      "side": 1,
+      "message": "I\u0027ll add an @todo until I rebased this patch on top of that other one.",
+      "parentUuid": "0ebaf39b_dfa231f9",
       "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -88,6 +142,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_bb5ad150",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-11-09T16:22:57Z",
+      "side": 1,
+      "message": "I prefer not to have to translation map from one column name format (\u003d dump) to another (DB column names, as understood by fromStorageFormat).\n\nI\u0027d suggest to strip the `rev_` prefix (and re-apply in import) from every column (unsure what to do about tree_rev_ prefixes, though :p). I\u0027d leave the undersores in place.\n\nWhat do you think?",
+      "parentUuid": "0ebaf39b_1ef9a1c0",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_9fa839d9",
         "filename": "includes/Dump/Exporter.php",
         "patchSetId": 9
@@ -123,6 +195,42 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_a6287481",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-11-09T16:22:57Z",
+      "side": 1,
+      "message": "Hadn\u0027t thought about that.\n\nAt first I agreed to just let Xml::element escape it, like core does. But we have html tags \u0026 stuff in there, that\u0027s going to be really ugly.\n\nActually, the CDATA end token can be split up inside multiple CDATA tags, e.g.:\n\nE.g.: `Lala]]\u003elala` would turn into:\n\n\u003crevision\u003e\n    \u003c![CDATA[Lala]]]]\u003e\u003c![CDATA[\u003elala]]\u003e\n\u003c/revision\u003e\n\nIt\u0027s just a simple `str_replace(\u0027]]\u003e\u0027, \u0027]]]]\u003e\u003c![CDATA[\u003e\u0027, ...)` on all data.\n\nIt produces ugly content though (only for those with `]]\u003e`, so few revisions). But so is the other escaping alternative.\nAnd does it even matter how pretty things are? :)\n\nIDK. Any preference?",
+      "parentUuid": "0ebaf39b_be8f352e",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_f97b6322",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-11-09T16:22:57Z",
+      "side": 1,
+      "message": "How do you mean?",
+      "parentUuid": "0ebaf39b_9fa839d9",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_a4b1708e",
         "filename": "includes/Search/Iterators/AbstractIterator.php",
         "patchSetId": 9
@@ -134,6 +242,24 @@
       "writtenOn": "2015-11-03T03:06:56Z",
       "side": 1,
       "message": "Can be null and false currently.",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_fb2cc9f3",
+        "filename": "includes/Search/Iterators/AbstractIterator.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-11-09T16:22:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_a4b1708e",
       "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -157,6 +283,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_5b12b5b5",
+        "filename": "includes/Search/Iterators/AbstractIterator.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-11-09T16:22:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_3fb7cd36",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_4404341a",
         "filename": "includes/Search/Iterators/AbstractIterator.php",
         "patchSetId": 9
@@ -168,6 +312,24 @@
       "writtenOn": "2015-11-03T03:06:56Z",
       "side": 1,
       "message": "I think this should also be \u003c for consistency with https://phabricator.wikimedia.org/diffusion/MW/browse/master/maintenance/dumpBackup.php;6c02a2bb298b642d5443aa0738eebd032f8fda4c$113 and the dumpBackup.php here.\n\nI know this also affects search, but seems like it should be alright.  Just need to update FlowForceSearchIndex documentation.",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_398a5b1d",
+        "filename": "includes/Search/Iterators/AbstractIterator.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-11-09T16:22:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_4404341a",
       "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -191,6 +353,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_db1d45c2",
+        "filename": "includes/Search/Iterators/AbstractIterator.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-11-09T16:22:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_1fbc4919",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_df89d17a",
         "filename": "includes/Search/Iterators/AbstractIterator.php",
         "patchSetId": 9
@@ -202,6 +382,24 @@
       "writtenOn": "2015-11-03T03:06:56Z",
       "side": 1,
       "message": "Is this an error case, or just the normal end of iteration?",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_bbf65158",
+        "filename": "includes/Search/Iterators/AbstractIterator.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-11-09T16:22:57Z",
+      "side": 1,
+      "message": "Yeah, that\u0027s just end of iteration. I\u0027ll comment that.",
+      "parentUuid": "0ebaf39b_df89d17a",
       "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -225,6 +423,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_db88e5c8",
+        "filename": "includes/Search/Iterators/AbstractIterator.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-11-09T16:22:57Z",
+      "side": 1,
+      "message": "That\u0027s indeed what it does.\n\nI assume I did it like this because TopicIterator\u0027s query results can\u0027t be used to do a fromStorageRow().\n\nI think HeaderIterator could work that way, though, let me find out.\n\n--\n\nUpdate: the way HeaderIterator::query fetches data (`GROUP BY` \u0026 `MAX(rev_id)` we won\u0027t have a good $row that we could feed into fromStorageRow anyway.\n\nSo that indeed leaves us with re-fetching from ID. I\u0027ll further clarify the method\u0027s comment.",
+      "parentUuid": "0ebaf39b_ff8cd58a",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_9f7fd962",
         "filename": "includes/Search/Iterators/TopicIterator.php",
         "patchSetId": 9
@@ -236,6 +452,24 @@
       "writtenOn": "2015-11-03T03:06:56Z",
       "side": 1,
       "message": "\u003c (see related comments).",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_1985170c",
+        "filename": "includes/Search/Iterators/TopicIterator.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-11-09T16:22:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_9f7fd962",
       "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -259,6 +493,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_7990d34e",
+        "filename": "maintenance/FlowForceSearchIndex.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-11-09T16:22:57Z",
+      "side": 1,
+      "message": "forceSearchIndex.php has this one as inclusive (which is why it was inclusive throughout the rest of the code)\n\nI\u0027ll keep this one inclusive for compat with forceSearchIndex.php, but change the others to be exclusive.",
+      "parentUuid": "0ebaf39b_bfd09d54",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_bfbaddd7",
         "filename": "maintenance/dumpBackup.php",
         "patchSetId": 9
@@ -270,6 +522,24 @@
       "writtenOn": "2015-11-03T03:06:56Z",
       "side": 1,
       "message": "$this-\u003epages needs to be converted from title strings to article IDs, either here or in getWorkflowIterator.",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_9b358d44",
+        "filename": "maintenance/dumpBackup.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-11-09T16:22:57Z",
+      "side": 1,
+      "message": "Done. Altered getWorkflowIterated to no longer query for workflow_page_id, but workflow_namespace \u0026 workflow_title_text instead.",
+      "parentUuid": "0ebaf39b_bfbaddd7",
       "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
