@@ -632,14 +632,15 @@
 	mw.flow.Initializer.prototype.replaceNoJSEditor = function ( $element ) {
 		var editPostWidget,
 			$post = $element.parent(),
-			$topic = $post.closest( '.flow-topic' );
+			$topic = $post.closest( '.flow-topic' ),
+			self = this;
 
 		function saveOrCancelHandler( workflow ) {
 			editPostWidget.destroy();
 			editPostWidget.$element.remove();
 
 			// HACK get the old system to rerender the topic
-			return this.flowBoard.flowBoardComponentRefreshTopic(
+			return self.flowBoard.flowBoardComponentRefreshTopic(
 				$topic,
 				workflow
 			);
