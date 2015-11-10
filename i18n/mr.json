@@ -318,6 +318,7 @@
 	"flow-whatlinkshere-header": "[$1 वर्णना] मधून",
 	"flow-whatlinkshere-post-summary": "[$1 सारांशा] मधून",
 	"flow": "प्रवाह",
+	"flow-special-desc": "हे विशेष पान, प्रवाहाच्या कार्यप्रवाहास किंवा, जर यूयूआयडी(UUID)दिली असल्यास, प्रवाह टपालनास पुनर्निर्देशित करते.",
 	"flow-special-type": "प्रकार",
 	"flow-special-type-post": "टपालन",
 	"flow-special-type-workflow": "कार्यप्रवाह",
