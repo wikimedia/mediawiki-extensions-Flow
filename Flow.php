@@ -316,6 +316,7 @@ $wgLogActionsHandlers['delete/flow-restore-post'] = 'Flow\Log\ActionFormatter';
 $wgLogActionsHandlers['suppress/flow-restore-post'] = 'Flow\Log\ActionFormatter';
 $wgLogActionsHandlers['delete/flow-restore-topic'] = 'Flow\Log\ActionFormatter';
 $wgLogActionsHandlers['suppress/flow-restore-topic'] = 'Flow\Log\ActionFormatter';
+$wgLogActionsHandlers['lock/flow-restore-topic'] = 'Flow\Log\ActionFormatter';
 $wgLogActionsHandlers['import/lqt-to-flow-topic'] = 'Flow\Log\LqtImportFormatter';
 
 // Register URL actions
