@@ -66,14 +66,12 @@ class Importer {
 		$id = $this->importer->nodeAttribute( 'id' );
 		$this->importer->debug( 'Enter board handler for ' . $id );
 
-		global $wgFlowDefaultWorkflow;
-
 		$uuid = UUID::create( $id );
 		$title = \Title::newFromDBkey( $this->importer->nodeAttribute( 'title' ) );
 
 		$workflow = Workflow::fromStorageRow( array(
 			'workflow_id' => $uuid->getAlphadecimal(),
-			'workflow_type' => $wgFlowDefaultWorkflow,
+			'workflow_type' => 'discussion',
 			'workflow_wiki' => wfWikiID(),
 			'workflow_page_id' => $title->getArticleID(),
 			'workflow_namespace' => $title->getNamespace(),

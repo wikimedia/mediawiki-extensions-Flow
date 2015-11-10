@@ -53,15 +53,13 @@ class Exporter extends WikiExporter {
 	 * @return BatchRowIterator
 	 */
 	public function getWorkflowIterator( array $pages = null, $startId = null, $endId = null ) {
-		global $wgFlowDefaultWorkflow;
-
 		/** @var DatabaseBase $dbr */
 		$dbr = Container::get( 'db.factory' )->getDB( DB_SLAVE );
 
 		$iterator = new BatchRowIterator( $dbr, 'flow_workflow', 'workflow_id', 300 );
 		$iterator->setFetchColumns( array( '*' ) );
 		$iterator->addConditions( array( 'workflow_wiki' => wfWikiId() ) );
-		$iterator->addConditions( array( 'workflow_type' => $wgFlowDefaultWorkflow ) );
+		$iterator->addConditions( array( 'workflow_type' => 'discussion' ) );
 
 		if ( $pages ) {
 			$pageConds = array();

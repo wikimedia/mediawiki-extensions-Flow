@@ -29,11 +29,6 @@ class WorkflowLoaderFactory {
 	protected $submissionHandler;
 
 	/**
-	 * @var string
-	 */
-	protected $defaultWorkflowName;
-
-	/**
 	 * @var bool
 	 */
 	protected $pageMoveInProgress = false;
@@ -42,18 +37,15 @@ class WorkflowLoaderFactory {
 	 * @param ManagerGroup $storage
 	 * @param BlockFactory $blockFactory
 	 * @param SubmissionHandler $submissionHandler
-	 * @param string $defaultWorkflowName
 	 */
 	function __construct(
 		ManagerGroup $storage,
 		BlockFactory $blockFactory,
-		SubmissionHandler $submissionHandler,
-		$defaultWorkflowName
+		SubmissionHandler $submissionHandler
 	) {
 		$this->storage = $storage;
 		$this->blockFactory = $blockFactory;
 		$this->submissionHandler = $submissionHandler;
-		$this->defaultWorkflowName = $defaultWorkflowName;
 	}
 
 	public function pageMoveInProgress() {
@@ -104,7 +96,7 @@ class WorkflowLoaderFactory {
 			$title->resetArticleID( 0 );
 
 			// no existing workflow found, create new one
-			$workflow = Workflow::create( $this->defaultWorkflowName, $title );
+			$workflow = Workflow::create( 'discussion', $title );
 		} else {
 			$workflow = $this->loadWorkflowById( $pageTitle, $workflowId );
 		}
