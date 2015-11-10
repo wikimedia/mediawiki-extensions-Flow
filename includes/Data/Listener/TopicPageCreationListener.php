@@ -14,22 +14,16 @@ class TopicPageCreationListener extends AbstractListener {
 	/** @var SplQueue */
 	protected $deferredQueue;
 
-	/** @var string **/
-	protected $defaultType;
-
 	/**
 	 * @param OccupationController $occupationController The OccupationController to create the page with.
 	 * @param SplQueue             $deferredQueue        Queue of callbacks to run only if commit succeeds
-	 * @param string               $defaultType          The workflow type to look for
 	 */
 	public function __construct(
 		OccupationController $occupationController,
-		SplQueue $deferredQueue,
-		$defaultType
+		SplQueue $deferredQueue
 	) {
 		$this->occupationController = $occupationController;
 		$this->deferredQueue = $deferredQueue;
-		$this->defaultType = $defaultType;
 	}
 
 	public function onAfterLoad( $object, array $old ) {

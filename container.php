@@ -259,12 +259,9 @@ $c['listener.recentchanges'] = function( $c ) {
 	);
 };
 $c['listener.topicpagecreation'] = function( $c ) {
-	global $wgFlowDefaultWorkflow;
-
 	return new Flow\Data\Listener\TopicPageCreationListener(
 		$c['occupation_controller'],
-		$c['deferred_queue'],
-		$wgFlowDefaultWorkflow
+		$c['deferred_queue']
 	);
 };
 
@@ -785,13 +782,10 @@ $c['factory.block'] = function( $c ) {
 	);
 };
 $c['factory.loader.workflow'] = function( $c ) {
-	global $wgFlowDefaultWorkflow;
-
 	return new Flow\WorkflowLoaderFactory(
 		$c['storage'],
 		$c['factory.block'],
-		$c['submission_handler'],
-		$wgFlowDefaultWorkflow
+		$c['submission_handler']
 	);
 };
 // Initialized in FlowHooks to facilitate only loading the flow container

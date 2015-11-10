@@ -263,10 +263,6 @@ $wgFlowParsoidHTTPProxy = null; // see also $wgVisualEditorParsoidHTTPProxy
 // that $wgVisualEditorParsoidURL be pointed to localhost if this setting is enabled.
 $wgFlowParsoidForwardCookies = false;
 
-// When visiting the flow for an article but not specifying what type of workflow should be viewed,
-// use this workflow
-$wgFlowDefaultWorkflow = 'discussion';
-
 // Limits for paging
 $wgFlowDefaultLimit = 10;
 $wgFlowMaxLimit = 100;
