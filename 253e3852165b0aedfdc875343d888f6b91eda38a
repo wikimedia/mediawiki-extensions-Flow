@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebaf39b_5f0cbe45",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-11-11T14:52:59Z",
+      "side": 1,
+      "message": "What about this?\n(also see discussion on https://gerrit.wikimedia.org/r/#/c/242569/9/includes/Dump/Exporter.php)",
+      "revId": "253e3852165b0aedfdc875343d888f6b91eda38a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
