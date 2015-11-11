@@ -288,13 +288,22 @@
 			resetBoardEnd: function ( data ) {
 				var $rendered;
 
-				// HACK: Trim the data for only the rendered topics
-				// We can't have the API request use a limit because when we
-				// rebuild the board (when we reorder) we want the full 50
-				// topics for the ToC widget. When the topic- and board-widget
-				// are operational, we should render properly without using this
-				// hack.
-				data.topiclist.roots = data.topiclist.roots.splice( 0, mw.flow.system.getRenderedTopics() );
+				// populateBoardFromApi uses the larger TOC limit so the TOC can
+				// be fully populated on re-sort.  To avoid two requests
+				// (TOC and full topics) with different limits, we do a single
+				// full-topic request with that limit.
+				//
+				// However, this is inconsistent with the number of topics
+				// we show at page load.
+				//
+				// This could be addressed by either showing the larger number of
+				// topics on page load, doing two separate requests (might still be
+				// faster considering the backend doesn't have to get full data for
+				// many topics), or filtering the topic list on render.
+				//
+				// The latter (filter on render) could be done when the topic- and
+				// board-widget are operational using some sort of computed subset
+				// data model.
 				$rendered = $(
 					mw.flow.TemplateEngine.processTemplateGetFragment(
 						'flow_block_loop',

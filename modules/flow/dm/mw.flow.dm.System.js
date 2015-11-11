@@ -308,6 +308,8 @@
 	 * When we scroll down or load a topic, this is the number that defines the
 	 * batch of topics to be loaded and rendered.
 	 *
+	 * This does not affect the number of topics loaded when the sort order changes.
+	 *
 	 * @return {number} Rendered topics
 	 */
 	mw.flow.dm.System.prototype.getRenderedTopics = function () {
