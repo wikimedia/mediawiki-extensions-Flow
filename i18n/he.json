@@ -23,6 +23,8 @@
 	"logentry-delete-flow-restore-topic": "$1 {{GENDER:$2|שחזר|שחזרה}} את הנושא \"[[$3|$5]]\" בלוח [[$6]]",
 	"logentry-suppress-flow-suppress-topic": "$1 {{GENDER:$2|העלים|העלימה}} את הנושא \"[[$3|$5]]\" בלוח [[$6]]",
 	"logentry-suppress-flow-restore-topic": "$1 {{GENDER:$2|מחק|מחקה}} את הנושא \"[[$3|$5]]\" בלוח [[$6]]",
+	"logentry-lock-flow-lock-topic": "$1 {{GENDER:$2|סימן|סימנה}} את הנושא \"[[$3|$5]]\" כפתור בדף [[$6]]",
+	"logentry-lock-flow-restore-topic": "$1 {{GENDER:$2|פתח מחדש}} את הנושא \"[[$3|$5]]\" בדף [[$6]]",
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] בלוח [[$3]] יובא מ־LiquidThreads לזרימה",
 	"flow-user-moderated": "משתמש בפיקוח",
 	"flow-board-header-browse-topics-link": "עיון בנושאים",

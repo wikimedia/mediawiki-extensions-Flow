@@ -19,6 +19,8 @@
 	"logentry-delete-flow-restore-topic": "$1 {{GENDER:$2|ја избриша}} темата „[[$3|$5]]“ на [[$6]]",
 	"logentry-suppress-flow-suppress-topic": "$1 {{GENDER:$2|ја избриша}} темата „[[$3|$5]]“ на [[$6]]",
 	"logentry-suppress-flow-restore-topic": "$1 {{GENDER:$2|ја избриша}} темата „[[$3|$5]]“ на [[$6]]",
+	"logentry-lock-flow-lock-topic": "$1 {{GENDER:$2|ја означи}} темата „[[$3|$5]]“ како решена на [[$6]]",
+	"logentry-lock-flow-restore-topic": "$1 {{GENDER:$2|повторно ја отвори}} темата „[[$3|$5]]“ на [[$6]]",
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] на [[$3]] е увезена во Flow од LiquidThreads",
 	"flow-user-moderated": "Модериран корисник",
 	"flow-board-header-browse-topics-link": "Прегледај теми",

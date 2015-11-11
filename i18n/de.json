@@ -24,6 +24,8 @@
 	"logentry-delete-flow-restore-topic": "$1 {{GENDER:$2|stellte}} das Thema „[[$3|$5]]“ auf [[$6]] wieder her",
 	"logentry-suppress-flow-suppress-topic": "$1 {{GENDER:$2|unterdrückte}} das Thema „[[$3|$5]]“ auf [[$6]]",
 	"logentry-suppress-flow-restore-topic": "$1 {{GENDER:$2|löschte}} das Thema „[[$3|$5]]“ auf [[$6]]",
+	"logentry-lock-flow-lock-topic": "$1 {{GENDER:$2|markierte}} das Thema „[[$3|$5]]“ auf [[$6]] als erledigt",
+	"logentry-lock-flow-restore-topic": "$1 {{GENDER:$2|eröffnete}} wieder das Thema „[[$3|$5]]“ auf [[$6]]",
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] auf [[$3]] wurde von LiquidThreads zu Flow importiert",
 	"flow-user-moderated": "Moderierter Benutzer",
 	"flow-board-header-browse-topics-link": "Themen durchsuchen",

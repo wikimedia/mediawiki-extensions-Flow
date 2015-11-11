@@ -35,6 +35,8 @@
 	"logentry-delete-flow-restore-topic": "$1{{GENDER:$2|还原}}在[[$6]]中的话题“[[$3|$5]]”",
 	"logentry-suppress-flow-suppress-topic": "$1{{GENDER:$2|禁止}}在[[$6]]中的话题“[[$3|$5]]”",
 	"logentry-suppress-flow-restore-topic": "$1{{GENDER:$2|删除}}在[[$6]]中的话题“[[$3|$5]]”",
+	"logentry-lock-flow-lock-topic": "$1将位于[[$6]]的主题“[[$3|$5]]”{{GENDER:$2|标记}}为已解决",
+	"logentry-lock-flow-restore-topic": "$1已{{GENDER:$2|重启}}位于[[$6]]的主题“[[$3|$5]]”",
 	"logentry-import-lqt-to-flow-topic": "在[[$3]]上的[[$1|$2]]已从LiquidThreads导入至Flow",
 	"flow-user-moderated": "限制用户",
 	"flow-board-header-browse-topics-link": "浏览话题",
