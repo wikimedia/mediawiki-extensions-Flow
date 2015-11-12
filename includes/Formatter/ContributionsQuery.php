@@ -245,11 +245,11 @@ class ContributionsQuery extends AbstractQuery {
 				return $dbr->select(
 					array( 'flow_revision', 'flow_workflow', 'flow_tree_node' ),
 					array( '*' ),
-					$conditions + array(
+					array_merge( $conditions, array(
 						'workflow_id = tree_ancestor_id',
 						'tree_descendant_id = rev_type_id',
 						'rev_type' => 'post-summary'
-					),
+					) ),
 					__METHOD__,
 					array(
 						'LIMIT' => $limit,
