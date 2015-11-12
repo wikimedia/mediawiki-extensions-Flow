@@ -231,6 +231,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_29cc3066",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-12T01:27:34Z",
+      "side": 1,
+      "message": "(Replying to both)\n\nI\u0027m okay with either, but I prefer Xml::element only because it\u0027s more standard, which is good for security code (nice find re this way of escaping CDATA, though).\n\nRe \"Logic to determine format\", I mean make a $format variable, which will be either \u0027html\u0027 or \u0027topic-title-wikitext\u0027 (per above).  $format should be used for both flags and getContent.",
+      "parentUuid": "0ebaf39b_f97b6322",
+      "revId": "81fa4e3be68bc0d741c61bceb388303bd98a72e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_a4b1708e",
         "filename": "includes/Search/Iterators/AbstractIterator.php",
         "patchSetId": 9
