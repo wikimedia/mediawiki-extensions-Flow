@@ -106,7 +106,8 @@
 	 * Set up the sidebar widget if needed
 	 */
 	mw.flow.Initializer.prototype.setupSidebarWidget = function () {
-		var sidebarExpandWidget;
+		var sidebarExpandWidget,
+			self = this;
 
 		if (
 			this.$component.hasClass( 'flow-topic-page' ) &&
@@ -124,7 +125,7 @@
 
 			// Events
 			sidebarExpandWidget.on( 'toggle', function ( collapsed ) {
-				this.$board.toggleClass( 'flow-board-expanded', collapsed );
+				self.$board.toggleClass( 'flow-board-expanded', collapsed );
 			} );
 		}
 	};
