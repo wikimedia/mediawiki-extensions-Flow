@@ -55,6 +55,8 @@
 	"logentry-delete-flow-restore-topic": "$1 {{GENDER:$2|a rétabli}} le sujet « [[$3|$5]] » sur [[$6]]",
 	"logentry-suppress-flow-suppress-topic": "$1 {{GENDER:$2|a masqué}} le sujet « [[$3|$5]] » sur [[$6]]",
 	"logentry-suppress-flow-restore-topic": "$1 {{GENDER:$2|a supprimé}} le sujet « [[$3|$5]] » sur [[$6]]",
+	"logentry-lock-flow-lock-topic": "$1 {{GENDER:$2|a marqué}} le sujet « [[$3|$5]] » comme résolu le [[$6]]",
+	"logentry-lock-flow-restore-topic": "$1 {{GENDER:$2|a réouvert}} le sujet « [[$3|$5]] » le [[$6]]",
 	"logentry-import-lqt-to-flow-topic": "Le sujet [[$1|$2]] de [[$3]] a été importé depuis LiquidThreads vers Flow.",
 	"flow-user-moderated": "Utilisateur modéré",
 	"flow-board-header-browse-topics-link": "Parcourir les discussions",
