@@ -62,8 +62,8 @@ class ContributionsQuery extends AbstractQuery {
 	 * @return FormatterRow[]
 	 */
 	public function getResults( $pager, $offset, $limit, $descending ) {
-		// build DB query conditions
-		$conditions = $this->buildConditions( $pager, $offset, $descending );
+		// build DB query conditions and options
+		$queryInfo = $this->buildQueryInfo( $pager, $offset, $descending );
 
 		$types = array(
 			// revision class => block type
@@ -75,7 +75,7 @@ class ContributionsQuery extends AbstractQuery {
 		$results = array();
 		foreach ( $types as $revisionClass => $blockType ) {
 			// query DB for requested revisions
-			$rows = $this->queryRevisions( $conditions, $limit, $revisionClass );
+			$rows = $this->queryRevisions( $queryInfo, $limit, $revisionClass );
 			if ( !$rows ) {
 				continue;
 			}
@@ -128,10 +128,11 @@ class ContributionsQuery extends AbstractQuery {
 	 * @param ContribsPager|DeletedContribsPager $pager Object hooked into
 	 * @param string $offset Index offset, inclusive
 	 * @param bool $descending Query direction, false for ascending, true for descending
-	 * @return array Query conditions
+	 * @return array Query conditions and options
 	 */
-	protected function buildConditions( $pager, $offset, $descending ) {
+	protected function buildQueryInfo( $pager, $offset, $descending ) {
 		$conditions = array();
+		$options = array();
 
 		// Work out user condition
 		if ( property_exists( $pager, 'contribs' ) && $pager->contribs == 'newbie' ) {
@@ -156,6 +157,8 @@ class ContributionsQuery extends AbstractQuery {
 				$conditions['rev_user_ip'] = $pager->target;
 				$conditions['rev_user_wiki'] = wfWikiId();
 			}
+			// Hack around optimizer bug (T78671): index not used correctly when $offset is set
+			$options['USE INDEX']['flow_revision'] = 'flow_revision_user';
 		}
 
 		// Make offset parameter.
@@ -172,17 +175,17 @@ class ContributionsQuery extends AbstractQuery {
 			$conditions['workflow_namespace'] = $pager->namespace;
 		}
 
-		return $conditions;
+		return array( 'conditions' => $conditions, 'options' => $options );
 	}
 
 	/**
-	 * @param array $conditions
+	 * @param array $queryInfo
 	 * @param int $limit
 	 * @param string $revisionClass Storage type (e.g. "PostRevision", "Header")
 	 * @return ResultWrapper|false false on failure
 	 * @throws \MWException
 	 */
-	protected function queryRevisions( $conditions, $limit, $revisionClass ) {
+	protected function queryRevisions( $queryInfo, $limit, $revisionClass ) {
 		$dbr = $this->dbFactory->getDB( DB_SLAVE );
 
 		switch ( $revisionClass ) {
@@ -195,12 +198,12 @@ class ContributionsQuery extends AbstractQuery {
 						'flow_workflow', // resolve to workflow, to test if in correct wiki/namespace
 					),
 					array( '*' ),
-					$conditions,
+					$queryInfo['conditions'],
 					__METHOD__,
-					array(
+					array_merge( $queryInfo['options'], array(
 						'LIMIT' => $limit,
 						'ORDER BY' => 'rev_id DESC',
-					),
+					) ),
 					array(
 						'flow_tree_revision' => array(
 							'INNER JOIN',
@@ -226,12 +229,12 @@ class ContributionsQuery extends AbstractQuery {
 				return $dbr->select(
 					array( 'flow_revision', 'flow_workflow' ),
 					array( '*' ),
-					$conditions,
+					$queryInfo['conditions'],
 					__METHOD__,
-					array(
+					array_merge( $queryInfo['options'], array(
 						'LIMIT' => $limit,
 						'ORDER BY' => 'rev_id DESC',
-					),
+					) ),
 					array(
 						'flow_workflow' => array(
 							'INNER JOIN',
@@ -245,16 +248,16 @@ class ContributionsQuery extends AbstractQuery {
 				return $dbr->select(
 					array( 'flow_revision', 'flow_workflow', 'flow_tree_node' ),
 					array( '*' ),
-					array_merge( $conditions, array(
+					array_merge( $queryInfo['conditions'], array(
 						'workflow_id = tree_ancestor_id',
 						'tree_descendant_id = rev_type_id',
 						'rev_type' => 'post-summary'
 					) ),
 					__METHOD__,
-					array(
+					array_merge( $queryInfo['options'], array(
 						'LIMIT' => $limit,
 						'ORDER BY' => 'rev_id DESC',
-					)
+					) )
 				);
 				break;
 
