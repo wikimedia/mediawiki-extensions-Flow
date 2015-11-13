@@ -243,17 +243,23 @@ class ContributionsQuery extends AbstractQuery {
 
 			case 'PostSummary':
 				return $dbr->select(
-					array( 'flow_revision', 'flow_workflow', 'flow_tree_node' ),
+					array( 'flow_revision', 'flow_tree_node', 'flow_workflow' ),
 					array( '*' ),
-					array_merge( $conditions, array(
-						'workflow_id = tree_ancestor_id',
-						'tree_descendant_id = rev_type_id',
-						'rev_type' => 'post-summary'
-					) ),
+					$conditions,
 					__METHOD__,
 					array(
 						'LIMIT' => $limit,
 						'ORDER BY' => 'rev_id DESC',
+					),
+					array(
+						'flow_tree_node' => array(
+							'INNER JOIN',
+							array( 'tree_descendant_id = rev_type_id', 'rev_type' => 'post-summary' )
+						),
+						'flow_workflow' => array(
+							'INNER JOIN',
+							array( 'workflow_id = tree_ancestor_id' )
+						)
 					)
 				);
 				break;
