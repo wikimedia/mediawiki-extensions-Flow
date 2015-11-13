@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebaf39b_bb0fff8c",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-11-13T13:24:49Z",
+      "side": 1,
+      "message": "This shouldn\u0027t return a format that the revision can\u0027t be stored as.\n\nAIUI, topic title can\u0027t be stored as \u0027wikitext\u0027 or \u0027html\u0027 but will be \u0027topic-title-wikitext\u0027 or \u0027topic-title\u0027?",
+      "revId": "3d9866045637cd69b6713f0d5d3f26d4b6c83140",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
