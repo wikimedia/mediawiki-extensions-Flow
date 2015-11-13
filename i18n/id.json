@@ -2,9 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Ahdan",
-			"William Surya Permana"
+			"William Surya Permana",
+			"Kenrick95"
 		]
 	},
+	"logentry-lock-flow-lock-topic": "$1 menandai topik \"[[$3|$5]]\" terselesaikan di [[$6]]",
+	"logentry-lock-flow-restore-topic": "$1 membuka kembali topik \"[[$3|$5]]\" di [[$6]]",
 	"flow-topic-moderated-reason-prefix": "Alasan:",
 	"flow-topic-action-undo-moderation": "Batal",
 	"echo-pref-tooltip-flow-discussion": "Beritahu saya saat ada tindakan yang berhubungan dengan saya terjadi di Flow.",

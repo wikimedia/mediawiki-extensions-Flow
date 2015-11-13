@@ -325,7 +325,7 @@
 	"flow-compare-revisions-header-postsummary": "Ova stranica prikazuje izmjene između dvije verzije sažetka objave $3 na temi \"[$4 $2]\" na [$3 $1].\nOstale verzije možete vidjeti na [$5 historiji stranice].",
 	"flow-compare-revisions-header-header": "Ova stranica prikazuje {{GENDER:$2|izmjene}} između dvije verzije opisa objave [$3 $1].\nOstale verzije možete vidjeti na [$4 historiji stranice].",
 	"action-flow-create-board": "premjestite Flow rasprave na bilo koje mjesto",
-	"right-flow-create-board": "pravljenje Flow rasprava na bilo kojem mjestu",
+	"right-flow-create-board": "Pravljenje Flow rasprava na bilo kojem mjestu",
 	"right-flow-hide": "Sakrijete Flow teme i objave",
 	"right-flow-lock": "Označite Flow teme kao riješene",
 	"right-flow-delete": "Obrišete Flow teme i objave",
