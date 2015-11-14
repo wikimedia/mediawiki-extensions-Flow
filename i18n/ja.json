@@ -355,6 +355,8 @@
 	"flow-previous-diff": "← 古い編集",
 	"flow-next-diff": "新しい編集 →",
 	"flow-undo": "取り消し",
+	"flow-wikitext-switch-editor-tooltip": "ビジュアルエディターに切り替え",
+	"flow-ve-switch-editor-tool-title": "ウィキテキストエディターに切り替え",
 	"flow-mark-revision-patrolled-link-text": "このページを巡回済みにする",
 	"flow-mark-diff-patrolled-link-text": "巡回済みにする",
 	"flow-notification-link-text-enabled-on-talkpage": "利用者の会話ページを見る",

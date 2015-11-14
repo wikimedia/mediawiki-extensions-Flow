@@ -4,5 +4,7 @@
 			"MaGa"
 		]
 	},
-	"flow-notification-mention-email-subject": "$1 {{GENDER:$1|Vas je spomenuo|Vas je spomenula}} na projektu $2"
+	"flow-notification-mention": "$1 {{GENDER:$5|Vas}} je {{GENDER:$1|spomenuo|spomenula}} u {{GENDER:$1|njegovoj|njenoj}} <span class=\"plainlinks\">[$2 poruci]</span> pod naslovom \"$3\" na stranici \"$4\".",
+	"flow-notification-mention-email-subject": "$1 {{GENDER:$1|Vas je spomenuo|Vas je spomenula}} na projektu $2",
+	"flow-notification-mention-email-batch-body": "$1 Vas je {{GENDER:$1|spomenuo|spomenula}} u {{GENDER:$1|njegovoj|njenoj}} poruci pod naslovom \"$2\" na stranici $3."
 }
