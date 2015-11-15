@@ -6,7 +6,10 @@
 			"Nnemo"
 		]
 	},
+	"enableflow": "Gweredekaat Flow",
 	"flow-user-moderated": "Implijer habaskaet",
+	"flow-board-collapse-description": "Kuzhat an deskrivadur",
+	"flow-board-expand-description": "Diskouez an deskrivadur",
 	"flow-edit-header-link": "Aozañ an talbenn",
 	"flow-post-moderated-toggle-hide-show": "Diskouez an evezhiadenn {{GENDER:$1|kuzhet}} gant $2",
 	"flow-post-moderated-toggle-delete-show": "Diskouez an evezhiadenn {{GENDER:$1|dilamet}} gant $2",
@@ -36,6 +39,7 @@
 	"flow-reply-topic-title-placeholder": "Respont da \"$1\"",
 	"flow-reply-link": "{{GENDER:$1|Respont}}",
 	"flow-thank-link": "{{GENDER:$1|Trugarez}}",
+	"flow-history-action-hide-post": "kuzhat",
 	"flow-post-edited": "Kemennadenn {{GENDER:$1|aozet}} gant $1 $2",
 	"flow-post-action-view": "Peurliamm",
 	"flow-post-action-post-history": "Istor",
@@ -46,6 +50,7 @@
 	"flow-post-action-edit-post-submit": "Enrollañ ar c'hemmoù",
 	"flow-post-action-unhide-post": "Diguzhat",
 	"flow-post-action-restore-post": "Assevel",
+	"flow-post-action-undo-moderation": "Dizober",
 	"flow-topic-action-view": "Peurliamm",
 	"flow-topic-action-watchlist": "Roll evezhiañ",
 	"flow-topic-action-edit-title": "Kemmañ an titl",

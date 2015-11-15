@@ -82,5 +82,7 @@
 	"flow-terms-of-use-new-topic": "\"{{int:flow-newtopic-save}}\" నొక్కడం ద్వారా, మీరు ఈ వికీ నియమాలను అంగీకరిస్తున్నారు.",
 	"flow-terms-of-use-reply": "\"{{int:flow-reply-link}}\" నొక్కడం ద్వారా, మీరు ఈ వికీ విధివిధానాలను అంగీకరిస్తున్నట్లు.",
 	"flow-terms-of-use-edit": "మీ మార్పులను భద్రపరచడం ద్వారా, మీరు ఈ వికీ విధివిధానాలను అంగీకరిస్తున్నట్లు.",
-	"apihelp-flow+close-open-topic-param-moderationState": "విషయాన్ని ఉంచాల్సిన స్థితి, \"తాళంవేయి\" లేదా \"తాళంతీయి\"."
+	"apihelp-flow+close-open-topic-param-moderationState": "విషయాన్ని ఉంచాల్సిన స్థితి, \"తాళంవేయి\" లేదా \"తాళంతీయి\".",
+	"flow-wikitext-switch-editor-tooltip": "విజువల్ ఎడిటర్ కు మారండి",
+	"flow-ve-switch-editor-tool-title": "సాధారణ వికీపాఠ్య ఎడిటర్ కు మారండి"
 }

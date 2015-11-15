@@ -23,7 +23,7 @@
 			"Yearning"
 		]
 	},
-	"enableflow": "Flow 활성화",
+	"enableflow": "플로우 활성화",
 	"flow-desc": "워크플로우 관리 시스템",
 	"flow-talk-taken-over-comment": "/* 이 문서는 플로우 토론 게시판으로 변환되었습니다 */",
 	"log-name-flow": "플로우 활동 기록",
