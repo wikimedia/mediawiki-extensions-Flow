@@ -15,7 +15,7 @@
 	"log-name-flow": "Kniha aktivity Flow",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|smazal|smazala}} [$4 příspěvek] k tématu „[[$3|$5]]“ na stránce [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|obnovil|obnovila}} [$4 příspěvek] k tématu „[[$3|$5]]“ na stránce [[$6]]",
-	"logentry-lock-flow-lock-topic": "$1 {{GENDER:$2|označil|označila}} téma \"[[$3|$5]]\" jako vyřešené na [[$6]]",
+	"logentry-lock-flow-lock-topic": "$1 {{GENDER:$2|označil|označila}} téma „[[$3|$5]]“ v [[$6]] jako vyřešené",
 	"flow-board-header-browse-topics-link": "Procházet témata",
 	"flow-edit-header-link": "Editovat popis",
 	"flow-post-moderated-toggle-hide-show": "Ukázat komentář {{GENDER:$1|skrytý}} od $2",

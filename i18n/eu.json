@@ -32,5 +32,7 @@
 	"flow-moderation-confirm-hide-post": "Ezkutatu",
 	"flow-moderation-confirm-delete-topic": "Ezabatu",
 	"flow-moderation-confirm-hide-topic": "Ezkutatu",
+	"flow-wikitext-switch-editor-tooltip": "Aldatu editore bisualera",
+	"flow-ve-switch-editor-tool-title": "Aldatu wikitestu-editorera",
 	"flow-dialog-cancelconfirm-title": "Ziur zaude?"
 }
