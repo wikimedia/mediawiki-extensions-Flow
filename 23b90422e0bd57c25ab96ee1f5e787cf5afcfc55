@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebaf39b_859e3f58",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-17T18:27:00Z",
+      "side": 1,
+      "message": "$pageConds[]",
+      "revId": "23b90422e0bd57c25ab96ee1f5e787cf5afcfc55",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_a53903cd",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-17T18:27:00Z",
+      "side": 1,
+      "message": "It looks like this is supposed to be workflow_namespace and workflow_title_text.  Or there is a missing join.",
+      "revId": "23b90422e0bd57c25ab96ee1f5e787cf5afcfc55",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_a5c90357",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-17T18:27:00Z",
+      "side": 1,
+      "message": "-\u003egetAlphadecimal()\n\nto avoid notices.",
+      "revId": "23b90422e0bd57c25ab96ee1f5e787cf5afcfc55",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_65646baf",
+        "filename": "maintenance/FlowForceSearchIndex.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-17T18:27:00Z",
+      "side": 1,
+      "message": "$alphadecimal.  That\u0027s what 36 is, not hex.",
+      "revId": "23b90422e0bd57c25ab96ee1f5e787cf5afcfc55",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
