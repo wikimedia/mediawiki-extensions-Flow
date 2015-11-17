@@ -7,7 +7,8 @@
 			"Violetanka",
 			"Meelo",
 			"KorkmazO",
-			"McAang"
+			"McAang",
+			"HakanIST"
 		]
 	},
 	"flow-board-header-browse-topics-link": "Konulara göz at",
@@ -31,5 +32,6 @@
 	"flow-topic-html-title": "$1 sayfa $2",
 	"flow-special-enableflow-invalid-title": "Geçersiz bir sayfa başlığı girildi",
 	"flow-ve-mention-placeholder": "Kullanıcı adı",
+	"flow-wikitext-switch-editor-tooltip": "Görsel düzenleyiciye geç",
 	"flow-dialog-cancelconfirm-message": "Kaydetmeden iptal etmek istediğinizden emin misiniz?"
 }

@@ -97,5 +97,6 @@
 	"flow-ve-mention-placeholder": "Uživatelské jméno",
 	"flow-ve-mention-tool-title": "Zmínit uživatele",
 	"flow-ve-mention-inspector-invalid-user": "Uživatelské jméno „$1“ není zaregistrováno.",
-	"flow-ve-switch-editor-tool-title": "Přepnout do Wikitext editoru"
+	"flow-wikitext-switch-editor-tooltip": "Přepnout do vizuálního editoru",
+	"flow-ve-switch-editor-tool-title": "Přepnout do editoru wikitextu"
 }
