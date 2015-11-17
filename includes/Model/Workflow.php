@@ -350,4 +350,29 @@ class Workflow {
 
 		return $allowed;
 	}
+
+	/**
+	 * Pass-through to Title::getUserPermissionsErrors
+	 * with title, and owning title if needed.
+	 * @param string $permission
+	 * @param User $user
+	 * @return array Array of arrays of the arguments to wfMessage to explain permissions problems.
+	 */
+	public function getPermissionErrors( $permission, $user ) {
+		$title = $this->getArticleTitle();
+
+		$errors = $title->getUserPermissionsErrors( $permission, $user );
+		if ( count( $errors ) ) {
+			return $errors;
+		}
+
+		if ( $this->type === 'topic' ) {
+			$errors = $this->getOwnerTitle()->getUserPermissionsErrors( $permission, $user );
+			if ( count( $errors ) ) {
+				return $errors;
+			}
+		}
+
+		return array();
+	}
 }
