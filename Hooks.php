@@ -1559,6 +1559,58 @@ class FlowHooks {
 	}
 
 	/**
+	 * Evicts topics from Squid/Varnish when the board is deleted.
+	 * We do permission checks for this scenario, but since the topic isn't deleted
+	 * at the core level, we need to evict it from Varnish ourselves.
+	 *
+	 * @param WikiPage &$article Deleted article
+	 * @param User &$user User that deleted article
+	 * @param string $reason Reason given
+	 * @param int $articleId Article ID of deleted article
+	 * @param Content $content Content that was deleted, or null on error
+	 * @param LogEntry $logEntry Log entry for deletion
+	 */
+	public static function onArticleDeleteComplete( WikiPage &$article, User &$user, $reason, $articleId, Content $content = null, LogEntry $logEntry ) {
+		$title = $article->getTitle();
+
+		// Topics use the same content model, but can't be deleted at the core
+		// level currently.
+		if ( $content !== null &&
+			$title->getNamespace() !== NS_TOPIC &&
+			$title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
+
+			$storage = Container::get( 'storage' );
+
+			DeferredUpdates::addUpdate( new MWCallableUpdate( function () use ( $storage, $articleId ) {
+				$workflows = $storage->find( 'Workflow', array(
+					'workflow_wiki' => wfWikiId(),
+					'workflow_page_id' => $articleId,
+				) );
+
+				if ( !$workflows ) {
+					return false;
+				}
+
+				// If I41ebd2f34347a3f218f7d0bfc8962d286b943c16 is merged to core (see T116095),
+				// we can use SquidUpdate::newFromTitles instead of building the URL list ourselves.
+				$squidUrls = array();
+
+				foreach ( $workflows as $workflow ) {
+					if ( $workflow->getType() === 'topic' ) {
+						$topicTitle = $workflow->getArticleTitle();
+						$squidUrls = array_merge( $squidUrls, $topicTitle->getSquidURLs() );
+					}
+				}
+
+				$squidUpdate = new SquidUpdate( $squidUrls );
+				$squidUpdate->doUpdate();
+			} ) );
+		}
+
+		return true;
+	}
+
+	/**
 	 * @param Title $title Title corresponding to the article restored
 	 * @param bool $create Whether or not the restoration caused the page to be created (i.e. it didn't exist before).
 	 * @param string $comment The comment associated with the undeletion.
