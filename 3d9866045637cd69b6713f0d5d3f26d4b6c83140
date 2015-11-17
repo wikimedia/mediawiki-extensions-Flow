@@ -16,6 +16,24 @@
       "revId": "3d9866045637cd69b6713f0d5d3f26d4b6c83140",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_45e04793",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-17T18:52:04Z",
+      "side": 1,
+      "message": "The method is overridden in the subclass (PostRevision) for this.\n\nIt always must be stored as topic-title-wikitext, even if Parsoid is enabled (it does not apply to topic titles).",
+      "parentUuid": "0ebaf39b_bb0fff8c",
+      "revId": "3d9866045637cd69b6713f0d5d3f26d4b6c83140",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
