@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_66e46ea4",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-11-18T08:11:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_859e3f58",
+      "revId": "23b90422e0bd57c25ab96ee1f5e787cf5afcfc55",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_a53903cd",
         "filename": "includes/Dump/Exporter.php",
         "patchSetId": 15
@@ -30,6 +48,24 @@
       "writtenOn": "2015-11-17T18:27:00Z",
       "side": 1,
       "message": "It looks like this is supposed to be workflow_namespace and workflow_title_text.  Or there is a missing join.",
+      "revId": "23b90422e0bd57c25ab96ee1f5e787cf5afcfc55",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_86e722a7",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-11-18T08:11:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_a53903cd",
       "revId": "23b90422e0bd57c25ab96ee1f5e787cf5afcfc55",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_c6ed1a8b",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-11-18T08:11:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_a5c90357",
+      "revId": "23b90422e0bd57c25ab96ee1f5e787cf5afcfc55",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_65646baf",
         "filename": "maintenance/FlowForceSearchIndex.php",
         "patchSetId": 15
@@ -64,6 +118,24 @@
       "writtenOn": "2015-11-17T18:27:00Z",
       "side": 1,
       "message": "$alphadecimal.  That\u0027s what 36 is, not hex.",
+      "revId": "23b90422e0bd57c25ab96ee1f5e787cf5afcfc55",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_46f92a4a",
+        "filename": "maintenance/FlowForceSearchIndex.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-11-18T08:11:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_65646baf",
       "revId": "23b90422e0bd57c25ab96ee1f5e787cf5afcfc55",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
