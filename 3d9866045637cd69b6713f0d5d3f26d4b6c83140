@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "0ebaf39b_b1ddcd75",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 1121,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-11-18T01:16:38Z",
+      "side": 1,
+      "message": "wikitext, not wikitxt",
+      "revId": "3d9866045637cd69b6713f0d5d3f26d4b6c83140",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_71e7553c",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 1128,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-11-18T01:16:38Z",
+      "side": 1,
+      "message": "Here too",
+      "revId": "3d9866045637cd69b6713f0d5d3f26d4b6c83140",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_bb0fff8c",
         "filename": "includes/Model/AbstractRevision.php",
         "patchSetId": 9
@@ -31,6 +65,23 @@
       "side": 1,
       "message": "The method is overridden in the subclass (PostRevision) for this.\n\nIt always must be stored as topic-title-wikitext, even if Parsoid is enabled (it does not apply to topic titles).",
       "parentUuid": "0ebaf39b_bb0fff8c",
+      "revId": "3d9866045637cd69b6713f0d5d3f26d4b6c83140",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_b1c4ed95",
+        "filename": "includes/OOUI/BoardDescriptionWidget.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-11-18T01:16:38Z",
+      "side": 1,
+      "message": "Leftover? This doesn\u0027t appear to be used.",
       "revId": "3d9866045637cd69b6713f0d5d3f26d4b6c83140",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
