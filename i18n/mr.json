@@ -19,6 +19,8 @@
 	"logentry-delete-flow-restore-topic": "[[$6]]च्या \"[[$3|$5]]\" वर असलेला एक विषय $1 ने {{GENDER:$2|पुनर्स्थापित केला}}",
 	"logentry-suppress-flow-suppress-topic": "[[$6]]च्या \"[[$3|$5]]\" वर असलेला एक विषय $1 ने {{GENDER:$2|दमन केला}}",
 	"logentry-suppress-flow-restore-topic": "[[$6]]च्या \"[[$3|$5]]\" वर असलेला एक विषय $1 ने {{GENDER:$2|वगळला}}",
+	"logentry-lock-flow-lock-topic": "$1 ने [[$6]] वर,\"[[$3|$5]]\" हा विषय सोडविण्यात आला अशी {{GENDER:$2|खूण केली}}",
+	"logentry-lock-flow-restore-topic": "$1 ने [[$6]] वर,\"[[$3|$5]]\" हा विषय पुन्हा सुरु करण्यात आला अशी {{GENDER:$2|खूण केली}}",
 	"flow-user-moderated": "नेमलेला सदस्य",
 	"flow-board-header-browse-topics-link": "विषय न्याहाळा",
 	"flow-board-header": "या फलकाबाबत",

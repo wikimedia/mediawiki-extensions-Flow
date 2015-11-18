@@ -19,6 +19,8 @@
 	"logentry-delete-flow-restore-topic": "$1 {{GENDER:$2|restaurou}} o tema «[[$3|$5]]» en [[$6]]",
 	"logentry-suppress-flow-suppress-topic": "$1 {{GENDER:$2|eliminou}} o tema «[[$3|$5]]» en [[$6]]",
 	"logentry-suppress-flow-restore-topic": "$1 {{GENDER:$2|borrou}} o tema \"[[$3|$5]]\" en [[$6]]",
+	"logentry-lock-flow-lock-topic": "$1 {{GENDER:$2|marcou}} o tema \"[[$3|$5]]\" como resolto en [[$6]]",
+	"logentry-lock-flow-restore-topic": "$1 {{GENDER:$2|reabríu}} o tema \"[[$3|$5]]\" en [[$6]]",
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] en [[$3]] importouse a Flow desde LiquidThreads",
 	"flow-user-moderated": "Usuario moderado",
 	"flow-board-header-browse-topics-link": "Explorar os temas",
