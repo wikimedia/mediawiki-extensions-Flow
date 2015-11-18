@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_acd7a727",
+        "filename": "includes/Model/Workflow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-11-18T13:01:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_b5b5b2cc",
+      "revId": "88ff2b139be1d3965e2920a7468b2978e203a7f7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_75fdfa68",
         "filename": "includes/SubmissionHandler.php",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2015-11-17T22:32:39Z",
       "side": 1,
       "message": "wfMessage( $error ) doesn\u0027t work correctly for parameterized errors. My understanding from reading the docs is that getUserPermissionsErrors() returns a structure that looks like array( array( msgKey, param1, param2, ... ), ... ). It looks like wfMessage only takes the first element of the array if you pass it an array:\n\n    \u003e echo wfMessage( array( \u0027category-subcat-count\u0027 ) )\n    This category has the following $1 subcategories, out of $2 total.\n    \u003e echo wfMessage( array( \u0027category-subcat-count\u0027, 5, 6 ) )\n    This category has the following $1 subcategories, out of $2 total.\n\nSo I think you need to use -\u003eparams() instead:\n\n     \u003e echo wfMessage( \u0027category-subcat-count\u0027 )-\u003eparams( array( 5, 6 ) )\n    This category has the following 5 subcategories, out of 6 total.",
+      "revId": "88ff2b139be1d3965e2920a7468b2978e203a7f7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_ccda1b50",
+        "filename": "includes/SubmissionHandler.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-11-18T13:01:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_75fdfa68",
       "revId": "88ff2b139be1d3965e2920a7468b2978e203a7f7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
