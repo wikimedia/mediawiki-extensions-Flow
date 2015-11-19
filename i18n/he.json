@@ -418,7 +418,7 @@
 	"apihelp-flow+edit-post-example-1": "עריכת רשומה ב־[[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+edit-title-description": "עריכת כותרת של נושא",
 	"apihelp-flow+edit-title-param-prev_revision": "מזהה גרסה של גרסת הכותרת הנוכחית, כדי לבדוק התנגשויות עריכה.",
-	"apihelp-flow+edit-title-param-content": "תוכן לכותרת.",
+	"apihelp-flow+edit-title-param-content": "תוכן לכותרת, באותו התסדיר שמותר עבור תקצירי עריכה.",
 	"apihelp-flow+edit-title-example-1": "עריכת הכותרת של [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+edit-topic-summary-description": "עריכת תוכן סיכום נושא",
 	"apihelp-flow+edit-topic-summary-param-prev_revision": "מזהה גרסה של הגרסה הנוכחית של סיכום הנושא, אם יש כזה, כדי לבדוק התנגשויות עריכה.",

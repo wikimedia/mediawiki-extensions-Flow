@@ -416,7 +416,7 @@
 	"apihelp-flow+edit-post-example-1": "Bearbeitet einen Beitrag in [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+edit-title-description": "Bearbeitet den Titel eines Themas.",
 	"apihelp-flow+edit-title-param-prev_revision": "Versionskennung der aktuellen Titelversion zum Erkennen von Bearbeitungskonflikten.",
-	"apihelp-flow+edit-title-param-content": "Inhalt für den Titel.",
+	"apihelp-flow+edit-title-param-content": "Inhalt für den Titel, im gleichen erlaubten Format für Bearbeitungszusammenfassungen (topic-title-wikitext).",
 	"apihelp-flow+edit-title-example-1": "Bearbeitet den Titel von [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+edit-topic-summary-description": "Bearbeitet den Inhalt einer Themenzusammenfassung.",
 	"apihelp-flow+edit-topic-summary-param-summary": "Inhalt für die Zusammenfassung.",

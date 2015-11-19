@@ -414,7 +414,7 @@
 	"apihelp-flow+edit-post-example-1": "Editar unha mensaxe en [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+edit-title-description": "Edita o título dun tema.",
 	"apihelp-flow+edit-title-param-prev_revision": "Identificador da revisión actual do título, para comprobar conflitos de edición.",
-	"apihelp-flow+edit-title-param-content": "Contido para o título.",
+	"apihelp-flow+edit-title-param-content": "Contido para o título, no mesmo formato permitido para editar resumos (tema-título-wikitexto).",
 	"apihelp-flow+edit-title-example-1": "Editar o título de [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+edit-topic-summary-description": "Editar o contido do resumo dun tema.",
 	"apihelp-flow+edit-topic-summary-param-prev_revision": "Identificador da revisión actual do resumo do tema, se hai, para comprobar conflitos de edición.",

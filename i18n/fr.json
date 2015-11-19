@@ -40,7 +40,8 @@
 			"J. 'mach' wust",
 			"Trizek (WMF)",
 			"Nclm",
-			"Nnemo"
+			"Nnemo",
+			"PifyZ"
 		]
 	},
 	"enableflow": "Activer Flow",
@@ -451,7 +452,7 @@
 	"apihelp-flow+edit-post-example-1": "Modifier un message dans [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+edit-title-description": "Modifie un titre de sujet.",
 	"apihelp-flow+edit-title-param-prev_revision": "ID de la révision actuelle du titre, pour vérifier les conflits de modification.",
-	"apihelp-flow+edit-title-param-content": "Contenu pour le titre.",
+	"apihelp-flow+edit-title-param-content": "Contenu pour le titre, dans le format autorisé pour la modification de résumés (topic-title-wikitext).",
 	"apihelp-flow+edit-title-example-1": "Modifier le titre de [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+edit-topic-summary-description": "Modifie le contenu du résumé d’un sujet.",
 	"apihelp-flow+edit-topic-summary-param-prev_revision": "ID de la révision du résumé de sujet courant, s’il existe, pour vérifier les conflits de modification.",
