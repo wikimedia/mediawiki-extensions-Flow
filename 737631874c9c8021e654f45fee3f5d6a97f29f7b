@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebaf39b_4899307f",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-19T03:58:05Z",
+      "side": 1,
+      "message": "Post has to go first, since you can\u0027t summarize a topic that doesn\u0027t exist.  I believe this caused a root post error I had on import.",
+      "revId": "737631874c9c8021e654f45fee3f5d6a97f29f7b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
