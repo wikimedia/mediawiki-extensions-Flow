@@ -116,7 +116,7 @@ class AbuseFilter implements SpamFilter {
 					}
 					$revision = $parameters['revision'];
 					if ( $revision instanceof AbstractRevision ) {
-						return $revision->getContent( 'wikitext' );
+						return $revision->getContentInWikitext();
 					} else {
 						return '';
 					}

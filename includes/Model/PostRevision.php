@@ -54,11 +54,12 @@ class PostRevision extends AbstractRevision {
 	 *
 	 * @param Workflow $topic
 	 * @param User $user
-	 * @param string $content The title of the topic(they are Collection as well)
-	 * @param string $format wikitext|html
+	 * @param string $content The title of the topic (they are Collection as well), in
+	 *  topic-title-wikitext format.
 	 * @return PostRevision
 	 */
-	static public function create( Workflow $topic, User $user, $content, $format ) {
+	static public function createTopicPost( Workflow $topic, User $user, $content ) {
+		$format = 'topic-title-wikitext';
 		$obj = static::newFromId( $topic->getId(), $user, $content, $format, $topic->getArticleTitle() );
 
 		$obj->changeType = 'new-post';
@@ -206,6 +207,55 @@ class PostRevision extends AbstractRevision {
 		return $this->replyToId === null;
 	}
 
+	public function getContentFormat() {
+		// The canonical format must always be topic-title-wikitext, because we
+		// can not convert 'topic-title-html' to 'topic-title-wikitext'.
+		if ( $this->isTopicTitle() ) {
+			return 'topic-title-wikitext';
+		} else {
+			return parent::getContentFormat();
+		}
+	}
+
+	/**
+	 * Gets the desired storage format.
+	 *
+	 * @return string
+	 */
+	protected function getStorageFormat() {
+		if ( $this->isTopicTitle() ) {
+			return 'topic-title-wikitext';
+		} else {
+			return parent::getStorageFormat();
+		}
+	}
+
+	/**
+	 * Gets the appropriate wikitext format string for this revision.
+	 *
+	 * @return string 'wikitext' or 'topic-title-wikitext'
+	 */
+	public function getWikitextFormat() {
+		if ( $this->isTopicTitle() ) {
+			return 'topic-title-wikitext';
+		} else {
+			return parent::getWikitextFormat();
+		}
+	}
+
+	/**
+	 * Gets the appropriate HTML format string for this revision.
+	 *
+	 * @return string 'html' or 'topic-title-html'
+	 */
+	public function getHtmlFormat() {
+		if ( $this->isTopicTitle() ) {
+			return 'topic-title-html';
+		} else {
+			return parent::getHtmlFormat();
+		}
+	}
+
 	/**
 	 * @param UUID|null $id
 	 */
@@ -332,13 +382,6 @@ class PostRevision extends AbstractRevision {
 	 */
 	public function getRevisionType() {
 		return 'post';
-	}
-
-	/**
-	 * @return boolean Posts are unformatted if they are title posts, formatted otherwise.
-	 */
-	public function isFormatted() {
-		return !$this->isTopicTitle();
 	}
 
 	/**

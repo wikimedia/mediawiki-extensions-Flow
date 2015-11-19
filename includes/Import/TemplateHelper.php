@@ -5,7 +5,7 @@ namespace Flow\Import;
 use DOMDocument;
 use DOMElement;
 use DOMXPath;
-use Flow\Parsoid\Utils;
+use Flow\Conversion\Utils;
 use Title;
 
 class TemplateHelper {

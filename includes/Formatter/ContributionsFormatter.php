@@ -5,7 +5,7 @@ namespace Flow\Formatter;
 use Flow\Exception\FlowException;
 use Flow\Model\Anchor;
 use Flow\Model\PostRevision;
-use Flow\Parsoid\Utils;
+use Flow\Conversion\Utils;
 use ChangesList;
 use IContextSource;
 use Html;
