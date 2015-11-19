@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ebaf39b_de363aaf",
+        "filename": "i18n/en.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-11-19T14:37:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_a2f61958",
+      "revId": "de76d80b78f427cf41c3436e96c62045ab920886",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_82be755e",
         "filename": "includes/Notifications/MentionPresentationModel.php",
         "patchSetId": 8
@@ -30,6 +48,24 @@
       "writtenOn": "2015-11-07T02:27:34Z",
       "side": 1,
       "message": "The message has a $5 parameter for {{GENDER}}, but it\u0027s not passed in here. This might not be possible until T118058 is fixed",
+      "revId": "de76d80b78f427cf41c3436e96c62045ab920886",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ebaf39b_def07afc",
+        "filename": "includes/Notifications/MentionPresentationModel.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-11-19T14:37:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_82be755e",
       "revId": "de76d80b78f427cf41c3436e96c62045ab920886",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
