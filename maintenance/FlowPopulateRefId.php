@@ -52,6 +52,7 @@ class FlowPopulateRefId extends LoggedUpdateMaintenance {
 	protected function update( ObjectManager $storage ) {
 		global $wgFlowCluster;
 
+		$total = 0;
 		while ( true ) {
 			$references = (array) $storage->find( array( 'ref_id' => null ), array( 'limit' => $this->mBatchSize ) );
 			if ( !$references ) {
@@ -59,7 +60,8 @@ class FlowPopulateRefId extends LoggedUpdateMaintenance {
 			}
 
 			$storage->multiPut( $references, array() );
-			$this->output( "Ensured ref_id for " . count( $references ) . " " . get_class( $references[0] ) . " references...\n" );
+			$total += count( $references );
+			$this->output( "Ensured ref_id for " . $total . " " . get_class( $references[0] ) . " references...\n" );
 			wfWaitForSlaves( false, false, $wgFlowCluster );
 		}
 
