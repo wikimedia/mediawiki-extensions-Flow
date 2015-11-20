@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebaf39b_80edb124",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 19
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-11-20T20:54:05Z",
+      "side": 1,
+      "message": "If we wanted, we could exclude deleted boards here.  I don\u0027t think it\u0027s a blocker, since the actual information (other than board title and board ID, neither of which are restricted AFAICT) is correctly excluded already.  But it might be worth doing later.",
+      "revId": "d4d4da3ebc56a8e778ed097c37ff6c2bd5ed4c68",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
