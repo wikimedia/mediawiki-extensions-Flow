@@ -342,6 +342,8 @@
 	"group-flow-bot": "Bots de Flow",
 	"grouppage-flow-bot": "Project:Bots de Flow",
 	"flow-ve-mention-template-title": "MenciónFlow",
+	"flow-wikitext-switch-editor-tooltip": "Cambiar al editor visual",
+	"flow-ve-switch-editor-tool-title": "Cambiar al editor de testu wiki",
 	"flow-talk-page-beta-feature-message": "Flow n'alderique d'usuariu",
 	"flow-talk-page-beta-feature-description": "Activa un nuevu sistema d'alderique estructuráu {{GENDER:|na to}} páxina d'alderique. Flow simplifica los alderiques con sitios claros pa escribir y responder, y permite avisos pa cada tema. Los discutinios esistentes en testu wiki van movese a un archivu. Esta carauterística nun s'activa automáticamente; los usuarios tendrán qu'activala por separáu. Si se desactiva esta carauterística, el tableru de Flow va treslladaráse a una subpáxina y se desarchivará la páxina d'alderique anterior.",
 	"flow-notification-enabled-on-talkpage-email-batch-body": "Flow, el nuevu sistema d'alderique de la wiki, activóse {{GENDER:$1|na to}} páxina d'alderique d'usuariu de {{SITENAME}}. Puedes llograr más información, facer comentarios o desactivar el nuevu sistema en cualquier momentu dende la sección de carauterístiques beta de {{GENDER:$1|les tos}} preferencies.",
