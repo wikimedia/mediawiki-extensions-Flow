@@ -101,7 +101,8 @@ class ActionFormatter extends \LogFormatter {
 				$this->entry->getPerformer()->getName(),
 				$title, // link to topic
 				$title->getFullUrl(), // link to topic, higlighted post
-				$root->getLastRevision()->getContent(), // topic title
+				// I don't think this is an actual security issue, but this should use Templating->getContent: T119234
+				Utils::htmlToPlaintext( $root->getLastRevision()->getContent( 'topic-title-html' ) ), // topic title
 				$root->getWorkflow()->getOwnerTitle() // board title object
 			) )
 			->inLanguage( $language )
