@@ -430,7 +430,7 @@
 	"apihelp-flow+edit-post-example-1": "编辑[[Topic:S2tycnas4hcucw8w]]的帖子",
 	"apihelp-flow+edit-title-description": "编辑话题的标题。",
 	"apihelp-flow+edit-title-param-prev_revision": "当前标题修订的版本ID，以检查编辑冲突。",
-	"apihelp-flow+edit-title-param-content": "标题的内容。",
+	"apihelp-flow+edit-title-param-content": "标题的内容，与允许用于编辑摘要的格式相同（话题-标题-wiki文本）。",
 	"apihelp-flow+edit-title-example-1": "编辑[[Topic:S2tycnas4hcucw8w]]的标题",
 	"apihelp-flow+edit-topic-summary-description": "编辑一个话题的摘要内容。",
 	"apihelp-flow+edit-topic-summary-param-prev_revision": "当前话题摘要修订的版本ID（如果有），以检查编辑冲突。",

@@ -4,5 +4,7 @@
 			"Дзяніс Тутэйшы"
 		]
 	},
-	"flow-post-action-hide-post": "Схаваць"
+	"flow-post-action-hide-post": "Схаваць",
+	"flow-notification-mention": "$1 {{GENDER:$1|упамянуў|упамянула}} {{GENDER:$5|вас}} у {{GENDER:$1|сваім}} <span class=\"plainlinks\">[$2 паведамленні]</span> у \"$3\" на \"$4\".",
+	"flow-notification-mention-email-subject": "$1 {{GENDER:$1|упамянуў|упамянула}} {{GENDER:$3|Вас}} на $2"
 }
