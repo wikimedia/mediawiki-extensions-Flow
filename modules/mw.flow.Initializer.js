@@ -147,7 +147,7 @@
 		this.setupNewTopicWidget( $( 'form.flow-newtopic-form' ) );
 
 		// Set up description widget
-		this.setupDesciptionWidget( $( '.flow-ui-boardDescriptionWidget' ) );
+		this.setupDescriptionWidget( $( '.flow-ui-boardDescriptionWidget' ) );
 
 		// Replace reply forms on the board
 		this.replaceReplyForms( this.$board );
@@ -361,7 +361,7 @@
 	 *
 	 * @param {jQuery} $element Description DOM element
 	 */
-	mw.flow.Initializer.prototype.setupDesciptionWidget = function ( $element ) {
+	mw.flow.Initializer.prototype.setupDescriptionWidget = function ( $element ) {
 		var descriptionWidget;
 
 		if ( !$element.length ) {
