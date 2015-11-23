@@ -23,7 +23,7 @@ mw-vagrant-guest:
   mediawiki_url: http://127.0.0.1/wiki/
 
 local:
-  mediawiki_user: Admin
+  mediawiki_user: Selenium Flow user
   mediawiki_password: vagrant
   mediawiki_user_b: Selenium Flow user 2
   mediawiki_url: http://127.0.0.1:8080/wiki/
