@@ -47,6 +47,11 @@ $specialPageAliases['he'] = array(
 	'EnableFlow' => array( 'הפעלת_זרימה' ),
 );
 
+/** Hungarian (magyar) */
+$specialPageAliases['hu'] = array(
+	'EnableFlow' => array( 'Flow bekapcsolása' ),
+);
+
 /** Korean (한국어) */
 $specialPageAliases['ko'] = array(
 	'Flow' => array( '플로우' ),
