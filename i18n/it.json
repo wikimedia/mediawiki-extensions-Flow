@@ -406,7 +406,7 @@
 	"apihelp-flow+edit-post-param-format": "Formato del contenuto del messaggio (wikitext|html)",
 	"apihelp-flow+edit-post-example-1": "Modifica un argomento in [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+edit-title-description": "Modifica il titolo di un argomento.",
-	"apihelp-flow+edit-title-param-content": "Contenuto per il titolo.",
+	"apihelp-flow+edit-title-param-content": "Contenuto per il titolo, nello stesso formato consentito per l'oggetto della modifica (topic-title-wikitext).",
 	"apihelp-flow+edit-title-example-1": "Modifica il titolo di [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+edit-topic-summary-description": "Modifica il contenuto del riassunto di un argomento.",
 	"apihelp-flow+edit-topic-summary-param-summary": "Contenuto per il riassunto.",
