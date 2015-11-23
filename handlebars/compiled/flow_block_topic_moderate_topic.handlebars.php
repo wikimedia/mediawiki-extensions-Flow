@@ -37,14 +37,15 @@
 '.$sp.'' : '').'</div>
 ';},'flow_moderate_topic' => function ($cx, $in, $sp) {return ''.$sp.'<form method="POST" action="'.LCRun3::ch($cx, 'moderationAction', array(array(((isset($in['actions']) && is_array($in)) ? $in['actions'] : null),((isset($cx['sp_vars']['root']['submitted']['moderationState']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['moderationState'] : null)),array()), 'encq').'">
 '.$sp.''.LCRun3::p($cx, 'flow_errors', array(array($in),array()), '	').'	<input type="hidden" name="wpEditToken" value="'.htmlentities((string)((isset($cx['sp_vars']['root']['editToken']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
-'.$sp.'	<textarea name="topic_reason"
+'.$sp.'	<input name="topic_reason"
+'.$sp.'	          type="text"
+'.$sp.'	          size="45"
 '.$sp.'	          required
 '.$sp.'	          data-flow-expandable="true"
 '.$sp.'	          class="mw-ui-input"
 '.$sp.'	          data-role="content"
 '.$sp.'	          placeholder="'.LCRun3::ch($cx, 'l10n', array(array(LCRun3::ch($cx, 'concat', array(array('flow-moderation-placeholder-',((isset($cx['sp_vars']['root']['submitted']['moderationState']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['moderationState'] : null),'-topic'),array()), 'raw')),array()), 'encq').'"
-'.$sp.'	          autofocus
-'.$sp.'	>'.((LCRun3::ifvar($cx, ((isset($cx['sp_vars']['root']['submitted']['reason']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['reason'] : null))) ? ''.htmlentities((string)((isset($cx['sp_vars']['root']['submitted']['reason']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['reason'] : null), ENT_QUOTES, 'UTF-8').'' : '').'</textarea>
+'.$sp.'	          autofocus'.((LCRun3::ifvar($cx, ((isset($cx['sp_vars']['root']['submitted']['reason']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['reason'] : null))) ? 'value="'.htmlentities((string)((isset($cx['sp_vars']['root']['submitted']['reason']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['reason'] : null), ENT_QUOTES, 'UTF-8').'"' : '').'>
 '.$sp.'	<div class="flow-form-actions flow-form-collapsible">
 '.$sp.'		<button class="mw-ui-button mw-ui-constructive"
 '.$sp.'		        data-flow-interactive-handler="apiRequest"
