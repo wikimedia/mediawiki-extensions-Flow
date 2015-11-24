@@ -172,7 +172,7 @@ class UUID implements ApiSerializable {
 					$type = static::INPUT_HEX;
 				} elseif ( is_numeric( $input ) ) {
 					// convert base 10 to base 16 and pad to HEX_LEN with 0's
-					$value = wfBaseConvert( $input, 10, 16, self::HEX_LEN );
+					$value = \Wikimedia\base_convert( $input, 10, 16, self::HEX_LEN );
 					$type = static::INPUT_HEX;
 				} else {
 					throw new InvalidInputException( 'Unknown input to UUID class', 'invalid-input' );
@@ -384,11 +384,11 @@ class UUID implements ApiSerializable {
 		// and pad the remaining characters with zeroes.
 		$millitime = wfTimestamp( TS_UNIX, $ts ) * 1000;
 		// base 10 -> base 2, taking 46 bits
-		$timestampBinary = wfBaseConvert( $millitime, 10, 2, 46 );
+		$timestampBinary = \Wikimedia\base_convert( $millitime, 10, 2, 46 );
 		// pad out the 46 bits to binary len with 0's
 		$uuidBase2 = str_pad( $timestampBinary, self::BIN_LEN * 8, '0', STR_PAD_RIGHT );
 		// base 2 -> base 16
-		$uuidHex = wfBaseConvert( $uuidBase2, 2, 16, self::HEX_LEN );
+		$uuidHex = \Wikimedia\base_convert( $uuidBase2, 2, 16, self::HEX_LEN );
 
 		return self::create( $uuidHex );
 	}
@@ -410,7 +410,7 @@ class UUID implements ApiSerializable {
 	 * @return string
 	 */
 	public static function alnum2hex( $alnum ) {
-		return str_pad( wfBaseConvert( $alnum, 36, 16 ), self::HEX_LEN, '0', STR_PAD_LEFT );
+		return str_pad( \Wikimedia\base_convert( $alnum, 36, 16 ), self::HEX_LEN, '0', STR_PAD_LEFT );
 	}
 
 	/**
@@ -430,7 +430,7 @@ class UUID implements ApiSerializable {
 	 * @return string
 	 */
 	public static function hex2alnum( $hex ) {
-		return wfBaseConvert( $hex, 16, 36 );
+		return \Wikimedia\base_convert( $hex, 16, 36 );
 	}
 
 	/**

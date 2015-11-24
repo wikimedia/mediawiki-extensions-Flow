@@ -164,7 +164,7 @@ class HistoricalUIDGenerator extends UIDGenerator {
 			array( $time, ++$counter % ( $COUNTER_MAX + 1) )
 		);
 
-		return wfBaseConvert( $binaryUUID, 2, $base );
+		return \Wikimedia\base_convert( $binaryUUID, 2, $base );
 	}
 
 	/**
@@ -177,9 +177,9 @@ class HistoricalUIDGenerator extends UIDGenerator {
 	 */
 	protected static function rotateNodeId( UIDGenerator $gen ) {
 		// 4 bytes = 32 bits
-		$gen->nodeId32 = wfBaseConvert( MWCryptRand::generateHex( 8, true ), 16, 2, 32 );
+		$gen->nodeId32 = \Wikimedia\base_convert( MWCryptRand::generateHex( 8, true ), 16, 2, 32 );
 		// 6 bytes = 48 bits, used for 128bit uid's
-		//$gen->nodeId48 = wfBaseConvert( MWCryptRand::generateHex( 12, true ), 16, 2, 48 );
+		//$gen->nodeId48 = \Wikimedia\base_convert( MWCryptRand::generateHex( 12, true ), 16, 2, 48 );
 	}
 }
 

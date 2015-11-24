@@ -74,14 +74,14 @@ class BenchUuidConversions extends \Benchmarker {
 	}
 
 	public function oldhex2timestamp( $hex ) {
-		$bits = wfBaseConvert( $hex, 16, 2, 88 );
-		$msTimestamp = wfBaseConvert( substr( $bits, 0, 46 ), 2, 10 );
+		$bits = \Wikimedia\base_convert( $hex, 16, 2, 88 );
+		$msTimestamp = \Wikimedia\base_convert( substr( $bits, 0, 46 ), 2, 10 );
 		return intval( $msTimestamp / 1000 );
 	}
 
 	public function oldalphadecimal2timestamp( $alpha ) {
-		$bits = wfBaseConvert( $alpha, 36, 2, 88 );
-		$msTimestamp = wfBaseConvert( substr( $bits, 0, 46 ), 2, 10 );
+		$bits = \Wikimedia\base_convert( $alpha, 36, 2, 88 );
+		$msTimestamp = \Wikimedia\base_convert( substr( $bits, 0, 46 ), 2, 10 );
 		return intval( $msTimestamp / 1000 );
 	}
 
