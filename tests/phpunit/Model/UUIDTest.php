@@ -42,20 +42,16 @@ class UUIDTest extends FlowTestCase {
 
 	/**
 	 * @dataProvider invalidInputProvider
-	 * @expectedException Flow\Exception\InvalidInputException
+	 * @expectedException \Flow\Exception\InvalidInputException
 	 */
 	public function testInvalidInputOnCreate( $invalidInput ) {
 		UUID::create( $invalidInput );
 	}
 
 	static public function uuidConversionProvider() {
-		$dbr = wfGetDB( DB_SLAVE );
-
 		// sample uuid from UIDGenerator::newTimestampedUID128()
 		$numeric_128 = '6709199728898751234959525538795913762';
 		$hex_128 = \Wikimedia\base_convert( $numeric_128, 10, 16, 32 );
-		$bin_128 = new UUIDBlob( pack( 'H*', $hex_128 ) );
-		$pretty_128 = \Wikimedia\base_convert( $numeric_128, 10, 36 );
 
 		// Conversion from 128 bit to 88 bit takes the left
 		// most 88 bits.
