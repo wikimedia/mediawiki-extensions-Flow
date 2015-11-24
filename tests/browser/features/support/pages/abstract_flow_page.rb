@@ -30,7 +30,7 @@ class AbstractFlowPage
 
   # Dialogs
   div(:dialog, css: ".flow-ui-modal")
-  textarea(:dialog_input, name: "topic_reason")
+  text_field(:dialog_input, name: "topic_reason")
   button(:dialog_cancel, css: "a.mw-ui-destructive:nth-child(2)")
   button(:dialog_submit_delete, text: "Delete")
   button(:dialog_submit_hide, text: "Hide")
