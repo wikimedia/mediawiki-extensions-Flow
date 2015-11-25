@@ -50,6 +50,7 @@ $specialPageAliases['he'] = array(
 /** Korean (한국어) */
 $specialPageAliases['ko'] = array(
 	'Flow' => array( '플로우' ),
+	'EnableFlow' => array( '플로우활성화' ),
 );
 
 /** Northern Luri (لۊری شومالی) */

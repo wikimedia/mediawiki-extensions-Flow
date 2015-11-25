@@ -88,6 +88,7 @@ $namespaceNames['it'] = array(
 $namespaceNames['ko'] = array(
 	NS_TOPIC => '주제',
 );
+
 /** Luxembourgish */
 $namespaceNames['lb'] = array(
 	NS_TOPIC =>  'Thema',
