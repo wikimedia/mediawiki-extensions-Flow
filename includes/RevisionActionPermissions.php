@@ -65,26 +65,37 @@ class RevisionActionPermissions {
 			return false;
 		}
 
+		/** @var AbstractRevision[] $roots */
+		static $roots = array();
+		/** @var Workflow[] $workflows */
+		static $workflows = array();
+
+		$revisionId = $revision->getRevisionId()->getAlphadecimal();
+
+		if ( !isset( $roots[$revisionId] ) ) {
+			$roots[$revisionId] = $this->getRoot( $revision );
+		}
 		// see if we're allowed to perform $action on anything inside this root
-		$root = $this->getRoot( $revision );
-		if ( !$revision->getRevisionId()->equals( $root->getRevisionId() ) && !$this->isRootAllowed( $root, $action ) ) {
+		if ( !$revision->getRevisionId()->equals( $roots[$revisionId]->getRevisionId() ) && !$this->isRootAllowed( $roots[$revisionId], $action ) ) {
 			return false;
 		}
 
+		if ( !isset( $workflows[$revisionId] ) ) {
+			$collection = $revision->getCollection();
+			$workflows[$revisionId] = $collection->getBoardWorkflow();
+		}
 		// see if we're allowed to perform $action on anything inside this board
-		$collection = $revision->getCollection();
-		$workflow = $collection->getBoardWorkflow();
-		if ( !$this->isBoardAllowed( $workflow, $action ) ) {
+		if ( !$this->isBoardAllowed( $workflows[$revisionId], $action ) ) {
 			return false;
 		}
 
+		/** @var CollectionCache $cache */
+		$cache = Container::get( 'collection.cache' );
+		$last = $cache->getLastRevisionFor( $revision );
 		// Also check if the user would be allowed to perform this
 		// against the most recent revision - the last revision is the
 		// current state of an object, so checking against a revision at
 		// one point in time alone isn't enough.
-		/** @var CollectionCache $cache */
-		$cache = Container::get( 'collection.cache' );
-		$last = $cache->getLastRevisionFor( $revision );
 		$isLastRevision = $last->getRevisionId()->equals( $revision->getRevisionId() );
 		if ( !$isLastRevision && !$this->isRevisionAllowed( $last, $action ) ) {
 			return false;

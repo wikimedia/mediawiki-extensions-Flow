@@ -73,6 +73,11 @@ class Workflow {
 	protected $ownerTitle;
 
 	/**
+	 * @var bool|null Indicates if associated page_id exists (null if not yet looked up)
+	 */
+	protected $exists;
+
+	/**
 	 * @param array $row
 	 * @param Workflow|null $obj
 	 * @return Workflow
@@ -111,9 +116,10 @@ class Workflow {
 			 * page_id this workflow is associated with.
 			 */
 
-			// store ID of newly created page
+			// store ID of newly created page & reset exists status
 			$title = $obj->getOwnerTitle();
 			$obj->pageId = $title->getArticleID( Title::GAID_FOR_UPDATE );
+			$obj->exists = null;
 
 			if ( $obj->pageId === 0 ) {
 				throw new FailCommitException( 'No page for workflow: ' . serialize( $obj ) );
@@ -274,9 +280,13 @@ class Workflow {
 	 * @return bool
 	 */
 	public function isDeleted() {
+		if ( $this->exists === null ) {
+			$this->exists = Title::newFromID( $this->pageId ) !== null;
+		}
+
 		// a board that does not yet exist (because workflow has not yet
 		// been stored) is not deleted, it just doesn't exist yet
-		return !$this->isNew() && Title::newFromID( $this->pageId ) === null;
+		return !$this->isNew() && !$this->exists;
 	}
 
 	/**
