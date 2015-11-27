@@ -239,7 +239,7 @@
 	"flow-last-modified": "Viimeksi muokattu noin $1",
 	"flow-workflow": "työnkulku",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{SUKUPUOLI:$1|on vastannut}} keskustelussa '''$4'''.",
-	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 ja $5 {{PLURAL:$6|toinen|muuta}} {{GENDER:$1|vastasi}} kohteessa '''$3'''.",
+	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 ja $5 {{PLURAL:$6|toinen|muuta}} {{GENDER:$1|ovat vastanneet}} keskustelussa '''$3'''.",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 on {{GENDER:$1|muokannut}} aiheen [[$3|$4]] <span class=\"plainlinks\">[$5 viestiäsi]</span>.",
 	"flow-notification-edit-bundle": "$1 ja $5 {{PLURAL:$6|toinen|muuta}} {{GENDER:$1|muokkasi}} <span class=\"plainlinks\">[$4 viestiä]</span> aiheessa \"$2\" sivulla \"$3\".",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|loi}} uuden aiheen sivulla '''$3'''.",
