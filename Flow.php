@@ -173,6 +173,10 @@ $wgHooks['EchoGetBundleRules'][] = 'Flow\NotificationController::onEchoGetBundle
 $wgHooks['GetBetaFeaturePreferences'][] = 'FlowHooks::onGetBetaFeaturePreferences';
 $wgHooks['UserSaveOptions'][] = 'FlowHooks::onUserSaveOptions';
 
+// Nuke
+$wgHooks['NukeGetNewPages'][] = 'FlowHooks::onNukeGetNewPages';
+$wgHooks['NukeDeletePage'][] = 'FlowHooks::onNukeDeletePage';
+
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
 
