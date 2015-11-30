@@ -11,6 +11,7 @@ use Flow\Model\UUID;
 use Flow\OccupationController;
 use Flow\SpamFilter\AbuseFilter;
 use Flow\TalkpageManager;
+use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
 use Flow\Data\Listener\RecentChangesListener;
 
@@ -1821,6 +1822,170 @@ class FlowHooks {
 			return false;
 		} elseif ( $tag == 'children' ) {
 			return false;
+		}
+
+		return true;
+	}
+
+	public static function onNukeGetNewPages( $username, $pattern, $namespace, $limit, &$pages ) {
+		if ( $namespace && $namespace !== NS_TOPIC ) {
+			// not interested in any Topics
+			return true;
+		}
+
+		// Remove any pre-existing Topic pages.
+		// They are coming from the recentchanges table.
+		// Most likely the filters were not applied correctly.
+		$pages = array_filter( $pages, function( $entry ) {
+			/** @var Title $title */
+			$title = $entry[0];
+			return $title->getNamespace() !== NS_TOPIC;
+		} );
+
+		if ( $pattern ) {
+			// pattern is not supported
+			return true;
+		}
+
+		if ( !RequestContext::getMain()->getUser()->isAllowed( 'flow-delete' ) ) {
+			// there's no point adding topics since the current user won't be allowed to delete them
+			return true;
+		}
+
+		// how many are we allowed to retrieve now
+		$newLimit = $limit - count( $pages );
+		if ( $newLimit > 0 ) {
+
+			$dbr = wfGetDB( DB_SLAVE );
+
+			$userSelect = array( 'username' => "IFNULL(tree_orig_user_ip, user_name)" );
+			$userWhere = array();
+			if ( $username ) {
+				$user = User::newFromName( $username );
+				if ( $user ) {
+					$userSelect = array( 'username' => 'user_name' );
+					$userWhere = array( 'tree_orig_user_id' => $user->getId() );
+				} else {
+					$userSelect = array( 'username' => 'tree_orig_user_ip' );
+					$userWhere = array( 'tree_orig_user_ip' => $username );
+				}
+			}
+
+			// limit results to the range of RC, which is about 90 days. See $wgRCMaxAge
+			$rcTimeLimit = UUID::getComparisonUUID( strtotime("-90 days") );
+
+			// get latest revision id for each topic
+			// by the specified user (optional)
+			$result = $dbr->select(
+				array(
+					'r' => 'flow_revision',
+					'flow_tree_revision',
+					'flow_workflow',
+					'user'
+				),
+				array_merge( array(
+					'revId' => 'MAX(r.rev_id)'
+				), $userSelect ),
+				array_merge( array(
+					'tree_parent_id' => null,
+					'r.rev_type' => 'post',
+					'workflow_wiki' => wfWikiId(),
+					'workflow_id > ' . $dbr->addQuotes( $rcTimeLimit->getBinary() )
+				), $userWhere ),
+				__METHOD__,
+				array(
+					'GROUP BY' => 'r.rev_type_id'
+				),
+				array(
+					'flow_tree_revision' => array( 'INNER JOIN', 'r.rev_type_id=tree_rev_descendant_id' ),
+					'flow_workflow' => array( 'INNER JOIN', 'r.rev_type_id=workflow_id' ),
+					'user' => array( 'LEFT JOIN', 'user_id=tree_orig_user_id' )
+				)
+			);
+
+			$revIds = array();
+			foreach( $result as $r ) {
+				$revIds[$r->revId] = $r->username;
+			}
+
+			// get non-moderated revisions
+			$result = $dbr->select(
+				'flow_revision',
+				array(
+					'topicId' => 'rev_type_id',
+					'revId' => 'rev_id'
+				),
+				array(
+					'rev_mod_state' => '',
+					'rev_id' => array_keys( $revIds )
+				),
+				__METHOD__,
+				array(
+					'LIMIT' => $newLimit,
+					'ORDER BY' => 'rev_type_id DESC'
+				)
+			);
+
+			foreach( $result as $r ) {
+				$topicTitle = Title::makeTitle( NS_TOPIC, UUID::create( $r->topicId )->getAlphadecimal() );
+				$creatorUsername = $revIds[$r->revId];
+				$pages[] = array( $topicTitle, $creatorUsername );
+			}
+
+		}
+
+		return true;
+	}
+
+	public static function onNukeDeletePage( Title $title, $reason, &$deletionResult ) {
+		if ( $title->getNamespace() !== NS_TOPIC ) {
+			// we don't handle it
+			return false;
+		}
+
+		$action = 'moderate-topic';
+		$params = array(
+			'topic' => array(
+				'moderationState' => 'delete',
+				'reason' => $reason,
+				'page' => $title->getPrefixedText()
+			),
+		);
+
+		/** @var WorkflowLoaderFactory $factory */
+		$factory = Container::get( 'factory.loader.workflow' );
+
+		$workflowId = UUID::create( strtolower( $title->getDBkey() ) );
+		/** @var WorkflowLoader $loader */
+		$loader = $factory->createWorkflowLoader( $title, $workflowId );
+
+		$blocks = $loader->getBlocks();
+
+		$blocksToCommit = $loader->handleSubmit(
+			RequestContext::getMain(),
+			$action,
+			$params
+		);
+
+		$result = true;
+		$errors = array();
+		foreach ( $blocks as $block ) {
+			if ( $block->hasErrors() ) {
+				$result = false;
+				$errorKeys = $block->getErrors();
+				foreach ( $errorKeys as $errorKey ) {
+					$errors[] = $block->getErrorMessage( $errorKey );
+				}
+			}
+		}
+
+		if ( $result ) {
+			$loader->commit( $blocksToCommit );
+			$deletionResult = true;
+		} else {
+			$deletionResult = false;
+			$msg = "Failed to delete {$title->getPrefixedText()}: " . implode( '. ', $errors );
+			wfLogWarning( $msg );
 		}
 
 		return true;
