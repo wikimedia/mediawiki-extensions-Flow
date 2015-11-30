@@ -412,7 +412,7 @@
 	"apihelp-flow+edit-post-example-1": "Править сообщение в [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+edit-title-description": "Правки заголовка темы.",
 	"apihelp-flow+edit-title-param-prev_revision": "Revision ID текущей версии заголовка, для проверки на конфликты редактирования.",
-	"apihelp-flow+edit-title-param-content": "Содержимое для заголовка.",
+	"apihelp-flow+edit-title-param-content": "Содержимое для заголовка, в том же формате, что разрешён для описания правок (тема-заголовок-викитекст).",
 	"apihelp-flow+edit-title-example-1": "Править заголовок у [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+edit-topic-summary-description": "Правки содержимого краткого содержания темы.",
 	"apihelp-flow+edit-topic-summary-param-prev_revision": "Revision ID текущей версии краткого содержания темы, для проверки на конфликты редактирования.",

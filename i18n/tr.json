@@ -33,5 +33,6 @@
 	"flow-special-enableflow-invalid-title": "Geçersiz bir sayfa başlığı girildi",
 	"flow-ve-mention-placeholder": "Kullanıcı adı",
 	"flow-wikitext-switch-editor-tooltip": "Görsel düzenleyiciye geç",
+	"flow-ve-switch-editor-tool-title": "Wikimetin editörüne geç",
 	"flow-dialog-cancelconfirm-message": "Kaydetmeden iptal etmek istediğinizden emin misiniz?"
 }
