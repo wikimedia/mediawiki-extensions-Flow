@@ -1,5 +1,6 @@
 <?php
 
+use Flow\Block\TopicListBlock;
 use Flow\Collection\PostCollection;
 use Flow\Container;
 use Flow\Conversion\Utils;
@@ -13,6 +14,7 @@ use Flow\SpamFilter\AbuseFilter;
 use Flow\TalkpageManager;
 use Flow\WorkflowLoaderFactory;
 use Flow\Data\Listener\RecentChangesListener;
+use Flow\Data\Pager\Pager;
 
 class FlowHooks {
 	/**
@@ -1825,4 +1827,94 @@ class FlowHooks {
 
 		return true;
 	}
+
+	public static function onNukeGetNewPages( $username, $pattern, $namespace, $limit, &$pages ) {
+		if ( $namespace && $namespace !== NS_TOPIC ) {
+			// not interested in any Topics
+			return true;
+		}
+
+		if ( $pattern ) {
+			// pattern is not supported
+			return true;
+		}
+
+		// remove any pre-existing Topic pages
+		$pages = array_filter( $pages, function( $entry ) {
+			/** @var Title $title */
+			$title = $entry[0];
+			return $title->getNamespace() !== NS_TOPIC;
+		} );
+
+		// how many are we allowed to retrieve now
+		$newLimit = $limit - count( $pages );
+		if ( $newLimit > 0 ) {
+
+
+			$dbr = wfGetDB( DB_SLAVE );
+
+			$userSelect = array( 'username' => "IFNULL(tree_orig_user_ip, user_name)" );
+			$userWhere = array();
+			if ( $username ) {
+				$user = User::newFromName( $username );
+				if ( $user ) {
+					$userSelect = array( 'username' => 'user_name' );
+					$userWhere = array( 'tree_orig_user_id' => $user->getId() );
+				} else {
+					$userSelect = array( 'username' => 'tree_orig_user_ip' );
+					$userWhere = array( 'tree_orig_user_ip' => $username );
+				}
+			}
+
+			// get latest revision id for each topic
+			// by the specified user (optional)
+			// todo: filter for time
+			$result = $dbr->select(
+				array(
+					'r' => 'flow_revision',
+					'flow_tree_revision',
+					'user'
+				),
+				array_merge( array(
+					'revId' => 'MAX(r.rev_id)'
+				), $userSelect ),
+				array_merge( array(
+					'tree_parent_id' => null,
+					'r.rev_type' => 'post'
+				), $userWhere ),
+				__METHOD__,
+				array(
+					'GROUP BY' => 'r.rev_type_id'
+				),
+				array(
+					'flow_tree_revision' => array( 'INNER JOIN', 'r.rev_type_id=tree_rev_descendant_id' ),
+					'user' => array( 'LEFT JOIN', 'user_id=tree_orig_user_id' )
+				)
+			);
+
+			$revIds = array();
+			foreach( $result as $r ) {
+				$revIds[$r->revId] = $r->username;
+			}
+
+			// get non-moderated revisions
+			$result = $dbr->select(
+				array( 'flow_revision' ),
+				array( 'topicId' => 'rev_type_id', 'revId' => 'rev_id' ),
+				array( 'rev_mod_state' => '', 'rev_id' => array_keys( $revIds ) ),
+				__METHOD__,
+				array( 'LIMIT' => $newLimit )
+			);
+
+			foreach( $result as $r ) {
+				$topicTitle = Title::makeTitle( NS_TOPIC, UUID::create( $r->topicId )->getAlphadecimal() );
+				$creatorUsername = $revIds[$r->revId];
+				$pages[] = array(  $topicTitle, $creatorUsername );
+			}
+
+		}
+
+		return true;
+	}
+
 }
