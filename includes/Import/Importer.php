@@ -843,7 +843,7 @@ class TalkpageImportOperation {
 		TopicImportState $state,
 		IImportPost $post,
 		PostRevision $replyTo,
-		$logPrefix = ' '
+		$logPrefix = ''
 	) {
 		$state->parent->logger->info( $logPrefix . "Importing post" );
 		$postId = $state->parent->getImportedId( $post );
@@ -917,7 +917,7 @@ class TalkpageImportOperation {
 		$revisions = $object->getRevisions();
 		$revisions->rewind();
 
-		if ( ! $revisions->valid() ) {
+		if ( !$revisions->valid() ) {
 			throw new ImportException( "Attempted to import empty history" );
 		}
 

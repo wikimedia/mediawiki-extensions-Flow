@@ -183,7 +183,7 @@ class ImportPost extends PageRevisionedObject implements IImportPost {
 	/**
 	 * Creates revision clarifying signature difference
 	 *
-	 * @param IObjectRevision Last revision prior to the clarification revision
+	 * @param IObjectRevision $lastRevision Last revision prior to the clarification revision
 	 * @param string $authorUsername Author username
 	 * @param string $signatureUsername Username extracted from signature
 	 * @return ScriptedImportRevision Generated top import revision
@@ -317,7 +317,7 @@ class ImportRevision implements IObjectRevision {
 	protected $apiResponse;
 
 	/**
-	 * @var User Account used when the imported revision is by a supressed user
+	 * @var User Account used when the imported revision is by a suppressed user
 	 */
 	protected $scriptUser;
 
@@ -326,7 +326,7 @@ class ImportRevision implements IObjectRevision {
 	 *
 	 * @param array         $apiResponse  An element from api.query.revisions
 	 * @param IImportObject $parentObject
-	 * @param User          $user Account used when the imported revision is by a suppressed user
+	 * @param User          $scriptUser Account used when the imported revision is by a suppressed user
 	 */
 	function __construct( array $apiResponse, IImportObject $parentObject, User $scriptUser ) {
 		$this->apiResponse = $apiResponse;
