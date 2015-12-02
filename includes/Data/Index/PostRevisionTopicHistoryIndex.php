@@ -2,11 +2,12 @@
 
 namespace Flow\Data\Index;
 
+use Flow\Collection\PostCollection;
 use Flow\Data\BufferedCache;
 use Flow\Data\ObjectMapper;
 use Flow\Data\Storage\PostRevisionTopicHistoryStorage;
+use Flow\Exception\DataModelException;
 use Flow\Model\PostRevision;
-use Flow\Model\PostSummary;
 use Flow\Model\UUID;
 use MWException;
 
@@ -66,9 +67,25 @@ class PostRevisionTopicHistoryIndex extends TopKIndex {
 	 *
 	 * @param PostRevision $post
 	 * @return UUID Topic ID
+	 * @throws DataModelException
 	 */
 	protected function findTopicId( PostRevision $post ) {
-		return $post->getRootPost()->getPostId();
+		try {
+			$root = $post->getCollection()->getRoot();
+		} catch ( DataModelException $e ) {
+			// in some cases, we may fail to find root post from the current
+			// object (e.g. data has already been removed)
+			// try to find if via parent, in that case
+			$parentId = $post->getReplyToId();
+			if ( $parentId === null ) {
+				throw new DataModelException( 'Unable to locate root for post ' . $post->getCollectionId() );
+			}
+
+			$parent = PostCollection::newFromId( $parentId );
+			$root = $parent->getRoot();
+		}
+
+		return $root->getId();
 	}
 
 	protected function backingStoreFindMulti( array $queries ) {
