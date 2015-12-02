@@ -203,6 +203,35 @@ class TreeRepository {
 		}
 	}
 
+	/**
+	 * Deletes a descendant from the tree repo.
+	 *
+	 * @param UUID $descendant
+	 * @return bool
+	 */
+	public function delete( UUID $descendant ) {
+		$dbw = $this->dbFactory->getDB( DB_MASTER );
+		$res = $dbw->delete(
+			$this->tableName,
+			array(
+				'tree_descendant_id' => $descendant->getBinary(),
+			),
+			__METHOD__
+		);
+
+		if ( $res ) {
+			$subtreeKey = $this->cacheKey( 'subtree', $descendant );
+			$parentKey = $this->cacheKey( 'parent', $descendant );
+			$pathKey = $this->cacheKey( 'rootpath', $descendant );
+
+			$this->cache->delete( $subtreeKey );
+			$this->cache->delete( $parentKey );
+			$this->cache->delete( $pathKey );
+		}
+
+		return $res;
+	}
+
 	public function findParent( UUID $descendant ) {
 		$map = $this->fetchParentMap( array( $descendant ) );
 		return isset( $map[$descendant->getAlphadecimal()] ) ? $map[$descendant->getAlphadecimal()] : null;
@@ -377,7 +406,7 @@ class TreeRepository {
 			throw new DataModelException( 'No root exists in the identityMap', 'process-data' );
 		}
 
-		return $identityMap[$root];
+		return $identityMap[$root->getAlphadecimal()];
 	}
 
 	public function fetchFullTree( UUID $nodeId ) {
