@@ -146,25 +146,35 @@ class FlowHooks {
 			require_once __DIR__ . '/vendor/autoload.php';
 		}
 
-		if ( class_exists( 'MediaWiki\Extensions\OAuth\MWOAuthUtils' ) ) {
-			global $wgMWOAuthGrantPermissions;
+		if ( class_exists( 'MWGrants' ) || class_exists( 'MediaWiki\Extensions\OAuth\MWOAuthUtils' ) ) {
+			$globals = array();
+			if ( class_exists( 'MWGrants' ) ) {
+				global $wgGrantPermissions;
+				$globals[] = &$wgGrantPermissions;
+			}
+			if ( class_exists( 'MediaWiki\Extensions\OAuth\MWOAuthUtils' ) ) {
+				global $wgMWOAuthGrantPermissions;
+				$globals[] = &$wgMWOAuthGrantPermissions;
+			}
 
-			// This is semantically equivalent to editing a talk page and
-			// blanking an offending post or topic.
-			$wgMWOAuthGrantPermissions['editpage']['flow-hide'] = true;
+			foreach ( $globals as &$grantPermissions ) {
+				// This is semantically equivalent to editing a talk page and
+				// blanking an offending post or topic.
+				$grantPermissions['editpage']['flow-hide'] = true;
 
-			// We might want to make a separate grant for this, so it can be
-			// given out without giving out core 'protect'.
-			$wgMWOAuthGrantPermissions['protect']['flow-lock'] = true;
+				// We might want to make a separate grant for this, so it can be
+				// given out without giving out core 'protect'.
+				$grantPermissions['protect']['flow-lock'] = true;
 
-			$wgMWOAuthGrantPermissions['delete']['flow-delete'] = true;
-			$wgMWOAuthGrantPermissions['delete']['flow-suppress'] = true;
-			$wgMWOAuthGrantPermissions['editpage']['flow-edit-post'] = true;
+				$grantPermissions['delete']['flow-delete'] = true;
+				$grantPermissions['delete']['flow-suppress'] = true;
+				$grantPermissions['editpage']['flow-edit-post'] = true;
 
-			// Creating a board somewhere it normally can't be created is sort
-			// of like creating a page that can't normally be edited.  But
-			// maybe make a grant.
-			$wgMWOAuthGrantPermissions['editprotected']['flow-create-board'] = true;
+				// Creating a board somewhere it normally can't be created is sort
+				// of like creating a page that can't normally be edited.  But
+				// maybe make a grant.
+				$grantPermissions['editprotected']['flow-create-board'] = true;
+			}
 		}
 	}
 
