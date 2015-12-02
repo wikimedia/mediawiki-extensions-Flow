@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Subi",
-			"Sator"
+			"Sator",
+			"An13sa"
 		]
 	},
 	"flow-board-header-browse-topics-link": "Arakatu gaiak",
@@ -13,7 +14,7 @@
 	"flow-show-change": "Erakutsi aldaketak",
 	"flow-newtopic-title-placeholder": "Gai berria",
 	"flow-reply-link": "{{GENDER:$1|Erantzun}}",
-	"flow-thank-link": "{{GENDER:$1|Eskertu}}",
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Eskertu}}}}",
 	"flow-history-action-delete-post": "ezabatu",
 	"flow-history-action-hide-post": "ezkutatu",
 	"flow-post-action-post-history": "Historia",
