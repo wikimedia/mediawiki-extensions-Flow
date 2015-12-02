@@ -377,7 +377,7 @@ class TreeRepository {
 			throw new DataModelException( 'No root exists in the identityMap', 'process-data' );
 		}
 
-		return $identityMap[$root];
+		return $identityMap[$root->getAlphadecimal()];
 	}
 
 	public function fetchFullTree( UUID $nodeId ) {
