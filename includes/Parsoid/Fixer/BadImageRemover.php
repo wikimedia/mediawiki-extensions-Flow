@@ -4,7 +4,6 @@ namespace Flow\Parsoid\Fixer;
 
 use DOMElement;
 use DOMNode;
-use Flow\Model\PostRevision;
 use Flow\Parsoid\Fixer;
 use Flow\Conversion\Utils;
 use Title;

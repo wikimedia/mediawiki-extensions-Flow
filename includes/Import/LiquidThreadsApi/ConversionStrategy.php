@@ -4,7 +4,6 @@ namespace Flow\Import\LiquidThreadsApi;
 
 use DatabaseBase;
 use Flow\Import\ArchiveNameHelper;
-use Flow\Import\Converter;
 use Flow\Import\IConversionStrategy;
 use Flow\Import\ImportSourceStore;
 use Flow\Import\Postprocessor\ProcessorGroup;

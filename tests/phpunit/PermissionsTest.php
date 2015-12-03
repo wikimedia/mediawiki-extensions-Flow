@@ -7,7 +7,6 @@ use Flow\FlowActions;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\RevisionActionPermissions;
-use Block;
 use User;
 
 /**

@@ -5,7 +5,6 @@ namespace Flow;
 use Flow\Collection\CollectionCache;
 use Flow\Collection\PostCollection;
 use Flow\Exception\DataModelException;
-use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Closure;

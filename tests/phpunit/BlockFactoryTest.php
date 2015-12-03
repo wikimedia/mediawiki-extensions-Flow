@@ -3,7 +3,6 @@
 namespace Flow\Tests;
 
 use Flow\BlockFactory;
-use Flow\NotificationController;
 
 /**
  * @group Flow

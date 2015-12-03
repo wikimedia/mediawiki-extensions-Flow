@@ -7,7 +7,6 @@ use Flow\Data\Pager\HistoryPager;
 use Flow\Exception\DataModelException;
 use Flow\Formatter\BoardHistoryQuery;
 use Flow\Formatter\RevisionFormatter;
-use Flow\Model\UUID;
 
 class BoardHistoryBlock extends AbstractBlock {
 	protected $supportedGetActions = array( 'history' );

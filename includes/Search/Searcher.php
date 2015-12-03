@@ -6,7 +6,6 @@ use Elastica\Query;
 use Elastica\Query\QueryString;
 use Elastica\Exception\ExceptionInterface;
 use Elastica\Request;
-use Elastica\ResultSet;
 use Flow\Container;
 use PoolCounterWorkViaCallback;
 use Status;

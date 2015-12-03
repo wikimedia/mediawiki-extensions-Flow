@@ -4,7 +4,6 @@ namespace Flow\Repository;
 
 use Flow\Data\BufferedCache;
 use Flow\Model\UUID;
-use Flow\Container;
 use Flow\Exception\InvalidInputException;
 
 class MultiGetList {

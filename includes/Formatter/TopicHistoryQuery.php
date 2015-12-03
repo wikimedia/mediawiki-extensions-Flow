@@ -4,10 +4,8 @@ namespace Flow\Formatter;
 
 use Flow\Data\Utils\SortRevisionsByRevisionId;
 use Flow\Exception\FlowException;
-use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
-use Flow\FlowActions;
 
 class TopicHistoryQuery extends HistoryQuery {
 	/**

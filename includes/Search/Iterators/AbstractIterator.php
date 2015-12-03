@@ -6,7 +6,6 @@ use DatabaseBase;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\DbFactory;
-use Flow\Exception\InvalidDataException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Iterator;

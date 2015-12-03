@@ -7,7 +7,6 @@ use DOMNode;
 use FauxResponse;
 use Flow\Container;
 use Flow\Exception\FlowException;
-use Flow\Exception\InvalidDataException;
 use Flow\Exception\NoParserException;
 use Flow\Exception\WikitextException;
 use Language;

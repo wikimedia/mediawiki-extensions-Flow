@@ -3,7 +3,6 @@
 namespace Flow\Formatter;
 
 use Flow\Container;
-use Flow\Exception\FlowException;
 use Flow\RevisionActionPermissions;
 use IContextSource;
 use RCFeedFormatter;

@@ -3,7 +3,6 @@
 namespace Flow\Formatter;
 
 use Flow\RevisionActionPermissions;
-use Flow\Model\UUID;
 use Linker;
 
 /**

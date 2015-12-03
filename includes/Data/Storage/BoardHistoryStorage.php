@@ -2,7 +2,6 @@
 
 namespace Flow\Data\Storage;
 
-use Flow\Model\UUID;
 use Flow\Exception\DataModelException;
 
 /**

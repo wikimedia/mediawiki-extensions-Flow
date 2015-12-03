@@ -5,7 +5,6 @@ namespace Flow\Data\Storage;
 use Flow\DbFactory;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
-use Flow\Exception\DataModelException;
 
 /**
  * SQL storage and query for PostRevision instances

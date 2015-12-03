@@ -5,7 +5,6 @@ namespace Flow\Tests\Mock;
 use ArrayIterator;
 use Flow\Import\IImportPost;
 use Flow\Import\IObjectRevision;
-use User;
 
 class MockImportPost implements IImportPost {
 	/**

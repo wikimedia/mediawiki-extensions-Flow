@@ -6,7 +6,6 @@ use Flow\Model\AbstractRevision;
 use IContextSource;
 use Status;
 use Title;
-use User;
 
 class AbuseFilter implements SpamFilter {
 	/**

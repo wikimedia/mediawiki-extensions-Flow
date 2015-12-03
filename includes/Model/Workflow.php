@@ -2,14 +2,10 @@
 
 namespace Flow\Model;
 
-use Article;
-use Flow\Container;
 use Flow\Exception\CrossWikiException;
 use Flow\Exception\DataModelException;
 use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidInputException;
-use Flow\Exception\PermissionException;
-use Flow\OccupationController;
 use MapCacheLRU;
 use MWTimestamp;
 use Title;

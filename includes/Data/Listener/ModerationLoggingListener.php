@@ -3,7 +3,6 @@
 namespace Flow\Data\Listener;
 
 use Flow\Log\ModerationLogger;
-use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 

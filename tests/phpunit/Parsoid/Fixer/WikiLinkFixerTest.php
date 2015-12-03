@@ -2,12 +2,9 @@
 
 namespace Flow\Tests\Parsoid\Fixer;
 
-use Flow\Model\UUID;
 use Flow\Parsoid\ContentFixer;
 use Flow\Parsoid\Fixer\WikiLinkFixer;
-use Flow\Conversion\Utils;
 use Flow\Tests\PostRevisionTestCase;
-use Html;
 use Title;
 
 /**

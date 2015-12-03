@@ -5,7 +5,6 @@ namespace Flow\Tests\Mock;
 use ArrayIterator;
 use Flow\Import\IObjectRevision;
 use Flow\Import\IImportSummary;
-use User;
 
 class MockImportSummary implements IImportSummary {
 	/**
