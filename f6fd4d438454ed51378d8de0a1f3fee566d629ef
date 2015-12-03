@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ceb37bc7_c27786fc",
+        "filename": "includes/Notifications/PostEditedPresentationModel.php",
+        "patchSetId": 20
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-12-03T21:36:04Z",
+      "side": 1,
+      "message": "You should check agentsCount\u003e1 (or otherAgentsCount\u003e0) here instead of isBundled(). Otherwise, if there are two post-edited events with the same agent, this code path will be taken but otherAgentsCount will be 0, so you\u0027ll end up with a notification like \"Roan and 0 others edited your post\"",
+      "revId": "f6fd4d438454ed51378d8de0a1f3fee566d629ef",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ceb37bc7_e2d64ac8",
+        "filename": "includes/Notifications/PostReplyPresentationModel.php",
+        "patchSetId": 20
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-12-03T21:36:04Z",
+      "side": 1,
+      "message": "This is also susceptible to otherAgentsCount\u003d0",
+      "revId": "f6fd4d438454ed51378d8de0a1f3fee566d629ef",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
