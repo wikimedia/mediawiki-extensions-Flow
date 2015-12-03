@@ -15,6 +15,7 @@ use Linker;
 use MultiHttpClient;
 use OutputPage;
 use RequestContext;
+use Sanitizer;
 use Title;
 use User;
 use VirtualRESTServiceClient;
@@ -150,7 +151,7 @@ abstract class Utils {
 			throw new WikitextException( "Conversion from '$from' to '$to' was requested, but this is not supported." );
 		}
 
-		return Linker::formatLinksInComment( $content );
+		return Linker::formatLinksInComment( Sanitizer::escapeHtmlAllowEntities( $content ) );
 	}
 
 	/**
