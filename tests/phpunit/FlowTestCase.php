@@ -2,8 +2,6 @@
 
 namespace Flow\Tests;
 
-use Status;
-
 use Flow\Container;
 use Flow\Model\UUID;
 

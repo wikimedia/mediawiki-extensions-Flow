@@ -5,7 +5,6 @@ namespace Flow\Tests\Api;
 use ApiTestCase as BaseApiTestCase;
 use Flow\Container;
 use FlowHooks;
-use TestUser;
 use User;
 
 /**

@@ -8,7 +8,6 @@ use Flow\Import\IImportTopic;
 use Flow\Import\LiquidThreadsApi\ImportPost;
 use Flow\Import\LiquidThreadsApi\ImportTopic;
 use Flow\Import\PageImportState;
-use Flow\Import\PostImportState;
 use Flow\Import\TopicImportState;
 use Flow\Model\UUID;
 use Flow\UrlGenerator;
@@ -16,7 +15,6 @@ use Title;
 use User;
 use WatchedItem;
 use WikiPage;
-use WikitextContent;
 
 class LqtRedirector implements Postprocessor {
 	/** @var UrlGenerator **/

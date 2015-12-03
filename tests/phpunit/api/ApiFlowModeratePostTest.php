@@ -2,10 +2,7 @@
 
 namespace Flow\Tests\Api;
 
-use Flow\Container;
 use Flow\Model\AbstractRevision;
-use FlowHooks;
-use User;
 
 /**
  * @group Flow

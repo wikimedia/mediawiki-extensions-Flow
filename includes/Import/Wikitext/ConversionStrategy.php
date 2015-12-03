@@ -5,7 +5,6 @@ namespace Flow\Import\Wikitext;
 use DateTime;
 use DateTimeZone;
 use Flow\Import\ArchiveNameHelper;
-use Flow\Import\Converter;
 use Flow\Import\IConversionStrategy;
 use Flow\Import\ImportSourceStore;
 use LinkBatch;

@@ -5,7 +5,6 @@ namespace Flow\Block;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Exception\InvalidInputException;
-use Flow\Exception\PermissionException;
 use Flow\FlowActions;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;

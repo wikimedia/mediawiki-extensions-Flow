@@ -131,21 +131,15 @@ use Flow\Data\Storage\PostRevisionStorage;
 use Flow\Data\Storage\HeaderRevisionStorage;
 use Flow\Data\Storage\PostSummaryRevisionBoardHistoryStorage;
 use Flow\Data\Storage\PostSummaryRevisionStorage;
-use Flow\Data\Storage\TopicHistoryStorage;
 use Flow\Data\Index\UniqueFeatureIndex;
 use Flow\Data\Index\TopKIndex;
 use Flow\Data\Index\TopicListTopKIndex;
-use Flow\Data\Storage\BoardHistoryStorage;
 use Flow\Data\Storage\PostRevisionTopicHistoryStorage;
-use Flow\Data\Index\BoardHistoryIndex;
 use Flow\Data\Index\PostRevisionBoardHistoryIndex;
 use Flow\Data\Index\PostRevisionTopicHistoryIndex;
 use Flow\Data\Index\PostSummaryRevisionBoardHistoryIndex;
 use Flow\Data\ObjectManager;
 use Flow\Data\ObjectLocator;
-use Flow\Model\Header;
-use Flow\Model\PostRevision;
-use Flow\Model\PostSummary;
 
 // This currently never clears $this->bag, which makes it unusuable for long-running batch.
 // Use 'memcache.non_local_buffered' for those instead.

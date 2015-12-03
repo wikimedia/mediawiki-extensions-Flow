@@ -10,7 +10,6 @@ use Flow\Data\ObjectStorage;
 use Flow\Data\Compactor\ShallowCompactor;
 use Flow\Data\Utils\SortArrayByKeys;
 use Flow\Exception\InvalidInputException;
-use Flow\Model\UUID;
 
 /**
  * Holds the top k items with matching $indexed columns.  List is sorted and truncated to specified size.

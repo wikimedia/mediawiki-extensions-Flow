@@ -6,7 +6,6 @@ use DeferredUpdates;
 use Flow\Collection\PostCollection;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
-use Flow\Exception\DataModelException;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;

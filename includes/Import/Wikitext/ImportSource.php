@@ -4,7 +4,6 @@ namespace Flow\Import\Wikitext;
 
 use ArrayIterator;
 use Flow\Import\TemplateHelper;
-use Flow\Conversion\Utils;
 use FlowHooks;
 use Flow\Import\ImportException;
 use Flow\Import\Plain\ImportHeader;

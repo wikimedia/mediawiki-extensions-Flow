@@ -7,7 +7,6 @@ use Flow\Data\ObjectManager;
 use Flow\DbFactory;
 use Flow\Model\UUID;
 use BagOStuff;
-use Flow\Container;
 use Flow\Exception\DataModelException;
 
 /*

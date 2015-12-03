@@ -2,14 +2,8 @@
 
 namespace Flow\Tests\Data\Pager;
 
-use Flow\Data\BagOStuff;
-use Flow\Data\BagOStuff\LocalBufferedBagOStuff;
-use Flow\Data\BufferedCache;
-use Flow\Data\Index\TopKIndex;
 use Flow\Data\Pager\Pager;
-use Flow\Data\Pager\PagerPage;
 use Flow\Model\UUID;
-use stdClass;
 
 /**
  * @group Flow

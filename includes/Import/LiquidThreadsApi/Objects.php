@@ -2,7 +2,6 @@
 
 namespace Flow\Import\LiquidThreadsApi;
 
-use ApiResult;
 use AppendIterator;
 use ArrayIterator;
 use Flow\Import\IImportHeader;

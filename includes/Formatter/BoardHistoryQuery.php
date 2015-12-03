@@ -2,13 +2,10 @@
 
 namespace Flow\Formatter;
 
-use Flow\Data\Storage\RevisionStorage;
 use Flow\Data\Utils\SortRevisionsByRevisionId;
 use Flow\Exception\FlowException;
 use Flow\Model\UUID;
 use MWExceptionHandler;
-use Flow\Model\AbstractRevision;
-use Flow\FlowActions;
 
 class BoardHistoryQuery extends HistoryQuery {
 	/**

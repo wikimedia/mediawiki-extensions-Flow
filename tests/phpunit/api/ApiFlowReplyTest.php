@@ -2,10 +2,6 @@
 
 namespace Flow\Tests\Api;
 
-use Flow\Container;
-use FlowHooks;
-use User;
-
 /**
  * @group Flow
  * @group medium

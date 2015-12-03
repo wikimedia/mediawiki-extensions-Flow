@@ -3,7 +3,6 @@
 namespace Flow\Parsoid;
 
 use DOMNode;
-use Flow\Model\PostRevision;
 use Title;
 
 interface Fixer {

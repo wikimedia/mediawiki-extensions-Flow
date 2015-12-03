@@ -6,7 +6,6 @@ use Flow\Exception\FlowException;
 use Flow\Exception\PermissionException;
 use Flow\Model\Anchor;
 use ChangesList;
-use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Conversion\Utils;
 use IContextSource;

@@ -9,7 +9,6 @@ use Flow\Container;
 use Flow\Exception\UnknownWorkflowIdException;
 use Flow\LinksTableUpdater;
 use Flow\Model\UUID;
-use Flow\RevisionActionPermissions;
 use Flow\View;
 use Flow\WorkflowLoaderFactory;
 use OutputPage;

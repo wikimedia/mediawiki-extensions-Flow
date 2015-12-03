@@ -2,7 +2,6 @@
 
 namespace Flow\Formatter;
 
-use Flow\Data\Pager\PagerPage;
 use Flow\Model\Anchor;
 use Flow\Model\Workflow;
 

@@ -2,10 +2,8 @@
 
 namespace Flow\Formatter;
 
-use Exception;
 use FeedItem;
 use Flow\Exception\FlowException;
-use Flow\Model\PostRevision;
 use IContextSource;
 
 class FeedItemFormatter extends AbstractFormatter {

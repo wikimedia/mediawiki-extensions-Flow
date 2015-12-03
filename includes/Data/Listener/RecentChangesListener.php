@@ -3,7 +3,6 @@
 namespace Flow\Data\Listener;
 
 use Closure;
-use Flow\Container;
 use Flow\Data\Utils\RecentChangeFactory;
 use Flow\FlowActions;
 use Flow\Formatter\IRCLineUrlFormatter;

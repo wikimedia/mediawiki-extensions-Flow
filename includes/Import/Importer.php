@@ -18,7 +18,6 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
 use Flow\WorkflowLoaderFactory;
-use Flow\Container;
 use IP;
 use MWCryptRand;
 use MWTimestamp;

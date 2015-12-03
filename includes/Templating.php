@@ -12,7 +12,6 @@ use Flow\Parsoid\ContentFixer;
 use OutputPage;
 // These don't really belong here
 use Linker;
-use Message;
 
 /**
  * This class is slowly being deprecated. It used to house a minimalist

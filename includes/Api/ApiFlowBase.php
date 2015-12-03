@@ -6,7 +6,6 @@ use ApiBase;
 use Flow\Block\Block;
 use Flow\Container;
 use Flow\Model\AbstractRevision;
-use Flow\TalkpageManager;
 use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
 use Title;

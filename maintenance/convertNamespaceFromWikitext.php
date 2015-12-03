@@ -1,7 +1,6 @@
 <?php
 
 use Flow\Utils\NamespaceIterator;
-use Psr\Log\NullLogger;
 
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'

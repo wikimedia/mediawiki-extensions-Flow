@@ -2,10 +2,8 @@
 
 namespace Flow\Parsoid\Fixer;
 
-use ArrayObject;
 use DOMElement;
 use DOMNode;
-use Flow\Model\PostRevision;
 use Flow\Parsoid\Fixer;
 use Flow\Conversion\Utils;
 use LinkBatch;

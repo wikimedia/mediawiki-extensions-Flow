@@ -8,7 +8,6 @@ use Exception;
 use FauxRequest;
 use Flow\Import\ImportException;
 use Flow\Import\IImportSource;
-use Flow\Import\ApiNullResponseException;
 use Http;
 use RequestContext;
 use Psr\Log\LoggerAwareInterface;

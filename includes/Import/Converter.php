@@ -3,7 +3,6 @@
 namespace Flow\Import;
 
 use DatabaseBase;
-use Flow\Repository\TitleRepository;
 use Flow\Exception\FlowException;
 use MovePage;
 use MWExceptionHandler;

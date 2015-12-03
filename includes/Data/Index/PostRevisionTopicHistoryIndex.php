@@ -5,10 +5,8 @@ namespace Flow\Data\Index;
 use Flow\Data\BufferedCache;
 use Flow\Data\ObjectMapper;
 use Flow\Data\Storage\PostRevisionTopicHistoryStorage;
-use Flow\Exception\InvalidInputException;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
-use Flow\Model\Workflow;
 use Flow\Model\UUID;
 use MWException;
 
@@ -67,7 +65,7 @@ class PostRevisionTopicHistoryIndex extends TopKIndex {
 	 * Finds topic ID for given Post
 	 *
 	 * @param PostRevision $post
-	 * return UUID Topic ID
+	 * @return UUID Topic ID
 	 */
 	protected function findTopicId( PostRevision $post ) {
 		return $post->getRootPost()->getPostId();

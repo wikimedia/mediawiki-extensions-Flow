@@ -3,7 +3,6 @@
 namespace Flow\Formatter;
 
 use DifferenceEngine;
-use Flow\Model\AbstractRevision;
 use IContextSource;
 use TextContent;
 

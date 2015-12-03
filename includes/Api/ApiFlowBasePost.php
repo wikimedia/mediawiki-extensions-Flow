@@ -2,7 +2,6 @@
 
 namespace Flow\Api;
 
-use ApiBase;
 use Flow\Model\Anchor;
 use Flow\Model\UUID;
 use Message;

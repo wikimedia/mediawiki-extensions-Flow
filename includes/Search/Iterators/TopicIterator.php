@@ -3,7 +3,6 @@
 namespace Flow\Search\Iterators;
 
 use Flow\DbFactory;
-use Flow\Exception\InvalidDataException;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Repository\RootPostLoader;

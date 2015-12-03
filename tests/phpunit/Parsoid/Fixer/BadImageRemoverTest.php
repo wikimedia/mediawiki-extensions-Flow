@@ -4,7 +4,6 @@ namespace Flow\Tests\Parsoid;
 
 use Flow\Parsoid\Fixer\BadImageRemover;
 use Flow\Parsoid\ContentFixer;
-use Flow\Conversion\Utils;
 use Title;
 
 /**
