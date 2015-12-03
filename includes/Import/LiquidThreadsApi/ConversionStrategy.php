@@ -126,18 +126,17 @@ class ConversionStrategy implements IConversionStrategy {
 	 * @return WikitextContent
 	 */
 	public function createArchiveCleanupRevisionContent( WikitextContent $content, Title $title ) {
-		$arguments = implode( '|', array(
-			'from=' . $title->getPrefixedText(),
-			'date=' . MWTimestamp::getInstance()->timestamp->format( 'Y-m-d' ),
-		) );
+		// cleanup existing text
+		$existing = $content->getNativeData();
+		$existing = self::removeLqtMagicWord( $existing );
+		$existing = $this->removePrefixText( $existing );
 
-		$newWikitext = self::removeLqtMagicWord( $content->getNativeData() );
-		$newWikitext = self::getDisableLqtMagicWord() . "\n\n" . $newWikitext;
+		// prefix the existing text with some additional info related to the conversion
+		$text = $this->getPrefixText( $content, $title ) . "\n\n";
+		$text .= self::getDisableLqtMagicWord() . "\n\n";
+		$text .= $existing;
 
-		$template = wfMessage( 'flow-importer-lqt-converted-archive-template' )->inContentLanguage()->plain();
-		$newWikitext = "{{{$template}|$arguments}}\n\n" . $newWikitext;
-
-		return new WikitextContent( $newWikitext );
+		return new WikitextContent( $text );
 	}
 
 	public function getPostprocessor() {
@@ -157,13 +156,46 @@ class ConversionStrategy implements IConversionStrategy {
 	}
 
 	/**
+	 * Gets rid of any "This page is an archived page..." prefix that may have
+	 * been added in an earlier conversion run.
+	 *
+	 * @param string $content
+	 * @return string
+	 */
+	protected function removePrefixText( $content ) {
+		$template = wfMessage( 'flow-importer-lqt-converted-archive-template' )->inContentLanguage()->plain();
+		return preg_replace( "{{{$template}\\|[^\\}]+}}", '', $content );
+	}
+
+	/**
+	 * Generates a "This page is an archived page..." text to add to the
+	 * existing content.
+	 *
+	 * @param WikitextContent $content
+	 * @param Title $title
+	 * @return string
+	 */
+	protected function getPrefixText( WikitextContent $content, Title $title ) {
+		$arguments = implode( '|', array(
+			'from=' . $title->getPrefixedText(),
+			'date=' . MWTimestamp::getInstance()->timestamp->format( 'Y-m-d' ),
+		) );
+
+		$template = wfMessage( 'flow-importer-lqt-converted-archive-template' )->inContentLanguage()->plain();
+
+		return "{{{$template}|$arguments}}\n\n" . self::getDisableLqtMagicWord() . "\n\n";
+	}
+
+	/**
 	 * Remove the LQT magic word or its localized version
 	 * @param string $content
 	 * @return string
 	 */
 	public static function removeLqtMagicWord( $content ) {
 		$patterns = array_map(
-			function( $word ) { return '/{{\\s*#' . preg_quote( $word ) . ':\\s*0*1\\s*}}/i'; },
+			// delete any status: enabled or disabled doesn't matter (we're
+			// adding disabled magic word anyway and having it twice is messy)
+			function( $word ) { return '/{{\\s*#' . preg_quote( $word ) . ':\\s*[01]*\\s*}}/i'; },
 			array( 'useliquidthreads' ) + MagicWord::get( 'useliquidthreads' )->getSynonyms() );
 
 		return preg_replace( $patterns, '', $content );
