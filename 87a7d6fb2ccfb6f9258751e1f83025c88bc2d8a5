@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "ceb37bc7_3caec9e5",
+        "filename": "i18n/en.json",
+        "patchSetId": 19
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-12-04T13:37:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_ab9d065d",
+      "revId": "87a7d6fb2ccfb6f9258751e1f83025c88bc2d8a5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ebaf39b_8bce025e",
         "filename": "includes/Notifications/Controller.php",
         "patchSetId": 19
@@ -47,6 +65,24 @@
       "writtenOn": "2015-11-30T21:21:36Z",
       "side": 1,
       "message": "This fixes T109784, right? If so, add Bug: T109784 to the commit message.",
+      "revId": "87a7d6fb2ccfb6f9258751e1f83025c88bc2d8a5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ceb37bc7_23b0e13d",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 19
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-12-04T13:37:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ebaf39b_8bce025e",
       "revId": "87a7d6fb2ccfb6f9258751e1f83025c88bc2d8a5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
