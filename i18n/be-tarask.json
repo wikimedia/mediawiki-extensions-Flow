@@ -9,5 +9,6 @@
 	"right-flow-lock": "пазначэньне тэмаў Flow як вырашаных",
 	"right-flow-delete": "выдаленьне тэмаў і запісаў Flow",
 	"right-flow-edit-post": "рэдагаваньне запісаў іншых удзельнікаў у Flow",
-	"right-flow-suppress": "падаўленьне вэрсіяў Flow"
+	"right-flow-suppress": "падаўленьне вэрсіяў Flow",
+	"flow-special-type": "Тып"
 }

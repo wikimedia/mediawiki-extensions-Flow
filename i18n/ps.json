@@ -12,6 +12,7 @@
 	"flow-history-action-delete-post": "ړنگول",
 	"flow-history-action-unlock-topic": "بيا پرانيستل",
 	"flow-post-edited": "ليکنه د $1 لخوا په $2 {{GENDER:$1|سمه شوه}}",
+	"flow-post-action-edit-post": "سمول",
 	"flow-topic-action-watchlist-add": "دا سرليک خپل کتنلړ کې ورگډول",
 	"flow-topic-action-watchlist-remove": "همدا سرليک خپل کتنلړ څخه لرې کول",
 	"flow-board-history": "\"$1\" پېښليک",

@@ -321,7 +321,7 @@
 	"flow-topic-permalink-warning": "Tämä aihe aloitettiin sivulla [$2 $1]",
 	"flow-topic-permalink-warning-user-board": "Tämä aihe aloitettiin [$2 käyttäjän {{GENDER:$1|$1}} palstalla]",
 	"flow-revision-permalink-warning-post": "Tämä on ikilinkki yhteen versioon tästä viestistä.\nTämän version päiväys on $1.\nVoit nähdä [$5 eroavaisuudet edeltävästä versiosta], tai katsoa muita versioita [$4 viestin historiasivulla].",
-	"flow-revision-permalink-warning-post-first": "Tämä on ikilinkki viestin ensimmäiseen versioon.\nVoit katsoa seuraavia versioita  [$4 viestin historiasivulla].",
+	"flow-revision-permalink-warning-post-first": "Tämä on ikilinkki viestin ensimmäiseen versioon.\nVoit katsoa uudempia versioita [$4 viestin historiasivulla].",
 	"flow-revision-permalink-warning-postsummary": "Tämä on ikilinkki yksittäiseen versioon viestin yhteenvedosta. Tämän version päiväys on $1. Voit katsoa [$5 eroavaisuudet edellisestä versiosta] tai katsoa muita versioita [$4 viestin historiasivulla].",
 	"flow-compare-revisions-revision-header": "Versio, jonka on tehnyt {{GENDER:$2|$2}} $1",
 	"flow-compare-revisions-header-post": "Tämä sivu näyttää {{GENDER:$3|muutokset}} kahden version välillä viestistä käyttäjältä $3 aiheessa \"[$5 $2]\" palstalla [$4 $1].\nVoit nähdä muut versiot tästä aiheesta sen [$6 historiasivulla].",
