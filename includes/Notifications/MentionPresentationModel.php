@@ -5,7 +5,7 @@ namespace Flow;
 class MentionPresentationModel extends FlowPresentationModel {
 
 	public function canRender() {
-		return $this->hasTitle();
+		return $this->hasTitle() && $this->event->getAgent();
 	}
 
 	public function getPrimaryLink() {
@@ -23,4 +23,14 @@ class MentionPresentationModel extends FlowPresentationModel {
 		return $msg;
 	}
 
+	public function getSecondaryLinks() {
+		return array(
+			array(
+				'prioritized' => true,
+				'label' => $this->event->getAgent()->getName(),
+				'icon' => 'userAvatar',
+				'url' => $this->event->getAgent()->getUserPage()->getFullUrl()
+			),
+		);
+	}
 }
