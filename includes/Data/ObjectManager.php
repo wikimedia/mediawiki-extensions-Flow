@@ -379,7 +379,7 @@ class ObjectManager extends ObjectLocator {
 	 *
 	 * @param array $row
 	 * @param array $keys
-	 * @return array
+	 * @return array|null
 	 */
 	static public function splitFromRow( array $row, array $keys ) {
 		$split = array();

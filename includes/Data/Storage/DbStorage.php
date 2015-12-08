@@ -55,7 +55,7 @@ abstract class DbStorage implements ObjectStorage {
 	 */
 	protected function preprocessNestedSqlArray( array $outer ) {
 		foreach ( $outer as $i => $data ) {
-			if ( ! is_array( $data) ) {
+			if ( !is_array( $data ) ) {
 				throw new DataModelException( "Unexpected non-array in nested SQL array" );
 			}
 			$outer[$i] = $this->preprocessSqlArray( $data );
@@ -84,7 +84,7 @@ abstract class DbStorage implements ObjectStorage {
 				$data[$key] = $value->getSql( $db );
 			} elseif ( is_numeric( $key ) ) {
 				throw new DataModelException( "Unescaped raw SQL found in " . __METHOD__, 'process-data' );
-			} elseif ( ! preg_match( '/^[A-Za-z0-9\._]+$/', $key ) ) {
+			} elseif ( !preg_match( '/^[A-Za-z0-9\._]+$/', $key ) ) {
 				throw new DataModelException( "Dangerous SQL field name '$key' found in " . __METHOD__, 'process-data' );
 			}
 		}
