@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aeb807a7_55858759",
+        "filename": "i18n/en.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-12-08T10:11:49Z",
+      "side": 1,
+      "message": "Not quite :) \n\nThe message is about viewing the user\u0027s user page, not your user page. Add the GENDER string to the verb \"View\" directly, instead of adding another word \"your\".",
+      "revId": "8dff818637bdc006fc586c94e4daaf2c88e4328c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
