@@ -64,13 +64,12 @@
 	 * Respond to model topic content change and update the ToC content
 	 *
 	 * @param {mw.flow.dm.Topic} topic Topic
-	 * @param {string} content Content
 	 */
-	mw.flow.ui.TopicMenuSelectWidget.prototype.onTopicContentChange = function ( topic, content ) {
+	mw.flow.ui.TopicMenuSelectWidget.prototype.onTopicContentChange = function ( topic ) {
 		var topicWidget = this.topics[ topic.getId() ];
 
 		if ( topicWidget ) {
-			topicWidget.setLabel( content );
+			topicWidget.setLabel( topic.getContent( 'plaintext' ) );
 		}
 	};
 
@@ -151,7 +150,7 @@
 			if ( !optionWidget ) {
 				optionWidget = new OO.ui.MenuOptionWidget( {
 					data: items[ i ],
-					label: items[ i ].getContent(),
+					label: items[ i ].getContent( 'plaintext' ),
 					classes: items[ i ].getModerationState() === 'lock' ?
 						[ 'flow-ui-topicMenuSelectWidget-locked' ] :
 						[]
