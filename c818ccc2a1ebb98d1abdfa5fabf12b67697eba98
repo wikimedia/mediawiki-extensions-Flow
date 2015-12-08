@@ -16,6 +16,23 @@
       "revId": "c818ccc2a1ebb98d1abdfa5fabf12b67697eba98",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aeb807a7_5fafe191",
+        "filename": "i18n/en.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2015-12-08T18:16:05Z",
+      "side": 1,
+      "message": "Look again at the documentation of GENDER here: https://www.mediawiki.org/wiki/Localisation#.E2.80.A6on_user_names_via_GENDER and https://www.mediawiki.org/wiki/Manual:Messages_API#Notes_about_gender.2C_grammar.2C_plural\n\nThe verb \"View\" needs to be gendered, so you need to add the {{GENDER}} magic word to that verb.\n\nPlease make sure to fix this patchset and not submit a new one instead, see AKlapper\u0027s notes on how to do that. There\u0027s also a \"cheat sheet\" about git and gerrit that might help you, here: https://www.mediawiki.org/wiki/Gerrit/Getting_started",
+      "revId": "c818ccc2a1ebb98d1abdfa5fabf12b67697eba98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
