@@ -119,6 +119,8 @@
 		// Parent method
 		mw.flow.dm.Topic.parent.prototype.populate.call( this, data );
 
+		this.setPlaintextContent( data.content.plaintext );
+
 		if ( data.replies !== undefined ) {
 			this.unStub();
 		}
@@ -158,7 +160,7 @@
 	};
 
 	/**
-	 * Get the topic summary
+	 * Set the topic summary
 	 *
 	 * @param {string} Topic summary
 	 * @fires summary
@@ -166,6 +168,25 @@
 	mw.flow.dm.Topic.prototype.setSummary = function ( summary ) {
 		this.summary = summary;
 		this.emit( 'summaryChange', this.summary );
+	};
+
+	/**
+	 * Get the plaintext version of the topic content
+	 *
+	 * @return {string} Topic content in plaintext format
+	 */
+	mw.flow.dm.Topic.prototype.getPlaintextContent = function () {
+		return this.plaintextContent;
+	};
+
+	/**
+	 * Set the plaintext version of the topic content
+	 *
+	 * @param {string} plaintextContent
+	 */
+	mw.flow.dm.Topic.prototype.setPlaintextContent = function ( plaintextContent ) {
+		this.plaintextContent = plaintextContent;
+		this.emit( 'contentChange', this.plaintextContent );
 	};
 
 }( jQuery ) );

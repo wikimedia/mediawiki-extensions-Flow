@@ -70,7 +70,7 @@
 		var topicWidget = this.topics[ topic.getId() ];
 
 		if ( topicWidget ) {
-			topicWidget.setLabel( content );
+			topicWidget.setLabel( topic.getPlaintextContent() );
 		}
 	};
 
@@ -151,7 +151,7 @@
 			if ( !optionWidget ) {
 				optionWidget = new OO.ui.MenuOptionWidget( {
 					data: items[ i ],
-					label: items[ i ].getContent(),
+					label: items[ i ].getPlaintextContent(),
 					classes: items[ i ].getModerationState() === 'lock' ?
 						[ 'flow-ui-topicMenuSelectWidget-locked' ] :
 						[]
