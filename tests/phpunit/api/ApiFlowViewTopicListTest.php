@@ -31,7 +31,8 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 			$topicData[$i]['expectedRevision'] = array(
 				'content' => array(
 					'content' => $title,
-					'format' => 'topic-title-wikitext'
+					'format' => 'topic-title-wikitext',
+					'plaintext' => $title,
 				),
 				// This last_updated is used for the 'newest' test, then later changed for 'updated' test.
 				'last_updated' => $actualRevision['last_updated'],
