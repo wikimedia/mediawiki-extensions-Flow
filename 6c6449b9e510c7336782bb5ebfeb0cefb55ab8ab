@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aeb807a7_79fc45d6",
+        "filename": "includes/Data/Storage/DbStorage.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-12-08T14:12:04Z",
+      "side": 1,
+      "message": "Why get the DB inside the loop?",
+      "revId": "6c6449b9e510c7336782bb5ebfeb0cefb55ab8ab",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
