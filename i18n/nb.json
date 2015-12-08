@@ -148,7 +148,7 @@
 	"flow-error-not-allowed-reply-to-delete-topic-extract": "Du kan ikke svare fordi denne diskusjonen har blitt slettet. Slettingsloggen for diskusjonen vises under til orientering.",
 	"flow-error-not-allowed-suppress-extract": "Innlegget har blitt slettet. Sletteloggen for innlegget vises under til orientering.",
 	"flow-error-title-too-long": "Diskusjonstitler er begrenset til {{PLURAL:$1|én byte|$1 bytes}}.",
-	"flow-error-no-existing-workflow": "Denne arbeidsflyten finnes ikke enda.",
+	"flow-error-no-existing-workflow": "Denne arbeidsflyten finnes ikke ennå.",
 	"flow-error-not-a-post": "Diskusjonstittel kan ikke bli lagret som et innlegg.",
 	"flow-error-missing-header-content": "Du må fylle inn en beskrivelse.",
 	"flow-error-missing-prev-revision-identifier": "Foregående revisjons-identifikator mangler.",
