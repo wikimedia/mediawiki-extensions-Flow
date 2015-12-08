@@ -17,8 +17,7 @@
 		mw.flow.dm.RevisionedContent.parent.call( this, config );
 
 		// Initialize properties
-		this.content = null;
-		this.contentFormat = null;
+		this.content = new mw.flow.dm.Content( null );
 		this.author = null;
 		this.creator = null;
 		this.lastUpdate = null;
@@ -33,20 +32,16 @@
 		this.editable = true;
 		this.lastEditId = null;
 		this.lastEditUser = null;
+
+		this.content.connect( this, {
+			contentChange: [ 'emit', 'contentChange' ]
+		} );
 	};
 
 	/* Inheritance */
 	OO.inheritClass( mw.flow.dm.RevisionedContent, mw.flow.dm.Item );
 
 	/* Events */
-
-	/**
-	 * Change of content in this revision
-	 *
-	 * @event contentChange
-	 * @param {string} content Content
-	 * @param {string} format Content format
-	 */
 
 	/**
 	 * Revision is being watched or unwatched by the current user
@@ -83,8 +78,7 @@
 	 */
 	mw.flow.dm.RevisionedContent.prototype.getHashObject = function () {
 		return $.extend( {
-			content: this.getContent(),
-			contentFormat: this.getContentFormat(),
+			content: this.getContent().get(),
 			author: this.getAuthor(),
 			creator: this.getCreator(),
 			lastUpdate: this.getLastUpdate(),
@@ -110,10 +104,7 @@
 	 * @param {Object} data API data
 	 */
 	mw.flow.dm.RevisionedContent.prototype.populate = function ( data ) {
-		var content = data.content || {};
-
-		this.setContent( content.content );
-		this.setContentFormat( content.format );
+		this.getContent().set( data.content );
 		this.setAuthor( data.author );
 		this.setCreator( data.creator );
 		this.setLastUpdate( data.last_updated );
@@ -189,58 +180,10 @@
 	/**
 	 * Get content
 	 *
-	 * @return {string} Content; can be in wikitext, html, fixed-html
-	 *  topic-title-wikitext, or topic-title-html format.
-	 *  See #getContentFormat for the format of the given content.
+	 * @return {mw.flow.dm.Content} Content
 	 */
 	mw.flow.dm.RevisionedContent.prototype.getContent = function () {
 		return this.content;
-	};
-
-	/**
-	 * Set content
-	 *
-	 * @param {string} content Content
-	 * @fires contentChange
-	 */
-	mw.flow.dm.RevisionedContent.prototype.setContent = function ( content ) {
-		var wasUnset = this.content === null;
-		if ( content !== undefined && this.content !== content ) {
-			this.content = content;
-			if ( !wasUnset ) {
-				this.emit( 'contentChange', this.content, this.contentFormat );
-			}
-		}
-	};
-
-	/**
-	 * Get content format
-	 * Possible formats are:
-	 * - 'wikitext' for unparsed wikitext content
-	 * - 'html' for HTML content
-	 * - 'fixed-html' for HTML content, adjusted to be suitable for views.
-	 * - 'topic-title-wikitext' for the wikitext form of the topic title
-	 * - 'topic-title-html' for the HTML form of the topic title
-	 *
-	 * @return {string} Content format.
-	 */
-	mw.flow.dm.RevisionedContent.prototype.getContentFormat = function () {
-		return this.contentFormat;
-	};
-
-	/**
-	 * Set content format. See #getContentFormat for available formats
-	 *
-	 * @param {string} contentFormat Content format
-	 */
-	mw.flow.dm.RevisionedContent.prototype.setContentFormat = function ( contentFormat ) {
-		var wasUnset = this.contentFormat === null;
-		if ( contentFormat !== undefined && this.contentFormat !== contentFormat ) {
-			this.contentFormat = contentFormat;
-			if ( !wasUnset ) {
-				this.emit( 'contentChange', this.content, this.contentFormat );
-			}
-		}
 	};
 
 	/**

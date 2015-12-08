@@ -189,13 +189,7 @@ QUnit.test( 'Load topics', function ( assert ) {
 				},
 				{
 					method: 'getContent',
-					expected: 'This is the title of the topic.',
 					msg: 'Get topic raw content'
-				},
-				{
-					method: 'getContentFormat',
-					expected: 'topic-title-wikitext',
-					msg: 'Get topic content format'
 				},
 				{
 					method: 'isModerated',

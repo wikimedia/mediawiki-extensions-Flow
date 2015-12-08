@@ -232,7 +232,7 @@
 
 			// HACK: While we use both systems (new ooui and old flow-event system)
 			// We need to make sure that the old system is updated too
-			topicTitlesById[ topicId ] = topic.getContent();
+			topicTitlesById[ topicId ] = topic.getContent().get();
 			updateTimestampsByTopicId[ topicId ] = topic.getLastUpdate();
 		}
 		// Add to board
