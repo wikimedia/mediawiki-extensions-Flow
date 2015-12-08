@@ -364,6 +364,7 @@ $wgResourceModules += array(
 		'scripts' => array( // Component order is important
 			'flow/mw.flow.js',
 			'flow/dm/mw.flow.dm.js',
+			'flow/dm/mw.flow.dm.Content.js',
 			'flow/dm/mw.flow.dm.Item.js',
 			'flow/dm/mixins/mw.flow.dm.List.js',
 			'flow/dm/api/mw.flow.dm.APIHandler.js',
