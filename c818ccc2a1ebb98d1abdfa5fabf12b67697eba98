@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aeb807a7_ffc81579",
+        "filename": "i18n/en.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 105
+      },
+      "writtenOn": "2015-12-08T18:12:55Z",
+      "side": 1,
+      "message": "{{GENDER:$1|your}} doesn\u0027t make sense, sorry. If the readoing user is meant, then {{GENDER:|your}} must be used. Otherwise, it can\u0027t be \"your\". https://translatewiki.net/wiki/Gender",
+      "revId": "c818ccc2a1ebb98d1abdfa5fabf12b67697eba98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
