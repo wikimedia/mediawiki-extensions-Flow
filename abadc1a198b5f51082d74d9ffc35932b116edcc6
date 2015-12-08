@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ead036b_8f4c5de6",
+        "filename": "modules/flow/dm/mw.flow.dm.Topic.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-12-08T23:26:47Z",
+      "side": 1,
+      "message": "This isn\u0027t correct because this.getContent() didn\u0027t change, and because this event takes two parameters (the second one is the content format).\n\nThis plaintext content thing is a bit awkward anyway; I\u0027m OK merging this to start with, but let\u0027s also discuss how to do this in a more structured way (because we may want to store multiple formats for more things in the future).",
+      "revId": "abadc1a198b5f51082d74d9ffc35932b116edcc6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
