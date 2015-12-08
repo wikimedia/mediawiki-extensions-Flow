@@ -102,7 +102,7 @@ class ManagerGroup {
 	 * @param array $objects
 	 * @param array $metadata
 	 */
-	public function multiPut( $objects, array $metadata = array() ) {
+	public function multiPut( array $objects, array $metadata = array() ) {
 		$this->multiMethod( 'multiPut', $objects, $metadata );
 	}
 
@@ -110,7 +110,7 @@ class ManagerGroup {
 	 * @param array $objects
 	 * @param array $metadata
 	 */
-	public function multiRemove( $objects, array $metadata = array() ) {
+	public function multiRemove( array $objects, array $metadata = array() ) {
 		$this->multiMethod( 'multiRemove', $objects, $metadata );
 	}
 

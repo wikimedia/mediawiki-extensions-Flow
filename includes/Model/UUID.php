@@ -352,10 +352,6 @@ class UUID implements ApiSerializable {
 					||
 					$len === self::HEX_LEN
 				) ) {
-					// Note that if a value is a binary string, but needs to be encoded
-					// for the database, that is unhandled here.  A patch is under
-					// consideration to allow binary data to always be wrapped in a Blob
-					// to clear up this inconsistency.
 					$array[$key] = UUID::create( $value )->getBinary();
 				}
 			}
