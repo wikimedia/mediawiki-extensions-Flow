@@ -158,7 +158,7 @@
 	};
 
 	/**
-	 * Get the topic summary
+	 * Set the topic summary
 	 *
 	 * @param {string} Topic summary
 	 * @fires summary
