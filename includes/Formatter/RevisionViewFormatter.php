@@ -131,8 +131,7 @@ class RevisionViewFormatter {
 				$links['markPatrolled'] = $this->urlGenerator->markRevisionPatrolledAction(
 					$title,
 					$workflowId,
-					$recentChange,
-					$user->getEditToken( $recentChange->getAttribute( 'rc_id' ) )
+					$recentChange
 				);
 			}
 		}
