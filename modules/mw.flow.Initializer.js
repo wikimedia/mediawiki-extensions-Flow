@@ -84,6 +84,7 @@
 					// Topic already exists. Repopulate
 					revisionId = data.posts[ workflowId ];
 					revision = data.revisions[ revisionId ];
+
 					topic.populate( revision );
 				}
 

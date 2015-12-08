@@ -339,6 +339,8 @@ class RevisionFormatter {
 					$ctx,
 					$row
 				);
+
+				$res['content']['plaintext'] = $res['properties']['topic-of-post-text-from-html']['plaintext'];
 			}
 
 			$res['isNewPage'] = $row->isFirstReply && $row->revision->isFirstRevision();
