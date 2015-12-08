@@ -33,6 +33,24 @@
       "revId": "c818ccc2a1ebb98d1abdfa5fabf12b67697eba98",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aeb807a7_5f86011a",
+        "filename": "i18n/en.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 105
+      },
+      "writtenOn": "2015-12-08T18:20:19Z",
+      "side": 1,
+      "message": "Mooeypoo, I agree with you; that\u0027s what I meant with «If the reading user is meant, then {{GENDER:|[...]}}» :)",
+      "parentUuid": "aeb807a7_5fafe191",
+      "revId": "c818ccc2a1ebb98d1abdfa5fabf12b67697eba98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
