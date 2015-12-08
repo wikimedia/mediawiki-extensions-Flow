@@ -8,7 +8,7 @@ use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 
 /**
- * Query-only storage implementation providess history of all post revisions in a topic.
+ * Query-only storage implementation provides history of all post revisions in a topic.
  */
 class PostRevisionTopicHistoryStorage implements ObjectStorage {
 

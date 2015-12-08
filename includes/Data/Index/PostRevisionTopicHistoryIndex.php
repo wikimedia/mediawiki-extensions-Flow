@@ -22,42 +22,42 @@ class PostRevisionTopicHistoryIndex extends TopKIndex {
 	}
 
 	/**
-	 * @param PostRevision|PostSummary $object
+	 * @param PostRevision $object
 	 * @param array $row
 	 */
 	public function cachePurge( $object, array $row ) {
-		$row['topic_root_id'] = $this->findTopicId( $object, array() );
+		$row['topic_root_id'] = $this->findTopicId( $object );
 		parent::cachePurge( $object, $row );
 	}
 
 	/**
-	 * @param PostRevision|PostSummary $object
+	 * @param PostRevision $object
 	 * @param string[] $new
 	 * @param array $metadata
 	 */
 	public function onAfterInsert( $object, array $new, array $metadata ) {
-		$new['topic_root_id'] = $this->findTopicId( $object, $metadata );
+		$new['topic_root_id'] = $this->findTopicId( $object );
 		parent::onAfterInsert( $object, $new, $metadata );
 	}
 
 	/**
-	 * @param PostRevision|PostSummary $object
+	 * @param PostRevision $object
 	 * @param string[] $old
 	 * @param string[] $new
 	 * @param array $metadata
 	 */
 	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
-		$old['topic_root_id'] = $new['topic_root_id'] = $this->findTopicId( $object, $metadata );
+		$old['topic_root_id'] = $new['topic_root_id'] = $this->findTopicId( $object );
 		parent::onAfterUpdate( $object, $old, $new, $metadata );
 	}
 
 	/**
-	 * @param PostRevision|PostSummary $object
+	 * @param PostRevision $object
 	 * @param string[] $old
 	 * @param array $metadata
 	 */
 	public function onAfterRemove( $object, array $old, array $metadata ) {
-		$old['topic_root_id'] = $this->findTopicId( $object, $metadata );
+		$old['topic_root_id'] = $this->findTopicId( $object );
 		parent::onAfterRemove( $object, $old, $metadata );
 	}
 
