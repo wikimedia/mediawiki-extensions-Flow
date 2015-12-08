@@ -16,6 +16,24 @@
       "revId": "6c6449b9e510c7336782bb5ebfeb0cefb55ab8ab",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aeb807a7_3fdead71",
+        "filename": "includes/Data/Storage/DbStorage.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2015-12-08T17:50:04Z",
+      "side": 1,
+      "message": "Oh god. I obviously didn\u0027t check closely. I thought it made no sense to get $db when it\u0027s only needed for 1 condition, but hadn\u0027t even noticed that\u0027s inside a loop. I\u0027ll take it back out.",
+      "parentUuid": "aeb807a7_79fc45d6",
+      "revId": "6c6449b9e510c7336782bb5ebfeb0cefb55ab8ab",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
