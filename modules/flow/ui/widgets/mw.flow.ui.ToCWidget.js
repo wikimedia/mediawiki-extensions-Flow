@@ -97,7 +97,7 @@
 	 */
 	mw.flow.ui.ToCWidget.prototype.updateSelection = function ( topicId ) {
 		var item = this.board.getItemById( topicId ),
-			label = item && item.getContent();
+			label = item && item.getContent( 'plaintext' );
 
 		this.topicSelect.selectItemByData( item );
 		this.updateLabel( label );
