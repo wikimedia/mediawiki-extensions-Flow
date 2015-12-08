@@ -953,6 +953,38 @@ class RevisionFormatter {
 
 			$content = $this->templating->getContent( $previousRevision, $format );
 			return Message::plaintextParam( $content );
+		case 'plaintext':
+			if ( !$this->permissions->isAllowed( $revision, 'view' ) ) {
+				return '';
+			}
+
+			$format = $revision->getHtmlFormat();
+
+			$content = Utils::htmlToPlaintext( $this->templating->getContent( $revision, $format ) );
+			return Message::plaintextParam( $content );
+
+		// This is potentially two networked round trips, much too expensive for
+		// the rendering loop
+		case 'prev-plaintext':
+			if ( $revision->isFirstRevision() ) {
+				return '';
+			}
+			if ( $row === null ) {
+				$previousRevision = $revision->getCollection()->getPrevRevision( $revision );
+			} else {
+				$previousRevision = $row->previousRevision;
+			}
+			if ( !$previousRevision ) {
+				return '';
+			}
+			if ( !$this->permissions->isAllowed( $previousRevision, 'view' ) ) {
+				return '';
+			}
+
+			$format = $revision->getHtmlFormat();
+
+			$content = Utils::htmlToPlaintext( $this->templating->getContent( $previousRevision, $format ) );
+			return Message::plaintextParam( $content );
 
 		case 'workflow-url':
 			return $this->urlGenerator
