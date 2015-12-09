@@ -483,7 +483,7 @@
 	"flow-mark-revision-patrolled-link-title": "Segna questa pagina come verificata",
 	"flow-mark-diff-patrolled-link-text": "Segna come verificata",
 	"flow-mark-diff-patrolled-link-title": "Segna come verificata",
-	"flow-notification-link-text-enabled-on-talkpage": "Vedi la pagina di discussione utente",
+	"flow-notification-link-text-enabled-on-talkpage": "{{GENDER:|Vedi}} la pagina di discussione utente",
 	"flow-notification-enabled-on-talkpage-title": "Nuovo sistema di discussione abilitato per la {{GENDER:$1|tua}} pagina discussione utente<br /><small>Disponibile su [[$2]]</small>",
 	"flow-notification-enabled-on-talkpage-email-subject-message": "Nuovo sistema di discussione su $2",
 	"flow-beta-feature-add-archive-template-edit-summary": "Aggiungo template di archivio",
