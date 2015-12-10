@@ -3,6 +3,7 @@
 namespace Flow\Block;
 
 use Flow\Container;
+use Flow\Conversion\Utils;
 use Flow\Data\ManagerGroup;
 use Flow\Data\Pager\HistoryPager;
 use Flow\Exception\FailCommitException;
@@ -980,7 +981,7 @@ class TopicBlock extends AbstractBlock {
 			$out->setHtmlTitle( $out->msg( $key, array(
 				// This must be a rawParam to not expand {{foo}} in the title, it must
 				// not be htmlspecialchar'd because OutputPage::setHtmlTitle handles that.
-				Message::rawParam( $topic->getContent( 'topic-title-wikitext' ) ),
+				Message::rawParam( Utils::htmlToPlaintext( $topic->getContent( 'topic-title-html' ) ) ),
 				$title->getPrefixedText()
 			) ) );
 		} else {
