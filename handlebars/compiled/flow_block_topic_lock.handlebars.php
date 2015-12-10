@@ -31,25 +31,27 @@
 '.$sp.'
 '.$sp.'>
 '.$sp.''.((LCRun3::ifvar($cx, ((isset($in['msg']) && is_array($in)) ? $in['msg'] : null))) ? ''.LCRun3::ch($cx, 'l10n', array(array(((isset($in['msg']) && is_array($in)) ? $in['msg'] : null)),array()), 'encq').'' : ''.LCRun3::ch($cx, 'l10n', array(array('flow-cancel'),array()), 'encq').'').'</button>
-';},'flow_topic_titlebar_lock' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-topic-summary-container">
-'.$sp.'	<div class="flow-topic-summary">
-'.$sp.'		<form class="flow-edit-form" data-flow-initial-state="collapsed" method="POST"
-'.$sp.'			  action="'.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? ''.htmlentities((string)((isset($in['actions']['unlock']['url']) && is_array($in['actions']['unlock'])) ? $in['actions']['unlock']['url'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities((string)((isset($in['actions']['lock']['url']) && is_array($in['actions']['lock'])) ? $in['actions']['lock']['url'] : null), ENT_QUOTES, 'UTF-8').'').'">
-'.$sp.''.LCRun3::p($cx, 'flow_errors', array(array($in),array()), '			').'			<input type="hidden" name="wpEditToken" value="'.htmlentities((string)((isset($cx['sp_vars']['root']['editToken']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
-'.$sp.'			<input type="hidden" name="flow_reason" value="'.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? ''.LCRun3::ch($cx, 'l10n', array(array('flow-rev-message-restore-topic-reason'),array()), 'encq').'' : ''.LCRun3::ch($cx, 'l10n', array(array('flow-rev-message-lock-topic-reason'),array()), 'encq').'').'" />
-'.$sp.'			<div class="flow-form-actions flow-form-collapsible">
-'.$sp.'				<button data-role="submit"
-'.$sp.'				        class="mw-ui-button mw-ui-constructive"
-'.$sp.'				>
-'.$sp.''.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? '						'.LCRun3::ch($cx, 'l10n', array(array('flow-topic-action-unlock-topic'),array()), 'encq').'
-'.$sp.'' : '						'.LCRun3::ch($cx, 'l10n', array(array('flow-topic-action-lock-topic'),array()), 'encq').'
-'.$sp.'').'				</button>
-'.$sp.''.LCRun3::p($cx, 'flow_form_cancel_button', array(array($in),array()), '				').'				<small class="flow-terms-of-use plainlinks">
-'.$sp.''.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? '						'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-unlock-topic'),array()), 'encq').'
-'.$sp.'' : '						'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-lock-topic'),array()), 'encq').'
-'.$sp.'').'				</small>
-'.$sp.'			</div>
-'.$sp.'		</form>
+';},'flow_topic_titlebar_lock' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-board">
+'.$sp.'	<div class="flow-topic-summary-container">
+'.$sp.'		<div class="flow-topic-summary">
+'.$sp.'			<form class="flow-edit-form" data-flow-initial-state="expanded" method="POST"
+'.$sp.'				  action="'.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? ''.htmlentities((string)((isset($in['actions']['unlock']['url']) && is_array($in['actions']['unlock'])) ? $in['actions']['unlock']['url'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities((string)((isset($in['actions']['lock']['url']) && is_array($in['actions']['lock'])) ? $in['actions']['lock']['url'] : null), ENT_QUOTES, 'UTF-8').'').'">
+'.$sp.''.LCRun3::p($cx, 'flow_errors', array(array($in),array()), '				').'				<input type="hidden" name="wpEditToken" value="'.htmlentities((string)((isset($cx['sp_vars']['root']['editToken']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
+'.$sp.'				<input type="hidden" name="flow_reason" value="'.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? ''.LCRun3::ch($cx, 'l10n', array(array('flow-rev-message-restore-topic-reason'),array()), 'encq').'' : ''.LCRun3::ch($cx, 'l10n', array(array('flow-rev-message-lock-topic-reason'),array()), 'encq').'').'" />
+'.$sp.'				<div class="flow-form-actions flow-form-collapsible">
+'.$sp.'					<button data-role="submit"
+'.$sp.'					        class="mw-ui-button mw-ui-constructive"
+'.$sp.'					>
+'.$sp.''.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? '							'.LCRun3::ch($cx, 'l10n', array(array('flow-topic-action-unlock-topic'),array()), 'encq').'
+'.$sp.'' : '							'.LCRun3::ch($cx, 'l10n', array(array('flow-topic-action-lock-topic'),array()), 'encq').'
+'.$sp.'').'					</button>
+'.$sp.''.LCRun3::p($cx, 'flow_form_cancel_button', array(array($in),array()), '					').'					<small class="flow-terms-of-use plainlinks">
+'.$sp.''.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? '							'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-unlock-topic'),array()), 'encq').'
+'.$sp.'' : '							'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-lock-topic'),array()), 'encq').'
+'.$sp.'').'					</small>
+'.$sp.'				</div>
+'.$sp.'			</form>
+'.$sp.'		</div>
 '.$sp.'	</div>
 '.$sp.'</div>
 ';},),
