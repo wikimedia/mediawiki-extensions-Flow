@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ead036b_7721ac99",
+        "filename": "maintenance/FlowRemoveOldTopics.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-12-10T03:04:38Z",
+      "side": 1,
+      "message": "Why are all the removals combined into one giant transaction? That seems like a bad idea. Also, my understanding is waitForSlaves won\u0027t actually do anything because I don\u0027t think uncommitted deletions are replicated.",
+      "revId": "e4894d30fc9d07a16be4dc359dad3b587f3a1f36",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ead036b_9749c86c",
+        "filename": "maintenance/FlowRemoveOldTopics.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-12-10T03:04:38Z",
+      "side": 1,
+      "message": "It would be nice if this script also printed something progress-y, say the timestamp it just processed.",
+      "revId": "e4894d30fc9d07a16be4dc359dad3b587f3a1f36",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
