@@ -53,9 +53,9 @@
 
 		// Fix missing base URL
 		htmlDoc = ve.createDocumentFromHtml( content ); // HTMLDocument
-		ve.init.mw.Target.static.fixBase( htmlDoc );
+		ve.init.mw.ArticleTarget.static.fixBase( htmlDoc );
 
-		// Based on ve.init.mw.Target.prototype.setupSurface
+		// Based on ve.init.mw.ArticleTarget.prototype.setupSurface
 		this.dmDoc = ve.dm.converter.getModelFromDom( htmlDoc, {
 			lang: mw.config.get( 'wgVisualEditor' ).pageLanguageCode,
 			dir: mw.config.get( 'wgVisualEditor' ).pageLanguageDir

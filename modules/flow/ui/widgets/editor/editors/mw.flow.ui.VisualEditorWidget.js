@@ -95,7 +95,7 @@
 			// Wrap content in <body> tag to prevent <link>/<meta> tags from being pulled
 			// up into the <head> (T115362)
 			htmlDoc = ve.createDocumentFromHtml( '<body>' + content + '</body>' );
-		ve.init.mw.Target.static.fixBase( htmlDoc );
+		ve.init.mw.ArticleTarget.static.fixBase( htmlDoc );
 		dmDoc = ve.dm.converter.getModelFromDom( htmlDoc, {
 			lang: mw.config.get( 'wgVisualEditor' ).pageLanguageCode,
 			dir: mw.config.get( 'wgVisualEditor' ).pageLanguageDir
