@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ead036b_3bfeba36",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-12-10T22:58:44Z",
+      "side": 0,
+      "message": "You shouldn\u0027t remove this event documentation, because this class still emits this event on line 37",
+      "revId": "5ae02bdbee8ae0706db8aae17735e4fae1f81a58",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ead036b_fbf7c254",
+        "filename": "tests/qunit/flow/dm/test_mw.flow.dm.Topic.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-12-10T22:58:44Z",
+      "side": 0,
+      "message": "Why are you removing the expected return value here?",
+      "revId": "5ae02bdbee8ae0706db8aae17735e4fae1f81a58",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
