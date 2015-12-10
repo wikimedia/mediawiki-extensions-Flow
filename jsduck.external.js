@@ -37,6 +37,11 @@
  */
 
 /**
+ * @class mw.Api
+ * @source <https://doc.wikimedia.org/mediawiki-core/master/js/#!/api/mw.Api>
+ */
+
+/**
  * @class Handlebars
  * <http://handlebarsjs.com/reference.html>
  */
