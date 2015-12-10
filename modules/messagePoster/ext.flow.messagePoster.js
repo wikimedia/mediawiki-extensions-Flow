@@ -13,13 +13,14 @@
 	 * @extends mw.messagePoster.MessagePoster
 	 *
 	 * @param {mw.Title} title Title of Flow board
+	 * @param {mw.Api} api mw.Api instance to use
 	 */
-	mw.flow.MessagePoster = function MwFlowMessagePoster( title ) {
+	mw.flow.MessagePoster = function MwFlowMessagePoster( title, api ) {
 		// I considered using FlowApi, but most of that functionality is about mapping <form>
 		// or <a> tags to AJAX, which is not applicable.  This allows us to keep
 		// mediawiki.messagePoster.flow-board light-weight.
 
-		this.api = new mw.Api();
+		this.api = api;
 		this.title = title;
 	};
 
