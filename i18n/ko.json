@@ -183,7 +183,7 @@
 	"flow-error-process-wikitext": "HTML/위키텍스트 대화를 처리하는 도중 오류가 발생했습니다.",
 	"flow-error-no-index": "데이터 검색을 수행하기 위한 인덱스를 찾는 데 실패했습니다.",
 	"flow-error-move-topic": "토픽 문서 옮기기는 현재 지원되지 않습니다.",
-	"flow-error-move-no-create-permissions": "플로우 게시판을 옮기기 위해 \"{{int:right-flow-create-board}}\" 권한이 필요합니다.",
+	"flow-error-move-no-create-permissions": "플로우 게시판을 이동하기 위해 \"{{int:right-flow-create-board}}\" 권한이 필요합니다.",
 	"flow-error-invalid-topic-uuid-title": "잘못된 제목",
 	"flow-error-unknown-workflow-id-title": "알 수 없는 주제",
 	"flow-error-unknown-workflow-id": "요청된 주제는 존재하지 않습니다.",

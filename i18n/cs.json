@@ -232,6 +232,7 @@
 	"flow-ve-mention-inspector-invalid-user": "Uživatelské jméno „$1“ není zaregistrováno.",
 	"flow-wikitext-switch-editor-tooltip": "Přepnout do vizuálního editoru",
 	"flow-ve-switch-editor-tool-title": "Přepnout do editoru wikitextu",
+	"flow-notification-link-text-enabled-on-talkpage": "{{GENDER:|Zobrazit}} uživatelskou diskusní stránku",
 	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Vítejte}} na své nové uživatelské diskusní stránce",
 	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Vaše}} diskusní stránka je místo, kde vás mohou kontaktovat ostatní editoři. Pomocí Flow se snáze začínají nová témata a sledují diskuse."
 }

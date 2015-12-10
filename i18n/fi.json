@@ -442,7 +442,7 @@
 	"flow-mark-diff-patrolled-link-title": "Merkitse tarkastetuksi",
 	"flow-talk-page-beta-feature-message": "Flow käyttäjän keskustelusivulla",
 	"flow-talk-page-beta-feature-description": "Ota käyttöön uusi rakenteinen keskustelujärjestelmä {{GENDER:|sinun}} keskustelusivullesi. Flow yksinkertaistaa keskusteluja selkeillä kirjoitus- ja vastauskentillä ja mahdollistaa keskustelukohtaiset ilmoitukset. Olemassaolevat wikitekstikeskustelut siirretään arkistoon. Tätä ominaisuutta ei oteta käyttöön automaattisesti; käyttäjien pitää ottaa se käyttöön yksitellen. Ominaisuuden ottaminen pois käytöstä siirtää Flow-palstan alasivulle ja palauttaa aikaisemman keskustelusivun.",
-	"flow-notification-link-text-enabled-on-talkpage": "Näytä käyttäjän keskustelusivu",
+	"flow-notification-link-text-enabled-on-talkpage": "{{GENDER:|Näytä}} käyttäjän keskustelusivu",
 	"flow-notification-enabled-on-talkpage-email-subject-message": "Uusi keskustelujärjestelmä sivulla $2",
 	"flow-beta-feature-add-archive-template-edit-summary": "Lisätään arkistomalline.",
 	"flow-beta-feature-remove-archive-template-edit-summary": "Poistetaan arkistomalline",
