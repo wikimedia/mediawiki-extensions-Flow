@@ -54,7 +54,7 @@ class FlowPopulateRefId extends LoggedUpdateMaintenance {
 
 		$total = 0;
 		while ( true ) {
-			$references = (array) $storage->find( array( 'ref_id' => null ), array( 'limit' => $this->mBatchSize ) );
+			$references = (array) $storage->find( array( 'ref_id' => null, 'ref_src_wiki' => wfWikiID() ), array( 'limit' => $this->mBatchSize ) );
 			if ( !$references ) {
 				break;
 			}
