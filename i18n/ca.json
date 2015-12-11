@@ -426,5 +426,5 @@
 	"flow-guidedtour-optin-find-old-conversations": "{{GENDER:$1|Vegeu}} les vostres converses anteriors",
 	"flow-guidedtour-optin-find-old-conversations-description": "Les converses prèvies han estat traslladades a una pàgina d'arxiu.",
 	"flow-guidedtour-optin-feedback": "Doneu-nos el {{GENDER:$1|vostre}} parer!",
-	"flow-guidedtour-optin-feedback-description": "{{GÈNERE:$1|Podeu}} obtenir més informació, fer comentaris o desactivar el nou sistema en qualsevol moment en la secció de funcionalitats beta."
+	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Podeu}} obtenir més informació, fer comentaris o desactivar el nou sistema en qualsevol moment en la secció de funcionalitats beta."
 }
