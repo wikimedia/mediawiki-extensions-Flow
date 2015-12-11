@@ -88,29 +88,24 @@
 
 	/**
 	 * Create a VE surface with the provided content in it.
+	 *
 	 * @param {string} content HTML to put in the surface (body only)
 	 */
 	mw.flow.ui.VisualEditorWidget.prototype.createSurface = function ( content ) {
-		var dmDoc,
-			// Wrap content in <body> tag to prevent <link>/<meta> tags from being pulled
-			// up into the <head> (T115362)
-			htmlDoc = ve.createDocumentFromHtml( '<body>' + content + '</body>' );
-		ve.init.mw.ArticleTarget.static.fixBase( htmlDoc );
-		dmDoc = ve.dm.converter.getModelFromDom( htmlDoc, {
-			lang: mw.config.get( 'wgVisualEditor' ).pageLanguageCode,
-			dir: mw.config.get( 'wgVisualEditor' ).pageLanguageDir
+		var widget = this,
+			deferred = $.Deferred();
+
+		this.target.loadHtml( content );
+		this.target.on( 'surfaceReady', function () {
+			var surface = widget.target.getSurface();
+
+			surface.setPlaceholder( widget.placeholder );
+			// Relay events
+			surface.getModel().connect( widget, { documentUpdate: [ 'emit', 'change' ] } );
+			surface.connect( widget, { switchEditor: [ 'emit', 'switch' ] } );
+			deferred.resolve();
 		} );
-		this.surface = this.target.addSurface( dmDoc, { placeholder: this.placeholder } );
-		// afterAttach() calls setSurface
-
-		// Add directionality class
-		this.surface.getView().getDocument().getDocumentNode().$element.addClass(
-			'mw-content-' + mw.config.get( 'wgVisualEditor' ).pageLanguageDir
-		);
-
-		// Relay events
-		this.surface.getModel().connect( this, { documentUpdate: [ 'emit', 'change' ] } );
-		this.surface.connect( this, { switchEditor: [ 'emit', 'switch' ] } );
+		return deferred.promise();
 	};
 
 	/**
@@ -124,7 +119,7 @@
 	 * @inheritdoc
 	 */
 	mw.flow.ui.VisualEditorWidget.prototype.afterAttach = function () {
-		this.target.setSurface( this.surface );
+		this.target.setSurface( this.target.getSurface() );
 	};
 
 	/**
@@ -187,7 +182,7 @@
 	mw.flow.ui.VisualEditorWidget.prototype.setContent = function ( content ) {
 		this.target.clearSurfaces();
 		this.createSurface( content );
-		this.target.setSurface( this.surface );
+		this.target.setSurface( this.target.getSurface() );
 	};
 
 	/**
