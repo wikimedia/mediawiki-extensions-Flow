@@ -9,19 +9,18 @@
 	 * Flow-specific target, inheriting from the stand-alone target
 	 *
 	 * @class
-	 * @extends ve.init.sa.DesktopTarget
+	 * @extends ve.init.mw.Target
 	 */
 	mw.flow.ve.Target = function FlowVeTarget() {
-		mw.flow.ve.Target.parent.call(
-			this,
-			{ toolbarConfig: { floatable: false } }
-		);
+		mw.flow.ve.Target.parent.call( this, {
+			toolbarConfig: { actions: true }
+		} );
 
 		// HACK: stop VE's education popups from appearing (T116643)
 		this.dummyToolbar = true;
 	};
 
-	OO.inheritClass( mw.flow.ve.Target, ve.init.sa.DesktopTarget );
+	OO.inheritClass( mw.flow.ve.Target, ve.init.mw.Target );
 
 	// Static
 
@@ -49,6 +48,14 @@
 	}
 
 	// Methods
+
+	mw.flow.ve.Target.prototype.loadHtml = function ( html ) {
+		var doc = this.parseHtml( this.originalHtml );
+		this.documentReady( doc );
+	};
+
+	// These tools aren't available so don't bother generating them
+	mw.flow.ve.Target.prototype.generateCitationFeatures = function () {};
 
 	mw.flow.ve.Target.prototype.attachToolbar = function () {
 		// HACK ve.ui.Surface appends a debugBar *after* itself instead of putting it
