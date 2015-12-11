@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8ead036b_8fae84e3",
+        "filename": "modules/flow/dm/mw.flow.dm.Content.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-12-11T13:47:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ead036b_7be432a4",
+      "revId": "fc6c96717b9d97153d04ed321e577063f4dd1ee5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ead036b_9bd24ed4",
         "filename": "modules/flow/dm/mw.flow.dm.Content.js",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2015-12-10T22:58:44Z",
       "side": 1,
       "message": "Since format is optional, document it as [format\u003dthis.defaultFormat]",
+      "revId": "fc6c96717b9d97153d04ed321e577063f4dd1ee5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ead036b_4fb08c3e",
+        "filename": "modules/flow/dm/mw.flow.dm.Content.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-12-11T13:47:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ead036b_9bd24ed4",
       "revId": "fc6c96717b9d97153d04ed321e577063f4dd1ee5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "8ead036b_efbcd81c",
+        "filename": "modules/flow/dm/mw.flow.dm.Content.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-12-11T13:47:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ead036b_dbef6681",
+      "revId": "fc6c96717b9d97153d04ed321e577063f4dd1ee5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ead036b_fbe02295",
         "filename": "modules/flow/dm/mw.flow.dm.Content.js",
         "patchSetId": 6
@@ -64,6 +118,24 @@
       "writtenOn": "2015-12-10T22:58:44Z",
       "side": 1,
       "message": "This modifies the object the caller passed in by reference :(",
+      "revId": "fc6c96717b9d97153d04ed321e577063f4dd1ee5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ead036b_2fe19029",
+        "filename": "modules/flow/dm/mw.flow.dm.Content.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-12-11T13:47:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ead036b_fbe02295",
       "revId": "fc6c96717b9d97153d04ed321e577063f4dd1ee5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "8ead036b_af3340bf",
+        "filename": "modules/flow/dm/mw.flow.dm.Content.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-12-11T13:47:47Z",
+      "side": 1,
+      "message": "To hand the new data to the listeners like it\u0027s done everywhere else. But the listeners already have a reference to this Content object anyway so they can retrieve the content, in their preferred format, on their own schedule. I removed the argument.",
+      "parentUuid": "8ead036b_bbeaaa71",
+      "revId": "fc6c96717b9d97153d04ed321e577063f4dd1ee5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ead036b_9be9ee7d",
         "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
         "patchSetId": 6
@@ -98,6 +188,24 @@
       "writtenOn": "2015-12-10T22:58:44Z",
       "side": 1,
       "message": "You can just call new mw.flow.dm.Content() here as well, unless you want to be explicit about the fact that you\u0027re passing in nothing.",
+      "revId": "fc6c96717b9d97153d04ed321e577063f4dd1ee5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ead036b_4fde4c72",
+        "filename": "modules/flow/dm/mw.flow.dm.RevisionedContent.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-12-11T13:47:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ead036b_9be9ee7d",
       "revId": "fc6c96717b9d97153d04ed321e577063f4dd1ee5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
