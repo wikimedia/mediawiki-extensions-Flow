@@ -10,7 +10,7 @@ use Title;
  * @group Flow
  */
 class BaseHrefFixerTest extends \MediaWikiTestCase {
-	public function setUp() {
+	protected function setUp() {
 		parent::setUp();
 		$this->setMwGlobals( 'wgServer', 'http://mywiki' );
 	}

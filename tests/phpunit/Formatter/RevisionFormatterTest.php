@@ -28,7 +28,7 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 
 	protected $postRevisionSpecified;
 
-	public function setUp() {
+	protected function setUp() {
 		parent::setUp();
 		$this->user = User::newFromName( '127.0.0.1', false );
 	}

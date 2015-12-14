@@ -17,7 +17,7 @@ class TreeRepositoryTest extends FlowTestCase {
 	protected $ancestor;
 	protected $descendant;
 
-	public function setUp() {
+	protected function setUp() {
 		parent::setUp();
 		$this->ancestor = UUID::create( false );
 		$this->descendant = UUID::create( false );

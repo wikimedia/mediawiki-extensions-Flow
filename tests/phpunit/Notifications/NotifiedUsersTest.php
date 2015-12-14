@@ -28,7 +28,7 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 		'text',
 	);
 
-	public function setUp() {
+	protected function setUp() {
 		parent::setUp();
 
 		if ( !class_exists( 'EchoEvent' ) ) {

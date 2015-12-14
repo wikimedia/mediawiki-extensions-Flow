@@ -16,7 +16,7 @@ use WikitextContent;
  * @group Flow
  */
 class ConversionStrategyTest extends \MediaWikiTestCase {
-	public function setUp() {
+	protected function setUp() {
 		parent::setUp();
 
 		// Stash existing $wgEchoNotifications and provide a dummy for these
