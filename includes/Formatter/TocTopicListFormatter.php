@@ -2,6 +2,7 @@
 
 namespace Flow\Formatter;
 
+use Flow\Conversion\Utils;
 use Flow\Data\Pager\PagerPage;
 use Flow\Model\Workflow;
 use Flow\Templating;
@@ -66,6 +67,9 @@ class TocTopicListFormatter extends BaseTopicListFormatter {
 						$contentFormat
 					),
 					'format' => $contentFormat,
+					'plaintext' => Utils::htmlToPlaintext(
+						$this->templating->getContent( $postRevision, 'topic-title-html' )
+					),
 				),
 				'last_updated' => $workflow->getLastUpdatedObj()->getTimestamp() * 1000,
 			) + $moderationData;
