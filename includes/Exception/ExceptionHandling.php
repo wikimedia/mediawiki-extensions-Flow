@@ -24,8 +24,8 @@ class FlowException extends MWException {
 	protected $output;
 
 	/**
-	 * @param string - The message from exception, used for debugging error
-	 * @param string - The error code used to display error message
+	 * @param string $message The message from exception, used for debugging error
+	 * @param string $code The error code used to display error message
 	 */
 	public function __construct( $message, $code = 'default' ) {
 		global $wgOut;

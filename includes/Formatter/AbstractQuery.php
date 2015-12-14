@@ -196,7 +196,7 @@ abstract class AbstractQuery {
 	 *
 	 * @param AbstractRevision $revision
 	 * @param string $indexField The field used for pagination
-	 * @param FormatterRow|null Row to populate
+	 * @param FormatterRow|null $row Row to populate
 	 * @return FormatterRow
 	 * @throws FlowException
 	 */

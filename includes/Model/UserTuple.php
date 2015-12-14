@@ -13,17 +13,17 @@ use User;
  */
 class UserTuple {
 	/**
-	 * @param string The wiki the user belongs to
+	 * @var string The wiki the user belongs to
 	 */
 	public $wiki;
 
 	/**
-	 * @param integer The id of the user, or 0 for anonymous
+	 * @var integer The id of the user, or 0 for anonymous
 	 */
 	public $id;
 
 	/**
-	 * @param string|null The ip of the user, null if logged in.
+	 * @var string|null The ip of the user, null if logged in.
 	 */
 	public $ip;
 
