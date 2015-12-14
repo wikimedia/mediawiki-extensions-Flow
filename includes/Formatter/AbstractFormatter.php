@@ -142,7 +142,7 @@ abstract class AbstractFormatter {
 	 * in a format that can be wrapped in an array and passed to
 	 * formatLinksAsPipeList.
 	 *
-	 * @param array[][] Associative array containing (url, message) tuples
+	 * @param array[][] $input Associative array containing (url, message) tuples
 	 * @param IContextSource $ctx
 	 * @return Anchor|Message
 	 */
@@ -160,7 +160,7 @@ abstract class AbstractFormatter {
 	 * in a format that can be wrapped in an array and passed to
 	 * formatLinksAsPipeList.
 	 *
-	 * @param array[][] Associative array containing (url, message) tuples
+	 * @param array[][] $input Associative array containing (url, message) tuples
 	 * @param IContextSource $ctx
 	 * @return Anchor|Message
 	 */
@@ -178,7 +178,7 @@ abstract class AbstractFormatter {
 	 * in a format that can be wrapped in an array and passed to
 	 * formatLinksAsPipeList.
 	 *
-	 * @param array[][] Associative array containing (url, message) tuples
+	 * @param array[][] $input Associative array containing (url, message) tuples
 	 * @param IContextSource $ctx
 	 * @return Anchor|Message
 	 */
@@ -196,7 +196,7 @@ abstract class AbstractFormatter {
 	 * format that can be wrapped in an array and passed to
 	 * formatLinksAsPipeList.
 	 *
-	 * @param array[][] Associative array containing (url, message) tuples
+	 * @param array[][] $input Associative array containing (url, message) tuples
 	 * @param IContextSource $ctx
 	 * @return Anchor|Message
 	 */

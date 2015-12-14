@@ -96,7 +96,7 @@ abstract class RevisionStorage extends DbStorage {
 
 	/**
 	 * @param DbFactory $dbFactory
-	 * @param array|false List of external store servers available for insert
+	 * @param array|false $externalStore List of external store servers available for insert
 	 *  or false to disable. See $wgFlowExternalStore.
 	 */
 	public function __construct( DbFactory $dbFactory, $externalStore ) {

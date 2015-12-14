@@ -55,7 +55,7 @@ abstract class HistoryQuery extends AbstractQuery {
 	 *  eventually returned and displayed in descending order.
 	 * @param int $limit Maximum number of items
 	 * @param UUID $offset UUID to use as offset (optional)
-	 * return array Associative array of options for query
+	 * @return array Associative array of options for query
 	 */
 	protected function getOptions( $direction, $limit, UUID $offset = null) {
 		return array(

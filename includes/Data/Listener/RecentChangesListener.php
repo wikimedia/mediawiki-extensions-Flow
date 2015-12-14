@@ -59,7 +59,7 @@ class RecentChangesListener extends AbstractListener {
 	/**
 	 * @param AbstractRevision $revision Revision object
 	 * @param array $row Revision row
-	 * @param array $metadata;
+	 * @param array $metadata
 	 */
 	public function onAfterInsert( $revision, array $row, array $metadata ) {
 		global $wgRCFeeds;

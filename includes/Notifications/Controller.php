@@ -511,8 +511,7 @@ class NotificationController {
 	/**
 	 * Get the owner of the page if the workflow belongs to a talk page
 	 *
-	 * @param string|UUID topic workflow id
-	 * @param array
+	 * @param string $topicId Topic workflow UUID
 	 * @return array Map from userid to User object
 	 */
 	protected static function getTalkPageOwner( $topicId ) {

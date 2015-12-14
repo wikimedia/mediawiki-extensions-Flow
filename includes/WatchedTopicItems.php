@@ -31,7 +31,7 @@ class WatchedTopicItems {
 	}
 
 	/**
-	 * @param string[] array of UUID string
+	 * @param string[] $titles Array of UUID strings
 	 * @return array
 	 * @throws Exception\DataModelException
 	 */
