@@ -20,7 +20,7 @@ class ImportSourceTest extends \MediaWikiTestCase {
 
 	protected $tablesUsed = array( 'page', 'revision' );
 
-	public function setUp() {
+	protected function setUp() {
 		parent::setUp();
 
 		// Check for Parsoid
