@@ -55,7 +55,7 @@ class RevisionStorageTest extends FlowTestCase {
 		'FlowMock://',
 	);
 
-	public function setup() {
+	protected function setUp() {
 		$this->setMwGlobals( array(
 			'wgExternalStores' => array( 'FlowMock' ),
 		) );
