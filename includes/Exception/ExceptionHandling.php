@@ -154,13 +154,6 @@ class InvalidInputException extends FlowException {
 	public function getStatusCode() {
 		return 400;
 	}
-
-	/**
-	 * Do not log exception resulting from input error
-	 */
-	function isLoggable() {
-		return false;
-	}
 }
 
 class InvalidReferenceException extends InvalidInputException {
