@@ -10,12 +10,12 @@ UPDATE
 		SELECT ref_src_workflow_id, workflow_wiki
 			FROM /*_*/flow_wiki_ref, /*_*/flow_workflow
 		WHERE
-			flow_wiki_ref.ref_src_workflow_id = flow_workflow.workflow_id AND
-			( flow_wiki_ref.ref_src_wiki = '' OR flow_wiki_ref.ref_src_wiki IS NULL )
+			ref_src_workflow_id = workflow_id AND
+			( ref_src_wiki = '' OR ref_src_wiki IS NULL )
 		LIMIT 1000
 	) tmp
-	SET flow_wiki_ref.ref_src_wiki = tmp.workflow_wiki
-	WHERE flow_wiki_ref.ref_src_workflow_id = tmp.ref_src_workflow_id;
+	SET /*_*/flow_wiki_ref.ref_src_wiki = tmp.workflow_wiki
+	WHERE /*_*/flow_wiki_ref.ref_src_workflow_id = tmp.ref_src_workflow_id;
 
 
 -- Populate external references with the appropriate wiki.
@@ -24,9 +24,9 @@ UPDATE
 		SELECT ref_src_workflow_id, workflow_wiki
 			FROM /*_*/flow_ext_ref, /*_*/flow_workflow
 		WHERE
-			flow_ext_ref.ref_src_workflow_id = flow_workflow.workflow_id AND
-			( flow_ext_ref.ref_src_wiki = '' OR flow_ext_ref.ref_src_wiki IS NULL )
+			ref_src_workflow_id = workflow_id AND
+			( ref_src_wiki = '' OR ref_src_wiki IS NULL )
 		LIMIT 1000
 	) tmp
-	SET flow_ext_ref.ref_src_wiki = tmp.workflow_wiki
-	WHERE flow_ext_ref.ref_src_workflow_id = tmp.ref_src_workflow_id;
+	SET /*_*/flow_ext_ref.ref_src_wiki = tmp.workflow_wiki
+	WHERE /*_*/flow_ext_ref.ref_src_workflow_id = tmp.ref_src_workflow_id;
