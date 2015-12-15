@@ -4,9 +4,13 @@ use Flow\Container;
 use Flow\Data\Listener\ModerationLoggingListener;
 use Flow\Model\UUID;
 
-require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
-	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
-	: dirname( __FILE__ ) . '/../../../maintenance/Maintenance.php' );
+$IP = getenv( 'MW_INSTALL_PATH' );
+if ( $IP === false ) {
+	$IP = dirname( __FILE__ ) . '/../../..';
+}
+require_once "$IP/maintenance/Maintenance.php";
+require_once "$IP/includes/utils/BatchRowWriter.php";
+require_once "$IP/includes/utils/RowUpdateGenerator.php";
 
 /**
  * Adjusts edit counts for all existing Flow data.
@@ -39,7 +43,7 @@ class FlowAddMissingModerationLogs extends LoggedUpdateMaintenance {
 
 		$moderationLoggingListener = $container['storage.post.listeners.moderation_logging'];
 
-		$rowIterator = new EchoBatchRowIterator(
+		$rowIterator = new BatchRowIterator(
 			$dbw,
 			/* table = */'flow_revision',
 			/* primary key = */'rev_id',

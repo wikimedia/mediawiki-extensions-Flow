@@ -4,9 +4,14 @@ use Flow\Container;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 
-require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
-	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
-	: dirname( __FILE__ ) . '/../../../maintenance/Maintenance.php' );
+$IP = getenv( 'MW_INSTALL_PATH' );
+if ( $IP === false ) {
+	$IP = dirname( __FILE__ ) . '/../../..';
+}
+
+require_once "$IP/maintenance/Maintenance.php";
+require_once "$IP/includes/utils/BatchRowWriter.php";
+require_once "$IP/includes/utils/RowUpdateGenerator.php";
 
 /**
  * @ingroup Maintenance
@@ -74,7 +79,7 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 
 		$dbw = $this->dbFactory->getDb( DB_MASTER );
 		// Walk through the flow_revision table
-		$it = new EchoBatchRowIterator(
+		$it = new BatchRowIterator(
 			$dbw,
 			/* table = */'flow_revision',
 			/* primary key = */'rev_id',

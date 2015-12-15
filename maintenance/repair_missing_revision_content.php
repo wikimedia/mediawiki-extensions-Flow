@@ -2,6 +2,8 @@
 
 require_once "$IP/maintenance/commandLine.inc";
 require_once "$IP/extensions/Flow/FlowActions.php";
+require_once "$IP/includes/utils/BatchRowWriter.php";
+require_once "$IP/includes/utils/RowUpdateGenerator.php";
 
 $moderationChangeTypes = array(
 	'hide-post',
@@ -26,7 +28,7 @@ if ( !$csvOutput ) {
 }
 fputcsv( $csvOutput, array( "uuid", "esurl", "flags" ) );
 
-$it = new EchoBatchRowIterator(
+$it = new BatchRowIterator(
 	Flow\Container::get( 'db.factory' )->getDB( DB_SLAVE ),
 	'flow_revision',
 	array( 'rev_id' ),
