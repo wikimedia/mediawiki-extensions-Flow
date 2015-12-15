@@ -2,10 +2,12 @@
 
 use Flow\Container;
 
-require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
-    ? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
-    : dirname( __FILE__ ) . '/../../../maintenance/Maintenance.php' );
-require_once( __DIR__ . '/../../Echo/includes/BatchRowUpdate.php' );
+$IP = getenv( 'MW_INSTALL_PATH' );
+if ( $IP === false ) {
+	$IP = dirname( __FILE__ ) . '/../../..';
+}
+require_once "$IP/maintenance/Maintenance.php";
+require_once "$IP/includes/utils/RowUpdateGenerator.php";
 
 /**
  * @ingroup Maintenance
@@ -63,7 +65,7 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
         /** @var DatabaseBase $dbw */
         $dbw = $schema['dbw'];
 
-        $iterator = new EchoBatchRowIterator( $dbr, $schema['table'], $schema['pk'], $this->mBatchSize );
+        $iterator = new BatchRowIterator( $dbr, $schema['table'], $schema['pk'], $this->mBatchSize );
         $iterator->setFetchColumns( array( $schema['content'], $schema['flags'] ) );
 
         $clusterConditions = array();
@@ -75,9 +77,9 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
             $dbr->makeList( $clusterConditions, LIST_OR ),
         ) );
 
-        $updater = new EchoBatchRowUpdate(
+        $updater = new BatchRowUpdate(
             $iterator,
-            new EchoBatchRowWriter( $dbw, $schema['table'] ),
+            new BatchRowWriter( $dbw, $schema['table'] ),
             new ExternalStoreUpdateGenerator( $this, $to, $schema )
         );
         $updater->setOutput( array( $this, 'output' ) );
@@ -108,7 +110,7 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
     }
 }
 
-class ExternalStoreUpdateGenerator implements EchoRowUpdateGenerator {
+class ExternalStoreUpdateGenerator implements RowUpdateGenerator {
     /**
      * @var ExternalStoreMoveCluster
      */
