@@ -1,5 +1,9 @@
 <?php
 
+$IP = getenv( 'MW_INSTALL_PATH' );
+if ( $IP === false ) {
+	$IP = dirname( __FILE__ ) . '/../../..';
+}
 require_once "$IP/maintenance/commandLine.inc";
 require_once "$IP/extensions/Flow/FlowActions.php";
 
@@ -22,7 +26,7 @@ if ( !$csvOutput ) {
 fputcsv( $csvOutput, array( "uuid", "esurl", "flags" ) );
 
 $dbr = Flow\Container::get( 'db.factory' )->getDB( DB_SLAVE );
-$it = new EchoBatchRowIterator(
+$it = new BatchRowIterator(
 	$dbr,
 	'flow_revision',
 	array( 'rev_id' ),
