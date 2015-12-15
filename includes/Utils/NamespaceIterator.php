@@ -3,7 +3,7 @@
 namespace Flow\Utils;
 
 use DatabaseBase;
-use EchoBatchRowIterator;
+use BatchRowIterator;
 use EchoCallbackIterator;
 use Iterator;
 use IteratorAggregate;
@@ -38,7 +38,7 @@ class NamespaceIterator implements IteratorAggregate {
 	 * @return Iterator<Title>
 	 */
 	public function getIterator() {
-		$it = new EchoBatchRowIterator(
+		$it = new BatchRowIterator(
 			$this->db,
 			/* tables */ array( 'page' ),
 			/* pk */ 'page_id',

@@ -9,10 +9,14 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Repository\RootPostLoader;
 
-require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
-	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
-	: dirname( __FILE__ ) . '/../../../maintenance/Maintenance.php' );
-require_once( __DIR__ . '/../../Echo/includes/BatchRowUpdate.php' );
+$IP = getenv( 'MW_INSTALL_PATH' );
+if ( $IP === false ) {
+	$IP = dirname( __FILE__ ) . '/../../..';
+}
+
+require_once( "$IP/maintenance/Maintenance.php" );
+require_once( "$IP/includes/utils/RowUpdateGenerator.php" );
+require_once( "$IP/includes/utils/BatchRowWriter.php" );
 
 /**
  * @ingroup Maintenance
@@ -33,11 +37,11 @@ class FlowFixWorkflowLastUpdateTimestamp extends Maintenance {
 		$storage = Container::get( 'storage' );
 		$rootPostLoader = Container::get( 'loader.root_post' );
 
-		$iterator = new EchoBatchRowIterator( $dbFactory->getDB( DB_SLAVE ), 'flow_workflow', 'workflow_id', $this->mBatchSize );
+		$iterator = new BatchRowIterator( $dbFactory->getDB( DB_SLAVE ), 'flow_workflow', 'workflow_id', $this->mBatchSize );
 		$iterator->setFetchColumns( array( 'workflow_id', 'workflow_type', 'workflow_last_update_timestamp' ) );
 		$iterator->addConditions( array( 'workflow_wiki' => wfWikiId() ) );
 
-		$updater = new EchoBatchRowUpdate(
+		$updater = new BatchRowUpdate(
 			$iterator,
 			new UpdateWorkflowLastUpdateTimestampWriter( $storage, $wgFlowCluster ),
 			new UpdateWorkflowLastUpdateTimestampGenerator( $storage, $rootPostLoader )
@@ -59,7 +63,7 @@ class FlowFixWorkflowLastUpdateTimestamp extends Maintenance {
 	}
 }
 
-class UpdateWorkflowLastUpdateTimestampGenerator implements EchoRowUpdateGenerator {
+class UpdateWorkflowLastUpdateTimestampGenerator implements RowUpdateGenerator {
 	/**
 	 * @var ManagerGroup
 	 */
@@ -148,7 +152,7 @@ class UpdateWorkflowLastUpdateTimestampGenerator implements EchoRowUpdateGenerat
 	}
 }
 
-class UpdateWorkflowLastUpdateTimestampWriter extends EchoBatchRowWriter {
+class UpdateWorkflowLastUpdateTimestampWriter extends BatchRowWriter {
 	/**
 	 * @var ManagerGroup
 	 */
