@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6eaa8f54_b2496b6c",
+        "filename": "Hooks.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 1874,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-12-15T13:29:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6eaa8f54_027b52be",
+      "revId": "8dad2bf95972b823303b38a36f50ebd3c099e9c3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6eaa8f54_8d49b36c",
         "filename": "Hooks.php",
         "patchSetId": 10
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "6eaa8f54_7253f31a",
+        "filename": "Hooks.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 1957,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-12-15T13:29:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6eaa8f54_8d49b36c",
+      "revId": "8dad2bf95972b823303b38a36f50ebd3c099e9c3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6eaa8f54_cdbc8b1d",
         "filename": "Hooks.php",
         "patchSetId": 10
@@ -47,6 +83,24 @@
       "writtenOn": "2015-12-14T22:43:14Z",
       "side": 1,
       "message": "Should that be comma instead (inside the implode)?",
+      "revId": "8dad2bf95972b823303b38a36f50ebd3c099e9c3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_323d7bb9",
+        "filename": "Hooks.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 1986,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2015-12-15T13:29:51Z",
+      "side": 1,
+      "message": "I chose a period because those error strings could be independent sentences.",
+      "parentUuid": "6eaa8f54_cdbc8b1d",
       "revId": "8dad2bf95972b823303b38a36f50ebd3c099e9c3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
