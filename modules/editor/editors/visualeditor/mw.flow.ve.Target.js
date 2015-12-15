@@ -67,11 +67,9 @@
 	};
 
 	mw.flow.ve.Target.prototype.setDisabled = function ( disabled ) {
-		// TODO upstream this to ve.init.Target
 		var i, len;
 		for ( i = 0, len = this.surfaces.length; i < len; i++ ) {
-			// T106908: ve.ui.Surface doesn't support setDisabled()
-			this.surfaces[ i ][ disabled ? 'disable' : 'enable' ]();
+			this.surfaces[ i ].setDisabled( disabled );
 		}
 	};
 
