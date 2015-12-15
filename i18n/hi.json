@@ -4,7 +4,8 @@
 			"Vivek Rai",
 			"संजीव कुमार",
 			"Phoenix303",
-			"NehalDaveND"
+			"NehalDaveND",
+			"Sfic"
 		]
 	},
 	"enableflow": "प्रवाह को सक्षम करें",
@@ -54,6 +55,7 @@
 	"flow-history-last4": "अन्तिम 4 घण्टे",
 	"flow-history-day": "आज",
 	"flow-history-week": "पिछले सप्ताह",
+	"notification-body-flow-enabled-on-talkpage": "$3 पर उपलब्ध",
 	"flow-notification-link-text-view-topic": "विषय देखें",
 	"flow-notification-reply-email-subject": "$3 पर $2",
 	"flow-link-topic": "विषय",
