@@ -10,7 +10,6 @@ use Flow\Collection\PostCollection;
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
 	: dirname( __FILE__ ) . '/../../../maintenance/Maintenance.php' );
-require_once( __DIR__ . '/../../Echo/includes/BatchRowUpdate.php' );
 
 /**
  * Fixes Flow log entries.
@@ -31,7 +30,7 @@ class FlowFixLog extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		$iterator = new EchoBatchRowIterator( wfGetDB( DB_SLAVE ), 'logging', 'log_id', $this->mBatchSize );
+		$iterator = new BatchRowIterator( wfGetDB( DB_SLAVE ), 'logging', 'log_id', $this->mBatchSize );
 		$iterator->setFetchColumns( array( 'log_id', 'log_params' ) );
 		$iterator->addConditions( array(
 			'log_type' => array( 'delete', 'suppress' ),
@@ -41,9 +40,9 @@ class FlowFixLog extends LoggedUpdateMaintenance {
 			),
 		) );
 
-		$updater = new EchoBatchRowUpdate(
+		$updater = new BatchRowUpdate(
 			$iterator,
-			new EchoBatchRowWriter( wfGetDB( DB_MASTER ), 'logging' ),
+			new BatchRowWriter( wfGetDB( DB_MASTER ), 'logging' ),
 			new LogRowUpdateGenerator( $this )
 		);
 		$updater->setOutput( array( $this, 'output' ) );
@@ -76,7 +75,7 @@ class FlowFixLog extends LoggedUpdateMaintenance {
 	}
 }
 
-class LogRowUpdateGenerator implements EchoRowUpdateGenerator {
+class LogRowUpdateGenerator implements RowUpdateGenerator {
 	/**
 	 * @var FlowFixLog
 	 */

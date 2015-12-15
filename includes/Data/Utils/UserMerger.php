@@ -2,7 +2,6 @@
 
 namespace Flow\Data\Utils;
 
-use EchoBatchRowIterator;
 use Flow\Data\ManagerGroup;
 use Flow\DbFactory;
 use Flow\Model\AbstractRevision;
@@ -85,7 +84,7 @@ class UserMerger {
 		$dbw = $this->dbFactory->getDb( DB_MASTER );
 		foreach ( $this->config as $table => $config ) {
 			foreach ( $config['userColumns'] as $column => $userTupleGetter ) {
-				$it = new EchoBatchRowIterator( $dbw, $table, $config['pk'], 500 );
+				$it = new BatchRowIterator( $dbw, $table, $config['pk'], 500 );
 				// The database is migrated, so look for the new user id
 				$it->addConditions( array( $column => $newUserId ) );
 				if ( isset( $config['loadColumns'] ) ) {
