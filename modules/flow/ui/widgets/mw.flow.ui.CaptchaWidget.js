@@ -11,6 +11,8 @@
 	mw.flow.ui.CaptchaWidget = function mwFlowUiCaptchaWidget( model, config ) {
 		mw.flow.ui.CaptchaWidget.parent.call( this, config );
 
+		this.toggle( false );
+
 		this.model = model;
 		this.model.connect( this, {
 			update: 'onUpdate'
