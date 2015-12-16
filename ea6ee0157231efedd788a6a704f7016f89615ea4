@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6eaa8f54_7278c5bf",
+        "filename": "maintenance/FlowAddMissingModerationLogs.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2015-12-16T21:53:29Z",
+      "side": 1,
+      "message": "Why is this necessary? We don\u0027t have to require_once any files to get all of the other classes we use...",
+      "revId": "ea6ee0157231efedd788a6a704f7016f89615ea4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
