@@ -1069,17 +1069,7 @@ $c['logger.moderation'] = function( $c ) {
 
 $c['storage.wiki_reference.class'] = 'Flow\Model\WikiReference';
 $c['storage.wiki_reference.table'] = 'flow_wiki_ref';
-$c['storage.wiki_reference.primary_key'] = function ( $c ) {
-	return array(
-		'ref_src_wiki',
-		'ref_src_namespace',
-		'ref_src_title',
-		'ref_src_object_id',
-		'ref_type',
-		'ref_target_namespace',
-		'ref_target_title'
-	);
-};
+$c['storage.wiki_reference.primary_key'] = array( 'ref_id' );
 $c['storage.wiki_reference.mapper'] = function( $c ) {
 	return BasicObjectMapper::model(
 		$c['storage.wiki_reference.class']
@@ -1143,16 +1133,7 @@ $c['storage.wiki_reference'] = function( $c ) {
 };
 $c['storage.url_reference.class'] = 'Flow\Model\URLReference';
 $c['storage.url_reference.table'] = 'flow_ext_ref';
-$c['storage.url_reference.primary_key'] = function ( $c ) {
-	return array(
-		'ref_src_wiki',
-		'ref_src_namespace',
-		'ref_src_title',
-		'ref_src_object_id',
-		'ref_type',
-		'ref_target',
-	);
-};
+$c['storage.url_reference.primary_key'] = array( 'ref_id' );
 
 $c['storage.url_reference.mapper'] = function( $c ) {
 	return BasicObjectMapper::model(
