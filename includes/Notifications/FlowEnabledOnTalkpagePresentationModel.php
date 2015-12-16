@@ -10,8 +10,8 @@ class FlowEnabledOnTalkpagePresentationModel extends FlowPresentationModel {
 
 	public function getPrimaryLink() {
 		return array(
-			$this->event->getTitle()->getFullURL(),
-			$this->msg( 'flow-notification-link-text-enabled-on-talkpage' )->text()
+			'url' => $this->event->getTitle()->getFullURL(),
+			'label' => $this->msg( 'flow-notification-link-text-enabled-on-talkpage' )->text()
 		);
 	}
 

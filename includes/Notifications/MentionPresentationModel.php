@@ -10,8 +10,8 @@ class MentionPresentationModel extends FlowPresentationModel {
 
 	public function getPrimaryLink() {
 		return array(
-			$this->getPostLinkUrl(),
-			$this->msg( 'notification-link-text-view-mention' )->text()
+			'url' => $this->getPostLinkUrl(),
+			'label' => $this->msg( 'notification-link-text-view-mention' )->text()
 		);
 	}
 

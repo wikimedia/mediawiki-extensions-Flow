@@ -13,8 +13,8 @@ class TopicRenamedPresentationModel extends FlowPresentationModel {
 
 	public function getPrimaryLink() {
 		return array(
-			$this->getPostLinkUrl(),
-			$this->msg( 'flow-notification-link-text-view-post' )->text()
+			'url' => $this->getPostLinkUrl(),
+			'label' => $this->msg( 'flow-notification-link-text-view-post' )->text()
 		);
 	}
 
