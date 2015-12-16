@@ -5,8 +5,8 @@
 ALTER TABLE /*_*/flow_wiki_ref ADD COLUMN ref_src_wiki varchar(16) binary not null;
 
 -- Drop indexes for adjustment
-DROP INDEX IF EXISTS /*i*/flow_wiki_ref_idx ON /*_*/flow_wiki_ref;
-DROP INDEX IF EXISTS /*i*/flow_wiki_ref_revision ON /*_*/flow_wiki_ref;
+DROP INDEX /*i*/flow_wiki_ref_idx ON /*_*/flow_wiki_ref;
+DROP INDEX /*i*/flow_wiki_ref_revision ON /*_*/flow_wiki_ref;
 
 -- Populate wiki references with the appropriate wiki
 UPDATE /*_*/flow_wiki_ref, /*_*/flow_workflow
@@ -25,8 +25,8 @@ CREATE INDEX /*i*/flow_wiki_ref_revision_v2 ON /*_*/flow_wiki_ref
 ALTER TABLE /*_*/flow_ext_ref ADD COLUMN ref_src_wiki varchar(16) binary not null;
 
 -- Drop indexes
-DROP INDEX IF EXISTS /*i*/flow_ext_ref_idx ON /*_*/flow_ext_ref;
-DROP INDEX IF EXISTS /*i*/flow_ext_ref_revision ON /*_*/flow_ext_ref;
+DROP INDEX /*i*/flow_ext_ref_idx ON /*_*/flow_ext_ref;
+DROP INDEX /*i*/flow_ext_ref_revision ON /*_*/flow_ext_ref;
 
 -- Populate external references with the appropriate wiki
 UPDATE /*_*/flow_ext_ref, /*_*/flow_workflow
