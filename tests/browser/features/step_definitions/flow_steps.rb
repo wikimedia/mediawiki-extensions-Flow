@@ -182,8 +182,10 @@ end
 
 Then(/^the top post should have a heading which contains "(.+)"$/) do |text|
   on(FlowPage) do |page|
-    page.flow_first_topic_heading_element.when_present
-    expect(page.flow_first_topic_heading).to match(text)
+    page.wait_until do
+      actual_text = page.flow_first_topic_heading_element.when_present.text
+      actual_text.match text
+    end
   end
 end
 

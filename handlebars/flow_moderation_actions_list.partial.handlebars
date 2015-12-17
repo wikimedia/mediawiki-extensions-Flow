@@ -4,12 +4,8 @@
 		{{~#if actions.edit~}}
 			<li class="flow-js">
 				{{~noop~}}
-				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon"
-				   href="{{actions.edit.url}}"
-				   data-flow-interactive-handler="apiRequest"
-				   data-flow-api-handler="activateEditTitle"
-				   data-flow-api-target="< .flow-topic-titlebar"
-				>
+				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon flow-ui-edit-title-link"
+				   href="{{actions.edit.url}}">
 					{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-edit mw-ui-icon-edit-progressive-hover"></span> {{/if~}}
 					{{~l10n (concat "flow-topic-action-edit-title")~}}
 				</a>
