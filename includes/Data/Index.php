@@ -11,7 +11,7 @@ interface Index extends LifecycleHandler {
 	 *
 	 * @param array $keys A map of k,v pairs to find via equality condition
 	 * @param array[optional] $options Options to use
-	 * @return array|false Cached subset of data model rows matching the
+	 * @return array Cached subset of data model rows matching the
 	 *     equality conditions provided in $keys.
 	 */
 	function find( array $keys, array $options = array() );
@@ -21,7 +21,7 @@ interface Index extends LifecycleHandler {
 	 *
 	 * @param array $queries An array of arrays in the form of $keys parameter of self::find
 	 * @param array[optional] $options Options to use
-	 * @return array|false Array of arrays in same order as $queries representing batched result set.
+	 * @return array[] Array of arrays in same order as $queries representing batched result set.
 	 */
 	function findMulti( array $queries, array $options = array() );
 
