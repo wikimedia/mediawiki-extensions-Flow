@@ -12,7 +12,6 @@ use FormatJson;
  * Denormalized indexes that are query-only.  The indexes used here must
  * be provided to some ObjectManager as a lifecycleHandler to receive
  * update events.
- * Error handling is all wrong, but simplifies prototyping.
  */
 class ObjectLocator {
 	/*
@@ -63,7 +62,7 @@ class ObjectLocator {
 
 	public function find( array $attributes, array $options = array() ) {
 		$result = $this->findMulti( array( $attributes ), $options );
-		return $result ? reset( $result ) : null;
+		return $result ? reset( $result ) : array();
 	}
 
 	/**
@@ -73,7 +72,7 @@ class ObjectLocator {
 	 *
 	 * @param array $queries
 	 * @param array $options
-	 * @return array|null  null is query failure.  empty array is no result.  array is success
+	 * @return array[]
 	 */
 	public function findMulti( array $queries, array $options = array() ) {
 		if ( !$queries ) {
@@ -102,10 +101,6 @@ class ObjectLocator {
 				wfDebugLog( 'FlowDebug', __METHOD__ . ': ' . $e->getMessage() );
 			}
 			$res = $this->storage->findMulti( $this->convertToDbQueries( $queries, $options ), $this->convertToDbOptions( $options ) );
-		}
-
-		if ( $res === null ) {
-			return null;
 		}
 
 		$output = array();
@@ -343,8 +338,8 @@ class ObjectLocator {
 	/**
 	 * Uses options to figure out conditions to add to the DB queries.
 	 *
-	 * @param $queries Array of queries, with each element an array of attributes
-	 * @param $options Options for queries
+	 * @param array $queries Array of queries, with each element an array of attributes
+	 * @param array $options Options for queries
 	 * @return array Queries for BasicDbStorage class
 	 */
 	protected function convertToDbQueries( $queries, $options ) {
