@@ -535,11 +535,11 @@ class TopicBlock extends AbstractBlock {
 				$output += $this->renderTopicApi( $options );
 				break;
 
+			case 'edit-title':
 			case 'view-post':
 			case 'view':
 			default:
 				// view single post, possibly specific revision
-				// @todo this isn't valid for the topic title
 				$output += $this->renderPostApi( $options );
 				break;
 		}
@@ -649,6 +649,8 @@ class TopicBlock extends AbstractBlock {
 				// known when the reply is submitted) so we'll grab it from the
 				// newly added revision
 				$postId = $this->newRevision->getPostId();
+			} else {
+				throw new FlowException('No post id specified');
 			}
 		} else {
 			// $postId is only set for lock-topic, which should default to
