@@ -108,16 +108,20 @@ abstract class RevisionStorage extends DbStorage {
 	// @todo: this method can probably be generalized in parent class?
 	public function find( array $attributes, array $options = array() ) {
 		$multi = $this->findMulti( array( $attributes ), $options );
-		if ( $multi ) {
-			return reset( $multi );
-		}
-		return null;
+		return reset( $multi );
 	}
 
+	/**
+	 * @param array $attributes
+	 * @param array $options
+	 * @return array
+	 * @throws DataModelException
+	 * @throws MWException
+	 */
 	protected function findInternal( array $attributes, array $options = array() ) {
 		$dbr = $this->dbFactory->getDB( DB_SLAVE );
 
-		if ( ! $this->validateOptions( $options ) ) {
+		if ( !$this->validateOptions( $options ) ) {
 			throw new MWException( "Validation error in database options" );
 		}
 
@@ -134,9 +138,10 @@ abstract class RevisionStorage extends DbStorage {
 		$res = $dbr->select(
 			$tables, '*', $this->preprocessSqlArray( $attributes ), __METHOD__, $options, $joins
 		);
-		if ( !$res ) {
-			return null;
+		if ( $res === false ) {
+			throw new DataModelException( __METHOD__ . ': Query failed: ' . $dbr->lastError(), 'process-data' );
 		}
+
 		$retval = array();
 		foreach ( $res as $row ) {
 			$row = UUID::convertUUIDs( (array) $row, 'alphadecimal' );
@@ -245,9 +250,8 @@ abstract class RevisionStorage extends DbStorage {
 			__METHOD__,
 			array( 'GROUP BY' => 'rev_type_id' )
 		);
-		if ( !$res ) {
-			// TODO: dont fail, but dont end up caching bad result either
-			throw new DataModelException( 'query failure', 'process-data' );
+		if ( $res === false ) {
+			throw new DataModelException( __METHOD__ . ': Query failed: ' . $dbr->lastError(), 'process-data' );
 		}
 
 		$revisionIds = array();
@@ -289,9 +293,8 @@ abstract class RevisionStorage extends DbStorage {
 				array(),
 				$joins
 			);
-			if ( !$res ) {
-				// TODO: dont fail, but dont end up caching bad result either
-				throw new DataModelException( 'query failure', 'process-data' );
+			if ( $res === false ) {
+				throw new DataModelException( __METHOD__ . ': Query failed: ' . $dbr->lastError(), 'process-data' );
 			}
 
 			foreach ( $res as $row ) {
