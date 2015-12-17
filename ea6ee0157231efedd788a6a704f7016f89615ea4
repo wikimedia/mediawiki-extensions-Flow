@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "6eaa8f54_bd6e0592",
+        "filename": "includes/Data/Utils/UserMerger.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-12-17T23:11:10Z",
+      "side": 1,
+      "message": "Replace with:\n\nuse BatchRowIterator;\n\nDo this for all of them.",
+      "revId": "ea6ee0157231efedd788a6a704f7016f89615ea4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6eaa8f54_7278c5bf",
         "filename": "maintenance/FlowAddMissingModerationLogs.php",
         "patchSetId": 2
@@ -13,6 +30,126 @@
       "writtenOn": "2015-12-16T21:53:29Z",
       "side": 1,
       "message": "Why is this necessary? We don\u0027t have to require_once any files to get all of the other classes we use...",
+      "revId": "ea6ee0157231efedd788a6a704f7016f89615ea4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_bd47e521",
+        "filename": "maintenance/FlowAddMissingModerationLogs.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-12-17T23:11:10Z",
+      "side": 1,
+      "message": "It\u0027s not necessary.  The script works fine for me without it (except that it fails on getModerationChangeTypes for unrelated reasons later; see https://gerrit.wikimedia.org/r/#/c/259875/ , just merged).\n\nYou shouldn\u0027t need to change this part of this script at all.\n\nThis is only necessary when it\u0027s extending or implementing a class.  That doesn\u0027t apply here to the Echo/DB classes (though it does to other files).",
+      "parentUuid": "6eaa8f54_7278c5bf",
+      "revId": "ea6ee0157231efedd788a6a704f7016f89615ea4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_bd1cc519",
+        "filename": "maintenance/FlowExternalStoreMoveCluster.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-12-17T23:11:10Z",
+      "side": 1,
+      "message": "Remove BatchRowWriter, since it\u0027s not extended or implemented anywhere.\n\nThe constructor call will be handled properly by the autoloader.",
+      "revId": "ea6ee0157231efedd788a6a704f7016f89615ea4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_7d164df8",
+        "filename": "maintenance/FlowFixLog.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-12-17T23:11:10Z",
+      "side": 1,
+      "message": "Can remove BatchRowWriter.",
+      "revId": "ea6ee0157231efedd788a6a704f7016f89615ea4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_9d778935",
+        "filename": "maintenance/FlowUpdateRevisionContentLength.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-12-17T23:11:10Z",
+      "side": 1,
+      "message": "Neither BatchRowWriter nor RowUpdateGenerator are used anywhere.",
+      "revId": "ea6ee0157231efedd788a6a704f7016f89615ea4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_3db3f5e9",
+        "filename": "maintenance/FlowUpdateWorkflowPageId.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-12-17T23:11:10Z",
+      "side": 1,
+      "message": "You don\u0027t need a require for BatchRowWriter, since it\u0027s not extended/implemented anywhere.",
+      "revId": "ea6ee0157231efedd788a6a704f7016f89615ea4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_5db831c3",
+        "filename": "maintenance/repair_missing_revision_content.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-12-17T23:11:10Z",
+      "side": 1,
+      "message": "Neither new require needed",
+      "revId": "ea6ee0157231efedd788a6a704f7016f89615ea4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_bdc6054d",
+        "filename": "maintenance/repair_missing_revision_content_from_parent.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-12-17T23:11:10Z",
+      "side": 1,
+      "message": "Neither new require needed",
       "revId": "ea6ee0157231efedd788a6a704f7016f89615ea4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
