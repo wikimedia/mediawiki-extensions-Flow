@@ -124,9 +124,12 @@ class BasicDbStorage extends DbStorage {
 		return $res && $dbw->affectedRows();
 	}
 
-	/*
-	 * @return array|null  Empty array means no result,  null means query failure.  Array with results is
-	 *                     success.
+	/**
+	 * @param array $attributes
+	 * @param array $options
+	 * @return array
+	 * @throws DataModelException
+	 * @throws \MWException
 	 */
 	public function find( array $attributes, array $options = array() ) {
 		$attributes = $this->preprocessSqlArray( $attributes );
@@ -135,15 +138,16 @@ class BasicDbStorage extends DbStorage {
 			throw new \MWException( "Validation error in database options" );
 		}
 
-		$res = $this->dbFactory->getDB( DB_SLAVE )->select(
+		$dbr = $this->dbFactory->getDB( DB_SLAVE );
+		$res = $dbr->select(
 			$this->table,
 			'*',
 			$attributes,
 			__METHOD__ . " ({$this->table})",
 			$options
 		);
-		if ( ! $res ) {
-			return null;
+		if ( $res === false ) {
+			throw new DataModelException( __METHOD__ . ': Query failed: ' . $dbr->lastError(), 'process-data' );
 		}
 
 		$result = array();
@@ -162,6 +166,14 @@ class BasicDbStorage extends DbStorage {
 		return $result;
 	}
 
+	/**
+	 * @param array $queries
+	 * @param array $options
+	 * @return array
+	 * @throws DataModelException
+	 * @throws \DBUnexpectedError
+	 * @throws \MWException
+	 */
 	public function findMulti( array $queries, array $options = array() ) {
 		$keys = array_keys( reset( $queries ) );
 		$pks = $this->getPrimaryKeyColumns();
@@ -177,12 +189,8 @@ class BasicDbStorage extends DbStorage {
 
 		$conds = $dbr->makeList( $conds, LIST_OR );
 
-		$result = array();
 		// options can be ignored for primary key search
 		$res = $this->find( array( new RawSql( $conds ) ) );
-		if ( !$res ) {
-			return $result;
-		}
 
 		// create temp array with pk value (usually uuid) as key and full db row
 		// as value
@@ -194,10 +202,11 @@ class BasicDbStorage extends DbStorage {
 
 		// build return value by mapping the database rows to the matching array
 		// index in $queries
+		$result = array();
 		foreach ( $queries as $i => $val ) {
 			$val = UUID::convertUUIDs( $val, 'alphadecimal' );
 			$pk = ObjectManager::splitFromRow( $val, $this->primaryKey );
-			$result[$i][] = isset( $temp[$pk] ) ? $temp[$pk] : null;
+			$result[$i][] = isset( $temp[$pk] ) ? $temp[$pk] : array();
 		}
 
 		return $result;

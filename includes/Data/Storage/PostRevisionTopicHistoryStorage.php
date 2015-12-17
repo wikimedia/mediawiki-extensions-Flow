@@ -33,10 +33,7 @@ class PostRevisionTopicHistoryStorage implements ObjectStorage {
 
 	public function find( array $attributes, array $options = array() ) {
 		$multi = $this->findMulti( array( $attributes ), $options );
-		if ( $multi ) {
-			return reset( $multi );
-		}
-		return null;
+		return $multi ? reset( $multi ) : array();
 	}
 
 	/**

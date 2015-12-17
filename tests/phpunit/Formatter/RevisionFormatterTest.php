@@ -153,7 +153,7 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 
 
 	/**
-	 * @expectedException Flow\Exception\FlowException
+	 * @expectedException \Flow\Exception\FlowException
 	 * @dataProvider decideContentInvalidFormatProvider
 	 */
 	public function testDecideContentInvalidFormat( $setContentRequestedFormat, $setContentRevisionId, $revision ) {

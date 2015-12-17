@@ -484,7 +484,7 @@ abstract class FeatureIndex implements Index {
 				// Nothing found,  should we cache failures as well as success?
 				continue;
 			}
-			$results[$idx] = $rows;
+			$results[$idx] = $rows ?: array();
 			unset( $queries[$idx] );
 		}
 
