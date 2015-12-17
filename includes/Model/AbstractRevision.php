@@ -754,7 +754,7 @@ abstract class AbstractRevision {
 		return $this->moderatedBy ? $this->moderatedBy->wiki : null;
 	}
 
-	protected static function getModerationChangeTypes() {
+	public static function getModerationChangeTypes() {
 		if ( self::$moderationChangeTypes === null ) {
 			self::$moderationChangeTypes = array();
 			foreach( self::$perms as $perm ) {
