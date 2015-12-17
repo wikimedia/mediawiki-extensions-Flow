@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6eaa8f54_7730aee5",
+        "filename": "includes/Data/Index/TopKIndex.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-12-17T20:09:14Z",
+      "side": 1,
+      "message": "Oops, my bad.",
+      "revId": "6783fb593caae36903f1bc4a2c17d3fcafbb644d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_b73dc6ba",
+        "filename": "includes/Data/ObjectLocator.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-12-17T20:09:14Z",
+      "side": 1,
+      "message": "This is probably a good time to remove this...",
+      "revId": "6783fb593caae36903f1bc4a2c17d3fcafbb644d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_d7b08240",
+        "filename": "includes/Data/Storage/BasicDbStorage.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-12-17T20:09:14Z",
+      "side": 1,
+      "message": "Should put back the explanation.",
+      "revId": "6783fb593caae36903f1bc4a2c17d3fcafbb644d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
