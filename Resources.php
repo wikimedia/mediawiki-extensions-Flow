@@ -398,6 +398,7 @@ $wgResourceModules += array(
 			'flow/ui/widgets/mw.flow.ui.EditTopicSummaryWidget.js',
 			'flow/ui/widgets/mw.flow.ui.SidebarExpandWidget.js',
 			'flow/ui/widgets/mw.flow.ui.NewTopicWidget.js',
+			'flow/ui/widgets/mw.flow.ui.TopicTitleWidget.js',
 
 			'flow/ui/widgets/editor/editors/mw.flow.ui.AbstractEditorWidget.js',
 			'flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js',
@@ -427,6 +428,7 @@ $wgResourceModules += array(
 			'styles/flow/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.less',
 			'styles/flow/widgets/mw.flow.ui.CategoryItemWidget.less',
 			'styles/flow/widgets/mw.flow.ui.CategoriesWidget.less',
+			'styles/flow/widgets/mw.flow.ui.TopicTitleWidget.less',
 		),
 		'messages' => array(
 			'flow-error-parsoid-failure',

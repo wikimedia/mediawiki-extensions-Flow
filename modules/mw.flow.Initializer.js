@@ -157,6 +157,7 @@
 		this.setupReplyLinkActions();
 		this.setupEditPostAction();
 		this.setupEditTopicSummaryAction();
+		this.setupEditTopicTitleAction();
 	};
 
 	/**
@@ -509,6 +510,49 @@
 
 				// Prevent default
 				return false;
+			} );
+	};
+
+	/**
+	 * Take over the action of the 'edit topic title' links
+	 * This is delegated, so it applies to all future links as well.
+	 */
+	mw.flow.Initializer.prototype.setupEditTopicTitleAction = function () {
+		var self = this;
+
+		this.$component
+			.on( 'click', 'a.flow-ui-edit-title-link', function ( event ) {
+				var $topic = $( this ).closest( '.flow-topic' ),
+					topicId = $topic.data( 'flow-id' ),
+					$container = $topic.find( '.flow-topic-titlebar-container' ),
+					$topicTitleViewMode = $container.find( 'h2.flow-topic-title' ),
+					$editForm = $topic.find( '.flow-ui-topicTitleWidget' ),
+					widget;
+
+				if ( $editForm.length ) {
+					event.preventDefault();
+					return false;
+				}
+
+				widget = new mw.flow.ui.TopicTitleWidget( topicId );
+				widget
+					.on( 'saveContent', function ( workflow ) {
+						widget.$element.remove();
+
+						return self.flowBoard.flowBoardComponentRefreshTopic(
+							$topic,
+							workflow
+						);
+					} )
+					.on( 'cancel', function () {
+						widget.$element.remove();
+						$container.prepend( $topicTitleViewMode );
+					} );
+
+				$topicTitleViewMode.remove();
+				$container.prepend( widget.$element );
+
+				event.preventDefault();
 			} );
 	};
 
