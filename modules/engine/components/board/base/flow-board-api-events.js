@@ -100,24 +100,6 @@
 	};
 
 	/**
-	 * Before activating topic, sends an overrideObject to the API to modify the request params.
-	 *
-	 * @param {Event} event
-	 * @param {Object} info
-	 * @param {Object} queryMap
-	 * @return {Object}
-	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiPreHandlers.activateEditTitle = function ( event, info, queryMap ) {
-		// Use view-post API for topic as well; we only want this on
-		// particular (title) post revision, not the full topic
-		return $.extend( {}, queryMap, {
-			submodule: 'view-post',
-			vppostId: $( this ).closest( '.flow-topic' ).data( 'flow-id' ),
-			vpformat: mw.flow.editor.getFormat()
-		} );
-	};
-
-	/**
 	 * Adjusts query params to use global watch action, and specifies it should use a watch token.
 	 * @param {Event} event
 	 * @param {Object} info
@@ -260,63 +242,6 @@
 			// Successful watch: show tooltip
 			flowBoard.emitWithReturn( 'showSubscribedTooltip', $newLink.find( '.mw-ui-icon' ), watchType );
 		}
-
-		return $.Deferred().resolve().promise();
-	};
-
-	/**
-	 * Shows the form for editing a topic title, it's not already showing.
-	 *
-	 * @param {Object} info (status:done|fail, $target: jQuery)
-	 * @param {Object} data
-	 * @param {jqXHR} jqxhr
-	 * @return {jQuery.Promise}
-	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.activateEditTitle = function ( info, data, jqxhr ) {
-		var flowBoard, $form, cancelCallback,
-			$link = $( this ),
-			activeClass = 'flow-topic-title-activate-edit',
-			rootBlock = data.flow[ 'view-post' ].result.topic,
-			revision = rootBlock.revisions[ rootBlock.posts[ rootBlock.roots[ 0 ] ] ];
-
-		if ( info.status !== 'done' ) {
-			// Error will be displayed by default, nothing else to wrap up
-			return $.Deferred().resolve().promise();
-		}
-
-		$form = info.$target.find( 'form' );
-
-		if ( $form.length === 0 ) {
-			// Add class to identify title is being edited (so we can hide the
-			// current title in CSS)
-			info.$target.addClass( activeClass );
-
-			cancelCallback = function () {
-				$form.remove();
-				info.$target.removeClass( activeClass );
-			};
-
-			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $link );
-			$form = $( flowBoard.constructor.static.TemplateEngine.processTemplateGetFragment(
-				'flow_edit_topic_title.partial',
-				{
-					actions: {
-						edit: {
-							url: $link.attr( 'href' )
-						}
-					},
-					content: {
-						content: revision.content.content
-					},
-					revisionId: revision.revisionId
-				}
-			) ).children();
-
-			flowBoard.emitWithReturn( 'addFormCancelCallback', $form, cancelCallback );
-			$form.prependTo( info.$target );
-		}
-
-		$form.find( '.mw-ui-input' ).focus();
 
 		return $.Deferred().resolve().promise();
 	};

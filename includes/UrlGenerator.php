@@ -665,8 +665,8 @@ class UrlGenerator {
 			$this->resolveTitle( $title, $workflowId ),
 			array(
 				'action' => 'edit-title',
-				// @todo not necessary?
-				'topic_revId' => $revId->getAlphadecimal(),
+				'topic_postId' => $postId,
+				'topic_format' => 'topic-title-wikitext',
 			)
 		);
 	}

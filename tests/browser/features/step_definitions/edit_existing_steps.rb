@@ -27,7 +27,7 @@ When(/^I edit the title field with "(.+)"$/) do |edited_title|
     @edited_topic_string = edited_title + @random_string
     # Take focus away from menu
     page.title_edit_element.when_present.click
-    page.title_edit_element.when_present.send_keys(@edited_topic_string)
+    page.title_edit = @edited_topic_string
   end
 end
 

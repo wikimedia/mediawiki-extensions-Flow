@@ -139,8 +139,8 @@ class AbstractFlowPage
   end
 
   ### Editing title of first topic
-  text_field(:title_edit, css: ".flow-topic-titlebar form .mw-ui-input", index: 0)
-  button(:change_title_save, css: ".flow-topic-titlebar form .mw-ui-constructive")
+  text_field(:title_edit, css: ".flow-ui-topicTitleWidget-titleInput input", index: 0)
+  a(:change_title_save, css: ".flow-ui-topicTitleWidget-saveButton a")
 
   ### Post meta actions
   span(:post_meta_actions, css: ".flow-post .flow-post-meta-actions", index: 0)
