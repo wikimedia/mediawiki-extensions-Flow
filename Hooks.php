@@ -1856,7 +1856,8 @@ class FlowHooks {
 		$newLimit = $limit - count( $pages );
 		if ( $newLimit > 0 ) {
 
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbFactory = Container::get( 'db.factory' );
+			$dbr = $dbFactory->getDB( DB_SLAVE );
 
 			$userSelect = array( 'username' => "IFNULL(tree_orig_user_ip, user_name)" );
 			$userWhere = array();
