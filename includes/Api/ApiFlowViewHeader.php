@@ -35,32 +35,6 @@ class ApiFlowViewHeader extends ApiFlowBaseGet {
 	}
 
 	/**
-	 * @deprecated since MediaWiki core 1.25
-	 */
-	public function getParamDescription() {
-		return array(
-			'format' => 'Format to return the content in',
-			'revId' => 'load a specific revision if provided, otherwise, load the most recent',
-		);
-	}
-
-	/**
-	 * @deprecated since MediaWiki core 1.25
-	 */
-	public function getDescription() {
-		return 'View a board header';
-	}
-
-	/**
-	 * @deprecated since MediaWiki core 1.25
-	 */
-	public function getExamples() {
-		return array(
-			'api.php?action=flow&submodule=view-header&page=Talk:Sandbox&vhformat=wikitext&revId=',
-		);
-	}
-
-	/**
 	 * @see ApiBase::getExamplesMessages()
 	 */
 	protected function getExamplesMessages() {

@@ -69,38 +69,6 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 	}
 
 	/**
-	 * @deprecated since MediaWiki core 1.25
-	 */
-	public function getParamDescription() {
-		return array(
-			'offset-dir' => 'Direction to get topics for',
-			'sortby' => 'Sorting option of the topics',
-			'savesortby' => 'Save sortby option, if set',
-			'offset-id' => 'Offset value (in UUID format) to start fetching topics at',
-			'offset' => 'Offset value to start fetching topics at',
-			'include-offset' => 'Includes the offset item in the results as well',
-			'limit' => 'Number of topics to fetch',
-			'toconly' => 'Whether to respond with only the information required for the TOC',
-		);
-	}
-
-	/**
-	 * @deprecated since MediaWiki core 1.25
-	 */
-	public function getDescription() {
-		return 'View a list of topics';
-	}
-
-	/**
-	 * @deprecated since MediaWiki core 1.25
-	 */
-	public function getExamples() {
-		return array(
-			'api.php?action=flow&submodule=view-topiclist&page=Talk:Sandbox',
-		);
-	}
-
-	/**
 	 * @see ApiBase::getExamplesMessages()
 	 */
 	protected function getExamplesMessages() {

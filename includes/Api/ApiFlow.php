@@ -156,24 +156,6 @@ class ApiFlow extends ApiBase {
 	}
 
 	/**
-	 * @deprecated since MediaWiki core 1.25
-	 */
-	public function getDescription() {
-		return 'Allows actions to be taken on Flow pages.';
-	}
-
-	/**
-	 * @deprecated since MediaWiki core 1.25
-	 */
-	public function getParamDescription() {
-		return array(
-			'submodule' => 'The Flow submodule to invoke',
-			'page' => 'The page to take the action on',
-			'token' => 'An edit token',
-		);
-	}
-
-	/**
 	 * Override the parent to generate help messages for all available query modules.
 	 * @return string
 	 */
@@ -222,15 +204,6 @@ class ApiFlow extends ApiBase {
 		return array(
 			'https://www.mediawiki.org/wiki/Extension:Flow/API',
 		);
-	}
-
-	/**
-	 * @deprecated since MediaWiki core 1.25
-	 */
-	public function getExamples() {
-		 return array(
-			 'api.php?action=flow&submodule=edit-header&page=Talk:Sandbox&ehprev_revision=???&ehcontent=Nice%20to&20meet%20you',
-		 );
 	}
 
 	/**
