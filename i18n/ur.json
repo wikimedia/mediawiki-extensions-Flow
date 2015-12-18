@@ -3,7 +3,8 @@
 		"authors": [
 			"Muhammad Shuaib",
 			"عثمان خان شاہ",
-			"FarhanDanish"
+			"FarhanDanish",
+			"Obaid Raza"
 		]
 	},
 	"enableflow": "فلو فعال کریں",
@@ -199,6 +200,11 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 اور $5 {{PLURAL:$6|دیگر}} نے '''$3''' پر {{GENDER:$1|تبصرہ کیا}}۔",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 نے [[$3|$4]] پر آپ کے <span class=\"plainlinks\">[$5 مراسلہ]</span> میں {{GENDER:$1|ترمیم کی}}۔",
 	"flow-notification-edit-bundle": "$1 اور $5 {{PLURAL:$6|دیگر|دیگر افراد}} نے $3 پر \"$2\" میں موجود ایک <span class=\"plainlinks\">[$4 مراسلہ]</span> میں {{GENDER:$1|ترمیم کی}}",
+	"notification-body-flow-new-topic": "$1 نے $3 پر نیا موضوع {{GENDER:$2|تخلیق}} کیا۔",
+	"notification-bundle-header-flow-new-topic": "$3 پر $1 {{PLURAL:$2|موضوع|موضوعات}}",
+	"notification-body-flow-post-reply": "$3 پر $1 نے {{PLURAL:$2|جواب}} دیا",
+	"notification-bundle-body-flow-post-reply": "$4 پر $1 اور $5 {{PLURAL:$6|دیگر|دیگر}} نے {{GENDER:$2|جواب}} دیا",
+	"notification-body-flow-enabled-on-talkpage": "$3 پر موجود",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 نے '''$3''' پر نیا موضوع {{GENDER:$1|شروع کیا}}۔",
 	"flow-notification-newtopic-bundle": "'''<span class=\"plainlinks\">[$3 $2]</span>''' پر {{PLURAL:$1|$1 نیا موضوع|$1 نئے موضوعات|250=250+ نئے موضوعات}}",
 	"flow-notification-link-text-view-post": "مراسلہ دیکھیں",
@@ -322,14 +328,14 @@
 	"flow-wikitext-editor-help-and-preview": "ویکی متن میں $1 ہے اور آپ کسی بھی وقت $2 دیکھ سکتے ہیں۔",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|مارک اپ زیر استعمال]]",
 	"flow-wikitext-editor-help-preview-the-result": "نتیجہ کی نمائش",
-	"flow-wikitext-switch-editor-tooltip": "بصری ترمیم کاری شروع کریں",
+	"flow-wikitext-switch-editor-tooltip": "بصری خانہ ترمیم شروع کریں",
 	"flow-ve-switch-editor-tool-title": "ویکی متن خانہ ترمیم شروع کریں",
 	"flow-mark-revision-patrolled-link-text": "اس صفحہ کو بطور مراجعت شدہ نشان زد کریں",
 	"flow-mark-revision-patrolled-link-title": "اس صفحہ کو بطور مراجعت شدہ نشان زد کریں",
 	"flow-mark-diff-patrolled-link-text": "بطور مراجعت شدہ نشان زد کریں",
 	"flow-mark-diff-patrolled-link-title": "بطور مراجعت شدہ نشان زد کریں",
 	"flow-talk-page-beta-feature-message": "تبادلۂ خیال صارف پر فلو",
-	"flow-notification-link-text-enabled-on-talkpage": "صارف کا تبادلۂ خیال صفحہ دیکھیں",
+	"flow-notification-link-text-enabled-on-talkpage": "{{GENDER:|صارف کا تبادلۂ خیال صفحہ دیکھیے}}",
 	"flow-notification-enabled-on-talkpage-email-subject-message": "$2 پر نیا نظام گفتگو",
 	"flow-beta-feature-add-archive-template-edit-summary": "اضافہ سانچہ وثق",
 	"flow-beta-feature-remove-archive-template-edit-summary": "حذف سانچہ وثق",
