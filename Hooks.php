@@ -1854,85 +1854,137 @@ class FlowHooks {
 
 		// how many are we allowed to retrieve now
 		$newLimit = $limit - count( $pages );
-		if ( $newLimit > 0 ) {
 
-			$dbFactory = Container::get( 'db.factory' );
-			$dbr = $dbFactory->getDB( DB_SLAVE );
+		// we can't add anything
+		if ( $newLimit < 1 ) {
+			return true;
+		}
 
-			$userSelect = array( 'username' => "IFNULL(tree_orig_user_ip, user_name)" );
-			$userWhere = array();
-			if ( $username ) {
-				$userSelect = array();
-				$user = User::newFromName( $username );
-				if ( $user ) {
-					$userWhere = array( 'tree_orig_user_id' => $user->getId() );
-				} else {
-					$userWhere = array( 'tree_orig_user_ip' => $username );
+		$dbFactory = Container::get( 'db.factory' );
+		/** @var Database $dbr */
+		$dbr = $dbFactory->getDB( DB_SLAVE );
+
+		// if a username is specified, search only for that user
+		$userWhere = array();
+		if ( $username ) {
+			$user = User::newFromName( $username );
+			if ( $user ) {
+				$userWhere = array( 'tree_orig_user_id' => $user->getId() );
+			} else {
+				$userWhere = array( 'tree_orig_user_ip' => $username );
+			}
+		}
+
+		// limit results to the range of RC
+		global $wgRCMaxAge;
+		$rcTimeLimit = UUID::getComparisonUUID( strtotime("-$wgRCMaxAge seconds") );
+
+		// get latest revision id for each topic
+		$result = $dbr->select(
+			array(
+				'r' => 'flow_revision',
+				'flow_tree_revision',
+				'flow_workflow',
+			),
+			array(
+				'revId' => 'MAX(r.rev_id)',
+				'userIp' => "tree_orig_user_ip",
+				'userId' => "tree_orig_user_id",
+			),
+			array_merge( array(
+				'tree_parent_id' => null,
+				'r.rev_type' => 'post',
+				'workflow_wiki' => wfWikiId(),
+				'workflow_id > ' . $dbr->addQuotes( $rcTimeLimit->getBinary() )
+			), $userWhere ),
+			__METHOD__,
+			array(
+				'GROUP BY' => 'r.rev_type_id'
+			),
+			array(
+				'flow_tree_revision' => array( 'INNER JOIN', 'r.rev_type_id=tree_rev_descendant_id' ),
+				'flow_workflow' => array( 'INNER JOIN', 'r.rev_type_id=workflow_id' ),
+			)
+		);
+
+		if ( $result->numRows() < 1 ) {
+			return true;
+		}
+
+		$revIds = array();
+		foreach( $result as $r ) {
+			$revIds[$r->revId] = array( 'userIp' => $r->userIp, 'userId' => $r->userId, 'name' => false );
+		}
+
+		// get non-moderated revisions
+		$result = $dbr->select(
+			'flow_revision',
+			array(
+				'topicId' => 'rev_type_id',
+				'revId' => 'rev_id'
+			),
+			array(
+				'rev_mod_state' => '',
+				'rev_id' => array_keys( $revIds )
+			),
+			__METHOD__,
+			array(
+				'LIMIT' => $newLimit,
+				'ORDER BY' => 'rev_type_id DESC'
+			)
+		);
+
+		// all topics previously found appear to be moderated
+		if ( $result->numRows() < 1 ) {
+			return true;
+		}
+
+		// keep only the relevant topics in [topicId => userInfo] format
+		$limitedRevIds = array();
+		foreach ( $result as $r ) {
+			$limitedRevIds[$r->topicId] = $revIds[$r->revId];
+		}
+
+		// fill usernames if no $username filter was specified
+		if ( !$username ) {
+			$userIds = array_map(
+				function ( $userInfo ) { return $userInfo['userId']; },
+				array_values( $limitedRevIds )
+			);
+			$userIds = array_filter( $userIds );
+
+			$userMap = array();
+			if ( $userIds ) {
+				$result = $dbr->select(
+					'user',
+					array( 'user_id', 'user_name' ),
+					array( 'user_id' => array_values( $userIds ) )
+				);
+				foreach( $result as $r ) {
+					$userMap[$r->user_id] = $r->user_name;
 				}
 			}
 
-			// limit results to the range of RC
-			global $wgRCMaxAge;
-			$rcTimeLimit = UUID::getComparisonUUID( strtotime("-$wgRCMaxAge seconds") );
-
-			// get latest revision id for each topic
-			// by the specified user (optional)
-			$result = $dbr->select(
-				array(
-					'r' => 'flow_revision',
-					'flow_tree_revision',
-					'flow_workflow',
-					'user'
-				),
-				array_merge( array(
-					'revId' => 'MAX(r.rev_id)'
-				), $userSelect ),
-				array_merge( array(
-					'tree_parent_id' => null,
-					'r.rev_type' => 'post',
-					'workflow_wiki' => wfWikiId(),
-					'workflow_id > ' . $dbr->addQuotes( $rcTimeLimit->getBinary() )
-				), $userWhere ),
-				__METHOD__,
-				array(
-					'GROUP BY' => 'r.rev_type_id'
-				),
-				array(
-					'flow_tree_revision' => array( 'INNER JOIN', 'r.rev_type_id=tree_rev_descendant_id' ),
-					'flow_workflow' => array( 'INNER JOIN', 'r.rev_type_id=workflow_id' ),
-					'user' => array( 'LEFT JOIN', 'user_id=tree_orig_user_id' )
-				)
-			);
-
-			$revIds = array();
-			foreach( $result as $r ) {
-				$revIds[$r->revId] = $username === '' ? $r->username : false;
+			// set name in userInfo structure
+			foreach( $limitedRevIds as $topicId => &$userInfo ) {
+				if ( $userInfo['userIp'] ) {
+					$userInfo['name'] = $userInfo['userIp'];
+				} elseif ( $userInfo['userId'] ) {
+					$userInfo['name'] = $userMap[$userInfo['userId']];
+				} else {
+					$userInfo['name'] = false;
+					$topicIdAlpha = UUID::create( $topicId )->getAlphadecimal();
+					wfLogWarning( __METHOD__ . ": Cannot find user information for topic {$topicIdAlpha}" );
+				}
 			}
+		}
 
-			// get non-moderated revisions
-			$result = $dbr->select(
-				'flow_revision',
-				array(
-					'topicId' => 'rev_type_id',
-					'revId' => 'rev_id'
-				),
-				array(
-					'rev_mod_state' => '',
-					'rev_id' => array_keys( $revIds )
-				),
-				__METHOD__,
-				array(
-					'LIMIT' => $newLimit,
-					'ORDER BY' => 'rev_type_id DESC'
-				)
+		// add results to the list of pages to nuke
+		foreach( $limitedRevIds as $topicId => $userInfo ) {
+			$pages[] = array(
+				Title::makeTitle( NS_TOPIC, UUID::create( $topicId )->getAlphadecimal() ),
+				$userInfo['name']
 			);
-
-			foreach( $result as $r ) {
-				$topicTitle = Title::makeTitle( NS_TOPIC, UUID::create( $r->topicId )->getAlphadecimal() );
-				$creatorUsername = $revIds[$r->revId];
-				$pages[] = array( $topicTitle, $creatorUsername );
-			}
-
 		}
 
 		return true;
