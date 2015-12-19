@@ -496,6 +496,10 @@ $wgResourceModules += array(
 			'mw-ui-unsubmitted-confirm',
 			'flow-reply-link',
 			'flow-reply-link-anonymously',
+			// History tab displaying
+			'history_short',
+			'tooltip-ca-history',
+			'accesskey-ca-history',
 		)
 	) + $mobile,
 	'ext.flow.vendor.storer' => array(

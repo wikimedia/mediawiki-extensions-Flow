@@ -352,7 +352,7 @@
 				var $stub = $( '<div class="flow-topic"><div></div></div>' ).prependTo( self.flowBoard.$container.find( '.flow-topics' ) );
 				return this.flowBoard.flowBoardComponentRefreshTopic( $stub.find( 'div' ), newTopicId );
 			}
-		} );
+		} ).once( 'save', this.setupHistoryTab ); // Display history tab on save
 
 		$form.replaceWith( this.newTopicWidget.$element );
 	};
@@ -372,7 +372,7 @@
 		descriptionWidget = new mw.flow.ui.BoardDescriptionWidget( this.board, {
 			$existing: $( '.flow-ui-boardDescriptionWidget-content' ).contents(),
 			$categories: $( '.flow-board-header-category-view-nojs' ).contents()
-		} );
+		} ).once( 'saveContent', this.setupHistoryTab ); // Display History tab on save
 
 		// The category widget is inside the board description widget.
 		// Remove it from the nojs version here
@@ -382,6 +382,51 @@
 
 		$element.replaceWith( descriptionWidget.$element );
 	};
+
+	/**
+	 * Display the page history tab if it is not already on the page
+	 * Connected to new topic 'save' event and description 'saveContent' event
+	 */
+	mw.flow.Initializer.prototype.setupHistoryTab = function () {
+		var portlet, skin, tabText, nextnode;
+
+		// If a skin like Vector uses the views portlet, then the History tab
+		// should be in views. Other skins, such as Monobook, use the cactions
+		// portlet.
+		skin = mw.config.get( 'skin' );
+		portlet = $( '#p-views' ).length > 0 ?
+			'p-views' : 'p-cactions';
+
+		// Some skins like Vector have a separate message for the History tab,
+		// while others like Monobook do not.
+//		mw.loader.using( 'skins.' + skin, function () {
+			tabText = mw.message( skin + '-view-history');
+//		} );
+		if ( !tabText.exists() ) {
+			tabText = mw.msg( 'history_short' );
+		} else {
+			tabText = tabText.text();
+		}
+
+		// If the History tab is in cactions, then it goes before the Delete tab;
+		// if it is in views, the History tab goes before the Watch tab
+		nextnode = portlet === 'p-views' ?
+			'#ca-watch' : '#ca-delete';
+
+		// Add the History tab
+		if ( $( '#ca-history' ).length === 0 ) {
+			mw.util.addPortletLink(
+				portlet,
+				mw.util.getUrl( { action: 'history' } ),
+				tabText,
+				'ca-history',
+				mw.msg( 'tooltip-ca-history' ),
+				mw.msg( 'accesskey-ca-history' ),
+				nextnode
+			);
+		}
+	};
+
 
 	/**
 	 * Replace the reply forms given by the php version with js editors
