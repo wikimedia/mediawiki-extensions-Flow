@@ -352,7 +352,7 @@
 				var $stub = $( '<div class="flow-topic"><div></div></div>' ).prependTo( self.flowBoard.$container.find( '.flow-topics' ) );
 				return this.flowBoard.flowBoardComponentRefreshTopic( $stub.find( 'div' ), newTopicId );
 			}
-		} );
+		} ).once( 'save', this.onCreate ); // Refresh if board is new
 
 		$form.replaceWith( this.newTopicWidget.$element );
 	};
@@ -372,7 +372,7 @@
 		descriptionWidget = new mw.flow.ui.BoardDescriptionWidget( this.board, {
 			$existing: $( '.flow-ui-boardDescriptionWidget-content' ).contents(),
 			$categories: $( '.flow-board-header-category-view-nojs' ).contents()
-		} );
+		} ).once( 'saveContent', this.onCreate ); // Refresh if board is new
 
 		// The category widget is inside the board description widget.
 		// Remove it from the nojs version here
@@ -382,6 +382,18 @@
 
 		$element.replaceWith( descriptionWidget.$element );
 	};
+
+	/**
+	 * If the board page is being saved for the first time, reload the page
+	 * to show actions like History, Move, Protect, etc.
+	 */
+	mw.flow.Initializer.prototype.onCreate = function () {
+		// HACK: a really, really crude way to check if the page is new
+		if ( $( '#ca-history' ).length === 0 ) {
+			location.reload();
+		}
+	};
+
 
 	/**
 	 * Replace the reply forms given by the php version with js editors
