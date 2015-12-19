@@ -2,6 +2,7 @@
 
 use Flow\Container;
 use Flow\Data\Listener\ModerationLoggingListener;
+use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
@@ -53,7 +54,7 @@ class FlowAddMissingModerationLogs extends LoggedUpdateMaintenance {
 
 		// Fetch rows that are a moderation action
 		$rowIterator->addConditions( array(
-			'rev_change_type' => ModerationLoggingListener::getModerationChangeTypes(),
+			'rev_change_type' => AbstractRevision::getModerationChangeTypes(),
 			'rev_user_wiki' => wfWikiID(),
 		) );
 
