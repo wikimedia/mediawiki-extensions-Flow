@@ -352,7 +352,7 @@
 				var $stub = $( '<div class="flow-topic"><div></div></div>' ).prependTo( self.flowBoard.$container.find( '.flow-topics' ) );
 				return this.flowBoard.flowBoardComponentRefreshTopic( $stub.find( 'div' ), newTopicId );
 			}
-		} );
+		} ).once( 'save', this.setupHistoryTab ); // Display history tab on save
 
 		$form.replaceWith( this.newTopicWidget.$element );
 	};
@@ -372,7 +372,7 @@
 		descriptionWidget = new mw.flow.ui.BoardDescriptionWidget( this.board, {
 			$existing: $( '.flow-ui-boardDescriptionWidget-content' ).contents(),
 			$categories: $( '.flow-board-header-category-view-nojs' ).contents()
-		} );
+		} ).once( 'saveContent', this.setupHistoryTab ); // Display History tab on save
 
 		// The category widget is inside the board description widget.
 		// Remove it from the nojs version here
@@ -381,6 +381,62 @@
 		$( '.catlinks:not(.flow-ui-categoriesWidget)' ).detach();
 
 		$element.replaceWith( descriptionWidget.$element );
+	};
+
+	/**
+	 * Display the page history tab if it is not already on the page
+	 * Connected to new topic 'save' event and description 'saveContent' event
+	 */
+	mw.flow.Initializer.prototype.setupHistoryTab = function () {
+		if ( $( '#ca-history' ).length === 0 ) {
+			var portlet, skin, tabText, nextnode;
+
+			// If a skin like Vector uses the views portlet, then the History tab
+			// should be in views. Other skins, such as Monobook, use the cactions
+			// portlet.
+			skin = mw.config.get( 'skin' );
+			portlet = $( '#p-views' ).length > 0 ?
+				'p-views' : 'p-cactions';
+
+			// Choose the right place to put the History tab
+			if ( portlet === 'p-views' ) {
+				// For Vector etc. the tab is the first item in the appropriate porlet
+				portletList = $( '#' + portlet ).find( 'ul' ).first();
+				nextnode = portletList.find( 'li' ).first();
+			} else if ( portlet === 'p-cactions' ) {
+				// For Monobook etc. the tab is the first item after the discussion tab
+				nextnode = $( '#ca-talk' ).next();
+			}
+
+			// Some skins like Vector have a separate message for the History tab,
+			// while others like Monobook do not.
+			// Check to see if we have a skin-specific message, and fallback to
+			// history_short.
+			new mw.Api().get( {
+				action: 'query',
+				meta: 'allmessages',
+				amlang: mw.config.get( 'wgUserLanguage' ),
+				ammessages: skin + '-view-history'
+			} ).done( function ( data ) {
+				var message = data.query.allmessages[ 0 ];
+				if ( message.missing !== '' ) {
+					tabText =  message[ '*' ];
+				} else {
+					tabText = mw.msg( 'history_short' );
+				}
+
+				// Add the History tab
+				mw.util.addPortletLink(
+					portlet,
+					mw.util.getUrl( { action: 'history' } ),
+					tabText,
+					'ca-history',
+					mw.msg( 'tooltip-ca-history' ),
+					mw.msg( 'accesskey-ca-history' ),
+					nextnode
+				);
+			} );
+		}
 	};
 
 	/**
