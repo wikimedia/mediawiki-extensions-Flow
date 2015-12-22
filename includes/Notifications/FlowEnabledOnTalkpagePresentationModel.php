@@ -15,6 +15,15 @@ class FlowEnabledOnTalkpagePresentationModel extends FlowPresentationModel {
 		);
 	}
 
+	/**
+	 * All Flow notifications have the 'Agent' link except this one.
+	 *
+	 * @return array Empty array
+	 */
+	public function getSecondaryLinks() {
+		return array();
+	}
+
 	public function getHeaderMessage() {
 		$msg = parent::getHeaderMessage();
 		$msg->params( $this->event->getTitle()->getPrefixedText() );
