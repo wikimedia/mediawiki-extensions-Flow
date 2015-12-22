@@ -323,6 +323,7 @@
 	"flow-ve-mention-inspector-remove-label": "حذف",
 	"flow-ve-mention-placeholder": "صارف نام",
 	"flow-ve-mention-tool-title": "صارف کا تذکرہ کریں",
+	"flow-ve-mention-template-title": "فلو میں آپ کا ذکر",
 	"flow-ve-mention-inspector-invalid-user": "صارف نام \"$1\" مندرج نہیں ہے۔",
 	"flow-wikitext-editor-help": "ویکی متن $1۔",
 	"flow-wikitext-editor-help-and-preview": "ویکی متن میں $1 ہے اور آپ کسی بھی وقت $2 دیکھ سکتے ہیں۔",
