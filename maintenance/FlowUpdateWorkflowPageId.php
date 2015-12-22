@@ -9,7 +9,7 @@ if ( $IP === false ) {
 	$IP = dirname( __FILE__ ) . '/../../..';
 }
 require_once( "$IP/maintenance/Maintenance.php" );
-require_once __DIR__ . "/../../Echo/includes/BatchRowUpdate.php";
+require_once( "$IP/includes/utils/RowUpdateGenerator.php" );
 
 /**
  * In some cases we have created workflow instances before the related Title
@@ -33,7 +33,7 @@ class FlowUpdateWorkflowPageId extends LoggedUpdateMaintenance {
 
 		$dbw = Container::get( 'db.factory' )->getDB( DB_MASTER );
 
-		$it = new EchoBatchRowIterator(
+		$it = new BatchRowIterator(
 			$dbw,
 			'flow_workflow',
 			'workflow_id',
@@ -45,8 +45,8 @@ class FlowUpdateWorkflowPageId extends LoggedUpdateMaintenance {
 		) );
 
 		$gen = new WorkflowPageIdUpdateGenerator( $wgLang );
-		$writer = new EchoBatchRowWriter( $dbw, 'flow_workflow', $wgFlowCluster );
-		$updater = new EchoBatchRowUpdate( $it, $writer, $gen );
+		$writer = new BatchRowWriter( $dbw, 'flow_workflow', $wgFlowCluster );
+		$updater = new BatchRowUpdate( $it, $writer, $gen );
 
 		$updater->execute();
 
@@ -64,7 +64,7 @@ class FlowUpdateWorkflowPageId extends LoggedUpdateMaintenance {
  * Looks at rows from the flow_workflow table and returns an update
  * for the workflow_page_id field if necessary.
  */
-class WorkflowPageIdUpdateGenerator implements EchoRowUpdateGenerator {
+class WorkflowPageIdUpdateGenerator implements RowUpdateGenerator {
 	/**
 	 * @var Language|StubUserLang
 	 */
@@ -96,7 +96,7 @@ class WorkflowPageIdUpdateGenerator implements EchoRowUpdateGenerator {
 		if ( $row->workflow_page_id === 0 && $title->getArticleID() === 0 ) {
 			// build workflow object (yes, loading them piecemeal is suboptimal, but
 			// this is just a one-time script; considering the alternative is
-			// creating a derivative EchoBatchRowIterator that returns workflows,
+			// creating a derivative BatchRowIterator that returns workflows,
 			// it doesn't really matter)
 			$storage = Container::get( 'storage' );
 			$workflow = $storage->get( 'Workflow', UUID::create( $row->workflow_id ) );

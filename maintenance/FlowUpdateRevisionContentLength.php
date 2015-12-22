@@ -74,7 +74,7 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 
 		$dbw = $this->dbFactory->getDb( DB_MASTER );
 		// Walk through the flow_revision table
-		$it = new EchoBatchRowIterator(
+		$it = new BatchRowIterator(
 			$dbw,
 			/* table = */'flow_revision',
 			/* primary key = */'rev_id',

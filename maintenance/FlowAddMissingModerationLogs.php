@@ -40,7 +40,7 @@ class FlowAddMissingModerationLogs extends LoggedUpdateMaintenance {
 
 		$moderationLoggingListener = $container['storage.post.listeners.moderation_logging'];
 
-		$rowIterator = new EchoBatchRowIterator(
+		$rowIterator = new BatchRowIterator(
 			$dbw,
 			/* table = */'flow_revision',
 			/* primary key = */'rev_id',

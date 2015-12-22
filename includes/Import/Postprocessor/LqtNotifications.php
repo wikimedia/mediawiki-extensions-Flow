@@ -3,7 +3,7 @@
 namespace Flow\Import\Postprocessor;
 
 use DatabaseBase;
-use EchoBatchRowIterator;
+use BatchRowIterator;
 use EchoCallbackIterator;
 use EchoEvent;
 use Flow\Import\IImportHeader;
@@ -97,7 +97,7 @@ class LqtNotifications implements Postprocessor {
 			throw new ImportException( 'No active thread!' );
 		}
 
-		$it = new EchoBatchRowIterator(
+		$it = new BatchRowIterator(
 			$this->dbw,
 			/* table = */ 'user_message_state',
 			/* primary keys */ array( 'ums_user' ),

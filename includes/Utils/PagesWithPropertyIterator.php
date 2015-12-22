@@ -3,7 +3,7 @@
 namespace Flow\Utils;
 
 use DatabaseBase;
-use EchoBatchRowIterator;
+use BatchRowIterator;
 use EchoCallbackIterator;
 use IteratorAggregate;
 use RecursiveIteratorIterator;
@@ -54,7 +54,7 @@ class PagesWithPropertyIterator implements IteratorAggregate {
 	 * @return Iterator<Title>
 	 */
 	public function getIterator() {
-		$it = new EchoBatchRowIterator(
+		$it = new BatchRowIterator(
 			$this->db,
 			/* tables */ array( 'page_props', 'page' ),
 			/* pk */ 'pp_page',
