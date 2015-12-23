@@ -502,6 +502,7 @@
 	"apihelp-flow+view-topiclist-param-offset": "偏移值（作为一个<code>TS_MW</code>格式的话题更新时间戳（<code>YYYYMMDDHHMMSS</code>）），以开始取得话题；只与<kbd>updated</kbd>一起排序",
 	"apihelp-flow+view-topiclist-param-include-offset": "在结果中也包括抵消项目。",
 	"apihelp-flow+view-topiclist-param-limit": "要取得的话题数量。",
+	"apihelp-flow+view-topiclist-param-format": "返回内容的格式。",
 	"apihelp-flow+view-topiclist-example-1": "[[Talk:Sandbox]]的话题列表",
 	"apihelp-flow-parsoid-utils-description": "在wiki文本和HTML之间互相转换文本。",
 	"apihelp-flow-parsoid-utils-param-from": "要转换格式的内容。",

@@ -100,6 +100,7 @@
 	"flow-topic-comments": "{{PLURAL:$1|$1টি মন্তব্য|0={{GENDER:$2|সবার প্রথমে}} মন্তব্য করুন!}}",
 	"flow-hide-comments-title": "{{PLURAL:$1|মন্তব্য লুকান}}",
 	"flow-comment-deleted": "মন্তব্য অপসারিত হয়েছে",
+	"notification-body-flow-enabled-on-talkpage": "$3-এ উপলব্ধ",
 	"flow-notification-link-text-view-post": "প্রকাশনা দেখুন",
 	"flow-notification-link-text-view-topic": "প্রসঙ্গ দেখুন",
 	"flow-notification-reply-email-subject": "$3-এ $2",
