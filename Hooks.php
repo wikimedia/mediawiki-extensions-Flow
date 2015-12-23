@@ -256,14 +256,14 @@ class FlowHooks {
 		require_once __DIR__.'/maintenance/FlowUpdateRevisionTypeId.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateRevisionTypeId' );
 
+		require_once __DIR__.'/maintenance/FlowUpdateWorkflowPageId.php';
+		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateWorkflowPageId' );
+
 		require_once __DIR__.'/maintenance/FlowPopulateLinksTables.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowPopulateLinksTables' );
 
 		require_once __DIR__.'/maintenance/FlowFixLog.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowFixLog' );
-
-		require_once __DIR__.'/maintenance/FlowUpdateWorkflowPageId.php';
-		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateWorkflowPageId' );
 
 		require_once __DIR__.'/maintenance/FlowCreateTemplates.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowCreateTemplates' );
