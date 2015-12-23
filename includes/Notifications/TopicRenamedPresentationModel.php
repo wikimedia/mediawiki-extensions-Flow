@@ -7,22 +7,28 @@ class TopicRenamedPresentationModel extends FlowPresentationModel {
 
 	public function canRender() {
 		return $this->hasTitle()
-			&& $this->hasValidTopicWorkflowId()
-			&& $this->hasValidPostId();
+			&& $this->hasValidTopicWorkflowId();
 	}
 
 	public function getPrimaryLink() {
+		return $this->getViewTopicLink();
+	}
+
+	public function getSecondaryLinks() {
 		return array(
-			'url' => $this->getPostLinkUrl(),
-			'label' => $this->msg( 'flow-notification-link-text-view-topic' )->text()
+			$this->getAgentLink(),
+			$this->getBoardByNewestLink(),
 		);
 	}
 
+	protected function getHeaderMessageKey() {
+		return parent::getHeaderMessageKey() . '-v2';
+	}
+
 	public function getHeaderMessage() {
-		$msg = parent::getHeaderMessage();
+		$msg = $this->msg( $this->getHeaderMessageKey() );
 		$msg->params( $this->event->getExtraParam( 'old-subject' ) );
 		$msg->params( $this->event->getExtraParam( 'new-subject' ) );
-		$msg->params( $this->event->getTitle()->getPrefixedText() );
 		return $msg;
 	}
 
