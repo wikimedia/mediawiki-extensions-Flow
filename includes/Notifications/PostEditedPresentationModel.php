@@ -21,32 +21,29 @@ class PostEditedPresentationModel extends FlowPresentationModel {
 		);
 	}
 
-	public function getHeaderMessage() {
-		list( $formattedCount, $countForPlural ) = $this->getOtherAgentsCountForOutput();
-		if ( $countForPlural > 0 ) {
-			$msg = $this->getMessageWithAgent( "notification-bundle-header-{$this->type}" );
-			$msg->params( $this->event->getExtraParam( 'topic-title' ) );
-			$msg->params( $this->event->getTitle()->getPrefixedText() );
-			$msg->params( $formattedCount, $countForPlural );
+	public function getSecondaryLinks() {
+		if ( $this->isBundled() ) {
+			return array( $this->getBoardLink() );
 		} else {
-			$msg = parent::getHeaderMessage();
-			$msg->params( $this->event->getTitle()->getPrefixedText() );
-			$msg->params( $this->event->getExtraParam( 'topic-title' ) );
+			return array( $this->getAgentLink() );
 		}
-		$msg->params( $this->getViewingUserForGender() );
+	}
+
+	protected function getHeaderMessageKey() {
+		return parent::getHeaderMessageKey() . '-v2';
+	}
+
+	public function getHeaderMessage() {
+		$key = $this->isBundled() ? "notification-bundle-header-{$this->type}-v2" : $this->getHeaderMessageKey();
+		$msg = $this->msg( $key );
+		$msg->params( $this->getTopicTitle() );
 		return $msg;
 	}
 
 	public function getBodyMessage() {
-		if ( $this->isBundled() ) {
-			return false;
-		} else {
-			$msg = $this->getMessageWithAgent( "notification-body-{$this->type}" );
-			$msg->params( $this->event->getTitle()->getPrefixedText() );
-			$msg->params( $this->event->getExtraParam( 'topic-title' ) );
-			$msg->params( $this->getViewingUserForGender() );
-			return $msg;
-		}
+		$msg = $this->msg( "notification-body-{$this->type}-v2" );
+		$msg->params( $this->getContentSnippet() );
+		return $msg;
 	}
 
 }
