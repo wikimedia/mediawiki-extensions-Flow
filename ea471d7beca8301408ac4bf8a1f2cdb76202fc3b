@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6eaa8f54_1b4dc63f",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 1958,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2015-12-23T01:16:50Z",
+      "side": 1,
+      "message": "This is still querying the user table on the Flow connection.\n\nIt should work fine if there is a separate $wikiDbr variable:\n\n$wikiDbr \u003d $dbFactory-\u003egetWikiDB( DB_SLAVE );\n$wikiDbr-\u003eselect( \u0027user\u0027, ... )",
+      "revId": "ea471d7beca8301408ac4bf8a1f2cdb76202fc3b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
