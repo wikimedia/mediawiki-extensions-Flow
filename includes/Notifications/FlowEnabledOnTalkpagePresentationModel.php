@@ -30,10 +30,4 @@ class FlowEnabledOnTalkpagePresentationModel extends FlowPresentationModel {
 		return $msg;
 	}
 
-	public function getBodyMessage() {
-		$msg = $this->getMessageWithAgent( 'notification-body-flow-enabled-on-talkpage' );
-		$msg->params( $this->event->getTitle()->getPrefixedText() );
-		return $msg;
-	}
-
 }

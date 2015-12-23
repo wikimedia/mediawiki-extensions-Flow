@@ -5,14 +5,41 @@ namespace Flow;
 class NewTopicPresentationModel extends FlowPresentationModel {
 
 	public function canRender() {
-		return $this->hasTitle();
+		return $this->hasTitle()
+			&& $this->hasValidTopicWorkflowId();
 	}
 
 	public function getPrimaryLink() {
-		return array(
-			'url' => $this->getBoardLinkByNewestTopic(),
-			'label' => $this->msg( 'flow-notification-link-text-view-topic' )->text()
-		);
+		if ( $this->isBundled() ) {
+			return $this->getBoardLinkByNewestTopic();
+		} else {
+			return $this->getViewTopicLink();
+		}
+	}
+
+	public function getSecondaryLinks() {
+		if ( $this->isBundled() ) {
+			return array();
+		} else {
+			return array(
+				$this->getAgentLink(),
+				$this->getBoardByNewestLink(),
+			);
+		}
+	}
+
+	public function getBodyMessage() {
+		if ( $this->isBundled() ) {
+			return false;
+		} else {
+			$msg = $this->msg( "notification-body-{$this->event->getType()}-v2" );
+			$msg->params( $this->getContentSnippet() );
+			return $msg;
+		}
+	}
+
+	protected function getHeaderMessageKey() {
+		return parent::getHeaderMessageKey() . '-v2';
 	}
 
 	public function getHeaderMessage() {
@@ -29,16 +56,4 @@ class NewTopicPresentationModel extends FlowPresentationModel {
 			return $msg;
 		}
 	}
-
-	public function getBodyMessage() {
-		if ( $this->isBundled() ) {
-			return false;
-		}
-
-		$msg = $this->getMessageWithAgent( 'notification-body-flow-new-topic' );
-		$msg->params( $this->event->getTitle()->getPrefixedText() );
-		$msg->params( $this->event->getExtraParam( 'topic-title' ) );
-		return $msg;
-	}
-
 }
