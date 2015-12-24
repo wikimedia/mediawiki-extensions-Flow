@@ -112,7 +112,7 @@ class WorkflowPageIdUpdateGenerator implements EchoRowUpdateGenerator {
 			} catch ( \Exception $e ) {
 				// catch all exception to keep going with the rest we want to
 				// iterate over, we'll report on the failed entries at the end
-				$this->failed[] = $row;
+				$this->failed[] = array( $row, array( "Failed in page creation phase", $e->__toString() ) );
 			}
 		}
 
@@ -125,7 +125,7 @@ class WorkflowPageIdUpdateGenerator implements EchoRowUpdateGenerator {
 			);
 		} elseif ( !$row->workflow_page_id ) {
 			// No id exists for this workflow?
-			$this->failed[] = $row;
+			$this->failed[] = array( $row, array( "Could not find new article ID corresponding to workflow" ) );
 		}
 
 		return array();
