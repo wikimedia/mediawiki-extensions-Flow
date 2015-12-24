@@ -110,6 +110,8 @@ class WorkflowPageIdUpdateGenerator implements EchoRowUpdateGenerator {
 				// force article id to be refetched from db
 				$title->getArticleID( Title::GAID_FOR_UPDATE );
 			} catch ( \Exception $e ) {
+				echo $e;
+
 				// catch all exception to keep going with the rest we want to
 				// iterate over, we'll report on the failed entries at the end
 				$this->failed[] = $row;
