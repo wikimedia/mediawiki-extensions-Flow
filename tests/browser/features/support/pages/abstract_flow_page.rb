@@ -76,7 +76,7 @@ class AbstractFlowPage
   ### Hover over username behaviour
   span(:usertools, css: '.mw-usertoollinks')
   a(:usertools_talk_link) do |page|
-    page.usertools_element.link_element(text: 'Talk')
+    page.usertools_element.link_element(text: 'talk')
   end
   a(:usertools_block_user_link) do |page|
     page.usertools_element.link_element(text: 'block')
