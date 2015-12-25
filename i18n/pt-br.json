@@ -15,7 +15,8 @@
 			"Araceletorres",
 			"Walesson",
 			"Cainamarques",
-			"Nnemo"
+			"Nnemo",
+			"Opraco"
 		]
 	},
 	"enableflow": "Ativar Flow",
@@ -488,9 +489,9 @@
 	"flow-undo-edit-post": "Editando uma publicação",
 	"flow-undo-edit-content": "A edição pode ser desfeita. Por favor, verifique o comparativo a seguir para se certificar de que é isto que deseja fazer então salve as modificações abaixo para terminar de desfazer a edição.",
 	"flow-undo-edit-failure": "A edição não pode ser desfeita devido a modificações intermediárias conflitantes.",
-	"group-flow-bot": "Bots para o Flow",
-	"group-flow-bot-member": "Bot para o Flow",
-	"grouppage-flow-bot": "Project:Flow bots",
+	"group-flow-bot": "Robôs para o Flow",
+	"group-flow-bot-member": "robô para o Flow",
+	"grouppage-flow-bot": "Project:Robôs para o Flow",
 	"flow-ve-mention-context-item-label": "Menção",
 	"flow-ve-mention-inspector-title": "Menção",
 	"flow-ve-mention-inspector-remove-label": "Remover",
