@@ -419,7 +419,7 @@
 	"apihelp-flow+edit-post-example-1": "Sửa đổi một bài đăng trong [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+edit-title-description": "Sửa đổi tiêu đề của đề tài.",
 	"apihelp-flow+edit-title-param-prev_revision": "Số phiên bản tiêu đề hiện tại để kiểm tra có mâu thuẫn sửa đổi hay không.",
-	"apihelp-flow+edit-title-param-content": "Nội dung tiêu đề.",
+	"apihelp-flow+edit-title-param-content": "Nội dung tiêu đề theo cùng định dạng được cho phép cho tóm lược sửa đổi (đề tài–tiêu đề–mã wiki).",
 	"apihelp-flow+edit-title-example-1": "Sửa đổi tiêu đề của [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+edit-topic-summary-description": "Sửa đổi nội dung của tóm lược đề tài.",
 	"apihelp-flow+edit-topic-summary-param-prev_revision": "Số phiên bản tóm lược đề tài hiện tại, nếu có, để kiểm tra có mâu thuẫn sửa đổi hay không.",
