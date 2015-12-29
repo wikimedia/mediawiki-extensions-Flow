@@ -352,7 +352,7 @@
 				var $stub = $( '<div class="flow-topic"><div></div></div>' ).prependTo( self.flowBoard.$container.find( '.flow-topics' ) );
 				return this.flowBoard.flowBoardComponentRefreshTopic( $stub.find( 'div' ), newTopicId );
 			}
-		} );
+		} ).once( 'save', this.reloadOnCreate ); // Reload page if board is new so we get page actions at top
 
 		$form.replaceWith( this.newTopicWidget.$element );
 	};
@@ -372,7 +372,7 @@
 		descriptionWidget = new mw.flow.ui.BoardDescriptionWidget( this.board, {
 			$existing: $( '.flow-ui-boardDescriptionWidget-content' ).contents(),
 			$categories: $( '.flow-board-header-category-view-nojs' ).contents()
-		} );
+		} ).once( 'saveContent', this.reloadOnCreate ); // Reload page if board is new so we get page actions at top
 
 		// The category widget is inside the board description widget.
 		// Remove it from the nojs version here
@@ -381,6 +381,16 @@
 		$( '.catlinks:not(.flow-ui-categoriesWidget)' ).detach();
 
 		$element.replaceWith( descriptionWidget.$element );
+	};
+
+	/**
+	 * If the board page is being saved for the first time, reload the page
+	 * to show actions like History, Move, Protect, etc.
+	 */
+	mw.flow.Initializer.prototype.reloadOnCreate = function () {
+		if ( mw.config.get( 'wgArticleId' ) === 0 ) {
+			location.reload();
+		}
 	};
 
 	/**
