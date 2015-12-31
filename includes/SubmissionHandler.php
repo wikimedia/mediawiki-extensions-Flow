@@ -142,13 +142,13 @@ class SubmissionHandler {
 		$isNew = $workflow->isNew();
 
 		try {
-			$dbw->begin();
+			$dbw->begin( __METHOD__ );
 			$cache->begin();
 			$results = array();
 			foreach ( $blocks as $block ) {
 				$results[$block->getName()] = $block->commit();
 			}
-			$dbw->commit();
+			$dbw->commit( __METHOD__ );
 
 			// Now commit to cache. If this fails, cache keys should have been
 			// invalidated, but still log the failure.

@@ -61,7 +61,7 @@ class BoardMover {
 
 		// Open a transaction, this will be closed from self::commit.
 		$this->dbw = $this->dbFactory->getDB( DB_MASTER );
-		$this->dbw->begin();
+		$this->dbw->begin( __METHOD__ );
 		$this->cache->begin();
 
 		// @todo this loads every topic workflow this board has ever seen,
@@ -118,10 +118,10 @@ class BoardMover {
 		}
 
 		try {
-			$this->dbw->commit();
+			$this->dbw->commit( __METHOD__ );
 			$this->cache->commit();
 		} catch ( \Exception $e ) {
-			$this->dbw->rollback();
+			$this->dbw->rollback( __METHOD__ );
 			$this->cache->rollback();
 			throw $e;
 		}
