@@ -90,7 +90,7 @@
 	"flow-topic-action-unlock-topic": "話題を再開",
 	"flow-topic-action-summarize-topic": "要約",
 	"flow-topic-action-resummarize-topic": "話題の要約を編集",
-	"flow-topic-action-update-topic-summary": "更新の概要",
+	"flow-topic-action-update-topic-summary": "要約を更新",
 	"flow-topic-action-suppress-topic": "話題を秘匿",
 	"flow-topic-action-unhide-topic": "話題の非表示を解除",
 	"flow-topic-action-undelete-topic": "話題の削除を解除",

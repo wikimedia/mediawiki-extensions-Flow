@@ -524,7 +524,7 @@
 	"apihelp-flow+view-topiclist-param-offset": "Valeur du décalage (un horodatage de la mise à jour du sujet, au format <code>TS_MW</code>(<code>AAAAMMJJHHMMSS</code>)), auquel démarrer la récupération des sujets ; utilisé seulement avec le tri <kbd>updated</kbd>",
 	"apihelp-flow+view-topiclist-param-include-offset": "Inclut également l’élément correspondant au paramètre offset dans les résultats.",
 	"apihelp-flow+view-topiclist-param-limit": "Nombre de sujets à récupérer.",
-	"apihelp-flow+view-topiclist-param-toconly": "Indique s’il faut ne renvoyer que les informations nécessaires pour afficher le sommaire.",
+	"apihelp-flow+view-topiclist-param-toconly": "Indique s’il ne faut renvoyer que les informations nécessaires pour afficher le sommaire.",
 	"apihelp-flow+view-topiclist-param-format": "Format dans lequel renvoyer le contenu.",
 	"apihelp-flow+view-topiclist-example-1": "Lister les sujets sur [[Talk:Sandbox]]",
 	"apihelp-flow-parsoid-utils-description": "Convertir le texte entre wikitexte et HTML.",

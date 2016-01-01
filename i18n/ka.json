@@ -76,6 +76,8 @@
 	"flow-comment-hidden": "დაფარული კომენტარი",
 	"flow-notification-link-text-view-post": "შეტყობინების ხილვა",
 	"flow-notification-link-text-view-topic": "თემის ხილვა",
+	"echo-category-title-flow-discussion": "ნაკადი",
+	"echo-pref-tooltip-flow-discussion": "შემატყობინე, როდესაც ჩემთან დაკავშირებული მოქმედება ნაკადში მიმდინარეობს.",
 	"flow-link-post": "შეტყობინება",
 	"flow-link-topic": "თემა",
 	"flow-link-history": "ისტორია",
