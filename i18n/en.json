@@ -139,7 +139,7 @@
 	"flow-error-missing-content": "Post has no content. Content is required to save a post.",
 	"flow-error-missing-summary": "You must submit a summary.",
 	"flow-error-missing-title": "Topic has no title. Title is required to save a topic.",
-	"flow-error-parsoid-failure": "Unable to parse content due to a Parsoid failure.",
+	"flow-error-parsoid-failure": "Unable to parse content: Error contacting the server for Parsoid conversion. Please check your internet connection",
 	"flow-error-missing-replyto": "No \"replyTo\" parameter was supplied. This parameter is required for the \"reply\" action.",
 	"flow-error-invalid-replyto": "\"replyTo\" parameter was invalid. The specified post could not be found.",
 	"flow-error-delete-failure": "Deletion of this item failed.",
