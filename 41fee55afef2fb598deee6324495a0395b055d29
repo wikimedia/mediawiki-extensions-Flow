@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6eaa8f54_cee8a579",
+        "filename": "i18n/en.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-01-02T01:48:44Z",
+      "side": 1,
+      "message": "There are other potential errors that could cause this, e.g. non-200 HTTP response or MW-specific error codes (neither of these indicate the Internet connection has a problem).\n\nAlso, it technically isn\u0027t contacting Parsoid directly.\n\nHow about:\n\n\"Unable to parse content: Error contacting the server for Parsoid conversion. Please check your internet connection\"",
+      "revId": "41fee55afef2fb598deee6324495a0395b055d29",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
