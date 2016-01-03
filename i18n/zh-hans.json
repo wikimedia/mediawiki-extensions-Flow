@@ -147,7 +147,7 @@
 	"flow-error-missing-content": "帖子无内容。只能保存有内容的帖子。",
 	"flow-error-missing-summary": "您必须提交一段摘要。",
 	"flow-error-missing-title": "此话题没有标题。必须有标题才能保存一个话题。",
-	"flow-error-parsoid-failure": "由于Parsoid故障无法解析内容。",
+	"flow-error-parsoid-failure": "无法解析内容：连接Parsoid转换所用服务器时出错。请检查您的互联网连接",
 	"flow-error-missing-replyto": "没有提供“回复至”参数。此参数在“回复”操作中是必须的。",
 	"flow-error-invalid-replyto": "“回复至”参数无效。找不到指定的帖子。",
 	"flow-error-delete-failure": "删除此项失败。",

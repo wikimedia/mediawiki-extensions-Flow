@@ -242,6 +242,7 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 與{{PLURAL:$6|其他}} $5 個人已於 '''$3''' {{GENDER:$1|回應}}。",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 {{GENDER:$1|已編輯}}您在 [[$3|$4]] 的 <span class=\"plainlinks\">[$5 貼文]</span>。",
 	"flow-notification-edit-bundle": "$1 與{{PLURAL:$6|其他}} $5 個人{{GENDER:$1|已編輯}}於 \"$3\" 中 \"$2\" 的 <span class=\"plainlinks\">[$4 貼文]</span>。",
+	"notification-body-flow-new-topic": "$1 在 $3 {{GENDER:$2|建立了}}新話題。",
 	"notification-header-flow-enabled-on-talkpage": "已在{{GENDER:$2|您}}的使用者討論頁開啟了新的討論系統",
 	"notification-body-flow-enabled-on-talkpage": "在 $3 開啟",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 於 '''$3''' {{GENDER:$1|建立了}}一個新話題。",

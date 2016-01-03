@@ -134,7 +134,7 @@
 	"flow-error-missing-content": "Der Beitrag hat keinen Inhalt. Dieser ist erforderlich, um einen Beitrag zu speichern.",
 	"flow-error-missing-summary": "Du musst eine Zusammenfassung angeben.",
 	"flow-error-missing-title": "Das Thema hat keinen Titel. Dieser ist erforderlich, um ein Thema zu speichern.",
-	"flow-error-parsoid-failure": "Aufgrund eines Parsoid-Fehlers konnte der Inhalt nicht geparst werden.",
+	"flow-error-parsoid-failure": "Inhalt konnte nicht geparst werden: Fehler beim Kontaktieren des Servers zur Parsoid-Konvertierung. Bitte Internetverbindung überprüfen.",
 	"flow-error-missing-replyto": "Es wurde kein Parameter „Antworten an“ angegeben. Dieser Parameter ist für die „Antworten“-Aktion erforderlich.",
 	"flow-error-invalid-replyto": "Der Parameter „Antworten an“ war ungültig. Der angegebene Beitrag konnte nicht gefunden werden.",
 	"flow-error-delete-failure": "Das Löschen dieses Objektes ist fehlgeschlagen.",
