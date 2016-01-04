@@ -133,7 +133,7 @@
 	"flow-error-missing-content": "ברשומה אין תוכן. דרוש תוכן כדי לשמור רשומה",
 	"flow-error-missing-summary": "יש לשלוח סיכום.",
 	"flow-error-missing-title": "לנושא אין כותרת. דרושה כותרת כדי לשמור נושא.",
-	"flow-error-parsoid-failure": "לא ניתן לפענח את התוכן עקב כשל בפרסואיד.",
+	"flow-error-parsoid-failure": "לא ניתן לפעמח את התוכן: שגיאה בהתחברות לשרת להמרה בפרסואיד. נא לבדוק את חיבור האינטרנט שלך",
 	"flow-error-missing-replyto": "לא נשלח פרמטר \"replyTo\". הפרמטר הזה דרוש לפעולת \"reply\".",
 	"flow-error-invalid-replyto": "פרמטר \"replyTo\" שנשלח היה בלתי־תקין. לא נמצאה הרשומה שצוינה.",
 	"flow-error-delete-failure": "מחיקת הפריט הזה נכשלה.",

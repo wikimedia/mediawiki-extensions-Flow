@@ -140,7 +140,7 @@
 	"flow-error-missing-content": "Il tuo messaggio non ha contenuto. Un minimo di contenuto è necessario per poter salvare un messaggio.",
 	"flow-error-missing-summary": "È necessario inserire un riassunto.",
 	"flow-error-missing-title": "L'argomento non ha titolo. Serve un titolo per salvare un argomento.",
-	"flow-error-parsoid-failure": "Impossibile analizzare il contenuto a causa di un errore di Parsoid.",
+	"flow-error-parsoid-failure": "Impossibile analizzare il contenuto: errore nel contattare il server per la conversione Parsoid. Controlla la tua connessione a internet",
 	"flow-error-missing-replyto": "Non è stato indicato un parametro \"rispondi_a\". Questo parametro è richiesto per la funzione \"rispondi\".",
 	"flow-error-invalid-replyto": "Il parametro \"rispondi_a\" non era valido. Il messaggio indicato non è stato trovato.",
 	"flow-error-delete-failure": "La cancellazione di questo elemento non è riuscita.",
