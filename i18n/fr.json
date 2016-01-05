@@ -168,7 +168,7 @@
 	"flow-error-missing-content": "Le message n’a aucun contenu. Un contenu est obligatoire pour enregistrer un message.",
 	"flow-error-missing-summary": "Vous devez saisir un résumé.",
 	"flow-error-missing-title": "Le sujet n’a pas de titre. Un titre est obligatoire pour enregistrer un sujet.",
-	"flow-error-parsoid-failure": "Impossible d’analyser le contenu en raison d’une défaillance de Parsoid.",
+	"flow-error-parsoid-failure": "Impossible d’analyser le contenu : Erreur en contact le serveur pour la conversion de Parsoid. Veuillez vérifier votre connexion internet.",
 	"flow-error-missing-replyto": "Aucun paramètre « replyTo » n’a été fourni. Ce paramètre est requis pour l’action « répondre ».",
 	"flow-error-invalid-replyto": "Le paramètre « replyTo » n’était pas valide. Le message spécifié n’a pas pu être trouvé.",
 	"flow-error-delete-failure": "Impossible de supprimer cet élément.",
