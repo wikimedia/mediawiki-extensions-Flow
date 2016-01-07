@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sanlinnaing"
+			"Sanlinnaing",
+			"Ninjastrikers"
 		]
 	},
-	"flow-edited-by": "$1 က ပြင်ထားသည်။"
+	"flow-edited-by": "$1 က ပြင်ထားသည်။",
+	"flow-notification-link-text-enabled-on-talkpage": "အသုံးပြုသူ စာမျက်နှာကို {{GENDER:|ကြည့်ရန်}}"
 }
