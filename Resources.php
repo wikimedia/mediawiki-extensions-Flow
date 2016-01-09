@@ -120,7 +120,7 @@ $wgResourceModules += array(
 			'flow-post-action-edit-post',
 			'flow-post-action-edit-post-submit',
 			'flow-post-action-edit-post-submit-anonymously',
-			'flow-post-action-hide-post',
+			wfMessage('flow-post-action-hide-post'),
 			'flow-post-action-unhide-post',
 			'flow-post-action-post-history',
 			'flow-post-action-view',
