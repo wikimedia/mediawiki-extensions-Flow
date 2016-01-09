@@ -723,7 +723,7 @@ class UrlGenerator {
 	 */
 	public function hidePostAction( Title $title = null, UUID $workflowId, UUID $postId ) {
 		return new Anchor(
-			wfMessage( 'flow-post-action-hide-post' ),
+			wfMessage( 'parentheses' )->params( 'flow-post-action-hide-post' ),
 			$this->resolveTitle( $title, $workflowId ),
 			array(
 				'action' => 'moderate-post',
