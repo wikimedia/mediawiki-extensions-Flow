@@ -78,7 +78,7 @@ class ContributionsFormatter extends AbstractFormatter {
 		if ( isset( $data['actions']['hide'] ) ) {
 			$key = 'hide';
 			// flow-post-action-hide-post, flow-post-action-hide-topic
-			$msg = "flow-$type-action-hide-$type";
+			$msg = wfMessage( 'parentheses' )->params("flow-$type-action-hide-$type");
 		} elseif ( isset( $data['actions']['unhide'] ) ) {
 			$key = 'unhide';
 			// flow-topic-action-restore-topic, flow-post-action-restore-post
