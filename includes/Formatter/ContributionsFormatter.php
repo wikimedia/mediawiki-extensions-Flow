@@ -90,7 +90,7 @@ class ContributionsFormatter extends AbstractFormatter {
 		/** @var Anchor $anchor */
 		$anchor = $data['actions'][$key];
 
-		return ' (' . Html::rawElement(
+		return msg( 'parentheses' )->rawParams(Html::rawElement(
 			'a',
 			array(
 				'href' => $anchor->getFullURL(),
@@ -100,6 +100,6 @@ class ContributionsFormatter extends AbstractFormatter {
 				'class' => 'flow-history-moderation-action flow-click-interactive',
 			),
 			$ctx->msg( $msg )->escaped()
-		) . ')';
+		))->escaped();
 	}
 }
