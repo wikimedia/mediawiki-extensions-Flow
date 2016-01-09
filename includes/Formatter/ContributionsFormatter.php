@@ -99,7 +99,7 @@ class ContributionsFormatter extends AbstractFormatter {
 				'data-role' => $key,
 				'class' => 'flow-history-moderation-action flow-click-interactive',
 			),
-			$ctx->msg( $msg )->escaped()
+			$ctx->msg( 'parentheses' )->rawParams( $msg )->escaped()
 		) . ')';
 	}
 }
