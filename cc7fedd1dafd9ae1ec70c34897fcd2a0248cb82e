@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6eaa8f54_dc4cb5cd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 105
+      },
+      "writtenOn": "2016-01-09T12:54:20Z",
+      "side": 1,
+      "message": "Remember space and bug https://www.mediawiki.org/wiki/Gerrit/Commit_message_guidelines",
+      "revId": "cc7fedd1dafd9ae1ec70c34897fcd2a0248cb82e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
