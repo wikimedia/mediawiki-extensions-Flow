@@ -257,13 +257,6 @@ $wgResourceModules += array(
 		),
 	) + $mobile,
 	// @todo: upstream to mediawiki ui
-	'ext.flow.mediawiki.ui.modal' => $flowResourceTemplate + array(
-		'position' => 'top',
-		'styles' => array(
-			'styles/mediawiki.ui/modal.less',
-		),
-	) + $mobile,
-	// @todo: upstream to mediawiki ui
 	'ext.flow.mediawiki.ui.text' => $flowResourceTemplate + array(
 		'position' => 'top',
 		'styles' => array(
@@ -275,13 +268,6 @@ $wgResourceModules += array(
 		'position' => 'top',
 		'styles' => array(
 			'styles/mediawiki.ui/forms.less',
-		),
-	) + $mobile,
-	// @todo: upstream to mediawiki ui
-	'ext.flow.mediawiki.ui.tooltips' => $flowResourceTemplate + array(
-		'position' => 'top',
-		'styles' => array(
-			'styles/mediawiki.ui/tooltips.less',
 		),
 	) + $mobile,
 	'ext.flow.styles.base' => $flowResourceTemplate + array(
@@ -449,6 +435,10 @@ $wgResourceModules += array(
 	) + $mobile,
 	'ext.flow' => $flowResourceTemplate + array(
 		'position' => 'top',
+		'styles' => array(
+			'styles/mediawiki.ui/modal.less',
+			'styles/mediawiki.ui/tooltips.less'
+		),
 		'scripts' => array( // Component order is important
 			// MW UI
 			'engine/misc/mw-ui.enhance.js',
