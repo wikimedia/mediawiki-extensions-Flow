@@ -364,6 +364,7 @@
 	"apihelp-flow-parsoid-utils-example-1": "ウィキテキスト <nowiki>'''lorem''' ''blah''</nowiki> を HTML 形式に変換",
 	"apihelp-query+flowinfo-description": "ページの Flow の基礎的な情報を取得します。",
 	"apihelp-query+flowinfo-example-1": "[[Talk:Sandbox]]、[[Main Page]]、[[Talk:Flow]] の Flow の情報を取得",
+	"flow-edited": "編集済み",
 	"flow-edited-by": "$1 が編集しました",
 	"flow-previous-diff": "← 古い編集",
 	"flow-next-diff": "新しい編集 →",

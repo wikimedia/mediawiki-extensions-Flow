@@ -147,7 +147,7 @@
 	"flow-error-missing-content": "La entrada no tiene contenido. Para guardarla necesitas añadir contenido.",
 	"flow-error-missing-summary": "Debes escribir un resumen.",
 	"flow-error-missing-title": "El tema no tiene título. Para guardarlo necesitas añadirle un título.",
-	"flow-error-parsoid-failure": "No se puede analizar el contenido debido a una falla de Parsoid.",
+	"flow-error-parsoid-failure": "No se puede analizar el contenido debido: error al contactar el servidor para la conversión con Parsoid. Verifica tu conexión a Internet",
 	"flow-error-missing-replyto": "Ningún parámetro \"replyTo\" fue suministrado. Este parámetro es requerido para hacer la acción \"responder\".",
 	"flow-error-invalid-replyto": "El parámetro \"replyTo\" era inválido. La publicación especificada no su pudo encontrar.",
 	"flow-error-delete-failure": "Falló la eliminación de este elemento.",
