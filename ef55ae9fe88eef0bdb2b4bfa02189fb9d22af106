@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6eaa8f54_ee13ef5a",
+        "filename": "includes/Formatter/ContributionsFormatter.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 105
+      },
+      "writtenOn": "2016-01-11T10:27:01Z",
+      "side": 1,
+      "message": "This is the documentation where you see what Liangent was saying, i.e. that $ctx is an IContextSource object, where you can use msg() per https://www.mediawiki.org/wiki/Manual:Messages_API#cite_ref-2\n\nMight be useful: https://secure.php.net/manual/en/language.oop5.basic.php",
+      "revId": "ef55ae9fe88eef0bdb2b4bfa02189fb9d22af106",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_2e0ee736",
+        "filename": "includes/Formatter/ContributionsFormatter.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 105
+      },
+      "writtenOn": "2016-01-11T10:27:01Z",
+      "side": 1,
+      "message": "parenthesis to be removed: that\u0027s the task",
+      "revId": "ef55ae9fe88eef0bdb2b4bfa02189fb9d22af106",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_ce16334e",
+        "filename": "includes/Formatter/ContributionsFormatter.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 105
+      },
+      "writtenOn": "2016-01-11T10:27:01Z",
+      "side": 1,
+      "message": "parenthesis to be removed: that\u0027s the task",
+      "range": {
+        "startLine": 103,
+        "startChar": 6,
+        "endLine": 103,
+        "endChar": 10
+      },
+      "revId": "ef55ae9fe88eef0bdb2b4bfa02189fb9d22af106",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
