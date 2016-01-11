@@ -407,19 +407,19 @@ class PageImportState {
 
 	public function begin() {
 		$this->flushDeferredQueue();
-		$this->dbw->begin();
+		$this->dbw->begin( __METHOD__ );
 		$this->cache->begin();
 	}
 
 	public function commit() {
-		$this->dbw->commit();
+		$this->dbw->commit( __METHOD__ );
 		$this->cache->commit();
 		$this->sourceStore->save();
 		$this->flushDeferredQueue();
 	}
 
 	public function rollback() {
-		$this->dbw->rollback();
+		$this->dbw->rollback( __METHOD__ );
 		$this->cache->rollback();
 		$this->sourceStore->rollback();
 		$this->clearDeferredQueue();

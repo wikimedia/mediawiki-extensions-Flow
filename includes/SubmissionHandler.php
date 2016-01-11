@@ -167,7 +167,7 @@ class SubmissionHandler {
 				$page->doDeleteArticleReal( $reason, false, 0, true, $errors, $occupationController->getTalkpageManager() );
 			}
 
-			$dbw->rollback();
+			$dbw->rollback( __METHOD__ );
 			$cache->rollback();
 			throw $e;
 		}
