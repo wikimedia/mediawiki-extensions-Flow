@@ -27,6 +27,10 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 		return $postId && $postId instanceof UUID;
 	}
 
+	public function getSecondaryLinks() {
+		return array( $this->getAgentLink() );
+	}
+
 	/**
 	 * Return a full url of following format:
 	 *   https://<site>/wiki/Topic:<topicId>?topic_showPostId=<postId>&fromnotif=1#flow-post-<postId>
