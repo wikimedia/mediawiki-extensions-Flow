@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6eaa8f54_d6f480f0",
+        "filename": "includes/Formatter/ContributionsFormatter.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 50
+      },
+      "writtenOn": "2016-01-12T21:15:46Z",
+      "side": 1,
+      "message": "We usually use single quotes for plain strings.",
+      "revId": "ef6e336b0a45c9b503dd71ba94f00e69ac590d3d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_76f58ce8",
+        "filename": "includes/Formatter/ContributionsFormatter.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 50
+      },
+      "writtenOn": "2016-01-12T21:15:46Z",
+      "side": 1,
+      "message": "As above and missing space between parentheses.",
+      "revId": "ef6e336b0a45c9b503dd71ba94f00e69ac590d3d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_f6e89c0d",
+        "filename": "includes/Formatter/ContributionsFormatter.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 50
+      },
+      "writtenOn": "2016-01-12T21:15:46Z",
+      "side": 1,
+      "message": "You could directly return the string above, but this is also ok. You might want to add a new line before this in order to make it a bit nicer to read.",
+      "revId": "ef6e336b0a45c9b503dd71ba94f00e69ac590d3d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
