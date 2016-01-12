@@ -352,6 +352,29 @@
 	};
 
 	/**
+	 * Save a topic title.
+	 *
+	 * @param {string} topicId
+	 * @param {string} content
+	 * @param {Object} captcha
+	 * @return {jQuery.Promise} Promise that is resolved with workflow id
+	 */
+	mw.flow.dm.APIHandler.prototype.saveTopicTitle = function ( topicId, content, captcha ) {
+		var params = {
+				page: this.getTopicTitle( topicId ),
+				etcontent: content,
+				etprev_revision: this.currentRevision
+			};
+
+		this.addCaptcha( params, captcha );
+
+		return this.postEdit( 'edit-title', params )
+			.then( function ( data ) {
+				return OO.getProp( data.flow, 'edit-title', 'workflow' );
+			} );
+	};
+
+	/**
 	 * Execute the 'lock-topic' moderation action against a topic. Can be used to resolve or reopen a topic.
 	 *
 	 * @param {string} topicId Id of the topic to moderate

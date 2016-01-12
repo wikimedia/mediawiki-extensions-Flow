@@ -444,35 +444,4 @@ mw.flow.ui.enhance = {};
 			.on( 'mouseenter.mw-ui-enhance focus.mw-ui-enhance', '.flow-ui-tooltip-target', onMwUiTooltipFocus )
 			.on( 'mouseleave.mw-ui-enhance blur.mw-ui-enhance click.mw-ui-enhance', '.flow-ui-tooltip-target', onMwUiTooltipBlur );
 	} );
-
-	/**
-	 * Ask a user to confirm navigating away from a page when they have entered unsubmitted changes to a form.
-	 */
-	var _oldOnBeforeUnload = window.onbeforeunload;
-	window.onbeforeunload = function () {
-		var uncommitted,
-			hasValue, currentValue, defaultValue, placeholderText;
-
-		$( 'input, textarea' ).filter( '.mw-ui-input:visible' ).each( function () {
-			hasValue = !!$.trim( this.value );
-			currentValue = this.value;
-			defaultValue = this.defaultValue;
-			placeholderText = $( this ).attr( 'placeholder' );
-
-			if ( hasValue && currentValue !== defaultValue && currentValue !== placeholderText ) {
-				uncommitted = true;
-				return false;
-			}
-		} );
-
-		// Ask the user if they want to navigate away
-		if ( uncommitted ) {
-			return mw.msg( 'mw-ui-unsubmitted-confirm' );
-		}
-
-		// Run the old on beforeunload fn if it exists
-		if ( _oldOnBeforeUnload ) {
-			return _oldOnBeforeUnload();
-		}
-	};
 }( mw, jQuery ) );
