@@ -50,7 +50,7 @@
 	// Methods
 
 	mw.flow.ve.Target.prototype.loadHtml = function ( html ) {
-		var doc = this.parseHtml( this.originalHtml );
+		var doc = this.parseHtml( html );
 		this.documentReady( doc );
 	};
 
