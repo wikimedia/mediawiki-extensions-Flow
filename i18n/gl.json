@@ -129,7 +129,7 @@
 	"flow-error-missing-content": "A mensaxe non ten contido. O contido é obrigatorio para gardar unha mensaxe.",
 	"flow-error-missing-summary": "Debe indicar un resumo.",
 	"flow-error-missing-title": "O fío non ten título. O título é obrigatorio para gardar un fío.",
-	"flow-error-parsoid-failure": "Non é posible analizar o contido debido a un fallo do Parsoid.",
+	"flow-error-parsoid-failure": "Non é posible analizar o contido: Erro contactando co servidor para a conversión Parsoid. Por favor, revise a súa conexión a Internet.",
 	"flow-error-missing-replyto": "Non se achegou ningún parámetro de resposta. Este parámetro é obrigatorio para a acción \"responder\".",
 	"flow-error-invalid-replyto": "O parámetro de resposta non é válido. Non se puido atopar a mensaxe especificada.",
 	"flow-error-delete-failure": "Houbo un erro ao borrar este elemento.",

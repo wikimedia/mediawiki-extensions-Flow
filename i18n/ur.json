@@ -336,6 +336,7 @@
 	"flow-mark-diff-patrolled-link-text": "بطور مراجعت شدہ نشان زد کریں",
 	"flow-mark-diff-patrolled-link-title": "بطور مراجعت شدہ نشان زد کریں",
 	"flow-talk-page-beta-feature-message": "تبادلۂ خیال صارف پر فلو",
+	"flow-talk-page-beta-feature-description": "{{GENDER:|آپ}} کے تبادلہ خیال صفحہ پر نیا نظام گفتگو فعال کرتا ہے۔ اس نظام کے ذریعہ گفتگو اور تبادلہ خیال میں انتہائی سہولت ہو جاتی ہے نیز گفتگو کی اطلاعات بھی موصول ہوتی رہتی ہیں۔ بعد ازاں پہلے سے موجود ویکی متن والی گفتگو وثق میں منتقل ہو جائے گی۔ چونکہ یہ سہولت از خود فعال نہیں ہوتی، لہذا صارفین کو دستی طور پر اسے فعال کرنا لازمی ہے۔ اس سہولت کو غیر فعال کرنے کے بعد گزشتہ تبادلہ خیال صفحہ وثق سے ختم ہو کر واپس اصل صفحہ پر آجائے گا اور نیا نظام گفتگو فلو غیر فعال ہو جائے گا۔",
 	"flow-notification-link-text-enabled-on-talkpage": "{{GENDER:|صارف کا تبادلۂ خیال صفحہ دیکھیے}}",
 	"flow-notification-enabled-on-talkpage-email-subject-message": "$2 پر نیا نظام گفتگو",
 	"flow-beta-feature-add-archive-template-edit-summary": "اضافہ سانچہ وثق",
