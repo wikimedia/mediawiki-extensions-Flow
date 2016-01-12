@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6eaa8f54_a1b2dcf6",
+        "filename": "includes/Formatter/ContributionsFormatter.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 50
+      },
+      "writtenOn": "2016-01-12T21:59:55Z",
+      "side": 1,
+      "message": "Trailing space",
+      "revId": "f60f8c2ca8292641588c7991789c2bbd45dc2b44",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
