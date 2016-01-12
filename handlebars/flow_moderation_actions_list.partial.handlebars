@@ -2,7 +2,7 @@
 	{{~#ifCond moderationType "===" "topic"~}}
 		{{!-- Topic only --}}
 		{{~#if actions.edit~}}
-			<li class="flow-js">
+			<li>
 				{{~noop~}}
 				<a class="{{moderationMwUiClass}} mw-ui-progressive mw-ui-quiet mw-ui-hovericon flow-ui-edit-title-link"
 				   href="{{actions.edit.url}}">
