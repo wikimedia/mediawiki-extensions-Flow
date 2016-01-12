@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6eaa8f54_47b5402e",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicTitleWidget.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-01-12T02:39:45Z",
+      "side": 1,
+      "message": "We usually put config \u003d config || {}; at the top of a constructor that takes an optional config object. In your case, that\u0027s not necessarily required because you don\u0027t use any config parameters, but if you don\u0027t put it in, this constructor will be booby-trapped for the first person that does add a config parameter.",
+      "revId": "41bcf7070ba236c57b8facb6183fbb130a470bc8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_e78d4c86",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicTitleWidget.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-01-12T02:39:45Z",
+      "side": 1,
+      "message": "OOUI\u0027s naming convention is that the name of every variable whose value is a jQuery object should start with $, so these should be called this.$controls and this.$buttons (but this.saveButton doesn\u0027t have a $ because it\u0027s a widget, not a jQuery object).",
+      "revId": "41bcf7070ba236c57b8facb6183fbb130a470bc8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_67995cc6",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.TopicTitleWidget.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-01-12T02:39:45Z",
+      "side": 1,
+      "message": "According to MW coding conventions, var statements should be put at the top of the function",
+      "revId": "41bcf7070ba236c57b8facb6183fbb130a470bc8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
