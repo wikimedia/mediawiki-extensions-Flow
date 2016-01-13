@@ -89,7 +89,7 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 
 		$total = $fail = 0;
 		foreach ( $it as $batch ) {
-			$dbw->begin( __METHOD__ );
+			$this->beginTransaction( $dbw, __METHOD__ );
 			foreach ( $batch as $row ) {
 				$total++;
 				if ( !isset( self::$revisionTypes[$row->rev_type] ) ) {
@@ -129,7 +129,7 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 				}
 				$this->output( '.' );
 			}
-			$dbw->commit( __METHOD__ );
+			$this->commitTransaction( $dbw, __METHOD__ );
 			$this->storage->clear();
 			$this->dbFactory->waitForSlaves();
 		}

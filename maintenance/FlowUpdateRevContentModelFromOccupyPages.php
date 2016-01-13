@@ -36,7 +36,7 @@ class FlowUpdateRevContentModelFromOccupyPages extends Maintenance {
 		$skippedCount = 0;
 
 		while ( $overallInd < $pageCount ) {
-			$dbw->begin( __METHOD__ );
+			$this->beginTransaction( $dbw, __METHOD__ );
 			$batchInd = 0;
 			while( $overallInd < $pageCount && $batchInd < $this->mBatchSize ) {
 				$pageName = $wgFlowOccupyPages[$overallInd];
@@ -63,7 +63,7 @@ class FlowUpdateRevContentModelFromOccupyPages extends Maintenance {
 				$batchInd++;
 			}
 
-			$dbw->commit( __METHOD__ );
+			$this->commitTransaction( $dbw, __METHOD__ );
 			$this->output( "Completed batch.\n\n" );
 		}
 

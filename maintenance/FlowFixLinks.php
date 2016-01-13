@@ -71,7 +71,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 
 		$count = 0;
 		foreach ( $iterator as $rows ) {
-			$dbw->begin( __METHOD__ );
+			$this->beginTransaction( $dbw, __METHOD__ );
 
 			foreach ( $rows as $row ) {
 				$workflow = Workflow::fromStorageRow( (array) $row );
@@ -90,7 +90,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 				$linksTableUpdater->doUpdate( $workflow );
 			}
 
-			$dbw->commit( __METHOD__ );
+			$this->commitTransaction( $dbw, __METHOD__ );
 
 			$count += count( $rows );
 			$this->output( "Rebuilt links for " . $count . " workflows...\n" );
