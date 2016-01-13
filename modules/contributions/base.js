@@ -19,7 +19,7 @@
 		// If that failed still run the onComplete, it will not trigger
 		// our handler and be a normal click this time.
 		mw.loader.using(
-			[ 'ext.flow', 'ext.flow.mediawiki.ui.modal', 'mediawiki.ui.input' ],
+			[ 'ext.flow', 'mediawiki.ui.input' ],
 			onComplete,
 			onComplete
 		);
