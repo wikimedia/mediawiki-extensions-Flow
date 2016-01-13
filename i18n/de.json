@@ -9,7 +9,8 @@
 			"Macofe",
 			"MarcoFalke",
 			"J. 'mach' wust",
-			"Nnemo"
+			"Nnemo",
+			"Predatorix"
 		]
 	},
 	"enableflow": "Flow aktivieren",
@@ -436,10 +437,12 @@
 	"apihelp-flow+lock-topic-param-reason": "Grund für das Sperren oder Freigeben des Themas. Beachte bitte, dass der Wiki-Flow-Client hier „Als erledigt markiert“ verwendet und optionale zusätzliche Informationen in die Zusammenfassung platziert.",
 	"apihelp-flow+lock-topic-example-1": "Sperrt [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+moderate-post-description": "Moderiert einen Flow-Beitrag.",
+	"apihelp-flow+moderate-post-param-moderationState": "Auf welcher Ebene moderiert werden soll.",
 	"apihelp-flow+moderate-post-param-reason": "Grund für die Moderation.",
 	"apihelp-flow+moderate-post-param-postId": "Kennung des zu moderierenden Beitrags.",
 	"apihelp-flow+moderate-post-example-1": "Löscht einen Beitrag im Thema [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+moderate-topic-description": "Moderiert ein Flow-Thema.",
+	"apihelp-flow+moderate-topic-param-moderationState": "Auf welcher Ebene moderiert werden soll.",
 	"apihelp-flow+moderate-topic-param-reason": "Grund für die Moderation.",
 	"apihelp-flow+moderate-topic-example-1": "Löscht das Thema [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+new-topic-description": "Erstellt ein neues Flow-Thema auf dem angegebenen Workflow.",
