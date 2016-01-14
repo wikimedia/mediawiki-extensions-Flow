@@ -4,6 +4,10 @@ namespace Flow;
 
 class NewTopicPresentationModel extends FlowPresentationModel {
 
+	public function getIconType() {
+		return 'flow-new-topic';
+	}
+
 	public function canRender() {
 		return $this->hasTitle();
 	}

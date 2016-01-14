@@ -5,6 +5,10 @@ namespace Flow;
 
 class TopicRenamedPresentationModel extends FlowPresentationModel {
 
+	public function getIconType() {
+		return 'flow-topic-renamed';
+	}
+
 	public function canRender() {
 		return $this->hasTitle()
 			&& $this->hasValidTopicWorkflowId()

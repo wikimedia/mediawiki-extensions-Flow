@@ -4,6 +4,10 @@ namespace Flow;
 
 class PostEditedPresentationModel extends FlowPresentationModel {
 
+	public function getIconType() {
+		return 'flow-post-edited';
+	}
+
 	public function canRender() {
 		return $this->hasTitle()
 			&& $this->hasValidTopicWorkflowId()
