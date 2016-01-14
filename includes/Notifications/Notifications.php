@@ -36,6 +36,7 @@ $notifications = array(
 		'email-body-batch-params' => array( 'agent', 'subject', 'title' ),
 		'email-body-batch-bundle-message' => 'flow-notification-newtopic-email-batch-bundle-body',
 		'email-body-batch-bundle-params' => array( 'event-count', 'title', 'new-topics-permalink' ),
+		'icon' => 'flow-new-topic'
 	) + $notificationTemplate,
 	'flow-post-reply' => array(
 		'presentation-model' => 'Flow\\PostReplyPresentationModel',
@@ -60,6 +61,7 @@ $notifications = array(
 		'email-body-batch-params' => array( 'agent', 'subject', 'title' ),
 		'email-body-batch-bundle-message' => 'flow-notification-reply-email-batch-bundle-body',
 		'email-body-batch-bundle-params' => array( 'agent', 'subject', 'title', 'agent-other-display', 'agent-other-count' ),
+		'icon' => 'chat',
 	) + $notificationTemplate,
 	'flow-post-edited' => array(
 		'presentation-model' => 'Flow\\PostEditedPresentationModel',
@@ -81,6 +83,7 @@ $notifications = array(
 		'email-body-batch-params' => array( 'agent', 'subject', 'title' ),
 		'email-body-batch-bundle-message' => 'flow-notification-edit-email-batch-bundle-body',
 		'email-body-batch-bundle-params' => array( 'agent', 'subject', 'title', 'agent-other-display', 'agent-other-count' ),
+		'icon' => 'flow-post-edited',
 	) + $notificationTemplate,
 	'flow-topic-renamed' => array(
 		'presentation-model' => 'Flow\\TopicRenamedPresentationModel',
@@ -94,6 +97,7 @@ $notifications = array(
 		'email-subject-params' => array( 'agent' ),
 		'email-body-batch-message' => 'flow-notification-rename-email-batch-body',
 		'email-body-batch-params' => array( 'agent', 'old-subject', 'new-subject', 'title' ),
+		'icon' => 'flow-topic-renamed',
 	) + $notificationTemplate,
 	'flow-mention' => array(
 		'presentation-model' => 'Flow\\MentionPresentationModel',

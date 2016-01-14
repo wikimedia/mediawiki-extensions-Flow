@@ -5,6 +5,10 @@ namespace Flow;
 
 class PostReplyPresentationModel extends FlowPresentationModel {
 
+	public function getIconType() {
+		return 'chat';
+	}
+
 	public function canRender() {
 		return $this->hasTitle()
 			&& $this->hasValidTopicWorkflowId()

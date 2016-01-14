@@ -38,6 +38,15 @@ class NotificationController {
 				'rtl' => 'Flow/modules/notification/icon/Talk-rtl.png'
 			)
 		);
+		$icons['flow-new-topic'] = array(
+			'path' => 'Flow/modules/notification/icon/flow-new-topic.svg',
+		);
+		$icons['flow-post-edited'] = array(
+			'path' => 'Flow/modules/notification/icon/flow-post-edited.svg',
+		);
+		$icons['flow-topic-renamed'] = array(
+			'path' => 'Flow/modules/notification/icon/flow-topic-renamed.svg',
+		);
 	}
 
 	/**
