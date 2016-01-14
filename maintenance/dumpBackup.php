@@ -14,6 +14,12 @@ $maintPath = ( getenv( 'MW_INSTALL_PATH' ) !== false
 require_once $maintPath . '/commandLine.inc';
 require_once $maintPath . '/backup.inc';
 
+// Stop if Flow not enabled on the wiki
+if ( !class_exists( 'FlowHooks' ) ) {
+	echo "Flow isn't enabled on this wiki.\n";
+	die( 1 );
+}
+
 class FlowBackupDumper extends BackupDumper {
 	function dump( $history, $text = Exporter::TEXT ) {
 		# Notice messages will foul up your XML output even if they're
