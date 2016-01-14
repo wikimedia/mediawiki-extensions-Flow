@@ -2,7 +2,7 @@
 
 namespace Flow\Search;
 
-use Elastica\Filter\Bool;
+use Elastica\Filter\BoolFilter;
 use Elastica\Filter\Terms;
 use Elastica\Query;
 use Flow\Exception\InvalidInputException;
@@ -61,7 +61,7 @@ class SearchEngine extends \SearchEngine {
 			$query->setSize( $this->limit );
 		}
 
-		$filter = new Bool();
+		$filter = new BoolFilter();
 
 		// filters
 		if ( $this->namespaces ) {
