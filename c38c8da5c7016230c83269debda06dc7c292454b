@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6eaa8f54_a94cf0cb",
+        "filename": "i18n/en.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-01-15T09:34:52Z",
+      "side": 1,
+      "message": "I wonder if this needs to be parameterized with the number of topics to support languages that use different plural forms depending on the number (e.g. Russian)",
+      "revId": "c38c8da5c7016230c83269debda06dc7c292454b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
