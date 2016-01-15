@@ -32,12 +32,6 @@ class NotificationController {
 			'priority' => 3,
 			'tooltip' => 'echo-pref-tooltip-flow-discussion',
 		);
-		$icons['flow-discussion'] = array(
-			'path' => array(
-				'ltr' => 'Flow/modules/notification/icon/Talk-ltr.png',
-				'rtl' => 'Flow/modules/notification/icon/Talk-rtl.png'
-			)
-		);
 		$icons['flow-new-topic'] = array(
 			'path' => 'Flow/modules/notification/icon/flow-new-topic.svg',
 		);

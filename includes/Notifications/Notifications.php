@@ -5,7 +5,6 @@ $notificationTemplate = array(
 	'group' => 'other',
 	'section' => 'message',
 	'formatter-class' => 'Flow\NotificationFormatter',
-	'icon' => 'flow-discussion',
 	'immediate' => false, // Default
 );
 
@@ -111,6 +110,7 @@ $notifications = array(
 		'email-subject-params' => array( 'agent', 'flow-title', 'user' ),
 		'email-body-batch-message' => 'flow-notification-mention-email-batch-body',
 		'email-body-batch-params' => array( 'agent', 'subject', 'title', 'user' ),
+		'icon' => 'mention',
 	) + $notificationTemplate,
 	'flow-enabled-on-talkpage' => array(
 		'presentation-model' => 'Flow\\FlowEnabledOnTalkpagePresentationModel',
@@ -128,6 +128,7 @@ $notifications = array(
 		'email-subject-params' => array( 'agent', 'title' ),
 		'email-body-batch-message' => 'flow-notification-enabled-on-talkpage-email-batch-body',
 		'email-body-batch-params' => array( 'agent', 'title' ),
+		'icon' => 'chat',
 	) + $notificationTemplate,
 );
 

@@ -4,6 +4,10 @@ namespace Flow;
 
 class MentionPresentationModel extends FlowPresentationModel {
 
+	public function getIconType() {
+		return 'mention';
+	}
+
 	public function canRender() {
 		return $this->hasTitle();
 	}
