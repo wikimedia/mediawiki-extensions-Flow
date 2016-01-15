@@ -1,6 +1,9 @@
 <?php
 
-use Flow\Conversion\Utils;
+use Flow\Model\AbstractRevision;
+use Flow\Import\LiquidThreadsApi\ApiBackend;
+use Flow\Import\LiquidThreadsApi\RemoteApiBackend;
+use Flow\Import\LiquidThreadsApi\LocalApiBackend;
 
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
@@ -12,36 +15,66 @@ class ConvertToText extends Maintenance {
 	 */
 	protected $pageTitle;
 
+	/**
+	 * @var ApiBackend
+	 */
+	protected $api;
+
+	/**
+	 * @var string
+	 */
+	protected $indentChar;
+
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Converts a specific Flow page to text";
 
 		$this->addArg( 'page', 'The page to convert', true /*required*/ );
+		$this->addArg( 'remoteapi', 'The api of the wiki to convert the page from (or nothing, for local wiki)', false /*required*/ );
+		$this->addArg( 'indent-char', 'Character to use for post indenting (: by default)', false /*required*/ );
 	}
 
 	public function execute() {
 		$pageName = $this->getArg( 0 );
 		$this->pageTitle = Title::newFromText( $pageName );
 
-		if ( ! $this->pageTitle ) {
+		if ( !$this->pageTitle ) {
 			$this->error( 'Invalid page title', true );
+		}
+
+		if ( $this->getOption( 'remoteapi' ) ) {
+			$this->api = new RemoteApiBackend( $this->getOption( 'remoteapi' ) );
+		} else {
+			$this->api = new LocalApiBackend();
+		}
+
+		$this->indentChar = $this->getOption( 'indent-char' ) ?: ':';
+
+		$headerContent = '';
+
+		$headerData = $this->flowApi(
+			$this->pageTitle,
+			'view-header',
+			array( 'vhformat' => 'wikitext' ),
+			'header'
+		);
+
+		$headerRevision = $headerData['header']['revision'];
+		if ( isset( $headerRevision['content'] ) ) {
+			$headerContent = $headerRevision['content']['content'];
 		}
 
 		$continue = true;
 		$pagerParams = array( 'vtllimit' => 1 );
 		$topics = array();
-		$headerContent = '';
-
-		$headerData = $this->flowApi( $this->pageTitle, 'view-header', array( 'vhformat' => 'wikitext' ), 'header' );
-
-		$headerRevision = $headerData['header']['revision'];
-		if ( isset( $headerRevision['content'] ) ) {
-			$headerContent = $headerRevision['content'];
-		}
-
 		while( $continue ) {
 			$continue = false;
-			$flowData = $this->flowApi( $this->pageTitle, 'view-topiclist', $pagerParams, 'topiclist' );
+			$flowData = $this->flowApi(
+				$this->pageTitle,
+				'view-topiclist',
+				$pagerParams + array( 'vtlformat' => 'wikitext', 'vtlsortby' => 'newest' ),
+				'topiclist'
+			);
 
 			$topicListBlock = $flowData['topiclist'];
 
@@ -49,27 +82,26 @@ class ConvertToText extends Maintenance {
 				$revisionId = reset( $topicListBlock['posts'][$rootPostId] );
 				$revision = $topicListBlock['revisions'][$revisionId];
 
-				$topicOutput = '==' . $revision['content']['content'] . '==' . "\n";
-				$topicOutput .= $this->processPostCollection( $topicListBlock, $revision['replies'] );
-
-				$topics[] = $topicOutput;
+				$topics[] = $this->processTopic( $topicListBlock, $revision );
 			}
 
-			$paginationLinks = $topicListBlock['links']['pagination'];
-			if ( isset( $paginationLinks['fwd'] ) ) {
-				list( $junk, $query ) = explode( '?', $paginationLinks['fwd']['url'] );
-				$queryParams = wfCGIToArray( $query );
+			if ( isset( $topicListBlock['links']['pagination'] ) ) {
+				$paginationLinks = $topicListBlock['links']['pagination'];
+				if ( isset( $paginationLinks['fwd'] ) ) {
+					list( $junk, $query ) = explode( '?', $paginationLinks['fwd']['url'] );
+					$queryParams = wfCGIToArray( $query );
 
-				$pagerParams = array(
-					'vtloffset-id' => $queryParams['topiclist_offset-id'],
-					'vtloffset-dir' => 'fwd',
-					'vtloffset-limit' => '1',
-				);
-				$continue = true;
+					$pagerParams = array(
+						'vtloffset-id' => $queryParams['topiclist_offset-id'],
+						'vtloffset-dir' => 'fwd',
+						'vtloffset-limit' => '1',
+					);
+					$continue = true;
+				}
 			}
 		}
 
-		print $headerContent . implode( "\n", array_reverse( $topics ) );
+		print $headerContent . "\n\n" . implode( "\n", array_reverse( $topics ) );
 	}
 
 	/**
@@ -80,31 +112,48 @@ class ConvertToText extends Maintenance {
 	 * @return array
 	 * @throws MWException
 	 */
-	public function flowApi( Title $title, $submodule, array $request, $requiredBlock = false ) {
-		$request = new FauxRequest( $request + array(
+	protected function flowApi( Title $title, $submodule, array $request, $requiredBlock = false ) {
+		$result = $this->api->apiCall( $request + array(
 			'action' => 'flow',
 			'submodule' => $submodule,
 			'page' => $title->getPrefixedText(),
 		) );
 
-		$api = new ApiMain( $request );
-		$api->execute();
-
-		$flowData = $api->getResult()->getResultData( array( 'flow', $submodule, 'result' ) );
-		if ( $flowData === null ) {
-			throw new MWException( "API response has no Flow data" );
-		}
-		$flowData = ApiResult::stripMetadata( $flowData );
-
-		if( $requiredBlock !== false && ! isset( $flowData[$requiredBlock] ) ) {
-			throw new MWException( "No $requiredBlock block in API response" );
-		}
-
-		return $flowData;
+		return $result['flow'][$submodule]['result'];
 	}
 
-	public function processPostCollection( array $context, array $collection, $indentLevel = 0 ) {
-		$indent = str_repeat( ':', $indentLevel );
+	protected function processTopic( array $context, array $revision ) {
+		$topicOutput = '==' . $revision['content']['content'] . '==' . "\n";
+		$summaryOutput = isset( $revision['summary'] ) ? $this->processSummary( $context, $revision['summary'] ) : '';
+		$postsOutput = $this->processPostCollection( $context, $revision['replies'] );
+		$resolved = isset( $revision['moderateState'] ) && $revision['moderateState'] === AbstractRevision::MODERATED_LOCKED;
+
+		// check if "resolved" templates exist
+		$archiveTemplates = $this->pageExists( 'Template:Archive_top' ) && $this->pageExists( 'Template:Archive_bottom' );
+		$hatnoteTemplate = $this->pageExists( 'Template:Hatnote' );
+
+		if ( $archiveTemplates && $resolved ) {
+			return '{{Archive top|result=' . $summaryOutput . "|status=resolved}}\n\n" .
+				$topicOutput . $postsOutput . "{{Archive bottom}}\n\n";
+		} elseif ( $hatnoteTemplate && $summaryOutput ) {
+			return $topicOutput . '{{Hatnote|' . $summaryOutput . "}}\n\n" . $postsOutput;
+		} else {
+			// italicize summary, if there is any, to set it apart from posts
+			$summaryOutput = $summaryOutput ? "''" . $summaryOutput . "''" : '';
+			return $topicOutput . $summaryOutput . $postsOutput;
+		}
+	}
+
+	protected function processSummary( array $context, array $summary ) {
+		$user = User::newFromName( $summary['revision']['author']['name'], false );
+
+		return trim( $summary['revision']['content']['content'] ) . ' ' .
+			$this->getSignature( $user, $summary['revision']['timestamp'] );
+	}
+
+	protected function processPostCollection( array $context, array $collection, $indentLevel = 0 ) {
+		$indent = str_repeat( $this->indentChar, $indentLevel );
+		$indent = $indent ? $indent . ' ' : $indent;
 		$output = '';
 
 		foreach( $collection as $postId ) {
@@ -117,17 +166,9 @@ class ConvertToText extends Maintenance {
 			}
 
 			$user = User::newFromName( $revision['author']['name'], false );
-			$postId = Flow\Model\UUID::create( $postId );
 
-			$content = $revision['content']['content'];
-			$contentFormat = $revision['content']['format'];
-
-			if ( $contentFormat !== 'wikitext' ) {
-				$content = Utils::convert( $contentFormat, 'wikitext', $content, $this->pageTitle );
-			}
-
-			$thisPost = $indent . trim( $content ) . ' ' .
-				$this->getSignature( $user, $postId->getTimestamp() ) . "\n";
+			$thisPost = $indent . trim( $revision['content']['content'] ) . ' ' .
+				$this->getSignature( $user, $revision['timestamp'] ) . "\n";
 
 			if ( $indentLevel > 0 ) {
 				$thisPost = preg_replace( "/\n+/", "\n", $thisPost );
@@ -146,7 +187,7 @@ class ConvertToText extends Maintenance {
 		return $output;
 	}
 
-	public function getSignature( $user, $timestamp ) {
+	protected function getSignature( $user, $timestamp ) {
 		global $wgContLang, $wgParser;
 
 		// Force unstub
@@ -172,6 +213,16 @@ class ConvertToText extends Maintenance {
 		} else {
 			return "[Unknown user] $d";
 		}
+	}
+
+	protected function pageExists( $pageName ) {
+		static $pages = array();
+		if ( !isset( $pages[$pageName] ) ) {
+			$result = $this->api->apiCall( array( 'action' => 'query', 'titles' => $pageName ) );
+			$pages[$pageName] = !isset( $result['query']['pages'][-1] );
+		}
+
+		return $pages[$pageName];
 	}
 }
 
