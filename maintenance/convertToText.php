@@ -1,6 +1,6 @@
 <?php
 
-use Flow\Conversion\Utils;
+use Flow\Model\AbstractRevision;
 
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
@@ -23,25 +23,35 @@ class ConvertToText extends Maintenance {
 		$pageName = $this->getArg( 0 );
 		$this->pageTitle = Title::newFromText( $pageName );
 
-		if ( ! $this->pageTitle ) {
+		if ( !$this->pageTitle ) {
 			$this->error( 'Invalid page title', true );
+		}
+
+		$headerContent = '';
+
+		$headerData = $this->flowApi(
+			$this->pageTitle,
+			'view-header',
+			array( 'vhformat' => 'wikitext' ),
+			'header'
+		);
+
+		$headerRevision = $headerData['header']['revision'];
+		if ( isset( $headerRevision['content'] ) ) {
+			$headerContent = $headerRevision['content']['content'];
 		}
 
 		$continue = true;
 		$pagerParams = array( 'vtllimit' => 1 );
 		$topics = array();
-		$headerContent = '';
-
-		$headerData = $this->flowApi( $this->pageTitle, 'view-header', array( 'vhformat' => 'wikitext' ), 'header' );
-
-		$headerRevision = $headerData['header']['revision'];
-		if ( isset( $headerRevision['content'] ) ) {
-			$headerContent = $headerRevision['content'];
-		}
-
 		while( $continue ) {
 			$continue = false;
-			$flowData = $this->flowApi( $this->pageTitle, 'view-topiclist', $pagerParams, 'topiclist' );
+			$flowData = $this->flowApi(
+				$this->pageTitle,
+				'view-topiclist',
+				$pagerParams + array( 'vtlformat' => 'wikitext' ),
+				'topiclist'
+			);
 
 			$topicListBlock = $flowData['topiclist'];
 
@@ -49,10 +59,7 @@ class ConvertToText extends Maintenance {
 				$revisionId = reset( $topicListBlock['posts'][$rootPostId] );
 				$revision = $topicListBlock['revisions'][$revisionId];
 
-				$topicOutput = '==' . $revision['content']['content'] . '==' . "\n";
-				$topicOutput .= $this->processPostCollection( $topicListBlock, $revision['replies'] );
-
-				$topics[] = $topicOutput;
+				$topics[] = $this->processTopic( $topicListBlock, $revision );
 			}
 
 			$paginationLinks = $topicListBlock['links']['pagination'];
@@ -61,7 +68,7 @@ class ConvertToText extends Maintenance {
 				$queryParams = wfCGIToArray( $query );
 
 				$pagerParams = array(
-					'vtloffset-id' => $queryParams['topiclist_offset-id'],
+					'vtloffset' => $queryParams['topiclist_offset'],
 					'vtloffset-dir' => 'fwd',
 					'vtloffset-limit' => '1',
 				);
@@ -69,7 +76,7 @@ class ConvertToText extends Maintenance {
 			}
 		}
 
-		print $headerContent . implode( "\n", array_reverse( $topics ) );
+		print $headerContent . "\n\n" . implode( "\n", array_reverse( $topics ) );
 	}
 
 	/**
@@ -80,7 +87,7 @@ class ConvertToText extends Maintenance {
 	 * @return array
 	 * @throws MWException
 	 */
-	public function flowApi( Title $title, $submodule, array $request, $requiredBlock = false ) {
+	protected function flowApi( Title $title, $submodule, array $request, $requiredBlock = false ) {
 		$request = new FauxRequest( $request + array(
 			'action' => 'flow',
 			'submodule' => $submodule,
@@ -103,7 +110,43 @@ class ConvertToText extends Maintenance {
 		return $flowData;
 	}
 
-	public function processPostCollection( array $context, array $collection, $indentLevel = 0 ) {
+	protected function processTopic( array $context, array $revision ) {
+		$topicOutput = '==' . $revision['content']['content'] . '==' . "\n";
+		$summaryOutput = isset( $revision['summary'] ) ? $this->processSummary( $context, $revision['summary'] ) : '';
+		$postsOutput = $this->processPostCollection( $context, $revision['replies'] );
+		$resolved = isset( $revision['moderateState'] ) && $revision['moderateState'] === AbstractRevision::MODERATED_LOCKED;
+
+		// check if "resolved" templates exist
+		static $archiveTemplates = null;
+		static $hatnoteTemplate = null;
+		if ( $archiveTemplates === null ) {
+			$archiveTemplates = Title::newFromDBkey( 'Template:Archive_top' )->exists() &&
+				Title::newFromDBkey( 'Template:Archive_bottom' )->exists();
+		}
+		if ( $hatnoteTemplate === null ) {
+			$hatnoteTemplate = Title::newFromDBkey( 'Template:Hatnote' )->exists();
+		}
+
+		if ( $archiveTemplates && $resolved ) {
+			return '{{Archive top|result=' . $summaryOutput . "|status=resolved}}\n\n" .
+				$topicOutput . $postsOutput . "{{Archive bottom}}\n\n";
+		} elseif ( $hatnoteTemplate && $summaryOutput ) {
+			return $topicOutput . '{{Hatnote|' . $summaryOutput . "}}\n\n" . $postsOutput;
+		} else {
+			// italicize summary, if there is any, to set it apart from posts
+			$summaryOutput = $summaryOutput ? "''" . $summaryOutput . "''" : '';
+			return $topicOutput . $summaryOutput . $postsOutput;
+		}
+	}
+
+	protected function processSummary( array $context, array $summary ) {
+		$user = User::newFromName( $summary['revision']['author']['name'], false );
+
+		return trim( $summary['revision']['content']['content'] ) . ' ' .
+			$this->getSignature( $user, $summary['revision']['timestamp'] );
+	}
+
+	protected function processPostCollection( array $context, array $collection, $indentLevel = 0 ) {
 		$indent = str_repeat( ':', $indentLevel );
 		$output = '';
 
@@ -117,17 +160,9 @@ class ConvertToText extends Maintenance {
 			}
 
 			$user = User::newFromName( $revision['author']['name'], false );
-			$postId = Flow\Model\UUID::create( $postId );
 
-			$content = $revision['content']['content'];
-			$contentFormat = $revision['content']['format'];
-
-			if ( $contentFormat !== 'wikitext' ) {
-				$content = Utils::convert( $contentFormat, 'wikitext', $content, $this->pageTitle );
-			}
-
-			$thisPost = $indent . trim( $content ) . ' ' .
-				$this->getSignature( $user, $postId->getTimestamp() ) . "\n";
+			$thisPost = $indent . trim( $revision['content']['content'] ) . ' ' .
+				$this->getSignature( $user, $revision['timestamp'] ) . "\n";
 
 			if ( $indentLevel > 0 ) {
 				$thisPost = preg_replace( "/\n+/", "\n", $thisPost );
@@ -146,7 +181,7 @@ class ConvertToText extends Maintenance {
 		return $output;
 	}
 
-	public function getSignature( $user, $timestamp ) {
+	protected function getSignature( $user, $timestamp ) {
 		global $wgContLang, $wgParser;
 
 		// Force unstub
