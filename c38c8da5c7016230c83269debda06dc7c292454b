@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "6eaa8f54_c97e0cad",
+        "filename": "i18n/en.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2016-01-15T10:58:48Z",
+      "side": 1,
+      "message": "The full stop in this message is inconsistent with the other message of keys starting with \"notification-header-flow-\" that don\u0027t end with a full stop. Is the full stop needed for all messages, or not? Correct punctuation of full sentences is preferred.",
+      "revId": "c38c8da5c7016230c83269debda06dc7c292454b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6eaa8f54_a94cf0cb",
         "filename": "i18n/en.json",
         "patchSetId": 5
@@ -13,6 +30,24 @@
       "writtenOn": "2016-01-15T09:34:52Z",
       "side": 1,
       "message": "I wonder if this needs to be parameterized with the number of topics to support languages that use different plural forms depending on the number (e.g. Russian)",
+      "revId": "c38c8da5c7016230c83269debda06dc7c292454b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_297480cb",
+        "filename": "i18n/en.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2016-01-15T10:58:48Z",
+      "side": 1,
+      "message": "Only if there is a direct visible relation. If the target contains an undefined/unmentioned number of topics, that wouldn\u0027t be possible. Given the qqq of \"Link text for the view topics button in a notification\", it sounds like the latter, right?",
+      "parentUuid": "6eaa8f54_a94cf0cb",
       "revId": "c38c8da5c7016230c83269debda06dc7c292454b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
