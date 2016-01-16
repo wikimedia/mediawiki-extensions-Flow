@@ -485,6 +485,7 @@
 	"apihelp-flow+view-topiclist-param-offset": "Valor inicial (selo de tempo do tema, en formato <code>TS_MW</code> (<code>AAAAMMDDHHMMSS</code>)) para a obtención de temas, só usado coa ordenación <kbd>actualización</kbd>",
 	"apihelp-flow+view-topiclist-param-include-offset": "Inclúe o desprazamento do elemento dentro dos resultados.",
 	"apihelp-flow+view-topiclist-param-limit": "Número de temas a obter.",
+	"apihelp-flow+view-topiclist-param-toconly": "Se responder só coa información necesaria para crear o sumario.",
 	"apihelp-flow+view-topiclist-param-format": "Formato no que devolver o contido.",
 	"apihelp-flow+view-topiclist-example-1": "Lista de temas en [[Talk:Sandbox]]",
 	"apihelp-flow-parsoid-utils-description": "Converter texto entre wikitexto e HTML.",
