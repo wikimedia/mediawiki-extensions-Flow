@@ -35,6 +35,7 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 	protected function doDBUpdates() {
 		$this->storage = $storage = Container::get( 'storage' );
 		$dbf = Container::get( 'db.factory' );
+		/** @var IDatabase $dbw */
 		$dbw = $dbf->getDB( DB_MASTER );
 
 		$runUpdate = function( $callback ) use ( $dbf, $dbw, $storage ) {

@@ -34,6 +34,7 @@ class FlowAddMissingModerationLogs extends LoggedUpdateMaintenance {
 		$container = Container::getContainer();
 
 		$dbFactory = $container['db.factory'];
+		/** @var IDatabase $dbw */
 		$dbw = $dbFactory->getDb( DB_MASTER );
 
 		$storage = $container['storage'];
@@ -72,7 +73,7 @@ class FlowAddMissingModerationLogs extends LoggedUpdateMaintenance {
 
 		$total = $fail = 0;
 		foreach ( $rowIterator as $batch ) {
-			$dbw->begin( __METHOD__ );
+			$this->beginTransaction( $dbw, __METHOD__ );
 			foreach ( $batch as $row ) {
 				$total++;
 				$objectManager = $storage->getStorage( $row->rev_type );
@@ -90,7 +91,7 @@ class FlowAddMissingModerationLogs extends LoggedUpdateMaintenance {
 				) );
 			}
 
-			$dbw->commit( __METHOD__ );
+			$this->commitTransaction( $dbw, __METHOD__ );
 			$storage->clear();
 			$dbFactory->waitForSlaves();
 		}
