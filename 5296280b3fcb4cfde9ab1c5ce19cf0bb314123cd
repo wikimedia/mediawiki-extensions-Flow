@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6eaa8f54_dfda3550",
+        "filename": "maintenance/convertToText.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-01-17T03:45:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6eaa8f54_7f154ae8",
+      "revId": "5296280b3fcb4cfde9ab1c5ce19cf0bb314123cd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6eaa8f54_3fdb5256",
         "filename": "maintenance/convertToText.php",
         "patchSetId": 4
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "6eaa8f54_ffddb147",
+        "filename": "maintenance/convertToText.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-01-17T03:45:27Z",
+      "side": 1,
+      "message": "As discussed: there seems to be little consistency between wikis. Let\u0027s properly fix this once we need to do additional wikis.",
+      "parentUuid": "6eaa8f54_3fdb5256",
+      "revId": "5296280b3fcb4cfde9ab1c5ce19cf0bb314123cd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6eaa8f54_dfe9dee1",
         "filename": "maintenance/convertToText.php",
         "patchSetId": 4
@@ -47,6 +83,24 @@
       "writtenOn": "2016-01-15T18:27:30Z",
       "side": 1,
       "message": "The summary shouldn\u0027t be signed.  It isn\u0027t a post, and like the header, it is expected to often be edited by multiple users.",
+      "revId": "5296280b3fcb4cfde9ab1c5ce19cf0bb314123cd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_9fe03df8",
+        "filename": "maintenance/convertToText.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-01-17T03:45:27Z",
+      "side": 1,
+      "message": "As discussed, we\u0027re going to keep it as signed, mostly because we also couldn\u0027t find a consistent habit (but signed summaries seem to occur more)",
+      "parentUuid": "6eaa8f54_dfe9dee1",
       "revId": "5296280b3fcb4cfde9ab1c5ce19cf0bb314123cd",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
