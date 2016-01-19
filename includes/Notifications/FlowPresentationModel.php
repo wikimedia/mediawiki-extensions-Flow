@@ -9,10 +9,6 @@ use Title;
 
 abstract class FlowPresentationModel extends EchoEventPresentationModel {
 
-	public function getIconType() {
-		return 'flow-discussion';
-	}
-
 	protected function hasTitle() {
 		return (bool)$this->event->getTitle();
 	}

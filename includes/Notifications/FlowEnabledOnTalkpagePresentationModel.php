@@ -4,6 +4,10 @@ namespace Flow;
 
 class FlowEnabledOnTalkpagePresentationModel extends FlowPresentationModel {
 
+	public function getIconType() {
+		return 'chat';
+	}
+
 	public function canRender() {
 		return $this->hasTitle();
 	}
