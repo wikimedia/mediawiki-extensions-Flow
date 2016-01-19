@@ -69,6 +69,24 @@
       "revId": "c38c8da5c7016230c83269debda06dc7c292454b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_9f1046f9",
+        "filename": "i18n/en.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-01-19T01:07:02Z",
+      "side": 1,
+      "message": "Kind of. This particular message doesn\u0027t specify the number of topics, but there\u0027s a message near it that says \"6 new topics on \u0027Foo\u0027\" (notification-bundle-header-flow-new-topic).",
+      "parentUuid": "6eaa8f54_297480cb",
+      "revId": "c38c8da5c7016230c83269debda06dc7c292454b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
