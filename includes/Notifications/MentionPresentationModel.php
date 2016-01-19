@@ -19,11 +19,24 @@ class MentionPresentationModel extends FlowPresentationModel {
 		);
 	}
 
+	public function getSecondaryLinks() {
+		return array(
+			$this->getAgentLink(),
+			$this->getBoardByNewestLink(),
+		);
+	}
+
 	public function getHeaderMessage() {
 		$msg = parent::getHeaderMessage();
-		$msg->params( $this->event->getExtraParam( 'topic-title' ) );
+		$msg->params( $this->getTopicTitle() );
 		$msg->params( $this->event->getTitle()->getPrefixedText() );
 		$msg->params( $this->getViewingUserForGender() );
+		return $msg;
+	}
+
+	public function getBodyMessage() {
+		$msg = $this->msg( "notification-body-{$this->type}" );
+		$msg->params( $this->getContentSnippet() );
 		return $msg;
 	}
 
