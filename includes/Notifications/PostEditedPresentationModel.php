@@ -30,13 +30,15 @@ class PostEditedPresentationModel extends FlowPresentationModel {
 	}
 
 	protected function getHeaderMessageKey() {
-		return parent::getHeaderMessageKey() . '-v2';
+		return $this->isBundled()
+			? "notification-bundle-header-{$this->type}-v2"
+			: "notification-header-{$this->type}-v2";
 	}
 
 	public function getHeaderMessage() {
-		$key = $this->isBundled() ? "notification-bundle-header-{$this->type}-v2" : $this->getHeaderMessageKey();
-		$msg = $this->msg( $key );
+		$msg = $this->msg( $this->getHeaderMessageKey() );
 		$msg->params( $this->getTopicTitle() );
+		$msg->params( $this->getViewingUserForGender() );
 		return $msg;
 	}
 
