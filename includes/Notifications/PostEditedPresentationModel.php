@@ -30,9 +30,19 @@ class PostEditedPresentationModel extends FlowPresentationModel {
 	}
 
 	protected function getHeaderMessageKey() {
-		return $this->isBundled()
-			? "notification-bundle-header-{$this->type}-v2"
-			: "notification-header-{$this->type}-v2";
+		if ( $this->isBundled() ) {
+			if ( $this->isUserTalkPage() ) {
+				return "notification-bundle-header-{$this->type}-user-talk";
+			} else {
+				return "notification-bundle-header-{$this->type}-v2";
+			}
+		} else {
+			if ( $this->isUserTalkPage() ) {
+				return parent::getHeaderMessageKey() . '-user-talk';
+			} else {
+				return parent::getHeaderMessageKey() . '-v2';
+			}
+		}
 	}
 
 	public function getHeaderMessage() {
@@ -43,7 +53,12 @@ class PostEditedPresentationModel extends FlowPresentationModel {
 	}
 
 	public function getBodyMessage() {
-		$msg = $this->msg( "notification-body-{$this->type}-v2" );
+		if ( $this->isUserTalkPage() ) {
+			$msg = $this->msg( "notification-body-{$this->type}-user-talk" );
+		} else {
+			$msg = $this->msg( "notification-body-{$this->type}-v2" );
+		}
+
 		$msg->params( $this->getContentSnippet() );
 		return $msg;
 	}

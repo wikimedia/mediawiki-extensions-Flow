@@ -26,7 +26,11 @@ class TopicRenamedPresentationModel extends FlowPresentationModel {
 	}
 
 	protected function getHeaderMessageKey() {
-		return parent::getHeaderMessageKey() . '-v2';
+		if ( $this->isUserTalkPage() ) {
+			return parent::getHeaderMessageKey() . '-user-talk';
+		} else {
+			return parent::getHeaderMessageKey() . '-v2';
+		}
 	}
 
 	public function getHeaderMessage() {

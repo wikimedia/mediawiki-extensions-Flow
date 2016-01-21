@@ -41,6 +41,9 @@ class NotificationController {
 		$icons['flow-topic-renamed'] = array(
 			'path' => 'Flow/modules/notification/icon/flow-topic-renamed.svg',
 		);
+		$icons['flowusertalk-new-topic'] = array(
+			'path' => 'Flow/modules/notification/icon/flowusertalk-new-topic.svg',
+		);
 	}
 
 	/**
