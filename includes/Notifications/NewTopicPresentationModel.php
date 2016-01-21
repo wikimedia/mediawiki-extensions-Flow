@@ -58,11 +58,11 @@ class NewTopicPresentationModel extends FlowPresentationModel {
 			$msg = $this->msg( "notification-bundle-header-{$this->type}" );
 			list( $countForOutput, $countForPlural ) = $this->getNotificationCountForOutput();
 			$msg->params( $countForOutput, $countForPlural );
-			$msg->params( $this->event->getTitle()->getPrefixedText() );
+			$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true) );
 			return $msg;
 		} else {
 			$msg = parent::getHeaderMessage();
-			$msg->params( $this->event->getTitle()->getPrefixedText() );
+			$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true) );
 			$msg->params( $this->getTopicTitle() );
 			return $msg;
 		}

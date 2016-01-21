@@ -63,7 +63,7 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 			return $msg;
 		} else {
 			$msg = parent::getHeaderMessage();
-			$msg->params( $this->event->getTitle()->getPrefixedText() );
+			$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true) );
 			$msg->params( $this->getTopicTitle() );
 			return $msg;
 		}
