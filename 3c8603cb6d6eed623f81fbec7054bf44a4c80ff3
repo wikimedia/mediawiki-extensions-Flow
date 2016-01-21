@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6eaa8f54_7289dced",
+        "filename": "maintenance/convertToText.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-01-21T01:58:25Z",
+      "side": 1,
+      "message": "You\u0027re mixing options (--name) and arguments (positional, name is only used for help text).\n\nYou\u0027re defining them all as arguments, but trying to access two of them (remoteapi and indent-char) as options.\n\nThe simplest thing is to use addOption/getOption for all.\n\nIf you want, you could keep page as an argument (it is required and key to the script, so it would be justifiable to do so).",
+      "revId": "3c8603cb6d6eed623f81fbec7054bf44a4c80ff3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
