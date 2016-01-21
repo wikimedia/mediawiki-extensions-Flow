@@ -118,12 +118,16 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 	protected function getContentSnippet() {
 		return EchoDiscussionParser::getTextSnippet(
 			$this->event->getExtraParam( 'content' ),
-			$this->language,
-			30
+			$this->language
 		);
 	}
 
-	protected function getTopicTitle() {
-		return wfEscapeWikiText( $this->event->getExtraParam( 'topic-title' ) );
+	protected function getTopicTitle( $extraParamName = 'topic-title' ) {
+		$topicTitle = $this->event->getExtraParam( $extraParamName );
+		return $this->formatTopicTitle( $topicTitle );
+	}
+
+	protected function formatTopicTitle( $topicTitle ) {
+		return $this->language->truncate( wfEscapeWikiText( $topicTitle ), self::$section_title_recommended_length );
 	}
 }
