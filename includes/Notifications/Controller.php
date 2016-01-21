@@ -41,6 +41,9 @@ class NotificationController {
 		$icons['flow-topic-renamed'] = array(
 			'path' => 'Flow/modules/notification/icon/flow-topic-renamed.svg',
 		);
+		$icons['flowusertalk-new-topic'] = array(
+			'path' => 'Flow/modules/notification/icon/flowusertalk-new-topic.svg',
+		);
 	}
 
 	/**
@@ -93,7 +96,7 @@ class NotificationController {
 		$extraData['topic-workflow'] = $topicWorkflow->getId();
 		$extraData['target-page'] = $topicWorkflow->getArticleTitle()->getArticleID();
 
-		$newPost = null;
+		$events = array();
 		switch( $eventName ) {
 			case 'flow-post-reply':
 				$replyTo = $data['reply-to'];
@@ -106,14 +109,25 @@ class NotificationController {
 					'content' => Utils::htmlToPlaintext( $revision->getContent(), 200, $this->language ),
 					'topic-title' => Utils::htmlToPlaintext( $topicRevision->getContent( 'topic-title-html' ), 200, $this->language ),
 				);
-				$newPost = array(
+
+				$mentionEvent = $this->generateMentionEvent( array(
 					'title' => $title,
 					'user' => $user,
 					'post' => $revision,
 					'reply-to' => $replyToPostId,
 					'topic-title' => $topicRevision,
 					'topic-workflow' => $topicWorkflow,
-				);
+				) );
+				if ( $mentionEvent ) {
+					$events[] = $mentionEvent;
+				}
+
+				// if we're looking at the initial post (submitted along with the topic
+				// title), we don't want to send the flow-post-reply notification,
+				// because users will already receive flow-new-topic as well
+				if ( PostReplyPresentationModel::isFirstPost( $revision->getPostId(), $topicWorkflow->getId() ) ) {
+					return $events;
+				}
 
 			break;
 			case 'flow-topic-renamed':
@@ -143,11 +157,7 @@ class NotificationController {
 			$info['timestamp'] = $data['timestamp'];
 		}
 
-		$events = array( EchoEvent::create( $info ) );
-
-		if ( $newPost ) {
-			$events = array_merge( $events, $this->notifyNewPost( $newPost ) );
-		}
+		array_unshift( $events, EchoEvent::create( $info ) );
 
 		return $events;
 	}
@@ -232,17 +242,16 @@ class NotificationController {
 	}
 
 	/**
-	 * Called when a new Post is added, whether it be a new topic or a reply.
-	 * Do not call directly, use notifyPostChange for new replies.
+	 * Generate flow-mention event, if there is anyone that got mentioned.
 	 * @param  array $data Associative array of parameters, all required:
 	 * * title: Title for the page on which the new Post sits.
 	 * * user: User who created the new Post.
 	 * * post: The Post that was created.
 	 * * topic-title: The title for the Topic.
-	 * @return array Array of created EchoEvent objects.
+	 * @return EchoEvent|null.
 	 * @throws FlowException When $data contains unexpected types/values
 	 */
-	protected function notifyNewPost( $data ) {
+	protected function generateMentionEvent( $data ) {
 		// Handle mentions.
 		$newRevision = $data['post'];
 		if ( $newRevision !== null && !$newRevision instanceof PostRevision ) {
@@ -261,7 +270,6 @@ class NotificationController {
 		if ( !$topicWorkflow instanceof Workflow ) {
 			throw new FlowException( 'Expected Workflow but received ' . get_class( $topicWorkflow ) );
 		}
-		$events = array();
 
 		$mentionedUsers = $newRevision ? $this->getMentionedUsers( $newRevision, $title ) : array();
 
@@ -269,26 +277,26 @@ class NotificationController {
 			throw new FlowException( 'Expected PostRevision but received: ' . get_class( $topicRevision ) );
 		}
 
-		if ( count( $mentionedUsers ) ) {
-			$events[] = EchoEvent::create( array(
-				'type' => 'flow-mention',
-				'title' => $title,
-				'extra' => array(
-					'content' => $newRevision
-						? Utils::htmlToPlaintext( $newRevision->getContent(), 200, $this->language )
-						: null,
-					'topic-title' => Utils::htmlToPlaintext( $topicRevision->getContent( 'topic-title-html' ), 200, $this->language ),
-					'post-id' => $newRevision ? $newRevision->getPostId() : null,
-					'mentioned-users' => $mentionedUsers,
-					'topic-workflow' => $topicWorkflow->getId(),
-					'target-page' => $topicWorkflow->getArticleTitle()->getArticleID(),
-					'reply-to' => isset( $data['reply-to'] ) ? $data['reply-to'] : null
-				),
-				'agent' => $user,
-			) );
+		if ( count( $mentionedUsers ) === 0 ) {
+			return null;
 		}
 
-		return $events;
+		return EchoEvent::create( array(
+			'type' => 'flow-mention',
+			'title' => $title,
+			'extra' => array(
+				'content' => $newRevision
+					? Utils::htmlToPlaintext( $newRevision->getContent(), 200, $this->language )
+					: null,
+				'topic-title' => Utils::htmlToPlaintext( $topicRevision->getContent( 'topic-title-html' ), 200, $this->language ),
+				'post-id' => $newRevision ? $newRevision->getPostId() : null,
+				'mentioned-users' => $mentionedUsers,
+				'topic-workflow' => $topicWorkflow->getId(),
+				'target-page' => $topicWorkflow->getArticleTitle()->getArticleID(),
+				'reply-to' => isset( $data['reply-to'] ) ? $data['reply-to'] : null
+			),
+			'agent' => $user,
+		) );
 	}
 
 	/**
