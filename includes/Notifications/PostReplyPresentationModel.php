@@ -16,7 +16,13 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 	}
 
 	public function getPrimaryLink() {
-		$event = $this->isBundled() ? end( $this->getBundledEvents() ) : $this->event;
+		if ( $this->isBundled() ) {
+			// "Strict standards: Only variables should be passed by reference" in older PHP versions
+			$bundledEvents = $this->getBundledEvents();
+			$event = end( $bundledEvents );
+		} else {
+			$event = $this->event;
+		}
 		$postId = $event->getExtraParam( 'post-id' );
 		return array(
 			'url' => $this->getPostLinkUrl( $postId ),
@@ -32,10 +38,26 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 		}
 	}
 
+	protected function getHeaderMessageKey() {
+		if ( $this->isBundled() ) {
+			if ( $this->isUserTalkPage() ) {
+				return "notification-bundle-header-{$this->type}-user-talk";
+			} else {
+				return "notification-bundle-header-{$this->type}";
+			}
+		} else {
+			if ( $this->isUserTalkPage() ) {
+				return parent::getHeaderMessageKey() . "-user-talk";
+			} else {
+				return parent::getHeaderMessageKey();
+			}
+		}
+	}
+
 	public function getHeaderMessage() {
 		if ( $this->isBundled() ) {
 			list( $formattedCount, $countForPlural ) = $this->getNotificationCountForOutput();
-			$msg = $this->msg( "notification-bundle-header-{$this->type}" );
+			$msg = $this->msg( $this->getHeaderMessageKey() );
 			$msg->params( $formattedCount, $this->getTopicTitle() );
 			return $msg;
 		} else {
@@ -48,7 +70,11 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 
 	public function getBodyMessage() {
 		if ( !$this->isBundled() ) {
-			$msg = $this->msg( "notification-body-{$this->type}-v2" );
+			if ( $this->isUserTalkPage() ) {
+				$msg = $this->msg("notification-body-{$this->type}-v2");
+			} else {
+				$msg = $this->msg("notification-body-{$this->type}-user-talk");
+			}
 			$msg->params( $this->getContentSnippet() );
 			return $msg;
 		}

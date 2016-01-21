@@ -41,6 +41,7 @@ $notifications = array(
 		'presentation-model' => 'Flow\\PostReplyPresentationModel',
 		'user-locators' => array(
 			'Flow\\NotificationsUserLocator::locateUsersWatchingTopic',
+			'EchoUserLocator::locateTalkPageOwner'
 		),
 		'primary-link' => array(
 			'message' => 'flow-notification-link-text-view-post',
@@ -66,6 +67,7 @@ $notifications = array(
 		'presentation-model' => 'Flow\\PostEditedPresentationModel',
 		'user-locators' => array(
 			'Flow\\NotificationsUserLocator::locatePostAuthors',
+			'EchoUserLocator::locateTalkPageOwner'
 		),
 		'primary-link' => array(
 			'message' => 'flow-notification-link-text-view-post',
@@ -91,6 +93,7 @@ $notifications = array(
 		'presentation-model' => 'Flow\\TopicRenamedPresentationModel',
 		'user-locators' => array(
 			'Flow\\NotificationsUserLocator::locateTopicAuthors',
+			'EchoUserLocator::locateTalkPageOwner'
 		),
 		'primary-link' => array(
 			'message' => 'flow-notification-link-text-view-post',

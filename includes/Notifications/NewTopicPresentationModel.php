@@ -35,14 +35,21 @@ class NewTopicPresentationModel extends FlowPresentationModel {
 	public function getBodyMessage() {
 		if ( $this->isBundled() ) {
 			return false;
+		} elseif ( $this->isUserTalkPage() ) {
+			$msg = $this->msg( "notification-body-{$this->type}-user-talk" );
 		} else {
 			$msg = $this->msg( "notification-body-{$this->type}-v2" );
-			$msg->params( $this->getContentSnippet() );
-			return $msg;
 		}
+
+		$msg->params( $this->getContentSnippet() );
+		return $msg;
 	}
 
 	protected function getHeaderMessageKey() {
+		if ( $this->isUserTalkPage() ) {
+			return parent::getHeaderMessageKey() . '-user-talk';
+		}
+
 		return parent::getHeaderMessageKey() . '-v2';
 	}
 
