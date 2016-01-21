@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6eaa8f54_a96a830f",
+        "filename": "maintenance/FlowExternalStoreMoveCluster.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-01-21T22:14:37Z",
+      "side": 1,
+      "message": "Yeah, I didn\u0027t notice before that the pre-existing code is not following the coding conventions for spacing.\n\nI\u0027ll fix both.",
+      "parentUuid": "6eaa8f54_7e03e379",
+      "revId": "9de2d6f3bade30f078e86f5f0b94056c964055a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6eaa8f54_5efce76c",
         "filename": "maintenance/FlowExternalStoreMoveCluster.php",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2016-01-21T18:30:39Z",
       "side": 1,
       "message": "Return early I presume?",
+      "revId": "9de2d6f3bade30f078e86f5f0b94056c964055a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_e974fbf9",
+        "filename": "maintenance/FlowExternalStoreMoveCluster.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-01-21T22:14:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6eaa8f54_5efce76c",
       "revId": "9de2d6f3bade30f078e86f5f0b94056c964055a4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
