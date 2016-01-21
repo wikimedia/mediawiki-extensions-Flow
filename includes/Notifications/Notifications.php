@@ -64,6 +64,9 @@ $notifications = array(
 	) + $notificationTemplate,
 	'flow-post-edited' => array(
 		'presentation-model' => 'Flow\\PostEditedPresentationModel',
+		'user-locators' => array(
+			'Flow\\NotificationsUserLocator::locatePostAuthors',
+		),
 		'primary-link' => array(
 			'message' => 'flow-notification-link-text-view-post',
 			'destination' => 'flow-post'
@@ -86,6 +89,9 @@ $notifications = array(
 	) + $notificationTemplate,
 	'flow-topic-renamed' => array(
 		'presentation-model' => 'Flow\\TopicRenamedPresentationModel',
+		'user-locators' => array(
+			'Flow\\NotificationsUserLocator::locateTopicAuthors',
+		),
 		'primary-link' => array(
 			'message' => 'flow-notification-link-text-view-post',
 			'destination' => 'flow-post'
@@ -100,6 +106,9 @@ $notifications = array(
 	) + $notificationTemplate,
 	'flow-mention' => array(
 		'presentation-model' => 'Flow\\MentionPresentationModel',
+		'user-locators' => array(
+			'Flow\\NotificationsUserLocator::locateMentionedUsers',
+		),
 		'primary-link' => array(
 			'message' => 'notification-link-text-view-mention',
 			'destination' => 'flow-post'
