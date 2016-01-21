@@ -166,7 +166,6 @@ $wgHooks['LiquidThreadsIsLqtPage'][] = 'FlowHooks::onIsLiquidThreadsPage';
 
 // Echo integration
 $wgHooks['BeforeCreateEchoEvent'][] = 'Flow\NotificationController::onBeforeCreateEchoEvent';
-$wgHooks['EchoGetDefaultNotifiedUsers'][] = 'Flow\NotificationController::getDefaultNotifiedUsers';
 $wgHooks['EchoGetBundleRules'][] = 'Flow\NotificationController::onEchoGetBundleRules';
 
 // Beta feature Flow on user talk page

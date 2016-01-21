@@ -49,17 +49,7 @@ class LqtNotifications implements Postprocessor {
 	 * of determining users to notify so they can be replaced with this class during imports.
 	 */
 	protected function overrideUsersToNotify() {
-		global $wgHooks, $wgEchoNotifications;
-
-		// Remove the hook subscriber that chooses users for some notifications
-		$idx = array_search(
-			'Flow\NotificationController::getDefaultNotifiedUsers',
-			$wgHooks['EchoGetDefaultNotifiedUsers']
-		);
-		if ( $idx !== false ) {
-			unset( $wgHooks['EchoGetDefaultNotifiedUsers'][$idx] );
-		}
-
+		global $wgEchoNotifications;
 
 		// Remove the user-locators that choose on a per-notification basis who
 		// should be notified.
