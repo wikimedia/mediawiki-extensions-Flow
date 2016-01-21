@@ -165,7 +165,7 @@ class NotificationController {
 	 * @throws FlowException When $params contains unexpected types/values
 	 */
 	public function notifyNewTopic( $params ) {
-		if ( ! class_exists( 'EchoEvent' ) ) {
+		if ( !class_exists( 'EchoEvent' ) ) {
 			// Nothing to do here.
 			return array();
 		}
@@ -411,104 +411,6 @@ class NotificationController {
 			break;
 		}
 		return true;
-	}
-
-	/**
-	 * Handler for EchoGetDefaultNotifiedUsers hook
-	 *  Returns a list of User objects in the second param
-	 *
-	 * @param $event EchoEvent being triggered
-	 * @param &$users Array of User objects.
-	 * @return bool
-	 */
-	public static function getDefaultNotifiedUsers( EchoEvent $event, &$users ) {
-		$extra = $event->getExtra();
-		switch ( $event->getType() ) {
-		case 'flow-mention':
-			$mentionedUsers = $extra['mentioned-users'];
-
-			// Ignore mention if the user gets another notification
-			// already from the same flow event
-			$ids = array();
-			$topic = $extra['topic-workflow'];
-			if ( $topic instanceof UUID ) {
-				$ids[$topic->getAlphadecimal()] = $topic;
-			}
-			if ( isset( $extra['reply-to'] ) ) {
-				if ( $extra['reply-to'] instanceof UUID ) {
-					$ids[$extra['reply-to']->getAlphadecimal()] = $extra['reply-to'];
-				} else {
-					wfDebugLog( 'Flow', __METHOD__ . ': Expected UUID but received ' . get_class( $extra['reply-to'] ) );
-				}
-			}
-			$notifiedUsers = self::getCreatorsFromPostIDs( $ids );
-
-			foreach( $mentionedUsers as $uid ) {
-				if ( !isset( $notifiedUsers[$uid] ) ) {
-					$users[$uid] = User::newFromId( $uid );
-				}
-			}
-			break;
-		case 'flow-topic-renamed':
-			$users += self::getCreatorsFromPostIDs( array( $extra['topic-workflow'] ) );
-			break;
-		case 'flow-post-edited':
-		case 'flow-post-moderated':
-			if ( isset( $extra['reply-to'] ) ) {
-				$postId = $extra['reply-to'];
-			} else {
-				$postId = $extra['post-id'];
-			}
-			if ( !$postId instanceof UUID ) {
-				wfDebugLog( 'Flow', __METHOD__ . ': Non-UUID value provided' );
-				break;
-			}
-
-			$users += self::getCreatorsFromPostIDs( array( $postId ) );
-			break;
-		default:
-			// Do nothing
-		}
-		return true;
-	}
-
-	/**
-	 * Retrieves the post creators from a set of posts.
-	 * @param  array  $posts Array of UUIDs or hex representations
-	 * @return array Associative array, of user ID => User object.
-	 */
-	protected static function getCreatorsFromPostIDs( array $posts ) {
-		$users = array();
-		/** @var ManagerGroup $storage */
-		$storage = Container::get( 'storage' );
-
-		$user = new User;
-		$actionPermissions = new RevisionActionPermissions( Container::get( 'flow_actions' ), $user );
-
-		foreach ( $posts as $postId ) {
-			$post = $storage->find(
-				'PostRevision',
-				array(
-					'rev_type_id' => UUID::create( $postId )
-				),
-				array(
-					'sort' => 'rev_id',
-					'order' => 'DESC',
-					'limit' => 1
-				)
-			);
-
-			$post = reset( $post );
-
-			if ( $post && $actionPermissions->isAllowed( $post, 'view' ) ) {
-				$userid = $post->getCreatorId();
-				if ( $userid ) {
-					$users[$userid] = User::newFromId( $userid );
-				}
-			}
-		}
-
-		return $users;
 	}
 
 	/**
