@@ -126,4 +126,9 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 	protected function getTopicTitle() {
 		return wfEscapeWikiText( $this->event->getExtraParam( 'topic-title' ) );
 	}
+
+	protected function isUserTalkPage() {
+		$username = $this->getViewingUserForGender();
+		return $this->event->getTitle()->getDBkey() === $username;
+	}
 }
