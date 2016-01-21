@@ -250,6 +250,7 @@
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 {{GENDER:$1|edytował|edytowała}} twój <span class=\"plainlinks\">[$5 post]</span> na [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 i $5 {{PLURAL:$6|inny|inni|innych}} {{PLURAL:$5|{{GENDER:$1|edytował|edytowała}}|edytowali}} <span class=\"plainlinks\">[post $4]</span> w „$2” na $3.",
 	"notification-bundle-header-flow-new-topic": "$1 {{PLURAL:$2|nowy wątek|nowe wątki|nowych wątków}} na stronie $3",
+	"notification-header-flow-post-reply": "$1 {{GENDER:$2|odpowiedział|odpowiedziała|odpowiedział(a)}} w wątku „$4”.",
 	"notification-header-flow-mention": "$1 {{GENDER:$2|wspomniał|wspomniała|wspomniał(a)}} o {{GENDER:$5|Tobie}} w wątku „$3”.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|utworzył|utworzyła}} nowy wątek na stronie '''$3'''.",
 	"flow-notification-newtopic-bundle": "{{PLURAL:$1|$1 nowy wątek|$1 nowe wątki|$1 nowych wątków|250=250+ nowych wątków}} na '''<span class=\"plainlinks\">[$3 $2]</span>'''",

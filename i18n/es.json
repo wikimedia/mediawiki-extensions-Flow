@@ -22,7 +22,8 @@
 			"Mor",
 			"Effy",
 			"Ryo567",
-			"Nnemo"
+			"Nnemo",
+			"Joaquin1001"
 		]
 	},
 	"enableflow": "Activar Flow",
@@ -254,13 +255,15 @@
 	"flow-notification-reply-bundle": "$1 y $5 {{PLURAL:$6|otro|otros}} {{GENDER:$1|respondieron}} a <span class=\"plainlinks\">[$4 $2]</span> en «$3».",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 ha {{GENDER:$1|editado}} tu <span class=\"plainlinks\">[$5 publicación]</span> en [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 y {{PLURAL:$6|$5 más|otros $5}} {{GENDER:$1|editaron}} una <span class=\"plainlinks\">[$4 publicación]</span> en \"$2\" el \"$3\".",
-	"notification-body-flow-enabled-on-talkpage": "Disponible en $3",
+	"notification-bundle-header-flow-post-reply": "$1 nuevas respuestas en \"$2\"",
+	"notification-bundle-header-flow-post-edited-v2": "Tu post en \"$1\" ha sido editado varias veces",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|creó}} un tema nuevo en '''$3'''.",
 	"flow-notification-newtopic-bundle": "{{PLURAL:$1 tema nuevo|$1 temas nuevos|250=250+ temas nuevos}} en '''<span class=\"plainlinks\">[$3 $2]</span>'''",
 	"flow-notification-rename": "$1 {{GENDER:$1|cambió}} el título de <span class=\"plainlinks\">[$2 $3]</span> a «$4» en [[$5|$6]].",
 	"flow-notification-mention": "$1 {{GENDER:$5|te}} {{GENDER:$1|mencionó}} en {{GENDER:$1|su}} <span class=\"plainlinks\">[$2 publicación]</span> en «$3» en «$4».",
 	"flow-notification-link-text-view-post": "Ver la entrada",
 	"flow-notification-link-text-view-topic": "Ver el tema",
+	"flow-notification-link-text-view-topics": "Ver temas",
 	"flow-notification-reply-email-subject": "$2 en $3",
 	"flow-notification-reply-email-batch-body": "$1 {{GENDER:$1|respondió}} a «$2» en $3",
 	"flow-notification-reply-email-batch-bundle-body": "$1 y {{PLURAL:$5|otro|otros}} $4 {{GENDER:$1|respondieron}} a «$2» en $3",

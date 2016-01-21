@@ -19,7 +19,8 @@
 			"MedShot",
 			"Robin0van0der0vliet",
 			"Catrope",
-			"Nnemo"
+			"Nnemo",
+			"Robin van der Vliet"
 		]
 	},
 	"enableflow": "Flow inschakelen",
@@ -246,6 +247,7 @@
 	"flow-notification-mention": "$1 heeft {{GENDER:$5|u}} genoemd in {{GENDER:$1|zijn|haar|zijn/haar}} <span class=\"plainlinks\">[$2 bericht]</span> in \"$3\" op \"$4\".",
 	"flow-notification-link-text-view-post": "Bericht bekijken",
 	"flow-notification-link-text-view-topic": "Onderwerp bekijken",
+	"flow-notification-link-text-view-topics": "Onderwerpen bekijken",
 	"flow-notification-reply-email-subject": "$2 op $3",
 	"flow-notification-reply-email-batch-body": "$1 {{GENDER:$1|heeft}} gereageerd op \"$2\" op $3",
 	"flow-notification-reply-email-batch-bundle-body": "$1 en $4 {{PLURAL:$5|andere gebruiker|anderen}} {{GENDER:$1|hebben}} gereageerd op \"$2\" op $3",
