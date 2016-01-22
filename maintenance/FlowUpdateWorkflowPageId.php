@@ -70,7 +70,8 @@ class WorkflowPageIdUpdateGenerator implements RowUpdateGenerator {
 	 */
 	protected $lang;
 	protected $fixedCount = 0;
-	protected $failed = array();
+	protected $failures = array();
+	protected $warnings = array();
 
 	/**
 	 * @param Language|StubUserLang $lang
@@ -94,25 +95,12 @@ class WorkflowPageIdUpdateGenerator implements RowUpdateGenerator {
 		// create that page if the workflow was stored with a 0 page id (otherwise,
 		// we could mistake the $title for a deleted page)
 		if ( $row->workflow_page_id === 0 && $title->getArticleID() === 0 ) {
-			// build workflow object (yes, loading them piecemeal is suboptimal, but
-			// this is just a one-time script; considering the alternative is
-			// creating a derivative BatchRowIterator that returns workflows,
-			// it doesn't really matter)
-			$storage = Container::get( 'storage' );
-			$workflow = $storage->get( 'Workflow', UUID::create( $row->workflow_id ) );
-
-			try {
-				/** @var OccupationController $occupationController */
-				$occupationController = Container::get( 'occupation_controller' );
-				$occupationController->allowCreation( $title, $occupationController->getTalkpageManager() );
-				$occupationController->ensureFlowRevision( new Article( $title ), $workflow );
-
-				// force article id to be refetched from db
-				$title->getArticleID( Title::GAID_FOR_UPDATE );
-			} catch ( \Exception $e ) {
-				// catch all exception to keep going with the rest we want to
-				// iterate over, we'll report on the failed entries at the end
-				$this->failed[] = $row;
+			$status = $this->createPage( $title, UUID::create( $row->workflowId ) );
+			if ( !$status->isGood() ) {
+				// just warn when we failed to create the page, but keep this code
+				// going and see if we manage to associate the workflow anyways
+				// (or if that fails, we'll also get an error there)
+				$this->warnings[] = $status->getMessage()->text();
 			}
 		}
 
@@ -124,15 +112,52 @@ class WorkflowPageIdUpdateGenerator implements RowUpdateGenerator {
 				'workflow_page_id' => $title->getArticleID(),
 			);
 		} elseif ( !$row->workflow_page_id ) {
-			// No id exists for this workflow?
-			$this->failed[] = $row;
+			// No id exists for this workflow? (reason should likely show up in $this->warnings)
+			$this->failures[] = $row;
 		}
 
 		return array();
 	}
 
+	/**
+	 * @param Title $title
+	 * @param UUID $workflowId
+	 * @return Status
+	 */
+	protected function createPage( Title $title, UUID $workflowId ) {
+		// build workflow object (yes, loading them piecemeal is suboptimal, but
+		// this is just a one-time script; considering the alternative is
+		// creating a derivative BatchRowIterator that returns workflows,
+		// it doesn't really matter)
+		$storage = Container::get( 'storage' );
+		$workflow = $storage->get( 'Workflow', $workflowId );
+
+		/** @var OccupationController $occupationController */
+		$occupationController = Container::get( 'occupation_controller' );
+
+		try {
+			$status = $occupationController->allowCreation( $title, $occupationController->getTalkpageManager() );
+			$status2 = $occupationController->ensureFlowRevision( new Article( $title ), $workflow );
+
+			$status->merge( $status2 );
+		} catch ( \Exception $e ) {
+			// "convert" exception into Status
+			$message = new RawMessage( $e->getMessage() );
+			$status = Status::newFatal( $message );
+		}
+
+		if ( $status->isGood() ) {
+			// force article id to be refetched from db
+			$title->getArticleID( Title::GAID_FOR_UPDATE );
+		}
+
+		return $status;
+	}
+
 	public function report() {
-		return "Updated {$this->fixedCount}  workflows\nFailed: " . count( $this->failed ) . "\n\n" . print_r( $this->failed, true );
+		return "Updated {$this->fixedCount}  workflows\n\n" .
+			"Warnings: " . count( $this->warnings ) . "\n" . print_r( $this->warnings, true ) . "\n\n" .
+			"Failed: " . count( $this->failures ) . "\n" . print_r( $this->failures, true );
 	}
 }
 
