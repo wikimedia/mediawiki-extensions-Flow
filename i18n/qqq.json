@@ -473,7 +473,7 @@
 	"apihelp-flow+edit-post-example-1": "{{doc-apihelp-example|flow+edit-post}}",
 	"apihelp-flow+edit-title-description": "{{doc-apihelp-description|flow+edit-title}}",
 	"apihelp-flow+edit-title-param-prev_revision": "{{doc-apihelp-param|flow+edit-title|prev_revision}}",
-	"apihelp-flow+edit-title-param-content": "{{doc-apihelp-param|flow+edit-title|content}}",
+	"apihelp-flow+edit-title-param-content": "{{doc-apihelp-param|flow+edit-title|content}}\n(topic-title-wikitext) is the allowed format and should be translated.",
 	"apihelp-flow+edit-title-example-1": "{{doc-apihelp-example|flow+edit-title}}",
 	"apihelp-flow+edit-topic-summary-description": "{{doc-apihelp-description|flow+edit-topic-summary}}",
 	"apihelp-flow+edit-topic-summary-param-prev_revision": "{{doc-apihelp-param|flow+edit-topic-summary|prev_revision}}",
