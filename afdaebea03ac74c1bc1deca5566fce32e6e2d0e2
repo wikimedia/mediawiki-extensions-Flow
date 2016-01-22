@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6eaa8f54_8e3b08e7",
+        "filename": "i18n/en.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 2212
+      },
+      "writtenOn": "2016-01-22T12:27:11Z",
+      "side": 1,
+      "message": "\"In computer language\"... sounds kind of odd. Not sure if that would be really helpful for end users.",
+      "revId": "afdaebea03ac74c1bc1deca5566fce32e6e2d0e2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
