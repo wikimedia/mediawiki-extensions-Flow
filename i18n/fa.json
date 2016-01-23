@@ -17,7 +17,8 @@
 			"Mardetanha",
 			"Huji",
 			"Ladsgroup",
-			"Saeidpourbabak"
+			"Saeidpourbabak",
+			"Quiddity"
 		]
 	},
 	"enableflow": "فعال‌سازی جریان",
@@ -240,9 +241,7 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 و $5 {{PLURAL:$6|نفر دیگر|نفر دیگر}} روی '''$3''' {{GENDER:$1|پاسخ داده‌اند}}.",
 	"flow-notification-edit": "$1 {{GENDER:$1|ویرایش شده}} یک <span class=\"plainlinks\">[$5 post]</span> در \"$2\" در [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 و $5 {{PLURAL:$6|دیگر|دیگران}} {{GENDER:$1|ویرایش شده}} یک <span class=\"plainlinks\">[$4 post]</span> در \"$2\" در \"$3\".",
-	"notification-body-flow-new-topic": "$1 یک مبحث جدید در $3 ایجاد کرد.",
 	"notification-bundle-header-flow-new-topic": "$1 مبحث جدید در $3 ایجاد شده است.",
-	"notification-body-flow-post-reply": "$1 در $3 پاسخ داده است.",
 	"flow-notification-newtopic": "$1 یک  مبحث تازه در '''$3''' {{GENDER:$1|ایجاد کرد}}.",
 	"flow-notification-rename": "$1 {{GENDER:$1|تغیر یافته}} به عنوان <span class=\"plainlinks\">[$2 $3]</span> به \"$4\" در [[$5|$6]].",
 	"flow-notification-mention": "$1 به {{GENDER:$5|شما}} در <span class=\"plainlinks\">[$2 ارسال]</span> {{GENDER:$1|خودش|خودش|خودشان}} در «$3» در «$4» {{GENDER:$1|اشاره کرد}}.",
@@ -383,7 +382,7 @@
 	"flow-importer-wt-converted-archive-template": "بایگانی برای ویکی‌متن صفحهٔ بحث تبدیل شده",
 	"apihelp-flow+close-open-topic-param-reason": "دلیل برای قفل کردن یا باز کردن مبحث.",
 	"apihelp-flow+edit-header-param-content": "محتوا برای توضیحات",
-	"apihelp-flow+edit-header-param-format": "قالب توضیحات (ویکی‌متن|اچ‌تی‌ام‌ال)",
+	"apihelp-flow+edit-header-param-format": "قالب توضیحات (wikitext|html)",
 	"apihelp-flow+edit-post-param-postId": "شناسه پست.",
 	"apihelp-flow+edit-post-param-content": "محتوا برای پست.",
 	"apihelp-flow+edit-title-param-content": "محتوا برای عنوان",
@@ -391,7 +390,7 @@
 	"apihelp-flow+reply-description": "پاسخ‌ها به یک پست.",
 	"apihelp-flow+reply-param-replyTo": "شماره پست برای پاسخ دادن.",
 	"apihelp-flow+reply-param-content": "متن یک پست جدید.",
-	"apihelp-flow+reply-param-format": "قالب پست جدید (ویکی‌تکست|html)",
+	"apihelp-flow+reply-param-format": "قالب پست جدید (wikitext|html)",
 	"apihelp-flow+view-post-description": "مشاهدهٔ پست.",
 	"apihelp-flow+view-post-param-postId": "شناسهٔ پست برای مشاهده.",
 	"apihelp-flow+view-topic-description": "مشاهدهٔ مبحث.",

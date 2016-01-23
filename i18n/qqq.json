@@ -19,7 +19,8 @@
 			"Matthew Flaschen",
 			"Wladek92",
 			"Tacsipacsi",
-			"Mhutti1"
+			"Mhutti1",
+			"Quiddity"
 		]
 	},
 	"enableflow": "{{doc-special|EnableFlow}}",
@@ -469,7 +470,7 @@
 	"apihelp-flow+edit-post-param-postId": "{{doc-apihelp-param|flow+edit-post|postId}}",
 	"apihelp-flow+edit-post-param-prev_revision": "{{doc-apihelp-param|flow+edit-post|prev_revision}}",
 	"apihelp-flow+edit-post-param-content": "{{doc-apihelp-param|flow+edit-post|content}}",
-	"apihelp-flow+edit-post-param-format": "{{doc-apihelp-param|flow+edit-post|format}}",
+	"apihelp-flow+edit-post-param-format": "Do not alter the string \"(wikitext|html)\" in your translation.\n----\n{{doc-apihelp-param|flow+edit-post|format}}",
 	"apihelp-flow+edit-post-example-1": "{{doc-apihelp-example|flow+edit-post}}",
 	"apihelp-flow+edit-title-description": "{{doc-apihelp-description|flow+edit-title}}",
 	"apihelp-flow+edit-title-param-prev_revision": "{{doc-apihelp-param|flow+edit-title|prev_revision}}",
@@ -478,7 +479,7 @@
 	"apihelp-flow+edit-topic-summary-description": "{{doc-apihelp-description|flow+edit-topic-summary}}",
 	"apihelp-flow+edit-topic-summary-param-prev_revision": "{{doc-apihelp-param|flow+edit-topic-summary|prev_revision}}",
 	"apihelp-flow+edit-topic-summary-param-summary": "{{doc-apihelp-param|flow+edit-topic-summary|summary}}",
-	"apihelp-flow+edit-topic-summary-param-format": "{{doc-apihelp-param|flow+edit-topic-summary|format}}",
+	"apihelp-flow+edit-topic-summary-param-format": "Do not alter the string \"(wikitext|html)\" in your translation.\n----\n{{doc-apihelp-param|flow+edit-topic-summary|format}}",
 	"apihelp-flow+edit-topic-summary-example-1": "{{doc-apihelp-example|flow+edit-topic-summary}}",
 	"apihelp-flow+lock-topic-description": "{{doc-apihelp-description|flow+lock-topic}}",
 	"apihelp-flow+lock-topic-param-moderationState": "{{doc-apihelp-param|flow+lock-topic|moderationState}}",
@@ -501,7 +502,7 @@
 	"apihelp-flow+reply-description": "{{doc-apihelp-description|flow+reply}}",
 	"apihelp-flow+reply-param-replyTo": "{{doc-apihelp-param|flow+reply|replyTo}}",
 	"apihelp-flow+reply-param-content": "{{doc-apihelp-param|flow+reply|content}}",
-	"apihelp-flow+reply-param-format": "{{doc-apihelp-param|flow+reply|format}}",
+	"apihelp-flow+reply-param-format": "Do not alter the string \"(wikitext|html)\" in your translation.\n----\n{{doc-apihelp-param|flow+reply|format}}",
 	"apihelp-flow+reply-example-1": "{{doc-apihelp-example|flow+reply}}",
 	"apihelp-flow+view-header-param-format": "{{doc-apihelp-param|flow+view-header|format}}",
 	"apihelp-flow+view-header-description": "{{doc-apihelp-description|flow+view-header}}",

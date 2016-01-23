@@ -42,7 +42,8 @@
 			"Nclm",
 			"Nnemo",
 			"PifyZ",
-			"Zebulon84"
+			"Zebulon84",
+			"Quiddity"
 		]
 	},
 	"enableflow": "Activer Flow",
@@ -454,7 +455,7 @@
 	"apihelp-flow+edit-header-description": "Modifie la description d’un flux de discussion.",
 	"apihelp-flow+edit-header-param-prev_revision": "ID de la révision actuelle de la description, pour vérifier qu’il n’existe aucun conflit de modification.",
 	"apihelp-flow+edit-header-param-content": "Le contenu de la description.",
-	"apihelp-flow+edit-header-param-format": "Le format de la description (wikitexte|html)",
+	"apihelp-flow+edit-header-param-format": "Le format de la description (wikitext|html)",
 	"apihelp-flow+edit-header-example-1": "Modifier la description de [[Talk:Sandbox]]",
 	"apihelp-flow+edit-post-description": "Modifier le contenu d’un message.",
 	"apihelp-flow+edit-post-param-postId": "ID du message.",

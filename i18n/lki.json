@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Hosseinblue",
-			"Lakzon"
+			"Lakzon",
+			"Quiddity"
 		]
 	},
 	"flow-board-collapse-description": "آشاردن توضیحةل",
@@ -19,6 +20,6 @@
 	"flow-whatlinkshere-header": "از [$1 توضیحات]",
 	"flow-special-enableflow-header": "توضیحات اولیه از تخت جریان (ویکی‌متن)",
 	"apihelp-flow+edit-header-param-content": "نۆم جِک(محتوا)أڕا توضیحەل",
-	"apihelp-flow+edit-header-param-format": "قالب توضیحات (ویکی‌متن|اچ‌تی‌ام‌ال)",
+	"apihelp-flow+edit-header-param-format": "قالب توضیحات (wikitext|html)",
 	"flow-undo-edit-header": "در حال ویرایش توضیحات"
 }

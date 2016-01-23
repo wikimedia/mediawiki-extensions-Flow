@@ -20,7 +20,8 @@
 			"Halibutt",
 			"The Polish",
 			"Nnemo",
-			"Peter Bowman"
+			"Peter Bowman",
+			"Quiddity"
 		]
 	},
 	"enableflow": "Włącz Flow",
@@ -258,6 +259,7 @@
 	"flow-notification-mention": "$1 {{GENDER:$1|wspomniał|wspomniała}} o {{GENDER:$5|tobie}} w {{GENDER:$1|swoim}} <span class=\"plainlinks\">[$2 poście]</span> w temacie „$3” na „$4”.",
 	"flow-notification-link-text-view-post": "Pokaż post",
 	"flow-notification-link-text-view-topic": "Pokaż wątek",
+	"flow-notification-link-text-view-topics": "Pokaż wątki",
 	"flow-notification-reply-email-subject": "$2 w $3",
 	"flow-notification-reply-email-batch-body": "$1 {{GENDER:$1|odpowiedział|odpowiedziała}} na „$2” na $3",
 	"flow-notification-reply-email-batch-bundle-body": "$1 i $4 {{PLURAL:$5|inny|inni|innych}} {{PLURAL:$5|{{GENDER:$1|odpowiedział|odpowiedziała}}|odpowiedzieli}} na „$2” na $3",
@@ -402,7 +404,7 @@
 	"flow-importer-wt-converted-archive-template": "Archiwum skonwertowanej strony dyskusji w wikikodzie",
 	"flow-importer-lqt-suppressed-user-template": "Zaimportowany post LQT ukrytego użytkownika",
 	"flow-importer-lqt-different-author-signature-template": "Post LQT zaimportowany z innym podpisem użytkownika",
-	"apihelp-flow+edit-header-param-format": "Format opisu (wikitekst|html)",
+	"apihelp-flow+edit-header-param-format": "Format opisu (wikitext|html)",
 	"apihelp-flow+edit-post-param-postId": "ID wiadomości.",
 	"apihelp-flow+lock-topic-description": "Zabezpiecz albo odbezpiecz wątek.",
 	"apihelp-flow+lock-topic-param-reason": "Powód zabezpieczenia lub odbezpieczenia wątku. Uwaga, istniejący na wiki program Flow używa opcji „Oznaczony jako załatwiony” oraz nadaje opcjonalne informacje jako jego podsumowanie.",

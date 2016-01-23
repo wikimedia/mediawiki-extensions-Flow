@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Arystanbek",
-			"Nnemo"
+			"Nnemo",
+			"Quiddity"
 		]
 	},
 	"enableflow": "Flow кеңейтілімін іске қосу",
@@ -370,13 +371,13 @@
 	"apihelp-flow+edit-header-description": "Тақта сипаттамасын өңдеу.",
 	"apihelp-flow+edit-header-param-prev_revision": "Өңдеу қақтығыстарын тексеру үшін қазіргі нұсқа сипаттамасының нұсқа сәйкестендіргіші.",
 	"apihelp-flow+edit-header-param-content": "Сипаттама үшін контент.",
-	"apihelp-flow+edit-header-param-format": "(уикимәтін|html) сипаттамысының форматы",
+	"apihelp-flow+edit-header-param-format": "сипаттамысының форматы (wikitext|html)",
 	"apihelp-flow+edit-header-example-1": "[[Talk:Sandbox]]сипаттамасын өңдеу",
 	"apihelp-flow+edit-post-description": "Хабарлама контетнтін өңдеу.",
 	"apihelp-flow+edit-post-param-postId": "Сәйкестендіргіш хабарламасы.",
 	"apihelp-flow+edit-post-param-prev_revision": "Өңдеу қақтығыстарын тексеру үшін қазіргі нұсқа хабарламасының нұсқа сәйкестендіргіші.",
 	"apihelp-flow+edit-post-param-content": "Хабарламаға котент.",
-	"apihelp-flow+edit-post-param-format": "(уикимәтін|html) хабарлама контентінің форматы",
+	"apihelp-flow+edit-post-param-format": "(wikitext|html) хабарлама контентінің форматы",
 	"apihelp-flow+edit-post-example-1": "Хабарламаны [[Topic:S2tycnas4hcucw8w]] дегенде өңдеу.",
 	"apihelp-flow+edit-title-description": "Тақырыптың атауын өңдеу.",
 	"apihelp-flow+edit-title-param-prev_revision": "Өңдеу қақтығыстарын тексеру үшін қазіргі нұсқа атауы нұсқа сәйкестендіргіші.",
@@ -385,7 +386,7 @@
 	"apihelp-flow+edit-topic-summary-description": "Тақырыптың түйіндеме контентін өңдеу.",
 	"apihelp-flow+edit-topic-summary-param-prev_revision": "Өңдеу қақтығыстарын тексеру үшін қазіргі нұсқа атауының түйіндемесі нұсқа сәйкестендіргіші.",
 	"apihelp-flow+edit-topic-summary-param-summary": "Түйіндемеге контент.",
-	"apihelp-flow+edit-topic-summary-param-format": "(уикимәтін|html) түйіндемесінің форматы",
+	"apihelp-flow+edit-topic-summary-param-format": "(wikitext|html) түйіндемесінің форматы",
 	"apihelp-flow+edit-topic-summary-example-1": "[[Topic:S2tycnas4hcucw8w]]дегеннің түйіндемесін өңдеу",
 	"apihelp-flow+lock-topic-description": "Flow тақырыбын жабу немесе жабуды болдырмау.",
 	"apihelp-flow+lock-topic-param-moderationState": "Ашық не жабық жағдайы бойынша анықталған тақырып.",
@@ -408,7 +409,7 @@
 	"apihelp-flow+reply-description": "Хабарламаға жауаптар.",
 	"apihelp-flow+reply-param-replyTo": "Жауапқа хабарлама сәйкестендіргіш.",
 	"apihelp-flow+reply-param-content": "Жаңа хабарламаға котент.",
-	"apihelp-flow+reply-param-format": "(уикимәтін|html) жаңа хабарламасының форматы",
+	"apihelp-flow+reply-param-format": "(wikitext|html) жаңа хабарламасының форматы",
 	"apihelp-flow+reply-example-1": "[[Topic:S2tycnas4hcucw8w]] дегенде хабарламаға жауап",
 	"apihelp-flow+view-header-param-format": "Контентті қайтаратын формат.",
 	"apihelp-flow+view-header-description": "Тақта  сипаттамасын көру.",
