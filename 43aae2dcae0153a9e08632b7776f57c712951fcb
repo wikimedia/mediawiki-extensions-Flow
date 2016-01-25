@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6eaa8f54_93331f5f",
+        "filename": "includes/Notifications/FlowPresentationModel.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2016-01-25T20:46:31Z",
+      "side": 1,
+      "message": "It\u0027s again hard-coded here as 30... emphasizing the point that static variables (or config variables) are probably a good idea.",
+      "revId": "43aae2dcae0153a9e08632b7776f57c712951fcb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
