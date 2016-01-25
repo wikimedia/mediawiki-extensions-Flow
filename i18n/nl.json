@@ -241,6 +241,7 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 en $5 {{PLURAL:$6|iemand anders|anderen}} hebben {{GENDER:$1|gereageerd}} op '''$3'''.",
 	"flow-notification-edit": "<span class=\"plainlinks\"[$6 $2]</span><br />$1 {{GENDER:$1|heeft}} een <span class=\"plainlinks\">[$5 bericht]</span> geplaatst op [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 en $5 {{PLURAL:$6|andere gebruiker|anderen}} {{GENDER:$1|hebben}} een <span class=\"plainlinks\">[$4 bericht]</span> geplaatst in \"$2\" op \"$3\".",
+	"notification-bundle-header-flow-post-reply": "$1 nieuwe reacties in \"$2\".",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|heeft}} een  nieuw onderwerp aangemaakt op '''$3'''.",
 	"flow-notification-newtopic-bundle": "{{PLURAL:$1|$1 nieuw onderwerp|$1 nieuwe onderwerpen|250=250+ nieuwe onderwerpen}}  op '''<span class=\"plainlinks\">[$3 $2]</span>'''",
 	"flow-notification-rename": "$1 {{GENDER:$1|heeft}} het onderwerp <span class=\"plainlinks\">[$2 $3]</span> hernoemd naar \"$4\" op [[$5|$6]].",
