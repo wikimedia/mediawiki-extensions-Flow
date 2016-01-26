@@ -78,7 +78,7 @@
 				this.$controls
 			);
 
-		this.input.pushPending();
+		this.pushPending();
 		this.api.getPost( topicId, topicId, 'wikitext' ).then(
 			function ( topic ) {
 				var content = OO.getProp( topic, 'content', 'content' ),
@@ -93,7 +93,7 @@
 			}
 		).always(
 			function () {
-				widget.input.popPending();
+				widget.popPending();
 			}
 		);
 
@@ -109,6 +109,8 @@
 		var content = this.input.getValue(),
 			captcha = this.captchaWidget.getResponse(),
 			widget = this;
+
+		widget.pushPending();
 		this.api.saveTopicTitle( this.topicId, content, captcha ).then(
 			function ( workflowId ) {
 				widget.emit( 'saveContent', workflowId );
@@ -120,7 +122,43 @@
 					widget.error.toggle( true );
 				}
 			}
+		).always(
+			function() {
+				widget.popPending();
+			}
 		);
+	};
+
+	mw.flow.ui.TopicTitleWidget.prototype.isDisabled = function () {
+		// Auto-disable when pending
+		return ( this.input && this.input.isPending() ) ||
+				// Parent method
+			mw.flow.ui.TopicTitleWidget.parent.prototype.isDisabled.apply( this, arguments );
+	};
+
+	mw.flow.ui.TopicTitleWidget.prototype.setDisabled = function ( disabled ) {
+		// Parent method
+		mw.flow.ui.TopicTitleWidget.parent.prototype.setDisabled.call( this, disabled );
+
+		if ( this.input && this.saveButton && this.cancelButton ) {
+			this.input.setDisabled( this.isDisabled() );
+			this.saveButton.setDisabled( this.isDisabled() );
+			this.cancelButton.setDisabled( this.isDisabled() );
+		}
+	};
+
+	mw.flow.ui.TopicTitleWidget.prototype.pushPending = function () {
+		this.input.pushPending();
+
+		// Disabled state depends on pending state
+		this.updateDisabled();
+	};
+
+	mw.flow.ui.TopicTitleWidget.prototype.popPending = function () {
+		this.input.popPending();
+
+		// Disabled state depends on pending state
+		this.updateDisabled();
 	};
 
 }( jQuery ) );
