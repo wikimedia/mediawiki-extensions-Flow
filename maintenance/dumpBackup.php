@@ -91,7 +91,7 @@ if ( isset( $options['full'] ) ) {
 This script dumps the Flow discussion database into an
 XML interchange wrapper format for export.
 
-It can either import only the current revision, or full history.
+It can either export only the current revision, or full history.
 
 Although the --full will export all public revisions, non-public revisions
 are removed, and the remaining revisions are renormalized to accomodate this.
