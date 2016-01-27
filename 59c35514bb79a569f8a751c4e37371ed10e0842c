@@ -139,6 +139,24 @@
       "revId": "59c35514bb79a569f8a751c4e37371ed10e0842c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_8fc43d96",
+        "filename": "includes/Notifications/PostReplyPresentationModel.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-01-27T18:47:59Z",
+      "side": 1,
+      "message": "If it\u0027s not created in the first place, do you still need to suppress it here?",
+      "parentUuid": "6eaa8f54_effa910c",
+      "revId": "59c35514bb79a569f8a751c4e37371ed10e0842c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
