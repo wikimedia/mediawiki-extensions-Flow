@@ -175,6 +175,24 @@
       "revId": "59c35514bb79a569f8a751c4e37371ed10e0842c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_afb7b9f1",
+        "filename": "includes/Notifications/PostReplyPresentationModel.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-01-27T19:05:25Z",
+      "side": 1,
+      "message": "I would support removing it from here if it\u0027s not strictly needed. Our future selves will thank us for that ;)\n\nThe count being wrong when canRender() returns false is a bad bug, it\u0027s already happening. I\u0027ll file it.",
+      "parentUuid": "6eaa8f54_6f46a128",
+      "revId": "59c35514bb79a569f8a751c4e37371ed10e0842c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
