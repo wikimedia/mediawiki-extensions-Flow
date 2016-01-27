@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6eaa8f54_ace027f8",
+        "filename": "i18n/en.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-01-27T18:05:29Z",
+      "side": 1,
+      "message": "\u0027replies\u0027 here should use PLURAL with the unformatted number of replies to support languages with multiple plural forms.",
+      "revId": "59c35514bb79a569f8a751c4e37371ed10e0842c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_cce56308",
+        "filename": "i18n/en.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-01-27T18:05:29Z",
+      "side": 1,
+      "message": "same as above",
+      "revId": "59c35514bb79a569f8a751c4e37371ed10e0842c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_8ce76b0d",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-01-27T18:05:29Z",
+      "side": 1,
+      "message": "Missing argument for unformatted number of replies for use in PLURAL.",
+      "revId": "59c35514bb79a569f8a751c4e37371ed10e0842c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_4c4e53c6",
+        "filename": "includes/Notifications/PostReplyPresentationModel.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-01-27T18:05:29Z",
+      "side": 1,
+      "message": "Do you prevent the \u0027reply\u0027 notification from being created in controller.php or do you prevent it from being shown here, or both?",
+      "revId": "59c35514bb79a569f8a751c4e37371ed10e0842c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
