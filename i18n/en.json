@@ -439,7 +439,7 @@
 	"flow-importer-wt-converted-template-content": "Previous discussion was archived at <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> on {{#time: Y-m-d|{{{date}}}}}.",
 	"flow-importer-wt-converted-archive-template": "Archive for converted wikitext talk page",
 	"flow-importer-wt-converted-archive-template-content": "This page is an archive. '''Do not edit the contents of this page'''. Please direct any additional comments to the [[{{{from|{{TALKSPACE}}:{{BASEPAGENAME}}}}}|current talk page]].",
-	"flow-importer-lqt-suppressed-user-template": "LQT post imported with supressed user",
+	"flow-importer-lqt-suppressed-user-template": "LQT post imported with suppressed user",
 	"flow-importer-lqt-suppressed-user-template-content": "This revision was imported from LiquidThreads with a suppressed user. It has been reassigned to the current user.",
 	"flow-importer-lqt-different-author-signature-template": "LQT post imported with different signature user",
 	"flow-importer-lqt-different-author-signature-template-content": "''This post was posted by [[User:{{{authorUser}}}|{{{authorUser}}}]], but signed as [[User:{{{signatureUser}}}|{{{signatureUser}}}]].''",
