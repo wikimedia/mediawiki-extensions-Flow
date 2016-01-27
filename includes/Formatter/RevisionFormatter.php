@@ -1017,8 +1017,10 @@ class RevisionFormatter {
 
 			$content = $this->templating->getContent( $root, 'topic-title-wikitext' );
 
-			// This is *not* plaintext (it's topic-title-wikitext), but I think
-			// this is required for i18n operations later.
+			// TODO: We need to use plaintextParam or similar to avoid parsing,
+			// but the API output says "plaintext", which is confusing and
+			// should be fixed.  From the API consumer's perspective, it's
+			// topic-title-wikitext.
 			return Message::plaintextParam( $content );
 
 		// Strip the tags from the HTML version to produce text:
