@@ -157,6 +157,24 @@
       "revId": "59c35514bb79a569f8a751c4e37371ed10e0842c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_6f46a128",
+        "filename": "includes/Notifications/PostReplyPresentationModel.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-01-27T18:51:27Z",
+      "side": 1,
+      "message": "We shouldn\u0027t have to, I have it here \"just in case\", but I wouldn\u0027t mind ripping it out of here and moving the isFirstPost code to Controller?",
+      "parentUuid": "6eaa8f54_8fc43d96",
+      "revId": "59c35514bb79a569f8a751c4e37371ed10e0842c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
