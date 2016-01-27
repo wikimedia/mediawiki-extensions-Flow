@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6eaa8f54_8f32fded",
+        "filename": "i18n/en.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-01-27T18:32:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6eaa8f54_ace027f8",
+      "revId": "59c35514bb79a569f8a751c4e37371ed10e0842c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6eaa8f54_cce56308",
         "filename": "i18n/en.json",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2016-01-27T18:05:29Z",
       "side": 1,
       "message": "same as above",
+      "revId": "59c35514bb79a569f8a751c4e37371ed10e0842c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_2f2f4987",
+        "filename": "i18n/en.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-01-27T18:32:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6eaa8f54_cce56308",
       "revId": "59c35514bb79a569f8a751c4e37371ed10e0842c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "6eaa8f54_cf20f598",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-01-27T18:32:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6eaa8f54_8ce76b0d",
+      "revId": "59c35514bb79a569f8a751c4e37371ed10e0842c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6eaa8f54_4c4e53c6",
         "filename": "includes/Notifications/PostReplyPresentationModel.php",
         "patchSetId": 6
@@ -64,6 +118,24 @@
       "writtenOn": "2016-01-27T18:05:29Z",
       "side": 1,
       "message": "Do you prevent the \u0027reply\u0027 notification from being created in controller.php or do you prevent it from being shown here, or both?",
+      "revId": "59c35514bb79a569f8a751c4e37371ed10e0842c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eaa8f54_effa910c",
+        "filename": "includes/Notifications/PostReplyPresentationModel.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-01-27T18:32:56Z",
+      "side": 1,
+      "message": "Both. I initially wanted to only prevent it here, but then the count (number of unread messages) is wrong so it also has to not be created in the first place.",
+      "parentUuid": "6eaa8f54_4c4e53c6",
       "revId": "59c35514bb79a569f8a751c4e37371ed10e0842c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
