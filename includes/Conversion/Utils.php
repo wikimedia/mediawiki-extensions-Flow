@@ -53,7 +53,7 @@ abstract class Utils {
 				throw new WikitextException( "Conversion from '$from' to '$to' was requested, but this is not supported." );
 			}
 		} else {
-			return self::commentParser( $from, $to, $content, $title );
+			return self::commentParser( $from, $to, $content );
 		}
 	}
 
@@ -144,6 +144,7 @@ abstract class Utils {
 	 * @param string $to Format of content to convert to: topic-title-html
 	 * @param string $content Content to convert, in topic-title-wikitext format.
 	 * @return string $content in HTML
+	 * @throws WikitextException
 	 */
 	protected static function commentParser( $from, $to, $content ) {
 		if ( $from !== 'topic-title-wikitext' || $to !== 'topic-title-html' ) {
