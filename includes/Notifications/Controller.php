@@ -57,7 +57,6 @@ class NotificationController {
 	 * * revision: The PostRevision created by the action. Always required.
 	 * * title: The Title on which this Topic sits. Always required.
 	 * * topic-workflow: The Workflow object for the topic. Always required.
-	 * * reply-to: The UUID of the post that is being replied to. Required for replies.
 	 * * topic-title: The Title of the Topic that the post belongs to. Required except for topic renames.
 	 * * old-subject: The old subject of a Topic. Required for topic renames.
 	 * * new-subject: The new subject of a Topic. Required for topic renames.
@@ -88,7 +87,6 @@ class NotificationController {
 			throw new FlowException( 'Expected Workflow but received ' . get_class( $topicWorkflow ) );
 		}
 
-		$title = $data['title'];
 		$user = $revision->getUser();
 
 		$extraData['revision-id'] = $revision->getRevisionId();
@@ -99,25 +97,13 @@ class NotificationController {
 		$events = array();
 		switch( $eventName ) {
 			case 'flow-post-reply':
-				$replyTo = $data['reply-to'];
-				if ( !$replyTo instanceof PostRevision ) {
-					throw new FlowException( 'Expected PostRevision but received ' . get_class( $replyTo ) );
-				}
-				$replyToPostId = $replyTo->getPostId();
 				$extraData += array(
-					'reply-to' => $replyToPostId,
+					'reply-to' => $revision->getReplyToId(),
 					'content' => Utils::htmlToPlaintext( $revision->getContent(), 200, $this->language ),
 					'topic-title' => Utils::htmlToPlaintext( $topicRevision->getContent( 'topic-title-html' ), 200, $this->language ),
 				);
 
-				$mentionEvent = $this->generateMentionEvent( array(
-					'title' => $title,
-					'user' => $user,
-					'post' => $revision,
-					'reply-to' => $replyToPostId,
-					'topic-title' => $topicRevision,
-					'topic-workflow' => $topicWorkflow,
-				) );
+				$mentionEvent = $this->generateMentionEvent( $revision, $topicRevision, $topicWorkflow, $user );
 				if ( $mentionEvent ) {
 					$events[] = $mentionEvent;
 				}
@@ -148,7 +134,7 @@ class NotificationController {
 		$info = array(
 			'type' => $eventName,
 			'agent' => $user,
-			'title' => $title,
+			'title' => $topicWorkflow->getOwnerTitle(),
 			'extra' => $extraData,
 		);
 
@@ -219,6 +205,11 @@ class NotificationController {
 			)
 		) );
 
+		$mentionEvent = $this->generateMentionEvent( $topicTitle, $topicTitle, $topicWorkflow, $user );
+		if ( $mentionEvent ) {
+			$events[] = $mentionEvent;
+		}
+
 		return $events;
 	}
 
@@ -242,58 +233,34 @@ class NotificationController {
 	}
 
 	/**
-	 * Generate flow-mention event, if there is anyone that got mentioned.
-	 * @param  array $data Associative array of parameters, all required:
-	 * * title: Title for the page on which the new Post sits.
-	 * * user: User who created the new Post.
-	 * * post: The Post that was created.
-	 * * topic-title: The title for the Topic.
-	 * @return EchoEvent|null.
-	 * @throws FlowException When $data contains unexpected types/values
+	 * @param PostRevision $content The (post|topic) revision that contains the content of the mention
+	 * @param PostRevision $topic Topic PostRevision object
+	 * @param Workflow $workflow Topic Workflow object
+	 * @param User $user User who created the new post
+	 * @return bool|EchoEvent
+	 * @throws Exception\InvalidDataException
+	 * @throws \MWException
 	 */
-	protected function generateMentionEvent( $data ) {
-		// Handle mentions.
-		$newRevision = $data['post'];
-		if ( $newRevision !== null && !$newRevision instanceof PostRevision ) {
-			throw new FlowException( 'Expected PostRevision but received ' . get_class( $newRevision ) );
-		}
-		$topicRevision = $data['topic-title'];
-		if ( !$topicRevision instanceof PostRevision ) {
-			throw new FlowException( 'Expected PostRevision but received ' . get_class( $topicRevision ) );
-		}
-		$title = $data['title'];
-		if ( !$title instanceof \Title ) {
-			throw new FlowException( 'Expected Title but received ' . get_class( $title ) );
-		}
-		$user = $data['user'];
-		$topicWorkflow = $data['topic-workflow'];
-		if ( !$topicWorkflow instanceof Workflow ) {
-			throw new FlowException( 'Expected Workflow but received ' . get_class( $topicWorkflow ) );
-		}
-
-		$mentionedUsers = $newRevision ? $this->getMentionedUsers( $newRevision, $title ) : array();
-
-		if ( !$topicRevision instanceof PostRevision ) {
-			throw new FlowException( 'Expected PostRevision but received: ' . get_class( $topicRevision ) );
-		}
-
+	protected function generateMentionEvent( PostRevision $content, PostRevision $topic, Workflow $workflow, User $user ) {
+		$title = $workflow->getOwnerTitle();
+		$mentionedUsers = $this->getMentionedUsers( $content, $title );
 		if ( count( $mentionedUsers ) === 0 ) {
-			return null;
+			return false;
 		}
 
 		return EchoEvent::create( array(
 			'type' => 'flow-mention',
 			'title' => $title,
 			'extra' => array(
-				'content' => $newRevision
-					? Utils::htmlToPlaintext( $newRevision->getContent(), 200, $this->language )
-					: null,
-				'topic-title' => Utils::htmlToPlaintext( $topicRevision->getContent( 'topic-title-html' ), 200, $this->language ),
-				'post-id' => $newRevision ? $newRevision->getPostId() : null,
+				// don't include topic content again if the notification IS in the title
+				'content' => $content !== $topic ? Utils::htmlToPlaintext( $content->getContent(), 200, $this->language ) : '',
+				'topic-title' => Utils::htmlToPlaintext( $topic->getContent( 'topic-title-html' ), 200, $this->language ),
+				'post-id' => $content->getPostId(),
 				'mentioned-users' => $mentionedUsers,
-				'topic-workflow' => $topicWorkflow->getId(),
-				'target-page' => $topicWorkflow->getArticleTitle()->getArticleID(),
-				'reply-to' => isset( $data['reply-to'] ) ? $data['reply-to'] : null
+				'topic-workflow' => $workflow->getId(),
+				'target-page' => $workflow->getArticleTitle()->getArticleID(),
+				// used to exclude mentions for authors already getting a "replied to your post" notification
+				'reply-to' => $content->getReplyToId()
 			),
 			'agent' => $user,
 		) );
@@ -303,14 +270,14 @@ class NotificationController {
 	 * Analyses a PostRevision to determine which users are mentioned.
 	 *
 	 * @param PostRevision $post The Post to analyse.
-	 * @param \Title $title
+	 * @param Title $title
 	 * @return User[] Array of User objects.
 	 */
-	protected function getMentionedUsers( $post, $title ) {
+	protected function getMentionedUsers( PostRevision $post, Title $title ) {
 		// At the moment, it is not possible to get a list of mentioned users from HTML
 		//  unless that HTML comes from Parsoid. But VisualEditor (what is currently used
 		//  to convert wikitext to HTML) does not currently use Parsoid.
-		$wikitext = $post->getContent( 'wikitext' );
+		$wikitext = $post->getContentInWikitext();
 		$mentions = $this->getMentionedUsersFromWikitext( $wikitext );
 		$notifyUsers = $this->filterMentionedUsers( $mentions, $post, $title );
 
@@ -325,7 +292,7 @@ class NotificationController {
 	 * owner of the talk page
 	 * @param  User[] $mentions Array of User objects
 	 * @param  PostRevision $post The Post that is being examined.
-	 * @param  \Title $title The Title of the page that the comment is made on.
+	 * @param  Title $title The Title of the page that the comment is made on.
 	 * @return array Array of user IDs
 	 */
 	protected function filterMentionedUsers( $mentions, PostRevision $post, $title ) {
