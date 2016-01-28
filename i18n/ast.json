@@ -238,7 +238,6 @@
 	"notification-header-flow-new-topic-v2": "Asuntu nuevu creáu en $3: «$4».",
 	"notification-bundle-header-flow-new-topic": "$1 {{PLURAL:$2|tema nuevu|temes nuevos}} en $3.",
 	"notification-header-flow-post-reply": "$1 {{GENDER:$2|respondió}} en «$4».",
-	"notification-bundle-header-flow-post-reply": "$1 nueves respuestes en «$2».",
 	"notification-header-flow-post-edited-v2": "Editóse la to publicación sobro «$1».",
 	"notification-bundle-header-flow-post-edited-v2": "La to publicación sobro «$1» editóse delles veces.",
 	"notification-header-flow-topic-renamed-v2": "Cambióse'l nome del asuntu «$1» a «$2».",

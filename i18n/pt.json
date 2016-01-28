@@ -244,7 +244,6 @@
 	"notification-header-flow-new-topic-v2": "Novo tópico criado em $3: \"$4\".",
 	"notification-bundle-header-flow-new-topic": "$1 {{PLURAL:$2|novo tópico|novos tópicos}} em $3.",
 	"notification-header-flow-post-reply": "$1 {{GENDER:$2|respondeu}} em \"$4\".",
-	"notification-bundle-header-flow-post-reply": "$1 novas respostas em \"$2\".",
 	"notification-header-flow-post-edited-v2": "A sua mensagem em \"$1\" foi editada.",
 	"notification-bundle-header-flow-post-edited-v2": "A sua mensagem em \"$1\" foi editada diversas vezes.",
 	"notification-header-flow-topic-renamed-v2": "O tópico \"$1\" foi renomeado para \"$2\".",

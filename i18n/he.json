@@ -243,7 +243,6 @@
 	"notification-header-flow-new-topic-v2": "נושא חדש נוצר בלוח $3: \"$4\".",
 	"notification-bundle-header-flow-new-topic": "{{PLURAL:$2|נושא חדש אחד|$1 נושאים חדשים}} בדף $3.",
 	"notification-header-flow-post-reply": "$1 {{GENDER:$2|ענה|ענתה}} בנושא \"$4\".",
-	"notification-bundle-header-flow-post-reply": "$1 תגובות חדשות בנושא \"$2\".",
 	"notification-header-flow-post-edited-v2": "הרשימה שלך בנושא \"$1\" נערכה.",
 	"notification-bundle-header-flow-post-edited-v2": "הרשומה שלך בנושא \"$1\" נערכה מספר פעמים.",
 	"notification-header-flow-topic-renamed-v2": "שם הנושא \"$1\" שונה אל \"$2\".",

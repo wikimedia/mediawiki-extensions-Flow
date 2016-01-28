@@ -190,7 +190,6 @@
 	"flow-notification-edit-bundle": "$1 と他 $5 {{PLURAL:$6|人}}が「$3」の「$2」での<span class=\"plainlinks\">[$4 投稿]</span>を{{GENDER:$1|編集しました}}。",
 	"notification-bundle-header-flow-new-topic": "$3 で$1件の新しい{{PLURAL:$2|話題}}が作成されました。",
 	"notification-header-flow-post-reply": "$1 が「$4」で{{GENDER:$2|返信しました}}。",
-	"notification-bundle-header-flow-post-reply": "「$2」で新着$1件の返信",
 	"notification-header-flow-mention": "$1 が「$3」で{{GENDER:$5|あなた}}の名前を{{GENDER:$2|挙げました}}。",
 	"notification-header-flow-enabled-on-talkpage": "新しい議論システムが{{GENDER:$2|あなたの}}利用者トークページで有効化されました。",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 が '''$3''' で 新しい話題を{{GENDER:$1|作成しました}}。",

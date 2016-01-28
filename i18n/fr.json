@@ -279,7 +279,6 @@
 	"notification-header-flow-new-topic-v2": "Nouveau sujet créé sur $3: \"$4\".",
 	"notification-bundle-header-flow-new-topic": "$1 {{PLURAL:$2|nouveau sujet|nouveaux sujets}} sur $3.",
 	"notification-header-flow-post-reply": "$1 {{GENDER:$2|répondu}}\"$4\".",
-	"notification-bundle-header-flow-post-reply": "$1 nouvelles réponses dans \"$2\".",
 	"notification-header-flow-post-edited-v2": "Votre billet sur \"$1\" a été modifé.",
 	"notification-bundle-header-flow-post-edited-v2": "Votre billet sur \"$1\" a été modifié à plusieurs reprises.",
 	"notification-header-flow-topic-renamed-v2": "Le sujet \"$1\" a été renommé en \"$2\".",

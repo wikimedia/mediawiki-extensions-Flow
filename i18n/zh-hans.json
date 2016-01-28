@@ -258,7 +258,6 @@
 	"notification-header-flow-new-topic-v2": "已在$3上创建新话题：“$4”。",
 	"notification-bundle-header-flow-new-topic": "$3上的$1条新{{PLURAL:$2|话题}}。",
 	"notification-header-flow-post-reply": "$1在“$4”{{GENDER:$2|做出}}了回应。",
-	"notification-bundle-header-flow-post-reply": "“$2”上的$1条新回应。",
 	"notification-header-flow-post-edited-v2": "您在“$1”上的帖子已编辑。",
 	"notification-bundle-header-flow-post-edited-v2": "您在“$1”上的帖子编辑了太多次。",
 	"notification-header-flow-topic-renamed-v2": "话题“$1”已重命名为“$2”。",

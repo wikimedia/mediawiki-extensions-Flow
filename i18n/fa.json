@@ -247,7 +247,6 @@
 	"notification-header-flow-new-topic-v2": "یک مبحث جدید در $3 ایجاد شده‌است: «$4»",
 	"notification-bundle-header-flow-new-topic": "$1 {{PLURAL:$2|مبحث|مبحث}} جدید در $3 ایجاد شده است.",
 	"notification-header-flow-post-reply": "$1 در \"$4\" {{GENDER:$2|پاسخ داد}}.",
-	"notification-bundle-header-flow-post-reply": "$1 پاسخ جدید در «$2».",
 	"notification-header-flow-post-edited-v2": "پست شما در «$1» ویرایش شد.",
 	"notification-bundle-header-flow-post-edited-v2": "پست شما در «$1» چندین بار ویرایش شده‌است.",
 	"notification-header-flow-topic-renamed-v2": "مبحث «$1» به «$2» تغییرنام داده‌شد.",
