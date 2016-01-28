@@ -5,6 +5,7 @@ namespace Flow\Tests;
 use Flow\Container;
 use Flow\Model\PostRevision;
 use Flow\Model\UserTuple;
+use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
 use EchoNotificationController;
@@ -36,6 +37,7 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 			return;
 		}
 	}
+
 	public function testWatchingTopic() {
 		$data = $this->getTestData();
 		if ( !$data ) {
@@ -52,7 +54,7 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 				'user' => $data['agent'],
 				'reply-to' => $data['topic'],
 				'topic-title' => $data['topic'],
-				'revision' => $data['post'],
+				'revision' => $data['post-2'],
 			) );
 
 		$this->assertNotifiedUser( $events, $data['user'], $data['agent'] );
@@ -141,10 +143,25 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 		$firstPost = $topicTitle->reply( $topicWorkflow, $agent, 'ffuts dna ylper', 'wikitext' );
 		$this->store( $firstPost );
 
+		/*
+		 * Generation of the 2nd post will be a bit hacky: there's some code to ensure
+		 * that first replies are ignored when sending notifications, and that is done
+		 * by checking timestamps. We want our tests to run fast so I won't sleep for
+		 * a second. Instead, I'll just inject the new timestamp (which is 2 seconds
+		 * in the future) in there.
+		 */
+		$secondPost = $topicTitle->reply( $topicWorkflow, $agent, 'lorem ipsum', 'wikitext' );
+		$newId = UUID::getComparisonUUID( (int) $secondPost->getPostId()->getTimestamp( TS_UNIX ) + 2 );
+		$reflection = new \ReflectionProperty( $secondPost, 'postId' );
+		$reflection->setAccessible( true );
+		$reflection->setValue( $secondPost, $newId );
+		$this->store( $secondPost );
+
 		return array(
 			'boardWorkflow' => $boardWorkflow,
 			'topicWorkflow' => $topicWorkflow,
 			'post' => $firstPost,
+			'post-2' => $secondPost,
 			'topic' => $topicTitle,
 			'user' => $user,
 			'agent' => $agent,
