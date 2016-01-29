@@ -37,6 +37,7 @@ class TopicRenamedPresentationModel extends FlowPresentationModel {
 		$msg = $this->msg( $this->getHeaderMessageKey() );
 		$msg->params( $this->getTopicTitle( 'old-subject' ) );
 		$msg->params( $this->getTopicTitle( 'new-subject' ) );
+		$msg->params( $this->getViewingUserForGender() );
 		return $msg;
 	}
 
