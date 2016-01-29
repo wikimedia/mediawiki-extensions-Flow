@@ -1,6 +1,7 @@
 <?php
 
 use Flow\Container;
+use Flow\Model\UUID;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
@@ -34,7 +35,7 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 	 * SELECT <pk>, <content>, <flags>
 	 * FROM <table>
 	 * WHERE <flags> LIKE "%external%"
-	 *   AND <content> LIKE "DB://cluster/%";
+	 *	AND <content> LIKE "DB://cluster/%";
 	 *
 	 * Against dbw:
 	 * UPDATE <table>
@@ -52,6 +53,7 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 
 		$this->addOption( 'from', 'ExternalStore cluster to move from (comma-separated). E.g.: --from=cluster24,cluster25', true, true );
 		$this->addOption( 'to', 'ExternalStore cluster to move to (comma-separated). E.g.: --to=cluster26', true, true );
+		$this->addOption( 'dry-run', 'Outputs the old user content, inserts into new External Store, gives hypothetical new column values for flow_revision (but does not actually change flow_revision), and checks that old and new ES are the same.' );
 
 		$this->setBatchSize( 300 );
 	}
@@ -76,12 +78,47 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 		$iterator->addConditions( array(
 				$schema['flags'] . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ),
 				$dbr->makeList( $clusterConditions, LIST_OR ),
-			) );
+		) );
+
+		$updateGenerator = new ExternalStoreUpdateGenerator( $this, $to, $schema );
+
+		if ( $this->hasOption( 'dry-run' ) ) {
+			$this->output( "Starting dry run\n\n");
+			foreach ( $iterator as $rows ) {
+				$this->output( "Starting dry run batch\n" );
+				foreach ( $rows as $row ) {
+					$url = $row->{$schema['content']};
+					$flags = explode( ',', $row->{$schema['flags']} );
+
+					$oldContent = $updateGenerator->read( $url, $flags );
+					$this->output( "\nOld content: $oldContent\n" );
+
+					// Update itself just generates the update, it doesn't write
+					// to flow_revision.
+					$updatedColumns = $updateGenerator->update( $row );
+					$this->output( "flow_revision columns would become:\n" );
+					$this->output( var_export( $updatedColumns, true ) . "\n" );
+
+					$newContentUrl = $updatedColumns['rev_content'];
+					$newContent = ExternalStore::fetchFromURL( $newContentUrl );
+					if ( $newContent === $oldContent ) {
+						$this->output( "New external store content matches old external store content\n" );
+					} else {
+						$revIdStr = UUID::create( $row->rev_id )->getAlphadecimal();
+						$this->error( "New content for ID $revIdStr does not match prior content.\nNew content: $newContent\nOld content: $oldContent\n\nTerminating dry run.\n", 1 );
+					}
+				}
+
+				$this->output( "\n\n" );
+			}
+			$this->output( "Dry run completed\n" );
+			return;
+		}
 
 		$updater = new BatchRowUpdate(
 			$iterator,
 			new BatchRowWriter( $dbw, $schema['table'] ),
-			new ExternalStoreUpdateGenerator( $this, $to, $schema )
+			$updateGenerator
 		);
 		$updater->setOutput( array( $this, 'output' ) );
 		$updater->execute();
@@ -167,7 +204,7 @@ class ExternalStoreUpdateGenerator implements RowUpdateGenerator {
 	 * @return string
 	 * @throws MWException
 	 */
-	protected function read( $url, array $flags = array() ) {
+	public function read( $url, array $flags = array() ) {
 		$content = ExternalStore::fetchFromURL( $url );
 		if ( $content === false ) {
 			throw new MWException( "Failed to fetch content from URL: $url" );
