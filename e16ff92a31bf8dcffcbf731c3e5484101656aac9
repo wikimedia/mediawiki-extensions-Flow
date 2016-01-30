@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6eaa8f54_836403b0",
+        "filename": "i18n/en.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 2212
+      },
+      "writtenOn": "2016-01-30T09:51:38Z",
+      "side": 1,
+      "message": "I think it might be clearer to the user if \"please file a bug on Phabricator\" were specified, so that \"please file a bug\" wouldn\u0027t be vague",
+      "revId": "e16ff92a31bf8dcffcbf731c3e5484101656aac9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
