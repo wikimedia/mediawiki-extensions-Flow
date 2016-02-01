@@ -3,7 +3,9 @@
 namespace Flow\Tests\Api;
 
 use Title;
+use User;
 use WatchedItem;
+use WatchedItemStore;
 
 /**
  * @group Flow
@@ -18,7 +20,14 @@ class ApiWatchTopicTest extends ApiTestCase {
 				// expected key in api result
 				'watched',
 				// initialization
-				function( WatchedItem $item ) { $item->removeWatch(); },
+				function( User $user, Title $title ) {
+					if( class_exists( 'WatchedItemStore' ) ) {
+						WatchedItemStore::getDefaultInstance()->removeWatch( $user, $title->getSubjectPage() );
+						WatchedItemStore::getDefaultInstance()->removeWatch( $user, $title->getTalkPage() );
+					} else {
+						WatchedItem::fromUserTitle( $user, $title )->removeWatch();
+					}
+				},
 				// extra request parameters
 				array(),
 			),
@@ -27,7 +36,15 @@ class ApiWatchTopicTest extends ApiTestCase {
 				// expected key in api result
 				'unwatched',
 				// initialization
-				function( WatchedItem $item ) { $item->addWatch(); },
+				function( User $user, Title $title ) {
+					WatchedItemStore::getDefaultInstance()->addWatch( $user, $title );
+					if( class_exists( 'WatchedItemStore' ) ) {
+						WatchedItemStore::getDefaultInstance()->addWatch( $user, $title->getSubjectPage() );
+						WatchedItemStore::getDefaultInstance()->addWatch( $user, $title->getTalkPage() );
+					} else {
+						WatchedItem::fromUserTitle( $user, $title )->removeWatch();
+					}
+				},
 				// extra request parameters
 				array( 'unwatch' => 1 ),
 			),
@@ -41,7 +58,7 @@ class ApiWatchTopicTest extends ApiTestCase {
 		$topic = $this->createTopic();
 
 		$title = Title::newFromText( $topic['topic-page'] );
-		$init( WatchedItem::fromUserTitle( self::$users['sysop']->getUser(), $title, false ) );
+		$init( self::$users['sysop']->getUser(), $title );
 
 		// issue a watch api request
 		$data = $this->doApiRequest( $request + array(
