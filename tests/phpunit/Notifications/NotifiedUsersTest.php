@@ -10,7 +10,7 @@ use Flow\Model\Workflow;
 use Flow\NotificationController;
 use EchoNotificationController;
 use User;
-use WatchedItem;
+use WatchedItemStore;
 
 /**
  * @group Flow
@@ -45,7 +45,10 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 			return;
 		}
 
-		WatchedItem::fromUserTitle( $data['user'], $data['topicWorkflow']->getArticleTitle() )->addWatch();
+		WatchedItemStore::getDefaultInstance()->addWatch(
+			$data['user'],
+			$data['topicWorkflow']->getArticleTitle()
+		);
 
 		$events = $data['notificationController']->notifyPostChange( 'flow-post-reply',
 			array(
@@ -67,7 +70,10 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 			return;
 		}
 
-		WatchedItem::fromUserTitle( $data['user'], $data['boardWorkflow']->getArticleTitle() )->addWatch();
+		WatchedItemStore::getDefaultInstance()->addWatch(
+			$data['user'],
+			$data['boardWorkflow']->getArticleTitle()
+		);
 
 		$events = $data['notificationController']->notifyNewTopic( array(
 			'board-workflow' => $data['boardWorkflow'],
