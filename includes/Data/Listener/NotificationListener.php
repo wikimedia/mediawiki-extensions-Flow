@@ -53,9 +53,7 @@ class NotificationListener extends AbstractListener {
 			break;
 
 		case 'reply':
-			$this->notifyPostChange( 'flow-post-reply', $object, $metadata, array(
-				'reply-to' => $metadata['reply-to'],
-			) );
+			$this->notifyPostChange( 'flow-post-reply', $object, $metadata );
 			break;
 
 		case 'edit-post':
@@ -86,7 +84,6 @@ class NotificationListener extends AbstractListener {
 
 		$this->notificationController->notifyPostChange( $type, $params + array(
 			'revision' => $object,
-			'title' => $workflow->getOwnerTitle(),
 			'topic-workflow' => $workflow,
 			'topic-title' => $metadata['topic-title'],
 		) );

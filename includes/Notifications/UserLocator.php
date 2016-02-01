@@ -94,11 +94,21 @@ class NotificationsUserLocator extends EchoUserLocator {
 			return array();
 		}
 
-		// figure out which users may already receive a notification for this event because they're author,
-		// or because they're watching this topic
+		$notifications = require __DIR__ . "/Notifications.php";
+		$extra = $event->getExtra();
+
+		/*
+		 * Figure out which users may already receive a notification for this
+		 * (e.g. because they're watching this)
+		 * Mention notifications are triggered for new topics & for replies:
+		 * let's fetch their locators & see which those events will already
+		 * notify, so that we can discard those users here.
+		 */
+		$conflict = isset( $extra['reply-to'] ) ? 'flow-post-reply' : 'flow-new-topic';
+		$locators = $notifications[$conflict]['user-locators'];
 		$notifiedUsers = array();
-		$locators = array( self::locatePostAuthors( $event ), self::locateUsersWatchingTopic( $event ) );
-		foreach ( $locators as $locator ) {
+		foreach ( $locators as $callable ) {
+			$locator = call_user_func( $callable, $event );
 			/** @var User $user */
 			foreach ( $locator as $user ) {
 				$notifiedUsers[$user->getId()] = $user;
