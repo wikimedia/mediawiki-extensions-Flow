@@ -11,6 +11,7 @@ use Flow\WatchedTopicItems;
 use Title;
 use User;
 use WatchedItem;
+use WatchedItemStore;
 
 /**
  * Auto-watch topics when the user performs one of the actions specified
@@ -116,7 +117,8 @@ class ImmediateWatchTopicListener extends AbstractTopicInsertListener {
 			}
 			$title = $workflow->getArticleTitle();
 
-			WatchedItem::fromUserTitle( $user, $title )->addWatch();
+			$user->addWatch( $title );
+
 			$this->watchedTopicItems->addOverrideWatched( $title );
 		}
 	}
