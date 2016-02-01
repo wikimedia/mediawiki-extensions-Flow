@@ -11,6 +11,7 @@ use Flow\NotificationController;
 use EchoNotificationController;
 use User;
 use WatchedItem;
+use WatchedItemStore;
 
 /**
  * @group Flow
@@ -45,7 +46,19 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 			return;
 		}
 
-		WatchedItem::fromUserTitle( $data['user'], $data['topicWorkflow']->getArticleTitle() )->addWatch();
+		if( class_exists( 'WatchedItemStore' ) ) {
+			$watchedItemStore = WatchedItemStore::getDefaultInstance();
+			$watchedItemStore->addWatch(
+				$data['user'],
+				$data['topicWorkflow']->getArticleTitle()->getSubjectPage()
+			);
+			$watchedItemStore->addWatch(
+				$data['user'],
+				$data['topicWorkflow']->getArticleTitle()->getTalkPage()
+			);
+		} else {
+			WatchedItem::fromUserTitle( $data['user'], $data['topicWorkflow']->getArticleTitle() )->addWatch();
+		}
 
 		$events = $data['notificationController']->notifyPostChange( 'flow-post-reply',
 			array(
@@ -67,7 +80,19 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 			return;
 		}
 
-		WatchedItem::fromUserTitle( $data['user'], $data['boardWorkflow']->getArticleTitle() )->addWatch();
+		if( class_exists( 'WatchedItemStore' ) ) {
+			$watchedItemStore = WatchedItemStore::getDefaultInstance();
+			$watchedItemStore->addWatch(
+				$data['user'],
+				$data['boardWorkflow']->getArticleTitle()->getSubjectPage()
+			);
+			$watchedItemStore->addWatch(
+				$data['user'],
+				$data['boardWorkflow']->getArticleTitle()->getTalkPage()
+			);
+		} else {
+			WatchedItem::fromUserTitle( $data['user'], $data['boardWorkflow']->getArticleTitle() )->addWatch();
+		}
 
 		$events = $data['notificationController']->notifyNewTopic( array(
 			'board-workflow' => $data['boardWorkflow'],
