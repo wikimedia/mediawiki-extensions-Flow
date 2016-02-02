@@ -26,6 +26,16 @@ class MentionPresentationModel extends FlowPresentationModel {
 		);
 	}
 
+	public function getHeaderMessageKey() {
+		$extra = $this->event->getExtra();
+
+		// we didn't use to include the type to differentiate messages, but
+		// then we only supported posts
+		$type = isset( $extra['revision-type'] ) ? $extra['revision-type'] : 'post';
+
+		return parent::getHeaderMessageKey() . '-' . $type;
+	}
+
 	public function getHeaderMessage() {
 		$msg = parent::getHeaderMessage();
 		$msg->params( $this->getTopicTitle() );
