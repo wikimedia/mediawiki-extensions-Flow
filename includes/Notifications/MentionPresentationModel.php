@@ -26,11 +26,15 @@ class MentionPresentationModel extends FlowPresentationModel {
 		);
 	}
 
+	public function getHeaderMessageKey() {
+		return parent::getHeaderMessageKey() . '-' . $this->getType();
+	}
+
 	public function getHeaderMessage() {
 		$msg = parent::getHeaderMessage();
-		$msg->params( $this->getTopicTitle() );
 		$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true) );
 		$msg->params( $this->getViewingUserForGender() );
+		$msg->params( $this->getTopicTitle() );
 		return $msg;
 	}
 
@@ -40,4 +44,11 @@ class MentionPresentationModel extends FlowPresentationModel {
 		return $msg;
 	}
 
+	protected function getType() {
+		$extra = $this->event->getExtra();
+
+		// we didn't use to include the type to differentiate messages, but
+		// then we only supported posts
+		return isset( $extra['revision-type'] ) ? $extra['revision-type'] : 'post';
+	}
 }
