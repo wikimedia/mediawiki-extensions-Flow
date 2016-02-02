@@ -97,16 +97,18 @@ class NotificationController {
 		$events = array();
 		switch( $eventName ) {
 			case 'flow-post-reply':
-				$extraData += array(
-					'reply-to' => $revision->getReplyToId(),
-					'content' => Utils::htmlToPlaintext( $revision->getContent(), 200, $this->language ),
-					'topic-title' => Utils::htmlToPlaintext( $topicRevision->getContent( 'topic-title-html' ), 200, $this->language ),
-				);
-
 				$mentionEvent = $this->generateMentionEvent( $revision, $topicRevision, $topicWorkflow, $user );
 				if ( $mentionEvent ) {
 					$events[] = $mentionEvent;
 				}
+
+				$extraData += array(
+					'reply-to' => $revision->getReplyToId(),
+					'content' => Utils::htmlToPlaintext( $revision->getContent(), 200, $this->language ),
+					'topic-title' => Utils::htmlToPlaintext( $topicRevision->getContent( 'topic-title-html' ), 200, $this->language ),
+					// pass along mentioned users to other notification, so it knows who to ignore
+					'mentioned-users' => $mentionEvent ? $mentionEvent->getExtraParam( 'mentioned-users' ) : array(),
+				);
 
 				// if we're looking at the initial post (submitted along with the topic
 				// title), we don't want to send the flow-post-reply notification,
@@ -184,6 +186,11 @@ class NotificationController {
 			throw new FlowException( 'Expected Workflow but received ' . get_class( $boardWorkflow ) );
 		}
 
+		$mentionEvent = $this->generateMentionEvent( $topicTitle, $topicTitle, $topicWorkflow, $user );
+		if ( $mentionEvent ) {
+			$events[] = $mentionEvent;
+		}
+
 		$events = array();
 		$events[] = EchoEvent::create( array(
 			'type' => 'flow-new-topic',
@@ -202,13 +209,10 @@ class NotificationController {
 					$topicWorkflow->getOwnerTitle()->getArticleID( Title::GAID_FOR_UPDATE ),
 					$topicWorkflow->getArticleTitle()->getArticleID( Title::GAID_FOR_UPDATE ),
 				),
+				// pass along mentioned users to other notification, so it knows who to ignore
+				'mentioned-users' => $mentionEvent ? $mentionEvent->getExtraParam( 'mentioned-users' ) : array(),
 			)
 		) );
-
-		$mentionEvent = $this->generateMentionEvent( $topicTitle, $topicTitle, $topicWorkflow, $user );
-		if ( $mentionEvent ) {
-			$events[] = $mentionEvent;
-		}
 
 		return $events;
 	}

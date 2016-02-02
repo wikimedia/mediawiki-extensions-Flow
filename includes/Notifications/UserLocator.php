@@ -89,36 +89,8 @@ class NotificationsUserLocator extends EchoUserLocator {
 	 * @return array
 	 */
 	public static function locateMentionedUsers( EchoEvent $event ) {
-		$mentionedUserIds = $event->getExtraParam( 'mentioned-users' );
-		if ( !$mentionedUserIds ) {
-			return array();
-		}
-
-		$notifications = require __DIR__ . "/Notifications.php";
-		$extra = $event->getExtra();
-
-		/*
-		 * Figure out which users may already receive a notification for this
-		 * (e.g. because they're watching this)
-		 * Mention notifications are triggered for new topics & for replies:
-		 * let's fetch their locators & see which those events will already
-		 * notify, so that we can discard those users here.
-		 */
-		$conflict = isset( $extra['reply-to'] ) ? 'flow-post-reply' : 'flow-new-topic';
-		$locators = $notifications[$conflict]['user-locators'];
-		$notifiedUsers = array();
-		foreach ( $locators as $callable ) {
-			$locator = call_user_func( $callable, $event );
-			/** @var User $user */
-			foreach ( $locator as $user ) {
-				$notifiedUsers[$user->getId()] = $user;
-			}
-		}
-
-		// now subtract those that already receive another notification
-		$mentionedUserIds = array_diff( $mentionedUserIds, array_keys( $notifiedUsers ) );
-
-		return array_map( array( 'User', 'newFromId' ), $mentionedUserIds );
+		$userIds = $event->getExtraParam( 'mentioned-users', array() );
+		return array_map( array( 'User', 'newFromId' ), $userIds );
 	}
 
 	/**
