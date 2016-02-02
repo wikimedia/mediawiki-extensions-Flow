@@ -16,6 +16,9 @@ $notifications = array(
 			'EchoUserLocator::locateUsersWatchingTitle',
 			'EchoUserLocator::locateTalkPageOwner'
 		),
+		'user-filters' => array(
+			'Flow\\NotificationsUserLocator::locateMentionedUsers',
+		),
 		'primary-link' => array(
 			'message' => 'flow-notification-link-text-view-topic',
 			'destination' => 'flow-new-topics'
@@ -43,6 +46,9 @@ $notifications = array(
 			'Flow\\NotificationsUserLocator::locateUsersWatchingTopic',
 			'EchoUserLocator::locateTalkPageOwner'
 		),
+		'user-filters' => array(
+			'Flow\\NotificationsUserLocator::locateMentionedUsers',
+		),
 		'primary-link' => array(
 			'message' => 'flow-notification-link-text-view-post',
 			'destination' => 'flow-post'
@@ -69,6 +75,9 @@ $notifications = array(
 			'Flow\\NotificationsUserLocator::locatePostAuthors',
 			'EchoUserLocator::locateTalkPageOwner'
 		),
+		'user-filters' => array(
+			'Flow\\NotificationsUserLocator::locateMentionedUsers',
+		),
 		'primary-link' => array(
 			'message' => 'flow-notification-link-text-view-post',
 			'destination' => 'flow-post'
@@ -94,6 +103,9 @@ $notifications = array(
 		'user-locators' => array(
 			'Flow\\NotificationsUserLocator::locateUsersWatchingTopic',
 			'EchoUserLocator::locateTalkPageOwner'
+		),
+		'user-filters' => array(
+			'Flow\\NotificationsUserLocator::locateMentionedUsers',
 		),
 		'primary-link' => array(
 			'message' => 'flow-notification-link-text-view-post',
