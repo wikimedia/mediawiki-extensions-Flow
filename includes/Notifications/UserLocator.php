@@ -53,20 +53,6 @@ class NotificationsUserLocator extends EchoUserLocator {
 	 * @param EchoEvent $event
 	 * @return User[]
 	 */
-	public static function locateTopicAuthors( EchoEvent $event ) {
-		$workflowId = $event->getExtraParam( 'topic-workflow' );
-		if ( !$workflowId instanceof UUID ) {
-			// something wrong; don't notify anyone
-			return array();
-		}
-
-		return self::getCreatorsFromPostIDs( array( $workflowId ) );
-	}
-
-	/**
-	 * @param EchoEvent $event
-	 * @return User[]
-	 */
 	public static function locatePostAuthors( EchoEvent $event ) {
 		$extra = $event->getExtra();
 

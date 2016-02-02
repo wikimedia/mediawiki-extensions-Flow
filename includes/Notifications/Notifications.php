@@ -92,7 +92,7 @@ $notifications = array(
 	'flow-topic-renamed' => array(
 		'presentation-model' => 'Flow\\TopicRenamedPresentationModel',
 		'user-locators' => array(
-			'Flow\\NotificationsUserLocator::locateTopicAuthors',
+			'Flow\\NotificationsUserLocator::locateUsersWatchingTopic',
 			'EchoUserLocator::locateTalkPageOwner'
 		),
 		'primary-link' => array(
