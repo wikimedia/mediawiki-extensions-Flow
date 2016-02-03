@@ -4,6 +4,7 @@ namespace Flow;
 
 use Flow\Data\ManagerGroup;
 use Flow\Exception\FlowException;
+use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
@@ -81,9 +82,16 @@ class NotificationController {
 		$user = $revision->getUser();
 		$events = array();
 
+		$mentionEvent = $this->generateMentionEvent( $revision, null, $boardWorkflow, $user );
+		if ( $mentionEvent ) {
+			$events[] = $mentionEvent;
+		}
+
 		$extraData['content'] = Utils::htmlToPlaintext( $revision->getContent(), 200, $this->language );
 		$extraData['revision-id'] = $revision->getRevisionId();
 		$extraData['collection-id'] = $revision->getCollectionId();
+		// pass along mentioned users to other notification, so it knows who to ignore
+		$extraData['mentioned-users'] = $mentionEvent ? $mentionEvent->getExtraParam( 'mentioned-users' ) : array();
 
 		$info = array(
 			'type' => $eventName,
@@ -144,7 +152,7 @@ class NotificationController {
 		}
 
 		$user = $revision->getUser();
-		$mentionedUsers = $this->getMentionedUsers( $revision, $topicWorkflow->getOwnerTitle() );
+		$mentionedUsers = $this->getMentionedUsers( $revision );
 
 		$extraData['revision-id'] = $revision->getRevisionId();
 		$extraData['post-id'] = $revision->getPostId();
@@ -169,7 +177,7 @@ class NotificationController {
 					// that they weren't also mentioned in the topic title (in
 					// which case they would get 2 notifications...)
 					if ( $mentionedUsers ) {
-						$mentionedInTitle = $this->getMentionedUsers( $topicRevision, $topicWorkflow->getArticleTitle() );
+						$mentionedInTitle = $this->getMentionedUsers( $topicRevision );
 						$mentionedUsers = array_diff_key( $mentionedUsers, $mentionedInTitle );
 						$extraData['mentioned-users'] = $mentionedUsers;
 					}
@@ -249,7 +257,7 @@ class NotificationController {
 			throw new FlowException( 'Expected Workflow but received ' . get_class( $boardWorkflow ) );
 		}
 
-		$mentionedUsers = $this->getMentionedUsers( $topicTitle, $topicWorkflow->getOwnerTitle() );
+		$mentionedUsers = $this->getMentionedUsers( $topicTitle );
 
 		$events = array();
 		$events[] = EchoEvent::create( array(
@@ -273,7 +281,7 @@ class NotificationController {
 				// also look at users mentioned in first post: if there are any, this
 				// (flow-new-topic) notification shouldn't go through (because they'll
 				// already receive the mention notification)
-				'mentioned-users' => $mentionedUsers + $this->getMentionedUsers( $firstPost, $topicWorkflow->getArticleTitle() ),
+				'mentioned-users' => $mentionedUsers + $this->getMentionedUsers( $firstPost ),
 			)
 		) );
 
@@ -304,36 +312,39 @@ class NotificationController {
 	}
 
 	/**
-	 * @param PostRevision $content The (post|topic) revision that contains the content of the mention
-	 * @param PostRevision $topic Topic PostRevision object
-	 * @param Workflow $workflow Topic Workflow object
+	 * @param AbstractRevision $content The (post|topic|header) revision that contains the content of the mention
+	 * @param PostRevision|null $topic Topic PostRevision object, if relevant (e.g. not for Header)
+	 * @param Workflow $workflow Workflow object
 	 * @param User $user User who created the new post
 	 * @param array $mentionedUsers
 	 * @return bool|EchoEvent
 	 * @throws Exception\InvalidDataException
 	 * @throws \MWException
 	 */
-	protected function generateMentionEvent( PostRevision $content, PostRevision $topic, Workflow $workflow, User $user, array $mentionedUsers ) {
+	protected function generateMentionEvent( AbstractRevision $content, PostRevision $topic = null, Workflow $workflow, User $user, array $mentionedUsers ) {
 		if ( count( $mentionedUsers ) === 0 ) {
 			return false;
 		}
 
-		$title = $workflow->getOwnerTitle();
+		$extraData = array();
+		$extraData['mentioned-users'] = $mentionedUsers;
+		$extraData['target-page'] = $workflow->getArticleTitle()->getArticleID();
+		// don't include topic content again if the notification IS in the title
+		$extraData['content'] = $content === $topic ? '' : Utils::htmlToPlaintext( $content->getContent(), 200, $this->language );
+		// lets us differentiate between different revision types
+		$extraData['revision-type'] = $content->getRevisionType();
+
+		// additional data needed to render topic/post data
+		if ( $extraData['revision-type'] === 'post' ) {
+			$extraData['post-id'] = $content->getCollection()->getId();
+			$extraData['topic-workflow'] = $workflow->getId();
+			$extraData['topic-title'] = Utils::htmlToPlaintext( $topic->getContent( 'topic-title-html' ), 200, $this->language );
+		}
 
 		return EchoEvent::create( array(
 			'type' => 'flow-mention',
-			'title' => $title,
-			'extra' => array(
-				// don't include topic content again if the notification IS in the title
-				'content' => $content !== $topic ? Utils::htmlToPlaintext( $content->getContent(), 200, $this->language ) : '',
-				'topic-title' => Utils::htmlToPlaintext( $topic->getContent( 'topic-title-html' ), 200, $this->language ),
-				'post-id' => $content->getPostId(),
-				'mentioned-users' => $mentionedUsers,
-				'topic-workflow' => $workflow->getId(),
-				'target-page' => $workflow->getArticleTitle()->getArticleID(),
-				// lets us differentiate between different revision types
-				'revision-type' => $content->getRevisionType(),
-			),
+			'title' => $workflow->getOwnerTitle(),
+			'extra' => $extraData,
 			'agent' => $user,
 		) );
 	}
@@ -341,28 +352,27 @@ class NotificationController {
 	/**
 	 * Analyses a PostRevision to determine which users are mentioned.
 	 *
-	 * @param PostRevision $post The Post to analyse.
-	 * @param Title $title
+	 * @param AbstractRevision $revision The Post to analyse.
 	 * @return int[] Array of user ids.
 	 */
-	protected function getMentionedUsers( PostRevision $post, Title $title ) {
+	protected function getMentionedUsers( AbstractRevision $revision ) {
 		// At the moment, it is not possible to get a list of mentioned users from HTML
 		//  unless that HTML comes from Parsoid. But VisualEditor (what is currently used
 		//  to convert wikitext to HTML) does not currently use Parsoid.
-		$wikitext = $post->getContentInWikitext();
+		$wikitext = $revision->getContentInWikitext();
 		$mentions = $this->getMentionedUsersFromWikitext( $wikitext );
 
 		// if this post had a previous revision (= this is an edit), we don't
 		// want to pick up on the same mentions as in the previous edit, only
 		// new mentions
-		$previousRevision = $post->getCollection()->getPrevRevision( $post );
+		$previousRevision = $revision->getCollection()->getPrevRevision( $revision );
 		if ( $previousRevision !== null ) {
 			$previousWikitext = $previousRevision->getContentInWikitext();
 			$previousMentions = $this->getMentionedUsersFromWikitext( $previousWikitext );
 			$mentions = array_diff( $mentions, $previousMentions );
 		}
 
-		$notifyUsers = $this->filterMentionedUsers( $mentions, $post, $title );
+		$notifyUsers = $this->filterMentionedUsers( $mentions, $revision );
 
 		return $notifyUsers;
 	}
@@ -374,11 +384,10 @@ class NotificationController {
 	 * Removes duplicates, anonymous users, self-mentions, and mentions of the
 	 * owner of the talk page
 	 * @param  User[] $mentions Array of User objects
-	 * @param  PostRevision $post The Post that is being examined.
-	 * @param  Title $title The Title of the page that the comment is made on.
+	 * @param  AbstractRevision $revision The Post that is being examined.
 	 * @return int[] Array of user IDs
 	 */
-	protected function filterMentionedUsers( $mentions, PostRevision $post, $title ) {
+	protected function filterMentionedUsers( $mentions, AbstractRevision $revision ) {
 		$outputMentions = array();
 		global $wgFlowMaxMentionCount;
 
@@ -389,7 +398,7 @@ class NotificationController {
 			}
 
 			// Don't notify the user who made the post
-			if ( $mentionedUser->getId() == $post->getUserId() ) {
+			if ( $mentionedUser->getId() == $revision->getUserId() ) {
 				continue;
 			}
 
@@ -458,7 +467,7 @@ class NotificationController {
 				if ( $board instanceof UUID ) {
 					$bundleString = $event->getType() . '-' . $board->getAlphadecimal();
 				}
-			break;
+				break;
 
 			case 'flow-post-reply':
 			case 'flow-post-edited':
@@ -466,14 +475,14 @@ class NotificationController {
 				if ( $topic instanceof UUID ) {
 					$bundleString = $event->getType() . '-' . $topic->getAlphadecimal();
 				}
-			break;
+				break;
 
 			case 'flow-description-edited':
 				$headerId = $event->getExtraParam( 'collection-id' );
 				if ( $headerId instanceof UUID ) {
 					$bundleString = $event->getType() . '-' . $headerId->getAlphadecimal();
 				}
-			break;
+				break;
 		}
 		return true;
 	}
@@ -489,8 +498,8 @@ class NotificationController {
 		// Owner of talk page should always get a reply notification
 		/** @var Workflow|null $workflow */
 		$workflow = Container::get( 'storage' )
-				->getStorage( 'Workflow' )
-				->get( UUID::create( $topicId ) );
+			->getStorage( 'Workflow' )
+			->get( UUID::create( $topicId ) );
 		if ( $workflow ) {
 			$title = $workflow->getOwnerTitle();
 			if ( $title->isTalkPage() ) {
