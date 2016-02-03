@@ -269,6 +269,17 @@ $c['listener.topicpagecreation'] = function( $c ) {
 		$c['deferred_queue']
 	);
 };
+$c['listeners.notification'] = function( $c ) {
+	// Defer notifications triggering till end of request so we could get
+	// article_id in the case of a new topic, this will need support of
+	// adding deferred update when running deferred update
+	return new Flow\Data\Listener\DeferredInsertLifecycleHandler(
+		$c['deferred_queue'],
+		new Flow\Data\Listener\NotificationListener(
+			$c['controller.notification']
+		)
+	);
+};
 
 $c['storage.post_board_history.backend'] = function( $c ) {
 	return new PostRevisionBoardHistoryStorage( $c['db.factory'] );
@@ -358,6 +369,7 @@ $c['storage.header.listeners'] = function( $c ) {
 	return array(
 		'reference.recorder' => $c['reference.recorder'],
 		'storage.header.listeners.username' => $c['storage.header.listeners.username'],
+		'listeners.notification' => $c['listeners.notification'],
 		'listener.recentchanges' => $c['listener.recentchanges'],
 		'listener.editcount' => $c['listener.editcount'],
 	);
@@ -608,24 +620,13 @@ $c['storage.post.listeners.watch_topic'] = function( $c ) {
 		$c['watched_items']
 	);
 };
-$c['storage.post.listeners.notification'] = function( $c ) {
-	// Defer notifications triggering till end of request so we could get
-	// article_id in the case of a new topic, this will need support of
-	// adding deferred update when running deferred update
-	return new Flow\Data\Listener\DeferredInsertLifecycleHandler(
-		$c['deferred_queue'],
-		new Flow\Data\Listener\NotificationListener(
-			$c['controller.notification']
-		)
-	);
-};
 $c['storage.post.listeners'] = function( $c ) {
 	return array(
 		'reference.recorder' => $c['reference.recorder'],
 		'collection.cache' => $c['collection.cache'],
 		'storage.post.listeners.username' => $c['storage.post.listeners.username'],
 		'storage.post.listeners.watch_topic' => $c['storage.post.listeners.watch_topic'],
-		'storage.post.listeners.notification' => $c['storage.post.listeners.notification'],
+		'listeners.notification' => $c['listeners.notification'],
 		'storage.post.listeners.moderation_logging' => $c['storage.post.listeners.moderation_logging'],
 		'listener.recentchanges' => $c['listener.recentchanges'],
 		'listener.editcount' => $c['listener.editcount'],

@@ -4,6 +4,7 @@ namespace Flow;
 
 use Flow\Data\ManagerGroup;
 use Flow\Exception\FlowException;
+use Flow\Model\Header;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
@@ -44,6 +45,60 @@ class NotificationController {
 		$icons['flowusertalk-new-topic'] = array(
 			'path' => 'Flow/modules/notification/icon/flowusertalk-new-topic.svg',
 		);
+	}
+
+	/**
+	 * Causes notifications to be fired for a Header-related event.
+	 * @param  String $eventName The event that occurred.
+	 * @param  array  $data Associative array of parameters.
+	 * * revision: The PostRevision created by the action. Always required.
+	 * * board-workflow: The Workflow object for the board. Always required.
+	 * * extra-data: Additional data to pass along to Event extra.
+	 * @return array Array of created EchoEvent objects.
+	 * @throws FlowException When $data contains unexpected types/values
+	 */
+	public function notifyHeaderChange( $eventName, $data = array() ) {
+		if ( !class_exists( 'EchoEvent' ) ) {
+			return array();
+		}
+
+		if ( isset( $data['extra-data'] ) ) {
+			$extraData = $data['extra-data'];
+		} else {
+			$extraData = array();
+		}
+
+		$revision = $data['revision'];
+		if ( !$revision instanceof Header ) {
+			throw new FlowException( 'Expected Header but received ' . get_class( $revision ) );
+		}
+		$boardWorkflow = $data['board-workflow'];
+		if ( !$boardWorkflow instanceof Workflow ) {
+			throw new FlowException( 'Expected Workflow but received ' . get_class( $boardWorkflow ) );
+		}
+
+		$user = $revision->getUser();
+		$events = array();
+
+		$extraData['content'] = Utils::htmlToPlaintext( $revision->getContent(), 200, $this->language );
+		$extraData['revision-id'] = $revision->getRevisionId();
+		$extraData['collection-id'] = $revision->getCollectionId();
+
+		$info = array(
+			'type' => $eventName,
+			'agent' => $user,
+			'title' => $boardWorkflow->getOwnerTitle(),
+			'extra' => $extraData,
+		);
+
+		// Allow a specific timestamp to be set - useful when importing existing data
+		if ( isset( $data['timestamp'] ) ){
+			$info['timestamp'] = $data['timestamp'];
+		}
+
+		array_unshift( $events, EchoEvent::create( $info ) );
+
+		return $events;
 	}
 
 	/**
@@ -396,6 +451,13 @@ class NotificationController {
 				$topic = $event->getExtraParam( 'topic-workflow' );
 				if ( $topic instanceof UUID ) {
 					$bundleString = $event->getType() . '-' . $topic->getAlphadecimal();
+				}
+			break;
+
+			case 'flow-description-edited':
+				$headerId = $event->getExtraParam( 'collection-id' );
+				if ( $headerId instanceof UUID ) {
+					$bundleString = $event->getType() . '-' . $headerId->getAlphadecimal();
 				}
 			break;
 		}
