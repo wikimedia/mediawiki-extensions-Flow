@@ -119,6 +119,21 @@ $notifications = array(
 		'email-body-batch-params' => array( 'agent', 'old-subject', 'new-subject', 'title' ),
 		'icon' => 'flow-topic-renamed',
 	) + $notificationTemplate,
+	'flow-description-edited' => array(
+		'presentation-model' => 'Flow\\HeaderEditedPresentationModel',
+		'user-locators' => array(
+			'EchoUserLocator::locateUsersWatchingTitle',
+			'EchoUserLocator::locateTalkPageOwner'
+		),
+		'user-filters' => array(
+			'Flow\\NotificationsUserLocator::locateMentionedUsers',
+		),
+		'bundle' => array(
+			'web' => true,
+			'email' => true,
+		),
+		// @todo do I still need other config here? probably only for email, which should land soon?
+	) + $notificationTemplate,
 	'flow-mention' => array(
 		'presentation-model' => 'Flow\\MentionPresentationModel',
 		'user-locators' => array(
