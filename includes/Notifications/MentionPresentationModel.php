@@ -47,6 +47,6 @@ class MentionPresentationModel extends FlowPresentationModel {
 	protected function getType() {
 		// we didn't use to include the type to differentiate messages, but
 		// then we only supported posts
-		return $this->event->getExtraParam( 'type', 'post' );
+		return $this->event->getExtraParam( 'revision-type', 'post' );
 	}
 }
