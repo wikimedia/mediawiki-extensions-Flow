@@ -173,6 +173,7 @@ $wgAutoloadClasses += array(
 	'Flow\\Formatter\\TopicListFormatter' => __DIR__ . '/includes/Formatter/TopicListFormatter.php',
 	'Flow\\Formatter\\TopicListQuery' => __DIR__ . '/includes/Formatter/TopicListQuery.php',
 	'Flow\\Formatter\\TopicRow' => __DIR__ . '/includes/Formatter/TopicRow.php',
+	'Flow\\HeaderEditedPresentationModel' => __DIR__ . '/includes/Notifications/HeaderEditedPresentationModel.php',
 	'Flow\\Import\\ArchiveNameHelper' => __DIR__ . '/includes/Import/ArchiveNameHelper.php',
 	'Flow\\Import\\Converter' => __DIR__ . '/includes/Import/Converter.php',
 	'Flow\\Import\\EnableFlow\\EnableFlowWikitextConversionStrategy' => __DIR__ . '/includes/Import/EnableFlow/EnableFlowWikitextConversionStrategy.php',

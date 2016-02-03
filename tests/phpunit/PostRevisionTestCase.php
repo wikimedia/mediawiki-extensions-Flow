@@ -273,7 +273,7 @@ class PostRevisionTestCase extends FlowTestCase {
 				unset(
 					// putting together the right metadata for a commit is beyond the
 					// scope of these tests
-					$listeners['storage.post.listeners.notification'],
+					$listeners['listeners.notification'],
 					// Recent changes logging is outside the scope of tests, and
 					// causes interaction issues
 					$listeners['listener.recentchanges'],
