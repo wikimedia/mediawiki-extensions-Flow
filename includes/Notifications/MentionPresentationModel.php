@@ -13,10 +13,17 @@ class MentionPresentationModel extends FlowPresentationModel {
 	}
 
 	public function getPrimaryLink() {
-		return array(
-			'url' => $this->getPostLinkUrl(),
+		$link = array(
+			'url' => $this->event->getTitle()->getFullURL(),
 			'label' => $this->msg( 'notification-link-text-view-mention' )->text()
 		);
+
+		if ( $this->getType() === 'post' ) {
+			// override url, link straight to that specific post
+			$link['url'] = $this->getPostLinkUrl();
+		}
+
+		return false;
 	}
 
 	public function getSecondaryLinks() {
@@ -34,7 +41,11 @@ class MentionPresentationModel extends FlowPresentationModel {
 		$msg = parent::getHeaderMessage();
 		$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true) );
 		$msg->params( $this->getViewingUserForGender() );
-		$msg->params( $this->getTopicTitle() );
+
+		if ( $this->getType() === 'post' ) {
+			$msg->params( $this->getTopicTitle() );
+		}
+
 		return $msg;
 	}
 
