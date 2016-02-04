@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea78b8a_bc82a7cb",
+        "filename": "includes/Notifications/Notifications.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-02-04T12:44:37Z",
+      "side": 1,
+      "message": "Haven\u0027t even tested email yet. How does it work nowadays? Still from this sort of config, or in presentation model?",
+      "revId": "b72e87375c2c76c8c58ef99ee3231432352fc1cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
