@@ -57,11 +57,8 @@ nodecheck:
 	@which npm > /dev/null && npm install \
 		|| (echo "You need to install Node.JS and npm! See http://nodejs.org/" && false)
 
-gruntcheck: nodecheck
-	@which grunt > /dev/null || sudo npm install -g grunt-cli
-
-grunt: gruntcheck
-	@grunt test
+grunt: nodecheck
+	@npm test
 
 checkless:
 	@${PHP} ../../maintenance/checkLess.php
@@ -80,7 +77,7 @@ qunit:
 	@scripts/qunit.sh
 
 vagrant-browsertests:
-	@vagrant ssh -- -X cd /vagrant/mediawiki/extensions/Flow/tests/browser '&&' MEDIAWIKI_URL=http://127.0.0.1:8080/wiki/ MEDIAWIKI_USER=Admin MEDIAWIKI_PASSWORD=vagrant bundle exec cucumber /vagrant/mediawiki/extensions/Flow/tests/browser/features/ -f pretty
+	@vagrant ssh -- -X cd /vagrant/mediawiki/extensions/Flow/tests/browser '&&' MEDIAWIKI_URL=http://127.0.0.1:8080/wiki/ MEDIAWIKI_USER=Admin MEDIAWIKI_PASSWORD=vagrant MEDIAWIKI_API_URL=http://127.0.0.1:8080/w/api.php bundle exec cucumber /vagrant/mediawiki/extensions/Flow/tests/browser/features/ -f pretty
 
 ###
 # Static analysis
@@ -105,9 +102,12 @@ compile-lightncandy:
 	@${PHP} maintenance/compileLightncandy.php
 
 ###
-# Compile class autoloader for $wgAutoloadClasses
+# Automatically rename/move files based on fully-qualified classname &
+# compile class autoloader for $wgAutoloadClasses
 ###
 autoload:
+	if [ ! -d "vendor/PHP-Parser" ]; then git clone https://github.com/nikic/PHP-Parser.git vendor/PHP-Parser; fi
+	@${PHP} scripts/one-class-per-file.php
 	@${PHP} scripts/gen-autoload.php
 
 ###

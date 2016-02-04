@@ -31,3 +31,7 @@ Style/LeadingCommentSpace:
 
 Style/SignalException:
   Enabled: false
+
+Style/SpaceInsideStringInterpolation:
+  Exclude:
+    - jsduck_custom_tags.rb
