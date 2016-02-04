@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea78b8a_100f1a35",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-02-04T19:55:19Z",
+      "side": 1,
+      "message": "Good catch!",
+      "revId": "084a628740625ac275c415ea23e3b3ef63eee740",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea78b8a_b04e4671",
+        "filename": "includes/Notifications/MentionPresentationModel.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-02-04T19:55:19Z",
+      "side": 1,
+      "message": "here\u0027s a shortcut:\n$this-\u003eevent-\u003egetExtraParam( \u0027revision-type\u0027, \u0027post\u0027 );\nwhere \u0027post\u0027 is the default value when \u0027revision-type\u0027 is not set.",
+      "revId": "084a628740625ac275c415ea23e3b3ef63eee740",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
