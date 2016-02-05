@@ -149,7 +149,7 @@ class SpecialEnableFlow extends FormSpecialPage {
 	}
 
 	public function onSuccess() {
-		$confirmationMessage = $this->msg( 'flow-special-enableflow-confirmation', $this->page )->parse();
+		$confirmationMessage = $this->msg( 'flow-special-enableflow-confirmation', wfEscapeWikiText( $this->page ) )->parse();
 		$this->getOutput()->addHTML( $confirmationMessage );
 	}
 
