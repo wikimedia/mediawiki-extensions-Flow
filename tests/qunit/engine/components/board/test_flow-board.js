@@ -1,9 +1,4 @@
 ( function ( $ ) {
-QUnit.module( 'ext.flow: Flow board' );
-
-QUnit.test( 'Check Flow is running', 1, function() {
-	strictEqual( 1, 1, 'Test to see if Flow has a qunit test.' );
-} );
 
 QUnit.module( 'ext.flow: FlowBoardComponent', {
 	setup: function() {
@@ -95,7 +90,7 @@ QUnit.module( 'ext.flow: FlowBoardComponent', {
 	}
 } );
 
-QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.lockTopic - perform unlock', 2, function( assert ) {
+QUnit.skip( 'FlowBoardComponent.UI.events.apiHandlers.lockTopic - perform unlock', 2, function( assert ) {
 	var
 		$topic = $( '<div class="flow-topic" data-flow-id="s18cjkj1bs3rkt13">' ).
 			addClass( 'flow-topic-moderatestate-lock flow-topic-moderated' ).
@@ -109,7 +104,7 @@ QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.lockTopic - perform unlock
 	assert.strictEqual( $topic.hasClass( 'flow-topic-moderatestate-lock' ), false, 'No longer has the moderated lock state.' );
 } );
 
-QUnit.test( 'FlowBoardComponent.UI.events.apiHandlers.lockTopic - perform lock', 2, function( assert ) {
+QUnit.skip( 'FlowBoardComponent.UI.events.apiHandlers.lockTopic - perform lock', 2, function( assert ) {
 	var
 		$topic = $( '<div class="flow-topic" data-flow-id="t18cjkj1bs3rkt13">' ).
 			appendTo( this.$el ),
