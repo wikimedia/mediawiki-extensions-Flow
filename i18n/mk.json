@@ -251,7 +251,6 @@
 	"notification-bundle-header-flow-post-edited-user-talk": "Објавата на „$1“ е повеќепати изменета на вашата страница за разговор.",
 	"notification-header-flow-topic-renamed-v2": "Темата „$1“ е преименувана во „$2“.",
 	"notification-header-flow-topic-renamed-user-talk": "Темата „$1“ е преименувана во „$2“ на вашата страница за разговор.",
-	"notification-header-flow-mention": "$1 {{GENDER:$5|ве}} {{GENDER:$2|спомна}} во „$3“.",
 	"notification-header-flow-enabled-on-talkpage": "Овозможен е нов систем за разговори на {{GENDER:$2|вашата}} страница за разговор.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|создаде}}  нова тема на '''$3'''.",
 	"flow-notification-newtopic-bundle": "{{PLURAL:$1|$1 нова тема|$1 нови теми|250=Преку 250 нови теми}} на '''<span class=\"plainlinks\">[$3 $2]</span>'''",

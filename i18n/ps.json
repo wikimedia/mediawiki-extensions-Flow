@@ -17,6 +17,7 @@
 	"flow-topic-action-watchlist-remove": "همدا سرليک خپل کتنلړ څخه لرې کول",
 	"flow-board-history": "\"$1\" پېښليک",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 پر '''$4''' {{GENDER:$1|ځواب ورکړ}}.",
+	"flow-notification-link-text-view-topics": "موضوعگانې کتل",
 	"flow-notification-reply-email-subject": "$2 پر $3",
 	"flow-notification-edit-email-subject": "$1 ستاسې ليکنه {{GENDER:$1|سمه کړه}}",
 	"flow-notification-rename-email-subject": "$1 ستاسې سرليک {{GENDER:$1|نوم بدل کړ}}",

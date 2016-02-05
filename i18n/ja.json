@@ -198,7 +198,6 @@
 	"notification-header-flow-post-edited-user-talk": "{{GENDER:$2|あなた}}のトークページで「$1」の投稿が編集されました。",
 	"notification-bundle-header-flow-post-edited-user-talk": "{{GENDER:$2|あなた}}のトークページで「$1」の投稿が複数回編集されました。",
 	"notification-header-flow-topic-renamed-user-talk": "あなたのトークページの話題「$1」の題名が「$2」に変更されました。",
-	"notification-header-flow-mention": "$1 が「$3」で{{GENDER:$5|あなた}}の名前を{{GENDER:$2|挙げました}}。",
 	"notification-header-flow-enabled-on-talkpage": "新しい議論システムが{{GENDER:$2|あなたの}}利用者トークページで有効化されました。",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 が '''$3''' で 新しい話題を{{GENDER:$1|作成しました}}。",
 	"flow-notification-rename": "$1 が [[$5|$6]] で <span class=\"plainlinks\">[$2 $3]</span> のページ名を「$4」に{{GENDER:$1|変更しました}}。",

@@ -257,7 +257,7 @@
 	"notification-bundle-header-flow-post-edited-user-talk": "Ein Beitrag in „$1“ wurde mehrere Male auf {{GENDER:$2|deiner}} Diskussionsseite bearbeitet.",
 	"notification-header-flow-topic-renamed-v2": "Das Thema „$1“ wurde in „$2“ umbenannt.",
 	"notification-header-flow-topic-renamed-user-talk": "Das Thema „$1“ wurde auf deiner Diskussionsseite in „$2“ umbenannt.",
-	"notification-header-flow-mention": "$1 {{GENDER:$2|erwähnte}} {{GENDER:$5|dich}} in „$3“.",
+	"notification-header-flow-mention-post": "$1 {{GENDER:$2|erwähnte}} {{GENDER:$4|dich}} in „$5“.",
 	"notification-header-flow-enabled-on-talkpage": "Neues Diskussionssystem für {{GENDER:$2|deine}} Benutzerdiskussionsseite aktiviert.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|erstellte}} ein  neues Thema auf '''$3'''.",
 	"flow-notification-newtopic-bundle": "{{PLURAL:$1|Ein neues Thema|$1 neue Themen|250=Mehr als 250 neue Themen}} auf '''<span class=\"plainlinks\">[$3 $2]</span>'''",
