@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea78b8a_4bbabd1f",
+        "filename": "tests/qunit/engine/components/board/test_flow-board.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1665
+      },
+      "writtenOn": "2016-02-05T21:42:28Z",
+      "side": 1,
+      "message": "You can remove this. It was done in https://github.com/wikimedia/mediawiki-extensions-Flow/commit/ae7f9b97e956a005dfc93772be4d8f62a73ea318",
+      "revId": "524f169346e85985e2d7ef0d8d300d4487eeba17",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea78b8a_eb86096a",
+        "filename": "tests/qunit/engine/components/board/test_flow-board.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1665
+      },
+      "writtenOn": "2016-02-05T21:42:28Z",
+      "side": 1,
+      "message": "Same here \n\nYou can remove this. It was done in https://github.com/wikimedia/mediawiki-extensions-Flow/commit/ae7f9b97e956a005dfc93772be4d8f62a73ea318",
+      "revId": "524f169346e85985e2d7ef0d8d300d4487eeba17",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
