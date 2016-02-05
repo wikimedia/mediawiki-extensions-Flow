@@ -88,26 +88,25 @@ class NotificationController {
 		}
 
 		$user = $revision->getUser();
+		$events = array();
+		$mentionEvent = $this->generateMentionEvent( $revision, $topicRevision, $topicWorkflow, $user );
+		if ( $mentionEvent ) {
+			$events[] = $mentionEvent;
+		}
 
 		$extraData['revision-id'] = $revision->getRevisionId();
 		$extraData['post-id'] = $revision->getPostId();
 		$extraData['topic-workflow'] = $topicWorkflow->getId();
 		$extraData['target-page'] = $topicWorkflow->getArticleTitle()->getArticleID();
+		// pass along mentioned users to other notification, so it knows who to ignore
+		$extraData['mentioned-users'] = $mentionEvent ? $mentionEvent->getExtraParam( 'mentioned-users' ) : array();
 
-		$events = array();
 		switch( $eventName ) {
 			case 'flow-post-reply':
-				$mentionEvent = $this->generateMentionEvent( $revision, $topicRevision, $topicWorkflow, $user );
-				if ( $mentionEvent ) {
-					$events[] = $mentionEvent;
-				}
-
 				$extraData += array(
 					'reply-to' => $revision->getReplyToId(),
 					'content' => Utils::htmlToPlaintext( $revision->getContent(), 200, $this->language ),
 					'topic-title' => Utils::htmlToPlaintext( $topicRevision->getContent( 'topic-title-html' ), 200, $this->language ),
-					// pass along mentioned users to other notification, so it knows who to ignore
-					'mentioned-users' => $mentionEvent ? $mentionEvent->getExtraParam( 'mentioned-users' ) : array(),
 				);
 
 				// if we're looking at the initial post (submitted along with the topic
@@ -263,8 +262,8 @@ class NotificationController {
 				'mentioned-users' => $mentionedUsers,
 				'topic-workflow' => $workflow->getId(),
 				'target-page' => $workflow->getArticleTitle()->getArticleID(),
-				// used to exclude mentions for authors already getting a "replied to your post" notification
-				'reply-to' => $content->getReplyToId()
+				// lets us differentiate between different revision types
+				'revision-type' => $content->getRevisionType(),
 			),
 			'agent' => $user,
 		) );
@@ -283,6 +282,17 @@ class NotificationController {
 		//  to convert wikitext to HTML) does not currently use Parsoid.
 		$wikitext = $post->getContentInWikitext();
 		$mentions = $this->getMentionedUsersFromWikitext( $wikitext );
+
+		// if this post had a previous revision (= this is an edit), we don't
+		// want to pick up on the same mentions as in the previous edit, only
+		// new mentions
+		$previousRevision = $post->getCollection()->getPrevRevision( $post );
+		if ( $previousRevision !== null ) {
+			$previousWikitext = $previousRevision->getContentInWikitext();
+			$previousMentions = $this->getMentionedUsersFromWikitext( $previousWikitext );
+			$mentions = array_diff( $mentions, $previousMentions );
+		}
+
 		$notifyUsers = $this->filterMentionedUsers( $mentions, $post, $title );
 
 		return $notifyUsers;
@@ -327,7 +337,7 @@ class NotificationController {
 	/**
 	 * Examines a wikitext string and finds users that were mentioned
 	 * @param  string $wikitext
-	 * @return array Array of User objects
+	 * @return User[] Array of User objects
 	 */
 	protected function getMentionedUsersFromWikitext( $wikitext ) {
 		global $wgParser;
