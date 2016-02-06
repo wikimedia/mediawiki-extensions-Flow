@@ -552,6 +552,14 @@ $wgResourceModules += array(
 			'editor/editors/visualeditor/mw.flow.ve.Target.less',
 			'editor/editors/visualeditor/ui/mw.flow.ve.ui.Icons.less',
 		),
+		'skinStyles' => array(
+			'vector' => array(
+				'editor/editors/visualeditor/mw.flow.ve.Target-vector.less',
+			),
+			'monobook' => array(
+				'editor/editors/visualeditor/mw.flow.ve.Target-monobook.less',
+			),
+		),
 		'dependencies' => array(
 			'es5-shim',
 			'ext.visualEditor.core',
