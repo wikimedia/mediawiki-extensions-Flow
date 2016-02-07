@@ -255,6 +255,7 @@
 	"notification-bundle-header-flow-post-edited-user-talk": "ההודעה ב\"$1\" נערכה מספר פעמים בדף השיחה {{GENDER:$2|שלך}}.",
 	"notification-header-flow-topic-renamed-v2": "שם הנושא \"$1\" שונה אל \"$2\".",
 	"notification-header-flow-topic-renamed-user-talk": "כותרת הנושא \"$1\" שונתה ל\"$2\" בדף שיחתך.",
+	"notification-header-flow-mention-post": "$1 {{GENDER:$2|הזכיר|הזכירה}} {{GENDER:$4|אותך}} בנושא \"$5\".",
 	"notification-header-flow-enabled-on-talkpage": "מערכת שיחות חדשה הופעלה בדף השיחה {{GENDER:$2|שלך}}.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|יצר|יצרה}}  נושא חדש בדף '''$3'''.",
 	"flow-notification-newtopic-bundle": "{{PLURAL:$1|נושא חדש אחד|$1 נושאים חדשים|250=יותר מ־250 נושאים חדשים}} בדף '''<span class=\"plainlinks\">[$3 $2]</span>'''",

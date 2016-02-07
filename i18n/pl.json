@@ -257,6 +257,7 @@
 	"notification-bundle-header-flow-post-reply-v2": "$1 {{PLURAL:$2|nowa odpowiedź|nowe odpowiedzi|nowych odpowiedzi}} w wątku „$3”.",
 	"notification-bundle-header-flow-post-reply-user-talk": "$1 {{PLURAL:$2|nowa odpowiedź|nowe odpowiedzi|nowych odpowiedzi}} na stronie twojej dyskusji w wątku „$3”.",
 	"notification-header-flow-topic-renamed-user-talk": "Na stronie twojej dyskusji została zmieniona nazwa wątku z „$1” na „$2”.",
+	"notification-header-flow-mention-post": "$1 {{GENDER:$2|wspomniał|wspomniała|wspomniał(a)}} o {{GENDER:$4|tobie}} w wątku „$5”.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|utworzył|utworzyła}} nowy wątek na stronie '''$3'''.",
 	"flow-notification-newtopic-bundle": "{{PLURAL:$1|$1 nowy wątek|$1 nowe wątki|$1 nowych wątków|250=250+ nowych wątków}} na '''<span class=\"plainlinks\">[$3 $2]</span>'''",
 	"flow-notification-rename": "$1 {{GENDER:$1|zmienił|zmieniła}} tytuł <span class=\"plainlinks\">[$2 $3]</span> na „$4” na [[$5|$6]].",
