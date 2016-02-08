@@ -217,6 +217,7 @@ class TopicSummaryBlock extends AbstractBlock {
 		if ( !isset( $this->extraCommitMetadata['null-edit'] ) ) {
 			$this->storage->put( $this->nextRevision, $this->extraCommitMetadata + array(
 				'workflow' => $this->workflow,
+				'topic-title' => $this->findTopicTitle(),
 			) );
 		}
 		// Reload the $this->formatterRow for renderApi() after save
