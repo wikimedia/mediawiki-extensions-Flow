@@ -1,0 +1,51 @@
+@import 'mediawiki.mixins';
+@import 'mediawiki.ui/variables';
+@import 'flow.variables';
+@import 'flow.colors';
+
+.flow-component {
+	.ve-init-target {
+		&.flow-ui-focused {
+			outline: none;
+			border-color: #a7dcff;
+			box-shadow: 0 0 0.3em #a7dcff, 0 0 0 white;
+		}
+	}
+
+	.oo-ui-toolbar {
+		// Undo .mw-body-content font-size (0.875em) and apply font-size matching OOUI theme (0.8em)
+		// TODO: Make this theme specific
+		font-size: 0.8em/0.625/1.27; /* 0.8em / x-small / 127% */
+		.oo-ui-toolbar {
+			// But don't let these rules double-apply for nested toolbars
+			font-size: 1em;
+		}
+	}
+
+	.oo-ui-toolbar-bar {
+		// The default border is only appropriate in the default ve, with
+		// the toolbar above the editing surface.
+		border: none;
+		// When we apply a pending texture to the editor, we don't want the toolbar to display
+		// in solid white on top of that.
+		background: transparent;
+	}
+}
+
+.flow-editor {
+		// Undo border & box-shadow on textarea and re-apply it on the
+		// div that contains textarea + legal text + switch button
+		&.flow-ui-focused {
+			outline: none;
+			border-color: #a7dcff;
+			box-shadow: 0 0 0.3em #a7dcff, 0 0 0 white;
+		}
+}
+
+.flow-ui-editorSwitcherWidget {
+	&-focused {
+		outline: none;
+		border-color: #a7dcff;
+		box-shadow: 0 0 0.3em #a7dcff, 0 0 0 white;
+	}
+}
