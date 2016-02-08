@@ -451,6 +451,7 @@ $c['storage.post_summary.listeners'] = function( $c ) {
 	return array(
 		'listener.recentchanges' => $c['listener.recentchanges'],
 		'storage.post_summary.listeners.username' => $c['storage.post_summary.listeners.username'],
+		'listeners.notification' => $c['listeners.notification'],
 		'storage.post_summary_board_history.indexes.primary' => $c['storage.post_summary_board_history.indexes.primary'],
 		'listener.editcount' => $c['listener.editcount'],
 		'reference.recorder' => $c['reference.recorder'],
