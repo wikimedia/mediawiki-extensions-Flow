@@ -60,6 +60,21 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 	}
 
 	/**
+	 * Return a full url of following format:
+	 *   https://<site>/wiki/Topic:<topicId>&fromnotif=1
+	 * @return string
+	 */
+	protected function getTopicLinkUrl() {
+		/** @var UUID $workflowId */
+		$workflowId = $this->event->getExtraParam( 'topic-workflow' );
+
+		$title = Title::makeTitleSafe( NS_TOPIC, $workflowId->getAlphadecimal() );
+		$url = $title->getFullURL( array( 'fromnotif' => 1 ) );
+
+		return $url;
+	}
+
+	/**
 	 * Return a full url to a board sorted by newest topic
 	 *   ?topiclist_sortby=newest
 	 * @return string
