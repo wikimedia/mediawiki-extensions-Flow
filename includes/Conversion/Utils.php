@@ -70,7 +70,7 @@ abstract class Utils {
 		/** @var Language $wgLang */
 		global $wgLang;
 
-		$plain = trim( html_entity_decode( strip_tags( $html ) ) );
+		$plain = trim( html_entity_decode( strip_tags( $html ), ENT_QUOTES ) );
 
 		if ( $truncateLength === null ) {
 			return $plain;

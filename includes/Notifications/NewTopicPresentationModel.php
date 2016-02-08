@@ -63,7 +63,7 @@ class NewTopicPresentationModel extends FlowPresentationModel {
 		} else {
 			$msg = parent::getHeaderMessage();
 			$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true) );
-			$msg->params( $this->getTopicTitle() );
+			$msg->plaintextParams( $this->getTopicTitle() );
 			return $msg;
 		}
 	}
