@@ -42,7 +42,7 @@ class MentionPresentationModel extends FlowPresentationModel {
 		$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true) );
 		$msg->params( $this->getViewingUserForGender() );
 
-		if ( $this->getType() === 'post' ) {
+		if ( in_array( $this->getType(), array( 'post', 'post-summary' ) ) ) {
 			$msg->params( $this->getTopicTitle() );
 		}
 

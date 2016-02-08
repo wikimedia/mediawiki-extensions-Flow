@@ -7,6 +7,7 @@ use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
+use Flow\Model\PostSummary;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Conversion\Utils;
@@ -214,6 +215,48 @@ class NotificationController {
 	}
 
 	/**
+	 * Causes notifications to be fired for a Header-related event.
+	 * @param  String $eventName The event that occurred.
+	 * @param  array  $data Associative array of parameters.
+	 * * revision: The PostRevision created by the action. Always required.
+	 * * topic-title: The PostRevision object for the topic title. Always required.
+	 * * topic-workflow: The Workflow object for the board. Always required.
+	 * * extra-data: Additional data to pass along to Event extra.
+	 * @return array Array of created EchoEvent objects.
+	 * @throws FlowException When $data contains unexpected types/values
+	 */
+	public function notifySummaryChange( $eventName, $data = array() ) {
+		if ( !class_exists( 'EchoEvent' ) ) {
+			return array();
+		}
+
+		$revision = $data['revision'];
+		if ( !$revision instanceof PostSummary ) {
+			throw new FlowException( 'Expected PostSummary but received ' . get_class( $revision ) );
+		}
+		$topicRevision = $data['topic-title'];
+		if ( !$topicRevision instanceof PostRevision ) {
+			throw new FlowException( 'Expected PostRevision but received ' . get_class( $topicRevision ) );
+		}
+		$topicWorkflow = $data['topic-workflow'];
+		if ( !$topicWorkflow instanceof Workflow ) {
+			throw new FlowException( 'Expected Workflow but received ' . get_class( $topicWorkflow ) );
+		}
+
+		$user = $revision->getUser();
+		$events = array();
+
+		$mentionEvent = $this->generateMentionEvent( $revision, $topicRevision, $topicWorkflow, $user );
+		if ( $mentionEvent ) {
+			$events[] = $mentionEvent;
+		}
+
+		// @todo we may also want other topic summary edit notifications, some day
+
+		return $events;
+	}
+
+	/**
 	 * Triggers notifications for a new topic.
 	 * @param  array $params Associative array of parameters, all required:
 	 * * board-workflow: Workflow object for the Flow board.
@@ -323,10 +366,13 @@ class NotificationController {
 		// lets us differentiate between different revision types
 		$extraData['revision-type'] = $content->getRevisionType();
 
-		// additional data needed to render topic/post data
+		// additional data needed to render link to post
 		if ( $extraData['revision-type'] === 'post' ) {
 			$extraData['post-id'] = $content->getCollection()->getId();
 			$extraData['topic-workflow'] = $workflow->getId();
+		}
+		// needed to render topic title text
+		if ( $topic !== null ) {
 			$extraData['topic-title'] = Utils::htmlToPlaintext( $topic->getContent( 'topic-title-html' ), 200, $this->language );
 		}
 

@@ -3,9 +3,11 @@
 namespace Flow\Data\Listener;
 
 use Flow\Exception\InvalidDataException;
+use Flow\Exception\InvalidInputException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
+use Flow\Model\PostSummary;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
 
@@ -63,7 +65,18 @@ class NotificationListener extends AbstractListener {
 			break;
 
 		case 'edit-header':
-			$this->notifyHeaderChange( 'flow-description-edited', $object, $metadata );
+			$this->notificationController->notifyHeaderChange( 'flow-description-edited', array(
+				'revision' => $object,
+				'board-workflow' => $metadata['workflow'],
+			) );
+			break;
+
+		case 'edit-topic-summary':
+			$this->notificationController->notifySummaryChange( 'flow-summary-edited', array(
+				'revision' => $object,
+				'topic-workflow' => $metadata['workflow'],
+				'topic-title' => $metadata['topic-title'],
+			) );
 			break;
 		}
 	}
@@ -92,29 +105,6 @@ class NotificationListener extends AbstractListener {
 			'revision' => $object,
 			'topic-workflow' => $workflow,
 			'topic-title' => $metadata['topic-title'],
-		) );
-	}
-
-	/**
-	 * @param string $type
-	 * @param Header $object
-	 * @param array $metadata
-	 * @param array $params
-	 * @throws InvalidDataException
-	 */
-	protected function notifyHeaderChange( $type, Header $object, $metadata, array $params = array() ) {
-		if ( !isset( $metadata['workflow'] ) ) {
-			throw new InvalidDataException( 'Invalid metadata for header revision ' . $object->getRevisionId()->getAlphadecimal(), 'missing-metadata' );
-		}
-
-		$workflow = $metadata['workflow'];
-		if ( !$workflow instanceof Workflow ) {
-			throw new InvalidDataException( 'Workflow metadata is not a Workflow', 'missing-metadata' );
-		}
-
-		$this->notificationController->notifyHeaderChange( $type, $params + array(
-			'revision' => $object,
-			'board-workflow' => $workflow,
 		) );
 	}
 }

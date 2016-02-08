@@ -292,6 +292,7 @@
 	"notification-header-flow-topic-renamed-user-talk": "The topic \"$1\" was renamed to \"$2\" on your talk page.",
 	"notification-header-flow-mention-post": "$1 {{GENDER:$2|mentioned}} {{GENDER:$4|you}} in \"$5\".",
 	"notification-header-flow-mention-header": "$1 {{GENDER:$2|mentioned}} {{GENDER:$4|you}} in the description of '''$3'''.",
+	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$2|mentioned}} {{GENDER:$4|you}} in \"$5\".",
 	"notification-body-flow-mention": "$1",
 	"notification-header-flow-enabled-on-talkpage": "New discussion system enabled for {{GENDER:$2|your}} user talk page.",
 	"notification-header-flow-description-edited": "The description of '''$1''' was edited.",
