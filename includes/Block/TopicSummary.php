@@ -203,6 +203,7 @@ class TopicSummaryBlock extends AbstractBlock {
 
 		$this->storage->put( $this->nextRevision, array(
 			'workflow' => $this->workflow,
+			'topic-title' => $this->findTopicTitle(),
 		) );
 		// Reload the $this->formatterRow for renderApi() after save
 		$this->formatterRow = new FormatterRow();
