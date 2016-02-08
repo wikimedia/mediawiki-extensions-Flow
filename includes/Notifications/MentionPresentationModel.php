@@ -18,9 +18,11 @@ class MentionPresentationModel extends FlowPresentationModel {
 			'label' => $this->msg( 'notification-link-text-view-mention' )->text()
 		);
 
+		// override url, link straight to that specific post/topic
 		if ( $this->getType() === 'post' ) {
-			// override url, link straight to that specific post
 			$link['url'] = $this->getPostLinkUrl();
+		} elseif ( $this->getType() === 'post-summary' ) {
+			$link['url'] = $this->getTopicLinkUrl();
 		}
 
 		return $link;
@@ -42,7 +44,7 @@ class MentionPresentationModel extends FlowPresentationModel {
 		$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true) );
 		$msg->params( $this->getViewingUserForGender() );
 
-		if ( $this->getType() === 'post' ) {
+		if ( in_array( $this->getType(), array( 'post', 'post-summary' ) ) ) {
 			$msg->params( $this->getTopicTitle() );
 		}
 
