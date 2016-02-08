@@ -213,7 +213,15 @@ class ConvertToText extends Maintenance {
 			$nickname = $this->getOption( 'remoteapi' ) ? null : false;
 			$fancysig = $this->getOption( 'remoteapi' ) ? false : null;
 
-			return $wgParser->getUserSig( $user, $nickname, $fancysig ) . ' ' . $d;
+			// Parser::getUserSig can end calling `getCleanSignatures` on
+			// mOptions, which may not be set. Set a dummy options object so it
+			// doesn't fail (it'll initialise the requested value from a global
+			// anyway)
+			$options = new ParserOptions();
+			$old = $wgParser->Options( $options );
+			$signature = $wgParser->getUserSig( $user, $nickname, $fancysig ) . ' ' . $d;
+			$wgParser->Options( $old );
+			return $signature;
 		} else {
 			return "[Unknown user] $d";
 		}
