@@ -186,9 +186,16 @@ class NotificationController {
 		}
 
 		$mentionEvent = $this->generateMentionEvent( $topicTitle, $topicTitle, $topicWorkflow, $user );
+		$mentionedUsers = array();
 		if ( $mentionEvent ) {
 			$events[] = $mentionEvent;
+			$mentionedUsers = $mentionEvent->getExtraParam( 'mentioned-users' );
 		}
+
+		// also look at users mentioned in first post: if there are any, this
+		// notification shouldn't go through (because they'll already receive
+		// the mention notification)
+		$mentionedUsers += $this->getMentionedUsers( $firstPost, $topicWorkflow->getArticleTitle() );
 
 		$events = array();
 		$events[] = EchoEvent::create( array(
@@ -209,7 +216,7 @@ class NotificationController {
 					$topicWorkflow->getArticleTitle()->getArticleID( Title::GAID_FOR_UPDATE ),
 				),
 				// pass along mentioned users to other notification, so it knows who to ignore
-				'mentioned-users' => $mentionEvent ? $mentionEvent->getExtraParam( 'mentioned-users' ) : array(),
+				'mentioned-users' => $mentionedUsers,
 			)
 		) );
 
