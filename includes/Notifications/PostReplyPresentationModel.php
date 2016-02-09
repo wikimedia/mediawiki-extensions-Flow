@@ -2,8 +2,6 @@
 
 namespace Flow;
 
-use Flow\Model\UUID;
-
 class PostReplyPresentationModel extends FlowPresentationModel {
 
 	public function getIconType() {
@@ -33,9 +31,9 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 
 	public function getSecondaryLinks() {
 		if ( $this->isBundled() ) {
-			return array( $this->getBoardByNewestLink() );
+			return array( $this->getBoardLink() );
 		} else {
-			return array( $this->getAgentLink() );
+			return array( $this->getAgentLink(), $this->getBoardLink() );
 		}
 	}
 
