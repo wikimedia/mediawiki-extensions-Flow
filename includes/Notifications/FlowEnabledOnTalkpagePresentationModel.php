@@ -25,7 +25,15 @@ class FlowEnabledOnTalkpagePresentationModel extends FlowPresentationModel {
 	 * @return array Empty array
 	 */
 	public function getSecondaryLinks() {
-		return array();
+		return array(
+			array(
+				'url' => $this->event->getTitle()->getFullURL(),
+				'label' => $this->event->getTitle()->getText(),
+				'description' => '',
+				'icon' => 'userSpeechBubble',
+				'prioritized' => true,
+			),
+		);
 	}
 
 	public function getHeaderMessage() {
