@@ -89,17 +89,14 @@ class NotificationController {
 
 		$user = $revision->getUser();
 		$events = array();
-		$mentionEvent = $this->generateMentionEvent( $revision, $topicRevision, $topicWorkflow, $user );
-		if ( $mentionEvent ) {
-			$events[] = $mentionEvent;
-		}
+		$mentionedUsers = $this->getMentionedUsers( $revision, $topicWorkflow->getOwnerTitle() );
 
 		$extraData['revision-id'] = $revision->getRevisionId();
 		$extraData['post-id'] = $revision->getPostId();
 		$extraData['topic-workflow'] = $topicWorkflow->getId();
 		$extraData['target-page'] = $topicWorkflow->getArticleTitle()->getArticleID();
 		// pass along mentioned users to other notification, so it knows who to ignore
-		$extraData['mentioned-users'] = $mentionEvent ? $mentionEvent->getExtraParam( 'mentioned-users' ) : array();
+		$extraData['mentioned-users'] = $mentionedUsers;
 
 		switch( $eventName ) {
 			case 'flow-post-reply':
@@ -113,7 +110,16 @@ class NotificationController {
 				// title), we don't want to send the flow-post-reply notification,
 				// because users will already receive flow-new-topic as well
 				if ( $this->isFirstPost( $revision, $topicWorkflow ) ) {
-					return $events;
+					// if users were mentioned here, we'll want to make sure
+					// that they weren't also mentioned in the topic title (in
+					// which case they would get 2 notifications...)
+					if ( $mentionedUsers ) {
+						$mentionedInTitle = $this->getMentionedUsers( $topicRevision, $topicWorkflow->getArticleTitle() );
+						$mentionedUsers = array_diff_key( $mentionedUsers, $mentionedInTitle );
+						$extraData['mentioned-users'] = $mentionedUsers;
+					}
+
+					return $this->generateMentionEvent( $revision, $topicRevision, $topicWorkflow, $user, $mentionedUsers );
 				}
 
 			break;
@@ -144,7 +150,10 @@ class NotificationController {
 			$info['timestamp'] = $data['timestamp'];
 		}
 
-		array_unshift( $events, EchoEvent::create( $info ) );
+		$events = array( EchoEvent::create( $info ) );
+		if ( $mentionedUsers ) {
+			$events[] = $this->generateMentionEvent( $revision, $topicRevision, $topicWorkflow, $user, $mentionedUsers );
+		}
 
 		return $events;
 	}
@@ -185,17 +194,7 @@ class NotificationController {
 			throw new FlowException( 'Expected Workflow but received ' . get_class( $boardWorkflow ) );
 		}
 
-		$mentionEvent = $this->generateMentionEvent( $topicTitle, $topicTitle, $topicWorkflow, $user );
-		$mentionedUsers = array();
-		if ( $mentionEvent ) {
-			$events[] = $mentionEvent;
-			$mentionedUsers = $mentionEvent->getExtraParam( 'mentioned-users' );
-		}
-
-		// also look at users mentioned in first post: if there are any, this
-		// notification shouldn't go through (because they'll already receive
-		// the mention notification)
-		$mentionedUsers += $this->getMentionedUsers( $firstPost, $topicWorkflow->getArticleTitle() );
+		$mentionedUsers = $this->getMentionedUsers( $topicTitle, $topicWorkflow->getOwnerTitle() );
 
 		$events = array();
 		$events[] = EchoEvent::create( array(
@@ -216,9 +215,16 @@ class NotificationController {
 					$topicWorkflow->getArticleTitle()->getArticleID( Title::GAID_FOR_UPDATE ),
 				),
 				// pass along mentioned users to other notification, so it knows who to ignore
-				'mentioned-users' => $mentionedUsers,
+				// also look at users mentioned in first post: if there are any, this
+				// (flow-new-topic) notification shouldn't go through (because they'll
+				// already receive the mention notification)
+				'mentioned-users' => $mentionedUsers + $this->getMentionedUsers( $firstPost, $topicWorkflow->getArticleTitle() ),
 			)
 		) );
+
+		if ( $mentionedUsers ) {
+			$events[] = $this->generateMentionEvent( $topicTitle, $topicTitle, $topicWorkflow, $user, $mentionedUsers );
+		}
 
 		return $events;
 	}
@@ -247,16 +253,17 @@ class NotificationController {
 	 * @param PostRevision $topic Topic PostRevision object
 	 * @param Workflow $workflow Topic Workflow object
 	 * @param User $user User who created the new post
+	 * @param array $mentionedUsers
 	 * @return bool|EchoEvent
 	 * @throws Exception\InvalidDataException
 	 * @throws \MWException
 	 */
-	protected function generateMentionEvent( PostRevision $content, PostRevision $topic, Workflow $workflow, User $user ) {
-		$title = $workflow->getOwnerTitle();
-		$mentionedUsers = $this->getMentionedUsers( $content, $title );
+	protected function generateMentionEvent( PostRevision $content, PostRevision $topic, Workflow $workflow, User $user, array $mentionedUsers ) {
 		if ( count( $mentionedUsers ) === 0 ) {
 			return false;
 		}
+
+		$title = $workflow->getOwnerTitle();
 
 		return EchoEvent::create( array(
 			'type' => 'flow-mention',
@@ -281,7 +288,7 @@ class NotificationController {
 	 *
 	 * @param PostRevision $post The Post to analyse.
 	 * @param Title $title
-	 * @return User[] Array of User objects.
+	 * @return int[] Array of user ids.
 	 */
 	protected function getMentionedUsers( PostRevision $post, Title $title ) {
 		// At the moment, it is not possible to get a list of mentioned users from HTML
@@ -314,7 +321,7 @@ class NotificationController {
 	 * @param  User[] $mentions Array of User objects
 	 * @param  PostRevision $post The Post that is being examined.
 	 * @param  Title $title The Title of the page that the comment is made on.
-	 * @return array Array of user IDs
+	 * @return int[] Array of user IDs
 	 */
 	protected function filterMentionedUsers( $mentions, PostRevision $post, $title ) {
 		$outputMentions = array();
