@@ -59,12 +59,13 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 		if ( $this->isBundled() ) {
 			list( $formattedCount, $countForPlural ) = $this->getNotificationCountForOutput();
 			$msg = $this->msg( $this->getHeaderMessageKey() );
-			$msg->params( $formattedCount, $countForPlural, $this->getTopicTitle() );
+			$msg->params( $formattedCount, $countForPlural );
+			$msg->plaintextParams( $this->getTopicTitle() );
 			return $msg;
 		} else {
 			$msg = parent::getHeaderMessage();
 			$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true) );
-			$msg->params( $this->getTopicTitle() );
+			$msg->plaintextParams( $this->getTopicTitle() );
 			return $msg;
 		}
 	}

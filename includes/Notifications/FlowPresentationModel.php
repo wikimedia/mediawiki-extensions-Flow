@@ -124,11 +124,11 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 
 	protected function getTopicTitle( $extraParamName = 'topic-title' ) {
 		$topicTitle = $this->event->getExtraParam( $extraParamName );
-		return $this->formatTopicTitle( $topicTitle );
+		return $this->truncateTopicTitle( $topicTitle );
 	}
 
-	protected function formatTopicTitle( $topicTitle ) {
-		return $this->language->truncate( wfEscapeWikiText( $topicTitle ), self::SECTION_TITLE_RECOMMENDED_LENGTH );
+	protected function truncateTopicTitle( $topicTitle ) {
+		return $this->language->truncate( $topicTitle, self::SECTION_TITLE_RECOMMENDED_LENGTH );
 	}
 
 	protected function isUserTalkPage() {

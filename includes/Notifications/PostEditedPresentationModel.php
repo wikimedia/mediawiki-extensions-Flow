@@ -47,7 +47,7 @@ class PostEditedPresentationModel extends FlowPresentationModel {
 
 	public function getHeaderMessage() {
 		$msg = $this->msg( $this->getHeaderMessageKey() );
-		$msg->params( $this->getTopicTitle() );
+		$msg->plaintextParams( $this->getTopicTitle() );
 		$msg->params( $this->getViewingUserForGender() );
 		return $msg;
 	}
