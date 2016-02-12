@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea78b8a_8f1ac4ce",
+        "filename": "container.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-02-12T21:20:06Z",
+      "side": 1,
+      "message": "Does this comment mean that scheduling DeferredUpdates from inside of DeferredUpdates is not currently possible, and that there\u0027s something we could do better once it is possible? I know you didn\u0027t introduce this comment in this commit, you only moved it, but I thought I should ask because I don\u0027t understand what it says.",
+      "revId": "820e54b6f22da394ebae744e3071d5b278426bac",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea78b8a_8fee4485",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-02-12T21:20:06Z",
+      "side": 1,
+      "message": "\u0027timestamp\u0027 should be documented here too",
+      "revId": "820e54b6f22da394ebae744e3071d5b278426bac",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea78b8a_4ab03ad8",
+        "filename": "includes/Notifications/Notifications.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-02-12T21:20:06Z",
+      "side": 1,
+      "message": "Yeah, for now you still need to set \u0027primary-link\u0027, \u0027title-message\u0027, \u0027title-params\u0027 and \u0027icon\u0027 for the email formatter (assuming you don\u0027t want custom email messages; those are evil anyway)",
+      "revId": "820e54b6f22da394ebae744e3071d5b278426bac",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
