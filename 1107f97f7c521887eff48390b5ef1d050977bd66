@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea78b8a_0a548255",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-02-12T21:53:18Z",
+      "side": 1,
+      "message": "s/Header/summary/",
+      "revId": "1107f97f7c521887eff48390b5ef1d050977bd66",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
