@@ -63,13 +63,8 @@ abstract class FeatureIndex implements Index {
 
 	/**
 	 * {@inheritDoc}
-	 *
-	 * This exists in the Index interface and as such can't be abstract
-	 * until php 5.3.9, but some of our test machines are on 5.3.3. It
-	 * is included here to a complete list of unimplemented methods are seen
-	 * by looking at just this class.
 	 */
-	//abstract public function getLimit();
+	abstract public function getLimit();
 
 	/**
 	 * @return array The options used for querying self::$storage

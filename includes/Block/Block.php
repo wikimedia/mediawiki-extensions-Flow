@@ -133,10 +133,10 @@ abstract class AbstractBlock implements Block {
 	 */
 	abstract protected function validate();
 
-	// This method exists in the Block interface and as such cannot be abstract
-	// until php 5.3.9, but MediaWiki requires PHP version 5.3.2 or later (and
-	// some of our test machines are on 5.3.3).
-	//abstract public function commit();
+	/**
+	 * {@inheritDoc}
+	 */
+	abstract public function commit();
 
 	/**
 	 * @var IContextSource $context
