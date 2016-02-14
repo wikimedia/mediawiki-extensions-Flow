@@ -5,7 +5,8 @@
 			"Elisardojm",
 			"Banjo",
 			"Nnemo",
-			"Quiddity"
+			"Quiddity",
+			"Macofe"
 		]
 	},
 	"enableflow": "Activar Flow",
@@ -249,7 +250,7 @@
 	"notification-bundle-header-flow-post-edited-v2": "A {{GENDER:$2|súa}} mensaxe en \"'''$1'''\" foi editada varias veces.",
 	"notification-header-flow-post-edited-user-talk": "Un comentario en \"'''$1'''\" foi modificado na {{GENDER:$2|súa}} '''páxina de conversa'''.",
 	"notification-bundle-header-flow-post-edited-user-talk": "Un comentario en \"$1\" foi modificado varias veces na {{GENDER:$2|súa}} páxina de conversa.",
-	"notification-header-flow-topic-renamed-v2": "O tema \"$1\" cambiou de nome a \"$2\".",
+	"notification-header-flow-topic-renamed-v2": "O tema \"'''$1'''\" cambiou de nome a \"'''$2'''\".",
 	"notification-header-flow-topic-renamed-user-talk": "O tema \"$1\" foi renomeado a \"$2\" na súa páxina de conversa.",
 	"notification-header-flow-enabled-on-talkpage": "O novo sistema de conversa habilitouse na {{GENDER:$2|súa}} páxina de conversa de usuario.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 \"$4\"]</span><br />$1 {{GENDER:$1|creou}} un novo tema en \"'''$3'''\".",

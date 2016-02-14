@@ -18,7 +18,8 @@
 			"Huji",
 			"Ladsgroup",
 			"Saeidpourbabak",
-			"Quiddity"
+			"Quiddity",
+			"Macofe"
 		]
 	},
 	"enableflow": "فعال‌سازی جریان",
@@ -246,10 +247,10 @@
 	"flow-notification-edit-bundle": "$1 و $5 {{PLURAL:$6|دیگر|دیگران}} {{GENDER:$1|ویرایش شده}} یک <span class=\"plainlinks\">[$4 post]</span> در \"$2\" در \"$3\".",
 	"notification-header-flow-new-topic-v2": "یک مبحث جدید در $3 ایجاد شده‌است: «$4»",
 	"notification-bundle-header-flow-new-topic": "$1 {{PLURAL:$2|مبحث|مبحث}} جدید در $3 ایجاد شده است.",
-	"notification-header-flow-post-reply": "$1 در \"$4\" {{GENDER:$2|پاسخ داد}}.",
+	"notification-header-flow-post-reply": "$1 در \"'''$4'''\" {{GENDER:$2|پاسخ داد}}.",
 	"notification-header-flow-post-edited-v2": "پست شما در «$1» ویرایش شد.",
 	"notification-bundle-header-flow-post-edited-v2": "پست {{GENDER:$2|lشما}} در «$1» چندین بار ویرایش شده‌است.",
-	"notification-header-flow-topic-renamed-v2": "مبحث «$1» به «$2» تغییرنام داده‌شد.",
+	"notification-header-flow-topic-renamed-v2": "مبحث «'''$1'''» به «'''$2'''» تغییرنام داده‌شد.",
 	"flow-notification-newtopic": "$1 یک  مبحث تازه در '''$3''' {{GENDER:$1|ایجاد کرد}}.",
 	"flow-notification-rename": "$1 {{GENDER:$1|تغیر یافته}} به عنوان <span class=\"plainlinks\">[$2 $3]</span> به \"$4\" در [[$5|$6]].",
 	"flow-notification-mention": "$1 به {{GENDER:$5|شما}} در <span class=\"plainlinks\">[$2 ارسال]</span> {{GENDER:$1|خودش|خودش|خودشان}} در «$3» در «$4» {{GENDER:$1|اشاره کرد}}.",
