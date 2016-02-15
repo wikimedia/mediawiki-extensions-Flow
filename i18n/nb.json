@@ -6,7 +6,8 @@
 			"Laaknor",
 			"Kingu",
 			"Tarjeimo",
-			"Nnemo"
+			"Nnemo",
+			"Macofe"
 		]
 	},
 	"enableflow": "Aktiver Flow",
@@ -228,16 +229,8 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 og $5 {{PLURAL:$6|annen|andre}} {{GENDER:$1|svarte}} på '''$3'''.",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 {{GENDER:$1|redigerte}} <span class=\"plainlinks\">[$5 meldingen]</span> din på [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 og $5 {{PLURAL:$6|annen|andre}} {{GENDER:$1|redigerte}} et <span class=\"plainlinks\">[$4 innlegg]</span> under «$2» på «$3».",
-	"notification-bundle-header-flow-post-edited": "$1 og {{PLURAL:$6|én annen|$5 andre}} {{GENDER:$2|redigerte}} innlegget {{GENDER:$7|ditt}} under «$3» på $4.",
-	"notification-body-flow-new-topic": "$1 {{GENDER:$2|opprettet}} en ny diskusjon på $3.",
-	"notification-bundle-header-flow-new-topic": "$1 {{PLURAL:$2|ny diskusjon|nye diskusjoner}} på $3",
-	"notification-body-flow-post-reply": "$1 {{GENDER:$2|svarte}} på $3.",
-	"notification-bundle-body-flow-post-reply": "$1 og {{PLURAL:$6|én annen|$5 andre}} {{GENDER:$2|svarte}} på $4.",
-	"notification-body-flow-post-edited": "$1 {{GENDER:$2|har redigert}} innlegget {{GENDER:$5|ditt}} på $3.",
-	"notification-header-flow-topic-renamed": "$1 {{GENDER:$2|endret}} tittelen «$3» til «$4» på $5.",
-	"notification-header-flow-mention": "$1 {{GENDER:$2|nevnte}} {{GENDER:$5|deg}} i innlegget {{GENDER:$2|hans|hennes|sitt}} under «$3» på $4.",
+	"notification-bundle-header-flow-new-topic": "$1 {{PLURAL:$2|ny diskusjon|nye diskusjoner}} på '''$3'''.",
 	"notification-header-flow-enabled-on-talkpage": "Nytt diskusjonssystem er aktivert for brukerdiskusjonssiden {{GENDER:$2|din}}",
-	"notification-body-flow-enabled-on-talkpage": "Tilgjengelig på $3",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|startet}} en  ny diskusjon på '''$3'''.",
 	"flow-notification-newtopic-bundle": "{{PLURAL:$1|Én ny diskusjon|$1 nye diskusjoner|250=250+ nye diskusjoner}} på '''<span class=\"plainlinks\">[$3 $2]</span>'''",
 	"flow-notification-rename": "$1 {{GENDER:$1|endret}} overskriften på <span class=\"plainlinks\">[$2 $3]</span> til «$4» på [[$5|$6]].",

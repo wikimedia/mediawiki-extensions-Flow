@@ -4,7 +4,8 @@
 			"Muhammad Shuaib",
 			"عثمان خان شاہ",
 			"FarhanDanish",
-			"Obaid Raza"
+			"Obaid Raza",
+			"Macofe"
 		]
 	},
 	"enableflow": "فلو فعال کریں",
@@ -200,11 +201,7 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 اور $5 {{PLURAL:$6|دیگر}} نے '''$3''' پر {{GENDER:$1|تبصرہ کیا}}۔",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 نے [[$3|$4]] پر آپ کے <span class=\"plainlinks\">[$5 مراسلہ]</span> میں {{GENDER:$1|ترمیم کی}}۔",
 	"flow-notification-edit-bundle": "$1 اور $5 {{PLURAL:$6|دیگر|دیگر افراد}} نے $3 پر \"$2\" میں موجود ایک <span class=\"plainlinks\">[$4 مراسلہ]</span> میں {{GENDER:$1|ترمیم کی}}",
-	"notification-body-flow-new-topic": "$1 نے $3 پر نیا موضوع {{GENDER:$2|تخلیق}} کیا۔",
-	"notification-bundle-header-flow-new-topic": "$3 پر $1 {{PLURAL:$2|موضوع|موضوعات}}",
-	"notification-body-flow-post-reply": "$3 پر $1 نے {{PLURAL:$2|جواب}} دیا",
-	"notification-bundle-body-flow-post-reply": "$4 پر $1 اور $5 {{PLURAL:$6|دیگر|دیگر}} نے {{GENDER:$2|جواب}} دیا",
-	"notification-body-flow-enabled-on-talkpage": "$3 پر موجود",
+	"notification-bundle-header-flow-new-topic": "'''$3''' پر $1 {{PLURAL:$2|موضوع|موضوعات}}",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 نے '''$3''' پر نیا موضوع {{GENDER:$1|شروع کیا}}۔",
 	"flow-notification-newtopic-bundle": "'''<span class=\"plainlinks\">[$3 $2]</span>''' پر {{PLURAL:$1|$1 نیا موضوع|$1 نئے موضوعات|250=250+ نئے موضوعات}}",
 	"flow-notification-link-text-view-post": "مراسلہ دیکھیں",

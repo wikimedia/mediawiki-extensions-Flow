@@ -6,7 +6,7 @@
 			"Macofe"
 		]
 	},
-	"notification-header-flow-new-topic-v2": "Nova tema stvorena na $3: \"$4\"",
+	"notification-header-flow-new-topic-v2": "Nova tema stvorena na '''$3''': \"'''$4'''\"",
 	"notification-header-flow-topic-renamed-v2": "Tema \"'''$1'''\" preimenovana je u \"'''$2'''\".",
 	"flow-notification-mention": "$1 {{GENDER:$5|Vas}} je {{GENDER:$1|spomenuo|spomenula}} u {{GENDER:$1|njegovoj|njenoj}} <span class=\"plainlinks\">[$2 poruci]</span> pod naslovom \"$3\" na stranici \"$4\".",
 	"flow-notification-link-text-view-topics": "Pogledajte teme",

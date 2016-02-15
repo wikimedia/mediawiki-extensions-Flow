@@ -4,7 +4,8 @@
 			"V.narsikar",
 			"संतोष दहिवळ",
 			"Nnemo",
-			"अभय नातू"
+			"अभय नातू",
+			"Macofe"
 		]
 	},
 	"enableflow": "प्रवाहास(फ्लो) सक्षम करा",
@@ -228,14 +229,8 @@
 	"flow-comment-moderated": "नेमस्त केलेले अभिप्राय",
 	"flow-last-modified": "$1 बद्दल शेवटचा बदल",
 	"flow-workflow": "कार्यप्रवाह",
-	"notification-bundle-header-flow-post-edited": "$1 व $5 {{PLURAL:$6|इतराने|इतरांनी}} $4 वर {{GENDER:$7|आपल्या}}\"$3\" मधील टपालनाचे {{GENDER:$2|संपादन केले}}.",
-	"notification-bundle-header-flow-new-topic": "$3 वर $1 नविन {{PLURAL:$2|विषय}}",
-	"notification-body-flow-post-reply": "$3 वर $1 ने {{GENDER:$2|प्रतिसाद दिला}}.",
-	"notification-bundle-body-flow-post-reply": "$1 व $5 {{PLURAL:$6|इतराने|इतरांनी}} $4 वर {{GENDER:$2|प्रतिसाद दिला}}.",
-	"notification-body-flow-post-edited": "$1 ने $3 वर {{GENDER:$5|आपल्या टपालनास}}{{GENDER:$2|संपादन केले}}.",
-	"notification-header-flow-topic-renamed": "$1 ने $5 वरील \"$3\"चे शीर्षक \"$4\"ला {{GENDER:$2|बदलले}}.",
+	"notification-bundle-header-flow-new-topic": "'''$3''' वर $1 नविन {{PLURAL:$2|विषय}}",
 	"notification-header-flow-enabled-on-talkpage": "{{GENDER:$2|आपल्या}} चर्चा पानासाठी नविन चर्चा प्रणाली सक्षम केली आहे",
-	"notification-body-flow-enabled-on-talkpage": "$3 वर उपलब्ध",
 	"flow-notification-link-text-view-post": "टपालन बघा",
 	"flow-notification-link-text-view-topic": "विषय बघा",
 	"flow-notification-reply-email-subject": "$3 वर $2",
