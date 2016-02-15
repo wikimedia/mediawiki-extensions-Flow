@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea78b8a_a110e553",
+        "filename": "includes/Notifications/MentionPresentationModel.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-02-15T20:21:13Z",
+      "side": 1,
+      "message": "This should be return $link; . You fixed this in the next commit in the stack, but you should really fix it here so the intermediate state (with this commit merged but the next one not) isn\u0027t broken.",
+      "revId": "96492ce9889f935cdc4ef3856d02d575af4da281",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
