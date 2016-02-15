@@ -242,6 +242,7 @@ class UUID implements ApiSerializable {
 	 * in conjunction with LOWER(HEX('...')) in MySQL.
 	 *
 	 * @return string
+	 * @throws FlowException
 	 */
 	public function getHex() {
 		if ( $this->hexValue !== null ) {
@@ -250,6 +251,8 @@ class UUID implements ApiSerializable {
 			$this->hexValue = static::bin2hex( $this->binaryValue );
 		} elseif ( $this->alphadecimalValue !== null ) {
 			$this->hexValue = static::alnum2hex( $this->alphadecimalValue );
+		} else {
+			throw new FlowException( 'No binary, hex or alphadecimal value available' );
 		}
 		self::$instances[self::INPUT_HEX][$this->hexValue] = $this;
 		return $this->hexValue;
@@ -257,17 +260,26 @@ class UUID implements ApiSerializable {
 
 	/**
 	 * @return string base 36 representation
+	 * @throws FlowException
 	 */
 	public function getAlphadecimal() {
 		if ( $this->alphadecimalValue !== null ) {
 			return $this->alphadecimalValue;
 		} elseif ( $this->hexValue !== null ) {
-			$this->alphadecimalValue = static::hex2alnum( $this->hexValue );
+			$alnum = static::hex2alnum( $this->hexValue );
 		} elseif ( $this->binaryValue !== null ) {
 			$this->hexValue = static::bin2hex( $this->binaryValue );
 			self::$instances[self::INPUT_HEX][$this->hexValue] = $this;
-			$this->alphadecimalValue = static::hex2alnum( $this->hexValue );
+			$alnum = static::hex2alnum( $this->hexValue );
+		} else {
+			throw new FlowException( 'No binary, hex or alphadecimal value available' );
 		}
+
+		// pad some zeroes because (if initialized via ::getComparisonUUID) it
+		// could end up shorted than MIN_ALNUM_LEN, and whatever we output here
+		// should be able to feed into ::create again
+		$this->alphadecimalValue = str_pad( $alnum, static::MIN_ALNUM_LEN, '0', STR_PAD_LEFT );
+
 		self::$instances[self::INPUT_ALNUM][$this->alphadecimalValue] = $this;
 		return $this->alphadecimalValue;
 	}
