@@ -31,6 +31,12 @@ class HeaderBlock extends AbstractBlock {
 	protected $newRevision;
 
 	/**
+	 * @var array Map of data to be passed on as
+	 *  commit metadata for event handlers
+	 */
+	protected $extraCommitMetadata = array();
+
+	/**
 	 * @var string[]
 	 */
 	protected $supportedPostActions = array( 'edit-header', 'undo-edit-header' );
@@ -129,7 +135,9 @@ class HeaderBlock extends AbstractBlock {
 			$this->workflow->getArticleTitle()
 		);
 
-		if ( !$this->checkSpamFilters( $this->header, $this->newRevision ) ) {
+		if ( $this->newRevision->getRevisionId()->equals( $this->header->getRevisionId() ) ) {
+			$this->extraCommitMetadata['null-edit'] = true;
+		} elseif ( !$this->checkSpamFilters( $this->header, $this->newRevision ) ) {
 			return;
 		}
 	}
@@ -165,14 +173,22 @@ class HeaderBlock extends AbstractBlock {
 	}
 
 	public function commit() {
+		$metadata = $this->extraCommitMetadata;
+
 		switch( $this->action ) {
 			case 'undo-edit-header':
 			case 'edit-header':
-				$this->workflow->updateLastUpdated( $this->newRevision->getRevisionId() );
-				$this->storage->put( $this->workflow, array() ); // 'discussion' workflow
-				$this->storage->put( $this->newRevision, array(
-					'workflow' => $this->workflow,
-				) );
+				// store data, unless we're dealing with a null-edit (in which case
+				// is storing the same thing not only pointless, it can even be
+				// incorrect, since listeners will run & generate notifications etc)
+				if ( !isset( $this->extraCommitMetadata['null-edit'] ) ) {
+					$this->workflow->updateLastUpdated( $this->newRevision->getRevisionId() );
+					$this->storage->put( $this->workflow, $metadata ); // 'discussion' workflow
+					$this->storage->put( $this->newRevision, $metadata + array(
+						'workflow' => $this->workflow,
+					) );
+				}
+
 				// Reload $this->header for renderApi() after save
 				$this->header = $this->newRevision;
 				return array(

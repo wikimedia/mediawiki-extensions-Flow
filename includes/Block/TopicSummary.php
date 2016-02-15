@@ -37,6 +37,12 @@ class TopicSummaryBlock extends AbstractBlock {
 	protected $nextRevision;
 
 	/**
+	 * @var array Map of data to be passed on as
+	 *  commit metadata for event handlers
+	 */
+	protected $extraCommitMetadata = array();
+
+	/**
 	 * @var PostRevision|null
 	 */
 	protected $topicTitle;
@@ -163,6 +169,10 @@ class TopicSummaryBlock extends AbstractBlock {
 				'edit-topic-summary',
 				$this->workflow->getArticleTitle()
 			);
+
+			if ( $this->nextRevision->getRevisionId()->equals( $this->topicSummary->getRevisionId() ) ) {
+				$this->extraCommitMetadata['null-edit'] = true;
+			}
 		}
 
 		if ( !$this->checkSpamFilters( $this->topicSummary, $this->nextRevision ) ) {
@@ -201,9 +211,14 @@ class TopicSummaryBlock extends AbstractBlock {
 			throw new FailCommitException( 'Attempt to save summary on null revision', 'fail-commit' );
 		}
 
-		$this->storage->put( $this->nextRevision, array(
-			'workflow' => $this->workflow,
-		) );
+		// store data, unless we're dealing with a null-edit (in which case
+		// is storing the same thing not only pointless, it can even be
+		// incorrect, since listeners will run & generate notifications etc)
+		if ( !isset( $this->extraCommitMetadata['null-edit'] ) ) {
+			$this->storage->put( $this->nextRevision, $this->extraCommitMetadata + array(
+				'workflow' => $this->workflow,
+			) );
+		}
 		// Reload the $this->formatterRow for renderApi() after save
 		$this->formatterRow = new FormatterRow();
 		$this->formatterRow->revision = $this->nextRevision;
