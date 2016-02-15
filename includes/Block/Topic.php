@@ -402,7 +402,10 @@ class TopicBlock extends AbstractBlock {
 			'edit-post',
 			$this->workflow->getArticleTitle()
 		);
-		if ( !$this->checkSpamFilters( $post, $this->newRevision ) ) {
+
+		if ( $this->newRevision->getRevisionId()->equals( $post->getRevisionId() ) ) {
+			$this->extraCommitMetadata['null-edit'] = true;
+		} elseif ( !$this->checkSpamFilters( $post, $this->newRevision ) ) {
 			return;
 		}
 	}
@@ -440,9 +443,15 @@ class TopicBlock extends AbstractBlock {
 				$metadata['topic-title'] = $this->newRevision;
 			}
 
-			$this->storage->put( $this->newRevision, $metadata );
-			$this->workflow->updateLastUpdated( $this->newRevision->getRevisionId() );
-			$this->storage->put( $this->workflow, $metadata );
+			// store data, unless we're dealing with a null-edit (in which case
+			// is storing the same thing not only pointless, it can even be
+			// incorrect, since listeners will run & generate notifications etc)
+			if ( !isset( $this->extraCommitMetadata['null-edit'] ) ) {
+				$this->storage->put( $this->newRevision, $metadata );
+				$this->workflow->updateLastUpdated( $this->newRevision->getRevisionId() );
+				$this->storage->put( $this->workflow, $metadata );
+			}
+
 			$newRevision = $this->newRevision;
 
 			// If no context was loaded render the post in isolation
