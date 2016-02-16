@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4ea78b8a_1c27d7b2",
+        "filename": "container.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-02-16T16:51:11Z",
+      "side": 1,
+      "message": "https://gerrit.wikimedia.org/r/#/c/155152/\n\nThe \"this will need support ...\" thing seems to no longer be needed. AFAICT, deferring this was a 2-patch thing: 1 to Flow \u0026 1 to core, to make deferred-in-deferred work.\nI think this comment was referring the other (core) patch that made it work, but that one has been merged for a long time now. So we can probably remove that line now.",
+      "parentUuid": "4ea78b8a_8f1ac4ce",
+      "revId": "820e54b6f22da394ebae744e3071d5b278426bac",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ea78b8a_8fee4485",
         "filename": "includes/Notifications/Controller.php",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2016-02-12T21:20:06Z",
       "side": 1,
       "message": "\u0027timestamp\u0027 should be documented here too",
+      "revId": "820e54b6f22da394ebae744e3071d5b278426bac",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea78b8a_364e72de",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-02-16T16:51:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ea78b8a_8fee4485",
       "revId": "820e54b6f22da394ebae744e3071d5b278426bac",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "4ea78b8a_161b36d5",
+        "filename": "includes/Notifications/HeaderEditedPresentationModel.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-02-16T16:51:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ea78b8a_2a3a9e33",
+      "revId": "820e54b6f22da394ebae744e3071d5b278426bac",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ea78b8a_4ab03ad8",
         "filename": "includes/Notifications/Notifications.php",
         "patchSetId": 5
@@ -64,6 +118,24 @@
       "writtenOn": "2016-02-12T21:20:06Z",
       "side": 1,
       "message": "Yeah, for now you still need to set \u0027primary-link\u0027, \u0027title-message\u0027, \u0027title-params\u0027 and \u0027icon\u0027 for the email formatter (assuming you don\u0027t want custom email messages; those are evil anyway)",
+      "revId": "820e54b6f22da394ebae744e3071d5b278426bac",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea78b8a_f136a4ff",
+        "filename": "includes/Notifications/Notifications.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-02-16T16:51:11Z",
+      "side": 1,
+      "message": "Yeah I was hoping email formatter \u0026 bundling would be ready very soon so I could be lazy :) but I\u0027m going to add it anyway, other patches are blocked on this one already...",
+      "parentUuid": "4ea78b8a_4ab03ad8",
       "revId": "820e54b6f22da394ebae744e3071d5b278426bac",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
