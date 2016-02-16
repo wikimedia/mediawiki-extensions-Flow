@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea78b8a_055c62f3",
+        "filename": "includes/Notifications/PostReplyPresentationModel.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-02-16T04:51:16Z",
+      "side": 1,
+      "message": "Why the change from getBoardByNewestLink to getBoardLink?",
+      "revId": "1cb74669e17e5dfb220a085cde62f21bf9daf93e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
