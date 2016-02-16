@@ -25,7 +25,7 @@ class PostEditedPresentationModel extends FlowPresentationModel {
 		if ( $this->isBundled() ) {
 			return array( $this->getBoardLink() );
 		} else {
-			return array( $this->getAgentLink() );
+			return array( $this->getAgentLink(), $this->getBoardLink() );
 		}
 	}
 
