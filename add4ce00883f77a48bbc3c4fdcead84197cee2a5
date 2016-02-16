@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea78b8a_82c7e849",
+        "filename": "includes/Notifications/FlowEnabledOnTalkpagePresentationModel.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-02-16T04:37:16Z",
+      "side": 1,
+      "message": "I\u0027m not very comfortable with 1) using a fooForGender function for purposes other than gender and 2) assuming that the viewing user is the same as the title here (it\u0027s true, but I\u0027d rather not have that assumption in this place). I\u0027d suggest $this-\u003eevent-\u003egetTitle()-\u003egetText() instead (which will return the page name without the namespace prefix).",
+      "revId": "add4ce00883f77a48bbc3c4fdcead84197cee2a5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea78b8a_a5c46e95",
+        "filename": "includes/Notifications/FlowEnabledOnTalkpagePresentationModel.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-02-16T04:37:16Z",
+      "side": 1,
+      "message": "userAvatar isn\u0027t the right icon here. https://phabricator.wikimedia.org/M132 calls for an icon that looks like userAvatar plus a speech bubble. Not sure if Pau\u0027s put that SVG up yet.",
+      "revId": "add4ce00883f77a48bbc3c4fdcead84197cee2a5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
