@@ -1,9 +1,7 @@
 
 Given(/^I am logged in as a new user$/) do
-  @username = @data_manager.get 'New_user'
-  puts "New user: #{@username}"
-  api.create_account @username, password
-  visit(LoginPage).login_with @username, password
+  log_in
+  @username = env.user
 end
 
 When(/^I enable Flow beta feature$/) do
