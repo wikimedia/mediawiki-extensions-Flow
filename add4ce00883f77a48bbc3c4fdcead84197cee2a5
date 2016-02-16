@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4ea78b8a_abfaff3d",
+        "filename": "includes/Notifications/FlowEnabledOnTalkpagePresentationModel.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-02-16T14:00:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ea78b8a_82c7e849",
+      "revId": "add4ce00883f77a48bbc3c4fdcead84197cee2a5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ea78b8a_a5c46e95",
         "filename": "includes/Notifications/FlowEnabledOnTalkpagePresentationModel.php",
         "patchSetId": 1
@@ -48,6 +66,24 @@
       "side": 1,
       "message": "Found it: https://phabricator.wikimedia.org/F3177090",
       "parentUuid": "4ea78b8a_a5c46e95",
+      "revId": "add4ce00883f77a48bbc3c4fdcead84197cee2a5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea78b8a_6b2f279d",
+        "filename": "includes/Notifications/FlowEnabledOnTalkpagePresentationModel.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-02-16T14:00:46Z",
+      "side": 1,
+      "message": "I\u0027ve added it to Echo as \u0027userSpeechBubble\u0027. https://gerrit.wikimedia.org/r/#/c/270951/",
+      "parentUuid": "4ea78b8a_65be76fc",
       "revId": "add4ce00883f77a48bbc3c4fdcead84197cee2a5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
