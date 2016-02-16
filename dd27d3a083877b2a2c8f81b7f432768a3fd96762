@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4ea78b8a_9f817651",
+        "filename": "includes/Data/Listener/WatchTopicListener.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 106
+      },
+      "writtenOn": "2016-02-16T21:58:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ea78b8a_302a0c2c",
+      "revId": "dd27d3a083877b2a2c8f81b7f432768a3fd96762",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ea78b8a_9012e0ff",
         "filename": "includes/Data/Listener/WatchTopicListener.php",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2016-02-12T22:41:22Z",
       "side": 1,
       "message": "AFAICT, $title will always be in the Topic namespace, which means $title-\u003egetTalkPage() returns a title in a namspace that doesn\u0027t exist (2601). So we probably don\u0027t want to watch the talk page here, just $title.",
+      "revId": "dd27d3a083877b2a2c8f81b7f432768a3fd96762",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea78b8a_5fe21e2f",
+        "filename": "includes/Data/Listener/WatchTopicListener.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 106
+      },
+      "writtenOn": "2016-02-16T21:58:56Z",
+      "side": 1,
+      "message": "That would thus change the behaviour in this patch which is not what I am trying to do.",
+      "parentUuid": "4ea78b8a_9012e0ff",
       "revId": "dd27d3a083877b2a2c8f81b7f432768a3fd96762",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -64,6 +100,24 @@
       "writtenOn": "2016-02-12T22:41:22Z",
       "side": 1,
       "message": "I see no reason to change code that 1) is already being used and working, and 2) is going to be removed once WatchedItemStore lands in MW core",
+      "parentUuid": "4ea78b8a_795b96fd",
+      "revId": "dd27d3a083877b2a2c8f81b7f432768a3fd96762",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea78b8a_bffb12dd",
+        "filename": "includes/Data/Listener/WatchTopicListener.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 106
+      },
+      "writtenOn": "2016-02-16T21:58:56Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "4ea78b8a_795b96fd",
       "revId": "dd27d3a083877b2a2c8f81b7f432768a3fd96762",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
