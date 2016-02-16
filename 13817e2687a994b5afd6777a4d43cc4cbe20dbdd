@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea78b8a_05d9c25b",
+        "filename": "maintenance/FlowRemoveOldTopics.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-02-16T05:07:12Z",
+      "side": 1,
+      "message": "What in this function limits it to the current wiki (wfWikiID())? I see that in removeWorkflows(), but I don\u0027t see it here.",
+      "revId": "13817e2687a994b5afd6777a4d43cc4cbe20dbdd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
