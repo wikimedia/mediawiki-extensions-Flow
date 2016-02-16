@@ -16,6 +16,24 @@
       "revId": "1cb74669e17e5dfb220a085cde62f21bf9daf93e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea78b8a_f623faa3",
+        "filename": "includes/Notifications/PostReplyPresentationModel.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-02-16T14:06:59Z",
+      "side": 1,
+      "message": "This is for multiple replies (bundled) to a topic on a board. I think it makes more sense to sort by \u0027lastUpdated\u0027 than \u0027newest\u0027 to maximize the changes of seeing activity related to this notification when you go to the board. It\u0027s the default sort but we should probably specify it because the user preferences can override it.",
+      "parentUuid": "4ea78b8a_055c62f3",
+      "revId": "1cb74669e17e5dfb220a085cde62f21bf9daf93e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
