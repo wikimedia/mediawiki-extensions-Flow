@@ -34,6 +34,24 @@
       "revId": "1cb74669e17e5dfb220a085cde62f21bf9daf93e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea78b8a_16f25603",
+        "filename": "includes/Notifications/PostReplyPresentationModel.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-02-16T14:21:47Z",
+      "side": 1,
+      "message": "The spreadsheet doesn\u0027t mention specific sorting of the Flow board. The only place it dos in for new-topic where we want it sorted by \u0027newest\u0027 topics. Everywhere else is says \"link to the board\". I guess showing it according to the default or user preference can\u0027t be too bad.",
+      "parentUuid": "4ea78b8a_f623faa3",
+      "revId": "1cb74669e17e5dfb220a085cde62f21bf9daf93e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
