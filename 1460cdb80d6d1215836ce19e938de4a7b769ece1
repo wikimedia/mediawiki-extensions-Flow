@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea78b8a_58ad542d",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2016-02-17T07:46:04Z",
+      "side": 1,
+      "message": "As $3 and $4 are the same, except for when $3 is \"99+\", please clarify the documentation of $4 about this, and especially what the value of $4 is if the value of $3 is \"99+\". I\u0027d argue this should be a special case in the plural, even.",
+      "revId": "1460cdb80d6d1215836ce19e938de4a7b769ece1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
