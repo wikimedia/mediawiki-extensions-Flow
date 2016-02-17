@@ -96,22 +96,13 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 	}
 
 	protected function getBoardByNewestLink() {
-		return array(
-			'label' => $this->event->getTitle()->getPrefixedText(),
-			'url' => $this->getBoardByNewestTopicUrl(),
-			'prioritized' => true,
-			'icon' => 'speechBubbles',
-			'description' => null,
-		);
+		return $this->getBoardLink( 'newest' );
 	}
 
-	protected function getBoardLink() {
-		return array(
-			'label' => $this->event->getTitle()->getPrefixedText(),
-			'url' => $this->event->getTitle()->getFullURL(),
-			'prioritized' => true,
-			'icon' => 'speechBubbles',
-			'description' => null,
+	protected function getBoardLink( $sortBy = null ) {
+		$query = $sortBy ? array( 'topiclist_sortby' => $sortBy ) : array();
+		return $this->getPageLink(
+			$this->event->getTitle(), null, true, $query
 		);
 	}
 
