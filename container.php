@@ -505,7 +505,9 @@ $c['storage.topic_list.indexes.last_updated.backend'] = function( $c ) {
 	);
 };
 $c['storage.topic_list.mapper'] = function( $c ) {
-	return CachingObjectMapper::model(
+	// Must be BasicObjectMapper, due to variance in when
+	// we have workflow_last_update_timestamp
+	return BasicObjectMapper::model(
 		$c['storage.topic_list.class'],
 		$c['storage.topic_list.primary_key']
 	);
