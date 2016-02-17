@@ -16,6 +16,24 @@
       "revId": "1460cdb80d6d1215836ce19e938de4a7b769ece1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea78b8a_97e2b696",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-02-17T16:03:38Z",
+      "side": 1,
+      "message": "If $3 is 99+, $4 will be 100. But that number is configurable ($wgEchoMaxNotificationCount)\n\nI\u0027m not sure how to best describe that behavior though:\n\n* referencing $wgEchoMaxNotificationCount seems confusing\n* mentioning \"99\" could be incorrect (depending on config)\n\nWhat do you think?",
+      "parentUuid": "4ea78b8a_58ad542d",
+      "revId": "1460cdb80d6d1215836ce19e938de4a7b769ece1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
