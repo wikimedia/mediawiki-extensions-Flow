@@ -106,6 +106,24 @@
       "revId": "1460cdb80d6d1215836ce19e938de4a7b769ece1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea78b8a_71737f14",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2016-02-18T11:22:05Z",
+      "side": 1,
+      "message": "The description is accurate. Good of you to describe the two options to resolve this, too. Too bad I didn\u0027t spot this earlier. Please fix it as soon as possible. For accuracy, I\u0027ll leave my -1, but I\u0027d understand if you merged regardless.",
+      "parentUuid": "4ea78b8a_713fffb1",
+      "revId": "1460cdb80d6d1215836ce19e938de4a7b769ece1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
