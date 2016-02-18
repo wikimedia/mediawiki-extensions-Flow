@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea78b8a_7b3840d0",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-02-18T00:45:15Z",
+      "side": 1,
+      "message": "Summary-related",
+      "revId": "40ffb51c6049ee3eaf0ace94e68b03ab4ec79e8c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea78b8a_db6db4c8",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-02-18T00:45:15Z",
+      "side": 1,
+      "message": "This is wildly outdated, but that\u0027s for another change.",
+      "revId": "40ffb51c6049ee3eaf0ace94e68b03ab4ec79e8c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
