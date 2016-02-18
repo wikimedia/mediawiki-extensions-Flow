@@ -88,6 +88,24 @@
       "revId": "1460cdb80d6d1215836ce19e938de4a7b769ece1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea78b8a_713fffb1",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-02-18T09:32:01Z",
+      "side": 1,
+      "message": "I see the problem. Actually, it\u0027s already a problem for all of those messages, then.\n\nWe happen to be refactoring a lot of that code, and bundling is coming up soon. That would be a good opportunity to try to fix it everywhere.\n\nI\u0027ve filed T127288 - can you check that this is an accurate description of the problem (and if not, add more details)?\n\nMeanwhile, this probably doesn\u0027t have to be a blocker for this specific commit. Would you be ok to see this merged as-is for now, given that we have this exact same construction in a lot of other existing bundle messages already?",
+      "parentUuid": "4ea78b8a_7e64ae11",
+      "revId": "1460cdb80d6d1215836ce19e938de4a7b769ece1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
