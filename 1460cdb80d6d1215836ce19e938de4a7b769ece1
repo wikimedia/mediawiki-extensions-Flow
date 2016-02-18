@@ -52,6 +52,24 @@
       "revId": "1460cdb80d6d1215836ce19e938de4a7b769ece1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea78b8a_9e7acab6",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-02-18T09:06:51Z",
+      "side": 1,
+      "message": "\"could be number or {{msg-mw|Echo-notification-count}}\"\n\nThe n+ is a separate message: echo-notification-count. It\u0027s currently translated as \"$n+\" (https://github.com/wikimedia/mediawiki-extensions-Echo/blob/master/i18n/en.json#L129)\n\nAre we missing anything else there?",
+      "parentUuid": "4ea78b8a_becc66c1",
+      "revId": "1460cdb80d6d1215836ce19e938de4a7b769ece1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
