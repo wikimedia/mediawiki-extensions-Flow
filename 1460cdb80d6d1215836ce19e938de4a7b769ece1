@@ -34,6 +34,24 @@
       "revId": "1460cdb80d6d1215836ce19e938de4a7b769ece1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea78b8a_becc66c1",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2016-02-18T07:02:59Z",
+      "side": 1,
+      "message": "If you make this configurable, then this isn\u0027t localisable properly. That means you should introduce a separate message for the \"n+\", probably. That would allow translators to use a correct plural for all cases of n, which is not possible now.",
+      "parentUuid": "4ea78b8a_97e2b696",
+      "revId": "1460cdb80d6d1215836ce19e938de4a7b769ece1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
