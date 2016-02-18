@@ -1,5 +1,5 @@
 @chrome @firefox @internet_explorer_10
-@clean @login
+@clean
 @en.wikipedia.beta.wmflabs.org
 Feature: Thank author of a Flow post
 
@@ -8,7 +8,6 @@ Feature: Thank author of a Flow post
     When I am on Flow page
     Then I should not see a Thank button
 
-  @login
   Scenario: Thank the user
     Given I am logged in
     And the most recent topic on "Talk:Flow QA" is written by another user
@@ -16,7 +15,6 @@ Feature: Thank author of a Flow post
     When I click on the Thank button
     Then I should see the Thank button be replaced with Thanked button
 
-  @login
   Scenario: I cannot thank my own post
     Given there is a new topic created by me
     And I am logged in

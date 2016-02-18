@@ -1,5 +1,5 @@
 @chrome @firefox @internet_explorer_10
-@clean @login
+@clean
 @en.wikipedia.beta.wmflabs.org
 Feature: Watching/Unwatching Boards and Topics
 
