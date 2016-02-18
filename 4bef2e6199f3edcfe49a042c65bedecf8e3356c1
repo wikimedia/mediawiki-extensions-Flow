@@ -16,6 +16,24 @@
       "revId": "4bef2e6199f3edcfe49a042c65bedecf8e3356c1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea78b8a_4f2ede8a",
+        "filename": "tests/browser/features/step_definitions/opt_in_steps.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2016-02-18T15:03:58Z",
+      "side": 1,
+      "message": "Yes, the above two lines do just that, create a new user and log in as the created user. Username is saved in @username variable, to be used later.",
+      "parentUuid": "4ea78b8a_742b6d93",
+      "revId": "4bef2e6199f3edcfe49a042c65bedecf8e3356c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
