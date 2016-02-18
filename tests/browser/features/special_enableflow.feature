@@ -1,5 +1,5 @@
 @chrome @firefox @internet_explorer_10
-@clean @login
+@vagrant
 @en.wikipedia.beta.wmflabs.org
 Feature: Flow Special:EnableFlow enables new flow boards
 

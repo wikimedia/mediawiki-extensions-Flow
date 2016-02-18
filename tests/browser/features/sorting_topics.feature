@@ -1,5 +1,5 @@
 @chrome @firefox @internet_explorer_10 @phantomjs
-@clean
+@vagrant
 @en.wikipedia.beta.wmflabs.org
 Feature: Sorting topics
 

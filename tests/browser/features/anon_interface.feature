@@ -1,5 +1,5 @@
 @chrome @firefox @internet_explorer_10
-@clean
+@vagrant
 @en.wikipedia.beta.wmflabs.org
 Feature: Check the interface for anonymous users
 
