@@ -70,6 +70,24 @@
       "revId": "1460cdb80d6d1215836ce19e938de4a7b769ece1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea78b8a_7e64ae11",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2016-02-18T09:14:11Z",
+      "side": 1,
+      "message": "Yes. The fact that it\u0027s not possible to pluralize on whatever n+ is.\n\nWe are taking about this:\n\n $3 {{PLURAL:$4|other|others}}\n\nThat works fine with plurals in all languages as long as $3 is actually a number. However, it is not always. In some cases, $3 will mean \"more than $3\", and $3 is configurable. From that follows, this should be a separate message. What is currently \"$1+\" should basically be a copy of the complete message with \"+\" added after \"$3\".",
+      "parentUuid": "4ea78b8a_9e7acab6",
+      "revId": "1460cdb80d6d1215836ce19e938de4a7b769ece1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
