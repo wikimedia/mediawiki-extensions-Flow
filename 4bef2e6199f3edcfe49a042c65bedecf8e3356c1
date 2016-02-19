@@ -52,6 +52,24 @@
       "revId": "4bef2e6199f3edcfe49a042c65bedecf8e3356c1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ea78b8a_ec46b17f",
+        "filename": "tests/browser/features/step_definitions/opt_in_steps.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1731
+      },
+      "writtenOn": "2016-02-19T00:45:12Z",
+      "side": 1,
+      "message": "The user is automatically created only with the user factory enabled. Otherwise, it tries to authenticate using the preconfigured username/password in the environment settings.\n\nThe implementation for API-based login and for the user factory are completely separate modules. They interact in this context but only interdirectly, because the login helper calls `api` which in turn gets the `user` to authenticate which in turn automatically provisions a user before returning its name.\n\nhttps://doc.wikimedia.org/rubygems/mediawiki-selenium/MediawikiSelenium/LoginHelper.html\nhttps://doc.wikimedia.org/rubygems/mediawiki-selenium/MediawikiSelenium/UserFactoryHelper.html\n\nHope that helps. :)",
+      "parentUuid": "4ea78b8a_cfa72e07",
+      "revId": "4bef2e6199f3edcfe49a042c65bedecf8e3356c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
