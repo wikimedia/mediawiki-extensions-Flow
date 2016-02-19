@@ -70,6 +70,24 @@
       "revId": "4bef2e6199f3edcfe49a042c65bedecf8e3356c1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ea41786_e36092ce",
+        "filename": "tests/browser/features/step_definitions/opt_in_steps.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-02-19T11:40:40Z",
+      "side": 1,
+      "message": "Yes, thanks for the info. \n\nThis specific step needs a new user every time regardless of the user_factory settings. The feature it is testing (opt-in) needs to start fresh with a user who has never touched the Flow user preferences and has no talk page.",
+      "parentUuid": "4ea78b8a_ec46b17f",
+      "revId": "4bef2e6199f3edcfe49a042c65bedecf8e3356c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
