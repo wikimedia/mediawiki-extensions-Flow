@@ -88,6 +88,24 @@
       "revId": "4bef2e6199f3edcfe49a042c65bedecf8e3356c1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ea41786_66a4b005",
+        "filename": "tests/browser/features/step_definitions/opt_in_steps.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2016-02-19T14:34:34Z",
+      "side": 1,
+      "message": "Since this step is creating a user, would it make sense to enable user_factory on beta too?",
+      "parentUuid": "2ea41786_e36092ce",
+      "revId": "4bef2e6199f3edcfe49a042c65bedecf8e3356c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
