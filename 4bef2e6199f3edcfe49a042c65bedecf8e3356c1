@@ -106,6 +106,24 @@
       "revId": "4bef2e6199f3edcfe49a042c65bedecf8e3356c1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ea41786_66dcb04c",
+        "filename": "tests/browser/features/step_definitions/opt_in_steps.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-02-19T15:24:32Z",
+      "side": 1,
+      "message": "user_factory has never worked for us.\n\nIn Flow, some features need a new user every time, some have to use the configured users (because they have certain rights) and some others just don\u0027t care.",
+      "parentUuid": "2ea41786_66a4b005",
+      "revId": "4bef2e6199f3edcfe49a042c65bedecf8e3356c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
