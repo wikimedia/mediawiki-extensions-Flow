@@ -346,7 +346,7 @@
 	"flow-terms-of-use-edit": "透過儲存您的更改，您同意此 wiki 之使用條款。",
 	"flow-anon-warning": "您尚未登入。 要收到使用您的名字的署名而非 IP 位址，您可以 [$1 登入] 或 [$2 建立帳號]。",
 	"flow-cancel-warning": "您已於此表單輸入內容，您確定要放棄內容？",
-	"flow-topic-first-heading": "於 $1 的話題",
+	"flow-topic-first-heading": "位於 $1 的話題",
 	"flow-topic-html-title": "$1 於 $2",
 	"flow-topic-count": "話題 ($1)",
 	"flow-load-more": "讀取更多",
