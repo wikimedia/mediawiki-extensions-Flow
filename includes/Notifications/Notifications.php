@@ -119,6 +119,33 @@ $notifications = array(
 		'email-body-batch-params' => array( 'agent', 'old-subject', 'new-subject', 'title' ),
 		'icon' => 'flow-topic-renamed',
 	) + $notificationTemplate,
+	'flow-description-edited' => array(
+		'presentation-model' => 'Flow\\HeaderEditedPresentationModel',
+		'user-locators' => array(
+			'EchoUserLocator::locateUsersWatchingTitle',
+			'EchoUserLocator::locateTalkPageOwner'
+		),
+		'user-filters' => array(
+			'Flow\\NotificationsUserLocator::locateMentionedUsers',
+		),
+		'bundle' => array(
+			'web' => true,
+			'email' => true,
+		),
+		'primary-link' => array(
+			'message' => 'notification-links-flow-description-edited-view-page',
+			'destination' => 'title'
+		),
+		'title-message' => 'notification-header-flow-description-edited',
+		'title-params' => array( 'flow-title' ),
+		'email-subject-message' => 'notification-email-subject-flow-description-edited',
+		'email-subject-params' => array( 'agent', 'title' ),
+		'email-body-batch-message' => 'notification-email-batch-body-flow-description-edited',
+		'email-body-batch-params' => array( 'agent', 'title' ),
+		'email-body-batch-bundle-message' => 'notification-email-batch-bundle-body-flow-description-edited',
+		'email-body-batch-bundle-params' => array( 'agent', 'title', 'agent-other-display', 'agent-other-count' ),
+		'icon' => 'flow-topic-renamed',
+	) + $notificationTemplate,
 	'flow-mention' => array(
 		'presentation-model' => 'Flow\\MentionPresentationModel',
 		'user-locators' => array(
