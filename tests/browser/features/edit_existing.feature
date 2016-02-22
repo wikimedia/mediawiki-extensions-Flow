@@ -1,5 +1,5 @@
 @chrome @firefox @internet_explorer_10
-@clean @login
+@vagrant
 @en.wikipedia.beta.wmflabs.org
 Feature: Edit existing title
 

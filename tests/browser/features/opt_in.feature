@@ -1,5 +1,5 @@
 @chrome @firefox
-@clean @login
+@vagrant
 @en.wikipedia.beta.wmflabs.org
 Feature: Opt-in Flow beta feature
 

@@ -1,5 +1,5 @@
 @chrome @firefox
-@clean @login
+@vagrant
 @en.wikipedia.beta.wmflabs.org
 Feature: Create new topic logged in
 
