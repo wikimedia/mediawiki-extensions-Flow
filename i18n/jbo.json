@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Gleki",
-			"Xbony2"
+			"Xbony2",
+			"Olwe519"
 		]
 	},
 	"log-name-flow": "flecu fasnu citri",
@@ -12,6 +13,15 @@
 	"flow-post-action-delete-post": "vimcu",
 	"flow-post-action-hide-post": "cancygau",
 	"flow-post-action-edit-post": "stika",
+	"notification-header-flow-description-edited": "pu cusku'i le ve skicu be fe la lu $1 li'u",
+	"notification-header-flow-description-edited-user-talk": "pu cusku'i le ve skicu be fe le do tavla papri",
+	"notification-bundle-header-flow-description-edited": "pu za'uroi cusku'i le ve skicu be fe la lu $1 li'u",
+	"notification-bundle-header-flow-description-edited-user-talk": "pu za'uroi cusku'i le ve skicu be fe le do tavla papri",
+	"notification-links-flow-description-edited-view-changes": "catlu lo nu cusku'i",
+	"notification-links-flow-description-edited-view-page": "catlu lo papri",
+	"notification-email-subject-flow-description-edited": "$1 pu cusku'i le ve skicu be fe la lu $2 li'u",
+	"notification-email-batch-body-flow-description-edited": "$1 pu cusku'i le ve skicu be fe la lu $2 li'u",
+	"notification-email-batch-bundle-body-flow-description-edited": "$1 .e $3 loi pa drata pu cusku'i le ve skicu be fe la lu $2 li'u",
 	"echo-category-title-flow-discussion": "lo flecu",
 	"flow-link-topic": "lo se casnu",
 	"flow-link-history": "lo citri"
