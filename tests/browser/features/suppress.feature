@@ -1,6 +1,5 @@
 @chrome @firefox @internet_explorer_10
 @clean @login
-@en.wikipedia.beta.wmflabs.org
 Feature: Suppress
 
   Assumes Flow is enabled on Talk:Flow_QA
@@ -8,6 +7,7 @@ Feature: Suppress
   Background:
     Given I am logged in
 
+  @en.wikipedia.beta.wmflabs.org
   Scenario: Suppressing a topic
     Given there is a new topic with title "suppress-topic"
     And I am on Flow page

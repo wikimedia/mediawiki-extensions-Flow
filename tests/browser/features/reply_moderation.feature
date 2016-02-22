@@ -1,6 +1,5 @@
 @chrome @firefox @internet_explorer_10
 @login
-@en.wikipedia.beta.wmflabs.org
 Feature: Reply moderation
 
   Background:

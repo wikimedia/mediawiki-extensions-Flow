@@ -1,6 +1,5 @@
 @chrome @firefox @internet_explorer_10
 @clean @login
-@en.wikipedia.beta.wmflabs.org
 Feature: Moderation
 
   Background:
