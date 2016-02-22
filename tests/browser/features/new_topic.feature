@@ -1,5 +1,4 @@
 @chrome @firefox @internet_explorer_10
-@en.wikipedia.beta.wmflabs.org
 Feature: Creating a new topic
 
   Scenario: Add new Flow topic as anonymous user
