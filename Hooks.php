@@ -1632,10 +1632,11 @@ class FlowHooks {
 	}
 
 	/**
-	 * Occurs at the beginning of the MovePage process. Perhaps ContentModel should be
-	 * extended to be notified about moves explicitly.
+	 * Occurs at the beginning of the MovePage process (just after the startAtomic).
+	 *
+	 * Perhaps ContentModel should be extended to be notified about moves explicitly.
 	 */
-	public static function onTitleMove( Title $oldTitle, Title $newTitle, User $user ) {
+	public static function onTitleMoveStarting( Title $oldTitle, Title $newTitle, User $user ) {
 		if ( $oldTitle->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
 			// $newTitle doesn't yet exist, but after the move it'll still have
 			// the same ID $oldTitle used to have
@@ -1649,14 +1650,14 @@ class FlowHooks {
 			// location and rendered it doesn't throw an error about the wrong title
 			Container::get( 'factory.loader.workflow' )->pageMoveInProgress();
 			// open a database transaction and prepare everything for the move, but
-			// don't commit yet. That is done below in self::onTitleMoveComplete
+			// don't commit yet. That is done below in self::onTitleMoveCompleting
 			Container::get( 'board_mover' )->prepareMove( $oldTitle->getArticleID(), $bogusTitle );
 		}
 
 		return true;
 	}
 
-	public static function onTitleMoveComplete( Title $oldTitle, Title $newTitle, User $user, $pageid, $redirid, $reason ) {
+	public static function onTitleMoveCompleting( Title $oldTitle, Title $newTitle, User $user, $pageid, $redirid, $reason, Revision $revision ) {
 		if ( $newTitle->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
 			Container::get( 'board_mover' )->commit();
 		}
