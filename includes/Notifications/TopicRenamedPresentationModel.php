@@ -2,6 +2,7 @@
 
 namespace Flow;
 
+use Title;
 
 class TopicRenamedPresentationModel extends FlowPresentationModel {
 
@@ -19,10 +20,13 @@ class TopicRenamedPresentationModel extends FlowPresentationModel {
 	}
 
 	public function getSecondaryLinks() {
-		return array(
-			$this->getAgentLink(),
-			$this->getBoardByNewestLink(),
-		);
+		$links = array( $this->getAgentLink() );
+		if ( $this->isUserTalkPage() ) {
+			$links[] = $this->getDiffLink();
+		} else {
+			$links[] = $this->getBoardByNewestLink();
+		}
+		return $links;
 	}
 
 	protected function getHeaderMessageKey() {
@@ -41,4 +45,21 @@ class TopicRenamedPresentationModel extends FlowPresentationModel {
 		return $msg;
 	}
 
+	protected function getDiffLink() {
+		/** @var UrlGenerator $urlGenerator */
+		$urlGenerator = Container::get( 'url_generator' );
+		$anchor = $urlGenerator->diffPostLink(
+			Title::newFromText( $this->event->getExtraParam( 'topic-workflow' )->getAlphadecimal(), NS_TOPIC ),
+			$this->event->getExtraParam( 'topic-workflow' ),
+			$this->event->getExtraParam( 'revision-id' )
+		);
+
+		return array(
+			'url' => $anchor->getFullURL(),
+			'label' => $this->msg( "notification-links-view-changes" )->params( $this->getViewingUserForGender() )->text(),
+			'description' => '',
+			'icon' => 'changes',
+			'prioritized' => true,
+		);
+	}
 }

@@ -67,7 +67,7 @@ class HeaderEditedPresentationModel extends FlowPresentationModel {
 
 		return array(
 			'url' => $anchor->getFullURL(),
-			'label' => $this->msg( "notification-links-{$this->type}-view-changes" )->params( $this->getViewingUserForGender() )->text(),
+			'label' => $this->msg( "notification-links-view-changes" )->params( $this->getViewingUserForGender() )->text(),
 			'description' => '',
 			'icon' => 'changes',
 			'prioritized' => true,
