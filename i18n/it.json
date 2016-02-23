@@ -262,6 +262,7 @@
 	"notification-header-flow-topic-renamed-v2": "L'argomento \"'''$1'''\" è stato rinominato in \"'''$2'''\".",
 	"notification-header-flow-topic-renamed-user-talk": "L'argomento \"'''$1'''\" è stato rinominato in \"'''$2'''\" sulla '''tua pagina di discussione'''.",
 	"notification-header-flow-mention-post": "$1 {{GENDER:$2|ti}} ha {{GENDER:$4|menzionato|menzionata|menzionato/a}} in \"'''$5'''\".",
+	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$2|ti}} ha {{GENDER:$4|menzionato|menzionata|menzionato/a}} in \"$5\".",
 	"notification-header-flow-enabled-on-talkpage": "Nuovo sistema di discussione attivato per la '''{{GENDER:$2|tua}} pagina di discussione utente'''.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 ha {{GENDER:$1|creato}} un  nuovo argomento su '''$3'''.",
 	"flow-notification-newtopic-bundle": "{{PLURAL:$1|$1 nuovo argomento|$1 nuovi argomenti|250=250+ nuovi argomenti}} su '''<span class=\"plainlinks\">[$3 $2]</span>'''",

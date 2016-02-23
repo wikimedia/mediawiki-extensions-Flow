@@ -271,6 +271,7 @@
 	"notification-header-flow-topic-renamed-user-talk": "在'''您的讨论页'''上的话题“'''$1'''”已重命名为“'''$2'''”。",
 	"notification-header-flow-mention-post": "$1在“'''$5'''”里{{GENDER:$2|提到}}了{{GENDER:$4|您}}。",
 	"notification-header-flow-mention-header": "$1在'''$3'''的描述中{{GENDER:$2|提到}}了{{GENDER:$4|您}}。",
+	"notification-header-flow-mention-post-summary": "$1在“$5”里{{GENDER:$2|提到}}了{{GENDER:$4|您}}。",
 	"notification-header-flow-enabled-on-talkpage": "已为'''{{GENDER:$2|您}}的用户讨论页'''启用新的讨论系统。",
 	"notification-header-flow-description-edited": "'''$1'''的描述已编辑。",
 	"notification-header-flow-description-edited-user-talk": "描述已在'''{{GENDER:$2|您}}的讨论页'''上编辑。",
