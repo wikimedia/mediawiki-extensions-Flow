@@ -311,7 +311,6 @@
 	"notification-bundle-header-flow-description-edited-user-talk": "Notification header text for when a board description is edited multiple times on a user's talk page. Parameters:\n* $1 - title of the board.\n* $2 - name of the user viewing the notification, can be used for GENDER.\n{{Related|Notification-bundle}}",
 	"notification-body-flow-description-edited": "Notification body text for when a board description is edited. Parameters:\n$1 - snippet of the description\n{{notranslate}}",
 	"notification-body-flow-description-edited-user-talk": "Notification body text for when a board description is edited. Parameters:\n$1 - snippet of the description\n{{notranslate}}",
-	"notification-links-flow-description-edited-view-changes": "Text for the link to the diff between the revision the notification is about & the previous revision",
 	"notification-links-flow-description-edited-view-page": "Text for the link to the board",
 	"notification-email-subject-flow-description-edited": "Subject line of notification email for the description being edited. Parameters:\n* $1 - name of the user that edited the description\n* $2 - title of the page",
 	"notification-email-batch-body-flow-description-edited": "Email notification for the description being edited. Parameters:\n* $1 - name of the user that edited the description\n* $2 - title of the page",
