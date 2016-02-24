@@ -261,6 +261,7 @@
 	"notification-header-flow-topic-renamed-v2": "Wątek „'''$1'''” został zmieniony na „'''$2'''”.",
 	"notification-header-flow-topic-renamed-user-talk": "Na '''stronie twojej dyskusji''' została zmieniona nazwa wątku z „'''$1'''” na „'''$2'''”.",
 	"notification-header-flow-mention-post": "$1 {{GENDER:$2|wspomniał|wspomniała|wspomniał(a)}} o {{GENDER:$4|tobie}} w wątku „'''$5'''”.",
+	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$2|wspomniał|wspomniała|wspomniał(a)}} o {{GENDER:$4|tobie}} w wątku „$5”.",
 	"notification-links-flow-description-edited-view-changes": "{{GENDER:$1|Zobacz}} zmiany",
 	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|Zobacz}} stronę",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|utworzył|utworzyła}} nowy wątek na stronie '''$3'''.",

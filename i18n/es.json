@@ -273,6 +273,7 @@
 	"notification-header-flow-topic-renamed-user-talk": "El tema \"'''$1'''\" se renombró a \"'''$2'''\" en '''tu página de discusión'''.",
 	"notification-header-flow-mention-post": "$1 {{GENDER:$4|te}} ha {{GENDER:$2|mencionado}} en «'''$5'''».",
 	"notification-header-flow-mention-header": "$1 {{GENDER:$4|te}} {{GENDER:$2|mencionó}} en la descripción de '''$3'''.",
+	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$4|te}} {{GENDER:$2|mencionó}} en \"$5\".",
 	"notification-header-flow-enabled-on-talkpage": "Nuevo sistema de discusión activado para '''tu página de discusión de {{GENDER:$2|usuario|usuaria}}'''.",
 	"notification-header-flow-description-edited": "Se editó la descripción de '''$1'''.",
 	"notification-header-flow-description-edited-user-talk": "Se editó la descripción en '''{{GENDER:$2|tu}} página de discusión'''.",

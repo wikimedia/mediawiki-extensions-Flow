@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Умар",
-			"Macofe"
+			"Macofe",
+			"Исмаил Садуев"
 		]
 	},
 	"enableflow": "Латаде эхар",
@@ -170,7 +171,7 @@
 	"flow-special-type-post": "Хаам",
 	"flow-special-type-workflow": "Белхан эхар",
 	"flow-special-uuid": "UUID",
-	"flow-spam-confirmedit-form": "Хьой адам делахь сурт тӀера йоза язде: $1",
+	"flow-spam-confirmedit-form": "Сурт тӀера йоза лаха яздехьа, нагахь хьо робот вацахь: $1",
 	"flow-post-undo-delete": "юхадаккха дӀадаккхар",
 	"apihelp-flow-example-1": "«[[Talk:Sandbox]]» лаьцна хаам нисъбе",
 	"flow-edited-by": "Хийцина $1",

@@ -10,7 +10,8 @@
 			"MoonYaksha",
 			"Macofe",
 			"Nnemo",
-			"Bowleerin"
+			"Bowleerin",
+			"Shizhao"
 		]
 	},
 	"enableflow": "開啟 Flow",
@@ -229,7 +230,7 @@
 	"flow-history-week": "上週",
 	"flow-history-pages-topic": "於 [$1 \"$2\" 討論板] 中顯示",
 	"flow-history-pages-post": "於 [$1 $2] 中顯示",
-	"flow-topic-comments": "{{PLURAL:$1|$1 則評論|0={{GENDER:$2|發表第一筆}}評論！}}",
+	"flow-topic-comments": "{{PLURAL:$1|$1則評論|0={{GENDER:$2|發表第一筆}}評論！}}",
 	"flow-show-comments-title": "{{PLURAL:$1|檢視評論|檢視評論}}",
 	"flow-hide-comments-title": "{{PLURAL:$1|隱藏評論|隱藏評論}}",
 	"flow-comment-restored": "已還原的評論",

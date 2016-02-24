@@ -260,6 +260,7 @@
 	"notification-header-flow-topic-renamed-user-talk": "Тему «'''$1'''» було перейменовано на «'''$2'''» на '''Вашій сторінці обговорення'''.",
 	"notification-header-flow-mention-post": "$1 {{GENDER:$2|згадав|згадала}} {{GENDER:$4|Вас}} у «'''$5'''».",
 	"notification-header-flow-mention-header": "$1 {{GENDER:$2|згадав|згадала}} {{GENDER:$4|Вас}} в описі '''$3'''.",
+	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$2|згадав|згадала}} {{GENDER:$4|Вас}} у «$5».",
 	"notification-header-flow-enabled-on-talkpage": "Нова система обговорень увімкнена для '''{{GENDER:$2|Вашої}} сторінки обговорення користувача'''.",
 	"notification-header-flow-description-edited": "Опис '''$1''' було відредаговано.",
 	"notification-header-flow-description-edited-user-talk": "Опис було відредаговано на '''{{GENDER:$2|Вашій}} сторінці обговорення'''.",

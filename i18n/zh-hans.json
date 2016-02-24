@@ -23,7 +23,8 @@
 			"EagerLin",
 			"范",
 			"Apflu",
-			"Quiddity"
+			"Quiddity",
+			"Cwek"
 		]
 	},
 	"enableflow": "启用Flow",
@@ -242,7 +243,7 @@
 	"flow-history-week": "上周",
 	"flow-history-pages-topic": "显示于[$1 “$2”板]",
 	"flow-history-pages-post": "出现在[$1 $2]",
-	"flow-topic-comments": "{{PLURAL:$1|$1个评论|0={{GENDER:$2|抢沙发}}！}}",
+	"flow-topic-comments": "{{PLURAL:$1|$1个评论|0={{GENDER:$2|第一个}}发表评论！}}",
 	"flow-show-comments-title": "{{PLURAL:$1|查看评论}}",
 	"flow-hide-comments-title": "{{PLURAL:$1|隐藏评论}}",
 	"flow-comment-restored": "已还原的评论",
