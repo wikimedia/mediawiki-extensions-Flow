@@ -2,6 +2,8 @@
 
 namespace Flow;
 
+use Title;
+
 class PostEditedPresentationModel extends FlowPresentationModel {
 
 	public function getIconType() {
@@ -25,7 +27,13 @@ class PostEditedPresentationModel extends FlowPresentationModel {
 		if ( $this->isBundled() ) {
 			return array( $this->getBoardLink() );
 		} else {
-			return array( $this->getAgentLink(), $this->getBoardLink() );
+			$links = array( $this->getAgentLink() );
+			if ( $this->isUserTalkPage() ) {
+				$links[] = $this->getDiffLink();
+			} else {
+				$links[] = $this->getBoardLink();
+			}
+			return $links;
 		}
 	}
 
@@ -63,4 +71,21 @@ class PostEditedPresentationModel extends FlowPresentationModel {
 		return $msg;
 	}
 
+	protected function getDiffLink() {
+		/** @var UrlGenerator $urlGenerator */
+		$urlGenerator = Container::get( 'url_generator' );
+		$anchor = $urlGenerator->diffPostLink(
+			Title::newFromText( $this->event->getExtraParam( 'topic-workflow' )->getAlphadecimal(), NS_TOPIC ),
+			$this->event->getExtraParam( 'post-id' ),
+			$this->event->getExtraParam( 'revision-id' )
+		);
+
+		return array(
+			'url' => $anchor->getFullURL(),
+			'label' => $this->msg( 'notification-link-text-view-changes' )->params( $this->getViewingUserForGender() )->text(),
+			'description' => '',
+			'icon' => 'changes',
+			'prioritized' => true,
+		);
+	}
 }
