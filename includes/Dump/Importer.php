@@ -94,8 +94,15 @@ class Importer {
 		// create page if it does not yet exist
 		/** @var OccupationController $occupationController */
 		$occupationController = Container::get( 'occupation_controller' );
-		$occupationController->allowCreation( $title, $occupationController->getTalkpageManager() );
-		$occupationController->ensureFlowRevision( new \Article( $title ), $this->boardWorkflow );
+		$creationStatus = $occupationController->checkedAllowCreation( $title, $occupationController->getTalkpageManager() );
+		if ( !$creationStatus->isOK() ) {
+			throw new MWException( $creationStatus->getWikiText() );
+		}
+
+		$ensureStatus = $occupationController->ensureFlowRevision( new \Article( $title ), $this->boardWorkflow );
+		if ( !$ensureStatus->isOK() ) {
+			throw new MWException( $ensureStatus->getWikiText() );
+		}
 
 		$this->put( $this->boardWorkflow, array() );
 	}

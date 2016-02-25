@@ -31,15 +31,21 @@ class BoardMover {
 	protected $nullEditUser;
 
 	/**
+	 * @var TalkpageManager
+	 */
+	protected $talkpageManager;
+
+	/**
 	 * @var DatabaseBase|null
 	 */
 	protected $dbw;
 
-	public function __construct( DbFactory $dbFactory, BufferedCache $cache, ManagerGroup $storage, User $nullEditUser ) {
+	public function __construct( DbFactory $dbFactory, BufferedCache $cache, ManagerGroup $storage, User $nullEditUser, TalkpageManager $talkpageManager ) {
 		$this->dbFactory = $dbFactory;
 		$this->cache = $cache;
 		$this->storage = $storage;
 		$this->nullEditUser = $nullEditUser;
+		$this->talkpageManager = $talkpageManager;
 	}
 
 	/**
@@ -58,6 +64,11 @@ class BoardMover {
 
 		// All reads must go through master to help ensure consistency
 		$this->dbFactory->forceMaster();
+
+		// This is only safe because we have called
+		// checkIfCreationTechnicallyAllowed and (usually) checkIfUserHasPermission.
+		// See FlowHooks and TalkpageManager.
+		$this->talkpageManager->forceAllowCreation( $newPage );
 
 		// Open a transaction, this will be closed from self::commit.
 		$this->dbw = $this->dbFactory->getDB( DB_MASTER );

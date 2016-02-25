@@ -109,8 +109,8 @@ class SpecialEnableFlow extends FormSpecialPage {
 			}
 
 		} else {
-			$allowCreationStatus = $this->occupationController->allowCreation( $title, $this->getUser(), false );
-			if ( !$allowCreationStatus->isGood() ) {
+			$creationStatus = $this->occupationController->checkedAllowCreation( $title, $this->getUser(), false );
+			if ( !$creationStatus->isGood() ) {
 				return Status::newFatal( 'flow-special-enableflow-board-creation-not-allowed', $page );
 			}
 
