@@ -252,9 +252,28 @@ class NotificationController {
 		$user = $revision->getUser();
 		$mentionedUsers = $this->getMentionedUsers( $revision );
 
-		// @todo we may also want other topic summary edit notifications, some day
+		$extraData['content'] = Utils::htmlToPlaintext( $revision->getContent(), 200, $this->language );
+		$extraData['revision-id'] = $revision->getRevisionId();
+		$extraData['prev-revision-id'] = $revision->getPrevRevisionId();
+		$extraData['topic-workflow'] = $topicWorkflow->getId();
+		$extraData['topic-title'] = Utils::htmlToPlaintext( $topicRevision->getContent( 'topic-title-html' ), 200, $this->language );
+		$extraData['target-page'] = $topicWorkflow->getArticleTitle()->getArticleID();
+		// pass along mentioned users to other notification, so it knows who to ignore
+		$extraData['mentioned-users'] = $mentionedUsers;
 
-		$events = array();
+		$info = array(
+			'type' => $eventName,
+			'agent' => $user,
+			'title' => $topicWorkflow->getOwnerTitle(),
+			'extra' => $extraData,
+		);
+
+		// Allow a specific timestamp to be set - useful when importing existing data
+		if ( isset( $data['timestamp'] ) ){
+			$info['timestamp'] = $data['timestamp'];
+		}
+
+		$events = array( EchoEvent::create( $info ) );
 		if ( $mentionedUsers ) {
 			$events[] = $this->generateMentionEvent( $revision, $topicRevision, $topicWorkflow, $user, $mentionedUsers );
 		}
@@ -515,6 +534,7 @@ class NotificationController {
 
 			case 'flow-post-reply':
 			case 'flow-post-edited':
+			case 'flow-summary-edited':
 				$topic = $event->getExtraParam( 'topic-workflow' );
 				if ( $topic instanceof UUID ) {
 					$bundleString = $event->getType() . '-' . $topic->getAlphadecimal();
