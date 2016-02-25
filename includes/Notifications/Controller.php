@@ -86,6 +86,7 @@ class NotificationController {
 		$extraData['content'] = Utils::htmlToPlaintext( $revision->getContent(), 200, $this->language );
 		$extraData['revision-id'] = $revision->getRevisionId();
 		$extraData['collection-id'] = $revision->getCollectionId();
+		$extraData['target-page'] = $boardWorkflow->getArticleTitle()->getArticleID();
 		// pass along mentioned users to other notification, so it knows who to ignore
 		$extraData['mentioned-users'] = $mentionedUsers;
 
