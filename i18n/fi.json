@@ -243,6 +243,8 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 ja $5 {{PLURAL:$6|toinen|muuta}} {{GENDER:$1|ovat vastanneet}} keskustelussa '''$3'''.",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 on {{GENDER:$1|muokannut}} aiheen [[$3|$4]] <span class=\"plainlinks\">[$5 viestiäsi]</span>.",
 	"flow-notification-edit-bundle": "$1 ja $5 {{PLURAL:$6|toinen|muuta}} {{GENDER:$1|muokkasi}} <span class=\"plainlinks\">[$4 viestiä]</span> aiheessa \"$2\" sivulla \"$3\".",
+	"notification-header-flow-new-topic-v2": "Uusi aihe luotu sivulla '''$3''': \"'''$4'''\".",
+	"notification-header-flow-new-topic-user-talk": "Uusi aihe luotiin '''keskustelusivullesi''': \"'''$4'''\".",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|loi}} uuden aiheen sivulla '''$3'''.",
 	"flow-notification-newtopic-bundle": "{{PLURAL:$1|$1 uusi aihe|$1 uutta aihetta|250=250+ uutta aihetta}} sivulla '''<span class=\"plainlinks\">[$3 $2]</span>'''",
 	"flow-notification-rename": "$1 {{GENDER:$1|muutti}} aiheen <span class=\"plainlinks\">[$2 $3]</span> otsikon muotoon \"$4\" sivulla [[$5|$6]].",

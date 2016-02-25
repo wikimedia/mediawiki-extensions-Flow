@@ -263,7 +263,6 @@
 	"notification-header-flow-description-edited-user-talk": "התיאור ב'''דף המשתמש {{GENDER:$2|שלך}}''' נערך.",
 	"notification-bundle-header-flow-description-edited": "התיאור של '''$1''' נערך מספר פעמים.",
 	"notification-bundle-header-flow-description-edited-user-talk": "התיאור ב'''דף השיחה {{GENDER:$2|שלך}}''' נערך מספר פעמים.",
-	"notification-links-flow-description-edited-view-changes": "הצגת {{GENDER:$1|שינויים}}",
 	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|הצגת}} דף",
 	"notification-email-subject-flow-description-edited": "$1 {{GENDER:$1|ערך|ערכה}} את התיאור בדף $2.",
 	"notification-email-batch-body-flow-description-edited": "$1 {{GENDER:$1|ערך|ערכה}} את התיאור בדף $2.",

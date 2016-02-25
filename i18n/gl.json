@@ -255,7 +255,6 @@
 	"notification-header-flow-enabled-on-talkpage": "O novo sistema de conversa habilitouse na {{GENDER:$2|súa}} páxina de conversa de usuario.",
 	"notification-header-flow-description-edited": "Editouse a descrición de '''$1'''.",
 	"notification-bundle-header-flow-description-edited": "A descrición de \"'$1\"' foi editada varias veces.",
-	"notification-links-flow-description-edited-view-changes": "{{GENDER:$1|Ver}} os cambios",
 	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|Ver}} páxina",
 	"notification-email-subject-flow-description-edited": "$1 {{GENDER:$2|editou}} a descrición en $2",
 	"notification-email-batch-body-flow-description-edited": "$1 {{GENDER:$2|editou}} a descrición en $2.",

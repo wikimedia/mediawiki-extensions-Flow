@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Happy5214"
+			"Happy5214",
+			"Robin van der Vliet"
 		]
 	},
 	"flow-post-actions": "Agoj",
@@ -18,6 +19,7 @@
 	"flow-board-history": "\"$1\" historio",
 	"flow-history-day": "Hodiaŭ",
 	"flow-history-week": "Lasta semajno",
+	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|Montri}} paĝon",
 	"flow-link-history": "historio",
 	"flow-moderation-confirm-delete-post": "Forigi",
 	"flow-moderation-confirm-hide-post": "Kaŝi",

@@ -262,7 +262,6 @@
 	"notification-header-flow-description-edited-user-talk": "A descrição foi editada '''na {{GENDER:$2|sua}} página de discussão'''.",
 	"notification-bundle-header-flow-description-edited": "A descrição de \"'$1\"' foi editada várias vezes.",
 	"notification-bundle-header-flow-description-edited-user-talk": "A descrição foi editada diversas vezes '''na {{GENDER:$2|sua}} página de discussão'''.",
-	"notification-links-flow-description-edited-view-changes": "{{GENDER:$1|Ver}} alterações",
 	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|Ver}} página",
 	"notification-email-subject-flow-description-edited": "$1 {{GENDER:$2|editou}} a descrição em $2.",
 	"notification-email-batch-body-flow-description-edited": "$1 {{GENDER:$2|editou}} a descrição em $2.",

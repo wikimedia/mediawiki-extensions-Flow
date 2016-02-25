@@ -298,7 +298,6 @@
 	"notification-header-flow-description-edited-user-talk": "La description a été modifiée sur '''{{GENDER:$2|votre}} page de discussion'''.",
 	"notification-bundle-header-flow-description-edited": "La description de '''$1''' a été modifiée plusieurs fois.",
 	"notification-bundle-header-flow-description-edited-user-talk": "La description a été modifiée plusieurs fois sur '''{{GENDER:$2|votre}} page de discussion'''.",
-	"notification-links-flow-description-edited-view-changes": "{{GENDER:$1|Afficher}} les modifications",
 	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|Afficher}} la page",
 	"notification-email-subject-flow-description-edited": "$1 {{GENDER:$1|a modifié}} la description sur $2.",
 	"notification-email-batch-body-flow-description-edited": "$1 {{GENDER:$1|a modifié}} la description sur $2.",

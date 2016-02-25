@@ -46,7 +46,6 @@
 	"flow-history-week": "Fatlo suman",
 	"notification-header-flow-new-topic-v2": "'''$3''' hacher novo vixoi rochla: \"'''$4'''\".",
 	"notification-bundle-header-flow-new-topic": "'''$3''' hacher $1 noveo {{PLURAL:$2|vixoi}}",
-	"notification-links-flow-description-edited-view-changes": "Bodlopam {{GENDER:$1|polloi}}",
 	"notification-links-flow-description-edited-view-page": "Pan {{GENDER:$1|polloi}}",
 	"flow-notification-link-text-view-topic": "Vixoi polloi",
 	"flow-notification-link-text-view-topics": "Vixoi polloi",
