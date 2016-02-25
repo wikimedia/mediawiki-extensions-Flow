@@ -232,7 +232,7 @@ class PostRevisionTestCase extends FlowTestCase {
 			$occupationController = Container::get( 'occupation_controller' );
 			// make sure user has rights to create board
 			$user->mRights = array_merge( $user->getRights(), array( 'flow-create-board' ) );
-			$occupationController->allowCreation( $title, $user );
+			$occupationController->checkedAllowCreation( $title, $user );
 			$occupationController->ensureFlowRevision( new \Article( $title ), $boardWorkflow );
 
 			$topicListEntry = TopicListEntry::create( $boardWorkflow, $topicWorkflow );

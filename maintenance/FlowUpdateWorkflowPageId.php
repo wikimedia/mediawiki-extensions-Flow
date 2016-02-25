@@ -131,7 +131,7 @@ class WorkflowPageIdUpdateGenerator implements RowUpdateGenerator {
 		$occupationController = Container::get( 'occupation_controller' );
 
 		try {
-			$status = $occupationController->allowCreation( $title, $occupationController->getTalkpageManager() );
+			$status = $occupationController->checkedAllowCreation( $title, $occupationController->getTalkpageManager() );
 			$status2 = $occupationController->ensureFlowRevision( new Article( $title ), $workflow );
 
 			$status->merge( $status2 );
