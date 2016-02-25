@@ -258,8 +258,8 @@ class OptInController {
 		$loaderFactory = Container::get( 'factory.loader.workflow' );
 		$page = $title->getPrefixedText();
 
-		$allowCreationStatus = $this->occupationController->allowCreation( $title, $this->user, false );
-		if ( !$allowCreationStatus->isGood() ) {
+		$creationStatus = $this->occupationController->checkedAllowCreation( $title, $this->user, false );
+		if ( !$creationStatus->isGood() ) {
 			$this->fatal( 'flow-special-enableflow-board-creation-not-allowed', $page );
 		}
 

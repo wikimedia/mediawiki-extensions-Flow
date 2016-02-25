@@ -130,9 +130,9 @@ class SubmissionHandler {
 		 * WikiPage::doEditContent uses transactions & our DB wrapper
 		 * doesn't allow nested transactions, so that part has moved.
 		 *
-		 * Don't allowCreation() here: a board has to be explicitly created,
-		 * or allowed via the occupyNamespace & occupyPages globals, in
-		 * which case allowCreation() won't be needed.
+		 * Don't checkedAllowCreation() here: a board has to be explicitly created,
+		 * or allowed via the namespace content model, in which case
+		 * checkedAllowCreation() won't be needed.
 		 *
 		 * @var OccupationController $occupationController
 		 */

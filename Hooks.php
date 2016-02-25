@@ -1248,54 +1248,60 @@ class FlowHooks {
 		return true;
 	}
 
+	/**
+	 * Checks whether this is a valid move technically.  MovePageIsValidMove should not
+	 * be affected by the specific user, or user permissions.
+	 *
+	 * Those are handled in onMovePageCheckPermissions, called later.
+	 *
+	 * @param Title $oldTitle Old title
+	 * @param Title $newTitle New title
+	 * @param Status $status Status to update with any technical issues
+	 *
+	 * @return true to continue, false to abort the hook
+	 */
 	public static function onMovePageIsValidMove( Title $oldTitle, Title $newTitle, Status $status ) {
-		global $wgUser;
-
-		// We only care about moving flow boards
+		// We only care about moving Flow boards, and *not* moving Flow topics
+		// (but both are CONTENT_MODEL_FLOW_BOARD)
 		if ( $oldTitle->getContentModel() !== CONTENT_MODEL_FLOW_BOARD ) {
 			return true;
 		}
 
-		// pages within the Topic namespace are not movable
+		// Pages within the Topic namespace are not movable
+		// This is also checked by NamespaceIsMovable.
 		if ( $oldTitle->getNamespace() === NS_TOPIC ) {
 			$status->fatal( 'flow-error-move-topic' );
 			return false;
 		}
 
-		// valid if the destination is already a valid flow location (=default flow-board model)
-		if ( ContentHandler::getDefaultModelFor( $newTitle ) === CONTENT_MODEL_FLOW_BOARD ) {
-			return true;
-		}
-
-		// valid if the user has permissions to create a new board wherever
 		$occupationController = self::getOccupationController();
-		$creationStatus = $occupationController->allowCreation( $newTitle, $wgUser );
-		if ( !$creationStatus->isGood() ) {
-			$status->fatal( 'flow-error-move-no-create-permissions' );
-			return false;
-		}
+		$flowStatus = $occupationController->checkIfCreationTechnicallyAllowed( $newTitle, /*mustNotExist*/ true );
+		$status->merge( $flowStatus );
 
 		return true;
 	}
 
 	/**
-	 * Moves of Flow topic pages (NS_TOPIC) are never permitted, and board moves
-	 * are not always permitted.
+	 * Checks whether user has permission to move the board.
 	 *
-	 * @param Title $oldTitle
-	 * @param Title $newTitle
-	 * @param User $user
-	 * @param string|null $error Null coming in; assign (textual) error message when failing
-	 * @param string $reason
-	 * @return bool
+	 * Technical restrictions are handled in onMovePageIsValidMove, called earlier.
+	 *
+	 * @param Title $oldTitle Old title
+	 * @param Title $newTitle New title
+	 * @param User $user User doing the move
+	 * @param string $reason Reason for the move
+	 * @param Status $status Status updated with any permissions issue
+	 *
+	 * @return true to continue, false to abort the hook
 	 */
-	public static function onAbortMove( $oldTitle, $newTitle, $user, &$error, $reason ) {
-		$status = new Status();
-		self::onMovePageIsValidMove( $oldTitle, $newTitle, $status );
-		if ( !$status->isOK() ) {
-			$error = $status->getHTML();
-			return false;
-		}
+	public static function onMovePageCheckPermissions( Title $oldTitle, Title $newTitle, User $user, $reason, Status $status ) {
+		$occupationController = self::getOccupationController();
+
+		$permissionStatus = $occupationController->checkIfUserHasPermission(
+			$newTitle,
+			$user
+		);
+		$status->merge( $permissionStatus );
 
 		return true;
 	}

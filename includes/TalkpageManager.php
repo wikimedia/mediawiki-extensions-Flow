@@ -21,15 +21,48 @@ interface OccupationController {
 	public function ensureFlowRevision( Article $title, Workflow $workflow );
 
 	/**
-	 * @param Title $title
-	 * @param User $user
+	 * Checks whether creation is technically allowed.
+	 *
+	 * This considers all issues other than the user.
+	 *
+	 * @param Title $title Title to check
+	 * @param bool $mustNotExist Whether the page is required to not exist; true means
+	 *  it must not exist.
+	 * @return Status Status indicating whether the creation is technically allowed
+	 */
+	public function checkIfCreationTechnicallyAllowed( Title $title, $mustNotExist = true );
+
+	/**
+	 * Check if user has permission to create board
+	 *
+	 * @param Title $title Title to check
+	 * @param User $user User doing creation or move
+	 * @return Status Status indicating whether the creation is technically allowed
+	 */
+	public function checkIfUserHasPermission( Title $title, User $user );
+
+	/**
+	 * Checks whether the given user is allowed to create a board at the given
+	 * title.  If so, allows it to be created.
+	 *
+	 * @param Title $title Title to check
+	 * @param User $user User who wants to create a board
 	 * @param bool $mustNotExist Whether the page is required to not exist; defaults to
 	 *   true.
 	 * @return Status Returns successful status when the provided user has the rights to
 	 *  convert $title from whatever it is now to a flow board; otherwise, specifies
 	 *  the error.
 	 */
-	public function allowCreation( Title $title, User $user, $mustNotExist = true );
+	public function checkedAllowCreation( Title $title, User $user, $mustNotExist = true );
+
+	/**
+	 * Allows creation, *WITHOUT* checks.
+	 *
+	 * checkIfCreationTechnicallyAllowed *MUST* be called earlier, and
+	 * checkIfUserHasPermission *MUST* be called earlier except when permission checks
+	 * are deliberately being bypassed (very rare cases like global rename)
+	 */
+	public function forceAllowCreation( Title $title );
 
 	/**
 	 * Gives a user object used to manage talk pages
@@ -42,9 +75,9 @@ interface OccupationController {
 
 class TalkpageManager implements OccupationController {
 	/**
-	 * @var Title[]
+	 * @var string[]
 	 */
-	protected $allowCreation = array();
+	protected $allowedPageNames = array();
 
 	/**
 	 * Cached talk page manager user
@@ -105,19 +138,7 @@ class TalkpageManager implements OccupationController {
 		return $status;
 	}
 
-	/**
-	 * Checks whether the given user is allowed to create a board at the given
-	 * title and allows it to be created.
-	 *
-	 * @param Title $title Title to check
-	 * @param User $user User who wants to create a board
-	 * @param bool $mustNotExist Whether the page is required to not exist; defaults to
-	 *   true.
-	 * @return Status Returns successful status when the provided user has the rights to
-	 *  convert $title from whatever it is now to a flow board; otherwise, specifies
-	 *  the error.
-	 */
-	public function allowCreation( Title $title, User $user, $mustNotExist = true ) {
+	public function checkIfCreationTechnicallyAllowed( Title $title, $mustNotExist = true) {
 		global $wgContentHandlerUseDB;
 
 		// Arbitrary pages can only be enabled when content handler
@@ -126,38 +147,73 @@ class TalkpageManager implements OccupationController {
 			return Status::newFatal( 'flow-error-allowcreation-no-usedb' );
 		}
 
-		// Only allow converting a non-existent page to flow
+		// Only allow converting a non-existent page to Flow
 		if ( $mustNotExist ) {
-			// Make sure existence status is up to date
-			$title->getArticleID( Title::GAID_FOR_UPDATE );
-
-			if ( $title->exists() ) {
+			if ( $title->exists( Title::GAID_FOR_UPDATE ) ) {
 				return Status::newFatal( 'flow-error-allowcreation-already-exists' );
 			}
 		}
 
-		// Gate this on the flow-create-board right, essentially giving
-		// wiki communities control over if flow board creation is allowed
-		// to everyone or just a select few.
-		if ( !$user->isAllowedAll( 'flow-create-board' ) ) {
+		return Status::newGood();
+	}
+
+	public function checkIfUserHasPermission( Title $title, User $user ) {
+		if (
+			// If the title is default-Flow, the user always has permission
+			ContentHandler::getDefaultModelFor( $title ) === CONTENT_MODEL_FLOW_BOARD ||
+
+			// Gate this on the flow-create-board right, essentially giving
+			// wiki communities control over if Flow board creation is allowed
+			// to everyone or just a select few.
+			$user->isAllowedAll( 'flow-create-board' )
+		) {
+			return Status::newGood();
+		} else {
 			return Status::newFatal( 'flow-error-allowcreation-flow-create-board' );
 		}
 
+	}
+
+	public function checkedAllowCreation( Title $title, User $user, $mustNotExist = true ) {
+		$status = Status::newGood();
+
+		$technicallyAllowedStatus = $this->checkIfCreationTechnicallyAllowed( $title, $mustNotExist );
+
+		$permissionStatus = $this->checkIfUserHasPermission( $title, $user );
+
+		$status->merge( $technicallyAllowedStatus );
+		$status->merge( $permissionStatus );
+
+		if ( $status->isOK() ) {
+			$this->forceAllowCreation( $title );
+		}
+
+		return $status;
+	}
+
+	/**
+	 * Allows creation of a Flow board at a given Title, *WITHOUT* checks.
+	 *
+	 * checkIfCreationTechnicallyAllowed *MUST* be checked earlier, and
+	 * checkIfUserHasPermission *MUST* be checked earlier, except when permission checks
+	 * are deliberately being bypassed (rare cases like global rename)
+	 *
+	 * @param Title $title Title to mark as allowed
+	 */
+	public function forceAllowCreation( Title $title ) {
 		/*
-		 * tracks which titles are allowed so that when
+		 * Tracks which titles are allowed so that when
 		 * BoardContentHandler::canBeUsedOn is called for this title, it
 		 * can verify this title was explicitly allowed.
 		 */
-		$this->allowCreation[] = $title->getPrefixedDBkey();
-
-		return Status::newGood();
+		$this->allowedPageNames[] = $title->getPrefixedDBkey();
 	}
 
 	/**
 	 * Before creating a flow board, BoardContentHandler::canBeUsedOn will be
 	 * called to verify it's ok to create it.
 	 * That, in turn, will call this, which will check if the title we want to
-	 * turn into a Flow board was allowed to create (with static::allowCreation)
+	 * turn into a Flow board was allowed to create (with allowedPageNames)
 	 *
 	 * @param Title $title
 	 * @return bool
@@ -166,8 +222,8 @@ class TalkpageManager implements OccupationController {
 		return
 			// default content model already
 			ContentHandler::getDefaultModelFor( $title ) === CONTENT_MODEL_FLOW_BOARD ||
-			// explicitly allowed via allowCreation()
-			in_array( $title->getPrefixedDBkey(), $this->allowCreation );
+			// explicitly allowed via checkedAllowCreation()
+			in_array( $title->getPrefixedDBkey(), $this->allowedPageNames );
 	}
 
 	/**
