@@ -16,6 +16,24 @@
       "revId": "7c98ef815870ca6fd082ab72164b456d25939a9e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ea41786_f6581337",
+        "filename": "includes/BoardMover.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-02-26T20:42:18Z",
+      "side": 1,
+      "message": "Yeah, I don\u0027t have a great answer for you.  When this last worked, I believe the order was:\n\nFlow opens explicit DB transaction on Flow or wiki database (depending if flowdb is in use).\nFlow opens cache \"transaction\"\nPage move\nExplicit transaction was implicitly committed, triggering \"Flushing an explicit transaction, getting out of sync!\", previously a warning.\nIt would try to do a commit, which I think would have triggered, \"No transaction to commit, something got out of sync\"\nThe cache would commit.\n\nSo even from that this is a behavior change.\n\nI think it\u0027s somewhat unlikely for the commit to fail after the page move (end of page move is the endAtomic), but possible.\n\nWe can fix cache inconsistencies with action\u003dpurge, but the possibility is still bad.",
+      "parentUuid": "2ea41786_3301e271",
+      "revId": "7c98ef815870ca6fd082ab72164b456d25939a9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
