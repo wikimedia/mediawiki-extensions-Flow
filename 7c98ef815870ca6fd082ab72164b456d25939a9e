@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ea41786_3301e271",
+        "filename": "includes/BoardMover.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 16
+      },
+      "writtenOn": "2016-02-26T00:10:56Z",
+      "side": 1,
+      "message": "So the cache commit will now be before the real DB commit. Are there any side effects to that? I suppose that caching logic will have to be redone anyway for multi-DC support.",
+      "revId": "7c98ef815870ca6fd082ab72164b456d25939a9e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
