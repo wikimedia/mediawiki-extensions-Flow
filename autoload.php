@@ -309,6 +309,7 @@ $wgAutoloadClasses += array(
 	'Flow\\Specials\\SpecialEnableFlow' => __DIR__ . '/includes/Specials/SpecialEnableFlow.php',
 	'Flow\\Specials\\SpecialFlow' => __DIR__ . '/includes/Specials/SpecialFlow.php',
 	'Flow\\SubmissionHandler' => __DIR__ . '/includes/SubmissionHandler.php',
+	'Flow\\SummaryEditedPresentationModel' => __DIR__ . '/includes/Notifications/SummaryEditedPresentationModel.php',
 	'Flow\\TalkpageManager' => __DIR__ . '/includes/TalkpageManager.php',
 	'Flow\\TemplateHelper' => __DIR__ . '/includes/TemplateHelper.php',
 	'Flow\\Templating' => __DIR__ . '/includes/Templating.php',
