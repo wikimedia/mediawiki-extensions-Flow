@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "2ea41786_8c7bd0bc",
+        "filename": "i18n/en.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2016-02-27T18:03:53Z",
+      "side": 1,
+      "message": "Bold and quoted is unnecessary double emphasis. Were you in such a hurry this couldn\u0027t wait for a basic i18n/L10n review?",
+      "revId": "8dee5df1efba82768e918652a41e1ae8a82d3f69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ea41786_31beb561",
         "filename": "includes/Notifications/SummaryEditedPresentationModel.php",
         "patchSetId": 2
