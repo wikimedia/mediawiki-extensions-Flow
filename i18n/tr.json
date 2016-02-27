@@ -9,7 +9,8 @@
 			"KorkmazO",
 			"McAang",
 			"HakanIST",
-			"JackUKElliott"
+			"JackUKElliott",
+			"Macofe"
 		]
 	},
 	"flow-board-header-browse-topics-link": "Konulara göz at",
@@ -21,7 +22,7 @@
 	"flow-board-notification-subscribe-description": "Bu tahtada yeni bir konu oluşturulduğunda bildirim alacaksınız.",
 	"flow-error-lock-moderated-post": "Denetlenen bir yazıyı kilitleyemezsiniz.",
 	"flow-error-content-too-long": "İçerik çok büyük. Genişlemeden sonraki içerik $1 {{PLURAL:$1|byte|byte}}'la sınırlanmıştır.",
-	"notification-header-flow-mention-post-summary": "$1, \"$5\" içinde {{GENDER:$4|sizden}} {{GENDER:$2|bahsetti}}.",
+	"notification-header-flow-mention-post-summary": "$1, \"'''$5'''\" içinde {{GENDER:$4|sizden}} {{GENDER:$2|bahsetti}}.",
 	"notification-header-flow-enabled-on-talkpage": "Yeni konuşma sistemi, {{GENDER:$2|Kullanıcı}} mesaj sayfanız için etkinleştirildi",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1   '''$3'başlığında yeni bir konu'{{GENDER:$1|oluşturdu}}'.",
 	"flow-notification-mention": "$1, \"$4\" sayfasındaki \"$3\" başlığındaki [$2 değişikliğinde] sizden {{GENDER:$1|bahsetti}}",

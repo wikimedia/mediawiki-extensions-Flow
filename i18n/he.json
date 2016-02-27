@@ -9,7 +9,8 @@
 			"YaronSh",
 			"LaG roiL",
 			"Avner",
-			"ערן"
+			"ערן",
+			"Macofe"
 		]
 	},
 	"enableflow": "הפעלת זרימה",
@@ -257,7 +258,7 @@
 	"notification-header-flow-topic-renamed-user-talk": "שם הנושא \"'''$1'''\" שונה אל \"'''$2'''\" ב'''דף השיחה שלך'''.",
 	"notification-header-flow-mention-post": "$1 {{GENDER:$2|הזכיר|הזכירה}} {{GENDER:$4|אותך}} בנושא \"'''$5'''\".",
 	"notification-header-flow-mention-header": "$1 {{GENDER:$2|אזכר|אזכרה}} {{GENDER:$4|אותך}} בתיאור של '''$3'''.",
-	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$2|אזכר|אזכרה}} {{GENDER:$4|אותך}} בנושא \"$5\".",
+	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$2|אזכר|אזכרה}} {{GENDER:$4|אותך}} בנושא \"'''$5'''\".",
 	"notification-header-flow-enabled-on-talkpage": "מערכת שיחות חדשה הופעלה ב'''דף השיחה {{GENDER:$2|שלך}}'''.",
 	"notification-header-flow-description-edited": "התיאור של '''$1''' נערך.",
 	"notification-header-flow-description-edited-user-talk": "התיאור ב'''דף המשתמש {{GENDER:$2|שלך}}''' נערך.",

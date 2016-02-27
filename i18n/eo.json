@@ -19,6 +19,7 @@
 	"flow-board-history": "\"$1\" historio",
 	"flow-history-day": "Hodiaŭ",
 	"flow-history-week": "Lasta semajno",
+	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$2|menciis}} {{GENDER:$4|vin}} en \"'''$5'''\".",
 	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|Montri}} paĝon",
 	"flow-link-history": "historio",
 	"flow-moderation-confirm-delete-post": "Forigi",
