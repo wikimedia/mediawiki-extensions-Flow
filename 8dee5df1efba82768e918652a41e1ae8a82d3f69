@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ea41786_31beb561",
+        "filename": "includes/Notifications/SummaryEditedPresentationModel.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-02-27T01:13:27Z",
+      "side": 1,
+      "message": "Maybe the diff should always be available (if there is one), just behind the ... menu if needed.\n\nHowever, not a blocker.",
+      "revId": "8dee5df1efba82768e918652a41e1ae8a82d3f69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
