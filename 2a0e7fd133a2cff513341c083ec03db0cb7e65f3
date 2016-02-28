@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ea41786_d4e14a98",
+        "filename": "i18n/en.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 121
+      },
+      "writtenOn": "2016-02-28T17:48:56Z",
+      "side": 1,
+      "message": "$ missing now. For some below too.",
+      "revId": "2a0e7fd133a2cff513341c083ec03db0cb7e65f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
