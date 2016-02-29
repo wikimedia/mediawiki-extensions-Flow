@@ -21,7 +21,7 @@ interface OccupationController {
 	public function ensureFlowRevision( Article $title, Workflow $workflow );
 
 	/**
-	 * Checks whether creation is technically allowed.
+	 * Checks whether creation is technically possible.
 	 *
 	 * This considers all issues other than the user.
 	 *
@@ -30,10 +30,10 @@ interface OccupationController {
 	 *  it must not exist.
 	 * @return Status Status indicating whether the creation is technically allowed
 	 */
-	public function checkIfCreationTechnicallyAllowed( Title $title, $mustNotExist = true );
+	public function checkIfCreationIsPossible( Title $title, $mustNotExist = true );
 
 	/**
-	 * Check if user has permission to create board
+	 * Check if user has permission to create board.
 	 *
 	 * @param Title $title Title to check
 	 * @param User $user User doing creation or move
@@ -53,14 +53,16 @@ interface OccupationController {
 	 *  convert $title from whatever it is now to a flow board; otherwise, specifies
 	 *  the error.
 	 */
-	public function checkedAllowCreation( Title $title, User $user, $mustNotExist = true );
+	public function safeAllowCreation( Title $title, User $user, $mustNotExist = true );
 
 	/**
 	 * Allows creation, *WITHOUT* checks.
 	 *
-	 * checkIfCreationTechnicallyAllowed *MUST* be called earlier, and
+	 * checkIfCreationIsPossible *MUST* be called earlier, and
 	 * checkIfUserHasPermission *MUST* be called earlier except when permission checks
 	 * are deliberately being bypassed (very rare cases like global rename)
+	 *
+	 * @param Title $title
 	 */
 	public function forceAllowCreation( Title $title );
 
@@ -138,7 +140,10 @@ class TalkpageManager implements OccupationController {
 		return $status;
 	}
 
-	public function checkIfCreationTechnicallyAllowed( Title $title, $mustNotExist = true) {
+	/**
+	 * {@inheritdoc}
+	 */
+	public function checkIfCreationIsPossible( Title $title, $mustNotExist = true) {
 		global $wgContentHandlerUseDB;
 
 		// Arbitrary pages can only be enabled when content handler
@@ -157,6 +162,9 @@ class TalkpageManager implements OccupationController {
 		return Status::newGood();
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function checkIfUserHasPermission( Title $title, User $user ) {
 		if (
 			// If the title is default-Flow, the user always has permission
@@ -174,10 +182,13 @@ class TalkpageManager implements OccupationController {
 
 	}
 
-	public function checkedAllowCreation( Title $title, User $user, $mustNotExist = true ) {
+	/**
+	 * {@inheritdoc}
+	 */
+	public function safeAllowCreation( Title $title, User $user, $mustNotExist = true ) {
 		$status = Status::newGood();
 
-		$technicallyAllowedStatus = $this->checkIfCreationTechnicallyAllowed( $title, $mustNotExist );
+		$technicallyAllowedStatus = $this->checkIfCreationIsPossible( $title, $mustNotExist );
 
 		$permissionStatus = $this->checkIfUserHasPermission( $title, $user );
 
@@ -192,13 +203,7 @@ class TalkpageManager implements OccupationController {
 	}
 
 	/**
-	 * Allows creation of a Flow board at a given Title, *WITHOUT* checks.
-	 *
-	 * checkIfCreationTechnicallyAllowed *MUST* be checked earlier, and
-	 * checkIfUserHasPermission *MUST* be checked earlier, except when permission checks
-	 * are deliberately being bypassed (rare cases like global rename)
-	 *
-	 * @param Title $title Title to mark as allowed
+	 * {@inheritdoc}
 	 */
 	public function forceAllowCreation( Title $title ) {
 		/*
@@ -222,7 +227,7 @@ class TalkpageManager implements OccupationController {
 		return
 			// default content model already
 			ContentHandler::getDefaultModelFor( $title ) === CONTENT_MODEL_FLOW_BOARD ||
-			// explicitly allowed via checkedAllowCreation()
+			// explicitly allowed via safeAllowCreation()
 			in_array( $title->getPrefixedDBkey(), $this->allowedPageNames );
 	}
 

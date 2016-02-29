@@ -94,7 +94,7 @@ class Importer {
 		// create page if it does not yet exist
 		/** @var OccupationController $occupationController */
 		$occupationController = Container::get( 'occupation_controller' );
-		$creationStatus = $occupationController->checkedAllowCreation( $title, $occupationController->getTalkpageManager() );
+		$creationStatus = $occupationController->safeAllowCreation( $title, $occupationController->getTalkpageManager() );
 		if ( !$creationStatus->isOK() ) {
 			throw new MWException( $creationStatus->getWikiText() );
 		}
