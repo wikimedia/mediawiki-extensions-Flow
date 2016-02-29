@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "2ea41786_85439e66",
+        "filename": "container.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 1301,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-02-29T12:10:02Z",
+      "side": 1,
+      "message": "Can get rid of this argument now that we\u0027re giving it occupation controller object. BoardMover can just get -\u003egetTalkpageManager from there",
+      "revId": "8f9ec8f57c97e8590031fd44d70260b2326e0f96",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ea41786_67fc6fb2",
         "filename": "i18n/en.json",
         "patchSetId": 2
@@ -13,6 +30,75 @@
       "writtenOn": "2016-02-27T19:07:35Z",
       "side": 1,
       "message": "Please add a full stop at the end of the string.",
+      "revId": "8f9ec8f57c97e8590031fd44d70260b2326e0f96",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ea41786_209bb8c2",
+        "filename": "i18n/en.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-02-29T12:10:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ea41786_67fc6fb2",
+      "revId": "8f9ec8f57c97e8590031fd44d70260b2326e0f96",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ea41786_60aa10d3",
+        "filename": "includes/BoardMover.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-02-29T12:10:02Z",
+      "side": 1,
+      "message": "Even though the individual parts have already been checked, it probably doesn\u0027t hurt doing checkedAllowCreation again?\n\nIt\u0027s a little redundant CPU, but it\u0027s safer (the comment \"this is safe\" may no longer apply should we ever have to make changes later on)",
+      "revId": "8f9ec8f57c97e8590031fd44d70260b2326e0f96",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ea41786_002c7c8e",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-02-29T12:10:02Z",
+      "side": 1,
+      "message": "Maybe we should use \"allowed\" for permissions \u0026 \"possible\" for technical reasons?\n\n\"Technically\" could be interpreteded as the opposite of \"practically\" (as in: \"this checks if you\u0027re allowed to do things, but we may let you do it anyway\"), whereas it\u0027s not about permissions at all but about not breaking the system.",
+      "revId": "8f9ec8f57c97e8590031fd44d70260b2326e0f96",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ea41786_a0fc8809",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-02-29T12:10:02Z",
+      "side": 1,
+      "message": "Name is a bit ambiguous. It seems to mean \"perform some checked \u0026 allow creation\". But I initially read it as \"it is already checked, so allow creation\" (basically what forceAllowCreation does)",
       "revId": "8f9ec8f57c97e8590031fd44d70260b2326e0f96",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
