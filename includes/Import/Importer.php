@@ -9,6 +9,8 @@ use Flow\Data\ManagerGroup;
 use Flow\DbFactory;
 use Flow\Import\Postprocessor\Postprocessor;
 use Flow\Import\Postprocessor\ProcessorGroup;
+use Flow\Import\SourceStore\SourceStoreInterface as ImportSourceStore;
+use Flow\Import\SourceStore\Exception as ImportSourceStoreException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;

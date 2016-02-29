@@ -5,7 +5,7 @@ namespace Flow\Import\LiquidThreadsApi;
 use DatabaseBase;
 use Flow\Import\ArchiveNameHelper;
 use Flow\Import\IConversionStrategy;
-use Flow\Import\ImportSourceStore;
+use Flow\Import\SourceStore\SourceStoreInterface as ImportSourceStore;
 use Flow\Import\Postprocessor\ProcessorGroup;
 use Flow\Import\Postprocessor\LqtNotifications;
 use Flow\Import\Postprocessor\LqtRedirector;

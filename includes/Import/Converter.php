@@ -15,7 +15,7 @@ use WikitextContent;
 
 /**
  * Converts provided titles to Flow. This converter is idempotent when
- * used with an appropriate ImportSourceStore, and may be run many times
+ * used with an appropriate SourceStoreInterface, and may be run many times
  * without worry for duplicate imports.
  *
  * Flow does not currently support viewing the history of its page prior
