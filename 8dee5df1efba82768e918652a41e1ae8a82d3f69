@@ -33,6 +33,24 @@
       "revId": "8dee5df1efba82768e918652a41e1ae8a82d3f69",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ea41786_a017a8a7",
+        "filename": "includes/Notifications/SummaryEditedPresentationModel.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-02-29T12:38:17Z",
+      "side": 1,
+      "message": "I agree. Not sure why there\u0027s a difference links in flowusertalk vs regular notifications. We should probably have both in both cases?",
+      "parentUuid": "2ea41786_31beb561",
+      "revId": "8dee5df1efba82768e918652a41e1ae8a82d3f69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
