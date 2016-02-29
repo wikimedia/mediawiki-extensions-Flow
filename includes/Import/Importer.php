@@ -390,7 +390,7 @@ class PageImportState {
 	 * @return UUID|false
 	 */
 	public function getImportedId( IImportObject $object ) {
-		return $this->sourceStore->getImportedId( $object->getObjectKey() );
+		return $this->sourceStore->getImportedId( $object );
 	}
 
 	public function createUser( $name ) {

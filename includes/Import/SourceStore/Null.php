@@ -2,13 +2,15 @@
 
 namespace Flow\Import\SourceStore;
 
+use Flow\Import\IImportObject;
 use Flow\Model\UUID;
 
 class Null implements SourceStoreInterface {
 	public function setAssociation( UUID $objectId, $importSourceKey ) {
+		return '';
 	}
 
-	public function getImportedId( $importSourceKey ) {
+	public function getImportedId( IImportObject $importObject ) {
 		return false;
 	}
 
@@ -18,4 +20,3 @@ class Null implements SourceStoreInterface {
 	public function rollback() {
 	}
 }
-
