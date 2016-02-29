@@ -1295,6 +1295,11 @@ class FlowHooks {
 	 * @return true to continue, false to abort the hook
 	 */
 	public static function onMovePageCheckPermissions( Title $oldTitle, Title $newTitle, User $user, $reason, Status $status ) {
+		// Only affect moves if the source has Flow content model
+		if ( $oldTitle->getContentModel() !== CONTENT_MODEL_FLOW_BOARD ) {
+			return true;
+		}
+
 		$occupationController = self::getOccupationController();
 
 		$permissionStatus = $occupationController->checkIfUserHasPermission(
