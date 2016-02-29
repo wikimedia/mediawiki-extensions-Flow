@@ -123,9 +123,9 @@ class ApiFlow extends ApiBase {
 			// Just check for permissions, nothing else to do. The Flow board
 			// will be put in place right before the rest of the data is stored
 			// (in SubmissionHandler::commit), after everything's been validated.
-			$status = $controller->checkedAllowCreation( $page, $this->getUser() );
+			$status = $controller->safeAllowCreation( $page, $this->getUser() );
 			if ( !$status->isGood() ) {
-				$this->dieUsage( "Page provided does not have Flow enabled and checkedAllowCreation failed with: " . $status->getMessage()->parse(), 'invalid-page' );
+				$this->dieUsage( "Page provided does not have Flow enabled and safeAllowCreation failed with: " . $status->getMessage()->parse(), 'invalid-page' );
 			}
 		}
 
