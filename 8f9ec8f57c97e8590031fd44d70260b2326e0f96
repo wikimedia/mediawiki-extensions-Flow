@@ -71,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "2ea41786_c0a9848e",
+        "filename": "includes/BoardMover.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-02-29T12:11:40Z",
+      "side": 1,
+      "message": "I now realize you probably didn\u0027t do this because this bit of code is also ran for undelete, where the hook doesn\u0027t provide the user",
+      "parentUuid": "2ea41786_60aa10d3",
+      "revId": "8f9ec8f57c97e8590031fd44d70260b2326e0f96",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ea41786_002c7c8e",
         "filename": "includes/TalkpageManager.php",
         "patchSetId": 2
