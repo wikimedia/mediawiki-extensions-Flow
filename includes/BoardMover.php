@@ -9,11 +9,7 @@ use Flow\Exception\FlowException;
 use Flow\Model\Header;
 use Flow\Model\Workflow;
 use Title;
-use User;
 
-/**
- *
- */
 class BoardMover {
 	/**
 	 * @var DbFactory
@@ -26,12 +22,7 @@ class BoardMover {
 	protected $storage;
 
 	/**
-	 * @var User
-	 */
-	protected $nullEditUser;
-
-	/**
-	 * @var TalkpageManager
+	 * @var OccupationController
 	 */
 	protected $talkpageManager;
 
@@ -40,11 +31,10 @@ class BoardMover {
 	 */
 	protected $dbw;
 
-	public function __construct( DbFactory $dbFactory, BufferedCache $cache, ManagerGroup $storage, User $nullEditUser, TalkpageManager $talkpageManager ) {
+	public function __construct( DbFactory $dbFactory, BufferedCache $cache, ManagerGroup $storage, OccupationController $talkpageManager ) {
 		$this->dbFactory = $dbFactory;
 		$this->cache = $cache;
 		$this->storage = $storage;
-		$this->nullEditUser = $nullEditUser;
 		$this->talkpageManager = $talkpageManager;
 	}
 
@@ -56,6 +46,8 @@ class BoardMover {
 	 *
 	 * @param int $oldPageId Page ID before move/change
 	 * @param Title $newPage Page after move/change
+	 * @throws Exception\DataModelException
+	 * @throws FlowException
 	 */
 	public function prepareMove( $oldPageId, Title $newPage ) {
 		if ( $this->dbw !== null ) {
@@ -66,7 +58,7 @@ class BoardMover {
 		$this->dbFactory->forceMaster();
 
 		// This is only safe because we have called
-		// checkIfCreationTechnicallyAllowed and (usually) checkIfUserHasPermission.
+		// checkIfCreationIsPossible and (usually) checkIfUserHasPermission.
 		// See FlowHooks and TalkpageManager.
 		$this->talkpageManager->forceAllowCreation( $newPage );
 
@@ -79,6 +71,7 @@ class BoardMover {
 		// would prefer to update db directly but that won't work due to
 		// the caching layer not getting updated.  After dropping Flow\Data\Index\*
 		// revisit this.
+		/** @var Workflow[] $found */
 		$found = $this->storage->find( 'Workflow', array(
 			'workflow_wiki' => wfWikiId(),
 			'workflow_page_id' => $oldPageId,
@@ -99,6 +92,7 @@ class BoardMover {
 			throw new FlowException( "Main discussion workflow for $oldPageId not found" );
 		}
 
+		/** @var Header[] $found */
 		$found = $this->storage->find(
 			'Header',
 			array( 'rev_type_id' => $discussionWorkflow->getId() ),
@@ -106,11 +100,11 @@ class BoardMover {
 		);
 
 		if ( $found ) {
-			$this->header = reset( $found );
-			$nextHeader = $this->header->newNextRevision(
-				$this->nullEditUser,
-				$this->header->getContentRaw(),
-				$this->header->getContentFormat(),
+			$header = reset( $found );
+			$nextHeader = $header->newNextRevision(
+				$this->talkpageManager->getTalkpageManager(),
+				$header->getContentRaw(),
+				$header->getContentFormat(),
 				'edit-header',
 				$newPage
 			);

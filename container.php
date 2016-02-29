@@ -1298,7 +1298,6 @@ $c['board_mover'] = function( $c ) {
 		$c['db.factory'],
 		$c['memcache.local_buffered'],
 		$c['storage'],
-		$c['occupation_controller']->getTalkpageManager(),
 		$c['occupation_controller']
 	);
 };

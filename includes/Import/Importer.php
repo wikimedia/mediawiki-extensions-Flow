@@ -543,13 +543,13 @@ class TalkpageImportOperation {
 		$state->logger->debug( 'Workflow isNew: ' . var_export( $isNew, true ) );
 		if ( $isNew ) {
 			// Explicitly allow creation of board
-			$creationStatus = $this->occupationController->checkedAllowCreation(
+			$creationStatus = $this->occupationController->safeAllowCreation(
 				$destinationTitle,
 				$this->occupationController->getTalkpageManager(),
 				/* $mustNotExist = */ true
 			);
 			if ( !$creationStatus->isGood() ) {
-				throw new ImportException( "checkedAllowCreation failed to allow the import destination, with the following error:\n" . $creationStatus->getWikiText() );
+				throw new ImportException( "safeAllowCreation failed to allow the import destination, with the following error:\n" . $creationStatus->getWikiText() );
 			}
 
 			// Makes sure the page exists and a Flow-specific revision has been inserted

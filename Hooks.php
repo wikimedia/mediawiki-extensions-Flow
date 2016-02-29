@@ -1275,7 +1275,7 @@ class FlowHooks {
 		}
 
 		$occupationController = self::getOccupationController();
-		$flowStatus = $occupationController->checkIfCreationTechnicallyAllowed( $newTitle, /*mustNotExist*/ true );
+		$flowStatus = $occupationController->checkIfCreationIsPossible( $newTitle, /*mustNotExist*/ true );
 		$status->merge( $flowStatus );
 
 		return true;
@@ -1618,7 +1618,7 @@ class FlowHooks {
 
 	/**
 	 * @param Title $title Title corresponding to the article restored
-	 * @param bool $create Whether or not the restoration caused the page to be created (i.e. it didn't exist before).
+	 * @param bool $created Whether or not the restoration caused the page to be created (i.e. it didn't exist before).
 	 * @param string $comment The comment associated with the undeletion.
 	 * @param int $oldPageId ID of page previously deleted (from archive table)
 	 * @return bool

@@ -28,10 +28,10 @@ class TalkpageManagerTest extends \MediaWikiTestCase {
 		] );
 	}
 
-	public function testCheckIfCreationTechnicallyAllowed() {
+	public function checkIfCreationIsPossible() {
 		$this->setMwGlobals( 'wgContentHandlerUseDB', false );
 
-		$useDbFalseStatus = $this->talkpageManager->checkIfCreationTechnicallyAllowed( Title::newFromText( 'Earth' ), true );
+		$useDbFalseStatus = $this->talkpageManager->checkIfCreationIsPossible( Title::newFromText( 'Earth' ), true );
 		$this->assertTrue( $useDbFalseStatus->hasMessage( 'flow-error-allowcreation-no-usedb' ), 'Error for wrong $wgContentHandlerUseDB setting' );
 		$this->assertFalse( $useDbFalseStatus->isOK(), 'Error for wrong $wgContentHandlerUseDB setting' );
 
@@ -47,11 +47,11 @@ class TalkpageManagerTest extends \MediaWikiTestCase {
 			$this->fail( $status->getMessage()->plain() );
 		}
 
-		$existTrueStatus = $this->talkpageManager->checkIfCreationTechnicallyAllowed( $existentTitle, /*mustNotExist*/ true );
+		$existTrueStatus = $this->talkpageManager->checkIfCreationIsPossible( $existentTitle, /*mustNotExist*/ true );
 		$this->assertTrue( $existTrueStatus->hasMessage( 'flow-error-allowcreation-already-exists' ), 'Error when page already exists and mustNotExist true was passed' );
 		$this->assertFalse( $existTrueStatus->isOK(), 'Error when page already exists and mustNotExist true was passed' );
 
-		$existFalseStatus = $this->talkpageManager->checkIfCreationTechnicallyAllowed( $existentTitle, /*mustNotExist*/ false );
+		$existFalseStatus = $this->talkpageManager->checkIfCreationIsPossible( $existentTitle, /*mustNotExist*/ false );
 		$this->assertFalse( $existFalseStatus->hasMessage( 'flow-error-allowcreation-already-exists' ), 'No error when page already exists and mustNotExist false was passed' );
 		$this->assertTrue( $existFalseStatus->isOK(), 'No error when page already exists and mustNotExist false was passed' );
 	}
