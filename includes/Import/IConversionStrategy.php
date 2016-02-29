@@ -2,8 +2,8 @@
 
 namespace Flow\Import;
 
-use Flow\Import\ImportException;
 use Flow\Import\Postprocessor\Postprocessor;
+use Flow\Import\SourceStore\SourceStoreInterface;
 use Title;
 use WikitextContent;
 
@@ -13,7 +13,7 @@ use WikitextContent;
  */
 interface IConversionStrategy {
 	/**
-	 * @return ImportSourceStore This should consistently return the
+	 * @return SourceStoreInterface This should consistently return the
 	 *  same store between conversion runs from the same source to
 	 *  guarantee idempotent imports (without duplicate content).
 	 */

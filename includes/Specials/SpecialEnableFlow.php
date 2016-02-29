@@ -8,7 +8,7 @@ use Title;
 use Flow\Container;
 use Flow\Import\Converter;
 use Flow\Import\EnableFlow\EnableFlowWikitextConversionStrategy;
-use Flow\Import\NullImportSourceStore;
+use Flow\Import\SourceStore\Null as NullImportSourceStore;
 
 /**
  * A special page that allows users with the flow-create-board right to create
