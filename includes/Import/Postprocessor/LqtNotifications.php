@@ -13,7 +13,7 @@ use Flow\Import\ImportException;
 use Flow\Import\LiquidThreadsApi\ImportTopic as LqtImportTopic;
 use Flow\Import\PageImportState;
 use Flow\Import\TopicImportState;
-use Flow\Model\UUID;
+use Flow\Model\PostRevision;
 use Flow\NotificationController;
 use RecursiveIteratorIterator;
 use User;
@@ -34,9 +34,9 @@ class LqtNotifications implements Postprocessor {
 	protected $dbw;
 
 	/**
-	 * @var bool True when posts have been imported for the current topic
+	 * @var PostRevision[] Array of imported replies
 	 */
-	protected $postsImported = false;
+	protected $postsImported = array();
 
 	public function __construct( NotificationController $controller, DatabaseBase $dbw ) {
 		$this->controller = $controller;
@@ -113,14 +113,13 @@ class LqtNotifications implements Postprocessor {
 		if ( !$topic instanceof LqtImportTopic ) {
 			return;
 		}
-		if ( $this->postsImported === false ) {
+		if ( empty( $this->postsImported ) ) {
 			// nothing was imported in this topic
 			return;
 		}
 
-		$this->postsImported = false;
 		$this->controller->notifyPostChange( 'flow-post-reply', array(
-			'revision' => $state->topicTitle,
+			'revision' => $this->postsImported[0],
 			'topic-title' => $state->topicTitle,
 			'topic-workflow' => $state->topicWorkflow,
 			'title' => $state->topicWorkflow->getOwnerTitle(),
@@ -131,18 +130,19 @@ class LqtNotifications implements Postprocessor {
 			),
 			'timestamp' => $topic->getTimestamp(),
 		) );
+
+		$this->postsImported = array();
 	}
 
 	public function importAborted() {
-		$this->postsImported = false;
+		$this->postsImported = array();
 	}
 
 	public function afterHeaderImported( PageImportState $state, IImportHeader $header ) {
 		// not a thing to do, yet
 	}
 
-	public function afterPostImported( TopicImportState $state, IImportPost $post, UUID $newPostId ) {
-		$this->postsImported = true;
+	public function afterPostImported( TopicImportState $state, IImportPost $post, PostRevision $newPost ) {
+		$this->postsImported[] = $newPost;
 	}
-
 }

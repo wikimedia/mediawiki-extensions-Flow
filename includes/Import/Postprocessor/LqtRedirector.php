@@ -9,12 +9,14 @@ use Flow\Import\LiquidThreadsApi\ImportPost;
 use Flow\Import\LiquidThreadsApi\ImportTopic;
 use Flow\Import\PageImportState;
 use Flow\Import\TopicImportState;
+use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\UrlGenerator;
 use Title;
 use User;
 use WatchedItem;
 use WikiPage;
+use WikitextContent;
 
 class LqtRedirector implements Postprocessor {
 	/** @var UrlGenerator **/
@@ -34,12 +36,12 @@ class LqtRedirector implements Postprocessor {
 		// not a thing to do, yet
 	}
 
-	public function afterPostImported( TopicImportState $state, IImportPost $post, UUID $newPostId ) {
+	public function afterPostImported( TopicImportState $state, IImportPost $post, PostRevision $newPost ) {
 		if ( $post instanceof ImportPost /* LQT */ ) {
 			$this->redirectsToDo[] = array(
 				$post->getTitle(),
 				$state->topicWorkflow->getId(),
-				$newPostId
+				$newPost->getPostId()
 			);
 		}
 	}
@@ -72,7 +74,7 @@ class LqtRedirector implements Postprocessor {
 
 		$redirectTarget = $redirectAnchor->resolveTitle();
 
-		$newContent = new WikiTextContent( "#REDIRECT [[".$redirectTarget->getFullText()."]]" );
+		$newContent = new WikitextContent( "#REDIRECT [[".$redirectTarget->getFullText()."]]" );
 		$page = WikiPage::factory( $fromTitle );
 		$summary = wfMessage( 'flow-lqt-redirect-reason' )->plain();
 		$page->doEditContent( $newContent, $summary, EDIT_FORCE_BOT, false, $this->user );
