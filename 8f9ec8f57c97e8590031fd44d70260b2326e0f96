@@ -89,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "2ea41786_5ececc87",
+        "filename": "includes/BoardMover.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-03-01T01:30:10Z",
+      "side": 1,
+      "message": "I did check undelete works.\n\nHowever, the main reason is that global renames deliberately do not check permissions (if you have global rename rights, that\u0027s all the permission you need): See my February 9 comment in T126229 (Lego told me how this works).\n\nBy separating it out properly, this should now work.  However, if we check user permissions here as well, it won\u0027t work.",
+      "parentUuid": "2ea41786_c0a9848e",
+      "revId": "8f9ec8f57c97e8590031fd44d70260b2326e0f96",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ea41786_002c7c8e",
         "filename": "includes/TalkpageManager.php",
         "patchSetId": 2
