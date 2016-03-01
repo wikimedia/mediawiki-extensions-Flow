@@ -7,6 +7,7 @@ use Flow\Import\IImportPost;
 use Flow\Import\IImportTopic;
 use Flow\Import\PageImportState;
 use Flow\Import\TopicImportState;
+use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use ManualLogEntry;
 use User;
@@ -33,7 +34,7 @@ class SpecialLogTopic implements PostProcessor {
 		// nothing to do
 	}
 
-	public function afterPostImported( TopicImportState $state, IImportPost $post, UUID $newPostId ) {
+	public function afterPostImported( TopicImportState $state, IImportPost $post, PostRevision $newPost ) {
 		$this->newPosts = true;
 	}
 
