@@ -180,7 +180,6 @@
 	"flow-error-no-commit": "No se puido gardar a acción especificada.",
 	"flow-error-content-too-long": "O contido é demasiado longo. O contido despois da súa expansión está limitado a $1 {{PLURAL:$1|byte|bytes}}.",
 	"flow-error-move-topic": "Polo momento non é posible mover os temas.",
-	"flow-error-move-no-create-permissions": "É necesario o permiso \"{{int:right-flow-create-board}}\" para mover un taboleiro de Flow.",
 	"flow-error-invalid-topic-uuid-title": "Título incorrecto",
 	"flow-error-invalid-topic-uuid": "O título da páxina solicitada é inválido. As páxinas no espazo de nomes Tema son creadas automaticamente polo Flow.",
 	"flow-error-unknown-workflow-id-title": "Tema descoñecido",

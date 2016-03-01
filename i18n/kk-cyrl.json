@@ -163,7 +163,6 @@
 	"flow-error-no-commit": "Көрсетілген әрекет сақталмайды.",
 	"flow-error-content-too-long": "Контент өте үлкен. Кеңейтілімнен кейінгі контент $1 {{PLURAL:$1|байтпен|байтпен}} шектелген.",
 	"flow-error-move-topic": "Тақырып бетін қазіргі уақытта жылжытуды қолдамайды.",
-	"flow-error-move-no-create-permissions": "Flow тақтасын жылжыту үшін «{{int:right-flow-create-board}}» құқығын қажет етеді.",
 	"flow-error-invalid-topic-uuid-title": "Жарамсыз атау",
 	"flow-error-invalid-topic-uuid": "Сұратылған бет атауы дұрыс емес. Flow арқылы беттер Тақырып есім кеңістігіне автоматты түрде басталады.",
 	"flow-error-unknown-workflow-id-title": "Белгісіз тақырып",

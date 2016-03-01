@@ -185,7 +185,6 @@
 	"flow-error-no-commit": "Määriteltyä toimintoa ei voitu tallentaa.",
 	"flow-error-content-too-long": "Sisältö on liian suuri. Laajentamisen jälkeinen sisältö on rajoitettu $1 {{PLURAL:$1|tavuun}}.",
 	"flow-error-move-topic": "Aihesivun siirtämistä ei nykyisessä järjestelmässä ole mahdollista tehdä lainkaan.",
-	"flow-error-move-no-create-permissions": "\"{{int:right-flow-create-board}}\"-lupaa tarvitaan Flow-palstan siirtämiseen.",
 	"flow-error-invalid-topic-uuid-title": "Sopimaton otsikko",
 	"flow-error-invalid-topic-uuid": "Sivun otsikko oli virheellinen. Flow luo automaattisesti sivut aiheen nimiavaruudessa.",
 	"flow-error-unknown-workflow-id-title": "Tuntematon aihe",

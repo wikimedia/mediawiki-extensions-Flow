@@ -99,8 +99,6 @@
 	"notification-header-flow-new-topic-user-talk": "موضوع جديد تم إنشاؤه على '''صفحة نقاشك''': \"'''$4'''\".",
 	"notification-header-flow-summary-edited": "حُدث ملخص \"'''$1'''\".",
 	"notification-bundle-header-flow-summary-edited": "حُدث ملخص \"'''$1'''\" عدة مرات.",
-	"notification-body-flow-summary-edited": "$1",
-	"notification-body-flow-summary-edited-user-talk": "$1",
 	"notification-header-flow-mention-post": "{{GENDER:$2|أشار|أشارت}} $1 {{GENDER:$4|إليك}} في \"$5\".",
 	"notification-header-flow-mention-post-summary": "{{GENDER:$2|أشار|أشارت}} $1 {{GENDER:$4|إليك}} في \"'''$5'''\".",
 	"notification-bundle-header-flow-description-edited": "وصف '''$1''' عُدل عدة مرات.",

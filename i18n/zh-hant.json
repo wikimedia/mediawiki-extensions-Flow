@@ -11,7 +11,8 @@
 			"Macofe",
 			"Nnemo",
 			"Bowleerin",
-			"Shizhao"
+			"Shizhao",
+			"飞舞回堂前"
 		]
 	},
 	"enableflow": "開啟 Flow",
@@ -185,7 +186,6 @@
 	"flow-error-no-commit": "無法儲存指定的動作。",
 	"flow-error-content-too-long": "內容過大，內容展開後的限制為 $1 {{PLURAL:$1|位元組|位元組}}。",
 	"flow-error-move-topic": "目前不支援移動話題頁面。",
-	"flow-error-move-no-create-permissions": "移動 Flow 留言板需要 \"{{int:right-flow-create-board}}\" 權限。",
 	"flow-error-invalid-topic-uuid-title": "無效的標題",
 	"flow-error-invalid-topic-uuid": "請求的頁面標題無效。 在話題命名空間中的頁面會由 Flow 自動建立。",
 	"flow-error-unknown-workflow-id-title": "不明話題",
@@ -250,7 +250,7 @@
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 於 '''$3''' {{GENDER:$1|建立了}}一個新話題。",
 	"flow-notification-newtopic-bundle": "於 '''<span class=\"plainlinks\">[$3 $2]</span>''' 中有 {{PLURAL:$1|$1 則新話題|$1 則新話題|250=250+  則新話題}}",
 	"flow-notification-rename": "$1 {{GENDER:$1|已更改}}於 [[$5|$6]] 中 <span class=\"plainlinks\">[$2 $3]</span> 的標題為 \"$4\"。",
-	"flow-notification-mention": "$1 {{GENDER:$1|已提到}}{{GENDER:$5|您}}於 「$4」 中 「$3」 {{GENDER:$1|他|她|他們}}的 <span class=\"plainlinks\">[$2 貼文]</span>。",
+	"flow-notification-mention": "$1 {{GENDER:$1|已提到}}{{GENDER:$5|您}}於 「$4」 中 「$3」 {{GENDER:$1|他|她|他}}的 <span class=\"plainlinks\">[$2 貼文]</span>。",
 	"flow-notification-link-text-view-post": "檢視貼文",
 	"flow-notification-link-text-view-topic": "檢視話題",
 	"flow-notification-reply-email-subject": "$2 於 $3",
