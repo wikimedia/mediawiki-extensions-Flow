@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ea41786_7c4f0698",
+        "filename": "includes/Conversion/Utils.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 257
+      },
+      "writtenOn": "2016-03-02T15:17:22Z",
+      "side": 1,
+      "message": "text/html; charset\u003dutf-8; profile\u003d\"mediawiki.org/specs/html/1.2.0\"\n\nI\u0027ll need to go in and ask VE folks to update theirs since I missed these details myself.. :-(\n\nBut, we will use the data-mw split time to simplify this. Since all current storage uses these strings, we need this till that is deployed.",
+      "revId": "d223f99b74186e690ad388eadc0002bc56b3f019",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
