@@ -23,7 +23,6 @@ Feature: Opt-in Flow beta feature
     And the board description contains the templates from my talk page
     And my previous talk page is archived
 
-  @en.wikipedia.beta.wmflabs.org
   Scenario: Opt-out: I didn't have a talk page
     Given I have Flow beta feature enabled
     When I disable Flow beta feature
