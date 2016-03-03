@@ -30,7 +30,11 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 
 	protected function setUp() {
 		parent::setUp();
+
 		$this->user = User::newFromName( '127.0.0.1', false );
+
+		// These tests don't provide sufficient data to properly run all listeners
+		$this->clearExtraLifecycleHandlers();
 	}
 
 	/**
