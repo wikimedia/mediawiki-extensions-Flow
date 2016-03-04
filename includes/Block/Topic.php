@@ -450,6 +450,21 @@ class TopicBlock extends AbstractBlock {
 				$this->storage->put( $this->newRevision, $metadata );
 				$this->workflow->updateLastUpdated( $this->newRevision->getRevisionId() );
 				$this->storage->put( $this->workflow, $metadata );
+
+				if ( strpos( $this->action, 'moderate-' ) === 0 ) {
+					$topicId = $this->newRevision->getCollection()->getRoot()->getId();
+
+					$moderate = $this->newRevision->isModerated()
+						&& ( $this->newRevision->getModerationState() === PostRevision::MODERATED_DELETED
+							|| $this->newRevision->getModerationState() === PostRevision::MODERATED_SUPPRESSED );
+
+					if ( $this->action === 'moderate-topic' ) {
+						Container::get( 'controller.notification' )->moderateTopicNotifications( $topicId, $moderate );
+					} elseif ( $this->action === 'moderate-post' ) {
+						$postId = $this->newRevision->getPostId();
+						Container::get( 'controller.notification' )->moderatePostNotifications( $topicId, $postId, $moderate );
+					}
+				}
 			}
 
 			$newRevision = $this->newRevision;
