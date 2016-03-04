@@ -20,6 +20,7 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use Flow\NotificationController;
 use Flow\Repository\RootPostLoader;
 use Message;
 
@@ -450,6 +451,23 @@ class TopicBlock extends AbstractBlock {
 				$this->storage->put( $this->newRevision, $metadata );
 				$this->workflow->updateLastUpdated( $this->newRevision->getRevisionId() );
 				$this->storage->put( $this->workflow, $metadata );
+
+				if ( strpos( $this->action, 'moderate-' ) === 0 ) {
+					$topicId = $this->newRevision->getCollection()->getRoot()->getId();
+
+					$moderate = $this->newRevision->isModerated()
+						&& ( $this->newRevision->getModerationState() === PostRevision::MODERATED_DELETED
+							|| $this->newRevision->getModerationState() === PostRevision::MODERATED_SUPPRESSED );
+
+					/** @var NotificationController $controller */
+					$controller = Container::get( 'controller.notification' );
+					if ( $this->action === 'moderate-topic' ) {
+						$controller->moderateTopicNotifications( $topicId, $moderate );
+					} elseif ( $this->action === 'moderate-post' ) {
+						$postId = $this->newRevision->getPostId();
+						$controller->moderatePostNotifications( $topicId, $postId, $moderate );
+					}
+				}
 			}
 
 			$newRevision = $this->newRevision;
