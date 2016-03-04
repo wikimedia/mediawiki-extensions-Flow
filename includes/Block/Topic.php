@@ -22,6 +22,8 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Repository\RootPostLoader;
 use Message;
+use MWEchoNotifPage;
+use Title;
 
 class TopicBlock extends AbstractBlock {
 
@@ -450,6 +452,23 @@ class TopicBlock extends AbstractBlock {
 				$this->storage->put( $this->newRevision, $metadata );
 				$this->workflow->updateLastUpdated( $this->newRevision->getRevisionId() );
 				$this->storage->put( $this->workflow, $metadata );
+
+				if ( $this->action === 'moderate-topic' ) {
+					$moderate = $this->newRevision->isModerated();
+					$title = Title::newFromText( 'Topic:' . $this->newRevision->getRootPost()->getPostId()->getAlphadecimal() );
+					\DeferredUpdates::addCallableUpdate( function () use ( $title, $moderate ) {
+						$notifPage = MWEchoNotifPage::newFromTitle( $title );
+						if ( $moderate ) {
+							$notifPage->moderate();
+						} else {
+							$notifPage->unmoderate();
+						}
+					} );
+				}
+
+				// todo: how to handle 'moderate-post'?
+
+
 			}
 
 			$newRevision = $this->newRevision;
