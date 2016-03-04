@@ -2,7 +2,7 @@
 
 namespace Flow;
 
-use Flow\Data\ManagerGroup;
+use EchoModerationController;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
@@ -656,5 +656,63 @@ class NotificationController {
 		 */
 		$diff = $postId->getTimestamp( TS_UNIX ) - $workflowId->getTimestamp( TS_UNIX );
 		return $diff <= 1;
+	}
+
+	/**
+	 * Moderate or unmoderate Flow notifications associated with a topic.
+	 *
+	 * @param UUID $topicId
+	 * @param bool $moderated Whether the events need to be moderated or unmoderated
+	 * @throws FlowException
+	 */
+	public function moderateTopicNotifications( UUID $topicId, $moderated ) {
+		if ( !class_exists( 'EchoEvent' ) ) {
+			// Nothing to do here.
+			return;
+		}
+
+		$title = Title::newFromText( 'Topic:' . $topicId->getAlphadecimal() );
+		$pageId = $title->getArticleID();
+		\DeferredUpdates::addCallableUpdate( function () use ( $pageId, $moderated ) {
+			$targetPageMapper = new \EchoTargetPageMapper();
+			$eventIds = $targetPageMapper->fetchEventIdsByPageId( $pageId );
+
+			EchoModerationController::moderate( $eventIds, $moderated );
+		} );
+	}
+
+	/**
+	 * Moderate or unmoderate Flow notifications associated with a post within a topic.
+	 *
+	 * @param UUID $topicId
+	 * @param UUID $postId
+	 * @param bool $moderated Whether the events need to be moderated or unmoderated
+	 * @throws FlowException
+	 */
+	public function moderatePostNotifications( UUID $topicId, UUID $postId, $moderated ) {
+		if ( !class_exists( 'EchoEvent' ) ) {
+			// Nothing to do here.
+			return;
+		}
+
+		$title = Title::newFromText( 'Topic:' . $topicId->getAlphadecimal() );
+		$pageId = $title->getArticleID();
+		\DeferredUpdates::addCallableUpdate( function () use ( $pageId, $postId, $moderated ) {
+			$eventMapper = new \EchoEventMapper();
+			$events = $eventMapper->fetchByTypesAndPage( array( 'flow-post-reply', 'flow-post-edited', 'flow-mention' ), $pageId );
+
+			$eventIds = array();
+
+			/** @var EchoEvent $event */
+			foreach ( $events as $event ) {
+				/** @var UUID $eventPostId */
+				$eventPostId = $event->getExtraParam( 'post-id' );
+				if ( $eventPostId && ( $eventPostId->getAlphadecimal() === $postId->getAlphadecimal() ) ) {
+					$eventIds[] = $event->getId();
+				}
+			}
+
+			EchoModerationController::moderate( $eventIds, $moderated );
+		} );
 	}
 }
