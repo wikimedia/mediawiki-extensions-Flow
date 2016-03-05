@@ -1275,7 +1275,7 @@ class FlowHooks {
 		}
 
 		$occupationController = self::getOccupationController();
-		$flowStatus = $occupationController->checkIfCreationTechnicallyAllowed( $newTitle, /*mustNotExist*/ true );
+		$flowStatus = $occupationController->checkIfCreationIsPossible( $newTitle, /*mustNotExist*/ true );
 		$status->merge( $flowStatus );
 
 		return true;
@@ -1626,7 +1626,7 @@ class FlowHooks {
 
 	/**
 	 * @param Title $title Title corresponding to the article restored
-	 * @param bool $create Whether or not the restoration caused the page to be created (i.e. it didn't exist before).
+	 * @param bool $created Whether or not the restoration caused the page to be created (i.e. it didn't exist before).
 	 * @param string $comment The comment associated with the undeletion.
 	 * @param int $oldPageId ID of page previously deleted (from archive table)
 	 * @return bool
@@ -1660,6 +1660,9 @@ class FlowHooks {
 			$bogusTitle = clone $newTitle;
 			$bogusTitle->resetArticleID( $oldTitle->getArticleID() );
 
+			// This is only safe because we have called
+			// checkIfCreationIsPossible and (usually) checkIfUserHasPermission.
+			Container::get( 'occupation_controller' )->forceAllowCreation( $bogusTitle );
 			// complete hack to make sure that when the page is saved to new
 			// location and rendered it doesn't throw an error about the wrong title
 			Container::get( 'factory.loader.workflow' )->pageMoveInProgress();

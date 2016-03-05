@@ -48,7 +48,7 @@ class HookTest extends \MediaWikiTestCase {
 			$occupationController = Container::get( 'occupation_controller' );
 			// make sure user has rights to create board
 			$user->mRights = array_merge( $user->getRights(), array( 'flow-create-board' ) );
-			$occupationController->checkedAllowCreation( $title, $user );
+			$occupationController->safeAllowCreation( $title, $user );
 			$occupationController->ensureFlowRevision( new \Article( $title ), $workflow );
 
 			Container::get( 'storage' )->put( $workflow, $metadata );
@@ -74,7 +74,7 @@ class HookTest extends \MediaWikiTestCase {
 			$occupationController = Container::get( 'occupation_controller' );
 			// make sure user has rights to create board
 			$user->mRights = array_merge( $user->getRights(), array( 'flow-create-board' ) );
-			$occupationController->checkedAllowCreation( $title, $user );
+			$occupationController->safeAllowCreation( $title, $user );
 			$occupationController->ensureFlowRevision( new \Article( $title ), $boardWorkflow );
 
 			$storage = Container::get( 'storage' );
