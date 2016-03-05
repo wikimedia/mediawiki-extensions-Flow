@@ -102,7 +102,7 @@
 	"flow-hide-comments-title": "{{PLURAL:$1|মন্তব্য লুকান}}",
 	"flow-comment-deleted": "মন্তব্য অপসারিত হয়েছে",
 	"notification-email-batch-body-flow-summary-edited": "$1 $2-এ সারাংশ {{GENDER:$1|হালনাগাদ করেছেন}}।",
-	"notification-header-flow-mention-post-summary": "$1 '''$4'''-এ {{GENDER:$3|আপনাকে}} {{GENDER:$2|উল্লেখ করেছেন}}।",
+	"notification-header-flow-mention-post-summary": "$1 \"'''$5'''\"-এ {{GENDER:$$2|আপনাকে}} {{GENDER:$4|উল্লেখ করেছেন}}।",
 	"flow-notification-link-text-view-post": "প্রকাশনা দেখুন",
 	"flow-notification-link-text-view-topic": "প্রসঙ্গ দেখুন",
 	"flow-notification-reply-email-subject": "$3-এ $2",
