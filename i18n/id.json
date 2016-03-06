@@ -158,6 +158,7 @@
 	"flow-error-prev-revision-mismatch": "Pengguna lain juga telah menyunting kiriman ini beberapa saat yang lalu. Apakah {{GENDER:$3|Anda}} yakin ingin menimpa perubahan itu?",
 	"flow-error-prev-revision-does-not-exist": "Tidak dapat menemukan revisi sebelumnya.",
 	"flow-error-default": "Terjadi sebuah galat.",
+	"flow-error-invalid-title": "Judul halaman yang diberikan tidaklah valid.",
 	"flow-error-fail-load-history": "Gagal memuat isi riwayat.",
 	"flow-error-missing-revision": "Tidak dapat menemukan revisi untuk memuat isi Flow.",
 	"flow-error-fail-commit": "Gagal menyimpan isi Flow.",
