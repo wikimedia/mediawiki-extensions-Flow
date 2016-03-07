@@ -23,13 +23,7 @@ class SummaryEditedPresentationModel extends FlowPresentationModel {
 		if ( $this->isBundled() ) {
 			return array( $this->getBoardLink() );
 		} else {
-			$links = array( $this->getAgentLink() );
-			if ( $this->isUserTalkPage() && $this->event->getExtraParam( 'prev-revision-id' ) !== null ) {
-				$links[] = $this->getDiffLink();
-			} else {
-				$links[] = $this->getBoardLink();
-			}
-			return $links;
+			return array( $this->getAgentLink(), $this->getBoardLink() );
 		}
 	}
 
