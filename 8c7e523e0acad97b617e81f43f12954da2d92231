@@ -16,6 +16,24 @@
       "revId": "8c7e523e0acad97b617e81f43f12954da2d92231",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e2f53b6_ce8160a6",
+        "filename": "includes/Notifications/SummaryEditedPresentationModel.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-03-07T12:07:59Z",
+      "side": 1,
+      "message": "That was not intentional. For a second I thought we didn\u0027t need the bundled case (only a !bundled), but forgot to remove the ! after realizing we did still need it...",
+      "parentUuid": "0e2f53b6_eefd443a",
+      "revId": "8c7e523e0acad97b617e81f43f12954da2d92231",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
