@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e2f53b6_a5b4f2e5",
+        "filename": "maintenance/dumpBackup.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-03-07T21:52:55Z",
+      "side": 1,
+      "message": "Unused.  It could just use $this-\u003eerror, right?",
+      "revId": "712258cd67ebe91cea5fbf273641db92df288492",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e2f53b6_45a366a8",
+        "filename": "maintenance/dumpBackup.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-03-07T21:52:55Z",
+      "side": 1,
+      "message": "While you\u0027re changing this, it doesn\u0027t have anything to do with log_id in our case.",
+      "revId": "712258cd67ebe91cea5fbf273641db92df288492",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e2f53b6_05803ef8",
+        "filename": "maintenance/dumpBackup.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-03-07T21:52:55Z",
+      "side": 1,
+      "message": "$textMode is entirely ignored, since it is only used to pass to dump then $text is ignored there.\n\nThat means \u0027stub\u0027 should be removed.  It\u0027s already undocumented and doesn\u0027t exist before this change.",
+      "revId": "712258cd67ebe91cea5fbf273641db92df288492",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e2f53b6_e5c9da56",
+        "filename": "maintenance/dumpBackup.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-03-07T21:52:55Z",
+      "side": 1,
+      "message": "This was also already here, but why is this being forced to int?  Shouldn\u0027t it allow alphadecimal (can\u0027t remember what I tried here before...)",
+      "revId": "712258cd67ebe91cea5fbf273641db92df288492",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e2f53b6_6505ca7c",
+        "filename": "maintenance/dumpBackup.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-03-07T21:52:55Z",
+      "side": 1,
+      "message": "Same question as revstart.",
+      "revId": "712258cd67ebe91cea5fbf273641db92df288492",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
