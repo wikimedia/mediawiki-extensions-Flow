@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e2f53b6_eefd443a",
+        "filename": "includes/Notifications/SummaryEditedPresentationModel.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-03-07T12:05:43Z",
+      "side": 1,
+      "message": "Was it intentional to add \"!\" here? Now you add the agent link if it is bundled. We do the opposite generally.",
+      "revId": "8c7e523e0acad97b617e81f43f12954da2d92231",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
