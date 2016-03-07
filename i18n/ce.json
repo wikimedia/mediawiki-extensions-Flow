@@ -44,7 +44,7 @@
 	"flow-last-modified-by": "ТӀаьххьара бина {{GENDER:$1|хийцам}} цу $1",
 	"flow-newtopic-title-placeholder": "Керла тема",
 	"flow-newtopic-content-placeholder": "ДӀбазбе керла хаам «$1» чохь",
-	"flow-newtopic-save": "ТӀетоха хьедар",
+	"flow-newtopic-save": "Тема тӀетоха",
 	"flow-newtopic-start-placeholder": "Доладе керла хьедар",
 	"flow-reply-topic-title-placeholder": "«$1» жоп далар",
 	"flow-reply-link": "{{GENDER:$1|Жоп}}",
