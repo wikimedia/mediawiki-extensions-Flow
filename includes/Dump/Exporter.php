@@ -98,10 +98,10 @@ class Exporter extends WikiExporter {
 		$output = Xml::openElement(
 			'mediawiki',
 			array(
-				// @todo: update after creating schema
-//				'xmlns'  => "http://www.mediawiki.org/xml/export-$version/",
-//				'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
-//				'xsi:schemaLocation' => "http://www.mediawiki.org/xml/export-$version/ http://www.mediawiki.org/xml/export-$version.xsd",
+				// @todo: where will XSD & namespace be located?
+				'xmlns'  => "http://www.mediawiki.org/xml/export-$version/",
+				'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
+				'xsi:schemaLocation' => "http://www.mediawiki.org/xml/export-$version/ http://www.mediawiki.org/xml/export-$version.xsd",
 				'version' => $version,
 				'xml:lang' => $wgLanguageCode
 			)
@@ -378,6 +378,10 @@ class Exporter extends WikiExporter {
 		$values = array_intersect_key( array_merge( $keys, $attribs ), $keys );
 		// combine them
 		$attribs = array_combine( $keys, $values );
+		// and get rid of columns with null values
+		$attribs = array_filter( $attribs, function ( $value ) {
+			return $value !== null;
+		} );
 
 		// references to external store etc. are useless; we'll include the real
 		// content as node text

@@ -7,10 +7,12 @@ use Flow\Data\ManagerGroup;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
+use Flow\Model\PostSummary;
 use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
+use MWException;
 use WikiImporter;
 use XMLReader;
 
@@ -239,6 +241,10 @@ class Importer {
 		$values = array_intersect_key( array_merge( $keys, $attribs ), $keys );
 		// combine them
 		$attribs = array_combine( $keys, $values );
+
+		// now fill in missing attributes
+		$keys = array_fill_keys( array_keys( Exporter::$map ), '' );
+		$attribs += $keys;
 
 		return call_user_func( $callback, $attribs );
 	}
