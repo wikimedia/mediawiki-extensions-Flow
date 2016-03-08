@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e2f53b6_01be68ce",
+        "filename": "includes/Dump/export-1.xsd",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 25
+      },
+      "writtenOn": "2016-03-08T17:52:15Z",
+      "side": 1,
+      "message": "This refers to the core schema, but this seems to be a separate schema... there should be a way to reference the core schema if it\u0027s necessary to point to types already defined there. (but not sure offhand how to do that)",
+      "revId": "46054514e4da7e7ef38bb73b8970a68dc49297f8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e2f53b6_81c9d87d",
+        "filename": "includes/Dump/export-1.xsd",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 25
+      },
+      "writtenOn": "2016-03-08T17:52:15Z",
+      "side": 1,
+      "message": "Note that the core schema identifies user id as type\u003d\"nonNegativeInteger\"",
+      "revId": "46054514e4da7e7ef38bb73b8970a68dc49297f8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e2f53b6_c1aac081",
+        "filename": "includes/Dump/export-1.xsd",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 25
+      },
+      "writtenOn": "2016-03-08T17:52:15Z",
+      "side": 1,
+      "message": "is empty attribute used deliberately in place of a missing attribute or is this an accident/bug? Note you can spec them as being 0-or-1 times.",
+      "revId": "46054514e4da7e7ef38bb73b8970a68dc49297f8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
