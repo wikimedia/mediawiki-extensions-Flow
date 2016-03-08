@@ -88,7 +88,12 @@ class Exporter extends WikiExporter {
 	}
 
 	public static function schemaVersion() {
-		return '1';
+		/*
+		 * Be sure to also update the schema/namespace on mediawiki.org when
+		 * making any changes:
+		 * @see https://gerrit.wikimedia.org/r/#/c/281640/
+		 */
+		return '1.0';
 	}
 
 	public function openStream() {
@@ -98,10 +103,9 @@ class Exporter extends WikiExporter {
 		$output = Xml::openElement(
 			'mediawiki',
 			array(
-				// @todo: update after creating schema
-//				'xmlns'  => "http://www.mediawiki.org/xml/export-$version/",
-//				'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
-//				'xsi:schemaLocation' => "http://www.mediawiki.org/xml/export-$version/ http://www.mediawiki.org/xml/export-$version.xsd",
+				'xmlns' => "http://www.mediawiki.org/xml/flow-$version/",
+				'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
+				'xsi:schemaLocation' => "http://www.mediawiki.org/xml/flow-$version/ http://www.mediawiki.org/xml/flow-$version.xsd",
 				'version' => $version,
 				'xml:lang' => $wgLanguageCode
 			)
@@ -378,6 +382,10 @@ class Exporter extends WikiExporter {
 		$values = array_intersect_key( array_merge( $keys, $attribs ), $keys );
 		// combine them
 		$attribs = array_combine( $keys, $values );
+		// and get rid of columns with null values
+		$attribs = array_filter( $attribs, function ( $value ) {
+			return $value !== null;
+		} );
 
 		// references to external store etc. are useless; we'll include the real
 		// content as node text
