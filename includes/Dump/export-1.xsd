@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+		xmlns:mw="http://www.mediawiki.org/xml/export-0.10/"
+		targetNamespace="http://www.mediawiki.org/xml/export-0.10/"
+		elementFormDefault="qualified">
+
+	<complexType name="AbstractRevision">
+		<simpleContent>
+			<extension base="string">
+				<attribute type="string" name="id" use="required"/>
+				<attribute type="integer" name="userid" use="required"/>
+				<attribute type="string" name="userip" use="required"/>
+				<attribute type="string" name="userwiki" use="required"/>
+				<attribute type="string" name="parentid" use="required"/>
+				<attribute type="string" name="changetype" use="required"/>
+				<attribute type="string" name="type" use="required"/>
+				<attribute type="string" name="typeid" use="required"/>
+				<attribute type="string" name="flags" use="required"/>
+				<attribute type="string" name="modstate" use="required"/>
+				<attribute type="string" name="moduserid" use="required"/> <!-- string, because it can be empty -->
+				<attribute type="string" name="moduserip" use="required"/>
+				<attribute type="string" name="moduserwiki" use="required"/>
+				<attribute type="string" name="modtimestamp" use="required"/>
+				<attribute type="string" name="modreason" use="required"/>
+				<attribute type="string" name="lasteditid" use="required"/>
+				<attribute type="string" name="edituserid" use="required"/> <!-- string, because it can be empty -->
+				<attribute type="string" name="edituserip" use="required"/>
+				<attribute type="string" name="edituserwiki" use="required"/>
+				<attribute type="integer" name="contentlength" use="required"/>
+				<attribute type="integer" name="previouscontentlength" use="required"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="PostRevision">
+		<simpleContent>
+			<extension base="mw:AbstractRevision">
+				<attribute type="string" name="treeparentid" use="required"/>
+				<attribute type="string" name="treedescendantid" use="required"/>
+				<attribute type="string" name="treerevid" use="required"/>
+				<attribute type="integer" name="treeoriguserid" use="required"/>
+				<attribute type="string" name="treeoriguserip" use="required"/>
+				<attribute type="string" name="treeoriguserwiki" use="required"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="Post">
+		<sequence>
+			<element name="revisions">
+				<complexType>
+					<choice minOccurs="1" maxOccurs="unbounded">
+						<element name="revision" type="mw:PostRevision"/>
+					</choice>
+				</complexType>
+			</element>
+			<element name="children" minOccurs="0" maxOccurs="1">
+				<complexType>
+					<choice minOccurs="1" maxOccurs="unbounded">
+						<!-- Recursion: post can have child posts -->
+						<element name="post" type="mw:Post"/>
+					</choice>
+				</complexType>
+			</element>
+		</sequence>
+		<attribute type="string" name="id" use="required"/>
+	</complexType>
+
+	<element name="mediawiki">
+		<complexType>
+			<choice minOccurs="0" maxOccurs="unbounded">
+				<element name="board">
+					<complexType mixed="true">
+						<sequence>
+							<element name="description" minOccurs="0" maxOccurs="1">
+								<complexType>
+									<all>
+										<element name="revisions">
+											<complexType>
+												<choice minOccurs="1" maxOccurs="unbounded">
+													<element name="revision" type="mw:AbstractRevision"/>
+												</choice>
+											</complexType>
+										</element>
+									</all>
+									<attribute type="string" name="id" use="required"/>
+								</complexType>
+							</element>
+							<element name="topic" minOccurs="0" maxOccurs="unbounded">
+								<complexType>
+									<sequence>
+										<element name="post" type="mw:Post" minOccurs="1" maxOccurs="unbounded"/>
+										<element name="summary" minOccurs="0" maxOccurs="1">
+											<complexType>
+												<all>
+													<element name="revisions">
+														<complexType>
+															<choice minOccurs="1" maxOccurs="unbounded">
+																<element name="revision" type="mw:AbstractRevision"/>
+															</choice>
+														</complexType>
+													</element>
+												</all>
+												<attribute type="string" name="id" use="required"/>
+											</complexType>
+										</element>
+									</sequence>
+									<attribute type="string" name="id" use="required"/>
+								</complexType>
+							</element>
+						</sequence>
+						<attribute type="string" name="id" use="required"/>
+						<attribute type="string" name="title" use="required"/>
+					</complexType>
+				</element>
+			</choice>
+			<attribute type="integer" name="version"/>
+			<attribute ref="xml:lang" use="required"/>
+		</complexType>
+	</element>
+</schema>

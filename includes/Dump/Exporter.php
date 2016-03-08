@@ -98,7 +98,7 @@ class Exporter extends WikiExporter {
 		$output = Xml::openElement(
 			'mediawiki',
 			array(
-				// @todo: update after creating schema
+				// @todo: where will XSD & namespace be located?
 //				'xmlns'  => "http://www.mediawiki.org/xml/export-$version/",
 //				'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
 //				'xsi:schemaLocation' => "http://www.mediawiki.org/xml/export-$version/ http://www.mediawiki.org/xml/export-$version.xsd",
