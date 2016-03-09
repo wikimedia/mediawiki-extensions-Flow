@@ -219,6 +219,9 @@ class NotificationFormatter extends EchoBasicFormatter {
  * only needs to specify what iterator to use
  */
 class NewTopicFormatter extends NotificationFormatter {
+	// Maximum topic count that is displayed exactly.  Beyond this, it shows +
+	// to indicate there are more than that.
+	const MAX_EXACT_TOPIC_COUNT = 249;
 
 	/**
 	 * New Topic user 'event' as the iterator
@@ -244,7 +247,10 @@ class NewTopicFormatter extends NotificationFormatter {
 	protected function processParam( $event, $param, $message, $user ) {
 		switch ( $param ) {
 			case 'event-count':
-				$message->numParams( $this->bundleData['event-count'] );
+				$cappedCount = $this->bundleData['event-count'] <= self::MAX_EXACT_TOPIC_COUNT ?
+					$this->bundleData['event-count'] :
+					( self::MAX_EXACT_TOPIC_COUNT + 1 );
+				$message->numParams( $cappedCount );
 				break;
 			default:
 				parent::processParam( $event, $param, $message, $user );
