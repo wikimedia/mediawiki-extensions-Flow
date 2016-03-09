@@ -182,6 +182,7 @@
 	"notification-bundle-header-flow-summary-edited": "De Zesammenfaßong vum Tehma „$1“ wood e paa Mohl je'änndert.",
 	"notification-email-subject-flow-summary-edited": "{{GENDER:$1|Dä|Dat|Dä Metmaacher|De|Dat}} $1 hät Zosamefaßong vun dä Sigg „$2“ verändert.",
 	"notification-email-batch-body-flow-summary-edited": "{{GENDER:$1|Dä|Dat|Dä Metmaacher|De|Dat}} $1 hät Zosamefaßong vun dä Sigg „$2“ verändert.",
+	"notification-links-flow-description-edited-view-page": "Sigg belohre{{GENDER:$1|}}",
 	"flow-notification-newtopic-bundle": "{{PLURAL:$1|ene neuje topic|$1 neuje topics|250=övver 250 neuje topics}} op '''<span class=\"plainlinks\">[$3 $2]</span>'''",
 	"flow-notification-reply-email-subject": "$2 op $3",
 	"flow-notification-reply-email-batch-body": "{{GENDER:$1|Dä|Dat|Dä Metmaacher|De|Dat}} $1 hädd op „$2“ op dä Sigg „$3“ jeantwoot.",
