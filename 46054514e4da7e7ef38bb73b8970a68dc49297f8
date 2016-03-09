@@ -50,6 +50,23 @@
       "revId": "46054514e4da7e7ef38bb73b8970a68dc49297f8",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e2f53b6_f444d970",
+        "filename": "includes/Dump/export-1.xsd",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 105
+      },
+      "writtenOn": "2016-03-09T18:12:04Z",
+      "side": 1,
+      "message": "http://www.utilities-online.info/xsdvalidation/ doesn\u0027t like this namespace",
+      "revId": "46054514e4da7e7ef38bb73b8970a68dc49297f8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
