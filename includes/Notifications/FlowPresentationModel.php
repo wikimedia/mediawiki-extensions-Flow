@@ -98,10 +98,6 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 		return $agent->isAnon() ? $agent->getName() : $agent->getId();
 	}
 
-	protected function getOtherAgentsCountForOutput() {
-		return $this->getNotificationCountForOutput( false, array( $this, 'getEventUser' ));
-	}
-
 	protected function getViewTopicLink() {
 		$title = Title::newFromText( $this->event->getExtraParam( 'topic-workflow' )->getAlphadecimal(), NS_TOPIC );
 		return array(
