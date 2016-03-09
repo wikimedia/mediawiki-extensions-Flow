@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0e2f53b6_396bdc83",
+        "filename": "maintenance/dumpBackup.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-03-09T15:16:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e2f53b6_a5b4f2e5",
+      "revId": "712258cd67ebe91cea5fbf273641db92df288492",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e2f53b6_45a366a8",
         "filename": "maintenance/dumpBackup.php",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2016-03-07T21:52:55Z",
       "side": 1,
       "message": "While you\u0027re changing this, it doesn\u0027t have anything to do with log_id in our case.",
+      "revId": "712258cd67ebe91cea5fbf273641db92df288492",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e2f53b6_99682886",
+        "filename": "maintenance/dumpBackup.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-03-09T15:16:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e2f53b6_45a366a8",
       "revId": "712258cd67ebe91cea5fbf273641db92df288492",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "0e2f53b6_190c18f0",
+        "filename": "maintenance/dumpBackup.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-03-09T15:16:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e2f53b6_05803ef8",
+      "revId": "712258cd67ebe91cea5fbf273641db92df288492",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e2f53b6_e5c9da56",
         "filename": "maintenance/dumpBackup.php",
         "patchSetId": 1
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "0e2f53b6_59eb40db",
+        "filename": "maintenance/dumpBackup.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-03-09T15:16:31Z",
+      "side": 1,
+      "message": "I have no idea why they\u0027re forced to ints. They\u0027re indeed supposed to be UUIDs!",
+      "parentUuid": "0e2f53b6_e5c9da56",
+      "revId": "712258cd67ebe91cea5fbf273641db92df288492",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e2f53b6_6505ca7c",
         "filename": "maintenance/dumpBackup.php",
         "patchSetId": 1
@@ -81,6 +153,24 @@
       "writtenOn": "2016-03-07T21:52:55Z",
       "side": 1,
       "message": "Same question as revstart.",
+      "revId": "712258cd67ebe91cea5fbf273641db92df288492",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e2f53b6_39e8fcdc",
+        "filename": "maintenance/dumpBackup.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-03-09T15:16:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e2f53b6_6505ca7c",
       "revId": "712258cd67ebe91cea5fbf273641db92df288492",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
