@@ -166,7 +166,7 @@ class NotificationController {
 				$extraData += array(
 					'reply-to' => $revision->getReplyToId(),
 					'content' => Utils::htmlToPlaintext( $revision->getContent(), 200, $this->language ),
-					'topic-title' => Utils::htmlToPlaintext( $topicRevision->getContent( 'topic-title-html' ), 200, $this->language ),
+					'topic-title' => $this->language->truncate( $topicRevision->getContent( 'topic-title-plaintext' ), 200 ),
 				);
 
 				// if we're looking at the initial post (submitted along with the topic
@@ -189,14 +189,14 @@ class NotificationController {
 			case 'flow-topic-renamed':
 				$previousRevision = $revision->getCollection()->getPrevRevision( $revision );
 				$extraData += array(
-					'old-subject' => Utils::htmlToPlaintext( $previousRevision->getContent( 'topic-title-html' ), 200, $this->language ),
-					'new-subject' => Utils::htmlToPlaintext( $revision->getContent( 'topic-title-html' ), 200, $this->language ),
+					'old-subject' => $this->language->truncate( $previousRevision->getContent( 'topic-title-plaintext' ), 200 ),
+					'new-subject' => $this->language->truncate( $revision->getContent( 'topic-title-plaintext' ), 200 ),
 				);
 			break;
 			case 'flow-post-edited':
 				$extraData += array(
 					'content' => Utils::htmlToPlaintext( $revision->getContent(), 200, $this->language ),
-					'topic-title' => Utils::htmlToPlaintext( $topicRevision->getContent( 'topic-title-html' ), 200, $this->language ),
+					'topic-title' => $this->language->truncate( $topicRevision->getContent( 'topic-title-plaintext' ), 200 ),
 				);
 			break;
 		}
@@ -257,7 +257,7 @@ class NotificationController {
 		$extraData['revision-id'] = $revision->getRevisionId();
 		$extraData['prev-revision-id'] = $revision->getPrevRevisionId();
 		$extraData['topic-workflow'] = $topicWorkflow->getId();
-		$extraData['topic-title'] = Utils::htmlToPlaintext( $topicRevision->getContent( 'topic-title-html' ), 200, $this->language );
+		$extraData['topic-title'] = $this->language->truncate( $topicRevision->getContent( 'topic-title-plaintext' ), 200 );
 		$extraData['target-page'] = $topicWorkflow->getArticleTitle()->getArticleID();
 		// pass along mentioned users to other notification, so it knows who to ignore
 		$extraData['mentioned-users'] = $mentionedUsers;
@@ -329,7 +329,7 @@ class NotificationController {
 				'board-workflow' => $boardWorkflow->getId(),
 				'topic-workflow' => $topicWorkflow->getId(),
 				'post-id' => $firstPost ? $firstPost->getRevisionId() : null,
-				'topic-title' => Utils::htmlToPlaintext( $topicTitle->getContent( 'topic-title-html' ), 200, $this->language ),
+				'topic-title' => $this->language->truncate( $topicTitle->getContent( 'topic-title-plaintext' ), 200 ),
 				'content' => $firstPost
 					? Utils::htmlToPlaintext( $firstPost->getContent(), 200, $this->language )
 					: null,
@@ -402,7 +402,7 @@ class NotificationController {
 		// needed to render topic title text & link to topic
 		if ( $topic !== null ) {
 			$extraData['topic-workflow'] = $workflow->getId();
-			$extraData['topic-title'] = Utils::htmlToPlaintext( $topic->getContent( 'topic-title-html' ), 200, $this->language );
+			$extraData['topic-title'] = $this->language->truncate( $topic->getContent( 'topic-title-plaintext' ), 200 );
 		}
 
 		return EchoEvent::create( array(
