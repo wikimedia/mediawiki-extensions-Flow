@@ -26,8 +26,12 @@ make() {
     fi
 }
 
+list_files_changed_in_commit() {
+	git diff --name-only --cached | grep  -P "$1"
+}
+
 file_changed_in_commit() {
-	git diff --name-only --cached | grep -P "$1" 2>&1 >/dev/null
+	list_files_changed_in_commit "$1" 2>&1 > /dev/null
 }
 
 file_changed_in_head() {

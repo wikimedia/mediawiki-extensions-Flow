@@ -10,8 +10,7 @@ ANALYZE_EXTRA=../../includes/GlobalFunctions.php ../../includes/Defines.php ../.
 	../../includes/db/DatabaseUtility.php \
 	../Echo/formatters/BasicFormatter.php ../Echo/formatters/NotificationFormatter.php
 
-# mediawiki-vagrant default to hhvm rather than php5, which is mostly
-# fine but really slow for commands like phplint
+# Make sure we use php5
 PHP=`command -v php5 || command -v php`
 
 ###
@@ -51,7 +50,7 @@ messagecheck: remotes
 lint: grunt phplint checkless messagecheck
 
 phplint:
-	@find ./ -type f -iname '*.php' -print0 | xargs -0 -P 12 -L 1 ${PHP} -l
+	@. scripts/hooks-shared.sh; list_files_changed_in_commit '\.php' | xargs -P 12 -L 1 ${PHP} -l
 
 nodecheck:
 	@which npm > /dev/null && npm install \
