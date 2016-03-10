@@ -67,9 +67,7 @@ class TocTopicListFormatter extends BaseTopicListFormatter {
 						$contentFormat
 					),
 					'format' => $contentFormat,
-					'plaintext' => Utils::htmlToPlaintext(
-						$this->templating->getContent( $postRevision, 'topic-title-html' )
-					),
+					'plaintext' => $this->templating->getContent( $postRevision, 'topic-title-plaintext' )
 				),
 				'last_updated' => $workflow->getLastUpdatedObj()->getTimestamp() * 1000,
 			) + $moderationData;
