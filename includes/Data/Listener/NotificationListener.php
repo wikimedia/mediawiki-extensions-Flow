@@ -33,8 +33,7 @@ class NotificationListener extends AbstractListener {
 		}
 
 		switch( $row['rev_change_type'] ) {
-		// Actually new-topic @todo rename
-		case 'new-post':
+		case 'new-topic':
 			if ( !isset(
 				$metadata['board-workflow'],
 				$metadata['workflow'],
@@ -62,6 +61,30 @@ class NotificationListener extends AbstractListener {
 
 		case 'edit-post':
 			$this->notifyPostChange( 'flow-post-edited', $object, $metadata );
+			break;
+
+		case 'lock-topic':
+			$this->notificationController->notifyTopicLocked( 'flow-topic-resolved', array(
+				'revision' => $object,
+				'topic-workflow' => $metadata['workflow'],
+				'topic-title' => $metadata['topic-title'],
+			) );
+			break;
+
+		// "restore" can be a lot of different things
+		// - undo moderation (suppress/delete/hide) things
+		// - undo lock status
+		// we'll need to inspect the previous revision to figure out what is was
+		case 'restore-topic':
+			$post = $object->getCollection();
+			$previousRevision = $post->getPrevRevision( $object );
+			if ( $previousRevision->isLocked() ) {
+				$this->notificationController->notifyTopicLocked( 'flow-topic-reopened', array(
+					'revision' => $object,
+					'topic-workflow' => $metadata['workflow'],
+					'topic-title' => $metadata['topic-title'],
+				) );
+			}
 			break;
 
 		case 'edit-header':
