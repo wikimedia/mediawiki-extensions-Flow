@@ -208,6 +208,24 @@ $notifications = array(
 		'email-body-batch-params' => array( 'agent', 'title' ),
 		'icon' => 'chat',
 	) + $notificationTemplate,
+	'flow-topic-resolved' => array(
+		'presentation-model' => 'Flow\\TopicResolvedPresentationModel',
+		'user-locators' => array(
+			'EchoUserLocator::locateUsersWatchingTitle',
+			'EchoUserLocator::locateTalkPageOwner'
+		),
+		'primary-link' => array(
+			'message' => 'flow-notification-link-text-view-topic',
+			'destination' => 'flow-post'
+		),
+		'title-message' => 'notification-header-flow-topic-resolved',
+		'title-params' => array( 'subject', 'agent' ),
+		'email-subject-message' => 'notification-email-subject-flow-topic-resolved',
+		'email-subject-params' => array( 'agent', 'subject' ),
+		'email-body-batch-message' => 'notification-email-batch-body-flow-topic-resolved',
+		'email-body-batch-params' => array( 'agent', 'subject' ),
+		'icon' => 'flow-topic-resolved',
+	) + $notificationTemplate,
 );
 
 return $notifications;
