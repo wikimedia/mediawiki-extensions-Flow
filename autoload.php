@@ -391,6 +391,7 @@ $wgAutoloadClasses += array(
 	'Flow\\Tests\\UrlGeneratorTest' => __DIR__ . '/tests/phpunit/UrlGeneratorTest.php',
 	'Flow\\Tests\\WatchedTopicItemTest' => __DIR__ . '/tests/phpunit/WatchedTopicItemsTest.php',
 	'Flow\\TopicRenamedPresentationModel' => __DIR__ . '/includes/Notifications/TopicRenamedPresentationModel.php',
+	'Flow\\TopicResolvedPresentationModel' => __DIR__ . '/includes/Notifications/TopicResolvedPresentationModel.php',
 	'Flow\\UrlGenerator' => __DIR__ . '/includes/UrlGenerator.php',
 	'Flow\\Utils\\NamespaceIterator' => __DIR__ . '/includes/Utils/NamespaceIterator.php',
 	'Flow\\Utils\\PagesWithPropertyIterator' => __DIR__ . '/includes/Utils/PagesWithPropertyIterator.php',
