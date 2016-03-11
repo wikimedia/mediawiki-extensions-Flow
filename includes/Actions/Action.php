@@ -59,14 +59,22 @@ class FlowAction extends Action {
 			$output = $this->context->getOutput();
 		}
 
-		// Check if this is actually a Flow page.
+		// Check if this is actually the right type of page.
 		if ( ! $this->page instanceof WikiPage && ! $this->page instanceof Article ) {
-			throw new ErrorPageError( 'nosuchaction', 'flow-action-unsupported' );
+			throw new ErrorPageError( 'nosuchaction', 'flow-action-not-page' );
 		}
 
 		$title = $this->page->getTitle();
-		if ( $title->getContentModel() !== CONTENT_MODEL_FLOW_BOARD ) {
-			throw new ErrorPageError( 'nosuchaction', 'flow-action-unsupported' );
+
+		$titleContentModel = $title->getContentModel();
+		if ( $titleContentModel !== CONTENT_MODEL_FLOW_BOARD ) {
+			// If we make it to this method, something thinks it's Flow.
+			// However, if we get here the Title class thinks otherwise.
+
+			// This may mean it is a non-Flow page in a Flow namespace, if
+			// page_content_model is populated but rev_content_model is not.
+
+			throw new ErrorPageError( 'nosuchaction', 'flow-action-wrong-title-content-model', $titleContentModel );
 		}
 
 		// @todo much of this seems to duplicate BoardContent::getParserOutput
