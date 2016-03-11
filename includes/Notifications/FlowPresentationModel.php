@@ -134,7 +134,14 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 	}
 
 	protected function truncateTopicTitle( $topicTitle ) {
-		return $this->language->truncate( $topicTitle, self::SECTION_TITLE_RECOMMENDED_LENGTH, '...', false );
+		return $this->language->embedBidi(
+			$this->language->truncate(
+				$topicTitle,
+				self::SECTION_TITLE_RECOMMENDED_LENGTH,
+				'...',
+				false
+			)
+		);
 	}
 
 	protected function isUserTalkPage() {
