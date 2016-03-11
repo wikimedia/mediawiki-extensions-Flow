@@ -637,5 +637,7 @@
 	"flow-guidedtour-optin-find-old-conversations": "Find {{GENDER:$1|your}} old conversations",
 	"flow-guidedtour-optin-find-old-conversations-description": "Previous conversations have been moved to an archive page.",
 	"flow-guidedtour-optin-feedback": "Give us {{GENDER:$1|your}} feedback!",
-	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|You}} can get more information, provide feedback, or disable the new system any time from the Beta features section."
+	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|You}} can get more information, provide feedback, or disable the new system any time from the Beta features section.",
+	"flow-action-not-page": "Page object is the wrong class",
+	"flow-action-wrong-title-content-model": "The page is being handled by Flow, but the Title class indicates that the content model is '$1'.  This is a misconfiguration or inconsistent state.  For example, this may actually be a non-Flow page in a Flow namespace, with rev_content_model not populated."
 }
