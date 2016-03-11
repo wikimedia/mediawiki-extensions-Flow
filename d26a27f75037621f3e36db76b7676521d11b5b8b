@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e2f53b6_6278f9bf",
+        "filename": "i18n/en.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-03-11T02:07:35Z",
+      "side": 1,
+      "message": "Why does this one not use 100 as a cutoff like everything else?",
+      "revId": "d26a27f75037621f3e36db76b7676521d11b5b8b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e2f53b6_c28585a1",
+        "filename": "i18n/en.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-03-11T02:07:35Z",
+      "side": 1,
+      "message": "Same here",
+      "revId": "d26a27f75037621f3e36db76b7676521d11b5b8b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
