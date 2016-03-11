@@ -631,5 +631,6 @@
 	"flow-guidedtour-optin-find-old-conversations": "Trouver {{GENDER:$1|vos}} anciennes conversations",
 	"flow-guidedtour-optin-find-old-conversations-description": "Les conversations précédentes ont été déplacées dans une page d’archive.",
 	"flow-guidedtour-optin-feedback": "Donnez-nous {{GENDER:$1|votre}} avis !",
-	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Vous}} pouvez obtenir plus d’information, donner votre avis, ou désactiver le nouveau système n’importe quand depuis la section Fonctionnalités bêta."
+	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Vous}} pouvez obtenir plus d’information, donner votre avis, ou désactiver le nouveau système n’importe quand depuis la section Fonctionnalités bêta.",
+	"flow-action-not-page": "L'objet associé à la page n'est pas de la bonne classe"
 }
