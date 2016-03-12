@@ -7,7 +7,6 @@ Feature: Suppress
   Background:
     Given I am logged in
 
-  @en.wikipedia.beta.wmflabs.org
   Scenario: Suppressing a topic
     Given there is a new topic with title "suppress-topic"
     And I am on Flow page
