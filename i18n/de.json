@@ -242,7 +242,7 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 und $5 {{PLURAL:$6|ein anderer|andere}} {{GENDER:$1|antworteten}} auf '''$3'''.",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 hat deinen <span class=\"plainlinks\">[$5 Beitrag]</span> auf [[$3|$4]] {{GENDER:$1|bearbeitet}}.",
 	"flow-notification-edit-bundle": "$1 und {{PLURAL:$6|ein anderer|$5 andere}} {{GENDER:$1|bearbeiteten}} einen <span class=\"plainlinks\">[$4 Beitrag]</span> in „$2“ auf „$3“.",
-	"notification-header-flow-new-topic-v2": "Neues Thema auf '''$3''' erstellt: „'''$4'''“.",
+	"notification-header-flow-new-topic-v2": "Neues Thema auf '''$3''' erstellt: <bdi>„'''$4'''“</bdi>.",
 	"notification-bundle-header-flow-new-topic": "{{PLURAL:$2|Ein neues Thema|$1 neue Themen}} auf '''$3'''.",
 	"notification-header-flow-new-topic-user-talk": "Ein neues Thema wurde auf '''deiner Diskussionsseite''' erstellt: „'''$4'''“.",
 	"notification-bundle-header-flow-new-topic-user-talk": "{{PLURAL:$2|Ein neues Thema|$1 neue Themen}} auf '''deiner Diskussionsseite'''.",

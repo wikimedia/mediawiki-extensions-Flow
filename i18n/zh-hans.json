@@ -256,7 +256,7 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1和$5位{{PLURAL:$6|其他}}用户回答了'''$3'''。",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1{{GENDER:$1|编辑了}}您在[[$3|$4]]的<span class=\"plainlinks\">[$5 帖子]</span>。",
 	"flow-notification-edit-bundle": "$1和$5名{{PLURAL:$6|其他}}用户于“$2”在“$3”{{GENDER:$1|编辑了}}一个<span class=\"plainlinks\">[$4 帖子]</span>。",
-	"notification-header-flow-new-topic-v2": "已在'''$3'''上创建新话题：“'''$4'''”。",
+	"notification-header-flow-new-topic-v2": "已在'''$3'''上创建新话题：<bdi>“'''$4'''”</bdi>。",
 	"notification-bundle-header-flow-new-topic": "'''$3'''上的$1条新{{PLURAL:$2|话题}}。",
 	"notification-header-flow-new-topic-user-talk": "'''您的讨论页'''上创建的新话题：“'''$4'''”。",
 	"notification-bundle-header-flow-new-topic-user-talk": "'''您的讨论页'''上的$1个新{{PLURAL:$2|话题}}。",
