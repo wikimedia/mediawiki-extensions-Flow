@@ -243,7 +243,7 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 та $5 {{PLURAL:$6|інший|інші|інших}} {{GENDER:$1|відповіли}} на '''$3'''.",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 {{GENDER:$1|відредагував|відредагувала}} Ваш <span class=\"plainlinks\">[$5 допис]</span> на [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 та $5 {{PLURAL:$6|інший|інші|інших}} {{GENDER:$1|відредагував|відредагувала}} <span class=\"plainlinks\">[$4 допис]</span> у $2 на \"$3\".",
-	"notification-header-flow-new-topic-v2": "Створена нова тема на '''$3''': «'''$4'''».",
+	"notification-header-flow-new-topic-v2": "Створена нова тема на '''$3''': <bdi>«'''$4'''»</bdi>.",
 	"notification-bundle-header-flow-new-topic": "$1 {{PLURAL:$2|нова тема|нові теми|нових тем}} на '''$3'''.",
 	"notification-header-flow-new-topic-user-talk": "Створена нова тема на '''Вашій сторінці обговорення''': «'''$4'''».",
 	"notification-bundle-header-flow-new-topic-user-talk": "$1 {{PLURAL:$2|нова тема|нові теми|нових тем}} на '''Вашій сторінці обговорення'''.",
