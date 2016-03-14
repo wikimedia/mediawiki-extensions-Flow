@@ -1,6 +1,4 @@
-@chrome @firefox @internet_explorer_10
-@vagrant
-@en.wikipedia.beta.wmflabs.org
+@chrome @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10.0
 Feature: Edit existing title
 
   Background:
@@ -13,6 +11,7 @@ Feature: Edit existing title
     And I save the new title
     Then the top post should have a heading which contains "Title edited"
 
+  @skip
   Scenario: Edit existing post
     Given I am logged in
     And I am on Flow page
