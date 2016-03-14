@@ -1,6 +1,4 @@
-@chrome @firefox @internet_explorer_10
-@vagrant
-@en.wikipedia.beta.wmflabs.org
+@chrome @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10.0
 Feature: Actions menu Permalink
 
   Background:
@@ -13,6 +11,7 @@ Feature: Actions menu Permalink
     Then I see only one topic on the page
     And the top post should have a heading which contains "Permalinktest"
 
+  @skip
   Scenario: Actions menu Permalink
     Given I reply with comment "this is my response"
     When I select the permalink for the second post of the first topic
