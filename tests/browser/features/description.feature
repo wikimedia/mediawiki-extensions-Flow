@@ -1,5 +1,4 @@
-@chrome @firefox @internet_explorer_10
-@en.wikipedia.beta.wmflabs.org
+@chrome @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10.0 @vagrant
 Feature: Board description
 
   Assumes Flow is enabled for the Flow_test_talk namespace.

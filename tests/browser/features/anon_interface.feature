@@ -1,6 +1,4 @@
-@chrome @firefox @internet_explorer_10
-@vagrant
-@en.wikipedia.beta.wmflabs.org
+@chrome @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10.0 @vagrant
 Feature: Check the interface for anonymous users
 
   Scenario: Anon does not see block or actions

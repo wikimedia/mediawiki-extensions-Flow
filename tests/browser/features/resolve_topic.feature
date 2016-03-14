@@ -1,5 +1,4 @@
-@chrome @firefox @internet_explorer_10
-@vagrant
+@chrome @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10.0 @vagrant
 Feature: Mark topic as resolved
 
   Background:
@@ -7,13 +6,11 @@ Feature: Mark topic as resolved
     And I am logged in
     And I am on Flow page
 
-  @en.wikipedia.beta.wmflabs.org
   Scenario: Resolving a topic without a summary
     When I mark the first topic as resolved
     And I skip the summary
     Then the first topic is resolved
 
-  @en.wikipedia.beta.wmflabs.org
   Scenario: Resolving a topic and adding a summary
     When I mark the first topic as resolved
     And I summarize as "the answer is 42"
@@ -25,7 +22,7 @@ Feature: Mark topic as resolved
     And I keep the summary
     Then the first topic is resolved with summary "this answer should be kept"
 
-  @en.wikipedia.beta.wmflabs.org @integration
+  @integration
   Scenario: Resolving a topic and updating the summary
     Given I summarize the first topic as "this answer should be changed"
     When I mark the first topic as resolved
