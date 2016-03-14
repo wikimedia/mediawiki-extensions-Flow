@@ -246,7 +246,7 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 e {{PLURAL:$6|un altro|altri $5}} {{GENDER:$1|hanno risposto}} su '''$3'''.",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 {{GENDER:$1|ha modificato}} il tuo <span class=\"plainlinks\">[$5 messaggio]</span> su [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 e {{PLURAL:$6|un altro utente|altri $5 utenti}} {{GENDER:$1|hanno modificato}} un <span class=\"plainlinks\">[$4 messaggio]</span> in \"$2\" su \"$3\".",
-	"notification-header-flow-new-topic-v2": "Nuovo argomento creato su '''$3''': \"'''$4'''\".",
+	"notification-header-flow-new-topic-v2": "Nuovo argomento creato su '''$3''': <bdi>\"'''$4'''\"</bdi>.",
 	"notification-bundle-header-flow-new-topic": "$1 {{PLURAL:$2|nuovo argomento|nuovi argomenti}} su '''$3'''.",
 	"notification-header-flow-new-topic-user-talk": "Un nuovo argomento è stato creato sulla '''tua pagina di discussione''': \"'''$4'''\".",
 	"notification-bundle-header-flow-new-topic-user-talk": "$1 {{PLURAL:$2|nuovo argomento|nuovi argomenti}} nella '''tua pagina di discussione'''.",
