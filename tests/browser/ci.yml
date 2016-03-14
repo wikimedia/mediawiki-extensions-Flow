@@ -1,9 +1,22 @@
 BROWSER:
   - chrome
   - firefox
+  - internet_explorer 10.0
 
 MEDIAWIKI_ENVIRONMENT:
   - beta
 
 PLATFORM:
   - Linux
+  - Windows 8
+
+exclude:
+
+  - BROWSER: chrome
+    PLATFORM: Windows 8
+
+  - BROWSER: firefox
+    PLATFORM: Windows 8
+
+  - BROWSER: internet_explorer 10.0
+    PLATFORM: Linux
