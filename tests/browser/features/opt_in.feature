@@ -1,5 +1,5 @@
 @chrome @firefox
-@vagrant
+@en.wikipedia.beta.wmflabs.org @vagrant
 Feature: Opt-in Flow beta feature
 
   Depends on having $wgFlowEnableOptInBetaFeature = true
@@ -8,13 +8,12 @@ Feature: Opt-in Flow beta feature
   Background:
     Given I am logged in as a new user
 
-  @en.wikipedia.beta.wmflabs.org
   Scenario: Opt-in: I don't have a talk page
     When I enable Flow beta feature
     Then my talk page is a Flow board
     And a notification tells me about it
 
-  @en.wikipedia.beta.wmflabs.org @integration
+  @integration
   Scenario: Opt-in: I have a wikitext talk page
     Given my talk page has wiktext content
     When I enable Flow beta feature
@@ -23,12 +22,14 @@ Feature: Opt-in Flow beta feature
     And the board description contains the templates from my talk page
     And my previous talk page is archived
 
+  @skip
   Scenario: Opt-out: I didn't have a talk page
     Given I have Flow beta feature enabled
     When I disable Flow beta feature
     Then my Flow board is archived
     And my talk page is deleted without redirect
 
+  @skip
   Scenario: Opt-out: I had a wikitext talk page
     Given my talk page has wiktext content
     And I have Flow beta feature enabled
@@ -36,6 +37,7 @@ Feature: Opt-in Flow beta feature
     Then my wikitext talk page is restored
     And my Flow board is archived
 
+  @skip
   Scenario: Re-opt-in
     Given I have used the Flow beta feature before
     When I enable Flow beta feature

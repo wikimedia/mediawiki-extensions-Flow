@@ -1,5 +1,5 @@
 @chrome @firefox @internet_explorer_10
-@vagrant
+@en.wikipedia.beta.wmflabs.org @skip @vagrant
 Feature: Moderation
 
   Background:
