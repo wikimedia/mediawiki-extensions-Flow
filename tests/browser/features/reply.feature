@@ -1,6 +1,4 @@
-@internet_explorer_10
-@vagrant
-@en.wikipedia.beta.wmflabs.org
+@chrome @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10.0 @skip
 Feature: Replying
 
   Scenario: I can reply
@@ -9,7 +7,6 @@ Feature: Replying
     When I reply with comment "hi there"
     Then the top post's first reply should contain the text "hi there"
 
-  @chrome @firefox
   Scenario: Replying updates watched state
     Given there is a new topic created by me
     And I am logged in
