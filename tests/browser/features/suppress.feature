@@ -1,5 +1,5 @@
 @chrome @firefox @internet_explorer_10
-@vagrant
+@en.wikipedia.beta.wmflabs.org @vagrant
 Feature: Suppress
 
   Assumes Flow is enabled on Talk:Flow_QA

@@ -1,6 +1,5 @@
 @chrome @firefox @internet_explorer_10
-@vagrant
-@en.wikipedia.beta.wmflabs.org
+@en.wikipedia.beta.wmflabs.org @vagrant
 Feature: Summarize
 
   Background:

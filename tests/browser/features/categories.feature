@@ -1,4 +1,5 @@
 @chrome @firefox @internet_explorer_10
+@en.wikipedia.beta.wmflabs.org
 Feature: Categories
 
   Assumes Flow is enabled for the Flow_test_talk namespace.

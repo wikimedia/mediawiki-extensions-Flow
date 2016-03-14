@@ -1,5 +1,5 @@
 @chrome @firefox @internet_explorer_10
-@vagrant
+@en.wikipedia.beta.wmflabs.org @vagrant
 Feature: Flow updates are in Recent Changes
 
   Background:

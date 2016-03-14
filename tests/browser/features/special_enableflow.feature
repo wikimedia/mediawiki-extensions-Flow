@@ -1,5 +1,5 @@
 @chrome @firefox @internet_explorer_10
-@vagrant
+@en.wikipedia.beta.wmflabs.org @vagrant
 Feature: Flow Special:EnableFlow enables new flow boards
 
   Assumes Template:Wikitext_talk_page_converted_to_Flow exists
