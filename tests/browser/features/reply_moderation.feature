@@ -1,4 +1,4 @@
-@chrome @firefox @internet_explorer_10
+@chrome @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10.0
 Feature: Reply moderation
 
   Background:
