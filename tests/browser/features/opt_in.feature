@@ -1,5 +1,4 @@
-@chrome @firefox
-@vagrant
+@chrome @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10.0 @skip
 Feature: Opt-in Flow beta feature
 
   Depends on having $wgFlowEnableOptInBetaFeature = true
@@ -8,13 +7,12 @@ Feature: Opt-in Flow beta feature
   Background:
     Given I am logged in as a new user
 
-  @en.wikipedia.beta.wmflabs.org
   Scenario: Opt-in: I don't have a talk page
     When I enable Flow beta feature
     Then my talk page is a Flow board
     And a notification tells me about it
 
-  @en.wikipedia.beta.wmflabs.org @integration
+  @integration
   Scenario: Opt-in: I have a wikitext talk page
     Given my talk page has wiktext content
     When I enable Flow beta feature
