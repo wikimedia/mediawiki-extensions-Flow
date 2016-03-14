@@ -1,5 +1,4 @@
-@firefox
-@en.wikipedia.beta.wmflabs.org
+@chrome @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10.0 @skip
 Feature: Basic site for legacy devices
 
   Background:
