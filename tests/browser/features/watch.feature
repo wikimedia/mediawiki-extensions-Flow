@@ -1,6 +1,4 @@
-@chrome @firefox @internet_explorer_10
-@vagrant
-@en.wikipedia.beta.wmflabs.org
+@en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10.0 @vagrant
 Feature: Watching/Unwatching Boards and Topics
 
   Background:
@@ -13,6 +11,7 @@ Feature: Watching/Unwatching Boards and Topics
     When I click the Watch Topic link
     Then I should see the Unwatch Topic link
 
+  @chrome
   Scenario: Unwatch topic
     Given I am logged in
     And I am on Flow page
@@ -20,6 +19,7 @@ Feature: Watching/Unwatching Boards and Topics
     When I click the Unwatch Topic link
     Then I should see the Watch Topic link
 
+  @chrome
   Scenario: Watch board
     Given I am logged in
     And I am on Flow page
@@ -27,6 +27,7 @@ Feature: Watching/Unwatching Boards and Topics
     When I click the Watch Board link
     Then I should see the Unwatch Board link
 
+  @chrome
   Scenario: Unwatch board
     Given I am logged in
     And I am on Flow page
@@ -34,6 +35,7 @@ Feature: Watching/Unwatching Boards and Topics
     When I click the Unwatch Board link
     Then I should see the Watch Board link
 
+  @chrome
   Scenario: No watch links for anonymous users
     When I am on Flow page
     Then I should not see any watch links

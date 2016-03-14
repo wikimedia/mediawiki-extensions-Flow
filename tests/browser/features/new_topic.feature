@@ -1,4 +1,4 @@
-@chrome @firefox @internet_explorer_10
+@en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10.0 @vagrant
 Feature: Creating a new topic
 
   Scenario: Add new Flow topic as anonymous user
@@ -6,6 +6,7 @@ Feature: Creating a new topic
     Then the top post should have a heading which contains "Anonymous user topic creation"
     And the top post should have content which contains "Anonymous user topic creation"
 
+  @chrome
   Scenario: Add new Flow topic with topic-title-wikitext
     Given I am logged in
     And I am on a new board
