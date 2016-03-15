@@ -145,7 +145,10 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 	}
 
 	protected function isUserTalkPage() {
+		// Would like to do $this->event->getTitle()->equals( $this->user->getTalkPage() )
+		// but $this->user is private in the parent class
 		$username = $this->getViewingUserForGender();
-		return $this->event->getTitle()->getDBkey() === $username;
+		return $this->event->getTitle()->getNamespace() === NS_USER_TALK &&
+			$this->event->getTitle()->getText() === $username;
 	}
 }
