@@ -204,6 +204,7 @@
 	"flow-error-unknown-workflow-id-title": "Title displayed at top of page and in browser title bar when the user requests a page within the Topic namespace that is not a known topic",
 	"flow-error-unknown-workflow-id": "Body of page displayed when the user requests a page within the Topic namespace that is not a known topic",
 	"flow-error-search": "Error message shown to the users when we have an issue communicating with our search backend.",
+	"flow-error-invalid-undelete": "Error message shown to the users when they attempt to restore a revision over an active discussion board.",
 	"flow-edit-header-placeholder": "Used as placeholder when editing the description of a Flow board",
 	"flow-edit-header-submit": "Used as label for the Submit button.",
 	"flow-edit-header-submit-anonymously": "Used as label for the Submit button when submitting as an anonymous user.",

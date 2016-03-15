@@ -127,6 +127,7 @@ $wgAutoloadClasses += array(
 	'Flow\\Exception\\InvalidInputException' => __DIR__ . '/includes/Exception/ExceptionHandling.php',
 	'Flow\\Exception\\InvalidReferenceException' => __DIR__ . '/includes/Exception/ExceptionHandling.php',
 	'Flow\\Exception\\InvalidTopicUuidException' => __DIR__ . '/includes/Exception/ExceptionHandling.php',
+	'Flow\\Exception\\InvalidUndeleteException' => __DIR__ . '/includes/Exception/ExceptionHandling.php',
 	'Flow\\Exception\\NoIndexException' => __DIR__ . '/includes/Exception/ExceptionHandling.php',
 	'Flow\\Exception\\NoParserException' => __DIR__ . '/includes/Exception/ExceptionHandling.php',
 	'Flow\\Exception\\PermissionException' => __DIR__ . '/includes/Exception/ExceptionHandling.php',
