@@ -247,7 +247,7 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 och $5 {{PLURAL:$6|annan|andra}} {{GENDER:$1|svarade}} på '''$3'''.",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 har {{GENDER:$1|redigerat}} ditt <span class=\"plainlinks\">[$5 inlägg]</span> på [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 och $5 {{PLURAL:$6|annan|andra}} {{GENDER:$1|redigerade}} ett <span class=\"plainlinks\">[$4 inlägg]</span> i \"$2\" på \"$3\".",
-	"notification-header-flow-new-topic-v2": "Nytt ämne skapades på '''$3''': \"'''$4'''\".",
+	"notification-header-flow-new-topic-v2": "Nytt ämne skapades på '''$3''': <bdi>\"'''$4'''\"</bdi>.",
 	"notification-bundle-header-flow-new-topic": "$1 {{PLURAL:$2|nytt ämne|nya ämnen}} på '''$3'''.",
 	"notification-header-flow-new-topic-user-talk": "Ett nytt ämne skapades på ''''din diskussionssida''': \"'''$4'''\"",
 	"notification-bundle-header-flow-new-topic-user-talk": "$1 {{PLURAL:$2|nytt ämne|nya ämnen}} på '''din diskussionssida'''.",

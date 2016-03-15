@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"The Discoverer"
+			"The Discoverer",
+			"Macofe"
 		]
 	},
 	"logentry-delete-flow-delete-post": "$1 hannem [[$6]] -cher \"[[$3|$5]]\" hantuntlem ek [$4 prokasnni]  {{GENDER:$2|kadun udoila}}",
@@ -153,7 +154,7 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 ani anik $5 {{PLURAL:$6|vangdian|vangdianim}} '''$3''' -cher {{GENDER:$1|zobzb dila}}.",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 hannem [[$3|$4]] -cher tuji <span class=\"plainlinks\">[$5 prokasnni]</span> {{GENDER:$1|bodol'la}}.",
 	"flow-notification-edit-bundle": "$1 ani anik $5 {{PLURAL:$6|vangdian|vangdianim}} \"$3\" -cher $2 hantun ek <span class=\"plainlinks\">[$4 prokasnni]</span> {{GENDER:$1|bodol'la}}.",
-	"notification-header-flow-new-topic-v2": "'''$3''' hacher novo vixoi rochla: \"'''$4'''\".",
+	"notification-header-flow-new-topic-v2": "'''$3''' hacher novo vixoi rochla: <bdi>\"'''$4'''\"</bdi>.",
 	"notification-bundle-header-flow-new-topic": "'''$3''' hacher $1 noveo {{PLURAL:$2|vixoi}}",
 	"notification-header-flow-new-topic-user-talk": "'''Tujea uloupache panar''' ek novo vixoi rochla: \"'''$4'''\".",
 	"notification-bundle-header-flow-new-topic-user-talk": "'''Tujea uloupache panar''' $1 {{PLURAL:$2|novo vixoi|noveo vixoi}}.",

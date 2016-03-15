@@ -9,7 +9,8 @@
 			"2nd-player",
 			"Otokoume",
 			"Sujiniku",
-			"Nnemo"
+			"Nnemo",
+			"Macofe"
 		]
 	},
 	"flow-desc": "ワークフロー管理システム",
@@ -188,7 +189,7 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 と他 $5 {{PLURAL:$6|人}}が '''$3''' で{{GENDER:$1|返信しました}}。",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 が [[$3|$4]] での<span class=\"plainlinks\">[$5 投稿]</span>を{{GENDER:$1|編集しました}}。",
 	"flow-notification-edit-bundle": "$1 と他 $5 {{PLURAL:$6|人}}が「$3」の「$2」での<span class=\"plainlinks\">[$4 投稿]</span>を{{GENDER:$1|編集しました}}。",
-	"notification-header-flow-new-topic-v2": "新しい話題が'''$3'''で作成されました: '''「$4」'''",
+	"notification-header-flow-new-topic-v2": "新しい話題が'''$3'''で作成されました: <bdi>「'''$4'''」<bdi>",
 	"notification-bundle-header-flow-new-topic": "$1件の新しい{{PLURAL:$2|話題}}が'''$3'''に作成されています。",
 	"notification-header-flow-new-topic-user-talk": "新しい話題が'''あなたのトークページ'''で作成されました: '''「$4」'''",
 	"notification-bundle-header-flow-new-topic-user-talk": "$1件の新しい{{PLURAL:$2|話題}}が'''あなたのトークページ'''に作成されています。",
