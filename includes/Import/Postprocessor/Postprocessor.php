@@ -2,7 +2,7 @@
 
 namespace Flow\Import\Postprocessor;
 
-use Flow\Model\UUID;
+use Flow\Model\PostRevision;
 use Flow\Import\IImportHeader;
 use Flow\Import\IImportPost;
 use Flow\Import\IImportTopic;
@@ -29,9 +29,9 @@ interface Postprocessor {
 	 *
 	 * @param TopicImportState $state
 	 * @param IImportPost $post
-	 * @param UUID $newPostId
+	 * @param PostRevision $newPost
 	 */
-	function afterPostImported( TopicImportState $state, IImportPost $post, UUID $newPostId );
+	function afterPostImported( TopicImportState $state, IImportPost $post, PostRevision $newPost );
 
 	/**
 	 * Called after the successful commit of a topic to the database.

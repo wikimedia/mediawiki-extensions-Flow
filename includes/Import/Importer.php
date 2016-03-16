@@ -881,7 +881,7 @@ class TalkpageImportOperation {
 				$post
 			);
 			$state->parent->logger->info( $logPrefix . "Finished importing post with " . count( $replyRevisions ) . " revisions" );
-			$state->parent->postprocessor->afterPostImported( $state, $post, $topRevision->getPostId() );
+			$state->parent->postprocessor->afterPostImported( $state, $post, $topRevision );
 		}
 
 		$state->recordUpdateTime( $topRevision->getRevisionId() );

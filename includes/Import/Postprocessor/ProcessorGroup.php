@@ -2,6 +2,7 @@
 
 namespace Flow\Import\Postprocessor;
 
+use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Import\IImportHeader;
 use Flow\Import\IImportPost;
@@ -29,7 +30,7 @@ class ProcessorGroup implements Postprocessor {
 		$this->call( __FUNCTION__, func_get_args() );
 	}
 
-	public function afterPostImported( TopicImportState $state, IImportPost $post, UUID $newPostId ) {
+	public function afterPostImported( TopicImportState $state, IImportPost $post, PostRevision $newPost ) {
 		$this->call( __FUNCTION__, func_get_args() );
 	}
 
