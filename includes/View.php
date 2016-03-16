@@ -219,7 +219,7 @@ class View extends ContextSource {
 		}
 
 		if ( count( $apiResponse['blocks'] ) === 0 ) {
-			throw new InvalidActionException( "No blocks accepted action: $action" );
+			throw new InvalidActionException( "No blocks accepted action: $action", 'invalid-action' );
 		}
 
 		array_walk_recursive( $apiResponse, function( &$value ) {

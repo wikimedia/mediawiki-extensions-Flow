@@ -115,7 +115,7 @@ class BoardContentHandler extends \ContentHandler {
 	 *
 	 * @since 1.21
 	 *
-	 * @return array Always an empty array.
+	 * @return array Associative array mapping action names to handler callables
 	 */
 	public function getActionOverrides() {
 		/** @var FlowActions $actions */
