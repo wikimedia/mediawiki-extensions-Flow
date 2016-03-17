@@ -4,6 +4,14 @@
 ALTER TABLE /*_*/flow_wiki_ref RENAME TO /*_*/temp_flow_wiki_ref;
 ALTER TABLE /*_*/flow_ext_ref RENAME TO /*_*/temp_flow_ext_ref;
 
+-- SQLite also doesn't allow multiple indexes with the same name (even if
+-- they're on separate tables.
+-- Since we're going to recreate these same tables with the same indexes, we
+-- first need to drop them from the other table.
+DROP INDEX /*i*/flow_wiki_ref_idx_v2;
+DROP INDEX /*i*/flow_wiki_ref_revision_v2;
+DROP INDEX /*i*/flow_ext_ref_idx_v2;
+DROP INDEX /*i*/flow_ext_ref_revision_v2;
 
 CREATE TABLE /*_*/flow_wiki_ref (
 	ref_id binary(11) not null,
