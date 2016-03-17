@@ -36,6 +36,23 @@
     },
     {
       "key": {
+        "uuid": "ee33df1d_b4f52cca",
+        "filename": "includes/Notifications/TopicResolvedPresentationModel.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-03-17T23:06:42Z",
+      "side": 1,
+      "message": "This should be the topic title, not the page title. In local testing I get notifications like \"The topic User talk:RoanKattouw was resolved on your talk page\"",
+      "revId": "478dca129ed453f78ca68b992aa390883fb10f20",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee33df1d_d46550ac",
         "filename": "includes/Notifications/TopicResolvedPresentationModel.php",
         "patchSetId": 4
