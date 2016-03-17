@@ -122,10 +122,7 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 	}
 
 	protected function getContentSnippet() {
-		return EchoDiscussionParser::getTextSnippet(
-			$this->event->getExtraParam( 'content' ),
-			$this->language
-		);
+		return $this->event->getExtraParam( 'content' );
 	}
 
 	protected function getTopicTitle( $extraParamName = 'topic-title' ) {
