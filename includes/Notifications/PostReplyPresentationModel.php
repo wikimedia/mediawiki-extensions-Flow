@@ -55,9 +55,11 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 
 	public function getHeaderMessage() {
 		if ( $this->isBundled() ) {
-			list( $formattedCount, $countForPlural ) = $this->getNotificationCountForOutput();
+			$count = $this->getNotificationCountForOutput();
 			$msg = $this->msg( $this->getHeaderMessageKey() );
-			$msg->params( $formattedCount, $countForPlural );
+
+			// Repeat is B/C until unused parameter is removed from translations
+			$msg->numParams( $count, $count );
 			$msg->plaintextParams( $this->getTopicTitle() );
 			return $msg;
 		} else {
