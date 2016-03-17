@@ -164,7 +164,7 @@ class InvalidReferenceException extends InvalidInputException {
  */
 class InvalidActionException extends FlowException {
 	protected function getErrorCodeList() {
-		return array ( 'invalid-action'	);
+		return array ( 'invalid-action' );
 	}
 
 	/**
@@ -347,3 +347,18 @@ class InvalidTopicUuidException extends InvalidInputException {
 	}
 }
 
+/**
+ * Category: invalid action exception
+ */
+class InvalidUndeleteException extends InvalidActionException {
+	protected function getErrorCodeList() {
+		return array ( 'invalid-undelete' );
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function getHTML() {
+		return wfMessage( 'flow-error-invalid-undelete' )->escaped();
+	}
+}

@@ -5,6 +5,8 @@ use Flow\Container;
 use Flow\Conversion\Utils;
 use Flow\Exception\FlowException;
 use Flow\Exception\PermissionException;
+use Flow\Exception\InvalidUndeleteException;
+use Flow\Data\Listener\RecentChangesListener;
 use Flow\Formatter\CheckUserQuery;
 use Flow\Import\OptInUpdate;
 use Flow\Model\UUID;
@@ -13,7 +15,6 @@ use Flow\SpamFilter\AbuseFilter;
 use Flow\TalkpageManager;
 use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
-use Flow\Data\Listener\RecentChangesListener;
 
 class FlowHooks {
 	/**
@@ -1629,10 +1630,15 @@ class FlowHooks {
 	 * @param bool $created Whether or not the restoration caused the page to be created (i.e. it didn't exist before).
 	 * @param string $comment The comment associated with the undeletion.
 	 * @param int $oldPageId ID of page previously deleted (from archive table)
+	 * @throws InvalidUndeleteException
 	 * @return bool
 	 */
 	public static function onArticleUndelete( Title $title, $created, $comment, $oldPageId ) {
 		if ( $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
+			if ( $title->getArticleID() !== $oldPageId ) {
+				throw new InvalidUndeleteException( 'Failed to move ' . $oldPageId . ' over ' . $title->getArticleID() );
+			}
+
 			// complete hack to make sure that when the page is saved to new
 			// location and rendered it doesn't throw an error about the wrong title
 			Container::get( 'factory.loader.workflow' )->pageMoveInProgress();
