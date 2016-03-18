@@ -74,6 +74,10 @@ $namespaceNames['fr'] = array(
 	NS_TOPIC =>  'Sujet',
 );
 
+$namespaceNames['gom'] = array(
+	NS_TOPIC => 'विशय',
+);
+
 /** Hebrew */
 $namespaceNames['he'] = array(
 	NS_TOPIC =>  'נושא',
