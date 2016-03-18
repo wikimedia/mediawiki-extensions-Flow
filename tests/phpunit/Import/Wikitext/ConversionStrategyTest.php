@@ -5,8 +5,8 @@ namespace Flow\Tests\Import\Wikitext;
 use Flow\Container;
 use DateTime;
 use DateTimeZone;
-use Flow\Import\ImportSourceStore;
-use Flow\Import\NullImportSourceStore;
+use Flow\Import\SourceStore\SourceStoreInterface as ImportSourceStore;
+use Flow\Import\SourceStore\Null as NullImportSourceStore;
 use Flow\Import\Wikitext\ConversionStrategy;
 use LinkCache;
 use Parser;
@@ -51,7 +51,7 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 
 	public function testReturnsValidSourceStore() {
 		$this->assertInstanceOf(
-			'Flow\Import\ImportSourceStore',
+			'Flow\Import\SourceStore\SourceStoreInterface',
 			$this->createStrategy()->getSourceStore()
 		);
 	}

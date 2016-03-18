@@ -1,6 +1,6 @@
 <?php
 
-use Flow\Import\FileImportSourceStore;
+use Flow\Import\SourceStore\File as FileImportSourceStore;
 use Flow\Import\LiquidThreadsApi\RemoteApiBackend;
 use Flow\Import\LiquidThreadsApi\ImportSource as LiquidThreadsApiImportSource;
 use Psr\Log\LogLevel;

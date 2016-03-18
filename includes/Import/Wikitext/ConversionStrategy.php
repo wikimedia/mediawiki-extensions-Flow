@@ -6,7 +6,7 @@ use DateTime;
 use DateTimeZone;
 use Flow\Import\ArchiveNameHelper;
 use Flow\Import\IConversionStrategy;
-use Flow\Import\ImportSourceStore;
+use Flow\Import\SourceStore\SourceStoreInterface as ImportSourceStore;
 use LinkBatch;
 use Parser;
 use Psr\Log\LoggerInterface;
