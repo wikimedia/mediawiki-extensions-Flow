@@ -143,7 +143,7 @@
 	"flow-last-modified": "Fir d'lescht geännert ongeféier $1",
 	"flow-workflow": "workflow",
 	"notification-header-flow-new-topic-user-talk": "Eng nei Rubrik gouf op Ärer Diskussiounssäit ugeluecht: \"$4\"",
-	"notification-bundle-header-flow-post-reply-v2": "{{PLURAL:$2|Eng nei Äntwert|$1 nei Äntwerten}} op \"'''$3'''\".",
+	"notification-bundle-header-flow-post-reply-v2": "{{PLURAL:$1|Eng nei Äntwert|$1 nei Äntwerten}} op \"'''$3'''\".",
 	"notification-header-flow-post-edited-v2": "{{GENDER:$2|Äre}} Beitrag op \"'''$1'''\" gouf geännert.",
 	"notification-header-flow-topic-renamed-user-talk": "D'Rubrik ''$1'' op Ärer Diskussiounssäit gouf op ''$2'' ëmbenannt.",
 	"notification-header-flow-summary-edited": "De Resumé vun '''''$1''''' gouf aktualiséiert.",

@@ -5,7 +5,8 @@
 			"संजीव कुमार",
 			"Phoenix303",
 			"NehalDaveND",
-			"Sfic"
+			"Sfic",
+			"चक्रपाणी"
 		]
 	},
 	"enableflow": "प्रवाह को सक्षम करें",
@@ -87,5 +88,6 @@
 	"apihelp-flow+view-post-description": "पोस्ट देखेँ",
 	"flow-undo": "पूर्ववत करें",
 	"flow-undo-latest-revision": "सद्य अवतरण",
-	"flow-undo-your-text": "आपका पाठ"
+	"flow-undo-your-text": "आपका पाठ",
+	"flow-action-not-page": "पेज पर दिखाया गया ऑब्जेक्ट किसी समस्या के हो जाने के कारण है।"
 }
