@@ -268,7 +268,7 @@
 	"flow-notification-rename-email-batch-body": "您在 $4 的 \"$2\" 話題被{{GENDER:$1|重新命名}}為 \"$3\"",
 	"flow-notification-newtopic-email-subject": "$1 在 $2 {{GENDER:$1|建立}}了新話題",
 	"flow-notification-newtopic-email-batch-body": "$1 在 $3 {{GENDER:$1|建立}}了一則新話題，標題為 \"$2\"",
-	"flow-notification-newtopic-email-batch-bundle-body": "$2 有 {{PLURAL:$1|$1 則新話題|$1 則新話題|250=250+  則新話題}}",
+	"flow-notification-newtopic-email-batch-bundle-body": "$2 有 {{PLURAL:$1|一則新話題|$1 則新話題|100=99+ 則新話題}}",
 	"echo-category-title-flow-discussion": "Flow",
 	"echo-pref-tooltip-flow-discussion": "當有與我相關的動作發生在 Flow 時，通知我。",
 	"flow-link-post": "發佈",

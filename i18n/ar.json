@@ -97,6 +97,7 @@
 	"flow-comment-deleted": "حذف تعليق",
 	"flow-comment-hidden": "إخفاء التعليق",
 	"notification-header-flow-new-topic-user-talk": "موضوع جديد تم إنشاؤه على '''صفحة نقاشك''': \"'''$4'''\".",
+	"notification-bundle-header-flow-new-topic-user-talk": "{{PLURAL:$1|رسالة جديدة|رسالتان جديدتان|$1 رسائل جديدة|$1 رسالة جديدة}} في '''صفحة نقاشك'''.",
 	"notification-header-flow-summary-edited": "حُدث ملخص \"'''$1'''\".",
 	"notification-bundle-header-flow-summary-edited": "حُدث ملخص \"'''$1'''\" عدة مرات.",
 	"notification-header-flow-mention-post": "{{GENDER:$2|أشار|أشارت}} $1 {{GENDER:$4|إليك}} في \"$5\".",
