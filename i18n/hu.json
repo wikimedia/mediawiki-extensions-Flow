@@ -116,6 +116,7 @@
 	"flow-board-notification-subscribe-description": "Értesítést {{GENDER:$1|fogsz}} kapni, ha egy új témát nyitnak ebben a megbeszélésben.",
 	"flow-topic-action-watchlist-add": "Feliratkozás erre a témára",
 	"flow-topic-action-watchlist-remove": "Leiratkozás",
+	"flow-error-allowcreation-no-usedb": "A Flow bekapcsolásához egy adott lapon a <var>$wgContentHandlerUseDB</var> beállításnak igaznak (<code>true</code>) kell lennie.",
 	"flow-error-missing-content": "A hozzászólásnak nincs tartalma. Ez szükséges az elmentéséhez.",
 	"flow-error-missing-summary": "Meg kell adnod egy összefoglalást.",
 	"flow-error-missing-title": "A témának nincs címe. Ez szükséges az elmentéséhez.",
