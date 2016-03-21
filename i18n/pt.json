@@ -237,7 +237,7 @@
 	"flow-last-modified": "Modificado pela última vez em $1",
 	"flow-workflow": "fluxo de trabalho",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 \"$2\"]</span><br />$1 {{GENDER:$1|respondeu}} em \"$4\".",
-	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 e {{PLURAL:$5|$5 outro|$5 outros|100=+99 outros}}} {{GENDER:$1|responderam}} em '''$3'''.",
+	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 e {{PLURAL:$5|$5 outro|$5 outros|100=+99 outros}} {{GENDER:$1|responderam}} em '''$3'''.",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 {{GENDER:$1|editou}} a sua <span class=\"plainlinks\">[$5 mensagem]</span> em [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 e {{PLURAL:$5|$5 outro|$5 outros|100=+99 outros}} {{GENDER:$1|editaram}} uma <span class=\"plainlinks\">[$4 mensagem]</span> em \"$2\", em \"$3\".",
 	"notification-header-flow-new-topic-v2": "Novo tópico criado em '''$3''': <bdi>\"'''$4'''\"</bdi>.",

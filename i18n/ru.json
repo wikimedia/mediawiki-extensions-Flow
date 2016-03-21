@@ -240,7 +240,7 @@
 	"flow-last-modified": "Последнее изменение около $1",
 	"flow-workflow": "поток работ",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1| ответил|ответила}} на '''$4'''.",
-	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 и $5 {{PLURAL:$6|другой|других}} {{GENDER:$1|ответил|ответила}} на странице '''$3'''.",
+	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 и {{PLURAL:$5|$5 другой ответил{{GENDER:$1||а}}|$5 других ответило|100=99+ других ответило}} на странице '''$3'''.",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 отредактировал{{GENDER:$1||а}} ваше <span class=\"plainlinks\">[$5 сообщение]</span> на [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 и $5 {{PLURAL:$6|другой|других}} {{GENDER:$1|отредактировал|отредактировала}} <span class=\"plainlinks\">[$4 сообщение]</span> в «$2» на «$3».",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|создал|создала}}  новую тему на '''$3'''.",

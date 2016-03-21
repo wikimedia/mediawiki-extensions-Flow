@@ -36,7 +36,7 @@
 	"notification-header-flow-post-edited-v2": "\"'''$1'''\" -आंत {{GENDER:$2|तुजी}} प्रकासणी बदल्ला.",
 	"notification-header-flow-post-edited-user-talk": "'''{{GENDER:$2|तुज्या}} उलवपाचे पानार''' \"'''$1'''\" -आंत एक प्रकासणी बदल्ला.",
 	"flow-notification-edit-email-batch-body": "$1 हाणें $3 हाचेर \"$2\" -आंत एक प्रकासणी {{GENDER:$1|बदल्ला}}",
-	"flow-notification-edit-email-batch-bundle-body": "$1 आनी आनीक $4 {{PLURAL:$5|वांगदियान|वांगदियानीं}} $3 हाचेर \"$2\" -आंत एक प्रकासणी {{GENDER:$1|बदल्ला}}",
+	"flow-notification-edit-email-batch-bundle-body": "$1 आनी आनीक {{PLURAL:$4|एक वांगदियान|$4 वांगदियानीं}} $3 हाचेर \"$2\" -आंत एक प्रकासणी {{GENDER:$1|बदल्ला}}",
 	"flow-link-post": "प्रकासणी",
 	"flow-link-history": "इतिहास",
 	"flow-link-post-revision": "प्रकासण्येची उजळनी",

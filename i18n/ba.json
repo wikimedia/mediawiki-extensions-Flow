@@ -6,5 +6,6 @@
 		]
 	},
 	"flow-topic-comments": "{{PLURAL:$1|$1 аңлатма|0={{GENDER:$2|Беренсе булып}} аңлатма ҡалдыр!}}",
+	"flow-moderation-confirmation-undelete-post": "Өҫтә күрһәтелгән хәбәрҙе юйыуҙы юҡҡа сығарҙығыҙ.",
 	"flow-action-not-page": "Был нөсхәлә объект битенең класы дөрөҫ түгел"
 }
