@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ee33df1d_1ba06e8c",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-03-22T16:00:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee33df1d_946bc881",
+      "revId": "478dca129ed453f78ca68b992aa390883fb10f20",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee33df1d_f4685486",
         "filename": "includes/Notifications/TopicResolvedPresentationModel.php",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2016-03-17T23:03:14Z",
       "side": 1,
       "message": "s/reopened/resolved/",
+      "revId": "478dca129ed453f78ca68b992aa390883fb10f20",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee33df1d_5baaf66d",
+        "filename": "includes/Notifications/TopicResolvedPresentationModel.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-03-22T16:00:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee33df1d_f4685486",
       "revId": "478dca129ed453f78ca68b992aa390883fb10f20",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "ee33df1d_5bc15632",
+        "filename": "includes/Notifications/TopicResolvedPresentationModel.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-03-22T16:00:38Z",
+      "side": 1,
+      "message": "This line was correct, but the Title object passed to the event was wrong :)",
+      "parentUuid": "ee33df1d_b4f52cca",
+      "revId": "478dca129ed453f78ca68b992aa390883fb10f20",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee33df1d_d46550ac",
         "filename": "includes/Notifications/TopicResolvedPresentationModel.php",
         "patchSetId": 4
@@ -64,6 +118,24 @@
       "writtenOn": "2016-03-17T23:03:14Z",
       "side": 1,
       "message": "This is redundant, the parent method already returns false.",
+      "revId": "478dca129ed453f78ca68b992aa390883fb10f20",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee33df1d_9bb3dee7",
+        "filename": "includes/Notifications/TopicResolvedPresentationModel.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-03-22T16:00:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee33df1d_d46550ac",
       "revId": "478dca129ed453f78ca68b992aa390883fb10f20",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
