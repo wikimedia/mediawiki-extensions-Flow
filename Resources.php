@@ -171,7 +171,6 @@ $wgResourceModules += array(
 			'talkpagelinktext',
 			'flow-cancel-warning',
 			// Moderation state
-			'flow-lock-post-content',
 			'flow-hide-title-content',
 			'flow-hide-post-content',
 			'flow-delete-title-content',
