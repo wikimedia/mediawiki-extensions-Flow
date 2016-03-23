@@ -47,6 +47,12 @@ class NotificationController {
 		$icons['flowusertalk-new-topic'] = array(
 			'path' => 'Flow/modules/notification/icon/flowusertalk-new-topic.svg',
 		);
+		$icons['flow-topic-resolved'] = array(
+			'path' => 'Flow/modules/notification/icon/flow-topic-resolved.svg',
+		);
+		$icons['flow-topic-reopened'] = array(
+			'path' => 'Flow/modules/notification/icon/flow-topic-reopened.svg',
+		);
 	}
 
 	/**
@@ -351,6 +357,52 @@ class NotificationController {
 		}
 
 		return $events;
+	}
+
+	/**
+	 * Triggers notifications when a topic is resolved or reopened.
+	 *
+	 * @param string $type flow-topic-resolved|flow-topic-reopened
+	 * @param array $data
+	 * @return array
+	 * @throws Exception\InvalidDataException
+	 * @throws FlowException
+	 * @throws \MWException
+	 */
+	public function notifyTopicLocked( $type, $data = array() ) {
+		if ( !class_exists( 'EchoEvent' ) ) {
+			return array();
+		}
+
+		$revision = $data['revision'];
+		if ( !$revision instanceof PostRevision ) {
+			throw new FlowException( 'Expected PostSummary but received ' . get_class( $revision ) );
+		}
+		$topicWorkflow = $data['topic-workflow'];
+		if ( !$topicWorkflow instanceof Workflow ) {
+			throw new FlowException( 'Expected Workflow but received ' . get_class( $topicWorkflow ) );
+		}
+
+		$extraData['topic-workflow'] = $topicWorkflow->getId();
+		$extraData['topic-title'] = Utils::htmlToPlaintext( $revision->getContent( 'topic-title-html' ), 200, $this->language );
+		$extraData['target-page'] = $topicWorkflow->getArticleTitle()->getArticleID();
+		// I'll treat resolve & reopen as the same notification type, but pass the
+		// different type so presentation models can differentiate
+		$extraData['type'] = $type;
+
+		$info = array(
+			'type' => 'flow-topic-resolved',
+			'agent' => $revision->getUser(),
+			'title' => $topicWorkflow->getArticleTitle(),
+			'extra' => $extraData,
+		);
+
+		// Allow a specific timestamp to be set - useful when importing existing data
+		if ( isset( $data['timestamp'] ) ){
+			$info['timestamp'] = $data['timestamp'];
+		}
+
+		return array( EchoEvent::create( $info ) );
 	}
 
 	public function notifyFlowEnabledOnTalkpage( User $user ) {
