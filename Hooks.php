@@ -1384,7 +1384,7 @@ class FlowHooks {
 			return true;
 		}
 
-		$content = Utils::htmlToPlaintext( $revision->getContent( 'topic-title-html' ) );
+		$content = $revision->getContent( 'topic-title-plaintext' );
 		$link = Linker::link( $title, htmlspecialchars( $content ) );
 
 		return true;

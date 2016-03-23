@@ -101,7 +101,7 @@ class ActionFormatter extends \LogFormatter {
 
 		// I don't think this is an actual security issue, but this should use Templating->getContent: T119234
 		// topic title
-		$message->plaintextParams( Utils::htmlToPlaintext( $root->getLastRevision()->getContent( 'topic-title-html' ) ) );
+		$message->plaintextParams( $root->getLastRevision()->getContent( 'topic-title-plaintext' ) );
 
 		$message->params( $root->getWorkflow()->getOwnerTitle() ); // board title object
 

@@ -307,9 +307,7 @@ abstract class AbstractFormatter {
 		// generated link has generic link text, should be actual topic title
 		$root = $row->revision->getRootPost();
 		if ( $root && $this->permissions->isAllowed( $root, 'view' ) ) {
-			$topicDisplayText = Utils::htmlToPlaintext(
-				Container::get( 'templating' )->getContent( $root, 'topic-title-html' )
-			);
+			$topicDisplayText = Container::get( 'templating' )->getContent( $root, 'topic-title-plaintext' );
 			$topic->setMessage( $topicDisplayText );
 		}
 

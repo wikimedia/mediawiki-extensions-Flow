@@ -147,11 +147,19 @@ abstract class Utils {
 	 * @throws WikitextException
 	 */
 	protected static function commentParser( $from, $to, $content ) {
-		if ( $from !== 'topic-title-wikitext' || $to !== 'topic-title-html' ) {
+		if (
+			$from !== 'topic-title-wikitext' ||
+			( $to !== 'topic-title-html' && $to !== 'topic-title-plaintext' )
+		) {
 			throw new WikitextException( "Conversion from '$from' to '$to' was requested, but this is not supported." );
 		}
 
-		return Linker::formatLinksInComment( Sanitizer::escapeHtmlAllowEntities( $content ) );
+		$html = Linker::formatLinksInComment( Sanitizer::escapeHtmlAllowEntities( $content ) );
+		if ( $to === 'topic-title-plaintext' ) {
+			return self::htmlToPlaintext( $html );
+		} else {
+			return $html;
+		}
 	}
 
 	/**

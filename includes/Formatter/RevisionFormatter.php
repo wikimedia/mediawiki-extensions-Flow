@@ -1036,9 +1036,7 @@ class RevisionFormatter {
 				return '';
 			}
 
-			$content = Utils::htmlToPlaintext(
-				$this->templating->getContent( $root, 'topic-title-html' )
-			);
+			$content = $this->templating->getContent( $root, 'topic-title-plaintext' );
 
 			return Message::plaintextParam( $content );
 
@@ -1054,9 +1052,7 @@ class RevisionFormatter {
 			}
 
 			if ( $post->isTopicTitle() ) {
-				return Message::plaintextParam( Utils::htmlToPlaintext(
-					$this->templating->getContent( $post, 'topic-title-html' )
-				) );
+				return Message::plaintextParam( $this->templating->getContent( $post, 'topic-title-plaintext' ) );
 			} else {
 				return Message::rawParam( $this->templating->getContent( $post, 'fixed-html' ) );
 			}
