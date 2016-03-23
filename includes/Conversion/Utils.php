@@ -114,6 +114,9 @@ abstract class Utils {
 			'method' => 'POST',
 			'url' => $url,
 			'body' => $params,
+			'headers' => array(
+				'Accept' => 'text/html; charset=utf-8; profile="mediawiki.org/specs/html/1.2.0"',
+			),
 		);
 		$response = $serviceClient->run( $request );
 		if ( $response['code'] !== 200 ) {
