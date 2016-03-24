@@ -42,7 +42,7 @@ class TopicResolvedPresentationModel extends FlowPresentationModel {
 
 	public function getHeaderMessage() {
 		$msg = $this->msg( $this->getHeaderMessageKey() );
-		$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true ) );
+		$msg->params( $this->getTopicTitle() );
 		$msg->params( $this->getViewingUserForGender() );
 		return $msg;
 	}
