@@ -99,6 +99,10 @@ class SubmissionHandler {
 				if ( $errorMsgArgs ) {
 					$msg->params( $errorMsgArgs );
 				}
+				// I guess this is the "user block" meaning of 'block'.  If
+				// so, this is misleading, since it could be protection,
+				// etc.  In theory, something could be using it since it's
+				// exposed to the API, but very unlikely...
 				reset( $interestedBlocks )->addError( 'block', $msg );
 			}
 			return array();
