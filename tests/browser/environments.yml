@@ -28,7 +28,15 @@ local:
   mediawiki_user_b: Selenium Flow user 2
   mediawiki_url: http://127.0.0.1:8080/wiki/
 
-beta:
+beta-chrome:
+  browser: chrome
+  mediawiki_url: http://en.wikipedia.beta.wmflabs.org/wiki/
+  mediawiki_user: Selenium_user
+  mediawiki_user_b: Selenium Flow user 2
+  # mediawiki_password: SET THIS IN THE ENVIRONMENT!
+
+beta-firefox:
+  browser: firefox
   mediawiki_url: http://en.wikipedia.beta.wmflabs.org/wiki/
   mediawiki_user: Selenium_user
   mediawiki_user_b: Selenium Flow user 2
