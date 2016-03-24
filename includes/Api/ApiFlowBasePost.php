@@ -30,7 +30,7 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 		// block should've been able to process the POST request)
 		if ( !count( $blocksToCommit ) ) {
 			$this->dieUsage(
-				wfMessage( 'flow-error-no-commit' )->parse(),
+				$this->msg( 'flow-error-no-commit' )->text(),
 				'no-commit',
 				200,
 				array()

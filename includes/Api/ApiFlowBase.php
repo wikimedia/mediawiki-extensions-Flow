@@ -111,6 +111,20 @@ abstract class ApiFlowBase extends ApiBase {
 			if ( $block->hasErrors() ) {
 				$errors = $block->getErrors();
 
+				// API localization is not implemented fully yet.
+				// See https://www.mediawiki.org/wiki/API:Localisation#Errors_and_warnings and T37074
+				// We probably really want to use brief messages with ->text() (like dieUsageMsg).
+				//
+				// But we can't use ->text() with all these messages (though I changed
+				// the Flow messages to support this).  Ones provided by core or extensions are often
+				// long-form and use wikitext.
+				//
+				// The standard mechanism to deal with that is dieUsageMsg, but that is English-only,
+				// so we can't use it until that's solved.  That means we have to use the long-form HTML
+				// rendering, and clients need to support that.
+				//
+				// Also, it would be nice to use dieBlocked to provide detailed block information, but
+				// that is also English-only.
 				foreach( $errors as $key ) {
 					$this->dieUsage(
 						$block->getErrorMessage( $key )->parse(),
