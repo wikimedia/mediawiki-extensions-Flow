@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee33df1d_5e7c881b",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.CanNotEditWidget.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-03-25T21:17:58Z",
+      "side": 1,
+      "message": "Config options, by their nature, are optional, so they should have sensible defaults. The implicit default here is \"false\", but I think \"true\" would be better.",
+      "revId": "fa7d531ecc45dd40c20791b1d7c74640fa30ac4d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee33df1d_5e9be867",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorControlsWidget.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-03-25T21:17:58Z",
+      "side": 1,
+      "message": "This previously defaulted to true, but now it defaults to false. I think defaulting to true is better.",
+      "revId": "fa7d531ecc45dd40c20791b1d7c74640fa30ac4d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
