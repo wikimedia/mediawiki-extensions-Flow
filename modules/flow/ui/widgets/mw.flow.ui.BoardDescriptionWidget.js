@@ -45,12 +45,16 @@
 
 		this.editor = new mw.flow.ui.EditorWidget( {
 			saveMsgKey: mw.user.isAnon() ? 'flow-edit-header-submit-anonymously' : 'flow-edit-header-submit',
-			classes: [ 'flow-ui-boardDescriptionWidget-editor' ]
+			classes: [ 'flow-ui-boardDescriptionWidget-editor' ],
+			saveable: mw.config.get( 'wgIsProbablyEditable' )
 		} );
 		this.editor.toggle( false );
 
 		this.anonWarning = new mw.flow.ui.AnonWarningWidget();
 		this.anonWarning.toggle( false );
+
+		this.canNotEdit = new mw.flow.ui.CanNotEditWidget( { isProbablyEditable: mw.config.get( 'wgIsProbablyEditable' ) } );
+		this.canNotEdit.toggle( false );
 
 		this.error = new OO.ui.LabelWidget( {
 			classes: [ 'flow-ui-boardDescriptionWidget-error flow-errors errorbox' ]
@@ -105,6 +109,7 @@
 				this.error.$element,
 				this.captchaWidget.$element,
 				this.anonWarning.$element,
+				this.canNotEdit.$element,
 				this.button.$element,
 				this.$content,
 				this.editor.$element,
@@ -158,6 +163,7 @@
 		// Load the editor
 		this.editor.pushPending();
 		this.anonWarning.toggle( true );
+		this.canNotEdit.toggle( true );
 		this.editor.activate();
 
 		// Get the description from the API
@@ -302,6 +308,7 @@
 		// Hide the editor
 		this.editor.toggle( false );
 		this.anonWarning.toggle( false );
+		this.canNotEdit.toggle( false );
 
 		if ( !hideErrors ) {
 			// Hide errors

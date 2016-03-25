@@ -140,6 +140,7 @@
 	"flow-error-allowcreation-no-usedb": "Internal error when attempting to enable Flow on a specific page, and <var>$wgContentHandlerUseDB</var> is not set to <code>true</code>. Do not translate <code>true</code> as it a boolean value.",
 	"flow-error-allowcreation-already-exists": "Internal error when attempting to enable Flow on a specific page, and $mustNotExist was set true, but the page does already exist",
 	"flow-error-allowcreation-flow-create-board": "Internal error when attempting to enable Flow on a specific page, and user does not have flow-create-board",
+	"flow-error-can-not-edit": "Error when user can not edit Flow board",
 	"flow-error-http": "Used as error message on HTTP error.",
 	"flow-error-external": "Used as error message. Parameters:\n* $1 - error message",
 	"flow-error-topic-is-locked": "Used as error message when a user attempts to moderate/create/edit title/post when a topic is resolved (locked).",

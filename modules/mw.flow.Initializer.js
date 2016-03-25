@@ -741,6 +741,8 @@
 	mw.flow.Initializer.prototype.createEditorWidget = function ( $domToReplace, content, saveMsgKey ) {
 		var $wrapper,
 			anonWarning = new mw.flow.ui.AnonWarningWidget(),
+			isProbablyEditable = mw.config.get( 'wgIsProbablyEditable' ),
+			canNotEdit = new mw.flow.ui.CanNotEditWidget( { isProbablyEditable: isProbablyEditable } ),
 			error = new OO.ui.LabelWidget( {
 				classes: [ 'flow-ui-boardDescriptionWidget-error flow-errors errorbox' ]
 			} ),
@@ -751,6 +753,7 @@
 		error.toggle( false );
 		editor.toggle( true );
 		anonWarning.toggle( mw.user.isAnon() );
+		canNotEdit.toggle( !isProbablyEditable );
 
 		// HACK: We still need a reference to the error widget, for
 		// the api responses in the intialized widgets that use this
@@ -761,6 +764,7 @@
 			.append(
 				error.$element,
 				anonWarning.$element,
+				canNotEdit.$element,
 				editor.$element
 			);
 

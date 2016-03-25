@@ -19,6 +19,7 @@
 	 * @cfg {boolean} [cancelOnEscape=true] Emit 'cancel' when Esc is pressed
 	 * @cfg {boolean} [confirmCancel=true] Pop up a confirmation dialog if the user attempts
 	 *  to cancel when there are changes in the editor.
+	 * @cfg {boolean} saveable Initial state of whether editor is saveable
 	 */
 	mw.flow.ui.EditorWidget = function mwFlowUiEditorWidget( config ) {
 		var widget = this;
@@ -37,7 +38,8 @@
 		this.editorControlsWidget = new mw.flow.ui.EditorControlsWidget( {
 			termsMsgKey: config.termsMsgKey || 'flow-terms-of-use-edit',
 			saveMsgKey: config.saveMsgKey || 'flow-newtopic-save',
-			cancelMsgKey: config.cancelMsgKey || 'flow-cancel'
+			cancelMsgKey: config.cancelMsgKey || 'flow-cancel',
+			saveable: config.saveable
 		} );
 
 		this.editorSwitcherWidget = new mw.flow.ui.EditorSwitcherWidget( {

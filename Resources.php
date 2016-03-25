@@ -390,6 +390,7 @@ $wgResourceModules += array(
 			'flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js',
 			'flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js',
 			'flow/ui/widgets/editor/mw.flow.ui.AnonWarningWidget.js',
+			'flow/ui/widgets/editor/mw.flow.ui.CanNotEditWidget.js',
 			'flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js',
 			'flow/ui/widgets/editor/mw.flow.ui.EditorControlsWidget.js',
 			'flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js',
@@ -406,8 +407,8 @@ $wgResourceModules += array(
 			'styles/flow/widgets/mw.flow.ui.ReplyWidget.less',
 			'styles/flow/widgets/mw.flow.ui.SidebarExpandWidget.less',
 			'styles/flow/widgets/mw.flow.ui.NewTopicWidget.less',
-
 			'styles/flow/widgets/editor/mw.flow.ui.AnonWarningWidget.less',
+			'styles/flow/widgets/editor/mw.flow.ui.CanNotEditWidget.less',
 			'styles/flow/widgets/editor/mw.flow.ui.EditorControlsWidget.less',
 			'styles/flow/widgets/editor/mw.flow.ui.EditorSwitcherWidget.less',
 			'styles/flow/widgets/editor/mw.flow.ui.EditorWidget.less',
@@ -417,6 +418,7 @@ $wgResourceModules += array(
 			'styles/flow/widgets/mw.flow.ui.TopicTitleWidget.less',
 		),
 		'messages' => array(
+			'flow-error-can-not-edit',
 			'flow-error-parsoid-failure',
 			'flow-error-default',
 			'flow-dialog-cancelconfirm-title',
