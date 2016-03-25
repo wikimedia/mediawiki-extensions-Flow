@@ -10,6 +10,7 @@
 	 * @cfg {string} [termsMsgKey='flow-terms-of-use-edit'] i18n message key for the footer message
 	 * @cfg {string} [saveMsgKey='flow-newtopic-save'] i18n message key for the save button
 	 * @cfg {string} [cancelMsgKey='flow-cancel'] i18n message key for the cancel button
+	 * @cfg {boolean} [saveable=true] Initial state of saveable flag
 	 */
 	mw.flow.ui.EditorControlsWidget = function mwFlowUiEditorControlsWidget( config ) {
 		var $buttons = $( '<div>' )
@@ -48,7 +49,7 @@
 		this.cancelButton.connect( this, { click: [ 'emit', 'cancel' ] } );
 
 		// Initialize
-		this.toggleSaveable( true );
+		this.toggleSaveable( config.saveable !== undefined ? config.saveable : true );
 		this.$element
 			.append(
 				this.termsLabel.$element,

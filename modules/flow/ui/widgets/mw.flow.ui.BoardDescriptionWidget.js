@@ -13,7 +13,7 @@
 	 * @cfg {jQuery} [$categories] A jQuery object of the existing board categories
 	 */
 	mw.flow.ui.BoardDescriptionWidget = function mwFlowUiBoardDescriptionWidget( boardModel, config ) {
-		var $content = $();
+		var isEditable, $content = $();
 
 		config = config || {};
 
@@ -22,6 +22,7 @@
 
 		this.board = boardModel;
 		this.attachModel( this.board.getDescription() );
+		isEditable = this.model.isEditable();
 
 		// Since the content is already displayed, we will "steal" the already created
 		// node to avoid having to render it twice.
@@ -45,12 +46,22 @@
 
 		this.editor = new mw.flow.ui.EditorWidget( {
 			saveMsgKey: mw.user.isAnon() ? 'flow-edit-header-submit-anonymously' : 'flow-edit-header-submit',
-			classes: [ 'flow-ui-boardDescriptionWidget-editor' ]
+			classes: [ 'flow-ui-boardDescriptionWidget-editor' ],
+			saveable: isEditable
 		} );
 		this.editor.toggle( false );
 
-		this.anonWarning = new mw.flow.ui.AnonWarningWidget();
+		this.anonWarning = new mw.flow.ui.AnonWarningWidget( {
+			isProbablyEditable: isEditable
+		} );
 		this.anonWarning.toggle( false );
+
+		this.canNotEdit = new mw.flow.ui.CanNotEditWidget( this.api, {
+			userGroups: mw.config.get( 'wgUserGroups' ),
+			restrictionEdit: mw.config.get( 'wgRestrictionEdit' ),
+			isProbablyEditable: isEditable
+		} );
+		this.canNotEdit.toggle( false );
 
 		this.error = new OO.ui.LabelWidget( {
 			classes: [ 'flow-ui-boardDescriptionWidget-error flow-errors errorbox' ]
@@ -68,7 +79,7 @@
 			classes: [ 'flow-ui-boardDescriptionWidget-editButton' ]
 		} );
 
-		if ( !this.model.isEditable() ) {
+		if ( !isEditable ) {
 			this.button.toggle( false );
 		}
 
@@ -105,6 +116,7 @@
 				this.error.$element,
 				this.captchaWidget.$element,
 				this.anonWarning.$element,
+				this.canNotEdit.$element,
 				this.button.$element,
 				this.$content,
 				this.editor.$element,
@@ -138,6 +150,8 @@
 	 */
 	mw.flow.ui.BoardDescriptionWidget.prototype.onModelEditableChange = function ( editable ) {
 		this.button.toggle( editable && !this.editor.isVisible() );
+
+		this.editor.toggleSaveable( editable );
 	};
 
 	/**
@@ -158,6 +172,7 @@
 		// Load the editor
 		this.editor.pushPending();
 		this.anonWarning.toggle( true );
+		this.canNotEdit.toggle( true );
 		this.editor.activate();
 
 		// Get the description from the API
@@ -302,6 +317,7 @@
 		// Hide the editor
 		this.editor.toggle( false );
 		this.anonWarning.toggle( false );
+		this.canNotEdit.toggle( false );
 
 		if ( !hideErrors ) {
 			// Hide errors
