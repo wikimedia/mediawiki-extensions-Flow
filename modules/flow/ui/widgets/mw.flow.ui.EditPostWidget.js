@@ -6,6 +6,7 @@
 	 * @extends OO.ui.Widget
 	 *
 	 * @constructor
+	 * @param {string} topicId The id of the topic
 	 * @param {string} postId The id of the post to edit
 	 * @param {Object} [config] Configuration object
 	 */
@@ -20,12 +21,26 @@
 
 		this.editor = new mw.flow.ui.EditorWidget( {
 			saveMsgKey: mw.user.isAnon() ? 'flow-post-action-edit-post-submit-anonymously' : 'flow-post-action-edit-post-submit',
-			classes: [ 'flow-ui-editPostWidget-editor' ]
+			classes: [ 'flow-ui-editPostWidget-editor' ],
+			saveable: mw.config.get( 'wgIsProbablyEditable' )
 		} );
 		this.editor.toggle( true );
 
-		this.anonWarning = new mw.flow.ui.AnonWarningWidget();
+		this.api = new mw.flow.dm.APIHandler(
+			'Topic:' + topicId
+		);
+
+		this.anonWarning = new mw.flow.ui.AnonWarningWidget( {
+			isProbablyEditable: mw.config.get( 'wgIsProbablyEditable' )
+		} );
 		this.anonWarning.toggle( true );
+
+		this.canNotEdit = new mw.flow.ui.CanNotEditWidget( this.api, {
+			userGroups: mw.config.get( 'wgUserGroups' ),
+			restrictionEdit: mw.config.get( 'wgRestrictionEdit' ),
+			isProbablyEditable: mw.config.get( 'wgIsProbablyEditable' )
+		} );
+		this.canNotEdit.toggle( true );
 
 		this.error = new OO.ui.LabelWidget( {
 			classes: [ 'flow-ui-editPostWidget-error flow-errors errorbox' ]
@@ -34,10 +49,6 @@
 
 		this.captcha = new mw.flow.dm.Captcha();
 		this.captchaWidget = new mw.flow.ui.CaptchaWidget( this.captcha );
-
-		this.api = new mw.flow.dm.APIHandler(
-			'Topic:' + topicId
-		);
 
 		// Events
 		this.editor.connect( this, {
@@ -49,6 +60,7 @@
 			.addClass( 'flow-ui-editPostWidget' )
 			.append(
 				this.anonWarning.$element,
+				this.canNotEdit.$element,
 				this.error.$element,
 				this.captchaWidget.$element,
 				this.editor.$element

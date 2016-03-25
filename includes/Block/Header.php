@@ -296,12 +296,19 @@ class HeaderBlock extends AbstractBlock {
 
 			/** @var UrlGenerator $urlGenerator */
 			$urlGenerator = Container::get( 'url_generator' );
+
+			$title = $this->workflow->getArticleTitle();
+			$user = $this->context->getUser();
+
+			$actions = array();
+
+			if ( $title->quickUserCan( 'edit', $user ) && $title->quickUserCan( 'create', $user ) ) {
+				$actions['edit'] = $urlGenerator
+					->createHeaderAction( $this->workflow->getArticleTitle() );
+			}
+
 			$output['revision'] = array(
-				// @todo
-				'actions' => array(
-					'edit' => $urlGenerator
-						->createHeaderAction( $this->workflow->getArticleTitle() ),
-				),
+				'actions' => $actions,
 				'links' => array(
 				),
 			);
