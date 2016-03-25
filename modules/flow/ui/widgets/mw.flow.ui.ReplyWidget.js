@@ -44,6 +44,9 @@
 		this.anonWarning = new mw.flow.ui.AnonWarningWidget();
 		this.anonWarning.toggle( !this.expandable );
 
+		this.canNotEdit = new mw.flow.ui.CanNotEditWidget( { isProbablyEditable: mw.config.get( 'wgIsProbablyEditable' ) } );
+		this.canNotEdit.toggle( !this.expandable );
+
 		this.error = new OO.ui.LabelWidget( {
 			classes: [ 'flow-ui-replyWidget-error flow-errors errorbox' ]
 		} );
@@ -58,6 +61,7 @@
 			.addClass( 'flow-ui-replyWidget' )
 			.append(
 				this.anonWarning.$element,
+				this.canNotEdit.$element,
 				this.error.$element,
 				this.captchaWidget.$element,
 				this.$editorWrapper
@@ -96,6 +100,7 @@
 			this.error.toggle( false );
 			this.editor.toggle( false );
 			this.anonWarning.toggle( false );
+			this.canNotEdit.toggle( false );
 			this.triggerInput.toggle( true );
 			this.expanded = false;
 		} else {
@@ -124,6 +129,7 @@
 					widget.triggerInput.toggle( true );
 					widget.editor.toggle( false );
 					widget.anonWarning.toggle( false );
+					widget.canNotEdit.toggle( false );
 					widget.expanded = false;
 				}
 				widget.emit( 'saveContent', workflow, content, format );
@@ -149,7 +155,8 @@
 			this.editor = new mw.flow.ui.EditorWidget( {
 				placeholder: this.placeholder,
 				saveMsgKey: mw.user.isAnon() ? 'flow-reply-link-anonymously' : 'flow-reply-link',
-				classes: [ 'flow-ui-replyWidget-editor' ]
+				classes: [ 'flow-ui-replyWidget-editor' ],
+				saveable: mw.config.get( 'wgIsProbablyEditable' )
 			} );
 
 			this.$editorWrapper.append( this.editor.$element );
@@ -186,6 +193,7 @@
 		}
 		this.toggle( true );
 		this.anonWarning.toggle( true );
+		this.canNotEdit.toggle( true );
 		this.initializeEditor();
 		this.editor.toggle( true );
 		this.editor.activate();

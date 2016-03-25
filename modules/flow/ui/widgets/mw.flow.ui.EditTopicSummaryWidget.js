@@ -21,12 +21,16 @@
 			saveMsgKey: 'flow-topic-action-update-topic-summary',
 			classes: [ 'flow-ui-editTopicSummaryWidget-editor' ],
 			placeholder: mw.msg( 'flow-edit-summary-placeholder' ),
-			cancelMsgKey: config.cancelMsgKey
+			cancelMsgKey: config.cancelMsgKey,
+			saveable: mw.config.get( 'wgIsProbablyEditable' )
 		} );
 		this.editor.toggle( true );
 
 		this.anonWarning = new mw.flow.ui.AnonWarningWidget();
 		this.anonWarning.toggle( true );
+
+		this.canNotEdit = new mw.flow.ui.CanNotEditWidget( { isProbablyEditable: mw.config.get( 'wgIsProbablyEditable' ) } );
+		this.canNotEdit.toggle( true );
 
 		this.error = new OO.ui.LabelWidget( {
 			classes: [ 'flow-ui-editTopicSummaryWidget-error flow-errors errorbox' ]
@@ -50,6 +54,7 @@
 			.addClass( 'flow-ui-editTopicSummaryWidget' )
 			.append(
 				this.anonWarning.$element,
+				this.canNotEdit.$element,
 				this.error.$element,
 				this.captchaWidget.$element,
 				this.editor.$element

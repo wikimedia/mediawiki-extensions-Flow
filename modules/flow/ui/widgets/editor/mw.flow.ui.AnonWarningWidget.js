@@ -8,7 +8,7 @@
 	 * @constructor
 	 * @param {Object} [config] Configuration options
 	 */
-	mw.flow.ui.AnonWarningWidget = function mwFlowUiEditorControlsWidget( config ) {
+	mw.flow.ui.AnonWarningWidget = function mwFlowUiAnonWarningWidget( config ) {
 		var returnTo, labelHtml,
 			isAnon = mw.user.isAnon();
 
