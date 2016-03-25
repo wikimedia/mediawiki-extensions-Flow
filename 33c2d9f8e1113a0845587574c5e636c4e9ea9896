@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee33df1d_0fef6d83",
+        "filename": "includes/SubmissionHandler.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-03-25T18:30:12Z",
+      "side": 1,
+      "message": "It would still be good to fix this, because edit permissions can fail for many many reasons besides user blocks and protection.",
+      "revId": "33c2d9f8e1113a0845587574c5e636c4e9ea9896",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
