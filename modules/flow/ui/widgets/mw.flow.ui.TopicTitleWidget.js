@@ -22,6 +22,11 @@
 		this.anonWarning = new mw.flow.ui.AnonWarningWidget();
 		this.anonWarning.toggle( true );
 
+		this.isProbablyEditable = mw.config.get( 'wgIsProbablyEditable' );
+
+		this.canNotEdit = new mw.flow.ui.CanNotEditWidget( { isProbablyEditable: this.isProbablyEditable } );
+		this.canNotEdit.toggle( true );
+
 		this.error = new OO.ui.LabelWidget( {
 			classes: [ 'flow-ui-topicTitleWidget-error flow-errors errorbox' ]
 		} );
@@ -64,6 +69,9 @@
 			$( '<div>' ).css( 'clear', 'both' )
 		);
 
+		// Also checks whether form buttons should be disabled
+		this.setDisabled( false );
+
 		// Events
 		this.saveButton.connect( this, { click: [ 'onSaveButtonClick' ] } );
 		this.cancelButton.connect( this, { click: [ 'emit', 'cancel' ] } );
@@ -72,6 +80,7 @@
 			.addClass( 'flow-ui-topicTitleWidget' )
 			.append(
 				this.anonWarning.$element,
+				this.canNotEdit.$element,
 				this.error.$element,
 				this.captchaWidget.$element,
 				this.input.$element,
@@ -142,7 +151,7 @@
 
 		if ( this.input && this.saveButton && this.cancelButton ) {
 			this.input.setDisabled( this.isDisabled() );
-			this.saveButton.setDisabled( this.isDisabled() );
+			this.saveButton.setDisabled( !this.isProbablyEditable || this.isDisabled() );
 			this.cancelButton.setDisabled( this.isDisabled() );
 		}
 	};

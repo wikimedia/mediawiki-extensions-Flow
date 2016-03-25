@@ -130,6 +130,7 @@
 	"flow-error-allowcreation-no-usedb": "Enabling Flow on a specific page requires <var>$wgContentHandlerUseDB</var> to be <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "Page already exists at destination, so a Flow board can not be moved there.",
 	"flow-error-allowcreation-flow-create-board": "User does not have the \"{{int:right-flow-create-board}}\" permission",
+	"flow-error-can-not-edit": "{{GENDER:|You}} are not currently able to add content to this Flow board, or edit it, because the board is protected, or you do not have the required rights.",
 	"flow-error-http": "An error occurred while contacting the server.",
 	"flow-error-external": "An error occurred. The error message received was: $1",
 	"flow-error-topic-is-locked": "This topic is resolved, so further activity is not possible.",

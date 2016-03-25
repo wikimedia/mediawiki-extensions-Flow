@@ -18,11 +18,16 @@
 		// Parent constructor
 		mw.flow.ui.NewTopicWidget.parent.call( this, config );
 
+		this.isProbablyEditable = mw.config.get( 'wgIsProbablyEditable' );
+
 		this.page = page;
 		this.expanded = false;
 
 		this.anonWarning = new mw.flow.ui.AnonWarningWidget();
 		this.anonWarning.toggle( false );
+
+		this.canNotEdit = new mw.flow.ui.CanNotEditWidget( { isProbablyEditable: this.isProbablyEditable } );
+		this.canNotEdit.toggle( false );
 
 		this.title = new OO.ui.TextInputWidget( {
 			placeholder: mw.msg( 'flow-newtopic-start-placeholder' ),
@@ -34,7 +39,8 @@
 			placeholder: mw.msg( 'flow-newtopic-content-placeholder', this.page ),
 			saveMsgKey: mw.user.isAnon() ? 'flow-newtopic-save-anonymously' : 'flow-newtopic-save',
 			autoFocus: false,
-			classes: [ 'flow-ui-newTopicWidget-editor' ]
+			classes: [ 'flow-ui-newTopicWidget-editor' ],
+			saveable: mw.config.get( 'wgIsProbablyEditable' )
 		} );
 		this.editor.toggle( false );
 
@@ -76,6 +82,7 @@
 			.addClass( 'flow-ui-newTopicWidget' )
 			.append(
 				this.anonWarning.$element,
+				this.canNotEdit.$element,
 				this.error.$element,
 				this.captchaWidget.$element,
 				this.title.$element,
@@ -93,6 +100,7 @@
 	 */
 	mw.flow.ui.NewTopicWidget.prototype.updateSaveButtonState = function () {
 		this.editor.editorControlsWidget.toggleSaveable(
+			this.isProbablyEditable &&
 			this.title.getValue() &&
 			!this.editor.isEmpty()
 		);
@@ -220,6 +228,7 @@
 
 		this.editor.toggle( this.expanded );
 		this.anonWarning.toggle( this.expanded );
+		this.canNotEdit.toggle( this.expanded );
 		// Hide errors
 		this.error.toggle( false );
 
