@@ -81,13 +81,7 @@ class HeaderBlock extends AbstractBlock {
 	}
 
 	protected function validate() {
-		// @todo some sort of restriction along the lines of article protection
-		// @todo this is superseeded by SubmissionHandler::onSubmit checking
-		// 	Title::userCan() ?
-		if ( !$this->context->getUser()->isAllowed( 'edit' ) ) {
-			$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
-			return;
-		}
+		// @todo T113902: some sort of restriction along the lines of article protection
 		if ( !isset( $this->submitted['content'] ) ) {
 			$this->addError( 'content', $this->context->msg( 'flow-error-missing-header-content' ) );
 		}
@@ -296,12 +290,19 @@ class HeaderBlock extends AbstractBlock {
 
 			/** @var UrlGenerator $urlGenerator */
 			$urlGenerator = Container::get( 'url_generator' );
+
+			$title = $this->workflow->getArticleTitle();
+			$user = $this->context->getUser();
+
+			$actions = array();
+
+			if ( $this->workflow->userCan( 'edit', $user ) ) {
+				$actions['edit'] = $urlGenerator
+					->createHeaderAction( $this->workflow->getArticleTitle() );
+			}
+
 			$output['revision'] = array(
-				// @todo
-				'actions' => array(
-					'edit' => $urlGenerator
-						->createHeaderAction( $this->workflow->getArticleTitle() ),
-				),
+				'actions' => $actions,
 				'links' => array(
 				),
 			);
