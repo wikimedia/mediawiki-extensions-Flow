@@ -32,13 +32,18 @@
  */
 
 /**
- * @class mw.Title
- * @source <https://doc.wikimedia.org/mediawiki-core/master/js/#!/api/mw.Title>
+ * @class mw.Api
+ * @source <https://doc.wikimedia.org/mediawiki-core/master/js/#!/api/mw.Api>
  */
 
 /**
- * @class mw.Api
- * @source <https://doc.wikimedia.org/mediawiki-core/master/js/#!/api/mw.Api>
+ * @class mw.Message
+ * @source <https://doc.wikimedia.org/mediawiki-core/master/js/#!/api/mw.Message
+ */
+
+/**
+ * @class mw.Title
+ * @source <https://doc.wikimedia.org/mediawiki-core/master/js/#!/api/mw.Title>
  */
 
 /**
