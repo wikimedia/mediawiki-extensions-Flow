@@ -14,6 +14,7 @@
 	 *   will be the first one in wgFlowEditorList that matches the format of the provided
 	 *   content (if any)
 	 * @cfg {boolean} [autoFocus=true] Automatically focus after switching editors
+	 * @cfg {boolean} [saveable=true] Initial state of saveable flag
 	 */
 	mw.flow.ui.EditorSwitcherWidget = function mwFlowUiEditorSwitcherWidget( config ) {
 		var widget = this;
@@ -70,6 +71,8 @@
 		this.$element
 			.append( this.error.$element, this.placeholderInput.$element )
 			.addClass( 'flow-ui-editorSwitcherWidget' );
+
+		this.toggleSaveable( config.saveable !== undefined ? config.saveable : true );
 	};
 
 	/* Initialization */
@@ -518,12 +521,13 @@
 	 * @return {boolean} Editors are switchable
 	 */
 	mw.flow.ui.EditorSwitcherWidget.prototype.isSwitchable = function () {
-		return this.availableEditors.length > 1;
+		return mw.config.get( 'wgIsProbablyEditable' ) && this.availableEditors.length > 1;
 	};
 
 	mw.flow.ui.EditorSwitcherWidget.prototype.isDisabled = function () {
-		// Auto-disable when pending
+		// Auto-disable when pending or not saveable
 		return this.isPending() ||
+			!this.isSaveable() ||
 			// Parent method
 			mw.flow.ui.EditorSwitcherWidget.parent.prototype.isDisabled.apply( this, arguments );
 	};
@@ -545,6 +549,27 @@
 		if ( activeEditor ) {
 			activeEditor.setDisabled( this.isDisabled() );
 		}
+	};
+
+	/**
+	 * Check whether editor is saveable
+	 *
+	 * @return {boolean} Whether the user can save their content
+	 */
+	mw.flow.ui.EditorSwitcherWidget.prototype.isSaveable = function () {
+		return this.saveable;
+	};
+
+	/**
+	 * Toggle whether the editor is saveable
+	 *
+	 * @param {boolean} [saveable] Whether the editor is saveable
+	 */
+	mw.flow.ui.EditorSwitcherWidget.prototype.toggleSaveable = function ( saveable ) {
+		this.saveable = saveable === undefined ? !this.saveable : !!saveable;
+
+		// Disabled state depends on saveable state
+		this.updateDisabled();
 	};
 
 	mw.flow.ui.EditorSwitcherWidget.prototype.pushPending = function () {
