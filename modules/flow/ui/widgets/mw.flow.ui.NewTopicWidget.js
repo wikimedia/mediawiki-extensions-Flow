@@ -18,11 +18,24 @@
 		// Parent constructor
 		mw.flow.ui.NewTopicWidget.parent.call( this, config );
 
+		this.isProbablyEditable = mw.config.get( 'wgIsProbablyEditable' );
+
 		this.page = page;
 		this.expanded = false;
 
-		this.anonWarning = new mw.flow.ui.AnonWarningWidget();
+		this.api = new mw.flow.dm.APIHandler( this.page );
+
+		this.anonWarning = new mw.flow.ui.AnonWarningWidget( {
+			isProbablyEditable: this.isProbablyEditable
+		} );
 		this.anonWarning.toggle( false );
+
+		this.canNotEdit = new mw.flow.ui.CanNotEditWidget( this.api, {
+			userGroups: mw.config.get( 'wgUserGroups' ),
+			restrictionEdit: mw.config.get( 'wgRestrictionEdit' ),
+			isProbablyEditable: this.isProbablyEditable
+		} );
+		this.canNotEdit.toggle( false );
 
 		this.title = new OO.ui.TextInputWidget( {
 			placeholder: mw.msg( 'flow-newtopic-start-placeholder' ),
@@ -34,7 +47,8 @@
 			placeholder: mw.msg( 'flow-newtopic-content-placeholder', this.page ),
 			saveMsgKey: mw.user.isAnon() ? 'flow-newtopic-save-anonymously' : 'flow-newtopic-save',
 			autoFocus: false,
-			classes: [ 'flow-ui-newTopicWidget-editor' ]
+			classes: [ 'flow-ui-newTopicWidget-editor' ],
+			saveable: mw.config.get( 'wgIsProbablyEditable' )
 		} );
 		this.editor.toggle( false );
 
@@ -46,11 +60,9 @@
 		} );
 		this.error.toggle( false );
 
-		this.api = new mw.flow.dm.APIHandler( this.page );
-
 		// Events
 		this.editor.connect( this, {
-			change: 'updateSaveButtonState',
+			change: 'updateFormState',
 			saveContent: 'onEditorSaveContent',
 			cancel: 'onEditorCancel'
 		} );
@@ -64,18 +76,19 @@
 		} );
 
 		this.title.connect( this, {
-			change: 'updateSaveButtonState'
+			change: 'updateFormState'
 		} );
 		this.title.$element.on( 'focusin', this.onTitleFocusIn.bind( this ) );
 		this.title.$element.on( 'keydown', this.onTitleKeydown.bind( this ) );
 
 		// Initialization
-		this.updateSaveButtonState();
+		this.updateFormState();
 
 		this.$element
 			.addClass( 'flow-ui-newTopicWidget' )
 			.append(
 				this.anonWarning.$element,
+				this.canNotEdit.$element,
 				this.error.$element,
 				this.captchaWidget.$element,
 				this.title.$element,
@@ -88,11 +101,17 @@
 	OO.inheritClass( mw.flow.ui.NewTopicWidget, OO.ui.Widget );
 
 	/**
-	 * Update the state of the save button.
+	 * Update the state of the form.
 	 * @private
 	 */
-	mw.flow.ui.NewTopicWidget.prototype.updateSaveButtonState = function () {
+	mw.flow.ui.NewTopicWidget.prototype.updateFormState = function () {
+		var isDisabled = this.isExpanded() && !this.isProbablyEditable;
+
+		this.title.setDisabled( isDisabled );
+		this.editor.editorSwitcherWidget.setDisabled( isDisabled );
+
 		this.editor.editorControlsWidget.toggleSaveable(
+			this.isProbablyEditable &&
 			this.title.getValue() &&
 			!this.editor.isEmpty()
 		);
@@ -114,6 +133,7 @@
 			// Expand the editor
 			this.toggleExpanded( true );
 			this.editor.activate();
+			this.updateFormState();
 			this.title.focus();
 		}
 	};
@@ -130,7 +150,7 @@
 		this.title.setValue( title );
 
 		if ( content && format ) {
-			this.editor.setContent( content, format ).then( this.updateSaveButtonState.bind( this ) );
+			this.editor.setContent( content, format ).then( this.updateFormState.bind( this ) );
 		}
 	};
 
@@ -189,7 +209,7 @@
 				// Clear for next use
 				widget.title.setValue( '' );
 				widget.editor.setContent( '', 'html' );
-				widget.updateSaveButtonState();
+				widget.updateFormState();
 			} );
 	};
 
@@ -201,6 +221,8 @@
 		this.toggleExpanded( false );
 		// Take focus away from the title input, if it was focused (T109353)
 		this.title.blur();
+
+		this.updateFormState();
 	};
 
 	/**
@@ -220,6 +242,7 @@
 
 		this.editor.toggle( this.expanded );
 		this.anonWarning.toggle( this.expanded );
+		this.canNotEdit.toggle( this.expanded );
 		// Hide errors
 		this.error.toggle( false );
 
