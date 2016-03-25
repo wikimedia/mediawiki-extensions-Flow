@@ -176,7 +176,7 @@
 			.then( null, function ( errorCode, errorObj ) {
 				widget.captcha.update( errorCode, errorObj );
 				if ( !widget.captcha.isRequired() ) {
-					widget.error.setLabel( errorObj.error && errorObj.error.info || errorObj.exception );
+					widget.error.setLabel( new OO.ui.HtmlSnippet( errorObj.error && errorObj.error.info || errorObj.exception ) );
 					widget.error.toggle( true );
 				}
 			} )

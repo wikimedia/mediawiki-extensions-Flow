@@ -57,6 +57,7 @@ class FlowException extends MWException {
 	 * Error code list for this exception
 	 */
 	protected function getErrorCodeList() {
+		// flow-error-default
 		return array ( 'default' );
 	}
 
@@ -140,11 +141,12 @@ class FlowException extends MWException {
  */
 class InvalidInputException extends FlowException {
 	protected function getErrorCodeList() {
+		// Comments are i18n messages, for grepping
 		return array (
-			'invalid-input',
-			'missing-revision',
-			'revision-comparison',
-			'invalid-workflow'
+			'invalid-input', // flow-error-invalid-input
+			'missing-revision', // flow-error-missing-revision
+			'revision-comparison', // flow-error-revision-comparison
+			'invalid-workflow', // flow-error-invalid-workflow
 		);
 	}
 
@@ -164,6 +166,7 @@ class InvalidReferenceException extends InvalidInputException {
  */
 class InvalidActionException extends FlowException {
 	protected function getErrorCodeList() {
+		// flow-error-invalid-action
 		return array ( 'invalid-action' );
 	}
 
@@ -205,6 +208,7 @@ class InvalidActionException extends FlowException {
  */
 class FailCommitException extends FlowException {
 	protected function getErrorCodeList() {
+		// flow-error-fail-commit
 		return array ( 'fail-commit' );
 	}
 }
@@ -214,6 +218,7 @@ class FailCommitException extends FlowException {
  */
 class PermissionException extends FlowException {
 	protected function getErrorCodeList() {
+		// flow-error-insufficient-permission
 		return array ( 'insufficient-permission' );
 	}
 
@@ -232,12 +237,12 @@ class PermissionException extends FlowException {
 class InvalidDataException extends FlowException {
 	protected function getErrorCodeList() {
 		return array (
-			'invalid-title',
-			'fail-load-data',
-			'fail-load-history',
-			'fail-search',
-			'missing-topic-title',
-			'missing-metadata'
+			'invalid-title', // flow-error-invalid-title
+			'fail-load-data', // flow-error-fail-load-data
+			'fail-load-history', // flow-error-fail-load-history
+			'fail-search', // flow-error-fail-search
+			'missing-topic-title', // flow-error-missing-topic-title
+			'missing-metadata', // flow-error-missing-metadata
 		);
 	}
 }
@@ -247,6 +252,7 @@ class InvalidDataException extends FlowException {
  */
 class DataModelException extends FlowException {
 	protected function getErrorCodeList() {
+		// flow-error-process-data
 		return array ( 'process-data' );
 	}
 }
@@ -256,6 +262,7 @@ class DataModelException extends FlowException {
  */
 class DataPersistenceException extends FlowException {
 	protected function getErrorCodeList() {
+		// flow-error-process-data
 		return array ( 'process-data' );
 	}
 }
@@ -265,6 +272,7 @@ class DataPersistenceException extends FlowException {
  */
 class NoParserException extends FlowException {
 	protected function getErrorCodeList() {
+		// flow-error-process-wikitext
 		return array ( 'process-wikitext' );
 	}
 }
@@ -274,6 +282,7 @@ class NoParserException extends FlowException {
  */
 class WikitextException extends FlowException {
 	protected function getErrorCodeList() {
+		// flow-error-process-wikitext
 		return array ( 'process-wikitext' );
 	}
 }
@@ -283,6 +292,7 @@ class WikitextException extends FlowException {
  */
 class NoIndexException extends FlowException {
 	protected function getErrorCodeList() {
+		// flow-error-no-index
 		return array ( 'no-index' );
 	}
 }
@@ -317,6 +327,7 @@ class WrongNumberArgumentsException extends FlowException {
  */
 class UnknownWorkflowIdException extends InvalidInputException {
 	protected function getErrorCodeList() {
+		// flow-error-invalid-input
 		return array( 'invalid-input' );
 	}
 
@@ -335,6 +346,7 @@ class UnknownWorkflowIdException extends InvalidInputException {
  */
 class InvalidTopicUuidException extends InvalidInputException {
 	protected function getErrorCodeList() {
+		// flow-error-invalid-input
 		return array( 'invalid-input' );
 	}
 
@@ -352,6 +364,7 @@ class InvalidTopicUuidException extends InvalidInputException {
  */
 class InvalidUndeleteException extends InvalidActionException {
 	protected function getErrorCodeList() {
+		// flow-error-invalid-undelete
 		return array ( 'invalid-undelete' );
 	}
 
