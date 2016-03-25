@@ -19,6 +19,7 @@
 	 * @cfg {boolean} [cancelOnEscape=true] Emit 'cancel' when Esc is pressed
 	 * @cfg {boolean} [confirmCancel=true] Pop up a confirmation dialog if the user attempts
 	 *  to cancel when there are changes in the editor.
+	 * @cfg {boolean} [saveable=true] Initial state of whether editor is saveable
 	 */
 	mw.flow.ui.EditorWidget = function mwFlowUiEditorWidget( config ) {
 		var widget = this;
@@ -34,17 +35,21 @@
 		this.initialEditor = config.editor;
 		this.confirmCancel = !!config.confirmCancel || config.cancelOnEscape === undefined;
 
+		this.saveable = config.saveable !== undefined ? config.saveable : true;
+
 		this.editorControlsWidget = new mw.flow.ui.EditorControlsWidget( {
 			termsMsgKey: config.termsMsgKey || 'flow-terms-of-use-edit',
 			saveMsgKey: config.saveMsgKey || 'flow-newtopic-save',
-			cancelMsgKey: config.cancelMsgKey || 'flow-cancel'
+			cancelMsgKey: config.cancelMsgKey || 'flow-cancel',
+			saveable: this.saveable
 		} );
 
 		this.editorSwitcherWidget = new mw.flow.ui.EditorSwitcherWidget( {
 			autoFocus: config.autoFocus,
 			content: config.content,
 			contentFormat: config.contentFormat,
-			placeholder: config.placeholder
+			placeholder: config.placeholder,
+			saveable: this.saveable
 		} );
 
 		this.setPendingElement( this.editorSwitcherWidget.$element );
@@ -277,6 +282,22 @@
 			this.editorSwitcherWidget.setDisabled( this.isDisabled() );
 			this.editorControlsWidget.setDisabled( this.isDisabled() );
 		}
+	};
+
+	/**
+	 * Toggle whether the editor is saveable
+	 *
+	 * This is different from setDisabled because that will also disable the cancel button.
+	 * We want to allow them to click 'cancel' so they can collapse the editor again after
+	 * seeing that editing is disabled.
+	 *
+	 * @param {boolean} [saveable] Whether the editor is saveable
+	 */
+	mw.flow.ui.EditorWidget.prototype.toggleSaveable = function ( saveable ) {
+		this.saveable = saveable === undefined ? !this.saveable : !!saveable;
+
+		this.editorSwitcherWidget.toggleSaveable( this.saveable );
+		this.editorControlsWidget.toggleSaveable( this.saveable );
 	};
 
 	mw.flow.ui.EditorWidget.prototype.pushPending = function () {

@@ -343,31 +343,55 @@ class Workflow {
 	}
 
 	/**
-	 * @param string $permission
-	 * @param User $user
-	 * @return bool
+	 * Convenience wrapper for checking user permissions as boolean.
+	 * getPermissionErrors 'quick' + blocked check only for logged in users
+	 *
+	 * @param string $permission Permission to check; for 'edit', 'create' will also be
+	 *  checked if the title does not exist
+	 * @return bool Whether the user can take the action, based on a quick check
 	 */
 	public function userCan( $permission, $user ) {
-		$title = $this->getArticleTitle();
-		$allowed = $title->userCan( $permission, $user );
-		if ( $allowed && $this->type === 'topic' ) {
-			$allowed = $this->getOwnerTitle()->userCan( $permission, $user );
-		}
+		return !count( $this->getPermissionErrors( $permission, $user, 'quick' ) ) &&
 
-		return $allowed;
+		// We only check the blocked status of actual users and not anons, because
+		// the anonymous version can be cached and served to many different IP
+		// addresses which will not all be blocked.
+		// See T61928
+		!( $user->isLoggedIn() && $user->isBlockedFrom( $this->getOwnerTitle(), true ) );
 	}
 
 	/**
 	 * Pass-through to Title::getUserPermissionsErrors
 	 * with title, and owning title if needed.
-	 * @param string $permission
-	 * @param User $user
+	 *
+	 * @param string $permission Permission to check; for 'edit', 'create' will also be
+	 *  checked if the title does not exist
+	 * @param User $user User to check permissions for
+	 * @param string $rigor Rigor of check; see Title->getUserPermissionsErrors
 	 * @return array Array of arrays of the arguments to wfMessage to explain permissions problems.
 	 */
-	public function getPermissionErrors( $permission, $user ) {
+	public function getPermissionErrors( $permission, $user, $rigor ) {
 		$title = $this->type === 'topic' ? $this->getOwnerTitle() : $this->getArticleTitle();
 
-		$errors = $title->getUserPermissionsErrors( $permission, $user );
+		$editErrors = $title->getUserPermissionsErrors( $permission, $user, $rigor );
+
+		$errors = $editErrors;
+
+		$titleExistsFlags = ( $rigor === 'secure' ) ? Title::GAID_FOR_UPDATE : 0;
+
+		if ( $permission === 'edit' && !$title->exists( $titleExistsFlags ) ) {
+			// If it's 'edit', but the title doesn't exist, check 'create' as
+			// well.
+
+			$editErrorKeys = array_map( function ( $val ) {
+				return reset( $val );
+			}, $editErrors );
+
+			// Pass in the edit errors to avoid duplicates
+			$createErrors = $title->getUserPermissionsErrors( 'create', $user, $rigor, $editErrorKeys );
+			$errors = array_merge( $errors, $createErrors );
+		}
+
 		if ( count( $errors ) ) {
 			return $errors;
 		}

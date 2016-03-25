@@ -7,6 +7,7 @@ use Flow\Exception\WrongNumberArgumentsException;
 use Flow\Model\UUID;
 use Closure;
 use HTML;
+use OOUI\IconWidget;
 use LightnCandy;
 use MWTimestamp;
 use RequestContext;
@@ -495,24 +496,16 @@ class TemplateHelper {
 		$widgetType = $named[ 'type' ];
 		$data = array();
 
-		// Parse label
-		if ( isset( $named['label'] ) ) {
-			$label = $named[ 'label' ];
-		}
 		$classes = array();
 		if ( isset( $named['classes'] ) ) {
 			$classes = explode( ' ', $named[ 'classes' ] );
-		}
-
-		if ( empty( $label ) && !empty( $named['l10n'] ) ) {
-			$label = TemplateHelper::l10n( explode( ' ', $named['l10n'] ), array() );
 		}
 
 		// Push raw arguments
 		$data['args'] = $args;
 		$baseConfig = array(
 			// 'infusable' => true,
-			'id' => $named[ 'name' ],
+			'id' => isset( $named[ 'name' ] ) ? isset( $named[ 'name' ] ) : null,
 			'classes' => $classes,
 			'data' => $data
 		);
@@ -524,6 +517,12 @@ class TemplateHelper {
 					'editLink' => $args[1]
 				);
 				$widget = new OOUI\BoardDescriptionWidget( $baseConfig + $dataArgs );
+				break;
+			case 'IconWidget':
+				$dataArgs = array(
+					'icon' => $args[0],
+				);
+				$widget = new IconWidget( $baseConfig + $dataArgs );
 				break;
 		}
 

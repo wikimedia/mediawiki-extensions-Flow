@@ -92,7 +92,7 @@ class SubmissionHandler {
 
 		// Check mediawiki core permissions for title protection, blocked
 		// status, etc.
-		$errors = $workflow->getPermissionErrors( 'edit', $context->getUser() );
+		$errors = $workflow->getPermissionErrors( 'edit', $context->getUser(), 'secure' );
 		if ( count( $errors ) ) {
 			foreach ( $errors as $errorMsgArgs ) {
 				$msg = wfMessage( array_shift( $errorMsgArgs ) );

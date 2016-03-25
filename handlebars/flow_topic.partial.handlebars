@@ -34,5 +34,14 @@
 				{{~l10n "flow-reply-topic-title-placeholder" properties.topic-of-post-text-from-html~}}
 			</a>
 		{{/ifCond}}
+        {{else}}
+		{{!--
+			The user can not post.  This form is rendered only for Initializer to replace
+			it.  Both old and new forms will be hidden in no-JS mode.  The
+                        after-replacement JS version of the form displays as a disabled form.
+                --}}
+		{{#progressiveEnhancement type="insert"}}
+			{{> flow_reply_form}}
+		{{/progressiveEnhancement}}
 	{{/if}}
 </div>
