@@ -471,11 +471,14 @@ class RevisionFormatter {
 		// If a user is blocked from performing actions on this page return
 		// an empty array of actions.
 		//
-		// We only check actual users and not anon's because the anonymous
-		// version can be cached and served to many different ip addresses
-		// which will not all be blocked.
-		if ( !$user->isAnon() &&
-			( $user->isBlockedFrom( $title, true ) || !$title->quickUserCan( 'edit', $user ) )
+		// We only check the blocked status of actual users and not anons, because
+		// the anonymous version can be cached and served to many different IP
+		// addresses which will not all be blocked.
+		if ( ( $user->isLoggedIn() && $user->isBlockedFrom( $title, true ) ) ||
+			!(
+				$title->quickUserCan( 'edit', $user )
+				&& ( $title->exists() || $title->quickUserCan( 'create', $user ) )
+			)
 		) {
 			return array();
 		}

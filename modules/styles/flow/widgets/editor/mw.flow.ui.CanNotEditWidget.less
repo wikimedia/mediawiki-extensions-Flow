@@ -1,0 +1,31 @@
+.flow-ui-canNotEditWidget{
+	// The line-height is defined for all of flow-board class. However,
+	// it has to be 0 in the case where the canNotEditWidget is empty
+	// otherwise it has a visible height.
+	line-height: 0;
+
+	&-active {
+		/* @embed */
+		// From OOjs-UI
+		background-image: url( ../../images/lock-ltr.svg );
+		background-repeat: no-repeat;
+		background-color: #FFB50D;
+		background-position: 0.6em center;
+
+		padding: 0.6em;
+		padding-left: ~"calc(0.6em + 24px + 0.6em)";
+
+		color: #000;
+		display: block;
+		line-height: 1.2em;
+
+		a {
+			color: white;
+			font-weight: bold;
+		}
+
+		body.rtl & {
+			background-position: ~"calc(100% - 0.6em) center";
+		}
+	}
+}

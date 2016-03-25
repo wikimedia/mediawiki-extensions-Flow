@@ -10,6 +10,8 @@
 	 * @param {Object} [config] Configuration object
 	 */
 	mw.flow.ui.EditTopicSummaryWidget = function mwFlowUiEditTopicSummaryWidget( topicId, config ) {
+		var isProbablyEditable = mw.config.get( 'wgIsProbablyEditable' );
+
 		config = config || {};
 
 		this.topicId = topicId;
@@ -21,12 +23,27 @@
 			saveMsgKey: 'flow-topic-action-update-topic-summary',
 			classes: [ 'flow-ui-editTopicSummaryWidget-editor' ],
 			placeholder: mw.msg( 'flow-edit-summary-placeholder' ),
-			cancelMsgKey: config.cancelMsgKey
+			cancelMsgKey: config.cancelMsgKey,
+			saveable: isProbablyEditable
 		} );
 		this.editor.toggle( true );
 
-		this.anonWarning = new mw.flow.ui.AnonWarningWidget();
+		this.anonWarning = new mw.flow.ui.AnonWarningWidget( {
+			isProbablyEditable: isProbablyEditable
+		} );
 		this.anonWarning.toggle( true );
+
+		this.api = new mw.flow.dm.APIHandler(
+			'Topic:' + topicId
+		);
+
+		this.canNotEdit = new mw.flow.ui.CanNotEditWidget( this.api, {
+			userGroups: mw.config.get( 'wgUserGroups' ),
+			restrictionEdit: mw.config.get( 'wgRestrictionEdit' ),
+			isProbablyEditable: isProbablyEditable
+		} );
+
+		this.canNotEdit.toggle( true );
 
 		this.error = new OO.ui.LabelWidget( {
 			classes: [ 'flow-ui-editTopicSummaryWidget-error flow-errors errorbox' ]
@@ -35,10 +52,6 @@
 
 		this.captcha = new mw.flow.dm.Captcha();
 		this.captchaWidget = new mw.flow.ui.CaptchaWidget( this.captcha );
-
-		this.api = new mw.flow.dm.APIHandler(
-			'Topic:' + topicId
-		);
 
 		// Events
 		this.editor.connect( this, {
@@ -50,6 +63,7 @@
 			.addClass( 'flow-ui-editTopicSummaryWidget' )
 			.append(
 				this.anonWarning.$element,
+				this.canNotEdit.$element,
 				this.error.$element,
 				this.captchaWidget.$element,
 				this.editor.$element
