@@ -138,7 +138,7 @@
 			this.toggleWatchable( !!data.watchable );
 		}
 
-		this.toggleEditable( ( data.actions && data.actions.edit ) );
+		this.toggleEditable( !!( data.actions && data.actions.edit ) );
 
 		this.actions = data.actions;
 	};
