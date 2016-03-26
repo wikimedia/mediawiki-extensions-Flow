@@ -365,11 +365,18 @@ class Workflow {
 	 * @return array Array of arrays of the arguments to wfMessage to explain permissions problems.
 	 */
 	public function getPermissionErrors( $permission, $user ) {
-		$title = $this->type === 'topic' ? $this->getOwnerTitle() : $this->getArticleTitle();
+		$title = $this->getArticleTitle();
 
 		$errors = $title->getUserPermissionsErrors( $permission, $user );
 		if ( count( $errors ) ) {
 			return $errors;
+		}
+
+		if ( $this->type === 'topic' ) {
+			$errors = $this->getOwnerTitle()->getUserPermissionsErrors( $permission, $user );
+			if ( count( $errors ) ) {
+				return $errors;
+			}
 		}
 
 		return array();
