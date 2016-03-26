@@ -42,7 +42,7 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 		// block should've been able to render a GET request)
 		if ( !$output[$action]['result'] ) {
 			$this->dieUsage(
-				$this->msg( 'flow-error-no-render' )->text(),
+				wfMessage( 'flow-error-no-render' )->parse(),
 				'no-render',
 				200,
 				array()

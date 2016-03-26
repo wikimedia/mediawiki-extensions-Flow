@@ -878,7 +878,7 @@
 									new OO.ui.HtmlSnippet( errorObj.error.info )
 								);
 							} else {
-								editor.error.setLabel( new OO.ui.HtmlSnippet( errorObj.error && errorObj.error.info || errorObj.exception ) );
+								editor.error.setLabel( errorObj.error && errorObj.error.info || errorObj.exception );
 							}
 
 							editor.error.toggle( true );
@@ -939,7 +939,7 @@
 									new OO.ui.HtmlSnippet( errorObj.error.info )
 								);
 							} else {
-								error.setLabel( new OO.ui.HtmlSnippet( errorObj.error && errorObj.error.info || errorObj.exception ) );
+								error.setLabel( errorObj.error && errorObj.error.info || errorObj.exception );
 							}
 							editor.popPending();
 						}
