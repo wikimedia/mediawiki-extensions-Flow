@@ -883,8 +883,6 @@ class TopicBlock extends AbstractBlock {
 						'lim' => 10,
 						'showIfEmpty' => false,
 						// i18n messages:
-						//  flow-error-not-allowed-hide-extract
-						//  flow-error-not-allowed-reply-to-hide-topic-extract
 						//  flow-error-not-allowed-delete-extract
 						//  flow-error-not-allowed-reply-to-delete-topic-extract
 						//  flow-error-not-allowed-suppress-extract
