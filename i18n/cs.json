@@ -111,7 +111,6 @@
 	"flow-topic-action-watchlist-add": "Odebírat toto téma",
 	"flow-topic-action-watchlist-remove": "Zrušit odběr",
 	"flow-error-http": "Během kontaktování serveru došlo k chybě.",
-	"flow-error-other": "Došlo k neočekávané chybě.",
 	"flow-error-external": "Došlo k chybě.<br />Přijaté chybové hlášení je: $1",
 	"flow-error-missing-content": "Příspěvek nemůže být prázdný.",
 	"flow-error-missing-summary": "Musíte vložit shrnutí.",

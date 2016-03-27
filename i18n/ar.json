@@ -67,7 +67,6 @@
 	"flow-topic-action-watchlist-add": "اشترك في هذا الموضوع",
 	"flow-topic-action-watchlist-remove": "ألغِ الاشتراك",
 	"flow-error-http": "حدث خطأ أثناء الاتصال بالخادم.",
-	"flow-error-other": "حدث خطأ غير متوقع.",
 	"flow-error-external": "حدث خطأ.<br />رسالة الخطأ المتلقاة هي: $1",
 	"flow-error-missing-summary": "يجب أن ترسل ملخص.",
 	"flow-error-missing-header-content": "يجب أن ترسل وصفا.",

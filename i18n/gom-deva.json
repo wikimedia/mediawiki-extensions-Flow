@@ -26,7 +26,6 @@
 	"flow-topic-action-hide-topic": "विशय लिपय",
 	"flow-topic-action-unlock-topic": "विशय परत उगडात",
 	"flow-topic-action-summarize-topic": "सार तयार कर",
-	"flow-error-invalid-replyto": "\"replyTo\" हें पीरामीटर चुकीचें आसा. निर्दिष्ट प्रकास्णी मेळुंक ना.",
 	"flow-error-invalid-postId": "\"replyTo\" हें पीरामीटर चुकीचें आसा. निर्दिष्ट प्रकास्णी ($1) मेळुंक ना.",
 	"flow-error-not-a-post": "विशय्याचें नांवाक प्रकासणी कशी सांबालुंक जायना.",
 	"flow-rev-message-edit-post-recentchanges-summary": "एक प्रकासणी {{GENDER:$2|बदल्ला}}",

@@ -89,7 +89,6 @@
 	"flow-error-allowcreation-flow-create-board": "Vapurpeak \"{{int:right-flow-create-board}}\" porvangi na",
 	"flow-error-external": "Chuk ghodli.<br />Chuke vixim ho sondex mel'lam: $1",
 	"flow-error-missing-title": "Vixoiachem nanv na. Vixoi samballpak nanv gorjechem.",
-	"flow-error-invalid-replyto": "\"replyTo\" hem parameter chukichem asa. Nirdisht prokasnni mellunk na.",
 	"flow-error-invalid-postId": "\"replyTo\" hem parameter chukichem asa. Nirdisht prokasnni ($1) mellunk na.",
 	"flow-error-not-allowed-hide": "Ho vixoi lipoilolo asa.",
 	"flow-error-not-allowed-reply-to-hide-topic": "Tujean zobab diunk zaina kiteak ho vixoi lipoilelem asa.",
