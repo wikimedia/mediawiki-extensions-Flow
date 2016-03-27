@@ -30,7 +30,6 @@ class NotificationController {
 	}
 
 	public static function onBeforeCreateEchoEvent( &$notifs, &$categories, &$icons ) {
-		$notifs += require __DIR__ . "/Notifications.php";
 		$categories['flow-discussion'] = array(
 			'priority' => 3,
 			'tooltip' => 'echo-pref-tooltip-flow-discussion',
@@ -53,6 +52,7 @@ class NotificationController {
 		$icons['flow-topic-reopened'] = array(
 			'path' => 'Flow/modules/notification/icon/flow-topic-reopened.svg',
 		);
+		return true;
 	}
 
 	/**
