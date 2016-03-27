@@ -29,7 +29,7 @@ class NotificationController {
 		$this->language = $language;
 	}
 
-	public static function onBeforeCreateEchoEvent( &$notifs, &$categories, &$icons ) {
+	public static function onBeforeCreateEchoEvent( $notifs, $categories, $icons ) {
 		$notifs += require __DIR__ . "/Notifications.php";
 		$categories['flow-discussion'] = array(
 			'priority' => 3,
