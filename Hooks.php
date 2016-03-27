@@ -10,6 +10,7 @@ use Flow\Data\Listener\RecentChangesListener;
 use Flow\Formatter\CheckUserQuery;
 use Flow\Import\OptInUpdate;
 use Flow\Model\UUID;
+use Flow\NotificationController;
 use Flow\OccupationController;
 use Flow\SpamFilter\AbuseFilter;
 use Flow\TalkpageManager;
@@ -147,7 +148,7 @@ class FlowHooks {
 			require_once __DIR__ . '/vendor/autoload.php';
 		}
 
-		global $wgGrantPermissions;
+		global $wgGrantPermissions, $wgHooks;
 
 		// This is semantically equivalent to editing a talk page and
 		// blanking an offending post or topic.
@@ -165,6 +166,9 @@ class FlowHooks {
 		// of like creating a page that can't normally be edited.  But
 		// maybe make a grant.
 		$wgGrantPermissions['editprotected']['flow-create-board'] = true;
+
+		$wgHooks['BeforeEchoEventInsert'][] = 'FlowHooks::onBeforeEchoEventInsert';
+		$wgHooks['BeforeCreateEchoEvent'][] = 'Flow\NotificationController::onBeforeCreateEchoEvent';
 	}
 
 	/**

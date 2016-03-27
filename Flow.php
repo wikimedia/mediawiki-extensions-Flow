@@ -125,7 +125,6 @@ $wgHooks['ApiFeedContributions::feedItem'][] = 'FlowHooks::onContributionsFeedIt
 $wgHooks['AbuseFilter-computeVariable'][] = 'FlowHooks::onAbuseFilterComputeVariable';
 $wgHooks['AbortEmailNotification'][] = 'FlowHooks::onAbortEmailNotification';
 $wgHooks['EchoAbortEmailNotification'][] = 'FlowHooks::onEchoAbortEmailNotification';
-$wgHooks['BeforeEchoEventInsert'][] = 'FlowHooks::onBeforeEchoEventInsert';
 $wgHooks['ArticleEditUpdateNewTalk'][] = 'FlowHooks::onArticleEditUpdateNewTalk';
 $wgHooks['InfoAction'][] = 'FlowHooks::onInfoAction';
 $wgHooks['SpecialCheckUserGetLinksFromRow'][] = 'FlowHooks::onSpecialCheckUserGetLinksFromRow';
@@ -165,7 +164,6 @@ $wgHooks['MergeAccountFromTo'][] = 'FlowHooks::onMergeAccountFromTo';
 $wgHooks['LiquidThreadsIsLqtPage'][] = 'FlowHooks::onIsLiquidThreadsPage';
 
 // Echo integration
-$wgHooks['BeforeCreateEchoEvent'][] = 'Flow\NotificationController::onBeforeCreateEchoEvent';
 $wgHooks['EchoGetBundleRules'][] = 'Flow\NotificationController::onEchoGetBundleRules';
 
 // Beta feature Flow on user talk page
