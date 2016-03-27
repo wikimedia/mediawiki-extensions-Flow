@@ -165,7 +165,11 @@ $wgHooks['MergeAccountFromTo'][] = 'FlowHooks::onMergeAccountFromTo';
 $wgHooks['LiquidThreadsIsLqtPage'][] = 'FlowHooks::onIsLiquidThreadsPage';
 
 // Echo integration
-$wgHooks['BeforeCreateEchoEvent'][] = 'Flow\NotificationController::onBeforeCreateEchoEvent';
+call_user_func( function() {
+	global $wgHooks;
+	$wgHooks['BeforeCreateEchoEvent'][] = 'Flow\NotificationController::onBeforeCreateEchoEvent';
+} );
+
 $wgHooks['EchoGetBundleRules'][] = 'Flow\NotificationController::onEchoGetBundleRules';
 
 // Beta feature Flow on user talk page
