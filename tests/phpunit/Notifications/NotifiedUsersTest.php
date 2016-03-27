@@ -80,7 +80,7 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 		$this->assertNotifiedUser( $events, $data['user'], $data['agent'] );
 	}
 
-	protected function assertNotifiedUser( array $events, User $notifiedUser, User $notNotifiedUser ) {
+	protected function assertNotifiedUser( EchoEvent $events, User $notifiedUser, User $notNotifiedUser ) {
 		$users = array();
 		foreach( $events as $event ) {
 			$iterator = EchoNotificationController::getUsersToNotifyForEvent( $event );
