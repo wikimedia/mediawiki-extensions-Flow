@@ -165,7 +165,6 @@ $wgHooks['MergeAccountFromTo'][] = 'FlowHooks::onMergeAccountFromTo';
 $wgHooks['LiquidThreadsIsLqtPage'][] = 'FlowHooks::onIsLiquidThreadsPage';
 
 // Echo integration
-$wgHooks['BeforeCreateEchoEvent'][] = 'Flow\NotificationController::onBeforeCreateEchoEvent';
 $wgHooks['EchoGetBundleRules'][] = 'Flow\NotificationController::onEchoGetBundleRules';
 
 // Beta feature Flow on user talk page
@@ -181,6 +180,30 @@ $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
 
 // Flow Content Type
 $wgContentHandlers['flow-board'] = 'Flow\Content\BoardContentHandler';
+
+$wgEchoNotifications += require __DIR__ . "/includes/Notifications/Notifications.php";
+$wgEchoNotificationCategories['flow-discussion'] = array(
+	'priority' => 3,
+	'tooltip' => 'echo-pref-tooltip-flow-discussion',
+);
+$wgEchoNotificationIcons['flow-new-topic'] = array(
+	'path' => 'Flow/modules/notification/icon/flow-new-topic.svg',
+);
+$wgEchoNotificationIcons['flow-post-edited'] = array(
+	'path' => 'Flow/modules/notification/icon/flow-post-edited.svg',
+);
+$wgEchoNotificationIcons['flow-topic-renamed'] = array(
+	'path' => 'Flow/modules/notification/icon/flow-topic-renamed.svg',
+);
+$wgEchoNotificationIcons['flowusertalk-new-topic'] = array(
+	'path' => 'Flow/modules/notification/icon/flowusertalk-new-topic.svg',
+);
+$wgEchoNotificationIcons['flow-topic-resolved'] = array(
+	'path' => 'Flow/modules/notification/icon/flow-topic-resolved.svg',
+);
+$wgEchoNotificationIcons['flow-topic-reopened'] = array(
+	'path' => 'Flow/modules/notification/icon/flow-topic-reopened.svg',
+);
 
 // User permissions
 // Added to $wgFlowGroupPermissions instead of $wgGroupPermissions immediately,

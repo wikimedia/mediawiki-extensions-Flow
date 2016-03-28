@@ -29,32 +29,6 @@ class NotificationController {
 		$this->language = $language;
 	}
 
-	public static function onBeforeCreateEchoEvent( &$notifs, &$categories, &$icons ) {
-		$notifs += require __DIR__ . "/Notifications.php";
-		$categories['flow-discussion'] = array(
-			'priority' => 3,
-			'tooltip' => 'echo-pref-tooltip-flow-discussion',
-		);
-		$icons['flow-new-topic'] = array(
-			'path' => 'Flow/modules/notification/icon/flow-new-topic.svg',
-		);
-		$icons['flow-post-edited'] = array(
-			'path' => 'Flow/modules/notification/icon/flow-post-edited.svg',
-		);
-		$icons['flow-topic-renamed'] = array(
-			'path' => 'Flow/modules/notification/icon/flow-topic-renamed.svg',
-		);
-		$icons['flowusertalk-new-topic'] = array(
-			'path' => 'Flow/modules/notification/icon/flowusertalk-new-topic.svg',
-		);
-		$icons['flow-topic-resolved'] = array(
-			'path' => 'Flow/modules/notification/icon/flow-topic-resolved.svg',
-		);
-		$icons['flow-topic-reopened'] = array(
-			'path' => 'Flow/modules/notification/icon/flow-topic-reopened.svg',
-		);
-	}
-
 	/**
 	 * Causes notifications to be fired for a Header-related event.
 	 * @param  String $eventName The event that occurred.
