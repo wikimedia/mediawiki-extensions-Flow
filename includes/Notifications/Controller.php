@@ -29,28 +29,28 @@ class NotificationController {
 		$this->language = $language;
 	}
 
-	public static function onBeforeCreateEchoEvent( &$notifs, &$categories, &$icons ) {
-		$notifs += require __DIR__ . "/Notifications.php";
-		$categories['flow-discussion'] = array(
+	public static function onBeforeCreateEchoEvent( &$wgEchoNotifications, &$wgEchoNotificationCategories, &$wgEchoNotificationIcons  ) {
+		$wgEchoNotifications += require __DIR__ . "/Notifications.php";
+		$wgEchoNotificationCategories['flow-discussion'] = array(
 			'priority' => 3,
 			'tooltip' => 'echo-pref-tooltip-flow-discussion',
 		);
-		$icons['flow-new-topic'] = array(
+		$wgEchoNotificationIcons['flow-new-topic'] = array(
 			'path' => 'Flow/modules/notification/icon/flow-new-topic.svg',
 		);
-		$icons['flow-post-edited'] = array(
+		$wgEchoNotificationIcons['flow-post-edited'] = array(
 			'path' => 'Flow/modules/notification/icon/flow-post-edited.svg',
 		);
-		$icons['flow-topic-renamed'] = array(
+		$wgEchoNotificationIcons['flow-topic-renamed'] = array(
 			'path' => 'Flow/modules/notification/icon/flow-topic-renamed.svg',
 		);
-		$icons['flowusertalk-new-topic'] = array(
+		$wgEchoNotificationIcons['flowusertalk-new-topic'] = array(
 			'path' => 'Flow/modules/notification/icon/flowusertalk-new-topic.svg',
 		);
-		$icons['flow-topic-resolved'] = array(
+		$wgEchoNotificationIcons['flow-topic-resolved'] = array(
 			'path' => 'Flow/modules/notification/icon/flow-topic-resolved.svg',
 		);
-		$icons['flow-topic-reopened'] = array(
+		$wgEchoNotificationIcons['flow-topic-reopened'] = array(
 			'path' => 'Flow/modules/notification/icon/flow-topic-reopened.svg',
 		);
 	}
