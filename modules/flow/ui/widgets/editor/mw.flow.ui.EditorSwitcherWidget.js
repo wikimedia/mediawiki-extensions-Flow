@@ -102,9 +102,11 @@
 	 *
 	 * @property {Object}
 	 */
-	mw.flow.ui.EditorSwitcherWidget.static.editorDefinitions = {
+	mw.flow.ui.EditorSwitcherWidget.static.editorDefinitions = mw.config.get( 'wgFlowDetectVisualClass' ) ? {
 		wikitext: mw.flow.ui.WikitextEditorWidget,
 		visualeditor: mw.flow.ui.VisualEditorWidget
+	} : {
+		wikitext: mw.flow.ui.WikitextEditorWidget
 	};
 
 	/* Methods */
