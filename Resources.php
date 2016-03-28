@@ -387,7 +387,6 @@ $wgResourceModules += array(
 
 			'flow/ui/widgets/editor/editors/mw.flow.ui.AbstractEditorWidget.js',
 			'flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js',
-			'flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js',
 			'flow/ui/widgets/editor/mw.flow.ui.AnonWarningWidget.js',
 			'flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js',
 			'flow/ui/widgets/editor/mw.flow.ui.EditorControlsWidget.js',
@@ -457,8 +456,6 @@ $wgResourceModules += array(
 			'engine/components/board/features/flow-board-navigation.js',
 			// Feature: Side Rail
 			'engine/components/board/features/flow-board-side-rail.js',
-			// Feature: VisualEditor
-			'engine/components/board/features/flow-board-visualeditor.js',
 			// Feature: Switch between editors
 			'engine/components/board/features/flow-board-switcheditor.js',
 
@@ -527,75 +524,6 @@ $wgResourceModules += array(
 		'dependencies' => array(
 			'oojs-ui',
 		)
-	) + $mobile,
-
-	// Basically this is just all the Flow-specific VE stuff, except ext.flow.editors.visualeditor.js,
-	// That needs to register itself even if the browser doesn't support VE (so we can tell
-	// the editor dispatcher that).  But we want to reduce what we load if the browser can't actually
-	// use VE.
-	'ext.flow.visualEditor' => $flowResourceTemplate + array(
-		'scripts' => array(
-			'editor/editors/visualeditor/mw.flow.ve.Target.js',
-			'editor/editors/visualeditor/mw.flow.ve.UserCache.js',
-			'editor/editors/visualeditor/ui/inspectors/mw.flow.ve.ui.MentionInspector.js',
-			'editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.MentionInspectorTool.js',
-			// MentionInspectorTool must be after MentionInspector and before MentionContextItem.
-			'editor/editors/visualeditor/ui/contextitem/mw.flow.ve.ui.MentionContextItem.js',
-			'editor/editors/visualeditor/ui/widgets/mw.flow.ve.ui.MentionTargetInputWidget.js',
-			'editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.SwitchEditorTool.js',
-			'editor/editors/visualeditor/ui/actions/mw.flow.ve.ui.SwitchEditorAction.js',
-			'editor/editors/visualeditor/mw.flow.ve.CommandRegistry.js',
-			'editor/editors/visualeditor/mw.flow.ve.SequenceRegistry.js',
-		),
-		'styles' => array(
-			'editor/editors/visualeditor/mw.flow.ve.Target.less',
-			'editor/editors/visualeditor/ui/mw.flow.ve.ui.Icons.less',
-		),
-		'skinStyles' => array(
-			'vector' => array(
-				'editor/editors/visualeditor/mw.flow.ve.Target-vector.less',
-			),
-			'monobook' => array(
-				'editor/editors/visualeditor/mw.flow.ve.Target-monobook.less',
-			),
-		),
-		'dependencies' => array(
-			'es5-shim',
-			'ext.visualEditor.core',
-			'ext.visualEditor.core.desktop',
-			'ext.visualEditor.data',
-			'ext.visualEditor.icons',
-			// See comment at bottom of mw.flow.ve.Target.js.
-			'ext.visualEditor.mediawiki',
-			'ext.visualEditor.desktopTarget',
-			'ext.visualEditor.mwimage',
-			'ext.visualEditor.mwlink',
-			'ext.visualEditor.mwtransclusion',
-			'ext.visualEditor.standalone',
-			'oojs-ui.styles.icons-editing-advanced',
-			'site',
-			'user',
-			'mediawiki.api',
-			'ext.flow.editors.none', // needed to figure out if that editor is supported, for switch button
-		),
-		'messages' => array(
-			'flow-ve-mention-context-item-label',
-			'flow-ve-mention-inspector-title',
-			'flow-ve-mention-inspector-remove-label',
-			'flow-ve-mention-inspector-invalid-user',
-			'flow-ve-mention-placeholder',
-			'flow-ve-mention-tool-title',
-			'flow-ve-switch-editor-tool-title',
-		),
-	),
-
-	// Actual VE is currently not supported on mobile since we use the desktop target, but we still
-	// need this part to load (and reject it in isSupported)
-	'ext.flow.editors.visualeditor' => $flowResourceTemplate + array(
-		'scripts' => 'editor/editors/visualeditor/ext.flow.editors.visualeditor.js',
-		'dependencies' => array(
-			// ve dependencies will be loaded via JS
-		),
 	) + $mobile,
 
 	// This integrates with core mediawiki.messagePoster, and the module name
