@@ -52,8 +52,10 @@
 
 		// only attach switcher if VE is actually enabled and supported
 		// code to figure out if that VE is supported is in that module
-		if ( mw.config.get( 'wgFlowEditorList' ).indexOf( 'visualeditor' ) !== -1 ) {
-			mw.loader.using( 'ext.flow.editors.visualeditor', $.proxy( this.attachControls, this ) );
+		if ( mw.config.get( 'wgFlowDetectVisualClass' ) ) {
+			if ( mw.config.get( 'wgFlowEditorList' ).indexOf( 'visualeditor' ) !== -1 ) {
+				mw.loader.using( 'ext.flow.editors.visualeditor', $.proxy( this.attachControls, this ) );
+			}
 		}
 
 		this.widget.connect( this, { change: [ 'emit', 'change' ] } );

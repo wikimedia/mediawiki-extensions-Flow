@@ -47,16 +47,246 @@ class FlowHooks {
 			$resourceLoader->register( 'ext.guidedTour.tour.flowOptIn', array(
 				'localBasePath' => __DIR__ . '/modules',
 				'remoteExtPath' => 'Flow/modules',
-					'scripts' => 'tours/flowOptIn.js',
-					'styles' => 'tours/flowOptIn.less',
-					'messages' => array(
-						"flow-guidedtour-optin-welcome",
-						"flow-guidedtour-optin-welcome-description",
-						"flow-guidedtour-optin-find-old-conversations",
-						"flow-guidedtour-optin-find-old-conversations-description",
-						"flow-guidedtour-optin-feedback",
-						"flow-guidedtour-optin-feedback-description"
-					)
+				'scripts' => 'tours/flowOptIn.js',
+				'styles' => 'tours/flowOptIn.less',
+				'messages' => array(
+					"flow-guidedtour-optin-welcome",
+					"flow-guidedtour-optin-welcome-description",
+					"flow-guidedtour-optin-find-old-conversations",
+					"flow-guidedtour-optin-find-old-conversations-description",
+					"flow-guidedtour-optin-feedback",
+					"flow-guidedtour-optin-feedback-description"
+				)
+			) );
+		}
+
+			$resourceLoader->register( 'ext.flow.ui', array(
+				'scripts' => array(
+					'flow/ui/mw.flow.ui.js',
+					'flow/ui/widgets/mw.flow.ui.CaptchaWidget.js',
+					'flow/ui/mw.flow.ui.Overlay.js',
+					'flow/ui/mw.flow.ui.CancelConfirmDialog.js',
+					'flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js',
+					'flow/ui/widgets/mw.flow.ui.ToCWidget.js',
+					'flow/ui/widgets/mw.flow.ui.ReorderTopicsWidget.js',
+					'flow/ui/widgets/mw.flow.ui.NavigationWidget.js',
+					'flow/ui/widgets/mw.flow.ui.ReplyWidget.js',
+					'flow/ui/widgets/mw.flow.ui.EditPostWidget.js',
+					'flow/ui/widgets/mw.flow.ui.EditTopicSummaryWidget.js',
+					'flow/ui/widgets/mw.flow.ui.SidebarExpandWidget.js',
+					'flow/ui/widgets/mw.flow.ui.NewTopicWidget.js',
+					'flow/ui/widgets/mw.flow.ui.TopicTitleWidget.js',
+
+					'flow/ui/widgets/editor/editors/mw.flow.ui.AbstractEditorWidget.js',
+					'flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js',
+					'flow/ui/widgets/editor/mw.flow.ui.AnonWarningWidget.js',
+					'flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js',
+					'flow/ui/widgets/editor/mw.flow.ui.EditorControlsWidget.js',
+					'flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js',
+					'flow/ui/widgets/editor/mw.flow.ui.SwitchToVeTool.js',
+					'flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js',
+					'flow/ui/widgets/mw.flow.ui.CategoryItemWidget.js',
+					'flow/ui/widgets/mw.flow.ui.CategoriesWidget.js',
+				),
+				'styles' => array(
+					'styles/flow/mw.flow.ui.Overlay.less',
+					'styles/flow/widgets/mw.flow.ui.NavigationWidget.less',
+					'styles/flow/widgets/mw.flow.ui.TopicMenuSelectWidget.less',
+					'styles/flow/widgets/mw.flow.ui.ReorderTopicsWidget.less',
+					'styles/flow/widgets/mw.flow.ui.ReplyWidget.less',
+					'styles/flow/widgets/mw.flow.ui.SidebarExpandWidget.less',
+					'styles/flow/widgets/mw.flow.ui.NewTopicWidget.less',
+
+					'styles/flow/widgets/editor/mw.flow.ui.AnonWarningWidget.less',
+					'styles/flow/widgets/editor/mw.flow.ui.EditorControlsWidget.less',
+					'styles/flow/widgets/editor/mw.flow.ui.EditorSwitcherWidget.less',
+					'styles/flow/widgets/editor/mw.flow.ui.EditorWidget.less',
+					'styles/flow/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.less',
+					'styles/flow/widgets/mw.flow.ui.CategoryItemWidget.less',
+					'styles/flow/widgets/mw.flow.ui.CategoriesWidget.less',
+					'styles/flow/widgets/mw.flow.ui.TopicTitleWidget.less',
+				),
+				'messages' => array(
+					'flow-error-parsoid-failure',
+					'flow-error-default',
+					'flow-dialog-cancelconfirm-title',
+					'flow-dialog-cancelconfirm-message',
+					'flow-dialog-cancelconfirm-keep',
+					'flow-dialog-cancelconfirm-discard',
+					'flow-wikitext-switch-editor-tooltip',
+					'red-link-title',
+					'pagecategories',
+					'colon-separator'
+				),
+				'dependencies' => array(
+					'oojs-ui',
+					'es5-shim',
+					'ext.flow.dm',
+					( \ExtensionRegistry::getInstance()->isLoaded( 'VisualEditor' ) ?
+						'ext.flow.ui.visualeditor' : '' ),
+				),
+				'targets' => array( 'desktop', 'mobile' ),
+				'localBasePath' => __DIR__ . '/modules',
+				'remoteExtPath' => 'Flow/modules',
+			) );
+
+			$resourceLoader->register( 'ext.flow', array(
+				'position' => 'top',
+				'styles' => array(
+					'styles/mediawiki.ui/modal.less',
+					'styles/mediawiki.ui/tooltips.less'
+				),
+				'scripts' => array( // Component order is important
+					// MW UI
+					'engine/misc/mw-ui.enhance.js',
+					'engine/misc/mw-ui.modal.js',
+
+					// Feature: flow-menu
+					'engine/components/common/flow-component-menus.js',
+
+					'engine/components/board/base/flow-board-api-events.js',
+					'engine/components/board/base/flow-board-interactive-events.js',
+					'engine/components/board/base/flow-board-load-events.js',
+					// Feature: Load More
+					'engine/components/board/features/flow-board-loadmore.js',
+					// Feature: Board Navigation Header
+					'engine/components/board/features/flow-board-navigation.js',
+					// Feature: Side Rail
+					'engine/components/board/features/flow-board-side-rail.js',
+					// Feature: Switch between editors
+					'engine/components/board/features/flow-board-switcheditor.js',
+
+					// Component: FlowBoardHistoryComponent
+					'engine/components/board/flow-boardhistory.js',
+					// this must be last (of everything loaded.  otherwise a components
+					// can be initialized before all the mixins are loaded.  Can we mixin
+					// after initialization?)
+					'mw.flow.Initializer.js',
+					'flow-initialize.js',
+				),
+				'dependencies' => array(
+					'ext.flow.components',
+					'ext.flow.editor',
+					'jquery.throttle-debounce',
+					'mediawiki.jqueryMsg',
+					'ext.flow.jquery.conditionalScroll',
+					'ext.flow.ui',
+					'mediawiki.api',
+					'mediawiki.util',
+					'mediawiki.api.options', // required by switch-editor feature
+					'ext.flow.board.visualeditor',
+					( \ExtensionRegistry::getInstance()->isLoaded( 'VisualEditor' ) ?
+						'ext.flow.board.visualeditor'
+					:
+						''
+					),
+				),
+				'messages' => array(
+					'flow-error-external',
+					'flow-error-http',
+					'mw-ui-unsubmitted-confirm',
+					'flow-reply-link',
+					'flow-reply-link-anonymously',
+				),
+				'targets' => array( 'desktop', 'mobile' ),
+				'localBasePath' => __DIR__ . '/modules',
+				'remoteExtPath' => 'Flow/modules',
+			) );
+
+		if ( \ExtensionRegistry::getInstance()->isLoaded( 'VisualEditor' ) ) {
+			$resourceLoader->register( 'ext.flow.ui.visualeditor', array(
+				'localBasePath' => __DIR__ . '/modules',
+				'remoteExtPath' => 'Flow/modules',
+				'scripts' => array(
+					'flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js',
+				),
+				'targets' => array( 'desktop', 'mobile' )
+			) );
+
+			$resourceLoader->register( 'ext.flow.board.visualeditor', array(
+				'localBasePath' => __DIR__ . '/modules',
+				'remoteExtPath' => 'Flow/modules',
+				'scripts' => array(
+					// Feature: VisualEditor
+					'engine/components/board/features/flow-board-visualeditor.js',
+				),
+				'targets' => array( 'desktop', 'mobile' )
+			) );
+
+			// Basically this is just all the Flow-specific VE stuff, except ext.flow.editors.visualeditor.js,
+			// That needs to register itself even if the browser doesn't support VE (so we can tell
+			// the editor dispatcher that).  But we want to reduce what we load if the browser can't actually
+			// use VE.
+			$resourceLoader->register( 'ext.flow.visualEditor', array(
+				'localBasePath' => __DIR__ . '/modules',
+				'remoteExtPath' => 'Flow/modules',
+				'scripts' => array(
+					'editor/editors/visualeditor/mw.flow.ve.Target.js',
+					'editor/editors/visualeditor/mw.flow.ve.UserCache.js',
+					'editor/editors/visualeditor/ui/inspectors/mw.flow.ve.ui.MentionInspector.js',
+					'editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.MentionInspectorTool.js',
+					// MentionInspectorTool must be after MentionInspector and before MentionContextItem.
+					'editor/editors/visualeditor/ui/contextitem/mw.flow.ve.ui.MentionContextItem.js',
+					'editor/editors/visualeditor/ui/widgets/mw.flow.ve.ui.MentionTargetInputWidget.js',
+					'editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.SwitchEditorTool.js',
+					'editor/editors/visualeditor/ui/actions/mw.flow.ve.ui.SwitchEditorAction.js',
+					'editor/editors/visualeditor/mw.flow.ve.CommandRegistry.js',
+					'editor/editors/visualeditor/mw.flow.ve.SequenceRegistry.js',
+				),
+				'styles' => array(
+					'editor/editors/visualeditor/mw.flow.ve.Target.less',
+					'editor/editors/visualeditor/ui/mw.flow.ve.ui.Icons.less',
+				),
+				'skinStyles' => array(
+					'vector' => array(
+						'editor/editors/visualeditor/mw.flow.ve.Target-vector.less',
+					),
+					'monobook' => array(
+						'editor/editors/visualeditor/mw.flow.ve.Target-monobook.less',
+					),
+				),
+				'dependencies' => array(
+					'es5-shim',
+					'ext.visualEditor.core',
+					'ext.visualEditor.core.desktop',
+					'ext.visualEditor.data',
+					'ext.visualEditor.icons',
+					// See comment at bottom of mw.flow.ve.Target.js.
+					'ext.visualEditor.mediawiki',
+					'ext.visualEditor.desktopTarget',
+					'ext.visualEditor.mwimage',
+					'ext.visualEditor.mwlink',
+					'ext.visualEditor.mwtransclusion',
+					'ext.visualEditor.standalone',
+					'oojs-ui.styles.icons-editing-advanced',
+					'site',
+					'user',
+					'mediawiki.api',
+					'ext.flow.editors.none', // needed to figure out if that editor is supported, for switch button
+				),
+				'messages' => array(
+					'flow-ve-mention-context-item-label',
+					'flow-ve-mention-inspector-title',
+					'flow-ve-mention-inspector-remove-label',
+					'flow-ve-mention-inspector-invalid-user',
+					'flow-ve-mention-placeholder',
+					'flow-ve-mention-tool-title',
+					'flow-ve-switch-editor-tool-title',
+				)
+			) );
+
+			// Actual VE is currently not supported on mobile since we use the desktop target, but we still
+			// need this part to load (and reject it in isSupported)
+			$resourceLoader->register( 'ext.flow.editors.visualeditor', array(
+				'localBasePath' => __DIR__ . '/modules',
+				'remoteExtPath' => 'Flow/modules',
+				'targets' => array( 'desktop', 'mobile' ),
+				'scripts' => array(
+					'editor/editors/visualeditor/ext.flow.editors.visualeditor.js',
+				),
+				'dependencies' => array(
+					// ve dependencies will be loaded via JS
+				),
 			) );
 		}
 
@@ -737,12 +967,15 @@ class FlowHooks {
 
 	// Static variables that do not vary by request; delivered through startup module
 	public static function onResourceLoaderGetConfigVars( &$vars ) {
-		global $wgFlowEditorList, $wgFlowAjaxTimeout;
+		global $wgFlowEditorList, $wgFlowAjaxTimeout, $wgFlowDetectVisualClass;
+
+		$wgFlowDetectVisualClass = class_exists( 'VisualEditorHooks' );
 
 		$vars['wgFlowEditorList'] = $wgFlowEditorList;
 		$vars['wgFlowMaxTopicLength'] = Flow\Model\PostRevision::MAX_TOPIC_LENGTH;
 		$vars['wgFlowMentionTemplate'] = wfMessage( 'flow-ve-mention-template-title' )->inContentLanguage()->plain();
 		$vars['wgFlowAjaxTimeout'] = $wgFlowAjaxTimeout;
+		$vars['wgFlowDetectVisualClass'] = $wgFlowDetectVisualClass;
 
 		return true;
 	}
