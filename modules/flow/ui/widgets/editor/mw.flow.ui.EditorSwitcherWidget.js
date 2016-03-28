@@ -102,10 +102,16 @@
 	 *
 	 * @property {Object}
 	 */
-	mw.flow.ui.EditorSwitcherWidget.static.editorDefinitions = {
-		wikitext: mw.flow.ui.WikitextEditorWidget,
-		visualeditor: mw.flow.ui.VisualEditorWidget
-	};
+	if ( mw.config.get( 'wgFlowDetectVisualClass' ) ) {
+		mw.flow.ui.EditorSwitcherWidget.static.editorDefinitions = {
+			wikitext: mw.flow.ui.WikitextEditorWidget,
+			visualeditor: mw.flow.ui.VisualEditorWidget
+		};
+	} else {
+		mw.flow.ui.EditorSwitcherWidget.static.editorDefinitions = {
+			wikitext: mw.flow.ui.WikitextEditorWidget
+		};
+	}
 
 	/* Methods */
 
