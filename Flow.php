@@ -292,7 +292,11 @@ $wgFlowMaxMentionCount = 100;
 $wgFlowMaxThreadingDepth = 8;
 
 // A list of editors to use, in priority order
-$wgFlowEditorList = array( 'visualeditor', 'wikitext' );
+if ( \ExtensionRegistry::getInstance()->isLoaded( 'VisualEditor' ) ) {
+	$wgFlowEditorList = array( 'visualeditor', 'wikitext' );
+} else {
+	$wgFlowEditorList = array( 'wikitext' );
+}
 
 // Action details config file
 require $dir . 'FlowActions.php';
