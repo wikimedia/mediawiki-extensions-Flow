@@ -47,16 +47,117 @@ class FlowHooks {
 			$resourceLoader->register( 'ext.guidedTour.tour.flowOptIn', array(
 				'localBasePath' => __DIR__ . '/modules',
 				'remoteExtPath' => 'Flow/modules',
-					'scripts' => 'tours/flowOptIn.js',
-					'styles' => 'tours/flowOptIn.less',
-					'messages' => array(
-						"flow-guidedtour-optin-welcome",
-						"flow-guidedtour-optin-welcome-description",
-						"flow-guidedtour-optin-find-old-conversations",
-						"flow-guidedtour-optin-find-old-conversations-description",
-						"flow-guidedtour-optin-feedback",
-						"flow-guidedtour-optin-feedback-description"
-					)
+				'scripts' => 'tours/flowOptIn.js',
+				'styles' => 'tours/flowOptIn.less',
+				'messages' => array(
+					"flow-guidedtour-optin-welcome",
+					"flow-guidedtour-optin-welcome-description",
+					"flow-guidedtour-optin-find-old-conversations",
+					"flow-guidedtour-optin-find-old-conversations-description",
+					"flow-guidedtour-optin-feedback",
+					"flow-guidedtour-optin-feedback-description"
+				)
+			) );
+		}
+
+		if ( \ExtensionRegistration::getInstance()->isLoaded( 'VisualEditor' ) ) {
+			$resourceLoader->register( 'ext.flow.ui.visualeditor', array(
+				'localBasePath' => __DIR__ . '/modules',
+				'remoteExtPath' => 'Flow/modules',
+				'scripts' => array(
+					'flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js',
+				),
+				'targets' => array( 'desktop', 'mobile' )
+			) );
+
+			$wgResourceModules['ext.flow.ui']['dependencies'][] = 'ext.flow.ui.visualeditor';
+
+			$resourceLoader->register( 'ext.flow.visualeditor.board', array(
+				'localBasePath' => __DIR__ . '/modules',
+				'remoteExtPath' => 'Flow/modules',
+				'scripts' => array(
+					// Feature: VisualEditor
+					'engine/components/board/features/flow-board-visualeditor.js',
+				),
+				'targets' => array( 'desktop', 'mobile' )
+			) );
+
+			$wgResourceModules['ext.flow']['dependencies'][] = 'ext.flow.visualeditor.board';
+
+			// Basically this is just all the Flow-specific VE stuff, except ext.flow.editors.visualeditor.js,
+			// That needs to register itself even if the browser doesn't support VE (so we can tell
+			// the editor dispatcher that).  But we want to reduce what we load if the browser can't actually
+			// use VE.
+			$resourceLoader->register( 'ext.flow.visualEditor', array(
+				'localBasePath' => __DIR__ . '/modules',
+				'remoteExtPath' => 'Flow/modules',
+				'scripts' => array(
+					'editor/editors/visualeditor/mw.flow.ve.Target.js',
+					'editor/editors/visualeditor/mw.flow.ve.UserCache.js',
+					'editor/editors/visualeditor/ui/inspectors/mw.flow.ve.ui.MentionInspector.js',
+					'editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.MentionInspectorTool.js',
+					// MentionInspectorTool must be after MentionInspector and before MentionContextItem.
+					'editor/editors/visualeditor/ui/contextitem/mw.flow.ve.ui.MentionContextItem.js',
+					'editor/editors/visualeditor/ui/widgets/mw.flow.ve.ui.MentionTargetInputWidget.js',
+					'editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.SwitchEditorTool.js',
+					'editor/editors/visualeditor/ui/actions/mw.flow.ve.ui.SwitchEditorAction.js',
+					'editor/editors/visualeditor/mw.flow.ve.CommandRegistry.js',
+					'editor/editors/visualeditor/mw.flow.ve.SequenceRegistry.js',
+				),
+				'styles' => array(
+					'editor/editors/visualeditor/mw.flow.ve.Target.less',
+					'editor/editors/visualeditor/ui/mw.flow.ve.ui.Icons.less',
+				),
+				'skinStyles' => array(
+					'vector' => array(
+						'editor/editors/visualeditor/mw.flow.ve.Target-vector.less',
+					),
+					'monobook' => array(
+						'editor/editors/visualeditor/mw.flow.ve.Target-monobook.less',
+					),
+				),
+				'dependencies' => array(
+					'es5-shim',
+					'ext.visualEditor.core',
+					'ext.visualEditor.core.desktop',
+					'ext.visualEditor.data',
+					'ext.visualEditor.icons',
+					// See comment at bottom of mw.flow.ve.Target.js.
+					'ext.visualEditor.mediawiki',
+					'ext.visualEditor.desktopTarget',
+					'ext.visualEditor.mwimage',
+					'ext.visualEditor.mwlink',
+					'ext.visualEditor.mwtransclusion',
+					'ext.visualEditor.standalone',
+					'oojs-ui.styles.icons-editing-advanced',
+					'site',
+					'user',
+					'mediawiki.api',
+					'ext.flow.editors.none', // needed to figure out if that editor is supported, for switch button
+				),
+				'messages' => array(
+					'flow-ve-mention-context-item-label',
+					'flow-ve-mention-inspector-title',
+					'flow-ve-mention-inspector-remove-label',
+					'flow-ve-mention-inspector-invalid-user',
+					'flow-ve-mention-placeholder',
+					'flow-ve-mention-tool-title',
+					'flow-ve-switch-editor-tool-title',
+				)
+			) );
+
+			// Actual VE is currently not supported on mobile since we use the desktop target, but we still
+			// need this part to load (and reject it in isSupported)
+			$resourceLoader->register( 'ext.flow.editors.visualeditor', array(
+				'localBasePath' => __DIR__ . '/modules',
+				'remoteExtPath' => 'Flow/modules',
+				'scripts' => array(
+					// Feature: VisualEditor
+					'editor/editors/visualeditor/ext.flow.editors.visualeditor.js',
+				),
+				'dependencies' => array(
+					// ve dependencies will be loaded via JS
+				)
 			) );
 		}
 
@@ -737,12 +838,15 @@ class FlowHooks {
 
 	// Static variables that do not vary by request; delivered through startup module
 	public static function onResourceLoaderGetConfigVars( &$vars ) {
-		global $wgFlowEditorList, $wgFlowAjaxTimeout;
+		global $wgFlowEditorList, $wgFlowAjaxTimeout, $wgFlowDetectVisualClass;
+
+		$wgFlowDetectVisualClass = class_exists( 'VisualEditorHooks' );
 
 		$vars['wgFlowEditorList'] = $wgFlowEditorList;
 		$vars['wgFlowMaxTopicLength'] = Flow\Model\PostRevision::MAX_TOPIC_LENGTH;
 		$vars['wgFlowMentionTemplate'] = wfMessage( 'flow-ve-mention-template-title' )->inContentLanguage()->plain();
 		$vars['wgFlowAjaxTimeout'] = $wgFlowAjaxTimeout;
+		$vars['wgFlowDetectVisualClass'] = $wgFlowDetectVisualClass;
 
 		return true;
 	}
