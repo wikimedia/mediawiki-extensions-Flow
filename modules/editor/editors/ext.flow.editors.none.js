@@ -52,8 +52,10 @@
 
 		// only attach switcher if VE is actually enabled and supported
 		// code to figure out if that VE is supported is in that module
-		if ( mw.config.get( 'wgFlowEditorList' ).indexOf( 'visualeditor' ) !== -1 ) {
-			mw.loader.using( 'ext.flow.editors.visualeditor', $.proxy( this.attachControls, this ) );
+		if ( mw.config.get( 'wgFlowDetectVisualClass' ) ) {
+			if ( mw.config.get( 'wgFlowEditorList' ).indexOf( 'visualeditor' ) !== -1 ) {
+				mw.loader.using( 'ext.flow.editors.visualeditor', $.proxy( this.attachControls, this ) );
+			}
 		}
 
 		this.widget.connect( this, { change: [ 'emit', 'change' ] } );
@@ -113,20 +115,22 @@
 			.attr( 'target', '_blank' )
 			.end();
 
-		if ( mw.flow.editors.visualeditor.static.isSupported() ) {
-			$preview = $( '<a>' ).attr( {
-				href: '#',
-				'data-flow-interactive-handler': 'switchEditor',
-				'data-flow-target': '< .flow-editor textarea.flow-editor-initialized'
-			} ).text( mw.message( 'flow-wikitext-editor-help-preview-the-result' ).text() );
+		if ( mw.config.get( 'wgFlowDetectVisualClass' ) ) {
+			if ( mw.flow.editors.visualeditor.static.isSupported() ) {
+				$preview = $( '<a>' ).attr( {
+					href: '#',
+					'data-flow-interactive-handler': 'switchEditor',
+					'data-flow-target': '< .flow-editor textarea.flow-editor-initialized'
+				} ).text( mw.message( 'flow-wikitext-editor-help-preview-the-result' ).text() );
 
-			templateArgs = {
-				enable_switcher: true,
-				help_text: mw.message( 'flow-wikitext-editor-help-and-preview' ).params( [
-					$usesWikitext.html(),
-					$preview[ 0 ].outerHTML
-				] ).parse()
-			};
+				templateArgs = {
+					enable_switcher: true,
+					help_text: mw.message( 'flow-wikitext-editor-help-and-preview' ).params( [
+						$usesWikitext.html(),
+						$preview[ 0 ].outerHTML
+					] ).parse()
+				};
+			}
 		} else {
 			// render just a basic help text
 			templateArgs = {
