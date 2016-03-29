@@ -13,8 +13,8 @@
 	"notification-bundle-header-flow-new-topic": "\n$1 яңы {{PLURAL: $ 1 | Тема | теманың}}  <STRONG>ға $3 </ STRONG>.",
 	"notification-header-flow-post-reply": "$1 {{GENDER:$2|replied}} in \"<strong>$4</strong>\".",
 	"notification-bundle-header-flow-post-reply-v2": "\n$1 яңы {{PLURAL: $ 1 | Тема | теманың}}  <STRONG>ға $3 </ STRONG>.",
-	"notification-header-flow-mention-post": "$1 һеҙҙе{{GENDER:$2||фекерләшеү}} {{GENDER:$3|битендә}} телгә алды «$4».",
-	"notification-header-flow-mention-post-summary": "$1 һеҙҙе{{GENDER:$2||фекерләшеү}} {{GENDER:$3|битендә}} телгә алды «$4».",
+	"notification-header-flow-mention-post": "$1 {{GENDER:$2|mentioned}} {{GENDER:$4|you}} in \"<strong>$5</strong>\".",
+	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$2|mentioned}} {{GENDER:$4|you}} in \"<strong>$5</strong>\".",
 	"flow-moderation-confirmation-undelete-post": "Өҫтә күрһәтелгән хәбәрҙе юйыуҙы юҡҡа сығарҙығыҙ.",
 	"flow-action-not-page": "Был нөсхәлә объект битенең класы дөрөҫ түгел"
 }

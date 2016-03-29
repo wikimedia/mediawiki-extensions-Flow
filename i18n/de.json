@@ -11,7 +11,8 @@
 			"J. 'mach' wust",
 			"Nnemo",
 			"Predatorix",
-			"Quiddity"
+			"Quiddity",
+			"TMg"
 		]
 	},
 	"enableflow": "Flow aktivieren",
@@ -247,7 +248,7 @@
 	"notification-bundle-header-flow-post-reply-user-talk": "{{PLURAL:$1|Eine neue Antwort|$1 neue Antworten}} auf <strong>deiner Diskussionsseite</strong> in „<strong>$3</strong>“.",
 	"notification-header-flow-post-edited-v2": "{{GENDER:$2|Dein}} Beitrag in „<strong>$1</strong>“ wurde bearbeitet.",
 	"notification-bundle-header-flow-post-edited-v2": "{{GENDER:$2|Dein}} Beitrag in „<strong>$1</strong>“ wurde mehrere Male bearbeitet.",
-	"notification-header-flow-post-edited-user-talk": "Ein Beitrag in „<strong>$1</strong>“ wurde auf <strong>{{GENDER:$2|deiner}} Diskussionsseite</strong> bearbeitet.",
+	"notification-header-flow-post-edited-user-talk": "Ein Beitrag in „<strong>$1</strong>“ auf <strong>{{GENDER:$2|deiner}} Diskussionsseite</strong> wurde bearbeitet.",
 	"notification-bundle-header-flow-post-edited-user-talk": "Ein Beitrag in „<strong>$1</strong>“ wurde mehrere Male auf <strong>{{GENDER:$2|deiner}} Diskussionsseite</strong> bearbeitet.",
 	"notification-header-flow-topic-renamed-v2": "Das Thema „<strong>$1</strong>“ wurde in „<strong>$2</strong>“ umbenannt.",
 	"notification-header-flow-topic-renamed-user-talk": "Das Thema „<strong>$1</strong>“ wurde auf <strong>deiner Diskussionsseite</strong> in „<strong>$2</strong>“ umbenannt.",
