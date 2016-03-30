@@ -4,7 +4,8 @@
 			"Xuacu",
 			"Nnemo",
 			"Quiddity",
-			"Macofe"
+			"Macofe",
+			"Matiia"
 		]
 	},
 	"enableflow": "Activar Flow",
@@ -231,7 +232,7 @@
 	"flow-notification-edit-bundle": "$1 y {{PLURAL:$5|otru|otros $5|100=99+ otros}} {{GENDER:$1|editaron}} un <span class=\"plainlinks\">[$4 comentariu]</span> sobro \"$2\" en \"$3\".",
 	"notification-header-flow-new-topic-v2": "Asuntu nuevu creáu en '''$3''': <bdi>«'''$4'''»</bdi>.",
 	"notification-bundle-header-flow-new-topic": "$1 {{PLURAL:$1|tema nuevu|temes nuevos}} en '''$3'''.",
-	"notification-header-flow-post-reply": "$1 {{GENDER:$2|respondió}} en «'''$4'''».",
+	"notification-header-flow-post-reply": "$1 {{GENDER:$2|respondió}} en «<strong>$4</strong>».",
 	"notification-header-flow-post-edited-v2": "Editóse la {{GENDER:$2|to}} publicación en «'''$1'''».",
 	"notification-bundle-header-flow-post-edited-v2": "La {{GENDER:$2|to}} publicación en «'''$1'''» editóse delles veces.",
 	"notification-header-flow-post-edited-user-talk": "Editóse un mensaxe en «'''$1'''» na '''{{GENDER:$2|to}} páxina d'alderique'''.",

@@ -5,7 +5,8 @@
 			"William Surya Permana",
 			"Kenrick95",
 			"Arief",
-			"Macofe"
+			"Macofe",
+			"Matiia"
 		]
 	},
 	"enableflow": "Aktifkan Flow",
@@ -225,9 +226,9 @@
 	"notification-bundle-header-flow-new-topic": "$1 {{PLURAL:$1|topik}} baru di '''$3'''.",
 	"notification-header-flow-new-topic-user-talk": "Sebuah topik baru telah dibuat di '''halaman pembicaraan Anda''': \"'''$4'''\".",
 	"notification-bundle-header-flow-new-topic-user-talk": "$1 {{PLURAL:$1|topik}} baru di '''halaman pembicaraan Anda'''.",
-	"notification-header-flow-post-reply": "$1 {{GENDER:$2|membalas}} di \"'''$4'''\".",
+	"notification-header-flow-post-reply": "$1 {{GENDER:$2|membalas}} di \"<strong>$4</strong>\".",
 	"notification-bundle-header-flow-post-reply-v2": "$1 {{PLURAL:$1|balasan}} baru di \"'''$3'''\".",
-	"notification-header-flow-post-reply-user-talk": "$1 {{GENDER:$2|mengirim}} balasan di '''halaman pembicaraan Anda''' di \"'''$4'''\".",
+	"notification-header-flow-post-reply-user-talk": "$1 {{GENDER:$2|mengirim}} balasan di <strong>halaman pembicaraan Anda</strong> di \"<strong>$4</strong>\".",
 	"notification-bundle-header-flow-post-reply-user-talk": "$1 {{PLURAL:$1|balasan}} baru di '''halaman pembicaraan Anda''' di \"'''$3'''\".",
 	"notification-header-flow-post-edited-v2": "Kiriman {{GENDER:$2|Anda}} di \"'''$1'''\" telah disunting.",
 	"notification-bundle-header-flow-post-edited-v2": "Kiriman {{GENDER:$2|Anda}} di \"'''$1'''\" telah disunting beberapa kali.",

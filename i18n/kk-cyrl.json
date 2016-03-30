@@ -3,7 +3,8 @@
 		"authors": [
 			"Arystanbek",
 			"Nnemo",
-			"Quiddity"
+			"Quiddity",
+			"Matiia"
 		]
 	},
 	"enableflow": "Flow кеңейтілімін іске қосу",
@@ -233,9 +234,9 @@
 	"notification-bundle-header-flow-new-topic": "'''$3''' бетіндегі $1 жаңа {{PLURAL:$1|тақырып|тақырып}}.",
 	"notification-header-flow-new-topic-user-talk": "Жаңа тақырып '''талқылау бетіңізде''' басталды: \"'''$4'''\".",
 	"notification-bundle-header-flow-new-topic-user-talk": "$1 жаңа {{PLURAL:$1|тақырып|тақырып}} '''талқылау бетіңізде''' басталды.",
-	"notification-header-flow-post-reply": "$1 \"'''$4'''\" тақырыбына {{GENDER:$2|жауап берді}} .",
+	"notification-header-flow-post-reply": "$1 \"<strong>$4</strong>\" тақырыбына {{GENDER:$2|жауап берді}} .",
 	"notification-bundle-header-flow-post-reply-v2": "\"'''$3'''\" тақырыбындағы $1 жаңа{{PLURAL:$1|жауап|жауап}}.",
-	"notification-header-flow-post-reply-user-talk": "$1 '''талқылау бетіңіздегі''' \"'''$4'''\" тақырыбына жауап {{GENDER:$2|жазды}}.",
+	"notification-header-flow-post-reply-user-talk": "$1 <strong>талқылау бетіңіздегі</strong> \"<strong>$4</strong>\" тақырыбына жауап {{GENDER:$2|жазды}}.",
 	"notification-bundle-header-flow-post-reply-user-talk": "$1 '''талқылау бетіңіздегі''' \"'''$3'''\" тақырыбына $1 жаңа жауап {{GENDER:$1|жазды}}.",
 	"notification-header-flow-post-edited-v2": "\"'''$1'''\" тақырыбындағы {{GENDER:$2|сіздің}} жазбаңыз өңделді.",
 	"notification-bundle-header-flow-post-edited-v2": "\"'''$1'''\" тақырыбындағы {{GENDER:$2|сіздің}} жазбаңыз бернеше рет өңделді.",
