@@ -135,7 +135,6 @@ $wgHooks['IRCLineURL'][] = 'FlowHooks::onIRCLineURL';
 $wgHooks['WhatLinksHereProps'][] = 'FlowHooks::onWhatLinksHereProps';
 $wgHooks['ResourceLoaderTestModules'][] = 'FlowHooks::onResourceLoaderTestModules';
 $wgHooks['ShowMissingArticle'][] = 'FlowHooks::onShowMissingArticle';
-$wgHooks['MessageCache::get'][] = 'FlowHooks::onMessageCacheGet';
 $wgHooks['WatchArticle'][] = 'FlowHooks::onWatchArticle';
 $wgHooks['UnwatchArticle'][] = 'FlowHooks::onWatchArticle';
 $wgHooks['CanonicalNamespaces'][] = 'FlowHooks::onCanonicalNamespaces';
