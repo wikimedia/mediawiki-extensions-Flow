@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee33df1d_5480d28d",
+        "filename": "Hooks.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 890
+      },
+      "writtenOn": "2016-03-30T14:18:39Z",
+      "side": 1,
+      "message": "I\u0027m pretty sure, VisualEditor uses extension registration, so you can use ExtensionRegistration::getInstance()-\u003eisLoaded( \u0027VisualEditor\u0027 ) to know, if VisualEditor is instaled or not, instead of relying on checking the existence of a class.",
+      "revId": "abd2a124b7d9afed9c31c8e6d40eb21f9b211c37",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
