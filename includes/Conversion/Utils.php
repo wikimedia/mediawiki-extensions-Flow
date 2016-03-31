@@ -116,6 +116,7 @@ abstract class Utils {
 			'body' => $params,
 			'headers' => array(
 				'Accept' => 'text/html; charset=utf-8; profile="mediawiki.org/specs/html/1.2.0"',
+				'User-Agent' => 'Flow',
 			),
 		);
 		$response = $serviceClient->run( $request );
