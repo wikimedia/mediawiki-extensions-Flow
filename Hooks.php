@@ -1035,44 +1035,6 @@ class FlowHooks {
 	}
 
 	/**
-	 * Overwrite terms of use message if the overwrite exits
-	 *
-	 * @param string &$key
-	 * @return bool
-	 */
-	public static function onMessageCacheGet( &$key ) {
-		global $wgResourceModules;
-
-		static $terms = array (
-			'flow-terms-of-use-new-topic' => null,
-			'flow-terms-of-use-reply' => null,
-			'flow-terms-of-use-edit' => null,
-			'flow-terms-of-use-summarize' => null,
-			'flow-terms-of-use-lock-topic' => null,
-			'flow-terms-of-use-unlock-topic' => null
-		);
-
-		if ( !array_key_exists( $key, $terms ) ) {
-			return true;
-		}
-
-		if ( $terms[$key] === null ) {
-			$message = wfMessage( "wikimedia-$key" );
-			if ( $message->exists() ) {
-				$terms[$key] = "wikimedia-$key";
-				$wgResourceModules['ext.flow.templating']['messages'][] = "wikimedia-$key";
-			} else {
-				$terms[$key] = false;
-			}
-		}
-
-		if ( $terms[$key] ) {
-			$key = $terms[$key];
-		}
-		return true;
-	}
-
-	/**
 	 * @param RecentChange $rc
 	 * @param array &$rcRow
 	 * @return bool
