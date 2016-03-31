@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ce38dbff_d4429cb1",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.CanNotEditWidget.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-03-31T00:46:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee33df1d_5e7c881b",
+      "revId": "fa7d531ecc45dd40c20791b1d7c74640fa30ac4d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee33df1d_5e9be867",
         "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorControlsWidget.js",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2016-03-25T21:17:58Z",
       "side": 1,
       "message": "This previously defaulted to true, but now it defaults to false. I think defaulting to true is better.",
+      "revId": "fa7d531ecc45dd40c20791b1d7c74640fa30ac4d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce38dbff_3434a846",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorControlsWidget.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-03-31T00:46:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee33df1d_5e9be867",
       "revId": "fa7d531ecc45dd40c20791b1d7c74640fa30ac4d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
