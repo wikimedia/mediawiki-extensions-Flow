@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce38dbff_db5e4448",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-04-01T02:37:01Z",
+      "side": 1,
+      "message": "Replied on task.\n\nAlso, could you add a note like https://phabricator.wikimedia.org/diffusion/MW/browse/master/includes/export/XmlDumpWriter.php;e97d3c74789125b36ddd244e5171184dd0dd4551$46 about how to update the schema when the export code changes?",
+      "revId": "4953764bc7b3227483c046c6673004b3bfed9ac5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce38dbff_7b3578f3",
+        "filename": "includes/Dump/Importer.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-04-01T02:37:01Z",
+      "side": 1,
+      "message": "If it\u0027s null in the DB originally, shouldn\u0027t it fill with null rather than empty string here?",
+      "revId": "4953764bc7b3227483c046c6673004b3bfed9ac5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce38dbff_d639f9cc",
+        "filename": "includes/Dump/schema-1.xsd",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-04-01T02:37:01Z",
+      "side": 1,
+      "message": "Should be string to match export-0.10.xsd and allow for semantic versioning.",
+      "revId": "4953764bc7b3227483c046c6673004b3bfed9ac5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
