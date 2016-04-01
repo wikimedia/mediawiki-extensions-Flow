@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce38dbff_4c5f1ce9",
+        "filename": "i18n/en.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2016-04-01T11:19:13Z",
+      "side": 1,
+      "message": "The empty use of GENDER doesn\u0027t add anything here. I\u0027d like to suggest to remove it from the string.",
+      "revId": "e8d907cca8d77418098afac48847bbdd91d93151",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
