@@ -94,6 +94,8 @@ abstract class Utils {
 	 * @throws WikitextException When conversion is unsupported
 	 */
 	protected static function parsoid( $from, $to, $content, Title $title ) {
+		global $wgVersion;
+
 		$serviceClient = self::getServiceClient();
 
 		if ( $from !== 'html' && $from !== 'wikitext' ) {
@@ -116,6 +118,7 @@ abstract class Utils {
 			'body' => $params,
 			'headers' => array(
 				'Accept' => 'text/html; charset=utf-8; profile="mediawiki.org/specs/html/1.2.0"',
+				'User-Agent' => "Flow-MediaWiki/$wgVersion",
 			),
 		);
 		$response = $serviceClient->run( $request );
