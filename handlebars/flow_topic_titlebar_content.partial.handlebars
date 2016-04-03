@@ -1,5 +1,5 @@
 <div class="flow-topic-titlebar-container">
-    <h2 class="flow-topic-title flow-load-interactive {{#if isLocked}}flow-click-interactive{{/if}}"
+    <h2 class="flow-topic-title flow-load-interactive {{#if isLocked}}flow-collapse-toggle flow-click-interactive{{/if}}"
         data-flow-topic-title="{{content.content}}"
         data-flow-load-handler="topicTitle"
 		{{#if isLocked}}
@@ -11,7 +11,7 @@
     </h2>
     <div class="flow-topic-meta">
 		{{#if isLocked~}}
-            <a class="expand-collapse-posts-link flow-click-interactive"
+            <a class="expand-collapse-posts-link flow-collapse-toggle flow-click-interactive"
                href="javascript:void(0);"
                title="{{l10n "flow-show-comments-title" reply_count}}"
                data-collapsed-title="{{l10n "flow-show-comments-title" reply_count}}"
