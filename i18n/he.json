@@ -10,7 +10,8 @@
 			"LaG roiL",
 			"Avner",
 			"ערן",
-			"Macofe"
+			"Macofe",
+			"Rotemliss"
 		]
 	},
 	"enableflow": "הפעלת זרימה",
@@ -76,7 +77,7 @@
 	"flow-reply-link": "{{GENDER:$1|השב|השיבי|להשיב}}",
 	"flow-reply-link-anonymously": "תשובה כאלמוני",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|תודה}}}}",
-	"flow-thank-link-title": "{{GENDER:$1|תודה ציבורית {{GENDER:$2|לשולח|לשולחת}}}}",
+	"flow-thank-link-title": "שליחת {{GENDER:$1|תודה {{GENDER:$2|לשולח|לשולחת}}}} באופן ציבורי",
 	"flow-history-action-suppress-post": "העלמה",
 	"flow-history-action-delete-post": "מחיקה",
 	"flow-history-action-hide-post": "הסתרה",
@@ -364,7 +365,7 @@
 	"flow-revision-permalink-warning-header-first": "זהו קישור קבוע לגרסה הראשונה של התיאור.\nבאפשרותך לראות גרסאות חדשות יותר ב[$2 דף ההיסטוריה של הלוח].",
 	"flow-compare-revisions-revision-header": "גרסה מאת $2 מ{{GRAMMAR:תחילית|$1}}",
 	"flow-compare-revisions-header-post": "הדף הזה מציג את ההבדלים בין שתי גרסאות של רשומה מאת $3 בנושא \"[$5 $2]\" בלוח [$4 $1].\n\nבאפשרותך לראות גרסאות אחרות של הרשומה הזאת ב[$6 דף ההיסטוריה] שלו.",
-	"flow-compare-revisions-header-postsummary": "הדף הזה מראה את ההבדלים בין שתי גרסאות של סיכום רשומה ברשומה \"[$4 $2]\" בלוח [$3 $1].\nבאפשרותך לראות גרסאות אחרות של הרשומה ב[$5 דף ההיסטוריה שלה].",
+	"flow-compare-revisions-header-postsummary": "הדף הזה מציג את ההבדלים בין שתי גרסאות של סיכום רשומה ברשומה \"[$4 $2]\" בלוח [$3 $1].\nבאפשרותך לראות גרסאות אחרות של הרשומה ב[$5 דף ההיסטוריה שלה].",
 	"flow-compare-revisions-header-header": "הדף הזה מציג את {{GENDER:$2|ההבדלים}} בין שתי גרסאות של התיאור של [$3 $1]. אפשר לראות גרסאות אחרות של התיאור ב[$4 דף ההיסטוריה].",
 	"action-flow-create-board": "ליצור לוחות זרימה בכל מיקום שהוא",
 	"right-flow-create-board": "יצירת לוחות זרימה בכל מקום",
@@ -555,8 +556,8 @@
 	"flow-undo-edit-header": "עריכת התיאור",
 	"flow-undo-edit-topic-summary": "עריכת סיכום הנושא",
 	"flow-undo-edit-post": "עריכת רשומה",
-	"flow-undo-edit-content": "ניתן לבטל את העריכה. נא לבדוק את השוואת הגרסאות למטה כדי לוודא שזה מה שרצית לעשות, ואז לשמור את השינויים למטה כדי לסיים את ביטול העריכה.",
-	"flow-undo-edit-failure": "לא היה אפשר לבטל את העריכה עקב התנגשות עם עריכות שנעשו בינתיים.",
+	"flow-undo-edit-content": "ניתן לבטל את העריכה. אנא בִּדקו את השוואת הגרסאות למטה כדי לוודא שזה אכן מה שאתם רוצים לעשות, ואז שִׁמרו את השינויים למטה כדי לסיים את ביטול העריכה.",
+	"flow-undo-edit-failure": "לא ניתן היה לבטל את העריכה עקב התנגשות עם עריכות מאוחרות יותר.",
 	"group-flow-bot": "בוטי זרימה",
 	"group-flow-bot-member": "בוט זרימה",
 	"grouppage-flow-bot": "Project:בוטי זרימה",
