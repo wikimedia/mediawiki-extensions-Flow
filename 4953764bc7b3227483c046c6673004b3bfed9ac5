@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ce38dbff_92859da2",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-04-05T12:53:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce38dbff_db5e4448",
+      "revId": "4953764bc7b3227483c046c6673004b3bfed9ac5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce38dbff_7b3578f3",
         "filename": "includes/Dump/Importer.php",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "ce38dbff_925c7d50",
+        "filename": "includes/Dump/Importer.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-04-05T12:53:38Z",
+      "side": 1,
+      "message": "Yeah. I originally had all data in XML, but those were empty strings instead of nulls. Then stuck to the empty strings even though there was no good reason for that. Nulls it is.",
+      "parentUuid": "ce38dbff_7b3578f3",
+      "revId": "4953764bc7b3227483c046c6673004b3bfed9ac5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce38dbff_d639f9cc",
         "filename": "includes/Dump/schema-1.xsd",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2016-04-01T02:37:01Z",
       "side": 1,
       "message": "Should be string to match export-0.10.xsd and allow for semantic versioning.",
+      "revId": "4953764bc7b3227483c046c6673004b3bfed9ac5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce38dbff_f2e9897c",
+        "filename": "includes/Dump/schema-1.xsd",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-04-05T12:53:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce38dbff_d639f9cc",
       "revId": "4953764bc7b3227483c046c6673004b3bfed9ac5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
