@@ -33,7 +33,8 @@ class NotificationListener extends AbstractListener {
 		}
 
 		switch( $row['rev_change_type'] ) {
-		case 'new-topic':
+		// Actually new-topic @todo rename
+		case 'new-post':
 			if ( !isset(
 				$metadata['board-workflow'],
 				$metadata['workflow'],
