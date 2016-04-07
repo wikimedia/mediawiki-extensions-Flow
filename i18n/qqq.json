@@ -20,7 +20,8 @@
 			"Wladek92",
 			"Tacsipacsi",
 			"Mhutti1",
-			"Quiddity"
+			"Quiddity",
+			"Verdy p"
 		]
 	},
 	"enableflow": "{{doc-special|EnableFlow}}",
@@ -283,8 +284,8 @@
 	"notification-header-flow-post-reply": "Notification header text for when there is a reply on a topic. Parameters:\n* $1 - the formatted username of the user who replied to the topic\n* $2 - the username for gender purposes\n* $3 - title of the Flow board\n* $4 - title of the topic.\n{{Related|Notification-header-flow}}",
 	"notification-bundle-header-flow-post-reply-v2": "Notification header text for when there is a multiple replies on a topic. Parameters:\n* $1 - the number of replies for display\n* $2 - the raw number of replies, for PLURAL\n* $3 - title of the topic.\n{{Related|Flow-notification}}",
 	"notification-body-flow-post-reply-v2": "Notification body text for when there is a reply on a topic. Parameters:\n* $1 - a snippet of the content of the reply.\n{{Related|Flow-notification}} {{notranslate}}",
-	"notification-header-flow-post-reply-user-talk": "Notification header text for when there is a reply on a topic on a user's talk page. Parameters:\n* $1 - the formatted username of the user who replied to the topic\n* $2 - the username for gender purposes\n* $3 - title of the Flow board\n* $4 - title of the topic.\n{{Related|Notification-header-flow}}",
-	"notification-bundle-header-flow-post-reply-user-talk": "Notification header text for when there is a multiple replies on a topic on a user's talk page. Parameters:\n* $1 - the number of replies for display\n* $2 - the raw number of replies, for PLURAL\n* $3 - title of the topic.\n{{Related|Notification-bundle}}",
+	"notification-header-flow-post-reply-user-talk": "Notification header text for when there is a reply on a topic on a user's talk page. Parameters:\n* $1 - the formatted username of the user who replied to the topic\n* $2 - the username for gender purposes\n* $3 - title of the Flow board\n* $4 - title of the topic.\n{{Related|Notification-header-flow}}\n\nBug: The term \"your\" should have a $5 parameter for the gender of the viewing user as <code><nowiki>{{GENDER:$5|your}}</nowiki></code> in some languages",
+	"notification-bundle-header-flow-post-reply-user-talk": "Notification header text for when there is a multiple replies on a topic on a user's talk page. Parameters:\n* $1 - the number of replies for display\n* $2 - the raw number of replies, for PLURAL\n* $3 - title of the topic.\n{{Related|Notification-bundle}}\n\nBug: \"your\" should have a parameter $4 for the viewing user as <code><nowiki>{{GENDER:$4|your}}</nowiki></code> in some languages",
 	"notification-body-flow-post-reply-user-talk": "Notification body text for when there is a reply on a topic on a user's talk page. Parameters:\n* $1 - a snippet of the content of the reply.\n{{Related|Flow-notification}} {{notranslate}}",
 	"notification-header-flow-post-edited-v2": "Notification header text for when a post is edited. Parameters:\n* $1 - title of the topic.\n* $2 - name of the user viewing the notification, can be used for GENDER.\n{{Related|Notification-header-flow}}",
 	"notification-bundle-header-flow-post-edited-v2": "Notification bundle header text for when a user receives post edits from multiple users on the same topic. Parameters:\n* $1 - title of the topic.\n* $2 - name of the user viewing the notification, can be used for GENDER.\nSee also: {{msg-mw|Flow-notification-edit-email-batch-bundle-body}}\n\n{{Related|Notification-bundle}}",
