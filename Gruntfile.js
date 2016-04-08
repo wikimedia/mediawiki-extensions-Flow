@@ -21,7 +21,7 @@ module.exports = function ( grunt ) {
 			},
 			src: [
 				'**/*',
-				'!{node_modules,vendor}/**',
+				'!{node_modules,vendor,docs}/**',
 				'!build/typos.json'
 			]
 		},
@@ -38,6 +38,7 @@ module.exports = function ( grunt ) {
 		jscs: {
 			fix: {
 				options: {
+					config: true,
 					fix: true
 				},
 				src: '<%= jshint.all %>'

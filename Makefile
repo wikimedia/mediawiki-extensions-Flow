@@ -1,6 +1,10 @@
 MW_INSTALL_PATH ?= ../..
 MEDIAWIKI_LOAD_URL ?= http://localhost:8080/w/load.php
 
+ifneq ("$(wildcard /vagrant)","")
+IS_VAGRANT = 1
+endif
+
 # Flow files to analyze
 ANALYZE=container.php Flow.php Resources.php includes/
 
@@ -12,18 +16,6 @@ ANALYZE_EXTRA=../../includes/GlobalFunctions.php ../../includes/Defines.php ../.
 
 # Make sure we use php5
 PHP=`command -v php5 || command -v php`
-
-###
-# Labs maintenance
-###
-ee-flow:
-	ssh ee-flow.eqiad.wmflabs 'cd /srv/mediawiki/extensions/Flow && make master'
-ee-flow-extra:
-	ssh ee-flow-extra.eqiad.wmflabs 'cd /vagrant/mediawiki/extensions/Flow && make master'
-# Used to be ee-flow-big, not so big any more
-ee-flow-extra2:
-	ssh ee-flow-extra2.eqiad.wmflabs 'cd /srv/mediawiki/extensions/Flow && make master'
-update-labs: ee-flow ee-flow-extra ee-flow-extra2
 
 ###
 # Meta stuff
@@ -60,7 +52,14 @@ grunt: nodecheck
 	@npm test
 
 checkless:
+ifdef IS_VAGRANT
+	mwscript maintenance/checkLess.php --wiki=wiki
+else
 	@${PHP} ../../maintenance/checkLess.php
+endif
+
+jsduck:
+	jsduck
 
 csscss: gems
 	echo "Generating CSS file..."
@@ -95,8 +94,11 @@ analyze: analyze-hhvm analyze-phpstorm
 # Compile lightncandy templates
 ###
 compile-lightncandy:
+ifdef IS_VAGRANT
+	mwscript extensions/Flow/maintenance/compileLightncandy.php --wiki=wiki
+else
 	@${PHP} maintenance/compileLightncandy.php
-
+endif
 ###
 # Automatically rename/move files based on fully-qualified classname &
 # compile class autoloader for $wgAutoloadClasses
@@ -111,14 +113,3 @@ autoload:
 ###
 gems:
 	bundle install
-
-master:
-	git fetch
-	@echo Here is what is new on origin/master:
-	@git log HEAD..origin/master
-	@echo Checkout and update master:
-	git checkout master && git pull --ff-only
-	@echo 'exit( ( $$wgFlowCluster === false && $$wgFlowDefaultWikiDb === false) ? 0 : 1 )' | php ../../maintenance/eval.php && echo Apply DB updates \(if any\) && php $(MW_INSTALL_PATH)/maintenance/update.php  --quick | sed -n '/^[^.]/p' || echo DB updates must be applied manually.
-	@echo TODO Update Parsoid and restart it\? Other extensions\?
-	@echo Run some tests\!\!\!
-
