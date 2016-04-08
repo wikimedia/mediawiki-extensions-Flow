@@ -19,7 +19,7 @@ is_vagrant() {
 
 make() {
     if is_vagrant; then
-        echo 'git hooks: Attempting to ssh into vagrant'
+        echo 'git hooks: Attempting to ssh into Vagrant'
         vagrant ssh -- cd /vagrant/mediawiki/extensions/Flow '&&' /bin/echo 'git hooks: Running commands inside Vagrant' '&&' sudo -u www-data make $* || exit 1
     else
         /usr/bin/env make $* || exit 1

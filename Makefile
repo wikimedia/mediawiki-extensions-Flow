@@ -1,6 +1,10 @@
 MW_INSTALL_PATH ?= ../..
 MEDIAWIKI_LOAD_URL ?= http://localhost:8080/w/load.php
 
+ifneq ("$(wildcard /vagrant)","")
+IS_VAGRANT = 1
+endif
+
 # Flow files to analyze
 ANALYZE=container.php Flow.php Resources.php includes/
 
@@ -60,7 +64,14 @@ grunt: nodecheck
 	@npm test
 
 checkless:
+ifdef IS_VAGRANT
+	mwscript maintenance/checkLess.php --wiki=wiki
+else
 	@${PHP} ../../maintenance/checkLess.php
+endif
+
+jsduck:
+	jsduck
 
 csscss: gems
 	echo "Generating CSS file..."
@@ -95,8 +106,11 @@ analyze: analyze-hhvm analyze-phpstorm
 # Compile lightncandy templates
 ###
 compile-lightncandy:
+ifdef IS_VAGRANT
+	mwscript extensions/Flow/maintenance/compileLightncandy.php --wiki=wiki
+else
 	@${PHP} maintenance/compileLightncandy.php
-
+endif
 ###
 # Automatically rename/move files based on fully-qualified classname &
 # compile class autoloader for $wgAutoloadClasses
@@ -121,4 +135,3 @@ master:
 	@echo 'exit( ( $$wgFlowCluster === false && $$wgFlowDefaultWikiDb === false) ? 0 : 1 )' | php ../../maintenance/eval.php && echo Apply DB updates \(if any\) && php $(MW_INSTALL_PATH)/maintenance/update.php  --quick | sed -n '/^[^.]/p' || echo DB updates must be applied manually.
 	@echo TODO Update Parsoid and restart it\? Other extensions\?
 	@echo Run some tests\!\!\!
-
