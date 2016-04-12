@@ -434,61 +434,6 @@ $wgResourceModules += array(
 			'oojs-ui.styles.icons-editing-advanced',
 		)
 	) + $mobile,
-	'ext.flow' => $flowResourceTemplate + array(
-		'position' => 'top',
-		'styles' => array(
-			'styles/mediawiki.ui/modal.less',
-			'styles/mediawiki.ui/tooltips.less'
-		),
-		'scripts' => array( // Component order is important
-			// MW UI
-			'engine/misc/mw-ui.enhance.js',
-			'engine/misc/mw-ui.modal.js',
-
-			// Feature: flow-menu
-			'engine/components/common/flow-component-menus.js',
-
-			'engine/components/board/base/flow-board-api-events.js',
-			'engine/components/board/base/flow-board-interactive-events.js',
-			'engine/components/board/base/flow-board-load-events.js',
-			// Feature: Load More
-			'engine/components/board/features/flow-board-loadmore.js',
-			// Feature: Board Navigation Header
-			'engine/components/board/features/flow-board-navigation.js',
-			// Feature: Side Rail
-			'engine/components/board/features/flow-board-side-rail.js',
-			// Feature: VisualEditor
-			'engine/components/board/features/flow-board-visualeditor.js',
-			// Feature: Switch between editors
-			'engine/components/board/features/flow-board-switcheditor.js',
-
-			// Component: FlowBoardHistoryComponent
-			'engine/components/board/flow-boardhistory.js',
-			// this must be last (of everything loaded.  otherwise a components
-			// can be initialized before all the mixins are loaded.  Can we mixin
-			// after initialization?)
-			'mw.flow.Initializer.js',
-			'flow-initialize.js',
-		),
-		'dependencies' => array(
-			'ext.flow.components',
-			'ext.flow.editor',
-			'jquery.throttle-debounce',
-			'mediawiki.jqueryMsg',
-			'ext.flow.jquery.conditionalScroll',
-			'ext.flow.ui',
-			'mediawiki.api',
-			'mediawiki.util',
-			'mediawiki.api.options', // required by switch-editor feature
-		),
-		'messages' => array(
-			'flow-error-external',
-			'flow-error-http',
-			'mw-ui-unsubmitted-confirm',
-			'flow-reply-link',
-			'flow-reply-link-anonymously',
-		)
-	) + $mobile,
 	'ext.flow.vendor.storer' => array(
 		'localBasePath' => __DIR__,
 		'remoteExtPath' => 'Flow',
