@@ -28,7 +28,7 @@ class FlowHooks {
 	protected static $abuseFilter;
 
 	public static function onResourceLoaderRegisterModules( ResourceLoader &$resourceLoader ) {
-		global $wgFlowEventLogging, $wgResourceModules;
+		global $wgFlowEventLogging;
 
 		// Only if EventLogging in Flow is enabled & EventLogging exists
 		if ( $wgFlowEventLogging && class_exists( 'ResourceLoaderSchemaModule' ) ) {
@@ -38,9 +38,6 @@ class FlowHooks {
 				// See https://meta.wikimedia.org/wiki/Schema:FlowReplies, below title
 				'revision' => 10561344,
 			) );
-
-			// Add as dependency to Flow JS
-			$wgResourceModules['ext.flow']['dependencies'][] = 'schema.FlowReplies';
 		}
 
 		if ( class_exists( 'GuidedTourHooks' ) ) {

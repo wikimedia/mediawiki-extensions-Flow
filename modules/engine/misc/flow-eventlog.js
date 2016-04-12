@@ -12,16 +12,10 @@
 		/**
 		 * @param {Object} eventInstance Additional event instance data for this
 		 *   particular event.
-		 * @return {jQuery.Promise}
 		 */
 		function logEvent( eventInstance ) {
-			// Ensure eventLog & this schema exist, or return a stub deferred
-			if ( !mw.eventLog || !mw.eventLog.schemas[ this.schemaName ] ) {
-				return $.Deferred().promise();
-			}
-
-			return mw.eventLog.logEvent(
-				this.schemaName,
+			mw.track(
+				'event.' + this.schemaName,
 				$.extend( this.eventInstance, eventInstance )
 			);
 		}
