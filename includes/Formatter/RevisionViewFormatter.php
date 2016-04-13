@@ -50,6 +50,12 @@ class RevisionViewFormatter {
 				$row->workflow->getId(),
 				$ctx
 			);
+			$res['properties']['topic-of-post-text-from-html'] = $this->serializer->processParam(
+				'topic-of-post-text-from-html',
+				$row->revision,
+				$row->workflow->getId(),
+				$ctx
+			);
 		}
 		if ( $row->revision instanceof PostSummary ) {
 			$res['properties']['post-of-summary'] = $this->serializer->processParam(
