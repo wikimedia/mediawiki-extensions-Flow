@@ -11,7 +11,8 @@
 			"HakanIST",
 			"JackUKElliott",
 			"Macofe",
-			"Hbseren"
+			"Hbseren",
+			"Sadrettin"
 		]
 	},
 	"flow-board-header-browse-topics-link": "Konulara göz at",
@@ -61,5 +62,6 @@
 	"flow-wikitext-switch-editor-tooltip": "Görsel düzenleyiciye geç",
 	"flow-ve-switch-editor-tool-title": "Wikimetin editörüne geç",
 	"flow-notification-link-text-enabled-on-talkpage": "Kullanıcı mesaj sayfasını {{GENDER:|görüntüle}}",
+	"flow-beta-feature-add-archive-template-edit-summary": "Arşiv şablonu ekleme",
 	"flow-dialog-cancelconfirm-message": "Kaydetmeden iptal etmek istediğinizden emin misiniz?"
 }
