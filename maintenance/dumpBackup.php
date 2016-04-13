@@ -79,8 +79,7 @@ TEXT
 
 		$db = Container::get( 'db.factory' )->getDB( DB_SLAVE );
 		$exporter = new Exporter( $db, $history, Exporter::STREAM, Exporter::TEXT );
-		$wrapper = new DumpOutput( $this->sink, $this );
-		$exporter->setOutputSink( $wrapper );
+		$exporter->setOutputSink( $this->sink );
 
 		if ( !$this->skipHeader ) {
 			$exporter->openStream();
