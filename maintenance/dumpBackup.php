@@ -30,13 +30,10 @@ TEXT
 
 		$this->addOption( 'full', 'Dump all revisions of every description/post/summary' );
 		$this->addOption( 'current', 'Dump only the latest revision of every description/post/summary' );
-		$this->addOption( 'revrange', 'Dump range of revisions specified by revstart and revend parameters' );
 		$this->addOption( 'pagelist', 'Dump only pages of which the title is included in the file', false, true );
 
 		$this->addOption( 'start', 'Start from page_id n', false, true );
 		$this->addOption( 'end', 'Stop before page_id n (exclusive)', false, true );
-		$this->addOption( 'revstart', 'Start from rev_id n', false, true );
-		$this->addOption( 'revend', 'Stop before rev_id n (exclusive)', false, true );
 		$this->addOption( 'skip-header', 'Don\'t output the <mediawiki> header' );
 		$this->addOption( 'skip-footer', 'Don\'t output the </mediawiki> footer' );
 
@@ -59,15 +56,13 @@ TEXT
 			$this->dump( WikiExporter::FULL );
 		} elseif ( $this->hasOption( 'current' ) ) {
 			$this->dump( WikiExporter::CURRENT );
-		} elseif ( $this->hasOption( 'revrange' ) ) {
-			$this->dump( WikiExporter::RANGE );
 		} else {
 			$this->error( 'No valid action specified.', 1 );
 		}
 	}
 
 	/**
-	 * @param int $history WikiExporter::FULL, WikiExporter::CURRENT or WikiExporter::RANGE
+	 * @param int $history WikiExporter::FULL or WikiExporter::CURRENT
 	 * @param int $text Unused, but exists for compat with parent
 	 */
 	public function dump( $history, $text = WikiExporter::TEXT ) {
@@ -87,9 +82,7 @@ TEXT
 
 		$workflowIterator = $exporter->getWorkflowIterator( $this->pages, $this->startId, $this->endId );
 
-		$revStartId = $history === WikiExporter::RANGE && $this->revStartId ? $this->revStartId : null;
-		$revEndId = $history === WikiExporter::RANGE && $this->revEndId ? $this->revEndId : null;
-		$exporter->dump( $workflowIterator, $revStartId, $revEndId );
+		$exporter->dump( $workflowIterator );
 
 		if ( !$this->skipFooter ) {
 			$exporter->closeStream();
@@ -120,14 +113,6 @@ TEXT
 
 		if ( $this->hasOption( 'end' ) ) {
 			$this->endId = intval( $this->getOption( 'end' ) );
-		}
-
-		if ( $this->hasOption( 'revstart' ) ) {
-			$this->revStartId = UUID::create( $this->getOption( 'revstart' ) );
-		}
-
-		if ( $this->hasOption( 'revend' ) ) {
-			$this->revEndId = UUID::create( $this->getOption( 'revend' ) );
 		}
 
 		$this->skipHeader = $this->hasOption( 'skip-header' );

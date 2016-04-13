@@ -155,13 +155,11 @@ class Exporter extends WikiExporter {
 
 	/**
 	 * @param BatchRowIterator $workflowIterator
-	 * @param UUID|null $revStartId
-	 * @param UUID|null $revEndId
 	 * @throws Exception
 	 * @throws TimestampException
 	 * @throws \Flow\Exception\InvalidInputException
 	 */
-	public function dump( BatchRowIterator $workflowIterator, $revStartId = null, $revEndId = null ) {
+	public function dump( BatchRowIterator $workflowIterator ) {
 		foreach ( $workflowIterator as $rows ) {
 			foreach ( $rows as $row ) {
 				$workflow = Workflow::fromStorageRow( (array) $row );
@@ -171,8 +169,6 @@ class Exporter extends WikiExporter {
 				/** @var AbstractIterator $iterator */
 				foreach ( array( $headerIterator, $topicIterator ) as $iterator ) {
 					$iterator->setPage( $row->workflow_page_id );
-					$iterator->setFrom( $revStartId );
-					$iterator->setTo( $revEndId );
 				}
 
 				$this->formatWorkflow( $workflow, $headerIterator, $topicIterator );
