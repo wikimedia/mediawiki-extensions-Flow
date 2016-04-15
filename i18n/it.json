@@ -582,5 +582,5 @@
 	"flow-guidedtour-optin-feedback": "Dacci {{GENDER:$1|la tua}} opinione!",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Puoi avere}} più informazioni, lasciare opinioni, o disattivare il nuovo sistema in ogni momento dalla sezione delle funzionalità sperimentali.",
 	"flow-action-not-page": "L'oggetto pagina è un'istanza della classe sbagliata",
-	"flow-action-wrong-title-content-model": "La pagina viene gestita da Flow, ma la classe del titolo indica che il modello di contenuto è '$1'. Si tratta di un errore di configurazione o di stato incoerente. Ad esempio, questo può effettivamente essere una pagina non Flow in un namespace Flow, con rev_content_model non popolato."
+	"flow-action-wrong-title-content-model": "La pagina viene gestita da Flow, ma la classe del titolo indica che il modello di contenuto è '$1'. Si tratta di un errore di configurazione o di stato incoerente. Ad esempio, questo può effettivamente essere una pagina non Flow in un namespace Flow, con <code>rev_content_model</code> non popolato."
 }

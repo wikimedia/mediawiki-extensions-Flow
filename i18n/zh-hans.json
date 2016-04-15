@@ -31,7 +31,7 @@
 	"enableflow": "启用Flow",
 	"flow-desc": "工作流管理系统",
 	"flow-talk-taken-over-comment": "/* 此页面已被转换至一个Flow讨论版 */",
-	"log-name-flow": "Flow活跃日志",
+	"log-name-flow": "Flow活动日志",
 	"logentry-delete-flow-delete-post": "$1{{GENDER:$2|删除了}}在[[$6]]中“[[$3|$5]]”的一个[$4 帖子]",
 	"logentry-delete-flow-restore-post": "$1{{GENDER:$2|还原了}}在[[$6]]中“[[$3|$5]]”的一个[$4 帖子]",
 	"logentry-suppress-flow-suppress-post": "$1{{GENDER:$2|屏蔽了}}在[[$6]]中“[[$3|$5]]”的一个[$4 帖子]",
@@ -615,5 +615,5 @@
 	"flow-guidedtour-optin-feedback": "向我们提供{{GENDER:$1|您}}的反馈！",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|您}}可以随时从测试功能选项中获取更多信息、提供反馈、或禁用新系统。",
 	"flow-action-not-page": "页面对象是错误类的实例",
-	"flow-action-wrong-title-content-model": "页面正在由Flow处理，但标题类指出内容模型是“$1”。这是配置错误或不一致的状态。例如，这可能确实是在Flow名字空间中的非Flow页面，而rev_content_model未被填充。"
+	"flow-action-wrong-title-content-model": "页面正在由Flow处理，但标题类指出内容模型是“$1”。这是配置错误或不一致的状态。例如，这可能确实是在Flow名字空间中的非Flow页面，而<code>rev_content_model</code>未被填充。"
 }

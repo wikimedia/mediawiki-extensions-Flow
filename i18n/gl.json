@@ -597,5 +597,5 @@
 	"flow-guidedtour-optin-feedback": "Envíanos {{GENDER:$1|os teus}} comentarios!",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Pode}} obter máis información, realizar comentarios ou desactivar o novo sistema en calquera momento desde a sección de características beta nas súas preferencias.",
 	"flow-action-not-page": "O obxecto de páxina é unha instancia da clase incorrecta",
-	"flow-action-wrong-title-content-model": "A páxina está a ser controlada por Flow, pero a clase Título indica que o modelo de contido é '$1'. Isto é un fallo de configuración ou un estado inconsistente. Por exemplo, isto pode ser realmente unha páxina non Flow nun nome de espazos Flow, con rev_content_model non definido."
+	"flow-action-wrong-title-content-model": "A páxina está a ser controlada por Flow, pero a clase Título indica que o modelo de contido é '$1'. Isto é un fallo de configuración ou un estado inconsistente. Por exemplo, isto pode ser realmente unha páxina non Flow nun nome de espazos Flow, con <code>rev_content_model</code> non definido."
 }

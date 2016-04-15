@@ -41,19 +41,13 @@
 	"flow-topic-action-suppress-topic": "Supprimer topico",
 	"flow-topic-action-restore-topic": "Restaurar topico",
 	"flow-error-http": "Un error occurreva durante le communication con le servitor.",
-	"flow-error-other": "Un error inexpectate ha occurrite.",
 	"flow-error-external": "Un error ha occurrite. <br />Le message de error recipite es: $1",
-	"flow-error-external-multi": "Errores ha occurrite. <br />$1",
 	"flow-error-missing-content": "Le message non ha contento. Contento es necessari pro salveguardar un message.",
 	"flow-error-missing-title": "Le topico non ha titulo. Le titulo es necessari pro salveguardar un topico.",
 	"flow-error-parsoid-failure": "Impossibile interpretar le contento a causa de un fallimento de Parsoid.",
 	"flow-error-missing-replyto": "Nulle parametro \"replyTo\" ha essite fornite. Iste parametro es necessari pro le action \"responder\".",
-	"flow-error-invalid-replyto": "Le parametro \"replyTo\" es invalide. Le entrata specificate non pote esser trovate.",
-	"flow-error-delete-failure": "Le deletion de iste elemento ha fallite.",
-	"flow-error-hide-failure": "Le celamento de iste elemento ha fallite.",
 	"flow-error-missing-postId": "Nulle parametro \"postId\" ha essite specificate. Iste parametro es necessari pro manipular un entrata.",
 	"flow-error-invalid-postId": "Le parametro \"postId\" es invalide. Le entrata specificate ($1) non poteva esser trovate.",
-	"flow-error-restore-failure": "Le restauration de iste elemento ha fallite.",
 	"flow-error-invalid-moderation-state": "Un valor invalide ha essite fornite pro moderationState",
 	"flow-error-invalid-moderation-reason": "Per favor da un motivo pro le moderation",
 	"flow-error-not-allowed": "Permissiones insufficiente pro exequer iste action",
@@ -98,5 +92,5 @@
 	"echo-category-title-flow-discussion": "Fluxo",
 	"echo-pref-tooltip-flow-discussion": "Notificar me quando actiones concernente me occurre in Fluxo.",
 	"flow-action-not-page": "Le objecto del pagina non es del bon classe",
-	"flow-action-wrong-title-content-model": "Le pagina es sub gerentia de Flow, ma le classe Title indica que le modello de contento es '$1'. Isto es un configuration incorrecte o stato inconsistente. Per exemplo, il poterea tractar se de un pagina non Flow in un spatio de nomines Flow e sin datos pro rev_content_model."
+	"flow-action-wrong-title-content-model": "Le pagina es sub gerentia de Flow, ma le classe Title indica que le modello de contento es '$1'. Isto es un configuration incorrecte o stato inconsistente. Per exemplo, il poterea tractar se de un pagina non Flow in un spatio de nomines Flow e sin datos pro <code>rev_content_model</code>."
 }
