@@ -8,7 +8,8 @@
 			"Meno25",
 			"Hiba Alshawi",
 			"Macofe",
-			"Shbib Al-Subaie"
+			"Shbib Al-Subaie",
+			"Sonic N800"
 		]
 	},
 	"enableflow": "فعّل ميزة تدفق",
@@ -71,7 +72,7 @@
 	"flow-error-missing-summary": "يجب أن ترسل ملخص.",
 	"flow-error-missing-header-content": "يجب أن ترسل وصفا.",
 	"flow-error-default": "حدث خطأ.",
-	"flow-error-invalid-topic-uuid-title": "عنوان سيء",
+	"flow-error-invalid-topic-uuid-title": "عنوان سيئ",
 	"flow-error-unknown-workflow-id-title": "موضوع غير معروف",
 	"flow-error-unknown-workflow-id": "الموضوع المطلوب غير موجود.",
 	"flow-edit-header-submit": "احفظ الوصف",

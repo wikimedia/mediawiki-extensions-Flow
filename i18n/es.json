@@ -26,7 +26,8 @@
 			"Joaquin1001",
 			"Quiddity",
 			"Peter Bowman",
-			"Matiia"
+			"Matiia",
+			"Lemondoge"
 		]
 	},
 	"enableflow": "Activar Flow",
@@ -607,5 +608,6 @@
 	"flow-guidedtour-optin-find-old-conversations": "Ver {{GENDER:$1|tus}} conversaciones antiguas",
 	"flow-guidedtour-optin-find-old-conversations-description": "Las conversaciones previas se han trasladado a una página de archivo.",
 	"flow-guidedtour-optin-feedback": "Bríndanos {{GENDER:$1|tus}} comentarios.",
-	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Puedes}} obtener más información, realizar comentarios o desactivar el nuevo sistema en cualquier momento desde la sección de características beta en tus preferencias."
+	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Puedes}} obtener más información, realizar comentarios o desactivar el nuevo sistema en cualquier momento desde la sección de características beta en tus preferencias.",
+	"flow-action-wrong-title-content-model": "La página está siendo manejado por el Flujo, pero el Título de la clase indica que el modelo de contenido es '$1'. Este es un error de configuración o estado incoherente. Por ejemplo, esto puede ser en realidad un no-Flujo de la página en un Flujo de espacio de nombres, con <code>rev_content_model</code> no se llena."
 }
