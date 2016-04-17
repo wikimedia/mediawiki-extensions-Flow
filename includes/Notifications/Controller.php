@@ -393,7 +393,7 @@ class NotificationController {
 		$info = array(
 			'type' => 'flow-topic-resolved',
 			'agent' => $revision->getUser(),
-			'title' => $topicWorkflow->getArticleTitle(),
+			'title' => $topicWorkflow->getOwnerTitle(),
 			'extra' => $extraData,
 		);
 
