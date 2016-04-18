@@ -138,6 +138,10 @@ class TopicSummaryBlock extends AbstractBlock {
 				isset( $this->submitted['format'] ) ? $this->submitted['format'] : 'wikitext',
 				'create-topic-summary'
 			);
+
+			if ( !trim( $this->submitted['summary'] ) ) {
+				$this->extraCommitMetadata['null-edit'] = true;
+			}
 		// Edit topic summary
 		} else {
 			if ( !$this->permissions->isAllowed( $this->topicSummary, 'edit-topic-summary' ) ) {
