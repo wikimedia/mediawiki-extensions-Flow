@@ -222,7 +222,7 @@
 	"flow-rev-message-hid-topic": "$1 {{GENDER:$2|ukrył|ukryła}} [$4 wątek] „$6” (<em>$5</em>)",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|usunął|usunęła}} [$4 wątek] „$6” (<em>$5</em>)",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|ukrył|ukryła}} [$4 wątek] „$6” (<em>$5</em>)",
-	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|oznaczył|oznaczyła}} [$4 wątek] $6 jako załatwiony (<em>$5</em>)",
+	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|oznaczył|oznaczyła|oznaczył(a)}} [$4 wątek] „$6” jako załatwiony (<em>$5</em>)",
 	"flow-rev-message-lock-topic-reason": "oznaczone jako załatwione",
 	"flow-rev-message-restore-topic-reason": "Otworzony na nowo",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|przywrócił|przywróciła}} [$4 wątek] „$6” (<em>$5</em>)",

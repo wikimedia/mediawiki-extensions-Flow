@@ -206,7 +206,7 @@
 	"flow-rev-message-hid-topic": "$1 {{GENDER:$2|agochou}} o [$4 tema] \"$6\" (<em>$5</em>)",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|eliminou}} o [$4 tema] \"$6\" (<em>$5</em>)",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|suprimiu}} o [$4 tema] \"$6\" (<em>$5</em>)",
-	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|bloqueou}} o [$4 tema] $6 coma resolto (<em>$5</em>)",
+	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|bloqueou}} o [$4 tema] \"$6\" coma resolto (<em>$5</em>)",
 	"flow-rev-message-lock-topic-reason": "marcado como resolto",
 	"flow-rev-message-restore-topic-reason": "reaberto",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|restaurou}} o [$4 tema] \"$6\" (<em>$5</em>)",

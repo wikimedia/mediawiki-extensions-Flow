@@ -243,7 +243,7 @@
 	"flow-rev-message-hid-topic": "$1 {{GENDER:$2|a caché}} le [$4 sujet] « $6 » (<em>$5</em>).",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|a supprimé}} le [$4 sujet] « $6 » (<em>$5</em>).",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|a masqué}} le [$4 sujet] « $6 » (<em>$5</em>).",
-	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|a marqué}} le [$4 sujet] $6 comme résolu (<em>$5</em>)",
+	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|a marqué}} le [$4 sujet] « $6 » comme résolu (<em>$5</em>)",
 	"flow-rev-message-lock-topic-reason": "marqué comme résolu",
 	"flow-rev-message-restore-topic-reason": "rouverte",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|a restauré}} le [$4 sujet] « $6 » (<em>$5</em>).",

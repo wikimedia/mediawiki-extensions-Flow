@@ -6,7 +6,8 @@
 			"Kenrick95",
 			"Arief",
 			"Macofe",
-			"Matiia"
+			"Matiia",
+			"Beeyan"
 		]
 	},
 	"enableflow": "Aktifkan Flow",
@@ -158,6 +159,7 @@
 	"flow-error-fail-load-history": "Gagal memuat isi riwayat.",
 	"flow-error-missing-revision": "Tidak dapat menemukan revisi untuk memuat isi Flow.",
 	"flow-error-fail-commit": "Gagal menyimpan isi Flow.",
+	"flow-error-insufficient-permission": "Izin tidak terpenuhi untuk bisa mengakses konten yang ada.",
 	"flow-error-fail-load-data": "Gagal memuat data yang diminta.",
 	"flow-error-invalid-workflow": "Tidak dapat menemukan alur kerja yang diminta.",
 	"flow-error-process-data": "Sebuah galat terjadi ketika memproses data dalam permintaan Anda.",

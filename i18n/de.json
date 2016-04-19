@@ -211,7 +211,7 @@
 	"flow-rev-message-hid-topic": "$1 {{GENDER:$2|versteckte}} das [$4 Thema] „$6“ (<em>$5</em>).",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|löschte}} das [$4 Thema] „$6“ (<em>$5</em>).",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|unterdrückte}} das [$4 Thema] „$6“ (<em>$5</em>).",
-	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|markierte}} das [$4 Thema] $6 als erledigt (<em>$5</em>)",
+	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|markierte}} das [$4 Thema] „$6“ als erledigt (<em>$5</em>)",
 	"flow-rev-message-lock-topic-reason": "als erledigt markiert",
 	"flow-rev-message-restore-topic-reason": "wieder geöffnet",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|stellte}} das [$4 Thema] „$6“ wieder her (<em>$5</em>).",

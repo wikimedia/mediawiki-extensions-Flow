@@ -210,7 +210,7 @@
 	"flow-rev-message-hid-topic": "$1 {{GENDER:$2|הסתיר|הסתירה}} את [$4 הנושא] \"$6‏\" (<em>$5</em>).",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|מחק|מחקה}} את [$4 הנושא] \"$6‏\" (<em>$5</em>).",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|העלים|העלימה}} את [$4 הנושא] \"$6‏\" (<em>$5</em>).",
-	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|סימן|סימנה}} את [$4 הנושא] $6 בתור פתור (<em>$5</em>)",
+	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|סימן|סימנה}} את [$4 הנושא] \"$6\" בתור פתור (<em>$5</em>)",
 	"flow-rev-message-lock-topic-reason": "סומן בתור פתור",
 	"flow-rev-message-restore-topic-reason": "נפתח מחדש",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|שחזר|שחזרה}} את [$4 הנושא] \"$6‏\" (<em>$5</em>).",
