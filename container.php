@@ -809,7 +809,7 @@ $c['occupation_controller'] = FlowHooks::getOccupationController();
 
 $c['controller.notification'] = function( $c ) {
 	global $wgContLang;
-	return new Flow\NotificationController( $wgContLang );
+	return new Flow\NotificationController( $wgContLang, $c['repository.tree'] );
 };
 
 // Initialized in FlowHooks to faciliate only loading the flow container

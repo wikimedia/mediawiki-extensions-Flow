@@ -2,6 +2,8 @@
 
 namespace Flow;
 
+use Flow\Model\UUID;
+
 class PostReplyPresentationModel extends FlowPresentationModel {
 
 	public function getIconType() {
@@ -15,16 +17,23 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 	}
 
 	public function getPrimaryLink() {
+		$topmostPostID = null;
+
 		if ( $this->isBundled() ) {
 			// "Strict standards: Only variables should be passed by reference" in older PHP versions
 			$bundledEvents = $this->getBundledEvents();
-			$event = end( $bundledEvents );
+
+			$notificationController = Container::get( 'controller.notification' );
+			$firstChronologicallyEvent = end( $bundledEvents );
+			$firstChronologicallyPostId = $firstChronologicallyEvent->getExtraParam( 'post-id' );
+			$topmostPostID = $notificationController->getTopmostPostId( $bundledEvents );
+
 		} else {
 			$event = $this->event;
+			$firstChronologicallyPostId = $event->getExtraParam( 'post-id' );
 		}
-		$postId = $event->getExtraParam( 'post-id' );
 		return array(
-			'url' => $this->getPostLinkUrl( $postId ),
+			'url' => $this->getPostLinkUrl( $firstChronologicallyPostId, $topmostPostID ),
 			'label' => $this->msg( 'flow-notification-link-text-view-post' )->text(),
 		);
 	}
