@@ -36,9 +36,9 @@ class NewTopicPresentationModel extends FlowPresentationModel {
 		if ( $this->isBundled() ) {
 			return false;
 		} elseif ( $this->isUserTalkPage() ) {
-			$msg = $this->msg( "notification-body-{$this->type}-user-talk" );
+			$msg = $this->msg( "notification-body-flow-new-topic-user-talk" );
 		} else {
-			$msg = $this->msg( "notification-body-{$this->type}-v2" );
+			$msg = $this->msg( "notification-body-flow-new-topic-v2" );
 		}
 
 		$msg->params( $this->getContentSnippet() );
@@ -46,27 +46,35 @@ class NewTopicPresentationModel extends FlowPresentationModel {
 	}
 
 	protected function getHeaderMessageKey() {
-		if ( $this->isUserTalkPage() ) {
-			return parent::getHeaderMessageKey() . '-user-talk';
+		if ( $this->isBundled() ) {
+			if ( $this->isUserTalkPage() ) {
+				return 'notification-bundle-header-flow-new-topic-user-talk';
+			} else {
+				return 'notification-bundle-header-flow-new-topic';
+			}
+		} else {
+			if ( $this->isUserTalkPage() ) {
+				return 'notification-header-flow-new-topic-user-talk';
+			} else {
+				return 'notification-header-flow-new-topic-v2';
+			}
 		}
-
-		return parent::getHeaderMessageKey() . '-v2';
 	}
 
 	public function getHeaderMessage() {
-		if ( $this->isBundled() ) {
-			$msg = $this->msg( "notification-bundle-header-{$this->type}" );
-			$count = $this->getNotificationCountForOutput();
+		$msg = $this->msg( $this->getHeaderMessageKey() );
 
+		if ( $this->isBundled() ) {
+			$count = $this->getNotificationCountForOutput();
 			// Repeat is B/C until unused parameter is removed from translations
 			$msg->numParams( $count, $count );
 			$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true) );
-			return $msg;
 		} else {
-			$msg = parent::getHeaderMessage();
+			$msg->params( $this->getAgentForOutput() );
 			$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true) );
 			$msg->plaintextParams( $this->getTopicTitle() );
-			return $msg;
 		}
+
+		return $msg;
 	}
 }
