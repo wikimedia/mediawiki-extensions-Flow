@@ -11,6 +11,7 @@ use Flow\Model\PostSummary;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Conversion\Utils;
+use Flow\Repository\TreeRepository;
 use EchoEvent;
 use Language;
 use Title;
@@ -23,10 +24,16 @@ class NotificationController {
 	protected $language;
 
 	/**
+	 * @var TreeRepository
+	 */
+	protected $treeRepository;
+
+	/**
 	 * @param Language $language
 	 */
-	public function __construct( Language $language ) {
+	public function __construct( Language $language, TreeRepository $treeRepository ) {
 		$this->language = $language;
+		$this->treeRepository = $treeRepository;
 	}
 
 	public static function onBeforeCreateEchoEvent( &$notifs, &$categories, &$icons ) {
@@ -656,5 +663,102 @@ class NotificationController {
 		 */
 		$diff = $postId->getTimestamp( TS_UNIX ) - $workflowId->getTimestamp( TS_UNIX );
 		return $diff <= 1;
+	}
+
+	/**
+	 * Gets ID of topmost post
+	 *
+	 * This is the lowest-number post, numbering them using a pre-order depth-first
+	 *  search
+	 *
+	 * @param array Array of EchoEvents
+	 * @return UUID|null Post ID, or null on failure
+	 */
+	public function getTopmostPostId( array $bundledEvents ) {
+		$postIds = array();
+		foreach ( $bundledEvents as $event ) {
+			$postId = $event->getExtraParam( 'post-id' );
+			if ( $postId instanceof UUID ) {
+				$postIds[$postId->getAlphadecimal()] = $postId;
+			}
+		}
+
+		$rootPaths = $this->treeRepository->findRootPaths( $postIds );
+
+		// We do this so we don't have to walk the whole topic.
+		$deepestCommonRoot = $this->getDeepestCommonRoot( $rootPaths );
+
+		$subtree = $this->treeRepository->fetchSubtreeIdentityMap( $deepestCommonRoot );
+
+		$topmostPostId = $this->getFirstPreorderDepthFirst( $postIds, $deepestCommonRoot, $subtree );
+		return $topmostPostId;
+	}
+
+	/**
+	 * Walks a (sub)tree in pre-order depth-first search order and return the first
+	 *  post ID from a specified list
+	 *
+	 * @param array $relevantPostIds Associative array mapping alphadecimal post ID to
+	 *  UUID post ID
+	 * @param UUID $root Root node
+	 * @param array $tree Tree structure
+	 * @return UUID First post ID found, or null on failure
+	 */
+	protected function getFirstPreorderDepthFirst( array $relevantPostIds, UUID $root, array $tree  ) {
+		$rootAlpha = $root->getAlphadecimal();
+
+		if ( isset( $relevantPostIds[$rootAlpha] ) ) {
+			return $root;
+		}
+
+		if ( isset( $tree[$rootAlpha]['children'] ) ) {
+			$children = array_keys( $tree[$rootAlpha]['children'] );
+		} else {
+			$children = array();
+		}
+
+		foreach ( $children as $child ) {
+			$relevantPostId = $this->getFirstPreorderDepthFirst( $relevantPostIds, UUID::create( $child ), $tree  );
+			if ( $relevantPostId !== null ) {
+				return $relevantPostId;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Gets the deepest common root post
+	 *
+	 * This is the root of the smallest subtree all the posts are in.
+	 *
+	 * @param array $rootPaths Associative array mapping post IDs to root paths
+	 * @return UUID|null Common root, or null on failure
+	 */
+	protected function getDeepestCommonRoot( array $rootPaths ) {
+		if ( count( $rootPaths ) == 0 ) {
+			return null;
+		}
+
+		$deepestRoot = null;
+		$possibleDeepestRoot = null;
+
+		$firstPath = reset( $rootPaths );
+		$pathLength = count( $firstPath );
+
+		for( $i = 0; $i < $pathLength; $i++ ) {
+			$possibleDeepestRoot = $firstPath[$i];
+
+			foreach ( $rootPaths as $path ) {
+				if ( !$path[$i]->equals( $possibleDeepestRoot ) ) {
+					// Mismatch.  Return the last match we found
+					return $deepestRoot;
+				}
+			}
+
+			$deepestRoot = $possibleDeepestRoot;
+		}
+
+		return $deepestRoot;
 	}
 }

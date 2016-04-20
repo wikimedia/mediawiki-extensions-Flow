@@ -30,28 +30,32 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 
 	/**
 	 * Return a full url of following format:
-	 *   https://<site>/wiki/Topic:<topicId>?topic_showPostId=<postId>&fromnotif=1#flow-post-<postId>
-	 * @todo: Generate a url to the first unread post of a topic when we figure out bundling in the new email formatter.
-	 * @param UUID|null $postId
+	 *   https://<site>/wiki/Topic:<topicId>?topic_showPostId=<$firstChronologicallyPostId>&fromnotif=1#flow-post-<$anchorPostID>
+	 * @param UUID|null $firstChronologicallyPostId First unread post ID
+	 * @param UUID|null $anchorPostID Post ID for anchor (i.e. to scroll to)
 	 * @return string
 	 */
-	protected function getPostLinkUrl( $postId = null ) {
+	protected function getPostLinkUrl( $firstChronologicallyPostId = null, $anchorPostId = null ) {
 		/** @var UUID $workflowId */
 		$workflowId = $this->event->getExtraParam( 'topic-workflow' );
-		if ( $postId === null ) {
-			/** @var UUID $postId */
-			$postId = $this->event->getExtraParam( 'post-id' );
+		if ( $firstChronologicallyPostId === null ) {
+			/** @var UUID $firstChronologicallyPostId */
+			$firstChronologicallyPostId = $this->event->getExtraParam( 'post-id' );
+		}
+
+		if ( $anchorPostId === null ) {
+			$anchorPostId = $firstChronologicallyPostId;
 		}
 
 		$title = Title::makeTitleSafe(
 			NS_TOPIC,
 			$workflowId->getAlphadecimal(),
-			'flow-post-' . $postId->getAlphadecimal()
+			'flow-post-' . $anchorPostId->getAlphadecimal()
 		);
 
 		$url = $title->getFullURL(
 			array(
-				'topic_showPostId' => $postId->getAlphadecimal(),
+				'topic_showPostId' => $firstChronologicallyPostId->getAlphadecimal(),
 				'fromnotif' => 1,
 			)
 		);

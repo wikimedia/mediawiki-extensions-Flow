@@ -23,7 +23,8 @@
 	 */
 	function FlowBoardComponent( $container ) {
 		var uri = new mw.Uri( location.href ),
-			uid = String( location.hash.match( /[0-9a-z]{16,19}$/i ) || '' );
+			anchorUid = String( location.hash.match( /[0-9a-z]{16,19}$/i ) || '' ),
+			highlightUid;
 
 		// Default API submodule for FlowBoard URLs is to fetch a topiclist
 		this.Api.setDefaultSubmodule( 'view-topiclist' );
@@ -34,12 +35,15 @@
 			return false;
 		}
 
-		// Handle URL parameters
-		if ( uid ) {
+		// Handle URL parameters.  If topic_showPostId is used, there should also be an
+		// anchor.
+		if ( anchorUid ) {
 			if ( uri.query.fromnotif ) {
-				_flowHighlightPost( $container, uid, 'newer' );
+				highlightUid = uri.query.topic_showPostId;
+				_flowHighlightPost( $container, highlightUid, 'newer' );
 			} else {
-				_flowHighlightPost( $container, uid );
+				highlightUid = anchorUid;
+				_flowHighlightPost( $container, highlightUid );
 			}
 		} else {
 			// There is a weird bug with url ending with #flow-post-xxxx
@@ -145,8 +149,9 @@
 	/**
 	 * Helper receives
 	 * @param {jQuery} $container
-	 * @param {string} uid
-	 * @param {string} option
+	 * @param {string} uid Anchor to scroll to
+	 * @param {string} [option] 'newer' if all posts equal to or newer than uid should be
+	 *  highlighted.  Otherwise, it will only highlight that post itself.
 	 * @return {jQuery}
 	 */
 	function _flowHighlightPost( $container, uid, option ) {
