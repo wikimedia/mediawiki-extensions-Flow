@@ -4,6 +4,7 @@
 	     data-flow-id="{{postId}}"
 	>
 		{{#if isModerated}}
+			{{!-- TODO: T133133: This should show all posts newer than showPostId, for bundling --}}
 			{{#ifCond @root.rootBlock.submitted.showPostId "===" postId}}
 				{{> flow_post_inner}}
 			{{else}}
