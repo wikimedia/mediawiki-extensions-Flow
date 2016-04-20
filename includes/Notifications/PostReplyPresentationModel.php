@@ -26,7 +26,8 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 			$notificationController = Container::get( 'controller.notification' );
 			$firstChronologicallyEvent = end( $bundledEvents );
 			$firstChronologicallyPostId = $firstChronologicallyEvent->getExtraParam( 'post-id' );
-			$topmostPostID = $notificationController->getTopmostPostId( $bundledEvents );
+			$topmostPostID = $notificationController->getTopmostPostId( $bundledEvents ) ?:
+				$firstChronologicallyPostId;
 
 		} else {
 			$event = $this->event;
