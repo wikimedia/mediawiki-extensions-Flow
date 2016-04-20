@@ -32,7 +32,7 @@
 	mw.flow.MessagePoster.prototype.post = function ( subject, body ) {
 		mw.flow.MessagePoster.parent.prototype.post.call( this, subject, body );
 
-		return this.api.postWithToken( 'edit', {
+		return this.api.postWithToken( 'csrf', {
 			action: 'flow',
 			submodule: 'new-topic',
 			page: this.title.getPrefixedDb(),

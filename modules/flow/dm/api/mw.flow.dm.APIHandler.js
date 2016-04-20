@@ -74,7 +74,7 @@
 	mw.flow.dm.APIHandler.prototype.postEdit = function ( submodule, requestParams ) {
 		var params = $.extend( { submodule: submodule }, this.requestParams, requestParams );
 
-		return ( new mw.Api() ).postWithToken( 'edit', params );
+		return ( new mw.Api() ).postWithToken( 'csrf', params );
 	};
 
 	/**
@@ -183,7 +183,7 @@
 
 		this.addCaptcha( params, captcha );
 
-		return ( new mw.Api() ).postWithToken( 'edit', $.extend( {}, this.requestParams, params ) )
+		return ( new mw.Api() ).postWithToken( 'csrf', $.extend( {}, this.requestParams, params ) )
 			.then( function ( data ) {
 				return data.flow.reply.workflow;
 			} );
@@ -209,7 +209,7 @@
 
 		this.addCaptcha( params, captcha );
 
-		return ( new mw.Api() ).postWithToken( 'edit', $.extend( {}, this.requestParams, params ) )
+		return ( new mw.Api() ).postWithToken( 'csrf', $.extend( {}, this.requestParams, params ) )
 			.then( function ( response ) {
 				return OO.getProp( response.flow, 'new-topic', 'committed', 'topiclist', 'topic-id' );
 			} );

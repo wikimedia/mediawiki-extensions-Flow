@@ -77,7 +77,7 @@
 				if ( params._internal && params._internal.tokenType ) {
 					tokenType = params._internal.tokenType;
 				} else {
-					tokenType = 'edit';
+					tokenType = 'csrf';
 				}
 
 				delete params._internal;
