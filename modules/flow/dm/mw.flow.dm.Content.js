@@ -9,8 +9,8 @@
 	 * 	{
 	 * 		content: "content in the default format",
 	 * 		format: "name of the default format",
-	 * 		"<other format name 1>": "content in the specified format"
-	 * 		"<other format name n>": "content in the specified format"
+	 * 		"(other format name 1)": "content in the specified format"
+	 * 		"(other format name n)": "content in the specified format"
 	 * 	}
 	 */
 	mw.flow.dm.Content = function mwFlowContent( representations ) {
