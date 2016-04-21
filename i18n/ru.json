@@ -212,7 +212,7 @@
 	"flow-rev-message-hid-topic": "$1 {{GENDER:$2|скрыл|скрыла}} [$4 тему] «$6» (<em>$5</em>)",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|удалил|удалила}} [$4 тему] «$6» (<em>$5</em>)",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|подавил|подавила}} [$4 тему] «$6» (<em>$5</em>)",
-	"flow-rev-message-locked-topic": "$1 отметил{{GENDER:$2||а}} [$4 тему] $6 как разрешённую (<em>$5</em>)",
+	"flow-rev-message-locked-topic": "$1 отметил{{GENDER:$2||а}} [$4 тему] «$6» как разрешённую (<em>$5</em>)",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|восстановил|восстановила}} [$4 тему] «$6» (<em>$5</em>)",
 	"flow-rc-topic-of-board": "$1 на $2",
 	"flow-board-history": "История «$1»",
