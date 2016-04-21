@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae564743_0f2d108c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-04-21T01:02:05Z",
+      "side": 1,
+      "message": "In the future, please add line breaks so the commit message does not have long lines.",
+      "revId": "f9dad58baee6ec831444020493155110fbc80439",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae564743_ef637cd8",
+        "filename": "Hooks.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-04-21T01:02:05Z",
+      "side": 1,
+      "message": "You can not change $wgResourceModules anymore .  Yes, the pre-existing \u0027ext.flow\u0027 one above is broken too.  I have a seperate patch open about that.\n\nInstead, you have to register the entire ext.flow.ui module in this hook.",
+      "revId": "f9dad58baee6ec831444020493155110fbc80439",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae564743_efc7fc98",
+        "filename": "Hooks.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-04-21T01:02:05Z",
+      "side": 1,
+      "message": "ext.flow.board.visualeditor would be better.",
+      "revId": "f9dad58baee6ec831444020493155110fbc80439",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae564743_afcea4b7",
+        "filename": "Hooks.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-04-21T01:02:05Z",
+      "side": 1,
+      "message": "Same $wgResourceModules issue as above.",
+      "revId": "f9dad58baee6ec831444020493155110fbc80439",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae564743_ef99bcc9",
+        "filename": "Hooks.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-04-21T01:02:05Z",
+      "side": 1,
+      "message": "You\u0027re not actually loading it on mobile, though it is on master.",
+      "revId": "f9dad58baee6ec831444020493155110fbc80439",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae564743_8fd3e060",
+        "filename": "Hooks.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-04-21T01:02:05Z",
+      "side": 1,
+      "message": "This was not what this comment referred to before, and it doesn\u0027t make sense here.",
+      "revId": "f9dad58baee6ec831444020493155110fbc80439",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae564743_2fc29488",
+        "filename": "Hooks.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 843,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-04-21T01:02:05Z",
+      "side": 1,
+      "message": "Rather than add another config variable, I think it would be better to just remove \u0027visualeditor\u0027 from the version of $wgFlowEditorList sent to JS if it\u0027s not installed.\n\nAnd you should be consistent with how you check whether it\u0027s installed.  You\u0027re using ExtensionRegistry above.",
+      "revId": "f9dad58baee6ec831444020493155110fbc80439",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae564743_4f38a89b",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-04-21T01:02:05Z",
+      "side": 1,
+      "message": "See Hooks.php comment.",
+      "revId": "f9dad58baee6ec831444020493155110fbc80439",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae564743_ef46dc25",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-04-21T01:02:05Z",
+      "side": 1,
+      "message": "This is unnecessary.  attachControls is only called if VE is in the editor list.",
+      "revId": "f9dad58baee6ec831444020493155110fbc80439",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae564743_cf431814",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-04-21T01:02:05Z",
+      "side": 1,
+      "message": "This is not necessary.  It will only be called if it\u0027s in allEditors, which it won\u0027t be if you update Hooks.php per my suggestion.",
+      "revId": "f9dad58baee6ec831444020493155110fbc80439",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
