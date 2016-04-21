@@ -88,6 +88,11 @@ $namespaceNames['hu'] = array(
 	NS_TOPIC =>  'Téma',
 );
 
+/** Indonesian */
+$namespaceNames['id'] = array(
+	NS_TOPIC => 'Topik',
+);
+
 /** Italian */
 $namespaceNames['it'] = array(
         NS_TOPIC =>  'Argomento',
