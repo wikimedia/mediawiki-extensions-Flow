@@ -44,6 +44,10 @@ $namespaceNames['de'] = array(
 	NS_TOPIC =>  'Thema',
 );
 
+/** Zazaki */
+$namespaceNames['diq'] = array(
+	NS_TOPIC =>  'Mewzu',
+);
 /** English */
 $namespaceNames['en'] = array(
 	NS_TOPIC =>  'Topic',
