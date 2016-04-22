@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae564743_5ea4cf04",
+        "filename": "Flow.namespaces.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 93
+      },
+      "writtenOn": "2016-04-22T09:14:29Z",
+      "side": 1,
+      "message": "Empty line between.",
+      "revId": "7934f1dddc8bdc0fcf803116f0bcdb0ea0f668ef",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
