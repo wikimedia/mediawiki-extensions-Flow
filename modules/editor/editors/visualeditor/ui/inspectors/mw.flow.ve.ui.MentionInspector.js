@@ -35,7 +35,7 @@
 	// Static
 
 	mw.flow.ve.ui.MentionInspector.static.name = 'flowMention';
-	mw.flow.ve.ui.MentionInspector.static.icon = 'flow-mention';
+	mw.flow.ve.ui.MentionInspector.static.size = 'medium';
 	mw.flow.ve.ui.MentionInspector.static.title = OO.ui.deferMsg( 'flow-ve-mention-inspector-title' );
 	mw.flow.ve.ui.MentionInspector.static.modelClasses = [ ve.dm.MWTransclusionNode ];
 
@@ -59,8 +59,6 @@
 	 */
 	mw.flow.ve.ui.MentionInspector.prototype.onTargetInputChange = function () {
 		var templateModel, parameterModel, key, value, inspector;
-
-		this.hideErrors();
 
 		key = mw.flow.ve.ui.MentionInspector.static.templateParameterKey;
 		value = this.targetInput.getValue();
@@ -243,32 +241,6 @@
 		}
 
 		return mw.flow.ve.ui.MentionInspector.parent.prototype.getActionProcess.call( this, action );
-	};
-
-	// Technically, these are private.  However, it's necessary to override them (and not call
-	// the parent), since otherwise this UI (which was probably designed for dialogs) does not fit the inspector.
-	// Only handles on error at a time for now.
-	//
-	// It would be nice to implement a general solution for this that covers all inspectors (or
-	// maybe a mixin for inline errors next to form elements).
-
-	mw.flow.ve.ui.MentionInspector.prototype.showErrors = function ( errors ) {
-		var errorText;
-
-		if ( errors instanceof OO.ui.Error ) {
-			errors = [ errors ];
-		}
-
-		errorText = errors[ 0 ].getMessageText();
-		this.errorWidget.setLabel( errorText );
-		this.errorFieldsetLayout.toggle( true );
-		this.setSize( 'large' );
-	};
-
-	mw.flow.ve.ui.MentionInspector.prototype.hideErrors = function () {
-		this.errorFieldsetLayout.toggle( false );
-		this.errorWidget.setLabel( '' );
-		this.setSize( 'medium' );
 	};
 
 	/**
