@@ -79,7 +79,7 @@
 					// HACK add i18n messages to VE
 					ve.init.platform.addMessages( mw.messages.values );
 
-					widget.target = new mw.flow.ve.Target();
+					widget.target = ve.init.mw.targetFactory.create( 'flow' );
 					widget.$element.append( widget.target.$element );
 				} );
 		}

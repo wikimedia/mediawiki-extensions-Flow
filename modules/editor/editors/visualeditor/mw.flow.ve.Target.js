@@ -24,6 +24,8 @@
 
 	// Static
 
+	mw.flow.ve.Target.static.name = 'flow';
+
 	mw.flow.ve.Target.static.toolbarGroups = [
 		{
 			type: 'list',
@@ -79,5 +81,9 @@
 			this.surfaces[ i ].setDisabled( disabled );
 		}
 	};
+
+	// Registration
+
+	ve.init.mw.targetFactory.register( mw.flow.ve.Target );
 
 }( mediaWiki, OO, ve ) );
