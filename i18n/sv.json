@@ -215,7 +215,7 @@
 	"flow-rev-message-hid-topic": "$1 {{GENDER:$2|dolde}} [$4 ämnet] på \"$6\" (<em>$5</em>).",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|tog bort}} [$4 ämnet] på \"$6\" (<em>$5</em>).",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|censurerade}} [$4 ämnet] på \"$6\" (<em>$5</em>).",
-	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|märkte}} [$4 ämnet] $6 som löst (<em>$5</em>)",
+	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|märkte}} [$4 ämnet] \"$6\" som löst (<em>$5</em>)",
 	"flow-rev-message-lock-topic-reason": "Märk som löst",
 	"flow-rev-message-restore-topic-reason": "återöppnad",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|återställde}} [$4 ämnet] på \"$6\" (<em>$5</em>).",
