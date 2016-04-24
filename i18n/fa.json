@@ -233,7 +233,7 @@
 	"flow-history-week": "هفتهٔ گذشته",
 	"flow-history-pages-topic": "بر روی [$1 \"$2\" صفحه] به نظر رسیدن",
 	"flow-history-pages-post": "بر روی [$1 $2] به نظر رسیدن",
-	"flow-topic-comments": "{{PLURAL:$1|نظر $1 |نظرها  $1 |0={{GENDER:$2|اولین}} شخصی باشید که نظر می‌گذارد!}}",
+	"flow-topic-comments": "{{PLURAL:$1|یک نظر|$1 نظر|0={{GENDER:$2|اولین}} شخصی باشید که نظر می‌گذارد!}}",
 	"flow-show-comments-title": "{{PLURAL:$1|نمایش نظر|نمایش نظرها}}",
 	"flow-hide-comments-title": "{{PLURAL:$1|نهفتن نظر|نهفتن نظرها}}",
 	"flow-comment-restored": "بازگرداندن نظر",
