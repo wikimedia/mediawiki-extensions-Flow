@@ -8,7 +8,8 @@
 			"Tarjeimo",
 			"Nnemo",
 			"Macofe",
-			"Cocu"
+			"Cocu",
+			"Kjetil r"
 		]
 	},
 	"enableflow": "Aktiver Flow",
@@ -207,7 +208,7 @@
 	"flow-rev-message-hid-topic": "$1 {{GENDER:$2|skjulte}} [$4 saken] «$6» (<em>$5</em>).",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|slettet}} [$4 saken] «$6» (<em>$5</em>).",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|sensurerte}} [$4 saken] «$6» (<em>$5</em>).",
-	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|markerte}} [$4 saken] $6 som løst (<em>$5</em>)",
+	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|markerte}} [$4 saken] «$6» som løst (<em>$5</em>)",
 	"flow-rev-message-lock-topic-reason": "markert som løst",
 	"flow-rev-message-restore-topic-reason": "gjenåpnet",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|gjenopprettet}} [$4 saken] «$6» (<em>$5</em>).",
@@ -373,7 +374,7 @@
 	"right-flow-suppress": "Sensurer revisjoner",
 	"flow-terms-of-use-new-topic": "Ved å klikke «{{int:flow-newtopic-save}}» aksepterer du bruksbetingelsene for denne wikien.",
 	"flow-terms-of-use-reply": "Ved å klikke «{{int:flow-reply-link}}» aksepterer du bruksbetingelsene for denne wikien.",
-	"flow-terms-of-use-edit": "Ved å lagre endringer dine aksepterer du bruksbetingelsene for denne wikien.",
+	"flow-terms-of-use-edit": "Ved å lagre endringene dine aksepterer du bruksbetingelsene for denne wikien.",
 	"flow-anon-warning": "Du er ikke innlogget. [$1 Logg inn] eller [$2 opprett en konto] om du ønsker å bli kreditert med navnet ditt istedenfor IP-adressen din.",
 	"flow-cancel-warning": "Du har skrevet inn tekst i skjemaet. Er du sikker på at du vil forkaste den?",
 	"flow-topic-first-heading": "Sak på «$1»",
