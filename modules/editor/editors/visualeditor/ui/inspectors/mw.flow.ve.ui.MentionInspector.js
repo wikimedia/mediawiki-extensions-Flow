@@ -35,7 +35,7 @@
 	// Static
 
 	mw.flow.ve.ui.MentionInspector.static.name = 'flowMention';
-	mw.flow.ve.ui.MentionInspector.static.icon = 'flow-mention';
+	mw.flow.ve.ui.MentionInspector.static.size = 'medium';
 	mw.flow.ve.ui.MentionInspector.static.title = OO.ui.deferMsg( 'flow-ve-mention-inspector-title' );
 	mw.flow.ve.ui.MentionInspector.static.modelClasses = [ ve.dm.MWTransclusionNode ];
 
