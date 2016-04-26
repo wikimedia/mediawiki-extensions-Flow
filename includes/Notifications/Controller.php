@@ -750,7 +750,7 @@ class NotificationController {
 			$possibleDeepestRoot = $firstPath[$i];
 
 			foreach ( $rootPaths as $path ) {
-				if ( !$path[$i]->equals( $possibleDeepestRoot ) ) {
+				if ( !isset( $path[$i] ) || !$path[$i]->equals( $possibleDeepestRoot ) ) {
 					// Mismatch.  Return the last match we found
 					return $deepestRoot;
 				}

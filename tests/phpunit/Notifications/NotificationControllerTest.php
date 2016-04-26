@@ -44,7 +44,7 @@ class NotificationControllerTest extends \MediaWikiTestCase {
 			),
 			array(
 				UUID::create( 't2et6t35psmz1ac2' ),
-				'Not same length',
+				'First shorter',
 				array(
 					't2f2mdjbw1dcfkia' => array(
 						UUID::create( 't2et4aiiijstihea' ),
@@ -58,6 +58,27 @@ class NotificationControllerTest extends \MediaWikiTestCase {
 						UUID::create( 't2et6t35psmz1ac2' ),
 						UUID::create( 't2f2m1hexpxgi9oy' ),
 						UUID::create( 't2f2n66t66w0j636' )
+					),
+				),
+			),
+			array(
+				UUID::create( 't2f2re4e901we1zm' ),
+				'First longer, second truncated version of first',
+				array(
+					't2feoifdgpa2rt02' => array(
+						UUID::create( 't2et4aiiijstihea' ),
+						UUID::create( 't2et4aiwjnpnk5ua' ),
+						UUID::create( 't2et6t35psmz1ac2' ),
+						UUID::create( 't2f2mdjbw1dcfkia' ),
+						UUID::create( 't2f2re4e901we1zm' ),
+						UUID::create( 't2feoifdgpa2rt02' ),
+					),
+					't2f2re4e901we1zm' => array(
+						UUID::create( 't2et4aiiijstihea' ),
+						UUID::create( 't2et4aiwjnpnk5ua' ),
+						UUID::create( 't2et6t35psmz1ac2' ),
+						UUID::create( 't2f2mdjbw1dcfkia' ),
+						UUID::create( 't2f2re4e901we1zm' ),
 					),
 				),
 			),
