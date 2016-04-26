@@ -2,6 +2,7 @@
 
 namespace Flow\Import\SourceStore;
 
+use Flow\Import\IImportObject;
 use Flow\Model\UUID;
 
 class File implements SourceStoreInterface {
@@ -38,7 +39,8 @@ class File implements SourceStoreInterface {
 		$this->data[$importSourceKey] = $objectId->getAlphadecimal();
 	}
 
-	public function getImportedId( $importSourceKey ) {
+	public function getImportedId( IImportObject $importObject ) {
+		$importSourceKey = $importObject->getObjectKey();
 		return isset( $this->data[$importSourceKey] )
 			? UUID::create( $this->data[$importSourceKey] )
 			: false;

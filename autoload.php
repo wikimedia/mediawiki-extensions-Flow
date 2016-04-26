@@ -226,6 +226,7 @@ $wgAutoloadClasses += array(
 	'Flow\\Import\\Postprocessor\\SpecialLogTopic' => __DIR__ . '/includes/Import/Postprocessor/SpecialLogTopic.php',
 	'Flow\\Import\\SourceStore\\Exception' => __DIR__ . '/includes/Import/SourceStore/Exception.php',
 	'Flow\\Import\\SourceStore\\File' => __DIR__ . '/includes/Import/SourceStore/File.php',
+	'Flow\\Import\\SourceStore\\FlowRevisionsDb' => __DIR__ . '/includes/Import/SourceStore/FlowRevisionsDb.php',
 	'Flow\\Import\\SourceStore\\Null' => __DIR__ . '/includes/Import/SourceStore/Null.php',
 	'Flow\\Import\\SourceStore\\SourceStoreInterface' => __DIR__ . '/includes/Import/SourceStore/SourceStoreInterface.php',
 	'Flow\\Import\\TalkpageImportOperation' => __DIR__ . '/includes/Import/Importer.php',
