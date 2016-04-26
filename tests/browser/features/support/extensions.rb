@@ -37,5 +37,12 @@ module PageObject
         self
       end
     end
+
+    class TextField
+      def when_enabled
+        wait_until { enabled? }
+        self
+      end
+    end
   end
 end

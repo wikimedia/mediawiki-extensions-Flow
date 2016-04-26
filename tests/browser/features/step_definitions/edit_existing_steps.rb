@@ -26,7 +26,7 @@ When(/^I edit the title field with "(.+)"$/) do |edited_title|
   on(FlowPage) do |page|
     @edited_topic_string = edited_title + @random_string
     # Take focus away from menu
-    page.title_edit_element.when_present.click
+    page.title_edit_element.when_present.when_enabled.click
     page.title_edit = @edited_topic_string
   end
 end
