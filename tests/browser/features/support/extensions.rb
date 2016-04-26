@@ -17,6 +17,12 @@ module Watir
       value
     end
   end
+
+  class TextArea
+    def enabled?
+      !disabled?
+    end
+  end
 end
 
 module PageObject
@@ -32,6 +38,13 @@ end
 module PageObject
   module Elements
     class TextArea
+      def when_enabled
+        wait_until { enabled? }
+        self
+      end
+    end
+
+    class TextField
       def when_enabled
         wait_until { enabled? }
         self
