@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae564743_3a4e2799",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-04-27T18:41:00Z",
+      "side": 1,
+      "message": "This task was since closed as a duplicate of the one above.",
+      "revId": "b1bccd72a20666b02296fe45c79497726f60724d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
