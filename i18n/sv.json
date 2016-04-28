@@ -128,7 +128,7 @@
 	"flow-board-notification-subscribe-title": "{{GENDER:$1|Du}} prenumererar på detta diskussionsforum!",
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Du}} kommer att få ett meddelande när ett nytt ämne skapas på detta forum.",
 	"flow-topic-action-watchlist-add": "Bevaka det här ämnet",
-	"flow-topic-action-watchlist-remove": "Obevaka",
+	"flow-topic-action-watchlist-remove": "Avbevaka",
 	"flow-error-allowcreation-no-usedb": "<var>$wgContentHandlerUseDB</var> måste vara <code>true</code> för att aktivera Flow på vissa ställen.",
 	"flow-error-allowcreation-already-exists": "Sidan existerar redan på destinationen, so en Flow board kan inte bli flyttad dit.",
 	"flow-error-allowcreation-flow-create-board": "Användaren har inte behörigheten \"{{int:right-flow-create-board}}\"",
