@@ -446,6 +446,8 @@
 			return;
 		}
 
+		this.emit( 'change' );
+
 		// Normalize 'none' to 'wikitext'
 		if ( currentPref === 'none' ) {
 			currentPref = 'wikitext';
@@ -467,8 +469,6 @@
 			// Ensure we also see that preference in the current page
 			mw.user.options.set( 'flow-editor', name );
 		}
-
-		this.emit( 'change' );
 	};
 
 	/**
