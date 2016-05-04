@@ -133,6 +133,11 @@ $namespaceNames['mzn'] = array(
 	NS_TOPIC =>  'تاپیک',
 );
 
+/** Norwegian Bokmål (norsk bokmål) */
+$namespaceNames['nb'] = array(
+	NS_TOPIC =>  'Sak',
+);
+
 /** Dutch */
 $namespaceNames['nl'] = array(
 	NS_TOPIC =>  'Onderwerp',
