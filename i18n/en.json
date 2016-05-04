@@ -283,7 +283,7 @@
 	"notification-bundle-header-flow-post-edited-user-talk": "A post in \"<strong>$1</strong>\" was edited multiple times on <strong>{{GENDER:$2|your}} talk page</strong>.",
 	"notification-body-flow-post-edited-user-talk": "$1",
 	"notification-header-flow-topic-renamed-v2": "The topic \"<strong>$1</strong>\" was renamed to \"<strong>$2</strong>\".",
-	"notification-header-flow-topic-renamed-user-talk": "The topic \"<strong>$1</strong>\" was renamed to \"<strong>$2</strong>\" on <strong>your talk page</strong>.",
+	"notification-header-flow-topic-renamed-user-talk": "The topic \"<strong>$1</strong>\" was renamed to \"<strong>$2</strong>\" on <strong>{{GENDER:$3|your}} talk page</strong>.",
 	"notification-header-flow-summary-edited": "The summary for \"<strong>$1</strong>\" was updated.",
 	"notification-header-flow-summary-edited-first": "The topic \"<strong>$1</strong>\" was summarized.",
 	"notification-bundle-header-flow-summary-edited": "The summary for \"<strong>$1</strong>\" was updated multiple times.",
