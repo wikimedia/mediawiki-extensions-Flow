@@ -116,7 +116,7 @@ class ImmediateWatchTopicListener extends AbstractTopicInsertListener {
 			}
 			$title = $workflow->getArticleTitle();
 
-			WatchedItem::fromUserTitle( $user, $title )->addWatch();
+			$user->addWatch( $title );
 			$this->watchedTopicItems->addOverrideWatched( $title );
 		}
 	}

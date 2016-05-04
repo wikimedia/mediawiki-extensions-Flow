@@ -45,7 +45,9 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 			return;
 		}
 
-		WatchedItem::fromUserTitle( $data['user'], $data['topicWorkflow']->getArticleTitle() )->addWatch();
+		/** @var User $user */
+		$user = $data['user'];
+		$user->addWatch( $data['topicWorkflow']->getArticleTitle() );
 
 		$events = $data['notificationController']->notifyPostChange( 'flow-post-reply',
 			array(
@@ -57,7 +59,7 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 				'revision' => $data['post-2'],
 			) );
 
-		$this->assertNotifiedUser( $events, $data['user'], $data['agent'] );
+		$this->assertNotifiedUser( $events, $user, $data['agent'] );
 	}
 
 	public function testWatchingBoard() {
@@ -67,7 +69,9 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 			return;
 		}
 
-		WatchedItem::fromUserTitle( $data['user'], $data['boardWorkflow']->getArticleTitle() )->addWatch();
+		/** @var User $user */
+		$user = $data['user'];
+		$user->addWatch( $data['boardWorkflow']->getArticleTitle() );
 
 		$events = $data['notificationController']->notifyNewTopic( array(
 			'board-workflow' => $data['boardWorkflow'],
@@ -77,7 +81,7 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 			'user' => $data['agent'],
 		) );
 
-		$this->assertNotifiedUser( $events, $data['user'], $data['agent'] );
+		$this->assertNotifiedUser( $events, $user, $data['agent'] );
 	}
 
 	protected function assertNotifiedUser( array $events, User $notifiedUser, User $notNotifiedUser ) {

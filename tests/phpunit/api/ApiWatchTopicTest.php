@@ -3,6 +3,7 @@
 namespace Flow\Tests\Api;
 
 use Title;
+use User;
 use WatchedItem;
 
 /**
@@ -18,7 +19,7 @@ class ApiWatchTopicTest extends ApiTestCase {
 				// expected key in api result
 				'watched',
 				// initialization
-				function( WatchedItem $item ) { $item->removeWatch(); },
+				function( User $user, Title $title ) { $user->removeWatch( $title, false ); },
 				// extra request parameters
 				array(),
 			),
@@ -27,7 +28,7 @@ class ApiWatchTopicTest extends ApiTestCase {
 				// expected key in api result
 				'unwatched',
 				// initialization
-				function( WatchedItem $item ) { $item->addWatch(); },
+				function( User $user, Title $title ) { $user->addWatch( $title, false ); },
 				// extra request parameters
 				array( 'unwatch' => 1 ),
 			),
@@ -41,7 +42,7 @@ class ApiWatchTopicTest extends ApiTestCase {
 		$topic = $this->createTopic();
 
 		$title = Title::newFromText( $topic['topic-page'] );
-		$init( WatchedItem::fromUserTitle( self::$users['sysop']->getUser(), $title, false ) );
+		$init( self::$users['sysop']->getUser(), $title );
 
 		// issue a watch api request
 		$data = $this->doApiRequest( $request + array(
