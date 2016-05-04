@@ -19,9 +19,9 @@ class MentionPresentationModel extends FlowPresentationModel {
 		);
 
 		// override url, link straight to that specific post/topic
-		if ( $this->getType() === 'post' ) {
+		if ( $this->getRevisionType() === 'post' ) {
 			$link['url'] = $this->getPostLinkUrl();
-		} elseif ( $this->getType() === 'post-summary' ) {
+		} elseif ( $this->getRevisionType() === 'post-summary' ) {
 			$link['url'] = $this->getTopicLinkUrl();
 		}
 
@@ -36,7 +36,7 @@ class MentionPresentationModel extends FlowPresentationModel {
 	}
 
 	public function getHeaderMessageKey() {
-		return parent::getHeaderMessageKey() . '-' . $this->getType();
+		return parent::getHeaderMessageKey() . '-' . $this->getRevisionType();
 	}
 
 	public function getHeaderMessage() {
@@ -44,7 +44,7 @@ class MentionPresentationModel extends FlowPresentationModel {
 		$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true) );
 		$msg->params( $this->getViewingUserForGender() );
 
-		if ( in_array( $this->getType(), array( 'post', 'post-summary' ) ) ) {
+		if ( in_array( $this->getRevisionType(), array( 'post', 'post-summary' ) ) ) {
 			$msg->plaintextParams( $this->getTopicTitle() );
 		}
 
@@ -57,7 +57,7 @@ class MentionPresentationModel extends FlowPresentationModel {
 		return $msg;
 	}
 
-	protected function getType() {
+	protected function getRevisionType() {
 		// we didn't use to include the type to differentiate messages, but
 		// then we only supported posts
 		return $this->event->getExtraParam( 'revision-type', 'post' );
