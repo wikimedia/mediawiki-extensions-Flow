@@ -1,6 +1,4 @@
-@chrome @firefox @internet_explorer_10
-@vagrant
-@en.wikipedia.beta.wmflabs.org
+@chrome @en.wikipedia.beta.wmflabs.org @firefox
 Feature: Thank author of a Flow post
 
   Scenario: Anon does not see Thank button

@@ -1,6 +1,4 @@
-@chrome @firefox @internet_explorer_10 @phantomjs
-@vagrant
-@en.wikipedia.beta.wmflabs.org
+@chrome @en.wikipedia.beta.wmflabs.org @firefox
 Feature: Sorting topics
 
   Background:
