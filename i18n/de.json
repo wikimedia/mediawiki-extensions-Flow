@@ -251,7 +251,7 @@
 	"notification-header-flow-post-edited-user-talk": "Ein Beitrag in „<strong>$1</strong>“ auf <strong>{{GENDER:$2|deiner}} Diskussionsseite</strong> wurde bearbeitet.",
 	"notification-bundle-header-flow-post-edited-user-talk": "Ein Beitrag in „<strong>$1</strong>“ wurde mehrere Male auf <strong>{{GENDER:$2|deiner}} Diskussionsseite</strong> bearbeitet.",
 	"notification-header-flow-topic-renamed-v2": "Das Thema „<strong>$1</strong>“ wurde in „<strong>$2</strong>“ umbenannt.",
-	"notification-header-flow-topic-renamed-user-talk": "Das Thema „<strong>$1</strong>“ wurde auf <strong>deiner Diskussionsseite</strong> in „<strong>$2</strong>“ umbenannt.",
+	"notification-header-flow-topic-renamed-user-talk": "Das Thema „<strong>$1</strong>“ wurde auf <strong>{{GENDER:$3|deiner}} Diskussionsseite</strong> in „<strong>$2</strong>“ umbenannt.",
 	"notification-header-flow-summary-edited": "Die Zusammenfassung für „<strong>$1</strong>“ wurde aktualisiert.",
 	"notification-header-flow-summary-edited-first": "Das Thema „<strong>$1</strong>“ wurde zusammengefasst.",
 	"notification-bundle-header-flow-summary-edited": "Die Zusammenfassung für „<strong>$1</strong>“ wurde mehrere Male aktualisiert.",

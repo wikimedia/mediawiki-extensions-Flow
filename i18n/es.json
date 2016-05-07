@@ -266,7 +266,7 @@
 	"notification-header-flow-post-edited-user-talk": "Un mensaje en «<strong>$1</strong>» se editó en <strong>{{GENDER:$2|tu}} página de discusión</strong>.",
 	"notification-bundle-header-flow-post-edited-user-talk": "Un mensaje en «<strong>$1</strong>» se editó muchas veces en <strong>{{GENDER:$2|tu}} página de discusión</strong>.",
 	"notification-header-flow-topic-renamed-v2": "Se renombró el tema \"<strong>$1</strong>\" como \"<strong>$2</strong>\".",
-	"notification-header-flow-topic-renamed-user-talk": "El tema \"<strong>$1</strong>\" se renombró a \"<strong>$2</strong>\" en <strong>tu página de discusión</strong>.",
+	"notification-header-flow-topic-renamed-user-talk": "El tema \"<strong>$1</strong>\" se renombró a \"<strong>$2</strong>\" en <strong>{{GENDER:$3|tu}} página de discusión</strong>.",
 	"notification-header-flow-summary-edited": "Se actualizó el resumen de \"<strong>$1</strong>\".",
 	"notification-header-flow-summary-edited-first": "Se resumió el tema \"<strong>$1</strong>\".",
 	"notification-bundle-header-flow-summary-edited": "Se actualizó varias veces el resumen de \"<strong>$1</strong>\".",

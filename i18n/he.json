@@ -250,7 +250,7 @@
 	"notification-header-flow-post-edited-user-talk": "רשומה בנושא \"<strong>$1</strong>\" נערכה ב<strong>דף השיחה {{GENDER:$2|שלך}}</strong>.",
 	"notification-bundle-header-flow-post-edited-user-talk": "רשומה בנושא \"<strong>$1</strong>\" נערכה מספר פעמים ב<strong>דף השיחה {{GENDER:$2|שלך}}</strong>.",
 	"notification-header-flow-topic-renamed-v2": "שם הנושא \"<strong>$1</strong>\" שונה אל \"<strong>$2</strong>\".",
-	"notification-header-flow-topic-renamed-user-talk": "שם הנושא \"<strong>$1</strong>\" שונה אל \"<strong>$2</strong>\" ב<strong>דף השיחה שלך</strong>.",
+	"notification-header-flow-topic-renamed-user-talk": "שם הנושא \"<strong>$1</strong>\" שונה אל \"<strong>$2</strong>\" ב<strong>דף השיחה {{GENDER:$3|שלך}}</strong>.",
 	"notification-header-flow-summary-edited": "הסיכום של \"<strong>$1</strong>\" עודכן.",
 	"notification-header-flow-summary-edited-first": "הנושא \"<strong>$1</strong>\" סוכם.",
 	"notification-bundle-header-flow-summary-edited": "הסיכום של \"<strong>$1</strong>\" עודכן מספר פעמים.",

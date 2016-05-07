@@ -264,7 +264,7 @@
 	"notification-header-flow-post-edited-user-talk": "<strong>{{GENDER:$2|您}}的讨论页</strong>上的贴子“<strong>$1</strong>”已被编辑。",
 	"notification-bundle-header-flow-post-edited-user-talk": "<strong>{{GENDER:$2|您}}的讨论页</strong>上的贴子“<strong>$1</strong>”被编辑了太多次。",
 	"notification-header-flow-topic-renamed-v2": "话题“<strong>$1</strong>”已重命名为“<strong>$2</strong>”。",
-	"notification-header-flow-topic-renamed-user-talk": "在<strong>您的讨论页</strong>上的话题“<strong>$1</strong>”已重命名为“<strong>$2</strong>”。",
+	"notification-header-flow-topic-renamed-user-talk": "在<strong>{{GENDER:$3|您}}的讨论页</strong>上的话题“<strong>$1</strong>”已重命名为“<strong>$2</strong>”。",
 	"notification-header-flow-summary-edited": "“<strong>$1</strong>”的摘要已更新。",
 	"notification-header-flow-summary-edited-first": "话题“<strong>$1</strong>”已总结。",
 	"notification-bundle-header-flow-summary-edited": "“<strong>$1</strong>”的摘要已更新太多次。",

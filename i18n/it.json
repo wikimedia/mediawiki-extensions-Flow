@@ -254,7 +254,7 @@
 	"notification-header-flow-post-edited-user-talk": "Un messaggio in \"<strong>$1</strong>\" è stato modificato sulla <strong>{{GENDER:$2|tua}} pagina di discussione</strong>.",
 	"notification-bundle-header-flow-post-edited-user-talk": "Un messaggio in \"<strong>$1</strong>\" è stato modificato più volte sulla <strong>{{GENDER:$2|tua}} pagina di discussione</strong>.",
 	"notification-header-flow-topic-renamed-v2": "L'argomento \"<strong>$1</strong>\" è stato rinominato in \"<strong>$2</strong>\".",
-	"notification-header-flow-topic-renamed-user-talk": "L'argomento \"<strong>$1</strong>\" è stato rinominato in \"<strong>$2</strong>\" sulla <strong>tua pagina di discussione</strong>.",
+	"notification-header-flow-topic-renamed-user-talk": "L'argomento \"<strong>$1</strong>\" è stato rinominato in \"<strong>$2</strong>\" sulla <strong>{{GENDER:$3|tua}} pagina di discussione</strong>.",
 	"notification-header-flow-summary-edited": "Il riassunto per \"<strong>$1</strong>\" è stato aggiornato.",
 	"notification-header-flow-summary-edited-first": "L'argomento \"<strong>$1</strong>\" è stato riassunto.",
 	"notification-bundle-header-flow-summary-edited": "Il riassunto per \"<strong>$1</strong>\" è stato aggiornato più volte.",

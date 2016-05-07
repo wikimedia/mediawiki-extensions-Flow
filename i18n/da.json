@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Jens Jensen"
+			"Jens Jensen",
+			"Sarrus"
 		]
 	},
+	"flow-board-expand-description": "Vis beskrivelse",
 	"flow-notification-link-text-view-topics": "Se emner"
 }

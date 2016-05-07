@@ -255,7 +255,7 @@
 	"notification-header-flow-post-edited-user-talk": "Ett inlägg på \"<strong>$1</strong>\" redigerades på <strong>{{GENDER:$2|din}} diskussionssida</strong>.",
 	"notification-bundle-header-flow-post-edited-user-talk": "Ett inlägg på \"<strong>$1</strong>\" redigerades flera gånger på <strong>{{GENDER:$2|din}} diskussionssida</strong>.",
 	"notification-header-flow-topic-renamed-v2": "Ämnet \"<strong>$1</strong>\" bytte namn till \"<strong>$2</strong>\".",
-	"notification-header-flow-topic-renamed-user-talk": "Ämnet \"<strong>$1</strong>\" bytte namn till \"<strong>$2</strong>\" på <strong>din diskussionssida</strong>.",
+	"notification-header-flow-topic-renamed-user-talk": "Ämnet \"<strong>$1</strong>\" bytte namn till \"<strong>$2</strong>\" på <strong>{{GENDER:$3|din}} diskussionssida</strong>.",
 	"notification-header-flow-summary-edited": "Sammanfattningen för \"<strong>$1</strong>\" uppdaterades.",
 	"notification-header-flow-summary-edited-first": "Ämnet \"<strong>$1</strong>\" sammanfattas.",
 	"notification-bundle-header-flow-summary-edited": "Sammanfattningen för \"<strong>$1</strong>\" uppdaterades flera gånger.",
