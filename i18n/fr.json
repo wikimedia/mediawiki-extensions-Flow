@@ -283,7 +283,7 @@
 	"notification-header-flow-post-edited-user-talk": "Un billet sur « <strong><bdi>$1</bdi></strong> » a été modifié sur <strong>{{GENDER:$2|votre}} page de discussion</strong>.",
 	"notification-bundle-header-flow-post-edited-user-talk": "Une note sur « <strong><bdi>$1</bdi></strong> » a été modifiée plusieurs fois sur <strong>{{GENDER:$2|votre}} page de discussion</strong>.",
 	"notification-header-flow-topic-renamed-v2": "Le sujet « <strong><bdi>$1</bdi></strong> » a été renommé en « <strong><bdi>$2</bdi></strong> ».",
-	"notification-header-flow-topic-renamed-user-talk": "Le sujet « <strong><bdi>$1</bdi></strong> » a été renommé en « <strong><bdi>$2</bdi></strong> » sur <strong>votre page de discussion</strong>.",
+	"notification-header-flow-topic-renamed-user-talk": "Le sujet « <strong><bdi>$1</bdi></strong> » a été renommé en « <strong><bdi>$2</bdi></strong> » sur <strong>{{GENDER:$3|votre}} page de discussion</strong>.",
 	"notification-header-flow-summary-edited": "Le résumé pour « <strong><bdi>$1</bdi></strong> » a été mis à jour.",
 	"notification-header-flow-summary-edited-first": "Le sujet « <strong><bdi>$1</bdi></strong> » a été résumé.",
 	"notification-bundle-header-flow-summary-edited": "Le résumé pour « <strong><bdi>$1</bdi></strong> » a été mis à jour plusieurs fois.",

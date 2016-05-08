@@ -262,7 +262,7 @@
 	"notification-header-flow-post-edited-user-talk": "Wiadomość w wątku „<strong>$1</strong>” została zmieniona na <strong>{{GENDER:$2|twojej}} stronie dyskusji</strong>.",
 	"notification-bundle-header-flow-post-edited-user-talk": "Wiadomość w wątku „<strong>$1</strong>” była wielokrotnie zmieniana na <strong>{{GENDER:$2|twojej}} stronie dyskusji</strong>.",
 	"notification-header-flow-topic-renamed-v2": "Wątek „<strong>$1</strong>” został zmieniony na „<strong>$2</strong>”.",
-	"notification-header-flow-topic-renamed-user-talk": "Na <strong>stronie twojej dyskusji</strong> została zmieniona nazwa wątku z „<strong>$1</strong>” na „<strong>$2</strong>”.",
+	"notification-header-flow-topic-renamed-user-talk": "Na <strong>stronie {{GENDER:$3|twojej}} dyskusji</strong> została zmieniona nazwa wątku z „<strong>$1</strong>” na „<strong>$2</strong>”.",
 	"notification-header-flow-summary-edited": "Podsumowanie wątku „<strong>$1</strong>” zostało zmienione.",
 	"notification-header-flow-summary-edited-first": "Wątek „<strong>$1</strong>” został podsumowany.",
 	"notification-bundle-header-flow-summary-edited": "Podsumowanie wątku „<strong>$1</strong>” zostało zmienione kilka razy.",
