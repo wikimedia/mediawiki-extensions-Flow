@@ -361,6 +361,7 @@
 	"flow-special-enableflow-page-is-liquidthreads": "[[:$1]]의 LiquidThreads 문서입니다.",
 	"flow-special-enableflow-confirmation": "[[$1]]의 플로 게시판을 만들었습니다.",
 	"flow-spam-confirmedit-form": "아래 캡차를 풀어 당신이 사람임을 보여주세요: $1",
+	"flow-embedding-unsupported": "토론에는 아직 넣을 수 없습니다.",
 	"flow-post-undo-hide": "숨기기 취소",
 	"flow-post-undo-delete": "삭제 취소",
 	"flow-topic-undo-hide": "숨기기 취소",
