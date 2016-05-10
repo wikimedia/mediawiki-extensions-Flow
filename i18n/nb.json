@@ -237,7 +237,7 @@
 	"flow-notification-edit-bundle": "$1 og {{PLURAL:$5|en annen|$5 andre|100=99+ andre}} {{GENDER:$1|redigerte}} et <span class=\"plainlinks\">[$4 innlegg]</span> under «$2» på «$3».",
 	"notification-header-flow-new-topic-v2": "Ny sak skapt på <strong>$3</strong>: <bdi>\"<strong>$4</strong>\"</bdi>.",
 	"notification-bundle-header-flow-new-topic": "$1 {{PLURAL:$1|ny sak|nye saker}} på <strong>$3</strong>.",
-	"notification-header-flow-new-topic-user-talk": "E sak ble opprettet på <strong>din diskusjonsside</strong>: «<strong>$4</strong>».",
+	"notification-header-flow-new-topic-user-talk": "En sak ble opprettet på <strong>din diskusjonsside</strong>: «<strong>$4</strong>».",
 	"notification-bundle-header-flow-new-topic-user-talk": "{{PLURAL:$1|En ny sak|$1 nye saker}} på <strong>din diskusjonsside</strong>.",
 	"notification-header-flow-post-reply": "$1 {{GENDER:$2|svarte}} i «<strong>$4</strong>».",
 	"notification-bundle-header-flow-post-reply-v2": "{{PLURAL:$1|Ett nytt svar|$1 nye svar}} i «<strong>$3</strong>».",
