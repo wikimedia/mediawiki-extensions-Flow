@@ -191,37 +191,37 @@
 '.$sp.''.LCRun3::p($cx, 'flow_moderation_actions_list', array(array($in),array('moderationType'=>'topic','moderationTarget'=>'title','moderationTemplate'=>'topic','moderationContainerClass'=>'flow-menu','moderationMwUiClass'=>'mw-ui-button','moderationIcons'=>true)), '			').'		</ul>
 '.$sp.'	</div>
 '.$sp.'</div>
-';},'flow_reply_form' => function ($cx, $in, $sp) {return ''.$sp.''.((LCRun3::ifvar($cx, ((isset($in['actions']['reply']) && is_array($in['actions'])) ? $in['actions']['reply'] : null))) ? '	<form class="flow-post flow-reply-form"
-'.$sp.'	      method="POST"
-'.$sp.'	      action="'.htmlentities((string)((isset($in['actions']['reply']['url']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['url'] : null), ENT_QUOTES, 'UTF-8').'"
-'.$sp.'	      id="flow-reply-'.htmlentities((string)((isset($in['postId']) && is_array($in)) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
-'.$sp.'	      data-flow-initial-state="collapsed"
-'.$sp.'	>
-'.$sp.'		<input type="hidden" name="wpEditToken" value="'.htmlentities((string)((isset($cx['sp_vars']['root']['rootBlock']['editToken']) && is_array($cx['sp_vars']['root']['rootBlock'])) ? $cx['sp_vars']['root']['rootBlock']['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
-'.$sp.'		<input type="hidden" name="topic_replyTo" value="'.htmlentities((string)((isset($in['postId']) && is_array($in)) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'" />
-'.$sp.''.LCRun3::p($cx, 'flow_errors', array(array($in),array()), '		').'
-'.$sp.''.LCRun3::hbch($cx, 'ifAnonymous', array(array(),array()), $in, false, function($cx, $in)use($sp){return ''.LCRun3::p($cx, 'flow_anon_warning', array(array($in),array()), '			').'';}).'
-'.$sp.'		<div class="flow-editor">
-'.$sp.'			<textarea id="flow-post-'.htmlentities((string)((isset($in['postId']) && is_array($in)) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'-form-content"
-'.$sp.'			          name="topic_content"
-'.$sp.'			          required
-'.$sp.'			          data-flow-expandable="true"
-'.$sp.'			          class="mw-ui-input flow-click-interactive"
-'.$sp.'			          type="text"
+';},'flow_reply_form' => function ($cx, $in, $sp) {return ''.$sp.'<form class="flow-post flow-reply-form"
+'.$sp.'      method="POST"
+'.$sp.'      action="'.htmlentities((string)((isset($in['actions']['reply']['url']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+'.$sp.'      id="flow-reply-'.htmlentities((string)((isset($in['postId']) && is_array($in)) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
+'.$sp.'      data-flow-initial-state="collapsed"
+'.$sp.'>
+'.$sp.'	<input type="hidden" name="wpEditToken" value="'.htmlentities((string)((isset($cx['sp_vars']['root']['rootBlock']['editToken']) && is_array($cx['sp_vars']['root']['rootBlock'])) ? $cx['sp_vars']['root']['rootBlock']['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
+'.$sp.'	<input type="hidden" name="topic_replyTo" value="'.htmlentities((string)((isset($in['postId']) && is_array($in)) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'" />
+'.$sp.''.LCRun3::p($cx, 'flow_errors', array(array($in),array()), '	').'
+'.$sp.''.LCRun3::hbch($cx, 'ifAnonymous', array(array(),array()), $in, false, function($cx, $in)use($sp){return ''.LCRun3::p($cx, 'flow_anon_warning', array(array($in),array()), '		').'';}).'
+'.$sp.'	<div class="flow-editor">
+'.$sp.'		<textarea id="flow-post-'.htmlentities((string)((isset($in['postId']) && is_array($in)) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'-form-content"
+'.$sp.'		          name="topic_content"
+'.$sp.'		          required
+'.$sp.'		          data-flow-expandable="true"
+'.$sp.'		          class="mw-ui-input flow-click-interactive"
+'.$sp.'		          type="text"
 '.$sp.'			          placeholder="'.LCRun3::ch($cx, 'l10n', array(array('flow-reply-topic-title-placeholder',((isset($in['properties']['topic-of-post-text-from-html']) && is_array($in['properties'])) ? $in['properties']['topic-of-post-text-from-html'] : null)),array()), 'encq').'"
-'.$sp.'			          data-role="content"
+'.$sp.'		          data-role="content"
 '.$sp.'
-'.$sp.'			>'.((LCRun3::ifvar($cx, ((isset($cx['sp_vars']['root']['submitted']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['submitted'] : null))) ? ''.LCRun3::hbch($cx, 'ifCond', array(array(((isset($cx['sp_vars']['root']['submitted']['postId']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['postId'] : null),'===',((isset($in['postId']) && is_array($in)) ? $in['postId'] : null)),array()), $in, false, function($cx, $in)use($sp){return ''.htmlentities((string)((isset($cx['sp_vars']['root']['submitted']['content']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'';}).'' : '').'</textarea>
-'.$sp.'		</div>
+'.$sp.'		>'.((LCRun3::ifvar($cx, ((isset($cx['sp_vars']['root']['submitted']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['submitted'] : null))) ? ''.LCRun3::hbch($cx, 'ifCond', array(array(((isset($cx['sp_vars']['root']['submitted']['postId']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['postId'] : null),'===',((isset($in['postId']) && is_array($in)) ? $in['postId'] : null)),array()), $in, false, function($cx, $in)use($sp){return ''.htmlentities((string)((isset($cx['sp_vars']['root']['submitted']['content']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'';}).'' : '').'</textarea>
+'.$sp.'	</div>
 '.$sp.'
-'.$sp.'		<div class="flow-form-actions flow-form-collapsible">
-'.$sp.'			<button data-role="submit"
-'.$sp.'			        class="mw-ui-button mw-ui-constructive"
-'.$sp.'			>'.htmlentities((string)((isset($in['actions']['reply']['text']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['text'] : null), ENT_QUOTES, 'UTF-8').'</button>
-'.$sp.''.LCRun3::p($cx, 'flow_form_cancel_button', array(array($in),array()), '			').'			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-reply'),array()), 'encq').'</small>
-'.$sp.'		</div>
-'.$sp.'	</form>
-'.$sp.'' : '').'';},'flow_topic' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-topic flow-load-interactive'.((LCRun3::ifvar($cx, ((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null))) ? ' flow-topic-moderatestate-'.htmlentities((string)((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null), ENT_QUOTES, 'UTF-8').' ' : '').''.((LCRun3::ifvar($cx, ((isset($in['isModerated']) && is_array($in)) ? $in['isModerated'] : null))) ? ' flow-topic-moderated ' : '').''.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? 'flow-element-collapsible flow-element-collapsed' : '').'"
+'.$sp.'	<div class="flow-form-actions flow-form-collapsible">
+'.$sp.'		<button data-role="submit"
+'.$sp.'		        class="mw-ui-button mw-ui-constructive"
+'.$sp.'		>'.LCRun3::ch($cx, 'l10n', array(array('flow-reply-link'),array()), 'encq').'</button>
+'.$sp.''.LCRun3::p($cx, 'flow_form_cancel_button', array(array($in),array()), '		').'		<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-reply'),array()), 'encq').'</small>
+'.$sp.'	</div>
+'.$sp.'</form>
+';},'flow_topic' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-topic flow-load-interactive'.((LCRun3::ifvar($cx, ((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null))) ? ' flow-topic-moderatestate-'.htmlentities((string)((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null), ENT_QUOTES, 'UTF-8').' ' : '').''.((LCRun3::ifvar($cx, ((isset($in['isModerated']) && is_array($in)) ? $in['isModerated'] : null))) ? ' flow-topic-moderated ' : '').''.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? 'flow-element-collapsible flow-element-collapsed' : '').'"
 '.$sp.'     id="flow-topic-'.htmlentities((string)((isset($in['postId']) && is_array($in)) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
 '.$sp.'     data-flow-id="'.htmlentities((string)((isset($in['postId']) && is_array($in)) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
 '.$sp.'     data-flow-load-handler="topic"
@@ -236,7 +236,7 @@
 '.$sp.'			   title="'.htmlentities((string)((isset($in['actions']['reply']['title']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 '.$sp.'			   class="flow-ui-input-replacement-anchor mw-ui-input"
 '.$sp.'			>'.LCRun3::ch($cx, 'l10n', array(array('flow-reply-topic-title-placeholder',((isset($in['properties']['topic-of-post-text-from-html']) && is_array($in['properties'])) ? $in['properties']['topic-of-post-text-from-html'] : null)),array()), 'encq').'</a>
-'.$sp.'';}).'' : '').'</div>
+'.$sp.'';}).'' : ''.LCRun3::hbch($cx, 'progressiveEnhancement', array(array(),array('type'=>'insert')), $in, false, function($cx, $in)use($sp){return ''.LCRun3::p($cx, 'flow_reply_form', array(array($in),array()), '			').'';}).'').'</div>
 ';},'flow_topiclist_loop' => function ($cx, $in, $sp) {return ''.$sp.''.LCRun3::sec($cx, ((isset($in['roots']) && is_array($in)) ? $in['roots'] : null), $in, true, function($cx, $in)use($sp){return ''.LCRun3::hbch($cx, 'eachPost', array(array(((isset($cx['sp_vars']['root']) && is_array($cx['sp_vars'])) ? $cx['sp_vars']['root'] : null),$in),array()), $in, false, function($cx, $in)use($sp){return ''.LCRun3::p($cx, 'flow_topic', array(array($in),array()), '		').'';}).'';}).'';},'flow_load_more' => function ($cx, $in, $sp) {return ''.$sp.''.((LCRun3::ifvar($cx, ((isset($in['loadMoreObject']) && is_array($in)) ? $in['loadMoreObject'] : null))) ? '	<div class="flow-load-more">
 '.$sp.'		<div class="flow-error-container">
 '.$sp.'		</div>

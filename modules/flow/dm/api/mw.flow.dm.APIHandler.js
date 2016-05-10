@@ -99,6 +99,29 @@
 	};
 
 	/**
+	 * Gets the reason the page was protected
+	 *
+	 * @return {jQuery.Promise}
+	 * @return {Function} return.done
+	 * @return {string} return.done.reason Reason, as HTML
+	 */
+	mw.flow.dm.APIHandler.prototype.getProtectionReason = function () {
+		var params = {
+			action: 'query',
+			list: 'logevents',
+			leprop: 'parsedcomment',
+			leaction: 'protect/protect',
+			letitle: this.page,
+			lelimit: 1
+		};
+
+		return ( new mw.Api() ).get( $.extend( {}, this.requestParams, params ) )
+			.then( function ( response ) {
+				return OO.getProp( response, 'query', 'logevents', 0, 'parsedcomment' );
+			} );
+	};
+
+	/**
 	 * Send a request to get topic list
 	 *
 	 * @param {string} orderType Sort order type, 'newest' or 'updated'

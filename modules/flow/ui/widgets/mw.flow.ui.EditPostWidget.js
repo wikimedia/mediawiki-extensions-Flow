@@ -6,6 +6,7 @@
 	 * @extends OO.ui.Widget
 	 *
 	 * @constructor
+	 * @param {string} topicId The id of the topic
 	 * @param {string} postId The id of the post to edit
 	 * @param {Object} [config] Configuration object
 	 */
