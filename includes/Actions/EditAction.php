@@ -28,4 +28,7 @@ class EditAction extends FlowAction {
 		$this->context->getOutput()->redirect( $title->getFullURL() );
 	}
 
+	public function doesWrites() {
+		return false;
+	}
 }
