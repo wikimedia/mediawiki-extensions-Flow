@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae564743_641ef312",
+        "filename": "Hooks.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-05-10T22:27:11Z",
+      "side": 1,
+      "message": "I don\u0027t think that you need this dependency, or any dynamic dependency. ext.eventLogging.subscriber is loaded by EventLogging, and mw.track() has a buffering mechanism that allows it to catch up with events that happened before it was loaded.",
+      "revId": "ee3a82f631d05b0afcd95fa482b2c6bacd28ebd9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
