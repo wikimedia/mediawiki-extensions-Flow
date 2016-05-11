@@ -343,6 +343,7 @@ $wgResourceModules += array(
 			'mediawiki.Title',
 			'mediawiki.user',
 			'mediawiki.Uri',
+			'jquery.throttle-debounce',
 		),
 	) + $mobile,
 	'ext.flow.dm' => $flowResourceTemplate + array(
