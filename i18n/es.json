@@ -27,7 +27,8 @@
 			"Quiddity",
 			"Peter Bowman",
 			"Matiia",
-			"Lemondoge"
+			"Lemondoge",
+			"Rubentl134"
 		]
 	},
 	"enableflow": "Activar Flow",
@@ -151,6 +152,7 @@
 	"flow-error-missing-summary": "Debes escribir un resumen.",
 	"flow-error-missing-title": "El tema no tiene título. Para guardarlo necesitas añadirle un título.",
 	"flow-error-parsoid-failure": "No se puede analizar el contenido debido: error al contactar el servidor para la conversión con Parsoid. Verifica tu conexión a Internet",
+	"flow-error-protected-unknown-reason": "Desconocido",
 	"flow-error-missing-replyto": "Ningún parámetro \"replyTo\" fue suministrado. Este parámetro es requerido para hacer la acción \"responder\".",
 	"flow-error-missing-postId": "Ningún parámetro \"postId\" fue suministrado. Es requerido este parámetro para manipular una publicación.",
 	"flow-error-invalid-postId": "El parámetro \"postId\" era inválido. La publicación especificada ($1) no pudo ser encontrada.",

@@ -147,6 +147,7 @@
 	"flow-error-missing-summary": "Należy wpisać streszczenie.",
 	"flow-error-missing-title": "Wątek nie ma tytułu. Aby zapisać wątek, wymagany jest tytuł.",
 	"flow-error-parsoid-failure": "Nie można przesłać zawartości: Błąd kontaktu z serwerem w celu konwersji pomiędzy wikikodem a HTML. Proszę sprawdzić swoje połączenie z Internetem lub spróbować ponownie później jeżeli problem nadal występuje. Jeżeli nadal widzisz ten błąd, proszę zgłosić informację o nim",
+	"flow-error-protected-unknown-reason": "Nieznany",
 	"flow-error-missing-replyto": "Nie podano wartości „odpowiedz na”. Ta wartość jest wymagana do wykonania akcji „odpowiedz”.",
 	"flow-error-missing-postId": "Nie podano wartości „postId”. Ta wartość jest wymagana do zmieniania posta.",
 	"flow-error-invalid-postId": "Wartość „postId” jest nieprawidłowa. Nie udało się znaleźć podanego ($1) posta.",
