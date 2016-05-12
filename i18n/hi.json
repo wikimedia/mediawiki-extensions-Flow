@@ -47,6 +47,7 @@
 	"flow-topic-action-history": "इतिहास",
 	"flow-topic-action-summarize-topic": "सारांश",
 	"flow-topic-action-undo-moderation": "पूर्ववत करें",
+	"flow-error-protected-unknown-reason": "अज्ञात",
 	"flow-error-unknown-workflow-id-title": "अज्ञात विषय",
 	"flow-edit-title-submit": "विषय बदलें",
 	"flow-edit-post-submit": "बदलाव जमा करें",
