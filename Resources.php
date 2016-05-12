@@ -73,7 +73,7 @@ $wgResourceModules += array(
 			'handlebars/flow_post_meta_actions.partial.handlebars',
 			'handlebars/flow_post_moderation_state.partial.handlebars',
 			'handlebars/flow_post_replies.partial.handlebars',
-			'handlebars/flow_post.handlebars',
+			'handlebars/flow_post.partial.handlebars',
 			'handlebars/flow_reply_form.partial.handlebars',
 			'handlebars/flow_subscribed.partial.handlebars',
 			'handlebars/flow_tooltip_subscribed.partial.handlebars',
