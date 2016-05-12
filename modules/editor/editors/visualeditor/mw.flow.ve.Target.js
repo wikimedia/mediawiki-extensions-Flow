@@ -41,20 +41,26 @@
 		{ include: [ 'flowMention' ] }
 	];
 
-	// FIXME this isn't supposed to be a global state thing, it's supposed to be
-	// variable per EditorWidget instance
-	if ( mw.flow.ui.WikitextEditorWidget.static.isSupported() ) {
-		mw.flow.ve.Target.static.actionGroups = [
-			{ include: [ 'flowSwitchEditor' ] }
-		];
-	}
-
 	// Allow pasting links
 	mw.flow.ve.Target.static.importRules = ve.copy( mw.flow.ve.Target.static.importRules );
 	mw.flow.ve.Target.static.importRules.external.blacklist = OO.simpleArrayDifference(
 		mw.flow.ve.Target.static.importRules.external.blacklist,
 		[ 'link' ]
 	);
+
+	// Static Methods
+	mw.flow.ve.Target.static.setSwitchable = function ( switchable ) {
+		// FIXME this isn't supposed to be a global state thing, it's supposed to be
+		// variable per EditorWidget instance
+
+		if ( switchable ) {
+			mw.flow.ve.Target.static.actionGroups = [
+				{ include: [ 'flowSwitchEditor' ] }
+			];
+		} else {
+			mw.flow.ve.Target.static.actionGroups = [];
+		}
+	};
 
 	// Methods
 

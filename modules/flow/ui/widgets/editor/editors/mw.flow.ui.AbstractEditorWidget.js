@@ -6,7 +6,7 @@
 	 * - Set #static-name
 	 * - Implement #getRawContent and #reloadContent
 	 * - Emit #event-change and #event-switch
-	 * - Respect config.switchable
+	 * - Respect static.switchable
 	 *
 	 * Subclasses probably need to:
 	 * - Set #static-format
@@ -20,7 +20,6 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {boolean} [switchable=false] Whether a tool to switch editors should be displayed
 	 * @cfg {string} [placeholder] Placeholder text for the edit area
 	 */
 	mw.flow.ui.AbstractEditorWidget = function mwFlowUiAbstractEditorWidget( config ) {
@@ -51,10 +50,26 @@
 	 * name is passed in, or if there is no editor by the given name, EditorSwitcherWidget
 	 * will decide which editor to switch to.
 	 *
-	 * Should not be emitted if config.switchable is false.
+	 * Should not be emitted if static.switchable is false.
 	 */
 
 	/* Static Methods */
+
+	/**
+	 * Sets whether the user can switch to another editor
+	 *
+	 * @param {boolean} switchable
+	 */
+	mw.flow.ui.AbstractEditorWidget.static.setSwitchable = function ( switchable ) {
+		this.switchable = switchable;
+	};
+
+	/* Static Properties */
+
+	/**
+	 * Whether the user can switch to another editor type
+	 */
+	mw.flow.ui.AbstractEditorWidget.static.switchable = false;
 
 	/**
 	 * Type of content to use
