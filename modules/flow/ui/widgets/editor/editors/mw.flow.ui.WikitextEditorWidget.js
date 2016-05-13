@@ -33,7 +33,7 @@
 			.attr( 'target', '_blank' )
 			.end();
 
-		if ( config.switchable ) {
+		if ( mw.flow.ui.WikitextEditorWidget.static.switchable ) {
 			// Toolbar
 			this.toolFactory = new OO.ui.ToolFactory();
 			this.toolFactory.register( mw.flow.ui.SwitchToVeTool );

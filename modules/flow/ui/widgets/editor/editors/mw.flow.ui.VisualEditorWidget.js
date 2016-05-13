@@ -14,7 +14,6 @@
 		// Parent constructor
 		mw.flow.ui.VisualEditorWidget.parent.call( this, config );
 
-		this.switchable = config.switchable;
 		this.placeholder = config.placeholder;
 		this.loadPromise = null;
 
@@ -78,6 +77,8 @@
 				.then( function () {
 					// HACK add i18n messages to VE
 					ve.init.platform.addMessages( mw.messages.values );
+
+					mw.flow.ve.Target.static.setSwitchable( mw.flow.ui.VisualEditorWidget.static.switchable );
 
 					widget.target = ve.init.mw.targetFactory.create( 'flow' );
 					widget.$element.append( widget.target.$element );

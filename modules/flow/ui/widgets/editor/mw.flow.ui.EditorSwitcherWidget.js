@@ -195,8 +195,8 @@
 	 */
 	mw.flow.ui.EditorSwitcherWidget.prototype.getEditor = function ( name ) {
 		if ( !this.editors[ name ] ) {
+			this.constructor.static.editorDefinitions[ name ].static.setSwitchable( this.isSwitchable() );
 			this.editors[ name ] = new this.constructor.static.editorDefinitions[ name ]( {
-				switchable: this.isSwitchable(),
 				placeholder: this.placeholder
 			} );
 			this.editors[ name ].connect( this, {
