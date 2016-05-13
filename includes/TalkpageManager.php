@@ -241,19 +241,14 @@ class TalkpageManager implements OccupationController {
 			return $this->talkPageManagerUser;
 		}
 
-		$user = User::newFromName( FLOW_TALK_PAGE_MANAGER_USER );
+		$user = User::newSystemUser( FLOW_TALK_PAGE_MANAGER_USER, [ 'steal' => true ] );
 
-		if ( $user->getId() === 0 ) {
-			// Does not exist, lets create it
-			$user->loadDefaults( FLOW_TALK_PAGE_MANAGER_USER );
-			$user->addToDatabase();
-			if ( class_exists( 'CentralAuthUser' ) ) {
-				// Attach to CentralAuth if a global account already
-				// exists
-				$ca = CentralAuthUser::getInstance( $user );
-				if ( $ca->exists() ) {
-					$ca->attach( wfWikiID(), 'admin' );
-				}
+		if ( class_exists( 'CentralAuthUser' ) ) {
+			// Attach to CentralAuth if a global account already
+			// exists
+			$ca = CentralAuthUser::getMasterInstance( $user );
+			if ( $ca->exists() && !$ca->isAttached() ) {
+				$ca->attach( wfWikiID(), 'admin' );
 			}
 		}
 
