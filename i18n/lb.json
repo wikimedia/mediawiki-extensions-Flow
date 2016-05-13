@@ -85,6 +85,7 @@
 	"flow-error-external": "Et ass e Feeler geschitt. De Feelermessage war: $1",
 	"flow-error-missing-summary": "Dir musst e Resumé eraschécken.",
 	"flow-error-missing-title": "D'Thema huet keen Titel. Den Titel ass obligatoresch fir een Thema ze späicheren.",
+	"flow-error-protected-unknown-reason": "Onbekannt",
 	"flow-error-not-allowed": "Net genuch Rechter fir dës Aktioun ze maachen",
 	"flow-error-not-allowed-reply-to-hide-topic": "Dir kënnt net äntwerte well dëst Thema verstoppt gouf.",
 	"flow-error-not-allowed-reply-to-delete-topic": "Dir kënnt net äntwerte well dëst Thema geläscht gouf.",
