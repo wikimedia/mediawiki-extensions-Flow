@@ -106,7 +106,9 @@ class NotificationFormatter extends EchoBasicFormatter {
 			if ( $this->bundleData['raw-data-count'] <= 1 ) {
 				$postId = $event->getExtraParam( 'post-id' );
 				if ( !$postId instanceof UUID ) {
-					throw new FlowException( 'Expected UUID but received ' . get_class( $postId ) );
+					// there's supposed to be a post-id but there isn't
+					// let's go to the first unread post instead
+					$postId = $this->getFirstUnreadPostId( $event, $user );
 				}
 				$anchor = $urlGenerator->postLink( $title, $workflowId, $postId );
 			} else {
