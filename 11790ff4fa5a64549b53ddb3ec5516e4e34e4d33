@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae564743_ecfc8eb4",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 389
+      },
+      "writtenOn": "2016-05-14T08:03:23Z",
+      "side": 1,
+      "message": "How would CentralAuth implement revokeAccessForUser?\n\nI guess it would detach the account, but then this code would forever detach and reattach.",
+      "revId": "11790ff4fa5a64549b53ddb3ec5516e4e34e4d33",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
