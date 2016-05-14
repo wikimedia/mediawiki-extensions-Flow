@@ -141,7 +141,7 @@
 	"notification-header-flow-new-topic-user-talk": "Eng nei Rubrik gouf op <strong>Ärer Diskussiounssäit</strong> ugeluecht: \"<strong>$4</strong>\"",
 	"notification-bundle-header-flow-post-reply-v2": "{{PLURAL:$1|Eng nei Äntwert|$1 nei Äntwerten}} op \"<strong>$3</strong>\".",
 	"notification-header-flow-post-edited-v2": "{{GENDER:$2|Äre}} Beitrag op \"<strong>$1</strong>\" gouf geännert.",
-	"notification-header-flow-topic-renamed-user-talk": "D'Rubrik ''<strong>$1</strong>'' op <strong>Ärer Diskussiounssäit</strong> gouf op ''<strong>$2</$2strong>'' ëmbenannt.",
+	"notification-header-flow-topic-renamed-user-talk": "D'Rubrik ''<strong>$1</strong>'' op <strong>{{GENDER:$3|Ärer}} Diskussiounssäit</strong> gouf op ''<strong>$2</$2strong>'' ëmbenannt.",
 	"notification-header-flow-summary-edited": "De Resumé vun \"<strong>$1</strong>\" gouf aktualiséiert.",
 	"notification-header-flow-summary-edited-first": "D'Thema \"<strong>$1</strong>\" gouf resuméiert.",
 	"notification-email-subject-flow-summary-edited": "$1 huet de Resumé vu(n) $2 {{GENDER:$1|aktualiséiert}}.",

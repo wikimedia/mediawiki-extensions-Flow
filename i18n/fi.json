@@ -211,7 +211,7 @@
 	"flow-rev-message-hid-topic": "$1 {{GENDER:$2|piilotti näkyvistä}} [$4 aiheen] \"$6\" (<em>$5</em>).",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|poisti}} [$4 aiheen] \"$6\" (<em>$5</em>)",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|häivytti}} [$4 aiheen] \"$6\" (<em>$5</em>)",
-	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|merkitsi}} [$4 aiheen] $6 loppuunkäsitellyksi (<em>$5</em>)",
+	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|merkitsi}} [$4 aiheen] \"$6\" loppuunkäsitellyksi (<em>$5</em>)",
 	"flow-rev-message-lock-topic-reason": "merkitty loppuunkäsitellyksi",
 	"flow-rev-message-restore-topic-reason": "avattu uudelleen",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|palautti käsiteltäväksi}} [$4 aiheen] \"$6\" (<em>$5</em>)",

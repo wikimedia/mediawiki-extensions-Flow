@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Milicevic01",
-			"Rancher"
+			"Rancher",
+			"Macofe"
 		]
 	},
 	"enableflow": "Омогући Flow",
@@ -72,7 +73,7 @@
 	"flow-rev-message-edit-header": "$1 је {{GENDER:$2|уредио|уредила}} опис",
 	"flow-rev-message-create-topic-summary": "$1 је {{GENDER:$2|сумирао|сумирала}} тему $3",
 	"flow-rev-message-deleted-topic": "$1 је {{GENDER:$2|обрисао|обрисала}} [$4 тему] „$6“ (<em>$5</em>)",
-	"flow-rev-message-locked-topic": "$1 је {{GENDER:$2|означио|означила}} [$4 тему] $6 решеном (<em>$5</em>)",
+	"flow-rev-message-locked-topic": "$1 је {{GENDER:$2|означио|означила}} [$4 тему] \"$6\" решеном (<em>$5</em>)",
 	"flow-rev-message-restored-topic": "$1 је поново {{GENDER:$2|отворио|отворила}} [$4 тему] „$6“ (<em>$5</em>)",
 	"flow-rc-topic-of-board": "$1 на $2",
 	"flow-history-last4": "Претходна 4 сата",

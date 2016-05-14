@@ -14,7 +14,8 @@
 			"Nnemo",
 			"Quiddity",
 			"Green Zero",
-			"Visem"
+			"Visem",
+			"Macofe"
 		]
 	},
 	"enableflow": "Увімкнути Flow",
@@ -213,7 +214,7 @@
 	"flow-rev-message-hid-topic": "$1 {{GENDER:$2|приховав|приховала}} [$4 тему] «$6» (<em>$5</em>)",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|вилучив|вилучила}} [$4 тему] «$6» (<em>$5</em>)",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|прибрав|прибрала}} [$4 тему] «$6» (<em>$5</em>)",
-	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|позначив|позначила}} [$4 тему] $6 як вирішену (<em>$5</em>)",
+	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|позначив|позначила}} [$4 тему] \"$6\" як вирішену (<em>$5</em>)",
 	"flow-rev-message-lock-topic-reason": "позначено як вирішену",
 	"flow-rev-message-restore-topic-reason": "відкрито повторно",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|відновив|відновила}} [$4 тему] «$6»(<em>$5</em>)",

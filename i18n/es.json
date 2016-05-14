@@ -233,7 +233,7 @@
 	"flow-rev-message-hid-topic": "$1 {{GENDER:$2|ocultó}} el [$4 tema] \"$6\" (<em>$5</em>)",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|eliminó}} el [$4 tema] \"$6\" (<em>$5</em>)",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|suprimió}} el [$4 tema] \"$6\" (<em>$5</em>)",
-	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|marcó}} el [$4 tema] $6 como resuelto (<em>$5</em>)",
+	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|marcó}} el [$4 tema] \"$6\" como resuelto (<em>$5</em>)",
 	"flow-rev-message-lock-topic-reason": "marcado como resuelto",
 	"flow-rev-message-restore-topic-reason": "reabierto",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|restauró}} el [$4 tema] \"$6\" (<em>$5</em>)",

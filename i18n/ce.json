@@ -114,7 +114,7 @@
 	"flow-rev-message-hid-topic": "$1 {{GENDER:$2|къайладаьккхина}} [$4 хьедар] «$6» (<em>$5</em>)",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2||дӀаяьккхина}} [$4 хьедар] $6(<em>$5</em>).",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|дӀаяьккхина}} хьедар [$4 topic] $6 (<em>$5</em>).",
-	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|билгалдина}} [$4 хьедар] $6 магийна сана (<em>$5</em>)",
+	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|билгалдина}} [$4 хьедар] \"$6\" магийна сана (<em>$5</em>)",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|меттахӀотина}} [$4 хьедар] «$6» (<em>$5</em>)",
 	"flow-rc-topic-of-board": "$1 оцу $2",
 	"flow-board-history": "\"$1\" истори",

@@ -10,7 +10,8 @@
 			"KhangND",
 			"Darcy Le",
 			"Nnemo",
-			"Nguyên Lê"
+			"Nguyên Lê",
+			"Macofe"
 		]
 	},
 	"enableflow": "Kích hoạt Flow",
@@ -208,7 +209,7 @@
 	"flow-rev-message-hid-topic": "$1 {{GENDER:$2}}đã ẩn [$4 đề tài] “$6” (<em>$5</em>)",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2}}đã xóa [$4 đề tài] “$6” (<em>$5</em>)",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2}}đã xóa hẳn [$4 đề tài] “$6” (<em>$5</em>)",
-	"flow-rev-message-locked-topic": "$1 {{GENDER:$2}}đã đánh dấu giải quyết [$4 đề tài] $6 (<em>$5</em>)",
+	"flow-rev-message-locked-topic": "$1 {{GENDER:$2}}đã đánh dấu giải quyết [$4 đề tài] \"$6\" (<em>$5</em>)",
 	"flow-rev-message-lock-topic-reason": "đã giải quyết",
 	"flow-rev-message-restore-topic-reason": "đã mở lại",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2}}đã phục hồi [$4 đề tài] “$6” (<em>$5</em>)",

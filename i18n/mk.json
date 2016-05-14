@@ -204,7 +204,7 @@
 	"flow-rev-message-hid-topic": "$1 {{GENDER:$2|ја скри}} [$4 темата] на „$6“ (<em>$5</em>).",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|ја избриша}} [$4 темата] „$6“ (<em>$5</em>).",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|ја притаи}} [$4 темата] „$6“ (<em>$5</em>).",
-	"flow-rev-message-locked-topic": "$1 ја {{GENDER:$2|означи}} [$4 темата] $6 како решена (<em>$5</em>)",
+	"flow-rev-message-locked-topic": "$1 ја {{GENDER:$2|означи}} [$4 темата] \"$6\" како решена (<em>$5</em>)",
 	"flow-rev-message-lock-topic-reason": "означено како решено",
 	"flow-rev-message-restore-topic-reason": "повторно отворено",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|ја поврати}} [$4 темата] „$6“ (<em>$5</em>).",

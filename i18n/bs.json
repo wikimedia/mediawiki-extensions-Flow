@@ -6,7 +6,8 @@
 			"Srdjan m",
 			"Milicevic01",
 			"Nnemo",
-			"Matiia"
+			"Matiia",
+			"Macofe"
 		]
 	},
 	"enableflow": "Uključi Flow",
@@ -205,7 +206,7 @@
 	"flow-rev-message-hid-topic": "$1 {{GENDER:$2|sakrio|sakrila}} je [$4 temu] na \"$6\" (<em>$5</em>)",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|obrisao|obrisala}} je [$4 temu] na \"$6\" (<em>$5</em>)",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|sakrio|sakrila}} je [$4 temu] na \"$6\" (<em>$5</em>)",
-	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|označio|označila}} je [$4 temu] $6 kao riješenu (<em>$5</em>)",
+	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|označio|označila}} je [$4 temu] \"$6\" kao riješenu (<em>$5</em>)",
 	"flow-rev-message-lock-topic-reason": "označeno kao riješeno",
 	"flow-rev-message-restore-topic-reason": "ponovo otvoreno",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|vratio|vratila}} je [$4 temu] \"$6\" (<em>$5</em>)",

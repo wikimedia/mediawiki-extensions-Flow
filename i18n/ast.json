@@ -203,7 +203,7 @@
 	"flow-rev-message-hid-topic": "$1 {{GENDER:$2|tapeció}} l'[$4 asuntu] «$6» (<em>$5</em>).",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|desanició}} l'[$4 asuntu] «$6» (<em>$5</em>).",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|suprimió}} l'[$4 asuntu] «$6» (<em>$5</em>).",
-	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|marcó}} l'[$4 asuntu] $6 como resueltu ($<em>$5</em>)",
+	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|marcó}} l'[$4 asuntu] \"$6\" como resueltu (<em>$5</em>)",
 	"flow-rev-message-lock-topic-reason": "marcáu como resueltu",
 	"flow-rev-message-restore-topic-reason": "reabiertu",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|restauró}} l'[$4 asuntu] «$6» (<em>$5</em>).",
