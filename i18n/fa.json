@@ -272,6 +272,7 @@
 	"notification-email-subject-flow-description-edited": "$1 توضیحات در $2 را {{GENDER:$1|ویرایش کرد}}.",
 	"notification-email-batch-body-flow-description-edited": "$1 توضیحات در $2 را {{GENDER:$1|ویرایش کرد}}.",
 	"notification-email-batch-bundle-body-flow-description-edited": "$1 و $3 {{PLURAL:$4|کاربر}} دیگر توضیحات در $2 را {{GENDER:$1|ویرایش کردند}}.",
+	"notification-email-batch-body-flow-topic-resolved": "مبحث «<strong>$2</strong>» حل شد.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 یک مبحث جدید در '''$3''' {{GENDER:$1|ایجاد کرد}}.",
 	"flow-notification-newtopic-bundle": "{{PLURAL:$1|$1 مبحث جدید|$1 مبحث جدید|250=بیشتر از ۲۵۰ مبحث جدید}} در '''<span class=\"plainlinks\">[$3 $2]</span>'''",
 	"flow-notification-rename": "$1 {{GENDER:$1|تغیر یافته}} به عنوان <span class=\"plainlinks\">[$2 $3]</span> به \"$4\" در [[$5|$6]].",

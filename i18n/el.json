@@ -56,7 +56,7 @@
 	"flow-summary-edited": "Σύνοψη με τελευταία επεξεργασία από {{GENDER:$1|τον|την}} $1",
 	"flow-show-change": "Εμφάνιση αλλαγών",
 	"flow-last-modified-by": "Τελευταία τροποποίηση από {{GENDER:$1|τον|την}} $1",
-	"flow-stub-post-content": "''Λόγω ενός τεχνικού σφάλματος, δεν ήταν δυνατό να ανακτηθεί αυτή η δημοσίευση.''",
+	"flow-stub-post-content": "<em>Λόγω ενός τεχνικού σφάλματος, δεν ήταν δυνατό να ανακτηθεί αυτή η δημοσίευση.</em>",
 	"flow-newtopic-title-placeholder": "Νέο θέμα",
 	"flow-newtopic-content-placeholder": "Δημοσιεύστε ένα νέο μήνυμα στην \"$1\"",
 	"flow-newtopic-header": "Προσθήκη νέου θέματος",
@@ -114,9 +114,15 @@
 	"flow-board-notification-subscribe-title": "Είστε {{GENDER:$1|εγγεγραμμένος|εγγεγραμμένη}} σε αυτό τον πίνακα συζητήσεων!",
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Θα}} λάβετε μια ειδοποίηση όταν υπάρχει ένα νέο θέμα που έχει δημιουργηθεί σε αυτόν τον πίνακα.",
 	"flow-topic-action-watchlist-add": "Εγγραφή σε αυτό το θέμα",
-	"flow-error-allowcreation-already-exists": "Η σελίδα ήδη υπάρχει, αλλά έπρεπε να μην υπάρχει",
+	"flow-error-allowcreation-already-exists": "Υπάρχει ήδη σελίδα στον προορισμό, οπότε ένας πίνακας Flow δεν μπορεί να μεταφερθεί εκεί.",
 	"flow-history-last4": "Τελευταίες 4 ώρες",
 	"flow-history-day": "Σήμερα",
-	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />{{GENDER:$1|Ο|Η}} $1 απάντησε στην '''$4'''.",
-	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />{{GENDER:$1|Ο|Η}} $1 και $5 {{PLURAL:$6|άλλος|άλλοι}} απάντησαν στην '''$3'''."
+	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />{{GENDER:$1|Ο|Η}} $1 απάντησε στην <strong>$4</strong>",
+	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />{{GENDER:$1|Ο|Η}} $1 και {{PLURAL:$5|άλλος ένας|άλλοι $5|100=99+ ακόμη}} απάντησαν στην <strong>$3</strong>.",
+	"flow-no-more-fwd": "Δεν υπάρχουν παλαιότερα θέματα",
+	"flow-newest-topics": "Νεότερα θέματα",
+	"flow-recent-topics": "Πρόσφατα ενεργά θέματα",
+	"flow-sorting-tooltip-newest": "{{GENDER:|Διαβάζετε}} τα νεότερα θέματα πρώτα. Πατήστε για περισσότερες επιλογές ταξινόμησης.",
+	"flow-sorting-tooltip-recent": "{{GENDER:|Διαβάζετε}} τα πιο πρόσφατα ενεργά θέματα πρώτα. Πατήστε για περισσότερες επιλογές ταξινόμησης.",
+	"flow-importer-wt-converted-template-content": "Προηγούμενη συζήτηση αρχειοθετήθηκε στην <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> στις {{#time: Y-m-d|{{{date}}}}}."
 }

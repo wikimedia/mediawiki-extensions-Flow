@@ -57,7 +57,7 @@
 	"flow-rev-message-edit-header": "$1 je {{GENDER:$2|uredio|uredila}} opis",
 	"flow-rev-message-create-topic-summary": "$1 je {{GENDER:$2|sumirao|sumirala}} temu $3",
 	"flow-rev-message-deleted-topic": "$1 je {{GENDER:$2|obrisao|obrisala}} [$4 temu] „$6“ (<em>$5</em>)",
-	"flow-rev-message-locked-topic": "$1 je {{GENDER:$2|označio|označila}} [$4 temu] \"$6\" rešenom (<em>$5</em>)",
+	"flow-rev-message-locked-topic": "$1 je {{GENDER:$2|označio|označila}} [$4 temu] „$6“ rešenom (<em>$5</em>)",
 	"flow-rev-message-restored-topic": "$1 je ponovo {{GENDER:$2|otvorio|otvorila}} [$4 temu] „$6“ (<em>$5</em>)",
 	"flow-rc-topic-of-board": "$1 na $2",
 	"flow-history-last4": "Prethodna 4 sata",
