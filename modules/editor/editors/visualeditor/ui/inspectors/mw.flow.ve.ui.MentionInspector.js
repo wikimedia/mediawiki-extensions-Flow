@@ -214,7 +214,7 @@
 						if ( !inspector.selectedAt ) {
 							inspector.fragment = inspector.getFragment().collapseToEnd();
 						}
-						inspector.transclusionModel.insertTransclusionNode( inspector.getFragment() );
+						inspector.transclusionModel.insertTransclusionNode( inspector.getFragment(), 'inline' );
 						// After insertion move cursor to end of template
 						inspector.fragment.collapseToEnd().select();
 					}
