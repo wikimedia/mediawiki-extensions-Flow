@@ -117,7 +117,7 @@ abstract class Utils {
 			'url' => $url,
 			'body' => $params,
 			'headers' => array(
-				'Accept' => 'text/html; charset=utf-8; profile="mediawiki.org/specs/html/1.2.0"',
+				'Accept' => 'text/html; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/HTML/1.2.1"',
 				'User-Agent' => "Flow-MediaWiki/$wgVersion",
 			),
 		);
@@ -129,10 +129,24 @@ abstract class Utils {
 				$statusMsg = $response['code'];
 			}
 			$vrsInfo = $serviceClient->getMountAndService( '/restbase/' );
-			$name = $vrsInfo[1] ? $vrsInfo[1]->getName() : 'VRS service';
-			$msg = "Request to " . $name . " for '$from' to '$to' conversion of content connected to title \"$prefixedDbTitle\" failed: $statusMsg";
-			wfDebugLog( 'Flow', __METHOD__ . ": $msg" );
-			throw new NoParserException( "$msg", 'process-wikitext' );
+			$serviceName = $vrsInfo[1] ? $vrsInfo[1]->getName() : 'VRS service';
+			$msg = "Request to " . $serviceName . " for \"$from\" to \"$to\" conversion of content connected to title \"$prefixedDbTitle\" failed: $statusMsg";
+			Container::get( 'default_logger' )->error(
+				'Request to {service} for "{sourceFormat}" to "{targetFormat}" conversion of content connected to title "{title}" failed.  Code: {code}, Reason: "{reason}", Body: "{body}", Error: "{error}"',
+				array(
+					'service' => $serviceName,
+					'sourceFormat' => $from,
+					'targetFormat' => $to,
+					'title' => $prefixedDbTitle,
+					'code' => $response['code'],
+					'reason' => $response['reason'],
+					'error' => $response['error'], // This is sometimes/always empty string
+					'headers' => $response['headers'],
+					'body' => $response['body'],
+					'response' => $response,
+				)
+			);
+			throw new NoParserException( $msg, 'process-wikitext' );
 		}
 
 		$content = $response['body'];
