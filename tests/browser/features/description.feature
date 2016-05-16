@@ -1,4 +1,4 @@
-@chrome @en.wikipedia.beta.wmflabs.org @firefox
+@chrome @en.wikipedia.beta.wmflabs.org @firefox @skip
 Feature: Board description
 
   Assumes Flow is enabled for the Flow_test_talk namespace.
