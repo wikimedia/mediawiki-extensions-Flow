@@ -16,6 +16,7 @@
 	"flow-post-action-undelete-post": "Malforigi",
 	"flow-topic-action-watchlist": "Atentaro",
 	"flow-topic-action-history": "Historio",
+	"flow-error-protected-unknown-reason": "Nekonata",
 	"flow-board-history": "\"$1\" historio",
 	"flow-history-day": "Hodiaŭ",
 	"flow-history-week": "Lasta semajno",
