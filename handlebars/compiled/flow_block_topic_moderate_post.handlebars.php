@@ -248,7 +248,7 @@
     );
     
     return '<div class="flow-board">
-'.LCRun3::sec($cx, ((isset($in['roots']) && is_array($in)) ? $in['roots'] : null), $in, true, function($cx, $in) {return ''.LCRun3::hbch($cx, 'eachPost', array(array(((isset($cx['sp_vars']['root']) && is_array($cx['sp_vars'])) ? $cx['sp_vars']['root'] : null),$in),array()), $in, false, function($cx, $in) {return ''.LCRun3::p($cx, 'flow_moderate_post', array(array($in),array()), '			').''.LCRun3::p($cx, 'flow_post', array(array($in),array()), '			').'';}).'';}).'</div>
+'.LCRun3::hbch($cx, 'eachPost', array(array(((isset($cx['sp_vars']['root']) && is_array($cx['sp_vars'])) ? $cx['sp_vars']['root'] : null),((isset($cx['sp_vars']['root']['submitted']['postId']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['postId'] : null)),array()), $in, false, function($cx, $in) {return ''.LCRun3::p($cx, 'flow_moderate_post', array(array($in),array()), '		').''.LCRun3::p($cx, 'flow_post', array(array($in),array()), '		').'';}).'</div>
 ';
 }
 ?>
