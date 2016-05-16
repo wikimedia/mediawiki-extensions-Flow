@@ -34,6 +34,24 @@
       "revId": "2a252a1e5a03ad08d586be31a0c5475ffcb8fec7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae564743_b1d3072f",
+        "filename": "handlebars/flow_post_partial.partial.handlebars",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-05-16T15:05:19Z",
+      "side": 1,
+      "message": "On purpose.  Technically, I think partials and regular templates are different namespaces, so flow_post.handlebars could be:\n\n{{\u003e flow_post}}\n\nBut that is confusing since it seems like infinite recursion (even though it\u0027s really not), so I renamed the partial to flow_post_partial.",
+      "parentUuid": "ae564743_e0dbefeb",
+      "revId": "2a252a1e5a03ad08d586be31a0c5475ffcb8fec7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
