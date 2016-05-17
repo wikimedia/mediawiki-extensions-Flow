@@ -609,7 +609,7 @@
 	"flow-beta-feature-add-archive-template-edit-summary": "正在添加存档模板",
 	"flow-beta-feature-remove-archive-template-edit-summary": "正在移除存档模板",
 	"flow-dialog-cancelconfirm-title": "您确定吗？",
-	"flow-dialog-cancelconfirm-message": "您确定要取消而不先保存么？",
+	"flow-dialog-cancelconfirm-message": "您确定要取消而不先保存吗？",
 	"flow-dialog-cancelconfirm-keep": "继续编辑",
 	"flow-dialog-cancelconfirm-discard": "放弃更改",
 	"flow-optin-archive-wikitext": "移动wiki文本页面以为讨论版块腾出地方。",
