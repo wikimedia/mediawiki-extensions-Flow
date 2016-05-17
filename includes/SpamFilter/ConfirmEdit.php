@@ -29,7 +29,10 @@ class ConfirmEdit implements SpamFilter {
 
 		// first check if the submitted content is offensive (as flagged by
 		// ConfirmEdit), next check for a (valid) captcha to have been entered
-		if ( $captcha->shouldCheck( $wikiPage, $newContent, false, $context, $oldContent ) && !$captcha->passCaptchaLimited() ) {
+		if (
+			$captcha->shouldCheck( $wikiPage, $newContent, false, $context, $oldContent ) &&
+			!$captcha->passCaptchaLimitedFromRequest( $context->getRequest(), $context->getUser() )
+		) {
 			// getting here means we submitted bad content without good captcha
 			// result (or any captcha result at all) - let's get the captcha
 			// HTML to display as error message!
