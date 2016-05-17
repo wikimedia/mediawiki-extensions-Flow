@@ -365,20 +365,3 @@ class InvalidTopicUuidException extends InvalidInputException {
 		return wfMessage( 'flow-error-invalid-topic-uuid-title' )->escaped();
 	}
 }
-
-/**
- * Category: invalid action exception
- */
-class InvalidUndeleteException extends InvalidActionException {
-	protected function getErrorCodeList() {
-		// flow-error-invalid-undelete
-		return array ( 'invalid-undelete' );
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public function getHTML() {
-		return wfMessage( 'flow-error-invalid-undelete' )->escaped();
-	}
-}

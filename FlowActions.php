@@ -22,7 +22,8 @@ use Flow\Data\Listener\RecentChangesListener;
  * * root-permissions: similar to 'permissions', but applies to the last revision
  *   of the root post (= the topic) for the revision the action is executed against.
  * * core-delete-permissions: array of rights, where any of those rights will
- *   give you permission to do the action on a deleted board (isAllowedAny).
+ *     give you permission to do the action on a deleted board (isAllowedAny).
+ *     Empty string and omitted behave like 'permissions'.
  * * links: the set of read links to generate and return in API responses
  * * actions: the set of write links to generate and return in API responses
  * * history: all history-related information:
