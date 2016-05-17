@@ -151,7 +151,7 @@ $wgHooks['CategoryViewer::generateLink'][] = 'FlowHooks::onCategoryViewerGenerat
 $wgHooks['ArticleConfirmDelete'][] = 'FlowHooks::onArticleConfirmDelete';
 $wgHooks['ArticleDelete'][] = 'FlowHooks::onArticleDelete';
 $wgHooks['ArticleDeleteComplete'][] = 'FlowHooks::onArticleDeleteComplete';
-$wgHooks['ArticleUndelete'][] = 'FlowHooks::onArticleUndelete';
+$wgHooks['ArticleRevisionUndeleted'][] = 'FlowHooks::onArticleRevisionUndeleted';
 $wgHooks['SearchableNamespaces'][] = 'FlowHooks::onSearchableNamespaces';
 $wgHooks['ImportHandleToplevelXMLTag'][] = 'FlowHooks::onImportHandleToplevelXMLTag';
 

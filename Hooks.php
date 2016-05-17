@@ -1586,24 +1586,19 @@ class FlowHooks {
 
 	/**
 	 * @param Title $title Title corresponding to the article restored
-	 * @param bool $created Whether or not the restoration caused the page to be created (i.e. it didn't exist before).
-	 * @param string $comment The comment associated with the undeletion.
-	 * @param int $oldPageId ID of page previously deleted (from archive table)
+	 * @param Revision $revision Revision just undeleted
+	 * @param string $oldPageId Old page ID stored with that revision when it was in the archive table
 	 * @throws InvalidUndeleteException
 	 * @return bool
 	 */
-	public static function onArticleUndelete( Title $title, $created, $comment, $oldPageId ) {
-		if ( $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
-			if ( $title->getArticleID() !== $oldPageId ) {
-				throw new InvalidUndeleteException( 'Failed to move ' . $oldPageId . ' over ' . $title->getArticleID() );
-			}
-
+	public static function onArticleRevisionUndeleted( Title $title, Revision $revision, $oldPageId ) {
+		if ( $revision->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
 			// complete hack to make sure that when the page is saved to new
 			// location and rendered it doesn't throw an error about the wrong title
 			Container::get( 'factory.loader.workflow' )->pageMoveInProgress();
 			// open a database transaction and prepare everything for the move & commit
 			$boardMover = Container::get( 'board_mover' );
-			$boardMover->prepareMove( $oldPageId, $title );
+			$boardMover->prepareMove( intval( $oldPageId ), $title );
 			$boardMover->commit();
 		}
 
