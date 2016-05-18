@@ -45,7 +45,7 @@
 	mw.flow.ve.Target.static.importRules = ve.copy( mw.flow.ve.Target.static.importRules );
 	mw.flow.ve.Target.static.importRules.external.blacklist = OO.simpleArrayDifference(
 		mw.flow.ve.Target.static.importRules.external.blacklist,
-		[ 'link' ]
+		[ 'link/mwExternal' ]
 	);
 
 	// Static Methods
