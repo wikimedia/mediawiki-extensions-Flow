@@ -285,7 +285,7 @@ $wgResourceModules += array(
 			'styles/board/moderated.less',
 			'styles/board/timestamps.less',
 			'styles/board/replycount.less',
-			'styles/js.less',
+			'styles/nojs.less',
 			'styles/board/form-actions.less',
 			'styles/board/terms-of-use.less',
 			'styles/board/editor-switcher.less',
@@ -445,7 +445,8 @@ $wgResourceModules += array(
 		'position' => 'top',
 		'styles' => array(
 			'styles/mediawiki.ui/modal.less',
-			'styles/mediawiki.ui/tooltips.less'
+			'styles/mediawiki.ui/tooltips.less',
+			'styles/js.less',
 		),
 		'scripts' => array( // Component order is important
 			// MW UI

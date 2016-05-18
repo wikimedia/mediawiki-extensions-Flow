@@ -39,7 +39,9 @@ use Flow\Data\Listener\RecentChangesListener;
  * * rc_title: Either 'article' or 'owner' to select between Workflow::getArticleTitle
  *     or Workflow::getOwnerTitle being used as the related recentchanges entry on insert
  * * editcount: True to increment user's edit count for this action
- * * modules: Modules to insert with RL to html page for this action instead of the defaults
+ * * modules: Modules to insert with RL to html page for this action instead of the defaults.
+ * *   All actions other than view should have an array here, unless the default
+ * *   modules are known to work.  You can specify an empty array, or a custom set of modules.
  * * moduleStyles: Style modules to insert with RL to html page for this action instead of the defaults
  */
 $wgFlowActions = array(
@@ -81,6 +83,7 @@ $wgFlowActions = array(
 			'class' => 'flow-history-edit-header',
 		),
 		'handler-class' => 'Flow\Actions\FlowAction',
+		'modules' => array(),
 		'editcount' => true,
 	),
 
@@ -104,6 +107,7 @@ $wgFlowActions = array(
 			'class' => 'flow-history-edit-header',
 		),
 		'handler-class' => 'Flow\Actions\FlowAction',
+		'modules' => array(),
 		'editcount' => true,
 		// theis modules/moduleStyles is repeated in all the undo-* actions. Find a way to share.
 		'modules' => array( 'ext.flow.undo' ),
@@ -174,6 +178,7 @@ $wgFlowActions = array(
 			'class' => 'flow-history-edit-topic-summary',
 		),
 		'handler-class' => 'Flow\Actions\FlowAction',
+		'modules' => array(),
 		'editcount' => true,
 	),
 
@@ -205,6 +210,7 @@ $wgFlowActions = array(
 			'class' => 'flow-history-edit-topic-summary',
 		),
 		'handler-class' => 'Flow\Actions\FlowAction',
+		'modules' => array(),
 		'editcount' => true,
 		'modules' => array( 'ext.flow.undo' ),
 		'moduleStyles' => array(
@@ -239,13 +245,13 @@ $wgFlowActions = array(
 			'class' => 'flow-history-edit-title',
 		),
 		'handler-class' => 'Flow\Actions\FlowAction',
+		'modules' => array(),
 		'watch' => array(
 			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
 		),
 		'editcount' => true,
 	),
 
-	// Normal posts are the 'reply' type.
 	'new-topic' => array(
 		'performs-writes' => true,
 		'log_type' => false,
@@ -276,6 +282,7 @@ $wgFlowActions = array(
 			'class' => 'flow-history-new-post',
 		),
 		'handler-class' => 'Flow\Actions\FlowAction',
+		'modules' => array(),
 		'watch' => array(
 			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
 		),
@@ -308,6 +315,7 @@ $wgFlowActions = array(
 			'class' => 'flow-history-edit-post',
 		),
 		'handler-class' => 'Flow\Actions\FlowAction',
+		'modules' => array(),
 		'watch' => array(
 			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
 		),
@@ -341,6 +349,7 @@ $wgFlowActions = array(
 			'class' => 'flow-history-edit-post',
 		),
 		'handler-class' => 'Flow\Actions\FlowAction',
+		'modules' => array(),
 		'watch' => array(
 			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
 		),
@@ -536,6 +545,7 @@ $wgFlowActions = array(
 			'class' => 'flow-history-locked-topic',
 		),
 		'handler-class' => 'Flow\Actions\FlowAction',
+		'modules' => array(),
 	),
 
 	'restore-post' => array(
@@ -589,6 +599,7 @@ $wgFlowActions = array(
 			}
 		),
 		'handler-class' => 'Flow\Actions\FlowAction',
+		'modules' => array(),
 	),
 
 	'restore-topic' => array(
@@ -643,6 +654,7 @@ $wgFlowActions = array(
 			}
 		),
 		'handler-class' => 'Flow\Actions\FlowAction',
+		'modules' => array(),
 	),
 
 	'view' => array(
@@ -695,6 +707,7 @@ $wgFlowActions = array(
 			),
 		),
 		'handler-class' => 'Flow\Actions\FlowAction',
+		'modules' => array(),
 		'watch' => array(
 			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
 		),
@@ -816,6 +829,7 @@ $wgFlowActions = array(
 		'actions' => array(), // view is not a recorded change type, no actions will be requested
 		'history' => array(), // views don't generate history
 		'handler-class' => 'Flow\Actions\FlowAction',
+		'modules' => array(),
 	),
 
 	// Actions not tied to a particular revision change_type
@@ -823,28 +837,36 @@ $wgFlowActions = array(
 	// @todo: we should probably at least add 'permissions' in these below
 	'compare-header-revisions' => array(
 		'handler-class' => 'Flow\Actions\FlowAction',
+		'modules' => array(),
 	),
 	'view-header' => array(
 		'handler-class' => 'Flow\Actions\FlowAction',
+		'modules' => array(),
 	),
 	'compare-post-revisions' => array(
 		'handler-class' => 'Flow\Actions\FlowAction',
+		'modules' => array(),
 	),
 	// @todo - This is a very bad action name, consolidate with view-post action
 	'single-view' => array(
 		'handler-class' => 'Flow\Actions\FlowAction',
+		'modules' => array(),
 	),
 	'compare-postsummary-revisions' => array(
 		'handler-class' => 'Flow\Actions\FlowAction',
+		'modules' => array(),
 	),
 	'moderate-topic' => array(
 		'handler-class' => 'Flow\Actions\FlowAction',
+		'modules' => array(),
 	),
 	'moderate-post' => array(
 		'handler-class' => 'Flow\Actions\FlowAction',
+		'modules' => array(),
 	),
 	'purge' => array(
 		'handler-class' => 'Flow\Actions\PurgeAction',
+		'modules' => array(),
 	),
 
 	// log & all other formatters have same config as history
