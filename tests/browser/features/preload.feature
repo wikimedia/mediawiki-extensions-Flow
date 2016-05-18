@@ -1,4 +1,4 @@
-@chrome @en.wikipedia.beta.wmflabs.org @firefox
+@chrome @en.wikipedia.beta.wmflabs.org @firefox @skip
 Feature: preload
 
   Background:

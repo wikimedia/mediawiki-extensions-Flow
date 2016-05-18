@@ -1,4 +1,4 @@
-@chrome @en.wikipedia.beta.wmflabs.org @firefox
+@chrome @en.wikipedia.beta.wmflabs.org @firefox @skip
 Feature: Flow Special:EnableFlow enables new flow boards
 
   Assumes Template:Wikitext_talk_page_converted_to_Flow exists
