@@ -26,7 +26,7 @@ class SpecialEnableFlow extends FormSpecialPage {
 	/**
 	 * @var string $page Full page name that was converted to a board
 	 */
-	protected $page;
+	protected $page = '';
 
 	public function __construct() {
 		parent::__construct( 'EnableFlow', 'flow-create-board' );
@@ -35,11 +35,23 @@ class SpecialEnableFlow extends FormSpecialPage {
 		$this->occupationController = Container::get( 'occupation_controller' );
 	}
 
+	public function execute( $par ) {
+		if ( $par !== null ) {
+			$title = Title::newFormText( $par );
+			if ( $title ) {
+				$this->page = $title->getPrefixedText();
+			}
+		}
+
+		parent::execute( $par );
+	}
+
 	protected function getFormFields() {
 		return array(
 			'page' => array(
 				'type' => 'text',
 				'label-message' => 'flow-special-enableflow-page',
+				'default' => $this->page,
 			),
 			'header' => array(
 				'type' => 'textarea',
