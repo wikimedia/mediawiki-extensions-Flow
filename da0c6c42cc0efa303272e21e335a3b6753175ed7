@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae564743_1e7469cb",
+        "filename": "includes/Specials/SpecialEnableFlow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-05-18T20:50:29Z",
+      "side": 1,
+      "message": "Instead of just replacing underscores with spaces, maybe we should fully normalize the title?\n\nSomething like:\n\n    $title \u003d Title::newFromText( $par );\n    if ( $title ) {\n        $this-\u003epage \u003d $title-\u003egetPrefixedText();\n    }\n\nThat\u0027ll also take care of translated namespace names, capitalization and various other things.",
+      "revId": "da0c6c42cc0efa303272e21e335a3b6753175ed7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
