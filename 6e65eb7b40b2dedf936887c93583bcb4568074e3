@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae564743_a9bc2902",
+        "filename": "includes/Specials/SpecialEnableFlow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-05-18T21:08:16Z",
+      "side": 1,
+      "message": "From, not Form",
+      "revId": "6e65eb7b40b2dedf936887c93583bcb4568074e3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
