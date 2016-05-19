@@ -240,17 +240,37 @@ class FlowRemoveOldTopics extends Maintenance {
 		}
 	}
 
-	protected function removePosts( Workflow $workflow ) {
-		// fetch all children (posts) from a topic
-		$subtree = $this->treeRepo->fetchSubtreeIdentityMap( $workflow->getId() );
+	/**
+	 * @param UUID $parentId
+	 * @param array $subtree
+	 * @return array
+	 */
+	protected function sortSubtree( UUID $parentId, array $subtree ) {
+		$flat = array();
 
-		// reverse-sort all nodes: that way we'll never delete a parent before
-		// having already deleted a child (which will always be more recent)
-		krsort( $subtree );
+		// first recursively process all children, so they come first in $flat
+		foreach ( $subtree['children'] as $id => $data ) {
+			$flat = array_merge(
+				$flat,
+				$this->sortSubtree( UUID::create( $id ), $data )
+			);
+		}
+
+		// then add parent, which should come last in $flat
+		$flat[] = $parentId;
+
+		return $flat;
+	}
+
+	protected function removePosts( Workflow $workflow ) {
+		// fetch all children (posts) from a topic & reverse-sort all the posts:
+		// deepest-nested children should come first, parents last
+		$subtree = $this->treeRepo->fetchSubtree( $workflow->getId() );
+		$uuids = $this->sortSubtree( $workflow->getId(), $subtree );
 
 		$conds = array();
-		foreach ( $subtree as $id => $data ) {
-			$conds[] = array( 'rev_type_id' => UUID::create( $id ) );
+		foreach ( $uuids as $id ) {
+			$conds[] = array( 'rev_type_id' => $id );
 		}
 
 		$posts = $this->storage->findMulti( 'PostRevision', $conds );
