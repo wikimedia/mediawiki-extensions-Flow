@@ -13,6 +13,7 @@
 	"logentry-delete-flow-restore-topic": "$1 {{GENDER:$2|huet}} d'Thema \"[[$3|$5]]\" iwwer [[$6]] restauréiert",
 	"flow-board-header-browse-topics-link": "Themen duerchsichen",
 	"flow-board-header": "Iwwer dëst Board",
+	"flow-board-description-can-not-edit": "Kann net geännert ginn",
 	"flow-board-collapse-description": "Beschreiwung verstoppen",
 	"flow-board-expand-description": "Beschreiwung weisen",
 	"flow-topic-collapse-siderail": "Mat der ganzer Breet liesen",
