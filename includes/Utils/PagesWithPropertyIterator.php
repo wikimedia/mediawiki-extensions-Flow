@@ -51,7 +51,7 @@ class PagesWithPropertyIterator implements IteratorAggregate {
 	}
 
 	/**
-	 * @return Iterator<Title>
+	 * @return \Iterator<Title>
 	 */
 	public function getIterator() {
 		$it = new BatchRowIterator(
