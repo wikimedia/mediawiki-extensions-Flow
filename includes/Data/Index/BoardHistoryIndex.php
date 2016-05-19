@@ -11,6 +11,7 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\PostRevision;
 use Flow\Model\TopicListEntry;
+use Flow\Model\UUID;
 use Flow\Model\Workflow;
 
 /**
