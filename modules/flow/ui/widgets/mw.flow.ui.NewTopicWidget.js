@@ -20,7 +20,7 @@
 
 		this.isProbablyEditable = mw.config.get( 'wgIsProbablyEditable' );
 
-		this.page = page;
+		this.page = new mw.Title( page ).getPrefixedText();
 		this.expanded = false;
 
 		this.api = new mw.flow.dm.APIHandler( this.page );
