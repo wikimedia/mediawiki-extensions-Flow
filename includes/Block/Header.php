@@ -242,7 +242,7 @@ class HeaderBlock extends AbstractBlock {
 		}
 		$oldRevision = null;
 		if ( isset( $options['oldRevision'] ) ) {
-			$oldRevision = $options['newRevision'];
+			$oldRevision = $options['oldRevision'];
 		}
 		/** @var HeaderViewQuery $query */
 		$query = Container::get( 'query.header.view' );
