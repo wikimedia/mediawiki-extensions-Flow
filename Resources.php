@@ -448,6 +448,7 @@ $wgResourceModules += array(
 			'es5-shim',
 			'ext.flow.dm',
 			'oojs-ui.styles.icons-editing-advanced',
+			'mediawiki.Title',
 		)
 	) + $mobile,
 	'ext.flow' => $flowResourceTemplate + array(

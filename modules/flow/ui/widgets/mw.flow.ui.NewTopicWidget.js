@@ -11,7 +11,8 @@
 	 * @param {Object} [config] Configuration object
 	 */
 	mw.flow.ui.NewTopicWidget = function mwFlowUiNewTopicWidget( page, config ) {
-		var widget = this;
+		var title,
+			widget = this;
 
 		config = config || {};
 
@@ -20,7 +21,13 @@
 
 		this.isProbablyEditable = mw.config.get( 'wgIsProbablyEditable' );
 
-		this.page = page;
+		title = mw.Title.newFromText( page );
+		if ( title !== null ) {
+			this.page = title.getPrefixedText();
+		} else {
+			this.page = page;
+		}
+
 		this.expanded = false;
 
 		this.api = new mw.flow.dm.APIHandler( this.page );
