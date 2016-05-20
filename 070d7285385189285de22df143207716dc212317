@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae564743_a4c44669",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.NewTopicWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-05-20T02:12:22Z",
+      "side": 1,
+      "message": "The mw.Title constructor throws an exception if the page name is invalid. You should handle invalid titles, and this is easier to do with mw.Title.newFromText(), which returns null instead of throwing an exception.",
+      "revId": "070d7285385189285de22df143207716dc212317",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
