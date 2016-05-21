@@ -44,6 +44,8 @@
 		var isMobileTarget = ( mw.config.get( 'skin' ) === 'minerva' );
 
 		return !!(
+			mw.loader.getState( 'ext.visualEditor.core' ) &&
+
 			!isMobileTarget &&
 
 			// ES5 support, from es5-skip.js
