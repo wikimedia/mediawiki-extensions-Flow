@@ -3,7 +3,7 @@
 
 .flow-ui-editorSwitcherWidget {
 	display: block;
-	background-color: white;
+	background-color: #fff;
 
 	&-placeholder-input {
 		max-width: none;
@@ -16,7 +16,7 @@
 		// units (minHeight in em and toolbarHeight in px) which means we must
 		// use CSS's native calc() method.
 		// This escapes the calc() method while using LESS variables:
-		min-height: ~"calc(@{editorMinHeight} + @{editorToolbarHeight})";
+		min-height: ~'calc( @{editorMinHeight} + @{editorToolbarHeight} )';
 
 		& textarea {
 			border: none;
@@ -42,10 +42,10 @@
 	// want them to look unified with the textarea, we'll have to take away
 	// it's border and re-apply on the parent node that contains both
 	border: 1px solid @colorFieldBorder;
-	-webkit-transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
-	-moz-transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
-	-o-transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
-	transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+	-webkit-transition: border 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 ), box-shadow 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 );
+	-moz-transition: border 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 ), box-shadow 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 );
+	-o-transition: border 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 ), box-shadow 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 );
+	transition: border 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 ), box-shadow 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 );
 
 	// Undo top margin on error box
 	&-error.flow-errors {
