@@ -3,7 +3,7 @@
 @import 'flow.colors';
 
 .flow-editor {
-	background-color: white;
+	background-color: #fff;
 
 	// because we're attaching switcher controls below the textarea & we
 	// want them to look unified with the textarea, we'll have to take away
@@ -53,7 +53,7 @@
 		}
 	}
 
-	// would prefer textarea:not(.flow-input-compressed) above, but ie8 wont do it
+	// would prefer textarea:not( .flow-input-compressed ) above, but ie8 wont do it
 	// so here we re-apply the border from .mw-ui-input that was removed above.
 	textarea.flow-input-compressed {
 		border-bottom: 1px solid @colorFieldBorder;
@@ -63,7 +63,7 @@
 	// name for all but the float
 	.flow-wikitext-editor-help {
 		color: @colorTextLight;
-		font-size: .75em;
+		font-size: 0.75em;
 		position: absolute;
 		bottom: 0;
 	}

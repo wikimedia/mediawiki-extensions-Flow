@@ -12,24 +12,6 @@
 	min-width: 14em;
 	clear: both;
 
-	a:link, a:visited {
-		padding: 0.2em 0.3em;
-	}
-
-	// We need these because CSSJanus will flip it in rtl
-	a.flow-board-navigator-first {
-		float: left;
-		position: static;
-	}
-
-	a.flow-board-navigator-last {
-		float: right;
-		position: static;
-		span {
-			display: inline-block;
-		}
-	}
-
 	.flow-board-navigation-inner {
 		overflow: hidden;
 		border-bottom: 1px solid @colorGrayLight;
@@ -44,11 +26,14 @@
 	a {
 		display: inline-block;
 
-		&:link, &:visited {
-			padding: 0.25em .75em;
+		&:link,
+		&:visited {
+			padding: 0.25em 0.75em;
 			color: @colorTextLight;
 		}
-		&:hover, &:focus, &.flow-board-navigator-link-highlight {
+		&:hover,
+		&:focus,
+		&.flow-board-navigator-link-highlight {
 			color: #000;
 			text-decoration: none;
 		}
@@ -56,15 +41,26 @@
 		&.flow-board-navigator-right {
 			float: right;
 		}
+
 		// The active menu item
 		&.flow-board-navigator-active {
 			font-weight: bold;
 		}
+
+		// We need these because CSSJanus will flip it in rtl
 		&.flow-board-navigator-first {
+			float: left;
+			position: static;
 			padding-left: 0;
 		}
+
 		&.flow-board-navigator-last {
+			float: right;
+			position: static;
 			padding-right: 0;
+			span {
+				display: inline-block;
+			}
 		}
 	}
 
@@ -107,7 +103,7 @@
 	float: right;
 	width: 100%;
 
-	font-size: .875em;
+	font-size: 0.875em;
 
 	// Make TOC wide
 	.flow-board-toc-menu {
@@ -138,9 +134,9 @@
 }
 
 // MEDIA QUERIES
-@media all and (min-width: @small) {
+@media all and ( min-width: @small ) {
 	html .flow-board-navigation {
 		font-size: 1.15em;
-		padding-top: .5em;
+		padding-top: 0.5em;
 	}
 }

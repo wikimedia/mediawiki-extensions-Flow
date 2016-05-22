@@ -7,12 +7,12 @@
 /*jshint node:true */
 module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
-	grunt.loadNpmTasks( 'grunt-contrib-csslint' );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-jscs' );
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
 	grunt.loadNpmTasks( 'grunt-tyops' );
+	grunt.loadNpmTasks( 'grunt-stylelint' );
 
 	grunt.initConfig( {
 		tyops: {
@@ -47,11 +47,14 @@ module.exports = function ( grunt ) {
 				src: '<%= jshint.all %>'
 			}
 		},
-		csslint: {
+		stylelint: {
 			options: {
-				csslintrc: '.csslintrc'
+				syntax: 'less'
 			},
-			all: 'modules/**/*.css'
+			all: [
+				'modules/**/*.css',
+				'modules/**/*.less'
+			]
 		},
 		banana: {
 			all: 'i18n/'
@@ -72,7 +75,7 @@ module.exports = function ( grunt ) {
 		}
 	} );
 
-	grunt.registerTask( 'lint', [ 'tyops', 'jshint', 'jscs:main', 'csslint', 'jsonlint', 'banana' ] );
+	grunt.registerTask( 'lint', [ 'tyops', 'jshint', 'jscs:main', 'stylelint', 'jsonlint', 'banana' ] );
 	grunt.registerTask( 'fix', 'jscs:fix' );
 	grunt.registerTask( 'test', 'lint' );
 	grunt.registerTask( 'default', 'test' );
