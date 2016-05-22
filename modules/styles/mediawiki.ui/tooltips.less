@@ -26,21 +26,20 @@ Styleguide 4.0.
 	color: @colorText;
 	word-wrap: break-word;
 	border-radius: 3px;
-	.box-shadow( ~"0 2px 0 0 @{colorGrayLight}, 0 0 1px 0 @{colorGrayLight}" );
+	.box-shadow( ~'0 2px 0 0 @{colorGrayLight}, 0 0 1px 0 @{colorGrayLight}' );
 	opacity: .9;
 	z-index: 99;
 
 	a {
 		// FIXME: Due to the lack of a fix for bug 66746 this link is treated as an external link.
-		// Yes Shahyar !important is bad
-		// but the alternative css hacks that would be needed here are even more horrible.
-		color: #fff !important;
+		// !important is bad but the alternative css hacks that would be needed here are even more horrible.
+		color: #fff !important; /* stylelint-disable-line declaration-no-important */
 		font-weight: bold;
 	}
 
 	font-size: .875em; // not inherited from div#bodyContent, as we insert at body
 
-	#bodyContent & {
+	#bodyContent & { /* stylelint-disable-line selector-no-id */
 		font-size: 1em;
 	}
 
@@ -55,24 +54,32 @@ Styleguide 4.0.
 		backface-visibility: hidden;
 
 		&:after {
-			content: "";
+			content: '';
 			position: absolute;
 			z-index: 1;
 			width: 1em;
 			height: 1em;
 			background: @colorWhite;
 			*background: @colorOffWhite; //ie6
-			transform: rotate(45deg);
-			-webkit-transform: rotate(45deg);
+			transform: rotate( 45deg );
+			-webkit-transform: rotate( 45deg );
 		}
 	}
 
 	// mw-ui-tooltip helpers to cleanly set triangle location
 	// The first four are because less.php doesn't support "@{var}: n" syntax
-	.flow-ui-tooltip-triangle-location-horizontal( top ) { top: -1em; }
-	.flow-ui-tooltip-triangle-location-horizontal( bottom ) { bottom: -1em; }
-	.flow-ui-tooltip-triangle-location-vertical( left ) { left: -1em; }
-	.flow-ui-tooltip-triangle-location-vertical( right ) { right: -1em; }
+	.flow-ui-tooltip-triangle-location-horizontal( top ) {
+		top: -1em;
+	}
+	.flow-ui-tooltip-triangle-location-horizontal( bottom ) {
+		bottom: -1em;
+	}
+	.flow-ui-tooltip-triangle-location-vertical( left ) {
+		left: -1em;
+	}
+	.flow-ui-tooltip-triangle-location-vertical( right ) {
+		right: -1em;
+	}
 	// up-down
 	.flow-ui-tooltip-triangle-location( horizontal, @location ) {
 		width: 2em;
@@ -100,7 +107,7 @@ Styleguide 4.0.
 			&:after {
 				top: .5em;
 				left: .5em;
-				.box-shadow( ~"0 0 1px 0 @{colorGrayLight}" );
+				.box-shadow( ~'0 0 1px 0 @{colorGrayLight}' );
 			}
 		}
 	}
@@ -115,7 +122,7 @@ Styleguide 4.0.
 			&:after {
 				top: -.5em;
 				left: .5em;
-				.box-shadow( ~"0 -1.5px 0 1.5px @{colorGrayLight}, 0 0 1px 0 @{colorGrayLight}" );
+				.box-shadow( ~'0 -1.5px 0 1.5px @{colorGrayLight}, 0 0 1px 0 @{colorGrayLight}' );
 			}
 		}
 	}
@@ -131,7 +138,7 @@ Styleguide 4.0.
 				margin-top: -1px;
 				top: .5em;
 				right: -.5em;
-				.box-shadow( ~"1.5px 0 0 1.5px @{colorGrayLight}, 0 0 1px 0 @{colorGrayLight}" );
+				.box-shadow( ~'1.5px 0 0 1.5px @{colorGrayLight}, 0 0 1px 0 @{colorGrayLight}' );
 			}
 		}
 	}
@@ -147,7 +154,7 @@ Styleguide 4.0.
 				margin-top: -1px;
 				top: .5em;
 				left: -.5em;
-				.box-shadow( ~"0 1.5px 0 1.5px @{colorGrayLight}, 0 0 1px 0 @{colorGrayLight}" );
+				.box-shadow( ~'0 1.5px 0 1.5px @{colorGrayLight}, 0 0 1px 0 @{colorGrayLight}' );
 			}
 		}
 	}
@@ -156,20 +163,20 @@ Styleguide 4.0.
 		@backgroundColorDarkened: darken( @backgroundColor, @colorDarkenPercentage );
 
 		background: @backgroundColor;
-		.box-shadow( ~"0 2px 0 0 @{backgroundColorDarkened}" );
+		.box-shadow( ~'0 2px 0 0 @{backgroundColorDarkened}' );
 		color: @colorWhite;
 
 		.flow-ui-tooltip-triangle:after {
 			background: @backgroundColor;
 		}
 		&.flow-ui-tooltip-down .flow-ui-tooltip-triangle:after {
-			.box-shadow( ~"0 -2px 0 2px @{backgroundColorDarkened}" );
+			.box-shadow( ~'0 -2px 0 2px @{backgroundColorDarkened}' );
 		}
 		&.flow-ui-tooltip-left .flow-ui-tooltip-triangle:after {
-			.box-shadow( ~"2px 0 0 2px @{backgroundColorDarkened}" );
+			.box-shadow( ~'2px 0 0 2px @{backgroundColorDarkened}' );
 		}
 		&.flow-ui-tooltip-right .flow-ui-tooltip-triangle:after {
-			.box-shadow( ~"0 2px 0 2px @{backgroundColorDarkened}" );
+			.box-shadow( ~'0 2px 0 2px @{backgroundColorDarkened}' );
 		}
 	}
 
@@ -195,7 +202,8 @@ Styleguide 4.0.
 		}
 		&.mw-ui-destructive {
 			.flow-ui-tooltip-color( @colorDestructive );
-			.mw-ui-button.mw-ui-destructive.mw-ui-quiet:hover, .mw-ui-button.mw-ui-destructive.mw-ui-quiet:focus span {
+			.mw-ui-button.mw-ui-destructive.mw-ui-quiet:hover,
+			.mw-ui-button.mw-ui-destructive.mw-ui-quiet:focus span {
 				fill: @colorDestructive;
 			}
 		}
@@ -218,6 +226,6 @@ Styleguide 4.0.
 
 // Block-level tooltip
 .flow-ui-tooltip-block {
-	.box-sizing(border-box);
+	.box-sizing( border-box );
 	width: 100%;
 }
