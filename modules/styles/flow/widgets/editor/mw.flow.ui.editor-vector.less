@@ -21,7 +21,7 @@
 	.oo-ui-toolbar {
 		// The 2px of positive margin gives room for the blue border of the
 		// documentNode (via .mw-ui-input)
-		margin: (-@editorToolbarHeight - 2px) 2px 2px 2px;
+		margin: ( -@editorToolbarHeight - 2px ) 2px 2px 2px;
 
 		font-size: @uiFontSize;
 		.oo-ui-toolbar {
@@ -33,7 +33,7 @@
 	.oo-ui-toolbar-bar {
 		// The default border is only appropriate in the default ve, with
 		// the toolbar above the editing surface.
-		border: none;
+		border: 0;
 		box-shadow: none;
 		// When we apply a pending texture to the editor, we don't want the toolbar to display
 		// in solid white on top of that.
@@ -41,17 +41,17 @@
 	}
 
 	.oo-ui-toolGroup {
-		border: none;
+		border: 0;
 	}
 }
 
 .flow-editor {
-		// Undo border & box-shadow on textarea and re-apply it on the
-		// div that contains textarea + legal text + switch button
-		&.flow-ui-focused {
-			border-color: @colorProgressive;
-			box-shadow: inset 0 0 0 2px @colorProgressive;
-		}
+	// Undo border & box-shadow on textarea and re-apply it on the
+	// div that contains textarea + legal text + switch button
+	&.flow-ui-focused {
+		border-color: @colorProgressive;
+		box-shadow: inset 0 0 0 2px @colorProgressive;
+	}
 }
 
 .flow-ui-editorSwitcherWidget {

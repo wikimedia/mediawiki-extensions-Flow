@@ -13,7 +13,7 @@
 
 // Comments
 form.flow-post {
-	margin-left: @topicIndent - (@textareaPadding * 2);
+	margin-left: @topicIndent - ( @textareaPadding * 2 );
 }
 
 .flow-post {
@@ -53,7 +53,7 @@ form.flow-post {
 
 	// Author link in post
 	.flow-author {
-		font-size: .875em;
+		font-size: 0.875em;
 		line-height: 1.2;
 		display: inline-block;
 		color: @colorText;
@@ -65,7 +65,7 @@ form.flow-post {
 
 		.mw-usertoollinks {
 			opacity: 0;
-			.transition( opacity .25s ease );
+			.transition( opacity 0.25s ease );
 		}
 		&:hover .mw-usertoollinks {
 			opacity: 1;
@@ -74,7 +74,7 @@ form.flow-post {
 
 	.mw-content-ltr & {
 		/* @noflip */
-		margin: .5em 0 0 .75em;
+		margin: 0.5em 0 0 0.75em;
 
 		// Nested comments (replies & reply forms)
 		.flow-replies {
@@ -107,7 +107,7 @@ form.flow-post {
 
 		// Highlights a post (no IE6 support, but acceptable degradation)
 		&.flow-post-highlighted {
-			 > .flow-post-main {
+			> .flow-post-main {
 				/* @noflip */
 				@highlightedIndent: @topicIndent - 0.75em;
 				/* @noflip */
@@ -128,7 +128,7 @@ form.flow-post {
 
 	.mw-content-rtl & {
 		/* @noflip */
-		margin: .5em 0.75em 0 0;
+		margin: 0.5em 0.75em 0 0;
 
 		// Nested comments (replies & reply forms)
 		.flow-replies {
@@ -161,7 +161,7 @@ form.flow-post {
 
 		// Highlights a post (no IE6 support, but acceptable degradation)
 		&.flow-post-highlighted {
-			 > .flow-post-main {
+			> .flow-post-main {
 				/* @noflip */
 				@highlightedIndent: @topicIndent - 0.75em;
 				/* @noflip */
@@ -186,7 +186,7 @@ form.flow-post {
 .flow-post-meta {
 	// @todo needs overflow: hidden but crops button border at bottom
 	color: @colorGrayDark;
-	font-size: .875em;
+	font-size: 0.875em;
 
 	.mw-content-ltr & {
 		/* @noflip */
@@ -211,23 +211,23 @@ form.flow-post {
 	}
 
 	a {
-		&::after {
-			content: "\2022";
+		&:after {
+			content: '\2022';
 			padding: 0 8px;
 			text-decoration: none;
 			display: inline-block;
 			color: @colorGrayDark;
 		}
 		&:last-child {
-			&::after {
-				content: "";
+			&:after {
+				content: '';
 			}
 		}
 	}
 }
 
 // MEDIA QUERIES
-@media all and (min-width: @small) {
+@media all and ( min-width: @small ) {
 	.flow-post {
 		/* left margin provided by highlighting zone */
 		.mw-content-ltr & {
@@ -261,14 +261,14 @@ form.flow-post {
 
 // What to do? vector changes this width on us from screen-hd.less with:
 //
-// @media screen and (min-width: 982px)
+// @media screen and ( min-width: 982px )
 // div#content {
 //   margin-left: 11em;
 //   padding: 1.25em 1.5em 1.5em 1.5em;
 // }
 //
 // The standard padding for narrower screens is 1em all around.
-@media all and (min-width: 982px) {
+@media all and ( min-width: 982px ) {
 	.flow-post.flow-post-highlight-newer > .flow-post-main .flow-post-content {
 		.minimalPostHighlight( 1.8em );
 	}

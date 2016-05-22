@@ -8,7 +8,7 @@
 		&.flow-ui-focused {
 			outline: none;
 			border-color: #a7dcff;
-			box-shadow: 0 0 0.3em #a7dcff, 0 0 0 white;
+			box-shadow: 0 0 0.3em #a7dcff, 0 0 0 #fff;
 		}
 	}
 
@@ -30,7 +30,7 @@
 	.oo-ui-toolbar-bar {
 		// The default border is only appropriate in the default ve, with
 		// the toolbar above the editing surface.
-		border: none;
+		border: 0;
 		// When we apply a pending texture to the editor, we don't want the toolbar to display
 		// in solid white on top of that.
 		background: transparent;
@@ -38,19 +38,19 @@
 }
 
 .flow-editor {
-		// Undo border & box-shadow on textarea and re-apply it on the
-		// div that contains textarea + legal text + switch button
-		&.flow-ui-focused {
-			outline: none;
-			border-color: #a7dcff;
-			box-shadow: 0 0 0.3em #a7dcff, 0 0 0 white;
-		}
+	// Undo border & box-shadow on textarea and re-apply it on the
+	// div that contains textarea + legal text + switch button
+	&.flow-ui-focused {
+		outline: none;
+		border-color: #a7dcff;
+		box-shadow: 0 0 0.3em #a7dcff, 0 0 0 #fff;
+	}
 }
 
 .flow-ui-editorSwitcherWidget {
 	&-focused {
 		outline: none;
 		border-color: #a7dcff;
-		box-shadow: 0 0 0.3em #a7dcff, 0 0 0 white;
+		box-shadow: 0 0 0.3em #a7dcff, 0 0 0 #fff;
 	}
 }
