@@ -58,8 +58,8 @@
 
 // Revision view
 .flow-revision-content {
-	background: none repeat scroll 0 0 #EDEDED;
-	color: #777777;
+	background: none repeat scroll 0 0 #ededed;
+	color: #777;
 	margin-top: 20px;
 	padding: 10px;
 }
@@ -69,7 +69,7 @@
 // "Undo" moderation link
 .flow-undo {
 	font-size: .875em;
-	color: #777777;
+	color: #777;
 	// These two will flip in RTL interface
 	text-align: left;
 	direction: ltr;
@@ -97,7 +97,7 @@
 	height: 100px;
 }
 
-@media all and (min-width: @small) {
+@media all and ( min-width: @small ) {
 	.flow-topic-meta {
 		font-size: 1em;
 	}
@@ -114,7 +114,7 @@
 	}
 }
 
-@media all and (min-width: @medium) {
+@media all and ( min-width: @medium ) {
 	.flow-component.flow-board-page {
 		.flow-board-header {
 			padding-left: 10px;
@@ -123,7 +123,7 @@
 			min-height: 70vh;
 			box-sizing: border-box;
 			background-color: @colorGrayLightest;
-			box-shadow: -2px 0 0 0 rgba(0,0,0,0.10);
+			box-shadow: -2px 0 0 0 rgba( 0, 0, 0, 0.10 );
 
 			.flow-board-header-title {
 				display: block;
@@ -131,9 +131,7 @@
 
 			.side-rail-toggle-button {
 				visibility: visible;
-			}
 
-			.side-rail-toggle-button {
 				.collapse-button {
 					display: block;
 				}
@@ -219,7 +217,8 @@
 .flow-board-header-footer {
 	margin-top: 2em;
 	font-size: 0.85em;
-	@media (min-width: @medium) {
+
+	@media ( min-width: @medium ) {
 		margin-top: 6em;
 	}
 }
@@ -237,7 +236,7 @@
 	> section {
 		display: inline;
 
-		&:not(:first-of-type) > li {
+		&:not( :first-of-type ) > li {
 			&:first-of-type {
 				border-top: 0px;
 
@@ -261,6 +260,7 @@
 
 // vector theme overrides
 // makes the layout more compact on Talk (ns-1) and User_Talk (ns-3)
+/* stylelint-disable selector-no-id */
 body.ns-1,
 body.ns-3 {
 	div#content.mw-body {
@@ -277,6 +277,7 @@ body.ns-3 {
 		}
 	}
 }
+/* stylelint-enable selector-no-id */
 
 span.mw-ui-icon {
 	opacity: 0.7;

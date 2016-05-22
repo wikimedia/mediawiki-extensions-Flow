@@ -18,7 +18,7 @@
 }
 
 // needs extra specificity to override `div#content h2` from vector
-div#content .flow-topic-title {
+div#content .flow-topic-title { /* stylelint-disable-line selector-no-id */
 	padding: 0;
 	border-bottom: none;
 	font-family: sans-serif;
@@ -29,7 +29,7 @@ div#content .flow-topic-title {
 }
 
 // Correct positioning for ltr/rtl content direction
-div#content .mw-content-ltr .flow-topic-title {
+div#content .mw-content-ltr .flow-topic-title { /* stylelint-disable-line selector-no-id */
 	/* @noflip */
 	margin: 0 2.5em .15em 0;
 
@@ -44,7 +44,7 @@ div#content .mw-content-ltr .flow-topic-title {
 }
 
 // Correct positioning for ltr/rtl content direction
-div#content .mw-content-rtl .flow-topic-title {
+div#content .mw-content-rtl .flow-topic-title { /* stylelint-disable-line selector-no-id */
 	/* @noflip */
 	margin: 0 0 .15em 2.5em;
 
@@ -65,7 +65,7 @@ div#content .mw-content-rtl .flow-topic-title {
 }
 
 // Override default Vector heading styles
-div#content h2.flow-topic-title {
+div#content h2.flow-topic-title { /* stylelint-disable-line selector-no-id */
 	font-size: 1.5em;
 }
 
@@ -97,7 +97,7 @@ div#content h2.flow-topic-title {
 }
 
 // MEDIA QUERIES
-@media all and (min-width: @small) {
+@media all and ( min-width: @small ) {
 	.flow-topic-titlebar {
 		padding-top: 0.5em;
 		padding-bottom: 0.5em;
