@@ -1199,7 +1199,8 @@
 		"GetBetaFeaturePreferences": "FlowHooks::onGetBetaFeaturePreferences",
 		"UserSaveOptions": "FlowHooks::onUserSaveOptions",
 		"NukeGetNewPages": "FlowHooks::onNukeGetNewPages",
-		"NukeDeletePage": "FlowHooks::onNukeDeletePage"
+		"NukeDeletePage": "FlowHooks::onNukeDeletePage",
+		"TitleExists": "FlowHooks::onTitleExists"
 	},
 	"namespaces": [
 		{

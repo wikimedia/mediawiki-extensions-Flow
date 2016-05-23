@@ -5,6 +5,7 @@ namespace Flow\Formatter;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\UrlGenerator;
+use Flow\WorkflowLoaderFactory;
 use IContextSource;
 
 class TopicFormatter {
@@ -81,7 +82,7 @@ class TopicFormatter {
 		return array(
 			'newtopic' => array(
 				'url' => $this->urlGenerator
-					->newTopicAction( $workflow->getArticleTitle(), $workflow->getId() )
+					->newTopicAction( WorkflowLoaderFactory::getPrettyArticleTitle( $workflow ), $workflow->getId() )
 			),
 		);
 	}

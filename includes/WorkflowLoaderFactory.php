@@ -2,7 +2,9 @@
 
 namespace Flow;
 
+use Flow\Collection\PostCollection;
 use Flow\Content\BoardContent;
+use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Data\ManagerGroup;
@@ -154,9 +156,44 @@ class WorkflowLoaderFactory {
 		}
 
 		try {
-			return UUID::create( strtolower( $dbKey ) );
+			$uuid = strtolower( $dbKey );
+			$uuid = strstr( $uuid, '/', true ) ?: $uuid;
+			return UUID::create( $uuid );
 		} catch ( InvalidInputException $e ) {
 			throw new InvalidTopicUuidException( "$dbKey is not a valid UUID", 0, $e );
 		}
+	}
+
+	/**
+	 * @param Workflow $workflow Workflow for which to create pretty title
+	 * @param PostRevision|null $root Topic post revision, if available
+	 * @return Title
+	 */
+	public static function getPrettyArticleTitle( Workflow $workflow, PostRevision $root = null ) {
+		$title = $workflow->getArticleTitle();
+		if ( $title->getNamespace() !== NS_TOPIC ) {
+			return $title;
+		}
+
+		// caller did not know root post, but wants pretty urls -> fetch it
+		if ( $root === null ) {
+			$collection = PostCollection::newFromId( $workflow->getId() );
+			try {
+				$root = $collection->getLastRevision();
+			} catch ( InvalidDataException $e ) {
+				return $title;
+			}
+		}
+
+		// build a pretty topic url that includes the board & topic title
+		$board = $workflow->getOwnerTitle();
+		$prettyTitle = \Title::makeTitleSafe(
+			$title->getNamespace(),
+			$title->getDBkey() . '/' . $board->getPrefixedDBkey() . '/' . $root->getContentInWikitext(),
+			$title->getFragment(),
+			$title->getInterwiki()
+		);
+
+		return $prettyTitle ?: $title;
 	}
 }

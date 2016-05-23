@@ -16,6 +16,7 @@ use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\UrlGenerator;
 use ApiResult;
+use Flow\WorkflowLoaderFactory;
 use GenderCache;
 use IContextSource;
 use Message;
@@ -210,7 +211,7 @@ class RevisionFormatter {
 				'isModeratedNotLocked',
 			),
 			'workflowId' => $row->workflow->getId()->getAlphadecimal(),
-			'articleTitle' => $row->workflow->getArticleTitle()->getPrefixedText(),
+			'articleTitle' => WorkflowLoaderFactory::getPrettyArticleTitle( $row->workflow, $row->rootPost )->getPrefixedText(),
 			'revisionId' => $row->revision->getRevisionId()->getAlphadecimal(),
 			'timestamp' => $ts->getTimestamp( TS_MW ),
 			'changeType' => $row->revision->getChangeType(),
@@ -469,7 +470,7 @@ class RevisionFormatter {
 	public function buildActions( FormatterRow $row ) {
 		$user = $this->permissions->getUser();
 		$workflow = $row->workflow;
-		$title = $workflow->getArticleTitle();
+		$title = WorkflowLoaderFactory::getPrettyArticleTitle( $workflow, $row->rootPost );
 
 		// If a user does not have rights to perform actions on this page return
 		// an empty array of actions.
@@ -683,7 +684,7 @@ class RevisionFormatter {
 	public function buildLinks( FormatterRow $row ) {
 		$workflow = $row->workflow;
 		$revision = $row->revision;
-		$title = $workflow->getArticleTitle();
+		$title = WorkflowLoaderFactory::getPrettyArticleTitle( $workflow, $row->rootPost );
 		$action = $revision->getChangeType();
 		$workflowId = $workflow->getId();
 		$revId = $revision->getRevisionId();

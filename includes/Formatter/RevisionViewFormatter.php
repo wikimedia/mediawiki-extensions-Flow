@@ -7,6 +7,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\UUID;
 use Flow\UrlGenerator;
+use Flow\WorkflowLoaderFactory;
 use IContextSource;
 use ChangesList;
 
@@ -79,14 +80,14 @@ class RevisionViewFormatter {
 		$workflowId = $row->workflow->getId();
 
 		$boardTitle = $row->workflow->getOwnerTitle();
-		$title = $row->workflow->getArticleTitle();
+		$title = WorkflowLoaderFactory::getPrettyArticleTitle( $row->workflow, $row->rootPost );
 		$links = array(
 			'hist' => $this->urlGenerator->boardHistoryLink( $title ),
 			'board' => $this->urlGenerator->boardLink( $boardTitle ),
 		);
 
 		if ( $row->revision instanceof PostRevision || $row->revision instanceof PostSummary ) {
-			$links['root'] = $this->urlGenerator->topicLink( $row->workflow->getArticleTitle(), $workflowId );
+			$links['root'] = $this->urlGenerator->topicLink( $title, $workflowId );
 			$links['root']->setMessage( $title->getPrefixedText() );
 		}
 
