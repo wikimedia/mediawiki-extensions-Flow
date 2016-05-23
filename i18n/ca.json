@@ -14,7 +14,8 @@
 			"Paucabot",
 			"Eduardo Martinez",
 			"Nnemo",
-			"Matiia"
+			"Matiia",
+			"Syum90"
 		]
 	},
 	"enableflow": "Habilita el Flow",
@@ -438,7 +439,7 @@
 	"flow-undo-edit-topic-summary": "Modificació del resum del tema",
 	"flow-undo-edit-post": "Modificació d'un apunt",
 	"group-flow-bot": "Bots de Flow",
-	"group-flow-bot-member": "bot Flow",
+	"group-flow-bot-member": "bot de Flow",
 	"grouppage-flow-bot": "Project:Bots de Flow",
 	"flow-ve-mention-context-item-label": "Menció",
 	"flow-ve-mention-inspector-title": "Menció",
