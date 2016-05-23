@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae564743_efabaad1",
+        "filename": "Gruntfile.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 366
+      },
+      "writtenOn": "2016-05-23T14:59:13Z",
+      "side": 1,
+      "message": "Why make this change? We normally run jsonlint immediately before banana given that the former is almost always only testing the latter\u0027s files.",
+      "revId": "3e2d19d0ab593b81db60bf68ab4bb023ca468bc5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
