@@ -1584,6 +1584,17 @@ class FlowHooks {
 	}
 
 	/**
+	 * Starts the transaction for the undelete operation
+	 *
+	 * @param PageArchive $archive Undeletion helper class
+	 * @param Title $title Title of page about to be (partially) undeleted
+	 */
+	public static function onUndeleteFormUndelete( $archive, $title ) {
+		$boardMover = Container::get( 'board_mover' );
+		$boardMover->begin();
+	}
+
+	/**
 	 * @param Title $title Title corresponding to the article restored
 	 * @param Revision $revision Revision just undeleted
 	 * @param string $oldPageId Old page ID stored with that revision when it was in the archive table
@@ -1594,13 +1605,26 @@ class FlowHooks {
 			// complete hack to make sure that when the page is saved to new
 			// location and rendered it doesn't throw an error about the wrong title
 			Container::get( 'factory.loader.workflow' )->pageMoveInProgress();
-			// open a database transaction and prepare everything for the move & commit
+
+			// Reassociate the Flow board associated with this undeleted revision.
 			$boardMover = Container::get( 'board_mover' );
-			$boardMover->prepareMove( intval( $oldPageId ), $title );
-			$boardMover->commit();
+			$boardMover->move( intval( $oldPageId ), $title );
 		}
 
 		return true;
+	}
+
+	/**
+	 * @param Title $title Title corresponding to the article restored
+	 * @param bool $created Whether or not the restoration caused the page to be created (i.e. it didn't exist before).
+	 * @param string $comment The comment associated with the undeletion.
+	 * @param int $oldPageId ID of page previously deleted (from archive table)
+	 * @throws InvalidUndeleteException
+	 * @return bool
+	 */
+	public static function onArticleUndelete( Title $title, $create, $comment, $oldPageId ) {
+		$boardMover = Container::get( 'board_mover' );
+		$boardMover->commit();
 	}
 
 	/**
@@ -1626,7 +1650,9 @@ class FlowHooks {
 			Container::get( 'factory.loader.workflow' )->pageMoveInProgress();
 			// open a database transaction and prepare everything for the move, but
 			// don't commit yet. That is done below in self::onTitleMoveCompleting
-			Container::get( 'board_mover' )->prepareMove( $oldTitle->getArticleID(), $bogusTitle );
+			$boardMover =Container::get( 'board_mover' );
+			$boardMover->begin();
+			$boardMover->move( $oldTitle->getArticleID(), $bogusTitle );
 		}
 
 		return true;
