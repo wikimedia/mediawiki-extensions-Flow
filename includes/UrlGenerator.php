@@ -35,7 +35,9 @@ class UrlGenerator {
 	 * @param Title|null $title
 	 * @param UUID|null $workflowId
 	 * @return Title
+	 * @throws Exception\InvalidDataException
 	 * @throws FlowException
+	 * @throws InvalidInputException
 	 */
 	protected function resolveTitle( Title $title = null, UUID $workflowId = null ) {
 		if ( $title !== null ) {
@@ -52,6 +54,7 @@ class UrlGenerator {
 		if ( $workflow === null ) {
 			throw new InvalidInputException( 'Unloaded workflow:' . $alpha, 'invalid-workflow' );
 		}
+
 		return $workflow->getArticleTitle();
 	}
 
@@ -169,6 +172,8 @@ class UrlGenerator {
 	 * @param Title|null $title
 	 * @param UUID $workflowId
 	 * @return Anchor
+	 * @throws FlowException
+	 * @throws InvalidInputException
 	 */
 	public function topicLink( Title $title = null, UUID $workflowId ) {
 		return new Anchor(
