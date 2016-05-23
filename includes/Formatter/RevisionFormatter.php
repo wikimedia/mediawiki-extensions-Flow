@@ -680,7 +680,20 @@ class RevisionFormatter {
 	public function buildLinks( FormatterRow $row ) {
 		$workflow = $row->workflow;
 		$revision = $row->revision;
+		$root = $row->rootPost;
 		$title = $workflow->getArticleTitle();
+
+		// slight hack: we'll want pretty urls, who include the topic title
+		if ( $title->getNamespace() === NS_TOPIC && $root instanceof PostRevision ) {
+			$board = $workflow->getOwnerTitle();
+			$title = \Title::makeTitleSafe(
+				$title->getNamespace(),
+				$title->getDBkey() . '/' . $board->getPrefixedDBkey() . '/' . $root->getContentInWikitext(),
+				$title->getFragment(),
+				$title->getInterwiki()
+			);
+		}
+
 		$action = $revision->getChangeType();
 		$workflowId = $workflow->getId();
 		$revId = $revision->getRevisionId();

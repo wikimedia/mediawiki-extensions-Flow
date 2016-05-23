@@ -5,6 +5,7 @@ namespace Flow\Formatter;
 use Flow\Data\ManagerGroup;
 use Flow\Exception\FlowException;
 use Flow\Model\UUID;
+use Flow\WorkflowLoaderFactory;
 
 /**
  * This class is necessary so we can inject the name of
@@ -46,7 +47,7 @@ class CategoryViewerQuery {
 			if ( $row->page_namespace != NS_TOPIC ) {
 				continue;
 			}
-			$uuid = UUID::create( strtolower( $row->page_title ) );
+			$uuid = WorkflowLoaderFactory::uuidFromTitlePair( NS_TOPIC, $row->page_title );
 			if ( $uuid ) {
 				$alpha = $uuid->getAlphadecimal();
 				$neededPosts[$alpha] = array( 'rev_type_id' => $uuid );

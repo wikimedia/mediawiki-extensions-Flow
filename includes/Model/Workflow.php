@@ -6,6 +6,7 @@ use Flow\Exception\CrossWikiException;
 use Flow\Exception\DataModelException;
 use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidInputException;
+use Flow\WorkflowLoaderFactory;
 use MapCacheLRU;
 use MWTimestamp;
 use Title;
@@ -339,7 +340,16 @@ class Workflow {
 	 * @throws InvalidInputException
 	 */
 	public function matchesTitle( Title $title ) {
-		return $this->getArticleTitle()->equals( $title );
+		// topic namespace can have pretty urls (uuid sufficed with topic title)
+		// where we really only want to compare the uuid (the suffix text
+		// doesn't matter)
+		if ( $title->getNamespace() === NS_TOPIC ) {
+			$uuid1 = WorkflowLoaderFactory::uuidFromTitle( $title );
+			$uuid2 = WorkflowLoaderFactory::uuidFromTitle( $this->getArticleTitle() );
+			return $uuid1->equals( $uuid2 );
+		} else {
+			return $this->getArticleTitle()->equals( $title );
+		}
 	}
 
 	/**

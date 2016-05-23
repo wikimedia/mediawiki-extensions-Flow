@@ -1175,17 +1175,21 @@ class FlowHooks {
 	 *
 	 * @param User $user
 	 * @param WikiPage $page
-	 * $param Status $status
+	 * @param Status $status
+	 * @return bool
+	 * @throws \Flow\Exception\InvalidInputException
 	 */
 	public static function onWatchArticle( &$user, WikiPage &$page, &$status ) {
 		$title = $page->getTitle();
 		if ( $title->getNamespace() == NS_TOPIC ) {
+			$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
+
 			// @todo - use !$title->exists()?
 			/** @var Flow\Data\ManagerGroup $storage */
 			$storage = Container::get( 'storage' );
 			$found = $storage->find(
 				'PostRevision',
-				array( 'rev_type_id' => strtolower( $title->getDBkey() ) ),
+				array( 'rev_type_id' => $uuid ),
 				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
 			);
 			if ( !$found ) {
@@ -1458,7 +1462,7 @@ class FlowHooks {
 		if ( $type !== 'page' || $title->getNamespace() !== NS_TOPIC ) {
 			return true;
 		}
-		$uuid = UUID::create( strtolower( $title->getDBkey() ) );
+		$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
 		if ( !$uuid ) {
 			return true;
 		}
