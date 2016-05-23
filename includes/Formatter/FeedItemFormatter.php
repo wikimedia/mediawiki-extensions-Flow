@@ -4,6 +4,7 @@ namespace Flow\Formatter;
 
 use FeedItem;
 use Flow\Exception\FlowException;
+use Flow\WorkflowLoaderFactory;
 use IContextSource;
 
 class FeedItemFormatter extends AbstractFormatter {
@@ -47,7 +48,7 @@ class FeedItemFormatter extends AbstractFormatter {
 		}
 
 		return new FeedItem(
-			$row->workflow->getArticleTitle()->getPrefixedText(),
+			WorkflowLoaderFactory::getPrettyArticleTitle( $row->workflow, $row->rootPost )->getPrefixedText(),
 			$this->formatDescription( $data, $ctx ),
 			$url,
 			$data['timestamp'],

@@ -164,6 +164,7 @@ class SubmissionHandler {
 		}
 
 		$workflow->getArticleTitle()->purgeSquid();
+		WorkflowLoaderFactory::getPrettyArticleTitle( $workflow )->purgeSquid();
 
 		return $results;
 	}

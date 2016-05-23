@@ -4,6 +4,7 @@ use Flow\Collection\PostCollection;
 use Flow\Container;
 use Flow\Conversion\Utils;
 use Flow\Exception\FlowException;
+use Flow\Exception\InvalidInputException;
 use Flow\Exception\PermissionException;
 use Flow\Data\Listener\RecentChangesListener;
 use Flow\Formatter\CheckUserQuery;
@@ -1230,17 +1231,21 @@ class FlowHooks {
 	 *
 	 * @param User $user
 	 * @param WikiPage $page
-	 * $param Status $status
+	 * @param Status $status
+	 * @return bool
+	 * @throws InvalidInputException
 	 */
 	public static function onWatchArticle( &$user, WikiPage &$page, &$status ) {
 		$title = $page->getTitle();
 		if ( $title->getNamespace() == NS_TOPIC ) {
+			$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
+
 			// @todo - use !$title->exists()?
 			/** @var Flow\Data\ManagerGroup $storage */
 			$storage = Container::get( 'storage' );
 			$found = $storage->find(
 				'PostRevision',
-				array( 'rev_type_id' => strtolower( $title->getDBkey() ) ),
+				array( 'rev_type_id' => $uuid ),
 				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
 			);
 			if ( !$found ) {
@@ -1328,7 +1333,7 @@ class FlowHooks {
 		}
 		try {
 			$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
-		} catch ( Flow\Exception\InvalidInputException $e ) {
+		} catch ( InvalidInputException $e ) {
 			MWExceptionHandler::logException( $e );
 			wfDebugLog( 'Flow', __METHOD__ . ': Invalid title ' . $title->getPrefixedText() );
 			return true;
@@ -1505,7 +1510,7 @@ class FlowHooks {
 		if ( $type !== 'page' || $title->getNamespace() !== NS_TOPIC ) {
 			return true;
 		}
-		$uuid = UUID::create( strtolower( $title->getDBkey() ) );
+		$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
 		if ( !$uuid ) {
 			return true;
 		}
@@ -1614,7 +1619,9 @@ class FlowHooks {
 				$topicTitles = [];
 				foreach ( $workflows as $workflow ) {
 					if ( $workflow->getType() === 'topic' ) {
+						// make sure both the pretty url & the default UUID url are purged
 						$topicTitles[] = $workflow->getArticleTitle();
+						$topicTitles[] = WorkflowLoaderFactory::getPrettyArticleTitle( $workflow );
 					}
 				}
 
@@ -2096,5 +2103,33 @@ class FlowHooks {
 		if ( $opts['hidepageedits'] ) {
 			$conds[] = 'rc_type != ' . RC_FLOW;
 		}
+	}
+
+	/**
+	 * @param Title $title
+	 * @param bool $exists
+	 * @return bool
+	 */
+	public static function onTitleExists( Title $title, &$exists ) {
+		// we only care about topic namespaces here because we mess with those
+		// titles to make them prettier; Title::exists works fine otherwise
+		if ( $title->getNamespace() !== NS_TOPIC ) {
+			return true;
+		}
+
+		try {
+			// if we're able to form a UUID object from the title, we're not dealing
+			// with a pretty url and $exists can be trusted already
+			UUID::create( strtolower( $title->getDBkey() ) );
+			return true;
+		} catch ( InvalidInputException $e ) {
+			// we're dealing with a pretty url - let's extract that UUID from
+			// there, then test if it's an actual existing title
+			$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
+			$title = Title::makeTitle( NS_TOPIC, $uuid->getAlphadecimal() );
+			$exists = $title->exists();
+		}
+
+		return true;
 	}
 }
