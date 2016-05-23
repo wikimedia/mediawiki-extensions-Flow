@@ -3,6 +3,7 @@
 namespace Flow\Formatter;
 
 use DifferenceEngine;
+use Flow\WorkflowLoaderFactory;
 use IContextSource;
 use TextContent;
 
@@ -48,7 +49,7 @@ class RevisionUndoViewFormatter {
 				'content' => $undoContent,
 				'diff_content' => $differenceEngine->getDiffBody(),
 			),
-			'articleTitle' => $start->workflow->getArticleTitle(),
+			'articleTitle' => WorkflowLoaderFactory::getPrettyArticleTitle( $start->workflow ),
 		);
 	}
 

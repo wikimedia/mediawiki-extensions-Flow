@@ -147,7 +147,7 @@ class View extends ContextSource {
 
 	protected function buildApiResponse( WorkflowLoader $loader, array $blocks, $action, array $parameters ) {
 		$workflow = $loader->getWorkflow();
-		$title = $workflow->getArticleTitle();
+		$title = WorkflowLoaderFactory::getPrettyArticleTitle( $workflow );
 		$user = $this->getUser();
 		$categories = array_keys( $title->getParentCategories() );
 		$categoryObject = array();
@@ -173,7 +173,7 @@ class View extends ContextSource {
 			'specialCategoryLink' => \SpecialPage::getTitleFor( 'Categories' )->getLocalURL(),
 			'workflow' => $workflow->isNew() ? '' : $workflow->getId()->getAlphadecimal(),
 			'blocks' => array(),
-			'isWatched' => $user->isWatched( $title ),
+			'isWatched' => $user->isWatched( $workflow->getArticleTitle() ),
 			'watchable' => !$user->isAnon(),
 			'links' => array(
 				'watch-board' => array(
@@ -334,7 +334,7 @@ class View extends ContextSource {
 
 	protected function redirect( Workflow $workflow ) {
 		$link = $this->urlGenerator->workflowLink(
-			$workflow->getArticleTitle(),
+			WorkflowLoaderFactory::getPrettyArticleTitle( $workflow ),
 			$workflow->getId()
 		);
 		$this->getOutput()->redirect( $link->getFullURL() );

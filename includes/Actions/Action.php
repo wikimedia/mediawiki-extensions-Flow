@@ -143,7 +143,7 @@ class FlowAction extends Action {
 		}
 
 		// The uuid points to the current page
-		$redirTitle = $workflow->getArticleTitle();
+		$redirTitle = WorkflowLoaderFactory::getPrettyArticleTitle( $workflow );
 		if ( $redirTitle->equals( $title ) ) {
 			return '';
 		}

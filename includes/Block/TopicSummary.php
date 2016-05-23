@@ -16,6 +16,7 @@ use Flow\Formatter\RevisionViewQuery;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\UUID;
+use Flow\WorkflowLoaderFactory;
 use IContextSource;
 use Message;
 
@@ -129,7 +130,7 @@ class TopicSummaryBlock extends AbstractBlock {
 			}
 
 			$this->nextRevision = PostSummary::create(
-				$this->workflow->getArticleTitle(),
+				$this->workflow->getArticleTitle()
 				$this->findTopicTitle(),
 				$this->context->getUser(),
 				$this->submitted['summary'],
@@ -355,7 +356,7 @@ class TopicSummaryBlock extends AbstractBlock {
 			);
 		} else {
 			$urlGenerator = Container::get( 'url_generator' );
-			$title = $this->workflow->getArticleTitle();
+			$title = WorkflowLoaderFactory::getPrettyArticleTitle( $this->workflow );
 			$workflowId = $this->workflow->getId();
 			$output['revision'] = array(
 				'actions' => array(

@@ -14,6 +14,7 @@ use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Exception\FailCommitException;
+use Flow\WorkflowLoaderFactory;
 
 class TopicListBlock extends AbstractBlock {
 
@@ -179,7 +180,7 @@ class TopicListBlock extends AbstractBlock {
 		}
 
 		$output = array(
-			'topic-page' => $this->topicWorkflow->getArticleTitle()->getPrefixedText(),
+			'topic-page' => WorkflowLoaderFactory::getPrettyArticleTitle( $this->topicWorkflow, $this->topicTitle )->getPrefixedText(),
 			'topic-id' => $this->topicTitle->getPostId(),
 			'topic-revision-id' => $this->topicTitle->getRevisionId(),
 			'post-id' => $this->firstPost ? $this->firstPost->getPostId() : null,

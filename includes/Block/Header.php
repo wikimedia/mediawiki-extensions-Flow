@@ -290,10 +290,7 @@ class HeaderBlock extends AbstractBlock {
 
 			/** @var UrlGenerator $urlGenerator */
 			$urlGenerator = Container::get( 'url_generator' );
-
-			$title = $this->workflow->getArticleTitle();
 			$user = $this->context->getUser();
-
 			$actions = array();
 
 			if ( $this->workflow->userCan( 'edit', $user ) ) {

@@ -3,6 +3,7 @@
 namespace Flow\Formatter;
 
 use Flow\RevisionActionPermissions;
+use Flow\WorkflowLoaderFactory;
 use Linker;
 
 /**
@@ -26,7 +27,7 @@ class CategoryViewerFormatter {
 		}
 
 		$topic = Linker::link(
-			$row->workflow->getArticleTitle(),
+			WorkflowLoaderFactory::getPrettyArticleTitle( $row->workflow, $row->rootPost ),
 			htmlspecialchars( $row->revision->getContent( 'topic-title-wikitext' ) ),
 			array( 'class' => 'mw-title' )
 		);
