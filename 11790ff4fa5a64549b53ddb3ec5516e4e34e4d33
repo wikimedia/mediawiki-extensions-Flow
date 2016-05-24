@@ -34,6 +34,24 @@
       "revId": "11790ff4fa5a64549b53ddb3ec5516e4e34e4d33",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae564743_de192828",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 389
+      },
+      "writtenOn": "2016-05-24T22:08:10Z",
+      "side": 1,
+      "message": "Ah, ok, it happens via AbstractPrimaryAuthenticationProvider. I missed that.",
+      "parentUuid": "ae564743_de1a036e",
+      "revId": "11790ff4fa5a64549b53ddb3ec5516e4e34e4d33",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
