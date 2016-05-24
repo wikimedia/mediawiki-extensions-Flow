@@ -15,7 +15,7 @@
 		position: fixed;
 		z-index: 2;
 		top: 0;
-		background: white;
+		background: #fff;
 
 		.flow-ui-tocWidget {
 			width: 100%;
@@ -38,7 +38,7 @@
 					text-overflow: ellipsis;
 					overflow: hidden;
 					// Prevent less compiler from precalculating this expression
-					width: ~"calc(100% - 1.875em)";
+					width: ~'calc( 100% - 1.875em )';
 				}
 			}
 		}
@@ -49,7 +49,7 @@
 			max-height: 400px;
 
 			/* Workaround for flicker and https://code.google.com/p/chromium/issues/detail?id=343244 */
-			-webkit-transform: translateZ(0);
+			-webkit-transform: translateZ( 0 );
 		}
 	}
 

@@ -59,7 +59,7 @@ div.flow-menu-inverted {
 div > .flow-menu {
 	bottom: auto;
 	display: block;
-	border: none;
+	border: 0;
 
 	&.flow-menu-inverted {
 		right: auto;
@@ -69,7 +69,6 @@ div > .flow-menu {
 			text-align: left;
 		}
 	}
-
 
 	// the toc needs to retain display:block for purposes
 	// of triggering autoload eagerly behind the scenes.
@@ -81,8 +80,6 @@ div > .flow-menu {
 			display: block;
 		}
 	}
-
-
 
 	&.flow-menu-hoverable:hover,
 	&.focus {
@@ -100,7 +97,7 @@ div > .flow-menu {
 			outline: none;
 			border-color: transparent;
 			background: transparent;
-			background: rgba(0,0,0,0.05);
+			background: rgba( 0, 0, 0, 0.05 );
 
 			.caret {
 				border-top-color: #000;
@@ -136,7 +133,7 @@ div > .flow-menu {
 
 		a {
 			display: inline-block;
-			padding: 0 .5em;
+			padding: 0 0.5em;
 			border: 1px solid @colorGrayLight;
 			border-radius: 3px;
 			border-width: 0;
@@ -173,7 +170,7 @@ div.flow-post > .flow-menu {
 	}
 }
 
-@media all and (min-width: @small) {
+@media all and ( min-width: @small ) {
 	// On desktop, the flow-menu is no longer inline
 	.flow-menu {
 		position: absolute;
