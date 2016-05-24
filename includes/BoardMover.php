@@ -40,19 +40,11 @@ class BoardMover {
 	}
 
 	/**
-	 * Collects the workflow and header (if it exists) and puts them into the database. Does
-	 * not commit yet. It is intended for prepareMove to be called from the TitleMove hook,
-	 * and committed from TitleMoveComplete hook. This ensures that if some error prevents the
-	 * core transaction from committing this transaction is also not committed.
-	 *
-	 * @param int $oldPageId Page ID before move/change
-	 * @param Title $newPage Page after move/change
-	 * @throws Exception\DataModelException
-	 * @throws FlowException
+	 * Starts a transaction on the Flow database.
 	 */
-	public function prepareMove( $oldPageId, Title $newPage ) {
+	public function begin() {
 		if ( $this->dbw !== null ) {
-			throw new FlowException( "Already prepared for move from {$oldPageId} to {$newPage->getArticleID()}" );
+			throw new FlowException( "Already started transaction" );
 		}
 
 		// All reads must go through master to help ensure consistency
@@ -62,6 +54,23 @@ class BoardMover {
 		$this->dbw = $this->dbFactory->getDB( DB_MASTER );
 		$this->dbw->startAtomic( __CLASS__ );
 		$this->cache->begin();
+	}
+
+	/**
+	 * Collects the workflow and header (if it exists) and puts them into the database. Does
+	 * not commit yet. It is intended for begin to be called at the beginning of the
+	 * transaction, move to be called for each move, and commit to be called at the end
+	 * the core transaction, via a hook.
+	 *
+	 * @param int $oldPageId Page ID before move/change
+	 * @param Title $newPage Page after move/change
+	 * @throws Exception\DataModelException
+	 * @throws FlowException
+	 */
+	public function move( $oldPageId, Title $newPage ) {
+		if ( $this->dbw === null ) {
+			throw new FlowException( "You must call BoardMover->begin() before calling BoardMover->move()" );
+		}
 
 		// @todo this loads every topic workflow this board has ever seen,
 		// would prefer to update db directly but that won't work due to
