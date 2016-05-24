@@ -91,7 +91,11 @@ class FlowRemoveOldTopics extends Maintenance {
 					// narrow down the results
 					'rev_parent_id' => null,
 				),
-				array( 'limit' => $this->mBatchSize )
+				array(
+					'limit' => $this->mBatchSize,
+					'sort' => 'rev_id',
+					'order' => 'ASC',
+				)
 			);
 
 			if ( empty( $revisions ) ) {
@@ -186,7 +190,11 @@ class FlowRemoveOldTopics extends Maintenance {
 					'workflow_type' => 'topic',
 					new RawSql( 'workflow_last_update_timestamp < ' . $dbr->addQuotes( $timestamp ) ),
 				),
-				array( 'limit' => $this->mBatchSize )
+				array(
+					'limit' => $this->mBatchSize,
+					'sort' => 'workflow_id',
+					'order' => 'ASC',
+				)
 			);
 
 			if ( empty( $workflows ) ) {
