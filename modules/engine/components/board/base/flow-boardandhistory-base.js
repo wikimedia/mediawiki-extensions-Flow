@@ -199,7 +199,7 @@
 
 		// Only log cancel attempt if it was user-initiated, not when the cancel
 		// was triggered by code (as part of a post-submit form destroy)
-		if ( event.which ) {
+		if ( event.which && schemaName ) {
 			flowComponent.logEvent( schemaName, { action: 'cancel-attempt', funnelId: funnelId } );
 		}
 
@@ -214,9 +214,13 @@
 		// Only log if user had already entered text (= confirmation was requested)
 		if ( changedFieldCount ) {
 			if ( confirm( flowComponent.constructor.static.TemplateEngine.l10n( 'flow-cancel-warning' ) ) ) {
-				flowComponent.logEvent( schemaName, { action: 'cancel-success', funnelId: funnelId } );
+				if ( schemaName ) {
+					flowComponent.logEvent( schemaName, { action: 'cancel-success', funnelId: funnelId } );
+				}
 			} else {
-				flowComponent.logEvent( schemaName, { action: 'cancel-abort', funnelId: funnelId } );
+				if ( schemaName ) {
+					flowComponent.logEvent( schemaName, { action: 'cancel-abort', funnelId: funnelId } );
+				}
 
 				// User aborted cancel, quit this function & don't destruct the form!
 				return $deferred.reject().promise();
