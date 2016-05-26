@@ -72,13 +72,19 @@
 	// These tools aren't available so don't bother generating them
 	mw.flow.ve.Target.prototype.generateCitationFeatures = function () {};
 
-	mw.flow.ve.Target.prototype.attachToolbar = function () {
+	mw.flow.ve.Target.prototype.attachToolbar = function ( surface ) {
+		( surface.debugBar || surface ).$element.after( this.getToolbar().$element );
+	};
+
+	mw.flow.ve.Target.prototype.setSurface = function ( surface ) {
 		// HACK ve.ui.Surface appends a debugBar *after* itself instead of putting it
 		// inside itself (T106927)
 		// Work around this by appending the toolbar after the debugBar if it's there, and
 		// after the surface otherwise.
-		var surface = this.getToolbar().getSurface();
 		( surface.debugBar || surface ).$element.after( this.getToolbar().$element );
+
+		// Parent method
+		mw.flow.ve.Target.super.prototype.setSurface.apply( this, arguments );
 	};
 
 	mw.flow.ve.Target.prototype.setDisabled = function ( disabled ) {
