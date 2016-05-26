@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae564743_0b97d2ef",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-05-26T19:26:25Z",
+      "side": 1,
+      "message": "may get [missing verb]",
+      "revId": "64232d37a66dec0af092d884c988cd66fcc9c1bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae564743_ebf6de58",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-05-26T19:26:25Z",
+      "side": 1,
+      "message": "Why is this line called twice now (both in attachToolbar and setSurface)? Is that needed?",
+      "revId": "64232d37a66dec0af092d884c988cd66fcc9c1bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae564743_2b9456ea",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-05-26T19:26:25Z",
+      "side": 1,
+      "message": "We use .parent instead of .super in this repo (for ES3 parseability)",
+      "revId": "64232d37a66dec0af092d884c988cd66fcc9c1bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
