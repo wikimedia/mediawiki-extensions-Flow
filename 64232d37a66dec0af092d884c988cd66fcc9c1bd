@@ -86,6 +86,24 @@
       "revId": "64232d37a66dec0af092d884c988cd66fcc9c1bd",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae564743_232f5587",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-05-27T17:31:15Z",
+      "side": 1,
+      "message": "Fair enough. We have a trigger-happy tyops rule for this though, and it was failing that.",
+      "parentUuid": "ae564743_d1f2a497",
+      "revId": "64232d37a66dec0af092d884c988cd66fcc9c1bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
