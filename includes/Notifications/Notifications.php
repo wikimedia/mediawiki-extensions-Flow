@@ -211,7 +211,7 @@ $notifications = array(
 	'flow-topic-resolved' => array(
 		'presentation-model' => 'Flow\\TopicResolvedPresentationModel',
 		'user-locators' => array(
-			'EchoUserLocator::locateUsersWatchingTitle',
+			'EchoUserLocator::locateUsersWatchingTopic',
 			'EchoUserLocator::locateTalkPageOwner'
 		),
 		'primary-link' => array(
