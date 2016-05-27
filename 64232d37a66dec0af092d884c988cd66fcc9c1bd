@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "ae564743_91f94c81",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2016-05-27T13:15:50Z",
+      "side": 1,
+      "message": "Yes, if setSurface is called twice.",
+      "parentUuid": "ae564743_ebf6de58",
+      "revId": "64232d37a66dec0af092d884c988cd66fcc9c1bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae564743_2b9456ea",
         "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.js",
         "patchSetId": 2
@@ -47,6 +65,24 @@
       "writtenOn": "2016-05-26T19:26:25Z",
       "side": 1,
       "message": "We use .parent instead of .super in this repo (for ES3 parseability)",
+      "revId": "64232d37a66dec0af092d884c988cd66fcc9c1bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae564743_d1f2a497",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2016-05-27T13:15:50Z",
+      "side": 1,
+      "message": "Ok, but this module shouldn\u0027t be loaded unless VE compatibility tests pass. For example you are calling targetFactory#register below which will probably contain ES5 code.",
+      "parentUuid": "ae564743_2b9456ea",
       "revId": "64232d37a66dec0af092d884c988cd66fcc9c1bd",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
