@@ -3,7 +3,8 @@
 		"authors": [
 			"Milicevic01",
 			"Rancher",
-			"Macofe"
+			"Macofe",
+			"Сербијана"
 		]
 	},
 	"enableflow": "Омогући Flow",
@@ -84,7 +85,7 @@
 	"flow-hide-comments-title": "{{PLURAL:$1|Сакриј коментаре}}",
 	"flow-comment-deleted": "Обрисани коментар",
 	"flow-comment-hidden": "Сакривени коментар",
-	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 је {{GENDER:$1|оставио|оставила}} коментар на '''$4'''.",
+	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 је {{GENDER:$1|оставио|оставила}} коментар на <strong>$4</strong>.",
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 и још {{PLURAL:$5|један корисник|$5 корисника|100=99+ корисника}} су {{GENDER:$1|оставили}} коментаре на '''$3'''.",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 је {{GENDER:$1|уредио|уредила}} Ваш <span class=\"plainlinks\">[$5 коментар]</span> на [[$3|$4]].",
 	"notification-header-flow-mention-post": "$1 Вас је {{GENDER:$2|споменуо|споменула}} {{GENDER:$4|у}} „$5“.",

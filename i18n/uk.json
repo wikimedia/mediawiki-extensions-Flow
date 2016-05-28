@@ -262,7 +262,7 @@
 	"notification-header-flow-post-edited-user-talk": "Повідомлення у «<strong>$1</strong>» було відредаговане на <strong>{{GENDER:$2|Вашій}} сторінці обговорення</strong>.",
 	"notification-bundle-header-flow-post-edited-user-talk": "Повідомлення у «<strong>$1</strong>» було відредаговане кілька разів на <strong>{{GENDER:$2|Вашій}} сторінці обговорення</strong>.",
 	"notification-header-flow-topic-renamed-v2": "Тему «<strong>$1</strong>» було перейменовано на «<strong>$2</strong>».",
-	"notification-header-flow-topic-renamed-user-talk": "На <strong>Вашій сторінці обговорення</strong> тему «<strong>$1</strong>» було перейменовано на «<strong>$2</strong>».",
+	"notification-header-flow-topic-renamed-user-talk": "На <strong>{{GENDER:$3|Вашій}} сторінці обговорення</strong> тему «<strong>$1</strong>» було перейменовано на «<strong>$2</strong>».",
 	"notification-header-flow-summary-edited": "Підсумок до «<strong>$1</strong>» було оновлено.",
 	"notification-header-flow-summary-edited-first": "Тему «<strong>$1</strong>» було підсумовано.",
 	"notification-bundle-header-flow-summary-edited": "Підсумок до «<strong>$1</strong>» було оновлено декілька разів.",
