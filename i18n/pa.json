@@ -3,10 +3,12 @@
 		"authors": [
 			"Babanwalia",
 			"Satdeep gill",
-			"ਪ੍ਰਚਾਰਕ"
+			"ਪ੍ਰਚਾਰਕ",
+			"Jimidar"
 		]
 	},
 	"enableflow": "ਫਲੋ ਲਾਗੂ ਕਰੋ",
+	"flow-board-description-can-not-edit": "ਸੰਪਾਦਤ ਹੋਣ ਯੋਗ ਨਹੀਂ",
 	"flow-topic-moderated-reason-prefix": "ਕਾਰਨ:",
 	"flow-newtopic-save": "ਵਿਸ਼ਾ ਜੋੜੋ",
 	"flow-newtopic-start-placeholder": "ਨਵਾਂ ਵਿਸ਼ਾ ਸ਼ੁਰੂ ਕਰੋ",
@@ -19,6 +21,7 @@
 	"flow-topic-action-history": "ਅਤੀਤ",
 	"flow-topic-action-summarize-topic": "ਸਾਰ ਕੱਢੋ",
 	"flow-topic-action-undo-moderation": "ਅਣਕੀਤਾ ਕਰੋ",
+	"flow-error-protected-unknown-reason": "ਅਣਪਛਾਤਾ",
 	"flow-notification-link-text-view-topics": "ਵਿਸ਼ੇ ਦੇਖੋ",
 	"flow-notification-reply-email-subject": "$3 'ਤੇ $2",
 	"flow-moderation-confirmation-suppress-topic": "ਇਹ ਵਿਸ਼ਾ ਦਬਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।",
