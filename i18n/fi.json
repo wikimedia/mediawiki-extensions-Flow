@@ -240,7 +240,7 @@
 	"flow-notification-edit-bundle": "$1 ja $5 {{PLURAL:$6|toinen|muuta}} {{GENDER:$1|muokkasi}} <span class=\"plainlinks\">[$4 viestiä]</span> aiheessa \"$2\" sivulla \"$3\".",
 	"notification-header-flow-new-topic-v2": "Uusi aihe luotu sivulla '''$3''': <bdi>\"'''$4'''\"</bdi>.",
 	"notification-header-flow-new-topic-user-talk": "Uusi aihe luotiin '''keskustelusivullesi''': \"'''$4'''\".",
-	"notification-header-flow-topic-resolved": "Aihe \"<strong>$1</strong>\" tuli käsitellyksi loppuun.",
+	"notification-header-flow-topic-resolved": "Aihe <strong>$1</strong> merkittiin käsitellyksi.",
 	"notification-header-flow-topic-reopened": "Aihe \"<strong>$1</strong>\" avattiin uudelleen.",
 	"notification-header-flow-topic-resolved-user-talk": "Aihe \"<strong>$1</strong>\" ratkaistiin <strong>keskustelusivullasi</strong>.",
 	"notification-header-flow-topic-reopened-user-talk": "Aihe \"<strong>$1</strong>\" avattiin uudelleen <strong>keskustelusivullasi</strong>.",
