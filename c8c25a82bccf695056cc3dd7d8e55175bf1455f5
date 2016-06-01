@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e68cf02_ef4eddc3",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-06-01T00:33:50Z",
+      "side": 1,
+      "message": "flowMention",
+      "revId": "c8c25a82bccf695056cc3dd7d8e55175bf1455f5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
