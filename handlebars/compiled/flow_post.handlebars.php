@@ -173,7 +173,8 @@
 '.$sp.''.LCRun3::p($cx, 'flow_form_cancel_button', array(array($in),array()), '		').'		<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-edit'),array()), 'encq').'</small>
 '.$sp.'	</div>
 '.$sp.'</form>
-';},'flow_reply_form' => function ($cx, $in, $sp) {return ''.$sp.'<form class="flow-post flow-reply-form"
+';},'flow_reply_form' => function ($cx, $in, $sp) {return ''.$sp.''.((!LCRun3::ifvar($cx, ((isset($in['actions']['unlock']) && is_array($in['actions'])) ? $in['actions']['unlock'] : null))) ? '
+'.$sp.'<form class="flow-post flow-reply-form"
 '.$sp.'      method="POST"
 '.$sp.'      action="'.htmlentities((string)((isset($in['actions']['reply']['url']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 '.$sp.'      id="flow-reply-'.htmlentities((string)((isset($in['postId']) && is_array($in)) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
@@ -203,7 +204,7 @@
 '.$sp.''.LCRun3::p($cx, 'flow_form_cancel_button', array(array($in),array()), '		').'		<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-reply'),array()), 'encq').'</small>
 '.$sp.'	</div>
 '.$sp.'</form>
-';},'flow_post_replies' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-replies">
+'.$sp.'' : '').'';},'flow_post_replies' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-replies">
 '.$sp.''.LCRun3::sec($cx, ((isset($in['replies']) && is_array($in)) ? $in['replies'] : null), $in, true, function($cx, $in)use($sp){return ''.LCRun3::hbch($cx, 'eachPost', array(array(((isset($cx['sp_vars']['root']['rootBlock']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['rootBlock'] : null),$in),array()), $in, false, function($cx, $in)use($sp){return '			<!-- eachPost nested replies -->
 '.$sp.'			'.LCRun3::ch($cx, 'post', array(array(((isset($cx['sp_vars']['root']['rootBlock']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['rootBlock'] : null),$in),array()), 'encq').'
 '.$sp.'';}).'';}).''.LCRun3::hbch($cx, 'ifCond', array(array(((isset($cx['sp_vars']['root']['rootBlock']['submitted']['postId']) && is_array($cx['sp_vars']['root']['rootBlock']['submitted'])) ? $cx['sp_vars']['root']['rootBlock']['submitted']['postId'] : null),'===',((isset($in['postId']) && is_array($in)) ? $in['postId'] : null)),array()), $in, false, function($cx, $in)use($sp){return ''.LCRun3::hbch($cx, 'ifCond', array(array(((isset($cx['sp_vars']['root']['rootBlock']['submitted']['action']) && is_array($cx['sp_vars']['root']['rootBlock']['submitted'])) ? $cx['sp_vars']['root']['rootBlock']['submitted']['action'] : null),'===','reply'),array()), $in, false, function($cx, $in)use($sp){return ''.LCRun3::p($cx, 'flow_reply_form', array(array($in),array()), '			').'';}).'';}).'</div>
