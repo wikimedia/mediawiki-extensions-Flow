@@ -99,8 +99,12 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 					$this->output( "flow_revision columns would become:\n" );
 					$this->output( var_export( $updatedColumns, true ) . "\n" );
 
-					$newContentUrl = $updatedColumns['rev_content'];
-					$newContent = ExternalStore::fetchFromURL( $newContentUrl );
+					$newContent = $updatedColumns[$schema['content']];
+					$newFlags = explode( ',', $updatedColumns[$schema['flags']] );
+					if ( in_array( 'external', $newFlags, true ) ) {
+						$newContent = $updateGenerator->read( $newContent, $newFlags );
+					}
+
 					if ( $newContent === $oldContent ) {
 						$this->output( "New external store content matches old external store content\n" );
 					} else {
