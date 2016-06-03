@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0efd9372_3e380e9b",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 687,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-06-03T17:44:44Z",
+      "side": 1,
+      "message": "Maybe this should be in a titleFromUuid method in WorkflowLoaderFactory (we already have uuidFromTitle, and there are various places that are already generating them in different ways).\n\nIt could default to pretty\u003dfalse for performance, but take a parameter to override it to true.",
+      "revId": "9b189d4e352a768e0c900e21af63928e38108075",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
