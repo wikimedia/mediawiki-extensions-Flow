@@ -147,6 +147,7 @@
 	"flow-error-protected-autoconfirmed-logged-out": "이 게시판은 보호되었습니다. 자동 인증된 사용자만 참여할 수 있습니다. 이유: $1",
 	"flow-error-protected-sysop-logged-in": "이 게시판은 보호되어 있습니다. 관리자만 참여할 수 있습니다. 이유: $1",
 	"flow-error-protected-sysop-logged-out": "이 게시판은 보호되었습니다. 관리자인 사용자만 참여할 수 있습니다. 이유: $1",
+	"flow-error-protected-unknown-reason": "알 수 없음",
 	"flow-error-missing-replyto": "\"ReplyTo\" 매개변수는 지원되지 않습니다. 이 매개변수는 \"답변\" 명령에 대해 필요합니다.",
 	"flow-error-missing-postId": "\"postId\" 매개변수를 지원하지 않습니다. 이 매개변수는 게시물을 조작하여야 합니다.",
 	"flow-error-invalid-postId": "\"postId\" 변수가 잘못되었습니다. 지정한 게시물($1)을 찾을 수 없습니다.",
