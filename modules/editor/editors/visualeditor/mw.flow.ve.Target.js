@@ -26,25 +26,20 @@
 
 	mw.flow.ve.Target.static.name = 'flow';
 
-	mw.flow.ve.Target.static.toolbarGroups = ve.copy( mw.flow.ve.Target.static.toolbarGroups );
-	// Exclude heading1 and heading2 from the format dropdown
-	mw.flow.ve.Target.static.toolbarGroups[ 1 ].exclude =
-		( mw.flow.ve.Target.static.toolbarGroups[ 1 ].exclude || [] )
-			.concat( [ 'heading1', 'heading2' ] );
-	// Also remove heading1 and heading2 from the demote list
-	mw.flow.ve.Target.static.toolbarGroups[ 1 ].demote =
-		mw.flow.ve.Target.static.toolbarGroups[ 1 ].demote &&
-		mw.flow.ve.Target.static.toolbarGroups[ 1 ].demote.filter( function ( tool ) {
-			return tool !== 'heading1' && tool !== 'heading2';
-		} );
-	// Exclude heading1, heading2 and flowSwitchEditor from the catch-all insert menu
-	mw.flow.ve.Target.static.toolbarGroups[ 5 ].exclude =
-		( mw.flow.ve.Target.static.toolbarGroups[ 5 ].exclude || [] )
-			.concat( [ 'heading1', 'heading2', 'flowSwitchEditor' ] );
-	// Remove the more/fewer functionality in the insert menu
-	delete mw.flow.ve.Target.static.toolbarGroups[ 5 ].forceExpand;
-	// Add flowMention after link
-	mw.flow.ve.Target.static.toolbarGroups.splice( 3, 0, { include: [ 'flowMention' ] } );
+	mw.flow.ve.Target.static.toolbarGroups = [
+		{
+			type: 'list',
+			icon: 'textStyle',
+			indicator: 'down',
+			title: OO.ui.deferMsg( 'visualeditor-toolbar-style-tooltip' ),
+			include: [ 'bold', 'italic' ],
+			forceExpand: [ 'bold', 'italic' ]
+		},
+
+		{ include: [ 'link' ] },
+
+		{ include: [ 'flowMention' ] }
+	];
 
 	// Allow pasting links
 	mw.flow.ve.Target.static.importRules = ve.copy( mw.flow.ve.Target.static.importRules );
