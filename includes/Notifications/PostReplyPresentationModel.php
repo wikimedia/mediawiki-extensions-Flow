@@ -81,6 +81,12 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 		}
 	}
 
+	public function getCompactHeaderMessage() {
+		$msg = parent::getCompactHeaderMessage();
+		$msg->params( $this->getContentSnippet() );
+		return $msg;
+	}
+
 	public function getBodyMessage() {
 		if ( !$this->isBundled() ) {
 			if ( $this->isUserTalkPage() ) {
