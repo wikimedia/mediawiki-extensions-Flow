@@ -250,6 +250,7 @@
 	"notification-bundle-header-flow-description-edited": "<strong>$1</strong> 的描述已被編輯了多次。",
 	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|檢視}}頁面",
 	"notification-header-flow-topic-resolved": "話題 \"<strong>$1</strong>\" 已解決。",
+	"notification-header-flow-topic-reopened": "話題 \"<strong>$1</strong>\" 已重新開啟。",
 	"notification-email-subject-flow-topic-resolved": "話題 \"<strong>$2</strong>\" 已解決。",
 	"notification-email-batch-body-flow-topic-resolved": "話題 \"<strong>$2</strong>\" 已解決。",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 於 <strong>$3</strong> {{GENDER:$1|建立了}}一個新話題。",
