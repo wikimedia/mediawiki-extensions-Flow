@@ -20,6 +20,7 @@ $newTopicNotification = array(
 	'bundle' => array(
 		'web' => true,
 		'email' => true,
+		'expandable' => true,
 	),
 	'bundle-type' => 'event',
 	'bundle-message' => 'flow-notification-newtopic-bundle',
@@ -88,6 +89,7 @@ $postReplyNotification = array(
 	'bundle' => array(
 		'web' => true,
 		'email' => true,
+		'expandable' => true,
 	),
 	'bundle-message' => 'flow-notification-reply-bundle',
 	'bundle-params' => array( 'agent', 'subject', 'title', 'post-permalink', 'agent-other-display', 'agent-other-count' ),
