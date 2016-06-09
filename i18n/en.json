@@ -273,6 +273,7 @@
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 has {{GENDER:$1|edited}} your <span class=\"plainlinks\">[$5 post]</span> on [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 and {{PLURAL:$5|one other|$5 others|100=99+ others}} {{GENDER:$1|edited}} a <span class=\"plainlinks\">[$4 post]</span> in \"$2\" on \"$3\".",
 	"notification-header-flow-new-topic-v2": "New topic created on <strong>$3</strong>: <bdi>\"<strong>$4</strong>\"</bdi>.",
+	"notification-compact-header-flow-new-topic": "\"<strong>$1</strong>\"",
 	"notification-bundle-header-flow-new-topic": "$1 new {{PLURAL:$1|topic|topics}} on <strong>$3</strong>.",
 	"notification-body-flow-new-topic-v2": "$1",
 	"notification-header-flow-new-topic-user-talk": "A new topic was created on <strong>your talk page</strong>: \"<strong>$4</strong>\".",

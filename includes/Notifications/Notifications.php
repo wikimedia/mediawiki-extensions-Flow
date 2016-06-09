@@ -28,6 +28,7 @@ $notifications = array(
 		'bundle' => array(
 			'web' => true,
 			'email' => true,
+			'expandable' => true,
 		),
 		'bundle-type' => 'event',
 		'bundle-message' => 'flow-notification-newtopic-bundle',
