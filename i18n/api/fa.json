@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dalba",
+			"Ladsgroup",
+			"Mjbmr",
+			"Quiddity"
+		]
+	},
+	"apihelp-flow+close-open-topic-param-reason": "دلیل برای قفل کردن یا باز کردن مبحث.",
+	"apihelp-flow+edit-header-param-content": "محتوا برای توضیحات",
+	"apihelp-flow+edit-header-param-format": "قالب توضیحات (wikitext|html)",
+	"apihelp-flow+edit-post-param-postId": "شناسه پست.",
+	"apihelp-flow+edit-post-param-content": "محتوا برای پست.",
+	"apihelp-flow+edit-title-param-content": "محتوا برای عنوان",
+	"apihelp-flow+lock-topic-example-1": "قفل [[Topic:S2tycnas4hcucw8w]]",
+	"apihelp-flow+new-topic-param-topic": "متن برای عنوان مبحث جدید.",
+	"apihelp-flow+reply-description": "پاسخ‌ها به یک پست.",
+	"apihelp-flow+reply-param-replyTo": "شماره پست برای پاسخ دادن.",
+	"apihelp-flow+reply-param-content": "متن یک پست جدید.",
+	"apihelp-flow+reply-param-format": "قالب پست جدید (wikitext|html)",
+	"apihelp-flow+view-post-description": "مشاهدهٔ پست.",
+	"apihelp-flow+view-post-param-postId": "شناسهٔ پست برای مشاهده.",
+	"apihelp-flow+view-topic-description": "مشاهدهٔ مبحث.",
+	"apihelp-flow+view-topiclist-description": "مشاهده فهرستی از مبحث‌ها.",
+	"apihelp-flow+view-topiclist-param-limit": "تعداد مبحث‌ها برای گرفتن.",
+	"apihelp-flow-parsoid-utils-example-1": "تبدیل ویکی‌متن <nowiki>'''فلان''' و ''بهمان''</nowiki> به HTML"
+}

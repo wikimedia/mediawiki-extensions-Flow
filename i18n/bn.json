@@ -145,7 +145,6 @@
 	"flow-terms-of-use-unlock-topic": "\"{{int:flow-topic-action-unlock-topic}}\" ক্লিক করার দ্বারা, আপনি এই উইকি ব্যবহারের শর্তাবলীর সাথে সম্মত হন।",
 	"flow": "ফ্লো",
 	"flow-special-enableflow-legend": "একটি নতুন পাতায় ফ্লো সক্রিয় করুন",
-	"apihelp-flow+view-topic-example-1": "[[Topic:S2tycnas4hcucw8w]] দেখুন",
 	"flow-edited": "সম্পাদিত",
 	"flow-edited-by": "$1 দ্বারা সম্পাদিত",
 	"flow-previous-diff": "← পুরনো সম্পাদনা",

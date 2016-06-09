@@ -85,7 +85,6 @@
 	"flow-topic-action-restore-topic": "Repristine l'argomende",
 	"flow-topic-action-undo-moderation": "Annulle",
 	"flow-error-http": "Ha assute 'n'errore condattanne 'u server.",
-	"flow-error-other": "Ha assute 'n'errore inaspettate.",
 	"flow-error-missing-summary": "Tu a confermà 'nu riepiloghe.",
 	"flow-error-missing-header-content": "Tu a confermà 'na descrizione.",
 	"flow-edit-title-submit": "Cange 'u titole",

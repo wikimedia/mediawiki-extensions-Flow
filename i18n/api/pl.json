@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chrumps",
+			"Quiddity",
+			"Tar Lócesilion",
+			"The Polish"
+		]
+	},
+	"apihelp-flow+edit-header-param-format": "Format opisu (wikitext|html)",
+	"apihelp-flow+edit-post-param-postId": "ID wiadomości.",
+	"apihelp-flow+lock-topic-description": "Zabezpiecz albo odbezpiecz wątek.",
+	"apihelp-flow+lock-topic-param-reason": "Powód zabezpieczenia lub odbezpieczenia wątku. Uwaga, istniejący na wiki program Flow używa opcji „Oznaczony jako załatwiony” oraz nadaje opcjonalne informacje jako jego podsumowanie.",
+	"apihelp-flow+moderate-post-param-reason": "Powód moderacji.",
+	"apihelp-flow+moderate-post-param-postId": "ID wiadomości do moderacji.",
+	"apihelp-flow+moderate-topic-param-reason": "Powód moderacji.",
+	"apihelp-flow+new-topic-description": "Tworzy nowy wątek Flow w danym cyklu pracy.",
+	"apihelp-flow+reply-description": "Odpowiedzi na post.",
+	"apihelp-flow+view-post-description": "Pokaż post",
+	"apihelp-flow+view-post-history-description": "Zobacz historię zmian tej wiadomości.",
+	"apihelp-flow+view-topic-description": "Pokaż wątek",
+	"apihelp-flow+view-topic-example-1": "Zobacz [[Topic:S2tycnas4hcucw8w]]",
+	"apihelp-flow+view-topiclist-description": "Wyświetl listę wątków"
+}

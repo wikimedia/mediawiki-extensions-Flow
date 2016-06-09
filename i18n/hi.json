@@ -85,8 +85,6 @@
 	"flow-special-type-post": "पोस्ट",
 	"flow-special-uuid": "UUID",
 	"flow-special-enableflow-header": "प्रवाह-पट्ट की प्रारम्भिक शीर्षणी (विकिपाठ)",
-	"apihelp-flow+edit-post-param-postId": "पोस्ट आई डी",
-	"apihelp-flow+view-post-description": "पोस्ट देखेँ",
 	"flow-undo": "पूर्ववत करें",
 	"flow-undo-latest-revision": "सद्य अवतरण",
 	"flow-undo-your-text": "आपका पाठ",

@@ -133,8 +133,6 @@
 	"flow-recent-topics": "المواضيع النشطة مؤخرا",
 	"flow": "سريان",
 	"flow-importer-wt-converted-template-content": "النقاش السابق تمت أرشفته في <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> بتاريخ {{#time: Y-m-d|{{{date}}}}}.",
-	"apihelp-flow+edit-post-param-postId": "معرف المنشور.",
-	"apihelp-flow+edit-title-param-content": "محتوى العنوان.",
 	"flow-edited": "عدلت",
 	"flow-previous-diff": "→ التعديل الأقدم",
 	"flow-next-diff": "التعديل الأحدث ←",
