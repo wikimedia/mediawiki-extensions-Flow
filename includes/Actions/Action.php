@@ -35,6 +35,10 @@ class FlowAction extends Action {
 		$this->actionName = $actionName;
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	/**
 	 * @return string
 	 */
