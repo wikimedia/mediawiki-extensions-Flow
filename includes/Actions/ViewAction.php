@@ -12,6 +12,10 @@ class ViewAction extends FlowAction {
 		parent::__construct( $page, $context, 'view' );
 	}
 
+	public function doesWrites() {
+		return false;
+	}
+
 	public function showForAction( $action, OutputPage $output = null ) {
 		parent::showForAction( $action, $output );
 
