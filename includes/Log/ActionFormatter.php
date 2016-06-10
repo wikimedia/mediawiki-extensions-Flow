@@ -8,6 +8,7 @@ use Flow\Data\ManagerGroup;
 use Flow\Model\UUID;
 use Flow\Conversion\Utils;
 use Flow\Repository\TreeRepository;
+use Flow\Templating;
 use Flow\UrlGenerator;
 use Message;
 
@@ -18,10 +19,23 @@ class ActionFormatter extends \LogFormatter {
 	static $uuids = array();
 
 	/**
+	 * @var RevisionActionPermissions
+	 */
+	protected $permissions;
+
+	/**
+	 * @var Templating
+	 */
+	protected $templating;
+
+	/**
 	 * @param \LogEntry $entry
 	 */
 	public function __construct( \LogEntry $entry ) {
 		parent::__construct( $entry );
+
+		$this->permissions = Container::get( 'permissions' );
+		$this->templating = Container::get( 'templating' );
 
 		$params = $this->entry->getParameters();
 		// serialized topicId or postId can be stored
@@ -86,22 +100,45 @@ class ActionFormatter extends \LogFormatter {
 			$title = $anchor->resolveTitle();
 		}
 
+		$rootLastRevision = $root->getLastRevision();
+
 		// Give grep a chance to find the usages:
-		// logentry-delete-flow-delete-post, logentry-delete-flow-restore-post,
-		// logentry-suppress-flow-restore-post, logentry-suppress-flow-suppress-post,
-		// logentry-delete-flow-delete-topic, logentry-delete-flow-restore-topic,
-		// logentry-suppress-flow-restore-topic, logentry-suppress-flow-suppress-topic,
-		$message = $this->msg( "logentry-$type-$action" )
+		//
+		// A few of the -topic-title-not-visible are not reachable with the current
+		// config (since people looking at the suppression log can see suppressed
+		// content), but are included to make it less brittle.
+		//
+		// logentry-delete-flow-delete-post, logentry-delete-flow-delete-post-topic-title-not-visible,
+		// logentry-delete-flow-restore-post, logentry-delete-flow-restore-post-topic-title-not-visible,
+		// logentry-suppress-flow-restore-post, logentry-suppress-flow-restore-post-topic-title-not-visible,
+		// logentry-suppress-flow-suppress-post, logentry-suppress-flow-suppress-post-topic-title-not-visible,
+		// logentry-delete-flow-delete-topic, logentry-delete-flow-delete-topic-topic-title-not-visible,
+		// logentry-delete-flow-restore-topic, logentry-delete-flow-restore-topic-topic-title-not-visible,
+		// logentry-suppress-flow-restore-topic, logentry-suppress-flow-restore-topic-topic-title-not-visible,
+		// logentry-suppress-flow-suppress-topic, logentry-suppress-flow-suppress-topic-topic-title-not-visible,
+		// logentry-lock-flow-lock-topic, logentry-lock-flow-lock-topic-topic-title-not-visible
+		// logentry-lock-flow-restore-topic, logentry-lock-flow-restore-topic-topic-title-not-visible,
+		$messageKey = "logentry-$type-$action";
+		$isTopicTitleVisible = $this->permissions->isAllowed( $rootLastRevision, 'view-topic-title' );
+
+		if ( !$isTopicTitleVisible ) {
+			$messageKey .= '-topic-title-not-visible';
+		}
+
+		$message = $this->msg( $messageKey )
 			->params( array(
 				Message::rawParam( $this->getPerformerElement() ),
 				$this->entry->getPerformer()->getName(),
-				$title, // link to topic
-				$title->getFullUrl(), // link to topic, higlighted post
 			) );
 
-		// I don't think this is an actual security issue, but this should use Templating->getContent: T119234
-		// topic title
-		$message->plaintextParams( $root->getLastRevision()->getContent( 'topic-title-plaintext' ) );
+		if ( $isTopicTitleVisible ) {
+			$message->params( array(
+				$title, // Title of topic
+				$title->getFullUrl(), // Full URL of topic, with highlighted post if applicable
+			) );
+
+			$message->plaintextParams( $this->templating->getContent( $rootLastRevision, 'topic-title-plaintext' ) );
+		}
 
 		$message->params( $root->getWorkflow()->getOwnerTitle() ); // board title object
 
