@@ -649,6 +649,11 @@
 			return;
 		}
 
+		// Don't launch a summary editor when there is one already
+		if ( $summaryContainer.find( '.flow-ui-editTopicSummaryWidget' ).length ) {
+			return;
+		}
+
 		// TODO: This should be managed by the EditTopicSummary widget
 		if ( action === 'lock' || action === 'unlock' ) {
 			options = {
