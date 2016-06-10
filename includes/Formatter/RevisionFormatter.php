@@ -943,7 +943,7 @@ class RevisionFormatter {
 			}
 
 			$root = $revision->getRootPost();
-			if ( !$this->permissions->isAllowed( $root, 'view' ) ) {
+			if ( !$this->permissions->isAllowed( $root, 'view-topic-title' ) ) {
 				return '';
 			}
 
@@ -958,7 +958,8 @@ class RevisionFormatter {
 
 			/** @var PostRevision $post */
 			$post = $revision->getCollection()->getPost()->getLastRevision();
-			if ( !$this->permissions->isAllowed( $post, 'view' ) ) {
+			$permissionAction = $post->isTopicTitle() ? 'view-topic-title' : 'view';
+			if ( !$this->permissions->isAllowed( $post, $permissionAction ) ) {
 				return '';
 			}
 

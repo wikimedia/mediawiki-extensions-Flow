@@ -128,7 +128,11 @@ class Templating {
 			throw new InvalidInputException( 'Invalid format: ' . $format );
 		}
 
-		$allowed = $this->permissions->isAllowed( $revision, 'view' );
+		$mainPermissionAction = ( $revision instanceof PostRevision && $revision->isTopicTitle() ) ?
+			'view-topic-title' :
+			'view';
+
+		$allowed = $this->permissions->isAllowed( $revision, $mainPermissionAction );
 		// Posts require view access to the topic title as well
 		if ( $allowed && $revision instanceof PostRevision && !$revision->isTopicTitle() ) {
 			$allowed = $this->permissions->isAllowed(
