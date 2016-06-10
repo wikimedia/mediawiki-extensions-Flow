@@ -3,7 +3,6 @@
 $notificationTemplate = array(
 	'category' => 'flow-discussion',
 	'group' => 'other',
-	'section' => 'message',
 	'formatter-class' => 'Flow\NotificationFormatter',
 	'immediate' => false, // Default
 );
@@ -155,6 +154,7 @@ $topicResolvedNotification = array(
 
 $notifications = array(
 	'flow-new-topic' => array(
+		'section' => 'message',
 		'user-locators' => array(
 			'EchoUserLocator::locateUsersWatchingTitle',
 		),
@@ -164,6 +164,7 @@ $notifications = array(
 		),
 	) + $newTopicNotification,
 	'flowusertalk-new-topic' => array(
+		'section' => 'alert',
 		'user-locators' => array(
 			'EchoUserLocator::locateTalkPageOwner',
 		),
@@ -172,6 +173,7 @@ $notifications = array(
 		),
 	) + $newTopicNotification,
 	'flow-post-reply' => array(
+		'section' => 'message',
 		'user-locators' => array(
 			'Flow\\NotificationsUserLocator::locateUsersWatchingTopic',
 		),
@@ -181,6 +183,7 @@ $notifications = array(
 		),
 	) + $postReplyNotification,
 	'flowusertalk-post-reply' => array(
+		'section' => 'alert',
 		'user-locators' => array(
 			'EchoUserLocator::locateTalkPageOwner',
 		),
@@ -189,6 +192,7 @@ $notifications = array(
 		),
 	) + $postReplyNotification,
 	'flow-post-edited' => array(
+		'section' => 'alert',
 		'user-locators' => array(
 			'Flow\\NotificationsUserLocator::locatePostAuthors',
 		),
@@ -198,6 +202,7 @@ $notifications = array(
 		),
 	) + $postEditedNotification,
 	'flowusertalk-post-edited' => array(
+		'section' => 'alert',
 		'user-locators' => array(
 			'EchoUserLocator::locateTalkPageOwner',
 		),
@@ -206,6 +211,7 @@ $notifications = array(
 		),
 	) + $postEditedNotification,
 	'flow-topic-renamed' => array(
+		'section' => 'message',
 		'user-locators' => array(
 			'Flow\\NotificationsUserLocator::locateUsersWatchingTopic',
 		),
@@ -215,6 +221,7 @@ $notifications = array(
 		),
 	) + $topicRenamedNotification,
 	'flowusertalk-topic-renamed' => array(
+		'section' => 'alert',
 		'user-locators' => array(
 			'EchoUserLocator::locateTalkPageOwner',
 		),
@@ -223,6 +230,7 @@ $notifications = array(
 		),
 	) + $topicRenamedNotification,
 	'flow-summary-edited' => array(
+		'section' => 'message',
 		'user-locators' => array(
 			'Flow\\NotificationsUserLocator::locateUsersWatchingTopic',
 		),
@@ -232,6 +240,7 @@ $notifications = array(
 		),
 	) + $summaryEditedNotification,
 	'flowusertalk-summary-edited' => array(
+		'section' => 'alert',
 		'user-locators' => array(
 			'EchoUserLocator::locateTalkPageOwner',
 		),
@@ -240,6 +249,7 @@ $notifications = array(
 		),
 	) + $summaryEditedNotification,
 	'flow-description-edited' => array(
+		'section' => 'message',
 		'user-locators' => array(
 			'EchoUserLocator::locateUsersWatchingTitle',
 		),
@@ -249,6 +259,7 @@ $notifications = array(
 		),
 	) + $descriptionEditedNotification,
 	'flowusertalk-description-edited' => array(
+		'section' => 'alert',
 		'user-locators' => array(
 			'EchoUserLocator::locateTalkPageOwner',
 		),
@@ -258,6 +269,7 @@ $notifications = array(
 	) + $descriptionEditedNotification,
 	'flow-mention' => array(
 		'presentation-model' => 'Flow\\MentionPresentationModel',
+		'section' => 'alert',
 		'user-locators' => array(
 			'Flow\\NotificationsUserLocator::locateMentionedUsers',
 		),
@@ -275,7 +287,7 @@ $notifications = array(
 	) + $notificationTemplate,
 	'flow-enabled-on-talkpage' => array(
 		'presentation-model' => 'Flow\\FlowEnabledOnTalkpagePresentationModel',
-		'section' => null,
+		'section' => 'message',
 		'user-locators' => array(
 			'EchoUserLocator::locateTalkPageOwner'
 		),
@@ -292,6 +304,7 @@ $notifications = array(
 		'icon' => 'chat',
 	) + $notificationTemplate,
 	'flow-topic-resolved' => array(
+		'section' => 'message',
 		'user-locators' => array(
 			'Flow\\NotificationsUserLocator::locateUsersWatchingTopic',
 		),
@@ -300,6 +313,7 @@ $notifications = array(
 		),
 	) + $topicResolvedNotification,
 	'flowusertalk-topic-resolved' => array(
+		'section' => 'alert',
 		'user-locators' => array(
 			'EchoUserLocator::locateTalkPageOwner',
 		),
