@@ -21,6 +21,8 @@ use Flow\Data\Listener\RecentChangesListener;
  *     no one can perform the action described by that key.
  * * root-permissions: similar to 'permissions', but applies to the last revision
  *   of the root post (= the topic) for the revision the action is executed against.
+ *   If root-permissions is omitted entirely, it doesn't affect what is allowed.
+ *   However, if any keys are set, omitted keys are treated as prohibited.
  * * core-delete-permissions: array of rights, where any of those rights will
  *   give you permission to do the action on a deleted board (isAllowedAny).
  * * links: the set of read links to generate and return in API responses
@@ -809,6 +811,7 @@ $wgFlowActions = array(
 		),
 		'root-permissions' => array(
 			PostRevision::MODERATED_NONE => '',
+			PostRevision::MODERATED_HIDDEN => '',
 			PostRevision::MODERATED_LOCKED => '',
 		),
 		'core-delete-permissions' => array( 'deletedtext' ),
@@ -816,6 +819,32 @@ $wgFlowActions = array(
 		'actions' => array(), // view is not a recorded change type, no actions will be requested
 		'history' => array(), // views don't generate history
 		'handler-class' => 'Flow\Actions\FlowAction',
+	),
+
+	// This is only used when we specifically want to see the topic title.  If we're
+	// cascading from a post (to view a post we need to be able to view the topic),
+	// we'll use 'view' for both the post and topic root.  Unprivileged users shouldn't
+	// be able to view a post in a deleted topic, but should be able to view the topic
+	// title.
+	'view-topic-title' => array(
+		'performs-writes' => false,
+		'log_type' => false, // don't log views
+		'rc_insert' => false, // won't even be called, actually; only for writes
+		'permissions' => array(
+			// Everyone can see topic titles on existent boards, unless the
+			// version you're viewing is suppressed, or the most recent version
+			// is
+			PostRevision::MODERATED_NONE => '',
+			PostRevision::MODERATED_HIDDEN => '',
+			PostRevision::MODERATED_LOCKED => '',
+			PostRevision::MODERATED_DELETED => '',
+			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
+		),
+		'core-delete-permissions' => array( 'deletedtext' ),
+		'links' => array(), // @todo
+		'actions' => array(), // view is not a recorded change type, no actions will be requested
+		'history' => array(), // views don't generate history
+		'modules' => array(),
 	),
 
 	// Actions not tied to a particular revision change_type
@@ -847,8 +876,7 @@ $wgFlowActions = array(
 		'handler-class' => 'Flow\Actions\PurgeAction',
 	),
 
-	// log & all other formatters have same config as history
-	'log' => 'history',
+	// Other formatters have the same config as history
 	'recentchanges' => 'history',
 	'contributions' => 'history',
 	'checkuser' => 'history',
