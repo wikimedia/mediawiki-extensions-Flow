@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Bijay chaurasia"
+			"Bijay chaurasia",
+			"बिप्लब आनन्द"
 		]
 	},
 	"flow-edit-header-link": "संचिका वर्णन",
 	"flow-edit-header-submit": "संचिका वर्णन",
-	"flow-undo-edit-header": "वर्णन सम्पादनकरु"
+	"flow-undo-edit-header": "वर्णन सम्पादन करी"
 }

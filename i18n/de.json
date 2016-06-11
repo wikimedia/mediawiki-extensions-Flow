@@ -12,7 +12,8 @@
 			"Nnemo",
 			"Predatorix",
 			"Quiddity",
-			"TMg"
+			"TMg",
+			"ThePiscin"
 		]
 	},
 	"enableflow": "Flow aktivieren",
@@ -247,13 +248,13 @@
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 hat deinen <span class=\"plainlinks\">[$5 Beitrag]</span> auf [[$3|$4]] {{GENDER:$1|bearbeitet}}.",
 	"flow-notification-edit-bundle": "$1 und {{PLURAL:$5|ein anderer|$5 andere|100=mehr als 99 andere}} {{GENDER:$1|bearbeiteten}} einen <span class=\"plainlinks\">[$4 Beitrag]</span> in „$2“ auf „$3“.",
 	"notification-header-flow-new-topic-v2": "Neues Thema auf <strong>$3</strong> erstellt: <bdi>„<strong>$4</strong>“</bdi>.",
-	"notification-bundle-header-flow-new-topic": "{{PLURAL:$1|Ein neues Thema|$1 neue Themen|100=Mehr als 99 neue Themen}} auf <strong>$3</strong>.",
+	"notification-bundle-header-flow-new-topic": "{{PLURAL:$1|Ein neues Thema|$1 neue Themen|100=Über 99 neue Themen}} auf <strong>$3</strong>.",
 	"notification-header-flow-new-topic-user-talk": "Ein neues Thema wurde auf <strong>deiner Diskussionsseite</strong> erstellt: „<strong>$4</strong>“.",
-	"notification-bundle-header-flow-new-topic-user-talk": "{{PLURAL:$1|Ein neues Thema|$1 neue Themen|100=Mehr als 99 neue Themen}} auf <strong>deiner Diskussionsseite</strong>.",
+	"notification-bundle-header-flow-new-topic-user-talk": "{{PLURAL:$1|Ein neues Thema|$1 neue Themen|100=Über 99 neue Themen}} auf <strong>deiner Diskussionsseite</strong>.",
 	"notification-header-flow-post-reply": "$1 {{GENDER:$2|antwortete}} in „<strong>$4</strong>“.",
-	"notification-bundle-header-flow-post-reply-v2": "{{PLURAL:$1|Eine neue Antwort|$1 neue Antworten|100=Mehr als 99 neue Antworten}} in „<strong>$3</strong>“.",
+	"notification-bundle-header-flow-post-reply-v2": "{{PLURAL:$1|Eine neue Antwort|$1 neue Antworten|100=Über 99 neue Antworten}} in „<strong>$3</strong>“.",
 	"notification-header-flow-post-reply-user-talk": "$1 {{GENDER:$2|hinterließ}} eine Antwort auf <strong>deiner Diskussionsseite</strong> in „<strong>$4</strong>“.",
-	"notification-bundle-header-flow-post-reply-user-talk": "{{PLURAL:$1|Eine neue Antwort|$1 neue Antworten|100=Mehr als 99 neue Antworten}} auf <strong>deiner Diskussionsseite</strong> in „<strong>$3</strong>“.",
+	"notification-bundle-header-flow-post-reply-user-talk": "{{PLURAL:$1|Eine neue Antwort|$1 neue Antworten|100=Über 99 neue Antworten}} auf <strong>deiner Diskussionsseite</strong> in „<strong>$3</strong>“.",
 	"notification-header-flow-post-edited-v2": "{{GENDER:$2|Dein}} Beitrag in „<strong>$1</strong>“ wurde bearbeitet.",
 	"notification-bundle-header-flow-post-edited-v2": "{{GENDER:$2|Dein}} Beitrag in „<strong>$1</strong>“ wurde mehrere Male bearbeitet.",
 	"notification-header-flow-post-edited-user-talk": "Ein Beitrag in „<strong>$1</strong>“ auf <strong>{{GENDER:$2|deiner}} Diskussionsseite</strong> wurde bearbeitet.",

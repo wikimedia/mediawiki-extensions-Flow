@@ -6,5 +6,7 @@
 		]
 	},
 	"flow-summary-edited": "دییشدیرمه قیساسینی سوْن دفعه $1 {{GENDER:$1|دییشدیرمیشدیر}}",
-	"flow-notification-mention-email-subject": "$1 {{GENDER:$3|سیزه}}  «$2» ده {{GENDER:$1|ایشاره ائتدی}}"
+	"flow-notification-mention-email-subject": "$1 {{GENDER:$3|سیزه}}  «$2» ده {{GENDER:$1|ایشاره ائتدی}}",
+	"group-flow-bot": "جریان روباتلاری",
+	"grouppage-flow-bot": "Project：جریان روباتلاری"
 }
