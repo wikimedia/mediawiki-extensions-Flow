@@ -359,7 +359,7 @@
 	"flow-moderation-placeholder-unhide-topic": "{{GENDER:$3|Podaj powód}} odkrywania tego wątku.",
 	"flow-topic-permalink-warning": "Ten wątek rozpoczęto na [$2 $1]",
 	"flow-topic-permalink-warning-user-board": "Ten wątek rozpoczęto [na stronie $2 {{GENDER:$1|$1}}]",
-	"flow-revision-permalink-warning-post": "To jest bezpośredni link do pojedynczej wersji tego posta. Wersja jest z $1. Możesz [$5 porównać różnice z poprzednią wersją] lub zobaczyć inne edycje na [$4 historii strony].",
+	"flow-revision-permalink-warning-post": "To jest bezpośredni link do pojedynczej wersji tego postu. Wersja jest z $1. Możesz [$5 porównać różnice z poprzednią wersją] lub zobaczyć inne edycje w [$4 historii strony].",
 	"flow-revision-permalink-warning-post-first": "To jest bezpośredni link do pierwszej wersji tego posta. Możesz zobaczyć późniejsze wersje na [$4 historii strony].",
 	"flow-revision-permalink-warning-postsummary": "To jest bezpośredni link do pojedynczej wersji streszczenia tego posta. Wersja jest z $1. Możesz [$5 porównać różnice z poprzednią wersją] lub zobaczyć inne edycje na [$4 historii strony].",
 	"flow-revision-permalink-warning-postsummary-first": "To jest bezpośredni link do pierwszej wersji streszczenia tego posta. Możesz zobaczyć późniejsze wersje na [$4 historii strony].",
