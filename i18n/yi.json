@@ -45,7 +45,7 @@
 	"flow-comment-deleted": "אויסגעמעקט הערה",
 	"flow-comment-hidden": "באהאלטענע הערה",
 	"flow-comment-moderated": "מאדערירטע הערה",
-	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 און $5 {{PLURAL:$6|אן אנדערער|אנדערע}} {{GENDER:$1|האבן זיך אנגערופֿן}} דעם <strong>$3</strong>.",
+	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 ועוד {{PLURAL:$5|איין אנדערער|$5 אנדערע|מער ווי 99 אנדערע}} {{GENDER:$1|האבן געענטפערט}} ביי <strong>$3</strong>.",
 	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$2|האט דערמאנט}} {{GENDER:$4|אייך}} אויף <strong>$5</strong>.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|האט געשאפן}} א   נײַע טעמע </span> אויף <strong>$3</strong>.",
 	"flow-notification-link-text-view-topics": "באקוקן טעמעס",
