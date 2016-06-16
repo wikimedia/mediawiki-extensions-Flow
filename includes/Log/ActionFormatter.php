@@ -9,18 +9,22 @@ use Flow\Model\UUID;
 use Flow\Conversion\Utils;
 use Flow\Repository\TreeRepository;
 use Flow\UrlGenerator;
+
+use LogEntry;
+use LogFormatter;
+use LogPage;
 use Message;
 
-class ActionFormatter extends \LogFormatter {
+class ActionFormatter extends LogFormatter {
 	/**
 	 * @var UUID[]
 	 */
 	static $uuids = array();
 
 	/**
-	 * @param \LogEntry $entry
+	 * @param LogEntry $entry
 	 */
-	public function __construct( \LogEntry $entry ) {
+	public function __construct( LogEntry $entry ) {
 		parent::__construct( $entry );
 
 		$params = $this->entry->getParameters();
@@ -121,8 +125,12 @@ class ActionFormatter extends \LogFormatter {
 	 * @return string
 	 */
 	public function getActionText() {
-		$text = $this->getActionMessage();
-		return $this->plaintext ? Utils::htmlToPlaintext( $text ) : $text;
+		if ( $this->canView( LogPage::DELETED_ACTION ) ) {
+			$text = $this->getActionMessage();
+			return $this->plaintext ? Utils::htmlToPlaintext( $text ) : $text;
+		} else {
+			return parent::getActionText();
+		}
 	}
 
 	/**
