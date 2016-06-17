@@ -76,6 +76,7 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 			$clusterConditions[] = $schema['content'] . $dbr->buildLike( "DB://$cluster/", $dbr->anyString() );
 		}
 		$iterator->addConditions( array(
+				$schema['wiki'] => wfWikiID(),
 				$schema['flags'] . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ),
 				$dbr->makeList( $clusterConditions, LIST_OR ),
 		) );
@@ -276,6 +277,7 @@ class FlowExternalStoreMoveCluster extends ExternalStoreMoveCluster {
 			'pk' => 'rev_id',
 			'content' => 'rev_content',
 			'flags' => 'rev_flags',
+			'wiki' => 'rev_user_wiki',
 		);
 	}
 }
