@@ -378,7 +378,7 @@
 	"action-flow-create-board": "ליצור לוחות זרימה בכל מקום",
 	"right-flow-create-board": "יצירת לוחות זרימה בכל מקום",
 	"right-flow-hide": "הסתרת נושאים ורשומות בזרימה",
-	"right-flow-lock": "סימון נושאים בזרימה בתור פתורים",
+	"right-flow-lock": "סימון נושאים בזרימה כ\"פתורים\"",
 	"right-flow-delete": "מחיקת נושאים ורשומות בזרימה",
 	"right-flow-edit-post": "עריכה רשומות זרימה של משתמשים אחרים",
 	"right-flow-suppress": "העלמת גרסאות בזרימה",

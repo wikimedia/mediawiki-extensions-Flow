@@ -222,7 +222,7 @@
 	"flow-comment-moderated": "नेमस्त केलेले अभिप्राय",
 	"flow-last-modified": "$1 बद्दल शेवटचा बदल",
 	"flow-workflow": "कार्यप्रवाह",
-	"notification-bundle-header-flow-new-topic": "'''$3''' वर $1 नविन {{PLURAL:$1|विषय}}",
+	"notification-bundle-header-flow-new-topic": "<strong>$3</strong> वर {{PLURAL:$1|एक नविन विषय|$1 नविन विषय|100=99+ नविन विषय}}",
 	"notification-header-flow-enabled-on-talkpage": "{{GENDER:$2|आपल्या}} चर्चा पानासाठी नविन चर्चा प्रणाली सक्षम केली आहे",
 	"flow-notification-link-text-view-post": "टपालन बघा",
 	"flow-notification-link-text-view-topic": "विषय बघा",
