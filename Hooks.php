@@ -1590,17 +1590,6 @@ class FlowHooks {
 	}
 
 	/**
-	 * Starts the transaction for the undelete operation
-	 *
-	 * @param PageArchive $archive Undeletion helper class
-	 * @param Title $title Title of page about to be (partially) undeleted
-	 */
-	public static function onUndeleteFormUndelete( $archive, $title ) {
-		$boardMover = Container::get( 'board_mover' );
-		$boardMover->begin();
-	}
-
-	/**
 	 * @param Title $title Title corresponding to the article restored
 	 * @param Revision $revision Revision just undeleted
 	 * @param string $oldPageId Old page ID stored with that revision when it was in the archive table
@@ -1657,7 +1646,6 @@ class FlowHooks {
 			// open a database transaction and prepare everything for the move, but
 			// don't commit yet. That is done below in self::onTitleMoveCompleting
 			$boardMover =Container::get( 'board_mover' );
-			$boardMover->begin();
 			$boardMover->move( $oldTitle->getArticleID(), $bogusTitle );
 		}
 

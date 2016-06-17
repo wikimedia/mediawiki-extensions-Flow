@@ -42,11 +42,7 @@ class BoardMover {
 	/**
 	 * Starts a transaction on the Flow database.
 	 */
-	public function begin() {
-		if ( $this->dbw !== null ) {
-			throw new FlowException( "Already started transaction" );
-		}
-
+	protected function begin() {
 		// All reads must go through master to help ensure consistency
 		$this->dbFactory->forceMaster();
 
@@ -69,7 +65,7 @@ class BoardMover {
 	 */
 	public function move( $oldPageId, Title $newPage ) {
 		if ( $this->dbw === null ) {
-			throw new FlowException( "You must call BoardMover->begin() before calling BoardMover->move()" );
+			$this->begin();
 		}
 
 		// @todo this loads every topic workflow this board has ever seen,
@@ -124,7 +120,7 @@ class BoardMover {
 	 */
 	public function commit() {
 		if ( $this->dbw === null ) {
-			throw new FlowException( 'Board move not prepared.');
+			return;
 		}
 
 		try {
