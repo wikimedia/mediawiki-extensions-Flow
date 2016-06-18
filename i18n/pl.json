@@ -388,7 +388,7 @@
 	"flow-no-more-fwd": "Nie ma starszych wątków",
 	"flow-newest-topics": "Najnowsze wątki",
 	"flow-recent-topics": "Wątki ostatnio aktywne",
-	"flow-sorting-tooltip-newest": "Teraz {{GENDER:|czytasz}} wątki w kolejności od najnowszego. Kliknij, aby aby wybrać inną kolejność sortowania.",
+	"flow-sorting-tooltip-newest": "Teraz {{GENDER:|czytasz}} wątki w kolejności od najnowszego. Kliknij, aby wybrać inną kolejność sortowania.",
 	"flow-sorting-tooltip-recent": "Obecnie {{GENDER:|czytasz}} wątki według ostatniej aktywności. Kliknij, aby wybrać inną kolejność sortowania.",
 	"flow-toggle-small-topics": "Przełącz się na widok małych nagłówków",
 	"flow-toggle-topics": "Przełącz się na widok samych nagłówków",
