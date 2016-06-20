@@ -78,7 +78,7 @@ class BoardMover {
 		// revisit this.
 		/** @var Workflow[] $found */
 		$found = $this->storage->find( 'Workflow', array(
-			'workflow_wiki' => wfWikiId(),
+			'workflow_wiki' => wfWikiID(),
 			'workflow_page_id' => $oldPageId,
 		) );
 		if ( !$found ) {
@@ -135,5 +135,9 @@ class BoardMover {
 			$this->cache->rollback();
 			throw $e;
 		}
+
+		// reset dbw (which is used to check if a move transaction is already in
+		// progress, which is no longer the case)
+		$this->dbw = null;
 	}
 }
