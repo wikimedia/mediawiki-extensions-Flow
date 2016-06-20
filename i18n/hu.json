@@ -131,6 +131,8 @@
 	"flow-error-missing-title": "A témának nincs címe. Ez szükséges az elmentéséhez.",
 	"flow-error-parsoid-failure": "A tartalom feldolgozása nem lehetséges egy Parsoid-hiba miatt.",
 	"flow-error-protected-unknown-reason": "Ismeretlen",
+	"flow-error-not-allowed-hide": "A témát elrejtették.",
+	"flow-error-not-allowed-reply-to-hide-topic": "Nem válaszolhatsz, mert a téma rejtett.",
 	"flow-error-not-allowed-delete": "A témát törölték.",
 	"flow-error-not-allowed-reply-to-delete-topic": "Nem válaszolhatsz, mert a témát törölték.",
 	"flow-error-not-allowed-suppress": "A témát törölték.",
