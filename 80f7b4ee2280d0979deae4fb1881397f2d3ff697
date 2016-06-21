@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0efd9372_ba4dd541",
+        "filename": "includes/Import/LiquidThreadsApi/Objects.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-06-21T15:40:25Z",
+      "side": 1,
+      "message": "What does this have to do with anything?",
+      "revId": "80f7b4ee2280d0979deae4fb1881397f2d3ff697",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
