@@ -640,7 +640,15 @@ class TalkpageImportOperation {
 			return;
 		}
 
-		$existingId = $pageState->getImportedId( $importHeader );
+		/*
+		 * We don't need $pageState->getImportedId( $importHeader ) here, there
+		 * can only be 1 header per workflow and we already know the workflow,
+		 * might as well query it from the workflow instead of using the id from
+		 * the source store.
+		 * reason I prefer not to use source store is that a header import is
+		 * incomplete (it doesn't import full history, just the last revision.
+		 */
+		$existingId = $pageState->boardWorkflow->getId();
 		if ( $existingId && $pageState->getTopRevision( 'Header', $existingId ) ) {
 			$pageState->logger->info( 'header previously imported' );
 			return;

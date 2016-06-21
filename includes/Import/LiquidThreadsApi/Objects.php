@@ -310,7 +310,7 @@ class ImportSummary extends PageRevisionedObject implements IImportSummary {
 
 class ImportRevision implements IObjectRevision {
 	/** @var IImportObject **/
-	protected $parentObject;
+	protected $parent;
 
 	/** @var array **/
 	protected $apiResponse;
@@ -420,7 +420,7 @@ class MovedImportRevision extends ImportRevision {
 // Represents a revision the script makes on its own behalf, using a script user
 class ScriptedImportRevision implements IObjectRevision {
 	/** @var IImportObject **/
-	protected $parentObject;
+	protected $parent;
 
 	/** @var User */
 	protected $destinationScriptUser;
