@@ -44,22 +44,10 @@
 		var isMobileTarget = ( mw.config.get( 'skin' ) === 'minerva' );
 
 		return !!(
-			mw.loader.getState( 'ext.visualEditor.core' ) &&
-
 			!isMobileTarget &&
-
-			// ES5 support, from es5-skip.js
-			( function () {
-				'use strict';
-				return !this && !!Function.prototype.bind;
-			}() ) &&
-
-			// ContentEditable support
-			'contentEditable' in document.createElement( 'div' ) &&
-
-			// Since VE commit e2fab2f1ebf2a28f18b8ead08c478c4fc95cd64e, SVG is required
-			document.createElementNS &&
-			document.createElementNS( 'http://www.w3.org/2000/svg', 'svg' ).createSVGRect
+			mw.loader.getState( 'ext.visualEditor.core' ) &&
+			mw.config.get( 'wgFlowEditorList' ).indexOf( 'visualeditor' ) !== -1 &&
+			window.VisualEditorSupportCheck && VisualEditorSupportCheck()
 		);
 	};
 
