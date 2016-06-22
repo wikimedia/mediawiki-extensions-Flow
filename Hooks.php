@@ -40,6 +40,14 @@ class FlowHooks {
 			$wgResourceModules['ext.flow']['dependencies'][] = 'schema.FlowReplies';
 		}
 
+		// Register a dummy supportCheck module in case VE isn't loaded, as we attempt
+		// to load this module unconditionally on load.
+		if ( !$resourceLoader->isModuleRegistered( 'ext.visualEditor.supportCheck' ) ) {
+			$resourceLoader->register( 'ext.visualEditor.supportCheck', array(
+				'targets' => array( 'desktop', 'mobile' ),
+			) );
+		}
+
 		if ( class_exists( 'GuidedTourHooks' ) ) {
 			$resourceLoader->register( 'ext.guidedTour.tour.flowOptIn', array(
 				'localBasePath' => __DIR__ . '/modules',
