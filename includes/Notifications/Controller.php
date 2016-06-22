@@ -42,7 +42,7 @@ class NotificationController {
 			'priority' => 3,
 			'tooltip' => 'echo-pref-tooltip-flow-discussion',
 		);
-		$icons['flow-new-topic'] = array(
+		$icons['flow-new-topic'] = $icons['flowusertalk-new-topic'] = array(
 			'path' => 'Flow/modules/notification/icon/flow-new-topic.svg',
 		);
 		$icons['flow-post-edited'] = array(
@@ -334,8 +334,7 @@ class NotificationController {
 		$mentionedUsers = $this->getMentionedUsers( $topicTitle );
 
 		$events = array();
-		$events[] = EchoEvent::create( array(
-			'type' => 'flow-new-topic',
+		$eventData = array(
 			'agent' => $user,
 			'title' => $boardWorkflow->getArticleTitle(),
 			'extra' => array(
@@ -357,7 +356,9 @@ class NotificationController {
 				// already receive the mention notification)
 				'mentioned-users' => $mentionedUsers + $this->getMentionedUsers( $firstPost ),
 			)
-		) );
+		);
+		$events[] = EchoEvent::create( array( 'type' => 'flow-new-topic' ) + $eventData );
+		$events[] = EchoEvent::create( array( 'type' => 'flowusertalk-new-topic' ) + $eventData );
 
 		if ( $mentionedUsers ) {
 			$events[] = $this->generateMentionEvent( $topicTitle, $topicTitle, $topicWorkflow, $user, $mentionedUsers );
@@ -586,6 +587,7 @@ class NotificationController {
 	public static function onEchoGetBundleRules( $event, &$bundleString ) {
 		switch ( $event->getType() ) {
 			case 'flow-new-topic':
+			case 'flowusertalk-new-topic':
 				$board = $event->getExtraParam( 'board-workflow' );
 				if ( $board instanceof UUID ) {
 					$bundleString = $event->getType() . '-' . $board->getAlphadecimal();

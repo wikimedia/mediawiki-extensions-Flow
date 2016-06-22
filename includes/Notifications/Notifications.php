@@ -8,14 +8,9 @@ $notificationTemplate = array(
 	'immediate' => false, // Default
 );
 
-$notifications = array(
-	'flow-new-topic' => array(
+$newTopicNotification = array(
 		'presentation-model' => 'Flow\\NewTopicPresentationModel',
 		'formatter-class' => 'Flow\NewTopicFormatter',
-		'user-locators' => array(
-			'EchoUserLocator::locateUsersWatchingTitle',
-			'EchoUserLocator::locateTalkPageOwner'
-		),
 		'user-filters' => array(
 			'Flow\\NotificationsUserLocator::locateMentionedUsers',
 		),
@@ -39,7 +34,27 @@ $notifications = array(
 		'email-body-batch-bundle-message' => 'flow-notification-newtopic-email-batch-bundle-body',
 		'email-body-batch-bundle-params' => array( 'event-count', 'title', 'new-topics-permalink' ),
 		'icon' => 'flow-new-topic'
-	) + $notificationTemplate,
+	) + $notificationTemplate;
+
+$notifications = array(
+	'flow-new-topic' => array(
+		'user-locators' => array(
+			'EchoUserLocator::locateUsersWatchingTitle',
+		),
+		'user-filters' => array(
+			'Flow\\NotificationsUserLocator::locateMentionedUsers',
+			'EchoUserLocator::locateTalkPageOwner',
+		),
+	) + $newTopicNotification,
+	'flowusertalk-new-topic' => array(
+		'user-locators' => array(
+			'EchoUserLocator::locateTalkPageOwner',
+		),
+		'user-filters' => array(
+			'Flow\\NotificationsUserLocator::locateMentionedUsers',
+			'EchoUserLocator::locateUsersWatchingTitle',
+		),
+	) + $newTopicNotification,
 	'flow-post-reply' => array(
 		'presentation-model' => 'Flow\\PostReplyPresentationModel',
 		'user-locators' => array(
