@@ -15,7 +15,8 @@
 		"Handlebars":  true,
 		"initStorer":  true,
 		"OO":          true,
-		"moment":      true
+		"moment":      true,
+		"VisualEditorSupportCheck": true
 	},
 	"browser":  true,  // document, navigator, etc.
 	"curly":    true,  // requres curly braces around loops and conditionals
