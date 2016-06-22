@@ -51,15 +51,15 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 	protected function getHeaderMessageKey() {
 		if ( $this->isBundled() ) {
 			if ( $this->isUserTalkPage() ) {
-				return "notification-bundle-header-{$this->type}-user-talk";
+				return 'notification-bundle-header-flow-post-reply-user-talk';
 			} else {
-				return "notification-bundle-header-{$this->type}-v2";
+				return 'notification-bundle-header-flow-post-reply-v2';
 			}
 		} else {
 			if ( $this->isUserTalkPage() ) {
-				return parent::getHeaderMessageKey() . "-user-talk";
+				return 'notification-header-flow-post-reply-user-talk';
 			} else {
-				return parent::getHeaderMessageKey();
+				return 'notification-header-flow-post-reply';
 			}
 		}
 	}
@@ -84,9 +84,9 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 	public function getBodyMessage() {
 		if ( !$this->isBundled() ) {
 			if ( $this->isUserTalkPage() ) {
-				$msg = $this->msg("notification-body-{$this->type}-v2");
+				$msg = $this->msg("notification-body-flow-post-reply-v2");
 			} else {
-				$msg = $this->msg("notification-body-{$this->type}-user-talk");
+				$msg = $this->msg("notification-body-flow-post-reply-user-talk");
 			}
 			$msg->params( $this->getContentSnippet() );
 			return $msg;

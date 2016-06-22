@@ -5,7 +5,7 @@ namespace Flow;
 class NewTopicPresentationModel extends FlowPresentationModel {
 
 	public function getIconType() {
-		return $this->isUserTalkPage() ? 'flowusertalk-new-topic' : 'flow-new-topic';
+		return $this->getType();
 	}
 
 	public function canRender() {

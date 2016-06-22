@@ -40,15 +40,15 @@ class PostEditedPresentationModel extends FlowPresentationModel {
 	protected function getHeaderMessageKey() {
 		if ( $this->isBundled() ) {
 			if ( $this->isUserTalkPage() ) {
-				return "notification-bundle-header-{$this->type}-user-talk";
+				return "notification-bundle-header-flow-post-edited-user-talk";
 			} else {
-				return "notification-bundle-header-{$this->type}-v2";
+				return "notification-bundle-header-flow-post-edited-v2";
 			}
 		} else {
 			if ( $this->isUserTalkPage() ) {
-				return parent::getHeaderMessageKey() . '-user-talk';
+				return 'notification-header-flow-post-edited-user-talk';
 			} else {
-				return parent::getHeaderMessageKey() . '-v2';
+				return 'notification-header-flow-post-edited-v2';
 			}
 		}
 	}
@@ -62,9 +62,9 @@ class PostEditedPresentationModel extends FlowPresentationModel {
 
 	public function getBodyMessage() {
 		if ( $this->isUserTalkPage() ) {
-			$msg = $this->msg( "notification-body-{$this->type}-user-talk" );
+			$msg = $this->msg( 'notification-body-flow-post-edited-user-talk' );
 		} else {
-			$msg = $this->msg( "notification-body-{$this->type}-v2" );
+			$msg = $this->msg( 'notification-body-flow-post-edited-v2' );
 		}
 
 		$msg->params( $this->getContentSnippet() );
