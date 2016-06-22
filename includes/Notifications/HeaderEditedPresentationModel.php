@@ -15,7 +15,7 @@ class HeaderEditedPresentationModel extends FlowPresentationModel {
 
 	public function getPrimaryLink() {
 		$boardLink = $this->getBoardLink();
-		$boardLink['label'] = $this->msg( "notification-links-{$this->type}-view-page" )->params( $this->getViewingUserForGender() )->text();
+		$boardLink['label'] = $this->msg( "notification-links-flow-description-edited-view-page" )->params( $this->getViewingUserForGender() )->text();
 		return $boardLink;
 	}
 
@@ -28,9 +28,9 @@ class HeaderEditedPresentationModel extends FlowPresentationModel {
 
 	protected function getHeaderMessageKey() {
 		if ( $this->isBundled() ) {
-			$key = "notification-bundle-header-{$this->type}";
+			$key = 'notification-bundle-header-flow-description-edited';
 		} else {
-			$key = parent::getHeaderMessageKey();
+			$key = 'notification-header-flow-description-edited';
 		}
 
 		if ( $this->isUserTalkPage() ) {
@@ -48,7 +48,7 @@ class HeaderEditedPresentationModel extends FlowPresentationModel {
 	}
 
 	public function getBodyMessage() {
-		$key = "notification-body-{$this->type}";
+		$key = "notification-body-flow-description-edited";
 		if ( $this->isUserTalkPage() ) {
 			$key .= '-user-talk';
 		}

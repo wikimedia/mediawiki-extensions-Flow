@@ -29,11 +29,11 @@ class SummaryEditedPresentationModel extends FlowPresentationModel {
 
 	protected function getHeaderMessageKey() {
 		if ( $this->isBundled() ) {
-			$key = "notification-bundle-header-{$this->type}";
+			$key = "notification-bundle-header-flow-summary-edited";
 		} elseif ( $this->event->getExtraParam( 'prev-revision-id' ) === null ) {
-			$key = parent::getHeaderMessageKey() . '-first';
+			$key = 'notification-header-flow-summary-edited-first';
 		} else {
-			$key = parent::getHeaderMessageKey();
+			$key = 'notification-header-flow-summary-edited';
 		}
 
 		if ( $this->isUserTalkPage() ) {
@@ -51,7 +51,7 @@ class SummaryEditedPresentationModel extends FlowPresentationModel {
 	}
 
 	public function getBodyMessage() {
-		$key = "notification-body-{$this->type}";
+		$key = 'notification-body-flow-summary-edited';
 		if ( $this->isUserTalkPage() ) {
 			$key .= '-user-talk';
 		}
