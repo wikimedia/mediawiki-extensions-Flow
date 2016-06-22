@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0efd9372_83818594",
+        "filename": "includes/Notifications/Notifications.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-06-22T18:37:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0efd9372_43815da3",
+      "revId": "c9dbc353597959322924151b4292f0efd86525a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0efd9372_239d390f",
         "filename": "includes/Notifications/Notifications.php",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "0efd9372_4325ddbb",
+        "filename": "includes/Notifications/Notifications.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-06-22T18:37:05Z",
+      "side": 1,
+      "message": "Indeed, I overlooked this case. \n\nI think I just have to remove the locateUserWatching and locateAuthor from all the flowusertalk-* user-filters. \n\nFilters are used to remove users that were previously located but in all those cases, we only use locateTalkPageOwner so the only reason we would filter that user is to respect flow-mention event precedence.",
+      "parentUuid": "0efd9372_239d390f",
+      "revId": "c9dbc353597959322924151b4292f0efd86525a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0efd9372_c3bc2d6a",
         "filename": "includes/Notifications/Notifications.php",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2016-06-22T18:15:07Z",
       "side": 1,
       "message": "I think this also causes a problem: if I author a post on my own user talk page (this is quite common) and it is edited, I won\u0027t be notified because I\u0027ll be excluded from flow-post-edited by the locateTalkPageOwner filter, and also from flowusertalk-post-edited by the locatePostAuthor filter.",
+      "revId": "c9dbc353597959322924151b4292f0efd86525a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0efd9372_a33489f2",
+        "filename": "includes/Notifications/Notifications.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-06-22T18:37:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0efd9372_c3bc2d6a",
       "revId": "c9dbc353597959322924151b4292f0efd86525a4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
