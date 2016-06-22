@@ -89,7 +89,7 @@ class NotificationListener extends AbstractListener {
 			break;
 
 		case 'edit-header':
-			$this->notificationController->notifyHeaderChange( 'flow-description-edited', array(
+			$this->notificationController->notifyHeaderChange( array(
 				'revision' => $object,
 				'board-workflow' => $metadata['workflow'],
 			) );
@@ -97,7 +97,7 @@ class NotificationListener extends AbstractListener {
 
 		case 'create-topic-summary':
 		case 'edit-topic-summary':
-			$this->notificationController->notifySummaryChange( 'flow-summary-edited', array(
+			$this->notificationController->notifySummaryChange( array(
 				'revision' => $object,
 				'topic-workflow' => $metadata['workflow'],
 				'topic-title' => $metadata['topic-title'],

@@ -31,9 +31,9 @@ class TopicRenamedPresentationModel extends FlowPresentationModel {
 
 	protected function getHeaderMessageKey() {
 		if ( $this->isUserTalkPage() ) {
-			return parent::getHeaderMessageKey() . '-user-talk';
+			return 'notification-header-flow-topic-renamed-user-talk';
 		} else {
-			return parent::getHeaderMessageKey() . '-v2';
+			return 'notification-header-flow-topic-renamed-v2';
 		}
 	}
 
