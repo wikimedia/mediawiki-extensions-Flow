@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0efd9372_43815da3",
+        "filename": "includes/Notifications/Notifications.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-06-22T18:15:07Z",
+      "side": 1,
+      "message": "This is superfluous, because 1) locateMentionedUsers is already listed separately in each of the notification types that use this below, and 2) the + operator does not deep-merge arrays, instead the leftmost value for the same key wins, so this subarray is ignored.",
+      "revId": "c9dbc353597959322924151b4292f0efd86525a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0efd9372_239d390f",
+        "filename": "includes/Notifications/Notifications.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-06-22T18:15:07Z",
+      "side": 1,
+      "message": "I think this line may cause the following bug: I watch my own user talk page. I am excluded from the flow-new-topic notification because of the locateTalkPageOwner filter, and I am also excluded from the flowusertalk-new-topic notification because of the locateUsersWatchingTitle fitler, so I don\u0027t get a notification.\n\nThis pattern is repeated in other notification types below.",
+      "revId": "c9dbc353597959322924151b4292f0efd86525a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0efd9372_c3bc2d6a",
+        "filename": "includes/Notifications/Notifications.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-06-22T18:15:07Z",
+      "side": 1,
+      "message": "I think this also causes a problem: if I author a post on my own user talk page (this is quite common) and it is edited, I won\u0027t be notified because I\u0027ll be excluded from flow-post-edited by the locateTalkPageOwner filter, and also from flowusertalk-post-edited by the locatePostAuthor filter.",
+      "revId": "c9dbc353597959322924151b4292f0efd86525a4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
