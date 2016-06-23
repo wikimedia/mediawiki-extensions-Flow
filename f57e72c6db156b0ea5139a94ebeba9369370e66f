@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0efd9372_54ce3260",
+        "filename": "maintenance/FlowUpdateResolvedNotifTitles.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-06-23T13:49:38Z",
+      "side": 1,
+      "message": "events",
+      "revId": "f57e72c6db156b0ea5139a94ebeba9369370e66f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0efd9372_f4b006da",
+        "filename": "maintenance/FlowUpdateResolvedNotifTitles.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-06-23T13:49:38Z",
+      "side": 1,
+      "message": "removes orphaned event rows...?",
+      "revId": "f57e72c6db156b0ea5139a94ebeba9369370e66f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0efd9372_74bc16b2",
+        "filename": "maintenance/FlowUpdateResolvedNotifTitles.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-06-23T13:49:38Z",
+      "side": 1,
+      "message": "skip the non-NS_TOPIC ones",
+      "revId": "f57e72c6db156b0ea5139a94ebeba9369370e66f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0efd9372_b4ddde19",
+        "filename": "maintenance/FlowUpdateResolvedNotifTitles.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-06-23T13:49:38Z",
+      "side": 1,
+      "message": "events",
+      "revId": "f57e72c6db156b0ea5139a94ebeba9369370e66f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0efd9372_14e5cad7",
+        "filename": "maintenance/FlowUpdateResolvedNotifTitles.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-06-23T13:49:38Z",
+      "side": 1,
+      "message": "events",
+      "revId": "f57e72c6db156b0ea5139a94ebeba9369370e66f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
