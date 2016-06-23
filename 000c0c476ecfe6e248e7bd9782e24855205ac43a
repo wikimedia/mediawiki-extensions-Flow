@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0efd9372_744d363f",
+        "filename": "maintenance/FlowUpdateResolvedNotifTitles.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-06-23T13:24:31Z",
+      "side": 1,
+      "message": "Good catch.",
+      "parentUuid": "0efd9372_772b7bdb",
+      "revId": "000c0c476ecfe6e248e7bd9782e24855205ac43a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0efd9372_371293b6",
         "filename": "maintenance/FlowUpdateResolvedNotifTitles.php",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2016-06-23T10:32:49Z",
       "side": 1,
       "message": "Could you join with page where ns \u003d 2600 to get only the rows that need to be updated?",
+      "revId": "000c0c476ecfe6e248e7bd9782e24855205ac43a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0efd9372_3443ae16",
+        "filename": "maintenance/FlowUpdateResolvedNotifTitles.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-06-23T13:24:31Z",
+      "side": 1,
+      "message": "No, because in production the echo_event and page tables live on different DB clusters. I should add a comment explaining that though.",
+      "parentUuid": "0efd9372_371293b6",
       "revId": "000c0c476ecfe6e248e7bd9782e24855205ac43a",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
