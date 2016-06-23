@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0efd9372_772b7bdb",
+        "filename": "maintenance/FlowUpdateResolvedNotifTitles.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-06-23T10:32:49Z",
+      "side": 1,
+      "message": "Technically \u0027events\u0027, not \u0027notifications\u0027.",
+      "revId": "000c0c476ecfe6e248e7bd9782e24855205ac43a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0efd9372_371293b6",
+        "filename": "maintenance/FlowUpdateResolvedNotifTitles.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-06-23T10:32:49Z",
+      "side": 1,
+      "message": "Could you join with page where ns \u003d 2600 to get only the rows that need to be updated?",
+      "revId": "000c0c476ecfe6e248e7bd9782e24855205ac43a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
