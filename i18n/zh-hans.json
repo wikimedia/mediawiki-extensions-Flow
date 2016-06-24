@@ -25,7 +25,8 @@
 			"Apflu",
 			"Quiddity",
 			"Cwek",
-			"飞舞回堂前"
+			"飞舞回堂前",
+			"Chiefwei"
 		]
 	},
 	"enableflow": "启用Flow",
@@ -159,7 +160,7 @@
 	"flow-error-protected-unknown-reason": "未知",
 	"flow-error-missing-replyto": "没有提供“回复至”参数。此参数在“回复”操作中是必须的。",
 	"flow-error-missing-postId": "没有指定“贴子ID”参数。需要此参数才能操控一个帖子。",
-	"flow-error-invalid-postId": "“贴子ID”参数无效。找不到指定帖子（$1）。",
+	"flow-error-invalid-postId": "“帖子ID”参数无效。找不到指定帖子（$1）。",
 	"flow-error-invalid-moderation-state": "用于参数“moderationState”的无效值被提交到了Flow API。",
 	"flow-error-invalid-moderation-reason": "请提供限制操作的原因。",
 	"flow-error-not-allowed": "没有足够权限执行此操作。",
@@ -269,8 +270,8 @@
 	"notification-bundle-header-flow-post-reply-user-talk": "在<strong>您的讨论页</strong>上“<strong>$3</strong>”的{{PLURAL:$1|$1条新回复|100=99+条新回复}}。",
 	"notification-header-flow-post-edited-v2": "{{GENDER:$2|您}}的帖子“<strong>$1</strong>”已编辑。",
 	"notification-bundle-header-flow-post-edited-v2": "{{GENDER:$2|您}}的帖子“<strong>$1</strong>”编辑了太多次。",
-	"notification-header-flow-post-edited-user-talk": "<strong>{{GENDER:$2|您}}的讨论页</strong>上的贴子“<strong>$1</strong>”已被编辑。",
-	"notification-bundle-header-flow-post-edited-user-talk": "<strong>{{GENDER:$2|您}}的讨论页</strong>上的贴子“<strong>$1</strong>”被编辑了太多次。",
+	"notification-header-flow-post-edited-user-talk": "<strong>{{GENDER:$2|您}}的讨论页</strong>上的帖子“<strong>$1</strong>”已被编辑。",
+	"notification-bundle-header-flow-post-edited-user-talk": "<strong>{{GENDER:$2|您}}的讨论页</strong>上的帖子“<strong>$1</strong>”被编辑了多次。",
 	"notification-header-flow-topic-renamed-v2": "话题“<strong>$1</strong>”已重命名为“<strong>$2</strong>”。",
 	"notification-header-flow-topic-renamed-user-talk": "在<strong>{{GENDER:$3|您}}的讨论页</strong>上的话题“<strong>$1</strong>”已重命名为“<strong>$2</strong>”。",
 	"notification-header-flow-summary-edited": "“<strong>$1</strong>”的摘要已更新。",
