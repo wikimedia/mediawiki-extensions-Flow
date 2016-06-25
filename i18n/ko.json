@@ -408,6 +408,7 @@
 	"flow-mark-diff-patrolled-link-text": "점검한 문서로 표시",
 	"flow-mark-diff-patrolled-link-title": "점검한 문서로 표시",
 	"flow-talk-page-beta-feature-message": "사용자토론의 플로우",
+	"flow-talk-page-beta-feature-description": "{{GENDER:|사용자의}} 사용자 토론 문서에 구조화된 새 토론을 활성화합니다. 플로우는 글을 쓰고 답변하는 장소가 명료해지는 것과 더불어 토론 문서의 토론을 단순하게 만들어 주며, 대화 수준의 알림을 가능하게 합니다. 기존의 위키텍스트 토론들은 보관 장소로 이동됩니다. 이 기능은 자동으로 활성화되지 않으므로 사용자들은 직접 이 기능을 활성화해야 합니다. 이 기능을 사용하지 않으면 플로우 게시판을 하위 문서로 이동하고 이전의 토론 문서의 보관을 해제합니다.",
 	"flow-notification-link-text-enabled-on-talkpage": "사용자토론 문서 보기",
 	"flow-notification-enabled-on-talkpage-email-subject-message": "$2의 새 토론 시스템",
 	"flow-beta-feature-add-archive-template-edit-summary": "보존 틀 추가",
