@@ -319,7 +319,7 @@
 	"flow-moderation-placeholder-unhide-topic": "이 주제를 보이는 이유를 {{GENDER:$3|설명해주세요}}.",
 	"flow-topic-permalink-warning": "이 주제는 [$2 $1]에 시작됐습니다",
 	"flow-topic-permalink-warning-user-board": "이 주제는 [$2 {{GENDER:$1|$1}}의 게시판]에서 시작됐습니다",
-	"flow-revision-permalink-warning-post": "이 게시물의 하나의 판에 대한 영구 링크 입니다.\n이 판은 $1에서 가져왔습니다.\n[$5 이전 판]나 [$4 게시물 역사 문서]의 다른 판과의 차이를 볼 수 있습니다.",
+	"flow-revision-permalink-warning-post": "이 게시물의 하나의 판에 대한 영구 링크입니다.\n이 판은 $1에서 가져왔습니다.\n[$5 이전 판과의 차이]나 [$4 게시물 역사 문서]의 다른 판과의 차이를 볼 수 있습니다.",
 	"flow-revision-permalink-warning-post-first": "이 게시물의 첫 번째 판으로 연결된 영구 링크입니다.\n[$4 게시물 역사 문서]에서 이후의 판을 볼 수 있습니다.",
 	"flow-revision-permalink-warning-postsummary": "이 요약에 대한 고유링크입니다. 이 버전은 $1 에서 가져왔습니다.\n[$5 이전 버전과의 차이]를 보거나, [$4 역사]에서 다른 버전을 볼 수 있습니다.",
 	"flow-revision-permalink-warning-postsummary-first": "이 요약의 첫 판에 대한 고유링크입니다. [$4 역사]에서 이후의 버전을 볼 수 있습니다.",
