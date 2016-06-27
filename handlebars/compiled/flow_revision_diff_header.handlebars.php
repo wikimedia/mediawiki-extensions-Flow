@@ -1,4 +1,14 @@
-<?php return function ($in, $debugopt = 1) {
+use \LightnCandy\SafeString as SafeString;use \LightnCandy\Runtime as LR;return function ($in, $options = null) {
+    $helpers = array();
+    $partials = array('flow_patrol_diff' => function ($cx, $in, $sp) {return ''.$sp.''.((LR::ifvar($cx, ((isset($in['revision']['rev_view_links']['markPatrolled']) && is_array($in['revision']['rev_view_links'])) ? $in['revision']['rev_view_links']['markPatrolled'] : null), false)) ? '<div>
+'.$sp.'        <span class="patrollink">
+'.$sp.'            [<a class="mw-ui-quiet"
+'.$sp.'               href="'.LR::encq($cx, ((isset($in['revision']['rev_view_links']['markPatrolled']['url']) && is_array($in['revision']['rev_view_links']['markPatrolled'])) ? $in['revision']['rev_view_links']['markPatrolled']['url'] : null)).'"
+'.$sp.'               title="'.LR::encq($cx, ((isset($in['l10n']) && is_array($in)) ? $in['l10n'] : null)).'"
+'.$sp.'               data-role="patrol">'.LR::encq($cx, ((isset($in['l10n']) && is_array($in)) ? $in['l10n'] : null)).'</a>]
+'.$sp.'        </span>
+'.$sp.'    </div>
+'.$sp.'    '.LR::encq($cx, ((isset($in['enablePatrollingLink']) && is_array($in)) ? $in['enablePatrollingLink'] : null)).'' : '').'';});
     $cx = array(
         'flags' => array(
             'jstrue' => false,
@@ -6,38 +16,28 @@
             'spvar' => true,
             'prop' => false,
             'method' => false,
+            'lambda' => false,
             'mustlok' => false,
+            'mustlam' => false,
             'echo' => false,
-            'debug' => $debugopt,
+            'partnc' => false,
+            'knohlp' => false,
+            'debug' => isset($options['debug']) ? $options['debug'] : 1,
         ),
         'constants' => array(),
-        'helpers' => array(            'l10n' => 'Flow\TemplateHelper::l10n',
-            'l10nParse' => 'Flow\TemplateHelper::l10nParse',
-            'enablePatrollingLink' => 'Flow\TemplateHelper::enablePatrollingLink',
-),
-        'blockhelpers' => array(),
-        'hbhelpers' => array(),
-        'partials' => array('flow_patrol_diff' => function ($cx, $in, $sp) {return ''.$sp.''.((LCRun3::ifvar($cx, ((isset($in['revision']['rev_view_links']['markPatrolled']) && is_array($in['revision']['rev_view_links'])) ? $in['revision']['rev_view_links']['markPatrolled'] : null))) ? '<div>
-'.$sp.'        <span class="patrollink">
-'.$sp.'            [<a class="mw-ui-quiet"
-'.$sp.'               href="'.htmlentities((string)((isset($in['revision']['rev_view_links']['markPatrolled']['url']) && is_array($in['revision']['rev_view_links']['markPatrolled'])) ? $in['revision']['rev_view_links']['markPatrolled']['url'] : null), ENT_QUOTES, 'UTF-8').'"
-'.$sp.'               title="'.LCRun3::ch($cx, 'l10n', array(array('flow-mark-diff-patrolled-link-title'),array()), 'encq').'"
-'.$sp.'               data-role="patrol">'.LCRun3::ch($cx, 'l10n', array(array('flow-mark-diff-patrolled-link-text'),array()), 'encq').'</a>]
-'.$sp.'        </span>
-'.$sp.'    </div>
-'.$sp.'    '.LCRun3::ch($cx, 'enablePatrollingLink', array(array(),array()), 'encq').'' : '').'';},),
+        'helpers' => isset($options['helpers']) ? array_merge($helpers, $options['helpers']) : $helpers,
+        'partials' => isset($options['partials']) ? array_merge($partials, $options['partials']) : $partials,
         'scopes' => array(),
-        'sp_vars' => array('root' => $in),
-        'lcrun' => 'LCRun3',
-
+        'sp_vars' => isset($options['data']) ? array_merge(array('root' => $in), $options['data']) : array('root' => $in),
+        'blparam' => array(),
+        'runtime' => '\LightnCandy\Runtime',
     );
     
     return '<div>
-	<a href="'.htmlentities((string)((isset($in['revision']['rev_view_links']['single-view']['url']) && is_array($in['revision']['rev_view_links']['single-view'])) ? $in['revision']['rev_view_links']['single-view']['url'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-diff-revision-link">
-		'.LCRun3::ch($cx, 'l10nParse', array(array('flow-compare-revisions-revision-header',((isset($in['revision']['human_timestamp']) && is_array($in['revision'])) ? $in['revision']['human_timestamp'] : null),((isset($in['revision']['author']['name']) && is_array($in['revision']['author'])) ? $in['revision']['author']['name'] : null)),array()), 'encq').'
+	<a href="'.LR::encq($cx, ((isset($in['revision']['rev_view_links']['single-view']['url']) && is_array($in['revision']['rev_view_links']['single-view'])) ? $in['revision']['rev_view_links']['single-view']['url'] : null)).'" class="flow-diff-revision-link">
+		'.LR::encq($cx, ((isset($in['l10nParse']) && is_array($in)) ? $in['l10nParse'] : null)).'
 	</a>
 
-'.((LCRun3::ifvar($cx, ((isset($in['new']) && is_array($in)) ? $in['new'] : null))) ? ''.((LCRun3::ifvar($cx, ((isset($in['revision']['actions']['undo']) && is_array($in['revision']['actions'])) ? $in['revision']['actions']['undo'] : null))) ? '('.htmlentities((string)((isset($in['noop']) && is_array($in)) ? $in['noop'] : null), ENT_QUOTES, 'UTF-8').'<a class="mw-ui-anchor mw-ui-quiet" href="'.htmlentities((string)((isset($in['revision']['actions']['undo']['url']) && is_array($in['revision']['actions']['undo'])) ? $in['revision']['actions']['undo']['url'] : null), ENT_QUOTES, 'UTF-8').'">'.htmlentities((string)((isset($in['revision']['actions']['undo']['title']) && is_array($in['revision']['actions']['undo'])) ? $in['revision']['actions']['undo']['title'] : null), ENT_QUOTES, 'UTF-8').'</a>'.htmlentities((string)((isset($in['noop']) && is_array($in)) ? $in['noop'] : null), ENT_QUOTES, 'UTF-8').')' : '').'' : '').'</div>
-'.((LCRun3::ifvar($cx, ((isset($in['links']['previous']) && is_array($in['links'])) ? $in['links']['previous'] : null))) ? ''.((!LCRun3::ifvar($cx, ((isset($in['new']) && is_array($in)) ? $in['new'] : null))) ? '<div><a href="'.htmlentities((string)((isset($in['links']['previous']) && is_array($in['links'])) ? $in['links']['previous'] : null), ENT_QUOTES, 'UTF-8').'">'.LCRun3::ch($cx, 'l10n', array(array('flow-previous-diff'),array()), 'encq').'</a></div>' : '').'' : '').''.((LCRun3::ifvar($cx, ((isset($in['links']['next']) && is_array($in['links'])) ? $in['links']['next'] : null))) ? ''.((LCRun3::ifvar($cx, ((isset($in['new']) && is_array($in)) ? $in['new'] : null))) ? '<div><a href="'.htmlentities((string)((isset($in['links']['next']) && is_array($in['links'])) ? $in['links']['next'] : null), ENT_QUOTES, 'UTF-8').'">'.LCRun3::ch($cx, 'l10n', array(array('flow-next-diff'),array()), 'encq').'</a></div>' : '').'' : '').''.LCRun3::p($cx, 'flow_patrol_diff', array(array($in),array())).'';
-}
-?>
+'.((LR::ifvar($cx, ((isset($in['new']) && is_array($in)) ? $in['new'] : null), false)) ? ''.((LR::ifvar($cx, ((isset($in['revision']['actions']['undo']) && is_array($in['revision']['actions'])) ? $in['revision']['actions']['undo'] : null), false)) ? '('.LR::encq($cx, ((isset($in['noop']) && is_array($in)) ? $in['noop'] : null)).'<a class="mw-ui-anchor mw-ui-quiet" href="'.LR::encq($cx, ((isset($in['revision']['actions']['undo']['url']) && is_array($in['revision']['actions']['undo'])) ? $in['revision']['actions']['undo']['url'] : null)).'">'.LR::encq($cx, ((isset($in['revision']['actions']['undo']['title']) && is_array($in['revision']['actions']['undo'])) ? $in['revision']['actions']['undo']['title'] : null)).'</a>'.LR::encq($cx, ((isset($in['noop']) && is_array($in)) ? $in['noop'] : null)).')' : '').'' : '').'</div>
+'.((LR::ifvar($cx, ((isset($in['links']['previous']) && is_array($in['links'])) ? $in['links']['previous'] : null), false)) ? ''.((!LR::ifvar($cx, ((isset($in['new']) && is_array($in)) ? $in['new'] : null), false)) ? '<div><a href="'.LR::encq($cx, ((isset($in['links']['previous']) && is_array($in['links'])) ? $in['links']['previous'] : null)).'">'.LR::encq($cx, ((isset($in['l10n']) && is_array($in)) ? $in['l10n'] : null)).'</a></div>' : '').'' : '').''.((LR::ifvar($cx, ((isset($in['links']['next']) && is_array($in['links'])) ? $in['links']['next'] : null), false)) ? ''.((LR::ifvar($cx, ((isset($in['new']) && is_array($in)) ? $in['new'] : null), false)) ? '<div><a href="'.LR::encq($cx, ((isset($in['links']['next']) && is_array($in['links'])) ? $in['links']['next'] : null)).'">'.LR::encq($cx, ((isset($in['l10n']) && is_array($in)) ? $in['l10n'] : null)).'</a></div>' : '').'' : '').''.LR::p($cx, 'flow_patrol_diff', array(array($in),array())).'';
+};
