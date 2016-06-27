@@ -19,6 +19,8 @@
 	 * @cfg {boolean} [cancelOnEscape=true] Emit 'cancel' when Esc is pressed
 	 * @cfg {boolean} [confirmCancel=true] Pop up a confirmation dialog if the user attempts
 	 *  to cancel when there are changes in the editor.
+	 * @cfg {boolean} [confirmLeave=true] Pop up a confirmation dialog if the user attempts
+	 *  to navigate away when there are changes in the editor.
 	 * @cfg {boolean} [saveable=true] Initial state of whether editor is saveable
 	 */
 	mw.flow.ui.EditorWidget = function mwFlowUiEditorWidget( config ) {
@@ -34,6 +36,7 @@
 
 		this.initialEditor = config.editor;
 		this.confirmCancel = !!config.confirmCancel || config.cancelOnEscape === undefined;
+		this.confirmLeave = !!config.confirmLeave || config.confirmLeave === undefined;
 
 		this.saveable = config.saveable !== undefined ? config.saveable : true;
 
@@ -134,11 +137,19 @@
 						if ( data && data.action === 'discard' ) {
 							// Remove content
 							widget.setContent( '', 'wikitext' );
+							if ( widget.beforeUnloadHandler ) {
+								$( window ).off( 'beforeunload', widget.beforeUnloadHandler );
+								widget.beforeUnloadHandler = null;
+							}
 							widget.emit( 'cancel' );
 						}
 					} );
 				} );
 		} else {
+			if ( this.beforeUnloadHandler ) {
+				$( window ).off( 'beforeunload', this.beforeUnloadHandler );
+				this.beforeUnloadHandler = null;
+			}
 			this.emit( 'cancel' );
 		}
 	};
@@ -245,6 +256,19 @@
 	};
 
 	/**
+	 * Respond to beforeunload event.
+	 *
+	 * @private
+	 * @param {jQuery.Event} e
+	 * @return {string}
+	 */
+	mw.flow.ui.EditorWidget.prototype.onBeforeUnload = function ( e ) {
+		var message = mw.msg( 'flow-dialog-cancelconfirm-title' );
+		e.returnValue = message;
+		return message;
+	};
+
+	/**
 	 * Activate the first editor, if not already active.
 	 * @return {jQuery.Promise} Promise resolved when editor switch is done
 	 */
@@ -255,16 +279,25 @@
 
 		// Doesn't call editorSwitcherWidget.activate() because we want to
 		// evaluate the user preference as late as possible
-		var editor = this.initialEditor || mw.user.options.get( 'flow-editor' );
+		var switchPromise,
+			editor = this.initialEditor || mw.user.options.get( 'flow-editor' ),
+			widget = this;
 		if ( editor === 'none' ) {
 			editor = 'wikitext';
 		}
 
 		if ( this.editorSwitcherWidget.isEditorAvailable( editor ) ) {
-			return this.editorSwitcherWidget.switchEditor( editor );
+			switchPromise = this.editorSwitcherWidget.switchEditor( editor );
+		} else {
+			// If the editor we want isn't available, let EditorSwitcherWidget decide which editor to use
+			switchPromise = this.editorSwitcherWidget.activate();
 		}
-		// If the editor we want isn't available, let EditorSwitcherWidget decide which editor to use
-		return this.editorSwitcherWidget.activate();
+		return switchPromise.then( function () {
+			if ( widget.confirmLeave ) {
+				widget.beforeUnloadHandler = widget.onBeforeUnload.bind( widget );
+				$( window ).on( 'beforeunload', widget.beforeUnloadHandler );
+			}
+		} );
 	};
 
 	mw.flow.ui.EditorWidget.prototype.isDisabled = function () {
