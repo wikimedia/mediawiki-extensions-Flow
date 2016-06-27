@@ -2,7 +2,7 @@
 
 namespace Flow\Tests;
 
-use Lightncandy;
+use Lightncandy\Lightncandy;
 use Flow\TemplateHelper;
 
 /**
