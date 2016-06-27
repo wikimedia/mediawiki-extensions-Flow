@@ -19,6 +19,10 @@
 	 * @cfg {boolean} [cancelOnEscape=true] Emit 'cancel' when Esc is pressed
 	 * @cfg {boolean} [confirmCancel=true] Pop up a confirmation dialog if the user attempts
 	 *  to cancel when there are changes in the editor.
+	 * @cfg {boolean} [confirmLeave=true] Pop up a confirmation dialog if the user attempts
+	 *  to navigate away when there are changes in the editor.
+	 * @cfg {Function} [leaveCallback] Function to call when the user attempts to navigate away.
+	 *  If this function returns false, a confirmation dialog will be popped up.
 	 * @cfg {boolean} [saveable=true] Initial state of whether editor is saveable
 	 */
 	mw.flow.ui.EditorWidget = function mwFlowUiEditorWidget( config ) {
@@ -34,6 +38,8 @@
 
 		this.initialEditor = config.editor;
 		this.confirmCancel = !!config.confirmCancel || config.cancelOnEscape === undefined;
+		this.confirmLeave = !!config.confirmLeave || config.confirmLeave === undefined;
+		this.leaveCallback = config.leaveCallback;
 
 		this.saveable = config.saveable !== undefined ? config.saveable : true;
 
@@ -134,11 +140,13 @@
 						if ( data && data.action === 'discard' ) {
 							// Remove content
 							widget.setContent( '', 'wikitext' );
+							widget.unbindBeforeUnloadHandler();
 							widget.emit( 'cancel' );
 						}
 					} );
 				} );
 		} else {
+			this.unbindBeforeUnloadHandler();
 			this.emit( 'cancel' );
 		}
 	};
@@ -245,26 +253,68 @@
 	};
 
 	/**
+	 * Bind the beforeunload handler, if needed and if not already bound.
+	 */
+	mw.flow.ui.EditorWidget.prototype.bindBeforeUnloadHandler = function () {
+		if ( !this.beforeUnloadHandler && ( this.confirmLeave || this.leaveCallback ) ) {
+			this.beforeUnloadHandler = this.onBeforeUnload.bind( this );
+			$( window ).on( 'beforeunload', this.beforeUnloadHandler );
+		}
+	};
+
+	/**
+	 * Unbind the beforeunload handler if it is bound.
+	 */
+	mw.flow.ui.EditorWidget.prototype.unbindBeforeUnloadHandler = function () {
+		if ( this.beforeUnloadHandler ) {
+			$( window ).off( 'beforeunload', this.beforeUnloadHandler );
+			this.beforeUnloadHandler = null;
+		}
+	};
+
+	/**
+	 * Respond to beforeunload event.
+	 *
+	 * @private
+	 * @return {boolean}
+	 */
+	mw.flow.ui.EditorWidget.prototype.onBeforeUnload = function () {
+		if ( this.leaveCallback && this.leaveCallback() === false ) {
+			return false;
+		}
+		if ( this.confirmLeave && !this.isEmpty() ) {
+			return false;
+		}
+	};
+
+	/**
 	 * Activate the first editor, if not already active.
 	 * @return {jQuery.Promise} Promise resolved when editor switch is done
 	 */
 	mw.flow.ui.EditorWidget.prototype.activate = function () {
 		if ( this.isActive() ) {
+			this.bindBeforeUnloadHandler();
 			return $.Deferred().resolve().promise();
 		}
 
 		// Doesn't call editorSwitcherWidget.activate() because we want to
 		// evaluate the user preference as late as possible
-		var editor = this.initialEditor || mw.user.options.get( 'flow-editor' );
+		var switchPromise,
+			editor = this.initialEditor || mw.user.options.get( 'flow-editor' ),
+			widget = this;
 		if ( editor === 'none' ) {
 			editor = 'wikitext';
 		}
 
 		if ( this.editorSwitcherWidget.isEditorAvailable( editor ) ) {
-			return this.editorSwitcherWidget.switchEditor( editor );
+			switchPromise = this.editorSwitcherWidget.switchEditor( editor );
+		} else {
+			// If the editor we want isn't available, let EditorSwitcherWidget decide which editor to use
+			switchPromise = this.editorSwitcherWidget.activate();
 		}
-		// If the editor we want isn't available, let EditorSwitcherWidget decide which editor to use
-		return this.editorSwitcherWidget.activate();
+		return switchPromise.then( function () {
+			widget.bindBeforeUnloadHandler();
+		} );
 	};
 
 	mw.flow.ui.EditorWidget.prototype.isDisabled = function () {
