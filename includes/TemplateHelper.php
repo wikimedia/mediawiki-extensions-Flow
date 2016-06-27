@@ -8,7 +8,7 @@ use Flow\Model\UUID;
 use Closure;
 use HTML;
 use OOUI\IconWidget;
-use LightnCandy;
+use LightnCandy\LightnCandy;
 use MWTimestamp;
 use RequestContext;
 use Title;
@@ -121,7 +121,7 @@ class TemplateHelper {
 	 * @return string PHP code
 	 */
 	static public function compile( $code, $templateDir ) {
-		return LightnCandy::compile(
+		$phpStr = LightnCandy::compile(
 			$code,
 			array(
 				'flags' => LightnCandy::FLAG_ERROR_EXCEPTION
@@ -162,6 +162,8 @@ class TemplateHelper {
 				),
 			)
 		);
+
+		return array('<?php ' . $phpStr .  "\n?>");
 	}
 
 	/**
