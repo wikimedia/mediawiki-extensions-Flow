@@ -344,7 +344,11 @@
 	mw.flow.Initializer.prototype.setupNewTopicWidget = function ( $form ) {
 		var self = this;
 
-		this.newTopicWidget = new mw.flow.ui.NewTopicWidget( this.pageTitle.getPrefixedDb() );
+		this.newTopicWidget = new mw.flow.ui.NewTopicWidget( this.pageTitle.getPrefixedDb(), {
+			editor: {
+				confirmLeave: !!mw.user.options.get( 'useeditwarning' )
+			}
+		} );
 
 		// Events
 		this.newTopicWidget.connect( this, {
@@ -372,7 +376,10 @@
 
 		descriptionWidget = new mw.flow.ui.BoardDescriptionWidget( this.board, {
 			$existing: $( '.flow-ui-boardDescriptionWidget-content' ).contents(),
-			$categories: $( '.flow-board-header-category-view-nojs' ).contents()
+			$categories: $( '.flow-board-header-category-view-nojs' ).contents(),
+			editor: {
+				confirmLeave: !!mw.user.options.get( 'useeditwarning' )
+			}
 		} ).once( 'saveContent', this.reloadOnCreate ); // Reload page if board is new so we get page actions at top
 
 		// The category widget is inside the board description widget.
@@ -411,7 +418,10 @@
 				placeholder = mw.msg( 'flow-reply-topic-title-placeholder', $topic.find( '.flow-topic-title' ).text().trim() ),
 				replyTo = $( this ).find( 'input[name="topic_replyTo"]' ).val(),
 				replyWidget = new mw.flow.ui.ReplyWidget( $topic.data( 'flowId' ), replyTo, {
-					placeholder: placeholder
+					placeholder: placeholder,
+					editor: {
+						confirmLeave: !!mw.user.options.get( 'useeditwarning' )
+					}
 				} );
 
 			replyWidget.on( 'saveContent', function ( workflow ) {
@@ -446,7 +456,11 @@
 				$board = $( '.flow-board' ),
 				flowBoard = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $board );
 
-			editPostWidget = new mw.flow.ui.EditPostWidget( topicId, postId );
+			editPostWidget = new mw.flow.ui.EditPostWidget( topicId, postId, {
+				editor: {
+					confirmLeave: !!mw.user.options.get( 'useeditwarning' )
+				}
+			} );
 			editPostWidget
 				.on( 'saveContent', function ( workflow ) {
 					editPostWidget.destroy();
@@ -544,7 +558,11 @@
 					return false;
 				}
 
-				widget = new mw.flow.ui.TopicTitleWidget( topicId );
+				widget = new mw.flow.ui.TopicTitleWidget( topicId, {
+					editor: {
+						confirmLeave: !!mw.user.options.get( 'useeditwarning' )
+					}
+				} );
 				widget
 					.on( 'saveContent', function ( workflow ) {
 						widget.$element.remove();
@@ -598,7 +616,10 @@
 
 			replyWidget = new mw.flow.ui.ReplyWidget( $topic.data( 'flowId' ), replyTo, {
 				placeholder: placeholder,
-				expandable: false
+				expandable: false,
+				editor: {
+					confirmLeave: !!mw.user.options.get( 'useeditwarning' )
+				}
 			} );
 			// Create a reference so we can call it from the DOM above
 			replyWidget.$element.data( 'self', replyWidget );
@@ -641,7 +662,9 @@
 			$topic = $( '#flow-topic-' + topicId ),
 			$summaryContainer = $topic.find( '.flow-topic-summary-container' ),
 			$topicSummary = $summaryContainer.find( '.flow-topic-summary' ),
-			options = {},
+			editorOptions = {
+				confirmLeave: !!mw.user.options.get( 'useeditwarning' )
+			},
 			pageName = mw.config.get( 'wgPageName' ),
 			title = mw.Title.newFromText( pageName );
 
@@ -656,12 +679,10 @@
 
 		// TODO: This should be managed by the EditTopicSummary widget
 		if ( action === 'lock' || action === 'unlock' ) {
-			options = {
-				cancelMsgKey: 'flow-skip-summary'
-			};
+			editorOptions.cancelMsgKey = 'flow-skip-summary';
 		}
 
-		editTopicSummaryWidget = new mw.flow.ui.EditTopicSummaryWidget( topicId, options );
+		editTopicSummaryWidget = new mw.flow.ui.EditTopicSummaryWidget( topicId, { editor: editorOptions } );
 		editTopicSummaryWidget
 			.on( 'saveContent', function ( workflow ) {
 				editTopicSummaryWidget.destroy();
@@ -720,7 +741,11 @@
 			return;
 		}
 
-		editPostWidget = new mw.flow.ui.EditPostWidget( $topic.data( 'flowId' ), $post.data( 'flowId' ) );
+		editPostWidget = new mw.flow.ui.EditPostWidget( $topic.data( 'flowId' ), $post.data( 'flowId' ), {
+			editor: {
+				confirmLeave: !!mw.user.options.get( 'useeditwarning' )
+			}
+		} );
 
 		editPostWidget
 			.on( 'saveContent', saveOrCancelHandler )
@@ -758,7 +783,8 @@
 				classes: [ 'flow-ui-boardDescriptionWidget-error flow-errors errorbox' ]
 			} ),
 			editor = new mw.flow.ui.EditorWidget( {
-				saveMsgKey: saveMsgKey
+				saveMsgKey: saveMsgKey,
+				confirmLeave: !!mw.user.options.get( 'useeditwarning' )
 			} );
 
 		error.toggle( false );

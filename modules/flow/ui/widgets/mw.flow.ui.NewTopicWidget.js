@@ -9,6 +9,7 @@
 	 * @param {string} page The page name, including namespace, that the
 	 *  board of this topic belongs to.
 	 * @param {Object} [config] Configuration object
+	 * @cfg {Object} [editor] Config options to pass to mw.flow.ui.EditorWidget
 	 */
 	mw.flow.ui.NewTopicWidget = function mwFlowUiNewTopicWidget( page, config ) {
 		var title,
@@ -50,13 +51,13 @@
 			classes: [ 'flow-ui-newTopicWidget-title' ]
 		} );
 
-		this.editor = new mw.flow.ui.EditorWidget( {
+		this.editor = new mw.flow.ui.EditorWidget( $.extend( {
 			placeholder: mw.msg( 'flow-newtopic-content-placeholder', this.page ),
 			saveMsgKey: mw.user.isAnon() ? 'flow-newtopic-save-anonymously' : 'flow-newtopic-save',
 			autoFocus: false,
 			classes: [ 'flow-ui-newTopicWidget-editor' ],
 			saveable: mw.config.get( 'wgIsProbablyEditable' )
-		} );
+		}, config.editor ) );
 		this.editor.toggle( false );
 
 		this.captcha = new mw.flow.dm.Captcha();

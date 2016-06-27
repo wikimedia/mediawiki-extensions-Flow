@@ -9,6 +9,7 @@
 	 * @param {string} topicId The id of the topic
 	 * @param {string} postId The id of the post to edit
 	 * @param {Object} [config] Configuration object
+	 * @cfg {Object} [editor] Config options to pass to mw.flow.ui.EditorWidget
 	 */
 	mw.flow.ui.EditPostWidget = function mwFlowUiEditPostWidget( topicId, postId, config ) {
 		config = config || {};
@@ -19,10 +20,10 @@
 		// Parent constructor
 		mw.flow.ui.EditPostWidget.parent.call( this, config );
 
-		this.editor = new mw.flow.ui.EditorWidget( {
+		this.editor = new mw.flow.ui.EditorWidget( $.extend( {
 			saveMsgKey: mw.user.isAnon() ? 'flow-post-action-edit-post-submit-anonymously' : 'flow-post-action-edit-post-submit',
 			classes: [ 'flow-ui-editPostWidget-editor' ]
-		} );
+		}, config.editor ) );
 		this.editor.toggle( true );
 
 		this.anonWarning = new mw.flow.ui.AnonWarningWidget();
