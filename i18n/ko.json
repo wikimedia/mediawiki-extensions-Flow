@@ -207,7 +207,7 @@
 	"flow-rev-message-create-header": "$1 사용자가 설명을 {{GENDER:$2|만들었습니다}}",
 	"flow-rev-message-edit-header": "$1 사용자가 설명을 {{GENDER:$2|편집했습니다}}",
 	"flow-rev-message-create-topic-summary": "$1 사용자가 $3 주제의 주제 요약을 {{GENDER:$2|만들었습니다}}",
-	"flow-rev-message-edit-topic-summary": "$1 사용자가 $3 의 주제 요약을 {{GENDER:$2|편집했습니다}}",
+	"flow-rev-message-edit-topic-summary": "$1 사용자가 $3의 주제 요약을 {{GENDER:$2|편집했습니다}}",
 	"flow-rev-message-hid-post": "$1 사용자가 \"$6\"에서 [$4 댓글]을 {{GENDER:$2|숨겼습니다}} (<em>$5</em>)",
 	"flow-rev-message-deleted-post": "$1 사용자가 \"$6\"에서 [$4 댓글]을 {{GENDER:$2|삭제했습니다}} (<em>$5</em>)",
 	"flow-rev-message-suppressed-post": "$1 사용자가 \"$6\"에서 [$4 댓글]을 {{GENDER:$2|표시하지 않도록 했습니다}} (<em>$5</em>)",

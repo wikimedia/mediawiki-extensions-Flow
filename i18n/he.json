@@ -194,7 +194,7 @@
 	"flow-error-search": "לא הצלחנו להשלים את החיפוש שלך בשל בעיה זמנית. נא לנסות שוב מאוחר יותר.",
 	"flow-error-invalid-undelete": "לא היה אפשר לשחזר את הערך, כי יש עכשיו לוח דיונים במקומו.",
 	"flow-edit-header-placeholder": "נא לתאר את לוח הדיונים הזה",
-	"flow-edit-header-submit": "שמירת תיאור",
+	"flow-edit-header-submit": "שמירת התיאור",
 	"flow-edit-header-submit-anonymously": "שמירת תיאור כאלמוני",
 	"flow-edit-title-submit": "שינוי כותרת",
 	"flow-edit-title-submit-anonymously": "שינוי כותרת כאלמוני",
