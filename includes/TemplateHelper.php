@@ -8,7 +8,7 @@ use Flow\Model\UUID;
 use Closure;
 use HTML;
 use OOUI\IconWidget;
-use LightnCandy;
+use LightnCandy\LightnCandy;
 use MWTimestamp;
 use RequestContext;
 use Title;
@@ -121,7 +121,7 @@ class TemplateHelper {
 	 * @return string PHP code
 	 */
 	static public function compile( $code, $templateDir ) {
-		return LightnCandy::compile(
+		$phpStr = LightnCandy::compile(
 			$code,
 			array(
 				'flags' => LightnCandy::FLAG_ERROR_EXCEPTION
@@ -131,7 +131,7 @@ class TemplateHelper {
 					| LightnCandy::FLAG_RUNTIMEPARTIAL,
 				'basedir' => array( $templateDir ),
 				'fileext' => array( '.partial.handlebars' ),
-				'helpers' => array(
+				'hbhelpers' => array(
 					'l10n' => 'Flow\TemplateHelper::l10n',
 					'uuidTimestamp' => 'Flow\TemplateHelper::uuidTimestamp',
 					'timestamp' => 'Flow\TemplateHelper::timestampHelper',
@@ -153,7 +153,7 @@ class TemplateHelper {
 					'enablePatrollingLink' => 'Flow\TemplateHelper::enablePatrollingLink',
 					'oouify' => 'Flow\TemplateHelper::oouify',
 				),
-				'hbhelpers' => array(
+				'helpers' => array(
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
 					'ifAnonymous' => 'Flow\TemplateHelper::ifAnonymous',
 					'ifCond' => 'Flow\TemplateHelper::ifCond',
@@ -162,6 +162,8 @@ class TemplateHelper {
 				),
 			)
 		);
+
+		return array('<?php ' . $phpStr .  "\n?>");
 	}
 
 	/**
