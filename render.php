@@ -1,13 +1,6 @@
 <?php use \LightnCandy\SafeString as SafeString;use \LightnCandy\Runtime as LR;return function ($in, $options = null) {
     $helpers = array();
-    $partials = array('flow_errors' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-error-container">
-'.$sp.''.((LR::ifvar($cx, ((isset($cx['sp_vars']['root']['errors']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['errors'] : null), false)) ? '	<div class="flow-errors errorbox">
-'.$sp.'		<ul>
-'.$sp.''.LR::sec($cx, ((isset($cx['sp_vars']['root']['errors']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['errors'] : null), null, $in, true, function($cx, $in)use($sp){return '				<li>'.LR::encq($cx, ((isset($in['html']) && is_array($in)) ? $in['html'] : null)).'</li>
-'.$sp.'';}).'		</ul>
-'.$sp.'	</div>
-'.$sp.'' : '').'</div>
-';});
+    $partials = array();
     $cx = array(
         'flags' => array(
             'jstrue' => false,
@@ -32,14 +25,12 @@
         'runtime' => '\LightnCandy\Runtime',
     );
     
-    return '<div class="flow-board">
-'.LR::p($cx, 'flow_errors', array(array($in),array()), '	').'	<div class="flow-compare-revisions-header plainlinks">
-		'.LR::encq($cx, ((isset($in['l10nParse']) && is_array($in)) ? $in['l10nParse'] : null)).'
-	</div>
-	<div class="flow-compare-revisions">
-		'.LR::encq($cx, ((isset($in['diffRevision']) && is_array($in)) ? $in['diffRevision'] : null)).'
-	</div>
-</div>
+    return ''.((LR::ifvar($cx, ((isset($in['guid']) && is_array($in)) ? $in['guid'] : null), false)) ? '	<span datetime="'.LR::encq($cx, ((isset($in['time_iso']) && is_array($in)) ? $in['time_iso'] : null)).'" class="flow-timestamp">
+' : '	<span datetime="'.LR::encq($cx, ((isset($in['time_iso']) && is_array($in)) ? $in['time_iso'] : null)).'"
+	      class="flow-timestamp flow-load-interactive"
+	      data-flow-load-handler="timestamp">
+').'	<span class="flow-timestamp-user-formatted">'.LR::encq($cx, ((isset($in['time_readable']) && is_array($in)) ? $in['time_readable'] : null)).'</span>
+	<span id="'.LR::encq($cx, ((isset($in['guid']) && is_array($in)) ? $in['guid'] : null)).'" class="flow-timestamp-ago">'.LR::encq($cx, ((isset($in['time_ago']) && is_array($in)) ? $in['time_ago'] : null)).'</span>
+</span>
 ';
-};
-?>
+};?>
