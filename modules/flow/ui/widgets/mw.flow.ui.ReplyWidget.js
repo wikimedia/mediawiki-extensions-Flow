@@ -11,6 +11,7 @@
 	 * @param {Object} [config] Configuration object
 	 * @cfg {boolean} [expandable=true] Initialize the widget with a trigger input. Otherwise,
 	 *   the widget will be initialized with the editor already open.
+	 * @cfg {Object} [editor] Config options to pass to mw.flow.ui.EditorWidget
 	 */
 	mw.flow.ui.ReplyWidget = function mwFlowUiReplyWidget( topicId, replyTo, config ) {
 		config = config || {};
@@ -20,6 +21,7 @@
 		this.expandable = config.expandable === undefined ? true : config.expandable;
 		this.expanded = !this.expandable;
 		this.placeholder = config.placeholder;
+		this.editorOptions = config.editor;
 
 		// Parent constructor
 		mw.flow.ui.ReplyWidget.parent.call( this, config );
@@ -158,12 +160,12 @@
 	 */
 	mw.flow.ui.ReplyWidget.prototype.initializeEditor = function () {
 		if ( !this.editor ) {
-			this.editor = new mw.flow.ui.EditorWidget( {
+			this.editor = new mw.flow.ui.EditorWidget( $.extend( {
 				placeholder: this.placeholder,
 				saveMsgKey: mw.user.isAnon() ? 'flow-reply-link-anonymously' : 'flow-reply-link',
 				classes: [ 'flow-ui-replyWidget-editor' ],
 				saveable: mw.config.get( 'wgIsProbablyEditable' )
-			} );
+			}, this.editorOptions ) );
 
 			this.$editorWrapper.append( this.editor.$element );
 

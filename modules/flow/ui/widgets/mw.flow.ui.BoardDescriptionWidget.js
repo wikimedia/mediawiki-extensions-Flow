@@ -11,6 +11,7 @@
 	 * @cfg {jQuery} [$existing] A jQuery object of the existing contents of the board description
 	 * @cfg {string} [specialPageCategoryLink] Link to the localized Special:Categories page
 	 * @cfg {jQuery} [$categories] A jQuery object of the existing board categories
+	 * @cfg {Object} [editor] Config options to pass to mw.flow.ui.EditorWidget
 	 */
 	mw.flow.ui.BoardDescriptionWidget = function mwFlowUiBoardDescriptionWidget( boardModel, config ) {
 		var $content = $();
@@ -43,10 +44,10 @@
 			}
 		);
 
-		this.editor = new mw.flow.ui.EditorWidget( {
+		this.editor = new mw.flow.ui.EditorWidget( $.extend( {
 			saveMsgKey: mw.user.isAnon() ? 'flow-edit-header-submit-anonymously' : 'flow-edit-header-submit',
 			classes: [ 'flow-ui-boardDescriptionWidget-editor' ]
-		} );
+		}, config.editor ) );
 		this.editor.toggle( false );
 
 		this.anonWarning = new mw.flow.ui.AnonWarningWidget();
