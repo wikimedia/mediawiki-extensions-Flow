@@ -307,7 +307,7 @@ $wgResourceModules += array(
 		'localBasePath' => __DIR__,
 		'remoteExtPath' => 'Flow',
 		'scripts' => array(
-			'vendor/modules/handlebars-v3.0.0.js',
+			'vendor/modules/handlebars-v4.0.5.js',
 			'modules/handlebars.js',
 		),
 		'dependencies' => array(
