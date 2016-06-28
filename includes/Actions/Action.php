@@ -149,6 +149,8 @@ class FlowAction extends Action {
 		}
 
 		// We need to redirect
-		return $redirTitle->getLinkURL();
+		return $redirTitle->getLinkURL(
+			array_diff_key( $request->getValues(), array( 'title' => '', 'workflow' => '' ) )
+		);
 	}
 }
