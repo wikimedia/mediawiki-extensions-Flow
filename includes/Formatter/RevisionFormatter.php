@@ -340,7 +340,10 @@ class RevisionFormatter {
 					$row
 				);
 
-				$res['content']['plaintext'] = $res['properties']['topic-of-post-text-from-html']['plaintext'];
+				// moderated posts won't have that property
+				if ( isset( $res['properties']['topic-of-post-text-from-html']['plaintext'] ) ) {
+					$res['content']['plaintext'] = $res['properties']['topic-of-post-text-from-html']['plaintext'];
+				}
 			}
 
 			$res['isNewPage'] = $row->isFirstReply && $row->revision->isFirstRevision();
