@@ -42,7 +42,7 @@ class FlowUpdateWorkflowPageId extends LoggedUpdateMaintenance {
 		);
 		$it->setFetchColumns( array( '*' ) );
 		$it->addConditions( array(
-			'workflow_wiki' => wfWikiId(),
+			'workflow_wiki' => wfWikiID(),
 		) );
 
 		$gen = new WorkflowPageIdUpdateGenerator( $wgLang );

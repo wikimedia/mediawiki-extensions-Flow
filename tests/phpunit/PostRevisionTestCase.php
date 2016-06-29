@@ -154,7 +154,7 @@ class PostRevisionTestCase extends FlowTestCase {
 		$row = $row + array(
 			'workflow_id' => UUID::create()->getBinary(),
 			'workflow_type' => 'topic',
-			'workflow_wiki' => wfWikiId(),
+			'workflow_wiki' => wfWikiID(),
 			// The test workflow has no real associated page, this is
 			// just a random page number
 			'workflow_page_id' => 1,

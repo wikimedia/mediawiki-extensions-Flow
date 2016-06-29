@@ -182,7 +182,7 @@ class PurgeAction extends \PurgeAction {
 	protected function cacheKeyPrefix() {
 		global $wgFlowDefaultWikiDb;
 		if ( $wgFlowDefaultWikiDb === false ) {
-			return wfWikiId();
+			return wfWikiID();
 		} else {
 			return $wgFlowDefaultWikiDb;
 		}

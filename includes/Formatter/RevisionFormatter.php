@@ -429,7 +429,7 @@ class RevisionFormatter {
 			'id' => $userId
 		);
 		// Only works for the local wiki
-		if ( wfWikiId() === $userWiki ) {
+		if ( wfWikiID() === $userWiki ) {
 			$res['gender'] = $this->genderCache->getGenderOf( $res['name'], __METHOD__ );
 		}
 		if ( $res['name'] ) {

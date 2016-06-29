@@ -49,7 +49,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 		/** @var \Flow\Data\ObjectManager $storage */
 		$storage = Container::get( 'storage.wiki_reference' );
 		$links = $storage->find( array(
-			'ref_src_wiki' => wfWikiId(),
+			'ref_src_wiki' => wfWikiID(),
 			'ref_target_namespace' => array( -1, -2 ),
 		) );
 		if ( $links ) {
@@ -67,7 +67,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 
 		$iterator = new BatchRowIterator( $dbr, 'flow_workflow', 'workflow_id', $this->mBatchSize );
 		$iterator->setFetchColumns( array( '*' ) );
-		$iterator->addConditions( array( 'workflow_wiki' => wfWikiId() ) );
+		$iterator->addConditions( array( 'workflow_wiki' => wfWikiID() ) );
 
 		$count = 0;
 		foreach ( $iterator as $rows ) {

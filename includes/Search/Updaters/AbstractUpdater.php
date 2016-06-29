@@ -101,7 +101,7 @@ abstract class AbstractUpdater {
 				$bulk->setShardTimeout( $shardTimeout );
 			}
 
-			$index = $this->connection->getFlowIndex( wfWikiId() );
+			$index = $this->connection->getFlowIndex( wfWikiID() );
 			$type = $index->getType( $this->getTypeName() );
 			$bulk->setType( $type );
 			$bulk->addDocuments( $documents );

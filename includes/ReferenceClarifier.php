@@ -107,7 +107,7 @@ class ReferenceClarifier {
 			$res = $this->storage->find(
 				$refType,
 				array(
-					'ref_src_wiki' => wfWikiId(),
+					'ref_src_wiki' => wfWikiID(),
 					'ref_src_namespace' => $from->getNamespace(),
 					'ref_src_title' => $from->getDBkey(),
 				)

@@ -208,7 +208,7 @@ class FlowSearchConfig extends Maintenance {
 
 		$this->indexType = 'flow'; // only 1 index for Flow
 		$this->startOver = $this->getOption( 'startOver', false );
-		$this->indexBaseName = $this->getOption( 'baseName', wfWikiId() );
+		$this->indexBaseName = $this->getOption( 'baseName', wfWikiID() );
 		$this->reindexAndRemoveOk = $this->getOption( 'reindexAndRemoveOk', false );
 		$this->reindexProcesses = $this->getOption( 'reindexProcesses', wfIsWindows() ? 1 : 5 );
 		$this->reindexChunkSize = $this->getOption( 'reindexChunkSize', 100 );

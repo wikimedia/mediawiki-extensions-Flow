@@ -89,7 +89,7 @@ class WikiReference extends Reference {
 	 */
 	public static function makeTitle( $namespace, $title ) {
 		try {
-			return Workflow::getFromTitleCache( wfWikiId(), $namespace, $title );
+			return Workflow::getFromTitleCache( wfWikiID(), $namespace, $title );
 		} catch ( InvalidInputException $e ) {
 			// duplicate Title::makeTitleSafe which returns null on failure,
 			// but only for InvalidInputException

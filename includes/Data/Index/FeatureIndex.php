@@ -549,7 +549,7 @@ abstract class FeatureIndex implements Index {
 	static public function cachedDbId() {
 		global $wgFlowDefaultWikiDb;
 		if ( $wgFlowDefaultWikiDb === false ) {
-			return wfWikiId();
+			return wfWikiID();
 		} else {
 			return $wgFlowDefaultWikiDb;
 		}

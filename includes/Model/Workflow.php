@@ -148,7 +148,7 @@ class Workflow {
 			throw new DataModelException( 'Invalid workflow type provided: ' . $type, 'process-data' );
 		}
 		if ( $title->isLocal() ) {
-			$wiki = wfWikiId();
+			$wiki = wfWikiID();
 		} else {
 			$wiki = $title->getTransWikiID();
 		}

@@ -1562,7 +1562,7 @@ class FlowHooks {
 
 			DeferredUpdates::addUpdate( new MWCallableUpdate( function () use ( $storage, $articleId ) {
 				$workflows = $storage->find( 'Workflow', array(
-					'workflow_wiki' => wfWikiId(),
+					'workflow_wiki' => wfWikiID(),
 					'workflow_page_id' => $articleId,
 				) );
 
@@ -1889,7 +1889,7 @@ class FlowHooks {
 			array_merge( array(
 				'tree_parent_id' => null,
 				'r.rev_type' => 'post',
-				'workflow_wiki' => wfWikiId(),
+				'workflow_wiki' => wfWikiID(),
 				'workflow_id > ' . $dbr->addQuotes( $rcTimeLimit->getBinary() )
 			), $userWhere ),
 			__METHOD__,

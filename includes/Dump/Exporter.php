@@ -125,7 +125,7 @@ class Exporter extends WikiExporter {
 
 		$iterator = new BatchRowIterator( $dbr, 'flow_workflow', 'workflow_id', 300 );
 		$iterator->setFetchColumns( array( '*' ) );
-		$iterator->addConditions( array( 'workflow_wiki' => wfWikiId() ) );
+		$iterator->addConditions( array( 'workflow_wiki' => wfWikiID() ) );
 		$iterator->addConditions( array( 'workflow_type' => 'discussion' ) );
 
 		if ( $pages ) {

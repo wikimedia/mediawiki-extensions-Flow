@@ -115,7 +115,7 @@ class LinksTableUpdater {
 		$wikiReferences = $this->storage->find(
 			'WikiReference',
 			array(
-				'ref_src_wiki' => wfWikiId(),
+				'ref_src_wiki' => wfWikiID(),
 				'ref_src_namespace' => $title->getNamespace(),
 				'ref_src_title' => $title->getDBkey(),
 			)
@@ -124,7 +124,7 @@ class LinksTableUpdater {
 		$urlReferences = $this->storage->find(
 			'URLReference',
 			array(
-				'ref_src_wiki' => wfWikiId(),
+				'ref_src_wiki' => wfWikiID(),
 				'ref_src_namespace' => $title->getNamespace(),
 				'ref_src_title' => $title->getDBkey(),
 			)

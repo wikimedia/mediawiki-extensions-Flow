@@ -50,7 +50,7 @@ abstract class AbstractIterator implements Iterator {
 	 */
 	public function __construct( DbFactory $dbFactory ) {
 		$this->dbr = $dbFactory->getDB( DB_SLAVE );
-		$this->conditions = array( 'workflow_wiki' => wfWikiId() );
+		$this->conditions = array( 'workflow_wiki' => wfWikiID() );
 	}
 
 	/**

@@ -82,7 +82,7 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 		);
 		// Only fetch rows created by users from the current wiki.
 		$it->addConditions( array(
-			'rev_user_wiki' => wfWikiId(),
+			'rev_user_wiki' => wfWikiID(),
 		) );
 		// We only need the id and type field
 		$it->setFetchColumns( array( 'rev_id', 'rev_type' ) );

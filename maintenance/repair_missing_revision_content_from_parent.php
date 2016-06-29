@@ -20,7 +20,7 @@ $moderationChangeTypes = array(
         'restore-topic',
 );
 
-$csvOutput = fopen( 'repair_results_from_parent_' . wfWikiId() . '.csv', 'w' );
+$csvOutput = fopen( 'repair_results_from_parent_' . wfWikiID() . '.csv', 'w' );
 if ( !$csvOutput ) {
 	die( "Could not open results file\n" );
 }
@@ -33,7 +33,7 @@ $it = new BatchRowIterator(
 	array( 'rev_id' ),
 	10
 );
-$it->addConditions( array( 'rev_user_wiki' => wfWikiId() ) );
+$it->addConditions( array( 'rev_user_wiki' => wfWikiID() ) );
 $it->setFetchColumns( array( 'rev_change_type', 'rev_parent_id' ) );
 
 $totalNullContentWithParent = 0;

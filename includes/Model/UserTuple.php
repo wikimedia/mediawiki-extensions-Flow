@@ -64,7 +64,7 @@ class UserTuple {
 
 	public static function newFromUser( User $user ) {
 		return new self(
-			wfWikiId(),
+			wfWikiID(),
 			$user->getId(),
 			$user->isAnon() ? $user->getName() : null
 		);
@@ -96,7 +96,7 @@ class UserTuple {
 	}
 
 	public function createUser() {
-		if ( $this->wiki !== wfWikiId() ) {
+		if ( $this->wiki !== wfWikiID() ) {
 			throw new CrossWikiException( 'Can only retrieve same-wiki users' );
 		}
 		if ( $this->id ) {

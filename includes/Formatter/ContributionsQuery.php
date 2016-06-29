@@ -137,7 +137,7 @@ class ContributionsQuery extends AbstractQuery {
 		if ( property_exists( $pager, 'contribs' ) && $pager->contribs == 'newbie' ) {
 			list( $minUserId, $excludeUserIds ) = $this->getNewbieConditionInfo( $pager );
 
-			$conditions['rev_user_wiki'] = wfWikiId();
+			$conditions['rev_user_wiki'] = wfWikiID();
 			$conditions[] = 'rev_user_id > '. (int)$minUserId;
 			if ( $excludeUserIds ) {
 				// better safe than sorry - make sure everything's an int
@@ -150,11 +150,11 @@ class ContributionsQuery extends AbstractQuery {
 			if ( $uid ) {
 				$conditions['rev_user_id'] = $uid;
 				$conditions['rev_user_ip'] = null;
-				$conditions['rev_user_wiki'] = wfWikiId();
+				$conditions['rev_user_wiki'] = wfWikiID();
 			} else {
 				$conditions['rev_user_id'] = 0;
 				$conditions['rev_user_ip'] = $pager->target;
-				$conditions['rev_user_wiki'] = wfWikiId();
+				$conditions['rev_user_wiki'] = wfWikiID();
 			}
 		}
 
@@ -167,7 +167,7 @@ class ContributionsQuery extends AbstractQuery {
 		}
 
 		// Find only within requested wiki/namespace
-		$conditions['workflow_wiki'] = wfWikiId();
+		$conditions['workflow_wiki'] = wfWikiID();
 		if ( $pager->namespace !== '' ) {
 			$conditions['workflow_namespace'] = $pager->namespace;
 		}

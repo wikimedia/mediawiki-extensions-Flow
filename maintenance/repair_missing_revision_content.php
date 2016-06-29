@@ -25,7 +25,7 @@ $plaintextChangeTypes = array(
 	'new-topic',
 );
 
-$csvOutput = fopen( 'repair_results_' . wfWikiId() . '.csv', 'w' );
+$csvOutput = fopen( 'repair_results_' . wfWikiID() . '.csv', 'w' );
 if ( !$csvOutput ) {
 	die( "Could not open results file\n" );
 }
@@ -37,7 +37,7 @@ $it = new BatchRowIterator(
 	array( 'rev_id' ),
 	10
 );
-$it->addConditions( array( 'rev_user_wiki' => wfWikiId() ) );
+$it->addConditions( array( 'rev_user_wiki' => wfWikiID() ) );
 $it->setFetchColumns( array( 'rev_content', 'rev_content_length', 'rev_change_type', 'rev_parent_id' ) );
 
 $dbr = wfGetDB( DB_SLAVE );

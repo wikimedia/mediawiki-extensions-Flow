@@ -158,7 +158,7 @@ class UserNameBatch {
 	 */
 	protected function resolveUserPages( $wiki, array $usernames ) {
 		// LinkBatch currently only supports the current wiki
-		if ( $wiki !== wfWikiId() || !$usernames ) {
+		if ( $wiki !== wfWikiID() || !$usernames ) {
 			return;
 		}
 

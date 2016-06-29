@@ -37,12 +37,12 @@ class Searcher {
 
 	/**
 	 * @param Query $query
-	 * @param string|bool $index Base name for index to search from, defaults to wfWikiId()
+	 * @param string|bool $index Base name for index to search from, defaults to wfWikiID()
 	 * @param string|bool $type Type of revisions to retrieve, defaults to all
 	 */
 	public function __construct( Query $query, $index = false, $type = false ) {
 		$this->query = $query;
-		$this->indexBaseName = $index ?: wfWikiId();
+		$this->indexBaseName = $index ?: wfWikiID();
 		$this->type = $type;
 		$this->connection = Container::get( 'search.connection' );
 	}

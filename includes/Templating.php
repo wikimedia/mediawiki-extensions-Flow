@@ -100,7 +100,7 @@ class Templating {
 		if ( isset( $cache[$userid][$userip] ) ) {
 			return $cache[$userid][$userip];
 		}
-		$username = $this->usernames->get( wfWikiId(), $userid, $userip );
+		$username = $this->usernames->get( wfWikiID(), $userid, $userip );
 		return $cache[$userid][$userip] = Linker::userLink( $userid, $username ) . Linker::userToolLinks( $userid, $username );
 	}
 

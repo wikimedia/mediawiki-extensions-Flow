@@ -44,7 +44,7 @@ class NotificationFormatter extends EchoBasicFormatter {
 
 			if ( isset( $extra['topic-workflow'] ) ) {
 				$title = Workflow::getFromTitleCache(
-					wfWikiId(),
+					wfWikiID(),
 					NS_TOPIC,
 					$extra['topic-workflow']->getAlphadecimal()
 				);
