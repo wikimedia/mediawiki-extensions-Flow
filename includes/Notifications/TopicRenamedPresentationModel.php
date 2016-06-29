@@ -20,13 +20,18 @@ class TopicRenamedPresentationModel extends FlowPresentationModel {
 	}
 
 	public function getSecondaryLinks() {
-		$links = array( $this->getAgentLink() );
 		if ( $this->isUserTalkPage() ) {
-			$links[] = $this->getDiffLink();
+			return array(
+				$this->getAgentLink(),
+				$this->getDiffLink(),
+			);
 		} else {
-			$links[] = $this->getBoardByNewestLink();
+			return array(
+				$this->getAgentLink(),
+				$this->getBoardByNewestLink(),
+				$this->getDiffLink( false ),
+			);
 		}
-		return $links;
 	}
 
 	protected function getHeaderMessageKey() {
@@ -45,7 +50,7 @@ class TopicRenamedPresentationModel extends FlowPresentationModel {
 		return $msg;
 	}
 
-	protected function getDiffLink() {
+	protected function getDiffLink( $prioritized = true ) {
 		/** @var UrlGenerator $urlGenerator */
 		$urlGenerator = Container::get( 'url_generator' );
 		$anchor = $urlGenerator->diffPostLink(
@@ -59,7 +64,7 @@ class TopicRenamedPresentationModel extends FlowPresentationModel {
 			'label' => $this->msg( 'notification-link-text-view-changes' )->params( $this->getViewingUserForGender() )->text(),
 			'description' => '',
 			'icon' => 'changes',
-			'prioritized' => true,
+			'prioritized' => $prioritized,
 		);
 	}
 }

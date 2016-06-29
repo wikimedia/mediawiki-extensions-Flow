@@ -27,13 +27,18 @@ class PostEditedPresentationModel extends FlowPresentationModel {
 		if ( $this->isBundled() ) {
 			return array( $this->getBoardLink() );
 		} else {
-			$links = array( $this->getAgentLink() );
 			if ( $this->isUserTalkPage() ) {
-				$links[] = $this->getDiffLink();
+				return array(
+					$this->getAgentLink(),
+					$this->getDiffLink(),
+				);
 			} else {
-				$links[] = $this->getBoardLink();
+				return array(
+					$this->getAgentLink(),
+					$this->getBoardLink(),
+					$this->getDiffLink( false ),
+				);
 			}
-			return $links;
 		}
 	}
 
@@ -71,7 +76,7 @@ class PostEditedPresentationModel extends FlowPresentationModel {
 		return $msg;
 	}
 
-	protected function getDiffLink() {
+	protected function getDiffLink( $prioritized = true ) {
 		/** @var UrlGenerator $urlGenerator */
 		$urlGenerator = Container::get( 'url_generator' );
 		$anchor = $urlGenerator->diffPostLink(
@@ -85,7 +90,7 @@ class PostEditedPresentationModel extends FlowPresentationModel {
 			'label' => $this->msg( 'notification-link-text-view-changes' )->params( $this->getViewingUserForGender() )->text(),
 			'description' => '',
 			'icon' => 'changes',
-			'prioritized' => true,
+			'prioritized' => $prioritized,
 		);
 	}
 }
