@@ -7,7 +7,7 @@
 	.ve-init-target {
 		&.flow-ui-focused {
 			border-color: @colorProgressive;
-			box-shadow: inset 0 0 0 2px @colorProgressive;
+			box-shadow: inset 0 0 0 1px @colorProgressive;
 		}
 	}
 
@@ -52,18 +52,10 @@
 	}
 }
 
-.flow-editor {
+.flow-editor.flow-ui-focused,
+.flow-ui-editorSwitcherWidget-focused {
 	// Undo border & box-shadow on textarea and re-apply it on the
 	// div that contains textarea + legal text + switch button
-	&.flow-ui-focused {
-		border-color: @colorProgressive;
-		box-shadow: inset 0 0 0 2px @colorProgressive;
-	}
-}
-
-.flow-ui-editorSwitcherWidget {
-	&-focused {
-		border-color: @colorProgressive;
-		box-shadow: inset 0 0 0 2px @colorProgressive;
-	}
+	border-color: @colorProgressive;
+	box-shadow: inset 0 0 0 1px @colorProgressive;
 }
