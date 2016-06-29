@@ -23,14 +23,18 @@ class SummaryEditedPresentationModel extends FlowPresentationModel {
 		if ( $this->isBundled() ) {
 			return array( $this->getBoardLink() );
 		} else {
-			return array( $this->getAgentLink(), $this->getBoardLink() );
+			$links = array( $this->getAgentLink(), $this->getBoardLink() );
+			if ( !$this->isFirstRevision() ) {
+				$links[] = $this->getDiffLink( false );
+			}
+			return $links;
 		}
 	}
 
 	protected function getHeaderMessageKey() {
 		if ( $this->isBundled() ) {
 			$key = "notification-bundle-header-flow-summary-edited";
-		} elseif ( $this->event->getExtraParam( 'prev-revision-id' ) === null ) {
+		} elseif ( $this->isFirstRevision() ) {
 			$key = 'notification-header-flow-summary-edited-first';
 		} else {
 			$key = 'notification-header-flow-summary-edited';
@@ -41,6 +45,10 @@ class SummaryEditedPresentationModel extends FlowPresentationModel {
 		}
 
 		return $key;
+	}
+
+	protected function isFirstRevision() {
+		return $this->event->getExtraParam( 'prev-revision-id' ) === null;
 	}
 
 	public function getHeaderMessage() {
@@ -59,7 +67,7 @@ class SummaryEditedPresentationModel extends FlowPresentationModel {
 		return $this->msg( $key )->params( $this->getContentSnippet() );
 	}
 
-	protected function getDiffLink() {
+	protected function getDiffLink( $prioritized = true ) {
 		/** @var UrlGenerator $urlGenerator */
 		$urlGenerator = Container::get( 'url_generator' );
 		$anchor = $urlGenerator->diffSummaryLink(
@@ -73,7 +81,7 @@ class SummaryEditedPresentationModel extends FlowPresentationModel {
 			'label' => $this->msg( 'notification-link-text-view-changes' )->params( $this->getViewingUserForGender() )->text(),
 			'description' => '',
 			'icon' => 'changes',
-			'prioritized' => true,
+			'prioritized' => $prioritized,
 		);
 	}
 }
