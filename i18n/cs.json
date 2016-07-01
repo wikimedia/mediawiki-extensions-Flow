@@ -7,7 +7,8 @@
 			"Cvanca",
 			"Vks",
 			"Matěj Suchánek",
-			"Urbanecm"
+			"Urbanecm",
+			"Dvorapa"
 		]
 	},
 	"enableflow": "Aktivovat Flow",
@@ -177,11 +178,13 @@
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 {{GENDER:$1|upravil|upravila}} váš <span class=\"plainlinks\">[$5 příspěvek]</span> v sekci [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 a {{PLURAL:$5|$5 další|$5 další|$5 dalších|100=více než 99 dalších}} upravili <span class=\"plainlinks\">[$4 příspěvek]</span> v sekci „$2“ na stránce „$3“.",
 	"notification-header-flow-new-topic-v2": "Na stránce <strong>$3</strong> bylo vytvořeno nové téma: <bdi>„<strong>$4</strong>“</bdi>.",
+	"notification-compact-header-flow-new-topic": "„<strong>$1</strong>“",
 	"notification-bundle-header-flow-new-topic": "{{PLURAL:$1|Jedno nové téma|$1 nová témata|$1 nových témat|100=Více než 99 nových témat}} na stránce <strong>$3</strong>.",
 	"notification-header-flow-new-topic-user-talk": "Na <strong>vaší diskusní stránce</strong> bylo vytvořeno nové téma: „<strong>$4</strong>“.",
 	"notification-bundle-header-flow-new-topic-user-talk": "{{PLURAL:$1|Jedno nové téma|$1 nová témata|$1 nových témat|100=Více než 99 nových témat}} na <strong>vaší diskusní stránce</strong>.",
 	"notification-header-flow-post-reply": "$1 {{GENDER:$2|odpověděl|odpověděla}} u „<strong>$4</strong>“.",
-	"notification-bundle-header-flow-post-reply-v2": "{{PLURAL:$1|Jedno nové téma|$1 nová témata|$1 nových témat|100=Více než 99 nových témat}} u „<strong>$3</strong>“.",
+	"notification-bundle-header-flow-post-reply-v2": "{{PLURAL:$1|Jedna nová odpověď|$1 nové odpovědi|$1 nových odpovědí|100=Více než 99 nových odpovědí}} u „<strong>$3</strong>“.",
+	"notification-compact-header-flow-post-reply": "$1: „$3“.",
 	"notification-header-flow-post-reply-user-talk": "$1 {{GENDER:$2|odpověděl|odpověděla}} na <strong>vaší diskusní stránce</strong> u „<strong>$4</strong>“.",
 	"notification-bundle-header-flow-post-reply-user-talk": "{{PLURAL:$1|Jedna nová odpověď|$1 nové odpovědi|$1 nových odpovědí|100=Více než 99 nových odpovědí}} na <strong>vaší diskusní stránce</strong> u „<strong>$3</strong>“.",
 	"notification-header-flow-post-edited-v2": "{{GENDER:$2|Váš}} příspěvek u „<strong>$1</strong>“ byl upraven.",
@@ -247,7 +250,7 @@
 	"flow-edited": "Upraveno",
 	"flow-edited-by": "{{GENDER:$1|Upravil|Upravila|Upravil(a)}} $1",
 	"flow-undo": "zrušit editaci",
-	"group-flow-bot": "Boti pro Flow",
+	"group-flow-bot": "Roboti pro Flow",
 	"flow-ve-mention-context-item-label": "Zmínit",
 	"flow-ve-mention-inspector-title": "Zmínka",
 	"flow-ve-mention-inspector-remove-label": "Odstranit",

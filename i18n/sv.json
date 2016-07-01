@@ -441,6 +441,7 @@
 	"flow-importer-lqt-converted-template": "LQT-sida konverterad till Flow",
 	"flow-importer-lqt-converted-template-content": "Den tidigare sidhistoriken arkiverades för att säkerhetskopiera den på <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> den {{#time: d F Y|{{{date}}}}}.",
 	"flow-importer-lqt-converted-archive-template": "Arkiv för konverterad LQT-sida",
+	"flow-importer-lqt-converted-archive-template-content": "Denna sida är en arkiverad LiquidThreads-sida. <strong>Redigera inte innehållet i denna sida</strong>. Ytterligare kommentarer hänvisas till [[{{{from}}}|den aktuella diskussionssidan]].",
 	"flow-importer-wt-converted-template": "Wikitextdiskussionssida konverterad till Flow",
 	"flow-importer-wt-converted-template-content": "Föregående diskussioner arkiverades på <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> den {{#time: Y-m-d|{{{date}}}}}.",
 	"flow-importer-wt-converted-archive-template": "Arkiv för konverterade wikitextdiskussionssidor",
