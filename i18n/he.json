@@ -37,7 +37,7 @@
 	"flow-board-expand-description": "הצגת התיאור",
 	"flow-topic-collapse-siderail": "לקרוא ברוחב מלא",
 	"flow-topic-expand-siderail": "לקרוא ברוחב קבוע",
-	"flow-edit-header-link": "לערוך את התיאור",
+	"flow-edit-header-link": "עריכת התיאור",
 	"flow-post-moderated-toggle-hide-show": "הצגת התגובה ש{{GRAMMAR:תחילית|$2}} {{GENDER:$1|הסתיר|הסתירה}}",
 	"flow-post-moderated-toggle-delete-show": "הצגת התגובה ש{{GRAMMAR:תחילית|$2}} {{GENDER:$1|מחק|מחקה}}",
 	"flow-post-moderated-toggle-suppress-show": "הצגת התגובה ש{{GRAMMAR:תחילית|$2}} {{GENDER:$1|העלים|העלימה}}",
