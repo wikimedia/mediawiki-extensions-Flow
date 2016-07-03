@@ -338,7 +338,7 @@
 	"right-flow-create-board": "создание досок Потока в любом месте",
 	"right-flow-hide": "скрытие тем и сообщений Потока",
 	"right-flow-lock": "пометка тем Потока как завершённых",
-	"right-flow-delete": "Удалять темы и сообщения Потока",
+	"right-flow-delete": "удаление тем и сообщений Потока",
 	"right-flow-edit-post": "правка сообщений Потока других участников",
 	"right-flow-suppress": "подавление версий Потока",
 	"flow-terms-of-use-new-topic": "Нажимая «{{int:flow-newtopic-save}}», вы соглашаетесь с условиями использования этой вики.",

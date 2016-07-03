@@ -85,7 +85,7 @@
 	"flow-reply-topic-title-placeholder": "\"$1\"에 답변하기",
 	"flow-reply-link": "{{GENDER:$1|답변}}",
 	"flow-reply-link-anonymously": "익명으로 답장",
-	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|감사를 표합니다}}}}",
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|감사를 표하기}}}}",
 	"flow-thank-link-title": "공개적으로 게시자에게 {{GENDER:$1|{{GENDER:$2|감사를 표합니다}}}}",
 	"flow-history-action-suppress-post": "숨기기",
 	"flow-history-action-delete-post": "삭제",
