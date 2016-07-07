@@ -2,6 +2,8 @@
 
 namespace Flow;
 
+use RawMessage;
+
 class NewTopicPresentationModel extends FlowPresentationModel {
 
 	public function getIconType() {
@@ -79,7 +81,7 @@ class NewTopicPresentationModel extends FlowPresentationModel {
 	}
 
 	public function getCompactHeaderMessage() {
-		$msg = $this->msg( parent::getCompactHeaderMessageKey() );
+		$msg = new RawMessage( '$1' );
 		$msg->plaintextParams( $this->getTopicTitle() );
 		return $msg;
 	}
