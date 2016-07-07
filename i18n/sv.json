@@ -447,6 +447,7 @@
 	"flow-importer-wt-converted-archive-template": "Arkiv för konverterade wikitextdiskussionssidor",
 	"flow-importer-wt-converted-archive-template-content": "Denna sida är ett arkiv. <strong>Redigera inte innehållet i denna sida</strong>. Ytterligare kommentarer hänvisas till [[{{{from|{{TALKSPACE}}:{{BASEPAGENAME}}}}}|den aktuella diskussionssidan]].",
 	"flow-importer-lqt-suppressed-user-template": "LQT inlägg importerat med dold användare",
+	"flow-importer-lqt-suppressed-user-template-content": "Denna sidversion importerades från LiquidThreads med en censurerad användare. Den har tilldelats till den aktuella användaren.",
 	"flow-importer-lqt-different-author-signature-template": "LQT inlägg importera med användare med annan signatur",
 	"flow-importer-lqt-different-author-signature-template-content": "<em>Detta inlägg skapades av [[User:{{{authorUser}}}|{{{authorUser}}}]], men signerades som [[User:{{{signatureUser}}}|{{{signatureUser}}}]].</em>",
 	"flow-edited": "Redigerad",
@@ -506,5 +507,6 @@
 	"flow-guidedtour-optin-find-old-conversations-description": "Tidigare konversationer har flyttas till en arkivsida.",
 	"flow-guidedtour-optin-feedback": "Ge oss {{GENDER:$1|din}} återkoppling!",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Du}} kan skaffa mer information, ge återkoppling eller inaktivera det nya systemet när som helst från avsnittet Betafunktioner.",
-	"flow-action-not-page": "Sidobjektet är en instans av fel klass"
+	"flow-action-not-page": "Sidobjektet är en instans av fel klass",
+	"flow-action-wrong-title-content-model": "Sidan hanteras av Flow, men Titelklassen indikerar att innehållsmodellen är '$1'. Detta är en felkonfiguration eller ett inkonsistent tillstånd. Detta kan t.ex. vara en sida som inte är Flow i en Flow-namnrymd där <code>rev_content_model</code> inte har specificerats."
 }
