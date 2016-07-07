@@ -83,8 +83,13 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 
 	public function getCompactHeaderMessage() {
 		$msg = parent::getCompactHeaderMessage();
-		$msg->params( $this->getContentSnippet() );
+		$msg->params( $this->oneLine( $this->getContentSnippet() ) );
 		return $msg;
+	}
+
+	private function oneLine( $str ) {
+		// hack: there's got to be a better way to do this
+		return str_replace( "\n", '', $str );
 	}
 
 	public function getBodyMessage() {
