@@ -82,7 +82,7 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 	}
 
 	public function getCompactHeaderMessage() {
-		$msg = parent::getCompactHeaderMessage();
+		$msg = $this->getMessageWithAgent( 'notification-compact-header-flow-post-reply' );
 		$msg->plaintextParams( $this->getContentSnippet() );
 		return $msg;
 	}
