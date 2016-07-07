@@ -79,7 +79,7 @@ class NewTopicPresentationModel extends FlowPresentationModel {
 	}
 
 	public function getCompactHeaderMessage() {
-		$msg = $this->msg( parent::getCompactHeaderMessageKey() );
+		$msg = $this->msg( 'notification-compact-header-flow-new-topic' );
 		$msg->plaintextParams( $this->getTopicTitle() );
 		return $msg;
 	}
