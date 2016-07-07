@@ -433,6 +433,8 @@ $wgResourceModules += array(
 			'es5-shim',
 			'ext.flow.dm',
 			'oojs-ui.styles.icons-editing-advanced',
+			// This module may not exist, so a dummy version is conditionally added in Hooks.php
+			'ext.visualEditor.supportCheck',
 		)
 	) + $mobile,
 	'ext.flow' => $flowResourceTemplate + array(
