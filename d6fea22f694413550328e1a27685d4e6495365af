@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee011f3e_dc86156a",
+        "filename": "includes/Notifications/PostReplyPresentationModel.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-07-07T18:10:03Z",
+      "side": 1,
+      "message": "Should we strip \\r also?  Not sure if it is normalized elsewhere, shouldn\u0027t hurt to remove it.\n\nWhat about \u003cp\u003e and \u003cbr\u003e in the versions where the snippet is wikitext (both are valid in wikitext)?",
+      "revId": "d6fea22f694413550328e1a27685d4e6495365af",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
