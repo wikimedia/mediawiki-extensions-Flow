@@ -22,7 +22,8 @@
 			"Macofe",
 			"Rtemis",
 			"Dalba",
-			"AzorAhai"
+			"AzorAhai",
+			"Alifakoor"
 		]
 	},
 	"enableflow": "فعال‌سازی جریان",
@@ -267,7 +268,7 @@
 	"notification-header-flow-mention-header": "$1 به {{GENDER:$4|شما}} در توضیحات '''$3''' {{GENDER:$2|اشاره کرد}}.",
 	"notification-header-flow-mention-post-summary": "$1 به {{GENDER:$4|شما}} در «'''$5'''» {{GENDER:$2|اشاره کرد}}.",
 	"notification-header-flow-enabled-on-talkpage": "سامانه جدید بحث برای '''صفحه بحث {{GENDER:$2|شما}}''' فعال شد.",
-	"notification-header-flow-description-edited": "توضیحات «'''$1'''» ویرایش شد.",
+	"notification-header-flow-description-edited": "توضیحات «<strong>$1</strong>» ویرایش شد.",
 	"notification-header-flow-description-edited-user-talk": "توضیحات در '''صفحه بحث {{GENDER:$2|شما}}''' ویرایش شد.",
 	"notification-bundle-header-flow-description-edited": "توضیحات '''$1''' چندین بار ویرایش شد.",
 	"notification-bundle-header-flow-description-edited-user-talk": "توضیحات در '''صفحه بحث {{GENDER:$2|شما}}''' چندین بار ویرایش شد.",
