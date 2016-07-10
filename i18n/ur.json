@@ -197,6 +197,7 @@
 	"flow-notification-edit-bundle": "$1 اور $5 {{PLURAL:$6|دیگر|دیگر افراد}} نے $3 پر \"$2\" میں موجود ایک <span class=\"plainlinks\">[$4 مراسلہ]</span> میں {{GENDER:$1|ترمیم کی}}",
 	"notification-header-flow-new-topic-v2": "<strong>$3</strong> پر نیا موضوع  <bdi> \"<strong>$4</strong>\"</bdi> تخلیق کیا گیا۔",
 	"notification-bundle-header-flow-new-topic": "'''$3''' پر $1 {{PLURAL:$1|موضوع|موضوعات}}",
+	"notification-header-flow-description-edited": "<strong>$1</strong> کی تفصیل میں ترمیم کی گئی ہے۔",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 نے '''$3''' پر نیا موضوع {{GENDER:$1|شروع کیا}}۔",
 	"flow-notification-newtopic-bundle": "'''<span class=\"plainlinks\">[$3 $2]</span>''' پر {{PLURAL:$1|$1 نیا موضوع|$1 نئے موضوعات|250=250+ نئے موضوعات}}",
 	"flow-notification-link-text-view-post": "مراسلہ دیکھیں",
