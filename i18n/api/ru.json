@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Okras",
-			"Sunpriat"
+			"Sunpriat",
+			"Kaganer"
 		]
 	},
 	"apihelp-flow-description": "Позволяет применять действия к страницам Потока.",
@@ -71,16 +72,17 @@
 	"apihelp-flow+view-topic-summary-example-1": "Посмотреть краткое содержание у [[Topic:S2tycnas4hcucw8w]] как вики-текст",
 	"apihelp-flow+view-topiclist-description": "Посмотреть список тем.",
 	"apihelp-flow+view-topiclist-param-offset-dir": "Направление порядка тем.",
-	"apihelp-flow+view-topiclist-param-sortby": "Вариант сортировки тем, как обновлённых (отсортированных по времени обновления), так и новых (отсортированных по времени создания).",
+	"apihelp-flow+view-topiclist-param-sortby": "Вариант сортировки тем, как <kbd>обновлённых</kbd> (отсортированных по времени обновления), так и <kbd>новых</kbd> (отсортированных по времени создания).",
 	"apihelp-flow+view-topiclist-param-savesortby": "Сохранить способ сортировки в настройках пользователя (если установлен).",
-	"apihelp-flow+view-topiclist-param-offset-id": "Значение смещения (в формате UUID), чтобы начать выборку тем.",
-	"apihelp-flow+view-topiclist-param-offset": "Значение смещения, чтобы начать выборку тем.",
+	"apihelp-flow+view-topiclist-param-offset-id": "Значение смещения (в формате UUID), чтобы начать выборку тем. Используется при сортировке по <kbd>новым</kbd>",
+	"apihelp-flow+view-topiclist-param-offset": "Значение смещения (метка обновления темы, в формате <code>TS_MW</code> (<code>ГГГГММДДЧЧММСС</code>)), чтобы начать выборку тем; используется только при сортировке тем, как <kbd>обновлённых</kbd>",
 	"apihelp-flow+view-topiclist-param-limit": "Количество тем для извлечения.",
+	"apihelp-flow+view-topiclist-param-format": "Формат, в котором вернуть содержимое.",
 	"apihelp-flow+view-topiclist-example-1": "Список тем в [[Talk:Sandbox]]",
 	"apihelp-flow-parsoid-utils-description": "Преобразовать текст между вики-текстом и HTML.",
 	"apihelp-flow-parsoid-utils-param-from": "Формат из которого преобразуется содержимое.",
 	"apihelp-flow-parsoid-utils-param-to": "Формат в который преобразуется содержимое.",
-	"apihelp-flow-parsoid-utils-param-content": "Содержимое которое нежно преобразовать",
+	"apihelp-flow-parsoid-utils-param-content": "Содержимое, которое нужно преобразовать",
 	"apihelp-flow-parsoid-utils-param-title": "Заголовок страницы. Не может использоваться вместе с $1pageid.",
 	"apihelp-flow-parsoid-utils-param-pageid": "ID страницы. Не может использоваться вместе с $1title.",
 	"apihelp-flow-parsoid-utils-example-1": "Преобразование вики-текста <nowiki>'''lorem''' ''blah''</nowiki> в HTML",
