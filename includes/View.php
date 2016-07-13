@@ -300,6 +300,9 @@ class View extends ContextSource {
 			$title = Title::newFromText( $apiResponse['title'] );
 			$classes[] = 'mw-content-' . $title->getPageViewLanguage()->getDir();
 
+			$action = $this->getRequest()->getVal( 'action', 'view' );
+			$classes[] = "flow-action-$action";
+
 			// Output the component, with the rendered blocks inside it
 			$out->addHTML( Html::rawElement(
 				'div',

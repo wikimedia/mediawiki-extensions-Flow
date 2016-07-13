@@ -4,53 +4,56 @@
 
 // @todo: Find better home for this css
 .client-js {
-	// Hide the component while it is loading if Javascript
-	// is enabled.
-	.flow-ui-load-overlay {
-		z-index: 101;
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		cursor: wait;
-	}
-
-	.flow-component {
-		position: relative;
-		opacity: 0.5;
-
-		&-ready {
-			opacity: 1;
-
-			-moz-transition: opacity 0.5s;
-			-webkit-transition: opacity 0.5s;
-			-o-transition: opacity 0.5s;
-			transition: opacity 0.5s;
+	.flow-action-view {
+		// Hide the component while it is loading if Javascript
+		// is enabled.
+		.flow-ui-load-overlay {
+			z-index: 101;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			cursor: wait;
 		}
-	}
 
-	/*
-	Fallback elements
+		.flow-component {
+			position: relative;
+			opacity: 0.5;
 
-	Fallback elements are invisible when JavaScript is enabled. They only exist when JavaScript does not run.
+			&-ready {
+				opacity: 1;
 
-	Markup:
-	<div class="flow-ui-fallback-element"></div>
+				-moz-transition: opacity 0.5s;
+				-webkit-transition: opacity 0.5s;
+				-o-transition: opacity 0.5s;
+				transition: opacity 0.5s;
+			}
+		}
 
-	Styleguide X.
-	*/
-	.flow-ui-fallback-element {
-		visibility: hidden;
-		height: 0;
-	}
+		/*
+		Fallback elements
 
-	// With JS, hide .flow-nojs & display .flow-js elements
-	.flow-nojs {
-		display: none;
-	}
-	.flow-js {
-		display: block;
+		Fallback elements are invisible when JavaScript is enabled. They only exist when JavaScript does not run.
+
+		Markup:
+		<div class="flow-ui-fallback-element"></div>
+
+		Styleguide X.
+		*/
+		.flow-ui-fallback-element {
+			visibility: hidden;
+			height: 0;
+		}
+
+		// With JS, hide .flow-nojs & display .flow-js elements
+		.flow-nojs {
+			display: none;
+		}
+		.flow-js {
+			display: block;
+		}
+
 	}
 }
 
