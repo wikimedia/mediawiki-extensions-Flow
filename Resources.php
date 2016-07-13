@@ -287,6 +287,7 @@ $wgResourceModules += array(
 			'styles/board/timestamps.less',
 			'styles/board/replycount.less',
 			'styles/nojs.less',
+			'styles/js.less',
 			'styles/board/form-actions.less',
 			'styles/board/terms-of-use.less',
 			'styles/board/editor-switcher.less',
