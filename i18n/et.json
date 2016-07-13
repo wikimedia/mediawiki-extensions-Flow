@@ -113,7 +113,7 @@
 	"flow-topic-comments": "{{PLURAL:$1|Üks kommentaar|$1 kommentaari|0=Kommentaare {{GENDER:$2|pole}} veel.}}",
 	"flow-workflow": "töövoog",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 vastas leheküljel \"<strong>$4</strong>\".",
-	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 ja veel {{PLURAL:$5|üks kasutaja vastas|$5 kasutajat vastasid|rohkem kui 99 kasutajat vastasid}} leheküljel \"<strong>$3</strong>\".",
+	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 ja veel {{PLURAL:$5|üks kasutaja vastas|$5 kasutajat vastasid|100=rohkem kui 99 kasutajat vastasid}} leheküljel \"<strong>$3</strong>\".",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 redigeeris sinu <span class=\"plainlinks\">[$5 postitust]</span> leheküljel \"[[$3|$4]]\".",
 	"flow-notification-edit-bundle": "$1 ja veel {{PLURAL:$5|üks kasutaja redigeeris|$5 kasutajat redigeerisid|100=rohkem kui 99 kasutajat redigeerisid}} <span class=\"plainlinks\">[$4 postitust]</span> teemas \"$2\" leheküljel \"$3\".",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 alustas leheküljel \"<strong>$3</strong>\" uut teemat.",
