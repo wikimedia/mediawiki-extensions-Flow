@@ -234,5 +234,6 @@
 	"flow-mark-revision-patrolled-link-text": "Atzīmēt šo lapu kā pārbaudītu",
 	"flow-mark-revision-patrolled-link-title": "Atzīmēt šo lapu kā pārbaudītu",
 	"flow-mark-diff-patrolled-link-text": "Atzīmēt kā pārbaudītu",
-	"flow-mark-diff-patrolled-link-title": "Atzīmēt kā pārbaudītu"
+	"flow-mark-diff-patrolled-link-title": "Atzīmēt kā pārbaudītu",
+	"flow-dialog-cancelconfirm-title": "Vai esi pārliecināts?"
 }
