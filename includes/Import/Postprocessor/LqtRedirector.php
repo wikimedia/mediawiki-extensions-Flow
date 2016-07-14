@@ -12,6 +12,7 @@ use Flow\Import\TopicImportState;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\UrlGenerator;
+use MediaWiki\MediaWikiServices;
 use Title;
 use User;
 use WatchedItem;
@@ -79,6 +80,8 @@ class LqtRedirector implements Postprocessor {
 		$summary = wfMessage( 'flow-lqt-redirect-reason' )->plain();
 		$page->doEditContent( $newContent, $summary, EDIT_FORCE_BOT, false, $this->user );
 
-		WatchedItem::duplicateEntries( $fromTitle, $redirectTarget );
+		MediaWikiServices::getInstance()->getWatchedItemStore()->duplicateAllAssociatedEntries(
+			$fromTitle, $redirectTarget
+		);
 	}
 }
