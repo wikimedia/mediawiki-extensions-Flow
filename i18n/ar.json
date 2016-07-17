@@ -9,7 +9,8 @@
 			"Hiba Alshawi",
 			"Macofe",
 			"Shbib Al-Subaie",
-			"Sonic N800"
+			"Sonic N800",
+			"علاء"
 		]
 	},
 	"enableflow": "فعّل ميزة تدفق",
@@ -29,9 +30,9 @@
 	"flow-show-change": "اعرض التغييرات",
 	"flow-newtopic-title-placeholder": "موضوع جديد",
 	"flow-newtopic-content-placeholder": "أضف رسالة جديدة إلى \"$1\"",
-	"flow-newtopic-header": "أضف موضوعا جديدا",
-	"flow-newtopic-save": "أضف موضوعا",
-	"flow-newtopic-start-placeholder": "أضف موضوعا جديدا",
+	"flow-newtopic-header": "أضف موضوعاً جديداً",
+	"flow-newtopic-save": "أضف موضوعاً",
+	"flow-newtopic-start-placeholder": "أضف موضوعاً جديداً",
 	"flow-reply-topic-placeholder": "{{GENDER:$1|علّق|علّقت}} في \"$2\"",
 	"flow-reply-topic-title-placeholder": "رد على \"$1\"",
 	"flow-reply-link": "{{GENDER:$1|رد}}",
