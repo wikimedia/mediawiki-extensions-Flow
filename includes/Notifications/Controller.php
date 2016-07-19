@@ -2,7 +2,7 @@
 
 namespace Flow;
 
-use Flow\Data\ManagerGroup;
+use EchoModerationController;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
@@ -766,7 +766,7 @@ class NotificationController {
 		$firstPath = reset( $rootPaths );
 		$pathLength = count( $firstPath );
 
-		for( $i = 0; $i < $pathLength; $i++ ) {
+		for ( $i = 0; $i < $pathLength; $i++ ) {
 			$possibleDeepestRoot = $firstPath[$i];
 
 			foreach ( $rootPaths as $path ) {
@@ -780,5 +780,67 @@ class NotificationController {
 		}
 
 		return $deepestRoot;
+	}
+
+	/**
+	 * Moderate or unmoderate Flow notifications associated with a topic.
+	 *
+	 * @param UUID $topicId
+	 * @param bool $moderated Whether the events need to be moderated or unmoderated
+	 * @throws FlowException
+	 */
+	public function moderateTopicNotifications( UUID $topicId, $moderated ) {
+		if ( !class_exists( 'EchoEvent' ) ) {
+			// Nothing to do here.
+			return;
+		}
+
+		$title = Title::makeTitle( NS_TOPIC, ucfirst( $topicId->getAlphadecimal() ) );
+		$pageId = $title->getArticleID();
+		\DeferredUpdates::addCallableUpdate( function () use ( $pageId, $moderated ) {
+			$targetPageMapper = new \EchoTargetPageMapper();
+			$eventIds = $targetPageMapper->fetchEventIdsByPageId( $pageId );
+
+			EchoModerationController::moderate( $eventIds, $moderated );
+		} );
+	}
+
+	/**
+	 * Moderate or unmoderate Flow notifications associated with a post within a topic.
+	 *
+	 * @param UUID $topicId
+	 * @param UUID $postId
+	 * @param bool $moderated Whether the events need to be moderated or unmoderated
+	 * @throws FlowException
+	 */
+	public function moderatePostNotifications( UUID $topicId, UUID $postId, $moderated ) {
+		if ( !class_exists( 'EchoEvent' ) ) {
+			// Nothing to do here.
+			return;
+		}
+
+		$title = Title::makeTitle( NS_TOPIC, ucfirst( $topicId->getAlphadecimal() ) );
+		$pageId = $title->getArticleID();
+		\DeferredUpdates::addCallableUpdate( function () use ( $pageId, $postId, $moderated ) {
+			$eventMapper = new \EchoEventMapper();
+			$eventTypes = array(
+				'flow-new-topic', 'flow-post-reply', 'flow-post-edited', 'flow-mention',
+				'flowusertalk-new-topic', 'flowusertalk-post-reply', 'flowusertalk-post-edited', 'flowusertalk-mention',
+			);
+			$events = $eventMapper->fetchByTypesAndPage( $eventTypes, $pageId );
+
+			$eventIds = array();
+
+			/** @var EchoEvent $event */
+			foreach ( $events as $event ) {
+				/** @var UUID $eventPostId */
+				$eventPostId = $event->getExtraParam( 'post-id' );
+				if ( $eventPostId && ( $eventPostId->getAlphadecimal() === $postId->getAlphadecimal() ) ) {
+					$eventIds[] = $event->getId();
+				}
+			}
+
+			EchoModerationController::moderate( $eventIds, $moderated );
+		} );
 	}
 }
