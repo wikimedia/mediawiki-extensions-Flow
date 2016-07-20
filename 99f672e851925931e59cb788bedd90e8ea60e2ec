@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e2673f8_67b165dc",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2016-07-20T12:09:37Z",
+      "side": 1,
+      "message": "Does this need to be coerced into plain text in case it contains HTML?\n\nAlso don\u0027t you want to sue the more verbose flow-dialog-cancelconfirm-message instead of just -title (\"Are you sure?\")",
+      "revId": "99f672e851925931e59cb788bedd90e8ea60e2ec",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
