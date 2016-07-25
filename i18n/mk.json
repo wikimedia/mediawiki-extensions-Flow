@@ -257,7 +257,7 @@
 	"notification-bundle-header-flow-new-topic-user-talk": "{{PLURAL:$1|Една нова тема|$1 нови теми|100=Преку 99 нови теми}} на <strong>вашата страница за разговор</strong>.",
 	"notification-header-flow-post-reply": "$1 {{GENDER:$2|одговори}} на „<strong>$4</strong>“.",
 	"notification-bundle-header-flow-post-reply-v2": "{{PLURAL:$1|Еден нов одговор|$1 нови одговори|100=Преку 99 нови одговори}} на „<strong>$3</strong>“.",
-	"notification-compact-header-flow-post-reply": "$1: „$3“.",
+	"notification-compact-header-flow-post-reply": "$1: <em>$3</em>.",
 	"notification-header-flow-post-reply-user-talk": "$1 {{GENDER:$2|објави}} одговор на <strong>вашата страница за разговор</strong> на „\"<strong>$4</strong>“.",
 	"notification-bundle-header-flow-post-reply-user-talk": "{{PLURAL:$1|Еден нов одговор|$1 нови одговори|100=Преку 99 нови одговори}} на <strong>вашата страница за разговор</strong>  на „<strong>$3</strong>“.",
 	"notification-header-flow-post-edited-v2": "{{GENDER:$2|Вашата}} објава на „<strong>$1</strong>“ е изменета.",

@@ -194,7 +194,7 @@
 	"notification-bundle-header-flow-new-topic-user-talk": "{{PLURAL:$1|Jedno nové téma|$1 nová témata|$1 nových témat|100=Více než 99 nových témat}} na <strong>vaší diskusní stránce</strong>.",
 	"notification-header-flow-post-reply": "$1 {{GENDER:$2|odpověděl|odpověděla}} u „<strong>$4</strong>“.",
 	"notification-bundle-header-flow-post-reply-v2": "{{PLURAL:$1|Jedna nová odpověď|$1 nové odpovědi|$1 nových odpovědí|100=Více než 99 nových odpovědí}} u „<strong>$3</strong>“.",
-	"notification-compact-header-flow-post-reply": "$1: „$3“.",
+	"notification-compact-header-flow-post-reply": "$1: <em>$3</em>.",
 	"notification-header-flow-post-reply-user-talk": "$1 {{GENDER:$2|odpověděl|odpověděla}} na <strong>vaší diskusní stránce</strong> u „<strong>$4</strong>“.",
 	"notification-bundle-header-flow-post-reply-user-talk": "{{PLURAL:$1|Jedna nová odpověď|$1 nové odpovědi|$1 nových odpovědí|100=Více než 99 nových odpovědí}} na <strong>vaší diskusní stránce</strong> u „<strong>$3</strong>“.",
 	"notification-header-flow-post-edited-v2": "{{GENDER:$2|Váš}} příspěvek u „<strong>$1</strong>“ byl upraven.",
