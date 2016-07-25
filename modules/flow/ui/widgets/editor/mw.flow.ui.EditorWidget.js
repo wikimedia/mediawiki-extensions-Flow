@@ -276,14 +276,14 @@
 	 * Respond to beforeunload event.
 	 *
 	 * @private
-	 * @return {boolean}
+	 * @return {string|undefined}
 	 */
 	mw.flow.ui.EditorWidget.prototype.onBeforeUnload = function () {
 		if ( this.leaveCallback && this.leaveCallback() === false ) {
-			return false;
+			return mw.msg( 'flow-cancel-warning' );
 		}
 		if ( this.confirmLeave && !this.isEmpty() ) {
-			return false;
+			return mw.msg( 'flow-cancel-warning' );
 		}
 	};
 
