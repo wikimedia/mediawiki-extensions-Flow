@@ -8,6 +8,7 @@
 	 * @constructor
 	 * @param {string} topicId The id of the topic that has the summary we want to edit
 	 * @param {Object} [config] Configuration object
+	 * @cfg {Object} [editor] Config options to pass to mw.flow.ui.EditorWidget
 	 */
 	mw.flow.ui.EditTopicSummaryWidget = function mwFlowUiEditTopicSummaryWidget( topicId, config ) {
 		config = config || {};
@@ -17,12 +18,11 @@
 		// Parent constructor
 		mw.flow.ui.EditTopicSummaryWidget.parent.call( this, config );
 
-		this.editor = new mw.flow.ui.EditorWidget( {
+		this.editor = new mw.flow.ui.EditorWidget( $.extend( {
 			saveMsgKey: 'flow-topic-action-update-topic-summary',
 			classes: [ 'flow-ui-editTopicSummaryWidget-editor' ],
-			placeholder: mw.msg( 'flow-edit-summary-placeholder' ),
-			cancelMsgKey: config.cancelMsgKey
-		} );
+			placeholder: mw.msg( 'flow-edit-summary-placeholder' )
+		}, config.editor ) );
 		this.editor.toggle( true );
 
 		this.anonWarning = new mw.flow.ui.AnonWarningWidget();
