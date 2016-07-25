@@ -824,7 +824,7 @@ class NotificationController {
 		\DeferredUpdates::addCallableUpdate( function () use ( $pageId, $postId, $moderated ) {
 			$eventMapper = new \EchoEventMapper();
 			$eventTypes = array(
-				'flow-new-topic', 'flow-post-reply', 'flow-post-edited', 'flow-mention',
+				'flow-new-topic', 'flow-post-reply', 'flow-post-edited', 'flow-mention', 'flow-thank',
 				'flowusertalk-new-topic', 'flowusertalk-post-reply', 'flowusertalk-post-edited', 'flowusertalk-mention',
 			);
 			$events = $eventMapper->fetchByTypesAndPage( $eventTypes, $pageId );
