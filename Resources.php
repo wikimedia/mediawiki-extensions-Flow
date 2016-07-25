@@ -440,6 +440,7 @@ $wgResourceModules += array(
 			'flow-dialog-cancelconfirm-keep',
 			'flow-dialog-cancelconfirm-discard',
 			'flow-wikitext-switch-editor-tooltip',
+			'flow-cancel-warning',
 			'red-link-title',
 			'pagecategories',
 			'colon-separator'
