@@ -245,6 +245,7 @@
 	 * @fires saveContent
 	 */
 	mw.flow.ui.EditorWidget.prototype.onEditorControlsWidgetSave = function () {
+		this.unbindBeforeUnloadHandler();
 		this.emit(
 			'saveContent',
 			this.editorSwitcherWidget.getActiveEditor().getContent(),
