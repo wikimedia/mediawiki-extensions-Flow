@@ -261,6 +261,7 @@
 	"flow-notification-mention": "$1 упомянул{{GENDER:$1||а}} {{GENDER:$5|вас}} в {{GENDER:$1|своём}} <span class=\"plainlinks\">[$2 сообщении]</span> в «$3» на «$4».",
 	"flow-notification-link-text-view-post": "Посмотреть сообщение",
 	"flow-notification-link-text-view-topic": "Посмотреть тему",
+	"flow-notification-link-text-view-topics": "Посмотреть темы",
 	"flow-notification-reply-email-subject": "$2 на $3",
 	"flow-notification-reply-email-batch-body": "$1 ответил{{GENDER:$1||а}} в «$2» на $3",
 	"flow-notification-reply-email-batch-bundle-body": "$1 и {{PLURAL:$4|$4 {{GENDER:$1|другой ответил|другая ответила}}|$4 других ответили|100=99+ других ответили}} в «$2» на $3",

@@ -26,7 +26,8 @@
 			"Quiddity",
 			"Cwek",
 			"飞舞回堂前",
-			"Chiefwei"
+			"Chiefwei",
+			"Myy730"
 		]
 	},
 	"enableflow": "启用Flow",
@@ -34,13 +35,13 @@
 	"flow-talk-taken-over-comment": "/* 此页面已被转换至一个Flow讨论版 */",
 	"log-name-flow": "Flow活动日志",
 	"logentry-delete-flow-delete-post": "$1{{GENDER:$2|删除了}}在[[$6]]中“[[$3|$5]]”的一个[$4 帖子]",
-	"logentry-delete-flow-delete-post-topic-title-not-visible": "$1{{GENDER:$2|删除}}了[[$3]]上一话题的帖子",
+	"logentry-delete-flow-delete-post-topic-title-not-visible": "$1{{GENDER:$2|删除}}了[[$3]]上一个话题的帖子",
 	"logentry-delete-flow-restore-post": "$1{{GENDER:$2|还原了}}在[[$6]]中“[[$3|$5]]”的一个[$4 帖子]",
-	"logentry-delete-flow-restore-post-topic-title-not-visible": "$1{{GENDER:$2|还原}}了[[$3]]上一话题的帖子",
+	"logentry-delete-flow-restore-post-topic-title-not-visible": "$1{{GENDER:$2|还原}}了[[$3]]上一个话题的帖子",
 	"logentry-suppress-flow-suppress-post": "$1{{GENDER:$2|屏蔽了}}在[[$6]]中“[[$3|$5]]”的一个[$4 帖子]",
-	"logentry-suppress-flow-suppress-post-topic-title-not-visible": "$1{{GENDER:$2|屏蔽}}了[[$3]]上一话题的帖子",
+	"logentry-suppress-flow-suppress-post-topic-title-not-visible": "$1{{GENDER:$2|屏蔽}}了[[$3]]上一个话题的帖子",
 	"logentry-suppress-flow-restore-post": "$1{{GENDER:$2|解除屏蔽了}}在[[$6]]中“[[$3|$5]]”的一个[$4 帖子]",
-	"logentry-suppress-flow-restore-post-topic-title-not-visible": "$1{{GENDER:$2|删除}}了[[$3]]上一话题的帖子",
+	"logentry-suppress-flow-restore-post-topic-title-not-visible": "$1{{GENDER:$2|删除}}了[[$3]]上一个话题的帖子",
 	"logentry-delete-flow-delete-topic": "$1{{GENDER:$2|删除了}}在[[$6]]中的话题“[[$3|$5]]”",
 	"logentry-delete-flow-delete-topic-topic-title-not-visible": "$1{{GENDER:$2|删除}}了[[$3]]上的话题",
 	"logentry-delete-flow-restore-topic": "$1{{GENDER:$2|还原了}}在[[$6]]中的话题“[[$3|$5]]”",
