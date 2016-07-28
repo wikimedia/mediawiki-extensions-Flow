@@ -2,6 +2,7 @@
 
 namespace Flow;
 
+use EchoEventMapper;
 use EchoModerationController;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
@@ -798,8 +799,8 @@ class NotificationController {
 		$title = Title::makeTitle( NS_TOPIC, ucfirst( $topicId->getAlphadecimal() ) );
 		$pageId = $title->getArticleID();
 		\DeferredUpdates::addCallableUpdate( function () use ( $pageId, $moderated ) {
-			$targetPageMapper = new \EchoTargetPageMapper();
-			$eventIds = $targetPageMapper->fetchEventIdsByPageId( $pageId );
+			$eventMapper = new EchoEventMapper();
+			$eventIds = $eventMapper->fetchIdsByPage( $pageId );
 
 			EchoModerationController::moderate( $eventIds, $moderated );
 		} );
@@ -823,19 +824,16 @@ class NotificationController {
 		$pageId = $title->getArticleID();
 		\DeferredUpdates::addCallableUpdate( function () use ( $pageId, $postId, $moderated ) {
 			$eventMapper = new \EchoEventMapper();
-			$eventTypes = array(
-				'flow-new-topic', 'flow-post-reply', 'flow-post-edited', 'flow-mention', 'flow-thank',
-				'flowusertalk-new-topic', 'flowusertalk-post-reply', 'flowusertalk-post-edited', 'flowusertalk-mention',
-			);
-			$events = $eventMapper->fetchByTypesAndPage( $eventTypes, $pageId );
-
+			$events = $eventMapper->fetchByPage( $pageId );
 			$eventIds = array();
+			$moderatedPostIdAlpha = $postId->getAlphadecimal();
 
 			/** @var EchoEvent $event */
 			foreach ( $events as $event ) {
-				/** @var UUID $eventPostId */
 				$eventPostId = $event->getExtraParam( 'post-id' );
-				if ( $eventPostId && ( $eventPostId->getAlphadecimal() === $postId->getAlphadecimal() ) ) {
+				$eventPostIdAlpha = $eventPostId instanceof UUID ? $eventPostId->getAlphadecimal() : $eventPostId;
+
+				if ( $eventPostIdAlpha === $moderatedPostIdAlpha ) {
 					$eventIds[] = $event->getId();
 				}
 			}
