@@ -842,17 +842,19 @@ class UrlGenerator {
 	 * @param Title|null $title
 	 * @param UUID $workflowId
 	 * @param RecentChange $rc
+	 * @param string $token
 	 * @return Anchor
 	 * @throws FlowException
 	 * @throws InvalidInputException
 	 */
-	public function markRevisionPatrolledAction( Title $title = null, UUID $workflowId, RecentChange $rc ) {
+	public function markRevisionPatrolledAction( Title $title = null, UUID $workflowId, RecentChange $rc, $token ) {
 		return new Anchor(
 			wfMessage( 'flow-mark-revision-patrolled-link-text' )->text(),
 			$this->resolveTitle( $title, $workflowId ),
 			array(
 				'action' => 'markpatrolled',
-				'rcid' => $rc->getAttribute( 'rc_id' )
+				'rcid' => $rc->getAttribute( 'rc_id' ),
+				'token' => $token,
 			)
 		);
 	}
