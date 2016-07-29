@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aeb2c7f3_1767d423",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.CaptchaWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2016-07-29T22:36:10Z",
+      "side": 1,
+      "message": "Unless Flow JS has a feature test stricter than MediaWiki core (like VE does), this cannot safely use `document.head` yet. It\u0027s rare, but there\u0027s a few minor browsers we support right now that don\u0027t implement it yet.\n\nYou can use \u0027head\u0027 for now. jQuery optimises for it.\n\nI\u0027d also recommend doing join(\u0027\u0027) and letting jQuery parse and insert the fragment in one go. jQuery optimises for batch operations like these by always creating a document fragment. That way it first does virtual fragment appendings, and then only one appendChild() operation to the target element (head) for the fragment.",
+      "range": {
+        "startLine": 67,
+        "startChar": 8,
+        "endLine": 67,
+        "endChar": 21
+      },
+      "revId": "70471095c5d1748343b33deaf9db083ebca12423",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aeb2c7f3_b77708cf",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.CaptchaWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2016-07-29T22:36:10Z",
+      "side": 1,
+      "message": "While unlikely, this may fail. I don\u0027t know if anything needs to happen or not happen in that case, but just mentioning it.",
+      "range": {
+        "startLine": 75,
+        "startChar": 33,
+        "endLine": 75,
+        "endChar": 37
+      },
+      "revId": "70471095c5d1748343b33deaf9db083ebca12423",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
