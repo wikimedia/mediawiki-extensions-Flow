@@ -243,6 +243,7 @@ $wgAutoloadClasses += array(
 	'Flow\\Model\\AbstractSummary' => __DIR__ . '/includes/Model/AbstractSummary.php',
 	'Flow\\Model\\Anchor' => __DIR__ . '/includes/Model/Anchor.php',
 	'Flow\\Model\\Header' => __DIR__ . '/includes/Model/Header.php',
+	'Flow\\Model\\HtmlRenderingInformation' => __DIR__ . '/includes/Model/HtmlRenderingInformation.php',
 	'Flow\\Model\\PostRevision' => __DIR__ . '/includes/Model/PostRevision.php',
 	'Flow\\Model\\PostSummary' => __DIR__ . '/includes/Model/PostSummary.php',
 	'Flow\\Model\\Reference' => __DIR__ . '/includes/Model/Reference.php',

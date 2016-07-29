@@ -325,7 +325,13 @@ abstract class AbstractBlock implements Block {
 		}
 
 		$message = $status->getMessage();
-		$this->addError( 'spamfilter', $message, $message->getKey() );
+
+		$details = $status->getValue();
+
+		$this->addError( 'spamfilter', $message, array(
+			'messageKey' => $message->getKey(),
+			'details' => $details,
+		) );
 		return false;
 	}
 
