@@ -18,7 +18,7 @@
         'blockhelpers' => array(),
         'hbhelpers' => array(),
         'partials' => array('flow_patrol_diff' => function ($cx, $in, $sp) {return ''.$sp.''.((LCRun3::ifvar($cx, ((isset($in['revision']['rev_view_links']['markPatrolled']) && is_array($in['revision']['rev_view_links'])) ? $in['revision']['rev_view_links']['markPatrolled'] : null))) ? '<div>
-'.$sp.'        <span class="patrollink">
+'.$sp.'        <span class="patrollink" data-mw="interface">
 '.$sp.'            [<a class="mw-ui-quiet"
 '.$sp.'               href="'.htmlentities((string)((isset($in['revision']['rev_view_links']['markPatrolled']['url']) && is_array($in['revision']['rev_view_links']['markPatrolled'])) ? $in['revision']['rev_view_links']['markPatrolled']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 '.$sp.'               title="'.LCRun3::ch($cx, 'l10n', array(array('flow-mark-diff-patrolled-link-title'),array()), 'encq').'"
