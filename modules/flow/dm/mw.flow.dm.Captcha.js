@@ -38,14 +38,15 @@
 	 * @param {Object} errorObj Server-provided error object
 	 */
 	mw.flow.dm.Captcha.prototype.update = function ( errorCode, errorObj ) {
-		this.required = /spamfilter$/.test( errorCode ) && errorObj.error.spamfilter === 'flow-spam-confirmedit-form';
+		this.required = /spamfilter$/.test( errorCode ) && errorObj.error.spamfilter.messageKey === 'flow-spam-confirmedit-form';
 
-		this.content = null;
+		this.renderingInformation = null;
 		if ( this.required ) {
-			this.content = new OO.ui.HtmlSnippet( errorObj.error.info );
+			this.renderingInformation = errorObj.error.spamfilter.details;
+			this.renderingInformation.html = new OO.ui.HtmlSnippet( this.renderingInformation.html );
 		}
 
-		this.emit( 'update', this.required, this.content );
+		this.emit( 'update', this.required, this.renderingInformation );
 	};
 
 	/**
@@ -58,12 +59,12 @@
 	};
 
 	/**
-	 * Gets the content of the CAPTCHA fields.  This is in the data model because it's
+	 * Gets the CAPTCHA rendering information.  This is in the data model because it's
 	 * server-generated.
 	 *
 	 * @return {OO.ui.HtmlSnippet} HTML snippet for CAPTCHA, or null if there is none.
 	 */
-	mw.flow.dm.Captcha.prototype.getContent = function () {
-		return this.content;
+	mw.flow.dm.Captcha.prototype.getRenderingInformation = function () {
+		return this.renderingInformation;
 	};
 }( jQuery ) );

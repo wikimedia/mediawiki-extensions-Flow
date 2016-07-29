@@ -767,8 +767,20 @@
 	 * @param {jQuery} $domToReplace The element, usually a form, that the new editor replaces
 	 * @param {string} [content] The content of the editing area
 	 * @param {string} [saveMsgKey] The message key for the editor save button
+	 * @return {mw.flow.ui.EditorWidget}
 	 */
 	mw.flow.Initializer.prototype.createEditorWidget = function ( $domToReplace, content, saveMsgKey ) {
+		function handleFailure( errorCode, errorObj ) {
+			captchaWidget.model.update( errorCode, errorObj );
+
+			if ( !captchaWidget.model.isRequired() ) {
+				error.setLabel( new OO.ui.HtmlSnippet( errorObj.error && errorObj.error.info || errorObj.exception ) );
+				error.toggle( true );
+			}
+
+			editor.popPending();
+		}
+
 		var $wrapper,
 			isProbablyEditable = mw.config.get( 'wgIsProbablyEditable' ),
 			anonWarning = new mw.flow.ui.AnonWarningWidget( {
@@ -779,6 +791,8 @@
 				restrictionEdit: mw.config.get( 'wgRestrictionEdit' ),
 				isProbablyEditable: isProbablyEditable
 			} ),
+			captcha = new mw.flow.dm.Captcha(),
+			captchaWidget = new mw.flow.ui.CaptchaWidget( captcha ),
 			error = new OO.ui.LabelWidget( {
 				classes: [ 'flow-ui-boardDescriptionWidget-error flow-errors errorbox' ]
 			} ),
@@ -792,14 +806,10 @@
 		anonWarning.toggle( mw.user.isAnon() );
 		canNotEdit.toggle( !isProbablyEditable );
 
-		// HACK: We still need a reference to the error widget, for
-		// the api responses in the intialized widgets that use this
-		// function, so make a forced connection
-		editor.error = error;
-
 		$wrapper = $( '<div>' )
 			.append(
 				error.$element,
+				captchaWidget.$element,
 				anonWarning.$element,
 				canNotEdit.$element,
 				editor.$element
@@ -818,24 +828,19 @@
 
 		editor
 			.on( 'saveContent', function ( content, contentFormat ) {
-				var $captchaField, captcha;
+				var captchaResponse;
 
 				editor.pushPending();
 
-				$captchaField = error.$label.find( '[name="wpCaptchaWord"]' );
-				if ( $captchaField.length > 0 ) {
-					captcha = {
-						id: this.error.$label.find( '[name="wpCaptchaId"]' ).val(),
-						answer: $captchaField.val()
-					};
-				}
+				captchaResponse = captchaWidget.getResponse();
+
 				error.setLabel( '' );
 				error.toggle( false );
 
 				// HACK: This is a cheat so that we can have a single function
-				// that creates the editor, but multiple uses, especially for the
-				// APIhandler in different cases
-				editor.emit( 'afterSaveContent', content, contentFormat, captcha );
+				// that creates the editor and a single error-handler, but multiple
+				// uses, especially for the APIhandler in different cases
+				editor.emit( 'afterSaveContent', content, contentFormat, captchaResponse, handleFailure );
 			} )
 			.on( 'cancel', function () {
 				editor.pushPending();
@@ -906,25 +911,14 @@
 
 		// Events
 		editor
-			.on( 'afterSaveContent', function ( content, contentFormat, captcha ) {
+			.on( 'afterSaveContent', function ( content, contentFormat, captcha, handleFailure ) {
 				apiHandler.savePost( topicId, postId, content, contentFormat, captcha )
 					.then(
 						// Success
 						returnToTitle,
-						// Failure
-						function ( errorCode, errorObj ) {
-							if ( /spamfilter$/.test( errorCode ) && errorObj.error.spamfilter === 'flow-spam-confirmedit-form' ) {
-								editor.error.setLabel(
-									// CAPTCHA form
-									new OO.ui.HtmlSnippet( errorObj.error.info )
-								);
-							} else {
-								editor.error.setLabel( new OO.ui.HtmlSnippet( errorObj.error && errorObj.error.info || errorObj.exception ) );
-							}
 
-							editor.error.toggle( true );
-							editor.popPending();
-						}
+						// Failure
+						handleFailure
 					);
 			} )
 			.on( 'afterCancel', returnToTitle );
@@ -937,7 +931,7 @@
 	 */
 	mw.flow.Initializer.prototype.replaceEditorInUndoHeaderPost = function ( $form ) {
 		var prevRevId, editor, content,
-			error, apiHandler,
+			apiHandler,
 			pageName = mw.config.get( 'wgPageName' ),
 			title = mw.Title.newFromText( pageName ),
 			returnToBoard = function () {
@@ -967,23 +961,14 @@
 
 		// Events
 		editor
-			.on( 'afterSaveContent', function ( content, contentFormat, captcha ) {
+			.on( 'afterSaveContent', function ( content, contentFormat, captcha, handleFailure ) {
 				apiHandler.saveDescription( content, contentFormat, captcha )
 					.then(
 						// Success
 						returnToBoard,
+
 						// Failure
-						function ( errorCode, errorObj ) {
-							if ( /spamfilter$/.test( errorCode ) && errorObj.error.spamfilter === 'flow-spam-confirmedit-form' ) {
-								error.setLabel(
-									// CAPTCHA form
-									new OO.ui.HtmlSnippet( errorObj.error.info )
-								);
-							} else {
-								error.setLabel( new OO.ui.HtmlSnippet( errorObj.error && errorObj.error.info || errorObj.exception ) );
-							}
-							editor.popPending();
-						}
+						handleFailure
 					);
 			} )
 			.on( 'afterCancel', function () {
