@@ -439,6 +439,7 @@ $wgResourceModules += array(
 			'flow-dialog-cancelconfirm-message',
 			'flow-dialog-cancelconfirm-keep',
 			'flow-dialog-cancelconfirm-discard',
+			'flow-spam-confirmedit-using-failure',
 			'flow-wikitext-switch-editor-tooltip',
 			'flow-cancel-warning',
 			'red-link-title',
