@@ -426,7 +426,7 @@
 	"flow-undo-edit-post": "正在編輯貼文",
 	"flow-undo-edit-content": "此編輯可以被還原。請檢查下列差異，確認您是否要還原，然後儲存以下變更以完成編輯還原。",
 	"flow-undo-edit-failure": "由於編輯的修訂間有衝突，此編輯不能還原。",
-	"group-flow-bot": "Flow機器人",
+	"group-flow-bot": "Flow 機器人",
 	"group-flow-bot-member": "Flow機器人",
 	"grouppage-flow-bot": "Project:Flow机器人",
 	"flow-ve-mention-context-item-label": "提到",
