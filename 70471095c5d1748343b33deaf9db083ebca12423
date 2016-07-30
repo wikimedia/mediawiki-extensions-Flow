@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "aeb2c7f3_9a3ce9be",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.CaptchaWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-07-30T00:04:25Z",
+      "side": 1,
+      "message": "Done, thanks.",
+      "parentUuid": "aeb2c7f3_1767d423",
+      "range": {
+        "startLine": 67,
+        "startChar": 8,
+        "endLine": 67,
+        "endChar": 21
+      },
+      "revId": "70471095c5d1748343b33deaf9db083ebca12423",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aeb2c7f3_b77708cf",
         "filename": "modules/flow/ui/widgets/mw.flow.ui.CaptchaWidget.js",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2016-07-29T22:36:10Z",
       "side": 1,
       "message": "While unlikely, this may fail. I don\u0027t know if anything needs to happen or not happen in that case, but just mentioning it.",
+      "range": {
+        "startLine": 75,
+        "startChar": 33,
+        "endLine": 75,
+        "endChar": 37
+      },
+      "revId": "70471095c5d1748343b33deaf9db083ebca12423",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aeb2c7f3_1afb7912",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.CaptchaWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-07-30T00:04:25Z",
+      "side": 1,
+      "message": "Yeah, I thought about that, but couldn\u0027t think of a fallback right then.\n\nFor now, I\u0027ll change it to always, so at least the HTML is added, and add an alert to warn the user.  It may or may not be usable without the resources (some of the ones that want resources are still usable without, like FancyCaptcha, though it will look a bit broken and be missing the refresh functionality).",
+      "parentUuid": "aeb2c7f3_b77708cf",
       "range": {
         "startLine": 75,
         "startChar": 33,
