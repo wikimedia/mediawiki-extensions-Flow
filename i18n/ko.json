@@ -294,7 +294,7 @@
 	"flow-moderation-confirm-undelete-topic": "삭제 취소",
 	"flow-moderation-confirm-unhide-topic": "숨기기 취소",
 	"flow-moderation-confirmation-suppress-post": "게시물을 숨겼습니다.\n이 게시물에 대한 피드백을 $1님에게 주는 것을 {{GENDER:$2|고려해주세요}}.",
-	"flow-moderation-confirmation-delete-post": "게시물을 삭제했습니다.\n이 게시물에 대한 피드백을 $1님에게  주는 것을 {{GENDER:$2|고려해주세요}}.",
+	"flow-moderation-confirmation-delete-post": "게시물을 삭제했습니다.\n이 게시물에 대한 피드백을 $1님에게 주는 것을 {{GENDER:$2|고려해주세요}}.",
 	"flow-moderation-confirmation-hide-post": "게시물을 표시 안 함으로 설정했습니다.\n이 게시물에 대한 피드백을 $1님에게 주는 것을 {{GENDER:$2|고려해주세요}}.",
 	"flow-moderation-confirmation-unsuppress-post": "위의 게시물을 보여주기했습니다.",
 	"flow-moderation-confirmation-undelete-post": "위의 게시물을 보여주기했습니다.",
