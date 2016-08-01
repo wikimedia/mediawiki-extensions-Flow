@@ -132,54 +132,38 @@ class SubmissionHandler {
 		$cache = $this->bufferedCache;
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
 
-		/**
-		 * Ideally, I'd create the page in Workflow::toStorageRow, but
-		 * WikiPage::doEditContent uses transactions & our DB wrapper
-		 * doesn't allow nested transactions, so that part has moved.
-		 *
-		 * Don't safeAllowCreation() here: a board has to be explicitly created,
-		 * or allowed via the namespace content model, in which case
-		 * safeAllowCreation() won't be needed.
-		 *
-		 * @var OccupationController $occupationController
-		 */
+		/** @var OccupationController $occupationController */
 		$occupationController = Container::get( 'occupation_controller' );
 		$title = $workflow->getOwnerTitle();
-		$occupationController->ensureFlowRevision( new \Article( $title ), $workflow );
-		$isNew = $workflow->isNew();
-
 		try {
-			$dbw->begin( __METHOD__ );
+			$dbw->startAtomic( __METHOD__ );
 			$cache->begin();
+			// Create the occupation page/revision if needed
+			$occupationController->ensureFlowRevision( new \Article( $title ), $workflow );
+			// Create/modify each Flow block as requested
 			$results = array();
 			foreach ( $blocks as $block ) {
 				$results[$block->getName()] = $block->commit();
 			}
-			$dbw->commit( __METHOD__ );
-
-			// Now commit to cache. If this fails, cache keys should have been
-			// invalidated, but still log the failure.
-			if ( !$cache->commit() ) {
-				wfDebugLog( 'Flow', __METHOD__ . ': Committed to database but failed applying to cache' );
-			}
+			$dbw->endAtomic( __METHOD__ );
+			$dbw->onTransactionIdle( function () use ( $cache ) {
+				// Now commit to cache. If this fails, cache keys should have been
+				// invalidated, but still log the failure.
+				if ( !$cache->commit() ) {
+					wfDebugLog( 'Flow', __METHOD__ .
+						': Committed to database but failed applying to cache' );
+				}
+			} );
 		} catch ( \Exception $e ) {
-			while( !$this->deferredQueue->isEmpty() ) {
+			while ( !$this->deferredQueue->isEmpty() ) {
 				$this->deferredQueue->dequeue();
 			}
-
-			if ( $isNew ) {
-				$article = new \Article( $title );
-				$page = $article->getPage();
-				$reason = '/* Failed to create Flow board */';
-				$page->doDeleteArticleReal( $reason, false, 0, true, $errors, $occupationController->getTalkpageManager() );
-			}
-
 			$dbw->rollback( __METHOD__ );
 			$cache->rollback();
 			throw $e;
 		}
 
-		while( !$this->deferredQueue->isEmpty() ) {
+		while ( !$this->deferredQueue->isEmpty() ) {
 			DeferredUpdates::addCallableUpdate( $this->deferredQueue->dequeue() );
 		}
 
