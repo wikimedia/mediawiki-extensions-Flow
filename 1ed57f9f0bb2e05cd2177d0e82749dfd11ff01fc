@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aeb2c7f3_f95b2a55",
+        "filename": "includes/SubmissionHandler.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-08-01T22:17:13Z",
+      "side": 1,
+      "message": "This will say SubmissionHandler::{closure}, but in this case that\u0027s enough to identify it.",
+      "range": {
+        "startLine": 153,
+        "startChar": 25,
+        "endLine": 153,
+        "endChar": 35
+      },
+      "revId": "1ed57f9f0bb2e05cd2177d0e82749dfd11ff01fc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
