@@ -3,5 +3,5 @@ class SpecialNotificationsPage
 
   page_url "Special:Notifications"
 
-  div(:first_notification, class: 'mw-echo-content', index: 0)
+  div(:first_notification, class: 'mw-echo-ui-notificationItemWidget', index: 0)
 end
