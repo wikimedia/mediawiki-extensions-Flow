@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kumkumuk"
+			"Kumkumuk",
+			"Mirzali"
 		]
 	},
 	"flow-user-moderated": "Moderator Karber",
@@ -9,7 +10,7 @@
 	"flow-topic-moderated-reason-prefix": "Sebeb:",
 	"flow-post-actions": "Kerdışi",
 	"flow-topic-actions": "Kerdışi",
-	"flow-cancel": "Peyd ke",
+	"flow-cancel": "Bıtexelne",
 	"flow-skip-summary": "Xulasa bıvurne",
 	"flow-history-action-delete-post": "bestere",
 	"flow-history-action-hide-post": "bınımne",
