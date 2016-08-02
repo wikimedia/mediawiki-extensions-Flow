@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aeb2c7f3_ccff8161",
+        "filename": "i18n/en.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 3418
+      },
+      "writtenOn": "2016-08-02T15:38:31Z",
+      "side": 1,
+      "message": "I suggest adding a link to the phabricator, so that way we can fix bugs with this if need be",
+      "range": {
+        "startLine": 477,
+        "startChar": 1,
+        "endLine": 477,
+        "endChar": 37
+      },
+      "revId": "1a77948156ed9a8182f1044f9a73eb722dbe9f99",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
