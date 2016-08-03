@@ -385,7 +385,7 @@
 	"flow-revision-permalink-warning-header-first": "Dies ist ein Permanentlink zur ersten Version der Beschreibung.\nDu kannst neuere Versionen im [$2 Verlauf des Boards] ansehen.",
 	"flow-compare-revisions-revision-header": "Version von {{GENDER:$2|$2}} vom $1",
 	"flow-compare-revisions-header-post": "Diese Seite zeigt die {{GENDER:$3|Änderungen}} zwischen zwei Versionen eines Beitrags von $3 im Thema „[$5 $2]“ auf [$4 $1] an.\nDu kannst andere Versionen dieses Beitrags im [$6 Verlauf] ansehen.",
-	"flow-compare-revisions-header-postsummary": "Diese Seite zeigt die Änderungen zwischen zwei Versionen einer Beitragszusammenfassung im Beitrag „[$4 $2]“ auf [$3 $1].\nDu kannst andere Versionen dieses Beitrags in seiner [$5 Verlaufsseite] ansehen.",
+	"flow-compare-revisions-header-postsummary": "Diese Seite zeigt die Änderungen zwischen zwei Versionen der Zusammenfassung des Themas „[$4 $2]“ auf [$3 $1].\nDu kannst andere Versionen dieser Themenzusammenfassung in der [$5 Verlaufsseite] ansehen.",
 	"flow-compare-revisions-header-header": "Diese Seite zeigt die {{GENDER:$2|Änderungen}} zwischen zwei Versionen der Beschreibung von [$3 $1] an.\nDu kannst andere Versionen der Beschreibung in ihrem [$4 Verlauf] einsehen.",
 	"action-flow-create-board": "Flow-Boards an beliebigen Orten zu erstellen",
 	"right-flow-create-board": "Flow-Boards an jedem Ort erstellen",

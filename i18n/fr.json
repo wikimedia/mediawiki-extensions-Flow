@@ -417,7 +417,7 @@
 	"flow-revision-permalink-warning-header-first": "Voici un lien permanent vers la première version de la description. \nVous pouvez afficher les versions ultérieures sur [$2 l’historique du flux de discussion].",
 	"flow-compare-revisions-revision-header": "Version par {{GENDER:$2|$2}} datée d’$1",
 	"flow-compare-revisions-header-post": "Cette page affiche les {{GENDER:$3|modifications}} entre deux versions d’un message par $3 dans le sujet « [$5 $2] » sur [$4 $1]. \nVous pouvez voir d’autres versions de ce message sur sa [$6 page d’historique].",
-	"flow-compare-revisions-header-postsummary": "Cette page affiche les modifications entre deux versions d’un résumé de message dans le message « [$4 $2] », lié à [$3 $1]. \nVous pouvez voir d’autres versions de ce message sur sa [$5 page d’historique].",
+	"flow-compare-revisions-header-postsummary": "Cette page affiche les modifications entre deux versions du résumé du sujet « [$4 $2] », lié à [$3 $1]. \nVous pouvez voir d’autres versions de ce résumé de sujet sur sa [$5 page d’historique].",
 	"flow-compare-revisions-header-header": "Cette page affiche les {{GENDER:$2|modifications}} entre deux versions de la description sur [$3 $1]. \nVous pouvez afficher les autres versions de la description sur sa [$4 page d’historique].",
 	"action-flow-create-board": "créer des flux de discussion Flow n’importe où",
 	"right-flow-create-board": "Créer des flux de discussion Flow n’importe où",

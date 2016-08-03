@@ -399,7 +399,7 @@
 	"flow-revision-permalink-warning-header-first": "这是此描述的第一个版本的固定链接。您可通过[$2 历史页面]查看其他版本。",
 	"flow-compare-revisions-revision-header": "版本由{{GENDER:$2|$2}}从$1生成",
 	"flow-compare-revisions-header-post": "此页面显示由$3于[$4 $1]在话题“[$5 $2]”发布帖子的两个版本之间的{{GENDER:$3|更改}}。您可在它的[$6 历史页面]查看此帖子的其它版本。",
-	"flow-compare-revisions-header-postsummary": "本页面显示在[$3 $1]的帖子“[$4 $2]”摘要两个版本之间的更改。您可点击[$5 历史页面]查看此帖子的其他版本。",
+	"flow-compare-revisions-header-postsummary": "本页面显示在[$3 $1]的话题“[$4 $2]”摘要两个版本之间的更改。您可以在话题的[$5 历史页面]查看此话题摘要的其他版本。",
 	"flow-compare-revisions-header-header": "此页面显示[$3 $1]上两个描述版本间的{{GENDER:$2|更改}}。您可通过它的[$4 历史页面]查看其它版本。",
 	"action-flow-create-board": "在任意位置创建Flow版块",
 	"right-flow-create-board": "在任意位置创建Flow版块",
