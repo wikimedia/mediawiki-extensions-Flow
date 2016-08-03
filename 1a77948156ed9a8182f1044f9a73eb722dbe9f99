@@ -22,6 +22,40 @@
       "revId": "1a77948156ed9a8182f1044f9a73eb722dbe9f99",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec7c363_d923d7fe",
+        "filename": "includes/SpamFilter/Controller.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2016-08-03T00:53:58Z",
+      "side": 1,
+      "message": "This seems unrelated?",
+      "revId": "1a77948156ed9a8182f1044f9a73eb722dbe9f99",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ec7c363_798c8300",
+        "filename": "includes/View.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2016-08-03T00:53:58Z",
+      "side": 1,
+      "message": "The html is ignored in this case. But it seems a required property, so does the creator of this sets it anyway?\n\nI guess this is working because the creator also sets a messageKey alongside \u0027details\u0027 which is presumably what eventually ends up getting rendered. Or does error[\u0027details\u0027][\u0027html\u0027] makes its way to the output in another way?",
+      "revId": "1a77948156ed9a8182f1044f9a73eb722dbe9f99",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
