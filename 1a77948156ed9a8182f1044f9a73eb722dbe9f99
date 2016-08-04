@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6ec44f61_95c7649a",
+        "filename": "i18n/en.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-08-04T01:24:31Z",
+      "side": 1,
+      "message": "I don\u0027t think this is normal practice, and this error should be rare.  Open to a second opinion, though.",
+      "parentUuid": "aeb2c7f3_ccff8161",
+      "range": {
+        "startLine": 477,
+        "startChar": 1,
+        "endLine": 477,
+        "endChar": 37
+      },
+      "revId": "1a77948156ed9a8182f1044f9a73eb722dbe9f99",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec7c363_d923d7fe",
         "filename": "includes/SpamFilter/Controller.php",
         "patchSetId": 2
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "6ec44f61_b5c46096",
+        "filename": "includes/SpamFilter/Controller.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-08-04T01:24:31Z",
+      "side": 1,
+      "message": "Well, sort of related.  It does trigger on CAPTCHA failure, but it was a pre-existing problem (it causes a warning).  Pulled it out.",
+      "parentUuid": "8ec7c363_d923d7fe",
+      "revId": "1a77948156ed9a8182f1044f9a73eb722dbe9f99",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ec7c363_798c8300",
         "filename": "includes/View.php",
         "patchSetId": 2
@@ -53,6 +95,24 @@
       "writtenOn": "2016-08-03T00:53:58Z",
       "side": 1,
       "message": "The html is ignored in this case. But it seems a required property, so does the creator of this sets it anyway?\n\nI guess this is working because the creator also sets a messageKey alongside \u0027details\u0027 which is presumably what eventually ends up getting rendered. Or does error[\u0027details\u0027][\u0027html\u0027] makes its way to the output in another way?",
+      "revId": "1a77948156ed9a8182f1044f9a73eb722dbe9f99",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ec44f61_b56aa07c",
+        "filename": "includes/View.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-08-04T01:24:31Z",
+      "side": 1,
+      "message": "This whole block is about $error[\u0027extra\u0027].  But note this is just one of the keys of the error.  There is also $error[\u0027message\u0027].  This (message/message parameter) is how the HTML is rendered for no-JS, as before.  However, now the JS/CSS is not part of the message:\n\n1. checkSpamFilters calls addError with the message as a parameter: https://phabricator.wikimedia.org/diffusion/EFLW/browse/master/includes/Block/Block.php;87939b2b291ad7d7d5a427a953bf7a7404aece57$328\n\n2. The message object is later converted to its text rendering: https://phabricator.wikimedia.org/diffusion/EFLW/browse/master/includes/View.php;87939b2b291ad7d7d5a427a953bf7a7404aece57$237 .\n\n3. In handlebars, the error text (including CAPTCHA) is rendered: https://phabricator.wikimedia.org/diffusion/EFLW/browse/master/handlebars/flow_errors.partial.handlebars .\n\n(messageKey is for the JS\u0027s benefit).",
+      "parentUuid": "8ec7c363_798c8300",
       "revId": "1a77948156ed9a8182f1044f9a73eb722dbe9f99",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
