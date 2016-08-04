@@ -6,6 +6,7 @@ use ContextSource;
 use Flow\Block\AbstractBlock;
 use Flow\Exception\InvalidActionException;
 use Flow\Model\Anchor;
+use Flow\Model\HtmlRenderingInformation;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Html;
@@ -284,6 +285,20 @@ class View extends ContextSource {
 				default:
 					$flowComponent = 'board';
 					$page = 'board';
+			}
+
+			if ( isset( $block['errors'] ) ) {
+				foreach( $block['errors'] as $error ) {
+					if ( isset( $error['extra']['details'] ) &&
+						$error['extra']['details'] instanceof HtmlRenderingInformation ) {
+
+						$renderingInfo = $error['extra']['details'];
+
+						$out->addHeadItems( $renderingInfo->getHeadItems() );
+						$out->addModuleStyles( $renderingInfo->getModuleStyles() );
+						$out->addModules( $renderingInfo->getModules() );
+					}
+				}
 			}
 
 			// Don't re-render a block type twice in one page

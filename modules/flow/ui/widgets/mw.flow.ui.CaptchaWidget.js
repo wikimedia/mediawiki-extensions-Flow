@@ -50,12 +50,32 @@
 	 * Updates the widget in response to event
 	 *
 	 * @param {boolean} isRequired Whether a CAPTCHA is required
-	 * @param {OO.ui.HtmlSnippet|null} content HTML to show for CAPTCHA, or null
+	 * @param {Object} renderingInformation Information needed to render CAPTCHA
+	 * @param {string} renderingInformation.html Main HTML
+	 * @param {Array} [renderingInformation.modules] Array of ResourceLoader module names
+	 * @param {Array} [renderingInformation.modulestyles] Array of ResourceLoader module names to be
+	 *   included as style-only modules.
+	 * @param {Array} [renderingInformation.headitems] Array of head items (see OutputPage::addHeadItems) (raw HTML
+	 *   strings)
 	 */
-	mw.flow.ui.CaptchaWidget.prototype.onUpdate = function ( isRequired, content ) {
+	mw.flow.ui.CaptchaWidget.prototype.onUpdate = function ( isRequired, renderingInformation ) {
+		var modules, moduleStyles, allModules;
+
 		if ( isRequired ) {
-			this.setLabel( content );
-			this.toggle( true );
+			if ( renderingInformation.headitems ) {
+				$( 'head' ).append( renderingInformation.headitems.join( '' ) );
+			}
+
+			moduleStyles = renderingInformation.modulestyles || [];
+			modules = renderingInformation.modules || [];
+
+			allModules = moduleStyles.concat( modules );
+			mw.loader.using( allModules ).fail( function () {
+				OO.ui.alert( mw.message( 'flow-spam-confirmedit-using-failure' ).text() );
+			} ).always( function () {
+				this.setLabel( renderingInformation.html );
+				this.toggle( true );
+			}.bind( this ) );
 		} else {
 			this.toggle( false );
 			this.setLabel( '' );
