@@ -28,6 +28,11 @@ class NewTopicPresentationModel extends FlowPresentationModel {
 			return array(
 				$this->getAgentLink(),
 				$this->getBoardByNewestLink(),
+				// Watch/Unwatch board
+				$this->getWatchActionLink(
+					$this->event->getTitle(),
+					'flow-board'
+				),
 			);
 		}
 	}
