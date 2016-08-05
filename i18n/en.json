@@ -14,6 +14,10 @@
 		]
 	},
 	"enableflow": "Enable Flow",
+	"notifications-dynamic-actions-flow-board-watch": "Watch the board  \"$1\"",
+	"notifications-dynamic-actions-flow-board-unwatch": "Stop watching the board",
+	"notifications-dynamic-actions-flow-board-watch-confirmation": "You are now watching the board \"$1\"",
+	"notifications-dynamic-actions-flow-board-unwatch-confirmation": "You are no longer watching the board \"$1\"",
 	"flow-desc": "Workflow management system",
 	"flow-talk-taken-over-comment": "/* This page has been converted into a Flow discussion board */",
 	"log-name-flow": "Flow activity log",
