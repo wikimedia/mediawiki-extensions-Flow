@@ -25,21 +25,29 @@ class PostEditedPresentationModel extends FlowPresentationModel {
 
 	public function getSecondaryLinks() {
 		if ( $this->isBundled() ) {
-			return array( $this->getBoardLink() );
+			$links = array( $this->getBoardLink() );
 		} else {
 			if ( $this->isUserTalkPage() ) {
-				return array(
+				$links = array(
 					$this->getAgentLink(),
 					$this->getDiffLink(),
 				);
 			} else {
-				return array(
+				$links = array(
 					$this->getAgentLink(),
 					$this->getBoardLink(),
 					$this->getDiffLink( false ),
 				);
 			}
 		}
+
+		if ( $this->getUser()->isWatched( $this->getTopicTitle() ) {
+			$links[] = $this->getFlowUnwatchDynamicActionLink(
+				$this->getTopicTitle(), true
+			);
+		}
+
+		return $links;
 	}
 
 	protected function getHeaderMessageKey() {

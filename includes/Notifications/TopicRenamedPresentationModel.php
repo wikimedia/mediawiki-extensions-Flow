@@ -21,17 +21,26 @@ class TopicRenamedPresentationModel extends FlowPresentationModel {
 
 	public function getSecondaryLinks() {
 		if ( $this->isUserTalkPage() ) {
-			return array(
+			$links = array(
 				$this->getAgentLink(),
 				$this->getDiffLink(),
 			);
 		} else {
-			return array(
+			$links = array(
 				$this->getAgentLink(),
 				$this->getBoardByNewestLink(),
 				$this->getDiffLink( false ),
 			);
 		}
+
+		if ( $this->getUser()->isWatched( $this->getTopicTitle() ) {
+			$links[] = $this->getFlowUnwatchDynamicActionLink(
+				$this->getTopicTitle(), true
+			);
+		}
+
+		return $links;
+
 	}
 
 	protected function getHeaderMessageKey() {

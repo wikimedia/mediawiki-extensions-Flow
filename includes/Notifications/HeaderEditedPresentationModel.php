@@ -20,10 +20,19 @@ class HeaderEditedPresentationModel extends FlowPresentationModel {
 	}
 
 	public function getSecondaryLinks() {
-		return array(
+		$links = array(
 			$this->getAgentLink(),
 			$this->getDiffLink(),
 		);
+
+		if (
+			!$this->isUserTalkPage() &&
+			$this->getUser()->isWatched( $this->event->getTitle() )
+		) {
+			$links[] = $this->getFlowUnwatchDynamicActionLink(
+				$this->event->getTitle()
+			);
+		}
 	}
 
 	protected function getHeaderMessageKey() {

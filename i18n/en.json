@@ -14,6 +14,12 @@
 		]
 	},
 	"enableflow": "Enable Flow",
+	"notifications-dynamic-actions-flow-board-unwatch": "Stop watching new activity on \"$1\"",
+	"notifications-dynamic-actions-flow-board-unwatch-confirmation": "You are no longer watching the page \"$1\"",
+	"notifications-dynamic-actions-flow-board-unwatch-confirmation-description": "This will not affect individual topics you are watching. You can watch [$2 this page] anytime.",
+	"notifications-dynamic-actions-flow-topic-unwatch": "Stop watching this topic",
+	"notifications-dynamic-actions-flow-topic-unwatch-confirmation": "You are no longer watching \"$1\"",
+	"notifications-dynamic-actions-flow-topic-unwatch-confirmation-description": "You can watch [$2 this page] anytime.",
 	"flow-desc": "Workflow management system",
 	"flow-talk-taken-over-comment": "/* This page has been converted into a Flow discussion board */",
 	"log-name-flow": "Flow activity log",

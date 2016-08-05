@@ -21,14 +21,24 @@ class SummaryEditedPresentationModel extends FlowPresentationModel {
 
 	public function getSecondaryLinks() {
 		if ( $this->isBundled() ) {
-			return array( $this->getBoardLink() );
+			$links = array( $this->getBoardLink() );
 		} else {
 			$links = array( $this->getAgentLink(), $this->getBoardLink() );
 			if ( !$this->isFirstRevision() ) {
 				$links[] = $this->getDiffLink( false );
 			}
-			return $links;
 		}
+
+		if (
+			$this->getUser()->isWatched( $this->getTopicTitle() ) &&
+			!$this->isUserTalkPage()
+		) {
+			$links[] = $this->getFlowUnwatchDynamicActionLink(
+				$this->getTopicTitle(), true
+			);
+		}
+
+		return $links;
 	}
 
 	protected function getHeaderMessageKey() {
