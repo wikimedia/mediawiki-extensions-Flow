@@ -105,6 +105,12 @@ $notifications = array(
 			'Flow\\NotificationsUserLocator::locateMentionedUsers',
 			'EchoUserLocator::locateTalkPageOwner',
 		),
+		// Defining i18n keys:
+		// notifications-dynamic-actions-flow-board-watch
+		// notifications-dynamic-actions-flow-board-watch-confirmation
+		// notifications-dynamic-actions-flow-board-unwatch
+		// notifications-dynamic-actions-flow-board-unwatch-confirmation
+		'dynamic-actions' => array( 'flow-board-watch', 'flow-board-unwatch' ),
 	) + $newTopicNotification,
 	'flowusertalk-new-topic' => array(
 		'section' => 'alert',
