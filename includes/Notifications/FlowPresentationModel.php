@@ -143,4 +143,47 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 		return $this->event->getTitle()->getNamespace() === NS_USER_TALK &&
 			$this->event->getTitle()->getText() === $username;
 	}
+
+	/**
+	 * Get a flow-specific watch/unwatch dynamic action link
+	 *
+	 * @return [type] [description]
+	 */
+	protected function getBoardUnwatchDynamicActionLink( $action ) {
+		$title = $this->event->getTitle();
+		$link = $this->getWatchActionLink( $title, $action );
+
+		$messageKeys = array(
+			'item' => array(
+				'title' => $this
+					->msg( 'notifications-dynamic-actions-flow-board-unwatch' )
+					->params(
+						$title->getPrefixedText(),
+						$title->getFullURL( $query )
+					)
+					->parse(),
+			),
+			'confirmation' => array(
+				'title' => $this
+					->msg( 'notifications-dynamic-actions-flow-board-unwatch-confirmation' )
+					->params(
+						$title->getPrefixedText(),
+						$title->getFullURL( $query )
+					)
+					->parse(),
+				'description' => $this
+					->msg( 'notifications-dynamic-actions-flow-board-unwatch-confirmation-description' )
+					->params(
+						$title->getPrefixedText(),
+						$title->getFullURL( $query )
+					)
+					->parse(),
+			),
+		);
+
+		// Override messages with flow-specific i18n keys
+		$link[ 'data' ][ 'messages' ] = array_replace( $link[ 'data' ][ 'messages' ], $messageKeys );
+
+		return $link;
+	}
 }
