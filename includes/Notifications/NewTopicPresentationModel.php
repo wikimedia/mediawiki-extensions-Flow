@@ -28,6 +28,7 @@ class NewTopicPresentationModel extends FlowPresentationModel {
 			return array(
 				$this->getAgentLink(),
 				$this->getBoardByNewestLink(),
+				$this->getFlowUnwatchDynamicActionLink()
 			);
 		}
 	}

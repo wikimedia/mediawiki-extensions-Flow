@@ -47,9 +47,7 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 			$anchorPostId = $firstChronologicallyPostId;
 		}
 
-		$title = Title::makeTitleSafe(
-			NS_TOPIC,
-			$workflowId->getAlphadecimal(),
+		$title = $this->getTopicTitle(
 			'flow-post-' . $anchorPostId->getAlphadecimal()
 		);
 
@@ -72,10 +70,23 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 		/** @var UUID $workflowId */
 		$workflowId = $this->event->getExtraParam( 'topic-workflow' );
 
-		$title = Title::makeTitleSafe( NS_TOPIC, $workflowId->getAlphadecimal() );
-		$url = $title->getFullURL( array( 'fromnotif' => 1 ) );
+		$url = $this->getTopicTitle()->getFullURL( array( 'fromnotif' => 1 ) );
 
 		return $url;
+	}
+
+	/**
+	 * Get the topic title Title
+	 *
+	 * @param string $fragment Optional fragment
+	 * @return Title Topic title
+	 */
+	protected function getTopicTitleObj( $fragment = '' ) {
+		return Title::makeTitleSafe(
+			NS_TOPIC,
+			$workflowId->getAlphadecimal(),
+			$fragment
+		);
 	}
 
 	/**
@@ -142,5 +153,66 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 		$username = $this->getViewingUserForGender();
 		return $this->event->getTitle()->getNamespace() === NS_USER_TALK &&
 			$this->event->getTitle()->getText() === $username;
+	}
+
+	/**
+	 * Get a flow-specific watch/unwatch dynamic action link
+	 *
+	 * @param  bool [$isTopic] Unwatching a topic. If set to false, the
+	 *  action is unwatching a board
+	 * @return array|null Array representing the dynamic action secondary link.
+	 *  Returns null if either
+	 *   * The notification came from the user's talk page, as that
+	 *     page cannot be unwatched.
+	 *   * The page is not currently watched.
+	 */
+	protected function getFlowUnwatchDynamicActionLink( $isTopic = false ) {
+		$title = $isTopic ? $this->getTopicTitleObj() : $this->event->getTitle();
+		$query = array( 'action' => 'unwatch' );
+		$link = $this->getWatchActionLink( $title );
+		$type = $isTopic ? 'topic' : 'board';
+
+		if ( $this->isUserTalkPage() || !$this->getUser()->isWatched( $title ) ) {
+			return null;
+		}
+
+		$messageKeys = array(
+			'item' => array(
+				// notification-dynamic-actions-flow-board-unwatch
+				// notification-dynamic-actions-flow-topic-unwatch
+				'title' => $this
+					->msg( 'notification-dynamic-actions-flow-' . $type . '-unwatch' )
+					->params(
+						$title->getPrefixedText(),
+						$title->getFullURL( $query )
+					)
+					->parse(),
+			),
+			'confirmation' => array(
+				// notification-dynamic-actions-flow-board-unwatch-confirmation
+				// notification-dynamic-actions-flow-topic-unwatch-confirmation
+				'title' => $this
+					->msg( 'notification-dynamic-actions-flow-' . $type . '-unwatch-confirmation' )
+					->params(
+						$title->getPrefixedText(),
+						$title->getFullURL( $query )
+					)
+					->parse(),
+				// notification-dynamic-actions-flow-board-unwatch-confirmation-description
+				// notification-dynamic-actions-flow-topic-unwatch-confirmation-description
+				'description' => $this
+					->msg( 'notification-dynamic-actions-flow-' . $type . '-unwatch-confirmation-description' )
+					->params(
+						$title->getPrefixedText(),
+						$title->getFullURL( $query )
+					)
+					->parse(),
+			),
+		);
+
+		// Override messages with flow-specific messages
+		$link[ 'data' ][ 'messages' ] = array_replace( $link[ 'data' ][ 'messages' ], $messageKeys );
+
+		return $link;
 	}
 }
