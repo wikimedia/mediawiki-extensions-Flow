@@ -21,10 +21,21 @@ class TopicResolvedPresentationModel extends FlowPresentationModel {
 	}
 
 	public function getSecondaryLinks() {
-		return array(
+		$links = array(
 			$this->getAgentLink(),
 			$this->getBoardLink(),
 		);
+
+		if (
+			$this->getUser()->isWatched( $this->getTopicTitleObj() ) &&
+			!$this->isUserTalkPage()
+		) {
+			$links[] = $this->getFlowUnwatchDynamicActionLink(
+				$this->getTopicTitleObj(), true
+			);
+		}
+
+		return $links;
 	}
 
 	protected function getHeaderMessageKey() {
