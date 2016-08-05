@@ -59,7 +59,7 @@ class FlowUpdateResolvedNotifTitles extends LoggedUpdateMaintenance {
 		foreach ( $iterator as $batch ) {
 			foreach ( $batch as $row ) {
 				$topicTitle = Title::newFromId( $row->event_page_id );
-				if ( $topicTitle->getNamespace() !== NS_TOPIC ) {
+				if ( !$topicTitle || $topicTitle->getNamespace() !== NS_TOPIC ) {
 					continue;
 				}
 				$boardTitle = null;
