@@ -25,10 +25,16 @@ class NewTopicPresentationModel extends FlowPresentationModel {
 		if ( $this->isBundled() ) {
 			return array();
 		} else {
-			return array(
+			$result = array(
 				$this->getAgentLink(),
 				$this->getBoardByNewestLink(),
 			);
+
+			if ( $this->getUser()->isWatched( $this->event->getTitle() ) ) {
+				// Unwatch action
+				$result[] = $this->getBoardUnwatchDynamicActionLink( 'flow-board' );
+			}
+			return $result;
 		}
 	}
 
