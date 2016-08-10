@@ -79,13 +79,6 @@ abstract class FeatureIndex implements Index {
 	abstract public function limitIndexSize( array $values );
 
 	/**
-	 * @todo Could the cache key be passed in instead of $indexed?
-	 * @param array $indexed The portion of $row that makes up the cache key
-	 * @param array $row A single row of data to add to its related feature bucket
-	 */
-	abstract protected function addToIndex( array $indexed, array $row );
-
-	/**
 	 * @todo Similar, Could the cache key be passed in instead of $indexed?
 	 * @param array $indexed The portion of $row that makes up the cache key
 	 * @param array $row A single row of data to remove from its related feature bucket
@@ -191,11 +184,7 @@ abstract class FeatureIndex implements Index {
 			throw new DataModelException( 'Un-indexable row: ' . FormatJson::encode( $new ), 'process-data' );
 		}
 		$compacted = $this->rowCompactor->compactRow( UUID::convertUUIDs( $new, 'alphadecimal' ) );
-		// give implementing index option to create rather than append
-		if ( !$this->maybeCreateIndex( $indexed, $new, $compacted ) ) {
-			// fall back to append
-			$this->addToIndex( $indexed, $compacted );
-		}
+		$this->removeFromIndex( $indexed, $compacted );
 	}
 
 	/**
@@ -218,11 +207,10 @@ abstract class FeatureIndex implements Index {
 				return;
 			}
 			// object representation in feature bucket has changed
-			$this->replaceInIndex( $oldIndexed, $oldCompacted, $newCompacted );
+			$this->removeFromIndex( $oldIndexed, $oldCompacted );
 		} else {
 			// object has moved from one feature bucket to another
 			$this->removeFromIndex( $oldIndexed, $oldCompacted );
-			$this->addToIndex( $newIndexed, $newCompacted );
 		}
 	}
 
@@ -268,74 +256,40 @@ abstract class FeatureIndex implements Index {
 			return array();
 		}
 
-		// get cache keys for all queries
-		$cacheKeys = $this->getCacheKeys( $queries );
-
-		// retrieve from cache (only query duplicate queries once)
-		// $fromCache will be an array containing compacted results as value and
-		// cache keys as key
-		$fromCache = $this->cache->getMulti( array_unique( $cacheKeys ) );
-
-		// figure out what queries were resolved in cache
-		// $keysFromCache will be an array where values are cache keys and keys
-		// are the same index as their corresponding $queries
-		// (intersect with $cacheKeys to guarantee order)
-		$keysFromCache = array_intersect( $cacheKeys, array_keys( $fromCache ) );
-
-		// filter out all queries that have been resolved from cache and fetch
-		// them from storage
-		// $fromStorage will be an array containing (expanded) results as value
-		// and indexes matching $query as key
-		$storageQueries = array_diff_key( $queries, $keysFromCache );
-		$fromStorage = array();
-		if ( $storageQueries ) {
-			$fromStorage = $this->backingStoreFindMulti( $storageQueries );
+		$results = array();
+		$storage = $this->storage;
+		foreach ( $queries as $query ) {
+			$cacheKey = $this->cacheKey( $query );
+			$queryOptions = $this->queryOptions();
+			$result = $this->cache->get( $cacheKey, function () use ( $storage, $query, $queryOptions ) {
+				$fromStorage = $storage->findMulti( array( $query ), $queryOptions );
+				return count( $fromStorage ) ? reset( $fromStorage ) : null;
+			} );
+			if ( $result ) {
+				$results[ $cacheKey ] = $result;
+			}
 		}
 
-		$results = $fromStorage;
-
-		// $queries may have had duplicates that we've ignored to minimize
-		// cache requests - now re-duplicate values from cache & match the
-		// results against their respective original keys in $queries
-		foreach ( $keysFromCache as $index => $cacheKey ) {
-			$results[$index] = $fromCache[$cacheKey];
+		if ( $results ) {
+			$results = $this->filterResults( $results, $options );
 		}
-
-		// now that we have all data, both from cache & backing storage, filter
-		// out all data we don't need
-		$results = $this->filterResults( $results, $options );
-
-		// if we have no data from cache, there's nothing left - quit early
-		if ( !$fromCache ) {
-			return $results;
-		}
-
-		// because we may have combined data from 2 different sources, chances
-		// are the order of the data is no longer in sync with the order
-		// $queries were in - fix that by replacing $queries values with
-		// the corresponding $results value
-		// note that there may be missing results, hence the intersect ;)
-		$order = array_intersect_key( $queries, $results );
-		$results = array_replace( $order, $results );
 
 		$keyToQuery = array();
-		foreach ( $keysFromCache as $index => $key ) {
-			// all redundant data has been stripped, now expand all cache values
-			// (we're only doing this now to avoid expanding redundant data)
-			$fromCache[$key] = $results[$index];
-
+		foreach ( $this->getCacheKeys( $queries ) as $index => $key ) {
 			// to expand rows, we'll need the $query info mapped to the cache
 			// key instead of the $query index
 			if ( !isset( $keyToQuery[$key] ) ) {
-				$keyToQuery[$key] = $queries[$index];
-				$keyToQuery[$key] = UUID::convertUUIDs( $keyToQuery[$key], 'alphadecimal' );
+				$keyToQuery[$key] = UUID::convertUUIDs( $queries[$index], 'alphadecimal' );
 			}
 		}
 
 		// expand and replace the stubs in $results with complete data
-		$fromCache = $this->rowCompactor->expandCacheResult( $fromCache, $keyToQuery );
-		foreach ( $keysFromCache as $index => $cacheKey ) {
-			$results[$index] = $fromCache[$cacheKey];
+		$expanded = $this->rowCompactor->expandCacheResult( $results, $keyToQuery );
+		$results = array();
+		foreach ( $this->getCacheKeys( $queries ) as $index => $cacheKey ) {
+			if ( isset( $expanded[$cacheKey] ) ) {
+				$results[] = $expanded[$cacheKey];
+			}
 		}
 
 		return $results;
@@ -488,38 +442,6 @@ abstract class FeatureIndex implements Index {
 		}
 
 		return $results;
-	}
-
-	/**
-	 * Called prior to self::addToIndex only when new objects as inserted.  Gives the
-	 * opportunity for indexes to create rather than append if this object signifies a new
-	 * feature list.
-	 *
-	 * @todo again, could just pass cache key instead of $indexed?
-	 * @param array $indexed The values that make up the cache key
-	 * @param array $sourceRow The input database row
-	 * @param array $compacted The database row reduced in size for storage within the index
-	 * @return boolean True if an index was created, or false if $sourceRow should be merged
-	 *  into the index via self::addToIndex
-	 */
-	protected function maybeCreateIndex( array $indexed, array $sourceRow, array $compacted ) {
-		return false;
-	}
-
-	/**
-	 * Called to update a row's data within a feature bucket.
-	 *
-	 * Note that this naive implementation does two round trips, likely an implementing
-	 * class can do this in a single round trip.
-	 *
-	 * @todo again, could just pass cache key instead of $indexed?
-	 * @param array $indexed The values that make up the cache key
-	 * @param array $old The database row that was previously retrieved from cache
-	 * @param array $new The new version of that replacement row
-	 */
-	protected function replaceInIndex( array $indexed, array $old, array $new ) {
-		$this->removeFromIndex( $indexed, $old );
-		$this->addToIndex( $indexed, $new );
 	}
 
 	/**

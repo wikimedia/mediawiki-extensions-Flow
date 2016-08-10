@@ -2,10 +2,11 @@
 
 namespace Flow\Tests;
 
-use Flow\Data\BagOStuff\LocalBufferedBagOStuff;
+use EventRelayerNull;
 use Flow\Data\BufferedCache;
 use HashBagOStuff;
 use ObjectCache;
+use WANObjectCache;
 
 /**
  * Runs the exact same set of tests as BufferedBagOStuffTest, but with a
@@ -26,8 +27,11 @@ class BufferedCacheTest extends BufferedBagOStuffTest {
 			$this->cache = new HashBagOStuff;
 		}
 
-		$cache = new LocalBufferedBagOStuff( $this->cache );
-		$this->bufferedCache = new BufferedCache( $cache, 30 );
-		$this->bufferedCache->begin();
+		$wanCache = new WANObjectCache( array(
+			'cache' => $this->cache,
+			'pool' => 'testcache-hash',
+			'relayer' => new EventRelayerNull( [] )
+		) );
+		$this->bufferedCache = new BufferedCache( $wanCache, 30 );
 	}
 }

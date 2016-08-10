@@ -5,7 +5,6 @@ namespace Flow;
 use DeferredUpdates;
 use Flow\Block\AbstractBlock;
 use Flow\Block\Block;
-use Flow\Data\BufferedCache;
 use Flow\Data\ManagerGroup;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidActionException;
@@ -26,11 +25,6 @@ class SubmissionHandler {
 	protected $dbFactory;
 
 	/**
-	 * @var BufferedCache $bufferedCache
-	 */
-	protected $bufferedCache;
-
-	/**
 	 * @var SplQueue Updates to add to DeferredUpdates post-commit
 	 */
 	protected $deferredQueue;
@@ -38,12 +32,10 @@ class SubmissionHandler {
 	public function __construct(
 		ManagerGroup $storage,
 		DbFactory $dbFactory,
-		BufferedCache $bufferedCache,
 		SplQueue $deferredQueue
 	) {
 		$this->storage = $storage;
 		$this->dbFactory = $dbFactory;
-		$this->bufferedCache = $bufferedCache;
 		$this->deferredQueue = $deferredQueue;
 	}
 
@@ -129,7 +121,6 @@ class SubmissionHandler {
 	 * @throws \Exception
 	 */
 	public function commit( Workflow $workflow, array $blocks ) {
-		$cache = $this->bufferedCache;
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
 
 		/** @var OccupationController $occupationController */
@@ -137,7 +128,6 @@ class SubmissionHandler {
 		$title = $workflow->getOwnerTitle();
 		try {
 			$dbw->startAtomic( __METHOD__ );
-			$cache->begin();
 			// Create the occupation page/revision if needed
 			$occupationController->ensureFlowRevision( new \Article( $title ), $workflow );
 			// Create/modify each Flow block as requested
@@ -146,20 +136,11 @@ class SubmissionHandler {
 				$results[$block->getName()] = $block->commit();
 			}
 			$dbw->endAtomic( __METHOD__ );
-			$dbw->onTransactionIdle( function () use ( $cache ) {
-				// Now commit to cache. If this fails, cache keys should have been
-				// invalidated, but still log the failure.
-				if ( !$cache->commit() ) {
-					wfDebugLog( 'Flow', __METHOD__ .
-						': Committed to database but failed applying to cache' );
-				}
-			} );
 		} catch ( \Exception $e ) {
 			while ( !$this->deferredQueue->isEmpty() ) {
 				$this->deferredQueue->dequeue();
 			}
 			$dbw->rollback( __METHOD__ );
-			$cache->rollback();
 			throw $e;
 		}
 

@@ -2,17 +2,16 @@
 
 namespace Flow\Data;
 
-use Flow\Data\BagOStuff\BufferedBagOStuff;
-use Closure;
+use Flow\Container;
+use Flow\DbFactory;
+use WANObjectCache;
 
 /**
- * This class will emulate a BagOStuff, but with a fixed expiry time for all
- * writes. All methods will be passed on to the BagOStuff in constructor.
- * Preserves any BagOStuff semantics for the most common methods.
+ * todo: rename this as it's not buffered anymore
  */
 class BufferedCache {
 	/**
-	 * @var BufferedBagOStuff
+	 * @var WANObjectCache
 	 */
 	protected $cache;
 
@@ -22,21 +21,34 @@ class BufferedCache {
 	protected $exptime = 0;
 
 	/**
-	 * @param BufferedBagOStuff $cache The cache implementation to back this buffer with
+	 * @param WANObjectCache $cache The cache implementation to back this buffer with
 	 * @param int $exptime The default length of time to cache data. 0 for LRU.
 	 */
-	public function __construct( BufferedBagOStuff $cache, $exptime = 0 ) {
+	public function __construct( WANObjectCache $cache, $exptime = 0 ) {
 		$this->exptime = $exptime;
 		$this->cache = $cache;
 	}
 
 	/**
 	 * @param string $key
-	 * @param null $casToken
+	 * @param Callable|null $setCallback
 	 * @return mixed
 	 */
-	public function get( $key, &$casToken = null ) {
-		return $this->cache->get( $key, $casToken );
+	public function get( $key, $setCallback = null ) {
+		$this->log( __METHOD__, $key );
+		if ( $setCallback ) {
+			/** @var DbFactory $dbFactory */
+			$dbFactory = Container::get( 'db.factory' );
+			return $this->cache->getWithSetCallback(
+				$key,
+				$this->exptime,
+				$setCallback,
+				/* do we know if this is the same slave used by the storage? */
+				\Database::getCacheSetOptions( $dbFactory->getDB( DB_SLAVE ) )
+			);
+		} else {
+			return $this->cache->get( $key );
+		}
 	}
 
 	/**
@@ -44,6 +56,7 @@ class BufferedCache {
 	 * @return array
 	 */
 	public function getMulti( array $keys ) {
+		$this->log( __METHOD__, implode( ' ', $keys ) );
 		return $this->cache->getMulti( $keys );
 	}
 
@@ -53,6 +66,7 @@ class BufferedCache {
 	 * @return bool
 	 */
 	public function set( $key, $value ) {
+		$this->log( __METHOD__, $key );
 		return $this->cache->set( $key, $value, $this->exptime );
 	}
 
@@ -61,16 +75,9 @@ class BufferedCache {
 	 * @return bool
 	 */
 	public function setMulti( array $data ) {
-		return $this->cache->setMulti( $data, $this->exptime );
-	}
-
-	/**
-	 * @param string $key
-	 * @param mixed $value
-	 * @return bool
-	 */
-	public function add( $key, $value ) {
-		return $this->cache->add( $key, $value, $this->exptime );
+		foreach ( $data as $key => $value ) {
+			$this->set( $key, $value );
+		}
 	}
 
 	/**
@@ -79,51 +86,21 @@ class BufferedCache {
 	 * @return bool
 	 */
 	public function delete( $key, $time = 0 ) {
+		$this->log( __METHOD__, $key );
 		return $this->cache->delete( $key, $time );
 	}
 
-	/**
-	 * @param string $key
-	 * @param Closure $callback
-	 * @param int $attempts
-	 * @return bool
-	 */
-	public function merge( $key, Closure $callback, $attempts = 10 ) {
-		return $this->cache->merge( $key, $callback, $this->exptime, $attempts );
-	}
-
-	/**
-	 * Initiate a transaction: this will defer all writes to real cache until
-	 * commit() is called.
-	 */
-	public function begin() {
-		$this->cache->begin();
-	}
-
-	/**
-	 * Commits all deferred updates to real cache.
-	 *
-	 * @return bool
-	 */
-	public function commit() {
-		return $this->cache->commit();
-	}
-
-	/**
-	 * Roll back all scheduled changes.
-	 */
-	public function rollback() {
-		$this->cache->rollback();
-	}
-
-	/**
-	 * Catches all other method calls & passes them on to the real cache.
-	 *
-	 * @param string $name
-	 * @param array $arguments
-	 * @return mixed
-	 */
-	public function __call( $name, array $arguments ) {
-		return call_user_func_array( array( $this->cache, $name ), $arguments );
+	private function log( $method, $key ) {
+//		global $wgRequest;
+//		/** @var \Psr\Log\LoggerInterface $logger */
+//		$logger = Container::get( 'default_logger' );
+//		$logger->debug(
+//			"debug_xyz: {method} {httpMethod} {key}",
+//			array(
+//				'method' => $method,
+//				'httpMethod' => $wgRequest->getMethod(),
+//				'key' => $key,
+//			)
+//		);
 	}
 }
