@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee9d9f70_5ca08e9a",
+        "filename": "includes/Notifications/Notifications.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2016-08-10T17:15:52Z",
+      "side": 1,
+      "message": "Note to self: There are also these i18n messages with -confirmation suffix",
+      "revId": "d305f110bca0b928a12e233bad1e8b90ba053247",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
