@@ -4,7 +4,6 @@ namespace Flow\Import;
 
 use Article;
 use DeferredUpdates;
-use Flow\Data\BufferedCache;
 use Flow\Data\ManagerGroup;
 use Flow\DbFactory;
 use Flow\Import\Postprocessor\Postprocessor;
@@ -43,8 +42,6 @@ class Importer {
 	protected $workflowLoaderFactory;
 	/** @var LoggerInterface|null */
 	protected $logger;
-	/** @var BufferedCache */
-	protected $cache;
 	/** @var DbFactory */
 	protected $dbFactory;
 	/** @var bool */
@@ -59,14 +56,12 @@ class Importer {
 	public function __construct(
 		ManagerGroup $storage,
 		WorkflowLoaderFactory $workflowLoaderFactory,
-		BufferedCache $cache,
 		DbFactory $dbFactory,
 		SplQueue $deferredQueue,
 		OccupationController $occupationController
 	) {
 		$this->storage = $storage;
 		$this->workflowLoaderFactory = $workflowLoaderFactory;
-		$this->cache = $cache;
 		$this->dbFactory = $dbFactory;
 		$this->postprocessors = new ProcessorGroup;
 		$this->deferredQueue = $deferredQueue;
@@ -120,7 +115,6 @@ class Importer {
 			$this->storage,
 			$sourceStore,
 			$this->logger ?: new NullLogger,
-			$this->cache,
 			$this->dbFactory,
 			$this->postprocessors,
 			$this->deferredQueue,
@@ -240,7 +234,6 @@ class PageImportState {
 		ManagerGroup $storage,
 		ImportSourceStore $sourceStore,
 		LoggerInterface $logger,
-		BufferedCache $cache,
 		DbFactory $dbFactory,
 		Postprocessor $postprocessor,
 		SplQueue $deferredQueue,
@@ -250,7 +243,6 @@ class PageImportState {
 		$this->boardWorkflow = $boardWorkflow;
 		$this->sourceStore = $sourceStore;
 		$this->logger = $logger;
-		$this->cache = $cache;
 		$this->dbw = $dbFactory->getDB( DB_MASTER );
 		$this->postprocessor = $postprocessor;
 		$this->deferredQueue = $deferredQueue;
@@ -410,19 +402,16 @@ class PageImportState {
 	public function begin() {
 		$this->flushDeferredQueue();
 		$this->dbw->begin( __METHOD__ );
-		$this->cache->begin();
 	}
 
 	public function commit() {
 		$this->dbw->commit( __METHOD__ );
-		$this->cache->commit();
 		$this->sourceStore->save();
 		$this->flushDeferredQueue();
 	}
 
 	public function rollback() {
 		$this->dbw->rollback( __METHOD__ );
-		$this->cache->rollback();
 		$this->sourceStore->rollback();
 		$this->clearDeferredQueue();
 		$this->postprocessor->importAborted();

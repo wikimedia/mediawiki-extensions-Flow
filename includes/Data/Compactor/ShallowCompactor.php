@@ -43,12 +43,13 @@ class ShallowCompactor implements Compactor {
 	 * @return array
 	 */
 	public function compactRow( array $row ) {
-		$keys = array_merge( $this->shallow->getPrimaryKeyColumns(), $this->sort );
-		$extra = array_diff( array_keys( $row ), $keys );
-		foreach ( $extra as $key ) {
-			unset( $row[$key] );
-		}
-		return $this->inner->compactRow( $row );
+		return $row;
+//		$keys = array_merge( $this->shallow->getPrimaryKeyColumns(), $this->sort );
+//		$extra = array_diff( array_keys( $row ), $keys );
+//		foreach ( $extra as $key ) {
+//			unset( $row[$key] );
+//		}
+//		return $this->inner->compactRow( $row );
 	}
 
 	/**
@@ -94,6 +95,7 @@ class ShallowCompactor implements Compactor {
 		$duplicator = $this->getResultDuplicator( $cached, $keyToQuery );
 		$queries = $duplicator->getUniqueQueries();
 		$innerResult = $this->shallow->findMulti( $queries );
+
 		foreach ( $innerResult as $rows ) {
 			// __construct guaranteed the shallow backing index is a unique, so $first is only result
 			$first = reset( $rows );

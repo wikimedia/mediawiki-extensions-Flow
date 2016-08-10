@@ -9,25 +9,9 @@ use Flow\Model\Workflow;
  */
 class TopicListTopKIndex extends TopKIndex {
 	public function onAfterInsert( $object, array $new, array $metadata ) {
-		if ( $object instanceof Workflow ) {
-			$workflow = $object;
-
-			// If we're creating a discussion, the discussion initially has 0
-			// topics, so create empty TopKIndex's. (This way, after we add the
-			// initial topics, we don't have to do a cache fill from the DB,
-			// until the cache expires.).
-			if ( $workflow->getType() === 'discussion' ) {
-				$indexed = array(
-					'topic_list_id' => $workflow->getId(),
-				);
-				$this->cache->set( $this->cacheKey( $indexed ), array() );
-			}
-			// Do nothing when topic workflows are inserted
-
-			return;
+		if ( !( $object instanceof Workflow ) ) {
+			parent::onAfterInsert( $object, $new, $metadata );
 		}
-
-		parent::onAfterInsert( $object, $new, $metadata );
 	}
 
 	// Override the others from LifecycleHandler to do nothing for workflows (unless

@@ -4,7 +4,9 @@ namespace Flow\Tests\Api;
 
 use ApiTestCase as BaseApiTestCase;
 use Flow\Container;
+use Flow\Data\BagOStuff\LocalBufferedBagOStuff;
 use FlowHooks;
+use ObjectCache;
 use User;
 
 /**
@@ -32,8 +34,8 @@ abstract class ApiTestCase extends BaseApiTestCase {
 			NS_TOPIC => CONTENT_MODEL_FLOW_BOARD,
 		) );
 
-		Container::reset();
 		parent::setUp();
+		$this->setCurrentUser( self::$users['sysop']->getUser() );
 	}
 
 	protected function getEditToken( $user = null, $token = 'edittoken' ) {
@@ -42,25 +44,25 @@ abstract class ApiTestCase extends BaseApiTestCase {
 	}
 
 	/**
-	 * Ensures Flow is reset before passing control on
-	 * to parent::doApiRequest. Defaults all requests to
-	 * the sysop user if not specified.
+	 * Set $user in the Flow container
+	 * WARNING: This resets your container and
+	 *          gets rid of anything you may have mocked.
+	 * @param User $user
 	 */
+	protected function setCurrentUser( User $user ) {
+		Container::reset();
+		$container = Container::getContainer();
+		$container['user'] = $user;
+	}
+
 	protected function doApiRequest(
 		array $params,
 		array $session = null,
 		$appendModule = false,
 		User $user = null
 	) {
-		if ( $user === null ) {
-			$user = self::$users['sysop']->getUser();
-		}
-
 		// reset flow state before each request
 		FlowHooks::resetFlowExtension();
-		Container::reset();
-		$container = Container::getContainer();
-		$container['user'] = $user;
 		return parent::doApiRequest( $params, $session, $appendModule, $user );
 	}
 
@@ -83,5 +85,33 @@ abstract class ApiTestCase extends BaseApiTestCase {
 		);
 
 		return $data[0]['flow']['new-topic']['committed']['topiclist'];
+	}
+
+	protected function expectCacheInvalidate() {
+		$mock = $this->mockCache();
+
+		$mock->expects( $this->never() )->method( 'set' );
+		$mock->expects( $this->never() )->method( 'setMulti' );
+		$mock->expects( $this->never() )->method( 'add' );
+		$mock->expects( $this->atLeastOnce() )->method( 'delete' );
+
+		return $mock;
+	}
+
+	protected function mockCache() {
+		global $wgFlowCacheTime;
+		Container::reset();
+		$container = Container::getContainer();
+
+		$mock = $this->getMockBuilder( 'Flow\Data\BufferedCache' )
+			->setConstructorArgs( array( ObjectCache::getMainWANInstance(), $wgFlowCacheTime ) )
+			->enableProxyingToOriginalMethods()
+			->getMock();
+
+		$container->extend( 'memcache.local_buffered', function ( $cache, $container ) use ( $mock ) {
+			return $mock;
+		} );
+
+		return $mock;
 	}
 }
