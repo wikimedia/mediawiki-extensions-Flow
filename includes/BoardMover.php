@@ -3,7 +3,6 @@
 namespace Flow;
 
 use DatabaseBase;
-use Flow\Data\BufferedCache;
 use Flow\Data\ManagerGroup;
 use Flow\Exception\FlowException;
 use Flow\Model\Header;
@@ -32,9 +31,8 @@ class BoardMover {
 	 */
 	protected $dbw;
 
-	public function __construct( DbFactory $dbFactory, BufferedCache $cache, ManagerGroup $storage, User $nullEditUser ) {
+	public function __construct( DbFactory $dbFactory, ManagerGroup $storage, User $nullEditUser ) {
 		$this->dbFactory = $dbFactory;
-		$this->cache = $cache;
 		$this->storage = $storage;
 		$this->nullEditUser = $nullEditUser;
 	}
@@ -49,7 +47,6 @@ class BoardMover {
 		// Open a transaction, this will be closed from self::commit.
 		$this->dbw = $this->dbFactory->getDB( DB_MASTER );
 		$this->dbw->startAtomic( __CLASS__ );
-		$this->cache->begin();
 	}
 
 	/**
@@ -127,10 +124,8 @@ class BoardMover {
 
 		try {
 			$this->dbw->endAtomic( __CLASS__ );
-			$this->cache->commit();
 		} catch ( \Exception $e ) {
 			$this->dbw->rollback( __METHOD__ );
-			$this->cache->rollback();
 			throw $e;
 		}
 

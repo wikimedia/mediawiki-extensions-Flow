@@ -31,15 +31,16 @@ class FeatureCompactor implements Compactor {
 	 * @throws DataModelException
 	 */
 	public function compactRow( array $row ) {
-		foreach ( $this->indexed as $key ) {
-			unset( $row[$key] );
-		}
-		foreach ( $row as $foo ) {
-			if ( $foo !== null && !is_scalar( $foo ) ) {
-				throw new DataModelException( 'Attempted to compact row containing objects, must be scalar values: ' . print_r( $foo, true ), 'process-data' );
-			}
-		}
 		return $row;
+//		foreach ( $this->indexed as $key ) {
+//			unset( $row[$key] );
+//		}
+//		foreach ( $row as $foo ) {
+//			if ( $foo !== null && !is_scalar( $foo ) ) {
+//				throw new DataModelException( 'Attempted to compact row containing objects, must be scalar values: ' . print_r( $foo, true ), 'process-data' );
+//			}
+//		}
+//		return $row;
 	}
 
 	/**

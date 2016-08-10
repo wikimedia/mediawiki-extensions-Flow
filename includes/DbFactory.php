@@ -47,12 +47,10 @@ class DbFactory {
 	 * Gets a database connection for the Flow-specific database.
 	 *
 	 * @param integer $db index of the connection to get.  DB_MASTER|DB_SLAVE.
-	 * @param mixed $groups query groups. An array of group names that this query
-	 *   belongs to.
 	 * @return \DatabaseBase
 	 */
-	public function getDB( $db, $groups = array() ) {
-		return $this->getLB()->getConnection( $this->forceMaster ? DB_MASTER : $db, $groups, $this->wiki );
+	public function getDB( $db ) {
+		return $this->getLB()->getConnection( $this->forceMaster ? DB_MASTER : $db, array(), $this->wiki );
 	}
 
 	/**
@@ -72,13 +70,11 @@ class DbFactory {
 	 * Gets a database connection for the main wiki database.  Mockable version of wfGetDB.
 	 *
 	 * @param integer $db index of the connection to get.  DB_MASTER|DB_SLAVE.
-	 * @param array $groups query groups. An array of group names that this query
-	 *   belongs to.
 	 * @param string|boolean $wiki The wiki ID, or false for the current wiki
 	 * @return \DatabaseBase
 	 */
-	public function getWikiDB( $db, $groups = array(), $wiki = false ) {
-		return wfGetDB( $this->forceMaster ? DB_MASTER : $db, $groups, $wiki );
+	public function getWikiDB( $db, $wiki = false ) {
+		return wfGetDB( $this->forceMaster ? DB_MASTER : $db, array(), $wiki );
 	}
 
 	/**
