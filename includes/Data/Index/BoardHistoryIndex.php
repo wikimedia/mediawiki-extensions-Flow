@@ -2,7 +2,7 @@
 
 namespace Flow\Data\Index;
 
-use Flow\Data\BufferedCache;
+use Flow\Data\FlowObjectCache;
 use Flow\Data\ObjectManager;
 use Flow\Data\ObjectMapper;
 use Flow\Data\Storage\BoardHistoryStorage;
@@ -27,7 +27,7 @@ abstract class BoardHistoryIndex extends TopKIndex {
 	protected $om;
 
 	public function __construct(
-		BufferedCache $cache,
+		FlowObjectCache $cache,
 		BoardHistoryStorage $storage,
 		ObjectMapper $mapper,
 		$prefix,

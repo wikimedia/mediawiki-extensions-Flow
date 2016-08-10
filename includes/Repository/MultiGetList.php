@@ -2,21 +2,21 @@
 
 namespace Flow\Repository;
 
-use Flow\Data\BufferedCache;
+use Flow\Data\FlowObjectCache;
 use Flow\Model\UUID;
 use Flow\Exception\InvalidInputException;
 
 class MultiGetList {
 
 	/**
-	 * @var BufferedCache
+	 * @var FlowObjectCache
 	 */
 	protected $cache;
 
 	/**
-	 * @param BufferedCache $cache
+	 * @param FlowObjectCache $cache
 	 */
-	public function __construct( BufferedCache $cache ) {
+	public function __construct( FlowObjectCache $cache ) {
 		$this->cache = $cache;
 	}
 

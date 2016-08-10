@@ -3,7 +3,7 @@
 namespace Flow\Data\Index;
 
 use Flow\Collection\PostCollection;
-use Flow\Data\BufferedCache;
+use Flow\Data\FlowObjectCache;
 use Flow\Data\ObjectMapper;
 use Flow\Data\Storage\PostRevisionTopicHistoryStorage;
 use Flow\Exception\DataModelException;
@@ -15,7 +15,7 @@ use MWException;
  * TopKIndex that calculates the topic_root_id
  */
 class PostRevisionTopicHistoryIndex extends TopKIndex {
-	public function __construct( BufferedCache $cache, PostRevisionTopicHistoryStorage $storage, ObjectMapper $mapper, $prefix, array $indexed, array $options = array() ) {
+	public function __construct( FlowObjectCache $cache, PostRevisionTopicHistoryStorage $storage, ObjectMapper $mapper, $prefix, array $indexed, array $options = array() ) {
 		if ( $indexed !== array( 'topic_root_id' ) ) {
 			throw new \MWException( __CLASS__ . ' is hardcoded to only index topic_root_id: ' . print_r( $indexed, true ) );
 		}

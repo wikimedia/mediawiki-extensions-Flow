@@ -1,7 +1,6 @@
 <?php
 
 use Flow\Container;
-use Flow\Data\BufferedCache;
 use Flow\Data\ManagerGroup;
 use Flow\Data\Utils\RawSql;
 use Flow\DbFactory;
@@ -40,11 +39,6 @@ class FlowRemoveOldTopics extends Maintenance {
 	 */
 	protected $dbFactory;
 
-	/**
-	 * @var BufferedCache
-	 */
-	protected $cache;
-
 	public function __construct() {
 		parent::__construct();
 
@@ -61,7 +55,6 @@ class FlowRemoveOldTopics extends Maintenance {
 		$this->storage = Container::get( 'storage' );
 		$this->treeRepo = Container::get( 'repository.tree' );
 		$this->dbFactory = Container::get( 'db.factory' );
-		$this->cache = Container::get( 'memcache.local_buffered' );
 
 		$timestamp = wfTimestamp( TS_MW, $this->getOption( 'date' ) );
 
@@ -157,7 +150,6 @@ class FlowRemoveOldTopics extends Maintenance {
 			$this->output( 'Removing ' . count( $revisions ) . ' header revisions from ' . count( $uuids ) . ' headers (up to ' . $startId->getTimestamp() . ")\n" );
 
 			$this->dbFactory->getDB( DB_MASTER )->begin();
-			$this->cache->begin();
 
 			foreach ( $revisions as $revision ) {
 				$this->removeReferences( $revision );
@@ -167,10 +159,8 @@ class FlowRemoveOldTopics extends Maintenance {
 
 			if ( $this->dryRun ) {
 				$this->dbFactory->getDB( DB_MASTER )->rollback();
-				$this->cache->rollback();
 			} else {
 				$this->dbFactory->getDB( DB_MASTER )->commit();
-				$this->cache->commit();
 				$this->dbFactory->waitForSlaves();
 			}
 		} while ( !empty( $revisions ) );
@@ -280,7 +270,6 @@ class FlowRemoveOldTopics extends Maintenance {
 	 */
 	protected function removeWorkflows( array $workflows ) {
 		$this->dbFactory->getDB( DB_MASTER )->begin();
-		$this->cache->begin();
 
 		foreach ( $workflows as $workflow ) {
 			$this->removeSummary( $workflow );
@@ -292,10 +281,8 @@ class FlowRemoveOldTopics extends Maintenance {
 
 		if ( $this->dryRun ) {
 			$this->dbFactory->getDB( DB_MASTER )->rollback();
-			$this->cache->rollback();
 		} else {
 			$this->dbFactory->getDB( DB_MASTER )->commit();
-			$this->cache->commit();
 			$this->dbFactory->waitForSlaves();
 		}
 	}
