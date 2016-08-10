@@ -120,9 +120,6 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 			$storage,
 			$store,
 			new NullLogger(),
-			$this->getMockBuilder( 'Flow\Data\BufferedCache' )
-				->disableOriginalConstructor()
-				->getMock(),
 			Container::get( 'db.factory' ),
 			new ProcessorGroup,
 			new SplQueue

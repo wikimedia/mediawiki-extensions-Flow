@@ -32,9 +32,6 @@ class PageImportStateTest extends \MediaWikiTestCase {
 			$storage,
 			new NullImportSourceStore(),
 			new NullLogger(),
-			$this->getMockBuilder( 'Flow\Data\BufferedCache' )
-				->disableOriginalConstructor()
-				->getMock(),
 			$this->getMockBuilder( 'Flow\DbFactory' )
 				->disableOriginalConstructor()
 				->getMock(),
