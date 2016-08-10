@@ -2,8 +2,12 @@
 
 namespace Flow\Tests;
 
+use EventRelayerNull;
 use Flow\Container;
+use Flow\Data\BufferedCache;
 use Flow\Model\UUID;
+use HashBagOStuff;
+use WANObjectCache;
 
 class FlowTestCase extends \MediaWikiTestCase {
 	protected function setUp() {
@@ -23,5 +27,15 @@ class FlowTestCase extends \MediaWikiTestCase {
 		}
 
 		return parent::dataToString( $data );
+	}
+
+	protected function getCache() {
+		global $wgFlowCacheTime;
+		$wanCache = new WANObjectCache( array(
+			'cache' => new HashBagOStuff(),
+			'pool' => 'testcache-hash',
+			'relayer' => new EventRelayerNull( [] )
+		) );
+		return new BufferedCache( $wanCache,  $wgFlowCacheTime );
 	}
 }

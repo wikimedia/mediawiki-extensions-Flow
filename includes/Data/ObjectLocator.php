@@ -14,7 +14,7 @@ use FormatJson;
  * update events.
  */
 class ObjectLocator {
-	/*
+	/**
 	 * @var ObjectMapper
 	 */
 	protected $mapper;

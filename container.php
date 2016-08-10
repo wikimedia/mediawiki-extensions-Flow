@@ -141,6 +141,10 @@ use Flow\Data\Index\PostSummaryRevisionBoardHistoryIndex;
 use Flow\Data\ObjectManager;
 use Flow\Data\ObjectLocator;
 
+$c['wancache'] = function ( $c ) {
+	return ObjectCache::getMainWANInstance();
+};
+
 // This currently never clears $this->bag, which makes it unusuable for long-running batch.
 // Use 'memcache.non_local_buffered' for those instead.
 $c['memcache.local_buffered'] = function( $c ) {
@@ -148,19 +152,20 @@ $c['memcache.local_buffered'] = function( $c ) {
 
 	// This is the real buffered cached that will allow transactional-like cache.
 	// It also caches all reads in-memory.
-	$bufferedCache = new Flow\Data\BagOStuff\LocalBufferedBagOStuff( $c['memcache'] );
+//	$bufferedCache = new Flow\Data\BagOStuff\LocalBufferedBagOStuff( $c['memcache'] );
+
 	// This is Flow's wrapper around it, to have a fixed cache expiry time
-	return new BufferedCache( $bufferedCache, $wgFlowCacheTime );
+	return new BufferedCache( $c['wancache'], $wgFlowCacheTime );
 };
 
 $c['memcache.non_local_buffered'] = function( $c ) {
 	global $wgFlowCacheTime;
 
 	// This is the real buffered cached that will allow transactional-like cache
-	$bufferedCache = new Flow\Data\BagOStuff\BufferedBagOStuff( $c['memcache'] );
+//	$bufferedCache = new Flow\Data\BagOStuff\BufferedBagOStuff( $c['memcache'] );
 
 	// This is Flow's wrapper around it, to have a fixed cache expiry time
-	return new BufferedCache( $bufferedCache, $wgFlowCacheTime );
+	return new BufferedCache( $c['wancache'], $wgFlowCacheTime );
 };
 
 // Batched username loader
@@ -785,7 +790,6 @@ $c['submission_handler'] = function( $c ) {
 	return new Flow\SubmissionHandler(
 		$c['storage'],
 		$c['db.factory'],
-		$c['memcache.local_buffered'],
 		$c['deferred_queue']
 	);
 };
@@ -1270,7 +1274,6 @@ $c['importer'] = function( $c ) {
 	$importer = new Flow\Import\Importer(
 		$c['storage'],
 		$c['factory.loader.workflow'],
-		$c['memcache.local_buffered'],
 		$c['db.factory'],
 		$c['deferred_queue'],
 		$c['occupation_controller']
@@ -1296,7 +1299,6 @@ $c['formatter.undoedit'] = function( $c ) {
 $c['board_mover'] = function( $c ) {
 	return new Flow\BoardMover(
 		$c['db.factory'],
-		$c['memcache.local_buffered'],
 		$c['storage'],
 		$c['occupation_controller']->getTalkpageManager()
 	);

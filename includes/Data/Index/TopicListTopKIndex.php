@@ -20,7 +20,7 @@ class TopicListTopKIndex extends TopKIndex {
 				$indexed = array(
 					'topic_list_id' => $workflow->getId(),
 				);
-				$this->cache->set( $this->cacheKey( $indexed ), array() );
+//				$this->cache->set( $this->cacheKey( $indexed ), array() );
 			}
 			// Do nothing when topic workflows are inserted
 

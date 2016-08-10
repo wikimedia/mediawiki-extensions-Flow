@@ -20,6 +20,7 @@ class SinglePostQuery extends AbstractQuery {
 		if ( !$found ) {
 			throw new FlowException( '@todo' );
 		}
+
 		$this->loadMetadataBatch( $found );
 
 		$formatterRow = null;
@@ -37,6 +38,8 @@ class SinglePostQuery extends AbstractQuery {
 			}
 		}
 
-		return $this->buildResult( $post, null, $formatterRow );
+		$result = $this->buildResult( $post, null, $formatterRow );
+
+		return $result;
 	}
 }
