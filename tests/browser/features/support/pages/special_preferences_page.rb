@@ -5,7 +5,7 @@ class SpecialPreferencesPage
 
   link(:beta_features, id: 'preftab-betafeatures')
 
-  checkbox(:flow_beta_feature, id: 'mw-input-wpbeta-feature-flow-user-talk-page')
+  checkbox(:flow_beta_feature, name: 'wpbeta-feature-flow-user-talk-page')
 
   button(:save_preferences, id: 'prefcontrol')
 

@@ -3,8 +3,6 @@
 namespace Flow\Tests\Repository;
 
 use Flow\Container;
-use Flow\Data\BagOStuff\BufferedBagOStuff;
-use Flow\Data\BufferedCache;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use Flow\Tests\FlowTestCase;
@@ -26,8 +24,8 @@ class TreeRepositorydbTest extends FlowTestCase {
 
 		// Use 2 repos with 2 caches, the one you insert with reads from cache
 		// the other reads from db due to different cache
-		$cache[] = new BufferedCache( new BufferedBagOStuff( new \HashBagOStuff() ), 600 );
-		$cache[] = new BufferedCache( new BufferedBagOStuff( new \HashBagOStuff() ), 600 );
+		$cache[] = $this->getCache();
+		$cache[] = $this->getCache();
 		$dbf = Container::get( 'db.factory' );
 		$repo[] = new TreeRepository( $dbf, $cache[0] );
 		$repo[] = new TreeRepository( $dbf, $cache[1] );
