@@ -3,7 +3,7 @@
 namespace Flow\Data\Index;
 
 use Flow\Container;
-use Flow\Data\BufferedCache;
+use Flow\Data\FlowObjectCache;
 use Flow\Data\Compactor;
 use Flow\Data\Compactor\FeatureCompactor;
 use Flow\Data\Compactor\ShallowCompactor;
@@ -14,6 +14,7 @@ use Flow\Data\ObjectStorage;
 use Flow\Model\UUID;
 use FormatJson;
 use Flow\Exception\DataModelException;
+use MediaWiki\Logger\LoggerFactory;
 
 /**
  * Index objects with equal features($indexedColumns) into the same buckets.
@@ -21,7 +22,7 @@ use Flow\Exception\DataModelException;
 abstract class FeatureIndex implements Index {
 
 	/**
-	 * @var BufferedCache
+	 * @var FlowObjectCache
 	 */
 	protected $cache;
 
@@ -79,13 +80,6 @@ abstract class FeatureIndex implements Index {
 	abstract public function limitIndexSize( array $values );
 
 	/**
-	 * @todo Could the cache key be passed in instead of $indexed?
-	 * @param array $indexed The portion of $row that makes up the cache key
-	 * @param array $row A single row of data to add to its related feature bucket
-	 */
-	abstract protected function addToIndex( array $indexed, array $row );
-
-	/**
 	 * @todo Similar, Could the cache key be passed in instead of $indexed?
 	 * @param array $indexed The portion of $row that makes up the cache key
 	 * @param array $row A single row of data to remove from its related feature bucket
@@ -93,13 +87,13 @@ abstract class FeatureIndex implements Index {
 	abstract protected function removeFromIndex( array $indexed, array $row );
 
 	/**
-	 * @param BufferedCache $cache
+	 * @param FlowObjectCache $cache
 	 * @param ObjectStorage $storage
 	 * @param ObjectMapper $mapper
 	 * @param string $prefix Prefix to utilize for all cache keys
 	 * @param array $indexedColumns List of columns to index,
 	 */
-	public function __construct( BufferedCache $cache, ObjectStorage $storage, ObjectMapper $mapper, $prefix, array $indexedColumns ) {
+	public function __construct( FlowObjectCache $cache, ObjectStorage $storage, ObjectMapper $mapper, $prefix, array $indexedColumns ) {
 		$this->cache = $cache;
 		$this->storage = $storage;
 		$this->mapper = $mapper;
@@ -191,11 +185,7 @@ abstract class FeatureIndex implements Index {
 			throw new DataModelException( 'Un-indexable row: ' . FormatJson::encode( $new ), 'process-data' );
 		}
 		$compacted = $this->rowCompactor->compactRow( UUID::convertUUIDs( $new, 'alphadecimal' ) );
-		// give implementing index option to create rather than append
-		if ( !$this->maybeCreateIndex( $indexed, $new, $compacted ) ) {
-			// fall back to append
-			$this->addToIndex( $indexed, $compacted );
-		}
+		$this->removeFromIndex( $indexed, $compacted );
 	}
 
 	/**
@@ -218,11 +208,10 @@ abstract class FeatureIndex implements Index {
 				return;
 			}
 			// object representation in feature bucket has changed
-			$this->replaceInIndex( $oldIndexed, $oldCompacted, $newCompacted );
+			$this->removeFromIndex( $oldIndexed, $oldCompacted );
 		} else {
 			// object has moved from one feature bucket to another
 			$this->removeFromIndex( $oldIndexed, $oldCompacted );
-			$this->addToIndex( $newIndexed, $newCompacted );
 		}
 	}
 
@@ -290,6 +279,10 @@ abstract class FeatureIndex implements Index {
 		$fromStorage = array();
 		if ( $storageQueries ) {
 			$fromStorage = $this->backingStoreFindMulti( $storageQueries );
+			foreach ( $fromStorage as $idx => $resultFromStorage ) {
+				$key = $this->cacheKey( $storageQueries[$idx] );
+				$this->cache->set( $key, $resultFromStorage );
+			}
 		}
 
 		$results = $fromStorage;
@@ -488,38 +481,6 @@ abstract class FeatureIndex implements Index {
 		}
 
 		return $results;
-	}
-
-	/**
-	 * Called prior to self::addToIndex only when new objects as inserted.  Gives the
-	 * opportunity for indexes to create rather than append if this object signifies a new
-	 * feature list.
-	 *
-	 * @todo again, could just pass cache key instead of $indexed?
-	 * @param array $indexed The values that make up the cache key
-	 * @param array $sourceRow The input database row
-	 * @param array $compacted The database row reduced in size for storage within the index
-	 * @return boolean True if an index was created, or false if $sourceRow should be merged
-	 *  into the index via self::addToIndex
-	 */
-	protected function maybeCreateIndex( array $indexed, array $sourceRow, array $compacted ) {
-		return false;
-	}
-
-	/**
-	 * Called to update a row's data within a feature bucket.
-	 *
-	 * Note that this naive implementation does two round trips, likely an implementing
-	 * class can do this in a single round trip.
-	 *
-	 * @todo again, could just pass cache key instead of $indexed?
-	 * @param array $indexed The values that make up the cache key
-	 * @param array $old The database row that was previously retrieved from cache
-	 * @param array $new The new version of that replacement row
-	 */
-	protected function replaceInIndex( array $indexed, array $old, array $new ) {
-		$this->removeFromIndex( $indexed, $old );
-		$this->addToIndex( $indexed, $new );
 	}
 
 	/**
