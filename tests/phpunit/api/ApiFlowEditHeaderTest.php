@@ -7,6 +7,25 @@ namespace Flow\Tests\Api;
  * @group medium
  */
 class ApiFlowEditHeaderTest extends ApiTestCase {
+
+	public function testCache() {
+		$this->expectCacheInvalidate();
+
+		$data = $this->doApiRequest( array(
+			'page' => 'Talk:Flow_QA',
+			'token' => $this->getEditToken(),
+			'action' => 'flow',
+			'submodule' => 'edit-header',
+			'ehprev_revision' => '',
+			'ehcontent' => '(._.)',
+			'ehformat' => 'wikitext',
+		) );
+
+		$debug = json_encode( $data );
+		$this->assertEquals( 'ok', $data[0]['flow']['edit-header']['status'], $debug );
+		$this->assertCount( 1, $data[0]['flow']['edit-header']['committed'], $debug );
+	}
+
 	public function testEditHeader() {
 
 		// create header

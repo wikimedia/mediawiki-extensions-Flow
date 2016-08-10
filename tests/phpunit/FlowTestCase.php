@@ -3,7 +3,9 @@
 namespace Flow\Tests;
 
 use Flow\Container;
+use Flow\Data\FlowObjectCache;
 use Flow\Model\UUID;
+use WANObjectCache;
 
 class FlowTestCase extends \MediaWikiTestCase {
 	protected function setUp() {
@@ -23,5 +25,10 @@ class FlowTestCase extends \MediaWikiTestCase {
 		}
 
 		return parent::dataToString( $data );
+	}
+
+	protected function getCache() {
+		global $wgFlowCacheTime;
+		return new FlowObjectCache( WANObjectCache::newEmpty(), Container::get( 'db.factory' ), $wgFlowCacheTime );
 	}
 }

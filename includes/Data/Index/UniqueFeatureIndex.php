@@ -25,15 +25,7 @@ class UniqueFeatureIndex extends FeatureIndex {
 		return $values;
 	}
 
-	protected function addToIndex( array $indexed, array $row ) {
-		$this->cache->set( $this->cacheKey( $indexed ), array( $row ) );
-	}
-
 	protected function removeFromIndex( array $indexed, array $row ) {
 		$this->cache->delete( $this->cacheKey( $indexed ) );
-	}
-
-	protected function replaceInIndex( array $indexed, array $oldRow, array $newRow ) {
-		$this->cache->set( $this->cacheKey( $indexed ), array( $newRow ) );
 	}
 }
