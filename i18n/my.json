@@ -5,7 +5,7 @@
 			"Ninjastrikers"
 		]
 	},
-	"notification-header-flow-enabled-on-talkpage": "'''{{GENDER:$2|သင်၏}} ဆွေးနွေးချက်စာမျက်နှာ'''အတွက် ဆွေးနွေးမှုစနစ်အသစ် ရနိုင်ပါပြီ",
+	"notification-header-flow-enabled-on-talkpage": "<strong>{{GENDER:$2|သင်၏}} ဆွေးနွေးချက်စာမျက်နှာ</strong>အတွက် ဆွေးနွေးမှုစနစ်အသစ် ရနိုင်ပါပြီ",
 	"flow-edited-by": "$1 က ပြင်ထားသည်။",
 	"flow-notification-link-text-enabled-on-talkpage": "အသုံးပြုသူ ဆွေးနွေးချက် စာမျက်နှာကို {{GENDER:|ကြည့်ရန်}}"
 }
