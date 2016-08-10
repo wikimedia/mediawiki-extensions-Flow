@@ -2,7 +2,7 @@
 
 namespace Flow\Repository;
 
-use Flow\Data\BufferedCache;
+use Flow\Data\FlowObjectCache;
 use Flow\Data\ObjectManager;
 use Flow\DbFactory;
 use Flow\Model\UUID;
@@ -44,15 +44,15 @@ class TreeRepository {
 	protected $dbFactory;
 
 	/**
-	 * @var BufferedCache
+	 * @var FlowObjectCache
 	 */
 	protected $cache;
 
 	/**
 	 * @param DbFactory $dbFactory Factory to source connection objects from
-	 * @param BufferedCache $cache
+	 * @param FlowObjectCache $cache
 	 */
-	public function __construct( DbFactory $dbFactory, BufferedCache $cache ) {
+	public function __construct( DbFactory $dbFactory, FlowObjectCache $cache ) {
 		$this->dbFactory = $dbFactory;
 		$this->cache = $cache;
 	}
@@ -70,28 +70,20 @@ class TreeRepository {
 	/**
 	 * Insert a new tree node.  If ancestor === null then this node is a root.
 	 *
-	 * To also write this to cache we would have to read our own write, which
-	 * isn't guaranteed during a node split. Master reads can potentially be
-	 * a different server than master writes.
-	 *
-	 * The way to do it without that is to CAS update memcache, assuming it currently
-	 * has what we need
+	 * Also delete cache entries related to this tree.
 	 */
 	public function insert( UUID $descendant, UUID $ancestor = null ) {
-		$subtreeKey = $this->cacheKey( 'subtree', $descendant );
-		$parentKey = $this->cacheKey( 'parent', $descendant );
-		$pathKey = $this->cacheKey( 'rootpath', $descendant );
-		$this->cache->set( $subtreeKey, array( $descendant ) );
+		$this->cache->delete( $this->cacheKey( 'subtree', $descendant ) );
+		$this->cache->delete( $this->cacheKey( 'parent', $descendant ) );
+		$this->cache->delete( $this->cacheKey( 'rootpath', $descendant ) );
+
 		if ( $ancestor === null ) {
-			$this->cache->set( $parentKey, null );
-			$this->cache->set( $pathKey, array( $descendant ) );
 			$path = array( $descendant );
 		} else {
-			$this->cache->set( $parentKey, $ancestor );
 			$path = $this->findRootPath( $ancestor );
 			$path[] = $descendant;
-			$this->cache->set( $pathKey, $path );
 		}
+		$this->deleteSubtreeCache( $descendant, $path );
 
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
 		$res = $dbw->insert(
@@ -171,34 +163,16 @@ class TreeRepository {
 		}
 
 		if ( !$res ) {
-			$this->cache->delete( $parentKey );
-			$this->cache->delete( $pathKey );
 			throw new DataModelException( 'Failed inserting new tree node', 'process-data' );
 		}
-		$this->appendToSubtreeCache( $descendant, $path );
+
 		return true;
 	}
 
-	protected function appendToSubtreeCache( UUID $descendant, array $rootPath ) {
-		$callback = function( BagOStuff $cache, $key, $value ) use( $descendant ) {
-			if ( $value === false ) {
-				return false;
-			}
-			$value[$descendant->getAlphadecimal()] = $descendant;
-			return $value;
-		};
-
-		// This could be pretty slow if there is contention
+	protected function deleteSubtreeCache( UUID $descendant, array $rootPath ) {
 		foreach ( $rootPath as $subtreeRoot ) {
 			$cacheKey = $this->cacheKey( 'subtree', $subtreeRoot );
-			$success = $this->cache->merge( $cacheKey, $callback );
-
-			// $success is always true if bufferCache starts with begin()
-			// if we failed to CAS new data, kill the cached value so it'll be
-			// re-fetched from DB
-			if ( !$success ) {
-				$this->cache->delete( $cacheKey );
-			}
+			$this->cache->delete( $cacheKey );
 		}
 	}
 
