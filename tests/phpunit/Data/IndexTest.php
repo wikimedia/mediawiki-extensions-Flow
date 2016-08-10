@@ -3,8 +3,6 @@
 namespace Flow\Tests\Data;
 
 use Flow\Container;
-use Flow\Data\BagOStuff\BufferedBagOStuff;
-use Flow\Data\BufferedCache;
 use Flow\Data\Index\FeatureIndex;
 use Flow\Data\Index\TopKIndex;
 use Flow\Data\Index\UniqueFeatureIndex;
@@ -16,10 +14,7 @@ use Flow\Tests\FlowTestCase;
 class IndexTest extends FlowTestCase {
 
 	public function testShallow() {
-		global $wgFlowCacheTime;
-
-		$bag = new BufferedBagOStuff( new \HashBagOStuff );
-		$cache = new BufferedCache( $bag, $wgFlowCacheTime );
+		$cache = $this->getCache();
 
 		// fake ObjectMapper that doesn't roundtrip to- & fromStorageRow
 		$mapper = $this->getMockBuilder( 'Flow\Data\Mapper\BasicObjectMapper' )
@@ -49,12 +44,12 @@ class IndexTest extends FlowTestCase {
 
 		$db = FeatureIndex::cachedDbId();
 		$v = Container::get( 'cache.version' );
-		$bag->set( "$db:unique:" . md5( '1' ) . ":$v", array( array( 'id' => 1, 'name' => 'foo', 'other' => 'ppp' ) ) );
-		$bag->set( "$db:unique:" . md5( '2' ) . ":$v", array( array( 'id' => 2, 'name' => 'foo', 'other' => 'qqq' ) ) );
-		$bag->set( "$db:unique:" . md5( '3' ) . ":$v", array( array( 'id' => 3, 'name' => 'baz', 'other' => 'lll' ) ) );
+		$cache->set( "$db:unique:" . md5( '1' ) . ":$v", array( array( 'id' => 1, 'name' => 'foo', 'other' => 'ppp' ) ) );
+		$cache->set( "$db:unique:" . md5( '2' ) . ":$v", array( array( 'id' => 2, 'name' => 'foo', 'other' => 'qqq' ) ) );
+		$cache->set( "$db:unique:" . md5( '3' ) . ":$v", array( array( 'id' => 3, 'name' => 'baz', 'other' => 'lll' ) ) );
 
-		$bag->set( "$db:secondary:" . md5( 'foo' ) . ":$v", array( array( 'id' => 1 ), array( 'id' => 2 ) ) );
-		$bag->set( "$db:secondary:" . md5( 'baz' ) . ":$v", array( array( 'id' => 3 ) ) );
+		$cache->set( "$db:secondary:" . md5( 'foo' ) . ":$v", array( array( 'id' => 1 ), array( 'id' => 2 ) ) );
+		$cache->set( "$db:secondary:" . md5( 'baz' ) . ":$v", array( array( 'id' => 3 ) ) );
 
 		$expect = array(
 			array( 'id' => 1, 'name' => 'foo', 'other' => 'ppp', ),
@@ -69,10 +64,7 @@ class IndexTest extends FlowTestCase {
 	}
 
 	public function testCompositeShallow() {
-		global $wgFlowCacheTime;
-
-		$bag = new BufferedBagOStuff( new \HashBagOStuff );
-		$cache = new BufferedCache( $bag, $wgFlowCacheTime );
+		$cache = $this->getCache();
 		$storage = $this->getMock( 'Flow\\Data\\ObjectStorage' );
 
 		// fake ObjectMapper that doesn't roundtrip to- & fromStorageRow
@@ -101,15 +93,15 @@ class IndexTest extends FlowTestCase {
 		// even though, due to uniqueness, there is only one value per set of keys
 		$db = FeatureIndex::cachedDbId();
 		$v = Container::get( 'cache.version' );
-		$bag->set( "$db:unique:" . md5( '1:9' ) . ":$v", array( array( 'id' => 1, 'ot' => 9, 'name' => 'foo' ) ) );
-		$bag->set( "$db:unique:" . md5( '1:8' ) . ":$v", array( array( 'id' => 1, 'ot' => 8, 'name' => 'foo' ) ) );
-		$bag->set( "$db:unique:" . md5( '3:7' ) . ":$v", array( array( 'id' => 3, 'ot' => 7, 'name' => 'baz' ) ) );
+		$cache->set( "$db:unique:" . md5( '1:9' ) . ":$v", array( array( 'id' => 1, 'ot' => 9, 'name' => 'foo' ) ) );
+		$cache->set( "$db:unique:" . md5( '1:8' ) . ":$v", array( array( 'id' => 1, 'ot' => 8, 'name' => 'foo' ) ) );
+		$cache->set( "$db:unique:" . md5( '3:7' ) . ":$v", array( array( 'id' => 3, 'ot' => 7, 'name' => 'baz' ) ) );
 
-		$bag->set( "$db:secondary:" . md5( 'foo' ) . ":$v", array(
+		$cache->set( "$db:secondary:" . md5( 'foo' ) . ":$v", array(
 			array( 'id' => 1, 'ot' => 9 ),
 			array( 'id' => 1, 'ot' => 8 ),
 		) );
-		$bag->set( "$db:secondary:" . md5( 'baz' ). ":$v", array(
+		$cache->set( "$db:secondary:" . md5( 'baz' ). ":$v", array(
 			array( 'id' => 3, 'ot' => 7 ),
 		) );
 

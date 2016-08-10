@@ -2,12 +2,9 @@
 
 namespace Flow\Tests\Repository;
 
-use Flow\Data\BagOStuff\BufferedBagOStuff;
-use Flow\Data\BufferedCache;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use Flow\Tests\FlowTestCase;
-use ReflectionClass;
 
 /**
  * @group Flow
@@ -24,41 +21,17 @@ class TreeRepositoryTest extends FlowTestCase {
 	}
 
 	public function testSuccessfulInsert() {
-		global $wgFlowCacheTime;
-		$cache = new BufferedCache( new BufferedBagOStuff( new \HashBagOStuff() ),  $wgFlowCacheTime );
+		$cache = $this->getCache();
 		$treeRepository = new TreeRepository( $this->mockDbFactory( true ), $cache );
 		$this->assertTrue( $treeRepository->insert( $this->descendant, $this->ancestor ) );
-
-		$reflection = new ReflectionClass( '\Flow\Repository\TreeRepository' );
-		$method = $reflection->getMethod( 'cacheKey' );
-		$method->setAccessible( true );
-
-		$this->assertNotSame( $cache->get( $method->invoke( $treeRepository, 'subtree', $this->descendant ) ), false );
-		$this->assertNotSame( $cache->get( $method->invoke( $treeRepository, 'rootpath', $this->descendant ) ), false );
-		$this->assertNotSame( $cache->get( $method->invoke( $treeRepository, 'parent', $this->descendant ) ), false );
 	}
 
 	/**
 	 * @expectedException \Flow\Exception\DataModelException
 	 */
 	public function testFailingInsert() {
-		global $wgFlowCacheTime;
-		// Catch the exception and test the cache result then re-throw the exception,
-		// otherwise the exception would skip the cache result test
-		$cache = new BufferedCache( new BufferedBagOStuff( new \HashBagOStuff() ), $wgFlowCacheTime );
-		try {
-			$treeRepository = new TreeRepository( $this->mockDbFactory( false ), $cache );
-			$this->assertNull( $treeRepository->insert( $this->descendant, $this->ancestor ) );
-		} catch ( \Exception $e ) {
-			$reflection = new ReflectionClass( '\Flow\Repository\TreeRepository' );
-			$method = $reflection->getMethod( 'cacheKey' );
-			$method->setAccessible( true );
-
-			$this->assertSame( $cache->get( $method->invoke( $treeRepository, 'rootpath', $this->descendant ) ), false );
-			$this->assertSame( $cache->get( $method->invoke( $treeRepository, 'parent', $this->descendant ) ), false );
-
-			throw $e;
-		}
+		$treeRepository = new TreeRepository( $this->mockDbFactory( false ), $this->getCache() );
+		$treeRepository->insert( $this->descendant, $this->ancestor );
 	}
 
 	protected function mockDbFactory( $dbResult ) {
