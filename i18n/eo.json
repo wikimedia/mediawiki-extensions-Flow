@@ -27,5 +27,7 @@
 	"flow-moderation-confirm-delete-post": "Forigi",
 	"flow-moderation-confirm-hide-post": "Kaŝi",
 	"flow-moderation-confirm-delete-topic": "Forigi",
-	"flow-moderation-confirm-hide-topic": "Kaŝi"
+	"flow-moderation-confirm-hide-topic": "Kaŝi",
+	"flow-ve-mention-placeholder": "Uzantnomo",
+	"flow-dialog-cancelconfirm-title": "Ĉu vi certas?"
 }

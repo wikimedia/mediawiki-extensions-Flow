@@ -24,7 +24,8 @@
 			"Macofe",
 			"Matiia",
 			"Dinosaur918",
-			"MrLeopold"
+			"MrLeopold",
+			"McDutchie"
 		]
 	},
 	"enableflow": "Flow inschakelen",
@@ -172,7 +173,7 @@
 	"flow-error-not-a-post": "Dit onderwerp kan niet als bericht worden opgeslagen.",
 	"flow-error-missing-header-content": "U moet een beschrijving invoeren.",
 	"flow-error-missing-prev-revision-identifier": "Het ID van de vorige versie ontbreekt.",
-	"flow-error-prev-revision-mismatch": "Een andere gebruiker bewerkte deze bijdrage al een paar seconden geleden. Weet u zeker dat u deze recente verandering wilt overschrijven?{{GENDER:$3|}}",
+	"flow-error-prev-revision-mismatch": "Een andere gebruiker bewerkte deze bijdrage net een paar seconden geleden. Weet u zeker dat u deze recente verandering wilt overschrijven?{{GENDER:$3|}}",
 	"flow-error-prev-revision-does-not-exist": "De vorige versie kon niet gevonden worden.",
 	"flow-error-core-topic-deletion": "U kunt dit onderwerp niet rechtstreeks met action=delete verwijderen. Gebruik het ... menu op het discussiebord of op de [$1 onderwerppagina].",
 	"flow-error-default": "Er is een fout opgetreden.",
