@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee9d9f70_a2ba281c",
+        "filename": "i18n/en.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-08-11T20:17:52Z",
+      "side": 1,
+      "message": "activity",
+      "revId": "fda95ac9314e8c94aacac189638e3b290a91d2af",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee9d9f70_22863868",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-08-11T20:17:52Z",
+      "side": 1,
+      "message": "watch-confirmation-description is missing.",
+      "revId": "fda95ac9314e8c94aacac189638e3b290a91d2af",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
