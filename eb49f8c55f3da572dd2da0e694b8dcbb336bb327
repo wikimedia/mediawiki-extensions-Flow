@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee9d9f70_015f7678",
+        "filename": "maintenance/FlowRestoreLQT.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-08-11T15:33:10Z",
+      "side": 1,
+      "message": "I\u0027m not sure this needs to be quoted.  It should work, though, at least in MySQL with the mode we have in production.",
+      "revId": "eb49f8c55f3da572dd2da0e694b8dcbb336bb327",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
