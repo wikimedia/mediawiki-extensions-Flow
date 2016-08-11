@@ -195,7 +195,7 @@ class FlowRestoreLQT extends Maintenance {
 				 * them, it's very likely that they haven't. In that case, we
 				 * won't have to do the complex moves.
 				 */
-				$dbr = $this->dbFactory->getDB( DB_SLAVE );
+				$dbr = $this->dbFactory->getWikiDB( DB_SLAVE );
 				$count = $dbr->selectRowCount(
 					array( 'logging' ),
 					'*',
