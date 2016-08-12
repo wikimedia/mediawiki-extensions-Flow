@@ -823,19 +823,22 @@ class NotificationController {
 		$pageId = $title->getArticleID();
 		\DeferredUpdates::addCallableUpdate( function () use ( $pageId, $postId, $moderated ) {
 			$eventMapper = new \EchoEventMapper();
+			$moderatedPostIdAlpha = $postId->getAlphadecimal();
+			$eventIds = array();
 			$eventTypes = array(
 				'flow-new-topic', 'flow-post-reply', 'flow-post-edited', 'flow-mention', 'flow-thank',
 				'flowusertalk-new-topic', 'flowusertalk-post-reply', 'flowusertalk-post-edited', 'flowusertalk-mention',
 			);
+
 			$events = $eventMapper->fetchByTypesAndPage( $eventTypes, $pageId );
 
-			$eventIds = array();
 
 			/** @var EchoEvent $event */
 			foreach ( $events as $event ) {
-				/** @var UUID $eventPostId */
+				/** @var UUID|string $eventPostId */
 				$eventPostId = $event->getExtraParam( 'post-id' );
-				if ( $eventPostId && ( $eventPostId->getAlphadecimal() === $postId->getAlphadecimal() ) ) {
+				$eventPostIdAlpha = $eventPostId instanceof UUID ? $eventPostId->getAlphadecimal() : $eventPostId;
+				if ( $eventPostIdAlpha === $moderatedPostIdAlpha ) {
 					$eventIds[] = $event->getId();
 				}
 			}
