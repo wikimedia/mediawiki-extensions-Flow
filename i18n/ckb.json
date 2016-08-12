@@ -1,8 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Pirehelokan"
+			"Pirehelokan",
+			"Sarchia"
 		]
 	},
-	"flow-summary-authored": "پوختە بە $1"
+	"flow-cancel": "ھەڵوەشاندنەوە",
+	"flow-summary-authored": "پوختە بە $1",
+	"flow-history-action-delete-post": "سڕینەوە",
+	"flow-post-action-delete-post": "سڕینەوە",
+	"flow-comment-hidden": "بۆچوونی شاردراوە",
+	"flow-moderation-confirm-delete-post": "سڕینەوە",
+	"flow-moderation-confirm-delete-topic": "سڕینەوە"
 }
