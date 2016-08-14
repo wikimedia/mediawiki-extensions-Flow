@@ -5,6 +5,7 @@
 			"Mirzali"
 		]
 	},
+	"enableflow": "Rodayışi faal kerdış",
 	"flow-user-moderated": "Moderator Karber",
 	"flow-board-header-browse-topics-link": "Bıweni mewzuyan",
 	"flow-edit-header-link": "Şınasiye bıvurne",
@@ -48,8 +49,12 @@
 	"flow-topic-action-history": "Tarix",
 	"flow-topic-action-hide-topic": "Mewzuy bınımne",
 	"flow-topic-action-delete-topic": "Mewzuy Bestere",
+	"flow-topic-action-undo-moderation": "Peyser biya",
+	"flow-error-protected-unknown-reason": "Nêzanaye",
+	"flow-error-unknown-workflow-id-title": "Nêşınasyayi mewzu",
 	"flow-rc-topic-of-board": "$2 de $1",
 	"flow-history-day": "Ewro",
+	"flow-moderation-confirmation-delete-topic": "Ena mevzu esteriyê.",
 	"group-flow-bot": "Botê rodayışi",
 	"group-flow-bot-member": "Botê rodayışi",
 	"grouppage-flow-bot": "Project:Botê rodayışi"
