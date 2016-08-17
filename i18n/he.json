@@ -290,7 +290,7 @@
 	"notification-email-subject-flow-description-edited": "$1 {{GENDER:$1|ערך|ערכה}} את התיאור בדף $2.",
 	"notification-email-batch-body-flow-description-edited": "$1 {{GENDER:$1|ערך|ערכה}} את התיאור בדף $2.",
 	"notification-email-batch-bundle-body-flow-description-edited": "$1 ועוד {{PLURAL:$3|מישהו|$3 אנשים|100=יותר מ־99 אנשים}} ערכו את התיאור בדף $2",
-	"notification-header-flow-topic-resolved": "הנושא \"<strong>$1</strong>\" נפתר",
+	"notification-header-flow-topic-resolved": "הנושא \"<strong>$1</strong>\" סומן כפתוּר.",
 	"notification-header-flow-topic-reopened": "הנושא \"<strong>$1</strong>\" נפתח מחדש.",
 	"notification-header-flow-topic-resolved-user-talk": "הנושא \"<strong>$1</strong>\" נפתר ב<strong>דף השיחה שלך</strong>.",
 	"notification-header-flow-topic-reopened-user-talk": "הנושא \"<strong>$1</strong>\" נפתח מחדש ב<strong>דף השיחה שלך</strong>.",
