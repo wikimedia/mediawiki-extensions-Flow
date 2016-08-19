@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e89af39_b1ea7c71",
+        "filename": "includes/Notifications/FlowPresentationModel.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-08-19T23:39:33Z",
+      "side": 1,
+      "message": "Optional parameters are not denoted this way in phpdoc. The fact that they are specified as $isTopic \u003d false in the code is enough.",
+      "range": {
+        "startLine": 161,
+        "startChar": 17,
+        "endLine": 161,
+        "endChar": 18
+      },
+      "revId": "8b6e56ed6799a4c9dc9afc3def59e934440dd1d1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
