@@ -24,8 +24,8 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 			't'
 		);
 		$this->addOption(
-			'archive-pattern',
-			'Naming pattern for archive pages; %s for page title, %d for sequence number',
+			'header-suffix',
+			'Wikitext to add to the end of the header',
 			false, // not required
 			true, // takes argument
 			'a'
@@ -78,7 +78,7 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 				new Flow\Import\SourceStore\Null(),
 				$logger,
 				$noConvertTemplates,
-				$this->getOption( 'archive-pattern', null )
+				$this->getOption( 'header-suffix', null )
 			)
 		);
 
