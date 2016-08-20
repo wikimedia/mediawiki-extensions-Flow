@@ -351,7 +351,8 @@ abstract class Utils {
 		// Work around DOMDocument's morbid insistence on using iso-8859-1
 		// Even $dom = new DOMDocument( '1.0', 'utf-8' ); doesn't work, you have to specify
 		// encoding ="utf-8" in the string fed to loadHTML()
-		$dom->loadHTML( ( $utf8Fragment ? '<?xml encoding="utf-8"?>' : '' ) . $content );
+		$html = ( $utf8Fragment ? '<?xml encoding="utf-8"?>' : '' ) . $content;
+		$dom->loadHTML( $html, LIBXML_PARSEHUGE );
 
 		libxml_disable_entity_loader( $loadEntities );
 
