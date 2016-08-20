@@ -10,7 +10,8 @@
 			"Macofe",
 			"Shbib Al-Subaie",
 			"Sonic N800",
-			"علاء"
+			"علاء",
+			"بدارين"
 		]
 	},
 	"enableflow": "فعّل ميزة تدفق",
@@ -126,6 +127,7 @@
 	"right-flow-delete": "حذف مواضيع ورسائل فلو",
 	"right-flow-edit-post": "تعديل رسائل فلو بواسطة المستخدمين الآخرين",
 	"right-flow-suppress": "إخفاء مراجعات فلو",
+	"flow-anon-warning": "لم تقم بتسجيل الدخول. وحتى تنسب المساهمة لك بدلا من عنوان IP الخاص بك، يمكنك [$1 تسجيل الدخول] أو [$2 إنشاء حساب].",
 	"flow-topic-first-heading": "موضوع في $1",
 	"flow-topic-html-title": "$1 على $2",
 	"flow-load-more": "حمل المزيد",
