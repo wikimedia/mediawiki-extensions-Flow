@@ -24,6 +24,7 @@ class TopicResolvedPresentationModel extends FlowPresentationModel {
 		return array(
 			$this->getAgentLink(),
 			$this->getBoardLink(),
+			$this->getFlowUnwatchDynamicActionLink( true ),
 		);
 	}
 

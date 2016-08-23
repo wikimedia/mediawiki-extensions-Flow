@@ -23,6 +23,7 @@ class HeaderEditedPresentationModel extends FlowPresentationModel {
 		return array(
 			$this->getAgentLink(),
 			$this->getDiffLink(),
+			$this->getFlowUnwatchDynamicActionLink()
 		);
 	}
 
