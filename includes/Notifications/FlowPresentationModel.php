@@ -179,17 +179,6 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 		}
 
 		$messageKeys = array(
-			'item' => array(
-				// notification-dynamic-actions-flow-board-unwatch
-				// notification-dynamic-actions-flow-topic-unwatch
-				'title' => $this
-					->msg( 'notification-dynamic-actions-flow-' . $type . '-unwatch' )
-					->params(
-						$title->getPrefixedText(),
-						$title->getFullURL( $query )
-					)
-					->parse(),
-			),
 			'confirmation' => array(
 				// notification-dynamic-actions-flow-board-unwatch-confirmation
 				// notification-dynamic-actions-flow-topic-unwatch-confirmation
@@ -214,6 +203,16 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 
 		// Override messages with flow-specific messages
 		$link[ 'data' ][ 'messages' ] = array_replace( $link[ 'data' ][ 'messages' ], $messageKeys );
+
+		// notification-dynamic-actions-flow-board-unwatch
+		// notification-dynamic-actions-flow-topic-unwatch
+		$link['label'] = $this
+			->msg( 'notification-dynamic-actions-flow-' . $type . '-unwatch' )
+			->params(
+				$title->getPrefixedText(),
+				$title->getFullURL( $query )
+			)
+			->parse();
 
 		return $link;
 	}
