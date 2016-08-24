@@ -47,7 +47,7 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 			$anchorPostId = $firstChronologicallyPostId;
 		}
 
-		$title = $this->getTopicTitle(
+		$title = $this->getTopicTitleObj(
 			'flow-post-' . $anchorPostId->getAlphadecimal()
 		);
 
@@ -70,7 +70,7 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 		/** @var UUID $workflowId */
 		$workflowId = $this->event->getExtraParam( 'topic-workflow' );
 
-		$url = $this->getTopicTitle()->getFullURL( array( 'fromnotif' => 1 ) );
+		$url = $this->getTopicTitleObj()->getFullURL( array( 'fromnotif' => 1 ) );
 
 		return $url;
 	}
