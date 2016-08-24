@@ -47,7 +47,7 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 			$anchorPostId = $firstChronologicallyPostId;
 		}
 
-		$title = $this->getTopicTitle(
+		$title = $this->getTopicTitleObj(
 			'flow-post-' . $anchorPostId->getAlphadecimal()
 		);
 
@@ -70,7 +70,7 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 		/** @var UUID $workflowId */
 		$workflowId = $this->event->getExtraParam( 'topic-workflow' );
 
-		$url = $this->getTopicTitle()->getFullURL( array( 'fromnotif' => 1 ) );
+		$url = $this->getTopicTitleObj()->getFullURL( array( 'fromnotif' => 1 ) );
 
 		return $url;
 	}
@@ -82,6 +82,8 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 	 * @return Title Topic title
 	 */
 	protected function getTopicTitleObj( $fragment = '' ) {
+		$workflowId = $this->event->getExtraParam( 'topic-workflow' );
+
 		return Title::makeTitleSafe(
 			NS_TOPIC,
 			$workflowId->getAlphadecimal(),
@@ -195,7 +197,7 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 					->msg( 'notification-dynamic-actions-flow-' . $type . '-unwatch-confirmation' )
 					->params(
 						$title->getPrefixedText(),
-						$title->getFullURL( $query )
+						$title->getFullURL()
 					)
 					->parse(),
 				// notification-dynamic-actions-flow-board-unwatch-confirmation-description
@@ -204,7 +206,7 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 					->msg( 'notification-dynamic-actions-flow-' . $type . '-unwatch-confirmation-description' )
 					->params(
 						$title->getPrefixedText(),
-						$title->getFullURL( $query )
+						$title->getFullURL()
 					)
 					->parse(),
 			),
