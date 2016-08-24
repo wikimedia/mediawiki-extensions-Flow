@@ -15,6 +15,12 @@
 		]
 	},
 	"enableflow": "הפעלת זרימה",
+	"notification-dynamic-actions-flow-board-unwatch": "הפסקת המעקב אחרי פעילות חדשה בלוח \"$1\"",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:|אתה כבר לא עוקב|את כבר לא עוקבת|אתם כבר לא עוקבים}} יותר אחרי הלוח \"$1\"",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "זה לא ישפיע על נושאים נפרדים {{GENDER:|שאתה עוקב|שאת עוקבת|שאתם עוקבים}} אחריהם. {{GENDER:|באפשרותך|באפשרותך|באפשרותכם}} לעקוב אחרי [$2 הלוח הזה] בכל עת.",
+	"notification-dynamic-actions-flow-topic-unwatch": "הפסקת המעקב אחרי הנושא הזה",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:|אתה כבר לא עוקב|את כבר לא עוקבת|אתם כבר לא עוקבים}} יותר אחרי הנושא \"$1\"",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:|באפשרותך|באפשרותך|באפשרותכם}} לעקוב אחרי [$2 הנושא הזה] בכל עת.",
 	"flow-desc": "מערכת ניהול תהליכי עבודה",
 	"flow-talk-taken-over-comment": "/* הדף הזה הומר ללוח דיונים של זרימה */",
 	"log-name-flow": "יומן פעילות זרימה",

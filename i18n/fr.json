@@ -48,6 +48,12 @@
 		]
 	},
 	"enableflow": "Activer Flow",
+	"notification-dynamic-actions-flow-board-unwatch": "Arrêter de regarder la nouvelle activité sur \"$1\"",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation": "Vous ne regardez plus la page \"$1\"",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Cela n'affectera pas les différentes rubriques que vous regardez. Vous pouvez regarder [$2 cette page] à tout moment.",
+	"notification-dynamic-actions-flow-topic-unwatch": "Arrêter de regarder cette rubrique",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "Vous ne regardez plus \"$1\"",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "Vous pouvez regarder [$2 cette page] à tout moment.",
 	"flow-desc": "Système de gestion du flux de travail",
 	"flow-talk-taken-over-comment": "/* Cette page a été convertie en flux de discussion Flow */",
 	"log-name-flow": "Journal d’activité de Flow",
