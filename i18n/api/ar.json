@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"محمد أحمد عبد الفتاح"
+		]
+	},
+	"apihelp-flow+edit-post-param-postId": "معرف المنشور.",
+	"apihelp-flow+edit-title-param-content": "محتوى العنوان، بنفس التنسيق المتاح لملخصات التعديل (موضوع-عنوان-نصوص ويكي).",
+	"apihelp-flow+view-topiclist-description": "عرض قائمة بالموضوعات"
+}
