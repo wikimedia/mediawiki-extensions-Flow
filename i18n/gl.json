@@ -11,6 +11,12 @@
 		]
 	},
 	"enableflow": "Activar Flow",
+	"notification-dynamic-actions-flow-board-unwatch": "Parar de vixiar novas accións en \"$1\"",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation": "Xa non está a vixiar a páxina \"$1\"",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Isto non afectará ós temas individuais que está a vixiar. Pode vixiar [$2 esta páxina] en calquera momento.",
+	"notification-dynamic-actions-flow-topic-unwatch": "Parar de vixiar este tema",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "Xa non está a vixiar \"$1\"",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "Pode vixiar [$2 esta páxina] en calquera momento.",
 	"flow-desc": "Sistema de xestión do fluxo de traballo",
 	"flow-talk-taken-over-comment": "/* Esta páxina foi convertida a un taboleiro de discusión de Flow */",
 	"log-name-flow": "Rexistro de actividade de Flow",

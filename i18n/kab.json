@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Trizek (WMF)"
+		]
+	},
+	"flow-conversion-archive-page-name-format": "%s/Aɣbar %d \n%s/Aɣbar%d \n%s/aɣbar %d \n%s/aɣbar%d",
+	"flow-importer-wt-converted-template": "Asebtar yuran s Wikitexte yetturren ɣer Flow",
+	"flow-importer-wt-converted-template-content": "Amyannan aqdim yettuɣber di <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> ass n {{#time: Y-m-d|{{{date}}} }}"
+}
