@@ -39,9 +39,10 @@ class PostEditedPresentationModel extends FlowPresentationModel {
 					$this->getDiffLink( false ),
 				);
 			}
+
+			$links[] = $this->getFlowUnwatchDynamicActionLink( true );
 		}
 
-		$links[] = $this->getFlowUnwatchDynamicActionLink( true );
 
 		return $links;
 	}
