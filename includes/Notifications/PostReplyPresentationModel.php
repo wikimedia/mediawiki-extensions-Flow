@@ -46,8 +46,7 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 		} else {
 			$links = array( $this->getAgentLink(), $this->getBoardLink() );
 		}
-
-		$links[] = $this->getFlowUnwatchDynamicActionLink( true );
+		$links[] = $this->getFlowUnwatchDynamicActionLink( true )
 
 		return $links;
 	}
