@@ -44,10 +44,12 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 		if ( $this->isBundled() ) {
 			$links = array( $this->getBoardLink() );
 		} else {
-			$links = array( $this->getAgentLink(), $this->getBoardLink() );
+			$links = array(
+				$this->getAgentLink(),
+				$this->getBoardLink(),
+			);
 		}
-
-		$links[] = $this->getFlowUnwatchDynamicActionLink( true );
+		$links[] = $this->getFlowUnwatchDynamicActionLink( true )
 
 		return $links;
 	}
