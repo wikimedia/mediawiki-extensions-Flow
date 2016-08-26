@@ -42,14 +42,14 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 
 	public function getSecondaryLinks() {
 		if ( $this->isBundled() ) {
-			$links = array( $this->getBoardLink() );
+			return array( $this->getBoardLink() );
 		} else {
-			$links = array( $this->getAgentLink(), $this->getBoardLink() );
+			return array(
+				$this->getAgentLink(),
+				$this->getBoardLink(),
+				$this->getFlowUnwatchDynamicActionLink( true )
+			);
 		}
-
-		$links[] = $this->getFlowUnwatchDynamicActionLink( true );
-
-		return $links;
 	}
 
 	protected function getHeaderMessageKey() {
