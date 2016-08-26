@@ -27,9 +27,9 @@ class SummaryEditedPresentationModel extends FlowPresentationModel {
 			if ( !$this->isFirstRevision() ) {
 				$links[] = $this->getDiffLink( false );
 			}
+			$links[] = $this->getFlowUnwatchDynamicActionLink( true );
 		}
 
-		$links[] = $this->getFlowUnwatchDynamicActionLink( true );
 
 		return $links;
 	}
