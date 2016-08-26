@@ -7,6 +7,7 @@
 		]
 	},
 	"enableflow": "Flow aktivéieren",
+	"notification-dynamic-actions-flow-board-unwatch": "Ophalen nei Aktivitéiten iwwer \"$1\" z'iwwerwaachen",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "Dir iwwerwaacht d'Säit \"$1\" net méi",
 	"notification-dynamic-actions-flow-topic-unwatch": "Ophalen dëse Sujet z'iwwerwaachen",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "Dir iwwerwaacht \"$1\" net méi",
