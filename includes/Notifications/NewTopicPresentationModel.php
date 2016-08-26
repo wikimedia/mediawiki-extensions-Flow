@@ -23,7 +23,9 @@ class NewTopicPresentationModel extends FlowPresentationModel {
 
 	public function getSecondaryLinks() {
 		if ( $this->isBundled() ) {
-			return array();
+			return array(
+				$this->getFlowUnwatchDynamicActionLink()
+			);
 		} else {
 			return array(
 				$this->getAgentLink(),
