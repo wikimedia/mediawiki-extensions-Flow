@@ -27,6 +27,10 @@
 		]
 	},
 	"enableflow": "Włącz Flow",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation": "Nie obserwujesz już strony „$1”",
+	"notification-dynamic-actions-flow-topic-unwatch": "Przestać śledzić ten wątek",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "Przestałeś śledzić wątek „$1”",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "Możesz obserwować [$2 tę stronę] w dowolnym momencie.",
 	"flow-desc": "System zarządzania cyklem pracy",
 	"flow-talk-taken-over-comment": "/* Ta strona została przekształcona na forum dyskusyjne Flow */",
 	"log-name-flow": "Rejestr aktywności Flow",
