@@ -6,6 +6,7 @@ use Flow\Actions\FlowAction;
 use Flow\Container;
 use Flow\FlowActions;
 use Flow\Model\UUID;
+use Flow\FlowMessagePoster;
 use FormatJson;
 use IContextSource;
 use MWException;
@@ -145,5 +146,9 @@ class BoardContentHandler extends \ContentHandler {
 		$output['edit'] = 'Flow\Actions\EditAction';
 
 		return $output;
+	}
+
+	public function getMessagePoster() {
+		return new FlowMessagePoster;
 	}
 }
