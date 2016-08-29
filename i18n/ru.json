@@ -23,7 +23,8 @@
 			"Nnemo",
 			"Metastasis",
 			"Ядерный Трамвай",
-			"Mailman"
+			"Mailman",
+			"Jack who built the house"
 		]
 	},
 	"enableflow": "Включить Поток",
@@ -429,7 +430,7 @@
 	"flow-undo-edit-post": "Редактировании сообщения",
 	"flow-undo-edit-content": "Правка может быть отменена. Пожалуйста, проверьте сравнение версий, чтобы убедиться, что это именно то, что вы хотели, и сохраните изменения чтобы закончить отмену правки.",
 	"flow-undo-edit-failure": "Правка не может быть отменена из-за несовместимости промежуточных изменений.",
-	"group-flow-bot": "боты Потока",
+	"group-flow-bot": "Боты Потока",
 	"group-flow-bot-member": "бот Потока",
 	"grouppage-flow-bot": "Project:Flow bots",
 	"flow-ve-mention-context-item-label": "Упоминание",
