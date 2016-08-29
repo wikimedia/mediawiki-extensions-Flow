@@ -418,3 +418,6 @@ $wgFlowEventLogging = false;
 
 // Enable/Disable Opt-in beta feature
 $wgFlowEnableOptInBetaFeature = false;
+
+// Register our IMessagePoster
+$wgContentModelMessagePosters[CONTENT_MODEL_FLOW_BOARD] = Flow\FlowMessagePoster::class;
