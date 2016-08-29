@@ -14,7 +14,12 @@ function main() {
 	// read entire maint dir, move helper to includes? to core?
 	$generator->readFile( $base . '/maintenance/MaintenanceDebugLogger.php' );
 
-	$generator->generateAutoload( basename( __DIR__ ) . '/' . basename( __FILE__ ) );
+	$target = $generator->getTargetFileInfo();
+
+	file_put_contents(
+		$target['filename'],
+		$generator->getAutoload( basename( __DIR__ ) . '/' . basename( __FILE__ ) )
+	);
 
 	echo "Done.\n\n";
 }
