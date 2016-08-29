@@ -3,9 +3,10 @@
 // @codingStandardsIgnoreFile
 global $wgAutoloadClasses;
 
-$wgAutoloadClasses += array(
+$wgAutoloadClasses += [
 	'ExternalStoreFlowMock' => __DIR__ . '/tests/phpunit/Mock/ExternalStoreFlowMock.php',
 	'FlowHooks' => __DIR__ . '/Hooks.php',
+	'FlowMessagePosterTest' => __DIR__ . '/tests/phpunit/FlowMessagePosterTest.php',
 	'Flow\\Actions\\EditAction' => __DIR__ . '/includes/Actions/EditAction.php',
 	'Flow\\Actions\\FlowAction' => __DIR__ . '/includes/Actions/Action.php',
 	'Flow\\Actions\\PurgeAction' => __DIR__ . '/includes/Actions/PurgeAction.php',
@@ -135,6 +136,7 @@ $wgAutoloadClasses += array(
 	'Flow\\Exception\\WrongNumberArgumentsException' => __DIR__ . '/includes/Exception/ExceptionHandling.php',
 	'Flow\\FlowActions' => __DIR__ . '/includes/FlowActions.php',
 	'Flow\\FlowEnabledOnTalkpagePresentationModel' => __DIR__ . '/includes/Notifications/FlowEnabledOnTalkpagePresentationModel.php',
+	'Flow\\FlowMessagePoster' => __DIR__ . '/includes/FlowMessagePoster.php',
 	'Flow\\FlowPresentationModel' => __DIR__ . '/includes/Notifications/FlowPresentationModel.php',
 	'Flow\\Formatter\\AbstractFormatter' => __DIR__ . '/includes/Formatter/AbstractFormatter.php',
 	'Flow\\Formatter\\AbstractQuery' => __DIR__ . '/includes/Formatter/AbstractQuery.php',
@@ -403,4 +405,4 @@ $wgAutoloadClasses += array(
 	'MaintenanceDebugLogger' => __DIR__ . '/maintenance/MaintenanceDebugLogger.php',
 	'Pimple\\Container' => __DIR__ . '/vendor/Pimple/Container.php',
 	'Pimple\\ServiceProviderInterface' => __DIR__ . '/vendor/Pimple/ServiceProviderInterface.php',
-);
+];
