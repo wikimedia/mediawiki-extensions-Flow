@@ -16,6 +16,24 @@
       "revId": "58b4ca9463238ac23fa3ae0be4cb77d8c6016332",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e96ab59_f99b0719",
+        "filename": "includes/Notifications/PostEditedPresentationModel.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2016-08-29T17:59:54Z",
+      "side": 1,
+      "message": "No, Pau requested that the unwatch action will only be displayed for the *bundle* rather than the individual bundled items.\n\nIt was already like that for board actions, but not topic actions. This isn\u0027t the way to do this? Am I missing something?",
+      "parentUuid": "4e96ab59_8828fa33",
+      "revId": "58b4ca9463238ac23fa3ae0be4cb77d8c6016332",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
