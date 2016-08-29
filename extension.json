@@ -94,6 +94,7 @@
 	"AutoloadClasses": {
 		"ExternalStoreFlowMock": "tests/phpunit/Mock/ExternalStoreFlowMock.php",
 		"FlowHooks": "Hooks.php",
+		"FlowMessagePosterTest": "tests/phpunit/FlowMessagePosterTest.php",
 		"Flow\\Actions\\EditAction": "includes/Actions/EditAction.php",
 		"Flow\\Actions\\FlowAction": "includes/Actions/Action.php",
 		"Flow\\Actions\\PurgeAction": "includes/Actions/PurgeAction.php",
@@ -221,6 +222,7 @@
 		"Flow\\Exception\\WrongNumberArgumentsException": "includes/Exception/ExceptionHandling.php",
 		"Flow\\FlowActions": "includes/FlowActions.php",
 		"Flow\\FlowEnabledOnTalkpagePresentationModel": "includes/Notifications/FlowEnabledOnTalkpagePresentationModel.php",
+		"Flow\\FlowMessagePoster": "includes/FlowMessagePoster.php",
 		"Flow\\FlowPresentationModel": "includes/Notifications/FlowPresentationModel.php",
 		"Flow\\Formatter\\AbstractFormatter": "includes/Formatter/AbstractFormatter.php",
 		"Flow\\Formatter\\AbstractQuery": "includes/Formatter/AbstractQuery.php",
