@@ -173,6 +173,7 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 		$query = array( 'action' => 'unwatch' );
 		$link = $this->getWatchActionLink( $title );
 		$type = $isTopic ? 'topic' : 'board';
+		$stringPageTitle = $isTopic ? $this->getTopicTitle() : $this->getTruncatedTitleText( $title );
 
 		if ( $this->isUserTalkPage() || !$this->getUser()->isWatched( $title ) ) {
 			return null;
@@ -185,7 +186,7 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 				'title' => $this
 					->msg( 'notification-dynamic-actions-flow-' . $type . '-unwatch-confirmation' )
 					->params(
-						$title->getPrefixedText(),
+						$stringPageTitle,
 						$title->getFullURL()
 					)
 					->parse(),
@@ -194,7 +195,7 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 				'description' => $this
 					->msg( 'notification-dynamic-actions-flow-' . $type . '-unwatch-confirmation-description' )
 					->params(
-						$title->getPrefixedText(),
+						$stringPageTitle,
 						$title->getFullURL()
 					)
 					->parse(),
