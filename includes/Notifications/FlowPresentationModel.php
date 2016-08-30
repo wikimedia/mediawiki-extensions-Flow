@@ -210,7 +210,7 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 		$link['label'] = $this
 			->msg( 'notification-dynamic-actions-flow-' . $type . '-unwatch' )
 			->params(
-				$title->getPrefixedText(),
+				$stringPageTitle,
 				$title->getFullURL( $query )
 			)
 			->parse();
