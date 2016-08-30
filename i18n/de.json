@@ -22,7 +22,7 @@
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Dies betrifft nicht einzelne Themen, die du beobachtest. Du kannst jederzeit [$2 diese Seite] beobachten.",
 	"notification-dynamic-actions-flow-topic-unwatch": "Mit dem Beobachten dieses Themas aufhören",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "Du beobachtest nicht mehr „$1“",
-	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "Du kannst jederzeit [$2 diese Seite] beobachten.",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "Du kannst jederzeit [$2 dieses Thema] beobachten.",
 	"flow-desc": "Ermöglicht ein Verwaltungssystem zu Benutzerdiskussionen",
 	"flow-talk-taken-over-comment": "/* Diese Seite wurde in ein Flow-Diskussionsboard konvertiert */",
 	"log-name-flow": "Flow-Aktivitätslogbuch",

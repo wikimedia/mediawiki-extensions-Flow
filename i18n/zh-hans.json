@@ -36,7 +36,7 @@
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "这将不会影响您监视的单个话题。您可以随时监视[$2 此页面]。",
 	"notification-dynamic-actions-flow-topic-unwatch": "停止监视此话题",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "您已不再监视“$1”",
-	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "您可以随时监视[$2 此页面]。",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "您可以随时监视[$2 此话题]。",
 	"flow-desc": "工作流管理系统",
 	"flow-talk-taken-over-comment": "/* 此页面已被转换至一个Flow讨论版 */",
 	"log-name-flow": "Flow活动日志",

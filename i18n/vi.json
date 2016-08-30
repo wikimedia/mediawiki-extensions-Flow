@@ -15,6 +15,12 @@
 		]
 	},
 	"enableflow": "Kích hoạt Flow",
+	"notification-dynamic-actions-flow-board-unwatch": "Ngừng theo dõi hoạt động mới tại “$1”",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation": "Bạn không còn theo dõi trang “$1”",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Điều này sẽ không ảnh hưởng đến các đề tài riêng mà bạn đang theo dõi. Bạn có thể theo dõi [$2 trang này] bất cứ lúc nào.",
+	"notification-dynamic-actions-flow-topic-unwatch": "Ngừng theo dõi đề tài này",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "Bạn không còn theo dõi “$1”",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "Bạn có thể theo dõi [$2 đề tài này] bất cứ lúc nào.",
 	"flow-desc": "Hệ thống quản lý luồng làm việc",
 	"flow-talk-taken-over-comment": "/* Trang này đã được chuyển đổi thành bảng tin Flow */",
 	"log-name-flow": "Nhật trình hoạt động Flow",
