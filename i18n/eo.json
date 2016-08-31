@@ -3,7 +3,8 @@
 		"authors": [
 			"Happy5214",
 			"Robin van der Vliet",
-			"Lucas"
+			"Lucas",
+			"Gamliel Fishkin"
 		]
 	},
 	"flow-post-actions": "Agoj",
@@ -23,6 +24,7 @@
 	"flow-history-week": "Lasta semajno",
 	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$2|menciis}} {{GENDER:$4|vin}} en “<strong>$5</strong>”.",
 	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|Montri}} paĝon",
+	"echo-category-title-flow-discussion": "Fluo",
 	"flow-link-history": "historio",
 	"flow-moderation-confirm-delete-post": "Forigi",
 	"flow-moderation-confirm-hide-post": "Kaŝi",

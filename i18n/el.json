@@ -124,5 +124,7 @@
 	"flow-recent-topics": "Πρόσφατα ενεργά θέματα",
 	"flow-sorting-tooltip-newest": "{{GENDER:|Διαβάζετε}} τα νεότερα θέματα πρώτα. Πατήστε για περισσότερες επιλογές ταξινόμησης.",
 	"flow-sorting-tooltip-recent": "{{GENDER:|Διαβάζετε}} τα πιο πρόσφατα ενεργά θέματα πρώτα. Πατήστε για περισσότερες επιλογές ταξινόμησης.",
+	"flow-conversion-archive-page-name-format": "%s/Αρχείο %d\n%s/Αρχείο%d\n%s/αρχείο %d\n%s/αρχείο%d",
+	"flow-importer-wt-converted-template": "Συζήτηση που μετατράπηκε σε Flow",
 	"flow-importer-wt-converted-template-content": "Προηγούμενη συζήτηση αρχειοθετήθηκε στην <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> στις {{#time: Y-m-d|{{{date}}}}}."
 }
