@@ -86,7 +86,8 @@
 		var widget = this,
 			deferred = $.Deferred();
 
-		this.target.loadHtml( content );
+		// loadHtml expects a full document, but we were only given the body content
+		this.target.loadHtml( '<body>' + content + '</body>' );
 		this.target.once( 'surfaceReady', function () {
 			var surface = widget.target.getSurface();
 
