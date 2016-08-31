@@ -119,7 +119,7 @@
 	 * @inheritdoc
 	 */
 	mw.flow.ui.VisualEditorWidget.prototype.focus = function () {
-		if ( this.target ) {
+		if ( this.target && this.target.getSurface() ) {
 			this.target.getSurface().getView().focus();
 		}
 	};
@@ -128,7 +128,7 @@
 	 * @inheritdoc
 	 */
 	mw.flow.ui.VisualEditorWidget.prototype.moveCursorToEnd = function () {
-		if ( this.target ) {
+		if ( this.target && this.target.getSurface() ) {
 			this.target.getSurface().getModel().selectLastContentOffset();
 		}
 	};
@@ -140,7 +140,7 @@
 		var doc, html;
 
 		// If we haven't fully loaded yet, just return nothing.
-		if ( !this.target ) {
+		if ( !this.target || !this.target.getSurface() ) {
 			return '';
 		}
 
@@ -164,6 +164,9 @@
 	 * @inheritdoc
 	 */
 	mw.flow.ui.VisualEditorWidget.prototype.isEmpty = function () {
+		if ( !this.target || !this.target.getSurface() ) {
+			return true;
+		}
 		return !this.target.getSurface().getModel().getDocument().data.hasContent();
 	};
 
@@ -174,7 +177,7 @@
 	 */
 	mw.flow.ui.VisualEditorWidget.prototype.hasBeenChanged = function () {
 		// If we haven't fully loaded yet, just return false
-		if ( !this.target ) {
+		if ( !this.target || !this.target.getSurface() ) {
 			return false;
 		}
 
