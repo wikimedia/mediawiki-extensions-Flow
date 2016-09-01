@@ -112,17 +112,6 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 
-		// If the topic is locked, the only allowed action is to unlock it
-		if (
-			$topicTitle->isLocked()
-			&& (
-				$this->action !== 'lock-topic'
-				|| !in_array( $this->submitted['moderationState'], array( 'unlock', /* BC for unlock: */ 'reopen' ) )
-			)
-		) {
-			$this->addError( 'moderate', $this->context->msg( 'flow-error-topic-is-locked' ) );
-		}
-
 		switch( $this->action ) {
 		case 'edit-title':
 			$this->validateEditTitle();
