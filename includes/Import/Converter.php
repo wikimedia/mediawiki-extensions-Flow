@@ -4,6 +4,7 @@ namespace Flow\Import;
 
 use DatabaseBase;
 use Flow\Exception\FlowException;
+use MediaWiki\MediaWikiServices;
 use MovePage;
 use MWExceptionHandler;
 use Psr\Log\LoggerInterface;
@@ -106,6 +107,7 @@ class Converter {
 			try {
 				$this->convert( $title );
 			} catch ( \Exception $e ) {
+				// @note: some errors will be raised after this loop
 				MWExceptionHandler::logException( $e );
 				$this->logger->error( "Exception while importing: {$title}" );
 				$this->logger->error( (string)$e );
@@ -174,22 +176,38 @@ class Converter {
 			$archiveTitle = $title;
 			$title = $movedFrom;
 			$this->logger->info( "Page previously archived from $title to $archiveTitle" );
+			$didMoveNow = false;
 		} else {
 			// The move needs to happen prior to the import because upon starting the
 			// import the top revision will be a flow-board revision.
 			$archiveTitle = $this->strategy->decideArchiveTitle( $title );
 			$this->logger->info( "Archiving page from $title to $archiveTitle" );
 			$this->movePage( $title, $archiveTitle );
-			wfWaitForSlaves(); // Wait for slaves to pick up the move
+			$didMoveNow = true;
 		}
 
-		$source = $this->strategy->createImportSource( $archiveTitle );
-		if ( $this->importer->import( $source, $title, $this->strategy->getSourceStore() ) ) {
-			$this->createArchiveCleanupRevision( $title, $archiveTitle );
-			$this->logger->info( "Completed import to $title from $archiveTitle" );
-		} else {
-			$this->logger->error( "Failed to complete import to $title from $archiveTitle" );
-		}
+		\DeferredUpdates::addCallableUpdate(
+			// This update runs *after* the main transaction round, which included movePage().
+			// With that committed, waitForReplication() can be used and the replicas flushed.
+			function () use ( $didMoveNow, $title, $archiveTitle ) {
+				if ( $didMoveNow ) {
+					$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+					// Wait for the movePage() call to sync to slave DBs...
+					// @TODO: really, we should just get the importer to use DB_MASTER
+					$lbFactory->waitForReplication( [ 'timeout' => 5 ] );
+					$lbFactory->flushReplicaSnapshots( __METHOD__ );
+				}
+				// Actually run the import
+				$source = $this->strategy->createImportSource( $archiveTitle );
+				if ( $this->importer->import( $source, $title, $this->strategy->getSourceStore() ) ) {
+					$this->createArchiveCleanupRevision( $title, $archiveTitle );
+					$this->logger->info( "Completed import to $title from $archiveTitle" );
+				} else {
+					$this->logger->error( "Failed to complete import to $title from $archiveTitle" );
+				}
+			},
+			\DeferredUpdates::PRESEND // show errors in GUI
+		);
 	}
 
 	/**

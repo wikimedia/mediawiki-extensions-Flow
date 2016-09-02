@@ -191,6 +191,16 @@ class PageImportState {
 	public $logger;
 
 	/**
+	 * @var IDatabase
+	 */
+	public $flowDbw;
+
+	/**
+	 * @var IDatabase
+	 */
+	public $wikiDbw;
+
+	/**
 	 * @var Workflow
 	 */
 	public $boardWorkflow;
@@ -251,7 +261,8 @@ class PageImportState {
 		$this->sourceStore = $sourceStore;
 		$this->logger = $logger;
 		$this->cache = $cache;
-		$this->dbw = $dbFactory->getDB( DB_MASTER );
+		$this->flowDbw = $dbFactory->getDB( DB_MASTER );
+		$this->wikiDbw = $dbFactory->getWikiDB( DB_MASTER );
 		$this->postprocessor = $postprocessor;
 		$this->deferredQueue = $deferredQueue;
 		$this->allowUnknownUsernames = $allowUnknownUsernames;
@@ -409,19 +420,22 @@ class PageImportState {
 
 	public function begin() {
 		$this->flushDeferredQueue();
-		$this->dbw->begin( __METHOD__ );
+		$this->flowDbw->begin( __METHOD__ );
+		$this->wikiDbw->begin( __METHOD__ );
 		$this->cache->begin();
 	}
 
 	public function commit() {
-		$this->dbw->commit( __METHOD__ );
+		$this->flowDbw->commit( __METHOD__ );
+		$this->wikiDbw->commit( __METHOD__ );
 		$this->cache->commit();
 		$this->sourceStore->save();
 		$this->flushDeferredQueue();
 	}
 
 	public function rollback() {
-		$this->dbw->rollback( __METHOD__ );
+		$this->flowDbw->rollback( __METHOD__ );
+		$this->wikiDbw->rollback( __METHOD__ );
 		$this->cache->rollback();
 		$this->sourceStore->rollback();
 		$this->clearDeferredQueue();
@@ -547,6 +561,8 @@ class TalkpageImportOperation {
 		$isNew = $state->boardWorkflow->isNew();
 		$state->logger->debug( 'Workflow isNew: ' . var_export( $isNew, true ) );
 		if ( $isNew ) {
+			$state->begin();
+
 			// Explicitly allow creation of board
 			$creationStatus = $this->occupationController->safeAllowCreation(
 				$destinationTitle,
@@ -577,6 +593,8 @@ class TalkpageImportOperation {
 			} else {
 				throw new ImportException( "ensureFlowRevision failed to create the Flow board" );
 			}
+
+			$state->commit();
 		}
 
 		$imported = $failed = 0;
