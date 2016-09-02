@@ -4,6 +4,7 @@ namespace Flow\Import;
 
 use DatabaseBase;
 use Flow\Exception\FlowException;
+use MediaWiki\MediaWikiServices;
 use MovePage;
 use MWExceptionHandler;
 use Psr\Log\LoggerInterface;
@@ -180,9 +181,16 @@ class Converter {
 			$archiveTitle = $this->strategy->decideArchiveTitle( $title );
 			$this->logger->info( "Archiving page from $title to $archiveTitle" );
 			$this->movePage( $title, $archiveTitle );
-			wfWaitForSlaves(); // Wait for slaves to pick up the move
 		}
 
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		// Wait for movePage() call to sync to slave DBs...
+		// @TODO: really, we should just get the importer to use DB_MASTER
+		$lbFactory->waitForReplication( __METHOD__ ); // blocking like this lame :/
+		// @TODO: flushing the snapshot is mildy impolite since it affects all code.
+		// Snapshots give data consistency with lazy-loading and other split-up queries.
+		$lbFactory->flushReplicaSnapshots( __METHOD__ );
+		// Actually run the wikipage => flow import
 		$source = $this->strategy->createImportSource( $archiveTitle );
 		if ( $this->importer->import( $source, $title, $this->strategy->getSourceStore() ) ) {
 			$this->createArchiveCleanupRevision( $title, $archiveTitle );
