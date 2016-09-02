@@ -63,7 +63,7 @@
 		// Then check the user exists
 		return mw.flow.ve.userCache.get( this.value ).then(
 			function ( user ) {
-				return !user.missing;
+				return !user.missing && !user.invalid;
 			},
 			function () {
 				// If the API is down or behaving strangely, we shouldn't prevent
