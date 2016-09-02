@@ -77,4 +77,35 @@ class ApiFlowModerateTopicTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'topicId', $logParams, $debug );
 		$this->assertEquals( $topic['topic-id'], $logParams['topicId'], $debug );
 	}
+
+	public function testModerateLockedTopic() {
+		$topic = $this->createTopic();
+
+		$data = $this->doApiRequest( array(
+			'page' => $topic['topic-page'],
+			'token' => $this->getEditToken(),
+			'action' => 'flow',
+			'submodule' => 'lock-topic',
+			'cotmoderationState' => AbstractRevision::MODERATED_LOCKED,
+			'cotreason' => '<>&{};'
+		) );
+
+		$debug = json_encode( $data );
+		$this->assertEquals( 'ok', $data[0]['flow']['lock-topic']['status'], $debug );
+		$this->assertCount( 1, $data[0]['flow']['lock-topic']['committed'], $debug );
+
+
+		$data = $this->doApiRequest( array(
+			'page' => $topic['topic-page'],
+			'token' => $this->getEditToken(),
+			'action' => 'flow',
+			'submodule' => 'moderate-topic',
+			'mtmoderationState' => AbstractRevision::MODERATED_DELETED,
+			'mtreason' => '<>&{};'
+		) );
+
+		$debug = json_encode( $data );
+		$this->assertEquals( 'ok', $data[0]['flow']['moderate-topic']['status'], $debug );
+		$this->assertCount( 1, $data[0]['flow']['moderate-topic']['committed'], $debug );
+	}
 }

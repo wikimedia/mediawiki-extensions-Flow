@@ -53,4 +53,35 @@ class ApiFlowModeratePostTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'format', $revision['moderateReason'], $debug );
 		$this->assertEquals( 'plaintext', $revision['moderateReason']['format'], $debug );
 	}
+
+	public function testModeratePostInLockedTopic() {
+		$topic = $this->createTopic();
+
+		$data = $this->doApiRequest( array(
+			'page' => $topic['topic-page'],
+			'token' => $this->getEditToken(),
+			'action' => 'flow',
+			'submodule' => 'lock-topic',
+			'cotmoderationState' => AbstractRevision::MODERATED_LOCKED,
+			'cotreason' => '<>&{};'
+		) );
+
+		$debug = json_encode( $data );
+		$this->assertEquals( 'ok', $data[0]['flow']['lock-topic']['status'], $debug );
+		$this->assertCount( 1, $data[0]['flow']['lock-topic']['committed'], $debug );
+
+		$data = $this->doApiRequest( array(
+			'page' => $topic['topic-page'],
+			'token' => $this->getEditToken(),
+			'action' => 'flow',
+			'submodule' => 'moderate-post',
+			'mpmoderationState' => AbstractRevision::MODERATED_HIDDEN,
+			'mppostId' => $topic['post-id'],
+			'mpreason' => '<>&{};'
+		) );
+
+		$debug = json_encode( $data );
+		$this->assertEquals( 'ok', $data[0]['flow']['moderate-post']['status'], $debug );
+		$this->assertCount( 1, $data[0]['flow']['moderate-post']['committed'], $debug );
+	}
 }

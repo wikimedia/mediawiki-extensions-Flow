@@ -534,7 +534,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => array( 'flow-lock', 'flow-delete', 'flow-suppress' ),
 		),
 		'links' => array( 'topic', 'topic-history', 'watch-topic', 'unwatch-topic', 'topic-revision' ),
-		'actions' => array( 'edit-topic-summary', 'restore-topic' ),
+		'actions' => array( 'edit-topic-summary', 'restore-topic', 'delete-topic', 'suppress-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-locked-topic',
 			'i18n-params' => array(
