@@ -3,6 +3,7 @@
 namespace Flow;
 
 use DataUpdate;
+use DeferredUpdates;
 use Flow\Data\ManagerGroup;
 use Flow\Model\Reference;
 use Flow\Model\URLReference;
@@ -36,7 +37,9 @@ class LinksTableUpdater {
 			$updates = $content->getSecondaryDataUpdates( $title );
 		}
 
-		DataUpdate::runUpdates( $updates );
+		foreach ( $updates as $update ) {
+			DeferredUpdates::addUpdate( $update, DeferredUpdates::PRESEND );
+		}
 	}
 
 	/**
