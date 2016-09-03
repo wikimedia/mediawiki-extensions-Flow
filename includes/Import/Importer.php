@@ -430,9 +430,12 @@ class PageImportState {
 
 	protected function flushDeferredQueue() {
 		while ( !$this->deferredQueue->isEmpty() ) {
-			DeferredUpdates::addCallableUpdate( $this->deferredQueue->dequeue() );
+			DeferredUpdates::addCallableUpdate(
+				$this->deferredQueue->dequeue(),
+				DeferredUpdates::PRESEND
+			);
+			DeferredUpdates::tryOpportunisticExecute();
 		}
-		DeferredUpdates::doUpdates();
 	}
 
 	protected function clearDeferredQueue() {
