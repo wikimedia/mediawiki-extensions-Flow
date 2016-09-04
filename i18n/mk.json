@@ -15,7 +15,7 @@
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "ова нема да се однесува на поединечните теми што ги набљудувате. Можете да ја набљудувате [$2 страницава] во во секое време.",
 	"notification-dynamic-actions-flow-topic-unwatch": "Престани со набљудување на темава",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "Повеќе на ја набљудувате темата „$1“",
-	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "Можете да ја набљудувате [$2 страницава] во секое време.",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "Можете да ја набљудувате [$2 темава] во секое време.",
 	"flow-desc": "Систем за раководење со работниот тек",
 	"flow-talk-taken-over-comment": "/* Оваа страница е претворена во разговорница на Тек */",
 	"log-name-flow": "Дневник на активности во текот",

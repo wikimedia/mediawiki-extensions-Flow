@@ -9,6 +9,7 @@
 		]
 	},
 	"enableflow": "प्रवाहास(फ्लो) सक्षम करा",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "आपण [$2 हा विषय] कधीही बघु शकता.",
 	"flow-desc": "कार्यप्रवाह व्यवस्थापन प्रणाली",
 	"flow-talk-taken-over-comment": "/* हे पान प्रवाह चर्चा फलकात रुपांतरित केल्या गेले आहे*/",
 	"log-name-flow": "प्रवाह क्रियांच्या नोंदी",
