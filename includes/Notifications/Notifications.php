@@ -270,6 +270,13 @@ $notifications = array(
 			'EchoUserLocator::locateTalkPageOwner',
 		),
 	) + $topicResolvedNotification,
+	'flow-mention-failure-too-many' => array(
+		'user-locators' => array(
+			'EchoUserLocator::locateEventAgent'
+		),
+		'section' => 'alert',
+		'presentation-model' => 'Flow\\MentionStatusPresentationModel'
+	) + $notificationTemplate,
 );
 
 return $notifications;
