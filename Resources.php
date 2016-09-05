@@ -5,7 +5,7 @@ $mobile = array(
 );
 
 $flowResourceTemplate = array(
-	'localBasePath' => $dir . 'modules',
+	'localBasePath' => __DIR__ . '/modules',
 	'remoteExtPath' => 'Flow/modules',
 );
 
