@@ -9,6 +9,11 @@ $flowResourceTemplate = array(
 	'remoteExtPath' => 'Flow/modules',
 );
 
+// Bug: T144727
+if ( !isset( $wgResourceModules ) ) {
+	$wgResourceModules = array();
+}
+
 $wgResourceModules += array(
 	'ext.flow.contributions' => $flowResourceTemplate + array(
 		'scripts' => array(
