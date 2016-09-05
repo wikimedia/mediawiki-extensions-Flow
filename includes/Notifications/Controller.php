@@ -94,7 +94,7 @@ class NotificationController {
 		}
 
 		$user = $revision->getUser();
-		$mentionedUsers = $this->getMentionedUsers( $revision );
+		list( $mentionedUsers, $mentionsSkipped ) = $this->getMentionedUsersAndSkipState( $revision );
 
 		$extraData['content'] = Utils::htmlToPlaintext( $revision->getContent(), 200, $this->language );
 		$extraData['revision-id'] = $revision->getRevisionId();
@@ -120,7 +120,15 @@ class NotificationController {
 			$events[] = EchoEvent::create( array( 'type' => 'flowusertalk-description-edited' ) + $info );
 		}
 		if ( $mentionedUsers ) {
-			$events[] = $this->generateMentionEvent( $revision, null, $boardWorkflow, $user, $mentionedUsers );
+			$mentionEvents = $this->generateMentionEvents(
+				$revision,
+				null,
+				$boardWorkflow,
+				$user,
+				$mentionedUsers,
+				$mentionsSkipped
+			);
+			$events = array_merge( $events, $mentionEvents );
 		}
 
 		return $events;
@@ -168,7 +176,7 @@ class NotificationController {
 		}
 
 		$user = $revision->getUser();
-		$mentionedUsers = $this->getMentionedUsers( $revision );
+		list( $mentionedUsers, $mentionsSkipped ) = $this->getMentionedUsersAndSkipState( $revision );
 		$title = $topicWorkflow->getOwnerTitle();
 
 		$extraData['revision-id'] = $revision->getRevisionId();
@@ -194,12 +202,21 @@ class NotificationController {
 					// that they weren't also mentioned in the topic title (in
 					// which case they would get 2 notifications...)
 					if ( $mentionedUsers ) {
-						$mentionedInTitle = $this->getMentionedUsers( $topicRevision );
+						list( $mentionedInTitle, $mentionsSkippedInTitle ) =
+							$this->getMentionedUsersAndSkipState( $topicRevision );
 						$mentionedUsers = array_diff_key( $mentionedUsers, $mentionedInTitle );
+						$mentionsSkipped = $mentionsSkipped || $mentionsSkippedInTitle;
 						$extraData['mentioned-users'] = $mentionedUsers;
 					}
 
-					return $this->generateMentionEvent( $revision, $topicRevision, $topicWorkflow, $user, $mentionedUsers );
+					return $this->generateMentionEvents(
+						$revision,
+						$topicRevision,
+						$topicWorkflow,
+						$user,
+						$mentionedUsers,
+						$mentionsSkipped
+					);
 				}
 
 			break;
@@ -235,7 +252,15 @@ class NotificationController {
 			$events[] = EchoEvent::create( array( 'type' => $usertalkEvent ) + $info );
 		}
 		if ( $mentionedUsers ) {
-			$events[] = $this->generateMentionEvent( $revision, $topicRevision, $topicWorkflow, $user, $mentionedUsers );
+			$mentionEvents = $this->generateMentionEvents(
+				$revision,
+				$topicRevision,
+				$topicWorkflow,
+				$user,
+				$mentionedUsers,
+				$mentionsSkipped
+			);
+			$events = array_merge( $events, $mentionEvents );
 		}
 
 		return $events;
@@ -270,7 +295,7 @@ class NotificationController {
 		}
 
 		$user = $revision->getUser();
-		$mentionedUsers = $this->getMentionedUsers( $revision );
+		list( $mentionedUsers, $mentionsSkipped ) = $this->getMentionedUsersAndSkipState( $revision );
 
 		$extraData['content'] = Utils::htmlToPlaintext( $revision->getContent(), 200, $this->language );
 		$extraData['revision-id'] = $revision->getRevisionId();
@@ -298,7 +323,15 @@ class NotificationController {
 			$events[] = EchoEvent::create( array( 'type' => 'flowusertalk-summary-edited' ) + $info );
 		}
 		if ( $mentionedUsers ) {
-			$events[] = $this->generateMentionEvent( $revision, $topicRevision, $topicWorkflow, $user, $mentionedUsers );
+			$mentionEvents = $this->generateMentionEvents(
+				$revision,
+				$topicRevision,
+				$topicWorkflow,
+				$user,
+				$mentionedUsers,
+				$mentionsSkipped
+			);
+			$events = array_merge( $events, $mentionEvents );
 		}
 
 		return $events;
@@ -340,7 +373,11 @@ class NotificationController {
 			throw new FlowException( 'Expected Workflow but received ' . get_class( $boardWorkflow ) );
 		}
 
-		$mentionedUsers = $this->getMentionedUsers( $topicTitle );
+		$topicTitleMentionDetails = $this->getMentionedUsersAndSkipState( $topicTitle );
+		$firstPostMentionDetails = $this->getMentionedUsersAndSkipState( $firstPost );
+		$mentionedUsers = $topicTitleMentionDetails[0] + $firstPostMentionDetails[0];
+		$mentionsSkipped = $topicTitleMentionDetails[1] || $firstPostMentionDetails[1];
+
 		$title = $boardWorkflow->getArticleTitle();
 		$events = array();
 		$eventData = array(
@@ -363,7 +400,7 @@ class NotificationController {
 				// also look at users mentioned in first post: if there are any, this
 				// (flow-new-topic) notification shouldn't go through (because they'll
 				// already receive the mention notification)
-				'mentioned-users' => $mentionedUsers + $this->getMentionedUsers( $firstPost ),
+				'mentioned-users' => $mentionedUsers,
 			)
 		);
 		$events[] = EchoEvent::create( array( 'type' => 'flow-new-topic' ) + $eventData );
@@ -372,7 +409,15 @@ class NotificationController {
 		}
 
 		if ( $mentionedUsers ) {
-			$events[] = $this->generateMentionEvent( $topicTitle, $topicTitle, $topicWorkflow, $user, $mentionedUsers );
+			$mentionEvents = $this->generateMentionEvents(
+				$topicTitle,
+				$topicTitle,
+				$topicWorkflow,
+				$user,
+				$mentionedUsers,
+				$mentionsSkipped
+			);
+			$events = array_merge( $events, $mentionEvents );
 		}
 
 		return $events;
@@ -453,11 +498,21 @@ class NotificationController {
 	 * @param Workflow $workflow Workflow object
 	 * @param User $user User who created the new post
 	 * @param array $mentionedUsers
-	 * @return bool|EchoEvent
+	 * @param bool $mentionsSkipped Were mentions skipped due to too many mentions being attempted?
+	 * @return bool|EchoEvent[]
 	 * @throws Exception\InvalidDataException
 	 * @throws \MWException
 	 */
-	protected function generateMentionEvent( AbstractRevision $content, PostRevision $topic = null, Workflow $workflow, User $user, array $mentionedUsers ) {
+	protected function generateMentionEvents(
+		AbstractRevision $content,
+		PostRevision $topic = null,
+		Workflow $workflow,
+		User $user,
+		array $mentionedUsers,
+		$mentionsSkipped
+	) {
+		global $wgEchoMentionStatusNotifications, $wgFlowMaxMentionCount;
+
 		if ( count( $mentionedUsers ) === 0 ) {
 			return false;
 		}
@@ -480,21 +535,37 @@ class NotificationController {
 			$extraData['topic-title'] = $this->language->truncate( $topic->getContent( 'topic-title-plaintext' ), 200 );
 		}
 
-		return EchoEvent::create( array(
+		$events = array();
+		$events[] = EchoEvent::create( array(
 			'type' => 'flow-mention',
 			'title' => $workflow->getOwnerTitle(),
 			'extra' => $extraData,
 			'agent' => $user,
 		) );
+		if ( $wgEchoMentionStatusNotifications && $mentionsSkipped ) {
+			$events[] = EchoEvent::create( array(
+				'type' => 'mention-failure-too-many',
+				'title' => $workflow->getOwnerTitle(),
+				'extra' => array(
+					'max-mentions' => $wgFlowMaxMentionCount,
+					'section-title' => $extraData['topic-title'],
+					'notifyAgent' => true
+				),
+				'agent' => $user,
+			) );
+		}
+		return $events;
 	}
 
 	/**
 	 * Analyses a PostRevision to determine which users are mentioned.
 	 *
 	 * @param AbstractRevision $revision The Post to analyse.
-	 * @return int[] Array of user ids.
+	 * @return array
+	 *          0 => int[] Array of user IDs
+	 *          1 => bool Were some mentions ignored due to $wgFlowMaxMentionCount?
 	 */
-	protected function getMentionedUsers( AbstractRevision $revision ) {
+	protected function getMentionedUsersAndSkipState( AbstractRevision $revision ) {
 		// At the moment, it is not possible to get a list of mentioned users from HTML
 		//  unless that HTML comes from Parsoid. But VisualEditor (what is currently used
 		//  to convert wikitext to HTML) does not currently use Parsoid.
@@ -511,9 +582,7 @@ class NotificationController {
 			$mentions = array_diff( $mentions, $previousMentions );
 		}
 
-		$notifyUsers = $this->filterMentionedUsers( $mentions, $revision );
-
-		return $notifyUsers;
+		return $this->filterMentionedUsers( $mentions, $revision );
 	}
 
 	/**
@@ -524,13 +593,17 @@ class NotificationController {
 	 * owner of the talk page
 	 * @param  User[] $mentions Array of User objects
 	 * @param  AbstractRevision $revision The Post that is being examined.
-	 * @return int[] Array of user IDs
+	 * @return array
+	 *          0 => int[] Array of user IDs
+	 *          1 => bool Were some mentions ignored due to $wgFlowMaxMentionCount?
 	 */
 	protected function filterMentionedUsers( $mentions, AbstractRevision $revision ) {
-		$outputMentions = array();
 		global $wgFlowMaxMentionCount;
 
-		foreach( $mentions as $mentionedUser ) {
+		$outputMentions = array();
+		$mentionsSkipped = false;
+
+		foreach ( $mentions as $mentionedUser ) {
 			// Don't notify anonymous users
 			if ( $mentionedUser->isAnon() ) {
 				continue;
@@ -541,14 +614,15 @@ class NotificationController {
 				continue;
 			}
 
-			if ( count( $outputMentions ) > $wgFlowMaxMentionCount ) {
+			if ( count( $outputMentions ) >= $wgFlowMaxMentionCount ) {
+				$mentionsSkipped = true;
 				break;
 			}
 
 			$outputMentions[$mentionedUser->getId()] = $mentionedUser->getId();
 		}
 
-		return $outputMentions;
+		return array( $outputMentions, $mentionsSkipped );
 	}
 
 	/**
