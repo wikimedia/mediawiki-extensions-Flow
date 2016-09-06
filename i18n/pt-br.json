@@ -19,7 +19,8 @@
 			"Opraco",
 			"Quiddity",
 			"Anderson Costa",
-			"Luk3"
+			"Luk3",
+			"Cristofer Alves"
 		]
 	},
 	"enableflow": "Ativar o Flow",
@@ -141,7 +142,7 @@
 	"flow-topic-notification-subscribe-description": "{{GENDER:$1|Você}} receberá notificações sobre todas as atividades neste tópico.",
 	"flow-board-notification-subscribe-title": "Você está inscrit{{GENDER:$1|o|a}} nesta discussão!",
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Você}} receberá uma notificação quando um novo tópico for criado nesta discussão.",
-	"flow-topic-action-watchlist-add": "Inscrever-se ao tópico",
+	"flow-topic-action-watchlist-add": "Inscrever-se a este tópico",
 	"flow-topic-action-watchlist-remove": "Cancelar inscrição",
 	"flow-error-allowcreation-no-usedb": "Ativar o Flow numa página específica requer que <var>$wgContentHandlerUseDB</var> seja <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "A página já existe, uma discussão do Flow não pode ser movida para lá.",

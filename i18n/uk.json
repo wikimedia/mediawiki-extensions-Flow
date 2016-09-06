@@ -24,7 +24,7 @@
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Це не вплине на окремі теми, за якими Ви спостерігаєте. Ви можете додати [$2 цю сторінку] до списку спостереження будь-коли.",
 	"notification-dynamic-actions-flow-topic-unwatch": "Припинити спостерігати за цією темою",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "Ви більше не спостерігаєте за «$1»",
-	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "Ви можете додати [$2 цю сторінку] до списку спостереження будь-коли.",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "Ви можете додати [$2 цю тему] до списку спостереження будь-коли.",
 	"flow-desc": "Система управління робочими процесами",
 	"flow-talk-taken-over-comment": "/* Ця сторінка була перетворена на дошку обговорень Flow */",
 	"log-name-flow": "Журнал активності потоку",
