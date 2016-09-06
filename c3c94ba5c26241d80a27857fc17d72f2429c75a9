@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e93376b_27d721c6",
+        "filename": "includes/Data/BufferedCache.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 16
+      },
+      "writtenOn": "2016-09-06T22:08:31Z",
+      "side": 1,
+      "message": "It might be useful to have a wrapper class like this if it took a DB container as an object and made all the delete() calls onTransactionPreCommitOrIdle() on the DB. This way, if the transaction takes forever before doing COMMIT, the cache tombstones won\u0027t have expired (or nearly so) before the COMMIT.",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e93376b_2743a1b7",
+        "filename": "includes/Data/Index/FeatureIndex.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 16
+      },
+      "writtenOn": "2016-09-06T22:08:31Z",
+      "side": 1,
+      "message": "Why does this need to loop instead of some sort of getMulti()?\n\nDo you need a getWithSetCallbackMulti() method? How elements might $queries have roughly?",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
