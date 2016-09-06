@@ -240,7 +240,6 @@
 			.then( function ( desc ) {
 				// Change the actual content
 				widget.$content.empty().append( $.parseHTML( desc.content.content ) );
-				widget.showContent( true );
 				widget.emit( 'saveContent' );
 			} )
 			.then( null, function ( errorCode, errorObj ) {
