@@ -23,7 +23,12 @@
 			autosize: true,
 			maxRows: 999,
 			placeholder: config.placeholder,
-			classes: [ 'flow-ui-wikitextEditorWidget-input' ]
+			// The following classes can be used here:
+			// * mw-editfont-default
+			// * mw-editfont-monospace
+			// * mw-editfont-sansserif
+			// * mw-editfont-serif
+			classes: [ 'flow-ui-wikitextEditorWidget-input', 'mw-editfont-' + mw.user.options.get( 'editfont' ) ]
 		} );
 
 		// Label and switcher
