@@ -2,6 +2,74 @@
   "comments": [
     {
       "key": {
+        "uuid": "2e93376b_de8b8d70",
+        "filename": "container.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-09-08T02:12:33Z",
+      "side": 1,
+      "message": "This distinction will be unnecessary if there is no in-process caching, or if it is limited by number of keys.",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e93376b_cde8320e",
+        "filename": "container.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-09-08T02:12:33Z",
+      "side": 1,
+      "message": "Now only for TopicListEntry insertions.\n\nSince it now ignores Workflows in all cases, you can remove TopicListTopKIndex again.  I only made it to initialize the cache as an empty array on write, and that is no longer an option since all we can do on POST is delete.\n\nBefore 3637407923, the issue was that:\n1. It started with nothing cached.\n2. The first few topics also don\u0027t get added to the list, because it can\u0027t add topics to a non-existent cache entry.\n3. Something eventually triggers a cache fill, but occasionally it was incomplete (slave-lagged).\n\nAfter #3, the bigger problem was that any further new topic just appended to the incomplete list, resulting in a still incomplete list.\n\nNow, every single new topic should invalidate the cache, and tombstoning for the delete should ensure it\u0027s right from the first topic onwards.\n\nSo basically:\n* storage.workflow.listeners should no longer point to storage.topic_list.indexes.reverse_lookup or storage.topic_list.indexes.last_updated\n* Replace TopicListTopicKIndex uses with TopKIndex, and drop TopicListTopicKIndex.",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e93376b_3e9ad1bd",
+        "filename": "includes/Data/BufferedCache.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-09-08T02:12:33Z",
+      "side": 1,
+      "message": "DbFactory should be injected as a constructor parameter so you don\u0027t need the container.",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e93376b_5e979d93",
+        "filename": "includes/Data/BufferedCache.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-09-08T02:12:33Z",
+      "side": 1,
+      "message": "ObjectCache (in Flow\\Data as now)?",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e93376b_27d721c6",
         "filename": "includes/Data/BufferedCache.php",
         "patchSetId": 3
@@ -19,6 +87,40 @@
     },
     {
       "key": {
+        "uuid": "2e93376b_fe80494d",
+        "filename": "includes/Data/BufferedCache.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-09-08T02:12:33Z",
+      "side": 1,
+      "message": "It looks like it is (see openConnection) as long as the $groups are the same.  We never use $groups, so you can eliminate it from DbFactory to be sure of that.",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e93376b_9e91059f",
+        "filename": "includes/Data/BufferedCache.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-09-08T02:12:33Z",
+      "side": 1,
+      "message": "This should probably also use getCacheSetOptions.  See top-level comment.",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e93376b_2743a1b7",
         "filename": "includes/Data/Index/FeatureIndex.php",
         "patchSetId": 3
@@ -30,6 +132,176 @@
       "writtenOn": "2016-09-06T22:08:31Z",
       "side": 1,
       "message": "Why does this need to loop instead of some sort of getMulti()?\n\nDo you need a getWithSetCallbackMulti() method? How elements might $queries have roughly?",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e93376b_beede124",
+        "filename": "includes/Data/Index/FeatureIndex.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-09-08T02:12:33Z",
+      "side": 1,
+      "message": "You can use find.",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e93376b_ded9cd84",
+        "filename": "includes/Data/Index/FeatureIndex.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-09-08T02:12:33Z",
+      "side": 1,
+      "message": "Don\u0027t reuse the variable name $results like this.",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e93376b_9ee8250d",
+        "filename": "includes/Data/Index/FeatureIndex.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-09-08T02:12:33Z",
+      "side": 1,
+      "message": "The method is calling cacheKey 3 times for each query.",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e93376b_bed4014d",
+        "filename": "includes/Data/Index/FeatureIndex.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-09-08T02:12:33Z",
+      "side": 1,
+      "message": "If you allow the possibility that individual queries or expands failed (doesn\u0027t look like the old code allows that), you need to add filler nulls if this isset fails.  Otherwise, $results will not have numeric indices matching the original $queries indices.",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e93376b_ed8b2e19",
+        "filename": "includes/Repository/TreeRepository.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-09-08T02:12:33Z",
+      "side": 1,
+      "message": "An update to the docblock would be good.",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e93376b_8dcaaa48",
+        "filename": "tests/phpunit/Data/BagOStuff/BufferedBagOStuffTest.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-09-08T02:12:33Z",
+      "side": 1,
+      "message": "The BufferedBagOStuff classes and their tests are unused and can be eliminated entirely.\n\nAs discussed in our meeting, the concept of committing the cache is only necessary if the cache is modified on POST.  Since it\u0027s now just delete-ing, it\u0027s not needed (if you delete the cache then have to rollback the DB, it\u0027s fine).",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e93376b_add766f1",
+        "filename": "tests/phpunit/Data/BufferedCacheTest.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-09-08T02:12:33Z",
+      "side": 1,
+      "message": "It would be nice to have new tests for the getWithSetCallback functionality.",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e93376b_0d831ad2",
+        "filename": "tests/phpunit/Repository/TreeRepositoryTest.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-09-08T02:12:33Z",
+      "side": 1,
+      "message": "It seems simpler to just hard-code these test UUIDs, so then we can hard-code the cache keys.\n\nIt could use TestingAccessWrapper for cacheKey, but there\u0027s no need.",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e93376b_cdebd29e",
+        "filename": "tests/phpunit/Repository/TreeRepositoryTest.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-09-08T02:12:33Z",
+      "side": 1,
+      "message": "You could test that it deletes the right keys by pre-setting them then checking they are false afterwards.",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e93376b_6d581e8d",
+        "filename": "tests/phpunit/api/ApiTestCase.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-09-08T02:12:33Z",
+      "side": 1,
+      "message": "This would be more precise if it took an array of keys that were expected to be deleted.  A potential bug is invalidating the wrong keys.\n\nTo test multiple keys, I\u0027m not sure if it needs to use withConsecutive, or it\u0027s enough to call with more than once: https://phpunit.de/manual/current/en/test-doubles.html .",
       "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
