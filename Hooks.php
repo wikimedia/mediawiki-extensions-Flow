@@ -1751,7 +1751,7 @@ class FlowHooks {
 			$c = new Flow\Import\OptInController();
 			if ( !$c->hasFlowBoardArchive( $user ) ) {
 				// Enable the guided tour by setting the cookie
-				RequestContext::getMain()->getRequest()->response()->setcookie( 'Flow_optIn_guidedTour', '1' );
+				RequestContext::getMain()->getRequest()->response()->setCookie( 'Flow_optIn_guidedTour', '1' );
 			}
 		} elseif ( $before && !$after ) {
 			$action = OptInUpdate::$DISABLE;
