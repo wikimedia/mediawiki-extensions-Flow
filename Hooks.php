@@ -1732,7 +1732,10 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onUserSaveOptions( $user, &$options ) {
-		if ( !self::isBetaFeatureAvailable() ) {
+		if (
+			!class_exists( BetaFeatures::class ) ||
+			!self::isBetaFeatureAvailable()
+		) {
 			return true;
 		}
 
