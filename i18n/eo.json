@@ -25,6 +25,7 @@
 	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$2|menciis}} {{GENDER:$4|vin}} en “<strong>$5</strong>”.",
 	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|Montri}} paĝon",
 	"echo-category-title-flow-discussion": "Fluo",
+	"echo-pref-tooltip-flow-discussion": "Sciigi al mi kiam rilataj al mi agoj okazas en Fluo.",
 	"flow-link-history": "historio",
 	"flow-moderation-confirm-delete-post": "Forigi",
 	"flow-moderation-confirm-hide-post": "Kaŝi",

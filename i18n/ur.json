@@ -214,7 +214,7 @@
 	"flow-notification-edit-email-batch-bundle-body": "$1 اور $4 {{PLURAL:$5|دیگر|دیگر افراد}} نے $3 پر \"$2\" میں موجود ایک مراسلہ میں {{GENDER:$1|ترمیم کی}}",
 	"flow-notification-newtopic-email-subject": "$1 نے $2 پر نیا موضوع {{GENDER:$1|شروع کیا}}",
 	"echo-category-title-flow-discussion": "فلو",
-	"echo-pref-tooltip-flow-discussion": "مجھ سے متعلق فلو میں پیش آمدہ اقدامات کی مجھے اطلاع دیں۔",
+	"echo-pref-tooltip-flow-discussion": "فلو میں مجھ سے متعلق پیش آمدہ اقدامات سے مجھے آگاہ کریں۔",
 	"flow-link-post": "مراسلہ",
 	"flow-link-topic": "موضوع",
 	"flow-link-history": "تاریخچہ",
