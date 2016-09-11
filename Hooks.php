@@ -1694,7 +1694,7 @@ class FlowHooks {
 	 */
 	private static function isBetaFeatureAvailable() {
 		global $wgBetaFeaturesWhitelist, $wgFlowEnableOptInBetaFeature;
-		return $wgFlowEnableOptInBetaFeature &&
+		return $wgFlowEnableOptInBetaFeature && class_exists( BetaFeatures::class ) &&
 			( !is_array( $wgBetaFeaturesWhitelist ) || in_array( BETA_FEATURE_FLOW_USER_TALK_PAGE, $wgBetaFeaturesWhitelist ) );
 	}
 
@@ -1732,10 +1732,7 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onUserSaveOptions( $user, &$options ) {
-		if (
-			!class_exists( BetaFeatures::class ) ||
-			!self::isBetaFeatureAvailable()
-		) {
+		if ( !self::isBetaFeatureAvailable() ) {
 			return true;
 		}
 
