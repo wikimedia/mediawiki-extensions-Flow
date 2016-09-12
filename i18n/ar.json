@@ -509,5 +509,6 @@
 	"flow-guidedtour-optin-find-old-conversations": "ابحث عن {{GENDER:$1|محادثاتك}} القديمة.",
 	"flow-guidedtour-optin-find-old-conversations-description": "تم نقل المحادثات السابقة إلى صفحة الأرشيف.",
 	"flow-guidedtour-optin-feedback": "أعطنا {{GENDER:$1|ملاحظاتك}} !",
-	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|يمكنك}} الحصول على أي معلومات إضافية، أو تزويدنا بأي تغذية راجعة، أو تعطيل النظام الجديد في أي وقت، وكل هذا من خلال قسم مميزات الإصدار التجريبي."
+	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|يمكنك}} الحصول على أي معلومات إضافية، أو تزويدنا بأي تغذية راجعة، أو تعطيل النظام الجديد في أي وقت، وكل هذا من خلال قسم مميزات الإصدار التجريبي.",
+	"flow-action-not-page": "كائن الصفحة هو نسخة من الكلاس الخاطئة"
 }

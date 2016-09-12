@@ -28,6 +28,8 @@
 		]
 	},
 	"enableflow": "Включить Поток",
+	"notification-dynamic-actions-flow-topic-unwatch": "Перестать следить за этой темой",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "Вы больше не следите за «$1»",
 	"flow-desc": "Система управления потоками работ",
 	"flow-talk-taken-over-comment": "/* Эта страница была преобразована в доску обсуждений Потока */",
 	"log-name-flow": "Журнал активности Потока",
