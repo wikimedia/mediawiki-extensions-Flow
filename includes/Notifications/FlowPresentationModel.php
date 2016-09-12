@@ -187,7 +187,8 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 					->msg( 'notification-dynamic-actions-flow-' . $type . '-unwatch-confirmation' )
 					->params(
 						$stringPageTitle,
-						$title->getFullURL()
+						$title->getFullURL(),
+						$this->getUser()->getName()
 					)
 					->parse(),
 				// notification-dynamic-actions-flow-board-unwatch-confirmation-description
@@ -196,7 +197,8 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 					->msg( 'notification-dynamic-actions-flow-' . $type . '-unwatch-confirmation-description' )
 					->params(
 						$stringPageTitle,
-						$title->getFullURL()
+						$title->getFullURL(),
+						$this->getUser()->getName()
 					)
 					->parse(),
 			),
@@ -211,7 +213,8 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 			->msg( 'notification-dynamic-actions-flow-' . $type . '-unwatch' )
 			->params(
 				$stringPageTitle,
-				$title->getFullURL( $query )
+				$title->getFullURL( $query ),
+				$this->getUser()->getName()
 			)
 			->parse();
 
