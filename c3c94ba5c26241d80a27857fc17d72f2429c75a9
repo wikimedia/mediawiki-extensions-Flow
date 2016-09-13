@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2e93376b_b4916b9e",
+        "filename": "container.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-09-13T18:41:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e93376b_de8b8d70",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e93376b_cde8320e",
         "filename": "container.php",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2016-09-08T02:12:33Z",
       "side": 1,
       "message": "Now only for TopicListEntry insertions.\n\nSince it now ignores Workflows in all cases, you can remove TopicListTopKIndex again.  I only made it to initialize the cache as an empty array on write, and that is no longer an option since all we can do on POST is delete.\n\nBefore 3637407923, the issue was that:\n1. It started with nothing cached.\n2. The first few topics also don\u0027t get added to the list, because it can\u0027t add topics to a non-existent cache entry.\n3. Something eventually triggers a cache fill, but occasionally it was incomplete (slave-lagged).\n\nAfter #3, the bigger problem was that any further new topic just appended to the incomplete list, resulting in a still incomplete list.\n\nNow, every single new topic should invalidate the cache, and tombstoning for the delete should ensure it\u0027s right from the first topic onwards.\n\nSo basically:\n* storage.workflow.listeners should no longer point to storage.topic_list.indexes.reverse_lookup or storage.topic_list.indexes.last_updated\n* Replace TopicListTopicKIndex uses with TopKIndex, and drop TopicListTopicKIndex.",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e93376b_43a94f8c",
+        "filename": "container.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-09-13T18:41:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e93376b_cde8320e",
       "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "2e93376b_d4bef7d0",
+        "filename": "includes/Data/BufferedCache.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-09-13T18:41:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e93376b_3e9ad1bd",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e93376b_5e979d93",
         "filename": "includes/Data/BufferedCache.php",
         "patchSetId": 3
@@ -64,6 +118,24 @@
       "writtenOn": "2016-09-08T02:12:33Z",
       "side": 1,
       "message": "ObjectCache (in Flow\\Data as now)?",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e93376b_14b95fe6",
+        "filename": "includes/Data/BufferedCache.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-09-13T18:41:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e93376b_5e979d93",
       "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -104,6 +176,24 @@
     },
     {
       "key": {
+        "uuid": "2e93376b_348c9b37",
+        "filename": "includes/Data/BufferedCache.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-09-13T18:41:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e93376b_fe80494d",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e93376b_9e91059f",
         "filename": "includes/Data/BufferedCache.php",
         "patchSetId": 3
@@ -115,6 +205,24 @@
       "writtenOn": "2016-09-08T02:12:33Z",
       "side": 1,
       "message": "This should probably also use getCacheSetOptions.  See top-level comment.",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e93376b_947aaf1d",
+        "filename": "includes/Data/BufferedCache.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-09-13T18:41:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e93376b_9e91059f",
       "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -138,6 +246,24 @@
     },
     {
       "key": {
+        "uuid": "2e93376b_b8d155d2",
+        "filename": "includes/Data/Index/FeatureIndex.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-09-13T18:41:02Z",
+      "side": 1,
+      "message": "It looks like ~90% of calls have 1 query. I also see clusters of calls with between 10 and 51 queries.\n\ngetWithSetCallbackMulti() could be useful but I could also refactor to getMulti(), getFromStorage() what couldn\u0027t be found and set() those. That\u0027s essentially what this code was doing before.",
+      "parentUuid": "2e93376b_2743a1b7",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e93376b_beede124",
         "filename": "includes/Data/Index/FeatureIndex.php",
         "patchSetId": 3
@@ -149,6 +275,24 @@
       "writtenOn": "2016-09-08T02:12:33Z",
       "side": 1,
       "message": "You can use find.",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e93376b_78bc4d68",
+        "filename": "includes/Data/Index/FeatureIndex.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-09-13T18:41:02Z",
+      "side": 1,
+      "message": "Interestingly, findMulti() does merge local storage content but find() does not.\n\nI\u0027m looking at changing it but the Storage deep inheritance structure makes it non-trivial.",
+      "parentUuid": "2e93376b_beede124",
       "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -172,6 +316,24 @@
     },
     {
       "key": {
+        "uuid": "2e93376b_644c9ea0",
+        "filename": "includes/Data/Index/FeatureIndex.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-09-13T18:41:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e93376b_ded9cd84",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e93376b_9ee8250d",
         "filename": "includes/Data/Index/FeatureIndex.php",
         "patchSetId": 3
@@ -183,6 +345,24 @@
       "writtenOn": "2016-09-08T02:12:33Z",
       "side": 1,
       "message": "The method is calling cacheKey 3 times for each query.",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e93376b_84626a04",
+        "filename": "includes/Data/Index/FeatureIndex.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-09-13T18:41:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e93376b_9ee8250d",
       "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -206,6 +386,24 @@
     },
     {
       "key": {
+        "uuid": "2e93376b_a45da64d",
+        "filename": "includes/Data/Index/FeatureIndex.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-09-13T18:41:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e93376b_bed4014d",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e93376b_ed8b2e19",
         "filename": "includes/Repository/TreeRepository.php",
         "patchSetId": 3
@@ -217,6 +415,24 @@
       "writtenOn": "2016-09-08T02:12:33Z",
       "side": 1,
       "message": "An update to the docblock would be good.",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e93376b_04367a00",
+        "filename": "includes/Repository/TreeRepository.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-09-13T18:41:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e93376b_ed8b2e19",
       "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -240,6 +456,24 @@
     },
     {
       "key": {
+        "uuid": "2e93376b_4440825b",
+        "filename": "tests/phpunit/Data/BagOStuff/BufferedBagOStuffTest.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-09-13T18:41:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e93376b_8dcaaa48",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e93376b_add766f1",
         "filename": "tests/phpunit/Data/BufferedCacheTest.php",
         "patchSetId": 3
@@ -251,6 +485,24 @@
       "writtenOn": "2016-09-08T02:12:33Z",
       "side": 1,
       "message": "It would be nice to have new tests for the getWithSetCallback functionality.",
+      "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e93376b_041d9a78",
+        "filename": "tests/phpunit/Data/BufferedCacheTest.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-09-13T18:41:02Z",
+      "side": 1,
+      "message": "I removed the callback argument from get() as it is not used in the new version of this patch I\u0027m working on.",
+      "parentUuid": "2e93376b_add766f1",
       "revId": "c3c94ba5c26241d80a27857fc17d72f2429c75a9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
