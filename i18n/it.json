@@ -16,11 +16,12 @@
 			"Erasmo Barresi",
 			"Statix64",
 			"Nnemo",
-			"Matteocng"
+			"Matteocng",
+			"Anto"
 		]
 	},
 	"enableflow": "Attiva Flow",
-	"notification-dynamic-actions-flow-topic-unwatch": "Togli questo argomento dagli osservati speciali",
+	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Interrompi}} Guardando questo argomento",
 	"flow-desc": "Sistema di gestione del flusso di lavoro",
 	"flow-talk-taken-over-comment": "/* Questa pagina è stata convertita in una bacheca di discussione Flow */",
 	"log-name-flow": "Attività sui flussi",
