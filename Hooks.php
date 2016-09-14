@@ -1560,30 +1560,26 @@ class FlowHooks {
 
 			$storage = Container::get( 'storage' );
 
-			DeferredUpdates::addUpdate( new MWCallableUpdate( function () use ( $storage, $articleId ) {
+			DeferredUpdates::addCallableUpdate( function () use ( $storage, $articleId ) {
+				/** @var \Flow\Model\Workflow[] $workflows */
 				$workflows = $storage->find( 'Workflow', array(
 					'workflow_wiki' => wfWikiID(),
 					'workflow_page_id' => $articleId,
 				) );
-
 				if ( !$workflows ) {
-					return false;
+					return;
 				}
 
-				// If I41ebd2f34347a3f218f7d0bfc8962d286b943c16 is merged to core (see T116095),
-				// we can use SquidUpdate::newFromTitles instead of building the URL list ourselves.
-				$squidUrls = array();
-
+				$topicTitles = [];
 				foreach ( $workflows as $workflow ) {
 					if ( $workflow->getType() === 'topic' ) {
-						$topicTitle = $workflow->getArticleTitle();
-						$squidUrls = array_merge( $squidUrls, $topicTitle->getSquidURLs() );
+						$topicTitles[] = $workflow->getArticleTitle();
 					}
 				}
 
-				$squidUpdate = new SquidUpdate( $squidUrls );
-				$squidUpdate->doUpdate();
-			} ) );
+				$update = CdnCacheUpdate::newFromTitles( $topicTitles );
+				DeferredUpdates::addUpdate( $update ); // run right after this
+			} );
 		}
 
 		return true;
