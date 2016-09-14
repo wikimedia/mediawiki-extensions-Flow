@@ -7,7 +7,8 @@
 			"Milicevic01",
 			"Nnemo",
 			"Matiia",
-			"Macofe"
+			"Macofe",
+			"KWiki"
 		]
 	},
 	"enableflow": "Uključi Flow",
@@ -131,7 +132,7 @@
 	"flow-error-missing-content": "Objava nema sadržaja. Sadržaj je potreban da bi se objava sačuvala.",
 	"flow-error-missing-summary": "Morate postaviti rezime.",
 	"flow-error-missing-title": "Tema nema naslov. Naslov je potreban da bi se tema sačuvala.",
-	"flow-error-parsoid-failure": "Sadržaj se ne pretvoriti: Ne može se uspostaviti veza prema serveru za pretvaranje wikiteksta u HTML i obrnuto. Provjerite svoju internetsku vezu ili pokušajte ponovo kasnije ako se problem nastavi. Ako i dalje vidite ovu grešku, molimo Vas da je prijavite.",
+	"flow-error-parsoid-failure": "Sadržaj se ne može prebaciti: Greška u uspostavljanju veze prema serveru za pretvaranje wikiteksta u HTML i obrnuto. Provjerite svoju internetsku vezu ili pokušajte ponovo kasnije ako se problem nastavi. Ako i dalje vidite ovu grešku, molimo Vas da je prijavite.",
 	"flow-error-missing-replyto": "Nije naveden parametar \"replyTo\". Ovaj parametar se zahtjeva za odgovor.",
 	"flow-error-missing-postId": "Nije pronađen parametar \"postId\". Ovaj parametar se zahtjeva za rad sa objavom.",
 	"flow-error-invalid-postId": "Nevedeni \"postId\" parametar je nevažeći. Nevedena objava ($1) se ne može pronaći.",

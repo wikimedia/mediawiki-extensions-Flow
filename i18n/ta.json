@@ -2,9 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"ElangoRamanujam",
-			"கலைவாணன்"
+			"கலைவாணன்",
+			"Rakeshonwiki"
 		]
 	},
+	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|You}} இந்த பக்கத்தை பார்ப்பதில்லை \"$1\"",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "இவை {{GENDER:$3|you}} பார்க்கும் தனிப்பட்ட தலைப்புகளை பாதிப்பதில்லை. நீங்கள் [$2 this page] ஐ எப்போது வேண்டுமானாலும் பார்க்கலாம்",
+	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Stop}} இந்த தலைப்பை பார்க்கிரார்",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|You}} இந்த பக்கத்தை பார்ப்பதில்லை \"$1\"",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|You}}, [$2 this page] ஐ எப்போது வேண்டுமானாலும் பார்க்கலாம்.",
 	"flow-history-action-delete-post": "நீக்கவும்",
 	"flow-history-action-hide-post": "மறைக்க",
 	"flow-topic-html-title": "$2ல் $1",
