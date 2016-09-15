@@ -8,6 +8,7 @@ use Flow\Exception\FlowException;
 use Flow\FlowActions;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
+use MediaWiki\Logger\LoggerFactory;
 use RecentChange;
 
 class ChangesListQuery extends AbstractQuery {
@@ -152,7 +153,14 @@ class ChangesListQuery extends AbstractQuery {
 
 		$alpha = UUID::create( $changeData['revision'] )->getAlphadecimal();
 		if ( !isset( $this->revisionCache[$alpha] ) ) {
-			throw new FlowException( "Revision not found in revisionCache: $alpha" );
+			LoggerFactory::getInstance( 'Flow' )->error(
+				'Revision not found in revisionCache: {alpha}',
+				array(
+					'alpha' => $alpha,
+					'rcParams' => $rcParams,
+				)
+			);
+			return false;
 		}
 		$revision = $this->revisionCache[$alpha];
 
