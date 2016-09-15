@@ -475,6 +475,7 @@
 	"flow-undo-edit-header": "تعديل الوصف",
 	"flow-undo-edit-topic-summary": "تعديل ملخص الموضوع",
 	"flow-undo-edit-post": "تعديل منشور",
+	"flow-undo-edit-content": "التعديل يمكن الرجوع عنه. من فضلك تحقق من المقارنة بالأسل للتأكد من أن هذا هو ما تود عمله، ثم احفظ التغييرات بالأسفل للانتهاء من الرجوع عن التعديل.",
 	"flow-undo-edit-failure": "لا يمكن استرجاع التعديل بسبب تعديلات متعارضة تمت على الصفحة.",
 	"group-flow-bot": "بوتات فلو",
 	"group-flow-bot-member": "بوت فلو/تدفق",
@@ -497,6 +498,7 @@
 	"flow-mark-diff-patrolled-link-text": "علم كمراجعة",
 	"flow-mark-diff-patrolled-link-title": "علم كمراجعة",
 	"flow-talk-page-beta-feature-message": "تدفق على نقاش المستخدم",
+	"flow-talk-page-beta-feature-description": "يفعل نظام نقاش هيكلي جديد على صفحة {{GENDER:|نقاشك}}. Flow يبسط نقاشات صفحات النقاش مع أماكن محددة للكتابة والرد، ويسمح بالإخطارات على مستوى الحوار. نقاشات نص الويكي الموجودة يتم نقلها لأرشيف. هذه الخاصية ليست مفعلة تلقائيا؛ المستخدمون سيتعين عليهم تفعيلها بشكل منفصل. تعطيل هذه الخاصية سينقل لوحة Flow إلى صفحة فرعية وسيسترجع أرشفة صفحة النقاش السابقة.",
 	"flow-notification-link-text-enabled-on-talkpage": "{{GENDER:|شاهد}} صفحة نقاش المستخدم",
 	"flow-notification-enabled-on-talkpage-title": "تم تفعيل نظام النقاش الجديد في صفحة {{GENDER:$1|نقاشك}}، <small>وهو متوافر في [[$2]]</small>",
 	"flow-notification-enabled-on-talkpage-email-subject-message": "نظام مناقشة جديد على $2",
@@ -517,5 +519,6 @@
 	"flow-guidedtour-optin-find-old-conversations-description": "تم نقل المحادثات السابقة إلى صفحة الأرشيف.",
 	"flow-guidedtour-optin-feedback": "أعطنا {{GENDER:$1|ملاحظاتك}} !",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|يمكنك}} الحصول على أي معلومات إضافية، أو تزويدنا بأي تغذية راجعة، أو تعطيل النظام الجديد في أي وقت، وكل هذا من خلال قسم مميزات الإصدار التجريبي.",
-	"flow-action-not-page": "كائن الصفحة هو نسخة من الكلاس الخاطئة"
+	"flow-action-not-page": "كائن الصفحة هو نسخة من الكلاس الخاطئة",
+	"flow-action-wrong-title-content-model": "الصفحة يتم التعامل معها بواسطة Flow، لكن الكلاس Title تشير إلى أن موديل المحتوى هو '$1'.  هذا سوء ضبط أو حالة غير متناسقة.  على سبيل المثال، هذا ربما يكون صفحة غير تابعة ل Flow في نطاق Flow namespace، مع <code>rev_content_model</code> غير مملوء."
 }
