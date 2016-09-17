@@ -1,10 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
-			"Trizek (WMF)"
+			"Trizek (WMF)",
+			"SalemB"
 		]
 	},
+	"enableflow": "Ssermed Flow",
+	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Ḥbes}} ẓer armud amaynu ɣef \"$1\"",
+	"flow-desc": "Anagraw n ussefrek n wanɣal n wuxeddim",
+	"flow-talk-taken-over-comment": "/* Asebtar agi yettwasselket ar wanɣal n umyannan Flow */",
+	"log-name-flow": "Aɣmis n wurmud n Flow",
 	"flow-conversion-archive-page-name-format": "%s/Aɣbar %d \n%s/Aɣbar%d \n%s/aɣbar %d \n%s/aɣbar%d",
-	"flow-importer-wt-converted-template": "Asebtar yuran s Wikitexte yetturren ɣer Flow",
+	"flow-importer-wt-converted-template": "Asebtar n umyannan s Wikitexte yetturren ɣer Flow",
 	"flow-importer-wt-converted-template-content": "Amyannan aqdim yettuɣber di <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> ass n {{#time: Y-m-d|{{{date}}} }}"
 }

@@ -11,7 +11,7 @@
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Dir}} iwwerwaacht d'Säit \"$1\" net méi",
 	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Ophalen}} dëse Sujet z'iwwerwaachen",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|Dir}} iwwerwaacht \"$1\" net méi",
-	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "Dir kënnt [$2 dëse Sujet] zu all Ament iwwerwaachen.",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Dir}} kënnt [$2 dëse Sujet] zu all Ament iwwerwaachen.",
 	"flow-desc": "Workflow-Management-System",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|huet}} eng [$4 Matdeelung] iwwer \"[[$3|$5]]\" op [[$6]] geläscht",
 	"logentry-delete-flow-delete-topic": "$1 {{GENDER:$2|huet}} d'Thema \"[[$3|$5]]\" op [[$6]] geläscht",

@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Kumkumuk",
-			"Mirzali"
+			"Mirzali",
+			"Asmen"
 		]
 	},
 	"enableflow": "Rodiyayışi feal ke",
@@ -54,6 +55,7 @@
 	"flow-error-unknown-workflow-id-title": "Mewzuyo nêzanaye",
 	"flow-rc-topic-of-board": "$2 de $1",
 	"flow-history-day": "Ewro",
+	"echo-category-title-flow-discussion": "Derış",
 	"flow-moderation-confirmation-delete-topic": "Ena mewzu esteriya ya.",
 	"group-flow-bot": "Botê rodayışi",
 	"group-flow-bot-member": "Botê rodayışi",

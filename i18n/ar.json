@@ -165,7 +165,7 @@
 	"flow-error-invalid-moderation-state": "قيمة غير صحيحة للمعامل ('moderationState') تم إرسالها إلى Flow API.",
 	"flow-error-invalid-moderation-reason": "يرجى تقديم سبب للإشراف.",
 	"flow-error-not-allowed": "أذونات غير كافية لتنفيذ هذا الإجراء.",
-	"flow-error-not-allowed-hide": "تم اخفاء هذا الموضوع",
+	"flow-error-not-allowed-hide": "تم إخفاء هذا الموضوع.",
 	"flow-error-not-allowed-reply-to-hide-topic": "لا يمكنك الرد لأن هذا الموضوع تم إخفاؤه.",
 	"flow-error-not-allowed-delete": "تم حذف هذا الموضوع.",
 	"flow-error-not-allowed-reply-to-delete-topic": "لا تستطيع الرد لأن الموضوع تم حذفه.",

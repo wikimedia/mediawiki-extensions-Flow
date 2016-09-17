@@ -31,6 +31,7 @@
 	"flow-post-action-delete-post": "हटाउने",
 	"flow-post-action-hide-post": "लुकाउनुहोस्",
 	"flow-post-action-edit-post": "सम्पादन",
+	"flow-post-action-edit-post-submit": "परिवर्तन सङ्ग्रह गर्नुहोस्",
 	"flow-post-action-restore-post": "पूर्वावस्थामा ल्याउनुहोस्",
 	"flow-topic-action-history": "इतिहास",
 	"flow-topic-action-undo-moderation": "पूर्ववत गर्ने",
