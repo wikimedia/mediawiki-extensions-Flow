@@ -48,8 +48,8 @@
 		]
 	},
 	"enableflow": "Activer Flow",
-	"notification-dynamic-actions-flow-board-unwatch": "Arrêter de regarder la nouvelle activité sur \"$1\"",
-	"notification-dynamic-actions-flow-board-unwatch-confirmation": "Vous ne regardez plus la page \"$1\"",
+	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Arrêter}} de regarder la nouvelle activité sur « $1 »",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Vous}} ne regardez plus la page « $1 »",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Cela n'affectera pas les différentes rubriques que {{GENDER:$3|vous}} regardez. Vous pouvez regarder [$2 cette page] à tout moment.",
 	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Arrêter}} de regarder cette rubrique",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|Vous}} ne regardez plus \"$1\"",

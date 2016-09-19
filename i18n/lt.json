@@ -8,6 +8,12 @@
 			"Eitvys200"
 		]
 	},
+	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Nebesekti}} naujos „$1“ veiklos",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Jūs}} nebesekate puslapio „$1“",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Tai nepaveiks atskirų temų, kurias {{GENDER:$3|jūs}} stebite. Gali bet kada vėl pradėti sekti [$2 šį puslapį].",
+	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Nebestebėti}} šios temos",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|Jūs}} nebesekate „$1“",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Jūs}} galite sekti [$2 šią temą] bet kada.",
 	"flow-board-header-browse-topics-link": "Naršyti temas",
 	"flow-board-description-can-not-edit": "Neredaguojamas",
 	"flow-board-collapse-description": "Slėpti aprašymą",
