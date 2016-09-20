@@ -13,3 +13,4 @@ vendor/symfony/
 vendor/autoload.php
 \#*#
 /composer.lock
+/docs
