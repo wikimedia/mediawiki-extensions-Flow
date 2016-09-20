@@ -79,11 +79,4 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 	public function needsToken() {
 		return false;
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public function getTokenSalt() {
-		return false;
-	}
 }
