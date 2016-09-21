@@ -85,11 +85,4 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 	public function needsToken() {
 		return 'csrf';
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public function getTokenSalt() {
-		return '';
-	}
 }

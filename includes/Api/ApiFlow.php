@@ -155,51 +155,6 @@ class ApiFlow extends ApiBase {
 		);
 	}
 
-	/**
-	 * Override the parent to generate help messages for all available query modules.
-	 * @return string
-	 */
-	public function makeHelpMsg() {
-
-		// Use parent to make default message for the query module
-		$msg = parent::makeHelpMsg();
-
-		$querySeparator = str_repeat( '--- ', 12 );
-		$moduleSeparator = str_repeat( '*** ', 14 );
-		$msg .= "\n$querySeparator Flow: Submodules  $querySeparator\n\n";
-		$msg .= $this->makeHelpMsgHelper( 'submodule' );
-		$msg .= "\n\n$moduleSeparator Modules: continuation  $moduleSeparator\n\n";
-
-		return $msg;
-	}
-
-	/**
-	 * For all modules of a given group, generate help messages and join them together
-	 * @param string $group Module group
-	 * @return string
-	 */
-	private function makeHelpMsgHelper( $group ) {
-		$moduleDescriptions = array();
-
-		$moduleNames = $this->moduleManager->getNames( $group );
-		sort( $moduleNames );
-		foreach ( $moduleNames as $name ) {
-			/**
-			 * @var $module ApiFlowBase
-			 */
-			$module = $this->moduleManager->getModule( $name );
-
-			$msg = ApiMain::makeHelpMsgHeader( $module, $group );
-			$msg2 = $module->makeHelpMsg();
-			if ( $msg2 !== false ) {
-				$msg .= $msg2;
-			}
-			$moduleDescriptions[] = $msg;
-		}
-
-		return implode( "\n", $moduleDescriptions );
-	}
-
 	public function getHelpUrls() {
 		return array(
 			'https://www.mediawiki.org/wiki/Extension:Flow/API',
@@ -221,10 +176,6 @@ class ApiFlow extends ApiBase {
 	}
 
 	public function needsToken() {
-		return false;
-	}
-
-	public function getTokenSalt() {
 		return false;
 	}
 }
