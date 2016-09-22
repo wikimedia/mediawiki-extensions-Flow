@@ -24,12 +24,17 @@
 			"Metastasis",
 			"Ядерный Трамвай",
 			"Mailman",
-			"Jack who built the house"
+			"Jack who built the house",
+			"Туллук"
 		]
 	},
 	"enableflow": "Включить Поток",
+	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Прекратить}} отслеживание новых изменений страницы «$1»",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Вы}} больше не искать страницу с именем «$1»",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Это не будет затрагивать отдельные темы {{пол:$3|вы}} для поиска. Вы можете смотреть [$2 страница] в любое время.",
 	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Перестать}} следить за этой темой",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|Вы}} больше не следите за «$1»",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Вы}} можете возобновить отслеживание [$2 этой страницы] в любой момент.",
 	"flow-desc": "Система управления потоками работ",
 	"flow-talk-taken-over-comment": "/* Эта страница была преобразована в доску обсуждений Потока */",
 	"log-name-flow": "Журнал активности Потока",
