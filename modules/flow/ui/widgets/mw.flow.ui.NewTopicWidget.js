@@ -1,6 +1,6 @@
 ( function ( $ ) {
 	/**
-	 * Flow reply widget
+	 * Flow new topic widget
 	 *
 	 * @class
 	 * @extends OO.ui.Widget
