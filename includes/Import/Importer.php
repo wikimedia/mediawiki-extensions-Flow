@@ -108,11 +108,14 @@ class Importer {
 	 *
 	 * @param IImportSource     $source
 	 * @param Title             $targetPage
+	 * @param User User doing the conversion actions (e.g. initial description,
+	 *    wikitext archive edit).  However, actions will be attributed to the original
+	 *    user when possible (e.g. the user who did the original LQT reply)
 	 * @param ImportSourceStore $sourceStore
 	 * @return bool True When the import completes with no failures
 	 */
-	public function import( IImportSource $source, Title $targetPage, ImportSourceStore $sourceStore ) {
-		$operation = new TalkpageImportOperation( $source, $this->occupationController );
+	public function import( IImportSource $source, Title $targetPage, User $user, ImportSourceStore $sourceStore ) {
+		$operation = new TalkpageImportOperation( $source, $user, $this->occupationController );
 		$pageImportState = new PageImportState(
 			$this->workflowLoaderFactory
 				->createWorkflowLoader( $targetPage )
@@ -521,14 +524,24 @@ class TalkpageImportOperation {
 	 */
 	protected $importSource;
 
+	/** @var User User doing the conversion actions (e.g. initial description, wikitext
+	 *    archive edit).  However, actions will be attributed to the original user when
+	 *    possible (e.g. the user who did the original LQT reply)
+	 */
+	protected $user;
+
 	/** @var OccupationController */
 	protected $occupationController;
 
 	/**
 	 * @param IImportSource $source
+	 * @param User $user The import user; this will only be used when there is no
+	 *   'original' user
+	 * @param OccupationController $occupationController
 	 */
-	public function __construct( IImportSource $source, OccupationController $occupationController ) {
+	public function __construct( IImportSource $source, User $user, OccupationController $occupationController ) {
 		$this->importSource = $source;
+		$this->user = $user;
 		$this->occupationController = $occupationController;
 	}
 
@@ -547,7 +560,7 @@ class TalkpageImportOperation {
 			// Explicitly allow creation of board
 			$creationStatus = $this->occupationController->safeAllowCreation(
 				$destinationTitle,
-				$this->occupationController->getTalkpageManager(),
+				$this->user,
 				/* $mustNotExist = */ true
 			);
 			if ( !$creationStatus->isGood() ) {
