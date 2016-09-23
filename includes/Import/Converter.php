@@ -65,8 +65,7 @@ class Converter {
 	 * @param DatabaseBase $dbw Master wiki database to read from
 	 * @param Importer $importer
 	 * @param LoggerInterface $logger
-	 * @param User $user Administrative user for moves and edits related
-	 *  to the conversion process.
+	 * @param User $user User for moves and edits related to the conversion process
 	 * @param IConversionStrategy $strategy
 	 * @throws ImportException When $user does not have an Id
 	 */
@@ -185,7 +184,7 @@ class Converter {
 		}
 
 		$source = $this->strategy->createImportSource( $archiveTitle );
-		if ( $this->importer->import( $source, $title, $this->strategy->getSourceStore() ) ) {
+		if ( $this->importer->import( $source, $title, $this->user, $this->strategy->getSourceStore() ) ) {
 			$this->createArchiveCleanupRevision( $title, $archiveTitle );
 			$this->logger->info( "Completed import to $title from $archiveTitle" );
 		} else {
