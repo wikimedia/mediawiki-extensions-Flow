@@ -12,6 +12,7 @@ use Parser;
 use Psr\Log\LoggerInterface;
 use StubObject;
 use Title;
+use User;
 use WikitextContent;
 
 /**
@@ -54,10 +55,19 @@ class ConversionStrategy implements IConversionStrategy {
 	 */
 	protected $headerSuffix;
 
+	/** @var User User doing the conversion actions (e.g. initial description, wikitext
+	 *    archive edit).  However, actions will be attributed to the original user when
+	 *    possible (e.g. the user who did the original LQT reply)
+	 *
+	 */
+	 protected $user;
+
 	/**
 	 * @param Parser|StubObject $parser
 	 * @param ImportSourceStore $sourceStore
 	 * @param LoggerInterface $logger
+	 * @param User $user User to take conversion actions are (applicable for actions
+	 *   where if there is no 'original' user)
 	 * @param Title[] $noConvertTemplates List of templates that flag pages that
 	 *  shouldn't be converted (optional)
 	 * @param string $headerSuffix Wikitext to add to the end of the header (optional)
@@ -66,12 +76,14 @@ class ConversionStrategy implements IConversionStrategy {
 		$parser,
 		ImportSourceStore $sourceStore,
 		LoggerInterface $logger,
+		User $user,
 		array $noConvertTemplates = array(),
 		$headerSuffix = null
 	) {
 		$this->parser = $parser;
 		$this->sourceStore = $sourceStore;
 		$this->logger = $logger;
+		$this->user = $user;
 		$this->noConvertTemplates = $noConvertTemplates;
 		$this->headerSuffix = $headerSuffix;
 
@@ -123,7 +135,7 @@ class ConversionStrategy implements IConversionStrategy {
 	 * {@inheritDoc}
 	 */
 	public function createImportSource( Title $title ) {
-		return new ImportSource( $title, $this->parser, $this->headerSuffix );
+		return new ImportSource( $title, $this->parser, $this->user, $this->headerSuffix );
 	}
 
 	/**
