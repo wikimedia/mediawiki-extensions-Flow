@@ -15,6 +15,7 @@ use ParserOptions;
 use Revision;
 use StubObject;
 use Title;
+use User;
 
 /**
  * Imports the header of a wikitext talk page. Does not attempt to
@@ -22,19 +23,26 @@ use Title;
  * ConversionStrategy for more details.
  */
 class ImportSource implements IImportSource {
+	/** @var User User doing the conversion actions (e.g. initial description, wikitext
+	 *    archive edit).  However, actions will be attributed to the original user if
+	 *    applicable.
+	 */
+	protected $user;
 
 	/**
 	 * @param Title $title
 	 * @param Parser|StubObject $parser
 	 * @param string $headerSuffix
+	 * @param User $user User to take actions as
 	 * @throws ImportException When $title is an external title
 	 */
-	public function __construct( Title $title, $parser, $headerSuffix = null ) {
+	public function __construct( Title $title, $parser, User $user, $headerSuffix = null ) {
 		if ( $title->isExternal() ) {
 			throw new ImportException( "Invalid non-local title: $title" );
 		}
 		$this->title = $title;
 		$this->parser = $parser;
+		$this->user = $user;
 		$this->headerSuffix = $headerSuffix;
 	}
 
@@ -80,7 +88,7 @@ class ImportSource implements IImportSource {
 			array( new ObjectRevision(
 				$content,
 				wfTimestampNow(),
-				FlowHooks::getOccupationController()->getTalkpageManager()->getName(),
+				$this->user->getName(),
 				"wikitext-import:header-revision:{$revision->getId()}"
 			) ),
 			"wikitext-import:header:{$this->title->getPrefixedText()}"
@@ -94,4 +102,3 @@ class ImportSource implements IImportSource {
 		return new ArrayIterator( array() );
 	}
 }
-
