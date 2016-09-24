@@ -14,7 +14,7 @@ Feature: Opt-in Flow beta feature
 
   @integration
   Scenario: Opt-in: I have a wikitext talk page
-    Given my talk page has wiktext content
+    Given my talk page has wikitext content
     When I enable Flow beta feature
     Then my talk page is a Flow board
     And my flow board contains a link to my archived talk page
@@ -28,7 +28,7 @@ Feature: Opt-in Flow beta feature
     And my talk page is deleted without redirect
 
   Scenario: Opt-out: I had a wikitext talk page
-    Given my talk page has wiktext content
+    Given my talk page has wikitext content
     And I have Flow beta feature enabled
     When I disable Flow beta feature
     Then my wikitext talk page is restored

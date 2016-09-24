@@ -21,7 +21,7 @@ Then(/^my talk page is a Flow board$/) do
   end
 end
 
-Given(/^my talk page has wiktext content$/) do
+Given(/^my talk page has wikitext content$/) do
   talk_page = "User_talk:#{@username}"
   @talk_page_content = "this is the content of my talk page"
   content = @talk_page_content
@@ -79,7 +79,7 @@ Then(/^my Flow board is archived$/) do
 end
 
 Given(/^I have used the Flow beta feature before$/) do
-  step 'my talk page has wiktext content'
+  step 'my talk page has wikitext content'
   step 'I enable Flow beta feature'
   step 'my talk page is a Flow board'
   @topic_title = @data_manager.get 'title'
