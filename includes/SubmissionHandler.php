@@ -7,6 +7,7 @@ use Flow\Block\AbstractBlock;
 use Flow\Block\Block;
 use Flow\Data\BufferedCache;
 use Flow\Data\ManagerGroup;
+use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidActionException;
 use Flow\Model\Workflow;
@@ -125,7 +126,8 @@ class SubmissionHandler {
 	 * @param Workflow $workflow
 	 * @param AbstractBlock[] $blocks
 	 * @return array Map from committed block name to an array of metadata returned
-	 *  about inserted objects.
+	 *  about inserted objects.  This must be non-empty.  An empty block array
+	 *  indicates there were errors, in which case this method should not be called.
 	 * @throws \Exception
 	 */
 	public function commit( Workflow $workflow, array $blocks ) {
@@ -135,6 +137,19 @@ class SubmissionHandler {
 		/** @var OccupationController $occupationController */
 		$occupationController = Container::get( 'occupation_controller' );
 		$title = $workflow->getOwnerTitle();
+
+		if ( count( $blocks ) === 0 ) {
+			// This is a logic error in the code, but we need to preserve
+			// consistent state.
+			throw new FailCommitException(
+				__METHOD__ . ' was called with $blocks set to an empty ' .
+				'array or a falsy value.  This indicates the blocks are ' .
+				'not able to commit, so ' . __METHOD__ . ' should not be ' .
+				'called.',
+				'fail-commit'
+			);
+		}
+
 		try {
 			$dbw->startAtomic( __METHOD__ );
 			$cache->begin();

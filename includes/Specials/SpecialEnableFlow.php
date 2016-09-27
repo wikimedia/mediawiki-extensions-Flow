@@ -153,7 +153,9 @@ class SpecialEnableFlow extends FormSpecialPage {
 				}
 			}
 
-			$loader->commit( $blocksToCommit );
+			if ( $status->isOK() ) {
+				$loader->commit( $blocksToCommit );
+			}
 		}
 
 		$this->page = $data['page'];
