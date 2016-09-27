@@ -26,7 +26,7 @@
 			// The following classes can be used here:
 			// * mw-editfont-default
 			// * mw-editfont-monospace
-			// * mw-editfont-sansserif
+			// * mw-editfont-sans-serif
 			// * mw-editfont-serif
 			classes: [ 'flow-ui-wikitextEditorWidget-input', 'mw-editfont-' + mw.user.options.get( 'editfont' ) ]
 		} );
