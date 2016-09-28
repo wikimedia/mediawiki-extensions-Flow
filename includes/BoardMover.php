@@ -109,9 +109,11 @@ class BoardMover {
 				'edit-header',
 				$newPage
 			);
-			$this->storage->put( $nextHeader, array(
-				'workflow' => $discussionWorkflow,
-			) );
+			if ( $header !== $nextHeader ) {
+				$this->storage->put( $nextHeader, array(
+					'workflow' => $discussionWorkflow,
+				) );
+			}
 		}
 	}
 
