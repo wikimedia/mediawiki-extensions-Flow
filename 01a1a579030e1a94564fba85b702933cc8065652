@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e82f318_d715ea41",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-09-28T18:21:13Z",
+      "side": 1,
+      "message": "Since this is a plain array (not an associative array) AFAICT, you need array_merge() instead of +.",
+      "revId": "01a1a579030e1a94564fba85b702933cc8065652",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
