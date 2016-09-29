@@ -49,7 +49,7 @@
 		</div>
 
 		<div class="flow-form-actions flow-form-collapsible">
-			<button class="mw-ui-button mw-ui-constructive">'.LCRun3::ch($cx, 'l10n', array(array('flow-edit-post-submit'),array()), 'encq').'</button>
+			<button class="mw-ui-button mw-ui-progressive">'.LCRun3::ch($cx, 'l10n', array(array('flow-edit-post-submit'),array()), 'encq').'</button>
 			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-edit'),array()), 'encq').'
 			</small>
 		</div>

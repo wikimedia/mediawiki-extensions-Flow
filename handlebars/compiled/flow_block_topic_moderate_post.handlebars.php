@@ -49,7 +49,7 @@
 '.$sp.'	<div class="flow-form-actions flow-form-collapsible">
 '.$sp.'		<button data-flow-interactive-handler="apiRequest"
 '.$sp.'		        data-flow-api-handler="moderatePost"
-'.$sp.'		        class="mw-ui-button mw-ui-constructive"
+'.$sp.'		        class="mw-ui-button mw-ui-progressive"
 '.$sp.'		        data-role="submit">'.LCRun3::ch($cx, 'l10n', array(array(LCRun3::ch($cx, 'concat', array(array('flow-moderation-confirm-',((isset($cx['sp_vars']['root']['submitted']['moderationState']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['moderationState'] : null),'-post'),array()), 'raw')),array()), 'encq').'</button>
 '.$sp.'		<a data-flow-interactive-handler="cancelForm"
 '.$sp.'		   class="mw-ui-button mw-ui-destructive mw-ui-quiet"
@@ -83,7 +83,7 @@
 '.$sp.'				   < .flow-post:not([data-flow-post-max-depth=\'1\']) .flow-reply-form [data-role=\'submit\']
 '.$sp.'			   "
 '.$sp.'			>'.htmlentities((string)((isset($in['actions']['reply']['text']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['text'] : null), ENT_QUOTES, 'UTF-8').'</a>
-'.$sp.'' : '').''.((LCRun3::ifvar($cx, ((isset($in['actions']['thank']) && is_array($in['actions'])) ? $in['actions']['thank'] : null))) ? '			<a class="mw-ui-anchor mw-ui-constructive mw-ui-quiet mw-thanks-flow-thank-link"
+'.$sp.'' : '').''.((LCRun3::ifvar($cx, ((isset($in['actions']['thank']) && is_array($in['actions'])) ? $in['actions']['thank'] : null))) ? '			<a class="mw-ui-anchor mw-ui-progressive mw-ui-quiet mw-thanks-flow-thank-link"
 '.$sp.'			   href="'.htmlentities((string)((isset($in['actions']['thank']['url']) && is_array($in['actions']['thank'])) ? $in['actions']['thank']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 '.$sp.'			   title="'.htmlentities((string)((isset($in['actions']['thank']['title']) && is_array($in['actions']['thank'])) ? $in['actions']['thank']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.htmlentities((string)((isset($in['actions']['thank']['text']) && is_array($in['actions']['thank'])) ? $in['actions']['thank']['text'] : null), ENT_QUOTES, 'UTF-8').'</a>
 '.$sp.'' : '').'	</span>
@@ -191,7 +191,7 @@
 '.$sp.'	</div>
 '.$sp.'
 '.$sp.'	<div class="flow-form-actions flow-form-collapsible">
-'.$sp.'		<button class="mw-ui-button mw-ui-constructive"
+'.$sp.'		<button class="mw-ui-button mw-ui-progressive"
 '.$sp.'		        data-flow-api-handler="submitEditPost">'.LCRun3::ch($cx, 'l10n', array(array('flow-post-action-edit-post-submit'),array()), 'encq').'</button>
 '.$sp.''.LCRun3::p($cx, 'flow_form_cancel_button', array(array($in),array()), '		').'		<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-edit'),array()), 'encq').'</small>
 '.$sp.'	</div>
@@ -222,7 +222,7 @@
 '.$sp.'
 '.$sp.'	<div class="flow-form-actions flow-form-collapsible">
 '.$sp.'		<button data-role="submit"
-'.$sp.'		        class="mw-ui-button mw-ui-constructive"
+'.$sp.'		        class="mw-ui-button mw-ui-progressive"
 '.$sp.'		>'.LCRun3::ch($cx, 'l10n', array(array('flow-reply-link'),array()), 'encq').'</button>
 '.$sp.''.LCRun3::p($cx, 'flow_form_cancel_button', array(array($in),array()), '		').'		<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-reply'),array()), 'encq').'</small>
 '.$sp.'	</div>

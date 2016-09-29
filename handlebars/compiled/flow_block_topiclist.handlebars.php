@@ -76,7 +76,7 @@
 '.$sp.'
 '.$sp.'		<div class="flow-form-actions flow-form-collapsible'.((LCRun3::ifvar($cx, ((isset($in['isOnFlowBoard']) && is_array($in)) ? $in['isOnFlowBoard'] : null))) ? ' flow-form-collapsible-collapsed' : '').'">
 '.$sp.'			<button data-role="submit"
-'.$sp.'				class="mw-ui-button mw-ui-constructive mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', array(array('flow-newtopic-save'),array()), 'encq').'</button>
+'.$sp.'				class="mw-ui-button mw-ui-progressive mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', array(array('flow-newtopic-save'),array()), 'encq').'</button>
 '.$sp.''.LCRun3::p($cx, 'flow_form_cancel_button', array(array($in),array()), '			').'			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-new-topic'),array()), 'encq').'</small>
 '.$sp.'		</div>
 '.$sp.'	</form>
@@ -128,7 +128,7 @@
 ';},'flow_topic_titlebar_watch' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-topic-watchlist flow-watch-link">
 '.$sp.''.LCRun3::p($cx, 'flow_errors', array(array($in),array()), '	').'
 '.$sp.'	<a href="'.((LCRun3::ifvar($cx, ((isset($in['isWatched']) && is_array($in)) ? $in['isWatched'] : null))) ? ''.htmlentities((string)((isset($in['links']['unwatch-topic']['url']) && is_array($in['links']['unwatch-topic'])) ? $in['links']['unwatch-topic']['url'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities((string)((isset($in['links']['watch-topic']['url']) && is_array($in['links']['watch-topic'])) ? $in['links']['watch-topic']['url'] : null), ENT_QUOTES, 'UTF-8').'').'"
-'.$sp.'	   class="mw-ui-anchor mw-ui-hovericon mw-ui-constructive '.((!LCRun3::ifvar($cx, ((isset($in['isWatched']) && is_array($in)) ? $in['isWatched'] : null))) ? 'mw-ui-quiet' : '').'
+'.$sp.'	   class="mw-ui-anchor mw-ui-hovericon mw-ui-progressive '.((!LCRun3::ifvar($cx, ((isset($in['isWatched']) && is_array($in)) ? $in['isWatched'] : null))) ? 'mw-ui-quiet' : '').'
 '.$sp.''.((LCRun3::ifvar($cx, ((isset($in['isWatched']) && is_array($in)) ? $in['isWatched'] : null))) ? 'flow-watch-link-unwatch' : 'flow-watch-link-watch').'"
 '.$sp.'	   data-flow-api-handler="watchItem"
 '.$sp.'	   data-flow-api-target="< .flow-topic-watchlist"
@@ -217,7 +217,7 @@
 '.$sp.'
 '.$sp.'	<div class="flow-form-actions flow-form-collapsible">
 '.$sp.'		<button data-role="submit"
-'.$sp.'		        class="mw-ui-button mw-ui-constructive"
+'.$sp.'		        class="mw-ui-button mw-ui-progressive"
 '.$sp.'		>'.LCRun3::ch($cx, 'l10n', array(array('flow-reply-link'),array()), 'encq').'</button>
 '.$sp.''.LCRun3::p($cx, 'flow_form_cancel_button', array(array($in),array()), '		').'		<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-reply'),array()), 'encq').'</small>
 '.$sp.'	</div>

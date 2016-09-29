@@ -40,7 +40,7 @@
 '.$sp.'				<input type="hidden" name="flow_reason" value="'.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? ''.LCRun3::ch($cx, 'l10n', array(array('flow-rev-message-restore-topic-reason'),array()), 'encq').'' : ''.LCRun3::ch($cx, 'l10n', array(array('flow-rev-message-lock-topic-reason'),array()), 'encq').'').'" />
 '.$sp.'				<div class="flow-form-actions flow-form-collapsible">
 '.$sp.'					<button data-role="submit"
-'.$sp.'					        class="mw-ui-button mw-ui-constructive"
+'.$sp.'					        class="mw-ui-button mw-ui-progressive"
 '.$sp.'					>
 '.$sp.''.((LCRun3::ifvar($cx, ((isset($in['isLocked']) && is_array($in)) ? $in['isLocked'] : null))) ? '							'.LCRun3::ch($cx, 'l10n', array(array('flow-topic-action-unlock-topic'),array()), 'encq').'
 '.$sp.'' : '							'.LCRun3::ch($cx, 'l10n', array(array('flow-topic-action-lock-topic'),array()), 'encq').'
