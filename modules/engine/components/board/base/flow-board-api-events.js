@@ -240,7 +240,12 @@
 
 		if ( data.watch[ 0 ].watched !== undefined ) {
 			// Successful watch: show tooltip
-			flowBoard.emitWithReturn( 'showSubscribedTooltip', $newLink.find( '.mw-ui-anchor' ), watchType );
+			flowBoard.emitWithReturn(
+				'showSubscribedTooltip',
+				$newLink.find( '.mw-ui-anchor' ),
+				watchType,
+				$newLink.css( 'direction' ) === 'ltr' ? 'left' : 'right'
+			);
 		}
 
 		return $.Deferred().resolve().promise();
