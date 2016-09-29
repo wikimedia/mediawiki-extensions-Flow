@@ -806,7 +806,7 @@
 	 * to this topic|board
 	 * @param  {jQuery} $tooltipTarget Element to attach tooltip to.
 	 * @param  {string} type           'topic' or 'board'
-	 * @param  {string} dir            Direction to point the pointer. 'left' or 'up'
+	 * @param  {string} dir            Direction to point the pointer. 'left', 'right', 'up' or 'down'
 	 */
 	function flowEventsMixinShowSubscribedTooltip( $tooltipTarget, type, dir ) {
 		dir = dir || 'left';
