@@ -43,7 +43,7 @@
 		this.$controls = $( '<div>' ).addClass( 'flow-ui-topicTitleWidget-controls' );
 		this.$buttons = $( '<div>' ).addClass( 'flow-ui-topicTitleWidget-buttons' );
 		this.saveButton = new OO.ui.ButtonWidget( {
-			flags: [ 'primary', 'constructive' ],
+			flags: [ 'primary', 'progressive' ],
 			label: mw.msg( 'flow-edit-title-submit' ),
 			classes: [ 'flow-ui-topicTitleWidget-saveButton' ]
 		} );

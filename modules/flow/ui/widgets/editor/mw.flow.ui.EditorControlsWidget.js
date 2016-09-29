@@ -27,7 +27,7 @@
 		} );
 
 		this.saveButton = new OO.ui.ButtonWidget( {
-			flags: [ 'primary', 'constructive' ],
+			flags: [ 'primary', 'progressive' ],
 			label: mw.msg( config.saveMsgKey || 'flow-newtopic-save' ),
 			classes: [ 'flow-ui-editorControlsWidget-saveButton' ]
 		} );
