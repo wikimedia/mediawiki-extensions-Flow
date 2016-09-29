@@ -58,7 +58,7 @@
 			<div class="flow-form-actions flow-form-collapsible">
 				<button
 					data-role="submit"
-					class="mw-ui-button mw-ui-constructive"
+					class="mw-ui-button mw-ui-progressive"
 					data-flow-api-target="< .flow-topic-summary-container">
 						'.LCRun3::ch($cx, 'l10n', array(array('flow-topic-action-update-topic-summary'),array()), 'encq').'
 				</button>

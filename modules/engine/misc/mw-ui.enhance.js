@@ -162,7 +162,7 @@ mw.flow.ui.enhance = {};
 		 * Renders a tooltip at target.
 		 * Options (either given as param, or fetched from target as data-tooltip-x params):
 		 *  tooltipSize=String (small,large,block)
-		 *  tooltipContext=String (constructive,destructive,progressive,regressive)
+		 *  tooltipContext=String (progressive,destructive)
 		 *  tooltipPointing=String (up,down,left,right)
 		 *  tooltipClosable=Boolean
 		 *  tooltipContentCallback=Function
@@ -252,8 +252,6 @@ mw.flow.ui.enhance = {};
 			if ( !optionsUnreferenced.tooltipContext ) {
 				if ( $target.hasClass( 'mw-ui-progressive' ) ) {
 					optionsUnreferenced.tooltipContext = 'progressive';
-				} else if ( $target.hasClass( 'mw-ui-constructive' ) ) {
-					optionsUnreferenced.tooltipContext = 'constructive';
 				} else if ( $target.hasClass( 'mw-ui-destructive' ) ) {
 					optionsUnreferenced.tooltipContext = 'destructive';
 				}
@@ -274,7 +272,7 @@ mw.flow.ui.enhance = {};
 
 			// Tooltip style context
 			if ( optionsUnreferenced.tooltipContext ) {
-				$tooltip.removeClass( 'mw-ui-progressive mw-ui-constructive mw-ui-destructive' );
+				$tooltip.removeClass( 'mw-ui-progressive mw-ui-destructive' );
 				$tooltip.addClass( 'mw-ui-' + optionsUnreferenced.tooltipContext );
 			}
 
