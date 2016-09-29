@@ -75,17 +75,21 @@ Styleguide 4.0.
 		bottom: -1em;
 	}
 	.flow-ui-tooltip-triangle-location-vertical( left ) {
+		/* @noflip */
 		left: -1em;
 	}
 	.flow-ui-tooltip-triangle-location-vertical( right ) {
+		/* @noflip */
 		right: -1em;
 	}
 	// up-down
 	.flow-ui-tooltip-triangle-location( horizontal, @location ) {
 		width: 2em;
 		height: 1em;
+		/* @noflip */
 		left: 50%;
 		.flow-ui-tooltip-triangle-location-horizontal( @location );
+		/* @noflip */
 		margin-left: -1em;
 	}
 	// left-right
@@ -99,6 +103,7 @@ Styleguide 4.0.
 
 	// triangle on top
 	&.flow-ui-tooltip-up {
+		/* @noflip */
 		margin-top: 0.75em;
 
 		.flow-ui-tooltip-triangle {
@@ -106,7 +111,9 @@ Styleguide 4.0.
 
 			&:after {
 				top: 0.5em;
+				/* @noflip */
 				left: 0.5em;
+				/* @noflip */
 				.box-shadow( ~'0 0 1px 0 @{colorGrayLight}' );
 			}
 		}
@@ -121,7 +128,9 @@ Styleguide 4.0.
 
 			&:after {
 				top: -0.5em;
+				/* @noflip */
 				left: 0.5em;
+				/* @noflip */
 				.box-shadow( ~'0 -1.5px 0 1.5px @{colorGrayLight}, 0 0 1px 0 @{colorGrayLight}' );
 			}
 		}
@@ -129,6 +138,7 @@ Styleguide 4.0.
 
 	// triangle at left
 	&.flow-ui-tooltip-left {
+		/* @noflip */
 		margin-left: 0.75em;
 
 		.flow-ui-tooltip-triangle {
@@ -137,7 +147,9 @@ Styleguide 4.0.
 			&:after {
 				margin-top: -1px;
 				top: 0.5em;
+				/* @noflip */
 				right: -0.5em;
+				/* @noflip */
 				.box-shadow( ~'1.5px 0 0 1.5px @{colorGrayLight}, 0 0 1px 0 @{colorGrayLight}' );
 			}
 		}
@@ -145,6 +157,7 @@ Styleguide 4.0.
 
 	// triangle at right
 	&.flow-ui-tooltip-right {
+		/* @noflip */
 		margin-left: -0.75em;
 
 		.flow-ui-tooltip-triangle {
@@ -153,7 +166,9 @@ Styleguide 4.0.
 			&:after {
 				margin-top: -1px;
 				top: 0.5em;
+				/* @noflip */
 				left: -0.5em;
+				/* @noflip */
 				.box-shadow( ~'0 1.5px 0 1.5px @{colorGrayLight}, 0 0 1px 0 @{colorGrayLight}' );
 			}
 		}
@@ -163,6 +178,7 @@ Styleguide 4.0.
 		@backgroundColorDarkened: darken( @backgroundColor, @colorDarkenPercentage );
 
 		background: @backgroundColor;
+		/* @noflip */
 		.box-shadow( ~'0 2px 0 0 @{backgroundColorDarkened}' );
 		color: @colorWhite;
 
@@ -170,12 +186,15 @@ Styleguide 4.0.
 			background: @backgroundColor;
 		}
 		&.flow-ui-tooltip-down .flow-ui-tooltip-triangle:after {
+			/* @noflip */
 			.box-shadow( ~'0 -2px 0 2px @{backgroundColorDarkened}' );
 		}
 		&.flow-ui-tooltip-left .flow-ui-tooltip-triangle:after {
+			/* @noflip */
 			.box-shadow( ~'2px 0 0 2px @{backgroundColorDarkened}' );
 		}
 		&.flow-ui-tooltip-right .flow-ui-tooltip-triangle:after {
+			/* @noflip */
 			.box-shadow( ~'0 2px 0 2px @{backgroundColorDarkened}' );
 		}
 	}
