@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e82f318_1cff9b63",
+        "filename": "includes/Import/Converter.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-09-30T20:44:38Z",
+      "side": 1,
+      "message": "These updates run",
+      "revId": "683f57b38d5ea2585c4f216e24fee8c3d9287746",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e82f318_3cf53f80",
+        "filename": "includes/Import/Converter.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-09-30T20:44:38Z",
+      "side": 1,
+      "message": "I think this is only a problem when doing the internal API call to LQT, which doesn\u0027t know to use master.",
+      "revId": "683f57b38d5ea2585c4f216e24fee8c3d9287746",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e82f318_bc304f54",
+        "filename": "includes/Import/Converter.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-09-30T20:44:38Z",
+      "side": 1,
+      "message": "I\u0027ll tweak this comment slightly.",
+      "revId": "683f57b38d5ea2585c4f216e24fee8c3d9287746",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
