@@ -316,12 +316,12 @@ abstract class ApiBackend implements LoggerAwareInterface {
 		$data = $this->apiCall( $conditions );
 
 		if ( ! isset( $data['query'] ) ) {
-			$this->logger->error( __METHOD__ . ': Failed API call against ' . $this->getKey() . ' with conditions : ' . json_encode( $conditions ) );
 			if ( $this->isNotFoundError( $data ) ) {
 				$message = "Did not find pages: " . json_encode( $conditions );
 				$this->logger->debug( __METHOD__ . ": $message" );
 				throw new ApiNotFoundException( $message );
 			} else {
+				$this->logger->error( __METHOD__ . ': Failed API call against ' . $this->getKey() . ' with conditions : ' . json_encode( $conditions ) );
 				throw new ImportException( "Null response from API module: " . json_encode( $data ) );
 			}
 		} elseif ( !$expectContinue && isset( $data['continue'] ) ) {
