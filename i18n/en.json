@@ -75,7 +75,7 @@
 	"flow-post-actions": "Actions",
 	"flow-topic-actions": "Actions",
 	"flow-cancel": "Cancel",
-	"flow-skip-summary": "Skip summary",
+	"flow-skip-summary": "Skip",
 	"flow-edit-summary-placeholder": "Describe briefly the outcome of this discussion",
 	"flow-summary-authored": "Summary by $1",
 	"flow-summary-edited": "Summary last {{GENDER:$1|edited}} by $1",
