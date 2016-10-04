@@ -144,6 +144,8 @@
 	"flow-topic-comments": "{{PLURAL:$1|Ένα σχόλιο|$1 σχόλια|0=Γίνετε {{GENDER:$2|ο πρώτος|η πρώτη}} που θα σχολιάσει!}}",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />{{GENDER:$1|Ο|Η}} $1 απάντησε στην <strong>$4</strong>",
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />{{GENDER:$1|Ο|Η}} $1 και {{PLURAL:$5|άλλος ένας|άλλοι $5|100=99+ ακόμη}} απάντησαν στην <strong>$3</strong>.",
+	"notification-header-flow-post-reply": "{{GENDER:$2|Ο|Η}} $1 απάντησε στο \"<strong>$4</strong>\".",
+	"notification-header-flow-enabled-on-talkpage": "Νέο σύστημα συζητήσεων ενεργοποιήθηκε για την <strong>σελίδα συζήτησης χρήστη {{GENDER:$2|σας}}</strong>.",
 	"flow-revision-permalink-warning-header-first": "Αυτός είναι ένας μόνιμος σύνδεσμος στην πρώτη έκδοση της περιγραφής.\nΜπορείτε να δείτε νεότερες εκδόσεις στη [$2 σελίδα ιστορικού του πίνακα].",
 	"flow-topic-first-heading": "Θέμα στο $1",
 	"flow-no-more-fwd": "Δεν υπάρχουν παλαιότερα θέματα",
@@ -157,5 +159,11 @@
 	"flow-edited-by": "Υπέστη επεξεργασία από $1",
 	"flow-wikitext-editor-help-and-preview": "Το κείμενο wiki $1 και μπορείτε να $2 οποτεδήποτε.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|χρησιμοποιεί κώδικα]]",
-	"flow-wikitext-editor-help-preview-the-result": "κάνετε προεπισκόπηση του αποτελέσματος"
+	"flow-wikitext-editor-help-preview-the-result": "κάνετε προεπισκόπηση του αποτελέσματος",
+	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Καλώς ήρθατε}} στη νέα σελίδα συζήτησης χρήστη {{GENDER:$1|σας}}",
+	"flow-guidedtour-optin-welcome-description": "Η σελίδα συζήτησής {{GENDER:$1|σας}} είναι ο χώρος όπου άλλοι συντάκτες μπορούν να έρθουν σε επαφή μαζί {{GENDER:$1|σας}}. Με το Flow, είναι πιο εύκολο να ξεκινήσετε νέα θέματα και να παρακολουθείτε τις συνομιλίες.",
+	"flow-guidedtour-optin-find-old-conversations": "Βρείτε παλιές συζητήσεις {{GENDER:$1|σας}}",
+	"flow-guidedtour-optin-find-old-conversations-description": "Προηγούμενες συζητήσεις έχουν μετακινηθεί σε μια σελίδα αρχείου.",
+	"flow-guidedtour-optin-feedback": "Δώστε μας τα σχόλιά {{GENDER:$1|σας}}!",
+	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Μπορείτε}} να πάρετε περισσότερες πληροφορίες, να παρέχετε ανατροφοδότηση, ή να απενεργοποιήσετε το νέο σύστημα οποιαδήποτε στιγμή από την ενότητα λειτουργιών Beta."
 }
