@@ -2,7 +2,7 @@
 
 namespace Flow;
 
-use Flow\Exception\InvalidInputException;
+use Flow\Exception\InvalidParameterException;
 use Flow\Exception\PermissionException;
 use Flow\Repository\UserNameBatch;
 use Flow\Exception\FlowException;
@@ -120,11 +120,11 @@ class Templating {
 	 * @param AbstractRevision $revision Revision to display content for
 	 * @param string[optional] $format Format to output content in (fixed-html|html|wikitext|topic-title-html|topic-title-wikitext|topic-title-plaintext)
 	 * @return string HTML if requested, otherwise plain text
-	 * @throws InvalidInputException
+	 * @throws InvalidParameterException
 	 */
 	public function getContent( AbstractRevision $revision, $format = 'fixed-html' ) {
 		if ( !in_array( $format, array( 'fixed-html', 'html', 'wikitext', 'topic-title-html', 'topic-title-wikitext', 'topic-title-plaintext' ) ) ) {
-			throw new InvalidInputException( 'Invalid format: ' . $format );
+			throw new InvalidParameterException( 'Invalid format: ' . $format );
 		}
 
 		$mainPermissionAction = ( $revision instanceof PostRevision && $revision->isTopicTitle() ) ?

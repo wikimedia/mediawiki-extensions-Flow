@@ -2,7 +2,7 @@
 
 namespace Flow\Model;
 
-use Flow\Exception\InvalidReferenceException;
+use Flow\Exception\InvalidParameterException;
 use Title;
 
 abstract class Reference {
@@ -55,7 +55,7 @@ abstract class Reference {
 	 * @param string $objectType  Output of getRevisionType for the AbstractRevision that this reference comes from.
 	 * @param UUID   $objectId    Unique identifier for the revisioned object containing the reference.
 	 * @param string $type        The type of reference
-	 * @throws InvalidReferenceException
+	 * @throws InvalidParameterException
 	 */
 	protected function __construct( UUID $id, $wiki, UUID $srcWorkflow, Title $srcTitle, $objectType, UUID $objectId, $type ) {
 		$this->id = $id;
@@ -67,7 +67,7 @@ abstract class Reference {
 		$this->srcTitle = $srcTitle;
 
 		if ( !in_array( $type, $this->validTypes ) ) {
-			throw new InvalidReferenceException(
+			throw new InvalidParameterException(
 				"Invalid type $type specified for reference " . get_class( $this )
 			);
 		}

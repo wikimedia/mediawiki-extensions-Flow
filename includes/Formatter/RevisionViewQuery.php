@@ -4,6 +4,7 @@ namespace Flow\Formatter;
 
 use Flow\Data\ManagerGroup;
 use Flow\Exception\InvalidInputException;
+use Flow\Exception\InvalidParameterException;
 use Flow\Exception\PermissionException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
@@ -46,7 +47,7 @@ abstract class RevisionViewQuery extends AbstractQuery {
 	 */
 	public function getSingleViewResult( $revId ) {
 		if ( !$revId ) {
-			throw new InvalidInputException( 'Missing revision', 'missing-revision' );
+			throw new InvalidParameterException( 'Missing revision' );
 		}
 		$rev = $this->createRevision( $revId );
 		if ( !$rev ) {
