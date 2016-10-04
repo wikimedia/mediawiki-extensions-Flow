@@ -6,6 +6,7 @@ use Flow\Container;
 use Flow\Conversion\Utils;
 use Flow\Data\ManagerGroup;
 use Flow\Data\Pager\HistoryPager;
+use Flow\Exception\DataModelException;
 use Flow\Exception\FailCommitException;
 use Flow\Exception\FlowException;
 use Flow\Exception\InvalidActionException;
@@ -98,7 +99,7 @@ class TopicBlock extends AbstractBlock {
 		} elseif ( $root instanceof RootPostLoader ) {
 			$this->rootLoader = $root;
 		} else {
-			throw new InvalidInputException(
+			throw new DataModelException(
 				'Expected PostRevision or RootPostLoader, received: ' . is_object( $root ) ? get_class( $root ) : gettype( $root ), 'invalid-input'
 			);
 		}

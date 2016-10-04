@@ -4,7 +4,7 @@ namespace Flow\Repository;
 
 use Flow\Data\BufferedCache;
 use Flow\Model\UUID;
-use Flow\Exception\InvalidInputException;
+use Flow\Exception\InvalidParameterException;
 
 class MultiGetList {
 
@@ -25,7 +25,7 @@ class MultiGetList {
 	 * @param array $ids
 	 * @param callable $loadCallback
 	 * @return array
-	 * @throws InvalidInputException
+	 * @throws InvalidParameterException
 	 */
 	public function get( $treeType, array $ids, $loadCallback ) {
 		$cacheKeys = array();
@@ -36,7 +36,7 @@ class MultiGetList {
 				$cacheId = UUID::create( $id );
 			} else {
 				$type = is_object( $id ) ? get_class( $id ) : gettype( $id );
-				throw new InvalidInputException( 'Not scalar:' . $type, 'invalid-input' );
+				throw new InvalidParameterException( 'Not scalar:' . $type, 'invalid-input' );
 			}
 			$cacheKeys[ TreeCacheKey::build( $treeType, $cacheId ) ] = $id;
 		}
