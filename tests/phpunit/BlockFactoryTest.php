@@ -34,12 +34,12 @@ class BlockFactoryTest extends FlowTestCase {
 	}
 
 	/**
-	 * @expectedException \Flow\Exception\InvalidInputException
+	 * @expectedException \Flow\Exception\DataModelException
 	 */
 	public function testCreateBlocksWithInvalidInputException() {
 		$factory = $this->createBlockFactory();
 		$workflow = $this->mockWorkflow( 'a-bad-database-flow-workflow' );
-		// Trigger InvalidInputException
+		// Trigger DataModelException
 		$factory->createBlocks( $workflow );
 	}
 

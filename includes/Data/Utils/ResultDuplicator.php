@@ -3,7 +3,7 @@
 namespace Flow\Data\Utils;
 
 use Flow\Data\ObjectManager;
-use Flow\Exception\InvalidInputException;
+use Flow\Exception\InvalidParameterException;
 
 // Better name?
 //
@@ -61,7 +61,7 @@ class ResultDuplicator {
 	public function add( $query, $position ) {
 		$dim = count( (array) $position );
 		if ( $dim !== $this->dimensions ) {
-			throw new InvalidInputException( "Expection position with {$this->dimensions} dimensions, received $dim", 'invalid-input' );
+			throw new InvalidParameterException( "Expected position with {$this->dimensions} dimensions, received $dim" );
 		}
 		$query = ObjectManager::splitFromRow( $query, $this->queryKeys );
 		if ( $query === null ) {
@@ -111,4 +111,3 @@ class ResultDuplicator {
 		return $final;
 	}
 }
-
