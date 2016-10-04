@@ -6,6 +6,7 @@ use ApiSerializable;
 use Blob;
 use Flow\Data\ObjectManager;
 use Flow\Exception\FlowException;
+use Flow\Exception\InvalidParameterException;
 use Flow\Exception\InvalidInputException;
 use Language;
 use MWTimestamp;
@@ -83,11 +84,13 @@ class UUID implements ApiSerializable {
 	 * @param string $value UUID value
 	 * @param string $format UUID format (static::INPUT_BIN, static::input_HEX
 	 *  or static::input_ALNUM)
+	 * @throws InvalidParameterException On logic error, or for an invalid UUID string
+	 *  in a format not used directly by end-users
 	 * @throws InvalidInputException
 	 */
 	protected function __construct( $value, $format ) {
 		if ( !in_array( $format, array( static::INPUT_BIN, static::INPUT_HEX, static::INPUT_ALNUM ) ) ) {
-			throw new InvalidInputException( 'Invalid UUID input format: ' . $format, 'invalid-input' );
+			throw new InvalidParameterException( 'Invalid UUID input format: ' . $format );
 		}
 
 		// doublecheck validity of inputs, based on pre-determined lengths
@@ -190,12 +193,12 @@ class UUID implements ApiSerializable {
 			} elseif ( $input instanceof Blob ) {
 				return self::create( $input->fetch() );
 			} else {
-				throw new InvalidInputException( 'Unknown input of type ' . get_class( $input ), 'invalid-input' );
+				throw new InvalidParameterException( 'Unknown input of type ' . get_class( $input ) );
 			}
 		} elseif ( $input === null ) {
 			return null;
 		} else {
-			throw new InvalidInputException( 'Unknown input type to UUID class: ' . gettype( $input ), 'invalid-input' );
+			throw new InvalidParameterException( 'Unknown input type to UUID class: ' . gettype( $input ) );
 		}
 	}
 
@@ -317,7 +320,7 @@ class UUID implements ApiSerializable {
 	 * @param User|null $user
 	 * @param Language|null $lang
 	 * @return string|false
-	 * @throws InvalidInputException
+	 * @throws InvalidParameterException
 	 */
 	public function getHumanTimestamp( $relativeTo = null, User $user = null, Language $lang = null ) {
 		if ( $relativeTo instanceof UUID ) {
@@ -325,7 +328,7 @@ class UUID implements ApiSerializable {
 		} elseif ( $relativeTo instanceof MWTimestamp ) {
 			$rel = $relativeTo;
 		} else {
-			throw new InvalidInputException( 'Expected MWTimestamp or UUID, got ' . get_class( $relativeTo ), 'invalid-input' );
+			throw new InvalidParameterException( 'Expected MWTimestamp or UUID, got ' . get_class( $relativeTo ) );
 		}
 		$ts = $this->getTimestampObj();
 		return $ts ? $ts->getHumanTimestamp( $rel, $user, $lang ) : false;

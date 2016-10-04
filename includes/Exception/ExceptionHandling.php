@@ -138,6 +138,12 @@ class FlowException extends MWException {
 
 /**
  * Category: invalid input exception
+ *
+ * This is not logged, and must *only* be used when the error is caused by invalid end-user
+ * input.  The same applies to the subclasses.
+ *
+ * If it is a logic error (including a missing or incorrect parameter not directly caused
+ * by user input), or another kind of failure, another (loggable) exception must be used.
  */
 class InvalidInputException extends FlowException {
 	protected function getErrorCodeList() {
@@ -165,6 +171,10 @@ class InvalidInputException extends FlowException {
 	}
 }
 
+/**
+ * This is not logged, and must *only* be used for reference
+ * errors caused by invalid (unprocessable) end-user input
+ */
 class InvalidReferenceException extends InvalidInputException {
 }
 
@@ -250,6 +260,7 @@ class InvalidDataException extends FlowException {
 			'fail-search', // flow-error-fail-search
 			'missing-topic-title', // flow-error-missing-topic-title
 			'missing-metadata', // flow-error-missing-metadata
+			'different-page', // flow-error-different-page
 		);
 	}
 }
@@ -363,5 +374,22 @@ class InvalidTopicUuidException extends InvalidInputException {
 
 	public function getPageTitle() {
 		return wfMessage( 'flow-error-invalid-topic-uuid-title' )->escaped();
+	}
+}
+
+/**
+ * Exception for missing or invalid parameters to method calls, when not traced directly to
+ * user input.
+ *
+ * This deliberately does not extend InvalidInputException, and must be loggable
+ */
+class InvalidParameterException extends FlowException {
+	public function __construct( $message ) {
+		parent::__construct( $message, 'invalid-parameter' );
+	}
+
+	protected function getErrorCodeList() {
+		// flow-error-invalid-parameter
+		return array( 'invalid-parameter' );
 	}
 }

@@ -5,7 +5,7 @@ namespace Flow\Search;
 use Elastica\Filter\BoolFilter;
 use Elastica\Filter\Terms;
 use Elastica\Query;
-use Flow\Exception\InvalidInputException;
+use Flow\Exception\InvalidParameterException;
 
 class SearchEngine extends \SearchEngine {
 	/**
@@ -95,12 +95,12 @@ class SearchEngine extends \SearchEngine {
 	 * false is allowed (means we'll search *all* types)
 	 *
 	 * @param string|false $type
-	 * @throws InvalidInputException
+	 * @throws InvalidParameterException
 	 */
 	public function setType( $type ) {
 		$allowedTypes = array_merge( Connection::getAllTypes(), array( false ) );
 		if ( !in_array( $type, $allowedTypes ) ) {
-			throw new InvalidInputException( 'Invalid search sort requested', 'invalid-input' );
+			throw new InvalidParameterException( 'Invalid search index requested' );
 		}
 
 		$this->type = $type;
@@ -126,11 +126,11 @@ class SearchEngine extends \SearchEngine {
 
 	/**
 	 * @param string $sort
-	 * @throws InvalidInputException
+	 * @throws InvalidParameterException
 	 */
 	public function setSort( $sort ) {
 		if ( !in_array( $sort, $this->getValidSorts() ) ) {
-			throw new InvalidInputException( 'Invalid search sort requested', 'invalid-input' );
+			throw new InvalidParameterException( 'Invalid search sort requested' );
 		}
 
 		$this->sort = $sort;

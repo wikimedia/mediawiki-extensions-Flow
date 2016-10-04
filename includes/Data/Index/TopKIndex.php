@@ -10,7 +10,7 @@ use Flow\Data\ObjectStorage;
 use Flow\Data\Compactor\ShallowCompactor;
 use Flow\Data\Utils\SortArrayByKeys;
 use Flow\Exception\DataModelException;
-use Flow\Exception\InvalidInputException;
+use Flow\Exception\InvalidParameterException;
 
 /**
  * Holds the top k items with matching $indexed columns.  List is sorted and truncated to specified size.
@@ -23,7 +23,7 @@ class TopKIndex extends FeatureIndex {
 
 	public function __construct( BufferedCache $cache, ObjectStorage $storage, ObjectMapper $mapper, $prefix, array $indexed, array $options = array() ) {
 		if ( empty( $options['sort'] ) ) {
-			throw new InvalidInputException( 'TopKIndex must be sorted', 'invalid-input' );
+			throw new InvalidParameterException( 'TopKIndex must be sorted' );
 		}
 
 		parent::__construct( $cache, $storage, $mapper, $prefix, $indexed );
