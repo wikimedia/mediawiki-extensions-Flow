@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e82f318_5aeadad6",
+        "filename": "includes/WorkflowLoaderFactory.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-10-05T19:44:51Z",
+      "side": 1,
+      "message": "Missing `use` statement at the top for this type.",
+      "revId": "189ea5d55f4c3e70771b3ee24868b29ba4a12992",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
