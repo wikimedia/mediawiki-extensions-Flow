@@ -10,7 +10,7 @@ use Flow\Block\TopicSummaryBlock;
 use Flow\Block\BoardHistoryBlock;
 use Flow\Model\Workflow;
 use Flow\Data\ManagerGroup;
-use Flow\Exception\InvalidInputException;
+use Flow\Exception\DataModelException;
 use Flow\Exception\InvalidDataException;
 use Flow\Repository\RootPostLoader;
 
@@ -36,7 +36,7 @@ class BlockFactory {
 	/**
 	 * @param Workflow $workflow
 	 * @return AbstractBlock[]
-	 * @throws InvalidInputException When the workflow type is unrecognized
+	 * @throws DataModelException When the workflow type is unrecognized
 	 * @throws InvalidDataException When multiple blocks share the same name
 	 */
 	public function createBlocks( Workflow $workflow ) {
@@ -57,7 +57,7 @@ class BlockFactory {
 				break;
 
 			default:
-				throw new InvalidInputException( 'Not Implemented', 'invalid-definition' );
+				throw new DataModelException( 'Not Implemented', 'process-data' );
 				break;
 		}
 
