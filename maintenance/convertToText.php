@@ -42,19 +42,7 @@ class ConvertToText extends Maintenance {
 			$this->api = new LocalApiBackend();
 		}
 
-		$headerContent = '';
-
-		$headerData = $this->flowApi(
-			$this->pageTitle,
-			'view-header',
-			array( 'vhformat' => 'wikitext' ),
-			'header'
-		);
-
-		$headerRevision = $headerData['header']['revision'];
-		if ( isset( $headerRevision['content'] ) ) {
-			$headerContent = $headerRevision['content']['content'];
-		}
+		$headerContent = $this->processHeader();
 
 		$continue = true;
 		$pagerParams = array( 'vtllimit' => 1 );
@@ -81,7 +69,7 @@ class ConvertToText extends Maintenance {
 				$paginationLinks = $topicListBlock['links']['pagination'];
 				if ( isset( $paginationLinks['fwd'] ) ) {
 					list( $junk, $query ) = explode( '?', $paginationLinks['fwd']['url'] );
-					$queryParams = wfCGIToArray( $query );
+					$queryParams = wfCgiToArray( $query );
 
 					$pagerParams = array(
 						'vtloffset-id' => $queryParams['topiclist_offset-id'],
@@ -100,11 +88,10 @@ class ConvertToText extends Maintenance {
 	 * @param Title $title
 	 * @param string $submodule
 	 * @param array $request
-	 * @param bool $requiredBlock
 	 * @return array
 	 * @throws MWException
 	 */
-	protected function flowApi( Title $title, $submodule, array $request, $requiredBlock = false ) {
+	protected function flowApi( Title $title, $submodule, array $request ) {
 		$result = $this->api->apiCall( $request + array(
 			'action' => 'flow',
 			'submodule' => $submodule,
@@ -115,9 +102,9 @@ class ConvertToText extends Maintenance {
 	}
 
 	protected function processTopic( array $context, array $revision ) {
-		$topicOutput = '==' . $revision['content']['content'] . '==' . "\n";
+		$topicOutput = $this->processTopicTitle( $revision );
 		$summaryOutput = isset( $revision['summary'] ) ? $this->processSummary( $context, $revision['summary'] ) : '';
-		$postsOutput = $this->processPostCollection( $context, $revision['replies'] );
+		$postsOutput = $this->processPostCollection( $context, $revision['replies'] ) . "\n\n";
 		$resolved = isset( $revision['moderateState'] ) && $revision['moderateState'] === AbstractRevision::MODERATED_LOCKED;
 
 		// check if "resolved" templates exist
@@ -131,13 +118,13 @@ class ConvertToText extends Maintenance {
 			return $topicOutput . '{{Hatnote|' . $summaryOutput . "}}\n\n" . $postsOutput;
 		} else {
 			// italicize summary, if there is any, to set it apart from posts
-			$summaryOutput = $summaryOutput ? "''" . $summaryOutput . "''" : '';
+			$summaryOutput = $summaryOutput ? "''" . $summaryOutput . "''\n\n" : '';
 			return $topicOutput . $summaryOutput . $postsOutput;
 		}
 	}
 
 	protected function loadUser( $id, $name ) {
-		$row = new \StdClass;
+		$row = new stdClass;
 		$row->user_name = $name;
 		$row->user_id = $id;
 
@@ -145,8 +132,10 @@ class ConvertToText extends Maintenance {
 	}
 
 	protected function processSummary( array $context, array $summary ) {
-		return trim( $summary['revision']['content']['content'] ) . ' ' .
-			$this->getSignature( $summary['revision']['author'], $summary['revision']['timestamp'] );
+		$topicTitle = Title::newFromText( $summary[ 'revision' ][ 'articleTitle' ] );
+		return $this->processMultiRevisions(
+			$this->getAllRevisions( $topicTitle, 'view-topic-summary', 'vts', 'topicsummary' )
+		);
 	}
 
 	protected function processPostCollection( array $context, array $collection, $indentLevel = 0 ) {
@@ -162,8 +151,7 @@ class ConvertToText extends Maintenance {
 				continue;
 			}
 
-			$thisPost = $indent . trim( $revision['content']['content'] ) . ' ' .
-				$this->getSignature( $revision['author'], $revision['timestamp'] );
+			$thisPost = $indent . $this->processPost( $revision );
 
 			if ( $indentLevel > 0 ) {
 				$thisPost = preg_replace( "/\n+/", "\n$indent", $thisPost );
@@ -182,27 +170,11 @@ class ConvertToText extends Maintenance {
 		return $output;
 	}
 
-	protected function getSignature( array $user, $timestamp ) {
-		global $wgContLang, $wgParser;
+	protected function getSignature( array $user, $timestamp = false ) {
+		global $wgParser;
 
 		// Force unstub
 		StubObject::unstub( $wgParser );
-		$wgParser->firstCallInit();
-
-		$timestamp = MWTimestamp::getLocalInstance( $timestamp );
-		$ts = $timestamp->format( 'YmdHis' );
-		$tzMsg = $timestamp->format( 'T' );  # might vary on DST changeover!
-
-		# Allow translation of timezones through wiki. format() can return
-		# whatever crap the system uses, localised or not, so we cannot
-		# ship premade translations.
-		$key = 'timezone-' . strtolower( trim( $tzMsg ) );
-		$msg = wfMessage( $key )->inContentLanguage();
-		if ( $msg->exists() ) {
-			$tzMsg = $msg->text();
-		}
-
-		$d = $wgContLang->timeanddate( $ts, false, false ) . " ($tzMsg)";
 
 		if ( $user ) {
 			// create a bogus user for whom username & id is known, so we
@@ -220,12 +192,34 @@ class ConvertToText extends Maintenance {
 			// anyway)
 			$options = new ParserOptions();
 			$old = $wgParser->Options( $options );
-			$signature = $wgParser->getUserSig( $user, $nickname, $fancysig ) . ' ' . $d;
+			$signature = $wgParser->getUserSig( $user, $nickname, $fancysig );
+			if ( $timestamp ) {
+				$signature .= ' ' . $this->formatTimestamp( $timestamp );
+			}
 			$wgParser->Options( $old );
 			return $signature;
 		} else {
-			return "[Unknown user] $d";
+			return "[Unknown user]" . $timestamp ? ' ' . $this->formatTimestamp( $timestamp ) : '';
 		}
+	}
+
+	private function formatTimestamp( $timestamp ) {
+		global $wgContLang;
+
+		$timestamp = MWTimestamp::getLocalInstance( $timestamp );
+		$ts = $timestamp->format( 'YmdHis' );
+		$tzMsg = $timestamp->format( 'T' );  # might vary on DST changeover!
+
+		# Allow translation of timezones through wiki. format() can return
+		# whatever crap the system uses, localised or not, so we cannot
+		# ship premade translations.
+		$key = 'timezone-' . strtolower( trim( $tzMsg ) );
+		$msg = wfMessage( $key )->inContentLanguage();
+		if ( $msg->exists() ) {
+			$tzMsg = $msg->text();
+		}
+
+		return $wgContLang->timeanddate( $ts, false, false ) . " ($tzMsg)";
 	}
 
 	protected function pageExists( $pageName ) {
@@ -237,6 +231,102 @@ class ConvertToText extends Maintenance {
 
 		return $pages[$pageName];
 	}
+
+	private function getAllRevisions( Title $pageTitle, $submodule, $prefix, $responseRoot, $params = array() ) {
+		$headerRevisions = array();
+		$revId = false;
+		do {
+			$params[ $prefix . 'format' ] = 'wikitext';
+			if ( $revId ) {
+				$params[ $prefix .  'revId' ] = $revId;
+			}
+			$headerData = $this->flowApi(
+				$pageTitle,
+				$submodule,
+				$params
+			);
+			if ( isset( $headerData[ $responseRoot ][ 'revision' ][ 'revisionId' ] ) ) {
+				$headerRevisions[] = $headerRevision = $headerData[ $responseRoot ][ 'revision' ];
+				$revId = $headerRevision[ 'previousRevisionId' ];
+			} else {
+				$revId = false;
+			}
+		} while ( $revId );
+		return $headerRevisions;
+	}
+
+	private function processHeader() {
+		return $this->processMultiRevisions(
+			$this->getAllRevisions( $this->pageTitle, 'view-header', 'vh', 'header' ),
+			false,
+			'flow-edited-by-header'
+		);
+	}
+	private function processMultiRevisions(
+		$allRevisions, $sigForFirstAuthor = true, $msg = 'flow-edited-by',
+		$glueAfterContent = '', $glueBeforeAuthors = ' '
+	) {
+		global $wgContLang;
+		if ( count( $allRevisions ) ) {
+			$firstRevision = end( $allRevisions );
+			$latestRevision = reset( $allRevisions );
+
+			// take the content from the first (most recent) revision
+			$content = $latestRevision['content']['content'];
+			$firstContributor = $firstRevision['author'];
+
+			// deduplicate authors
+			$otherContributors = [];
+			foreach ( $allRevisions as $revision ) {
+				$name = $revision['author']['name'];
+				$otherContributors[ $name ] = $revision['author'];
+			}
+
+			$formattedAuthors = '';
+			if ( $sigForFirstAuthor ) {
+				$formattedAuthors .= $this->getSignature( $firstContributor, $firstRevision['timestamp'] );
+				// remove first contributor from list of previous contributors
+				if ( isset( $otherContributors[ $firstContributor['name'] ] ) ) {
+					unset( $otherContributors[ $firstContributor['name'] ] );
+				}
+			}
+
+			if (
+				count( $otherContributors ) > 0 &&
+				( count( $otherContributors ) > 1 || !isset( $otherContributors[ $firstContributor['name'] ] ) )
+			) {
+				$signatures = array_map( array( $this, 'getSignature' ), $otherContributors );
+				$formattedAuthors .= ( $sigForFirstAuthor ? ' ' : '' ) . '(' .
+					wfMessage( $msg )->inContentLanguage()->params(
+						$wgContLang->commaList( $signatures )
+					)->text() . ')';
+			}
+
+			return $content . $glueAfterContent .  ( $formattedAuthors === '' ? '' : $glueBeforeAuthors . $formattedAuthors );
+		}
+		return '';
+	}
+
+	private function getAllPostRevisions( $revision ) {
+		$topicTitle = Title::newFromText( $revision[ 'articleTitle' ] );
+		$response = $this->flowApi( $topicTitle, 'view-post-history', array( 'vphpostId' => $revision['postId'], 'vphformat' => 'wikitext' ) );
+		return $response['topic']['revisions'];
+	}
+
+	private function processPost( $revision ) {
+		return $this->processMultiRevisions( $this->getAllPostRevisions( $revision ) );
+	}
+
+	private function processTopicTitle( $revision ) {
+		return '==' . $this->processMultiRevisions(
+			$this->getAllPostRevisions( $revision ),
+			false,
+			'flow-edited-by-topic-title',
+			'==',
+			"\n\n"
+		) . "\n\n";
+	}
+
 }
 
 $maintClass = "ConvertToText";
