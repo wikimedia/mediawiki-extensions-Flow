@@ -16,7 +16,8 @@
 			"Macofe",
 			"Cainamarques",
 			"Nnemo",
-			"Matiia"
+			"Matiia",
+			"Hamilton Abreu"
 		]
 	},
 	"enableflow": "Ativar Flow",
@@ -432,7 +433,7 @@
 	"flow-importer-lqt-converted-template-content": "O histórico da página anterior foi arquivado por questões de segurança em <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> em {{#time: Y-m-d|{{{date}}}}}.",
 	"flow-importer-lqt-converted-archive-template": "Arquivo da página LQT convertida",
 	"flow-importer-wt-converted-template": "Página de discussão em wikitexto convertida para o Flow",
-	"flow-importer-wt-converted-archive-template": "Arquivo para a página de discussão em wikitexto convertida",
+	"flow-importer-wt-converted-archive-template": "Arquivo para páginas de discussão em notação wiki convertidas",
 	"flow-edited": "Editada",
 	"flow-edited-by": "Editada por $1",
 	"flow-lqt-redirect-reason": "Redirecionando uma publicação com LiquidThreads redirecionada para a publicação com Flow correspondente",
@@ -458,7 +459,10 @@
 	"flow-ve-mention-tool-title": "Mencionar um utilizador",
 	"flow-ve-mention-template-title": "FlowMention",
 	"flow-ve-mention-inspector-invalid-user": "O nome de utilizador(a) \"$1\" não está registado.",
-	"flow-wikitext-editor-help-preview-the-result": "pré-visualizar o resultado",
+	"flow-wikitext-editor-help": "A notação wiki $1.",
+	"flow-wikitext-editor-help-and-preview": "A notação wiki $1 e pode $2 a qualquer altura.",
+	"flow-wikitext-editor-help-uses-wikitext": "usa elementos de formatação",
+	"flow-wikitext-editor-help-preview-the-result": "antever o resultado",
 	"flow-wikitext-switch-editor-tooltip": "Mudar para o editor visual",
 	"flow-ve-switch-editor-tool-title": "Mudar para o editor de wikitexto",
 	"flow-mark-revision-patrolled-link-text": "Marcar esta página como patrulhada",
