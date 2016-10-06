@@ -53,7 +53,7 @@ class ObjectLocator {
 		$this->storage = $storage;
 		$this->indexes = $indexes;
 		$this->dbFactory = $dbFactory;
-		$this->lifecycleHandlers = array_merge( $indexes, $lifecycleHandlers );
+		$this->lifecycleHandlers = $lifecycleHandlers; //array_merge( $indexes, $lifecycleHandlers );
 	}
 
 	public function getMapper() {
@@ -84,24 +84,25 @@ class ObjectLocator {
 			$options['sort'] = ObjectManager::makeArray( $options['sort'] );
 		}
 
-		try {
-			$index = $this->getIndexFor( $keys, $options );
-			$res = $index->findMulti( $queries, $options );
-		} catch ( NoIndexException $e ) {
-			if ( array_search( 'topic_root_id', $keys ) ) {
-				wfDebugLog(
-					'Flow',
-					__METHOD__ . ': '
-					. json_encode( $keys ) . ' : '
-					. json_encode( $options ) . ' : '
-					. json_encode( array_map( 'get_class', $this->indexes ) )
-				);
-				\MWExceptionHandler::logException( $e );
-			} else {
-				wfDebugLog( 'FlowDebug', __METHOD__ . ': ' . $e->getMessage() );
-			}
-			$res = $this->storage->findMulti( $this->convertToDbQueries( $queries, $options ), $this->convertToDbOptions( $options ) );
-		}
+		$res = $this->storage->findMulti( $this->convertToDbQueries( $queries, $options ), $this->convertToDbOptions( $options ) );
+//		try {
+//			$index = $this->getIndexFor( $keys, $options );
+//			$res = $index->findMulti( $queries, $options );
+//		} catch ( NoIndexException $e ) {
+//			if ( array_search( 'topic_root_id', $keys ) ) {
+//				wfDebugLog(
+//					'Flow',
+//					__METHOD__ . ': '
+//					. json_encode( $keys ) . ' : '
+//					. json_encode( $options ) . ' : '
+//					. json_encode( array_map( 'get_class', $this->indexes ) )
+//				);
+//				\MWExceptionHandler::logException( $e );
+//			} else {
+//				wfDebugLog( 'FlowDebug', __METHOD__ . ': ' . $e->getMessage() );
+//			}
+//			$res = $this->storage->findMulti( $this->convertToDbQueries( $queries, $options ), $this->convertToDbOptions( $options ) );
+//		}
 
 		$output = array();
 		foreach( $res as $index => $queryOutput ) {
@@ -127,7 +128,8 @@ class ObjectLocator {
 	 * @return bool
 	 */
 	public function found( array $attributes, array $options = array() ) {
-		return $this->foundMulti( array( $attributes ), $options );
+//		return $this->foundMulti( array( $attributes ), $options );
+		return false;
 	}
 
 	/**
@@ -221,7 +223,8 @@ class ObjectLocator {
 	 * @return bool
 	 */
 	public function got( $id ) {
-		return $this->gotMulti( array( $id ) );
+//		return $this->gotMulti( array( $id ) );
+		return false;
 	}
 
 	/**
