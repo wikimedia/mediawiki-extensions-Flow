@@ -8,7 +8,7 @@ use Flow\Exception\FlowException;
 use Flow\Exception\PermissionException;
 use Flow\Data\Listener\RecentChangesListener;
 use Flow\Formatter\CheckUserQuery;
-use Flow\Import\OptInUpdate;
+use Flow\Import\OptInController;
 use Flow\Model\UUID;
 use Flow\OccupationController;
 use Flow\SpamFilter\AbuseFilter;
@@ -1754,20 +1754,20 @@ class FlowHooks {
 		$after = $user->getBoolOption( BETA_FEATURE_FLOW_USER_TALK_PAGE );
 		$action = null;
 
+		$optInController = Flow\Container::get( 'controller.opt_in' );
 		if ( !$before && $after ) {
-			$action = OptInUpdate::$ENABLE;
+			$action = OptInController::$ENABLE;
 			// Check if the user had a flow board
-			$c = new Flow\Import\OptInController();
-			if ( !$c->hasFlowBoardArchive( $user ) ) {
+			if ( !$optInController->hasFlowBoardArchive( $user ) ) {
 				// Enable the guided tour by setting the cookie
 				RequestContext::getMain()->getRequest()->response()->setCookie( 'Flow_optIn_guidedTour', '1' );
 			}
 		} elseif ( $before && !$after ) {
-			$action = OptInUpdate::$DISABLE;
+			$action = OptInController::$DISABLE;
 		}
 
 		if ( $action ) {
-			DeferredUpdates::addUpdate( new OptInUpdate( $action, $user->getTalkPage(), $user ) );
+			$optInController->initiateChange( $action, $user->getTalkPage(), $user );
 		}
 
 		return true;
