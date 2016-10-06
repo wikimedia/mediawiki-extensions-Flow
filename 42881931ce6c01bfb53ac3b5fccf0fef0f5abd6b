@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e82f318_4be5a705",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1883
+      },
+      "writtenOn": "2016-10-06T13:24:51Z",
+      "side": 1,
+      "message": "When I get it right Flow will send the notification till the Limit and _also_ send the failure notification.\n\nIf thats the case it might be misleading because the mention-failure-too-many says that mentions where sent. ( meaning non at all )",
+      "revId": "42881931ce6c01bfb53ac3b5fccf0fef0f5abd6b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
