@@ -213,7 +213,6 @@ $wgAutoloadClasses += array(
 	'Flow\\Import\\LiquidThreadsApi\\ScriptedImportRevision' => __DIR__ . '/includes/Import/LiquidThreadsApi/Objects.php',
 	'Flow\\Import\\LiquidThreadsApi\\TopicIterator' => __DIR__ . '/includes/Import/LiquidThreadsApi/Iterators.php',
 	'Flow\\Import\\OptInController' => __DIR__ . '/includes/Import/OptInController.php',
-	'Flow\\Import\\OptInUpdate' => __DIR__ . '/includes/Import/OptInUpdate.php',
 	'Flow\\Import\\PageImportState' => __DIR__ . '/includes/Import/Importer.php',
 	'Flow\\Import\\Plain\\ImportHeader' => __DIR__ . '/includes/Import/Plain/ImportHeader.php',
 	'Flow\\Import\\Plain\\ObjectRevision' => __DIR__ . '/includes/Import/Plain/ObjectRevision.php',
