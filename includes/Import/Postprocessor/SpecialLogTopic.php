@@ -8,7 +8,6 @@ use Flow\Import\IImportTopic;
 use Flow\Import\PageImportState;
 use Flow\Import\TopicImportState;
 use Flow\Model\PostRevision;
-use Flow\Model\UUID;
 use ManualLogEntry;
 use User;
 

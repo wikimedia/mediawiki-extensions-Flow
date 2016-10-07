@@ -4,7 +4,6 @@ namespace Flow\Tests\Api;
 
 use Title;
 use User;
-use WatchedItem;
 
 /**
  * @group Flow

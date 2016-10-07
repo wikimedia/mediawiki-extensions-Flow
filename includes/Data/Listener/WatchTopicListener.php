@@ -10,7 +10,6 @@ use Flow\Model\Workflow;
 use Flow\WatchedTopicItems;
 use Title;
 use User;
-use WatchedItem;
 
 /**
  * Auto-watch topics when the user performs one of the actions specified

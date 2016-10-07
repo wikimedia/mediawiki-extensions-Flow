@@ -15,7 +15,6 @@ use Flow\UrlGenerator;
 use MediaWiki\MediaWikiServices;
 use Title;
 use User;
-use WatchedItem;
 use WikiPage;
 use WikitextContent;
 

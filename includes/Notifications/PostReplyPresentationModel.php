@@ -2,8 +2,6 @@
 
 namespace Flow;
 
-use Flow\Model\UUID;
-
 class PostReplyPresentationModel extends FlowPresentationModel {
 
 	public function getIconType() {

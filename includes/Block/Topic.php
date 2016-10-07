@@ -3,7 +3,6 @@
 namespace Flow\Block;
 
 use Flow\Container;
-use Flow\Conversion\Utils;
 use Flow\Data\ManagerGroup;
 use Flow\Data\Pager\HistoryPager;
 use Flow\Exception\DataModelException;

@@ -3,7 +3,6 @@
 namespace Flow\Formatter;
 
 use Flow\Container;
-use Flow\Conversion\Utils;
 use Flow\FlowActions;
 use Flow\Model\Anchor;
 use Flow\Model\PostRevision;

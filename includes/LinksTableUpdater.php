@@ -2,7 +2,6 @@
 
 namespace Flow;
 
-use DataUpdate;
 use DeferredUpdates;
 use Flow\Data\ManagerGroup;
 use Flow\Model\Reference;

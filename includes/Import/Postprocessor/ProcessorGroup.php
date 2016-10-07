@@ -3,7 +3,6 @@
 namespace Flow\Import\Postprocessor;
 
 use Flow\Model\PostRevision;
-use Flow\Model\UUID;
 use Flow\Import\IImportHeader;
 use Flow\Import\IImportPost;
 use Flow\Import\IImportTopic;

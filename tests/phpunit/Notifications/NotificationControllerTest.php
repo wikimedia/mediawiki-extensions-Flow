@@ -3,7 +3,6 @@
 namespace Flow\Tests;
 
 use Flow\Container;
-use Flow\NotificationController;
 use Flow\Model\UUID;
 use TestingAccessWrapper;
 

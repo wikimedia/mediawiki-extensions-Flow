@@ -2,8 +2,6 @@
 
 namespace Flow;
 
-use EchoDiscussionParser;
-use EchoEvent;
 use EchoEventPresentationModel;
 use Flow\Model\UUID;
 use Title;

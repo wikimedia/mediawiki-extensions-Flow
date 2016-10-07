@@ -3,7 +3,6 @@
 namespace Flow\Block;
 
 use Flow\Container;
-use Flow\Conversion\Utils;
 use Flow\Exception\FailCommitException;
 use Flow\Exception\FlowException;
 use Flow\Exception\InvalidActionException;

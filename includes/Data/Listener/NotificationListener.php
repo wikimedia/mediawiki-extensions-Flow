@@ -3,11 +3,8 @@
 namespace Flow\Data\Listener;
 
 use Flow\Exception\InvalidDataException;
-use Flow\Exception\InvalidInputException;
 use Flow\Model\AbstractRevision;
-use Flow\Model\Header;
 use Flow\Model\PostRevision;
-use Flow\Model\PostSummary;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
 

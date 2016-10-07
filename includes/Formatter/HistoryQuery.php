@@ -2,7 +2,6 @@
 
 namespace Flow\Formatter;
 
-use Flow\Exception\InvalidDataException;
 use Flow\FlowActions;
 use Flow\Data\ManagerGroup;
 use Flow\Model\AbstractRevision;

@@ -1,7 +1,6 @@
 <?php
 
 use Flow\Container;
-use Flow\Data\Listener\ModerationLoggingListener;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 

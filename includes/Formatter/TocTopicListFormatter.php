@@ -2,7 +2,6 @@
 
 namespace Flow\Formatter;
 
-use Flow\Conversion\Utils;
 use Flow\Data\Pager\PagerPage;
 use Flow\Model\Workflow;
 use Flow\Templating;

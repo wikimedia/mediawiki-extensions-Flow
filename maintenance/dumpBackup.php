@@ -2,7 +2,6 @@
 
 use Flow\Container;
 use Flow\Dump\Exporter;
-use Flow\Model\UUID;
 
 $maintPath = ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance'

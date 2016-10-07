@@ -10,7 +10,6 @@ use Flow\Model\Workflow;
 use Flow\NotificationController;
 use EchoNotificationController;
 use User;
-use WatchedItem;
 
 /**
  * @group Flow
