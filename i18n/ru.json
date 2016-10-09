@@ -293,7 +293,7 @@
 	"flow-notification-newtopic-email-subject": "$1 создал{{GENDER:$1||а}} новую тему на странице $2",
 	"flow-notification-newtopic-email-batch-body": "$1 создал{{GENDER:$1||а}} новую тему с названием «$2» на странице $3",
 	"flow-notification-newtopic-email-batch-bundle-body": "{{PLURAL:$1|$1 новая тема|$1 новых тем|$1 новых темы|100=99+ новых тем}} на $2",
-	"echo-category-title-flow-discussion": "Поток",
+	"echo-category-title-flow-discussion": "поток",
 	"echo-pref-tooltip-flow-discussion": "Уведомить меня, когда связанные со мной действия происходят в Потоке.",
 	"flow-link-post": "сообщение",
 	"flow-link-topic": "тема",

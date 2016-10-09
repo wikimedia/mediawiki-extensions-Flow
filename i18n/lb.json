@@ -105,6 +105,7 @@
 	"flow-error-default": "Et ass e Feeler geschitt.",
 	"flow-error-invalid-title": "En net valabelen Säitentitel gouf uginn.",
 	"flow-error-insufficient-permission": "Net genuch Rechter fir op den Inhalt zouzegräifen.",
+	"flow-error-different-page": "De Flow-Workflow ass net mat dëser Säit associéiert.",
 	"flow-error-no-render": "Déi spzifizéiert Aktioun gouf net erkannt.",
 	"flow-error-no-commit": "Déi spezifiséiert Aktioun konnt net gespäichert ginn",
 	"flow-error-move-topic": "D'Réckele vun enger Theme-Säit gëtt elo net ënnerstëtzt",
