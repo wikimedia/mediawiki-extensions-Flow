@@ -472,7 +472,7 @@
 	"flow-talk-page-beta-feature-message": "Flow na página de discussão",
 	"flow-talk-page-beta-feature-description": "Ativa um novo sistema de discussão estruturado na sua página de discussão. O Flow simplifica as páginas de discussão dos utilizadores com localizações claras para escrever e responder, além de permitir notificações para cada tema. As discussões existentes em wikitexto serão movidas para um arquivo. Esta funcionalidade não é ativada automaticamente; os utilizadores terão de o fazer em separado. Ao desativar esta funcionalidade, o quadro de mensagens do Flow será movido para uma subpágina e a sua página de discussão anterior será restaurada.",
 	"flow-notification-link-text-enabled-on-talkpage": "{{GENDER:|Ver}} página de discussão de utilizador",
-	"flow-notification-enabled-on-talkpage-title": "Novo sistema de discussão habilitado na {{GENDER:$1|sua}} página de discussão<br /><small>Disponível em [[$2]]</small>",
+	"flow-notification-enabled-on-talkpage-title": "Sistema de discussão novo ativado na {{GENDER:$1|sua}} página de discussão<br /><small>Disponível em [[$2]]</small>",
 	"flow-notification-enabled-on-talkpage-email-subject-message": "Novo sistema de discussão em $2",
 	"flow-notification-enabled-on-talkpage-email-batch-body": "Flow, o novo sistema de discussões wiki, foi ativado na {{GENDER:$1|sua}} página de discussão em {{SITENAME}}. Pode obter mais informação, dar a sua opinião ou desativar o novo sistema a qualquer altura a partir da secção de recursos Beta nas {{GENDER:$1|suas}} preferências.",
 	"flow-beta-feature-add-archive-template-edit-summary": "Predefinição de arquivo adicionada",

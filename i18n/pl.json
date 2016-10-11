@@ -180,6 +180,7 @@
 	"flow-error-default": "Wystąpił błąd.",
 	"flow-error-invalid-input": "Podano nieprawidłową wartość w celu załadowania Flow.",
 	"flow-error-invalid-title": "Podano nieprawidłowy tytuł strony.",
+	"flow-error-invalid-parameter": "Brak lub nieprawidłowy parametr wywołania metody",
 	"flow-error-fail-load-history": "Nie udało się załadować historii strony.",
 	"flow-error-missing-revision": "Nie udało się znaleźć wersji w celu załadowania Flow.",
 	"flow-error-fail-commit": "Nie udało się zapisać zawartości.",
