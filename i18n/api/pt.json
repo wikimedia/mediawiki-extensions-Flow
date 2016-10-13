@@ -71,7 +71,7 @@
 	"apihelp-flow+view-topic-summary-example-1": "Ver o sumário de [[Topic:S2tycnas4hcucw8w]] como wikitexto",
 	"apihelp-flow+view-topiclist-description": "Ver uma lista de tópicos.",
 	"apihelp-flow+view-topiclist-param-offset-dir": "Direção para ordenar os tópicos.",
-	"apihelp-flow+view-topiclist-param-sortby": "Opções de ordenação dos tópicos, se <kbd>updated</kbd> (ordenados pelo tempo de actualização do tópico) ou <kbd>newest</kbd> (ordenados pelo tempo de criação do tópico).",
+	"apihelp-flow+view-topiclist-param-sortby": "Opções de ordenação dos tópicos, se <kbd>updated</kbd> (ordenados pelo tempo de atualização do tópico) ou <kbd>newest</kbd> (ordenados pelo tempo de criação do tópico).",
 	"apihelp-flow+view-topiclist-param-savesortby": "Gravar a opção de ordenação nas preferências do utilizador, se estiver definida.",
 	"apihelp-flow+view-topiclist-param-offset-id": "Valor inicial (no formato UUID) para a obtenção de tópicos; utilizado somente com a ordenação <kbd>newest</kbd>",
 	"apihelp-flow+view-topiclist-param-offset": "Valor inicial para a obtenção de tópicos.",
