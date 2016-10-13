@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "2e6c1747_42f27704",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-10-13T19:36:43Z",
+      "side": 1,
+      "message": "You don\u0027t technically need to, but it would be good to add a Depends-On pointing to the commit in Echo that introduces the hook you\u0027re using in this commit.",
+      "revId": "576c25178fd6801f4ac190053a38bcc59cb1d653",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e6c1747_428b5772",
         "filename": "Hooks.php",
         "patchSetId": 1
