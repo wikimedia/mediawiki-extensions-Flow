@@ -126,6 +126,7 @@ $wgHooks['DeletedContributionsLineEnding'][] = 'FlowHooks::onDeletedContribution
 $wgHooks['ApiFeedContributions::feedItem'][] = 'FlowHooks::onContributionsFeedItem';
 $wgHooks['AbuseFilter-computeVariable'][] = 'FlowHooks::onAbuseFilterComputeVariable';
 $wgHooks['AbortEmailNotification'][] = 'FlowHooks::onAbortEmailNotification';
+$wgHooks['EchoAbortOrangeAlert'][] = 'FlowHooks::onEchoAbortOrangeAlert';
 $wgHooks['EchoAbortEmailNotification'][] = 'FlowHooks::onEchoAbortEmailNotification';
 $wgHooks['BeforeEchoEventInsert'][] = 'FlowHooks::onBeforeEchoEventInsert';
 $wgHooks['ArticleEditUpdateNewTalk'][] = 'FlowHooks::onArticleEditUpdateNewTalk';
