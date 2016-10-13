@@ -1015,6 +1015,19 @@ class FlowHooks {
 		return true;
 	}
 
+	public static function onAbortOrangeAlert( $user, $title ) {
+		if( $title->getNamespace() === NS_TOPIC ) {
+			$storage = Container::get( 'storage.workflow' );
+			$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
+			$workflow = $storage->get( $uuid );
+			if ( $workflow ) {
+				$boardTitle = $workflow->getOwnerTitle();
+			}
+			if ( $user->getTalkPage()->equals($boardTitle) ) {
+				return false;
+			}
+		}
+	}
 
 	public static function onInfoAction( IContextSource $ctx, &$pageinfo ) {
 		if ( $ctx->getTitle()->getContentModel() !== CONTENT_MODEL_FLOW_BOARD ) {
