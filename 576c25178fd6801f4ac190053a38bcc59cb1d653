@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e6c1747_82854f5d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-10-13T19:35:48Z",
+      "side": 1,
+      "message": "Technically what this specific commit does is it *hides* the orange bar when the user is viewing a topic page that belongs to their user talk page.",
+      "revId": "576c25178fd6801f4ac190053a38bcc59cb1d653",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e6c1747_428b5772",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 1017,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-10-13T19:35:48Z",
+      "side": 1,
+      "message": "Add a comment above this function (similar to the one right above here for onEchoAbortEmailNotification) explaining what this function does (suppress the orange alert when we\u0027re on a topic page that belongs to the user\u0027s talk page)",
+      "revId": "576c25178fd6801f4ac190053a38bcc59cb1d653",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e6c1747_e2bc431d",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 1018,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-10-13T19:35:48Z",
+      "side": 1,
+      "message": "We usually add type hints where we can, so this would be User $user, Title $title\n\nSee the functions above and below this one for examples.",
+      "revId": "576c25178fd6801f4ac190053a38bcc59cb1d653",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
