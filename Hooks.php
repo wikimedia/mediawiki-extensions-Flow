@@ -1015,6 +1015,27 @@ class FlowHooks {
 		return true;
 	}
 
+	/**
+	 * Hides the orange alert indicating 'You have a new message'
+	 * when the user reads flow-topic replies.
+	 *
+	 * @param User $user
+	 * @param Title $title
+	 * @return bool true to show the alert, false to hide(abort) the alert
+	 */
+	public static function onBeforeDisplayOrangeAlert( User $user, Title $title ) {
+		if( $title->getNamespace() === NS_TOPIC ) {
+			$storage = Container::get( 'storage.workflow' );
+			$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
+			$workflow = $storage->get( $uuid );
+			if ( $workflow ) {
+				$boardTitle = $workflow->getOwnerTitle();
+			}
+			if ( $user->getTalkPage()->equals( $boardTitle ) ) {
+				return false;
+			}
+		}
+	}
 
 	public static function onInfoAction( IContextSource $ctx, &$pageinfo ) {
 		if ( $ctx->getTitle()->getContentModel() !== CONTENT_MODEL_FLOW_BOARD ) {
