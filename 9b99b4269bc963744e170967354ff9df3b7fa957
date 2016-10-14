@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e97535f_d1e02efa",
+        "filename": "maintenance/convertToText.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-10-14T17:34:02Z",
+      "side": 1,
+      "message": "I wasn\u0027t sure about this. If keeping all the IP contributions is the right thing then maybe remove that comment.",
+      "revId": "9b99b4269bc963744e170967354ff9df3b7fa957",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e97535f_11d7b629",
+        "filename": "maintenance/convertToText.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-10-14T17:34:02Z",
+      "side": 1,
+      "message": "Outdated comment. This logic used to be about latest contributor, as the comment says, but now it\u0027s the first contributor that\u0027s being removed from the list.",
+      "revId": "9b99b4269bc963744e170967354ff9df3b7fa957",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
