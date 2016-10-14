@@ -48,6 +48,23 @@
     },
     {
       "key": {
+        "uuid": "0e97535f_f6c7a813",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 1024,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2016-10-14T16:10:36Z",
+      "side": 1,
+      "message": "This is not your code\u0027s fault at all, but it might mean we should have more documentation on this method -- the entire hook is confusing to someone who doesn\u0027t know the whole string of events (like me)\n\nThe naming of this hook (and subsequent \u0027on...\u0027 method) is super confusing. on abort - are we aborting if true or not-aborting if true? Is true hide or show? confusing.\n\nSo just for the sanity of our future code-viewers, let\u0027s add an explanation of that boolean return?\n\nSomething like this, even:\n\n@return bool Hide the alert\n\n^ This would suggest that \u0027true\u0027 is for aborting (hiding) and false is for not-aborting (showing) which I assume is what it\u0027s doing.\n\nI think.\n\nA bonus is if you want to actually spell it out (\u0027true hides the bar, false displays it\u0027) but that might be overkill.",
+      "revId": "3747a24cc81df1a2e8e3c0c50a781bd6d3dc97d1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e97535f_05641444",
         "filename": "Hooks.php",
         "patchSetId": 2
@@ -59,6 +76,30 @@
       "writtenOn": "2016-10-14T01:40:15Z",
       "side": 1,
       "message": "Not sure why Jenkins didn\u0027t notice, but there should be spaces on the inside of the parentheses here.",
+      "range": {
+        "startLine": 1034,
+        "startChar": 36,
+        "endLine": 1034,
+        "endChar": 49
+      },
+      "revId": "3747a24cc81df1a2e8e3c0c50a781bd6d3dc97d1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e97535f_362190f7",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 1034,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2016-10-14T16:10:36Z",
+      "side": 1,
+      "message": "Does Jenkins PHP-lint ? We might need to make sure we have it enabled?",
+      "parentUuid": "0e97535f_05641444",
       "range": {
         "startLine": 1034,
         "startChar": 36,
