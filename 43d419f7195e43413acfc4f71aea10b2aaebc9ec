@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e97535f_d1aeee94",
+        "filename": "Hooks.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 1024,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-10-14T17:39:13Z",
+      "side": 1,
+      "message": "You still need the type here: the syntax is @return type description, so if your case it would be @return bool true to blah blah etc",
+      "revId": "43d419f7195e43413acfc4f71aea10b2aaebc9ec",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
