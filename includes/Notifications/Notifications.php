@@ -107,6 +107,7 @@ $notifications = array(
 		),
 	) + $newTopicNotification,
 	'flowusertalk-new-topic' => array(
+		'category' => 'edit-user-talk',
 		'section' => 'alert',
 		'user-locators' => array(
 			'EchoUserLocator::locateTalkPageOwner',
@@ -126,6 +127,7 @@ $notifications = array(
 		),
 	) + $postReplyNotification,
 	'flowusertalk-post-reply' => array(
+		'category' => 'edit-user-talk',
 		'section' => 'alert',
 		'user-locators' => array(
 			'EchoUserLocator::locateTalkPageOwner',
@@ -145,6 +147,7 @@ $notifications = array(
 		),
 	) + $postEditedNotification,
 	'flowusertalk-post-edited' => array(
+		'category' => 'edit-user-talk',
 		'section' => 'alert',
 		'user-locators' => array(
 			'EchoUserLocator::locateTalkPageOwner',
@@ -164,6 +167,7 @@ $notifications = array(
 		),
 	) + $topicRenamedNotification,
 	'flowusertalk-topic-renamed' => array(
+		'category' => 'edit-user-talk',
 		'section' => 'alert',
 		'user-locators' => array(
 			'EchoUserLocator::locateTalkPageOwner',
@@ -183,6 +187,7 @@ $notifications = array(
 		),
 	) + $summaryEditedNotification,
 	'flowusertalk-summary-edited' => array(
+		'category' => 'edit-user-talk',
 		'section' => 'alert',
 		'user-locators' => array(
 			'EchoUserLocator::locateTalkPageOwner',
@@ -202,6 +207,7 @@ $notifications = array(
 		),
 	) + $descriptionEditedNotification,
 	'flowusertalk-description-edited' => array(
+		'category' => 'edit-user-talk',
 		'section' => 'alert',
 		'user-locators' => array(
 			'EchoUserLocator::locateTalkPageOwner',
@@ -211,6 +217,7 @@ $notifications = array(
 		),
 	) + $descriptionEditedNotification,
 	'flow-mention' => array(
+		'category' => 'mention',
 		'presentation-model' => 'Flow\\MentionPresentationModel',
 		'section' => 'alert',
 		'user-locators' => array(
@@ -229,6 +236,7 @@ $notifications = array(
 		'icon' => 'mention',
 	) + $notificationTemplate,
 	'flow-enabled-on-talkpage' => array(
+		'category' => 'system',
 		'presentation-model' => 'Flow\\FlowEnabledOnTalkpagePresentationModel',
 		'section' => 'message',
 		'user-locators' => array(
@@ -256,6 +264,7 @@ $notifications = array(
 		),
 	) + $topicResolvedNotification,
 	'flowusertalk-topic-resolved' => array(
+		'category' => 'edit-user-talk',
 		'section' => 'alert',
 		'user-locators' => array(
 			'EchoUserLocator::locateTalkPageOwner',
