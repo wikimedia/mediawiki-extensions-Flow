@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e97535f_457b3cec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-10-14T01:40:15Z",
+      "side": 1,
+      "message": "This should be \"a topic page\", because there can be multiple topic pages related to the same user talk page.\n\nApart from that, this is a great commit summary.",
+      "range": {
+        "startLine": 7,
+        "startChar": 43,
+        "endLine": 7,
+        "endChar": 46
+      },
+      "revId": "3747a24cc81df1a2e8e3c0c50a781bd6d3dc97d1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e97535f_257838ed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-10-14T01:40:15Z",
+      "side": 1,
+      "message": "This should be Depends-On, not Depends-Id",
+      "range": {
+        "startLine": 11,
+        "startChar": 8,
+        "endLine": 11,
+        "endChar": 10
+      },
+      "revId": "3747a24cc81df1a2e8e3c0c50a781bd6d3dc97d1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e97535f_05641444",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 1034,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-10-14T01:40:15Z",
+      "side": 1,
+      "message": "Not sure why Jenkins didn\u0027t notice, but there should be spaces on the inside of the parentheses here.",
+      "range": {
+        "startLine": 1034,
+        "startChar": 36,
+        "endLine": 1034,
+        "endChar": 49
+      },
+      "revId": "3747a24cc81df1a2e8e3c0c50a781bd6d3dc97d1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
