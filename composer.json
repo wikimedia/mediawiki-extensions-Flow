@@ -2,7 +2,9 @@
 	"name": "mediawiki/flow",
 	"description": "Discussion and collaboration system extension for MediaWiki",
 	"license": "GPL-2.0+",
-	"require": {},
+	"require": {
+		"pimple/pimple": "2.1.1"
+	},
 	"require-dev": {
 		"symfony/dom-crawler": "~2.5",
 		"symfony/css-selector": "~2.5",
