@@ -187,6 +187,7 @@ class ConvertToText extends Maintenance {
 
 		// Force unstub
 		StubObject::unstub( $wgParser );
+		$wgParser->firstCallInit();
 
 		$timestamp = MWTimestamp::getLocalInstance( $timestamp );
 		$ts = $timestamp->format( 'YmdHis' );
