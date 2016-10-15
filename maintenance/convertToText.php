@@ -219,7 +219,9 @@ class ConvertToText extends Maintenance {
 			// anyway)
 			$options = new ParserOptions();
 			$old = $wgParser->Options( $options );
+			$wgParser->startExternalParse( $this->pageTitle, $options, Parser::OT_WIKI );
 			$signature = $wgParser->getUserSig( $user, $nickname, $fancysig ) . ' ' . $d;
+			$signature = $wgParser->mStripState->unstripBoth( $signature );
 			$wgParser->Options( $old );
 			return $signature;
 		} else {
