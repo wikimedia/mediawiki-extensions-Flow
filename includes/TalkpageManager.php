@@ -224,6 +224,12 @@ class TalkpageManager implements OccupationController {
 	 * @return bool
 	 */
 	public function canBeUsedOn( Title $title ) {
+		global $wgUser;
+
+		// If the user has rights, mark the page as allowed
+		// For MovePage
+		$this->safeAllowCreation( $title, $wgUser, /* $mustNotExist = */ true );
+
 		return
 			// default content model already
 			ContentHandler::getDefaultModelFor( $title ) === CONTENT_MODEL_FLOW_BOARD ||
