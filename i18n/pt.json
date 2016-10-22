@@ -138,7 +138,7 @@
 	"flow-topic-action-unsuppress-topic": "Tópico não suprimido",
 	"flow-topic-action-restore-topic": "Restaurar tópico",
 	"flow-topic-action-undo-moderation": "Desfazer",
-	"flow-topic-notification-subscribe-title": "Este tópico foi adicionado à {{GENDER:$1|sua}} lista de vigiados.",
+	"flow-topic-notification-subscribe-title": "Este tópico foi adicionado à {{GENDER:$1|sua}} lista de páginas vigiadas.",
 	"flow-topic-notification-subscribe-description": "{{GENDER:$1|Irá}} receber notificações sobre todas as atividades neste tópico.",
 	"flow-board-notification-subscribe-title": "Está {{GENDER:$1|inscrito|inscrita|inscrito(a)}} neste espaço de discussão!",
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Receberá}} uma notificação quando um novo tópico for adicionado neste espaço.",

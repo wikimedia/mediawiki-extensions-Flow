@@ -287,6 +287,7 @@
 	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|Zobacz}} stronę",
 	"notification-email-subject-flow-description-edited": "$1 {{GENDER:$1|zmienił|zmieniła}} opis na stronie $2.",
 	"notification-email-batch-body-flow-description-edited": "$1 {{GENDER:$1|zmienił|zmieniła}} opis na stronie $2.",
+	"notification-header-flow-topic-reopened": "Wątek „<strong>$1</strong>” został ponownie otwarty.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|utworzył|utworzyła|utworzył(a)}} nowy wątek na stronie <strong>$3</strong>.",
 	"flow-notification-newtopic-bundle": "{{PLURAL:$1|Jeden nowy wątek|$1 nowe wątki|$1 nowych wątków|100=99+ nowych wątków}} na <strong><span class=\"plainlinks\">[$3 $2]</span></strong>",
 	"flow-notification-rename": "$1 {{GENDER:$1|zmienił|zmieniła}} tytuł <span class=\"plainlinks\">[$2 $3]</span> na „$4” na [[$5|$6]].",
