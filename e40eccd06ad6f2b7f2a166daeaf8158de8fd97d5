@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aea567c8_395bbf28",
+        "filename": "includes/Data/Compactor/ShallowCompactor.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-10-24T21:03:25Z",
+      "side": 1,
+      "message": "As long as this kind of caching is being used in some way, rows should probably still be compacted to avoid using up a lot of cache storage.\n\nThis will make it so that a 50-topic list in cache is just an array referencing 50 UUIDs, instead of 50 times all of the topic\u0027s fields.\n\nAlso, I\u0027m not 100% sure that if something changes to the topic, it would also wipe out the list indexes too (as compared to just updating the 1 topic entry containing all rows), which could then get outdated. Fairly certain that this is not an issue, but not 100% sure :p\n\nAlso, if compactRow isn\u0027t going to be used anymore, you can probably get rid of expandCacheResult then too.",
+      "revId": "e40eccd06ad6f2b7f2a166daeaf8158de8fd97d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cea0dbb8_d9e842e0",
+        "filename": "includes/Data/FlowObjectCache.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-10-24T21:03:25Z",
+      "side": 1,
+      "message": "Previous cache kept already requests data in memory.\n\nThe 2 obvious places where not having such data in memory that I can think of would be:\n* lists, like RecentChanges, history, ... (where we do 1 batch request for all data, and then process them 1-by-1 later)\n* permissions (where same data is checked repeatedly)\n\nI think most lists (like RC) are mostly covered already. AbstractQuery:: loadMetadataBatch will load a bunch of data and keep it available inside the `Query` object. Might need to doublecheck if there is none that have fallen through the cracks, though.\n\nFrom a cursory glance, permissions seems to use CollectionCache ::getLastRevisionFor, which should also be safe.\n\nMaybe there\u0027s also other places that rely on the assumption that fetching the same data more than once is cheap - should probably try out all scenarios just to be sure :)",
+      "revId": "e40eccd06ad6f2b7f2a166daeaf8158de8fd97d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cea0dbb8_592d5240",
+        "filename": "includes/Data/FlowObjectCache.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-10-24T21:03:25Z",
+      "side": 1,
+      "message": "May want to consider getting rid of this method - the assumption for a method names like this is that it\u0027s only 1 request to cache, so this kind of obscures that it\u0027s going to be 1 for every value.",
+      "revId": "e40eccd06ad6f2b7f2a166daeaf8158de8fd97d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cea0dbb8_79d7f628",
+        "filename": "includes/Data/FlowObjectCache.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-10-24T21:03:25Z",
+      "side": 1,
+      "message": "Instead of commenting out this code, maybe let __construct (or any other method) accept a valid $logger, and default to NullLogger?",
+      "revId": "e40eccd06ad6f2b7f2a166daeaf8158de8fd97d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cea0dbb8_b9f57eb7",
+        "filename": "includes/SubmissionHandler.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-10-24T21:03:25Z",
+      "side": 1,
+      "message": "There no longer seems to be a way to prevent cache corruption if the database transaction doesn\u0027t succeed?\nThis is probably ok - I believe - because when writing to database, you\u0027ll only be deleting stuff from cache, not writing anything new. And you\u0027ll only be writing to cache when reading from DB, so there will be no DB transactions to fail. Is my understanding correct?",
+      "revId": "e40eccd06ad6f2b7f2a166daeaf8158de8fd97d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
